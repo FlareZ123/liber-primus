@@ -6,7 +6,7 @@ on:
         description: "Select existing binary probes or source-aligned 79/78 radix gate"
         required: true
         type: choice
-        options: [standard, prime79, prime79prefix2, prime79cpsat, prime79trigram, prime79terminal]
+        options: [standard, prime79, prime79prefix2, prime79cpsat, prime79trigram, prime79terminal, prime79gp]
         default: standard
       cpsat_seconds:
         description: "Per-alignment CP-SAT timeout in seconds"
@@ -114,7 +114,7 @@ jobs:
         if: ${{ inputs.probe == 'prime79cpsat' || inputs.probe == 'prime79gp' }}
         run: python -m pip install ortools
       - name: Resolve unknown rune-cycle order at a formerly open 79-packet phase
-        if: ${{ inputs.probe == 'prime79cpsat' || inputs.probe == 'prime79gp' }}
+        if: ${{ inputs.probe == 'prime79cpsat' }}
         env:
           PHASE_START: ${{ inputs.phase_start }}
           PREFIX_TWO_DIRECTION: ${{ inputs.prefix_direction }}
