@@ -36,7 +36,11 @@ const mod = n => (n%MOD+MOD)%MOD;
 function read(rel) {return fs.readFileSync(path.join(ROOT,rel),'utf8');}
 function mapBytes(buf,mode) {
   assert.ok(mode==='mod'||mode==='reject');
-  if(mode==='mod')return Uint8Array.from(buf,b=>b%MOD);
+  if(mode==='mod'){
+    const key=new Uint8Array(buf.length);
+    for(let i=0;i<buf.length;i++)key[i]=buf[i]%MOD;
+    return key;
+  }
   const temp=new Uint8Array(buf.length);let n=0;
   for(let i=0;i<buf.length;i++)if(buf[i]<232)temp[n++]=buf[i]%MOD;
   return temp.subarray(0,n);
@@ -200,7 +204,7 @@ function run(inputFile,mapMode,outputFile) {
   assert.equal(page.length,262);
   const cipher=page.slice(13),firstN=96;
   const model=train(read('resources/control/shakespeare_first300k.txt'));
-  const maximumOffset=key.length-cipher.length-DRIFT-1;
+  const maximumOffset=key.length-cipher.length-24-1;
   const n=process.env.LP2_TEST_OFFSETS?
     Math.min(Number(process.env.LP2_TEST_OFFSETS),maximumOffset):maximumOffset;
   assert.ok(Number.isSafeInteger(n)&&n>1000);
