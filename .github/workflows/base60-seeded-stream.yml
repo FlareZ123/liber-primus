@@ -9,3 +9,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run AES-CTR ChaCha20 RC4 screen with planted control
         run: node sims/base60_seeded_stream.cjs
+      - name: Source-fixed 2014 OpenPuff CPython MT original-rune inverse
+        run: node sims/openpuff2014_historical_seed_inverse.cjs
