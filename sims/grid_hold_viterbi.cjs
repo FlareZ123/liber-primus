@@ -8,10 +8,11 @@
  * Ordinary emissions spend one key symbol. Unlike the separate grid-keyskip
  * search, this mechanism loses one key advance at each repair.
  *
- * A Viterbi search marginalizes over the unknown locations in the sense of
- * maximizing the joint plaintext/repair-path likelihood, not summing paths.
- * State is (number of holds, last two plaintext runes). All candidates and
- * null tables use the same screen and selection process.
+ * Exact forward recurrences SUM the probabilities of unknown repair paths;
+ * Viterbi recurrences simultaneously recover a single maximum-score path.
+ * Both are computed over states (number of holds, last two plaintext runes),
+ * with the stated cap on holds. Grid settings are ranked by forward score.
+ * Real, null and positive data use an identical shortlist-selection process.
  * All findings are experimental; no plaintext claims without actual text.
  */
 const assert = require("node:assert/strict");
@@ -60,8 +61,9 @@ function wordLog(lm,a,b,c) {
 }
 
 /**
- * Return maximum joint log-likelihood for one exact key and offset.
- * The historical orientation of the key must be independently supplied.
+ * Return the exact forward log-probability over bounded repair paths and
+ * the maximum path for one exact key and offset. The historical orientation
+ * of the key must be independently supplied.
  * @param {number[]} c
  * @param {number[]} key - 256 integers, already reduced modulo 29
  * @param {number} offset
