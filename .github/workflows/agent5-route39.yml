@@ -1,0 +1,15 @@
+name: Agent 5 fixed route 39 continuation
+on:
+  workflow_dispatch:
+
+jobs:
+  route39:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Enumerate frozen geometry and key constraints
+        run: node sims/route39_frozen_constraints.cjs
