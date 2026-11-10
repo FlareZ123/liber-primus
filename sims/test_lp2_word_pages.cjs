@@ -12,11 +12,18 @@ assert.equal(synthetic.words[1].startPage, 1);
 assert.equal(synthetic.crossPageWords, 1);
 assert.equal(synthetic.runeCount, 5);
 
+const afterPageSeparator = parseLP2Words("ᚠᛁ%\\n-ᚢ", 2);
+assert.equal(afterPageSeparator.words.length, 2);
+assert.equal(afterPageSeparator.crossPageWords, 0);
+assert.equal(afterPageSeparator.words[0].endPage, 0);
+assert.equal(afterPageSeparator.words[1].startPage, 1);
+
 const lp2 = parseSharedCorpus();
 assert.equal(lp2.runeCount, 12956);
 assert.equal(lp2.words.length, 2896);
 assert.equal(lp2.byStartPage.length, 55);
 assert.equal(lp2.originalPageFragments, 2928);
+assert.equal(lp2.crossPageWords, 32);
 assert.equal(lp2.originalPageFragments - lp2.words.length, 32);
 assert.equal(lp2.byStartPage.flat().length, 2896);
 assert.equal(lp2.byContainedPage.flat().length,
