@@ -1,8 +1,8 @@
 "use strict";
 
 /**
- * Source-exact LP2 grid polynomial factors, red-triad affine link, and
- * field-norm impossibility. Original source, mathematical fact; NO plaintext.
+ * Independent finite-field NORM obstruction on the already-established
+ * exact LP2 grid factorization and red-triad extension roots. NO plaintext.
  *
  * Run: node sims/red_triad_grid_affine_factors_sft.cjs
  *
@@ -11,9 +11,9 @@
  * The two red source triads are p3 [13,23,2], p39 [27,5,15], offset119.
  *
  * The p39 polynomial is 15(X-24)^2. The p3 polynomial F is irreducible;
- * the source JPEG page-number offset is 17, and the conjectural source
- * substitution G(X)=2 F((X-17)/2) yields the exact grid factor [11,18,1].
- * The source does not explicitly instruct this substitution; it is a test.
+ * its affine transformed grid factor G(X)=2 F((X-17)/2)=[11,18,1] is
+ * already documented through the conjugate roots u^433 and u^797.
+ * The source does not explicitly instruct the image-offset substitution.
  *
  * An additional monic irreducible cubic H=X^3+14X^2+16X+24 divides the grid
  * polynomial exactly once. For any polynomial Z over GF(29^2), Norm(Z)=Z*Z^29
