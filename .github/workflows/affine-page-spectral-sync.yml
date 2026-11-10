@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Test 29-ary shared pad under unknown page-wise affine alphabets
         run: node sims/affine_page_spectral_sync.cjs
+      - name: Test continuous 256-symbol key phase across physical pages
+        run: node sims/grid256_affine_phase_spectral.cjs
