@@ -1,0 +1,14 @@
+name: LP2 grid key with word-edge advances
+on:
+  workflow_dispatch:
+jobs:
+  word-edge-advance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run key advancement model
+        run: node sims/grid_boundary_advance.cjs
