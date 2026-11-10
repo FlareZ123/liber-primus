@@ -66,9 +66,25 @@ Important limitations: the line-width fit is regularized and is not a unique rec
 
 **Cryptanalytic implication:** the strong printed-line-first-letter marginal is now partially explained by a independently predictive *visual layout* mechanism. Treat it cautiously as a proposed key or acrostic channel unless it survives a width-conditioned null. None of the 12,956 unknown rune plaintexts, their real cipher keys, or the external puzzle destination has been recovered from this model.
 
+### Independent validation against original glyph ink (not line-break training)
+
+The inferred 29-width vectors now have a direct, **out-of-sample original-JPEG crosscheck**. [\`sims/printed_line_glyph_ink_width.py\`](../sims/printed_line_glyph_ink_width.py) locates line centers through a fixed x-crop and vertical dark-pixel projection, retaining pages only when the number of detected rows equals the printed transcription. It examines the first **runic** glyph of a line starting near source image x=600 and measures the width of its first connected run of dark vertical ink columns (up to two blank columns tolerated). This is an observable image-space ink component, **not** a reconstructed font advance width or OCR. The algorithm was run on the repository's original images \`17.jpg\`–\`72.jpg\`; 11 pages with unmatched line counts and 57 off-margin/punctuation starts were excluded by fixed gates.
+
+Crucially, **early-page image glyph widths are compared only to the advance vector inferred from *late-page line breaks*, and conversely**. The image pixels of the tested half never enter its predictor fit. For each rune with at least three image observations, calculate the median first-ink-component width and correlate it with its opposite-half fitted advance:
+
+| Native JPEG subset and opposite-half model | First-rune image observations | Rune types with ≥3 | Pearson correlation | Spearman rank correlation |
+|---|---:|---:|---:|---:|
+| Early images p0–25, model fitted only p26–55 | **227** | 28 | **0.89136458** | **0.77968027** |
+| Late images p26–55, model fitted only p0–25 | **214** | 26 | **0.87253075** | **0.85412197** |
+
+A separate source-local null **permutes just the first-rune labels among the same measured image glyphs within each physical page**. This preserves every sampled page's exact initial-rune inventory and all original measured pixel widths, while destroying the hypothesized alignment between a glyph identity and its ink width. There were **zero** null correlations as high as observed in **1,500** seeded shuffles per direction (add-one p **1/1501 = 0.00066622** each). The mean null correlations were 0.18946 and 0.19126, maxima 0.69691 and 0.71437. Because the inferred relative advances were fitted from line breaks alone, this is a strong *independent source-image prediction* of physical rune width structure.
+
+The image measure is intentionally conservative: occasional touching neighbors, component disconnection inside a rune, ink/antialias thresholding, cropping, red initials and missing line detections limit its physical accuracy. Its strong opposite-half correlations provide evidence that source-dependent glyph widths contribute materially to the original line-break and line-first-rune statistics; the exact original font, kerning engine and any residual ciphertext-specific line-start signal remain undetermined. **No plaintext or cryptographic key was recovered.**
+
 ## Reproduce
 
 - Exact CommonJS inference, reverse physical-page holdout, equal-width baseline, 1,000 original-inventory null permutations and line-start test: [\`sims/printed_line_greedy_width_inverse.cjs\`](../sims/printed_line_greedy_width_inverse.cjs). Node 22 built-ins only; deterministic seeds 0x47a1f34b and its XOR with 0x92538253.
 - Combined manual-only [printed-line workflow](../.github/workflows/printed-line-phase-manual.yml), [successful original run 42776323182](https://github.com/FlareZ123/liber-primus/actions/runs/42776323182), contains the full numeric widths and both 1,000-shuffle control distributions.
 - New original-JPEG 360-line pixel-width fit and physically measured wrap-gap alignment: [`sims/printed_line_width_mechanism.py`](../sims/printed_line_width_mechanism.py), [source-run 42777371312](https://github.com/FlareZ123/liber-primus/actions/runs/42777371312); uses the shared manual workflow's `attack=pixel-measure` input with NumPy and Pillow.
+- Independent out-of-sample glyph component measurement and page-preserving image-label shuffles: [`sims/printed_line_glyph_ink_width.py`](../sims/printed_line_glyph_ink_width.py), [successful 1,500-shuffle image CI run 42777661996](https://github.com/FlareZ123/liber-primus/actions/runs/42777661996).
 - Independent page-image crop and runic-line extent measurement: [\`sims/printed_line_source_span.py\`](../sims/printed_line_source_span.py), using original \`18.jpg\` with Pillow, NumPy and SciPy.
