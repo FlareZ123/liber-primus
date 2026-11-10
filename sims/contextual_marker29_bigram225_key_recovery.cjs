@@ -69,7 +69,7 @@ function score(lookup,plain,train){
     }
   }
   return {meanUnigram:uni/n,meanConditionalBigram:bi/m,
-    nSymbols:n,nBigram:m,meanObjective:WT*uni/n+bi/m};
+    nSymbols:n,nBigram:m,meanObjective:(WT*uni+bi)/m};
 }
 /**
  * @param {number[]} cipher
