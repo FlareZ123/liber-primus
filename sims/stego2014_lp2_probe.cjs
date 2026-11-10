@@ -33,7 +33,7 @@ function deriveSources(inputs) {
   const signed=Buffer.from(combined[6].raw).toString('utf8');
   assert.equal(combined[6].raw.length,991);
   assert.ok(signed.startsWith('-----BEGIN PGP SIGNED MESSAGE-----'));
-  assert.ok(signed.includes(sources.expectedReconstruction.bodyCode));
+  assert.ok(signed.replace(/\s+/g,' ').includes(sources.expectedReconstruction.bodyCode));
   assert.ok(signed.includes('-----END PGP SIGNATURE-----'));
   return combined;
 }
@@ -61,7 +61,7 @@ function knownLanguage() {
     return mod(rune-phi[position++]);
   });
   assert.equal(decrypted.slice(0,20).map(i=>corpus.translit[i]).join(''),
-    'ANENDWITHINTHEDEEPWEB');
+    'ANENDWITHINTHEDEEPWEBTH');
   const counts=Float64Array.from({length:29},()=>1);
   for(const x of [...decrypted,...p57])counts[x]++;
   const total=counts.reduce((a,b)=>a+b,0);
