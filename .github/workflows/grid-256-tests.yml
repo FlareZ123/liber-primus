@@ -14,6 +14,7 @@ on:
           - hensel29
           - crossround
           - hensel-skip
+          - jet
         default: full
 
 jobs:
@@ -64,6 +65,10 @@ jobs:
       - name: Original marked-root skip-aware repeat-filter inverse
         if: ${{ inputs.probe == 'hensel-skip' }}
         run: node sims/lp2_grid_hensel29_skipbeam_sft.cjs
+      - name: P39 value-derivative jet autonomous-state original gate
+        if: \${{ inputs.probe == 'jet' }}
+        run: node sims/p39_grid_jet_autonomous_state_sft.cjs
+
       - name: Archived 2014 onion-2 and original LP2 grid direct bridge
         if: ${{ inputs.probe == 'crossround' }}
         run: node sims/onion2_grid256_crossround_sft.cjs
