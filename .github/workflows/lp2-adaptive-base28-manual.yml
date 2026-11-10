@@ -11,6 +11,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Exclude stationary stateful base29 fixed-packet byte codecs
+        run: node sims/stateful_29rank_byte_capacity_sieve.cjs
       - name: Invert base-28 no-repeat output and check impossible byte codewords
         run: node sims/lp2_adaptive_base28_binary.cjs
       - name: Test global secret glyph and modular-difference order sieves
