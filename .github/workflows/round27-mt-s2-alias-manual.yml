@@ -1,0 +1,14 @@
+name: Agent 40 MT crosslane original inverse
+on:
+  workflow_dispatch:
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify 128 published source controls and 240-runic original candidate
+        run: node sims/round27_s2_crosslane_alias.cjs
