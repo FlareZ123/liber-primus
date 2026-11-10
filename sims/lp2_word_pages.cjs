@@ -24,16 +24,17 @@ function parseLP2Words(raw, unsolvedPages = 55) {
   const words = [];
   let current = "";
   let startPage = 0;
+  let lastRunePage = 0;
   let page = 0;
   let runeCount = 0;
 
   function finish() {
     if (!current) return;
-    const word = {runes: current, startPage, endPage: page,
+    const word = {runes: current, startPage, endPage: lastRunePage,
       length: [...current].length};
     words.push(word);
     byStartPage[startPage].push(word);
-    if (startPage === page) byContainedPage[startPage].push(word);
+    if (startPage === lastRunePage) byContainedPage[startPage].push(word);
     current = "";
   }
 
@@ -41,6 +42,7 @@ function parseLP2Words(raw, unsolvedPages = 55) {
     if (RUNIC.test(character)) {
       if (!current) startPage = page;
       current += character;
+      lastRunePage = page;
       runeCount++;
     } else if (character === "%") {
       page++;
