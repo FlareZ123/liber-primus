@@ -47,7 +47,7 @@ function original() {
  * and timing bits, deliberately making the feasibility test more permissive.
  * @returns {{row:number,column:number,required:number}[]}
  */
-function fixedCells() {
+function fixedCells(all=false) {
   const pixels=new Map();
   /** @param {number} row @param {number} col @param {number} bit */
   function mark(row,col,bit) {
@@ -77,6 +77,9 @@ function fixedCells() {
   }
   assert.equal(alignment,46);
   assert.equal(pixels.size,1342);
+  if(all) return [...pixels].map(([spot,required])=>({
+    row:Math.floor(spot/WIDTH),column:spot%WIDTH,required
+  }));
   const visible=[...pixels].filter(([spot])=>
     ((Math.floor(spot/WIDTH)+spot%WIDTH)&1)===0)
     .map(([spot,required])=>({
