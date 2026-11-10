@@ -75,7 +75,7 @@ function options(record){
  * @param {{xs:number[],start:boolean[],end:boolean[]}} bb
  * @param {number[]} prior
  */
-function ranked(aa,bb,prior){
+function ranked(aa,bb,prior,from=0,to=Math.min(aa.xs.length,bb.xs.length)){
   const n=Math.min(aa.xs.length,bb.xs.length);
   const a=options(aa),b=options(bb);
   const source=Array.from({length:M},(_,d)=>{
@@ -87,7 +87,7 @@ function ranked(aa,bb,prior){
   const scoring=[];
   for(let phase=0;phase<bb.xs.length;phase++){
     let log=0,ambiguous=0;
-    for(let i=0;i<n;i++){
+    for(let i=from;i<to;i++){
       const j=(i+phase)%bb.xs.length;
       let evidence=0;
       for(const x of a[i])for(const y of b[j])
@@ -134,21 +134,30 @@ function run(){
   const aa=lp2Page(28),bb=lp2Page(42);
   assert.equal(aa.xs.length,269);assert.equal(bb.xs.length,272);
   const actual=ranked(aa,bb,prior);
+  const actualFirst=ranked(aa,bb,prior,0,134);
+  const actualSecond=ranked(aa,bb,prior,134,269);
+  const flat=ranked(aa,bb,Array(M).fill(1/M));
   const random=rng(0x394290);
   const pad=Array.from({length:272},()=>Math.floor(random()*M));
   const ca=simulated(aa,heldout,pad,0x394291);
   const cb=simulated(bb,heldout,pad,0x394292);
   const positive=ranked(ca,cb,prior);
+  const positiveFirst=ranked(ca,cb,prior,0,134);
+  const positiveSecond=ranked(ca,cb,prior,134,269);
   const badPad=Array.from({length:272},()=>Math.floor(random()*M));
   const other=simulated(bb,heldout,badPad,0x394293);
   const negative=ranked(ca,other,prior);
+  const negativeFirst=ranked(ca,other,prior,0,134);
+  const negativeSecond=ranked(ca,other,prior,134,269);
   return {status:"exploratory original scale-four LP2 pair test; no original key or plaintext recovered",
     originalPages:[28,42],nCompared:269,scale:4,
     source:"Shakespeare GP prior first200000 chars; synthetic last60000 independent",
     channel:"exact word-local T6 collision rewrite 81%, first six random different",
     model:"at each step exact marginal over all 1..4 candidate tentative symbol pairs and all 29 GP source pairs; prior per rune iid",
-    actual,positive:{...positive,rewritesA:ca.rewrites,rewritesB:cb.rewrites},
-    independentKeyNegative:negative,
+    actual,actualFirst,actualSecond,flatPrior:flat,
+    positive:{...positive,first:positiveFirst,second:positiveSecond,
+      rewritesA:ca.rewrites,rewritesB:cb.rewrites},
+    independentKeyNegative:{...negative,first:negativeFirst,second:negativeSecond},
     caveat:"Pages28/42 and scale4 were post-selected; 272-shift rank is within-pair only. Iid GP-rune source does not model word language."};
 }
 if(require.main===module)console.log(JSON.stringify(run(),null,2));
