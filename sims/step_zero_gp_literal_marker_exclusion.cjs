@@ -14,8 +14,9 @@
  *
  * Bivariate Mahalanobis distance jointly compares total marker count and
  * first-of-word marker count. The covariance is computed analytically from
- * independent length-matched source-word draws; Monte Carlo calibrates the
- * minimum distance across all 29 possible marker labels.
+ * independent length-matched source-word draws, including the author's
+ * independently solved LP1/LP2 text; Monte Carlo calibrates the minimum
+ * distance across all 29 possible marker labels.
  *
  * This is a necessary-condition exclusion for a PARTICULAR plaintext-
  * preserving repeat-marker model, not proof of a historical cipher or
@@ -38,6 +39,7 @@ const registrations=[
   ['Shakespeare','resources/control/shakespeare_first300k.txt'],
   ['Gibran','resources/control/gibran_prophet_58585.txt'],
   ['Emerson','resources/control/emerson_essays_2944.txt'],
+  ['Solved-Cicada-LP1-and-LP2','resources/liber-primus/lp1-plaintext-reference.txt'],
 ];
 const original=read('resources/lp2-transcription.txt').split('%').slice(0,55).join('%');
 const ciphertextWords=original.split(/[-.&$§]/u)
@@ -59,6 +61,21 @@ for(const w of ciphertextWords){
 }
 assert.deepEqual([repeats,atStarts],[86,23]);
 const observed=[repeats,atStarts];
+
+/**
+ * Editor-normalized solved Cicada reference has comments, section headers,
+ * explanatory [bracket] text and a hex digest. Keep only manuscript words,
+ * excluding all editorial text and the literal deep-web hash.
+ * @param {string} text
+ */
+function sourceBody(text){
+  return text.split(/\r?\n/u)
+    .filter(line=>{
+      const v=line.trim();
+      return !v.startsWith('#') && !v.startsWith('[')
+        && !/^[0-9a-f]{25,}$/iu.test(v);
+    }).join(' ');
+}
 
 /** @param {string} word @param {boolean} ingAlias */
 function encode(word,ingAlias){
@@ -245,7 +262,8 @@ function run(){
   for(let id=0;id<registrations.length;id++){
     const [register,source]=registrations[id];
     for(const ingAlias of [false,true]){
-      const buckets=dictionary(read(source),ingAlias);
+      const text=read(source);
+      const buckets=dictionary(id===3?sourceBody(text):text,ingAlias);
       const expected=model(buckets);
       const originalByLabel=Array.from({length:M},(_,label)=>{
         const d=distance(label,observed,expected);
@@ -268,9 +286,9 @@ function run(){
       atCompleteRuneWordBeginning:atStarts,markerLocationFraction:atStarts/repeats},
     model:'One unchanged GP plaintext rune emits repeated ciphertext glyph; others emit 28 nonzero GP-step labels in a length-preserving 29-rune cipher',
     comparison:'2d total/word-initial counts matched by complete original GP word lengths, source-derived covariance',
-    control:'1500 complete manuscript word-length-matched independent English-source draws, family minimum across 29 labels, six independent text/alias models',
+    control:'1500 complete manuscript word-length-matched independent source draws, family minimum across 29 labels, six English + two solved Cicada/alias register models',
     sourceRegisters:out,
-    caveat:'Conditional on English registers and unchanged word starts. Unknown plaintext syntax, null substitutions, variable length, hidden word segmentation and deliberate marker relocation are outside this exclusion.',
+    caveat:'Conditional on English and editor-normalized solved-Cicada registers and unchanged word starts. Unknown plaintext syntax, null substitutions, variable length, hidden word segmentation and deliberate marker relocation are outside this exclusion.',
   };
   console.log(JSON.stringify(result,null,2));
   return result;
