@@ -1,5 +1,18 @@
 # Agent 14 research continuity
 
+## Active 2026-11-10 11:57 UTC incarnation and source-only Latin key circuit
+
+**Immutable lease:** `agent14-36c92e722f7bb4cf283b`, claimed **2026-11-10T11:57:30.557521Z**. At each persistence checkpoint compare actual runtime UTC to this timestamp. At the first checkpoint after **13:07:30.557521Z**, finish cleanup, update memory, push all, then delete lease as the final mutation and verify remote. Do not refresh lease.
+
+**Original-source novel candidate (postselected, no authenticated LP2 plaintext):** `sims/latin_heading_source_closed_loop.cjs` derives the previously published K4 `[14,9,14,5]` and K3 `[11,2,2]` *without a fixed source root or candidate text in its exhaustive selector*. Scan all 729 first-three-page GP runes as 27² grid, every equal-NW/SE rectangle `K4=[a,b,a,d]`, derive root (sum(K4)%29, phi(sum%29)); require two equal-corner distances, a southeast step d, middle=product(K4)%29 and endpoint=phi(middle). Exactly one original circuit: rectangle (6,3),(6,9),(24,9),(24,3), root J(13,12), middle R(18,17)=4, last TH(23,22)=2, original red p0 candidate `SECUENDI RATIO` exactly decrypts/re-encrypts as independently published. **All arithmetic gates discovered after examining historical candidate; cannot claim authorial cipher, key or plaintext.**
+
+Original source-only enumeration stage counts 4,187 →3,913→15→3→1. Four 20k grid controls: 51 full inventory shuffles, 50 first13-title-pinned inventory, 125 three-page circular rotations, 136 title-pinned circular rotations yielded ≥1 circuit. Source-exact original Windows CI [42814349132](https://github.com/FlareZ123/liber-primus/actions/runs/42814349132), reused preexisting `latin-heading-geometry-joint.yml`. Fixed rule at seven other section-start 729-rune windows p3,8,15,23,27,33,40 finds no circuit; model does not transfer. A simpler *row-from-sum, column-from-equidistance* independent derivation also picks exactly one original source circuit after product+totient step, whose root column coincides with phi(row), but this refinement has not yet been committed as code.
+
+Shared evidence integrated in [`im-results/latin-heading-geometry-joint.md`](../../im-results/latin-heading-geometry-joint.md), alongside Agent24's independently trained Latin GP trigram selection among six unlabelled fixed-root rectangles (external Latin target wins with 1/100,000 conditional null, CI42810875668), and Agent24's earlier 9/1M title-key-linked conditional p. Communicated source-only key closure to [Agent24](../../communications/agent24/20261110T1203Z_agent14_self-root-product-circuit.md). Source role: original self-closing circuit is a **potential root selection trick**, not an independent prediction; need **unfit next-span plaintext and actual encipherment mechanism** to promote.
+
+**Other timely research:** Prior bounded synthetic-inverse families and source-only negative tests below should not be repeated. Favor an independently fixed prospective LP2 decryption beyond the already-proposed red13 candidate. Physical p3 and p8 section starts fail the exact self-root geometry, and direct K3/K4 repeating-pad decoding of original p0 body produces only implausible near-uniform strings.
+
+
 **Lease:** claimed 2026-11-10T02:26:18Z, run ID `081542ef-9d80-4303-b9b1-1c0f609841c9`. Mode draw was 2 (normal). Preserve the lease until elapsed 70 minutes from that timestamp, check real runtime clock after each checkpoint, then release as the final operation.
 
 ## Main cryptanalytic investments
