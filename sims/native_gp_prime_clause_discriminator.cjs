@@ -223,6 +223,73 @@ function originalFibonacciGate(){
   };
 }
 
+/**
+ * Count prime-valued printed original LP2 clauses without attempting to
+ * decrypt them.  The null preserves each source page's rune inventory and
+ * every actual punctuation-defined clause length.  This is a retrospective
+ * diagnostic on original ciphertext, not evidence of an authentic key.
+ */
+function rawOriginalCiphertextClauseNull(){
+  const body=masterPages.slice(16,72).join("%");
+  const original=corpus.pages.filter(p=>p.page<56).flatMap(p=>p.indices);
+  const fromMaster=[...body].filter(ch=>lookup.has(ch)).map(ch=>lookup.get(ch));
+  assert.deepEqual(fromMaster,original);
+  assert.equal(original.length,12956);
+  const ends=[];
+  let n=0;
+  for(const part of body.split(".")){
+    const length=[...part].filter(ch=>lookup.has(ch)).length;
+    if(length){n+=length;ends.push(n);}
+  }
+  assert.equal(n,original.length);
+  assert.equal(ends.length,168);
+  const ranges=[];
+  n=0;
+  for(const page of corpus.pages.filter(p=>p.page<56)){
+    ranges.push([n,n+page.indices.length]);
+    n+=page.indices.length;
+  }
+  function primeClauseCount(values){
+    let sum=0,clause=0,primes=0;
+    for(let i=0;i<values.length;i++){
+      sum+=gpPrime[values[i]];
+      if(i+1===ends[clause]){
+        primes+=Number(isPrime(sum));
+        sum=0;
+        clause++;
+      }
+    }
+    assert.equal(clause,ends.length);
+    return primes;
+  }
+  const actual=primeClauseCount(original);
+  assert.equal(actual,31);
+  const seed=0x46b17419,repetitions=10000,draw=rng(seed);
+  const shuffled=original.slice(),counts={},distribution=[];
+  let sum=0,asLarge=0;
+  for(let run=0;run<repetitions;run++){
+    for(const [lo,hi] of ranges)for(let i=hi-1;i>lo;i--){
+      const k=lo+draw()%(i-lo+1);
+      [shuffled[i],shuffled[k]]=[shuffled[k],shuffled[i]];
+    }
+    const s=primeClauseCount(shuffled);
+    counts[s]=(counts[s]||0)+1;
+    distribution.push(s);
+    sum+=s;
+    asLarge+=Number(s>=actual);
+  }
+  assert.equal(asLarge,273);
+  return {
+    originalPhysicalPages:56,originalRunes:original.length,
+    printedClauses:ends.length,primeClauses:actual,
+    null:"within-physical-page rune-inventory shuffle; preserve all printed punctuation lengths",
+    seed:"0x46b17419",repetitions,meanPrimeClauses:sum/repetitions,
+    atLeastOriginal:asLarge,addOneUpperTail:(asLarge+1)/(repetitions+1),
+    nullHistogram:counts,
+    limitation:"Postselected on a source-known prime-clause feature, and not research-wide adjusted; no decryption."
+  };
+}
+
 function main(){
   const originalRank=rankAllShifts(known);
   assert.equal(originalRank[0].shift,0);
@@ -253,6 +320,7 @@ function main(){
     plantedUnknownShift:{secretShift,highest:plantedRank[0],runnerUp:plantedRank[1]},
     nonNativeShakespeare:{sourceOffset:3301,highest:shakespeareRank[0]},
     originalLp2FibonacciGate:originalFibonacciGate(),
+    rawOriginalLp2PrimeClauses:rawOriginalCiphertextClauseNull(),
     shuffleNull:{
       model:"permute each page's actual GP runes independently across fixed physical clause lengths; refit all 29 shifts",
       seed:"0x73c1a15",repetitions,maxima,
