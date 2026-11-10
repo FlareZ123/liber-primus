@@ -198,6 +198,78 @@ for (let d = 0; d < 29; d++) {
 }
 const addLog = additionQ.map((v) => Math.log(29 * v));
 
+/*
+ * Original bookend word-start displacement is 1,432 = 8 * 179. The 179
+ * happens to be p53's full rune count and a factor of the 256-byte table.
+ * For one candidate 179-word additive key clock, two ciphertext words of
+ * equal GP length, 179 words apart, must cancel the unknown same-position
+ * pad. This is a necessary English-difference test with no fitted key.
+ *
+ * The 1432-word source-selected shift is tested as a separate constrained
+ * comparison. Its two already-matching terminal word pairs are excluded
+ * from the score to prevent rewarding the selection observation twice.
+ */
+/**
+ * @param {number[][]} sourceWords
+ * @param {number} lag
+ * @returns {{matchedWords:number,runes:number,score:number,exactRuneMatches:number}}
+ */
+function wordClockDifference(sourceWords, lag) {
+  let matchedWords = 0;
+  let runes = 0;
+  let exactRuneMatches = 0;
+  let score = 0;
+  for (let i = 0; i + lag < sourceWords.length; i++) {
+    if (lag === 1432 && (i === 1462 || i === 1463)) continue;
+    const left = sourceWords[i];
+    const right = sourceWords[i + lag];
+    if (left.length !== right.length) continue;
+    matchedWords++;
+    for (let j = 0; j < left.length; j++) {
+      const diff = mod(left[j] - right[j]);
+      exactRuneMatches += diff === 0 ? 1 : 0;
+      score += addLog[diff];
+      runes++;
+    }
+  }
+  return { matchedWords, runes, score, exactRuneMatches };
+}
+
+assert.equal(2894 - 1462, 1432);
+assert.equal(1432, 8 * 179);
+const observedWord179 = wordClockDifference(allWords, 179);
+const observedWord1432 = wordClockDifference(allWords, 1432);
+assert.equal(observedWord179.matchedWords, 427);
+assert.equal(observedWord179.runes, 1547);
+assert.ok(Math.abs(observedWord179.score - (-34.96294560118788)) < 1e-8);
+assert.equal(observedWord1432.matchedWords, 197);
+assert.equal(observedWord1432.runes, 758);
+assert.ok(Math.abs(observedWord1432.score - (-11.131326807185237)) < 1e-8);
+
+const plantPlainWords = [];
+let plantSourcePos = 160000;
+for (const actualWord of allWords) {
+  const sourceWord = reference.slice(plantSourcePos, plantSourcePos + actualWord.length);
+  assert.equal(sourceWord.length, actualWord.length);
+  plantPlainWords.push(sourceWord);
+  plantSourcePos += actualWord.length;
+}
+assert.equal(plantSourcePos, 172956);
+let wordSeed = 0x49abf179;
+/** @returns {number} */
+function wordRandom32() {
+  wordSeed ^= wordSeed << 13;
+  wordSeed ^= wordSeed >>> 17;
+  wordSeed ^= wordSeed << 5;
+  return wordSeed >>> 0;
+}
+const wordKey = Array.from({ length: 179 * 15 }, () => wordRandom32() % 29);
+const plantWordCipher = plantPlainWords.map((word, i) =>
+  word.map((plain, j) => mod(plain + wordKey[(i % 179) * 15 + j])));
+const plantedWord179 = wordClockDifference(plantWordCipher, 179);
+assert.equal(plantedWord179.runes, 1547);
+assert.ok(Math.abs(plantedWord179.score - 33.26528781930028) < 1e-8);
+
 /** Ratio of two independent native-English GP rune *steps*. */
 const ratioQ = Array(29).fill(0);
 for (let b = 1; b < 29; b++) {
@@ -352,6 +424,14 @@ console.log(JSON.stringify({
     sourceImageDimensions: [563, 569],
     phraseGP: phrase,
     sourcePhraseOffsets: allOccurrences,
+    wordClockSource: {
+      repeatedPairWordSeparation: 1432,
+      sourceP53RuneCount: 179,
+      gridColumnCount: 8,
+      additivePeriod179: observedWord179,
+      additiveDisplacement1432: observedWord1432,
+      trueKeyPeriod179Plant: plantedWord179
+    },
     wordInventory: {
       totalWords: N, distinctWordTypes: wordType.size,
       typesUsedAtLeastTwice: repeatedTypes.length,
