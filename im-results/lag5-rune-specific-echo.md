@@ -37,6 +37,14 @@ The strongest of all 174 original standardized scores is **still the lag-five �
 
 Reproduction: [\`sims/short_lag_rune_identity_scan.cjs\`](../sims/short_lag_rune_identity_scan.cjs) (deterministic CJS, default 3,000 training + 3,000 test samples).
 
+## Mechanism discriminant: no dense affine map fixing ᛋ
+
+The privileged \`ᛋ\` symbol might be explained by a broader affine map that fixes its GP index 15. Every invertible map in this family has form \`U_a(x)=15+a(x-15) mod 29\` with \`a=1,...,28\`. To test this hypothesis without falsely counting the known S-to-S matches as support for *every* slope, the [fixed-point sieve](../sims/lag5_affine_fixedpoint_sieve.cjs) **excludes all pairs with either source or target equal to S**, then scores the remaining pairs separately for each of the 28 slopes. It uses the same strictly word-conditioned null and independent training/testing halves (2,000 each; seed \`0x64c99a85\`).
+
+The best non-S map was \`a=16, b=7\` with **91** nonfixed matches against a null mean of **69.7345 ± 7.9770** (SD), a +2.666 SD excess. **249 of 2,000** test randomizations had a maximum across the 28 maps at least this high: familywise p **0.12494**, so the broad fixed-point affine explanation is **unsupported at available power**. The identity map \`a=1\`, excluding S, had 93 matches against mean 74.4035 (z=2.407), also below the familywise threshold.
+
+This helps distinguish a **value-specific S recurrence** from a dense affine lag-five recurrence with S as fixed point. It does not exclude a sparse affine rewrite, a different class of map, or noncausal source-text structure.
+
 ## Interpretation and limitations
 
 The independently published **lag-six relation** \`c_i=24-2c_(i-6) mod 29\` and the **lag-five identity relation concentrated on rune ᛋ** are separately significant under the same stringent per-word randomization principle (see [lag-six counterpart](lag6-conditioned-echo.md)). A plausible cipher-generation model must account for both, along with the global adjacent-repeat suppression and the observed word-length statistics.
