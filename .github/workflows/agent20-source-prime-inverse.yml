@@ -11,10 +11,11 @@ on:
         options:
           - source
           - coordinate
+          - red32
 
 jobs:
   source-prime-inverse:
-    if: ${{ inputs.mode != 'coordinate' }}
+    if: ${{ inputs.mode == 'source' }}
     runs-on: windows-latest
     timeout-minutes: 20
     steps:
@@ -66,3 +67,16 @@ jobs:
       - name: Exhaustive all 41,471 nonzero full-book cyclic shifts of both alphabets
         shell: pwsh
         run: node sims/coordinate_fractionation_all_lag_gate.cjs
+
+  red32-aes192-inverse:
+    if: ${{ inputs.mode == 'red32' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original red32 base60 AES192 source-key, grid and rune inverses
+        shell: pwsh
+        run: node sims/red32_base60_aes192_inverse.cjs
