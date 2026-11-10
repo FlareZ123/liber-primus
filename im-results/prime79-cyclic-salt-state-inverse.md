@@ -61,6 +61,92 @@ The original's measured state collision is nevertheless slightly higher than a s
 
 The same first/last-half crossfit measured within these null runs gives salt-label upper-tail **88/5001 = 0.017596** and packet-rotation upper-tail **26/5001 = 0.005199**. Both reflect already-selected source phase35 and the constructed statistic, so they are *conditional descriptions*. They leave open plaintext-independent dependencies or deliberate state structure.
 
+### Exact all-secret phase-78 and four-group capacity obstruction
+
+A later original-input extension asks a more direct information-theoretic
+question: can the plaintext be native GP English or Latin if the proposed
+164×79 stream uses a **public 78-phase field clock** with an *arbitrary fixed
+unknown bijection of the 28 nonzero step ranks for every public phase*?
+This extends the fixed-mask tests beyond any particular power of 53,
+arithmetical key schedule or guessed permutation. A clock may use the global
+79-rune packet counter, the 78-symbol payload counter, packet number plus
+within-packet column, or packet number alone. Independently, it may use no
+published salt, add it, XOR it, or mix packet number times salt. The complete
+specified family has **16 public clock/nonce definitions**, each allowing
+78 independently arbitrary secret **28!** tables. These clocks are proposed
+mechanisms, not source-authenticated instructions.
+
+**Exact all-key invariant.** For each public state \(s\), let \(n_{s,r}\)
+count original nonzero ciphertext rank \(r\in[0,27]\), retaining the exact 86
+zero-step positions as conditional transparent EA markers. If every state
+has a fixed arbitrary unknown **permutation** of the 28 symbols, then the
+largest possible number of decoded symbols lying in *any* \(k\) selected
+native-GP categories is bounded by the **sum of each state's \(k\) largest
+rank counts**:
+
+\[
+U(k)=\sum_s\sum_{j=1}^k n_{s,(j)},\qquad
+n_{s,(1)}\ge\ldots\ge n_{s,(28)}.
+\]
+
+This is independent of every secret table and holds simultaneously for all
+\(k=1,\ldots,28\). For a control plaintext window with top-\(k\) count
+\(T(k)\), at least \(\max_k(T(k)-U(k))\) GP rune substitutions are necessary
+to make it fit the cipher, because changing one rune changes any one
+top-\(k\) tally by at most one. The reference is the separately pinned
+GP-encoded Shakespeare non-EA stream with the same **12,706** nonzero
+original positions. All **204,462** contiguous equal-length windows
+were enumerated, with no fitted secret alphabet.
+
+- One set of 78 arbitrary state tables per clock: the largest original
+  top-12 occupancy is **7,549/12,706**, against a source-window top-12
+  *minimum* of **9,608/12,706**. Across **all 16** clocks and **all**
+  204,462 windows, the exact **minimum necessary edits is 2,071**.
+  The best original same-state equality is
+  **37,358/1,028,589 = 0.0363196573** under payload78/no salt.
+- A much richer source-linked model grants **four completely independent
+  rekeys of all 78 phase tables**, giving **312 arbitrary 28! secret tables**,
+  with groups either four successive **41-packet quarters** or packet
+  number modulo4. Across 4 clocks ×4 mixes ×2 groupings = **32 exact
+  models**, the greatest original top-12 capacity is **9,567/12,706**;
+  even this permissive value falls below the English source-window
+  minimum **9,608**. The *full 28-way* capacity yields a stronger
+  exact **minimum 335 changed GP symbols** across every tested
+  Shakespeare window and every one of these 32 models.
+- An independent Latin Vulgate GP whole-word reference gives **191,806**
+  contiguous non-EA windows of the same length, with top-12 count
+  **at least 11,028**. Thus even the strongest four-group model needs
+  **at least 1,461 Latin rune substitutions** by this one necessary
+  top-12 inequality.
+
+The authoring and source code remain key-independent. Two original-input
+CommonJS reproducers implement the entire finite calculation and check
+their exact counts: [single 78-phase key](../agents/agent26/field79_phase_allkey_gate.cjs)
+and [four independently keyed phase groups](../agents/agent26/field79_fourgroup_allkey_gate.cjs).
+A separate [4,992-setting source-primitive-root inverse](../agents/agent26/field79_rank_gate.cjs)
+tests narrower explicitly constructed field79 masks; its best original
+decoded coincidence is only **0.0358043094**. Both arbitrary-table
+reproducers include original-marker-matched authentic Shakespeare GP
+positive controls that exactly recover **12,706 of 12,706** planted
+non-EA GP symbols, including a genuinely different arbitrary
+permutation for every allowed state. The four-group source sweeps were
+also performed against every Latin Vulgate reference window. The exact
+GitHub source was executed with the original tracked corpora; these
+controls do **not** establish an historical forward cipher or a real key.
+
+**Scope and decision:** direct native-GP 78-phase reuse, even with
+four independent source-quarter/lane key sets, cannot explain the
+original ciphertext under the specified circular phase35 packet framing
+and EA convention. The conditional bound is strong and entirely
+independent of the values of the secret keys. **The underlying framing
+remains unverified**, especially because its phase-selection
+familywise p was 0.13245 as reported below. Source windows overlap
+heavily and the bounds are finite corpus-specific constraints rather
+than claims about every possible English or Latin text. A secret
+changing within the stated four group/phase states, alternative text
+register, rearranged packet boundaries or a different original cipher
+can evade these necessary conditions.
+
 ## The necessary global phase-selection correction
 
 The source-original phase35 statistic is the **largest of all 79 cyclic phase offsets**, with IOC `2916/75548=0.03859798`; the next phases 56 and 29 yield `0.03831696` and `0.03817280`. The phase35 maximum was recognized using the manuscript and cannot be evaluated using a phase-fixed null alone.
@@ -68,6 +154,8 @@ The source-original phase35 statistic is the **largest of all 79 cyclic phase of
 We therefore **refitted the maximum over all 79 phases** on each of **150** independent physical-page circular-rotation nulls, preserving each page's exact rune histogram, cyclic adjacency and length, with seed `0x26a07935`. **19/150** surrogates had maxima at least as large as the original. The exact executed add-one **familywise p=20/151=0.13245033**; null mean maximum `0.03807359`. This search-wide test **does not establish a distinguished 79-clock**. The source-derived 35/79 pairing remains a rationale for a falsifiable model rather than independent confirmation of it. The familywise negative and the exact marker/positive controls ran together in [CI 42817379967](https://github.com/FlareZ123/liber-primus/actions/runs/42817379967).
 
 ## Cryptanalytic decision
+
+**Specific family bounded:** beyond the original source-salt/column state models, the additional exact 78-phase source-clock capacity theorem excludes every fixed key under one-to-four rekeys per public phase against the finite pinned GP-English source register (and four-group Latin source register). Details and sharp all-window edit bounds are given above.
 
 **Specific family bounded:** a single fixed bijection `σ[s,column]` for every externally visible packet IV and position, fed directly by native English- or Latin-like GP runes except for proposed transparent EA symbols, is strongly inconsistent with the authentic original source. This conclusion is *key-independent* within the precise family, even though the secret permutation search space is enormous.
 
