@@ -42,6 +42,19 @@ The original source's inferred table pairs are `[[25,3],[19,1],[3,15],[23,8],[3,
 
 This directly screens the broader **all-secret, stationary per-trit additive-table family** under the stated plaintext prior. It does not rule out interactions between trits, hidden alphabet relabeling, a different source language, source-key changes, or a distinct 81² interpretation. In particular, the fitted original output is far from the authentic-plaintext control despite the extra freedom. The code runs both the affine and the unrestricted-table inversions from the same original source corpus, with independent genuine-language planted recoveries.
 
+## Frozen genuine-original continuation beyond the square
+
+A 3⁸-digit key repeats every 6,561 source positions if the same global coefficients and phase govern the book. The first 6,561 runes above determine each candidate key. **No refit** is permitted on the remaining **6,395 original LP2 runes**. On that second block, evaluate all GP rune outputs using the **same eight low ternary index digits** of the global position and score under the same solved-Cicada GP reference.
+
+| Previously unfitted 6,395-rune original continuation | GP marginal mean log likelihood |
+| --- | ---: |
+| Original ciphertext, no transform | **−4.306691** |
+| Affine 8-coefficient key recovered from first 6,561 | **−4.292502** |
+| Broader arbitrary trit tables recovered from first 6,561 | **−4.341612** |
+| Independently encrypted 12,956-rune Shakespeare passage, either genuine recovered planted key | **−2.969078**, **6,395/6,395** correct heldout GP runes in each case |
+
+The small original affine gain is still **1.323 nats/rune worse** than authentic-source prose, and the broader table gives a *lower* heldout language score than leaving the ciphertext unchanged. This is a stronger withheld-source failure than any fitted first-square score. The positive GP-language plant uses genuine uninterrupted Shakespeare rune text, a secret recovered *solely* from its first 6,561 ciphertext positions, and proves full heldout plaintext and re-encryption algebra for each model. No assumption that the two original sides contain independent English samples is required for the literal heldout numbers; language interpretation does depend on the reference model.
+
 ## Scope and research decision
 
 The triple-difference elimination is an exact algebraic technique applicable to any proposed GP29 additive key that is *linear in ternary coordinate digits*. Its statistical recovery power assumes that distinct plaintext positions in the triples are sufficiently modeled by the known Cicada GP marginal. Strong correlations, changing keys, a different language/alphabet, transpositions, or a nonlinear function of the digits can evade the stated negative. The original 6,561 boundary itself was noticed retrospectively, so a successful planted inverse provides implementation validation but no independent proof that Cicada used this architecture.

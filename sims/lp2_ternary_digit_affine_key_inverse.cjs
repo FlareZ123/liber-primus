@@ -124,8 +124,10 @@ function random(seed) {
   return () => {x ^= x << 13; x ^= x >>> 17; x ^= x << 5; return x >>> 0;};
 }
 const secret = [15, 22, 5, 7, 13, 3, 0, 27], secretPhase = 8;
-const shakespeare = gp(read("resources/control/shakespeare_first300k.txt"))
-  .slice(0, N);
+const entireShakespeare = gp(read("resources/control/shakespeare_first300k.txt"))
+  .slice(0, all.length);
+assert.equal(entireShakespeare.length, 12956);
+const shakespeare = entireShakespeare.slice(0, N);
 assert.equal(shakespeare.length, N);
 const plantedCipher = encipher(shakespeare, secret, secretPhase);
 const plant = invert(plantedCipher);
@@ -238,6 +240,44 @@ const fullGain = fullSource.score - fullSource.baseline;
 const fullMore = fullControls.filter(gain => gain >= fullGain).length;
 assert.equal(fullMore, 17);
 
+
+/** @param {number} i @param {number[]|number[][]} keys @param {number} phase @param {boolean} full */
+function globalMask(i, keys, phase, full) {
+  let value = phase;
+  for (let j = 0; j < 8; j++) {
+    const d = Math.floor(i / (3 ** j)) % 3;
+    if (full) {
+      if (d) value += keys[j][d-1];
+    } else value += keys[j] * d;
+  }
+  return mod(value);
+}
+/** Score the 6,395 original source runes beyond the first 3^8 key-selection block. */
+function scoreTail(cipher, keys, phase, full) {
+  let total = 0;
+  for (let i = N; i < all.length; i++)
+    total += logProb[mod(cipher[i] - globalMask(i, keys, phase, full))];
+  return total / (all.length - N);
+}
+const rawTail = all.slice(N).reduce((s, r) => s + logProb[r], 0) /
+  (all.length - N);
+const affineTail = scoreTail(all, source.keys, source.phase, false);
+const fullTail = scoreTail(all, fullSource.keys, fullSource.phase, true);
+function positiveTail(keys, phase, full) {
+  let exact = 0, total = 0;
+  for (let i = N; i < all.length; i++) {
+    const encoded = mod(entireShakespeare[i] + globalMask(i,
+      full ? fullSecret : secret, secretPhase, full));
+    const recovered = mod(encoded - globalMask(i, keys, phase, full));
+    if (recovered === entireShakespeare[i]) exact++;
+    total += logProb[recovered];
+  }
+  assert.equal(exact, all.length - N);
+  return {exactRecovered:exact, meanLogLikelihood:total/(all.length-N)};
+}
+const affinePlantTail = positiveTail(plant.keys, plant.phase, false);
+const fullPlantTail = positiveTail(fullPlant.keys, fullPlant.phase, true);
+
 const compact = x => ({
   keys:x.keys, phase:x.phase,
   scorePerRune:x.score / N,
@@ -285,6 +325,15 @@ console.log(JSON.stringify({
       minimum:Math.min(...fullControls), maximum:Math.max(...fullControls),
       nullAtLeastOriginal:fullMore, plusOneTail:(fullMore+1)/21
     }
+  },
+  heldoutOriginalBeyondFirst6561:{
+    runes:all.length-N,
+    keyClock:"The same eight lowest ternary digits of the global rune index, period 6561",
+    rawGPMeanLogLikelihood:rawTail,
+    affineWithFrozenFirstHalfKeys:affineTail,
+    unrestrictedTritTablesWithFrozenFirstHalfKeys:fullTail,
+    independentShakespearePlantAffine:affinePlantTail,
+    independentShakespearePlantUnrestricted:fullPlantTail
   },
   status:"Both source-native conditional negatives; no unknown LP2 plaintext or key recovered"
 }, null, 2));
