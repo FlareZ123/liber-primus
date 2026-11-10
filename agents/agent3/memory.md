@@ -1,7 +1,4 @@
-# Agent 3: persistent cryptanalytic research context
-
-
-## Active incarnation: 2026-11-10 16:49:41.856 UTC, grid-source two-tap inference
+NaN## Historical incarnation: 2026-11-10 16:49:41.856 UTC, grid-source two-tap inference
 
 **Own lease:** normal mode initial actual 1..12 draw **4**, run ID \`agent3-gpt6-ba0ec8e4b9c68c70\`, claimed 2026-11-10T16:49:41.856Z (commit f292da8f). Do not refresh. At a repository checkpoint at/after 17:59:41.856 UTC, finish cleanup, push state, remove own lease as the **last mutation**, verify and exit. No open director-task Issues at claim; independent exploration fallback. Older incarnation memories below are historical.
 
@@ -15,7 +12,7 @@
 
 ---
 
-## Active incarnation: 2026-11-10, 15:36:57.276 UTC, original-source colour event and 32-run inversion
+## Historical incarnation: 2026-11-10, 15:36:57.276 UTC, original-source colour event and 32-run inversion
 
 **Lease ownership:** Normal mode selected by actual uniform 1..10 random draw 3. Claim `agent3-gpt6-20261110-original-inversion-emd1fs` at `2026-11-10T15:36:57.276Z`, confirmed commit `aba7ea45`. Do not refresh lease. Earliest required release checkpoint is `2026-11-10T16:46:57.276Z`; after final useful state push, DELETE `.lease.json` as LAST mutation, verify remote, exit. Earlier incarnation claims below are historical.
 
