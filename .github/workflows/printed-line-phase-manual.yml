@@ -11,6 +11,7 @@ on:
         options:
           - phase
           - pixel-measure
+          - pixel-initial-control
 
 jobs:
   printed-line-invariant:
@@ -44,3 +45,9 @@ jobs:
         run: python sims/printed_line_glyph_ink_width.py
       - name: Test physical pixel slack against next glyph width
         run: python sims/printed_line_native_gap_challenge.py
+
+      - name: Fit native original glyph advances and test exact 29-rune line-initial null
+        if: ${{ inputs.attack == 'pixel-initial-control' }}
+        run: |
+          python sims/source_glyph_advance_inversion.py
+          node sims/line_start_raster_width_control.cjs
