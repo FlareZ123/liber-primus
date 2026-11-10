@@ -31,8 +31,37 @@ function walk(startName, sign) {
   };
 }
 
+function canonicalCycle(indices) {
+  const rotations = indices.map((_, i) => indices.slice(i).concat(indices.slice(0, i)));
+  rotations.sort((a, b) => {
+    for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return a[i] - b[i];
+    return 0;
+  });
+  return rotations[0];
+}
+
+function basinSummary(sign) {
+  const basins = new Map();
+  for (let start = 0; start < GP.length; start++) {
+    const result = walk(GP[start][0], sign);
+    const cycle = canonicalCycle(result.path.slice(result.cycleStart).map(x => x.index));
+    const key = cycle.join(',');
+    if (!basins.has(key)) basins.set(key, { cycle, starts: [] });
+    basins.get(key).starts.push(start);
+  }
+  return [...basins.values()].map(({ cycle, starts }) => ({
+    cycle: cycle.map(i => GP[i][0]),
+    basinSize: starts.length,
+    starts: starts.map(i => GP[i][0]),
+  })).sort((a, b) => a.cycle.length - b.cycle.length ||
+    GP.findIndex(([name]) => name === a.cycle[0]) - GP.findIndex(([name]) => name === b.cycle[0]));
+}
+
 const plus = walk('Ac', +1);
 const minus = walk('Ac', -1);
+const plusBasins = basinSummary(+1);
+const minusBasins = basinSummary(-1);
+
 assert.deepEqual(plus.path.map(x => x.name),
   ['Ac', 'Rad', 'Eolh', 'Thorn', 'Gyfu', 'Ethel', 'Beorc', 'Mann']);
 assert.equal(plus.cycleStart, 3);
@@ -40,10 +69,14 @@ assert.equal(plus.cycleLength, 5);
 assert.equal(plus.repeatedRune, 'Thorn');
 assert.deepEqual(minus.path.map(x => x.name),
   ['Ac', 'Sigel', 'Ing', 'Ur', 'Ear', 'Wynn', 'Eh', 'Is', 'Nyd']);
+assert.deepEqual(plusBasins.map(x => x.basinSize), [1, 8, 20]);
+assert.deepEqual(minusBasins.map(x => x.basinSize), [1, 28]);
 
 console.log(JSON.stringify({
   rule: 'i_next = i + sign * (prime[i] - 1) mod 29',
   start: 'Ac',
   plus,
   minus,
+  plusBasins,
+  minusBasins,
 }, null, 2));
