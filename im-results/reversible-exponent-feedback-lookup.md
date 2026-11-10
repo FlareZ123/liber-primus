@@ -1,6 +1,6 @@
 # Reversible F29 exponent-feedback lookup attacks on LP2
 
-**Status, 10 November 2026:** two executed original-ciphertext, heldout-key-recovery experiments. Both recover *complete genuine planted ciphertexts*, with source-blind training, but **neither recovers any unknown LP2 plaintext or authentic historical key**. These finite attacks test a specific causal exponential-step cipher architecture; they do not exclude alternative plaintext registers, arbitrary source keys, other lags, nonlinear multi-tap transforms or changes of state across sections.
+**Status, 10 November 2026:** three executed original-ciphertext, heldout-key-recovery and source-blind structure-discovery experiments. Both recover *complete genuine planted ciphertexts*, with source-blind training, but **neither recovers any unknown LP2 plaintext or authentic historical key**. These finite attacks test a specific causal exponential-step cipher architecture; they do not exclude alternative plaintext registers, arbitrary source keys, other lags, nonlinear multi-tap transforms or changes of state across sections.
 
 ## Exact model and source assumptions
 
@@ -38,11 +38,32 @@ The original training gains collapse on the truly withheld pages. For perspectiv
 
 These exact recoveries show that this is a working cryptanalytic inverse, including its unrestricted unknown lookup keys, for its declared class and English source. LP2's failure to yield comparable heldout language is a bounded failure of that hypothesis. Source English errors, compression, different key clocks, other state functions and other cipher families remain open.
 
+## Source-blind spectral lag recovery without an English key
+
+To avoid assuming the key schedule or fitting English before choosing lags, we constructed a complex Fourier rank-one statistic for any lag pair \((a,b)\). Let \(r_i=\log_{15}((C_i-C_{i-1})\bmod29)\bmod28\) when the delta is nonzero. For harmonic \(h=11\), coprime to 28 and substantial in the independently fixed GP-English control, form the 29×29 matrix
+
+\[
+M_{a,b}(x,y)=\sum_{i:C_{i-a}=x,\,C_{i-b}=y}e^{2\pi\mathrm{i}11r_i/28}.
+\]
+
+If the candidate additive lookup-feedback architecture is genuine and the hidden plaintext has nonzero 11th Fourier moment, the key factors \(e^{2\pi \mathrm{i}11F(x)/28}\) and \(e^{2\pi \mathrm{i}11G(y)/28}\) induce an approximately phase-factorizable spectral signal. Estimate \(\sigma_{\max}(M)/\sqrt{n}\) using 24 complex power iterations and select the highest score **on training pages alone**. This statistic is source-unigram-blind; finite sampling, uneven state-pair counts, and the already-selected harmonic are explicitly model limitations.
+
+Execute all **2,016 distinct pairs** \(1\le a<b\le64\), training p0–27; evaluate the winning pair on untouched p28–55:
+
+| Ciphertext | Highest training pair | Training normalized singular value | Independent holdout value | Next-best training pair |
+| --- | --- | ---: | ---: | --- |
+| Secret synthetic GP-English plant | **(5,6)**, the hidden true pair | **0.5996549** (n=6,549) | **0.5172157** (n=5,988) | (45,60), **0.3912334** |
+| Original unsolved LP2 | **(2,52)** | **0.3955444** (n=5,265) | **0.3423560** (n=4,757) | (21,40), **0.3893715** |
+
+The original predetermined pair (5,6) scores 0.3676276 on training and 0.3641224 on heldout; the synthetic real pair is a clear outlier in both. The original highest-training pair collapses on independent pages. No actual source-independent nonzero-rank feedback mechanism or plaintext was recovered. These are finite descriptive comparisons, without a discovery-wide null probability or proof against alternative source moments.
+
+**Cryptanalytic positive recovery:** after the blind spectral step selected the synthetic hidden lags (5,6), the previously committed exact two-table optimizer fitted the arbitrary unknown GP29 key tables from p0–27 and recovered **all 6,195 of 6,195 genuinely withheld plaintext runes** by the reversible decoder. The complete original-rune test, positive encoder, blind lag inference, key search, and independent inverse are executable in [the spectral program](../sims/spectral_two_lag_exponent_attack.cjs). Both synthetic and original evaluations passed the unchanged [manual CI run 42799153216](https://github.com/FlareZ123/liber-primus/actions/runs/42799153216).
+
 ## Reproduction and disposition
 
 - [Executable two-tap nonlinear recovery](../sims/exponent_feedback_lookup_attack.cjs), eight seeded restarts, direct inverse/encrypt equality checks.
 - [Exact single-tap 640-lag key search](../sims/one_tap_exponent_feedback_search.cjs), independent plant with precommitted hidden lag41.
-- [Manual-only test workflow](../.github/workflows/exponent-feedback-lookup.yml).
-- [Passed GitHub Actions run 42797294561](https://github.com/FlareZ123/liber-primus/actions/runs/42797294561) completes both original-input experiments and both planted 100% heldout recoveries. Earlier standalone [run 42796507616](https://github.com/FlareZ123/liber-primus/actions/runs/42796507616) also passed.
+- [Manual-only test workflow](../.github/workflows/exponent-feedback-lookup.yml), now running the spectral source-blind lag inference as well.
+- [Passed GitHub Actions run 42799153216](https://github.com/FlareZ123/liber-primus/actions/runs/42799153216) executes all three attacks and their positive controls. Earlier [run 42797294561](https://github.com/FlareZ123/liber-primus/actions/runs/42797294561) passed the two direct-key attacks. Earlier standalone [run 42796507616](https://github.com/FlareZ123/liber-primus/actions/runs/42796507616) also passed.
 
 **Research decision:** do not promote an unknown LP2 solution or authentic key. Further exhaustive low-information single-/two-tap scans in this already-covered rotor model offer little advantage. An independently constrained key or plaintext representation that predicts source-unfitted lag-five and lag-six clusters, anti-doublets, real word boundaries and entire heldout original pages would be substantially stronger.
