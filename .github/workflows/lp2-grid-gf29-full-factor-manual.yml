@@ -21,3 +21,4 @@ jobs:
           node sims/red_triad_grid_affine_factors_sft.cjs
           node sims/red_triad_51x127_byte_register_sft.cjs
           node sims/red_triad_gf841_127cycle_inverse.cjs
+          node sims/grid238_allseed_feedback_original_inverse.cjs
