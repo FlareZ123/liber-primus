@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Assert exact source-native encryption, decryption and original bound
         run: node sims/cuneiform_lcg_public_state_invariant.cjs
+      - name: Execute 16,384 reversible hidden-state original inverses and source-positive controls
+        run: node sims/cuneiform_lcg_plain_autokey_inverse.cjs
