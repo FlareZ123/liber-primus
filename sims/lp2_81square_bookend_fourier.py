@@ -167,7 +167,7 @@ def fit_block(name: str, full: np.ndarray, starts: set[int], sources: dict,
         assert np.array_equal(reencryption[mask], matrix[mask])
     else:
         inverse = (matrix - u - v) % modulus
-        assert np.array_equal((inverse + u + v) % modulus, matrix[mask] if False else matrix)
+        assert np.array_equal((inverse + u + v) % modulus, matrix)
 
     return {
         "block": name, "physical_width": width, "original_rune_start": start,
