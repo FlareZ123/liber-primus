@@ -10,6 +10,7 @@ on:
         options:
           - stateful
           - binary47
+          - binary47third
       charset:
         description: ASCII payload register (source-only control choice)
         type: choice
@@ -38,3 +39,9 @@ jobs:
       - name: Search original 164 packet leaders under all 29 cyclic orders
         if: inputs.probe == 'binary47'
         run: python sims/prime78_ascii_bit_cp.py --original --charset ${{ inputs.charset }} --seconds 300
+      - name: Positive exact 7bit first-three-byte source test
+        if: inputs.probe == 'binary47third'
+        run: python sims/prime78_ascii_bit_cp.py --plant --charset 7bit --third-byte --seconds 60
+      - name: Original all-secret cyclic orders second and third ASCII high bits
+        if: inputs.probe == 'binary47third'
+        run: python sims/prime78_ascii_bit_cp.py --original --charset 7bit --third-byte --seconds 240
