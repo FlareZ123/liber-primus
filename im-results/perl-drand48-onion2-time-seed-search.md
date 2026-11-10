@@ -28,6 +28,21 @@ int(rand(256)) is the high byte of the state. The search also tests int(rand(255
 - Reconciled multi-witness timing cells for byte positions 152–182 inclusive (31 consecutive intervals), from the same JSON.
 - The source JSON marks these 31 intervals multi-witness; the two-cell 30-minute ambiguity at positions 190–191 is not used.
 
+## Timing chronology and coverage boundary
+
+The merged timing corpus does **not** cover all 255 inter-byte gaps. It contains 112 explicit intervals at positions 143–189 and 192–256, plus a bounded two-interval bridge at positions 190–191 whose combined value is six five-minute units.
+
+- The 112 explicit values sum to 234 units.
+- The bounded bridge adds six units.
+- The recorded suffix from byte 142 to byte 256 therefore spans 240 units = **20 hours**.
+- Positions 160–256 alone sum to 196 units = **16 hours 20 minutes**.
+- The BotSottile log records a first observation at length 159 at 12:39 and length 256 at 05:10 the following day: **16 hours 31 minutes**. This is within 11 minutes of the merged interval sum for positions 160–256. It is a coarse consistency check, not an independent validation if those cells were derived from that same witness.
+
+The 2014 chronology says the process lasted approximately 23 hours and that the document changed at 05:31:40 GMT about an hour after growth stopped. The 20-hour measured suffix leaves roughly three hours outside the recorded interval coverage. The first 142 bytes have no timing evidence in the merged corpus. One possible interpretation is that a 142-byte prefix was already present during an initial static period and the timed append phase began at byte 143; this is plausible given the archived description that the page initially appeared static, but it is **not established**. Do not extrapolate the five-minute schedule backward across positions 1–142.
+
+This boundary matters cryptanalytically: a PRNG may have started at byte 143 rather than byte 1. Experiment C tests that source-supported alternative.
+
+
 ## Experiment A: explicit time-based Perl seed
 
 The earlier bounded search tested every Unix-second seed from **2014-01-04 00:00:00 UTC** (1388793600) through **2014-01-11 00:00:00 UTC** (1389398400), inclusive: **604,801 seeds**. For each seed it tested every initial random-call offset **0–1024**, inclusive.
@@ -74,11 +89,32 @@ If each update consumes one byte draw and one timing draw, then after 151 prior 
 | 255 | byte then delay | 16,843,009 | 2,406,143 | **0** |
 | 255 | delay then byte | 16,843,009 | 2,406,142 | **0** |
 
+
+### Experiment C: stream begins at the first timed byte (position 143)
+
+Because the timing corpus begins at position 143, the initial 142 bytes may have been present before the timed append phase. The suffix is the exact 114 bytes at positions 143–256; its first four bytes are 49 bf 28 fa, and byte 152 is 26.
+
+For a direct stream, the first suffix byte is draw 1. For an interleaved stream, byte 152 is the tenth suffix event: draw 19 for byte-then-delay or draw 20 for delay-then-byte. The search again enumerates every compatible 32-bit seed by inverting the affine state map. The interleaved replay checks all 114 suffix bytes and all 31 multi-witness intervals at positions 152–182.
+
+| Conversion | Candidate states | First 2 bytes | First 3 bytes | First 4 bytes | Full 114-byte matches |
+|---|---:|---:|---:|---:|---:|
+| int(rand(256)) | 16,777,216 | 65,536 | 256 | 0 | **0** |
+| int(rand(255)) | 16,843,009 | 66,051 | 259 | 2 | **0** |
+
+The scale-255 four-byte survivors are 0xf198ea54 and 0xdb22dca5; neither matches the remaining suffix.
+
+| Byte scale | Draw order | Candidate states | Passing first interval | Full 114-byte + 31-interval matches |
+|---|---|---:|---:|---:|
+| 256 | byte then delay | 16,777,216 | 2,396,746 | **0** |
+| 256 | delay then byte | 16,777,216 | 2,396,745 | **0** |
+| 255 | byte then delay | 16,843,009 | 2,406,143 | **0** |
+| 255 | delay then byte | 16,843,009 | 2,406,144 | **0** |
+
 ### Positive controls
 
 The same search functions recover the planted seed 0x12345678 exactly once for:
-- direct 256-byte streams under both rand(256) and rand(255);
-- interleaved rand(256) byte/timing streams in both draw orders.
+- direct 256-byte streams and 114-byte suffix streams under both rand(256) and rand(255);
+- interleaved rand(256) full streams and 114-byte suffix streams in both draw orders.
 
 The earlier known fixture srand(1389060782); int(rand(256)) also reproduces the expected first eight bytes (3, 0, 170, 175, 27, 131, 197, 178).
 
@@ -94,12 +130,12 @@ g++ -O3 -march=native -std=c++17 sims/perl_drand48_onion2_urandom_seed_search.cp
 
 The following source-motivated models are rejected:
 - explicit Unix-second srand(time) seeds in the Jan 4–11 window, offsets 0–1024;
-- all 32-bit seeds under the Perl 5.14.2 default-seed + POSIX drand48 model, for a direct byte stream using either rand(256) or rand(255);
-- the same default-seed model when each of the 256 byte events interleaves one rand(7) delay and one byte draw, in either order, with no pre-loop random calls.
+- all 32-bit seeds under the Perl 5.14.2 default-seed + POSIX drand48 model, for direct byte streams starting at byte 1 or at the first timed byte (position 143), using either rand(256) or rand(255);
+- the same default-seed model for interleaved byte/timing streams starting at byte 1 or position 143, in either draw order, with no pre-loop random calls.
 
 This does **not** rule out Perl as a language, a different Perl random backend, explicit custom seeding, a different byte conversion, pre-loop draws, a separate timing generator, a cryptographic random source, a precomputed string, or a different historical implementation. It also does not prove any relationship between the 2014 stream and LP2.
 
-The useful conclusion is narrower: a simple default Perl drand48 explanation is now exhaustively rejected, so do not repeat time/PID/seed sweeps under this same model. Continue this line only if new evidence identifies the actual runtime, backend, or draw schedule. Otherwise treat the 2014 timing channel as historical context rather than established LP2 key material.
+The useful conclusion is narrower: the simple default Perl drand48 explanation is exhaustively rejected for the two source-motivated start boundaries tested (byte 1 and byte 143). Unknown pre-loop draws, a different backend, separate byte/timing generators, or a different implementation remain open. Do not repeat time/PID/seed sweeps under these same models. Continue this line only if new evidence identifies the actual runtime, backend, or draw schedule. Otherwise treat the 2014 timing channel as historical context rather than established LP2 key material.
 
 ## Source references
 
@@ -111,3 +147,5 @@ The useful conclusion is narrower: a simple default Perl drand48 explanation is 
 - Historical stage-4 Apache status snapshot: https://github.com/scream314/cicada3301/blob/master/assets/2014/li676-224_server-status_orig.txt
 - 2014 chronology and onion descriptions: https://github.com/scream314/cicada3301/blob/master/2014.md
 - Timing data, witnesses, and confidence labels: resources/cicada2014-onion2-timing.json
+- BotSottile observation log: https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F5-stored/onion2-timing_BotSottile_qn8jmPJr.txt
+- Archived 2014 chronology: https://github.com/scream314/cicada3301/blob/master/2014.md
