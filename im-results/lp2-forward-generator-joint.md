@@ -51,6 +51,35 @@ The **directional asymmetry** is a more specific consequence: the published **80
 
 Word-local repeat state reset is decisively incompatible with the data under these assumptions: it predicts around **99.5** repeated cross-word boundaries and **165.1** within-physical-page repeats, versus original **23** and **86**. A continuous previous-output state is thus necessary *within this restricted family*. Independent alternative globally constrained systems remain possible.
 
+## An exact conditional mass-transfer law and a no-extra-parameter cross-check
+
+The deterministic rewrite of a collision into `T(C[i−6])` implies a sharper identity than a flexible Monte Carlo fit. At each eligible position, condition on the already-published ciphertext history. Let `A=C[i−1]`, `B=T(C[i−6])`, and tentative cipher output `X` be independent uniform modulo 29. When `X=A`, probabilistically substitute `B` with an arbitrary probability `q`.
+
+- If `A≠B`, `Pr(C[i]=A | past)=(1−q)/29` and `Pr(C[i]=B | past)=(1+q)/29`. The rewrite **transfers probability mass** from adjacent duplicates to the forward affine echo.
+- If `A=B`, both indicators coincide, and their conditional expectations are each `1/29`. Rewriting cannot change the published rune at that site.
+
+Either way, the exact model requires
+
+```
+E[ 1{C[i]=C[i-1]} + 1{C[i]=T(C[i-6])} | prior ciphertext ] = 2/29.
+```
+
+Crucially, this consequence does **not** require choosing the rewrite probability `q` or fitting the source language. The repository's [deterministic census](../sims/lag6_collision_mass_transfer.cjs) obtains across all **1,290** eligible positions:
+
+| Conditional event | LP2 observed | No-repair uniform expectation |
+| --- | ---: | ---: |
+| Forward T echo `C[i]=T(C[i−6])` | **80** | 44.4828 |
+| Immediate adjacent repeat `C[i]=C[i−1]` | **9** | 44.4828 |
+| **Sum of both event counts** | **89** | **88.9655** |
+
+The forward excess is **35.5172**, numerically balanced by an adjacent-repeat deficit of **35.4828**. Among those positions, `T(C[i−6])=C[i−1]` holds **33** times, and both event indicators fire jointly exactly **once**. Using only the two 1,290-position margins and the observed 33 target/predecessor equalities, the inferred probability of replacing tentative duplicates is **0.81941** from T echoes and **0.81862** from duplicate suppression. Independently using *all* 10,060 within-complete-word adjacent positions estimates **0.81839** from the original **63** repeats. This three-way agreement at approximately **81.9%** comes from the *same specified model* with different moment constraints; the original simulation used the nearby historical **0.81** rewrite rate.
+
+The conservation also holds in four consecutive word-index quarters. Their observed `T+adjacent` totals **21, 22, 24, 22** versus the model's respective fixed expectations **23.79, 20.69, 21.66, 22.83**. Every quarter had exactly 20 forward-T echoes; that partition was examined after the original anomaly was selected, so the quarter counts are stability diagnostics rather than independent discovery tests.
+
+**Meaning:** this is a particularly tight, mechanistically explained **cross-moment identity** relating two independently countable ciphertext features. Any model with iid-uniform tentative rune outputs and T-target collision rewriting predicts it algebraically. Because the T transform was selected from previous LP2 analyses, the match does not constitute a discovery-wide significance test, and other algorithms could satisfy the same statistics. A true decipherment still requires recovering actual plaintext and a reversible key/state, as detailed below.
+
+Reproduce with `node sims/lag6_collision_mass_transfer.cjs`, validated by [CI run 42762437589](https://github.com/FlareZ123/liber-primus/actions/runs/42762437589). All exact quarter and word-length strata are preserved in that run's artifact.
+
 ## Missing inversion and discriminating evidence
 
 The original selected five-apart `S` echo remains unexplained: **11** instances, versus only **2.42 ± 1.54** under the T-repair. An additional specialized repair could overfit; it must arise from an independently motivated mechanism and predict an unfitted interval or glyph property.
