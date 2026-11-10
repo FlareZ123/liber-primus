@@ -1,17 +1,19 @@
-# Fixed GIMP Dissolve generator as an original-LP2 key: tested, not decoded
+# GIMP Dissolve source keys: fixed-stream and original-glyph raster inverses
 
-**Classification (10 November 2026): source-linked, bounded negative original-input test. No unknown LP2 plaintext, actual cipher key, or intended continuation has been recovered.**
+**Classification (10 November 2026): source-linked, bounded negative original-input tests. The original 27×27 generator and 8,228 strictly registered original source-image runes have been inverted under their separately specified finite families. No unknown LP2 plaintext, actual cipher key, or intended continuation has been recovered.**
 
 ## Historical input and cipher proposal
 
 Historical GIMP Dissolve rendering uses a deterministic GLib `GRand` (MT19937) generator initialized from **314159265**, to fill a fixed 4,096-element row-seed table. A separate generator initialized with the selected row seed determines individual pixel visibility. This is a **software-artwork generation fingerprint**, not a demonstrated Liber Primus encryption key. Source: [GIMP `gimpoperationdissolve.c`](https://fossies.org/linux/gimp/app/operations/layer-modes/gimpoperationdissolve.c), [GLib `grand.c`](https://github.com/GNOME/glib/blob/main/glib/grand.c). The underlying 27×27 rune grid is the unmodified first **729 runes on LP2 physical pages 0–2** (page lengths 262, 266, 201), read through [the canonical original corpus](../resources/liber-primus/lp2-corpus.json).
 
-Two genuinely specified original-cipher candidates were tested:
+Three explicitly specified original-cipher families have been tested. The first two derive from the GIMP generator clock on the 27×27 source ciphertext, while the third samples its historical two-dimensional field at original scan glyph coordinates:
 
 1. **27×27 row-specific rendering registers.** Fill 4,096 seed values from MT19937(314159265), seed each grid row with entry `seed[row]`, and generate its 27 pixel positions. For each draw, derive an additive GF29 pad by either `g_rand_int() %29`, `g_rand_int_range(0,255) %29` or `g_rand_int_range(0,29)`. Test either sign of subtraction and both direct GP ciphertext values and first differences `c[i]-c[i-1]` (12 declared variants). No key tuning to ciphertext is allowed.
 2. **Single continuous master register with collision-consumed draws.** Start one MT19937(314159265) across all 729 original GP ciphertext positions, not resetting at pixel rows. Test the same three byte-to-29 reductions and both pad signs (6 declared modes, including raw/range29 numerical equivalence over this prefix). A Viterbi decoder may consume one extra draw only where the first proposal would exactly equal the previous observed ciphertext rune. The latent skip count is capped at 30; its score includes an explicit 3.5-natural-log penalty per extra draw. Unseen GP training prose is the independent first 2,200 GP runes from the source-normalized solved LP1 reference. There is no fitted initial seed, free IV, nonce, source symbol permutation or arbitrary pad offset.
 
 The second candidate permits an exact reversible mapping under a recovered skip witness. The decoder computes maximum native-GP trigram score and re-enciphers **every one of the 729 original cipher runes exactly**, including the rejected-draw state. Such reconstruction is an implementation consistency condition; fluent independently justified plaintext is still required to identify a historical cipher.
+
+3. **Original printed-glyph 2D GIMP pixel register.** For every scan line that unambiguously registers all its rune glyphs to the published transcription, use the glyph's first dark column as x and its ink-center or original printed-row peak as y. Generate the historical 4,096-row GIMP Dissolve field from the same immutable seed 314159265, project pixel bytes either by remainder or scaling into 29 direct-GP or 28 nonrepeat ranks, and apply both additive signs. This gives **16 source-derived, reversible models** on the 8,228 exactly registered symbols, with independently withheld later physical pages. The ciphertext-derived glyph coordinates are public side state supplied by original scans; no key parameter is fitted to the ciphertext.
 
 ## Fixed source-generator control vectors
 
@@ -57,6 +59,28 @@ The model's best original-rune score among six modes is **−4.749562465 nats/ru
 
 The corresponding source-GP planted plaintext in each variant used real skip-induced ciphertext generation, with 16–23 true skipped draws. The decoder recovered the original plant within two GP runes in all six cases. That positive recovery establishes the selected model's practical decryptability when its key generator is historically correct.
 
+## Full original-JPEG glyph coordinate test: 8,228 original runes
+
+The source-only registrar admitted **31** whole original physical pages: 1, 4, 5, 7, 9, 11–13, 16–21, 24, 26, 28–31, 34–35, 38, 41–44, 46–48, 52. It rejected 24 others rather than guess glyph correspondence when printed-line counts or individual glyph counts mismatched. This produces **4,220 early** runes (pages below 28) and **4,008 untouched later** runes (pages 28 or greater). The exact JPEGs and canonical rune sequence have to agree in full before a page is admitted.
+
+For each source-observed glyph, the coordinate rule fixes x at the leftmost accepted ink column and y at either the central ink row or the independently measured printed-line density peak. An original GIMP 2.8 MT19937 field with each row separately seeded yields byte values 0–254 via the historical range-255 reduction. The byte is converted with either `byte mod M` or `floor(M × byte /255)`. The two exactly reversible rune register families are:
+
+- **Direct GP29:** `C=(P+sK) mod29`, where s is +1 or −1.
+- **GP28 predecessor exclusion:** Page-initial `C₀=(P₀+sK₀) mod29`. For all subsequent glyphs, plaintext EA (index28) emits `Cᵢ=Cᵢ₋₁`; otherwise `Cᵢ=(Cᵢ₋₁+1+((Pᵢ+sKᵢ) mod28)) mod29`. The decoder takes observed equality as a hypothetical transparent EA marker and otherwise inverts the unique one-of-28 nonzero step.
+
+**Successful Windows manual CI run [42821230526](https://github.com/FlareZ123/liber-primus/actions/runs/42821230526)**: all **16×8,228 = 131,648** independently Gibran-derived synthetic GP symbols are recovered exactly, and each model re-enciphers all original rune positions exactly under its own publicly derived key. Model selection used only the 4,220 early original symbols; the 4,008 later symbols were untouched until scoring. Shakespeare's independently encoded original-language prior has mean unigram log-likelihood **−2.96081 nats/rune** and synthetic Gibran source has **−2.96194**, versus **−4.26892** for a uniform 29-symbol stream.
+
+| Frozen original-source model | Early GP mean log score | Late GP mean log score | Late rune IoC |
+| --- | ---: | ---: | ---: |
+| Top early-trained: GP28, ink-center y, scaled 28-byte, sign+ | **−4.1977085** | **−4.2300788** | **0.0352569** |
+| Next early-trained: GP28, ink-center y, scaled 28-byte, sign− | −4.2106692 | −4.2144919 | 0.0351939 |
+| Representative direct29: printed-peak y, scaled 29-byte, sign− | −4.2202265 | −4.2807725 | 0.0344663 |
+| Source control: independent author Gibran GP | −2.96194 overall | −2.96194 overall | 0.060521 overall |
+
+The top early-selected model's heldout mean log score **−4.23008** and IoC **0.035257** are close to uninformed random-GP output; its transcript is not readable. None of the other 15 fixed models produces convincing native-GP plaintext. This is a **bounded original-input failure for these exact GIMP raster key projections**, not an exclusion of non-GP plaintext, changed glyph clocks, hidden images, or a cipher with unrelated source-derived state. The positive source plants validate algebraic inversion against *fixed observed original-JPEG coordinates*: they do not regenerate a hypothetical ciphertext JPEG after encrypting plaintext.
+
+Run `python sims/gimp_fullglyph_source_inverse.py` from the repository root with Python 3.11+, NumPy, SciPy and Pillow; the original image files and control prose are tracked inputs. This is a new use of **all strictly registered glyphs**, extending the earlier first-glyph raster experiment `sims/gimp_dissolve_printed_glyph_2d_source.py` and earlier generator-only first-729-rune tests. The single pre-existing on-demand image-width workflow hosts the Windows test; no commit-triggered workflow was introduced.
+
 ## Reproduction, interpretation, and limits
 
 Run these two independent CommonJS SFTs with Node 22 from the repository root:
@@ -68,6 +92,6 @@ node sims/gimp_seed_stream_keyskip_inverse.cjs
 
 The programs load `resources/liber-primus/lp2-corpus.json` and `resources/liber-primus/lp1-plaintext-reference.txt`. Their fixed runes, seed, reference vectors, clocks, signs, GP training text, and selection statistics are visible in code; no outside dataset is required. The first reproducer performs 500 source-inventory shuffles with seed `0x3411317`. All six keyskip candidates are inverted and checked against the **authentic original ciphertext** with complete forward re-encryption.
 
-The negative is confined to those declared master-stream or row-raster uses of this default software seed, exact GP29 additive/first-difference transforms, native-GP language expectation, and one-collision extra-draw state. It does **not** rule out other artwork-derived bytes, encrypted non-GP intermediates, semantically meaningful illustrations, unpublished historical source material or a different key schedule. Most importantly, the legacy GIMP random generator could have been used solely to render an image. No repeated broad generator sweep is warranted without a source clue fixing a different key/clock.
+The negative is confined to the declared generator-stream and printed-raster uses of this historical software seed, exact GP29 additive/first-difference and GP28 predecessor-step transforms, native-GP language expectation, and the specified original-image glyph coordinates and collision-consumed draw state. It does **not** rule out other artwork-derived bytes, encrypted non-GP intermediates, semantically meaningful illustrations, unpublished historical source material or a different key schedule. Most importantly, the legacy GIMP random generator could have been used solely to render an image. No repeated broad generator sweep is warranted without a source clue fixing a different key/clock.
 
 **Status: bounded negative; belongs in supporting results, not the verified decryption index.**
