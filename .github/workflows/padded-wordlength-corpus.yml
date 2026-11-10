@@ -15,6 +15,7 @@ on:
           - wordlength
           - ea-fingerprint
           - red51-length
+          - wordbag
 
 permissions:
   contents: read
@@ -36,6 +37,9 @@ jobs:
       - name: Search exact red51 stanza source quotations
         if: ${{ inputs.scan_mode == 'red51-length' }}
         run: node sims/red51_source_phrase_crib.cjs
+      - name: Locate original LP2 section word bags against independent books
+        if: ${{ inputs.scan_mode == 'wordbag' }}
+        run: node sims/lp2_wordbag_source_locator.cjs
       - name: Test original-section EA zero-step literary source fingerprints
         if: ${{ inputs.scan_mode == 'ea-fingerprint' }}
         run: node sims/ea_zero_step_literary_fingerprint.cjs
