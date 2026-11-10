@@ -3,6 +3,11 @@ name: LP2 original-JPEG OutGuess message extraction
 on:
   workflow_dispatch:
     inputs:
+      xor_shares:
+        description: Test original 2014 XOR-share model against extracted LP2 arrays
+        type: boolean
+        required: false
+        default: false
       synthetic_only:
         description: Probe fake OutGuess headers using a generated payload-free JPEG
         type: boolean
@@ -34,21 +39,26 @@ jobs:
           make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
           sudo make install
       - name: Retrieve hidden messages from every LP2 page
-        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only }}
+        if: ${{ (!inputs.keyed_probe && !inputs.synthetic_only) || inputs.xor_shares }}
         run: node sims/outguess_lp2_scan.cjs
       - name: Install Python for direct binary-stream pad testing
-        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only }}
+        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares }}
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - name: Install numeric dependencies
-        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only }}
+        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares }}
         run: python -m pip install --disable-pip-version-check numpy numba
       - name: Scan original LP2 runes against all extracted pad-stream positions
-        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only }}
+        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares }}
         env:
           OUTGUESS_NULL_REPLICATES: 64
         run: python sims/outguess_lp2_directpad.py
+      - name: Test the authentic historical XOR-share model against every extracted LP2 subset
+        if: ${{ inputs.xor_shares }}
+        run: |
+          node --check sims/outguess_lp2_share_xor.cjs
+          node sims/outguess_lp2_share_xor.cjs
       - name: Probe source-defined passwords for authentic hidden LP2 messages
         if: ${{ inputs.keyed_probe && !inputs.synthetic_only }}
         run: |
@@ -60,7 +70,7 @@ jobs:
           node --check sims/outguess_header_synthetic_probe.cjs
           node sims/outguess_header_synthetic_probe.cjs
       - name: Preserve exact recovered payloads and summary
-        if: ${{ always() && !inputs.keyed_probe && !inputs.synthetic_only }}
+        if: ${{ always() && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares }}
         uses: actions/upload-artifact@v4
         with:
           name: outguess-lp2-default-key
