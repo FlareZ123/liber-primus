@@ -45,6 +45,8 @@ jobs:
         run: python sims/printed_line_glyph_ink_width.py
       - name: Test physical pixel slack against next glyph width
         run: python sims/printed_line_native_gap_challenge.py
+      - name: Test image-measured glyph widths as a low-dimensional forward line-wrap model
+        run: python sims/printed_line_fixed_pixel_width_forward.py
 
       - name: Fit native original glyph advances and test exact 29-rune line-initial null
         if: ${{ inputs.attack == 'pixel-initial-control' }}
