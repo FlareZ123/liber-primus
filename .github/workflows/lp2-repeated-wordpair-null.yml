@@ -21,3 +21,5 @@ jobs:
         run: node sims/lp2_81square_qr_finder_gate.cjs
       - name: Test exact 81-to-80 nested-square GP29 correspondence and controls
         run: node sims/lp2_nested_squares_correspondence.cjs
+      - name: Source-square 81x81 versus 80x80 crossblock static-key gate
+        run: node sims/lp2_square_crossblock_channel.cjs
