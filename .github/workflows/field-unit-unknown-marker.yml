@@ -1,0 +1,21 @@
+name: LP2 field-unit unknown zero marker (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      replicates:
+        description: 'Independent GP-English word draws per author'
+        required: false
+        default: '5000'
+
+jobs:
+  challenge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Key-independent zero-residue marker test and real-language controls
+        run: node sims/field_unit_unknown_zero_marker.cjs ${{ inputs.replicates }}
