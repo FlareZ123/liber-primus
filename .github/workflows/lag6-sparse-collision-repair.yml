@@ -1,0 +1,14 @@
+name: LP2 affine sparse collision-repair generator
+on:
+  workflow_dispatch:
+jobs:
+  sparse-generator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test 5000 uniform and 5000 targeted collision-repair manuscripts
+        run: node sims/lag6_sparse_collision_repair.cjs
