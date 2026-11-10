@@ -109,7 +109,6 @@ function encode(plain, salt, alphabet, rows) {
   assert.ok(salt >= 0n);
   const width = plain.length;
   let value = salt*(29n ** BigInt(width));
-  for (const p of plain) value = value*1n; // explicit BigInt accumulator
   let message = 0n;
   for (const p of plain) message=message*29n+BigInt(p);
   value+=message;
