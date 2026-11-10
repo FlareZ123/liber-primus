@@ -1,0 +1,14 @@
+name: Agent 5 all-key TEA and XTEA source-grid state-trace gate
+on:
+  workflow_dispatch:
+jobs:
+  tea-trace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit original 32x8 grid under all-key TEA and XTEA invariants
+        run: node sims/grid_tea_xtea_allkey_trace_gate.cjs
