@@ -54,6 +54,32 @@ function main(){
     const fraction=printable/data.length;
     if(fraction>bestPrintable){bestPrintable=fraction;bestTriple=[names[a],names[b],names[c]];}
   }
+  // Search for historic PGP or base64-encoded historic PGP at any byte offset,
+  // in all directly aligned 2-, 3- and 4-share combinations.
+  let checked234=0,embeddedPGP=0,embeddedBase64PGP=0;
+  const pgp=Buffer.from("-----BEGIN PGP");
+  const pgp64=Buffer.from("LS0tLS1CRUdJTiBQR1A");
+  for(let a=0;a<16;a++)for(let b=a+1;b<16;b++){
+    const pair=xor([streams[a],streams[b]]);
+    checked234++;
+    embeddedPGP+=Number(pair.indexOf(pgp)>=0);
+    embeddedBase64PGP+=Number(pair.indexOf(pgp64)>=0);
+    for(let c=b+1;c<16;c++){
+      const trio=xor([streams[a],streams[b],streams[c]]);
+      checked234++;
+      embeddedPGP+=Number(trio.indexOf(pgp)>=0);
+      embeddedBase64PGP+=Number(trio.indexOf(pgp64)>=0);
+      for(let d=c+1;d<16;d++){
+        const quad=xor([streams[a],streams[b],streams[c],streams[d]]);
+        checked234++;
+        embeddedPGP+=Number(quad.indexOf(pgp)>=0);
+        embeddedBase64PGP+=Number(quad.indexOf(pgp64)>=0);
+      }
+    }
+  }
+  assert.equal(checked234,2500);
+  assert.equal(embeddedPGP,0);
+  assert.equal(embeddedBase64PGP,0);
   assert.equal(triples,560);
   assert.equal(signatures,0);
   const originalPrefixHex=streams[0].subarray(0,32).toString("hex");
@@ -68,6 +94,8 @@ function main(){
     oddSizeSubsetPrefix:"exact common non-PGP prefix",
     nonemptySubsetTotal:65535,nonemptyOddSubsets:32768,nonemptyEvenSubsets:32767,
     originalTriplesScanned:triples,PGPSignatureTriples:signatures,
+    alignedSubsetsOfSize2to4CheckedAtAllByteOffsets:checked234,
+    embeddedRawPGPSignatures:embeddedPGP,embeddedBase64PGPSignatures:embeddedBase64PGP,
     tripleMaxASCIIPrintableFraction:bestPrintable,tripleMaxASCIIPrintablePages:bestTriple,
     streamSHA256:Object.fromEntries(names.map((n,i)=>[String(n),SHA(streams[i])])),
     conclusion:"No aligned subset XOR of these 16 streams can start with an authentic PGP signed-message signature, for any nonempty subset size. This does not exclude offset, other binary formats, or other shares."
