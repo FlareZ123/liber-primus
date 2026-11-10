@@ -221,6 +221,36 @@ const primeControl=primeWeightControl();
 assert.deepEqual([primeControl.trainArc.start,
   primeControl.trainArc.length,primeControl.trainArc.hits,
   primeControl.heldoutHits,primeControl.extreme],[20,2,6,1,26621]);
+/**
+ * Falsification-power control: preserve all 55 original page lengths and
+ * every original page final rune, but plant an unknown 6-wide transition
+ * step at each next-page first rune. The fitter never sees the hidden arc.
+ */
+function sourceShapedPositiveControl() {
+  const seeded=rng(0x15292813);
+  const fakeFirst=first.slice();
+  for(let i=1;i<pages.length;i++)
+    fakeFirst[i]=mod(last[i-1]+9+seeded()%6);
+  const fakeDelta=(i,j)=>mod(fakeFirst[j]-last[i]);
+  const fakeSteps=order=>order.slice(1).map((j,i)=>fakeDelta(order[i],j));
+  function fakeMarginal(group){
+    const q=Array(29).fill(0);
+    for(const i of group)for(const j of group)
+      q[fakeDelta(i,j)]+=1/(group.length*group.length);
+    return q;
+  }
+  const qT=fakeMarginal(trainIds);
+  const qH=fakeMarginal(holdIds);
+  const chosen=select(fakeSteps(trainIds),qT);
+  const hh=fakeSteps(holdIds);
+  return {sourceShape:pages.length, plantedArc:[9,14],
+    trainFit:chosen,holdoutHits:hits(hh,chosen),
+    holdoutExpected:hh.length*probability(qH,chosen),
+    holdoutZ:score(hh,chosen,qH)};
+}
+const planted=sourceShapedPositiveControl();
+assert.deepEqual([planted.trainFit.start,planted.trainFit.length,
+  planted.trainFit.hits,planted.holdoutHits],[9,6,27,26]);
 const result = {
   classification: 'retrospective ciphertext layout anomaly, not decryption',
   physicalPages: 55, runeCount: flat.length, pageTransitions: 54,
@@ -236,7 +266,8 @@ const result = {
       upperTail: (noZeroExtreme + 1) / (noZero + 1)},
     localBoundaryDisplacements: jitter},
   sectionPinnedControl: sections,
-  alternativeGPPrimeWeightControl: primeControl
+  alternativeGPPrimeWeightControl: primeControl,
+  plantedPageTransitionControl: planted
 };
 console.log(JSON.stringify(result, null, 2));
 module.exports = {difference, select, localJitter};
