@@ -31,7 +31,7 @@ const grid=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/liber-primus/lp2
 const ANEND=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/cicada2014-archive-hash-manifest.json'),'utf8')).targetHex;
 assert.match(ANEND,/^[0-9a-f]{128}$/i);
 const IV_MODE=process.env.LP2_FIELD_IV||'zero';
-assert.ok(['zero','anend'].includes(IV_MODE),'Unknown source-IV mode');
+assert.ok(['zero','anend','digest-key'].includes(IV_MODE),'Unknown source-IV mode');
 const DIGEST=Buffer.from(ANEND,'hex');
 const NONCES=IV_MODE==='anend'?[{name:'anend-first16',bytes:DIGEST.subarray(0,16)},
   {name:'anend-last16',bytes:DIGEST.subarray(48,64)}]:
@@ -82,6 +82,32 @@ function originalKeys(bytes,layout){
   return Array.from({length:8},(_,j)=>Buffer.from(bytes.slice(32*j,32*j+32)));
 }
 
+/**
+ * Original grid supplies eight candidate section key-or-nonce blocks. In the
+ * digest-key variant, the independently printed solved-page SHA-512 target
+ * is instead the 256-bit symmetric key (first/last half), with one distinct
+ * original-table 16-byte nonce per section.
+ *
+ * @param {number[]} bytes Exact 256 original base-60-decoded grid bytes.
+ * @param {'columns'|'chunks'} layout Original 8x32-byte serialization.
+ * @returns {Array<{name:string,blocks:Array<{key:Buffer,nonce:Buffer}>}>}
+ */
+function keyNonceOptions(bytes,layout){
+  const blocks=originalKeys(bytes,layout);
+  if(IV_MODE==='digest-key')return [0,1].flatMap(keyHalf=>
+    [0,1].map(nonceHalf=>({
+      name:'digest-half'+keyHalf+'-grid-half'+nonceHalf,
+      blocks:blocks.map(b=>({
+        key:DIGEST.subarray(32*keyHalf,32*keyHalf+32),
+        nonce:b.subarray(16*nonceHalf,16*nonceHalf+16)
+      }))
+    })));
+  return NONCES.map(nonce=>({
+    name:nonce.name,
+    blocks:blocks.map(key=>({key,nonce:nonce.bytes}))
+  }));
+}
+
 /** @param {Buffer} key @param {string} algorithm @param {string} reducer */
 function keystream(key,algorithm,reducer,nonce){
   const c=crypto.createCipheriv(algorithm,key,nonce);
@@ -127,11 +153,11 @@ function assignment(matrix){
 /** @param {number[]} bytes @returns {object} */
 function attack(bytes){
   const models=[];
-  for(const nonce of NONCES)for(const layout of LAYOUTS){
-    const keys=originalKeys(bytes,layout);
+  for(const layout of LAYOUTS)for(const scheme of keyNonceOptions(bytes,layout)){
+    const keys=scheme.blocks;
     for(const algorithm of ALGORITHMS){
       const stream=Object.fromEntries(REDUCERS.map(reducer=>[
-        reducer,keys.map(key=>keystream(key,algorithm,reducer,nonce.bytes))
+        reducer,keys.map(x=>keystream(x.key,algorithm,reducer,x.nonce))
       ]));
       for(const reducer of REDUCERS)for(const sign of SIGNS)for(const clock of CLOCKS){
         const matrix=OBS[clock].map(o=>
@@ -146,7 +172,7 @@ function attack(bytes){
           holdMean+=ioc(h,HOLD)/8;
           for(let x=0;x<RADIX;x++){pooled[x]+=h[x];trainPool[x]+=t[x];}
         }
-        models.push({nonce:nonce.name,layout,algorithm,reducer,sign,clock,
+        models.push({nonce:scheme.name,layout,algorithm,reducer,sign,clock,
           assignment:selected.chosen,trainMean:selected.score,
           heldoutMean:holdMean,
           heldoutPooled:ioc(pooled,8*HOLD),
@@ -170,8 +196,9 @@ function plant(){
   }
   const inverse=new Uint8Array(RADIX);
   for(let p=0;p<RADIX;p++)inverse[sigma[p]]=p;
-  const keys=originalKeys(grid.bytes,'columns').map(key=>
-    keystream(key,'aes-256-ctr','mod',NONCES[0].bytes));
+  const trueScheme=keyNonceOptions(grid.bytes,'columns')[0];
+  const keys=trueScheme.blocks.map(x=>
+    keystream(x.key,'aes-256-ctr','mod',x.nonce));
   const assigned=[4,0,7,2,6,1,5,3];
   const plain=[],cipher=[],recovered=[];
   for(let section=0;section<8;section++){
@@ -203,7 +230,7 @@ function plant(){
   OBS['skip-zero']=savedSkip;OBS['consume-zero']=savedConsume;
   const win=fitted.champion;
   const keyCorrect=win.assignment.filter((v,i)=>v===assigned[i]).length;
-  assert.equal(win.nonce,NONCES[0].name);
+  assert.equal(win.nonce,trueScheme.name);
   assert.equal(win.layout,'columns');
   assert.equal(win.algorithm,'aes-256-ctr');
   assert.equal(win.reducer,'mod');
@@ -239,9 +266,10 @@ function main(){
       observedNonzeroBySection:OBS['skip-zero'].map(x=>x.length)},
     selection:{source:'eight printed 32-byte grid keys',
       trainPerSection:TRAIN,heldoutPerSection:HOLD,
-      globalSettings:32*NONCES.length,
-      nonceSource:IV_MODE==='anend'?'Solved LP2 page56 SHA512 target, first or last 16 printed digest bytes':'historical zero-IV benchmark',
-      nonceChoices:NONCES.map(x=>x.name),
+      globalSettings:32*(IV_MODE==='digest-key'?4:NONCES.length),
+      nonceSource:IV_MODE==='anend'?'Solved LP2 page56 SHA512 target, first or last 16 printed digest bytes':
+        IV_MODE==='digest-key'?'Solved p56 SHA512 target as first/last 32-byte key; original grid eight 16-byte nonces':'historical zero-IV benchmark',
+      nonceChoices:keyNonceOptions(grid.bytes,'columns').map(x=>x.name),
       assignment:'all 8! via exact subset DP'},
     original,
     syntheticControl:control,
