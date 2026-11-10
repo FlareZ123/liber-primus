@@ -1,0 +1,18 @@
+name: Page-permutation shared-pad inversion
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Infer latent page-aligned pad and test held-out pages
+        run: node sims/page_permutation_pad_inversion.cjs
