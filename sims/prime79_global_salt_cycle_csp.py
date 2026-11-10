@@ -37,9 +37,9 @@ def graph(cipher, phase, reverse):
     return sorted(edges), clean, len(leaders)
 
 
-def solve(edges, window, limit=1000000):
+def solve(edges, window, limit=1000000, width=10):
     """Exhaustive exact CSP; False proves UNSAT, None is an unfinished limit."""
-    steps = [(window + i) % 28 + 1 for i in range(10)]
+    steps = [(window + i) % 28 + 1 for i in range(width)]
     forward = [sum(1 << ((p + s) % 29) for s in steps) for p in range(29)]
     backward = [sum(1 << ((p - s) % 29) for s in steps) for p in range(29)]
     incidence = [[] for _ in range(29)]
@@ -117,10 +117,10 @@ def solve(edges, window, limit=1000000):
             visited)
 
 
-def evaluate(cipher, phase, reverse):
+def evaluate(cipher, phase, reverse, width=10):
     edges, clean, leaders = graph(cipher, phase, reverse)
-    states = [solve(edges, i) for i in range(28)]
-    return dict(phase=phase, reversed=reverse, clean=clean, edges=len(edges),
+    states = [solve(edges, i, width=width) for i in range(28)]
+    return dict(phase=phase, reversed=reverse, width=width, clean=clean, edges=len(edges),
                 leaders=leaders,
                 unsat=sum(x[0] == 'UNSAT' for x in states),
                 sat=sum(x[0] == 'SAT' for x in states),
@@ -193,19 +193,36 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--full', action='store_true')
     parser.add_argument('--phase35', action='store_true')
+    parser.add_argument('--window-width', choices=(10, 11), type=int, default=10)
+    parser.add_argument('--core58', action='store_true', help='Check 58-edge source certificate')
     a = parser.parse_args()
     source = Path(__file__).resolve().parents[1] / 'resources/liber-primus/lp2-corpus.json'
     corpus = json.loads(source.read_text('utf8'))
     cipher = [s for page in corpus['pages'] if page['page'] <= 55
               for s in page['indices']]
     assert len(cipher) == 12956
+    if a.core58:
+        ab = '0123456789abcdefghijklmnopqrs'
+        pairs = ('0k191o272a2d4m4q6267687f7i8592a5a7acaib1b3b7bhc9crdne4ene'
+                 'ofefifog5gdh0h3h5h9hehkjklhlqm1mhn1ndp3papfpqqrqsr2rasasfsh')
+        assert len(pairs) == 116
+        core = {(ab.index(pairs[i]), ab.index(pairs[i + 1]))
+                for i in range(0, len(pairs), 2)}
+        originals, _, _ = graph(cipher, 35, False)
+        assert len(core) == 58 and core.issubset(set(originals))
+        certificates = [solve(sorted(core), w, width=10) for w in range(28)]
+        assert all(state == 'UNSAT' for state, _ in certificates)
+        print(json.dumps({'source_original': True, 'edges': 58, 'width': 10,
+                          'all_28_windows': 'UNSAT',
+                          'max_nodes': max(n for _, n in certificates)}))
+        return
     controls = [positive(method, reverse) for method in ('cyclic', 'sorted')
                 for reverse in (False, True)]
     phases = range(79) if a.full else (35,)
-    outcomes = [evaluate(cipher, phase, reverse)
+    outcomes = [evaluate(cipher, phase, reverse, a.window_width)
                 for reverse in (False, True) for phase in phases]
     print(json.dumps(dict(model='globally salted <=378-bit 79/78 transport',
-                          original_runes=12956, original_cases=len(outcomes),
+                          original_runes=12956, window_width=a.window_width, original_cases=len(outcomes),
                           windows=len(outcomes) * 28,
                           excluded=sum(x['unsat'] for x in outcomes),
                           survivors=[x for x in outcomes if x['sat'] or x['unknown']],
