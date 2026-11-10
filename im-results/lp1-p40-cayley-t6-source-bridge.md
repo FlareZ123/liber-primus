@@ -67,9 +67,9 @@ This three-way comparison is also retrospective: requiring divisibility by 29, c
 
 The source-defined map `T(x)=8−2(x−8)` has fixed point **H = GP index 8**. Every power `T^k`, for **every independently chosen exponent `k`**, satisfies the exact equivalence
 
-[
+\[
  T^k(P)=8 \quad\Longleftrightarrow\quad P=8.
-]
+\]
 
 Consequently a cipher applying `T^k` as a **direct symbol substitution** can never encrypt an original GP-English one-rune word `A` (index 24) or `I` (index 10) into the ciphertext rune **ᚻ**, regardless of its unknown key, clock, page phases or changes in `k` between symbols.
 
