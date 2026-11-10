@@ -180,6 +180,63 @@ function trial(words, dictionary, affine, trueSignature = null) {
     })
   };
 }
+
+/** @param {number} signature A base-29 four-component relative phase key. */
+function unpackSignature(signature) {
+  const values = [0];
+  for (let i=0;i<4;i++) {
+    values.push(signature % MOD);
+    signature = Math.floor(signature / MOD);
+  }
+  return values;
+}
+/**
+ * Extend a frozen four-component key by independent votes from positions
+ * 5 through 13. Only source words matching all four frozen prefix phases
+ * can vote; the unknown per-word affine coefficient is still marginalized.
+ * No true key parameter, original English plant, or source holdout text
+ * is used by this reconstruction routine.
+ * @param {number[][]} words
+ * @param {Map<number,number[][]>} dictionary
+ * @param {number} signature
+ */
+function extendKey(words, dictionary, signature) {
+  const prefix = unpackSignature(signature);
+  const tally = Array.from({length:14},()=>new Uint32Array(MOD));
+  let prefixMatches = 0;
+  for (const word of words) {
+    if (word.length < 6) continue;
+    for (const plain of dictionary.get(word.length) || []) {
+      for (let a=1;a<MOD;a++) {
+        let compatible=true;
+        for (let i=1;i<5;i++) {
+          if ((word[i]-word[0]-a*(plain[i]-plain[0])-prefix[i]+841) % MOD !== 0) {
+            compatible=false;
+            break;
+          }
+        }
+        if (!compatible) continue;
+        prefixMatches++;
+        for (let i=5;i<word.length;i++) {
+          const phase=(word[i]-word[0]-a*(plain[i]-plain[0])+841) % MOD;
+          tally[i][phase]++;
+        }
+      }
+    }
+  }
+  const phases = tally.map((counts,i) => {
+    let winner=0,leader=0,second=0,total=0;
+    for(let j=0;j<MOD;j++){
+      const v=counts[j];total+=v;
+      if(v>leader){second=leader;leader=v;winner=j;}
+      else if(v>second)second=v;
+    }
+    return {position:i,phase:i<5?prefix[i]:total?winner:null,
+      topVotes:leader,runnerUpVotes:second,totalVotes:total};
+  });
+  return {prefixMatches,phases};
+}
+
 function main() {
   const words = parseWords();
   const train = tokenize(english.slice(0, 240000));
@@ -198,14 +255,16 @@ function main() {
       trainTokens:train.length,heldoutTokens:heldout.length},
     genuine: {
       caesar:trial(words,dictionary,false),
-      affine:trial(words,dictionary,true)
+      affine:trial(words,dictionary,true),
+      recoveredSuffix:extendKey(words,dictionary,trial(words,dictionary,true).first.winner)
     },
     planted: {
       ciphertextReplacements:implanted.replacements,
       lengthFallbackWords:implanted.fallbacks,
       trueKey:implanted.key,
       trueSignature,
-      affine:trial(implanted.words,dictionary,true,trueSignature)
+      affine:trial(implanted.words,dictionary,true,trueSignature),
+      recoveredSuffix:extendKey(implanted.words,dictionary,trueSignature)
     },
     wordLengthStrata:[5,6,7,8,9,10,11,12].map(length => ({
       length,
@@ -219,8 +278,12 @@ function main() {
   assert.equal(result.planted.affine.second.winner,trueSignature);
   assert.ok(result.planted.affine.firstTruthVotes>300);
   assert.ok(result.planted.affine.secondTruthVotes>300);
+  for (let i=5;i<=10;i++) {
+    assert.equal(result.planted.recoveredSuffix.phases[i].phase,
+      (implanted.key[i]-implanted.key[0]+MOD)%MOD);
+  }
   process.stdout.write(JSON.stringify(result,null,2)+'\n');
   return result;
 }
-module.exports={parseWords,encode,tokenize,group,seededRandom,plant,vote,trial,main};
+module.exports={parseWords,encode,tokenize,group,seededRandom,plant,vote,trial,unpackSignature,extendKey,main};
 if(require.main===module)main();
