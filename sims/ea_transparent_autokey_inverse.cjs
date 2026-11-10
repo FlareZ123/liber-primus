@@ -207,7 +207,8 @@ function positive(lengths,reference,alpha,beta,skipEA,lang,random) {
   const prefix=plain.map((p,i)=>
     decrypt(cipher[i],alpha,recovered.winner.beta,
       recovered.winner.startRunes[i],skipEA));
-  const recoveredRunes=plain.flat().filter((v,i)=>v===prefix.flat()[i]).length;
+  const sourceFlat=plain.flat(), recoveredFlat=prefix.flat();
+  const recoveredRunes=sourceFlat.reduce((n,v,i)=>n+Number(v===recoveredFlat[i]),0);
   return {trueAlpha:alpha,trueBeta:beta,skipEA,
     selectedBeta:recovered.winner.beta,
     selectedAverage:recovered.winner.avgPerRune,
