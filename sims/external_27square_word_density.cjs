@@ -114,6 +114,19 @@ function main(){
     COLD:[5,3,20,23],
     DEATH:[23,18,24,2]
   };
+  // The external opening AS I GO THE uses a row-wrapped ciphertext block.
+  // This exact published arithmetic is reproduced separately from the
+  // exhaustive straight-line candidate multiplicity and null experiment.
+  const openingNode=[at(GRID,12,10),at(GRID,12,11),at(GRID,12,12)];
+  assert.deepEqual(openingNode,[25,11,28]);
+  assert.equal(PHI[openingNode[1]],10);
+  const openingKey=[25,10,28];
+  assert.equal(mod(openingKey.reduce((s,k)=>s+MU[k],0))%3,0);
+  const openingCipher=Array.from({length:7},(_,i)=>GRID[12*27+24+i]);
+  assert.deepEqual(openingCipher,[20,25,9,2,13,1,14]);
+  assert.deepEqual(openingCipher.map((v,i)=>mod(v-openingKey[i%3])),
+    [24,15,10,6,3,2,18]);
+
   // Reconstruct the external WEATHER example exactly, including the
   // geometric source key and its independently noted three-rune echo.
   const keyNode=[at(GRID,13,3),at(GRID,13,4),at(GRID,13,5)];
@@ -175,7 +188,7 @@ function main(){
     keyAssignments:originalSource.total,
     distinctKeys:originalSource.distinct,
     fraction29Cubed:originalSource.distinct/MOD**3,
-    fixedExample:{sourceNode:keyNode,alignedKey:[14,14,10],
+    openingExample:{sourceNode:openingNode,alignedKey:openingKey,\n      ciphertext:openingCipher,plaintext:[24,15,10,6,3,2,18]},\n    fixedExample:{sourceNode:keyNode,alignedKey:[14,14,10],
       ciphertext:[21,13,12,3,18],plaintext:target.WEATHER,
       literalThreeRuneEcho:true},
     randomSeed:'0x'+SEED.toString(16),shuffles:REPLICATES,
