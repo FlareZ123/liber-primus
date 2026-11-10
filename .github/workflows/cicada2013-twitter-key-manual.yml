@@ -1,0 +1,13 @@
+name: 2013 Twitter historical source-key inverse
+on:
+  workflow_dispatch:
+jobs:
+  original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/cicada2013_twitter_original_pad_inverse.cjs
