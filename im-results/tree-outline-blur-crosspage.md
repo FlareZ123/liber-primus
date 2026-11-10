@@ -64,7 +64,19 @@ One interpretation of the original **128 black + (51 red + 76 final) = 255** run
 
 **Observed:** the largest equality count is only **10/127**, so **117/127 plaintext coordinates mismatch** even under the fitted missing-cell interpretation. In 1,000 deterministic segment-preserving null shuffles (51 red and 76 p55 symbols permuted separately), the maximum-equality median is **11/127** and **923/1,000** controls match or exceed the original (add-one 924/1001≈0.9231). This is a finite family exclusion; the null is descriptive and the original section was postselected. An independently generated 128-rune plaintext planted under a true one-missing-cell model returns **127/127** matching coordinates, recovers all **128** source runes, and **exactly re-encrypts all 255** synthetic ciphertext runes. The wrong reversed grid yields only 10/127 for that positive. Source arrays, exact inversion, planted control and fixed-seed shuffles are in [`sims/grid255_paired_shared_plaintext.cjs`](../sims/grid255_paired_shared_plaintext.cjs).
 
-This eliminates **direct two-half identical-plaintext masking by the printed source grid** for the three declared byte maps. Separate messages, nonadditive maps and independently source-determined alternate traversals are untested.
+**Stronger, key-independent exclusion from the same fixed 128/127 alignment.** Suppose each half is an *arbitrary unknown bijective substitution* of the same underlying 128-rune text, with a key that is constant globally or independently rekeyed for each physical column of the 8-column original grid. Paired positions within a given key epoch must preserve their equality relation, regardless of unknown alphabet labels. Enumerate the same 128 missing positions and two B reading directions. For each candidate, an **exact maximum-weight bipartite matching** between the observed rune labels finds the largest subset compatible with *some* bijection; its complement is the smallest number of original paired positions that must be changed or discarded.
+
+| Independent substitution epochs, keyed by aligned position mod period | Maximum compatible paired positions (of 127) | Minimum required changed/dropped paired positions |
+| --- | ---: | ---: |
+| One bookend-wide bijection (period 1) | 37 | **90** |
+| Period 2 | 54 | **73** |
+| Period 4 | 72 | **55** |
+| Eight printed columns (period 8) | 89 | **38** |
+| Period 16 | 108 | **19** |
+
+The strongest live source-defined column case has its optimum at reverse B order and a missing symbol at index 67, yet still requires abandoning **38/127 (29.9%)** pairings beyond the supposed single missing location. Key-independent pairwise equality also gives **534 mismatched comparisons out of 8,001** globally in the most favorable alignment and **65 mismatched comparisons out of 945** within the eight columns in their own best alignment. Constructive control ciphertext with independently sampled fixed per-column 29-rune permutations and one true missing position yields an **exact zero-edit** result, and a global-permutation plant likewise yields zero under period 1. The [same reproducible program](../sims/grid255_paired_shared_plaintext.cjs) computes both the additive and unrestricted-bijection gates.
+
+These exact original-input bounds rule out a *single common 128-rune latent message* under either direct printed-grid masking or arbitrary fixed global/column substitution, given source-ordered pairing and one missing B coordinate. Separate messages, position-dependent keys inside columns, transformations changing symbol order and independently determined alternative traversals remain unresolved.
 
 ## Cryptanalytic meaning and next gate
 
