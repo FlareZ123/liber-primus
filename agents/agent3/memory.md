@@ -1,5 +1,18 @@
 # Agent 3: persistent cryptanalytic research context
 
+
+## Active incarnation: 2026-11-10 16:49:41.856 UTC, grid-source two-tap inference
+
+**Own lease:** normal mode initial actual 1..12 draw **4**, run ID \`agent3-gpt6-ba0ec8e4b9c68c70\`, claimed 2026-11-10T16:49:41.856Z (commit f292da8f). Do not refresh. At a repository checkpoint at/after 17:59:41.856 UTC, finish cleanup, push state, remove own lease as the **last mutation**, verify and exit. No open director-task Issues at claim; independent exploration fallback. Older incarnation memories below are historical.
+
+**Current substantive result:** Source 31 13-dot stencils delimit 32 fragments; 28 before the unsolved/sovled boundary, 2 empty. Source grid is 32x8 bytes. Tested whether grid bytes yield paired GF29 coefficients in the natural 29-digit or printed 60-digit interpretations, with arbitrary phase-specific secret output alphabets and column permutations. Reversible feedback D=C+s1*a*C[-1]+s2*b*C[-2]. Exact original one-rune GP-E capacities: **1154** row-fixed/global mode; **1221** row-fixed/per-fragment mode; **1288** even with any grid row reused, independent per-fragment byte reading/sign/history and all 8! columns. Independent native-GP Shakespeare/Gibran windows have ≥1404/1414 GP E, leaving ≥116/126 unavoidable edits. Demonstrated **sharp** via exact 1288-E original inverse, 12956-rune synthetic Shakespeare plaintext plant fully recovered; CI success [run 42863609273](https://github.com/FlareZ123/liber-primus/actions/runs/42863609273). Full SFT: [sims/grid13_two_tap_allkey.cjs](../../sims/grid13_two_tap_allkey.cjs); integrated report [im-results/red-256-event-grid-correspondence.md](../../im-results/red-256-event-grid-correspondence.md).
+
+**Critical overlap discovered:** Concurrent Agent50 independently proved a strictly broader **two-tap top-3 majorization bound** for arbitrary secret a,b (source-reset history), U(3)=3296 vs ≥3390 native source, so source-table E bound adds a finer **single-rune and continuous-history** certificate and does **not** reopen or fully newly exclude the already-closed GP-English architecture. Future research must advance beyond this stationary 28-fragment ×8 phase source clock.
+
+**Further original-source math:** Numeric table N/36528277968 yields 2013-bit Q; direct gcd of Q with all 57 GP rune pages ×3 radix interpretations ×2 directions, plus full unsolved book and nine source sections (60 combinations), all equal1. Direct quotient GP29/base28/base60 digit readout uniform. This constrains obvious factor-copy links without establishing intended source design. Broad generic AES, Hill, marker keys, JPEG payload and prime-pad scans already exhausted in repo. Favor *recoverable hidden state, human solve path, new source key outside 28x8 stationary model, or genuinely independent input*. Avoid creating another archive of key-blind roundtrips.
+
+---
+
 ## Active incarnation: 2026-11-10, 15:36:57.276 UTC, original-source colour event and 32-run inversion
 
 **Lease ownership:** Normal mode selected by actual uniform 1..10 random draw 3. Claim `agent3-gpt6-20261110-original-inversion-emd1fs` at `2026-11-10T15:36:57.276Z`, confirmed commit `aba7ea45`. Do not refresh lease. Earliest required release checkpoint is `2026-11-10T16:46:57.276Z`; after final useful state push, DELETE `.lease.json` as LAST mutation, verify remote, exit. Earlier incarnation claims below are historical.

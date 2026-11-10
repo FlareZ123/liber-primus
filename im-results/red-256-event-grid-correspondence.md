@@ -80,6 +80,33 @@ The same [source-asserting reversible test](../sims/thirteen_dot_grid_8phase_all
 
 **Research consequence:** within the dot-delimited 32×8 source-state architecture, independently arbitrary secret GP29 permutations with zero, one or two previous-ciphertext affine taps cannot generate any of the equal-length native GP-English Shakespeare, Gibran and Emerson windows. The two-tap family clears the one-symbol E ceiling, but violates the stronger multi-symbol majorization inequality at k=3. A future source-constrained inverse must derive a different evolving state or plaintext register and produce original readable output.
 
+#### Source-table byte pairs as coupled feedback taps
+
+**Finite original-source key restriction, Agent 3, 10 November 2026.** The preceding exact two-tap result allows *independently arbitrary* coefficients in every phase and is already a stronger exclusion of native GP-English at the three-symbol-frequency level. This narrower, independently reproducible experiment asks whether the **actual values printed in the 32×8 table** can serve as the two coefficient sources. It gives an additional, stronger *single-E-rune* certificate for four natural byte readings, including cases in which ciphertext predecessors continue across punctuation delimiters rather than resetting.
+
+Let a source table cell have byte value \(v\in[0,255]\). Its field-coefficient pair \((a,b)\) is one of four source-defined interpretations: \((v\bmod29,\lfloor v/29\rfloor)\), the swapped pair, \((\lfloor v/60\rfloor,(v\bmod60)\bmod29)\), or that pair swapped. Use the exact 28 punctuation-delimited unsolved fragments, each with eight local phases. At any position the direct GP29 decoder has
+
+\[
+D_i=C_i+s_1a_{g,h}C_{i-1}+s_2b_{g,h}C_{i-2}\pmod{29},\qquad
+P_i=\sigma_{g,h}^{-1}(D_i),
+\]
+
+where \(s_1,s_2\) independently take signs ±1 and each \(\sigma_{g,h}\) is an *entirely unrestricted unknown 29-symbol permutation*, independently for all 224 fragment/phase states. Missing ciphertext predecessors either count as zero on fragment reset or continue from the previous printed runes.
+
+We grant **every fragment independently** its choice of coefficient reading, both signs, reset/continuation, an arbitrary selection of **any of the 32 grid rows with replacement**, and a freely chosen permutation of **all eight column assignments**. No original plaintext or secret alphabet is fitted. For one source fragment and phase \(h\), column \(j\) produces 29 transformed-symbol counts; their maximum is \(W_{h,j}\). Under any GP29 bijection, all copies of desired plaintext E must come from *one* transformed symbol, so \(W_{h,j}\) is its exact one-symbol capacity. A complete 256-mask assignment dynamic program maximizes \(\sum_hW_{h,\pi(h)}\) over all \(8!\) column permutations. Maximizing independently over rows and all coefficient/reset conventions yields the following **sharp**, fully attainable all-key ceilings on the original 12,956-rune ciphertext:
+
+| Freedom allowed | Largest possible GP-E count |
+| --- | ---: |
+| Grid row fixed by source fragment; one coefficient reading, sign pair and predecessor policy shared by every fragment | **1,154** |
+| Grid row still fixed; reading, signs and predecessor policy independently selectable per fragment | **1,221** |
+| Every fragment may choose **any** grid row, with replacement, as well as every preceding freedom | **1,288** |
+
+The established native GP-English reference windows have **at least 1,404 Shakespeare E** and **1,414 Gibran E** per 12,956 original-length runes. Thus the most permissive of these grid-byte models still requires at least **116 / 126 plaintext rune alterations** for every such reference window. Permitting every secret output alphabet and every source-row choice cannot repair this deficit. Importantly, the more general unrestricted two-tap result above already excludes the full direct native-English model by its top-three-symbol bound; this byte-derived test sharpens the *E-only* source-key picture and additionally permits continuous predecessor history.
+
+The [standalone original-input CommonJS reproducer](../sims/grid13_two_tap_allkey.cjs) verifies the original grid SHA-256 and canonical 13-dot fragment geometry, exactly enumerates the four byte-pair rules and eight-column assignments, and asserts all three exact ceilings. Its seed-hidden true-key native-GP Shakespeare plant deciphers and re-encrypts **12,956/12,956** runes. It also constructs an explicit secret alphabet and row/column assignment attaining exactly **1,288 E** on the original ciphertext, then re-encrypts it without loss; that key-blind roundtrip is an **attainability witness**, not an authenticated decipherment. [Successful manual Node 22 CI run 42863609273](https://github.com/FlareZ123/liber-primus/actions/runs/42863609273).
+
+No unknown plaintext, authentic key, derived cipher instructions or destination follows. The bound concerns these literal byte-to-two-coefficient readings and stationary per-fragment eight-phase alphabets. A separate hidden key-derivation function, evolving state, different segmentation or non-GP intermediate lies outside the model.
+
 ## Original-source inversions
 
 Two literal register families were investigated with 256-event source-derived keys:
