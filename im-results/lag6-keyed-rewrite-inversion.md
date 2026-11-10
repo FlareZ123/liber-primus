@@ -1,30 +1,40 @@
-# A constructive keyed inverse for the candidate LP2 lag-six collision rewrite
+# Known-key inverse of the candidate lag-six collision rewrite
 
-**Class:** conditional, artificial-positive decryptor; **no original LP2 plaintext or original key recovered**. Agent 39, 2026-11-10.
+**Evidence class:** constructive cryptanalytic inverse and source-disjoint synthetic controls. **No unknown LP2 key, original plaintext or actual enciphering rule recovered.** Agent 39, 2026-11-10.
 
-The forward generator in [the consolidated joint analysis](lp2-forward-generator-joint.md) can overwrite a tentative ciphertext rune only when that tentative rune equals the previous **published** rune. Thus, **when the underlying additive keystream K is known**, any original tentative cipher rune must have been either the published rune `C_i` or the preceding published rune `C_(i-1)`. This exact two-element candidate set is independent of the source language.
+## Cryptographic premise and its exact inverse
 
-The [new decoder](../sims/lag6_repair_keyed_inverse.cjs) analytically enumerates both possibilities. For a word position `i>=6`, the rewrite candidate is legal only where the observed output equals `T(C_(i-6))`. At earlier positions `i<6`, a replacement rune may be any different rune, and a rewrite candidate has emission likelihood `q/28`. At later eligible positions its likelihood is `q`. The literal candidate uses emission probability 1, or `1-q` for an unchanged adjacent collision, with the special case `T(C_(i-6))=C_(i-1)` handled exactly. Each candidate plaintext rune is then `(candidate-K_i) mod29`, and an independently trained GP-English **word-position prior** chooses between them. This is local maximum-posterior decoding; a full n-gram or whole-word decoder could incorporate more context.
+The [joint forward-generator analysis](lp2-forward-generator-joint.md) proposes a uniformly randomized tentative 29-rune additive ciphertext `X_i=(P_i+K_i) mod29`. With probability `q=.81`, a tentative collision `X_i=C_(i-1)` is replaced. Before index six of each canonical word, the replacement is uniform among the 28 *different* runes. From word-local index six onward, the replacement is `T(C_(i-6))=(24-2C_(i-6)) mod29`. The previous published rune state carries across word and physical-page boundaries. This architecture was selected to explain already-known LP2 statistics; it remains a hypothesis.
 
-## Executed heldout artificial inversion
+When the additive key `K` is supplied, every original tentative rune must be one of `C_i` and the preceding published `C_(i-1)`. The second candidate is legal only when the observed rewrite could emit `C_i`: for word-local positions 0–5, any rune different from the predecessor; at positions 6+, specifically `C_i=T(C_(i-6))`. Every admissible tentative rune determines a plaintext candidate `P_i=(X_i-K_i) mod29`. Exact local emission likelihoods are 1 (ordinary noncollision), `1-q` (unrepaired collision), `q/28` (early random rewrite) or `q` (later deterministic rewrite), with the target-equals-predecessor case handled explicitly. The candidate set is algebraically complete for this declared generator, even if an overwritten symbol has become unknowable from ciphertext alone.
 
-A source text in Shakespeare was split before generating data. The first **240,000 characters** train a 29-rune word-position frequency prior; English GP-encoded words from the trailing **60,000 characters** are sampled at all **2,896 exact LP2 whole-word lengths**, with three rare lengths filled by contiguous heldout GP-rune excerpts. An independent key of **12,956 uniformly sampled modulo-29 digits** and a fixed-seed collision rewrite probability of **0.81** generated an artificial ciphertext, using the same deterministic `T` rewrite at word-local positions `i>=6` as the joint forward model.
+## Two implemented decoders
 
-[Successful 2026-11-10 CI run 42763019345](https://github.com/FlareZ123/liber-primus/actions/runs/42763019345) recovered the planted source under the *known key*:
+The original [local posterior inverse](../sims/lag6_repair_keyed_inverse.cjs) chooses independently between the one or two plaintext candidates at each position with a 29-rune word-position prior trained on Shakespeare. On its original heldout artificial 12,956-rune book, an exact-key control with 367 overwritten events recovered **12,681 / 12,956** plaintext runes (97.877%) versus 12,590 for the literal inverse, gaining 91; the true rune was in the candidate set at all 12,956 positions. The score describes *synthetic* source recovery, not actual LP2.
 
-| Inversion measurement | Actual synthetic control |
-| --- | ---: |
-| Synthetic source runes | 12,956 |
-| Actual overwrite events | **367** |
-| True rune in enumerated candidate set | **12,956/12,956** |
-| Naive inverse ignoring rewrites | **12,590/12,956 (97.175%)** |
-| Posterior inverse with word-position prior | **12,681/12,956 (97.877%)** |
-| Net additional correctly recovered runes | **91** |
-| Positions with two tentative-symbol choices | 11,671 |
-| Positions selected as rewrites by posterior | 181 |
+The stronger [contextual inverse](../sims/lag6_repair_contextual_inverse.cjs) makes the emission choice using a complete word-level decoder. It combines (1) exact prefix-trie traversal of an independently trained GP-English word-frequency lexicon, and (2) an exact two-state-history Viterbi decoder using smoothed GP rune trigrams with position-sensitive unigram backoff. It maximizes an explicit mixture over word-lexicon and trigram source models without enumerating all `2^word_length` candidates. It preserves the previous published ciphertext rune across word boundaries and uses the observed word-local lag-six target. The script includes a wrong-key negative control and independent-author positive controls.
 
-The exact candidate-set coverage is **100% by construction and asserted in the test**; it reflects algebraic invertibility into a small ambiguous set, not successful classification of every altered rune. There remain **275** wrongly chosen runes with this simple local language model. A more powerful contextual word or sentence decoder is a specific, implementable next attack. The vast majority of possible ambiguities occur in short-word positions where the rewrite output was uniform; their *prior* chance of a rewrite is small, and language context can improve classification.
+The source model is trained on the **first 200,000 characters** of the canonical 300,000-character Shakespeare resource. A disjoint 40,000-character validation portion chooses just one of four lexical mixture weights (0.3, 0.7, 0.95, 0.99), selecting **0.95**. Final Shakespeare evaluation uses the untouched **last 60,000 characters** with its own random key and rewrite history. All three books are matched to the **exact original 2,896 word lengths** and 12,956 runes, with only three rare-length fallback excerpts in each Shakespeare book.
 
-The model has an important limit: the original ciphertext offers no actual additive key `K`. Neither this test nor the source-derived key searches recovered one. The test does **not** claim an original LP2 word decipherment. Stronger work should bring a source-constrained key generator and exact key-state tracking into the inverse, then require independently predicted original ciphertext and readable heldout plaintext. The original source and exact 500-trial compatibility evidence remain in [lp2-forward-generator-joint.md](lp2-forward-generator-joint.md).
+## Executed independent tests
 
-Reproduce: `node sims/lag6_repair_keyed_inverse.cjs` on Node 22, source `sims/lag6_repair_keyed_inverse.cjs`, on-demand workflow `.github/workflows/lag6-repair-keyed-inverse.yml`. The first pilot run 42762937401 failed because its strict heldout word corpus had no length-14 word; the successful test explicitly uses a heldout contiguous excerpt for three unsupported lengths and records that fallback.
+[Successful Actions run 42766461513](https://github.com/FlareZ123/liber-primus/actions/runs/42766461513) executed the parser regression, both inverse scripts, Shakespeare validation and test, a deliberately wrong pad, and independent Gibran/Emerson plaintext control books. All measurements below use the actual source hidden from the decoder and an **already-known synthetic additive pad**.
+
+| Corpus / model | Actual overwrites | Literal-only rune hits | Local posterior rune hits | Contextual rune hits | Exact entire-word hits |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Shakespeare validation (model selection only) | 349 | 12,607 | 12,700 | **12,898** | 2,842 |
+| **Shakespeare final test (untouched)** | **381** | 12,576 | 12,668 | **12,842 (99.120%)** | **2,797 / 2,896** |
+| Gibran, *The Prophet* (independent author) | 359 | see run | see run | **12,848 (99.166%)** | **2,793 / 2,896** |
+| Emerson essays (independent author) | 328 | see run | see run | **12,837 (99.082%)** | **2,795 / 2,896** |
+
+On the same untouched Shakespeare control, the contextual model recovers **174** more correct runes than the local posterior and **266** more than the literal-only inverse. All 12,956 synthetic positions still have only one or two exact tentative-source candidates by construction. In the final test, the decoder selected a source-lexicon path for 2,522 words; its 2,797 whole-word correct predictions include some trigram-decoded words outside that lexicon.
+
+The **wrong-pad control** replaces the known synthetic key with independently generated uniform mod-29 key digits. It restores only **593 / 12,956 (4.577%)** true plaintext runes; the source-lexicon path is selected for just **166** words, versus 2,522 with the correct key. Thus the contextual decoder can strongly discriminate one correctly supplied key from an unrelated pad on the planted source. This does not calibrate a future search across thousands of original-material key hypotheses, unknown symbol permutations, variable key-skips, or unrelated source encodings.
+
+**Reproduction:** `node sims/lag6_repair_contextual_inverse.cjs` with Node 22 and the committed control text; on-demand workflow [`.github/workflows/lag6-repair-keyed-inverse.yml`](../.github/workflows/lag6-repair-keyed-inverse.yml). Fixed seeds: validation `0x391701`, final test `0x391702`, wrong key `0x391703`, Gibran `0x391704`, Emerson `0x391705`. The full JSON is preserved in CI logs and its artifact. There is no workflow trigger per commit.
+
+## Consequence and unresolved dependency
+
+The best-tested candidate inversion has now recovered over **99% of a complete planted LP2-length English plaintext** in three source-disjoint/artificial controls, given its correct key. This makes the missing **actual LP2 keystream** the decisive obstacle. The original manuscript's unusual lag-five same-rune and S-specific repeats remain substantially unexplained by the lag-six-only generator. The same rewrite architecture is still speculative, and word-level language recovery on an artificial source does not validate it for original LP2.
+
+A next genuine decryption should obtain a key independently from manuscript/archival material, screen it against untouched original ciphertext with rigorous multiple-candidate correction, recover coherent source text over independent positions, and re-encrypt with a fully specified mechanism. Avoid re-running the finite synthetic search as if it were an original decipherment.
