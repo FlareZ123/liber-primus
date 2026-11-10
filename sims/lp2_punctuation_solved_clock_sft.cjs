@@ -72,15 +72,18 @@ const MODES = ["pass","advance","reset"];
  * @param {"pass"|"advance"|"reset"} mark13Mode
  * @param {"pass"|"advance"|"reset"} mark10Mode
  * @param {number[]} primes
+ * @param {number} [hexStepCount] Optional extra prime steps for 64 digest
+ *   bytes or 128 printed hex digits at the 10-dot mark.
  * @returns {number[]}
  */
-function decode(mark13Mode,mark10Mode,primes) {
+function decode(mark13Mode,mark10Mode,primes,hexStepCount=0) {
   const markers = new Map([[5,mark13Mode],[45,mark10Mode]]);
   let counter=0;
   return cipher.map((c,i) => {
     const mode = markers.get(i);
     if (mode === "advance") counter++;
     if (mode === "reset") counter=0;
+    if (i === 45) counter+=hexStepCount;
     if (i === 56) return c;
     return ((c-(primes[counter++]-1))%29+29)%29;
   });
@@ -133,6 +136,15 @@ function main() {
   }
   assert.deepEqual(output.map(o => o.exactRuneMatches),
     [85,46,48,6,6,8,6,6,8]);
+  const digestStepControl = [0,64,128].map(steps => {
+    const decoded=decode("pass","pass",primes,steps);
+    return {extraStepsAtHash:steps,
+      exactRuneMatches:decoded.filter((v,i) => v===expected[i]).length,
+      matchesAfterHash:decoded.slice(45).filter((v,j) =>
+        v===expected[j+45]).length};
+  });
+  assert.deepEqual(digestStepControl.map(x => x.exactRuneMatches),
+    [85,48,49]);
   const full=output.filter(o => o.exactRuneMatches === cipher.length);
   assert.deepEqual(full.map(o => [o.mark13After5,o.mark10After45]),
     [["pass","pass"]]);
@@ -141,6 +153,7 @@ function main() {
     independentPlaintextRunes:85,largeDotMarkers:marks,
     authenticLiteralFPosition:56,hypothesisCount:output.length,
     decodedAllOriginalRunes:full.length===1,
+    digestStepControl,
     note:"The historically solved phi(prime) stream does not reset or consume " +
       "a prime at either internal large-dot mark. Unsolved-page ciphers may " +
       "use other clocks.",models:output},null,2));
