@@ -1,0 +1,14 @@
+name: LP2 relative-key trigram decoder
+on:
+  workflow_dispatch:
+jobs:
+  trigram-pair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Decode paired English-trigram streams and heldout control
+        run: node sims/relative_key_trigram_probe.cjs
