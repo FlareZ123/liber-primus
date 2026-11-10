@@ -36,7 +36,7 @@ const raw=corpus.pages.filter(p=>p.page<56).flatMap(p=>p.indices);
 assert.equal(raw.length,12956);
 const SIZE=2048, PAD=2450, WIDTH=384;
 // Exact source text segment used as a planted control is excluded from LM training.
-const training=native.slice(7000);
+const training=native.slice(22000);
 const lp1source=fs.readFileSync(path.join(__dirname,"..",
   "resources/liber-primus/lp1-plaintext-reference.txt"),"utf8")
   .split(/\r?\n/).filter(x=>!x.startsWith("#")).join(" ");
@@ -210,5 +210,54 @@ function result() {
     sourceSolvedLP1Positive:lp1Plant,trainingExcludeNativePlant:true,
     originalAll:rows};
 }
-if(require.main===module)console.log(JSON.stringify(result(),null,2));
-module.exports={encryptSoft,decode,result};
+/** Eight original, canonically marked LP2 sections, independently reset key state. */
+function sectionChallenge() {
+  const sizes=[729,1145,1738,1894,1021,1433,1680,3316];
+  assert.equal(sizes.reduce((a,b)=>a+b,0),raw.length);
+  const treatments=[
+    ["3301-byte-plus",3301n,"byte",1],
+    ["3301-byte-minus",3301n,"byte",-1],
+    ["3301-bits-plus",3301n,"eightbits",1],
+    ["3301-bits-minus",3301n,"eightbits",-1],
+    ["signer-byte-plus",0x7A35090Fn,"byte",1],
+    ["signer-byte-minus",0x7A35090Fn,"byte",-1],
+    ["signer-bits-plus",0x7A35090Fn,"eightbits",1],
+    ["signer-bits-minus",0x7A35090Fn,"eightbits",-1]
+  ];
+  const sections=[];
+  let offset=0;
+  for(let i=0;i<sizes.length;i++) {
+    const length=sizes[i],input=raw.slice(offset,offset+length),results=[];
+    for(const [name,seed,sample,sign] of treatments){
+      const bytes=modularStream(seed,[length+Math.ceil(length/10)+80],sample,0)
+        .map(v=>v%AL);
+      const v=decode(input,bytes,sign,WIDTH);
+      results.push({name,meanGPTrigram:v.meanScore,skip:v.skips,
+        preview:v.prefix});
+    }
+    results.sort((a,b)=>b.meanGPTrigram-a.meanGPTrigram);
+    // Source-native control comes from a disjoint part of Shakespeare.
+    const clear=native.slice(3000+offset,3000+offset+length);
+    assert.equal(clear.length,length);
+    const pad=modularStream(3301n,[length+Math.ceil(length/10)+80],
+      "byte",0).map(v=>v%AL);
+    const planted=encryptSoft(clear,pad,1);
+    const recovered=decode(planted.ciphertext,pad,1,WIDTH);
+    const correct=recovered.decoded.filter((v,j)=>v===clear[j]).length;
+    sections.push({section:i,offset,length,originalBest:results.slice(0,2),
+      worst:results.at(-1).meanGPTrigram,
+      sourceNativePositive:{rejected:planted.rejected,
+        viterbiSkipped:recovered.skips,correct,total:length,
+        fraction:correct/length,meanGPTrigram:recovered.meanScore}});
+    offset+=length;
+  }
+  return {classification:"independent original-source section-locked skip HMM; no original plaintext asserted",
+    originalSections:sections.length,originalModels:sections.length*treatments.length,
+    beamWidth:WIDTH,originalAllRunePositions:offset,
+    trainedOn:"Shakespeare GP runes after offset22000; plants use offsets3000..15956",
+    sections};
+}
+
+if(require.main===module)console.log(JSON.stringify(
+  process.env.LP2_PGP_SECTION==="1"?sectionChallenge():result(),null,2));
+module.exports={encryptSoft,decode,result,sectionChallenge};
