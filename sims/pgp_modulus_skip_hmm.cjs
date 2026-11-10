@@ -35,15 +35,33 @@ assert.ok(native.length>25000);
 const raw=corpus.pages.filter(p=>p.page<56).flatMap(p=>p.indices);
 assert.equal(raw.length,12956);
 const SIZE=2048, PAD=2450, WIDTH=384;
+// Exact source text segment used as a planted control is excluded from LM training.
+const training=native.slice(7000);
+const lp1source=fs.readFileSync(path.join(__dirname,"..",
+  "resources/liber-primus/lp1-plaintext-reference.txt"),"utf8")
+  .split(/\r?\n/).filter(x=>!x.startsWith("#")).join(" ");
+const lp1=[];
+for(let word of (lp1source.toUpperCase().match(/[A-Z]+/g)||[])){
+  word=word.replace(/QU/g,"CW").replace(/V/g,"U").replace(/K/g,"C")
+    .replace(/Z/g,"S").replace(/ING/g,"NG");
+  const vals=[];
+  for(let j=0;j<word.length;){
+    const token=alphabet.find(x=>word.startsWith(x.s,j));
+    if(!token){vals.length=0;break;}
+    vals.push(token.i);j+=token.s.length;
+  }
+  lp1.push(...vals);
+}
+assert.ok(lp1.length>=SIZE);
 const cipher=raw.slice(0,SIZE),plantNative=native.slice(3000,3000+SIZE);
 const AL=29, A2=AL*AL, A3=A2*AL, SMOOTH=0.2;
 const one=new Uint32Array(AL),two=new Uint32Array(A2),three=new Uint32Array(A3);
-for(let i=0;i<native.length;i++) {
-  one[native[i]]++;
-  if(i>=1)two[native[i-1]*AL+native[i]]++;
-  if(i>=2)three[(native[i-2]*AL+native[i-1])*AL+native[i]]++;
+for(let i=0;i<training.length;i++) {
+  one[training[i]]++;
+  if(i>=1)two[training[i-1]*AL+training[i]]++;
+  if(i>=2)three[(training[i-2]*AL+training[i-1])*AL+training[i]]++;
 }
-const log1=Array.from(one,v=>Math.log((v+SMOOTH)/(native.length+AL*SMOOTH)));
+const log1=Array.from(one,v=>Math.log((v+SMOOTH)/(training.length+AL*SMOOTH)));
 const log2=Array.from({length:A2},(_,i)=>{
   const a=Math.floor(i/AL);
   return Math.log((two[i]+SMOOTH)/(one[a]+AL*SMOOTH));
@@ -153,7 +171,7 @@ function result() {
     ["signer-bits-minus",0x7A35090Fn,"eightbits",-1]
   ];
   const rows=[];
-  let truePlant;
+  let truePlant,lp1Plant;
   for(const [name,seed,sample,sign] of treatments){
     const pad=modularStream(seed,[PAD],sample,0).map(v=>v%AL);
     const orig=decode(cipher,pad,sign,WIDTH);
@@ -163,6 +181,14 @@ function result() {
       const encrypted=encryptSoft(plantNative,pad,sign);
       const predicted=decode(encrypted.ciphertext,pad,sign,WIDTH);
       const accuracy=predicted.decoded.filter((v,i)=>v===plantNative[i]).length;
+      const solvedCipher=encryptSoft(lp1.slice(0,SIZE),pad,sign);
+      const solvedRecovered=decode(solvedCipher.ciphertext,pad,sign,WIDTH);
+      lp1Plant={sourceRunes:SIZE,actualSkipped:solvedCipher.rejected,
+        decodedSkipped:solvedRecovered.skips,
+        exactRecovered:solvedRecovered.decoded.filter((v,i)=>v===lp1[i]).length,
+        originalPrefix:lp1.slice(0,72).map(v=>corpus.translit[v]).join(""),
+        recoveredPrefix:solvedRecovered.prefix,
+        viterbiMean:solvedRecovered.meanScore};
       truePlant={name,sourceRunes:SIZE,actualSkipped:encrypted.rejected,
         actualFinalClock:encrypted.drawn,viterbiSkipped:predicted.skips,
         accuracy,accuracyFraction:accuracy/SIZE,
@@ -181,6 +207,7 @@ function result() {
     beamWidth:WIDTH,exactSkipGate:"rejected stream draw would emit preceding ciphertext from the same plaintext",
     sourceSeeds:["3301","0x7A35090F"],sampling:["low-byte","8-low-bits"],
     sign:[-1,1],restart:"single book",sourceNativePositive:truePlant,
+    sourceSolvedLP1Positive:lp1Plant,trainingExcludeNativePlant:true,
     originalAll:rows};
 }
 if(require.main===module)console.log(JSON.stringify(result(),null,2));
