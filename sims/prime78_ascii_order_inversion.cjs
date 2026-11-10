@@ -30,11 +30,13 @@ const observed = original.filter((_, i) => !repeats.has(i));
 const PACKETS = 165, RADIX = 28, WIDTH = 78, BYTES = 47, TRAIN = 108;
 assert.equal(observed.length, PACKETS * WIDTH);
 const MASK = 29;
-const reference = read('resources/liber-primus/lp1-plaintext-reference.txt')
+const canonical = read('resources/liber-primus/lp1-plaintext-reference.txt')
   .split(/\r?\n/u).filter(s =>
     !s.startsWith('#') && !s.startsWith('[') && !/^\d/u.test(s))
   .join(' ').toUpperCase().replace(/[^A-Z]+/gu, ' ')
   .replace(/\s+/gu, ' ').trim() + ' ';
+const lowercase = process.argv.includes('--lowercase');
+const reference = lowercase ? canonical.toLowerCase() : canonical;
 assert.ok(reference.length > 3500);
 const plaintext = reference.repeat(
   Math.ceil(PACKETS * BYTES / reference.length)).slice(0, PACKETS * BYTES);
@@ -257,7 +259,7 @@ function main() {
     originalRunes: original.length, removedRepeatEvents: repeats.size,
     remainingDigits: observed.length, packetCount: PACKETS,
     fittedLeaders: TRAIN, heldoutLeaders: PACKETS - 1 - TRAIN,
-    sourceTextChars: reference.length,
+    sourceTextChars: reference.length, sourceCase: lowercase ? 'lowercase' : 'uppercase',
     firstDigitCalibration: {ratio28pow77To256pow46: A,
       leadingDigitDistribution: q},
     original: {
@@ -274,7 +276,7 @@ function main() {
       byteExactForwardInverse: true,
       secretOrderRecoveredModuloRotation: true
     },
-    assessment: 'Strong direct uppercase-English 78->47 ASCII packet candidate excluded on original heldout source register; no genuine plaintext recovered.'
+    assessment: 'Direct source-English 78->47 ASCII packet candidate fails original heldout source register; no genuine plaintext recovered.'
   };
 }
 if (require.main === module)console.log(JSON.stringify(main(), null, 2));
