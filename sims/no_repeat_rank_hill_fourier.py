@@ -12,7 +12,7 @@ import json
 from pathlib import Path
 import numpy as np
 from hill_fourier_blind_inverse import (
-    M,ROOT,analyze,blocks_from_pages,canonical,rank_mod29,inverse_mod29)
+    M,ROOT,investigate,blockify,canonical,rank29,inverse29)
 
 def rank_decode(glyphs: np.ndarray,kind: str,prev: int|None=None) -> np.ndarray:
     out=[]
@@ -55,18 +55,18 @@ def plant(kind: str,seed: int=0x24888) -> dict:
     plain=rng.choice(M,size=(n,5),p=prob)
     while True:
         matrix=rng.integers(0,M,size=(5,5),dtype=np.int64)
-        if rank_mod29(matrix)==5:
+        if rank29(matrix)==5:
             break
     mixed=(plain@matrix.T)%M
     encoded,edits=rank_encode(mixed.ravel(),kind,rng)
     rank=rank_decode(encoded,kind,prev=0)
-    result=analyze(rank.reshape(-1,5),5)
-    true={canonical(tuple(map(int,v))) for v in inverse_mod29(matrix)}
-    found={tuple(x['row']) for x in result['inverse_rows']}
+    result=investigate(rank.reshape(-1,5),5)
+    true={canonical(tuple(map(int,v))) for v in inverse29(matrix)}
+    found={tuple(x['row']) for x in result['full_rank_inverse_rows']}
     matched=len(true&found)
     assert matched==5,(kind,matched,result)
     return {'kind':kind,'nblocks':n,'rewritten_repeats':edits,
-            'recovered_true_rows':matched,'leading_heldout':result['leading'][0]['heldout'],
+            'recovered_true_rows':matched,'leading_heldout':result['top10'][0]['heldout'],
             'all_true_rows':list(map(list,sorted(true)))}
 
 def main() -> None:
@@ -79,14 +79,14 @@ def main() -> None:
             groups=[rank_decode(np.concatenate(pages),kind)] if reset=='book' else [
                 rank_decode(p,kind) for p in pages]
             for phase in range(5):
-                blocks=blocks_from_pages(groups,5,phase,reset)
-                result=analyze(blocks,5)
+                blocks=blockify(groups,5,phase,reset)
+                result=investigate(blocks,5)
                 print('ORIGINAL '+json.dumps({
                   'kind':kind,'reset':reset,'phase':phase,
                   'blocks':result['blocks'],
-                  'null_heldout':result['expected_null_heldout_chisquare'],
-                  'leading':result['leading'][:5],
-                  'inverse_rows':result['inverse_rows']
+                  'null_heldout':result['null_heldout_contrast'],
+                  'leading':result['top10'][:5],
+                  'inverse_rows':result['full_rank_inverse_rows']
                 }),flush=True)
     for kind in ('cyclic','sorted'):
         print('PLANTED '+json.dumps(plant(kind)),flush=True)
