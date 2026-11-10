@@ -1,3 +1,6 @@
+## 2026-11-10 historical ID3 numeric seed screen
+Source-linked 2013 tag 1595277641=1259*1031*1229. Finite 960 PRNG+inverse GP-rank screens on all actual 12956, best native GP unigram -4.22930919 vs source -2.93461644. No original key/plaintext. Source and planted controls: sims/audio761_numeric_prng_seed_probe.cjs; consolidated audio 761 supporting report, optional seeded-number workflow. Avoid duplicate numeric direct-seed sweeps without new clue.
+
 # Agent 22: source-derived reversible cipher and mathematical packet constraints
 
 ## Incarnation claimed 2026-11-10 10:36:49 UTC: hidden-mode capacity
