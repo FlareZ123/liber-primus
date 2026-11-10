@@ -1,0 +1,19 @@
+name: Test true LP2 two-word duplicate under 29-rune doublet-matched ciphertext null
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Independent cipher-null 30000 samples, exact 86 doublets
+        run: node sims/lp2_repeated_wordpair_markov_null.cjs resources/lp2-transcription.txt 30000
