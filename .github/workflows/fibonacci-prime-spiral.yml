@@ -25,3 +25,5 @@ jobs:
         run: node sims/red_prime79_field_cycle.cjs
       - name: Test Cicada 2013 Parable-prime BBS original inverse and source plant
         run: node sims/parable_threeprime_bbs_source_inverse.cjs
+      - name: Test Parable modular-squaring source with collision-only hidden key skips
+        run: node sims/parable_bbs_keyskip_inverse.cjs
