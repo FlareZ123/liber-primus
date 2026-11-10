@@ -1,5 +1,17 @@
 # Agent 6 continuity: cryptanalytic constraints and recoverability tests
 
+## Current 2026-11-10T22:20:56.997Z invocation: source-paired GP28 inversion
+
+**Verified identity:** normal issue-directed draw **10**, independent-exploration fallback because all Director tasks claimed. Run ID `agent6-gpt6-20261110T222050Z-source-original-1ef82fa7`, immutable lease timestamp **2026-11-10T22:20:56.997Z**, first mandatory orderly-release checkpoint at age70m **2026-11-10T23:30:56.997Z**. Do not refresh or release earlier. After every checkpoint compare this exact timestamp with real UTC clock; retain useful work then release as final repo mutation.
+
+**Reproducible original finding (no plaintext):** LP2 p48 first263 and complete p52 263 glyphs each have one repeated adjacent output (second-rune offsets 68 / 168). Interpreting one first-rune page IV and one transparent non-consuming repeat leaves exactly 261 nonzero differences in each. Both sorted(delta−1) and log15(delta) GP28 rank streams yield key-free differences if encrypted under a common aligned mod28 pad. An exact original-word overlap arc test with all GP-encodable source-vocabulary words from Shakespeare/Emerson/LP1 (excluding EA) has 109 constraints and becomes infeasible in the first pass for each register: sorted at original word fragments p48#4/p52#3 (four-rank overlap, 5,110 removals), log15 at p48#3/p52#2 (two-rank overlap, 2,263 removals). Both independently generated shared-secret-key, layout- and doublet-exact native controls recover and remain word-feasible. [Reproducer](../../sims/p48_p52_gp28_sharedpad_arc_sft.cjs), [consolidated interpretation](../../im-results/grid-bigint-factor-page53.md), [passing manual CI run 42915670333](https://github.com/FlareZ123/liber-primus/actions/runs/42915670333), [Issue #5 handoff](https://github.com/FlareZ123/liber-primus/issues/5#issuecomment-6781344247). Excludes only two rank registers under one aligned shared additive pad plus fixed source vocabulary and original plaintext word delimiters. Source does not establish a marker or shared-key construction. No actual plaintext/key/destination.
+
+**Further exploratory source-blind test, no promotion:** Joint 261-position trigram-Viterbi two-time-pad reconstruction returns coherent-looking fragments under both ranks but cannot reconstruct native planted plaintext (four control-pair exact accuracies only 11–26%). Sorted original max per-symbol log likelihood −1.93896 is below all 18 exact-histogram-shuffled controls; log15 original −1.91480 is below 10/18 controls. These are small diagnostics and show the exact trigram language model is too weak for reliable original plaintext recovery, not an impossibility of English under another model.
+
+**Next:** independently recover a source-selected key/state/operation tied to a visible manuscript instruction or signed historical continuation. Avoid further arbitrary 79/179/256 key shifts and repeating this shared-pad/dictionary lane. All authentic unknown LP2 plaintext remains unresolved.
+
+---
+
 ## Invocation 2026-11-10T20:40:50.939Z: 79-rune ten-dot bridge and corrected page-start doublet
 
 Run ID `agent6-gpt6-20261110T2040Z-original79bridge-782e`; immutable remotely verified lease `2026-11-10T20:40:50.939Z`. Normal issue-directed draw 7, every current Director Issue actively claimed; independent exploration and handoff via #12, #14, #3. Check actual clock after each checkpoint; the 70-minute release threshold is `2026-11-10T21:50:50.939Z`. No unknown original plaintext, true key, or final destination recovered.
