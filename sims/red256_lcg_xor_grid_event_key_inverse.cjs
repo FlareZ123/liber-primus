@@ -1,13 +1,14 @@
 "use strict";
 /**
  * Source-derived two-input key hypothesis:
- *   key[i] = grid[(13*state_i + 31 recurrence)] XOR event[i]
- * where state_0=0 and state_(i+1)=(13*state_i+31) mod 256.
+ *   key[i] = grid[state_i] XOR event[i]
+ *   state_(i+1) = (13*state_i + 31) mod 256.
  *
- * The 13/31 constants are the retrospective five-dot border-mask reading;
- * events are the chronological 225-red-rune + 31-thirteen-dot sequence.
- * This is a bounded candidate, not an authenticated historical construction.
+ * The 13/31 constants are the retrospective five-dot border-mask reading.
+ * Starts 0 (baseline) and 230 (the archived OutGuess seed) are tested;
+ * 230 = 256 - 2*13 is a possible source relation, not an authenticated rule.
  *
+ * Events are the chronological 225-red-rune + 31-thirteen-dot sequence.
  * Run from repository root: node sims/red256_lcg_xor_grid_event_key_inverse.cjs
  * Node 22, CommonJS, no dependencies.
  */
@@ -19,8 +20,7 @@ const read=f=>JSON.parse(fs.readFileSync(path.join(root,f),"utf8"));
 const corpus=read("resources/liber-primus/lp2-corpus.json");
 const ink=read("resources/liber-primus/lp2-ink-annotations.json");
 const grid=read("resources/liber-primus/base60-grid.json").byte_rows.flat();
-const pages=corpus.pages.filter(p=>p.page<56);
-const C=pages.flatMap(p=>p.indices);
+const C=corpus.pages.filter(p=>p.page<56).flatMap(p=>p.indices);
 const mod=(a,n)=>(a%n+n)%n;
 assert.equal(C.length,12956);
 assert.equal(grid.length,256);
@@ -74,9 +74,9 @@ function sourceBounds(){
 const {bounds,lengths}=sourceBounds();
 
 /** Full-period LCG order from the source-visible 13/31 masks. */
-function lcgOrder(){
+function lcgOrder(start){
   const order=[],seen=new Set();
-  let state=0;
+  let state=start;
   for(let i=0;i<256;i++){
     assert(!seen.has(state));
     seen.add(state);
@@ -84,21 +84,24 @@ function lcgOrder(){
     state=(13*state+31)%256;
   }
   assert.equal(seen.size,256);
-  assert.equal(state,0);
+  assert.equal(state,start);
   return order;
 }
-const order=lcgOrder();
 
 /** Pair each chronological event with one LCG-ordered table byte by XOR. */
-const key=events.map((event,i)=>grid[order[i]]^event.value);
-assert.equal(key.length,256);
+function deriveKey(start){
+  const order=lcgOrder(start);
+  const key=events.map((event,i)=>grid[order[i]]^event.value);
+  assert.equal(key.length,256);
+  return {order,key};
+}
 
 /**
  * Direct GP29 additive or GP28 predecessor-exclusion inverse.
  * GP28 previous-ciphertext state resets at every source fragment.
  * Key phase is either book-global or reset at each fragment.
  */
-function transform(input,family,projection,sign,clock,encode){
+function transform(input,key,family,projection,sign,clock,encode){
   const out=new Array(input.length);
   for(let f=0;f<28;f++){
     const start=bounds[f],end=bounds[f+1];
@@ -134,42 +137,38 @@ function prefix(values){
   return values.slice(0,160).map(v=>corpus.translit[v]).join("");
 }
 function run(){
-  const variants=[];
-  for(const family of ["add","exclude"])
-    for(const projection of ["mod","scaled"])
-      for(const sign of [-1,1])
-        for(const clock of ["book","fragment"]){
-          const decoded=transform(C,family,projection,sign,clock,false);
-          assert.deepEqual(transform(decoded,family,projection,sign,clock,true),C);
-          variants.push({family,projection,sign,clock,ioc:ioc(decoded),prefix:prefix(decoded)});
-        }
-  variants.sort((a,b)=>b.ioc-a.ioc);
-
-  // Mechanics-only source plants; these prove the inverse implementation,
-  // not that the derived key is the authentic LP2 key.
+  const variants=[],seedSummaries=[];
   const control=corpus.pages.find(p=>p.page===57).indices;
   const plant29=Array.from({length:C.length},(_,i)=>control[i%control.length]);
   const plant28=Array.from({length:C.length},(_,i)=>
     i%157===27?28:control[i%control.length]%28);
   let plantChecks=0;
-  for(const family of ["add","exclude"])
-    for(const projection of ["mod","scaled"])
-      for(const sign of [-1,1])
-        for(const clock of ["book","fragment"]){
-          const plant=family==="add"?plant29:plant28;
-          const encoded=transform(plant,family,projection,sign,clock,true);
-          assert.deepEqual(transform(encoded,family,projection,sign,clock,false),plant);
-          plantChecks++;
-        }
+  for(const seedStart of [0,230]){
+    const {order,key}=deriveKey(seedStart);
+    seedSummaries.push({seedStart,lcgPeriod:order.length,keyFirst64:key.slice(0,64)});
+    for(const family of ["add","exclude"])
+      for(const projection of ["mod","scaled"])
+        for(const sign of [-1,1])
+          for(const clock of ["book","fragment"]){
+            const decoded=transform(C,key,family,projection,sign,clock,false);
+            assert.deepEqual(transform(decoded,key,family,projection,sign,clock,true),C);
+            variants.push({seedStart,family,projection,sign,clock,ioc:ioc(decoded),prefix:prefix(decoded)});
+            const plant=family==="add"?plant29:plant28;
+            const encoded=transform(plant,key,family,projection,sign,clock,true);
+            assert.deepEqual(transform(encoded,key,family,projection,sign,clock,false),plant);
+            plantChecks++;
+          }
+  }
+  variants.sort((a,b)=>b.ioc-a.ioc);
   return {
     classification:"bounded source-derived candidate; no unknown plaintext or authentic key",
     source:{events:events.length,redRunes:225,thirteenDotMarks:31,
-      tableBytes:grid.length,lcgPeriod:order.length,lcgOrder:order,
-      keyFirst64:key.slice(0,64),fragmentLengths:lengths,
-      fragmentCount:bounds.length,unsolvedFragments:28,unsolvedEnd:bounds[28]},
-    originalIoC:ioc(C),keyLength:key.length,modelCount:variants.length,
-    plantChecks,variants
+      tableBytes:grid.length,fragmentLengths:lengths,fragmentCount:bounds.length,
+      unsolvedFragments:28,unsolvedEnd:bounds[28],
+      lcg:"state=(13*state+31) mod 256",starts:seedSummaries,
+      outguessSeedRelation:"230 = 256 - 2*13"},
+    originalIoC:ioc(C),modelCount:variants.length,plantChecks,variants
   };
 }
 if(require.main===module)console.log(JSON.stringify(run(),null,2));
-module.exports={sourceEvents,sourceBounds,lcgOrder,transform,ioc,run};
+module.exports={sourceEvents,sourceBounds,lcgOrder,deriveKey,transform,ioc,run};
