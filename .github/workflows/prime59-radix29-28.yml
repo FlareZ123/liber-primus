@@ -1,0 +1,30 @@
+name: 59/58 radix-29-to-28 exact gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sims/prime59_radix29_28_exact_gate.cjs'
+      - '.github/workflows/prime59-radix29-28.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-aligned-phase20:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Test the 59/58 packet hypothesis at the LP2 page-53 phase
+        env:
+          PREFIX_TWO_DIGIT: '1'
+          PHASE_START: '20'
+          PHASE_END: '20'
+          PREFIX_TWO_DIRECTION: both
+          PREFIX_TWO_MAX_NODES: '1000000'
+        run: node sims/prime59_radix29_28_exact_gate.cjs
