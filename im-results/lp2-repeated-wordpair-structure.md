@@ -34,6 +34,36 @@ A direct, mathematically exact model-family test now uses [the source-square Fou
 
 This **rules against native-GP-English plus 81×81 or terminal-five-omitted 80×80 separable additive row/column pads** in these exact geometries, even with arbitrary keys and the declared hypothetical EA markers. The original cipher may employ a nonlinear layer, hidden transposition, changing state, binary or non-English intermediate, or different framing. The 6561 boundary is not an authenticated historical encryption boundary and no original plaintext is recovered.
 
+## Cross-square GP29 additive source pad: all-secret-alphabet capacity bound
+
+**Classification: exact original-cipher impossibility for the declared direct native-GP-English family.** The bookend's **6,561 = 81²** split is a retrospective geometric clue. A potential reversible cipher could use the first square as source key for the remaining **6,395 = 80²−5** printed runes, after one of four 80×80 crops, an independent dihedral orientation of each square and any static secret renaming of its alphabets. This newly tested hypothesis is distinct from the earlier nested-square equality and repeated-plaintext tests; here, the plaintext and key need not be identical or linearly related in their original rune labels.
+
+For a paired source glyph \`A_i\` and second-block glyph \`B_i\`, consider
+
+\[
+P_i=\gamma\left(\alpha(B_i)+\beta(A_i)\pmod{29}\right),
+\]
+
+where **α, β and γ are three completely arbitrary independent permutations of the full 29-element alphabet**. They include all fixed relabelings of both inputs and the output, all affine sign and offset conventions, and vastly more than any source-derived simple Vigenère key. Every member is exactly invertible for a known key, so ciphertext round-tripping alone does not identify one.
+
+Fix a target plaintext rune, such as GP \`E\`. Its underlying residue after \`γ^{-1}\` is some constant \`t\`. Then \`P_i=E\` precisely when \`α(B_i)+β(A_i)=t\`. Each observed symbol \`B=b\` has exactly one matching source symbol \`A=a\`, and all 29 matches form a **bijection**. Conversely, *every* bijection is realized by some α and β. Therefore the **largest possible number of occurrences of any one plaintext rune, over all 29! possibilities for each secret permutation**, is exactly the **maximum-weight perfect matching** of the 29×29 joint count matrix \`N[a,b]\`. Hungarian assignment calculates the global optimum in cubic time. This is a key-independent equality-count theorem, not a language-model score or an unconstrained key search.
+
+The [read-only executable](../sims/bookend_dual_square_allalphabet_capacity.cjs) checks all **4 crop placements × 8 orientations of A × 8 orientations of B = 256** geometric views, skipping the five nonexistent terminal cells *after* applying each B orientation. The **exact best original-source capacity is 395/6,395 = 0.061767**, achieved by several equivalent orientations of the lower-left 80×80 source crop; the weakest view allows 367/6,395. The output can never contain more than 395 copies of **any** GP symbol, regardless of the three static secret alphabets.
+
+For an independent native-register comparison, encode literature using the same existing longest-GP-token rules, with \`V→U\`, \`K→C\`, \`QU→CW\` and \`Z→S\`, and take every 1,598th overlapping 6,395-rune window:
+
+| Native GP prose reference | Windows | Minimum original GP \`E\` count in 6,395 runes |
+| --- | ---: | ---: |
+| Shakespeare (218,800 GP runes) | **133** | **657** |
+| Gibran, *The Prophet* (63,114 GP runes) | **36** | **676** |
+| **Original LP2, any of 256 square layouts and any three bijections** | **256 alignments** | **At most 395 for any rune** |
+
+All **169** native prose windows violate the exact original bound. Under a further noisy-output extension, at least **657−395 = 262** observed ciphertext symbols would have to be overwritten, inserted and realigned, or otherwise modified in a symbol-altering channel to reach even the minimum Shakespeare \`E\` count. More complex edits could change alignment and are not covered by that simple Hamming-distance lower bound.
+
+**Positive control with hidden keys:** Choose three independent secret 29-rune permutations and a fixed authentic first-square crop, encrypt **6,395 independently GP-encoded Shakespeare runes** into a synthetic second square. The full encoder/decoder exactly recovers **6,395/6,395** original GP runes, including **733 E runes**. The assignment bound on the ciphertext is exactly **733**, meeting the genuine high-frequency source count. This demonstrates that the negative is sensitive to genuine native-GP text under the entire modeled cipher family, even with unknown static alphabets. [Passed original-input CI 42852917148](https://github.com/FlareZ123/liber-primus/actions/runs/42852917148).
+
+**Scope and consequence.** The original second block does **not** arise from an ordinary native-GP English stream under a single static alphabet-permuted modular sum of an 80×80 crop of the first square and its own printed symbols, for any of the tested orientations and with zero extra edits. This does not establish the retrospective square framing, rule out position-varying alphabets, a different key extraction, additional encoding layers, or non-English/binary plaintext. No unknown Liber Primus text or authentic historical key is recovered. The five absent terminal symbols are intentionally kept unknown; the following solved-page five-rune title is never imported into the measurement.
+
 ## Ternary 81×81 readouts: key-independent monoalphabetic test
 
 **Classification: finite original-input model-family negative with positive-controlled source-native GP text.** Because the duplicated ᛞᛄᚢ-ᛒᛖᛁ phrase ends at **6,561 = 81²**, one specific untested interpretation is that the first 6,561 ciphertext runes must be rearranged through a ternary square traversal before a fixed global monoalphabetic rune substitution is undone. Adjacent-rune **mutual information** (MI) is exactly invariant under any secret 29-rune bijection, so it tests this entire key class without guessing a symbol permutation.
