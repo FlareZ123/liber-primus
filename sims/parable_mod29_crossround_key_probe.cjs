@@ -429,7 +429,7 @@ assert.equal(hillResults.length, 72);
 
 // Positive control: the canonical companion matrix encrypts/decrypts a planted
 // 12,954-symbol GP-English sequence exactly, with no partial block.
-const plant = reference.slice(0, 12954);
+const plant = Array.from({ length: 12954 }, (_, i) => reference[i % reference.length]);
 const plantedCipher = transformBlocks(plant, companion, 0, false);
 const plantedPlain = transformBlocks(plantedCipher, matrixInverse(companion), 0, false);
 assert.deepEqual(plantedPlain, plant);
