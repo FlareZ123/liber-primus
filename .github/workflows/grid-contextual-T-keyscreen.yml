@@ -1,0 +1,30 @@
+name: Original LP2 T-overwrite grid-key marginal-inverse test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Canonical corpus parser contract
+        run: node sims/test_lp2_word_pages.cjs
+      - name: Planted key recovery and original split-key screen
+        env:
+          KEY_NULLS: '8'
+        run: |
+          set -o pipefail
+          node sims/grid_contextual_T_keyscreen.cjs | tee grid-contextual-keyscreen.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: grid-contextual-keyscreen
+          retention-days: 90
+          path: grid-contextual-keyscreen.json
