@@ -12,7 +12,7 @@ The original source provides:
 
 The 13/31 values define a full-period byte LCG with no fitted parameters:
 
-`s_0=0,quad s_{i+1}=(13s_i+31)\bmod256`.
+`state = 0; repeat 256 times: use table[state], then state = (13*state + 31) mod 256`.
 
 The LCG visits all 256 table positions exactly once. Pair the chronological event stream `E_i` with the table byte at that state and XOR them:
 
