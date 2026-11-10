@@ -4,13 +4,29 @@
 
 ## Strongest current cryptanalytic conclusions
 
-### Complete exclusion of a bounded multi-tap affine feedback family
+### Controlled exhaustive feedback families: 1,758,009 parameter settings
 
-An exhaustive search of **24,389** different normalized mod-29 linear-feedback inverse kernels, involving up to three consecutive preceding ciphertext runes, found no decoded output with natural-language-like rune frequencies. Across 12,791 positions for three-lag kernels, the strongest index of coincidence was **0.034599191**, consistent with the 1/29 random baseline and eight matched no-repeat null controls. In a positive control, a known three-tap cipher applied to solved English text recovered the correct key **(5, 17, 26)** at rank one, producing IoC **0.067848934**. This directly extends earlier literature's one-lag autokey exclusions to multiple simultaneous ciphertext taps under the stated arithmetic model.
+Three complementary experiments screened the LP2 ciphertext for a **single-rune plaintext output derived deterministically from the present rune and recent ciphertext history** under specific mod-29 formulas. Each run exhaustively enumerated its declared keyspace, retained exact source inputs, recovered a planted known-language key as the highest-ranked candidate, and checked the observed maximum against matched anti-repeat null streams.
 
-[Full numerical results and scope](../im-results/affine-feedback-through-three-lags.md) ·
-[Reproducible exhaustive program](../sims/affine_feedback.py) ·
-[Successful on-demand run](https://github.com/FlareZ123/liber-primus/actions/runs/42739449534).
+| Exhaustive decoder family | Keys tested | Best LP2 decoded IoC | Planted-key recovery | Evidence |
+|---|---:|---:|---|---|
+| Additive affine feedback, up to 3 consecutive lags | 24,389 | 0.035325 (lag-1 anti-repeat); three-lag maximum 0.034599 | (5,17,26), IoC 0.067849, rank 1 | [Results](../im-results/affine-feedback-through-three-lags.md) |
+| Two-tap affine feedback at lags 2–2048 and 3301 | 1,662,976 | 0.034627 (lag 961, 8,12) | (lag 137, 7,19), IoC 0.067260, rank 1 | [Results](../im-results/two-tap-feedback.md) |
+| Quadratic feedback on two previous runes, 3 monomial families | 70,644 | 0.034610 | (xy,4,11,16), IoC 0.067862, rank 1 | [Results](../im-results/quadratic-feedback.md) |
+
+For context, a uniform 29-symbol sequence has asymptotic IoC **1/29 ≈ 0.034483**. All new multi-tap and nonlinear candidates remained close to this baseline; their strongest values were inside their matched no-repeat null-control ranges. The lag-1 difference kernel is influenced by the already-known suppression of equal neighboring ciphertext runes.
+
+**Result:** these exactly specified short algebraic-feedback classes provide no credible LP1-like natural-language decryption. The experiments constrain three finite families that go beyond classic single-lag ciphertext autokey. They do not exclude hidden stream keys, additional anti-repeat filters, unknown alphabets or wordwise encodings, more general stateful rules, or messages expressed in a flat-distribution intermediate code.
+
+Implementations:
+[Affine feedback](../sims/affine_feedback.py) ·
+[Long-lag two-tap feedback](../sims/two_tap_feedback.py) ·
+[Quadratic feedback](../sims/quadratic_feedback.py).
+
+Reproduced in on-demand CI:
+[24,389 configurations](https://github.com/FlareZ123/liber-primus/actions/runs/42739449534) ·
+[1,662,976 configurations](https://github.com/FlareZ123/liber-primus/actions/runs/42740092990) ·
+[70,644 configurations](https://github.com/FlareZ123/liber-primus/actions/runs/42740601269).
 
 ### Fixed homophonic mappings: independent mathematical corroboration of a prior exclusion
 
@@ -49,4 +65,4 @@ The ciphertext's 29 rune frequencies are nearly flat, and immediate rune repeats
 - `resources/liber-primus/`: original images `00.jpg`–`74.jpg` and checksums.
 - `agents/`: persistent research-agent identities and continuity records.
 
-External public papers and analyses are **context**, and any unreplicated claim remains attributed to its author. This repository's reproducible tests currently comprise an alternative homophonic information proof and a complete three-lag affine feedback sweep. Neither is a manuscript decryption. This summary will be rewritten when stronger evidence supersedes it.
+External public papers and analyses are **context**, and any unreplicated claim remains attributed to its author. This repository's reproducible tests currently comprise an independently derived homophonic information bound and three fully screened algebraic-feedback families. No manuscript plaintext or cipher key has been recovered. This summary will be rewritten when stronger evidence supersedes it.
