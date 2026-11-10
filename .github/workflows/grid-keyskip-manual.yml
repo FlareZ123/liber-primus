@@ -11,6 +11,7 @@ on:
           - keyskip
           - fullword-prng
           - corrected-grid-inverse
+          - historical-onion-xor-inverse
 jobs:
   grid-probe:
     runs-on: ubuntu-latest
@@ -34,3 +35,6 @@ jobs:
         env:
           LP2_GRID_FIVE_CORRECTIONS: '1'
         run: node sims/outer_permutation_unknown_column_assignment.cjs
+      - name: Original LP2 source-key inverse from three historical hidden-service blobs and numeric grid
+        if: ${{ inputs.probe == 'historical-onion-xor-inverse' }}
+        run: node sims/onion256_grid_xor_source_inverse.cjs
