@@ -59,7 +59,10 @@ function loadWords() {
     .replace(/(?:^|\n)### [^\n]*\n/g, ' ')
     .toUpperCase();
   const lp1 = known.match(/[A-Z]+/g).map(encode);
-  return {cipher, shakespeare, lp1};
+  // A frequency-neutral register: each Shakespeare spelling counts once.
+  const unique = [...new Set(read('resources/control/shakespeare_first300k.txt')
+    .toUpperCase().match(/[A-Z]+/g))].map(encode);
+  return {cipher, shakespeare, lp1, unique};
 }
 
 /** @param {number[]} word @returns {{nonadj:number,adjacent:boolean}} */
@@ -156,10 +159,10 @@ function positiveControl(words, seed=0x5ee0cafe) {
 
 function main() {
   const sources = loadWords();
-  const out = {dataset:{cipherWords:sources.cipher.length,cipherRunes:12956,shakespeareWords:sources.shakespeare.length,solvedWords:sources.lp1.length},positive:positiveControl(sources.shakespeare.slice(0,1200))};
+  const out = {dataset:{cipherWords:sources.cipher.length,cipherRunes:12956,shakespeareWords:sources.shakespeare.length,solvedWords:sources.lp1.length,uniqueShakespeareWords:sources.unique.length},positive:positiveControl(sources.shakespeare.slice(0,1200))};
   for (const conditioned of [false,true]) {
     const observed = bins(sources.cipher,conditioned);
-    for (const referenceName of ['shakespeare','lp1']) {
+    for (const referenceName of ['shakespeare','lp1','unique']) {
       const ref = bins(sources[referenceName],conditioned);
       const analytic = compare(observed,ref);
       const simulated = bootstrap(observed,ref,20000,conditioned?0x33019999:0x33013301);
