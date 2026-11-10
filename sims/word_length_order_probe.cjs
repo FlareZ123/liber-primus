@@ -234,6 +234,97 @@ function columnarCandidates(pages, model) {
   };
 }
 
+
+/**
+ * Assign each canonical rune word a physical-line ordinal on its starting page.
+ * Printed line wraps are slash markers; punctuation ends words but not lines.
+ * These groups let the null shuffle preserve the place within a printed line.
+ * @param {string} raw @returns {number[][]}
+ */
+function printedLineSlots(raw) {
+  const pages = raw.split("%").slice(0, 55).join("%");
+  const slots = Array.from({length: 55}, () => []);
+  const perLine = new Map();
+  let page = 0, line = 0, word = "", startPage = 0, startSlot = 0;
+  function finish() {
+    if (!word) return;
+    slots[startPage].push(startSlot);
+    word = "";
+  }
+  for (const ch of pages) {
+    if (RUNE_WORD.test(ch)) {
+      if (!word) {
+        startPage = page;
+        const key = page + ":" + line;
+        startSlot = perLine.get(key) || 0;
+        perLine.set(key, startSlot + 1);
+      }
+      word += ch;
+    } else if (ch === "%") {
+      page++;
+      line = 0;
+    } else if (ch === "/") {
+      line++;
+    } else if (/\s/u.test(ch)) {
+      // Print formatting whitespace.
+    } else {
+      finish();
+    }
+  }
+  finish();
+  return slots;
+}
+
+/** @param {number[][]} pages @param {number[][]} slots @param {() => number} random */
+function shuffleWithinLineSlot(pages, slots, random) {
+  return pages.map((page, pi) => {
+    const out = page.slice();
+    const groups = new Map();
+    for (let i = 0; i < page.length; i++) {
+      const slot = slots[pi][i];
+      if (!groups.has(slot)) groups.set(slot, []);
+      groups.get(slot).push(i);
+    }
+    for (const indices of groups.values()) {
+      for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(random() * (i + 1));
+        [out[indices[i]], out[indices[j]]] =
+          [out[indices[j]], out[indices[i]]];
+      }
+    }
+    return out;
+  });
+}
+
+/**
+ * A post-discovery control for whether printed line position accounts for
+ * the lag-23/46 observation. It is not an independent discovery p-value.
+ */
+function lineSlotConditionedTest(pages, model, raw) {
+  const slots = printedLineSlots(raw);
+  for (let i = 0; i < 55; i++)
+    if (slots[i].length !== pages[i].length)
+      throw new Error("Printed line slot parsing differs on page " + i);
+  const observed = scoreLag(pages, model, 23) + scoreLag(pages, model, 46);
+  const random = rng(123456);
+  const trials = 1800;
+  let sum = 0, sumsq = 0, exceed = 0;
+  for (let b = 0; b < trials; b++) {
+    const shuffledPages = shuffleWithinLineSlot(pages, slots, random);
+    const value = scoreLag(shuffledPages, model, 23)
+      + scoreLag(shuffledPages, model, 46);
+    sum += value;
+    sumsq += value * value;
+    if (value >= observed) exceed++;
+  }
+  const mean = sum / trials;
+  const sd = Math.sqrt(sumsq / trials - mean * mean);
+  return {observed, nullMean: mean, z: (observed - mean) / sd,
+    pUpper: (exceed + 1) / (trials + 1), trials,
+    note: "Post-selection fixed 23/46 control, preserving word-in-line slot."};
+}
+
+
 const canonical = parseSharedCorpus();
 const lp2Pages = canonical.byStartPage.map((words) =>
   words.map((word) => Math.min(BINS, word.length)));
@@ -259,6 +350,7 @@ const report = {
     lp1: testMI(lp1Clauses, 456, 1000)},
   harmonic: harmonicScan(lp2Pages, model),
   harmonicContainedOnly: harmonicScan(containedPages, model),
+  lineSlotConditioned: lineSlotConditionedTest(lp2Pages, model, LP2),
   transposition: columnarCandidates(lp2Pages, model),
   transpositionContainedOnly: columnarCandidates(containedPages, model),
   method: "9 capped rune-length bins, Shakespeare digraph-collapsed bigram model; page/section-aware permutation nulls"
