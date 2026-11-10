@@ -1,0 +1,15 @@
+name: LP2 grid 13-dot two-tap all-secret gate
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute exact original-source bound and plant
+        run: node sims/grid13_two_tap_allkey.cjs
