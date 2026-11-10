@@ -46,35 +46,32 @@ def read_original_packets():
 
 
 def allowed_prefix_intervals():
-    """Exact BigInt-equivalent domains for 4 leading radix28 digits.
+    """Exact five-digit prefixes compatible with two leading ASCII bytes.
 
-    Any complete 30-digit integer with prefix p lies between
-    p*28^26 and (p+1)*28^26-1. The 18-byte top-two-word interval has
-    endpoints obtained by dividing each bound by 256^16. A prefix is
-    allowed if at least one endpoint has both high octets in ASCII;
-    the endpoints differ by at most one.
+    Enumerate only 98*98 high-byte pairs, merging their finite integer
+    intervals. A prefix is permitted if *some* completion of the
+    30-digit value has two leading ASCII bytes.
     """
-    runs = []
-    begin = None
-    for prefix in range(28 ** 4):
-        low = prefix * DIGIT_PLACE // TWO_BYTE_PLACE
-        high = ((prefix + 1) * DIGIT_PLACE - 1) // TWO_BYTE_PLACE
-        assert 0 <= high - low <= 1
-        permitted = any(
-            (v >> 8) in ASCII and (v & 255) in ASCII
-            for v in range(low, high + 1)
-        )
-        if permitted and begin is None:
-            begin = prefix
-        if not permitted and begin is not None:
-            runs.append((begin, prefix - 1))
-            begin = None
-    if begin is not None:
-        runs.append((begin, 28 ** 4 - 1))
-    assert len(runs) == 294
-    assert sum(end - start + 1 for start, end in runs) == 77597
-    return runs
-
+    digits = 5
+    scale = 256 ** 16
+    place = 28 ** (WIDTH - digits)
+    ranges = []
+    for first in ASCII:
+        for second in ASCII:
+            word = 256 * first + second
+            lo = word * scale // place
+            hi = ((word + 1) * scale - 1) // place
+            ranges.append((lo, hi))
+    ranges.sort()
+    merged = []
+    for lo, hi in ranges:
+        if merged and lo <= merged[-1][1] + 1:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], hi))
+        else:
+            merged.append((lo, hi))
+    assert len(merged) == 294
+    assert sum(hi - lo + 1 for lo, hi in merged) == 2164710
+    return merged
 
 def make_model(packets, allowed, tail_octets):
     """Create a stationary full permutation key with prefix and suffix rules."""
@@ -92,8 +89,8 @@ def make_model(packets, allowed, tail_octets):
     allowed_domain = cp_model.Domain.FromIntervals(allowed)
     seen = set()
     for packet in packets:
-        first = packet[:4]
-        coefficient = (28 ** 3, 28 ** 2, 28, 1)
+        first = packet[:5]
+        coefficient = (28 ** 4, 28 ** 3, 28 ** 2, 28, 1)
         expr = sum(coefficient[i] * rank[edge] for i, edge in enumerate(first))
         model.add_linear_expression_in_domain(expr, allowed_domain)
         seen.add(first[0])
@@ -129,7 +126,7 @@ def make_model(packets, allowed, tail_octets):
     return model, rank, len(seen)
 
 
-def solve(packets, seconds=120, tail_octets=1):
+def solve(packets, seconds=300, tail_octets=1):
     """Prove infeasibility or find a satisfying complete 29-row code table."""
     intervals = allowed_prefix_intervals()
     model, rank, distinct = make_model(packets, intervals, tail_octets)
@@ -146,9 +143,9 @@ def solve(packets, seconds=120, tail_octets=1):
         "conflicts": solver.num_conflicts,
         "original_packet_constraints": len(packets),
         "distinct_original_first_transition_edges": distinct,
-        "prefix4_ascii_eligible_values": 77597,
-        "prefix4_total_values": 28 ** 4,
-        "prefix4_allowed_intervals": len(intervals),
+        "prefix5_ascii_eligible_values": 2164710,
+        "prefix5_total_values": 28 ** 5,
+        "prefix5_allowed_intervals": len(intervals),
         "row_permutations": 29,
     }
     if status in (cp_model.FEASIBLE, cp_model.OPTIMAL):
@@ -185,7 +182,7 @@ def solve(packets, seconds=120, tail_octets=1):
 def main():
     packets, excluded_markers = read_original_packets()
     challenges = []
-    for q in (1, 2, 3):
+    for q in (1, 2):
         result = solve(packets, tail_octets=q)
         challenges.append(result)
         print("Challenge q=" + str(q) + " status=" + result["status"], flush=True)
