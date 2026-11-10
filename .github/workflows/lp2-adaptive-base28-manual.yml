@@ -8,6 +8,17 @@ on:
         type: choice
         options: [standard, prime79, prime79prefix2]
         default: standard
+      prefix_nodes:
+        description: "Exact prefix2 CSP node cap (manual only)"
+        required: true
+        type: string
+        default: '100000'
+      prefix_direction:
+        description: "For prefix2, original rune read orientation"
+        required: true
+        type: choice
+        options: [both, forward, reverse]
+        default: both
       phase_start:
         description: "First 79-packet phase to test"
         required: true
@@ -67,5 +78,6 @@ jobs:
           PREFIX_TWO_DIGIT: '1'
           PHASE_START: ${{ inputs.phase_start }}
           PHASE_END: ${{ inputs.phase_end }}
-          PREFIX_TWO_MAX_NODES: '100000'
+          PREFIX_TWO_MAX_NODES: ${{ inputs.prefix_nodes }}
+          PREFIX_TWO_DIRECTION: ${{ inputs.prefix_direction }}
         run: node sims/prime79_radix29_28_exact_gate.cjs
