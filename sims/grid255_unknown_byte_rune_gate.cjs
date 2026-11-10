@@ -208,6 +208,68 @@ function shuffledControl(glyphs, bytes, trials = 500) {
     conditioning: 'exact original 255-rune histogram and full 4096-model refit'};
 }
 
+/**
+ * Exact 256 -> 255 successor-byte code with an arbitrary hidden static
+ * 29-class-to-rune lookup. No plaintext or alphabet assumptions.
+ * @param {number[]} glyphs
+ * @param {number[]} source
+ */
+function adjacentByteGate(glyphs, source) {
+  assert.equal(glyphs.length, SIZE - 1);
+  const maps = [
+    {name: 'mod29-successor-difference',
+      f: (a, b) => (b - a + 261) % RUNES},
+    {name: 'mod29-successor-sum', f: (a, b) => (a + b) % RUNES},
+    {name: 'mod29-successor-XOR', f: (a, b) => (a ^ b) % RUNES}
+  ];
+  const trials = [];
+  for (const op of maps) {
+    for (const order of readingOrders(source)) {
+      for (const glyphDirection of ['forward', 'reverse']) {
+        const observed = glyphDirection === 'forward' ?
+          glyphs : glyphs.slice().reverse();
+        const votes = Array.from({length: RUNES},
+          () => new Uint16Array(RUNES));
+        for (let i = 0; i < SIZE - 1; i++) {
+          const code = op.f(order.values[i], order.values[i + 1]);
+          votes[code][observed[i]]++;
+        }
+        let correct = 0;
+        for (const row of votes) correct += Math.max(...row);
+        trials.push({operation: op.name, order: order.name,
+          byteDirection: order.direction, glyphDirection,
+          correct, errors: glyphs.length - correct});
+      }
+    }
+  }
+  trials.sort((a, b) => a.errors - b.errors);
+  return {modelCount: trials.length, best: trials[0],
+    perOperation: maps.map(op =>
+      trials.find(x => x.operation === op.name))};
+}
+
+/** Source-native blind positive for the 255-difference model. */
+function derivativePositiveControl(bytes) {
+  let seed = 0x25625529;
+  function next() {
+    seed ^= seed << 13;
+    seed ^= seed >>> 17;
+    seed ^= seed << 5;
+    return seed >>> 0;
+  }
+  const secretMap = Array.from({length: RUNES}, () => next() % RUNES);
+  const order = readingOrders(bytes)
+    .find(x => x.name === 'column-major' && x.direction === 'forward');
+  assert(order);
+  const encoded = Array.from({length: SIZE - 1}, (_, i) =>
+    secretMap[(order.values[i + 1] - order.values[i] + 261) % RUNES]);
+  const result = adjacentByteGate(encoded, bytes);
+  assert.equal(result.best.errors, 0);
+  return {operation: 'mod29-successor-difference',
+    knownGridBytes: SIZE, glyphsRecovered: SIZE - 1,
+    bestErrors: result.best.errors};
+}
+
 function main() {
   const p53 = corpus.pages.find(p => p.page === 53);
   const p55 = corpus.pages.find(p => p.page === 55);
@@ -218,13 +280,16 @@ function main() {
   const original = search(glyphs, table.bytes);
   const plant = positiveControl(table.bytes);
   const nullControl = shuffledControl(glyphs, table.bytes);
+  const derivative = adjacentByteGate(glyphs, table.bytes);
+  const derivativePlant = derivativePositiveControl(table.bytes);
   assert.equal(original.models, 4096);
   assert.equal(original.best.errors, 83);
   assert.equal(original.best.repeatedByteConstraints, 94);
   assert.equal(nullControl.observed, original.best.errors);
   assert.equal(nullControl.atLeastAsCompatible, 110);
+  assert.equal(derivative.best.errors, 197);
   return {hypothesis: 'one skipped 256-byte grid cell and a single arbitrary fixed byte-to-rune map',
-    original, plant, nullControl,
+    original, plant, nullControl, derivative, derivativePlant,
     interpretation: 'Exact finite contradiction for the named direct encoding, not an LP2 decryption or a general exclusion of keyed stateful transforms.'};
 }
 
@@ -232,4 +297,5 @@ if (require.main === module)
   process.stdout.write(JSON.stringify(main(), null, 2) + '\n');
 
 module.exports = {readingOrders, exactOneGap, search, positiveControl,
-  constraintGroups, groupedBestErrors, shuffledControl, main};
+  constraintGroups, groupedBestErrors, shuffledControl,
+  adjacentByteGate, derivativePositiveControl, main};
