@@ -121,6 +121,7 @@ function languageScore(symbols, model) {
     model.bigram[symbols[0] * 29 + symbols[1]];
   for (let i = 2; i < symbols.length; i++)
     sum += model.trigram[(symbols[i - 2] * 29 + symbols[i - 1]) * 29 + symbols[i]];
+  assert.ok(Number.isFinite(sum), "language score must be finite");
   return sum / symbols.length;
 }
 /** @param {number} count */
@@ -258,7 +259,7 @@ function run(allPages = false) {
   assert.equal(derived.length, 262);
   assert.deepEqual(rowPermute(derived, HISTORICAL_ORDER.map(
     (_, i) => HISTORICAL_ORDER.indexOf(i))), p0);
-  const key = primeTotients(263);
+  const key = primeTotients(Math.max(...corpus.pages.map(item => item.indices.length)));
   const emersonModel = trainNativeGP(read("resources/control/emerson_essays_2944.txt"));
   const known56 = plaintextWords(PAGE56_ENGLISH).flat();
   assert.equal(known56.length, 85);
