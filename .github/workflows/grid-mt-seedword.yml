@@ -26,7 +26,9 @@ jobs:
       - name: Search all 8! source-derived PHP MT assignments and locked tails
         env:
           NULLS: ${{ inputs.nulls }}
-        run: node sims/grid_mt_seedword_inversion.cjs "$NULLS" | tee grid-mt-seedword-result.json
+        run: |
+          set -o pipefail
+          node sims/grid_mt_seedword_inversion.cjs "$NULLS" | tee grid-mt-seedword-result.json
       - name: Preserve complete scientific outcome
         uses: actions/upload-artifact@v4
         with:
