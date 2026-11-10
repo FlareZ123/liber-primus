@@ -11,6 +11,8 @@ Reducing those two image dimensions against the manuscript's existing source str
 - In the natural row-major 256-byte base-60 table, entries 51 and 57 are **59 and 118**, exactly a factor of two apart.
 - In the source-motivated second 128-rune half of the p53–p55 image block, offsets 51 and 57 are **Ac (GP index 24)** and **S (GP prime value 53, with 53 mod 29 = 24)**.
 
+The contemporaneous poster also called the image “pi related.” If that is a hint to the prime-counting function \(\pi(n)\), then \(\pi(563)=103\) and \(\pi(569)=104\). Reducing those counts modulo the 29-symbol GP alphabet selects indices 16 and 17: **T (Tir)** and **B (Beorc)**. Their GP prime values are 59 and 61, differing by **2**; the grid's first selected byte, 59, is exactly T's Gematria value. In the Old English Rune Poem, Tir is a guiding sign that keeps its course, while Beorc describes a tree. That is a plausible semantic bridge to “numbers are the direction” and the oak-tree image, and an independent cross-check of the slope magnitude. The poster's “pi related” remark is community speculation, not an official instruction; interpreting it as prime-counting \(\pi\) remains a hypothesis. The rune-poem glosses are available in the [Anglo-Saxon Rune Poem translation](https://sacred-texts.com/bos/bos567.htm).
+
 The dimension difference is six. Together these source values specify the non-sign parameters of the already observed LP2 word-local relation:
 
 \[
@@ -83,7 +85,7 @@ The source arithmetic supplies:
 |---|---:|
 | Lag | \(569-563=6\) |
 | Intercept | Ac index \(24\), independently echoed by S's \(53\bmod29=24\) |
-| Slope magnitude | \(118/59=2\) |
+| Slope magnitude | \(118/59=2\), independently \(61-59=2\) from the T/B prime-counting cross-check |
 | Orientation | negative sign selected by the original ciphertext |
 
 This yields \(T_6(x)=24-2x\bmod29\), exactly the affine six-back relation previously observed in LP2. The source fixes the lag, intercept and slope magnitude; the **negative sign is selected by the ciphertext**, rather than being forced by the positive grid ratio alone.
