@@ -13,6 +13,12 @@ on:
         required: true
         type: string
         default: '540'
+      gp_objective:
+        description: 'For prime79gp, maximize top8 or native GP unigram log score'
+        required: true
+        type: choice
+        options: [top8, unigram]
+        default: top8
       page_shuffle_seed:
         description: "Nonzero CP-SAT matched-null seed; shuffle whole original LP2 pages"
         required: true
@@ -126,5 +132,5 @@ jobs:
         if: ${{ inputs.probe == 'prime79gp' }}
         env:
           GP_SECONDS: ${{ inputs.cpsat_seconds }}
-          GP_OBJECTIVE: 'top8'
+          GP_OBJECTIVE: ${{ inputs.gp_objective }}
         run: python sims/prime79_first_rune_cpsat.py
