@@ -306,6 +306,55 @@ function latticeGate(packets, english, latin) {
       sourcePairs: pairs.length,
       invariant:'Same-(salt,column,packet-group) ciphertext rank equality is exactly unchanged by any fixed secret permutation for that public state'});
   }
+  // A stricter control preserves the original order of GP-encoded
+  // Shakespeare symbols rather than resampling its unigram histogram.
+  // Original 86 selected EA sites remain conditioned, and every trial takes
+  // a different independent 12,706-symbol contiguous source interval.
+  const flattened = masks.flat();
+  const used = flattened.filter(isMarker => !isMarker).length;
+  const sourceRandom = rng(0x26a04179);
+  const contiguous = out.map(() => ({belowOrEqual:0,
+    min:Infinity,max:-Infinity,mean:0}));
+  const statePairs = configurations.map(cfg => {
+    const pairIndices = [];
+    for (let i = 0; i < PACKETS; i++) for (let j=i+1;j<PACKETS;j++)
+      if (cfg.group(i) === cfg.group(j) &&
+          packets[i].salt === packets[j].salt)
+        for (let k=0;k<PLAIN;k++) {
+          const a=i*PLAIN+k,b=j*PLAIN+k;
+          if (!flattened[a]&&!flattened[b]) pairIndices.push([a,b]);
+        }
+    return pairIndices;
+  });
+  for (let trial=0;trial<3000;trial++) {
+    const start = sourceRandom() % (english.length-used-1);
+    let sourceOffset = 0;
+    const sequence = flattened.map(isMarker => isMarker ? -1
+      : english[start+sourceOffset++]);
+    for (let group=0;group<configurations.length;group++) {
+      const pairIndices = statePairs[group];
+      let hits=0;
+      for (const [a,b] of pairIndices) hits+=Number(sequence[a]===sequence[b]);
+      const ioc=hits/pairIndices.length, result=contiguous[group];
+      result.belowOrEqual+=Number(ioc<=out[group].observed.ioc);
+      result.min=Math.min(result.min,ioc);
+      result.max=Math.max(result.max,ioc);
+      result.mean+=ioc;
+    }
+  }
+  for (let i=0;i<out.length;i++) {
+    const state=contiguous[i];
+    out[i].source.englishContiguous={
+      draws:3000,seed:'0x26a04179',mean:state.mean/3000,
+      min:state.min,max:state.max,
+      belowOrEqual:state.belowOrEqual,
+      addOneLowerP:(state.belowOrEqual+1)/3001,
+      originalMarkerMaskPreserved:true,
+      contiguousOriginalSourceGp:true};
+    assert.equal(statePairs[i].length,out[i].observed.total);
+  }
+  assert.equal(out[0].source.englishContiguous.belowOrEqual,0);
+  assert.equal(out[1].source.englishContiguous.belowOrEqual,1);
   assert.equal(out[0].observed.hits,386);
   assert.equal(out[0].observed.total,10640);
   assert.equal(out[1].observed.hits,19);
