@@ -115,6 +115,134 @@ function plant(grid) {
   return {...encodeParallel(plain,grid,setup),plain,setup};
 }
 
+
+/**
+ * Exact maximum-weight square assignment, using the Hungarian primal-dual
+ * algorithm. Zero-padded rows and columns model otherwise unmapped symbols.
+ * @param {number[][]} weights
+ * @returns {number} Maximum retained original coordinate pairs.
+ */
+function maxWeightAssignment(weights) {
+  const n=weights.length;
+  const u=new Float64Array(n+1),v=new Float64Array(n+1);
+  const p=new Int32Array(n+1),way=new Int32Array(n+1);
+  for (let i=1;i<=n;i++) {
+    p[0]=i;
+    let j0=0;
+    const minv=new Float64Array(n+1).fill(Infinity);
+    const used=new Uint8Array(n+1);
+    do {
+      used[j0]=1;
+      const i0=p[j0];
+      let delta=Infinity,j1=0;
+      for (let j=1;j<=n;j++) if (!used[j]) {
+        const cur=-weights[i0-1][j-1]-u[i0]-v[j];
+        if (cur<minv[j]) {minv[j]=cur;way[j]=j0;}
+        if (minv[j]<delta) {delta=minv[j];j1=j;}
+      }
+      for (let j=0;j<=n;j++) {
+        if (used[j]) {u[p[j]]+=delta;v[j]-=delta;}
+        else minv[j]-=delta;
+      }
+      j0=j1;
+    } while (p[j0]!==0);
+    do {
+      const j1=way[j0];
+      p[j0]=p[j1];
+      j0=j1;
+    } while (j0!==0);
+  }
+  let score=0;
+  for (let j=1;j<=n;j++) score+=weights[p[j]-1][j-1];
+  return score;
+}
+
+/**
+ * A pair of arbitrary alphabet bijections composing the same plaintext has
+ * one-to-one A-rune <-> B-rune relationships within each fixed state column.
+ * A maximum-weight bipartite matching gives the exact largest consistent
+ * subset, hence the exact minimum original positions that must be excluded
+ * or changed. No particular alphabet labels or key are assumed.
+ * @param {number[]} A
+ * @param {number[]} B
+ * @returns {number}
+ */
+function compatiblePairs(A,B) {
+  assert.equal(A.length,B.length);
+  if (!A.length) return 0;
+  const left=[...new Set(A)],right=[...new Set(B)];
+  const lm=new Map(left.map((value,i)=>[value,i]));
+  const rm=new Map(right.map((value,i)=>[value,i]));
+  const n=Math.max(left.length,right.length);
+  const weights=Array.from({length:n},()=>Array(n).fill(0));
+  for (let i=0;i<A.length;i++) weights[lm.get(A[i])][rm.get(B[i])]++;
+  return maxWeightAssignment(weights);
+}
+
+/**
+ * Minimize necessary source-position modifications over both B orientations
+ * and all 128 possible missing latent positions. The period is the number
+ * of independently rekeyed grid columns, aligned by latent coordinate.
+ * @param {number[]} A
+ * @param {number[]} B
+ * @param {number} period
+ * @returns {{drops:number,kept:number,reverse:boolean,missing:number,parts:object[]}}
+ */
+function minSymbolEdits(A,B,period) {
+  assert.equal(A.length,128);
+  assert.equal(B.length,127);
+  assert.ok(Number.isInteger(period)&&period>=1&&period<=128);
+  let best={drops:128};
+  for (const reverse of [false,true]) {
+    const oriented=reverse?[...B].reverse():B;
+    for (let missing=0;missing<128;missing++) {
+      let kept=0;
+      const parts=[];
+      for (let col=0;col<period;col++) {
+        const left=[],right=[];
+        for (let j=0;j<127;j++) {
+          const i=j+Number(j>=missing);
+          if (i%period===col) {left.push(A[i]);right.push(oriented[j]);}
+        }
+        const retained=compatiblePairs(left,right);
+        kept+=retained;
+        parts.push({total:left.length,kept:retained});
+      }
+      const drops=127-kept;
+      if (drops<best.drops) best={drops,kept,reverse,missing,parts};
+    }
+  }
+  return best;
+}
+
+/**
+ * Fully bijective unknown alphabet maps with a source-disjoint latent string,
+ * one omitted B symbol, independent per-column maps, and reversed B order.
+ * @param {number} period
+ * @returns {{A:number[],B:number[]}}
+ */
+function permutationControl(period) {
+  const next=makeRng(0x590013+period);
+  const latent=Array.from({length:128},()=>next()%29);
+  const permutation=()=>{
+    const x=Array.from({length:29},(_,i)=>i);
+    for (let i=28;i>0;i--) {
+      const j=next()%(i+1);
+      [x[i],x[j]]=[x[j],x[i]];
+    }
+    return x;
+  };
+  const mapsA=Array.from({length:period},permutation);
+  const mapsB=Array.from({length:period},permutation);
+  const A=latent.map((value,i)=>mapsA[i%period][value]);
+  const B=[];
+  for (let j=0;j<127;j++) {
+    const i=j+Number(j>=73);
+    B.push(mapsB[i%period][latent[i]]);
+  }
+  return {A,B:B.reverse()};
+}
+
 /** @param {number[]} v @param {()=>number} next */
 function shuffle(v, next) {
   for (let i=v.length-1; i>0; i--) {
@@ -164,6 +292,12 @@ function main() {
     shuffle(red,next);shuffle(tail,next);
     blockedNull.push(search(A,[...red,...tail],grid).maxMatches);
   }
+  assert.equal(maxWeightAssignment([[1,5],[8,0]]),13);
+  const labelFree=[1,2,4,8,16].map(period=>({period,...minSymbolEdits(A,B,period)}));
+  const globalControl=permutationControl(1);
+  const column8Control=permutationControl(8);
+  assert.equal(minSymbolEdits(globalControl.A,globalControl.B,1).drops,0);
+  assert.equal(minSymbolEdits(column8Control.A,column8Control.B,8).drops,0);
   return {source:{p53Black:128,p53Red:51,p55:76,grid:256},
     model:'two masked, identical 128-rune plaintext streams, one B-side symbol absent; grid halves in printed order, modulo 29',
     searched:{byteMaps:['byte%29','floor(byte*29/256)','byte%28'],
@@ -173,6 +307,8 @@ function main() {
     positive:{seed:'0x330155',trueSetup:synthetic.setup,matched:positive.maxMatches,
       exactRecovered128:true,exactReencrypted255:true,
       wrongGridBest:search(synthetic.A,synthetic.B,[...grid].reverse()).maxMatches},
+    labelFree:{original:labelFree,completeGlobalPlant:true,completeEightColumnPlant:true,
+      interpretation:'minimum paired coordinates to drop for unknown arbitrary per-column alphabet bijections'},
     shuffledGlobal:{replicates:total,seed:'0x533055',...summarize(globalNull),
       exceedOrEqual:globalNull.filter(v=>v>=actual.maxMatches).length,
       addOneP:(1+globalNull.filter(v=>v>=actual.maxMatches).length)/(total+1)},
@@ -183,4 +319,4 @@ function main() {
 }
 
 if (require.main === module) console.log(JSON.stringify(main(),null,2));
-module.exports={byteToRune,search,encodeParallel,plant,main};
+module.exports={byteToRune,search,encodeParallel,plant,maxWeightAssignment,compatiblePairs,minSymbolEdits,permutationControl,main};
