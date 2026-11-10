@@ -28,3 +28,6 @@ jobs:
         run: node sims/red_256_marker_capacity.cjs
       - name: Exact historical PATIENCE column permutation vs 256 original ink events
         run: node sims/red256_grid_patience_column_gate.cjs
+
+      - name: Frozen red-run AES-256 key combined with grid-head IV original-source inverse
+        run: node sims/red32_grid_iv_joint_inverse.cjs
