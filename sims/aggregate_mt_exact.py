@@ -30,6 +30,7 @@ files = sorted(ROOT.glob("mt-exact-remainder-*/sweep-run/STATUS.json"))
 assert len(files) == 78, f"expected all 78 complete artifacts; got {len(files)}"
 rows = []
 high = []
+top = []
 total_candidates = 0
 for path in files:
     state = json.loads(path.read_text(encoding="utf-8"))
@@ -48,6 +49,8 @@ for path in files:
                           source=path.parent.parent.name)
                      for item in candidates if item["pmax"] >= CLAIM_BAR]
     assert len(observed_hits) == agg["n_claim_bar_hits"], (path, observed_hits)
+    top.extend(dict(seed=int(item["seed"]), pmax=item["pmax"], source=path.parent.parent.name)
+               for item in candidates)
     high.extend(dict(seed=int(item["seed"]), pmax=item["pmax"], source=path.parent.parent.name)
                 for item in candidates if item["pmax"] >= NEAR_BAR)
     total_candidates += len(candidates)
@@ -70,6 +73,9 @@ assert len({r["start"] for r in rows}) == 78
 assert sum(r["seeds"] for r in rows) == 1904304414
 
 high.sort(key=lambda item: item["pmax"], reverse=True)
+top.sort(key=lambda item: item["pmax"], reverse=True)
+cutoffs = [5.0, 5.5, 6.0, 6.5, 7.0, 7.25, 7.5, 7.5341931878728095, CLAIM_BAR]
+score_tail_counts = {str(t): sum(item["pmax"] >= t for item in top) for t in cutoffs}
 report = {
     "upstream": "Dukotah/cicada3301@f63501d8f2d835b80c30230eb89a1110fb9197d2",
     "instrument": "Py2.7 MT32 random29 exact keyskip1, sign -1, offset 0, panel-R36 L120 beam64",
@@ -80,7 +86,9 @@ report = {
     "screen_candidates": total_candidates,
     "claim_hits": sum(item["pmax"] >= CLAIM_BAR for item in high),
     "near_misses": high,
-    "best": high[:1] or [max(rows, key=lambda r: r["best_pmax"])],
+    "top_candidates": top[:128],
+    "score_tail_counts": score_tail_counts,
+    "best": top[:1],
     "shards": rows,
 }
 OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -97,5 +105,6 @@ with open(str(OUT) + ".lock", "w", encoding="utf-8") as lock:
 print("AGGREGATE " + json.dumps({
     "shards": len(rows), "new_complete_seeds": report["new_complete_seeds"],
     "screen_candidates": total_candidates, "claim_hits": report["claim_hits"],
-    "near_misses": high[:100], "best_pmax": max(r["best_pmax"] for r in rows),
+    "near_misses": high[:100], "top_candidates": top[:16],
+    "score_tail_counts": score_tail_counts, "best_pmax": top[0]["pmax"],
 }, separators=(",", ":")))
