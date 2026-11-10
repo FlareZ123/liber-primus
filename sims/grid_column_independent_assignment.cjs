@@ -58,7 +58,7 @@ function main() {
  const keys=keyPool(inputs().columnKeys),rng=seededRandom(0x25aa031);
  const planted=source.map((p,s)=>{
   const sigma=shuffledPermutation(Array.from({length:M},(_,i)=>i),rng);
-  return encrypt(p,keys[TRUE[s]],sigma,rng,.81);
+  return encrypt(p.slice(0,MAX),keys[TRUE[s]],sigma,rng,.81);
  });
  const plant=allPairs(planted.map(x=>x.ciphertext),sourceContext,keys,model);
  console.log("PLANT",JSON.stringify({
