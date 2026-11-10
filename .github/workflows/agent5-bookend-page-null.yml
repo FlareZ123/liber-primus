@@ -1,6 +1,15 @@
 name: Agent 5 bookend page-conditioned chance
 on:
   workflow_dispatch:
+    inputs:
+      suite:
+        description: Choose one source-original bookend test
+        required: true
+        type: choice
+        default: page-null
+        options:
+          - page-null
+          - square-stencil
 
 jobs:
   page-local:
@@ -12,4 +21,8 @@ jobs:
         with:
           node-version: '22'
       - name: Exact page-local two-word recurrence control
+        if: ${{ inputs.suite == 'page-null' }}
         run: node sims/bookend_page_conditional_null.cjs
+      - name: Exact all-gap 81-to-80 square nonlinear stencil bound and synthetic 86-edit control
+        if: ${{ inputs.suite == 'square-stencil' }}
+        run: node sims/lp2_square_local_stencil_invariant.cjs
