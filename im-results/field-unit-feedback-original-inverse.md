@@ -1,6 +1,6 @@
-# Reversible GP field-unit ciphertext feedback: original LP2 inversion
+# Reversible GP field-unit feedback: original LP2 and EA-anchor inversions
 
-**Evidence:** one executed source-constrained, heldout-original negative test. **No unknown Liber Primus plaintext or authentic key recovered.** This research explicitly inverts the original ciphertext rather than fitting a forward-only repeat filter.
+**Evidence:** two executed source-constrained, heldout-original negative tests. **No unknown Liber Primus plaintext or authentic key recovered.** This research explicitly inverts the original ciphertext rather than fitting a forward-only repeat filter.
 
 ## Mechanism and a unique plaintext prediction
 
@@ -47,3 +47,33 @@ A disjoint authentic-English GP source, matched exactly to the 55 original physi
 Direct, low-dimensional affine ciphertext-history keys using the eleven specified source-compatible feedback feature pairs do **not** decrypt the original LP2 nonzero differences into ordinary English GP runes. This includes models with lag-six and page-local positional feedback, but it does not exclude more complex key schedules, changing symbol alphabets, unknown page IV initialization, alternate text registers, or hidden-state methods.
 
 The exact fixed-key original source test and its source-disjoint planted positive can be reproduced by [`sims/field_unit_feedback_inverse.cjs`](../sims/field_unit_feedback_inverse.cjs) (Node22, CommonJS). No workflow is created for this bounded result.
+
+
+## Source-synchronized plaintext-autokey inverse
+
+An additional and more directly recoverable first-order model chooses the exponent key from **previous plaintext**, rather than previous ciphertext:
+
+```text
+D[i] = 0                                    iff P[i] = EA(index28)
+D[i] = 15^((P[i] + a*(P[i-1] mod28) + b) mod28)  otherwise
+P[i] = (log_15(D[i]) - a*(P[i-1] mod28) - b) mod28
+```
+
+Each actual ciphertext doublet gives the **entire previous plaintext state** `P[i]=EA` and thereby synchronizes the exact plaintext decoder for all following nonzero steps. This avoids guessing the unknown initial plaintext rune, which is a material advantage over ordinary plaintext autokeys. On a whole-book continuous reading, the first original repeated rune is at global zero-based position **122**; all **12,834** subsequent original runes are conditionally recoverable from any fixed (a,b). The 86 observed doublets are anchor symbols, while 12,748 subsequent nonzero steps are scored. In page-reset mode, **13 of 55** physical rune-bearing pages have no anchor, so only 6,241 original symbols (including 86 doublets) fall into anchored suffixes.
+
+A complete **28² = 784** (a,b) search was trained on the first 27 original rune-bearing pages and held out the last 28, or trained on the first 6,480 global rune positions and held out the rest. Both forward and reverse reading directions were searched, with each frozen candidate scored against an independently trained GP-English non-EA unigram prior.
+
+| Original scope and reading | Selected a,b | Train excess nats/nonzero | Frozen heldout excess |
+| --- | --- | ---: | ---: |
+| Continuous, forward | (14,14) | −0.826558 | −0.899554 |
+| Continuous, reverse | (14,3) | −0.816283 | −0.905158 |
+| Physical page resets, forward | (8,20) | −0.790764 | −0.864109 |
+| Physical page resets, reverse | (12,9) | −0.791100 | −0.955380 |
+
+**No selected original inverse produces plausible GP-English.** The negative criterion is actual decoded-language likelihood, not a post-hoc synthetic marker count.
+
+In the source-disjoint **positive**, source GP text is encrypted with secret true (a,b)=(7,11), preserving the original 55 page lengths. The blind search identifies the exact key in both models. Source-matched page resetting scores **+0.366470 train / +0.368077 heldout**; continuous state scores **+0.385465 / +0.362617** nats per nonzero rune. Every rune after a planted EA synchronization event exactly roundtrips, with unknown initial-state prefixes deliberately excluded. Thus the model has sufficient key-recovery power for the specified register.
+
+This eliminates a directly synchronized **first-order GP plaintext autokey** with a constant two-parameter key under the stated source register, page/global continuity and reading directions. It cannot exclude more general plaintext history, state-dependent clocking, transformed plaintext alphabets, or a genuinely independent secret keystream. It does **not** establish that any actual observed doublet is GP EA in the original manuscript.
+
+Reproduce from the checked-in [`EA-anchor exact plaintext-autokey program`](../sims/ea_anchor_plaintext_autokey_inverse.cjs). All synthetic-positive and original tests use the same inverse and 784-key training selection, without adding a CI workflow.
