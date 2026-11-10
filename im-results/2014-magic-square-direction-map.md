@@ -1,6 +1,6 @@
 # 2014 stage04 magic-square direction map: cell 6 Rad ↔ cell 7 Ac
 
-**Status:** a reproducible cross-round source clue with a bounded failed LP2 transfer; not an LP2 decryption, authentic key, or destination.
+**Status:** a reproducible cross-round fragment-structure hypothesis, including an exact 199 → empty fragment 6 / Ac fragment 7 bridge, alongside a bounded failed direct table transfer. No LP2 plaintext or authentic key has been recovered.
 
 ## 2014 source and selector
 
@@ -53,6 +53,45 @@ The resulting functional graph has 17 in-bounds edges and 8 exits. Its directed 
 
 The longer cycle remains part of the evidence; it is not silently discarded.
 
+
+## 13-dot fragment bridge: the 199 / Ac route
+
+The LP2 red-rune stream is partitioned by the **31 original 13-dot marks** into **32 red-rune fragments**. A fragment contains only red GP runes between consecutive 13-dot marks; an empty fragment means zero red runes, not a blank page. The exact 32 lengths are:
+
+\`\`\`
+[13,0,16,0,3,0,11,0,0,14,12,0,9,11,0,16,
+ 0,19,0,10,0,8,0,3,0,59,9,0,5,0,7,0]
+\`\`\`
+
+The 2014 square has three distinct prime entries: **131, 151, 199**. For each prime \(p\), \(\phi(p)=p-1\). The two already-motivated alphabet/fragment moduli are 29 (GP symbols) and 32 (13-dot fragments). Map a prime entry to:
+
+- GP label: \(\phi(p) \bmod 29\);
+- one fragment index: \(p \bmod 32\);
+- adjacent fragment index: \(\phi(p) \bmod 32\).
+
+A zero residue is interpreted cyclically as fragment 32. All three prime entries select an adjacent pair containing one empty fragment and one fragment containing the corresponding GP label:
+
+| Prime \(p\) | \(\phi(p)\) | GP label \(\phi(p)\bmod29\) | \(\phi(p)\bmod32\) fragment | \(p\bmod32\) fragment | Corresponding red-rune evidence |
+|---:|---:|---|---:|---:|---|
+| 131 | 130 | Eolh (X) | 2: empty | 3: 16 runes | X at position 12 |
+| 151 | 150 | Cen (C) | 22: 8 runes | 23: empty | C at position 6 |
+| **199** | **198** | **Ac (A)** | **6: empty** | **7: 11 runes** | **A is the first rune** |
+
+The 199 result is unusually well anchored by independent clues:
+
+1. The 2014 stage03 phrase “Patience is a virtue” gives \( \phi(761)\bmod29=6 \); the 2016 message date, 5 January immediately before Epiphany on 6 January, also selects 6.
+2. The 2014 square's cell 6 is Rad and points east to cell 7, Ac; cell 7 contains the prime **199**.
+3. \(199\bmod32=7\), \(\phi(199)\bmod32=6\), and \(\phi(199)\bmod29=24=\mathrm{Ac}\).
+4. LP2 fragment 6 is empty; fragment 7 is exactly 11 red runes and begins **Ac**:
+
+   \`A T X B M G IA S B X EO\`
+
+The two 13-dot boundaries are on LP2 page 6 at normalized offsets 71 and 82; the Ac rune begins at offset 71. This is consistent with the 2016 message's empty-path wording and its oak image. The same one-based cell-to-fragment alignment also makes every node in the two 2014 direction cycles correspond either to an empty fragment or to a fragment containing that cell's GP label; this is secondary evidence, not an independently selected test.
+
+**Controls and statistical limits:** the same residue rule applied to all 13 distinct square values yields only **5/13** one-empty/one-label pairs (272, 131, 151, 199, 91). A deterministic 500,000-permutation null over all 32 fragment records has mean **2.482** matches and tail probability **0.0862** for at least five. Conditional on selecting only the three prime entries and their fixed adjacent fragment pairs, the exact permutation probability for all three one-empty/one-label matches is **0.01774**; this is *not* a global p-value and does not correct for selecting the prime subset or the arithmetic rule after inspection. The result is therefore a promising, clue-constrained route hypothesis, not proof of intent or a decryption.
+
+The 2016 “Beware false paths” warning may distinguish the externally selected 6→7 Rad→Ac route from other matching pairs; that interpretation remains conjectural. The next useful question is what the 11-rune Ac fragment instructs a solver to do, and whether the other prime-linked pairs are deliberate decoys or part of a larger route. Do not turn this observation into an unconstrained cipher or offset search.
+
 ## LP2 table selector suggested by the same cells
 
 The selected source numbers also satisfy:
@@ -80,7 +119,7 @@ That cycle's functional-graph basin contains **252 of 256** cells. Convergence f
 
 The simplest transfer of the 2014 map to the original 32×8 table was fixed before inspecting any route output:
 
-1. For each positive table byte (b), assign the GP label (φ(b)mod29), using the same mapping as the 2014 square.
+1. For each positive table byte (b), assign the GP label (φ(b) mod29), using the same mapping as the 2014 square.
 2. Treat (b) itself as an angle in degrees, quantized to the nearest 45° sector under the same 0°-east, counter-clockwise convention.
 3. Follow the indicated eight-neighbour move in the printed rectangular grid. Moves beyond the grid exit; there is no toroidal wrap or fitted rotation.
 4. Since (φ(0)) is undefined, zero-valued cells retain their 0° direction but have no GP label.
@@ -101,11 +140,11 @@ A planted 1×2 positive control with bytes [5,199] does recover Rad→Ac→Rad u
 
 ## Historical interpretation and limits
 
-The 2016 image is a dead-oak illustration, not a verified geographic photograph. The Uncovering Cicada Wiki attributes it to [this ClipartBest oak image](https://www.clipartbest.com/cliparts/abc/y97/abcy97qTL.jpeg). Treat the oak as a symbolic Ac pointer; do not infer a physical starting location from the image.
+The 2016 image is a dead-oak illustration, not a verified geographic photograph. The Uncovering Cicada Wiki attributes it to [this ClipartBest oak image](https://www.clipartbest.com/cliparts/abc/y97/abcy97qTL.jpeg). Treat the oak as a symbolic Ac pointer: Ac is also the first red rune in the 199-selected seventh fragment. Do not infer a physical starting location from the image.
 
 The 2016 message's instruction that words are a map, meanings a road, and numbers directions is compatible with the 2014 matrix interpretation. However, the angle convention is an inference, not a proven instruction. Using compass bearings (0° north, clockwise) does not produce the cell-6 → cell-7 oak connection. The archived 2016 message also ends “Beware false paths,” so semantic and geographic matches require a source-fixed stopping rule.
 
-This result does not establish that the 2014 square is intended as an LP2 key or that the LP2 table is a literal direction map. It only rejects the simplest direct transfer above. A distinct use of columns 7–8 as key/state material remains untested, but it would need an independently sourced operation and a reversible original-cipher prediction before further work is justified.
+The direct byte-as-bearing transfer to the LP2 numeric table remains rejected. The 199/Ac fragment bridge is a stronger source-constrained human solve-path hypothesis, but it does not yet specify a reversible cipher, recover plaintext, or establish the destination. The separate use of columns 7–8 as key/state material remains untested and must not be conflated with the fragment-index result.
 
 ## Reproduction
 
@@ -115,7 +154,7 @@ Run from the repository root:
 node sims/2014_magic_square_direction_map.cjs
 ```
 
-The script checks the 1033 magic square, recomputes the `φ(n) mod29` rune labels and eight-direction graph, derives both natural table-column interpretations from cells 6 and 7, and runs the full-grid, selected-strip, alternate-strip, and planted positive-control tests using only Node's standard library and the pinned original grid/corpus resources.
+The script checks the 1033 magic square, recomputes the `φ(n) mod29` rune labels and eight-direction graph, derives both natural table-column interpretations, reconstructs the 32 red-rune fragments from the original ink annotations, tests the three prime-entry residue pairs, and reproduces the exact conditional and seeded permutation nulls using only Node's standard library and pinned source resources.
 
 ## Source links
 
@@ -125,4 +164,6 @@ The script checks the 1033 magic square, recomputes the `φ(n) mod29` rune label
 - [2016 image archive entry](https://github.com/krisyotam/cicada3301/blob/76d3ee8c762f60025822c8c05edbf31351636469/archives/scream314/assets/2016/4gq25.jpg)
 - [2016 image's reported oak-clipart source](https://www.clipartbest.com/cliparts/abc/y97/abcy97qTL.jpeg)
 - [Original table order and 28-pair scan](grid-two-column-serial-order.md)
+- [LP2 13-dot red-rune source annotations](../resources/liber-primus/lp2-ink-annotations.json)
+- [LP2 rune corpus](../resources/liber-primus/lp2-corpus.json)
 - [Existing 2016/2014 selector hypothesis](../workplace/2016-epiphany-2014-onion-path-hypothesis.md)

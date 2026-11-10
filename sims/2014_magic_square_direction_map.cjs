@@ -10,6 +10,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 
 const corpus = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json", "utf8"));
+const ink = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-ink-annotations.json", "utf8"));
 const grid = JSON.parse(fs.readFileSync("resources/liber-primus/base60-grid.json", "utf8"));
 const magic = [
   [272,138,341,131,151],
@@ -230,4 +231,188 @@ const lp2GridTransfer = {
   },
   fullGrid, mod8Strip, literalStrip, positiveControl,
 };
-console.log(JSON.stringify({magicSquare:magicResult, lp2GridTransfer}, null, 2));
+
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let p = 2; p * p <= n; p++) if (n % p === 0) return false;
+  return true;
+}
+const fragmentEvents = [];
+for (const page of ink.pages) {
+  const sourcePage = corpus.pages[page.page];
+  for (const span of page.red_spans || []) {
+    for (let i = 0; i < span.length; i++) {
+      fragmentEvents.push({
+        page:page.page, offset:span.start + i, kind:1,
+        rune:sourcePage.indices[span.start + i],
+      });
+    }
+  }
+  for (const mark of page.large_punctuation || []) {
+    if (mark[1] === 13) fragmentEvents.push({page:page.page, offset:mark[0], kind:0});
+  }
+}
+// A 13-dot mark is a boundary before the red rune at the same normalized offset.
+fragmentEvents.sort((a,b) => a.page - b.page || a.offset - b.offset || a.kind - b.kind);
+const fragments = [];
+let fragment = [];
+for (const event of fragmentEvents) {
+  if (event.kind === 0) { fragments.push(fragment); fragment = []; }
+  else fragment.push(event);
+}
+fragments.push(fragment);
+const fragmentLengths = fragments.map(x => x.length);
+const expectedFragmentLengths = [
+  13,0,16,0,3,0,11,0,0,14,12,0,9,11,0,16,
+  0,19,0,10,0,8,0,3,0,59,9,0,5,0,7,0,
+];
+assert.equal(fragments.length, 32);
+assert.deepEqual(fragmentLengths, expectedFragmentLengths);
+const wrap32 = n => (((n % 32) + 32) % 32) || 32;
+function fragmentInfo(index, label) {
+  const f = fragments[index - 1];
+  const positions = label === undefined ? [] : f
+    .map((x,i) => corpus.translit[x.rune] === label ? i + 1 : null)
+    .filter(x => x !== null);
+  return {
+    index, length:f.length,
+    translit:f.map(x => corpus.translit[x.rune]).join(" "),
+    labelPositions:positions,
+    first:f.length ? corpus.translit[f[0].rune] : null,
+    last:f.length ? corpus.translit[f[f.length - 1].rune] : null,
+    firstLocation:f.length ? {page:f[0].page,offset:f[0].offset} : null,
+    lastLocation:f.length ? {page:f[f.length - 1].page,offset:f[f.length - 1].offset} : null,
+  };
+}
+const uniqueNumbers = [...new Set(magic.flat())];
+const uniqueBridge = uniqueNumbers.map(number => {
+  const totient = phi(number), label = corpus.translit[mod(totient)];
+  const nFragment = wrap32(number), phiFragment = wrap32(totient);
+  const nf = fragments[nFragment - 1], pf = fragments[phiFragment - 1];
+  const contains = f => f.length > 0 && f.some(x => corpus.translit[x.rune] === label);
+  const nContains = contains(nf), phiContains = contains(pf);
+  return {
+    number, totient, label, nMod32Fragment:nFragment, phiMod32Fragment:phiFragment,
+    nFragment:fragmentInfo(nFragment,label),
+    phiFragment:fragmentInfo(phiFragment,label),
+    oneEmptyOneLabel:(nf.length === 0 && phiContains) || (pf.length === 0 && nContains),
+  };
+});
+const primeBridge = uniqueBridge.filter(x => isPrime(x.number));
+assert.deepEqual(primeBridge.map(x => x.number), [131,151,199]);
+assert(primeBridge.every(x => x.oneEmptyOneLabel));
+const selected199 = primeBridge.find(x => x.number === 199);
+assert.equal(selected199.totient, 198);
+assert.equal(selected199.label, "A");
+assert.equal(selected199.nMod32Fragment, 7);
+assert.equal(selected199.phiMod32Fragment, 6);
+assert.equal(fragments[5].length, 0);
+assert.equal(fragments[6].length, 11);
+assert.equal(corpus.translit[fragments[6][0].rune], "A");
+const markers = fragmentEvents.filter(x => x.kind === 0);
+const selected199Bridge = {
+  ...selected199,
+  emptyFragment:fragmentInfo(6,"A"),
+  acFragment:fragmentInfo(7,"A"),
+  boundaries:{
+    beforeEmpty:markers[4],
+    betweenEmptyAndAc:markers[5],
+    afterAc:markers[6],
+  },
+};
+
+const primePairSlots = primeBridge.map(x => ({
+  phiFragment:x.phiMod32Fragment,
+  nFragment:x.nMod32Fragment,
+  label:x.label,
+}));
+function countPrimePairAssignments(orientation) {
+  const slots = [];
+  for (let k = 0; k < primePairSlots.length; k++) {
+    const p = primePairSlots[k], reverse = (orientation >> k) & 1;
+    slots.push({role:reverse ? "label" : "empty", label:p.label});
+    slots.push({role:reverse ? "empty" : "label", label:p.label});
+  }
+  const compatible = fragments.map(f => slots.map(s =>
+    s.role === "empty" ? f.length === 0 :
+      f.length > 0 && f.some(x => corpus.translit[x.rune] === s.label)
+  ));
+  let dp = Array(1 << 6).fill(0n);
+  dp[0] = 1n;
+  for (let f = 0; f < fragments.length; f++) {
+    const next = dp.slice();
+    for (let mask = 0; mask < (1 << 6); mask++) if (dp[mask]) {
+      for (let j = 0; j < 6; j++) if (!(mask & (1 << j)) && compatible[f][j]) {
+        next[mask | (1 << j)] += dp[mask];
+      }
+    }
+    dp = next;
+  }
+  return dp[(1 << 6) - 1];
+}
+const orientationCounts = Array.from({length:8}, (_,mask) => countPrimePairAssignments(mask));
+const favorablePrimeAssignments = orientationCounts.reduce((a,b) => a + b, 0n);
+let totalPrimeAssignments = 1n;
+for (let i = 0; i < 6; i++) totalPrimeAssignments *= BigInt(32 - i);
+const conditionalPrimePairProbability =
+  Number(favorablePrimeAssignments) / Number(totalPrimeAssignments);
+
+function pairHit(permutation, item) {
+  const a = permutation[item.nMod32Fragment - 1];
+  const b = permutation[item.phiMod32Fragment - 1];
+  const has = f => f.length > 0 && f.some(x => corpus.translit[x.rune] === item.label);
+  return (a.length === 0 && has(b)) || (b.length === 0 && has(a));
+}
+const observedAllValueMatches = uniqueBridge.filter(x => x.oneEmptyOneLabel).length;
+let rngState = 0x3301;
+function seededRandom() {
+  rngState ^= rngState << 13;
+  rngState ^= rngState >>> 17;
+  rngState ^= rngState << 5;
+  return (rngState >>> 0) / 4294967296;
+}
+const permutationSamples = 500000;
+let tailMatches = 0, totalMatches = 0;
+for (let sample = 0; sample < permutationSamples; sample++) {
+  const permutation = fragments.slice();
+  for (let i = permutation.length - 1; i > 0; i--) {
+    const j = Math.floor(seededRandom() * (i + 1));
+    [permutation[i], permutation[j]] = [permutation[j], permutation[i]];
+  }
+  let matches = 0;
+  for (const item of uniqueBridge) if (pairHit(permutation,item)) matches++;
+  totalMatches += matches;
+  if (matches >= observedAllValueMatches) tailMatches++;
+}
+const allValuePermutationNull = {
+  seed:"0x3301", samples:permutationSamples,
+  observedMatches:observedAllValueMatches,
+  meanMatches:totalMatches / permutationSamples,
+  tailAtLeastObserved:tailMatches / permutationSamples,
+};
+const cycleFragmentAlignment = cycles.map(ids => ({
+  cells:ids.map(cellId => {
+    const cell = byCell.get(cellId), f = fragments[cellId - 1];
+    const info = fragmentInfo(cellId,cell.translit);
+    return {
+      cell:cellId, rune:cell.translit, ...info,
+      emptyOrContainsLabel:f.length === 0 || info.labelPositions.length > 0,
+    };
+  }),
+}));
+assert(cycleFragmentAlignment.every(c => c.cells.every(x => x.emptyOrContainsLabel)));
+const fragmentBridge = {
+  fragmentCount:fragments.length, fragmentLengths,
+  primeBridge, selected199Bridge,
+  cycleFragmentAlignment,
+  all13UniqueValues:uniqueBridge,
+  conditionalPrimePairNull:{
+    favorableAssignments:favorablePrimeAssignments.toString(),
+    totalAssignments:totalPrimeAssignments.toString(),
+    probability:conditionalPrimePairProbability,
+    interpretation:"conditional on the three prime entries and the fixed n/phi(n) mod-32 pairs; not a global p-value",
+  },
+  allValuePermutationNull,
+};
+
+console.log(JSON.stringify({magicSquare:magicResult, lp2GridTransfer, fragmentBridge}, null, 2));
