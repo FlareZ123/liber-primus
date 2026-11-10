@@ -198,6 +198,7 @@ function main() {
   const slopeMagnitude = gB / gA;
   const lag = IMAGE_HEIGHT - IMAGE_WIDTH;
   const piWidth = primePi(IMAGE_WIDTH), piHeight = primePi(IMAGE_HEIGHT);
+  const sigelIndex = 15;
   const tirIndex = piWidth % 29, beorcIndex = piHeight % 29;
 
   assert.deepEqual(gridPos, [51, 57]);
@@ -218,6 +219,10 @@ function main() {
   assert.deepEqual([corpus.prime[tirIndex], corpus.prime[beorcIndex]], [59, 61]);
   assert.equal(corpus.prime[beorcIndex] - corpus.prime[tirIndex], 2);
   assert.equal(gA, corpus.prime[tirIndex]);
+  assert.equal(corpus.prime[sigelIndex], 53);
+  assert.equal(corpus.prime[sigelIndex] % 29, 24);
+  assert.equal(corpus.prime[tirIndex] - corpus.prime[sigelIndex], lag);
+  assert.equal(corpus.prime[beorcIndex] - corpus.prime[tirIndex], slopeMagnitude);
 
   const runePairs = [];
   for (let i = 0; i + lag < secondHalf.length; i++) {
@@ -334,7 +339,8 @@ function main() {
       primeCounting: { piWidth, piHeight, modulo29: [tirIndex, beorcIndex],
         runes: [corpus.translit[tirIndex], corpus.translit[beorcIndex]],
         gematriaPrimes: [corpus.prime[tirIndex], corpus.prime[beorcIndex]],
-        primeGap: corpus.prime[beorcIndex] - corpus.prime[tirIndex] },
+        sigel: { index: sigelIndex, gematriaPrime: corpus.prime[sigelIndex], primeMod29: corpus.prime[sigelIndex] % 29 },
+        primeGaps: { sigelToTir: corpus.prime[tirIndex] - corpus.prime[sigelIndex], tirToBeorc: corpus.prime[beorcIndex] - corpus.prime[tirIndex] } },
       grid: { index51: gA, index57: gB, ratio: slopeMagnitude,
         rowMajorCells: [[6, 3], [7, 1]], base60Tokens: ['0x', '1w'] },
       secondRuneHalf: {
