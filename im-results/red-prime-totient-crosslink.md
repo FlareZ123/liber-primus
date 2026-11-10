@@ -42,6 +42,11 @@ Expected number of 29-divisible spans under this null is **0.542788**. The obser
 
 As a smaller exact enumeration, all **159 × 179 = 28,461** independent cyclic offsets of the two source pages p15 and p53 yield precisely **one** match for the ordered prime-totient quotient condition. The same one offset pair has the exact observed sums 638 and 2262. Conditional rate: **1/28,461 ≈ 0.000035136**. This is an exact test of that **already selected page pair**, not an independent replication or a probability that the creator intended the relationship.
 
+
+## Newly identified three-page pointer extension (exploratory)
+
+The page-40 red heading supplies an additional, doubly interpretable quotient: its GP prime sum is **435 = 29×15**. The value **15** names physical LP2 page **15** and also the zero-based GP rune index of **ᛋ**, whose assigned GP prime is **53**, another red-marked physical page. Combined with page 15's quotient **22** and page 53's quotient **78 = p_22 − 1**, this defines a three-edge page/prime/totient triangle among three independently colored spans. An exact all-16-span analysis under independent whole-page circular rotations gives conditional probability **22669/45960075084 ≈ 4.9323244×10^-7** of any such triangle. The arithmetic rule was discovered post-selection and has neither a decoded cipher nor an established authorial interpretation; the conditional tail does not correct for the original rule search. [Full equations, all-span scope and exact reproducer](red-span-triangle.md).
+
 ## Interpretation and next falsifiable requirement
 
 This result links **an independently red-marked title over the established Fibonacci-prime square**, **a separately red-marked final stanza**, and **the prime-totient transform already authenticated by the solved manuscript**. It may encode a checksum, select a prime/offset, or be an unusual chance alignment amplified by exploratory selection. Nothing yet identifies the action of 79, 78 or 22 on original cipher runes. No prime/key should be declared recovered.
