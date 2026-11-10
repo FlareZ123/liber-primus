@@ -22,3 +22,5 @@ jobs:
         run: node sims/grid_stream_collision_viterbi.cjs
       - name: Actual GP-rune red-title IV grid-stream collision-skip inversion
         run: node sims/red_title_nonce_grid_viterbi.cjs
+      - name: Frozen generator and grid keys tested on untouched subsequent 2400 original runes
+        run: node sims/grid_stream_frozen_holdout.cjs
