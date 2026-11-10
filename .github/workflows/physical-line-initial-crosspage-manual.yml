@@ -10,6 +10,7 @@ on:
         options:
           - line-initial
           - page-turn-width
+          - spread-interleave
 permissions:
   contents: read
 jobs:
@@ -27,3 +28,6 @@ jobs:
       - name: Refit width/section/word-matched page-turn arcs on original source
         if: ${{ inputs.analysis == 'page-turn-width' }}
         run: node sims/page_turn_width_word_matched_crossfit.cjs
+      - name: Check lossless spread traversal and matched original-source boundaries
+        if: ${{ inputs.analysis == 'spread-interleave' }}
+        run: node sims/lp2_spread_traversal_sft.cjs
