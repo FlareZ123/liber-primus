@@ -35,13 +35,16 @@ function originalPages() {
  * @param {boolean} resetPage
  * @returns {Array<Array<{glyph:number, repeat:boolean}>>}
  */
-function digitStreams(pages, dropRepeat, resetPage) {
+function digitStreams(pages, dropRepeat, resetPage, alphabetMode = "glyph") {
   const partitions = resetPage ? pages : [pages.flat()];
   return partitions.map(page => {
     const out = [];
     for (let i = 1; i < page.length; i++) {
       const repeat = page[i] === page[i - 1];
-      if (!repeat || !dropRepeat) out.push({glyph: page[i], repeat});
+      if (!repeat || !dropRepeat) out.push({
+        glyph: alphabetMode === "difference" ? (page[i] - page[i - 1] + M) % M : page[i],
+        repeat
+      });
     }
     return out;
   });
@@ -67,11 +70,11 @@ function leadingCeiling(digits) {
  * @param {{digits:number,phase:number,dropRepeat:boolean,resetPage:boolean,reverse:boolean}} cfg
  */
 function screen(pages, cfg) {
-  const {digits, phase, dropRepeat, resetPage, reverse} = cfg;
+  const {digits, phase, dropRepeat, resetPage, reverse, alphabetMode="glyph"} = cfg;
   const leaderFollowers = Array.from({length:M}, () => new Set());
   const leaders = new Set();
   let completeBlocks = 0, ignoredLeaders = 0;
-  for (const stream of digitStreams(pages, dropRepeat, resetPage)) {
+  for (const stream of digitStreams(pages, dropRepeat, resetPage, alphabetMode)) {
     for (let i = phase; i + digits <= stream.length; i += digits) {
       completeBlocks++;
       const first = stream[i + (reverse ? digits - 1 : 0)];
@@ -91,8 +94,8 @@ function screen(pages, cfg) {
     // For any hidden ordering, its maximum glyph is one of all 29 glyphs.
     // When this max glyph leads a block, its digit is exactly 27.
     // The next digit cannot exceed 8; see proof in the companion report.
-    const followerBound = reverse ? 10 : 9;
-    const minFollowerDistinct = Math.min(...leaderFollowers.map(s => s.size));
+    const followerBound = alphabetMode === "difference" ? 9 : (reverse ? 10 : 9);
+    const minFollowerDistinct = Math.min(...(alphabetMode === "difference" ? leaderFollowers.slice(1) : leaderFollowers).map(s => s.size));
     return {...cfg, completeBlocks, ignoredLeaders, ceiling,
       minFollowerDistinct, followerBound, excluded: minFollowerDistinct > followerBound};
   }
@@ -100,7 +103,7 @@ function screen(pages, cfg) {
   // its absolute rank must be <= ceiling+1. At most ceiling+2 distinct glyphs
   // can lead valid blocks for any unknown global rune ordering.
   const leadingDistinct = leaders.size;
-  const leadingBound = ceiling + 2;
+  const leadingBound = ceiling + (alphabetMode === "difference" ? 1 : 2);
   return {...cfg, completeBlocks, ignoredLeaders, ceiling,
     leadingDistinct, leadingBound, excluded: leadingDistinct > leadingBound};
 }
@@ -108,19 +111,19 @@ function screen(pages, cfg) {
 /** @param {number[][]} pages */
 function study(pages) {
   const byWidth = [];
-  for (const digits of WIDTHS) {
+  for (const alphabetMode of ["glyph", "difference"]) for (const digits of WIDTHS) {
     const cases = [];
     for (const dropRepeat of [false, true])
       for (const resetPage of [false, true])
         for (const reverse of [false, true])
           for (let phase = 0; phase < digits; phase++)
-            cases.push(screen(pages, {digits, phase, dropRepeat, resetPage, reverse}));
+            cases.push(screen(pages, {digits, phase, dropRepeat, resetPage, reverse, alphabetMode}));
     const minEvidence = digits === 5 ?
       Math.min(...cases.map(c => c.minFollowerDistinct)) :
       Math.min(...cases.map(c => c.leadingDistinct));
     const allowed = digits === 5 ? Math.max(...cases.map(c => c.followerBound)) :
-      leadingCeiling(digits) + 2;
-    byWidth.push({digits, bytes: digits / 5 * 3, tested: cases.length,
+      leadingCeiling(digits) + (alphabetMode === "difference" ? 1 : 2);
+    byWidth.push({alphabetMode, digits, bytes: digits / 5 * 3, tested: cases.length,
       impossible: cases.filter(c => c.excluded).length,
       leadingCeiling: leadingCeiling(digits),
       minObservedDistinct: minEvidence, maxAllowedDistinct: allowed,
@@ -166,10 +169,10 @@ function decodeDigits(glyphs, permutation) {
 }
 
 /** @param {number} width @param {number} blocks */
-function positiveControl(width, blocks=600) {
+function positiveControl(width, alphabetMode="glyph", blocks=600) {
   const rand = randomGenerator(0x4a4b27d0 + width);
-  const permutation = Array.from({length:M}, (_,i) => i);
-  for (let i=M-1; i>0; i--) {
+  const permutation = Array.from({length: alphabetMode === "difference" ? 28 : M}, (_,i) => alphabetMode === "difference" ? i + 1 : i);
+  for (let i=permutation.length-1; i>0; i--) {
     const j = rand() % (i+1);
     [permutation[i], permutation[j]] = [permutation[j], permutation[i]];
   }
@@ -186,16 +189,22 @@ function positiveControl(width, blocks=600) {
     }
     assert.equal(integer, 0n);
     for (const digit of packet) {
-      const available = permutation.filter(x => x !== ciphertext.at(-1));
-      ciphertext.push(available[digit]);
+      if (alphabetMode === "difference") ciphertext.push((ciphertext.at(-1) + permutation[digit]) % M);
+      else {
+        const available = permutation.filter(x => x !== ciphertext.at(-1));
+        ciphertext.push(available[digit]);
+      }
       digits.push(digit);
     }
   }
-  assert.deepEqual(decodeDigits(ciphertext, permutation), digits);
+  const recovered = alphabetMode === "difference" ?
+    ciphertext.slice(1).map((c,i) => permutation.indexOf((c - ciphertext[i] + M) % M)) :
+    decodeDigits(ciphertext, permutation);
+  assert.deepEqual(recovered, digits);
   const result = screen([ciphertext], {digits:width, phase:0,
-    dropRepeat:true, resetPage:false, reverse:false});
+    dropRepeat:true, resetPage:false, reverse:false, alphabetMode});
   assert.equal(result.excluded,false, "Sieve must admit an authentic encoded byte stream");
-  return {width, blocks, allDigitsRoundTrip:true,
+  return {alphabetMode, width, blocks, allDigitsRoundTrip:true,
     maximumTopSymbolFollowers: width===5 ?
       result.minFollowerDistinct : undefined,
     distinctLeaders:width>5 ? result.leadingDistinct : undefined};
@@ -203,7 +212,8 @@ function positiveControl(width, blocks=600) {
 
 function main() {
   const report = study(originalPages());
-  report.positiveControls = [5,10,15,20,25,30].map(n=>positiveControl(n));
+  report.positiveControls = [5,10,15,20,25,30].flatMap(n=>
+    ["glyph", "difference"].map(alphabetMode=>positiveControl(n,alphabetMode)));
   console.log(JSON.stringify(report,null,2));
 }
 
