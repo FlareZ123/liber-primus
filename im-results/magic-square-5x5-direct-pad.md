@@ -82,7 +82,15 @@ All **40/40** synthetic Hill plants recover exactly under the same matrix, orien
 
 The **global continuous-stream** interpretation also fails. The best of its 40 settings is the vertically reflected printed matrix, direct multiplication, phase 4: **−5.125289 nats/rune**, IoC **0.034485**. The best phase-zero setting is row-major printed/direct at **−5.149117**. A held-out 12,956-rune English GP control scores **−2.620232**, IoC **0.057352**. All **40/40** global synthetic controls recover exactly. Thus neither page-local use nor a single continuous global Hill stream produces plaintext.
 
-**Decision:** the direct additive pad and the 5×5 Hill-matrix interpretation are both unsupported for the p7/p23 five-dot pages. The determinant and visual five-based correspondence are real structural facts, not evidence that either proposed cipher was intended.
+**Decision:** the direct additive pad, page-local/global 5×5 Hill-matrix interpretations, and this five-dot-rank-seeded matrix-state stream are unsupported for p7/p23 or the global unknown stream. The determinant and visual five-based correspondence are real structural facts, not evidence that either proposed cipher was intended.
+
+## Five-dot rank-seeded matrix-state stream
+
+The measured five-dot reflection report supplies a second way to turn the stencil into a seed, rather than using it only to choose a matrix orientation. Sorting the five measured dot centers by x and ranking their y coordinates gives the one-based permutations p7 [3,5,1,4,2] and p23 [3,1,5,2,4]. Treating these as five-symbol initial states, iterate the source-oriented 5×5 square modulo 29 and concatenate its five-symbol states. The tested seed cycles contain 28 states, yielding a 140-symbol periodic additive stream. This is a source-derived state hypothesis; it is not an established instruction.
+
+The page-local test covers both zero- and one-based rank seeds, row- or column-vector state updates, and both additive signs (16 settings across p7/p23). The best is p23, zero-based seed, row update, sign+1: **−4.743295 nats/rune**, IoC **0.036629**. For a global continuous stream, both dot-derived seeds, row/column updates, time-major/component-major flattening and both signs give 16 settings. The best global score is **−5.147580 nats/rune**, IoC **0.034493**. Held-out English GP scores **−2.620232**, IoC **0.057352**. Synthetic additive plants recover exactly under the same generated key in all **16/16 local** and **16/16 global** controls.
+
+The matrix's 28-state cycle and the dot-rank seed are reproducible structure. Neither the local nor global state stream yields English. This closes this specific five-dot-rank / matrix-power keystream; other state seeds or nonlinear uses would need an independent source rule, not a free search over vectors.
 
 ## Reproduction
 

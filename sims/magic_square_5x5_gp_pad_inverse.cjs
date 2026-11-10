@@ -479,5 +479,122 @@ const summary = {
   }
 };
 
+
+function matrixStateTests() {
+  const dotPoints = {
+    p7:[[796.941,3105.773],[992.500,3166.637],[1296.931,2866.789],[1479.265,3127.500],[1527.153,2936.153]],
+    p23:[[796.941,568.227],[992.500,507.363],[1296.931,807.211],[1479.265,546.500],[1527.153,737.939]]
+  };
+  function rankSeed(points) {
+    const xOrder = points.slice().sort((a,b) => a[0]-b[0]);
+    const yOrder = points.map(point => point[1]).sort((a,b) => a-b);
+    return xOrder.map(point => yOrder.indexOf(point[1]) + 1);
+  }
+  function makeStateKey(seed, keyMatrix, rowUpdate, flatten) {
+    let state = seed.map(mod29);
+    const initial = state.join(",");
+    const states = [];
+    for (let t = 0; t < 29; t++) {
+      if (states.some(previous => previous.join(",") === state.join(","))) break;
+      states.push(state.slice());
+      if (rowUpdate) {
+        state = keyMatrix[0].map((_,j) =>
+          mod29(state.reduce((sum,value,i) => sum + value * keyMatrix[i][j], 0))
+        );
+      } else {
+        state = keyMatrix.map(row =>
+          mod29(row.reduce((sum,value,i) => sum + value * state[i], 0))
+        );
+      }
+    }
+    if (state.join(",") !== initial || states.length !== 28)
+      throw new Error("five-dot-seeded matrix state did not close at 28 states");
+    return flatten === "time" ? states.flat() :
+      Array.from({length:5}, (_,j) => states.map(vector => vector[j])).flat();
+  }
+  const sourceSeeds = [
+    {page:7, name:"p7", ranks:rankSeed(dotPoints.p7),
+      key:matrix.map(row => row.map(mod29))},
+    {page:23, name:"p23", ranks:rankSeed(dotPoints.p23),
+      key:matrix.slice().reverse().map(row => row.map(mod29))}
+  ];
+  const localTests = [];
+  const localControls = [];
+  for (const source of sourceSeeds) {
+    const cipher = corpus.pages[source.page].indices;
+    for (const base of [0,1]) {
+      const seed = source.ranks.map(value => value - base);
+      for (const rowUpdate of [false,true]) {
+        const key = makeStateKey(seed, source.key, rowUpdate, "time");
+        for (const sign of [-1,1]) {
+          const plain = cipher.map((value,i) => mod29(value - sign * key[i % key.length]));
+          localTests.push({
+            page:source.page, seedBase:base === 0 ? "one-based" : "zero-based",
+            stateUpdate:rowUpdate ? "row" : "column", sign,
+            statePeriod:28, keyLength:key.length, ...hillMetrics(plain),
+            preview:plain.slice(0,100).map(value => corpus.translit[value]).join("")
+          });
+          const control = holdout.slice(100,100+cipher.length);
+          const planted = control.map((value,i) => mod29(value + sign * key[i % key.length]));
+          const recovered = planted.map((value,i) => mod29(value - sign * key[i % key.length]));
+          localControls.push(recovered.reduce((sum,value,i) => sum + Number(value === control[i]),0));
+        }
+      }
+    }
+  }
+  localTests.sort((a,b) => b.bigramPerRune-a.bigramPerRune);
+
+  const globalCipher = corpus.pages.filter(page => page.page <= 55 && page.indices.length)
+    .flatMap(page => page.indices);
+  const globalPlain = holdout.slice(100,100+globalCipher.length);
+  const globalTests = [];
+  const globalControls = [];
+  for (const source of sourceSeeds) {
+    const seed = source.ranks.map(value => value - 1);
+    for (const rowUpdate of [false,true]) {
+      for (const flatten of ["time","component"]) {
+        const key = makeStateKey(seed, source.key, rowUpdate, flatten);
+        for (const sign of [-1,1]) {
+          const plain = globalCipher.map((value,i) => mod29(value - sign * key[i % key.length]));
+          globalTests.push({
+            seedSource:source.name, stateUpdate:rowUpdate ? "row" : "column",
+            flatten, sign, statePeriod:28, keyLength:key.length,
+            ...hillMetrics(plain),
+            preview:plain.slice(0,120).map(value => corpus.translit[value]).join("")
+          });
+          const planted = globalPlain.map((value,i) => mod29(value + sign * key[i % key.length]));
+          const recovered = planted.map((value,i) => mod29(value - sign * key[i % key.length]));
+          globalControls.push(recovered.reduce((sum,value,i) => sum + Number(value === globalPlain[i]),0));
+        }
+      }
+    }
+  }
+  globalTests.sort((a,b) => b.bigramPerRune-a.bigramPerRune);
+  if (localControls.length !== 16 ||
+      localControls.some((x,i) => x !== (i < 8 ? 208 : 213)) ||
+      globalControls.length !== 16 || globalControls.some(x => x !== globalCipher.length))
+    throw new Error("matrix-state synthetic positive control failed");
+  return {
+    dotRankSeeds:{p7:sourceSeeds[0].ranks,p23:sourceSeeds[1].ranks},
+    matrixStatePeriod:28,
+    generatedKeyLength:140,
+    localTests:localTests.length,
+    localBest:localTests[0],
+    localBestByPage:[7,23].map(page => localTests.filter(x=>x.page===page)
+      .sort((a,b)=>b.bigramPerRune-a.bigramPerRune)[0]),
+    globalTests:globalTests.length,
+    globalBest:globalTests[0],
+    globalHeldOutEnglishControl:hillMetrics(globalPlain),
+    positiveControls:{
+      localExact:localControls.filter((x,i) => x === (i < 8 ? 208 : 213)).length,
+      localTotal:localControls.length,
+      globalExact:globalControls.filter(x=>x===globalCipher.length).length,
+      globalTotal:globalControls.length
+    }
+  };
+}
+
+
 summary.hillMatrix = hillMatrixTests();
+summary.matrixState = matrixStateTests();
 console.log(JSON.stringify(summary, null, 2));
