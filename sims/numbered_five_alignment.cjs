@@ -8,7 +8,7 @@
  * A train/validation split at half the overlap checks whether a short-lag
  * coincidence peak persists away from the positions that selected its lag.
  *
- * Inputs: exact canonical master transcription and 29-rune corpus.
+ * Inputs: original page-annotated transcription and 29-rune corpus.
  * Reproduce with Node.js 22: node sims/numbered_five_alignment.cjs
  */
 const fs = require('node:fs');
@@ -16,21 +16,22 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 
 const root = path.resolve(__dirname, '..');
-const master = fs.readFileSync(path.join(root, 'resources/transcriptions/liber_primus_master.txt'), 'utf8');
+const transcription = fs.readFileSync(
+  path.join(root, 'resources/liber-primus/lp2-transcription.txt'), 'utf8');
 const corpus = JSON.parse(fs.readFileSync(path.join(root, 'resources/liber-primus/lp2-corpus.json'), 'utf8'));
 const symbol = new Map(corpus.runes.map((r, index) => [r, index]));
-const entry = master.indexOf('ᛋᚻᛖᚩᚷ');
-assert.ok(entry >= 0, 'LP2 start not found in master');
-const passages = [];
-for (let number = 1; number <= 5; number++) {
-  const begin = master.indexOf('\n' + number + '-', entry);
-  const end = number < 5
-    ? master.indexOf('\n' + (number + 1) + '-', begin)
-    : master.indexOf('\n%', begin);
-  assert.ok(begin >= 0 && end > begin, 'missing numbered passage ' + number);
-  passages.push([...master.slice(begin + 3, end)].filter(ch => symbol.has(ch)).map(ch => symbol.get(ch)));
-}
-assert.deepEqual(passages.map(p => p.length), [139, 91, 98, 96, 171]);
+// These are the physical items between the red 1-5 labels and printed separator,
+// not the next unnumbered paragraph or the later physical page break.
+const sourceSection = transcription.split('%').slice(36,39).join('%');
+const labels = [...sourceSection.matchAll(/[1-5]-/g)];
+assert.deepEqual(labels.map(x=>Number(x[0][0])), [1,2,3,4,5]);
+const passages = labels.map((label,i) => {
+  const end = i<4 ? labels[i+1].index : sourceSection.indexOf('&',label.index);
+  assert.ok(end>label.index,'missing source item terminator for '+(i+1));
+  return [...sourceSection.slice(label.index+2,end)]
+    .filter(ch=>symbol.has(ch)).map(ch=>symbol.get(ch));
+});
+assert.deepEqual(passages.map(p=>p.length),[139,91,98,96,129]);
 const pool = corpus.pages.filter(p => p.page <= 55).flatMap(p => p.indices);
 assert.equal(pool.length, 12956);
 
@@ -175,7 +176,7 @@ function study() {
   const observed = passages.slice(1).map(p => scan(passages[0], p));
   return {
     classification: 'exploratory, no LP2 key or plaintext recovered',
-    source: 'LP2 labels 1-5 across original JPEGs 53-55, stopping block 5 at its red-dot separator',
+    source: 'LP2 labels 1-5 across original JPEGs 53-55, fifth item ends at the printed red-dot separator',
     passageLengths: passages.map(p => p.length),
     lagRange: [-40,40],
     fixedAnchor: 1, trainSearchChoices: 3,

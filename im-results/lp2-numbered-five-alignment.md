@@ -4,9 +4,9 @@
 
 ## Original-source boundaries
 
-Original JPEGs **53–55** visibly enumerate five passages with red **1–5**. The fifth passage ends at a conspicuous **red-dot separator** on JPEG55, before the following unnumbered paragraph. In the canonical master transcription the separator is the first `%\n` after the `5-` label; using the later `&` separator incorrectly incorporates the next paragraph. The corrected complete rune counts are **[139, 91, 98, 96, 171]**. Earlier analysis reported 290 for item 5 by including the following 119 runes; the earlier five-item span description and null calibration are superseded. A competing 129-rune count exists in a separate item-key experiment; this source-checked and transcription-reproducible boundary is 171.
+Original JPEGs **53–55** visibly enumerate five passages with red **1–5**. On JPEG55 the fifth passage consists of six printed lines and ends at a **red-dot separator**. A subsequent paragraph starts below the dots with no number. The annotated source `resources/liber-primus/lp2-transcription.txt` encodes that paragraph break as `&` immediately after the fifth item; its exact item rune counts are **[139, 91, 98, 96, 129]**.
 
-This matters to a source-driven decoding hypothesis because five numerical labels define five specific items. The previously reported peak lag for item 5 uses only its first 130 runes, so the four selected equality peaks remain numerically unchanged when the source boundary is repaired. All null controls below were recomputed with the **171-rune** fifth item.
+The less richly annotated `resources/transcriptions/liber_primus_master.txt` does not preserve this same paragraph break at that location. Its next `%` denotes the **physical-page boundary** after **171** runes, and its later `&` occurs after **290** runes. Thus the original 290-rune item included 161 unnumbered runes; a provisional attempt to stop at `%` still included 42 unnumbered runes. These earlier boundaries and their trial calibrations are **superseded**. The physical image and the independent page-annotated source fix the 129-rune span. The selected first-item-to-fifth-item shift of −9 still compares 129 valid runes, retaining all 13 previously observed equalities. All controls below were recomputed against this exact five-item source boundary.
 
 ## Observed alignment: first item as fixed anchor
 
@@ -17,7 +17,7 @@ The script compares the 139-rune first item against each other whole item at non
 | 1 / 2 | −24 | 11/91 | 4.51684 | 6/46 | 3.56658 |
 | 1 / 3 | −20 | 11/98 | 4.21891 | 5/49 | 2.59176 |
 | 1 / 4 | −34 | 10/96 | 3.74186 | 5/48 | 2.64589 |
-| 1 / 5 | −9 | 13/130 | 4.09399 | 5/65 | 1.87523 |
+| 1 / 5 | −9 | 13/129 | 4.12646 | 5/65 | 1.87523 |
 
 The full-score minimum is **3.7418562366**. Each shift's matched overlap is split in half; three training-best shifts are eligible for selection by the *unfitted* second half. The minimum of four such validation z-scores is **1.8752289238**. These are selected descriptive scores; interpreting an individual z as an unadjusted statistical test would be incorrect.
 
@@ -25,8 +25,8 @@ The full-score minimum is **3.7418562366**. Each shift's matched overlap is spli
 
 | Fixed-anchor control | Trials | Full-minimum exceedances | Full add-one p | Validation-minimum exceedances | Validation add-one p |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Four mutually disjoint authentic LP2 rune windows of item-matched lengths, LCG seed 1013539 | 10,000 | 0 | 0.000100 | 6 | 0.000700 |
-| Independent within-item exact-histogram rune shuffles, LCG seed 730031 | 10,000 | 1 | 0.000200 | 2 | 0.000300 |
+| Four mutually disjoint authentic LP2 rune windows of item-matched lengths, LCG seed 1013539 | 10,000 | 1 | 0.000200 | 5 | 0.000600 |
+| Independent within-item exact-histogram rune shuffles, LCG seed 730031 | 10,000 | 0 | 0.000100 | 1 | 0.000200 |
 
 Both controls keep the original first item fixed. The authentic-window control preserves native neighboring-rune structure within each sampled window, and the shuffle control preserves each item's full unigram histogram. These p values condition on an *exploratorily chosen* first-item hub, number-labelled source group, offset window and score family, so they do not establish a puzzle-wide statistical discovery.
 
@@ -48,6 +48,6 @@ For the three-item degree-one case, a wider exhaustive scan of `[-40,+40]^2` rel
 
 ## Reproduction and decision
 
-Run `node sims/numbered_five_alignment.cjs` for the corrected complete four-link scan, item-boundary assertions, 10,000-trial nulls and forced other-pair checks. Run `node sims/numbered_five_alignment.cjs --field-share` for the degree-one-to-three exact modular equations, the 4,048-placement degree-one scan, its 500 genuine-window controls and its planted full cubic-share positive. Requires Node.js 22, `resources/transcriptions/liber_primus_master.txt` and `resources/liber-primus/lp2-corpus.json`. Both modes read original committed resources and use fixed LCG seeds.
+Run `node sims/numbered_five_alignment.cjs` for the corrected complete four-link scan, item-boundary assertions, 10,000-trial nulls and forced other-pair checks. Run `node sims/numbered_five_alignment.cjs --field-share` for the degree-one-to-three exact modular equations, the 4,048-placement degree-one scan, its 500 genuine-window controls and its planted full cubic-share positive. Requires Node.js 22, `resources/liber-primus/lp2-transcription.txt` and `resources/liber-primus/lp2-corpus.json`. Both modes read original committed resources and use fixed LCG seeds.
 
 **Decision:** The corrected five-item source group still has a conditional first-item coincidence anomaly. It has no validated five-way common pad or simple 29-field polynomial-share rule. A useful next hypothesis must derive its relative offsets and reversible copying/key state from another source constraint and reconstruct independently held-out original plaintext. Re-optimizing the same four coincidences does not constitute decryption.
