@@ -43,7 +43,7 @@ function candidateKeys(columns){
       }
     }
  }
- assert.equal(out.length,256);
+ assert.equal(out.length,512);
  return out;
 }
 
