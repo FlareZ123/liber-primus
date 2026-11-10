@@ -18,3 +18,5 @@ jobs:
         run: node sims/word_start_phase_permutation.cjs
       - name: Cross-word anti-repeat conditional nulls
         run: node sims/cross_word_repeat_invariant.cjs
+      - name: Exact all-secret singleton-word capacity and planted inverse
+        run: node sims/singleton_word_key_capacity.cjs
