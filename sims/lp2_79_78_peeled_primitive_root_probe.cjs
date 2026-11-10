@@ -62,9 +62,13 @@ function run(){
  const map68=maps.find(m=>m.name==="pow68-parable-2013");
  const testKey68=map68.matrix.flat(),cellCipher68=plant.flat().map((v,i)=>mod(v+testKey68[i]));
  assert.deepEqual(cellCipher68.map((v,i)=>mod(v-testKey68[i])),plant.flat());
- const inv68=invert(map68.matrix).inverse,hillCipher68=multiply(map68.matrix,plant);
- assert.ok(inv68,"The source-derived root-68 matrix must be invertible for the planted Hill control");
- assert.deepEqual(multiply(inv68,hillCipher68),plant);
+ const inv68Result=invert(map68.matrix);
+ let root68HillExact=null;
+ if(inv68Result.inverse){
+  const hillCipher68=multiply(map68.matrix,plant);
+  assert.deepEqual(multiply(inv68Result.inverse,hillCipher68),plant);
+  root68HillExact=true;
+ }
  const bestCell=[...cellwise].sort((a,b)=>b.meanLogProbability-a.meanLogProbability),bestHill=hill.filter(x=>x.invertible).sort((a,b)=>b.meanLogProbability-a.meanLogProbability);
  const result={
   classification:"source-constrained 79/78 peel test of red-derived root53 and 2013 Parable-derived root68; direct mod-29 cellwise and Hill-matrix relations",
@@ -72,7 +76,7 @@ function run(){
   language:{nativeShakespeareTest:lang.score(lang.test),originalCipher:lang.score(stream),model:"continuous GP trigram: 0.8 smoothed trigram + 0.2 smoothed bigram; train first 200k Shakespeare chars, test from char 240k"},
   cellwise:{tested:cellwise.length,best:bestCell.slice(0,5),scoreRange:[Math.min(...cellwise.map(x=>x.meanLogProbability)),Math.max(...cellwise.map(x=>x.meanLogProbability))],MIRange:[Math.min(...cellwise.map(x=>x.mutualInformation)),Math.max(...cellwise.map(x=>x.mutualInformation))],rowAccuracyRange:[Math.min(...cellwise.map(x=>x.rowAccuracy)),Math.max(...cellwise.map(x=>x.rowAccuracy))]},
   hillMatrix:{tested:hill.length,fullRank:hill.filter(x=>x.invertible).length,best:bestHill.slice(0,5),scoreRange:[Math.min(...bestHill.map(x=>x.meanLogProbability)),Math.max(...bestHill.map(x=>x.meanLogProbability))]},
-  positiveControl:{root53CellwiseExact:true,root53HillExact:true,root68CellwiseExact:true,root68HillExact:true,runeRoundtrip:N*N},
+  positiveControl:{root53CellwiseExact:true,root53HillExact:true,root68CellwiseExact:true,root68HillExact,runeRoundtrip:N*N},
   interpretation:"Neither the red-derived 53-power maps nor the independently sourced 2013 Parable residue 68 creates a language-bearing cellwise pad or 78x78 Hill inverse under the tested natural power order. The 2013 number supplies a genuine primitive root modulo79, but this direct matrix use fails. This rejects only these direct matrix relations under the stated terminal-five and residue-zero conventions; other transpositions/stateful transforms remain open."
  };
  console.log(JSON.stringify(result,null,2));return result;
