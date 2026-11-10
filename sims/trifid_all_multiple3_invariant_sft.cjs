@@ -46,7 +46,7 @@ function main(){
   return {
    name:path.basename(file),
    allEligibleMinLengthWindows:windows.windows,
-   minimumTriplets,
+   minimumTriplets:minimumTriples,
    minimumNativeGPPairs:windows.minPairs,
    originalWorstCasesStillBelowReference:worstOriginalPairs<windows.minPairs
   };
