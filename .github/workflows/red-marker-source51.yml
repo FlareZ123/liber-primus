@@ -20,3 +20,5 @@ jobs:
         run: node sims/red_13dot_eventgrid_key_inverse.cjs
       - name: Decode two 16-rune red headings against historic v2 onion hostnames
         run: node sims/red16_onion_address_inverse.cjs
+      - name: Test four-span red-triangle source pad against page55 with refitted controls
+        run: node sims/red_triangle_page55_source_inverse.cjs
