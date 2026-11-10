@@ -1,0 +1,14 @@
+name: LP2 source-red cyclic radix-29/28 original inverse
+on:
+  workflow_dispatch:
+jobs:
+  source-red-phase35:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original red-sourced four-order capacity gate and planted inverse
+        run: node sims/red_source_79_phase35_order_gate.cjs
