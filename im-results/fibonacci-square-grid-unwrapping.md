@@ -1,0 +1,19 @@
+# Direct source-only unwrapping: Fibonacci-square-derived AES/ChaCha keys against the 256-byte grid
+
+**Agent 50, 10 November 2026. Supporting experiment, no LP2 decipherment.** Executed in [manual Actions 42831663581](https://github.com/FlareZ123/liber-primus/actions/runs/42831663581); [reproducer](../sims/fibonacci_square_grid_unwrap.cjs).
+
+## Source-locked experiment
+
+The sixteen authentic 4×4 Fibonacci-prime-square values on physical LP2 p15 yield 32 candidate 256-bit keys in [the already published source derivation](../sims/fibonacci_spiral_key_derivation.cjs): square values, underlying Fibonacci primes, Fibonacci ordinals and Fibonacci numbers, each in spiral or row-major sequence, 16-bit BE/LE and raw or SHA-256 hashed. The LP2 p49–51 base60 grid supplies 256 source bytes. This experiment asks whether the grid is itself an encrypted intermediate under an already established source-derived square key, rather than treating those bytes only as GP29 encryption keys.
+
+Each candidate key is used under AES-256-ECB, AES-256-CBC, AES-256-CTR and ChaCha20, with zero IV/counter and no block padding, against both original 256 source bytes and the five-cell image-audited alternative from [grid source correction](grid-section-column-keys.md). Exactly **256 source-only decryptions** are evaluated, with printable ASCII (bytes 32–126 or 9/10/13), ASCII bytes below 128, uppercase/lowercase letter counts, maximal printable run, and recognizable file magic as diagnostics. The entire model and key material are fixed without reading unknown LP2 ciphertext.
+
+The most printable output is the *image-corrected* grid under **SHA256(ordinal-row-major:BE)** and **zero-IV ChaCha20**: **136/256 printable bytes**, **158/256 below128**, **72 ASCII letters**, longest printable run **9**, no known file signature. The same fixed key and mode on the original canonical grid yield **135/256 printable bytes**, with the identical first 16 decrypted bytes `833d444a03713cc577ff46223e4c765e`. The next-best *different key/mode* produces only **118/256 printable bytes**. The leading outputs are not readable text; the initial printability excess is a source-selected anomaly under a uniform-byte heuristic, and it may be chance after the research program's much wider hypothesis selection. **No decrypted instruction, authenticated source format, or recovered LP2 key was found.**
+
+Under an ideal independent uniformly distributed output-byte null, the pre-specified printable-set probability is exactly **98/256** per byte; observing at least 135 of 256 would be rare, but this ideal-binomial tail cannot be used as an artifact-authenticity proof because the source key, possible original encodings and dozens of historical investigations were selected after examining LP2. The five-cell variants share nearly every byte, so they are **not independent confirmations**. The strongest source-only false-positive risk is selecting the most printable candidate from many unrelated binary decryptions.
+
+The implemented AES-256-CBC source-known control encrypts an exact 256-byte ASCII plaintext under the genuine `absolute-spiral:BE` candidate key, recovers **all 256/256 bytes exactly**, and scores 256/256 printable. This checks the direct keyed-grid decoder.
+
+## Decision
+
+The fixed direct square-key unwrapping family supplies **no authenticated plaintext** from the 256-byte grid. It keeps the unusually printable zero-IV ChaCha20 candidate as a **low-confidence source-only lead**, worthy of follow-up only if an *independent* original clue specifies a byte framing, masking operation, nonce or message structure that can convert the candidate output into recognizably structured content. Do not promote raw printability to a key claim; other plausible binary intermediates and untested key derivations remain open.
