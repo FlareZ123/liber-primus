@@ -52,6 +52,20 @@ Native plaintext pairs have a nonuniform GP29 marginal distribution, so independ
 
 Reproducible xorshift32 seeds are `3301 + 137×corpus-index`, where indices are 1,2,3. Under the weaker independent-edge 1,450 bound, 6 of the Shakespeare sets would pass. The triangle-consistency improvement is therefore decisive for these supplied controls. The 0/3,000 count is finite empirical reference evidence, not a universal mathematical theorem about all possible English texts.
 
+## The larger output-affine family remains unresolved
+
+Allow a different **nonzero output multiplier** per tile as well as its Caesar offset, keeping the same unrestricted 729 shared-position substitution tables:
+
+```text
+C_b[π_b(u)] = (m_b * S_u[P_b[u]] + a_b) mod 29, m_b != 0.
+```
+
+Pairwise equal plaintext is now equivalent to one unknown *affine*, rather than Caesar-only, relationship of ciphertext labels. The extended reproducer exhausts **(8×28×29)²** combinations of relative D4 orientations, nonzero slopes and intercepts for each of the 12 K9 triangles, with exact admissible pruning. Algebraic consistency requires relative b→c multiplier `m_c/m_b` and intercept `a_c−(m_c/m_b)a_b`, along with D4 composition. The original **all-secret 12-triangle upper bound is 1,524/26,244**; the independent-edge ceiling is 1,646.
+
+The new bound does **not exclude native GP-English** on the cited references: **155/1,000** Shakespeare, **119/1,000** Gibran and **2/1,000** Emerson sampled nine-panel sets have at most 1,524 matching plaintext pairs. The weaker 1,524 bound therefore leaves this broader per-tile output-affine architecture **OPEN**, while the original 1,362 output-Caesar-only finding remains intact.
+
+A separate hidden-key source-native positive with 729 independent full alphabet substitutions, nine nontrivial multipliers, nine offsets and nine orientations exactly reconstructs and reenciphers **6,561/6,561** runes, and the all-secret certificate admits its true plaintext equality count. [Passing extended manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42867831354). No authentic affine multiplier, key or unknown plaintext is recovered.
+
 ## Hidden-key positive and authentic-input limits
 
 A separate test draws **nine native Shakespeare GP windows**, privately chooses nine unrelated D4 orientations, nine Caesar output offsets, and independently shuffles all 29 rune labels at each of 729 positions. It encrypts all 6,561 runes under exactly the declared candidate model. The known concealed artificial key then recovers **6,561/6,561 plaintext runes**, independently reenciphers **6,561/6,561 ciphertext runes**, and the same **key-blind source certificate correctly accepts the plant**: its upper bound is no lower than the plant's authentic unencrypted equality count. A wrong-key roundtrip would not identify historical keys, and none is claimed.
