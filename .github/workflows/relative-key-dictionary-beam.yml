@@ -1,0 +1,21 @@
+name: LP2 pair28-42 dictionary beam inversion
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout research corpus
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run page-pair joint lexicon decoder and heldout positive control
+        run: node sims/relative_key_dictionary_beam.cjs
