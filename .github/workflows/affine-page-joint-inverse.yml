@@ -1,0 +1,16 @@
+name: LP2 constructive affine-page shared-pad inverse
+
+on:
+  workflow_dispatch:
+
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fit key and per-page alphabets on training runes, evaluate heldout
+        run: node sims/affine_page_joint_inverse.cjs
