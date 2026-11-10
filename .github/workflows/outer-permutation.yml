@@ -1,32 +1,52 @@
 name: LP2 arbitrary outer-alphabet assignment controls
 on:
   workflow_dispatch:
+    inputs:
+      source_handoff:
+        description: 'Run only the p56 prime-totient source-key outer-alphabet test'
+        required: false
+        default: false
+        type: boolean
 permissions:
   contents: read
 jobs:
   assignment:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - name: Verify exact matching implementation
+        if: ${{ inputs.source_handoff != true }}
         run: node sims/test_outer_permutation.cjs
       - name: Measure planted controls and drift impact
+        if: ${{ inputs.source_handoff != true }}
         run: node sims/outer_permutation_assignment.cjs
       - name: Test joint alphabet and key-pointer Viterbi
+        if: ${{ inputs.source_handoff != true }}
         run: node sims/outer_permutation_alignment.cjs
       - name: Test word-context alpha matching
+        if: ${{ inputs.source_handoff != true }}
         run: node sims/outer_permutation_word_context.cjs
       - name: Scan actual LP2 against defined SHA stream candidates
+        if: ${{ inputs.source_handoff != true }}
         run: node sims/outer_permutation_sha_probe.cjs
       - name: Try prefix-bootstrapped joint key-pointer recovery
+        if: ${{ inputs.source_handoff != true }}
         run: node sims/outer_permutation_context_alignment.cjs
       - name: Measure 50 independent outer-permutation recovery controls
+        if: ${{ inputs.source_handoff != true }}
         run: node sims/outer_permutation_context_power.cjs
       - name: Joint skip-and-alphabet search against actual LP2
+        if: ${{ inputs.source_handoff != true }}
         run: node sims/outer_permutation_real_skip_scan.cjs
       - name: Compare paired two-early-skip bootstrap on independent controls
+        if: ${{ inputs.source_handoff != true }}
         run: node sims/outer_permutation_two_skip_power.cjs
+      - name: Test p56 prime-totient key under one unknown global outer alphabet
+        if: ${{ inputs.source_handoff == true }}
+        run: |
+          node --check sims/prime_totient_outer_alphabet_inverse.cjs
+          node sims/prime_totient_outer_alphabet_inverse.cjs
