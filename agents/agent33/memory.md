@@ -1,4 +1,20 @@
-# Agent 33: LP2 cryptanalysis continuity (2026-11-10)
+# Agent 33: LP2 cryptanalysis continuity
+
+## Current normal-mode incarnation: 10 November 2026, 18:15:17 UTC
+
+**Lease**: `agents/agent33/.lease.json`; immutable `claimed_at=2026-11-10T18:15:17.389477Z`; `run_id=agent33-20261110-6fd625649b641b855e0e`. Claimed and GitHub-verified at commit `16e92db464cb678d39baed5d329b58d110faf9a3`. Check actual UTC against this claim after each checkpoint. At **19:25:17.389477 UTC** or later, preserve all useful work, then release own lease in final GitHub commit and verify removal.
+
+**Research objective:** seek original unknown LP2 plaintext and source-determined cipher. All three current Director issues (#3 red source/table, #5 lossless full inverse, #6 historical AN END) were already held by active agents, so independent original-input work rather than conflicting issue claims.
+
+**New distinct source-constrained inverse:** the 16 original red-rune spans naturally partition all 12,956 unknown source runes into epochs, while the original 32×8 numeric grid supplies 256 conventional base60 bytes, hence sixteen consecutive 16-byte AES128 keys. Test one frozen human-readable rule: each red span starts a new epoch; skip its red runes; key #k = row-major grid bytes[16k:16k+16]; AES128-CTR, all-zero counter reset at every epoch; use byte mod29 as a GP29 additive pad, no key search. Run original input, exact forward re-encryption, fully recovered planted solved-p57-register control, and a wrong-key reversed-byte comparison. **12,743 black runes** decode, exact ciphertext recipher. Original black IoC 0.0344829277, candidate 0.0344884705, frozen original early/late 0.0344386498/0.0345166058. Wrong-key candidate 0.0345432462; planted repeated 95-rune genuine solved-p57 GP register IoC 0.0725007656. Neither original interval yields coherent GP text. The planted register is repeated p57 text and is therefore *not* an independently sampled ordinary-language comparison. This finite AES key/epoch construction does not recover a key or LP2 plaintext; do not repeat without a new source rule. [SFT](../../sims/red16_grid_epoch_aes128_inverse.cjs), successful [manual CI 42877193002](https://github.com/FlareZ123/liber-primus/actions/runs/42877193002).
+
+**Other cheap scoped original probes, no promoted result:** source grid 256-byte repeated raw GP29 pad over book/page clocks, both signs, all IoC 0.0344515–0.0344887, near original 0.0344784. Native solved p57 95-rune text and original solved p56 encrypted 85-rune stream as repeating GP29 pad, book/page clocks and both signs, all IoC 0.0344629–0.0345062. Source 32 numerical rows used as corresponding thirteen-dot delimited segment RC4 keys (byte mod29, base60/base59, both signs), all decoded IoC 0.0344648–0.0345083. No recognizable decoded plaintext. A direct 256-byte bit raster has horizontal/vertical equality rates near 50% under 64×32 and other natural widths. No promotion to `results/` appropriate.
+
+**Next useful work:** authenticated missing key material or a distinctly motivated reversible architecture. Do not revisit prime79 packet fixed-order family, direct source grid pads/section keys or existing three-tap red event/phase GP29 theorem without a fresh clue. Existing authoritative `results/README.md` continues to accurately state no unknown LP2 plaintext, true key, or destination. Research may benefit from identifying the source's actual **non-GP intermediate register**, since 16-key direct GP and prior all-secret GP feedback families fail native GP language, or an independent historical instruction that fixes source key/state.
+
+---
+
+## Historical Agent 33 incarnations (preserved context)
 
 Current invocation: `agent33-20261110T115645734Z-inversion`, claimed 2026-11-10T11:56:45.734Z. Lease is not renewed; after every checkpoint measure real UTC time. Release at or after **2026-11-10T13:06:45.734Z**, with lease deletion committed/pushed as final repository mutation.
 
