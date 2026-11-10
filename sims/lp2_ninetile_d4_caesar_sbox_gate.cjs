@@ -325,11 +325,140 @@ function positivePlant(english) {
     exactReencryption: true};
 }
 
+
+/**
+ * More general output-affine escape:
+ * C_b[pi_b(u)] = a_b * S_u[P_b[u]] + z_b (mod29), a_b != 0.
+ * Exact 12-triangle bound. Unlike the output-Caesar-only result,
+ * this broader bound need not reject source-native GP-English.
+ * @param {number[][]} tiles
+ */
+function affineOutputCapacity(tiles) {
+  const mod = MOD;
+  const mPerOrientation = 28 * mod, nModes = 8 * mPerOrientation;
+  const inverse = Array(mod).fill(0);
+  for (let a = 1; a < mod; a++) {
+    for (let b = 1; b < mod; b++) {
+      if ((a * b) % mod === 1) { inverse[a] = b; break; }
+    }
+    assert.ok(inverse[a] > 0);
+  }
+  const modes = Array.from({length: nModes}, (_, index) => ({
+    g: Math.floor(index / mPerOrientation),
+    mul: 1 + Math.floor((index % mPerOrientation) / mod),
+    add: index % mod
+  }));
+  const w = Array.from({length: COUNT}, () => Array(COUNT).fill(null));
+  for (let a = 0; a < COUNT; a++) {
+    for (let b = a + 1; b < COUNT; b++) {
+      const counts = new Uint16Array(nModes);
+      for (let g = 0; g < 8; g++) {
+        for (let mul = 1; mul < mod; mul++) {
+          const prefix = g * mPerOrientation + (mul - 1) * mod;
+          for (let i = 0; i < TILE; i++) {
+            const j = maps[g][i];
+            counts[prefix + mod29(tiles[b][j] - mul * tiles[a][i])]++;
+          }
+        }
+      }
+      w[a][b] = counts;
+    }
+  }
+  let edgeUpper = 0;
+  for (let a = 0; a < COUNT; a++) {
+    for (let b = a + 1; b < COUNT; b++) edgeUpper += Math.max(...w[a][b]);
+  }
+  let triangleUpper = 0, exactCandidatesEvaluated = 0;
+  const pieces = [];
+  for (const [a, b, c] of triangles) {
+    const ab = w[a][b], ac = w[a][c], bc = w[b][c];
+    const orderB = Array.from({length: nModes}, (_, index) => index)
+      .sort((x, y) => ab[y] - ab[x]);
+    const orderC = Array.from({length: nModes}, (_, index) => index)
+      .sort((x, y) => ac[y] - ac[x]);
+    const bcGlobal = Math.max(...bc);
+    let best = 0, witness = null;
+    for (const bx of orderB) {
+      if (ab[bx] + ac[orderC[0]] + bcGlobal <= best) break;
+      const B = modes[bx], inverseB = inverse[B.mul];
+      for (const cy of orderC) {
+        if (ab[bx] + ac[cy] + bcGlobal <= best) break;
+        const C = modes[cy], relativeMultiplier = C.mul * inverseB % mod;
+        const relativeAdd = mod29(C.add - relativeMultiplier * B.add);
+        const relativeOrientation = rel[B.g][C.g];
+        const candidate = ab[bx] + ac[cy] +
+          bc[relativeOrientation * mPerOrientation +
+          (relativeMultiplier - 1) * mod + relativeAdd];
+        exactCandidatesEvaluated++;
+        if (candidate > best) {
+          best = candidate;
+          witness = {B: bx, C: cy, relativeOrientation,
+            relativeMultiplier, relativeAdd};
+        }
+      }
+    }
+    pieces.push({tiles: [a, b, c], upper: best, maximizingAssignment: witness});
+    triangleUpper += best;
+  }
+  assert.ok(triangleUpper <= edgeUpper);
+  return {pairwiseAffineUpper: edgeUpper,
+    triangleAffineUpper: triangleUpper, exactCandidatesEvaluated,
+    triangleCertificate: pieces};
+}
+
+/**
+ * Strongest affine variant positive with nonzero secret output
+ * multipliers on each tile (including values other than 1).
+ * @param {number[]} english
+ */
+function positiveAffinePlant(english) {
+  const rng = xorshift32(0xa35f1e);
+  const clear = nineWindows(english, rng), expectedEquality = plainMatches(clear);
+  const orientation = Array.from({length: COUNT}, () => rng() % 8);
+  const multiplier = Array.from({length: COUNT}, () => 1 + rng() % 28);
+  const offset = Array.from({length: COUNT}, () => rng() % MOD);
+  const cipher = Array.from({length: COUNT}, () => Array(TILE).fill(-1));
+  let recovered = 0;
+  for (let u = 0; u < TILE; u++) {
+    const sbox = Array.from({length: MOD}, (_, i) => i);
+    for (let i = MOD - 1; i > 0; i--) {
+      const j = rng() % (i + 1);
+      [sbox[i], sbox[j]] = [sbox[j], sbox[i]];
+    }
+    const inverse = new Array(MOD);
+    sbox.forEach((v, i) => { inverse[v] = i; });
+    for (let b = 0; b < COUNT; b++) {
+      const coordinate = maps[orientation[b]][u];
+      const encoded = mod29(multiplier[b] * sbox[clear[b][u]] + offset[b]);
+      cipher[b][coordinate] = encoded;
+      let normalized = mod29(encoded - offset[b]);
+      let inverseMultiplier = 0;
+      for (let j = 1; j < MOD; j++) {
+        if (j * multiplier[b] % MOD === 1) {inverseMultiplier = j; break;}
+      }
+      normalized = mod29(normalized * inverseMultiplier);
+      const plain = inverse[normalized];
+      assert.equal(plain, clear[b][u]);
+      assert.equal(mod29(multiplier[b] * sbox[plain] + offset[b]), encoded);
+      recovered++;
+    }
+  }
+  const upper = affineOutputCapacity(cipher);
+  assert.ok(upper.triangleAffineUpper >= expectedEquality);
+  assert.equal(recovered, 6561);
+  return {recoveredRunes: recovered, nativePlainEqualities: expectedEquality,
+    cipherTriangleAffineUpper: upper.triangleAffineUpper,
+    secretTileMultipliers: multiplier, exactReencryption: true};
+}
+
 const observed = capacity(original);
 assert.equal(observed.aligned, 886);
 assert.equal(observed.dihedral, 1187);
 assert.equal(observed.pairwiseD4CaesarUpper, 1450);
 assert.equal(observed.triangleD4CaesarUpper, 1362);
+const affineEscape = affineOutputCapacity(original);
+assert.equal(affineEscape.pairwiseAffineUpper, 1646);
+assert.equal(affineEscape.triangleAffineUpper, 1524);
 const referenceSources = [
   "resources/control/shakespeare_first300k.txt",
   "resources/control/gibran_prophet_58585.txt",
@@ -342,8 +471,10 @@ for (const reference of references) {
   assert.equal(reference.windows, 1000);
   assert.equal(reference.noGreaterThanOriginal, 0);
 }
-const plant = positivePlant(toGematria(fs.readFileSync(
-  path.join(ROOT, referenceSources[0]), "utf8")));
+const nativeEnglish = toGematria(fs.readFileSync(
+  path.join(ROOT, referenceSources[0]), "utf8"));
+const plant = positivePlant(nativeEnglish);
+const affinePlant = positiveAffinePlant(nativeEnglish);
 
 console.log(JSON.stringify({
   theorem: "For the nine 27x27 LP2 panels, all D4 per-tile orientations and GP29 Caesar output offsets, any 729 independent unknown GP29 bijections shared at corresponding tile cells, source-exact triangle partition bounds total simultaneous native-plaintext rune equality pairs by 1362",
@@ -352,7 +483,9 @@ console.log(JSON.stringify({
     initialThreePagesRunes: 729, tiles: COUNT, tileSide: SIZE,
     comparisonPairs: 36 * TILE, comparisons: 36, originalRepeatingBookend: true},
   observed,
+  affineOutputEscape: affineEscape,
   independentReferenceWindows: references,
   secretKeyPositive: plant,
+  affineSecretKeyPositive: affinePlant,
   finding: "No candidate native GP-English original plaintext or authentic LP2 key recovered. Exactly excludes this source-specified direct per-coordinate S-box family against the explicitly sampled three-literature GP controls."
 }, null, 2));
