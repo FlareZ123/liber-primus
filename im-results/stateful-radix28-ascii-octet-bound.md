@@ -1,6 +1,6 @@
 # A key-free printable-ASCII obstruction to stationary stateful radix-28 decoding
 
-**Agent 44, 10 November 2026. Status:** completed original-ciphertext necessary-condition theorem with exact executable and independent planted controls. The original LP2 plaintext, cipher and key remain unknown. This result concerns **direct readable ASCII byte output** under the finite framing and stationary-row assumptions below, rather than an actual successful decryption.
+**Agent 44, 10 November 2026. Status:** the original-ciphertext necessary-condition theorem and its exact executable are complete. An all-18-octet CP-SAT extension for the sole 30-digit printable-ASCII survivor is now implemented; its arithmetic and packet-order positive control passes 10,000 planted packets, but the original-ciphertext CP-SAT run is pending manual workflow dispatch. The original LP2 plaintext, cipher and key remain unknown. This work concerns **direct readable ASCII byte output** under the finite framing and stationary-row assumptions below, rather than an actual successful decryption.
 
 ## Mechanism and relevance
 
@@ -103,10 +103,43 @@ The exact [CommonJS implementation](../sims/stateful_28rank_ascii_octet_bound.cj
 
 [GitHub Actions execution **42788225180**](https://github.com/FlareZ123/liber-primus/actions/runs/42788225180) completed successfully with Node.js 22, including the original-cryptogram 840-case assertions and all positive roundtrips. The existing **manual-only** [adaptive radix-28 workflow](../.github/workflows/lp2-adaptive-base28-manual.yml) now runs the new test alongside the prior binary-capacity witnesses; no per-commit CI trigger was added.
 
-## Implications and the next useful boundary
+## Full 18-octet extension: exact byte-carry model
 
-This is a concrete **no-key exclusion of a broad arbitrary-permutation encoder** for direct strictly visible ASCII across all tested settings, and a 839/840 necessary-condition exclusion for the larger printable-plus-newline register, including settings where unconstrained binary-byte capacity is satisfiable. The contrast distinguishes the original ciphertext's incompatibility with this ordinary textual source register from the previously observed nonidentifiability of raw bytes.
+The remaining 98-byte direct-ASCII exception is the width-30 / 18-byte, physical-page-reset, marker-affected-packet-drop, reverse-digit, phase-29 framing with 282 clean packets. The first-octet pigeonhole bound is silent for this case. Instead of extending prefix/tail-only probes, sims/stateful_ascii_full_octet_cp.py constrains **all 18 output bytes of every one of the 282 packets** under one shared set of 29 stationary bijective predecessor rows.
 
-It does **not** exclude UTF-8, other alphabets, compressed text, encrypted intermediate bytes, source encoding after arbitrary whitening, ciphertext-dependent changing row permutations, variable-length codes, independent pagewise tables, unknown packet lengths outside the stated finite family, or mechanisms that change the marker/clock interpretation. It also cannot establish that the source was supposed to be ASCII. No output is put forward as recovered Liber Primus plaintext.
+The compact conversion uses the exact identity
+\[
+28^4=614656=256\cdot2401.
+\]
+Split the 30 base-28 digits into seven 4-digit groups \(x_0,\ldots,x_6\) and one 2-digit group \(x_7\). The packet integer is
+\[
+N=\sum_{g=0}^{6}x_g\,28^{26-4g}+x_7.
+\]
+For each byte position \(t=0,\ldots,17\), define
+\[
+q_{g,t}=\left\lfloor\frac{C_g}{256^t}\right\rfloor\bmod256,
+\quad C_g=28^{26-4g}\ (g<7),\quad C_7=1.
+\]
+Starting with \(c_0=0\), the exact recurrence is
+\[
+s_t=c_t+\sum_{g=0}^{7}q_{g,t}x_g,\quad
+b_t=s_t\bmod256,\quad
+c_{t+1}=\left\lfloor\frac{s_t}{256}\right\rfloor.
+\]
+The \(b_t\) are little-endian output bytes; reversing them yields the packet's 18-byte big-endian representation. The CP-SAT model uses only the linear equality
+\[
+c_t+\sum_gq_{g,t}x_g=256c_{t+1}+b_t
+\]
+and requires \(c_{18}=0\), exactly enforcing \(N<256^{18}\). Every coefficient \(q_{g,t}\) is at most 255; the derived maximum sum is 239,958,783 and maximum carry is 937,338. No 144-bit CP-SAT integer, modulo variable, or oversized coefficient is needed.
 
-The single exceptional 30-digit case could be tested using **two-leading-digit/second-octet constraints**, which couple multiple predecessor rows; a compact constraint-satisfaction formulation might eliminate it without searching \((28!)^{29}\) tables. Any claimed cryptographic breakthrough still requires original-plaintext recovery, a key schedule, and exact forward re-encryption on independently selected LP2 positions.
+The solver has two modes:
+- fullprint: every byte belongs to the same 98-value ASCII register used in the original 839/840 theorem (TAB, LF, CR, and 0x20–0x7E). This directly tests whether the one surviving framing can produce an entirely ASCII packet stream.
+- full7: every byte is in 0x00–0x7F. This is a broader control-code allowance for the same single framing, not an exhaustive rerun of all 26 7-bit survivor framings.
+
+A 10,000-packet synthetic positive control passed with one fixed random secret table shared across all planted packets: each packet was encoded as a valid no-repeat ciphertext walk, reversed into the solver's packet order, inverted through the fixed rows, and recovered byte-for-byte. The carry recurrence was also checked against arbitrary-precision integer conversion over 100,000 random 30-digit packets. The model and self-test are in the repository; **the original-ciphertext CP-SAT run has not yet been executed**. The existing manual-only workflow now offers fullprint and full7; no per-commit CI trigger was added.
+
+## Implications and next action
+
+A CP-SAT INFEASIBLE result in fullprint would close the sole 98-byte direct-ASCII survivor for this stationary 29-row, fixed 30-digit framing. A FEASIBLE result is only a candidate: inspect the 5,076 recovered bytes for coherent language, then verify exact forward re-encryption against every original transition and independent positions. UNKNOWN leaves the question open and should be handed off with the solver log rather than treated as a negative result.
+
+Run fullprint first. Run full7 only as a broader follow-up if it materially clarifies whether the same framing admits a seven-bit intermediate. No key or plaintext is currently claimed, and results/README.md is unchanged because no established decryption or mechanism has been recovered.

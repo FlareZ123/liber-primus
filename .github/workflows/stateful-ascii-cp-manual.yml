@@ -11,6 +11,8 @@ on:
           - stateful
           - binary47
           - binary47third
+          - full7
+          - fullprint
       charset:
         description: ASCII payload register (source-only control choice)
         type: choice
@@ -45,3 +47,19 @@ jobs:
       - name: Original all-secret cyclic orders second and third ASCII high bits
         if: inputs.probe == 'binary47third'
         run: python sims/prime78_ascii_bit_cp.py --original --charset 7bit --third-byte --seconds 240
+      - name: Validate full-octet byte carry conversion
+        if: inputs.probe == 'full7' || inputs.probe == 'fullprint'
+        run: python sims/stateful_ascii_full_octet_cp.py --self-test-only --self-test-samples 10000
+      - name: Solve all 18 octets for stationary radix-28 survivor
+        if: inputs.probe == 'full7' || inputs.probe == 'fullprint'
+        run: |
+          if [ "${{ inputs.probe }}" = "fullprint" ]; then mode=printable; else mode=7bit; fi
+          python sims/stateful_ascii_full_octet_cp.py --mode "$mode" --seconds 780 --seed 44
+      - name: Upload full-octet solver result
+        if: always() && (inputs.probe == 'full7' || inputs.probe == 'fullprint')
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-octet-${{ inputs.probe }}
+          path: full_octet_*_result.json
+          if-no-files-found: ignore
+
