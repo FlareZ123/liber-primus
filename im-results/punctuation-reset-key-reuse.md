@@ -12,6 +12,8 @@ For the first 64 runes of each segment, let `n_t` be the number of segments reac
 
 is twice the positional equal-rune-pair excess over a flat 29-rune baseline. The first term is **exactly invariant** under an independently arbitrary full-alphabet output permutation at each offset. Higher `Q` means cross-segment repeated letter identities, as strongly expected from shared GP-English position-specific character distributions. The subtraction is constant for a fixed layout and only centers the result.
 
+This extends earlier page-reset original-cipher negatives documented in [the shared-pad test](page-reset-pad-heldout.md) and [per-page Caesar-shift synchronization](page-shift-synchrony.md). **The period-only and combined period/page resets are the new boundary hypotheses here; the page-only result is a replication under the stronger arbitrary-position-bijection invariant.**
+
 Three independently source-defined segment boundaries were tested, always preserving the exact original 12,956 unsolved runes: full stops (175 segments), physical page boundaries (55), and the union (219). Printed line wraps and ordinary hyphen word boundaries are retained *inside* segments, with only runes contributing to offsets. The rune-free physical page 50 is absent, and both solved final pages are excluded.
 
 ## Executed original-source experiment
