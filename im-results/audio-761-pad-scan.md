@@ -57,4 +57,37 @@ For either of those two moduli, start an explicit `x=(seed² mod modulus)` state
 
 Both chosen outputs remain effectively flat and provide no independently credible GP-English text. The exact source-native hidden-key positive generates Shakespeare GP plaintext with the **full three-prime modulus**, seed3301, five MSB-packed parity bits and page-reset GP28 output. The blind **480-setting** search retrieves this exact model as its top candidate, scores **0.061998767732** train / **0.060381743586** heldout and decodes **12,956/12,956** planted runes exactly. Source-chosen alternatives are detectable, so the original negative is substantive for the declared family.
 
-Source, complete finite test and plant: [`sims/parable_threeprime_bbs_source_inverse.cjs`](../sims/parable_threeprime_bbs_source_inverse.cjs); [successful manual GitHub Actions run 42836550325](https://github.com/FlareZ123/liber-primus/actions/runs/42836550325) through the existing [prime-source suite](../.github/workflows/fibonacci-prime-spiral.yml). No original LP2 plaintext or historical modulus/key is recovered by either the earlier 960-generator scan or this independent 480-generator test. Both use externally sourced seed and cipher assumptions, so neither test excludes other arithmetic roles for the metadata.
+### Original skip-sensitive source test
+
+A distinct original-source test allows the hypothesized encoder to consume an additional modular-square-derived key draw **only if the rejected output would have repeated the previous ciphertext rune**. The hidden key pointer is reconstructed by exact GP-English trigram Viterbi; no skip positions are supplied. The source set contains both moduli, all six fixed seeds and five state/bit extraction modes, and both signs: **120 original models**. Each starts from the same frozen initial state at the beginning of each of six different LP2 pages [0,3,8,23,27,40], with the first130 runes per page used for selection and the next80 for continuation.
+
+| Original source/key selected on the 780 train runes | Train log GP-trigram/rune | Frozen 480 continuation runes |
+| --- | ---: | ---: |
+| Three-factor modulus, seed1033, 5 parity bits LSB-first, sign+ | **−5.655481292** | **−5.953263842** |
+| Best two-Blum-factor model, seed761, low eight bits, sign− | **−5.662982189** | **−5.704540394** |
+
+The original decoded continuation strings are nonlexical, while the identically structured **blind planted positive** found the correct three-factor source/modulus, seed3301, 5 parity bits MSB-first, sign+, at **rank1 of120**. It inferred the exact **24 planted hidden key skips** and recovered **all 1,260/1,260** genuine control GP runes (training−2.388463406, continuation−2.446622596). Thus a simple collision-consumed key is not enough to make the fixed historic source seeds decrypt original LP2.
+
+Reproduction: [`sims/parable_bbs_keyskip_inverse.cjs`](../sims/parable_bbs_keyskip_inverse.cjs); [successful original/plant CI run 42837250162](https://github.com/FlareZ123/liber-primus/actions/runs/42837250162).
+
+### Complete unknown-state search for the two-factor Blum modulus
+
+The choice of six public seeds may be arbitrarily restrictive. For the genuine two-Blum-prime modulus **M=1259×1031=1,298,029**, there are **M** possible initial values `x0 mod M`, but only **325,080 distinct values of the next state `x1=x0² mod M`**. CRT gives this exactly as `((1259+1)/2) × ((1031+1)/2) = 630×516`; the exhaustive runner also enumerates all **1,298,029** possible seeds to assert this count and retain every reachable `x1`. After this reduction, *every* possible initial BBS seed is represented with no hand-selected secret starting value.
+
+Using original physical page0, screen every one of the **325,080** reachable states through **four** prespecified key-bit extraction methods, GP29 additive or transparent-EA GP28 field-step emission, and two signs: **5,201,280 original-source inverse candidates**. Compare the first **90** runes by an independently trained GP-English trigram likelihood, retain the **120 best**, and evaluate their next **110** original runes without any re-fitting.
+
+| Frozen full-state candidate | Train trigram log/rune | Next110 log/rune | Next110 IoC |
+| --- | ---: | ---: | ---: |
+| Highest scoring of 5,201,280 original starts: x1=586,717, state-low8, GP28-step, sign− | **−4.325063366** | **−6.194636297** | **0.032193495** |
+| Best continuation, *post-selected from 120*: x1=833,459, whole-state%29, GP28-step, sign− | −4.757769708 | **−5.495490430** | **0.034528774** |
+| Blind source-native English-GP positive, x1=819,027, 5-parity MSB, GP28-step, sign+ | **−2.455331066** | **−2.477239025** | **0.060884070** |
+
+The planted test encrypts **200 source GP runes** from the withheld Shakespeare passage, conceals its seed and mechanism, then repeats the entire 5,201,280-model search. The **exact true state and cipher rank first**, and both the first90 and last110 runes invert **200/200 exactly**. The strongest original source fit collapses on continuation, and none of the 120 original finalists presents authentic natural-language plaintext.
+
+This genuinely exhausts *every seed* for the specific **two-factor** modular-squaring source under the stated four key projections and two invertible cipher families, without cipher-state skips, changes of outer alphabet, or additional transformations. It does not exhaust the much larger three-factor-state space or modular-square-with-hidden-skip family. Both would require a different, independently motivated state recovery rule.
+
+Reproduction: [`sims/parable_blum_exhaustive_state_inverse.cjs`](../sims/parable_blum_exhaustive_state_inverse.cjs), successful [Actions run 42838419477](https://github.com/FlareZ123/liber-primus/actions/runs/42838419477) via the existing [manual prime-source suite](../.github/workflows/fibonacci-prime-spiral.yml). No novel unknown LP2 plaintext or authentic key identified.
+
+### Interpretation
+
+The published audio tag provides a genuine historical prior clue and a mathematical route to exact key-state enumeration. The original ciphertext has failed the 960 historic integer/PRNG tests, 480 fixed-seed modular-square inverses, 120 collision-keyskip source tests, and full **5,201,280** two-prime seed-independent modular-squaring inverses. These finite negatives have independently positive-tested recovery power within their declared output models. They **do not establish** how Cicada intended the three Parable primes to be used, if at all, in the unsolved manuscript. Further arbitrary source-seed and bit-order variants without a fresh source instruction are unlikely to advance a genuine decipherment.
