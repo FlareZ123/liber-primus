@@ -1,0 +1,14 @@
+name: LP2 relative-key scaled model validation
+on:
+  workflow_dispatch:
+jobs:
+  scaled-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fit on half a page-pair and test after pair-selection null
+        run: node sims/relative_key_scale_validation.cjs --trials 1000
