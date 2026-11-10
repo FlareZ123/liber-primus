@@ -200,6 +200,53 @@ function random32(seed){
   return ()=>{v^=v<<13;v^=v>>>17;v^=v<<5;return v>>>0;};
 }
 
+/**
+ * Exact affine-span impossibility for terminal base29 plaintext GP runes
+ * derived from 18 independently published manuscript source clocks.
+ */
+function sourceAffineGate(coeff, starts) {
+  const grid=JSON.parse(read('resources/liber-primus/base60-grid.json'));
+  const ink=JSON.parse(read('resources/liber-primus/lp2-ink-annotations.json'));
+  const bytes=grid.byte_rows.flat();
+  const red=ink.pages.flatMap(p=>(p.red_spans||[])
+    .flatMap(x=>Array.from(x.runes))).map(x=>corpus.runes.indexOf(x));
+  assert.equal(bytes.length,256);
+  assert.equal(red.length,225);
+  assert(red.every(x=>x>=0));
+  const fib=[0,1],pow15=[1];
+  for(let j=1;j<164;j++){
+    if(j>=2)fib.push((fib.at(-1)+fib.at(-2))%29);
+    pow15.push(pow15.at(-1)*15%29);
+  }
+  const ids=starts.map(s=>(s-35)/79);
+  const channels={};
+  const add=(name,fn)=>channels[name]=ids.map((k,i)=>mod(fn(k,starts[i])));
+  add('constant',()=>1);
+  add('packetNumber',k=>k);
+  add('primitive15',k=>pow15[k]);
+  add('fibonacci',k=>fib[k]);
+  add('gpPrimeCycle',k=>corpus.prime[k%29]);
+  add('red225',k=>red[k%225]);
+  add('gridRowMajor',k=>bytes[k%256]);
+  add('gridColumnMajor',k=>grid.byte_rows[k%32][Math.floor(k/32)%8]);
+  add('packetStartPage',(k,s)=>pageOf[s]);
+  add('packetEndPage',(k,s)=>pageOf[s+78]);
+  for(let j=0;j<8;j++)
+    add('gridColumn'+j,k=>grid.byte_rows[k%32][j]);
+  const names=Object.keys(channels);
+  assert.equal(names.length,18);
+  const matrix=coeff.map((row,i)=>row.concat(
+    names.map(name=>mod(-channels[name][i]))));
+  const reduced=rref(matrix);
+  assert.equal(reduced.rank,46); // Rank28 for pi plus18 independent clocks.
+  assert.equal(reduced.basis.length,1);
+  assert(reduced.basis[0].slice(0,29).every(v=>
+    v===reduced.basis[0][0]));
+  return {sourceClocks:names,sourceClockCount:18,
+    rank:reduced.rank,variables:47,nullity:1,
+    excludesAnyNonconstantPiAndAffineSourceSchedule:true};
+}
+
 function plant(){
   const data=toGematria(read('resources/control/shakespeare_first300k.txt'));
   assert(data.length>=147410);
@@ -295,6 +342,7 @@ for(let period=1;period<=79;period++){
   assert.equal(r.excludesAnySecretPermutation,true);
   periodic.push({period,classes:r.classCount,rank:r.rank});
 }
+const sourceAffine=sourceAffineGate(coeff,start);
 const positive=plant();
 process.stdout.write(JSON.stringify({
   model:'78 base29 source runes per 79 predecessor-excluded base28 output digits',
@@ -305,6 +353,7 @@ process.stdout.write(JSON.stringify({
   scope:originalByScope,
   periodicSuffixPeriodsExcluded:[1,79],
   periodicRuns:periodic,
+  sourceAffineClockGate:sourceAffine,
   plantedExactBlindRecovery:positive,
   conclusion:'No fixed plaintext final rune per book, packet-start/end section, packet-start/end page, or any period 1..79 can coexist with ANY secret cyclic 29-glyph order for the phase35 79/78 packet codec. This does not reject arbitrary unpadded source language or solve LP2.',
 },null,2)+'\n');
