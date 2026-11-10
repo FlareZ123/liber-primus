@@ -10,5 +10,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Verify planted recovery under every two-symbol edit pattern
+        run: node sims/test_red_verse_second_order_key.cjs
       - name: Invert marked stanza from eleven-rune anchor
         run: node sims/red_verse_second_order_key.cjs
