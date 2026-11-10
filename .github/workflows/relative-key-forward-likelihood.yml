@@ -1,0 +1,21 @@
+name: LP2 cross-page marginalized forward model
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout manuscript and research code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Evaluate exact difference-stream likelihood and held-out plants
+        run: node sims/relative_key_forward_likelihood.cjs
