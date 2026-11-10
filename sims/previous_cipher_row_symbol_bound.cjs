@@ -151,6 +151,101 @@ function transitionOccurrences(pg, rune) {
   return count;
 }
 
+
+/**
+ * Exact capacity for all m-symbol plaintext subsets, for any contiguous
+ * whole-page interval and every unknown key-epoch partition.
+ * @param {number[][]} sourcePages
+ */
+function epochCapacities(sourcePages) {
+  const n=sourcePages.length;
+  const counts=sourcePages.map(page=>{
+    const a=new Int32Array(M*M);
+    for(let i=1;i<page.length;i++)a[page[i-1]*M+page[i]]++;
+    return a;
+  });
+  const cap=Array.from({length:M},()=>Array.from({length:n+1},
+    ()=>new Int32Array(n+1)));
+  for(let start=0;start<n;start++){
+    const sum=new Int32Array(M*M);
+    for(let end=start+1;end<=n;end++){
+      const add=counts[end-1];
+      for(let i=0;i<sum.length;i++)sum[i]+=add[i];
+      for(let row=0;row<M;row++){
+        const sorted=Array.from(sum.slice(row*M,(row+1)*M))
+          .sort((a,b)=>b-a);
+        let partial=0;
+        for(let m=1;m<M;m++){
+          partial+=sorted[m-1];
+          cap[m][start][end]+=partial;
+        }
+      }
+    }
+  }
+  const best=Array.from({length:M},()=>new Int32Array(n+1));
+  for(let m=1;m<M;m++){
+    const dp=Array.from({length:n+1},()=>
+      new Int32Array(n+1).fill(-10000000));
+    dp[0][0]=0;
+    for(let epochs=1;epochs<=n;epochs++){
+      for(let end=epochs;end<=n;end++){
+        let upper=-10000000;
+        for(let start=epochs-1;start<end;start++)
+          upper=Math.max(upper,dp[epochs-1][start]+cap[m][start][end]);
+        dp[epochs][end]=upper;
+      }
+      best[m][epochs]=dp[epochs][n];
+    }
+  }
+  return best;
+}
+/**
+ * Source GP rank-m proportions are a conditional plaintext register,
+ * never an assertion that LP2 is English/Latin. The maximum source
+ * proportion is compared to an EXACT manuscript combinatorial bound
+ * with fully unknown k epoch partitions and 55 unrestricted initials.
+ * @param {Int32Array[]} best
+ * @param {number[]} values Source histogram in GP order
+ * @param {number} total Source rune length
+ */
+function sourceEpochRequirement(best,values,total){
+  assert.equal(values.length,M);
+  assert.equal(values.reduce((a,b)=>a+b,0),total);
+  const sorted=values.slice().sort((a,b)=>b-a),byRank=[];
+  let cum=0;
+  for(let m=1;m<M;m++){
+    cum+=sorted[m-1];
+    let k=1;
+    for(;k<=pages.length;k++){
+      if((best[m][k]+pages.length)*total>=12956*cum)break;
+    }
+    assert.ok(k<=pages.length);
+    byRank.push({rank:m,epochs:k,sourceShare:cum/total});
+  }
+  const threshold=Math.max(...byRank.map(x=>x.epochs));
+  return {necessaryEpochs:threshold,
+    bindingRanks:byRank.filter(x=>x.epochs===threshold).map(x=>x.rank),
+    byRank};
+}
+/**
+ * Check all top-m source frequency constraints on an actual encrypted
+ * synthetic message under the proper number of true key epochs.
+ * @param {number[][]} plain
+ * @param {number[][]} encrypted
+ * @param {number} epochs
+ */
+function assertPlantedMajorization(plain,encrypted,epochs){
+  const bound=epochCapacities(encrypted);
+  const counts=Array(M).fill(0);
+  for(const p of plain)for(let i=1;i<p.length;i++)counts[p[i]]++;
+  counts.sort((a,b)=>b-a);
+  let sum=0;
+  for(let m=1;m<M;m++){
+    sum+=counts[m-1];
+    assert.ok(sum<=bound[m][epochs],"Positive rank bound m="+m);
+  }
+}
+
 function main() {
   const counts = rows(pages);
   const total = counts.flat().reduce((a, b) => a + b, 0);
@@ -198,6 +293,39 @@ function main() {
   assert.ok(englishE / training.length > (bound + 55) / 12956);
   assert.ok(latin.u[target] / latin.n > (bound + 55) / 12956);
 
+
+  const sourceCounts=values=>{
+    const counts=Array(M).fill(0);
+    for(const x of values)counts[x]++;
+    return counts;
+  };
+  const exactCap=epochCapacities(pages);
+  assert.equal(exactCap[1][1],bound);
+  assert.deepEqual([12,13,14].map(k=>exactCap[8][k]+55),
+    [7576,7742,7889]);
+  assert.deepEqual([22,23,24].map(k=>exactCap[11][k]+55),
+    [10743,10879,11013]);
+  const englishEpochs=sourceEpochRequirement(
+    exactCap,sourceCounts(training),training.length);
+  const latinEpochs=sourceEpochRequirement(exactCap,latin.u,latin.n);
+  assert.equal(englishEpochs.necessaryEpochs,14);
+  assert.equal(latinEpochs.necessaryEpochs,24);
+  assert.ok(englishEpochs.bindingRanks.includes(8));
+  assert.ok(latinEpochs.bindingRanks.includes(11));
+  assertPlantedMajorization(sourcePages,plantedCipher,1);
+
+  // Fourteen independently chosen random permutation-table epochs.
+  // The source and ciphertext reconstruct identically for every rune.
+  const tables=Array.from({length:14},(_,i)=>
+    randomRows((0x3301cafe+1234567*(i+1))>>>0));
+  const epochOf=i=>Math.floor(14*i/pages.length);
+  const plantedRekeys=sourcePages.map((p,i)=>
+    encodeRows([p],tables[epochOf(i)])[0]);
+  const recoveredRekeys=plantedRekeys.map((p,i)=>
+    decode([p],forwardRows(tables[epochOf(i)]))[0]);
+  assert.deepEqual(recoveredRekeys,sourcePages);
+  assertPlantedMajorization(sourcePages,plantedRekeys,14);
+
   const output = {
     status: "Exact key-independent bound; no unknown LP2 plaintext recovered",
     family: "One BOOK-WIDE 29x29 bijection S[previous published ciphertext]",
@@ -213,6 +341,27 @@ function main() {
       witnessAchievedTransitionCount: attained,
       originalCiphertextRoundtripRunes: 12956
     },
+    rekeyMajorization: {
+      assumption: "Arbitrary 29x29 predecessor-indexed bijective rows, " +
+        "one shared table per contiguous whole-page key epoch",
+      unknownBreaks: "Exact DP over all physical-page partitions",
+      necessaryEpochCountForReferenceRanks: {
+        english: englishEpochs.necessaryEpochs,
+        latin: latinEpochs.necessaryEpochs
+      },
+      bindingEnglishRanks: englishEpochs.bindingRanks,
+      bindingLatinRanks: latinEpochs.bindingRanks,
+      englishRank8Share: englishEpochs.byRank[7].sourceShare,
+      latinRank11Share: latinEpochs.byRank[10].sourceShare,
+      actualEnglishRank8Upper: [12,13,14].map(k=>
+        ({epochs:k,maximumSourceLikeRunes:exactCap[8][k]+55})),
+      actualLatinRank11Upper: [22,23,24].map(k=>
+        ({epochs:k,maximumSourceLikeRunes:exactCap[11][k]+55})),
+      genuineEnglishControl: {
+        independentEpochTables:14,decodedRunes:12956,
+        originalCiphertextRoundtripRunes:12956,rankConstraints:28
+      }
+    },
     controls: {
       englishTraining: {runes: training.length,
         E: englishE, Eshare: englishE / training.length},
@@ -226,11 +375,12 @@ function main() {
         roundtripCiphertextRunes: 12956
       }
     },
-    scope: "Book-wide, direct, deterministic bijective one-prior-cipher " +
-      "row tables with no lossy output repair, no additional clock or " +
-      "page/section-varying secret state. The source-register comparison " +
-      "does not rule out atypically low-frequency plaintext, alternative " +
-      "segmentation, compressed data, or hidden multi-symbol encodings."
+    scope: "Book-wide or whole-page-epoch-wise predecessor-ciphertext " +
+      "bijective row tables. Unknown page-boundary key epochs are optimized " +
+      "exactly, and the reference-language source rank spectra are " +
+      "explicit conditional assumptions. Within-page rekeys, hidden " +
+      "clock/state, lossy repairs and alternate plaintext registers " +
+      "remain unconstrained."
   };
   console.log(JSON.stringify(output, null, 2));
 }
