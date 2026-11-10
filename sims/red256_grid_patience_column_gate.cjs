@@ -17,7 +17,15 @@ const {events} = require("./red_256_event_key_inverse.cjs");
 const ROOT = path.resolve(__dirname,"..");
 const read = p => JSON.parse(fs.readFileSync(path.join(ROOT,p),"utf8"));
 const corpus = read("resources/liber-primus/lp2-corpus.json");
-const rows = read("resources/liber-primus/base60-grid.json").byte_rows;
+const table=read("resources/liber-primus/base60-grid.json");
+const rows=table.byte_rows;
+const base59Alphabet=table.alphabet.replace("f","");
+assert.equal(base59Alphabet.length,59);
+const rows59=table.rows.map(row=>row.map(token=>
+  59*base59Alphabet.indexOf(token[0])+base59Alphabet.indexOf(token[1])));
+assert.ok(rows59.every(row=>row.length===8&&
+  row.every(n=>Number.isInteger(n)&&n>=0&&n<256)));
+assert.equal(rows59.flat().filter((n,i)=>n!==rows.flat()[i]).length,220);
 const stream = events();
 assert.equal(rows.length,32);
 assert.ok(rows.every(r=>r.length===8));
@@ -207,16 +215,21 @@ function syntheticAlignedGrid(order) {
  *
  * Upper witnesses:
  * - Full byte: at most 30 distinct output byte labels can be used. The 30
- *   most frequent original grid byte labels have total mass 86.
- * - Low five bits: all 31 copies of the original single 13-dot symbol must
- *   map to one output label, but each original low-five label occurs <=14
- *   times. At least 17 events must therefore differ, regardless of order.
+ *   most frequent original grid byte labels have total mass 86 under both
+ *   source-consistent radix60/radix59 interpretations.
+ * - Low five bits: all 31 copies of the original 13-dot symbol must map to
+ *   one target; no target label occurs more than 14 times. At least 17
+ *   events differ under either numeral codec. For radix59 a further
+ *   capacity obstruction applies: 12 rune input types occur >=9 times,
+ *   but after consuming the unique 14-count target for the marker,
+ *   only 11 target labels have capacity >=9. If the marker chooses any
+ *   other target, the marker itself loses >=18 matches. Radix59 therefore
+ *   forces at least 18 mismatches.
  *
- * Lower witnesses: choose distinct output labels for the 30 event types in
- * descending-frequency order, then rearrange events arbitrarily. The exact
- * number of assignable equal labels is sum(min(sourceCount,outputCount)).
- * This realizes the respective 86 and 239 upper bounds, proving sharpness
- * even when arbitrary many-to-one maps are allowed.
+ * Constructive witnesses pair descending original input/output frequencies
+ * via distinct labels and arbitrarily reorder events. They meet every
+ * bound exactly: radix60 byte/low5 = 86/239, radix59 = 86/238.
+ * This proves sharpness even for arbitrary many-to-one secret maps.
  *
  * A moving lookup/state, symbol splitting, or extra side information can
  * escape these fixed-function bounds. No LP2 key or plaintext is inferred.
@@ -241,9 +254,15 @@ function unorderedAnyFixedFunctionCapacity(grid,register) {
   const constructiveInjectiveWitnessMatches=sources.reduce((n,size,j)=>
     n+Math.min(size,targets[j]||0),0);
   const markerCount=input.get(29);
+  const redCounts=sorted(new Map([...input].filter(([symbol])=>
+    symbol!==29)));
+  const redHighTypes=redCounts.filter(n=>n>=9).length;
+  const afterMarkerHighSlots=targets.slice(1).filter(n=>n>=9).length;
+  const extraCapacityObstruction=redHighTypes>afterMarkerHighSlots?1:0;
   const allSecretUpperBound=register==="byte"
     ?targets.slice(0,sources.length).reduce((a,b)=>a+b,0)
-    :values.length-Math.max(0,markerCount-targets[0]);
+    :values.length-Math.max(0,markerCount-targets[0])-
+      extraCapacityObstruction;
   assert.equal(constructiveInjectiveWitnessMatches,allSecretUpperBound);
   return {register,eventTypes:sources.length,outputTypes:targets.length,
     eventCount:values.length,maxOutputMultiplicity:targets[0],
@@ -315,9 +334,14 @@ function run() {
     fullByte:unorderedAnyFixedFunctionCapacity(rows,"byte"),
     lowFive:unorderedAnyFixedFunctionCapacity(rows,"low5")
   };
+  const orderFree59={
+    fullByte:unorderedAnyFixedFunctionCapacity(rows59,"byte"),
+    lowFive:unorderedAnyFixedFunctionCapacity(rows59,"low5")
+  };
   assert.deepEqual([
-    orderFree.fullByte.maximumMatches,orderFree.lowFive.maximumMatches
-  ],[86,239]);
+    orderFree.fullByte.maximumMatches,orderFree.lowFive.maximumMatches,
+    orderFree59.fullByte.maximumMatches,orderFree59.lowFive.maximumMatches
+  ],[86,239,86,238]);
   const plantedUnorderedLow5=syntheticAlignedGrid(order);
   assert.equal(unorderedAnyFixedFunctionCapacity(
     plantedUnorderedLow5,"low5").maximumMatches,256);
@@ -364,7 +388,7 @@ function run() {
     matchingPositions:locations,
     independentEventClockNull:cyclicEventClock(rows,order),
     allSecretSymbolFunctionBounds:unknownMaps,
-    allEventOrdersAndInjectiveAlphabetCapacity:orderFree,
+    allEventOrdersAndAnyFixedAlphabetCapacity:{base60:orderFree,base59:orderFree59},
     originalMirrorSerpentineCounterchecks:snakes,
     plantedPositive:{
       score:controls.syntheticTrueSource.historicalScore,
