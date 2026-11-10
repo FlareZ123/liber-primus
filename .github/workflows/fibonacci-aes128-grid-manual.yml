@@ -16,3 +16,5 @@ jobs:
         run: node sims/fibonacci_aes128_grid_key.cjs
       - name: Original LP2 Fibonacci-selected grid key and rank28 exact inverse
         run: node sims/fibonacci_grid_selector_rank28.cjs
+      - name: Source-key AES128 with keyless within-word insertion drift
+        run: node sims/fibonacci_grid_keyless_null_word_inverse.cjs
