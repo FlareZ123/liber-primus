@@ -15,3 +15,7 @@ Original scans 24.jpg/p7, 40.jpg/p23 and 73.jpg/p56 reuse a reflected five-point
 ## Next meaningful cryptanalysis
 
 Model source-independent continuous antirepetition state across *all* physical page, word and line boundaries, but seek a forward generator that predicts the selected lag5 S echo and lag6 T effects on untouched ciphertext. Prior repo studies have many constrained negatives; prioritize a real original-ciphertext inversion and heldout prediction, not new postselected language-scoring claims. Use the original red/rubric annotations when a key source is motivated. Read recent Critic messages for source-exact 51-rune red page53 contract.
+
+## Physical line source-visual key test
+
+First-rune p=1/50001 after page-rotation null, chi-square 78.29749 over594; last glyph p0.612, red-free first chi73.9085. Printed glyph typesetting is confound, no decipherment. Source-specific visual coordinate pad on LP2 p28/42 collapses Ssym65.2007 at 269 rune offsets to6.70270 at259 matched visual cells (rank1402/1485). LP1-register planted with q=.81 antirepeat gives only9/5000 low as real. Runnable `sims/physical_layout_keytests.cjs`, reports updated. This weakens an image grid key hypothesis; does not preclude continuous key. No original plaintext.

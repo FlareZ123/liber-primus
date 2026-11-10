@@ -275,3 +275,11 @@ expanding general language-model search. Additional tests must preserve
 the possibility of an unknown anti-doublet step, since the matched
 true-key controls are model-specific. No LP2 plaintext or key has been
 recovered.
+
+## Source-printed coordinate key schedule: discriminating negative
+
+The previously selected pair **LP2 p28/p42** has a striking change under a *source-visual* alignment choice. When corresponding glyphs are compared by their **printed line number and rune column within that line**, only **259 pairs** align and the same symmetrized residue statistic is **6.7027027** (nine identical glyphs), ranking **1,402nd of 1,485** page pairs under this orientation. By contrast, the original **continuous rune-offset** alignment uses 269 positions and yields **65.200743**, as documented above. The suspicious residue histogram depends on unbroken-stream position, not on direct printed row/column coincidence.
+
+A mechanism-specific positive control is a mod-29 additive **same-visual-coordinate shared keystream** applied to independently generated GP-English-like plaintext rune labels. The label distribution is derived from 3,528 GP tokens in the published solved-LP1 Latin reference via a fixed greedy GP transliteration (K/Q→C, V→U, Z→S). Across 5,000 exact printed-line-shape controls, the same-visual-coordinate difference chi-square averages **26.290**; only **12/5,000** are as low as the real 6.7027 (add-one p **0.00260**). If each page separately applies an 81%-probability **continuous anti-doublet repair**, the planted mean is **25.344**, with only **9/5,000** at or below the real observation (add-one p **0.00200**). This specific English-register, image-grid-synchronous same-key hypothesis is weakly supported by the original data. These conditional simulations are not a test of a continuous rune-stream shared pad or of arbitrary hidden key transformations.
+
+Runnable source-exact implementation: [`sims/physical_layout_keytests.cjs`](../sims/physical_layout_keytests.cjs). No original LP2 plaintext or key has been identified.

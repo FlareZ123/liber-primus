@@ -32,3 +32,11 @@ A synthetic generator draws independent uniform tentative 29-symbol runes on exa
 This is a **distinct source-layout control** to the established cross-word endpoint result: 418 of the 539 tested physical breaks split a rune word; the suppressed equality rate remains through those wraps. It should inform the key-reset and forward-model assumptions of new ciphertext decoders.
 
 **Reproduce:** `node sims/physical_linebreak_continuity.cjs` (CommonJS, Node.js 22; no third-party packages). It verifies the canonical source contract, prints each statistic, 50,000 fixed-seed null trials and two independently motivated forward controls.
+
+## Distinct first-rune visual-column effect
+
+Source-exact parsing exposes a second possible visual-boundary constraint. The **594 printed LP2 cipher lines** have a page-marginal-adjusted Pearson chi-square of **78.297494** for the first displayed rune (29 categories), compared with only **24.201917** for the final displayed rune. For each page and rune, the expected count uses the page's exact rune composition and its original number of printed lines. The most enriched initials are `ᛠ` (EA, **38** vs **21.14** expected), `ᛈ` (P, **33** vs **20.38**) and `ᛞ` (D, **32** vs **20.17**); `ᚱ` (R, **6** vs **19.43**) and `ᛁ` (I, **9** vs **21.54**) are depleted.
+
+A **50,000-trial** null independently circularly rotates the original complete rune stream of each physical page, holding the page's printed start/end coordinates fixed. No surrogate attained the observed first-rune statistic (add-one **p = 0.000020**), whereas the last-rune statistic is ordinary (**p = 0.61195**). Even selecting the maximum across the two endpoint directions gives p = 0.000020. Discarding the 18 independently annotated **red line initials** leaves 576 black starts with chi-square **73.908540** against page-specific original rune marginals.
+
+This is evidence of a strong **physical-line-start selection effect**, not proof of a new cipher channel. The manuscript uses distinctive glyph widths and print justification; a typesetting or wrap algorithm can produce systematic character preferences at line beginnings without encoding separate plaintext. No acrostic or key has been recovered. Reproduce the original observations and surrogate null in [`sims/physical_layout_keytests.cjs`](../sims/physical_layout_keytests.cjs).
