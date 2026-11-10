@@ -15,6 +15,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const { salsa20 } = require("@noble/ciphers/salsa.js");
+const { chacha20orig } = require("@noble/ciphers/chacha.js");
 const { events, keyTables } = require("./red_256_event_key_inverse.cjs");
 
 const root = path.resolve(__dirname, "..");
@@ -83,9 +84,9 @@ function stats(values) {
  * @param {number} nonceShift
  * @returns {Uint8Array[]}
  */
-function streams(useKey, nonceShift, colOrder = [0,1,2,3,4,5,6,7]) {
+function streams(useKey, nonceShift, colOrder = [0,1,2,3,4,5,6,7], cipher = salsa20) {
   return fragments.slice(0, 28).map((items, g) =>
-    salsa20(useKey, Uint8Array.from(colOrder.map(c => grid[(g + nonceShift) % 32][c])),
+    cipher(useKey, Uint8Array.from(colOrder.map(c => grid[(g + nonceShift) % 32][c])),
       new Uint8Array(items.length)));
 }
 
@@ -195,7 +196,9 @@ const controls = [
   { name: "literal", stream: sourceStreams },
   { name: "nonceRowShiftPlus1", stream: streams(key, 1) },
   { name: "keyByteReverse", stream: streams(Uint8Array.from(key).reverse(), 0) },
-  { name: "PATIENCEcolumns", stream: streams(key, 0, [6,5,3,0,2,4,7,1]) }
+  { name: "PATIENCEcolumns", stream: streams(key, 0, [6,5,3,0,2,4,7,1]) },
+  { name: "ChaCha20orig", stream: streams(key, 0, undefined, chacha20orig) },
+  { name: "ChaCha20PATIENCE", stream: streams(key, 0, [6,5,3,0,2,4,7,1], chacha20orig) }
 ];
 const results = [];
 for (const control of controls) for (const type of ["gp29", "rank28"])
@@ -231,12 +234,19 @@ assert.equal(positive.gp29.exact, 12956);
 assert.equal(positive.rank28.exact, 12956);
 results.sort((a, b) => b.top12 - a.top12);
 console.log(JSON.stringify({
-  title: "Original LP2 32 red-run byte key and 32 grid 64-bit nonce Salsa20 inverse",
+  title: "Original LP2 32 red-run byte key and 32 grid 64-bit nonce Salsa20/ChaCha20 original inverses",
   classification: "source-motivated conditional test, not authentic key recovery",
   keyHex: Buffer.from(key).toString("hex"),
   fragmentLengths: fragments.map(f => f.length),
   registerHandling: "gp29 additive or rank28 with transparent EA repeat",
   originalBaseline: stats(fragments.slice(0,28).flat().map(item => item.c)),
+  chachaGridMessage: (() => {
+    const bytes = chacha20orig(key, new Uint8Array(8), gridCipher);
+    assert.deepEqual(chacha20orig(key, new Uint8Array(8), bytes), gridCipher);
+    return {asciiPrintable: Array.from(bytes).filter(x =>
+      (x >= 32 && x <= 126) || x === 9 || x === 10 || x === 13).length,
+      bytes: bytes.length, prefixHex: Buffer.from(bytes.slice(0, 32)).toString("hex")};
+  })(),
   gridMessage: gridTextMetrics,
   positive, resultCount: results.length,
   results,
