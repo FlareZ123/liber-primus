@@ -36,6 +36,14 @@ The **known fragment-parsing error inflated this statistic**: the obsolete 2,928
 
 Additional qualification: the harmonic family was chosen after examining the raw lag spectrum; its permutation p corrects the scan within that family, **not** the entire earlier exploratory search. A small p in this setup is **not a proof that 23 is a cipher parameter**. Whole-book/section concatenation did not retain the original fragment-based lag-23 phenomenon; the effect was page-local. A length bigram model fitted only to the small solved LP1 sample did not replicate lag23. Independent English-language texts and a mechanistic prediction are still necessary.
 
+## Printed-line position as an alternative explanation
+
+A targeted control tested whether words at the same **ordinal position within a printed line** create a 23/46 association merely through typographic line fitting. The transcript's `/` line markers allow us to assign every complete rune word a word-in-line ordinal on its starting page; a new shuffle randomly permutes words **only among identical line-position ordinals on the same physical page**, preserving page-specific layout profiles.
+
+The observed sum of lag-23 and lag-46 English log-odds means is **−0.015293**; across 1,800 fixed-seed line-slot-preserving shuffles it has mean **−0.037296**, corresponding to `z=2.494` and **fixed 23/46 upper-tail p=0.00555**. Thus simple printed-line *position* effects do not fully reproduce this particular score. Importantly, this check was devised after lag23 was selected and has **no discovery-wide correction**. A clue-derived cipher model and independent predictive confirmation remain missing.
+
+The exact test is `lineSlotConditionedTest` inside `sims/word_length_order_probe.cjs`; it passed manual [CI run 42742205598](https://github.com/FlareZ123/liber-primus/actions/runs/42742205598).
+
 ## Mechanism test: 23-step column reading fails
 
 For a simple candidate pagewise transposition, read the `k`th-spaced word positions in columns: `0,k,2k,...,1,1+k,...`. Test `k=2..33` and both column orientations. Both corrected representations again rank **k=23** first in raw Shakespeare bigram score, but the previous full 64-layout familywise permutation test on the **invalid fragment representation** returned `p≈0.372`. This evidence does not support a working transposition. A supplemental fixed 23-column boustrophedon test did not convincingly restore ordinary-English word-length dependence on both disjoint page subsets. Do **not** promote this simple reconstruction to a cipher explanation.
@@ -51,7 +59,7 @@ A mechanism, ideally suggested by a separate clue or image layout, should **pred
 - Canonical transcribed source: `resources/lp2-transcription.txt`, mirrored originally from the [rtkd/iddqd community lineage](https://github.com/krisyotam/cicada3301/blob/main/liber-primus/runes-text.txt); original scan artifacts are in `resources/liber-primus/`.
 - Span parser and regression: `sims/lp2_word_pages.cjs` and `sims/test_lp2_word_pages.cjs`.
 - Corrected deterministic experiment: `sims/word_length_order_probe.cjs`. It checks 2,896 canonical words, 12,956 runes, 55 page segments and 32 excess fragments.
-- [Successful corrected manual GitHub Actions run 42741745509](https://github.com/FlareZ123/liber-primus/actions/runs/42741745509), which ran the regression before the experiment. Prior fragment-only run [42738369401](https://github.com/FlareZ123/liber-primus/actions/runs/42738369401) is **superseded**.
+- [Successful corrected manual GitHub Actions run 42742205598](https://github.com/FlareZ123/liber-primus/actions/runs/42742205598), which ran the regression before the experiment. Prior fragment-only run [42738369401](https://github.com/FlareZ123/liber-primus/actions/runs/42738369401) is **superseded**.
 - Prior known plaintext reference: `resources/transcriptions/lp1_wulfic_canonical.txt`; Shakespeare control: `resources/control/shakespeare_first300k.txt` (original source and Git object hashes documented in `resources/transcriptions/README.md`).
 
 No recovered key, decrypted LP2 passage, or decoded message is claimed.
