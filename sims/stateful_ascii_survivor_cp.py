@@ -76,8 +76,8 @@ def allowed_prefix_intervals():
     return runs
 
 
-def make_model(packets, allowed):
-    """Create a stationary 29-row secret key subject to all original prefixes."""
+def make_model(packets, allowed, tail_octets):
+    """Create a stationary full permutation key with prefix and suffix rules."""
     model = cp_model.CpModel()
     rank = {}
     for a in range(29):
@@ -102,13 +102,37 @@ def make_model(packets, allowed):
     for pair in seen:
         model.add_allowed_assignments(
             [rank[pair]], [(d,) for d in lead_allowed])
+    # Exact low-octet constraints, independent of all more significant digits.
+    # Since 28 = 4*7, 28^(4q) is divisible by 256^q. Therefore the final
+    # q decoded ASCII bytes depend only on the final 4q base28 digits, even
+    # though the 30-digit packet is encoded as one 18-byte integer.
+    if tail_octets:
+        assert 1 <= tail_octets <= 3
+        modulus = 256 ** tail_octets
+        coefficients = [pow(28, j, modulus) for j in range(4 * tail_octets)]
+        max_sum = 27 * sum(coefficients)
+        ascii_domain = cp_model.Domain.FromValues(sorted(ASCII))
+        for index, packet in enumerate(packets):
+            last = packet[-4 * tail_octets:]
+            weighted = sum(
+                coefficients[j] * rank[last[-1 - j]]
+                for j in range(len(last)))
+            quotient = model.new_int_var(
+                0, max_sum // modulus, f"tail_carry_{index}")
+            output = [model.new_int_var_from_domain(
+                ascii_domain, f"ascii_tail_{index}_{j}")
+                for j in range(tail_octets)]
+            # Construct little-endian low bytes from the output sequence.
+            decode = sum(
+                output[j] * (256 ** j) for j in range(tail_octets))
+            model.add(weighted == modulus * quotient + decode)
     return model, rank, len(seen)
 
 
-def solve(packets, seconds=180):
+def solve(packets, seconds=120, tail_octets=1):
     """Prove infeasibility or find a satisfying complete 29-row code table."""
     intervals = allowed_prefix_intervals()
-    model, rank, distinct = make_model(packets, intervals)
+    model, rank, distinct = make_model(packets, intervals, tail_octets)
     solver = cp_model.CpSolver()
     solver.parameters.max_time_in_seconds = seconds
     solver.parameters.num_search_workers = 8
@@ -117,6 +141,7 @@ def solve(packets, seconds=180):
     name = solver.status_name(status)
     result = {
         "status": name, "seconds": solver.wall_time,
+        "exact_tail_ascii_octets_per_packet": tail_octets,
         "branches": solver.num_branches,
         "conflicts": solver.num_conflicts,
         "original_packet_constraints": len(packets),
@@ -159,14 +184,20 @@ def solve(packets, seconds=180):
 
 def main():
     packets, excluded_markers = read_original_packets()
-    result = solve(packets)
+    challenges = []
+    for q in (1, 2, 3):
+        result = solve(packets, tail_octets=q)
+        challenges.append(result)
+        print("Challenge q=" + str(q) + " status=" + result["status"], flush=True)
+        if result["status"] != "OPTIMAL":
+            break
     print(json.dumps({
         "source": str(SOURCE.relative_to(ROOT)),
         "rejected_marker_packets": excluded_markers,
         "framing": "page-local, width30, phase29, reversed digit order",
         "assumptions": "29 fixed predecessor-indexed permutations of 28",
         "ascii_bytes": "09 0a 0d 20..7e",
-        "two_high_ascii_octets": result,
+        "two_high_ascii_octets_and_exact_tail_bytes": challenges,
         "interpretation": "INFEASIBLE proves exclusion; FEASIBLE only "
         "passes one necessary prefix condition; UNKNOWN is inconclusive.",
     }, indent=2))
