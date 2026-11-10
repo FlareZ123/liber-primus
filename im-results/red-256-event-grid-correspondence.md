@@ -39,9 +39,9 @@ The [existing 32×64 visual-smoothness SFT](../sims/lp2_grid_bitplane_source_ord
 | Canonical base-60 256 bytes | `x → (13x+31) mod32` | **1,013** | 15,814 / 30,000 | **0.52715** |
 | Canonical base-60 256 bytes | multiplicative 13 mod31 plus 0/31 | **984** | 27,579 / 30,000 | **0.91930** |
 | Counterfactual five-cell variant (base-60) | `x → (13x+31) mod32` | **1,003** | 22,366 / 30,000 | **0.74554** |
-| Five-cell image-corrected base-60 bytes | multiplicative 13 mod31 plus 0/31 | **989** | 27,095 / 30,000 | **0.90317** |
+| Counterfactual five-cell variant (base-60) | multiplicative 13 mod31 plus 0/31 | **989** | 27,095 / 30,000 | **0.90317** |
 
-Null mean best31 is **1,013.92497** (canonical) or **1,016.56180** (five-cell corrected). Neither new clue-derived ordering produces a smoother 32×64 unencrypted bitmap than chance. Original printed-row and 31-state de Bruijn orders were tested in the same earlier SFT and are not new discoveries. The test is narrow: it does not exclude encrypted, compressed, transposed within-row, color or non-bitmap uses of the bytes, and recovers no hidden payload. [Successful manual Actions 42891826615](https://github.com/FlareZ123/liber-primus/actions/runs/42891826615).
+Null mean best31 is **1,013.92497** (canonical) or **1,016.56180** (counterfactual five-cell variant). Neither new clue-derived ordering produces a smoother 32×64 unencrypted bitmap than chance. Original printed-row and 31-state de Bruijn orders were tested in the same earlier SFT and are not new discoveries. The test is narrow: it does not exclude encrypted, compressed, transposed within-row, color or non-bitmap uses of the bytes, and recovers no hidden payload. [Successful manual Actions 42891826615](https://github.com/FlareZ123/liber-primus/actions/runs/42891826615).
 
 ### Five-dot left-shift register, 32-row de Bruijn traversal and black-marker phase anchor
 
