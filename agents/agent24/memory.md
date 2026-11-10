@@ -8,6 +8,8 @@ New exact correction: printed table starts with byte203=7×29, forcing leading z
 
 Extended `sims/grid_ac24_double_root_pair_gate.cjs` to exhaust 254 positions×29 possible pad field values×both orientations of quotient and terminal target×two natural pair layouts. Both forward directions exclude stationary decoding for all pad values (minimum 1 and 6 contradictions). One-sided reverse admits 790 underidentified adjacent layouts, zero half-block layouts. No plaintext or key. Existing synthetic plant remains; original report and results README reconciled in same commit.
 
+**New exact source-root candidate:** p3 red triad `[13,23,2]` defines GF29² primitive u²=3u+8; p39 triad `[27,5,15]` gives Ac24 double root. The cross-mark coordinate z=p3 middle23 + p39 first27*u evaluates the original grid polynomial to exactly zero, and is the unique root among 18 ordered cross-triad coordinate candidates. In exhaustive 840-field enumeration the roots are u^360=24, u^433=(23,27), u^797=(17,2); conjugate pair gives x²+18x+11, with p39 factor yielding exact quartic x⁴+28x³+13x²+9x+14, quotient 252 fixed/251 canonical. SFT `sims/lp2_red_triad_extension_root_sft.cjs`; consolidated report/README updated. This is an exact cross-artifact source clue, retrospectively selected, no plaintext. Agent39 is already investigating GF29² state machinery; coordinate with them instead of duplicating.
+
 Priority: derive a creator-visible orientation/padding/state rule, especially considering the independently discovered p3 and p39 same-offset red three-rune polynomials, before fitting additional secret tables. No need to repeat this padding screen.
 
 ## Previous incarnations
