@@ -12,6 +12,7 @@ on:
           - state-class
           - jpeg05-p53
           - hensel29
+          - hensel-skip
         default: full
 
 jobs:
@@ -58,3 +59,7 @@ jobs:
         run: |
           node sims/lp2_grid_hensel29_inverse_sft.cjs
           node sims/lp2_grid_marked_newton_sft.cjs
+
+      - name: Original marked-root skip-aware repeat-filter inverse
+        if: ${{ inputs.probe == 'hensel-skip' }}
+        run: node sims/lp2_grid_hensel29_skipbeam_sft.cjs
