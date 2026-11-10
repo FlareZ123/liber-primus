@@ -1,0 +1,51 @@
+name: MT exact keyskip1 near-miss oracle at 240 runes
+
+on:
+  workflow_dispatch:
+    inputs:
+      seeds:
+        description: Space-separated 32-bit integer seed candidates
+        required: true
+        default: "4271474643"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  stageb:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch pinned upstream decoder and corpus
+        uses: actions/checkout@v4
+        with:
+          repository: Dukotah/cicada3301
+          ref: f63501d8f2d835b80c30230eb89a1110fb9197d2
+          path: upstream
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /liber-primus/analysis/run_stats.py
+            /liber-primus/analysis/round11/*
+            /liber-primus/analysis/round19/G3/*
+            /liber-primus/analysis/round19/I1/*
+            /liber-primus/analysis/round19/I2/*
+            /liber-primus/analysis/campaign18_skip/*
+            /liber-primus/src/**
+            /liber-primus/data/krisyotam_runes.txt
+            /liber-primus/data/english_quadgrams.txt
+            /liber-primus/data/panels/panel-r36.npz
+      - name: Install numerical score support
+        run: python3 -m pip install --disable-pip-version-check numpy
+      - name: Full 240-rune decode plus heldout reproduction
+        env:
+          SEEDS: ${{ inputs.seeds }}
+        run: |
+          python3 sims/mt_nearmiss_stageb.py upstream/liber-primus $SEEDS | tee stageb.jsonl
+      - name: Save candidate plaintext path and exact measurements
+        uses: actions/upload-artifact@v4
+        with:
+          name: mt-nearmiss-stageb
+          retention-days: 90
+          path: stageb.jsonl
