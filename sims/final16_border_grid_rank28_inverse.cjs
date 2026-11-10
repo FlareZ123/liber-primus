@@ -3,6 +3,7 @@
  * Source-locked alternative to the previously tested final-16 AES128 direct GP
  * model: decode physical LP2 pages 40..55 using 16 source-grid 16-byte keys,
  * a predecessor-exclusion GP28 plaintext rank and explicit repeat marker 28.
+ * Include both original table transcription editions and documented base59/60 readings.
  * This is a hypothesis, not the identified historical cipher.
  * Run: node sims/final16_border_grid_rank28_inverse.cjs
  */
@@ -14,6 +15,7 @@ const {readSquare, clockwiseSpiral} = require('./fibonacci_prime_spiral.cjs');
 const {encode} = require('./grid_keyskip_viterbi.cjs');
 const corpus = require('../resources/liber-primus/lp2-corpus.json');
 const grid = require('../resources/liber-primus/lp2-grid-256.json');
+const alternateGrid = require('../resources/liber-primus/base60-grid.json');
 const pages = corpus.pages.filter(p => p.page >= 40 && p.page <= 55);
 const lengths = pages.map(p => p.indices.length);
 const original = pages.flatMap(p => p.indices);
@@ -27,13 +29,39 @@ const rowNumbers = sourceSquare.flat();
 const spiralNumbers = clockwiseSpiral().map(([r,c]) => sourceSquare[r][c]);
 assert.equal(rowNumbers.length, 16);
 assert.equal(spiralNumbers.length, 16);
-const row = Buffer.from(grid.bytes);
-const col = Buffer.from(Array.from({length:8},(_,c) =>
-  Array.from({length:32},(_,r) => grid.bytes[8*r+c])).flat());
-const layouts = {
-  'grid-row-major': Array.from({length:16},(_,i) => row.subarray(i*16,i*16+16)),
-  'grid-column-major': Array.from({length:16},(_,i) => col.subarray(i*16,i*16+16))
+const originalAlphabet = alternateGrid.alphabet;
+const radix59Alphabet = originalAlphabet.replace('f','');
+assert.equal(originalAlphabet.length,60);
+assert.equal(radix59Alphabet.length,59);
+const correctedTokens = grid.pages.flatMap(p=>p.tokens);
+const alternateTokens = alternateGrid.rows.flat();
+const decodeTokens = (tokens,alphabet) => {
+  assert.equal(tokens.length,256);
+  const values = tokens.map(token => {
+    assert.equal(token.length,2);
+    const a=alphabet.indexOf(token[0]),b=alphabet.indexOf(token[1]);
+    assert.ok(a>=0&&b>=0);
+    const value=alphabet.length*a+b;
+    assert.ok(value>=0&&value<=255);
+    return value;
+  });
+  return Buffer.from(values);
 };
+const tableVariants = {
+  'corrected-base60': Buffer.from(grid.bytes),
+  'alternate-base60': Buffer.from(alternateGrid.byte_rows.flat()),
+  'corrected-base59': decodeTokens(correctedTokens,radix59Alphabet),
+  'alternate-base59': decodeTokens(alternateTokens,radix59Alphabet)
+};
+assert.deepEqual(tableVariants['corrected-base60'],decodeTokens(correctedTokens,originalAlphabet));
+assert.deepEqual(tableVariants['alternate-base60'],decodeTokens(alternateTokens,originalAlphabet));
+const layouts={};
+for(const [variant,data] of Object.entries(tableVariants)) {
+  const transposed=Buffer.from(Array.from({length:8},(_,c) =>
+    Array.from({length:32},(_,r)=>data[8*r+c])).flat());
+  layouts[variant+'-row-major']=Array.from({length:16},(_,i)=>data.subarray(i*16,i*16+16));
+  layouts[variant+'-column-major']=Array.from({length:16},(_,i)=>transposed.subarray(i*16,i*16+16));
+}
 const sourceIv = v => {
   const b = Buffer.alloc(16);
   b.writeUInt16BE(v,0);
@@ -61,7 +89,7 @@ for (const [layout,keys] of Object.entries(layouts))
             const pads = keys.map((key,i)=>aesPad(key,vectors[i],lengths[i]));
             modes.push({layout,ivName,rankOrder,reducer,sign,advanceMarker,pads});
           }
-assert.equal(modes.length, 160);
+assert.equal(modes.length, 640);
 function digit(pad,at,base,reducer) {
   const b = pad[at];
   assert.notEqual(b,undefined);
@@ -154,7 +182,7 @@ const display=r=>({mode:{layout:r.mode.layout,iv:r.mode.ivName,rankOrder:r.mode.
 function run() {
   const results=search(original);
   for(const r of results) assert.deepEqual(transform(r.decoded,r.mode,-1),original);
-  const trueMode=modes.find(m=>m.layout==='grid-column-major'&&m.ivName==='square-spiral'&&
+  const trueMode=modes.find(m=>m.layout==='corrected-base60-column-major'&&m.ivName==='square-spiral'&&
     m.rankOrder==='sorted'&&m.reducer==='scaled'&&m.sign===-1&&!m.advanceMarker);
   assert.ok(trueMode);
   const plant=transform(trueRef,trueMode,-1);
@@ -167,6 +195,7 @@ function run() {
   const output={
     hypothesis:'16-page decorated block maps the 256 printed bytes into 16 page-specific AES-128 keys; evolving predecessor-exclusion GP28 rank and repeat marker 28.',
     sourcePages:'LP2 physical 40..55',originalRunes:3316,gridBytes:256,
+    tableVariants:Object.keys(tableVariants),
     emptyPage:50,markerCount:pages.reduce((s,p)=>s+p.indices.slice(1).filter((x,i)=>x===p.indices[i]).length,0),
     modes:modes.length,trainPages:'40..43',heldoutPages:'44..55',
     original:{rawIoc:ioc(original),rawHeldoutScore:score(original.slice(cutoff)),
