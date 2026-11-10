@@ -13,3 +13,5 @@ jobs:
           node-version: '22'
       - name: Recover six-lane phase key on genuine and held-out planted streams
         run: node sims/orbit_phase_vote_recovery.cjs
+      - name: Check rotor fixed-point English-position invariant
+        run: node sims/lag6_rotor_consistency.cjs
