@@ -281,4 +281,4 @@ function run() {
 }
 if (require.main === module)
   process.stdout.write(JSON.stringify(run(), null, 2) + "\n");
-module.exports = { mod, decrypt, encrypt, score, recover, evaluate, run };
+module.exports = { mod, decrypt, encrypt, score, recover, evaluate, run, glyphs, holdout, logRatio };
