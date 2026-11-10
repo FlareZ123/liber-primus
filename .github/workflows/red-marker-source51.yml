@@ -14,3 +14,5 @@ jobs:
         run: node sims/red_marker_key_probe.cjs
       - name: Test 213-rune whole-book red-key exact skip model on disjoint pages
         run: node sims/red_ink_keyskip_probe.cjs
+      - name: Audit all red glyphs and thirteen-dot source event geometry against base-60 grid
+        run: node sims/red_13dot_256_event_mapping.cjs
