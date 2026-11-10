@@ -36,6 +36,27 @@ Full distribution of the *maximum* repeated pair length in the 20,000 shuffles: 
 
 The CI workflow `.github/workflows/lp2-repeated-wordpair-null.yml` ran successfully as [GitHub Actions run 42754138148](https://github.com/FlareZ123/liber-primus/actions/runs/42754138148).
 
+## Sensitivity to **physical page** placement
+
+The section-level null above permits words to move between physical pages within the same section. The last unresolved physical page **55** (rune-bearing transcript segment 54, archive 72.jpg) actually contains only **16 whole word starts and two 3-rune words**, in consecutive final positions. Thus its pair remains together after shuffling within page and word length; only its *orientation* changes. The earlier copy is on physical page 27 (44.jpg), whose **52 word starts include 13 three-rune words**, with **four adjacent 3+3 slots**.
+
+This gives an exact finite **page-and-length-preserving** target-pair recurrence probability:
+
+\[
+\Pr(\text{ordered pair matches on both pages})
+=\frac{4}{13\cdot12}
+=\frac1{39}
+\approx 0.025641.
+\]
+
+The final page's two unique 3-rune tokens are randomly reversed with probability 1/2. The earlier page's two copies can occupy any of 13×12 ordered distinct 3-rune slots; four adjacent ordered slot choices match for each final orientation. This exact calculation *conditions on the two already discovered word types and their page allocation*. It does not correct all earlier exploratory selection.
+
+More conservatively, the same finite **maximum over every repeated two-word identity and every length** used in the original 20,000 section-null test was recalculated after shuffling words *within their own physical source page and exact rune length* (seed 0x05e27111, **20,000** samples). There were **491/20,000** simulated books with at least one repeated pair of combined rune length ≥6, for an add-one p of **492/20,001 = 0.0245988**. Exactly **491** also repeated a two-word pair ending at the final word position. Another **200** simulations had repetitions of shorter pairs only. This page-local familywise result matches the target-specific combinatorial probability to sampling precision.
+
+This **does not contradict** the original section-local p=0.00024999 or the separate rune-stream-generator p=0.00010; the null models condition on different source-page information. It demonstrates that **physical page layout is a major contributor** to the duplicate's apparent significance. The more stringent page-stratified control must be part of any claim that a deliberately copied cryptographic marker has been established. Source: [page-conditioned exact test](../sims/bookend_page_conditional_null.cjs); successful manual [CI 42766017212](https://github.com/FlareZ123/liber-primus/actions/runs/42766017212).
+
+---
+
 ## Second independent null: source-like random cipher with exactly 86 suppressed-doublet exceptions
 
 The word-reordering null deliberately scrambles ciphertext word endpoints. A genuinely random cipher might instead preserve the observed low rate of equal adjacent runes. We therefore ran a different generator with the **actual eight sections, all 2,896 word-length slots, empirical 29-rune symbol frequencies (in expectation), and exactly 86 adjacent identical-rune pairs among 12,948 within-section eligible positions**. For each synthetic book, the positions of those 86 repeats were sampled uniformly without replacement, non-repeat positions were filled from the source's measured rune marginals conditional on differing from the preceding symbol, and the same *maximum duplicated two-word combined rune length* statistic was recomputed across all candidate bigrams.
@@ -58,7 +79,7 @@ The first copy is on original page image [`resources/liber-primus/44.jpg`](../re
 
 **Established:** There is a peculiar exact duplication of an adjacent 3-rune + 3-rune ciphertext word pair near a section opening and at the end of the cipher on **physical LP2 page 55**, not original page 54 (a source-segment numbering ambiguity). Given these same visible words and lengths, random section-local ordering yields an equally long repeated adjacent word pair in only 4/20,000 simulations.
 
-**Limits:** The word arrangement is inherited from the author's manuscript and has other structured constraints. The null deliberately allows adjacent repeated-rune word endpoints that the ciphertext's anti-doublet process suppresses. A content-generating encryption mechanism may produce repeated words or pairs for reasons outside this shuffle null. This is one exploratory family after extensive other investigations, with no global search correction; its p-value does not establish a Cicada-intended clue, plaintext equality, cipher reuse or a key. In particular, it must **not be used to promote the invalid seventh-rune crib**.
+**Limits:** The word arrangement is inherited from the author's manuscript and has other structured constraints. Its page composition is crucial: preserving original physical pages raises the chance of some duplicated six-rune ordered pair from around 0.00025 to about **0.025** under the documented two shuffle mechanisms. The section-level null deliberately allows adjacent repeated-rune word endpoints that the ciphertext's anti-doublet process suppresses. A content-generating encryption mechanism may produce repeated words or pairs for reasons outside this shuffle null. This is one exploratory family after extensive other investigations, with no global search correction; its p-value does not establish a Cicada-intended clue, plaintext equality, cipher reuse or a key. In particular, it must **not be used to promote the invalid seventh-rune crib**.
 
 **Cryptanalytic next step:** Treat the six runes as a potential repeated ciphertext phrase occurring at a section opening and at book end. Compare candidate generators' probability of repeating both full ciphertext words under identical versus independent plaintext contexts, with stringent controls for cipher anti-repeat and word boundary layout. Require a recoverable key or a held-out plaintext prediction before interpreting them.
 
