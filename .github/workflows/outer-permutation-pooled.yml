@@ -16,3 +16,5 @@ jobs:
         run: |
           node --check sims/outer_permutation_pooled_sections.cjs
           node sims/outer_permutation_pooled_sections.cjs
+      - name: Independent planted and real heldout with shuffled-key controls
+        run: node sims/outer_permutation_pooled_holdout.cjs
