@@ -94,11 +94,16 @@ function control(source){
   synthetic.push(out);offset+=length;
  }
  const back=inverse(synthetic,p,"field28",-1);
- let recovered=0;
- for(let j=0;j<pages.length;j++)for(let i=1;i<pages[j].length;i++){
-  assert.equal(back[j][i],plain[recovered+j+i]); // overwritten below by page-relative computation
+ let recovered=0,base=0;
+ for(let j=0;j<pages.length;j++){
+  for(let i=1;i<pages[j].length;i++){
+   assert.equal(back[j][i],plain[base+i]);
+   recovered++;
+  }
+  base+=pages[j].length;
  }
- return {synthetic,back};
+ assert.equal(recovered,12901);
+ return {synthetic,back,recovered};
 }
 function main(){
  const source=src(),all=[];
