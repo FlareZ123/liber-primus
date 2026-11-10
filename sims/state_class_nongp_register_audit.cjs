@@ -465,7 +465,7 @@ function main() {
       unknown_runes: unknownRunes,
       page_initial_IVs: pageInitialPositions.length,
       all_13_dot_marks: marks13.length,
-      13_dot_marks_inside_unknown_stream: unknownMarks13.length,
+      "13_dot_marks_inside_unknown_stream": unknownMarks13.length,
       adjacent_equal_runes_within_pages: repeats.length,
       repeats_at_page_initials: repeatAtPageInitial,
       repeats_at_or_immediately_after_13_dot_marks: repeatAtMarkerOrAdjacent
