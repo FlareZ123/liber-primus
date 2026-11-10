@@ -200,19 +200,36 @@ function syntheticAlignedGrid(order) {
 
 
 /**
- * Exact alphabet-capacity theorem with UNRESTRICTED event reordering.
- * A single injective source-symbol map may independently relabel all 30
- * original event types to either 256 full-byte labels or 32 low-five labels.
- * Positions, columns, pages, PATIENCE and original source chronology are
- * completely unrestricted. The optimal assignment pairs descending
- * frequencies: min(a,c)+min(b,d) >= min(a,d)+min(b,c) for a>=b,c>=d.
- * Thus this is the sharp maximum for every global codebook and ordering.
- * A distinct position-dependent mapping or true state can escape it.
+ * Exact source-original capacity for EVERY fixed deterministic function from
+ * the 30 symbol types to printed bytes or low-five-bit grid residues, with
+ * EVERY permutation of the 256 source events allowed. The function may be
+ * noninjective and is entirely secret.
  *
- * @param {number[][]} grid
- * @param {"byte"|"low5"} register
+ * Upper witnesses:
+ * - Full byte: at most 30 distinct output byte labels can be used. The 30
+ *   most frequent original grid byte labels have total mass 86.
+ * - Low five bits: all 31 copies of the original single 13-dot symbol must
+ *   map to one output label, but each original low-five label occurs <=14
+ *   times. At least 17 events must therefore differ, regardless of order.
+ *
+ * Lower witnesses: choose distinct output labels for the 30 event types in
+ * descending-frequency order, then rearrange events arbitrarily. The exact
+ * number of assignable equal labels is sum(min(sourceCount,outputCount)).
+ * This realizes the respective 86 and 239 upper bounds, proving sharpness
+ * even when arbitrary many-to-one maps are allowed.
+ *
+ * A moving lookup/state, symbol splitting, or extra side information can
+ * escape these fixed-function bounds. No LP2 key or plaintext is inferred.
+ *
+ * @param {number[][]} grid Original 32-by-8 byte table.
+ * @param {"byte"|"low5"} register Output label family.
+ * @returns {{register:string,eventTypes:number,outputTypes:number,
+ *  eventCount:number,maxOutputMultiplicity:number,sourceMarkerCount:number,
+ *  maximumMatches:number,allSecretUpperBound:number,
+ *  constructiveInjectiveWitnessMatches:number,
+ *  minimumPositionDependentEdits:number}}
  */
-function unorderedInjectiveCapacity(grid,register) {
+function unorderedAnyFixedFunctionCapacity(grid,register) {
   const input=new Map(),output=new Map();
   for(const v of values)input.set(v,(input.get(v)||0)+1);
   for(const row of grid)for(const byte of row) {
@@ -221,12 +238,18 @@ function unorderedInjectiveCapacity(grid,register) {
   }
   const sorted=m=>[...m.values()].sort((a,b)=>b-a);
   const sources=sorted(input),targets=sorted(output);
-  const maximumMatches=sources.reduce((n,size,j)=>
+  const constructiveInjectiveWitnessMatches=sources.reduce((n,size,j)=>
     n+Math.min(size,targets[j]||0),0);
+  const markerCount=input.get(29);
+  const allSecretUpperBound=register==="byte"
+    ?targets.slice(0,sources.length).reduce((a,b)=>a+b,0)
+    :values.length-Math.max(0,markerCount-targets[0]);
+  assert.equal(constructiveInjectiveWitnessMatches,allSecretUpperBound);
   return {register,eventTypes:sources.length,outputTypes:targets.length,
     eventCount:values.length,maxOutputMultiplicity:targets[0],
-    sourceMarkerCount:input.get(29),maximumMatches,
-    minimumPositionDependentEdits:values.length-maximumMatches};
+    sourceMarkerCount:markerCount,maximumMatches:allSecretUpperBound,
+    allSecretUpperBound,constructiveInjectiveWitnessMatches,
+    minimumPositionDependentEdits:values.length-allSecretUpperBound};
 }
 
 /**
@@ -289,18 +312,18 @@ function run() {
   assert.equal(controls.plantOneSecretFunction,256);
   assert.equal(controls.plantEightSecretColumnFunctions,256);
   const orderFree={
-    fullByte:unorderedInjectiveCapacity(rows,"byte"),
-    lowFive:unorderedInjectiveCapacity(rows,"low5")
+    fullByte:unorderedAnyFixedFunctionCapacity(rows,"byte"),
+    lowFive:unorderedAnyFixedFunctionCapacity(rows,"low5")
   };
   assert.deepEqual([
     orderFree.fullByte.maximumMatches,orderFree.lowFive.maximumMatches
   ],[86,239]);
   const plantedUnorderedLow5=syntheticAlignedGrid(order);
-  assert.equal(unorderedInjectiveCapacity(
+  assert.equal(unorderedAnyFixedFunctionCapacity(
     plantedUnorderedLow5,"low5").maximumMatches,256);
   const plantedUnorderedFull=rows.map((row,r)=>row.map((_,col)=>
     (7*values[8*r+col]+11)%256));
-  assert.equal(unorderedInjectiveCapacity(
+  assert.equal(unorderedAnyFixedFunctionCapacity(
     plantedUnorderedFull,"byte").maximumMatches,256);
   const snakes={
     reverseOdd:serpentinePermutationGate(rows,order,true),
