@@ -78,7 +78,7 @@ function fit(c,p,before,direction){
     for(const second of allowed(c,p,1,before)){
       let a=first,b=second,possible=true;
       for(let i=2;i<c.length;i++){
-        const n=next(b,a,direction);
+        const n=next(a,b,direction);
         if(!allowed(c,p,i,before).includes(n)){
           possible=false;break;
         }
@@ -138,7 +138,7 @@ function encipher(plaintext,direction,random){
   for(const word of plaintext){
     const pad=[random()%29,random()%29],c=[];
     for(let i=2;i<word.length;i++)
-      pad.push(direction==="iid"?random()%29:next(pad[i-1],pad[i-2],direction));
+      pad.push(direction==="iid"?random()%29:next(pad[i-2],pad[i-1],direction));
     for(let i=0;i<word.length;i++){
       const key=direction==="iid"&&i<2?random()%29:pad[i];
       const raw=mod(word[i]+key);
