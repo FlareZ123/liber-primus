@@ -30,7 +30,7 @@ The same original two red headings can be tested under **two inserted ciphertext
 
 | Source | 0 omitted | 1 omitted | 2 omitted |
 |---|---:|---:|---:|
-| Page 3, 11-rune word | 1 | 45 | 2,811 |
+| Page 3, 11-rune word | 1 | 45 | 2,781 |
 | Page 27, 12-rune word | 0 | 12 | 795 |
 
 For every allocation of a **total of zero, one, two or three omissions** between the two original words, the global-substitution candidate intersection is **empty**. At exactly **four omissions, two in each word**, the first possible pair appears: the pinned lexicon contains the candidate `lymphangio` (page 3, delete positions 1 and 5) paired with `untroubled` (page 27, delete positions 4 and 11). This is an *existence example under a highly permissive model*, not recovered plaintext; the first word is an obscure dictionary entry and the pair has no independent semantic or cryptographic authentication.

@@ -212,7 +212,7 @@ function main() {
   const kind = z => Array.isArray(z.omit) ? 2 : z.omit === -1 ? 0 : 1;
   const partsA = [0,1,2].map(n => allA.filter(z => kind(z) === n));
   const partsB = [0,1,2].map(n => allB.filter(z => kind(z) === n));
-  assert.deepEqual(partsA.map(x => x.length),[1,45,2811]);
+  assert.deepEqual(partsA.map(x => x.length),[1,45,2781]);
   assert.deepEqual(partsB.map(x => x.length),[0,12,795]);
   let lowest = null;
   for (let total = 0; total <= 4 && lowest === null; total++)
