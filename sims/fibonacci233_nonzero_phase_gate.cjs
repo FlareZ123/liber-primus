@@ -14,7 +14,7 @@
  * counts are exactly preserved by every possible secret phase permutation.
  *
  * Source-native controls scan ALL contiguous 12,815-symbol non-EA GP windows
- * from Shakespeare, Gibran, and Emerson, not an arbitrary set of 300 samples.
+ * from Shakespeare, Gibran, Emerson and original Latin Vulgate, rather than a sample.
  * Each synthetic source-native plant uses a hidden independent permutation
  * in every row, replays the 86 original marker slots, and checks every
  * nonmarker plaintext and all 12,956 ciphertext glyphs by exact inverse.
@@ -149,6 +149,29 @@ function nativeGP(content) {
  * native-GP source windows of exactly DATA_LENGTH. Runs in O(N*28).
  * @param {number[]} source
  */
+/**
+ * Parse the independently archived Latin Vulgate GP29 one-word-per-line
+ * source. Its digit alphabet is explicitly documented in the original
+ * resource and differs from canonical transliteration of modern English.
+ * @param {string} text
+ * @returns {number[]}
+ */
+function latinVulgateGP(text) {
+  const alphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
+  const out = [];
+  for (const line of text.split(/\r?\n/u)) {
+    const word=line.trim();
+    if (!word || word.startsWith("#")) continue;
+    for (const char of word) {
+      const rune=alphabet.indexOf(char);
+      assert.ok(rune>=0 && rune<29,"Unexpected Latin GP index character");
+      if (rune!==28)out.push(rune);
+    }
+  }
+  assert.equal(out.length,204511);
+  return out;
+}
+
 function minMaxLetter(source) {
   assert.ok(source.length >= DATA_LENGTH);
   const counts = new Int32Array(28);
@@ -412,6 +435,8 @@ function run() {
   const ranks = Object.fromEntries(MODES.map(mode=>[mode,rankPages(mode)]));
   const sources=Object.fromEntries(Object.entries(CONTROLS).map(([name,file])=>
     [name,nativeGP(read(file))]));
+  sources.LatinVulgate=latinVulgateGP(read(
+    "resources/control/latin-vulgate-gp-wholewords.txt"));
   const minima=Object.fromEntries(Object.entries(sources).map(([name,values])=>
     [name,{...minMaxLetter(values),
       phase466:minPhaseEqualPairs(values,466)}]));
@@ -444,5 +469,5 @@ function run() {
 }
 if(require.main===module)console.log(JSON.stringify(run(),null,2));
 module.exports={decodeRank,encodeRank,rankPages,gate,nativeGP,
-  minMaxLetter,minPhaseEqualPairs,topKCapacity,sourceTopKFloor,
+  minMaxLetter,minPhaseEqualPairs,latinVulgateGP,topKCapacity,sourceTopKFloor,
   allSecretPeriodGate,positive,run};

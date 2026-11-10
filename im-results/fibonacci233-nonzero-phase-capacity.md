@@ -55,7 +55,7 @@ The period-233 book key has about **55 rank observations per phase**; a source G
 
 ## Exhaustive native GP source windows and power
 
-The independently checked-in Shakespeare, Gibran and Emerson reference texts were GP-transliterated with the 29-symbol canonical map, including conventional two-letter GP runes and fixed spelling normalization, and their GP-EA characters were **removed**. This is favorable to the candidate interpretation of the 86 authentic ciphertext doubles as separately placed EA markers: the other 12,815 positions may be filled by a contiguous window of non-EA source letters, without requiring the source's own EA positions to align.
+The independently checked-in Shakespeare, Gibran and Emerson reference texts were GP-transliterated with the 29-symbol canonical map and fixed spelling normalization. The independently sourced **Latin Vulgate New Testament** reference already records its original wordwise GP29 indices, with language-specific spelling preserved, and these are decoded from its documented `0123456789ABCDEFGHIJKLMNOPQRS` index alphabet. Each reference has its GP-EA character excluded. This is favorable to the candidate interpretation of the 86 authentic ciphertext doubles as separately placed EA markers: the other 12,815 positions may be filled by a contiguous window of non-EA source letters, without requiring the source's own EA positions to align.
 
 For *every* contiguous length-12,815 window of each reference, compute the frequency of its most common GP symbol, then minimize over all possible windows. Period-233 and page-reset 466 are impossible whenever this minimum exceeds the exact original bound above. For continuous 466, compute the *minimum same-phase equality count* over every window, which must be at most the original ciphertext count for a perfect source plaintext match.
 
@@ -64,9 +64,10 @@ For *every* contiguous length-12,815 window of each reference, compute the frequ
 | Shakespeare | 204,353 | **1,393** | **9,828** |
 | Gibran | 49,694 | **1,407** | **10,267** |
 | Emerson | 309,592 | **1,475** | **10,313** |
-| **All three** | **563,639** | **≥1,393** | **≥9,828** |
+| Latin Vulgate NT | **191,697** | **1,452** | **12,337** |
+| **All four** | **755,336** | **≥1,393** | **≥9,828** |
 
-Every original 233-period key, in either alphabet and clock, caps every plaintext GP letter at at most **1,224**, less than the minimum **1,393** in *all 563,639 reference windows*. Both page-reset 466 variants cap at at most 1,293, also below 1,393. The continuous 466 variants permit more of one letter but have **at most 6,166** source-phase equalities, strictly fewer than the minimum **9,828** in the source windows, independent of every unknown secret key.
+Every original 233-period key, in either alphabet and clock, caps every plaintext GP letter at at most **1,224**, less than the minimum **1,393** in *all 755,336 reference windows*. Both page-reset 466 variants cap at at most 1,293, also below 1,393. The continuous 466 variants permit more of one letter but have **at most 6,166** source-phase equalities, strictly fewer than the minimum **9,828** in the source windows, independent of every unknown secret key.
 
 These are exact finite-reference exclusions, *not* p-values for all possible languages, hidden source texts or ciphers. They would not refute a constructed plaintext with nearly uniform GP frequencies, a precompressed/binary intermediary, hidden clock drift, changing phase keys, variable-length tokens, symbols inserted/removed at additional unmarked positions, or any alternative state architecture.
 
@@ -77,9 +78,9 @@ The same script constructs **eight independent secret-key positive cases**, one 
 
 The same histogram data give a stronger, **all-secret majorization theorem** for arbitrary source plaintext ordering. For each `k=1,2,...,28`, sort the counts in every cipher phase and sum their `k` largest bins. A fixed secret bijection maps those bins to distinct plaintext GP letters, so the number of occurrences of the `k` most frequent plaintext letters cannot exceed this phase-summed bound. This holds for **all 28! secret permutations independently chosen in each phase**, with no assumption about which plaintext letter is most common.
 
-The executable scans the 15 predeclared top-`k` values `[1,2,3,4,5,6,7,8,10,12,14,16,20,24,27]` against all **563,639** native-GP source windows. For each `k`, it conservatively uses the *lowest* source-window top-`k` count among all three reference corpora. For instance:
+The executable scans the 15 predeclared top-`k` values `[1,2,3,4,5,6,7,8,10,12,14,16,20,24,27]` against all **755,336** native-GP source windows. For each `k`, it conservatively uses the *lowest* source-window top-`k` count among all four reference corpora. For instance:
 
-| Number of most common GP letters | Minimum across all three source corpora |
+| Number of most common GP letters | Minimum across all four source corpora |
 | ---: | ---: |
 | 1 | 1,393 |
 | 2 | 2,449 |
@@ -96,10 +97,10 @@ The result subsumes the special 233-period frequency exclusion for this precise 
 
 ## Decision and reproduction
 
-The exact 55×233 count is a useful way to make a Fibonacci clue candidate sharply testable. A **single static table of 233 or 466 secret phase permutations in the nonzero-step clock cannot hide a direct source-native GP prose stream of the three tested kinds**, even when every table entry is an unrestricted unknown mapping. Larger brute-force searches for the same table are unnecessary because both invariants hold for every possible key.
+The exact 55×233 count is a useful way to make a Fibonacci clue candidate sharply testable. A **single static table of 233 or 466 secret phase permutations in the nonzero-step clock cannot hide a direct source-native GP prose stream of the four tested source kinds**, even when every table entry is an unrestricted unknown mapping. Larger brute-force searches for the same table are unnecessary because both invariants hold for every possible key.
 
 This report makes no claim that 233 is a genuine Cicada parameter, nor that changing key schedules or GP-to-byte transports are excluded. The broader exact majorization bound makes further arbitrary-period page-reset secret-key scans unnecessary in this stated register. The next productive investigation should furnish an independently specified, recoverable evolving state or a non-GP intermediate that predicts actual original words.
 
 - [Standalone original-source CommonJS proof and independent hidden-key plants](../sims/fibonacci233_nonzero_phase_gate.cjs), Node 22.
-- [Successful manually dispatched complete CI, run 42846361933](https://github.com/FlareZ123/liber-primus/actions/runs/42846361933), using the existing [repeat-rank manual workflow](../.github/workflows/repeat-rank-periodic.yml) option `attack=fibonacci233`.
+- [Successful manually dispatched full majorization CI, run 42848676837](https://github.com/FlareZ123/liber-primus/actions/runs/42848676837), using the existing [repeat-rank manual workflow](../.github/workflows/repeat-rank-periodic.yml) option `attack=fibonacci233`.
 - [Authoritative frontier and model identification standard](../workplace/integrated-original-inversion-challenge.md).
