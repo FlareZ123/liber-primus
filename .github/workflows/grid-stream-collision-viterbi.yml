@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Invert real LP2 prefixes and source-English plants with AES/ChaCha Viterbi
         run: node sims/grid_stream_collision_viterbi.cjs
+      - name: Run original red-heading nonce grid-key rune inversion with planted controls
+        run: node sims/red_title_nonce_grid_viterbi.cjs
