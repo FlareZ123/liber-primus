@@ -8,6 +8,11 @@ on:
         type: choice
         options: [standard, prime79, prime79prefix2, prime79cpsat]
         default: standard
+      prefix_samples:
+        description: "Bounded source-language inverse candidates for surviving phase35; 0 disables"
+        required: true
+        type: string
+        default: '0'
       prefix_nodes:
         description: "Exact prefix2 CSP node cap (manual only)"
         required: true
@@ -80,6 +85,7 @@ jobs:
           PHASE_END: ${{ inputs.phase_end }}
           PREFIX_TWO_MAX_NODES: ${{ inputs.prefix_nodes }}
           PREFIX_TWO_DIRECTION: ${{ inputs.prefix_direction }}
+          PREFIX_TWO_LANGUAGE_SAMPLES: ${{ inputs.prefix_samples }}
         run: node sims/prime79_radix29_28_exact_gate.cjs
       - uses: actions/setup-python@v5
         if: ${{ inputs.probe == 'prime79cpsat' }}
