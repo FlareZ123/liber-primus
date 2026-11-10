@@ -17,9 +17,43 @@ const ROOT=path.resolve(__dirname,"..");
 const MASTER=fs.readFileSync(path.join(ROOT,"resources/transcriptions/liber_primus_master.txt"),"utf8");
 const TARGET=parseMaster(MASTER).cipherLengths;
 const K=6,BASE=32;
-const TOPICS=["philosophy","religion","mysticism","occult","esoteric","poetry"];
-const PAGES_PER_TOPIC=2;
-const MAX_BOOKS=Number(process.env.MAX_BOOKS||140);
+const REPOS=[
+  "The-KybalionA-Study-of-The-Hermetic-Philosophy-of-Ancient-Egypt-and-Greece_14209",
+  "An-Outline-of-Occult-Science_30718",
+  "Clairvoyance-and-Occult-Powers_12480",
+  "Occultism-and-Common-Sense_36730",
+  "Occult-ChemistryClairvoyant-Observations-on-the-Chemical-Elements_16058",
+  "Hidden-Symbolism-of-Alchemy-and-the-Occult-Arts_27755",
+  "Studies-in-Occultism--A-Series-of-Reprints-from-the-Writings-of-H.-P.-BlavatskyArts-The-Bless__17009",
+  "Some-Turns-of-Thought-in-Modern-PhilosophyFive-Essays_16712",
+  "Initiation-into-Philosophy_9304",
+  "The-Consolation-of-Philosophy_14328",
+  "The-Problems-of-Philosophy_5827",
+  "The-Philosophy-of-Spinoza_31205",
+  "The-Essence-of-Buddhism_18223",
+  "Outlines-of-Mahayana-Buddhism_75283",
+  "Zen-Buddhismand-Its-Relation-to-Art_43273",
+  "Essays-in-Zen-Buddhism-b-First-series_71157",
+  "Buddhism-in-the-Modern-World_44607",
+  "The-Metaphysic-of-Christianity-and-Buddhism-A-symphony_48028",
+  "A-Series-of-Lessons-in-Gnani-Yoga--The-Yoga-of-Wisdom_13407",
+  "An-Introduction-to-Yoga_4278",
+  "A-Series-of-Lessons-in-Raja-Yoga_13656",
+  "The-Yoga-Sutras-of-Patanjali--The-Book-of-the-Spiritual-Man_2526",
+  "Jnana-Yoga-Part-II-Seven-Lectures_72368",
+  "Thus-Spake-Zarathustra--A-Book-for-All-and-None_1998",
+  "Beyond-Good-and-Evil_4363",
+  "The-Joyful-Wisdom-La-Gaya-Scienza_52881",
+  "The-Dawn-of-Day_39955",
+  "Plato-and-Platonism_4095",
+  "The-Republic-of-Plato_55201",
+  "Parmenides_1687",
+  "Gorgias_57145",
+  "Theaetetus_1726",
+  "Cratylus_1616",
+  "Laws_1750"
+];
+const MAX_BOOKS=Number(process.env.MAX_BOOKS||REPOS.length);
 const MAX_BYTES=3000000;
 const MAX_WORDS=600000;
 
@@ -102,30 +136,32 @@ async function getText(url,limit=MAX_BYTES){
 
 /** @returns {Promise<object[]>} */
 async function selectBooks(){
- const ids=new Map();
- for(const topic of TOPICS)for(let p=1;p<=PAGES_PER_TOPIC;p++){
-   const url="https://gutendex.com/books?languages=en&copyright=false&topic="+encodeURIComponent(topic)+"&page="+p;
-   try{
-     const content=JSON.parse(await getText(url,500000));
-     for(const book of content.results||[]){
-       if(ids.size>=MAX_BOOKS)break;
-       const entry=Object.entries(book.formats||{}).find(([type])=>type.startsWith("text/plain"));
-       if(!entry)continue;
-       if(!ids.has(book.id))ids.set(book.id,{id:book.id,title:book.title,topic,url:entry[1]});
-     }
-   }catch(e){console.log("CATALOGUE_ERROR",JSON.stringify({topic,page:p,error:String(e)}));}
- }
- return [...ids.values()];
+  return REPOS.slice(0,MAX_BOOKS).map((repo,index)=>{
+    const id=Number(repo.match(/_(\d+)$/)[1]);
+    return {id,title:repo.slice(0,repo.lastIndexOf("_")),repo,
+      topic:"preselected-philosophical-mystical-source",
+      url:"https://raw.githubusercontent.com/GITenberg/"+repo+"/master/"+id+".txt"};
+  });
+}
+
+/** @param {object} book */
+async function fetchEdition(book){
+  try{return await getText(book.url);}
+  catch(first){
+    const fallback=book.url.replace(/(\d+)\.txt$/,"$1-0.txt");
+    try{return await getText(fallback);}
+    catch(second){throw Error("two raw paths failed: "+String(first)+"; "+String(second));}
+  }
 }
 
 async function main(){
  const books=await selectBooks();
- console.log("CATALOGUE",JSON.stringify({selection:"gutendex english public-domain topic top pages",topics:TOPICS,pagesPerTopic:PAGES_PER_TOPIC,maxBooks:MAX_BOOKS,selected:books.length,ids:books.map(b=>b.id)}));
+ console.log("CATALOGUE",JSON.stringify({selection:"frozen GITenberg public-domain English candidate repos",maxBooks:MAX_BOOKS,selected:books.length,ids:books.map(b=>b.id)}));
  const results=[];
  for(let i=0;i<books.length;i++){
    const book=books[i];
    try{
-     const text=cleanGutenberg(await getText(book.url));
+     const text=cleanGutenberg(await fetchEdition(book));
      const words=englishWords(text);
      if(words.length<300||words.length>MAX_WORDS)continue;
      const lengths=words.map(runeLength);
@@ -140,7 +176,7 @@ async function main(){
  }
  results.sort((a,b)=>(b.best?.length||0)-(a.best?.length||0));
  console.log("SUMMARY",JSON.stringify({scanned:results.length,failed:books.length-results.length,
-   selectedTopicRules:TOPICS,
+   selectedTopicRules:"frozen git repo slugs",
    top:results.slice(0,30).map(r=>({id:r.id,title:r.title,topic:r.topic,sha256:r.sha256,sourceWords:r.sourceWords,seedHits:r.seedHits,qualifying:r.qualifying,best:r.best})),
    all:{idAndMax:results.map(r=>[r.id,r.best?.length||0])}
  }));
