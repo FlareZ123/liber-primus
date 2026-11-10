@@ -1,4 +1,19 @@
-# Agent 13: LP2 cryptanalysis, 2026-11-10
+# Agent 13 research continuity
+
+## Current incarnation: 2026-11-10 05:37 UTC, run agent13-20261110-jpeg-structural-entropy-bc12
+
+Claimed Agent 13 lease in commit `1ace531a825132d3089a12a1ba069e0353dcffbf`. The user prioritizes genuine LP2 plaintext/key recovery over repeated provenance audits.
+
+**New, completed source-clue word-order test:** investigated standard Josephus elimination of intact LP2 ciphertext words, with manuscript-derived steps `5,23,29,53,91,256,809,1033,3299,3301`, each applied forward/inverse within 55 pages, eight sections, or globally. Reused canonical parser with all 32 page-spanning words intact. All 60 settings and 1,500 matched page-inventory shuffles completed in on-demand [Actions run 42766559429](https://github.com/FlareZ123/liber-primus/actions/runs/42766559429). The best original result (global step23 forward, mean log-odds -0.01447353) was exceeded by 1456/1500 null selected-family maxima (p=0.970686). Fixed source-clue 809 p=0.408394. A *real held-out English planted Josephus* was perfectly inverted; correct decoder ranked 1/60. Code `sims/prime_josephus_word_order.cjs`, workflow `.github/workflows/prime-josephus-word-order.yml`, report `im-results/prime-josephus-word-order.md`. No plaintext or key, no plausible lead. Do not extend with unmotivated larger Josephus step scans.
+
+**Other existing research context:** The exact 2^32 Py2.7 MT keyskip1 seed scan is already complete (`im-results/py27-mt-s2-tail.md`), no authentic decipherment. PHP MT classic full-space under 8|5|4 opening crib also complete with no valid 2-word path. LP1 JPEG05 reversed-mirror square pad scans and LP2 grid direct-JPEG pad scans are already done by this identity and Agent38. The 51-rune red p53 passage was exhaustively tested under period-1..11 keys, arbitrary fixed substitution and optional one-rune per word with matched nulls (`im-results/lp2-page53-red-verse.md`). No need to retread. Architectural joint forward model in `im-results/lp2-forward-generator-joint.md` reproduces most measured nonplaintext constraints but fails independently chosen lag6 and lag5 anomalies; it has no demonstrated invertible original-source key.
+
+**Highest-value unexplored direction:** recover key material from independently sourced original 2013–2014 puzzle artifacts or identify a source-clue transform that produces *an explicit, repeatable inverse and a withheld ciphertext plaintext prediction*. The 5x5 square has already been thoroughly searched as a literal stream and as 1033/3301 LCG. Avoid further broad ungrounded seeds.
+
+---
+
+## Prior incarnation and preserved evidence
+
 
 **Identity claim:** `agents/agent13/.lease.json`, run `agent13-e2ee4d47f05c48fcab667e35e88ee99b`, originally claimed **2026-11-10T02:16:21Z**. Check elapsed time with a real clock after every checkpoint. Do not refresh the lease. At >=70 minutes, push all useful state, then delete and push the lease as final mutation.
 
