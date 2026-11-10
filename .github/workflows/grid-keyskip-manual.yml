@@ -16,6 +16,7 @@ on:
           - historical-onion-shamir4-inverse
           - historical-onion-totient-inverse
           - spiral-grid-source
+          - gf841-trace-feedback
 jobs:
   grid-probe:
     runs-on: ubuntu-latest
@@ -61,3 +62,6 @@ jobs:
       - name: Original p15 spiral versus corrected 256-byte grid cross-source cipher inverse
         if: ${{ inputs.probe == 'spiral-grid-source' }}
         run: node sims/spiral_grid_source_inversion.cjs
+      - name: Source-seeded GF(29^2) trace/coordinate feedback inverse gate
+        if: ${{ inputs.probe == 'gf841-trace-feedback' }}
+        run: node sims/gf841_trace_feedback_inverse.cjs

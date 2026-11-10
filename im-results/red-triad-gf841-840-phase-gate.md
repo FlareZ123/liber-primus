@@ -43,6 +43,25 @@ By comparison, the trivial uniform baseline is \(1/29=0.03448276\). Three genuin
 
 **Decision:** The source's natural primitive \(\mathrm{GF}(29^2)\) clock supplies no direct native-GP29 substitution/permutation explanation of the unknown manuscript under the declared book, section or fixed-page-reset conventions. This excludes every secret periodic permutation within this exact architecture in one computation, without searching its vast key space. The controls are overlapping text windows, so 0/900 is a descriptive source-disjoint comparison rather than a discovery-adjusted universal probability or a proof against every possible language.
 
-The source's field generator remains mathematically real and potentially relevant to **an evolving feedback state, non-GP intermediate representation, transposition or source-specified key schedule**. Those architectures need a separate, original-data forward operation before an inverse would be meaningful.
+## Source-seeded feedback test
 
-**Reproducer:** [single runnable CommonJS test](../sims/red_triad_gf841_phase_invariant.cjs). It derives the algebra directly from the committed original corpus, checks both exact grid divisions, computes the collision invariant, evaluates 900 source windows, and exactly decrypts nine native-GP planted ciphertexts, each 12,956 runes long. No unknown LP2 output is silently treated as plaintext.
+A minimal next use of the source-derived field takes the p3 primitive element as the state multiplier and the independently marked Ac=24 as the initial scalar state. For S_i=a_i+b_i*u, the four natural scalar projections are the two basis coordinates, field trace, and field norm:
+
+- coordinate a;
+- coordinate b;
+- trace Tr(S_i)=2a_i+3b_i;
+- norm N(S_i)=a_i^2+3a_i*b_i-8b_i^2.
+
+The tested encoder is `C_i=P_i+epsilon*pi(S_i) mod 29`, with state update `S_(i+1)=u*S_i+X_i`, where X_i is either P_i or C_i. The initial state is S_0=24; both signs epsilon=±1 are tested. Three literal clocks are used: continuous book, reset at each physical page, or reset at the eight canonical section starts. This is a two-coordinate GF(29^2) feedback register with a fully specified sequential inverse; it uses no fitted S-box or free key.
+
+The complete finite family has **48 variants** (2 feedback choices × 3 clocks × 2 signs × 4 projections). Every variant:
+- re-encrypts all **12,956/12,956** original symbols exactly after inversion;
+- recovers a **12,956-rune source-native Shakespeare GP plant exactly**; and
+- rejects the same plant when decoded with the wrong initial seed 25.
+
+The original outputs nevertheless remain random-like. Across all 48 variants, IoC is **0.03445194–0.03452904** and average Shakespeare-GP trigram log score is **−13.32244 to −13.22560 nats/rune**. The best candidate is ciphertext feedback, continuous book clock, negative sign and the first-coordinate projection, at **−13.22560**. In 300 evenly spaced, equal-length windows from each of Shakespeare, Gibran and Emerson, the lowest native-GP trigram score is **−8.40037** and the lowest IoC is **0.05754412**. Thus even the best of these 48 original inverses is far outside the native-GP reference range. These overlapping reference windows are descriptive controls, not a discovery-adjusted probability.
+
+**Decision:** this rejects the source-seeded linear-multiplier feedback family with the four canonical GF(29^2) scalarizations, both plaintext/ciphertext feedback choices, both arithmetic signs, and book/page/canonical-section clocks. It does **not** reject arbitrary nonlinear field maps, quotient-pair-driven multiplicative schedules, different non-GP output registers, or other source-selected state updates. The canonical section test uses the repository's eight canonical sections; it does not resolve the independent p32/p33 section-clock ambiguity. Word- and line-reset variants were not tested.
+The field generator remains mathematically real, but two natural direct uses now fail: arbitrary fixed-phase GP29 bijections and the above source-seeded scalar-feedback family. The remaining live possibilities are a genuinely different nonlinear or quotient-driven state, transposition, or a non-GP intermediate register whose extraction and inverse are fixed independently of the unknown plaintext. None has yet yielded an authentic LP2 passage.
+
+**Reproducers:** [fixed-phase invariant](../sims/red_triad_gf841_phase_invariant.cjs) and [source-seeded feedback inverse](../sims/gf841_trace_feedback_inverse.cjs). Both derive their source inputs from the committed corpus, ink annotations and numeric grid; the feedback test includes exact source-native plants and wrong-seed controls.
