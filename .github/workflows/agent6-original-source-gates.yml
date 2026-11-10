@@ -1,0 +1,20 @@
+name: Agent 6 original-source inverse gates
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-input:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Exact table-flank 79-rune geometry
+        run: node sims/lp2_tendot_79_flank_sft.cjs
+      - name: Original quote shape source-corpus test
+        run: node sims/lp2_quote_fullshape_source_corpus_sft.cjs
+      - name: Missing-f prime-square reversible grid inverse
+        run: node sims/lp2_prime_square_grid_clock_sft.cjs
