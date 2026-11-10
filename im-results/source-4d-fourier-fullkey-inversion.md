@@ -6,7 +6,7 @@
 
 Earlier original-source red16 and printed-page15 4D studies used solved-native EA-containing word cribs to solve keys, giving only hundreds of original candidate states. This attack instead scores **all 29^4 = 707,281 possible initial states** under each independently selected matrix, using no fitted plaintext word or original key prior. Each candidate state is globally continuous across the original physical-page layout. All original page indices 0–27 (6,761 runes) select the key; pages28–55 (6,195 runes) are never used during optimization.
 
-Original sources, forward and inverse assumptions are the existing [red16 original-input study](red16-fibonacci-spiral-inverse.md). The three exact source-derived 4×4 transition matrices are (i) 16 original red-span GP-prime sums placed along the p15 4×4 Fibonacci spiral, (ii) the 16 printed original p15 square entries reduced modulo29, and (iii) the 16 original visually red rune-span lengths [13,16,3,11,14,12,9,11,16,19,10,8,3,8,51,9] in physical manuscript order placed clockwise along the same spiral. The third matrix is [[9,11,16,19],[12,13,16,10],[14,11,3,8],[9,22,8,3]] mod29, giving a materially different fixed source-derived state recursion. The original span counts are in [the pinned visual ink annotations](../resources/liber-primus/lp2-ink-annotations.json). The differential output convention is unchanged: for non-page-initial symbols, GP-EA (index28) emits an adjacent-equal ciphertext rune, whereas GP p∈0..27 emits the nonzero step 15^((p+K)%28) modulo29. The key tap is the first coordinate of A^t S reduced modulo29, then modulo28 for nonzero steps. Page heads use GP29 addition. The unknown key S contains exactly four F29 coordinates and has no individually fitted location, page offset, or crib.
+Original sources, forward and inverse assumptions are the existing [red16 original-input study](red16-fibonacci-spiral-inverse.md). The four exact source-derived 4×4 transition matrices now covered by the GP-language state tests are (i) 16 original red-span GP-prime sums placed along the p15 4×4 Fibonacci spiral, (ii) the 16 printed original p15 square entries reduced modulo29, (iii) the 16 original visually red rune-span lengths [13,16,3,11,14,12,9,11,16,19,10,8,3,8,51,9] in physical manuscript order placed clockwise along the same spiral, and (iv) the elementwise Euler totients of the 16 underlying Fibonacci-indexed primes in the p15 square. For (iv), the recovered prime matrix is [[43,79,149,263],[23,2,3,463],[13,7,5,829],[7817,4507,2593,1481]]; applying φ cellwise and reducing modulo29 gives A=[[13,20,3,1],[22,1,2,27],[12,6,4,16],[15,11,11,1]], with det(A)=28 mod29, so it is invertible. This fourth candidate is motivated by LP1 p05's explicit prime/totient instruction and its MOBIUS cell (GP-prime sum226), for which φ(226)=112=4×28=4φ(29); the 4×4 shape and 28-step output group suggest, but do not establish, a four-coordinate F29 state. The original span counts are in [the pinned visual ink annotations](../resources/liber-primus/lp2-ink-annotations.json). The differential output convention is unchanged: for non-page-initial symbols, GP-EA (index28) emits an adjacent-equal ciphertext rune, whereas GP p∈0..27 emits the nonzero step 15^((p+K)%28) modulo29. The key tap is the first coordinate of A^t S reduced modulo29, then modulo28 for nonzero steps. Page heads use GP29 addition. The unknown key S contains exactly four F29 coordinates and has no individually fitted location, page offset, or crib.
 
 ## New algorithm: exact finite-field ridge Fourier optimization
 
@@ -30,30 +30,53 @@ The unigram score uses 0.5-smoothed GP frequencies from the 796 previously solve
 | Red16 unigram | [12,26,5,26] | −0.811645 | **−0.916692** | 0.035329 |
 | Printed p15 unigram | [24,3,18,8] | −0.811420 | **−0.930148** | 0.035307 |
 | Visible-red-count unigram | [8,6,3,11] | −0.814951 | **−0.925797** | 0.035233 |
+| p15 φ(prime) unigram | [6,27,1,13] | −0.824824 | **−0.896837** | 0.035275 |
 | Red16 bigram | [7,26,0,27] | −1.021958 | **−1.104237** | 0.035281 |
 | Printed p15 bigram | [19,6,22,24] | −1.014708 | **−1.074075** | 0.035307 |
 | Visible-red-count bigram | [3,8,24,26] | −1.025466 | **−1.123101** | 0.035268 |
+| p15 φ(prime) bigram | [18,27,20,15] | −1.014195 | **−1.109899** | 0.035254 |
 
-Source GP positive controls encrypt 12,956 runes drawn cyclically from the established solved-Cicada GP reference using hidden states [11,7,22,3], [5,12,19,27], and [1,9,18,27] for the red16 prime-sum, printed p15, and visibly red count matrix respectively, on exactly the original printed-page boundaries and continuous source clocks. In all six objective/matrix combinations, exhaustive blind search identifies the true initial state at **rank 1/707,281**. Each positive yields **12,956/12,956 exact GP runes recovered and re-encrypted**, GP heldout IoC **0.062342**, and heldout log-ratios **+0.419661 unigram / +1.292815 bigram**. The native source used for the plant is also the source for its frequency model, so this is a genuine key-recovery positive, not an independent heldout author-detection experiment.
+Source GP positive controls encrypt 12,956 runes drawn cyclically from the established solved-Cicada GP reference using hidden states [11,7,22,3], [5,12,19,27], [1,9,18,27], and [17,5,23,9] for the red16 prime-sum, printed p15, visibly red count, and p15 φ(prime) matrices respectively, on exactly the original printed-page boundaries and continuous source clocks. In all eight objective/matrix combinations, exhaustive blind search identifies the true initial state at **rank 1/707,281**. Each positive yields **12,956/12,956 exact GP runes recovered and re-encrypted**, GP heldout IoC **0.062342**, and heldout log-ratios **+0.419661 unigram / +1.292815 bigram**. The native source used for the plant is also the source for its frequency model, so this is a genuine key-recovery positive, not an independent heldout author-detection experiment.
 
 The source-negative original heldout IoCs are near the GP29 uniform baseline 1/29 = 0.034483. No candidate recovers sustained source-native GP text under either fitted objective. The original 12,956 symbols can be exactly re-encrypted under any state; this exactness is a necessary implementation check, not evidence of an authentic historical key.
 
 ## Independent Latin-original 4D exhaustion (same cipher states, new source register)
 
-The original red heading has a published but unauthenticated Latin reading. As a language-specific challenge, freeze **the same three source matrices, 29⁴ states, complete original page split, field output transform, and independent Fourier unigram/bigram objectives**, replacing the GP reference only with the independent previously established **203,357-rune Latin Vulgate training corpus** (Luke/John/Acts/Romans) and its 2,400-rune Revelation GP holdout for the blind source-key plant. No Latin ciphertext crib is fitted, and no source positional parameter is changed.
+The original red heading has a published but unauthenticated Latin reading. As a language-specific challenge, freeze **the same four source matrices, 29⁴ states, complete original page split, field output transform, and independent Fourier unigram/bigram objectives**, replacing the GP reference only with the independent previously established **203,357-rune Latin Vulgate training corpus** (Luke/John/Acts/Romans) and its 2,400-rune Revelation GP holdout for the blind source-key plant. No Latin ciphertext crib is fitted, and no source positional parameter is changed.
 
 | Matrix / Latin objective | Training-selected state | Original heldout mean log ratio / rune | Heldout IoC | Source-correct native-GP plant heldout score |
 | --- | --- | ---: | ---: | ---: |
 | Red16 Latin unigram | [2,26,26,12] | **−1.383865** | 0.035305 | +0.526902 |
 | Printed p15 Latin unigram | [15,10,28,5] | **−1.323108** | 0.035313 | +0.526902 |
 | Visible-red-count Latin unigram | [22,1,6,19] | **−1.363608** | 0.035308 | +0.526902 |
+| p15 φ(prime) Latin unigram | [8,25,8,8] | **−1.317965** | 0.035297 | +0.526902 |
 | Red16 Latin bigram | [11,1,28,0] | **−2.855965** | 0.035306 | +1.386850 |
 | Printed p15 Latin bigram | [6,12,10,26] | **−2.972565** | 0.035259 | +1.386850 |
 | Visible-red-count Latin bigram | [3,28,16,9] | **−2.895259** | 0.035249 | +1.386850 |
+| p15 φ(prime) Latin bigram | [16,1,6,0] | **−2.880988** | 0.035230 | +1.386850 |
 
-The unmodified full enumeration places the correct hidden key first among **707,281** states for **all six** Latin native-source cipher controls, reconstructing and exactly re-encrypting **12,956/12,956** runes. The 2,400 independent Latin heldout runes are recycled to fill the original 12,956-symbol layout; this is a *synthetic key-recovery positive*, so the repeated plaintext itself does not create independent evidence for Cicada intent. The original source remains near uniform and no original Latin is recovered. The independent source-register check is a **finite two-language negative** for the declared three-matrix cipher architecture, and no stronger assertion about arbitrarily encoded non-prose is implied.
+The unmodified full enumeration places the correct hidden key first among **707,281** states for **all eight** Latin native-source cipher controls, reconstructing and exactly re-encrypting **12,956/12,956** runes. The 2,400 independent Latin heldout runes are recycled to fill the original 12,956-symbol layout; this is a *synthetic key-recovery positive*, so the repeated plaintext itself does not create independent evidence for Cicada intent. The original source remains near uniform and no original Latin is recovered. The independent source-register check is a **finite two-language negative** for the declared four-matrix cipher architecture, and no stronger assertion about arbitrarily encoded non-prose is implied.
 
-The current workflow additionally executes `GP_REGISTER=latin node sims/source_4d_fourier_fullkey_inverse.cjs`. [Completed three-matrix English-and-Latin original/full-key controls 42821696704](https://github.com/FlareZ123/liber-primus/actions/runs/42821696704).
+The current workflow executes both transparent-EA/15-step and direct-GP29-additive channels under native-GP and Latin source registers. The four JSON outputs are retained as the seven-day `source-4d-fourier-fullkey` workflow artifact. [Four-matrix English/Latin exhaustive run 42902884936](https://github.com/FlareZ123/liber-primus/actions/runs/42902884936).
+
+## Direct GP29-additive 4D source-state inversion
+
+The same four matrices were also tested under a distinct direct-additive channel,
+\[
+C_t=P_t+e_0A^tS\pmod{29},
+\]
+which enciphers every rune directly, including page heads and repeated symbols; it does not use the transparent-EA marker or the 15-step nonzero-difference register. For each matrix, all 707,281 initial states were exhaustively scored by GP unigram and adjacent-bigram likelihood, with the same physical-page 0–27 training / 28–55 frozen holdout split. The independent Latin register repeats the full enumeration without changing the matrix or clock.
+
+| Source matrix | Native GP unigram heldout (IoC) | Native GP bigram heldout (IoC) | Latin unigram heldout (IoC) | Latin bigram heldout (IoC) |
+| --- | ---: | ---: | ---: | ---: |
+| Red16 prime-sum | −0.954804 (0.034465) | −1.111116 (0.034510) | −1.386324 (0.034482) | −2.838345 (0.034513) |
+| Red16 visible-count | −0.923013 (0.034467) | −1.095299 (0.034467) | −1.249910 (0.034533) | −2.801364 (0.034533) |
+| Printed p15 square | −0.915563 (0.034503) | −1.101212 (0.034438) | −1.279063 (0.034535) | −2.948798 (0.034429) |
+| p15 φ(prime) | −0.945018 (0.034464) | −1.097671 (0.034510) | −1.332887 (0.034518) | −2.935452 (0.034512) |
+
+Every one of the 16 direct-channel matrix/register/objective positive controls recovers its predetermined hidden state at **rank 1/707,281**, restores **12,956/12,956** plaintext runes, and exactly re-encrypts the original-length ciphertext. The original heldout IoCs remain at the GP29 uniform baseline; all heldout language log-ratios remain negative. The φ-derived p15 matrix therefore supplies no English/Latin plaintext under either the transparent-EA/15-step model or this distinct direct-additive model. The small training-score advantage of some fitted states does not generalize to the frozen pages.
+
+**Scope boundary:** The author-prime-clause and binary-packet sections below retain their earlier **three-matrix** scope (red16 prime-sum, red16 visible-count, printed p15 square). They have not yet been rerun with the new p15 φ(prime) matrix; their three-matrix exclusions must not be read as four-matrix results.
 
 ## Author-prime clause complete state inversion: six original full-key tests
 
