@@ -108,11 +108,15 @@ function twoFormats(seq) {
 function reference(pathName) {
   const source = toGp(read(pathName));
   const stride = Math.max(1, Math.floor((source.length - 1589) / 2000));
-  const packed = [], native = [];
+  const packed = [], native = [], sixPacked = [], sixNative = [];
   for (let off = 0; off + 1589 <= source.length; off += stride) {
-    const r = twoFormats(source.slice(off, off + 1589));
+    const window = source.slice(off, off + 1589);
+    const r = twoFormats(window);
+    const six = sourceSixRowIoC(window);
     packed.push(r.packed);
     native.push(r.native);
+    sixPacked.push(six.packed);
+    sixNative.push(six.native);
   }
   /** @param {number[]} values @param {number} observed */
   const stats = (values, observed) => {
@@ -126,7 +130,11 @@ function reference(pathName) {
   };
   return {
     name: pathName, gpRunes: source.length, windows: packed.length,
-    packed: stats(packed, 159), native: stats(native, 93)
+    packed: stats(packed, 159), native: stats(native, 93),
+    sixOriginalLanguageIocControls: {
+      packedMin: Math.min(...sixPacked),
+      nativeMin: Math.min(...sixNative)
+    }
   };
 }
 
@@ -169,6 +177,52 @@ function hill(matrix, rows) {
     (_, j) => mod29(matrixRow.reduce((sum, x, i) => sum + x * rows[i][j], 0))));
 }
 
+
+/**
+ * Finite-field 7-point DFT. Ac / GP index24 has exact order seven in F29.
+ * Inverse uses 7^-1 = 25 mod29.
+ * @param {number[][]} rows
+ * @param {boolean} inverseMode
+ * @returns {number[][]}
+ */
+function root7Fourier(rows, inverseMode) {
+  const powers = [1, 24, 25, 20, 16, 7, 23];
+  let z = 1;
+  for (let i = 0; i < 7; i++) z = mod29(z * 24);
+  assert.equal(z, 1);
+  const factor = inverseMode ? 25 : 1;
+  return Array.from({ length: 7 }, (_, r) =>
+    Array.from({ length: rows[0].length }, (_, j) => {
+      let sum = 0;
+      for (let k = 0; k < 7; k++) {
+        const exponent = (((inverseMode ? -r * k : r * k) % 7) + 7) % 7;
+        sum += rows[k][j] * powers[exponent];
+      }
+      return mod29(factor * sum);
+    }));
+}
+/** @param {number[]} values @returns {number} */
+function indexOfCoincidence(values) {
+  const counts = Array(29).fill(0);
+  for (const x of values) counts[x]++;
+  return counts.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (values.length * (values.length - 1));
+}
+/** @param {number[]} seq @returns {{packed:number,native:number}} */
+function sourceSixRowIoC(seq) {
+  const lens = [123, 261, 271, 238, 228, 228, 240];
+  let start = 0;
+  const pageRows = lens.map((size) => {
+    const row = seq.slice(start, start + 123);
+    start += size;
+    return row;
+  });
+  return {
+    packed: indexOfCoincidence(lanes(seq, 227).slice(1).flat()),
+    native: indexOfCoincidence(pageRows.slice(1).flat())
+  };
+}
+
 function main() {
   const pageStreams = corpus.pages.slice(33, 40)
     .map((page) => page.indices.slice(page.page === 33 ? 91 : 0));
@@ -207,6 +261,28 @@ function main() {
   assert.deepEqual(hillColumnInvariants.map((r) => [r.packed, r.native]),
     [[185, 84], [152, 107], [176, 73], [163, 82]]);
 
+  // Hypothesis: the source-marked Ac24 root (order seven) supplies a 7-point
+  // DFT, with a completely arbitrary common secret pad added to every
+  // ciphertext row. The Fourier inverse isolates that pad to row zero;
+  // six plaintext GP rows must appear exactly without knowing any key.
+  const FourierRows = [
+    { name: "packed", rows: packed },
+    { name: "native", rows: native }
+  ];
+  const root7NoKeySixRowIoC = FourierRows.map(({ name, rows }) => {
+    assert.deepEqual(root7Fourier(root7Fourier(rows, false), true), rows);
+    assert.deepEqual(root7Fourier(root7Fourier(rows, true), false), rows);
+    const candidate = root7Fourier(rows, true);
+    const dual = root7Fourier(rows, false);
+    const a = indexOfCoincidence(candidate.slice(1).flat());
+    const b = indexOfCoincidence(dual.slice(1).flat());
+    assert.ok(Math.abs(a - b) < 1e-12);
+    return { name, ioc: a, preview: candidate[1].slice(0, 35)
+      .map((x) => corpus.translit[x]).join("") };
+  });
+  assert.ok(Math.abs(root7NoKeySixRowIoC[0].ioc - 0.034330591762772686) < 1e-12);
+  assert.ok(Math.abs(root7NoKeySixRowIoC[1].ioc - 0.03407574102878071) < 1e-12);
+
   // Source-native plant under 227 independent column-specific GP29 bijections.
   // Each column has an invertible affine permutation x -> 7*x + 11*j (mod29).
   const shakespeare = toGp(read("resources/control/shakespeare_first300k.txt"));
@@ -237,6 +313,22 @@ function main() {
       row.map((x, j) => mod29(x + pad[j]))), ciphertext);
   }
 
+  // Exact native-GP positive for both Fourier orientations and any key:
+  // six of seven rows recover with no key, and the seventh after subtracting
+  // the single source-invariant DC term. Verify complete re-encryption.
+  for (const invertEncoding of [false, true]) {
+    const encrypted = root7Fourier(english, invertEncoding).map((row) =>
+      row.map((x, j) => mod29(x + pad[j])));
+    const decoded = root7Fourier(encrypted, !invertEncoding);
+    assert.deepEqual(decoded.slice(1), english.slice(1));
+    const dcScale = invertEncoding ? 7 : 1;
+    const complete = decoded.map((row, i) => row.map((x, j) =>
+      i === 0 ? mod29(x - dcScale * pad[j]) : x));
+    assert.deepEqual(complete, english);
+    assert.deepEqual(root7Fourier(complete, invertEncoding).map((row) =>
+      row.map((x, j) => mod29(x + pad[j]))), encrypted);
+  }
+
   const references = [
     reference("resources/control/shakespeare_first300k.txt"),
     reference("resources/control/emerson_essays_2944.txt")
@@ -248,6 +340,8 @@ function main() {
       assert.ok(row.packed < r.packed.min);
       assert.ok(row.native < r.native.min);
     }
+    assert.ok(root7NoKeySixRowIoC[0].ioc < r.sixOriginalLanguageIocControls.packedMin);
+    assert.ok(root7NoKeySixRowIoC[1].ioc < r.sixOriginalLanguageIocControls.nativeMin);
   }
   console.log(JSON.stringify({
     status: "SOURCE-BOUND MODEL EXCLUDED; NO ORIGINAL PLAINTEXT",
@@ -256,6 +350,7 @@ function main() {
     model: "one shared arbitrary GP29 bijection per column across seven lanes",
     original: measured,
     magicSquareHillPlusUnknownSharedPad: hillColumnInvariants,
+    root7FourierKeyfreeSixRows: root7NoKeySixRowIoC,
     references,
     sourceNativePlant: "exact 1589-rune recovery and forward encryption"
   }, null, 2));
