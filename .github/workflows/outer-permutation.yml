@@ -24,3 +24,5 @@ jobs:
         run: node sims/outer_permutation_sha_probe.cjs
       - name: Try prefix-bootstrapped joint key-pointer recovery
         run: node sims/outer_permutation_context_alignment.cjs
+      - name: Measure 50 independent outer-permutation recovery controls
+        run: node sims/outer_permutation_context_power.cjs
