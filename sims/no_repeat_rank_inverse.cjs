@@ -104,7 +104,10 @@ function antiRepeatNull(){
     return out;
   });
 }
-const methods=["sorted","cyclic"],actual=Object.fromEntries(methods.map(m=>[m,count(originals,m)]));
+const methods=["sorted","cyclic"],originalRunes=originals.map(p=>p.indices);
+const actual=Object.fromEntries(methods.map(m=>[m,count(originalRunes,m)]));
+assert.equal(actual.sorted.valid,12956-55-86);
+assert(actual.sorted.n>12000);
 const REPS=500,nullCounts={sorted:[],cyclic:[]},nullZ=[];
 for(let i=0;i<REPS;i++){
   const v=antiRepeatNull();
