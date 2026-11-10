@@ -10,7 +10,7 @@ There is a natural byte-capacity candidate: **78 digits in radix 28 encode any 4
 
 Let \(\sigma\) be one entirely unknown but fixed cyclic permutation of the **29** source GP symbols. Under this proposed encoder, each base-28 digit \(d\in[0,27]\) changes the previous ciphertext glyph \(u\) to the glyph in cyclic position \(\sigma(u)+d+1\pmod{29}\). Thus adjacent output letters never repeat unless an explicit transparent marker is inserted. The receiver can invert *any* proposed order \(\sigma\) to all 165 complete rank packets, and each rank packet to exactly 47 candidate bytes using arbitrary-precision integers. The order has 29! alternatives, with one global rotation redundant.
 
-A 47-byte payload is constrained most strongly at the **first byte of each packet**: with \(A=28^{77}/256^{46}\approx4.48879745\), the first rank \(d\) is approximately the ASCII first byte divided by \(A\). This yields a cheap *order-dependent likelihood* from **the observed predecessor and first glyph at every packet boundary**. The test estimates its 28-way distribution from the independently solved native GP English in \`resources/liber-primus/lp1-plaintext-reference.txt\`. It does this separately for two source-native ASCII registers, all uppercase and all lowercase (spaces preserved), smoothing each estimated distribution with ten percent uniform prior.
+A 47-byte payload is constrained most strongly at the **first byte of each packet**: with \(A=28^{77}/256^{46}\approx4.48879745\), the first rank \(d\) is approximately the ASCII first byte divided by \(A\). This yields a cheap *order-dependent likelihood* from **the observed predecessor and first glyph at every packet boundary**. The test estimates its 28-way distribution from the independently solved native GP English in `resources/liber-primus/lp1-plaintext-reference.txt`. It does this separately for two source-native ASCII registers, all uppercase and all lowercase (spaces preserved), smoothing each estimated distribution with ten percent uniform prior.
 
 A deterministic swap-annealing search fits \(\sigma\) using **the first 108 of 164 known packet-leader transitions**. The remaining **56** packet leaders are strictly reserved for validation. Once the winner is frozen, all **7,708** bytes from packets 1–164 are decoded without further language fitting. The first packet is excluded from byte evaluation only because its predecessor before the beginning of the supplied manuscript is unspecified. No original ciphertext is edited.
 
@@ -35,11 +35,11 @@ The large gap persists in the 56 held-out packet leaders, so an attractive origi
 
 The complete read-only [CommonJS reproducer](../sims/prime78_ascii_order_inversion.cjs) asserts source counts, exact 78-to-47 capacity, planted whole-message roundtrip, all 29 recovered key positions, and original-versus-plant statistics.
 
-\`\`\`text
+```text
 node sims/prime78_ascii_order_inversion.cjs
 node sims/prime78_ascii_order_inversion.cjs --lowercase
-\`\`\`
+```
 
-The shared existing [manual base28 capacity runner](../.github/workflows/red79-base28-capacity.yml) exposes \`probe=binary47\`. Both invocations **passed on the original repository source** in [GitHub Actions run 42840890838](https://github.com/FlareZ123/liber-primus/actions/runs/42840890838), including both complete secret-key recoveries. The lowercase search uses 600 seeded independent anneals and the uppercase search 48; both select only the training score and freeze the result for the final heldout evaluation.
+The shared existing [manual base28 capacity runner](../.github/workflows/red79-base28-capacity.yml) exposes `probe=binary47`. Both invocations **passed on the original repository source** in [GitHub Actions run 42840890838](https://github.com/FlareZ123/liber-primus/actions/runs/42840890838), including both complete secret-key recoveries. The lowercase search uses 600 seeded independent anneals and the uppercase search 48; both select only the training score and freeze the result for the final heldout evaluation.
 
 This adds a reusable **actual hidden-alphabet recovery attack against a plausible byte transport**, rather than one more ciphertext-frequency screen. It removes a tightly specified ASCII framing from priority while leaving compressed/binary text and truly external key acquisition open. Its numerical block identity alone should not be promoted into a claimed Cicada cipher specification. Earlier source work on **79 outputs → 78 GP plaintext**, and the 5-to-3 octet source constraints, addresses distinct transport formats.
