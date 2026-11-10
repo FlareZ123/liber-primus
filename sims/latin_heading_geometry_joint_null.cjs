@@ -41,6 +41,8 @@ assert.equal(translit(firstPlain) + ' ' + translit(secondPlain), 'SECUENDI RATIO
  * Opposite X corners must be equidistant from opening J(13,12).
  * A candidate straight ray starts at the opening J, passes through R,
  * and ends at TH; every valid step length and all eight directions count.
+ * A secondary newly conjectured linked route uses the rectangle's last
+ * index as a southeast step from J, then totients the center into key 2.
  * @param {number[]} symbols 729 rune indices.
  * @param {boolean} includeCoordinates
  */
@@ -49,7 +51,7 @@ function countGeometries(symbols, includeCoordinates = false) {
   for (let i = 0; i < symbols.length; i++)
     if (symbols[i] === 14) xPositions.push(i);
   const anchorR = anchor[0] - 1, anchorC = anchor[1] - 1;
-  let rectangles = 0, triples = 0;
+  let rectangles = 0, triples = 0, linked = 0;
   const rectangleLocations = [], tripleLocations = [];
   for (let i = 0; i < xPositions.length; i++) {
     const ai = xPositions[i], r1 = Math.floor(ai / 27), c1 = ai % 27;
@@ -60,6 +62,14 @@ function countGeometries(symbols, includeCoordinates = false) {
           (r2 - anchorR) ** 2 + (c2 - anchorC) ** 2) continue;
       if (symbols[r1 * 27 + c2] !== 9 || symbols[r2 * 27 + c1] !== 5) continue;
       rectangles++;
+      // Exploratory coupled rule: the fourth rectangle rune is the step
+      // along the NW-to-SE key diagonal; phi(3)=phi(4)=phi(6)=2.
+      const step = symbols[r2 * 27 + c1];
+      const middleR = anchorR + step, middleC = anchorC + step;
+      const lastR = anchorR + 2 * step, lastC = anchorC + 2 * step;
+      if (step > 0 && lastR <= 26 && lastC <= 26 &&
+          [3, 4, 6].includes(symbols[middleR * 27 + middleC]) &&
+          symbols[lastR * 27 + lastC] === 2) linked++;
       if (includeCoordinates) rectangleLocations.push(
         [[r1+1,c1+1],[r1+1,c2+1],[r2+1,c2+1],[r2+1,c1+1]]);
     }
@@ -78,7 +88,7 @@ function countGeometries(symbols, includeCoordinates = false) {
           [anchor,[mr+1,mc+1],[er+1,ec+1]]);
       }
     }
-  return {rectangles, triples,
+  return {rectangles, triples, linked,
     ...(includeCoordinates ? {rectangleLocations, tripleLocations} : {})};
 }
 
@@ -90,6 +100,7 @@ function rng(seed) {
 const original = countGeometries(grid, true);
 assert.equal(original.rectangles, 1);
 assert.equal(original.triples, 1);
+assert.equal(original.linked, 1);
 assert.deepEqual(original.rectangleLocations[0],
   [[6,3],[6,9],[24,9],[24,3]]);
 assert.deepEqual(original.tripleLocations[0],
@@ -103,6 +114,7 @@ assert.equal(movable.length, 715);
 const originalValues = movable.map(i => grid[i]);
 const random = rng(0x24131329);
 let rFound = 0, tFound = 0, both = 0, rSum = 0, tSum = 0;
+let linkedFound = 0, linkedSum = 0;
 for (let b = 0; b < n; b++) {
   const values = originalValues.slice();
   for (let j = values.length - 1; j > 0; j--) {
@@ -111,7 +123,9 @@ for (let b = 0; b < n; b++) {
   }
   const shuffled = grid.slice();
   for (let j = 0; j < movable.length; j++) shuffled[movable[j]] = values[j];
-  const {rectangles, triples} = countGeometries(shuffled);
+  const {rectangles, triples, linked} = countGeometries(shuffled);
+  linkedSum += linked;
+  if (linked) linkedFound++;
   rSum += rectangles;
   tSum += triples;
   if (rectangles) rFound++;
@@ -128,9 +142,11 @@ console.log(JSON.stringify({
     fixedFirst13RuneIndices: true, fixedAnchorJ: anchor, movableCells: movable.length,
     shufflePreservesComplete729RuneHistogram: true,
     seed: '0x24131329', trials: n, rectangleFound: rFound,
-    tripleFound: tFound, jointFound: both,
+    tripleFound: tFound, jointFound: both, linkedFound,
     meanRectangleCount: rSum / n, meanTripleCount: tSum / n,
-    pRectangle: p(rFound), pTriple: p(tFound), pJoint: p(both)
+    meanLinkedCount: linkedSum / n,
+    pRectangle: p(rFound), pTriple: p(tFound), pJoint: p(both),
+    pLinked: p(linkedFound)
   },
   caveat: 'Target words, key families, anchor and geometric conditions came from a published fitted proposal. These tails are conditional, not multiplicity-adjusted discovery probabilities.'
 }, null, 2));
