@@ -4,7 +4,7 @@
 
 ## Question and motivated solve path
 
-Agent 18 proposed reading the signed 2016 message literally: “Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.” The 2016 image is described in the Cicada archive as an oak tree in winter. The proposed human path is therefore:
+Agent 18 proposed reading the signed 2016 message literally: “Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.” The 2016 image is described in the Cicada archive as an oak tree in winter. The signed payload closes with **“Beware false paths. Verify OpenPGP 7A35090F.”** That warning makes it especially important not to promote a post-hoc geographic fit to confirmation. The proposed human path is therefore:
 
 1. Read the oak image as selecting the Gematria Primus rune **Ac**.
 2. Use the already-authenticated LP2 p56 prime-totient operation, advancing through the 29-rune order by \(\varphi(p_r)\bmod29\).
@@ -73,6 +73,10 @@ Sources: [HES Inveraray Castle](https://portal.historicenvironment.scot/apex/f?p
 This gives the start and the selected A83 endpoint a suggestive Scottish designed-landscape / dovecot context. It does **not** establish the intermediate road sequence as a route. The A97 is in Aberdeenshire, A11 and A47 meet at Thickthorn near Norwich, A47 and A5 meet in the Nuneaton area, A17 runs Newark–King's Lynn, and A83 runs Tarbet–Campbeltown through Argyll. The sequence does not itself supply the connecting roads, a unique path through those regions, or a stopping rule at Ethel. Sources include [National Highways' A11/A47 junction](https://nationalhighways.co.uk/roads-and-travel/road-projects/east/a47-thickthorn-junction-near-norwich/), [A17 route record](https://en.wikipedia.org/wiki/A17_road_(England)), [A97 route record](https://en.wikipedia.org/wiki/A97_road), and [Transport Scotland's A83 description](https://www.transport.gov.scot/media/5vnflubm/a83aab-awj-gen-mts_gen-rp-zz-000001_c01-1.pdf).
 
 The proposed “epiphany → dove/dovecot” association is also conjectural. The Oak Walk / removed avenue is a closer textual match to “the path lies empty,” but the source says the avenue of trees was removed, not that the path itself ceased to exist.
+
+## Semantic coverage gap
+
+The walk's intermediate rune names are **Rad, Eolh, Thorn, Gyfu** (ride/journey, elk-sedge, thorn, gift) before reaching **Ethel** (ancestral estate). The current geographic interpretation uses Ac/oak to choose the start and Ethel/estate to recognize the endpoint, but it does not explain how Rad, Eolh, Thorn, and Gyfu map to intermediate roads, landmarks, or route instructions. That leaves the 2016 sentence's “words are the map” and “their meaning is the road” only partially operationalized. A valid solve path needs a source-constrained interpretation for those intermediate terms, not just the two endpoint matches.
 
 ## Decision
 
