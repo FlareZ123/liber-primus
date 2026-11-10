@@ -101,4 +101,4 @@ The standalone [exact sieve and synthetic encoder/decoder](../sims/lp2_adaptive_
 
 **Actionable implication:** A proposed byte-encoding layer for LP2 must depart from **both fixed global rune and fixed modular-difference byte-code alphabets** in a specific falsifiable way. Repeating byte-header or candidate-permutation searches within this excluded family cannot recover the plaintext.
 
-The existing [manual-only Node.js 22 workflow](../.github/workflows/lp2-adaptive-base28-manual.yml) now includes this sieve as a second step for independent whole-program execution.
+The existing [manual-only Node.js 22 workflow](../.github/workflows/lp2-adaptive-base28-manual.yml) includes this sieve as a second step. The full updated six-width, two-alphabet test and all 12 codec positive controls passed in [Actions run 42762665940](https://github.com/FlareZ123/liber-primus/actions/runs/42762665940).
