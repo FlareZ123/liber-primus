@@ -11,3 +11,4 @@ jobs:
         with:
           node-version: '22'
       - run: node sims/cicada2013_twitter_original_pad_inverse.cjs
+      - run: node sims/cicada2014_column14_twitter_joint_inverse.cjs
