@@ -24,3 +24,6 @@ jobs:
         env:
           LP2_POLYNOMIAL_MODE: quotient
         run: node sims/lp2_red_triad_polynomial_eval_inverse.cjs
+
+      - name: Two-coordinate field norm-trace affine cipher original inverse
+        run: node sims/lp2_red_triad_normtrace_affine_inverse.cjs
