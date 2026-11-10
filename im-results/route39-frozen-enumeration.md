@@ -100,6 +100,30 @@ English register, not evidence of authentic plaintext. The multiple-word
 acceptance here makes explicit why the original 60 single-word matches
 understate the permitted readings.
 
+## Coverage of the already published 38-block reading
+
+A source-coordinate census of all 38 documented ciphertext reads
+([third-party frozen route](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/tree/main/plaintext-i-found))
+adds a separate global-coverage test. The recorded reading uses **115 rune
+positions** along 38 chosen line segments, but those positions refer to only
+**103 distinct cells** of the original **729-cell** page-0–2 matrix.
+It leaves **626 / 729 cells unread** (85.87% of the source grid).
+**11 source cells** appear in more than one selected ciphertext segment,
+accounting for **12 extra cell uses**; cell (25,16) appears in three
+different blocks. Some are adjacent-block endpoint handoffs, while
+others recur in nonadjacent blocks.
+
+This is a *complete census of the published 38 selected reads*, rather
+than a statistical authenticity test or a claim that a valid cipher cannot
+reuse ciphertext cells. It establishes an explicit coverage obligation for
+any proposed whole-manuscript recovery: the selected reading currently
+assigns plaintext to only 103 of 729 original source positions, and no
+independently specified continuation procedure has recovered the other
+626. The positions are frozen as 1-based row-major values in
+[`publishedRouteCoverage()`](../sims/external_27square_nextblock_fullgate.cjs),
+which asserts 38 blocks, 115 uses, 103 distinct positions and 11
+reused locations; it has no need for a separate workflow.
+
 ## Outcome and next actual solution gate
 
 The existing external report formulas **fail to independently predict any particular block 39**, under either the original Shakespeare single-word check or the independent complete-word lexicon. A future proposed route needs a source-supplied rule fixing the exact next source node and the exact next ciphertext cell sequence **before** learning their English output. It then must produce a substantial held-out plaintext extension and exactly re-encrypt it. Selecting just one aesthetically pleasing decoded word among the 60 already available does not demonstrate a cipher key.
