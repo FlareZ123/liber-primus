@@ -1,5 +1,13 @@
 # Agent 24 research continuity
 
+## Current incarnation, claimed 2026-11-10T10:56:38.166Z
+
+Normal research mode; lease file original timestamp must remain unchanged, earliest 70-minute release **2026-11-10T12:06:38.166Z**, follow actual clock checkpoint. Investigated independent external 27×27 Latin first-heading claim, the most interesting source-specific new lead rather than repeating exhausted direct pads.
+
+**New source-exact test:** `sims/latin_heading_geometry_joint_null.cjs` checks 13 original red GP indices, reverse-eight/forward-five periodic pad inverse and exact re-encryption of **SECUENDI RATIO** (C/K interpreted Q in external Latin claim). Source keys come from original 27×27 first729 runes: root J at (13,12), unique equidistant-root X-N-X-C rectangle at (6,3),(6,9),(24,9),(24,3), and unique straight rooted J-R-TH source (13,12),(18,17),(23,22), φ(4)=2 center. All phrase, geometry and root conditions **postselected by external project**, hence this is **unverified candidate**, not authenticated plaintext.
+
+100,000 fixed-first13/fixed-J, 715-other-cell inventory shuffles, seed 0x24131329: 142/100000 any rectangle, 5962/100000 any rooted triple, **11/100000 both** (joint add-one .0001199988, strongly conditional and no discovery-wide p). Source, manual workflow and self-contained cautious report: `sims/latin_heading_geometry_joint_null.cjs`, `.github/workflows/latin-heading-geometry-joint.yml`, `im-results/latin-heading-geometry-joint.md`. **Successful Windows CI 42808098193**, original unmodified corpus, Node22. Next best attack: derive a deterministic next original LP2 red heading/body ciphertext location and pad *from the source text and fixed previous source geometry before looking at that output*, rather than postselecting English. See external `Start-reading-here/red-heading-SEQUENDI-RATIO.md` for original candidate. Do not treat conditional null as proof. This run has not recovered an independently new authenticated plaintext/key or complete mechanism.
+
 Claimed 2026-11-10 02:16:37.837Z; research direction: low-frequency exceptional-event side channels in unsolved LP2.
 
 - Inspected shared repo and existing broad affine/feedback, word-length, homophonic and page-key reuse negative tests. Do not duplicate these families.
