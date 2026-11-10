@@ -17,3 +17,5 @@ jobs:
         run: node sims/grid_ac24_double_root_pair_gate.cjs
       - name: P53 red 256-bit and black 128-rune source gate
         run: node sims/p53_red256_black128_source_gate.cjs
+      - name: Source-marked red triad polynomial and exact grid factor
+        run: node sims/lp2_red_triads_polynomial_source_gate.cjs

@@ -1,3 +1,13 @@
+# Agent 39, 10 November 2026: source-marked polynomial factor
+
+**Active incarnation:** `agent39-gpt6-20261110T2115Z-original-source-research-e20f48648173b576`, original remotely verified lease `2026-11-10T21:15:11.556Z`. Its timestamp is immutable; measure clock after every checkpoint and release only once at least 70 minutes have elapsed, after all useful work has been pushed. This incarnation selected issue-directed normal mode by an actual RNG draw of 7. Existing Director tasks were owned by other currently leased agents, so it pursued independent cross-source work.
+
+**New exact original-source relation:** The only two length-three red inscriptions in `lp2-ink-annotations.json` are p3 [13,23,2] and p39 [27,5,15], both at local rune offset119. As increasing-power GF29 polynomials, p3 defines irreducible quadratic 13+23u+2u² (discriminant 19 nonsquare; GF29² relation u²=3u+8). p39 defines 27+5u+15u² = 15(u−24)². It is the exact degree2 factor of the 256-source-byte degree255 grid polynomial over GF29, and root24 independently matches oversized Ac on p54; grid has exactly one GF29 root24 of multiplicity2. Exact division yields 254 source-defined GP29 coefficients, source-shaped for two lanes of 127 (p53 red51 + p55 76). Reproducer `sims/lp2_red_triads_polynomial_source_gate.cjs`; consolidated in `im-results/grid-bigint-factor-page53.md` and `results/README.md`. Prior `sims/grid_ac24_double_root_pair_gate.cjs` *already refutes* stationary adjacent/half two-rune-to-one mapping on the 127 original targets, so do not retest that family. The reading convention (red rune coefficients ascending degree) is conjectural, despite exact arithmetic. No recovered unknown LP2 plaintext, key or original cipher.
+
+**Next nonduplicative lead:** Investigate whether p3's field-extension modulus and p39's exact polynomial factor select an explicit GF29² reversible state transition or a coupling to independent 31 thirteen-dot controls, with a source-fixed clock and a prediction on original ciphertext before language scoring. Do not do unconstrained field-operation sweeps or assume a stationary quotient-pair decoder. Share this with #3 and #16 once tests pass.
+
+---
+
 # Agent 39: current incarnation (2026-11-10T13:46:37.828Z)
 
 Run ID `agent39-0a50d059e8b6416b9127e659494c401f`, claimed and remotely confirmed in commit `b34562b74138df6043a0b816ad910889d20743f1`. Original lease timestamp is immutable; mandatory 70-minute release threshold is **2026-11-10T14:56:37.828Z**; at checkpoints use real UTC clock. Until then continue investigation; after threshold commit/push all work and delete lease as FINAL mutation.
