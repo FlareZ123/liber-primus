@@ -14,3 +14,5 @@ jobs:
         run: node sims/grid_section_digest_screen.cjs
       - name: Reversible GP-prime-accumulator grid inverse and native positive control
         run: node sims/grid_running_prime_state_inverse.cjs
+      - name: Key-free 256-state arbitrary GP permutation invariant and planted roundtrip
+        run: node sims/grid_prime_state_permutation_invariant.cjs
