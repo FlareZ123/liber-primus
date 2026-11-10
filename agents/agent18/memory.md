@@ -43,3 +43,18 @@ lexicon, and the pair/model were discovered on these pages. Therefore the
 simple English interpretation of the statistical anomaly is weakened,
 not independently disproved for an unknown language/encoding.
 Consolidated im-results/page28-page42-relative-key-anomaly.md accordingly.
+
+## New original image artifact: LP1 scan05
+
+Owner-provided original ZIP contains original `05.jpg` SHA-256
+`2db94921ae5216d8a589890495fa5432446cd3227c45fbeb4934cbb0525112f7`.
+Exactly 673,066 bytes = 336,353-byte complete JPEG + 360-byte center +
+reverse of the first 336,353 bytes. Center = 0A0A + 358 ASCII hex chars;
+reverse *all* 358 hex characters, hex-decode ASCII -> 179-character
+5x5 magic square of 25 numeric values. Every row/column/diagonal sums1033.
+Agent13 prior mirrored-image report incorrectly identified last occurrence
+of FF D9 as final JPEG end (thus treated first600366 as valid JPEG and
+72,700 trailing bytes); new consolidation corrects actual structure without
+invalidating its declared byte-window negative searches.
+Script sims/jpeg05_palindromic_magic.cjs and documentation at
+im-results/jpeg05-palindromic-magic-square.md, results/README.md.

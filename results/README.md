@@ -96,6 +96,20 @@ The ciphertext's 29 rune frequencies are nearly flat, and immediate rune repeats
 [Independent historical analysis and tested negative candidates](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/MEASURED-CEILING.md) ·
 [External consolidated dossier](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/SOLVERS-DOSSIER.md).
 
+### Original JPEG 05 contains a reverse-hex encoded magic square
+
+The original LP1 `05.jpg` byte stream contains a complete JPEG, a 360-byte
+embedded payload and an exact byte-reversed copy of that JPEG. Reversing and
+hex-decoding the 358 printable middle bytes yields the entire **5×5 LP1 magic
+square as 25 numerical values**, including values of the image's visible
+rune words. The 12 row, column and diagonal sums are all **1033**.
+This is an independently recoverable historical image-data structure, with
+a deterministic [parser](../sims/jpeg05_palindromic_magic.cjs) and
+[full matrix and byte layout](../im-results/jpeg05-palindromic-magic-square.md).
+It demonstrates that the solved LP1 book embeds an explicit reversal
+and hex-encoding layer in its file format. The square and method are
+not established as an LP2 decryption key.
+
 ## What remains unresolved
 
 1. **Complete decryption:** recover the plaintext of all 56 unsolved LP2 pages, including whether the rune-free table supplies key material, and demonstrate a repeatable mechanism on original ciphertext.
