@@ -5,7 +5,8 @@
  *
  * C[page,i] = S[(phase16, C[page,i-1])][P[page,i]].
  * Each row is a bijection of the 29 GP indices. The public phase is either
- * the physical-page rune offset or the cumulative rune offset modulo 16.
+ * the physical-page rune offset, cumulative offset, or count of publicly
+ * visible nonrepeated transitions (reset at pages or continuous).
  * Optionally, the row maps plaintext EA (GP index28) to the unchanged
  * previous output, and all other plaintext symbols bijectively to the 28
  * alternatives. This is still a bijective 29-symbol cipher.
@@ -29,6 +30,15 @@ const pages = corpus.pages.filter(p => p.page <= 55 && p.indices.length)
   .map(p => p.indices);
 const WORD_LENGTHS = parseSharedCorpus().words.map(w => w.length);
 const PHASES = 16, MOD = 29, EA = 28, TRIALS = 150;
+const CLOCKS = ["page", "global", "skip-page", "skip-global"];
+/** Public phase available from already published glyphs alone. */
+function phaseAt(clock, i, absolute, localSteps, globalSteps) {
+  if (clock === "page") return i % PHASES;
+  if (clock === "global") return (absolute + i) % PHASES;
+  if (clock === "skip-page") return localSteps % PHASES;
+  if (clock === "skip-global") return globalSteps % PHASES;
+  throw new Error("Unknown phase clock " + clock);
+}
 assert.equal(pages.length, 55);
 assert.equal(pages.flat().length, 12956);
 assert.equal(WORD_LENGTHS.length, 2896);
@@ -153,18 +163,21 @@ function randomTables(seed) {
  * The first rune of each page is a transmitted seed and copies its source.
  * @param {number[][]} data
  * @param {Array<{enc:Uint8Array,dec:Uint8Array}>} table
- * @param {"page"|"global"} clock
+ * @param {"page"|"global"|"skip-page"|"skip-global"} clock
  * @param {"enc"|"dec"} direction
  */
 function transform(data, table, clock, direction) {
-  let absolute = 0;
+  let absolute = 0, globalSteps = 0;
   const result = data.map(page => {
+    let localSteps = 0;
     const out = [page[0]];
     for (let i = 1; i < page.length; i++) {
-      const phase = (clock === "page" ? i : absolute + i) % PHASES;
+      const phase = phaseAt(clock, i, absolute, localSteps, globalSteps);
       const previous = direction === "enc" ? out[i - 1] : page[i - 1];
       const row = table[phase * MOD + previous];
       out.push(row[direction][page[i]]);
+      const visible = direction === "enc" ? out[i] : page[i];
+      if (visible !== previous) { localSteps++; globalSteps++; }
     }
     absolute += page.length;
     return out;
@@ -177,21 +190,24 @@ function transform(data, table, clock, direction) {
  * (phase16, previous ciphertext) row. Secret bijections cannot change
  * equality within these rows.
  * @param {number[][]} ciphertext
- * @param {"page"|"global"} clock
+ * @param {"page"|"global"|"skip-page"|"skip-global"} clock
  */
 function conditionalCollision(ciphertext, clock) {
   const hist = new Uint16Array(PHASES * MOD * MOD);
   const totals = new Uint16Array(PHASES * MOD);
   let matching = 0, eligible = 0, absolute = 0, transitions = 0, equalSteps = 0;
+  let globalSteps = 0;
   for (const page of ciphertext) {
+    let localSteps = 0;
     for (let i = 1; i < page.length; i++) {
       const current = page[i], preceding = page[i - 1];
-      const phase = (clock === "page" ? i : absolute + i) % PHASES;
+      const phase = phaseAt(clock, i, absolute, localSteps, globalSteps);
       const state = phase * MOD + preceding;
       matching += hist[state * MOD + current]++;
       eligible += totals[state]++;
       transitions++;
       equalSteps += Number(current === preceding);
+      if (current !== preceding) { localSteps++; globalSteps++; }
     }
     absolute += page.length;
   }
@@ -235,17 +251,15 @@ function summary(scores, observed) {
 }
 
 function run() {
-  const observed = {
-    page: conditionalCollision(pages, "page"),
-    global: conditionalCollision(pages, "global")
-  };
+  const observed = Object.fromEntries(CLOCKS.map(clock =>
+    [clock, conditionalCollision(pages, clock)]));
   assert.deepEqual(
     [observed.page.matching, observed.page.eligible,
       observed.global.matching, observed.global.eligible],
     [6365, 179922, 6432, 179506]
   );
   const report = {};
-  for (const clock of ["page", "global"]) {
+  for (const clock of CLOCKS) {
     const origin = observed[clock].rate;
     const nulls = Array.from({length: TRIALS}, (_, j) =>
       conditionalCollision(antiRepeatNull(0x25160100 + j * 131), clock).rate);
@@ -284,7 +298,7 @@ function run() {
     originalUnsolvedRunePages: pages.length, originalRunes: 12956,
     fixedArchitecture: "arbitrary stationary 29-way secret bijection for each (public phase mod16, previous cipher rune); transparent GP EA; physical-page seed",
     report,
-    interpretation: "Original conditional collision concentration remains near a 28-way Markov null despite source-native GP plaintext plants with a fully invertible arbitrary phase/context substitution. The key-independent equality constraint excludes only direct author-GP-like plaintext under this entire fixed public-state family; hidden key evolution, external prior encryption, variable phase/skips and alternative plaintext registers remain open."
+    interpretation: "Original conditional collision concentration remains near a 28-way Markov null despite source-native GP plaintext plants with a fully invertible arbitrary phase/context substitution, including observable no-repeat key-draw skip clocks. The key-independent equality constraint excludes only direct author-GP-like plaintext under this entire fixed public-state family; hidden key evolution, external prior encryption, variable phase/skips and alternative plaintext registers remain open."
   };
 }
 if (require.main === module) {
