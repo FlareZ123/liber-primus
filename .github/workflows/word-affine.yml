@@ -12,6 +12,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Validate canonical whole-word corpus
+        run: node sims/test_lp2_word_pages.cjs
       - name: Run calibrated interword affine scan
         run: node sims/word_affine_probe.cjs
 
