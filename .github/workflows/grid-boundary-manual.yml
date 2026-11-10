@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Run key advancement model
         run: node sims/grid_boundary_advance.cjs
+      - name: Reproduce source-paired GP28 shared-pad gate
+        run: node sims/p48_p52_gp28_sharedpad_arc_sft.cjs
