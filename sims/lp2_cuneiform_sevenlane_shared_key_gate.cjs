@@ -223,6 +223,35 @@ function sourceSixRowIoC(seq) {
   };
 }
 
+
+/**
+ * Source-marked ten-dot passage p36–38, 553 = 7×79 GP runes, can be
+ * packed by contiguous 79-rune rows or by seven adjacent-rune columns.
+ * @param {number[]} text
+ * @returns {{rows:number[][],columns:number[][]}}
+ */
+function sevenBy79(text) {
+  assert.equal(text.length, 553);
+  return {
+    rows: lanes(text, 79),
+    columns: Array.from({ length: 7 }, (_, r) =>
+      Array.from({ length: 79 }, (_, j) => text[7 * j + r]))
+  };
+}
+/** @param {string} sourceName */
+function controlSeven79(sourceName) {
+  const source = toGp(read(sourceName));
+  const stride = Math.max(1, Math.floor((source.length - 553) / 2000));
+  let windows = 0, minIoc = 1;
+  for (let off = 0; off + 553 <= source.length; off += stride) {
+    const six = source.slice(off + 79, off + 553);
+    const score = indexOfCoincidence(six);
+    if (score < minIoc) minIoc = score;
+    windows++;
+  }
+  return { source: sourceName, windows, minimumIoc: minIoc };
+}
+
 function main() {
   const pageStreams = corpus.pages.slice(33, 40)
     .map((page) => page.indices.slice(page.page === 33 ? 91 : 0));
@@ -283,6 +312,27 @@ function main() {
   assert.ok(Math.abs(root7NoKeySixRowIoC[0].ioc - 0.034330591762772686) < 1e-12);
   assert.ok(Math.abs(root7NoKeySixRowIoC[1].ioc - 0.03407574102878071) < 1e-12);
 
+  // Independent literal 10-dot enclosure on pp36–38: 553 original runes
+  // exactly equals 7×79. The neighboring p39 highlighted Ac supplies
+  // the same independently fixed seventh root of unity in F29.
+  const unsolved = corpus.pages.filter((page) => page.page < 56)
+    .flatMap((page) => page.indices);
+  assert.equal(unsolved.length, 12956);
+  const tenDotBody = unsolved.slice(8805, 9358);
+  assert.equal(tenDotBody.length, 553);
+  const enclosedRows = sevenBy79(tenDotBody);
+  const tenDotRoot7Original = Object.entries(enclosedRows).map(([name, rows]) => {
+    assert.deepEqual(root7Fourier(root7Fourier(rows, false), true), rows);
+    const six = root7Fourier(rows, true).slice(1).flat();
+    return { layout: name, sixRecoveredRunes: six.length,
+      pooledIoC: indexOfCoincidence(six),
+      preview: six.slice(0, 40).map((x) => corpus.translit[x]).join("") };
+  });
+  assert.ok(Math.abs(tenDotRoot7Original[0].pooledIoC -
+    0.03548585650440228) < 1e-12);
+  assert.ok(Math.abs(tenDotRoot7Original[1].pooledIoC -
+    0.03440647273440915) < 1e-12);
+
   // Source-native plant under 227 independent column-specific GP29 bijections.
   // Each column has an invertible affine permutation x -> 7*x + 11*j (mod29).
   const shakespeare = toGp(read("resources/control/shakespeare_first300k.txt"));
@@ -329,9 +379,29 @@ function main() {
       row.map((x, j) => mod29(x + pad[j]))), encrypted);
   }
 
+  // A source-native 553-rune GP-English plant demonstrates complete
+  // forward encoding, six-row keyless recovery and seventh-row DC repair.
+  const native79 = lanes(shakespeare.slice(25000, 25000 + 553), 79);
+  const secret79 = Array.from({ length: 79 }, (_, j) => (7 * j + 19) % 29);
+  for (const inverted of [false, true]) {
+    const ciphertext = root7Fourier(native79, inverted).map((row) =>
+      row.map((x, j) => mod29(x + secret79[j])));
+    const candidate = root7Fourier(ciphertext, !inverted);
+    assert.deepEqual(candidate.slice(1), native79.slice(1));
+    const repaired = candidate.map((row, i) => row.map((x, j) =>
+      i === 0 ? mod29(x - (inverted ? 7 : 1) * secret79[j]) : x));
+    assert.deepEqual(repaired, native79);
+    assert.deepEqual(root7Fourier(repaired, inverted).map((row) =>
+      row.map((x, j) => mod29(x + secret79[j]))), ciphertext);
+  }
+
   const references = [
     reference("resources/control/shakespeare_first300k.txt"),
     reference("resources/control/emerson_essays_2944.txt")
+  ];
+  const tenDotControls = [
+    controlSeven79("resources/control/shakespeare_first300k.txt"),
+    controlSeven79("resources/control/emerson_essays_2944.txt")
   ];
   for (const r of references) {
     assert.equal(r.packed.atMostOriginal, 0);
@@ -343,6 +413,11 @@ function main() {
     assert.ok(root7NoKeySixRowIoC[0].ioc < r.sixOriginalLanguageIocControls.packedMin);
     assert.ok(root7NoKeySixRowIoC[1].ioc < r.sixOriginalLanguageIocControls.nativeMin);
   }
+  for (const result of tenDotRoot7Original) {
+    for (const ctrl of tenDotControls) {
+      assert.ok(result.pooledIoC < ctrl.minimumIoc);
+    }
+  }
   console.log(JSON.stringify({
     status: "SOURCE-BOUND MODEL EXCLUDED; NO ORIGINAL PLAINTEXT",
     sourcePages: "p33 local91 through p39, inclusive",
@@ -351,6 +426,8 @@ function main() {
     original: measured,
     magicSquareHillPlusUnknownSharedPad: hillColumnInvariants,
     root7FourierKeyfreeSixRows: root7NoKeySixRowIoC,
+    tenDot553FourierKeyfreeSixRows: tenDotRoot7Original,
+    tenDotControls,
     references,
     sourceNativePlant: "exact 1589-rune recovery and forward encryption"
   }, null, 2));
