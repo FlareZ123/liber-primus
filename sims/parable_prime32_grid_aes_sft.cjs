@@ -15,6 +15,8 @@ const assert = require("node:assert/strict");
 const crypto = require("node:crypto");
 const fs = require("node:fs");
 const path = require("node:path");
+const {trainNativeGP, languageScore} = require("./historical_solve_path_transfer.cjs");
+const {plaintextWords} = require("./authentic_decryption_regression.cjs");
 const ROOT = path.resolve(__dirname, "..");
 const source = JSON.parse(fs.readFileSync(
   path.join(ROOT, "resources/liber-primus/lp2-grid-256.json"), "utf8"));
@@ -56,6 +58,15 @@ const IVS = (data) => [
   ["last16", data.subarray(240)]
 ];
 const MODES = ["ecb", "cbc", "cfb", "ofb", "ctr"];
+const model = trainNativeGP(fs.readFileSync(
+  path.join(ROOT, "resources/control/emerson_essays_2944.txt"), "utf8"));
+/** @param {number[]} symbols @returns {number} */
+function gpIoC(symbols) {
+  const frequency = new Uint16Array(29);
+  for (const v of symbols) frequency[v]++;
+  return frequency.reduce((sum, count) => sum + count * (count - 1), 0)
+    / (symbols.length * (symbols.length - 1));
+}
 
 /**
  * @param {Buffer} data
@@ -87,6 +98,11 @@ function stats(data) {
     hasGzip: data.subarray(0, 2).equals(Buffer.from([0x1f, 0x8b])),
     hasZip: data.subarray(0, 4).equals(Buffer.from([0x50, 0x4b, 0x03, 0x04])),
     hasPdf: data.subarray(0, 4).equals(Buffer.from("%PDF")),
+    gpMod29IoC: gpIoC(Array.from(data, v => v % 29)),
+    gpScale29IoC: gpIoC(Array.from(data, v => Math.floor(v * 29 / 256))),
+    gpMod29Score: languageScore(Array.from(data, v => v % 29), model),
+    gpScale29Score: languageScore(Array.from(data, v => Math.floor(v * 29 / 256)), model),
+    exactGPIndexByteCount: Array.from(data).filter(v => v < 29).length,
     sha256: crypto.createHash("sha256").update(data).digest("hex")
   };
 }
@@ -121,6 +137,14 @@ assert.deepEqual(decoded, planted);
 const positive = stats(decoded);
 assert.ok(positive.hasPGPHeader);
 assert.equal(positive.printable, 256);
+// Authentic solved-LP1 register as a 256-byte GP-index payload.
+const gpSource = plaintextWords("A WARNING BELIEVE NOTHING FROM THIS BOOK EXCEPT WHAT YOU KNOW TO BE TRUE TEST THE KNOWLEDGE FIND YOUR TRUTH EXPERIENCE YOUR DEATH DO NOT EDIT OR CHANGE THIS BOOK OR THE MESSAGE CONTAINED WITHIN EITHER THE WORDS OR THEIR NUMBERS FOR ALL IS SACRED").flat();
+assert.ok(gpSource.length >= 160);
+const gpPlant = Buffer.alloc(256);
+for (let i = 0; i < 256; i++) gpPlant[i] = gpSource[i % gpSource.length];
+const gpEncrypted = transform(gpPlant, keys[0][1], "cbc", Buffer.alloc(16), true);
+const gpRestored = transform(gpEncrypted, keys[0][1], "cbc", Buffer.alloc(16));
+assert.deepEqual(gpRestored, gpPlant);
 results.sort((a, b) => b.printable - a.printable);
 const successes = results.filter(r => r.hasPGPHeader || r.hasGzip || r.hasZip || r.hasPdf);
 console.log(JSON.stringify({
@@ -130,7 +154,15 @@ console.log(JSON.stringify({
   tableCells: 256, checkedConfigurations: results.length,
   originalRecognizedHeaders: successes,
   originalMaxPrintable: results[0].printable,
+  originalMaxGP29IoC: Math.max(...results.flatMap(r => [r.gpMod29IoC, r.gpScale29IoC])),
+  originalBestGP29Trigram: Math.max(...results.flatMap(r => [r.gpMod29Score, r.gpScale29Score])),
+  originalMaxExactGPIndexBytes: Math.max(...results.map(r => r.exactGPIndexByteCount)),
   topResults: results.slice(0, 8),
   sourceNativePlant: {recoveredExactly:decoded.equals(planted), hasPGPHeader:positive.hasPGPHeader,
-    printable:positive.printable}
+    printable:positive.printable},
+  sourceNativeGPPlant: {
+    exact256Recovered: gpRestored.equals(gpPlant),
+    gpIoC: gpIoC(Array.from(gpRestored)),
+    gpTrigramScore: languageScore(Array.from(gpRestored), model)
+  }
 }, null, 2));
