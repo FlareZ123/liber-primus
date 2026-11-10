@@ -38,5 +38,5 @@ jobs:
           if [ "$SCAN_ALL" = "true" ]; then
             python -u sims/relative_key_hard_lexicon.py --all --max-depth "$MAX_DEPTH" --threshold "$THRESHOLD"
           else
-            python -u sims/relative_key_hard_lexicon.py --pair 28 42
+            python -u sims/relative_key_hard_lexicon.py --pair 28 42 --self-test
           fi
