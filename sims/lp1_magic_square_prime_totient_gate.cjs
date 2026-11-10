@@ -298,7 +298,12 @@ assert.equal(p56Control.exactMatches, 1);
 const offsetPages = corpus.pages.filter((p) => p.page < 56 && p.indices.length > 0);
 assert.equal(offsetPages.length, 55);
 const maxPageLength = Math.max(...offsetPages.map((p) => p.indices.length));
-const primeOrdinalOffsetTransfer = [174, 464].map((startIndex) => {
+const offsetCandidates = [
+  { startIndex: 174, rationale: "p05 magic constant 1033 is p174" },
+  { startIndex: 464, rationale: "p16 magic constant 3301 is p464" },
+  { startIndex: 493, rationale: "one additional 29-prime block after p16; extrapolation only" }
+];
+const primeOrdinalOffsetTransfer = offsetCandidates.map(({ startIndex, rationale }) => {
   const keys = primeTotients(maxPageLength, startIndex);
   const perPage = offsetPages.map((page) => {
     const result = exhaustLiteralF(page.indices, keys, nativeModel);
@@ -321,6 +326,7 @@ const primeOrdinalOffsetTransfer = [174, 464].map((startIndex) => {
   assert.ok(perPage.every((p) => p.bestScorePerRune < p56Control.correctScore));
   return {
     startPrimeOrdinal: startIndex,
+    rationale,
     firstTotientKey: keys[0],
     lastTotientKey: keys[maxPageLength - 1],
     physicalPages: perPage.length,
