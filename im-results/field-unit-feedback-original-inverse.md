@@ -1,6 +1,6 @@
 # Reversible GP field-unit feedback: original LP2 and EA-anchor inversions
 
-**Evidence:** two executed source-constrained, heldout-original negative tests. **No unknown Liber Primus plaintext or authentic key recovered.** This research explicitly inverts the original ciphertext rather than fitting a forward-only repeat filter.
+**Evidence:** three executed source-constrained, heldout-original inverse tests. **No unknown Liber Primus plaintext or authentic key recovered.** This research explicitly inverts the original ciphertext rather than fitting a forward-only repeat filter.
 
 ## Mechanism and a unique plaintext prediction
 
@@ -77,3 +77,33 @@ In the source-disjoint **positive**, source GP text is encrypted with secret tru
 This eliminates a directly synchronized **first-order GP plaintext autokey** with a constant two-parameter key under the stated source register, page/global continuity and reading directions. It cannot exclude more general plaintext history, state-dependent clocking, transformed plaintext alphabets, or a genuinely independent secret keystream. It does **not** establish that any actual observed doublet is GP EA in the original manuscript.
 
 Reproduce from the checked-in [`EA-anchor exact plaintext-autokey program`](../sims/ea_anchor_plaintext_autokey_inverse.cjs). All synthetic-positive and original tests use the same inverse and 784-key training selection, without adding a CI workflow.
+
+
+## Delayed plaintext feedback, synchronized by residue-class EA events
+
+The first-order scheme has a useful exact extension motivated by the observed five- and six-rune ciphertext echoes. Let a single plaintext-feedback delay be `L`, so for nonzero original steps:
+
+```text
+P[i] = (log_15(C[i]-C[i-1]) - a*(P[i-L] mod28) - b) mod28
+```
+
+An actual repeated original rune forces model-conditional `P[i]=EA=28`, and seeds its independent residue class `i mod L`. Each subsequent position in that class is then **exactly reconstructible** for the frozen (a,b). No initial-state search or post hoc output overwrite is needed. Thus even sparse marker events can synchronize almost all of a long plaintext in the tested single-delay family.
+
+On the original **continuous physical-page concatenation**, select (a,b) from the first 6,480 rune positions for every `L=1..16`; freeze the key on the remaining 6,476. Run both reading directions. This adds **16×784×2=25,088** original deterministic inverse candidates. The original 86 adjacent repeats are the conditional source-synchronizing markers.
+
+| Original scope | Best trained a,b | Train GP excess nats/nonzero | Heldout GP excess |
+| --- | --- | ---: | ---: |
+| Forward, delay 5 | (16,24) | −0.808203 | −0.879045 |
+| Forward, delay 6 | (16,11) | −0.812557 | −0.890600 |
+| Reverse, delay 5 | (23,1) | −0.822099 | −0.892545 |
+| Reverse, delay 6 | (2,13) | −0.819799 | −0.908591 |
+| Best training across all forward delays: delay 13 | (22,15) | −0.780305 | −0.903410 |
+| Best training across all reverse delays: delay 9 | (27,5) | −0.778332 | −0.913426 |
+
+**All 32 frozen delay/direction winners score below the non-EA uniform source** on heldout original ciphertext. At delay six, all six global residue chains have at least one synchronization anchor; **6,430** heldout nonzero original runes are deciphered by this conditional inverse, and no original English passage appears.
+
+A genuinely encrypted, source-disjoint **delay-six positive** with secret `a=7,b=11` is recovered at the exact parameters by the same blind search. The decoder roundtrips **every runic position after its class has first been synchronized**, with **+0.378869** training and **+0.362617** heldout nats/nonzero. All planted classes become seeded. These are original-layout forward-control ciphertexts and demonstrate the search could select the correct key.
+
+The bounded negative concerns the *single delayed plaintext tap* with one shared coefficient and additive offset, 16 fixed delays, a primitive-root F29/28-unit output and global manuscript state. It cannot reject nonlinear or multi-tap feedback, variable key/clock state, or separately keyed passages. The residue-class synchronization principle remains useful if a future independently sourced plaintext-state rule is discovered.
+
+**Reproduction:** the same [EA-anchor plaintext-autokey CJS program](../sims/ea_anchor_plaintext_autokey_inverse.cjs) now executes first-order page/global modes plus the whole-book delayed search and exact lag-six positive, without adding a scheduled CI workload.
