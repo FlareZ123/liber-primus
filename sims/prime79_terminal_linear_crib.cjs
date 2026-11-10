@@ -190,6 +190,227 @@ function plantedControl() {
     hiddenPermutationRecovered:true, allTerminalsReproduced:blockCount};
 }
 
+
+/**
+ * Express every withheld terminal equation as an affine combination of the
+ * 28 independent terminal equations. No key labels need be guessed.
+ * @param {number[][]} rows
+ * @param {number[]} chosen
+ */
+function terminalParity(rows, chosen) {
+  const size=28, aug=chosen.map(i=>rows[i].slice(1).concat(
+    Array.from({length:size},(_,j)=>Number(j===chosen.indexOf(i)))));
+  for(let c=0;c<size;c++){
+    let pivot=c;while(pivot<size&&!aug[pivot][c])pivot++;
+    assert.ok(pivot<size);
+    [aug[c],aug[pivot]]=[aug[pivot],aug[c]];
+    const factor=inverse(aug[c][c]);
+    for(let j=c;j<2*size;j++)aug[c][j]=mod(aug[c][j]*factor);
+    for(let i=0;i<size;i++)if(i!==c){
+      const v=aug[i][c];
+      for(let j=c;j<2*size;j++)aug[i][j]=mod(aug[i][j]-v*aug[c][j]);
+    }
+  }
+  const inverseBasis=aug.map(row=>row.slice(size));
+  const held=rows.map((_,i)=>i).filter(i=>!chosen.includes(i));
+  const checks=held.map(i=>{
+    const r=rows[i].slice(1);
+    const coefficients=Array.from({length:size},(_,j)=>mod(r.reduce(
+      (s,x,k)=>s+x*inverseBasis[k][j],0)));
+    for(let col=0;col<size;col++){
+      const value=mod(chosen.reduce((s,chosenIndex,j)=>
+        s+coefficients[j]*rows[chosenIndex][col+1],0));
+      assert.equal(value,rows[i][col+1]);
+    }
+    return {packet:i, coefficients};
+  });
+  return checks;
+}
+
+/**
+ * Exact full-packet integer inverse and forward recipher under a proposed
+ * permutation, for all clean packets only.
+ * @param {number[]} cipher
+ * @param {number} start
+ * @param {number[]} labels
+ */
+function fullPacketInverse(cipher,start,labels) {
+  const glyph=Array(Q);
+  for(let g=0;g<Q;g++)glyph[labels[g]]=g;
+  assert.equal(new Set(labels).size,Q);
+  let value=0n,previous=cipher[start-1];
+  const digits=[];
+  for(let j=0;j<M;j++){
+    const d=mod(labels[cipher[start+j]]-labels[previous]-1);
+    assert.ok(d>=0&&d<28);
+    digits.push(d);
+    value=28n*value+BigInt(d);
+    previous=cipher[start+j];
+  }
+  if(value>=29n**78n) return null;
+  const plain=Array(K);
+  for(let i=K-1;i>=0;i--){
+    plain[i]=Number(value%29n);
+    value/=29n;
+  }
+  assert.equal(value,0n);
+  for(const p of plain)value=value*29n+BigInt(p);
+  const forwardDigits=Array(M);
+  for(let j=M-1;j>=0;j--){
+    forwardDigits[j]=Number(value%28n);
+    value/=28n;
+  }
+  assert.deepEqual(forwardDigits,digits);
+  previous=cipher[start-1];
+  for(let j=0;j<M;j++){
+    previous=glyph[mod(labels[previous]+forwardDigits[j]+1)];
+    assert.equal(previous,cipher[start+j]);
+  }
+  return plain;
+}
+
+/**
+ * Source window [offset, offset+78*163) is placed in the 163 global
+ * phase35 79-output packet slots. Damaged original packets are ignored but
+ * still consume 78 hypothetical plaintext slots. The four algebraic parity
+ * tests are necessary for any secret fixed cyclic glyph permutation.
+ * @param {number[]} tokens
+ * @param {number[]} starts
+ * @param {number[]} chosen
+ * @param {{packet:number,coefficients:number[]}[]} checks
+ * @param {number} [maxChecks]
+ */
+function scanSource(tokens,starts,chosen,checks,maxChecks=4) {
+  const positions=starts.map(s=>78*((s-35)/79)+77);
+  const highest=positions.at(-1);
+  const windows=Math.max(0,tokens.length-highest);
+  const survivorCounts=Array(maxChecks).fill(0);
+  const firstGateSurvivors=[];
+  const fullSurvivors=[];
+  for(let offset=0;offset<windows;offset++){
+    const values=chosen.map(i=>tokens[offset+positions[i]]+1);
+    let passes=true;
+    for(let k=0;k<maxChecks;k++){
+      const {packet,coefficients}=checks[k];
+      let residual=tokens[offset+positions[packet]]+1;
+      for(let j=0;j<28;j++)residual-=coefficients[j]*values[j];
+      if(mod(residual)){passes=false;break;}
+      survivorCounts[k]++;
+    }
+    if(!passes)continue;
+    firstGateSurvivors.push(offset);
+    for(let k=maxChecks;k<checks.length;k++){
+      const {packet,coefficients}=checks[k];
+      let residual=tokens[offset+positions[packet]]+1;
+      for(let j=0;j<28;j++)residual-=coefficients[j]*values[j];
+      if(mod(residual)){passes=false;break;}
+    }
+    if(passes)fullSurvivors.push(offset);
+  }
+  return {referenceGP:tokens.length,windows,
+    gateSurvivors:survivorCounts,firstGateSurvivors,
+    all67ParitySurvivors:fullSurvivors};
+}
+
+/** Construct a source-native positive whose 68 discarded packets are corrupt. */
+function sourcePlant(tokens,originalStarts,chosen,checks) {
+  let seed=0x79353301;
+  const rand=()=>{
+    seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;
+    return seed>>>0;
+  };
+  const labels=Array.from({length:Q},(_,i)=>i);
+  for(let i=Q-1;i>0;i--){
+    const j=rand()%(i+1);
+    [labels[j],labels[i]]=[labels[i],labels[j]];
+  }
+  const shift=labels[0];
+  for(let i=0;i<Q;i++)labels[i]=mod(labels[i]-shift);
+  const glyph=Array(Q);
+  for(let i=0;i<Q;i++)glyph[labels[i]]=i;
+  const sourceOffset=3301, packetCount=163;
+  assert.ok(tokens.length>sourceOffset+packetCount*K);
+  const desired=new Set(originalStarts.map(s=>(s-35)/79));
+  const cipher=Array.from({length:35},()=>rand()%Q);
+  for(let block=0;block<packetCount;block++){
+    let value=0n;
+    for(let j=0;j<K;j++)
+      value=value*29n+BigInt(tokens[sourceOffset+K*block+j]);
+    const digits=Array(M);
+    for(let j=M-1;j>=0;j--){
+      digits[j]=Number(value%28n);
+      value/=28n;
+    }
+    assert.equal(value,0n);
+    const packetStart=cipher.length;
+    for(const d of digits){
+      const previous=cipher.at(-1);
+      cipher.push(glyph[mod(labels[previous]+d+1)]);
+    }
+    if(!desired.has(block))cipher[packetStart+10]=cipher[packetStart+9];
+  }
+  for(let i=0;i<44;i++)cipher.push(rand()%Q);
+  assert.equal(cipher.length,12956);
+  const starts=cleanStarts(cipher,35);
+  assert.deepEqual(starts,originalStarts);
+  const plantRows=starts.map(s=>terminalCoefficients(cipher,s));
+  const selected=independent(plantRows);
+  assert.equal(selected.length,28);
+  const plantChecks=terminalParity(plantRows,selected);
+  const sourceRun=scanSource(tokens,starts,selected,plantChecks);
+  assert.ok(sourceRun.all67ParitySurvivors.includes(sourceOffset));
+  const known=starts.map((s,i)=>
+    tokens[sourceOffset+78*((s-35)/79)+77]);
+  const recovered=recover(plantRows,known,selected);
+  assert.deepEqual(recovered,labels);
+  for(let i=0;i<starts.length;i++){
+    const decoded=fullPacketInverse(cipher,starts[i],recovered);
+    assert(decoded);
+    assert.deepEqual(decoded,tokens.slice(
+      sourceOffset+78*((starts[i]-35)/79),
+      sourceOffset+78*((starts[i]-35)/79)+K));
+  }
+  return {hiddenKeyRecovered:true,sourceOffset,referenceMatched:true,
+    authenticLikeCleanPackets:starts.length,corruptedPackets:packetCount-starts.length,
+    exactPlaintextRunes:starts.length*K,
+    exactRecipheredRunes:starts.length*M,
+    passFourParities:sourceRun.firstGateSurvivors.length,
+    passAll67:sourceRun.all67ParitySurvivors.length};
+}
+
+/**
+ * Search existing independently supplied GP-tokenized reference prose for a
+ * contiguous LP2 original plaintext, allowing all 29! hidden permutations,
+ * but requiring the fixed page-independent 78->79 packet clock.
+ */
+function literarySourceChallenge(starts,rows,chosen) {
+  const {toGematria}=require('./previous_cipher_sbox_invariant.cjs');
+  const checks=terminalParity(rows,chosen);
+  assert.equal(checks.length,67);
+  const sources=[
+    'resources/control/shakespeare_first300k.txt',
+    'resources/control/gibran_prophet_58585.txt',
+    'resources/control/emerson_essays_2944.txt',
+    'resources/liber-primus/lp1-plaintext-reference.txt',
+  ];
+  const result=[];
+  let shakespeare=null;
+  for(const source of sources) {
+    const tokens=toGematria(fs.readFileSync(path.join(ROOT,source),'utf8'));
+    if(source.includes('shakespeare_')) shakespeare=tokens;
+    const scanned=scanSource(tokens,starts,chosen,checks);
+    result.push({source,...scanned});
+    assert.equal(scanned.all67ParitySurvivors.length,0,
+      'A real original-source parity survivor requires full cryptographic evaluation');
+  }
+  const latin=JSON.parse(fs.readFileSync(path.join(ROOT,
+    'resources/control/latin-vulgate-heldout-gp.json'),'utf8')).runes;
+  result.push({source:'resources/control/latin-vulgate-heldout-gp.json',
+    ...scanSource(latin,starts,chosen,checks)});
+  const positive=sourcePlant(shakespeare,starts,chosen,checks);
+  return {sourceRuns:result,independentPlantedSource:positive};
+}
+
 function run() {
   const root = path.resolve(__dirname, '..');
   const corpus = JSON.parse(fs.readFileSync(path.join(root,
@@ -231,6 +452,7 @@ function run() {
     corruptedOneKnownRuneHeldoutErrors:heldoutErrors,
     originalUnknownPlaintextRecovered:false,
     independentSyntheticControl:plantedControl(),
+    originalSourceLiteraryChallenge:literarySourceChallenge(starts,rows,chosen),
     interpretation:'Conditional known-plaintext key-recovery theorem, not an LP2 decryption.'
   };
   console.log(JSON.stringify(output, null, 2));
@@ -238,4 +460,5 @@ function run() {
 }
 if (require.main === module) run();
 module.exports = {cleanStarts, terminalCoefficients, rank, independent, recover,
-  terminalFromRow, directTerminal, plantedControl, run};
+  terminalFromRow, directTerminal, plantedControl, terminalParity,
+  scanSource, fullPacketInverse, sourcePlant, literarySourceChallenge, run};
