@@ -1,0 +1,16 @@
+name: LP2 reversible exponent feedback lookup attack
+
+on:
+  workflow_dispatch:
+
+jobs:
+  exponent-feedback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Fit nonlinear source-blind reversible lookup keys
+        run: node sims/exponent_feedback_lookup_attack.cjs
