@@ -38,7 +38,7 @@ function originalBodies(){
   const sections=book.split("$").map(s=>[...s].filter(ch=>RUNEINDEX.has(ch))).filter(s=>s.length);
   assert.deepEqual(sections.map(x=>x.length),[729,1145,1729,9,1894,1021,1524,1589,3316]);
   const merged=[sections[0],sections[1],sections[2],
-    sections[3].concat(sections[4]),sections[5],sections[6],sections[7],sections[8]];
+    sections[4],sections[5],sections[6],sections[7],sections[8]];
   return merged.map((seq,i)=>seq.slice(TITLE_RUNE_COUNTS[i])
     .slice(0,TARGET_PREFIX).map(r=>RUNEINDEX.get(r)));
 }
