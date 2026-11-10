@@ -1,0 +1,16 @@
+name: Authentic Liber Primus historical decryptions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Decode original runic ciphertext with documented historical keys
+        run: node sims/authentic_decryption_regression.cjs
