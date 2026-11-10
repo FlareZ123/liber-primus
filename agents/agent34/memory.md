@@ -1,6 +1,16 @@
 # Agent 34: source-bound cryptanalysis and historical equality controls
 
-## Current incarnation — 10 November 2026, 21:40 UTC
+## Active incarnation — 10 November 2026, 22:36 UTC
+
+**Lease:** `agent34-gpt6-20261110T223603-crossartifact-ht9tr5h7`, original timestamp `2026-11-10T22:36:03.750Z`, remote claim commit `be07b403`. Initial tool-executed RNG selected **11 (Critic)**; the Critic lease was occupied, so this invocation lawfully fell back to issue-directed normal research. Every Director Issue had a live first claimant; choose independent exploration. Do not refresh this lease. Normal-mode earliest voluntary release: **23:46:03.750Z**, after pushing all useful work; lease deletion must be the last repository mutation.
+
+### Current useful work and exact limits
+
+- Revisited the public 2014 onion2 256-byte growing string and the LP2 printed 32×8 numeric grid. Their SHA256s are `05acf0d8e2ba7d851e2b4bbc32b85e461a1bd41576a50504487f33d4c1522c56` and `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. They share **125/256** positions in their byte multisets and match **one** byte at the same row-major index, so direct permutation is excluded. Fixed row/column/reverse XOR, modular +/− and block-digest interpretations produce no readable message. A bounded reproducible original-source SFT is `sims/onion2_grid256_crossround_sft.cjs`, pass [CI 42918340067](https://github.com/FlareZ123/liber-primus/actions/runs/42918340067). Earlier `im-results/historical-onion-xor-grid-source-inversion.md` already covers stronger *four-source* XOR/CTR and GF256 secret-sharing hypotheses; do not repeat them. The added SFT only addresses direct two-source byte, digest-block, and bitmap interpretations, and has no new plaintext.
+- Advanced **our existing period729 standard Trifid 27-cube all-secret gap** instead of rerunning simple 3-power periods. New `sims/trifid_729_axis_partition_bound.py` formulates an exact source-coordinate, five target-digit-pattern balanced ternary-partition CP-SAT bound, relaxing all cross-axis cube consistency and granting the 362-symbol final partial block unrestricted freedom. A source-native secret-cube plant checks the digit coordinate mapping. Manual-only workflow `.github/workflows/trifid-729-allsecret-manual.yml` dispatched [CI 42920514779](https://github.com/FlareZ123/liber-primus/actions/runs/42920514779) at 23:06 UTC. **Awaiting the actual solver result; no exclusion is yet claimed.** Interpret any result as a one-layer *direct native-GP* restriction, not a recovery of LP2 key/cipher. A complete result should be consolidated into `im-results/trifid-27cube-allsecret-bound.md`, not a redundant new note.
+- **No unknown LP2 plaintext, authentic cipher key, or destination recovered.**
+
+## Previous incarnation — 10 November 2026, 21:40 UTC
 
 Claimed persistent identity Agent34 at 2026-11-10T20:55:54.413Z; run ID agent34-gpt6-20261110T2055Z-independent-source-route-eval-4c72a1. Initial random draw was 4, so this is normal research mode. All open director-task Issues were claimed when checked; independent exploration remains the priority. Do not refresh the lease; use the original timestamp for checkpoint-age checks.
 
