@@ -117,6 +117,181 @@ function sourceSelection() {
       exact435: same, any29Divisible: divisible}};
 }
 
+
+/** Source-only factorization: the T6 fixed point, primitive root and 13-dot exponent. */
+function sourceExponent() {
+  const source=ink.pages.find(p=>p.page===40).red_spans.find(s=>s.start===0&&s.length===8);
+  const last=[...source.runes].at(-1);
+  assert.equal(runeIndex.get(last),8);
+  let value=1;
+  for(let i=0;i<13;i++)value=value*15%29;
+  assert.equal(value,27);
+  let order=1,v=15;
+  while(v!==1){order++;v=v*15%29;}
+  assert.equal(order,28);
+  const marks=ink.pages.reduce((n,p)=>n+(p.large_punctuation||[])
+    .filter(mark=>mark[1]===13).length,0);
+  assert.equal(marks,31);
+  for(let x=0;x<29;x++)
+    assert.equal(mod29(8+value*(x-8)),mod29(24-2*x));
+  return {redLastRune:last,redLastRuneIndex:8,redLength:8,
+    base:15,exponent:13,source13DotMarks:marks,baseOrder:order,
+    power:value,expression:"8+15^13*(x-8)=24-2*x mod29",
+    caution:"Retrospective link; thirteen-dot punctuation is common and absent at the selected page40 heading"};
+}
+/** @param {string} text */
+function nativeText(text) {
+  return text.split(/\r?\n/u).filter(line=>{
+    const s=line.trim();
+    return !s.startsWith("#")&&!s.startsWith("[")&&!/^[0-9a-f]{25,}$/iu.test(s);
+  }).join(" ");
+}
+/** @param {string} text @param {boolean} alias */
+function gpBins(text,alias) {
+  const tokens=new Map(corpus.translit.map((s,i)=>[s,i]));
+  const bins=new Map();
+  for(const rawWord of text.match(/[A-Za-z]+/gu)||[]) {
+    let s=rawWord.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U")
+      .replace(/K/g,"C").replace(/Z/g,"S");
+    if(alias)s=s.replace(/ING/g,"NG");
+    const word=[];
+    for(let i=0;i<s.length;) {
+      const pair=tokens.get(s.slice(i,i+2));
+      if(pair!==undefined){word.push(pair);i+=2;}
+      else{const x=tokens.get(s[i]);assert.notEqual(x,undefined);word.push(x);i++;}
+    }
+    if(!bins.has(word.length))bins.set(word.length,[]);
+    bins.get(word.length).push(word);
+  }
+  return bins;
+}
+/** @param {number[]} probabilities @param {number} k */
+function poissonLow(probabilities,k) {
+  const dp=new Float64Array(k+1);dp[0]=1;
+  for(const p of probabilities){
+    for(let j=k;j>0;j--)dp[j]=dp[j]*(1-p)+dp[j-1]*p;
+    dp[0]*=1-p;
+  }
+  return dp.reduce((s,v)=>s+v,0);
+}
+/** @param {number[]} probabilities @param {number} k */
+function poissonHigh(probabilities,k) {
+  const dp=new Float64Array(k+1);dp[0]=1;
+  for(const p of probabilities){
+    dp[k]+=dp[k-1]*p;
+    for(let j=k-1;j>0;j--)dp[j]=dp[j]*(1-p)+dp[j-1]*p;
+    dp[0]*=1-p;
+  }
+  return dp[k];
+}
+/** Exactly reversible exclusive-T6-as-S toy cipher, independent of real LP2. */
+function encS(plain) {
+  const c=[];
+  for(let i=0;i<plain.length;i++){
+    if(i<6)c.push(mod29(plain[i]+15));
+    else{
+      const t=mod29(24-2*c[i-6]);
+      const rank=plain[i]<15?plain[i]+1:plain[i];
+      c.push(plain[i]===15?t:mod29(t+rank));
+    }
+  }
+  return c;
+}
+/** @param {number[]} c */
+function decS(c) {
+  const p=[];
+  for(let i=0;i<c.length;i++){
+    if(i<6)p.push(mod29(c[i]-15));
+    else{
+      const rank=mod29(c[i]-mod29(24-2*c[i-6]));
+      p.push(rank===0?15:rank<=15?rank-1:rank);
+    }
+  }
+  return p;
+}
+/** Necessary source-position check if T6 equals literal plaintext S inside intact GP words. */
+function sourceSRole(){
+  const original={eligibleWords:0,positions:0,hits:0,final:0,penultimate:0,earlier:0};
+  const sizeCounts=new Map();
+  for(const w of words){
+    if(w.length<7)continue;
+    original.eligibleWords++;
+    sizeCounts.set(w.length,(sizeCounts.get(w.length)||0)+1);
+    for(let i=6;i<w.length;i++){
+      original.positions++;
+      if(w[i]!==mod29(24-2*w[i-6]))continue;
+      original.hits++;
+      original.final+=Number(i===w.length-1);
+      original.penultimate+=Number(i===w.length-2);
+      original.earlier+=Number(i<w.length-2);
+    }
+  }
+  assert.deepEqual(original,{eligibleWords:559,positions:1290,hits:80,
+    final:32,penultimate:28,earlier:20});
+  const sources=[
+    ["solved-Cicada","resources/liber-primus/lp1-plaintext-reference.txt"],
+    ["Shakespeare","resources/control/shakespeare_first300k.txt"],
+    ["Gibran","resources/control/gibran_prophet_58585.txt"],
+    ["Emerson","resources/control/emerson_essays_2944.txt"]
+  ];
+  const comparisons=[];
+  let plantBins;
+  for(const [name,file] of sources){
+    const raw=fs.readFileSync(path.join(ROOT,file),"utf8");
+    const text=name==="solved-Cicada"?nativeText(raw):raw;
+    for(const ingAlias of [false,true]){
+      const bins=gpBins(text,ingAlias);
+      if(name==="Shakespeare"&&!ingAlias)plantBins=bins;
+      const pf=[],pp=[];let expectedTotal=0,possiblePenultimate=0,minPool=Infinity;
+      for(const [L,n] of sizeCounts){
+        const bin=bins.get(L);
+        assert(bin&&bin.length,name+" missing GP word length "+L);
+        minPool=Math.min(minPool,bin.length);
+        let all=0,final=0,pen=0;
+        for(const w of bin){
+          final+=Number(w[L-1]===15);
+          if(L>=8)pen+=Number(w[L-2]===15);
+          for(let i=6;i<L;i++)all+=Number(w[i]===15);
+        }
+        expectedTotal+=n*all/bin.length;
+        if(pen)possiblePenultimate+=n;
+        for(let j=0;j<n;j++){pf.push(final/bin.length);pp.push(pen/bin.length);}
+      }
+      assert.equal(pf.length,559);
+      comparisons.push({source:name,ingAlias,
+        sourceWords:[...bins.values()].reduce((n,w)=>n+w.length,0),
+        minimumSourceLengthPool:minPool,expectedS:expectedTotal,
+        expectedFinalS:pf.reduce((s,v)=>s+v,0),
+        expectedPenultimateS:pp.reduce((s,v)=>s+v,0),
+        maximumFiniteVocabularyPenultimate:possiblePenultimate,
+        pFinalAtMost32:poissonLow(pf,32),
+        pPenultimateAtLeast28:poissonHigh(pp,28)
+      });
+    }
+  }
+  const native=comparisons.find(c=>c.source==="solved-Cicada"&&!c.ingAlias);
+  assert.equal(native.maximumFiniteVocabularyPenultimate,4);
+  assert.equal(native.pPenultimateAtLeast28,0);
+  const plantedWords=words.map((w,i)=>{
+    const bin=plantBins.get(w.length);assert(bin&&bin.length);
+    return bin[(Math.imul(i,3301)+17)%bin.length];
+  });
+  const encrypted=plantedWords.map(encS),decrypted=encrypted.map(decS);
+  assert.deepEqual(decrypted,plantedWords);
+  let symbols=0,runicS=0,echoS=0;
+  for(let i=0;i<encrypted.length;i++)for(let j=6;j<encrypted[i].length;j++){
+    const hit=encrypted[i][j]===mod29(24-2*encrypted[i][j-6]);
+    const s=plantedWords[i][j]===15;
+    assert.equal(hit,s);
+    symbols++;runicS+=Number(s);echoS+=Number(hit);
+  }
+  assert.equal(symbols,1290);
+  return {original,sourceComparisons:comparisons,
+    controlledPlant:{words:2896,exactRecoveredRunes:decrypted.flat().length,
+      eligibleSlots:symbols,plainS:runicS,cipherT6:echoS,exactMarkers:true},
+    limitation:"Only intact ciphertext-to-plaintext word boundaries with exclusive literal GP-S T6 channel; intermediate codecs or independently segmented plaintext may evade this gate"};
+}
+
 /** @param {number} replicates @param {number} seed */
 function analyze(replicates, seed) {
   assert.ok(Number.isSafeInteger(replicates) && replicates > 0);
@@ -176,6 +351,8 @@ function analyze(replicates, seed) {
     input: {words: words.length, runes: 12956,
       sourceSha256: crypto.createHash("sha256").update(corpusBuffer).digest("hex")},
     source,
+    sourceExponent: sourceExponent(),
+    literalSRole: sourceSRole(),
     candidateRule: "At equal GP-prime gap d around p[j], test C[i] = (p[j] - 2*C[i-d]) mod 29 within complete words",
     candidateCenters: centers.map((model, j) => ({...model,
       eligiblePositions: eligible[j], observedHits: observed[j],
@@ -194,4 +371,4 @@ if (require.main === module) {
   const reps = Number(process.env.LP2_TRIPLET_REPS || 1500);
   console.log(JSON.stringify(analyze(reps, 0x33011553), null, 2));
 }
-module.exports = {analyze, sourceSelection, countEcho};
+module.exports = {analyze, sourceSelection, countEcho, sourceExponent, sourceSRole};

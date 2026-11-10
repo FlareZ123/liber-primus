@@ -10,3 +10,4 @@ jobs:
         with:
           node-version: '22'
       - run: node sims/red_span_triangle.cjs
+      - run: node sims/red_prime_gap_affine_echo.cjs
