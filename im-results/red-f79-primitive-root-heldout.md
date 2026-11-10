@@ -8,6 +8,30 @@ Original red spans give GP prime sums p40 **435 = 29 × 15**, p15 **638 = 29 × 
 
 The **2262 = 29 × 78** identity also equals the state count of a product clock combining the 29-rune alphabet with a 78-position field-unit cycle. It follows arithmetically from the already selected red sum and cannot be treated as independent confirmation of intent. A primitive-root relation is not intrinsically very rare (there are φ(78) = 24 primitive roots among the 78 nonzero residues). The red-triangle rule and this interpretation were post-selected; there is no independent cipher instruction specifying a modular-79 field.
 
+## Stronger exact obstruction: no nonidentity projective field action on the GP-prime alphabet
+
+A field cipher must first specify how its 29 plaintext runes appear as elements of F79. The obvious literal interpretation uses the GP rune weights `E_q(i)=GPprime[i] mod q`. We can determine **mathematically**, independently of the LP2 ciphertext or any English reference, whether a nontrivial reversible projective field operation can permute this 29-rune alphabet without changing its encoding.
+
+Among the **29** prime moduli q listed as GP symbol weights, only **nine** yield 29 distinct embedded residues: **61, 67, 73, 79, 83, 89, 97, 103, 109**. The other 20 identify two or more different source runes as the same residue, so they cannot represent all 29 symbols injectively without another channel. For each of the nine injective alphabets S_q, the complete projective family is
+
+\[
+f(x)=(ax+b)(cx+d)^{-1}\pmod q,\qquad ad-bc\ne0.
+\]
+
+A valid one-rune-per-rune permutation of *all 29 source symbols* requires every image f(x) to remain in S_q and prohibits a pole at any source rune. This includes all Möbius, affine and scalar field actions as subfamilies, and permits the coefficients to change from position to position as long as each keyed row is a full-alphabet bijection.
+
+The exact [29-symbol projective sieve](../sims/gp_prime_projective_stabilizer.cjs) fixes the source residues of GP indices 0, 1, 2, namely **2, 3, 5**. A projective transformation is determined uniquely by its images at three distinct field points. Thus for each q the source alphabet admits only **29×28×27 = 21,924** possible ordered image triples to test. For each triple the standard projective cross-ratio determines all **26 remaining** rune images exactly. Any pole or image missing from the 29-element subset rejects the candidate.
+
+**Exact exhaustion: 21,924 ordered triples × 9 moduli = 197,316 candidates; every field has exactly one automorphism, the identity.** No nontrivial affine, scalar, fractional-linear or inversion map preserves *any* of these nine literal GP-prime source alphabets.
+
+There is also a short analytic proof for the affine subclass. If `x↦a x+b` permutes a set of 29 distinct residues with mean μ and nonzero centered second moment V, preservation of V forces `a²V=V`, hence `a=±1`. The mean fixes `b=(1−a)μ`. In **F79**, the source alphabet has μ=2 and V=10, so the only candidates are identity and reflection `x↦4−x`. The reflection maps the source residue **3→1**, but residue1 is absent from the GP-prime alphabet. All other eight fields likewise have V≠0 and at least one explicit reflection counterexample, asserted in [the companion finite-field source](../sims/gp_prime_field_unit_marker_family.cjs). In particular, multiplication by the red-selected generator **53** fails as an alphabet permutation immediately: **2×53 ≡ 27 (mod79)**, and 27 is absent from S_79.
+
+A purposefully positive control checks the same complete projective enumerator on a different 29-element field alphabet: the **29 nonzero quadratic residues of F59**, a genuine multiplicative subgroup. This synthetic alphabet has exactly **58** valid projective symmetries, including the nonidentity scalar `x↦4x` and reciprocal `x↦1/x`. All 58 are recovered, confirming the sieve detects the intended affine and nonaffine mechanisms when they are present.
+
+**Implication:** A secret sequence of any field-unit, affine or Möbius keys cannot act as nonidentity **whole-alphabet** bijective substitutions on the literal 29 GP-prime residues in F79 or any other injective GP source-prime field. This is a strict group-theoretic no-go under a stated direct-embedding model. Different embeddings, variable-length output, plaintext-dependent key skipping, and an extra field-to-rune representation remain possible. No original LP2 plaintext is claimed.
+
+[Reproducible exact projective proof and 58-map positive](../sims/gp_prime_projective_stabilizer.cjs) · [successful Windows Node22 CI run 42782627040](https://github.com/FlareZ123/liber-primus/actions/runs/42782627040).
+
 ## Finite source-key inverse
 
 [Reproducer](../sims/red_field79_generator_heldout.cjs) constructs all 78 powers and asserts the exact source spans, group order and independent GP alphabet. It examines three reversible families:
