@@ -1,0 +1,14 @@
+name: LP2 corrected red 51-rune source-derived key screen
+on:
+  workflow_dispatch:
+jobs:
+  source-key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test direct periodic and AES key variants from corrected red marker
+        run: node sims/red_marker_key_probe.cjs
