@@ -111,10 +111,15 @@ const plantDirect=scan(plain.out,false),plantSkip=scan(filtered.out,true);
 const trueModel=plantSkip.find(x=>x.start===start&&x.sign===1);
 const acc=trueModel?trueModel.plaintext.filter((x,i)=>x===P[i]).length/P.length:null;
 assert.ok(plantDirect.some(x=>x.start===start&&x.sign===1));
-const chosen=[0,28,42,49,55].map(page=>{
+const chosen=(process.env.PRIME_ALL_PAGES==='1'?corpus.pages.filter(p=>p.page<56&&p.indices.length).map(p=>p.page):[0,28,42,49,55]).map(page=>{
   const C=corpus.pages.find(p=>p.page===page).indices;
-  return {page,n:C.length,direct:scan(C,false).slice(0,2),
-    skip:scan(C,true).slice(0,2).map(({plaintext,...x})=>x)};
+  const no=scan(C,false),yes=scan(C,true);
+  if(process.env.PRIME_ALL_PAGES==='1')return {page,n:C.length,
+    direct:{start:no[0].start,sign:no[0].sign,scorePerRune:no[0].score/C.length},
+    skip:{start:yes[0].start,sign:yes[0].sign,scorePerRune:yes[0].score/C.length,
+      keySkips:yes[0].totalSkips,preview:yes[0].transliteration.slice(0,100)}};
+  return {page,n:C.length,direct:no.slice(0,2),
+    skip:yes.slice(0,2).map(({plaintext,...x})=>x)};
 });
 console.log(JSON.stringify({model:'LP2 p56 prime-totient additive key with exact one-draw duplicate-collision skips',
   parameters:{keyStartWindow:W,driftLimit:D,skipPenalty:PEN},
@@ -122,5 +127,7 @@ console.log(JSON.stringify({model:'LP2 p56 prime-totient additive key with exact
     trueKeyInTop4Direct:plantDirect.some(x=>x.start===start&&x.sign===1),
     trueKeyInTop4Skip:Boolean(trueModel),realSkips:filtered.skips,
     recoveredSkips:trueModel?.skips,runeAccuracy:acc,
+    positiveScorePerRune:trueModel?.score/P.length,
+    unskippedScorePerRune:plantDirect[0].score/P.length,
     directWinner:plantDirect[0].start,skipWinner:plantSkip[0].start},
   real:chosen,interpretation:'scores alone are not recovered keys or plaintext'},null,2));
