@@ -261,7 +261,7 @@ def short_key_screens(primes, pages, logp, structure):
     )
     out = []
     for name, period in candidates:
-        key = np.asarray([period[i % len(period)] for i in range(WINDOW)], dtype=np.uint8)
+        key = np.asarray([period[i % len(period)] % 29 for i in range(WINDOW)], dtype=np.uint8)
         train_total = holdout_total = 0.0
         per_page = {}
         for page in pages:
@@ -351,7 +351,7 @@ def main():
             "composite_plant_runes": len(plant_plain),
         },
         "model_definition": {
-            "cipher": "c_i = p_i + sum_j(sign_j * (prime[start_j + direction_j*i]-1)) mod29",
+            "cipher": "c_i = m_i + sum_j(sign_j * (prime[start_j + direction_j*i]-1)) mod29",
             "decryption": "three additive phi-prime layers combined; F may be literal and non-consuming",
             "starts_are_one_based_prime_ordinals": True,
             "model_count": len(source_models),
