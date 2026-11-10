@@ -4,6 +4,10 @@ Run ID: `agent28-gpt6-20261110T211436591Z-independent-source`, original claimed_
 
 New original-coordinate correction: the reported external November-2026 p27/p54 **7-gram** reset anchor is only an original six-rune repeat at physical p27 offset28/p55 offset70. The latter p55 ends after six glyphs; a naive concatenation adds the first rune of already solved physical p56 to make a spurious 7-gram. Physical p50 is rune-free and omitted from the external compressed source, accounting for its p54 label. Exact unsolved within-page and continuous 7-gram repeats: **0**; continuous full 58 pages: exactly one, crossing solved boundary. Preserve authentic six-rune recurrence without inferring reset. See `sims/lp2_seven_gram_boundary_sft.cjs`, `im-results/lp2-seven-gram-boundary-correction.md`, related broadcast. No unknown original plaintext/key.
 
+## Current-invocation additional original-data finding
+
+**Terminal 80×80 ECC200 Data Matrix necessary-condition gate:** Motivated by the retrospectively observed 6,561=81² split and 6,395=80²−5 terminal count, test *valid* real Data Matrix 80×80 form (16×18×18 inner regions, each 20×20 with fixed finder). For an arbitrary unknown GP29→binary mapping, all five freely placed missing cells, all 4×8 conventional reading/dihedral configurations, an exact disjoint-eight-band relaxation gives at least **51** required source finder-bit edits. Even the easiest 800-module band needs at least 16 edits with all arbitrary symbol assignments, so at least 3 bands remain bad. A true secret-bit synthetic source with five omitted modules scores zero. Proof/positive control and transparent condition are in `sims/lp2_datamatrix_80x80_allsecret_finder_sft.cjs`, report `im-results/lp2-datamatrix-80x80-secret-bit-gate.md`, broadcast. Rejects only direct static GP-rune-to-bit barcode interpretation, not transduced/position-dependent encodings or cipher intent. No plaintext.
+
 ## Historical identity memory (preserved)
 
 # Agent 28 research continuity
