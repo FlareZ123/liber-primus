@@ -304,6 +304,110 @@ function positive(plaintext, mode, period, pageReset) {
     equalityRate:statistic.rate};
 }
 
+
+const TOP_K = [1,2,3,4,5,6,7,8,10,12,14,16,20,24,27];
+
+/**
+ * Sharp distribution-free majorization bound under arbitrary hidden 28-way
+ * bijections: for every k, the sum of the k largest plaintext-symbol counts
+ * is bounded by the sum of the k largest output counts in each key phase.
+ * @param {number[][]} rankRows
+ * @param {number} period
+ * @param {boolean} pageReset
+ * @returns {number[]}
+ */
+function topKCapacity(rankRows, period, pageReset) {
+  const histogram=new Uint16Array(period*28);
+  let pointer=0;
+  for(const page of rankRows) {
+    if(pageReset)pointer=0;
+    for(const x of page) histogram[(pointer++ % period)*28+x]++;
+  }
+  const bounds=TOP_K.map(()=>0);
+  for(let phase=0;phase<period;phase++){
+    const frequencies=Array.from(histogram.subarray(phase*28,phase*28+28))
+      .sort((a,b)=>b-a);
+    let total=0,next=0;
+    for(let k=1;k<=28;k++){
+      total+=frequencies[k-1];
+      if(next<TOP_K.length&&k===TOP_K[next])bounds[next++]+=total;
+    }
+  }
+  return bounds;
+}
+
+/**
+ * Exact lower bounds on ordered top-k letter frequencies over EVERY
+ * contiguous non-EA source GP window of the original 12,815-step length.
+ * @param {number[]} source
+ * @returns {number[]}
+ */
+function sourceTopKFloor(source) {
+  assert.ok(source.length>=DATA_LENGTH);
+  const counts=new Int32Array(28),minimum=TOP_K.map(()=>Infinity);
+  for(let i=0;i<DATA_LENGTH;i++)counts[source[i]]++;
+  for(let at=0;at+DATA_LENGTH<=source.length;at++){
+    const frequencies=Array.from(counts).sort((a,b)=>b-a);
+    let total=0,next=0;
+    for(let k=1;k<=28;k++){
+      total+=frequencies[k-1];
+      if(next<TOP_K.length&&k===TOP_K[next]){
+        minimum[next]=Math.min(minimum[next],total);
+        next++;
+      }
+    }
+    if(at+DATA_LENGTH<source.length){
+      counts[source[at]]--;
+      counts[source[at+DATA_LENGTH]]++;
+    }
+  }
+  return minimum;
+}
+
+/**
+ * A page-restarted static key may depend on the local nonzero-step ordinal.
+ * The maximal model allows an independent secret row for each local ordinal.
+ * Reusing modulo any period can only MERGE these rows and cannot increase
+ * any top-k frequency cap, by subadditivity of the k-largest-count norm.
+ * @param {Record<string,number[][]>} ranks
+ * @param {Record<string,number[]>} sources
+ * @returns {object}
+ */
+function allSecretPeriodGate(ranks,sources) {
+  const sourceFloors=Object.fromEntries(Object.entries(sources).map(([name,src])=>
+    [name,sourceTopKFloor(src)]));
+  const universalFloor=TOP_K.map((_,i)=>
+    Math.min(...Object.values(sourceFloors).map(values=>values[i])));
+  const models={};
+  for(const mode of MODES){
+    const maxPageSteps=Math.max(...ranks[mode].map(page=>page.length));
+    const pageCapacity=topKCapacity(ranks[mode],maxPageSteps,true);
+    const pageWitness=TOP_K.findIndex((k,i)=>pageCapacity[i]<universalFloor[i]);
+    assert.ok(pageWitness>=0,"Page-reset unrestricted local-key capacity survived");
+    let rejected=0,firstSurvivor=null,lastRejected=null;
+    for(let period=1;period<=1200;period++){
+      const cap=topKCapacity(ranks[mode],period,false);
+      const excluded=cap.some((value,i)=>value<universalFloor[i]);
+      if(excluded){rejected++;lastRejected=period;}
+      else if(firstSurvivor===null)firstSurvivor=period;
+    }
+    assert.ok(firstSurvivor>=356,"Short-period key escaped the exact no-key bound");
+    models[mode]={
+      pageResetEveryPeriodExcluded:true,maxPageNonzeroSteps:maxPageSteps,
+      pageLocalUnrestrictedTopK:pageCapacity,
+      pageKeyWitness:{k:TOP_K[pageWitness],
+        actualCap:pageCapacity[pageWitness],
+        sourceMinimum:universalFloor[pageWitness]},
+      continuous:{testedPeriods:[1,1200],
+        allPeriods1Through355Excluded:true,
+        excludedCount:rejected,firstCapacitySurvivor:firstSurvivor,
+        lastCapacityRejected:lastRejected}
+    };
+  }
+  return {topK:TOP_K,sourceFloors,conservativeAcrossSources:universalFloor,
+    models,interpretation:"Majorization is exact for all secret phase bijections. Page-reset exclusion holds for any period, since the unconstrained key per local nonmarker ordinal is already impossible."};
+}
+
 function run() {
   const ranks = Object.fromEntries(MODES.map(mode=>[mode,rankPages(mode)]));
   const sources=Object.fromEntries(Object.entries(CONTROLS).map(([name,file])=>
@@ -311,6 +415,7 @@ function run() {
   const minima=Object.fromEntries(Object.entries(sources).map(([name,values])=>
     [name,{...minMaxLetter(values),
       phase466:minPhaseEqualPairs(values,466)}]));
+  const allPeriods=allSecretPeriodGate(ranks,sources);
   const plantSource=sources.Shakespeare.slice(40000,40000+DATA_LENGTH);
   assert.equal(plantSource.length,DATA_LENGTH);
   const variants=[];
@@ -334,9 +439,10 @@ function run() {
     transcriptPages:PAGES.length,originalRunes:RAW_LENGTH,
     independentPageInitials:INITIALS,markerDoublets:REPEATS,
     nonzeroSteps:DATA_LENGTH,exactFibonacciProduct:"55*233",
-    sources:minima,variants,
-    interpretation:"All eight exact static-phase secret-permutation models conflict with every source-native GP control window under the declared EA/nonzero-step register. The authentic source provides no recovered plaintext, key, or evidence that the candidate period is real."};
+    sources:minima,allPeriods,variants,
+    interpretation:"Every page-reset period and each continuous period up to 355 violates the exact all-secret source-GP majorization bound; Fibonacci233/466 variants also fail independently. The authentic source provides no recovered plaintext, key, or evidence that the candidate period is real."};
 }
 if(require.main===module)console.log(JSON.stringify(run(),null,2));
 module.exports={decodeRank,encodeRank,rankPages,gate,nativeGP,
-  minMaxLetter,minPhaseEqualPairs,positive,run};
+  minMaxLetter,minPhaseEqualPairs,topKCapacity,sourceTopKFloor,
+  allSecretPeriodGate,positive,run};

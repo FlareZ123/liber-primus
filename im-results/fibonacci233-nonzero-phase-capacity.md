@@ -1,6 +1,6 @@
 # Fibonacci 233 nonzero-step clock: all-secret phase-bijection exclusion
 
-**Classification: exact original-input cryptanalytic exclusion of a deliberately bounded 28-symbol direct-GP architecture.** The factorization below is genuine source arithmetic, but the hypothesis that Cicada used it was proposed after examining the ciphertext. No LP2 plaintext, key, encryption mechanism or historical continuation was recovered.
+**Classification: exact original-input cryptanalytic exclusion of all page-reset and all continuous periods up to 355 for the specified fixed-phase 28-symbol direct-GP architecture.** The factorization below is genuine source arithmetic, but the hypothesis that Cicada used it was proposed after examining the ciphertext. No LP2 plaintext, key, encryption mechanism or historical continuation was recovered.
 
 ## Source and proposed 55 × 233 register
 
@@ -72,11 +72,33 @@ These are exact finite-reference exclusions, *not* p-values for all possible lan
 
 The same script constructs **eight independent secret-key positive cases**, one per listed model, with genuine source-native Shakespeare GP characters, 28! phase permutations, the original page layout and exactly the original 86 repeated-output slots. All eight inversions recover **12,815/12,815** source payload symbols, re-emit **12,956/12,956** generated ciphertext runes, and produce same-phase native-language equality rates around 0.062. Those synthetic round trips verify code consistency and power under the planted architecture; like every true bijective inverse they **do not identify historical keys**.
 
+
+## Generalization: the whole page-reset key class and all short continuous keys
+
+The same histogram data give a stronger, **all-secret majorization theorem** for arbitrary source plaintext ordering. For each `k=1,2,...,28`, sort the counts in every cipher phase and sum their `k` largest bins. A fixed secret bijection maps those bins to distinct plaintext GP letters, so the number of occurrences of the `k` most frequent plaintext letters cannot exceed this phase-summed bound. This holds for **all 28! secret permutations independently chosen in each phase**, with no assumption about which plaintext letter is most common.
+
+The executable scans the 15 predeclared top-`k` values `[1,2,3,4,5,6,7,8,10,12,14,16,20,24,27]` against all **563,639** native-GP source windows. For each `k`, it conservatively uses the *lowest* source-window top-`k` count among all three reference corpora. For instance:
+
+| Number of most common GP letters | Minimum across all three source corpora |
+| ---: | ---: |
+| 1 | 1,393 |
+| 2 | 2,449 |
+| 4 | 4,315 |
+| 8 | 7,329 |
+| 12 | 9,654 |
+| 16 | 11,283 |
+
+**All page-reset key periods, without an upper bound, are excluded.** Physical pages contain at most **272 nonzero steps**. Giving each local step ordinal its *own* independently keyed 28-way permutation is maximally generous. Its top-one plaintext letter capacity is only **1,283** for the cyclic alphabet and **1,293** for sorted deletion, below the universal source-window minimum 1,393. Any shorter repeating page-reset period merges previously independent phase rows; by subadditivity of the top-`k` norm, merging cannot increase its best possible alphabet capacity. Any longer period leaves the 272 local rows unchanged. Thus **every possible static page-restarted nonzero-step substitution period** fails the stated direct source-native GP register, including an arbitrarily long secret table and both rank alphabets.
+
+**Every book-continuous fixed period from 1 through 355 also fails**. The proof exhaustively checks all integer periods 1–1,200 under both rank alphabets and all 15 top-`k` necessary inequalities. The first capacity survivor is period **362** for cyclic differences and **356** for sorted deletion; scattered larger periods are still excluded (last excluded periods 380 and 381 respectively). A survivor has merely passed this *necessary capacity test* and has supplied neither a real key nor a language-like decoding. Continuous period 466 is one such capacity survivor that nevertheless fails the stronger exact source phase-equality test above.
+
+The result subsumes the special 233-period frequency exclusion for this precise model and is a structural obstruction beyond the previously tested short absolute-rune clocks. It does **not** rule out variable key/state rows, page-specific secrets, binary/precompressed intermediates, changed nonzero markers, or other plaintext distributions.
+
 ## Decision and reproduction
 
 The exact 55×233 count is a useful way to make a Fibonacci clue candidate sharply testable. A **single static table of 233 or 466 secret phase permutations in the nonzero-step clock cannot hide a direct source-native GP prose stream of the three tested kinds**, even when every table entry is an unrestricted unknown mapping. Larger brute-force searches for the same table are unnecessary because both invariants hold for every possible key.
 
-This report makes no claim that 233 is a genuine Cicada parameter, nor that other key schedules or GP-to-byte transports are excluded. The next productive investigation should furnish an independently specified, recoverable evolving state or a non-GP intermediate that predicts actual original words.
+This report makes no claim that 233 is a genuine Cicada parameter, nor that changing key schedules or GP-to-byte transports are excluded. The broader exact majorization bound makes further arbitrary-period page-reset secret-key scans unnecessary in this stated register. The next productive investigation should furnish an independently specified, recoverable evolving state or a non-GP intermediate that predicts actual original words.
 
 - [Standalone original-source CommonJS proof and independent hidden-key plants](../sims/fibonacci233_nonzero_phase_gate.cjs), Node 22.
 - [Successful manually dispatched complete CI, run 42846361933](https://github.com/FlareZ123/liber-primus/actions/runs/42846361933), using the existing [repeat-rank manual workflow](../.github/workflows/repeat-rank-periodic.yml) option `attack=fibonacci233`.
