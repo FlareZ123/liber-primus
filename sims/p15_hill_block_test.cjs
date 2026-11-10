@@ -22,6 +22,9 @@ const path = require("node:path");
 const ROOT = path.join(__dirname, "..");
 const mod = (n) => ((n % 29) + 29) % 29;
 const read = (p) => fs.readFileSync(path.join(ROOT, p), "utf8");
+const nativeSymbols = require("./red16_spiral_4d_native_crib.cjs").nativeSymbols;
+const latinSource = JSON.parse(read("resources/control/latin-vulgate-gp-trigrams.json"));
+const latinHoldout = JSON.parse(read("resources/control/latin-vulgate-heldout-gp.json")).runes;
 
 const spiralSource = require("./fibonacci_prime_spiral.cjs");
 const square = spiralSource.readSquare();
@@ -123,9 +126,72 @@ function render(values, translit) {
   return values.slice(0, 48).map((value) => translit[value]).join(" ");
 }
 
+function unigramLogFromSymbols(symbols) {
+  const freq = new Array(29).fill(0.5);
+  for (const value of symbols) freq[value]++;
+  const total = freq.reduce((a, b) => a + b, 0);
+  return freq.map((value) => Math.log(29 * value / total));
+}
+
+function unigramLogFromCounts(counts) {
+  const freq = counts.map((value) => value + 0.5);
+  const total = freq.reduce((a, b) => a + b, 0);
+  return freq.map((value) => Math.log(29 * value / total));
+}
+
+function bigramLogFromSymbols(symbols) {
+  const freq = Array.from({ length: 29 }, () => new Array(29).fill(0.5));
+  for (let i = 1; i < symbols.length; i++)
+    freq[symbols[i - 1]][symbols[i]]++;
+  const total = freq.flat().reduce((a, b) => a + b, 0);
+  return freq.map((row) =>
+    row.map((value) => Math.log(29 * 29 * value / total)));
+}
+
+function bigramLogFromSparse(sparse) {
+  const freq = Array.from({ length: 29 }, () => new Array(29).fill(0.5));
+  for (const [index, count] of sparse)
+    freq[Math.floor(index / 29)][index % 29] += count;
+  const total = freq.flat().reduce((a, b) => a + b, 0);
+  return freq.map((row) =>
+    row.map((value) => Math.log(29 * 29 * value / total)));
+}
+
+function scoreUnigram(values, logTable) {
+  return values.reduce((sum, value) => sum + logTable[value], 0) / values.length;
+}
+
+function scoreBigram(values, logTable) {
+  let total = 0;
+  for (let i = 1; i < values.length; i++)
+    total += logTable[values[i - 1]][values[i]];
+  return total / (values.length - 1);
+}
+
 function main() {
   const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
   assert.equal(corpus.runes.length, 29);
+  assert.equal(nativeSymbols.length, 3248);
+  const nativeUnigramLog = unigramLogFromSymbols(nativeSymbols);
+  const latinUnigramLog = unigramLogFromCounts(latinSource.u);
+  const nativeBigramLog = bigramLogFromSymbols(nativeSymbols);
+  const latinBigramLog = bigramLogFromSparse(latinSource.b);
+  const languageControls = {
+    solvedCicada: {
+      runes: nativeSymbols.length,
+      nativeUnigram: scoreUnigram(nativeSymbols, nativeUnigramLog),
+      latinUnigram: scoreUnigram(nativeSymbols, latinUnigramLog),
+      nativeBigram: scoreBigram(nativeSymbols, nativeBigramLog),
+      latinBigram: scoreBigram(nativeSymbols, latinBigramLog)
+    },
+    independentLatinHoldout: {
+      runes: latinHoldout.length,
+      nativeUnigram: scoreUnigram(latinHoldout, nativeUnigramLog),
+      latinUnigram: scoreUnigram(latinHoldout, latinUnigramLog),
+      nativeBigram: scoreBigram(latinHoldout, nativeBigramLog),
+      latinBigram: scoreBigram(latinHoldout, latinBigramLog)
+    }
+  };
   const nextSection = corpus.pages.filter((p) => p.page >= 16 && p.page <= 22);
   const remaining = corpus.pages.filter((p) => p.page >= 16 && p.page <= 55);
   const scopes = {
@@ -173,14 +239,22 @@ function main() {
             results.push({
               matrix: matrixName, scope: scopeName, clock: "continuous",
               direction, convention, phase, runes: decoded.length,
-              ioc: ioc(decoded), sample: render(decoded, corpus.translit)
+              ioc: ioc(decoded), sample: render(decoded, corpus.translit),
+              nativeUnigram: scoreUnigram(decoded, nativeUnigramLog),
+              latinUnigram: scoreUnigram(decoded, latinUnigramLog),
+              nativeBigram: scoreBigram(decoded, nativeBigramLog),
+              latinBigram: scoreBigram(decoded, latinBigramLog)
             });
           }
           const decoded = transformPageReset(pages, A, convention);
           results.push({
             matrix: matrixName, scope: scopeName, clock: "physical-page-reset",
             direction, convention, phase: 0, runes: decoded.length,
-            ioc: ioc(decoded), sample: render(decoded, corpus.translit)
+            ioc: ioc(decoded), sample: render(decoded, corpus.translit),
+            nativeUnigram: scoreUnigram(decoded, nativeUnigramLog),
+            latinUnigram: scoreUnigram(decoded, latinUnigramLog),
+            nativeBigram: scoreBigram(decoded, nativeBigramLog),
+            latinBigram: scoreBigram(decoded, latinBigramLog)
           });
         }
       }
@@ -194,17 +268,35 @@ function main() {
         r.matrix === matrix && r.scope === scope);
       const min = selected.reduce((a, b) => a.ioc < b.ioc ? a : b);
       const max = selected.reduce((a, b) => a.ioc > b.ioc ? a : b);
+      const best = (field) => selected.reduce((a, b) =>
+        a[field] > b[field] ? a : b);
+      const settings = (entry) => ({
+        clock: entry.clock, direction: entry.direction,
+        convention: entry.convention, phase: entry.phase
+      });
+      const bestNativeUnigram = best("nativeUnigram");
+      const bestLatinUnigram = best("latinUnigram");
+      const bestNativeBigram = best("nativeBigram");
+      const bestLatinBigram = best("latinBigram");
       summary.push({
         matrix, scope, variants: selected.length,
-        minIoC: min.ioc, minSetting: {
-          clock: min.clock, direction: min.direction,
-          convention: min.convention, phase: min.phase
+        minIoC: min.ioc, maxIoC: max.ioc,
+        bestNativeUnigram: {
+          score: bestNativeUnigram.nativeUnigram,
+          settings: settings(bestNativeUnigram)
         },
-        maxIoC: max.ioc, maxSetting: {
-          clock: max.clock, direction: max.direction,
-          convention: max.convention, phase: max.phase
+        bestLatinUnigram: {
+          score: bestLatinUnigram.latinUnigram,
+          settings: settings(bestLatinUnigram)
         },
-        highestIoCSample: max.sample
+        bestNativeBigram: {
+          score: bestNativeBigram.nativeBigram,
+          settings: settings(bestNativeBigram)
+        },
+        bestLatinBigram: {
+          score: bestLatinBigram.latinBigram,
+          settings: settings(bestLatinBigram)
+        }
       });
     }
   }
@@ -229,6 +321,7 @@ function main() {
       scopes: Object.keys(scopes)
     },
     positiveControls,
+    languageControls,
     summary,
     conclusion: "No tested direct block-Hill interpretation yields a source-language signal; IoCs remain near the 1/29 uniform baseline."
   }, null, 2));
