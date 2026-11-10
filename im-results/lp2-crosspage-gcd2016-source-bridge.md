@@ -39,6 +39,14 @@ Second, because p48 already has independent table-related arithmetic in the rese
 
 The original table N has residue 9 modulo 223, since N is 72-divisible and 72×28 is 2016 modulo 16056. The quotient condition is exactly the same congruence, *not* independent evidence.
 
+## Source-derived quotient-pad decryption attempt
+
+The exact divisor supplies a finite candidate key operation: divide the complete page-45 numeral, the complete page-48 numeral, or the printed-grid integer by **16,056**; as a narrower alternative, divide each by its prime factor **223**. Convert each exact quotient to canonical big-endian GP29 digits. These are **six deterministic keys**, with lengths **267, 268, 419, 268, 270 and 420** rune indices respectively, generated with no fitted original plaintext. Their use as periodic additive pads is provisional.
+
+Under each key, apply both signs of direct GP29 addition with zero phase to the original **12,956-rune book**, p45, and p48 separately: **36 original-source inversions**. The strongest complete-book IoC across all 12 tested settings is only **0.034514300040**, obtained using grid N/223 with positive sign, versus the untouched input **0.034478397865** and uniform GP29 **0.034482758621**. The best p45 and p48 transformed IoCs are only **0.035825416495** and **0.035096350963** over their respective shorter passages; all beginnings are unreadable. Every original candidate exactly re-encrypts the corresponding ciphertext when the pad sign is reversed. An independent 6,000-rune natural-GP Shakespeare plaintext encrypted with the real N/16,056 key exactly recovers and re-encrypts, and retains native GP IoC **0.068513307774**; the corresponding planted ciphertext has IoC **0.034544924154**. The SFT reproduces the complete original and planted panels.
+
+**Decision:** direct quotient-to-repeating-GP29-additive keystream does not recover ordinary GP-English, including in the two pages that define the divisor. This bounded negative does not falsify the arithmetic observation or rule out an independently indicated use of 2016 as a historical pointer or some different ciphertext register. Continuing to tune offsets, keys and source variants without a further visual instruction is unproductive.
+
 ## Solve-path decision
 
 This bridge is worth retaining because it unites original 270/271-rune page streams with an independently printed byte table under a very short, exact arithmetic rule; the natural table direction is singled out, and 2016 has independent source relevance. **It has not supplied a selected key, intermediate GP29 plaintext, or a rule for traversing other pages.** In particular directly dividing the two page numerals by 223 yields GP29 strings with essentially uniform letter coincidence, rather than readable prose.
