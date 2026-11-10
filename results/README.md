@@ -4,6 +4,14 @@
 
 ## Strongest current cryptanalytic conclusions
 
+### Arbitrary page-specific first-order feedback permutations
+
+A new label-invariant test covers **an arbitrary 29-by-29 ciphertext-conditioned permutation table on every LP2 page**, rather than restricting feedback to short algebraic formulas. For transitions sharing the same page and preceding ciphertext rune, any unknown bijective substitution of the next English-like GP plaintext rune preserves the conditional collision count exactly. LP2 has **1,919 repeated outputs among 54,009 eligible transition pairs**, ratio **0.0355311**. A matched near-uniform anti-repeat null gives **0.0352827 ± 0.0007656** (200 trials; upper-tail p 0.343), while 200 independent GP-English plants encrypted under random page-specific feedback tables and 81% immediate-repeat rerouting give **0.0652798 ± 0.0014188**; **all 200 planted scores exceed LP2**. A family-wise scan of individual page maxima also finds no positive candidate (p 0.745 against 1,000 matched nulls).
+
+**Conclusion:** The specific English-like **fixed first-order ciphertext-state substitution model** is strongly disfavoured, even with arbitrary independently selected alphabet permutations per page and the tested repeat repair. This does not exclude hidden state, time-varying keys, longer contexts, different plaintext codes, or arbitrary changing substitutions. No key or plaintext was recovered.
+
+[Mathematical invariant, simulated controls and limitations](../im-results/previous-cipher-sbox-invariant.md) · [Executable](../sims/previous_cipher_sbox_invariant.cjs).
+
 ### Controlled exhaustive feedback families: 1,758,009 parameter settings
 
 Three complementary experiments screened the LP2 ciphertext for a **single-rune plaintext output derived deterministically from the present rune and recent ciphertext history** under specific mod-29 formulas. Each run exhaustively enumerated its declared keyspace, retained exact source inputs, recovered a planted known-language key as the highest-ranked candidate, and checked the observed maximum against matched anti-repeat null streams.
