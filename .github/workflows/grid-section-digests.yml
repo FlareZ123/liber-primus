@@ -24,3 +24,5 @@ jobs:
         run: node sims/red_256_event_grid_aes_inverse.cjs
       - name: Source-run32 AES-CTR key original GP29/GP28 reversible inverse
         run: node sims/red_32run_aes_gp_inverse.cjs
+      - name: Exact red-stencil 31-marker capacity and base60 null
+        run: node sims/red_256_marker_capacity.cjs
