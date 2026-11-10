@@ -182,7 +182,7 @@ function positives() {
         const n = plain[absolute], kval = keyVariants[config.key][absolute % 79];
         if (config.method === 'raw') c.push(mod(n + kval, 29));
         else {
-          if (j) previous = mod(previous + 1 + n % 28 + kval, 29);
+          if (j) previous = mod(previous + 1 + mod(n % 28 + kval, 28), 29);
           c.push(previous);
         }
         absolute++;
