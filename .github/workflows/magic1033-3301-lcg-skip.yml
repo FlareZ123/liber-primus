@@ -1,0 +1,15 @@
+name: LP2 1033-3301 full-width LCG skip-aware scan (manual)
+on:
+  workflow_dispatch:
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaust clue-derived full-width seeds with exact keyskip Viterbi
+        run: node sims/magic1033_3301_lcg_skip.cjs
