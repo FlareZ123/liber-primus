@@ -1,0 +1,14 @@
+name: LP2 original red-heading keys and grid IV role reversal (manual)
+on:
+  workflow_dispatch:
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original source-key AES/ChaCha Viterbi and English GP plants
+        run: node sims/red_title_key_grid_nonce_inverse.cjs
