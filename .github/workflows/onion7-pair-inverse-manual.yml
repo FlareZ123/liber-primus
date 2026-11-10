@@ -1,0 +1,16 @@
+name: Onion7 GP29 pair inverse (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source-inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify original source-root inverse and native-language control
+        run: node sims/onion7_133331_pair_inverse.cjs
