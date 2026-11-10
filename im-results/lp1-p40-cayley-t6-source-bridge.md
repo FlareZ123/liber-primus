@@ -1,0 +1,66 @@
+# LP1 MOBIUS and the LP2 page-40 red heading: a source-selected Cayley bridge to the lag-six echo
+
+**Classification (10 November 2026): exact cross-artifact algebra with an observed ciphertext match; authorial intent remains unproven. No unknown LP2 plaintext, real key, complete cipher, or destination is recovered.** This links the [previously established LP1 Möbius square](../sims/lp1_mobius_corner_power6.cjs) and [previously established p40 red-heading / T6 observation](red-prime-gap-affine-echo.md) through a new exact operator identity. The source material and the lag-six echo were already known before the link was derived; the comparison is therefore *retrospective*, not an independent pre-registered significance result.
+
+## Human-visible source path
+
+Three independently printed features motivate a limited operation:
+
+1. LP1 original scan 05 has a 5×5 Gematria-prime magic square containing the word **MOBIUS**. Its symmetric opposite-corner 2×2 matrix, reduced modulo the 29-rune GP alphabet, is
+   [
+   A=\begin{pmatrix}272&151\\151&272\end{pmatrix}
+     \equiv\begin{pmatrix}11&6\\6&11\end{pmatrix}\pmod{29}.
+   ]
+   The corresponding p16 corner matrix from the second LP1 square is projectively the sixth power: `M16 = 21 A^6 (mod29)`. This is an existing exact source relationship, not a new key.
+2. LP2 physical page 40 begins with the actual eight red runes `ᚠᚾᛗᚣᚷᛞᚫᚻ`. Their original GP prime weights sum to **435 = 29×15**, and their last rune **ᚻ** has zero-based GP index **8**. Both are read from `resources/liber-primus/lp2-ink-annotations.json` and `lp2-corpus.json`, without choosing ciphertext-dependent values.
+3. The canonical `MOBIUS` diagonalizing coordinate for this symmetric matrix is the projective Cayley transform `(x−1)/(x+1)`. Center it on the independently printed page-40 final-rune index 8:
+   [
+   h(x)=8+\frac{x-1}{x+1}=\frac{9x+7}{x+1},
+   \quad
+   H=\begin{pmatrix}9&7\\1&1\end{pmatrix}.
+   ]
+   Here the point `x=−1` maps to projective infinity; the identity is interpreted on the complete 30-point projective line `P¹(F29)`.
+
+## Exact derived map, no fitted coefficient
+
+Over `F29`, the LP1 matrix satisfies `h(Ax)−8 = 2(h(x)−8)`. Applying it the **15** times specified by the LP2 red prime quotient gives `2^15 ≡ −2 (mod29)`, hence
+
+[
+\boxed{h(A^{15}x)=8-2(h(x)-8)=24-2h(x)\pmod{29}.}
+]
+
+The full matrix certificate is
+
+[
+ A^{15}=\begin{pmatrix}23&18\\18&23\end{pmatrix},\qquad
+ H A^{15} H^{-1}=\begin{pmatrix}5&27\\0&12\end{pmatrix}
+ =12\begin{pmatrix}27&24\\0&1\end{pmatrix}\pmod{29}.
+]
+
+Thus the source-determined affine map is **`T(x)=27x+24=24−2x (mod29)`**. Its unique finite fixed point solves `3x=24`, yielding **8**, the *same p40 final red rune*. This is exactly the previously observed word-local six-back map, derived here from a separate earlier puzzle artifact. The source p05 `MOBIUS` prime-sum cell `226` also supplies a finite seed: `h(226 mod29)=21`. Starting at 21, repeated `T` visits **all 28 non-8 GP field symbols exactly once** and returns to 21; 8 is fixed.
+
+These facts give a source-constrained, fully specified 28-cycle and a genuine algebraic bridge. They do **not** specify that the cipher actually uses this cycle as a pad, alphabet, state or plaintext-marker encoder.
+
+## Original-ciphertext comparison and competing original red spans
+
+Use all **2,896 whole LP2 unsolved rune words** and **12,956 runes**, keeping 32 page-spanning words intact. For every word-local `j≥6`, compare `C[j]` to `T(C[j−6])`. There are 1,290 eligible original pairs, of which **80 match**.
+
+To make the observed ranking explicit, compare the same 1,290 original pairs against every invertible affine map `x↦a x+b mod29`, with `a=1..28`, `b=0..28`: **812 maps**. The derived `(a,b)=(27,24)` is the **unique maximum at 80**; the runner-up has **65**. This is a reproducible empirical rank, **not a 1/812 null p-value**. The unusual T6 count and its multiple-search calibration were independently reported before this new cross-artifact interpretation.
+
+Of all **18** LP2 red annotation spans, exactly three have GP-prime sums divisible by 29. For a consistent source-only comparison, derive each span's Cayley exponent as `sum/29` and fixed point as its last red GP rune, giving `x↦f+2^(sum/29)(x−f)`:
+
+| Original red span | Sum / 29 | Last rune GP index | Source-derived affine map | Original six-lag matches |
+| --- | ---: | ---: | --- | ---: |
+| p15 opening | 638 / 29 = 22 | 24 | `5x+20` | 58 / 1,290 |
+| **p40 opening** | **435 / 29 = 15** | **8** | **`27x+24`** | **80 / 1,290** |
+| p53 red block | 2262 / 29 = 78 | 9 | `5x+22` | 64 / 1,290 |
+
+This three-way comparison is also retrospective: requiring divisibility by 29, choosing the final rune as fixed point, choosing the p05 corners, and selecting the six-back coincidence were informed by previous findings. There are other mathematical functions and page features one could have selected. The three rows are consequently a useful *bounded comparison within a concrete proposed reading*, not a measure of how unlikely the whole clue discovery was by chance.
+
+## Decision and next discriminating step
+
+The LP1 word **MOBIUS** makes projective diagonalization reasonable for a human solver, and the two independent p40 numbers specify a particular power and center. The resulting map unexpectedly coincides exactly with the manuscript's strongest six-back affine echo. This may narrow an intended key or marker construction, particularly one using a 28-cycle with a separate fixed rune; the earlier fixed-H multiplier-gate report already shows that **84** of 1,290 original pairs violate the most naive global nonzero-multiplier version, so that architecture cannot simply be asserted for all positions.
+
+Only a **source-fixed, invertible forward/inverse mechanism** producing coherent unseen plaintext (or a separately visible instruction that predicts further original ciphertext structure) can promote this link to an authenticated solve. Repeatedly scanning arbitrary clocks, outer permutations or phases would not add such an instruction. The natural next question is whether an original artifact unambiguously selects *where* the 28-cycle acts, how the extra fixed-point symbol is represented, and how its state evolves across word boundaries.
+
+**Reproduce:** [`sims/lp1_p40_cayley_t6_bridge_sft.cjs`](../sims/lp1_p40_cayley_t6_bridge_sft.cjs), Node.js 22 CommonJS, reads only the committed original-source annotations, GP tables and canonical whole-word parser. It verifies the exact projective identity on all 30 states, enumerates all 812 affine maps on the unchanged original ciphertext, and compares all three divisible red spans. No ciphertext was modified.
