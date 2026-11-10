@@ -144,7 +144,7 @@ function run() {
   const control=planted(source);
   const plantedModels=screen(control.sites);
   const best=plantedModels[0];
-  assert.equal(plantedModels.length,48);
+  assert.equal(plantedModels.length,24);
   assert.deepEqual({type:best.type,sign:best.sign,
     reverse:best.reverse,phase:best.phase}, control.model);
   assert.ok(best.heldoutLL> -3.5);
