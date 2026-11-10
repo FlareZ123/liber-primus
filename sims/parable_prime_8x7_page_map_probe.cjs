@@ -142,6 +142,23 @@ assert.deepEqual(redKeyLengths, { 27: 19, 23: 16, 15: 20 });
 assert.equal(redKey.length, 55);
 assert.equal(nonemptyPageCount, 55);
 
+// Include every red-bearing page in the corrected five-page anchor set.
+// This 106-rune sequence is an alternative to the non-unique 55-rune subset.
+const redKey106Pages = [27, 23, 53, 15];
+const redKey106 = [];
+const redKey106Lengths = {};
+for (const p of redKey106Pages) {
+  const spans = [...(inkByPage.get(p)?.red_spans || [])]
+    .sort((a, b) => a.start - b.start);
+  const vals = spans.flatMap((s) =>
+    pageByNumber.get(p).indices.slice(s.start, s.start + s.length)
+  );
+  redKey106Lengths[p] = vals.length;
+  redKey106.push(...vals);
+}
+assert.deepEqual(redKey106Lengths, { 27: 19, 23: 16, 53: 51, 15: 20 });
+assert.equal(redKey106.length, 106);
+
 // Existing p27/p55 repeated-word-pair result, independently recoverable
 // from the canonical master transcription.
 function wordTokens(p) {
@@ -355,6 +372,41 @@ for (const [orderName, order] of [["physical", physical], ["square-spiral", squa
   }
 }
 
+for (const [orderName, order] of [["physical", physical], ["square-spiral", squareSpiral.order]]) {
+  for (const resetPage of [false, true]) {
+    for (const sign of [-1, 1]) {
+      const out = decodeVigenere(order, redKey106, resetPage, sign);
+      tests.push({
+        family: "106-red-rune-sequence-Vigenere",
+        order: orderName,
+        clock: resetPage ? "page-reset" : "continuous",
+        operation: sign < 0 ? "subtract" : "add",
+        score: score(out),
+        preview: preview(out)
+      });
+    }
+  }
+}
+
+for (const edge of edges2013) {
+  const key = (inkByPage.get(edge.startPage)?.red_spans || []).flatMap((s) =>
+    pageByNumber.get(edge.startPage).indices.slice(s.start, s.start + s.length)
+  );
+  const target = pageByNumber.get(edge.endPage).indices;
+  for (const sign of [-1, 1]) {
+    const out = target.map((x, i) => (x + sign * key[i % key.length] + 29) % 29);
+    tests.push({
+      family: "source-page-red-span-to-ordinal-page-Vigenere",
+      edge: "p" + edge.startPage + "->p" + edge.endPage,
+      keyLength: key.length,
+      targetLength: target.length,
+      operation: sign < 0 ? "subtract" : "add",
+      score: score(out),
+      preview: preview(out)
+    });
+  }
+}
+
 for (const [orderName, order] of keySortedOrders) {
   const raw = order.flatMap((p) => pageByNumber.get(p).indices);
   tests.push({
@@ -385,6 +437,14 @@ const summary = {
     ordinalCoordinates,
     ordinalPages,
     fivePageSet: fivePages,
+    edges2013,
+    signed2016PrimeSums,
+    signed2016Ordinals,
+    signed2016OrdinalCoordinates,
+    signed2016OrdinalPages,
+    signed2016FactorPagesModulo56: signed2016FactorPages,
+    edges2016,
+    combinedTenPageSet: tenPageSet,
     pageGrid: "8x7 row-major, page = 7*row + col",
     fragmentMarkers13: {
       p0_55: ink.pages.filter((p) => p.page >= 0 && p.page < 56)
@@ -401,6 +461,10 @@ const summary = {
     redKeyLengths,
     redKeyLength: redKey.length,
     redKeyTransliteration: redKey.map((i) => corpus.translit[i]).join(""),
+    redKey106Pages,
+    redKey106Lengths,
+    redKey106Length: redKey106.length,
+    redKey106Transliteration: redKey106.map((i) => corpus.translit[i]).join(""),
     nonemptyPageCount,
     emptyPages: allPages.filter((p) => !p.indices.length).map((p) => p.page),
     sharedP27P55WordPairs: sharedWordPairs
