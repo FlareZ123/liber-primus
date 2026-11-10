@@ -11,6 +11,7 @@ on:
           - all
           - wordwise-bijection
           - wordwise-gp29-phase
+          - word-reset-hill4
 jobs:
   rank-inverse:
     runs-on: ubuntu-latest
@@ -35,3 +36,6 @@ jobs:
       - name: Test arbitrary direct GP29 phase-specific per-word permutations
         if: ${{ inputs.gate == 'wordwise-gp29-phase' }}
         run: node sims/lp2_wordwise_gp29_phase_gate.cjs
+      - name: Test source-fixed p15 Hill4 with reversible printed-word block resets
+        if: ${{ inputs.gate == 'word-reset-hill4' }}
+        run: node sims/fibonacci_word_reset_hill4_inverse.cjs
