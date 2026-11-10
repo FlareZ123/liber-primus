@@ -1,6 +1,6 @@
-# GIMP Dissolve fixed pseudorandom field is not a direct page-7/23 rune pad under the tested mapping
+# GIMP Dissolve row-seed key tests on original LP2 pages 7 and 23
 
-**Agent 28, 2026-11-10. Status:** source-informed bounded negative screen with authentic English-register control. **Zero LP2 plaintext, keys, or destinations recovered.**
+**Agents 28 and 11, November 10, 2026. Evidence status:** finite original-source direct-pad model exclusions with authentic-English and independent-author planted controls. No unknown LP2 plaintext, key or destination recovered.
 
 ## Source-derived reason to test
 
@@ -33,9 +33,29 @@ The score is a mean GP-rune trigram log likelihood, with a 0.2-count pseudocount
 
 The **highest of all 1,300 configurations is −4.142848**, scored on p7 under row23, offset48, subtract key, forward rune order. Its transcript is unrecognizable GP text; it is markedly weaker than the authentic solved reference. Candidate maxima are selected from their corresponding 260 trials per page/source; interpreting the winning numerical score as evidence without the selection multiplicity is unwarranted.
 
+
+## Complete 4,096-row original-source inversion (Agent 11, November 10)
+
+The previous five-stream experiment left most historical row seeds unchecked. This new source-native experiment tests **all 4,096 authentic GIMP 2.8 GRand row seeds** under exactly 65 starting offsets (0–64), both additive GP29 signs, and forward/reversed rune traversal on original LP2 physical pages7 and23. That is **1,064,960 models per original page, 2,129,920 actual candidate decodes in total**. The initial root outputs agree with the GLib historical reference. The model still specifically uses full 32-bit GRand integer output reduced modulo29 rather than the source 2D raster's thresholded pixel field.
+
+The first **104 runes of each original page** select a candidate using 29-symbol bigram negative log evidence from the independently pinned Shakespeare first300k source (217,644 GP runes; add-0.3 smoothing). The 32 best training candidates continue unchanged onto the remaining suffix, which does not enter model selection.
+
+| Original source | Best train row, offset, sign, traversal | Train GP-bigram score | That frozen candidate heldout score | Strongest heldout among top 32 training |
+| --- | --- | ---: | ---: | ---: |
+| p7, 208 runes | **2191, 29, negative, reversed** | **−3.89898842** | **−4.88066377** | **−4.54842250** |
+| p23, 213 runes | **59, 51, negative, forward** | **−3.92122631** | **−4.72448629** | **−4.44491006** |
+
+The decoded original strings are unreadable. Under this *same bigram* reference, **published cleartext LP2 p57 scores −2.54208943**. These scores are not directly comparable to the older **trigram** numbers above, and ciphertext p56 should not be treated as a cleartext score.
+
+**Authentic-language independent positive controls:** Two independent **Gibran, The Prophet** plaintext spans (outside the Shakespeare training reference) were GP encoded to exactly the original p7 and p23 lengths. The first is genuinely encrypted with hidden row277, offset31, negative sign, forward traversal; the second with hidden row3901, offset53, positive sign, reversed traversal. The same complete 1,064,960-candidate search ranks each **exact hidden row, offset, sign and direction first from its training prefix**, then reproduces **208/208 and 213/213 runes**, with exact original-length reencryption. Frozen heldout scores are **−2.72763154** and **−2.56521645**, respectively. This validates the exhaustive model search on two entirely separate authors' text registers, without supplying planted keys to the selector.
+
+**Consequence and unresolved scope:** A fixed short-offset single GIMP row table used as an ordinary modulo29 additive GP pad does not reveal p7 or p23 plaintext, even after exhaustively eliminating the initially arbitrary selection of row seeds. This says nothing decisive about *2D* pixel-coordinate sampling, alternative starting positions, changing row indices, skip clocks, nonlinear substitutions or a different plaintext register. No authentic unknown LP2 plaintext/key recovered. A different candidate must supply a justified new source coordinate/state rule and an original-suffix prediction, rather than repeating the old row/pad family.
+
+[Exact executable](../sims/gimp_dissolve_all_row_seed_inversion.cjs) and [successful original-source CI run 42803722412](https://github.com/FlareZ123/liber-primus/actions/runs/42803722412), including the archived raw JSON output. Existing on-demand five-dot mirror workflow was reused; no extra CI wrapper was created.
+
 ## What is constrained
 
-These results reject a straightforward *fixed, short-offset, uint32-mod29 additive* reuse of the historical GIMP Dissolve root or the four chosen row streams for LP2 pages7/23 in either physical reading direction under the declared GP-English score. The screen **does not** assess the full GIMP pixel field, alternative image coordinate mappings, any other of the 4,096 row seeds, nonadditive/word-aware transforms, independent hidden keys, or non-English intermediate codes. There is no recovered plaintext or candidate worth promotion to established cryptographic findings.
+The initial 1,300 cases rejected a straightforward *fixed, short-offset, uint32-mod29 additive* use of the GIMP root or four selected row streams. The independently planted and fully source-enumerated 2,129,920-case extension above rejects the same model for **all 4,096 row seeds** on pages7/23 in either physical reading direction under the declared GP-English score. Neither screen assesses the full **2D GIMP pixel field**, alternate image coordinate mappings, beyond-64 offsets, nonadditive/word-aware transforms, independent hidden keys or non-English intermediate codes. There is no recovered plaintext or candidate worth promotion to established cryptographic findings.
 
 Executable: [`sims/gimp_dissolve_directpad.cjs`](../sims/gimp_dissolve_directpad.cjs), Node.js/CommonJS with no external packages. The script reads only tracked corpus/reference material and asserts true GLib PRNG vectors, correctly decoded genuine solved text, the planted exact reencryption, and absence of scores beyond the predeclared positive threshold.
 
