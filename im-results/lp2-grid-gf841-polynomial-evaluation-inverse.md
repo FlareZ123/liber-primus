@@ -26,11 +26,11 @@ The finite original test covers **7 observation functions × 2 clocks × 2 inver
 | Direct GP29 addition | **0.034594099865** | log-low / global / 386 |
 | Transparent GP28 nonzero-step register | **0.035375952263** | field \(b\)-coordinate / global / 21 |
 | Original undecoded GP ciphertext | **0.034478397865** | unchanged source |
-| Fully known, heldout Shakespeare GP text under planted correct field key | **0.066330479470** | correct source phase360 |
+| Independent Shakespeare GP text under planted correct field key | **0.066330479470** | correct source phase360 |
 
 For the concrete source-anchored phase360 and the field trace under a global clock, the actual GP28 inverse yields **0.035283700472** (minus sign) or **0.035285178026** (plus sign). The actual GP29 inverses yield **0.034465910151** and **0.034463705736**, respectively. All remain at the near-uniform ciphertext level, with no coherent GP text.
 
-The source-native positive uses the already committed Shakespeare control, encoded into 12,956 GP runes and encrypted with exactly the proposed nonlinear grid-evaluation trace, GP28 successor register, phase360, continuous clock and plus sign. **The inverse recovers every one of 12,956 planted source runes exactly**, restores its 0.066330479470 IoC and exactly reencrpyts the original-input best GP29 and GP28 inverse outputs. Decoding the true plant using wrong phase361 gives IoC **0.035813486945**, displaying clear key discrimination. Synthetic roundtrips alone cannot authenticate a candidate, so the failure to recover actual original linguistic structure is the decision criterion.
+The source-native positive uses the already committed Shakespeare control, encoded into 12,956 GP runes and encrypted with exactly the proposed nonlinear grid-evaluation trace, GP28 successor register, phase360, continuous clock and plus sign. **The inverse recovers every one of 12,956 planted source runes exactly**, restores its 0.066330479470 IoC and each original-input winning model re-encrypts all 12,956 runes exactly. Decoding the true plant using wrong phase361 gives IoC **0.035813486945**, displaying clear key discrimination. Synthetic roundtrips alone cannot authenticate a candidate, so the failure to recover actual original linguistic structure is the decision criterion.
 
 ## Interpretation and remaining attack surface
 
