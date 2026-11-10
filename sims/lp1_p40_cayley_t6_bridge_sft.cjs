@@ -11,7 +11,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const {parseSharedCorpus} = require('./lp2_word_pages.cjs');
+const {parseSharedCorpus, physicalLP2Page} = require('./lp2_word_pages.cjs');
 const ROOT = path.resolve(__dirname, '..');
 const read = p => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8'));
 const corpus = read('resources/liber-primus/lp2-corpus.json');
@@ -137,12 +137,34 @@ assert.deepEqual(orbit.slice().sort((x, y) => x - y),
   [...Array(29).keys()].filter(x => x !== fixed));
 
 /* Original whole words, preserving source line/page word continuations. */
-const words = parseSharedCorpus().words.map(word => [...word.runes].map(r => {
+const parsed = parseSharedCorpus();
+const words = parsed.words.map(word => [...word.runes].map(r => {
   assert.ok(byRune.has(r));
   return byRune.get(r);
 }));
 assert.equal(words.length, 2896);
 assert.equal(words.reduce((n, w) => n + w.length, 0), 12956);
+const hSingletons = parsed.words
+  .map((word, ordinal) => ({
+    ordinal, page: physicalLP2Page(word.startPage), runes: word.runes
+  }))
+  .filter(word => word.runes === corpus.runes[fixed]);
+assert.deepEqual(hSingletons.map(w => [w.ordinal, w.page]),
+  [[205, 4], [398, 7], [1688, 30], [2140, 39]]);
+
+// Any product of the source-derived T powers fixes rune H exactly.
+// It cannot turn English GP singleton A (24) or I (10) into H (8),
+// no matter which secret exponent/clock is used on each plaintext symbol.
+for (let exponent = 0; exponent < 28; exponent++) {
+  const slope = pow(normalized[0][0], exponent);
+  const intercept = mod((1 - slope) * fixed);
+  for (let sourceSymbol = 0; sourceSymbol < 29; sourceSymbol++) {
+    const encrypted = mod(slope * sourceSymbol + intercept);
+    assert.equal(encrypted === fixed, sourceSymbol === fixed);
+  }
+  assert.notEqual(mod(slope * 24 + intercept), fixed);
+  assert.notEqual(mod(slope * 10 + intercept), fixed);
+}
 const pairs = Array.from({length: 29}, () => new Uint16Array(29));
 let eligible = 0;
 for (const word of words) {
@@ -186,6 +208,11 @@ const result = {
   matrices: {A, A6, A15, H, rawConjugate: raw, normalizedConjugate: normalized},
   identity: 'h(A^15 x) = (24-2*h(x)) mod29, all 30 projective states',
   mobiusSeedCycle: orbit,
+  fixedPointSingletonGate: {fixedRune: 'H', observedOriginalSingletons: hSingletons,
+    sourceHypothesis: 'T-power-per-symbol GP-English A/I singletons',
+    compatibleObservedSingletons: 0,
+    eligibleOriginalSingletons: parsed.words.filter(w => w.length === 1).length,
+    result: 'four forbidden fixed-H singleton outputs under every T exponent'},
   allOriginalLag6: {eligible, best: candidates[0], second: candidates[1],
     affineCandidates: candidates.length},
   allDivisibleRedSpans: divisible,
