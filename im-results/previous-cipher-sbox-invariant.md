@@ -61,6 +61,27 @@ A single atypical page could be obscured by book-level pooling. Select the large
 
 The 0.055 threshold is a qualitative plant-detection indicator, not an independently specified significance threshold. The empirical 55-page maximum calibration is the family-wise check.
 
+## Exact book-wide one-step row capacity (new constructive obstruction)
+
+The preceding k=1 experiment allows **different substitution rows on every physical page**. A useful, stronger constraint applies when the same 29 rows are reused throughout the book, with an otherwise arbitrary row permutation. This is a separate, exact family, requiring no simulated independence between plaintext and preceding ciphertext.
+
+Let n[x,y] be the number of original **within-page** transitions from published ciphertext rune x to published ciphertext rune y. Under any fixed book-wide bijective row cipher C_i=S[C_(i−1)](P_i), a particular plaintext rune a can map to only one y=S[x](a) for each x. Consequently,
+
+\`\`\`text
+count(P_i = a, i > page start)
+  = Σ_x n[x, S[x](a)]
+  ≤ Σ_x max_y n[x,y]
+  = 714.
+\`\`\`
+
+The original has 12,901 within-page transitions (including **86 exact repeats**) and 55 page-initial runes. Give the cipher complete freedom to choose all 55 initial plaintext runes: **no plaintext rune can occur more than 714 + 55 = 769 times in all 12,956 symbols, or 5.9354739%**. This is an actual maximum over the astronomical key space, and it applies to any relabeling of the 29-symbol GP alphabet. A witness maps each row's most frequent y to the selected plaintext rune and realizes **exactly 714** post-initial occurrences; the resulting 12,956-rune candidate exactly re-encrypts to the observed original cipher. It is therefore a tight transition bound, not merely a sampling estimate.
+
+**Language-register implication:** original-normalized Shakespeare GP training has E = **18,133/153,216 = 11.8349%**, and the checked-in Latin Vulgate GP training has E = **23,008/203,357 = 11.3141%**. The book-wide fixed-row cipher cannot yield a source-like frequency of this common rune anywhere near those values. This is a conditional exclusion of ordinary source-like GP unigram distributions, not a proof that the unknown text must follow either distribution. It also rules out the narrower fixed 29-state predecessor-ciphertext additive pad inside the proposed reversible F29 zero-step/EA codec when such a plaintext register is assumed.
+
+**Authentic positive control:** independently seeded arbitrary 29×29 row permutations encrypt 12,956 held-out Shakespeare-GP source runes in exactly the original page lengths. The planted ciphertext has row bound **1,586**, accommodates **1,484** actual E symbols on its noninitial positions, and decrypts and re-encrypts **all 12,956/12,956 runes exactly**. This tests both the bound and its nonvacuous behavior on a true encryption.
+
+Scope: a **single shared** direct bijective predecessor-ciphertext row table across the entire book. Page-/section-dependent rows, hidden clock or keystream, lossy anti-repeat repairs, non-GP plaintext registers, binary payloads, and added intermediate transforms can break the bound. It must not be applied to the page-specific k=1 or global k=2/3 simulations elsewhere in this report. The mathematical certificate and witness are in [previous_cipher_row_symbol_bound.cjs](../sims/previous_cipher_row_symbol_bound.cjs), which needs only existing checked-in source data.
+
 ## What this says about solving LP2
 
 If an ordinary English-GP rune stream were encrypted by one of the specific deterministic, short-ciphertext-context-indexed substitution families, then the symbol probabilities in rows should remain comparatively concentrated. The observed ciphertext is instead nearly indistinguishable from the self-avoiding uniform null in these conditioned collision tests. The gap against model-matched positive controls is large and reproducible.
@@ -73,6 +94,7 @@ A further arbitrary S-box enumeration has very low expected value unless a clue 
 
 ## Reproduction
 
+- Book-wide k=1 **exact** arbitrary-row frequency bound and full original-cipher constructive witness: `node sims/previous_cipher_row_symbol_bound.cjs`. The genuine source-control encryption uses seed **0x3301cafe** and makes a complete 12,956-rune round trip.
 - k=1, independent page tables: \`node sims/previous_cipher_sbox_invariant.cjs\`. Fixed seeds **0x1629edab** (200 null/plant manuscripts) and **0x1631cafe** (1,000 page-max nulls plus 1,000 page-by-page positive controls). No packages.
 - k=2,3, global tables: \`node sims/context_sbox_invariant.cjs\`. Fixed seeds **0x1602aa6b** (300 null/plant for k=2) and **0x1603babe** (200 each for k=3). No packages.
 - Both programs read the checked-in LP2 corpus and Shakespeare sample, assert corpus sizes, score identical context statistics for actual and simulated texts, and print exact JSON including observations, null distributions, planted controls, fixed seeds and empirical p-values.
