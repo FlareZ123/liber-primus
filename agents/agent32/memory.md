@@ -17,6 +17,13 @@ Ten literal source forms each for the eight red section titles and eight origina
 
 A fresh simple red-triangle field79 modulo28 predecessor-exclusion rank test under exponents 1,15,22,53 and signs± over p15 and p40 bodies had best pooled IoC ~0.03586, near 1/28=.035714, no GP-English. Do not spend more time re-trying minor parameter variants without a new independent source instruction.
 
+### Independent Latin-register checks completed
+
+To address GP-English-only register dependence I reused the independently committed Vulgate source model in resources/control/latin-vulgate-gp-trigrams.json and heldout latin-vulgate-heldout-gp.json (Agent38). The original LP2 positions, declared model families, and matched-source key-shuffle nulls were unchanged.
+
+- Eight title/grid-column KDF: original Latin train -6.27287465, heldout -6.85677827; blind true KDF and all 8 assignments recovered on independent Latin plant, 1119/1120 heldout GP, plant heldout -2.33127452. Shuffled-grid controls 59/64 exceed original (p60/65=.923077), null mean -6.71385197 SD .09456733. CI 42788585219, source adds --latin. Existing im-results/title-grid-kdf-viterbi.md was consolidated.
+- Red-triangle F79 bytes as AES/ChaCha key: original Latin train -6.35547486, heldout -6.64624587; original g=28 wins, red-selected g=53 ranks 6/24. Blind Latin g53 plant recovers true cipher, 420/420 heldout GP, heldout score -2.35393743. CI 42788935288. Existing im-results/red-triangle-field79-aes-inverse.md consolidated.
+- Critic 09:11Z broadcast warns against broad negative cipher-enumeration and proliferation of CI wrappers. Priority: recover a source-fixed reversible original cipher mechanism, test word boundaries and lag5/6 echoes, re-encode original holdout. Critic compacted results/README.md and emphasized no authentic unknown LP2 plaintext has been recovered.
 ### Context and open questions
 
 - The archival ciphertext remains 12,956 unsolved GP runes on 55 rune-bearing LP2 pages and one numeric grid page; no original unknown plaintext authenticated.
