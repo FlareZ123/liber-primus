@@ -1,6 +1,6 @@
-# Source-fixed 13/31 LCG over 32 LP2 fragments: solved-tail cyclic control, no unknown plaintext
+# Source-fixed 13/31 LCG: 32-fragment traversal and 32×8 grid inverse, no unknown plaintext
 
-**Classification:** reproducible source-anchored structural relationship and bounded negative for direct transposition. No unknown LP2 plaintext, cipher key, or complete mechanism recovered.
+**Classification:** reproducible source-anchored structural relationship and bounded negatives for direct transposition and source-fixed grid-key inverses. No unknown LP2 plaintext, cipher key, or complete mechanism recovered.
 
 ## Human solve-path hypothesis
 
@@ -76,16 +76,47 @@ Against the deterministic 1,000-order null, the forward order has upper-tail \(p
 
 Applying the same LCG order to the 32 red-only fragments (225 red runes) also produces no readable plaintext. This is a bounded negative for direct red-only transposition, distinct from the full-text fragment order.
 
+## New original-cipher gate: 13/31 grid rows, columns, and 256-cell cycle
+
+The source gives 32 thirteen-dot-delimited full-text fragments, the 32×8 table, and a retrospective binary reading of the five-dot ornaments as 13/31. The same full-period LCG `x → 13x+31` can be run over **32 rows**, **8 columns**, or all **256 row-major table cell addresses**. These all have full period, with initial state zero; the 8-column orbit is `[0,7,2,1,4,3,6,5]`. This is a finite source-selected extension of the existing 32-fragment ordering, not proof that the maker intended an LCG.
+
+Two **different** candidate uses were frozen before testing the original cipher:
+
+1. **One grid row per full-text fragment.** Assign row `LCG32[f]` or its inverse-order counterpart to chronological fragment `f`, use column `LCG8[(i-start_f) mod8]` or its inverse counterpart, and reset the eight-column clock at each original 13-dot mark. Test GP29 additive plaintext and GP28 predecessor-exclusion with transparent repeated-ciphertext marker 28. Two signs and two byte projections (`b mod m` and `floor(m*b/256)`) produce exactly **32** models. Source fragment IDs **8 and 11** are empty and retained.
+2. **One book-global 256-byte pad.** Flatten the grid in nested row-LCG/column-LCG order, or follow one full-period LCG modulo256 through the row-major cell addresses. Use fixed phase zero, GP29 direct additive inverse, two signs and the same two byte projections: exactly **8** models.
+
+All **40** inverses process every original **12,956** unsolved rune. All outputs exactly forward-reencrypt the original input, and all source-native planted controls recover exactly. These are implementation properties of an invertible architecture; any wrong additive key also reencrypts exactly.
+
+| Original-data metric | Value |
+| --- | ---: |
+| Original ciphertext GP29 IoC | 0.0344783979 |
+| 24 direct-GP29 candidates: IoC range | 0.0344419952–0.0345017289 |
+| 24 direct-GP29 candidates: top-12 rune mass | approximately 0.4258–0.4349 |
+| 16 GP28 exclusion candidates: IoC range | 0.0352683053–0.0353128583 |
+| GP28 candidates' top-12 rune mass | 0.4402593–0.4477462 |
+
+The GP28 index-28 transparent marker changes its expected frequency, so GP28 raw IoC is not directly a native GP29 English statistic. The best direct-GP29 IoC is only about 0.0000233 above the ciphertext baseline, while all representative transliterations remain gibberish. No coherent words, key, or recovered instruction emerges. The **single-LCG256** and **nested32×8** serializations also remain near ciphertext IoC; the previous F31-labelled, de Bruijn, printed-order and AES/ChaCha row tests used different row maps.
+
+**Decision:** The natural 13/31 full-period uses as a **direct repeating table pad** or **direct per-fragment GP29/GP28 row register** are bounded negatives. The LCG indexing remains a possible clue to a different byte-oriented or nonlinear operation, provided some original source supplies the missing operation. Do not repeat these direct-pad families with free phase, rotation or another fitted row order. Source-derived keys alone, without an independently selected cipher, are insufficient.
+
+**Reproducer:** [`sims/lp2_lcg13_31_grid_original_gate.cjs`](../sims/lp2_lcg13_31_grid_original_gate.cjs). It reconstructs original fragment boundaries through the shared source parser and checks all 40 models, forward reencryption and source-native planted recovery.
+
+### Original six-rune bookend under the frozen LCG coordinates
+
+The duplicated p27/p55 two-word ciphertext occurrence starts at global rune offsets **6555** and **12950**. The first lies in chronological fragment **18**, at local rune **9** of 1414, with forward-LCG traversal position **2** and row assignment **2**. The second lies in fragment **27**, local rune **293** of 299, with traversal position **29** and row assignment **1**. The fragment-local modulo-eight column phases are **1** and **5**. Thus this source-fixed LCG neither equalizes their fragment states nor their simple grid-row/column coordinates. Any cross-bookend shared state would need a further independently indicated operation. This responds to the original-source question in Issue #19 without a new sweep.
+
 ## Interpretation and next decision
 
 The LCG is a source-motivated full-period traversal with an exact known-plaintext structural control: its restriction to the solved tail rotates that tail at the p57:7 marker. But direct transposition of the unknown fragments does **not** decrypt them. The result should therefore be treated as a likely **fragment index, clock, or row-assignment rule**, not as recovered plaintext.
 
-The next economical test is to use this fixed 32-state order to pair the 32 rows of the p49–p51 32×8 base-60 table with the 32 full-text fragments, testing only forward/inverse row assignment and a source-fixed within-fragment row-key clock. Do not broaden into arbitrary 32-row permutations or repeat the already-negative F31 red-fragment/grid screens.
+The natural fixed row/column assignment and direct GP29/GP28 fragment-local pad have now been tested and excluded in their stated scopes. The residual useful question is whether an **independently visible operation** specifies a nonlinear or non-GP use of these states; the source permutation by itself gives no way to recover the genuine plaintext.
 
 ## Reproduction
 
 Run from the repository root with Node.js:
 
-**node sims/lp2_lcg32_fulltext_fragment_order.cjs**
+**node sims/lp2_lcg32_fulltext_fragment_order.cjs** (fragment traversal and solved-tail control)
+
+**node sims/lp2_lcg13_31_grid_original_gate.cjs** (40 original-cipher source-fixed inversions)
 
 The script uses the original normalized corpus, original two-ink annotation, the existing source-boundary parser, the fixed GP trigram model, and exact known p56/p57 controls. It asserts all 32 fragments, both empty intervals, the complete 13/31 LCG cycle, and the exact solved-tail cyclic rotation.
