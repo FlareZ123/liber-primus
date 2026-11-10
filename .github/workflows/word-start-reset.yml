@@ -22,3 +22,5 @@ jobs:
         run: node sims/singleton_word_key_capacity.cjs
       - name: Original black singleton page-key and literal-F affine proof
         run: node sims/lp2_singleton_original_phase_invariant.cjs
+      - name: Complete p17 cubic-key inversion of all Fehu masks with English control
+        run: node sims/p17_cubic_all_f_crib_inverse.cjs

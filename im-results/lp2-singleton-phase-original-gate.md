@@ -90,6 +90,28 @@ Consequently the complete proposed two-layer model **affine page key + arbitrary
 
 **Decision:** even an arbitrary choice of every possible historic-style literal-F skip, independent page slope and page IV cannot explain these three original black singleton words through a linear running-key GP29 cipher under literal English A/I/O segmentation. A nonlinear, history-dependent or differently clocked key, or nonliteral word segmentation, remains possible. A contradiction on p17 rules out a uniform manuscript-wide use of the stated family.
 
+## All 4,096 original p17 cubic-key inverses: A/I cribs pass, complete decrypted pages fail native-English concentration
+
+The exact affine contradiction above can be escaped formally by permitting a **cubic GP29 key in page-local rune time**, \`K(t)=a t³+b t²+c t+d mod29\`, with all four coefficients freely secret on each physical page. This grants two additional unconstrained key parameters beyond affine, while retaining the source-supported possible literal Fehu skip mechanism. A complete original-cipher inverse has now been performed for this family using **five** p17 black singleton words at offsets \`[113,119,147,188,204]\` and their observed GP ciphertext \`[17,28,10,16,4]\`.
+
+Require each of the five to decode to GP **A or I**. Exhaust all **32 possible plaintext A/I assignments**, interpolate a GF29 cubic from the first four observed pairs, and use the fifth to reject mismatches. Only **one** assignment and **one** cubic survives for each of the two choices for whether the sole between-witness ciphertext Fehu at 187 advances the key:
+
+| Source Fehu187 | Recovered singleton plaintext indices | Derived cubic coefficient tuple (t³,t²,t,1), before any earlier Fehu skips |
+| --- | --- | --- |
+| Consumes key | [24,10,24,10,10] = A I A I I | [14,23,28,16] |
+| Literal; skips key | [24,10,10,24,10] = A I I A I | [3,19,11,23] |
+
+Of the **12** original p17 Fehu runes, all choices before the first singleton merely translate the recovered cubic's time coordinate. All choices after the fifth singleton affect its later time evolution directly. The full original-runecode loop therefore enumerates **every 2¹²=4096 literal-Fehu skip mask**; for each, infer the unique matching cubic, decode all **273 original page17 ciphertext runes**, and compute the GP29 index of coincidence (uniform-symbol reference = 1).
+
+- Best original all-mask IoC: **1.0693007972419737**, skip mask 1519 (source Fehu offsets **42,51,56,58,187,221,228,230,264**). Median original candidate: **0.9771331609566903**; 99th-percentile candidate: **1.0427440206851972**.
+- The highest-concentration original candidate starts \`HTHPOEINGUFJAEPHIIOTYSEADDBOAEDTXYOSNTOEAHLEANIOETH...\`, which is not readable GP-English despite all five one-letter words being exactly A or I.
+- Four separately recorded native-English GP control passages from the repository's solved LP1 reference yield **765** 273-rune sliding windows; every one has IoC at least **1.61996** under the same 29-symbol normalization. This is a source register comparator, not a probability calculation over arbitrary unknown language.
+- A planted 273-rune genuine English-GP sample, preserving the original five A/I singleton ciphertext values and a planted literal Fehu187 skip, is encrypted by the same derived cubic; the script checks full **273/273 exact inverse**. It makes clear that the method can recover its own specified construction.
+
+**Decision:** no member of this complete, source-shaped cubic-plus-optional-literal-Fehu family provides a native-English-like p17 plaintext. The scan is an actual full-page original-cipher inversion, with the original five A/I singleton cribs sufficient to eliminate all unknown cubic coefficients. The finding does not exclude noncubic nonlinear/state-dependent keying, another language/register, or altered printed word boundaries. Its large original-versus-solved-plaintext IoC separation is evidence **against this tightly specified family** only.
+
+Reproduce with [standalone complete inverse and English-GP plant](../sims/p17_cubic_all_f_crib_inverse.cjs) in the existing manual word-start workflow. This is a new bounded negative and recovers no previously unknown plaintext.
+
 ## Reproduction and scope
 
 Run [the standalone CommonJS source gate](../sims/lp2_singleton_original_phase_invariant.cjs) against the existing [canonical transcript](../resources/liber-primus/lp2-transcription.txt), [page indices](../resources/liber-primus/lp2-corpus.json), and [ink annotations](../resources/liber-primus/lp2-ink-annotations.json). It carries words across printed line/page wraps, reads the first rune's physical page, and assigns zero-based page-local word indices at **word start**, so cross-page words do not shift subsequent page word indices. The script checks the original counts, enumerates every secret-alphabet necessary condition directly, outputs original witnesses, and includes a deterministic source-shaped positive control: with an arbitrary hidden permutation for each of 79 page-local word phases, literal A/I singleton words pass the gate and all **12,956** synthetic runes inverse-map exactly.
