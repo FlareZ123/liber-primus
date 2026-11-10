@@ -6,15 +6,15 @@
 
 Encode the complete ciphertext runes of **physical LP2 p45** (270 symbols) and **physical LP2 p48** (271 symbols) as separate big-endian radix-29 integers, using the canonical Gematria Primus rune indices 0–28, without truncating words or inserting separators. Call these integers A and B. A scan over **all 1,485** unordered pairs of the **55 rune-bearing unsolved physical pages** shows that the largest original GP29 integer GCD occurs **uniquely** at pages 45 and 48:
 
-[
+$$
 D=\gcd(A,B)=16{,}056=2^3\cdot3^2\cdot223.
-]
+$$
 
 Now take the original **32×8 printed base-60 table**, decoded to its 256 byte values, and interpret its bytes in **printed row-major order as one big-endian integer N**. Exact original source arithmetic gives
 
-[
-N\bmod D=2{,}016,qquad N\bmod72=0,qquad (N/72)\bmod223=28.
-]
+$$
+N\bmod D=2{,}016,\qquad N\bmod72=0,\qquad (N/72)\bmod223=28.
+$$
 
 The same equality may be written \(\gcd(A,B,N-2016)=16056\). The eight source-plausible byte traversals (row-major, row-serpentine, column-major, column-serpentine, each forward/reversed) give residuals respectively **2016, 5955, 6897, 6051, 456, 9387, 11511, 8619**. Only the natural printed order gives 2016.
 
