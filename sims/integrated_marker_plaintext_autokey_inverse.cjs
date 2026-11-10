@@ -215,7 +215,7 @@ function conditionalTrigramExcess(p,recs){
 const recs=records(original),delays=[1,2,3,4,5,6,7,8];
 const ranks=search(recs,delays);
 const selected=ranks.slice().sort((a,b)=>b.train-a.train);
-const checked=selected.slice(0,3).map(r=>{
+const checked=selected.map(r=>{
   const inv=decode(recs,r.delay,r.a,r.b);
   assert.deepEqual(encrypt(Array.from(inv.p),r.delay,r.a,r.b),original);
   return {...r,heldTrigramLogProbability:trigramScore(inv.p),
@@ -237,7 +237,7 @@ console.log(JSON.stringify({
   reserveClasses:["EA/no-difference","E-or-L/lag5","S/T6"],
   keyFamily:"8 delays x 28^2 two-coefficient plaintext feedback",
   originalByDelay:ranks,
-  originalTopWithExactlyReencryption:checked,
+  originalAllWithExactlyReencryption:checked,
   planted:{trueDelay,trueA,trueB,selected:positive,
     exactRecovered:N,heldTrigramLogProbability:trigramScore(recovered.p),
     heldConditionalTrigramExcess:conditionalTrigramExcess(recovered.p,controlRec)},
