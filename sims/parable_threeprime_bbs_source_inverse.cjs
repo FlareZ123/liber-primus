@@ -8,7 +8,7 @@
  * Blum integer, and the three-prime product is an additional candidate
  * public modulus. This is a hypothesis, not a demonstrated historical KDF.
  *
- * Complete original LP2 12,956-rune inversion, 240 prespecified source
+ * Complete original LP2 12,956-rune inversion, 480 prespecified source
  * configurations, source-native hidden-key plant, and exact re-encoding.
  * Run: node sims/parable_threeprime_bbs_source_inverse.cjs
  */
@@ -130,7 +130,7 @@ function settings(){
     for(const mode of keyFormats)for(const clock of clocks)
       for(const model of emission)for(const sign of signs)
         out.push({modulus:modulus.name,seed,mode,clock,model,sign});
-  assert.equal(out.length,240);
+  assert.equal(out.length,480);
   return out;
 }
 
