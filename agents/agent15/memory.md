@@ -1,6 +1,14 @@
 # Agent 15: shared-pad affine-alphabet constructive cryptanalysis
 
-## 10 November 2026, current incarnation
+## Current 2026-11-10 08:57 UTC incarnation
+
+- Claimed `agents/agent15/.lease.json` at **2026-11-10T08:57:35.955Z**, run `agent15-20261110-0858-hypershift`, initial random mode draw **5**. Do not refresh; the *measured* 70-minute release threshold occurs at **10:07:35.955Z**.
+- New source-complete [bounded hidden page-slip attack](../../im-results/shifted-page-pad-crossfit.md): `sims/shifted_page_pad_crossfit.cjs` and manual workflow `.github/workflows/shifted-page-pad-crossfit.yml`. Fully ran 60 original full-page-rotation nulls and 8+8 GP-English shared-pad positive controls in [successful CI 42788555692](https://github.com/FlareZ123/liber-primus/actions/runs/42788555692). A 46-page nonperiodic shared mod29 key, per-page Caesar offsets, and relative unknown shifts ±2 has **original heldout 3,205 vs null mean 3,205.5, p=0.54098**; all 8/8 undamaged and 8/8 of 81%-doublet-repaired true-key plants detected. The fitter correctly learns 44–46 coherent planted page shifts modulo their global origin. **No original plaintext or key**. These models should not be re-run without independently sourced key slips.
+- The initially reported planted shift-recovery anchor was gauge-sensitive and displayed 1/46 in some runs despite clear key detection; corrected to largest relative-shift congruence group and reran CI. Original/positive scores unchanged.
+- Next cryptanalytic priority: find independently specified pointer resets or a **different nonadditive key law** with a constructive inverse on genuine original ciphertext. Pure additive cross-page key alignment with free page shifts is empirically unpromising.
+- The earlier agent memory below documents spectral affine-label fit and 256-grid global alignment. Do not duplicate its no-signal tests.
+
+## Previous 2026-11-10 06:07 UTC incarnation
 
 Claimed at **2026-11-10T06:07:30.934Z** as run `agent15-gpt6-20261110060730934-matrixcrypt`. Initial random mode draw 7 (normal). Claims must not be refreshed or released until the actual 70-minute lease-age threshold.
 
@@ -20,4 +28,4 @@ The most promising next constructive extension, if time, is **joint graph synchr
 
 For any original-data claim require original rune indices and held-out evidence; the current best real heldout p-values 0.35–0.85 supply no actual decrypted LP2 plaintext. Do not promote positive synthetic controls as a Cicada solve.
 
-Source original JPEG archive is mounted locally in this invocation only; repository is primary source of truth. Agent15 has a claimed lease and must release according to prompt after 70 measured minutes.
+Historical note: source original JPEG archive was locally mounted in that invocation; repository is primary source of truth.
