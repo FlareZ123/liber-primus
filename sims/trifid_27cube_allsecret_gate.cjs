@@ -28,32 +28,34 @@ function top(v,k) {
  */
 function rectangle(m) {
   const order=Array.from({length:27},(_,i)=>i)
-    .sort((a,b)=>m.reduce((s,r)=>s+r[b]-r[a],0));
-  const row=Array(27).fill(0),initial=Array(27).fill(0);
+    .sort((a,b)=>m.reduce((sum,r)=>sum+r[b]-r[a],0));
+  const suffix=Array.from({length:27},()=>
+    Array.from({length:28},()=>Array(10).fill(0)));
+  for(let r=0;r<27;r++)for(let i=0;i<27;i++){
+    const tail=order.slice(i).map((j)=>m[r][j]).sort((a,b)=>b-a);
+    for(let k=1;k<=9;k++)suffix[r][i][k]=suffix[r][i][k-1]+(tail[k-1]||0);
+  }
+  const rows=Array(27).fill(0),initial=Array(27).fill(0);
   for(let j=0;j<9;j++)for(let r=0;r<27;r++)initial[r]+=m[r][order[j]];
   let value=top(initial,9),nodes=0;
-  /** @param {number} i @param {number} chosen @returns {void} */
-  function visit(i,chosen){
+  /** @param {number} pos @param {number} chosen @returns {void} */
+  function search(pos,chosen){
     nodes++;
-    if(chosen===9){value=Math.max(value,top(row,9));return;}
+    if(chosen===9){value=Math.max(value,top(rows,9));return;}
     const need=9-chosen;
-    if(27-i===need){
-      const forced=row.slice();
-      for(let j=i;j<27;j++)for(let r=0;r<27;r++)forced[r]+=m[r][order[j]];
+    if(27-pos===need){
+      const forced=rows.slice();
+      for(let j=pos;j<27;j++)for(let r=0;r<27;r++)forced[r]+=m[r][order[j]];
       value=Math.max(value,top(forced,9));return;
     }
-    const ub=[];
-    for(let r=0;r<27;r++){
-      const remain=[];for(let j=i;j<27;j++)remain.push(m[r][order[j]]);
-      ub.push(row[r]+top(remain,need));
-    }
-    if(top(ub,9)<=value)return;
-    for(let r=0;r<27;r++)row[r]+=m[r][order[i]];
-    visit(i+1,chosen+1);
-    for(let r=0;r<27;r++)row[r]-=m[r][order[i]];
-    visit(i+1,chosen);
+    const upper=Array.from({length:27},(_,r)=>rows[r]+suffix[r][pos][need]);
+    if(top(upper,9)<=value)return;
+    for(let r=0;r<27;r++)rows[r]+=m[r][order[pos]];
+    search(pos+1,chosen+1);
+    for(let r=0;r<27;r++)rows[r]-=m[r][order[pos]];
+    search(pos+1,chosen);
   }
-  visit(0,0);return {value,nodes};
+  search(0,0);return {value,nodes};
 }
 
 /**
@@ -99,11 +101,11 @@ function secretCube(){
  * @param {boolean} encrypt
  * @returns {number[]}
  */
-function transform(v,cube,encrypt){
+function transform(v,cube,encrypt,period=27){
   const rank=Array(27);cube.forEach((x,i)=>{rank[x]=i;});
   const output=[];
-  for(let i=0;i<v.length;i+=27){
-    const b=v.slice(i,i+27),n=b.length;
+  for(let i=0;i<v.length;i+=period){
+    const b=v.slice(i,i+period),n=b.length;
     const digits=b.flatMap((x)=>{const q=rank[x];return [Math.floor(q/9),Math.floor(q/3)%3,q%3];});
     const mixed=Array.from({length:3*n},(_,k)=>encrypt
       ?digits[3*(k%n)+Math.floor(k/n)]
@@ -120,9 +122,9 @@ function transform(v,cube,encrypt){
  * @param {boolean} encrypt
  * @returns {number[]}
  */
-function apply(v,cube,direction,encrypt){
+function apply(v,cube,direction,encrypt,period=27){
   const part=v.filter((x)=>x!==27&&x!==28);
-  const coded=transform(part,cube,(direction==='standard')===encrypt);
+  const coded=transform(part,cube,(direction==='standard')===encrypt,period);
   let j=0;return v.map((x)=>x===27||x===28?x:coded[j++]);
 }
 
@@ -179,4 +181,4 @@ function main(){
     caveats:'Other bypass glyphs, page/word resets, extra encryption layers and non-GP plaintext are untested'};
 }
 if(require.main===module)console.log(JSON.stringify(main(),null,2));
-module.exports={main,bound,rectangle,apply,transform};
+module.exports={main,bound,rectangle,apply,transform,gp};

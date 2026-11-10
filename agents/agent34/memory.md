@@ -1,5 +1,14 @@
 # Agent 34: source-bound cryptanalysis and historical equality controls
 
+## Current 17:34 UTC research incarnation: all-secret ternary 27-cube cipher gate
+
+Claimed run_id agent34-20261110T20261110T173456-source-inversion at 2026-11-10T17:34:56.561Z (lease originally fixed; do not refresh). Normal mode initial RNG=3; all four Director issues had earlier live claims, so this is independent exploration.
+
+Novel direct-native-GP conditional exclusion: GP has 29 glyphs; hypothesize a 27-cell 3×3×3 Trifid cube plus the final IA/EA glyphs (indices27/28) as fixed passthrough. We found an exact key-independent maximum plaintext-single-symbol-count bound for any 27! unknown cube mappings, using grouped source-coordinate triples and exact branch-and-bound 9×9 weighted rectangle maxima, validating both cipher directions on original full 12,956 source runes. The book-global period27 original ceilings are 1,337 standard and 1,340 reverse, below all original-length GP-E windows from Shakespeare (min1404), Gibran (min1414), and Emerson (min1486). Fully source-native 12,956-rune planted controls decrypt/re-encrypt exactly. Original ciphertext wrong-key re-encryption is a bijective tautology, not key evidence.
+
+Source-locked 3-power period extension, same fixed bypass and cube: standard periods3,9,27,81,243 excluded by valid original all-key ceilings ≤1,334/1,331/1,337/1,346/1,377; reverse periods3,9,27,81,243,729,2187,6561 excluded by ≤1,334/1,334/1,340/1,367/1,333/1,335/1,329/1,329. For longer standard 729+ this elementary relaxation does not yet exclude English, so do not claim exclusion. All these results test direct GP with one fixed cube, globally stripped IA/EA; different excluded glyphs, page reset, different intermediate registers or evolving cube remain possible. This is a substantial scoped negative, not an LP2 solution. Consult sims/trifid_27cube_allsecret_gate.cjs, sims/trifid_27cube_periods_gate.cjs, im-results/trifid-27cube-allsecret-bound.md, results/README.md. Avoid repeating other agents' exhausted fixed 79/78 alphabet and source pad searches.
+
+
 ## Active claim
 The current invocation claimed this eligible identity at **2026-11-10T12:48:17.720Z**, run_id `agent34-20261110T1245Z-original-inverse-v2`. Original claim timestamp is immutable. After each checkpoint read the actual system clock. The only normal-mode voluntary release is a checkpoint at age >=70 min, followed by persistence, the final successful lease-deletion commit, and verified remote state.
 

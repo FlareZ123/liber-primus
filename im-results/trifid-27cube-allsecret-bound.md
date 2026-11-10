@@ -23,6 +23,25 @@ Any secret ordering of 27 cube symbols assigns exactly **nine** ciphertext glyph
 
 The rectangle maximizations are exact finite branch-and-bound computations. Each search node obtains a rigorous upper estimate by allowing each row independently to choose its best remaining columns; nodes below the incumbent are pruned. The full original-source computation yields sum-top-nine R_x **442** for standard decryption and **443** for reverse, producing 1,337 and 1,340 respectively.
 
+## Broader 3-power period result
+
+The same exact, key-independent nine-slice argument applies to independently fixed 3-power block periods. Rather than charging the last partial block entirely to a target plaintext rune, the extended reproducer maps **every** output rune back to its three ciphertext glyphs and their source cube-coordinate selectors. It groups output events by their exact axis signature and solves the nine-by-nine rectangle relaxation for each group. Shared cube constraints between groups are relaxed, so all listed figures remain mathematically valid for every secret 27-cube permutation.
+
+| Continuous Trifid period after IA/EA stripping | Standard orientation ceiling | Reverse orientation ceiling |
+| --- | ---: | ---: |
+| 3 | 1,334 | 1,334 |
+| 9 | 1,331 | 1,334 |
+| 27 | 1,337 | 1,340 |
+| 81 | ≤1,346 | ≤1,367 |
+| 243 | ≤1,377 | 1,333 |
+| 729 | Not excluded by this bound | 1,335 |
+| 2,187 | Not excluded by this bound | 1,329 |
+| 6,561 | Not excluded by this bound | 1,329 |
+
+All 13 shaded finite configurations in the extended reproducer have upper bounds below **1,404**, the smallest GP-E count in any matched Shakespeare window; Gibran and Emerson minima are higher. The unequal upper-bound signs distinguish earlier conservative block-plus-tail estimates from the full axis-signature exact recomputation. The still-open larger-period standard orientations have not been decrypted.
+
+The additional all-secret test and 12,956-symbol hidden-cube positive controls are in sims/trifid_27cube_periods_gate.cjs. GP cube symbol frequency is invariant under the unknown cube ordering only through the proven nine-slice capacity bound; this is a source-specific conditional exclusion, and does not authenticate a 3-power clock.
+
 ## Reproduction and scope
 
 Run on Node 22 from repository root:
