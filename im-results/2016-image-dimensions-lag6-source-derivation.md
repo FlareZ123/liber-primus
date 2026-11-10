@@ -132,6 +132,23 @@ The signed grid vector also motivates following it through the 32×8 table. I te
 
 The current source-gate script includes these path and grid-indexed candidates and asserts that all bounded candidates remain below the English threshold while the synthetic positive control is recovered. [Latest fully asserted CI run 42896253128](https://github.com/FlareZ123/liber-primus/actions/runs/42896253128).
 
+### Prime-indexed grid-totient key screen
+
+A distinct, source-fixed extension of the p56 mechanism is to treat each base-60 grid byte (b) as a **zero-based prime ordinal** and use (K_b=phi(p_{b+1})=p_{b+1}-1 pmod{29}). This uses the solved p56 prime-totient operation, the original 256-byte table, and the image-selected offsets 51/57 without fitting a key to ciphertext. It gives grid bytes 59 and 118 the key values 19 and 14, whose difference is 24. This is an arithmetic correspondence, not by itself evidence of a key: the same lag-six key delta 24 occurs at **10 of 250** possible positions in the full table, while the raw byte-doubling relation 59→118 remains unique at offset 51.
+
+The original 12,956-rune input was tested under the provisional T6 collision-repair inverse (word-local (T_6(x)=24-2x), (q=0.81), GP trigram Viterbi). The finite family comprised:
+
+- 256-byte row-major prime-indexed-totient pads, phases 51 and 57;
+- a 32-cell toroidal grid path beginning at row 6, column 3, with step ((+1,-2)), and its reverse;
+- six-symbol T6 recurrence seeds derived from the diagonal path, the row-major grid slice, and the second-half p53–p55 rune slice;
+- both directions where applicable, both additive signs, and global, page, section, or word resets: **72 candidates total**.
+
+No candidate produces GP-English-like plaintext on either frozen half. The best training-selected candidate is the 32-cell diagonal prime-indexed key, forward, section-reset, positive sign: training **−5.8741**, held-out **−5.9256**, whole **−5.8998** per token. The best held-out score is the 256-byte row-major key at phase 57, forward, section-reset, positive sign: training **−5.9443**, held-out **−5.9002**, whole **−5.9223**. Across all candidates the whole-book score range is **−6.0881 to −5.8915**, far from the source-native English control.
+
+The inverse passes a source-matched positive control: it recovers **12,789/12,956 (98.71%)** runes from an independently held-out Shakespeare plant with original LP2 word lengths and the same T6 generator. This validates the tested inverse/likelihood implementation, not the T6 model as an authentic LP2 cipher.
+
+Reproducer: [`sims/prime_indexed_grid_totient_lag6_probe.cjs`](../sims/prime_indexed_grid_totient_lag6_probe.cjs). The path-filtered [GitHub Actions run 42903194638](https://github.com/FlareZ123/liber-primus/actions/runs/42903194638) completed successfully. This rejects only the declared direct prime-indexed-grid periodic pads and six-symbol recurrence seeds under this provisional T6 inverse; other stateful or semantic uses of the grid remain open.
+
 ## Interpretation and next work
 
 This is a coherent **candidate solve path if the 2016 image is relevant**:
@@ -141,7 +158,7 @@ This is a coherent **candidate solve path if the 2016 image is relevant**:
 3. Read the image dimensions as directions into the 256-byte grid and the visually selected 128-rune second half.
 4. Recover the source constants 6, 24 and 2, which reconstruct the known lag-six affine relation.
 
-It is not a complete cipher. The most valuable next question is now narrower: **what source-derived key/state combines with this independently motivated T6 rule to produce authentic plaintext, if the 2016 dimensions are relevant at all?** Do not repeat direct grid AES/ChaCha, literal grid-pad, or historical RSA-modulus families already tested in the repository.
+It is not a complete cipher. The direct prime-indexed grid-totient periodic pads and six-symbol recurrence seeds are now also rejected (72 combinations; see the bounded test below). The remaining question is narrower: **what independently sourced state or semantic use of the grid, if any, combines with the provisional T6 relation to produce authentic plaintext?** Do not repeat direct grid AES/ChaCha, literal grid-pad, prime-indexed grid-totient additive pads or recurrence seeds, or historical RSA-modulus families already tested in the repository.
 
 The S rune at offset 57 and the five intervening positions may also be relevant to the separately observed S5 motif, but this is only a possible second clue; no new S5 generator is established here.
 
