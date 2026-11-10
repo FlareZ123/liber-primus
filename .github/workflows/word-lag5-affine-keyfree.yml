@@ -11,6 +11,7 @@ on:
           - word-lag5
           - red-225
           - lossless-echo
+          - native-ea-flanks
 permissions:
   contents: read
 jobs:
@@ -33,3 +34,6 @@ jobs:
       - name: Test exact invertible echo-state and original source-grid key
         if: ${{ inputs.experiment == 'lossless-echo' }}
         run: node sims/lossless_echo_table_inverse.cjs
+      - name: Test original EA-anchor flank register against solved author source
+        if: ${{ inputs.experiment == 'native-ea-flanks' }}
+        run: node sims/native_ea_flank_original_gate.cjs
