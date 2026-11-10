@@ -10,6 +10,7 @@ on:
         options:
           - standard
           - grid-sort
+          - block-inverse
 permissions:
   contents: read
 jobs:
@@ -24,8 +25,11 @@ jobs:
       - name: Test the source-locked grid256 word-sort inverse
         if: ${{ inputs.scan_mode == 'grid-sort' }}
         run: node sims/grid256_word_sort_inverse.cjs
+      - name: Exact global eight-column word-order inverse
+        if: ${{ inputs.scan_mode == 'block-inverse' }}
+        run: node sims/word_block_hamiltonian_inverse.cjs
       - name: Reproduce page-local word-length structural tests
-        if: ${{ inputs.scan_mode != 'grid-sort' }}
+        if: ${{ inputs.scan_mode == 'standard' }}
         run: |
           node sims/test_lp2_word_pages.cjs
           node sims/word_length_order_probe.cjs
