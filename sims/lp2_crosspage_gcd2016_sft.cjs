@@ -124,6 +124,47 @@ for (let trial = 0; trial < shuffles; trial++) {
 assert.equal(maxAtLeastObserved, 8);
 assert.equal(yearRemainderWitnessShuffles, 0);
 
+
+// Secondary source-conditioned null: hold page 48 fixed, shuffle every other
+// physical page's interior glyphs; ask whether ANY other page supplies the
+// original divisor. This is retrospective, not a discovery-wide p-value.
+let seed48 = 0x31415926;
+function random48() {
+  seed48 ^= seed48 << 13;
+  seed48 ^= seed48 >>> 17;
+  seed48 ^= seed48 << 5;
+  return seed48 >>> 0;
+}
+let nearby = 0, divisorWitness = 0, exactWitness = 0, page45Witness = 0;
+let totalDivisibleCandidates = 0;
+const page48Number = num48, D = Number(common);
+for (let trial = 0; trial < 5000; trial++) {
+  let any = false, exact = false, near = false;
+  for (const page of pages) {
+    if (page.page === 48) continue;
+    const digits = page.indices.slice();
+    for (let i = digits.length - 2; i > 1; i--) {
+      const j = 1 + random48() % i;
+      [digits[i], digits[j]] = [digits[j], digits[i]];
+    }
+    let residue = 0;
+    for (const digit of digits) residue = (29 * residue + digit) % D;
+    if (residue !== 0) continue;
+    any = true;
+    totalDivisibleCandidates++;
+    if (page.page === 45) page45Witness++;
+    if (Math.abs(page.page - 48) <= 3) near = true;
+    if (gcd(page48Number, gpNumber(digits)) === common) exact = true;
+  }
+  if (any) divisorWitness++;
+  if (near) nearby++;
+  if (exact) exactWitness++;
+}
+assert.equal(divisorWitness, 13);
+assert.equal(exactWitness, 7);
+assert.equal(nearby, 2);
+assert.equal(page45Witness, 2);
+
 console.log(JSON.stringify({
   status: "Original arithmetic correspondence; no authenticated key/plaintext",
   source: ["LP2 p45 270 runes", "LP2 p48 271 runes", "256 source grid bytes"],
@@ -142,6 +183,16 @@ console.log(JSON.stringify({
     nullMaximumGcdAtLeast16056: maxAtLeastObserved,
     nullAnyPairGcdOver2016WithGridRemainder2016: yearRemainderWitnessShuffles,
     largestNullGcd: largestNullGcd.toString()
+  },
+  page48ConditionedShuffles: {
+    count: 5000, seed: "0x31415926",
+    shuffledPageHistogramAndEndpointsPreserved: true,
+    fixedOriginalPage48: true,
+    anyOtherPageDivisibleBy16056: divisorWitness,
+    anyOtherPageExactGcd16056WithPage48: exactWitness,
+    near3PageDivisibleBy16056: nearby,
+    specificPage45DivisibleBy16056: page45Witness,
+    totalDivisiblePageCandidates: totalDivisibleCandidates
   },
   caveat: "page pair and number were found retrospectively; this is a small conditional null, not an authentication of intent"
 }, null, 2));
