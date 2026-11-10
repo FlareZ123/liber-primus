@@ -154,7 +154,7 @@ function run() {
   assert.ok(reverse.every(x=>x.bound>0));
   const control=positiveControl();
   return {
-    status:"Exact key-independent exclusion of static injective five-bit GP->7bit ASCII",
+    status:"Exact key-independent exclusion of static injective GP five-bit labels directly packed as eight-bit ASCII octets",
     sourceRunes:unsolved.length,
     alphabetSize:29,
     possibleFiveBitValues:32,
@@ -172,7 +172,7 @@ function run() {
     sourcePositive:control,
     scope:"Only lossless fixed injective 5-bit rune mapping + directly " +
       "7-bit ASCII complete bytes, in both full-book directions and each " +
-      "tested source-delimited fragment. Other intermediate binary/UTF-8, " +
+      "tested source-delimited fragment. Seven-bit packed characters, intermediate binary/UTF-8, " +
       "dynamic mappings, feedback masks and source-selected bit edits remain open."
   };
 }
