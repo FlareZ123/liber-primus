@@ -27,10 +27,23 @@ The actual best training-selected original-LP2 model has **a=27,b=11, seeds10,15
 
 **Exact positive cipher:** Construct a ciphertext from independently solved historical **LP1 GP plaintext** using ΔC=0 if P=EA, otherwise ΔC=15^((P+K)mod28)mod29. The planted key is the source-derived recurrence **a=15,b=22**, seeds8,13, advancing only on nonzero steps. With the correct planted key, **728/728 postinitial symbols**, including transparent EA positions, exactly decrypt and re-encrypt. The blind solver selects a mathematically equivalent-on-most-draws second-order recurrence whose heldout score is a strongly positive **+0.36838**, but its reported coefficients differ; the source detector recovers language-like plaintext, while uniquely identifying all secret parameters is not demonstrated. The two fitted key sequences differ on one early draw and agree on the other 749 of the first750 draws, an exact recurrence comparison.
 
-**Conclusion:** The original input fails this fully specified short Z28 homogeneous key class under the source-derived EA step map, one continuous 729-rune section, and the fixed GP-English register. Alternative clock functions, nonhomogeneous or higher-order state, an unknown plaintext alphabet, more than one encryption layer or a non-English intermediate remain open.
+## Unknown GP alphabet: complete 28-way relabeling invariant
+
+The original decoder above assumes the *canonical* 28 non-EA plaintext rune labels. To test whether a **fixed but entirely unknown permutation of those 28 labels** hides recovered GP-English frequencies, run an independent exhaustive search over the **same 1,229,312 key and clock settings**, but select by the *permutation-invariant 28-symbol index of coincidence*. This diagnostic needs no GP-to-letter assignment: every bijective static plaintext relabeling preserves symbol collisions. Select model on the first350 original rune slots, freeze it, and calculate the index of coincidence on the remaining379 without fitting any heldout parameters.
+
+| Statistic | Original LP2 | Solved-LP1 planted cipher with hidden 28-way relabeling |
+| --- | ---: | ---: |
+| Best training-selected coincidence | **0.04119538** | **0.06413672** |
+| **Frozen heldout coincidence** | **0.03597833** | **0.06115410** |
+
+The original winning recurrence is **a=25,b=23, seeds3,11, all-steps clock** and the heldout count uses 377 non-EA symbols. Permute the original observed nonzero logarithm digits while preserving each original transparent marker and repeat the full key search over **20** independently shuffled source versions: null mean heldout IoC **0.03563124**, **4/20** nulls at least as high as real (add-one **5/21≈0.23810**), largest null **0.03698008**. Original remains at the chance-like 1/28 coincidence level.
+
+The independent solved-LP1 positive uses the same source-derived field cipher but first renames **all 28 non-EA plaintext labels through the unknown bijection p↦(5p+7)mod28**, preserving EA as the single transparent symbol. Its blinded score **0.06115410** heldout is close to normal GP-English collision structure despite the concealed label assignment; this demonstrates sensitivity to a correct low-order key even with an arbitrary *fixed* output substitution.
+
+**Joint interpretation:** Neither the canonical GP language scorer nor the more general **unknown static 28-symbol alphabet invariant** recovers original text under the finite second-order 28-key recurrence. This leaves source-dependent clock irregularity, nonlinear/higher-order state, changing outer alphabets, binary/compressed intermediary, other key families and multilayer encryption open.
 
 ## Reproduce
 
-[CommonJS exhaustive inversion and exact control](../sims/ea_field29_order2_key_recovery.cjs), successful [manual-only GitHub Actions run 42797446920](https://github.com/FlareZ123/liber-primus/actions/runs/42797446920). An initial run failed solely on a plant diagnostic that compared the compacted nonzero-draw array to every plaintext position without restoring the transparent EA positions. The corrected script passes; the original cipher and search were unchanged.
+[CommonJS exhaustive inversion and exact control](../sims/ea_field29_order2_key_recovery.cjs), successful [original-language run 42797446920](https://github.com/FlareZ123/liber-primus/actions/runs/42797446920) and [unknown-alphabet run 42798460258](https://github.com/FlareZ123/liber-primus/actions/runs/42798460258). An initial run failed solely on a plant diagnostic that compared the compacted nonzero-draw array to every plaintext position without restoring the transparent EA positions. The corrected script passes; the original cipher and search were unchanged.
 
 A new claim requires a concrete source-backed key/state and original heldout plaintext whose exact re-encryption is reproducible. Additional unrestricted coefficient scans would offer diminishing value absent another independently fixed cipher property.
