@@ -1,0 +1,16 @@
+name: Original JPEG DCT parity source-pad challenge
+on:
+  workflow_dispatch:
+jobs:
+  dct-bitpad:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compile coefficient-exact JPEG extractor
+        run: cc -O2 -Wall -Wextra -o /tmp/lp_jpeg_dct_bits sims/jpeg_dct_bits.c -ljpeg
+      - name: Test all original page-local DCT pads with heldout synthetic control
+        run: LP_DCT_BITS=/tmp/lp_jpeg_dct_bits node sims/jpeg_dct_bitpad_attack.cjs
