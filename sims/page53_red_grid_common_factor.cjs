@@ -147,6 +147,67 @@ assert.deepEqual(factors.map(x => x.prime),
 assert.equal(factors.reduce((v, x) =>
   v * BigInt(x.prime) ** BigInt(x.exponent), 1n) * residual, R);
 
+
+// The observed 51-rune integer has an unusually large smooth component.
+// Keep the bound fixed at 300,000 and compare against permutations of the
+// original digits. Of 18 red spans, only the 19- and 51-rune spans are long
+// enough to reach the observed 79.4126 smooth bits at this cutoff.
+const smallPrimes = [];
+for (let i = 2; i <= 300000; i++) {
+  if (isPrime[i]) smallPrimes.push([BigInt(i), Math.log2(i)]);
+}
+function smoothBits(sequence) {
+  let remainder = asInteger(sequence, 29);
+  let bits = 0;
+  let primesAtLeast10000 = 0;
+  for (const [prime, contribution] of smallPrimes) {
+    if (remainder % prime !== 0n) continue;
+    if (prime >= 10000n) primesAtLeast10000++;
+    do {
+      remainder /= prime;
+      bits += contribution;
+    } while (remainder % prime === 0n);
+  }
+  return {bits, primesAtLeast10000};
+}
+const p27Colored = ink.pages.find(page => page.page === 27);
+assert.equal(p27Colored.red_spans.length, 1);
+const p27Digits = Array.from(p27Colored.red_spans[0].runes,
+  rune => corpus.runes.indexOf(rune));
+assert.equal(p27Digits.length, 19);
+const originalSmooth = smoothBits(digits);
+assert.ok(Math.abs(originalSmooth.bits - 79.41260397552774) < 1e-10);
+assert.equal(originalSmooth.primesAtLeast10000, 4);
+for (const span of allSpans) {
+  if (span.page !== 27 && span.page !== 53) {
+    assert.ok(span.length <= 16);
+  }
+}
+randomState = 0x53179;
+const smoothDraws = 10000;
+let p53SmoothHits = 0, p27SmoothHits = 0, familySmoothHits = 0;
+let fourMediumPrimeHits = 0;
+const shuffle = sequence => {
+  const out = sequence.slice();
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = uniform(i + 1);
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+};
+for (let t = 0; t < smoothDraws; t++) {
+  const red53 = smoothBits(shuffle(digits));
+  const red27 = smoothBits(shuffle(p27Digits));
+  const hit53 = red53.bits >= originalSmooth.bits - 1e-9;
+  const hit27 = red27.bits >= originalSmooth.bits - 1e-9;
+  if (hit53) p53SmoothHits++;
+  if (hit27) p27SmoothHits++;
+  if (hit53 || hit27) familySmoothHits++;
+  if (red53.primesAtLeast10000 >= 4) fourMediumPrimeHits++;
+}
+assert.deepEqual([p53SmoothHits, p27SmoothHits,
+  familySmoothHits, fourMediumPrimeHits], [2, 3, 5, 6]);
+
 console.log(JSON.stringify({
   originalGridBits: N.toString(2).length,
   page53RuneCount: p53.runic_count,
@@ -160,6 +221,13 @@ console.log(JSON.stringify({
   redSpansDivisibleByOwnPageLength: allSpans.filter(x =>
     x.divisibleByOwnPageLength).map(x => ({page: x.page, length: x.length})),
   redSmallPrimeFactors: factors,
+  observedSmallPrimeLog2Bits: originalSmooth.bits,
+  observedMediumPrimeCount: originalSmooth.primesAtLeast10000,
+  smoothnessNull: {cutoff: 300000, seed: "0x53179", samples: smoothDraws,
+    p53Hits: p53SmoothHits, otherEligibleP27Hits: p27SmoothHits,
+    selectionAwareFamilyHits: familySmoothHits,
+    familyAddOneRate: (familySmoothHits + 1) / (smoothDraws + 1),
+    fourMediumPrimeHits},
   redRemainingCofactor: residual.toString(),
   preservingRotationsDivisible179: exactRotations,
   sourceMultisetShuffle: {
