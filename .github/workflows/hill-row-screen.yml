@@ -10,6 +10,7 @@ on:
         options:
           - standard
           - quarter79
+          - ea-anchor
           - red225
           - red225stream
 jobs:
@@ -33,3 +34,6 @@ jobs:
       - name: Decode with 225-red-rune evolving F29 15-state matrix
         if: inputs.experiment == 'red225stream'
         run: node sims/red225_matrix_stream_inverse.cjs
+      - name: Test exact reversible zero-step EA model and native source
+        if: inputs.experiment == 'ea-anchor'
+        run: node sims/ea_zero_step_reversible.cjs
