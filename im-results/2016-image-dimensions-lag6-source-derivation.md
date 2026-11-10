@@ -119,6 +119,18 @@ The bounded tests reject these simple source-pad and six-lag key-recurrence inte
 
 The reproducible original-input script and positive control passed [GitHub Actions run 42890752174](https://github.com/FlareZ123/liber-primus/actions/runs/42892021636).
 
+### Pi.Mobi / mathematical-pi keystream screen
+
+Because the 2016 thread's “pi related” discussion points to the Pi.Mobi domain's decimal-pi branding, I tested the natural direct-key readings rather than assuming the site was official:
+
+- fractional \(\pi\) expansion in base 29;
+- decimal digits of \(\pi\) mapped modulo 29;
+- decimal digit pairs mapped modulo 29;
+- phases tied to the archived numbers 0, 51, 57, 230 (OutGuess seed), 563/569 (image dimensions), and 1136 (reported extraction length), with both additive signs;
+- direct additive base-29 \(\pi\) without the T6 repair model.
+
+No tested mapping produces readable original LP2. Under the T6 inverse, the best score is **−5.1348 per token** (decimal-pair key, phase 115, negative sign); direct additive base-29 \(\pi\) scores **−7.0602 per token**. The base-29 \(\pi\) stream was generated with Chudnovsky fixed-point integer arithmetic; its first 40 digits were independently checked against mpmath. The reproducible probe is sims/pi_base29_lag6_key_probe.cjs, with [CI run 42894161342](https://github.com/FlareZ123/liber-primus/actions/runs/42894161342). This rejects only these simple direct pi-to-GP key mappings, not every possible use of the Pi.Mobi artifact or a path/route encoded there.
+
 ## Interpretation and next work
 
 This is a coherent **candidate solve path if the 2016 image is relevant**:
