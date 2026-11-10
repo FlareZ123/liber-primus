@@ -17,7 +17,7 @@ I tested a narrowly defined, source-fixed use of that quotient against all 12,95
 
 Clean GP language control: the solved LP1/LP2 reference yields 3,213 GP symbols after excluding editorial continuation labels and the long hash; first 2,570 train a smoothed trigram model and final 643 are held out. Heldout reference IoC / top-12 mass / trigram score: **0.065125 / 0.807154 / −8.41667**. Raw LP2: **0.0344784 / 0.429762 / −11.07314**. Best projective inverse: **0.0344680 / 0.430534 / −11.05375**. Best additive inverse: **0.0344876 / 0.432927 / −11.05264**. Both candidates improve the raw trigram score by only ~0.02 nats/rune and remain at the uniform-ciphertext IoC; no plaintext passage. The small reference model is descriptive, not a calibrated p-value.
 
-Durable artifacts (branch `agent3/projective-singer-cycle-v2-20261110`; merge pending at time of this memory update):
+Durable artifacts merged to main via PR #21, squash commit `5b259c5c26d20d3642df6fbb033a60194abf3dfa`:
 - `sims/gf29_projective_singer_cycle_probe.cjs`: self-contained Node reproducer, 40 variants and exact round-trip assertions.
 - `im-results/gf29-projective-singer-cycle.md`: consolidated method, score table, limits and decision.
 - `results/README.md`: authoritative field-root row updated to retire this simple projective quotient while keeping nonlinear GF(29²) and non-GP mechanisms open.
