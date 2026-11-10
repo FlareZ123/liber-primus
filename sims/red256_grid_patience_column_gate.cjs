@@ -198,6 +198,68 @@ function syntheticAlignedGrid(order) {
   return plant;
 }
 
+
+/**
+ * Exact alphabet-capacity theorem with UNRESTRICTED event reordering.
+ * A single injective source-symbol map may independently relabel all 30
+ * original event types to either 256 full-byte labels or 32 low-five labels.
+ * Positions, columns, pages, PATIENCE and original source chronology are
+ * completely unrestricted. The optimal assignment pairs descending
+ * frequencies: min(a,c)+min(b,d) >= min(a,d)+min(b,c) for a>=b,c>=d.
+ * Thus this is the sharp maximum for every global codebook and ordering.
+ * A distinct position-dependent mapping or true state can escape it.
+ *
+ * @param {number[][]} grid
+ * @param {"byte"|"low5"} register
+ */
+function unorderedInjectiveCapacity(grid,register) {
+  const input=new Map(),output=new Map();
+  for(const v of values)input.set(v,(input.get(v)||0)+1);
+  for(const row of grid)for(const byte of row) {
+    const v=register==="low5"?byte&31:byte;
+    output.set(v,(output.get(v)||0)+1);
+  }
+  const sorted=m=>[...m.values()].sort((a,b)=>b-a);
+  const sources=sorted(input),targets=sorted(output);
+  const maximumMatches=sources.reduce((n,size,j)=>
+    n+Math.min(size,targets[j]||0),0);
+  return {register,eventTypes:sources.length,outputTypes:targets.length,
+    eventCount:values.length,maxOutputMultiplicity:targets[0],
+    sourceMarkerCount:input.get(29),maximumMatches,
+    minimumPositionDependentEdits:values.length-maximumMatches};
+}
+
+/**
+ * Test the visible left/right tree-mirror hypothesis without moving source
+ * rows: reverse the chosen column permutation on alternating printed rows.
+ * The same 8! permutation-exchangeability null is used as for straight
+ * PATIENCE. This is a SOURCE-only layout countercheck, not a decryption.
+ */
+function serpentinePermutationGate(grid,order,reverseOdd) {
+  const score=p=>{
+    let count=0;
+    for(let r=0;r<32;r++)for(let j=0;j<8;j++) {
+      const reversed=(r%2===1)===reverseOdd;
+      const col=p[reversed?7-j:j];
+      if((grid[r][col]&31)===values[8*r+j])count++;
+    }
+    return count;
+  };
+  const observed=score(order);
+  let tail=0,total=0,largest=0;
+  for(const p of allOrders) {
+    const n=score(p);
+    total+=n;
+    if(n>=observed)tail++;
+    largest=Math.max(largest,n);
+  }
+  return {reverseOdd,observed,atLeastAsHigh:tail,
+    permutations:allOrders.length,
+    exactConditionalUpperTail:tail/allOrders.length,
+    meanPermutationScore:total/allOrders.length,
+    globalMaximum:largest};
+}
+
 function run() {
   const historical=historicOrder();
   const order=historical.order;
@@ -226,6 +288,28 @@ function run() {
   assert.equal(controls.syntheticTrueSource.atLeastAsHigh,1);
   assert.equal(controls.plantOneSecretFunction,256);
   assert.equal(controls.plantEightSecretColumnFunctions,256);
+  const orderFree={
+    fullByte:unorderedInjectiveCapacity(rows,"byte"),
+    lowFive:unorderedInjectiveCapacity(rows,"low5")
+  };
+  assert.deepEqual([
+    orderFree.fullByte.maximumMatches,orderFree.lowFive.maximumMatches
+  ],[86,239]);
+  const plantedUnorderedLow5=syntheticAlignedGrid(order);
+  assert.equal(unorderedInjectiveCapacity(
+    plantedUnorderedLow5,"low5").maximumMatches,256);
+  const plantedUnorderedFull=rows.map((row,r)=>row.map((_,col)=>
+    (7*values[8*r+col]+11)%256));
+  assert.equal(unorderedInjectiveCapacity(
+    plantedUnorderedFull,"byte").maximumMatches,256);
+  const snakes={
+    reverseOdd:serpentinePermutationGate(rows,order,true),
+    reverseEven:serpentinePermutationGate(rows,order,false)
+  };
+  assert.deepEqual([
+    snakes.reverseOdd.observed,snakes.reverseOdd.atLeastAsHigh,
+    snakes.reverseEven.observed,snakes.reverseEven.atLeastAsHigh
+  ],[11,4153,11,4153]);
   const unknownMaps=unknownMappingPermutationGate(rows,order);
   assert.deepEqual([
     unknownMaps.allSecretSharedFunction.maximumMatches,
@@ -257,6 +341,8 @@ function run() {
     matchingPositions:locations,
     independentEventClockNull:cyclicEventClock(rows,order),
     allSecretSymbolFunctionBounds:unknownMaps,
+    allEventOrdersAndInjectiveAlphabetCapacity:orderFree,
+    originalMirrorSerpentineCounterchecks:snakes,
     plantedPositive:{
       score:controls.syntheticTrueSource.historicalScore,
       atLeastAsHigh:controls.syntheticTrueSource.atLeastAsHigh,
