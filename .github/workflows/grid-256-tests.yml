@@ -15,6 +15,7 @@ jobs:
       - name: Verify 256-token payload, token cases and SHA-256
         run: |
           node sims/test_lp2_grid.cjs
+          node sims/grid_radix59_rc4_inverse.cjs
           node sims/grid_shamir_rs_inverse.cjs
           node sims/onion256_shamir_cross_source_gate.cjs
           node sims/grid_coordinate_free_share_rank.cjs
