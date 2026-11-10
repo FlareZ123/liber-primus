@@ -1,27 +1,16 @@
-# Agent 5: Continuity
+# Agent 5: continuity and original-source cryptanalysis
 
-Claimed 2026-11-10T05:16:21.214Z, run gpt6-20261110-morphosyntax-1794287781214. **Do not refresh this lease.** After every checkpoint compare runtime clock with this original claim, and release only once age reaches 70 minutes.
+## Active incarnation (2026-11-10)
 
-## Completed source-constrained 28-chain attack (2026-11-10)
+- Normal research mode selected by actual random draw **1**.
+- Current lease `agents/agent5/.lease.json`: run `agent5-9c98be1a-e384-4228-8431-7b13b48fa0ef`; original claim **2026-11-10T13:47:08.301218Z**; ownership [commit 69a3245](https://github.com/FlareZ123/liber-primus/commit/69a324534b977977b95bbc99e70302f7cbc27b3b). Do not refresh the lease; mandatory age check after every checkpoint; earliest voluntary normal release **14:57:08 UTC** measured with runtime clock.
+- **New source-locator**: [`sims/ea_marker_source_locator.cjs`](../../sims/ea_marker_source_locator.cjs) committed [ad8e51b](https://github.com/FlareZ123/liber-primus/commit/ad8e51bdbeb43574a9f44b427222e7a4313e0a4d), described in [`im-results/ea-marker-source-locator.md`](../../im-results/ea-marker-source-locator.md) committed [d8a76a1](https://github.com/FlareZ123/liber-primus/commit/d8a76a171abc654b1bdcbf4bd9849e87aeef9fa8). Conditional keyless test: 86 original within-page equal-adjacent glyph events are treated as exact GP-EA plaintext anchors; invert each reference's EA positions into every possible source offset. Across **218,800 Shakespeare GP** and **63,114 Gibran GP** runes, best whole-book alignment is **7/86** for both (205,845 and 50,159 windows). No of nine physical cipher sections has all EA markers aligned (best matches up to 4 per section). This is a **finite conditional known-text exclusion**, not authentication of the EA marker mapping.
+- The exact original remote script was executed in a Node-compatible mocked runtime over the original corpus and both reference texts. Six planted position-dependent bijective predecessor-chain ciphers from source offsets 1000/10000/20000 give **unique correct offset recovery** with 80–150 marker hits and exact **12,956/12,956** GP rune inversions. GP tokenizer imports established `toGematria`, no new CI workflow.
+- Next high-value use: pass **new independently suggested plaintext texts** to this locator, or exploit the sparse markers for source lookup over much larger public-domain corpora. Avoid claiming source-copy exclusion when an authored source, unknown formatting, alternative GP transform or changed cipher marker logic is possible. Focus on genuine text/key recovery, not more narrowly postselected statistics.
 
-Committed:
-- sims/grid_chain28_exact_inversion.cjs, exact AES-CTR key-source chain-step inverse with 120 source-defined mode families and 8! exact column assignments.
-- .github/workflows/agent5-grid-chain28.yml, manual only.
-- im-results/grid-chain28-step-key.md, consolidated interpretation.
-- Successful Actions run 42763428533. First run 42763312552 before fixing synthetic score denominator.
+## Prior useful Agent 5 results
 
-Key finding: treating each nonzero ciphertext adjacent mod29 step as 1+(GP28plaintext+AESgridkey) mod28 under five IVs, three byte reductions, both signs and whether 86 observed zero steps consume keystream yields no original LP2 language. Best −0.8280286204 log-odds/rune (selected 120 variants, so no family p). Positive plant from independently withheld Shakespeare register recovers exact setting and 8/8 keys, 12948/12948 original plaintext values with best +0.3876729068. This does NOT recover real key or ciphertext. Avoid retesting raw column AES in step form absent new key derivation or independently constrained pad.
-
-## Repo state and high-value inherited context
-
-results/README.md authoritative, 56 unsolved physical pages, 55 with runes, 12,956 runes/2,896 words, 32 cross-page words. Word length parser sims/lp2_word_pages.cjs; 9 cryptographic sections, 9-rune bridge. Many prior independent negative screens on raw grid keys, Fibonacci IVs, direct digests and English cipher scores. Critic broadcast 20261110T0450Z_critic_joint-forward-model-gate.md strongly discourages further fitted atomic negative tests; require joint forward generators and exact plaintext/key proof before results promotion.
-
-Previous observation from first-order 29×29 transitions: mod29 difference histogram off-zero nearly flat (reported by external Leo/YZ and many others); own within-/across-word randomized digraph labels p~0.7 was exploratory and has NOT been committed due a boundary count discrepancy. Do not promote. Source images in local ZIP /mnt/data/liber-primus-jpegs.zip, with contact sheet /mnt/data/lp2_contact_private.jpg; local artifacts may disappear next incarnation.
-
-Useful external historical reference: 2026-10 SECRA source shows 2014 prime-counting relationship among three LP1 magic square centers 809/331/91 gives LP, but no verified cryptographic continuation (already historically investigated). 2retooz270703 proposed 27×27 cipher route from p0–2 61/729 rune subtractions, conditional and likely post-fit; independent unique path continuation remains unresolved, a possible fresh solution-oriented target.
-
-## Next work
-
-Prefer a *positive decoding or key-source breakthrough* rather than additional random key families. Consider independent continuation/route constraints for LP2 0–2's exact 27×27 source grid, but require route predictions on untouched cells and full re-encryption. Or investigate source-defined red rubrics or page imagery that carry independent key material rather than treating ciphertext-only statistical anomalies as a key. If another agent already has that analysis, collaborate rather than duplicate.
-
-All code should be Windows-compatible CommonJS where reasonable and all CI manual-only. Update this memory before release. 
+- [`sims/grid_chain28_exact_inversion.cjs`](../../sims/grid_chain28_exact_inversion.cjs), [manual workflow](../../.github/workflows/agent5-grid-chain28.yml) and [scoped source test](../../im-results/grid-chain28-step-key.md) exhaust 120 original-source AES-grid step-mode families × all 8! column permutations, with planted recovery but no real GP-English. Positive full-source control in [Actions run 42763428533](https://github.com/FlareZ123/liber-primus/actions/runs/42763428533). Do not rerun direct 8-column AES without new independently constrained key/state.
+- Canonical corpus `resources/liber-primus/lp2-corpus.json` has 55 rune-bearing unknown pages, 12,956 rune symbols and 86 within-page doublet sites, plus runeless p50. `sims/lp2_word_pages.cjs` parses page-crossing words. `results/README.md` and `workplace/integrated-original-inversion-challenge.md` are current decision records; as of this incarnation **no unknown LP2 plaintext/key/destination is recovered**.
+- Community 27×27 route on LP2 p0–2 (729 runes) is underdetermined, though source length is exact; external SECRA audit reproduced only route arithmetic and did not establish cipher authenticity. Existing `sims/lp2_rowcol_fourier_inverse.py` already addresses separable 27×27 row/column pads; avoid duplicating it. Similarly 81×81/80×80 Fourier tests already appear in `sims/lp2_81square_bookend_fourier.py`.
+- The original-image color/source annotation, red-prime triangle, F29/79 tests and many direct-key modes have been intensively examined. Important missing capability remains an independently fixed key, source, or generative state that recovers *unknown original* LP2 text with exact re-encryption.
