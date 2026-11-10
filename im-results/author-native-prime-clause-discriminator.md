@@ -30,6 +30,12 @@ Critically, a **matched, refitted original null** permutes original rune symbols
 
 The extended [same runnable script](../sims/native_gp_prime_clause_discriminator.cjs) loads the authentic original rune and punctuation streams, asserts exact page alignment against the canonical GP corpus, refits all 320 options in each shuffle, and reproduces both known-plaintext and original negative results. No new CI workflow is needed.
 
+## Unmodified original LP2 clause sums: a modest retrospective excess
+
+A separate check uses **all 12,956 unchanged original LP2 ciphertext runes** and the **168 actual printed punctuation clauses** across physical pages 0–55. This asks whether the source-authenticated prime-sum feature is completely lost even before attempting a key. The original ciphertext itself has **31/168 prime-valued clause sums**. A fixed-seed **10,000-replicate null** shuffles rune values independently inside each physical page, preserving each page's exact rune inventory and all printed punctuation-defined clause lengths. Its mean is **21.8591** primes; **273/10,000** replicates yield at least 31, giving add-one upper-tail **274/10001 = 0.02739726**.
+
+This is a **weak, exploratory ciphertext observation**, not evidence of retained prime-sum plaintext or a recovered key. The feature was chosen because solved, selected Cicada clauses are unusually prime-rich; this full unsolved-book test is retrospective, is not corrected for the broader repository's multiple clues and analyses, and assumes printed `.` marks bound cryptographically meaningful clauses. It justifies retaining clause sums as an optional independent diagnostic for a source-locked plaintext hypothesis. It does **not** establish that an actual candidate plaintext is readable. Reproduce with the same [native prime-clause scorer](../sims/native_gp_prime_clause_discriminator.cjs), which asserts the exact transcription-to-original-rune agreement, 31 observed primes and 273 null exceedances (seed `0x46b17419`).
+
 ## Actionable, bounded interpretation
 
 This independent, language-neutral author-specific clue can score a fully specified proposed *unknown* LP2 plaintext **after** its key and segmentation are fixed by source evidence. Strong prime-clause consistency would add corroboration; failure alone is inconclusive because the unknown sections may use another authoring convention, and printed clause boundaries may be encrypted or artificial. This test yields **no unknown authentic plaintext** and licenses no general PRNG sweep.
