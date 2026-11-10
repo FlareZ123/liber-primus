@@ -12,6 +12,7 @@ on:
           - radix29
           - triangle
           - primewalk
+          - fibonacci
           - triad-nonce
 jobs:
   source-key-inversion:
@@ -30,6 +31,9 @@ jobs:
       - name: Ciphertext-clocked prime-totient Viterbi and heldout test
         if: ${{ inputs.probe == 'primewalk' }}
         run: node sims/ciphertext_prime_walk_inversion.cjs
+      - name: Source Fibonacci root GP pad and grid-CTR inversion
+        if: ${{ inputs.probe == 'fibonacci' }}
+        run: node sims/fibonacci_red_field79_inversion.cjs
       - name: Exact radix-29 padded 256-bit AES key
         if: ${{ inputs.probe == 'radix29' }}
         run: node sims/red51_radix29_aes.cjs
