@@ -143,6 +143,37 @@ function main() {
     [[0,0],[40,14]]);
 
 
+
+  // A stricter null also conditions on each quoted passage retaining its
+  // complete 14-word length and 58/70-rune sum. Both passages are contained
+  // within their respective physical source pages. This conditions on source
+  // features already observed, and is the preferred context-aware comparator.
+  const pair=q.filter(x=>x.runeStart===9811||x.runeStart===12522);
+  assert.deepEqual(pair.map(x=>x.wordCount),[14,14]);
+  const valid=pair.map(entry=>{
+    const vals=pageWords.get(entry.sourcePage).map(w=>w.length);
+    const rotations=[];
+    for(let phase=0;phase<vals.length;phase++){
+      let sum=0;
+      for(let k=0;k<entry.wordCount;k++)
+        sum+=vals[(entry.slot+phase+k)%vals.length];
+      if(sum===entry.runeEnd-entry.runeStart)
+        rotations.push({phase,prefix:fingerprint(vals,entry.slot+phase)});
+    }
+    return rotations;
+  });
+  assert.deepEqual(valid.map(v=>v.map(x=>x.phase)),
+    [[0,1,8,35,42,44,54],[0,34,36,37]]);
+  const conditionedPairs=[];
+  for(const left of valid[0])for(const right of valid[1]){
+    if(left.prefix===right.prefix)
+      conditionedPairs.push({left:left.phase,right:right.phase,prefix:left.prefix});
+  }
+  assert.deepEqual(conditionedPairs,
+    [{left:0,right:0,prefix:"5,7,2,3,4"}]);
+  const conditionedDenominator=valid[0].length*valid[1].length;
+  assert.equal(conditionedDenominator,28);
+
   // Check which cryptographic readings of a common 21-rune plaintext
   // are already contradicted by the two original quoted cipher intervals.
   const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
@@ -202,10 +233,13 @@ function main() {
     allFiveWordQuotePairs:comparisons,
     exactConditionalFamilyProbability:"2/2145",
     probability:2/2145,
+    quoteTotalConditioned:{exactProbability:"1/28",numerator:1,
+      denominator:conditionedDenominator,compatiblePairs:conditionedPairs,
+      phasesPerQuote:valid.map(v=>v.map(x=>x.phase))},
     conditionalSharedPlaintextGates:{fixedBijectionPositions:[0,16],
       commonLinearKeystreamOrder10:{coefficientRank:rankX,augmentedRank:rankAug},
       directRedSourceVariants:directRed},
-    caution:"Original five-word plaintext equality and cipher key are unproved. Rotations test only this fixed quote-start/page-word null, with no discovery-wide selection correction."
+    caution:"Conditional on both original quote totals, the same opening match is 1/28; source-specific selection is uncorrected. No plaintext equality or actual key follows."
   };
   console.log(JSON.stringify(out,null,2));
 }
