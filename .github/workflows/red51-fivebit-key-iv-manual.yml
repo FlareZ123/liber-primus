@@ -15,6 +15,7 @@ on:
           - fibonacci
           - fibonacciTitles
           - triad-nonce
+          - onion-v2-crib
 jobs:
   source-key-inversion:
     runs-on: ubuntu-latest
@@ -38,6 +39,9 @@ jobs:
       - name: Source per-heading Fibonacci nonce grid cipher inverse
         if: ${{ inputs.probe == 'fibonacciTitles' }}
         run: node sims/fibonacci_title_grid_iv_inversion.cjs
+      - name: Exact three hidden-service-crib arbitrary-GP alphabet and p56 prime offset inverse
+        if: ${{ inputs.probe == 'onion-v2-crib' }}
+        run: node sims/red51_onion_v2_source_crib.cjs
       - name: Exact radix-29 padded 256-bit AES key
         if: ${{ inputs.probe == 'radix29' }}
         run: node sims/red51_radix29_aes.cjs
