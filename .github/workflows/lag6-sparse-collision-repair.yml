@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Test 5000 uniform and 5000 targeted collision-repair manuscripts
         run: node sims/lag6_sparse_collision_repair.cjs
+      - name: Demonstrate ambiguity of collision repair on every affine hit
+        run: node sims/lag6_repair_preimage_bound.cjs
