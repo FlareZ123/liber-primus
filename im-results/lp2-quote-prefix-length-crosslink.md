@@ -38,7 +38,15 @@ Enumerate each pair over *all* page rotations; share the shift for same-page quo
 - The physical **p40/p53** pair has precisely **two** allowed rotation combinations out of `55×39=2,145`: shifts `(0,0)` with observed pattern `(5,7,2,3,4)`, and `(40,14)` with a different pattern `(2,3,5,4,4)`.
 - Consequently the event *any* eligible quote-prefix match has the **exact family-wise conditional probability `2/2145 = 0.0009324009`**. A separate 1,000,000-draw fixed-seed xorshift32 check found 974 such matches, consistent with the exact rate; use the exact enumeration for evidence.
 
-This accounts for pair selection *within these seven annotated quotes* under this specific five-word criterion. The criterion and the interest in p40/p53 were noticed in an exploratory search, and the test does **not** adjust for arbitrary prefix lengths, alternative phrase boundaries, other discovered page links, or the larger research program. It is a meaningful conditional coincidence, not proof of a deliberate creator mechanism.
+This accounts for pair selection *within these seven annotated quotes* under this specific five-word criterion, but ignores their original **complete quotation lengths**, as corrected below. The criterion and the interest in p40/p53 were noticed in an exploratory search, and the test does **not** adjust for arbitrary prefix lengths, alternative phrase boundaries, other discovered page links, or the larger research program. It is a meaningful conditional coincidence, not proof of a deliberate creator mechanism.
+
+## Stricter original-quotation length conditioning
+
+**Preferred interpretation of the coincidence:** the initial `2/2145` rotation calculation does *not* preserve the two quotations' complete source lengths. Because both inscriptions are known to be exactly **14 words**, with total rune lengths **58 (p40)** and **70 (p53)**, a legitimate source-aware null should keep those totals fixed.
+
+Enumerate all source-page word rotations exactly as before but retain only those where the **next 14 word lengths** sum to the original quote's total. The physical p40 quotation has **7/55** allowed phases `[0,1,8,35,42,44,54]`, and the physical p53 quotation has **4/39** allowed phases `[0,34,36,37]`. Of their **7×4=28** jointly legal phases, **exactly one** has identical five-word prefixes: the actual (0,0) source, pattern (5,7,2,3,4). Thus the more tightly matched **exact conditional pair probability is `1/28 ≈ 0.0357143`**.
+
+This considerably weakens the significance relative to `2/2145`. It is a test conditioned on the specifically recognized p40/p53 pair and their known totals, not corrected for surveying all quotation relationships or other manuscript annotations. Earlier research already reported a related **1/25** comparison among full 58/70-rune quote-shaped windows, in [the quote-pair prime-key study](quote-pair-affine-prime-crib.md). The two counts use slightly different source-page/word-wrap conventions; neither is a novel decipherment. **The quotation pattern remains a provisional constraint of modest independent evidential weight.** Do not promote the smaller p-value alone as significant cipher evidence.
 
 ## Consequences for a same-plaintext hypothesis
 
