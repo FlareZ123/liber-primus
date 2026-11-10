@@ -28,6 +28,28 @@ The pooled original 571-rune ciphertext has IoC **0.034073800965**. All maxima c
 
 **Status:** The corrected 51-rune red source remains a credible highlighted manuscript clue. These finite, direct serializations do not decrypt the adjacent pages or the base60 grid. More modifications to SHA bytes, IVs, or grid traversal should require an independently sourced key-use instruction.
 
+## Additional complete-book colour-key inverse: 213 unsolved red runes
+
+A separate test uses *all* **213** unsolved LP2 red rune indices in their exact original reading order, from the [complete colour annotation](../resources/liber-primus/lp2-ink-annotations.json), rather than the 51-runed passage alone. The historical coloured transcription is a substantially different source from the source page's 51-rune suffix. The known image-side red rune count is 225 including the twelve runes on the two already-solved closing pages.
+
+**Explicit model:** the 213 red indices form a repeating additive mod-29 pad, key pointer reset to **phase zero on each physical page**. Every proposed ciphertext doublet triggers another key draw with probability 0.81, retaining its original plaintext rune. The full hidden alignment is marginalized by the exact [key-skip transducer](../sims/keyskip_transducer.cjs), so a valid key is not penalized for independently skipped draws. Score plaintext runes with the fixed solved-LP1 and LP2 unigram prior. Test the four prespecified possibilities: forward or reversed key, each with positive or negative additive sign.
+
+Use **39 fully black rune-bearing pages** (no source-colour complications), in disjoint 20-page training and 19-page heldout sets, each using its first 100 runes. Choose the strongest of the four pad settings **only on the 2,000 training runes** and measure its untouched 1,900-rune heldout log likelihood. Compare with **300** whole-key permutations preserving the same 213 rune values and repeating the complete train/heldout procedure. The exact script is [red_ink_keyskip_probe.cjs](../sims/red_ink_keyskip_probe.cjs), deterministic RNG seed `0x496e6b31`.
+
+| Measurement | Actual / control |
+| --- | ---: |
+| Original selected orientation and sign | Reverse, +1 |
+| Training log likelihood (2,000 runes) | −7,337.0923 |
+| **Heldout log likelihood (1,900 runes)** | **−7,007.2283** |
+| Matched random-key heldout mean ± SD | −7,058.2396 ± 43.7937 |
+| Random-key heldout scores ≥ original | 37 / 300 |
+| **Empirical heldout p**, plus-one | **38/301 = 0.12625** |
+| Independently planted q-like ciphertexts, true red213 key, 0.81 key skips | **8/8** recovered the exact forward + key; **8/8** heldout scores above the 95% matched null cutoff |
+
+The tested exact page-reset candidate has **no statistically persuasive advantage**, despite a pipeline with full planted-key retrieval. This does not exclude offset-shifted or continuous red key use, text-dependent repairs, a nonadditive output alphabet, or any alternate colour interpretation. It specifically closes the tempting *direct whole-red-string, page-zero resetting Vigenere-with-keyskips* scenario and avoids misleadingly assigning readable plaintext to its best random fluctuation.
+
+Reproduction: [successful GitHub Actions run 42766433491](https://github.com/FlareZ123/liber-primus/actions/runs/42766433491), which independently checked the previous red51 tests and this new complete-red-stream attack on the exact committed corpus. No plaintext recovered.
+
 ## Reproduce
 
 - [Corrected CommonJS reproducer](../sims/red_marker_key_probe.cjs), with an assertion for exactly 51 red runes.
