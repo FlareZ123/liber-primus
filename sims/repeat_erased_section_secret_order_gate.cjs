@@ -239,6 +239,50 @@ function planted(){
 }
 const positive=planted();
 
+/**
+ * Complete, exact original numeric inverse for the first original-input
+ * full-capacity candidate. A brute-feasible witness is NOT evidence of the
+ * authorial key: the 8 independent secret alphabets remain unidentified.
+ */
+function originalNumericCandidate(candidate){
+  if(candidate===null)return null;
+  const {phase,reverse,keys}=candidate;
+  const decoded=[];
+  let recipher=0;
+  for(let s=phase;s+OUTPUT<=observed.length;s+=OUTPUT){
+    let value=0n;
+    for(let j=0;j<OUTPUT;j++){
+      const i=s+(reverse?OUTPUT-1-j:j),row=observed[i],
+        rank=keys[row.section],digit=mod(rank[row.curr]-rank[row.prev]-1);
+      value=value*28n+BigInt(digit);
+    }
+    assert(value<limit);
+    const digits=Array(INPUT);
+    for(let j=INPUT-1;j>=0;j--){
+      digits[j]=Number(value%29n);value/=29n;
+    }
+    assert.equal(value,0n);
+    for(const symbol of digits)assert(symbol>=0&&symbol<29);
+    decoded.push(...digits);
+    recipher+=OUTPUT;
+  }
+  const n=decoded.length,counts=Array(Q).fill(0);
+  for(const x of decoded)counts[x]++;
+  const ioC=counts.reduce((sum,m)=>sum+m*(m-1),0)/(n*(n-1));
+  const nativeFrequent=[1,3,4,9,15,16,18,24];
+  const frequent=decoded.filter(x=>nativeFrequent.includes(x)).length/n;
+  return {phase,reverse,decodedGPIndices:n,
+    exactlyRecipheredOriginalObservedRanks:recipher,
+    originalUnrecoveredRankPositions:observed.length-recipher,
+    numericValidPackets:recipher/OUTPUT,
+    candidateGPIndexOfCoincidence:ioC,
+    candidateFrequentSourceRunes:frequent,
+    nativeGPEnglishFrequencyReference:0.590328,
+    exampleTransliteration:decoded.slice(0,100).map(v=>corpus.translit[v]).join(''),
+    identification:'Numerically valid under an original-fitted arbitrary 8-permutation witness; this is NOT historical plaintext recovery or a decrypted passage'};
+}
+const candidateOriginal=originalNumericCandidate(fullNumericFirst);
+
 const report={
   classification:'bounded original-source no-go for all 8-section secret sorted orders; cyclic original-leading SAT is NOT a manuscript decryption',
   originalRunes:C.length,repeatMarkerSites:repeats.length,
@@ -268,6 +312,7 @@ const report={
     firstFullNumericWitness:fullNumericFirst
   },
   syntheticGPPlaintextRoundTrip:positive,
+  completeOriginalSourceNumericInverseUnderFittedKey:candidateOriginal,
   caution:'Cyclic SAT is a first-digit necessity only; arbitrary witness is key-underdetermined and its numerically valid decoded strings are not authenticated plaintext. Packet erasure and section labels are source-selected assumptions.'
 };
 console.log(JSON.stringify(report,null,2));
