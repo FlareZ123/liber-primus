@@ -110,7 +110,7 @@ None yields readable original LP2. The best original trigram score across these 
 
 The bounded tests reject these simple source-pad and six-lag key-recurrence interpretations. They do **not** reject the source-derived T6 rule itself. T6 may describe an outer collision-repair or feedback operation whose additive key/state must come from another source.
 
-The reproducible original-input script and positive control passed [GitHub Actions run 42890752174](https://github.com/FlareZ123/liber-primus/actions/runs/42894532661).
+The reproducible original-input script and positive control passed [GitHub Actions run 42890752174](https://github.com/FlareZ123/liber-primus/actions/runs/42896253128).
 
 ### Pi.Mobi / mathematical-pi keystream screen
 
@@ -123,6 +123,12 @@ Because the 2016 thread's “pi related” discussion points to the Pi.Mobi doma
 - direct additive base-29 \(\pi\) without the T6 repair model.
 
 No tested mapping produces readable original LP2. Under the T6 inverse, the best score is **−5.1348 per token** (decimal-pair key, phase 115, negative sign); direct additive base-29 \(\pi\) scores **−7.0602 per token**. The base-29 \(\pi\) stream was generated with Chudnovsky fixed-point integer arithmetic; its first 40 digits were independently checked against mpmath. The reproducible probe is sims/pi_base29_lag6_key_probe.cjs, with [CI run 42894161342](https://github.com/FlareZ123/liber-primus/actions/runs/42894161342). This rejects only these simple direct pi-to-GP key mappings, not every possible use of the Pi.Mobi artifact or a path/route encoded there.
+
+### Grid-derived key screens
+
+The signed grid vector also motivates following it through the 32×8 table. I tested the toroidal 32-cell cycle, its reverse, and the bounded horizontal-wrap paths from offsets 51 and 57, using the visited cell values modulo 29 as periodic pads under the T6 inverse. I also tested a direct lookup composition in which each grid byte indexes the 256-rune p53+Ac+p55 block (and, separately, the second 128-rune half), again as periodic pads at phases 0/51/57. None yields readable plaintext. The best toroidal/cylinder path candidate scores **−5.172 per token**; the best grid-indexed rune candidate scores **−5.140 per token**. These are source-motivated but rejected as simple direct periodic-key readings; more stateful or semantic uses of the grid remain open.
+
+The current source-gate script includes these path and grid-indexed candidates and asserts that all bounded candidates remain below the English threshold while the synthetic positive control is recovered. [Latest fully asserted CI run 42896253128](https://github.com/FlareZ123/liber-primus/actions/runs/42896253128).
 
 ## Interpretation and next work
 
