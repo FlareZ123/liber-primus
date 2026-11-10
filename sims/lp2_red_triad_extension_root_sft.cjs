@@ -95,6 +95,12 @@ function main() {
   // A retrospective, file-label-independent two-hop numerical coincidence:
   // 20 + (first two p3 GP indices 13+23) = 56; 56 + (p39
   // last index15) = 71.jpg, the illuminated-Ac physical p54.
+  const p3PrimeSum=a.reduce((sum,i)=>sum+corpus.prime[i],0);
+  const p39PrimeSum=b.reduce((sum,i)=>sum+corpus.prime[i],0);
+  assert.deepEqual([p3PrimeSum,p39PrimeSum],[137,173]);
+  // GP prime-weight totals differ by the SAME 36-image gap.
+  assert.equal(p39PrimeSum-p3PrimeSum,56-20);
+  assert.equal(a[0]+a[1],p39PrimeSum-p3PrimeSum);
   assert.equal(20+a[0]+a[1],56);
   assert.equal(56+b[2],71);
   assert.equal(triads[0].page+a[0]+a[1],triads[1].page);
@@ -175,7 +181,9 @@ function main() {
   console.log(JSON.stringify({
     classification:"Exact cross-artifact algebra; potential source state, no LP2 key/plaintext",
     originalGridSha256:"3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290",
-    redTriads:triads,sourceJpegHop:"20.jpg + 13 + 23 = 56.jpg; 56.jpg + 15 = 71.jpg",
+    redTriads:triads,markedPrimeSums:[137,173],
+    independentSourceGapIdentities:["173−137=36=56−20","13+23=36=56−20"],
+    sourceJpegHop:"20.jpg + 13 + 23 = 56.jpg; 56.jpg + 15 = 71.jpg",
     editorialIndexOnlyEcho:"p3 trailing 2 * p39 opening 27 = p54",
     extensionRelation:"u²=3u+8",
     crossSourcePoint:"p3 middle + p39 first * u = 23+27u",
