@@ -112,8 +112,8 @@ const REPOS=[
   "Tannhauser-b-A-Story-of-all-time_70261"
 ];
 const MAX_BOOKS=Number(process.env.MAX_BOOKS||REPOS.length);
-const MAX_BYTES=3000000;
-const MAX_WORDS=600000;
+const MAX_BYTES=12000000;
+const MAX_WORDS=2000000;
 
 /** @param {number[]} target @returns {Map<number,number[]>} */
 function targetIndex(target){
