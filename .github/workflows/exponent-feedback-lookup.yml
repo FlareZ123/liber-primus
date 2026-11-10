@@ -16,3 +16,5 @@ jobs:
         run: node sims/exponent_feedback_lookup_attack.cjs
       - name: Exhaustive 1..512 nonlinear one-tap feedback and planted recovery
         run: node sims/one_tap_exponent_feedback_search.cjs
+      - name: Source-blind 2016-pair spectral feedback lag discovery
+        run: node sims/spectral_two_lag_exponent_attack.cjs
