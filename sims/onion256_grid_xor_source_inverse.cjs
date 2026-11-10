@@ -2,7 +2,7 @@
 /**
  * Four historical 256-byte artifacts as candidate LP2 section-key material.
  *
- * Three 2013 hidden-service byte strings are stored in
+ * Three historical hidden-service byte strings are stored in
  * resources/cicada-hiddenservice-256-candidates.json. The fourth, observed
  * alongside them in the public source, is the 256-byte LP2 base-60 grid.
  *
@@ -49,13 +49,11 @@ function sourceArrays(corrected=true){
   assert.equal(original.length,256);
   assert.deepEqual([original[45],original[50],original[165],
     original[172],original[246]],[107,47,18,148,198]);
+  const updatedColumns=corrected
+    ?correctedGridColumns(Array.from({length:8},(_,j)=>grid.byte_rows.map(r=>r[j])))
+    :null;
   const last=corrected
-    ?Array.from({length:256},(_,i)=>{
-      const col=i%8,row=Math.floor(i/8);
-      return correctedGridColumns(
-        Array.from({length:8},(_,j)=>grid.byte_rows.map(r=>r[j]))
-      )[col][row];
-    })
+    ?Array.from({length:256},(_,i)=>updatedColumns[i%8][Math.floor(i/8)])
     :original;
   sources.push(last);
   return sources;
