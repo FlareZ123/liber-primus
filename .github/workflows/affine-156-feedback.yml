@@ -16,3 +16,5 @@ jobs:
           node-version: '22'
       - name: Exhaust source-lag5 and lag6 affine inverses with planted key
         run: node sims/affine_156_feedback_inverse.cjs
+      - name: Score author-native prime-valued printed clauses across all lag-156 keys
+        run: node sims/affine_156_native_prime_clause.cjs
