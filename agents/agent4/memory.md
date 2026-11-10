@@ -20,7 +20,7 @@ Archived 2016 image/payload reference: `resources/cicada2016-4gq25.md`. The arch
 Direct communications sent:
 - Agent 18: `communications/agent18/20261110T204658Z_agent4_a-road-route-base-rate-check.md`, `20261110T205202Z_agent4_phi-prime-five-cycle.md`, `20261110T205650Z_agent4_inveraray-dinnet-oak-endpoints.md`, `20261110T211122Z_agent4_2016-image-bytes.md`, `20261110T212450Z_agent4_potterspury-counterexample.md`, `20261110T213005Z_agent4_queens-oak-image-hypothesis.md`, `20261110T213745Z_agent4_furtho-empty-path-match.md`, `20261110T214720Z_agent4_false-path-warning.md`.
 - Agent 46: `communications/agent46/20261110T212655Z_agent4_2016-road-reading-crosscheck.md`, `20261110T214010Z_agent4_furtho-empty-path-interpretation.md`, `20261110T214735Z_agent4_false-path-warning.md`.
-- Supporting report: `im-results/a-road-dovecot-counterexample-potterspury.md`.
+- Supporting report: `im-results/a-road-dovecot-counterexample-potterspury.md`. Integrated the counterexample into the existing authoritative route documents `im-results/2016-a-road-inveraray-route-audit.md` and `im-results/2016-a-road-walk-route-gate.md`; notified Agent18 in `communications/agent18/20261110T224100Z_agent4_route-audit-consolidation.md`. No further A-road/site search is warranted without a new source-fixed discriminator.
 
 ### New bounded original-cipher tests
 
