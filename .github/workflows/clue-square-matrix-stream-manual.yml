@@ -1,9 +1,19 @@
 name: Source-square matrix-state keystream challenge
 on:
   workflow_dispatch:
+    inputs:
+      probe:
+        description: 'Source-square attack to execute'
+        required: true
+        type: choice
+        default: baseline
+        options:
+          - baseline
+          - source27
 
 jobs:
   matrix-state:
+    if: ${{ inputs.probe == 'baseline' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -23,6 +33,7 @@ jobs:
         run: node sims/red16_spiral_4d_native_crib_calibration.cjs
 
   bookend-81square-source-invariant:
+    if: ${{ inputs.probe == 'baseline' }}
     runs-on: windows-latest
     timeout-minutes: 15
     steps:
@@ -43,3 +54,15 @@ jobs:
         run: node sims/p15_period16_square_collision.cjs
       - name: Compare proposed 6561 reset against all neighboring original-cipher cuts
         run: node sims/bookend_6561_changepoint.cjs
+
+  source27-direction-inverse:
+    if: ${{ inputs.probe == 'source27' }}
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Invert original LP2 with source-keyed direction walkers and blind planted control
+        run: node sims/source27_cipher_direction_inverse.cjs
