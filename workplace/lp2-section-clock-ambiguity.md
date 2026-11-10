@@ -1,88 +1,51 @@
-# LP2 page-33 visual-section boundary and three lossless source clocks
+# LP2 source clocks and 13/31 fragment traversal
 
-**Classification:** a reproducible original-source segmentation ambiguity. Neither a key recovery nor a plaintext recovery.
+**Classification:** original-source layout and traversal evidence. No unknown plaintext or cipher key recovered.
 
-## Direct evidence and competing clocks
+## Current section-boundary evidence
 
-The repository's canonical raw transcription, resources/lp2-transcription.txt, contains eight $ section-ending tokens in the 55 rune-bearing unresolved pages, with the sixth at **the end of physical LP2 p32, global rune offset 7,960**. The next physical page, **p33 (original scan 50.jpg)**, has *two* independently annotated red headings: **10 runes from local offset 0** and **8 runes from offset 91**. The second is preceded by a conspicuous line of three large black circles and begins after a visible red 13-dot mark. The repository's existing eight-title KDF inverse, sims/title_grid_kdf_viterbi.cjs, explicitly chooses p33 **offset 91**, whereas the raw $ clock places the source-section start at p33 offset 0.
+The canonical raw transcription has eight section-ending dollar markers across the 55 rune-bearing unresolved pages. Its sixth marker falls at the end of physical p32, global rune offset **7,960**. Physical p33 (scan 50.jpg) has two separate red headings: 10 runes beginning at local offset **0**, and 8 runes beginning at local offset **91**. The latter follows three large black circles and a red 13-dot mark.
 
-The independently maintained and upstream-related pnotisdev/cicada3301 verified transcription inserts a $ separator immediately before the **second p33 red title** and none after p32. This comparison is a *transcription convention witness*, not independent cryptographic evidence or independent original-rune authentication. It also has additional markers around the p15 numerical square, so wholesale replacement of our canonical transcription would silently change other choices.
+An independently maintained, upstream-related transcription inserts a section separator before the second p33 red heading and not after p32. That is a transcription-convention witness, not independent cryptographic evidence. The canonical transcription remains unchanged to preserve comparability.
 
-A small **in-memory, source-preserving alternative** removes the p32 trailing $, inserts one immediately before p33 rune offset91, and changes no printed runes, words or physical pages. Both have eight selected bodies:
+Three lossless source clocks remain possible:
 
-| Section number | Original $ rune count | Later-red-title rune count | Original $ word count | Later-red-title word count |
-| --- | ---: | ---: | ---: | ---: |
-| 1 | 729 | 729 | 158 | 158 |
-| 2 | 1,145 | 1,145 | 255 | 255 |
-| 3 | 1,738 | 1,738 | 385 | 385 |
-| 4 | 1,894 | 1,894 | 435 | 435 |
-| 5 | 1,021 | 1,021 | 224 | 224 |
-| 6 | 1,433 | **1,524** | 326 | **349** |
-| 7 | 1,680 | **1,589** | 378 | **355** |
-| 8 | 3,316 | 3,316 | 735 | 735 |
+| Segmentation | Runes per body (sum 12,956) | Words per body (sum 2,896) |
+|---|---|---|
+| p32-end marker only: 8 bodies | 729, 1145, 1738, 1894, 1021, 1433, 1680, 3316 | 158, 255, 385, 435, 224, 326, 378, 735 |
+| p33 second heading only: 8 bodies | 729, 1145, 1738, 1894, 1021, 1524, 1589, 3316 | 158, 255, 385, 435, 224, 349, 355, 735 |
+| Both p33 headings: 9 bodies | 729, 1145, 1738, 1894, 1021, 1433, 91, 1589, 3316 | 158, 255, 385, 435, 224, 326, 23, 355, 735 |
 
-The sixth global boundary shifts from **7,960 to 8,051**, reallocating precisely **91 printed ciphertext runes and 23 entire printed words**. The total remains **12,956 original runes and 2,896 words**. All 55 per-page rune streams agree with normalized lp2-corpus.json under both clocks.
+The interlude between global offsets 7,960 and 8,051 is exactly **91 runes / 23 words**. It may be a prologue, separate section, or continuation; the image establishes its position, not a cipher reset.
 
-## Source-image recurrence across the cuneiform section
+## Repeated cuneiform layout
 
-The page image supplies a stronger *typographic* selection than the inherited # LP2 page-33 visual-section boundary and three lossless source clocks
+The 1033/3301 cuneiform artwork begins at the bottom of p33 after the second red heading and repeats at the top of every p34–p39. A source-selected original-JPEG template search finds only pp33–39 above NCC 0.95: p33 0.98994, each p34–p39 0.99375; the best page outside that contiguous seven-page run is 0.30788. The six p34–p39 top-patch RGB arrays are byte-identical (SHA-256 21d5cb4cb00e0a0d7d5b8adbbe14e497128951623ea4e98e10213f5c7288938f). This supports the second p33 heading as the typographic entry to the illustrated passage, but not an encryption reset.
 
-**Classification:** a reproducible original-source segmentation ambiguity. Neither a key recovery nor a plaintext recovery.
+A source-locked direct transfer of the known p56 prime-totient cipher from the illustrated 1033 (174th prime) and 3301 (464th prime) numerals tested six original starts (7,960; 8,051; 8,174) and both primes through the first p40 rune at 9,640. All six outputs remain near-uniform (IoC 0.034296917–0.034757083); no new plaintext. This excludes only that direct source-locked family.
 
-## Direct evidence and competing clocks
+## New source-fixed 13/31 traversal over all 32 fragments
 
-The repository's canonical raw transcription, resources/lp2-transcription.txt, contains eight $ section-ending tokens in the 55 rune-bearing unresolved pages, with the sixth at **the end of physical LP2 p32, global rune offset 7,960**. The next physical page, **p33 (original scan 50.jpg)**, has *two* independently annotated red headings: **10 runes from local offset 0** and **8 runes from offset 91**. The second is preceded by a conspicuous line of three large black circles and begins after a visible red 13-dot mark. The repository's existing eight-title KDF inverse, sims/title_grid_kdf_viterbi.cjs, explicitly chooses p33 **offset 91**, whereas the raw $ clock places the source-section start at p33 offset 0.
+The five-slot border ornament's documented binary reading gives **13** and **31**. Across all 58 physical pages, the 31 thirteen-dot marks delimit **32 full-text fragments** (13,136 runes total). The first 28 fragments contain the 12,956 unresolved runes; the final four contain the solved p56/p57 tail. The two empty intervals at global boundaries 1,860 and 3,603 are retained.
 
-The independently maintained and upstream-related pnotisdev/cicada3301 verified transcription inserts a $ separator immediately before the **second p33 red title** and none after p32. This comparison is a *transcription convention witness*, not independent cryptographic evidence or independent original-rune authentication. It also has additional markers around the p15 numerical square, so wholesale replacement of our canonical transcription would silently change other choices.
+The full-period recurrence
 
-A small **in-memory, source-preserving alternative** removes the p32 trailing $, inserts one immediately before p33 rune offset91, and changes no printed runes, words or physical pages. Both have eight selected bodies:
+\[
+x_{n+1}=13x_n+31\pmod{32},\qquad x_0=0
+\]
 
-| Section number | Original $ rune count | Later-red-title rune count | Original $ word count | Later-red-title word count |
-| --- | ---: | ---: | ---: | ---: |
-| 1 | 729 | 729 | 158 | 158 |
-| 2 | 1,145 | 1,145 | 255 | 255 |
-| 3 | 1,738 | 1,738 | 385 | 385 |
-| 4 | 1,894 | 1,894 | 435 | 435 |
-| 5 | 1,021 | 1,021 | 224 | 224 |
-| 6 | 1,433 | **1,524** | 326 | **349** |
-| 7 | 1,680 | **1,589** | 378 | **355** |
-| 8 | 3,316 | 3,316 | 735 | 735 |
+visits all 32 fragment indices exactly once. Its restriction to the four solved-tail fragments is **31, 28, 29, 30** in both forward and inverse orders. Those fragments are p57[7:], p56, p57[:7], so their concatenation is exactly a cyclic rotation of the known 180-rune solved tail beginning at p57 offset 7 (tail offset 92). This is a source-anchored structural match.
 
-The sixth global boundary shifts from **7,960 to 8,051**, reallocating precisely **91 printed ciphertext runes and 23 entire printed words**. The total remains **12,956 original runes and 2,896 words**. All 55 per-page rune streams agree with normalized lp2-corpus.json under both clocks.
+Directly concatenating the 28 unknown fragments in LCG order does not improve GP trigram score: chronological −6.195857, forward −6.198043, inverse −6.195210; the inverse is ordinary against a 1,000-random-order null (upper-tail p=0.235). The 225 red-only runes also do not become readable under the same permutation. Thus the LCG is **not a direct plaintext transposition**. Its likely remaining role is a fragment index, clock, or row assignment; forward versus inverse orientation is unresolved.
 
- marker alone. The already-known Babylonian-style **1033 / 3301 cuneiform numeral** is printed after the second p33 red heading and its text, at the **bottom of physical p33**, then **at the top of every physical p34–p39**, six consecutive pages. The second p33 red heading follows an intervening row of three large black circles and the red 13-dot mark. This layout favours treating the second p33 heading at local rune offset **91** as the start of the cuneiform-decorated passage, without proving an encryption reset there.
+The economical next test is the source-fixed pairing of the 32 fragments with the 32 rows of the p49–p51 32×8 base-60 table under this LCG, with only forward/inverse assignments and a fixed within-fragment row clock. Do not expand into arbitrary permutations or repeat the already-negative F31 red-fragment/grid screens.
 
-A read-only [original-JPEG SFT](../sims/lp2_cuneiform_header_sft.py) searches a source-selected p33 bottom crop `x=[1016,1405), y=[3025,3450)` across all 58 original LP2 pages. At one-quarter size, the normalized image-correlation search finds **only pp33–39** at score above 0.95: p33 **0.98994** and each p34–39 **0.99375**. The best page outside this contiguous seven-page interval is **0.30788**. All six source p34–39 top-patch RGB pixel arrays at `x=[1016,1405), y=[131,556)` are **byte-for-byte identical**, SHA-256 of the decoded OpenCV BGR patches `21d5cb4cb00e0a0d7d5b8adbbe14e497128951623ea4e98e10213f5c7288938f`. The p33 bottom variant relocates to precisely `x=1016,y=131` on every later page with full-resolution NCC approximately **0.9700**. The repeated 1033/3301 numeral reading predates this test; the new source finding is the **full seven-page placement and six identical source RGB headers**. No key or hidden-image payload was recovered.
+## Consequence and reproduction
 
-The original p33 also has a separate **10-rune red heading at offset 0**, just after p32's end. Keeping *both* visible heading events rather than choosing one results in a third, exactly lossless **nine-body source clock**:
+Keep the canonical dollar-marker transcription unchanged. Section-reset ciphers must state which p33 boundary they use; the 13/31 LCG is a separate traversal candidate, not evidence for a p33 reset.
 
-| Source segmentation | Runes by body, summing to 12,956 | Words by body, summing to 2,896 |
-| --- | --- | --- |
-| p32-end only (8 bodies) | 729, 1145, 1738, 1894, 1021, 1433, 1680, 3316 | 158, 255, 385, 435, 224, 326, 378, 735 |
-| p33 second-heading only (8 bodies) | 729, 1145, 1738, 1894, 1021, 1524, 1589, 3316 | 158, 255, 385, 435, 224, 349, 355, 735 |
-| **Both p33 headings (9 bodies)** | 729, 1145, 1738, 1894, 1021, 1433, **91**, 1589, 3316 | 158, 255, 385, 435, 224, 326, **23**, 355, 735 |
-
-The new body is exactly the **91-rune / 23-word** run between global offsets **7,960** and **8,051**. This intermediate span could be a distinct section, a brief prologue, or a cryptographic continuation; the visible layout only supports the segmentation. Its rune count being `7×13` is retrospective and not an independently selected key-clock period. The updated [three-clock SFT](../sims/lp2_section_clock_sft.cjs) verifies all source runes, word totals and marker positions.
-
-## Source-locked direct cuneiform prime-totient transfer: bounded failure
-
-The repeated illustration visibly writes the historical primes **1033** (the 174th prime) and **3301** (the 464th). A deliberately restricted test asks whether either numeral tells the player to initialize the *authentically known* solved-p56 additive prime-totient GP29 cipher at that actual prime. It uses the same historical rule `P_i=(C_i-(p_{j+i}-1)) mod29` with exactly six **source-only** first-rune choices: p33 start **7,960**, the second red p33 heading **8,051**, or the first p34 rune **8,174**; each terminates at the first p40 rune **9,640**. No candidate is tuned against target ciphertext. There are no plaintext-derived literal-F skip decisions, other hidden offsets, or resets in this finite direct family.
-
-All six are readable-unintelligible GP transliterations, with empirical decoded rune IoC bounded **0.034296917–0.034757083**, close to the uniform 29-rune reference **1/29≈0.034482759**. The authentic solved p56 passage decoded under its correct initial prime and one known literal F has GP IoC **0.070028011**. Both 1033 and 3301 models exactly forward-reencrypt their original intervals, as any bijective additive candidate must; native known p56 plaintext planted under each prime starts decodes exactly. The source-locked original text supports **no new plaintext** from these six direct transfers. This does not exclude a different cipher using the numerals as keys, a secret skip rule, a different counter start, or another source-register architecture; none is selected by the illustrated numeral alone.
-
-[Runnable original-source and known-p56 SFT](../sims/lp2_cuneiform_prime_totient_sft.cjs) · [successful manual CI 42898117856](https://github.com/FlareZ123/liber-primus/actions/runs/42898117856). This is documented here as a closed visual-clock candidate rather than promoted to an established decryption result.
-
-## Consequence for original-cipher inference
-
-Section-reset ciphers, title-derived keystreams, per-section language scoring and section-restricted shuffles must explicitly state which *different* original boundary they use at p33. Eight source body starts derived from the *later red heading* cannot silently be treated as the eight starts induced by the inherited $. Results on whole-book rune frequencies, page-local occurrences, the 86 adjacent equal pairs and global word-length dependence are unchanged.
-
-**Decision:** retain the canonical transcription unchanged to preserve comparability with existing experiments; expose the alternate clock explicitly through sims/lp2_section_clock_sft.cjs. The original image may indicate nested headings rather than precisely one cipher reset. The third typographic nine-body alternative retains *both* p33 heading events; the source does not decide whether either resets a cipher. The decisive research step is a clue-determined key/encoder that predicts original plaintext, then survives both boundary clocks or independently selects one. Do not infer a key from the marker choice itself.
-
-## Reproduction and original sources
-
-Run the read-only CommonJS SFT **sims/lp2_section_clock_sft.cjs** with Node.js. It uses only the repository's exact source transcription, normalized LP2 rune corpus and source ink annotation, tests every physical page's ciphertext rune sequence, asserts all eight boundary offsets and source red spans, constructs the late-red-title clock in memory, then verifies all three clocks' full-book rune/word totals, original offsets, and per-section counts.
-
-- Original source: resources/liber-primus/50.jpg, physical p33, and source-aligned red ink file resources/liber-primus/lp2-ink-annotations.json.
-- Correlated external transcription: https://github.com/pnotisdev/cicada3301/blob/main/work/ref/lp_verified.txt (original LP2 begins after the 16 earlier LP1 pages), and its errata file.
-- Existing section-title source implementation: sims/title_grid_kdf_viterbi.cjs, BODY_PAGES and BODY_OFFSETS at source lines 30–31.
-- Existing raw-section analyses such as im-results/wordlength-order.md retain their original $ interpretation; their earlier finite results are **not** retrospective tests of the alternate clock.
+- Three clocks and original-image evidence: [source-clock SFT](../sims/lp2_section_clock_sft.cjs) and [original-JPEG cuneiform SFT](../sims/lp2_cuneiform_header_sft.py).
+- Direct 1033/3301 transfer: [prime-totient SFT](../sims/lp2_cuneiform_prime_totient_sft.cjs).
+- 13/31 fragment order and solved-tail control: [LCG reproducer](../sims/lp2_lcg32_fulltext_fragment_order.cjs) and [detailed report](../im-results/lp2_lcg32_fulltext_fragment_order.md).
+- Original ink annotations and normalized ciphertext: resources/liber-primus/lp2-ink-annotations.json and resources/liber-primus/lp2-corpus.json.
+- The p57 solved rune control is [Wulfic page 74](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/pages/page_74/runes.txt).
