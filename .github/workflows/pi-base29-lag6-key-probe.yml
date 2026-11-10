@@ -2,13 +2,6 @@ name: Pi.Mobi pi-derived key probe
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'sims/pi_base29_lag6_key_probe.cjs'
-      - 'resources/liber-primus/lp2-corpus.json'
-      - 'resources/lp2-transcription.txt'
-      - 'resources/control/shakespeare_first300k.txt'
-
 jobs:
   pi-key-probe:
     runs-on: ubuntu-latest
