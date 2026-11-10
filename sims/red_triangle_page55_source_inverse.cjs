@@ -266,7 +266,7 @@ for (let control = 0; control < 1000; control++) {
 refit77.sort((x, y) => x - y);
 const section77Output = {
   source: 'red p15 9 + red p40 8 + red p53 51 + complete red p54 9',
-  sourceRunei: 77,
+  sourceRunes: 77,
   section: 'original physical LP2 p54 and p55 concatenated',
   originalSectionRunes: sectionCipher.length,
   originalPageLengths: [getPage(54).indices.length, getPage(55).indices.length],
