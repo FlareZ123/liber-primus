@@ -11,6 +11,7 @@ on:
           - keyskip
           - fullword-prng
           - corrected-grid-inverse
+          - base59-source-inverse
           - historical-onion-xor-inverse
           - historical-onion-shamir4-inverse
           - historical-onion-totient-inverse
@@ -35,6 +36,15 @@ jobs:
       - name: Five-cell corrected-grid hidden-skip shared-alphabet inverse
         if: ${{ inputs.probe == 'corrected-grid-inverse' }}
         env:
+          LP2_GRID_FIVE_CORRECTIONS: '1'
+        run: node sims/outer_permutation_unknown_column_assignment.cjs
+      - name: Four exact base59-base60 source-grid original inverses with third holdout
+        if: ${{ inputs.probe == 'base59-source-inverse' }}
+        run: node sims/grid_base59_original_inverse.cjs
+      - name: Independent base59 source-key, pooled unknown-alphabet and hidden-skip inverse
+        if: ${{ inputs.probe == 'base59-source-inverse' }}
+        env:
+          LP2_GRID_RADIX: '59'
           LP2_GRID_FIVE_CORRECTIONS: '1'
         run: node sims/outer_permutation_unknown_column_assignment.cjs
       - name: Original LP2 source-key inverse from three historical hidden-service blobs and numeric grid
