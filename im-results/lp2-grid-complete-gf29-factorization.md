@@ -52,10 +52,26 @@ For each geometry, allow a completely *unknown* affine two-coordinate map \(Y_i=
 
 The source-to-target relationship could still be nonlinear, position dependent or differently indexed. The negative preserves the meaningful 2×119 clue while blocking a simple direct field-map claim. The [complete factorization SFT](../sims/lp2_grid_gf29_factorization_sft.py) includes both exact inversions and their plant.
 
+## Exact obstruction to a GF(29²) polynomial norm
+
+The complete factorization also decides a much broader candidate suggested by the two red source quadratics: **can the printed grid polynomial be the field norm of a hidden polynomial over GF(29²)?** This includes the tempting terminal-page arrangement of p53's **128 black** runes as one coefficient lane and a second, specially selected 128-rune lane formed from p53's **51 red** runes, p54's first **oversized red Ac**, and all **76 p55** runes. The second-lane selection is retrospective and omits p54's eight other red runes; it establishes no intended authorial layout.
+
+Let \(K=\mathrm{GF}(29^2)\), whose explicit source presentation is furnished by the p3 red quadratic \(13+23u+2u^2\). For any **arbitrary** hidden \(H(X)\in K[X]\), its coefficient-field norm is \(N(H)=H(X)\sigma(H)(X)\in\mathrm{GF}(29)[X]\), where \(\sigma(a)=a^{29}\). Every irreducible \(\mathrm{GF}(29)\)-polynomial of **odd degree** remains irreducible over \(K\). Its exponent in a norm must therefore be even, since coefficient Frobenius preserves that factor while doubling its multiplicity.
+
+The original grid's verified monic cubic factor
+
+\[
+h_3(X)=X^3+14X^2+16X+24
+\]
+
+has **no root among all 29 field elements**, hence is irreducible. Exact polynomial division proves \(h_3\mid P\), but \(h_3^2\nmid P\): after dividing \(P\) once, the remainder on another division by \(h_3\) is **\(3X+9\)**. Consequently **there is no GF(29²) polynomial of any degree and no hidden 128-lane key whose norm equals \(P\)**, even up to a nonzero constant. Dividing out the known \((X-24)^2\) root does not change this cubic obstruction. This is an all-secret **algebraic rejection of the norm mechanism**, independent of English models or fitted text. It does not forbid other field ciphers or non-norm operations.
+
+[Single-file exact modular source proof](../sims/red_triad_grid_affine_factors_sft.cjs) checks the original grid byte SHA-256, the p3/p39 triads, the already established quadratic and repeated-root factors, the rootless cubic, its exact one-copy multiplicity and complete product reconstruction using the published degree-nine cofactor. The familiar quadratic \(X^2+18X+11\) may also be written \(2F((X-17)/2)\), \(F=13+23X+2X^2\), using the manuscript's original JPEG numbering offset 17; that is a reformulation of the **previously published** p3 conjugate-root result (see [the red-triad extension section](grid-bigint-factor-page53.md#the-two-marked-three-rune-polynomials-and-an-exact-source-factor-agent-39-10-november-2026)), not an independently discovered factor or new cryptographic key.
+
 ## Immediate original-payload checks and outcome
 
 Using the monic \(Q_{238}\) factor, discard its formal leading one and read the remaining **238 coefficients as GP29 indices**. Their index of coincidence is only **0.034633100102**, close to the uniform-symbol baseline \(1/29\). Interpret those same base29 coefficients as one big-endian integer and serialize as bytes: it produces **145 bytes**, of which **49** are printable 7-bit ASCII; no plain-language payload or recognized header is present. Pairing 238 coefficients as 119 GF29² elements and projecting their trace or norm in the natural adjacent/half-block layouts also produces near-uniform GP29 data, not text (exploratory direct controls).
 
 The direct 119-column shared-pad interpretation \(A_i-B_i\bmod29\) has IoC **0.032474006552**, with no plaintext; \(A_i+B_i\bmod29\) has IoC **0.034895314058**. Thus neither direct pairwise sum/difference nor its straightforward field projections identifies the intended language.
 
-**Research decision:** the source factorization produces a more constrained 119-pair artifact worth testing against *independently signaled transformations*. It has not decrypted the source. A successful next step must specify which factor(s), 119-pair reading and operation are pointed to by the original artwork or inscriptions, and must recover reproducible native plaintext. More unsourced affine key sweeps over these 119 pairs would repeat earlier failures.
+**Research decision:** the source factorization produces a more constrained 119-pair artifact worth testing against *independently signaled transformations*. A direct GF(29²) polynomial-norm interpretation of the entire table is now mathematically excluded by the odd-multiplicity irreducible cubic. It has not decrypted the source. A successful next step must specify which factor(s), 119-pair reading and operation are pointed to by the original artwork or inscriptions, and must recover reproducible native plaintext. More unsourced affine key sweeps over these 119 pairs would repeat earlier failures.
