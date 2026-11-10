@@ -269,18 +269,24 @@ function main() {
   const following = book.slice(9358, 9519);
   assert.equal(following.length, 161);
   assert.equal(following.slice(42).length, 119);
-  const followingPadTests = [-1, 1].map((sign) => {
-    const output = following.map((x, i) => mod(x + sign * possibleSecret[i % 91]));
-    const counts = Array(29).fill(0);
-    for (const x of output) counts[x]++;
-    const orderedPairs = counts.reduce((sum, n) => sum + n * (n - 1), 0);
-    return { sign, originalOutputIoC: orderedPairs / (161 * 160),
-      preview: output.slice(0, 40).map((x) => corpus.translit[x]).join("") };
-  });
-  assert.ok(Math.abs(followingPadTests[0].originalOutputIoC -
-    0.033385093167701864) < 1e-12);
-  assert.ok(Math.abs(followingPadTests[1].originalOutputIoC -
-    0.03641304347826087) < 1e-12);
+  const sourceKeyCandidates = [
+    { name: "original GP rune index", key: possibleSecret },
+    { name: "original GP rune prime-totient", key:
+      possibleSecret.map((r) => mod(corpus.prime[r] - 1)) }
+  ];
+  const followingPadTests = sourceKeyCandidates.flatMap(({ name, key }) =>
+    [-1, 1].map((sign) => {
+      const output = following.map((x, i) => mod(x + sign * key[i % 91]));
+      const counts = Array(29).fill(0);
+      for (const x of output) counts[x]++;
+      const orderedPairs = counts.reduce((sum, n) => sum + n * (n - 1), 0);
+      return { name, sign, originalOutputIoC: orderedPairs / (161 * 160),
+        preview: output.slice(0, 40).map((x) => corpus.translit[x]).join("") };
+    }));
+  const expected = [0.033385093167701864, 0.03641304347826087,
+    0.0343944099378882, 0.03540372670807453];
+  followingPadTests.forEach((result, i) =>
+    assert.ok(Math.abs(result.originalOutputIoC - expected[i]) < 1e-12));
   const highestOriginalPairs = Math.round(Math.max(
     ...followingPadTests.map((r) => r.originalOutputIoC)) * 161 * 160);
   const followingControls = [
@@ -294,12 +300,12 @@ function main() {
   // Genuine-English 161-rune successor encrypted using the *actual 91-rune*
   // original Shamir candidate. Both algebraic signs recover every rune
   // and exactly re-encrypt the unmodified planted ciphertext.
-  for (const sign of [-1, 1]) {
+  for (const { key } of sourceKeyCandidates) for (const sign of [-1, 1]) {
     const actual = shakespeare.slice(50000, 50161);
-    const planted = actual.map((x, i) => mod(x - sign * possibleSecret[i % 91]));
-    const decoded = planted.map((x, i) => mod(x + sign * possibleSecret[i % 91]));
+    const planted = actual.map((x, i) => mod(x - sign * key[i % 91]));
+    const decoded = planted.map((x, i) => mod(x + sign * key[i % 91]));
     assert.deepEqual(decoded, actual);
-    assert.deepEqual(decoded.map((x, i) => mod(x - sign * possibleSecret[i % 91])), planted);
+    assert.deepEqual(decoded.map((x, i) => mod(x - sign * key[i % 91])), planted);
   }
 
   console.log(JSON.stringify({
