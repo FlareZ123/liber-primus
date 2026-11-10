@@ -14,3 +14,6 @@ jobs:
           node-version: '22'
       - name: Run calibrated interword affine scan
         run: node sims/word_affine_probe.cjs
+
+      - name: Run calibrated nonlinear word-map scan
+        run: node sims/word_nonlinear_probe.cjs
