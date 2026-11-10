@@ -61,26 +61,58 @@ A single atypical page could be obscured by book-level pooling. Select the large
 
 The 0.055 threshold is a qualitative plant-detection indicator, not an independently specified significance threshold. The empirical 55-page maximum calibration is the family-wise check.
 
-## Exact book-wide one-step row capacity (new constructive obstruction)
+## Exact predecessor-ciphertext majorization and page-boundary rekey complexity
 
-The preceding k=1 experiment allows **different substitution rows on every physical page**. A useful, stronger constraint applies when the same 29 rows are reused throughout the book, with an otherwise arbitrary row permutation. This is a separate, exact family, requiring no simulated independence between plaintext and preceding ciphertext.
+The simulations above test page-specific k=1 and global k=2/3 arbitrary permutation rows under a source/repair model. This complementary theorem requires **no simulated language independence, row-parameter search, or anti-repeat null**. It covers direct, *bijective* one-step ciphertext-predecessor row maps with either one book-wide substitution table or many independently chosen tables whose changes occur only at physical-page boundaries.
 
-Let n[x,y] be the number of original **within-page** transitions from published ciphertext rune x to published ciphertext rune y. Under any fixed book-wide bijective row cipher C_i=S[C_(i−1)](P_i), a particular plaintext rune a can map to only one y=S[x](a) for each x. Consequently,
+Let \`n[x,y]\` be the exact count of original **within-page** transitions from published ciphertext rune \`x\` to output rune \`y\`. Every predecessor-conditional bijection maps any given set of \`m\` plaintext runes to exactly \`m\` different ciphertext runes in each row. For a contiguous interval of pages \`[a,b)\`, the maximum possible occurrences of **any specified m-rune plaintext set** among noninitial positions is therefore
 
 \`\`\`text
-count(P_i = a, i > page start)
-  = Σ_x n[x, S[x](a)]
-  ≤ Σ_x max_y n[x,y]
-  = 714.
+capacity_m(a,b) = sum_over_prev_runes_x (
+    sum_of_m_largest_counts_y n_[a,b)(x,y)
+).
 \`\`\`
 
-The original has 12,901 within-page transitions (including **86 exact repeats**) and 55 page-initial runes. Give the cipher complete freedom to choose all 55 initial plaintext runes: **no plaintext rune can occur more than 714 + 55 = 769 times in all 12,956 symbols, or 5.9354739%**. This is an actual maximum over the astronomical key space, and it applies to any relabeling of the 29-symbol GP alphabet. A witness maps each row's most frequent y to the selected plaintext rune and realizes **exactly 714** post-initial occurrences; the resulting 12,956-rune candidate exactly re-encrypts to the observed original cipher. It is therefore a tight transition bound, not merely a sampling estimate.
+This maximum is **attainable** by independently completing each row's top-m assignments to a permutation. For a single shared book-wide table and \`m=1\`, exact input counts from all 12,901 within-page transitions give **714**. Even granting all 55 page-initial plaintext runes complete freedom, **any single plaintext rune occurs at most 769/12,956 = 5.9354739%**. The bound applies to every unknown key and every relabeling of the GP alphabet. A constructive original-cipher inverse witness attains exactly 714 on transition positions and re-encrypts all **12,956 original runes**. It establishes tightness rather than revealing authentic plaintext.
 
-**Language-register implication:** original-normalized Shakespeare GP training has E = **18,133/153,216 = 11.8349%**, and the checked-in Latin Vulgate GP training has E = **23,008/203,357 = 11.3141%**. The book-wide fixed-row cipher cannot yield a source-like frequency of this common rune anywhere near those values. This is a conditional exclusion of ordinary source-like GP unigram distributions, not a proof that the unknown text must follow either distribution. It also rules out the narrower fixed 29-state predecessor-ciphertext additive pad inside the proposed reversible F29 zero-step/EA codec when such a plaintext register is assumed.
+More generally, allow **k independent 29-row bijection tables**, each applied to an unknown, contiguous, nonempty block of complete physical pages. The maximum possible aggregate count for any m plaintext runes is exactly
 
-**Authentic positive control:** independently seeded arbitrary 29×29 row permutations encrypt 12,956 held-out Shakespeare-GP source runes in exactly the original page lengths. The planted ciphertext has row bound **1,586**, accommodates **1,484** actual E symbols on its noninitial positions, and decrypts and re-encrypts **all 12,956/12,956 runes exactly**. This tests both the bound and its nonvacuous behavior on a true encryption.
+\`\`\`text
+D[0,0] = 0
+D[k,j] = max over i in [k-1, j-1]:
+    D[k-1,i] + capacity_m(i,j)
+max count among all 12,956 positions = D[k,55] + 55.
+\`\`\`
 
-Scope: a **single shared** direct bijective predecessor-ciphertext row table across the entire book. Page-/section-dependent rows, hidden clock or keystream, lossy anti-repeat repairs, non-GP plaintext registers, binary payloads, and added intermediate transforms can break the bound. It must not be applied to the page-specific k=1 or global k=2/3 simulations elsewhere in this report. The mathematical certificate and witness are in [previous_cipher_row_symbol_bound.cjs](../sims/previous_cipher_row_symbol_bound.cjs), which needs only existing checked-in source data. The complete original-source regression **passed** [manual GitHub Actions run 42799660673](https://github.com/FlareZ123/liber-primus/actions/runs/42799660673), confirming the tight 714 bound, 12,956-rune witness round trip and 12,956-rune genuine arbitrary-row positive control.
+The dynamic program optimizes over **every legal page-boundary partition**, so the actual secret rekey pages need not be known. The extra 55 is intentionally generous: even in the strongest model, it permits every page-initial rune to belong to the chosen m-rune set. The theorem applies to all **m=1–28** simultaneously; the largest feasible ranked-marginal profile is constrained by majorization, independent of the unknown plaintext symbol names.
+
+### Exact condition on source-like GP frequency spectra
+
+To turn these mathematical capacities into a cryptanalytic exclusion, use an explicit **conditional assumption**: the unknown plaintext's 29-rune *ranked* relative-frequency spectrum matches the source's GP spectrum. This comparison tests the repository's original-normalized Shakespeare English sample (153,216 runes) and Vulgate Latin sample (203,357 runes). It does **not** assert that actual LP2 plaintext is English/Latin, or that its word/register statistics exactly match either sample.
+
+For each \`m\`, compare \`D[k,55]+55\` to the reference fraction belonging to the **m most frequent plaintext runes**, using exact integer cross-products. The optimizer was run for every \`m=1..28\` and every number of page epochs \`k=1..55\`. **Necessary** epoch counts:
+
+| Source-ranked GP model | Minimum independent page-block row tables satisfying all rank capacities | Strongest rank constraint |
+| --- | ---: | --- |
+| Shakespeare English GP | **14** | ranks 8–19 |
+| Latin Vulgate GP | **24** | rank 11 |
+
+Two explicit limiting examples:
+
+| Source model and rune set | Reference expected original-sized count | 1 fewer epoch: exact absolute capacity | Threshold epoch: capacity |
+| --- | ---: | ---: | ---: |
+| English, top 8 symbols (59.7881%) | 7,746.152 | **7,742** with k=13 | **7,889** with k=14 |
+| Latin, top 11 symbols (84.0478%) | 10,889.228 | **10,879** with k=23 | **11,013** with k=24 |
+
+These are upper bounds on *what the cipher can express*, not measured candidate plaintexts. For those source-like marginal assumptions, no book-wide row table and no arbitrary rekey schedule with at most **13 epochs (English)** or **23 epochs (Latin)** can encode the full original text with direct bijective predecessor rows. A solution with more epochs passes only these necessary marginal tests; it still needs an authentic key/state and complete original plaintext.
+
+### Constructive controls and limits
+
+One original-input witness builds all 29 arbitrary inverse row permutations and achieves the 714 bound while round-tripping the actual ciphertext. An independent genuine source-language positive encrypts 12,956 held-out Shakespeare GP runes with random 29×29 row permutations: **1,484 authentic E symbols** on noninitial positions, ciphertext row capacity **1,586**, exact **12,956/12,956** rune decryption and re-encryption. A separate **14-epoch planted source positive** uses 14 independently seeded bijective row tables, with unknown-change intervals spanning whole pages. All **12,956** runes invert and re-encrypt exactly, while the rank-m capacity certificate is valid for each of the 28 tested ranks.
+
+The key-independent theorem does not cover **within-page table changes, an external/hidden clock or evolving keystream, lossy repeat-repair rewrites, alternate symbol encodings, binary data, or an unusually flat plaintext distribution**. In particular it is not a universal exclusion of a reversible F29 zero-step EA architecture, whose unknown 28-symbol pad may vary at every position. The only overlap with that architecture is its restricted *book-wide fixed predecessor-ciphertext pad* case. Nor is this theorem interchangeable with the page-local or 2/3-symbol context simulations elsewhere in this document.
+
+[Reproducible exact full-source theorem, original-cipher witness and positive controls](../sims/previous_cipher_row_symbol_bound.cjs) · [passed manual CI run 42801123813](https://github.com/FlareZ123/liber-primus/actions/runs/42801123813).
 
 ## What this says about solving LP2
 
