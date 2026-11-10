@@ -428,6 +428,52 @@ for (const [orderName, order] of keySortedOrders) {
   }
 }
 
+// Deterministic null controls for the best pairwise edge candidate p27 -> p23.
+const p27RedKey = (inkByPage.get(27)?.red_spans || []).flatMap((s) =>
+  pageByNumber.get(27).indices.slice(s.start, s.start + s.length)
+);
+const p23Target = pageByNumber.get(23).indices;
+const p27p23Observed = p23Target.map((x, i) => (x + p27RedKey[i % p27RedKey.length] + 29) % 29);
+let rngState = 0x33011553;
+function xorshift32() {
+  rngState ^= rngState << 13;
+  rngState ^= rngState >>> 17;
+  rngState ^= rngState << 5;
+  return rngState >>> 0;
+}
+const permutationNull = [];
+const uniformNull = [];
+for (let n = 0; n < 2000; n++) {
+  const perm = [...p27RedKey];
+  for (let i = perm.length - 1; i > 0; i--) {
+    const j = xorshift32() % (i + 1);
+    [perm[i], perm[j]] = [perm[j], perm[i]];
+  }
+  permutationNull.push(score(p23Target.map((x, i) =>
+    (x + perm[i % perm.length] + 29) % 29
+  )));
+  const randomKey = Array.from({ length: p27RedKey.length }, () => xorshift32() % 29);
+  uniformNull.push(score(p23Target.map((x, i) =>
+    (x + randomKey[i % randomKey.length] + 29) % 29
+  )));
+}
+function nullSummary(values, observed) {
+  const sorted = [...values].sort((a, b) => a - b);
+  return {
+    n: sorted.length,
+    median: sorted[Math.floor(sorted.length / 2)],
+    p95: sorted[Math.floor(0.95 * sorted.length)],
+    max: sorted[sorted.length - 1],
+    fractionAtLeastObserved: values.filter((x) => x >= observed).length / values.length
+  };
+}
+const edgeKeyControl = {
+  observedAddScore: score(p27p23Observed),
+  rawTargetScore: score(p23Target),
+  sameKeyPermutationNull: nullSummary(permutationNull, score(p27p23Observed)),
+  uniformKeyNull: nullSummary(uniformNull, score(p27p23Observed))
+};
+
 const summary = {
   source: {
     parableAudioNumber,
@@ -493,6 +539,7 @@ const summary = {
     physical: base29ByteStats(physical),
     diagonal: base29ByteStats(diagonal)
   },
+  edgeKeyControl,
   tests: tests.sort((a, b) => b.score - a.score)
 };
 
