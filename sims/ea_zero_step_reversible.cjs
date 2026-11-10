@@ -194,6 +194,41 @@ const originalEA=sources.flat().filter(x=>x===EA).length;
 assert.equal(originalEA,21);
 
 /**
+ * Candidate identification under the highly specific model: one fixed
+ * transparent GP symbol emits every zero-step, source words are drawn from
+ * the finite solved author's vocabulary matching original word lengths.
+ * Mean and variance propagate exact independent source-word draws.
+ * Sorting 29 candidates is exploratory. The observed 86 is postselected.
+ */
+function nativeSymbolRanking(){
+  const lengthCounts=new Map();
+  for(const n of lengths)lengthCounts.set(n,(lengthCounts.get(n)||0)+1);
+  const result=[];
+  for(let symbol=0;symbol<29;symbol++){
+    let expected=0,variance=0;
+    for(const [n,c] of lengthCounts){
+      const wordPool=pools.get(n);
+      const sampleCount=wordPool.map(w=>w.filter(x=>x===symbol).length);
+      const m=sampleCount.reduce((a,b)=>a+b,0)/sampleCount.length;
+      const v=sampleCount.reduce((a,b)=>a+(b-m)**2,0)/
+        sampleCount.length;
+      expected+=c*m;
+      variance+=c*v;
+    }
+    const sd=Math.sqrt(variance);
+    result.push({symbolIndex:symbol,gpRune:corpus.translit[symbol],
+      sourceExpected:expected,sourceSd:sd,
+      observedDeviationSd:(86-expected)/sd});
+  }
+  result.sort((a,b)=>
+    Math.abs(a.observedDeviationSd)-Math.abs(b.observedDeviationSd));
+  assert.equal(result[0].symbolIndex,28);
+  assert.equal(result.filter(x=>Math.abs(x.observedDeviationSd)<=3)
+    .length,1);
+  return result;
+}
+
+/**
  * Sample authentic Cicada plaintext words matched to actual cipher word
  * lengths, then ROTATE all source runes relative to cipher word boundaries.
  * @param {() => number} random
@@ -337,6 +372,7 @@ function main(){
       motifs:origMotifs
     },
     fixedMarkerNull:rotationNull(),
+    finiteSolvedSourceTransparentRuneRanking:nativeSymbolRanking(),
     nativeLosslessPositive:controls(),
     conditionalConsequence:'If the actual cipher is exactly this 29-rune '+
       'zero-step-EA transducer, 86 source GP EA rune identities and '+
