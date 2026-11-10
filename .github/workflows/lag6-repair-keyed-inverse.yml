@@ -21,8 +21,14 @@ jobs:
         run: |
           set -o pipefail
           node sims/lag6_repair_keyed_inverse.cjs | tee lag6-keyed-inverse.json
+      - name: Recover planted text with heldout lexical and contextual Viterbi inference
+        run: |
+          set -o pipefail
+          node sims/lag6_repair_contextual_inverse.cjs | tee lag6-contextual-inverse.json
       - uses: actions/upload-artifact@v4
         with:
           name: lag6-keyed-inverse-positive-control
           retention-days: 90
-          path: lag6-keyed-inverse.json
+          path: |
+            lag6-keyed-inverse.json
+            lag6-contextual-inverse.json
