@@ -206,9 +206,14 @@ def heldout_greedy_wrap(rows, widths, right_margin):
 
 
 
-def source_pixel_break_prediction(rows, model, baseline, capacity):
-    """Predict actual held-out line ends with widths learned only from train JPEGs."""
-    def evaluate(weights):
+def source_pixel_break_prediction(training, heldout, model, capacity):
+    """Predict unseen line ends from JPEG-fitted widths, against a powered baseline.
+
+    The baseline receives a stronger privilege: its one free capacity is
+    optimized on the original TRAINING line-break locations. The image model's
+    capacity is frozen solely from training JPEG right-margin geometry.
+    """
+    def evaluate(rows, weights, cap):
         by_page = {}
         for row in rows:
             by_page.setdefault(row["page"], []).append(row)
@@ -225,10 +230,10 @@ def source_pixel_break_prediction(rows, model, baseline, capacity):
                 actual_length = len(previous["line"])
                 predicted_length = 0
                 for letter in chain:
-                    next_advance = mapping.get(letter,0.0)
-                    if consumed+next_advance>capacity:
+                    advance = mapping.get(letter,0.0)
+                    if consumed+advance>cap:
                         break
-                    consumed += next_advance
+                    consumed += advance
                     predicted_length += 1
                 distance = abs(predicted_length - actual_length)
                 counts["total"]+=1
@@ -242,12 +247,25 @@ def source_pixel_break_prediction(rows, model, baseline, capacity):
                 error+=distance
         counts["meanAbsoluteRuneBreakError"] = float(error/counts["total"])
         return counts
+    equal = np.r_[0.0, np.ones(29), 0.35,0.35,0.25,0.25,0.25,0.25]
+    chosen = None
+    for cap in np.arange(20.0, 43.0, 0.05):
+        train = evaluate(training, equal, cap)
+        if chosen is None or (train["meanAbsoluteRuneBreakError"],
+                               -train["withinOne"]) < chosen[0]:
+            chosen = ((train["meanAbsoluteRuneBreakError"],-train["withinOne"]),
+                      float(cap),train)
+    assert chosen is not None
     return {
-        "frozenCapacityPx":float(capacity),
-        "pixelLearned":evaluate(model),
-        "equalRuneWidth":evaluate(baseline),
-        "explanation":"Whole next-line prefixes are used only to measure distance from each independently predicted boundary; all glyph advances and physical capacity are fitted on early image pixels."
+        "frozenImageCapacityPx":float(capacity),
+        "pixelLearned":evaluate(heldout, model, capacity),
+        "equalRuneWidthBaselineTrainSelectedCapacity":chosen[1],
+        "equalRuneWidthBaselineTrain":chosen[2],
+        "equalRuneWidthBaselineHeldout":evaluate(heldout,equal,chosen[1]),
+        "explanation":"Pixel model advance and right margin derived only from training JPEG geometry; equal-rune baseline's one scalar capacity is optimized on actual training break positions, then frozen for independent heldout."
     }
+
+
 
 def main():
     rows, pages, skipped = build()
@@ -268,7 +286,6 @@ def main():
     base_rmse = float(np.sqrt(np.mean((true-tx@baseline_coef)**2)))
     margin = float(np.max([r["right"] for r in train]))
     capacity = margin - float(np.median([r["left"] for r in train]))
-    constant_widths = np.r_[baseline_coef[0], np.repeat(baseline_coef[1],29), baseline_coef[2:]]
     report = {
         "source":"Source-exact physical LP2 printed lines and original JPEGs; no OCR",
         "segment":"Pixel threshold 140, x=[595,1810), y=[350,3200), segment row gaps>18",
@@ -279,7 +296,7 @@ def main():
         "runeWidths":{r:round(float(w),3) for r,w in zip(RUNES,widths)},
         "heldoutInitialWidth":holdout_bias(rows,widths),
         "heldoutGreedyWrap":heldout_greedy_wrap(test,widths,margin),
-        "independentImageBreakPrediction":source_pixel_break_prediction(test,coef,constant_widths,capacity),
+        "independentImageBreakPrediction":source_pixel_break_prediction(train,test,coef,capacity),
         "interpretation":"A font-width model is causal evidence only if it predicts heldout source geometry and original line starts; this does not decrypt LP2"
     }
     print(json.dumps(report,indent=2,ensure_ascii=False))
