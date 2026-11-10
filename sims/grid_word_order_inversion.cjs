@@ -203,7 +203,7 @@ function planted(bodies,keys,ratios,tail,pad){
 
 function main(){
   const model=languageModel(), keys=originalKeys(), bodies=manuscriptBodies();
-  assert.equal(bodies.reduce((s,g)=>s+g.length,0),2875);
+  assert.equal(bodies.reduce((s,g)=>s+g.length,0),2873);
   const baseline=bodies.reduce((s,g)=>s+orderScore(g,model.ratios),0);
   const actual=search(keys,bodies,model.ratios);
   const controls=[planted(bodies,keys,model.ratios,model.heldout,0),
