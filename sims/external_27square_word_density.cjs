@@ -108,6 +108,59 @@ function shuffle(source,next){
   }
   return array;
 }
+/** The external proposal's 8 November 2026 block 38 claims these outgoing
+ * conditions for the unseen block 39. Enumerate their explicit geometric
+ * and source-signature consequences, without selecting an English word.
+ * This is deliberately a partial condition set, before further GCD filters.
+ * @param {number[]} grid
+ */
+function nextFromBlock38(grid){
+  const source=[];
+  for(let row=2;row<=26;row+=2)for(let col=2;col<=26;col+=2)
+  for(let radius=2;radius<=12;radius+=2){
+    if(col-radius<1||col+radius>27)break;
+    const a=at(grid,row-1,col-radius-1);
+    const middle=at(grid,row-1,col-1);
+    const b=at(grid,row-1,col+radius-1);
+    if(!a||!middle||!b||a===b)continue;
+    for(const order of [[a,b],[b,a]])
+    for(const transform of [false,true]){
+      const key=[order[0],transform?PHI[middle]:middle,order[1]];
+      if(MU[key[0]]!==0||MU[key[1]]!==1||MU[key[2]]!==0)continue;
+      source.push([key[1],key[2],key[0]]);
+    }
+  }
+  const starts=[];
+  for(let row=1;row<=27;row+=2)for(let col=2;col<=26;col+=2){
+    const dy=Math.abs(row-8),dx=Math.abs(col-17);
+    if(dy===0||dy!==dx)continue;
+    for(const direction of [-1,1])for(let length=3;length<=27;length+=2){
+      if(row+(length-1)*direction<1||
+         row+(length-1)*direction>27||col+length-1>27)break;
+      starts.push([row,col,direction,length]);
+    }
+  }
+  const prefixes=new Set();
+  let startsWithTHE=0;
+  for(const [row,col,dir,length] of starts)for(const k of source){
+    const plain=Array.from({length:3},(_,i)=>
+      mod(at(grid,row-1+i*dir,col-1+i)-k[i]));
+    prefixes.add(plain[0]*841+plain[1]*29+plain[2]);
+    if(plain[0]===2&&plain[1]===18)startsWithTHE++;
+  }
+  const result={outgoing:'block38 I ASK, reported S=32',
+    explicitConstraints:'horizontal original node, even row/column center and radius, nonmirror, signature (0,+1,0); diagonal ciphertext, start on exact previous-L ray, leftmost beginning, start row odd, col even, end row odd',
+    sourceAssignments:source.length,startLengthAssignments:starts.length,
+    totalPairs:source.length*starts.length,distinctThreeRuneBeginnings:prefixes.size,
+    pairsBeginningWithTH_E:startsWithTHE};
+  assert.equal(result.sourceAssignments,172);
+  assert.equal(result.startLengthAssignments,166);
+  assert.equal(result.totalPairs,28552);
+  assert.equal(result.distinctThreeRuneBeginnings,4938);
+  assert.equal(result.pairsBeginningWithTH_E,33);
+  return result;
+}
+
 function main(){
   const target={
     WEATHER:[7,28,2,18,4],
@@ -195,8 +248,9 @@ function main(){
       literalThreeRuneEcho:true},
     randomSeed:'0x'+SEED.toString(16),shuffles:REPLICATES,
     comparison,
+    possibleBlock39:nextFromBlock38(GRID),
     caveat:'Targets are externally postselected. This is a family-size and nonuniqueness test, not a full test of all later geometric transition filters or the literal authorial key.'
   },null,2));
 }
 if(require.main===module)main();
-module.exports={sourceKeys,findWord,shuffle,main};
+module.exports={sourceKeys,findWord,shuffle,nextFromBlock38,main};
