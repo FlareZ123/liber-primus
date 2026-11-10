@@ -78,15 +78,15 @@ function records(cipher){
   return out;
 }
 /** @param {number[]} cipher @param {"global"|"page"} clock */
-function recover(cipher,clock){
+function recover(cipher,clock,period=PERIOD){
   const items=records(cipher);
-  const tally=Array.from({length:PERIOD},()=>new Float64Array(29));
-  const seen=new Uint16Array(PERIOD);
+  const tally=Array.from({length:period},()=>new Float64Array(29));
+  const seen=new Uint16Array(period);
   let training=0,holdout=0;
   for(const rec of items){
     if(!firstHalf(rec.i))continue;
     training++;
-    const phase=(clock==="global"?rec.i:pageLocal[rec.i])%PERIOD;
+    const phase=(clock==="global"?rec.i:pageLocal[rec.i])%period;
     seen[phase]++;
     for(let k=0;k<29;k++){
       const p=rec.first?mod(rec.rank-k,29):
@@ -94,15 +94,15 @@ function recover(cipher,clock){
       tally[phase][k]+=logPrior[p];
     }
   }
-  const key=new Array(PERIOD);
-  for(let j=0;j<PERIOD;j++){
+  const key=new Array(period);
+  for(let j=0;j<period;j++){
     let best=0;
     for(let k=1;k<29;k++)if(tally[j][k]>tally[j][best])best=k;
     key[j]=best;
   }
   let tr=0,ho=0;
   for(const rec of items){
-    const phase=(clock==="global"?rec.i:pageLocal[rec.i])%PERIOD;
+    const phase=(clock==="global"?rec.i:pageLocal[rec.i])%period;
     const k=key[phase],p=rec.first?mod(rec.rank-k,29):
       rec.symbols[mod(rec.rank-k,rec.radix)];
     if(firstHalf(rec.i))tr+=logPrior[p];
@@ -114,7 +114,7 @@ function recover(cipher,clock){
     if(rec.first)uniform+=logPrior.reduce((a,b)=>a+b,0)/29;
     else uniform+=rec.symbols.reduce((a,b)=>a+logPrior[b],0)/rec.radix;
   }
-  return {clock,key,trainRuneCount:training,holdoutRuneCount:holdout,
+  return {clock,period,key,trainRuneCount:training,holdoutRuneCount:holdout,
     trainMean:tr/training,heldoutMean:ho/holdout,
     baseline:uniform/holdout,
     phaseCounts:{min:Math.min(...seen),max:Math.max(...seen)}};
@@ -157,6 +157,28 @@ function report(){
   }
   const sorted=plants.map(p=>p.holdoutAccuracy).sort((a,b)=>a-b);
   const realBest=[realGlobal,realPage].sort((a,b)=>b.trainMean-a.trainMean)[0];
+  // Clue-motivated fixed finite period families. Train and holdout are
+  // always disjoint; period selection after holdout is exploratory only.
+  const cluePeriods=[15,16,28,29,32,79,225,256];
+  const otherPeriods=cluePeriods.flatMap(period=>
+    ["global","page"].map(clock=>{
+      const s=recover(original,clock,period);
+      return {period,clock,trainMean:s.trainMean,
+        heldoutMean:s.heldoutMean,heldoutGain:s.heldoutMean-s.baseline,
+        trainRuneCount:s.trainRuneCount,holdoutRuneCount:s.holdoutRuneCount,
+        columnsSeenRange:s.phaseCounts};
+    }));
+  // Independent planted short-period GP source validates true short-key
+  // fitting without exposing heldout data during parameter recovery.
+  const shortPlain=nativePlant(r),shortKey=red.slice(0,16);
+  const shortCipher=encrypt(shortPlain,direct,shortKey);
+  const shortFit=recover(shortCipher,"global",16);
+  const shortDecoded=decrypt(shortCipher,direct,shortFit.key);
+  let shortCorrect=0,shortTotal=0;
+  for(let i=0;i<N;i++)if(!firstHalf(i)){
+    shortCorrect+=Number(shortDecoded[i]===shortPlain[i]);
+    shortTotal++;
+  }
   return {
     cipher:"exact four-marker GP29 conditional step cipher",
     source:{runes:N,red225:PERIOD,unknownKeyChoicesPerColumn:29,
@@ -165,13 +187,19 @@ function report(){
       periodicGlobal:{...realGlobal,key:undefined},
       periodicPage:{...realPage,key:undefined},
       preselectedByTrain:realBest.clock,
-      frozenGain:realBest.heldoutMean-realBest.baseline
+      frozenGain:realBest.heldoutMean-realBest.baseline,
+      otherCluePeriods
     },
     nativeControls:{
       sourceLength:source.length,trialCount:plants.length,seed:"0x2253ea15",
       truePeriod225Key:red.join(","),trialExamples:plants.slice(0,5),
       minHoldoutAccuracy:sorted[0],medianHoldoutAccuracy:sorted[6],
-      maxHoldoutAccuracy:sorted.at(-1)
+      maxHoldoutAccuracy:sorted.at(-1),
+      shortPeriod16:{
+        sourceKeyRecovered:shortFit.key.filter((x,i)=>x===shortKey[i]).length,
+        totalKeyDigits:16,heldoutAccuracy:shortCorrect/shortTotal,
+        heldoutGain:shortFit.heldoutMean-shortFit.baseline
+      }
     },
     decision:"Recovery is credible only if original heldout GP source-likelihood rises without retuning. Synthetic true-source exact key plants are a power check, not LP2 plaintext."
   };
