@@ -127,6 +127,6 @@ console.log(JSON.stringify({
   original:{runicLength:C.length,cipherIoC:ioc(C),candidateCount:variants.length,
     best:variants[0],worst:variants.at(-1)},
   independentPositive:{nativeGP:plant.length,exactRecovery:true,ioc:ioc(plant)},
-  finding:"181? no; 179 step alone fails these 32 direct original GP key models",
+  finding:"A 179-step permutation fails these 32 original direct-GP key models.",
   caveat:"The source-prime link is retrospective; exact re-encryption of a guessed key is not decipherment."
 },null,2));
