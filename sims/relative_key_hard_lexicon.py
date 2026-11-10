@@ -111,7 +111,7 @@ def load_pages():
     rune_to_index = {r: i for i, r in enumerate(corpus['runes'])}
     pages = []
     for item in corpus['pages']:
-        if item.get('status') == 'solved' or item['page'] >= 56:
+        if item.get('status') == 'solved' or item['page'] >= 56 or not item['indices']:
             continue
         physical = item['page']
         segment = chunks[physical if physical < 51 else physical - 1]
