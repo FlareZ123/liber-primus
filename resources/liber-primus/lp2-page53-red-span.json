@@ -7,22 +7,24 @@
   "original_scan_number": 70,
   "page_rune_count": 179,
   "red_text": {
-    "start_rune_inclusive": 129,
+    "start_rune_inclusive": 128,
     "end_rune_exclusive": 179,
-    "rune_count": 50,
+    "rune_count": 51,
     "physical_line_numbers": [
+      6,
       7,
       8,
       9
     ],
     "line_rune_counts": [
+      1,
       24,
       22,
       4
     ],
-    "runes": "ᛈᚹᛇᛋᚹᛒᛇᚦᚾᚻᚷᛄᚱᛡᛞᛡᚦᚪᛁᛇᚫᛉᛚᛇᛠᛡᚪᛄᚻᚱᚦᛈᛞᛄᛝᚩᚷᚠᛇᛗᚳᚻᛞᚩᛏᚳᚢᚱᛈᚾ",
+    "runes": "ᛏᛈᚹᛇᛋᚹᛒᛇᚦᚾᚻᚷᛄᚱᛡᛞᛡᚦᚪᛁᛇᚫᛉᛚᛇᛠᛡᚪᛄᚻᚱᚦᛈᛞᛄᛝᚩᚷᚠᛇᛗᚳᚻᛞᚩᛏᚳᚢᚱᛈᚾ",
     "word_lengths": [
-      4,
+      5,
       4,
       4,
       11,
@@ -37,7 +39,7 @@
     ],
     "first_11_rune_crib_anchor_word_index_zero_based": 3
   },
-  "adjacent_visual_marker": "A red upward arrow appears after the immediately preceding black text line and before the three red lines.",
-  "visual_method": "Direct visual comparison against the supplied original 70.jpg; red RGB pixels are distinguishable from the black runes. Rune positions and word boundaries matched to resources/lp2-transcription.txt and the canonical lp2-corpus.json.",
+  "adjacent_visual_marker": "The last rune of line 6 is red ᛏ and the same all-red five-rune word continues on line 7.",
+  "visual_method": "Visual inspection of source image: upward-arrow-shaped red glyph in line 6 is Gematria Primus ᛏ, a rune and not a separate direction arrow. The remaining 50 red runes appear on lines 7–9. Their textual word boundaries are verified in the canonical transcript.",
   "scope": "This is a confirmed localized visual color span. It is not an exhaustive catalogue of all red rubrication in LP2, and the color does not establish a separate cipher."
 }

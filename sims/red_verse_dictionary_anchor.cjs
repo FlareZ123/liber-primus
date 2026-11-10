@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * Exact-key inversion of the isolated fifty-rune red stanza on LP2 page 53.
+ * Exact-key inversion of the 51-rune red stanza on LP2 page 53.
  *
- * The fourth word contains eleven runes. If this word is an English lexicon
+ * The red ᛏ is a rune, not a separate arrow; the fourth word contains eleven runes. If this word is an English lexicon
  * word and the cipher is repeating additive mod29 with period <= 11, the
  * whole proposed key is fixed by that word. Enumerate *all* such lexicon
  * anchors and retain only keys consistent with repeated positions.
@@ -32,7 +32,8 @@ function sourceWords(){
   const current=manuscript[52]; // Physical LP2 page 53; rune-only page 50 omitted in master.
   const lines=current.split('/').filter(s=>[...s].some(x=>runeMap.has(x)));
   assert.equal(lines.length,9);
-  const raw=lines.slice(-3).join('');
+  assert.ok(lines[5].trim().endsWith('ᛏ'));
+  const raw='ᛏ'+lines.slice(-3).join('');
   const words=[];
   let word=[];
   for(const ch of raw){
@@ -48,7 +49,7 @@ function sourceWords(){
   const flat=words.flat();
   const actual=gp.pages.find(p=>p.page===53);
   assert.equal(actual.indices.length,179);
-  assert.deepEqual(flat,actual.indices.slice(129));
+  assert.deepEqual(flat,actual.indices.slice(128));
   assert.deepEqual(flat,[...span.red_text.runes].map(c=>runeMap.get(c)));
   return words;
 }
@@ -102,7 +103,7 @@ function search(cipherWords,dict,keep=5){
   const targetAnchor=cipherWords.findIndex(w=>w.length===11);
   assert.ok(targetAnchor>=0);
   const baseStart=starts[targetAnchor],lengths=cipherWords.map(w=>w.length);
-  assert.equal(cipher.length,50);
+  assert.equal(cipher.length,51);
   const best=[];let accepted=0;
   const seedAnchor=cipherWords[targetAnchor];
   /** @param {object} obj */
@@ -248,7 +249,7 @@ function main(){
   }
   const actual=observed.best[0].score;
   nullScores.sort((a,b)=>a-b);
-  const out={source:'LP2 page 53 / 70.jpg, final three red lines',
+  const out={source:'LP2 page 53 / 70.jpg, red T of line 6 plus final three all-red lines',
     redRunes:words.flat().length,sourceWordLengths:words.map(x=>x.length),
     lexiconRunes:dict.words.size,anchorOptions:dict.anchors.length,
     hypothesis:'A GP additive/atbash repeating key of period 1..11 with a lexicon word at the unique 11-rune anchor, optional literal-F skip',
