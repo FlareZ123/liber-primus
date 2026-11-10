@@ -15,6 +15,7 @@ on:
           - tendot-bridge
           - section-clock
           - cuneiform-prime
+          - cuneiform-square
 permissions:
   contents: read
 jobs:
@@ -38,6 +39,9 @@ jobs:
       - name: Replicate historic p56 dot-mark prime-key clock discriminator
         if: ${{ inputs.analysis == 'punctuation-clock' }}
         run: node sims/lp2_punctuation_solved_clock_sft.cjs
+      - name: Test historical seven-page plus five-numbered magic-square GP pad
+        if: ${{ inputs.analysis == 'cuneiform-square' }}
+        run: node sims/lp2_cuneiform_seven_five_square_sft.cjs
       - name: Test visible 1033 and 3301 as solved-totient starting primes
         if: ${{ inputs.analysis == 'cuneiform-prime' }}
         run: node sims/lp2_cuneiform_prime_totient_sft.cjs
