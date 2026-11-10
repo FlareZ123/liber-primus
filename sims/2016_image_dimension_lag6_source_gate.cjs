@@ -260,7 +260,8 @@ function main() {
   }
 
   const parsed = parseSharedCorpus();
-  const cipherWords = parsed.words;
+  const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+  const cipherWords = parsed.words.map(word => [...word.runes].map(rune => runeIndex.get(rune)));
   const lengths = cipherWords.map(w => w.length);
   const totalRunes = lengths.reduce((a, b) => a + b, 0);
   assert.equal(cipherWords.length, 2896);
