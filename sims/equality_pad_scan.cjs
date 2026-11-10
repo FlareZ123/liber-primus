@@ -222,6 +222,65 @@ function randomPagePadNull(samples){
     selectedTail(score){return (scores.filter(v=>v>=score).length+1)/(samples+1);}};
 }
 
+
+/**
+ * Independent lag-range challenge to the globally selected RC4 candidate.
+ * Fit the candidate from lag 2..16 once, freeze the key/sign/phase, then
+ * evaluate disjoint longer-lag equality constraints. The pair events share
+ * symbols and are correlated; these are diagnostics, not independent p-values.
+ * @param {number} samples
+ */
+function challengeSelectedRc4(samples){
+  const source=keyList(tableBytes()).find(k=>k.name==='column6:forward');
+  assert.ok(source);
+  const length=Math.max(...pages.map(p=>p.indices.length));
+  const raw=stream('rc4',source.key,'zero',0,length,256);
+  const pad=Uint8Array.from(raw,b=>b%29);
+  const groups=[[2,16],[17,32],[33,64],[65,128],[129,255]];
+  const tests=groups.map(([lo,hi])=>{
+    const edges=[];
+    for(let d=lo;d<=hi;d++){
+      const histogram=new Float64Array(29);
+      for(let i=d;i<training.length;i++)
+        histogram[mod(training[i]-training[i-d])]++;
+      const p=Float64Array.from(histogram,v=>
+        (1-NOISE)*v/(training.length-d)+NOISE/29);
+      const lp=Float64Array.from(p,Math.log);
+      const ln=Float64Array.from(p,x=>Math.log1p(-x));
+      const hit=new Uint16Array(length),exposed=new Uint16Array(length);
+      for(const page of real)for(let i=d;i<page.length;i++){
+        exposed[i]++;
+        if(page[i]===page[i-d])hit[i]++;
+      }
+      edges.push({d,lp,ln,hit,exposed});
+    }
+    return {lo,hi,edges};
+  });
+  /** @param {Uint8Array} key @param {typeof tests[number]} test */
+  function rangeScore(key,test){
+    let ll=0;
+    for(const e of test.edges)for(let i=e.d;i<length;i++){
+      // Selected sign is -1: delta = key[i] - key[i-lag].
+      const k=mod(key[i]-key[i-e.d]);
+      ll+=e.hit[i]*e.lp[k]+(e.exposed[i]-e.hit[i])*e.ln[k];
+    }
+    return ll;
+  }
+  const scores=tests.map(t=>({range:[t.lo,t.hi],observed:rangeScore(pad,t),null:[]}));
+  for(let i=0;i<samples;i++){
+    const key=Uint8Array.from({length},()=>Math.floor(random()*256)%29);
+    for(let j=0;j<tests.length;j++)
+      scores[j].null.push(rangeScore(key,tests[j]));
+  }
+  return scores.map(s=>{
+    const sorted=s.null.sort((a,b)=>a-b);
+    const higher=sorted.filter(x=>x>=s.observed).length;
+    return {range:s.range,observed:s.observed,randomNullMedian:sorted[Math.floor(samples/2)],
+      randomNull95:sorted[Math.floor(.95*samples)],
+      nullExceedances:higher,perCandidateTail:(higher+1)/(samples+1)};
+  });
+}
+
 function main(){
   const literal=directGrid(grid,real);
   const nulls=[];
@@ -230,6 +289,7 @@ function main(){
   const plants=Array.from({length:40},(_,i)=>makePlant(i));
   const first=standardStreamScan(),whole=wholeStreamScan();
   const reference=randomPagePadNull(3000);
+  const heldoutLagDiagnostic=challengeSelectedRc4(2500);
   const winningScore=Math.max(first.top[0].score,whole.top[0].score);
   const referenceResult={
     samples:reference.n,median:reference.median,p95:reference.p95,
@@ -249,6 +309,7 @@ function main(){
       plants:plants.length,exactRecovered:plants.filter(p=>p.correct).length,
       medianRewrites:plants.map(p=>p.rewrites).sort((a,b)=>a-b)[20]},
     randomPadCalibration:referenceResult,
+    selectedRc4LongLagChallenge:heldoutLagDiagnostic,
     derivedGridStreams:{standard:first,whole,top:[...first.top.map(x=>({...x,family:'standard'})),
       ...whole.top.map(x=>({...x,family:'whole-grid'}))].sort((a,b)=>b.score-a.score).slice(0,8)},
     interpretation:'The equality score is a correlated-event pseudo-likelihood. Positive candidate scores require independent matched maximum-null calibration, decoded plaintext, and key prediction before acceptance.'
