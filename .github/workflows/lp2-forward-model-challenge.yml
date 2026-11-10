@@ -26,7 +26,9 @@ jobs:
       - name: Generate all forward-model panels and compare joint observables
         env:
           REPS: ${{ inputs.repetitions }}
-        run: node sims/lp2_forward_model_challenge.cjs "$REPS" | tee forward-model-results.json
+        run: |
+          set -o pipefail
+          node sims/lp2_forward_model_challenge.cjs "$REPS" | tee forward-model-results.json
       - name: Preserve joint inference dataset
         uses: actions/upload-artifact@v4
         with:
