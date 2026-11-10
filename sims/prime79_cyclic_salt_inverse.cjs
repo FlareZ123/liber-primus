@@ -186,6 +186,67 @@ function rotatePayload(packets, random) {
   });
 }
 
+/**
+ * Family-wise calibration for the maximum over ALL 79 candidate starts.
+ * Every null preserves each original physical page's rune multiset and
+ * within-page cyclical adjacency; line, word and global packet coordinates
+ * are randomized. This tests whether the postselected phase35 maximum alone
+ * establishes a distinguished 79-clock.
+ *
+ * @param {number} draws
+ */
+function phaseFamilywise(draws = 150) {
+  const pages = corpus.pages.filter(p => p.page < 56 && p.indices.length)
+    .map(p => p.indices);
+  const rand = rng(0x26a07935);
+  /**
+   * Typed-array streaming implementation of collision(frames(seq,phase)).
+   * @param {number[]} seq
+   * @param {number} phase
+   */
+  function score(seq, phase) {
+    const h = new Uint8Array(MOD * PLAIN * ALPHA);
+    const n = new Uint8Array(MOD * PLAIN);
+    let hits = 0, pairs = 0;
+    for (let block = 0; block < PACKETS; block++) {
+      const start = (phase + WIDTH * block) % original.length;
+      const salt = mod(seq[start] - seq[(start + original.length - 1) % original.length]);
+      for (let k = 1; k <= PLAIN; k++) {
+        const current = seq[(start + k) % original.length];
+        const previous = seq[(start + k - 1) % original.length];
+        const step = mod(current - previous);
+        if (!step) continue;
+        const state = salt * PLAIN + k - 1;
+        const cell = state * ALPHA + step - 1;
+        hits += 2 * h[cell]++;
+        pairs += 2 * n[state]++;
+      }
+    }
+    return hits / pairs;
+  }
+  const observedMaximum = Math.max(...Array.from({length: WIDTH},
+    (_, phase) => score(original, phase)));
+  assert.equal(observedMaximum, 2916 / 75548);
+  let exceeded = 0, sum = 0, maxNull = -Infinity;
+  for (let trial = 0; trial < draws; trial++) {
+    const surrogate = pages.flatMap(page => {
+      const rotate = rand() % page.length;
+      return page.slice(rotate).concat(page.slice(0, rotate));
+    });
+    let maximum = -Infinity;
+    for (let phase = 0; phase < WIDTH; phase++)
+      maximum = Math.max(maximum, score(surrogate, phase));
+    sum += maximum;
+    exceeded += Number(maximum >= observedMaximum);
+    maxNull = Math.max(maxNull, maximum);
+  }
+  if (draws === 150) assert.equal(exceeded, 19);
+  return {seed:'0x26a07935',draws,observedMaximum,
+    nullMeanMaximum:sum/draws,exceedances:exceeded,
+    addOneFamilywiseP:(exceeded+1)/(draws+1),maxNull,
+    null:'Independent circular rotation of each whole original physical rune-page; maximum over all 79 phases refitted every trial'};
+}
+
 function main() {
   const packets = frames(original, PHASE);
   assert(packets.every(p => p.salt > 0));
@@ -252,7 +313,9 @@ function main() {
     crossRotateAtLeast += Number(collision(rotated, true).ioc >= cross.ioc);
   }
   const p = hits => (hits + 1) / 5001;
+  const familywise = phaseFamilywise();
   const result = {
+    familywise,
     model: 'Cyclic 164x79 packets, one published salt, 78 EA-or-28-rank payload slots per packet',
     claim: 'Conditional key-independent exclusion of arbitrary fixed salt-and-column 28-permutations for native GP registers; no unknown plaintext or authentic key',
     phase: PHASE, sourceRunes: original.length, packetCount: PACKETS,
@@ -280,4 +343,4 @@ function main() {
   return result;
 }
 if (require.main === module) main();
-module.exports = {frames, collision, positiveControl, main};
+module.exports = {frames, collision, positiveControl, phaseFamilywise, main};
