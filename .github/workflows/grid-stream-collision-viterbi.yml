@@ -1,10 +1,22 @@
 name: LP2 red-title and grid-key inversion suite
 on:
   workflow_dispatch:
+    inputs:
+      suite:
+        description: Research input family
+        required: true
+        type: choice
+        default: original-grid
+        options:
+          - original-grid
+          - title-kdf-english
+          - title-kdf-latin
+          - field79-english
+          - field79-latin
 jobs:
   invert:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     permissions:
       contents: read
     steps:
@@ -13,14 +25,32 @@ jobs:
         with:
           node-version: '22'
       - name: Original red-heading additive pad discriminator
+        if: ${{ inputs.suite == 'original-grid' }}
         run: node sims/red_title_body_key_reuse.cjs
       - name: Corrected numeric-seed whole-word shuffle inversion
+        if: ${{ inputs.suite == 'original-grid' }}
         run: node sims/wordlength_seeded_shuffle.cjs
       - name: Corrected grid-key whole-word permutation inversion
+        if: ${{ inputs.suite == 'original-grid' }}
         run: node sims/grid_word_order_inversion.cjs
       - name: Actual GP-rune grid-stream collision-skip Viterbi inversion
+        if: ${{ inputs.suite == 'original-grid' }}
         run: node sims/grid_stream_collision_viterbi.cjs
       - name: Actual GP-rune red-title IV grid-stream collision-skip inversion
+        if: ${{ inputs.suite == 'original-grid' }}
         run: node sims/red_title_nonce_grid_viterbi.cjs
       - name: Frozen generator and grid keys tested on untouched subsequent 2400 original runes
+        if: ${{ inputs.suite == 'original-grid' }}
         run: node sims/grid_stream_frozen_holdout.cjs
+      - name: Source-red headings with grid column KDF, GP-English
+        if: ${{ inputs.suite == 'title-kdf-english' }}
+        run: node sims/title_grid_kdf_viterbi.cjs
+      - name: Source-red headings with grid column KDF, Vulgate-Latin
+        if: ${{ inputs.suite == 'title-kdf-latin' }}
+        run: node sims/title_grid_kdf_viterbi.cjs --latin
+      - name: Field79 red-prime triangle as AES-ChaCha key, GP-English
+        if: ${{ inputs.suite == 'field79-english' }}
+        run: node sims/red_triangle_field79_aes_inverse.cjs
+      - name: Field79 red-prime triangle as AES-ChaCha key, Vulgate-Latin
+        if: ${{ inputs.suite == 'field79-latin' }}
+        run: node sims/red_triangle_field79_aes_inverse.cjs --latin
