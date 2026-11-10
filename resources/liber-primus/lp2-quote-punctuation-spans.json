@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "source": {
+    "description": "Quote and apostrophe offsets independently recorded in Dukotah/cicada3301, liber-primus/analysis/round43/F2-inventory/token-channels.md, from richer relikd/scream314 runic transcription. Derived annotations; source JPEGs remain primary artifacts.",
+    "url": "https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F2-inventory/token-channels.md"
+  },
+  "coordinate_rule": "Zero-based global rune offsets over the 12,956 unsolved LP2 runes, [start,end) interval. page_slices refer to original physical LP2 page numbers; numeric-only page 50 has no runes and remains a physical page. Quotation glyphs are absent from resources/lp2-transcription.txt.",
+  "quote_rune_total": 405,
+  "quotes": [
+    {
+      "start": 1659,
+      "end": 1677,
+      "page_slices": [
+        {
+          "page": 6,
+          "start": 189,
+          "end": 196
+        },
+        {
+          "page": 7,
+          "start": 0,
+          "end": 11
+        }
+      ],
+      "length": 18
+    },
+    {
+      "start": 5459,
+      "end": 5478,
+      "page_slices": [
+        {
+          "page": 22,
+          "start": 84,
+          "end": 103
+        }
+      ],
+      "length": 19
+    },
+    {
+      "start": 9715,
+      "end": 9727,
+      "page_slices": [
+        {
+          "page": 40,
+          "start": 75,
+          "end": 87
+        }
+      ],
+      "length": 12
+    },
+    {
+      "start": 9811,
+      "end": 9869,
+      "page_slices": [
+        {
+          "page": 40,
+          "start": 171,
+          "end": 229
+        }
+      ],
+      "length": 58
+    },
+    {
+      "start": 10211,
+      "end": 10279,
+      "page_slices": [
+        {
+          "page": 42,
+          "start": 67,
+          "end": 135
+        }
+      ],
+      "length": 68
+    },
+    {
+      "start": 10279,
+      "end": 10439,
+      "page_slices": [
+        {
+          "page": 42,
+          "start": 135,
+          "end": 272
+        },
+        {
+          "page": 43,
+          "start": 0,
+          "end": 23
+        }
+      ],
+      "length": 160
+    },
+    {
+      "start": 12522,
+      "end": 12592,
+      "page_slices": [
+        {
+          "page": 53,
+          "start": 53,
+          "end": 123
+        }
+      ],
+      "length": 70
+    }
+  ],
+  "apostrophes_before_rune": [
+    1110,
+    5138,
+    8515,
+    10089
+  ]
+}
