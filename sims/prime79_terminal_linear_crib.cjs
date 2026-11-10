@@ -15,6 +15,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 
+const ROOT = path.resolve(__dirname, '..');
 const Q = 29;
 const M = 79;
 const K = 78;
