@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Viterbi collision-skip across AES and ChaCha section column keys
         run: node sims/grid_section_keyskip_probe.cjs
+      - name: Five-dot de Bruijn row-ordered section-column keys
+        run: node sims/grid_section_debruijn_keyskip_probe.cjs
