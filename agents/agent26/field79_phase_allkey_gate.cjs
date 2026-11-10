@@ -117,6 +117,58 @@ for (const clock of clocks) for (const mix of mixes) {
 }
 assert.equal(table.length, 16);
 assert.ok(table.every(x => x.allReferenceWindowsAboveOriginal));
+
+// All-secret 28-symbol top-k capacity for each of 78 phase tables.
+// Unknown per-state bijections cannot change any state-local rank counts.
+// For any set of k plaintext GP runes, its possible global frequency is
+// bounded by the sum of the k largest counts in each state.
+for(const row of table){
+  const states=records.map(x=>phase(x,row.clock,row.mix));
+  const h=Array.from({length:78},()=>new Uint16Array(28));
+  for(let i=0;i<originalRanks.length;i++)
+    if(originalRanks[i]>=0)h[states[i]][originalRanks[i]]++;
+  row.capacity=new Array(28).fill(0);
+  for(const stateHist of h){
+    const counts=Array.from(stateHist).sort((a,b)=>b-a);
+    let sum=0;
+    for(let k=0;k<28;k++){sum+=counts[k];row.capacity[k]+=sum;}
+  }
+  row.minEdits=Infinity;
+  row.nearestSourceOffset=-1;
+}
+// Exhaust all contiguous 12,706-GP-non-EA Shakespeare source windows.
+// Each rune alteration changes a top-k occupancy by at most one, hence the
+// largest source-minus-key-independent-capacity deficit lower-bounds edits.
+// These source windows overlap; this is a finite, source-specific inequality.
+const rolling=new Uint16Array(28);
+for(let i=0;i<nUsed;i++)rolling[reference[i]]++;
+let minNativeTop1=Infinity,minNativeTop12=Infinity;
+for(let start=0;start<=reference.length-nUsed;start++){
+  if(start){rolling[reference[start-1]]--;rolling[reference[start+nUsed-1]]++;}
+  const sorted=Array.from(rolling).sort((a,b)=>b-a);
+  const changes=table.map(()=>0);
+  let sum=0;
+  for(let k=0;k<28;k++){
+    sum+=sorted[k];
+    if(k===0)minNativeTop1=Math.min(minNativeTop1,sum);
+    if(k===11)minNativeTop12=Math.min(minNativeTop12,sum);
+    for(let i=0;i<table.length;i++)
+      changes[i]=Math.max(changes[i],sum-table[i].capacity[k]);
+  }
+  for(let i=0;i<table.length;i++){
+    const row=table[i];
+    if(changes[i]<row.minEdits){
+      row.minEdits=changes[i];row.nearestSourceOffset=start;
+    }
+  }
+}
+const sourceWindows=reference.length-nUsed+1;
+assert.equal(sourceWindows,204462);
+assert.equal(minNativeTop1,1381);
+assert.equal(minNativeTop12,9608);
+assert.ok(table.every(x=>x.minEdits>=2071));
+const mostPermissive=table.slice().sort((a,b)=>a.minEdits-b.minEdits)[0];
+assert.equal(mostPermissive.minEdits,2071);
 const bestOriginal = table.slice().sort((a,b)=>b.original.ioc-a.original.ioc)[0];
 assert.equal(bestOriginal.original.hits,37358);
 assert.equal(bestOriginal.original.pairs,1028589);
@@ -147,13 +199,10 @@ const reconstructed = encrypted.map((rank,i)=>{
 }).filter(x=>x>=0);
 assert.deepEqual(reconstructed,source);
 const plantCheck=collisions(encrypted,positiveStates);
-const sourceCheck=collisions(originalRanks.map((r,i)=>{
-  if(r<0)return -1;
-  // Map native source back to original EA positions.
-  let count=0;
-  for(let k=0;k<=i;k++)if(originalRanks[k]>=0)count++;
-  return source[count-1];
-}),positiveStates);
+let sourceCursor=0;
+const sourceInOriginalMask=originalRanks.map(r=>r<0?-1:source[sourceCursor++]);
+assert.equal(sourceCursor,nUsed);
+const sourceCheck=collisions(sourceInOriginalMask,positiveStates);
 assert.equal(plantCheck.hits,sourceCheck.hits);
 assert.equal(plantCheck.pairs,sourceCheck.pairs);
 
@@ -166,7 +215,12 @@ console.log(JSON.stringify({
     overlapping:true,exactOriginalMarkerMask:true},
   topOriginal:bestOriginal,
   minimumReferenceAcrossAllModels:globalControlMin,
-  models:table,
+  allSecretTopK:{contiguousControlWindows:sourceWindows,
+    nativeMinimumTop1:minNativeTop1,nativeMinimumTop12:minNativeTop12,
+    maximumOriginalTop12Capacity:Math.max(...table.map(x=>x.capacity[11])),
+    minimumRequiredEditsAnyModelAnyWindow:mostPermissive.minEdits,
+    leastExcludingClock:mostPermissive.clock,leastExcludingMix:mostPermissive.mix},
+  models:table.map(x=>({...x,capacitySummary:{top1:x.capacity[0],top3:x.capacity[2],top12:x.capacity[11]},capacity:undefined})),
   planted:{secretPhaseTables:78,recovered:nUsed,
     fullExactRecovery:true,originalMarkerMaskPreserved:true,
     plantedStateEqualities:plantCheck.hits,plantedStatePairs:plantCheck.pairs},
