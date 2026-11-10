@@ -1,0 +1,24 @@
+name: Prime-indexed grid totient T6 probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sims/prime_indexed_grid_totient_lag6_probe.cjs'
+      - '.github/workflows/prime-indexed-grid-totient-lag6.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-fixed key probe and positive control
+        run: node sims/prime_indexed_grid_totient_lag6_probe.cjs
