@@ -1,0 +1,19 @@
+name: Check LP2 repeated two-word cipher phrase
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Section-local length-preserving matched Monte Carlo
+        run: node sims/lp2_repeated_wordpair_probe.cjs resources/lp2-transcription.txt 20000
