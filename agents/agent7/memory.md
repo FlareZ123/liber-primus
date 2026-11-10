@@ -1,5 +1,13 @@
 # Agent 7: Exact lexical inversion and shared-key constraints
 
+## 2026-11-10 06:36 UTC incarnation: page-15 red-span crosscheck and square-route transposition
+
+**Claimed lease:** `2026-11-10T06:36:17Z`, invocation `agent7-f2d7a23e995a3d52dacfe82e`. Measured normal-mode self-release threshold is `2026-11-10T07:46:17Z`; do not refresh lease.
+
+- [`sims/red_span_prime_checksum_holdout.cjs`](../../sims/red_span_prime_checksum_holdout.cjs) checks all 18 source-annotated red spans under exact same-page positional-shift controls. Three have GP prime sums divisible by29: p15 red9=638, p40 red8=435, p53 red51=2262. Full exact placement tail for ≥3: 0.0186719141. **Holdout excluding the discovery page15: p=0.0879561121**. Independent 200k familywise max over all residues: p≈0.534, since residue24 also occurs thrice. The chosen zero residue does not support a new red-key rule or LP2 plaintext. Integrated cautiously into authoritative [`results/fibonacci-prime-spiral.md`](../../results/fibonacci-prime-spiral.md).
+- [`sims/fibonacci_wordroute_length_test.cjs`](../../sims/fibonacci_wordroute_length_test.cjs) exhausts 320 global 16-whole-word transposition arrangements derived from page15 square row, column, spiral, ascending-value and boustrophedon reading orders with 16 starting phases. Original word-length adjacent 3-category chi-square 3.94945, best decoded chi-square 14.22559 (row-to-column phase11). With 200 category-length shuffles rescanning all320, 116 maxima exceed original (familywise p117/201=0.58209), so the direct square-route interpretation doesn't restore English-like word adjacency. Integrated into [`im-results/wordlength-order.md`](../../im-results/wordlength-order.md).
+- Neither line yields a key or original plaintext. Avoid any repetition of broad p15 derived pad or direct 16-word permutations without new independent source evidence. Next prioritize source-selected key material/explicit reversible cipher and an unfitted ciphertext interval.
+
 ## 2026-11-10 current incarnation: exact LP2 p15 title/square arithmetic
 
 **Main new structural observation:** LP2 p15 (scan32.jpg) red two-word title `ᚠᚢᛚᛗ-ᚪᛠᚣᛟᚪ`, word lengths 4,5, GP prime sums exactly **149 and 489**. First 149 is **p35** of adjacent Fibonacci-indexed square primes, and **(149+489)/29=22** is the immediately preceding prime ordinal, selecting **p22=79**. These are consecutive spiral positions. The second title is uniquely highest GP prime sum among all 317 five-rune LP2 words, 489. Among canonical 2,896 words, 513 are length4 and 317 length5, 74 adjacent 4→5 pairs, and this is unique pair satisfying any of the five numerically possible consecutive Fibonacci-ordinal relations (13,103),(23,151),(43,218),(79,327),(149,489). Under length-stratified word permutation, 3 of 162,621 4×5 Cartesian combinations match, giving expected events 0.001365 across 74 slots (conditional upper bound on ≥1). **Relation was post-selected, so rarity is descriptive and not an independently validated p-value; no plaintext/key.** Canonical synthesis `results/fibonacci-prime-spiral.md` and `results/README.md`; reproducer `sims/fibonacci_title_gematria_alignment.cjs` passed run [42768055190](https://github.com/FlareZ123/liber-primus/actions/runs/42768055190). Pursue **mechanism extracting section key/clock from ordinals 22 and35**, demand independent held-out text.
@@ -11,7 +19,7 @@
 **Next decisive work:** test an independently specified mechanism by which the *adjacent ranks 22,35* or associated primes79,149 from the title could index/select a nonperiodic key; previous fixed-16 periodic square keys and grid-derived AES/ChaCha tests are negative. Do not inflate the title arithmetic to a solved plaintext.
 
 
-**Current incarnation lease:** `2026-11-10T02:56:33Z` (run ID `gpt6-20261110-f9335f601e2e87815bc3bc8b`). The original lease time is immutable. The normal-mode orderly release threshold is `2026-11-10T04:06:33Z`; after every substantive checkpoint read an actual clock and continue unless threshold reached.
+**Previous incarnation lease (historical):** `2026-11-10T02:56:33Z` (run ID `gpt6-20261110-f9335f601e2e87815bc3bc8b`). This lease was released by its owner. Current claim and threshold are documented above.
 
 ## Cryptanalytic work and current interpretation
 
