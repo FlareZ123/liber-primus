@@ -193,6 +193,128 @@ function place(seen,lengths,src){
   candidates.sort((a,b)=>a.chi-b.chi);
   return {bestThree:candidates.slice(0,3),EA:candidates.find(x=>x.glyph==="EA")};
 }
+
+/**
+ * Find all uninterrupted runs of non-repeated published runes that contain
+ * at least minLength rank outputs. Literal repeat sites are treated as
+ * arbitrary missing-generator positions, so they cannot artificially
+ * invalidate a recurrence inside a retained run.
+ * @param {number[][]} material @param {number} minLength
+ */
+function cleanRuns(material,minLength){
+  const result=[];
+  for(const p of material){
+    let start=1;
+    for(let i=1;i<=p.length;i++){
+      if(i===p.length||p[i]===p[i-1]){
+        if(i-start>=minLength)result.push(p.slice(start-1,i));
+        start=i+1;
+      }
+    }
+  }
+  return result;
+}
+/** @param {number} value @param {number} exponent @param {number} prime */
+function modPow(value,exponent,prime){
+  let out=1;
+  for(;exponent>0;exponent=Math.floor(exponent/2)){
+    if(exponent%2)out=out*value%prime;
+    value=value*value%prime;
+  }
+  return out;
+}
+/**
+ * Berlekamp-Massey over a prime field. Exact minimum homogeneous linear
+ * recurrence order, with the initial sequence state unconstrained.
+ * @param {number[]} sequence @param {number} prime
+ */
+function linearComplexity(sequence,prime){
+  const C=[1],B=[1];
+  let L=0,shift=1,scale=1;
+  for(let t=0;t<sequence.length;t++){
+    let discrepancy=sequence[t]%prime;
+    for(let j=1;j<=L;j++)
+      discrepancy=(discrepancy+(C[j]||0)*(sequence[t-j]%prime))%prime;
+    if(discrepancy===0){shift++;continue;}
+    const old=C.slice();
+    const factor=discrepancy*modPow(scale,prime-2,prime)%prime;
+    for(let j=0;j<B.length;j++){
+      const at=j+shift;
+      C[at]=((C[at]||0)-factor*B[j]+prime*prime)%prime;
+    }
+    if(2*L<=t){
+      L=t+1-L;
+      B.length=0;B.push(...old);
+      scale=discrepancy;shift=1;
+    }else shift++;
+  }
+  return L;
+}
+/** @param {number[][]} material @param {"linear"|"circular"} model */
+function feedbackRecurrence(material,model){
+  const runs=cleanRuns(material,100);
+  if(!runs.length)throw Error("No clean runs long enough for LFSR constraint");
+  const complexities={};
+  for(const field of [2,7,29]){
+    const entries=runs.map(run=>{
+      const ranks=[];
+      for(let i=1;i<run.length;i++)
+        ranks.push(decode(run[i-1],run[i],model)%field);
+      return {length:ranks.length,degree:linearComplexity(ranks,field)};
+    });
+    complexities[field]={
+      smallestDegree:Math.min(...entries.map(r=>r.degree)),
+      largestDegree:Math.max(...entries.map(r=>r.degree)),
+      smallestRatio:Math.min(...entries.map(r=>r.degree/r.length)),
+      longest:entries.reduce((a,b)=>b.length>a.length?b:a),
+      runsBelowOrAt32:entries.filter(r=>r.degree<=32).length,
+      runsBelowOrAt50:entries.filter(r=>r.degree<=50).length
+    };
+  }
+  return {uninterruptedRuns:runs.length,...complexities};
+}
+/**
+ * Generate the entire source-length book from a genuine 32-tap GF(7)
+ * recurrence with independent four-way homophone labels. All 86 original
+ * literal-repeat positions are retained, but their associated hidden source
+ * generator values are discarded. Both decoder and recurrence are checked.
+ * @param {"linear"|"circular"} model
+ */
+function plantedFeedbackLfsr(model){
+  const order=32;
+  const coeff=Array.from({length:order},()=>draw(7));
+  coeff[order-1]=1;
+  const seq=Array.from({length:order},()=>draw(7));
+  const material=[];
+  let t=0,exact=0,n=0;
+  for(const original of pages){
+    const row=[draw(29)];
+    for(let i=1;i<original.length;i++,t++){
+      if(t>=order){
+        let value=0;
+        for(let j=0;j<order;j++)
+          value+=coeff[j]*seq[t-1-j];
+        seq.push(value%7);
+      }
+      const rank=seq[t]+7*draw(4);
+      const prev=row[i-1];
+      const out=original[i]===original[i-1]?prev:encode(prev,rank,model);
+      row.push(out);
+      if(out!==prev){
+        exact+=+(decode(prev,out,model)===rank);
+        n++;
+      }
+    }
+    material.push(row);
+  }
+  if(exact!==n)throw Error("Planted linear-feedback rank did not invert");
+  const result=feedbackRecurrence(material,model);
+  if(result[7].runsBelowOrAt32!==result.uninterruptedRuns)
+    throw Error("True 32-step field recurrence was lost");
+  return {order,exact,nonRepeatedRankSymbols:n,uninterruptedRuns:result.uninterruptedRuns,
+    minDegree:result[7].smallestDegree,maxDegree:result[7].largestDegree};
+}
+
 function main(){
   if(pages.length!==55||pages.reduce((s,p)=>s+p.length,0)!==12956||words.length!==2896)
     throw Error("Original LP2 corpus contract changed");
@@ -229,7 +351,10 @@ function main(){
     original,matchedNull:{trials:200,maxima:describe(nullMax),
       exceedances:nullMax.filter(v=>v>=original.best.ioc).length,
       pUpper:(1+nullMax.filter(v=>v>=original.best.ioc).length)/201},
-    positive,marker};
+    positive,marker,finiteFieldRecurrence:{
+      original:{linear:feedbackRecurrence(pages,"linear"),circular:feedbackRecurrence(pages,"circular")},
+      field7Planted:{linear:plantedFeedbackLfsr("linear"),circular:plantedFeedbackLfsr("circular")}
+    }};
   process.stdout.write(JSON.stringify(report,null,2)+"\n");
 }
 if(require.main===module)main();
