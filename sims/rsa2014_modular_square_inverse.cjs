@@ -57,7 +57,7 @@ const CIPHER=PAGE_IDS.map(id=>corpus.pages[id].indices.slice(0,T+H));
 assert.ok(CIPHER.every(row=>row.length===T+H));
 const KINDS=['low8','high8','mod29','fivebit'];
 const CLOCKS=['same','pageAdd','pageXor'];
-const MOD=29, KLEN=260;
+const MOD=29, KLEN=340;
 const mod=x=>(x%MOD+MOD)%MOD;
 /** @typedef {{name:string, seed:bigint,kind:string,clock:string,sign:number}} Model */
 /** @param {bigint} seed @param {number} page @param {string} clock */
