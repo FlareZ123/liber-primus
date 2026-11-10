@@ -13,5 +13,8 @@ jobs:
       - name: Test explicitly numbered five-part source for shared key
         run: node sims/numbered_five_item_pad.cjs
 
+      - name: Invert all direct first-item GP29 key candidates with original ciphertext and source controls
+        run: node sims/numbered_five_anchor_key_inverse.cjs
+
       - name: Test seven 79-rune numbered packets and original window controls
         run: node sims/numbered_five_alignment.cjs --packet79
