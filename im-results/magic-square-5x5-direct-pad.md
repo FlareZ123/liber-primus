@@ -160,14 +160,14 @@ Reproducer: `sims/lp1_mobius_grid_inverse.cjs`. It reads the canonical corpus, b
 
 The one-dimensional transform above linearizes the 256 table cells as B(1)…B(256). A distinct natural reading preserves the printed **32×8** layout and applies Möbius inversion to the product of the two divisor posets:
 
-[
+\[
 M(r,c)=\sum_{a\mid r,\,b\mid c}\mu(r/a)\mu(c/b)B(a,b)\pmod{29}.
-]
+\]
 
 The corresponding forward zeta transform is
-[
+\[
 Z(r,c)=\sum_{a\mid r,\,b\mid c}B(a,b)\pmod{29}.
-]
+\]
 
 This is not the same as the one-dimensional Dirichlet transform or the five-bit Boolean subset-lattice transform. The fixed test covers the two standard product-poset directions (Möbius inverse and zeta forward), row-major and column-major flattening, both additive signs, and book-global versus physical-page-reset clocks: **16 configurations**. The same Emerson-trained trigram model and exact synthetic p56 positive controls are used.
 
@@ -185,10 +185,10 @@ A distinct Boolean subset-lattice Möbius inverse of the same 32×8 table has al
 
 The p05/p16 pair remains a real source-level structure: two 5×5 magic squares, prime constants whose prime ordinals differ by ten 29-symbol blocks, and explicit p16 prime/totient language. The direct 25-cell additive transfers, p174/p464/p493 p56-prime-totient starts, one-dimensional Dirichlet Möbius/zeta transforms, two-dimensional 32×8 product-divisor Möbius/zeta transforms, and the distinct five-bit Boolean subset-lattice inversion above do not decrypt LP2. These are bounded negatives, not evidence that the LP1 source clues are meaningless. Any successor should identify a new source-fixed operation or state rule before scoring original ciphertext; do not repeat these direct additive transfers, tested divisor or Boolean transforms, arbitrary matrix transformations, or prime-offset sweeps.
 
-Reproducers: `sims/lp1_magic_square_prime_totient_gate.cjs` verifies both original image hashes and both magic-square structures, runs the 48 periodic-key variants, and reuses the p56 inverse helpers for the p174/p464/p493 offset tests. `sims/lp1_mobius_grid_inverse.cjs` tests the 16 divisor transforms above with exact planted controls.
+Reproducers: `sims/lp1_magic_square_prime_totient_gate.cjs` verifies both original image hashes and both magic-square structures, runs the 48 periodic-key variants, and reuses the p56 inverse helpers for the p174/p464/p493 offset tests. `sims/lp1_mobius_grid_inverse.cjs` tests the one-dimensional divisor transforms; `sims/lp1_mobius_grid_2d_inverse.cjs` tests the 32×8 product-divisor transforms above, each with exact planted controls.
 
 ## Reproduction
 
-Run node sims/magic_square_5x5_gp_pad_inverse.cjs, node sims/lp1_magic_square_prime_totient_gate.cjs, and node sims/lp1_mobius_grid_inverse.cjs from the repository root with Node.js 22. The script reads the LP2 corpus and Shakespeare control, embeds the measured five-dot center coordinates from black-dot-template-reflections.md, asserts the square's 12 magic sums and the two original page lengths, executes the direct additive-pad models, 40 page-local and 40 global-continuous Hill inverses, and 16 local plus 16 global matrix-state settings. Each family has exact synthetic controls (24 direct-pad, 40+40 Hill, and 16+16 matrix-state). It has no external dependencies and does not write files.
+Run node sims/magic_square_5x5_gp_pad_inverse.cjs, node sims/lp1_magic_square_prime_totient_gate.cjs, node sims/lp1_mobius_grid_inverse.cjs, and node sims/lp1_mobius_grid_2d_inverse.cjs from the repository root with Node.js 22. The script reads the LP2 corpus and Shakespeare control, embeds the measured five-dot center coordinates from black-dot-template-reflections.md, asserts the square's 12 magic sums and the two original page lengths, executes the direct additive-pad models, 40 page-local and 40 global-continuous Hill inverses, and 16 local plus 16 global matrix-state settings. Each family has exact synthetic controls (24 direct-pad, 40+40 Hill, and 16+16 matrix-state). It has no external dependencies and does not write files.
 
 This is intermediate evidence, not an established decryption. The authoritative results/README.md records the bounded negative without promoting it as recovered plaintext.
