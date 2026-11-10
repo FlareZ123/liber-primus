@@ -15,6 +15,7 @@ on:
           - historical-onion-xor-inverse
           - historical-onion-shamir4-inverse
           - historical-onion-totient-inverse
+          - spiral-grid-source
 jobs:
   grid-probe:
     runs-on: ubuntu-latest
@@ -56,3 +57,7 @@ jobs:
       - name: Exact source-derived Shamir4 original LP2 key inverse with unseen continuations
         if: ${{ inputs.probe == 'historical-onion-shamir4-inverse' }}
         run: node sims/onion256_shamir4_original_inverse.cjs
+
+      - name: Original p15 spiral versus corrected 256-byte grid cross-source cipher inverse
+        if: ${{ inputs.probe == 'spiral-grid-source' }}
+        run: node sims/spiral_grid_source_inversion.cjs
