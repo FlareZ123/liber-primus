@@ -17,3 +17,5 @@ jobs:
         run: node sims/no_repeat_event_clock_invariant.cjs
       - name: Run source-16 arbitrary public-state row invariant with true inverses
         run: node sims/spiral16_public_row_invariant.cjs
+      - name: Test source-16 table rekeys per original section and per physical page
+        run: node sims/spiral16_rekeyed_sections_invariant.cjs
