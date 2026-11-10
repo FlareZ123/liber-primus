@@ -18,3 +18,5 @@ jobs:
         run: node sims/fivedot_reflection_totient_inverse.cjs
       - name: Check historical source handoff, original LP2 and all literal-F clock masks
         run: node sims/historical_solve_path_transfer.cjs
+      - name: Exhaust all original physical-page literal-F prime-totient clock masks
+        run: node sims/historical_solve_path_transfer.cjs --all-pages
