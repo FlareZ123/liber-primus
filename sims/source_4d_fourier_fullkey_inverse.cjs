@@ -1,7 +1,7 @@
 "use strict";
 /**
- * Exact crib-free maximum-likelihood inversion of the two proposed 4D F29
- * source matrices. Uses a sparse Fourier representation of the entire
+ * Exact crib-free maximum-likelihood inversion of the source-derived 4D
+ * F29 transition matrices. Uses a sparse Fourier representation of the entire
  * 29^4-state likelihood, then performs four 29-point tensor transforms.
  *
  * Distinct from crib-fitting: every one of 707281 states is scored from
