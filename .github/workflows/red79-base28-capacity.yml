@@ -10,6 +10,7 @@ on:
         options:
           - red79
           - hidden-mode
+          - binary47
 jobs:
   source-red79-byte-capacity:
     runs-on: ubuntu-latest
@@ -20,8 +21,13 @@ jobs:
         with:
           node-version: '22'
       - name: Enumerate exact original invalid packet leaders and byte positive
-        if: inputs.probe != 'hidden-mode'
+        if: inputs.probe == 'red79'
         run: node sims/red79_base28_byte_capacity.cjs
       - name: Prove exact book-wide two-mode predecessor S-box bound and native source tail
         if: inputs.probe == 'hidden-mode'
         run: node sims/hidden_mode_predecessor_capacity.cjs
+      - name: Recover unknown GP cyclic alphabet for 78-rank to 47-byte source-English ASCII
+        if: inputs.probe == 'binary47'
+        run: |
+          node sims/prime78_ascii_order_inversion.cjs
+          node sims/prime78_ascii_order_inversion.cjs --lowercase
