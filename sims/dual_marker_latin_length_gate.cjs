@@ -110,7 +110,7 @@ function score(counts,rune,model,category){
 function scorePair(counts,rune,model){
   return score(counts[1],rune,model,1)+score(counts[2],rune,model,2);
 }
-const f=Array.from({length:A},(_,a)=>score(observation,a,a,0));
+const f=Array.from({length:A},(_,a)=>score(observation[0],a,a,0));
 const interior=Array.from({length:A},(_,a)=>scorePair(observation,a,a));
 function ranks(){
   const first=Array.from({length:A},(_,i)=>({rune:GP.translit[i],value:f[i]}))
