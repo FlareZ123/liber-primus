@@ -17,3 +17,5 @@ jobs:
         run: node sims/lp2_adaptive_radix28_permutation_sieve.cjs
       - name: Construct and verify stateful byte-capacity witness
         run: node sims/radix28_stateful_byte_capacity_witness.cjs
+      - name: Enumerate all state-dependent byte-code capacity cases
+        run: node sims/stateful_28rank_allwidth.cjs
