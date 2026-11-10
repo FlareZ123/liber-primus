@@ -63,9 +63,9 @@ That is 20 predeclared variants per matrix and scope. No key is fitted to the ci
 
 The uniform 29-symbol index-of-coincidence baseline is
 
-[
+\[
 1/29=0.0344827586.
-]
+\]
 
 Across all tested variants on pp. 16–55, the IoC ranges are:
 
@@ -76,7 +76,32 @@ Across all tested variants on pp. 16–55, the IoC ranges are:
 | Underlying primes | 0.03443553 | 0.03455338 |
 | Fibonacci-prime ranks | 0.03443910 | 0.03453101 |
 
-The immediate next section (pp. 16–22) is noisier because it is shorter, but likewise yields no readable candidate; its ranges are 0.03430–0.03487 for the printed grid, 0.03419–0.03484 for the spiral-repacked matrix, 0.03427–0.03461 for underlying primes, and 0.03420–0.03463 for prime ranks. The highest-IoC samples remain GP-symbol noise, not plausible English plaintext.
+The immediate next section (pp. 16–22) is noisier because it is shorter, but likewise yields no readable candidate; its ranges are 0.03430–0.03487 for the printed grid, 0.03419–0.03484 for the spiral-repacked matrix, 0.03427–0.03461 for underlying primes, and 0.03420–0.03463 for prime ranks.
+
+### Independent source-language controls
+
+The same fixed candidates were scored against two independently trained GP source models, with no key fitting:
+
+- **Native Cicada GP:** 3,248 rune symbols from 796 previously solved Cicada words, with 0.5-smoothed unigram and adjacent-bigram counts.
+- **Independent Latin GP:** the separately held-out 2,400-rune Latin Vulgate sequence, scored against the 203,357-rune Latin Vulgate training model.
+
+The controls behave as intended:
+
+| Control sequence | Native Cicada unigram | Native Cicada bigram | Latin unigram | Latin bigram |
+| --- | ---: | ---: | ---: | ---: |
+| Solved Cicada source (3,248 runes) | **+0.432679** | **+1.316863** | −0.109223 | −0.118858 |
+| Latin heldout (2,400 runes) | +0.323262 | +0.745278 | **+0.552691** | **+1.436905** |
+
+For each matrix representation, the table below gives the **best** score among its 20 predeclared variants on pp. 16–55. A larger score is better; the candidate selection does not alter the matrix, source, or scoring model.
+
+| Matrix representation | Best native unigram | Best native bigram | Best Latin unigram | Best Latin bigram |
+| --- | ---: | ---: | ---: | ---: |
+| Printed grid | −0.893481 | −1.084852 | −1.296636 | −2.848376 |
+| Spiral-repacked | −0.895369 | −1.082973 | −1.284602 | −2.837244 |
+| Underlying primes | −0.888068 | −1.089330 | −1.299223 | −2.836832 |
+| Fibonacci-prime ranks | −0.893935 | −1.085138 | −1.299447 | −2.854754 |
+
+Even the best candidate under every matrix is negative under both language models, whereas the native Cicada and Latin controls score positively under their corresponding models. The immediate next section (pp. 16–22) is also negative under every model: best native unigram scores range from −0.872869 to −0.825645, best native bigram from −1.057900 to −1.034764, best Latin unigram from −1.248923 to −1.204834, and best Latin bigram from −2.766648 to −2.721173. Example decoded samples remain non-language GP-symbol strings.
 
 ## Interpretation and boundary
 
