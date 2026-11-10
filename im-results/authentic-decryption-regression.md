@@ -14,9 +14,9 @@ The GP transliteration maps the three-letter ING sound to one rune (index 21), p
 | LP1 WELCOME, segment 1, prefix | p = c - repeated DIVINITY key (mod29) | 32 | 116 | 3 |
 | LP1 A KOAN, segment 3, prefix | p = 28 - c + 3 (mod29) | 31 | 104 | n/a |
 | LP1 A KOAN, segment 5, prefix | p = c - repeated FIRFUMFERENFE key (mod29) | 30 | 110 | 2 |
-| LP2 AN END, page 56, prefix | p = c - phi(prime_n) (mod29) | 13 | 45 | 0 |
+| LP2 AN END, page 56, whole page | p = c - phi(prime_n) (mod29) | 25 | 85 | 1 |
 
-**559 out of 559** authentic ciphertext GP runes exactly recover the expected GP-encoded English text. This includes entire A WARNING and selected well-defined prefixes of the other four solved regions. The page56 material is already solved and is not part of the 56 unsolved LP2 pages 0–55.
+**599 out of 599** authentic ciphertext GP runes exactly recover the expected GP-encoded English text. This includes entire A WARNING, entire AN END (including its F interrupter across the printed deep-web hash), and well-defined prefixes of the other three solved regions. The page56 material is already solved and is not part of the 56 unsolved LP2 pages 0–55.
 
 The true ciphertext SHA-256 values, exact parameters, key positions and match counts are printed by the executable and verified on the shared inputs. For the first 45-word warning the result is the known passage beginning “A WARNING BELIEVE NOTHING FROM THIS BOOK EXCEPT WHAT YOU KNOW TO BE TRUE.”
 
