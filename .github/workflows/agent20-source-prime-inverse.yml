@@ -29,3 +29,7 @@ jobs:
       - name: Label invariant 168-position original key recurrence exclusion
         shell: pwsh
         run: node sims/red53_period168_label_invariant.cjs
+
+      - name: CPython 2.7 original-source 720-way inverse and positive
+        shell: pwsh
+        run: node sims/instar2013_python_mt_inverse.cjs
