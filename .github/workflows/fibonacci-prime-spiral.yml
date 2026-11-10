@@ -21,3 +21,5 @@ jobs:
         run: node sims/twin_prime_totient_holdout.cjs
       - name: Reuse exact red GP quotients as authentic solved-page prime-totient key starts
         run: node sims/red_quotient_totient_key_holdout.cjs
+      - name: Test red-title-selected prime79 primitive-root field-29 stream on heldout pages
+        run: node sims/red_prime79_field_cycle.cjs
