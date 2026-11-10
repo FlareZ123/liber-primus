@@ -26,14 +26,14 @@ jobs:
   partition:
     runs-on: ubuntu-latest
     outputs:
-      matrix: \${{ steps.plan.outputs.matrix }}
+      matrix: ${{ steps.plan.outputs.matrix }}
     steps:
       - name: Build disjoint exhaustive seed intervals
         id: plan
         env:
-          START: \${{ inputs.start }}
-          END: \${{ inputs.end }}
-          SHARDS: \${{ inputs.shards }}
+          START: ${{ inputs.start }}
+          END: ${{ inputs.end }}
+          SHARDS: ${{ inputs.shards }}
         run: |
           python3 - <<'PY'
           import json, os
@@ -56,7 +56,7 @@ jobs:
     strategy:
       fail-fast: false
       max-parallel: 16
-      matrix: \${{ fromJson(needs.partition.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.partition.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -74,8 +74,8 @@ jobs:
           sha256sum /tmp/php-real.bin
       - name: Search exact nonoverlapping seed interval
         env:
-          START: \${{ matrix.start }}
-          END: \${{ matrix.end }}
+          START: ${{ matrix.start }}
+          END: ${{ matrix.end }}
         run: |
           /tmp/php-mt-scan /tmp/php-real.bin "$START" "$END" | tee scan.log
           grep -q "SUMMARY seeds=$((END-START)) " scan.log
@@ -83,7 +83,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: php-mt-crib-\${{ matrix.part }}
+          name: php-mt-crib-${{ matrix.part }}
           retention-days: 90
           if-no-files-found: warn
           path: |
