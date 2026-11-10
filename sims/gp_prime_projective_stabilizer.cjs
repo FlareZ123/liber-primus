@@ -215,6 +215,82 @@ function source59Bridge(synthetic) {
     scope:'Direct whole-alphabet projective transformations on the natural F59 square subgroup; unrelated ciphertext repair operations and external encodings remain possible'};
 }
 
+/**
+ * Universal field-size obstruction, independent of the rune->field embedding.
+ *
+ * If affine f(x)=ax+b on F79 preserves ANY 29-element subset S, then:
+ *   a=1,b!=0: one 79-cycle, impossible on 29 elements.
+ *   a!=1: one fixed point and other cycles of length ord_79(a)|78.
+ *   |S|=29 must equal k*ord or 1+k*ord.
+ * The only common divisors of 78 with 29 or 28 are 1 or 2.
+ * Thus a=1,b=0 or a=-1 with a single reflection center.
+ * Two different reflections compose to a nonzero 79-cycle translation,
+ * which cannot preserve S. Hence at most ONE reflection per S.
+ *
+ * For any hidden injection of 29 rune labels into any such S and ANY
+ * per-position selection of the two permitted affine operations, one source
+ * rune can emit only 1 or 2 possible printed glyph identities. The two
+ * most common original ciphertext glyph counts upper-bound every plaintext
+ * glyph count. There is no assumption about clock or choice of the two keys.
+ */
+function source79UniversalAffineGate() {
+  const q=79,N=29;
+  assert.equal(GP[15],53);
+  assert.equal(GP[21],79);
+  assert.equal(q-1,78);
+  const cycleOrders=[];
+  for(let n=1;n<=78;n++)if(78%n===0)cycleOrders.push(n);
+  assert.deepEqual(cycleOrders,[1,2,3,6,13,26,39,78]);
+  assert.equal(cycleOrders.filter(order=>29%order===0||28%order===0)
+    .join(','),'1,2');
+  const xset = new Set([0]);
+  for(let x=1;x<=14;x++){xset.add(x);xset.add(q-x);}
+  assert.equal(xset.size,N);
+  const allowed=[];
+  for(let a=1;a<q;a++)for(let b=0;b<q;b++){
+    let valid=true;
+    for(const x of xset)if(!xset.has((a*x+b)%q)){valid=false;break;}
+    if(valid)allowed.push([a,b]);
+  }
+  assert.deepEqual(allowed,[[1,0],[78,0]]);
+  // A separate 29-element positive alphabet shows the at-most-two bound
+  // can be attained; its involution is an exact bijection of all 29 labels.
+  const alphabet=[...xset].sort((a,b)=>a-b),inverse=new Map(
+    alphabet.map((value,index)=>[value,index]));
+  const reflection=alphabet.map(value=>inverse.get(mod(-value,q)));
+  assert.equal(new Set(reflection).size,N);
+  for(let i=0;i<N;i++)assert.equal(reflection[reflection[i]],i);
+  const random=(()=>{let state=0x79532929;return()=>{
+    state^=state<<13;state^=state>>>17;state^=state<<5;
+    return state>>>0;};})();
+  const plaintext=Array.from({length:1000},()=>random()%29);
+  const ciphertext=plaintext.map((p,i)=>i%2===0?p:reflection[p]);
+  const recovered=ciphertext.map((c,i)=>i%2===0?c:reflection[c]);
+  assert.deepEqual(recovered,plaintext);
+
+  const original=source.pages.filter(p=>p.page<56).flatMap(p=>p.indices);
+  assert.equal(original.length,12956);
+  const frequency=new Uint32Array(N);
+  for(const x of original)frequency[x]++;
+  const largest=Array.from(frequency).sort((a,b)=>b-a);
+  const topTwo=largest[0]+largest[1];
+  assert.equal(topTwo,974);
+  return {
+    field:q,hiddenSourceAlphabetSize:N,
+    sourcePrimitiveRoot:53,sourceGroupOrder:78,
+    possibleUnitOrders:cycleOrders,
+    universalAffineStabilizerUpperBound:2,
+    possibleElements:'identity and at most one reflection',
+    exhaustivePositiveSubset:{symmetricSourceFieldSetSize:29,
+      affineKeysOnExample:allowed,syntheticRecovered:plaintext.length},
+    originalCipherRunes:original.length,
+    originalLargestTwoSymbolCounts:largest.slice(0,2),
+    maximumOccurrencesOfAnyDirectPlainRune:topTwo,
+    maximumPlainRuneFraction:topTwo/original.length,
+    scope:'Any fixed injective 29-rune embedding into F79; any direct per-symbol affine keys preserving that alphabet, with no additions, deletions, transposition, or outer nonlinear codec'
+  };
+}
+
 function run(){
   const legal=GP.flatMap((q,i)=>{
     const residues=GP.map(x=>x%q);
@@ -239,6 +315,7 @@ function run(){
     collidingPrimeModuli:GP.length-legal.length,
     original,syntheticPositive:positive,
     sourceF59AlternativeAndLag6Constraint:source59Bridge(positive),
+    sourceF79UniversalAffineObstruction:source79UniversalAffineGate(),
     testedFamily:'Every projective linear (Möbius) bijection of each literal prime-residue GP alphabet over every GP-source prime modulus',
     conclusion:'Nine injective prime-residue alphabets have identity as their only projective automorphism. No nontrivial direct field Möbius, affine or scalar cipher can permute all 29 GP symbols. Alternative embeddings, plaintext-dependent skips and external encodings remain possible.'
   };
@@ -246,4 +323,5 @@ function run(){
   return report;
 }
 if(require.main===module)run();
-module.exports={inverses,scan,syntheticControl,source59Bridge,run};
+module.exports={inverses,scan,syntheticControl,source59Bridge,
+  source79UniversalAffineGate,run};
