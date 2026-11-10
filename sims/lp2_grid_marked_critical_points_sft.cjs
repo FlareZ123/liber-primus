@@ -113,6 +113,62 @@ assert.equal(cases.find(c => c.fullJetPattern).codec, 'base60');
 assert.equal(cases.find(c => c.fullJetPattern).order, 'row-major');
 assert.equal(cases.find(c => c.fullJetPattern).direction, 'forward');
 
+
+/**
+ * Five independently source-numbered Hermite-jet constraints:
+ *   P(24)=P'(24)=P'(13)=P''(13)-P(13)=Hasse3(13)-13=0.
+ * Under the explicitly CONDITIONAL assumption that all five constraints
+ * must hold, test whether a single erroneous coefficient residue can be
+ * uniquely located and corrected. This says nothing about changes by
+ * multiples of 29 in the underlying byte reading.
+ * @param {number[]} coeffs
+ * @returns {number[]}
+ */
+function markedSyndrome(coeffs) {
+  const a = jets(coeffs, 13), b = jets(coeffs, 24);
+  return [b[0], b[1], a[1], mod(2 * a[2] - a[0]), mod(a[3] - 13)];
+}
+assert.deepEqual(markedSyndrome(original), [0, 0, 0, 0, 0]);
+/** @param {number} value */
+function inverse29(value) {
+  for (let k = 1; k < 29; k++) {
+    if (mod(value * k) === 1) return k;
+  }
+  throw Error('Nonzero field inverse expected');
+}
+const signatureVectors = [];
+for (let pos = 0; pos < 256; pos++) {
+  const monomial = Array(256).fill(0);
+  monomial[pos] = 1;
+  const a = jets(monomial, 13), b = jets(monomial, 24);
+  signatureVectors.push([b[0], b[1], a[1],
+    mod(2 * a[2] - a[0]), a[3]]);
+}
+/** @param {number[]} vector */
+function signature(vector) {
+  const scale = inverse29(vector[0]);
+  return vector.map(v => mod(v * scale)).join(',');
+}
+const lookup = new Map(signatureVectors.map((v, i) => [signature(v), i]));
+assert.equal(lookup.size, 256);
+let correctedCases = 0;
+for (let pos = 0; pos < 256; pos++) {
+  for (let error = 1; error < 29; error++) {
+    const damaged = original.slice();
+    damaged[pos] = mod(damaged[pos] + error);
+    const syn = markedSyndrome(damaged);
+    const recoveredPos = lookup.get(signature(syn));
+    assert.equal(recoveredPos, pos);
+    const recoveredError = mod(syn[0] *
+      inverse29(signatureVectors[recoveredPos][0]));
+    assert.equal(recoveredError, error);
+    assert.equal(mod(damaged[recoveredPos] - recoveredError),
+      mod(original[recoveredPos]));
+    correctedCases++;
+  }
+}
+assert.equal(correctedCases, 256 * 28);
+
 console.log(JSON.stringify({
   markedInputs: { punctuationSize: 13, count: sourceDot13.length,
     oversizedAcIndex: acIndex },
@@ -123,5 +179,11 @@ console.log(JSON.stringify({
     thirdHasseCoefficient: j13[3]
   },
   readings: cases,
+  conditionalSingleResidueCorrection: {
+    distinctCellSyndromes: lookup.size,
+    correctedSingleCellMutations: correctedCases,
+    nonzeroFieldResiduesOnly: true,
+    doesNotRecoverTheFullOriginalByte: true
+  },
   interpretation: 'exact original-source fingerprint, not a key or plaintext'
 }, null, 2));
