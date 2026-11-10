@@ -10,6 +10,7 @@
  * metadata (0, seed 230, image dimensions 563/569, payload length 1136,
  * and the previously selected 51/57 offsets).
  *
+ * The manual/push CI workflow runs this exact probe.
  * Node 22, no external packages:
  *   node sims/pi_base29_lag6_key_probe.cjs
  */
