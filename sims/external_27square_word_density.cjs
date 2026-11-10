@@ -127,7 +127,7 @@ function nextFromBlock38(grid){
     for(const transform of [false,true]){
       const key=[order[0],transform?PHI[middle]:middle,order[1]];
       if(MU[key[0]]!==0||MU[key[1]]!==1||MU[key[2]]!==0)continue;
-      source.push([key[1],key[2],key[0]]);
+      source.push({key:[key[1],key[2],key[0]],center:[row,col]});
     }
   }
   const starts=[];
@@ -140,24 +140,53 @@ function nextFromBlock38(grid){
       starts.push([row,col,direction,length]);
     }
   }
-  const prefixes=new Set();
-  let startsWithTHE=0;
-  for(const [row,col,dir,length] of starts)for(const k of source){
+  const n0=(row,col)=>27*(row-1)+col;
+  const n1=(row,col)=>27*(col-1)+28-row;
+  const n2=(row,col)=>730-n0(row,col);
+  const n3=(row,col)=>730-n1(row,col);
+  const prefixes=new Set(),gcdPrefixes=new Set();
+  let startsWithTHE=0,gcdSurvivors=0,gcdTHE=0;
+  const gcdFailures=[0,0,0,0];
+  for(const [row,col,dir,length] of starts)for(const {key,center} of source){
     const plain=Array.from({length:3},(_,i)=>
-      mod(at(grid,row-1+i*dir,col-1+i)-k[i]));
-    prefixes.add(plain[0]*841+plain[1]*29+plain[2]);
+      mod(at(grid,row-1+i*dir,col-1+i)-key[i]));
+    const packed=plain[0]*841+plain[1]*29+plain[2];
+    prefixes.add(packed);
     if(plain[0]===2&&plain[1]===18)startsWithTHE++;
+    const [sr,sc]=center,er=row+(length-1)*dir,ec=col+length-1;
+    // Published Report 10: four exact squarefree-gcd conditions on
+    // original source center M and next ciphertext B, L, E. Here L=B
+    // by the claimed outgoing leftmost-at-beginning forecast, so
+    // G1 and G2 are intentionally the same mathematical predicate.
+    const conditions=[
+      gcd(n0(sr,sc),n0(row,col)),
+      gcd(n0(sr,sc),n0(row,col)),
+      gcd(n1(sr,sc),n3(er,ec)),
+      gcd(n0(sr,sc),n2(er,ec))
+    ].map(t=>mu(t)!==0);
+    conditions.forEach((ok,i)=>{if(!ok)gcdFailures[i]++;});
+    if(conditions.some(ok=>!ok))continue;
+    gcdSurvivors++;gcdPrefixes.add(packed);
+    if(plain[0]===2&&plain[1]===18)gcdTHE++;
   }
   const result={outgoing:'block38 I ASK, reported S=32',
     explicitConstraints:'horizontal original node, even row/column center and radius, nonmirror, signature (0,+1,0); diagonal ciphertext, start on exact previous-L ray, leftmost beginning, start row odd, col even, end row odd',
     sourceAssignments:source.length,startLengthAssignments:starts.length,
     totalPairs:source.length*starts.length,distinctThreeRuneBeginnings:prefixes.size,
-    pairsBeginningWithTH_E:startsWithTHE};
+    pairsBeginningWithTH_E:startsWithTHE,
+    report10:{originalPairCount:source.length*starts.length,
+      fourGcdFailureCounts:gcdFailures,passingPairs:gcdSurvivors,
+      distinctThreeRuneBeginnings:gcdPrefixes.size,
+      pairsBeginningWithTH_E:gcdTHE,
+      note:'G1 and G2 are duplicate predicates when leftmost cell is the beginning'} };
   assert.equal(result.sourceAssignments,172);
   assert.equal(result.startLengthAssignments,166);
   assert.equal(result.totalPairs,28552);
   assert.equal(result.distinctThreeRuneBeginnings,4938);
   assert.equal(result.pairsBeginningWithTH_E,33);
+  assert.deepEqual(result.report10.fourGcdFailureCounts,[360,360,350,298]);
+  assert.equal(result.report10.passingPairs,27580);
+  assert.equal(result.report10.distinctThreeRuneBeginnings,4867);
   return result;
 }
 
