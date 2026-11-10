@@ -85,10 +85,10 @@ function nonce(title,mode) {
 }
 
 /** @returns {number[]} Keystream for exact indexed and skip-aware inverse. */
-function pad(column,title,setting) {
+function pad(column,title,setting,width=420) {
   const t = titleBytes(title,setting.titleEncoding);
   const secret = derive(column,t,setting.kdf);
-  return streamKey(secret,setting,420,nonce(t,setting.ivMode));
+  return streamKey(secret,setting,width,nonce(t,setting.ivMode));
 }
 
 /** All 8 by 8 source-key assignments, trained with no original holdout. */
