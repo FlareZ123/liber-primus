@@ -1,0 +1,16 @@
+name: LP2 line-leading matched word lengths (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  matched:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare printed line-start runes against same-page same-length word starts
+        run: node sims/line_start_wordlength_conditional.cjs
