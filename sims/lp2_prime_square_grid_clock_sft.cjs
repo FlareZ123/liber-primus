@@ -104,6 +104,9 @@ function ioc(x){
 }
 const plant=latin.runes.slice(0,2400);
 assert.equal(plant.length,2400);
+const flanks=[corpus.pages.find(p=>p.page===49).indices,
+  corpus.pages.find(p=>p.page===51).indices];
+assert.deepEqual(flanks.map(x=>x.length),[66,92]);
 const variants=[];
 for(const family of ["add29","rank28","log15"])
  for(const projection of ["mod","scaled"])
@@ -114,12 +117,17 @@ for(const family of ["add29","rank28","log15"])
      const plantedCipher=cipher([plant],family,projection,sign,pageReset,true);
      assert.deepEqual(cipher(plantedCipher,family,projection,sign,pageReset,false),[plant]);
      const flat=p.flat();
+     const bridge=cipher(flanks,family,projection,sign,pageReset,false);
+     assert.deepEqual(cipher(bridge,family,projection,sign,pageReset,true),flanks);
+     const bridgePlain=bridge.flat();
      variants.push({family,projection,sign,pageReset,
-       originalIoC:ioc(flat),first40:flat.slice(0,40).map(i=>corpus.translit[i]).join(" ")});
+       originalIoC:ioc(flat),bridgeIoC:ioc(bridgePlain),
+       first40:flat.slice(0,40).map(i=>corpus.translit[i]).join(" ")});
    }
 variants.sort((a,b)=>b.originalIoC-a.originalIoC);
 assert.equal(variants.length,24);
 assert.ok(variants.every(r=>r.originalIoC<0.045));
+assert.ok(variants.every(r=>r.bridgeIoC<0.045));
 console.log(JSON.stringify({
   source:"Original 32x8 256-cell table, missing units glyph f index41, GP corpus",
   omittedDigitIndex:41,primeAtIndex41:179,
@@ -128,6 +136,9 @@ console.log(JSON.stringify({
   runes:count,rawOriginalIoC:ioc(originals.flat()),
   plantedLatinLength:plant.length,plantedLatinIoC:ioc(plant),
   exactOriginalAndPlantRoundTrip:true,
+  bridgeRuneLengths:flanks.map(p=>p.length),
+  originalBridgeIoC:ioc(flanks.flat()),
+  bestBridgeIoC:Math.max(...variants.map(v=>v.bridgeIoC)),
   variants,
   decision:"The source-selected prime-square row/ordinal-column schedule fails direct GP29, rank28, and GF29 log15 decipherments; no plaintext, mechanism, or key recovered.",
   scope:"A specific source-derived schedule only; other uses of prime179 and the table are open."
