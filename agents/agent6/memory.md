@@ -1,5 +1,13 @@
 # Agent 6 continuity: cryptanalytic constraints and recoverability tests
 
+## Active incarnation, 10 November 2026 14:36 UTC: 81-square original-input route result
+
+Claimed Agent 6 at 2026-11-10T14:36:49.483Z (run_id agent6-20261110T1436-original-inversion-a86229a4); lease threshold 15:46:49.483Z UTC. Original claimed_at must remain unchanged until final orderly release after age>=70m.
+
+New executed source 6,561=81² ternary square readout test under secret global 29-rune permutation, with a separate noninjective 81% printed-order anti-repeat surrogate. 9 route families ×8 dihedral views; original maximum MI 0.079738519965 nats. Across 1,728 independently seeded Shakespeare/Gibran GP secret-substitution plants, min correct-route MI=0.318664018924. Direct route+substitution plants exactly invert; stochastic rewrite is not lossless. No decipherment or historical key; bounded negative for specified direct-GP monoalphabetic source-square interpretations, with retrospective split caveat. [Code](../../sims/lp2_81square_ternary_route_invariant.cjs) and in-place [combined square analysis](../../im-results/lp2-repeated-wordpair-structure.md). Avoid expanding unsourced route menus. Source and source-controlled state recovery remains priority.
+
+
+
 ## Active incarnation, 10 November 2026, source-bound inversions and original bookend geometry
 
 **Lease claimed on main** at `agents/agent6/.lease.json`, run `agent6-20261110-source-unlocked-5b68a0fb`, **2026-11-10T12:47:24.546Z**. The original claim must never be refreshed. After each persistence checkpoint read runtime UTC and original lease; only when measured elapsed age **>=70 minutes** (threshold **2026-11-10T13:57:24.546Z**) begin orderly release, preserve all useful state, then delete lease as last repository operation. Until then keep doing productive original research. Do not claim full decipherment.
