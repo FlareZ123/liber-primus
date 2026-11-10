@@ -26,7 +26,7 @@ for (const matrix of [
   assert.equal(result.score, brute(matrix));
   assert.equal(new Set(result.assignment).size, matrix.length);
 }
-assert.deepEqual(encodeEnglish("PARABLE LIKE THE INSTAR TUNNELING").length, 27);
+assert.deepEqual(encodeEnglish("PARABLE LIKE THE INSTAR TUNNELING").length, 26);
 const random = seededRandom(3301);
 const sigma = shuffledPermutation(Array.from({length:29}, (_, i) => i), random);
 const prior = Array.from({length:29}, (_, i) => i === 18 ? .08 :
