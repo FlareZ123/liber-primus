@@ -23,3 +23,5 @@ jobs:
         run: node sims/lp2_red_triad_extension_root_sft.cjs
       - name: Test primitive GF841 840-phase key-independent invariant
         run: node sims/red_triad_gf841_phase_invariant.cjs
+      - name: Primitive field ciphertext-feedback original inverse
+        run: node sims/red_primitive_field_feedback_inverse.cjs
