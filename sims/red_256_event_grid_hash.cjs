@@ -8,7 +8,7 @@ const assert=require("node:assert/strict");
 const crypto=require("node:crypto");
 const fs=require("node:fs");
 const path=require("node:path");
-const {events}=require("./red_256_event_key_inverse.cjs");
+const {events,keyTables}=require("./red_256_event_key_inverse.cjs");
 const root=path.join(__dirname,"..");
 const corpus=JSON.parse(fs.readFileSync(
   path.join(root,"resources/liber-primus/lp2-corpus.json"),"utf8"));
@@ -49,6 +49,61 @@ function blocks(whole,size) {
   assert.equal(whole.length%size,0);
   return Array.from({length:whole.length/size},(_,i)=>
     whole.subarray(i*size,(i+1)*size));
+}
+
+
+/**
+ * Maximum exact byte matches under any arbitrary hidden deterministic
+ * substitution f(x), with zero fit penalties for source values.
+ * If this maximum is <32, no static one-input lookup table can generate
+ * the original column under that alignment, regardless of its secret key.
+ */
+function arbitraryMapConsistency(input,output) {
+  assert.equal(input.length,32);
+  assert.equal(output.length,32);
+  const c=new Map();
+  for(let i=0;i<32;i++){
+    const x=input[i],y=output[i];
+    if(!c.has(x))c.set(x,new Map());
+    const row=c.get(x);
+    row.set(y,(row.get(y)||0)+1);
+  }
+  let matches=0;
+  for(const row of c.values())matches+=Math.max(...row.values());
+  return matches;
+}
+function runLengthsInvariant(){
+  const input=keyTables(stream).get("redRun32/forward");
+  const runDistinct=new Set(input).size;
+  const rawColumnDistinct=gridViews.vertical.map(v=>new Set(v).size);
+  assert.equal(runDistinct,14);
+  assert.ok(rawColumnDistinct.every(n=>n>runDistinct));
+  const best=[];
+  for(const [view,mapping] of Object.entries({
+    byte:x=>x,
+    lowBase60:x=>x%60,
+    highBase60:x=>Math.floor(x/60)
+  })){
+    let winner={matches:0};
+    let exactCases=0;
+    for(const orientation of ["forward","reverse"])
+      for(let phase=0;phase<32;phase++)
+        for(let column=0;column<8;column++){
+          const run=orientation==="forward"?input:input.slice().reverse();
+          const shifted=Array.from({length:32},(_,i)=>run[(i+phase)%32]);
+          const out=gridViews.vertical[column].map(mapping);
+          const matches=arbitraryMapConsistency(shifted,out);
+          if(matches===32)exactCases++;
+          if(matches>winner.matches)
+            winner={matches,orientation,phase,column};
+        }
+    best.push({view,alignments:512,best:winner,exactCases});
+  }
+  const synthetic=Buffer.from(input.map(x=>(157*x+41)%256));
+  assert.equal(arbitraryMapConsistency(input,synthetic),32);
+  return {distinctSourceRunLengths:runDistinct,
+    distinctOriginalColumnBytes:rawColumnDistinct,
+    hiddenFunctionResults:best,plantedHiddenFunctionMatches:32};
 }
 
 /** A fixed source layout (no cyclic offsets or fitted rune alphabets). */
@@ -114,6 +169,7 @@ function run() {
   return {sourceEventCount:stream.length,sourceSerializations:Object.keys(variants),
     targetHashCount,targetMatches,groupDigestComparisons:comparisonCount,
     groupDigestMatches:digestMatchCount,plantedEightGroupMatches:plantMatches,
+    sourceRunToGridInvariant:runLengthsInvariant(),
     exactOriginalMatches:results};
 }
 
