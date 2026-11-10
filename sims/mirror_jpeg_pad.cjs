@@ -144,11 +144,13 @@ function main() {
     ROOT,"resources","liber-primus","lp1-plaintext-reference.txt"),"utf8");
   const plain=encode(source.split("### 3")[1].split("### 4")[0]).slice(0,WINDOW);
   assert.equal(plain.length,WINDOW);
-  const plant=encrypt(plain,keys[0].key,29,1,0x05a3301f);
-  const replay=decode(plant.cipher,keys[0].key,29,1,lm);
+  assert.ok(new Set(keys[0].key.slice(3301,3301+WINDOW)).size>=25,
+    "Positive pad must vary across the planted window");
+  const plant=encrypt(plain,keys[0].key,3301,1,0x05a3301f);
+  const replay=decode(plant.cipher,keys[0].key,3301,1,lm);
   const exact=replay.plain.filter((p,i)=>p===plain[i]).length;
   console.log("CONTROL",JSON.stringify({
-    length:WINDOW,key:keys[0].name,sign:1,offset:29,
+    length:WINDOW,key:keys[0].name,sign:1,offset:3301,
     plantedSkips:plant.skips,decodedSkips:replay.skips,
     recovered:exact,recoveryRate:exact/WINDOW,score:replay.perRune
   }));
