@@ -22,3 +22,5 @@ jobs:
         run: node sims/contextual_marker29_reversible.cjs
       - name: Recover 225 arbitrary contextual pad columns on untouched original pages
         run: node sims/contextual_marker29_period225_key_recovery.cjs
+      - name: Recover full 225-digit pad using native GP bigram coordinate optimization
+        run: node sims/contextual_marker29_bigram225_key_recovery.cjs
