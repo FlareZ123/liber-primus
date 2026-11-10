@@ -55,4 +55,6 @@ jobs:
 
       - name: Original-grid 29-adic marked-root inverse
         if: ${{ inputs.probe == 'hensel29' }}
-        run: node sims/lp2_grid_hensel29_inverse_sft.cjs
+        run: |
+          node sims/lp2_grid_hensel29_inverse_sft.cjs
+          node sims/lp2_grid_marked_newton_sft.cjs
