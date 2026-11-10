@@ -21,9 +21,12 @@ KMAX = 9
 LOW = -1e90
 LIT = math.log(.2)
 USED = math.log(.8)
-PAGES = tuple(int(p['page']) for p in CORPUS['pages']
-    if 0 <= int(p['page']) <= 55 and len(p['indices']) >= 180)
-    if os.getenv('LP2_P56_ALL_PAGES') == '1' else (0,3,8,16,23,27,33,40)
+PAGES = (
+    tuple(int(p['page']) for p in CORPUS['pages']
+          if 0 <= int(p['page']) <= 55 and len(p['indices']) >= 180)
+    if os.getenv('LP2_P56_ALL_PAGES') == '1'
+    else (0,3,8,16,23,27,33,40)
+)
 
 @njit(parallel=True)
 def scan(c, key, sign, logp, count):
