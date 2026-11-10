@@ -1,0 +1,11 @@
+# Cicada OS (2013) `wisdom` / `folly` archival bytes
+
+**Classification:** external historical binary key-source candidate, not a verified Liber Primus key or recovered plaintext.
+
+The [public 2013 Cicada OS archive](https://github.com/krisyotam/cicada3301/tree/main/puzzles/2013/cicada-os/tmp) preserves two files named `wisdom` and `folly`. Both have byte length **3,368** and exact same Git blob SHA-1 **`62b1b949a1e4e4a346e75b1c34101000d3c53220`**. The repository's historical source [also documents their equality](https://github.com/krisyotam/cicada3301/blob/main/liber-primus/analysis/HINTS-NEVER-USED.md), and the files have no deciphered original function in the cited archive.
+
+For offline cryptanalytic reproduction, `resources/historical/cicada2013-wisdom-folly.b64` is the **unmodified byte sequence encoded in RFC 4648 base64** (line wrapping is not significant). Decode base64 to recover the exact **3,368** bytes. Original binary begins `bf 53 c0 cc 9f 66 93 8e 80 43 e8 c4 be 9f 23 28`; all 256 byte values occur, byte-frequency empirical Shannon entropy **7.93766644 bits/byte**, and 1,272 bytes fall in ASCII printable range. These descriptors are consistent with high-entropy binary data and prove no cryptographic role.
+
+**Motivation:** both names occur as concepts in solved LP1 material, and earlier Cicada stages used external binary XOR operands. The source is worth retaining as a historically bounded possible external input. A first direct use as a cyclic additive GP29 or GP28-nonzero-step pad did **not** produce ciphertext-to-language recovery (see [source-key gate](../../sims/cicada2013_wisdom_folly_source_gate.cjs) and its supporting analysis). A specific cipher/KDF/clock would still need to be selected independently by a visible clue.
+
+**Limitations:** the archive mirror supplies public files, and their same Git SHA only proves identical content in that mirror. It does not demonstrate that the file was supplied as an LP2 key, establish cryptographic authorship or fix a key derivation. Treat the separate copies of the binary as the *same* source, not independent confirmation.
