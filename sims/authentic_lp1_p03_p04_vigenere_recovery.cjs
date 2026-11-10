@@ -107,7 +107,7 @@ for (let i = 0; i < cipher.length; i++) {
   phase = (phase + 1) % key.length;
 }
 assert.deepEqual(allRecoveredFs, [48, 74, 84, 132, 159, 160, 250, 421, 443, 465, 514]);
-console.log(JSON.stringify({
+if (require.main === module) console.log(JSON.stringify({
   regression: 'LP1 original JPEGs 03-04',
   cipherRunes: cipher.length,
   trainingRunes: train,
@@ -120,3 +120,5 @@ console.log(JSON.stringify({
   period9ControlCandidates: 0,
   status: 'PASS'
 }, null, 2));
+
+module.exports = { cipher, plaintext, key, allRecoveredFs };
