@@ -13,3 +13,5 @@ jobs:
           node-version: '22'
       - name: Execute exact original-source bound and plant
         run: node sims/grid13_two_tap_allkey.cjs
+      - name: Three-tap all-secret top-k original plus three source references and native plant
+        run: node sims/thirteen_dot_grid_three_tap_topk_gate.cjs
