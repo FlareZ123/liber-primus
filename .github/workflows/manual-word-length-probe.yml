@@ -1,0 +1,16 @@
+name: Manual Cryptanalysis - Word Lengths
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  word-length-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce page-local word-length structural tests
+        run: node sims/word_length_order_probe.cjs
