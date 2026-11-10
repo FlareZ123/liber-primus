@@ -107,7 +107,7 @@ function certificate(edges){
   return {
     phasesChecked:phases.length,
     allCyclicOrFieldExcluded:phases.every(x=>x.reciprocalPairs>=1),
-    allSortedExcluded:phases.every(x=>x.distinctTargetGlyphs>MAX_HEAD+1),
+    allSortedExcluded:phases.every(x=>x.distinctTargetGlyphs>MAX_HEAD+2),
     minReciprocalPairs:Math.min(...phases.map(x=>x.reciprocalPairs)),
     minTargetGlyphs:Math.min(...phases.map(x=>x.distinctTargetGlyphs)),
     minHeads:Math.min(...phases.map(x=>x.heads)),
@@ -210,7 +210,7 @@ function planted(kind){
   }
   return {kind,blocks:BLOCKS,repeats,
     sourceRunes:added.length,exactPrivateInversions:BLOCKS,
-    originalPageLengthsPreserved:true,secretGlyphOrderHidden:true};
+    originalPageLengthsPreserved:true,sourceOrderExplicitlySuppliedToDecoder:true};
 }
 function main(){
   const {out:edges,repeat}=nonrepeatEdges(ciphertext);
