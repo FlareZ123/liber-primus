@@ -1,0 +1,16 @@
+name: LP2 reversible 28-ary feedback rank attack
+on:
+  workflow_dispatch:
+jobs:
+  original-runes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-locked original LP2 rank, null, and planted inverse
+        run: node sims/repeat_rank_periodic_attack.cjs
