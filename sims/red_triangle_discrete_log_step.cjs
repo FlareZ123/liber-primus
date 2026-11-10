@@ -13,9 +13,10 @@
  * Page initials and 86 literal doubles are explicit erasures. Testing
  * P=(R+sign*K) mod28 does not assume this was the author's real cipher.
  *
- * Finite historical source keys: entire printed 256-byte grid, fixed
- * p15 4x4 Fibonacci-prime spiral, 78-period powers of 53 in F79,
- * and the ordinary prime / totient stream from the solved page56 method.
+ * Finite historical source keys: the 225 original red runes (15 squared),
+ * entire printed 256-byte grid, p15 4x4 Fibonacci-prime spiral,
+ * 78-period powers of 53 in F79, and the ordinary prime/totient stream
+ * from the solved page56 method.
  *
  * Run: node sims/red_triangle_discrete_log_step.cjs
  * Node.js 22, CommonJS, deterministic; no network or writes.
@@ -95,7 +96,26 @@ function families(){
     3152,3038,2838,2472,1820,708,1206,4516]);
   const primes=ordinaryPrimes();
   const offsets=[0,1,7,15,22,53,78,79,149,3301];
+  const ink=JSON.parse(read('resources/liber-primus/lp2-ink-annotations.json'));
+  const runeById=new Map(corpus.runes.map((r,i)=>[r,i]));
+  const red=ink.pages.flatMap(p=>(p.red_spans||[])
+    .flatMap(span=>[...span.runes].map(c=>runeById.get(c))));
+  assert.equal(red.length,225);
+  assert.equal(ink.counts.red,225);
+  const redRows=Array.from({length:15},(_,i)=>red.slice(i*15,(i+1)*15));
+  const redLayouts={
+    row:red,
+    column:Array.from({length:15},(_,col)=>redRows.map(row=>row[col])).flat(),
+    serpentine:redRows.flatMap((row,i)=>i%2?row.slice().reverse():row),
+  };
+  const redKeys=Object.entries(redLayouts).flatMap(([name,source])=>[
+    {name:'red225-'+name+'-index',seq:source.map(i=>i%Q),
+      offsets:source.map((_,i)=>i)},
+    {name:'red225-'+name+'-prime',seq:source.map(i=>corpus.prime[i]%Q),
+      offsets:source.map((_,i)=>i)},
+  ]);
   return [
+    ...redKeys,
     {name:'grid-mod28',seq:bytes.map(x=>x%Q),offsets:bytes.map((_,i)=>i)},
     {name:'grid-scaled28',seq:bytes.map(x=>Math.floor(28*x/256)),offsets:bytes.map((_,i)=>i)},
     {name:'F79-residue',seq:f79.map(x=>x%Q),offsets:f79.map((_,i)=>i)},
@@ -116,7 +136,7 @@ function configurations(keys){
     for(const sign of [-1,1])for(const reset of [false,true])
       for(const advanceErasure of [false,true])
         options.push({source:family.name,offset,sign,reset,advanceErasure});
-  assert.equal(options.length,5632);
+  assert.equal(options.length,16432);
   return options;
 }
 /** @param {number[]} cipher @returns {number} */
@@ -243,7 +263,7 @@ function run(){
   const keys=families();
   const originalStats=scan(original,keys);
   const byName=new Map(keys.map(x=>[x.name,x]));
-  const truth={source:'grid-scaled28',offset:103,sign:1,reset:true,advanceErasure:false};
+  const truth={source:'red225-column-prime',offset:103,sign:1,reset:true,advanceErasure:false};
   const control=plant(truth,byName,original);
   const planted=scan(control.synthetic,keys);
   const listed=planted.bestTraining[0];
@@ -262,7 +282,7 @@ function run(){
     sourceKeys:keys.map(k=>({name:k.name,length:k.seq.length,offsets:k.offsets.length})),
     original:originalStats,
     positive:{...control,synthetic:undefined,topKey:listed},
-    inference:'None of the 5632 fixed source-derived log-step running keys exposes English-GP unigram structure on original LP2. The exponent coordinate itself remains a reversible candidate; no original unknown text or key was recovered.'
+    inference:'None of the 16432 fixed source-derived log-step running keys exposes English-GP unigram structure on original LP2. The exponent coordinate itself remains a reversible candidate; no original unknown text or key was recovered.'
   };
 }
 if(require.main===module)process.stdout.write(JSON.stringify(run(),null,2)+'\n');
