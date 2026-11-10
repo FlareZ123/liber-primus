@@ -1,4 +1,4 @@
-# Five-dot artwork reflections as a direct solved-totient decoding instruction
+# Five-dot artwork as a source-locked prime-totient or columnar instruction
 
 **Evidence: source-constrained bounded negative. 10 November 2026.** No original unsolved LP2 plaintext, authentic key, or continuation recovered.
 
@@ -36,6 +36,23 @@ A distinct geometric instruction would mirror the **prime-key visitation order**
 
 This separate reversible interpretation also failed to recover recognizable words. There are a further **120 exact source-language plants per unknown page**, all inverted and reciphered correctly with the true source-selected key clock; all best-mask positives outscore the original unknown page. The expanded test passed [manual Actions run 42862702328](https://github.com/FlareZ123/liber-primus/actions/runs/42862702328). This tests a key-clock reflection hypothesis in addition to reflected plaintext reading, without redefining the original five-dot source geometry.
 
+## Alternative: five-dot height ranks as a five-column transposition key
+
+A second finite interpretation follows a **historically documented Cicada operation**, columnar transposition. The five source-image dot heights could select a five-column reading order. Original-image centroid y-coordinates in left-to-right column order are **p7** `[3105.773,3166.637,2866.789,3127.500,2936.153]` (ascending-height key **[2,4,0,3,1]**) and **p23** `[568.227,507.363,807.211,546.500,737.939]` (key **[1,3,0,4,2]**). These coordinates come from the separately established [original dot-image audit](black-dot-template-reflections.md); their source order does not depend on a ciphertext score.
+
+The [new original-input reproducible test](../sims/lp2_fivedot_columnar_totient_gate.cjs) uses the exact five-column inverse or forward column readout **before** the known solved-p56 consecutive-prime Euler-totient GP29 decryption (starting from 2). Both historically standard columnar directions are evaluated, with an exhaustive skip mask only for literal ciphertext F outputs. The source-height keys are fixed; all **120** column permutations provide an explicit diagnostic ranking, so selecting a better alternative afterward is not part of the claim.
+
+| Page | Columnar action before known totient cipher | Height-derived key rank / 120 | Literal-F mask | Source-key GP-trigram nats/rune | Best 120 score |
+| --- | --- | ---: | ---: | ---: | ---: |
+| p7 (208 runes) | Decode filled columns | **65** | 0 | **−4.137332** | −3.995927 |
+| p7 | Forward column readout | **3** | 0 | **−3.962418** | −3.919485 |
+| p23 (213 runes) | Decode filled columns | **39** | 125 | **−4.001723** | −3.914091 |
+| p23 | Forward column readout | **102** | 103 | **−4.074899** | −3.853069 |
+
+All original outputs are nonlinguistic. A third-place rank for p7 forward readout is ordinary among 120 retrospectively scored short texts and is well below native heldout English. The source-locked original-length *native GP-English plants*, encrypted with the actual known totient key and the inverse columnar operation, recover **208/208** or **213/213 runes** and reencrypt exactly. On all **four** independently constructed positive controls, the correct source-height key ranks **first of 120**, with native plaintext scores **−2.273490** (p7) and **−2.236607** (p23). Thus the implementation can recognize its intended architecture but the actual original text does not exhibit it.
+
+[Verified successful manual GitHub Actions run 42914135905](https://github.com/FlareZ123/liber-primus/actions/runs/42914135905) executes the test via the existing dispatch-only `authentic-decryptions.yml` workflow, retaining all earlier genuine historical controls. This is a scope-specific negative for the two five-column/totient compositions; other uses of the five-dot ornaments remain open.
+
 ## Interpretation
 
-Both reflected-reading and reflected-prime-key-traversal tests disfavor the direct idea that the five-dot stencil's exact reflections instruct the user to apply page 56's solved totient cipher to reflected page 7 or 23 rune lines. It does not challenge the image reflections themselves, exclude other artwork-driven key schedules or hidden intermediate alphabets, or claim any unknown LP2 decryption. The manuscript-wide state remains that no unknown page plaintext or authentic key has been recovered.
+Reflected-reading, mirrored-prime-key-traversal, and fixed five-column height-key tests disfavor the direct idea that the five-dot stencil's exact reflections instruct the user to apply page 56's solved totient cipher to an explicitly source-selected ordering of page 7 or 23 runes. It does not challenge the image reflections themselves, exclude other artwork-driven key schedules or hidden intermediate alphabets, or claim any unknown LP2 decryption. The manuscript-wide state remains that no unknown page plaintext or authentic key has been recovered.
