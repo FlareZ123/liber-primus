@@ -518,6 +518,7 @@ function prefixTwoDigitGate(input, direction, maxNodes = 100000) {
 /** Every 2-digit SAT witness is also checked against the full packet bound. */
 function prefixTwoFullPacketCheck(cipher, starts, direction, witness) {
   let valid = 0, invalid = 0;
+  const frequencies = Array(29).fill(0);
   for (const st of starts) {
     const digits = [];
     for (let j = st; j < st + 79; j++)
@@ -525,9 +526,18 @@ function prefixTwoFullPacketCheck(cipher, starts, direction, witness) {
     if (direction === 'reverse') digits.reverse();
     let value = 0n;
     for (const digit of digits) value = value * 28n + BigInt(digit);
-    if (value < 29n ** 78n) valid++; else invalid++;
+    if (value >= 29n ** 78n) { invalid++; continue; }
+    valid++;
+    for (let j = 0; j < 78; j++) {
+      frequencies[Number(value % 29n)]++;
+      value /= 29n;
+    }
+    assert.equal(value, 0n);
   }
-  return {valid, invalid};
+  const length = frequencies.reduce((a,b)=>a+b,0);
+  const ioc = length > 1
+    ? frequencies.reduce((s,n)=>s+n*(n-1),0)/(length*(length-1)) : null;
+  return {valid, invalid, decodedRunes:length, decodedGpIoc:ioc};
 }
 function prefixTwoPositive() {
   let seed = 0x79287829;
@@ -564,8 +574,11 @@ function prefixTwoPositive() {
   assert(triples.every(t => prefixTwoDigitValid(permutation, t, 'forward')));
   const solved = prefixTwoDigitGate(triples, 'forward', 200000);
   assert.equal(solved.status, 'SAT');
-  assert.deepEqual(prefixTwoFullPacketCheck(encoded, starts,
-    'forward', permutation), {valid:11,invalid:0});
+  const decoded = prefixTwoFullPacketCheck(encoded, starts,
+    'forward', permutation);
+  assert.equal(decoded.valid, 11);
+  assert.equal(decoded.invalid, 0);
+  assert.equal(decoded.decodedRunes, 11*78);
   return {plantPackets:12, secretOrderSatisfiesEveryConstraint:true,
     exactCleanPackets:11, blindGate:solved.status};
 }
