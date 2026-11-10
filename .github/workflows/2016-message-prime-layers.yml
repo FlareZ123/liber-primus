@@ -1,11 +1,6 @@
 name: 2016-message-prime-layers
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "sims/2016_message_prime_layers.py"
-      - ".github/workflows/2016-message-prime-layers.yml"
   workflow_dispatch:
 
 jobs:
