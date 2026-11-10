@@ -16,3 +16,5 @@ jobs:
         run: node sims/grid_running_prime_state_inverse.cjs
       - name: Key-free 256-state arbitrary GP permutation invariant and planted roundtrip
         run: node sims/grid_prime_state_permutation_invariant.cjs
+      - name: Original 256-event color-stencil candidate inverse and solved-native positive controls
+        run: node sims/red_256_event_key_inverse.cjs
