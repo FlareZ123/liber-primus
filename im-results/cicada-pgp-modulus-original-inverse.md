@@ -20,6 +20,12 @@ For the separate **256-byte numerical table**, eight direct source masks (four s
 
 [Windows Node 22 CI run 42875669930](https://github.com/FlareZ123/liber-primus/actions/runs/42875669930) completed successfully, including full original-input and native-source assertions.
 
+## Literal RSA-modulus byte pad: a separate fixed source reading
+
+The original 4,096-bit public modulus also provides **512 authentic source bytes** directly, without invoking RSA squaring or a new hash. A separate source-locked inverse takes those bytes as a 512-periodic key, in original or reverse order; resets its clock per book, published rune section, or physical rune page; and uses either sign in the same exact GP29 additive or reversible GP28 differential/EA register. These are **24** explicit original-input models, rather than a hidden-parameter search. Each original model re-encrypts its 12,956 source runes, and an independently planted native Shakespeare-GP text is recovered in all **310,944/310,944** aggregated test positions.
+
+The highest original source-language score is only **−4.21797991 nats/rune** (forward modulus bytes, per-page clock, positive additive sign), with IoC **0.03449091** and 470 E runes. The independent native-GP control scores **−2.95984494 nats/rune**, with IoC **0.06013284** and 1,481 E runes. No original text is revealed. The direct periodic modulus thus adds a second narrow source-negative to the modular-squaring test, while still leaving transformed and nonlinear states open. [Exact same reproducer](../sims/cicada_pgp_modulus_square_inverse.cjs) · [successful Windows CI 42876386517](https://github.com/FlareZ123/liber-primus/actions/runs/42876386517).
+
 ## Cryptanalytic decision
 
 These source-locked modular-squaring output conventions **do not produce native-GP prose or an obvious plaintext table payload**. This limits specific public-modulus seed/sampling/carrier interpretations. It does not exclude historically unknown IVs, nonlinear key schedules, different output samplers, a binary intermediary, altered segmentation, or different plaintext languages. The signing key was historically used for authentication; no evidence currently connects its RSA modulus to LP2 encryption. Future work should require an independent original clue specifying the modulation before expanding the family.
