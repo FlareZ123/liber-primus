@@ -242,7 +242,26 @@ function run() {
   const validation = evaluate(plant(validationWords, wordLengths, 0x391701), model, choices);
   const bestMix = choices.reduce((best, mix) =>
     validation.models[mix].correct > validation.models[best].correct ? mix : best, choices[0]);
-  const test = evaluate(plant(testWords, wordLengths, 0x391702), model, [bestMix]);
+  const finalPlant = plant(testWords, wordLengths, 0x391702);
+  const test = evaluate(finalPlant, model, [bestMix]);
+  const wrongRandom = rng(0x391703);
+  const wrongPad = finalPlant.pad.map(() => Math.floor(wrongRandom() * M));
+  const wrongOutput = decode(finalPlant.encrypted.ciphertext, wrongPad, model, bestMix);
+  const truth = finalPlant.plaintext.flat();
+  const wrongPlain = wrongOutput.flatMap(x => x.sequence);
+  const wrongKey = {
+    keyMismatch: wrongPad.filter((x,i) => x !== finalPlant.pad[i]).length,
+    runeCorrect: wrongPlain.filter((x,i) => x === truth[i]).length,
+    lexicalWords: wrongOutput.filter(x => x.origin === "lexicon").length
+  };
+  const independentAuthors = {};
+  for (const [name, filename, seed] of [
+    ["Gibran", "gibran_prophet_58585.txt", 0x391704],
+    ["Emerson", "emerson_essays_2944.txt", 0x391705]
+  ]) {
+    const source = fs.readFileSync(path.join(__dirname, "..", "resources", "control", filename), "utf8");
+    independentAuthors[name] = evaluate(plant(words(source), wordLengths, seed), model, [bestMix]);
+  }
   return {
     classification: "synthetic heldout known-key inversion; not an original LP2 decryption",
     algorithm: "exact two-candidate emission plus word-prefix-trie lexical prior and second-order GP ngram Viterbi",
@@ -251,7 +270,7 @@ function run() {
     sourceSplitCharacters: {train:[0,200000],validation:[200000,240000],test:[240000,300000]},
     seedValidation:"0x391701", seedTest:"0x391702", q:Q,
     trainedUniqueWordLengths: model.lengths.size,
-    validation, selectedMix:bestMix, test
+    validation, selectedMix:bestMix, test, wrongKey, independentAuthors
   };
 }
 if (require.main === module) console.log(JSON.stringify(run(), null, 2));
