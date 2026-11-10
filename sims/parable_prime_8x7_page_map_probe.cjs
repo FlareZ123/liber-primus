@@ -75,6 +75,13 @@ const signed2016OrdinalPages = signed2016OrdinalCoordinates.map((x) => x.page);
 assert.deepEqual(signed2016OrdinalPages, [23, 46, 45]);
 const signed2016FactorPages = signed2016PrimeSums.map((x) => x % 56);
 assert.deepEqual(signed2016FactorPages, [33, 19, 3]);
+// Direct page residues of the three clause sums, paired with their
+// ordinal-derived destinations, produce the five-page anchor set.
+const factorPages = clausePrimeSums.map((x) => x % 56);
+assert.deepEqual(factorPages, [27, 23, 53]);
+const fivePages = [...new Set([...factorPages, ...ordinalPages])].sort((a, b) => a - b);
+assert.deepEqual(fivePages, [15, 22, 23, 27, 53]);
+
 const edges2013 = factorPages.map((startPage, i) => ({
   startPage, endPage: ordinalPages[i], primeSum: clausePrimeSums[i]
 }));
@@ -85,13 +92,6 @@ const tenPageSet = [...new Set([
   ...factorPages, ...ordinalPages, ...signed2016FactorPages, ...signed2016OrdinalPages
 ])].sort((a, b) => a - b);
 assert.deepEqual(tenPageSet, [3, 15, 19, 22, 23, 27, 33, 45, 46, 53]);
-
-// Direct page residues of the three clause sums, paired with their
-// ordinal-derived destinations, produce the five-page anchor set.
-const factorPages = clausePrimeSums.map((x) => x % 56);
-assert.deepEqual(factorPages, [27, 23, 53]);
-const fivePages = [...new Set([...factorPages, ...ordinalPages])].sort((a, b) => a - b);
-assert.deepEqual(fivePages, [15, 22, 23, 27, 53]);
 
 const pageByNumber = new Map(corpus.pages.map((p) => [p.page, p]));
 const inkByPage = new Map(ink.pages.map((p) => [p.page, p]));
