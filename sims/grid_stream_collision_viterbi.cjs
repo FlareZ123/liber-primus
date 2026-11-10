@@ -49,6 +49,12 @@ function originalKeys(){
   const rows=grid.byte_rows;
   assert.equal(crypto.createHash("sha256").update(Buffer.from(rows.flat())).digest("hex"),
     "3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290");
+  // Preserve legacy byte fixtures. Opt in to the independent 59-digit
+  // source interpretation through the already-asserted token decoder.
+  if (process.env.LP2_GRID_RADIX === '59') {
+    const { inputs } = require('./grid_section_column_keys.cjs');
+    return inputs().columnKeys.map(column => Buffer.from(column));
+  }
   return Array.from({length:8},(_,c)=>Buffer.from(rows.map(row=>row[c])));
 }
 
