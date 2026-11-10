@@ -1,15 +1,27 @@
-name: Agent 5 fixed route 39 continuation
+name: Agent 5 original-source cryptanalytic challenges (manual)
 on:
   workflow_dispatch:
-
+    inputs:
+      experiment:
+        description: Original-source conditional attack
+        required: true
+        type: choice
+        default: rank28-shared
+        options:
+          - rank28-shared
+          - route39
 jobs:
-  route39:
+  research:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Enumerate frozen geometry and key constraints
+      - name: Full source-frozen 27x27 continuation enumeration
+        if: ${{ inputs.experiment == 'route39' }}
         run: node sims/route39_frozen_constraints.cjs
+      - name: Rank28 shared-pad invertible source test and nulls
+        if: ${{ inputs.experiment == 'rank28-shared' }}
+        run: node sims/agent5_rank28_sharedpad.cjs 120 24
