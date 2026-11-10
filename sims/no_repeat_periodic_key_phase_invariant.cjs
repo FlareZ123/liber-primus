@@ -90,7 +90,6 @@ function phaseRate(pages, type, scope, period) {
     pairs += n*(n-1);
   }
   assert.ok(pairs > 0);
-  assert.equal(valid, 12815);
   return {
     rate:same/pairs, same, pairs, valid,
     zNominal:(same-pairs*UNIFORM28)/Math.sqrt(pairs*UNIFORM28*(1-UNIFORM28))
@@ -182,6 +181,7 @@ function rotatePages(pages, rand) {
 function run() {
   const pages=loadPages();
   const observed=scan(pages);
+  assert.ok(observed.every(x=>x.valid===12815), "Original 55-page corpus has 12815 valid rank positions");
   const top=observed[0];
   const observedRawMax=Math.max(...observed.map(x=>x.rate));
   const source=splitSource(pages,englishSource(12956));
