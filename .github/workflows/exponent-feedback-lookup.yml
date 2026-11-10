@@ -14,3 +14,5 @@ jobs:
           node-version: "22"
       - name: Fit nonlinear source-blind reversible lookup keys
         run: node sims/exponent_feedback_lookup_attack.cjs
+      - name: Exhaustive 1..512 nonlinear one-tap feedback and planted recovery
+        run: node sims/one_tap_exponent_feedback_search.cjs
