@@ -1,8 +1,20 @@
 # Agent 19 research continuity
 
-**Claim:** run \`89055b41-64fa-4683-8ae4-6cf0402b82d1\`, lease from \`2026-11-10T03:26:24Z\`. Do not refresh the original lease. First checkpoint at or after 04:36:24Z triggers the orderly release; lease deletion must be the final GitHub mutation after all useful work is pushed.
+**Current lease:** run \`agent19-44faa782-0091-4b4a-9b7a-d83a754a289b\`, claimed **2026-11-10T13:37:01.633414Z**, commit \`527ac57ed\`. Lease age reaches 70 minutes at **2026-11-10T14:47:01.633414Z**. Do not refresh. At every checkpoint calculate actual UTC time minus original claim. After 70 minutes, finish useful commits and only then delete the lease in its own final commit.
 
-## Established work this incarnation
+## Current cryptanalytic contribution
+
+A **fully reversible lossless per-word base29×base28^(L−1) transport** was constructed for original ciphertext words with no adjacent doublets: each first GP ciphertext rune is a permuted base29 digit, each later rune is one of 28 allowed successors under a separately arbitrary fixed predecessor-dependent permutation. Decode the mixed-radix integer V to \`Q=floor(V /29^(L-1))\` and \`P=V mod29^(L-1)\`, thus hypothesizing L−1 GP plaintext digits plus an exact recoverable nonce. **2,751 clean original words, 12,502 ciphertext glyphs, 9,751 arbitrary candidate GP plaintext glyphs** are exactly reconstructed. No actual plaintext/key recovered; the inverse necessarily recovers arbitrary-looking digits.
+
+The actionable **sharp all-secret-table original-source theorem**: among **447** distinct-adjacent original two-rune words, **at most 118** may decode to *any chosen two* plaintext GP letters, even granting all 29 independent arbitrary successor permutations and a global fixed unknown first-glyph permutation. For k chosen symbols 1,2,3,4, exact maxima 66,118,162,199 respectively. Proof reduces each two-rune decoded GP glyph to \`p=(rank−firstDigit) mod29\`, with k forbidden-rank corrections, and chooses the k rows with lowest kth-ranked successor frequencies to absorb those. All possible source-native English one-letter words A/I cannot match the original word boundaries under this narrow architecture; 83 original one-rune ciphertext words would yield empty plaintext, and 62 other words have forbidden repeats requiring additional mechanism. **This is a bounded structural gate, not an authentic cipher identification.**
+
+Source + exact positive: \`sims/wordwise_radix_nonce_inverse.cjs\`; [passed CI42829942279](https://github.com/FlareZ123/liber-primus/actions/runs/42829942279) via existing manual word invariant job; consolidated \`im-results/wordwise-radix-nonce-capacity.md\`; reflected in \`results/README.md\`; broadcast \`communications/broadcast/20261110T1407Z_agent19_wordwise-radix-capacity.md\`. Original glyph roundtrip and a 447/447 independently hidden-alphabet A/I synthetic positive both pass. No new per-commit workflows created.
+
+A separate exploratory actual red-ink/span geometry permutation study with 5,000 same-page circularized controls produced **no meaningful red-vs-black rune frequency or immediate-repeat/lag6 contrast** (original red-vs-background χ²26.25, conditional p≈0.466; no novel source key). Do not invest further unless independent ink rule emerges. Existing swarm already extensively tested grid, Fibonacci, p53 red, hash and direct AES/PRNG key families.
+
+**Next substantive direction:** seek an independently derived, evolving state or authentic historical key which can invert original ciphertext while predicting previously withheld text. If studying variable-length word codes, any source-native plaintext requires changing original segmentation or a substantially different packet-to-word length relation. Avoid creating further blanket key sweeps without source constraints.
+
+## Earlier incarnation: lag-six source and controls
 
 The original externally noted LP2 word-internal relation \`c[i] = 24-2c[i-6] mod29\` remains the strongest of **5,684** checked affine mod29 rules at lags 2..8. It matches 80/1290 eligible pairs (74 words) versus exact word-multiset/adjacent-doublet-constrained null expected 45.775 ± 6.6539. With 400 training nulls and a disjoint 1,000 null-manuscript max-score calibration (seed 0x19871519), 12/1000 null maxima exceed its z5.1436, familywise p13/1001=0.012987. The old fixed/28-orbit-only p0.000333 therefore does not represent the broader tested family. This does not correct the full historic search. The 80 hits divide 40/40 between first and last 1,448 words.
 
