@@ -1,0 +1,13 @@
+name: LP2 base60 grid RSA / known Cicada PGP test
+on:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/grid_rsa_pgp_signature.cjs
