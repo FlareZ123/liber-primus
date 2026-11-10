@@ -54,6 +54,10 @@ For each scheme, **20** independently shuffled variants of the eight original 32
 
 The successful [expanded CI run 42772798473](https://github.com/FlareZ123/liber-primus/actions/runs/42772798473) executes both the original zero-IV experiment and the nonce-based extension with two independently recovered positive plants. Both schemes preserve exact title-to-physical-page provenance in the program; no additional assumptions about unknown scan bytes were introduced.
 
+## Actual solved-Cicada language-model benchmark
+
+To ensure the Shakespeare-trained GP trigram score does not merely reject Cicada's distinctive writing register, evaluate the **authentic independently solved LP2 physical page 56** (85 plaintext GP runes: “AN END WITHIN THE DEEP WEB … THIS PAGE”), as stated and exactly reproduced in `sims/authentic_lp2_p56_totient_regression.cjs`. Under the *same* smoothed GP trigram model trained on 144,611 GP runes from the first 200,000 original Shakespeare characters, the authentic p56 plaintext has mean log score **−2.75801023 per rune**. An unseen Shakespeare 50,000-character reference passage scores **−2.36770098 per rune**. Thus this explicit solved-Cicada control lies much closer to the genuine English source than to any original LP2 grid-encoder candidate at approximately **−5.60 to −5.63 per rune**. It strongly supports the failure classification for the stated original keyed generator. The authentic sample is only 85 GP runes and is not assumed representative of every unsolved page or intermediate cipher layer.
+
 ## Cryptanalytic consequence
 
 The authentic grid columns, used directly as AES/ChaCha stream keys with collision-conditioned extra key consumption, have not decoded an original LP2 passage. The original scores lack natural GP-English evidence and are compatible with shuffled columns despite strong power to recover the planted scheme. Further unconstrained tuning of the same cipher family is unlikely to be profitable without new evidence tying a particular column, IV, page or rune transformation to an original plaintext position.
