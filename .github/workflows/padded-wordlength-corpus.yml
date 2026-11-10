@@ -3,9 +3,17 @@ on:
   workflow_dispatch:
     inputs:
       max_books:
-        description: 'Maximum Gutendex-selected books to scan'
+        description: 'Maximum preselected books to scan'
         required: false
         default: '140'
+      scan_mode:
+        description: 'Choose independent source search without repeating the other scan'
+        required: false
+        default: 'wordlength'
+        type: choice
+        options:
+          - wordlength
+          - ea-fingerprint
 
 permissions:
   contents: read
@@ -22,4 +30,8 @@ jobs:
         with:
           node-version: '22'
       - name: Search public-domain plaintext word-length cribs
+        if: ${{ inputs.scan_mode != 'ea-fingerprint' }}
         run: node sims/padded_wordlength_corpus.cjs
+      - name: Test original-section EA zero-step literary source fingerprints
+        if: ${{ inputs.scan_mode == 'ea-fingerprint' }}
+        run: node sims/ea_zero_step_literary_fingerprint.cjs
