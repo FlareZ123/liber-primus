@@ -177,6 +177,17 @@ function source59Bridge(synthetic) {
   assert.equal(new Set(dihedral).size,58);
   assert.deepEqual(dihedral.sort(),own);
   assert.equal(synthetic.mapsFound,58);
+  // Paley difference set: q=59 ≡3 (mod4). Every nonzero translated
+  // quadratic-residue alphabet overlaps the 29-symbol source in 14 places.
+  // Any nonzero additive field key therefore leaves 15/29 source runes
+  // without a literal quadratic-residue output. A full-alphabet additive
+  // field cipher requires a skip, escape, extra output, or nonliteral map.
+  const residueSet=new Set(powers);
+  const translatedOverlap=Array.from({length:58},(_,i)=>{
+    const key=i+1;
+    return powers.filter(x=>residueSet.has((x+key)%q)).length;
+  });
+  assert.deepEqual([...new Set(translatedOverlap)],[14]);
   const T=t=>mod(24-2*t,29);
   const fixed=Array.from({length:29},(_,i)=>i).filter(i=>T(i)===i);
   assert.deepEqual(fixed,[8]);
@@ -198,6 +209,9 @@ function source59Bridge(synthetic) {
     priorObservedLag6Transform:'T(t)=24-2*t mod29',
     fixedRuneIndex:8,nontrivialCycleLength:order,
     noConjugateProjectiveRealization:true,
+    additiveTranslationDifferenceSet:{field59:59,sourceRuneAlphabet:29,
+      allNonzeroAdditiveKeys:58,validSourceRuneOutputsPerNonzeroKey:14,
+      invalidRuneOutputsPerNonzeroKey:15},
     scope:'Direct whole-alphabet projective transformations on the natural F59 square subgroup; unrelated ciphertext repair operations and external encodings remain possible'};
 }
 
