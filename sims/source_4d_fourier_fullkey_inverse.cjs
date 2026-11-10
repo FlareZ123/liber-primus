@@ -35,6 +35,14 @@ const matrices = [
   { label: "printed-p15-prime-spiral", A: [
     [3258,3222,3152,3038], [3278,3299,3298,2838],
     [3288,3294,3296,2472], [4516,1206,708,1820]
+  ].map(row => row.map(mod)) },
+  // The LP1 p05 text says the totient function is sacred; LP1's MOBIUS
+  // cell has GP-prime sum 226. Applying phi to the 16 primes underlying
+  // the LP2 p15 Fibonacci spiral gives this independent 4x4 transition
+  // matrix. This is a clue-motivated candidate, not an established cipher.
+  { label: "p15-fibonacci-prime-totient-spiral", A: [
+    [42,78,148,262], [22,1,2,462],
+    [12,6,4,828], [7816,4506,2592,1480]
   ].map(row => row.map(mod)) }
 ];
 const isHead = new Uint8Array(N), isTrain = new Uint8Array(N);
@@ -598,7 +606,9 @@ const report={classification:"Exhaustive 4D F29 source-matrix inverse (not an LP
 for(const source of matrices) {
   const V=vectors(source.A);
   const secret=source.label === "red16-prime-sum-spiral" ? [11,7,22,3] :
-    source.label === "red16-visible-count-spiral" ? [1,9,18,27] : [5,12,19,27];
+    source.label === "red16-visible-count-spiral" ? [1,9,18,27] :
+    source.label === "p15-fibonacci-prime-totient-spiral" ? [17,5,23,9] :
+    [5,12,19,27];
   const plantedCipher=encrypt(plantedPlain,V,secret);
   assert.deepEqual(decrypt(plantedCipher,V,secret),plantedPlain);
   const actual=experiment(source.label,source.A,C);
