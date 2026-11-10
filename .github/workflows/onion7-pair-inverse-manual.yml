@@ -17,3 +17,4 @@ jobs:
           node sims/onion7_133331_pair_inverse.cjs
           node sims/onion7_133331_feedback_inverse.cjs
           node sims/onion7_133331_general_oscillator.cjs
+          node sims/onion7_133x97_pageiv_biaffine.cjs
