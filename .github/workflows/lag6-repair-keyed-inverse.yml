@@ -1,0 +1,28 @@
+name: Keyed T-repair inverse candidate recovery
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check complete source-page word parser
+        run: node sims/test_lp2_word_pages.cjs
+      - name: Recover planted English plaintext under known additive key and latent repair
+        run: |
+          set -o pipefail
+          node sims/lag6_repair_keyed_inverse.cjs | tee lag6-keyed-inverse.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lag6-keyed-inverse-positive-control
+          retention-days: 90
+          path: lag6-keyed-inverse.json
