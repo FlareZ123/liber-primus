@@ -26,8 +26,22 @@ The original winner begins in canonical GP transliteration `PNGEOTYXGANAEANGBGNG
 
 **Independent invertible positive:** select an unused 729-rune English passage, encrypt under the hidden 29-symbol mirrored-left/original-right model with nadir14, then decrypt it with the exact same algorithm. The original plaintext is recovered **729/729**, and the known source score returns to **−2.23675936** from the planted ciphertext's **−4.82258121**. This asserts the 29-rune wheel mechanics are reversible and the scorer has sufficient contrast for this particular positive. It does not imply the genuine source uses these initial wheel states or English spelling policy.
 
+## A key-disjoint ciphertext architecture check: adjacent repeats
+
+The original source has only **86** within-physical-page adjacent identical rune pairs among the 12,956 unsolved symbols. A separate 12,956-rune contiguous independent Emerson-GP plaintext sample (from reference rune offset20,000) has **340** such pairs before encryption. Does the Chaocipher rotor operation itself produce the manuscript's unusually strong repeated-ciphertext suppression?
+
+Under the **whole-book Chaocipher stream**, sample 200 independently shuffled **29-symbol starting right-wheel alphabets** for each of the two nadir conventions, with fixed seed `0x33011331`. No original LP2 text is fitted. Starting left-wheel **label order cannot affect output equality**, because it only consistently relabels the ciphertext names; the evolving position motions are controlled by the right wheel and the plaintext. All 400 generated outputs are counted at the **exact original physical-page breaks**.
+
+| GP-English encrypted by 29-symbol Chaocipher | Min original-style doublets | Mean (SD) | Max |
+| --- | ---: | ---: | ---: |
+| 200 random starting right alphabets, nadir13 | **392** | **448.745 (22.088)** | 509 |
+| 200 random starting right alphabets, nadir14 | **398** | **451.490 (19.118)** | 500 |
+| **Authentic unknown LP2 ciphertext** | **86** | — | — |
+
+**Zero of 400** independent source-native encrypted outputs suppressed repeats to the original level. These are a finite deterministic key sample, **not proof about all 29! possible starting right alphabets**, and do not exclude a later no-doublet transform, a non-English intermediary or a different wheel rule. But direct native-language Chaocipher tends to *increase* adjacent duplicates compared with the source control, while the actual manuscript suppresses them approximately fivefold. This is a separate architecture mismatch beyond the nonlinguistic key-decryptions, and gives no reason to spend further blind computation on unknown initial wheels. The source script now reproduces all 400 sample counts.
+
 ## Decision
 
-**These 24 specific, zero-fitted, straight/reverse GP Chaocipher generalizations do not decrypt the manuscript.** The dual-scroll reading is a source-motivated but weak hypothesis; real Chaocipher permits secret **arbitrary initial wheel permutations** and other dynamic variants, which this test does not exclude. With no independent manuscript clue specifying the two starting alphabets or wheel mutation rule, extending the experiment to millions of unconstrained keys would contradict the human-solve-path priority. Any successor needs an original-source selector for a genuinely recoverable initial state and a legible held-out original passage, with exact forward reconstruction.
+**These 24 specific, zero-fitted, straight/reverse GP Chaocipher generalizations do not decrypt the manuscript, and the 400 randomized right-wheel source-native encryptions do not reproduce its severe anti-doublet pattern.** The dual-scroll reading is a source-motivated but weak hypothesis; real Chaocipher permits secret **arbitrary initial wheel permutations** and other dynamic variants, which this test does not exclude. With no independent manuscript clue specifying the two starting alphabets or wheel mutation rule, extending the experiment to millions of unconstrained keys would contradict the human-solve-path priority. Any successor needs an original-source selector for a genuinely recoverable initial state and a legible held-out original passage, with exact forward reconstruction.
 
 **Reproduce:** `node sims/chaocipher_scroll_fixed_alphabet_inverse.cjs` using only pinned local source files, Node.js 22 and no external modules.
