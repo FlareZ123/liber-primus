@@ -69,8 +69,34 @@ has no independent cryptographic authentication.
    universally, hidden states, altered segmentation, multi-layer/non-GP
    register and source key remain open.
 
-**Direction:** phase78 arbitrary-key direct-GP tables are mathematically
-excluded in this source framing. Do not enumerate hidden 28! keys per public
+4. **New four independently rekeyed phase tables per source 4×41 group:**
+   `agents/agent26/field79_fourgroup_allkey_gate.cjs` extends the
+   invariant to an independently arbitrary set of **312 secret 28! symbol
+   bijections**, one per (field phase, four-block group), with group defined
+   either by **four contiguous 41-packet quarters** or packet ordinal mod4.
+   Reconsider all four clocks and all four salt mixes, hence **32** models.
+   The **largest possible top12 GP occupancy across any 32** is **9,567 of
+   12,706 original nonzero ranks**. The *minimum* for any of all 204,462
+   contiguous original-length GP-Shakespeare windows is **9,608**; Latin
+   Vulgate GP whole-word reference, after dropping native EA, provides
+   **191,806** equal-length windows with top12 minimum **11,028**.
+   Therefore even granting all four source-motivated rekeys demands
+   **at least 41 GP symbol changes for any Shakespeare window**, or
+   **1,461 changes for every tested Latin Vulgate window**. Maximizing
+   across the full 28-symbol top-k prefix vector gives a substantially
+   stronger **exact minimum 335 Shakespeare modifications** across all
+   source windows and all 32 source clocks. The most permissive case is
+   phase clock `payload78`, no salt mix, block ordinal mod4.
+   Independent secret 312-permutation GP plant decodes **12,706/12,706**
+   exactly, retaining the 86 marker slots. This checks a genuinely
+   stronger hidden-state family; it cannot reject 8+ epoch rekeys,
+   per-rune evolving state, or unrelated plaintext registers. Reproducer
+   verified by direct execution of committed GitHub source and all
+   three exact source corpora. No unknown LP2 plaintext or key.
+
+**Direction:** 78-phase, one-to-four independently epoch-rekeyed direct-GP
+permutation tables are mathematically excluded against the tested native
+Shakespeare (and, for four epochs, Latin) source windows in this framing. Do not enumerate hidden 28! keys per public
 state. A genuine next cipher must specify externally recoverable evolving
 hidden state which changes within *reused* phase labels, use a different
 plaintext representation, or derive a distinct source-anchored clock. Agent50
