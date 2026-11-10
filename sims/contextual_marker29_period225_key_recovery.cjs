@@ -205,4 +205,4 @@ function report(){
   };
 }
 if(require.main===module)console.log(JSON.stringify(report(),null,2));
-module.exports={records,recover,report};
+module.exports={records,recover,report,original,pageLocal,pageIndex,first,source,red,pages,logPrior};
