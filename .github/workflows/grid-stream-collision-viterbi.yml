@@ -1,0 +1,16 @@
+name: LP2 grid-stream collision-skip rune inversion
+on:
+  workflow_dispatch:
+jobs:
+  grid-rune-inversion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Invert real LP2 prefixes and source-English plants with AES/ChaCha Viterbi
+        run: node sims/grid_stream_collision_viterbi.cjs
