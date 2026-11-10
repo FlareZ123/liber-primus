@@ -41,8 +41,8 @@ Two coordinate systems are independently motivated by the source:
 
 | Source-defined seven-lane reading | Original equality pairs | Same-format solved-English reference samples |
 | --- | ---: | --- |
-| Seven contiguous 227-rune rows formed from the entire p33–39 body | **159/4,767 (3.3354%)** | Shakespeare: minimum **239**, median **291** in 2,002 windows; Emerson: minimum **245**, median **303** in 2,007 windows |
-| Seven physical page starts, 123 shared columns (page lengths after heading 123, 261, 271, 238, 228, 228, 240) | **93/2,583 (3.6005%)** | Shakespeare: minimum **119**, median **158**; Emerson: minimum **117**, median **165**, using the *same seven source-page offsets* |
+| Seven contiguous 227-rune rows formed from the entire p33–39 body | **159/4,767 (3.3354%)** | Shakespeare: minimum **238**, median **288** in 2,012 windows; Emerson: minimum **238**, median **300** in 2,007 windows |
+| Seven physical page starts, 123 shared columns (page lengths after heading 123, 261, 271, 238, 228, 228, 240) | **93/2,583 (3.6005%)** | Shakespeare: minimum **113**, median **156**; Emerson: minimum **120**, median **161**, using the *same seven source-page offsets* |
 
 The same source motivates a **stronger two-layer model with an unknown
 shared keystream**. The historical 2014 OpenPuff 7×7 square has row and column
@@ -62,8 +62,8 @@ M⁻¹, M⁻ᵀ).
 | M⁻ᵀ | 163 | 82 |
 
 Even the strongest original value remains below the minimum in **both**
-independently pinned English control collections (**239** packed,
-**117** native). The SFT fully encrypts and recovers a 1,589-rune
+independently pinned English control collections (**238** packed,
+**113** native). The SFT fully encrypts and recovers a 1,589-rune
 source-native plant through **each** source-matrix orientation plus an
 arbitrary common 227-step pad, including forward re-encryption. This
 rules out the **combined 7×7 source Hill + arbitrary shared column pad**
@@ -107,8 +107,8 @@ The source-frozen six-row original outputs are:
 
 | Layout | Six original recovered candidates, pooled IoC | Lowest same-format Shakespeare GP-English control | Lowest Emerson GP-English control |
 | --- | ---: | ---: | ---: |
-| 7×227 packed | **0.034330592** across 1,362 runes | 0.055838056 | 0.058891439 |
-| Seven native starts ×123 | **0.034075741** across 738 runes | 0.054362335 | 0.057068685 |
+| 7×227 packed | **0.034330592** across 1,362 runes | 0.055156170 | 0.057767190 |
+| Seven native starts ×123 | **0.034075741** across 738 runes | 0.053075348 | 0.056359003 |
 
 Both transform directions yield equivalent pooled-six-rune IoC because
 their six non-DC lanes differ only by a fixed invertible symbol scaling
@@ -148,10 +148,10 @@ under the model**:
 
 | 7×79 original layout | Decoded six-row IoC | Minimum Shakespeare control | Minimum Emerson control |
 | --- | ---: | ---: | ---: |
-| Seven consecutive 79-rune rows | **0.0354858565** | 0.0536212879 | 0.0540494732 |
-| Seven interleaved seven-stride lanes | **0.0344064727** | 0.0536212879 | 0.0540494732 |
+| Seven consecutive 79-rune rows | **0.0354858565** | 0.0528541226 | 0.0529433279 |
+| Seven interleaved seven-stride lanes | **0.0344064727** | 0.0528541226 | 0.0529433279 |
 
-The controls are 2,012 Shakespeare and 2,001 Emerson deterministic
+The controls are 2,003 Shakespeare and 2,001 Emerson deterministic
 consecutive 553-rune windows; the reference comparison uses exactly
 474 subsequent GP-English runes per window. Those windows overlap and
 give finite comparative minima, rather than independent p-values.
@@ -167,8 +167,9 @@ alone cannot justify further phases or arbitrary row keys after its
 unique key-free prediction fails. The source framing may still have
 a different intended use.
 
-For each reference the program converts a pinned literary work to the canonical
-29-character GP transliteration, discards nonrunes, samples approximately 2,000
+For each reference the program applies the source's canonical GP spelling substitutions
+(K→C, QU→CW, Q→C, V→U, Z→S), greedily recognizes the seven
+GP digraphs, and discards punctuation/nonrunes, samples approximately 2,000
 deterministic consecutive 1,589-rune windows, and computes exactly the same
 seven-row columnwise equality statistic. **No sampled English control** has an
 equality count as low as the original in either layout. Windows overlap
