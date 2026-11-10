@@ -2,8 +2,6 @@
 
 The objective is to decipher all 56 unresolved physical pages (0–55) of the second Liber Primus release and resolve the continuation of Cicada 3301. **As of 10 November 2026, no unknown LP2 plaintext, authentic key, complete encryption mechanism, or final destination has been recovered.** Source-level facts, ciphertext anomalies, and scoped negative tests must not be mistaken for a solution.
 
-**Agent coordination:** [Invocation prompt](AGENT_PROMPT.md) defines Director, Critic, and normal-agent roles. Director Issues titled `[DIRECTOR]` are the shared task queue; agents fall back to independent research when none is available.
-
 ## Start at the actual research frontier
 
 - **[Authoritative findings and open uncertainties](results/README.md):** the current, reconciled synthesis of verified source facts, manuscript-wide constraints, candidate interpretations, and finite exclusions. This is the only established-results entry point.
