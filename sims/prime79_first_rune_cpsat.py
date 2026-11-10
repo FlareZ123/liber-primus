@@ -137,7 +137,7 @@ def plant(native: list[int], top: set[int]) -> dict:
 
 
 
-def english_reference_control(raw: str, labels: list[str], top: set[int]) -> dict:
+def english_reference_control(raw: str, labels: list[str], top: set[int], logp: list[float]) -> dict:
     """Count stride-78 GP letter windows in an independent English text."""
     normalized = (raw.upper().replace("QU", "CW").replace("V", "U")
                   .replace("K", "C").replace("Z", "S").replace("ING", "NG"))
@@ -157,6 +157,8 @@ def english_reference_control(raw: str, labels: list[str], top: set[int]) -> dic
                 i += 1
     n = 95
     hits = [int(x in top) for x in gp]
+    native_scores = [logp[x] for x in gp]
+    score_windows = []
     windows = 0
     low = 0
     total = 0
@@ -167,20 +169,28 @@ def english_reference_control(raw: str, labels: list[str], top: set[int]) -> dic
         if len(sub) < n:
             continue
         count = sum(sub[:n])
+        row_scores = native_scores[residue::78]
+        score = sum(row_scores[:n])
         for j in range(n - 1, len(sub)):
             if j >= n:
                 count += sub[j] - sub[j - n]
+                score += row_scores[j] - row_scores[j - n]
+            score_windows.append(score)
             windows += 1
             total += count
             low += int(count <= 39)
             minimum = min(minimum, count)
             maximum = max(maximum, count)
     assert windows == len(gp) - (n - 1) * 78
-    return {"GP": len(gp), "top8Frequency": sum(hits) / len(gp),
+    metadata = {"GP": len(gp), "top8Frequency": sum(hits) / len(gp),
             "windows": windows, "atMost39": low,
             "empiricalLowerTail": low / windows,
             "meanTop8Starts": total / windows,
-            "range": [minimum, maximum]}
+            "range": [minimum, maximum],
+            "minNativeUnigramLogSum": min(score_windows),
+            "maxNativeUnigramLogSum": max(score_windows),
+            "meanNativeUnigramLogSum": sum(score_windows) / windows}
+    return metadata, score_windows
 
 
 def run() -> None:
@@ -194,15 +204,18 @@ def run() -> None:
     counter = Counter(native)
     top = set(sorted(range(29), key=lambda i: (-counter[i], i))[:8])
     control = plant(native, top)
+    logp = [math.log((counter[k] + 1) / (len(native) + 29)) for k in range(29)]
     reference = {}
+    reference_scores = {}
     for name, filename, expected in [
         ("Shakespeare", "shakespeare_first300k.txt", 217644),
         ("Gibran", "gibran_prophet_58585.txt", 62696)
     ]:
         raw = (ROOT / "resources/control" / filename).read_text(encoding="utf8")
-        result = english_reference_control(raw, data["translit"], top)
+        result, scores = english_reference_control(raw, data["translit"], top, logp)
         assert result["GP"] == expected
         reference[name] = result
+        reference_scores[name] = scores
     baseline = full_inverse(cipher, starts, WITNESS)
     assert baseline["validPackets"] == 95
     # The two-digit prefix uses at most 433 of 784 radix28 pairs.
@@ -278,10 +291,15 @@ def run() -> None:
     solver.parameters.num_search_workers = 8
     solver.parameters.random_seed = 330179
     status = solver.solve(model, observer)
+    optimistic_language_limit = solver.best_objective_bound / 1000 + len(starts) * 0.0005 if objective_mode == "unigram" else None
+    if optimistic_language_limit is not None:
+        for name, scores in reference_scores.items():
+            reference[name]["atOrBelowOriginalUnigramCeiling"] = sum(s <= optimistic_language_limit for s in scores)
     result = {
         "status": solver.status_name(status), "objectiveMode": objective_mode,
         "bestObjective": solver.objective_value,
         "bestUpperBound": solver.best_objective_bound,
+        "conservativeNativeUnigramLogUpper": optimistic_language_limit,
         "seconds": solver.wall_time, "branches": solver.num_branches,
         "conflicts": solver.num_conflicts, "improvements": observer.n,
         "source": "all 95 intact original LP2 phase35 packets",
