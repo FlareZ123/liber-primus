@@ -156,6 +156,64 @@ function main(){
     const c=control.map((v,i)=>(v+29-sign*keys.AB[i])%29);
     same(c.map((v,i)=>(v+29+sign*keys.AB[i])%29),control);
   }
+  // Source-motivated transparent-EA/primitive-root-15 alternative:
+  // an unchanged ciphertext rune denotes GP-EA (index28), otherwise
+  // the nonzero ciphertext difference has a discrete logarithm base15.
+  // This is an experimental reversible architecture, not a true cipher.
+  const power=Array(28).fill(1);
+  for(let t=1;t<28;t++)power[t]=power[t-1]*15%29;
+  assert.equal(new Set(power).size,28);
+  const log=Array(29).fill(-1);
+  for(let t=0;t<28;t++)log[power[t]]=t;
+  const transparentEA=[];
+  for(const order of ["AB","BA"])
+    for(const sign of [-1,1])
+      for(const reset of [false,true]){
+        let global=0,joined=[];
+        for(const page of pages){
+          const cipher=page.indices,plain=[];
+          for(let i=0;i<cipher.length;i++){
+            const key=keys[order][reset?i:global+i];
+            const difference=i===0?null:(cipher[i]-cipher[i-1]+29)%29;
+            plain.push(i===0?(cipher[i]+sign*key+29)%29:
+              difference===0?28:(log[difference]+sign*(key%28)+56)%28);
+          }
+          const regenerated=[];
+          for(let i=0;i<plain.length;i++){
+            const key=keys[order][reset?i:global+i];
+            regenerated.push(i===0?(plain[i]-sign*key+29)%29:
+              plain[i]===28?regenerated[i-1]:
+                (regenerated[i-1]+power[(plain[i]-sign*(key%28)+56)%28])%29);
+          }
+          same(regenerated,cipher);
+          joined.push(...plain);
+          global+=cipher.length;
+        }
+        transparentEA.push({order,sign,reset,ioc:ioc(joined),
+          transparentEA:joined.filter(c=>c===28).length,
+          first60:joined.slice(0,60).map(n=>corpus.translit[n]).join("")});
+      }
+  transparentEA.sort((a,b)=>b.ioc-a.ioc);
+
+  // Native-GP artificial plaintext containing both EA and non-EA
+  // symbols is recovered exactly under the same two-inverse rule.
+  const native=corpus.pages.find(p=>p.page===56).indices;
+  for(const sign of [-1,1]){
+    const enc=[];
+    for(let i=0;i<native.length;i++){
+      const key=keys.AB[i];
+      enc.push(i===0?(native[i]-sign*key+29)%29:
+        native[i]===28?enc[i-1]:
+          (enc[i-1]+power[(native[i]-sign*(key%28)+56)%28])%29);
+    }
+    const dec=enc.map((value,i)=>{
+      const key=keys.AB[i];
+      const difference=i===0?null:(value-enc[i-1]+29)%29;
+      return i===0?(value+sign*key+29)%29:
+        difference===0?28:(log[difference]+sign*(key%28)+56)%28;
+    });
+    same(dec,native);
+  }
   const out={
     classification:"29-adic marked-root additive original negative, no plaintext/key",
     sourceSha256:fingerprint,
@@ -163,7 +221,7 @@ function main(){
     singularAc24:"P(24)=667, P'(24)=609 (mod 841), no scalar lift",
     byteBaseJet:cross,root:[23,27],count,
     checkedPrecisions:lifted.checks,first64:keys.AB.slice(0,64),
-    originalIoc:ioc(original),variants,bridge,
+    originalIoc:ioc(original),variants,bridge,transparentEA,
     positive:"Exact original reencryption; exact native-GP plant"
   };
   console.log(JSON.stringify(out,null,2));
