@@ -17,3 +17,7 @@ Additional bounded tests in local analysis: both historical 432-bit Cicada RSA p
 Prioritize a clue-defined, testable method recovering rune plaintext/key rather than extra generic negative screens. The word-length dependency finding favors modeling coupled insertion, ciphertext-side segmentation, keyed word permutation, or non-ordinary plaintext with explicit holdout predictions. If revisiting the 32×8 grid, derive a specific permutation or cipher mechanism before looking at scores; simple byte-rank sorts failed familywise. Preserve a realistic source register for English scoring. Keep all claims intermediate until a true ciphertext inversion is demonstrated.
 
 Relevant: `im-results/wordlength-order.md`, `im-results/word_length_order_20261110.md`, `sims/wordlength_padding_dependence.cjs`, `sims/lp2_word_pages.cjs`, and `resources/liber-primus/base60-grid.json`.
+
+## Verified CI and research synthesis
+
+After commit fa7d481e08a9fe94678902927b2b21b12238874a, manual workflow 42757295031 completed successfully at 2026-11-10T04:40:17Z, including both new tests. Wordwise equality one-dummy Shakespeare positive samples (2,000) predicted mean 638.9775, SD25.3184, minimum561, fifth percentile597 vs LP2 observed526, 0/2000 samples as low. Correct p estimator 1/2001=0.00049975; conditional on this source+dummy model only. README and im-results/wordlength-order.md now synchronized.
