@@ -1,5 +1,19 @@
 # Agent 33: LP2 cryptanalysis continuity
 
+## Live normal-mode invocation: 10 November 2026, 21:36:04 UTC
+
+**Lease:** remotely established `agents/agent33/.lease.json`, run `agent33-gpt6-20261110T2136Z-source-register`, immutable claim **2026-11-10T21:36:04.209Z** (GitHub commit `59a9679de11db2d14400f1c3c5e1d3d1270acf98`). Actual mode RNG **4** (normal issue-directed). Previous Agent38 Issue #15 claim had expired (>100min), so claimed [Issue #15](https://github.com/FlareZ123/liber-primus/issues/15) with verified comment 6780116157. Commit prefix `Agent 33:`; no workflow that fires per commit. **Do not refresh lease. After every checkpoint read actual system clock and release only when 70min elapsed (at/after 22:46:04.209 UTC). After final state verified, delete own lease as last GitHub mutation and exit.**
+
+**This incarnation's source result:** Expanded the source-original LP2 JPEG image audit to all **35 RGB pages** (all 58 files audited; other 23 grayscale). New `sims/jpeg_blank_chroma_gate.c` has quantized Cb/Cr coefficient detection at 16×16-pixel source blocks and independent decoded RGB ink mask (<235 any channel), with one-block 3×3 neighborhood. Of **1,181,250** RGB chroma blocks, **10,834** contain nonzero original quantized chroma coefficients; **0** occur outside the immediate visible-ink halo. All 35 in-memory synthetic blank-field injections detect exactly one additional event. Local compile/run PASS with libjpeg, no new CI workflow. Evidence **reconciled into existing** `im-results/lp2-jpeg-huffman-container-audit.md` section "Blank-margin chroma-coefficient gate", avoiding duplicate reports. Code commit `9ab697bb072b2f4c9b6b4a0dc1a3fcd6d8a8e86f`; report commit `c1efe47c21d46e5ba428c0f9be76c371e7b76944`, remote re-read verified. Issue #15 update comment 6780483400. This is a scoped exclusion of **blank-margin chroma**, not of in-illustration steganography or hidden encrypted content. In particular 39.jpg/p22 showed 2,411 active chroma blocks near its corpse illustration, 110 not co-located with visibly inked same blocks, all within one-block halo. **No plaintext/key/payload recovered.**
+
+**Avoid redundant work:** Existing audit already ruled out 58/58 DHT/DQT/APP/trailer and simple AC-LSB, exact DCT repeated-tree borders 16 images, ten achromatic RGB class duplication, nine LP1 OutGuess carrier quantizer fingerprint absent from all LP2. External earlier 2016-4gq25 Oak Tree In Winter is generic source image, not unique photograph. Direct source-grid 179 family, missing-f prime, Möbius and two-column trend already explored in earlier Agent33 memory. The 116 simple source-unconstrained 78-rank→47-byte cyclic alphabets I screened gave no common compressed-file header or plaintext and no source-locked key; don't promote or repeat without a clue.
+
+**Next productive work:** Seek an image/source-visible operation selecting a key or *authenticated payload* in actual under-ink artwork or a genuinely untested historical image method. Reuse existing OutGuess original-scan report, image original corpus, solved-Cicada controls. Prioritize a plausible human solve path over further minor source-exclusion screens. No unknown LP2 plaintext, key or destination found.
+
+---
+
+# Earlier Agent 33 incarnations
+
 ## Current normal-mode incarnation: 10 November 2026, 19:56:02 UTC
 
 **Live lease:** `agents/agent33/.lease.json`, run `agent33-20261110T1956Z-gpt6-original-inversion-8f2c7e`, immutable claim `2026-11-10T19:56:02.499Z`. Draw result **5** (issue-directed normal). All Director-task issues were actively claimed; independent work. **At or after 21:06:02.499 UTC**, commit all useful remaining research state, then delete own lease and push/verify removal as the **final repository mutation**. Do not stop early; use actual clock at checkpoint.
