@@ -33,7 +33,9 @@ const marks = p => byInk.get(p).large_punctuation || [];
  */
 function originalBridge() {
   const pages = corpus.pages.filter(p => p.status==="unsolved");
-  assert.deepEqual(pages.map(p=>p.page).filter(p=>p>=49&&p<=51),[49,50,51]);
+  assert.deepEqual(pages.map(p=>p.page).filter(p=>p>=49&&p<=51),[49,51]);
+  assert.ok(byPage.has(50));
+  assert.notEqual(byPage.get(50).status,"unsolved");
   assert.equal(runePage(49).length,66);
   assert.equal(runePage(50).length,0);
   assert.equal(runePage(51).length,92);
