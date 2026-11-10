@@ -14,3 +14,5 @@ jobs:
         run: node sims/round27_s2_crosslane_alias.cjs
       - name: Rescore all 1024 S2 candidate keys on 240 original runes
         run: node sims/round27_s2_top1024_holdout.cjs
+      - name: Retest complete S2 top1024 against independent native GP-Latin language
+        run: node sims/round27_s2_top1024_latin.cjs
