@@ -45,7 +45,8 @@ function weights(value) {
     return mod(num * inverse(den));
   });
 }
-const w6 = weights(6), w7 = weights(7);
+const w0 = weights(0), w6 = weights(6), w7 = weights(7);
+assert.deepEqual(w0, [5, 19, 10, 24, 1]);
 assert.deepEqual(w6, [1, 24, 10, 19, 5]);
 assert.deepEqual(w7, [5, 5, 16, 18, 15]);
 assert.equal(mod(w6.reduce((a, b) => a + b)), 1);
@@ -118,6 +119,36 @@ function toGp(text) {
   }
   return out;
 }
+
+/**
+ * Every GP-native five-share degree-four Shamir candidate has one completely
+ * determined 91-rune secret p(0) from the first 91 runes of all five labelled
+ * original items. Count exact 91-rune English control IoCs using a sliding
+ * histogram, not a sampled subset or a fitted cipher parameter.
+ * @param {string} sourceFile
+ * @param {number} originalPairs
+ */
+function fullSource91Reference(sourceFile, originalPairs) {
+  const source = toGp(read(sourceFile));
+  const width = 91;
+  const counts = Array(29).fill(0);
+  for (let i = 0; i < width; i++) counts[source[i]]++;
+  let orderedPairs = counts.reduce((sum, n) => sum + n * (n - 1), 0);
+  let minPairs = orderedPairs;
+  let atOrBelow = Number(orderedPairs <= originalPairs);
+  for (let i = width; i < source.length; i++) {
+    const leaving = source[i - width], entering = source[i];
+    orderedPairs -= 2 * (counts[leaving] - 1);
+    counts[leaving]--;
+    orderedPairs += 2 * counts[entering];
+    counts[entering]++;
+    minPairs = Math.min(minPairs, orderedPairs);
+    atOrBelow += Number(orderedPairs <= originalPairs);
+  }
+  return { sourceFile, windows: source.length - width + 1,
+    minIoC: minPairs / (width * (width - 1)), atOrBelow };
+}
+
 function main() {
   const book = corpus.pages.filter((p) => p.page < 56).flatMap((p) => p.indices);
   assert.equal(book.length, 12956);
@@ -125,6 +156,23 @@ function main() {
   const items = starts.slice(0, 5).map((start, i) => book.slice(start, starts[i + 1]));
   assert.deepEqual(items.map((item) => item.length), [139, 91, 98, 96, 129]);
   assert.equal(items.reduce((sum, row) => sum + row.length, 0), 553);
+
+  // Full threshold-five Shamir secret at x=0. The red labels 1..5
+  // themselves fix this one inverse; any random polynomial coefficients
+  // at degrees 1..4 cancel exactly without key hunting.
+  const possibleSecret = Array.from({ length: 91 }, (_, j) =>
+    mod(items.reduce((sum, item, k) => sum + w0[k] * item[j], 0)));
+  const valueCounts = Array(29).fill(0);
+  for (const x of possibleSecret) valueCounts[x]++;
+  const secretPairs = valueCounts.reduce((sum, count) =>
+    sum + count * (count - 1), 0);
+  assert.equal(secretPairs, 320);
+  const shamir0Original = {
+    availableRunes: possibleSecret.length,
+    interpolationCoefficients: w0,
+    ioc: secretPairs / (91 * 90),
+    preview: possibleSecret.map((x) => corpus.translit[x]).join("")
+  };
 
   const span = book.slice(starts[0], starts[5]);
   const layouts = [
@@ -181,11 +229,46 @@ function main() {
   assert.deepEqual(recoveredPlain.slice(0, 5), data);
   assert.deepEqual(encodeFive(recoveredPlain.slice(0, 5)), trueCode);
 
+  // Full five-of-five Shamir control: an authentic 91-rune GP-English
+  // message is hidden at polynomial value x=0; independently varying
+  // degree1..4 coefficients are unknown to the secret extractor.
+  const secret91 = shakespeare.slice(37123, 37214);
+  assert.equal(secret91.length, 91);
+  const shares = Array.from({ length: 5 }, () => []);
+  for (let j = 0; j < 91; j++) {
+    const coeffs = [
+      secret91[j], (7*j+3)%29, (11*j*j+5)%29,
+      (17*j+2*j*j+1)%29, (19*j*j*j+13)%29
+    ];
+    for (let x = 1; x <= 5; x++) {
+      let value = 0, power = 1;
+      for (const a of coeffs) {
+        value += a * power;
+        power = mod(power * x);
+      }
+      shares[x - 1].push(mod(value));
+    }
+  }
+  const recoveredSecret = Array.from({ length: 91 }, (_, j) =>
+    mod(shares.reduce((sum, share, k) => sum + w0[k] * share[j], 0)));
+  assert.deepEqual(recoveredSecret, secret91);
+
+  const shamir91Controls = [
+    fullSource91Reference("resources/control/shakespeare_first300k.txt", secretPairs),
+    fullSource91Reference("resources/control/emerson_essays_2944.txt", secretPairs),
+    fullSource91Reference("resources/control/gibran_prophet_58585.txt", secretPairs)
+  ];
+  assert.deepEqual(shamir91Controls.map((r) => r.atOrBelow), [0, 0, 0]);
+  assert.deepEqual(shamir91Controls.map((r) => r.windows),
+    [213701, 318577, 61777]);
+
   console.log(JSON.stringify({
     status: "EXACT RS(7,5) SOURCE-PARITY MODEL EXCLUDED; NO ORIGINAL PLAINTEXT",
     sourceMarkedCounts: items.map((p) => p.length),
     field: 29, interpolationPositions: [1, 2, 3, 4, 5, 6, 7],
     parity6: w6, parity7: w7, original,
+    directThresholdFiveShamirSecret: shamir0Original,
+    shamir91NativeLanguageControls: shamir91Controls,
     sourceNativePlant: "395 GP-English runes, arbitrary 79-step pad, one unknown error per column: 553/553 repaired and reencoded"
   }, null, 2));
 }
