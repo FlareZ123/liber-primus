@@ -13,7 +13,10 @@
  * sampled conditional on exactly the observed 2896 word lengths.
  *
  * Bivariate Mahalanobis distance jointly compares total marker count and
- * first-of-word marker count. The covariance is computed analytically from
+ * first-of-word marker count. Candidate labels must first have an expected
+ * total count within 5 reference-sampling SD of the observed 86; this
+ * excludes source-impossible labels from simulated nuisance selection.
+ * The covariance is computed analytically from
  * independent length-matched source-word draws, including the author's
  * independently solved LP1/LP2 text; Monte Carlo calibrates the minimum
  * distance across all 29 possible marker labels.
@@ -192,9 +195,9 @@ function exactFirstTail(buckets,marker){
 }
 
 /** @param {number[]} total @param {number[]} initial @param {ReturnType<typeof model>} estimates */
-function smallest(total,initial,estimates){
+function smallest(total,initial,estimates,eligible=Array.from({length:M},(_,i)=>i)){
   let best={distance:Infinity, label:-1};
-  for(let k=0;k<M;k++){
+  for(const k of eligible){
     const d=distance(k,[total[k],initial[k]],estimates);
     if(d<best.distance)best={label:k,distance:d};
   }
@@ -212,8 +215,19 @@ function calibrate(buckets,estimates,seed){
   const random=rng(seed);
   // All labels posit the SAME observed marker count vector, regardless
   // of which hidden plaintext symbol is claimed to trigger the repeat.
+  // Model comparison is conditional on the original observation of 86
+  // repeat events: discard markers whose expected total lies over five
+  // reference-sampling standard deviations from 86. This prevents a
+  // source-absent GP label with mean=variance=0 from becoming a spurious
+  // perfect-fit marker in every simulated source-language document.
+  const eligible=Array.from({length:M},(_,i)=>i).filter(k=>{
+    const delta=Math.abs(estimates.mean[k][0]-observed[0]);
+    const sd=Math.sqrt(estimates.covariance[k][0]);
+    return sd>0 && delta<=5*sd;
+  });
+  assert(eligible.length);
   let observedMin=Infinity,observedRune=-1;
-  for(let k=0;k<M;k++){
+  for(const k of eligible){
     const score=distance(k,observed,estimates);
     if(score<observedMin){observedMin=score;observedRune=k;}
   }
@@ -230,7 +244,7 @@ function calibrate(buckets,estimates,seed){
         for(let k=0;k<M;k++)total[k]+=w.counts[k];
       }
     }
-    const winner=smallest(total,first,estimates);
+    const winner=smallest(total,first,estimates,eligible);
     atLeast+=Number(winner.distance>=observedMin);
     largest=Math.max(largest,winner.distance);
     sumMin+=winner.distance;
@@ -242,6 +256,7 @@ function calibrate(buckets,estimates,seed){
   }
   return {
     observedMinimum:observedMin,
+    totalCountPlausibleLabels:eligible.map(i=>corpus.translit[i]),
     bestCandidate:corpus.translit[observedRune],
     bestIndex:observedRune,
     observedExpectation:{
@@ -274,6 +289,8 @@ function run(){
       out.push({register,ingAlias,referenceWords:[...buckets.values()]
         .reduce((s,words)=>s+words.length,0),
         bestCandidates:originalByLabel.slice(0,4),
+        anchoredEA:{jointDistance:distance(28,observed,expected),
+          expectedTotal:expected.mean[28][0],expectedWordFirst:expected.mean[28][1]},
         exactWordInitialTailForBest:exactFirstTail(buckets,originalByLabel[0].index),
         control});
     }
