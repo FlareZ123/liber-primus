@@ -145,7 +145,7 @@ def solve(packets, seconds=180):
         valid = [b for b in octets if b is not None]
         all_text = sum(all(x in ASCII for x in b) for b in valid)
         high_two = sum(all(x in ASCII for x in b[:2]) for b in valid)
-        result.update(
+        result.update({
             "diagnostic_key_reencodes_all_packets": True,
             "actually_18_byte_packets": len(valid),
             "actually_high_two_ascii": high_two,
@@ -153,7 +153,7 @@ def solve(packets, seconds=180):
             "most_common_prefixes": [b[:4].hex() for b in valid[:12]],
             "diagnostic_warning": "Key was optimized for two high octets, "
             "not recovered from independent Cicada evidence."
-        )
+        })
     return result
 
 
