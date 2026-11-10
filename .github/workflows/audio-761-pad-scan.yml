@@ -1,0 +1,16 @@
+name: Historical Cicada 761 MP3 as LP2 literal pad
+on:
+  workflow_dispatch:
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download original pre-LP2 Cicada audio from pinned archival commit
+        run: curl --fail --location --silent --show-error --output /tmp/761.MP3 https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3
+      - name: Exhaustive 4 million byte offset keyskip screen
+        run: node sims/audio_761_pad_scan.cjs
