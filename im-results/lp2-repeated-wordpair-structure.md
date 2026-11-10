@@ -34,6 +34,24 @@ A direct, mathematically exact model-family test now uses [the source-square Fou
 
 This **rules against native-GP-English plus 81×81 or terminal-five-omitted 80×80 separable additive row/column pads** in these exact geometries, even with arbitrary keys and the declared hypothetical EA markers. The original cipher may employ a nonlinear layer, hidden transposition, changing state, binary or non-English intermediate, or different framing. The 6561 boundary is not an authenticated historical encryption boundary and no original plaintext is recovered.
 
+## Ternary 81×81 readouts: key-independent monoalphabetic test
+
+**Classification: finite original-input model-family negative with positive-controlled source-native GP text.** Because the duplicated ᛞᛄᚢ-ᛒᛖᛁ phrase ends at **6,561 = 81²**, one specific untested interpretation is that the first 6,561 ciphertext runes must be rearranged through a ternary square traversal before a fixed global monoalphabetic rune substitution is undone. Adjacent-rune **mutual information** (MI) is exactly invariant under any secret 29-rune bijection, so it tests this entire key class without guessing a symbol permutation.
+
+The [source-original runnable test](../sims/lp2_81square_ternary_route_invariant.cjs) evaluates **nine** finite, explicitly enumerated square-reading routes: printed row, row-snake, column, diagonal, 9×9 nested macroblocks, digit reversal of eight base-three digits, two 4-level ternary Morton interleavings, and a nested 3×3 serpentine Peano-like path. Each route has eight dihedral orientations, yielding 72 requested views, several related by exact symmetries. These are **not** 72 independent hypotheses, nor all conceivable permutations of 6,561 symbols.
+
+| Readout of the original first 6,561 LP2 runes | Adjacent-rune MI (nats) |
+| --- | ---: |
+| Printed original row order | **0.07973852** |
+| Best among all 72 views | **0.07973852** |
+| Best diagonal readout | 0.06598498 |
+| Best nested Peano-like readout | 0.07001892 |
+| Best most-significant-trit Morton readout | 0.06068301 |
+
+Positive controls: take **12 starting windows per author** (Shakespeare and Gibran, 6,561 GP runes each), route each into the 81² raster, apply an independently seeded secret 29-symbol substitution, then rewrite printed-order adjacent equal output runes with probability 81% to a random unequal rune. The rewrite models an extra anti-repeat channel, albeit imperfectly; it is **noninjective**, so these simulated plants are statistical forward surrogates, not a proposed historical lossless cipher. The bare fixed substitution and spatial routing are exactly recovered using the known synthetic key before the rewrite. Across **1,728** source-window/author/view plants, the **smallest correct-readout MI is 0.31866402 nats**, over four times the original maximum of 0.07973852. The weakest plant is a Shakespeare window at GP offset 10,000 using column traversal and dihedral view 2; it has 305 overwritten symbols and 83 adjacent-equal output pairs. The original printed 81² block has **41** such pairs; the control means vary by route (roughly 56–75), so the 81% rewrite does not perfectly match the original count.
+
+This experiment **strongly disfavors native-GP English conveyed solely by a globally fixed 29-symbol substitution plus any of the 72 enumerated square reading routes**, even under the specified stochastic output-rewrite noise. It cannot exclude unknown position-dependent alphabets, nonlinear or stateful transposition, different plaintext encodings, or noise that alters substantially more information. The 81² framing and route family remain retrospective rather than historically authenticated. **No plaintext, key, or original cipher mechanism has been recovered.** Further unconstrained route enumeration is lower value than an independently source-selected transition/key rule.
+
 ## Direct 81×81 QR finder-channel: exact algebraic obstruction
 
 The coincidental **81²** first prefix also has the dimensions of a **QR version-16 matrix**, motivating a finite, independently checkable interpretation rather than assuming the square contains a QR code. The three mandatory 7×7 finder targets and their adjacent white one-module separators fix **192** nonoverlapping black/white cells in the 81×81 display. This imposes a necessary condition, irrespective of version metadata, error correction or message payload. Original source positions are read through four exact physical routes (row-major, row-serpentine, column-major, column-serpentine), each with eight square orientations, giving **32** explicit tests.
