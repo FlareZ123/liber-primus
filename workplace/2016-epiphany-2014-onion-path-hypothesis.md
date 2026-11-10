@@ -26,6 +26,8 @@ The 2014 archive says the process lasted approximately 23 hours and the document
 
 This boundary motivates testing a PRNG stream that begins at byte 143 rather than assuming the 256-byte string was generated from its first byte.
 
+A distinct [source-clock distribution and witness-boundary test](../im-results/onion2-five-minute-clock-inference.md) now constrains the publication schedule independently of byte-generator seeds. The 112 observed delays have length histogram **[46, 33, 21, 5, 4, 2, 1]** ticks for lengths 1–7, summing to 234 ticks. A stationary uniform 1–7 tick scheduler yields an exact lower-tail probability **7.686 × 10⁻²⁷** for this sum. A geometric five-minute-trial process with fitted success rate **112/234** gives grouped goodness-of-fit χ²≈**5.773**, p≈**0.0558**, and therefore remains a plausible *marginal clock model*. However, the earliest 40 observed gaps average **2.475** ticks versus **1.875** for the later 72; an exact conditional fixed-boundary permutation upper tail is **0.01124**. This archival boundary also marks a change in witness coverage, so it cannot establish a historical server-process change. These new constraints challenge uniform-delay PRNG interleavings while leaving byte selection and any LP2 key role unidentified. Reproducer: [read-only CommonJS SFT](../sims/onion2_five_minute_clock_sft.cjs).
+
 ## A source-derived 761 → 6 arithmetic bridge
 
 The 2014 comment is not merely a generic patience phrase. Under the published GP letter values:
