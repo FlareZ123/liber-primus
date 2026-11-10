@@ -109,6 +109,53 @@ function shiftedInkNull(trials=60000) {
  * A direct source-border GP29 additive rule predicts the interior from
  * the three known table border cells: g[r][15]+g[15][c]-g[15][15].
  */
+/**
+ * Test the only direct 15x15 reading motivated by the 225=15^2 count:
+ * chronological red runes in row-major order, with GP index/prime registers.
+ */
+function redSquareMagicCheck() {
+  const M=Array.from({length:15},(_,r)=>redValues.slice(r*15,r*15+15));
+  const rowIndex=M.map(row=>row.reduce((a,b)=>a+b,0));
+  const rowPrime=M.map(row=>row.reduce((a,b)=>a+corpus.prime[b],0));
+  const colIndex=Array.from({length:15},(_,c)=>M.reduce((a,row)=>a+row[c],0));
+  const colPrime=Array.from({length:15},(_,c)=>M.reduce((a,row)=>a+corpus.prime[row[c]],0));
+  const diagonal1=Array.from({length:15},(_,i)=>M[i][i]);
+  const diagonal2=Array.from({length:15},(_,i)=>M[i][14-i]);
+  const residues={
+    rowIndex:rowIndex.map(x=>mod(x)),
+    rowPrime:rowPrime.map(x=>mod(x)),
+    columnIndex:colIndex.map(x=>mod(x)),
+    columnPrime:colPrime.map(x=>mod(x)),
+    diagonalIndex:[mod(diagonal1.reduce((a,b)=>a+b,0)),
+      mod(diagonal2.reduce((a,b)=>a+b,0))],
+    diagonalPrime:[mod(diagonal1.reduce((a,b)=>a+corpus.prime[b],0)),
+      mod(diagonal2.reduce((a,b)=>a+corpus.prime[b],0))]
+  };
+  const indexTotal=rowIndex.reduce((a,b)=>a+b,0);
+  const primeTotal=rowPrime.reduce((a,b)=>a+b,0);
+  assert.equal(indexTotal,3103);
+  assert.equal(primeTotal,11252);
+  assert.equal(indexTotal%15,13);
+  assert.equal(primeTotal%15,2);
+  assert.equal(residues.rowIndex.every(x=>x===0),false);
+  assert.equal(residues.rowPrime.every(x=>x===0),false);
+  assert.equal(residues.columnIndex.every(x=>x===0),false);
+  assert.equal(residues.columnPrime.every(x=>x===0),false);
+  assert.deepEqual(residues.diagonalIndex,[1,9]);
+  assert.deepEqual(residues.diagonalPrime,[27,9]);
+  return {
+    side:15,
+    totals:{index:indexTotal,prime:primeTotal},
+    remaindersModulo15:{index:indexTotal%15,prime:primeTotal%15},
+    rowsWithZeroResidue:{index:residues.rowIndex.filter(x=>x===0).length,
+      prime:residues.rowPrime.filter(x=>x===0).length},
+    columnsWithZeroResidue:{index:residues.columnIndex.filter(x=>x===0).length,
+      prime:residues.columnPrime.filter(x=>x===0).length},
+    diagonalResidues:{index:residues.diagonalIndex,prime:residues.diagonalPrime},
+    residues
+  };
+}
+
 function rotateClockwise(matrix) {
   const n=matrix.length;
   return Array.from({length:n},(_,r)=>
@@ -216,6 +263,7 @@ function run() {
         primeQuotient:p40.prime/29}},
     page40Cyclic:p40PhaseTest(),
     conditionalPageRotationNull:shiftedInkNull(),
+    chronological15x15MagicCheck:redSquareMagicCheck(),
     literalGnomonBorderInverse:borderModel(),
     redTitleColumnComparisons:[
       redTitleColumnOrder("low5"),
@@ -224,5 +272,5 @@ function run() {
 }
 
 if(require.main===module) console.log(JSON.stringify(run(),null,2));
-module.exports={twoSums,p40PhaseTest,shiftedInkNull,borderModel,
+module.exports={twoSums,p40PhaseTest,shiftedInkNull,redSquareMagicCheck,borderModel,
   redTitleColumnOrder,run};
