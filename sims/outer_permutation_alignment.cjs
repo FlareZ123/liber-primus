@@ -24,7 +24,7 @@ const M = 29;
  * @param {number[]} key
  * @param {number[]} prior
  * @param {number[]} inverse
- * @param {{strict:boolean,maxDrift:number,suppress:number}} config
+ * @param {{strict:boolean,maxDrift:number,suppress:number,positionLogPrior?:number[][]}} config
  * @returns {{drift:Int16Array,score:number,finalDrift:number}}
  */
 function viterbi(ciphertext, key, prior, inverse, config) {
@@ -47,7 +47,7 @@ function viterbi(ciphertext, key, prior, inverse, config) {
       const k = key[currentIndex];
       const rune = inverse[c];
       const x = ((rune - k) % M + M) % M;
-      const emission = logPrior[x];
+      const emission = config.positionLogPrior ? config.positionLogPrior[i][x] : logPrior[x];
       const repeatPenalty = strict && c === prev ? Math.log(1-suppress) : 0;
       next[d] = dp[d] + emission + stayCost + repeatPenalty;
       if (i > 0 && d > 0) {
