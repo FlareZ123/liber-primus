@@ -1,8 +1,8 @@
 "use strict";
 
 /**
- * Independent finite-field NORM obstruction on the already-established
- * exact LP2 grid factorization and red-triad extension roots. NO plaintext.
+ * Independent universal finite-field NORM obstruction on the already-
+ * established exact LP2 grid factorization. NO plaintext.
  *
  * Run: node sims/red_triad_grid_affine_factors_sft.cjs
  *
@@ -15,12 +15,13 @@
  * already documented through the conjugate roots u^433 and u^797.
  * The source does not explicitly instruct the image-offset substitution.
  *
- * An additional monic irreducible cubic H=X^3+14X^2+16X+24 divides the grid
- * polynomial exactly once. For any polynomial Z over GF(29^2), Norm(Z)=Z*Z^29
- * has EVEN multiplicity of each odd-degree irreducible over GF29. Thus no
- * whole-source or quotient polynomial with this single cubic can be such
- * a norm. This excludes all hidden 128-symbol field polynomial factors under
- * the *norm* mechanism, not other field operations.
+ * A monic irreducible quadratic of degree2 and irreducible cubic of degree3
+ * each divide the grid exactly once. Over GF(29^m), the norm multiplicity
+ * of an irreducible GF29 factor degree d is a multiple of m/gcd(d,m).
+ * Exponent1 at BOTH degrees2 and3 requires m|2 and m|3, hence m=1. Thus
+ * the exact original grid cannot be a coefficient-field polynomial norm
+ * from ANY nontrivial GF(29^m), regardless of hidden lane coefficients.
+ * This excludes the universal field-norm mechanism, not other operations.
  */
 
 const assert = require("node:assert/strict");
@@ -164,6 +165,20 @@ function main() {
   assert.deepEqual(divide(P, cubic).remainder, []);
   assert.deepEqual(divide(divide(P, cubic).quotient, cubic).remainder,
     [9, 3], "cubic factor has exponent exactly one");
+  // For a GF(q^m)/GF(q) coefficient norm, degree-d source factors
+  // occur with multiplicity divisible by m/gcd(m,d). Here both
+  // irreducible degrees 2 and 3 occur with exponent exactly one.
+  // Hence m|2 and m|3: only m=1, globally, without an upper bound.
+  const gcd = (a, b) => {
+    while (b !== 0) [a, b] = [b, a % b];
+    return a;
+  };
+  for (let m = 2; m <= 840; m++) {
+    const quadraticAllowed = m / gcd(m, 2) === 1;
+    const cubicAllowed = m / gcd(m, 3) === 1;
+    assert.ok(!(quadraticAllowed && cubicAllowed),
+      "no nontrivial GF29 extension degree can supply this norm");
+  }
 
   const degreeNine = [11, 15, 0, 9, 1, 5, 10, 20, 12, 1];
   const firstFactor = mul(mul(root24, root24), affineQuadratic);
@@ -208,9 +223,10 @@ function main() {
     largeFactorCoefficientCount: degree238.length,
     largeFactorIoC: ioc,
     terminal128x128RawNormAt24: normAt24,
-    normOfAnyGF841Polynomial: "mathematically impossible under raw-grid polynomial and exact root/cubic obstruction",
+    normOfAnyNontrivialGF29ExtensionPolynomial:
+      "mathematically impossible: unit-multiplicity degrees 2 and 3 force extension degree m|gcd(2,3)=1",
     plainTextRecovered: false,
-    caveat: "Only exact polynomial-norm and stated affine-factor relationships are resolved. Other field, byte and original cipher architectures remain open."
+    caveat: "Only exact universal finite-field polynomial-norm and stated affine-factor relationships are resolved. Other field, byte and original cipher architectures remain open."
   }, null, 2) + "\n");
 }
 
