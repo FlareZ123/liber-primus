@@ -103,6 +103,126 @@ function sourceShape(corpusRunes,shape,offset) {
     return next;
   }));
 }
+/**
+ * Original LP2 necessary test: natural page-15 Fibonacci-square 16-cycle GP29
+ * pads, evaluated using the historical solved-page prime-clause score.
+ * All 320 candidates are refitted inside each page-histogram-preserving null.
+ * Returns original evidence, not a proposed actual plaintext.
+ */
+function originalFibonacciGate(){
+  const fib=require("./fibonacci_prime_spiral.cjs");
+  const square=fib.readSquare();
+  const spiral=fib.clockwiseSpiral().map(([r,c])=>square[r][c]);
+  const ranks=fib.uniqueFibonacciPrimeRanks();
+  const primes=fib.primeList(ranks.at(-1)).filter((n,i)=>ranks.includes(i+1));
+  const keys=[
+    ["spiral",spiral],["primes",primes],["ranks",ranks],
+    ["row-major",square.flat()],["reverse",spiral.slice().reverse()]
+  ];
+  assert.equal(primes.length,16);
+  const sourcePages=corpus.pages.slice(16,23);
+  const plaintextStarts=[...Array(7)].map((_,i)=>16+i);
+  const textPages=plaintextStarts.map(p=>masterPages[16+p]);
+  const cipherPages=sourcePages.map(p=>p.indices);
+  for(let i=0;i<7;i++)assert.deepEqual(
+    [...textPages[i]].filter(ch=>lookup.has(ch)).map(ch=>lookup.get(ch)),
+    cipherPages[i]);
+  const c=cipherPages.flat(),n=c.length;
+  assert.equal(n,1744);
+  const ends=[],pageStarts=[];
+  let total=0;
+  for(let i=0;i<7;i++){
+    pageStarts.push(total);
+    for(const ch of textPages[i]){
+      if(lookup.has(ch))total++;
+      if(ch===".")ends.push(total);
+    }
+  }
+  assert.equal(total,n);
+  const clauseEnds=[...new Set(ends)].filter(j=>j>0&&j<n);
+  clauseEnds.push(n);
+  const lengths=clauseEnds.map((v,i)=>v-(clauseEnds[i-1]||0));
+  assert.deepEqual(lengths,
+    [87,35,123,86,41,14,48,50,127,115,121,105,69,559,68,68,14,14]);
+  const lookupPad=Array.from({length:29},(_,shift)=>
+    Uint16Array.from({length:29},(_,glyph)=>gpPrime[(glyph+shift)%29]));
+  const models=[];
+  for(const [name,key] of keys)for(let phase=0;phase<16;phase++)
+    for(const sign of [-1,1])for(const clock of ["book","page"]){
+      const pads=new Uint8Array(n);
+      let at=0;
+      for(const page of cipherPages){
+        for(let j=0;j<page.length;j++){
+          const position=clock==="page"?j:at;
+          const value=sign*key[(position+phase)%16];
+          pads[at]=((value%29)+29)%29;
+          at++;
+        }
+      }
+      models.push({name,phase,sign,clock,pads});
+    }
+  assert.equal(models.length,320);
+  /** @param {number[]} ciphertext */
+  function bestPrimeScore(ciphertext){
+    let best=-1,index=-1;
+    for(let model=0;model<models.length;model++){
+      const pads=models[model].pads;
+      let score=0,totalSum=0,clause=0;
+      for(let i=0;i<n;i++){
+        totalSum+=lookupPad[pads[i]][ciphertext[i]];
+        if(i+1===clauseEnds[clause]){
+          score+=Number(isPrime(totalSum));
+          totalSum=0;
+          clause++;
+        }
+      }
+      if(score>best){best=score;index=model;}
+    }
+    return {primeClauses:best,index};
+  }
+  const actual=bestPrimeScore(c);
+  assert.equal(actual.primeClauses,7);
+  assert.equal(models[actual.index].name,"spiral");
+  assert.equal(models[actual.index].phase,9);
+  assert.equal(models[actual.index].sign,-1);
+  assert.equal(models[actual.index].clock,"book");
+  const draw=rng(0x15162229),repetitions=1000;
+  const nullCounts={},shuffled=c.slice();
+  let equalOrBetter=0,totalBest=0;
+  for(let run=0;run<repetitions;run++){
+    for(let i=0;i<7;i++){
+      const lo=pageStarts[i],hi=lo+cipherPages[i].length;
+      for(let j=hi-1;j>lo;j--){
+        const k=lo+draw()%(j-lo+1);
+        [shuffled[j],shuffled[k]]=[shuffled[k],shuffled[j]];
+      }
+    }
+    const winner=bestPrimeScore(shuffled).primeClauses;
+    nullCounts[winner]=(nullCounts[winner]||0)+1;
+    totalBest+=winner;
+    equalOrBetter+=Number(winner>=actual.primeClauses);
+  }
+  assert.equal(equalOrBetter,566);
+  return {
+    scope:"original unsolved LP2 pages 16-22, printed clause boundaries",
+    runes:n,clauseLengths:lengths,models:models.length,
+    sourceKeys:["spiral","underlying-primes","Fibonacci-prime-ranks",
+      "printed-row-major","reversed-spiral"],
+    clocks:["book","page"],phases:16,signs:2,
+    best:{...actual,model:{
+      key:models[actual.index].name,phase:models[actual.index].phase,
+      sign:models[actual.index].sign,clock:models[actual.index].clock
+    }},
+    null:{seed:"0x15162229",repetitions,
+      model:"shuffle original GP runes independently within each physical page; preserve clause lengths, and refit all 320 models",
+      bestScoreCounts:nullCounts,meanBest:totalBest/repetitions,
+      atLeastOriginal:equalOrBetter,
+      addOneTail:(equalOrBetter+1)/(repetitions+1)
+    },
+    conclusion:"No source-authenticated original plaintext or key. Best seven prime clauses are typical after full source-preserving refit."
+  };
+}
+
 function main(){
   const originalRank=rankAllShifts(known);
   assert.equal(originalRank[0].shift,0);
@@ -132,6 +252,7 @@ function main(){
     original:originalRank,
     plantedUnknownShift:{secretShift,highest:plantedRank[0],runnerUp:plantedRank[1]},
     nonNativeShakespeare:{sourceOffset:3301,highest:shakespeareRank[0]},
+    originalLp2FibonacciGate:originalFibonacciGate(),
     shuffleNull:{
       model:"permute each page's actual GP runes independently across fixed physical clause lengths; refit all 29 shifts",
       seed:"0x73c1a15",repetitions,maxima,
