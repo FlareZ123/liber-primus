@@ -1,0 +1,19 @@
+name: LP1-P40 source Cayley bridge (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-cayley:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source matrix identity and exact original-cipher ranking
+        run: node sims/lp1_p40_cayley_t6_bridge_sft.cjs
