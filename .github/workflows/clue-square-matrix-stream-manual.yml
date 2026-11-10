@@ -17,3 +17,5 @@ jobs:
         run: node sims/source_native_4d_matrix_crib_attack.cjs
       - name: Test red-16 Fibonacci spiral Hill key on original LP2 and positive source
         run: node sims/red16_spiral_hill_inverse.cjs
+      - name: Solve red-16 spiral 4D source state from native EA cribs
+        run: node sims/red16_spiral_4d_native_crib.cjs
