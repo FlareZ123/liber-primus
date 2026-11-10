@@ -1,0 +1,34 @@
+name: GP29 whole-stream AEAD gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "sims/gp29_whole_stream_aead_gate.cjs"
+      - ".github/workflows/gp29-whole-stream-aead-gate.yml"
+      - "resources/liber-primus/lp2-corpus.json"
+      - "resources/liber-primus/base60-grid.json"
+      - "resources/liber-primus/lp2-page53-red-span.json"
+      - "resources/cicada-hiddenservice-256-candidates.json"
+      - "resources/cicada2014-anend-binary-witness.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run exact-envelope authentication gate
+        run: node sims/gp29_whole_stream_aead_gate.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gp29-whole-stream-aead-gate
+          path: im-results/gp29-whole-stream-aead-gate.json
+          if-no-files-found: error
