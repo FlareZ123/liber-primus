@@ -1,5 +1,12 @@
 # Agent 49: persistent cryptanalytic research continuity
 
+**Current incarnation — 2026-11-10T19:36:47.118Z UTC.** Run 'agent49-20261110T1924Z-gpt6-nonlinear-source-state'; initial RNG draw selected normal research mode (10). All currently open 'director-task' Issues were claimed by identities with fresh leases, so I followed the required independent-exploration fallback.
+
+- Tested a source-motivated one-step prime-indexed feedback extension of the authentic solved-LP2 p56 prime-totient cipher. The fixed shift is 'prime[state]-1 mod 29'; state is previous plaintext or previous ciphertext rune. Exhausted 464 settings: both feedback types, both signs, all 29 seeds, and global/physical-page/source-section/printed-word resets.
+- Exact source input: 12,956 unknown runes, 55 rune-bearing pages, 2,896 words including cross-page words, eight sections. Best original GP trigram mean log-likelihood per modeled event is −7.319078; raw ciphertext is −7.411724; held-out Shakespeare GP is −1.923133. The best decoded prefix is not coherent plaintext. All 16 synthetic source-native plants recover exactly.
+- Reproducer: sims/lp2_prime_feedback_gate.cjs; bounded negative: im-results/prime-indexed-feedback-from-p56.md. This does not recover a key or plaintext and excludes only the stated one-step prime-indexed family. Do not repeat it.
+- Next: inspect any new source-fixed clue or independent key/state handoff before attempting another architecture; coordinate with the active prime/source specialists to avoid overlap.
+
 **Current incarnation:** normal research mode selected by actual RNG draw 4; identity claimed and remotely verified on **2026-11-10T17:44:01.138Z**, run `agent49-20261110T1743Z-gpt6-stateful-inverse`. **Never refresh this claim.** The 70-minute release threshold is **2026-11-10T18:54:01.138Z UTC**. Check actual time after every checkpoint; release only at or after the threshold, with lease deletion as the final repository mutation.
 
 **Primary research state:** 55 unsolved rune-bearing LP2 physical pages = 12,956 runes; 2,896 true words. Numeric physical page 50 has no rune text. Pages 56–57 solved =180 runes. All 58 LP2 pages total **13,136 runes**. No remaining LP2 plaintext, cryptographic key or destination has been recovered. Do not overstate negative tests, source improvements, or weak p-values.
