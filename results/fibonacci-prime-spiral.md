@@ -44,6 +44,16 @@ In particular, the final **1206** and **4516** arise because the two largest pri
 
 **Interpretation:** this is a precise, clue-derived prime-selection mechanism with a Fibonacci index schedule and an explicit spiral reading order. It supplies viable mathematical material for constructing or recognizing a cipher key. It does **not** demonstrate that these integers are an LP2 keystream or distinguish all possible uses of the clue.
 
+## Newly identified red-title arithmetic, interpretation provisional
+
+The red line directly above the square has two rune words, **`ᚠᚢᛚᛗ`** (four runes) and **`ᚪᛠᚣᛟᚪ`** (five). Summing the *assigned GP prime values*, rather than the rune indices, gives **149** for the first word and **489** for the second. Their total is **638 = 29 × 22**. The 149 is exactly the square's Fibonacci-indexed **35th prime** (`p_(34+1)=149`), and **22** is the immediately preceding Fibonacci prime ordinal (`21+1`), selecting **`p_22=79`**. Both 79 and 149 occur consecutively in the square's outward reading. The second title word has the highest GP prime-value sum of **all 317 five-rune words** in the canonical unsolved corpus.
+
+This can be evaluated with a fixed, falsifiable cross-section relation: for adjacent four- and five-rune ciphertext words `A B`, require `sum_GP(A)=p_(F_i+1)` and `sum_GP(A)+sum_GP(B)=29×(F_(i-1)+1)`, using consecutive square primes and their one-based ordinals. Only five numerically possible sum pairs arise: **(13,103), (23,151), (43,218), (79,327), (149,489)**. There are **74 actual 4→5 word transitions** among 2,896 LP2 words; **only this red title** satisfies the relation. Of all **513 × 317 = 162,621** possible length-stratified four-/five-rune word pairings, three satisfy any of those sum pairs. Under reshuffling within word lengths while retaining the observed word sums and 74 eligible adjacency slots, the expected number of matching pairs is **0.00136514**. This value also upper-bounds the chance of at least one match *for that previously specified relation* by the union bound.
+
+**Crucial limitation:** this relation was noticed **after** examining the red title. The rarity calculation is descriptive and must **not** be interpreted as a calibrated discovery p-value, because other numerical relations could have been selected. The title's appearance, original transcription and exact arithmetic are independently reproducible; their cryptographic interpretation is **unknown**. No rune plaintext, key stream, or passage follows deductively from the alignment. It is a prioritized structural hypothesis, rather than a proven cipher mechanism.
+
+[Reproducer](../sims/fibonacci_title_gematria_alignment.cjs) · [successful on-demand CI](https://github.com/FlareZ123/liber-primus/actions/runs/42768055190)
+
 ## Consequences for key material: bounded negative decryption screens
 
 The exact numerical construction supplies two natural but distinct cryptographic interpretations. Both have been tested on the original ciphertext without fitting an unknown key.
