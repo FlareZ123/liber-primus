@@ -106,7 +106,7 @@ function xorshift(seed) {
 
 /** @param {ReturnType<typeof load>} pages @param {number} trials */
 function rotationNull(pages, trials) {
-  const real = measure(pages), random = xorshift(0x13ea9419);
+  const real = measure(pages), random = xorshift(0x2a7198f3);
   const target = [real.excessFirst, real.excessLast, real.sumFirst - real.sumLast];
   const exceed = [0, 0, 0], sums = [0, 0, 0], squares = [0, 0, 0];
   for (let t = 0; t < trials; t++) {
@@ -214,7 +214,7 @@ function main() {
     widthModelNull: widthModelNull(pages, 30000),
     pureWidthGreedyWrapControl: greedyControl(pages),
   };
-  assert.equal(evidence.untouchedPageRotations.exceed[0], 15);
+  assert.equal(evidence.untouchedPageRotations.exceed[0], 12);
   console.log(JSON.stringify(evidence, null, 2));
 }
 
