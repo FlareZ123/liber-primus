@@ -20,3 +20,5 @@ jobs:
         run: node sims/outer_permutation_alignment.cjs
       - name: Test word-context alpha matching
         run: node sims/outer_permutation_word_context.cjs
+      - name: Scan actual LP2 against defined SHA stream candidates
+        run: node sims/outer_permutation_sha_probe.cjs
