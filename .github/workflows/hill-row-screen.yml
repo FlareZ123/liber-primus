@@ -15,6 +15,7 @@ on:
           - red225stream
           - fourier5
           - lag7triple
+          - rankhill
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -37,7 +38,7 @@ jobs:
         if: inputs.experiment == 'red225stream'
         run: node sims/red225_matrix_stream_inverse.cjs
       - name: Set up Python for finite-field Fourier inverse
-        if: inputs.experiment == 'fourier5'
+        if: inputs.experiment == 'fourier5' || inputs.experiment == 'rankhill'
         uses: actions/setup-python@v7
         with:
           python-version: '3.13'
@@ -50,6 +51,11 @@ jobs:
       - name: Exhaustive three-support seven-position affine-feedback inverse
         if: inputs.experiment == 'lag7triple'
         run: node sims/sparse_lag7_affine_triples.cjs
+      - name: Invert rank28 anti-repeat layer then blind recover five-rune Hill keys
+        if: inputs.experiment == 'rankhill'
+        run: |
+          python -m pip install numpy scipy
+          python sims/no_repeat_rank_hill_fourier.py
       - name: Test exact reversible zero-step EA model and native source
         if: inputs.experiment == 'ea-anchor'
         run: node sims/ea_zero_step_reversible.cjs
