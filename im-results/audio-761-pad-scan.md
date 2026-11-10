@@ -8,6 +8,19 @@ This is a different source family from Liber Primus image bytes, arbitrary pseud
 
 The [original downloaded MP3](https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3) was **4,010,732 bytes**, SHA-256 \`83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460\`. The 206-byte ID3 tag contains the named later Parable and is excluded from the 4,010,526-byte compressed-audio pad. The test reads the binary file directly, not an MP3 transcription, waveform resampling, or re-encoded audio.
 
+## Source-number prime-origin test on the authentic p56 mechanism
+
+The independent historical labels **761** (2013 audio artifact and 2014 HTML “Patience” replacement) and **167** (reported audio duration, reversal of 761) also suggest a much narrower construction than an arbitrary compressed-audio pad: begin the **known solved LP2 p56 consecutive-prime totient schedule** with ordinary prime 761 (prime ordinal 135) or 167 (ordinal 39). Keep its GP29 subtraction, physical-page reset, and literal/nonconsuming visible-Fehu rule unchanged. These are externally selected starting values, whereas treating them as a new LP2 key rule is still an inference.
+
+The executable [original-source gate](../sims/instar761_prime_start_original_gate.cjs) evaluates *every* literal-Fehu mask on unsolved physical pp0, 1 and 5, using the unchanged Emerson-trained GP trigram model. [Manual CI run 42924926726](https://github.com/FlareZ123/liber-primus/actions/runs/42924926726) passed with the complete original ciphertext on all three pages:
+
+| Frozen first prime (one-based rank) | p0, 262 runes / 16,384 masks | p1, 266 runes / 8,192 masks | p5, 263 runes / 256 masks |
+| --- | ---: | ---: | ---: |
+| 761 (135) | −5.872788 | −6.037699 | −6.121999 |
+| 167 (39) | −5.835271 | −6.162004 | −6.034633 |
+
+Scores are the **maximum** mean GP trigram log likelihood over all masks, so the values are optimistically post-selected for each page. As a real-cipher positive control, the same implementation recovers all **85/85 solved p56 runes** at the authentic first prime 2, with the known literal-F mask 8 ranked first of 32 and score **−2.383854**. Neither historical-origin candidate produces readable GP plaintext on any original page. This is a bounded rejection of the literal *start-prime transfer* interpretation; the source has never authenticated such a transfer, and the negative says nothing about other uses of the 2013 audio.
+
 ## Frozen cipher family
 
 Use each of the **4,010,526 original compressed audio bytes**, in their natural forward order, as a section-start additive mod-29 candidate key. Two declared byte-to-key symbol reductions, \`byte % 29\` and \`floor(byte*29/256)\`, are tested with both sign directions. Every safe byte start is tested without using an arbitrary shortlist of mystical offsets. The original LP2 page0 first **24 runes** are screened with exact hidden-skip Viterbi (up to **two collision-rejected key draws per emitted rune**, with fixed 3.5-unit skip penalty and a Shakespeare-trained GP trigram model). The best 400 head candidates are then decoded on **all first 220 runes**, with the same forward mechanism and key source.
