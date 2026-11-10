@@ -10,10 +10,16 @@ jobs:
     steps:
       - name: Check out original JPEGs and extractor
         uses: actions/checkout@v4
-      - name: Install OutGuess 0.2
+      - name: Build OutGuess from maintained source
         run: |
           sudo apt-get update
-          sudo apt-get install -y outguess
+          sudo apt-get install -y autoconf automake libtool build-essential
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          cd /tmp/outguess
+          ./autogen.sh
+          ./configure --with-generic-jconfig
+          make -j2
+          sudo make install
       - name: Retrieve hidden messages from every LP2 page
         run: node sims/outguess_lp2_scan.cjs
       - name: Preserve exact recovered payloads and summary
