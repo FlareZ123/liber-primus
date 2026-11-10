@@ -30,6 +30,13 @@ assert.equal(new Set(power).size,28);
 const mod29=x=>(x%29+29)%29;
 const mod28=x=>(x%28+28)%28;
 const COUNT=6;
+/** Use exact consecutive odd-prime totient shifts in synthetic forward inversion. */
+const primeSequence=[];
+for(let n=2;primeSequence.length<12958;n++){
+  let isPrime=true;
+  for(let j=2;j*j<=n;j++)if(n%j===0){isPrime=false;break;}
+  if(isPrime)primeSequence.push(n);
+}
 const usable=Array.from({length:COUNT},(_,n)=>new Float64Array(1<<n));
 const originalLength=Array(COUNT).fill(0);
 const flattened=pages.flatMap(p=>p.indices);
@@ -185,9 +192,8 @@ function simulate(perm,scheme){
   for(let i=0;i<plain.length;i++){
     if(initials.has(i)){page++;cipher[i]=(17+page*3)%29;continue;}
     if(observedRepeat.has(i)){plain[i]=28;cipher[i]=cipher[i-1];skipped++;continue;}
-    // An even representative of a true odd-prime totient, with no 2 exception.
-    // This parity reduction tests every possible odd-prime clock.
-    const shift=2*((i+page)%14);
+    // A real prime-totient stream, starting after the exceptional prime 2.
+    const shift=mod28(primeSequence[i+1]-1);
     const rank=mod28(perm[plain[i]]+shift);
     cipher[i]=mod29(cipher[i-1]+(scheme==="cyclic"?rank+1:power[rank]));
     const diff=mod29(cipher[i]-cipher[i-1]);
