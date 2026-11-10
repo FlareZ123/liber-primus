@@ -82,6 +82,36 @@ function score(A,B,T,prior,shareProbability=1){
   return logNumerator-prior-logIndependent;
 }
 
+/**
+ * Position-conditioned independent GP rune model, including the exact
+ * adjacent-rewrite channel but excluding across-position language order.
+ * This detects the false-positive route where only printed-word slots
+ * explain an apparent cross-page key match.
+ */
+function iidScore(A,B,marginals,shareProbability=1){
+  const n=Math.min(A.xs.length,B.xs.length);
+  let score=0;
+  for(let t=0;t<n;t++){
+    const aSlot=(A.start[t]?1:0)+(A.end[t]?2:0);
+    const bSlot=(B.start[t]?1:0)+(B.end[t]?2:0);
+    const qa=marginals[aSlot],qb=marginals[bSlot];
+    const pa=t?A.xs[t-1]:-1,pb=t?B.xs[t-1]:-1;
+    const opts=channels(A.xs[t],B.xs[t],pa,pb);
+    const emission=new Float64Array(M);
+    for(const opt of opts)emission[opt.d]=opt.weight/M;
+    let shared=0;
+    for(let p=0;p<M;p++)for(let q=0;q<M;q++){
+      shared+=qa[p]*qb[q]*emission[mod(p-q)];
+    }
+    const independent=independentEmission(A.xs[t],pa)*
+      independentEmission(B.xs[t],pb);
+    const likelihood=(1-shareProbability)+shareProbability*shared/independent;
+    assert.ok(likelihood>0);
+    score+=Math.log(likelihood);
+  }
+  return score;
+}
+
 /** Source-rune whole words with the exact physical page word masks. */
 function matched(mask,heldout,random){
   const byLength=Array.from({length:35},()=>[]);
@@ -136,7 +166,12 @@ function study(trials=50){
     const fraction=i/20;
     const first=score(shortA,shortB,T,shortPrior,fraction);
     const full=score(A,B,T,prior,fraction);
-    return {fraction,first,heldout:full-first,full};
+    const iidFirst=iidScore(shortA,shortB,model.marginal,fraction);
+    const iidFull=iidScore(A,B,model.marginal,fraction);
+    return {fraction,first,heldout:full-first,full,
+      iidFirst,iidHeldout:iidFull-iidFirst,iidFull,
+      orderIncrement:first-iidFirst,
+      orderHeldoutIncrement:(full-first)-(iidFull-iidFirst)};
   });
   const selected=mixture.slice().sort((x,y)=>y.first-x.first)[0];
   const optimalAll=mixture.slice().sort((x,y)=>y.full-x.full)[0];
@@ -146,13 +181,19 @@ function study(trials=50){
   ].map(([name,filename])=>{
     const words=base.corpusWords(fs.readFileSync(
       path.join(ROOT,'resources/control',filename),'utf8'));
-    const transform=train(words).conditional;
+    const externalModel=train(words);
+    const transform=externalModel.conditional;
     const modelPrior=singleLogZ(A,transform,n)+singleLogZ(B,transform,n);
     const modelShortPrior=singleLogZ(A,transform,half)+singleLogZ(B,transform,half);
     const alternatives=mixture.map(({fraction})=>{
       const first=score(shortA,shortB,transform,modelShortPrior,fraction);
       const full=score(A,B,transform,modelPrior,fraction);
-      return {fraction,first,heldout:full-first,full};
+      const iidFirst=iidScore(shortA,shortB,externalModel.marginal,fraction);
+      const iidFull=iidScore(A,B,externalModel.marginal,fraction);
+      return {fraction,first,heldout:full-first,full,
+        iidFirst,iidHeldout:iidFull-iidFirst,iidFull,
+        orderIncrement:first-iidFirst,
+        orderHeldoutIncrement:(full-first)-(iidFull-iidFirst)};
     });
     return {name,trainingWords:words.length,
       sourceFrozenFraction:selected.fraction,
@@ -191,4 +232,4 @@ function study(trials=50){
   };
 }
 if(require.main===module)console.log(JSON.stringify(study(),null,2));
-module.exports={independentEmission,score,regression,study};
+module.exports={independentEmission,score,iidScore,regression,study};
