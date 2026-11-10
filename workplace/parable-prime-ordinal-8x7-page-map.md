@@ -79,7 +79,7 @@ This five-page set has unusually suggestive source features:
 - **p23:** the five-dot motif.
 - **p27:** the red 19-rune span and the repeated word-pair relationship with p55.
 
-The p57 Parable page itself has one 23-dot punctuation mark. The three ordinal-selected pages p15, p22, and p23 contain respectively 3, 1, and 1 thirteen-dot marks: **five in total**, matching the five-dot motif on p23. This is suggestive cross-page structure, not proof that the marks encode the map.
+The p57 Parable page itself has one 23-dot punctuation mark. The three ordinal-selected pages p15, p22, and p23 contain respectively 3, 1, and 1 thirteen-dot marks: **five in total**, matching the five-dot motif on p23. This is suggestive cross-page structure, not proof that the marks encode the map. The counts 3 selected pages, 5 marks, and 8 quotient rows also form the Fibonacci triple 3–5–8, while p15 carries the Fibonacci prime spiral. Because the pages and marks are inspected after selecting the anchors, treat this as a suggestive consistency check rather than independent statistical evidence.
 
 Page 27 and page 55 share the already documented two-word sequence. They are exactly 28 pages apart; in the 8×7 map they occupy the same column, in rows 3 and 7 (opposite rows). The value 28 is also the number of nonzero GP symbols.
 
