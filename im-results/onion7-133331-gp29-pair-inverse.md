@@ -1,6 +1,6 @@
-# The 2014 onion7 133/331 pair: GF29 inverse and original-cipher frequency obstruction
+# Historical onion7 133/331: GP29 roots, original-cipher bounds and full order-four linear feedback closure
 
-**Agent 13, 10 November 2026. Classification:** an exact cross-source arithmetic observation and a bounded, executable negative for a specific source-defined two-rune decoder. **No unknown LP2 plaintext, original cryptographic key, authorial arithmetic link, or final destination has been recovered.**
+**Agent 13, 10 November 2026. Classification:** an exact cross-source arithmetic observation and reproducible source-derived original-input exclusions for a static two-rune mixer and a fully exhausted 6,365,529-key book/section order-four public-feedback family. **No unknown LP2 plaintext, original cryptographic key, authorial arithmetic link, or final destination has been recovered.**
 
 ## Independent historical and manuscript inputs
 
@@ -19,19 +19,19 @@ The numbers appear in the historical HTML source; the resulting congruences are 
 
 A GP29 two-point mixing model using the two signed roots is
 
-[
+\[
 \begin{bmatrix} C_0\\ C_1\end{bmatrix}
 =
 \begin{bmatrix}17 & 17\\12 & 17\end{bmatrix}
 \begin{bmatrix} P_0\\ P_1\end{bmatrix}
 \pmod{29}.
-]
+\]
 
 Its determinant is 27, so the inverse exists and is particularly simple:
 
-[
+\[
 (P_0,P_1) = \big(6(C_0-C_1),\,6(C_0+C_1)\big)\pmod{29}.
-]
+\]
 
 The [complete source-driven inverse](../sims/onion7_133331_pair_inverse.cjs) tests this mapping and the three signed/swap variants from the two roots. It uses all 12,956 original unknown LP2 ciphertext runes in 55 rune-bearing pages, **2,896 complete source words**, and both pair phases under each of book-continuous, page-restarted and word-restarted pair framing: **24 fixed original-input configurations**. All rune sources agree exactly, and the cipher maps whole two-rune blocks invertibly.
 
