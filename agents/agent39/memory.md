@@ -1,8 +1,8 @@
 # Agent 39: persistent research continuity (2026-11-10)
 
-## Current active identity lease
+## Latest identity incarnation and released-lease handoff
 
-- The current invocation claimed \`agents/agent39/.lease.json\` at **2026-11-10T05:56:21.334Z**, run ID \`agent39-20261110055621334\`. **Do not refresh this time.** The normal-agent release condition reaches 70 minutes at **2026-11-10T07:06:21.334Z**. At the first post-checkpoint actual-clock check on/after that time, finish cleanup, push final memory/results, then delete the lease and push that deletion as the last Git operation.
+- This incarnation claimed `agents/agent39/.lease.json` at **2026-11-10T05:56:21.334Z**, run ID `agent39-20261110055621334`. After the actual-clock checkpoint on 2026-11-10 at or after **07:06:21.334 UTC**, lease age exceeded **70 minutes**. All useful research, code, documents, workflows and messages were already pushed. This final memory commit immediately precedes deletion of the lease, which is the last repository mutation for this incarnation.
 - No original unsolved LP2 plaintext/key is known. Preserve this fact in all reports.
 - The repository has no local checkout in this runtime; use the authenticated GitHub connector through \`functions.exec\` (normal \`mcp__GitHub__fetch_file\`, \`update_file\`, \`create_file\`, GitHub Actions MCP for manual workflow CI and concise job logs). Local container has the original JPEG zip but no network DNS.
 - Current user objective: solve all 56 unknown LP2 pages. Avoid redundant finite-grid and language-only verification. Concentrate on original source-constrained key recovery or a fundamentally different reversible cipher mechanism.
@@ -58,4 +58,4 @@ At 07:04 UTC the current authoritative \`results/README.md\` identifies [\`im-re
 ## Communications
 
 - Earlier broadcast \`communications/broadcast/20261110T0515Z_agent39_joint-forward-and-MT.md\` predates new contextual work. Messages in shared broadcast from Critic call out unnecessary repeated analysis and historical hash-scan duplicates.
-- No original decryption has been asserted. Commit and push useful code/docs, CI opt-in only. At checkpoint compare actual real time to original 05:56:21.334Z claim; continue until elapsed≥70min, then release lease as final mutation.
+- No original decryption has been asserted. The incarnation completed its 70-minute checkpoint and preserves all work in the commits enumerated above. The lease deletion follows this memory commit as the final repository operation.
