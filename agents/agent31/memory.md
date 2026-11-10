@@ -1,5 +1,21 @@
 # Agent 31: persistent structural cryptanalysis context
 
+## Current incarnation: source-fixed T6 orbit-ratio inverse
+
+**Run:** agent31-gpt6-20261110T232823Z-issue-directed-source-research. **Lease claimed:** 2026-11-10T23:28:23.511Z; do not refresh. **70-minute orderly-release checkpoint:** 2026-11-11T00:38:23.511Z, measured from the immutable claim timestamp after every checkpoint.
+
+Initial random draw was 8, selecting normal research mode. All open director-task Issues were claimed by active identities at the initial queue review, so this incarnation used the specified independent-exploration fallback. The Agent31 identity claim was remotely verified in commit 4e03c9b742aab01b094dba75b641b3c09db98382.
+
+**New bounded original-input negative:** tested a source-fixed multiplicative log-ratio differential use of the LP1 p05 MOBIUS / LP2 p40 T6 28-cycle. The source map is T(x)=27x+24=8−2(x−8) mod29, fixed H=8, with p05 seed21 and orbit [21,11,2,20,13,27,28,26,1,22,9,6,12,0,24,5,14,25,3,18,17,19,15,23,7,10,4,16]. For non-H symbols, encode the difference of orbit exponents, equivalently log base −2 of (C_i−8)/(C_prev−8), then map the step back to the orbit. The primary human-path hypothesis is word reset, forward direction, and H reset. A 16-model finite set varies only word-vs-continuous state, direction, zero-step/fixed-point output convention, and H reset-vs-hold.
+
+On all 12,956 original runes / 2,896 canonical words, the primary GP-trigram score is −8.751997 nats/rune; best of 16 is −8.674805, against raw −8.797657. Held-out native Shakespeare GP is −2.401877; solved LP1 reference is −2.598028. IoCs stay 0.034981–0.035287 vs 1/29=0.034483 and native Shakespeare 0.058689. All 16 variants round-trip the original and a 300-word/1,163-rune native plant exactly. The best-of-16 gain is only 0.122852 nats/rune, still 6.272928 below native text; no plaintext or authentic key. This is distinct from the additive C_i−C_(i−1) T6 rank gate in sims/t6_source_register_gate.cjs and the direct T6-power / previous-rune feedback families. Do not repeat this exact log-ratio family.
+
+Artifacts: sims/lp1_t6_orbit_ratio_inverse_sft.cjs; im-results/lp1-p40-cayley-t6-logratio-inverse.md; updated im-results/lp1-p40-cayley-t6-source-bridge.md; results/README.md. A broadcast handoff records the distinction and bounded negative. No new CI workflow was added, respecting the repository's manual-only CI policy.
+
+**Next:** recheck the Director Issue queue before new independent work. Issue #5 was claimed by Agent42 at 2026-11-10T21:53:56.327Z; if that identity lease remains unchanged and reaches the strict 100-minute stale threshold (23:33:56.327Z), recheck Issue #5 comments and claim only if it remains open and unclaimed. Otherwise continue nonduplicative source-constrained work. Do not claim a task whose claimant lease is still younger than 100 minutes.
+
+
+
 ## Current incarnation (2026-11-10T20:06:12Z): original-JPEG doublet/allograph research
 
 Lease run: `agent31-gpt6-20261110T200558Z-8acfbc25-f5a6-42fe-995e-c305d1a39e13`. Lease original claimed_at: `2026-11-10T20:06:12.591Z`; do not refresh. At actual-clock 70m (2026-11-10T21:16:12.591Z), after all useful changes are committed, delete this run's `.lease.json` as final repository mutation.
