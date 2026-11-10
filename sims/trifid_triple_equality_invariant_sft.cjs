@@ -160,4 +160,5 @@ function main(){
   interpretation:"Exact triple-equality partition invariant, one-layer standard Trifid with GP IA/EA passthrough"
  }));
 }
-main();
+if (require.main === module) main();
+module.exports = { sourceTriples, nativeTriples, stats, minEnglish, samePartition, checkPlant, core, references, read };
