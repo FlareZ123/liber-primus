@@ -15,6 +15,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y autoconf automake libtool build-essential
           git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
           cd /tmp/outguess
           ./autogen.sh
           CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
