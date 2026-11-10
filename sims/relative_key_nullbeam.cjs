@@ -25,7 +25,7 @@ const {trainTrigram}=require('./relative_key_trigram_probe.cjs');
 const {trainDictionary}=require('./relative_key_dictionary_beam.cjs');
 const ROOT=path.resolve(__dirname,'..');
 const M=29,N=31,SCALE=4,INV=22,END=30,START=29;
-const MAX_BEAM=5500,OOV_PENALTY=7.5,WORD_WEIGHT=0.47,INSERT_PROB=.45;
+const MAX_BEAM=5500,OOV_PENALTY=7.5,WORD_WEIGHT=0.47,INSERT_PROB=.45,EXTRA_NULL_COST=1.5;
 const map=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/liber-primus/lp2-corpus.json'),'utf8')).translit;
 const read=(p)=>fs.readFileSync(path.join(ROOT,p),'utf8');
 const mod=x=>((x%M)+M)%M;
@@ -134,7 +134,7 @@ function invert(A,B,dict,lm,beam=MAX_BEAM){
       if(!bb.length)return;
       for(const x of aa)for(const y of bb){
         const newA=eA?0:old.na+Number(an),newB=eB?0:old.nb+Number(bn);
-        const score=old.score+x.score+y.score+pA+pB-(an?Math.log(29):0)-(bn?Math.log(29):0);
+        const score=old.score+x.score+y.score+pA+pB-(an?Math.log(29)+EXTRA_NULL_COST:0)-(bn?Math.log(29)+EXTRA_NULL_COST:0);
         const k=(((x.node+1000)*(dict.nodes.length+1000)+y.node+1000)*4)+(2*newA+newB);
         const current=uniq.get(k);
         if(!current||score>current.score)
@@ -226,6 +226,7 @@ function study(){
     hypothesis:'C28-C42=4(P28-P42) modulo29 only when neither rune is an inserted null',
     nullPolicy:'At most one per observed word, P(one null)=0.45, uniform slot; target p-word edges fixed',
     nullEmission:'Independent uniform ciphertext rune; no pad-cancellation constraint at null positions',
+    additionalNullPenalty:EXTRA_NULL_COST,
     beam:MAX_BEAM,trainingTokens:training.length,lexicon:dict.vocabulary,
     target:{
       status:observed.status,score:observed.score,
