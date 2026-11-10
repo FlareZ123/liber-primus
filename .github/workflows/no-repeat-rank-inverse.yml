@@ -1,6 +1,15 @@
 name: LP2 unknown-alphabet no-repeat rank inversion
 on:
   workflow_dispatch:
+    inputs:
+      gate:
+        description: Select the original rank tests or the separate word-pattern invariant
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - wordwise-bijection
 jobs:
   rank-inverse:
     runs-on: ubuntu-latest
@@ -11,8 +20,14 @@ jobs:
         with:
           node-version: '22'
       - name: Test 28-symbol rank inverse, matched null and authentic controls
+        if: ${{ inputs.gate == 'all' }}
         run: node sims/no_repeat_rank_inverse.cjs
       - name: Test word-reset rank inverse with per-word hidden alphabets
+        if: ${{ inputs.gate == 'all' }}
         run: node sims/no_repeat_rank_wordwise_gate.cjs
       - name: Test within-word periodic phase permutations (periods 1–8)
+        if: ${{ inputs.gate == 'all' }}
         run: node sims/no_repeat_rank_phase_period_gate.cjs
+      - name: Test direct GP29 arbitrary per-word permutation equality invariant
+        if: ${{ inputs.gate == 'wordwise-bijection' }}
+        run: node sims/lp2_wordwise_bijection_pattern_gate.cjs
