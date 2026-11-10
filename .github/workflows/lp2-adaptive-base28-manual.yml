@@ -23,3 +23,7 @@ jobs:
         run: node sims/stateful_28rank_ascii_octet_bound.cjs
       - name: Exact Latin-square previous-state capacity matchings
         run: node sims/stateful_28rank_latin_matching.cjs
+      - name: Install pinned CP-SAT solver for last framing
+        run: python -m pip install --disable-pip-version-check ortools==9.14.6206
+      - name: Test final framing's two ASCII top octets with full row-key constraints
+        run: python sims/stateful_ascii_survivor_cp.py
