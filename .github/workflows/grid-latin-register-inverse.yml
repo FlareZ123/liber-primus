@@ -1,6 +1,15 @@
 name: LP2 Latin register authentic grid-key inversion (manual)
 on:
   workflow_dispatch:
+    inputs:
+      suite:
+        description: Manual research path
+        required: true
+        type: choice
+        default: latin-original
+        options:
+          - latin-original
+          - anend-hash-grid-nonces
 jobs:
   invert:
     runs-on: ubuntu-latest
@@ -11,4 +20,8 @@ jobs:
         with:
           node-version: '22'
       - name: Source-pinned Latin GP model, original LP2 rune Viterbi, Latin controls
+        if: ${{ inputs.suite == 'latin-original' }}
         run: node sims/grid_latin_register_inverse.cjs
+      - name: AN END exact 512-bit hash as source-derived nonce for eight original numeric grid keys
+        if: ${{ inputs.suite == 'anend-hash-grid-nonces' }}
+        run: node sims/anend_hash_grid_nonce_inverse.cjs
