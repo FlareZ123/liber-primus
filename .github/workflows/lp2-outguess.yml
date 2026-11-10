@@ -17,7 +17,7 @@ jobs:
           git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
           cd /tmp/outguess
           ./autogen.sh
-          ./configure --with-generic-jconfig
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
           make -j2
           sudo make install
       - name: Retrieve hidden messages from every LP2 page
