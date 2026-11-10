@@ -22,3 +22,5 @@ jobs:
         run: node sims/red16_onion_address_inverse.cjs
       - name: Test four-span red-triangle source pad against page55 with refitted controls
         run: node sims/red_triangle_page55_source_inverse.cjs
+      - name: Test all-secret two-tap 13-dot grid GP-English majorization
+        run: node sims/thirteen_dot_grid_feedback_topk_gate.cjs
