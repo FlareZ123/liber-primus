@@ -98,7 +98,8 @@ const output = {
     const byFragment = [];
     let offset=0;
     for (const f of fragments) { byFragment.push(plant.slice(offset,offset+f.length)); offset+=f.length; }
-    const recovered = fragmentForLabel.map(label=>byFragment[label]).flat();
+    const byLabel = fragmentForLabel.map(f=>byFragment[f]);
+    const recovered = rowForFragment.map(label=>byLabel[label]).flat();
     const expected = plant;
     return { runes: plant.length, exactInverse: recovered.length===expected.length &&
       recovered.every((v,i)=>v===expected[i]) };
