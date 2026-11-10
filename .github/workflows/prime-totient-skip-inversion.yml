@@ -12,5 +12,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Search unknown LP2 prime offsets with collision skips
+      - name: Search all 55 unsolved rune-bearing LP2 pages for prime-totient offsets
+        env:
+          PRIME_ALL_PAGES: '1'
         run: node sims/prime_totient_collision_probe.cjs
