@@ -2,6 +2,15 @@ name: LP2 complete base60 grid extraction regression
 
 on:
   workflow_dispatch:
+    inputs:
+      probe:
+        description: "Choose the full grid regression or the source-locked state/class audit"
+        required: false
+        type: choice
+        options:
+          - full
+          - state-class
+        default: full
 
 jobs:
   test:
@@ -13,6 +22,7 @@ jobs:
         with:
           node-version: '22'
       - name: Verify 256-token payload, token cases and SHA-256
+        if: ${{ inputs.probe != 'state-class' }}
         run: |
           node sims/test_lp2_grid.cjs
           node sims/red_run_grid_affine_membership.cjs
@@ -33,3 +43,6 @@ jobs:
           node sims/grid_two_channel_serial_order_sft.cjs
           node sims/grid_boolean_mobius_gp28_inverse_sft.cjs
           node sims/grid_missing_f_prime179_sft.cjs
+      - name: Source-locked state/class capacity and Base32 padding audit
+        if: ${{ inputs.probe == 'state-class' }}
+        run: node sims/state_class_nongp_register_audit.cjs
