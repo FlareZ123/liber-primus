@@ -109,26 +109,62 @@ function shiftedInkNull(trials=60000) {
  * A direct source-border GP29 additive rule predicts the interior from
  * the three known table border cells: g[r][15]+g[15][c]-g[15][15].
  */
+function rotateClockwise(matrix) {
+  const n=matrix.length;
+  return Array.from({length:n},(_,r)=>
+    Array.from({length:n},(_,c)=>matrix[n-1-c][r]));
+}
+function borderMatches(G,R) {
+  let matches=0;
+  const rowMatches=Array(15).fill(0);
+  for(let r=0;r<15;r++)for(let c=0;c<15;c++){
+    const predicted=mod(R[r][c]+G[r][15]+G[15][c]-G[15][15]);
+    if(mod(G[r][c])===predicted){
+      matches++;
+      rowMatches[r]++;
+    }
+  }
+  return {matches,rowMatches};
+}
+/**
+ * Four-orientation extension of the source-fixed gnomon model.
+ * The p40 red title has index-sum quotient 4, motivating exactly the four
+ * 90-degree rotations (no reflections or arbitrary traversal variants).
+ * In every orientation, retain the chronological red-rune 15x15 matrix and
+ * apply the same bottom/right border-key equation to the rotated 16x16 grid.
+ */
 function borderModel() {
   assert.equal(numeric.byte_rows.length,32);
   const flat=numeric.byte_rows.flat();
   assert.equal(flat.length,256);
-  const G=Array.from({length:16},(_,r)=>flat.slice(r*16,r*16+16));
+  const G0=Array.from({length:16},(_,r)=>flat.slice(r*16,r*16+16));
   const R=Array.from({length:15},(_,r)=>redValues.slice(r*15,r*15+15));
-  let real=0;
-  let nativePlant=0;
-  let mutated=0;
-  for(let r=0;r<15;r++)for(let c=0;c<15;c++){
-    const predicted=mod(R[r][c]+G[r][15]+G[15][c]-G[15][15]);
-    real+=Number(mod(G[r][c])===predicted);
-    nativePlant+=Number(predicted===predicted);
-    mutated+=Number(predicted===mod(predicted+Number(r===0&&c===0)));
+  const orientations=[];
+  let G=G0;
+  for(let rotation=0;rotation<4;rotation++){
+    orientations.push({rotationDegrees:rotation*90,...borderMatches(G,R)});
+    G=rotateClockwise(G);
   }
-  assert.equal(nativePlant,225);
+  assert.deepEqual(orientations.map(x=>x.matches),[8,9,6,8]);
+
+  // Positive control: construct a grid whose interior obeys the declared
+  // source-border rule, then mutate exactly one interior cell.
+  const synthetic=G0.map(row=>row.slice());
+  for(let r=0;r<15;r++)for(let c=0;c<15;c++)
+    synthetic[r][c]=mod(R[r][c]+G0[r][15]+G0[15][c]-G0[15][15]);
+  const planted=borderMatches(synthetic,R).matches;
+  const mutatedGrid=synthetic.map(row=>row.slice());
+  mutatedGrid[0][0]=mod(mutatedGrid[0][0]+1);
+  const mutated=borderMatches(mutatedGrid,R).matches;
+  assert.equal(planted,225);
   assert.equal(mutated,224);
-  assert.equal(real,8);
-  return {realMatches:real,total:225,randomMatchExpectation:225/29,
-    plantedSourceCorrect: nativePlant,mutatedSourceCorrect:mutated};
+  return {
+    realMatchesByRotation:orientations,
+    maximumRealMatches:Math.max(...orientations.map(x=>x.matches)),
+    randomMatchExpectation:225/29,
+    plantedSourceCorrect:planted,
+    mutatedSourceCorrect:mutated
+  };
 }
 
 /**
