@@ -16,6 +16,8 @@ Extended `sims/grid_ac24_double_root_pair_gate.cjs` to exhaust 254 positions×29
 
 **Marked span finite-field exponent:** Both unique three-red-rune markings start at original zero-based rune offset119 (one-based position120), and p3's primitive GF29² generator u satisfies u^120=7, u^(3*120)=u^360=24, exactly p39's double root and oversized p54 Ac index24. Added to source-root SFT and consolidated report/results. The one-based count and product of position by length are retrospective choices; no plaintext.
 
+**Inverse mark-position prediction:** discrete log of independently p39/p54 source-selected Ac24 under p3 generator u is360. Since both red spans length3, the candidate relation u^(3*k)=24 uniquely yields one-based position k=120 mod280 within each original 217-/240-rune page, exactly matching both offsets119. This is a concrete visual placement prediction from content, but the product/exponent grammar was selected after source inspection. Revised SFT/report/README in same commit.
+
 Priority: derive a creator-visible orientation/padding/state rule, especially considering the independently discovered p3 and p39 same-offset red three-rune polynomials, before fitting additional secret tables. No need to repeat this padding screen.
 
 ## Previous incarnations

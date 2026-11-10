@@ -135,6 +135,18 @@ function main() {
   assert.deepEqual(markPositionLengthRoot,[24,0]);
   assert.equal(markPositionLengthRoot[0],corpus.pages.find(p=>p.page===54).indices[0]);
   assert.equal(mod(7*7*7),24);
+  // Invert the source-derived positional relation, rather than choosing
+  // a mark location: log_u(24)=360, so k=360/length3=120 mod280.
+  // Both independently marked pages are shorter than280 runes.
+  const page3=corpus.pages.find(p=>p.page===3);
+  const page39=corpus.pages.find(p=>p.page===39);
+  assert(page3.indices.length<280 && page39.indices.length<280);
+  const periodOfCubicBase=840/3;
+  const predictedPosition=(360/markedSpanLength)%periodOfCubicBase;
+  assert.equal(periodOfCubicBase,280);
+  assert.equal(predictedPosition,120);
+  assert.equal(predictedPosition,triads[0].start+1);
+  assert.equal(predictedPosition,triads[1].start+1);
 
   assert.deepEqual([mod(a[2]*3+a[1]),mod(a[2]*8+a[0])],[0,0]);
 
@@ -213,6 +225,7 @@ function main() {
     editorialIndexOnlyEcho:"p3 trailing 2 * p39 opening 27 = p54",
     extensionRelation:"u²=3u+8",
     redLengthPositionExponent:"3 × (119+1) = 360; u^120 = 7; u^360 = 24 = oversized p54 Ac and p39 root",
+    inversePositionPrediction:"log_u(24)=360; 3*k=360 mod840 implies k=120 mod280, uniquely local on both source pages",
     crossSourcePoint:"p3 middle + p39 first * u = 23+27u",
     crossSourceCandidates:18,exactCrossSourceRootHits:crossHits,
     allNonzeroFieldRoots:roots,
