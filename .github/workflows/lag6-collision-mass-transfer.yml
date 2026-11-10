@@ -1,0 +1,28 @@
+name: LP2 lag-six collision mass-transfer identity
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate complete physical manuscript crosswalk
+        run: node sims/test_lp2_word_pages.cjs
+      - name: Derive no-additional-parameter lag-six collision balance
+        run: |
+          set -o pipefail
+          node sims/lag6_collision_mass_transfer.cjs | tee lag6-mass-transfer.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lp2-lag6-collision-mass-transfer
+          retention-days: 90
+          path: lag6-mass-transfer.json
