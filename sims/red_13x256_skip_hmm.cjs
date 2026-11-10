@@ -90,7 +90,7 @@ for(const [name,states] of [["pre",pre],["post",post]]){
 const sourcePad=pad(pre);
 const positive=encryptSoft(clear,sourcePad,1);
 const recovered=decode(positive.ciphertext,sourcePad,1,WIDTH);
-const wrong=decode(positive.ciphertext,pad(pre,1),1,WIDTH);
+const wrongGridPad=Array.from({length:SIZE+1024},(_,i)=>\n  mod(bytes[255-pre[i%256]]));\nconst wrong=decode(positive.ciphertext,wrongGridPad,1,WIDTH);
 const correct=recovered.decoded.filter((x,i)=>x===clear[i]).length;
 const wrongCorrect=wrong.decoded.filter((x,i)=>x===clear[i]).length;
 assert.ok(correct>0.9*SIZE,"True-source planted decoder failed calibration");
@@ -101,7 +101,7 @@ const result={sourceEvents:events.length,sourceRedRunes:events.filter(e=>!e.mark
   originalWindow:[0,SIZE],beamWidth:WIDTH,
   sourceNativeControl:{length:SIZE,actualRejected:positive.rejected,
     actualClock:positive.drawn,inferredSkipped:recovered.skips,
-    matchedGP:correct,wrongPhaseMatchedGP:wrongCorrect,
-    trueScore:recovered.meanScore,wrongPhaseScore:wrong.meanScore},
+    matchedGP:correct,wrongGridMatchedGP:wrongCorrect,
+    trueScore:recovered.meanScore,wrongGridScore:wrong.meanScore},
   original:outcomes};
 console.log(JSON.stringify(result,null,2));
