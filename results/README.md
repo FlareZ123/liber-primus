@@ -4,6 +4,8 @@
 
 This entry point separates source facts, measured ciphertext properties, conditional exclusions, and prospective tests. Full methods, distributions, scripts, and failure cases remain in the linked supporting files. The original scans, [normalized ciphertext](../resources/liber-primus/lp2-corpus.json), [word/page parsing](../sims/lp2_word_pages.cjs), and [two-ink source annotation](../resources/liber-primus/lp2-ink-annotations.json) provide the input contract. Physical page numbers must not be confused with text-section indices.
 
+**Section-clock caveat:** the raw transcription's sixth $ marker falls at the end of physical p32 (global rune 7,960), while the separately ink-annotated later red heading on p33 begins at rune 8,051. A deterministic [dual-clock test](../workplace/lp2-section-clock-ambiguity.md) moves 91 runes and 23 words between two source sections without changing any of the 12,956 original ciphertext runes. Section-local cipher evidence must identify its boundary convention; neither clock independently determines an authentic cipher reset.
+
 ## 1. Reproducible source facts
 
 | Source evidence | Established scope | Open question |
