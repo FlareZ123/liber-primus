@@ -61,7 +61,7 @@ def read_rand_digits(source: Path) -> tuple[np.ndarray, dict]:
     assert len(lines) == 20000, f"RAND expected 20,000 source rows, got {len(lines)}"
     rows = []
     for i, line in enumerate(lines):
-        assert int(line[:5]) == i + 1, (i, line[:10])
+        assert int(line[:5]) == i, (i, line[:10])
         section = "".join(ch for ch in line[8:] if "0" <= ch <= "9")
         assert len(section) == 50, (i, len(section), line[:15])
         rows.append(section)
