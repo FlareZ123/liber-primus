@@ -128,9 +128,25 @@ The final printed source result is:
 SUMMARY originals=58 RGB=35 grayscale=23 total_RGB_chroma_blocks=1181250 nonzero_RGB_chroma_blocks=10834 distant_blank_chroma_blocks=0 pixel_threshold=235 ink_halo_blocks=1 synthetic_positive=PASS
 ~~~
 
+## Quantized luminance in visually perfect white space
+
+The chroma-only blank-paper audit leaves a distinct possible carrier: **Y/luminance DCT edits whose decompressed pixels still look white**. A source-byte-independent, original-quantized-coefficient gate now resolves that narrower channel: [sims/jpeg_blank_luma_gate.c](../sims/jpeg_blank_luma_gate.c). It uses the original JPEG coefficient API (all 64 Y values in each 8×8 block) and, independently, decodes all 58 images into RGB. A background block is selected only if **every** pixel in its own block and its eight neighboring blocks decodes to exact RGB **(255,255,255)**. This stricter pure-white criterion keeps faint 235–254 artwork and antialiasing outside the claimed blank area.
+
+Across the full LP2 set, all 58 originals contain **7,830,000 Y blocks**, of which **5,982,409** pass this source-white 3×3-neighborhood selection. Their quantized DC coefficient has modal value **339** on every original page; there are **zero nonzero AC coefficients** among the selected blocks. Exactly **ten** selected blocks differ from DC339, and every difference is the same one-step decrement to **DC338**:
+
+| Original files | Top-left pixel x of anomaly blocks | Top-left pixel y | Repetition |
+| --- | --- | ---: | --- |
+| **20.jpg–24.jpg**, physical pp3–7 | **296 and 2096** | **1328** | Identical two mirrored positions, each of five pages |
+
+The two coordinates are reflected positions within the pages' already visibly repeated left/right line ornaments. Their exact repetition and constant one-unit delta are a strong constraint on a unique page-specific white-field payload. The ten coefficient differences are real, quantized but invisible after RGB clipping. They are retained as a source fact rather than silently discarded as a JPEG artifact or promoted to a cipher.
+
+For every image, the reproducer also creates an **in-memory single-AC-bit plant** in a previously clean white block and requires the detector to flag it. The source file itself is unmodified. The self-contained C SFT and [existing manual JPEG CI](https://github.com/FlareZ123/liber-primus/actions/workflows/jpeg-dct-bitpad-manual.yml) test all page geometries and explicit white-field invariants.
+
+**Interpretation:** A simple per-page stego channel that inserts nonmodal quantized luminance DC or any nonzero AC in otherwise *completely white* neighborhoods has no unexplained variable symbols in these 58 images. The two repeated-source exceptions remain potential shared-template information; this cannot rule out encoding inside inked blocks, low-contrast visible pixels, repeated global payloads, or a covert channel that modifies otherwise modal coefficients while preserving the final coefficient values. This is a source-exact finite observation, not plaintext recovery.
+
 ## Interpretation
 
-The DHT tables—including the non-ascending symbol order within some equal-code-length groups—are completely explained by the ordinary optimized-Huffman encoder applied to the original quantized coefficients. There is no residual per-page choice in the DHT ordering that supports an independent hidden message. The shared APP0/APP2 markers, stable per-mode DQT tables, and absence of additional APP/comment/trailing segments likewise provide no separate metadata channel.
+The byte-contiguous image scans and the white-field luminance/chroma gates have been tested separately. The DHT tables—including the non-ascending symbol order within some equal-code-length groups—are completely explained by the ordinary optimized-Huffman encoder applied to the original quantized coefficients. There is no residual per-page choice in the DHT ordering that supports an independent hidden message. The shared APP0/APP2 markers, stable per-mode DQT tables, and absence of additional APP/comment/trailing segments likewise provide no separate metadata channel.
 
 This is a bounded exclusion of a **DHT-symbol-order / extra-APP-metadata / trailing-payload** hypothesis and a limited negative for straightforward **JSteg-style AC-coefficient LSB** extraction across the 58 LP2 JPEGs. It does **not** exclude F5, keyed/permuted coefficient selection, matrix-encoded embedding, subtle pixel/color-channel modulation, or a different source-level interpretation of the visible artwork. The LP1 JPEG payloads therefore remain genuine evidence of container-level puzzle design, but they do not establish that LP2 repeats those particular mechanisms.
 
