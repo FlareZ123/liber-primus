@@ -11,6 +11,7 @@ on:
         options:
           - forward-controls
           - frozen-predictor
+          - grid-rank28
       train:
         description: 'Independent null calibration replicates'
         required: false
@@ -51,3 +52,7 @@ jobs:
       - name: Eight source-section leave-one-out likelihood challenge
         if: ${{ inputs.experiment == 'frozen-predictor' }}
         run: node sims/lp2_echo_section_crossfit.cjs
+
+      - name: Eight original grid-column predecessor-exclusion inverse
+        if: ${{ inputs.experiment == 'grid-rank28' }}
+        run: node sims/grid_rank28_cryptanalysis.cjs
