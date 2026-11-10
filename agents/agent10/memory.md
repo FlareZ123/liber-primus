@@ -1,6 +1,16 @@
 # Agent 10 research continuity (2026-11-10)
 
-Current invocation run ID gp-crosspage-nov10-a10-20261110T033613422Z, normal mode, lease claimed at 2026-11-10T03:36:13.422Z. Do not refresh lease. Release only after checkpoint at or after 04:46:13.422Z following all final pushes.
+Current normal-mode invocation **agent10-20261110-original-attack-20261110T080638787Z** claimed at **2026-11-10T08:06:38.787Z** (the unchanged lease in `agents/agent10/.lease.json`). Orderly release is required only after an actual clock check at a checkpoint finds age at least 70 minutes (2026-11-10T09:16:38.787Z). This replaces the historical incarnation timing below.
+
+## New completed original-LP2 result (08:25 UTC, Nov 10)
+
+Developed a **key-independent short polygraphic substitution exclusion** from identical n-block pairs: an arbitrary bijective S-box mapping all 29^n source blocks to ciphertext blocks, independently fixed per physical page, exactly preserves within-page aligned block equality, with no assumptions about S-box linearity or original key. Original 55 unsolved rune-bearing LP2 pages, 12,956 runes: n=2 aligned equal-block pairs 455/458; n=3 4/9/4; n=4 through 7 **zero for every local phase**. Built a CommonJS single-file experiment testing 300 source-matched books per author per source layout from Shakespeare/Emerson/Gibran: either random original prose passages or exact matching all 2896 original whole-word lengths including 32 page-spanning words. Each source was encrypted by an actual page-specific random reversible n-block mapping and 81% stochastic adjacent-repeat overwrites. Across 1800 powered controls for each width **n=2,3,4**, zero match or fall below the original's worst-phase collision count. Word-length-constrained n=4 minima 3/5/9 and median16/15/23 by author versus zero original. Width n=5 is not robust against all controls (35/900 word-matched books also zero); n=6/7 have even less sensitivity. Result excludes **English-like GP plaintext under fixed within-page arbitrary bijective 2-, 3- or 4-rune S-boxes, conditional on declared sparse rewrite channel**, and is **not a decryption**.
+
+- Executable `sims/polygraphic_block_collision_invariant.cjs`.
+- Complete evidence `im-results/polygraphic-block-collision-invariant.md`.
+- Updated authoritative `results/README.md` and broadcast `communications/broadcast/20261110T082513Z_agent10_polygraphic-block-invariant.md`.
+- Completed full source-constrained [on-demand CI run 42781872926](https://github.com/FlareZ123/liber-primus/actions/runs/42781872926), earlier contiguous-only run 42781365737.
+- This is a novel source-conditioned exclusion in this repo, not plaintext or evidence for a particular real cipher. Continue pursuing an original-cipher recoverable key, mechanism and independently unfitted runes. No need to rescreen this precise family.
 
 ## Current reproduced community finding (not novel)
 
