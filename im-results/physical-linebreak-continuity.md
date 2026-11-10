@@ -15,6 +15,25 @@ The physical printed-line wraps are encoded as `/` in `resources/transcriptions/
 
 The last two rows partition the across-line row. The four observed across-line equalities occur on physical pages 34 (two), 43 and 46. The two primary adjacency classes partition exactly the **12,901** within-page adjacent rune pairs.
 
+## Physical page-turn modular step: exploratory layout-specific constraint
+
+Across **54** joins between consecutive rune-bearing unsolved physical LP2 pages, define the signed GP index difference `d = (first(next page) - last(previous page)) mod 29`. The runeless p50 grid is skipped, so the p49→p51 join remains present. On the original source, **23/54** lie in the six consecutive residues **12–17**, compared with only **118/539** within-page physical-line-wrap joins and **2,609/12,362** joins on one printed line. The page-turn concentration is present when the page breaks a rune word (**14/32**) and when a word boundary intervenes (**9/22**). This is a retrospective observation with no demonstrated cipher interpretation.
+
+Whole-page permutation and original-neighborhood displacement controls test whether an actual join depends on the paired page endpoints:
+
+| Comparison | Source observation | Conditional null |
+| --- | --- | --- |
+| Scan all 377 circular arcs (lengths 2–14, start 0–28) on 54 original page joins, selecting the maximum standardized excess | Best **12–14**, **15/54** versus end/start marginal expectation **5.9802** | **681/30,000** shuffled whole-page orders reach the same scan maximum; add-one p = **682/30,001 = 0.02273** |
+| Train on physical pages **0–27**, freeze the 377-window winner; score disjoint physical pages **28–55**, omit p27→p28 | Train chooses **12–17** with **10/27** hits; test finds **12/26** (expected **5.8134**, z **2.9120**) | Permute page order separately in train/test, repeat selection on each permuted train: **279/60,000** test scores as large; p = **280/60,001 = 0.00467** |
+| Restrict whole-page permutations to both halves with no equal adjacent rune at their joins | Same source statistic | **61/10,770** eligible trials as extreme; p = **62/10,771 = 0.00576** |
+| Choose independent ±10-rune local displacements for the same 26 test page breaks | Fixed arc **12–17**: **12** hits, expected **5.4762** by 26 distinct local probabilities | Exact Poisson-binomial upper tail **0.0029801291** |
+
+Every whole-page permutation retains the page's actual rune order, glyph inventory, first/last rune identities, and typographic layout. The test's marginal expected counts use every possible end-to-start pairing of the pages in its split. The local displacement null keeps all original ciphertext positions and only randomizes which neighboring adjacency is treated as the boundary. Both comparisons therefore distinguish the physical joins from commonplace within-page adjacency effects.
+
+**Scope:** The arc 12–17 and split were investigated after inspecting the source, so even the page-disjoint test is only a conditional replication within a historically explored manuscript. Multiple conditional p-values cannot be multiplied to infer authorial intent. Glyph spacing, typography, or a latent page-state cipher could in principle contribute. Neither a 29-symbol page-reset key nor any original plaintext has been recovered. The frozen 12–17 criterion is suitable as a secondary test for future *source-derived* forward models.
+
+**Reproduce:** `node sims/page_turn_mod29_holdout.cjs` (CommonJS, Node.js 22) prints the original exact summary and asserts 30,000 full-source shuffles, 60,000 two-half shuffles, the no-repeat subset, and the exact independent local-displacement tail.
+
 ## Exact-structure permutation test
 
 For each physical LP2 page, retain **every whole printed line unchanged**, including its length and rune sequence, and draw a uniformly random permutation of its lines. Concatenate in shuffled physical-line order; count adjacent rune equalities at the newly joined line endpoints. Randomize pages independently. This null tests whether actual physical line order is special for the strong antirepetition signal while conditioning on original source glyphs and every intact line.
