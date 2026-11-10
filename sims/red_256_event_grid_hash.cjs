@@ -23,7 +23,14 @@ assert.ok(grid.every(x=>x.length===8));
 const stream=events();
 assert.equal(stream.length,256);
 
+const naturalRun32=Buffer.from(keyTables(stream).get("redRun32/forward"));
+const base60Alphabet="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx";
+const naturalRun32Base60=Buffer.from([...naturalRun32]
+  .map(v=>base60Alphabet[v]).join(""),"ascii");
 const variants={
+  runLengthRawBytes:naturalRun32,
+  runLengthBase60Ascii:naturalRun32Base60,
+  runLengthHexAscii:Buffer.from(naturalRun32.toString("hex"),"ascii"),
   gpIndex:Buffer.from(stream.map(e=>e.value)),
   gpPrime:Buffer.from(stream.map(e=>e.kind?corpus.prime[e.value]:13)),
   markerIndicator:Buffer.from(stream.map(e=>Number(e.kind===0))),
