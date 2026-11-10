@@ -73,7 +73,8 @@ function next(a,b,direction){
 function fit(c,p,before,direction){
   assert.equal(c.length,p.length);
   const seeds=[];
-  if(c.length<2)return seeds;
+  if(c.length<2)return allowed(c,p,0,before).flatMap(a=>
+    Array.from({length:29},(_,b)=>[a,b]));
   for(const first of allowed(c,p,0,before)){
     for(const second of allowed(c,p,1,before)){
       let a=first,b=second,possible=true;
