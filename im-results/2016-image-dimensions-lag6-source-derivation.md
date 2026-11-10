@@ -23,7 +23,7 @@ The dimension difference is six. In the 32×8 row-major grid, offset 51 is (row 
 T_6(x)=24-2x \pmod {29}.
 \]
 
-The ciphertext selects the negative orientation: the source-compatible map has **80 matches among 1,290** eligible six-back positions, versus **34/1,290** for \(24+2x\). This is a reproducible cross-artifact correspondence that could reconstruct the lag-six clue path if the disputed 2016 source is relevant; creator intent remains unestablished, and it is not a complete decryption.
+The ciphertext independently confirms the source-derived negative orientation: the map has **80 matches among 1,290** eligible six-back positions, versus **34/1,290** for \(24+2x\). This is a reproducible cross-artifact correspondence that could reconstruct the lag-six clue path if the disputed 2016 source is relevant; creator intent remains unestablished, and it is not a complete decryption.
 
 ## Source chain and exact arithmetic
 
