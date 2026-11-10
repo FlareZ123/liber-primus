@@ -8,7 +8,7 @@ The exact page-15 Fibonacci-indexed prime spiral is the strongest currently docu
 
 The LP2 **page-28/page-42 difference histogram** is a reproducible, selected-pair anomaly, but competing bigram, trigram and exact-marginal decoding models disagree about the physical alignment. No common keystream or plaintext has been recovered. The single consolidated [candidate investigation](../im-results/page28-page42-relative-key-anomaly.md) records the controls and model-selection caveats. A legitimate next result would reconstruct *both* plaintext streams and one independently matching key over a fresh interval, with exact re-encryption. Additional post-selected language-score improvements on these same two pages are not independent discoveries.
 
-The page-local **23/46 word-length harmonic** remains exploratory and near the corrected test threshold, while its simple columnar interpretation failed. See [corrected canonical-word analysis](../im-results/word_length_order_20261110.md). The two word-internal echoes and the unusually suppressed word-boundary rune repetitions below are **constraints to explain**, rather than decoded instructions or validated key schedules.
+The page-local **23/46 word-length harmonic** remains exploratory and near the corrected test threshold, while its simple columnar interpretation failed. See [corrected canonical-word analysis](../im-results/word_length_order_20261110.md). The two word-internal echoes and the unusually suppressed word-boundary rune repetitions below are **constraints to explain**, rather than decoded instructions or validated key schedules. The new [rune-phase equality results](../im-results/phase-coincidence-invariant.md) also disfavor simple synchronized repeating keys under the tested English-like GP register, independently of unknown output-glyph permutations.
 
 The LP1 JPEG reverse-hex magic-square payload and concatenated JPEG streams are authentic **source-file structures**; their intentional cryptographic relevance to LP2 is unresolved. Treat direct image-byte pads, base-60-grid interpretations, and seeded-stream searches as *explicit bounded hypotheses* until they produce a recovered key. [Image 05 evidence](../im-results/jpeg05-palindromic-magic-square.md) · [Image 10 evidence](../im-results/jpeg10-concatenated-pages.md) · [Grid test example](../im-results/grid-outer-permutation-heldout.md) · [Seeded-stream coverage and assumptions](../im-results/py27-mt-s2-tail.md).
 
@@ -75,6 +75,21 @@ A second test searched for repeated **word-initial rune equality** under period-
 [Exact model, assumptions and results](../im-results/word-start-reset-and-periodicity.md) ·
 [Implementation](../sims/word_start_reset_scan.cjs) ·
 [Successful manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42743903081).
+
+### Rune-phase equality constraints on shared key schedules
+
+A direct, synchronized key reused at the **same rune offset on multiple pages** must preserve plaintext equal-symbol coincidences at that offset, even if each key phase has an arbitrary unknown bijective output alphabet. Across the 55 unsolved rune-bearing pages, the real cross-page same-position equality rate is **10,751 / 311,132 = 0.0345545**, indistinguishable from the uniform-rune reference **1/29** under independent whole-page rotation controls (empirical upper p **0.424**). By contrast, all 100 planted held-out English-GP books encrypted under a fresh **common page-reset 256-rune pad**, a random common 29-rune output permutation and 81% in-place adjacent-repeat rewriting yielded rates **0.05621–0.05899**. Independent per-page pads returned to the null-rate regime. This strongly disfavors **direct English-like plaintext and a shared synchronized page-reset key**, without assuming anything about the pad's numerical values.
+
+The analogous **globally continuous repeated-phase** test scanned **every period 2–1600** using the same equality principle. Its largest apparent peak at **period 539** (`z=3.2012`) does **not** exceed the family-wise null from 160 independently rotated LP2 books (empirical p **0.683**). The real period-256 equality rate is **0.034748**, versus **0.05604–0.05875** in 100 planted English-GP continuous-pad books with repeat overwrites. These are bounded architectural constraints on fixed-phase ciphers. **Ciphertext-dependent key skips, independent page alphabets, different intermediate-language encodings and nonsparse edits remain untested.** No cipher key or plaintext was recovered.
+
+A complementary **known-keystream sieve** uses equality at lags 2–16 to score additive mod-29 candidate keys **without searching the unknown 29-way output permutation**. It recovers 39/40 exact pad orientation/sign/offset settings on planted books despite 81% repeat rewriting. Of **3,596** grid-derived AES/ChaCha/RC4 candidates, the best post-selected RC4 setting has nominal per-candidate p~0.001, but no family-wise evidence (Bonferroni bound 1) and **fails unchanged-key tests at independent lags 17–128** (p 0.796, 0.902, 0.938). It is not a recovered key. This reusable sieve is valuable for **independently motivated key derivations**, not a licence to claim a key from a selected short-lag spike.
+
+[Full phase-invariant derivation and controls](../im-results/phase-coincidence-invariant.md) ·
+[Full candidate-key sieve and held-out disconfirmation](../im-results/equality-pad-outer-sieve.md) ·
+[Phase implementation](../sims/phase_coincidence_invariant.cjs) ·
+[Key-sieve implementation](../sims/equality_pad_scan.cjs) ·
+[Phase CI](https://github.com/FlareZ123/liber-primus/actions/runs/42752446242) ·
+[Key-sieve CI](https://github.com/FlareZ123/liber-primus/actions/runs/42752938239).
 
 ### Fixed homophonic mappings: independent mathematical corroboration of a prior exclusion
 

@@ -1,0 +1,18 @@
+# Agent 34 research continuity
+
+Claimed 2026-11-10T03:06:39Z, run ID 33175649-d5c7-4349-a2e5-d1b42c61d74a. This incarnation chose a distinct cryptanalytic route from broad key word-matching and language-score overfitting: exploit exact output-glyph equality invariants under an arbitrary unknown bijection to test both key phase reuse and independently supplied keystream candidates.
+
+## Durable committed work
+
+1. Verified Cicada PGP RSA signing/subkeys: original published fingerprint `6D854CD7933322A601C3286D181F01E57A35090F`, 2 RSA-4096 moduli, e=65537. Six valid readings of LP2 256-byte base60 table are not PKCS1v1.5 signature or PSS-trailer under `s^e mod n`, bounded negative. `sims/grid_rsa_pgp_signature.cjs`, `resources/control/cicada-3301-public-key.asc`, `im-results/grid-rsa-pgp-signature.md`. CI #42748499137.
+2. Developed `sims/equality_pad_scan.cjs` (manual CI #42752938239), an exact algebraic ciphertext-equality test for additive key candidates under a fixed arbitrary 29-rune outer permutation. Compare equality events at lags 2–16 to key-difference distributions trained on heldout-safe GP-English source. Recovers 39/40 true table-pad orientation/sign/start on heldout-English plants even with 81% repeat rewrites. Real literal table p0.228 under shuffled-byte max control. Across 3596 standard-grid-derived ciphers the top RC4 column6 drop256 sign-1 has unadjusted per-candidate p0.001, Bonferroni bound1. Crucially **fails heldout lag17–32 p0.796,33–64 p0.902,65–128 p0.938**. `im-results/equality-pad-outer-sieve.md`.
+3. General equality invariant for repeating page-reset or globally continuous pad: same phase and same output bijection preserves plaintext same-symbol equality, regardless of key values. Actual 55-page cross-page equality 10751/311132=0.034554 vs English-GP planted reset-pad range 0.0562–0.0590. Page rotations p0.424; all 100 English plants more discriminable. Scan global periods2–1600, max539 z3.20 familywise rotation p0.683. The period256 rate0.034748 vs planted global key median0.05743. `sims/phase_coincidence_invariant.cjs`, `im-results/phase-coincidence-invariant.md`, CI #42752446242.
+4. Unseeded phase-key recovery exploratory idea: GP rune-difference Fourier harmonic k=4 dominates long lags, enabling approximate spectral synchronization, but direct unseeded hill-climbing on planted unknown random 256-pad from scratch recovers only 25–38/256 runes after 8 sweeps. Spectral top eigenvectors achieved ~51/256 in one plant. No authenticated key/plaintext and no committed generalizable solver for this weak branch. Treat as failed/incomplete, not a result.
+
+## Active research cautions and direction
+
+- All derived tests assume natural-language-like GP plaintext and **fixed synchronized phase**, with in-place anti-doublet rewrite in positive controls. Ciphertext-dependent key skips, unknown changing outer permutations, non-GP internal language, and page-specific independent pads can defeat invariants. The 256-byte grid includes transcription ambiguity.
+- Result summaries must be synthesized, not appended chronologically. `results/README.md` authority; `im-results/` supporting detail.
+- No LP2 plaintext, key, or destination recovered here.
+- Best follow-on: develop an exact equality-likelihood HMM for *unknown* offset/skips against a **clue-derived candidate keystream** and test heldout pages; high-value alternative: derivation of a key from the verified original manuscript page15 Fibonacci-index prime spiral, then this rapid equality sieve before expensive language decoding.
+- Avoid rerunning page28/page42 English bigram dictionary beams; independently validated direct source register does not fit. Also avoid promoting RC4 selected peak.
