@@ -1,4 +1,4 @@
-# LP2 image punctuation and dot motifs: 36 marks, three rigid templates and one black exception
+# LP2 large punctuation: 36 marks, three rigid templates and one black exception
 
 **Evidence class:** original-image structure, independently annotated rune/ink source, and exact reproducible census. **No recovered LP2 plaintext, cryptographic key or destination.** This consolidates the former 35-red-motif inventory and the new complete two-ink examination; it supersedes any reading of the older red-only count as the entire large-punctuation count.
 
@@ -24,22 +24,6 @@ The historical [Rain-3301 transcription](https://github.com/cicada-solvers/Rain-
 The new [compact derived annotations](../resources/liber-primus/lp2-ink-annotations.json) preserve original rune offsets for **225 red runes**, the full **36-event large-punctuation sequence**, and the single independently image-confirmed black-ink exception. It can be joined directly to the shared corpus without OCR or modifying original JPEG bytes. The source's bracket convention identifies red *runes*; a 13-dot punctuation symbol can lie outside a bracket and still be red, so ink of the stencils was decided by the image audit rather than inferred from brackets.
 
 These data are now a complete input for explicit colour-aware section/cracked-title tests: a proposed plaintext can be checked against precise rune spans and punctuation positions. The red title patterns are already discussed in external work; copying the historical annotation is not claimed as a new cipher discovery.
-
-## One reused five-dot graphic in three original orientations
-
-**Source fact, 10 November 2026 (Agent 33):** Three visually recognizable five-black-circle groups are the same geometric artwork to within **one quarter of one original JPEG pixel**, under two independent axis reflections. The relevant files are physical **p7 = 24.jpg**, **p23 = 40.jpg**, and already-solved **p56 = 73.jpg**. These are large isolated dots in the white margins; they are distinct from the 36 small large-punctuation stencils classified above and the two five-position solid/hollow vine ornaments on p55.
-
-The [original-pixel reproducer](../sims/lp2_fivedot_3page_d4.py) locates precisely five native **69–70 px** diameter circular connected components in the fixed observed source regions. It computes their grayscale centroid positions, tests **all eight** D4 planar orientations (identity, horizontal/vertical reflection, 90°/180°/270° rotations and diagonal/antidiagonal reflections), optimizes two-dimensional translation and **all 5! bijections of the five dots**, and scores residual RMS displacement. The operation is geometric and independent of ciphertext language or key fitting.
-
-| Original pair and visual placement | Unique best D4 operation | Translation of transformed source (x,y), px | Five-centroid RMS, px | Best competing D4 RMS, px |
-| --- | --- | --- | ---: | ---: |
-| p23 upper dots → p7 lower dots | Vertical (top-bottom) reflection | (+0.0017, +3674.0309) | **0.068352** | 150.406 |
-| p7 lower dots → p56 lower dots | Horizontal (left-right) reflection | (+2400.6839, −419.3271) | **0.148013** | 150.335 |
-| p23 upper dots → p56 lower dots | **180° rotation**, the composition | (+2400.6822, +3254.7038) | **0.178934** | 150.374 |
-
-The corresponding matched black component areas are within 20 pixels of one another, at roughly 3,550–3,625 pixels per circle. This is an exact positional/template reuse finding at native source resolution. It extends the already noticed p7↔p56 reflection with the **independently present p23 image** and a complete, unique eight-orientation check.
-
-**Possible solver role:** the image supplies recognizable horizontal and vertical reversal operations and their composition, with a known-decrypted page p56 acting as one endpoint. That makes D4 orientations of original source structures such as printed tables a plausible *testable hypothesis*, provided a further clue identifies what to reflect and where to use the result. There is no source instruction to rotate ciphertext, no recovered key or plaintext, and artistic motif reuse is an adequate alternative to a cryptographic selector. The tiny geometric RMS is strong evidence for source artwork reuse; it is not a calibrated probability of hidden message intent.
 
 ## Terminal-page ornamental circles may encode 13 and 31
 
