@@ -51,6 +51,24 @@ assert.equal(N%179n**2n,0n);
 assert.notEqual(N%179n**3n,0n);
 assert.equal(R%179n,0n);
 assert.notEqual(R%179n**2n,0n);
+// Literal base29 inverse of the exact p53 red factor, with no free key.
+let quotient=R/179n;
+const quotientDigits=[];
+while(quotient>0n){quotientDigits.unshift(Number(quotient%29n));quotient/=29n;}
+assert.equal(quotientDigits.length,50);
+assert.equal(asInteger(quotientDigits,29)*179n,R);
+const knownPrimeOffsets=[];
+for(const startPrimeOrdinal of [1,41,53])for(const sign of [-1,1])
+  for(const skipF of [false,true]){
+    let ordinal=startPrimeOrdinal;
+    const decoded=quotientDigits.map(c=>{
+      if(skipF&&c===0)return c;
+      return ((c+sign*(primeAt(ordinal++)-1))%29+29)%29;
+    });
+    knownPrimeOffsets.push({startPrimeOrdinal,sign,skipF,
+      runePrefix:decoded.slice(0,48).map(i=>corpus.translit[i]).join("")});
+  }
+assert.equal(knownPrimeOffsets.length,12);
 const altAlphabet=alpha.replace("f","");
 assert.equal(altAlphabet.length,59);
 const altBytes=tokens.map(t=>59*altAlphabet.indexOf(t[0])+altAlphabet.indexOf(t[1]));
@@ -123,7 +141,10 @@ console.log(JSON.stringify({
   table:{bytes:bytes.length,NdivisibleByPrimeSquare:true,NdivisibleByPrimeCube:false,
     radix59OriginalTableDivisibleBy179:false},
   p53:{runes:page53.indices.length,redLength:red.length,
-    redNumberDivisibleBy179:true,redNumberDivisibleBy179Square:false},
+    redNumberDivisibleBy179:true,redNumberDivisibleBy179Square:false,
+    exact179Division:{quotientRunes:quotientDigits.length,
+      first50:quotientDigits.map(i=>corpus.translit[i]).join(""),
+      directPrimeTotientVariants:knownPrimeOffsets}},
   original:{runicLength:C.length,cipherIoC:ioc(C),candidateCount:variants.length,
     best:variants[0],worst:variants.at(-1)},
   independentPositive:{nativeGP:plant.length,exactRecovery:true,ioc:ioc(plant)},
