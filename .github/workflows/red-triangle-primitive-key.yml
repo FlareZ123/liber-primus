@@ -1,0 +1,12 @@
+name: LP2 source red triangle primitive-root key challenge
+on:
+  workflow_dispatch:
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/red_triangle_primitive_key.cjs
