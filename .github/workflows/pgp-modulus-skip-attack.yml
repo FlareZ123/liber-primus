@@ -1,8 +1,15 @@
 name: LP2 Cicada public-key modulus skip-aware key recovery
 on:
   workflow_dispatch:
+    inputs:
+      red_event_joint:
+        description: Run 256 red-event grid walk with exact hidden-skip inverse
+        type: boolean
+        required: false
+        default: false
 jobs:
   investigate:
+    if: ${{ !inputs.red_event_joint }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -11,3 +18,19 @@ jobs:
         with:
           node-version: '22'
       - run: node sims/pgp_modulus_skip_attack.cjs
+  red-event-joint:
+    if: ${{ inputs.red_event_joint }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/red_13x256_skip_hmm.cjs > red-event-skip-hmm-result.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: red-event-skip-hmm-result
+          path: red-event-skip-hmm-result.json
+          if-no-files-found: warn
