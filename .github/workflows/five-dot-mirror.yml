@@ -13,3 +13,16 @@ jobs:
         run: python sims/five_dot_mirror.py
       - name: Verify 58-page rune ink and all 36 large punctuation marks
         run: python sims/lp2_ink_annotation_audit.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test all GIMP row seeds with independent plaintext plants
+        run: |
+          set -o pipefail
+          node sims/gimp_dissolve_all_row_seed_inversion.cjs | tee gimp-dissolve-all-row-seeds.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gimp-dissolve-all-row-seeds
+          retention-days: 60
+          path: gimp-dissolve-all-row-seeds.json
