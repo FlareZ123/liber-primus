@@ -14,6 +14,8 @@ B(X)=27+5X+15X^2=15(X-24)^2\quad\text{over GF}(29).
 
 This red factor is already known to divide the table polynomial. The additional original-ciphertext finding is that **the complete physical p29 polynomial is also divisible by this exact marked factor**, with zero remainder. Its monic greatest common divisor with the unchanged table polynomial is **precisely** `[1,10,25]`, i.e. \((X+5)^2\). The shared root has multiplicity exactly two in both source objects.
 
+The marked p39 quadratic is the **only positive factor match in a complete census of all 18 source-annotated red spans** against all 55 original unsolved page polynomials and the unchanged table, reading each span in both original and reversed coefficient order. The other 17 red spans, including both nine-rune headings, divide none of these polynomials. This directly bounds the hypothesis that colored passages generally encode polynomial generator factors for the rest of LP2. It is also a look-elsewhere qualification: the matching triad was examined alongside 17 other visually marked candidates.
+
 The 55 rune-bearing unsolved LP2 page polynomials have \(P_p(24)=0\) on exactly physical **pp10,11,29,36**; only **p29** also has \(P'_p(24)=0\). Both p10 and p11 are the facing original pages displaying the two halves of a tree illustration. Their common *single* root is a source fact; the illustration does not instruct GF29 evaluation. Page p29 itself has no visible colored heading selecting this arithmetic.
 
 ## Candidate payloads and a matched conditional check
