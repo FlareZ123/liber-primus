@@ -13,3 +13,5 @@ jobs:
           node-version: '22'
       - name: Original LP2 and planted page-reset inverse
         run: node sims/clue_square_matrix_stream.cjs
+      - name: Recover original-source GP crib keys from hidden four-dimensional matrix state
+        run: node sims/source_native_4d_matrix_crib_attack.cjs
