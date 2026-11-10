@@ -344,6 +344,96 @@ function controls(draws=3000){
     plantedExamples,motifs:motifSummary};
 }
 
+/**
+ * Exhaustive offset equality after every observed zero step. If a reusable
+ * additive 28-phase pad RESTARTS at every transparent EA, then same-distance
+ * log15 ciphertext steps have equal values iff underlying non-EA GP source
+ * runes do, without needing to know any pad digits. The first 28 offsets
+ * provide 85 source intervals after 86 original within-page doublets.
+ *
+ * @param {number[][]} cipher
+ * @param {number} window
+ */
+function markerResetStatistic(cipher,window=28){
+  const bins=Array.from({length:window},()=>new Uint16Array(28));
+  let intervals=0;
+  for(const page of cipher){
+    let after=false,offset=0,active=false;
+    for(let i=1;i<page.length;i++){
+      const difference=mod(page[i]-page[i-1]);
+      if(difference===0){
+        if(active)intervals++;
+        active=false;after=true;offset=0;
+      }else if(after){
+        active=true;
+        if(offset<window)bins[offset][logs[difference]]++;
+        offset++;
+      }
+    }
+    if(active)intervals++;
+  }
+  let pairs=0,hits=0;
+  for(const h of bins){
+    let n=0;
+    for(const count of h){
+      n+=count;
+      hits+=count*(count-1)/2;
+    }
+    pairs+=n*(n-1)/2;
+  }
+  return {intervals,window,hits,pairs,equalityRate:hits/pairs};
+}
+
+/**
+ * Test the precise new synchronized-after-EA key class against exact genuine
+ * solved-Cicada GP source plaintext, with independently rotating source-word
+ * boundaries, independently chosen secret 256-value pads each experiment,
+ * and a pad phase *reset at each source EA within each physical page*.
+ * Plants decode perfectly even though the equality test never sees the key.
+ */
+function markerResetControl(draws=60){
+  const random=rng(0x15ea3301),original=markerResetStatistic(pages);
+  assert.equal(original.intervals,85);
+  assert.equal(original.hits,2748);
+  assert.equal(original.pairs,76880);
+  const planted=[];
+  let exactRecovered=0,belowOrEqualOriginal=0;
+  for(let rep=0;rep<draws;rep++){
+    const plain=samplePlain(random);
+    const sharedPad=Array.from({length:256},()=>random()%28);
+    const keyed=plain.map(page=>{
+      let phase=0;
+      return page.map((v,i)=>{
+        if(i===0)return random()%29;
+        if(v===EA){phase=0;return 0;}
+        return sharedPad[(phase++)%sharedPad.length];
+      });
+    });
+    const cipher=encrypt(plain,keyed);
+    const decoded=decrypt(cipher,keyed);
+    assert.deepEqual(decoded,plain);
+    exactRecovered+=N;
+    const score=markerResetStatistic(cipher);
+    assert.ok(score.equalityRate>.05,
+      'source-native true reset key must be detectable blind');
+    planted.push(score.equalityRate);
+    belowOrEqualOriginal+=Number(
+      score.equalityRate<=original.equalityRate);
+  }
+  planted.sort((a,b)=>a-b);
+  return {assumption:'same arbitrary 256-value F28 additive pad restarts '+
+    'at every EA/zero-step; original 55 page boundaries preserved',
+    uniformReference:1/28,original,positive:{draws,
+      exactPlaintextSymbolsRecovered:exactRecovered,
+      equalityRateMin:planted[0],
+      equalityRateMedian:planted[Math.floor(draws/2)],
+      equalityRateMax:planted[draws-1],
+      controlsAtOrBelowOriginal:belowOrEqualOriginal},
+    limitation:'Bounded keyless rejection of a single shared post-EA '+
+      'phase reset; independent per-interval pad, state evolution, '+
+      'or unknown intermediate language remain open.'};
+}
+
 function main(){
   const originalLogStep=new Uint16Array(28);
   for(const p of pages)for(let j=1;j<p.length;j++){
@@ -373,6 +463,7 @@ function main(){
     },
     fixedMarkerNull:rotationNull(),
     finiteSolvedSourceTransparentRuneRanking:nativeSymbolRanking(),
+    postEAResetPhaseInvariant:markerResetControl(),
     nativeLosslessPositive:controls(),
     conditionalConsequence:'If the actual cipher is exactly this 29-rune '+
       'zero-step-EA transducer, 86 source GP EA rune identities and '+
@@ -388,4 +479,4 @@ function main(){
 }
 if(require.main===module)main();
 module.exports={powers,logs,encrypt,decrypt,markerIndices,rotationNull,
-  samplePlain,controls,motifs,main};
+  samplePlain,controls,motifs,markerResetStatistic,markerResetControl,main};
