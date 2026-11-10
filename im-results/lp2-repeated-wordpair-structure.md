@@ -36,6 +36,24 @@ Full distribution of the *maximum* repeated pair length in the 20,000 shuffles: 
 
 The CI workflow `.github/workflows/lp2-repeated-wordpair-null.yml` ran successfully as [GitHub Actions run 42754138148](https://github.com/FlareZ123/liber-primus/actions/runs/42754138148).
 
+## Second independent null: source-like random cipher with exactly 86 suppressed-doublet exceptions
+
+The word-reordering null deliberately scrambles ciphertext word endpoints. A genuinely random cipher might instead preserve the observed low rate of equal adjacent runes. We therefore ran a different generator with the **actual eight sections, all 2,896 word-length slots, empirical 29-rune symbol frequencies (in expectation), and exactly 86 adjacent identical-rune pairs among 12,948 within-section eligible positions**. For each synthetic book, the positions of those 86 repeats were sampled uniformly without replacement, non-repeat positions were filled from the source's measured rune marginals conditional on differing from the preceding symbol, and the same *maximum duplicated two-word combined rune length* statistic was recomputed across all candidate bigrams.
+
+Thirty thousand deterministic books, RNG seed `0x3a19f23b`, gave the following empirical family-maximum null outcomes:
+
+| Test | Observed | Null replicate count at least as extreme | Plus-one upper-tail p |
+|---|---:|---:|---:|
+| Exact duplicated two-word phrase of total length ≥6 | 1 | **2 / 30,000** | **3/30,001 = 0.0000999967** |
+
+The null's maxima were at least length3 in 449 runs, at least length4 in 135, at least length5 in 34, and at least length6 in 2. Every synthetic book **exactly reproduced the observed 86 doublets**, ruling out the simplest concern that the unusual pairing is just the side effect of uniform random letters containing too many immediate repeats. The sampler matches marginal frequencies statistically, rather than fixing every glyph count exactly, and imposes no plaintext syntax or key schedule.
+
+Implementation: [`sims/lp2_repeated_wordpair_markov_null.cjs`](../sims/lp2_repeated_wordpair_markov_null.cjs), a separate generator reusing only the already fixed observable bigram statistic. It completed successfully in [GitHub Actions 42754988338](https://github.com/FlareZ123/liber-primus/actions/runs/42754988338).
+
+## Physical image association, descriptive only
+
+The first copy is on original page image [`resources/liber-primus/44.jpg`](../resources/liber-primus/44.jpg), headed by a **single wing illustration**. The final copy is on [`resources/liber-primus/72.jpg`](../resources/liber-primus/72.jpg), directly before a red dot ornament on the final line, above a large **winged-insect illustration** and pale branching tree. These are genuine source-image features and form an evocative visual parallel, but the pictures and repeated phrase were inspected after the sequence was found. This observation has no independently calibrated probability and establishes no decoded meaning.
+
 ## What this establishes and what it does not
 
 **Established:** There is a peculiar exact duplication of an adjacent 3-rune + 3-rune ciphertext word pair near a section opening and at the end of the cipher. Given these same visible words and lengths, random section-local ordering yields an equally long repeated adjacent word pair in only 4/20,000 simulations.
