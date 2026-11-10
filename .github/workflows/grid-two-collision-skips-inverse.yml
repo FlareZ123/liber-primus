@@ -1,0 +1,14 @@
+name: LP2 2-collision-keyskip exact Viterbi (manual)
+on:
+  workflow_dispatch:
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact 0/1/2-keyskip original LP2 Viterbi, plants and shuffled-grid controls
+        run: node sims/grid_two_collision_skips_inverse.cjs
