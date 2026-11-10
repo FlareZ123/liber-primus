@@ -18,3 +18,5 @@ jobs:
         run: node sims/ea_anchored_plain_feedback_inverse.cjs
       - name: Recover a second-order 28-ary key from EA-transparent original-ciphertext steps
         run: node sims/ea_field29_order2_key_recovery.cjs
+      - name: Exact contextual GP29 marker cipher source-key inversion and motif controls
+        run: node sims/contextual_marker29_reversible.cjs
