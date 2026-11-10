@@ -18,3 +18,5 @@ jobs:
         run: node sims/one_tap_exponent_feedback_search.cjs
       - name: Source-blind 2016-pair spectral feedback lag discovery
         run: node sims/spectral_two_lag_exponent_attack.cjs
+      - name: Fixed original 256-byte source key through RC4 and reversible field decoder
+        run: node sims/grid_rc4_field_inverse.cjs
