@@ -1,0 +1,16 @@
+name: Word-affine cryptanalysis
+
+on:
+  workflow_dispatch:
+
+jobs:
+  interword-affine-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run calibrated interword affine scan
+        run: node sims/word_affine_probe.cjs
