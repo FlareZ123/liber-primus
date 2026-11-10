@@ -34,6 +34,15 @@ Any repeated key position with different prescribed values rejects the pair. The
 
 At period **19**, the three direct-carrier fits all require relative phase **7**: \`SPECTACULAR/IMPLANTATION\`, \`SUBCAPSULAR/IMPLANTATION\`, and \`SUBSCAPULAR/IMPLANTATION\`. The three reverse-carrier fits also require phase **7**: \`FREEMASONRY/DISINFECTANT\`, \`FREEMASONRY/DISINFECTION\`, and \`FREEMASONRY/DISINTEGRATE\`.
 
+**Chance-fit calibration, with no fitted parameters:** for independent uniform 11- and 12-rune GP ciphertext strings, the expected compatible dictionary-pair count for either carrier is
+
+\`\`\`text
+(1,611 × 884) × sum over δ=0..k−1 of 29^(−overlap(k,δ)),
+overlap(k,δ) = |{0,…,10} ∩ {(δ+j) mod k : j=0,…,11}|.
+\`\`\`
+
+For periods **18, 19, 20**, the exact expected counts **per carrier** are approximately **0.421550, 10.211420, 237.739110**, respectively (the formula is exact for k≥12, when individual anchors have no duplicated key slots). Thus seeing zero pairs up through period 18 and several pairs at period 19 is *quite unsurprising* under this independent-uniform model. The period threshold by itself is no statistical evidence that 19 was used historically.
+
 These six pairs are **dictionary matches, not historical decryptions**. The word \`FREEMASONRY\` has thematic appeal, and the \`FREEMASONRY/DISINFECTION\` key incidentally decodes the *preceding p3 two-rune word* to \`THE\` if printed hyphens consume no key positions. But it fails the remaining p3 and p27 heading words, and the passage \`THE FREEMASONRY [nonword]\` is no authenticated plaintext.
 
 ### Truly unfitted original red-heading challenge
