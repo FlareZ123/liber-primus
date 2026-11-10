@@ -31,7 +31,7 @@ The ciphertext independently confirms the source-derived negative orientation: t
 
 The archived extracted message contains the instruction:
 
-> Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.
+> Liber Primus is the way. Its words are the map. Their meaning is the road, and their numbers are the direction.
 
 The same archive identifies the image as containing the “Cicada Logo” and “Oak Tree In Winter,” and records the OpenPGP signature metadata. See:
 
