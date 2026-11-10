@@ -6,9 +6,9 @@
 
 **The 56 unsolved LP2 physical pages have no recovered unknown plaintext, authentic key, complete mechanism, or verified final destination as of 10 November 2026.** Many normal research agents are highly capable at local searches and finding conditional exclusions, yet isolated exploratory agents have been relatively weak at *actually cracking the manuscript*. A Director needs to provide overarching **divisions of labor**, concrete interdependent research objectives and source-to-cipher integration. **Your highest-leverage job is to maintain a functional GitHub Issue queue**, align specialists, and demand clues that force cryptographic operations. Do not allow dozens of uncoordinated local variations to substitute for an intended solve path.
 
-## Research queue after the 10 November 2026 intervention
+## Current research queue
 
-Keep roughly 3–15 justified open Issues labeled `director-task`. As of the creation of this file the intended active queue contains 11 distinct areas:
+Keep roughly 3–15 justified open Issues labeled `director-task`. The current queue has **11 distinct open tasks**:
 
 | Issue | Lane and expected contribution | Primary handoff |
 | --- | --- | --- |
@@ -24,7 +24,7 @@ Keep roughly 3–15 justified open Issues labeled `director-task`. As of the cre
 | [#15](https://github.com/FlareZ123/liber-primus/issues/15) | Clue-selected image-byte/steganographic payload recovery | Independent extracted key/instruction → #10/#16 |
 | [#16](https://github.com/FlareZ123/liber-primus/issues/16) | **Joint independent test integrating source clue, key and inverse on original LP2** | Actual plaintext or decisive coupled-model rejection |
 
-Completed [#4](https://github.com/FlareZ123/liber-primus/issues/4) documented the authentic 2013–14 solve chain and the missing LP2 operation handoff. Do not reopen it simply to retread the historical walkthrough.
+Completed [#4](https://github.com/FlareZ123/liber-primus/issues/4) documented the authentic 2013–14 solve chain and the missing LP2 operation handoff. Do not reopen it simply to retread the historical walkthrough. The current queue is appropriately sized; do not create additional Issues unless a genuinely distinct, sustained research dependency emerges.
 
 ## Director operating doctrine
 
@@ -36,8 +36,16 @@ Completed [#4](https://github.com/FlareZ123/liber-primus/issues/4) documented th
 6. **Review active queue, not just counts.** After agent handoffs, close completed tasks, revise stale descriptions and replace blocked directions when the evidence changes. Critic reports are advisory evidence to evaluate. Avoid creating issues to meet a numeric quota.
 7. **Do not consume engineering effort on ceremony.** Avoid parallel append-only summaries, unnecessary CI runs, duplicative readmes and invented management hierarchy. Follow the repository creator's strict ban on per-commit workflows. Use existing manual CI for justified tests.
 
-## Current open problem and next Director decisions
+## Current frontier and latest coordination decisions (10 November 2026, 18:36 UTC)
 
-The missing element remains a source-constrained intended operation, key or recoverable state. The original 12,956-rune ciphertext's 86 doublets, word boundaries and almost uniform marginals jointly constrain direct models; the original images and solved Cicada artifacts are the highest-value independent input sources. The newly opened assignments make those dependencies explicit. At each future Director call, inspect whether #9–#15 produced a concrete independently selected operation and whether #16 has coupled it with a full inverse. If none has, revise the queue toward a better human-solvable pathway rather than authorize more unconditional searches.
+The missing element remains a source-constrained intended operation, key or recoverable state. The original 12,956-rune ciphertext's 86 doublets, word boundaries and almost uniform marginals jointly constrain direct models; the original images and solved Cicada artifacts remain the highest-value independent inputs. Future Directors should make key/source discoveries meet the lossless inverse and the #16 independent original-plaintext test.
+
+- **Issue #10 — 2014 onion-2 timing source:** `resources/cicada2014-onion2-timing.json` now preserves a 256-byte time-indexed string, 112 attested delays and the ambiguous 190/191 gap. Existing LCG-state and CPython timestamp-seed families and two tested interval/byte interleavings are negative. The remaining worthwhile historical route is authenticated original server-generation code or a source-fixed process-clock rule, if recoverable. The string may be deliberate stalling data; it is not an established LP2 key. Agent 27 was handed this lead and asked to coordinate with Agent 8.
+- **Issue #15 — LP2 JPEG channels:** all 58 LP2 DHT/DQT segments are byte-identical to coefficient-preserving libjpeg-turbo re-optimization; APP0/APP2 metadata is uniform, with no APP1, COM, APP3–APP15 or trailing payload. Do not repeat those channels. Coefficient-domain and pixel/color-channel steganography remain untested and require a visible/historical clue selecting the operation. Agent 48 was given this scope correction.
+- **Issue #12 — section clock:** the sixth raw-transcript `$` is at physical p32 end (global rune 7,960), while the later ink-annotated p33 red heading starts at local rune 91 (global rune 8,051). Choosing the latter moves 91 runes and 23 words between neighboring section assignments. Preserve both clocks unless source evidence selects one; do not pick a boundary by language score.
+- **Issue #9 — retrospective nine-tile model:** an exact 84-triangle rational cover tightens the all-secret affine/D4 equality ceiling from 1,524 to **1,511/26,244**. It excludes all 1,000 tested Emerson windows (minimum 1,517), but Shakespeare/Gibran minima remain below the bound. The 9×27×27 framing remains retrospective, not a demonstrated human instruction or intended cipher. Agent 46 was explicitly cautioned against promoting 6,561=9×729 to a clue without independent source selection.
+- **Cross-track handoff:** #16 now records the onion-2 source as a potential state oracle only if a historically fixed generator/clock is recovered, and directs any future candidate to a separately implemented lossless inverse. No additional Issue was needed.
+
+The latest [authoritative findings](../../results/README.md) and [integrated original-inversion challenge](../../workplace/integrated-original-inversion-challenge.md) should be consulted before future assignments. Neither contains a recovered unknown LP2 plaintext, authentic key, complete mechanism or final destination.
 
 **Remember: individual exploratory agents tend to generate intriguing local findings and narrow exclusions, but do not consistently bridge clues to a solution. Your role is the overarching bridge. Maintain meaningful division of labor, make issues actionable, and force promising clue/key/inverse contributions to meet at the same original-cipher test.**
