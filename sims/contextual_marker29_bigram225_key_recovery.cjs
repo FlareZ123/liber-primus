@@ -51,7 +51,7 @@ function table(cipher){
 function plaintext(lookup,keys,clock){
   const out=new Uint8Array(N);
   for(let i=0;i<N;i++)
-    out[i]=lookup[i][keys[(clock==="global"?i:pageLocal[i])%PERIOD]];
+    out[i]=lookup[i][keys[(clock==="global"?i:pageLocal[i])%keys.length]];
   return out;
 }
 /**
