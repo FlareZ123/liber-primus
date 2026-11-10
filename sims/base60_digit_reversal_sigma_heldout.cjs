@@ -94,14 +94,18 @@ const rng=seededRandom(0x33015379);
 const sigma=shuffledPermutation(Array.from({length:MOD},(_,i)=>i),rng);
 const inverse=Array.from({length:MOD},(_,c)=>sigma.indexOf(c));
 const nullRep=Number(process.env.LP2_BASE60_NULLS||"8");
-assert.ok(Number.isInteger(nullRep)&&nullRep>=0&&nullRep<=100);
+assert.ok(Number.isInteger(nullRep)&&nullRep>=0&&nullRep<=500);
 
 const result=[];
 for(const spec of [
   {name:"reversed-digits",mode:"digit-reversal",reverse:false,sign:1},
   {name:"reversed-digits-and-cells",mode:"digit-reversal",reverse:true,sign:1},
-  {name:"raw-512-digits",mode:"digit-stream",reverse:false,sign:1}
-]) {
+  {name:"raw-512-digits",mode:"digit-stream",reverse:false,sign:1},
+  {name:"reversed-digits-neg",mode:"digit-reversal",reverse:false,sign:-1},
+  {name:"reversed-digits-and-cells-neg",mode:"digit-reversal",reverse:true,sign:-1},
+  {name:"raw-512-digits-neg",mode:"digit-stream",reverse:false,sign:-1}
+].filter(item => !process.env.LP2_BASE60_VARIANT ||
+  item.name===process.env.LP2_BASE60_VARIANT)) {
   const cells=spec.reverse?CELLS.slice().reverse():CELLS;
   const symbols=keySymbols(cells,spec.mode);
   const keys=sectionKeys(symbols,spec.sign);
