@@ -137,6 +137,19 @@ function summary(arr){
     max:sorted[sorted.length-1],
     mean:arr.reduce((s,x)=>s+x,0)/arr.length};
 }
+/**
+ * Page-wise free block phase: adversarially choose a separate alignment
+ * on every physical page (the strongest reset interpretation).
+ * @param {number[][]} pages @param {number} width @param {"min"|"max"} kind
+ */
+function independentlySelectedPhase(pages,width,kind){
+  let pairs=0;
+  for(const p of pages){
+    const possible=Array.from({length:width},(_,phase)=>collisions([p],width,phase));
+    pairs+=kind==="min"?Math.min(...possible):Math.max(...possible);
+  }
+  return pairs;
+}
 function main(){
   const doc=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
   const pages=doc.pages.filter(p=>p.status==="unsolved"&&p.indices.length)
@@ -155,18 +168,22 @@ function main(){
   const widths=[2,3,4,5,6,7];
   const original=Object.fromEntries(widths.map(w=>[w,
     Array.from({length:w},(_,phase)=>collisions(pages,w,phase))]));
+  const original_pagewise_free=Object.fromEntries(widths.map(w=>[w,
+    {min:independentlySelectedPhase(pages,w,"min"),
+     max:independentlySelectedPhase(pages,w,"max")}]));
   const all=[];
   for(const [sourceNumber,src] of authors.entries()){
     assert.ok(src.runes.length>20000);
     for(const mode of ["contiguous","word_length_matched"]){
     const rng=random(0x52d44a89^((sourceNumber+1)*0x9e3779b9)^(mode.length*0x45ac31ad));
-    const records=new Map(widths.map(w=>[w,{raw:[],plant:[],repeats:[],checks:0}]));
+    const records=new Map(widths.map(w=>[w,{raw:[],plant:[],repeats:[],checks:0,rawLocal:[],plantLocal:[]}]));
     for(let t=0;t<ROUNDS;t++){
       const plaintext=mode==="contiguous"
         ?drawPages(src.runes,pages,rng)
         :matchedWords(src.bank,wordLengths,pages,rng);
       for(const w of widths){
         const rec=records.get(w);
+        rec.rawLocal.push(independentlySelectedPhase(plaintext,w,"min"));
         rec.raw.push(Math.min(...Array.from(
           {length:w},(_,phase)=>collisions(plaintext,w,phase))));
         const phase=t%w;
@@ -177,6 +194,7 @@ function main(){
           rec.checks++;
         }
         rec.plant.push(collisions(enc.post,w,phase));
+        rec.plantLocal.push(independentlySelectedPhase(enc.post,w,"min"));
         rec.repeats.push(doublets(enc.post));
       }
     }
@@ -185,7 +203,11 @@ function main(){
       all.push({source:src.name,mode,source_runes:src.runes.length,width:w,
         original_by_phase:original[w],original_worst_phase:worst,
         raw_source_best_phase:summary(rec.raw),
+        raw_source_independent_page_phase:summary(rec.rawLocal),
         repaired_block_cipher:summary(rec.plant),
+        repaired_block_cipher_independent_page_phase:summary(rec.plantLocal),
+        count_page_phase_at_or_below_original_worst:
+          rec.plantLocal.filter(x=>x<=original_pagewise_free[w].max).length,
         repaired_adjacent_doublets:summary(rec.repeats),
         counts_at_or_below_original_worst:{
           raw:rec.raw.filter(x=>x<=worst).length,
@@ -198,6 +220,7 @@ function main(){
   console.log(JSON.stringify({
     hypothesis:"arbitrary per-page bijective block substitution of width 2..7",
     pages:pages.length,runes:12956,original_doublets:86,
+    original_independent_page_phase:original_pagewise_free,
     source_rounds_per_author:ROUNDS,
     control_rule:"source minima over every phase vs original maxima; planted at true phase",
     results:all
