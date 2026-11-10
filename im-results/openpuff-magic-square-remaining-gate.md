@@ -19,6 +19,56 @@ The matrices are invertible modulo 29 (determinants 10 and 2), so the negative r
 
 \`node sims/openpuff_magic_square_remaining_gate.cjs\`
 
+## Seven cuneiform pages: shared-column key-free obstruction
+
+**Independent source-visible hypothesis, 10 November 2026 (Agent 29).**
+The same 1033/3301 cuneiform drawing appears once at the bottom of p33 and at
+the top of p34–39. Beginning at p33's second red heading (local rune 91),
+these seven pages contain **1,589 original ciphertext runes = 7 × 227**.
+The repeated seven-page illustration and exact seven-row rectangle suggest
+asking whether a single 227-step key schedule or substitution map operates
+on seven parallel GP29 plaintext lanes.
+
+This candidate has a **key-independent** necessary condition. Under
+`C[row,j] = f_j(P[row,j])`, where each `f_j` is *any common bijection of all
+29 rune symbols* shared by the seven rows at column `j`, two ciphertext
+runes in a column are equal if and only if their plaintext runes are equal.
+The common bijection can change arbitrarily at every column, so this
+test is broader than a source-fixed additive keystream and makes no
+secret-key or cipher-parameter assumption.
+
+Two coordinate systems are independently motivated by the source:
+
+| Source-defined seven-lane reading | Original equality pairs | Same-format solved-English reference samples |
+| --- | ---: | --- |
+| Seven contiguous 227-rune rows formed from the entire p33–39 body | **159/4,767 (3.3354%)** | Shakespeare: minimum **239**, median **291** in 2,002 windows; Emerson: minimum **245**, median **303** in 2,007 windows |
+| Seven physical page starts, 123 shared columns (page lengths after heading 123, 261, 271, 238, 228, 228, 240) | **93/2,583 (3.6005%)** | Shakespeare: minimum **119**, median **158**; Emerson: minimum **117**, median **165**, using the *same seven source-page offsets* |
+
+For each reference the program converts a pinned literary work to the canonical
+29-character GP transliteration, discards nonrunes, samples approximately 2,000
+deterministic consecutive 1,589-rune windows, and computes exactly the same
+seven-row columnwise equality statistic. **No sampled English control** has an
+equality count as low as the original in either layout. Windows overlap
+substantially; the minima constitute a transparent bounded comparison, **not**
+independent-trial probabilities. A true 1,589-rune GP-English plant passed
+exact reversible columnwise-permutation encryption/decryption and preserves
+all its cross-row equality counts.
+
+The result **excludes a directly legible, native-GP-English plaintext under
+one arbitrary common-per-column 29-symbol substitution**, in either of
+the two motivated seven-lane arrangements, against the stated controls.
+It does not exclude separate keys per row, a source-defined different
+position pairing, an intermediate homophonic/non-GP register, or a later
+cryptographic layer. The seven-row count alone is retrospective and cannot
+select a secret key. This finite negative should discourage repeating
+permutation/one-time-pad searches that assume the seven cuneiform pages
+share column states. It recovers **no original plaintext or key**.
+
+Reproduction: `node sims/lp2_cuneiform_sevenlane_shared_key_gate.cjs`.
+Inputs: the original `lp2-corpus.json`, `shakespeare_first300k.txt`, and
+`emerson_essays_2944.txt` controls. The input is original source text and
+the only fitted quantity is the layout proposed before examining matches.
+
 ## Historical interpretation
 
 The archived OpenPuff procedure specifies OpenPuff 4.0.0, the carrier \`interconnected.mp3\`, 50% MP3 bit selection, and password **33011103**. The often-copied **33011033** is an alternate transcription, not the password in that procedure. The sixth-onion page then explicitly asks participants to submit the three magic squares and a Tor hidden-service upload endpoint. That is direct evidence for a submission/credential role; it is not an instruction to reuse the squares as an LP2 cipher key.
