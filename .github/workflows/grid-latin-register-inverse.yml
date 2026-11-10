@@ -11,6 +11,7 @@ on:
           - latin-original
           - anend-hash-grid-nonces
           - anend-hash-direct-gp28
+          - fragment-grid-des
 jobs:
   invert:
     runs-on: ubuntu-latest
@@ -29,3 +30,6 @@ jobs:
       - name: Derive SHAKE/HMAC direct stream from solved AN END digest and invert original GP29/GP28 runes
         if: ${{ inputs.suite == 'anend-hash-direct-gp28' }}
         run: node sims/anend_hash_direct_29stream_inverse.cjs
+      - name: Original 13-dot punctuation fragments paired to 32 eight-byte grid DES keys
+        if: ${{ inputs.suite == 'fragment-grid-des' }}
+        run: node sims/fragment_grid_des_inverse.cjs
