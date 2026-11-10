@@ -14,6 +14,7 @@ on:
           - fragment-grid-des
           - biaxial-section-fragment
           - final16-border-rank28
+          - fivedot-32row-bitmap
 jobs:
   invert:
     runs-on: ubuntu-latest
@@ -42,3 +43,7 @@ jobs:
       - name: Final sixteen decorated LP2 pages grid-AES128 source GP28 repeat-state inverse
         if: ${{ inputs.suite == 'final16-border-rank28' }}
         run: node sims/final16_border_grid_rank28_inverse.cjs
+
+      - name: Source-locked five-bit 13/31 row traversals for directly visible binary grid image
+        if: ${{ inputs.suite == 'fivedot-32row-bitmap' }}
+        run: node sims/lp2_grid_bitplane_source_order_sft.cjs

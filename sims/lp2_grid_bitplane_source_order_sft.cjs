@@ -36,6 +36,18 @@ const deBruijn = [
 assert.deepEqual([...deBruijn].sort((a, b) => a - b),
   Array.from({length: 32}, (_, i) => i));
 const natural = Array.from({length: 32}, (_, i) => i);
+// Original five-dot left/right masks 01101_2 = 13, 11111_2 = 31.
+// The following two algebraic row orders use only those constants and
+// the printed table's exact 32 rows, with no plaintext-dependent tuning.
+// Both produce permutations of every row index once.
+const lcg32=[];
+for(let x=0,i=0;i<32;i++,x=(13*x+31)%32)lcg32.push(x);
+const primitive31=[0]; // Special zero endpoint.
+for(let x=1,i=0;i<30;i++,x=(13*x)%31)primitive31.push(x);
+primitive31.push(31); // Special all-ones endpoint.
+for(const [label,order] of [['lcg32',lcg32],['primitive31',primitive31]])
+  assert.deepEqual([...order].sort((a,b)=>a-b),natural,label);
+const orders = {natural, deBruijn, lcg32, primitive31};
 const corrected = original.map(row => row.slice());
 // Alternative five-cell image-audited table, without changing the canonical resource.
 for (const [index, value] of [[45, 81], [50, 21], [165, 47],
@@ -89,6 +101,9 @@ function screen(rows, trials = 30000) {
   const pairs = pairScores(rows);
   const raw = cycleScore(pairs, natural);
   const debruijn = cycleScore(pairs, deBruijn);
+  const byOrder=Object.fromEntries(Object.entries(orders)
+    .map(([name,order])=>[name,cycleScore(pairs,order)]));
+  const atLeast=Object.fromEntries(Object.keys(orders).map(name=>[name,0]));
   const next = randomUint32(0x3301);
   let atLeastRaw = 0, atLeastDeBruijn = 0, sum = 0, squares = 0;
   for (let trial = 0; trial < trials; trial++) {
@@ -102,6 +117,8 @@ function screen(rows, trials = 30000) {
     squares += nullScore * nullScore;
     atLeastRaw += Number(nullScore >= raw.best31);
     atLeastDeBruijn += Number(nullScore >= debruijn.best31);
+    for(const [name,score] of Object.entries(byOrder))
+      atLeast[name]+=Number(nullScore>=score.best31);
   }
   const mean = sum / trials;
   return {
@@ -111,7 +128,11 @@ function screen(rows, trials = 30000) {
     nullSd: Math.sqrt(squares / trials - mean * mean),
     rawCount: atLeastRaw, deBruijnCount: atLeastDeBruijn,
     rawTail: (atLeastRaw + 1) / (trials + 1),
-    deBruijnTail: (atLeastDeBruijn + 1) / (trials + 1)
+    deBruijnTail: (atLeastDeBruijn + 1) / (trials + 1),
+    fiveDotReadings:Object.fromEntries(Object.entries(byOrder)
+      .filter(([name])=>name==='lcg32'||name==='primitive31')
+      .map(([name,score])=>[name,{order:orders[name],...score,
+        count:atLeast[name],tail:(atLeast[name]+1)/(trials+1)}]))
   };
 }
 
