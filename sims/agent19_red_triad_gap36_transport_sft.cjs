@@ -63,6 +63,12 @@ assert.deepEqual([multiplier,intercept],[23,27]);
 for(let x=0;x<29;x++)assert.equal(f(x),repeat(inverseT,x,gap));
 assert.equal(red3[1],multiplier);
 assert.equal(red39[0],intercept);
+assert.equal(T(red3[0]),red39[0]);
+assert.equal(page3[119],page39[122]);
+assert.equal(f(page3[122]),page3[119]);
+assert.equal(f(8),8);
+for(let x=0;x<29;x++)assert.equal(repeat(f,x,7),x);
+assert.equal(new Set(Array.from({length:7},(_,i)=>repeat(f,12,i))).size,7);
 
 // The first marked target rune encodes the affine intercept, so the first
 // marked input is not itself expected to match the transport.
@@ -119,7 +125,9 @@ console.log(JSON.stringify({
   classification:"Exact three-rune local source transport; no recovered plaintext or generalized page decryption",
   source:"Canonical unsolved LP2 original physical pages with red spans and GP29 rune ordinals",
   priorT6:"T(x)=(24-2x) mod29",pageSeparation:gap,
-  fixedReverseMap:{steps:gap,multiplier,intercept},
+  fixedReverseMap:{steps:gap,multiplier,intercept,order:7,fixedRune:8},
+  sourceCycleClosure:{p3FirstRed:page3[119],p39FirstBlack:page39[122],
+    p3FirstBlack:page3[122],returnsToRedFirst:f(page3[122])===page3[119]},
   markedTriples:{page3:red3,page39:red39},
   visualGrammar:"Both p3 and p39 have 13-dot marker, a three-red-rune unit, a period, and a black word starting at offset122",
   firstMarkedSymbolMapsByOneT6Step:T(red3[0])===red39[0],
