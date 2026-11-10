@@ -28,6 +28,14 @@ const {toGematria,xorshift}=require('./previous_cipher_sbox_invariant.cjs');
 const ROOT=path.resolve(__dirname,'..'),MOD=29,RADIX=28;
 const data=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/liber-primus/lp2-corpus.json'),'utf8'));
 const grid=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/liber-primus/lp2-grid-256.json'),'utf8'));
+const ANEND=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/cicada2014-archive-hash-manifest.json'),'utf8')).targetHex;
+assert.match(ANEND,/^[0-9a-f]{128}$/i);
+const IV_MODE=process.env.LP2_FIELD_IV||'zero';
+assert.ok(['zero','anend'].includes(IV_MODE),'Unknown source-IV mode');
+const DIGEST=Buffer.from(ANEND,'hex');
+const NONCES=IV_MODE==='anend'?[{name:'anend-first16',bytes:DIGEST.subarray(0,16)},
+  {name:'anend-last16',bytes:DIGEST.subarray(48,64)}]:
+  [{name:'zero',bytes:Buffer.alloc(16)}];
 const raw=fs.readFileSync(path.join(ROOT,'resources/control/shakespeare_first300k.txt'),'utf8');
 const page=data.pages.filter(p=>p.page<=55&&p.indices.length);
 const flat=page.flatMap(p=>p.indices);
@@ -75,8 +83,8 @@ function originalKeys(bytes,layout){
 }
 
 /** @param {Buffer} key @param {string} algorithm @param {string} reducer */
-function keystream(key,algorithm,reducer){
-  const c=crypto.createCipheriv(algorithm,key,Buffer.alloc(16));
+function keystream(key,algorithm,reducer,nonce){
+  const c=crypto.createCipheriv(algorithm,key,nonce);
   const bytes=Buffer.concat([c.update(Buffer.alloc(MAXKEY)),c.final()]);
   return Uint8Array.from(bytes,b=>reducer==='mod'?b%RADIX:Math.floor(b*RADIX/256));
 }
@@ -119,11 +127,11 @@ function assignment(matrix){
 /** @param {number[]} bytes @returns {object} */
 function attack(bytes){
   const models=[];
-  for(const layout of LAYOUTS){
+  for(const nonce of NONCES)for(const layout of LAYOUTS){
     const keys=originalKeys(bytes,layout);
     for(const algorithm of ALGORITHMS){
       const stream=Object.fromEntries(REDUCERS.map(reducer=>[
-        reducer,keys.map(key=>keystream(key,algorithm,reducer))
+        reducer,keys.map(key=>keystream(key,algorithm,reducer,nonce.bytes))
       ]));
       for(const reducer of REDUCERS)for(const sign of SIGNS)for(const clock of CLOCKS){
         const matrix=OBS[clock].map(o=>
@@ -138,7 +146,7 @@ function attack(bytes){
           holdMean+=ioc(h,HOLD)/8;
           for(let x=0;x<RADIX;x++){pooled[x]+=h[x];trainPool[x]+=t[x];}
         }
-        models.push({layout,algorithm,reducer,sign,clock,
+        models.push({nonce:nonce.name,layout,algorithm,reducer,sign,clock,
           assignment:selected.chosen,trainMean:selected.score,
           heldoutMean:holdMean,
           heldoutPooled:ioc(pooled,8*HOLD),
@@ -163,7 +171,7 @@ function plant(){
   const inverse=new Uint8Array(RADIX);
   for(let p=0;p<RADIX;p++)inverse[sigma[p]]=p;
   const keys=originalKeys(grid.bytes,'columns').map(key=>
-    keystream(key,'aes-256-ctr','mod'));
+    keystream(key,'aes-256-ctr','mod',NONCES[0].bytes));
   const assigned=[4,0,7,2,6,1,5,3];
   const plain=[],cipher=[],recovered=[];
   for(let section=0;section<8;section++){
@@ -195,6 +203,7 @@ function plant(){
   OBS['skip-zero']=savedSkip;OBS['consume-zero']=savedConsume;
   const win=fitted.champion;
   const keyCorrect=win.assignment.filter((v,i)=>v===assigned[i]).length;
+  assert.equal(win.nonce,NONCES[0].name);
   assert.equal(win.layout,'columns');
   assert.equal(win.algorithm,'aes-256-ctr');
   assert.equal(win.reducer,'mod');
@@ -230,7 +239,10 @@ function main(){
       observedNonzeroBySection:OBS['skip-zero'].map(x=>x.length)},
     selection:{source:'eight printed 32-byte grid keys',
       trainPerSection:TRAIN,heldoutPerSection:HOLD,
-      globalSettings:32,assignment:'all 8! via exact subset DP'},
+      globalSettings:32*NONCES.length,
+      nonceSource:IV_MODE==='anend'?'Solved LP2 page56 SHA512 target, first or last 16 printed digest bytes':'historical zero-IV benchmark',
+      nonceChoices:NONCES.map(x=>x.name),
+      assignment:'all 8! via exact subset DP'},
     original,
     syntheticControl:control,
     shuffledGridFamilywise:{
