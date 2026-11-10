@@ -13,6 +13,17 @@ Reducing those two image dimensions against the manuscript's existing source str
 
 The contemporaneous poster also called the image “pi related.” If that is a hint to the prime-counting function \(\pi(n)\), then \(\pi(563)=103\) and \(\pi(569)=104\). Reducing those counts modulo the 29-symbol GP alphabet selects indices 16 and 17: **T (Tir)** and **B (Beorc)**. Their GP prime values are 59 and 61, differing by **2**; the grid's first selected byte, 59, is exactly T's Gematria value. In the Old English Rune Poem, Tir is a guiding sign that keeps its course, while Beorc describes a tree. That is a plausible semantic bridge to “numbers are the direction” and the oak-tree image, and an independent cross-check of the slope magnitude. The poster's “pi related” remark is community speculation, not an official instruction; interpreting it as prime-counting \(\pi\) remains a hypothesis. The rune-poem glosses are available in the [Anglo-Saxon Rune Poem translation](https://sacred-texts.com/bos/bos567.htm).
 
+This gives a compact S–T–B prime chain in the 29-rune alphabet:
+
+| Rune | GP index | Gematria prime | Role in the rule |
+|---|---:|---:|---|
+| S (Sigel) | 15 | 53 | \(53\bmod29=24\), the intercept |
+| T (Tir) | 16 | 59 | \(59-53=6\), the lag; also grid cell 51 |
+| B (Beorc) | 17 | 61 | \(61-59=2\), the slope magnitude |
+
+So the same three adjacent rune values give \(24\), \(6\), and \(2\): S supplies the residue used as intercept; S→T supplies the lag; T→B supplies the slope magnitude. The image dimensions independently repeat the two gaps (height minus width is 6; the selected grid values have ratio 2). The grid's first selected value, 59, is exactly the T rune's Gematria prime. This is a much tighter source chain than treating the constants as unrelated coincidences, although the prime-counting interpretation and the visually chosen 128-rune half remain hypotheses.
+
+
 The dimension difference is six. Together these source values specify the non-sign parameters of the already observed LP2 word-local relation:
 
 \[
