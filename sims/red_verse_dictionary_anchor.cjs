@@ -59,6 +59,8 @@ function lexicon(){
   for(const line of read('resources/control/english_wordfreq_textblob.txt').split(/\r?\n/u)){
     const m=/^([a-z]+)\s+(\d+)$/u.exec(line);
     if(!m)continue;
+    // The GP orthography has no standalone Q rune; QU is normalized to CW.
+    if(/q(?!u)/u.test(m[1]))continue;
     const indices=base.encode(m[1]);
     const key=indices.join(',');
     const old=words.get(key);
