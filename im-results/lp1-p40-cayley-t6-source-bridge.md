@@ -7,35 +7,35 @@
 Three independently printed features motivate a limited operation:
 
 1. LP1 original scan 05 has a 5×5 Gematria-prime magic square containing the word **MOBIUS**. Its symmetric opposite-corner 2×2 matrix, reduced modulo the 29-rune GP alphabet, is
-   [
+   \[
    A=\begin{pmatrix}272&151\\151&272\end{pmatrix}
      \equiv\begin{pmatrix}11&6\\6&11\end{pmatrix}\pmod{29}.
-   ]
+   \]
    The corresponding p16 corner matrix from the second LP1 square is projectively the sixth power: `M16 = 21 A^6 (mod29)`. This is an existing exact source relationship, not a new key.
 2. LP2 physical page 40 begins with the actual eight red runes `ᚠᚾᛗᚣᚷᛞᚫᚻ`. Their original GP prime weights sum to **435 = 29×15**, and their last rune **ᚻ** has zero-based GP index **8**. Both are read from `resources/liber-primus/lp2-ink-annotations.json` and `lp2-corpus.json`, without choosing ciphertext-dependent values.
 3. The canonical `MOBIUS` diagonalizing coordinate for this symmetric matrix is the projective Cayley transform `(x−1)/(x+1)`. Center it on the independently printed page-40 final-rune index 8:
-   [
+   \[
    h(x)=8+\frac{x-1}{x+1}=\frac{9x+7}{x+1},
    \quad
    H=\begin{pmatrix}9&7\\1&1\end{pmatrix}.
-   ]
+   \]
    Here the point `x=−1` maps to projective infinity; the identity is interpreted on the complete 30-point projective line `P¹(F29)`.
 
 ## Exact derived map, no fitted coefficient
 
 Over `F29`, the LP1 matrix satisfies `h(Ax)−8 = 2(h(x)−8)`. Applying it the **15** times specified by the LP2 red prime quotient gives `2^15 ≡ −2 (mod29)`, hence
 
-[
+\[
 \boxed{h(A^{15}x)=8-2(h(x)-8)=24-2h(x)\pmod{29}.}
-]
+\]
 
 The full matrix certificate is
 
-[
+\[
  A^{15}=\begin{pmatrix}23&18\\18&23\end{pmatrix},\qquad
  H A^{15} H^{-1}=\begin{pmatrix}5&27\\0&12\end{pmatrix}
  =12\begin{pmatrix}27&24\\0&1\end{pmatrix}\pmod{29}.
-]
+\]
 
 Thus the source-determined affine map is **`T(x)=27x+24=24−2x (mod29)`**. Its unique finite fixed point solves `3x=24`, yielding **8**, the *same p40 final red rune*. This is exactly the previously observed word-local six-back map, derived here from a separate earlier puzzle artifact. The source p05 `MOBIUS` prime-sum cell `226` also supplies a finite seed: `h(226 mod29)=21`. Starting at 21, repeated `T` visits **all 28 non-8 GP field symbols exactly once** and returns to 21; 8 is fixed.
 
