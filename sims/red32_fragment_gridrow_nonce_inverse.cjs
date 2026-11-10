@@ -61,7 +61,7 @@ function originalFragments() {
   assert.equal(Buffer.from(lengths).toString("hex"),"0d00100003000b00000e0c00090b00100013000a00080003003b090005000700");
   const stops=bounds.slice(1,29);
   assert.equal(stops[stops.length-1],12956);
-  assert.equal(stops.reduce((a,b)=>b-a,0),12956);
+  assert.equal(stops.reduce((sum,b,i)=>sum+b-(i?stops[i-1]:0),0),12956);
   return {lengths,bounds,positions};
 }
 const {lengths,bounds}=originalFragments();
@@ -116,7 +116,7 @@ function transform(input,pad,mode,encode) {
       if(mode.family==="add")next=mod(value+(encode?-1:1)*mode.sign*key,29);
       else if(prev<0)next=value;
       else if(encode)next=value===28?prev:mod(prev+1+mod(value+mode.sign*key,28),29);
-      else next=value===prev?28:mod(value-prev-1-mode.sign*key,29)%28;
+      else next=value===prev?28:mod(mod(value-prev-1,29)-mode.sign*key,28);
       result[i]=next;
       if(mode.family==="exclude")prev=encode?next:value;
     }
@@ -131,7 +131,7 @@ function normIoC(runes,a,b){
 }
 const trainStop=boundaries[18];assert.equal(trainStop,6546);
 const controls=corpus.pages.find(p=>p.page===57).indices;assert(controls.length===95);
-const plant=Array.from({length:C.length},(_,i)=>controls[i%controls.length]);
+const plant=Array.from({length:C.length},(_,i)=>i%157===27?28:controls[i%controls.length]);
 const variants=[];
 for(const [keyName,key] of keyOrders)
 for(const ivMode of nonceModes)
