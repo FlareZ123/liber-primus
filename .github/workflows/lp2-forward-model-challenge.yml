@@ -8,6 +8,11 @@ on:
         type: string
         required: true
         default: '250'
+      collision_trials:
+        description: Monte Carlo trials per collision-repair model
+        type: string
+        required: true
+        default: '2500'
 
 permissions:
   contents: read
@@ -29,9 +34,17 @@ jobs:
         run: |
           set -o pipefail
           node sims/lp2_forward_model_challenge.cjs "$REPS" | tee forward-model-results.json
+      - name: Test the collision-triggered lag-six repair on joint constraints
+        env:
+          TRIALS: ${{ inputs.collision_trials }}
+        run: |
+          set -o pipefail
+          node sims/lag6_collision_repair_joint.cjs "$TRIALS" | tee lag6-repair-results.json
       - name: Preserve joint inference dataset
         uses: actions/upload-artifact@v4
         with:
           name: lp2-forward-generator-joint-panel
           retention-days: 90
-          path: forward-model-results.json
+          path: |
+            forward-model-results.json
+            lag6-repair-results.json
