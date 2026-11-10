@@ -163,11 +163,45 @@ function sourceRowPlant() {
     artificialSourceViolatingRows:0};
 }
 
+/**
+ * Strongest fixed-predecessor result for a 2GP29-rune/one-byte transport:
+ * high digit <= 8, so only 9 possible next-symbol outputs per secret row.
+ * Allows every predecessor rune an arbitrary unknown 29-symbol permutation.
+ */
+function twoRuneBytePriorRows() {
+  const heads=new Set(pageRanges.map(x=>x.start));
+  const result=[];
+  for(const clock of ['global','page'])
+  for(let phase=0;phase<2;phase++)
+  for(const order of ['high-first','low-first']) {
+    const prefixes=[];
+    const ranges=clock==='global'?[{start:0,end:N}]:pageRanges;
+    for(const {start,end} of ranges)
+      for(let t=start+phase;t+1<end;t+=2)
+        prefixes.push(t+(order==='low-first'?1:0));
+    const observed=Array.from({length:29},()=>new Set());
+    for(const t of prefixes) {
+      if(t===0||heads.has(t))continue;
+      observed[C[t-1]].add(C[t]);
+    }
+    const sizes=observed.map(x=>x.size);
+    result.push({clock,phase,order,packets:prefixes.length,
+      minPreviousStateDistinct:Math.min(...sizes),
+      maxPreviousStateDistinct:Math.max(...sizes),
+      forbiddenPreviousStates:sizes.filter(x=>x>9).length});
+  }
+  assert.equal(result.length,8);
+  assert.ok(result.every(x=>x.forbiddenPreviousStates===29));
+  assert.ok(result.every(x=>x.minPreviousStateDistinct>=27));
+  return result;
+}
+
 if(require.main===module) {
   const source=derive(),plant=positivePlant();
   const rowBounds=frames.map(frame=>bookFixedPreviousCipherRows(C,frame));
   assert.ok(rowBounds.every(x=>x.violatingPreviousRuneStates.length>=27));
   const rowPlant=sourceRowPlant();
+  const byteOneRows=twoRuneBytePriorRows();
   const summary=source.map(x=>({
     clock:x.clock,phase:x.phase,order:x.order,
     packets:x.completePackets,
@@ -192,7 +226,10 @@ if(require.main===module) {
         rowsExceeding24:x.violatingPreviousRuneStates.length,
         maximumDistinctNextCipherGlyphs:x.maxDistinctNextRune}))},
     predecessorRowSyntheticControl:rowPlant,
+    twoRuneOneByteOriginalBookFixedPredecessorRows:{allEightFramesImpossible:byteOneRows.length,
+      all29PreviousRuneStatesImpossibleInEveryFrame:true,
+      original:byteOneRows},
     scope:'strict 5-rune per 3-byte packet frames, global or page reset, five phases, two digit orders. Allows each page its own unknown fixed alphabet. Excludes neither dynamically evolving alphabets nor other binary coding ratios, hidden marker deletion or entropy coding.'
   },null,2));
 }
-module.exports={derive,inspect,positivePlant,bookFixedPreviousCipherRows,sourceRowPlant};
+module.exports={derive,inspect,positivePlant,bookFixedPreviousCipherRows,sourceRowPlant,twoRuneBytePriorRows};
