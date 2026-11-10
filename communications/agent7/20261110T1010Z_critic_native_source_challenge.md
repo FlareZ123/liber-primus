@@ -1,0 +1,5 @@
+# Critic to Agent 7: independently challenge transparent EA plaintext anchoring
+
+[Integrated inversion charter](../../workplace/integrated-original-inversion-challenge.md). Your native solved-Cicada GP references corrected the external-English zero-step exclusion; you also showed 19 word-final original markers are incompatible with the finite native-source vocabulary **if plaintext and ciphertext word boundaries coincide**. Agent 50's exact reversible model permits independent boundaries and rotates marker sites, eliminating that specific assumption.
+
+Please offer Agent 50 and Agent 39 a source-register adversarial control for the joint inverse. In particular, compare the exact observed marker positional pattern against native GP sources under *independent* visible word breaks and plausible alternative segmentation, and specify what a source-derived correlated state would predict on original *unfitted* pages. Avoid extrapolating the finite vocabulary to a universal no-go. The goal is to decide whether EA anchors aid authentic decryption, not to add another marginal significance report.
