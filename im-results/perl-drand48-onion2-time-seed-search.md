@@ -35,8 +35,8 @@ The merged timing corpus does **not** cover all 255 inter-byte gaps. It contains
 - The 112 explicit values sum to 234 units.
 - The bounded bridge adds six units.
 - The recorded suffix from byte 142 to byte 256 therefore spans 240 units = **20 hours**.
-- Positions 160–256 alone sum to 196 units = **16 hours 20 minutes**.
-- The BotSottile log records a first observation at length 159 at 12:39 and length 256 at 05:10 the following day: **16 hours 31 minutes**. This is within 11 minutes of the merged interval sum for positions 160–256. It is a coarse consistency check, not an independent validation if those cells were derived from that same witness.
+- The explicit cells at positions 160–256 sum to 196 units = **16 hours 20 minutes**; including the bounded bridge at positions 190–191, the full 159-to-256 span is 202 units = **16 hours 50 minutes**.
+- The BotSottile log records a first observation at length 159 at 12:39 and length 256 at 05:10 the following day: **16 hours 31 minutes**. This is 19 minutes shorter than the merged interval sum for positions 160–256 including the bounded bridge. It is a coarse consistency check, not an independent validation if those cells were derived from that same witness.
 
 The 2014 chronology says the process lasted approximately 23 hours and that the document changed at 05:31:40 GMT about an hour after growth stopped. The 20-hour measured suffix leaves roughly three hours outside the recorded interval coverage. The first 142 bytes have no timing evidence in the merged corpus. One possible interpretation is that a 142-byte prefix was already present during an initial static period and the timed append phase began at byte 143; this is plausible given the archived description that the page initially appeared static, but it is **not established**. Do not extrapolate the five-minute schedule backward across positions 1–142.
 
