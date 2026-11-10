@@ -187,4 +187,4 @@ function main() {
 }
 
 if (require.main === module) main();
-module.exports = {generate, reduce, ioc, screen, allModels, plant, main};
+module.exports = {keySources, generate, reduce, ioc, screen, allModels, plant, main};
