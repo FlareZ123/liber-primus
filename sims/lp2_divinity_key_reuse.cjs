@@ -2,8 +2,9 @@
 
 /*
  * Test reuse of the authentic LP1 pages 03-04 Vigenere key on unsolved LP2.
- * The key and literal-F convention are taken from the repository's
- * authentic_lp1_p03_p04_vigenere_recovery.cjs.
+ * The key and 11 source-page literal-F exceptions come from the repository's
+ * authentic_lp1_p03_p04_vigenere_recovery.cjs. LP2 tests the generalization
+ * "every F is literal/non-consuming" against consuming every rune.
  *
  * Run from repository root:
  *   node sims/lp2_divinity_key_reuse.cjs
@@ -37,6 +38,7 @@ const LETTERS = {
 };
 
 assert(sourceScript.includes('const key = [23, 10, 1, 10, 9, 10, 16, 26]'));
+assert(/literalFs\\s*=\\s*\\[48,\\s*74,\\s*84,\\s*132,\\s*159,\\s*160,\\s*250,\\s*421,\\s*443,\\s*465,\\s*514\\]/.test(sourceScript));
 function sha256(s) {
   return crypto.createHash('sha256').update(s, 'utf8').digest('hex');
 }
