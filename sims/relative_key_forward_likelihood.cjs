@@ -172,6 +172,61 @@ function evaluate(a,b,model,scale=4,allShifts=true) {
 /** @param {number} seed */
 function rng(seed){let x=seed>>>0;return ()=>{x=(Math.imul(x,1664525)+1013904223)>>>0;return x/4294967296;};}
 
+/**
+ * Draw an English rune stream with the EXACT rune-word lengths and word-break
+ * flags of a target page, using only held-out Shakespeare word tokens.
+ * The final incomplete word is sampled from a longer token.
+ * @param {{xs:number[],start:boolean[],end:boolean[]}} mask
+ * @param {number[][]} heldout
+ * @param {()=>number} random
+ */
+function matchedStream(mask,heldout,random){
+  const byLength = Array.from({length:33},()=>[]);
+  for(const w of heldout) if(w.length<byLength.length)byLength[w.length].push(w);
+  const xs=[];
+  for(let i=0;i<mask.xs.length;){
+    assert.equal(mask.start[i],true);
+    let stop=i+1;
+    while(stop<mask.xs.length&&!mask.start[stop])stop++;
+    const length=stop-i;
+    let candidates=byLength[length];
+    if(!mask.end[stop-1]){
+      candidates=[];
+      for(let k=length+1;k<byLength.length;k++)candidates.push(...byLength[k]);
+    }
+    assert.ok(candidates.length>0,'No heldout word for rune length '+length);
+    const selected=candidates[Math.floor(random()*candidates.length)];
+    xs.push(...selected.slice(0,length));
+    i=stop;
+  }
+  assert.equal(xs.length,mask.xs.length);
+  return {...mask,xs};
+}
+
+/** @param {number[]} values */
+function describe(values) {
+  const sorted=values.slice().sort((a,b)=>a-b),n=sorted.length;
+  return {minimum:sorted[0],p05:sorted[Math.floor(.05*(n-1))],
+    median:sorted[Math.floor(.5*(n-1))],
+    p95:sorted[Math.floor(.95*(n-1))],maximum:sorted[n-1]};
+}
+
+/**
+ * @param {Array<{observed:{forward:number,iid:number,excess:number}}>} rows
+ * @param {{forward:number,iid:number,excess:number}} target
+ */
+function summarizeControls(rows,target){
+  const output={};
+  for(const stat of ['forward','iid','excess']){
+    const xs=rows.map(r=>r.observed[stat]);
+    output[stat]={...describe(xs),
+      lowerThanOrEqualTarget:xs.filter(x=>x<=target[stat]).length,
+      lowerTailP:(xs.filter(x=>x<=target[stat]).length+1)/(xs.length+1),
+      upperTailP:(xs.filter(x=>x>=target[stat]).length+1)/(xs.length+1)};
+  }
+  return output;
+}
+
 /** Run authentic target, held-out true-key plants and independent-key decoys. */
 function study(){
   const source=fs.readFileSync(path.join(ROOT,'resources/control/shakespeare_first300k.txt'),'utf8');
@@ -179,12 +234,11 @@ function study(){
   const model=train(training),pageA=lp2Page(28),pageB=lp2Page(42),rand=rng(3301);
   const target4=evaluate(pageA,pageB,model,4);
   const target1=evaluate(pageA,pageB,model,1);
-  const plants=[],decoys=[];
-  for(let trial=0;trial<12;trial++){
-    const p=stream(heldout.slice(trial*350,trial*350+400),269);
-    const q=stream(heldout.slice(5000+trial*350,5400+trial*350),269);
-    assert.equal(p.xs.length,269);assert.equal(q.xs.length,269);
-    const shared=p.xs.map(()=>Math.floor(rand()*M));
+  const plants=[],decoys=[],trials=250;
+  for(let trial=0;trial<trials;trial++){
+    const p=matchedStream(pageA,heldout,rand);
+    const q=matchedStream(pageB,heldout,rand);
+    const shared=q.xs.map(()=>Math.floor(rand()*M));
     const independent=q.xs.map(()=>Math.floor(rand()*M));
     const cp={...p,xs:p.xs.map((v,i)=>mod(4*v+shared[i]))};
     const cq={...q,xs:q.xs.map((v,i)=>mod(4*v+shared[i]))};
@@ -192,17 +246,15 @@ function study(){
     plants.push(evaluate(cp,cq,model,4,trial===0));
     decoys.push(evaluate(cp,randomQ,model,4,false));
   }
-  const summary=rows=>({
-    forward:rows.map(r=>r.observed.forward),iid:rows.map(r=>r.observed.iid),
-    excess:rows.map(r=>r.observed.excess)
-  });
   return {
     hypothesis:'same-position scaled reused-key English GP plaintext for LP2 pages 28/42',
     method:'exact 29-state marginalized bigram forward algorithm; independent word boundary masks; separately trained slot-conditioned iid baseline',
-    trainingWords:model.trainTokens,
+    trainingWords:model.trainTokens,holdoutWords:heldout.length,controlTrials:trials,
+    controlMasks:'EXACT observed rune-word lengths/start/end flags of pages 28 and 42',
     target4,target1,
-    plantedControls:summary(plants),plantedFirstShiftRank:plants[0].forwardRank,
-    independentKeyControls:summary(decoys),
+    plantedControls:summarizeControls(plants,target4.observed),
+    plantedFirstShiftRank:plants[0].forwardRank,
+    independentKeyControls:summarizeControls(decoys,target4.observed),
     interpretation:'The same pair and scale were selected before this test. A top within-pair rotation rank alone does not establish plaintext or shared key.'
   };
 }
