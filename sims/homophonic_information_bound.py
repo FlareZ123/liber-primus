@@ -26,6 +26,12 @@ SOURCES = {
         "data/canonical/liber_primus_translation.txt",
         "4a49f51284ecd3235d4e07023f1d0dc9f0d60fdc",
     ),
+    "LP1_RUNE_REFERENCE": (
+        "https://raw.githubusercontent.com/Wulfic/Cicada3301-Liber_Primus/"
+        "4f326e5585f8948b873bbc790f2a9083c5bdd6a2/"
+        "data/canonical/liber_primus_master.txt",
+        "ba553b1d43bc491a1bab66ebd02534249263ae90",
+    ),
 }
 
 
@@ -60,6 +66,18 @@ def parse_reference(text: str) -> list[list[int]]:
         raise ValueError("Unexpected length of the LP1 translation reference")
     return lines
 
+
+
+
+def parse_rune_reference(text: str) -> list[list[int]]:
+    """Previously readable pages of the 75-section scan-aligned rune master."""
+    order = {symbol: index for index, symbol in enumerate(RUNE_ORDER)}
+    scans = text.split("%")
+    selected_indices = (3, 8, 9, 10, 11, 14, 72)
+    result = [[order[c] for c in scans[i] if c in order] for i in selected_indices]
+    if sum(map(len, result)) != 1169:
+        raise ValueError("Unexpected solved runic reference count")
+    return result
 
 def information(pages: list[list[int]], alphabet_size: int) -> tuple[float, int, int]:
     """Plug-in mutual information in bits, computed from within-page pairs."""
