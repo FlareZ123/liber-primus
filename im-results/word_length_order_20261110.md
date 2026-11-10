@@ -6,7 +6,7 @@
 
 Across LP2 unsolved rune-bearing pages there are **12,956 runes, 2,896 canonical rune-words, 55 rune-bearing page segments**, and an additional runeless numeric-grid page 50. Physical page breaks (`%`) and print line breaks (`/`) **can bisect a rune word**.
 
-The original per-page parser returned 2,928 **fragments**, exceeding canonical word count by 32. The repaired span-aware parser `sims/lp2_word_pages.cjs` finds **34 words crossing page boundaries**, because a count of crossing words and the net fragment-count difference measure different things in this transcription. The parser retains both starting and ending page IDs, exposes full words assigned to their starting page, and also exposes only words wholly contained on one page. Its regression test `sims/test_lp2_word_pages.cjs` asserts rune count, canonical word count, old fragment count, page count and an artificial word split between two pages. Future tests must use these definitions explicitly.
+The original per-page parser returned 2,928 **fragments**, exceeding canonical word count by 32. The repaired span-aware parser `sims/lp2_word_pages.cjs` finds **32 words crossing page boundaries**, because a count of crossing words and the net fragment-count difference measure different things in this transcription. The parser retains both starting and ending page IDs, exposes full words assigned to their starting page, and also exposes only words wholly contained on one page. Its regression test `sims/test_lp2_word_pages.cjs` asserts rune count, canonical word count, old fragment count, page count and an artificial word split between two pages. Future tests must use these definitions explicitly.
 
 Input is the shared `resources/lp2-transcription.txt`; it agrees rune-for-rune with `resources/liber-primus/lp2-corpus.json`, which preserves indices but does not encode punctuation.
 
@@ -30,7 +30,7 @@ The first exploratory scan over lags 1–60 suggested lags **23** and **46**. An
 | Treatment of page-crossing words | Highest harmonic | z at 23 | z at 46 | Harmonic sum | Exploratory familywise p |
 | --- | --- | ---: | ---: | ---: | ---: |
 | Assign complete crossing word to its starting page (2,896 words) | 23,46 | +2.486 | +1.592 | 4.078 | 0.0445 |
-| Exclude 34 crossing words (2,862 contained-only words) | 23,46 | +2.678 | +1.641 | 4.319 | 0.0291 |
+| Exclude 32 crossing words (2,864 contained-only words) | 23,46 | +2.579 | +1.668 | 4.247 | 0.0277 |
 
 The **known fragment-parsing error inflated this statistic**: the obsolete 2,928-fragment analysis reported harmonic score 5.057 and familywise p=0.00454. Corrected values are weaker and near the statistical decision boundary. Both corrected projections nonetheless rank 23 first.
 
@@ -51,7 +51,7 @@ A mechanism, ideally suggested by a separate clue or image layout, should **pred
 - Canonical transcribed source: `resources/lp2-transcription.txt`, mirrored originally from the [rtkd/iddqd community lineage](https://github.com/krisyotam/cicada3301/blob/main/liber-primus/runes-text.txt); original scan artifacts are in `resources/liber-primus/`.
 - Span parser and regression: `sims/lp2_word_pages.cjs` and `sims/test_lp2_word_pages.cjs`.
 - Corrected deterministic experiment: `sims/word_length_order_probe.cjs`. It checks 2,896 canonical words, 12,956 runes, 55 page segments and 32 excess fragments.
-- [Successful corrected manual GitHub Actions run 42740084120](https://github.com/FlareZ123/liber-primus/actions/runs/42740084120), which ran the regression before the experiment. Prior fragment-only run [42738369401](https://github.com/FlareZ123/liber-primus/actions/runs/42738369401) is **superseded**.
+- [Successful corrected manual GitHub Actions run 42741745509](https://github.com/FlareZ123/liber-primus/actions/runs/42741745509), which ran the regression before the experiment. Prior fragment-only run [42738369401](https://github.com/FlareZ123/liber-primus/actions/runs/42738369401) is **superseded**.
 - Prior known plaintext reference: `resources/transcriptions/lp1_wulfic_canonical.txt`; Shakespeare control: `resources/control/shakespeare_first300k.txt` (original source and Git object hashes documented in `resources/transcriptions/README.md`).
 
 No recovered key, decrypted LP2 passage, or decoded message is claimed.
