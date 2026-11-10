@@ -6,6 +6,7 @@ All parsing uses the original JPEG marker bytes before entropy-coded data.
 
 from collections import defaultdict
 import hashlib
+import struct
 from pathlib import Path
 import sys
 import zipfile
@@ -57,6 +58,24 @@ def features(source: bytes) -> tuple[str, int, int, str | None]:
     tables = b"".join(bytes((i, p)) + raw for i, (p, raw) in sorted(qt.items()))
     q_digest = hashlib.sha256(tables).hexdigest()[:12]
     icc = b"".join(icc_chunks[k] for k in sorted(icc_chunks))
+    if icc:
+        count = int.from_bytes(icc[128:132], "big")
+        tags = [struct.unpack_from(">4sII", icc, 132 + i * 12) for i in range(count)]
+        assert len(icc) == 2576 and count == 10
+        assert [(off, size) for _, off, size in tags[:7]] == [
+            (252, 124), (376, 40), (416, 20), (436, 20),
+            (456, 20), (476, 20), (496, 20),
+        ]
+        assert tags[7:] == [
+            (b"rTRC", 516, 2060), (b"gTRC", 516, 2060), (b"bTRC", 516, 2060),
+        ]
+        assert icc[516:520] == b"curv" and icc[524:528] == bytes((0, 0, 4, 0))
+        curve = struct.unpack_from(">1024H", icc, 528)
+        for i, measured in enumerate(curve):
+            x = i / 1023
+            linear = x / 12.92 if x <= 0.04045 else ((x + 0.055) / 1.055) ** 2.4
+            assert measured == round(linear * 65535)
+
     return q_digest, components, len(icc), hashlib.sha256(icc).hexdigest()[:12] if icc else None
 
 
