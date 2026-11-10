@@ -76,7 +76,8 @@ const spans = ink.pages.flatMap(page => (page.red_spans || []).map(span => {
     return byRune.get(r);
   });
   const sum = indices.reduce((v, i) => v + corpus.prime[i], 0);
-  return {page: page.page, start: span.start, sum,
+  const indexSum = indices.reduce((v, i) => v + i, 0);
+  return {page: page.page, start: span.start, sum, indexSum,
     exponent: Math.floor(sum / p), remainder: sum % p,
     last: indices[indices.length - 1]};
 }));
@@ -84,6 +85,8 @@ const selected = spans.filter(s => s.page === 40 && s.start === 0);
 assert.equal(selected.length, 1);
 const title = selected[0];
 assert.equal(title.sum, 435);
+assert.equal(title.indexSum, 116);
+assert.equal(title.indexSum % p, 0);
 assert.equal(title.remainder, 0);
 assert.equal(title.exponent, 15);
 assert.equal(title.last, 8);
@@ -172,16 +175,21 @@ const divisible = spans.filter(s => s.remainder === 0).map(s => {
 });
 assert.deepEqual(divisible.map(x => [x.page, x.hits]),
   [[15, 58], [40, 80], [53, 64]]);
+const dualDivisible = spans.filter(s =>
+  s.remainder === 0 && s.indexSum % p === 0);
+assert.deepEqual(dualDivisible.map(s => s.page), [40]);
 const result = {
   classification: 'exact cross-artifact algebra and retrospective ciphertext link; no plaintext/key',
   source: 'LP1 p05/p16 squares, LP2 page-40 red heading, GP primes',
-  page40: {sum: title.sum, quotient: title.exponent, lastRuneIndex: fixed},
+  page40: {indexSum: title.indexSum, indexQuotient: title.indexSum / p,
+    primeSum: title.sum, primeQuotient: title.exponent, lastRuneIndex: fixed},
   matrices: {A, A6, A15, H, rawConjugate: raw, normalizedConjugate: normalized},
   identity: 'h(A^15 x) = (24-2*h(x)) mod29, all 30 projective states',
   mobiusSeedCycle: orbit,
   allOriginalLag6: {eligible, best: candidates[0], second: candidates[1],
     affineCandidates: candidates.length},
   allDivisibleRedSpans: divisible,
+  uniqueDouble29RedSpanPage: dualDivisible[0].page,
   qualification: 'Operators and clues were associated after T6 was known; ranking is descriptive, not an independent significance level.'
 };
 console.log(JSON.stringify(result, null, 2));
