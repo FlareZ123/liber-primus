@@ -77,10 +77,10 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install numeric dependencies
-        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 }}
         run: python -m pip install --disable-pip-version-check numpy numba
       - name: Scan original LP2 runes against all extracted pad-stream positions
-        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 }}
         env:
           OUTGUESS_NULL_REPLICATES: 64
         run: python sims/outguess_lp2_directpad.py
