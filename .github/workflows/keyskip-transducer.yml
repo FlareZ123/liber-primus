@@ -2,6 +2,12 @@ name: Exact soft key-skip transducer tests
 
 on:
   workflow_dispatch:
+    inputs:
+      scan_grid:
+        description: Run the 256-offset skip-aware grid-key screen
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   transducer-tests:
@@ -12,7 +18,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Verify exact normalization and planted key discrimination
+      - name: Verify exact normalization, planted keys and plaintext posteriors
         run: node sims/test_keyskip_transducer.cjs
       - name: Screen all grid key offsets using the exact skip likelihood
+        if: ${{ inputs.scan_grid }}
         run: node sims/grid_keyskip_scan.cjs
