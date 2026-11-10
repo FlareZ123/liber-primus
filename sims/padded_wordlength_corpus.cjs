@@ -86,7 +86,30 @@ const REPOS=[
   "Meditations_2680",
   "Prayers-and-Meditations_16984",
   "The-Ruins--Or-Meditation-on-the-Revolutions-of-Empires-and-the-Law-of-Nature_1397",
-  "A-New-Light-of-Alchymie-Taken-out-of-the-Fountaine-of-Nature-and-Manuall-Experience-Etc_61112"
+  "A-New-Light-of-Alchymie-Taken-out-of-the-Fountaine-of-Nature-and-Manuall-Experience-Etc_61112",
+  "The-Mesnevi_61724",
+  "The-Festival-of-Spring-from-the-Divan-of-Jelaleddin_57068",
+  "Jal-lu-d-d-n-R-m-The-Persian-Mystics_45159",
+  "The-Kabbalah-its-doctrines-development-and-literature_69243",
+  "The-Song-Celestial--Or-Bhagavad-G-t---from-the-Mah-bh-rata---13-Being-a-discourse-between-Arju__2388",
+  "The-Buddha-s-Path-of-VirtueA-Translation-of-the-Dhammapada_35185",
+  "Dhammapada-a-Collection-of-Verses--Being-One-of-the-Canonical-Books-of-the-Buddhists_2017",
+  "The-King-James-Bible_10900",
+  "The-Bible-Of-Bibles-Or-Twenty-Seven--Divine--Revelations-_43550",
+  "The-suppressed-Gospels-and-Epistles-of-the-original-New-Testament-of-Jesus-the-Christ-Complete_6516",
+  "All-Four-Gospels-for-Readers_6531",
+  "The-Rosicrucian-Mysteries--13-An-Elementary-Exposition-of-Their-Secret-Teachings_29855",
+  "Mysteries-of-the-Rosie-CrossOr-the-History-of-that-Curious-Sect-of-the-Middle-Ages-Known-as-t__35350",
+  "The-Secret-Doctrine-Vol-1-of-4_54824",
+  "The-Secret-Doctrine-Vol-2-of-4_54488",
+  "The-Secret-Doctrine-Third-Edition-Vol-3-of-4_56880",
+  "The-Secret-Doctrine-Vol-4-of-4-The-Synthesis-of-Science-Religion-and-Philosophy_61626",
+  "Lives-of-alchemystical-philosophers_68687",
+  "The-Mystery-and-Romance-of-Alchemy-and-Pharmacy_47004",
+  "The-Story-of-Alchemy-and-the-Beginnings-of-Chemistry_14218",
+  "The-Theosophical-Path-Illustrated-Monthly-Volume-1-July-December-1911_64121",
+  "Household-Gods--13-A-Comedy_14040",
+  "Tannhauser-b-A-Story-of-all-time_70261"
 ];
 const MAX_BOOKS=Number(process.env.MAX_BOOKS||REPOS.length);
 const MAX_BYTES=3000000;
