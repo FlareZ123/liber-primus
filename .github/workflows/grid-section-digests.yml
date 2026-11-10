@@ -1,0 +1,14 @@
+name: LP2 grid column digest matching (manual)
+on:
+  workflow_dispatch:
+jobs:
+  digest-screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Hash-commitment screen
+        run: node sims/grid_section_digest_screen.cjs
