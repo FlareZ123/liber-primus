@@ -1,0 +1,35 @@
+name: PHP MT section seedword inversion
+
+on:
+  workflow_dispatch:
+    inputs:
+      nulls:
+        description: Number of column-preserving grid nulls
+        type: string
+        required: true
+        default: '20'
+
+permissions:
+  contents: read
+
+jobs:
+  inversion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Guard canonical rune pages and number-table input
+        run: node sims/test_lp2_word_pages.cjs
+      - name: Search all 8! source-derived PHP MT assignments and locked tails
+        env:
+          NULLS: ${{ inputs.nulls }}
+        run: node sims/grid_mt_seedword_inversion.cjs "$NULLS" | tee grid-mt-seedword-result.json
+      - name: Preserve complete scientific outcome
+        uses: actions/upload-artifact@v4
+        with:
+          name: grid-mt-seedword-inversion
+          retention-days: 90
+          path: grid-mt-seedword-result.json
