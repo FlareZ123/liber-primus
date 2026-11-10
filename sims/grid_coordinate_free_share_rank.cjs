@@ -142,7 +142,9 @@ function run(){
     assert.deepEqual(perPage.map(x=>x.rank),[8,8,8]);
     assert.deepEqual(perPage.map(x=>x.rowDifferenceRank),[8,8,8]);
     assert.deepEqual(independentEightBlocks,[8,8,8,8]);
-    assert.equal(syntheticRaw.rank,7);
+    // Fixed per-column offsets can raise raw rank from 7 to 8;
+    // centering every row recovers the true coordinate-independent bound.
+    assert.equal(syntheticRaw.rank,8);
     assert.equal(syntheticCentered.rank,7);
     tests.push({
       field:field.name,
