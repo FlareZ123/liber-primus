@@ -77,6 +77,23 @@ The authentic original flat heldout scores provide a finite model-family negativ
 
 Exact CommonJS implementation: [sims/affine_156_feedback_inverse.cjs](../sims/affine_156_feedback_inverse.cjs). [Successful manually dispatched source-original GitHub Actions run 42837751879](https://github.com/FlareZ123/liber-primus/actions/runs/42837751879).
 
+## Cross-test using independently observed prime-valued clauses
+
+Solved original Cicada pages have a source-authenticated, **historically selected** property: 13 of 16 literal printed clauses in three [solved reference segments](author-native-prime-clause-discriminator.md) have **prime** sums of their GP-prime rune values. It provides a second scoring axis for a candidate plaintext, independently of English unigram frequency. This is a conditional authorship cue, with an unresolved assumption that the original full-stop punctuation and clause structure remain in the unknown ciphertext.
+
+Use the **175 nonempty printed full-stop-delimited clauses** in the original LP2 transcription, preserving physical-page wraps. For each of the **24,389** keys in the same lag-(1,5,6) GP29 family, calculate the GP-prime sum of every inverse clause. In the page-reset version, the first six runes of each page are explicitly treated as transparent initialization symbols; in the continuous version the first six runes of the book are transparent. Keys are selected on only the **first 88 clauses**, with all **87 remaining clauses** frozen as a separate validation. Count primality using an exact integer sieve.
+
+| Original-cipher reading | Untransformed original | Training-max selected key (a,b,d) | Selected training prime clauses | Unseen heldout prime clauses | Maximum whole-book prime clauses in any model |
+| --- | --- | --- | ---: | ---: | ---: |
+| Page-local feedback | 28/175 | (26,24,27) | **29/88** | **11/87** | **40/175** |
+| Continuous feedback | 28/175 | (14,12,2) | **27/88** | **14/87** | **41/175** |
+
+The training primes are upward-selected by 24,389 candidate keys; their heldout primes have no plausible resemblance to the selected solved-page **13/16** signature. The original candidate key and forward cipher remain unrecovered.
+
+**Positive true-plaintext/key control:** Encode **12,956 genuine independent Shakespeare GP runes** with the exact manuscript page sizes and clause lengths, adjusting only **155 of 12,956 rune positions** to give **172/175** prime-valued clauses, one rune per clause at most. Encrypt using the previously selected independently hidden key **(7,11,19)** and six transparent starting IVs. Exhaustively screen all 24,389 keys using the first 88 clauses. The exact true key is **unique rank 1**, scoring **87/88** prime-valued training clauses and **85/87** completely unseen heldout clauses; all 12,956 planted symbols roundtrip exactly under the same cipher. This positive demonstrates a stringent prime-sum discriminator for the specified author-like source control without presuming that the unknown author used this property everywhere.
+
+The original is incompatible with a **strong clause-prime property** and this fixed affine cipher jointly. It is possible that LP2 clauses are not prime-valued, that printed full stops or page initials do not retain plaintext semantics, or that an encrypted intermediate hides the direct GP field. This test adds no plaintext. The [exact script](../sims/affine_156_native_prime_clause.cjs) and [successful combined GitHub Actions run 42839416871](https://github.com/FlareZ123/liber-primus/actions/runs/42839416871) preserve the full model selection and planted-key calibration.
+
 ## Reproduction
 
 - [Exact implementation](../sims/affine_feedback.py), using pinned sources from [the shared corpus parser](../sims/homophonic_information_bound.py)
@@ -85,7 +102,7 @@ Exact CommonJS implementation: [sims/affine_156_feedback_inverse.cjs](../sims/af
 
 ## Interpretation and limits
 
-Neither the complete **24,389 consecutive-lag coefficient family**, nor the separately complete **24,389 lag-(1,5,6) family** (containing the **841 lag-(5,6) keys**) generates the distinctive source-language IoC concentration on the original unknown LP2 rune pages. The new latter family is explicitly checked in both page-local and continuous causal scopes with a fixed unseen original physical-page half. These source-conditioned exclusions concern affine GP29 ciphertext feedback; they do not establish the manuscript's actual encryption method.
+Neither the complete **24,389 consecutive-lag coefficient family**, nor the separately complete **24,389 lag-(1,5,6) family** (containing the **841 lag-(5,6) keys**) generates the distinctive source-language IoC concentration on the original unknown LP2 rune pages. The new latter family is explicitly checked in both page-local and continuous causal scopes with a fixed unseen original physical-page half. These source-conditioned exclusions concern affine GP29 ciphertext feedback; the independent prime-clause discriminator corroborates the absence of an author-like direct GP plaintext in that family, under its additional original punctuation and six-initial-symbol assumptions. They do not establish the manuscript's actual encryption method.
 
 Nonlinear feedback, unobserved plaintext-conditioned or evolving key states, output collision repair, different alphabets or binary/compressed intermediate registers, other nonconsecutive tap choices, and external running keys remain open.
 
