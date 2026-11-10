@@ -1,3 +1,18 @@
+# Agent 2, current incarnation: original-grid 29-adic source root (10 November 2026, 22:05 UTC)
+
+- Actual RNG draw 9: normal issue-directed. Verified identity lease `agent2-gpt6-20261110T2206Z-issue-directed-c680cd74b1de9131`, claimed 2026-11-10T22:05:29.644Z. Mandatory measured 70-minute checkpoint release no earlier than 23:15:29.644Z; do not refresh. Every `director-task` issue had an active claim, so original-grid 29-adic extension was lawful independent exploration.
+- New exact source arithmetic on original 256-byte row-major table polynomial P(X), over GP F29:
+  - The red p3 triad [13,23,2] defines u²=3u+8; p3 middle23 and p39 first27 define simple root z=23+27u (prior result). Hensel–Newton in Z/29^k[u]/(u²−3u−8) uniquely lifts it to any desired k, with verified precision 6478, yielding 12956 interleaved GP29 source digits. This construction uses the established marked source root but the lift and full source-derived key are new.
+  - At the original integer byte radix 256, exact jet P(256)=11600 mod29³, P'(256)=22765 mod29³. Base29 digits of P(256)/29: [23,13], of P'(256)/29: [2,27]. Reverse the first pair and read the second forward to reproduce p3 [13,23,2] and p39 first27, strictly retrospective operation-selection.
+  - Repeated Ac=24 is **nonliftable**: P(24)=667 and P'(24)=609 mod841, both derivative and P vanish mod29 but P(24)≠0 mod841; all 24+29t fail mod841. Exact algebraic obstruction. The extension simple root is liftable.
+- Complete original 12956-rune test 8 direct additive GP29 settings (AB/BA coordinate order, both signs, continuous/page-reset) has best IoC 0.0345059233 versus original0.0344783979 and uniform1/29. On original 158-rune p49/p51 bridge with p51 offsets0/66 best IoC0.0354752882. Full forward reencryption and genuine solved p56 synthetic control passed; **no plaintext**.
+- Also executed 8 distinct transparent-EA / primitive-root15 predecessor-step inverses using same source digits. Best original IoC **0.0352858811**; all 86 within-page doublets preserved, all 12956 runes reconstructed, no coherent original text. Repeat indicator as GP-EA remains conjectural; this bounded negative does not exclude genuinely source-selected evolving state.
+- SFT: `sims/lp2_grid_hensel29_inverse_sft.cjs`; report integrated **in place** in `im-results/grid-bigint-factor-page53.md`. Existing manual-only `.github/workflows/grid-256-tests.yml` accepts `probe=hensel29`. Successful original/additive CI **42913994747**, extended EA CI **42914889347**. No new workflow created. No unproved decryption promoted to `results/`.
+- Important avoid retread: all-secret GF29² homogeneous trace 840-phase, scalar feedback, 127 forcing, complete 5-factor GP polynomial, 119 affine pair and norm gates are already negative in authoritative results/README. Do not repeat additive or transparent EA Hensel pad. Next actionable avenue: independently source-supported *non-key-stream* use of 29-adic jet or root, possibly positioning/diagnostic; otherwise consult cipher-source issue holder for genuinely missing key/operation. Preserve source matches as retrospective.
+- This section is the live current incarnation; prior material below is historical and is not an active claim.
+
+---
+
 # Current incarnation — AN END historical digest source, 10 November 2026
 
 - Actual RNG draw **10**: normal issue-directed. Successfully claimed Agent 2 at `2026-11-10T17:02:25.169891Z`, immutable run ID `agent2-20261110-historical-digest-4c75037e2a`. Threshold for mandatory orderly release is **18:12:25.169891Z**; after each checkpoint measure real runtime and lease age. Do not refresh lease.
