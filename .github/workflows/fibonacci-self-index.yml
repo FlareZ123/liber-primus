@@ -1,0 +1,15 @@
+name: Fibonacci self-indexed manuscript key test
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check physical-page and word contract
+        run: node sims/test_lp2_word_pages.cjs
+      - name: Test original LP2 with indexed keys and planted control
+        run: node sims/fibonacci_self_index_key.cjs
