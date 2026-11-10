@@ -188,9 +188,117 @@ assert.deepEqual(encode(decode(cipher, best), best), cipher);
 const wrongKey = models.find(m => m.order === '3210' && m.sign === 1);
 assert.deepEqual(encode(decode(cipher, wrongKey), wrongKey), cipher);
 
+
+// A stronger cross-page alignment: the SAME four whole red sources have
+// 9+8+51+9=77 runes, while physical p54+p55 has 232+76=308=4*77.
+// Because p54 begins with the visually distinguished red A, p54 ends at
+// cyclic key position 0 and p55 covers the final 76 positions of the fourth
+// cycle. This length relation is exact, but was recognized retrospectively.
+const sectionCipher = [...getPage(54).indices, ...cipher];
+assert.equal(sectionCipher.length, 4 * 77);
+assert.equal(getPage(54).indices.length, 3 * 77 + 1);
+assert.equal(getPage(55).indices.length, 77 - 1);
+const wholeRedParts = [a, b, c, title54];
+const sourceOrders77 = [
+  ['physical', [0, 1, 2, 3]],
+  ['triangle', [1, 0, 2, 3]],
+  ['illum-physical', [3, 0, 1, 2]],
+  ['illum-triangle', [3, 1, 0, 2]]
+];
+const models77 = [];
+for (const [sourceOrder, order] of sourceOrders77)
+  for (const reverse of [false, true])
+    for (const primeKey of [false, true])
+      for (const sign of [-1, 1])
+        for (const mode of ['direct', 'relative']) {
+          const source77 = order.flatMap(i => reverse ?
+            wholeRedParts[i].slice().reverse() : wholeRedParts[i]);
+          assert.equal(source77.length, 77);
+          const cycle = source77.map(i => primeKey ? corpus.prime[i] % 29 : i);
+          const values = Array.from({length: 308}, (_, i) => cycle[i % 77]);
+          models77.push({sourceOrder, reverse, primeKey, sign, mode, values});
+        }
+assert.equal(models77.length, 64);
+const evaluated77 = models77.map((model, i) =>
+  ({i, ioc: ioc(decode(sectionCipher, model))}))
+  .sort((x, y) => y.ioc - x.ioc);
+const winner77 = models77[evaluated77[0].i];
+const best77 = evaluated77[0].ioc;
+
+// Plant a genuine GP-English register from the independently solved Cicada
+// welcome page (source file is text, never fitted to unknown LP2). Exactly
+// recover all 308 symbols under one chosen original 77-cycle.
+const solvedReference = fs.readFileSync(
+  path.join(ROOT, 'lp1-plaintext-reference.txt'), 'utf8');
+const solvedWelcome = solvedReference.split('### 3\n')[1].split('### 4')[0];
+assert.ok(solvedWelcome.includes('WELCOME, PILGRIM'));
+const native77 = encodeGP(solvedWelcome).slice(0, 308);
+assert.equal(native77.length, 308);
+const canonical77 = models77.find(m =>
+  m.sourceOrder === 'physical' && !m.reverse && !m.primeKey &&
+  m.sign === -1 && m.mode === 'direct');
+const planted77 = encode(native77, canonical77);
+assert.deepEqual(decode(planted77, canonical77), native77);
+assert.deepEqual(encode(decode(planted77, canonical77), canonical77), planted77);
+assert.deepEqual(encode(decode(sectionCipher, winner77), winner77), sectionCipher);
+
+let state77 = 0x54771553;
+function random77() {
+  state77 ^= state77 << 13;
+  state77 ^= state77 >>> 17;
+  state77 ^= state77 << 5;
+  return state77 >>> 0;
+}
+const refit77 = [];
+let exceed77 = 0;
+for (let control = 0; control < 1000; control++) {
+  const shuffled = sectionCipher.slice();
+  for (let j = shuffled.length - 1; j > 0; j--) {
+    const k = random77() % (j + 1);
+    [shuffled[j], shuffled[k]] = [shuffled[k], shuffled[j]];
+  }
+  let bestShuffled = -1;
+  for (const model of models77)
+    bestShuffled = Math.max(bestShuffled, ioc(decode(shuffled, model)));
+  refit77.push(bestShuffled);
+  if (bestShuffled >= best77 - 1e-12) exceed77++;
+}
+refit77.sort((x, y) => x - y);
+const section77Output = {
+  source: 'red p15 9 + red p40 8 + red p53 51 + complete red p54 9',
+  sourceRunei: 77,
+  section: 'original physical LP2 p54 and p55 concatenated',
+  originalSectionRunes: sectionCipher.length,
+  originalPageLengths: [getPage(54).indices.length, getPage(55).indices.length],
+  period: 77,
+  completeCycles: 4,
+  sourceOrders: sourceOrders77.map(x => x[0]),
+  fullKeyModels: models77.length,
+  originalSectionIoC: ioc(sectionCipher),
+  maximumDecodedOriginalIoC: best77,
+  selectedModel: {
+    order: winner77.sourceOrder, reverse: winner77.reverse,
+    primeKey: winner77.primeKey, sign: winner77.sign,
+    mode: winner77.mode
+  },
+  refitHistogramShuffles: 1000,
+  refitAtLeastAsLarge: exceed77,
+  refitAddOneP: (exceed77 + 1) / 1001,
+  refitMedian: refit77[499],
+  refit95thPercentile: refit77[949],
+  positiveOriginalRegister: {
+    source: 'verified solved-Cicada welcome excerpt, GP-tokenized',
+    exactlyRecoveredRunes: native77.length,
+    sourceGPPlainIoC: ioc(native77),
+    plantedGP29CipherIoC: ioc(planted77)
+  },
+  result: 'No authentic unknown plaintext or 77-cycle key recovered.'
+};
+
 const output = {
   source: 'LP2 p15 red9 + p40 red8 + p53 red51 + p54 red9 excluding illuminated first A',
   sourceLengths: parts.map(x => x.length),
+  section77: section77Output,
   originalP55Runes: cipher.length,
   sourcePrimeSums: [primeSum(a), primeSum(b), primeSum(c)],
   sourceHypothesis: 'four original red-source fragments as a 76-rune direct/differential key',
