@@ -90,6 +90,19 @@ function main() {
     assert.deepEqual(p.indices.slice(t.start,t.start+3),t.indices);
   }
   const [a,b]=triads.map(t=>t.indices);
+
+  // The two red triples appear in source JPEGs 20.jpg and 56.jpg.
+  // A retrospective, file-label-independent two-hop numerical coincidence:
+  // 20 + (first two p3 GP indices 13+23) = 56; 56 + (p39
+  // last index15) = 71.jpg, the illuminated-Ac physical p54.
+  assert.equal(20+a[0]+a[1],56);
+  assert.equal(56+b[2],71);
+  assert.equal(triads[0].page+a[0]+a[1],triads[1].page);
+  assert.equal(triads[1].page+b[2],54);
+  assert.equal(corpus.pages.find(p=>p.page===54).indices[0],24);
+  // Doubling first p39 rune by last p3 rune gives physical page54.
+  // This last equality depends on editorial zero-based physical indexing.
+  assert.equal(a[2]*b[0],54);
   assert.equal(mod(a[1]*a[1]-4*a[0]*a[2]),19);
   assert.deepEqual([mod(a[2]*3+a[1]),mod(a[2]*8+a[0])],[0,0]);
 
@@ -162,7 +175,9 @@ function main() {
   console.log(JSON.stringify({
     classification:"Exact cross-artifact algebra; potential source state, no LP2 key/plaintext",
     originalGridSha256:"3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290",
-    redTriads:triads,extensionRelation:"u²=3u+8",
+    redTriads:triads,sourceJpegHop:"20.jpg + 13 + 23 = 56.jpg; 56.jpg + 15 = 71.jpg",
+    editorialIndexOnlyEcho:"p3 trailing 2 * p39 opening 27 = p54",
+    extensionRelation:"u²=3u+8",
     crossSourcePoint:"p3 middle + p39 first * u = 23+27u",
     crossSourceCandidates:18,exactCrossSourceRootHits:crossHits,
     allNonzeroFieldRoots:roots,
