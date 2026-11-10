@@ -38,6 +38,19 @@ Regardless of the unknown contents of all 28! secret permutations in every one o
 
 The planted-source ranges use independent with-replacement samples from independently supplied GP rune references, conditioned on the original 86 marker slots, and preserve the original salt-by-column state populations. They test the **direct source-GP alphabet assumption**, not all author spellings, languages, intermediate registers or structured plaintext. Every one of the 2,000 source-matched draws exceeded the original. An arbitrary fixed secret permutation for each of the 2,184 public states cannot repair that collision deficit.
 
+### The 4×41 lattice does not restore a direct GP-English key
+
+The source-derived 164-packet count factors as **4 × 41**, naturally suggesting two stronger secret-table architectures. Let packet `b=0..163` have *either* quarter `q=floor(b/41)` or repeated fourfold lane `ℓ=b mod41`. Now grant the attacker an **independent arbitrary unknown 28! permutation for every (salt, column, q)**, or for every **(salt,column,ℓ)**. These vastly larger key schedules still have exact equality invariants whenever two original packets revisit the same full public state. Counting only such pairs gives:
+
+| Completely arbitrary secret permutation state | Exact original identical nonzero-rank pairs | 1,000 independent GP-English source controls (minimum) | 3,000 *contiguous* Shakespeare GP controls preserving the original 86 marker slots | Exact conditional control lower tail |
+| --- | ---: | ---: | ---: | ---: |
+| **(salt, column, one of 4 contiguous 41-packet quarters)** | **386/10,640 = 0.03627820** | 0.05281955 | **0/3,000** at or below original (minimum 0.05197368) | **1/3001 = 0.00033322** |
+| **(salt, column, one of 41 packet-index mod41 lanes)** | **19/688 = 0.02761628** | 0.03197674 | **1/3,000** at or below original (minimum 0.02761628) | **2/3001 = 0.00066644** |
+
+The 41-lane comparison uses only **nine** distinct same-salt, same-lane packet pairs, totaling 688 eligible relative columns. Its corresponding original count is small but testable. Its 3,000 contiguous-source plants average **0.06116715**; the four-quarter plants average **0.06137039**. All **1,000** separately sampled Latin source controls for each architecture also exceed the original. The contiguous controls choose independently distributed actual start offsets in the original 217,167-symbol GP-encoded non-EA Shakespeare stream, copy 12,706 successive source symbols into the exact original unmarked payload slots, and retain every original marker position; they therefore preserve *source sequence correlations* absent from the simpler unigram samples. Seed `0x26a04179`. All results and the full ordinary secret-table positive inverses are executed in [passed CI 42819678517](https://github.com/FlareZ123/liber-primus/actions/runs/42819678517).
+
+This is a conditional **key-independent obstruction to source-native GP under either separate-quarter or shared-mod41-lane public-state keys**. Increasing the size of the unknown permutation tables within either of these fixed state definitions cannot change a single collision count. A key that changes at each individual 79-rune packet, or another independently derived hidden evolving state, does evade these particular equal-state comparisons but has to be fixed by independent source information to make any genuine plaintext prediction.
+
 The original's measured state collision is nevertheless slightly higher than a source-layout-preserving random association:
 
 | Matched 5,000-trial source-original null | Null mean IOC | Exceedances | Conditional add-one upper-tail |
