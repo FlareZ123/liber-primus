@@ -78,7 +78,7 @@ Those dimensions select offsets 51 and 57:
 - 563 mod256 = 51; 569 mod256 = 57; difference = 6.
 - In the original 32x8 row-major base-60 grid, cells 51 and 57 are 0x=59 and 1w=118, exactly 2x. This is the only exact six-apart doubling pair in the 256-byte row-major grid; among four natural traversals and their reversals, only row-major forward gives it at those offsets.
 - The p53-p55 source grouping is 128 black p53 runes, then a second 128-rune half made from 51 red p53 runes + the p54 Ac initial + 76 p55 runes. Within that second half, 563 mod128=51 selects Ac (GP index24) and 569 mod128=57 selects S (GP index15, Gematria prime53, 53 mod29=24). This is the only six-apart pair in that half with the first rune at GP index24 and the second rune's prime residue 24.
-- Thus the source independently fixes lag6, intercept24, and slope magnitude2. The ciphertext selects the negative orientation, giving T6(x)=24-2x mod29. On the canonical 2,896-word/12,956-rune corpus, T6 has 80/1,290 hits; the other source-compatible sign 24+2x has 34/1,290. Existing reports already document the motif; this new work is the cross-artifact source derivation.
+- In the 32x8 row-major grid, positions51->57 are coordinates(6,3)->(7,1), vector(+1,-2); the row-major linear step is 8*1-2=6. Thus grid geometry supplies lag6 and signed slope -2, while cell values59->118 independently confirm magnitude2. The second-half Ac/S pair supplies intercept24. This gives T6(x)=24-2x mod29; the ciphertext independently matches 80/1,290 versus 34/1,290 for the positive slope. Existing reports already document the motif; this is the new cross-artifact source derivation.
 
 ### Bounded key tests and persistence
 
@@ -113,3 +113,11 @@ Because the contemporaneous 4chan “pi related” comment is in context about t
 Check the latest Actions run for the probe before treating the committed script as verified.
 
 The 2016 payload is PGP-signed under the known Cicada key, but the Pi.Mobi association is contested by an unauthenticated later attribution. The dimension/grid/Ac/S correspondence is reproducible; creator intent remains unresolved. References: https://github.com/scream314/cicada3301/blob/master/2016.md ; https://4chanarchives.com/board/x/thread/17183963/post-all-your-cicada-3301-clues-here ; https://therealsamizdat.com/2019/09/12/cicada-files-schoenberger-1/ ; https://norserunes.com/learn/rune-poems/old-english-rune-poem/.
+
+
+### Final source-gate validation and grid-direction insight
+
+The row-major grid geometry is the key signed-slope observation: offset51=(row6,col3), offset57=(row7,col1), so the move is (+1,-2). With eight columns, the linear step is 8-2=6. This directly yields lag6 and slope -2; the 59->118 cell values provide an independent magnitude check. Ac/S at the same offsets in the proposed second 128-rune half supplies intercept24. The ciphertext then validates the full map (80/1290 vs34/1290 for +2).
+
+A parser bug was caught before finalizing reproducibility: parseSharedCorpus().words are objects with a .runes string, not numeric arrays. Both scripts now explicitly map word.runes through the GP rune index. The fully asserted source-gate run 42894532661 passes: source pairs and geometry, exact 80/1290 and34/1290 counts, bounded candidate score below English, and positive-control recovery above95%. The corrected Pi.Mobi key probe run 42894161342 also passes; its tested pi streams remain negative (best T6 score -5.1348/token; direct additive base29 -7.0602/token). Earlier pre-parser-fix successful source-gate runs should not be cited as validation of the original-ciphertext/key scores; use 42894532661.
+
