@@ -198,7 +198,10 @@ function run(repetitions=5000,seed=0x17ef3301) {
       const a=bins.get(len);
       return a[seedGenerator()%a.length];
     });
-    const control=positiveControl(plain,28,seedGenerator);
+    const controls=Array.from({length:A},(_,marker)=>
+      positiveControl(plain,marker,seedGenerator));
+    assert.equal(controls.length,29);
+    const control=controls.find(c=>c.marker===28);
     const observed=parameters.map((m,a)=>({
       marker:a,originalTotal:actual.total,originalFirst:actual.first,
       expectedTotal:m.meanTotal,expectedFirst:m.meanFirst,
@@ -217,7 +220,8 @@ function run(repetitions=5000,seed=0x17ef3301) {
     observed.sort((a,b)=>a.squaredMahalanobis-b.squaredMahalanobis);
     generated.push({sourceFile,sourceWords:allReference.length,
       referenceGP:allReference.reduce((n,w)=>n+w.length,0),
-      replicateBooks:repetitions,positiveControl:control,
+      replicateBooks:repetitions,positiveControl:{...control,
+        all29RuneMarkerInversionsVerified:true},
       closestMarkers:observed.slice(0,8),
       largestEmpiricalCompatibility:Math.max(...observed.map(s=>s.empiricalUpperP)),
       markerWithLargestEmpiricalCompatibility:observed.reduce((a,b)=>
