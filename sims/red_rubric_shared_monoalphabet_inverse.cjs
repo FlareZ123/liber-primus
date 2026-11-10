@@ -102,19 +102,34 @@ function candidates(word, byPattern, maxInsertion) {
  * @param {object} left
  * @param {object} right
  */
-function compatible(left, right) {
+function assignment(left, right) {
   const c2p = new Int16Array(29).fill(-1);
   const p2c = new Int16Array(29).fill(-1);
   for (const item of [left, right]) {
     for (let i = 0; i < item.plain.length; i++) {
       const c = item.cipher[i], p = item.plain[i];
       if ((c2p[c] !== -1 && c2p[c] !== p) ||
-          (p2c[p] !== -1 && p2c[p] !== c)) return false;
+          (p2c[p] !== -1 && p2c[p] !== c)) return null;
       c2p[c] = p;
       p2c[p] = c;
     }
   }
+  return {c2p,p2c};
+}
+
+/** @param {object} item @param {ReturnType<typeof assignment>} mapping */
+function compatibleWithAssignment(item,mapping) {
+  const {c2p,p2c} = mapping;
+  for (let i = 0; i < item.plain.length; i++) {
+    const c = item.cipher[i], p = item.plain[i];
+    if ((c2p[c] !== -1 && c2p[c] !== p) ||
+        (p2c[p] !== -1 && p2c[p] !== c)) return false;
+  }
   return true;
+}
+
+function compatible(left, right) {
+  return assignment(left,right) !== null;
 }
 
 /** @param {object[]} a @param {object[]} b */
@@ -185,10 +200,25 @@ function positiveTest(byPattern) {
     Array.isArray(z.omit) && z.omit[0] === 3 && z.omit[1] === 11);
   assert.ok(x2 && y2 && compatible(x2,y2),
     "planted unknown alphabet and both double-null patterns must invert");
+  // Independently predict a third original-shape eight-rune heading word,
+  // without fitting the substitution to that word.
+  const third = [...source.values()].find(x => x.english === "spirit");
+  assert.equal(third.indices.length,6);
+  const c5 = third.indices.map(i => perm[i]);
+  c5.splice(2,0,17);
+  c5.splice(5,0,3);
+  assert.equal(c5.length,8);
+  const hiddenMap = assignment(x2,y2);
+  const thirdRecovered = candidates(c5,byPattern,2).some(z =>
+    z.text === "spirit" && Array.isArray(z.omit) &&
+    z.omit[0] === 2 && z.omit[1] === 5 &&
+    compatibleWithAssignment(z,hiddenMap));
+  assert.ok(thirdRecovered,"planted held-out third word must invert");
   return {first:"grandmother", second:"complicated",
     trueNullPositions:[5, 11], exactRecovered:true,
     compatibleCandidates:decoded.compatiblePairs,
-    twoNullPositions:[[4,9],[3,11]], twoNullExactRecovered:true};
+    twoNullPositions:[[4,9],[3,11]], twoNullExactRecovered:true,
+    independentEightRuneHoldout:"spirit", thirdWordExactRecovered:thirdRecovered};
 }
 
 function main() {
@@ -228,6 +258,29 @@ function main() {
   assert.equal(lowest.totalOmissions,4);
   assert.equal(lowest.firstOmissions,2);
   assert.equal(lowest.secondOmissions,2);
+  // The five surviving exact two-null anchor pairs must predict original
+  // source-coloured headings from three other physical pages, untouched.
+  const holdoutSpans = [
+    {page:0, word:0}, {page:8, word:1}, {page:33, word:1}
+  ].map(({page,word}) => {
+    const original = firstRedHeading(page)[word];
+    assert.equal(original.length,8);
+    return {page,word,candidates:candidates(original,byPattern,2)};
+  });
+  const anchorPairs = [];
+  for (const x of partsA[2]) for (const y of partsB[2]) {
+    const map = assignment(x,y);
+    if (map === null) continue;
+    anchorPairs.push({
+      first:x.text, firstOmit:x.omit,
+      second:y.text, secondOmit:y.omit,
+      holdoutMatches:holdoutSpans.map(z =>
+        z.candidates.filter(t => compatibleWithAssignment(t,map)).length)
+    });
+  }
+  assert.equal(anchorPairs.length,5);
+  assert.ok(anchorPairs.every(p => p.holdoutMatches.every(n => n === 0)),
+    "every eligible two-null alphabet must fail all three red-heading holdouts");
   const plant = positiveTest(byPattern);
   process.stdout.write(JSON.stringify({
     source:"original LP2 red headings, physical pages 3 and 27",
@@ -242,6 +295,13 @@ function main() {
         partsA.map(x => x.length), partsB.map(x => x.length)
       ],
       minimumJointDeletionBudget:lowest
+    },
+    independentRedHeadingHoldouts:{
+      pages:holdoutSpans.map(x => x.page),
+      expectedWordLengths:holdoutSpans.map(x =>
+        firstRedHeading(x.page)[x.word].length),
+      originalUnfittedCandidateCounts:holdoutSpans.map(x => x.candidates.length),
+      allFiveDualNullAnchorPairs:anchorPairs
     },
     plantedExactInverse:plant,
     interpretation:"Finite English lexicon and shared arbitrary bijection excluded; no manuscript plaintext or real key."
