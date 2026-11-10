@@ -212,6 +212,38 @@ function conditionalTrigramExcess(p,recs){
   return {train:total[0]/count[0],held:total[1]/count[1],
     trainRunes:count[0],heldRunes:count[1]};
 }
+/**
+ * Key-independent causal reachability under a known-marker seed set.
+ * For a plaintext feedback function with all selected taps genuinely
+ * unknown and nonzero, each new P[i] is determined only if all P[i-lag]
+ * inputs are already known. It is an optimistic necessary condition for
+ * reconstructing plaintext without any independent initial-state key.
+ * @param {ReturnType<typeof records>} recs
+ */
+function markerReachability(recs){
+  const lagSets=[[1],[2],[5],[6],[1,5],[1,6],[5,6],[1,5,6],[2,5]],
+    cut=trainCut,output={};
+  for(const kind of ["zero-only","all-context-markers"]){
+    const base=Uint8Array.from(recs,r=>
+      Number(r.type===1&&(kind!=="zero-only"||r.value===28)));
+    output[kind]={seeds:base.reduce((a,v)=>a+v,0),lags:{}};
+    for(const lags of lagSets){
+      const known=base.slice();
+      for(let i=Math.max(...lags);i<N;i++){
+        if(!known[i]&&lags.every(lag=>known[i-lag]))known[i]=1;
+      }
+      let train=0,held=0;
+      for(let i=0;i<N;i++)if(known[i]){
+        if(i<cut)train++;else held++;
+      }
+      output[kind].lags[lags.join(",")]={
+        recoverable:train+held,train,held,
+        heldCoverage:held/(N-cut)
+      };
+    }
+  }
+  return output;
+}
 const recs=records(original),delays=[1,2,3,4,5,6,7,8];
 const ranks=search(recs,delays);
 const selected=ranks.slice().sort((a,b)=>b.train-a.train);
@@ -234,6 +266,7 @@ console.log(JSON.stringify({
   model:"Postselected contextual 29-output marker bijection with delayed plaintext autokey",
   originalRunes:N,originalWords:words.length,sourceGP:source.length,
   trainCut,sourceRoot:15,gridKeyUsed:false,
+  stateReachability:markerReachability(recs),
   reserveClasses:["EA/no-difference","E-or-L/lag5","S/T6"],
   keyFamily:"8 delays x 28^2 two-coefficient plaintext feedback",
   originalByDelay:ranks,
