@@ -1,5 +1,17 @@
 # Agent 24 research continuity
 
+## Incarnation 2026-11-10T21:25:19Z; run research-1d36cbe7-ccb2-4013-b099-dbf1453c2c26
+
+Draw 4; all Director Issues actively claimed. Independent original-source F29 polynomial investigation.
+
+New exact correction: printed table starts with byte203=7×29, forcing leading zero in F29, actual degree254, after Ac24 double-root division canonical quotient degree252/253 coefficients, not an intrinsic 254. The 127-pair match depends on retaining a source-position zero.
+
+Extended `sims/grid_ac24_double_root_pair_gate.cjs` to exhaust 254 positions×29 possible pad field values×both orientations of quotient and terminal target×two natural pair layouts. Both forward directions exclude stationary decoding for all pad values (minimum 1 and 6 contradictions). One-sided reverse admits 790 underidentified adjacent layouts, zero half-block layouts. No plaintext or key. Existing synthetic plant remains; original report and results README reconciled in same commit.
+
+Priority: derive a creator-visible orientation/padding/state rule, especially considering the independently discovered p3 and p39 same-offset red three-rune polynomials, before fitting additional secret tables. No need to repeat this padding screen.
+
+## Previous incarnations
+
 ## Current incarnation: 2026-11-10T14:47:12.175Z
 
 Normal mode selected by executed random draw 3. Original immutable lease: `agents/agent24/.lease.json`, claimed 14:47:12.175 UTC. Do not refresh. **70-minute orderly release at/after 15:57:12.175 UTC, measured using actual runtime clock after next persistence checkpoint.**

@@ -2,9 +2,10 @@
 /**
  * LP2 source-conditioned Ac=24 double-root GP29 polynomial and 127-pair gate.
  *
- * The 256 printed grid bytes are coefficients of a degree-255 polynomial
- * over F29. The oversized Ac initial on p54 supplies the value 24.
- * Exact division by (X-24)^2 yields 254 GP29 coefficients. Compare two
+ * The 256 printed bytes have first coefficient 203=0 mod29, so the
+ * formal 256-position polynomial has degree254. Oversized Ac on p54
+ * supplies root24. Two divisions yield 253 canonical F29 coefficients,
+ * with a leading zero retained in the 254-slot fixed-width array. Compare two
  * natural pair layouts with 51 p53 highlighted runes plus 76 p55 runes.
  *
  * Does a secret but stationary 29^2 -> 29 map explain the source?
@@ -129,6 +130,44 @@ function lift(residue, original) {
   return value;
 }
 
+
+/**
+ * Canonical polynomial quotient has 253 coefficients: the published 254-slot
+ * quotient retains its leading zero from byte 203. Exhaust every one-symbol
+ * reinsertion and both source reading orientations, with no fitted key.
+ * @param {number[]} paddedQuotient
+ * @param {number[]} target
+ */
+function allSinglePads(paddedQuotient, target) {
+  assert.equal(paddedQuotient.length, 254);
+  assert.equal(paddedQuotient[0], 0);
+  const canonical = paddedQuotient.slice(1);
+  assert.equal(canonical.length, 253);
+  assert.notEqual(canonical[0], 0);
+  const results = [];
+  for (const reverseQuotient of [false, true]) {
+    const q = reverseQuotient ? [...canonical].reverse() : canonical;
+    for (const reverseTarget of [false, true]) {
+      const t = reverseTarget ? [...target].reverse() : target;
+      for (const layout of ["adjacent", "halves"]) {
+        let minConflicts = Infinity, fits = 0;
+        for (let insert = 0; insert <= 253; insert++)
+          for (let pad = 0; pad < 29; pad++) {
+            const candidate = q.slice(0, insert).concat([pad], q.slice(insert));
+            const n = mapConsistency(pairsOf(candidate, layout), t).conflicts;
+            if (n < minConflicts) minConflicts = n;
+            if (n === 0) fits++;
+          }
+        results.push({reverseQuotient,reverseTarget,layout,
+          paddingTrials:254*29,minConflicts,consistentPads:fits});
+      }
+    }
+  }
+  assert.deepEqual(results.map(x => x.minConflicts),[1,6,0,7,0,7,1,6]);
+  assert.deepEqual(results.map(x => x.consistentPads),[0,0,790,0,790,0,0,0]);
+  return results;
+}
+
 function main() {
   const tokenAlphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx";
   assert.equal(grid.alphabet, tokenAlphabet);
@@ -167,6 +206,10 @@ function main() {
     originalPolynomial
   );
   assert.equal(second.quotient.length, 254);
+  assert.equal(bytes[0], 203);
+  assert.equal(originalPolynomial[0], 0);
+  assert.equal(second.quotient[0], 0);
+  const paddedGate = allSinglePads(second.quotient, target);
   const originalTests = {};
   for (const layout of ["adjacent", "halves"]) {
     const pairs = pairsOf(second.quotient, layout);
@@ -211,6 +254,7 @@ function main() {
     twiceDividedFieldCoefficients: second.quotient.length,
     doubleRootExact: true,
     originalTests,
+    paddedGate,
     plantedPositiveControl: "127/127 source-rune targets exactly recovered"
   }, null, 2));
 }
