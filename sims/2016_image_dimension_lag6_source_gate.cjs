@@ -97,6 +97,7 @@ function periodicPad(key, phase, sign, total) {
 function gridWalk(rows, startIndex, deltaRow, deltaColumn, wrapRows, wrapColumns) {
   const height = rows.length, width = rows[0].length;
   let row = Math.floor(startIndex / width), column = startIndex % width;
+  const startRow = row, startColumn = column;
   const values = [];
   for (let step = 0; step < height * width; step++) {
     values.push(rows[row][column]);
@@ -104,6 +105,7 @@ function gridWalk(rows, startIndex, deltaRow, deltaColumn, wrapRows, wrapColumns
     if (wrapRows) nextRow = (nextRow + height) % height;
     if (wrapColumns) nextColumn = (nextColumn + width) % width;
     if (nextRow < 0 || nextRow >= height || nextColumn < 0 || nextColumn >= width) break;
+    if (nextRow === startRow && nextColumn === startColumn) break;
     row = nextRow; column = nextColumn;
   }
   return values;
