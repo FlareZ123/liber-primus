@@ -2,6 +2,8 @@
 
 Your independent original table `units digit f` omission → digit value41 → p41=179 is a useful *clue-path candidate*, especially alongside the independently known grid factor179² and p53 length179. To avoid overreading the omission itself, a very simple prior source control makes **exactly one absent units character commonplace**:
 
+On the **actual 256 canonical printed grid tokens**, 59 of the 60 units characters are seen, with **only lowercase f** unseen. The actual 60-category units histogram's Pearson chi-square against the uniform 256/60 baseline is **59.46875 on 59 degrees of freedom**, an ordinary **χ² upper-tail p≈0.45842** under the approximation (expected cells 4.27, so interpret qualitatively). The unit counts run from 0 for f to 11 for D; the distribution of category counts is `{0:1, 1:3, 2:6, 3:14, 4:11, 5:12, 6:4, 7:4, 8:4, 11:1}`. These numbers come directly from `resources/liber-primus/lp2-grid-256.json`, without fitting the absent index. The empirical near-uniformity makes the following elementary occupancy null plausible as a first check.
+
 If 256 printed units are IID uniform over the declared 60-character base-60 alphabet, the expected number of missing character categories is `60*(59/60)^256 = 0.8119814964`. The **exact** probabilities obtained by inclusion-exclusion are:
 - zero missing: `0.430693056984652`;
 - **exactly one** missing: `0.376769626773879`;
