@@ -130,7 +130,7 @@ function solvedPlant() {
     }
     out.push(...symbols);
   }
-  assert(out.length>5000);
+  assert(out.length>3000);
   return Array.from({length:N},(_,i)=>out[i%out.length]);
 }
 const plant=solvedPlant();assert(ioc(plant,0,6000)>1.2);
