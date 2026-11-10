@@ -15,3 +15,5 @@ jobs:
         run: node sims/lp2_adaptive_base28_binary.cjs
       - name: Test global secret glyph and modular-difference order sieves
         run: node sims/lp2_adaptive_radix28_permutation_sieve.cjs
+      - name: Construct and verify stateful byte-capacity witness
+        run: node sims/radix28_stateful_byte_capacity_witness.cjs
