@@ -1,0 +1,14 @@
+name: Historical column-14 plus solved-p56 totient original LP2
+on:
+  workflow_dispatch:
+jobs:
+  source-composition-inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run original-page and native-positive inverse
+        run: node sims/historical_14column_totient_composition.cjs
