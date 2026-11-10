@@ -26,15 +26,15 @@ The English-register score is the mean GP unigram log probability trained solely
 
 | Unsolved LP2 page | Runes | Settings tried | Best log fit / rune | Best byte source |
 |---:|---:|---:|---:|---|
-| 0 | 262 | 40,880 | -3.52916 | share 2, forward scaled, sign -, offset 102 |
-| 7 | 208 | 43,904 | -3.49143 | share 0 XOR share 2, reversed scaled, sign -, offset 674 |
-| 23 | 213 | 43,624 | -3.48352 | share 0 XOR share 1, reversed mod29, sign +, offset 173 |
-| 28 | 269 | 40,488 | -3.50370 | share 1 XOR share 2, reversed mod29, sign -, offset 95 |
-| 42 | 272 | 40,320 | -3.52716 | share 0 XOR share 2, forward scaled, sign +, offset 708 |
-| 53 | 179 | 45,528 | -3.47620 | share 0 XOR share 1, reversed scaled, sign +, offset 604 |
-| 55 | 76 | 51,296 | -3.30265 | share 1, reversed scaled, sign -, offset 329 |
+| 0 | 262 | 40,880 | -3.54157 | share 2, forward scaled, sign -, offset 102 |
+| 7 | 208 | 43,904 | -3.50277 | share 0 XOR share 2, reversed scaled, sign -, offset 674 |
+| 23 | 213 | 43,624 | -3.49953 | share 0 XOR share 1, reversed mod29, sign +, offset 173 |
+| 28 | 269 | 40,488 | -3.51892 | share 1 XOR share 2, reversed mod29, sign -, offset 95 |
+| 42 | 272 | 40,320 | -3.55325 | share 0 XOR share 2, forward scaled, sign +, offset 708 |
+| 53 | 179 | 45,528 | -3.48610 | share 0 XOR share 1, reversed scaled, sign +, offset 604 |
+| 55 | 76 | 51,296 | -3.31234 | share 1, reversed scaled, sign -, offset 329 |
 
-All seven selected pages produce nonlinguistic GP transliteration at their maximized scores. No common byte-stream/start model emerges, and the short page 55 offers many overfit opportunities. These scores are **not calibrated family-wise p-values**, so the result cannot exclude more complex ways of using the streams (e.g., word-aware reset, skip, re-encoding, another downstream cipher).
+The full [55-page execution (run 42755619644)](https://github.com/FlareZ123/liber-primus/actions/runs/42755619644) tested **2,329,824** configurations across all rune-bearing unsolved LP2 pages. Top-scoring byte sources varied across pages: share0 won 5 pages, share1 10, share2 9, xor01 8, xor02 8, xor12 12, and xor012 3. The largest individual log score occurs at p49 (66 runes; -3.25586 per rune), then p55 (76 runes; -3.31234), then p51 (92 runes; -3.36003), consistent with short-page search overfit. The best-scoring candidates inspected in this study produce nonlinguistic GP transliteration. No common byte-stream/start model emerges, and the short page 55 offers many overfit opportunities. These scores are **not calibrated family-wise p-values**, so the result cannot exclude more complex ways of using the streams (e.g., word-aware reset, skip, re-encoding, another downstream cipher).
 
 The program includes a positive planted p57 ciphertext under share 0 with known offset 37 and true additive sign; it requires the correct tuple to rank among its top three candidates. This is a basic detection check under the same unigram-fit family, not comprehensive power analysis.
 
@@ -42,4 +42,4 @@ The program includes a positive planted p57 ciphertext under share 0 with known 
 
 Executed regression: [successful GitHub Actions run 42755515932](https://github.com/FlareZ123/liber-primus/actions/runs/42755515932). This run executed the positive-control assertions, the signed-message XOR invariant, and all seven selected LP2 page scans without error.
 
-Run the pure CommonJS [script](../sims/stego2014_lp2_probe.cjs) against the pinned local reference. Its default configuration tests the seven selected pages; `--all` tests every nonempty unsolved page. It prints source hashes, all settings counts, the top candidates and positive-control status as JSON. A proposed actual key would need independently reproduced plaintext and a held-out page or passage with substantially stronger evidence.
+Run the pure CommonJS [script](../sims/stego2014_lp2_probe.cjs) against the pinned local reference. Its default configuration tests the seven selected pages; `--all` tests every nonempty unsolved page. It prints source hashes, all settings counts, the top candidates and positive-control status as JSON. The successful complete 55-page run, including the positive planted control, is recorded above. A proposed actual key would need independently reproduced plaintext and a held-out page or passage with substantially stronger evidence.
