@@ -210,21 +210,24 @@ function random32(seed) {
  * @param {number[][]} layout LP2 ciphertext word lengths.
  * @param {number[][]} heldout Source words.
  * @param {() => number} draw RNG.
- * @returns {{words:number[][],replaced:number,total:number}}
+ * @param {Map<number,number[][]>} fallback Training GP words only for lengths absent from held-out sample.
+ * @returns {{words:number[][],replaced:number,total:number,fallbackWords:number}}
  */
-function plant(layout, heldout, draw) {
+function plant(layout, heldout, draw, fallback) {
   const pool = new Map();
   for (const word of heldout) {
     if (!pool.has(word.length)) pool.set(word.length, []);
     pool.get(word.length).push(word);
   }
   let replaced = 0;
+  let fallbackWords = 0;
   let total = 0;
   let previous = -1;
   const output = layout.map(source => {
-    const alternatives = pool.get(source.length);
+    const alternatives = pool.get(source.length) || fallback.get(source.length);
+    if (!pool.has(source.length)) fallbackWords++;
     assert.ok(alternatives && alternatives.length > 0,
-      'No held-out reference of word length ' + source.length);
+      'No reference of word length ' + source.length);
     const plain = alternatives[draw() % alternatives.length];
     const offset = draw() % 28;
     return plain.map((p, i) => {
@@ -240,7 +243,7 @@ function plant(layout, heldout, draw) {
       return c;
     });
   });
-  return {words: output, replaced, total};
+  return {words: output, replaced, total, fallbackWords};
 }
 
 /** @param {ReturnType<typeof vote>} result @param {number} [take=4] */
@@ -260,7 +263,7 @@ function run() {
   const trainingSignature = realTraining.ranked[0][0];
   const testSignature = realTest.ranked[0][0];
   const draw = random32(SEED);
-  const synthetic = plant(words, heldout, draw);
+  const synthetic = plant(words, heldout, draw, reference);
   const plantTraining = vote(synthetic.words, reference, 0, split);
   const plantTest = vote(synthetic.words, reference, split, words.length);
   const known = KEY.slice(1, 5).reduce((n, value, i) =>
@@ -305,6 +308,7 @@ function run() {
       trueKey: KEY,
       trueRelativeSignature: known,
       ciphertextReplacements: synthetic.replaced,
+      fallbackTrainingWordsForMissingHeldoutLengths: synthetic.fallbackWords,
       generatedRunes: synthetic.total,
       firstHalf: leading(plantTraining),
       secondHalf: leading(plantTest),
