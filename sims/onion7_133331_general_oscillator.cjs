@@ -155,6 +155,58 @@ function recover(cipher) {
   return best;
 }
 
+
+/**
+ * Identical four-parameter exhaustive test when the hidden oscillator
+ * explicitly restarts at the eight source-section boundaries.
+ * The strongest native GP positive also restarts with independent secrets.
+ */
+function sectionReset() {
+  const fs = require("node:fs"), path = require("node:path");
+  const corpus = JSON.parse(fs.readFileSync(path.join(__dirname,
+    "../resources/liber-primus/lp2-corpus.json"), "utf8"));
+  const pages = corpus.pages.filter(p => p.page < 56 && p.indices.length);
+  const boundaries = [0,3,8,16,23,27,33,40,56];
+  const groups = boundaries.slice(0,-1).map((start,i) =>
+    pages.filter(page => page.page >= start &&
+      page.page < boundaries[i+1]).flatMap(page=>page.indices));
+  assert.deepEqual(groups.map(g=>g.length),
+    [729,1145,1888,1744,1021,1433,1680,3316]);
+  const random = rng(0x331133), results = [], controls = [];
+  let cursor = 0, nTrain = 0, nTest = 0, train = 0, held = 0;
+  let pTrain = 0, pHeld = 0, plantedHits = 0, repeats = 0;
+  for (const glyph of groups) {
+    const result = recover(glyph);
+    const n = Math.floor(glyph.length/2), h = glyph.length-n;
+    nTrain += n; nTest += h;
+    train += result.train*n;held+=result.heldout*h;
+    results.push({n:glyph.length,...result});
+    const secret = {a:17,b:12,
+      s0:Math.floor(random()*29),s1:Math.floor(random()*29)};
+    const originalPlain = holdout.slice(cursor,cursor+glyph.length);
+    const plant = encrypt(originalPlain,secret,random,true);
+    const pos = recover(plant.cipher);
+    assert.deepEqual(encrypt(decrypt(plant.cipher,secret),secret,
+      random,false).cipher,plant.cipher);
+    const hits=decrypt(plant.cipher,secret).filter((v,i)=>
+      v===originalPlain[i]).length;
+    assert.equal(hits,glyph.length-plant.repairs);
+    pTrain += pos.train*n;pHeld+=pos.heldout*h;
+    const correct = ["a","b","s0","s1"].every(k=>pos[k]===secret[k]);
+    plantedHits+=Number(correct); repeats+=plant.repairs;
+    controls.push({n:glyph.length,trueKey:secret,selected:pos,
+      exactKey:correct,rewrites:plant.repairs});
+    cursor+=glyph.length;
+  }
+  assert.equal(cursor,12956);
+  return {models:groups.length*29**4,
+    original:{trainPerRune:train/nTrain,heldoutPerRune:held/nTest,
+      first:results.slice(0,3)},
+    planted:{trainPerRune:pTrain/nTrain,heldoutPerRune:pHeld/nTest,
+      exactKeys:plantedHits,totalKeys:groups.length,rewrites:repeats,
+      first:controls.slice(0,3)}};
+}
+
 function run() {
   const original = recover(glyphs);
   const trueKey = { a: 17, b: 12, s0: 13, s1: 11 };
@@ -186,6 +238,7 @@ function run() {
     model: "All 29^4 initial-key+two-ciphertext-feedback-tap pairs for one book-continuous 2-register oscillator",
     original: { runes: glyphs.length, modelsExhausted: 29 ** 4,
       selected: original, reencryptedWithWrongKey: glyphs.length },
+    sectionReset: sectionReset(),
     nativeEnglishPlant: { modelsExhausted: 29 ** 4,
       trueKey, blindlyRecovered: positive, ciphertextEdits: source.repairs,
       exactPlaintextRuneHits: hits,
@@ -196,4 +249,4 @@ function run() {
 
 if (require.main === module)
   process.stdout.write(JSON.stringify(run(), null, 2) + "\n");
-module.exports = { encrypt, decrypt, responses, optimizeSeeds, recover, run };
+module.exports = { encrypt, decrypt, responses, optimizeSeeds, recover, sectionReset, run };
