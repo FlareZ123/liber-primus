@@ -245,17 +245,19 @@ const blockKeys = {
   quotientsBy29: blockLengths.map(x => Math.floor(x / 29))
 };
 const cuneiformLengthResults = [];
+const followingSection = Array.from({ length: 14 }, (_, i) => pages.get(40 + i)).flat();
 for (const [keyName, key] of Object.entries(blockKeys)) {
-  for (const [scope, resetAt] of [
-    ['continuous', null],
-    ['reset-at-four-markers', blockOffsets]
+  for (const target of [
+    { name: 'marked-section-continuous', data: cuneiform, resetAt: null },
+    { name: 'marked-section-reset-at-markers', data: cuneiform, resetAt: blockOffsets },
+    { name: 'following-pages-40-53', data: followingSection, resetAt: null }
   ]) {
     for (let phase = 0; phase < 5; phase++) {
       for (const sign of [-1, 1]) {
         for (const skipLiteralF of [false, true]) {
           cuneiformLengthResults.push({
-            key: keyName, scope, phase, sign, skipLiteralF,
-            ...stats(repeatingKeyDecode(cuneiform, key, phase, sign, skipLiteralF, resetAt))
+            key: keyName, target: target.name, phase, sign, skipLiteralF,
+            ...stats(repeatingKeyDecode(target.data, key, phase, sign, skipLiteralF, target.resetAt))
           });
         }
       }
@@ -326,6 +328,7 @@ const output = {
     blockLengths,
     blockRemaindersMod29: blockKeys.remaindersMod29,
     blockQuotientsBy29: blockKeys.quotientsBy29,
+    followingPages40To53RuneCount: followingSection.length,
     lengthKeyTests: cuneiformLengthResults.length,
     bestLengthKeys: cuneiformLengthResults.slice(0, 12),
     primeTotientAnchors: anchors,
