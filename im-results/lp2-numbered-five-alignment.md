@@ -68,6 +68,42 @@ The exact Shamir test is integrated into
 the same SFT also evaluates the independently source-marked 7×79
 two-parity interpretation next.
 
+### The recovered 91-rune share secret as an immediate successor key
+
+The five numbered blocks end at global rune offset **9,358**. Immediately
+after them, the manuscript prints one **unnumbered 161-rune paragraph**:
+the remaining **42** glyphs on physical p38 and the next **119**
+on p39, ending precisely at p39's subsequent red heading
+(global offset **9,519**). A human solver who had derived the
+91-rune Shamir x=0 output could reasonably try that material as
+the key to the very next unnumbered paragraph.
+
+We therefore ran a **fully source-fixed, reversible successor test**:
+take those 91 reconstructed GP symbols as a periodically repeated key,
+starting at the next paragraph's first rune, using both Cicada-style
+addition and subtraction modulo29. As a second source-native key
+representation, map each of those 91 GP symbols to its canonical
+prime number's Euler totient `p−1 (mod29)`, again with both signs.
+There is **no fitted offset, cipher key, word scoring, or reset search**.
+
+| Recovered x=0 key representation | Decryption sign | Original 161-rune output IoC |
+| --- | --- | ---: |
+| GP rune indices, period 91 | Subtract | **0.0333850932** |
+| GP rune indices, period 91 | Add | **0.0364130435** |
+| GP rune prime totients, period 91 | Subtract | **0.0343944099** |
+| GP rune prime totients, period 91 | Add | **0.0354037267** |
+
+All outputs remain visibly nonlinguistic. Every one is below the
+lowest of **213,631 Shakespeare**, **318,507 Emerson** and **61,707
+Gibran** native GP-English contiguous 161-rune windows, whose
+respective minimum IoCs are **0.04759317, 0.04759317, 0.04953416**.
+The unchanged inverses recover all **161/161** genuine English
+symbols and exactly re-encrypt full 161-rune positive plants under
+each source-derived key mapping and sign. This rules out only
+the two specified directly periodic GP29 uses of the x=0 output.
+It cannot rule out a nonperiodic state expansion, subsequent
+encryption stage or a different source-defined key transformation.
+
 ## Five numbered data lanes plus two residual parity lanes: exact F29 RS test
 
 The five original red-numbered passages have lengths **139, 91, 98, 96,
