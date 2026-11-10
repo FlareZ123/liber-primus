@@ -26,6 +26,9 @@ jobs:
       - name: Exhaustive 4 million byte offset keyskip screen
         if: inputs.probe == 'source-bytes'
         run: node sims/audio_761_pad_scan.cjs
+      - name: Install FFmpeg for optional waveform-source test
+        if: inputs.probe == 'decoded-pcm'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       - name: Decode archival MP3 at native sample frequency to mono signed16 PCM
         if: inputs.probe == 'decoded-pcm'
         run: ffmpeg -hide_banner -loglevel error -i /tmp/761.MP3 -ac 1 -c:a pcm_s16le -f s16le /tmp/761.pcm
