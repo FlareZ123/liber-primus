@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Test 28-symbol rank inverse, matched null and authentic controls
         run: node sims/no_repeat_rank_inverse.cjs
+      - name: Test word-reset rank inverse with per-word hidden alphabets
+        run: node sims/no_repeat_rank_wordwise_gate.cjs

@@ -33,12 +33,50 @@ The matched null samples preserve **every original doublet-erasure position** on
 
 Adjacent rank equality alone is less discriminating: actual sorted **426/12,676 = 0.03361**, cyclic **432/12,676 = 0.03408**. Shakespeare plants often had fewer identical adjacent rank pairs than the real text, so this statistic **is not** the basis for excluding the model. The symbol-multiset collision invariant provides the decisive signal.
 
+## Word-reset extension: an independent 28-symbol alphabet per word
+
+The page-level test above leaves open a more permissive key scope: restart the predecessor-exclusion register at every canonical word, then allow a different arbitrary bijection of the 28 decoded ranks for each word. The first rune is treated as a separate 29-symbol leader code; the test concerns only subsequent runes. For current ciphertext rune c and preceding in-word ciphertext rune p, the two natural rank conventions are:
+
+- **Sorted:** r = c − [c > p].
+- **Cyclic:** r = (c − p mod 29) − 1.
+
+Any fixed per-word permutation of the 28 ranks preserves that word's collision count, even when every word has an unrelated secret permutation. Thus the sum of within-word ordered equal-rank pairs is a key-independent necessary condition. The exact shared parser gives **2,896 words**, **12,956 runes**, and **32 cross-page words**. Of the **86** original repeated outputs, **63** lie inside words and are treated as erasures here; the other **23** occur at word starts and do not enter the rank statistic. This leaves **9,997** eligible rank symbols and **39,930** ordered within-word symbol pairs.
+
+| Original rank inverse | Equal-rank pairs | Ordered pairs | Within-word rank IoC |
+| --- | ---: | ---: | ---: |
+| Sorted | **1,438** | 39,930 | **0.03601302** |
+| Cyclic | **1,486** | 39,930 | **0.03721513** |
+
+### Exact word-length and erasure-matched English controls
+
+For each of the 2,896 LP2 words, independently sample a source GP-English word of exactly the same encoded rune length, with replacement, and apply the same within-word erasure positions. The source tokenizer and GP encoder are the repository's existing controls; IA is folded to I and EA to code 27 to give the same 28-symbol register. All 2,896 target lengths are represented in every source pool. Each replicate therefore preserves the entire original word-length sequence and the 63 within-word erasures, not merely a length histogram.
+
+Each reference used **5,000** seeded manuscripts. The score is the same aggregate within-word collision count divided by 39,930; the rank permutation is allowed to differ independently for every word.
+
+| Reference source | Control mean IoC | SD | Sorted z | Cyclic z | Controls at or below either LP2 score |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Shakespeare | 0.05361538 | 0.00153870 | −11.440 | −10.659 | 0 / 5,000 |
+| Gibran | 0.05163704 | 0.00158304 | −9.870 | −9.110 | 0 / 5,000 |
+| Emerson | 0.05084995 | 0.00147921 | −10.030 | −9.218 | 0 / 5,000 |
+
+The plus-one lower-tail estimate is **1/5,001 = 0.00019996** for each of the six source × rank-convention comparisons. A conservative Bonferroni bound over those six comparisons is **≤0.00120**. This correction is local to these controls; it does not account for the repository-wide historical search over cipher families.
+
+### Positive-control implementation
+
+A synthetic word-reset cipher independently chooses a 29-symbol leader permutation and a 28-symbol rank permutation for every word, preserves the original 23 word-start and 63 within-word marker positions, and resets at the original page boundaries. Under both sorted and cyclic conventions, the inverse recovers **12,870/12,870** non-marker plaintext symbols and the forward encoder reproduces **12,956/12,956** ciphertext symbols exactly. This verifies the implementation and the collision invariant; it is not evidence that LP2 used this mechanism.
+
+### Scope
+
+This rejects the two specified natural predecessor-exclusion rank orders followed by an arbitrary fixed 28-symbol permutation per word, under English-like GP plaintext and the canonical original word boundaries. It does **not** reject a rank order that itself changes by word, a permutation that evolves within a word, an additional running key, a different language or intermediate register, altered segmentation, or another encoding of the repeated outputs. No LP2 plaintext or authentic key is recovered.
+
 ## Conclusion
 
-For the chosen explicit 28-code convention and an English-like GP language register, a keyless exclusion-rank cipher under either natural ordering, even with **arbitrary globally fixed or pagewise fixed renaming of its 28 internal code symbols**, fails a necessary-condition test: its decrypted ranks should have GP-English-like IoC, independently of the unknown permutation. The real rank stream remains as flat as a randomized anti-doublet source.
+The global/page-reset experiment excludes its declared fixed rank conventions under English-like GP plaintext even when the 28-symbol register is renamed globally or independently by page. The word-reset extension is stricter about key scope: it allows an unrelated arbitrary 28-symbol bijection for every canonical word. Nevertheless, the original within-word rank collision IoC remains **0.036013 / 0.037215** for sorted/cyclic order, far below exact word-length- and erasure-matched English controls. Therefore neither natural rank order followed by a fixed per-word permutation supplies a plausible direct English-GP inverse.
 
-This does **not** exclude a further running key applied to the 28 ranks, a rank permutation changing within pages (including by word), 29-way escape codes with frequent unmapped states, a flat intermediate plaintext coding, or cipher repair operations that change substantial fractions of output positions. The 86 exceptions alone are too few to reconcile the ~0.0357 real collision ratio with tested ~0.06 English controls, but a more complex hidden layer may do so.
+This is a bounded negative, not a general exclusion of no-repeat transducers. A different 29-symbol ordering, a permutation that evolves within words, a second running key, altered segmentation, another plaintext language/register, or a non-GP intermediate remains open. The repeated outputs remain unresolved markers, and no LP2 plaintext or authentic key has been recovered.
 
-**Reproduce:** [`sims/no_repeat_rank_inverse.cjs`](../sims/no_repeat_rank_inverse.cjs), exact 55 original rune pages from [`lp2-corpus.json`](../resources/liber-primus/lp2-corpus.json), three tracked authentic literary control sources, deterministic seed `0x49333031`. [Successful on-demand GitHub Actions run **42768297188**](https://github.com/FlareZ123/liber-primus/actions/runs/42768297188) verifies the final script with 500 anti-doublet nulls and all 120 planted encrypted books.
+**Reproduce (page-level):** [`sims/no_repeat_rank_inverse.cjs`](../sims/no_repeat_rank_inverse.cjs), exact 55 original rune pages from [`lp2-corpus.json`](../resources/liber-primus/lp2-corpus.json), three tracked authentic literary control sources, deterministic seed `0x49333031`. [Successful on-demand GitHub Actions run **42768297188**](https://github.com/FlareZ123/liber-primus/actions/runs/42768297188) verifies the page-level inverse with 500 anti-doublet nulls and all 120 planted encrypted books.
+
+**Reproduce (word-level):** [`sims/no_repeat_rank_wordwise_gate.cjs`](../sims/no_repeat_rank_wordwise_gate.cjs) uses the shared canonical word parser, three tracked GP-English references, 5,000 seeded exact-length/erasure-matched controls per source, and independent per-word hidden-key positive controls. The existing [manual-only workflow](../.github/workflows/no-repeat-rank-inverse.yml) runs both scripts when dispatched. The word-level run was executed directly against the exact tracked source data; no new Actions run is claimed.
 
 **Relation to prior work:** The existing [previous-cipher S-box invariant](previous-cipher-sbox-invariant.md) already disfavors a broader English-like class of preceding-cipher-history-indexed **bijective** 29-symbol substitutions. This present test supplies an exact reversible inverse and a separate constrained result for the naturally proposed **nonbijective 29→28 no-repeat transducer**.
