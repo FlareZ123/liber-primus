@@ -17,13 +17,19 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const {makePrior, xorshift} = require("./caesar_pad_spectral.cjs");
+const {makePrior} = require("./caesar_pad_spectral.cjs");
 const ROOT = path.resolve(__dirname, "..");
 const corpus = JSON.parse(fs.readFileSync(
   path.join(ROOT, "resources/liber-primus/lp2-corpus.json"), "utf8"));
 const english = fs.readFileSync(
   path.join(ROOT, "resources/control/shakespeare_first300k.txt"), "utf8");
 const MOD = 29, PREFIX = 150;
+/** @param {number} seed */
+function xorshift(seed) {
+  let state=seed|0;
+  return ()=>{state^=state<<13;state^=state>>>17;state^=state<<5;
+    return (state>>>0)/4294967296;};
+}
 const CT = Array.from({length: 29}, (_,h) =>
   Float64Array.from({length:29}, (_,c) => Math.cos(2*Math.PI*h*c/29)));
 const ST = Array.from({length: 29}, (_,h) =>
