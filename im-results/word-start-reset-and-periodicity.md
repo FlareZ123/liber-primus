@@ -63,6 +63,23 @@ The section lag-23 sample contains 2,710 ordered pairs; the page-local sample co
 
 **Planted positive control:** 100 synthetic copies retain the true word counts of each page. First letters are independently sampled from the 250-word known-plaintext reference, encrypted by an independent random 23-phase mod-29 Caesar key, and independently overwritten at 5% of sites as a proxy for downstream perturbations. At lag 23, mean page-local z=6.422, minimum 3.823. All 100 plants exceeded z=3, and 97 exceeded z=4. This establishes useful power for the **specified** period-23 planted model, though it does not validate sensitivity to arbitrary nonadditive keys, irregular word order, or more aggressive postprocessors.
 
+## Arbitrary repeating alphabets: a phase-collision sieve
+
+The preceding equal-lag test was motivated by an **additive** period-23 key. A stronger invariant holds for a key that assigns each word-position phase a different, completely arbitrary *bijective* 29-rune alphabet. The alphabet may vary independently from section to section or from page to page, while repeating after k words within that scope. For a fixed period k, two word initials belonging to the same phase are passed through the same bijection, so the number of equal-initial pairs **inside each phase** is invariant. This requires neither additive nor linear keying.
+
+The new program [word_start_phase_permutation.cjs](../sims/word_start_phase_permutation.cjs) computes each scope's phase-conditioned collision rate and compares its excess against full within-scope shuffles. It scans **all periods 2–60**, preserving each scope's exact initial-rune frequencies. One-sided familywise calibration repeats the complete max-over-periods selection on every null. The input is the same 2,896 whole words, with page-boundary-spanning words assigned to their physical starting page. Source code fixes all random seeds.
+
+| Key reset scope | Best observed period | Observed / expected ordered same-phase equality pairs | Best standardized score | Period-scan familywise p |
+| --- | ---: | ---: | ---: | ---: |
+| Sections; 600 shuffled books | 9 | 5,002 / 4,771.74 | +3.393 | **0.328** |
+| Physical rune-bearing pages; 1,000 shuffled books | 53 | 32 / 17.70 | +3.459 | **0.378** |
+
+At the previously conjectured period **23**, the section-continuous result is 1,700 / 1,806.64 equality pairs (Q=0.0326333, z=-2.554, upper-tail p=0.972), while the page-reset result is 144 / 150.25 (Q=0.0328767, z=-0.519, p=0.651). The apparent isolated best periods 9 and 53 are not significant after correcting for the 59-way scan, and the page-local period 53 contains only 516 eligible ordered comparisons.
+
+**Model-specific power:** 100 synthetic manuscripts retained the page word counts, sampled independent plaintext initials from the 250-word reference, then applied independent arbitrary random permutation alphabets to each word phase and each page at period 23, followed by 5% random overwrites. Their period-23 phase-collision score had z mean **10.064**, minimum **5.777**, with all 100 greater than z=4. The actual page-local period-23 score is z=-0.519. This planted test is genuinely substitution-invariant, and broadens the exclusion beyond Caesar and affine alphabets. It does not cover nonbijective per-symbol encoding, keys that change between successive occurrences of the same phase, or a plaintext initial distribution already close to uniform.
+
+[Complete successful on-demand run 42745046435](https://github.com/FlareZ123/liber-primus/actions/runs/42745046435). The existing manual-only workflow now executes both programs.
+
 ## Implication for further decryption
 
 The previously observed **exploratory 23/46 word-length** phenomenon (see [word-length work](word_length_order_20261110.md)) has **no accompanying period-23 same-initial-rune signal**. This argues against attributing that length phenomenon to a simple fixed period-23 additive word-initial cipher. It leaves open word-length transposition, independent symbol mixing, and state-dependent key schedules.
