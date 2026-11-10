@@ -74,6 +74,8 @@ function packetLeaders(phase,reverse){
   return groups;
 }
 const all=[];
+const numericCases=[];
+let fullNumericFirst=null;
 let maxVisited=0,unknown=0,sat=0,unsat=0;
 let section7Minimum=29;
 for(let phase=0;phase<OUTPUT;phase++)for(const reverse of [false,true]){
@@ -82,15 +84,24 @@ for(let phase=0;phase<OUTPUT;phase++)for(const reverse of [false,true]){
   const impossible=leaders.map((v,j)=>v>16?j:null).filter(v=>v!==null);
   assert(impossible.includes(7));
   section7Minimum=Math.min(section7Minimum,leaders[7]);
-  const cyclic=groups.map(g=>{
+  const candidates=groups.map(g=>{
     let result=gate(g,100000);
     if(result.status==='UNKNOWN')result=gate(g,1000000);
     maxVisited=Math.max(maxVisited,result.nodes);
     if(result.status==='SAT')sat++;
     if(result.status==='UNSAT')unsat++;
     if(result.status==='UNKNOWN')unknown++;
-    return result.status;
+    return result;
   });
+  const cyclic=candidates.map(x=>x.status);
+  if(candidates.every(x=>x.status==='SAT')){
+    const pi=candidates.map(x=>x.witness);
+    const trial=trialInverse(pi,phase,reverse,false);
+    numericCases.push({phase,reverse,complete:trial.complete,
+      invalid:trial.invalid,valid:trial.valid});
+    if(trial.invalid===0&&fullNumericFirst===null)
+      fullNumericFirst={phase,reverse,complete:trial.complete,keys:pi};
+  }
   all.push({phase,reverse,leaders,sortedImpossibleSections:impossible,
     cyclic});
 }
@@ -109,25 +120,31 @@ assert(at0.every(x=>x.cyclic.every(s=>s==='SAT')));
  * @param {number} phase
  * @returns {{complete:number,invalid:number,valid:number,firstPlain:number[]}}
  */
-function trialInverse(orders,phase){
+function trialInverse(orders,phase,reverse=false,withPlain=true){
   let valid=0,invalid=0,complete=0;
   const firstPlain=[];
   for(let s=phase;s+OUTPUT<=observed.length;s+=OUTPUT){
     if(s===0)continue; // Unknown cipher predecessor.
     let integer=0n;
-    for(let j=s;j<s+OUTPUT;j++){
-      const r=observed[j],pi=orders[r.section];
+    for(let j=0;j<OUTPUT;j++){
+      const k=s+(reverse?OUTPUT-1-j:j),r=observed[k],
+        pi=orders[r.section];
+      assert(r.prev!==null);
       integer=integer*28n+BigInt(mod(pi[r.curr]-pi[r.prev]-1));
     }
     complete++;
     if(integer>=limit){invalid++;continue;}
     valid++;
-    const digits=Array(INPUT);
-    for(let j=INPUT-1;j>=0;j--){digits[j]=Number(integer%29n);integer/=29n;}
-    assert.equal(integer,0n);
-    firstPlain.push(digits[0]);
+    if(withPlain){
+      const digits=Array(INPUT);
+      for(let j=INPUT-1;j>=0;j--){
+        digits[j]=Number(integer%29n);integer/=29n;
+      }
+      assert.equal(integer,0n);
+      firstPlain.push(digits[0]);
+    }
   }
-  return {complete,invalid,valid,firstPlain};
+  return {complete,invalid,valid,...(withPlain?{firstPlain}:{})};
 }
 const phase0Groups=packetLeaders(0,false);
 const phase0Keys=phase0Groups.map(g=>{
@@ -235,7 +252,21 @@ const report={
   totalCyclicSectionCspTests:sat+unsat+unknown,
   cyclicResults:{sat,unsat,unknown,maxVisited},
   phase0Forward:at0[0],phase0Reversed:at0[1],
-  arbitraryPhase0CyclicWitnessNumericCapacity:conditional,
+  arbitraryPhase0CyclicWitnessNumericCapacity:{
+    complete:conditional.complete,valid:conditional.valid,
+    invalid:conditional.invalid,
+    firstRuneIoC:conditional.firstPlain.length
+      ?conditional.firstPlain.reduce((total,symbol)=>total+
+        (conditional.firstPlain.filter(x=>x===symbol).length-1),0)/
+          (conditional.firstPlain.length*(conditional.firstPlain.length-1))
+      :null
+  },
+  globalCyclicOriginalNumericWitnesses:{
+    evaluated:numericCases.length,completeNumberCompatible:numericCases.filter(x=>x.invalid===0).length,
+    minimumOverflowPackets:Math.min(...numericCases.map(x=>x.invalid)),
+    bestCases:numericCases.slice().sort((a,b)=>a.invalid-b.invalid).slice(0,7),
+    firstFullNumericWitness:fullNumericFirst
+  },
   syntheticGPPlaintextRoundTrip:positive,
   caution:'Cyclic SAT is a first-digit necessity only; arbitrary witness is key-underdetermined and its numerically valid decoded strings are not authenticated plaintext. Packet erasure and section labels are source-selected assumptions.'
 };
