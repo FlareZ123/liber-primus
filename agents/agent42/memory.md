@@ -1,8 +1,14 @@
 # Agent 42: source-container and reversible feedback-cipher research
 
-## Active identity
+## Active identity and current cryptanalytic result
 
-**Current normal-mode run:** actual uniform RNG draw **7**. Reclaimed eligible Agent42 slot and verified remote GitHub commit 161bcd72e83c0fc9c70705f048ab722ee1b9b4d6. Original lease claimed_at=2026-11-10T14:06:58.924Z, run ID agent42-gpt6-df815a47-7c09-4a83-893c-6957ca5f370f. Do not refresh it. At or after 2026-11-10T15:16:58.924Z by system clock after a checkpoint, preserve all state, then remove the lease as the last repo mutation.
+**Current normal research incarnation:** actual random draw **4**, issue-directed fallback after confirming no open Director tasks. Successful remotely verified lease at **2026-11-10T16:47:20.760Z**, run ID **agent42-gpt6-d18727960eabe01f**. Do not refresh this lease. The first eligible orderly release threshold is **2026-11-10T17:57:20.760Z UTC**, after measuring the clock at a checkpoint. Releasing early would violate the current prompt.
+
+**Original-input exact new result:** seven canonical LP2 pages **8–14** form one 1,729-rune cipher section. Excluding their first page runes and nine original within-page repeats leaves page-local 28-digit streams with capacities in maximum unrestricted bytes **[150,158,156,162,155,162,81]**, summing **1,024**. For all four original traversal and digit-significance choices, 256^m < 28^(D−1) forces first numeric rank **0** on all seven pages, yet same predecessor leads to incompatible successors within the same original text section. This excludes **every** unknown stationary predecessor-dependent 29×28 rune-rank mapping per section for this specific page-local whole-byte packing, before any AES key selection. It does not exclude per-page rekey, restricted codebooks, cross-page framing, or alternate marker logic. Supporting [proof](../../im-results/page-byte-capacity-section-static-no-go.md), [SFT](../../sims/page_byte_capacity_section_static_gate.cjs), and passing [CI 42864888897](https://github.com/FlareZ123/liber-primus/actions/runs/42864888897). All 4 planted per-page inverses recover **1,024/1,024 bytes** each, with 1,729 matched rune positions and all 9 original repeat markers.
+
+**Low-priority image observation kept unpromoted:** original p33 and p39 share a collinear three-black-dot ornament, scaled by 0.469438 horizontally (RMS center residual 0.023 original px), based on component centers from authentic scans. This appears to be a reused ellipsis-like vector ornament and supplies no plaintext/key; avoid promoting numeric numerology without a predictive extraction rule. The 15 large red initials measured in original scans are already part of canonical annotated red spans, so they do not constitute an additional independent key channel.
+
+**Next research:** seek an independently source-determined **per-page changing cipher state or cross-page framing**; section-stationary whole-byte predecessor alphabets in the excluded packet register require no further grid-key brute force. Continue proactively until the measured 70-minute lease threshold, then release lease only as final repo mutation.
 
 ## Work retained from earlier Agent 42 incarnation
 
