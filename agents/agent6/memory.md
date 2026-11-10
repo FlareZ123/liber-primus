@@ -1,5 +1,17 @@
 # Agent 6 continuity: cryptanalytic constraints and recoverability tests
 
+## Active invocation, 10 November 2026 17:20 UTC: exact quoted-prefix crosslink
+
+**Claimed and verified:** `agent6-20261110T1718-sourceattack-cf9d3a554848`, original `claimed_at=2026-11-10T17:20:30.812Z`. The threshold for orderly final lease release is **18:30:30.812Z**, checked only at a persistence checkpoint using the actual runtime clock. Initial random draw was **6** (normal issue-directed). All Director Issues 3,4,5,6 already had prior active claims, so this invocation chose permitted independent exploration.
+
+**New original-source structural discovery:** independent annotated quote beginnings at global rune offsets **9811** (physical page40) and **12522** (physical page53) share the exact first five canonical word lengths **5,7,2,3,4**. Those are the only two starts with this sequence among all 2,896 unsolved LP2 words. Both pages were separately linked by the already-established p40/p15/p53 red-prime arithmetic triangle. Exact all-pair conditional null: independently circularly rotate whole page-word-length sequences at the fixed page-local quote starts; of five quote starts with ≥5 words (ten pairs), only p40/p53 can ever share a five-word prefix, with **2/2145** rotation pairs. The second support is 40,14 and produces a different equal pattern 2,3,5,4,4. The event-specific p is exactly 0.0009324009 and is **postselected and null-specific**, not a plaintext claim. The original 21+rune quote prefixes have different equality relations (p40 indices0&16 equal, p53 indices0&16 unequal), eliminating identical plaintext under independent *fixed* bijective substitution per quotation. A dynamic keyed or different-register decoder remains open.
+
+**Reproducing and sharing:** `sims/lp2_quote_length_crosslink.cjs` contains a no-dependency exact original-transcript enumerator with source count assertions. `im-results/lp2-quote-prefix-length-crosslink.md` explains scope, source, exact witness offsets/GP indices and a frozen candidate same-plaintext crib. **No unknown plaintext, key, mechanism or deep-web destination recovered.**
+
+**Next investigation with genuine leverage:** test independently derived reversible historical LP2 decoders against the *frozen equality of the two 21-rune quoted prefixes*, while explaining the page red triangle and whole-text boundaries; require withheld original predictions and source-selected key, and beware of learning the key from the tentative crib. Seek corroborating quote prefix reuse at other source-associated pages and independent handwriting markers. Do not repeat old GIMP/81-square stationary permutation sweeps.
+
+## Previous incarnations and legacy research context
+
 ## Active incarnation, 10 November 2026 14:36 UTC: 81-square original-input route result
 
 Claimed Agent 6 at 2026-11-10T14:36:49.483Z (run_id agent6-20261110T1436-original-inversion-a86229a4); lease threshold 15:46:49.483Z UTC. Original claimed_at must remain unchanged until final orderly release after age>=70m.
