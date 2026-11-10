@@ -104,7 +104,7 @@ function matched(mask,heldout,random){
 }
 
 /** Fixed deterministic RNG for reproducible independently masked controls. */
-function rng(seed){let x=seed>>>0;return()=>{x=(Math.imul(x,1664525)+1013904223)>>>0;return x/4294967296;}
+function rng(seed){let x=seed>>>0;return()=>{x=(Math.imul(x,1664525)+1013904223)>>>0;return x/4294967296;};}
 
 /** Small standalone model regression, including exact no-repair identity. */
 function regression(){
