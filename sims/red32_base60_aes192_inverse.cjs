@@ -53,6 +53,10 @@ const keyText = lengths.map(v => ALPHABET[v]).join("");
 assert.equal(keyText, "D0G030B00EC09B0G0J0A08030x905070");
 const forwardKey = integerKey(lengths);
 const reverseKey = integerKey(lengths.slice().reverse());
+const rawForwardKey = Buffer.from(lengths);
+const rawReverseKey = Buffer.from(lengths.slice().reverse());
+const keys = [["base60Forward",forwardKey],["base60Reverse",reverseKey],
+  ["rawForward",rawForwardKey],["rawReverse",rawReverseKey]];
 assert.equal(forwardKey.toString("hex"),
   "0708f2dc76072a5a0f18c0858c4f7deddc78acb448284864");
 assert.equal(reverseKey.toString("hex"),
@@ -111,7 +115,7 @@ function score(text) {
 function stream(key,iv,blocks) {
   const bytes = [];
   for (const length of blocks) {
-    const encoder = crypto.createCipheriv("aes-192-ctr",key,iv);
+    const encoder = crypto.createCipheriv("aes-"+(key.length*8)+"-ctr",key,iv);
     bytes.push(...encoder.update(Buffer.alloc(length)));
     bytes.push(...encoder.final());
   }
@@ -136,7 +140,7 @@ function additive(input,pad,sign,encode) {
  * @returns {Buffer}
  */
 function aesDecrypt(data,key,mode,iv) {
-  const dec = crypto.createDecipheriv("aes-192-"+mode,key,
+  const dec = crypto.createDecipheriv("aes-"+(key.length*8)+"-"+mode,key,
     mode==="ecb"?null:iv);
   dec.setAutoPadding(false);
   return Buffer.concat([dec.update(data),dec.final()]);
@@ -162,7 +166,7 @@ function testTable() {
     ["cbc",true],["ctr",true]
   ];
   const rows=[];
-  for (const [orientation,key] of [["forward",forwardKey],["reverse",reverseKey]]) {
+  for (const [orientation,key] of keys) {
     for (const [layoutName,bytes] of Object.entries(layouts)) {
       for (const [mode,ivSource] of modes) {
         const iv = ivSource===true?bytes.subarray(0,16):ivSource;
@@ -174,7 +178,7 @@ function testTable() {
       }
     }
   }
-  assert.equal(rows.length,56);
+  assert.equal(rows.length,112);
   const plantText=Buffer.alloc(256);
   for(let i=0;i<256;i++)plantText[i]=
     "LIBERPRIMUSSOURCEFIXEDAES192POSITIVE".charCodeAt(i%34);
@@ -188,11 +192,11 @@ function testTable() {
     plantedBytesRecovered:256};
 }
 
-/** Direct AES192-generated-rune-pad original inversion, 48 independent source-fixed settings. */
+/** Direct AES-192/256-generated-rune-pad original inversion, 96 source-fixed settings. */
 function testRunes() {
   const modes=[];
   const iva=Buffer.alloc(16),ivb=grid.subarray(0,16);
-  for(const [orientation,key] of [["forward",forwardKey],["reverse",reverseKey]]) {
+  for(const [orientation,key] of keys) {
     for(const [ivName,iv] of [["zero",iva],["gridFirst16",ivb]]) {
       for(const [clock,blocks] of [
         ["book",[original.length]],["section",sectionBlocks],["page",pageBlocks]
@@ -216,19 +220,20 @@ function testRunes() {
       }
     }
   }
-  assert.equal(modes.length,48);
+  assert.equal(modes.length,96);
   modes.sort((a,b)=>b.unigramLogMean-a.unigramLogMean);
   return {variants:modes.length,baselineOriginal:score(original),
     plantedNative:score(control),
     best:modes.slice(0,8),
     worst:modes.slice(-2).map(({preview,...rest})=>rest),
-    allPlantedPositionsRecovered:48*original.length};
+    allPlantedPositionsRecovered:96*original.length};
 }
 function run() {
-  return {classification:"source-selected original-input AES192 family negative; no authentic LP2 plaintext",
+  return {classification:"source-selected AES192/AES256 source-key tests; no authenticated LP2 plaintext",
     source:"225 original red GP runes delimited by 31 original 13-dot stencils",
     sourceRedLengths:lengths,keyText,
-    aes192Keys:{forward:forwardKey.toString("hex"),reverse:reverseKey.toString("hex")},
+    sourceKeys:{base60Forward:forwardKey.toString("hex"),base60Reverse:reverseKey.toString("hex"),
+      rawForward:rawForwardKey.toString("hex"),rawReverse:rawReverseKey.toString("hex")},
     gridTable:testTable(),runeCiphertext:testRunes()};
 }
 if(require.main===module)console.log(JSON.stringify(run(),null,2));
