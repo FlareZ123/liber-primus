@@ -1,4 +1,4 @@
-name: Exact wordwise pad inverses (period-six and Fibonacci)
+name: Wordwise inverse and Fibonacci differential controls
 
 on:
   workflow_dispatch:
@@ -21,6 +21,8 @@ jobs:
           set -o pipefail
           node sims/word_period6_exact_T_inverse.cjs | tee word-period6-inverse.json
           node sims/word_fibonacci_exact_inverse.cjs | tee word-fibonacci-inverse.json
+            word-fibonacci-differential.json
+          node sims/word_fibonacci_differential_invariant.cjs 100 | tee word-fibonacci-differential.json
       - uses: actions/upload-artifact@v4
         with:
           name: wordwise-exact-inverses
