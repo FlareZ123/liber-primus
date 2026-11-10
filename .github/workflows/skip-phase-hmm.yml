@@ -1,0 +1,21 @@
+name: LP2 exact skip-aware HMM ramp-key test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout research corpus
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare all ramp keys against anti-repeat null and planted control
+        run: node sims/skip_phase_hmm.cjs
