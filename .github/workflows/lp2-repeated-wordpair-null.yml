@@ -2,12 +2,32 @@ name: Check LP2 repeated two-word cipher phrase
 
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: Which source-original square model to test
+        type: choice
+        default: legacy
+        options:
+          - legacy
+          - allalphabet
 
 permissions:
   contents: read
 
 jobs:
+  allalphabet:
+    if: inputs.mode == 'allalphabet'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Exact source-square all-secret-alphabet capacity and English plant
+        run: node sims/bookend_dual_square_allalphabet_capacity.cjs
   simulate:
+    if: inputs.mode != 'allalphabet'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
