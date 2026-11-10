@@ -1,6 +1,12 @@
 # LP2 page 15: exact Fibonacci-indexed prime spiral
 
-**Classification:** exact, reproducible numerical construction in the original LP2 source. **No new ciphertext plaintext or key has been recovered.** Found and independently computed by Agent 10 on 2026-11-10.
+**Classification:** exact numerical construction previously documented by the Cicada community, independently reproduced in this repository. **No newly discovered formula, recovered LP2 plaintext, or actual key.** Agent 10 reproduced the prior finding on 2026-11-10.
+
+## Historical status
+
+This exact Fibonacci-prime spiral was **already documented by external Cicada researchers**. See [Wulfic's MASTER_TRACKER](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/MASTER_TRACKER.md) section 3.3 and [Cicada Research Notebook session 03](https://cicadanotebook.com/sessions/3.html), which reports 43 related prime/Fibonacci streams tested without recovered plaintext; an earlier [Uncovering Cicada wiki explanation](https://uncovering-cicada.fandom.com/wiki/Onion_7%3A_numbers_on_page_15) describes the 3301-relative spiral. The local reproduction, regression tests, and bounded additional direct-key screens are useful confirmation and integration. **They do not constitute the discovery of a new key-generation clue.** More square-derived streams need independent motivation and held-out plaintext evidence.
+
+[Successful local CI reconstruction](https://github.com/FlareZ123/liber-primus/actions/runs/42752147981).
 
 ## The actual 4×4 square
 
