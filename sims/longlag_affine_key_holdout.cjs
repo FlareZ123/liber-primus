@@ -175,7 +175,7 @@ function run() {
   for(let t=0;t<N_NULL;t++) {
     let shift;
     do {shift=100+rng()%(actual.length-200);}
-    while(mod((DELTA+shift)%actual.length)===0 ||
+    while(((DELTA+shift)%actual.length)===0 ||
           Math.min((DELTA+shift)%actual.length,
             actual.length-((DELTA+shift)%actual.length))<100);
     nullHold.push(scan(actual,model,shift).holdPerRune);
