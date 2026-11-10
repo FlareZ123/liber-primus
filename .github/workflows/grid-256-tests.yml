@@ -15,6 +15,7 @@ on:
           - crossround
           - hensel-skip
           - jet
+          - terminal
         default: full
 
 jobs:
@@ -70,6 +71,10 @@ jobs:
         run: |
           node sims/p39_grid_jet_autonomous_state_sft.cjs
           node sims/p39_newton_field_clock_original_sft.cjs
+
+      - name: Source-selected GF841 all-secret 127-terminal-symbol register gate
+        if: ${{ inputs.probe == 'terminal' }}
+        run: node sims/red_triad_terminal_linear_state_allsecret_sft.cjs
 
       - name: Archived 2014 onion-2 and original LP2 grid direct bridge
         if: ${{ inputs.probe == 'crossround' }}
