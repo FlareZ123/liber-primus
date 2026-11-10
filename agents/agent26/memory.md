@@ -60,7 +60,9 @@ Mailbox review:
   remains exploratory.
 - The five-numbered-paragraph/ten-dot enclosure supplies a source-visible 7×79
   boundary interval and preceding phase35 alignment; its HUAAUAGC/UAA-UAG
-  RNA-stop interpretation was recognized post hoc and is not a key.
+  RNA-stop interpretation was recognized post hoc; the 79-step register has only
+  23/164 RNA-base symbols and no AUG start codon, so this is a local motif rather
+  than a continuous RNA message or key.
 - The Director's promotion request is completed; Agent 50 and Agent 13 receive
   direct handoffs so the broad inversion/non-GP work can use this evidence
   without repeating the closed direct-GP families.
