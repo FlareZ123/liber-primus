@@ -132,7 +132,33 @@ No tested mapping produces readable original LP2. Under the T6 inverse, the best
 
 The archived extraction reports seed **230** and payload length **1,136**. These values should not automatically be treated as puzzle-chosen numbers. In the classic OutGuess 0.2 source, iterator.h defines DEFAULT_ITER as 256; outguess.c uses that default to search seeds 0 through 255 and select the embedding with the lowest changed/bias cost. The selected seed and payload length are stored in the stego header and printed by retrieval. Unless the original encoder explicitly supplied a seed/search option, 230 is likely an embedding-optimizer output, not an intentional LP2 index. The archived material preserves the retrieval command, not the original embedding flags. Sources: [iterator.h](https://github.com/crorvick/outguess/blob/master/iterator.h), [outguess.c](https://github.com/crorvick/outguess/blob/master/outguess.c), [outguess.1](https://github.com/crorvick/outguess/blob/master/outguess.1).
 
-A narrow control nevertheless treated 230 as a starting offset into the 256-byte p49 grid, took six consecutive bytes forward or backward, reduced them mod29, and used the resulting six values as the initial state for the source-derived T6 recurrence. The seeds were forward **[1,1,19,2,22,5]** and reverse **[1,0,28,17,15,23]**. Across 56 candidates, no score crossed the English threshold of −4.5 log-score/rune. The best candidate was the reverse offset with word reset and negative sign (log-score/rune **−5.04149**, rune IoC **0.03750**); its preview, “THBLEFLA USBNL OTHIP UFI ROU IEGAINSWNJA,” is nonlinguistic. This rejects the direct seed-as-grid-offset reading, not all possible uses of the 2016 image. Candidate scores are preserved in the diagnostics artifact from [CI run 42904321666](https://github.com/FlareZ123/liber-primus/actions/runs/42904321666). That run stopped later because the audit parser incorrectly treated whitespace as a word delimiter; the parser has now been corrected to match the shared continuous-word parser. Reproduction: [source-gate script](../sims/2016_image_dimension_lag6_source_gate.cjs).
+A narrow control nevertheless treated 230 as a starting offset into the 256-byte p49 grid, took six consecutive bytes forward or backward, reduced them mod29, and used the resulting six values as the initial state for the source-derived T6 recurrence. The seeds were forward **[1,1,19,2,22,5]** and reverse **[1,0,28,17,15,23]**. Across 56 candidates, no score crossed the English threshold of −4.5 log-score/rune. The best candidate was the reverse offset with word reset and negative sign (log-score/rune **−5.04149**, rune IoC **0.03750**); its preview, “THBLEFLA USBNL OTHIP UFI ROU IEGAINSWNJA,” is nonlinguistic. This rejects the direct seed-as-grid-offset reading, not all possible uses of the 2016 image. Candidate scores and the full audit are preserved in the diagnostics artifact from successful [CI run 42906842690](https://github.com/FlareZ123/liber-primus/actions/runs/42906842690); both the T6 register gate and source gate passed. The corrected sparse-mask parser now matches the shared continuous-word parser and the canonical 2,896-word corpus. Reproduction: [source-gate script](../sims/2016_image_dimension_lag6_source_gate.cjs).
+
+### Predeclared word-position and page-mask audit
+
+The successful run reproduces **2,896 words, 12,956 runes, 1,290 eligible within-word positions, and 80 T6 hits**. The positive-control inverse recovers **12,779/12,956 planted runes (98.63%)**, with three fallback words; this validates the inverse implementation on a controlled construction, not on the original ciphertext.
+
+The predeclared page mask does **not** enrich the T6 relation on tree-decorated pages:
+
+| Population | Hits | Eligible | Rate |
+|---|---:|---:|---:|
+| Physical pages 40–55 (tree-decorated) | 20 | 337 | 5.93% |
+| All other pages | 60 | 953 | 6.30% |
+| First eligible within-word position (j=6) | 33 | 559 | 5.90% |
+| Last eligible within-word position | 32 | 559 | 5.72% |
+
+Within-word offset modulo six gives:
+
+| Offset residue | Hits | Eligible | Rate |
+|---:|---:|---:|---:|
+| 0 | 34 | 566 | 6.01% |
+| 1 | 19 | 346 | 5.49% |
+| 2 | 12 | 187 | 6.42% |
+| 3 | 6 | 109 | 5.50% |
+| 4 | 8 | 57 | 14.04% |
+| 5 | 1 | 25 | 4.00% |
+
+All eight residue-4 hits occur at exact word offset 10, in words of length 11 or 12, on physical pages 0, 7, 9, 16, 27, 43, 44, and 53. A nominal Fisher exact comparison against the other five residues gives p≈0.021, but a simple six-residue correction gives p≈0.126; treat this as exploratory, not significant. Global rune-position residues modulo six are approximately uniform. In the source-selected second 128-rune half there is only one hit (global offset 12620, physical p53, word offset 10, word length 11): 1/15 eligible positions in that half and 1/32 in the assembled 256-rune block. These results do not support a tree-page mask or a robust section-specific concentration.
 
 ### Grid-derived key screens
 
