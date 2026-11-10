@@ -1,6 +1,6 @@
 # Arbitrary finite-context substitution feedback: collision invariants
 
-**Agent 16 · 2026-11-10 · reproduced negative under declared English-GP models.** This analysis recovers **no plaintext, key, or confirmed LP2 cipher mechanism**.
+**Agents 16 and 27 · 2026-11-10 · key-invariant tests and source-native positive controls under declared GP plaintext families.** This analysis recovers **no plaintext, key, or confirmed LP2 cipher mechanism**.
 
 ## The cryptanalytic question
 
@@ -60,6 +60,23 @@ The null upper-tail probabilities for LP2, respectively, are **0.3433**, **0.747
 A single atypical page could be obscured by book-level pooling. Select the largest page-specific k=1 collision ratio from all 55 pages and compare to the same maximum of each of 1,000 simulated anti-repeat manuscripts. The real maximum is **0.0502732 on page 27**, whereas the null maximum has mean **0.0581297**, 95th percentile **0.0819672**, and upper-tail **p = 0.7453**. For an additional descriptive power measure, no real page exceeds ratio 0.055; **82.605%** of 55,000 individually planted English-S-box pages exceed 0.055.
 
 The 0.055 threshold is a qualitative plant-detection indicator, not an independently specified significance threshold. The empirical 55-page maximum calibration is the family-wise check.
+
+## Lag-five/six delayed public-state rows with lossless EA and T6 reservations
+
+An original-ciphertext test targets the exact fifth/sixth antecedents of the observed word-local echoes, rather than ordinary contiguous histories. It permits an **arbitrary hidden permutation for each of the 841 public pairs** (C[i−5], C[i−6]), shared throughout the book. The first, reversible mode assigns GP EA (28) to the previous ciphertext glyph, with the other 28 source symbols mapped through unknown row-specific permutations of the 28 nonzero F29 steps in primitive-root-15 order. A stronger mode reserves GP T (16), at original printed word positions ≥6, for the visible affine output 24−2C[i−6] mod29. Collisions with the EA output use a deterministic next-free-root-step fallback. That flag selects its own arbitrary row permutation on the 27 residual outputs. The model thus permits **1,682 independent hidden row permutations**, with 28! or 27! possibilities per row. The first six original ciphertext symbols are used solely as known history and never scored, avoiding a guessed IV.
+
+For each output, remove the zero-step and, if eligible, the T6 target from the deterministic list of 29 output glyphs. Assign all remaining outputs their ordered residual ranks. Within any identical state (C[i−5], C[i−6], T6-eligible), an arbitrary fixed keyed permutation maps identical plaintext residual symbols to identical published ranks, and distinct symbols to distinct ranks. The **pooled same-rank-pair rate is therefore exactly independent of every hidden key**. Its numerical level for real plaintext is calibrated by genuinely encrypting source prose, since ciphertext history and plaintext are dependent.
+
+Use canonical **12,956** unsolved LP2 runes and **2,896** complete words, with 32 cross-page words preserved. For each model, encrypt 256 full-length original-layout GP plaintext controls using arbitrary hidden per-row permutations, then invert **every planted symbol exactly**. Controls sample late Shakespeare and editorial-cleaned original solved-Cicada LP1/LP2 prose; their true plaintext word boundaries are independent of the original printed LP2 ciphertext breaks. A 256-draw anti-repeat Markov null separately checks the near-uniform baseline.
+
+| Source-locked permutation family | Original matching/eligible residual pairs | Original rate | Solved-Cicada positive mean (min–max) | Shakespeare positive mean (min–max) | Null mean |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| EA-only, 841 rows | **3,632 / 100,884** | **0.03600174** | 0.06301862 (0.06006892–0.06611415) | 0.05994593 (0.05734864–0.06276919) | 0.03571741 |
+| EA + word-local T6, up to 1,682 rows | **2,965 / 82,647** | **0.03587547** | 0.06305379 (0.06039525–0.06611039) | 0.05986638 (0.05776460–0.06278454) | 0.03582422 |
+
+**None of 256 independently simulated genuine-Cicada source positives is as low as the original**, in either fixed family (plus-one lower-tail Monte Carlo bound ≤1/257 per model). Notably the original has **86 transparent EA outputs and 81 T6-reserved outputs**, against native-Cicada planted means **86.12 and 82.81**. The selected echo/marker counts can match the source-conditioned mechanism while the **unfitted residual equality structure fails dramatically**. This is a key-independent conditional exclusion of fixed publicly indexed lag-5/6 row tables and their declared reservations; it is not an exclusion of hidden evolving state, independently rekeyed rows, other plaintext alphabets, other reset policies, or an added prior encryption layer. No original plaintext or key has been recovered.
+
+Exact [reproducer](../sims/delayed_motif_row_invariant.cjs), xorshift32 seed **0x2765ca55**; [passed manual CI run 42809883518](https://github.com/FlareZ123/liber-primus/actions/runs/42809883518) in the existing manual rotor-phase workflow.
 
 ## Exact predecessor-ciphertext majorization and page-boundary rekey complexity
 
@@ -182,6 +199,7 @@ If an ordinary English-GP rune stream were encrypted by one of the specific dete
 A further arbitrary S-box enumeration has very low expected value unless a clue supplies a more restrictive externally predictable state or a mechanism defeating the collision invariant. Substantive decipherment likely requires locating an independent key source, recoverable generator, or cross-page structural relation.
 
 ## Reproduction
+- Original lag-five/six delayed public-state row-key invariant with lossless EA/T6 reservations and exact native-GP source-control reversals: node sims/delayed_motif_row_invariant.cjs; seed **0x2765ca55**; [passed CI 42809883518](https://github.com/FlareZ123/liber-primus/actions/runs/42809883518).
 
 - Book-wide k=1 **exact** arbitrary-row frequency bound and full original-cipher constructive witness: `node sims/previous_cipher_row_symbol_bound.cjs`. The genuine source-control encryption uses seed **0x3301cafe** and makes a complete 12,956-rune round trip.
 - k=1, independent page tables: \`node sims/previous_cipher_sbox_invariant.cjs\`. Fixed seeds **0x1629edab** (200 null/plant manuscripts) and **0x1631cafe** (1,000 page-max nulls plus 1,000 page-by-page positive controls). No packages.
