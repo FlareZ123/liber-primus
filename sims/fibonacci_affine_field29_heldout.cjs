@@ -7,7 +7,7 @@
  *
  * C[i] = A[(clock+phase)%16] * P[i] + sign * B[(clock+phase)%16] (mod 29)
  *
- * 6 source multiplier choices surviving nonzero-invertibility checks, 13
+ * 8 source multiplier choices surviving nonzero-invertibility checks, 13
  * source/zero offset choices, both signs, 16 phases, two clock reset policies:
  * 6,656 complete invertible original-data tests, selected on pages 16..18,
  * frozen and challenged on pages 19..22. An exact positive is included.
@@ -97,7 +97,7 @@ function run() {
   const arr=sourceArrays(),zero=Array(16).fill(0);
   const multiplicands=Object.entries(arr).filter(([,v])=>
     v.every(x=>mod(x)!==0));
-  assert.equal(multiplicands.length,6);
+  assert.equal(multiplicands.length,8);
   const sourceOffsets=[['zero',zero],...Object.entries(arr)];
   assert.equal(sourceOffsets.length,13);
   const ranked=[];
