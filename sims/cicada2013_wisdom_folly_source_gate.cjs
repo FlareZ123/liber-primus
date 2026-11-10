@@ -23,7 +23,8 @@ assert.equal(crypto.createHash('sha1')
   '62b1b949a1e4e4a346e75b1c34101000d3c53220');
 
 const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
-const pages = corpus.pages.filter(p => p.status === 'unsolved').map(p => p.indices);
+const sourcePages = corpus.pages.filter(p => p.status === 'unsolved');
+const pages = sourcePages.map(p => p.indices);
 const sourceCipher = pages.flat();
 assert.equal(pages.length, 55); // physical p50 has no runes
 assert.equal(sourceCipher.length, 12956);
@@ -115,6 +116,16 @@ function gp28encode(input, codec, sign, reduction, clock) {
 }
 
 const variants = [];
+const localVariants = [];
+/** @param {number[][]} decoded @param {string} family @param {string} clock @param {string} reduction @param {number} sign */
+function recordLocal(decoded, family, clock, reduction, sign) {
+  for (let i = 0; i < decoded.length; i++) {
+    if (decoded[i].length < 140) continue;
+    localVariants.push({page: sourcePages[i].page,
+      length: decoded[i].length, family, clock, reduction, sign,
+      ioc: ioc(decoded[i], 29)});
+  }
+}
 for (const clock of ['book', 'page'])
   for (const reduction of ['mod', 'scale'])
     for (const sign of [-1, 1]) {
@@ -122,6 +133,7 @@ for (const clock of ['book', 'page'])
       assert.deepEqual(gp29(decoded, -sign, reduction, clock), pages);
       const planted = gp29([native], -sign, reduction, clock);
       assert.deepEqual(gp29(planted, sign, reduction, clock), [native]);
+      recordLocal(decoded, 'GP29 additive', clock, reduction, sign);
       variants.push({family: 'GP29 additive', clock, reduction, sign,
         ioc: ioc(decoded.flat(), 29)});
     }
@@ -137,13 +149,18 @@ for (const codec of ['sorted', 'log15'])
         const planted = gp28encode([plantPlain], codec, sign, reduction, clock);
         assert.deepEqual(gp28decode(planted, codec, sign, reduction, clock),
           [plantPlain]);
+        recordLocal(decoded, 'GP28 ' + codec, clock, reduction, sign);
         variants.push({family: 'GP28 ' + codec, clock, reduction, sign,
           ioc: ioc(decoded.flat(), 29)});
       }
 
 assert.equal(variants.length, 24);
 const sorted = variants.slice().sort((a, b) => b.ioc - a.ioc);
+localVariants.sort((a,b) => b.ioc - a.ioc);
+const firstThree = localVariants.filter(v => v.page <= 2);
 assert.ok(sorted[0].ioc < 0.038);
+assert.ok(localVariants[0].ioc < 0.045);
+assert.ok(firstThree[0].ioc < 0.040);
 const hist = Array(256).fill(0);
 for (const v of key) hist[v]++;
 const entropy = hist.reduce((h, n) => n
@@ -159,6 +176,9 @@ console.log(JSON.stringify({
   testedSourceKeyInverses: variants.length,
   bestOriginalDecodedIoc: sorted[0].ioc,
   topSeven: sorted.slice(0, 7),
+  strongestLocalPage: localVariants[0],
+  firstThreeBest: firstThree[0],
+  localPageComparisons: localVariants.length,
   allVariants: variants,
   positiveControl: 'Solved-page56 native-GP hidden-key plants exact across all 24 variants.',
   interpretation: 'No coherent original plaintext or supported key recovered. ' +
