@@ -108,9 +108,25 @@ The shuffled rank-stream score mean is **−2335.83531**, range **−2350.29871 
 
 Reproduce with [sims/lp2_rank28_rowcol_inverse.py](../sims/lp2_rank28_rowcol_inverse.py), a separate source-native Python/NumPy original and planted inverse. It reads the resources through the existing GP29 reproducer, asserts actual source-repeat counts, exact original/planted re-encryption, source-true positive recovery, 2,500 exact masked Fourier controls and 40 fully refitted key-search controls.
 
+
+## Independent Latin-register robustness test
+
+The first LP2 red title has been speculatively read as a Latin phrase in an independent external research proposal. Because the GP29 and GP28 tests above use authentic solved-Cicada English for their positive controls, we additionally test whether a **Latin plaintext register** could explain the key-free original observations.
+
+The repository has an independently transcribed **203,357 GP-rune Latin Vulgate training corpus** from Luke, John, Acts and Romans, separate from a fixed **2,400-GP-rune Revelation holdout**. These files are [Latin source counts](../resources/control/latin-vulgate-gp-trigrams.json) and [independent GP Latin sequence](../resources/control/latin-vulgate-heldout-gp.json), derived in the earlier Latin-register grid inverse. Use the first 729 authentic held-out Latin rune indices as the source-native comparison. Keep the same direct GP29 and masked-feedback GP28 original source transforms and the fixed original histograms.
+
+| Independent register and cipher | Native Latin 729-rune Fourier | Actual LP2 Fourier | Original best Latin-unigram log fit | Mean of 20 full-refit matched shuffles | Control fits ≥ original |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Direct GP29 row/column pad | **11.56333703** | **10.01993111** | **−2482.12487** | **−2485.47000** | **5/20** |
+| Reserved-EA feedback GP28 pad | **11.49283853** | **10.18962765** | **−2439.85171** | **−2438.67130** | **10/20** |
+
+The Latin GP29 and GP28 source controls exhibit substantially stronger key-free Fourier structure than the actual opening ciphertext under the same scoring rule. Each original Latin key fit uses **100 random-start row/column coordinate searches**, and each of the **20 histogram-preserving null examples redoes the complete original-key fit** (Latin null RNG seed 0x99), giving upper tails **6/21≈0.28571** and **11/21≈0.52381**, respectively. None selects genuine ciphertext plaintext. The 20-null search is a bounded source-register robustness check, not strong multiplicity-corrected evidence of a cipher's historical absence.
+
+This disqualifies the simplest explanation that the earlier English-GP negative arose solely from replacing an ordinary Vulgate-like Latin GP plaintext with an English GP language model. It cannot exclude a highly unusual Latin register, other languages, or extra cipher layers. The [rank28 source-native reproducer](../sims/lp2_rank28_rowcol_inverse.py) includes this separate exact Latin original-inverse evaluation through its independent existing resource files.
+
 ## Interpretation and next productive research gate
 
-**Both exact models eliminate their complete separable additive keyspaces without selecting plaintext on the original LP2 ciphertext.** The direct GP29 test covers all 29^53 additive row/column pads applied to ordinary Gematria Primus runes. The ciphertext-feedback rank28 test separately covers all 28^53 additive row/column pads after an explicitly reversible predecessor-exclusion transformation and reserved repeated-rune marker rule. Both source-native solved-Cicada positive controls are spectrally distinguishable from the respective source-matched shuffled nulls. Both 100-start independent original-key inversions score as ordinary among fully refitted negative controls and produce no authenticated plaintext.
+**Both exact models eliminate their complete separable additive keyspaces without selecting plaintext on the original LP2 ciphertext.** The direct GP29 test covers all 29^53 additive row/column pads applied to ordinary Gematria Primus runes. The ciphertext-feedback rank28 test separately covers all 28^53 additive row/column pads after an explicitly reversible predecessor-exclusion transformation and reserved repeated-rune marker rule. Both source-native solved-Cicada English positive controls, plus the independent authentic-Latin positives, are spectrally distinguishable from the respective original-histogram shuffled controls. Both 100-start independent original-key inversions score as ordinary among fully refitted negative controls and produce no authenticated plaintext.
 
 These are conditional cipher-family exclusions. They cannot rule out unknown outer permutations, nonseparable keys, additional encryption layers, nonlinear plaintext transforms, varying key-state feedback, or a different plaintext register. In particular, the rank28 reserved-EA rule was devised to account for a conspicuous property of the actual source; its physical meaning remains unverified. More unrestricted row/column key enumeration within these two precise models cannot change the key-independent spectral observations.
 
