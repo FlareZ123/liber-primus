@@ -1,0 +1,24 @@
+name: LP2 author-native prime-clause full-state inverse
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-state-prime-clause:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [red16, visible, printed]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaust 29^4 keys on original and prime-authored GP-native control
+        env:
+          LP_MATRIX: ${{ matrix.model }}
+        run: node sims/source_4d_prime_clause_fullkey.cjs
