@@ -1,0 +1,23 @@
+name: LP2 repeated-phrase implied key periods
+
+on:
+  workflow_dispatch:
+    inputs:
+      null_trials:
+        description: 'Whole-search shifted negative controls'
+        required: false
+        default: '300'
+
+jobs:
+  phrase-key-periods:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test long-period phrase crib with matched rotations
+        env:
+          NULL_TRIALS: ${{ inputs.null_trials }}
+        run: node sims/repeated_phrase_key_periods.cjs
