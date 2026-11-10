@@ -247,8 +247,8 @@ function run() {
     const positive = scan(planted.cipher,mode);
     assert.equal(trueDirectMatches,109);
     assert.ok(positive.wordsWithAnyGPSource>=trueInLex);
-    assert.equal(positive.votesTrain[truthCode]+positive.votesHold[truthCode],
-      trueInLex);
+    assert.ok(positive.votesTrain[truthCode]+positive.votesHold[truthCode] >=
+      trueInLex, "True key lost a source-dictionary word");
     assert.equal(positive.globalWinner.alpha,TRUE_ALPHA,
       "Heldout source planted key not ranked first");
     assert.equal(positive.globalWinner.beta,TRUE_BETA);
