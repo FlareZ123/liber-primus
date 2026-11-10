@@ -156,11 +156,34 @@ The same Emerson-trained model scores authentic solved controls far higher: LP2 
 
 Reproducer: `sims/lp1_mobius_grid_inverse.cjs`. It reads the canonical corpus, base60 grid, and Emerson control; runs all 16 original-input variants and 16 exact planted controls; and prints the full metrics and candidate previews.
 
+### Two-dimensional product-divisor Möbius inversion
+
+The one-dimensional transform above linearizes the 256 table cells as B(1)…B(256). A distinct natural reading preserves the printed **32×8** layout and applies Möbius inversion to the product of the two divisor posets:
+
+[
+M(r,c)=\sum_{a\mid r,\,b\mid c}\mu(r/a)\mu(c/b)B(a,b)\pmod{29}.
+]
+
+The corresponding forward zeta transform is
+[
+Z(r,c)=\sum_{a\mid r,\,b\mid c}B(a,b)\pmod{29}.
+]
+
+This is not the same as the one-dimensional Dirichlet transform or the five-bit Boolean subset-lattice transform. The fixed test covers the two standard product-poset directions (Möbius inverse and zeta forward), row-major and column-major flattening, both additive signs, and book-global versus physical-page-reset clocks: **16 configurations**. The same Emerson-trained trigram model and exact synthetic p56 positive controls are used.
+
+Original baseline: IoC **0.03447840**, top-12 mass **0.42976227**, trigram **−14.00447 nats/rune**. Best of the 16 candidates: product Möbius inverse, column-major, subtraction, page-reset; IoC **0.03448220**, top-12 **0.43146033**, trigram **−13.94352**. Across the family, IoC is **0.03445401–0.03452270**, top-12 **0.42644335–0.43748070**, and trigram **−14.10256 to −13.94352**. The best preview begins **SPDLCTHMFTEOSMAJOEYDTLXWSCPMGIIAAEDJDLXRSGWIASJEATHEARFUDIFLIHEWAEFNGXSLFPHNPUUDNAETWUTIAONGEAL** and remains nonlinguistic.
+
+The authentic solved controls remain far stronger: p56 “AN END” **−7.95392**, LP1 “A WARNING” **−8.00334**, and LP1 “WELCOME” **−8.02015** nats/rune. All **16/16** source-native planted controls round-trip exactly. The best original score is still about **5.99 nats/rune worse** than the p56 control; the slight improvement over the ciphertext baseline is not evidence of plaintext.
+
+**Decision:** this natural two-dimensional product-divisor Möbius/zeta interpretation also fails as a periodic additive GP29 key. It is a bounded negative for the canonical base60 byte table, not a claim that every use of Möbius or totient arithmetic has been excluded.
+
+Reproducer: `sims/lp1_mobius_grid_2d_inverse.cjs`. It reads the canonical 32×8 base60 table, LP2 corpus, and Emerson control; runs the 16 original-input variants and 16 exact planted controls; and prints metrics and previews.
+
 A distinct Boolean subset-lattice Möbius inverse of the same 32×8 table has also been tested independently by Agent 33. That route treats the 32 rows as five-bit subsets, computes four byte arrays from modular subtraction/XOR and subset/superset partial orders, then tests 16 fixed GP28 predecessor-exclusion inverses. It also remains at ciphertext-level statistics. This is not the same operation as the linear-index Dirichlet μ(n) transform above; see [the Boolean-lattice report](grid-boolean-mobius-original-inverse.md) and [its reproducer](../sims/grid_boolean_mobius_gp28_inverse_sft.cjs).
 
 ### Decision
 
-The p05/p16 pair remains a real source-level structure: two 5×5 magic squares, prime constants whose prime ordinals differ by ten 29-symbol blocks, and explicit p16 prime/totient language. The direct 25-cell additive transfers, p174/p464/p493 p56-prime-totient starts, and standard 256-byte Dirichlet Möbius-inverse/forward-zeta GP29 key interpretations above do not decrypt LP2. A distinct five-bit Boolean subset-lattice inversion of the same 32×8 table also fails under its fixed GP28 family. These are bounded negatives, not evidence that the LP1 source clues are meaningless. Any successor should identify a new source-fixed operation or state rule before scoring original ciphertext; do not repeat direct additive transfers, the tested divisor or Boolean transforms, arbitrary matrix transformations, or prime-offset sweeps.
+The p05/p16 pair remains a real source-level structure: two 5×5 magic squares, prime constants whose prime ordinals differ by ten 29-symbol blocks, and explicit p16 prime/totient language. The direct 25-cell additive transfers, p174/p464/p493 p56-prime-totient starts, one-dimensional Dirichlet Möbius/zeta transforms, two-dimensional 32×8 product-divisor Möbius/zeta transforms, and the distinct five-bit Boolean subset-lattice inversion above do not decrypt LP2. These are bounded negatives, not evidence that the LP1 source clues are meaningless. Any successor should identify a new source-fixed operation or state rule before scoring original ciphertext; do not repeat these direct additive transfers, tested divisor or Boolean transforms, arbitrary matrix transformations, or prime-offset sweeps.
 
 Reproducers: `sims/lp1_magic_square_prime_totient_gate.cjs` verifies both original image hashes and both magic-square structures, runs the 48 periodic-key variants, and reuses the p56 inverse helpers for the p174/p464/p493 offset tests. `sims/lp1_mobius_grid_inverse.cjs` tests the 16 divisor transforms above with exact planted controls.
 
