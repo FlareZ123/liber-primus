@@ -15,13 +15,35 @@
 
 This is a substantially more clue-constrained historical route than interpreting the GP primes as British A-road numbers. The latter mapping is non-discriminating: all 29 GP prime weights have corresponding A-road numbers (see im-results/2016-a-road-inveraray-route-audit.md).
 
+## A source-derived 761 → 6 arithmetic bridge
+
+The 2014 comment is not merely a generic patience phrase. Under the published GP letter values:
+
+**PATIENCE IS A VIRTUE = 761.**
+
+761 is the 135th prime, and:
+
+[
+\varphi(761)=760=29\cdot26+6.
+]
+
+Thus the 2014 “devoted/patience” clue supplies a prime (761), while the 2016 “epiphany” clue supplies 6 January; the already-solved p56 mechanism uses φ(prime) modulo 29. This is a plausible selector for a six-step or p135-start interpretation, but it is not proof that the p56 cipher transfers.
+
+Do not duplicate broad tests already in the repository:
+- sims/audio761_numeric_prng_seed_probe.cjs includes 761 among source-derived seeds and tests six common 32-bit PRNG families over all 12,956 original LP2 runes.
+- sims/prime_totient_long_offset_inversion.py tests two million prime-start offsets for direct transfer of the solved p56 φ(prime) key; the p135 start corresponding to 761 is inside that search.
+
+The 761→p135 idea is therefore not an untested gap. Any future use of the 6 residue must be distinguished from the already-tested direct p135 start and must have a source-visible rule fixing its role.
+
 ## What this does and does not establish
 
-**Established from the archived sources:** the 2016 message is signed; the 2014 round's archived start date is 6 January; the second onion had the patience comment and timed 256-byte growth; the third onion initially showed a blank page.
+**Established from the archived sources:** the 2016 message is signed; the 2014 round's archived start date is 6 January; the second onion had the patience comment and timed 256-byte growth; the third onion initially showed a blank page; and the phrase's GP value is 761.
 
-**Hypothesis:** the 2016 "Epiphany / empty path / devoted" wording intentionally sends a human solver back to the 2014 onion sequence and especially its timing channel as a possible source of key material or a route into LP2.
+**Mathematical derivation:** 761 is prime number 135 and φ(761) mod 29 = 6.
 
-**Not established:** that the 2014 timing channel is an LP2 key; that the 2016 message specifically selects the 256-byte string rather than another part of the 2014 path; or that the published "approximately 23 hours" description and surviving timing samples give a complete, mutually consistent absolute chronology.
+**Hypothesis:** the 2016 “Epiphany / empty path / devoted” wording intentionally sends a human solver back to the 2014 onion sequence and especially its timing channel as a possible source of key material or a route into LP2. The 761→6 relation may identify a transition within the 29-rune system.
+
+**Not established:** that the 2014 timing channel is an LP2 key; that the 2016 message specifically selects the 256-byte string rather than another part of the 2014 path; or that the published “approximately 23 hours” description and surviving timing samples give a complete, mutually consistent absolute chronology.
 
 ## Best next test
 
@@ -31,6 +53,7 @@ Freeze the historical selector before trying new cipher families:
 - Identify which exact 2014 path was initially empty (the third onion is explicitly described as blank on first visit).
 - Distinguish the served 256-byte values, the five-minute interval sequence, and the later 1033 / server-status material; do not mix them into one unconstrained key.
 - Reconcile the first observed byte, the last byte, the 23-hour statement, and the surviving BotSottile/Cripion timestamps. In particular, verify whether the timing cells are truly consecutive inter-byte intervals across the full string.
+- If the 761→6 relation is used, define in advance whether 6 is a rune-ring displacement, a key phase, or another specific state. Do not search these interpretations post hoc.
 - Test only a mechanism that maps one of these source-fixed channels into LP2 with an independently specified alignment and operation. Require an exact original-ciphertext inverse and withheld-page validation.
 
 The existing direct interval-stream sweep is negative for its pre-registered simple transforms; that does not rule out the historical clue, but it means the next step must supply a source-derived selector rather than another unconstrained cipher grid.
