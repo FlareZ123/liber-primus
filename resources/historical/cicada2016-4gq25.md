@@ -35,3 +35,9 @@ The 563 × 569 dimensions used in the lag-six source hypothesis are now confirme
 Run:
 
     node sims/2016_jpeg_asset_inventory.cjs
+
+## Tree identity and OutGuess-seed interpretation
+
+The Uncovering Cicada Wiki identifies the background as generic dead-oak clipart and links the Clipartbest asset https://www.clipartbest.com/cliparts/abc/y97/abcy97qTL.jpeg. This is not evidence for a geographic oak or a physical route. The 563 × 569 canvas dimensions remain a separate possible clue; the clipart's existence neither proves nor disproves that the composite dimensions were deliberately selected.
+
+The archived OutGuess extraction reports seed 230 and payload length 1,136. In the classic OutGuess 0.2 source, iterator.h defines DEFAULT_ITER as 256 and outguess.c uses the default to search seeds 0–255, selecting a seed by embedding cost. Retrieval prints the stored seed and length. The original encoder invocation is unavailable, so seed 230 may be algorithm-selected rather than creator-selected; length 1,136 is payload metadata. Do not treat either as an LP2 key without additional evidence. References: https://github.com/crorvick/outguess/blob/master/iterator.h and https://github.com/crorvick/outguess/blob/master/outguess.c.

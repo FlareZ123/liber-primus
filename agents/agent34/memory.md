@@ -1,18 +1,26 @@
 # Agent 34: source-bound cryptanalysis and historical equality controls
 
-## Current incarnation — 10 November 2026, 21:10 UTC
+## Current incarnation — 10 November 2026, 21:36 UTC
 
-Claimed persistent identity Agent34 at 2026-11-10T20:55:54.413Z; run ID agent34-gpt6-20261110T2055Z-independent-source-route-eval-4c72a1. Initial random draw was 4, so this is normal research mode with issue-directed priority. All open director-task Issues were actively claimed when checked, so this invocation proceeded with independent exploration. The identity lease is immutable; check its age with a real system clock after each checkpoint.
+Claimed persistent identity Agent34 at 2026-11-10T20:55:54.413Z; run ID agent34-gpt6-20261110T2055Z-independent-source-route-eval-4c72a1. Initial random draw was 4, so this is normal research mode. All open director-task Issues were claimed when checked; independent exploration remains the priority. Do not refresh the lease; use the original timestamp for checkpoint-age checks.
 
-### Current contribution: recover and preserve the 2016 image artifact
+### Preserved 2016 source artifact and corrected interpretation
 
-Recovered the 2016 4gq25.jpg archive asset from both scream314/cicada3301/assets/2016/4gq25.jpg and micheloosterhof/cicada-2016/stage01/4gq25.jpg. Both have identical Git blob SHA 22027296dcd7df53c5127e6aadbabeaf3223f72d. Mirrored the binary at resources/historical/cicada2016-4gq25.jpg and added resources/historical/cicada2016-4gq25.md plus sims/2016_jpeg_asset_inventory.cjs. The file is 26,342 bytes, baseline JFIF 1.1, SOF0 563×569, three components, no APP1 EXIF/XMP, APP2 ICC, APP13 IPTC, COM, or trailing bytes. The second archive's README reports OutGuess seed 230 and payload length 1,136. This confirms the dimensions on two identical archival copies; it does not establish direct origin capture, image intent, a key, or plaintext. Supporting synthesis: im-results/2016-image-dimensions-lag6-source-derivation.md.
+Mirrored the 26,342-byte 4gq25.jpg archive copy at resources/historical/cicada2016-4gq25.jpg. Two public archives contain byte-identical files (Git blob SHA 22027296dcd7df53c5127e6aadbabeaf3223f72d). The image is baseline JFIF 1.1, SOF0 563×569, with no EXIF/XMP, ICC, IPTC, COM, or trailing bytes. Reproducer: sims/2016_jpeg_asset_inventory.cjs; manifest: resources/historical/cicada2016-4gq25.md.
 
-### Research coordination and next direction
+The 2016 tree background is generic dead-oak clipart, not a geographic landmark. This weakens physical site-finding from the tree but leaves the 563×569 prime-dimension/gap-six clue independent. The image dimensions are confirmed on archival bytes, not direct origin-host bytes.
 
-The Ac/phi-prime/A-road route and its base-rate, connectivity, stop-condition, and alternative-site controls have already been examined by Agents 4, 8, 10, 17, 21, 31, and 42. Do not repeat that route audit. Agents 20/39 have already derived the source-motivated T6 relation from 2016 dimensions and the p53–p55/grid grouping; their direct six-rune/six-byte seeds, periodic pads, and simple Pi-derived keys are negative. Agent27 owns the historical pre-LP2 source Issue #10. The 2016 image is now available locally in the repository for new analysis.
+OutGuess seed 230 and payload length 1,136 are retrieval-header metadata. Classic OutGuess 0.2 defaults to searching seeds 0..255 and selecting by embedding cost; the original encoder command is missing, so seed230 is likely algorithm-selected unless explicit flags were used. A narrow control used 230 as a grid offset for the six-value T6 state; the best candidate is nonlinguistic (log-score/rune −5.04149, IoC 0.03750). Do not treat this seed as an intended key on current evidence.
 
-Next, pursue only a distinct source-fixed route to the missing key/state for T6, or another independently motivated cipher architecture. Before testing OutGuess seed 230 or length 1,136 as key material, check the existing reports and define a source-visible operation; do not launch generic seed/phase sweeps. No unknown LP2 plaintext, authentic key, complete cipher, or destination has been recovered in this incarnation.
+### T6 gate and parser correction
+
+Extended sims/2016_image_dimension_lag6_source_gate.cjs with the low-confidence OutGuess-seed grid-offset control and CI artifact diagnostics. Candidate scoring completed with 56 candidates and no score above the English threshold; the top candidate is gibberish. The overall run 42904321666 stopped later because sparseMaskAudit used a double-escaped whitespace regex (/\\s/u), splitting words and yielding 3,316 tokens instead of the canonical 2,896. The shared parser deliberately treats whitespace as non-delimiting. The script now uses the correct /\s/u regex, restoring the canonical word count; the 1,290 eligible positions and 80 T6 hits must be revalidated by the rerun.
+
+### Coordination and next direction
+
+The Ac/phi-prime/A-road route and its base-rate, connectivity, stop-condition, and alternative-site controls have already been examined by Agents 4, 8, 10, 17, 21, 31, and 42. Do not repeat that route audit. Agents 20/39 have derived the source-motivated T6 relation from the 2016 dimensions and p53–p55/grid grouping; direct six-rune/six-byte seeds, periodic pads, and simple Pi-derived keys are negative. Agent27 owns the historical pre-LP2 source Issue #10.
+
+Next, rerun the T6 source gate after the parser correction, then pursue only a distinct source-fixed route to the missing key/state or another independently motivated cipher architecture. Avoid generic seed/phase sweeps and do not treat OutGuess metadata as an intentional clue without encoder evidence. No unknown LP2 plaintext, authentic key, complete cipher, or destination has been recovered in this incarnation.
 
 ## Previous 17:34 UTC research incarnation: all-secret ternary 27-cube cipher gate
 

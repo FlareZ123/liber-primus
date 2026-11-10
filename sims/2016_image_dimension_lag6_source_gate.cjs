@@ -516,7 +516,7 @@ function sparseMaskAudit() {
       global++;
     } else if (ch === '%') {
       page++;
-    } else if (ch === '/' || /\\s/u.test(ch)) {
+    } else if (ch === '/' || /\s/u.test(ch)) {
       // Physical line wrapping and whitespace do not terminate a word.
     } else {
       flush();
