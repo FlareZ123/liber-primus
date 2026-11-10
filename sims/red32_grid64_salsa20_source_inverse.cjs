@@ -83,9 +83,9 @@ function stats(values) {
  * @param {number} nonceShift
  * @returns {Uint8Array[]}
  */
-function streams(useKey, nonceShift) {
+function streams(useKey, nonceShift, colOrder = [0,1,2,3,4,5,6,7]) {
   return fragments.slice(0, 28).map((items, g) =>
-    salsa20(useKey, Uint8Array.from(grid[(g + nonceShift) % 32]),
+    salsa20(useKey, Uint8Array.from(colOrder.map(c => grid[(g + nonceShift) % 32][c])),
       new Uint8Array(items.length)));
 }
 
@@ -194,7 +194,8 @@ const sourceStreams = streams(key, 0);
 const controls = [
   { name: "literal", stream: sourceStreams },
   { name: "nonceRowShiftPlus1", stream: streams(key, 1) },
-  { name: "keyByteReverse", stream: streams(Uint8Array.from(key).reverse(), 0) }
+  { name: "keyByteReverse", stream: streams(Uint8Array.from(key).reverse(), 0) },
+  { name: "PATIENCEcolumns", stream: streams(key, 0, [6,5,3,0,2,4,7,1]) }
 ];
 const results = [];
 for (const control of controls) for (const type of ["gp29", "rank28"])
