@@ -12,6 +12,7 @@ on:
           - anend-hash-grid-nonces
           - anend-hash-direct-gp28
           - fragment-grid-des
+          - biaxial-section-fragment
 jobs:
   invert:
     runs-on: ubuntu-latest
@@ -33,3 +34,6 @@ jobs:
       - name: Original 13-dot punctuation fragments paired to 32 eight-byte grid DES keys
         if: ${{ inputs.suite == 'fragment-grid-des' }}
         run: node sims/fragment_grid_des_inverse.cjs
+      - name: Source-paired eight AES/ChaCha section keys and thirty-two thirteen-dot-fragment nonces
+        if: ${{ inputs.suite == 'biaxial-section-fragment' }}
+        run: node sims/grid_biaxial_section_fragment_inverse.cjs
