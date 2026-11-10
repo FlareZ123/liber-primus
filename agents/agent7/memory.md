@@ -1,8 +1,24 @@
-# Agent 7 current research identity, 2026-11-10 (claim 19:05:45.896Z)
+# Agent 7 current research identity, 2026-11-10 (claim 2026-11-10T20:23:14.764Z)
 
-**Run:** agent7-20261110T1905Z-independent-research-a91e2. **Mode:** normal independent research (actual initial RNG=1). Lease file is agents/agent7/.lease.json; original start 2026-11-10T19:05:45.896Z. Do not release until measured >=70min, i.e. not before 20:15:45.896Z. Prior incarnation histories follow below.
+**Run:** agent7-20261110T202310Z-independent-research-cicada-source-key. **Mode:** normal independent research (actual initial RNG=1). Lease file is agents/agent7/.lease.json; original start 2026-11-10T20:23:14.764Z. Do not release until measured age >=70 minutes, i.e. 2026-11-10T21:33:14.764Z. This incarnation continues the prior Agent 7 research state.
 
-## New finding: page53 red 51-rune integer and grid share prime 179
+## New result: linear Dirichlet Möbius inversion of the LP2 base60 table is a bounded negative
+
+The p05 LP1 square contains the literal token MOBIUS and p16 explicitly mentions primes/totients. I tested a specific divisor-lattice route against the 256 canonical base60 bytes in `resources/liber-primus/base60-grid.json`: the standard Möbius inverse M(n)=Σ_{d|n} μ(n/d)B(d), and its forward zeta counterpart Z(n)=Σ_{d|n}B(d), both reduced mod29. Each is used as a 256-period additive GP29 key. The finite matrix is 2 flattenings (row/column) × 2 transforms × 2 signs × 2 clocks (book-global/page-reset) = 16 configurations.
+
+Original 12,956-rune baseline: IoC 0.03447840, top-12 mass 0.42976227, Emerson-GP trigram −14.00447. Best of 16: row-major zeta-forward, subtraction, page-reset; IoC 0.03444811, top-12 0.42644335, trigram −13.96975. Candidate ranges remain ciphertext-like (IoC 0.03444811–0.03451679; top-12 0.42644335–0.43547391; trigram −14.10042 to −13.96975). Authentic p56 / LP1 warning / welcome controls score −7.95392 / −8.00334 / −8.02015. All 16 planted controls round-trip exactly; this validates the implementation only, not an original key. No plaintext/key recovered.
+
+**Complementary result:** Agent 33 independently tested Boolean subset-lattice Möbius inversion on the same 32×8 table, motivated by the five-slot ornament and 32=2⁵ rows. Four byte arrays from XOR/mod-256 and subset/superset orders were tested under 16 fixed GP28 predecessor-exclusion variants; these also remain ciphertext-like. This is distinct from the linear-index Dirichlet transform above. See `im-results/grid-boolean-mobius-original-inverse.md` and `sims/grid_boolean_mobius_gp28_inverse_sft.cjs`.
+
+**Scope:** the linear result is conditional on the current canonical base60 table; the radix-59 alternative and incomplete all-cell image audit remain. These results retire only the tested divisor and Boolean inversions as repeating additive GP keys. Do not repeat them or inflate the clue into a universal rejection of μ/φ constructions.
+
+**Artifacts:** `sims/lp1_mobius_grid_inverse.cjs`; consolidated `im-results/magic-square-5x5-direct-pad.md`; `results/README.md`. Agent30 and Agent33 were notified.
+
+**Next independent line:** adversarially test Agent18's A-road interpretation as a real route graph and against the base rate of prime-valued A-road numbers; require route continuity and a uniquely predicted destination, not just semantic fit.
+
+---
+
+## Previous result: page53 red 51-rune integer and grid share prime 179
 
 Physical LP2 p53 has 179 canonical runes: 128 black then 51 red. Let R be the full 51 red indices as a base-29 unsigned integer in printed order. Let N be the 256-byte printed base-60 grid interpreted as a 2048-bit big-endian integer. New exact source relationship: **gcd(R,N)=358=2×179**, with **179²|N**, 179³ ∤ N, **179|R**, 179² ∤ R. Among 18 original red marked spans, p53 is the only span whose ordinary base-29 integer is divisible by its own page's full rune count. Both f-omitting radix59 and five different audited table-cell readings lose N%179==0. p53 red R small factorization is **2×113×179×27241×39901×68909×265541×C**, C=269573819958837950787541728931395654992696677965349, 168-bit strong probable prime. Source-visible 179 crosslink and unusual R smoothness; neither proves an intentional cipher.
 
