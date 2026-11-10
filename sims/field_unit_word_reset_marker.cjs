@@ -118,22 +118,38 @@ function draw(lengths,bins,next){
  */
 function plant(plaintext,marker,next){
   let expectedHits=0,expectedTerminal=0;
-  const cipher=plaintext.map(word=>{
-    const out=[next()%A];
+  let inverted=0;
+  const ciphertext=plaintext.map(word=>{
+    const keys=[next()%29],out=[mod(word[0]+keys[0])];
     for(let i=1;i<word.length;i++){
       const k=1+next()%28;
+      keys.push(k);
       out.push(mod(out[i-1]+(word[i]-marker)*k));
       if(word[i]===marker){
         expectedHits++;
         if(i===word.length-1)expectedTerminal++;
       }
     }
+    // A supplied key recovers every plaintext rune and roundtrips all
+    // ciphertext symbols, including the per-word first-rune seed.
+    assert.equal(mod(out[0]-keys[0]),word[0]);
+    inverted++;
+    for(let i=1;i<word.length;i++){
+      const inv=Array.from({length:29},(_,j)=>j).find(j=>
+        mod(j*keys[i])===1);
+      assert.ok(Number.isInteger(inv));
+      const p=mod(marker+mod(out[i]-out[i-1])*inv);
+      assert.equal(p,word[i]);
+      assert.equal(mod(out[i-1]+(p-marker)*keys[i]),out[i]);
+      inverted++;
+    }
     return out;
   });
-  const found=countInternal(cipher);
+  const found=countInternal(ciphertext);
   assert.equal(found.hits,expectedHits);
   assert.equal(found.terminal,expectedTerminal);
-  return{marker,validated:true,inside:found.hits,atWordEnd:found.terminal};
+  return{marker,validated:true,fullCipherAndPlainRuneRoundTrips:inverted,
+    inside:found.hits,atWordEnd:found.terminal};
 }
 
 /** @param {number} [reps=10000] @param {number} [seed=0x7133ab05] */
