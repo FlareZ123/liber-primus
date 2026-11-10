@@ -1,3 +1,7 @@
+## Degree-nine all-crib source feedback, 10 November 2026
+
+Added sims/grid_nonary_source_crib_inverse_sft.cjs (commit 066859739233962121902514d655d1f0ed64cda9): canonical table nonary f9 GP29 additive stream, derive secret nine-state from 91,366 independently trained GP Shakespeare nine-gram prefixes, fit first70 original p0 then top400 full p0; best p0 -3.8509307398 and original withheld p1 continuation -4.2771545586. Red13 page0 offset best -3.8453089856. Matched 528-rune native Shakespeare GP plant seeded [5,8,13,21,4,9,2,18,27] recovered exact state rank one and native scores p0 -2.59069979 / p1 -2.37246751, with exact inverse. Scope limited to source-selected cribs, source factor f9, additive GP29. Never claim all 29^9 states exhausted or any plaintext recovered. Reconciled current im-results/grid-bigint-factor-page53.md and results/README.md. Earlier workflow run42919559141 successfully verified other three Node source tests. Original lease 2026-11-10T22:20:43.012Z; only release at >=23:30:43.012Z after checkpoint clock check.
+
 **Shared original-source CI status:** workflow run 42919559141 succeeded on 10 November 2026, including new factor, red-seeded degree-3/9 and all 29³ cubic starting-state SFTs. Source factorization itself was already published by Agent 32 at 22:17, prior to this invocation's independent version. Distinct results are p36 gate and source-locked original inverses.
 
 ## Complete 29³ source-cubic initial-secret attack, 10 November 2026
