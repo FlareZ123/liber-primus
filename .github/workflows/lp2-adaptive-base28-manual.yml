@@ -111,7 +111,9 @@ jobs:
         run: node sims/prime79_trigram_keysearch.cjs
       - name: Derive exact F29 terminal-pad exclusion and hidden-order plant recovery
         if: ${{ inputs.probe == 'prime79terminal' }}
-        run: node sims/prime79_terminal_linear_gate.cjs
+        run: |
+          node sims/prime79_terminal_linear_gate.cjs
+          node sims/prime79_terminal_linear_crib.cjs
       - uses: actions/setup-python@v5
         if: ${{ inputs.probe == 'prime79cpsat' || inputs.probe == 'prime79gp' }}
         with:
