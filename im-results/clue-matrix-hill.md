@@ -47,6 +47,27 @@ The SFT first takes the actual solved-LP1 English reference, encodes it as Gemat
 
 The absolute top-scoring candidate uses the **LP2 p15 4×4 inverse-transposed matrix**, resetting at **every word**, starting at phase **3**. This candidate drops many incomplete groups and evaluates only **2,464** transformed runes. Its score remains close to the uniform baseline, with no English-like unigram recovery. No tested orientation/phase/reset is a credible direct plaintext inversion, despite the exact positive-control reversibility.
 
+## 16×16 exact Hill inversion of the 256-byte grid (Agent 41)
+
+LP2 physical pages49–51 print a 32×8 table of base60 byte tokens. Interpreting each as the repository's existing byte value, concatenate pairs of printed rows to form a 16×16 matrix; alternatively read the table column-first and reshape it into a 16×16 matrix. These **two source-fixed matrix readings and their transposes** have determinants, respectively, **25,25,15,15 mod29**. All four invert in F29. This is a precise candidate key geometry, although the original table is visibly 32×8 and no known instruction specifies a square.
+
+On all 55 original LP2 rune-bearing pages (12,956 runes), invert each 16-symbol ciphertext block under the actual complete source matrix. Allow 16 possible block phases, a continuous-book or physical-page-restarting clock, and three *fully bijective* observable outer readings: direct GP indices; cyclic rank among successors of the previously emitted cipher rune, with an equal rune sent to distinguished index28; or ascending rank with the same equal-rune convention. The total is **4 × 16 × 2 × 3 = 384** fixed reversible candidates, with no matrix entry fitted to the unknown ciphertext. Source values and page boundaries remain unchanged.
+
+Rank each candidate by GP rune index of coincidence (IoC) in physical pages0–27. Continue the same clock through original pages28–55 as an untouched evaluation; a 16-rune block crossing the split contributes to neither score. Uniform data have IoC **1/29 = 0.0344827586**.
+
+| Original GP score | Training IoC | Later IoC | Runes scored (train / later) |
+| --- | ---: | ---: | ---: |
+| **Top training candidate**, column-major grid transposed, direct output, page clock, phase4 | **0.0345921372** | **0.0344930191** | 6,448 / 5,872 |
+| Second training candidate, row-major transposed, cyclic rank, book clock, phase3 | 0.0345911541 | 0.0344971786 | 6,752 / 6,176 |
+| Highest later IoC across *all 384*, postselected | n/a | **0.0346865495** | configuration-specific |
+| **Genuine source-native encrypted control**, source column-major key, ascending rank, page clock, phase5 | **0.0586043659** | **0.0588178920** | 6,416 / 5,840 |
+
+The last row is a powered original-layout positive: 12,956 GP rune symbols from a heldout 65,000-character Shakespeare suffix are encrypted with an exact one of the four *printed-source-derived* matrices and its full bijective predecessor transformation. The unknown-key search independently ranks the genuine planted key **first of 384**, exactly decrypts **12,956/12,956** plaintext runes, and exactly re-encrypts **12,956/12,956** resulting ciphertext runes. The positive does not imitate LP2's low doublet rate; its scope is this declared fully invertible matrix cipher. The original candidate decoder runs the same complete inverse, but its train maximum is indistinguishable from random GP runes and the heldout scores do not improve.
+
+**Decision:** the specified literal grid-Hill architecture has no original GP-English plaintext recovery. These finite negatives do not eliminate unknown or changing matrices, a hidden source-key derivation, an additional collision-repair channel, differently keyed output alphabets, compressed plaintext, or additional layers.
+
+**Reproducer:** [exact Node.js 22 CommonJS inverse](../sims/grid16_hill_source_inverse.cjs), which asserts the source dimensions and determinants, traverses all 384 models, performs the train/heldout matrix-clock separation, demonstrates complete source-native key recovery and byte-for-byte forward re-encryption, and writes no files. The original-source calculations and planted-control figures were independently recomputed from the same GitHub-stored inputs in the research runtime.
+
 These results narrow the specific original-clue fixed-matrix Hill interpretations, including both literally printed squares and the hypothesized 16×16 grid reshaping. It does not test matrices formed from transformed prime-index values, ciphertext-dependent block reordering, nonlinear transformations, hidden pre/post substitution, symbol insertion/deletion, independently varied keys or unspecified codebooks. The LP2 4×4 matrix has also been subject to a broader independently written [generic short-block Hill-row screen](../sims/hill_row_screen.cjs); the distinct 5×5 source key tests a block width not covered there. No discovery-wide p-value is claimed; large observed distance from the independently specified solved-reference IoC is the direct diagnostic.
 
 **Reproduce:** [`sims/clue_matrix_hill.cjs`](../sims/clue_matrix_hill.cjs) (CommonJS SFT, two actual matrices, all 140 variants, full result JSON). Inputs: canonical numeric corpus, original rune-word transcription, independent solved-LP1 reference. It performs no downloads or file writes.
