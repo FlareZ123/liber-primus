@@ -1,11 +1,6 @@
 name: Audio 761 high-band spectral modulation probe
 
 on:
-  push:
-    paths:
-      - 'sims/audio_761_spectral_modulation_probe.cjs'
-      - 'sims/audio_761_note_key_probe.cjs'
-      - '.github/workflows/audio-761-spectral-modulation-probe.yml'
   workflow_dispatch:
 
 permissions:
