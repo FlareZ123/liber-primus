@@ -16,3 +16,5 @@ jobs:
         run: |
           node --check sims/outer_permutation_unknown_column_assignment.cjs
           node sims/outer_permutation_unknown_column_assignment.cjs
+      - name: Matched shuffled-key null on completely untouched continuation
+        run: node sims/outer_column_assignment_null.cjs
