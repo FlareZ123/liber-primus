@@ -210,7 +210,7 @@ function plant(){
     }
     output.push(encrypted);
   }
-  return {ciphertext:output,bytes:plainBytes};
+  return {ciphertext:output,bytes:plainBytes,gzipMember:gz};
 }
 const synthetic=plant();
 const exactRecovered=synthetic.ciphertext.map((section,i)=>{
@@ -220,6 +220,8 @@ const exactRecovered=synthetic.ciphertext.map((section,i)=>{
   assert.equal(recovered.invalid,0);
   assert.deepEqual(recovered.bytes,
     synthetic.bytes[i].subarray(0,recovered.bytes.length));
+  assert.deepEqual(zlib.gunzipSync(recovered.bytes.subarray(0,synthetic.gzipMember.length)),
+    Buffer.from('CICADA LIBER PRIMUS BINARY SOURCE-KEY CONTROL. '.repeat(8)));
   return recovered.bytes.length;
 });
 const positives=scan(synthetic.ciphertext),actual=scan(SECTIONS);
@@ -241,7 +243,8 @@ console.log(JSON.stringify({
     limitations:'direct grid stream key, zero nonce, source-order section restarts; no hidden KDF/variable widths'},
   positive:{trueCandidateRank:rank,trueCandidate:truth,best:positives.slice(0,3),
     firstSourceBytes:synthetic.bytes[0].subarray(0,8).toString('hex'),
-    exactByteRecovery:exactRecovered.reduce((a,b)=>a+b,0)},
+    exactByteRecovery:exactRecovered.reduce((a,b)=>a+b,0),
+    gzipDecompressedSections:8},
   original:{top:actual.slice(0,8),zeroTraining:actual.filter(x=>x.trainOverflows===0).length,
     zeroHeldout:actual.filter(x=>x.heldOverflows===0).length,
     zeroBoth:actual.filter(x=>x.heldOverflows===0&&x.trainOverflows===0).length},
