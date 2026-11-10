@@ -130,6 +130,45 @@ function reference(pathName) {
   };
 }
 
+
+/** @param {number} value @returns {number} */
+const mod29 = (value) => ((value % 29) + 29) % 29;
+/** @param {number[][]} matrix @returns {number[][]} */
+const transpose = (matrix) => matrix[0].map((_, j) => matrix.map((row) => row[j]));
+/** @param {number[][]} matrix @returns {number[][]} */
+function inverse(matrix) {
+  const width = 7;
+  const rows = matrix.map((row, i) =>
+    row.map(mod29).concat(Array.from({ length: width }, (_, j) => Number(i === j))));
+  for (let col = 0; col < width; col++) {
+    const pivot = rows.findIndex((row, i) => i >= col && row[col] !== 0);
+    assert.ok(pivot >= col);
+    [rows[col], rows[pivot]] = [rows[pivot], rows[col]];
+    const reciprocal = Array.from({ length: 29 }, (_, i) => i)
+      .find((i) => mod29(i * rows[col][col]) === 1);
+    assert.ok(reciprocal > 0);
+    for (let j = 0; j < 14; j++) rows[col][j] = mod29(rows[col][j] * reciprocal);
+    for (let i = 0; i < width; i++) {
+      if (i === col) continue;
+      const factor = rows[i][col];
+      for (let j = 0; j < 14; j++) {
+        rows[i][j] = mod29(rows[i][j] - factor * rows[col][j]);
+      }
+    }
+  }
+  return rows.map((row) => row.slice(width));
+}
+/**
+ * Apply an invertible 7 × 7 Hill transformation along one source column.
+ * @param {number[][]} matrix
+ * @param {number[][]} rows
+ * @returns {number[][]}
+ */
+function hill(matrix, rows) {
+  return matrix.map((matrixRow) => Array.from({ length: rows[0].length },
+    (_, j) => mod29(matrixRow.reduce((sum, x, i) => sum + x * rows[i][j], 0))));
+}
+
 function main() {
   const pageStreams = corpus.pages.slice(33, 40)
     .map((page) => page.indices.slice(page.page === 33 ? 91 : 0));
@@ -143,6 +182,31 @@ function main() {
   assert.equal(measured.packed.matches, 159);
   assert.equal(measured.native.matches, 93);
 
+  // The historical OpenPuff 7×7/1033 magic square is linked to the seven
+  // cuneiform pages by the identical displayed sexagesimal 1033 numeral.
+  // Its row *and column* sums equal 1033 == 18 (mod29); consequently any
+  // arbitrary common GP29 column pad remains common after a Hill inverse.
+  const historicalSquares = read("resources/cicada2014-openpuff-magic-squares.txt")
+    .trim().split(/\\r?\\n\\s*\\r?\\n/u)
+    .map((square) => square.trim().split(/\\r?\\n/u)
+      .map((line) => line.trim().split(/\\s+/u).map(Number)));
+  const square = historicalSquares[1];
+  assert.deepEqual(square.map((row) => row.reduce((a, b) => a + b)), Array(7).fill(1033));
+  assert.deepEqual(transpose(square).map((row) => row.reduce((a, b) => a + b)),
+    Array(7).fill(1033));
+  const sourceMatrices = [
+    { name: "M", matrix: square },
+    { name: "M_transposed", matrix: transpose(square) },
+    { name: "M_inverse", matrix: inverse(square) },
+    { name: "M_inverse_transposed", matrix: inverse(transpose(square)) }
+  ];
+  const hillColumnInvariants = sourceMatrices.map(({ name, matrix }) => ({
+    name, packed: equalities(hill(matrix, packed)).matches,
+    native: equalities(hill(matrix, native)).matches
+  }));
+  assert.deepEqual(hillColumnInvariants.map((r) => [r.packed, r.native]),
+    [[185, 84], [152, 107], [176, 73], [163, 82]]);
+
   // Source-native plant under 227 independent column-specific GP29 bijections.
   // Each column has an invertible affine permutation x -> 7*x + 11*j (mod29).
   const shakespeare = toGp(read("resources/control/shakespeare_first300k.txt"));
@@ -153,6 +217,26 @@ function main() {
   assert.deepEqual(decoded, english);
   assert.deepEqual(equalities(planted), equalities(english));
 
+  // Source-native Hill + completely arbitrary common 227-step pad plant.
+  // The invertible magic square's equal row sums make the pad removable
+  // after inverse Hill by subtracting its common image; all runes recover.
+  const pad = Array.from({ length: 227 }, (_, j) => (11 * j + 3) % 29);
+  for (const { matrix } of sourceMatrices) {
+    const ciphertext = hill(matrix, english).map((row) =>
+      row.map((x, j) => mod29(x + pad[j])));
+    const inv = inverse(matrix);
+    const normalized = hill(inv, ciphertext);
+    assert.deepEqual(equalities(normalized), equalities(english));
+    const padScale = mod29(inv[0].reduce((a, b) => a + b, 0));
+    assert.ok(inv.every((row) =>
+      mod29(row.reduce((a, b) => a + b, 0)) === padScale));
+    const decoded = normalized.map((row) =>
+      row.map((x, j) => mod29(x - padScale * pad[j])));
+    assert.deepEqual(decoded, english);
+    assert.deepEqual(hill(matrix, decoded).map((row) =>
+      row.map((x, j) => mod29(x + pad[j]))), ciphertext);
+  }
+
   const references = [
     reference("resources/control/shakespeare_first300k.txt"),
     reference("resources/control/emerson_essays_2944.txt")
@@ -160,6 +244,10 @@ function main() {
   for (const r of references) {
     assert.equal(r.packed.atMostOriginal, 0);
     assert.equal(r.native.atMostOriginal, 0);
+    for (const row of hillColumnInvariants) {
+      assert.ok(row.packed < r.packed.min);
+      assert.ok(row.native < r.native.min);
+    }
   }
   console.log(JSON.stringify({
     status: "SOURCE-BOUND MODEL EXCLUDED; NO ORIGINAL PLAINTEXT",
@@ -167,6 +255,7 @@ function main() {
     sourceRunes: 1589,
     model: "one shared arbitrary GP29 bijection per column across seven lanes",
     original: measured,
+    magicSquareHillPlusUnknownSharedPad: hillColumnInvariants,
     references,
     sourceNativePlant: "exact 1589-rune recovery and forward encryption"
   }, null, 2));
