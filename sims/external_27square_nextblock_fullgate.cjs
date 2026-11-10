@@ -195,10 +195,80 @@ const experiment=function experiment(corpus, lexicon, repetitions=0){
       lexicalDistinct:summarize("lexicalDistinct")},
     caveat:"Full English word segmentation from a permissive source lexicon is a model choice, not evidence for authenticity. Predecessor block38 itself remains unverified."};
 };
+/** Published 1-based row-major ciphertext paths, blocks 01–38.
+ * Source: 2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption
+ * /plaintext-i-found/01..38, "Read and decrypt" tables; descriptive only.
+ * They are selected paths, not a manuscript-authenticated traversal.
+ */
+const publishedRoute = [
+  [349,350,351,352,353,354,355],
+  [365,366,367,368,369],
+  [370,343,316,289,262],
+  [358,331,304,277],
+  [694,693,692,691],
+  [502,475,448],
+  [286,314,342,370,398],
+  [398,424,450],
+  [474,475],
+  [503,502],
+  [509,536,563],
+  [549,550],
+  [678,677,676],
+  [664,690,716],
+  [720,692,664],
+  [664,665,666,667],
+  [673,674,675],
+  [588,560],
+  [544,517,490],
+  [466,492],
+  [232,206],
+  [236,237],
+  [320,319],
+  [235,234],
+  [375,401,427],
+  [147,175],
+  [525,526],
+  [497,471,445,419,393,367,341],
+  [470,471,472],
+  [660,686],
+  [281,282],
+  [253,279,305],
+  [315,314],
+  [146,147,148],
+  [164,190],
+  [703,704],
+  [569,568],
+  [125,152,179,206]
+];
+/** Count original ciphertext source cells actually consumed by claimed readings. */
+function publishedRouteCoverage() {
+  const useCounts=new Uint8Array(730);
+  let uses=0;
+  for(const block of publishedRoute)for(const cell of block){
+    assert.ok(Number.isInteger(cell)&&cell>=1&&cell<=729);
+    useCounts[cell]++;
+    uses++;
+  }
+  const reused=[];
+  for(let cell=1;cell<=729;cell++)if(useCounts[cell]>1){
+    reused.push({cell,coord:[Math.floor((cell-1)/27)+1,(cell-1)%27+1],
+      multiplicity:useCounts[cell]});
+  }
+  const unique=useCounts.filter(v=>v>0).length;
+  assert.equal(publishedRoute.length,38);
+  assert.equal(uses,115);
+  assert.equal(unique,103);
+  assert.equal(reused.length,11);
+  return {blocks:38,sourceCells:729,usedRunePositions:115,
+    distinctSourceCells:unique,unreadSourceCells:729-unique,
+    repeatedSourceLocations:reused.length,excessRepeatedUses:uses-unique,
+    maximumCellMultiplicity:Math.max(...useCounts),reused};
+}
+
 const result=experiment(corpus,lexicon,250);
 assert.equal(result.original.report10Pairs,27580);
 assert.equal(result.original.afterReport02Mode,21818);
 assert.equal(result.original.lexicalAssignments,116);
 assert.equal(result.positive.exactRoundtrip,true);
-console.log(JSON.stringify(result,null,2));
-module.exports={experiment};
+console.log(JSON.stringify({...result,publishedRouteCoverage:publishedRouteCoverage()},null,2));
+module.exports={experiment,publishedRouteCoverage};
