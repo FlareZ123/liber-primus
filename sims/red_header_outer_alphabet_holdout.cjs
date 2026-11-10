@@ -164,7 +164,7 @@ function run() {
     plantedTrueOuterAlphabetMatches:best.inverse.filter(
       (v,i)=>v===control.inverse[i]).length,
     plantedTruePlaintextHeldoutLL:control.samplePerRune,
-    interpretation:'The fixed red-heading pad with one unknown shared 29-rune outer alphabet is rejected by three unfitted original ink-selected pages in this 48-model family. No ciphertext key recovered.'
+    interpretation:'The fixed red-heading pad with one unknown shared 29-rune outer alphabet is rejected by three unfitted original ink-selected pages in this 24-model family. No ciphertext key recovered.'
   };
 }
 if(require.main===module)console.log(JSON.stringify(run(),null,2));
