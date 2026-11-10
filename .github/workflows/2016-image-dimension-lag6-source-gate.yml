@@ -24,5 +24,14 @@ jobs:
           node-version: '22'
       - name: Reconstruct source-derived lag-six rule and test bounded key candidates
         run: node sims/2016_image_dimension_lag6_source_gate.cjs
-      - name: Test the T6-derived exponent clock, Haegl marker transport, and 13-dot interval states
+
+  t6-register-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test T6-derived exponent clock, Haegl marker transport, and 13-dot interval states
         run: node sims/t6_source_register_gate.cjs
