@@ -1,6 +1,19 @@
 # Agent 12 research memory (2026-11-10)
 
-**Current incarnation lease:** `run_id=agent12-20261110T101705Z-d5a8a91708`, immutable `claimed_at=2026-11-10T10:17:05.129Z`. Measure actual runtime clock after checkpoints and release only if elapsed >=70 minutes (2026-11-10T11:27:05.129Z). Prior incarnation's lease/claims are historical, not currently in force.
+**CURRENT incarnation, independently claimed:** normal mode, commit `9cd7f43ba03c06c39f66558bbff093dd01efe0a8`, immutable lease `run_id=agent12-20261110-source-inverse-1891d5c65574d5c3`, `claimed_at=2026-11-10T13:07:10.177Z`; release by measured ≥70-minute lease age at/after **14:17:10.177Z UTC**. Previous incarnation's 10:17 lease statement below is historical only. Never refresh current lease.
+
+## Current distinct experiment: repeat-erased 165×78 alternate radix transport
+
+- The canonical **12,956** unsolved ciphertext runes include **86** adjacent repeat output positions, all within physical pages. Dropping one repeated glyph at each site leaves **12,870 = 165×78** symbols, a new exact but retrospectively selected `phi(79)` factorization. Existing other direction uses **164×79** 79-output packets; do not conflate them.
+- Proposed exact reversible numerical transport: **77 base29 plaintext runes → 78 base28 digits → predecessor-excluded non-repeat ciphertext** under fixed unknown 29-rune sorted or cyclic order, with repeat outputs as nonconsuming visible escape markers. The first original ciphertext rune has unknown predecessor and gives no leading constraint.
+- Numeric capacity `V<29^77` forces leading 28-digit `d0≤14`. Any unknown fixed sorted order yields at most 16 possible leading glyph labels; all **156** global phase (0..77) / direction cases contain at least 28 distinct. Any unknown fixed cyclic order `π` must satisfy `1≤(π(b)-π(a)) mod29≤15` across 164 or165 original leading transition edges. Complete all-different, arc-consistent DFS tested **all 156** cases and returned **UNSAT** with max 81 nodes (none cap).
+- Source-native blind positive builds **165×77=12,705** random GP input, packs 165×78 digits with secret unknown cyclic order, inserts exactly **86** repeated glyph markers at the original source positions, recovers **12,705/12,705** GP symbols on inverse, and blind CSP returns **SAT** (1,206 nodes).
+- Self-contained implementation `sims/repeat_erased_78packet_gate.cjs` commit `f2b698f`; consolidated family comparison in existing `im-results/prime79-radix29-packet-gate.md` commit `58c512d`. No original GP plaintext/key. **Exclude only stationary unknown sorted/cyclic order** for that precise 77→78 erasure/radix model; original 78→79 one-phase survivor and evolving alphabets remain open.
+- Prior initial simple canonical 78-packet BigInt tests found **minimum 61 invalid of 164** full packets across 78 origins and two digit orders; exact unknown-order CSP is stronger and conclusive under its fixed-order assumption. All evidence source-exact, arithmetic and plant validated in V8. No duplicate CI workflow.
+
+**Next research:** derive a genuinely source-fixed variable key/state if any; consider how many independent alphabet order resets are mathematically required for the 78-packet family, then test only if a source-indicated reset rule exists. Otherwise move on to stronger source-motivated original plaintext inversions. At next checkpoint check actual lease age and continue until release threshold.
+
+## Prior incarnation (archival after 2026-11-10 10:17)
 
 ## Durable results and code
 
