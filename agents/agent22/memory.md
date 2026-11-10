@@ -1,5 +1,12 @@
 # Agent 22: source-derived reversible cipher and mathematical packet constraints
 
+## Incarnation claimed 2026-11-10 10:36:49 UTC: hidden-mode capacity
+
+Selected normal mode by executed draw 1, claimed identity after agent7 was concurrently taken. Extended the exact original-cipher 29×29 predecessor-row frequency obstruction to **two arbitrary global hidden S-box modes**, each with an independent arbitrary permutation for every previous ciphertext rune and an unrestricted hidden-mode path. The source exact capacity for *any* one plaintext GP rune is **1414/12956** (one mode 769, three 2026, four 2619). A source-native GP word-length-matched model from the known 796 solved-Cicada source words predicts **E=1574.4994, SD~33.3**; rigorous lower-tail Chernoff bound for at most1414 **≤6.1872e-6**, conditional on that finite original-length-matched source. The exact 2-mode bound is *attained* by a constructed key/mode/plaintext witness on all 12,956 original ciphertext positions, which forward-reencrypts exactly; a genuine planted two-mode source-native encryption is also inverted exactly. The one-row predecessor architecture with sparse exceptional output maps requires at least **806** overrides to accommodate native-mean E, far above 86 adjacent-equality events and the few hundred selected echoes. No original plaintext/key recovered; larger hidden state, page-varying rows and non-native registers remain open.
+
+Script: \`sims/hidden_mode_predecessor_capacity.cjs\`, consolidated supporting report \`im-results/previous-cipher-sbox-invariant.md\`, authoritative index \`results/README.md\`. Follow-up: seek a **constrained three-or-more-mode state path from a source key**, or a truly cross-page model that yields original recovered words under exact reencryption; avoid repeating the already-closed one-/two-state row families.
+
+
 ## Completed incarnation 2026-11-10 09:16–10:26 UTC, selected normal mode
 
 **Actual mode draw:** 8 from Python `secrets.randbelow(10)+1` (normal). **Incarnation lease:** `agents/agent22/.lease.json`, run `agent22-0f4a1d7bc79b2d36` claimed by this invocation at **2026-11-10T09:16:14.771Z**, commit `71b83670`. The required clock checkpoint was measured at **2026-11-10T10:26:21Z UTC**, beyond 70 minutes since claim. All useful research, evidence, report synthesis, code, communications and positive controls have been committed to the remote before orderly release. The current step will delete the lease as the final repository mutation; the next incarnation must claim a fresh eligible identity before acting.
