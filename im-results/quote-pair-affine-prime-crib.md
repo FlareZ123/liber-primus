@@ -1,6 +1,6 @@
 # LP2 quoted-pair structural clue and million-phase affine prime-key inverse
 
-**Status, 10 November 2026:** a provisional quote-channel relationship plus an exact negative test of a source-motivated cipher family. No unknown LP2 plaintext, historical key, actual mechanism, or final destination has been recovered.
+**Status, 10 November 2026:** a provisional quote-channel relationship, key-independent constraints on a hypothetical shared phrase, and a bounded negative test of a source-motivated cipher family. No unknown LP2 plaintext, historical key, actual mechanism, or final destination has been recovered.
 
 ## Original-source relationship
 
@@ -14,6 +14,29 @@ The ordinary GP-rune corpus omits printed double-quotation marks. An independent
 The common five-word prefix comprises **21 runes**. Exact word lengths **5,7,2,3,4** start at exactly these two positions among all 2,896 original unsolved LP2 words. Physical page **53** is sometimes labelled solver page 52 because the number-only physical page 50 has no rune transcript. The 70-rune quote on physical page 53 ends five black runes before the 51-rune red verse begins at local offset 128.
 
 The relation was noticed after examining seven quotation spans. Among **five** complete fourteen-word windows of exactly 58 runes on physical page 40 and **five** of exactly 70 runes on page 53, the observed pair is the only pair with an identical five-word length prefix, **1 of 25** fixed-page/length-conditioned comparisons. This is a descriptive count, not a prospective p-value or proof of repeated plaintext.
+
+## Key-independent constraints on a hypothetical repeated phrase
+
+**Agent 7 extension, 10 November 2026.** The source has two 14-word printed quotations with shared five-word length prefix [5,7,2,3,4]. The shared *lengths* do not establish that their first 21 GP plaintext symbols are identical. The following are exact **necessary conditions conditional on that hypothesis**, with no authentic key or recovered unknown text.
+
+**Any independently chosen fixed substitution alphabet.** Use the source ciphertext positions [9811,9832) and [12522,12543), retaining all 21 original GP symbols in each. A single bijection of 29 runes in each quotation preserves within-quotation equal-symbol positions, regardless of which substitution alphabet is secret. The two originals have **eight** and **four** equal-position pairs respectively, with **zero pairs shared**. Exhaustively constructing the largest subset of positions with identical equality partitions yields a maximum **14/21**. Consequently, if the two quotations really encode a common 21-rune phrase, then **at least seven underlying plaintext positions must differ** under any two independent fixed bijections. This subsumes simple monoalphabetic, Caesar and affine substitution tests for the *specific fixed-per-quote transformation* and permits every possible secret alphabet. It does not constrain word-specific or evolving substitutions.
+
+**Any secret repeating additive GP29 pad.** Without assuming a prime generator, an actual key, or an English plaintext, a common plaintext requires the difference equation
+
+    K[(a+i) mod T] - K[(b+i) mod T] + Delta = C_A[i] - C_B[i] (mod 29).
+
+The script performs exact Gaussian elimination over F29 while allowing **every** unknown period-T pad symbol to vary freely, and scans T=1..29. Two clocks are checked: continuous original global offsets (a=9811,b=12522), and physical-page-local reset offsets (a=171,b=53). Delta=0 represents the same quote-wise Caesar offset; a free Delta permits independent arbitrary quote offsets.
+
+| Pad clock | Minimum T, same Caesar offset | Minimum T, independent Caesar offsets |
+| --- | ---: | ---: |
+| Global rune stream | **22** | **21** |
+| Physical-page reset | **23** | **21** |
+
+For both clocks and both shift policies, **all T <= 18 are inconsistent even after deleting any two of the 21 equality equations**, which allows two genuine underlying plaintext differences at arbitrary positions. With this two-error allowance, period 19 can be made consistent in the globally continuous case, and the SFT prints minimum alterations for all candidate periods. These are exact finite modular obstructions to a *specified repeated-phrase interpretation*, not statistical evidence for such a phrase.
+
+[The source-corpus SFT](../sims/quote_pair_generic_invariants.cjs) checks coordinates against the committed original transcription, solves the full arbitrary-bijection equality-compatibility graph, exhausts zero/one/two altered positions for each pad period, and passes separately constructed hidden-alphabet and secret-period-seven positive controls. Its source arrays and full per-period results are printed as JSON. The existing manual-only quote workflow can run it by setting mode=generic.
+
+**Decision:** treat these quoted windows as two potentially different plaintexts until external evidence identifies a common phrase. Additional recovered-text claims based on this five-length coincidence must satisfy these necessary constraints before seeking a historical pad.
 
 ## Explicit conditional cipher challenge
 

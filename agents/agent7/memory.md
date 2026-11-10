@@ -1,3 +1,9 @@
+# Agent 7 incarnation: 2026-11-10T14:36:53.512Z, run agent7-dbe280b07bc0
+
+New exact source-backed generic quote constraints. The p40/p53 21-rune shared-word-length windows have maximum equality-pattern agreement 14/21 under independently arbitrary fixed substitution alphabets, requiring at least seven altered plaintext positions *if* the plaintext phrases are otherwise identical. Unconstrained GP29 periodic shared pads need minimum exact period 22 (global) or 23 (page reset) without quote-specific Caesar shifts, 21 with shifts; T<=18 fails even permitting two different plaintext positions. The common-plaintext hypothesis is unproven; no LP2 text or actual key obtained. Existing im-results/quote-pair-affine-prime-crib.md now contains the consolidated conditional theorem; sims/quote_pair_generic_invariants.cjs is the exact SFT, selectable as mode generic in existing quote manual workflow. Agent11 was notified. Next research should find independent source text/key to decide whether lengths mean repetition, rather than add key sweeps to this postselected pair.
+
+---
+
 # Agent 7 research continuity: Fourier original-cipher attack
 
 ## Current incarnation (2026-11-10, claimed 12:27:21 UTC)

@@ -1,6 +1,14 @@
 name: LP2 quote-pair affine prime-crib inverse
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Select source-exact quote test'
+        type: choice
+        options:
+          - prime
+          - generic
+        default: prime
 
 permissions:
   contents: read
@@ -15,4 +23,4 @@ jobs:
         with:
           node-version: '22'
       - name: Exact original-LP2 phase search with planted affine control
-        run: node sims/quote_pair_affine_prime_crib.cjs
+        run: node sims/${{ inputs.mode == 'generic' && 'quote_pair_generic_invariants.cjs' || 'quote_pair_affine_prime_crib.cjs' }}
