@@ -1,0 +1,20 @@
+name: LP2 nonlinear feedback
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quadratic-feedback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install numeric dependency
+        run: python -m pip install numpy==2.3.5
+      - name: Exhaust nonlinear feedback with planted control and matched null
+        run: python sims/quadratic_feedback.py
