@@ -174,6 +174,27 @@ function recurrencePad(seed, reset) {
   return pad;
 }
 
+function forcedRecurrencePad(seed, key, phase, direction, reset, keySign) {
+  const seq = direction === 'forward' ? key : key.slice().reverse();
+  const pad = new Array(ROWS.length);
+  let state = [], pointer = 0, group = null;
+  for (let i = 0; i < ROWS.length; i++) {
+    const nextGroup = groupAt(ROWS[i], reset);
+    if (i === 0 || nextGroup !== group) {
+      state = [];
+      pointer = 0;
+    }
+    const input = mod(keySign * seq[(phase + pointer) % seq.length]);
+    const value = pointer < 6 ? seed[pointer]
+      : mod(24 - 2 * state[pointer - 6] + input);
+    state.push(value);
+    pad[i] = value;
+    pointer++;
+    group = nextGroup;
+  }
+  return pad;
+}
+
 /** Exact two-candidate inverse for the proposed T6 collision-repair layer. */
 function inverseCandidates(cipherWords, pad, sign) {
   const result = [];
@@ -275,6 +296,34 @@ function scoreCandidate(pad, sign, split = 1448) {
     whole: (trainScore + heldScore) / (trainTokens + heldTokens)
   };
 }
+function scoreDirect(pad, sign, split = 1448) {
+  let trainScore = 0, heldScore = 0, trainTokens = 0, heldTokens = 0;
+  let offset = 0;
+  for (let i = 0; i < CIPHER_WORDS.length; i++) {
+    let a = START, b = START, score = 0;
+    for (const c of CIPHER_WORDS[i]) {
+      const plain = mod(c - sign * pad[offset++]);
+      score += LM[(a * N + b) * N + plain];
+      a = b;
+      b = plain;
+    }
+    score += LM[(a * N + b) * N + END];
+    if (i < split) {
+      trainScore += score;
+      trainTokens += CIPHER_WORDS[i].length + 1;
+    } else {
+      heldScore += score;
+      heldTokens += CIPHER_WORDS[i].length + 1;
+    }
+  }
+  assert.equal(offset, pad.length);
+  return {
+    train: trainScore / trainTokens,
+    heldout: heldScore / heldTokens,
+    whole: (trainScore + heldScore) / (trainTokens + heldTokens)
+  };
+}
+
 function seededRandom(seed) {
   let x = seed >>> 0;
   return () => {
@@ -363,6 +412,54 @@ function main() {
   assert.ok(control.accuracy > 0.95,
     'The source-matched positive control must recover >95% of known GP runes');
 
+  // Stateful keyed recurrence: the p56-derived grid stream forces the
+  // source-derived lag-six affine state after a six-symbol source seed.
+  const statefulCandidates = [];
+  const statefulKeys = [
+    { name: '256-row-major', key: PRIME_INDEXED_GRID, phases: [51, 57] },
+    { name: '32-cell-diagonal', key: PATH_KEY, phases: [0] }
+  ];
+  const statefulSeed = SEEDS['diagonal-prime-totient'];
+  for (const spec of statefulKeys) {
+    for (const phase of spec.phases) {
+      for (const direction of ['forward', 'reverse']) {
+        for (const reset of resets) {
+          for (const keySign of [1, -1]) {
+            const pad = forcedRecurrencePad(
+              statefulSeed, spec.key, phase, direction, reset, keySign
+            );
+            for (const outputSign of [1, -1]) {
+              statefulCandidates.push({
+                model: 'T6-repair', key: spec.name, phase, direction,
+                reset, keySign, outputSign, pad,
+                ...scoreCandidate(pad, outputSign)
+              });
+              statefulCandidates.push({
+                model: 'direct-additive', key: spec.name, phase, direction,
+                reset, keySign, outputSign, pad,
+                ...scoreDirect(pad, outputSign)
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+  assert.equal(statefulCandidates.length, 192);
+  const statefulT6 = statefulCandidates.filter(x => x.model === 'T6-repair');
+  const statefulDirect = statefulCandidates.filter(x => x.model === 'direct-additive');
+  const sortTrain = xs => xs.slice().sort((a, b) => b.train - a.train);
+  const sortHeld = xs => xs.slice().sort((a, b) => b.heldout - a.heldout);
+  const statefulT6Train = sortTrain(statefulT6);
+  const statefulT6Held = sortHeld(statefulT6);
+  const statefulDirectTrain = sortTrain(statefulDirect);
+  const statefulDirectHeld = sortHeld(statefulDirect);
+  const statefulControl = positiveControl(
+    statefulT6Train[0].pad, statefulT6Train[0].outputSign
+  );
+  assert.ok(statefulControl.accuracy > 0.95,
+    'The keyed T6 recurrence positive control must recover >95% of known GP runes');
+
   let t6Hits = 0, t6Eligible = 0;
   for (const word of CIPHER_WORDS) for (let j = 6; j < word.length; j++) {
     t6Eligible++;
@@ -371,7 +468,7 @@ function main() {
   assert.deepEqual([t6Hits, t6Eligible], [80, 1290]);
 
   const result = {
-    scope: 'Finite source-derived key test under the provisional T6 collision-repair inverse; not a recovered cipher or plaintext',
+    scope: 'Finite source-derived key test under provisional T6 collision-repair and direct-additive models; not a recovered cipher or plaintext',
     original: { words: CIPHER_WORDS.length, runes: ROWS.length,
       sections: Math.max(...ROWS.map(r => r.section)) + 1,
       t6Hits, t6Eligible },
@@ -387,7 +484,51 @@ function main() {
       rawByteDoublingPositions: byteDoublings,
       recurrenceSeeds: SEEDS
     },
-    testedCandidates: candidates.length,
+    statefulKeyedRecurrence: {
+      testedCandidates: statefulCandidates.length,
+      recurrence: 'state[i] = state[i-6] * (-2) + 24 + signedPrimeIndexedGridKey[i] mod 29 after the six-symbol source seed',
+      seed: statefulSeed,
+      bestT6Training: {
+        key: statefulT6Train[0].key, phase: statefulT6Train[0].phase,
+        direction: statefulT6Train[0].direction, reset: statefulT6Train[0].reset,
+        keySign: statefulT6Train[0].keySign, outputSign: statefulT6Train[0].outputSign,
+        train: statefulT6Train[0].train, heldout: statefulT6Train[0].heldout,
+        whole: statefulT6Train[0].whole
+      },
+      bestT6Heldout: {
+        key: statefulT6Held[0].key, phase: statefulT6Held[0].phase,
+        direction: statefulT6Held[0].direction, reset: statefulT6Held[0].reset,
+        keySign: statefulT6Held[0].keySign, outputSign: statefulT6Held[0].outputSign,
+        train: statefulT6Held[0].train, heldout: statefulT6Held[0].heldout,
+        whole: statefulT6Held[0].whole
+      },
+      bestDirectTraining: {
+        key: statefulDirectTrain[0].key, phase: statefulDirectTrain[0].phase,
+        direction: statefulDirectTrain[0].direction, reset: statefulDirectTrain[0].reset,
+        keySign: statefulDirectTrain[0].keySign, outputSign: statefulDirectTrain[0].outputSign,
+        train: statefulDirectTrain[0].train, heldout: statefulDirectTrain[0].heldout,
+        whole: statefulDirectTrain[0].whole
+      },
+      bestDirectHeldout: {
+        key: statefulDirectHeld[0].key, phase: statefulDirectHeld[0].phase,
+        direction: statefulDirectHeld[0].direction, reset: statefulDirectHeld[0].reset,
+        keySign: statefulDirectHeld[0].keySign, outputSign: statefulDirectHeld[0].outputSign,
+        train: statefulDirectHeld[0].train, heldout: statefulDirectHeld[0].heldout,
+        whole: statefulDirectHeld[0].whole
+      },
+      scoreRanges: {
+        T6: {
+          min: Math.min(...statefulT6.map(x => x.whole)),
+          max: Math.max(...statefulT6.map(x => x.whole))
+        },
+        direct: {
+          min: Math.min(...statefulDirect.map(x => x.whole)),
+          max: Math.max(...statefulDirect.map(x => x.whole))
+        }
+      },
+      positiveControl: statefulControl
+    },
+    testedCandidates: candidates.length,\n    statefulCandidateCount: statefulCandidates.length,
     bestTraining: {
       family: best.family, phase: best.phase, direction: best.direction,
       reset: best.reset, sign: best.sign, seedName: best.seedName,
@@ -410,7 +551,7 @@ function main() {
       max: Math.max(...candidates.map(x => x.whole))
     },
     positiveControl: control,
-    conclusion: 'None of the 72 declared prime-indexed grid-totient periodic keys or six-symbol T6 recurrence seeds yields GP-English-like plaintext on either frozen half. The positive control validates the inverse for the tested model. The selected 24 modular key difference occurs at 10 of 250 lag-six grid positions, so it is not independently selective; only the raw-byte doubling at offset 51 is unique.'
+    conclusion: 'None of the 72 declared prime-indexed grid-totient periodic keys or six-symbol T6 recurrence seeds yields GP-English-like plaintext. The additional 192 stateful keyed-recurrence candidates are reported separately. Positive controls validate the inverse for the tested model. The selected 24 modular key difference occurs at 10 of 250 lag-six grid positions, so it is not independently selective; only the raw-byte doubling at offset 51 is unique.'
   };
   console.log(JSON.stringify(result, null, 2));
   return result;
