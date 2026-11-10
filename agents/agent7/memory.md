@@ -1,0 +1,27 @@
+# Agent 7: Exact lexical inversion and shared-key constraints
+
+**Current incarnation lease:** `2026-11-10T02:56:33Z` (run ID `gpt6-20261110-f9335f601e2e87815bc3bc8b`). The original lease time is immutable. The normal-mode orderly release threshold is `2026-11-10T04:06:33Z`; after every substantive checkpoint read an actual clock and continue unless threshold reached.
+
+## Cryptanalytic work and current interpretation
+
+The proposed LP2 pages 28/42 factor-four same-offset shared-key construction is a real statistical *marginal* lead, but it has not produced English plaintext. My independent attacks provide stronger constraints:
+
+1. `sims/relative_key_hard_lexicon.py`: exact two-trie reachability with the observed physical word boundaries, 121,592 GP words from TextBlob 0.19.0 spelling counts plus CMUdict 1.1.3. No beam pruning or OOV fallback; page-initial fragments are unconstrained, page-trailing fragments use full dictionary prefixes. At scale four, original pair dies at zero-based rune index 15, meaning no ordinary dictionary English paired path after the first 15 runes. Scales 1, 7 and 22 survive to offsets 13, 69, 25. Five synthetic genuine scale-four shared-key English controls, with the observed word masks, pass all 269 runes in CI run [42748346317](https://github.com/FlareZ123/liber-primus/actions/runs/42748346317).
+
+2. `sims/relative_key_word_tree.py`: exact min-plus factor-graph solver leveraging the forest of overlapping physical words, using all subsets of up to six overlap positions to calculate exact Hamming-distance messages with witness word assignments, zero beam. Allows arbitrary *exceptional* alignment positions while preserving the 121,592-word lexicon. At zero shift, scale four requires at least **12/269** violations; scale one 11, seven 10, and scale 22 9. CI successful [42750446754](https://github.com/FlareZ123/liber-primus/actions/runs/42750446754). A local complete 28-scale sweep finds 9 at scales 17,22,25 and 12 at four. Sixteen offset-four shifted baselines need 11–14 exceptions. Thus allowing sparse arbitrary repairs is itself insufficient to distinguish factor four. The reconstruction witnesses are dictionary strings, not authentic plaintext, and the violation locations have no independently justified mechanism.
+
+3. Consolidated both findings into `im-results/page28-page42-relative-key-anomaly.md` within its existing word-level analysis, avoiding new conflicting research reports. Sent Agent 11 one direct message at `communications/agent11/2026-11-10T0310Z_agent7_hard-lexicon-product-automaton.md` (message initially described an exact strict variant).
+
+4. Manual CI `.github/workflows/relative-key-hard-lexicon.yml` runs either strict hard-lexicon baseline, all-pair scale sweep, or exact word-tree inversion. An **all-1,485-pair × 28-scale** strict prefix scan with max depth100 was started on 2026-11-10 03:14:58Z (run [42748176810](https://github.com/FlareZ123/liber-primus/actions/runs/42748176810)); it was still running at 03:43 UTC. It was launched from an *older* revision of the parser before all punctuation and numeral separators were fixed. If it completes, read output with `GitHub_Actions_MCP` and treat affected pages cautiously; correct source parser now committed in the current branch.
+
+5. A separate live prime-totient key-stream scan of all 55 unsolved pages, both signs and first 1,500 prime-index starts, used an independent Gibran-English GP character trigram and a 65%-train/35%-holdout split. Best fitted candidates are gibberish; top training Z~4.4 across 165k candidates, no coherent decoded text. This was a targeted sanity check against the authentic LP2 page56 phi(prime) method. It does not handle literal-F key skips and is not a model-wide cipher exclusion, so no claim-bearing report was made.
+
+6. JPEG scan of all 75 original ZIP files found anomalous 05.jpg and 10.jpg only. These precise file facts were *already* documented by Agents 45 and others, so we avoided duplicative documentation. Their artifacts have no independently recovered LP2 key.
+
+## Priority and constraints for next incarnation
+
+**Highest priority** remains recovering real LP2 plaintext or independently predictive key material. Do not repeat analyses of 28/42 marginal fitting, word-overlap strict tests, generic anti-repeat, JPEG10 assembly, or known authentic regressions: other agents have strong scripts and comprehensive reports. The Critic decision gate at `communications/broadcast/20261110T030941Z_critic_page28-42_decision-gate.md` explains why additional post-hoc language optimizations are low yield.
+
+If strict all-pair CI returns a candidate with a full 100-rune compatible prefix, test it over the *complete* pair and compare all same-dictionary scales/rotations and planted controls. Otherwise close or retire that expensive scan and investigate fresh clue-driven keys or cipher mechanisms. The broad-lexicon forest solver is a reusable exact architecture and can be generalized to cipher channels with actual independently constrained repair rules.
+
+Important: current source `sims/relative_key_hard_lexicon.py` was patched to split words at **all** nonrune punctuation and numeral separators, except printed line wraps `/` and whitespace, matching `sims/lp2_word_pages.cjs`. Early all-pair CI used the previous narrower rule. Never promote exploratory cross-page plaintext strings without direct key extraction, exact re-encryption, and independent material.
