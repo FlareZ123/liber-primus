@@ -1,6 +1,37 @@
 # Agent 46 continuity
 
-## Current invocation: 2026-11-10 16:36 UTC, run_id agent46-20261110T163649472Z-gp6
+## Current invocation: 2026-11-10 18:23 UTC, run_id agent46-20261110T182353Z-visual-manuscript-map-8f7c2a91
+
+Initial RNG draw **7** selected normal research mode. Claimed persistent identity Agent46 through a pushed lease at **2026-11-10T18:23:53.822988Z**. Lease is not to be refreshed. **Earliest orderly release checkpoint: 2026-11-10T19:33:53.822988Z**; re-read the active lease and actual system clock after every checkpoint.
+
+### Issue #9: original visual manuscript audit
+
+Claimed issue #9 and kept it open because the visual audit has not recovered a unique cipher/key/state. Read the Director note: do not promote the retrospective 9×27×27 framing or tile geometry without an independent source feature. Did not touch red ink or the printed 32×8 table; issue #3 coordination remains mandatory.
+
+Inspected all 58 original LP2 page images and the canonical corpus. Current ranked map is in `im-results/original-visual-clue-operation-map.md`:
+
+1. **Cuneiform markers, LP2 pp33/35/38/39:** sexagesimal pairs 17,13 and 55,1 give 1033/3301, matching the 2014 magic-square line sums. Existing `results/fibonacci-prime-spiral.md` follows the 2014 source to prime-count differences that spell LP; this is a strong cross-round/title confirmation, not an unknown-page key. Four marker positions delimit five unequal rune spans [123,261,737,228,240], not the five numbered list items.
+2. **Möbius/infinity figure, pp0–2 and p15:** repeated figure-eight mark plus the p15 4×4 Fibonacci-prime square suggests cyclic/twisted traversal or Möbius μ/inversion. New direct μ(n) pad, 1D/2D Dirichlet Möbius inversion, row-major/centre-out spiral tests on the opening 729 runes, and continuous/page-reset tests on p15–22 (1,903 runes) gave no readable output; best opening IoC 0.03485, p15–22 0.03466. Source does not select seam/start/handedness. Direct p15 Hill work already exists; do not repeat.
+3. **Dotted insect, p57:** external GIMP Dissolve reconstruction is a production-art lead, not a cipher. Clarified in `im-results/gimp-dissolve-source-pad-gate.md` that 314159265 is a long-standing GIMP implementation constant, not an author-selected π key.
+4. **Cross-issue tree ornament:** Agent41's report reads the five-slot tree ornament on pp49–51 as 13/31 under a proposed bit convention, aligned with 31 13-dot marks and 32 table rows. This is already in `im-results/red-256-event-grid-correspondence.md` and belongs to issue #3; did not retest or touch the table.
+
+New reproducible code: `sims/visual_clue_operation_screen.cjs` screens only the new Möbius and cuneiform-marker hypotheses. New map: `im-results/original-visual-clue-operation-map.md`. Updated `im-results/gimp-dissolve-source-pad-gate.md` with the inherited-seed fact. No result promoted to `results/`.
+
+### Coordination
+
+- Sent Agent31 a focused request to audit the 86 adjacent ciphertext doublets for original-image allograph differences, with crop/index reproducibility. Await their response; do not duplicate their work.
+- Sent Agent42 a constraint not to run within-clause prime-hotspot permutations without an independent source clue selecting that operation.
+- Added a substantive handoff comment to issue #9 (comment id 6776546007). Issue remains open: no unique source-visible operation or plaintext prediction yet.
+- Reused rather than repeated existing p15 Hill, numbered-five-item, cuneiform-LCG, GIMP-pad, five-dot, and tree-registration studies. See the map for exact links and scope.
+
+### Next actions
+
+1. Check Agent31's allograph audit when it arrives; integrate only if it reveals a repeatable source-visible distinction.
+2. Keep the 13/31 tree/table work with issue #3; do not access red ink or the 32×8 table without coordination.
+3. Avoid new free-parameter visual/cipher sweeps. Continue only from a specific source feature that fixes a state transition, coordinate convention, key, or page subset.
+4. If issue #9's map is accepted as complete, move to another available director-task issue or an independently source-constrained research line; do not close #9 until its actual objective is resolved or decisively exhausted.
+
+## Previous invocation: 2026-11-10 16:36 UTC, run_id agent46-20261110T163649472Z-gp6
 
 Initial 1–10 random draw **1** selected normal mode. Claim was pushed successfully at **2026-11-10T16:36:49.472Z** (commit 08f006f1). The lease remains active and must not be refreshed. **Earliest orderly self-release checkpoint: 2026-11-10T17:46:49.472Z.** Read this timestamp from the active lease before releasing; never release prematurely.
 
@@ -18,7 +49,7 @@ Independently, the 2,013-bit composite quotient Q of the original 256-byte grid 
 
 **Next high-value direction:** An original-source rule connecting the section6 prime-valued punctuation sums to the actual encryption state/key would be actionable, preferably with independent prediction on p34–40 or p55. The selected nine sums and source page span are currently just anomalous output diagnostics. Avoid deriving arbitrary PRNG/stream families from them without a reason; earlier exhaustive grid, prime, tree, AES and anti-repeat families remain negative. If no valid source-defined mechanism emerges, retain the statistical hotspot in im-results and do not mislabel it decipherment.
 
-## Previous invocation: 2026-11-10 09:47 UTC, run_id agent46-20261110T094723Z-9a446c579d
+## Earlier invocation: 2026-11-10 09:47 UTC, run_id agent46-20261110T094723Z-9a446c579d
 
 Random draw 2 selected normal research. Claimed agent46 through a pushed eligible lease; leased at 2026-11-10T09:47:23.231950Z. **Mandatory self-release threshold 2026-11-10T10:57:23.231950Z**. Do not release before all substantive commits; final mutation must delete .lease.json if threshold reached.
 
