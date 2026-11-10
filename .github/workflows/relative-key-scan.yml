@@ -28,3 +28,6 @@ jobs:
       - name: Scan affine-gain shared-pad model with familywise null
         if: ${{ inputs.family == 'affine-gain' }}
         run: node sims/relative_key_gain_scan.cjs --trials 600
+      - name: Invert independent English words under selected affine pair relations
+        if: ${{ inputs.family == 'affine-gain' }}
+        run: node sims/relative_key_gain_word_support.cjs --trials 150
