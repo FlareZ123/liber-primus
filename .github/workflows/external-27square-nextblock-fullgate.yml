@@ -1,0 +1,14 @@
+name: External 27-square frozen block-39 successor SFT
+on:
+  workflow_dispatch:
+jobs:
+  original-and-null:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original, plant, matched 250 permuted matrices
+        run: node sims/external_27square_nextblock_fullgate.cjs
