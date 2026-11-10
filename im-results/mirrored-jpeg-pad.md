@@ -1,6 +1,6 @@
 # LP1 p05 mirrored JPEG bytes as an LP2 pad (Agent 13, 2026-11-10)
 
-**Current status: bounded negative for literal mod-29 reductions and fixed-offset skip-aware use of the 05.jpg mirror. No LP2 plaintext recovered.**
+**Current status: bounded negative over five million-plus fixed-offset, reversible and rejection-sampled JPEG pad candidates. No LP2 plaintext recovered.**
 
 ## Why this pad was worth testing
 
@@ -36,9 +36,19 @@ For every combination, a Viterbi 24-rune head score was computed. The best **140
 
 The calibrated initial screen and the exhaustive control show the method can recover strong English plaintext when the hypothesized key family is true. The exhaustive stage itself lacks a full family-wise wrong-key null and covers only a Shakespeare-English score; these limits prevent treating any negative as a mathematical exclusion of the entire family. In particular, more skips, a different reduction, an altered key, differing page starts, different languages, and offsets in the small excluded tail are untested.
 
+## Exhaustive full-JPEG extensions
+
+The duplicated 72,700-byte prefix is only part of the valid 600,366-byte JPEG. Another [opt-in run 42746453100](https://github.com/FlareZ123/liber-primus/actions/runs/42746453100) scanned the **entire 600,366-byte valid JPEG**, forwards and backwards, with the two reductions and two signs. For each of the eight settings, all **599,707 byte starts** supporting a 220-rune window at the maximum three pad draws per rune were covered. This totaled **4,797,656** independent 24-rune head calculations. The 140 best heads were decoded to 220 runes; best final language score was **−5.3384/rune** (valid JPEG, scaled29, sign +, offset **384,380**) and remained non-linguistic. A full 220-rune planted sample at offset **300,000** had the true offset **rank 1 of 599,707**, recovered **220/220** runes and **10/10** skipped draws. Its 24-rune head scored **−2.41120/rune**, against best LP2 **−3.25208/rune**.
+
+A further construction avoids the possible bias of `byte % 29`: read the mirrored prefix in either direction, **discard raw bytes 232–255**, then map each retained byte `% 29`. Exactly eight appearances of every rune index per group of 232 raw byte values are possible, yielding an unbiased conversion under uniform bytes. From 72,700 input bytes this produces **67,122** retained pad symbols in the chosen image. [Run 42746707065](https://github.com/FlareZ123/liber-primus/actions/runs/42746707065) searched **66,463 starts × two directions × two signs = 265,852** candidates on **each** of LP2 pages **0 and 5**. Best 220-rune final scores were **−5.2578** on page 0 and **−5.4293** on page 5. Again, no readable text. The planted offset **12,345** ranked **#1 of 66,463** under the correct reducer/sign, recovered **220/220** runes and **7/7** rejected draws.
+
+These extensions expand the search to **5,905,688 individual 24-rune head evaluations** across the three exhaustive runs, with a 140-candidate 220-rune confirmation for each page × family. Some key hypotheses share image bytes under reversal and therefore should not be treated as statistically independent tests. Their outcomes consistently fail the controlled natural-language recovery test, with no plaintext/key success. The head-screen positive controls are point demonstrations for Shakespeare-like English on the named generators, rather than calibrated universal sensitivity to every register.
+
 ## Reproduction and what remains open
 
 - Initial scan + pad-rotation null + 180-rune plant: [`sims/mirror_jpeg_pad.cjs`](../sims/mirror_jpeg_pad.cjs), [opt-in workflow](../.github/workflows/mirror-jpeg-pad.yml).
-- Exhaustive 576,328-offset Viterbi head screen, 140 candidate confirmations, plus 220-rune rank-one plant: [`sims/mirror_jpeg_offsets.cjs`](../sims/mirror_jpeg_offsets.cjs), [opt-in workflow](../.github/workflows/mirror-jpeg-offsets.yml).
+- Exhaustive 576,328-offset mirrored-pad Viterbi screen, 140 candidate confirmations, plus rank-one plant: [`sims/mirror_jpeg_offsets.cjs`](../sims/mirror_jpeg_offsets.cjs), [workflow](../.github/workflows/mirror-jpeg-offsets.yml).
+- Exhaustive 4,797,656-offset full-JPEG extension: [`sims/mirror_jpeg_whole_offsets.cjs`](../sims/mirror_jpeg_whole_offsets.cjs), [workflow](../.github/workflows/mirror-jpeg-whole.yml).
+- 531,704 unbiased-rejection candidate evaluations on pages 0 and 5: [`sims/mirror_jpeg_rejection_offsets.cjs`](../sims/mirror_jpeg_rejection_offsets.cjs), [workflow](../.github/workflows/mirror-jpeg-rejection.yml).
 
-The mirrored trailer itself is a feasible **candidate key source**, with no evidence yet that the original author intended it as such. This experiment rules out substantial English-like recovery for the specified literal-additive pad reductions and offsets. A full ciphertext-independent source of key bytes, a different decoding relation, or a confirmed explanation for the mirror must supply the next useful constraint.
+The mirrored trailer is an **unproven candidate key source**. The concrete tested class now includes every admissible start of both the mirrored prefix and the entire valid JPEG under two modulo-29 reducers plus a third unbiased-rejection reducer on the mirror, with signs ±. Only the specified 0–2 collision-rejection transition model and the English-like register are covered. Possible alternatives include image/pixel-derived keys, different byte reductions or encryption transitions, independent per-page state, and external key material.
