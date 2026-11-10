@@ -27,6 +27,7 @@ const path=require('node:path');
 const assert=require('node:assert/strict');
 const {streamKey,viterbi}=require('./grid_stream_collision_viterbi.cjs');
 const {train,encode}=require('./grid_keyskip_viterbi.cjs');
+const {latinModel}=require('./title_grid_kdf_viterbi.cjs');
 const crypto=require('node:crypto');
 
 const ROOT=path.resolve(__dirname,'..');
@@ -114,8 +115,9 @@ function randomGenerator(seed){
  let x=seed>>>0;return ()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return (x>>>0)/4294967296;};
 }
 /** Plant from a Shakespeare tail disjoint from GP-trigram training text. */
-function planted(lm){
-  const gp=encode(read('resources/control/shakespeare_first300k.txt').slice(205000));
+function planted(lm,latin=false){
+  const gp=latin?JSON.parse(read('resources/control/latin-vulgate-heldout-gp.json')).runes
+    :encode(read('resources/control/shakespeare_first300k.txt').slice(205000));
   const plain=qSource.map((_,i)=>gp.slice(i*300,i*300+300));
   assert.ok(plain.every(x=>x.length===300));
   const mode={g:53,algo:'aes-256-ctr',reducer:'mod29',sign:1};
@@ -147,8 +149,9 @@ function planted(lm){
     trueKeyHeldoutGP:count,heldoutTotal:3*H};
 }
 function main(){
-  const lm=train(read('resources/control/shakespeare_first300k.txt').slice(0,200000));
-  const plantedEvidence=planted(lm);
+  const latin=process.argv.includes('--latin');
+  const lm=latin?latinModel():train(read('resources/control/shakespeare_first300k.txt').slice(0,200000));
+  const plantedEvidence=planted(lm,latin);
   const tested=solve(original(),lm);
   const result={
     hypothesis:'source exact red-span prime quotient seeds a field79 78-cycle, packed AES/ChaCha key+IV',
@@ -157,6 +160,7 @@ function main(){
     construction:'state=g^q mod79; 32 successive state bytes form 256-bit key; next 16 state bytes form nonce',
     originalCipherRunes:3*(T+H),trainPerSection:T,heldoutPerSection:H,
     skipRule:'one extra key draw only if the rejected draw would emit the previous published ciphertext rune',
+    languageRegister:latin?'Latin Vulgate New Testament':'Shakespeare GP English',
     noPlaintextClaim:true,
     planted:plantedEvidence,original:tested
   };
