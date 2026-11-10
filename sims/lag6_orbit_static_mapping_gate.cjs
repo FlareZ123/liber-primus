@@ -164,6 +164,35 @@ function model(escape,seed){
   }
   return {encode,decode,escape};
 }
+
+/**
+ * Boundary-independent GP control. A contiguous English GP excerpt is
+ * divided at the original ciphertext's physical word lengths. The break
+ * positions need not coincide with any English word break.
+ */
+const ORBIT_PAIRS=[];
+let slot=0;
+for(const w of BOOK){
+  for(let j=6;j<w.length;j++)ORBIT_PAIRS.push([slot+j-6,slot+j]);
+  slot+=w.length;
+}
+assert.equal(ORBIT_PAIRS.length,1290);
+/** @param {number[]} flat @param {number} start */
+function minContinuous(flat,start){
+  let minimum={escape:-1,n:0,ioc:Infinity};
+  for(let e=0;e<29;e++){
+    const hist=new Uint32Array(29);
+    let n=0;
+    for(const [a,b] of ORBIT_PAIRS){
+      const current=flat[start+b],previous=flat[start+a];
+      if(current!==e&&previous!==e){hist[current]++;n++;}
+    }
+    const value=ioc(hist);
+    if(value<minimum.ioc)minimum={escape:e,n,ioc:value};
+  }
+  return minimum;
+}
+
 function main(){
   const original=exponentStats(BOOK);
   assert.equal(original.n,1204);
@@ -193,12 +222,32 @@ function main(){
       if(best.ioc<minimum){minimum=best.ioc;minimumRow=best;}
       maximum=Math.max(maximum,best.ioc);sum+=best.ioc;
     }
+    const flat=native.flat(),selector=rng(seed^0xa5a5a5a5);
+    const fullLength=BOOK.reduce((s,w)=>s+w.length,0);
+    assert(flat.length>=fullLength);
+    let independentMin=Infinity,independentMax=-Infinity,
+      independentSum=0,independentExceed=0,independentExample=null;
+    for(let i=0;i<trials;i++){
+      const start=selector()%(flat.length-fullLength+1);
+      const best=minContinuous(flat,start);
+      if(best.ioc<=original.ioc)independentExceed++;
+      if(best.ioc<independentMin){
+        independentMin=best.ioc;independentExample={start,...best};
+      }
+      independentMax=Math.max(independentMax,best.ioc);
+      independentSum+=best.ioc;
+    }
     controls.push({name,sourceGpWords:native.length,
       sourceSHA256:createHash('sha256').update(raw).digest('hex'),
       trials,bestOfAll29ExceptionalRuneChoices:{
         minimum,mean:sum/trials,maximum,
         attainingWorstCase:minimumRow},
-      atOrBelowOriginal:exceed,addOneLowerTail:(exceed+1)/(trials+1)});
+      atOrBelowOriginal:exceed,addOneLowerTail:(exceed+1)/(trials+1),
+      boundaryIndependentContinuousSource:{
+        minimum:independentMin,mean:independentSum/trials,
+        maximum:independentMax,worstCase:independentExample,
+        atOrBelowOriginal:independentExceed,
+        addOneLowerTail:(independentExceed+1)/(trials+1)}});
   }
   // Genuine GP-English words in the exact original 2,896-word layout.
   const sourceNative=corpusWords(read(refs[0][1]));
