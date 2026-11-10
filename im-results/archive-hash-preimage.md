@@ -30,6 +30,14 @@ The [Node 20 implementation](../sims/archive_hash_preimage_scan.cjs) retrieves t
 
 A built-in SHA-512 `abc` known-answer test runs before accessing source files. Length mismatches, fetch failures, missing digest implementations and incomplete output fail the job rather than being counted as negative evidence. Its full input ledger is written atomically under a lock.
 
+## Direct original Onion7 page-image preimage test (executed 2026-11-10)
+
+The independently preserved 2014 Onion7 delivery index lists exactly **58 numbered JPEG pages** (`0.jpg`–`57.jpg`), served within the historical deep web. They are a finite **source-selected** set of candidate *page bytes*, unlike guessed onion addresses. The original combined 75-image repository corpus [`resources/liber-primus/`](../resources/liber-primus/) maps these page numbers to `17.jpg`–`74.jpg`. The source images' raw original JPEG streams, **without** OCR, normalization, URL guessing or recompression, were tested against the exact full p56 target.
+
+Executed local [reproducer](../sims/anend_original_jpeg_gate.py) on the maintainer-supplied original JPEG ZIP (SHA-256 `094f3f8bc508159bda033482706a2d9bf516c8b8a324d87d41c5ee3696c075ea`), using Python `hashlib` SHA-512, SHA3-512, BLAKE2b-512 and SHAKE256 with 64 output bytes. All four are independently distinguished on an `abc` test, and SHA-512 has its published `abc` known-answer assertion. **58 × 4 = 232 byte-exact comparisons, zero hits.** The source's LP2 page56 JPEG `73.jpg` is **389,813 bytes**, Git blob SHA-1 `afa3428764199ddf590baf0c055c8caedc079cb1`, SHA-256 `a4c1c9ae1246c3197fc1d7bd0155cbc97f60d4bba84a104d45f180feab1814dc`; page57 `74.jpg` is **318,076 bytes**, Git blob SHA-1 `4397143b4df5ad729b00cfd740a74994052f46d2`, SHA-256 `1dabc100ddbf1fc49715219636984eb6ad96a2bd8035e196c12e66db77a1077b`. Both Git blob IDs match the corresponding early-May-2014 `micheloosterhof/cicada-2014` original Onion7 archive entries exactly (not just the displayed illustrations). The GitHub repository's checked-in `resources/liber-primus` source is the intended path for the reproducible script.
+
+**Interpretation:** none of the 58 published **raw** page JPEG objects is the source of the AN END digest under these four algorithms. This **does not** exclude another file/page, arbitrary HTTP headers or rendered HTML, alternative hash functions or formats, or the lost target page. Existing external archival hash scans may overlap the image family; this is a narrowly scoped source-native regression, not 232 independently novel hypotheses. In particular the p56 JPEG contains the hash text itself; an exact self-hash match would be circular and is not expected. The correction above also establishes that `56.bin` is merely the known target digest in binary, not one of the unknown page objects.
+
 ## Direct original-grid-to-AN-END digest challenge
 
 The source itself offers a finite missing-input candidate absent from
