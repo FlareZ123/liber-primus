@@ -71,6 +71,84 @@ function energy(edge,key) {
 }
 
 /**
+ * Multi-eigenvector spectral initializer for the latent cyclic pad.
+ * Each page-local equality indicator survives any permutation of its
+ * output alphabet. Its centered expectation is r[K_i-K_j]-1/29, a
+ * circulant positive-semidefinite kernel. Leading eigenvector pairs
+ * encode Fourier phases of K, up to a global phase and harmonic index.
+ *
+ * @param {number[][]} pages
+ * @param {number} width
+ * @param {()=>number} random
+ * @returns {number[][]}
+ */
+function spectralCandidates(pages,width,random) {
+  const matrix=Array.from({length:width},()=>new Float64Array(width));
+  for(let i=0;i<width;i++)for(let j=i+3;j<width;j++) {
+    let n=0,e=0;
+    for(const p of pages)if(j<p.length){
+      n++;
+      e+=Number(p[i]===p[j]);
+    }
+    if(n<8)continue;
+    matrix[i][j]=matrix[j][i]=(e-n/A)/Math.sqrt(n);
+  }
+  const count=8;
+  const vectors=Array.from({length:count},()=>
+    Float64Array.from({length:width},()=>random()-.5));
+  const normalize=(vectors,index)=>{
+    const a=vectors[index];
+    for(let k=0;k<index;k++){
+      const b=vectors[k];
+      let projection=0;
+      for(let t=0;t<width;t++)projection+=a[t]*b[t];
+      for(let t=0;t<width;t++)a[t]-=projection*b[t];
+    }
+    let norm=0;
+    for(const v of a)norm+=v*v;
+    norm=Math.sqrt(norm);
+    if(norm<1e-12){for(let t=0;t<width;t++)a[t]=random()-.5;return normalize(vectors,index);}
+    for(let t=0;t<width;t++)a[t]/=norm;
+  };
+  for(let i=0;i<count;i++)normalize(vectors,i);
+  for(let step=0;step<80;step++){
+    const next=Array.from({length:count},()=>new Float64Array(width));
+    for(let k=0;k<count;k++){
+      const v=vectors[k],w=next[k];
+      for(let i=0;i<width;i++){
+        let n=8*v[i];
+        const row=matrix[i];
+        for(let j=0;j<width;j++)n+=row[j]*v[j];
+        w[i]=n;
+      }
+    }
+    for(let k=0;k<count;k++)normalize(next,k);
+    for(let k=0;k<count;k++)vectors[k]=next[k];
+  }
+  const eigen=vectors.map(v=>{
+    let value=0;
+    for(let i=0;i<width;i++)for(let j=0;j<width;j++)
+      value+=v[i]*matrix[i][j]*v[j];
+    return {value,v};
+  }).sort((a,b)=>b.value-a.value);
+  const out=[];
+  for(let a=0;a<count;a++)for(let b=a+1;b<count;b++){
+    const u=eigen[a].v,v=eigen[b].v;
+    const theta=Array.from({length:width},(_,i)=>
+      Math.atan2(v[i],u[i])*A/(2*Math.PI));
+    for(let h=1;h<=14;h++){
+      let inverse=1;
+      while((h*inverse)%A!==1)inverse++;
+      for(let shift=0;shift<8;shift++){
+        const candidate=theta.map(t=>mod(Math.round(t+shift/8)*inverse));
+        out.push(candidate);
+      }
+    }
+  }
+  return out;
+}
+
+/**
  * Multistart coordinate optimization of a densely coupled 29-state model.
  * No ground truth is ever supplied to this routine.
  * @param {(Float64Array|null)[][]} edge
@@ -78,11 +156,14 @@ function energy(edge,key) {
  * @param {number} starts
  * @param {number} sweeps
  */
-function inferKey(edge,random,starts,sweeps) {
+function inferKey(edge,random,starts,sweeps,spectralSeeds=[]) {
   const length=edge.length;
   let winner=null,best=-Infinity;
-  for(let s=0;s<starts;s++) {
-    const key=Array.from({length},()=>Math.floor(random()*A));
+  const ranked=spectralSeeds.map(key=>({key,score:energy(edge,key)}))
+    .sort((a,b)=>b.score-a.score).slice(0,12);
+  for(let s=0;s<starts+ranked.length;s++) {
+    const key=s<ranked.length?ranked[s].key.slice():
+      Array.from({length},()=>Math.floor(random()*A));
     const order=Array.from({length},(_,i)=>i);
     for(let iteration=0;iteration<sweeps;iteration++){
       for(let t=length-1;t>0;t--){
@@ -191,7 +272,8 @@ function run(data,prior,seed,groundTruth=null) {
   const random=seededRandom(seed),rates=autoCorrelation(prior);
   const training=data.filter((_,i)=>i%4!==0);
   const checking=data.filter((_,i)=>i%4===0);
-  const fit=inferKey(edges(training,prior,WINDOW),random,STARTS,SWEEPS);
+  const fit=inferKey(edges(training,prior,WINDOW),random,STARTS,SWEEPS,
+    spectralCandidates(training,WINDOW,random));
   const observed=heldout(checking,fit.key,rates);
   let greater=0;
   const nullScores=[];
@@ -235,4 +317,4 @@ function main(){
   },null,2));
 }
 if(require.main===module)main();
-module.exports={autoCorrelation,edges,energy,inferKey,heldout,planted,keyRecovery,run};
+module.exports={autoCorrelation,edges,energy,inferKey,spectralCandidates,heldout,planted,keyRecovery,run};
