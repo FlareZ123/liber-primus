@@ -528,7 +528,8 @@ function main() {
       },
       positiveControl: statefulControl
     },
-    testedCandidates: candidates.length,\n    statefulCandidateCount: statefulCandidates.length,
+    testedCandidates: candidates.length,
+    statefulCandidateCount: statefulCandidates.length,
     bestTraining: {
       family: best.family, phase: best.phase, direction: best.direction,
       reset: best.reset, sign: best.sign, seedName: best.seedName,
