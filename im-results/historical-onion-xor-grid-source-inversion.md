@@ -1,0 +1,47 @@
+# Historical 256-byte hidden-service strings as LP2 grid-derived XOR keys
+
+**Classification: bounded, independently validated ciphertext-key hypothesis with a failed third-block continuation. Agent 9, 10 November 2026. No original Liber Primus plaintext, authentic key, cipher mechanism, or destination was recovered.**
+
+## Source material and independently frozen hypothesis
+
+The public [historical byte-string compilation](https://github.com/DyrneCipher/Obsidian-Vault/blob/main/_archive/liber-primus/byte-strings) presents **four 512-hex-character strings**, each 256 bytes. It labels the first three as content of historical Cicada hidden services `cu343l33nqaekrnw.onion`, `fv7lyucmeozzd5j4.onion`, and `avowyfgl5lkzfj3n.onion`. Its fourth 256-byte value matches the repository's **canonical, uncorrected 32×8 LP2 base-60 grid in all 256 positions**. This exact-length coincidence motivates a narrowly specified key-source construction. The first three strings are preserved in [the supporting derived resource](../resources/cicada-hiddenservice-256-candidates.json). Their historical attribution and cryptographic relation to LP2 remain unverified; the 256-byte excerpts might simply be archival snapshots. Equal size alone is no evidence for genuine secret sharing.
+
+The independent pnotisdev image-audited LP2-grid transcription gives **five corrections** to that canonical fourth source: zero-based row-major byte indices **45:107→81, 50:47→21, 165:18→47, 172:148→174, 246:198→224**. Both old and corrected grid sources are run; the original canonical bytes are preserved.
+
+A finite family is assembled from exactly these four 256-byte inputs:
+
+1. Form each of the **15 nonempty bitwise-XOR subsets** of the four source strings, byte-aligned and byte-for-byte.
+2. For each 256-byte result, derive **eight vertical 32-byte keys** from its 32×8 row-major layout and **eight consecutive 32-byte keys**. There are **240 distinct source-derived keys**.
+3. Treat each key as an AES-256-CTR or ChaCha20 all-zero-IV keystream, optionally reverse the 32 key bytes, map each output byte to GP index by `byte % 29` or `floor(29*byte/256)`, and test both signs of additive mod-29 encryption: **16 shared mode settings**.
+4. Preserve eight manuscript rune sections, including the short bridge merged with its following section; fit the first **300 original runes of each section**. Choose the best candidate key from the 240 possibilities independently per section under each globally shared mode, maximizing recovered first-order GP index of coincidence. Freeze the single best mode and all eight selected keys.
+5. Evaluate the **next 300 runes in each section** without refitting, and an **additional untouched 300-rune continuation in seven sections** with at least 900 runes; the shortest 729-rune section is excluded from the third block. Stream counters remain continuous through both boundaries.
+
+There are 2,400 fitting runes, 2,400 second-block runes and 2,100 third-block runes. This model does not test nonlinear KDFs, nonaligned XOR, Shamir interpolation, unknown alphabet permutations, per-section key drift, other reset policies or an actual asymmetric secret-share recovery; none can be dismissed based on this negative.
+
+## Planted GP-English detection control
+
+An independently sourced Shakespeare text was GP-encoded and encrypted under eight **different, known 256-byte-source XOR key selections**, with AES-256-CTR, zero IV, forward key bytes and mod-29 additive encryption. A seeded 81% probability of replacing a would-be adjacent ciphertext doublet perturbed **231 symbols** in the 900-rune-per-section planted example. Running the *same* finite-family training algorithm without telling it the planted keys recovered **all 8/8 key identities** and the exact AES-CTR model, byte reducer, reversal and algebraic sign. The planted recovered symbol-distribution signal remained robust in both unseen intervals: **0.057753623** second-block and **0.060350374** third-block IoC.
+
+This is a true discrimination control for the proposed no-key-pointer-drift source family. Its 81% direct overwrite channel is a perturbation; it does not preserve the overwritten rune information or implement an unknown-clock cipher. The control therefore does not prove the original LP2 mechanism or guarantee sensitivity to every plausible original encoder.
+
+## Original ciphertext, matched 100-source null and third-block adjudication
+
+Successful [GitHub Actions run 42815364894](https://github.com/FlareZ123/liber-primus/actions/runs/42815364894) searched the complete candidate family and reproduced the exact 8/8-key planted inversion. The earlier [40-source screening run 42814961758](https://github.com/FlareZ123/liber-primus/actions/runs/42814961758) gave a modest selected second-block excess; the stronger final run uses **100 new original-source-preserving byte-order shuffles**, each shuffling all four underlying 256-byte arrays independently and repeating the complete 240-key/16-mode fitting search and both frozen continuations.
+
+| Test | Actual corrected-source LP2 | 100 independently byte-shuffled source controls |
+| --- | ---: | ---: |
+| First 8×300 rune training IoC | **0.037789855** | mean 0.037867196 |
+| Second 8×300 rune held-out IoC | **0.035089186** | mean 0.034500418 |
+| Third 7×300 rune untouched IoC | **0.034317566** | mean 0.034509635 |
+| Controls matching or exceeding LP2 on the third block | | **72/100** |
+| Add-one third-block upper-tail | | **73/101 = 0.7227723** |
+
+The uniform 29-symbol reference IoC is **1/29 ≈ 0.03448276**. The corrected-source model's third-block score is **below** both that benchmark and the independently refitted shuffled-source mean. Thus the second-block elevation **does not replicate** on the prespecified untouched third block. The corrected-source trained model used AES-256-CTR, reversed 32-byte keys, `byte%29`, sign +1, and eight unrelated XOR-derived source keys [11/block4, 12/column0, 12/block0, 3/column1, 4/column3, 12/column5, 10/column7, 13/block7]. The uncorrected-grid family produced second-block IoC **0.034930323**, providing no positive improvement.
+
+The second-block excess is an observation from an exploratory family after broad earlier source work, with no observed credible decoded text. Its weak joint second-and-third upper-tail is a postselected overlap statistic and does **not** rescue the third-block failure. Even if a genuine unusual second-block symbol imbalance were present, it would not identify these four strings as key shares. **No original LP2 plaintext, keystream, or authentic key is claimed.**
+
+## Reproduction and research consequence
+
+The complete self-contained CommonJS implementation is [`sims/onion256_grid_xor_source_inverse.cjs`](../sims/onion256_grid_xor_source_inverse.cjs), reading only the committed historical source blob, canonical LP2 numeric grid, manuscript transcription and Shakespeare source fixture. [`.github/workflows/grid-keyskip-manual.yml`](../.github/workflows/grid-keyskip-manual.yml) exposes the explicit `historical-onion-xor-inverse` dispatch. The exact CI output is in successful run 42815364894.
+
+**Consequence:** Do not treat a four-way 256-byte XOR combination as an authenticated LP2 key or expand nearly identical XOR/CTR variants on the selected second-block signal. A productive follow-on would need an independent clue specifying *how* historic Tor material relates to the manuscript, or a reversible cipher architecture explaining manuscript-wide lag-five, lag-six, antirepeat and page-join constraints, followed by actual plaintext re-encryption.
