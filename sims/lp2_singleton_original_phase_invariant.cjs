@@ -194,6 +194,15 @@ function literalFPage17AffineCore(words) {
   assert.equal(fehu.length,12);
   assert.deepEqual(fehu.filter(x => x>113 && x<188),[187]);
   assert.deepEqual(fehu.filter(x => x>188 && x<204),[]);
+  // The separately observed lag-six rewrite candidate T(C[i-6])=24-2C[i-6]
+  // cannot be the output at any of the three original witness locations.
+  const lagSixRepairs = positions.map((x,i) => {
+    const parent = source.indices[x-6];
+    const repair = ((24-2*parent)%29+29)%29;
+    assert.notEqual(repair,cipher[i]);
+    return {position:x,lagSixCipher:parent,repairValue:repair,
+      observedCipher:cipher[i],compatible:false};
+  });
   const mod = n => ((n%29)+29)%29;
   const cases=[];
   for (const skip of [false,true]) {
@@ -221,7 +230,8 @@ function literalFPage17AffineCore(words) {
   const inverted=planted.map((v,i)=>mod(v-slope*(positions[i]-(i?1:0))-intercept));
   assert.deepEqual(inverted,plain);
   return {witness,allOriginalFehu:fehu,betweenWitnesses:[187],
-    cases,plantedPositive:{plain,planted,inverted,slope,intercept,skipAt187:true}};
+    cases,lagSixRepairs,
+    plantedPositive:{plain,planted,inverted,slope,intercept,skipAt187:true}};
 }
 
 function originalGate(words) {

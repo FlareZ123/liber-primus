@@ -82,6 +82,12 @@ Write unknown singleton plaintext GP values \`p1,p2,p3 ∈ {3,10,24}\` (O/I/A). 
 
 Enumerating the **27** admissible A/I/O triples yields **zero solutions** in either case. The first left-hand side attains 20 residues but never 14; the second attains 12 residues but never 11. This is a three-original-word certificate, not a language-model score or a large parameter search. The source gate asserts every index, the entire original Fehu position list, both algebraic exclusions, and an independent three-word affine/Fehu planted exact inverse.
 
+### The original sparse lag-six repair cannot alter this witness
+
+A separate prominent LP2 candidate postprocessor replaces a would-be ciphertext collision with \`T(C_(i−6))=(24−2*C_(i−6)) mod29\` (see the repository's lag-six sparse-collision investigations). On these same three original p17 positions, the previous-six ciphertext inputs are **27,17,22**, so the repair outputs would be **28,19,9**; the actual witnessed outputs are **17,16,4**. None is compatible with being a replacement under that *specific* deterministic repair formula. The self-contained reproducer now asserts these three unequal pairs.
+
+Consequently the complete proposed two-layer model **affine page key + arbitrary historic-style literal-F skips + only this published T6 collision repair** is also excluded by the same original three-word witness, conditional on ordinary English A/I/O singleton segmentation. This does **not** exclude other unknown collision-repair rules; the empirical T6 relation is not authenticated as the actual Cicada algorithm.
+
 **Decision:** even an arbitrary choice of every possible historic-style literal-F skip, independent page slope and page IV cannot explain these three original black singleton words through a linear running-key GP29 cipher under literal English A/I/O segmentation. A nonlinear, history-dependent or differently clocked key, or nonliteral word segmentation, remains possible. A contradiction on p17 rules out a uniform manuscript-wide use of the stated family.
 
 ## Reproduction and scope
