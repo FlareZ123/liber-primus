@@ -4,12 +4,12 @@
 
 ## Independent historical key hypothesis
 
-A preserved [2013 Cicada hints archive](https://github.com/scream314/cicada3301/blob/master/hints_never_used.md) reports two 64-hexadecimal-digit cookie values from the old \`p7amjopgric7dfdi.onion\` server under the labels \`167\` and \`761\`. Each value is exactly **32 bytes**; the labels are decimal digit reversals. The original intended role of the cookies is unknown. Their 256-bit length motivates a narrow test as native AES-256/ChaCha20 keys, without treating a session cookie as authenticated LP2 key material.
+A preserved [2013 Cicada hints archive](https://github.com/scream314/cicada3301/blob/master/hints_never_used.md) reports two 64-hexadecimal-digit cookie values from the old `p7amjopgric7dfdi.onion` server under the labels `167` and `761`. Each value is exactly **32 bytes**; the labels are decimal digit reversals. The original intended role of the cookies is unknown. Their 256-bit length motivates a narrow test as native AES-256/ChaCha20 keys, without treating a session cookie as authenticated LP2 key material.
 
 Seven source-controlled keys are tested: each cookie as written, each byte-reversed, their bytewise XOR, and SHA-256 of their concatenation in each order. The full test crosses **seven sources × two stream ciphers (AES-256-CTR, ChaCha20) × three clocks × two byte reductions × two directions = 168 models**:
 
 - The clocks are continuous zero-IV across all unsolved pages, zero-IV reset at each page, and page-number-in-IV reset at each page.
-- Byte-to-rune mapping is raw byte modulo 29 or \`floor(byte * 29 / 256)\`.
+- Byte-to-rune mapping is raw byte modulo 29 or `floor(byte * 29 / 256)`.
 - Both additive inverse directions operate on the actual 29 Gematria Primus indices.
 
 The actual ciphertext input consists of **all 12,956 runes of the 55 rune-bearing unsolved LP2 pages**, from the canonical original-page data. The training set is even physical pages; odd physical pages are untouched holdout. Language screening measures the pooled 29-way index of coincidence of the inverse-decrypted symbols.
@@ -29,8 +29,28 @@ The fixed original-training winner is **cookie 167, ChaCha20, zero-IV page reset
 
 The positive control uses a disjoint Shakespeare-derived GP-English passage, the authentic page lengths, an actual chosen 2013 cookie, and **342 deliberately injected adjacent-repeat alterations** at an 81% collision rewrite probability. The exact true key and transformation ranked **first of all 168 models**, retained GP-English concentration on both manuscript halves, and produced a substantial separation from all incorrect models. The visible synthetic forward transform is directly invertible before the optional deliberate overwrite. This demonstrates the test would detect the specified key architecture despite several hundred mutations.
 
+## Collision-aware exact keyed inverse on original LP2
+
+The direct-position test would miss a source-correct key if cipher-output collisions consume discarded keystream bytes. We therefore reused the repository's existing [exact collision-conditioned Viterbi inverse](../sims/grid_stream_collision_viterbi.cjs), without fitting any new original ciphertext-dependent key bytes.
+
+The model generates a sequence of possible encrypted runes from a fixed AES/ChaCha20 source key. A keystream draw can be rejected only when it would output the immediately preceding published ciphertext rune. Viterbi allows zero or one such rejected draw per symbol (at most 34 over the examined prefix) and uses independently trained Shakespeare GP trigram probabilities to rank possible paths. Seven fixed source keys, two stream ciphers, zero-IV/page-index-IV, two byte-to-rune reductions, and both additive signs yield **112** complete settings.
+
+The six independently chosen red-heading pages **0, 3, 8, 23, 27 and 40** contribute their original first 130 rune symbols for key/mode selection. The following **80 genuine original symbols per page** form a frozen original-source holdout. Each page's key state starts independently, and the inferred rejected-draw count is carried into its holdout stream position. No unknown LP2 plaintext is used as a training label.
+
+[Successful CI run 42790708438](https://github.com/FlareZ123/liber-primus/actions/runs/42790708438) ran all 112 exact inversions and a source-correct planted English ciphertext with the identical page layout. The positive generator rejected an actual draw with 81% probability when its output would repeat the predecessor, then reapplied the same rule to the remaining draws. The exact native-cookie167 AES-256-CTR key, page-index IV, byte-mod29, positive sign ranked **1/112** on independent planted data.
+
+| Inverse test | Training GP-trigram nats/rune | Held-out nats/rune |
+| --- | ---: | ---: |
+| Source-correct collision-keyskip English plant | **−2.543416** | **−2.540183** |
+| Best model fitted on original LP2 | **−5.665458** | **−5.722980** |
+| Original best heldout score after inspecting all models, descriptive only | −5.758676 | −5.662090 |
+
+The highest training-ranked source model on actual LP2 emits gibberish under all six page-specific inversions. Its heldout language score is greatly worse than the correctly keyed planted control. No original plaintext, key, or inferred authentic rejection sites have been recovered. This extends the negative conclusion to **the declared exact collision-rejected stream model**, which is a stronger attack than direct fixed-position subtraction. The result does not exclude an unrelated stateful transducer or hidden-source key derivation.
+
+Reproducer: [`sims/onion_cookie_keyskip_inverse.cjs`](../sims/onion_cookie_keyskip_inverse.cjs), invoked in the same manual workflow as the direct test.
+
 ## Interpretation and reproducibility
 
-The two reported 2013 cookie values, the tested concatenation/XOR/reversal constructions, and these direct AES-256-CTR/ChaCha20 additive modulo-29 stream models fail to explain the original LP2 ciphertext. The result does **not** exclude the cookies as an intermediate seed for a different KDF, a word-local transformation, other ciphers or IV schedules, non-English source registers, or unrelated archived keys.
+The two reported 2013 cookie values, the tested concatenation/XOR/reversal constructions, and the stated direct and one-key-collision-rejected AES-256-CTR/ChaCha20 modulo-29 stream models fail to explain the original LP2 ciphertext. The finite results leave open intermediate KDFs, word-local transformations, alternative state machines, independently unknown IVs, non-English source registers, or unrelated archived key material.
 
-Reproducer: [\`sims/onion_cookie_key_probe.cjs\`](../sims/onion_cookie_key_probe.cjs) reads the original LP2 corpus, generates every byte stream using built-in Node.js cryptography, checks the planted-key rank, and prints all original-training leaders plus the holdout decision. The [manual-only runner](../.github/workflows/onion-cookie-key-manual.yml) invokes this SFT without adding per-commit CI. These source values should not be promoted to established LP2 key material without an independently demonstrated inverse on original ciphertext.
+Reproducer: [`sims/onion_cookie_key_probe.cjs`](../sims/onion_cookie_key_probe.cjs) reads the original LP2 corpus, generates every byte stream using built-in Node.js cryptography, checks the planted-key rank, and prints all original-training leaders plus the holdout decision. The [manual-only runner](../.github/workflows/onion-cookie-key-manual.yml) invokes both reproducible tests without adding per-commit CI. These source values should not be promoted to established LP2 key material without an independently demonstrated inverse on original ciphertext.
