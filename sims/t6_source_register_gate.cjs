@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 'use strict';
+// Bounded, source-locked hypotheses; no free key or alphabet search.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const C=JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
