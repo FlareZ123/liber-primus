@@ -186,6 +186,26 @@ function main() {
       }
     }
   }
+  // Two source-defined 8-of-8 additive secret-share reconstructions.
+  // Both are unconstrained by random shares, just like a degree-7 interpolant.
+  const simpleShares = [
+    { id: 'XOR-of-eight-columns', key: rows.map(row => row.reduce((a, b) => a ^ b, 0)) },
+    { id: 'SUM256-of-eight-columns', key: rows.map(row => row.reduce((a, b) => (a + b) & 255, 0)) },
+  ];
+  for (const share of simpleShares) {
+    for (const cipher of ['aes-256-ctr', 'chacha20']) {
+      const stream = pad(share.key, cipher, maxPage);
+      for (const sign of [-1, 1]) {
+        const plain = unmask(allIndices, stream, sign);
+        const plantedCipher = positivePages.map(p => p.map((v, i) => (v - sign * (stream[i] % MOD) + 2 * MOD) % MOD));
+        const restored = unmask(plantedCipher, stream, sign);
+        assert.deepEqual(restored, source.slice(0, 12956), 'Additive-share planted GP source inverse failed');
+        results.push({field:share.id,reversed:false,cipher,sign,
+          key:Buffer.from(share.key).toString('hex'),realIoc:ioc(plain),
+          plantedIoc:ioc(restored),head:plain.slice(0,35).map(v => [...ALPHABET][v]).join('')});
+      }
+    }
+  }
   const best = [...results].sort((a,b) => b.realIoc - a.realIoc);
   const sourceIoc = ioc(source.slice(0,12956));
   assert.ok(sourceIoc > 0.04);
