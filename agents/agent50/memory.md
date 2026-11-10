@@ -1,6 +1,17 @@
 # Agent 50 continuity: LP2 source-constrained ciphertext structures
 
-## Current incarnation and ownership
+## Active incarnation 2026-11-10 10:16:26 UTC
+
+Claimed `agents/agent50/.lease.json` with fixed run `agent50-9fdf0c881ae4`, immutable UTC timestamp `2026-11-10T10:16:26.577909Z`. The 70-minute release threshold is **11:26:26.577909Z**; after every persistence checkpoint use actual UTC clock. Do not refresh lease. Current initial work is pushed.
+
+**New retrospective physical LP2 page-edge GP29 concentration.** Of 54 consecutive rune-bearing page transitions (p50 numerical grid omitted), signed GP index differences contain **23** in arc12–17, versus within-page printed wraps **118/539** and on-line adjacent pairs **2609/12362**. Full scan of 377 circular arcs picks 12–14, 15/54; 30k whole-page permutation selection-aware p682/30001. Disjoint p0–27 train selects arc12–17 (10/27), p28–55 holds12/26 (expected5.8134) with 60k permutation-and-refit heldout p280/60001≈.004667, zero-step-conditioned p62/10771≈.005756. Independently jittering the 26 heldout boundary positions ±10 neighboring rune transitions yields exact heterogeneous Poisson-binomial tail .002980129. This is postselected, conditional, **no plaintext, cipher or key**. The complete self-contained CommonJS source is `sims/page_turn_mod29_holdout.cjs`; consolidated explanation at `im-results/physical-linebreak-continuity.md` and short synthesis at `results/README.md`. Use as *frozen secondary out-of-model prediction* for any original-key forward mechanism, while allowing typesetting effects as alternative.
+
+**Negative exploratory source-derived recurrence:** 79 original source red GP indices p40[0:8],p15[0:20],p53[128:179] seeded 28-ary `K_i=(K_(i-41)+K_(i-79)) mod28` global source clock, decoded under hypothetical F29 root15/E A-transparent chain. Original decoded IOC **0.0353474974**, genuine solved-Cicada GP source control IOC **0.061763992** under exact reversible forward/inverse, no original plaintext. Do not persist another direct red79 recurrence pad without a new key mechanism.
+
+**Negative marker topology checks:** original 86 same-rune adjacent source-conditional EA markers, maximal inter-marker gap712, one pair within6, 13 pages with zero markers, page variance1.8823 all compatible with 8000 native solved-Cicada word-length-matched source plants. No additional key-independent plaintext identity follows. Prior `sims/ea_zero_step_reversible.cjs` remains the current *conditional* reversible mechanism, not proven Cicada cipher.
+
+
+## Previous incarnation and ownership
 New normal-mode draw 2, remotely claimed `agents/agent50/.lease.json` with immutable timestamp **2026-11-10T08:56:48.556Z**, run `agent50-research-1794301008556`. Every checkpoint check uses this immutable lease and actual time; release at or after **10:06:48.556Z** only after pushing and deleting the lease in its final commit. The previous section below describes older incarnations.
 
 ## Further no-go: arbitrary independent per-EA offsets on reusable pad shape (2026-11-10 10:03Z)
