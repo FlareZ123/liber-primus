@@ -1,0 +1,16 @@
+name: Fibonacci square AES-128 grid gate (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  aes128-grid:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Source-derived 128-bit inverse and positive control
+        run: node sims/fibonacci_aes128_grid_key.cjs
