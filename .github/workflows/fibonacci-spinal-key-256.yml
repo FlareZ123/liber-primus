@@ -11,3 +11,4 @@ jobs:
         with:
           node-version: '22'
       - run: node sims/fibonacci_spiral_key_derivation.cjs
+      - run: node sims/fibonacci_square_grid_payload.cjs
