@@ -54,6 +54,14 @@ A second, independent source-motivated decoder uses the **actual solved LP2 p56 
 
 Both source inverses ran successfully under [manual CI 42839883665](https://github.com/FlareZ123/liber-primus/actions/runs/42839883665), and neither establishes an unknown LP2 plaintext or destination.
 
+## Source-red authenticated-decryption gate for the complete numeric grid
+
+A distinct binary cryptographic interpretation allows the LP2 **256-byte original printed grid** to contain **240 ciphertext bytes and one 16-byte authentication tag**. Unlike readable-text heuristics, genuine tag validation would identify a plaintext source independently of its language or compression. The same original p53 **51 red GP runes** give four zero-padded base-29 key orientations and 32 conventional five-bit-field-packed 256-bit keys, while the preceding **128 black rune parities** supply literal 12- or 16-byte nonce readings. This yields **36 explicit source-derived keys**, 14 nonce presentations including zero, and **24** source-byte variants (radix59/60 with/without the five audited printed-token replacements, row/column/per-physical-page-column orders and reversals).
+
+The [exact AES-256-GCM and ChaCha20-Poly1305 inverse](../sims/red51_grid_aead_original_gate.cjs) tries a first- or last-16-byte tag, with empty associated data and real Node/OpenSSL authentication. Of the **39,744 valid original-source candidate combinations**, **39,744 reject on their cryptographic authentication tag**, and **zero** source matches return plaintext. A separate source-true 240-byte encryption/decryption control exactly authenticates under **both** algorithms and rejects deliberately tampered tags; it checks the complete authenticated mode, not an English-language score. The finite-source [successful manual CI 42841095208](https://github.com/FlareZ123/liber-primus/actions/runs/42841095208) executed this complete comparison.
+
+This is a bounded, decisive negative for the exact 240+16 AEAD representation, tested source 256-bit red key and parity IV constructions, and empty associated data. It does not exclude missing/different tags, an AAD field specified elsewhere, another key derivation, PBKDF, unfamiliar encryption modes, raw compressed binary unrelated to authenticated encryption, or independent key sources. No plaintext or authentic LP2 key was recovered.
+
 ## Decision
 
 **No usable original plaintext or independently predictive key occurs in this bounded source-radix29/AES family.** The best grid result is typical under the matching complete-family null, and the best rune result remains near uniform. Repeating the same orientations and AES modes does not add evidence.
