@@ -40,22 +40,33 @@ This is the 14-degree-of-freedom symmetric component of the ordinary 28-degree-o
 
 These are *family-wise permutation p-values for fixed statistics*. The symmetric statistic was chosen **after noticing** the initial ordinary chi-square anomaly; the tests do not correct for the broader human/model selection of statistics. The two supporting p-values describe related, partially dependent consequences of the same unusual histogram. An independent, precommitted prediction or plaintext recovery is needed before an identified cryptographic mechanism can be claimed.
 
-## First decoder: joint plaintext with shared additive key
+## Conditional two-time-pad decoders: bigram lead, stronger trigram negative
 
-Given the observed rune difference sequence, each position has 29 possible plaintext pairs satisfying `P_28[i]-P_42[i]=D[i]`. Implemented a dynamic-programming Viterbi decoder over these paired states, scored using Gematria Primus rune transliteration, a smoothed Shakespeare-trained character-bigram model, and the two pages' actual rune-word delimiters. Training uses the first **240,000 characters** of `resources/control/shakespeare_first300k.txt`, with a **held-out 60,000-character** region to create an independently keyed positive control.
+Assume the same additive key was used at corresponding positions. Then the observed difference `D[i]` eliminates the key, constraining 29 possible plaintext-rune pairs at each position. Both models optimize two simultaneous GP-rune plaintexts by Viterbi dynamic programming, using the real page-specific rune-word boundaries. English language models are trained on the first **240,000 characters** of `resources/control/shakespeare_first300k.txt`; the held-out remaining 60,000 characters supply independent Shakespeare passages masked by the **same random additive key** as a positive control. For each model, test all cyclic shifts of page 42's runes while preserving the original word-boundary mask.
 
-Reproducibility: `sims/relative_key_english_probe.cjs`, [successful GitHub Actions run 42743752448](https://github.com/FlareZ123/liber-primus/actions/runs/42743752448).
+| Decoder | Genuine held-out shared-key control | Real LP2 pages 28 and 42 |
+|---|---|---|
+| Smoothed character bigrams | True shift ranks **1/269**, first plaintext recovery **36.06%** of GP runes | Original shift ranks **1/272**; optimized score -1349.496, second-best -1354.196; output gibberish |
+| Smoothed character trigrams | True shift ranks **1/269**, first plaintext recovery **68.77%** of GP runes | Original shift ranks **47/272**; optimized score -1268.526, best shifted score -1252.156; output gibberish |
 
-- Real pair at the **original zero offset**: best Viterbi score **-1349.496**; **rank 1 out of 272** when all cyclic shifts of page 42's runes are rescored against page 28, keeping physical word delimiters fixed; score median **-1373.366**, second-best score **-1354.196**.
-- Synthetic true shared-key control: two held-out 269-rune Shakespeare-derived passages masked by the *same* independent random additive key; zero offset **rank 1 of 269** cyclic shifts. The Viterbi reconstruction is correct at **36.06% of runic positions** for the first passage, demonstrating limited plaintext accuracy even when the key-sharing premise holds.
-- The real run's two maximal-likelihood output strings are **recognizably English-like but mostly gibberish**. They are *not* asserted plaintext. A high Viterbi score/rank is an exploratory secondary indicator conditioned on a pair already selected by ciphertext statistics, not a new all-pairs FWER result.
+The order-3 model more than doubles the recovered information in the known true-key control and **does not support the original alignment** on the real target. Therefore the initially encouraging bigram rank is not robust to a stronger linguistic model. This materially weakens the specific hypothesis of a *shared additive key over ordinary Shakespeare-like English plaintext*. It does not rule out another plaintext register or a more complicated shared transformation.
 
-The reference model's **single-rune marginal** differs from the observed paired histogram. The known solved-LP1-English-to-Gematria rune marginal predicts high difference probabilities especially near residues 0, ±14, and ±8, whereas the target pair emphasizes 0, ±3, ±5, ±6. The direct empirical English-difference log likelihood ratio against uniform for this pair is approximately **-0.24 natural log units**. Hence the relative-key pattern alone does not imply that the underlying pages are ordinary English.
+**Exact reproducibility:**
+- Bigram source `sims/relative_key_english_probe.cjs`; [successful run 42743752448](https://github.com/FlareZ123/liber-primus/actions/runs/42743752448).
+- Trigram source `sims/relative_key_trigram_probe.cjs`; [successful run 42744414946](https://github.com/FlareZ123/liber-primus/actions/runs/42744414946).
 
-## Interpretations and immediate research leverage
+Neither run's real-page optimized strings are readable and neither is a cryptographic recovery. The rank tests remain secondary exploratory diagnostics, not independent family-wise evidence across 1,485 pairs.
 
-This is the strongest current **localized cross-page statistical anomaly** in this particular pairwise residue-difference scan. Shared-key encryption is a concrete *hypothesis* that could make it useful: `D_i` directly eliminates an otherwise unknown key and turns a two-page decryption into a constrained dual-language problem. Test this hypothesis with higher-order language models, a dictionary and exact source word boundaries, and independent text-register controls. If genuine English plaintext is recovered for both pages, re-encrypt each under a reconstructed *single identical key stream* and cross-check held-out positions and other pages.
+### Additional mechanistic constraints
 
-Other mechanisms that could yield this pattern include a different shared transformation, language structure in the ciphertext difference, a non-English plaintext register, a non-random design feature, or an extreme of the search's null distribution. The observed effect alone **does not establish key reuse**. Original image-level transcription independence is not yet attained; both shared machine-readable transcriptions derive from the same community lineage.
+The solved-LP1-English-to-GP-rune marginal predicts elevated difference probabilities near residues 0, ±14 and ±8, whereas the actual pair's distribution emphasizes 0, ±3, ±5 and ±6. The empirical English-difference log likelihood ratio against uniform on the real pair is approximately **-0.24 natural log units**. The model-predicted symmetric chi-square at n=269 is approximately 31 (versus observed 65). The unexpected symmetry thus does **not** match the specific difference pattern expected from independently sampled ordinary English texts.
 
-Do **not** promote this to a solved passage or cipher mechanism in `results/` without actual reversible plaintext. The local scans and decoder belong in `im-results/` until such evidence exists.
+The page-number separation happens to be 14, but the 41 pairs separated by exactly 14 pages average symmetric chi-square only about 14.38, and only page 28/42 among them exceeds 26. No general period-14 key-reuse cluster has been demonstrated. The aligned word-delimiter overlap in the pair is **12**, essentially the independence expectation **12.29**.
+
+## Current interpretation and next genuinely discriminating tests
+
+The **same-offset, symmetric cross-page difference anomaly** survives its 1,485-pair page-rotation null and is a real exploratory target, subject to transcription and researcher-selection caveats. Its origin remains unknown. A simple common additive keystream masking ordinary English is **weakened** by the trigram model's held-out-positive-controlled failure and mismatch to the known English difference marginal. An alternative shared transformation, non-English register, special plaintext representation, a position-coupled generation rule, or a null-tail event remain possible.
+
+Next work should target **independent, falsifiable predictions** made from this specific pair, such as a structurally specified non-English plaintext register or transformation that predicts the unusual residue peaks and fits both halves of the pair. If actual readable passages appear, reconstruct the shared key from *both* pages and test their exact agreement at held-out positions. An unbounded effort to force language-shaped strings from the 269 differences has a severe overfitting risk.
+
+Original JPEG archive scans 45 and 59 are visually distinct, but glyph-by-glyph transcription against independent sources has not been performed. These materials remain provisional under `im-results/`. **Do not claim a solved passage or proven shared key.**
