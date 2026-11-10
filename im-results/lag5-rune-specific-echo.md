@@ -29,6 +29,14 @@ The question here is whether this concentration survives a null that retains **e
 
 The 11 \`ᛋ\` pairs occur in **11 distinct words** (no single word accounts for the signal). The full-repertoire permutation control ensures the effect cannot be explained simply by unusual \`ᛋ\` counts in those words. The conditioning on adjacent doublets also excludes a trivial consequence of the separate anti-repeat phenomenon.
 
+## Expanded 174-hypothesis short-lag correction
+
+As an additional check of selection across distances, an independent scan covered **all 29 rune identities at every lag 2–7**, a total of **174 specified cells**. Lag 1 was excluded because of the established immediate-doublet suppression; all lags through 7 have at least 731 within-word eligible positions. The same exact per-word rune-multiset and adjacent-repeat-preserving permutation was used, with a separate 3,000-sample training calibration and 3,000 independent test nulls, seed \`0x284ed557\`.
+
+The strongest of all 174 original standardized scores is **still the lag-five ᛋ identity**: 11 observed, calibration mean **2.02333**, SD **1.31686**, z **+6.81672**. No 3,000 test null manuscripts had any of their 174 standardized scores reach this maximum; the largest null maximum was **6.55191**, giving a whole-specified-family empirical p **0.0003332**. This extends the fixed-lag 29-rune correction and reduces concern that an immediately adjacent short lag supplies an equally strong artifact. It remains conditional on the preselected range 2–7 and on the historical discovery of the signal.
+
+Reproduction: [\`sims/short_lag_rune_identity_scan.cjs\`](../sims/short_lag_rune_identity_scan.cjs) (deterministic CJS, default 3,000 training + 3,000 test samples).
+
 ## Interpretation and limitations
 
 The independently published **lag-six relation** \`c_i=24-2c_(i-6) mod 29\` and the **lag-five identity relation concentrated on rune ᛋ** are separately significant under the same stringent per-word randomization principle (see [lag-six counterpart](lag6-conditioned-echo.md)). A plausible cipher-generation model must account for both, along with the global adjacent-repeat suppression and the observed word-length statistics.
