@@ -66,3 +66,5 @@ jobs:
           node-version: '22'
       - name: Invert original LP2 with source-keyed direction walkers and blind planted control
         run: node sims/source27_cipher_direction_inverse.cjs
+      - name: Test matching original source model with independently trained Latin Vulgate GP
+        run: node sims/source27_cipher_direction_latin.cjs
