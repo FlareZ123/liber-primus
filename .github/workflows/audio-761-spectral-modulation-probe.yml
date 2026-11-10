@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'sims/audio_761_spectral_modulation_probe.cjs'
+      - 'sims/audio_761_note_key_probe.cjs'
       - '.github/workflows/audio-761-spectral-modulation-probe.yml'
   workflow_dispatch:
 
@@ -13,7 +14,7 @@ permissions:
 jobs:
   spectral-probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -27,9 +28,11 @@ jobs:
         run: ffmpeg -hide_banner -loglevel error -i /tmp/761.MP3 -ac 2 -ar 44100 -c:a pcm_f32le -f f32le /tmp/761-stereo.f32le
       - name: Analyze 15.4–16.1 kHz hum, stereo phase, and musical chroma
         run: node sims/audio_761_spectral_modulation_probe.cjs /tmp/761-stereo.f32le artifacts/audio-761-spectral-analysis.json
-      - name: Upload spectral analysis
+      - name: Test note, interval and rhythm sequences as GP29 key streams
+        run: node sims/audio_761_note_key_probe.cjs artifacts/audio-761-spectral-analysis.json artifacts/audio-761-note-key-probe.json
+      - name: Upload spectral and note-key analysis
         uses: actions/upload-artifact@v4
         with:
           name: audio-761-spectral-analysis
-          path: artifacts/audio-761-spectral-analysis.json
+          path: artifacts/audio-761-*.json
           if-no-files-found: error
