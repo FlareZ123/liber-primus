@@ -82,6 +82,78 @@ function scanLiteral(){
   result.maxMatches=result.histogram.findLastIndex(x=>x>0);
   return result;
 }
+
+/**
+ * GP ᚠ in the known solved pages is sometimes a literal interrupter that
+ * does not consume the modular key. In the proposed FIBONACCI heading
+ * the first plaintext rune is ᚠ (0). Test both consume and no-consume
+ * conventions with eight scored, genuinely encrypted, subsequent runes.
+ * @param {number[]} k Eight proposed keystream symbols.
+ * @param {number} sign
+ * @param {string} carrier
+ */
+function scoreLiteralF(k,sign,carrier){
+  assert.equal(k.length,8);
+  return k.reduce((s,x,j)=>{
+    const i=j+1;
+    return s+Number(x===mod((carrier==='atbash'?28-cipher[i]:cipher[i])-sign*plain[i]));
+  },0);
+}
+/** @param {Array<{name:string,key:Buffer}>} keys */
+function scanLiteralFDerived(keys){
+  const result={tested:0,histogram:Array(9).fill(0),top:[]};
+  for(const {name,key} of keys)
+  for(const alg of ['aes-256-ctr','chacha20','rc4'])
+  for(const iv of alg==='rc4'?['zero']:['zero','last-be','last-le','first-le'])
+  for(const drop of alg==='rc4'?[0,256,3072]:[0,9,16,32,256]){
+    const bytes=stream(alg,key,iv,15,96,drop);
+    for(const mapping of mappings){
+      const digits=symbols(bytes,mapping,64);
+      for(let offset=0;offset<=16;offset++)
+      for(const consumeF of [false,true]){
+        const k=digits.slice(offset+Number(consumeF),offset+Number(consumeF)+8);
+        for(const sign of [-1,1])for(const carrier of ['direct','atbash']){
+          const matches=scoreLiteralF(k,sign,carrier);
+          result.tested++;result.histogram[matches]++;
+          if(matches>=6){
+            result.top.push({matches,configuration:
+              [name,alg,iv,drop,mapping,offset,consumeF,sign,carrier].join(':')});
+            result.top.sort((a,b)=>b.matches-a.matches);
+            if(result.top.length>20)result.top.length=20;
+          }
+        }
+      }
+    }
+  }
+  result.maxMatches=result.histogram.findLastIndex(x=>x>0);
+  return result;
+}
+function scanLiteralFGrid(){
+  const result={tested:0,histogram:Array(9).fill(0),top:[]};
+  for(const [name,buf]of Object.entries(layouts(tableBytes()))){
+    const bytes=Array.from(buf);
+    for(const direction of [-1,1])for(let phase=0;phase<256;phase++){
+      const seq=Array.from({length:320},(_,i)=>bytes[((phase+direction*i)%256+256)%256]);
+      for(const mapping of mappings){
+        const digits=symbols(seq,mapping,9);
+        for(const consumeF of [false,true]){
+          const k=digits.slice(Number(consumeF),Number(consumeF)+8);
+          for(const sign of [-1,1])for(const carrier of ['direct','atbash']){
+            const matches=scoreLiteralF(k,sign,carrier);
+            result.tested++;result.histogram[matches]++;
+            if(matches>=6)result.top.push({matches,configuration:
+              [name,direction,phase,mapping,consumeF,sign,carrier].join(':')});
+          }
+        }
+      }
+    }
+  }
+  result.top.sort((a,b)=>b.matches-a.matches);
+  result.top=result.top.slice(0,20);
+  result.maxMatches=result.histogram.findLastIndex(x=>x>0);
+  return result;
+}
+
 function run(){
   const rawKeys=[...allKeys(),...keyList(tableBytes())];
   const keys=Array.from(new Map(rawKeys.map(k=>[k.key.toString('hex'),k])).values());
@@ -99,10 +171,11 @@ function run(){
     uniqueKeys:keys.length,
     positive:{exactRecovery:true,oneCorruptionDetected:true},
     derived:scanDerived(keys),grid:scanLiteral(),
+    FpassThrough:{derived:scanLiteralFDerived(keys),grid:scanLiteralFGrid()},
     conclusion:'Finite conditional crib test; no plaintext claim without a sustained exact re-encryption.'
   };
   console.log(JSON.stringify(result,null,2));
   return result;
 }
 if(require.main===module)run();
-module.exports={symbols,score,scanDerived,scanLiteral,run};
+module.exports={symbols,score,scoreLiteralF,scanDerived,scanLiteral,scanLiteralFDerived,scanLiteralFGrid,run};
