@@ -30,7 +30,7 @@ SPELLINGS = [
     ("oe", 22), ("ae", 25), ("ia", 27), ("io", 27), ("ea", 28),
 ]
 SINGLE = dict(zip(
-    "fuorcgwhnijpxstbemdlay",
+    "fuorcgwhnijpxstbemlday",
     [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 26],
 ))
 SINGLE.update(k=5, q=5, z=15, v=1)
