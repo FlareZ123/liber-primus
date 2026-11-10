@@ -235,4 +235,4 @@ function main(restarts=90,steps=1000){
   return report;
 }
 if(require.main===module)main(Number(process.argv[2]||90),Number(process.argv[3]||1000));
-module.exports={main,gpWord,score,optimize,observedProfiles,simulate};
+module.exports={main,gpWord,score,optimize,observedProfiles,simulate,source,sourceCounts,flattened};
