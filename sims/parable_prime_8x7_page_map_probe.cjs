@@ -39,14 +39,14 @@ function primeOrdinal(n) {
   return count;
 }
 function pageFromOrdinal(n) {
+  const coset = n % 4;
   const r = n % 32;
   const c = n % 28;
-  assert.equal(n % 4, 1, "ordinal outside shared residue class");
-  assert.equal(r % 4, 1);
-  assert.equal(c % 4, 1);
-  const row = (r - 1) / 4;
-  const col = (c - 1) / 4;
-  return { row, col, page: row * 7 + col };
+  assert.equal(r % 4, coset);
+  assert.equal(c % 4, coset);
+  const row = (r - coset) / 4;
+  const col = (c - coset) / 4;
+  return { coset, row, col, page: row * 7 + col };
 }
 
 // The solved p57 PARABLE has a Latin header followed by three clauses.
@@ -66,12 +66,32 @@ const ordinalCoordinates = ordinals.map(pageFromOrdinal);
 const ordinalPages = ordinalCoordinates.map((x) => x.page);
 assert.deepEqual(ordinalPages, [23, 22, 15]);
 
+// Existing source-derived 2016 signed-message prime layers. Their section
+// sums/ordinals are documented by sims/2016_message_prime_layers.py.
+const signed2016PrimeSums = [3001, 2819, 2579];
+const signed2016Ordinals = [431, 410, 376];
+const signed2016OrdinalCoordinates = signed2016Ordinals.map(pageFromOrdinal);
+const signed2016OrdinalPages = signed2016OrdinalCoordinates.map((x) => x.page);
+assert.deepEqual(signed2016OrdinalPages, [23, 46, 45]);
+const signed2016FactorPages = signed2016PrimeSums.map((x) => x % 56);
+assert.deepEqual(signed2016FactorPages, [33, 19, 3]);
+const edges2013 = factorPages.map((startPage, i) => ({
+  startPage, endPage: ordinalPages[i], primeSum: clausePrimeSums[i]
+}));
+const edges2016 = signed2016FactorPages.map((startPage, i) => ({
+  startPage, endPage: signed2016OrdinalPages[i], primeSum: signed2016PrimeSums[i]
+}));
+const tenPageSet = [...new Set([
+  ...factorPages, ...ordinalPages, ...signed2016FactorPages, ...signed2016OrdinalPages
+])].sort((a, b) => a - b);
+assert.deepEqual(tenPageSet, [3, 15, 19, 22, 23, 27, 33, 45, 46, 53]);
+
 // Direct page residues of the three clause sums, paired with their
 // ordinal-derived destinations, produce the five-page anchor set.
 const factorPages = clausePrimeSums.map((x) => x % 56);
-assert.deepEqual(factorPages, [27, 23, 5]);
+assert.deepEqual(factorPages, [27, 23, 53]);
 const fivePages = [...new Set([...factorPages, ...ordinalPages])].sort((a, b) => a - b);
-assert.deepEqual(fivePages, [5, 15, 22, 23, 27]);
+assert.deepEqual(fivePages, [15, 22, 23, 27, 53]);
 
 const pageByNumber = new Map(corpus.pages.map((p) => [p.page, p]));
 const inkByPage = new Map(ink.pages.map((p) => [p.page, p]));
