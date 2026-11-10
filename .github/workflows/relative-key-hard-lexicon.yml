@@ -18,6 +18,11 @@ on:
         type: number
         default: 65
         required: true
+      exact_tree:
+        description: Run exact minimum-exception word-forest inversion instead
+        type: boolean
+        default: false
+        required: true
 jobs:
   exact-trie:
     runs-on: ubuntu-latest
@@ -28,14 +33,17 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install pinned lexicons
-        run: python -m pip install textblob==0.19.0 cmudict==1.1.3
+        run: python -m pip install textblob==0.19.0 cmudict==1.1.3 numpy==2.3.4
       - name: Execute exact word-trie probe
         env:
           SCAN_ALL: ${{ inputs.scan_all }}
+          EXACT_TREE: ${{ inputs.exact_tree }}
           MAX_DEPTH: ${{ inputs.max_depth }}
           THRESHOLD: ${{ inputs.threshold }}
         run: |
-          if [ "$SCAN_ALL" = "true" ]; then
+          if [ "$EXACT_TREE" = "true" ]; then
+            python -u sims/relative_key_word_tree.py --pair 28 42 --scales 1 4 7 22
+          elif [ "$SCAN_ALL" = "true" ]; then
             python -u sims/relative_key_hard_lexicon.py --all --max-depth "$MAX_DEPTH" --threshold "$THRESHOLD"
           else
             python -u sims/relative_key_hard_lexicon.py --pair 28 42 --self-test
