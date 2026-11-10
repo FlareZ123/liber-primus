@@ -120,7 +120,7 @@ function decrypt(cipher,V,s) {
     if(isHead[t])plain[t]=mod(cipher[t]-k);
     else {
       const d=mod(cipher[t]-cipher[t-1]);
-      plain[t]=d?mod(logarithm[d]-(k%28)+56)%28:EA;
+      plain[t]=d?(logarithm[d]-(k%28)+56)%28:EA;
     }
   }
   return plain;
