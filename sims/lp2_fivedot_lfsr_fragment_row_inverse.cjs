@@ -21,6 +21,9 @@ assert.equal(C.length,12956);
 assert.equal(grid.byte_rows.length,32);
 assert(grid.byte_rows.every(x=>x.length===8));
 const mod=(a,n)=>(a%n+n)%n;
+const GP_LOG=new Array(29).fill(-1), GP_POW=new Array(28);
+for(let i=0,v=1;i<28;i++,v=mod(15*v,29)){GP_LOG[v]=i;GP_POW[i]=v;}
+assert(GP_POW.every(x=>x>0)&&new Set(GP_POW).size===28);
 
 /** @typedef {{page:number,offset:number,kind:number}} Event */
 /** @returns {{lengths:number[],bounds:number[],positions:number[]}} */
@@ -137,6 +140,10 @@ function transform(input,pad,mode,encode) {
       let value=input[i],next;
       if(mode.family==="add")next=mod(value+(encode?-1:1)*mode.sign*key,29);
       else if(prev<0)next=value;
+      else if(mode.family==="exp") {
+        if(encode)next=value===28?prev:mod(prev+GP_POW[mod(value+mode.sign*key,28)],29);
+        else next=value===prev?28:mod(GP_LOG[mod(value-prev,29)]-mode.sign*key,28);
+      }
       else if(encode)next=value===28?prev:mod(prev+1+mod(value+mode.sign*key,28),29);
       else next=value===prev?28:mod(mod(value-prev-1,29)-mode.sign*key,28);
       result[i]=next;
@@ -160,7 +167,7 @@ for(const [rowName,rowOrder] of rowOrders)
 for(const ivMode of nonceModes)
 for(const algorithm of ["aes-256-ctr","chacha20"]){
   const pad=stream(key,ivMode,algorithm,rowOrder);
-  for(const family of ["add","exclude"])for(const sign of [-1,1])for(const projection of ["mod","scale"]){
+  for(const family of ["add","exclude","exp"])for(const sign of [-1,1])for(const projection of ["mod","scale"]){
     const mode={family,sign,projection},decoded=transform(C,pad,mode,false);
     assert.deepEqual(transform(decoded,pad,mode,true),C);
     variants.push({key:keyName,rowOrder:rowName,iv:ivMode,algorithm,...mode,trainIoC:normIoC(decoded,0,trainStop),heldoutIoC:normIoC(decoded,trainStop,C.length),prefix:decoded.slice(0,45).map(x=>corpus.translit[x]).join("")});
@@ -172,12 +179,14 @@ assert.deepEqual(transform(planted,testPad,{family:"add",sign:-1,projection:"sca
 const secondPad=stream(keyOrders[3][1],"sha256-row","chacha20",rowOrders[1][1]);
 const planted2=transform(plant,secondPad,{family:"exclude",sign:1,projection:"mod"},true);
 assert.deepEqual(transform(planted2,secondPad,{family:"exclude",sign:1,projection:"mod"},false),plant);
+const planted3=transform(plant,secondPad,{family:"exp",sign:1,projection:"scale"},true);
+assert.deepEqual(transform(planted3,secondPad,{family:"exp",sign:1,projection:"scale"},false),plant);
 variants.sort((a,b)=>b.trainIoC-a.trainIoC);
 const output={
   classification:"Source-ornament 5-bit LFSR row order hypothesis; no authenticated original key or decryption",
   lfsrTapMask:18, lfsrSeed:31, lfsrNonzeroCycle:lfsr, rowOrders:rowOrders.map(([name,rows])=>({name,rows})),
   originalRuneCount:C.length, sourceFragments:32, unsolvedFragments:28, gridRows:32,
-  genuineControlsRecovered:2*C.length, sourcePlantIoC:normIoC(plant,0,C.length),
+  genuineControlsRecovered:3*C.length, sourcePlantIoC:normIoC(plant,0,C.length),
   modelCount:variants.length, trainStop, heldoutRunes:C.length-trainStop,
   sourceBoundaryPositions:boundaries,
   trainTop10:variants.slice(0,10),
