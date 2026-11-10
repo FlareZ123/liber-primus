@@ -14,3 +14,5 @@ jobs:
         run: node sims/no_repeat_rank_inverse.cjs
       - name: Test word-reset rank inverse with per-word hidden alphabets
         run: node sims/no_repeat_rank_wordwise_gate.cjs
+      - name: Test within-word periodic phase permutations (periods 1–8)
+        run: node sims/no_repeat_rank_phase_period_gate.cjs

@@ -65,17 +65,50 @@ The plus-one lower-tail estimate is **1/5,001 = 0.00019996** for each of the six
 
 A synthetic word-reset cipher independently chooses a 29-symbol leader permutation and a 28-symbol rank permutation for every word, preserves the original **23 word-start** and **63 within-word** marker positions, and retains the original page-boundary word continuations. Under both sorted and cyclic conventions, the inverse recovers **12,870/12,870** non-marker plaintext symbols and the forward encoder reproduces **12,956/12,956** ciphertext symbols exactly. This verifies the implementation and the collision invariant; it is not evidence that LP2 used this mechanism.
 
+### Periodic within-word phase permutations (periods 1–8)
+
+Next, allow the 28-symbol rank permutation to evolve within each word. For period m, every word has an independent arbitrary 28-way permutation for each phase `(j − 1) mod m`; permutations may also differ between words. Only collisions among ranks in the same word and same phase are invariant. This is substantially more permissive than one fixed permutation per word.
+
+The exact same-phase pair denominators and original LP2 IoCs are:
+
+| Period | Same-phase ordered pairs | Sorted IoC | Cyclic IoC |
+| ---: | ---: | ---: | ---: |
+| 1 | 39,930 | 0.036013 | 0.037215 |
+| 2 | 15,720 | 0.034097 | 0.033333 |
+| 3 | 8,026 | 0.038375 | 0.040120 |
+| 4 | 4,560 | 0.038158 | 0.034211 |
+| 5 | 2,616 | 0.050459 | 0.042049 |
+| 6 | 1,454 | 0.026135 | 0.031637 |
+| 7 | 766 | 0.036554 | 0.052219 |
+| 8 | 396 | 0.030303 | 0.040404 |
+
+For each source, exact means and variances are computed from the complete pool of GP-encoded source words at each required length. **2,000** seeded, independently sampled, exact-length/erasure-matched manuscripts calibrate the distribution of the **maximum standardized score across all eight periods**. Thus the reported tail probability already accounts for choosing whichever period looks best.
+
+| Reference | Sorted best period / max z / scan p | Cyclic best period / max z / scan p |
+| --- | --- | --- |
+| Shakespeare | 7 / **−2.193** / **0.0005** | 7 / **−0.989** / **0.0005** |
+| Gibran | 8 / **−1.284** / **0.0005** | 8 / **−0.576** / **0.0010** |
+| Emerson | 8 / **−1.601** / **0.0005** | 8 / **−1.030** / **0.0005** |
+
+Even the most favorable of the six best-period scans remains below its matched-English null distribution. The conservative Bonferroni bound across the six source × rank-convention comparisons is **≤0.006**. This is conditional on the period set 1–8 and does not correct for the wider historical search over cipher families. Period 8 has only 396 same-phase pairs, so its individual IoC is less informative; the scan statistic accounts for period selection but not arbitrary periods beyond 8.
+
+### Periodic positive controls
+
+Sixteen synthetic plants (periods 1–8 × sorted/cyclic) independently choose a 29-symbol leader permutation per word and a separate 28-symbol permutation per word and phase. They preserve all **23 word-start** and **63 within-word** marker positions. Every plant recovers **12,870/12,870** non-marker plaintext symbols and forward-encodes **12,956/12,956** ciphertext symbols exactly.
+
 ### Scope
 
-This rejects the two specified natural predecessor-exclusion rank orders followed by an arbitrary fixed 28-symbol permutation per word, under English-like GP plaintext and the canonical original word boundaries. It does **not** reject a rank order that itself changes by word, a permutation that evolves within a word, an additional running key, a different language or intermediate register, altered segmentation, or another encoding of the repeated outputs. No LP2 plaintext or authentic key is recovered.
+The tested negative families are the two natural sorted/cyclic predecessor-exclusion rank orders with (a) one arbitrary fixed 28-symbol bijection per word and (b) an independent arbitrary 28-symbol bijection per word and phase for periods 1–8. These are rejected as direct English-GP inverses under the canonical original word boundaries. A different ordering of the 29 ciphertext symbols, periods above 8, nonperiodic position-specific state, an additional running key, another plaintext language/register, altered segmentation, or a different encoding of repeated outputs remains open. No LP2 plaintext or authentic key is recovered.
 ## Conclusion
 
-The global/page-reset experiment excludes its declared fixed rank conventions under English-like GP plaintext even when the 28-symbol register is renamed globally or independently by page. The word-reset extension is stricter about key scope: it allows an unrelated arbitrary 28-symbol bijection for every canonical word. Nevertheless, the original within-word rank collision IoC remains **0.036013 / 0.037215** for sorted/cyclic order, far below exact word-length- and erasure-matched English controls. Therefore neither natural rank order followed by a fixed per-word permutation supplies a plausible direct English-GP inverse.
+The global/page-reset experiment rejects its declared fixed rank conventions under English-like GP plaintext. The word-reset extension additionally rejects an unrelated arbitrary 28-symbol bijection for every canonical word. The periodic extension allows that permutation to change independently at every phase within each word for periods 1–8; after selecting the best period, all six source/convention scans remain below their matched-English controls (max z **−0.576 to −2.193**, scan p **0.0005–0.0010**). Thus neither natural predecessor-exclusion order, with static or short-period word-local rank permutations, supplies a plausible direct English-GP inverse.
 
-This is a bounded negative, not a general exclusion of no-repeat transducers. A different 29-symbol ordering, a permutation that evolves within words, a second running key, altered segmentation, another plaintext language/register, or a non-GP intermediate remains open. The repeated outputs remain unresolved markers, and no LP2 plaintext or authentic key has been recovered.
+This remains a bounded negative, not a general exclusion of no-repeat transducers. A different 29-symbol ordering, periods above 8, nonperiodic position-specific state, a second running key, altered segmentation, another plaintext language/register, or a non-GP intermediate remains open. The repeated outputs remain unresolved markers, and no LP2 plaintext or authentic key has been recovered.
 
 **Reproduce (page-level):** [`sims/no_repeat_rank_inverse.cjs`](../sims/no_repeat_rank_inverse.cjs), exact 55 original rune pages from [`lp2-corpus.json`](../resources/liber-primus/lp2-corpus.json), three tracked authentic literary control sources, deterministic seed `0x49333031`. [Successful on-demand GitHub Actions run **42768297188**](https://github.com/FlareZ123/liber-primus/actions/runs/42768297188) verifies the page-level inverse with 500 anti-doublet nulls and all 120 planted encrypted books.
 
-**Reproduce (word-level):** [`sims/no_repeat_rank_wordwise_gate.cjs`](../sims/no_repeat_rank_wordwise_gate.cjs) uses the shared canonical word parser, three tracked GP-English references, 5,000 seeded exact-length/erasure-matched controls per source, and independent per-word hidden-key positive controls. The existing [manual-only workflow](../.github/workflows/no-repeat-rank-inverse.yml) runs both scripts when dispatched. The word-level run was executed directly against the exact tracked source data; no new Actions run is claimed.
+**Reproduce (word-level):** [`sims/no_repeat_rank_wordwise_gate.cjs`](../sims/no_repeat_rank_wordwise_gate.cjs) uses the shared canonical word parser, three tracked GP-English references, 5,000 seeded exact-length/erasure-matched controls per source, and independent per-word hidden-key positive controls. The existing [manual-only workflow](../.github/workflows/no-repeat-rank-inverse.yml) runs all three scripts when dispatched. The word-level run was executed directly against the exact tracked source data; no new Actions run is claimed.
+
+**Reproduce (periodic phase):** [`sims/no_repeat_rank_phase_period_gate.cjs`](../sims/no_repeat_rank_phase_period_gate.cjs) scans periods 1–8, computes exact source-pool moments, calibrates the maximum-period statistic with 2,000 seeded manuscripts per reference, and verifies all 16 per-word/per-phase hidden-key plants. The manual workflow is wired to run it; no new Actions run is claimed.
 
 **Relation to prior work:** The existing [previous-cipher S-box invariant](previous-cipher-sbox-invariant.md) already disfavors a broader English-like class of preceding-cipher-history-indexed **bijective** 29-symbol substitutions. This present test supplies an exact reversible inverse and a separate constrained result for the naturally proposed **nonbijective 29→28 no-repeat transducer**.
