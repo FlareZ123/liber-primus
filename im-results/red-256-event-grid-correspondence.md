@@ -78,7 +78,37 @@ The [single runnable test and full positive-control inverse](../sims/thirteen_do
 
 The same [source-asserting reversible test](../sims/thirteen_dot_grid_8phase_allkey_capacity.cjs) enumerates **1 + 29 + 29² = 871** exact coefficient settings per state, implicitly optimizing arbitrary alphabet choices. Independent native-GP 12,956-rune plants under seeded, hidden 29-symbol substitution tables and coefficient keys for every state are exactly decoded and reencrypted **12,956/12,956** at both one and two taps. Their measured source-native all-key frequency ceilings are **1,858** and **1,921**, respectively, both exceeding their 1,593 true E runes. The original ciphertext also reciphers under those wrong arbitrary keys, as required by invertibility. This demonstrates a functioning family without authenticating an original key.
 
-**Research consequence:** within the dot-delimited 32×8 source-state architecture, independently arbitrary secret GP29 permutations with zero, one or two previous-ciphertext affine taps cannot generate any of the equal-length native GP-English Shakespeare, Gibran and Emerson windows. The two-tap family clears the one-symbol E ceiling, but violates the stronger multi-symbol majorization inequality at k=3. A future source-constrained inverse must derive a different evolving state or plaintext register and produce original readable output.
+**Research consequence:** within the dot-delimited 32×8 source-state architecture, independently arbitrary secret GP29 permutations with zero, one or two previous-ciphertext affine taps cannot generate any of the equal-length native GP-English Shakespeare, Gibran and Emerson windows. The two-tap family clears the one-symbol E ceiling but fails its all-secret multi-symbol majorization inequality at k=3; the independent three-tap extension below also fails on every tested native-GP window. A future source-constrained inverse must derive different state evolution, segmentation or plaintext register and actually recover original readable text.
+
+
+#### Exact three-tap extension: a stronger all-secret barrier
+
+**Source-original theorem (Agent 21, 10 November 2026).** The two-tap exclusion extends to an even more permissive **three-tap** ciphertext-feedback architecture. For every source state `s=(13-dot fragment, local position mod 8)`, all three affine coefficients `a_s,b_s,z_s` and the complete 29-symbol substitution permutation `sigma_s` may be completely secret and **independent of all other states**. The model uses the original 28 unsolved punctuation fragments and 224 state labels (198 occupied):
+
+    D_i = (C_i + a_s*C_(i-1) + b_s*C_(i-2) + z_s*C_(i-3)) mod 29
+    D_i = sigma_s(P_i)
+
+The three previous ciphertext values reset to zero at every printed 13-dot delimiter. For each state, exhaustive enumeration of all **29³ = 24,389 coefficient triples** provides the exact maximum frequency mass of the `k` largest transformed symbols. An unrestricted bijection can map any fixed `k` desired plaintext runes onto precisely those `k` buckets. Adding the independently optimized state maxima yields the **sharp, key-independent original-source upper bound `U₃(k)`**, even if every source grid byte and every unobserved substitution is chosen adversarially. A different maximizing coefficient triple may be used for each `k`; this is an upper-bound certificate, not a reconstructed common key.
+
+| k desired GP symbols | Three-tap original maximum `U₃(k)` | Minimum Shakespeare window | Minimum Gibran window | Minimum Emerson window |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 1,760 | 1,404 | 1,414 | 1,486 |
+| 3 | 3,560 | 3,390 | 3,503 | 3,512 |
+| 12 | **8,803** | **9,651** | **9,897** | **9,986** |
+| 16 | **10,391** | **11,426** | **11,328** | **11,444** |
+
+The complete original upper vector for `k=1..29` is:
+
+    1760, 2710, 3560, 4339, 5045, 5682, 6274, 6833, 7365,
+    7872, 8340, 8803, 9243, 9653, 10029, 10391, 10734, 11059,
+    11355, 11640, 11893, 12129, 12339, 12525, 12692, 12819,
+    12917, 12954, 12956.
+
+**All 204,689 Shakespeare, 49,741 Gibran and 310,128 Emerson native-GP original-length windows violate the three-tap necessary condition.** The closest window in each corpus requires at least **1,051 / 1,094 / 1,205** individual GP-rune alterations, respectively, even after maximizing arbitrary coefficients and secret alphabets in all 224 states. These are exact bounded comparisons against the three stated finite source registers and GP tokenizer, not an assertion about every possible plaintext language.
+
+The [independent, read-only three-tap CommonJS SFT](../sims/thirteen_dot_grid_three_tap_topk_gate.cjs) checks the earlier two-tap boundary, tests the **entire original 12,956-rune ciphertext**, performs all reference-window scans and supplies a seeded **three-tap, 224-secret-permutation, 12,956-rune native-GP plant**. The authentic-layout plant is recovered and exactly re-encrypted at all **12,956/12,956 symbols**; its true eight-symbol mass is **7,797**, below the synthetic all-secret cap **8,408**. An arbitrary wrong-key inversion of the original also re-encrypts, as mathematically expected. All assertions passed [manual GitHub Actions run 42864615021](https://github.com/FlareZ123/liber-primus/actions/runs/42864615021), Node 22.
+
+**Decision:** this excludes the whole source-delimited, direct-native-GP, independently keyed eight-phase **affine feedback architecture through three previous ciphertext taps** against every original-length window of the three specified English references. It does not exclude source-independent hidden evolving states, nonlinear transforms, altered punctuation clocks, different GP writing distributions, or binary/intermediate plaintext. It discovers no actual unknown LP2 plaintext or genuine cipher key.
 
 #### Source-table byte pairs as coupled feedback taps
 
