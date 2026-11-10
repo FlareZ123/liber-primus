@@ -13,6 +13,7 @@ on:
           - anend-hash-direct-gp28
           - fragment-grid-des
           - biaxial-section-fragment
+          - final16-border-rank28
 jobs:
   invert:
     runs-on: ubuntu-latest
@@ -37,3 +38,7 @@ jobs:
       - name: Source-paired eight AES/ChaCha section keys and thirty-two thirteen-dot-fragment nonces
         if: ${{ inputs.suite == 'biaxial-section-fragment' }}
         run: node sims/grid_biaxial_section_fragment_inverse.cjs
+
+      - name: Final sixteen decorated LP2 pages grid-AES128 source GP28 repeat-state inverse
+        if: ${{ inputs.suite == 'final16-border-rank28' }}
+        run: node sims/final16_border_grid_rank28_inverse.cjs
