@@ -84,7 +84,7 @@ def collect() -> tuple[list[dict], list[dict], list[dict]]:
             lines.append({
                 "page": page, "line": line_index, "features": line_features(raw),
                 "runes": runes, "left": left, "right": right, "width": right-left,
-                "first": runes[0], "all_page": page_runes,
+                "first": runes[0], "all_page": page_runes, "y0":y0, "y1":y1,
             })
             page_lines += 1
         pages.append({"page":page, "bands":len(bands), "normalTextRows":page_lines})
@@ -99,6 +99,46 @@ def ridge(x: np.ndarray, y: np.ndarray, prior: np.ndarray, shrinkage: float) -> 
 
 def rmse(true: np.ndarray, estimated: np.ndarray) -> float:
     return float(np.sqrt(np.mean((true - estimated)**2)))
+
+
+
+def optical_first_rune_widths(rows: list[dict]) -> dict:
+    """Recover first-glyph ink extent from a robust image-template consensus.
+
+    Glyph appearances are matched only to their *known source transcription*
+    and aligned at their leftmost ink pixel and top ink row. Their second rune
+    varies independently across samples. Require 85% per-pixel agreement to
+    suppress the next glyph, ornaments and raster compression noise.
+    """
+    samples: dict[int, list[np.ndarray]] = {i:[] for i in range(29)}
+    cache: dict[int, np.ndarray] = {}
+    for row in rows:
+        if row["line"] == 0:
+            continue  # avoid enlarged red dropcaps or isolated headings
+        if row["page"] not in cache:
+            cache[row["page"]] = np.asarray(Image.open(
+                IMAGE_ROOT / f'{row["page"]+17:02}.jpg').convert("L"))
+        ink = cache[row["page"]]
+        y0, y1 = row["y0"], row["y1"]
+        if not (110 <= y1-y0 <= 117):
+            continue
+        x0 = row["left"]
+        part = ink[y0:y0+114,x0:x0+125] < BLACK_CUTOFF
+        if part.shape != (114,125):
+            continue
+        samples[row["first"]].append(part)
+    extents = {}
+    for rune, masks in samples.items():
+        if len(masks)<4:
+            continue
+        agreement = np.mean(masks,axis=0)
+        stable = agreement >= .85
+        positions = np.flatnonzero(np.count_nonzero(stable,axis=0)>=2)
+        if len(positions):
+            extents[rune] = int(positions[-1])+1
+    return {"sampleCounts":{RUNES[i]:len(samples[i]) for i in range(29)},
+        "stableInkExtents":{RUNES[i]:extents[i] for i in extents},
+        "numeric":extents}
 
 
 def run() -> dict:
@@ -135,6 +175,10 @@ def run() -> dict:
     diff = seen-expected
     glyph_width = params[:29]
     glyph_width_centered = glyph_width-np.mean(glyph_width)
+    optical = optical_first_rune_widths(rows)
+    visible = sorted(optical["numeric"])
+    optical_corr = float(np.corrcoef([optical["numeric"][i] for i in visible],
+        [diff[i]/np.sqrt(expected[i]) for i in visible])[0,1]) if len(visible)>=8 else None
     width_excess = float(np.dot(diff,glyph_width_centered))
     corr = float(np.corrcoef(glyph_width_centered,diff/np.sqrt(expected))[0,1])
     top = sorted(({
@@ -154,6 +198,9 @@ def run() -> dict:
         "inferredRuneWidthsPx":[round(float(x),2) for x in glyph_width],
         "widthInitialExcessPxCount":width_excess,
         "widthVsInitialZCorrelation":corr,
+        "independentRasterGlyphWidths":optical["stableInkExtents"],
+        "independentRasterWidthVsInitialZCorrelation":optical_corr,
+        "rasterSampleCounts":optical["sampleCounts"],
         "initialRuneTopEnriched":top[:8],
         "initialRuneTopDepleted":top[-8:],
         "interpretation":"Width association is diagnostic only: same sample provided line breaks and glyph estimates.",
