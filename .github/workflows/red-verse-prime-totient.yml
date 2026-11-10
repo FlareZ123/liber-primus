@@ -1,0 +1,14 @@
+name: LP2 highlighted stanza historical prime-totient anchor attack
+on:
+  workflow_dispatch:
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Solve original highlighted stanza with authentic totient-prime sequence
+        run: node sims/red_verse_prime_totient_anchor.cjs
