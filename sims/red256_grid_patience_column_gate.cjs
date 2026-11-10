@@ -98,6 +98,28 @@ function measure(grid,start,end,view,order) {
     scoreHistogram:Array.from(histogram).sort((a,b)=>a[0]-b[0])};
 }
 
+/**
+ * Conditional source event-clock null: hold the historic column order and
+ * original grid unchanged, then cyclically rotate the original chronological
+ * event values through all 256 byte slots or only the 32 whole-row shifts.
+ */
+function cyclicEventClock(grid,order) {
+  const target=grid.flatMap(row=>order.map(j=>row[j]&31));
+  const counts=Array.from({length:256},(_,shift)=>
+    target.reduce((total,byte,i)=>
+      total+Number(byte===values[(i+shift)%256]),0));
+  const observed=counts[0];
+  const rowCounts=Array.from({length:32},(_,i)=>counts[i*8]);
+  return {observed,byteShifts:256,
+    byteShiftsAtLeastObserved:counts.filter(x=>x>=observed).length,
+    max:Math.max(...counts),
+    wholeRowShifts:32,
+    rowShiftsAtLeastObserved:rowCounts.filter(x=>x>=observed).length,
+    rowShiftScores:rowCounts,
+    topShifts:counts.map((score,shift)=>({shift,score}))
+      .sort((a,b)=>b.score-a.score||a.shift-b.shift).slice(0,5)};
+}
+
 /** Reuse high bits but put the exact authentic event index in each low5 slot. */
 function syntheticAlignedGrid(order) {
   const plant=rows.map(r=>r.slice());
@@ -140,6 +162,9 @@ function run() {
     });
   }
   assert.equal(locations.length,15);
+  const clock=cyclicEventClock(rows,order);
+  assert.deepEqual([clock.byteShiftsAtLeastObserved,
+    clock.rowShiftsAtLeastObserved,clock.max],[3,1,15]);
   const summary=Object.fromEntries(Object.entries(tests).map(([k,v])=>
     [k,{sourceRows:v.sourceRows,view:v.view,score:v.historicalScore,
       mean:v.meanPermutationScore,atLeastAsHigh:v.atLeastAsHigh,
@@ -151,6 +176,7 @@ function run() {
     hypothesis:"eventIndex = originalGridByte&31 after PATIENCE rowwise column reordering",
     observed:summary,
     matchingPositions:locations,
+    independentEventClockNull:cyclicEventClock(rows,order),
     plantedPositive:{
       score:controls.syntheticTrueSource.historicalScore,
       atLeastAsHigh:controls.syntheticTrueSource.atLeastAsHigh,
