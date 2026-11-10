@@ -13,6 +13,7 @@ on:
           - title-kdf-latin
           - title-kdf-base59-english
           - title-kdf-base59-latin
+          - title-kdf-base59-third
           - field79-english
           - field79-latin
 jobs:
@@ -62,6 +63,12 @@ jobs:
           LP2_GRID_RADIX: '59'
           LP2_GRID_FIVE_CORRECTIONS: '1'
         run: node sims/title_grid_kdf_viterbi.cjs --latin
+      - name: Source-red heading 59-digit KDF frozen third 1120-rune English holdout
+        if: ${{ inputs.suite == 'title-kdf-base59-third' }}
+        env:
+          LP2_GRID_RADIX: '59'
+          LP2_GRID_FIVE_CORRECTIONS: '1'
+        run: node sims/title_grid_base59_third_holdout.cjs
       - name: Field79 red-prime triangle as AES-ChaCha key, GP-English
         if: ${{ inputs.suite == 'field79-english' }}
         run: node sims/red_triangle_field79_aes_inverse.cjs
