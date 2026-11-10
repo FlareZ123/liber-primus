@@ -51,8 +51,57 @@ To distinguish predetermined decipherment from words obtained by searching geome
 
 The control is a *conditional diagnostic* and not an unconditional p-value of the entire manuscript cipher. Random cell permutation does not preserve original ciphertext adjacency, but the test is aimed specifically at how freely a fixed next-step geometry can fit words given its 3-rune source degrees of freedom.
 
+## Independent complete-word segmentation on the same frozen successor set
+
+**Agent 43, 10 November 2026.** A second original-input implementation
+[`external_27square_nextblock_fullgate.cjs`](../sims/external_27square_nextblock_fullgate.cjs)
+replicates the exact **172 source choices**, **132 mode-compatible line
+placements**, and **21,818** source/line assignments surviving Report 10.
+It expands the lexical acceptance step to Report 16's own stated criterion
+of **one or more complete English words in each independently decoded
+block**, using the separately sourced
+[`TextBlob spelling lexicon`](../resources/control/english_wordfreq_textblob.txt)
+at a frozen frequency threshold of 20. The GP encoder uses longest
+two-letter rune tokens with K/Q→C, V→U and Z→S normalization. Both
+one-rune words A and I can occur within a longer block, as Report 16
+explicitly allows; individual cipher blocks still have at least two
+runes.
+
+Of **21,818** original compatible assignments, **116** are fully
+segmentable under this lexicon, yielding **95 distinct GP-rune output
+sequences**. These comprise **100 assignments at length 3, 14 at length
+5, and 2 at length 7**, with no longer complete-word readings. Frequent
+candidates include *I THE*, *A TO*, *HE IT I*, *OF I*, and *ON I BY*.
+One synthetic `NOW` plaintext plant proves that the independent
+source-node/line decoder can recover and re-encrypt its actual planted
+key without changing the source node.
+
+**250 deterministic matched permutation controls** (xorshift32 seed
+`0x20261110`) hold the seven original cells of block 38's source
+and ciphertext fixed and uniformly reshuffle the remaining 722 rune
+positions, preserving their complete rune multiset and the forecast.
+All original key/segment, geometric and word-segmentation rules are
+recomputed for each control. The original **116 lexical assignments**
+compare with a null mean of **89.344**, range **38–148**, with
+**25/250** controls at least as large (add-one conditional upper tail
+**26/251 ≈ 0.10359**). The original **95 distinct decoded GP
+sequences** compare with null mean **75.416**, range **35–125**, with
+**32/250** controls at least as large (add-one tail
+**33/251 ≈ 0.13147**). The total geometric count **21,818**
+compares with a control mean **18,866.88** and tail
+**44/251 ≈ 0.17530**.
+
+[Completed original and 250-controls CI](https://github.com/FlareZ123/liber-primus/actions/runs/42805518043).
+The earlier unanchored shuffle run 42804874542 is superseded; varying
+the seven cells from which the outgoing rules were calculated is an
+inadequate conditional control. These tests are comparisons within a
+postselected third-party model and an independently chosen permissive
+English register, not evidence of authentic plaintext. The multiple-word
+acceptance here makes explicit why the original 60 single-word matches
+understate the permitted readings.
+
 ## Outcome and next actual solution gate
 
-The existing external report formulas **fail to independently predict any particular block 39**. A future proposed route needs a source-supplied rule fixing the exact next source node and the exact next ciphertext cell sequence **before** learning their English output. It then must produce a substantial held-out plaintext extension and exactly re-encrypt it. Selecting just one aesthetically pleasing decoded word among the 60 already available does not demonstrate a cipher key.
+The existing external report formulas **fail to independently predict any particular block 39**, under either the original Shakespeare single-word check or the independent complete-word lexicon. A future proposed route needs a source-supplied rule fixing the exact next source node and the exact next ciphertext cell sequence **before** learning their English output. It then must produce a substantial held-out plaintext extension and exactly re-encrypt it. Selecting just one aesthetically pleasing decoded word among the 60 already available does not demonstrate a cipher key.
 
 **Reproduction:** run node sims/route39_frozen_constraints.cjs under Node.js 22. Inputs: resources/liber-primus/lp2-corpus.json, resources/control/shakespeare_first300k.txt, and shared rune-word encoder sims/word_partition_invariant.cjs. Manual-only workflow .github/workflows/agent5-route39.yml. Successful Actions run: https://github.com/FlareZ123/liber-primus/actions/runs/42764587718. Third-party source: https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption.
