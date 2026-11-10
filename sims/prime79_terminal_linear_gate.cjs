@@ -275,11 +275,17 @@ assert.equal(start.length,95);
 const coeff=start.map(s=>terminalCoefficients(original,s));
 const originalByScope={
   wholeBook:constantTailGate(coeff,start.map(()=>0)),
-  section:constantTailGate(coeff,start.map(s=>sectionOf(pageOf[s]))),
-  page:constantTailGate(coeff,start.map(s=>pageOf[s])),
+  sectionAtPacketStart:constantTailGate(coeff,
+    start.map(s=>sectionOf(pageOf[s]))),
+  sectionAtPacketEnd:constantTailGate(coeff,
+    start.map(s=>sectionOf(pageOf[s+78]))),
+  pageAtPacketStart:constantTailGate(coeff,
+    start.map(s=>pageOf[s])),
+  pageAtPacketEnd:constantTailGate(coeff,
+    start.map(s=>pageOf[s+78])),
 };
-assert.deepEqual([originalByScope.wholeBook.rank,
-  originalByScope.section.rank,originalByScope.page.rank],[29,37,79]);
+assert.deepEqual(Object.values(originalByScope).map(x=>x.rank),
+  [29,37,37,79,80]);
 assert(Object.values(originalByScope).every(r=>
   r.excludesAnySecretPermutation));
 const periodic=[];
@@ -300,5 +306,5 @@ process.stdout.write(JSON.stringify({
   periodicSuffixPeriodsExcluded:[1,79],
   periodicRuns:periodic,
   plantedExactBlindRecovery:positive,
-  conclusion:'No fixed plaintext final rune per book, section, page, or any period 1..79 can coexist with ANY secret cyclic 29-glyph order for the phase35 79/78 packet codec. This does not reject arbitrary unpadded source language or solve LP2.',
+  conclusion:'No fixed plaintext final rune per book, packet-start/end section, packet-start/end page, or any period 1..79 can coexist with ANY secret cyclic 29-glyph order for the phase35 79/78 packet codec. This does not reject arbitrary unpadded source language or solve LP2.',
 },null,2)+'\n');
