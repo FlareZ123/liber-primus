@@ -1,6 +1,14 @@
 name: Noisy shared-key inversion (manual)
 on:
   workflow_dispatch:
+    inputs:
+      probe:
+        description: Select source-reuse inversion experiment
+        type: choice
+        default: noisy-beam
+        options:
+          - noisy-beam
+          - dual-section
 jobs:
   invert:
     runs-on: ubuntu-latest
@@ -10,4 +18,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node sims/relative_key_noisy_dictionary_beam.cjs
+      - name: Previous noisy shared-key dictionary beam
+        if: ${{ inputs.probe != 'dual-section' }}
+        run: node sims/relative_key_noisy_dictionary_beam.cjs
+      - name: Original dual-section difference inverse
+        if: ${{ inputs.probe == 'dual-section' }}
+        run: node sims/dual_section_difference_inversion.cjs
