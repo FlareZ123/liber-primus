@@ -102,9 +102,12 @@ function dev(n,k,mu){
 /** @param {Array<Uint16Array>} counts @param {number} rune @param {number} model @param {number} category */
 function score(counts,rune,model,category){
   let t=0;
-  for(let bin=0;bin<BINS;bin++)
+  for(let bin=0;bin<BINS;bin++){
+    const value=counts[bin];
     t+=dev(opportunities[category][bin],
-      counts[bin][rune],expectation[category][bin][model]);
+      typeof value==='number'?value:value[rune],
+      expectation[category][bin][model]);
+  }
   return t;
 }
 function scorePair(counts,rune,model){
