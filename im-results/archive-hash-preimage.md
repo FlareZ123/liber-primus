@@ -1,6 +1,6 @@
 # Historical onion-page hash preimage: independently executed bounded regression
 
-**Current assessment (2026-11-10):** exactly 246 independently executed hash comparisons yielded **zero matches**. This is a **narrow archival regression overlapping substantial August 2026 external prior art**, not a novel solution, exhausted preimage domain, or recovered LP2 text/key/destination.
+**Current assessment (2026-11-10):** three independently executed **bounded source-native test groups** report zero matches: **246** comparisons of 2014 stage captures and URL representations, **232** comparisons of the 58 original archived LP2 JPEG page-byte streams, and **340** comparisons of frozen 32×8 original numeric-grid byte serializations. Counts are finite operations, **not** independent preimage discoveries; historical-corpus overlap with external audits is unquantified. An early-May-2014 historical `56.bin` was demonstrated to be a derived conversion of the same printed target hex, not a captured missing page or independent hash witness. No original unknown LP2 text, key, algorithm, missing target-page bytes, or final destination recovered.
 
 ## Why this test exists
 
