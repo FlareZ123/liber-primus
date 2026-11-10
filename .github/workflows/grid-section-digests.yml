@@ -31,3 +31,5 @@ jobs:
 
       - name: Frozen red-run AES-256 key combined with grid-head IV original-source inverse
         run: node sims/red32_grid_iv_joint_inverse.cjs
+      - name: Invert all unsolved LP2 with historical PATIENCE ink-event GP pads
+        run: node sims/red256_patience_original_gp_pad.cjs
