@@ -82,6 +82,61 @@ const A=[
   [3288,3294,3296,2472],
   [4516,1206,708,1820]
 ].map(row=>row.map(x=>mod(x)));
+/** @param {number[][]} matrix */
+const transpose=matrix=>matrix[0].map((_,j)=>matrix.map(r=>r[j]));
+/** @param {number[][]} left @param {number[][]} right */
+const multiply=(left,right)=>left.map(row=>
+  right[0].map((_,j)=>mod(row.reduce((s,x,k)=>s+x*right[k][j],0))));
+const identity=Array.from({length:4},(_,i)=>
+  Array.from({length:4},(_,j)=>Number(i===j)));
+const powers=[identity,A];
+for(let i=2;i<=4;i++)powers.push(multiply(powers.at(-1),A));
+// Cayley-Hamilton: x^4 +14x^3 +22x^2 +5x +17 = 0 over F29.
+const characteristic=[17,5,22,14,1];
+for(let i=0;i<4;i++)for(let j=0;j<4;j++)
+  assert.equal(mod(powers.reduce((sum,m,k)=>
+    sum+characteristic[k]*m[i][j],0)),0);
+/** @param {number[][]} rows */
+function determinant(rows) {
+  const a=rows.map(r=>r.slice());
+  let det=1;
+  for(let i=0;i<4;i++){
+    const pivot=a.findIndex((r,j)=>j>=i&&r[i]!==0);
+    if(pivot<0)return 0;
+    if(pivot!==i){
+      [a[i],a[pivot]]=[a[pivot],a[i]];
+      det=mod(-det);
+    }
+    det=mod(det*a[i][i]);
+    let inv=1;
+    while(inv*a[i][i]%29!==1)inv++;
+    for(let k=i;k<4;k++)a[i][k]=mod(a[i][k]*inv);
+    for(let j=i+1;j<4;j++){
+      const v=a[j][i];
+      for(let k=i;k<4;k++)a[j][k]=mod(a[j][k]-v*a[i][k]);
+    }
+  }
+  return det;
+}
+// With an arbitrary secret 4D state, every source matrix orientation and
+// every one-coordinate/sum output tap produces exactly the SAME family of
+// scalar F29 streams: each four-symbol prefix selects one unique state.
+const tapDeterminants={};
+for(const [label,matrix] of [["printed",A],["transposed",transpose(A)]]) {
+  tapDeterminants[label]=[];
+  for(let tap=0;tap<5;tap++){
+    let v=Array.from({length:4},(_,j)=>
+      tap===4?1:Number(tap===j));
+    const rows=[];
+    for(let step=0;step<4;step++){
+      rows.push(v);
+      v=v.map((_,j)=>mod(v.reduce((s,x,k)=>s+x*matrix[k][j],0)));
+    }
+    const det=determinant(rows);
+    assert.notEqual(det,0,"source square tap must be observable");
+    tapDeterminants[label].push(det);
+  }
+}
 const pageAt=new Int16Array(N),pageIndex=new Int16Array(N);
 let offset=0;
 for(let j=0;j<pages.length;j++) {
@@ -288,6 +343,9 @@ const report={
   primarySource:"LP2 original physical p15 visible 4x4 integer square",
   sourceDictionary:"796 solved-Cicada GP words; 21 EA tokens in 13 distinct source words; five source words have four non-EA constraining symbols",
   model:"global continuous 4D F29 state using printed matrix; coordinate0 mod28, primitive root 15 nonzero steps, GP EA transparent zero step",
+  fieldAlgebra:{characteristicPolynomialMod29:[1,14,22,5,17],
+    observabilityDeterminantsMod29:tapDeterminants,
+    consequence:"All 10 row/transpose, four coordinate/one sum-tap choices generate the same scalar stream family with unrestricted 4-coordinate F29 initial state; a single fully observable representative is exhaustive for those choices."},
   original:{
     runes:N,physicalRunePages:pages.length,EAmarkers:originalMarker.length,
     sourceSelectedWords:fittingWords.map(w=>w.name),
