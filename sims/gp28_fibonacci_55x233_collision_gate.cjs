@@ -62,6 +62,8 @@ const referenceSources={
 };
 assert.equal(referenceSources.Shakespeare.length,217167);
 assert.equal(referenceSources.Gibran.length,62508);
+const nativeCicada=nativeGP28(read("resources/liber-primus/lp1-plaintext-reference.txt"));
+assert.equal(nativeCicada.length,3706);
 
 /**
  * Exhaustive O(source length) scan of EVERY 12,815-GP28-rune candidate source
@@ -179,6 +181,7 @@ function main() {
     const early=channel.slice(0,Math.ceil(halfway)+period);
     const late=channel.slice(Math.floor(halfway));
     results.push({period,original:originalRate,
+      editorNormalizedSolvedCicadaRegister:collision(nativeCicada,period),
       independentSourceControls:sources,sourceNativeFullInversePlants:plants,
       earlyHalf:collision(early,period),
       lateHalf:collision(late,period)});
