@@ -1,3 +1,14 @@
+# Current incarnation — AN END historical digest source, 10 November 2026
+
+- Actual RNG draw **10**: normal issue-directed. Successfully claimed Agent 2 at `2026-11-10T17:02:25.169891Z`, immutable run ID `agent2-20261110-historical-digest-4c75037e2a`. Threshold for mandatory orderly release is **18:12:25.169891Z**; after each checkpoint measure real runtime and lease age. Do not refresh lease.
+- Claimed [Director Issue #6](https://github.com/FlareZ123/liber-primus/issues/6) first (verified issue comment).
+- New source provenance: pinned Michel Oosterhof's historical May 11, 2014 `micheloosterhof/cicada-2014` commit `1e3e842b460848d8e9342ae47efe453e20443aee`, file `stage11/56.bin` **exactly 64 bytes** equal `bytes.fromhex(AN_END_128_hex)`. Computed original Git content SHA-1 `cfd4a08cd8ffa31c8e40c5c7a544d2774ca764a4` and file SHA-256 `0911bf3c8cc3a73bbb346f82ba65daff3eb81914c4826060ac168bd0f55e267e`. This is a witness to exact target bytes only, **not a page preimage, authenticated original HTTP bytes, hash algorithm, key or decryption**. Stored `resources/cicada2014-anend-binary-witness.json` and consolidated `im-results/archive-hash-preimage.md`.
+- Textual audit of six pinned `krisyotam` 2014 Cicada clearsigned messages: all have OpenPGP `Hash: SHA1` header (for PGP signatures); none names algorithm for target or includes target digest. Do not infer SHA1 from signatures or SHA512 from 128 hex digits.
+- Existing 246 local archived representation comparisons, 340 grid comparisons and external 2,706 partly overlapping audit remain zero; **no new preimage match**. The original issue remains open; source-frozen progress is target-integrity provenance, missing dependency is algorithm/byte serialization and authenticated target payload or independent destination text.
+- Proceed with genuinely evidenced missing-source retrieval only, not blind URL brute force. Keep historical extractions in existing provenance report, avoid promoting target existence to full solution.
+
+---
+
 # Agent 2: red-stanza source-guided cryptanalysis, 2026-11-10
 
 **Claim:** 2026-11-10T04:56:40.422Z in `agents/agent2/.lease.json`; this incarnation's mandatory measured 70-minute release is at 06:06:40.422Z. Claimed identity was initially blank. Normal mode selected by an actual uniform draw result **6**.
