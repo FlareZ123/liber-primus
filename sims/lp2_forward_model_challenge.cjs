@@ -111,8 +111,10 @@ function forward(source,model,rng){
   let last=-1,key=Math.floor(rng()*29);
   return source.map(word=>{
     if(model==="word-rewrite")last=-1;
-    return word.map(p=>{
-      if(model==="plaintext")return p;
+    const out=[];
+    for(let i=0;i<word.length;i++){
+      const p=word[i];
+      if(model==="plaintext"){out.push(p);continue;}
       let c;
       if(model==="global-counter6"){
         c=mod(p+key);
@@ -120,12 +122,16 @@ function forward(source,model,rng){
       }else{
         c=mod(p+Math.floor(rng()*29));
       }
-      if((model==="global-rewrite"||model==="word-rewrite")&&
-        last===c&&rng()<.81)
-        c=mod(c+1+Math.floor(rng()*28));
+      if((model==="global-rewrite"||model==="word-rewrite"||
+          model==="global-T-rewrite")&&last===c&&rng()<.81){
+        c=model==="global-T-rewrite"&&i>=6
+          ?mod(24-2*out[i-6])
+          :mod(c+1+Math.floor(rng()*28));
+      }
       last=c;
-      return c;
-    });
+      out.push(c);
+    }
+    return out;
   });
 }
 /**
@@ -164,7 +170,7 @@ function run(repetitions=250){
   const sourceBins=Array.from({length:15},()=>[]);
   for(const word of loadWords().shakespeare)if(word.length<sourceBins.length)
     sourceBins[word.length].push(word);
-  const types=["plaintext","iid","global-rewrite","word-rewrite","global-counter6"];
+  const types=["plaintext","iid","global-rewrite","word-rewrite","global-T-rewrite","global-counter6"];
   const metrics=["internal","cross","nonadj","physicalAdj","chi2",
     "pagePositionRate","global256Rate","lag6","lag5S"];
   const rng=random(0x3901a7d0),panels={};
@@ -192,7 +198,8 @@ function run(repetitions=250){
     const simulatedMax=Array.from({length:repetitions},(_,i)=>Math.max(...keys.map(k=>
       Math.abs((s[k][i]-stats[k].mean)/Math.max(stats[k].sd,1e-8)))));
     out.mechanisms[type]={parameters:type.includes("rewrite")?
-      {rewriteOnAdjacentRepeatProbability:0.81,scope:type.startsWith("word")?"within word only":"entire ciphertext stream"}:
+      {rewriteOnAdjacentRepeatProbability:0.81,scope:type.startsWith("word")?"within word only":"entire ciphertext stream",
+       replacement:type==="global-T-rewrite"?"T(C[i-6]) at word index>=6, uniform nonduplicate otherwise":"uniform nonduplicate"}:
       type==="global-counter6"?{additiveKeyIncrement:6,globalState:true}:
       {key:type==="plaintext"?"none":"iid uniform mod29"},
       stats,primaryJointMaximumAbsZ:maxError,
