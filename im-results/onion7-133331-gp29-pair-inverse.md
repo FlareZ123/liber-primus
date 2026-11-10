@@ -66,20 +66,21 @@ The small page-order hypothesis from the same 58-page residues fares poorly: the
 
 ## Original-input GP29 quarter-turn feedback oscillator with fully exhausted hidden seeds
 
-A source-root two-rune *static* transform is excluded above. A changing, source-constrained mechanism is substantially different: use the two square roots of −1 as time-evolution multipliers, with the **previously emitted ciphertext** driving the state,
+A source-root two-rune *static* transform is excluded above. A changing, source-constrained mechanism is substantially different: use the two square roots of minus one as time-evolution multipliers, with **the previously emitted ciphertext** driving the state:
 
-[
-u_{t+1}=17u_t+C_t,qquad v_{t+1}=12v_t+C_t,qquad K_t=u_t+v_tpmod{29}.
-]
+```text
+u[t+1] = (17*u[t] + C[t]) mod 29
+v[t+1] = (12*v[t] + C[t]) mod 29
+K[t]   = (u[t] + v[t]) mod 29
+```
 
-Since (17+12=0) and (17^2=12^2=-1pmod{29}), every possible such state obeys the **observable feedback recurrence**
+Since `17+12 = 0 mod29` and `17^2 = 12^2 = -1 mod29`, every possible such state obeys the **observable feedback recurrence**:
 
-[
-K_{t+2}=2C_{t+1}-K_tpmod{29}.
-]
+```text
+K[t+2] = (2*C[t+1] - K[t]) mod 29
+```
 
-The two unrestricted initial GP29 registers ((K_0,K_1)) cover *all* possible initial oscillator states: the two corresponding observation equations are invertible because (12-17=-5
-e0mod29). Model encryption is (C_t=P_t+sK_tmod29), with (sin{+1,-1}) selected. Decrypt and re-encrypt follow exactly by recurrence, **without guessing missing ciphertext or constructing a heuristic plaintext**. There are (2	imes29^2=1,682) distinct source-fixed seed/sign choices per reset stream.
+The two unrestricted initial GP29 registers `(K[0],K[1])` cover *all* possible initial oscillator states: the two corresponding observation equations are invertible because `12−17 = −5` is nonzero modulo29. Model encryption is `C[t] = (P[t] + sign*K[t]) mod29`, with `sign` chosen independently as +1 or −1. Decrypt and re-encrypt follow exactly by recurrence, **without guessing missing ciphertext or constructing a heuristic plaintext**. There are **2 × 29² = 1,682** distinct source-fixed seed/sign choices per reset stream.
 
 [Source-locked blind inverse and actual-English control](../sims/onion7_133331_feedback_inverse.cjs) exhaustively fits every seed/sign on the **first half of each reset unit**, then freezes that choice for the completely untouched second half. The only GP-language model is the 174,207 GP runes obtained from the first 240,000 bytes of the independent Shakespeare control text, with GP-word transliteration and 0.5 unigram pseudocounts. Scores below are mean natural-log ratios of the candidate's GP symbol likelihood relative to a uniform GP29 source; positive numbers denote natural-English-like concentration under this frozen prior.
 
