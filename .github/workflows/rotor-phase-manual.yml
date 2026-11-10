@@ -15,3 +15,5 @@ jobs:
         run: node sims/orbit_phase_vote_recovery.cjs
       - name: Check rotor fixed-point English-position invariant
         run: node sims/lag6_rotor_consistency.cjs
+      - name: Check literal rune passthrough on all rune associations
+        run: node sims/rune_passthrough_word_position.cjs
