@@ -427,7 +427,7 @@ function prefixTwoDigitValid(permutation, triple, direction) {
  * @param {number} maxNodes
  * @returns {{status:string,nodes:number,triples:number,witness:number[]|null}}
  */
-function prefixTwoDigitGate(input, direction, maxNodes = 100000) {
+function prefixTwoDigitGate(input, direction, maxNodes = 100000, candidateVisitor = null) {
   const triples = [...new Set(input.map(triple => triple.join(',')))]
     .map(s => s.split(',').map(Number));
   const degree = Array(ALPHABET).fill(0);
@@ -497,6 +497,7 @@ function prefixTwoDigitGate(input, direction, maxNodes = 100000) {
       assert.equal(new Set(candidate).size, ALPHABET);
       for (const triple of triples)
         assert(prefixTwoDigitValid(candidate, triple, direction));
+      if (candidateVisitor && !candidateVisitor(candidate)) return null;
       return candidate;
     }
     for (const pos of bits(domains[selected])) {
@@ -621,4 +622,84 @@ if (require.main === module && process.env.PREFIX_TWO_DIGIT === '1') {
     direction:process.env.PREFIX_TWO_DIRECTION || 'both'
   };
   process.stdout.write('PREFIX_TWO_SUMMARY '+JSON.stringify(prefixTwoDigitOriginal(options))+'\n');
+}
+
+
+/**
+ * Actual original-cipher key inversion attempt on surviving phase35:
+ * enumerate distinct exact-prefix-satisfying unknown rune orders, select
+ * solely on first-half recovered GP language, and freeze for the other half.
+ * This is a bounded candidate scan, not an exhaustive key exclusion.
+ * @param {number} candidates
+ */
+function prefixTwoLanguageScan(candidates) {
+  const ciphertext = original();
+  const starts = cleanStarts(ciphertext, 35);
+  assert.equal(starts.length, 95);
+  const {toGematria} = require('./previous_cipher_sbox_invariant.cjs');
+  const sourceText = fs.readFileSync(path.join(__dirname, '..',
+    'resources','control','shakespeare_first300k.txt'),'utf8');
+  const source = toGematria(sourceText);
+  assert.equal(source.length, 218800);
+  const counts = Array(29).fill(0);
+  for (const i of source) counts[i]++;
+  const probabilities = counts.map(n => Math.log((n+0.5)/(source.length+14.5)));
+  let tested=0, numeric=0, champion=null;
+  function averageIoC(hist, length) {
+    return hist.reduce((s,n)=>s+n*(n-1),0)/(length*(length-1));
+  }
+  const visitor = witness => {
+    tested++;
+    const histTrain = Array(29).fill(0), histHold = Array(29).fill(0);
+    let llTrain=0,llHold=0, nTrain=0,nHold=0,valid=0;
+    for(let k=0;k<starts.length;k++){
+      const st=starts[k];
+      let integer=0n;
+      for(let j=st;j<st+79;j++){
+        const digit=(witness[ciphertext[j]]-witness[ciphertext[j-1]]+28)%29;
+        integer=integer*28n+BigInt(digit);
+      }
+      if(integer>=29n**78n)break;
+      valid++;
+      const train=k<48;
+      const h=train?histTrain:histHold;
+      for(let j=0;j<78;j++){
+        const rune=Number(integer%29n);
+        integer/=29n;
+        h[rune]++;
+        if(train){llTrain+=probabilities[rune];nTrain++;}
+        else{llHold+=probabilities[rune];nHold++;}
+      }
+      assert.equal(integer,0n);
+    }
+    if(valid===95){
+      numeric++;
+      const score=llTrain/nTrain;
+      if(!champion||score>champion.trainMeanLogP){
+        champion={candidateOrdinal:tested,trainMeanLogP:score,
+          heldoutMeanLogP:llHold/nHold,
+          trainIoC:averageIoC(histTrain,nTrain),
+          heldoutIoC:averageIoC(histHold,nHold),
+          wholeRecoveredRunes:nTrain+nHold,
+          unknownCyclicOrder:witness};
+      }
+    }
+    return tested>=candidates;
+  };
+  const result=prefixTwoDigitGate(prefixTwoDigitTriples(ciphertext,
+    starts,'forward'),'forward',1000000,visitor);
+  return {phase:35,direction:'forward',source:'95 original intact 79-rune LP2 packets',
+    reference:'218800 source GP runes, authentic Shakespeare normalizer',
+    requestedCandidates:candidates,enumeratedCandidates:tested,
+    candidatesValidAsWholePackets:numeric,
+    searchNodes:result.nodes,firstWitnessFound:result.status==='SAT',
+    champion,uniformBaselineIoC:1/29,
+    caveat:'The candidate enumeration is one deterministic CSP traversal, not an exhaustive key search; selecting by train half cannot certify real plaintext.'};
+}
+module.exports.prefixTwoLanguageScan=prefixTwoLanguageScan;
+if(require.main===module && process.env.PREFIX_TWO_LANGUAGE_SAMPLES){
+  const n=Number(process.env.PREFIX_TWO_LANGUAGE_SAMPLES);
+  assert(Number.isInteger(n)&&n>=1&&n<=50000);
+  process.stdout.write('PREFIX_TWO_LANGUAGE '+
+    JSON.stringify(prefixTwoLanguageScan(n))+'\n');
 }
