@@ -38,7 +38,7 @@ For the Latin **G/X** pair the three expected counts were **20.0468 / 38.5512 / 
 
 ## 2. Word-length-conditioned Latin test: decisive conditional failure
 
-The pooled first/middle/end statistic hides strong interactions with **word length**. Refine the same Latin test without choosing any new key: create eight original word-length bins 1,2,3,4,5,6,7,8–12 and three role categories, retaining the original **23 observed role-by-length cells** with nonzero opportunities. For every GP marker, estimate the source probability from the original *exact* length's word corpus, with fixed Jeffreys smoothing of 0.5 pseudocount per symbol, then sum the binomial deviances across bins. This score is allowed to reselect the best of **all 841 marker pairs**.
+The pooled first/middle/end statistic hides strong interactions with **word length**. Refine the same Latin test without choosing any new key: create eight original word-length bins 1,2,3,4,5,6,7,8–12 and three role categories, retaining the original **21 role-by-length cells** with nonzero opportunities. For every GP marker, estimate the source probability from the original *exact* length's word corpus, with fixed Jeffreys smoothing of 0.5 pseudocount per symbol, then sum the binomial deviances across bins. This score is allowed to reselect the best of **all 841 marker pairs**.
 
 The original role-by-length repeat counts are:
 
