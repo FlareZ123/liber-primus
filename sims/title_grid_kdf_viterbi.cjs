@@ -134,8 +134,9 @@ function rng(seed) {
  * Independent blind plant under source-true HMAC/title key derivation.
  * Source: GP-encoded final >95k Shakespeare characters, not the trained LM.
  */
-function positive(columns,titles,model) {
-  const gp=encode(read('resources/control/shakespeare_first300k.txt').slice(205000));
+function positive(columns,titles,model,latin=false) {
+  const gp=latin?JSON.parse(read('resources/control/latin-vulgate-heldout-gp.json')).runes
+    :encode(read('resources/control/shakespeare_first300k.txt').slice(205000));
   const clear=Array.from({length:8},(_,i)=>gp.slice(i*300,(i+1)*300));
   assert.ok(clear.every(a=>a.length===300));
   const setting={kdf:'hmac',titleEncoding:'runes',algo:'aes-256-ctr',
@@ -213,11 +214,39 @@ function nullControls(columns,titles,cipher,model,actual,n=64) {
     trainNullMean:mean(train),trainNullMax:Math.max(...train)};
 }
 
+
+/** Exact GP-unigram/bigram/trigram smoothing matching train() with fixed
+ * disjoint Vulgate source counts. Sparse b/t source arrays are [index,count].
+ */
+function latinModel() {
+  const raw=JSON.parse(read('resources/control/latin-vulgate-gp-trigrams.json'));
+  assert.equal(raw.schema,1);
+  assert.equal(raw.u.length,29);
+  const u=Uint32Array.from(raw.u),b=new Uint32Array(29*29),
+    t=new Uint32Array(29*29*29);
+  for(const [idx,count] of raw.b)b[idx]=count;
+  for(const [idx,count] of raw.t)t[idx]=count;
+  const unigram=new Float64Array(29),bigram=new Float64Array(29*29),
+    trigram=new Float64Array(29*29*29);
+  for(let c=0;c<29;c++)unigram[c]=Math.log((u[c]+1)/(raw.n+29));
+  for(let a=0;a<29;a++)for(let c=0;c<29;c++){
+    const p=(b[a*29+c]+12*Math.exp(unigram[c]))/(u[a]+12);
+    bigram[a*29+c]=Math.log(p);
+  }
+  for(let a=0;a<29;a++)for(let v=0;v<29;v++)for(let c=0;c<29;c++){
+    const idx=(a*29+v)*29+c;
+    const p=(t[idx]+9*Math.exp(bigram[v*29+c]))/(b[a*29+v]+9);
+    trigram[idx]=Math.log(p);
+  }
+  return {symbols:raw.n,unigram,bigram,trigram};
+}
+
 function main() {
   const titles=originalTitles(),keys=originalKeys(),texts=originalBodies();
   assert.ok(keys.every(k=>k.length===32)&&texts.every(t=>t.length===300));
-  const model=train(read('resources/control/shakespeare_first300k.txt').slice(0,200000));
-  const planted=positive(keys,titles,model);
+  const latin=process.argv.includes('--latin');
+  const model=latin?latinModel():train(read('resources/control/shakespeare_first300k.txt').slice(0,200000));
+  const planted=positive(keys,titles,model,latin);
   const original=fit(texts,keys,titles,model);
   const nulls=nullControls(keys,titles,texts,model,original);
   const out={model:'Red-title KDF-derived 256-bit grid-column key inversion',
@@ -227,9 +256,10 @@ function main() {
     ciphers:['AES-256-CTR','ChaCha20'],nonceSchemes:['zero','SHA256(title)[:16]'],
     padByteMappings:['byte mod29','floor(byte*29/256)'],
     additiveSigns:[1,-1],skipPenalty:3.5,skipCap:34,
+    languageRegister:latin?'Latin Vulgate New Testament':'Shakespeare GP English',
     trainingReferenceGP:model.symbols,positive:planted,original,nulls,
     status:'A held-out language score alone never establishes decrypted plaintext; inspect candidateRunes and re-encode before claiming recovery.'};
   process.stdout.write(JSON.stringify(out,null,2)+'\n');
 }
 if(require.main===module)main();
-module.exports={originalTitles,titleBytes,derive,nonce,pad,fit,positive,nullControls,SETTINGS};
+module.exports={originalTitles,titleBytes,derive,nonce,pad,fit,positive,nullControls,latinModel,SETTINGS};
