@@ -28,8 +28,10 @@ for(const source of sources){
   assert.equal(source.rows.length,32,source.name);
   assert(source.rows.every(row=>row.length===8 && row.every(b=>Number.isInteger(b)&&b>=0&&b<256)),source.name);
 }
-assert.deepEqual(grid.pages.map(p=>p.rows),[10,13,9]);
-assert.deepEqual(gridRows.flat(),grid.bytes);
+assert.deepEqual(grid.page_row_counts,[10,13,9]);
+assert.equal(grid.alphabet.length,60);
+assert.deepEqual(grid.rows.flat().map(t =>
+  grid.alphabet.indexOf(t[0])*60+grid.alphabet.indexOf(t[1])),gridRows.flat());
 const TRIALS=100000;
 const SEED=0x33013301;
 /** @returns {()=>number} */
