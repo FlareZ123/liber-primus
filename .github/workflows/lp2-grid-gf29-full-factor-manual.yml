@@ -28,3 +28,5 @@ jobs:
           node sims/grid_nonary_source_crib_inverse_sft.cjs
           node sims/grid_cubic_allseed_ea_original_sft.cjs
           node sims/grid_cubic_order12194_keyfree_sft.cjs
+
+          node sims/lp2_marked_quadratic_crosspage_sft.cjs
