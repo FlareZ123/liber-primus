@@ -14,6 +14,8 @@ on:
           - modular-square
           - rank28-parity
           - rank28-secret-parity
+          - rank28-secret-parity-pilot
+          - rank28-secret-parity-exact
           - rsa432-block
 
 jobs:
@@ -42,6 +44,12 @@ jobs:
       - name: Test every-source-mask search for secret-alphabet totient rank28 with source-native inverse controls
         if: ${{ inputs.source == 'rank28-secret-parity' }}
         run: node sims/prime_totient_secret_parity_wordfit.cjs 90 1000
+      - name: Check exact secret GP mask iterator on first 100000 masks
+        if: ${{ inputs.source == 'rank28-secret-parity-pilot' }}
+        run: node sims/prime_totient_secret_parity_exact.cjs 100000
+      - name: Exhaust all 40116600 secret GP parity masks
+        if: ${{ inputs.source == 'rank28-secret-parity-exact' }}
+        run: node sims/prime_totient_secret_parity_exact.cjs
       - name: Prove all-phase original RSA432 rank28 block contradiction
         if: ${{ inputs.source == 'rsa432-block' }}
         run: node sims/rsa432_rank28_block_impossibility.cjs
