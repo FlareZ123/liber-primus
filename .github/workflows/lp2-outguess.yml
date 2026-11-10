@@ -37,15 +37,15 @@ jobs:
         if: ${{ !inputs.keyed_probe && !inputs.synthetic_only }}
         run: node sims/outguess_lp2_scan.cjs
       - name: Install Python for direct binary-stream pad testing
-        if: ${{ !inputs.keyed_probe }}
+        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only }}
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - name: Install numeric dependencies
-        if: ${{ !inputs.keyed_probe }}
+        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only }}
         run: python -m pip install --disable-pip-version-check numpy numba
       - name: Scan original LP2 runes against all extracted pad-stream positions
-        if: ${{ !inputs.keyed_probe }}
+        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only }}
         env:
           OUTGUESS_NULL_REPLICATES: 64
         run: python sims/outguess_lp2_directpad.py
