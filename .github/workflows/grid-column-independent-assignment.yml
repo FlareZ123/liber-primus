@@ -1,0 +1,14 @@
+name: LP2 independent grid-column assignment (manual)
+on:
+  workflow_dispatch:
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Evaluate all source-key and section matches with independent runic alphabets
+        run: node sims/grid_column_independent_assignment.cjs
