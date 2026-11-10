@@ -86,7 +86,7 @@ function pairCapacity(parts,period,shift) {
         count++;
       }
     }
-  assert.equal(count,LENGTH);
+  assert.equal(count,parts.reduce((n,part)=>n+part.length,0));
   const top=(v,k)=>Array.from(v).sort((a,b)=>b-a)
     .slice(0,k).reduce((a,b)=>a+b,0);
   const rowRelaxation=top(F.map(row=>top(row,ROWS)),COLUMNS);
