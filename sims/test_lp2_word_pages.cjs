@@ -12,7 +12,7 @@ assert.equal(synthetic.words[1].startPage, 1);
 assert.equal(synthetic.crossPageWords, 1);
 assert.equal(synthetic.runeCount, 5);
 
-const afterPageSeparator = parseLP2Words("ᚠᛁ%\\n-ᚢ", 2);
+const afterPageSeparator = parseLP2Words("ᚠᛁ%\n-ᚢ", 2);
 assert.equal(afterPageSeparator.words.length, 2);
 assert.equal(afterPageSeparator.crossPageWords, 0);
 assert.equal(afterPageSeparator.words[0].endPage, 0);
