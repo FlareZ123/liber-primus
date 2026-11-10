@@ -82,6 +82,10 @@ Sources: [HES Inveraray Castle](https://portal.historicenvironment.scot/apex/f?p
 
 This gives the start and the selected A83 endpoint a suggestive Scottish designed-landscape / dovecot context. It does **not** establish the intermediate road sequence as a route. The A97 is in Aberdeenshire, A11 and A47 meet at Thickthorn near Norwich, A47 and A5 meet in the Nuneaton area, A17 runs Newark–King's Lynn, and A83 runs Tarbet–Campbeltown through Argyll. The sequence does not itself supply the connecting roads, a unique path through those regions, or a stopping rule at Ethel. Sources include [National Highways' A11/A47 junction](https://nationalhighways.co.uk/roads-and-travel/road-projects/east/a47-thickthorn-junction-near-norwich/), [A17 route record](https://en.wikipedia.org/wiki/A17_road_(England)), [A97 route record](https://en.wikipedia.org/wiki/A97_road), and [Transport Scotland's A83 description](https://www.transport.gov.scot/media/5vnflubm/a83aab-awj-gen-mts_gen-rp-zz-000001_c01-1.pdf).
 
+A concrete competing cluster occurs on **A5 at Potterspury/Furtho**. Potterspury is adjacent to A5; a Northamptonshire history map is explicitly titled **“POTTERSPURY QUEEN'S OAK WALK”** and labels the A5, Queen's Oak and footpaths. Local history preserves a tradition that Edward IV first met Elizabeth Woodville beneath the Queen's Oak; Historic England has a 1910–1935 photograph record of the tree, although its image is unavailable and the tree died in 1997. Nearby Furtho is a deserted medieval village whose surviving earthworks include a hollow road; its dovecote and St Bartholomew's Church remain. This gives A5 a competing oak + walk + empty/hollow road + dovecote + church cluster. It does not prove Potterspury is intended, and the historical image has not been matched to the faint tree in the 2016 raster. See [the source-grounded Potterspury counterexample](a-road-dovecot-counterexample-potterspury.md).
+
+The archived signed 2016 payload explicitly ends **“Beware false paths. Verify OpenPGP 7A35090F.”** Its extracted message and image record are summarized in [the archived source reference](../resources/cicada2016-4gq25.md). That warning is especially relevant: Inveraray, Potterspury/Furtho, and Banff/Duff House each offer some of the same oak/estate/dovecot semantics. The “epiphany” association is conjectural at all three sites; no source-fixed stop rule presently selects one.
+
 The proposed “epiphany → dove/dovecot” association is also conjectural. The Oak Walk / removed avenue is a closer textual match to “the path lies empty,” but the source says the avenue of trees was removed, not that the path itself ceased to exist.
 
 ## Semantic coverage gap
@@ -92,8 +96,8 @@ The walk's intermediate rune names are **Rad, Eolh, Thorn, Gyfu** (ride/journey,
 
 - **Reject** the claim that the A-road conversion validates the GP-totient walk: 29/29 coverage makes it non-selective.
 - **Reject** Ethel/A83 as the walk's mathematically specified endpoint: the exact walk continues into Beorc and Mann and then cycles.
-- **Retain only as a low-confidence location hypothesis** that the signed 2016 message, Ac/oak, A97, and Inveraray's Oak Walk / Carloonan Dovecot may share a geographic referent.
-- Do not launch a broad route or place-name search from this alone.
+- **Retain Inveraray, Potterspury/Furtho and Banff/Duff House only as competing low-confidence location hypotheses**; none is a source-authenticated destination, and the A-road conversion is not selective.
+- Do not launch a broad route or place-name search from this alone. The signed message's “Beware false paths” warning requires a pre-registered discriminator that rejects the competing sites.
 
 To reopen, an independent source must fix the country/road system, arithmetic sign, route-connection rule, and stop condition before the location is interpreted. A useful next test would compare the same pre-registered procedure against all alternative start runes and equivalent road-number systems, with an explicit estate/dovecot base-rate control.
 
