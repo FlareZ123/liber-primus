@@ -149,6 +149,17 @@ function run(){
   for(const c of train)freq[c]++;
   const total=freq.reduce((a,b)=>a+b,0);
   const prior=Array.from(freq,x=>x/total);
+  const native=read('resources/liber-primus/lp1-plaintext-reference.txt')
+    .split(/\\r?\\n/u).filter(line=>{
+      const v=line.trim();
+      return !v.startsWith('#')&&!v.startsWith('[')&&
+        !/^[0-9a-f]{25,}$/iu.test(v);
+    }).join(' ');
+  const nativeFreq=new Float64Array(MOD).fill(1);
+  const nativeRuneWords=base.corpusWords(native);
+  for(const p of nativeRuneWords.flat())nativeFreq[p]++;
+  const nativeTotal=nativeFreq.reduce((a,b)=>a+b,0);
+  const nativePrior=Array.from(nativeFreq,x=>x/nativeTotal);
   const keys=[];
   for(const [label,values] of matrices){
     const arr=values.map(mod);
@@ -165,7 +176,9 @@ function run(){
   for(const key of keys)for(const kind of kinds)
     for(let phase=0;phase<L;phase++)for(const sign of [1,-1]){
       const measured=assess(layout.get(kind),key.decipher,phase,sign,prior);
-      original.push({key:key.label,kind,phase,sign,...measured});
+      const nativeStat=assess(layout.get(kind),key.decipher,phase,sign,nativePrior);
+      original.push({key:key.label,kind,phase,sign,...measured,
+        nativeTrain:nativeStat.train,nativeHoldout:nativeStat.holdout});
     }
   original.sort((x,y)=>y.train-x.train);
   const winner=original[0];
@@ -203,6 +216,10 @@ function run(){
     originalBestTraining:original.slice(0,10),
     originalBestHeldout:original.slice().sort((x,y)=>y.holdout-x.holdout).slice(0,5),
     originalWinnerFrozenHeldout:locked,
+    authorNative:{knownSourceRuneWords:nativeRuneWords.length,
+      selected:original.slice().sort((a,b)=>b.nativeTrain-a.nativeTrain)[0],
+      bestRetrospectiveHoldout:original.slice().sort((a,b)=>b.nativeHoldout-a.nativeHoldout)[0],
+      trueKeyPlant:assess(plantGroups,trueKey.decipher,0,1,nativePrior)},
     positive:{key:trueKey.label,layout:'page',phase:0,repaired:control.repaired,
       score:plantedResult,accuracy:correct/totalDecoded,
       independentlyWrongKey:wrong},
