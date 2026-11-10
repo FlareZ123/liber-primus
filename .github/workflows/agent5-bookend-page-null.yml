@@ -1,0 +1,15 @@
+name: Agent 5 bookend page-conditioned chance
+on:
+  workflow_dispatch:
+
+jobs:
+  page-local:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact page-local two-word recurrence control
+        run: node sims/bookend_page_conditional_null.cjs
