@@ -33,3 +33,7 @@ jobs:
       - name: CPython 2.7 original-source 720-way inverse and positive
         shell: pwsh
         run: node sims/instar2013_python_mt_inverse.cjs
+
+      - name: Original lag-six orbit permutation invariant with native-GP controls
+        shell: pwsh
+        run: node sims/lag6_orbit_static_mapping_gate.cjs
