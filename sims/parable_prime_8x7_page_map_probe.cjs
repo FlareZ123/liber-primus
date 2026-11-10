@@ -84,6 +84,23 @@ const p57_23Dots = (inkByPage.get(57)?.large_punctuation || [])
   .filter((x) => x[1] === 23);
 assert.equal(p57_23Dots.length, 1);
 
+const globalPageStart = new Map();
+let cumulativeRunes = 0;
+for (let p = 0; p <= 57; p++) {
+  globalPageStart.set(p, cumulativeRunes);
+  cumulativeRunes += pageByNumber.get(p)?.indices.length || 0;
+}
+const red10Marks = ink.pages.flatMap((p) =>
+  (p.large_punctuation || [])
+    .filter((x) => x[1] === 10 && x[2] === "red")
+    .map((x) => ({
+      page: p.page,
+      local: x[0],
+      global: globalPageStart.get(p.page) + x[0],
+      mod4: (globalPageStart.get(p.page) + x[0]) % 4
+    }))
+);
+
 // The candidate 55-symbol key is the red rune material on the three
 // factor/ordinal-selected pages that actually have red spans, in clause order.
 const redKeyPages = [27, 23, 15];
@@ -309,6 +326,7 @@ const summary = {
     },
     anchor13Counts,
     p57_23DotCount: p57_23Dots.length,
+    red10Marks,
     redKeyPages,
     redKeyLengths,
     redKeyLength: redKey.length,
