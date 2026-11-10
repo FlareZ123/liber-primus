@@ -11,6 +11,7 @@ on:
         options:
           - cookie
           - rsa2014
+          - modular-square
 
 jobs:
   original-cipher-source-inverse:
@@ -29,3 +30,6 @@ jobs:
       - name: Run exact 2014 RSA-source keyskip inverse
         if: ${{ inputs.source == 'rsa2014' }}
         run: node sims/rsa2014_factored_key_inverse.cjs
+      - name: Run historical RSA modular-squaring original inverse
+        if: ${{ inputs.source == 'modular-square' }}
+        run: node sims/rsa2014_modular_square_inverse.cjs
