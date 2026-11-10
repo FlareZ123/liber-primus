@@ -26,4 +26,10 @@ Every row, every column, and both diagonals sum to **1033**. The JPEG's original
 
 **Reproducer:** [`sims/jpeg05_palindromic_magic.cjs`](../sims/jpeg05_palindromic_magic.cjs), a dependency-free CommonJS checker. It asserts the original source SHA-256, JPEG boundary, reversed-image symmetry, center decoding, exact numerical square and all 12 magic sums. The same file was verified locally against the original owner-provided 75-JPEG ZIP. The source image has been verified byte-for-byte against the GitHub copy in `resources/liber-primus/README.md`.
 
+## Direct 179-byte LP1 to 179-rune LP2 p53 bridge
+
+The JPEG's original reversed-hex middle decodes to **179 ASCII bytes**, including padding spaces and newlines. The separately sourced LP2 physical page 53 contains **179 GP runes**, and its 256-byte numerical table has repeated factor **179²**. This triplet was assembled retrospectively and the hidden ASCII text's length depends on arbitrary layout spacing; its intended use is unknown.
+
+The [source-locked CommonJS test](../sims/jpeg05_hidden179_p53_direct_key_sft.cjs) reconstructs those exact original 179 bytes and tests a literal p53 positional additive key, with four mechanical byte→GP29 reductions, both original/reversed orders, and signs ±: **16 distinct inverses**. The largest original IoC is **0.03571653** versus **0.03351955** for untouched page53. A 179-rune native Shakespeare control has IoC **0.06214299**. Every original result is unreadable. All 16 source-native GP prose plants recover exactly. The [GitHub Actions run 42904848785](https://github.com/FlareZ123/liber-primus/actions/runs/42904848785) passed. The literal direct key bridge is therefore unsupported, leaving other source-defined uses unresolved.
+
 **Implication for further cryptanalysis:** LP1's overt magic square includes a mirrored hexadecimal encoding in the JPEG file itself. If checking related LP1/LP2 image-derived keys or reversal conventions, this file is a grounded construction to generalize. Do not assume its 25-cell text is unknown plaintext or that repeating its operations on LP2 ciphertext will work without independent constraints.
