@@ -58,7 +58,7 @@ function parse(){
   assert.equal(page,54);
   assert.equal(a.filter(x=>x.raw===0).length,86);
   assert.equal(a.filter(x=>x.x>=0).length,12869);
-  assert.equal(section,7);
+  assert.equal(section,8); // Terminal $ follows the eighth section.
   return {a,raw};
 }
 function logPrior(){
