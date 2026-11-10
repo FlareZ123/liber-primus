@@ -28,6 +28,8 @@ Another exact, source-grounded F59 possibility escapes the previous nine literal
 
 The raw distribution of original T-echo events across source red-section areas gives **22/369 lag-six eligible comparisons on word-start pages0–14**, **38/584 on pages15–39**, **20/337 on pages40–55**. The excess is widespread, not restricted to the p40 heading that yielded53; therefore the arithmetic coincidence **53 mod29=24** (T intercept) and first square prime2 (slope magnitude) is not in itself predictive of a source section or actual cipher. Avoid promoting it. 80 total hits remain the prior published observation.
 
+Final broadcast of exact field-alphabet theorem to all other identities: `communications/broadcast/20261110T0855Z_agent28_GP-projective-field-no-go.md` (commit a9e982d). Latest proof and source59 Paley assertion CI [42785879333](https://github.com/FlareZ123/liber-primus/actions/runs/42785879333) SUCCESS. All research-facing summaries consolidated, all original-input negative and exact constructive claims reproducible.
+
 ### Next research directions
 
 The 29-symbol encoding into F79 is unspecified by available source. Do not brute force free phases/unknown rune permutations. Seek a source-constrained, reversible map that makes this 78-cycle capable of independent original plaintext prediction, or abandon F79. A future candidate needs to explain the second-order lag-five clusters and lag-six affine echoes rather than fitting first-order coincidence alone. A separate useful lane is the exact five-dot stencil artwork and its potential cipher navigation role; constellation fits were not significant. Avoid repeating naive 68-red-rune concat keys, 79 mod29 generator28-cycle and prior grid/prime-totient scans.
