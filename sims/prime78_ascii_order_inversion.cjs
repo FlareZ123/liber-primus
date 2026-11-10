@@ -147,7 +147,7 @@ function meanScore(pi, list) {
   return sum / list.length;
 }
 /**
- * Fit 29! unknown cyclic order via 48 independent deterministic anneals.
+ * Fit 29! unknown cyclic order via deterministic anneals; 48 uppercase / 600 lowercase.
  * Each swap changes only edges incident to its two rune labels.
  * @param {number[][]} leaderPairs
  * @returns {{train:number,held:number,full:number,restart:number,pi:number[]}}
@@ -155,7 +155,7 @@ function meanScore(pi, list) {
 function recoverOrder(leaderPairs) {
   assert.equal(leaderPairs.length, PACKETS - 1);
   let best = {train: -Infinity, held: 0, full: 0, restart: 0, pi: []};
-  for (let restart = 0; restart < 48; restart++) {
+  for (let restart = 0; restart < (lowercase ? 600 : 48); restart++) {
     const pi = positions(permutation());
     let current = meanScore(pi, leaderPairs.slice(0, TRAIN)) * TRAIN;
     for (let t = 0; t < 11000; t++) {
