@@ -160,8 +160,7 @@ function summarize(values) {
     q05: sorted[Math.floor(sorted.length * 0.05)],
     median: sorted[Math.floor(sorted.length * 0.50)],
     q95: sorted[Math.floor(sorted.length * 0.95)],
-    max: sorted[sorted.length - 1],
-    controlsAtOrBelowOriginal: sorted.filter((value) => value <= originalStats[keyForSummary]).length
+    max: sorted[sorted.length - 1]
   };
 }
 
