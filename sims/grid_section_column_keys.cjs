@@ -22,6 +22,24 @@ const REPLICATES = 100;
 const mod = (x) => (x % MOD + MOD) % MOD;
 
 /**
+ * Opt-in overlay of five independently image-audited grid transcription cells.
+ * Preserve canonical published transcription and earlier experiment defaults.
+ * Zero-based original row-major cell numbers; all changed rows are verified.
+ * @param {number[][]} originalColumns
+ * @returns {number[][]}
+ */
+function correctedGridColumns(originalColumns) {
+  const patched = originalColumns.map(column => column.slice());
+  for (const [index, from, to] of [[45, 107, 81], [50, 47, 21],
+    [165, 18, 47], [172, 148, 174], [246, 198, 224]]) {
+    const row = Math.floor(index / 8), col = index % 8;
+    assert.equal(patched[col][row], from, `grid correction precondition at ${index}`);
+    patched[col][row] = to;
+  }
+  return patched;
+}
+
+/**
  * @returns {{ groups: number[][], columnKeys: number[][] }}
  */
 function inputs() {
@@ -30,6 +48,10 @@ function inputs() {
   const columnKeys = Array.from({ length: 8 }, (_, c) => grid.byte_rows.map(row => row[c]));
   assert.ok(columnKeys.every(key => key.length === 32 && key.every(x => Number.isInteger(x) && x >= 0 && x < 256)));
   assert.deepEqual([columnKeys[5][5], columnKeys[2][6], columnKeys[6][30]], [107, 47, 198]);
+  if (process.env.LP2_GRID_FIVE_CORRECTIONS === '1') {
+    const corrected = correctedGridColumns(columnKeys);
+    for (let col = 0; col < 8; col++) columnKeys[col] = corrected[col];
+  }
 
   const master = read('resources/transcriptions/liber_primus_master.txt');
   const start = master.indexOf('ᛋᚻᛖᚩᚷᛗᛡᚠ');
@@ -202,4 +224,4 @@ function main() {
   }));
 }
 if (require.main === module) main();
-module.exports = { inputs, cipherBytes, ioc, assign, evaluate, plant };
+module.exports = { inputs, correctedGridColumns, cipherBytes, ioc, assign, evaluate, plant };
