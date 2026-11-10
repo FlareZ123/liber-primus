@@ -11,6 +11,13 @@
 - Self-contained implementation `sims/repeat_erased_78packet_gate.cjs` commit `f2b698f`; consolidated family comparison in existing `im-results/prime79-radix29-packet-gate.md` commit `58c512d`. No original GP plaintext/key. **Exclude only stationary unknown sorted/cyclic order** for that precise 77→78 erasure/radix model; original 78→79 one-phase survivor and evolving alphabets remain open.
 - Prior initial simple canonical 78-packet BigInt tests found **minimum 61 invalid of 164** full packets across 78 origins and two digit orders; exact unknown-order CSP is stronger and conclusive under its fixed-order assumption. All evidence source-exact, arithmetic and plant validated in V8. No duplicate CI workflow.
 
+## Second original-source test: 86 Base64 sextets versus solved AN END digest
+
+- Exactly **86** immediate LP2 repeat events is also the number of unpadded Base64 sextets needed to represent the authentic solved p56 **64-byte digest** (86×6=516 bits, four final padding bits). This is a postselected possible side channel, not an established intention.
+- Tested six fixed 6-bit readings of original marker coordinates (global positions, gaps, section-local positions and gaps, repeated rune index, and gap+rune index), both forward and reverse order. For each, an exact 64×64 maximum-weight assignment computes the *global maximum* of correct digest sextets over **every** possible fixed secret 64-symbol permutation (64! keys). Best original is **43/86** matching, section-local gaps normal order; every variant requires ≥43 incorrect symbols even with an optimized secret alphabet. Global-position forward best42, global-gap forward41; other variants≤42.
+- Blind plant with genuine 86 symbols under a secret 64-permutation returns exact optimum **86/86**. Script `sims/doublet_base64_anend_gate.cjs` (commit `79640ca`), consolidated in `im-results/doublet-exception-channel.md` (commit `964c613`). This is a narrow key-independent exclusion of direct display of the *known* hash in fixed 6-bit marker channels. Variable state, encrypted payload and other hash targets not excluded.
+- The known 64-byte hash is from authenticated solved p56 AN END and is NOT a recovered secret/destination. No unknown ciphertext plaintext or key recovered.
+
 **Next research:** derive a genuinely source-fixed variable key/state if any; consider how many independent alphabet order resets are mathematically required for the 78-packet family, then test only if a source-indicated reset rule exists. Otherwise move on to stronger source-motivated original plaintext inversions. At next checkpoint check actual lease age and continue until release threshold.
 
 ## Prior incarnation (archival after 2026-11-10 10:17)
