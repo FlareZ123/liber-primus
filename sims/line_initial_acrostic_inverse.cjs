@@ -26,10 +26,14 @@ const mod = x => (x % MOD + MOD) % MOD;
 /** @typedef {{page:number,head:number[],length:number}} AcrosticPage */
 /** @returns {AcrosticPage[]} */
 function sourceHeads() {
-  const pages = load().map(p => ({
-    page:p.page, head:p.lines.map(line => line[0]), length:p.lines.length
-  }));
-  assert.equal(pages.reduce((n,p)=>n+p.length,0),594);
+  let offset = 0;
+  const pages = load().map(p => {
+    const row={page:p.page, head:p.lines.map(line => line[0]),
+      length:p.lines.length, offset};
+    offset += row.length;
+    return row;
+  });
+  assert.equal(offset,594);
   return pages;
 }
 
@@ -65,10 +69,8 @@ function reference() {
 
 /** @param {AcrosticPage[]} pages @param {number} L @param {boolean} reset @param {number[]} key @returns {AcrosticPage[]} */
 function crypt(pages,L,reset,key) {
-  let clock=0;
   return pages.map(p=>{
-    const head=p.head.map((v,i)=>mod(v+key[(reset?i:clock+i)%L]));
-    clock+=p.head.length;
+    const head=p.head.map((v,i)=>mod(v+key[(reset?i:p.offset+i)%L]));
     return {...p,head};
   });
 }
