@@ -35,7 +35,7 @@ function continuousRepeats(pages, width) {
   for (let i = 0; i + width <= flat.length; i++) {
     const token = flat.slice(i, i + width).map(x => x.value).join(',');
     const old = first.get(token);
-    if (old) repeated.push({ first: flat[old], second: flat[i], secondEnd: flat[i + width - 1], runes: runeString(flat.slice(i, i + width).map(x => x.value)) });
+    if (old !== undefined) repeated.push({ first: flat[old], second: flat[i], secondEnd: flat[i + width - 1], runes: runeString(flat.slice(i, i + width).map(x => x.value)) });
     else first.set(token, i);
   }
   return repeated;
