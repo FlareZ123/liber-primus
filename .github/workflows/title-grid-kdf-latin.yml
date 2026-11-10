@@ -1,0 +1,16 @@
+name: Red-title grid KDF Latin register inverse
+on:
+  workflow_dispatch:
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Latin Vulgate source and independent Latin GP plant
+        run: node sims/title_grid_kdf_viterbi.cjs --latin
