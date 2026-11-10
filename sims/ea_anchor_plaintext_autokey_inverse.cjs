@@ -160,11 +160,85 @@ for(const scope of ["page","global"]){
   }
 }
 const positive={page:plant("page"),global:plant("global")};
+/**
+ * For delayed P[i-L] feedback, every zero step initializes one independent
+ * residue chain i mod L. Following that chain's first marker, all later
+ * plaintext symbols are exact for any a,b, without its missing initial seed.
+ * Scans the full, continuous original LP2 sequence for L=1..16.
+ * @param {number[]} input @param {number[]} lags
+ */
+function laggedScan(input,lags){
+  const diffs=new Int8Array(input.length).fill(-1);
+  for(let i=1;i<input.length;i++)
+    diffs[i]=log[m29(input[i]-input[i-1])];
+  const winners=[];
+  for(const delay of lags){
+    let best={delay,train:-Infinity};
+    for(let a=0;a<28;a++)for(let b=0;b<28;b++){
+      const value=new Uint8Array(delay),seen=new Uint8Array(delay);
+      let tr=0,ho=0,nt=0,nh=0,markers=0;
+      for(let i=1;i<diffs.length;i++){
+        const group=i%delay,x=diffs[i];
+        if(x<0){value[group]=0;seen[group]=1;markers++;continue;}
+        if(!seen[group])continue;
+        const p=m28(x-a*value[group]-b);
+        value[group]=p;
+        if(i<6480){tr+=prior[p];nt++;}
+        else{ho+=prior[p];nh++;}
+      }
+      if(tr/nt>best.train){
+        best={delay,a,b,train:tr/nt,held:ho/nh,
+          trainRunes:nt,heldRunes:nh,markers,
+          seededChains:seen.reduce((s,v)=>s+v,0)};
+      }
+    }
+    winners.push(best);
+  }
+  return winners;
+}
+/** Source-disjoint actual English GP encrypted under a six-back autokey. */
+function laggedPlant(){
+  const plaintext=source.slice(-12956),cipher=[7],delay=6;
+  for(let i=1;i<plaintext.length;i++){
+    const p=plaintext[i],
+      state=i>=delay?plaintext[i-delay]%28:0,
+      increment=p===28?0:exp[m28(p+7*state+11)];
+    cipher.push(m29(cipher[i-1]+increment));
+  }
+  const decoded=new Int16Array(cipher.length).fill(-1);
+  const known=new Uint8Array(delay);
+  let exact=0,covered=0;
+  for(let i=1;i<cipher.length;i++){
+    const x=log[m29(cipher[i]-cipher[i-1])],group=i%delay;
+    if(x<0){known[group]=1;decoded[i]=28;}
+    else if(known[group]){
+      decoded[i]=m28(x-7*(decoded[i-delay]%28)-11);
+    }
+    if(decoded[i]>=0){covered++;exact+=Number(decoded[i]===plaintext[i]);}
+  }
+  assert.equal(exact,covered);
+  assert(covered>10000);
+  const selection=laggedScan(cipher,[delay])[0];
+  assert.deepEqual([selection.a,selection.b],[7,11]);
+  assert(selection.held>0.2);
+  return {trueDelay:6,trueCoefficients:[7,11],selected:selection,
+    exactRecovered:exact,anchoredCoverage:covered,
+    sourceRunes:plaintext.length};
+}
+const originalLagged={
+  forward:laggedScan(pages.flat(),Array.from({length:16},(_,i)=>i+1)),
+  reverse:laggedScan(pages.flat().toReversed(),Array.from({length:16},(_,i)=>i+1))
+};
+const laggedPositive=laggedPlant();
+assert(originalLagged.forward.every(x=>x.held<0));
+assert(originalLagged.reverse.every(x=>x.held<0));
+
 console.log(JSON.stringify({
   claim:"Bounded original LP2 first-order GP plaintext-autokey inverse; no genuine key",
   cipherModel:"F29 increment 0 iff P=EA, otherwise 15^((P+a*previous_P+b) mod28)",
   originalRunes:12956,originalPages:55,sourceGP:source.length,
   selection:"First27 rune pages/page-reset, or first6480 runes/global; 28 pages/global remainder held out",
   coefficients:784,settings:"2 scopes x 2 reading directions x 784",
-  original,positive,sourceExpectedExcessNatsPerNonzeroSymbol:expected
+  original,positive,laggedOriginal:originalLagged,laggedPositive,
+  sourceExpectedExcessNatsPerNonzeroSymbol:expected
 },null,2));
