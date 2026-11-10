@@ -158,6 +158,11 @@ function run() {
     const output = decipher(cipher, vector.method, key, skips);
 
     assert.deepEqual(output.plaintext, plain, vector.section + ": known genuine plaintext");
+    if (["vigenere", "totient"].includes(vector.method) && skips.size > 0) {
+      const noInterruptions = decipher(cipher, vector.method, key, new Set()).plaintext;
+      assert.notDeepEqual(noInterruptions, plain,
+        vector.section + ": omitting literal F skip must fail authentic plaintext");
+    }
     const wrong = vector.method === "vigenere"
       ? decipher(cipher, vector.method, key.map((x, i) => (x + Number(i === 0)) % N), skips).plaintext
       : vector.method === "totient"
