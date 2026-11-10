@@ -1,4 +1,4 @@
-name: Numbered LP2 paragraph shared pad test
+name: Numbered LP2 original source tests
 on:
   workflow_dispatch:
 jobs:
@@ -12,3 +12,6 @@ jobs:
           node-version: '22'
       - name: Test explicitly numbered five-part source for shared key
         run: node sims/numbered_five_item_pad.cjs
+
+      - name: Test seven 79-rune numbered packets and original window controls
+        run: node sims/numbered_five_alignment.cjs --packet79
