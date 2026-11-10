@@ -1,6 +1,6 @@
-# LP2 base-60 table as stream-cipher key material: two controlled screens
+# LP2 base-60 table as stream-cipher key material: three controlled screens
 
-**Classification:** bounded cryptanalytic negative on 2026-11-10 (Agent 12). No LP2 plaintext, recovered key, or confirmed cipher mechanism. Both screens run independently on the original 12,956-rune unsolved corpus.
+**Classification:** bounded cryptanalytic negative on 2026-11-10 (Agent 12, extended by Agent 1). No LP2 plaintext, recovered key, or confirmed cipher mechanism. All three screens run on the original 12,956-rune unsolved corpus.
 
 ## Rationale and shared input
 
@@ -45,9 +45,28 @@ Source: [`sims/base60_fullkey_stream.cjs`](../sims/base60_fullkey_stream.cjs). [
 
 Positive control: encrypt 55 GP-English-frequency pages with **RC4 directly keyed by all 256 corrected grid bytes**, drop 256, one continuous stream, rejection-sampled bytes modulo 29 and addition. Inject a seeded **81% adjacent-repeat repair** (375 replacements). The exact matching inverse is **first/1,164** at IoC **0.064898229**; the next candidate scores **0.034566551**. This single artificial example validates model recovery under that configuration.
 
+## 3. Author-native prime-clause discriminator on the complete source-key family
+
+Source: [`sims/base60_source_prime_clause.cjs`](../sims/base60_source_prime_clause.cjs). [Successful manual CI run 42847588177](https://github.com/FlareZ123/liber-primus/actions/runs/42847588177), Agent 1, 10 November 2026.
+
+This third test probes a **different plaintext fingerprint** from global rune frequency. Historical solved-Cicada *Parable*, *Some Wisdom*, and *An Instruction* yield 13 prime-valued GP clause sums among 16 deliberately selected original full-stop clauses; this is an author-specific discriminator with strong selection caveats ([original source and controlled scorer](author-native-prime-clause-discriminator.md)). It is useful when a plausible source-derived key decrypts into an unusual GP register, but whether unsolved LP2 uses the same punctuation convention is unknown.
+
+Rescore the source-grid 256-byte RC4 and digest-derived AES-CTR/ChaCha20 streams from screen 2 under **3,492 reversible configurations**. Include both additive GP29 rune decoding and a 28-step predecessor-exclusion decoder that reserves immediate repeats for GP-EA, each with the stated page/continuous predecessor clock. Preserve all **175 actual printed LP2 full-stop clause locations**; select by prime-sum count on the **first 88 clauses**, then report the unfit **last 87**. Each model's transformation and byte-to-rune mapping is deterministic from the original numeric table. No language model, historical private key or unknown cipher state is fitted.
+
+| Test | Prime-valued source clauses | Interpretation |
+| --- | ---: | --- |
+| Best original first-88 key: SHA256(reversed grid), ChaCha20 global, zero IV, drop0, modulo byte conversion, negative additive GP29 | **24/88 train** | Selected from 3,492 models |
+| Same unchanged original key on last 87 clauses | **11/87 heldout** | No corroborating author-clause enrichment |
+| Maximum over all keys on the entire 175-clause original (postselected) | **38/175** | Distinct from trained winner's 35/175 |
+| Correct concealed source-grid/RC4/GP28-step key on a controlled native-GP plant | **87/88 train, 85/87 heldout; 172/175 total** | Recovered as unique trained winner and exactly decrypted **12,956/12,956** runes |
+
+The plant constructs independently sourced GP-English ciphertext-shaped text and changes exactly **155 of its 175 clauses at one rune each** to make their sum prime; hence it is a deliberately high-signal power calibration, **not evidence that ordinary unknown LP2 authoring has a 172/175 signature**. Its exact round trip validates software invertibility; in any bijective family an incorrect key also roundtrips the original.
+
+**Decision:** the original grid-source direct GP29/GP28 stream families fail to gain an independently discriminating prime-clause continuation despite a strong planted recovery. This is a finite original negative and does not exclude alternate punctuation registers, external key derivation, encrypted table payloads or unrelated ciphers. Further key guesses require an independent source rule that selects them.
+
 ## Conclusions and experimental limits
 
-Neither screen finds a whole-corpus IoC appreciably beyond flat-rune noise; across the two bounded families the top score is 0.034568719. Both planted controls recover their exact parameterizations at rank one despite deliberate anti-doublet repair. This disfavors direct reuse of the 256-byte table under the specified key extraction, stream cipher, page/continuity convention and encoding.
+Neither of the two IoC screens finds a whole-corpus IoC appreciably beyond flat-rune noise; across the two rune-frequency bounded families the top score is 0.034568719. The first two planted controls recover their exact parameterizations at rank one despite deliberate anti-doublet repair. This disfavors direct reuse of the 256-byte table under the specified key extraction, stream cipher, page/continuity convention and encoding.
 
 No candidate passes whole-manuscript plaintext verification because the results contain no language-like rune distribution. The finite search does **not** exclude arbitrary key derivation, unknown nonce/salt, drift induced by ciphertext collisions, byte-level transposition, keyed outer alphabets, mixed enciphering layers, or the possibility that the 256 bytes form an encrypted payload rather than a seed. No Monte Carlo family-wise p-value is claimed; the gap between positive and real scores is the principal calibration.
 
