@@ -127,6 +127,79 @@ function syntheticControl(){
     nonaffineReciprocalDetected:true};
 }
 
+/**
+ * A second, *source-grounded* field alphabet not covered by the literal
+ * prime-residue no-go: F59 is the GP prime of rune T, index16, and is a
+ * safe prime (59=2*29+1). The selected red page integer 53 is a generator
+ * of its order-29 quadratic-residue subgroup.
+ *
+ * This alternative encodes a GP symbol as 53^symbol (mod59), an injective
+ * 29-rune alphabet. It admits the 58 genuine projective maps identified in
+ * syntheticControl(); they are exactly exponent rotations and reflections,
+ * t->t+k and t->-t+k (D_29). Source 79 is 53^3 mod59.
+ *
+ * The historically observed lag-six ciphertext affine map
+ * T(t)=(24-2*t) mod29 has a fixed point at t=8 and a 28-cycle on all
+ * other indices. Since every D_29 permutation has order1,2 or29, T has
+ * order28 and cannot be induced by ANY whole-alphabet Möbius map of this
+ * F59 subgroup, regardless of the rune labels' permutation.
+ *
+ * @param {{mapsFound:number}} synthetic Already verified 58 PGL maps.
+ */
+function source59Bridge(synthetic) {
+  const q=59,root=53;
+  assert.equal(GP[16],59);
+  assert.equal(GP[15],53);
+  assert.equal(GP[21],79);
+  const powers=[];
+  let residue=1;
+  for(let t=0;t<29;t++){
+    assert.ok(!powers.includes(residue));
+    powers.push(residue);
+    residue=residue*root%q;
+  }
+  assert.equal(residue,1);
+  assert.equal(new Set(powers).size,29);
+  const squareResidues=[...new Set(Array.from(
+    {length:q-1},(_,i)=>(i+1)**2%q))].sort((a,b)=>a-b);
+  assert.deepEqual(powers.slice().sort((a,b)=>a-b),squareResidues);
+  assert.equal(powers[3],GP[21]%q);
+  const accepted=scan(q,squareResidues).accepted;
+  const own=accepted.map(triple=>triple.join(',')).sort();
+  const dihedral=[];
+  const first3=squareResidues.slice(0,3);
+  const discreteLog=new Map(powers.map((r,t)=>[r,t]));
+  for(let k=0;k<29;k++)for(const sign of [-1,1]){
+    const triple=first3.map(r=>powers[mod(sign*discreteLog.get(r)+k,29)]);
+    dihedral.push(triple.join(','));
+  }
+  assert.equal(new Set(dihedral).size,58);
+  assert.deepEqual(dihedral.sort(),own);
+  assert.equal(synthetic.mapsFound,58);
+  const T=t=>mod(24-2*t,29);
+  const fixed=Array.from({length:29},(_,i)=>i).filter(i=>T(i)===i);
+  assert.deepEqual(fixed,[8]);
+  let index=0,order=0;
+  do{index=T(index);order++;}while(index!==0&&order<=29);
+  assert.equal(order,28);
+  for(let i=0;i<29;i++){
+    let v=i;
+    for(let k=0;k<28;k++)v=T(v);
+    assert.equal(v,i);
+  }
+  return {sourceF59GPIndex:16,sourceF59Rune:source.translit[16],
+    q,GPAlphabetSize:29,safePrimeRelation:'59=2*29+1',
+    sourceRedPrimeRoot:53,unitOrder:29,
+    period29Powers:powers,
+    sourceRedPrime79Relation:'79 mod59=53^3 mod59=20',
+    completePGLAutomorphisms:58,
+    exactlyDihedralD29:true,elementOrders:[1,2,29],
+    priorObservedLag6Transform:'T(t)=24-2*t mod29',
+    fixedRuneIndex:8,nontrivialCycleLength:order,
+    noConjugateProjectiveRealization:true,
+    scope:'Direct whole-alphabet projective transformations on the natural F59 square subgroup; unrelated ciphertext repair operations and external encodings remain possible'};
+}
+
 function run(){
   const legal=GP.flatMap((q,i)=>{
     const residues=GP.map(x=>x%q);
@@ -150,6 +223,7 @@ function run(){
     injectivePrimeModuli:legal.length,
     collidingPrimeModuli:GP.length-legal.length,
     original,syntheticPositive:positive,
+    sourceF59AlternativeAndLag6Constraint:source59Bridge(positive),
     testedFamily:'Every projective linear (Möbius) bijection of each literal prime-residue GP alphabet over every GP-source prime modulus',
     conclusion:'Nine injective prime-residue alphabets have identity as their only projective automorphism. No nontrivial direct field Möbius, affine or scalar cipher can permute all 29 GP symbols. Alternative embeddings, plaintext-dependent skips and external encodings remain possible.'
   };
@@ -157,4 +231,4 @@ function run(){
   return report;
 }
 if(require.main===module)run();
-module.exports={inverses,scan,syntheticControl,run};
+module.exports={inverses,scan,syntheticControl,source59Bridge,run};
