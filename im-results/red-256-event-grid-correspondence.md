@@ -32,7 +32,7 @@ A source-native positive-control plaintext (12,956 Shakespeare GP runes beginnin
 Equal-length quartering each of the 28 printed fragments into four independently rekeyed subepochs would raise the original all-secret one-rune ceiling to **1,553**; equal halving and thirding yield **1,234** and **1,402**. Those are illustrative sensitivity variants with *specified new rekey boundaries*, not a discovered key schedule. Truly hidden evolving states, nonlinear feedback, different segmentations, non-GP intermediates and languages outside the finite references remain open. No unknown plaintext or historical key was recovered.
 
 
-### All-secret ciphertext-feedback extension and the two-tap threshold
+### All-secret ciphertext-feedback and top-k capacity
 
 The static-substitution exclusion extends to an extremely permissive **one-rune ciphertext-feedback rule**, with every secret coefficient independently rekeyed by (fragment, position mod8):
 
@@ -47,11 +47,38 @@ The GP29 permutation and coefficient values may be **arbitrary secret choices**,
 | 1 | Any a in F29, b=0 | **1,298 / 12,956** | 10.0185% |
 | 2 | Any a,b in F29 | **1,548 / 12,956** | 11.9481% |
 
-Therefore even this secret phase-dependent and previous-ciphertext-dependent **one-tap** family cannot reproduce **any** of the 204,689 native-GP Shakespeare windows (minimum 1,404 E) or 49,741 Gibran windows (minimum 1,414 E): **at least 106 / 116 GP-symbol alterations** are required. The two-tap family clears this particular *necessary* E-count condition. Its survival does **not** establish plausible plaintext, a historical key, or any intended source mapping. More general state dependence can also escape the bound.
+Therefore even this secret phase-dependent and previous-ciphertext-dependent **one-tap** family cannot reproduce **any** of the 204,689 native-GP Shakespeare windows (minimum 1,404 E) or 49,741 Gibran windows (minimum 1,414 E): **at least 106 / 116 GP-symbol alterations** are required. The two-tap family passes this single-E necessary condition. A stronger all-key multi-symbol capacity test below excludes the same fixed-state two-tap family for all native GP-English reference windows, without identifying an authentic key.
+
+
+#### Exact two-tap all-secret top-k capacity
+
+**New source-original mathematical exclusion, 10 November 2026 (Agent 50).** The single-E bound is too weak to test a model with 224 independent permutation states. For any fixed set of k desired plaintext rune types, each secret GP29 permutation can assign those k types to at most the k most populous values in its state-specific transformed ciphertext. We enumerate all 29×29 independent coefficients (a,b) for each of the 28 unsolved 13-dot-delimited fragments and eight local phases, and maximize the sum of its k most frequent transformed runes. Summing these 224 independent state maxima gives the *sharp attainable upper bound* U(k) on the total occurrences of any k chosen plaintext symbols under every admissible secret key.
+
+The transformation for each original position is D_i = (C_i + a_(g,h) C_(i-1) + b_(g,h) C_(i-2)) mod 29, and D_i = sigma_(g,h)(P_i). The two previous ciphertext terms reset to zero at each 13-dot fragment. Both secret coefficients and the complete 29-symbol permutation may be unrelated across states. There is no key search against language and no alphabet assumption in the source-side upper bound.
+
+| k plaintext symbol types | Maximum original GP plaintext U(k) | Minimum Shakespeare window | Minimum Gibran window | Minimum Emerson window |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 1,548 | 1,404 | 1,414 | 1,486 |
+| 3 | **3,296** | **3,390** | **3,503** | **3,512** |
+| 12 | **8,540** | **9,651** | **9,897** | **9,986** |
+| 16 | **10,185** | **11,426** | **11,328** | **11,444** |
+
+Every one of **204,689 Shakespeare**, **49,741 Gibran**, and **310,128 Emerson** native-GP windows of the original 12,956-rune length fails the original upper bound already at k=3. Each reference window uses the checked-in GP transliteration and matches the manuscript's rune count. The complete 29-element original U(k) vector is:
+
+    1548, 2468, 3296, 4044, 4738, 5390, 6006, 6577, 7107, 7602,
+    8079, 8540, 8983, 9404, 9805, 10185, 10539, 10872, 11186,
+    11471, 11736, 11988, 12226, 12429, 12602, 12755, 12871,
+    12945, 12956.
+
+A single plaintext-rune edit can alter the occurrence count of any specified k-rune set by no more than one. Taking the maximum deficit over all k for every original-length reference window yields rigorous minimum alteration counts of **1,262 Shakespeare**, **1,357 Gibran**, and **1,468 Emerson** GP runes, even for the closest window in each entire checked corpus. These are deterministic reference-specific lower bounds, not claims about every possible English work and not discovery-adjusted p-values.
+
+The [single runnable test and full positive-control inverse](../sims/thirteen_dot_grid_feedback_topk_gate.cjs) reproduces each original bound from the original rune corpus and marked fragment positions, scans all three finite reference corpora, and constructs a separate seeded secret two-tap cipher with 224 independent permutations. Its 12,956-rune synthetic native-GP plaintext exactly decodes and re-enciphers, and satisfies all 29 original-form capacity inequalities. Re-encryption of the authentic original under a random secret key is a generic invertibility check and does not identify any historic key.
+
+**Research decision:** the full fixed 28-fragment × eight-phase, direct native-GP-English cipher family with up to two arbitrary affine ciphertext feedback taps and independently secret GP29 alphabets is excluded against all three tested literary sources. This retires the earlier two-tap single-E survivor for those plaintext registers. Hidden evolving states, altered source segmentation, nonlinear mechanisms, binary/intermediate texts, or genuinely different plaintext distributions remain possible. There is no unknown LP2 decryption.
 
 The same [source-asserting reversible test](../sims/thirteen_dot_grid_8phase_allkey_capacity.cjs) enumerates **1 + 29 + 29² = 871** exact coefficient settings per state, implicitly optimizing arbitrary alphabet choices. Independent native-GP 12,956-rune plants under seeded, hidden 29-symbol substitution tables and coefficient keys for every state are exactly decoded and reencrypted **12,956/12,956** at both one and two taps. Their measured source-native all-key frequency ceilings are **1,858** and **1,921**, respectively, both exceeding their 1,593 true E runes. The original ciphertext also reciphers under those wrong arbitrary keys, as required by invertibility. This demonstrates a functioning family without authenticating an original key.
 
-**Research consequence:** within the explicit dot-delimited 32×8 source-state architecture, unrestricted *first-order affine ciphertext feedback* and unrestricted secret row/column alphabets are insufficient for the tested direct native GP-English registers. Two-tap feedback is the first of the measured 0–2 orders to escape the universal E-capacity obstruction. To treat two taps as an active decoding candidate requires an **independently source-fixed coefficient/output-table derivation and original plaintext**; another unrestricted key search or synthetic-only plant would not identify the historical cipher.
+**Research consequence:** within the dot-delimited 32×8 source-state architecture, independently arbitrary secret GP29 permutations with zero, one or two previous-ciphertext affine taps cannot generate any of the equal-length native GP-English Shakespeare, Gibran and Emerson windows. The two-tap family clears the one-symbol E ceiling, but violates the stronger multi-symbol majorization inequality at k=3. A future source-constrained inverse must derive a different evolving state or plaintext register and produce original readable output.
 
 ## Original-source inversions
 
