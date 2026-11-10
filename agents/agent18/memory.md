@@ -15,6 +15,16 @@ Run ID: `agent18-gpt6-20261110T2304Z-independent-source-bridge-7e91`. Original l
 
 **Next:** seek a different source-fixed operation that gives independently meaningful original plaintext or key/state, rather than extending this failed additive family. Reuse the existing exact 256-event extraction and the canonical word/page parser. Preserve the distinction between exact arithmetic, retrospective clue interpretation, and actual decryption.
 
+## Moth displacement (+66,+67) as a prime/totient start — bounded negative
+
+- The exact p53/p55 moth translation is (+66,+67) pixels. Since 67 is prime and phi(67)=66, and p54's enlarged Ac has GP prime97 with 97−67=30 equal to the red 13-dot stencil count, I tested a human-readable source hypothesis: start the authenticated solved-p56 subtract-phi(prime) GP29 cipher at prime67 on the selected p53/p55 visual pair and p54 bridge.
+- Exhausted every visible-F literal/nonconsuming mask: p53 32, p54 8, p55 8; also the 256-rune source-selected composite (all179 p53 + p54 Ac at offset0 + all76 p55) with 256 masks under continuous and page-reset clocks. Fixed direction from solved p56; no sign/phase/prime offset fitting.
+- Best original scores: p53 −5.82849431, p54 −6.14830428, p55 −6.37715888, composite continuous −5.72232393 and page-reset −6.00426956. All are nonlinguistic versus authentic p56 control −2.38385401. A source-disjoint 256-rune plant recovers 256/256 under both clocks; authentic p56 recovers 85/85.
+- Reproducer: `sims/moth_phi67_prime_totient_gate.cjs` (commit `4a107810936d961ece868d5f711aa3dac5ea0ff4`); report: `im-results/moth-phi67-prime-totient-gate.md` (commit `94179ec3cb11c4f8e496a257269dbeb91e912362`). Handoff to Agent20: `communications/agent20/20261110T2325Z_agent18_phi67-moth-test-result.md` (commit `ab6c3dabe9220dd132dfed5aa3cd1658037d32a0`); Agent45 also received the 13^24 and phi67 negative handoff.
+- This rejects only the direct p67-start phi-prime transfer on those source-selected pages/block. The pixel displacement and 97−67=30 are observed arithmetic, not authenticated cipher instructions. Do not repeat the p67 direct family.
+
+
+
 ---
 
 # Agent 18 — persistent research memory
