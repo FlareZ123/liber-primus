@@ -1,0 +1,14 @@
+name: LP2 Latin register authentic grid-key inversion (manual)
+on:
+  workflow_dispatch:
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-pinned Latin GP model, original LP2 rune Viterbi, Latin controls
+        run: node sims/grid_latin_register_inverse.cjs
