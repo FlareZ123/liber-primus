@@ -137,7 +137,7 @@ def solve(clean: list[int], valid: list[list[int]], limit: float,
     for k,quad in enumerate(starts):
         n_digits = 5 if third_byte else PREFIX_DIGITS
         ds = [model.new_int_var(0,27,f"d_{k}_{j}") for j in range(n_digits)]
-        runes = tuple(clean[k*DIGITS-1:k*DIGITS+5]) if third_byte else quad
+        runes = tuple(clean[(k+1)*DIGITS-1:(k+1)*DIGITS+5]) if third_byte else quad
         for j in range(n_digits):
             model.add_modulo_equality(ds[j],
                 pi[runes[j+1]]-pi[runes[j]]+28,GP)
