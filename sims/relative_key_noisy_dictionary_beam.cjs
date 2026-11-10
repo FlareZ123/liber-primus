@@ -58,6 +58,7 @@ function insert(unique,parent,a,b,cost,corrupt) {
  */
 function invertNoisy(A,B,dict,lm,cfg={}){
   const beam=cfg.beam??800,noisyTop=cfg.noisyTop??14,epsilon=cfg.epsilon??0.056;
+  const perErrorBeam=cfg.perErrorBeam??96;
   const errorBudget=cfg.errorBudget??26;
   const n=Math.min(A.xs.length,B.xs.length),logExact=Math.log(1-epsilon);
   const logWrong=Math.log(epsilon/28);
@@ -89,7 +90,12 @@ function invertNoisy(A,B,dict,lm,cfg={}){
     }
     if(!unique.size)return {status:'no-path',at:t,n,beam};
     peakUnique=Math.max(peakUnique,unique.size);
-    states=[...unique.values()].sort((x,y)=>y.score-x.score).slice(0,beam);
+    // Keep all error-count strata alive. An unstratified global beam
+    // loses the true no-error path and can score worse than its own submodel.
+    const layer=Array.from({length:errorBudget+1},()=>[]);
+    for(const item of unique.values())layer[item.errors].push(item);
+    states=layer.flatMap((items,e)=>items.sort((a,b)=>b.score-a.score)
+      .slice(0,e===0?beam:perErrorBeam));
   }
   const best=states[0],p=new Uint8Array(n),q=new Uint8Array(n),err=[];
   let node=best;
@@ -104,7 +110,7 @@ function invertNoisy(A,B,dict,lm,cfg={}){
   const disagreements=sharedA.filter((v,i)=>v!==sharedB[i]).length;
   assert.equal(disagreements,best.errors);
   return {status:'success',n,score:best.score,errors:best.errors,
-    errorSites:err,oovWords:best.oovWords,peakUnique,expanded,beam,noisyTop,
+    errorSites:err,oovWords:best.oovWords,peakUnique,expanded,beam,noisyTop,perErrorBeam,
     p:Array.from(p),q:Array.from(q),pText:text(p,A.start),qText:text(q,B.start),
     keyA:sharedA,keyB:sharedB,
     sharedKeyFraction:1-best.errors/n};
@@ -142,7 +148,7 @@ function study({beam=800,noisyTop=14,epsilon=.056,errorBudget=26}={}){
   const random=rng(2026111003),key=pa.xs.map(()=>Math.floor(random()*MOD));
   const ca=crypt(pa.xs,key,random),cb=crypt(pb.xs,key,random);
   const plantA={...pa,xs:ca.xs},plantB={...pb,xs:cb.xs};
-  const cfg={beam,noisyTop,epsilon,errorBudget};
+  const cfg={beam,noisyTop,epsilon,errorBudget,perErrorBeam};
   const planted=invertNoisy(plantA,plantB,dict,lm,cfg);
   const aCorrect=planted.status==='success'?
     planted.p.filter((x,i)=>x===pa.xs[i]).length/269:null;
