@@ -1,0 +1,27 @@
+name: 2014 stego shares LP2 key test
+on:
+  workflow_dispatch:
+    inputs:
+      all_pages:
+        description: Scan all 55 ciphertext-bearing unsolved LP2 pages
+        required: false
+        type: boolean
+        default: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify GP historical stream source and screen candidate key
+        shell: bash
+        run: |
+          node --check sims/stego2014_lp2_probe.cjs
+          if [ "${{ inputs.all_pages }}" = "true" ]; then
+            node sims/stego2014_lp2_probe.cjs --all
+          else
+            node sims/stego2014_lp2_probe.cjs
+          fi
