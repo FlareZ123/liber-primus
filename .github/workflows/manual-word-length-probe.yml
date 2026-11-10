@@ -16,3 +16,5 @@ jobs:
         run: |
           node sims/test_lp2_word_pages.cjs
           node sims/word_length_order_probe.cjs
+          node sims/wordlength_padding_dependence.cjs
+          node sims/wordlength_padding_equality.cjs
