@@ -36,6 +36,27 @@ The blind positive in both language registers uses exactly the physical original
 
 Each language-register run also contains **64 fixed-seed shuffled-source controls** that independently reorder the 32 bytes within each vertical grid column, preserving each column's byte multiset. Every null reruns all 96 mechanism assignments and the original train/frozen-heldout selection. The English null's heldout mean is **−5.87860306** log/rune (SD **0.07319624**, range **−6.03958042 to −5.72231430**), with **43/64** shuffled source keys outscoring the actual grid (**p=44/65=0.676923**). The Latin null's heldout mean is **−6.71385197** (SD **0.09456733**, range **−6.94506146 to −6.51772877**), with **59/64** shuffled sources outscoring the true grid (**p=60/65=0.923077**). The source table does not demonstrate a privileged key relation to either English or Latin under this finite family.
 
+## Corrected base-59 source-grid continuation across two plaintext registers
+
+A separately documented [source-codec ambiguity](lp2-grid-numeric-codec-ambiguity.md) allows the original 256 printed tokens to be read as radix 59 by omitting lowercase `f`, changing **220 of the 256 byte values**. The same independently audited five token replacements are applied **before** decoding. This alternate source input was unknown to the earlier base-60 red-title KDF experiments.
+
+Without changing any of the **96 source-red-title HMAC/SHA256/HKDF, two cipher, two nonce, two reducer and two sign mechanisms** or exact 8! assignment, [successful English CI](https://github.com/FlareZ123/liber-primus/actions/runs/42837928800) and [successful Latin CI](https://github.com/FlareZ123/liber-primus/actions/runs/42837938747) repeated the original **160-rune training + 140-rune frozen continuation per section** under the corrected base-59 source. Each language had **64 complete shuffled-column source-control refits**:
+
+| 59-digit source register | Original train, nats/rune | Frozen 8×140 heldout | Null mean heldout | Shuffles at least as good | Add-one p |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| English GP | −5.535773 | **−5.794961** | −5.887454 | 6/64 | **7/65=0.10769** |
+| Latin Vulgate GP | −6.285304 | **−6.766017** | −6.714280 | 48/64 | **49/65=0.75385** |
+
+In both independently trained models the same source-true GP plants blindly recovered all **96-setting method choices and all 8/8 column assignments**. The correct-key second holdouts recovered **1,116/1,120** planted English runes and **1,120/1,120** planted Latin runes. The original GP output remained unreadable.
+
+The English original train winner under corrected radix59 was SHA256(column||UTF8 title), AES-256-CTR, zero IV, scaled29, negative key sign, with column permutation `[0,4,6,7,2,1,3,5]`. Its second holdout was modestly better than the shuffled source average (nominal p 0.108) but lacked readable plaintext. This **same fitted choice**, with no further model selection, was evaluated on an independently designated **next 8×140 original-rune third continuation** by the [frozen-third runner](../sims/title_grid_base59_third_holdout.cjs). The existing first 300 runes determine the latent key-draw offset at position 300, and a collision-constrained continuation decoder then reads only the third interval:
+
+- Original **third heldout −5.80612195 nats/rune**; source-true GP-English planted third heldout **−2.44228041**, with the identical 96-setting mode and **8/8 column assignment recovered** and **1,120/1,120** third-interval planted plaintext GP symbols recovered.
+- **9/64** independently shuffled source-column sets, each refitted across all 96 modes and 8! assignments before scoring the same unseen third, matched or exceeded original, add-one p **10/65=0.15385**. Shuffled third mean **−5.86826106**, range **[−6.02148160, −5.72415432]**.
+- Every original third-section score remains noise-like, **−5.51698** to **−6.21725** nats/rune. No candidate passage is legible. [Successful manual original third-run CI 42839372829](https://github.com/FlareZ123/liber-primus/actions/runs/42839372829).
+
+The independent third weakens the selected English-source lead, rather than turning its earlier nominal p=0.108 into a detection. Both radix interpretations have now failed to recover original GP plaintext under this finite red-title KDF architecture. The historical numeral radix and source-side nonlinear alternatives remain unresolved.
+
 ## Scope and reproduction
 
 This source-inversion test disfavors **the precise three-KDF/two-title-encoding/two-cipher/two-IV/two-byte-mapping additive-with-collision-skips family under both fitted GP-English and independent Vulgate-Latin registers** on 160/140 source-designated original starts. It does not exclude an unknown cipher, another KDF salt/message interpretation, independent per-section ciphers, more elaborate skip policies, a differently encoded or hidden plaintext register, or the possibility that the grid contains encrypted data rather than eight keys. No known original plaintext rune is claimed.
