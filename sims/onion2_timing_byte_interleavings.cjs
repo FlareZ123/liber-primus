@@ -222,7 +222,7 @@ function clockModes(kind, keyLength) {
   if (kind === 'time-expanded') {
     return [
       { name: 'page-repeat', rotations: keyLength },
-      { name: 'page-one-shot-suffix>=180', rotations: keyLength - 179 },
+      { name: 'page-one-shot', rotations: keyLength - 179 },
       { name: 'global-repeat', rotations: keyLength }
     ];
   }
