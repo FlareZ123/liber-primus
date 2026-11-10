@@ -22,3 +22,5 @@ jobs:
         run: node sims/red_256_event_grid_hash.cjs
       - name: Direct AES-256 inversion of the original grid with all source event bitkeys
         run: node sims/red_256_event_grid_aes_inverse.cjs
+      - name: Source-run32 AES-CTR key original GP29/GP28 reversible inverse
+        run: node sims/red_32run_aes_gp_inverse.cjs
