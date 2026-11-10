@@ -1,0 +1,16 @@
+name: Historical 2012 modular-squaring smoke (temporary)
+on:
+  workflow_dispatch:
+jobs:
+  key-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Direct modular-squaring key source
+        run: node sims/ps2012_modsquare_pad.cjs
+      - name: Marginalized keyskip mechanism with planted-language control
+        run: node sims/ps2012_modsquare_keyskip.cjs
