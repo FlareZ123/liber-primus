@@ -1,0 +1,672 @@
+{
+  "classification": "F31-labelled 32-fragment→32-row map; each 8-byte row used as its fragment pad",
+  "source": {
+    "originalRunes": 12956,
+    "gridRows": 32,
+    "rowForFragment": [
+      31,
+      1,
+      13,
+      14,
+      27,
+      10,
+      6,
+      16,
+      0,
+      22,
+      7,
+      29,
+      5,
+      3,
+      8,
+      11,
+      19,
+      30,
+      18,
+      17,
+      4,
+      21,
+      25,
+      15,
+      9,
+      24,
+      2,
+      26,
+      28,
+      23,
+      20,
+      12
+    ],
+    "rowBytesByFragment": [
+      [
+        113,
+        158,
+        172,
+        230,
+        180,
+        36,
+        189,
+        80
+      ],
+      [
+        92,
+        249,
+        156,
+        222,
+        247,
+        4,
+        183,
+        212
+      ],
+      [
+        122,
+        63,
+        31,
+        218,
+        14,
+        184,
+        32,
+        115
+      ],
+      [
+        73,
+        143,
+        197,
+        247,
+        54,
+        171,
+        35,
+        184
+      ],
+      [
+        142,
+        219,
+        148,
+        59,
+        58,
+        52,
+        51,
+        151
+      ],
+      [
+        142,
+        58,
+        201,
+        193,
+        173,
+        28,
+        111,
+        65
+      ],
+      [
+        253,
+        16,
+        47,
+        59,
+        86,
+        171,
+        156,
+        80
+      ],
+      [
+        201,
+        179,
+        86,
+        120,
+        169,
+        141,
+        72,
+        171
+      ],
+      [
+        203,
+        231,
+        167,
+        186,
+        97,
+        237,
+        126,
+        183
+      ],
+      [
+        235,
+        131,
+        166,
+        175,
+        144,
+        40,
+        167,
+        81
+      ],
+      [
+        254,
+        118,
+        146,
+        69,
+        106,
+        196,
+        124,
+        51
+      ],
+      [
+        106,
+        234,
+        196,
+        121,
+        238,
+        32,
+        129,
+        173
+      ],
+      [
+        80,
+        84,
+        28,
+        73,
+        230,
+        107,
+        199,
+        76
+      ],
+      [
+        109,
+        198,
+        173,
+        25,
+        150,
+        66,
+        141,
+        133
+      ],
+      [
+        122,
+        255,
+        25,
+        192,
+        199,
+        73,
+        169,
+        108
+      ],
+      [
+        211,
+        220,
+        198,
+        49,
+        236,
+        84,
+        56,
+        35
+      ],
+      [
+        231,
+        33,
+        14,
+        112,
+        52,
+        251,
+        249,
+        248
+      ],
+      [
+        144,
+        141,
+        42,
+        214,
+        22,
+        56,
+        198,
+        192
+      ],
+      [
+        125,
+        210,
+        92,
+        173,
+        246,
+        174,
+        153,
+        189
+      ],
+      [
+        10,
+        129,
+        233,
+        13,
+        245,
+        46,
+        160,
+        152
+      ],
+      [
+        115,
+        114,
+        197,
+        39,
+        54,
+        80,
+        133,
+        5
+      ],
+      [
+        240,
+        228,
+        254,
+        54,
+        148,
+        117,
+        209,
+        18
+      ],
+      [
+        110,
+        74,
+        209,
+        68,
+        194,
+        76,
+        127,
+        21
+      ],
+      [
+        42,
+        237,
+        86,
+        54,
+        13,
+        20,
+        163,
+        193
+      ],
+      [
+        164,
+        79,
+        205,
+        177,
+        114,
+        144,
+        46,
+        82
+      ],
+      [
+        0,
+        155,
+        159,
+        89,
+        176,
+        115,
+        105,
+        47
+      ],
+      [
+        121,
+        202,
+        15,
+        33,
+        102,
+        137,
+        59,
+        87
+      ],
+      [
+        57,
+        175,
+        6,
+        61,
+        70,
+        150,
+        251,
+        84
+      ],
+      [
+        68,
+        52,
+        73,
+        249,
+        144,
+        0,
+        117,
+        175
+      ],
+      [
+        128,
+        156,
+        19,
+        81,
+        38,
+        192,
+        170,
+        33
+      ],
+      [
+        233,
+        217,
+        192,
+        82,
+        105,
+        18,
+        250,
+        248
+      ],
+      [
+        222,
+        150,
+        72,
+        34,
+        83,
+        229,
+        32,
+        206
+      ]
+    ],
+    "trainStop": 6546,
+    "fragmentBoundaries": [
+      0,
+      13,
+      729,
+      745,
+      848,
+      851,
+      1541,
+      1552,
+      1860,
+      1860,
+      1874,
+      3603,
+      3603,
+      3612,
+      3623,
+      5506,
+      5522,
+      6527,
+      6546,
+      7960,
+      7970,
+      8051,
+      8059,
+      9519,
+      9522,
+      9640,
+      12648,
+      12657,
+      12956
+    ]
+  },
+  "tested": {
+    "models": 12,
+    "families": [
+      "add",
+      "exclude",
+      "exp"
+    ],
+    "signs": [
+      -1,
+      1
+    ],
+    "projections": [
+      "mod",
+      "scale"
+    ],
+    "padBytes": 8,
+    "padRepeatsWithinFragment": true,
+    "registerAndPadReset": "at each 13-dot-defined fragment",
+    "rowOrKeyPermutationSearch": false
+  },
+  "raw": {
+    "englishGP": -6.195857373846908,
+    "trainIoC": 1.0012234741409272,
+    "heldoutIoC": 0.999107729015043
+  },
+  "bestTraining": [
+    {
+      "family": "exp",
+      "sign": 1,
+      "projection": "scale",
+      "trainIoC": 1.0244608000687152,
+      "heldoutIoC": 1.0233924651103692,
+      "trainEnglishGP": -6.162484355856335,
+      "heldoutEnglishGP": -6.259520129274253,
+      "prefix": "SETAEYMOEWNGMOECPTHHNGTHTHROPIALBUNGGTEONGNXXOEYAPOUDUSEUGTPSSGIGSFEOLBOEFSMPMX"
+    },
+    {
+      "family": "add",
+      "sign": 1,
+      "projection": "mod",
+      "trainIoC": 1.0011029893167167,
+      "heldoutIoC": 1.001242402637282,
+      "trainEnglishGP": -6.172736005697953,
+      "heldoutEnglishGP": -6.192861119298282,
+      "prefix": "EONGTUEOYPOEEOITMJWEABSSSTHEOXMLHOENGRAIAFNGJTPCSSMMWATHOEYXFOENGIAEGDOEJAHPRDSCOA"
+    },
+    {
+      "family": "exclude",
+      "sign": 1,
+      "projection": "scale",
+      "trainIoC": 1.0232045088679584,
+      "heldoutIoC": 1.0243285025518667,
+      "trainEnglishGP": -6.180226062191547,
+      "heldoutEnglishGP": -6.166090276367131,
+      "prefix": "SNLDCNGRNGYOEOSTHYAUWJIBIJWMNGIGIAJHIANGEOHSBHIGMAEXJAELFTHAEYRAWDMSEOTHPFIARIA"
+    },
+    {
+      "family": "exp",
+      "sign": -1,
+      "projection": "scale",
+      "trainIoC": 1.0244323710652496,
+      "heldoutIoC": 1.0219185237997754,
+      "trainEnglishGP": -6.183576977446294,
+      "heldoutEnglishGP": -6.17665893724121,
+      "prefix": "SXOECLUFMNSFPWTHFMHOETHOAEBEOSWPRTAJUEOLXAAAENGNGNGWWTUEGCPNGYHGIAEREDXYSOOJEO"
+    },
+    {
+      "family": "add",
+      "sign": 1,
+      "projection": "scale",
+      "trainIoC": 1.001854327265445,
+      "heldoutIoC": 1.0023817423285166,
+      "trainEnglishGP": -6.190285968789598,
+      "heldoutEnglishGP": -6.301952145962982,
+      "prefix": "IAAEHFYDMNIAXHEAEEOIDNGIAJPIAMUYXCBSIOJIABEANTULUAEPWIAREOMJEAIAOENGBNIAOEUXAEFCUIXU"
+    },
+    {
+      "family": "exclude",
+      "sign": -1,
+      "projection": "scale",
+      "trainIoC": 1.0249237866965801,
+      "heldoutIoC": 1.0220018212493205,
+      "trainEnglishGP": -6.200249582271378,
+      "heldoutEnglishGP": -6.1826854015456245,
+      "prefix": "SCYOIAOINGOEOENLNTHEOEWIANIUFOCAEPHGJUFAEIARGSUYTHRAETTXDSEOYHBARHAESBNGRFPEOBAAE"
+    },
+    {
+      "family": "exp",
+      "sign": 1,
+      "projection": "mod",
+      "trainIoC": 1.0225993772227664,
+      "heldoutIoC": 1.022390072073471,
+      "trainEnglishGP": -6.206118315105267,
+      "heldoutEnglishGP": -6.21552411095323,
+      "prefix": "SUSJBYBGCTHNGMRTHIDOFHIAEGOEMTHMIEOBFJTSLTHLEIOAETHPOEAEJDSBTRXTHLWXOEELRJALNGT"
+    },
+    {
+      "family": "exclude",
+      "sign": 1,
+      "projection": "mod",
+      "trainIoC": 1.0247288449585317,
+      "heldoutIoC": 1.0222855973062452,
+      "trainEnglishGP": -6.2154163158891365,
+      "heldoutEnglishGP": -6.213546725923542,
+      "prefix": "SLMNAFIAHENTHYGTHFYTHCSGOEBPNLMXTHREIUOEIEOJOESEOHLOEOEITROETHODTHFUXAENGTIGNCGGU"
+    },
+    {
+      "family": "exp",
+      "sign": -1,
+      "projection": "mod",
+      "trainIoC": 1.0225804245537895,
+      "heldoutIoC": 1.0236409456378255,
+      "trainEnglishGP": -6.216953758335826,
+      "heldoutEnglishGP": -6.244509839664382,
+      "prefix": "SODMUOECLAERUIATTHYBWAYWLIIPGSFLMRIAIMTLFLXMMGNEOCPIAOJLFRIOEJTHTOETOEMYANI"
+    },
+    {
+      "family": "exclude",
+      "sign": -1,
+      "projection": "mod",
+      "trainIoC": 1.0246868783343686,
+      "heldoutIoC": 1.0264589407105695,
+      "trainEnglishGP": -6.21740056564726,
+      "heldoutEnglishGP": -6.207251765942286,
+      "prefix": "SOEIABHASOEIJIGETHTLGUCXANGUOASRIGOEYDYGTHMAMFTHAEEOEEHIAWMLHOEPSLGABWIOED"
+    },
+    {
+      "family": "add",
+      "sign": -1,
+      "projection": "mod",
+      "trainIoC": 0.9986215434428083,
+      "heldoutIoC": 1.0004164872477253,
+      "trainEnglishGP": -6.232143605883217,
+      "heldoutEnglishGP": -6.266051492701162,
+      "prefix": "EALCFEOEOWEPLDEAYDAGXWPDRXIAEANGPSGBAEATHSCTYCXYIADDRHRAFEONBBCEOGTHEAEOAECYAIATH"
+    },
+    {
+      "family": "add",
+      "sign": -1,
+      "projection": "scale",
+      "trainIoC": 0.999685600429656,
+      "heldoutIoC": 1.0020810244174474,
+      "trainEnglishGP": -6.2421882107511735,
+      "heldoutEnglishGP": -6.224970020830017,
+      "prefix": "OLEAGSSGLONEAAXNGEOEFTHJTHHEAONGOENBRLEOPOEAEONCJFOLNGJIAOEOEEAPDGYNGGMWAAEOEFFDJMTAE"
+    }
+  ],
+  "bestHeldout": [
+    {
+      "family": "exclude",
+      "sign": 1,
+      "projection": "scale",
+      "trainIoC": 1.0232045088679584,
+      "heldoutIoC": 1.0243285025518667,
+      "trainEnglishGP": -6.180226062191547,
+      "heldoutEnglishGP": -6.166090276367131,
+      "prefix": "SNLDCNGRNGYOEOSTHYAUWJIBIJWMNGIGIAJHIANGEOHSBHIGMAEXJAELFTHAEYRAWDMSEOTHPFIARIA"
+    },
+    {
+      "family": "exp",
+      "sign": -1,
+      "projection": "scale",
+      "trainIoC": 1.0244323710652496,
+      "heldoutIoC": 1.0219185237997754,
+      "trainEnglishGP": -6.183576977446294,
+      "heldoutEnglishGP": -6.17665893724121,
+      "prefix": "SXOECLUFMNSFPWTHFMHOETHOAEBEOSWPRTAJUEOLXAAAENGNGNGWWTUEGCPNGYHGIAEREDXYSOOJEO"
+    },
+    {
+      "family": "exclude",
+      "sign": -1,
+      "projection": "scale",
+      "trainIoC": 1.0249237866965801,
+      "heldoutIoC": 1.0220018212493205,
+      "trainEnglishGP": -6.200249582271378,
+      "heldoutEnglishGP": -6.1826854015456245,
+      "prefix": "SCYOIAOINGOEOENLNTHEOEWIANIUFOCAEPHGJUFAEIARGSUYTHRAETTXDSEOYHBARHAESBNGRFPEOBAAE"
+    },
+    {
+      "family": "add",
+      "sign": 1,
+      "projection": "mod",
+      "trainIoC": 1.0011029893167167,
+      "heldoutIoC": 1.001242402637282,
+      "trainEnglishGP": -6.172736005697953,
+      "heldoutEnglishGP": -6.192861119298282,
+      "prefix": "EONGTUEOYPOEEOITMJWEABSSSTHEOXMLHOENGRAIAFNGJTPCSSMMWATHOEYXFOENGIAEGDOEJAHPRDSCOA"
+    },
+    {
+      "family": "exclude",
+      "sign": -1,
+      "projection": "mod",
+      "trainIoC": 1.0246868783343686,
+      "heldoutIoC": 1.0264589407105695,
+      "trainEnglishGP": -6.21740056564726,
+      "heldoutEnglishGP": -6.207251765942286,
+      "prefix": "SOEIABHASOEIJIGETHTLGUCXANGUOASRIGOEYDYGTHMAMFTHAEEOEEHIAWMLHOEPSLGABWIOED"
+    },
+    {
+      "family": "exclude",
+      "sign": 1,
+      "projection": "mod",
+      "trainIoC": 1.0247288449585317,
+      "heldoutIoC": 1.0222855973062452,
+      "trainEnglishGP": -6.2154163158891365,
+      "heldoutEnglishGP": -6.213546725923542,
+      "prefix": "SLMNAFIAHENTHYGTHFYTHCSGOEBPNLMXTHREIUOEIEOJOESEOHLOEOEITROETHODTHFUXAENGTIGNCGGU"
+    },
+    {
+      "family": "exp",
+      "sign": 1,
+      "projection": "mod",
+      "trainIoC": 1.0225993772227664,
+      "heldoutIoC": 1.022390072073471,
+      "trainEnglishGP": -6.206118315105267,
+      "heldoutEnglishGP": -6.21552411095323,
+      "prefix": "SUSJBYBGCTHNGMRTHIDOFHIAEGOEMTHMIEOBFJTSLTHLEIOAETHPOEAEJDSBTRXTHLWXOEELRJALNGT"
+    },
+    {
+      "family": "add",
+      "sign": -1,
+      "projection": "scale",
+      "trainIoC": 0.999685600429656,
+      "heldoutIoC": 1.0020810244174474,
+      "trainEnglishGP": -6.2421882107511735,
+      "heldoutEnglishGP": -6.224970020830017,
+      "prefix": "OLEAGSSGLONEAAXNGEOEFTHJTHHEAONGOENBRLEOPOEAEONCJFOLNGJIAOEOEEAPDGYNGGMWAAEOEFFDJMTAE"
+    },
+    {
+      "family": "exp",
+      "sign": -1,
+      "projection": "mod",
+      "trainIoC": 1.0225804245537895,
+      "heldoutIoC": 1.0236409456378255,
+      "trainEnglishGP": -6.216953758335826,
+      "heldoutEnglishGP": -6.244509839664382,
+      "prefix": "SODMUOECLAERUIATTHYBWAYWLIIPGSFLMRIAIMTLFLXMMGNEOCPIAOJLFRIOEJTHTOETOEMYANI"
+    },
+    {
+      "family": "exp",
+      "sign": 1,
+      "projection": "scale",
+      "trainIoC": 1.0244608000687152,
+      "heldoutIoC": 1.0233924651103692,
+      "trainEnglishGP": -6.162484355856335,
+      "heldoutEnglishGP": -6.259520129274253,
+      "prefix": "SETAEYMOEWNGMOECPTHHNGTHTHROPIALBUNGGTEONGNXXOEYAPOUDUSEUGTPSSGIGSFEOLBOEFSMPMX"
+    },
+    {
+      "family": "add",
+      "sign": -1,
+      "projection": "mod",
+      "trainIoC": 0.9986215434428083,
+      "heldoutIoC": 1.0004164872477253,
+      "trainEnglishGP": -6.232143605883217,
+      "heldoutEnglishGP": -6.266051492701162,
+      "prefix": "EALCFEOEOWEPLDEAYDAGXWPDRXIAEANGPSGBAEATHSCTYCXYIADDRHRAFEONBBCEOGTHEAEOAECYAIATH"
+    },
+    {
+      "family": "add",
+      "sign": 1,
+      "projection": "scale",
+      "trainIoC": 1.001854327265445,
+      "heldoutIoC": 1.0023817423285166,
+      "trainEnglishGP": -6.190285968789598,
+      "heldoutEnglishGP": -6.301952145962982,
+      "prefix": "IAAEHFYDMNIAXHEAEEOIDNGIAJPIAMUYXCBSIOJIABEANTULUAEPWIAREOMJEAIAOENGBNIAOEUXAEFCUIXU"
+    }
+  ],
+  "positiveControl": {
+    "runes": 12956,
+    "exactRecovered": 12956,
+    "plaintextEnglishGP": -2.400197309139374,
+    "recoveredEnglishGP": -2.400197309139374,
+    "encryptedEnglishGP": -6.225497358239422
+  },
+  "status": "No plaintext claim; this is the direct one-row-per-fragment interpretation of the 32×8 table"
+}
