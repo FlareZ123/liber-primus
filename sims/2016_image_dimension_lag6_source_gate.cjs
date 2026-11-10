@@ -442,9 +442,182 @@ function main() {
         score: scorePlain(recovered, lm)
       }
     },
+    sparseMaskAudit: sparseMaskAudit(),
     interpretation: 'The source arithmetic independently specifies the lag-six affine motif, but the tested simple source pads and six-lag key recurrences do not recover original LP2 English. This is not a recovered key or complete cipher.'
   };
 }
+
+/**
+ * Predeclared source-mask audit for the sparse T6 matches. This does not
+ * search for a mask: it checks only masks selected independently from the
+ * source clue (tree-decorated physical pages 40–55; first/last eligible
+ * within-word positions; phase fixed by the 51/57 anchors; the 128-rune
+ * second half). The 16×5 ornament count is a candidate, not an assumption.
+ */
+function sparseMaskAudit() {
+  const raw = fs.readFileSync(path.join(__dirname, '..', 'resources', 'lp2-transcription.txt'), 'utf8');
+  const segments = raw.split('%').slice(0, 55);
+  const words = [];
+  const pageRuneCounts = Array(55).fill(0);
+  let current = [], currentPages = [], page = 0, global = 0;
+
+  function flush() {
+    if (current.length) {
+      words.push({
+        runes: current,
+        pages: currentPages,
+        globalStart: global - current.length
+      });
+    }
+    current = [];
+    currentPages = [];
+  }
+
+  for (const ch of segments.join('%')) {
+    const rune = GP.indexOf(ch);
+    if (rune >= 0) {
+      current.push(rune);
+      currentPages.push(page);
+      pageRuneCounts[page]++;
+      global++;
+    } else if (ch === '%') {
+      page++;
+    } else if (ch === '/' || /\\s/u.test(ch)) {
+      // Physical line wrapping and whitespace do not terminate a word.
+    } else {
+      flush();
+    }
+  }
+  flush();
+
+  const physicalPage = i => i >= 50 ? i + 1 : i; // physical p50 is the grid-only page
+  const pageRows = {};
+  const localResidues = Array.from({ length: 6 }, () => ({ eligible: 0, hits: 0 }));
+  const globalResidues = Array.from({ length: 6 }, () => ({ eligible: 0, hits: 0 }));
+  const tree = { eligible: 0, hits: 0 };
+  const other = { eligible: 0, hits: 0 };
+  const first = { eligible: 0, hits: 0 };
+  const last = { eligible: 0, hits: 0 };
+  let eligible = 0, hits = 0, wordsWithHits = 0, wordsWithMultipleHits = 0;
+  const hitPositions = [];
+
+  for (const word of words) {
+    let wordHits = 0;
+    for (let j = 6; j < word.runes.length; j++) {
+      const globalPos = word.globalStart + j;
+      const pageIndex = word.pages[j];
+      const phys = physicalPage(pageIndex);
+      const hit = word.runes[j] === mod(24 - 2 * word.runes[j - 6], 29);
+      eligible++;
+      if (hit) {
+        hits++;
+        wordHits++;
+        hitPositions.push({
+          global: globalPos,
+          physicalPage: phys,
+          wordOffset: j,
+          wordLength: word.runes.length
+        });
+      }
+
+      const lr = j % 6, gr = globalPos % 6;
+      localResidues[lr].eligible++;
+      globalResidues[gr].eligible++;
+      if (hit) {
+        localResidues[lr].hits++;
+        globalResidues[gr].hits++;
+      }
+
+      const pageBucket = pageRows[phys] || (pageRows[phys] = { eligible: 0, hits: 0 });
+      pageBucket.eligible++;
+      if (hit) pageBucket.hits++;
+
+      const bucket = phys >= 40 && phys <= 55 ? tree : other;
+      bucket.eligible++;
+      if (hit) bucket.hits++;
+
+      if (j === 6) {
+        first.eligible++;
+        if (hit) first.hits++;
+      }
+      if (j === word.runes.length - 1) {
+        last.eligible++;
+        if (hit) last.hits++;
+      }
+    }
+    if (wordHits) wordsWithHits++;
+    if (wordHits > 1) wordsWithMultipleHits++;
+  }
+
+  const p53PageIndex = segments.findIndex((_, i) => physicalPage(i) === 53);
+  const p53Start = pageRuneCounts.slice(0, p53PageIndex).reduce((a, b) => a + b, 0);
+  const secondHalfStart = p53Start + 128;
+  const secondHalfEnd = secondHalfStart + 128;
+  const blockEnd = p53Start + 256;
+  const inRange = (a, b) => hitPositions.filter(h => h.global >= a && h.global < b);
+  const secondHalfHits = inRange(secondHalfStart, secondHalfEnd);
+  const blockHits = inRange(p53Start, blockEnd);
+  const secondHalfEligible = words.reduce((sum, word) => {
+    let n = 0;
+    for (let j = 6; j < word.runes.length; j++) {
+      const pos = word.globalStart + j;
+      if (pos >= secondHalfStart && pos < secondHalfEnd) n++;
+    }
+    return sum + n;
+  }, 0);
+  const blockEligible = words.reduce((sum, word) => {
+    let n = 0;
+    for (let j = 6; j < word.runes.length; j++) {
+      const pos = word.globalStart + j;
+      if (pos >= p53Start && pos < blockEnd) n++;
+    }
+    return sum + n;
+  }, 0);
+  const anchorOffsets = [secondHalfStart + 51, secondHalfStart + 57];
+
+  assert.strictEqual(words.length, 2896, 'word count changed');
+  assert.strictEqual(global, 12956, 'rune count changed');
+  assert.strictEqual(eligible, 1290, 'T6 eligible-position count changed');
+  assert.strictEqual(hits, 80, 'T6 hit count changed');
+  assert.strictEqual(p53Start, 12469, 'p53 source offset changed');
+
+  return {
+    method: 'Predeclared source-mask checks only; no mask fitted to T6 hit positions.',
+    sourceCounts: { words: words.length, runes: global, eligiblePositions: eligible, t6Hits: hits },
+    treeDecoratedPages40to55: {
+      ...tree,
+      rate: tree.hits / tree.eligible
+    },
+    allOtherPages: {
+      ...other,
+      rate: other.hits / other.eligible
+    },
+    firstEligibleWithinWordPosition6: { ...first, rate: first.hits / first.eligible },
+    lastEligibleWithinWordPosition: { ...last, rate: last.hits / last.eligible },
+    withinWordResidueModulo6: localResidues,
+    globalRuneResidueModulo6: globalResidues,
+    sourcePhaseFromOffsets51and57: {
+      p53Start,
+      secondHalfStart,
+      secondHalfEnd,
+      anchorGlobalOffsets: anchorOffsets,
+      phase: anchorOffsets[0] % 6,
+      eligiblePositionsIn128RuneHalf: secondHalfEligible,
+      t6HitsIn128RuneHalf: secondHalfHits,
+      eligiblePositionsIn256RuneBlock: blockEligible,
+      t6HitsIn256RuneBlock: blockHits
+    },
+    treePageCounts: Object.fromEntries(
+      Array.from({ length: 16 }, (_, i) => {
+        const p = 40 + i;
+        return [p, pageRows[p] || { eligible: 0, hits: 0 }];
+      })
+    ),
+    wordsWithAtLeastOneT6Hit: wordsWithHits,
+    wordsWithMultipleT6Hits: wordsWithMultipleHits
+  };
+}
+
 if (require.main === module)
   process.stdout.write(JSON.stringify(main(), null, 2) + '\n');
 module.exports = { main };
