@@ -126,6 +126,39 @@ function scan(input) {
   return {models, results};
 }
 
+/**
+ * Per-heading gate with a completely different alphabet permitted per page.
+ * Every source heading is compared against every documented onion host.
+ * @param {number[][]} input
+ */
+function independentHeaders(input) {
+  return input.map((runes, index) => {
+    const out = {page:PAGES[index],base32:{maximum:0,best:null,exact:0},
+      base29:{maximum:0,best:null,exact:0}};
+    for (const host of hosts) {
+      for (const reverseHeading of [false,true]) {
+        const c = reverseHeading ? runes.slice().reverse() : runes;
+        for (const reverseHost of [false,true]) {
+          const address = reverseHost ? [...host].reverse().join("") : host;
+          const scores = {
+            base32:optimum(c,[...address].map(x=>BASE32.indexOf(x)),32),
+            base29:optimum([...c,13],toBase29(address),29)
+          };
+          for (const [mode,match] of Object.entries(scores)) {
+            const limit=mode==="base32"?16:17;
+            out[mode].exact+=Number(match===limit);
+            if(match>out[mode].maximum){
+              out[mode].maximum=match;
+              out[mode].best={host,reverseHeading,reverseHost};
+            }
+          }
+        }
+      }
+    }
+    return out;
+  });
+}
+
 /** Source-authentic 32-character target encoded with a secret injective map. */
 function plant32() {
   const labels = [hosts[0], hosts[4]].flatMap(x =>
@@ -162,7 +195,10 @@ function plant29() {
 
 function main() {
   const found = scan(heads);
+  const singles = independentHeaders(heads);
   assert.equal(found.models, 672);
+  assert(singles.every(x=>x.base32.exact===0 && x.base29.exact===0),
+    "Unexpected complete single-heading source-host mapping");
   assert.equal(found.results.base32.maximum, 20);
   assert.equal(found.results.base29.maximum, 22);
   assert.equal(found.results.base32.exact, 0);
@@ -177,6 +213,7 @@ function main() {
     interpretationB:"16 runes plus literal 13-dot GP digit to 17 base29 digits under any secret 29-symbol permutation",
     testedPairOrientationCases:found.models,
     original:found.results,
+    singleHeadingOriginal:singles,
     synthetic:control,
     verdict:"Zero complete original address inverses in either exact symbol-map family. These historical addresses are excluded as simultaneous two-title direct encodings; other sites, lengths, transforms and destination channels remain open."
   };
@@ -184,4 +221,4 @@ function main() {
   return result;
 }
 if (require.main === module) main();
-module.exports = {toBase29,optimum,scan,plant32,plant29,main};
+module.exports = {toBase29,optimum,scan,independentHeaders,plant32,plant29,main};
