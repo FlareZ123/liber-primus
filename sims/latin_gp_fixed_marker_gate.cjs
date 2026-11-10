@@ -155,18 +155,22 @@ for(let trial=0;trial<REPS;trial++) {
     }
     assert.equal(P.length,12956);
     let events=0;
+    const recovered=[P[0]]; // The first emitted rune transmits its seed state.
     for(let t=1;t<P.length;t++) {
+      const difference=(C[t]-C[t-1]+29)%29;
+      recovered.push(difference===0 ? marker :
+        (difference-1<marker ? difference-1 : difference));
       assert.equal(C[t]===C[t-1],P[t]===marker);
       events+=Number(C[t]===C[t-1]);
     }
+    assert.deepEqual(recovered,P,"Blind marker observation + reversible rank28 inverse");
     plant={sourceGP:12956,marker:corpus.translit[marker],
       encodedCipherRunes:C.length,
       directMarkerEventPositionsRecovered:events,
       observedMarkerPositionsInNativePlant:P.slice(1)
         .filter(x=>x===marker).length,
-      wholeCipherReversibleUsingKnownState:true,
-      sampleBestMarker:corpus.translit[found.k],
-      sampleBestScore:found.score};
+      GPPlaintextRunesExactlyRecovered:recovered.length,
+      exactWholeCipherReversible:true};
   }
 }
 const report={
