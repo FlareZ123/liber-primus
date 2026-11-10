@@ -48,6 +48,16 @@ There is already a key-independent obstruction for an overly simple reading: if 
 
 This is specifically a **word-length** crosslink, not an identical plaintext quote. Avoid postselecting a putative English phrase to fit the observed runes.
 
+## Original-cipher consequences of a *conditional* shared plaintext
+
+Two further exact, easily falsifiable gates use the **frozen** source segments above. They matter **only if the first five quote words truly share all 21 GP plaintext runes**. Since that premise is unproved, their failure may indicate different words rather than an incorrect Cicada mechanism.
+
+**Common additive linear recurrence.** Under `C_page[i] = P[i] + K_page[i] (mod29)`, equal plaintext implies the observed 21-symbol difference `D=C40−C53` is exactly the difference of the two keystreams. If those two key streams obey the same homogeneous GF29 linear recurrence of order at most 10, their difference must obey that recurrence too. The 11×10 predecessor-regression matrix formed from all 21 source differences has GF29 rank **10**, while appending the next-symbol column raises its rank to **11**. The system is inconsistent for order 10 and hence for every lower order. Berlekamp–Massey gives minimal complexity **11**, the generic value for a random 21-symbol sequence. This rejects *only* a common order≤10 GF29 additive keystream transition under the proposed true shared phrase.
+
+**Literal fixed red-source additive keys.** The physical p40 red title is eight runes; the corrected physical p53 red passage is 51 runes. Using each as a repeated additive source pad, compare both signs independently, quote-reset versus physical-page-rune-position phase, and literal GP-index versus GP-prime-mod29 bytes: **16 frozen possibilities**. A genuine shared 21-rune plaintext would require **21 of 21 exact recovered symbol matches**. The maximum over all 16 original-source alternatives is only **2/21**. This excludes these literal short red-Vigenère masks *under the shared-plaintext hypothesis*, without touching unknown KDFs, nonlinear field emissions, or changing hidden keys. The counterexample and 16 cases are executed in the SFT.
+
+These restrictions encourage an independent derivation of a genuinely dynamic or layered operation if another researcher pursues the quotation hypothesis, and discourage adapting arbitrary fitted keys solely to force these two lengths to match.
+
 ## Reproduce
 
 Run `node sims/lp2_quote_length_crosslink.cjs` from the repo root. Inputs are the frozen original-word transcription `resources/liber-primus/lp2-transcription.txt` and independently sourced quotation annotations `resources/liber-primus/lp2-quote-punctuation-spans.json`. The script verifies all source counts and offsets, prints the seven quotation length lists, and exhaustively enumerates ten pairwise rotational supports. No random sample, external text or guessed key is needed for the primary statistic.
