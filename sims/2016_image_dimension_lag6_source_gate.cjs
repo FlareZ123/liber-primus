@@ -94,6 +94,20 @@ function periodicPad(key, phase, sign, total) {
   return Array.from({ length: total }, (_, i) =>
     mod(sign * key[(phase + i) % key.length]));
 }
+function gridWalk(rows, startIndex, deltaRow, deltaColumn, wrapRows, wrapColumns) {
+  const height = rows.length, width = rows[0].length;
+  let row = Math.floor(startIndex / width), column = startIndex % width;
+  const values = [];
+  for (let step = 0; step < height * width; step++) {
+    values.push(rows[row][column]);
+    let nextRow = row + deltaRow, nextColumn = column + deltaColumn;
+    if (wrapRows) nextRow = (nextRow + height) % height;
+    if (wrapColumns) nextColumn = (nextColumn + width) % width;
+    if (nextRow < 0 || nextRow >= height || nextColumn < 0 || nextColumn >= width) break;
+    row = nextRow; column = nextColumn;
+  }
+  return values;
+}
 function inverseCandidates(cipher, pad) {
   const result = [];
   let previous = -1, offset = 0;
@@ -334,6 +348,18 @@ function main() {
     for (const sign of [1, -1]) {
       addCandidate('full256-periodic:phase' + phase + ':sign' + sign,
         periodicPad(runeBlock, phase, sign, totalRunes));
+    }
+  }
+  const pathCases = [
+    ['grid-torus-forward', gridWalk(grid.byte_rows, 51, 1, -2, true, true), [0, 1]],
+    ['grid-torus-reverse', gridWalk(grid.byte_rows, 51, -1, 2, true, true), [0, 1]],
+    ['grid-cylinder-from51', gridWalk(grid.byte_rows, 51, 1, -2, false, true), [0]],
+    ['grid-cylinder-from57', gridWalk(grid.byte_rows, 57, 1, -2, false, true), [0]]
+  ];
+  for (const [name, key, phases] of pathCases) {
+    for (const phase of phases) for (const sign of [1, -1]) {
+      addCandidate(name + ':phase' + phase + ':sign' + sign,
+        periodicPad(key, phase, sign, totalRunes));
     }
   }
   candidates.sort((a, b) => b.score.perToken - a.score.perToken);
