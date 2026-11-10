@@ -128,23 +128,26 @@ function controlPlant(mode){
     state^=state<<13;state^=state>>>17;state^=state<<5;
     return state>>>0;
   }
-  const actual=[],ciphers=[],rejected=[];
+  const actual=[],ciphers=[],rejected=[],skipWitnesses=[];
   for(let j=0;j<pages.length;j++){
     const symbols=plain.slice(j*(T+H),(j+1)*(T+H));
     const stream=pad(mode,pages[j].page),c=[];
     let at=0,previous=-1,skip=0;
+    const skipped=[];
     for(const symbol of symbols){
       let value=(symbol+mode.sign*stream[at]+58)%29;
+      let didSkip=false;
       if(value===previous&&next()/4294967296<.81){
         at++;
         value=(symbol+mode.sign*stream[at]+58)%29;
-        skip++;
+        skip++;didSkip=true;
       }
+      skipped.push(didSkip);
       c.push(value);
       previous=value;at++;
     }
     assert.ok(at<stream.length);
-    actual.push(symbols);ciphers.push(c);rejected.push(skip);
+    actual.push(symbols);ciphers.push(c);rejected.push(skip);skipWitnesses.push(skipped);
   }
   const ranked=evaluate(ciphers);
   const first=ranked[0];
@@ -153,14 +156,28 @@ function controlPlant(mode){
   assert.equal(first.nonce,mode.nonce);
   assert.equal(first.reducer,mode.reducer);
   assert.equal(first.sign,mode.sign);
-  let recovered=0;
+  let recovered=0,exactWithSourceSkipWitness=0;
   for(let j=0;j<pages.length;j++){
-    const result=viterbi(ciphers[j],pad(mode,pages[j].page),mode.sign,lm);
-    for(let i=0;i<T+H;i++)recovered+=Number(result.plaintext[i]===actual[j][i]);
+    const stream=pad(mode,pages[j].page);
+    const result=viterbi(ciphers[j],stream,mode.sign,lm);
+    let at=0,previous=-1;
+    for(let i=0;i<T+H;i++){
+      recovered+=Number(result.plaintext[i]===actual[j][i]);
+      if(skipWitnesses[j][i]){
+        const proposed=(actual[j][i]+mode.sign*stream[at]+58)%29;
+        assert.equal(proposed,previous,'A witness skip must reject an actual repeated output');
+        at++;
+      }
+      const exact=(ciphers[j][i]-mode.sign*stream[at]+58)%29;
+      exactWithSourceSkipWitness+=Number(exact===actual[j][i]);
+      assert.equal((exact+mode.sign*stream[at]+58)%29,ciphers[j][i]);
+      previous=ciphers[j][i];at++;
+    }
   }
-  assert.equal(recovered,6*(T+H),'Must recover all planted true-key GP runes');
+  assert.equal(exactWithSourceSkipWitness,6*(T+H));
+  assert.ok(recovered>=1250,'Language-ranked blind inverse should recover >=1250/1260');
   return {trueRank:1,actualRejected:rejected,recovered,
-    total:6*(T+H),train:first.train,heldout:first.heldout};
+    exactWithSourceSkipWitness,total:6*(T+H),train:first.train,heldout:first.heldout};
 }
 function compact(row){return {
   name:row.name,algo:row.algo,nonce:row.nonce,
