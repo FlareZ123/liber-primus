@@ -14,6 +14,7 @@ const N = 8192;
 const HOP = 4096;
 const LOW_HZ = 15400;
 const HIGH_HZ = 16100;
+const CARRIER_BIN = 2906;
 const PITCH_LOW_HZ = 55;
 const PITCH_HIGH_HZ = 2200;
 const NOTE_NAMES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
@@ -54,6 +55,48 @@ function quantile(values, q) {
   return sorted[Math.min(sorted.length-1, Math.floor(q*(sorted.length-1)))];
 }
 
+
+function wrapPhase(value) {
+  return Math.atan2(Math.sin(value), Math.cos(value));
+}
+
+function phaseSummary(frames) {
+  const phases = frames.map(frame => frame.carrierPhase);
+  const weights = frames.map(frame => frame.carrierAmplitude);
+  const totalWeight = weights.reduce((a,b)=>a+b,0) + 1e-30;
+  const coherence = {};
+  for (let order=1; order<=4; order++) {
+    let c=0, s=0;
+    for (let i=0;i<phases.length;i++) {
+      c += weights[i] * Math.cos(order*phases[i]);
+      s += weights[i] * Math.sin(order*phases[i]);
+    }
+    coherence[order] = Math.hypot(c,s)/totalWeight;
+  }
+  let c2=0,s2=0;
+  for(let i=0;i<phases.length;i++){c2+=weights[i]*Math.cos(2*phases[i]);s2+=weights[i]*Math.sin(2*phases[i]);}
+  const bpskAxis=0.5*Math.atan2(s2,c2);
+  const bits=phases.map(p=>Math.cos(p-bpskAxis)<0?1:0);
+  let transitions=0,run=1;const runs=[];
+  for(let i=1;i<bits.length;i++){if(bits[i]!==bits[i-1]){runs.push(run);run=0;transitions++;}run++;}
+  runs.push(run);
+  const unwrapped=[phases[0]],deltas=[];
+  for(let i=1;i<phases.length;i++){const d=wrapPhase(phases[i]-phases[i-1]);deltas.push(d);unwrapped.push(unwrapped[i-1]+d);}
+  let sw=0,st=0,sp=0,stt=0,stp=0;
+  for(let i=0;i<unwrapped.length;i++){const t=i*HOP/SAMPLE_RATE,w=weights[i],p=unwrapped[i];sw+=w;st+=w*t;sp+=w*p;stt+=w*t*t;stp+=w*t*p;}
+  const denom=sw*stt-st*st;
+  const slope=denom?((sw*stp-st*sp)/denom):0;
+  const intercept=(sp-slope*st)/(sw||1);
+  const residual=Math.sqrt(unwrapped.reduce((sum,p,i)=>sum+weights[i]*(p-intercept-slope*i*HOP/SAMPLE_RATE)**2,0)/(sw||1));
+  const absDeltas=deltas.map(Math.abs);
+  return {
+    weightedPhaseCoherence:coherence,
+    bpskProjection:{axisRadians:bpskAxis,transitions,runFrames:{min:Math.min(...runs),median:quantile(runs,.5),max:Math.max(...runs)}},
+    phaseDelta:{mean:deltas.reduce((a,b)=>a+b,0)/Math.max(1,deltas.length),absMedian:quantile(absDeltas,.5),absQ90:quantile(absDeltas,.9),jumpsOver1_5:absDeltas.filter(x=>x>1.5).length,jumpsOver2_5:absDeltas.filter(x=>x>2.5).length},
+    linearPhaseFit:{slopeRadiansPerSecond:slope,estimatedCarrierHz:CARRIER_BIN*SAMPLE_RATE/N+slope/(2*Math.PI),residualRmsRadians:residual}
+  };
+}
+
 function summarizeChannel(name, frames, includeChroma) {
   const peakBins = frames.map(x => x.peakBin);
   const highRms = frames.map(x => x.highRms);
@@ -83,6 +126,7 @@ function summarizeChannel(name, frames, includeChroma) {
   const topAutocorr=autocorr.sort((a,b)=>b.correlation-a.correlation).slice(0,12);
   const result={
     name,frameCount:frames.length,
+    carrierPhase:phaseSummary(frames),
     highBand:{rangeHz:[LOW_HZ,HIGH_HZ],peakHz:{min:Math.min(...peakHz),max:Math.max(...peakHz),mean:peakHz.reduce((a,b)=>a+b,0)/peakHz.length},
       distinctPeakBins:peakCounts.size,peakBinHistogram:[...peakCounts].sort((a,b)=>a[0]-b[0]).map(([bin,count])=>({bin,hz:bin*SAMPLE_RATE/N,count})),
       rms:{min:Math.min(...highRms),q10:quantile(highRms,.1),median:threshold,q90:quantile(highRms,.9),max:Math.max(...highRms),mean,std:Math.sqrt(variance)},
@@ -150,6 +194,8 @@ function main() {
       }
       const meanPower=highSum/highCount;
       const flatness=Math.exp(highLog/highCount)/(meanPower+1e-30);
+      const carrierPhase=Math.atan2(im[CARRIER_BIN],re[CARRIER_BIN]);
+      const carrierAmplitude=Math.hypot(re[CARRIER_BIN],im[CARRIER_BIN]);
       let dominantMidi=0,dominantEnergy=0;
       const midiEnergy=new Float64Array(128),chroma=new Array(12).fill(0);
       if(channel<2){
@@ -164,7 +210,7 @@ function main() {
       }
       frames.push({
         timeSeconds:start/SAMPLE_RATE,
-        peakBin,peakHz:peakBin*SAMPLE_RATE/N,
+        peakBin,peakHz:peakBin*SAMPLE_RATE/N,carrierPhase,carrierAmplitude,
         highRms:Math.sqrt(meanPower),peakRatio:highPeak/(highSum+1e-30),
         flatness,highEnergyFraction:highSum/(total+1e-30),
         ...(channel<2?{dominantMidi,dominantEnergy,chroma}: {})
@@ -175,14 +221,15 @@ function main() {
   const result={
     metadata:{source:'Cicada 3301 archival 761.MP3',sampleRate:SAMPLE_RATE,channels:2,
       durationSeconds:duration,sampleFrames,fftSize:N,hopSize:HOP,frameCount:outputs[0].frames.length,
-      highBandHz:[LOW_HZ,HIGH_HZ],pitchBandHz:[PITCH_LOW_HZ,PITCH_HIGH_HZ]},
+      highBandHz:[LOW_HZ,HIGH_HZ],carrierBin:CARRIER_BIN,carrierBinHz:CARRIER_BIN*SAMPLE_RATE/N,pitchBandHz:[PITCH_LOW_HZ,PITCH_HIGH_HZ]},
     channels:outputs.map(x=>x.summary),
+    stereoPhaseDifference:phaseSummary(outputs[0].frames.map((f,i)=>({carrierPhase:wrapPhase(f.carrierPhase-outputs[1].frames[i].carrierPhase),carrierAmplitude:Math.min(f.carrierAmplitude,outputs[1].frames[i].carrierAmplitude)}))),
     frames:outputs.map(x=>({channel:x.name,frames:x.frames}))
   };
   fs.mkdirSync(path.dirname(output),{recursive:true});
   fs.writeFileSync(output,JSON.stringify(result));
   console.log(JSON.stringify({metadata:result.metadata,channels:result.channels.map(x=>({
-    name:x.name,highBand:x.highBand,topChroma:x.chroma?.slice(0,7),noteRuns:x.dominantNoteRuns?.length
+    name:x.name,highBand:x.highBand,carrierPhase:x.carrierPhase,topChroma:x.chroma?.slice(0,7),noteRuns:x.dominantNoteRuns?.length
   })),artifact:output}));
 }
 if(require.main===module)main();
