@@ -91,11 +91,12 @@ def native_control(data: dict) -> list[int]:
     raw = (ROOT / "resources/transcriptions/lp1_wulfic_canonical.txt").read_text(encoding="utf8")
     chunks = raw.split("%")
     table = {r: i for i, r in enumerate(GP)}
-    solved = [v for p in data["pages"] if p["page"] in (56, 57)
-              for v in p["indices"]]
+    # LP2 p56 is decrypted historically but corpus indices are *ciphertext*.
+    # Use only the literal plaintext GP runes on p57.
+    solved = data["pages"][57]["indices"]
     native = [table[r] for i in (3, 8, 9, 10, 11, 14)
               for r in chunks[i] if r in table]
-    assert len(native) == 1001 and len(solved) == 180
+    assert len(native) == 1001 and len(solved) == 95
     return native + solved
 
 
