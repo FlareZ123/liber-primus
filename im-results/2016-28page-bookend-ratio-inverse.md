@@ -17,6 +17,22 @@ Both two-word occurrences are directly present in the [canonical transcription](
 
 A precise source-selected two-stream alignment follows: treat the six-rune repeat as a common terminal anchor. The second half's **6,195** runes align with exactly **6,195** first-half runes at first-half offsets **366 through 6,560**. The first half's excluded **366-rune prefix** and **200-rune suffix** total **566**, matching its exact length excess. There is no tunable alignment parameter here. Whether these strings carry a shared key is a separate hypothesis.
 
+## A complete word-inventory rarity certificate
+
+The original text's **2,896 printed words**, using the canonical rule that page and line wraps do not end words, contain **2,731 distinct exact ciphertext word types**. There are **120 word types occurring at least twice**, with maximum word frequency five. Among all **2,895 adjacent two-word positions**, the bookend **DJU BEI** is **the only two-word sequence appearing twice**, at word offsets **1,462** and **2,894**. Its two component words each occur **exactly twice** and both instances are adjacent in the same order. In particular, the **last two printed unsolved words repeat an earlier two-word sequence** across the physical 28-page midpoint.
+
+To calibrate discovery of *any* equally long repeated pair, condition on all 2,896 exact original word tokens, including their lengths and multiplicities, and uniformly shuffle whole-word order. Count unordered collisions between two positions occupied by the **same ordered pair of word types** whose combined length is **at least six GP runes**. Let N=2,896 and n_i be the fixed number of copies of word type i. For distinct i and j, the expected number of repeated nonoverlapping pair collisions equals
+
+\[
+\frac{(n_i)_2(n_j)_2}{2N(N-1)}.
+\]
+
+For identical i=j, add nonoverlapping \((n_i)_4/[2N(N-1)]\) and overlapping \((n_i)_3/[N(N-1)]\), where \((n)_k=n(n-1)\cdots(n-k+1)\). Sum across **all ordered type pairs whose total length reaches six**, rather than testing only the observed phrase. Direct enumeration over the exact 120 repeated word types gives an expected number of qualifying repeated pairs of **0.00006417045964179009**. Markov's inequality therefore supplies the rigorous **familywide upper bound 6.42×10⁻⁵** for observing *any* repeated adjacent pair of this length under this **specific full-inventory shuffle null**. For the two already selected word types with exactly two copies apiece, the probability that both A copies are followed by B in a shuffled list is exactly **2/[2896×2895] = 2.3855×10⁻⁷**; that narrower value is postselected and must not replace the familywide bound.
+
+**What this supports:** the full duplicated six-rune two-word bookend is a striking and reproducible **sequence-order feature** of the original ciphertext, well outside a uniform whole-word shuffle preserving its unusually diverse word inventory. It makes the repeated opening/ending formula worth pursuing as a prospective real cipher clue. **What it does not establish:** a null for authored prose, text enciphered with stable word-level keys, page-specific punctuation or deliberately constructed repetitions. The six-rune threshold, two-word feature, image mean and half-book framing were selected during broader exploration and carry no discovery-wide adjusted probability. A repeated ciphertext formula alone does not identify its plaintext or its key.
+
+The p27 illustration shows a single insect wing above the beginning of its passage; the last unsolved p55 shows a winged insect beneath a tree. This is a relevant **source-visible thematic correspondence**, not proof that the artwork specifies a 28-page cipher.
+
 ## Original-source key-free cryptanalysis
 
 The test fixes all original runes and uses a native-GP English language model trained only on the first **160,000** GP runes of the independent Shakespeare reference. It excludes the final six identical-rune anchors when scoring both aligned streams. A complete circular shift of the second stream supplies a conditional reference distribution for each predeclared observable.
@@ -39,7 +55,7 @@ The rotation ranks are conditional on this retrospectively identified bookend, i
 
 ## Research decision
 
-The exact **566-rune half-book imbalance**, corresponding 2016 image arithmetic, and **6,195-rune bookend-anchored alignment** are reproducible structural inputs. The direct shared additive inverse is rejected in its stated GP-English form. The multiplicative-step single-symbol signal is not accompanied by its necessary English serial fingerprint; it supplies no plaintext or authenticated key.
+The **unique repeated two-word formula**, its source-inventory rarity certificate, the exact **566-rune half-book imbalance**, corresponding 2016 image arithmetic, and **6,195-rune bookend-anchored alignment** are reproducible structural inputs. The direct shared additive inverse is rejected in its stated GP-English form. The multiplicative-step single-symbol signal is not accompanied by its necessary English serial fingerprint; it supplies no plaintext or authenticated key.
 
 Any next attempt should identify an independent source instruction connecting the two halves to a particular key, coding rule or state and demand original-text recovery. Re-scanning arbitrary offsets or interpreting the marginal ratio peak as a decode would repeat a weak model.
 
