@@ -27,6 +27,15 @@ const mod = x => ((x % 29) + 29) % 29;
 const START = 29, END = 30, N = 31, Q = 0.81;
 const IMAGE_WIDTH = 563, IMAGE_HEIGHT = 569;
 
+function primePi(n) {
+  let count = 0;
+  for (let x = 2; x <= n; x++) {
+    let prime = true;
+    for (let d = 2; d * d <= x; d++) if (x % d === 0) { prime = false; break; }
+    if (prime) count++;
+  }
+  return count;
+}
 function readJson(p) {
   return JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8'));
 }
@@ -188,6 +197,8 @@ function main() {
   const intercept = runeA;
   const slopeMagnitude = gB / gA;
   const lag = IMAGE_HEIGHT - IMAGE_WIDTH;
+  const piWidth = primePi(IMAGE_WIDTH), piHeight = primePi(IMAGE_HEIGHT);
+  const tirIndex = piWidth % 29, beorcIndex = piHeight % 29;
 
   assert.deepEqual(gridPos, [51, 57]);
   assert.deepEqual(halfPos, [51, 57]);
@@ -201,6 +212,12 @@ function main() {
   assert.equal(corpus.prime[runeS], 53);
   assert.equal(corpus.prime[runeS] % 29, 24);
   assert.equal(lag, 6);
+  assert.deepEqual([piWidth, piHeight], [103, 104]);
+  assert.deepEqual([tirIndex, beorcIndex], [16, 17]);
+  assert.deepEqual([corpus.translit[tirIndex], corpus.translit[beorcIndex]], ['T', 'B']);
+  assert.deepEqual([corpus.prime[tirIndex], corpus.prime[beorcIndex]], [59, 61]);
+  assert.equal(corpus.prime[beorcIndex] - corpus.prime[tirIndex], 2);
+  assert.equal(gA, corpus.prime[tirIndex]);
 
   const runePairs = [];
   for (let i = 0; i + lag < secondHalf.length; i++) {
@@ -314,6 +331,10 @@ function main() {
       widthMod128: r0, heightMod128: r1,
       difference: lag },
     sourceAnchors: {
+      primeCounting: { piWidth, piHeight, modulo29: [tirIndex, beorcIndex],
+        runes: [corpus.translit[tirIndex], corpus.translit[beorcIndex]],
+        gematriaPrimes: [corpus.prime[tirIndex], corpus.prime[beorcIndex]],
+        primeGap: corpus.prime[beorcIndex] - corpus.prime[tirIndex] },
       grid: { index51: gA, index57: gB, ratio: slopeMagnitude,
         rowMajorCells: [[6, 3], [7, 1]], base60Tokens: ['0x', '1w'] },
       secondRuneHalf: {
