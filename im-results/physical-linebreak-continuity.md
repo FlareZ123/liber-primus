@@ -42,6 +42,19 @@ counted as an independent discovery.
 
 Every whole-page permutation retains the page's actual rune order, glyph inventory, first/last rune identities, and typographic layout. The test's marginal expected counts use every possible end-to-start pairing of the pages in its split. The local displacement null keeps all original ciphertext positions and only randomizes which neighboring adjacency is treated as the boundary. Both comparisons therefore distinguish the physical joins from commonplace within-page adjacency effects.
 
+**Detector-power plant:** To test that the same training/heldout
+procedure can detect a real page-head dependency, preserve every
+original page length and end rune, then replace each next page's first
+rune by (previous original last rune + 9 + uniform integer 0..5) mod29
+with xorshift32 seed 0x15292813. The six-wide **9–14**
+arc is deliberately hidden from the fit. The unchanged 377-arc training
+search selects exactly **9–14** with **27/27** matches and
+discovers **26/26** matches on the disjoint heldout pages (heldout z
+**9.0384** versus independently paired end/start marginals).
+This is a strong *synthetic* recovery control for the chosen original-page
+edge test. It does not plant, recover, or imply plaintext, source-key
+material, or a cryptographic mechanism on the real manuscript.
+
 **Source-register specificity:** Repeat the complete 377-arc train/test
 procedure after replacing GP indices by the *different, pre-existing*
 GP prime-value assignments reduced modulo 29. Training then selects
