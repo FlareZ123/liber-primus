@@ -5,7 +5,9 @@
  * The p3 marked 3-rune polynomial (13,23,2) defines u^2=3u+8,
  * a primitive 840-cycle over GF29. The p39 polynomial 15(X-24)^2
  * and oversized p54 Ac provide the independent numeric selector 24.
- * An independently identified grid root z=23+27u (and conjugate) supplies\n * four further source-defined field multipliers in addition to u^±1.\n * For field state s: output c=p+Tr(s), then update s=g*s+beta*c,
+ * An independently identified grid root z=23+27u (and conjugate) supplies
+ * four further source-defined field multipliers in addition to u^±1.
+ * For field state s: output c=p+Tr(s), then update s=g*s+beta*c,
  * with Tr(a+b*u)=2a+3b and beta in {±1,±u,±24,±24u}.
  *
  * Exhaust all 29^2 initial states, six primitive field multipliers and two
