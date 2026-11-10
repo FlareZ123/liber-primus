@@ -166,13 +166,14 @@ function run(){
   assert.equal(seed.filter((x,i)=>x===mod(planted[i]-plain[i])).length,8);
   const result={
     hypothesis:'Nine-rune red heading spells FIBONACCI, unproven',
-    cipher,assumedPlain:plain,
+    cipher,wordLengths:[4,5],assumedPlain:plain,
+    impliedPlainSpellingWithSourceWordBreak:'FIBO NACCI',
     impliedAdditiveNine:cipher.map((x,i)=>mod(x-plain[i])),
     uniqueKeys:keys.length,
     positive:{exactRecovery:true,oneCorruptionDetected:true},
     derived:scanDerived(keys),grid:scanLiteral(),
     FpassThrough:{derived:scanLiteralFDerived(keys),grid:scanLiteralFGrid()},
-    conclusion:'Finite conditional crib test; no plaintext claim without a sustained exact re-encryption.'
+    conclusion:'Hypothesis fails to preserve the observed 4|5 word break under ordinary GP plaintext; finite conditional test only.'
   };
   console.log(JSON.stringify(result,null,2));
   return result;
