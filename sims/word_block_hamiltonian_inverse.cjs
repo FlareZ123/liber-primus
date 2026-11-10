@@ -191,6 +191,66 @@ function positiveControl(random) {
     heldoutGain:heldout(cipher,found.pi).value-heldout(cipher,identity).value
   };
 }
+/**
+ * Exact whole-source comparison for a second, Latin GP word-length register.
+ * Sliding windows retain all source-adjacent length pairs, with O(words) updates.
+ * This is a source-specific structural control, not an LP2 cipher inversion.
+ */
+function latinWindowComparison() {
+  const content=fs.readFileSync(path.join(
+    ROOT,"resources/control/latin-vulgate-gp-wholewords.txt"),"utf8");
+  const latin=content.split(/\r?\n/u).map(w=>w.trim())
+    .filter(w=>/^[0-9A-S]+$/u.test(w)).map(w=>w.length);
+  assert.equal(latin.length,39835);
+  const bin=n=>n<=2?0:n<=5?1:2;
+  /** @param {Int32Array} counts @param {number} pairs */
+  function chi(counts,pairs) {
+    const row=new Int32Array(3),col=new Int32Array(3);
+    for(let x=0;x<3;x++)for(let y=0;y<3;y++){
+      const v=counts[3*x+y];row[x]+=v;col[y]+=v;
+    }
+    let value=0;
+    for(let x=0;x<3;x++)for(let y=0;y<3;y++){
+      const expect=row[x]*col[y]/pairs;
+      if(expect>0)value+=(counts[3*x+y]-expect)**2/expect;
+    }
+    return value;
+  }
+  /** @param {number[]} words @param {number} first @param {number} length */
+  function initial(words,first,length) {
+    const counts=new Int32Array(9);
+    for(let i=first+1;i<first+length;i++)
+      counts[3*bin(words[i-1])+bin(words[i])]++;
+    return counts;
+  }
+  const originalChi=chi(initial(printed,0,printed.length),printed.length-1);
+  const pairs=printed.length-1;
+  const counts=initial(latin,0,printed.length);
+  const windowChi=[];
+  for(let start=0;start+printed.length<=latin.length;start++){
+    windowChi.push(chi(counts,pairs));
+    if(start+printed.length<latin.length) {
+      counts[3*bin(latin[start])+bin(latin[start+1])]--;
+      counts[3*bin(latin[start+printed.length-1])
+        +bin(latin[start+printed.length])]++;
+    }
+  }
+  windowChi.sort((a,b)=>a-b);
+  const atMost=windowChi.filter(x=>x<=originalChi).length;
+  assert.ok(Math.abs(originalChi-3.949446088360591)<1e-8);
+  assert.equal(windowChi.length,36940);
+  assert.equal(atMost,0);
+  return {
+    source:"resources/control/latin-vulgate-gp-wholewords.txt",
+    latinGpWords:latin.length,sourceWindows:windowChi.length,
+    windowWordCount:printed.length,categoryLengths:["1-2","3-5","6+"],
+    originalChiSquare:originalChi,
+    latinMinChiSquare:windowChi[0],
+    latinMedianChiSquare:windowChi[Math.floor(windowChi.length/2)],
+    windowsAtOrBelowOriginal:atMost,
+    limitation:"Overlapping windows are dependent; finite Latin-source comparison, not a genre-wide p-value or decrypted text."
+  };
+}
 function main() {
   const actualFit=fit(printed);
   const originalDelta=heldout(printed,actualFit.pi).value
@@ -233,7 +293,8 @@ function main() {
       median:values[Math.floor(repetitions*.5)],
       p95:values[Math.floor(repetitions*.95)]
     },
-    positivePlant:plant
+    positivePlant:plant,
+    independentLatinWordOrderControl:latinWindowComparison()
   };
   console.log(JSON.stringify(results,null,2));
 }
