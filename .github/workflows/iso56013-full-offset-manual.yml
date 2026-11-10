@@ -12,6 +12,10 @@ on:
           - reject
           - mod-rev
           - reject-rev
+          - mod-atbash
+          - reject-atbash
+          - mod-rev-atbash
+          - reject-rev-atbash
 
 permissions:
   contents: read
