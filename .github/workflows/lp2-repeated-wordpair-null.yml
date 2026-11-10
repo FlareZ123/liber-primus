@@ -41,7 +41,7 @@ jobs:
         with:
           node-version: '22'
       - name: Enumerate exact source-original affine/D4 four-panel bounds
-        run: node sims/lp2_ninetile_affine_quads.cjs top
+        run: node sims/lp2_ninetile_affine_quads.cjs all
 
   qr36-twobit:
     if: inputs.mode == 'qr36-twobit'
