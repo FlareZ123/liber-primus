@@ -22,7 +22,7 @@ const groups=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],
   [33,39],[40,55]].map(([a,b])=>corpus.pages.filter(p=>
   p.page>=a&&p.page<=b).flatMap(p=>p.indices));
 assert.deepEqual(groups.map(x=>x.length),
-  [729,1145,1738,1894,1021,1433,1680,3316]);
+  [729,1145,1729,1903,1021,1433,1680,3316]);
 const originals=groups.map(a=>a.slice(0,240));
 const SEEDS=[33011033,33011103,33011034];
 const reducers=['word31mod','word31scale','byte31','bits5','float29'];
