@@ -20,3 +20,4 @@ jobs:
           node sims/grid_coordinate_free_share_rank.cjs
           node sims/grid_anend_hash_bridge.cjs
           node sims/grid_fibonacci_macro_key.cjs
+          node sims/fibonacci_square_grid_unwrap.cjs
