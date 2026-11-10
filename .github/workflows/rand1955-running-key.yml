@@ -1,4 +1,4 @@
-name: RAND 1955 source-key inverse (LP2 section-opening pages)
+name: Source-key recovery (RAND table and prime-totient)
 
 on:
   workflow_dispatch:
@@ -28,9 +28,15 @@ jobs:
         run: |
           set -o pipefail
           python sims/rand1955_running_key.py rand-1955-digits.txt | tee rand1955-lp2-keyscan.log
+      - name: Authenticated page56 prime-totient with two-million unknown starts
+        run: |
+          set -o pipefail
+          python sims/prime_totient_long_offset_inversion.py | tee prime-totient-2m-offsets.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: rand1955-lp2-source-keyscan
+          name: lp2-external-and-authentic-source-inverses
           retention-days: 60
-          path: rand1955-lp2-keyscan.log
+          path: |
+            rand1955-lp2-keyscan.log
+            prime-totient-2m-offsets.log
