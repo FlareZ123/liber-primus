@@ -12,6 +12,10 @@ jobs:
           node-version: '22'
       - name: Install libjpeg development headers
         run: sudo apt-get update -qq && sudo apt-get install -y -qq libjpeg-dev
+      - name: Audit exact source Y-DCT in blank white paper with embedded control
+        run: |
+          cc -O3 -Wall -Wextra -Werror -o /tmp/lp_jpeg_blank_luma sims/jpeg_blank_luma_gate.c -ljpeg
+          /tmp/lp_jpeg_blank_luma resources/liber-primus
       - name: Compile coefficient-exact JPEG extractor
         run: cc -O2 -Wall -Wextra -o /tmp/lp_jpeg_dct_bits sims/jpeg_dct_bits.c -ljpeg
       - name: Test all original page-local DCT pads with heldout synthetic control
