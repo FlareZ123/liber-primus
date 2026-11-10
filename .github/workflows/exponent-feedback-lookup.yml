@@ -22,3 +22,5 @@ jobs:
         run: node sims/grid_rc4_field_inverse.cjs
       - name: Test word-local nonlinear autokey and independent page splits
         run: node sims/word_local_exponent_autokey.cjs
+      - name: Lossless source-word echo permutation with 640 control plants
+        run: node sims/lossless_word_echo_permutation.cjs
