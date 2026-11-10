@@ -192,6 +192,65 @@ function random(seed) {
   };
 }
 
+
+/**
+ * Full 28-way alphabet-permutation-invariant key search. A genuine GP-English
+ * source must have elevated coincidence even if its GP symbols are arbitrarily
+ * permuted. Fit candidate key on independent early section runes only.
+ * @param {{clock:string,data:number[],cutoff:number}[]} views
+ */
+function fitPermutationInvariant(views) {
+  let bestNumerator = -1;
+  let best = null;
+  const hist = new Uint16Array(Q);
+  for (const view of views) {
+    for (let a = 0; a < Q; a++) for (let b = 0; b < Q; b++) {
+      for (let seed0 = 0; seed0 < Q; seed0++) for (let seed1 = 0; seed1 < Q; seed1++) {
+        hist.fill(0);
+        let prev2 = seed0, prev1 = seed1;
+        for (let j = 0; j < view.cutoff; j++) {
+          let key;
+          if (j === 0) key = seed0;
+          else if (j === 1) key = seed1;
+          else {
+            key = (a * prev1 + b * prev2) % Q;
+            prev2 = prev1;
+            prev1 = key;
+          }
+          if (view.data[j] >= 0) hist[mod(view.data[j] - key, Q)]++;
+        }
+        let numerator = 0;
+        for (const n of hist) numerator += n * (n - 1);
+        if (numerator > bestNumerator) {
+          bestNumerator = numerator;
+          best = { a, b, seed0, seed1, clock: view.clock };
+        }
+      }
+    }
+  }
+  assert(best);
+  const view = views.find(x => x.clock === best.clock);
+  const decoded = decode(view.data, best);
+  hist.fill(0);
+  let nTrain = 0, nHold = 0;
+  for (let j = 0; j < view.cutoff; j++) {
+    if (decoded[j] < 0) continue;
+    nTrain++;
+  }
+  for (let j = view.cutoff; j < decoded.length; j++) {
+    if (decoded[j] < 0) continue;
+    hist[decoded[j]]++;
+    nHold++;
+  }
+  let holdNumerator = 0;
+  for (const n of hist) holdNumerator += n * (n - 1);
+  return {
+    ...best, trainIoC: bestNumerator / (nTrain * (nTrain - 1)),
+    holdIoC: holdNumerator / (nHold * (nHold - 1)),
+    trainRuneCount: nTrain, holdRuneCount: nHold,
+  };
+}
+
 function main() {
   const likelihood = language();
   const target = corpus.pages.filter(p => p.page <= 2).flatMap(p => p.indices);
@@ -217,6 +276,29 @@ function main() {
   const nulls = [];
   for (let i = 0; i < 20; i++) nulls.push(fit(observations(permute(originalRanks, next)), likelihood).holdPerRune);
   const higher = nulls.filter(x => x >= observed.holdPerRune).length;
+  const invariant = fitPermutationInvariant(observations(originalRanks));
+  const scrambledPlant = sourcePlain.map(p => p === 28 ? 28 : (5 * p + 7) % Q);
+  const alien = fitPermutationInvariant(observations(toRanks(encrypt(scrambledPlant, truth))));
+  assert(alien.holdIoC > 0.045, 'Unknown alphabet positive must retain GP source coincidence');
+  const invariantNull = [];
+  const independentRng = random(0x72928351);
+  for (let i = 0; i < 20; i++) {
+    invariantNull.push(fitPermutationInvariant(observations(
+      permute(originalRanks, independentRng))).holdIoC);
+  }
+  const invariantExceed = invariantNull.filter(x => x >= invariant.holdIoC).length;
+  console.log('ALPHABET_INVARIANT', JSON.stringify({
+    searchScope: 'same 1,229,312 second-order key/clock family, arbitrary fixed unknown 28-symbol output renaming',
+    original: invariant,
+    permutedGenuineSolvedGPPlant: alien,
+    null: {
+      n: invariantNull.length,
+      mean: invariantNull.reduce((a, b) => a + b, 0) / invariantNull.length,
+      countGeObserved: invariantExceed,
+      addOneUpperTail: (invariantExceed + 1) / (invariantNull.length + 1),
+      maximum: Math.max(...invariantNull),
+    },
+  }, null, 2));
   console.log(JSON.stringify({
     model: 'EA-transparent 29-rune step, F29 root15, homogeneous affine-free mod28 order2 key',
     originalRunes: target.length,
