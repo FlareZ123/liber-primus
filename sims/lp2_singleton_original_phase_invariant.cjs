@@ -116,6 +116,63 @@ function measure(singletons, clock, period) {
 }
 
 /** @param {Word[]} words */
+
+/**
+ * Test entirely independent K[physicalPage, phase] additive GP29 keys.
+ * @param {Word[]} black
+ * @param {"pageRuneIndex"|"pageWordIndex"} clock
+ * @param {number} period
+ * @param {number[]} allowed
+ * @returns {number} Incompatible page-phase groups.
+ */
+function pageSpecificAdditive(black, clock, period, allowed) {
+  /** @type {Map<string,number[]>} */
+  const groups = new Map();
+  for (const w of black) {
+    const key = String(w.page) + ":" + String(w[clock] % period);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(w.rune);
+  }
+  let invalid = 0;
+  for (const ciphertext of groups.values()) {
+    const possible = Array.from({length:29}, (_,i) => i).some(
+      k => ciphertext.every(c => allowed.includes((c - k + 29) % 29))
+    );
+    if (!possible) invalid++;
+  }
+  return invalid;
+}
+
+/**
+ * Test freely chosen page slopes and intercepts K[p,t]=a[p]*t+b[p] mod29.
+ * @param {Word[]} black
+ * @param {"pageRuneIndex"|"pageWordIndex"} clock
+ * @param {number[]} allowed
+ * @returns {number[]} Impossible original physical page numbers.
+ */
+function pageAffineAdditive(black, clock, allowed) {
+  /** @type {Map<number,Word[]>} */
+  const pages = new Map();
+  for (const w of black) {
+    if (!pages.has(w.page)) pages.set(w.page, []);
+    pages.get(w.page).push(w);
+  }
+  const impossible = [];
+  for (const [page, group] of pages) {
+    let feasible = false;
+    for (let slope = 0; slope < 29 && !feasible; slope++) {
+      for (let offset = 0; offset < 29 && !feasible; offset++) {
+        feasible = group.every(w => {
+          const decoded = (((w.rune - slope * w[clock] - offset) % 29) + 29) % 29;
+          return allowed.includes(decoded);
+        });
+      }
+    }
+    if (!feasible) impossible.push(page);
+  }
+  return impossible.sort((a,b) => a-b);
+}
+
 function originalGate(words) {
   const all = words.filter(w => w.sequence.length === 1);
   const black = all.filter(w => !w.red);
@@ -160,7 +217,32 @@ function originalGate(words) {
   witnesses.sort((a, b) => a.pageWordIndex - b.pageWordIndex);
   assert.ok(witnesses.length >= 1);
   assert.equal(outcomes.pageWordIndex.excludedSecretThree, 256);
-  return {allSingletons: all.length, blackSingletons: black.length, outcomes, witnesses};
+
+  const byPageAdditive = {};
+  for (const clock of ["pageRuneIndex", "pageWordIndex"]) {
+    const rows = Array.from({length:256}, (_,i) => ({
+      period:i+1,
+      violatedAI:pageSpecificAdditive(black, clock, i+1, [24,10]),
+      violatedAIO:pageSpecificAdditive(black, clock, i+1, [24,10,3])
+    }));
+    byPageAdditive[clock] = {
+      excludedPeriodsAI:rows.filter(x => x.violatedAI > 0).length,
+      excludedPeriodsAIO:rows.filter(x => x.violatedAIO > 0).length,
+      selected:rows.filter(x => [28,29,31,32,59,79,127,128,256].includes(x.period))
+    };
+  }
+  const byPageAffine = {
+    runeAI:pageAffineAdditive(black,"pageRuneIndex",[24,10]),
+    runeAIO:pageAffineAdditive(black,"pageRuneIndex",[24,10,3]),
+    wordAI:pageAffineAdditive(black,"pageWordIndex",[24,10]),
+    wordAIO:pageAffineAdditive(black,"pageWordIndex",[24,10,3])
+  };
+  assert.ok(byPageAdditive.pageRuneIndex.selected.find(x => x.period === 29).violatedAIO > 0);
+  assert.ok(byPageAffine.runeAIO.includes(4));
+  return {
+    allSingletons:all.length, blackSingletons:black.length,
+    outcomes, witnesses, byPageAdditive, byPageAffine
+  };
 }
 
 /**

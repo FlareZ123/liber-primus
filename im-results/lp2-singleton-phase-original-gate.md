@@ -42,6 +42,23 @@ The **page-local word-clock exclusion is unbounded in period**: original black s
 
 The witnesses do not depend on either of the two red singleton words. Excluding *all* physical pp53–55 still leaves the page-local clock exclusion intact for every period up to 256, including with O permitted.
 
+## Independent page-specific additive keys: exact within-page obstructions
+
+The preceding reused-alphabet gate shares phase tables across pages. A second original-input test gives the encoder **a separate arbitrary additive GP29 key for every page and every clock phase**. With ordinary English singleton plaintext A/I/O, the ciphertext difference for words at the same *page × phase* must be one of \`{0, ±7, ±14, ±21} mod29\`. The unknown page/phase key cancels.
+
+**Exact two-word witness:** original physical **p4** has black one-rune words at page-local rune offsets **21 and 79** whose GP ciphertext indices are **8** (ᚻ) and **7** (ᚹ). Their position gap is **58=2×29**, so every period-29 page-local additive key must use the same unknown shift. Their ciphertext difference is **1**, outside the allowed A/I/O differences. This rejects the **entire page-specific additive GP29 period-29 family**, even with an independent secret key for every other page or phase. It also rejects a page-specific affine key \`K_(p,t)=a_p*t+b_p mod29\` for all possible page slopes and offsets.
+
+Enumerating every period 1..256 with **all 81 original black singleton words** gives:
+
+| Additive key independently chosen for each page and phase | A/I periods excluded | A/I/O periods excluded |
+| --- | ---: | ---: |
+| Page-local rune clock | 82 / 256 | 81 / 256 |
+| Page-local word clock | 37 / 256 | 36 / 256 |
+
+Even after allowing a distinct *affine slope and offset per page*, **eight of 40** pages containing black one-rune words are individually impossible with A/I/O on the page-rune clock; **six of 40** are individually impossible on the page-word clock. Every candidate slope and intercept in F29 was enumerated. In contrast, an arbitrary *page-specific additive period-79 phase table* has no contradiction in these singleton observations alone. The latter is only lack of a necessary-condition failure, not evidence that the cipher works.
+
+Numeric differences of A/I/O GP indices rule out additive output only. They do not constrain the same-per-page input symbols under an arbitrary page-specific secret permutation, and neither result survives arbitrary state feedback or reinterpreted word boundaries.
+
 ## Reproduction and scope
 
 Run [the standalone CommonJS source gate](../sims/lp2_singleton_original_phase_invariant.cjs) against the existing [canonical transcript](../resources/liber-primus/lp2-transcription.txt), [page indices](../resources/liber-primus/lp2-corpus.json), and [ink annotations](../resources/liber-primus/lp2-ink-annotations.json). It carries words across printed line/page wraps, reads the first rune's physical page, and assigns zero-based page-local word indices at **word start**, so cross-page words do not shift subsequent page word indices. The script checks the original counts, enumerates every secret-alphabet necessary condition directly, outputs original witnesses, and includes a deterministic source-shaped positive control: with an arbitrary hidden permutation for each of 79 page-local word phases, literal A/I singleton words pass the gate and all **12,956** synthetic runes inverse-map exactly.
