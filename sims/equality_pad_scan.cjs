@@ -176,6 +176,52 @@ function wholeStreamScan(){
   out.sort((a,b)=>b.score-a.score);
   return {tested:out.length,top:out.slice(0,8)};
 }
+
+/**
+ * Null for a candidate page-reset pad: each 274-rune pad is a fresh iid
+ * byte stream, modulo 29, reset at the beginning of each of the 55 pages.
+ * Fits both additive signs. This is per-selected-candidate calibration; a
+ * maximum across all 3596 tested grid derivations needs its own correction.
+ * @param {number} samples
+ */
+function randomPagePadNull(samples){
+  const length=Math.max(...pages.map(p=>p.indices.length));
+  const hits=LAGS.map(()=>new Uint16Array(length));
+  const trials=LAGS.map(()=>new Uint16Array(length));
+  for(const c of real)for(let z=0;z<LAGS.length;z++){
+    const lag=LAGS[z];
+    for(let i=lag;i<c.length;i++){
+      trials[z][i]++;
+      if(c[i]===c[i-lag])hits[z][i]++;
+    }
+  }
+  /** @param {Uint8Array} stream @returns {number} */
+  function scorePhase(stream){
+    let best=-Infinity;
+    for(const sign of [-1,1]){
+      let ll=0;
+      for(let z=0;z<LAGS.length;z++){
+        const d=LAGS[z],h=hits[z],t=trials[z],ym=yes[z],nm=no[z];
+        for(let i=d;i<length;i++){
+          const delta=mod(-sign*(stream[i]-stream[i-d]));
+          ll+=h[i]*ym[delta]+(t[i]-h[i])*nm[delta];
+        }
+      }
+      best=Math.max(best,ll);
+    }
+    return best;
+  }
+  const scores=[];
+  for(let n=0;n<samples;n++){
+    const bytes=Uint8Array.from({length},()=>Math.floor(random()*256)%29);
+    scores.push(scorePhase(bytes));
+  }
+  scores.sort((a,b)=>a-b);
+  return {n:samples,top:scores[samples-1],median:scores[Math.floor(samples/2)],
+    p95:scores[Math.floor(.95*samples)],p99:scores[Math.floor(.99*samples)],
+    selectedTail(score){return (scores.filter(v=>v>=score).length+1)/(samples+1);}};
+}
+
 function main(){
   const literal=directGrid(grid,real);
   const nulls=[];
@@ -183,6 +229,16 @@ function main(){
   nulls.sort((a,b)=>a-b);
   const plants=Array.from({length:40},(_,i)=>makePlant(i));
   const first=standardStreamScan(),whole=wholeStreamScan();
+  const reference=randomPagePadNull(3000);
+  const winningScore=Math.max(first.top[0].score,whole.top[0].score);
+  const referenceResult={
+    samples:reference.n,median:reference.median,p95:reference.p95,
+    p99:reference.p99,max:reference.top,
+    bestOf3596Observed:winningScore,
+    perSelectedCandidateTail:reference.selectedTail(winningScore),
+    familyWiseBonferroniUpperBound:Math.min(1,(first.tested+whole.tested)*
+      reference.selectedTail(winningScore))
+  };
   const result={
     hypothesis:'Known additive pad with arbitrary outer 29-symbol permutation',
     source:{pages:pages.length,runes:12956,trainingRunes:training.length,heldoutRunes:heldout.length},
@@ -192,6 +248,7 @@ function main(){
       nullMedian:nulls[50],nullMaximum:nulls[99],
       plants:plants.length,exactRecovered:plants.filter(p=>p.correct).length,
       medianRewrites:plants.map(p=>p.rewrites).sort((a,b)=>a-b)[20]},
+    randomPadCalibration:referenceResult,
     derivedGridStreams:{standard:first,whole,top:[...first.top.map(x=>({...x,family:'standard'})),
       ...whole.top.map(x=>({...x,family:'whole-grid'}))].sort((a,b)=>b.score-a.score).slice(0,8)},
     interpretation:'The equality score is a correlated-event pseudo-likelihood. Positive candidate scores require independent matched maximum-null calibration, decoded plaintext, and key prediction before acceptance.'
