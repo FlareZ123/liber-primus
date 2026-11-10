@@ -10,6 +10,7 @@ on:
           - noisy-beam
           - dual-section
           - ea-autokey
+          - native-ea-geometry
 jobs:
   invert:
     runs-on: ubuntu-latest
@@ -28,3 +29,6 @@ jobs:
       - name: Original F29 transparent EA autokey inverse
         if: ${{ inputs.probe == 'ea-autokey' }}
         run: node sims/ea_transparent_autokey_inverse.cjs
+      - name: Independent native-source EA marker geometry
+        if: ${{ inputs.probe == 'native-ea-geometry' }}
+        run: node sims/native_ea_marker_geometry_heldout.cjs
