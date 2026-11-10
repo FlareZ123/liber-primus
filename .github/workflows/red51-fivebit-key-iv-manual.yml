@@ -10,6 +10,7 @@ on:
         options:
           - fivebit
           - radix29
+          - triangle
 jobs:
   source-key-inversion:
     runs-on: ubuntu-latest
@@ -21,6 +22,9 @@ jobs:
       - name: Earlier 5-bit red key and black128 IV
         if: ${{ inputs.probe == 'fivebit' }}
         run: node sims/red51_fivebit_key_iv.cjs
+      - name: Red triangle primitive-root IV with 8 authentic grid keys
+        if: ${{ inputs.probe == 'triangle' }}
+        run: node sims/red_triangle_grid_keyskip.cjs
       - name: Exact radix-29 padded 256-bit AES key
         if: ${{ inputs.probe == 'radix29' }}
         run: node sims/red51_radix29_aes.cjs
