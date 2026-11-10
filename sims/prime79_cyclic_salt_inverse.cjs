@@ -247,6 +247,72 @@ function phaseFamilywise(draws = 150) {
     null:'Independent circular rotation of each whole original physical rune-page; maximum over all 79 phases refitted every trial'};
 }
 
+/**
+ * Stronger direct-language invariants for the source-motivated 4×41×79
+ * lattice. Every model allows a completely independent unknown 28! table per
+ * (public salt, position, quarter OR modulo-41 packet lane). Equality under
+ * each table remains key-free.
+ *
+ * @param {{salt:number,ranks:number[]}[]} packets
+ * @param {number[]} english
+ * @param {number[]} latin
+ */
+function latticeGate(packets, english, latin) {
+  const masks = packets.map(p => p.ranks.map(v => v < 0));
+  const random = rng(0x26417935);
+  const configurations = [
+    {label:'4 separate 41-packet quarters',group:i=>Math.floor(i/41)},
+    {label:'41 equal packet lanes across four quarters',group:i=>i%41}
+  ];
+  const sourceWords = {english, latin};
+  const out = [];
+  for (const config of configurations) {
+    const pairs = [];
+    for (let i = 0; i < PACKETS; i++) for (let j = i+1; j < PACKETS; j++)
+      if (config.group(i) === config.group(j) &&
+          packets[i].salt === packets[j].salt) pairs.push([i,j]);
+    /**
+     * @param {number[][]} values
+     */
+    function count(values) {
+      let hits = 0, total = 0;
+      for (const [i,j] of pairs)
+        for (let k = 0; k < PLAIN; k++) {
+          const a = values[i][k], b = values[j][k];
+          if (a < 0 || b < 0) continue;
+          total++;
+          hits += Number(a === b);
+        }
+      return {hits,total,ioc:hits/total};
+    }
+    const observed = count(packets.map(p => p.ranks));
+    assert(observed.total > 0);
+    const source = {};
+    for (const [name, reference] of Object.entries(sourceWords)) {
+      let below = 0, min = Infinity, max = -Infinity, sum = 0;
+      for (let trial = 0; trial < 1000; trial++) {
+        const candidate = masks.map(row => row.map(marked =>
+          marked ? -1 : reference[random() % reference.length]));
+        const stat = count(candidate).ioc;
+        min = Math.min(min, stat);
+        max = Math.max(max, stat);
+        sum += stat;
+        below += Number(stat <= observed.ioc);
+      }
+      source[name] = {draws:1000,mean:sum/1000,min,max,
+        belowOrEqual:below,addOneLowerP:(below+1)/1001};
+    }
+    out.push({group:config.label,observed,source,
+      sourcePairs: pairs.length,
+      invariant:'Same-(salt,column,packet-group) ciphertext rank equality is exactly unchanged by any fixed secret permutation for that public state'});
+  }
+  assert.equal(out[0].observed.hits,386);
+  assert.equal(out[0].observed.total,10640);
+  assert.equal(out[1].observed.hits,19);
+  assert.equal(out[1].observed.total,688);
+  return out;
+}
+
 function main() {
   const packets = frames(original, PHASE);
   assert(packets.every(p => p.salt > 0));
@@ -297,6 +363,7 @@ function main() {
     }
   }
   const planted = positiveControl(packets, sample(shakespeare), random);
+  const lattice = latticeGate(packets,shakespeare,latin);
   // Matched original-marker, packet-inventory and salt-label randomization.
   let saltAtLeast = 0, rotateAtLeast = 0;
   let saltMean = 0, rotateMean = 0;
@@ -316,6 +383,7 @@ function main() {
   const familywise = phaseFamilywise();
   const result = {
     familywise,
+    lattice,
     model: 'Cyclic 164x79 packets, one published salt, 78 EA-or-28-rank payload slots per packet',
     claim: 'Conditional key-independent exclusion of arbitrary fixed salt-and-column 28-permutations for native GP registers; no unknown plaintext or authentic key',
     phase: PHASE, sourceRunes: original.length, packetCount: PACKETS,
@@ -343,4 +411,4 @@ function main() {
   return result;
 }
 if (require.main === module) main();
-module.exports = {frames, collision, positiveControl, phaseFamilywise, main};
+module.exports = {frames, collision, positiveControl, phaseFamilywise, latticeGate, main};
