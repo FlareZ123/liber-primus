@@ -61,10 +61,6 @@ function rotateHash(hash, bytes) {
   return Buffer.concat([hash.subarray(bytes), hash.subarray(0, bytes)]);
 }
 
-/** @param {number[]} values GP-native reference samples. */
-function scoreUnigram(values, lm) {
-  return values.reduce((s, x) => s + lm.unigram[x], 0) / values.length;
-}
 
 function run() {
   const keys = originalKeys();
@@ -78,8 +74,8 @@ function run() {
   assert.equal(englishReference.length,2400);
   assert.equal(latinReference.length,2400);
   const references = {
-    englishGP: scoreUnigram(englishReference, english),
-    latinGP: scoreUnigram(latinReference, latin),
+    englishGP: plainScore(englishReference, english),
+    latinGP: plainScore(latinReference, latin),
   };
   const output = [];
   for (const rule of ["double8","overlap16","sha256-index"]) {
@@ -99,7 +95,7 @@ function run() {
       output.push({
         nonceRule:rule,register,
         originalScorePerRune:genuine.best.perRune,
-        sourceReferenceUnigramPerRune:references[register],
+        sourceReferenceTrigramPerRune:references[register],
         bestOriginalMode:{
           algo:genuine.best.algo,reverseKey:genuine.best.reverseKey,
           reducer:genuine.best.reducer,sign:genuine.best.sign,
@@ -107,7 +103,7 @@ function run() {
           recoveredOriginalGpPrefix:genuine.best.bodyEvidence.map(x=>x.gpPrefix)
         },
         planted:{
-          correct:register==="englishGP"?planted.correct:planted.correct,
+          correct:register==="englishGP"?planted.totalCorrect:planted.correct,
           total:2400, modeRecovered:register==="englishGP"
             ?planted.modeRecovered:planted.originalGridModeRecovered,
           assignmentRecovered:register==="englishGP"
