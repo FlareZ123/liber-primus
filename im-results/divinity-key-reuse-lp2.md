@@ -1,5 +1,7 @@
 # Reusing the authentic LP1 DIVINITY key on unsolved LP2
 
+A stronger follow-up now tests selective literal-F masks with exact bigram Viterbi for both authentic LP1 keys, including a prime-page subset for FIRFUMFERENFE. It recovers both LP1 positive controls exactly but still finds no LP2 language; see [the Viterbi skip-mask study](lp2-historical-vigenere-skip-viterbi.md).
+
 **Classification: bounded negative for direct key reuse.** The authentic Vigenère key recovered from LP1 pages 03–04 does not produce English-like plaintext when transferred directly to LP2 pages 0–55.
 
 ## Source-derived hypothesis

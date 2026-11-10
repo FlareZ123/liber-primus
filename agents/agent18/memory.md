@@ -33,6 +33,17 @@ Best training setting: page reset, phase 3, generalized literal-F skip; train **
 Artifacts: sims/lp2_divinity_key_reuse.cjs and im-results/divinity-key-reuse-lp2.md. The report explicitly distinguishes the 11 source-page literal-F exceptions from the tested LP2-wide generalization.
 
 
+### Selective literal-F Viterbi for authentic LP1 keys
+
+The direct DIVINITY/FIRFUMFERENFE transfers were followed by an exact bigram-Viterbi search over the unknown literal-F skip mask. State is (key phase, previous plaintext rune); at ciphertext F the decoder branches between literal/non-consuming and ordinary Vigenere consumption. Page boundaries reset language context while global key phase continues, matching the known LP1 page-continuous method. The DP has only 30 × key-length states.
+
+Positive controls use the authentic LP1 sections and known plaintext. DIVINITY (LP1 section 1, 116 runes) recovers the exact plaintext and skip positions [48,74,84]. FIRFUMFERENFE (LP1 section 5, 110 runes) recovers the exact plaintext and skip positions [49,58]. Thus the algorithm recovers the source masks exactly.
+
+LP2 global-phase Viterbi, with mask choices optimized over the full input, remains nonlinguistic. At source phase 0, full-corpus trigram scores: DIVINITY −5.8548 (233 skips), FIRFUMFERENFE −5.8031 (248 skips). On physical prime-indexed pages [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53], scores are −5.7999 (66 skips) and −5.7659 (61 skips). Searching all start phases only raises the all-page best to −5.8502 and −5.7992. A one-symbol-perturbed key scores similarly or slightly better (−5.8456 and −5.7898 on all pages). These are optimistic whole-input maximum-likelihood scores, not independent holdouts; the lack of coherent plaintext and weak key specificity are the important findings.
+
+Reproduction: sims/lp2_historical_vigenere_skip_viterbi.cjs. Evidence: im-results/lp2-historical-vigenere-skip-viterbi.md. Do not repeat direct DIVINITY/FIRFUMFERENFE key transfer or the selective-F Viterbi family. Other roles for these keywords remain open only if supported by a distinct clue.
+
+
 ## Durable controls and previous work
 
 - `sims/solved_cipher_regression.cjs` / `im-results/solved-cipher-regression.md`: authentic LP1 A WARNING reverse-GP decrypts **184** runes into **45** published English words; authentic LP2 p56 AN END with prime-minus-one GP key decrypts **85** runes, **25** published words, and the actual literal-F interrupter at offset **56**. The latter is the unique exact match among **32** subsets of five F symbols; exact re-encryption recovers source. These are verified regressions, not novel LP2 decipherments.
