@@ -1,0 +1,27 @@
+{
+  "source": {
+    "name": "OpenNGC",
+    "repository": "https://github.com/mattiaverga/OpenNGC",
+    "path": "database_files/NGC.csv",
+    "source_blob_sha": "efa4b71036d8967c4c698a57fb0526288e201623",
+    "license": "CC-BY-SA-4.0",
+    "coordinate_epoch": "J2000",
+    "coordinate_fields": "RA (HH:MM:SS.SS), Dec (+/-DD:MM:SS.SS), constellation abbreviation"
+  },
+  "objects": [
+    {"id":18,"type":"**","ra":"00:09:23.10","dec":"+27:43:55.5","const":"Peg"},
+    {"id":91,"type":"*","ra":"00:21:51.72","dec":"+22:22:06.1","const":"And"},
+    {"id":130,"type":"G","ra":"00:29:18.55","dec":"+02:52:13.6","const":"Psc"},
+    {"id":131,"type":"G","ra":"00:29:38.52","dec":"-33:15:35.1","const":"Scl"},
+    {"id":138,"type":"G","ra":"00:30:59.24","dec":"+05:09:35.1","const":"Psc"},
+    {"id":151,"type":"G","ra":"00:34:02.79","dec":"-09:42:19.2","const":"Cet"},
+    {"id":199,"type":"G","ra":"00:39:33.17","dec":"+03:08:18.7","const":"Psc"},
+    {"id":226,"type":"G","ra":"00:42:54.04","dec":"+32:34:51.5","const":"And"},
+    {"id":245,"type":"G","ra":"00:46:05.39","dec":"-01:43:24.2","const":"Cet"},
+    {"id":272,"type":"OCl","ra":"00:51:25.16","dec":"+35:49:18.3","const":"And"},
+    {"id":320,"type":"G","ra":"00:58:46.53","dec":"-20:50:24.3","const":"Cet"},
+    {"id":341,"type":"G","ra":"01:00:45.83","dec":"-09:11:08.5","const":"Cet"},
+    {"id":366,"type":"OCl","ra":"01:06:25.99","dec":"+62:13:44.1","const":"Cas"},
+    {"id":1033,"type":"G","ra":"02:40:16.12","dec":"-08:46:37.0","const":"Cet"}
+  ]
+}
