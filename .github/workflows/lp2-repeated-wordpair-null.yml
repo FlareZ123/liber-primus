@@ -11,11 +11,24 @@ on:
           - legacy
           - allalphabet
           - qr36
+          - ninetile
 
 permissions:
   contents: read
 
 jobs:
+  ninetile:
+    if: inputs.mode == 'ninetile'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prove nine-tile all-secret D4 / GP29 Caesar/S-box bound and run independent controls
+        run: node sims/lp2_ninetile_d4_caesar_sbox_gate.cjs
+
   qr36:
     if: inputs.mode == 'qr36'
     runs-on: ubuntu-latest
