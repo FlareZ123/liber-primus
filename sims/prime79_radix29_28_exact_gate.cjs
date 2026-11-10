@@ -364,10 +364,248 @@ function run(options = {}) {
   };
 }
 
-if (require.main === module) {
+if (require.main === module && process.env.PREFIX_TWO_DIGIT !== '1') {
   const phaseStart = Number(process.env.PHASE_START ?? '0');
   const phaseEnd = Number(process.env.PHASE_END ?? '0');
   process.stdout.write(JSON.stringify(run({phaseStart, phaseEnd}), null, 2) + '\n');
 }
 module.exports = {run, cleanStarts, leadingEdges, literalPacketChecks,
   sortedOrderingGate, cyclicOrderingGate, positiveControl};
+
+
+/**
+ * Strengthened source-linked 78->79 radix capacity gate: because the radix-28
+ * digits of 29^78 - 1 begin 15,12, a clean packet must have leading digit
+ * <=15, and if it equals 15 then its second digit must be <=12.
+ *
+ * Unknown cyclic rune ordering is handled by exact finite-domain search.
+ * This is a necessary ciphertext-only constraint, not a language decode.
+ */
+const PREFIX_TWO_LIMIT = (() => {
+  const out = Array(79).fill(0);
+  let n = 29n ** 78n - 1n;
+  for (let i = 78; i >= 0; i--) { out[i] = Number(n % 28n); n /= 28n; }
+  assert.deepEqual(out.slice(0, 2), [15, 12]);
+  return out;
+})();
+const P2_FORWARD13 = Array.from({length: ALPHABET}, (_, p) => {
+  let mask = 0;
+  for (let j = 1; j <= 13; j++) mask |= 1 << ((p + j) % ALPHABET);
+  return mask;
+});
+const P2_BACK13 = Array.from({length: ALPHABET}, (_, p) => {
+  let mask = 0;
+  for (let j = 1; j <= 13; j++) mask |= 1 << ((p - j + ALPHABET) % ALPHABET);
+  return mask;
+});
+/**
+ * @param {number[]} cipher
+ * @param {number[]} starts
+ * @param {'forward'|'reverse'} direction
+ * @returns {number[][]} Each triple is (leading edge source, target, third glyph).
+ */
+function prefixTwoDigitTriples(cipher, starts, direction) {
+  return starts.map(st => direction === 'forward'
+    ? [cipher[st - 1], cipher[st], cipher[st + 1]]
+    : [cipher[st + 77], cipher[st + 78], cipher[st + 76]]);
+}
+/** @param {number[]} permutation @param {number[]} triple @param {'forward'|'reverse'} direction */
+function prefixTwoDigitValid(permutation, triple, direction) {
+  const [a, b, c] = triple;
+  const lead = (permutation[b] - permutation[a] + 28) % 29;
+  const next = direction === 'forward'
+    ? (permutation[c] - permutation[b] + 28) % 29
+    : (permutation[a] - permutation[c] + 28) % 29;
+  return lead < 15 || (lead === 15 && next <= 12);
+}
+/**
+ * Exact all-different / three-variable arc-consistent permutation solver.
+ * Every removed glyph-position value lacks support for one necessary
+ * 2-digit original-cipher constraint; UNSAT is a finite-domain certificate.
+ * @param {number[][]} input
+ * @param {'forward'|'reverse'} direction
+ * @param {number} maxNodes
+ * @returns {{status:string,nodes:number,triples:number,witness:number[]|null}}
+ */
+function prefixTwoDigitGate(input, direction, maxNodes = 100000) {
+  const triples = [...new Set(input.map(triple => triple.join(',')))]
+    .map(s => s.split(',').map(Number));
+  const degree = Array(ALPHABET).fill(0);
+  for (const [a, b, c] of triples) { degree[a]++; degree[b]++; degree[c]++; }
+  let nodes = 0, capped = false;
+  /** @param {number[]} domains @returns {number[]|null} */
+  function propagate(domains) {
+    let changed = true;
+    while (changed) {
+      changed = false;
+      let singletonValues = 0;
+      for (const d of domains) {
+        if (!d) return null;
+        if (!(d & (d - 1))) {
+          if (singletonValues & d) return null;
+          singletonValues |= d;
+        }
+      }
+      for (let i = 0; i < ALPHABET; i++) {
+        if (!(domains[i] & (domains[i] - 1))) continue;
+        const next = domains[i] & ~singletonValues;
+        if (!next) return null;
+        if (next !== domains[i]) { domains[i] = next; changed = true; }
+      }
+      for (const [a, b, c] of triples) {
+        let allowedA = 0, allowedB = 0, allowedC = 0;
+        for (const x of bits(domains[a])) {
+          for (const y of bits(domains[b] & FORWARD[x])) {
+            const distance = (y - x + ALPHABET) % ALPHABET;
+            let zDomain = domains[c] & (distance === 16
+              ? direction === 'forward' ? P2_FORWARD13[y] : P2_BACK13[x]
+              : ALL);
+            zDomain &= c === a ? 1 << x : ~(1 << x);
+            zDomain &= c === b ? 1 << y : ~(1 << y);
+            if (!zDomain) continue;
+            allowedA |= 1 << x;
+            allowedB |= 1 << y;
+            allowedC |= zDomain;
+          }
+        }
+        if (!allowedA || !allowedB || !allowedC) return null;
+        for (const [rune, allowed] of [[a, allowedA], [b, allowedB], [c, allowedC]]) {
+          const next = domains[rune] & allowed;
+          if (!next) return null;
+          if (next !== domains[rune]) { domains[rune] = next; changed = true; }
+        }
+      }
+    }
+    return domains;
+  }
+  /** @param {number[]} domains @returns {number[]|null} */
+  function solve(domains) {
+    nodes++;
+    if (nodes > maxNodes) { capped = true; return null; }
+    domains = propagate(domains);
+    if (!domains) return null;
+    let selected = -1, fewest = ALPHABET + 1, largestDegree = -1;
+    for (let i = 0; i < ALPHABET; i++) {
+      const count = population(domains[i]);
+      if (count > 1 && (count < fewest ||
+        (count === fewest && degree[i] > largestDegree))) {
+        selected = i; fewest = count; largestDegree = degree[i];
+      }
+    }
+    if (selected === -1) {
+      const candidate = domains.map(mask => [...bits(mask)][0]);
+      assert.equal(new Set(candidate).size, ALPHABET);
+      for (const triple of triples)
+        assert(prefixTwoDigitValid(candidate, triple, direction));
+      return candidate;
+    }
+    for (const pos of bits(domains[selected])) {
+      const branch = domains.slice();
+      branch[selected] = 1 << pos;
+      const candidate = solve(branch);
+      if (candidate) return candidate;
+      if (capped) return null;
+    }
+    return null;
+  }
+  const init = Array(ALPHABET).fill(ALL);
+  init[0] = 1; // remove cyclic rotation equivalence
+  const witness = solve(init);
+  return {status: witness ? 'SAT' : capped ? 'UNKNOWN' : 'UNSAT',
+    nodes, triples: triples.length, witness};
+}
+
+/** Every 2-digit SAT witness is also checked against the full packet bound. */
+function prefixTwoFullPacketCheck(cipher, starts, direction, witness) {
+  let valid = 0, invalid = 0;
+  for (const st of starts) {
+    const digits = [];
+    for (let j = st; j < st + 79; j++)
+      digits.push((witness[cipher[j]] - witness[cipher[j - 1]] + 28) % 29);
+    if (direction === 'reverse') digits.reverse();
+    let value = 0n;
+    for (const digit of digits) value = value * 28n + BigInt(digit);
+    if (value < 29n ** 78n) valid++; else invalid++;
+  }
+  return {valid, invalid};
+}
+function prefixTwoPositive() {
+  let seed = 0x79287829;
+  const rng = () => {
+    seed ^= seed << 13; seed ^= seed >>> 17; seed ^= seed << 5;
+    return seed >>> 0;
+  };
+  const permutation = Array.from({length:29}, (_, i) => i);
+  for (let i = 28; i > 0; i--) {
+    const j = rng() % (i + 1);
+    [permutation[i], permutation[j]] = [permutation[j], permutation[i]];
+  }
+  const inverse = [];
+  for (let i = 0; i < 29; i++) inverse[permutation[i]] = i;
+  const encoded = [];
+  let previous = 7;
+  for (let block = 0; block < 12; block++) {
+    let integer = 0n;
+    for (let i = 0; i < 78; i++) integer = integer * 29n + BigInt(rng() % 29);
+    const digits = Array(79);
+    for (let i = 78; i >= 0; i--) {
+      digits[i] = Number(integer % 28n);
+      integer /= 28n;
+    }
+    assert.equal(integer, 0n);
+    for (const digit of digits) {
+      previous = inverse[(permutation[previous] + digit + 1) % 29];
+      encoded.push(previous);
+    }
+  }
+  const starts = cleanStarts(encoded, 0);
+  assert.equal(starts.length, 11);
+  const triples = prefixTwoDigitTriples(encoded, starts, 'forward');
+  assert(triples.every(t => prefixTwoDigitValid(permutation, t, 'forward')));
+  const solved = prefixTwoDigitGate(triples, 'forward', 200000);
+  assert.equal(solved.status, 'SAT');
+  assert.deepEqual(prefixTwoFullPacketCheck(encoded, starts,
+    'forward', permutation), {valid:11,invalid:0});
+  return {plantPackets:12, secretOrderSatisfiesEveryConstraint:true,
+    exactCleanPackets:11, blindGate:solved.status};
+}
+function prefixTwoDigitOriginal(options = {}) {
+  const {phaseStart=0, phaseEnd=78, maxNodes=100000,
+    direction='both'} = options;
+  assert(phaseStart >= 0 && phaseEnd >= phaseStart && phaseEnd <= 78);
+  assert(['forward','reverse','both'].includes(direction));
+  const plant = prefixTwoPositive();
+  const cipher = original();
+  const cases = [];
+  for (let phase = phaseStart; phase <= phaseEnd; phase++) {
+    const starts = cleanStarts(cipher, phase);
+    const ways = direction === 'both' ? ['forward','reverse'] : [direction];
+    for (const way of ways) {
+      const constraints = prefixTwoDigitTriples(cipher, starts, way);
+      const result = prefixTwoDigitGate(constraints, way, maxNodes);
+      const checked = result.witness
+        ? prefixTwoFullPacketCheck(cipher, starts, way, result.witness) : null;
+      const record = {phase, direction:way, cleanPackets:starts.length,
+        status:result.status, nodes:result.nodes,
+        tripleConstraints:result.triples, fullPacketWitness:checked,
+        witness:result.witness};
+      cases.push(record);
+      process.stdout.write('PREFIX_TWO_CASE '+JSON.stringify(record)+'\n');
+    }
+  }
+  return {input:'12,956 original LP2 GP runes', phaseStart, phaseEnd,
+    searchNodeCap:maxNodes, plant, limitPrefix:PREFIX_TWO_LIMIT.slice(0,5),
+    cases:cases.map(({witness,...rest})=>rest),
+    caveat:'UNSAT excludes the fixed unknown cyclic alphabet under this packet origin. SAT is only a necessary 2-digit condition; witnesses do not recover original plaintext.'};
+}
+module.exports.prefixTwoDigitGate = prefixTwoDigitGate;
+module.exports.prefixTwoDigitOriginal = prefixTwoDigitOriginal;
+if (require.main === module && process.env.PREFIX_TWO_DIGIT === '1') {
+  const options = {
+    phaseStart:Number(process.env.PHASE_START ?? '0'),
+    phaseEnd:Number(process.env.PHASE_END ?? '0'),
+    maxNodes:Number(process.env.PREFIX_TWO_MAX_NODES ?? '100000'),
+    direction:process.env.PREFIX_TWO_DIRECTION || 'both'
+  };
+  process.stdout.write('PREFIX_TWO_SUMMARY '+JSON.stringify(prefixTwoDigitOriginal(options))+'\n');
+}
