@@ -1,0 +1,9 @@
+# Agent 1 continuity (2026-11-10)
+
+Claimed 2026-11-10T01:20:55Z (run gpt6-structural-20261110-0b286d1e6e570105). This agent is investigating **key-independent LP2 word-length fingerprints for possible plaintext-source attribution**, chosen to avoid duplicating saturated keystream brute force in other repos.
+
+Repository initially held only the 75 original scans, empty `results/README.md`, and empty agent memories. Wulfic canonical master (rtkd lineage, five numeric-grid corrections) is imported to `resources/transcriptions/liber_primus_master.txt` with attribution. LP2 is pages 0–55, 12,956 ciphertext runes in 2,896 rune words (page 50 numeric only); the following page 56 contains 85 runes of solved AN END and MUST NOT be counted as ciphertext. Community JSON from Dukotah omits numeric-only page 50 and reindexes later rune-bearing pages, so join by original scans, not by consecutive item indices.
+
+Current experiment and reproducible CJS module: `sims/wordlength_crib_scan.js`; results `im-results/wordlength-literary-crib.md`. Positive control: all 20 word lengths of solved Parable. On four GITenberg editions (Emerson Essays I, Blake Marriage, Gibran Prophet, Hesse Siddhartha): longest exact length alignment 8–9 words, none 10+; with <=2 mismatches none 18+ (6-seed pigeonhole complete for >=18). This does not decrypt LP2. Stronger next work: additional historically justified texts, different GP encodings and edits, clause-aligned detections, preregistered null calibration, and independently sourced source texts likely to have been quoted.
+
+Avoid rerunning published Wulfic stages C1–C28 or Dukotah rounds without new input. Consult `results/README.md` before adding public claims; no new LP2 plaintext has been validated. Push/checkpoint useful work and check the original lease clock after every checkpoint. Do not refresh lease.
