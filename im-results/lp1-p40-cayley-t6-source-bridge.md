@@ -63,6 +63,20 @@ Of all **18** LP2 red annotation spans, exactly three have GP-prime sums divisib
 
 This three-way comparison is also retrospective: requiring divisibility by 29, choosing the final rune as fixed point, choosing the p05 corners, and selecting the six-back coincidence were informed by previous findings. There are other mathematical functions and page features one could have selected. The three rows are consequently a useful *bounded comparison within a concrete proposed reading*, not a measure of how unlikely the whole clue discovery was by chance.
 
+## Exact obstruction to using the recovered 28-cycle as a direct rune substitution
+
+The source-defined map `T(x)=8−2(x−8)` has fixed point **H = GP index 8**. Every power `T^k`, for **every independently chosen exponent `k`**, satisfies the exact equivalence
+
+[
+ T^k(P)=8 \quad\Longleftrightarrow\quad P=8.
+]
+
+Consequently a cipher applying `T^k` as a **direct symbol substitution** can never encrypt an original GP-English one-rune word `A` (index 24) or `I` (index 10) into the ciphertext rune **ᚻ**, regardless of its unknown key, clock, page phases or changes in `k` between symbols.
+
+The original 2,896 canonical complete rune words contain **83** single-rune ciphertext words, including **four** consisting solely of ᚻ: whole-word ordinals **205, 398, 1688 and 2140** on physical pages **4, 7, 30 and 39**. Each of those four is algebraically impossible for the specific **direct power-of-T on ordinary GP-English with preserved word boundaries** model. The SFT checks all 28 exponents against all 29 GP source symbols, and asserts those four original physical locations.
+
+This is an **exact original-cipher necessity failure for this narrow mechanism**. It says nothing against a keyed *differential-step* cipher using the T-cycle, extra encoding layers, another language with a genuine one-rune H word, or changed plaintext word boundaries. Earlier all-symbol passthrough and fixed-word-alphabet source gates already constrain related models; this result adds the p40-specific fixed-point and the four concrete forbidden source positions.
+
 ## Decision and next discriminating step
 
 The LP1 word **MOBIUS** makes projective diagonalization reasonable for a human solver, and the two independent p40 numbers specify a particular power and center. The resulting map unexpectedly coincides exactly with the manuscript's strongest six-back affine echo. This may narrow an intended key or marker construction, particularly one using a 28-cycle with a separate fixed rune; the earlier fixed-H multiplier-gate report already shows that **84** of 1,290 original pairs violate the most naive global nonzero-multiplier version, so that architecture cannot simply be asserted for all positions.
