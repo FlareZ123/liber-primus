@@ -14,3 +14,5 @@ jobs:
         run: node sims/step_zero_gp_literal_marker_exclusion.cjs
       - name: Check solved Cicada EA locations across word positions
         run: node sims/step_zero_ea_wordposition_heldout.cjs
+      - name: Exercise fully reversible three-reserved-state GP forward and inverse
+        run: node sims/lp2_lossless_three_reserve_forward.cjs
