@@ -1,6 +1,6 @@
-# Source-anchored 27×27 ciphertext-direction walker: original inverse and full positive control
+# Source-anchored 27×27 ciphertext-direction walker: English/Latin original inverse and hidden-key controls
 
-**Classification:** completed, source-guided, reversible **finite cipher-family negative**. Agent 16, 10 November 2026. **No authentic LP2 plaintext, key or continuation recovered.** Original and source-native planted calculations executed on Windows Node 22 in [successful manual workflow 42861266715](https://github.com/FlareZ123/liber-primus/actions/runs/42861266715). [Self-contained reproducer](../sims/source27_cipher_direction_inverse.cjs).
+**Classification:** completed, source-guided, reversible **finite cipher-family negative**. Agent 16, 10 November 2026. **No authentic LP2 plaintext, key or continuation recovered.** Original and English/Latin source-native planted calculations executed on Windows Node 22 in [successful manual workflow 42864577857](https://github.com/FlareZ123/liber-primus/actions/runs/42864577857). Self-contained reproducers: [English](../sims/source27_cipher_direction_inverse.cjs) · [Latin](../sims/source27_cipher_direction_latin.cjs).
 
 ## Why this candidate was worth an actual inverse
 
@@ -20,31 +20,40 @@ At every subsequent position use a reversible predecessor-excluding 28-rank chan
 
 All **1,024** combinations of source register, direction register, stride, rotation, reflection, additive sign, successor order and reset clock are enumerated. The direct continuous-prediction ability of this family is precisely testable, and the code specifies every choice.
 
-## Original LP2 result and truly unseen continuation
+## Original LP2 result in two independently sourced GP languages
 
-Train a smoothed native GP-English unigram model on the first 190,000 characters of archived Shakespeare (independent of LP2). Select the best source-grid model by decoding **2,874 genuine ciphertext runes** on p3–14, two complete sections. Freeze that model and score the **9,353 later original runes** on p15–55, all five additional sections, without refitting.
+For both English and Latin, select the best of the **same 1,024 original-source grid modes** by only **2,874 genuine LP2 ciphertext runes** on p3–14, two complete sections. Freeze each language-selected mode and score the **9,353 later original runes** on p15–55, five independent subsequent sections, without any second-stage fitting.
 
-| Metric | Best original train-selected source-grid inverse | Genuine GP-English held-out source |
+The GP-English source is a smoothed unigram count from the first 190,000 characters of independently archived Shakespeare. The GP-Latin source is the independent Vulgate reference's **203,357 training GP runes**, with Jeffreys smoothing (`count + 0.5`), originally assembled from Luke, John, Acts and Romans. Their historical spellings and GP encodings follow the committed source normalizers. Latin is a relevant alternative because a *separate unverified* LP2 incipit candidate reads `SEQUENDI RATIO`; the current attack does **not** assume this candidate is real plaintext.
+
+| Frozen original-source result | English-GP scorer | Latin-GP scorer |
 |---|---:|---:|
-| Train, mean GP-English log probability | **−4.118973** | — |
-| Held-out, mean GP-English log probability | **−4.232270** | **−2.969185** (matched 12,227) |
-| Held-out rune index of coincidence | **0.035204** | **0.059877** |
-| Original rune positions reconstructed under the selected key | 12,227/12,227 | Not applicable |
+| Best training mean log likelihood/rune (p3–14) | **−4.118973** | **−4.544980** |
+| Frozen original heldout mean log likelihood/rune (p15–55) | **−4.232270** | **−4.711917** |
+| Native source/reference GP likelihood per rune | **−2.969185** (12,227-rune independent English) | **−2.814605** (2,400 independent Latin heldout runes) |
+| Original heldout GP rune IoC | **0.035204** | **0.035183** |
+| Native source GP rune IoC | **0.059877** | **0.072029** |
+| Shuffled original 729-rune source keys at least as good as true, fixed-mode heldout | **51/128** | **82/128** |
+| Add-one wrong-source rank | **52/129 = 0.40310** | **83/129 = 0.64341** |
 
-The original best training mode selects GP-prime direction residue, GP-prime source-key values, stride1, direction rotation2, no reflection, positive key, reversed cyclic rank, and section reset. Its held-out characters are rune-like noise; no word sequence or original plaintext appears. In 128 seeded exact-inventory shuffles of the actual 729-rune source grid, **51/128 wrong grids score at least as well on the original heldout** under that frozen mode (add-one rank 52/129≈0.4031). That is a source-key specificity failure, beyond merely having low native-language IoC.
+The best English mode uses GP-prime direction and prime key, stride1, rotation2, normal handedness, positive sign, reverse GP28 successor ranks, section reset. The best Latin mode instead uses prime direction and prime key, stride1, rotation0, *reflected* orientation, negative sign, ordinary successor order, section reset. The source key and both apparently best modes are not shared across the two languages. Both original heldout streams have near-uniform IoC, and neither produces recognizable text. The Latin-trained original performs **worse than 82 of 128 randomly permuted wrong 729-rune source grids** under its frozen mode. This specifically rejects the proposed historical source-grid ordering as an explanation within this mechanism.
 
-Source re-encryption of every 12,227 original rune under any chosen key is guaranteed by the bijective design, so it is correctly asserted as an internal consistency check, **not** counted as evidence for a historical key.
+Source re-encryption of every 12,227 original rune under any chosen key is guaranteed by the invertible design, so the exact original round-trip is **an implementation check**, not key authentication. The full source-grid permutations are matched wrong-key controls; we do not treat their 128 draws as a discovery-wide p-value or a test of all possible grid traversals.
 
-## Blind source-native positive proves the test can recover text
+## Two blind source-native positives: authentic language recovery in the hypothesized model
 
-Use GP-English translated from the last 95,000 source characters, with no language-model overlap. Encrypt **12,227** plaintext runes exactly into 52 source-sized physical-page streams using the **original 729-rune GP source grid** and one secretly selected model from the 1,024 variants: GP-prime direction, GP-index key, stride5, rotation0, ordinary handedness, positive sign, ordinary successor order, section reset. The resulting source-layout ciphertext contains **111 immediate doublets**.
+The first positive encrypts **12,227** genuine held-out GP-English plaintext runes sampled from the last 95,000 Shakespeare source characters, disjoint from model training. It splits this text into the original 52 physical page lengths and encrypts using the **exact real 729-rune LP2 grid** under one secretly selected mode among the 1,024. Its published-like synthetic ciphertext contains **111 immediate doublets**.
 
-Given this invented ciphertext and all 1,024 candidate modes, the solver independently ranks the exact true mode **first** using only the initial two sections. It reconstructs **12,227/12,227 original English GP plaintext runes**, with byte-exact regeneration of the complete ciphertext. Across **128 independently permuted wrong source grids**, none reaches the original-key native-GP score (add-one upper rank 1/129≈0.00775). The plant is an end-to-end hidden-key regression, so the authentic original failure cannot be blamed on inability to invert a *true member of this tested family*.
+The separate Latin positive uses **2,400 genuinely independent GP-Latin heldout runes** from the Latin Apocalypse, cyclically tiled to 12,227 original-sized positions. This repetition is explicit: the test checks this cipher's symbolic **unigram** selection and lossless inversion, so it is a valid basic key-discrimination regression but does not mimic continuous Latin prose across tile boundaries. It uses the same secret test mode as English, again with the authentic original source grid.
+
+In **both blinded tests**, the true hidden mode ranks **first** using only the two training sections, every **12,227/12,227 GP plaintext rune** is recovered, the original 12,227-rune synthetic ciphertext is re-encrypted exactly, and **0 of 128 independent wrong-grid controls** reaches the true grid's recovered language likelihood (plus-one 1/129≈0.00775 for each). The English original source reference has IoC0.059877, the Latin heldout GP register IoC0.072029. The native GP source plant visibly separates the correct source key from wrong keys, while both original LP2 language fits remain indistinguishable from arbitrary source grids.
+
+The plant controls validate the complete fixed-model original inverse; they do **not** demonstrate which original unknown LP2 text, if any, used this algorithm.
 
 ## What the result changes
 
-The tested route construction genuinely incorporates the first 729 original ciphertext indices as a grid key, implements the signed numerical-direction clue, preserves original anti-repeat markers and tests an untouched five-section continuation. All 1,024 direct, native-GP members fail to deliver a useful original inverse. This makes another unrestricted orientation/source-register sweep in this precise architecture a poor use of compute.
+The tested route construction genuinely incorporates the first 729 original ciphertext indices as a grid key, implements the signed numerical-direction clue, preserves original anti-repeat markers and tests an untouched five-section continuation. The shared 1,024-member source-guided family fails to deliver useful original prose under *either* independently trained native GP English or Latin likelihood; both language-scored original sections remain nonlinguistic with independently selected source-key shuffles scoring as well or better. This makes another unrestricted orientation/source-register sweep in this precise architecture a poor use of compute.
 
 The result does **not** eliminate altered layouts, different roots, a plaintext or word-dependent walker, variable strides, hidden intermediate alphabets, a genuinely external state source, a noncyclic 28-symbol alphabet, changing per-position keys or compressed/binary plaintext. These must supply an independently fixed rule and a successful original-source prediction before being accepted. No fragment of authentic unknown LP2 has been recovered.
 
-**Reproduce:** `node sims/source27_cipher_direction_inverse.cjs`. Node.js 22, CommonJS, only built-in libraries and committed corpus; runs the full original decryption, all candidate models, secret-source English plant, exact inverse/forward assertions and 128 wrong-source controls. CI used the opt-in `probe=source27` route in the [existing source-square manual workflow](../.github/workflows/clue-square-matrix-stream-manual.yml).
+**Reproduce:** `node sims/source27_cipher_direction_inverse.cjs` and `node sims/source27_cipher_direction_latin.cjs`. Both use Node.js 22, CommonJS, built-in libraries and committed independently sourced corpora. Together they run the full English/Latin original decryption, 1,024 candidates per register, two distinct source-native hidden-key plants, exact inverse/forward assertions and 128 wrong-source controls per register. The existing [manual source-square workflow](../.github/workflows/clue-square-matrix-stream-manual.yml) offers opt-in `probe=source27`, and [run 42864577857 passed both Windows test steps](https://github.com/FlareZ123/liber-primus/actions/runs/42864577857).
