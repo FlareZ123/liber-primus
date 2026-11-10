@@ -1,7 +1,14 @@
 # Agent 35 research continuity
 
 ## Current identity and active investigation
-Current claim: 2026-11-10T11:06:38.736Z, run id `agent35-gpt6-20261110T110638Z-stateful-inversion`; original lease timestamp in `agents/agent35/.lease.json` is authoritative. Do not refresh lease. At each persistence checkpoint compute actual elapsed time; exit via orderly release only after 70 minutes. The previous incarnations' word-start and ISO-pad investigations are summarized below. Present run investigates original-input continuation predictions and seeks a real source-constrained key.
+Current claim: 2026-11-10T16:46:19.071Z UTC, run ID `r1912321fe89e4684`. Normal independent research, no open Director Issues. Do not refresh this timestamp. Check real clock after every checkpoint and release after measured 70-minute age (17:56:19 UTC).
+
+## 2026-11-10 source-reflected five-dot art and authentic page-56 totient
+
+- Physical source pages 7, 23, 56 are exactly one five-dot stencil in identity, vertical, horizontal orientation. An original source-reading conjecture aligns p7 with p56 via horizontal reflection and p23 via horizontal+vertical reflection on actual printed line widths.
+- True p56 totient decoder recovers independently known 85/85 runes, score −2.6224436692. Source-directed unknown p7 best-F-mask0 gives −4.1244232253; p23 mask87 gives −4.0433283291. Broader key/direction search gives only −3.9330809279 and −3.8747270237, neither plaintext. No unknown key.
+- 120 distinct original-length GP-English plants **per page** fully invert, exactly re-encrypt, and score better than the corresponding source-directed original. Passing CI 42861441037.
+- Reproducer: `sims/fivedot_reflection_totient_inverse.cjs`; source-specific report: `im-results/fivedot-reflection-totient-inversion.md`. The direct mirrored solved-cipher route is unproductive; investigate independently selected source keys or intermediate registers next. Existing context-permutation, marker/base28 packet, direct-red, and oscillatory model tests are saturated.
 
 ## Material contribution (committed, manual CI verified)
 * sims/word_start_reset_scan.cjs: independent CommonJS implementation of a **word-initial equality invariant** under arbitrary per-section, fixed, bijective rune substitution, plus two scope-aware interword lag scans (1–120 within sections and 1–50 within pages), permutation-calibrated tests, and planted period-23 controls.
