@@ -13,4 +13,6 @@ jobs:
         with:
           node-version: '22'
       - name: Verify 256-token payload, token cases and SHA-256
-        run: node sims/test_lp2_grid.cjs
+        run: |
+          node sims/test_lp2_grid.cjs
+          node sims/grid_shamir_rs_inverse.cjs
