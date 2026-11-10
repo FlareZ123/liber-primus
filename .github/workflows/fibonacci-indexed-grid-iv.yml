@@ -1,0 +1,14 @@
+name: Fibonacci-indexed grid IV heldout inversion
+on:
+  workflow_dispatch:
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source-indexed IVs against locked LP2 section tails
+        run: node sims/fibonacci_indexed_grid_iv.cjs
