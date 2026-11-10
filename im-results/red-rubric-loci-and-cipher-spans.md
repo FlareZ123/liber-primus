@@ -81,6 +81,15 @@ with rune IoC **0.0345016**; the apparent plaintext begins
 No setting produces readable GP text. The best retrospectively selected
 heldout score is itself **−0.840798**, and therefore gives no
 heldout decipherment.
+An additional **independent author-native register** derived from 796
+editorial-filtered GP words of the already solved Cicada LP1/LP2 prose
+selects a different original-source candidate and still scores
+**−0.819017** on its untouched original heldout positions.
+The true-red-key heldout Shakespeare plant scores **+0.048564**
+under that same native GP prior. The original negative persists
+under the known author's vocabulary without assuming Shakespeare
+letter frequencies are universal. [Native-register successful CI
+42792941901](https://github.com/FlareZ123/liber-primus/actions/runs/42792941901).
 
 A blind, separately held-out Shakespeare GP source of the same
 **12,956-rune original page-length layout** was encrypted with the
