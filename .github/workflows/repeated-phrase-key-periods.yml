@@ -21,3 +21,5 @@ jobs:
         env:
           NULL_TRIALS: ${{ inputs.null_trials }}
         run: node sims/repeated_phrase_key_periods.cjs
+      - name: Test 179/1432 word-position substitution invariants with repeat-repaired source plants
+        run: node sims/bookend_period179_substitution_invariant.cjs

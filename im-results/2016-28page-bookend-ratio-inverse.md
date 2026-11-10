@@ -67,10 +67,35 @@ The test fixes all original runes and uses a native-GP English language model tr
 
 The rotation ranks are conditional on this retrospectively identified bookend, input register, and specific cipher model. They do not account for all earlier human exploration and are not discovery-wide probabilities of Cicada's intentions.
 
+## Period-179 and period-1432 word-position substitution gate
+
+The word-start displacement between the two exact occurrences is **1,432 = 8×179**. This invites a broader test than the direct additive-key screen: allow an **arbitrary bijection of all 29 GP symbols for every pair (word-index modulo 179, within-word position)**. If that substitution schedule repeats every 179 words, then any two words 179 apart use the same bijection at each shared position. The same holds at lag 1,432. Consequently, equality of ciphertext symbols at aligned within-word positions is a **key-free invariant** of the plaintext, independent of all 179×word-position substitution keys. This also covers the more general 1,432-word period at the second lag.
+
+I compared every common-prefix position of every word pair at each lag, not only equal-length words. The exact repeated anchor pair at word indexes 1,462/1,463 and 2,894/2,895 is excluded from the lag-1,432 score so it cannot confirm itself.
+
+| Original invariant | Word pairs | Aligned positions | Equal symbols |
+| --- | ---: | ---: | ---: |
+| Lag **179** | **2,717** | **8,717** | **303** (3.476%) |
+| Lag **1,432**, excluding the two anchor words | **1,462** | **4,691** | **154** (3.283%) |
+
+The original is near the uniform 1/29 equality rate, rather than the higher equality rate in native-GP English. To account for the manuscript's **86 within-page adjacent repeats**, I generated source-matched plants from each of three independent reference texts. Each trial takes a random contiguous 12,956-rune GP window, imposes the exact original 2,896-word length vector, applies independent random 29-symbol bijections for all 179 word phases and within-word positions, then rewrites **81%** of within-page adjacent ciphertext repeats by incrementing the repeated symbol modulo 29. The latter is the same soft-repair setting used in the existing bookend true-key plant; the controls retain a mean **84.5–84.8** residual within-page repeats versus the original **86**.
+
+| GP-English reference | 2,000-control mean, lag 179 | Minimum | 2,000-control mean, lag 1,432 | Minimum |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare | **504.1 ± 24.4** | **423** | **268.3 ± 17.1** | **211** |
+| Emerson | **513.5 ± 23.3** | **432** | **276.4 ± 16.9** | **210** |
+| Gibran | **505.5 ± 23.8** | **434** | **268.9 ± 16.8** | **213** |
+
+**Zero of 2,000** controls from every reference reached or fell below either original count. The add-one lower-tail Monte Carlo bound is **1/2,001 = 0.000500** for each reference and lag. The result is a conditional model test, not a discovery-wide p-value: the 179/1,432 period and English-register assumptions were selected retrospectively, and the repeat repair is one calibrated model rather than an established LP2 operation.
+
+**Decision:** this rules against a 179- or 1,432-word periodic **bijective word-position substitution** on native-GP English, even with the tested 81% within-page repeat repair. It is stronger than the additive-only test but does not exclude a non-bijective map, nonlinear/nonperiodic state, different word segmentation, or another plaintext register. It supplies no key or plaintext.
+
+**Reproducer:** [standalone Node 22 SFT](../sims/bookend_period179_substitution_invariant.cjs), using the original corpus/transcription and the repository's Shakespeare, Emerson, and Gibran controls.
+
 ## Research decision
 
-The **unique repeated two-word formula**, its source-inventory rarity certificate, the exact **566-rune half-book imbalance**, corresponding 2016 image arithmetic, and **6,195-rune bookend-anchored alignment** are reproducible structural inputs. The direct shared additive inverse, including the 179-word period suggested by the duplicated word gap, is rejected in its stated GP-English form. The multiplicative-step single-symbol signal is not accompanied by its necessary English serial fingerprint; it supplies no plaintext or authenticated key.
+The unique repeated two-word formula, the fixed-inventory rarity certificate, the 566-rune half-book imbalance and the 6,195-rune alignment are real source observations, but none authenticates a shared plaintext or key. Agent 16's independent [word-boundary necessary-condition gate](lp2-bookend-boundary-necessary-condition.md) rejects an unchanged word-segmented double copy of the aligned halves (1,380 versus 1,388 boundaries, only 297 coincident). The new period-179/1,432 invariant above also rejects the natural periodic bijective word-position substitution family, even with the tested repeat repair. Agent 33 reports no affine-reused wing graphic between the p27 isolated wing and p55 moth/tree; their thematic correspondence does not yet select a cipher operation ([image-crop handoff](../communications/agent49/20261110T2206Z_agent33_p27_p55_wing-crop.md)).
 
-Any next attempt should identify an independent source instruction connecting the two halves to a particular key, coding rule or state and demand original-text recovery. Re-scanning arbitrary offsets or interpreting the marginal ratio peak as a decode would repeat a weak model.
+The most economical remaining interpretation is a deliberately reused closing formula or terminator, not an unchanged repeated passage. Its plaintext, encryption and authorial purpose remain unknown. Any further work on this lane needs an independently visible/source-stated operation that predicts an adjacent withheld interval; do not resume arbitrary key-period or offset searches.
 
-**Full read-only Node 22 CommonJS reproducer:** [sims/2016_28page_bookend_ratio_inverse.cjs](../sims/2016_28page_bookend_ratio_inverse.cjs). Inputs: the unchanged [LP2 corpus](../resources/liber-primus/lp2-corpus.json), [original transcription](../resources/lp2-transcription.txt) and [independent Shakespeare GP reference](../resources/control/shakespeare_first300k.txt).
+**Reproducers:** [bookend structure and direct key-cancellation tests](../sims/2016_28page_bookend_ratio_inverse.cjs), [periodic word-position substitution gate](../sims/bookend_period179_substitution_invariant.cjs), and [word-boundary gate](../sims/lp2_bookend_boundary_fingerprint_sft.cjs). Inputs are the unchanged [LP2 corpus](../resources/liber-primus/lp2-corpus.json), [original transcription](../resources/lp2-transcription.txt), and the repository's independent GP-English controls.
