@@ -126,3 +126,9 @@ A parser bug was caught before finalizing reproducibility: parseSharedCorpus().w
 ### Source-image inspection clarification
 
 Inspected the uploaded original JPEGs 53.jpg, 54.jpg and 55.jpg directly. “Red p53 runes” is imprecise: the GP glyphs are black; the red numeral 1 and red punctuation visually mark the 51-rune p53 suffix/span. The assembled source block is p53 all179 runes + p54's oversized first Ac rune + p55 all76 runes =256; p54's remaining text is intentionally excluded by this visual-selection hypothesis. The split is p53 first128 + (p53 marker-1 span51 + Ac1 + p55 76)=128. Report and source-gate assertions now state this accurately, including p53 length179, marker span51, p54 initial index24 and p55 length76. This is still a post-selected visual grouping, not an independently established intended segmentation.
+
+
+### Grid-derived direct-key tests
+
+Following the source-derived (+1,-2) grid vector, tested the 32-cell toroidal path (forward/reverse, phases0/1) and bounded horizontal-wrap paths from cells51/57 as periodic GP pads under the T6 inverse. Also tested grid-byte indexing into the full256 p53+Ac+p55 rune block and into the second128 half (phases0/51/57, both signs). No readable plaintext: best path candidate -5.172/token; best grid-indexed rune candidate -5.140/token. These tests are now in sims/2016_image_dimension_lag6_source_gate.cjs; fully asserted CI run42896253128 succeeded. This rejects simple direct periodic-key interpretations, not stateful or semantic grid uses.
+
