@@ -12,6 +12,7 @@ on:
           - cookie
           - rsa2014
           - modular-square
+          - rank28-parity
 
 jobs:
   original-cipher-source-inverse:
@@ -33,3 +34,6 @@ jobs:
       - name: Run historical RSA modular-squaring original inverse
         if: ${{ inputs.source == 'modular-square' }}
         run: node sims/rsa2014_modular_square_inverse.cjs
+      - name: Test source-independent prime totient 28-rank parity
+        if: ${{ inputs.source == 'rank28-parity' }}
+        run: node sims/prime_totient_rank28_parity_invariant.cjs
