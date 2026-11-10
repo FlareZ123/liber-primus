@@ -26,3 +26,5 @@ jobs:
         run: node sims/red_32run_aes_gp_inverse.cjs
       - name: Exact red-stencil 31-marker capacity and base60 null
         run: node sims/red_256_marker_capacity.cjs
+      - name: Exact historical PATIENCE column permutation vs 256 original ink events
+        run: node sims/red256_grid_patience_column_gate.cjs
