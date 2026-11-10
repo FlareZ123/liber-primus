@@ -27,6 +27,7 @@ function tally(words) {
   let lag5S = 0;
   let lag5WordsWithTwo = 0;
   let lag5Triples = 0;
+  let conditionalExpectedPairsGivenWordHits = 0;
   for (const word of words) {
     let lag5Own = 0;
     for (let lag = 2; lag <= 7; lag++) {
@@ -45,9 +46,16 @@ function tally(words) {
         }
       }
     }
-    if (lag5Own >= 2) lag5WordsWithTwo++;
+    if (lag5Own >= 2) {
+      lag5WordsWithTwo++;
+      // Under uniform placement of this word's observed lag-five hit sites,
+      // each adjacent position pair has chance k(k-1)/(n(n-1)).
+      conditionalExpectedPairsGivenWordHits += lag5Own * (lag5Own - 1) /
+        (word.length - 5);
+    }
   }
-  return { pairs, singles, lag5S, lag5WordsWithTwo, lag5Triples, exposures };
+  return { pairs, singles, lag5S, lag5WordsWithTwo, lag5Triples,
+    conditionalExpectedPairsGivenWordHits, exposures };
 }
 
 /** @param {number[]} values */
