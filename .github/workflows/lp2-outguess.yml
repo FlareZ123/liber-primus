@@ -3,6 +3,11 @@ name: LP2 original-JPEG OutGuess message extraction
 on:
   workflow_dispatch:
     inputs:
+      synthetic_only:
+        description: Probe fake OutGuess headers using a generated payload-free JPEG
+        type: boolean
+        required: false
+        default: false
       keyed_probe:
         description: Test 22 source-defined OutGuess passphrases against LP2 sources
         type: boolean
@@ -29,7 +34,7 @@ jobs:
           make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
           sudo make install
       - name: Retrieve hidden messages from every LP2 page
-        if: ${{ !inputs.keyed_probe }}
+        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only }}
         run: node sims/outguess_lp2_scan.cjs
       - name: Install Python for direct binary-stream pad testing
         if: ${{ !inputs.keyed_probe }}
@@ -45,12 +50,17 @@ jobs:
           OUTGUESS_NULL_REPLICATES: 64
         run: python sims/outguess_lp2_directpad.py
       - name: Probe source-defined passwords for authentic hidden LP2 messages
-        if: ${{ inputs.keyed_probe }}
+        if: ${{ inputs.keyed_probe && !inputs.synthetic_only }}
         run: |
           node --check sims/outguess_lp2_keyed_probe.cjs
           node sims/outguess_lp2_keyed_probe.cjs
+      - name: Verify synthetic JPEG false headers and real keyed embedding
+        if: ${{ inputs.synthetic_only }}
+        run: |
+          node --check sims/outguess_header_synthetic_probe.cjs
+          node sims/outguess_header_synthetic_probe.cjs
       - name: Preserve exact recovered payloads and summary
-        if: ${{ always() && !inputs.keyed_probe }}
+        if: ${{ always() && !inputs.keyed_probe && !inputs.synthetic_only }}
         uses: actions/upload-artifact@v4
         with:
           name: outguess-lp2-default-key
@@ -59,10 +69,19 @@ jobs:
           retention-days: 30
 
       - name: Preserve source-key OutGuess extraction candidates
-        if: ${{ always() && inputs.keyed_probe }}
+        if: ${{ always() && inputs.keyed_probe && !inputs.synthetic_only }}
         uses: actions/upload-artifact@v4
         with:
           name: outguess-lp2-keyed
           path: outguess-results-keyed/
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Preserve synthetic-image authentication test
+        if: ${{ always() && inputs.synthetic_only }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: outguess-lp2-synthetic-header
+          path: outguess-synthetic-results/summary.json
           if-no-files-found: warn
           retention-days: 30
