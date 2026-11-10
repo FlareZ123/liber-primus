@@ -114,6 +114,7 @@ jobs:
         run: |
           node sims/prime79_terminal_linear_gate.cjs
           node sims/prime79_terminal_linear_crib.cjs
+          node sims/prime79_terminal_twoerror_source.cjs
       - uses: actions/setup-python@v5
         if: ${{ inputs.probe == 'prime79cpsat' || inputs.probe == 'prime79gp' }}
         with:
