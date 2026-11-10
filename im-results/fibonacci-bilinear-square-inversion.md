@@ -55,6 +55,41 @@ The exact finite decoder also genuinely searches each complete original square. 
 
 The controls encrypt *unseen genuine Shakespeare GP prose* with two different, independently hidden Fibonacci phases **7 and 9** and arbitrary seeded 81- and 80-element column keys. Without being told either true phase or any key, the same decoder recovers every source symbol and re-encrypts the entire 12,956-rune test manuscript. In original LP2, the selected phases (7 and 8) and secret column keys are only **training maximizers**. Although their candidate plaintext necessarily re-encrypts original glyphs, it has no credible language content and fails the independent heldout source test. The exact re-encryption identity is an implementation check, never a historical plaintext claim.
 
+## Stronger theorem: every secret 16-row-periodic substitution table fails the same source-register test
+
+The p15 numerical spiral supplies exactly **16** independently printed values. A more permissive architecture than the preceding bilinear Fibonacci pad would reuse a distinct secret alphabet at each of the 16 row phases, and allow the alphabet to differ **for every individual column**. This is an exact unknown-key model, with \`16×81 = 1,296\` completely arbitrary **29!** row-specific permutations on the first square and **1,280** on the second:
+
+\[
+C_{r,c}=S_{(r+\phi)\bmod16,\ c}(P_{r,c}),\qquad S_{j,c}\in\operatorname{Sym}(29).
+\]
+
+There is no assumption of affine keys, Fibonacci arithmetic, a particular printed value-to-key map, or shared key across columns. Any fixed \(\phi\) merely relabels those secret tables.
+
+**Universal equality invariant.** Since the substitution at \((r,c)\) is the same permutation as at \((r+16,c)\), injectivity forces
+
+\[
+[C_{r,c}=C_{r+16,c}]
+\quad\Longleftrightarrow\quad
+[P_{r,c}=P_{r+16,c}].
+\]
+
+The actual *number* of equal symbol pairs separated by 16 square rows is therefore **exactly unchanged** by *all* \((29!)^{16w}\) secret table choices, for any \(w=80,81\). This holds if the square's printed rows or columns supply the logical cipher rows, in either direction. It also holds for rank-one source-derived 16-number row pads, regardless of column keys. A different row schedule, nonbijective error handling, or additional plaintext whitening evades the invariant.
+
+| Source-bound square / logical axis | Original equalities | Pair positions | Minimum from 2,000 Shakespeare windows | Minimum from 2,000 Gibran windows |
+| --- | ---: | ---: | ---: | ---: |
+| 81×81, ordinary rows | **151** | 5,265 | **265** | **281** |
+| 81×81, transpose | **158** | 5,265 | **260** | **272** |
+| 80×80−5, ordinary rows | **178** | 5,115 | **267** | **271** |
+| 80×80−5, transpose | **177** | 5,115 | **258** | **263** |
+
+These comparisons use real unsolved GP29 values, no fitted key and no assumed plaintext. Source controls are *contiguous literary GP rune windows* with the same exact square geometry and omitted five cells. Each corpus supplies 2,000 partly overlapping windows, tested separately per axis, so the finite minima are descriptive source facts rather than independent probabilities. The original has only ~**2.87–3.48%** matching pairs; genuine literary source windows have substantially more. In all **four** original axes, the count is below the *lowest* of all 2,000 Shakespeare windows and all 2,000 Gibran windows. This excludes the proposed full 16-period column-indexed permutation family for the *declared author-native GP source interpretation*, while leaving many more complex architectures open.
+
+A full secret-table positive generated 1,296 independent uniformly shuffled 29-symbol permutations for the 81×81 control and 1,280 for the terminal square. The known planted inverse recovered **all 12,956 GP plaintext symbols and re-encrypted all 12,956 ciphertext symbols exactly**. Crucially, the per-block equality counts were **exactly preserved**: **298/5,265** for the first genuine-source plant and **307/5,115** for the second. This is a universal-key invariant, so the test does not attempt to recover arbitrary hidden permutations from original ciphertext.
+
+This stronger result supersedes any inference that a different 16-number Fibonacci or prime-derived row *value* could rescue the same 16-period square architecture. Changing the 16 values, the phase, or the secret lookup tables does not change the equality certificate. Recovering actual LP2 text would require a cipher that *does* change its within-column state between row \(r\) and \(r+16\), changes source-register symbol equality before encryption, or uses a different original reading order.
+
+**Independent reproduction:** [all-secret period-16 square collision program](../sims/p15_period16_square_collision.cjs), seeds \`0x16403301\` and \`0x16403302\`, both exact secret-key positive inverses; [passing Windows CI run 42841017053](https://github.com/FlareZ123/liber-primus/actions/runs/42841017053), existing square-source job. The counts and controls use only the original GP corpus, Shakespeare and Gibran resource files already committed. This result is strongest as a **known-source conditional exclusion**, not evidence of a decrypted original passage or the author's intended 16-periodity.
+
 ## Scope and next genuinely promising step
 
 This rejects the source-motivated **zero-preserving Fibonacci row-factor family** for a native-GP-English plaintext interpretation in these hypothetical square blocks. It neither validates the retrospective 6,561 split nor excludes a nonlinear evolving state, additional byte-compression layer, a nonzero shifted Fibonacci factor, a different row/column layout, an external-key pad, or another plaintext register. A successor should propose an independently sourced transformation that **removes the mandatory zero rows** and supplies an actual reversible original-cipher plaintext; simply increasing phase fits cannot rescue this family.
