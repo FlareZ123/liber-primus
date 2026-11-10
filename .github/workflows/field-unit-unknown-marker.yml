@@ -19,3 +19,6 @@ jobs:
           node-version: '22'
       - name: Key-independent zero-residue marker test and real-language controls
         run: node sims/field_unit_unknown_zero_marker.cjs ${{ inputs.replicates }}
+
+      - name: Word-reset field-unit all-29 marker challenge
+        run: node sims/field_unit_word_reset_marker.cjs ${{ inputs.replicates }}
