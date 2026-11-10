@@ -80,6 +80,93 @@ assert.deepEqual(redPairs.matches, [{
   pageA: 53, offsetA: 143, pageB: 54, offsetB: 3, same: 4
 }]);
 
+
+/**
+ * Source-selected GP29 edit identity: p53 fourth rune Ac24 and p54 fourth
+ * rune X14 differ by ten, the shared fifth rune I10. Positions 0,1,2,4
+ * are identical in both five-rune windows, position 3 differs.
+ *
+ * A finite postselection-aware diagnostic samples fresh disjoint original
+ * source fragments of the same 18 lengths. It is NOT a confirmatory p-value
+ * because the five-site grammar was recognized after reading the source.
+ */
+function checksumWindowScan(sources) {
+  let same0124Different3 = 0;
+  const arithmeticMatches = [];
+  for (let a = 0; a < sources.length; a++) {
+    for (let b = a + 1; b < sources.length; b++) {
+      const x = sources[a], y = sources[b];
+      for (let i = 0; i + 5 <= x.length; i++) {
+        for (let j = 0; j + 5 <= y.length; j++) {
+          if (x[i] !== y[j] || x[i + 1] !== y[j + 1] ||
+            x[i + 2] !== y[j + 2] || x[i + 4] !== y[j + 4] ||
+            x[i + 3] === y[j + 3]) continue;
+          same0124Different3++;
+          if ((x[i + 3] - y[j + 3] + 29) % 29 === x[i + 4])
+            arithmeticMatches.push({spanA: a, startA: i,
+              spanB: b, startB: j, delta: x[i + 4]});
+        }
+      }
+    }
+  }
+  return {same0124Different3, arithmeticMatches};
+}
+const sourceChecksum = checksumWindowScan(spans.map(s => s.symbols));
+assert.equal(sourceChecksum.same0124Different3, 1);
+assert.equal(sourceChecksum.arithmeticMatches.length, 1);
+assert.equal(sourceChecksum.arithmeticMatches[0].delta, 10);
+assert.equal((24 - 14 + 29) % 29, 10);
+
+function checksumFragmentNull() {
+  const samples = 2000;
+  let state = 0x53005412;
+  const random = () => {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return (state >>> 0) / 4294967296;
+  };
+  let checksumAtLeastObserved = 0, nearAtLeastObserved = 0;
+  let checksumTotal = 0, nearTotal = 0, maxChecksum = 0;
+  for (let run = 0; run < samples; run++) {
+    const selected = [];
+    const fragments = [];
+    for (const span of spans) {
+      const len = span.symbols.length;
+      let start;
+      do {
+        start = Math.floor(random() * (stream.length - len + 1));
+      } while (selected.some(([a, b]) =>
+        !(start + len <= a || b <= start)));
+      selected.push([start, start + len]);
+      fragments.push(stream.slice(start, start + len));
+    }
+    const outcome = checksumWindowScan(fragments);
+    const near = outcome.same0124Different3;
+    const arithmetic = outcome.arithmeticMatches.length;
+    nearTotal += near;
+    checksumTotal += arithmetic;
+    checksumAtLeastObserved += Number(arithmetic >= 1);
+    nearAtLeastObserved += Number(near >= 1);
+    maxChecksum = Math.max(maxChecksum, arithmetic);
+  }
+  const diagnostic = {
+    originalCipherContiguousNonoverlappingFragments: true,
+    seed: "0x53005412", samples,
+    sameSitePatternAtLeastObserved: nearAtLeastObserved,
+    checksumAtLeastObserved,
+    nearMean: nearTotal / samples,
+    checksumMean: checksumTotal / samples,
+    maxChecksum,
+    plusOneChecksumTail: (checksumAtLeastObserved + 1) / (samples + 1)
+  };
+  assert.deepEqual([diagnostic.sameSitePatternAtLeastObserved,
+    diagnostic.checksumAtLeastObserved, diagnostic.maxChecksum],
+  [33, 3, 1]);
+  return diagnostic;
+}
+const checksumNull = checksumFragmentNull();
+
 const tripleSites = [];
 for (const page of unsolved) {
   for (let i = 0; i + 3 <= page.indices.length; i++)
@@ -240,6 +327,8 @@ const directTraceInverse = traceOriginalInverse();
 console.log(JSON.stringify({
   input: {sourceRedSpans: 18, redRunes: 225, originalRunes: 12956},
   redUniqueNearRepeat: redPairs,
+  terminalGP29Checksum: sourceChecksum,
+  originalFragmentChecksumNull: checksumNull,
   terminalSplice: {
     markedP3: p3, markedP39: p39, repeated: splice,
     p53Five: p53.slice(15, 20), p54Five: p54.slice(3, 8),
