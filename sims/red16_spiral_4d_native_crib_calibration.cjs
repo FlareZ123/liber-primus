@@ -9,6 +9,7 @@
  * Node.js 22 CommonJS, no third-party dependencies or file writes.
  */
 const assert = require("node:assert/strict");
+const { parseSharedCorpus } = require("./lp2_word_pages.cjs");
 const raw = require("./red16_spiral_4d_native_crib.cjs");
 const {
   C, N, pages, fittingWords, nativeEA, plantedCipher, plantedPlain,
@@ -17,6 +18,27 @@ const {
 assert.equal(C.length, 12956);
 assert.equal(fittingWords.length, 5);
 assert.equal(markers(C).length, 86);
+const sourceWords = parseSharedCorpus().words;
+assert.equal(sourceWords.length, 2896);
+const wordAt = new Int16Array(N), wordStart = [], wordLength = [];
+let at = 0;
+sourceWords.forEach((w, j) => {
+  wordStart.push(at); wordLength.push(w.length);
+  for(let k=0;k<w.length;k++) wordAt[at+k]=j;
+  at += w.length;
+});
+assert.equal(at, N);
+/** Test an unfitted native substring against original visible word boundaries. */
+function boundaryFit(match) {
+  const native = nativeEA.find(w=>w.name===match.name);
+  assert.ok(native);
+  const start = match.site-native.ea;
+  const last = start+match.length-1;
+  if(start<0||last>=N)return {contained:false,exact:false};
+  const j=wordAt[start];
+  return {contained:j===wordAt[last],
+    exact:j===wordAt[last]&&wordStart[j]===start&&wordLength[j]===match.length};
+}
 
 const SEED = 0x21c7bfc9;
 const NULLS = 250;
@@ -45,10 +67,11 @@ function cribPositions(crib) {
 }
 
 /** @param {number[]} ciphertext */
-function fullSearch(ciphertext) {
+function fullSearch(ciphertext, expectedMarkers = 86) {
   assert.equal(ciphertext.length, N);
   const mark = markers(ciphertext);
-  assert.equal(mark.length, 86, "global relabels must preserve 86 original repeat sites");
+  assert.equal(mark.length, expectedMarkers,
+    "Original relabels must preserve markers; synthetic planted data has its own count");
   const possibilities = new Map();
 
   for (const word of fittingWords) for (const m of mark) {
@@ -65,7 +88,7 @@ function fullSearch(ciphertext) {
     }
   }
 
-  let bestLang = null, bestDisjoint = null;
+  let bestLang = null, bestDisjoint = null, bestWordBounded = null;
   for (const entry of possibilities.values()) {
     const decoded = decrypt(ciphertext, entry.state);
     const language = info(decoded);
@@ -75,11 +98,15 @@ function fullSearch(ciphertext) {
       if (!sites.has(match.site) || match.length > sites.get(match.site).length)
         sites.set(match.site, match);
     }
-    const predictions = [...sites.values()].sort((a,b)=>a.site-b.site);
+    const predictions = [...sites.values()].sort((a,b)=>a.site-b.site)
+      .map(match=>({...match,...boundaryFit(match)}));
     const independentSymbols = predictions.reduce((sum,x)=>sum+x.length-1,0);
+    const withinWords = predictions.filter(m=>m.contained);
+    const exactWords = withinWords.filter(m=>m.exact);
     const score = { state: entry.state, fitSites: [...entry.fitSites].sort((a,b)=>a-b),
       fitCribs: entry.cribs.map(cribPositions), language,
       independentSiteCount:predictions.length, independentSymbols,
+      containedWordSites:withinWords.length, exactWordSites:exactWords.length,
       independentPredictions:predictions };
     if(!bestLang || language > bestLang.language) bestLang=score;
     if(!bestDisjoint || score.independentSiteCount > bestDisjoint.independentSiteCount ||
@@ -88,10 +115,16 @@ function fullSearch(ciphertext) {
        (score.independentSiteCount === bestDisjoint.independentSiteCount &&
         score.independentSymbols === bestDisjoint.independentSymbols &&
         language > bestDisjoint.language)) bestDisjoint=score;
+    if(!bestWordBounded || score.containedWordSites > bestWordBounded.containedWordSites ||
+      (score.containedWordSites === bestWordBounded.containedWordSites &&
+       score.exactWordSites > bestWordBounded.exactWordSites) ||
+      (score.containedWordSites === bestWordBounded.containedWordSites &&
+       score.exactWordSites === bestWordBounded.exactWordSites &&
+       language > bestWordBounded.language))bestWordBounded=score;
   }
   return { candidateKeys: possibilities.size, fourConstraintFits:
     [...possibilities.values()].reduce((s,x)=>s+x.cribs.length,0),
-    markers:mark.length, bestLang, bestDisjoint,
+    markers:mark.length, bestLang, bestDisjoint, bestWordBounded,
     truthFound: possibilities.has("11,7,22,3") };
 }
 
@@ -108,7 +141,9 @@ function summarize(s) {
   return {candidateKeys:s.candidateKeys, fourConstraintFits:s.fourConstraintFits,
     bestLanguage:s.bestLang.language,
     bestDisjointSites:s.bestDisjoint.independentSiteCount,
-    bestDisjointSymbols:s.bestDisjoint.independentSymbols };
+    bestDisjointSymbols:s.bestDisjoint.independentSymbols,
+    bestContainedWordSites:s.bestWordBounded.containedWordSites,
+    bestExactWordSites:s.bestWordBounded.exactWordSites };
 }
 function quantile(a, q) {
   const s = a.toSorted((x,y)=>x-y);
@@ -116,7 +151,7 @@ function quantile(a, q) {
 }
 function main() {
   const orig = fullSearch(C);
-  const plant = fullSearch(plantedCipher);
+  const plant = fullSearch(plantedCipher, markers(plantedCipher).length);
   assert.ok(plant.truthFound, "blind native solved-source plant must include secret state");
   const truePlantScore = info(plantedPlain);
   assert.ok(Math.abs(truePlantScore-plant.bestLang.language) < 1e-8,
@@ -132,6 +167,8 @@ function main() {
   const maxScores = nulls.map(x=>x.bestLanguage);
   const siteCounts = nulls.map(x=>x.bestDisjointSites);
   const runeCounts = nulls.map(x=>x.bestDisjointSymbols);
+  const insideCounts = nulls.map(x=>x.bestContainedWordSites);
+  const exactCounts = nulls.map(x=>x.bestExactWordSites);
   const tally = (a,observed)=>a.filter(x=>x>=observed).length;
   const first = summarize(orig);
   const report = {
@@ -140,7 +177,8 @@ function main() {
     sourceWords:fittingWords.map(x=>({name:x.name,runic:x.runes.length,eaIndex:x.ea,
       fittedNonEA:4,unfittedNonEA:x.runes.length-5})),
     original:{
-      ...first,bestLanguageState:orig.bestLang,bestDisjointState:orig.bestDisjoint
+      ...first,bestLanguageState:orig.bestLang,bestDisjointState:orig.bestDisjoint,
+      bestWordBoundedState:orig.bestWordBounded
     },
     null:{
       model:"250 seeded independent global rune-label permutations, preserving all original rune/word/page lengths and 86 doublet sites; redo all five-word x 86-site state inverses and rank all candidates",
@@ -149,9 +187,13 @@ function main() {
       medianMaxDisjointSites:quantile(siteCounts,.5),
       maxDisjointSites:Math.max(...siteCounts),
       medianMaxIndependentSymbols:quantile(runeCounts,.5),
+      medianMaxContainedWordSites:quantile(insideCounts,.5),
+      medianMaxExactWordSites:quantile(exactCounts,.5),
       originalBestLanguageUpperP:(tally(maxScores,first.bestLanguage)+1)/(NULLS+1),
       originalBestDisjointSiteUpperP:(tally(siteCounts,first.bestDisjointSites)+1)/(NULLS+1),
       originalBestDisjointSymbolUpperP:(tally(runeCounts,first.bestDisjointSymbols)+1)/(NULLS+1),
+      originalBestContainedWordSiteUpperP:(tally(insideCounts,first.bestContainedWordSites)+1)/(NULLS+1),
+      originalBestExactWordSiteUpperP:(tally(exactCounts,first.bestExactWordSites)+1)/(NULLS+1),
       siteCountDistribution:Object.fromEntries([...new Set(siteCounts)].sort((a,b)=>a-b)
         .map(n=>[n,siteCounts.filter(x=>x===n).length]))
     },
