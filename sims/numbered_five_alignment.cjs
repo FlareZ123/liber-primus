@@ -296,8 +296,179 @@ function fieldShareStudy() {
   };
 }
 
+
+/**
+ * Independently source-bounded 553-rune, 7 × 79 packet challenge.
+ * The 79/78 predecessor-excluded base conversion is explicitly exploratory.
+ * This probes exact original data with the published GP order, while preserving
+ * the paper's globally proven exclusions for most other packet phases.
+ * @returns {object}
+ */
+function packet79Study() {
+  const first = pool.length - corpus.pages.filter(p => p.page >= 36 && p.page <= 55)
+    .reduce((sum, page) => sum + page.indices.length, 0);
+  const listStart = first + [...sourceSection.slice(0, labels[0].index + 2)]
+    .filter(ch => symbol.has(ch)).length;
+  const originalList = passages.flat();
+  const listEnd = listStart + originalList.length;
+  assert.deepEqual([listStart, listEnd, originalList.length], [8805, 9358, 553]);
+  assert.deepEqual(pool.slice(listStart, listEnd), originalList);
+
+  const limit = 29n ** 78n;
+  const pi = Array.from({length:29}, (_, i) => i);
+  /** @param {number} s @param {number[]} key */
+  function packet(s, key) {
+    const digits = [];
+    let repeats = 0, numeric = 0n;
+    for (let i = s; i < s + 79; i++) {
+      const before = pool[i-1], after = pool[i];
+      if (after === before) repeats++;
+      const d = (key[after] - key[before] + 28) % 29;
+      digits.push(d);
+      numeric = numeric * 28n + BigInt(d);
+    }
+    const hasCapacity = numeric < limit;
+    const decrypted = [];
+    if (!repeats && hasCapacity) {
+      let n = numeric;
+      for (let i = 0; i < 78; i++) {
+        decrypted.unshift(Number(n % 29n));
+        n /= 29n;
+      }
+      assert.equal(n, 0n);
+      // Full inverse and exact forward re-encoding under this *assumed* key.
+      let reconstructed = 0n;
+      for (const p of decrypted) reconstructed = reconstructed * 29n + BigInt(p);
+      const check = [];
+      for (let i = 0; i < 79; i++) {
+        check.unshift(Number(reconstructed % 28n));
+        reconstructed /= 28n;
+      }
+      assert.equal(reconstructed, 0n);
+      assert.deepEqual(check, digits);
+      let before = pool[s-1];
+      const inverseKey = new Array(29);
+      for (let i = 0; i < 29; i++) inverseKey[key[i]] = i;
+      for (let i = 0; i < 79; i++) {
+        before = inverseKey[(key[before] + check[i] + 1) % 29];
+        assert.equal(before, pool[s+i]);
+      }
+    }
+    return {
+      sourceOffset:s,duplicateTransitions:repeats,
+      twoDigitCapacity:digits[0] < 15 || digits[0] === 15 && digits[1] <= 12,
+      fullCapacity:hasCapacity,firstDigit:digits[0],decrypted
+    };
+  }
+  /** @param {number[]} a */
+  function ioc(a) {
+    const n = Array(29).fill(0);
+    for (const v of a) n[v]++;
+    return n.reduce((sum, count) => sum + count * (count-1), 0) /
+      (a.length * (a.length - 1));
+  }
+
+  const local = Array.from({length:7}, (_, i) => packet(listStart + 79*i, pi));
+  const global35 = Array.from({length:7}, (_, i) => packet(listStart - 1 + 79*i, pi));
+  const clean = local.filter(p => p.duplicateTransitions === 0 && p.fullCapacity);
+  assert.equal(clean.length, 6);
+  assert.equal(local.filter(p => p.duplicateTransitions > 0).length, 1);
+  const decoded = clean.flatMap(p => p.decrypted);
+  assert.equal(decoded.length, 468);
+  const represented = [];
+  for (const block of passages) {
+    const distinct = [...new Set(block)];
+    const firstSeen = distinct.concat(Array.from({length:29}, (_, i)=>i)
+      .filter(v => !distinct.includes(v)));
+    const key = new Array(29);
+    for (let i = 0; i < 29; i++) key[firstSeen[i]] = i;
+    const packets = Array.from({length:7}, (_, i) => packet(listStart+79*i,key));
+    represented.push({
+      source:passages.indexOf(block)+1,distinctSourceRunes:distinct.length,
+      clean:packets.filter(p=>p.duplicateTransitions===0).length,
+      numericValid:packets.filter(p=>p.duplicateTransitions===0&&p.fullCapacity).length
+    });
+  }
+
+  // Original seven-column coincidence rate compared to *all* contiguous
+  // source windows. This avoids declaring an observed 79-column collision
+  // count surprising solely because 553 happened to be divisible by 79.
+  /** @param {number} s */
+  function sevenColumnEqualities(s) {
+    let total = 0;
+    for (let i = 0; i < 7; i++) for (let j = i+1; j < 7; j++)
+      for (let col = 0; col < 79; col++)
+        total += Number(pool[s+i*79+col] === pool[s+j*79+col]);
+    return total;
+  }
+  const observedEqualities = sevenColumnEqualities(listStart);
+  const allEqualities = [];
+  for (let s = 0; s+553 <= pool.length; s++)
+    allEqualities.push(sevenColumnEqualities(s));
+  const equalityUpperTail = allEqualities.filter(n=>n>=observedEqualities).length/
+    allEqualities.length;
+
+  // Sliding-source negative control, no synthetic cipher: for every
+  // noninitial 553-rune window, count exactly one adjacent equal transition
+  // and successful first-two-base28-digit checks on all six clean packets.
+  const repeatPrefix = new Uint32Array(pool.length+1);
+  for (let i = 1; i < pool.length; i++)
+    repeatPrefix[i+1] = repeatPrefix[i] + Number(pool[i] === pool[i-1]);
+  let sameWindowCondition = 0, singleRepeatWindows = 0, tested = 0;
+  for (let s = 1; s+553<=pool.length; s++) {
+    tested++;
+    const totalRepeats=repeatPrefix[s+553]-repeatPrefix[s];
+    if (totalRepeats!==1) continue;
+    singleRepeatWindows++;
+    let cleanCount = 0, allPass = true;
+    for (let k = 0; k < 7; k++) {
+      const at=s+k*79, repeats=repeatPrefix[at+79]-repeatPrefix[at];
+      if (repeats) continue;
+      cleanCount++;
+      const d0=(pool[at]-pool[at-1]+28)%29;
+      const d1=(pool[at+1]-pool[at]+28)%29;
+      if (!(d0<15 || d0===15 && d1<=12)) allPass=false;
+    }
+    if (allPass && cleanCount===6) sameWindowCondition++;
+  }
+  assert.deepEqual([observedEqualities,tested,sameWindowCondition],
+    [57,12403,59]);
+  return {
+    source:'Original JPEGs 53–55; five numbered paragraphs end before red-dot separator',
+    itemRuneLengths:passages.map(p => p.length),
+    originalGlobalHalfOpen:[listStart,listEnd],
+    totalListRunes:553,whole79RunePackets:7,originalGlobalPhase:listStart%79,
+    globalSurvivorPhase:35,
+    publicGpCyclicLocalPackets:local.map(p=>({
+      sourceOffset:p.sourceOffset,duplicateTransitions:p.duplicateTransitions,
+      twoDigitCapacity:p.twoDigitCapacity,fullCapacity:p.fullCapacity,
+      firstDigit:p.firstDigit
+    })),
+    publicGpCyclicCleanRadianPlainLength:decoded.length,
+    publicGpCyclicCleanPlainIoC:ioc(decoded),
+    publicGpGlobal35Packets:global35.map(p=>({
+      sourceOffset:p.sourceOffset,duplicateTransitions:p.duplicateTransitions,
+      fullCapacity:p.fullCapacity
+    })),
+    sourceItemFirstAppearanceOrderTests:represented,
+    sevenColumnEqualities:{
+      hits:observedEqualities,comparisons:21*79,
+      allContiguous553Windows:allEqualities.length,
+      mean:allEqualities.reduce((s,n)=>s+n,0)/allEqualities.length,
+      upperTail:equalityUpperTail
+    },
+    conditionalOriginalWindowReference:{
+      noninitialWindows:tested,exactlyOneRepeat:singleRepeatWindows,
+      exactlyOneRepeatAndAllSixCleanPrefix2Pass:sameWindowCondition,
+      fraction:sameWindowCondition/tested
+    },
+    caveat:'The list length, packet size, GP order and capacity tests were explored after noticing LP2 structures; the frequency is a descriptive selected-window reference, not a puzzle-wide p-value. Source-native inverse round-trips are numeric tautologies. Neither an LP2 key nor authentic plaintext was recovered.'
+  };
+}
+
 if (require.main === module) {
-  const result=process.argv.includes('--field-share') ? fieldShareStudy() : study();
+  const result=process.argv.includes('--packet79') ? packet79Study() :
+    process.argv.includes('--field-share') ? fieldShareStudy() : study();
   process.stdout.write(JSON.stringify(result,null,2)+'\n');
 }
-module.exports = {scan, study, fieldShareStudy};
+module.exports = {scan, study, fieldShareStudy, packet79Study};
