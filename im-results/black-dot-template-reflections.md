@@ -48,6 +48,18 @@ The five-point geometry is **reused artwork**, and the change of orientation is 
 
 This finding does not show whether the illustrations were inserted by the Cicada designer as a cipher clue or by a later layout/template operation. The strongest direct inference is one exact underlying five-dot stencil rendered in at least three orientations/positions.
 
+## Conditional constellation identification screen
+
+A 2019 third-party [interview attributed to gHOST3301](https://therealsamizdat.com/2019/08/30/cicada-files-ghost3301-interview/) speculated that the scattered dots on pages 7 and 56 represent constellations. The interviewee's association with the historical authors is **not cryptographically authenticated**. It motivates a finite test of one celestial-chart reading, rather than establishing it as fact.
+
+Using a pinned [d3-celestial](../resources/control/d3-celestial-constellation-lines.json) J2000 reference (original by Olaf Frohn, BSD-3-Clause; [attribution](../resources/control/d3-celestial-lines-SOURCE-LICENSE.txt)), enumerate every unique connected simple five-star path in the star-line drawings of **89 constellation features**. There are **879** distinct five-vertex candidate subsets. Approximate each local chart using right ascension scaled by cosine of the candidate's mean declination, with declination as vertical coordinate. For each candidate, exhaustively fit all 120 point correspondences and both handedness choices, then optimize planar rotation, uniform scale and translation analytically: 210,960 fitted layouts.
+
+The best match of the observed five-dot stencil among this entire permissive family is a **five-star subset of Piscis Austrinus (`PsA`)** with normalized root-mean-square residual **0.081858** of the source dot pattern's total centered radius. This would be attractive if examined alone, but it fails a coordinate-marginal-preserving test: exhaustively permute the source's five y values among its original five x values, recompute the full 210,960-layout winner for each of **120** shapes, and compare the smallest scores. **19/120** source-matched null shapes fit as well as or better than the real motif; conditional p = **0.15833**. The null minimum is 0.0396385, which fits substantially better by chance.
+
+This rules out calling that best-fitting path a *statistically exceptional* identified constellation under the specified projection, path family, and exact x/y-marginal permutation null. It does **not** rule out historical star charts, freeform asterisms, different catalog selections, or a hidden use of star names. The selected `PsA` path must not be promoted to a decipherment key without an independent predictive success.
+
+Reproduce all scores and the exact null with `node sims/black_dot_constellation_screen.cjs`. The runnable source asserts all 879 candidate paths, 210,960 fitted star layouts, the winning residual, and the 19/120 matched-control rank.
+
 ## Reproduce
 
 Run `python sims/black_dot_reflection.py` from repository root after installing `numpy` and `opencv-python-headless`. The script uses only the tracked original image bytes, reads all 58 LP2 scans, asserts the exact dot census, searches orientations and all 120 assignments, compares local binary pixel masks, and emits the full center coordinates and errors in deterministic JSON. Native image files stay unmodified.
