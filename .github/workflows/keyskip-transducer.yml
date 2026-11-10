@@ -6,7 +6,7 @@ on:
 jobs:
   transducer-tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -14,3 +14,5 @@ jobs:
           node-version: "22"
       - name: Verify exact normalization and planted key discrimination
         run: node sims/test_keyskip_transducer.cjs
+      - name: Screen all grid key offsets using the exact skip likelihood
+        run: node sims/grid_keyskip_scan.cjs
