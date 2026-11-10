@@ -1,0 +1,51 @@
+# Source-marked red runes: a provisional cross-page prime-totient relation
+
+**Evidence:** exact arithmetic on independently documented red-ink spans and a deterministic, family-scoped rotation test. **Classification: exploratory ciphertext-side structural alignment.** It does not decrypt any currently unsolved rune or establish a cryptographic key.
+
+## Exact manuscript input and arithmetic
+
+Use the corrected physical-page annotations in [lp2-ink-annotations.json](../resources/liber-primus/lp2-ink-annotations.json), joined by *physical page index and rune offset* to the 29-symbol [canonical LP2 corpus](../resources/liber-primus/lp2-corpus.json). This yields **16 distinct red-rune spans among unsolved pages 0–55**; the two solved-page heading spans 56–57 are excluded. Sum each span's assigned **Gematria Primus prime values**, then divide by 29 only when the sum is exactly divisible by 29. No red span is adjusted, cropped, enlarged or selected by its numerical score.
+
+Exactly three unsolved red spans have a GP prime sum divisible by 29:
+
+| Physical LP2 page | Start offset | Red runes | Exact prime sum | Quotient by 29 |
+| --- | ---: | ---: | ---: | ---: |
+| **15** | 0 | 9 | **638** | **22** |
+| **40** | 0 | 8 | **435** | **15** |
+| **53** | 128 | **51** | **2262** | **78** |
+
+The first source is the **two-word red title** immediately above the 4×4 Fibonacci-prime square, whose existing exact spiral construction contains the **22nd prime, 79**. The terminal p53 source is the full **51-rune** stanza, including the leading red **ᛏ**, previously misread as a separate graphic. Here, the final sum **2262 = 29 × 78** and **78 = φ(79) = p_22 − 1**, using the same prime-totient operation as the independently solved LP2 page 56.
+
+The corrected first rune is essential: dropping red **ᛏ** (GP prime value 59) changes the p53 sum to **2203 ≡ 28 (mod 29)**, destroying the 29-divisibility. Its presence and colour are established from the original JPEG; the mathematical relationship did not determine whether it should be included.
+
+The p40 title has a separate exact quotient 15; this report does not infer a page jump, plaintext, or key from that number. It is a third source-marked example of a 29-divisible red sum.
+
+## A finite cross-span test, including all eligible pairs
+
+For each of 16 original unsolved red spans with sum S, define a quotient q=S/29 if the division is integral. For **every ordered pair of distinct red spans A,B**, ask whether
+
+\[
+q_B = \varphi(p_{q_A}) = p_{q_A}-1,
+\]
+
+where \(p_k\) is the **kth one-based ordinary prime**. This relation is exact and uses the historically authentic p56 prime-totient transform. The original manuscript has exactly **one directed pair** meeting the rule: **p15 offset0 to p53 offset128**, with (q_A,q_B)=(22,78). The 16 spans, their placements and the modulus 29 are source-defined; the *choice to examine this numerical relation* followed exploration of their observed sums and is therefore not pre-registered evidence.
+
+To calibrate the **whole 16-span pair selection**, circularly rotate each distinct physical page's complete ciphertext rune stream by a seeded independent uniform offset. Preserve the page's exact rune inventory, local cyclic adjacency, red span lengths and red span positions. Compute the same red sums and scan **all directed pairs** after each rotation, 250,000 times, fixed seed \`0x17bca191\`.
+
+| Statistic | Original | Null exceedances / 250,000 | Add-one upper-tail |
+| --- | ---: | ---: | ---: |
+| At least 3 spans' sums divisible by 29 | 3 | 4,087 | **0.016352** |
+| Any ordered prime-totient related pair | 1 | 397 | **0.001592** |
+| Both preceding criteria in the same manuscript | yes | 170 | **0.000684** |
+
+Expected number of 29-divisible spans under this null is **0.542788**. The observed arithmetic is unusual under this particular family-scoped rotation model, even after scanning all 16 marked red spans. These three statistics are correlated and were selected during investigation; their p-values are *descriptive conditional tails*, not discovery-wide probabilities.
+
+As a smaller exact enumeration, all **159 × 179 = 28,461** independent cyclic offsets of the two source pages p15 and p53 yield precisely **one** match for the ordered prime-totient quotient condition. The same one offset pair has the exact observed sums 638 and 2262. Conditional rate: **1/28,461 ≈ 0.000035136**. This is an exact test of that **already selected page pair**, not an independent replication or a probability that the creator intended the relationship.
+
+## Interpretation and next falsifiable requirement
+
+This result links **an independently red-marked title over the established Fibonacci-prime square**, **a separately red-marked final stanza**, and **the prime-totient transform already authenticated by the solved manuscript**. It may encode a checksum, select a prime/offset, or be an unusual chance alignment amplified by exploratory selection. Nothing yet identifies the action of 79, 78 or 22 on original cipher runes. No prime/key should be declared recovered.
+
+The constructive next step is to specify one complete rule mapping the source-derived numbers to ciphertext transformations, choose parameters without reading the target plaintext, then invert a fresh original span and exactly re-encrypt it. A fit solely to these three sums supplies no cryptographic evidence.
+
+**Independent reproduction:** [single runnable CommonJS test](../sims/red_prime_totient_crosslink.cjs), with source-annotation assertions, exact prime sequence, exhaustive two-page rotations, full 250,000-sample 16-span familywise calibration. [Successful Windows Node.js 22 workflow, run 42771461787](https://github.com/FlareZ123/liber-primus/actions/runs/42771461787). [Manual-only workflow](../.github/workflows/red-prime-totient-crosslink.yml).
