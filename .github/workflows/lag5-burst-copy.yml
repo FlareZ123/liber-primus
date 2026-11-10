@@ -1,0 +1,14 @@
+name: LP2 lag-five burst copying discriminator
+on:
+  workflow_dispatch:
+jobs:
+  lag5-burst:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare 12000 independent-copy controls with lag-five block counts
+        run: node sims/lag5_burst_copy_probe.cjs
