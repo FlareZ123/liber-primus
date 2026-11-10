@@ -10,6 +10,7 @@ on:
         options:
           - standard
           - quarter79
+          - red225
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -25,3 +26,6 @@ jobs:
       - name: Screen four-quarter F29 and phase-79 nuisance pad
         if: inputs.experiment == 'quarter79'
         run: node sims/quarter79_linear_phase_invariant.cjs
+      - name: Invert physically red-marked 225-rune 15x15 Hill key
+        if: inputs.experiment == 'red225'
+        run: node sims/red225_hill15_inverse.cjs
