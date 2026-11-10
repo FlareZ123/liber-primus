@@ -25,6 +25,10 @@ jobs:
         run: |
           set -o pipefail
           node sims/lag6_repair_contextual_inverse.cjs | tee lag6-contextual-inverse.json
+      - name: Test original page28/42 scale-four relation with exact T6 rewrite
+        run: |
+          set -o pipefail
+          node sims/relative_key_T6_pair_marginal.cjs | tee relative-key-T6-marginal.json
       - uses: actions/upload-artifact@v4
         with:
           name: lag6-keyed-inverse-positive-control
@@ -32,3 +36,4 @@ jobs:
           path: |
             lag6-keyed-inverse.json
             lag6-contextual-inverse.json
+            relative-key-T6-marginal.json
