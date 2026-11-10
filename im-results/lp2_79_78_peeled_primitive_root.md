@@ -1,6 +1,6 @@
 # LP2 79/78 circumference peel: primitive-root and matrix tests
 
-<badge color="secondary">Bounded negative</badge> No plaintext recovered.
+**Status: bounded negative.** No plaintext recovered.
 
 ## Source geometry
 
