@@ -13,6 +13,7 @@ on:
           - ea-anchor
           - red225
           - red225stream
+          - fourier5
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -34,6 +35,16 @@ jobs:
       - name: Decode with 225-red-rune evolving F29 15-state matrix
         if: inputs.experiment == 'red225stream'
         run: node sims/red225_matrix_stream_inverse.cjs
+      - name: Set up Python for finite-field Fourier inverse
+        if: inputs.experiment == 'fourier5'
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Recover five-symbol Hill inverse rows from original LP2
+        if: inputs.experiment == 'fourier5'
+        run: |
+          python -m pip install numpy scipy
+          python sims/hill_fourier_blind_inverse.py
       - name: Test exact reversible zero-step EA model and native source
         if: inputs.experiment == 'ea-anchor'
         run: node sims/ea_zero_step_reversible.cjs
