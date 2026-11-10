@@ -45,7 +45,7 @@ function main(){
   const lock=path.join(OUTPUT,".keyscan.lock"),fd=fs.openSync(lock,"wx");
   const temp=path.join(OUTPUT,"extract.incomplete");
   const report={keys:KEYS,pages:PAGES,attempts:0,headerMatches:0,
-    plausible:[],unknownBinaryCounts:{},errors:[],controls:{}};
+    plausible:[],unknownBinaryCounts:{},errors:[],rejectedSignals:{},rejectedExitCodes:{},controls:{}};
   try{
     const message=Buffer.from("AGENT40 OUTGUESS KEYED RED TRIANGLE CONTROL 79\n");
     const msg=path.join(OUTPUT,"message.incomplete");
@@ -93,8 +93,13 @@ function main(){
             report.plausible.push(found);
             fs.writeFileSync(path.join(OUTPUT,"candidate_"+KEYS.indexOf(key)+"_"+page+".bin"),bytes);
           }else unknown.push(item);
-        }else if(proc.error||proc.status===null){
-          report.errors.push({key,page,message:String(proc.error||"no exit code")});
+        }else if(proc.error){
+          report.errors.push({key,page,message:String(proc.error)});
+        }else if(proc.signal){
+          report.rejectedSignals[proc.signal]=(report.rejectedSignals[proc.signal]||0)+1;
+        }else{
+          const status=String(proc.status);
+          report.rejectedExitCodes[status]=(report.rejectedExitCodes[status]||0)+1;
         }
         fs.rmSync(temp,{force:true});
       }
@@ -111,6 +116,7 @@ function main(){
     console.log("OUTGUESS_KEYED_COMPLETE "+JSON.stringify({
       attempts:report.attempts,matchedHeaders:report.headerMatches,
       recognisable:report.plausible.length,errors:report.errors.length,
+      rejectedSignals:report.rejectedSignals,rejectedExitCodes:report.rejectedExitCodes,
       controls:report.controls
     }));
     assert.equal(report.errors.length,0,"Unexpected OutGuess process errors");
