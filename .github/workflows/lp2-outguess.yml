@@ -28,13 +28,6 @@ on:
         type: boolean
         required: false
         default: false
-  push:
-    paths:
-      - '.github/workflows/lp2-outguess.yml'
-      - 'resources/historical/cicada2016-4gq25.jpg'
-      - 'resources/historical/cicada2016-4gq25-outguess.asc'
-      - 'resources/control/cicada-3301-public-key.asc'
-
 jobs:
   extract:
     runs-on: ubuntu-latest
@@ -55,7 +48,7 @@ jobs:
           make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
           sudo make install
       - name: Reproduce exact 2016 OutGuess extraction and verify signature
-        if: ${{ github.event_name == 'push' || inputs.cicada2016 }}
+        if: ${{ inputs.cicada2016 }}
         run: |
           set -euo pipefail
           mkdir -p outguess-2016-results
@@ -127,7 +120,7 @@ jobs:
           retention-days: 30
 
       - name: Preserve reproduced 2016 payload
-        if: ${{ always() && (github.event_name == 'push' || inputs.cicada2016) }}
+        if: ${{ always() && (inputs.cicada2016) }}
         uses: actions/upload-artifact@v4
         with:
           name: cicada2016-outguess-reproduction
