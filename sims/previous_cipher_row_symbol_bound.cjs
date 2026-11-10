@@ -310,6 +310,27 @@ function main() {
   const latinEpochs=sourceEpochRequirement(exactCap,latin.u,latin.n);
   assert.equal(englishEpochs.necessaryEpochs,14);
   assert.equal(latinEpochs.necessaryEpochs,24);
+  // The most relevant native plaintext register is the verified solved
+  // Cicada LP1 reference. Omit source notes and continuation editorial
+  // brackets; preserve all documented original prose and headings.
+  const nativeText=read("resources/liber-primus/lp1-plaintext-reference.txt");
+  const nativeLines=nativeText.split(/\r?\n/).filter(line=>{
+    const t=line.trim();
+    return !t.startsWith("#") && !t.startsWith("[") &&
+      !/^[0-9a-f]{25,}$/i.test(t);
+  });
+  const native=englishGP(nativeLines.join(" "));
+  assert.equal(native.length,3248);
+  const nativeEpochs=sourceEpochRequirement(
+    exactCap,sourceCounts(native),native.length);
+  assert.equal(nativeEpochs.necessaryEpochs,15);
+  assert.deepEqual([14,15].map(k=>exactCap[1][k]+55),
+    [1590,1631]);
+  assert.deepEqual([14,15].map(k=>exactCap[8][k]+55),
+    [7889,8032]);
+  assert.ok(nativeEpochs.bindingRanks.includes(1));
+  assert.ok(nativeEpochs.bindingRanks.includes(8));
+
   assert.ok(englishEpochs.bindingRanks.includes(8));
   assert.ok(latinEpochs.bindingRanks.includes(11));
   assertPlantedMajorization(sourcePages,plantedCipher,1);
@@ -349,6 +370,15 @@ function main() {
         english: englishEpochs.necessaryEpochs,
         latin: latinEpochs.necessaryEpochs
       },
+      nativeCicadaSolvedRunes: native.length,
+      nativeCicadaNeededEpochs: nativeEpochs.necessaryEpochs,
+      nativeCicadaBindingRanks: nativeEpochs.bindingRanks,
+      nativeCicadaTop1Share: nativeEpochs.byRank[0].sourceShare,
+      nativeCicadaTop8Share: nativeEpochs.byRank[7].sourceShare,
+      nativeCicadaTop1Bounds: [14,15].map(k=>
+        ({epochs:k,maximumSourceLikeRunes:exactCap[1][k]+55})),
+      nativeCicadaTop8Bounds: [14,15].map(k=>
+        ({epochs:k,maximumSourceLikeRunes:exactCap[8][k]+55})),
       bindingEnglishRanks: englishEpochs.bindingRanks,
       bindingLatinRanks: latinEpochs.bindingRanks,
       englishRank8Share: englishEpochs.byRank[7].sourceShare,
