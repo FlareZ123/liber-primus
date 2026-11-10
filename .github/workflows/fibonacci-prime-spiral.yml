@@ -29,3 +29,5 @@ jobs:
         run: node sims/parable_bbs_keyskip_inverse.cjs
       - name: Exhaust every historical Parable Blum-square state on original LP2 and blinded source text
         run: node sims/parable_blum_exhaustive_state_inverse.cjs
+      - name: Test 153 and 1224 modulus-forced GP cipher equality on original ciphertext
+        run: node sims/parable_blum_keyless_period_gate.cjs
