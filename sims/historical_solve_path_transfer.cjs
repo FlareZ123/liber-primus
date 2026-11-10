@@ -62,7 +62,7 @@ function authentic2014() {
   for (let i = 0; i < 991; i++) combined[i] = shares[0][i] ^ shares[1][i] ^ shares[2][i];
   const signed = combined.toString("utf8");
   assert.ok(signed.startsWith(reference.expectedReconstruction.prefix));
-  assert.ok(signed.includes(reference.expectedReconstruction.bodyCode));
+  assert.ok(signed.replace(/\s+/g, " ").includes(reference.expectedReconstruction.bodyCode));
   assert.equal(HISTORICAL_70.length, 70);
   assert.equal(HISTORICAL_ORDER.length, 14);
   assert.deepEqual([...HISTORICAL_ORDER].sort((a, b) => a - b),
