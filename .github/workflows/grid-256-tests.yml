@@ -1,0 +1,16 @@
+name: LP2 complete base60 grid extraction regression
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify 256-token payload, token cases and SHA-256
+        run: node sims/test_lp2_grid.cjs
