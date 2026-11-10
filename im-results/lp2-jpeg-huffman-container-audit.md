@@ -74,6 +74,17 @@ The **same ICC bytes** occur in all 58 LP2 pages (SHA-256 prefix `942e0f66212e`)
 
 The comparison supports a practical original-source decision: the **historically observed LP1 OutGuess carrier encoder footprint** is not reproduced in LP2. Together with LP2's deterministic optimized DHT and uniform ICC structure, this lowers the priority of further default-key OutGuess/LP1-container repetition. It does **not** exclude coefficient-preserving embedding, key-controlled OutGuess, JPEG matrix embedding, encrypted payloads, or a pre-render source-level channel. All of those would need an independently indicated selector before more scans are useful.
 
+## Original repeated tree-border coefficient identity (pp40–55)
+
+The source repeats a complex two-sided tree ornament across LP2 physical pp40–55, so this is a clue-selected **known-cover comparison** for page-varying hidden JPEG data. The new [quantized-coefficient gate](../sims/jpeg_border_dct_exact.c) checks **all 64 original quantized DCT values per block**, including DC, within the full-height border region, before pixel rounding. This strengthens the existing dark-pixel tree-mask identity check.
+
+- The entire first and last **520 source pixels** in all 3,600 rows decode to exactly the same RGB values on all **16** decorated images, even though five images are RGB JPEGs and eleven are grayscale.
+- The **Y/luminance** component's first/last 65 eight-pixel-block columns are **identical in all 59,904,000 tested coefficient positions** (16 images, compared to the first).
+- For the **five RGB originals** (physical pp40,49,53,54,55), the available Cb and Cr components within the first/last 32 blocks (outer 512 source pixels) are also identical: **0/4,608,000** differences for each component. Grayscale images have no chrominance components.
+- A positive control changes one coefficient in the local reference and the detector reports **exactly one** difference.
+
+This rules out **page-dependent coefficient editing within these decorative margins** if any such editing changes an audited quantized coefficient. It does **not** exclude an identical repeated global payload, image data outside the margins, or channels unaffected by these coefficients. The visible asymmetric solid/hollow five-dot design still admits a clue interpretation but does not specify a cipher operation or source key.
+
 ## Interpretation
 
 The DHT tables—including the non-ascending symbol order within some equal-code-length groups—are completely explained by the ordinary optimized-Huffman encoder applied to the original quantized coefficients. There is no residual per-page choice in the DHT ordering that supports an independent hidden message. The shared APP0/APP2 markers, stable per-mode DQT tables, and absence of additional APP/comment/trailing segments likewise provide no separate metadata channel.
