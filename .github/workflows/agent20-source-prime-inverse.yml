@@ -1,0 +1,22 @@
+name: Agent 20 source-prime exact inverse
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-prime-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Install Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original source-linked prime-triplet challenge
+        shell: pwsh
+        run: node sims/red_prime_gap_affine_echo.cjs
+      - name: Original exact six-lane inverse and matched-key controls
+        shell: pwsh
+        run: node sims/red53_autoregressive_pad_inverse.cjs
