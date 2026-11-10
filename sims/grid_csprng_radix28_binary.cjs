@@ -60,7 +60,7 @@ const TRAIN=400, END=700, CAP=2**24;
  */
 function pad(key,cipherName,map,drop) {
   const cipher=crypto.createCipheriv(cipherName,key,Buffer.alloc(16));
-  const raw=Buffer.concat([cipher.update(Buffer.alloc(1500)),cipher.final()]);
+  const raw=Buffer.concat([cipher.update(Buffer.alloc(5000)),cipher.final()]);
   return Uint8Array.from(raw.subarray(drop),
     b=>map==='scale'?Math.floor(b*28/256):b%28);
 }
