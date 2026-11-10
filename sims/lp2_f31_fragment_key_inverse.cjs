@@ -287,7 +287,7 @@ function main() {
     },
     tested: { models: variants.length, keyRepresentations: keyOrders.map(x => x[0]),
       nonceModes, algorithms, families, signs, projections,
-      no row/key permutations were searched },
+      permutationsSearched: false },
     raw: { englishGP: rawEnglishGP, trainIoC: rawTrainIoC,
       heldoutIoC: rawHeldoutIoC },
     bestTraining: variants.slice(0, 12),
