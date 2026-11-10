@@ -18,6 +18,11 @@ on:
         type: boolean
         required: false
         default: false
+      lp1_history:
+        description: Recheck all 17 historical LP1 source JPEGs with default OutGuess
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   extract:
@@ -40,17 +45,19 @@ jobs:
           sudo make install
       - name: Retrieve hidden messages from every LP2 page
         if: ${{ (!inputs.keyed_probe && !inputs.synthetic_only) || inputs.xor_shares }}
+        env:
+          OUTGUESS_SCAN_ALL_LP1: ${{ inputs.lp1_history && '1' || '0' }}
         run: node sims/outguess_lp2_scan.cjs
       - name: Install Python for direct binary-stream pad testing
-        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares }}
+        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history }}
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - name: Install numeric dependencies
-        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares }}
+        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history }}
         run: python -m pip install --disable-pip-version-check numpy numba
       - name: Scan original LP2 runes against all extracted pad-stream positions
-        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares }}
+        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history }}
         env:
           OUTGUESS_NULL_REPLICATES: 64
         run: python sims/outguess_lp2_directpad.py
