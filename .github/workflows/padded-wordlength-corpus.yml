@@ -14,6 +14,7 @@ on:
         options:
           - wordlength
           - ea-fingerprint
+          - red51-length
 
 permissions:
   contents: read
@@ -30,8 +31,11 @@ jobs:
         with:
           node-version: '22'
       - name: Search public-domain plaintext word-length cribs
-        if: ${{ inputs.scan_mode != 'ea-fingerprint' }}
+        if: ${{ inputs.scan_mode == 'wordlength' }}
         run: node sims/padded_wordlength_corpus.cjs
+      - name: Search exact red51 stanza source quotations
+        if: ${{ inputs.scan_mode == 'red51-length' }}
+        run: node sims/red51_source_phrase_crib.cjs
       - name: Test original-section EA zero-step literary source fingerprints
         if: ${{ inputs.scan_mode == 'ea-fingerprint' }}
         run: node sims/ea_zero_step_literary_fingerprint.cjs
