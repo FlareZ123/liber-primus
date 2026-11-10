@@ -151,13 +151,23 @@ A planted 1×2 positive control with bytes [5,199] does recover Rad→Ac→Rad u
 
 **Decision:** the direct “table byte = bearing and φ(byte) = map label” reading is rejected for this LP2 table. The modulo-8 column selector remains an interesting but retrospective source alignment; it supplies no key, state, plaintext, or destination. Do not repeat this direct graph transfer or expand it into free rotations, offsets, or geographic searches.
 
+## Selected columns 7–8 as finite-field vector directions: bounded negative
+
+The 2014 cell values 366 and 199 select zero-based columns 6 and 7 (printed columns 7 and 8) by the already stated mod-8 rule. A direct way to read two numeric columns as a direction is to treat each row as a homogeneous coordinate pair (x,y) and take its projective slope y/x in GF(29). The modulus is fixed by the 29-rune alphabet; the row-to-fragment alignment is fixed by the 32 rows and 32 original 13-dot fragments.
+
+For all 32 rows, x is invertible modulo 29, so every direction is finite. The slope stream contains only **23 distinct values** of the 30-point projective line P¹(GF(29)). Interpreting each slope as a GP rune and comparing row i with fragment i gives **4/32** same-index label matches (rows 1, 5, 13, and 26). The exact expectation under a uniformly permuted fragment assignment is **6.0** matches. A deterministic 500,000-permutation null (seed 0x3301c0de) has mean **6.00158** and tail probability **0.92223** for at least four matches.
+
+Thus the direct projective-slope-to-same-index-fragment interpretation is not selective and is below its null expectation. This is a bounded negative for this one natural vector-direction reading; it does not test other ways the selected columns might supply key or state material.
+
+Reproducer: [2014 columns 7–8 projective-slope gate](../sims/2014_columns78_projective_slope_gate.cjs), run with node sims/2014_columns78_projective_slope_gate.cjs.
+
 ## Historical interpretation and limits
 
 The 2016 image is a dead-oak illustration, not a verified geographic photograph. The Uncovering Cicada Wiki attributes it to [this ClipartBest oak image](https://www.clipartbest.com/cliparts/abc/y97/abcy97qTL.jpeg). Treat the oak as a symbolic Ac pointer: Ac is also the first red rune in the 199-selected seventh fragment. Do not infer a physical starting location from the image.
 
 The 2016 message's instruction that words are a map, meanings a road, and numbers directions is compatible with the 2014 matrix interpretation. However, the angle convention is an inference, not a proven instruction. Using compass bearings (0° north, clockwise) does not produce the cell-6 → cell-7 oak connection. The archived 2016 message also ends “Beware false paths,” so semantic and geographic matches require a source-fixed stopping rule.
 
-The direct byte-as-bearing transfer to the LP2 numeric table remains rejected. The 199/Ac fragment bridge is a stronger source-constrained human solve-path hypothesis, but it does not yet specify a reversible cipher, recover plaintext, or establish the destination. The separate use of columns 7–8 as key/state material remains untested and must not be conflated with the fragment-index result.
+The direct byte-as-bearing transfer to the LP2 numeric table remains rejected. The 199/Ac fragment bridge is a stronger source-constrained human solve-path hypothesis, but it does not yet specify a reversible cipher, recover plaintext, or establish the destination. The direct projective-slope reading of columns 7–8 as rowwise fragment labels has now been tested and is not selective (4/32 matches; permutation-null mean 6.00158, tail P(match≥4)=0.92223). Other key/state uses of columns 7–8 remain untested and must not be conflated with the fragment-index result.
 
 ## Reproduction
 
