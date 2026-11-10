@@ -23,6 +23,11 @@ on:
         type: boolean
         default: false
         required: true
+      word_reversal:
+        description: With exact_tree, test both word directions in each original page
+        type: boolean
+        default: false
+        required: true
 jobs:
   exact-trie:
     runs-on: ubuntu-latest
@@ -38,11 +43,16 @@ jobs:
         env:
           SCAN_ALL: ${{ inputs.scan_all }}
           EXACT_TREE: ${{ inputs.exact_tree }}
+          WORD_REVERSAL: ${{ inputs.word_reversal }}
           MAX_DEPTH: ${{ inputs.max_depth }}
           THRESHOLD: ${{ inputs.threshold }}
         run: |
           if [ "$EXACT_TREE" = "true" ]; then
-            python -u sims/relative_key_word_tree.py --pair 28 42 --scales 1 4 7 22
+            if [ "$WORD_REVERSAL" = "true" ]; then
+              python -u sims/relative_key_word_tree.py --pair 28 42 --scales 4 --orientations
+            else
+              python -u sims/relative_key_word_tree.py --pair 28 42 --scales 1 4 7 22
+            fi
           elif [ "$SCAN_ALL" = "true" ]; then
             python -u sims/relative_key_hard_lexicon.py --all --max-depth "$MAX_DEPTH" --threshold "$THRESHOLD"
           else
