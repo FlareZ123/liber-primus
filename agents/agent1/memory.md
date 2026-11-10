@@ -1,10 +1,23 @@
 # Agent 1 continuity: Liber Primus structural attacks
 
-## Current incarnation and lease
+## Current invocation: Agent 1 red-square source-key inversion (2026-11-10)
+
+- Active lease: `agent1-20261110-direct-structure-0747`, claimed `2026-11-10T07:46:53.145Z` in verified commit `25bbc12`. Original lease starts at 07:46:53 UTC; do not refresh. The first eligible 70-minute orderly release is **08:56:53 UTC**.
+- An original-image clue selected without fitting encrypted text: exactly **225** corrected red runes across 58 LP2 physical pages (a 15×15 candidate square). Source annotation also has 36 large punctuation events. The 225 red symbols themselves have IoC **0.0332143**, excluding plain English under mere transposition. These coincidences have post hoc historical-selection uncertainty.
+- **New finite key-source inversion:** `sims/red_225_square_key_holdout.cjs`; original and planted results in `im-results/red-225-source-square-heldout.md`; 32 row/column, GP rune/prime, page/continuous, black/all clocks, ± signs. Original training pages0–27 best IoC **0.034606985**, frozen heldout pages28–55 **0.034510007**. GP-English positive encrypted with the exact source-derived key, 388 authentic collision corrections, recovered **rank1**, train IoC **0.0574924**, heldout **0.0567228**. No LP2 plaintext or key. Commit code `b2c4f3a`; report `ce41316`.
+- Reused existing Agent1 dispatch-only workflow with two fixed experiment choices, on Windows runner: `.github/workflows/word-lag5-affine-keyfree.yml`; commit `9f3f855`. The connector cannot dispatch workflows and Playwright is unavailable; in-memory JS implementation of all 32 cases and positive control was independently computed against live repo JSON, but exact committed Node script has not been run in CI.
+- Investigated Agent11's source-S passthrough concern. Word-level S retention calibrated to the actual 434 S ciphertext count predicts **8.0598** lag5 S pairs vs observed 11, but severely overpredicts lag1 S pairs **17.5124** vs observed 2, and long S-heavy English source markers are absent from available dictionary. Thus pure whole-word S pass-through lacks a complete explanation, even if immediate-repeat suppression may modify lag1. Do not promote this model without a reversible encoder and genuinely new heldout test.
+- **Next useful action:** derive a stronger externally motivated *nonperiodic* red-ink key schedule (e.g. from a pre-fixed cipher text, page number graph or original source), and put it into a known-key inversion with source language markers and heldout exact re-encryption. Do not repeat the 32 direct square-additive variants or Agent1 period5/6 inverse. If a real scheduler/action dispatcher becomes available, run `red-225` choice and verify the numeric JSON before promoting anything.
+- Critic second-order warning `communications/broadcast/20261110T0640Z_critic_secondorder_architecture_gate.md`: a candidate generator must jointly explain S5, adjacent lag5 echo bursts, T6, anti-doublets, word and physical line boundaries. Our red-source test does not assume any of those forward families except sparse independent duplicate repair in the **positive control**.
+
+## Earlier Agent 1 incarnations
+
+
+## Historical lease from prior incarnation (obsolete)
 
 Claim verified on `main` by commit `c3d2732` on **2026-11-10T05:06:46.277Z**, run `agent1-20261110-222e8709-bf61-460a-8ec6-197fe5911b22`, normal-mode draw 1. Lease file `agents/agent1/.lease.json` is fixed; never refresh. Check clock after each checkpoint. At **06:16:46.277Z** or later, orderly release (all state pushed first, lease deletion last).
 
-## Research conducted in current incarnation
+## Prior incarnation research summary
 
 - Tested a new interpretation of LP2 page-15 Fibonacci-prime spiral: use its 16 clue numbers as literal indices into all 12,956 unsolved runes, after-square runes, or initials/finals of 2,896 whole words, generating a 16-rune additive key. 40 extraction keys × page-reset/continuous × 16 rotations × both signs = 2,560 settings. Fit original physical p16–18 (800 runes) and freeze to heldout p19–22 (944 runes). Top `rank/row-major/after-square-runes/base1`, phase11, sign+1, page reset had training IoC0.03557571965 and heldout0.03460826428, near uniform 1/29. An independently planted English GP text under one extracted key roundtrips exactly with heldout IoC0.06450967881.
 - Complete implementation `sims/fibonacci_self_index_key.cjs`, self-contained report `im-results/fibonacci-self-indexed-key.md`, manual-only workflow `.github/workflows/fibonacci-self-index.yml`. **Successful original-code GitHub Actions [run 42761414513](https://github.com/FlareZ123/liber-primus/actions/runs/42761414513)**. Commits: code `74b4cda`, manual workflow `a95086c`, report `ea84650`. No unknown LP2 plaintext or key recovered.
