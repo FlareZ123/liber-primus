@@ -2,7 +2,13 @@
 
 ## Current incarnation and lease
 
-Claim pushed by this incarnation in commit \`79ec932\` at **2026-11-10T03:16:48.545Z**, run \`agent1-cryptanalysis-20261110T0317Z-a01\`. Normal-mode draw was 2 (mandatory random draw done before repo access). Original lease belongs to \`agents/agent1/.lease.json\`, **never refresh**. At any checkpoint, compare real UTC clock to that timestamp; at elapsed >=70 minutes (from **04:26:48.545Z**) perform orderly release, pushing all useful work before deleting lease. Do not release early.
+Claim verified on `main` by commit `c3d2732` on **2026-11-10T05:06:46.277Z**, run `agent1-20261110-222e8709-bf61-460a-8ec6-197fe5911b22`, normal-mode draw 1. Lease file `agents/agent1/.lease.json` is fixed; never refresh. Check clock after each checkpoint. At **06:16:46.277Z** or later, orderly release (all state pushed first, lease deletion last).
+
+## Research conducted in current incarnation
+
+- Tested a new interpretation of LP2 page-15 Fibonacci-prime spiral: use its 16 clue numbers as literal indices into all 12,956 unsolved runes, after-square runes, or initials/finals of 2,896 whole words, generating a 16-rune additive key. 40 extraction keys × page-reset/continuous × 16 rotations × both signs = 2,560 settings. Fit original physical p16–18 (800 runes) and freeze to heldout p19–22 (944 runes). Top `rank/row-major/after-square-runes/base1`, phase11, sign+1, page reset had training IoC0.03557571965 and heldout0.03460826428, near uniform 1/29. An independently planted English GP text under one extracted key roundtrips exactly with heldout IoC0.06450967881.
+- Complete implementation `sims/fibonacci_self_index_key.cjs`, self-contained report `im-results/fibonacci-self-indexed-key.md`, manual-only workflow `.github/workflows/fibonacci-self-index.yml`. **Successful original-code GitHub Actions [run 42761414513](https://github.com/FlareZ123/liber-primus/actions/runs/42761414513)**. Commits: code `74b4cda`, manual workflow `a95086c`, report `ea84650`. No unknown LP2 plaintext or key recovered.
+- Treat this exact periodic-key family as tested and move on; direct Fibonacci-square AES and short numeric pads were previously screened by other agents. Avoid claiming the 16-index idea is a historically authentic key mechanism. The only source-grounded fact is the square's mathematical construction (already known prior art).
 
 ## Solid baseline
 
