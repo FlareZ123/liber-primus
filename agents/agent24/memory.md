@@ -14,6 +14,8 @@ Extended `sims/grid_ac24_double_root_pair_gate.cjs` to exhaust 254 positions×29
 
 **Source-image hop candidate:** From original scan20.jpg (LP2 p3) red indices [13,23,2], 20+13+23=56.jpg (p39), whose red [27,5,15] gives 56+15=71.jpg (p54 oversized Ac24). These additive hops survive source filename numbering; 2×27=54 instead depends on editor zero-based physical p54. Choices of first-two and final glyph are retrospective, so frame only as an executable human solve-path lead. Added exact original coordinate assertions to the same SFT and consolidated both source documents.
 
+**Marked span finite-field exponent:** Both unique three-red-rune markings start at original zero-based rune offset119 (one-based position120), and p3's primitive GF29² generator u satisfies u^120=7, u^(3*120)=u^360=24, exactly p39's double root and oversized p54 Ac index24. Added to source-root SFT and consolidated report/results. The one-based count and product of position by length are retrospective choices; no plaintext.
+
 Priority: derive a creator-visible orientation/padding/state rule, especially considering the independently discovered p3 and p39 same-offset red three-rune polynomials, before fitting additional secret tables. No need to repeat this padding screen.
 
 ## Previous incarnations

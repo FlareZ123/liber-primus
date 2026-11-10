@@ -110,6 +110,32 @@ function main() {
   // This last equality depends on editorial zero-based physical indexing.
   assert.equal(a[2]*b[0],54);
   assert.equal(mod(a[1]*a[1]-4*a[0]*a[2]),19);
+
+  // Both authentic marked triples occur at the 120th rune, counting
+  // the first rune as 1, and have length three. Under p3's primitive
+  // field generator u, the directly derived exponent is 3*120=360.
+  /** @param {[number,number]} x @param {number} exponent */
+  const pow2=(x,exponent)=>{
+    let out=[1,0],base=x,e=exponent;
+    while(e>0) {
+      if(e%2===1)out=mul2(out,base);
+      e=Math.floor(e/2);
+      if(e>0)base=mul2(base,base);
+    }
+    return out;
+  };
+  const oneBasedMarkedOffset=triads[0].start+1;
+  const markedSpanLength=a.length;
+  assert.equal(triads[1].start+1,oneBasedMarkedOffset);
+  assert.equal(b.length,markedSpanLength);
+  assert.equal(oneBasedMarkedOffset,120);
+  assert.equal(markedSpanLength,3);
+  assert.deepEqual(pow2([0,1],oneBasedMarkedOffset),[7,0]);
+  const markPositionLengthRoot=pow2([0,1],oneBasedMarkedOffset*markedSpanLength);
+  assert.deepEqual(markPositionLengthRoot,[24,0]);
+  assert.equal(markPositionLengthRoot[0],corpus.pages.find(p=>p.page===54).indices[0]);
+  assert.equal(mod(7*7*7),24);
+
   assert.deepEqual([mod(a[2]*3+a[1]),mod(a[2]*8+a[0])],[0,0]);
 
   const alphabet="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx";
@@ -186,6 +212,7 @@ function main() {
     sourceJpegHop:"20.jpg + 13 + 23 = 56.jpg; 56.jpg + 15 = 71.jpg",
     editorialIndexOnlyEcho:"p3 trailing 2 * p39 opening 27 = p54",
     extensionRelation:"u²=3u+8",
+    redLengthPositionExponent:"3 × (119+1) = 360; u^120 = 7; u^360 = 24 = oversized p54 Ac and p39 root",
     crossSourcePoint:"p3 middle + p39 first * u = 23+27u",
     crossSourceCandidates:18,exactCrossSourceRootHits:crossHits,
     allNonzeroFieldRoots:roots,
