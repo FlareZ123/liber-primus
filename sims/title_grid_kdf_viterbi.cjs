@@ -196,7 +196,7 @@ function nullControls(columns,titles,cipher,model,actual,n=64) {
     const result=fit(cipher,replacement,titles,model);
     scores.push({train:result.trainMean,heldout:result.heldoutMean});
   }
-  const held=scores.map(x=>x.heldoutMean);
+  const held=scores.map(x=>x.heldout);
   const train=scores.map(x=>x.train);
   const mean=a=>a.reduce((x,y)=>x+y,0)/a.length;
   const standardDeviation=a=>{
