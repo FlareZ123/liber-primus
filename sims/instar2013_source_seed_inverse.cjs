@@ -37,7 +37,7 @@ const ROOT15 = [], LOG15 = new Int8Array(29).fill(-1);
 for(let i=0,v=1;i<28;i++,v=v*15%29){ROOT15.push(v);LOG15[v]=i;}
 assert.equal(new Set(ROOT15).size,28);
 const SEGMENTS = ['book','section','page'];
-const GENERATORS = ['php5-mt','ansi-lcg'];
+const GENERATORS = ['php5-mt','lcg32'];
 const REDUCERS = ['mod28','scale28','byte28'];
 const RANKS = ['power15','cyclic','sorted'];
 const MOD28 = n => (n%28+28)%28;
@@ -108,13 +108,13 @@ function decode(cipher,setup){
   return out;
 }
 /** @param {number[]} plaintext @param {ReturnType<typeof setupList>[number]} setup */
-function encode(plaintext,setup){
+function encode(plaintext,setup,initials=[]){
   const out=[];
   let segmentNumber=0;
   for(const seg of split(plaintext,setup.reset)){
     const rng=makeRng(setup.generator,setup.seed);
     if(!seg.length)continue;
-    let c=(11+segmentNumber*7)%29;
+    let c=initials[segmentNumber] ?? ((11+segmentNumber*7)%29);
     segmentNumber++;
     out.push(c);
     for(let j=1;j<seg.length;j++){
@@ -204,6 +204,12 @@ function main(){
   const baseline=weights.reduce((a,b)=>a+b,0)/29;
   const setups=setupList();
   const real=search(CIPHER,setups,weights);
+  // Re-encipher the original best inverse with the genuine section IV runes.
+  const bestOriginal=real[0];
+  const originalInverse=decode(CIPHER,bestOriginal);
+  const originalIV=split(CIPHER,bestOriginal.reset).map(x=>x[0]);
+  assert.deepEqual(encode(originalInverse.map(x=>x<0?0:x),
+    bestOriginal,originalIV),CIPHER);
   const trueSetup={seed:1595277641,generator:'php5-mt',reset:'section',
     reducer:'scale28',rank:'power15',skipEA:true,sign:1};
   const plain=train.slice(50000,50000+TOTAL);
