@@ -1,0 +1,23 @@
+name: LP2 order-preserving exclusion-rank key search
+
+on:
+  workflow_dispatch:
+    inputs:
+      null_trials:
+        description: 'Independent heldout section rotations'
+        required: false
+        default: '100'
+
+jobs:
+  exclusion-rank:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute original-cipher inverse, planted recovery and matched null
+        env:
+          NULL_TRIALS: ${{ inputs.null_trials }}
+        run: node sims/exclusion_rank_key_recovery.cjs
