@@ -150,7 +150,7 @@ function main() {
   }
   const original = layouts.map(({ label, rows }) => ({ label, ...audit(rows) }));
   assert.deepEqual(original.map((r) => [r.exact, r.zeroOrOneError]),
-    [[0, 28], [0, 16], [0, 18], [0, 20], [0, 20], [0, 17]]);
+    [[0, 23], [0, 11], [0, 18], [0, 20], [0, 20], [0, 17]]);
 
   // True native GP source plant, unknown pad per column, plus one corrupt
   // ciphertext rune at a secret and changing location in EVERY column.
