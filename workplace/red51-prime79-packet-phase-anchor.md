@@ -25,6 +25,23 @@ The 79-rune packet starting at 12,596 is **not clean under the hypothesized pred
 
 The question is whether the red boundary is an intentional alignment cue to the 79/78 code, or one selected coincidence among many possible sources, positions, offsets and moduli. There are **16 independently annotated red spans**, and the single longest span was noticed after the phase35 search; an informal 1-in-79 agreement cannot be given a discovery-wide p-value. The source alone does not instruct subtracting one rune from the red beginning. The 79/78 model does not yet explain the book's **86 adjacent ciphertext doublets**, does not recover true original LP2 plaintext, and does not provide an authentic cyclic alphabet.
 
+## Direct source-red alphabet tests on the surviving clock
+
+The ink annotation covers all **29** distinct GP rune symbols across its **213 red runes** on unsolved LP2 pages. This permits genuinely source-derived secret cyclic orders, independent of fitting the ciphertext: (a) first appearance in original red-reading order, (b) reverse red-reading/last appearance, (c) first occurrence starting with the distinctive p53 red51 span, completing the missing symbols from the remaining red ink, or (d) decreasing red-rune frequency with canonical GP-order ties.
+
+[The exact CommonJS inverse](../sims/red_source_79_phase35_order_gate.cjs) applies each frozen order to the **95** repeat-free original phase35 packets. It computes the entire BigInt base-28 packet value, rejecting any output with value at least **29^78**. No plaintext model is fitted. The results from [successful source and positive-control CI run 42818698045](https://github.com/FlareZ123/liber-primus/actions/runs/42818698045) are:
+
+| Original-source cyclic rune ordering | Numerically valid original packets | Numerically impossible packets |
+| --- | ---: | ---: |
+| First red rune occurrence | **55/95** | **40/95** |
+| Reverse red occurrence | **52/95** | **43/95** |
+| Exceptional p53 red51 span first | **50/95** | **45/95** |
+| Descending red-rune frequency | **43/95** | **52/95** |
+
+The same script explicitly GP-encodes and round-trip packs an independently sourced **936-rune Shakespeare plant** into **948 no-doublet ciphertext runes** using the first-red source order and exactly decodes every one of the 936 plaintext runes. Thus the exact numeric capacity gate has a working positive case.
+
+**These four red-ink-derived alphabets are mathematically excluded as the complete single static cyclic key for the strict 79/78 packet code at phase35.** The source-red boundary arithmetic itself remains unchanged. A more complex source-driven key derivation, section-changing cyclic order or escape handling is outside this screen.
+
 ## Productive follow-on
 
 Test independently constrained packet-clock hypotheses in which the single black rune preceding the exceptional red51 passage is a header, synchronizer or separate state event. A credible forward generator must explain why packet [12,596,12,675) contains a doublet at 12,668 without deleting or changing unknown plaintext, and must hold across other source red spans and page boundaries. Pair this test with source-derived key/permutation proposals rather than language-only fitting to candidate plaintext. Do not promote a 51-rune red passage or phase alignment to a key before full original-cipher re-encryption.
