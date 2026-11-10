@@ -30,7 +30,7 @@ MODES.push({algo,reverseKey,reducer,sign});
 const mod=x=>(x%29+29)%29;
 
 /** @returns {number[][]} */
-function originalBodies(){
+function originalBodies(length=TARGET_PREFIX){
   const raw=read("resources/transcriptions/liber_primus_master.txt");
   const start=raw.indexOf("ᛋᚻᛖᚩᚷ");
   assert.ok(start>=0);
@@ -40,7 +40,7 @@ function originalBodies(){
   const merged=[sections[0],sections[1],sections[2],
     sections[4],sections[5],sections[6],sections[7],sections[8]];
   return merged.map((seq,i)=>seq.slice(TITLE_RUNE_COUNTS[i])
-    .slice(0,TARGET_PREFIX).map(r=>RUNEINDEX.get(r)));
+    .slice(0,length).map(r=>RUNEINDEX.get(r)));
 }
 
 /** @returns {Buffer[]} */
