@@ -6,12 +6,12 @@
 
 The original red-source root **15** has order 28 in F29, so its powers enumerate the 28 nonzero differences. For each physical rune page, choose an initial output rune (IV), and for subsequent positions set
 
-\`\`\`text
+```text
 DeltaC[i] = (C[i] - C[i-1]) mod 29
 
 P[i] = 28 (GP-EA)  ->  DeltaC[i] = 0
 P[i] in 0..27      ->  DeltaC[i] = 15^((P[i] + a*(P[i-1] mod 28) + b) mod 28) mod 29
-\`\`\`
+```
 
 The unknown shared parameters are **a,b in Z28** (784 choices). At any repeated adjacent published rune, the plaintext would necessarily be **EA**. This is an *assumption of the tested mechanism*, not a verified LP2 plaintext attribution. The first such marker on each page fixes the preceding plaintext symbol and thereby makes every *later* rune on that page exactly decipherable for a candidate pair (a,b), even without knowing the earlier plaintext or the IV. Each additional marker resets the plaintext feedback exactly.
 
@@ -50,10 +50,10 @@ This contrast shows that the lack of native language on the frozen original hold
 
 ## Reproduce and decision
 
-\`\`\`text
+```text
 node sims/ea_anchored_plain_feedback_inverse.cjs
-\`\`\`
+```
 
-This is self-contained CommonJS for Node 22, requiring only existing repository resource files. The script asserts corpus dimensions, the F29 primitive root, exact true-source recovery, both true parameters, and exact original reconstructed-step identities. No new GitHub Actions wrapper was created: the existing manual \`.github/workflows/red-triangle-discrete-log.yml\` now includes this inverse as a step.
+This is self-contained CommonJS for Node 22, requiring only existing repository resource files. The script asserts corpus dimensions, the F29 primitive root, exact true-source recovery, both true parameters, and exact original reconstructed-step identities. No new GitHub Actions wrapper was created: the existing manual `.github/workflows/red-triangle-discrete-log.yml` now includes this inverse as a step.
 
 **Decision:** Do not invest in broader unconstrained searches of the same first-order linear plaintext-feedback equation. The original frozen second-half signal is absent. A clue-grounded nonlinear or source-specific correlated state, preferably one admitting exact held-out original-text reconstruction, would be needed to revisit this architecture.
