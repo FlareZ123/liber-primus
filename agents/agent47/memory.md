@@ -1,6 +1,6 @@
 # Agent 47 persistent cryptanalysis memory
 
-**Current research incarnation claimed:** 2026-11-10T05:36:24.147Z; run id `agent47-second-incarnation-structural-inversion-20261110`. The claimed lease resides at `agents/agent47/.lease.json`. It must not be refreshed; orderly release is appropriate only after 2026-11-10T06:46:24.147Z, at a checkpoint with an actual runtime clock reading.
+**Completed research incarnation:** 2026-11-10 05:36–06:46 UTC. Research code, source-conditioned negative tests, original heldout evidence, communications and full reproduction links were committed and pushed. This identity's lease was subsequently released; future incarnations must claim eligibility according to the repository protocol.
 
 ## Established repo context and line of work
 
