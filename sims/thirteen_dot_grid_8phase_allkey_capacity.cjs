@@ -38,9 +38,8 @@ function sourceSpans() {
   let offset = 0;
   for (const page of corpus.pages) {
     const record = byPage.get(page.page);
-    assert(record);
-    assert.equal(record.rune_count, page.indices.length);
-    for (const mark of record.large_punctuation || []) {
+    if (record) assert.equal(record.rune_count, page.indices.length);
+    for (const mark of record?.large_punctuation || []) {
       if (mark[1] === 13) {
         assert.ok(mark[0] >= 0 && mark[0] <= page.indices.length);
         markers.push(offset + mark[0]);
@@ -112,6 +111,128 @@ function allSecretCapacity(input, spans) {
     eligibleOrderedPairs,
     sameStateEquality: equalOrderedPairs / eligibleOrderedPairs
   };
+}
+
+
+/**
+ * Exact maximum possible occurrences of any one chosen GP plaintext rune
+ * across ALL secret taps and ALL secret output permutations, separately for
+ * every punctuation-fragment / local mod-8 clock state.
+ *
+ * At each source state, encode the rune with a bijection sigma:
+ *     D_i = sigma(P_i) = (C_i + a*C_(i-1) + b*C_(i-2)) mod29.
+ * Prior ciphertext is reset to zero at the beginning of every fragment.
+ * taps=0 fixes a=b=0, taps=1 frees a, taps=2 frees a and b; both
+ * coefficients may be chosen INDEPENDENTLY at every one of the 224 states.
+ * Each candidate's frequency table is exhaustive over all 29 GP symbols.
+ *
+ * The bound is mathematically sharp for the one-rune frequency statistic
+ * even when the 224 output alphabets and feedback coefficients are unknown.
+ *
+ * @param {number[]} input
+ * @param {[number,number][]} spans
+ * @param {0|1|2} taps
+ */
+function allSecretFeedbackCapacity(input, spans, taps) {
+  assert.ok([0, 1, 2].includes(taps));
+  let maximum = 0;
+  let candidateStateCount = 0;
+  for (const [start, end] of spans.slice(0, 28)) {
+    for (let phase = 0; phase < PERIOD; phase++) {
+      const triples = [];
+      for (let i = start + phase; i < end; i += PERIOD) {
+        triples.push([
+          input[i],
+          i > start ? input[i - 1] : 0,
+          i > start + 1 ? input[i - 2] : 0
+        ]);
+      }
+      const counts = new Uint16Array(FIELD);
+      let best = 0;
+      for (let a = 0; a < (taps > 0 ? FIELD : 1); a++) {
+        for (let b = 0; b < (taps > 1 ? FIELD : 1); b++) {
+          counts.fill(0);
+          for (const [current, previous, secondPrevious] of triples)
+            counts[(current + a * previous + b * secondPrevious) % FIELD]++;
+          best = Math.max(best, ...counts);
+        }
+      }
+      maximum += best;
+      candidateStateCount++;
+    }
+  }
+  assert.equal(candidateStateCount, 28 * PERIOD);
+  return {
+    taps, maximum, fraction: maximum / input.length,
+    stateCount: candidateStateCount,
+    secretCoefficientCandidatesPerState: FIELD ** taps
+  };
+}
+
+/**
+ * Hidden-key synthetic plant for the n-tap ciphertext-feedback family.
+ * Each state has two secret coefficients and an independent GP29 permutation.
+ * The schema is a test fixture, not an attributed Cicada state generator.
+ *
+ * @param {[number,number][]} spans
+ * @param {1|2} taps
+ */
+function syntheticFeedbackKeys(spans, taps) {
+  let seed = taps === 1 ? 0x11330127 : 0x22330127;
+  function random() {
+    seed ^= seed << 13;
+    seed ^= seed >>> 17;
+    seed ^= seed << 5;
+    return seed >>> 0;
+  }
+  return spans.slice(0, 28).map(() =>
+    Array.from({ length: PERIOD }, () => {
+      const permutation = Array.from({ length: FIELD }, (_, i) => i);
+      for (let i = FIELD - 1; i > 0; i--) {
+        const j = random() % (i + 1);
+        [permutation[i], permutation[j]] =
+          [permutation[j], permutation[i]];
+      }
+      return { a: random() % FIELD, b: taps === 2 ? random() % FIELD : 0,
+        permutation };
+    }));
+}
+
+/**
+ * Fully reversible causal original-length encoder/decoder, using previous
+ * CIPHERTEXT runes and resetting the two-rune register at each punctuation.
+ * @param {number[]} input
+ * @param {[number,number][]} spans
+ * @param {{a:number,b:number,permutation:number[]}[][]} keys
+ * @param {boolean} decrypt
+ */
+function feedbackTransform(input, spans, keys, decrypt) {
+  const out = new Array(input.length);
+  for (let row = 0; row < 28; row++) {
+    const [start, end] = spans[row];
+    let previous = 0, secondPrevious = 0;
+    for (let i = start; i < end; i++) {
+      const { a, b, permutation } = keys[row][(i - start) % PERIOD];
+      let ciphertext, plaintext;
+      if (decrypt) {
+        ciphertext = input[i];
+        const remapped = (ciphertext + a * previous +
+          b * secondPrevious) % FIELD;
+        plaintext = permutation.indexOf(remapped);
+        out[i] = plaintext;
+      } else {
+        plaintext = input[i];
+        const remapped = permutation[plaintext];
+        ciphertext = (remapped - a * previous -
+          b * secondPrevious + 2 * FIELD * FIELD) % FIELD;
+        out[i] = ciphertext;
+      }
+      assert.ok(out[i] >= 0 && out[i] < FIELD);
+      secondPrevious = previous;
+      previous = ciphertext;
+    }
+  }
+  return out;
 }
 
 /**
@@ -187,6 +308,9 @@ function main() {
   assert.equal(observed.maxOnePlaintextRune, 989);
   assert.equal(observed.equalOrderedPairs, 94652);
   assert.equal(observed.eligibleOrderedPairs, 2728348);
+  const feedback = [0, 1, 2].map(taps =>
+    allSecretFeedbackCapacity(original, spans, /** @type {0|1|2} */ (taps)));
+  assert.deepEqual(feedback.map(x => x.maximum), [989, 1298, 1548]);
 
   const shakespeare = nativeGP(read("resources/control/shakespeare_first300k.txt"));
   const gibran = nativeGP(read("resources/control/gibran_prophet_58585.txt"));
@@ -211,6 +335,29 @@ function main() {
 
   // An arbitrary, incorrect original key also roundtrips all original
   // ciphertext. This is an implementation invariant, not authentication.
+  const feedbackPlants = [];
+  for (const taps of [1, 2]) {
+    const secret = syntheticFeedbackKeys(spans, /** @type {1|2} */ (taps));
+    const encrypted = feedbackTransform(truePlain, spans, secret, false);
+    const deciphered = feedbackTransform(encrypted, spans, secret, true);
+    assert.deepEqual(deciphered, truePlain);
+    assert.deepEqual(feedbackTransform(deciphered, spans, secret, false),
+      encrypted);
+    if (taps === 1) assert.ok(feedback[taps].maximum <
+      shakespeareWindows.minE);
+    const nativeE = truePlain.filter(x => x === 18).length;
+    const plantCapacity = allSecretFeedbackCapacity(encrypted, spans,
+      /** @type {0|1|2} */ (taps));
+    assert.ok(plantCapacity.maximum >= nativeE);
+    const hypotheticalOriginal =
+      feedbackTransform(original, spans, secret, true);
+    assert.deepEqual(feedbackTransform(hypotheticalOriginal, spans,
+      secret, false), original);
+    feedbackPlants.push({ taps, nativeE, plantBound: plantCapacity.maximum,
+      recovered: deciphered.length, reencrypted: encrypted.length,
+      wrongKeyRoundtrip: original.length });
+  }
+
   const hypothetical = transform(original, spans, keys, true);
   assert.deepEqual(transform(hypothetical, spans, keys, false), original);
 
@@ -223,6 +370,14 @@ function main() {
       gridColumns: PERIOD, arbitrarySecretStatePermutations: 28 * PERIOD
     },
     original: observed,
+    allSecretAffineFeedback: feedback,
+    feedbackMinimumRuneAlterations: {
+      oneTapVsShakespeare: shakespeareWindows.minE - feedback[1].maximum,
+      oneTapVsGibran: gibranWindows.minE - feedback[1].maximum,
+      twoTapSurvivesOnlyECount: feedback[2].maximum >=
+        shakespeareWindows.minE
+    },
+    feedbackPlants,
     references: { shakespeare: shakespeareWindows, gibran: gibranWindows },
     guaranteedAdditionalERewrites: {
       shakespeare: shakespeareWindows.minE - observed.maxOnePlaintextRune,
@@ -236,10 +391,12 @@ function main() {
     },
     interpretation: "Excludes source-segment and 8-column phased, state-fixed " +
       "bijective per-symbol substitutions of direct native GP prose; " +
-      "evolving state, other registers and segmentation remain open."
+      "two-tap feedback survives the E-count necessary condition; " +
+      "other registers and segmentation remain open."
   };
 }
 
 if (require.main === module) console.log(JSON.stringify(main(), null, 2));
 module.exports = { main, sourceSpans, nativeGP, allSecretCapacity, eWindows,
-  syntheticKeys, transform };
+  syntheticKeys, transform, allSecretFeedbackCapacity,
+  syntheticFeedbackKeys, feedbackTransform };

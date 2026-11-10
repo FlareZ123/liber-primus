@@ -31,6 +31,28 @@ A source-native positive-control plaintext (12,956 Shakespeare GP runes beginnin
 
 Equal-length quartering each of the 28 printed fragments into four independently rekeyed subepochs would raise the original all-secret one-rune ceiling to **1,553**; equal halving and thirding yield **1,234** and **1,402**. Those are illustrative sensitivity variants with *specified new rekey boundaries*, not a discovered key schedule. Truly hidden evolving states, nonlinear feedback, different segmentations, non-GP intermediates and languages outside the finite references remain open. No unknown plaintext or historical key was recovered.
 
+
+### All-secret ciphertext-feedback extension and the two-tap threshold
+
+The static-substitution exclusion extends to an extremely permissive **one-rune ciphertext-feedback rule**, with every secret coefficient independently rekeyed by (fragment, position mod8):
+
+    D_i = (C_i + a_(g,h) C_(i-1) + b_(g,h) C_(i-2)) mod29
+    D_i = sigma_(g,h)(P_i).
+
+The GP29 permutation and coefficient values may be **arbitrary secret choices**, independently in all 224 fragment/phase states; the two ciphertext predecessors are reset to zero at the start of each source-defined fragment. Because each output permutation is bijective and feedback is causal, this model has an exact encoder and decoder for every fixed key. A universal all-key bound on any specified plaintext rune follows by exhaustively enumerating each state's 29 possible coefficients a, 29 possible coefficients b where permitted, and all 29 resulting register values D. Maximizing within each state and summing over the independently keyed states is a *sharp* exact capacity for the single-rune count. No key fitting, language scoring, grid-byte selection, or stochastic null is involved.
+
+| Feedback taps | Secret per-state coefficients | Maximum copies of any fixed plaintext rune on original | GP-E ceiling |
+| --- | --- | ---: | ---: |
+| 0 | a=b=0 | **989 / 12,956** | 7.6335% |
+| 1 | Any a in F29, b=0 | **1,298 / 12,956** | 10.0185% |
+| 2 | Any a,b in F29 | **1,548 / 12,956** | 11.9481% |
+
+Therefore even this secret phase-dependent and previous-ciphertext-dependent **one-tap** family cannot reproduce **any** of the 204,689 native-GP Shakespeare windows (minimum 1,404 E) or 49,741 Gibran windows (minimum 1,414 E): **at least 106 / 116 GP-symbol alterations** are required. The two-tap family clears this particular *necessary* E-count condition. Its survival does **not** establish plausible plaintext, a historical key, or any intended source mapping. More general state dependence can also escape the bound.
+
+The same [source-asserting reversible test](../sims/thirteen_dot_grid_8phase_allkey_capacity.cjs) enumerates **1 + 29 + 29² = 871** exact coefficient settings per state, implicitly optimizing arbitrary alphabet choices. Independent native-GP 12,956-rune plants under seeded, hidden 29-symbol substitution tables and coefficient keys for every state are exactly decoded and reencrypted **12,956/12,956** at both one and two taps. Their measured source-native all-key frequency ceilings are **1,858** and **1,921**, respectively, both exceeding their 1,593 true E runes. The original ciphertext also reciphers under those wrong arbitrary keys, as required by invertibility. This demonstrates a functioning family without authenticating an original key.
+
+**Research consequence:** within the explicit dot-delimited 32×8 source-state architecture, unrestricted *first-order affine ciphertext feedback* and unrestricted secret row/column alphabets are insufficient for the tested direct native GP-English registers. Two-tap feedback is the first of the measured 0–2 orders to escape the universal E-capacity obstruction. To treat two taps as an active decoding candidate requires an **independently source-fixed coefficient/output-table derivation and original plaintext**; another unrestricted key search or synthetic-only plant would not identify the historical cipher.
+
 ## Original-source inversions
 
 Two literal register families were investigated with 256-event source-derived keys:
@@ -145,6 +167,6 @@ This is a **complete conditional exclusion** of the 40 specific direct event-der
 
 ## What survives and next discriminatory test
 
-The **256-event correspondence itself remains unresolved**, including after the direct digest, AES-256 grid, 16×16 Hill, all-secret one-input substitution, the separate all-secret eight-phase punctuation-fragment bound, and the partial historical PATIENCE/low-five-bit alignment tests. The literal key serializations and direct GP output mappings fail native-style source controls or exact selective-F feasibility, but this does not exclude a source-derived key used in a nonlinear cipher, selected red-run spatial geometry, or the original numeric table encoding a distinct auxiliary instruction. The coincidence has no source-independent probability or evidence of Cicada authorship. The only useful successor would derive a deterministic byte/state construction from **the exact 256 events** and the **original 32×8 table** before inspecting ciphertext, then predict an independently meaningful original plaintext interval and account for all original boundaries and repeated-runic effects. Repeating the 80 direct combinations or elevating the exact count to a decipherment is unwarranted.
+The **256-event correspondence itself remains unresolved**, including after the direct digest, AES-256 grid, 16×16 Hill, all-secret one-input substitution, the separate all-secret eight-phase punctuation-fragment and first-order affine-feedback bounds, and the partial historical PATIENCE/low-five-bit alignment tests. The literal key serializations and direct GP output mappings fail native-style source controls or exact selective-F feasibility, but this does not exclude a source-derived key used in a nonlinear cipher, selected red-run spatial geometry, or the original numeric table encoding a distinct auxiliary instruction. The coincidence has no source-independent probability or evidence of Cicada authorship. The only useful successor would derive a deterministic byte/state construction from **the exact 256 events** and the **original 32×8 table** before inspecting ciphertext, then predict an independently meaningful original plaintext interval and account for all original boundaries and repeated-runic effects. Repeating the 80 direct combinations or elevating the exact count to a decipherment is unwarranted.
 
 Reproduction: `node sims/red_256_event_key_inverse.cjs` with Node.js 22; original [manual grid workflow](../.github/workflows/grid-section-digests.yml) includes this test. No original source files are modified.
