@@ -1,4 +1,4 @@
-# LP2 original JPEG entropy coding is a deterministic libjpeg reconstruction
+# LP2 JPEG entropy reconstruction and source-identical late ornaments
 
 **Evidence class:** exact source-byte experiment, narrowly bounded negative for JPEG-header and entropy-coding steganography. Agent 40, 2026-11-10. This result recovers no LP2 plaintext or key.
 
@@ -26,11 +26,21 @@ This verifies the whole compressed coefficient bitstream against an independent 
 
 Image 17's optimized stream has 692,931 bytes, exactly 2,594 less than the original 695,525-byte source; image 74 similarly has 315,482 versus 318,076 bytes. The strict byte comparison was carried out separately for each of the 58 images.
 
+## Shared late-ornament DCT template: source-specific content exclusion
+
+The original physical scans **57.jpg–72.jpg**, corresponding to the last **16 unresolved LP2 pages (40–55)**, reuse an ornate left/right border. Compare the independently quantized JPEG DCT coefficients rather than only the apparent image. Take 57.jpg as reference, each of the other fifteen scans as candidate, and restrict the full-size 2400×3600 image to **400 ≤ y < 3192**, **x < 432 or x ≥ 1960**, retaining complete component DCT blocks whose top-left coordinates lie in those regions.
+
+All **15/15** candidates have *exactly identical* Y-component quantized coefficients in the source-ornament strip: **2,434,624 checked coefficients per comparison, 36,519,360 checked in total, zero differences**. Among the RGB candidates, YCbCr chroma coefficients in the same two side regions also match **4,838,400/4,838,400**, with zero differences. The other scans are grayscale JPEGs; the all-page RGB pixel comparison likewise shows the border image is unchanged. Neighboring scans **56.jpg** and **73.jpg** are useful outside-group controls: their rendered side regions differ from 57.jpg, so this is a property of the late-ornament template rather than the whole corpus.
+
+**Consequences:** Page-specific information was *not* individually modulated into those exact source DCT coefficient regions of the 16 decorated pages. A single static cover can still be a common key source, and central-page coefficients, invisible center marks, text/color layers, JPEG bitstreams in other regions, and other hidden channels remain undecided. The test makes no claim about origin/meaning of the artwork and yields no key or LP2 plaintext.
+
+The [source-targeted libjpeg reproducer](../sims/jpeg_ornament_template_gate.c) checks the exact original JPEG component geometry and all 15 DCT comparisons, independently of the entropy-coding reconstruction above. Local compilation with `cc -std=c11 -O2 -Wall -Wextra -ljpeg` and original 57–72 files produced `Y=36519360 chroma=4838400 differing=0`. This bounded structural fact helps restrict high-cost steganographic searches to actual page-variable carrier regions rather than the raster-reused ornamental template.
+
 ## Interpretation and limits
 
 The LP2 JPEG headers and Huffman-coded scan data have **no independently selected coding choices detectable relative to this deterministic libjpeg optimizer**. DHT variation is entirely reconstructed from the same DCT coefficients using this implementation.
 
-The DCT coefficients themselves may carry hidden information, including coefficient-parity encoding, F5-style manipulation, visible microdots or alterations made before JPEG compression. This experiment supplies **no negative evidence against DCT-coefficient or pixel-level steganography**.
+The DCT coefficients themselves may carry hidden information, including coefficient-parity encoding, F5-style manipulation, visible microdots or alterations made before JPEG compression. The entropy-reconstruction test supplies **no negative evidence against DCT-coefficient or pixel-level steganography**. The additional late-ornament comparison establishes a separate, exact *spatially limited* DCT identity for that specific repeated artwork; it does not generalize to the central page or other scan groups.
 
 The bit-exact finding is specific to these images, the tested libjpeg-compatible implementation (JPEG_LIB_VERSION 62), the original quantization parameters and the optimized-coding flag. It does not establish the identity of the historical encoder or the archive's provenance. The earlier JPEG-container census remains a separate supporting result.
 
