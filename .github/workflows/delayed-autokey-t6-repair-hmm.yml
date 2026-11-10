@@ -1,0 +1,14 @@
+name: Delayed autokey T6 exact collision-repair inverse
+on:
+  workflow_dispatch:
+jobs:
+  exact-original-inversion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Scan all original LP2 reset models and known-key heldout plant
+        run: node sims/delayed_autokey_t6_repair_hmm.cjs
