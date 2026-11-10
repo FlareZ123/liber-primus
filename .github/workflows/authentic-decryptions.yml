@@ -16,6 +16,8 @@ jobs:
         run: node sims/authentic_decryption_regression.cjs
       - name: Test five-dot artwork reflection against solved page-56 totient inverse
         run: node sims/fivedot_reflection_totient_inverse.cjs
+      - name: Test five-dot height-order columnar transposition with known prime-totient cipher
+        run: node sims/lp2_fivedot_columnar_totient_gate.cjs
       - name: Check historical source handoff, original LP2 and all literal-F clock masks
         run: node sims/historical_solve_path_transfer.cjs
       - name: Exhaust all original physical-page literal-F prime-totient clock masks
