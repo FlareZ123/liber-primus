@@ -1,6 +1,6 @@
 # 2014 stage04 magic-square direction map: cell 6 Rad ↔ cell 7 Ac
 
-**Status:** a reproducible cross-round fragment-structure hypothesis, including an exact 199 → empty fragment 6 / Ac fragment 7 bridge, alongside bounded negative tests of direct table transfer and the simplest recursive prime-fragment continuation. No LP2 plaintext or authentic key has been recovered.
+**Status:** a reproducible cross-round fragment-structure hypothesis, including an exact 199 → empty fragment 6 / Ac fragment 7 bridge, alongside bounded negative tests of direct table transfer, recursive prime-fragment continuation, and the 2014 direction graph as a sparse lag-six event selector. The full graph does not explain the observed T6 event positions under a word-structure-matched null. No LP2 plaintext or authentic key has been recovered.
 
 ## 2014 source and selector
 
@@ -153,13 +153,34 @@ A planted 1×2 positive control with bytes [5,199] does recover Rad→Ac→Rad u
 
 **Decision:** the direct “table byte = bearing and φ(byte) = map label” reading is rejected for this LP2 table. The modulo-8 column selector remains an interesting but retrospective source alignment; it supplies no key, state, plaintext, or destination. Do not repeat this direct graph transfer or expand it into free rotations, offsets, or geographic searches.
 
+## Does the 2014 direction graph select the sparse lag-six events? — bounded negative
+
+The 2016 image dimensions differ by six, and the 2014 direction map contains a six-cell cycle. That makes the full graph a finite, human-motivated candidate for selecting the locations of the original word-local lag-six relation, rather than merely another angle/key interpretation. This test uses the graph exactly as already defined above: each cell's GP label is \\(\\phi(n)\\bmod29\\), and its directed edge is the source-fixed eight-neighbour move under the mathematical-angle convention. There are **17** in-bounds symbol edges, including the six-cycle **D → G → EO → I → S → M → D** and the reciprocal **Rad ↔ Ac** pair. No rotation, phase, edge, label, or offset is fitted.
+
+I compared those edges with all **1,290** original word-internal positions \\(j\\ge6\\) in the canonical **2,896-word / 12,956-rune** unsolved corpus. The same fixed \\(T_6(x)=24-2x\\pmod{29}\\) map was used only to label the already observed six-back matches.
+
+| Source-fixed selector | Original hits | Matched-null mean | Null controls ≥ observed |
+|---|---:|---:|---:|
+| Six-cycle directed edges | 5 | 7.993 | 1,833 / 2,000 |
+| Six-cycle source-symbol mask, T6 hits | 12 / 227 | 8.9435 | 311 / 2,000 |
+| Full 17-edge direction graph | 26 / 1,290 | 23.534 | 622 / 2,000 |
+| Full graph edges intersecting T6 hits | 4 / 80 | 2.475 | 469 / 2,000 |
+| Full graph source-symbol mask, T6 hits | 22 / 414 | 16.3665 | 146 / 2,000 |
+| All original T6 hits (internal reference) | 80 / 1,290 | 49.6065 | 0 / 2,000 |
+
+The null consists of **2,000 deterministic within-word permutations** (seed `0x18a6c333`). Each word retains its exact length, rune multiset, first and last rune, and count of adjacent equal pairs; therefore the 1,290 eligible word-local lag-six positions are unchanged. No conditional shuffle fell back to the original word. Synthetic positive controls recover all **6/6** cycle edges and **17/17** full-graph edges, checking that the detector is capable of finding the planted relation.
+
+The T6 relation itself remains elevated against this conditional null (80 observed versus mean 49.6065; no control reaches 80). What fails is the proposed **2014 direction-graph event selector**: only four authentic T6 hits are graph edges, the full graph's edge count is not enriched, and its source-symbol mask is not enriched. Only one of the six directed cycle edges is itself a T6 edge (**G → EO**). The Rad↔Ac two-cycle is not a T6 edge: **T6(Rad)=T** and **T6(Ac)=C**.
+
+**Decision:** retire the 2014 direction graph as an explanation for the sparse T6 event placement. This does not invalidate the separate 199 → empty fragment 6 / Ac fragment 7 human-path hypothesis, the 2014 onion timing clue, or the retrospective LP1 MOBIUS/p40 Cayley identity. None of those currently specifies an independent mask for the 80 positions. Do not broaden this result into free rotations, alternative graph orientations, or language-score searches.
+
 ## Historical interpretation and limits
 
 The 2016 image is a dead-oak illustration, not a verified geographic photograph. The Uncovering Cicada Wiki attributes it to [this ClipartBest oak image](https://www.clipartbest.com/cliparts/abc/y97/abcy97qTL.jpeg). Treat the oak as a symbolic Ac pointer: Ac is also the first red rune in the 199-selected seventh fragment. Do not infer a physical starting location from the image.
 
 The 2016 message's instruction that words are a map, meanings a road, and numbers directions is compatible with the 2014 matrix interpretation. However, the angle convention is an inference, not a proven instruction. Using compass bearings (0° north, clockwise) does not produce the cell-6 → cell-7 oak connection. The archived 2016 message also ends “Beware false paths,” so semantic and geographic matches require a source-fixed stopping rule.
 
-The direct byte-as-bearing transfer to the LP2 numeric table remains rejected. The 199/Ac fragment bridge is a stronger source-constrained human solve-path hypothesis, but it does not yet specify a reversible cipher, recover plaintext, or establish the destination. The separate use of columns 7–8 as key/state material remains untested and must not be conflated with the fragment-index result.
+The direct byte-as-bearing transfer to the LP2 numeric table remains rejected, and the full 2014 direction graph does not select the sparse T6 event positions. The 199/Ac fragment bridge remains a source-constrained human solve-path hypothesis, but it does not specify a reversible cipher, recover plaintext, or establish the destination. The separate use of columns 7–8 as key/state material remains untested and must not be conflated with the fragment-index result.
 
 ## Reproduction
 
@@ -169,7 +190,7 @@ Run from the repository root:
 node sims/2014_magic_square_direction_map.cjs
 ```
 
-The script checks the 1033 magic square, recomputes the `φ(n) mod29` rune labels and eight-direction graph, derives both natural table-column interpretations, reconstructs the 32 red-rune fragments from the original ink annotations, tests the three prime-entry residue pairs, and reproduces the exact conditional and seeded permutation nulls using only Node's standard library and pinned source resources.
+The script checks the 1033 magic square, recomputes the `φ(n) mod29` rune labels and eight-direction graph, derives both natural table-column interpretations, reconstructs the 32 red-rune fragments from the original ink annotations, tests the three prime-entry residue pairs, and reproduces the exact conditional and seeded permutation nulls. It now also tests the full 17-edge graph and six-cycle against all original word-local lag-six positions with 2,000 endpoint/multiset/doublet-preserving word shuffles.
 
 ## Source links
 

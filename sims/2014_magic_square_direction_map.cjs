@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 "use strict";
 
-// Reproduce the 2014 stage04 Rad <-> Ac direction map and test its simplest
-// source-motivated transfer to the original LP2 32x8 base-60 byte table.
+// Reproduce the 2014 stage04 Rad <-> Ac direction map, its LP2 table transfer,
+// and a source-fixed test of the full direction graph against sparse lag-six events.
 // Run from the repository root:
 //   node sims/2014_magic_square_direction_map.cjs
 
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
+const {parseSharedCorpus} = require("./lp2_word_pages.cjs");
 
 const corpus = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json", "utf8"));
 const ink = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-ink-annotations.json", "utf8"));
@@ -415,4 +416,145 @@ const fragmentBridge = {
   allValuePermutationNull,
 };
 
-console.log(JSON.stringify({magicSquare:magicResult, lp2GridTransfer, fragmentBridge}, null, 2));
+/*
+ * Test the full 2014 direction graph as a source-fixed lag-six event selector.
+ * The six-cycle length and the independently observed lag are both six, but
+ * this test grants no fitted phase, rotation, edge or source-state selection.
+ */
+const parsedLP2 = parseSharedCorpus();
+const lagWords = parsedLP2.words.map(word => [...word.runes].map(r => {
+  const i = corpus.runes.indexOf(r);
+  assert.notEqual(i, -1, 'canonical word contains a rune outside the GP corpus');
+  return i;
+}));
+const lagRuneCount = lagWords.reduce((n, word) => n + word.length, 0);
+const sixCycleCells = cycles.find(ids => ids.length === 6);
+assert.deepEqual(sixCycleCells, [12,16,17,23,24,18]);
+const sixCycleLabels = sixCycleCells.map(id => byCell.get(id).runeIndex);
+const cycleEdges = sixCycleLabels.map((x, i) => [x, sixCycleLabels[(i + 1) % sixCycleLabels.length]]);
+const graphEdges = cells.filter(cell => cell.target !== null)
+  .map(cell => [cell.runeIndex, byCell.get(cell.target).runeIndex]);
+const edgeKey = (a, b) => a + ',' + b;
+const cycleEdgeSet = new Set(cycleEdges.map(([a,b]) => edgeKey(a,b)));
+const graphEdgeSet = new Set(graphEdges.map(([a,b]) => edgeKey(a,b)));
+const cycleSourceSet = new Set(sixCycleLabels);
+const graphSourceSet = new Set(graphEdges.map(([a]) => a));
+const t6 = x => mod(24 - 2 * x);
+function countLagSix(wordArrays) {
+  const out = {total:0,t6Hits:0,cyclePrev:0,cycleMaskT6Hits:0,cycleEdgeHits:0,
+    graphPrev:0,graphMaskT6Hits:0,graphEdgeHits:0,graphAndT6Hits:0};
+  for (const word of wordArrays) for (let j = 6; j < word.length; j++) {
+    out.total++;
+    const previous = word[j - 6], current = word[j], isT6 = current === t6(previous);
+    const key = edgeKey(previous, current);
+    if (isT6) out.t6Hits++;
+    if (cycleSourceSet.has(previous)) {
+      out.cyclePrev++;
+      if (isT6) out.cycleMaskT6Hits++;
+    }
+    if (cycleEdgeSet.has(key)) out.cycleEdgeHits++;
+    if (graphSourceSet.has(previous)) {
+      out.graphPrev++;
+      if (isT6) out.graphMaskT6Hits++;
+    }
+    if (graphEdgeSet.has(key)) {
+      out.graphEdgeHits++;
+      if (isT6) out.graphAndT6Hits++;
+    }
+  }
+  return out;
+}
+const observedLagSix = countLagSix(lagWords);
+assert.equal(lagWords.length, 2896);
+assert.equal(lagRuneCount, 12956);
+assert.equal(observedLagSix.total, 1290);
+assert.equal(graphEdges.length, 17);
+assert.equal(graphEdgeSet.size, 17);
+assert.equal(observedLagSix.t6Hits, 80);
+assert.equal(observedLagSix.cyclePrev, 227);
+assert.equal(observedLagSix.cycleMaskT6Hits, 12);
+assert.equal(observedLagSix.cycleEdgeHits, 5);
+assert.equal(observedLagSix.graphPrev, 414);
+assert.equal(observedLagSix.graphMaskT6Hits, 22);
+assert.equal(observedLagSix.graphEdgeHits, 26);
+assert.equal(observedLagSix.graphAndT6Hits, 4);
+const cycleT6Edges = cycleEdges.filter(([a,b]) => t6(a) === b);
+const graphT6Edges = graphEdges.filter(([a,b]) => t6(a) === b);
+assert.equal(cycleT6Edges.length, 1);
+assert.equal(graphT6Edges.length, 2);
+assert.equal(corpus.translit[t6(byCell.get(6).runeIndex)], 'T');
+assert.equal(corpus.translit[t6(byCell.get(7).runeIndex)], 'C');
+
+/* Conditional null: shuffle word interiors while preserving exact word length,
+ * rune multiset, first/last rune, and adjacent-equal-pair count. */
+let lagRngState = 0x18a6c333 >>> 0;
+function lagRandom() {
+  lagRngState ^= lagRngState << 13;
+  lagRngState ^= lagRngState >>> 17;
+  lagRngState ^= lagRngState << 5;
+  return (lagRngState >>> 0) / 4294967296;
+}
+function adjacentEqualPairs(word) {
+  let count = 0;
+  for (let i = 1; i < word.length; i++) if (word[i] === word[i - 1]) count++;
+  return count;
+}
+let failedWordShuffles = 0;
+function shuffleWordInterior(word) {
+  if (word.length < 3) return word.slice();
+  const targetDoublets = adjacentEqualPairs(word);
+  for (let attempt = 0; attempt < 200; attempt++) {
+    const interior = word.slice(1, -1);
+    for (let i = interior.length - 1; i > 0; i--) {
+      const j = Math.floor(lagRandom() * (i + 1));
+      [interior[i], interior[j]] = [interior[j], interior[i]];
+    }
+    const candidate = [word[0], ...interior, word[word.length - 1]];
+    if (adjacentEqualPairs(candidate) === targetDoublets) return candidate;
+  }
+  failedWordShuffles++;
+  return word.slice();
+}
+const lagNullSamples = 2000;
+const lagNull = [];
+for (let sample = 0; sample < lagNullSamples; sample++) {
+  lagNull.push(countLagSix(lagWords.map(shuffleWordInterior)));
+}
+assert.equal(failedWordShuffles, 0, 'every conditional word shuffle must be accepted');
+function lagNullSummary(key) {
+  const sorted = lagNull.map(x => x[key]).sort((a,b) => a-b);
+  return {
+    mean: sorted.reduce((sum, x) => sum + x, 0) / lagNullSamples,
+    median: sorted[Math.floor(lagNullSamples / 2)],
+    p95: sorted[Math.floor(0.95 * (lagNullSamples - 1))],
+    max: sorted[lagNullSamples - 1],
+    atLeastObserved: sorted.filter(x => x >= observedLagSix[key]).length,
+  };
+}
+const cyclePositive = countLagSix(cycleEdges.map(([a,b]) => [a,0,0,0,0,0,b]));
+const graphPositive = countLagSix(graphEdges.map(([a,b]) => [a,0,0,0,0,0,b]));
+assert.equal(cyclePositive.cycleEdgeHits, 6);
+assert.equal(graphPositive.graphEdgeHits, 17);
+const lagSixGraphGate = {
+  source:{words:lagWords.length,runes:lagRuneCount,eligiblePositions:observedLagSix.total},
+  sourceGraph:{inBoundsEdges:graphEdges.length,uniqueEdges:graphEdgeSet.size,
+    sixCycleCells:sixCycleCells,sixCycleRunes:sixCycleLabels.map(i => corpus.translit[i]),
+    sixCycleT6Edges:cycleT6Edges.map(([a,b]) => [corpus.translit[a],corpus.translit[b]]),
+    allGraphT6Edges:graphT6Edges.map(([a,b]) => [corpus.translit[a],corpus.translit[b]]),
+    T6ofRad:corpus.translit[t6(byCell.get(6).runeIndex)],
+    T6ofAc:corpus.translit[t6(byCell.get(7).runeIndex)]},
+  observed:observedLagSix,
+  null:{samples:lagNullSamples,seed:'0x18a6c333',failedWordShuffles,
+    conditioning:'per word: fixed length, rune multiset, first/last rune, and adjacent-equal-pair count',
+    cycleEdgeHits:lagNullSummary('cycleEdgeHits'),
+    cycleMaskT6Hits:lagNullSummary('cycleMaskT6Hits'),
+    graphEdgeHits:lagNullSummary('graphEdgeHits'),
+    graphMaskT6Hits:lagNullSummary('graphMaskT6Hits'),
+    graphAndT6Hits:lagNullSummary('graphAndT6Hits'),
+    t6Hits:lagNullSummary('t6Hits')},
+  positiveControls:{cycleExpected:6,cycleDetected:cyclePositive.cycleEdgeHits,
+    graphExpected:17,graphDetected:graphPositive.graphEdgeHits},
+  decision:'The source-fixed 2014 direction graph and its six-cycle do not enrich or select the original sparse T6 event positions.'
+};
+
+console.log(JSON.stringify({magicSquare:magicResult, lp2GridTransfer, fragmentBridge, lagSixGraphGate}, null, 2));

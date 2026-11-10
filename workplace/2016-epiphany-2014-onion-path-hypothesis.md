@@ -75,6 +75,8 @@ This rejects the simple default Perl drand48 models at the two supported start b
 
 **Not established:** that the 2014 timing channel is an LP2 key; that the 2016 message specifically selects the 256-byte string rather than another part of the 2014 path; that onion 2 and onion 3 shared a host or Apache parent; or that the published “approximately 23 hours” description and surviving timing samples give a complete, mutually consistent absolute chronology.
 
+A separate original-cipher test now rejects the 2014 direction graph as a sparse lag-six event selector. The fixed 17-edge graph matches 26/1,290 original word-local lag-six pairs (2,000 matched shuffles: mean 23.534; 622 controls at least 26); only 4/80 T6 hits lie on graph edges (null mean 2.475; 469 controls at least 4). Its six-cycle is not enriched either. This does **not** invalidate the 199 → empty fragment 6 / Ac fragment 7 path as a possible human solve-path clue, but it does not specify the missing T6 event mask. See the consolidated [2014 direction-map report](../im-results/2014-magic-square-direction-map.md).
+
 ## Best next test
 
 Freeze the historical selector before trying new cipher families:
