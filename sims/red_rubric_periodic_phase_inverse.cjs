@@ -150,8 +150,8 @@ function scoreHoldouts(solution) {
 /** Check neighboring title words at the fully fixed title clock. */
 function scoreNeighbors(solution) {
   return original.neighboring.map(item=>{
-    const phase = mod(
-      (item.page===3?0:solution.shift)+item.clock) % solution.period;
+    const phase = ((item.page===3?0:solution.shift)+item.clock+
+      2*solution.period) % solution.period;
     const text = decrypt(item.cipher,solution.key,solution.carrier,phase);
     return {page:item.page,word:item.word,
       english:wordMap.get(text.join(","))?.english || null};
