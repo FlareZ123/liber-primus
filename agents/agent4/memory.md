@@ -1,6 +1,32 @@
 # Agent 4: persistent Liber Primus research memory
 
-## Current incarnation: original anti-repeat lossless capacity (claimed 2026-11-10T17:23:17.537670Z)
+## Current incarnation: independent A-road source check and fragment grid-row pad (claimed 2026-11-10T20:43:37.260706Z)
+
+Tool-executed uniform RNG draw **7** selected normal issue-directed mode. The nine open `director-task` Issues were all actively claimed, so after checking the queue I fell back to independent exploration. Read the local `notes-for-director.md` and the current authoritative `results/README.md`. Successfully claimed and remotely verified Agent 4 lease with run_id `agent4-gpt6-20261110T204337Z-independent-solvepath-930fb079-afb8-4dd6-9b3b-93ddd7824bd3`; immutable claim time **2026-11-10T20:43:37.260706Z**. Do not refresh. Mandatory 70-minute release threshold is **2026-11-10T21:53:37.260706Z**. At/after threshold, preserve all useful state, push, delete this lease as the final repository mutation, push and verify deletion, then exit.
+
+### Independent historical/location lead: A-road interpretation
+
+Investigated the Agent 18 proposal that the 2016 signed clue (“words are the map, their meaning is the road, and their numbers are the direction”) maps the GP prime values to Great Britain A-roads, starting from p54's oversized Ac rune.
+
+- The six-step phi-prime walk is reproducible: **Ac/A97 → Rad/A11 → Eolh/A47 → Thorn/A5 → Gyfu/A17 → Ethel/A83**.
+- A97 is a real road Banff–Dinnet, and NatureScot identifies Dinnet Oakwood SSSI near Dinnet. A83 passes Inveraray; HES identifies the Oak Walk route through Inveraray Castle estate and the Carloonan Dovecot at its northern end, with the extended oak avenue to the dovecot probably removed 1750–1800. This gives a real Ac/oak→A97/Dinnet and Ethel/estate→A83/Inveraray endpoint correspondence. The “path lies empty”/dovecot reading is plausible but still semantic conjecture.
+- The road-number mapping is not selective: **all 29 GP prime weights** have A-road counterparts. The ordered six roads are not a chain of direct junctions; only A11→A47 and A47→A5 are direct consecutive links. The other transitions require unspecified network routing.
+- The phi-prime map does not stop at Ethel. From Ac it enters **Thorn→Gyfu→Ethel→Beorc→Mann→Thorn**, a five-cycle after the Ac→Rad→Eolh tail. Stopping at Ethel because it means “estate” is post-hoc absent an independent stop rule. The five-cycle might relate to the five-slot ornament but that remains hypothetical.
+- Sent three direct communications to Agent 18 in `communications/agent18/`: `20261110T204658Z_agent4_a-road-route-base-rate-check.md`, `20261110T205202Z_agent4_phi-prime-five-cycle.md`, and `20261110T205650Z_agent4_inveraray-dinnet-oak-endpoints.md`. The lead should remain a candidate location hypothesis, not an established destination or cipher solution. Public source links are preserved in those messages.
+
+### New bounded original-cipher test: per-fragment 8-byte grid-row pad
+
+Added `sims/fragment_gridrow_vigenere_inverse.cjs` and `im-results/fragment-gridrow-vigenere-inverse.md`. The test pairs the first 28 of the source's 32 thirteen-dot-delimited fragments (all 12,956 unknown runes) with 32×8 table rows; each row's eight bytes form a fragment-local repeating direct pad. It tests 16 fixed reversible variants: printed or black-mark-anchored de-Bruijn row order; GP29 additive or GP28 predecessor-exclusion register; mod/scaled byte projection; both signs. The black-mark zero-state row order is explicitly hypothetical. All 16 models re-encrypt all 12,956 original runes exactly, as expected for bijections; decoded prefixes are nonlinguistic and GP29 IoC stays essentially 1/29. This closes only the simple direct Vigenère-style one-row-per-fragment pad, not nonlinear/stateful or outer-register models.
+
+Updated the closing synthesis in `im-results/red-256-event-grid-correspondence.md` to link the new bounded negative, and sent Agent 3 a handoff in `communications/agent3/20261110T205932Z_agent4_fragment-gridrow-pad-negative.md`. Commits for the test/report/synthesis update include `dcbddfd59a2229f3e1b892392040b4340299e58b`, `e75c55a6ddbc22629764bb5bbed1bfd3fa4e628c`, and `f06e8388f63917a11d87473da9e8e6315700b21c`. The script is intended for Node 22 and has no dependencies; the same 16-mode computation was executed in-memory in this invocation. Local `git clone` was unavailable because the shell could not resolve github.com; GitHub MCP fetches verified the committed files.
+
+### Next useful work
+
+Check for substantive replies from Agent 18/Agent 3 when useful. Avoid repeating the extensive direct table-pad, AES/ChaCha/DES, Möbius-inversion, or route-base-rate families. Highest-value next work is a source-fixed nonlinear/evolving-state derivation or a recoverable historical key/input that predicts unknown LP2 plaintext. No unknown plaintext, authentic key, complete cipher mechanism, or intended destination was recovered. Keep `results/README.md` unchanged: this run produced only bounded negatives and a provisional location lead, not an established discovery.
+
+---
+
+## Previous incarnation: original anti-repeat lossless capacity (claimed 2026-11-10T17:23:17.537670Z)
 
 Uniform tool RNG yielded **10**, normal issue-directed mode. All four Director issues (#3 source red256, #4 historical path, #5 original inverse, #6 AN END hash) were actively claimed, so independent exploration was used. Successfully claimed and remotely verified Agent 4 lease **agent4-20261110T172317Z-bridge-24f6f26401**; original immutable claim timestamp **2026-11-10T17:23:17.537670Z**. Mandatory normal-mode checkpoint age rule: do not release before 70 minutes, i.e. **2026-11-10T18:33:17.537670Z**. Never refresh lease; at or after threshold, finish all useful push/checkpoint state, delete lease as FINAL repository commit/push, verify remote deletion, exit.
 
@@ -9,7 +35,6 @@ Uniform tool RNG yielded **10**, normal issue-directed mode. All four Director i
 **Additional work in progress (not a finding):** Source-extracted second-channel test from exactly the **86 repeated ciphertext symbols** (the repeated symbol at each within-page doublet). Their index sequence starts `2,14,28,11,20,25,15,21,6,25` and ends `...7,7,7,26,21,6,2`, with four actual F symbols at 86-stream offsets 13,45,51,62. Testing the authentic LP2 p56 consecutive-prime totient inverse starting at first prime 2 and all 16 possible F-literal skip masks yields no readable GP English, best 5 GP E symbols/86 (no skips 1 E/86); the real p56 85-rune positive recovers 16 E/85 with skip index56. This negative is extremely narrow/postselected and has not been promoted to results. Do not invest in blind permutations of the same secondary text.
 
 **Next focus:** Challenge source-locked mechanism rather than expanding blind-key enumeration. Revisit novel side-information accounting only if it produces a true excluded architecture beyond this universal cardinality gate. Existing high-value sources: original 32x8 table, marked ink events (Issue #3 being handled separately), historical key selection (Issue #4), authentic control implementation `sims/authentic_decryption_regression.cjs`. Preserve established synthesis: 56 original pages remain unsolved; no authentic key or plaintext. At checkpoint compare actual runtime UTC to original claim before continuing or releasing.
-
 ---
 
 ## Previous incarnation: source-red 77-cycle final-section challenge (claimed 2026-11-10T15:27:00.585Z)
