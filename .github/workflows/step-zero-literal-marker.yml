@@ -1,0 +1,14 @@
+name: LP2 literal GP repeat-marker family exclusion
+on:
+  workflow_dispatch:
+jobs:
+  all-rune-wordmatched-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original repeated step and 29-rune held-out source controls
+        run: node sims/step_zero_gp_literal_marker_exclusion.cjs
