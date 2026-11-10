@@ -186,22 +186,75 @@ function main() {
 
   const repeats = [];
   const pageInitialPositions = [];
+  const runeFrequencies = Array(N).fill(0);
+  const diagonalCounts = Array(N).fill(0);
+  const offDiagonalCounts = Array.from({ length: N }, () => Array(N).fill(0));
+  let adjacentPairCount = 0;
+  let adjacentPairPairs = 0;
   for (const p of unknownPages) {
     const start = pageStarts.get(p.page);
+    const a = p.indices;
     pageInitialPositions.push(start);
-    for (let i = 1; i < p.indices.length; i++) {
-      if (p.indices[i] === p.indices[i - 1]) {
-        repeats.push({ pos: start + i, page: p.page, rune: p.indices[i] });
+    adjacentPairCount += Math.max(0, a.length - 1);
+    adjacentPairPairs += Math.max(0, a.length - 2);
+    for (const r of a) runeFrequencies[r]++;
+    for (let i = 1; i < a.length; i++) {
+      if (a[i] === a[i - 1]) {
+        repeats.push({ pos: start + i, page: p.page, rune: a[i] });
+        diagonalCounts[a[i]]++;
+      } else {
+        offDiagonalCounts[a[i - 1]][a[i]]++;
       }
     }
   }
   assert.equal(repeats.length, 86);
+  assert.equal(adjacentPairCount, 12901);
   const markerPositions = new Set(marks13.filter(m => m.pos < unknownRunes).map(m => m.pos));
   const pageInitialSet = new Set(pageInitialPositions);
   const repeatAtPageInitial = repeats.filter(r => pageInitialSet.has(r.pos)).length;
   const repeatAtMarkerOrAdjacent = repeats.filter(r =>
     markerPositions.has(r.pos) || markerPositions.has(r.pos - 1)
   ).length;
+
+  // IID/unigram null with exact covariance correction for overlapping adjacent pairs.
+  const probabilities = runeFrequencies.map(x => x / unknownRunes);
+  const s2 = probabilities.reduce((s, p) => s + p * p, 0);
+  const s3 = probabilities.reduce((s, p) => s + p * p * p, 0);
+  const expectedDoubletsIID = adjacentPairCount * s2;
+  const varianceDoubletsIID =
+    adjacentPairCount * s2 * (1 - s2) +
+    2 * adjacentPairPairs * (s3 - s2 * s2);
+  const observedDoublets = repeats.length;
+  const zDoubletsIID = (observedDoublets - expectedDoubletsIID) / Math.sqrt(varianceDoubletsIID);
+  const diagonalSurvival = observedDoublets / expectedDoubletsIID;
+  const diagonalExpectedByRune = probabilities.map(p => adjacentPairCount * p * p);
+  let diagonalUniformSuppressionChiSquare = 0;
+  let diagonalUniformSuppressionPoissonDeviance = 0;
+  for (let i = 0; i < N; i++) {
+    const expected = diagonalSurvival * diagonalExpectedByRune[i];
+    const observed = diagonalCounts[i];
+    diagonalUniformSuppressionChiSquare += (observed - expected) ** 2 / expected;
+    diagonalUniformSuppressionPoissonDeviance += observed === 0
+      ? 2 * expected
+      : 2 * (observed * Math.log(observed / expected) - (observed - expected));
+  }
+  let offDiagonalPearsonChiSquare = 0;
+  let offDiagonalCellsExpectedAtLeastFive = 0;
+  let offDiagonalTotal = 0;
+  let minimumOffDiagonalExpected = Infinity;
+  for (let i = 0; i < N; i++) {
+    for (let j = 0; j < N; j++) {
+      if (i === j) continue;
+      const expected = adjacentPairCount * probabilities[i] * probabilities[j];
+      const observed = offDiagonalCounts[i][j];
+      offDiagonalTotal += observed;
+      minimumOffDiagonalExpected = Math.min(minimumOffDiagonalExpected, expected);
+      if (expected >= 5) {
+        offDiagonalCellsExpectedAtLeastFive++;
+        offDiagonalPearsonChiSquare += (observed - expected) ** 2 / expected;
+      }
+    }
+  }
 
   // The 31 marks produce 32 segments; the first 28 contain all 12,956 unknown runes.
   const cuts = [0, ...marks13.map(m => m.pos), allRunes.length];
@@ -311,6 +364,24 @@ function main() {
   return {
     claim: "No source-selected non-GP plaintext register recovered; the frozen 32x8 Base32 completion is invertible but produces random-like bytes.",
     source_sha256: sourceHashes,
+    repeat_filter_statistics: {
+      adjacent_pairs: adjacentPairCount,
+      adjacent_pair_overlap_pairs: adjacentPairPairs,
+      observed_doublets: observedDoublets,
+      iid_unigram_equal_probability: s2,
+      expected_doublets_under_iid_unigram: expectedDoubletsIID,
+      observed_doublet_rate: observedDoublets / adjacentPairCount,
+      iid_z_with_overlap_covariance: zDoubletsIID,
+      survival_fraction_of_iid_diagonal: diagonalSurvival,
+      suppression_fraction_of_iid_diagonal: 1 - diagonalSurvival,
+      per_rune_uniform_suppression_pearson_chi_square: diagonalUniformSuppressionChiSquare,
+      per_rune_uniform_suppression_df: 28,
+      per_rune_uniform_suppression_poisson_deviance: diagonalUniformSuppressionPoissonDeviance,
+      off_diagonal_pearson_chi_square: offDiagonalPearsonChiSquare,
+      off_diagonal_cells_expected_at_least_five: offDiagonalCellsExpectedAtLeastFive,
+      minimum_off_diagonal_expected_count: minimumOffDiagonalExpected,
+      observed_off_diagonal_pairs: offDiagonalTotal
+    },
     source_counts: {
       grid_rows: grid.length,
       grid_columns: grid[0].length,
