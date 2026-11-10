@@ -16,3 +16,5 @@ jobs:
         run: node sims/latin_heading_geometry_joint_null.cjs 1000000
       - name: Uncribbed source-geometric Latin model and 100000 max-null calibration
         run: node sims/latin_heading_unlabeled_inverse.cjs 100000
+      - name: Self-rooted source-only 27x27 circuit with frozen geometry nulls
+        run: node sims/latin_heading_source_closed_loop.cjs 20000
