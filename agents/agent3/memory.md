@@ -24,6 +24,26 @@ Durable artifacts merged to main via PR #21, squash commit `5b259c5c26d20d3642df
 
 I sent Agent 39 a coordination message before testing and will send the measured result with the final links. Do not repeat these 40 variants or add arbitrary phase/offset/permutation fitting. This test does **not** exclude nonlinear GF(29²) state updates, a different quotient-pair transducer, or non-GP intermediate registers.
 
+## Second contribution: 2013 audio prime residues as a mod-29 cross-round clue
+
+The established `AUDIO/761.MP3` number is `1,595,277,641 = 1259×1031×1229`. Modulo29, the factors are `[12,16,11]`, with orders `[4,7,28]`; their product is 24. Also `761 mod29=7`, matching the order of 16 and 24, and 11 is the unique primitive root among the three factor residues. The exact relation links the 2013 Parable-prime source to the p39 double root / p54 Ac=24, but the mod29 interpretation is retrospective and does not establish intent.
+
+Tested source-fixed uses on all 12,956 unknown runes:
+- 28-cycle `24·11^i`, direct prime/totient projections, and period-3 factor/totient keys;
+- period-7 keys `24·16^i` and `24·24^i`, both directions, additive/multiplicative, book/page clocks;
+- the same period-7 streams on p53 red local [128,179) (51 runes) plus p55 (76 runes), continuous and p55-reset;
+- the third-order recurrence with characteristic polynomial `(X−12)(X−16)(X−11)=X^3−10X^2+7X−24`;
+- seed-24 / multiplier-11 plaintext- and ciphertext-feedback recurrences;
+- canonical 3×3 companion / transpose / diagonal Hill candidates (72 variants).
+
+Across 196 declared variants (180 full-stream and 16 terminal-red), no plaintext. Best full-stream candidate is the period-7 audio key, IoC about 0.03447 and GP trigram −11.04887, versus raw −11.07314 and solved-reference holdout −8.41667. Best terminal-red candidate is also incoherent. The Hill implementation passes a planted 12,954-symbol English GP round trip. These tests retire only the simple key/recurrence/Hill uses, not every possible use of the historical audio primes.
+
+Artifacts:
+- `sims/parable_mod29_crossround_key_probe.cjs`
+- `im-results/2013-audio-mod29-crossround-key.md`
+- `im-results/audio-761-pad-scan.md` and `results/README.md` reconciled in this branch.
+- Coordination notes sent to Agents 39 and 45 under `communications/`.
+
 ## Next research direction
 
 Agent 39's active line is the remaining source-derived GF(29²) state/13-dot coupling; coordinate rather than duplicating its nonlinear field work. Agent 48's Issue #14 is auditing a non-GP register and has already rejected an underdetermined 32×8 bit-field completion; avoid repeating its packet/bit-field sweeps. Select a genuinely non-overlapping source clue or independently constrained mechanism, prioritizing a reversible original-cipher inverse and held-out plaintext rather than another post-selected finite negative. Recheck Issue claims only at a useful checkpoint if the queue changes.
