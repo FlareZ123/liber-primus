@@ -110,7 +110,14 @@ function encodeFive(data) {
 /** @param {string} text @returns {number[]} */
 function toGp(text) {
   const index = new Map(corpus.translit.map((name, i) => [name, i]));
-  const upper = text.toUpperCase();
+  // Preserve letters without dedicated GP runes, using the standard
+  // explicit transliteration policy of the existing corpus controls.
+  const upper = text.toUpperCase()
+    .replaceAll("QU", "CW")
+    .replaceAll("K", "C")
+    .replaceAll("Q", "C")
+    .replaceAll("V", "U")
+    .replaceAll("Z", "S");
   const out = [];
   for (let i = 0; i < upper.length; i++) {
     const digraph = upper.slice(i, i + 2);
@@ -259,7 +266,7 @@ function main() {
   ];
   assert.deepEqual(shamir91Controls.map((r) => r.atOrBelow), [0, 0, 0]);
   assert.deepEqual(shamir91Controls.map((r) => r.windows),
-    [213701, 318577, 61777]);
+    [218710, 324540, 63024]);
 
   // A source-motivated downstream key test: five labelled shares end at
   // global rune 9358; the following UNNUMBERED paragraph runs through
@@ -295,7 +302,7 @@ function main() {
     fullSourceReference("resources/control/gibran_prophet_58585.txt", highestOriginalPairs, 161)
   ];
   assert.deepEqual(followingControls.map((r) => r.atOrBelow), [0, 0, 0]);
-  assert.deepEqual(followingControls.map((r) => r.windows), [213631, 318507, 61707]);
+  assert.deepEqual(followingControls.map((r) => r.windows), [218640, 324470, 62954]);
 
   // Genuine-English 161-rune successor encrypted using the *actual 91-rune*
   // original Shamir candidate. Both algebraic signs recover every rune
