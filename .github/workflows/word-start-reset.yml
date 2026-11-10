@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Word-start concentration and period scan
         run: node sims/word_start_reset_scan.cjs
+      - name: Arbitrary periodic alphabet phase sieve
+        run: node sims/word_start_phase_permutation.cjs
