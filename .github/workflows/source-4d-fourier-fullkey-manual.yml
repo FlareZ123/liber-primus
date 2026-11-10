@@ -15,12 +15,21 @@ jobs:
         with:
           node-version: '22'
       - name: Exhaustive original and blind native GP control
-        run: node sims/source_4d_fourier_fullkey_inverse.cjs
+        run: node sims/source_4d_fourier_fullkey_inverse.cjs | tee /tmp/source-4d-native-gp.json
 
       - name: Exhaustive independent Latin GP register on same original
-        run: GP_REGISTER=latin node sims/source_4d_fourier_fullkey_inverse.cjs
+        run: GP_REGISTER=latin node sims/source_4d_fourier_fullkey_inverse.cjs | tee /tmp/source-4d-latin-gp.json
 
       - name: All-key direct GP29 additive source-state inversion, native Cicada
-        run: GP_DIRECT=1 node sims/source_4d_fourier_fullkey_inverse.cjs
+        run: GP_DIRECT=1 node sims/source_4d_fourier_fullkey_inverse.cjs | tee /tmp/source-4d-native-direct.json
       - name: All-key direct GP29 additive source-state inversion, Latin Vulgate
-        run: GP_DIRECT=1 GP_REGISTER=latin node sims/source_4d_fourier_fullkey_inverse.cjs
+        run: GP_DIRECT=1 GP_REGISTER=latin node sims/source_4d_fourier_fullkey_inverse.cjs | tee /tmp/source-4d-latin-direct.json
+
+      - name: Upload machine-readable exhaustive results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-4d-fourier-fullkey
+          path: /tmp/source-4d-*.json
+          if-no-files-found: error
+          retention-days: 7
