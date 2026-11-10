@@ -22,24 +22,25 @@ const PAGES = CORPUS.pages.filter(p => p.status === 'unsolved' && p.indices.leng
 assert.equal(PAGES.length, 55);
 assert.equal(PAGES.reduce((sum, page) => sum + page.length, 0), 12956);
 const WIDTHS = [5, 10, 15, 20, 25, 30];
-const TEXT_OCTETS = [9, 10, 13,
-  ...Array.from({length: 95}, (_, i) => 32 + i)];
+const VISIBLE_OCTETS = Array.from({length: 95}, (_, i) => 32 + i);
+const TEXT_OCTETS = [9, 10, 13, ...VISIBLE_OCTETS];
 
 /**
  * Determine all possible most-significant radix-28 digits of a
  * 3n-byte unsigned integer whose first (most significant) octet
- * is printable ASCII or tab, LF, CR. This is an overapproximation:
+ * belongs to the specified ASCII source register. This is an overapproximation:
  * it ignores restrictions on the remaining digits and other bytes.
  * @param {number} width Multiple of five.
+ * @param {number[]} [octets] Allowed highest-octet ASCII byte values.
  * @returns {number[]} Sorted eligible leading digit values.
  */
-function allowedLeadingDigits(width) {
+function allowedLeadingDigits(width, octets = TEXT_OCTETS) {
   assert.ok(WIDTHS.includes(width));
   const byteCount = 3 * width / 5;
   const place = 28n ** BigInt(width - 1);
   const octetPlace = 256n ** BigInt(byteCount - 1);
   const allowed = new Set();
-  for (const b of TEXT_OCTETS) {
+  for (const b of octets) {
     const first = BigInt(b) * octetPlace / place;
     const last = (BigInt(b + 1) * octetPlace - 1n) / place;
     for (let d = first; d <= last; d++) {
@@ -88,7 +89,7 @@ function examine(pages, width, reset, policy, reverse, phase, octetMode = 'print
   const allowed = octetMode === 'seven-bit'
     ? Array.from({length: Number((128n * (256n ** BigInt(3 * width / 5 - 1)) - 1n)
         / (28n ** BigInt(width - 1))) + 1}, (_, i) => i)
-    : allowedLeadingDigits(width);
+    : allowedLeadingDigits(width, octetMode === 'visible' ? VISIBLE_OCTETS : TEXT_OCTETS);
   const k = allowed.length;
   const counts = Array.from({length: 29}, () => new Uint16Array(29));
   let clean = 0, complete = 0, markerPackets = 0;
@@ -160,6 +161,27 @@ function study(pages = PAGES) {
       maxCleanPackets: Math.max(...cases.map(x => x.cleanPackets))
     });
   }
+  // Strict visible ASCII (0x20..0x7e), without TAB/LF/CR, also has
+  // an exact key-independent pigeonhole bound for all 840 framings.
+  const visible = WIDTHS.map(width => {
+    const cases = [];
+    for (const reset of ['page', 'book'])
+      for (const policy of ['drop', 'skip'])
+        for (const reverse of [false, true])
+          for (let phase = 0; phase < width; phase++)
+            cases.push(examine(pages, width, reset, policy, reverse, phase,
+              'visible'));
+    return {
+      width, settings: cases.length,
+      allowedLeadingDigits: allowedLeadingDigits(width, VISIBLE_OCTETS),
+      excluded: cases.filter(c => c.hardExcluded).length,
+      minForcedNonVisibleFirstOctets: Math.min(...cases.map(c => c.forcedNonText))
+    };
+  });
+  assert.deepEqual(visible.map(x => x.excluded),
+    [40, 80, 120, 160, 200, 240]);
+  assert.deepEqual(visible.map(x => x.minForcedNonVisibleFirstOctets),
+    [934, 319, 167, 77, 25, 10]);
   // Robustness: permit any 7-bit ASCII octet, including NUL/DEL/C0,
   // without assuming printable English. This yields at most 13/14
   // possible leading digits per stationary conditioning row.
@@ -198,7 +220,7 @@ function study(pages = PAGES) {
       unionOverFramingsAndRowsLog10UpperBound: log10NullFamilyUnionBound,
       caution: 'This is a family-union bound under the specified random-ciphertext null, not a probability that a designed Cicada cipher could not encode ASCII, nor a deterministic original-source exclusion.'
     },
-    sevenBit, summaries, survivors};
+    visible, sevenBit, summaries, survivors};
 }
 
 /** @param {number} seed @returns {() => number} */
@@ -215,9 +237,10 @@ function random32(seed) {
  * integers, encoded using unknown random stationary prev-rune rows.
  * The key-free bound must admit this source for the true packet framing.
  * @param {number} width
+ * @param {boolean} [visibleOnly] Use strictly visible 0x20..0x7e source bytes.
  * @returns {object}
  */
-function positiveControl(width) {
+function positiveControl(width, visibleOnly = false) {
   const draw = random32(0x44230151 ^ width);
   const rows = Array.from({length: 29}, (_, prev) => {
     const out = Array.from({length: 29}, (_, i) => i).filter(i => i !== prev);
@@ -227,7 +250,9 @@ function positiveControl(width) {
     }
     return out;
   });
-  const MESSAGE = Buffer.from('LIBER PRIMUS TEST: THE HIDDEN MESSAGE IS IN THESE PRINTABLE OCTETS.\n', 'ascii');
+  const MESSAGE = Buffer.from(visibleOnly
+    ? 'LIBER PRIMUS TEST: THE HIDDEN MESSAGE IS IN THESE VISIBLE OCTETS. '
+    : 'LIBER PRIMUS TEST: THE HIDDEN MESSAGE IS IN THESE PRINTABLE OCTETS.\n', 'ascii');
   const nBytes = 3 * width / 5, packets = 1000;
   const bytes = [], glyphs = [draw() % 29];
   for (let packet = 0; packet < packets; packet++) {
@@ -261,11 +286,12 @@ function positiveControl(width) {
     recovered.push(...one);
   }
   assert.deepEqual(recovered, bytes);
-  const bound = examine([glyphs], width, 'page', 'drop', false, 0);
+  const bound = examine([glyphs], width, 'page', 'drop', false, 0,
+    visibleOnly ? 'visible' : 'printable');
   assert.equal(bound.cleanPackets, packets);
   assert.equal(bound.forcedNonText, 0);
   assert.equal(bound.violatingRows, 0);
-  return {width, packets, octets: bytes.length,
+  return {width, visibleOnly, packets, octets: bytes.length,
     glyphs: glyphs.length, roundtripped: recovered.length,
     forcedNonText: bound.forcedNonText};
 }
@@ -281,12 +307,15 @@ function main() {
     ['width', 'reset', 'policy', 'reverse', 'phase']
       .map(k => real.survivors[0][k]),
     [30, 'page', 'skip', true, 29]);
-  const positives = [5, 15, 30].map(positiveControl);
+  assert.equal(real.visible.reduce((n, x) => n + x.excluded, 0), 840);
+  const positives = [5, 15, 30].flatMap(width => [
+    positiveControl(width), positiveControl(width, true)]);
   process.stdout.write(JSON.stringify({
     source: 'resources/liber-primus/lp2-corpus.json',
     sourcePages: 55, originalRunes: 12956,
     model: 'stationary 29 independent prev-rune rows, each a bijection of the other 28 rune values; 5n radix28 digits to 3n ASCII/whitespace bytes',
     textOctets: '0x09, 0x0A, 0x0D, and 0x20 through 0x7E',
+    visibleOctets: '0x20 through 0x7E only; all 840 original framings excluded',
     proof: 'Any fixed predecessor row can map at most k distinct outgoing leader glyphs to k allowed leading ranks. Frequencies of all other leaders give a deterministic lower bound on forbidden high octets.',
     evidence: real, positives,
     limitation: 'Only fixed stationary predecessor rows, 5n:3n packet coding, tested shared phase policies. Non-ASCII/compressed bytes, keyed dynamic alphabets and per-page or changing phases remain open.'

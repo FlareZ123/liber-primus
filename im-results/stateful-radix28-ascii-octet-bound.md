@@ -56,6 +56,26 @@ The allowed first-digit sets are \(A_5=A_{10}=\{0,1,3,\ldots,13\}\) (13 values),
 
 There is **one setting unexcluded by this *necessary* condition**: width 30 (18 bytes), physical-page reset, retain doublet markers but ignore marker-affected packets, reverse digit direction, final packet phase **29**. It retains 282 clean packets out of 352 complete packets (70 dropped because they contain a marker). Every predecessor row has at most 11 distinct outgoing glyphs among the 282 first transitions, so the purely first-digit rank pigeonhole is silent. **No actual 29-row mapping has been found that makes this exception decode to ASCII**, and passing this one condition gives no probability or plausibility of readable text.
 
+### Strictly visible ASCII, with no control bytes
+
+A second, **stronger source-register requirement** treats direct plaintext as bytes in **0x20–0x7E only**: spaces, punctuation, letters and digits are allowed, while TAB, LF, CR and all other control bytes are disallowed. This is appropriate for a direct text stream that does not encode line breaks as bytes. The earlier 98-byte register above remains unchanged and continues to admit three controls.
+
+The exact same first-digit theorem, original ciphertext and full 840-framing search now exclude **all 840/840 configurations** under this stricter 95-byte requirement. The top-digit budgets drop from 13/12/11 to 11/10/9 respectively:
+
+| Radix-28 packet width | Allowed leading ranks for 0x20–0x7E | Excluded framings | Least forced non-visible first octets over any framing |
+| ---: | --- | ---: | ---: |
+| 5 | 3–13 (11) | **40/40** | 934 |
+| 10 | 3–13 (11) | **80/80** | 319 |
+| 15 | 3–12 (10) | **120/120** | 167 |
+| 20 | 3–12 (10) | **160/160** | 77 |
+| 25 | 3–12 (10) | **200/200** | 25 |
+| 30 | 3–11 (9) | **240/240** | 10 |
+| **Total** | | **840/840** | |
+
+Even the former 98-byte-register survivor (width30, phase29, page reset, reverse, marker-skip) requires at least **10** packet-leading bytes outside visible ASCII for every possible stationary secret row permutation. This follows from the frequency-sorted top-nine outgoing-edge bound; it does not require finding a key or scoring guessed words. A separate 1,000-packet source-disjoint strictly visible-ASCII positive control for each width 5/15/30 exactly re-encrypts and decodes its planted bytes and has zero forced non-visible first octets.
+
+**Scope:** Direct text containing actual LF/CR/TAB is covered by the original 839/840 result, leaving the documented single necessary-condition survivor; arbitrary seven-bit controls remain under the separate 814/840 result. The new 840/840 theorem cannot exclude those broader byte registers or other binary/text encodings. It does close the original stationary 29-row, fixed 5n:3n framing family **for strictly visible ASCII output**.
+
 **Robustness to every 7-bit ASCII character, including all C0 control codes and DEL:** The same source-only row-degree proof also works without any printable-text assumption. Allowing arbitrary decoded octets in \(0,\ldots,127\) expands the permissible high-rank budgets to **14** for widths 5/10 and **13** for widths 15/20/25/30, but still excludes **40/40, 80/80, 120/120, 160/160, 200/200, and 214/240** framings respectively, **814/840** overall. The only 26 unexcluded cases are width 30. This is a strict, stronger-alphabet source-register generalization of the 839/840 printable-ASCII result, with separately enumerated cases in the same CJS implementation. In particular, **every tested direct 7-bit ASCII codec with packets no longer than 25 digits is impossible**, even when decoded bytes contain arbitrary controls and punctuation. Both statements remain conditional on the fixed 29-row stationary decoding family.
 
 The five-/ten-digit cases are especially decisive: all 29 predecessor states occur with **more than 13 distinct leading ciphertext successors** in every one of their respective tested frame variants. Their ASCII impossibility cannot be repaired by arbitrarily relabeling the 28 possible successors in every row.
@@ -79,13 +99,13 @@ The log-sum-exp of these 840 terms is **−1280.1522711**; it is dominated by th
 
 ## Independent roundtrip test and preserved execution
 
-The exact [CommonJS implementation](../sims/stateful_28rank_ascii_octet_bound.cjs) checks the original corpus counts, computes the finite exhaustive bound, asserts the 839/840 exclusions and one survivor, and includes a source-disjoint **1,000-packet ASCII plaintext positive control** at each of widths 5, 15 and 30. Each positive picks 29 independently shuffled secret row permutations, encodes genuine ASCII bytes as full-width base-28 integers, emits a valid no-repeat ciphertext stream, then inverts all symbols through the secret rows and recovers the bytes exactly. The key-free bound correctly reports **zero forced forbidden octets** for each planted original-key framing. It recovers all **3,000, 9,000 and 18,000** positive-control bytes, respectively.
+The exact [CommonJS implementation](../sims/stateful_28rank_ascii_octet_bound.cjs) checks the original corpus counts, computes the finite exhaustive bounds, asserts the **839/840** 98-byte-register exclusions and **840/840** visible-only exclusions, and includes two source-disjoint **1,000-packet ASCII plaintext positive controls** at each of widths 5, 15 and 30. Each positive picks 29 independently shuffled secret row permutations, encodes genuine ASCII bytes as full-width base-28 integers, emits a valid no-repeat ciphertext stream, then inverts all symbols through the secret rows and recovers the bytes exactly. The key-free bound correctly reports **zero forced forbidden octets** for each planted original-key framing. It recovers all **3,000, 9,000 and 18,000** positive-control bytes, respectively.
 
 [GitHub Actions execution **42788225180**](https://github.com/FlareZ123/liber-primus/actions/runs/42788225180) completed successfully with Node.js 22, including the original-cryptogram 840-case assertions and all positive roundtrips. The existing **manual-only** [adaptive radix-28 workflow](../.github/workflows/lp2-adaptive-base28-manual.yml) now runs the new test alongside the prior binary-capacity witnesses; no per-commit CI trigger was added.
 
 ## Implications and the next useful boundary
 
-This is a concrete **no-key exclusion of a broad arbitrary-permutation encoder** for direct printable ASCII, including settings where unconstrained binary-byte capacity is satisfiable. The contrast distinguishes the original ciphertext's incompatibility with this ordinary textual source register from the previously observed nonidentifiability of raw bytes.
+This is a concrete **no-key exclusion of a broad arbitrary-permutation encoder** for direct strictly visible ASCII across all tested settings, and a 839/840 necessary-condition exclusion for the larger printable-plus-newline register, including settings where unconstrained binary-byte capacity is satisfiable. The contrast distinguishes the original ciphertext's incompatibility with this ordinary textual source register from the previously observed nonidentifiability of raw bytes.
 
 It does **not** exclude UTF-8, other alphabets, compressed text, encrypted intermediate bytes, source encoding after arbitrary whitening, ciphertext-dependent changing row permutations, variable-length codes, independent pagewise tables, unknown packet lengths outside the stated finite family, or mechanisms that change the marker/clock interpretation. It also cannot establish that the source was supposed to be ASCII. No output is put forward as recovered Liber Primus plaintext.
 
