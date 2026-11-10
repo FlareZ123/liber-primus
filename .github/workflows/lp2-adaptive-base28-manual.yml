@@ -107,14 +107,14 @@ jobs:
         if: ${{ inputs.probe == 'prime79terminal' }}
         run: node sims/prime79_terminal_linear_gate.cjs
       - uses: actions/setup-python@v5
-        if: ${{ inputs.probe == 'prime79cpsat' }}
+        if: ${{ inputs.probe == 'prime79cpsat' || inputs.probe == 'prime79gp' }}
         with:
           python-version: '3.11'
       - name: Install exact finite-domain CP-SAT solver
-        if: ${{ inputs.probe == 'prime79cpsat' }}
+        if: ${{ inputs.probe == 'prime79cpsat' || inputs.probe == 'prime79gp' }}
         run: python -m pip install ortools
       - name: Resolve unknown rune-cycle order at a formerly open 79-packet phase
-        if: ${{ inputs.probe == 'prime79cpsat' }}
+        if: ${{ inputs.probe == 'prime79cpsat' || inputs.probe == 'prime79gp' }}
         env:
           PHASE_START: ${{ inputs.phase_start }}
           PREFIX_TWO_DIRECTION: ${{ inputs.prefix_direction }}
@@ -122,3 +122,9 @@ jobs:
           PHASE_END: ${{ inputs.phase_end }}
           PAGE_SHUFFLE_SEED: ${{ inputs.page_shuffle_seed }}
         run: python sims/prime79_prefix2_cpsat.py
+      - name: Optimize first native GP rune under every fixed cyclic order
+        if: ${{ inputs.probe == 'prime79gp' }}
+        env:
+          GP_SECONDS: ${{ inputs.cpsat_seconds }}
+          GP_OBJECTIVE: 'top8'
+        run: python sims/prime79_first_rune_cpsat.py
