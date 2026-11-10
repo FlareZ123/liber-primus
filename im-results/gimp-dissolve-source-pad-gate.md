@@ -28,6 +28,14 @@ The same generator's first eight integer-range `[0,255)` outputs are:
 
 These reference vectors were checked against the system's native GLib implementation, not merely the script under test. Both executable single-file tests assert them or the exact source-derived pad.
 
+## Printed-grid co-generation check
+
+The original 32×8 table on physical pp49–51 represents 256 bytes under the repository's radix-60 transcription (corrected zero-based byte indices 45, 50, 246 = 107, 47, 198). A separate source-constrained possibility is that the table itself is a contiguous extract from the same historically documented **GIMP Dissolve** random generator, rather than cryptographic key material generated independently. This demands a **five-consecutive-byte** equality somewhere under a source-specified projection, before considering any decipherment.
+
+[Single-file reproducer](../sims/gimp_table_grid_cogeneration.cjs) exhausts all **4,096 historical GIMP row seeds**, each row's first **4,096 32-bit outputs**, and five static byte representations: low and high output bytes, the GLib-style zero-to-254 range residue, and the complete little- or big-endian 32-bit byte streams. The exact scan covers 16,777,216 word outputs (plus both full-byte expansions), all 252 complete original grid five-byte windows and every possible contiguous stream start. It finds **16 four-byte matches, all ending at four bytes**, and **zero five-byte matches**; counts by projection are 2/0/1/5/8. Historical generator output vectors are asserted, and an independently planted eight-byte grid segment is recovered by the identical scanner.
+
+**Scope:** This excludes a *literal contiguous extract* of at least five original printed-grid bytes from these five GIMP row-output representations within the first 4,096 samples of a row. The occasional four-byte coincidences do not identify a row, key or intended source relation. It does **not** exclude 2D coordinate sampling, noncontiguous extraction, a keyed transform, changed seeds, a different codec or any original-rune cipher. In particular, no LP2 unknown plaintext is recovered. This source-to-source test is separate from the existing direct cipher-pad and pixel-field analyses below.
+
 ## Direct and first-difference original results
 
 | Statistic | Value |
