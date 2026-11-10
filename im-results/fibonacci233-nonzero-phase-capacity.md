@@ -1,4 +1,4 @@
-# Fibonacci 233 nonzero-step clock: all-secret phase-bijection exclusion
+# Fibonacci 233 nonzero-step clock: all-secret phase-bijection and transpose exclusions
 
 **Classification: exact original-input cryptanalytic exclusion of all page-reset and all continuous periods up to 355 for the specified fixed-phase 28-symbol direct-GP architecture.** The factorization below is genuine source arithmetic, but the hypothesis that Cicada used it was proposed after examining the ciphertext. No LP2 plaintext, key, encryption mechanism or historical continuation was recovered.
 
@@ -52,6 +52,41 @@ Original complete-corpus calculations (one nonzero-step rank per payload symbol)
 | Sorted | 466 | Page reset | **1,293** | 10,949 / 307,634 | Frequency cap excludes all |
 
 The period-233 book key has about **55 rank observations per phase**; a source GP rune that would need 1,225 occurrences or more cannot be produced even if its ciphertext identity is chosen optimally at every phase.
+
+## Matrix-transposed 55×233 register: exact all-secret top-12 exclusion
+
+**Original-source extension (Agent 3, 10 November 2026).** The direct 233-clock bound above assumes the nonrepeated 28-way difference ranks are read in their original chronological order. A distinct possible human solve path is that the exactly **12,815 = 55×233** ranks were first arranged in a 55-row, 233-column rectangle and then read in an alternative order. This experiment gives that matrix hypothesis a highly permissive test rather than assuming the printed rune order carries the intended plaintext order.
+
+For each of the two source-derived invertible nonzero-step encodings (cyclic GP29 ordinal difference, or previous-glyph-deleting sorted rank), rearrange the 12,815 payload ranks in any of **16** geometric orders: original row-major or transposed column-major, independently reversing the row and column directions, and optionally alternating direction on successive traversed rows/columns (serpentine). This makes **32** input architectures. Every period \(p=1,\ldots,350\) has **one completely unknown, arbitrary 28-symbol bijection per phase**, as generous as \(p\) independent \(28!\) keys. For the original full-book necessary condition, grant *all 141* nonpayload positions, comprising 55 page-initializers and 86 adjacent equal-rune events, the freedom to emit **any** GP29 plaintext rune. They may occupy arbitrary plaintext locations; there is no inferred plaintext at them.
+
+For any specified set of 12 plaintext symbols, each unknown phase bijection maps it to at most 12 distinct rank values. If \(n_{r,x}\) is the exact ciphertext rank count at phase \(r\) for rank \(x\in\{0,\ldots,27\}\), sort each phase's 28 rank counts and add its **12 largest**. The global all-key upper bound is
+
+\[
+U_{12}(p,\mathrm{layout})=
+  \sum_{r=0}^{p-1}\sum_{j=1}^{12}n_{r,(j)},
+\quad
+\operatorname{top12}(\mathrm{full\ plaintext})\le U_{12}+141.
+\]
+
+The \(+141\) allowance permits every free marker to represent a chosen frequent plaintext GP symbol, so this remains valid without guessing whether repeated ciphertext marks are GP-EA or anything else. It is an exact, sharp capacity for any fixed set of twelve GP symbols given the stated secret-state architecture.
+
+Original source measurements, optimizing over **all 32 rank/geometry options** separately at each period:
+
+| Key phase period | Largest original \(U_{12}\) | With all 141 free rune slots |
+| --- | ---: | ---: |
+| 55 | 7,265 | 7,406 |
+| 79 | 7,609 | 7,750 |
+| 128 | 8,128 | 8,269 |
+| 233 | 8,971 | 9,112 |
+| 255 | **9,187** | **9,328** |
+| 256 | 9,145 | 9,286 |
+| 296 | **9,511** | **9,652** |
+
+The complete 1–350 census has **9,440** combinations in the first 295 periods and **11,200** combinations total. **Every period 1–295, in every matrix orientation and either nonrepeat rank convention, has \(U_{12}+141 < 9,651\).** The independently GP-transliterated equal-length Shakespeare source windows have minimum top-12 count **9,651**; Gibran and Emerson minima are **9,897** and **9,986**. No secret phase permutations in this entire family can emit any of these literal source windows. Across all periods 1–256 the tightest selected bound is **9,328** at period255, requiring **at least 323 GP-rune alterations** even for the closest Shakespeare window. Period296 is **the first whose top-12 upper bound no longer disproves every Shakespeare window** (9,652 versus 9,651), a necessary-condition boundary rather than evidence for that period, a compatible plaintext or a historical key.
+
+The [exact standalone CommonJS program](../sims/fibonacci233_matrix_transpose_allkey.cjs) asserts 350 period maxima, both original GF29 reversible rank encodings, all 16 traversal layouts per encoding and every language window count. A **native Shakespeare GP positive plant** removes exactly 141 separately handled positions including all GP-EA symbols, enciphers the remaining **12,815** ranks through a hidden seeded 256-phase 28-way permutation and nontrivial column-major serpentine layout, rebuilds **12,956 original-shaped GP29 ciphertext runes** including the same 86 zero-step sites, then recovers all 12,815 payload symbols and the original-length reference plaintext after reinserting the carried 141 symbols. It exactly regenerates every one of the planted ciphertext runes. [Successful manual Node22 CI 42869008424](https://github.com/FlareZ123/liber-primus/actions/runs/42869008424). No LP2 plaintext or historical key was recovered.
+
+**Scope:** This excludes direct, fixed-phase 28-symbol substitution registers under the stated 55×233 matrix routes and one-rank-per-nonzero-step mapping. Dynamically keyed phases, cipher feedback, noninvertible or variable-length encoding, entirely different traversals, an intermediate compressed/binary representation, and alternative plaintext distributions remain open. The 55×233 geometry was noticed retrospectively and is **not** an authenticated intended path.
 
 ## Exhaustive native GP source windows and power
 
