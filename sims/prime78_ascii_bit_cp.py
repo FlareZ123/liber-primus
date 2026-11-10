@@ -127,7 +127,7 @@ def check_key(starts: list[tuple[int,int,int,int]], pi: list[int],
 
 
 def solve(clean: list[int], valid: list[list[int]], limit: float,
-          plant_pi: list[int] | None = None) -> dict:
+          plant_pi: list[int] | None = None, third_byte: bool = False) -> dict:
     starts = packet_starts(clean)
     model = cp_model.CpModel()
     pi = [model.new_int_var(0,GP-1,f"pi_{i}") for i in range(GP)]
@@ -135,11 +135,28 @@ def solve(clean: list[int], valid: list[list[int]], limit: float,
     model.add(pi[0] == 0)
     domain = cp_model.Domain.from_intervals(valid)
     for k,quad in enumerate(starts):
-        ds = [model.new_int_var(0,27,f"d_{k}_{j}") for j in range(PREFIX_DIGITS)]
-        for j in range(PREFIX_DIGITS):
+        n_digits = 5 if third_byte else PREFIX_DIGITS
+        ds = [model.new_int_var(0,27,f"d_{k}_{j}") for j in range(n_digits)]
+        runes = tuple(clean[k*DIGITS-1:k*DIGITS+5]) if third_byte else quad
+        for j in range(n_digits):
             model.add_modulo_equality(ds[j],
-                pi[quad[j+1]]-pi[quad[j]]+28,GP)
+                pi[runes[j+1]]-pi[runes[j]]+28,GP)
         model.add_linear_expression_in_domain(784*ds[0]+28*ds[1]+ds[2],domain)
+        if third_byte:
+            # The third decoded ASCII byte is the low 8 bits of
+            # floor(V / 256**44). At five rank digits its real factor is
+            # A=28**73/256**44. A close 39-bit rational a/S has <1e-5
+            # error over the entire finite prefix domain, verified below.
+            # The Q approximation needs an overapproximation [-1,+2],
+            # whose mod256 mask is [0,128] U [254,255] for 7bit.
+            p5 = model.new_int_var(0,28**5-1,f'p5_{k}')
+            model.add(p5 == 614656*ds[0]+21952*ds[1]+784*ds[2]+28*ds[3]+ds[4])
+            quotient = model.new_int_var(0,28**5,f'q3_{k}')
+            model.add_division_equality(quotient,263116234438*p5,2**39)
+            residue = model.new_int_var(0,255,f'r3_{k}')
+            model.add_modulo_equality(residue,quotient,256)
+            model.add_linear_expression_in_domain(residue,
+                cp_model.Domain.from_intervals([[0,128],[254,255]]))
     if plant_pi is not None:
         check_key(starts,plant_pi,valid)
         # Only synthetic positive receives a known-secret hint, no original hint.
@@ -154,7 +171,8 @@ def solve(clean: list[int], valid: list[list[int]], limit: float,
     out = {"status":cp.status_name(status),"elapsed":round(time.monotonic()-begin,3),
            "conflicts":cp.num_conflicts,"branches":cp.num_branches,
            "tested_original_packet_leaders":len(starts),
-           "allowed_prefix_intervals":len(valid)}
+           "allowed_prefix_intervals":len(valid),
+           "third_byte_7bit_mask":third_byte}
     if status in (cp_model.FEASIBLE,cp_model.OPTIMAL):
         pos = [cp.value(x) for x in pi]
         assert sorted(pos) == list(range(GP))
@@ -190,19 +208,25 @@ def main() -> None:
     parser.add_argument("--original",action="store_true")
     parser.add_argument("--seconds",type=float,default=180.0)
     parser.add_argument("--charset",choices=("7bit","printable","upper","lower"),default="7bit")
+    parser.add_argument("--third-byte",action="store_true")
     args = parser.parse_args()
     assert args.plant != args.original
     legal,legal_count = exact_allowed(args.charset)
+    if args.third_byte:
+        # Exact proof that our P5*A rational approximation differs
+        # by <1 even at maximal P5. The unknown suffix contributes <1.
+        assert 28**73 < 256**44
+        assert abs(263116234438*256**44-28**73*2**39)*(28**5) < 256**44*2**39
     original,clean = input_source()
     if args.plant:
         clean,key = planted_source(args.charset)
         label = "synthetic7bit-positive"
-        outcome = solve(clean,legal,args.seconds,key)
+        outcome = solve(clean,legal,args.seconds,key,args.third_byte)
         assert outcome["status"] in ("OPTIMAL","FEASIBLE"), outcome
     else:
         label = "authentic-LP2-original"
-        outcome = solve(clean,legal,args.seconds)
-    result = {"case":label,"ascii_charset":args.charset,
+        outcome = solve(clean,legal,args.seconds,third_byte=args.third_byte)
+    result = {"case":label,"ascii_charset":args.charset,"third_byte":args.third_byte,
               "original_indices_sha256":hashlib.sha256(bytes(original)).hexdigest(),
               "unsolved_runes":len(original),
               "clean_rank28_digits":len(clean),
