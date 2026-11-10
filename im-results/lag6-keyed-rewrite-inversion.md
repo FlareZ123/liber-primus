@@ -37,22 +37,18 @@ The **wrong-pad control** replaces the known synthetic key with independently ge
 
 The source-count coincidence is exact: the red spans on pages 15, 40 and 53 contain **20 + 8 + 51 = 79 runes**, while the word-local lag-six rule has **79 ambiguous sites** after excluding the one T6 hit that is already an adjacent repeat. This is a motivated alignment hypothesis, not evidence of a key by itself.
 
-A chronological one-to-one comparison is weak. Only **5 / 79** red runes equal either possible tentative symbol (C_i or C_(i-1)) at the corresponding ambiguous site. Allowing reversal and all 28 rotations of the source-derived map T(x)=(24-2x) mod 29 raises the best match to only **10 / 79**.
+A chronological one-to-one comparison gives **5 / 79** raw matches. I then allowed the source-supported phase candidates **4, 15 and 22** (with phase 0 as the unshifted control), reversal, and all 28 rotations of T(x)=(24-2x) mod 29. The best was **12 / 79** (phase 15, forward, T^5). This is not exceptional: across 500 deterministic shuffles of the red-key order, preserving its symbol multiset and repeating the same 224-way search, the median maximum was **12 / 79**, the 95th percentile was **15 / 79**, and **409 / 500** shuffled keys equalled or exceeded the observed maximum. The phase candidates come from the 10-dot mark offset/3 residues **[4, 4, 22, 15]** documented in [the ten-dot source extraction](ten-dot-gap-lag-feedback.md); 15 and 22 also recur in the red-span arithmetic.
 
-The existing contextual inverse was then run on the original 2,896-word ciphertext with the same Shakespeare model and the already-validated synthetic mixture weight 0.95. Tested pads were the 79 red GP indices repeated globally (both directions and signs), and the source-derived F79 stream 53^(15+i mod 78) mod 79 reduced modulo 29 (both signs).
+The existing contextual inverse was run on the original 2,896-word ciphertext with the same Shakespeare model and the already-validated synthetic mixture weight 0.95. It tested 16 periodic red-GP-index pads (phases 0, 4, 15, 22; both directions and signs) and six F79 pads (phases 4, 15, 22; both signs), using 53^(phase+i mod 78) mod 79 reduced modulo 29.
 
-| Pad candidate | Lexicon-selected words / 2,896 | Lexicon words of length ≥5 | Decoded rune IoC |
-| --- | ---: | ---: | ---: |
-| Red79 GP index, forward, plus | 160 | 0 | 0.03787 |
-| Red79 GP index, reverse, plus | 165 | 0 | 0.03751 |
-| Red79 GP index, forward, minus | 165 | 0 | 0.03775 |
-| Red79 GP index, reverse, minus | 199 | 0 | 0.03775 |
-| F79 generator, phase 15, plus | 179 | 1 | 0.03791 |
-| F79 generator, phase 15, minus | 182 | 0 | 0.03815 |
+| Candidate family | Source phases | Variants | Maximum lexicon words / 2,896 | Maximum lexicon words of length ≥5 | Decoded rune IoC range |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Red79 GP-index pad | 0, 4, 15, 22 | 16 | 199 | 2 | 0.03751–0.03821 |
+| F79 generator (base 53, modulus 79) | 4, 15, 22 | 6 | 208 | 3 | 0.03772–0.03802 |
 
-The independent Shakespeare holdout IoC is approximately **0.05879**. These outputs remain near the wrong-pad behavior already documented above: a few short dictionary coincidences, no coherent text, and no independently reproducible plaintext. The single length-five lexicon hit under one F79 sign is not meaningful evidence.
+The independent Shakespeare holdout IoC is approximately **0.05879**. Even the highest lexicon count is only about 7.2% of the words; the few length-five-or-longer matches do not form coherent text. These outputs remain near the wrong-pad behavior documented above and provide no independently reproducible plaintext.
 
-**Decision:** the exact 79-to-79 count match does not currently provide a usable collision selector or additive key. This rejects the tested direct symbol alignment and the specified periodic additive readings; it does not rule out every possible encoding of the red spans. Reproduction command: node sims/red79_lag6_contextual_screen.cjs.
+**Decision:** the exact 79-to-79 count match is not a demonstrated collision selector or additive key. The direct alignment maximum is indistinguishable from shuffled controls, and the source-motivated periodic pads do not decrypt the text. This rejects the tested direct-symbol, phase-shifted, and periodic additive readings; it does not rule out every possible encoding of the red spans. Reproduction command: node sims/red79_lag6_contextual_screen.cjs.
 
 ## Consequence and unresolved dependency
 
