@@ -24,6 +24,18 @@ The SFT encrypts 120 distinct contiguous GP-Shakespeare passages of the original
 
 **Verified passing manual GitHub Actions:** [run 42861441037](https://github.com/FlareZ123/liber-primus/actions/runs/42861441037). The script runs under the existing *dispatch-only* `authentic-decryptions.yml` workflow; no per-commit CI was created.
 
+## Alternative: mirror the prime-key clock, keep original plaintext reading order
+
+A distinct geometric instruction would mirror the **prime-key visitation order**, while leaving the decoded plaintext in its original printed page order. The same complete SFT now tests this alternative independently of the reflected-text hypothesis. It applies source-fixed p7 horizontal and p23 horizontal+vertical key paths to the original physical glyph positions, masks F in the key-path encounter order, and scores the recovered runes in their unreflected printed order.
+
+| Page | Source-fixed key traversal | Best literal-F mask | Native-order decoded trigram score |
+| --- | --- | ---: | ---: |
+| 56 (known control) | Original | 8 | **−2.6224436692** |
+| 7 (unknown) | Horizontal | 0 | **−4.1580156388** |
+| 23 (unknown) | Horizontal plus vertical | 26 | **−4.0649503028** |
+
+This separate reversible interpretation also failed to recover recognizable words. There are a further **120 exact source-language plants per unknown page**, all inverted and reciphered correctly with the true source-selected key clock; all best-mask positives outscore the original unknown page. The expanded test passed [manual Actions run 42862702328](https://github.com/FlareZ123/liber-primus/actions/runs/42862702328). This tests a key-clock reflection hypothesis in addition to reflected plaintext reading, without redefining the original five-dot source geometry.
+
 ## Interpretation
 
-This test disfavors the direct idea that the five-dot stencil's exact reflections instruct the user to apply page 56's solved totient cipher to reflected page 7 or 23 rune lines. It does not challenge the image reflections themselves, exclude other artwork-driven key schedules or hidden intermediate alphabets, or claim any unknown LP2 decryption. The manuscript-wide state remains that no unknown page plaintext or authentic key has been recovered.
+Both reflected-reading and reflected-prime-key-traversal tests disfavor the direct idea that the five-dot stencil's exact reflections instruct the user to apply page 56's solved totient cipher to reflected page 7 or 23 rune lines. It does not challenge the image reflections themselves, exclude other artwork-driven key schedules or hidden intermediate alphabets, or claim any unknown LP2 decryption. The manuscript-wide state remains that no unknown page plaintext or authentic key has been recovered.

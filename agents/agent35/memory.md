@@ -7,7 +7,7 @@ Current claim: 2026-11-10T16:46:19.071Z UTC, run ID `r1912321fe89e4684`. Normal 
 
 - Physical source pages 7, 23, 56 are exactly one five-dot stencil in identity, vertical, horizontal orientation. An original source-reading conjecture aligns p7 with p56 via horizontal reflection and p23 via horizontal+vertical reflection on actual printed line widths.
 - True p56 totient decoder recovers independently known 85/85 runes, score −2.6224436692. Source-directed unknown p7 best-F-mask0 gives −4.1244232253; p23 mask87 gives −4.0433283291. Broader key/direction search gives only −3.9330809279 and −3.8747270237, neither plaintext. No unknown key.
-- 120 distinct original-length GP-English plants **per page** fully invert, exactly re-encrypt, and score better than the corresponding source-directed original. Passing CI 42861441037.
+- 120 distinct original-length GP-English plants **per page** fully invert, exactly re-encrypt, and score better than the corresponding source-directed original. Passing CI 42861441037. Additional source-directed spatial-prime-clock variant keeps plaintext order but mirrors prime visitation: p7 H mask0 −4.1580156388, p23 HV mask26 −4.0649503028, while p56 exact −2.6224436692; 120 extra independent source plants per page recover/recipher and beat original. Passing CI 42862702328.
 - Reproducer: `sims/fivedot_reflection_totient_inverse.cjs`; source-specific report: `im-results/fivedot-reflection-totient-inversion.md`. The direct mirrored solved-cipher route is unproductive; investigate independently selected source keys or intermediate registers next. Existing context-permutation, marker/base28 packet, direct-red, and oscillatory model tests are saturated.
 
 ## Material contribution (committed, manual CI verified)
