@@ -205,8 +205,12 @@ function main() {
   const plantedCipher = encrypt(sourcePlain, truth);
   const synthetic = fit(observations(toRanks(plantedCipher)), likelihood);
   const recovered = ['a', 'b', 'seed0', 'seed1', 'clock'].every(k => synthetic[k] === truth[k]);
-  const decoded = decode(observations(toRanks(plantedCipher))[1].data, truth);
-  const exact = sourcePlain.slice(1).filter((p, i) => (p === 28 ? decoded[i] === -1 : p === decoded[i])).length;
+  const plantedRanks = toRanks(plantedCipher);
+  const decodedDigits = decode(observations(plantedRanks)[1].data, truth);
+  let draw = 0;
+  const decoded = plantedRanks.slice(1).map(r => r < 0 ? 28 : decodedDigits[draw++]);
+  assert.equal(draw, decodedDigits.length);
+  const exact = sourcePlain.slice(1).filter((p, i) => p === decoded[i]).length;
   assert.equal(exact, WINDOW - 1, 'positive true-key cipher exactly inverts');
   assert(synthetic.holdPerRune > 0, 'blinded synthetic key search must recover high GP signal');
   const next = random(0x25ae3301);
