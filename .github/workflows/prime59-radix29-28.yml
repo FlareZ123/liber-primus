@@ -1,11 +1,6 @@
 name: 59/58 radix-29-to-28 exact gate
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'sims/prime59_radix29_28_exact_gate.cjs'
-      - '.github/workflows/prime59-radix29-28.yml'
   workflow_dispatch:
 
 permissions:
