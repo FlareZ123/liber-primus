@@ -1,4 +1,4 @@
-name: Five-dot reflected motif test
+name: LP2 image stencil and punctuation source audit
 on:
   workflow_dispatch:
 jobs:
@@ -11,3 +11,5 @@ jobs:
         run: python -m pip install numpy opencv-python-headless
       - name: Detect five-dot motif and fit axis reflections
         run: python sims/five_dot_mirror.py
+      - name: Verify 58-page rune ink and all 36 large punctuation marks
+        run: python sims/lp2_ink_annotation_audit.py
