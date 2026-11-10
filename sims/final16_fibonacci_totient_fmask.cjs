@@ -192,7 +192,15 @@ function summary(result){
 const excerpt='AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE';
 function p56AuthenticWitness(){
   const original=corpus.pages.find(x=>x.page===56).indices;
-  const decoded=encode(excerpt);
+  const gpTokens=corpus.translit.map((token,index)=>({token,index}))
+    .sort((a,b)=>b.token.length-a.token.length);
+  const decoded=[];
+  for(const word of excerpt.split(' '))for(let i=0;i<word.length;){
+    const match=gpTokens.find(x=>word.startsWith(x.token,i));
+    assert.ok(match,'Solved p56 word not transcribable as GP: '+word);
+    decoded.push(match.index);
+    i+=match.token.length;
+  }
   assert.equal(original.length,85);
   assert.equal(decoded.length,85);
   const expected=encrypt(decoded,0,-1);
