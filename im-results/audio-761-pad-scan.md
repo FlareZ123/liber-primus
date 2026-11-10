@@ -31,9 +31,30 @@ The strongest long-window LP2 candidate is \`mp3-payload-scaled29\`, **sign −*
 
 ### Interpretation and limitations
 
-The 400 strongest LP2 short-window candidates did **not** yield a meaningful 220-rune plaintext or survive straightforward page-reset generalization. The 16,039,468-count is an **exact candidate test count**, and no separate whole-search empirical null p-value is claimed. This test does not cover reverse-ordered audio bytes, decoding PCM samples, chained/keyed hashes of the file, alternative key byte encodings, unknown output rune permutations, page/section offsets other than literal byte positions, more than two skipped draws, or symbol-by-symbol variable key generation. The page1/page5 held-out tests reset the key at the same selected byte offset; an actual continuous cross-page pad could advance instead. Therefore **no evidence** that original compressed MP3 bytes form a usable additive LP2 key was recovered by this bounded screen.
+The 400 strongest LP2 short-window candidates did **not** yield a meaningful 220-rune plaintext or survive straightforward page-reset generalization. The 16,039,468-count is an **exact candidate test count**, and no separate whole-search empirical null p-value is claimed. This test does not cover reverse-ordered audio bytes, alternative PCM transformations (with direct decoded PCM tested separately below), chained/keyed hashes of the file, alternative key byte encodings, unknown output rune permutations, page/section offsets other than literal byte positions, more than two skipped draws, or symbol-by-symbol variable key generation. The page1/page5 held-out tests reset the key at the same selected byte offset; an actual continuous cross-page pad could advance instead. Therefore **no evidence** that original compressed MP3 bytes form a usable additive LP2 key was recovered by this bounded screen.
 
 **Reproducer:** \`node sims/audio_761_pad_scan.cjs\` with \`LP761_MP3\` pointing to the original file. One-time workflow \`.github/workflows/audio-761-pad-scan.yml\` downloads the immutable source and invokes the code. All offsets, source SHA, planted skip count, full-score shortlist and heldout scores are emitted as parseable JSON in the successful run.
+
+## Decoded historical AUDIO/761.MP3 waveform as a key source (Agent 28)
+
+This tests the **decoded waveform samples**, a distinct and historically grounded source that the preceding compressed-audio-byte offset search did not cover. The original pre-LP2 2013 `761.MP3` was fetched from the immutable [archived commit](https://github.com/rtkd/iddqd/blob/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3) and decoded using FFmpeg to **mono signed16-bit little-endian PCM at the source sampling rate**, with no user-selected resampling. The resulting waveform contains **7,365,632 samples** and its decoded PCM SHA-256 is `7859a94f648eb0d3ca1ee94d8aeeb8606c4a2d2cb68c8a8ae95171b4d81ebb9b`. FFmpeg's precise decoder output bytes, SHA and source URL are retained in the successful CI job.
+
+Two concrete rune-pad projections of those actual PCM samples were frozen before scanning original LP2: normalized signed16 sample modulo29, and the low eight bits of each sample modulo29. Both ± arithmetic signs were screened with exactly the same collision-only rejected-key Viterbi used for prior JPEG/MP3 byte-source tests. Every **7,364,973** safe sample offset was evaluated for **each of the four source/sign settings**, producing **29,459,892 original page0 first24-rune head evaluations**. The top400 head candidates across all four configurations were extended to 220 actual page0 runes, then compared on two different original pages with the same source offsets.
+
+| Source-controlled original result | Trigram log likelihood per GP rune, higher better |
+| --- | ---: |
+| Best of 400 shortlisted, p0 first220, signed16 modulo29, negative sign, offset **4,964,408** | **−5.121655634** |
+| That same source key on separate original p1 first220 | **−5.936426765** |
+| That same source key on separate original p5 first220 | **−5.649533410** |
+| Second-best full p0 model, low byte modulo29, negative sign, offset **5,465,669** | **−5.156150205** |
+| Blind source-true English GP control, 220 runes, original PCM modulo29 | **220/220 exact recovered** |
+
+The winning full-original candidate decoded p0 to `ALUSTUEOPFBISOREBARDECEDNFULPBRWSWOLBSFIATRRCFB` over its first45 GP letters, with **five** inferred hidden key skips. The best short24 head score alone, **−2.82446** at a different sample offset **5,263,049**, deteriorated when decoded over 220 runes. None of the actual p0, p1, or p5 candidate outputs constitutes credible prose or a source-authentic decryption.
+
+**Blind source-native original-waveform positive:** independently known solved-Cicada text was encrypted as **220 genuine GP runes** using the actual signed16-mod29 PCM source at hidden sample offset **3301**, positive sign, and 15 collision-triggered secret pad rejections. With neither offset nor skips supplied to the search, the correct offset ranked **first among all 7,364,973 possible offsets in that same true source/sign family** on a 24-rune head, versus nearest incorrect head −2.86427. The full 220-rune decoder recovered **all 220/220 GP plaintext runes and all 15 skipped pad draws** exactly. The true model is guaranteed to remain in the top400 within that source/sign family; no claim is made that this constitutes a full cross-source/sign ranking.
+
+[Exact executable](../sims/audio_761_pcm_keyskip_scan.cjs), [opt-in workflow](../.github/workflows/audio-761-pad-scan.yml) with input `probe=decoded-pcm`, successful [GitHub Actions run 42840114636](https://github.com/FlareZ123/liber-primus/actions/runs/42840114636). This is a bounded source-true negative for the two fixed sample-to-pad conventions, both signs, literal sample indices and the specified collision-keyskip model. The experiment does **not** exclude a stereo-channel rule, different resampling, spectral transforms, synchronization to lyrics/melody, other keyed projections, changing alphabets, or an unknown encoded intermediate.
+
 
 ## Historical Parable-number seed inversion (Agent 22)
 
