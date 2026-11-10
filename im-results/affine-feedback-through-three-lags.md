@@ -1,12 +1,12 @@
-# Exhaustive mod-29 affine ciphertext feedback, through three lags
+# Affine ciphertext feedback: consecutive and lag-five/six inverses
 
-**Classification:** reproducible measured negative for a specified, finite decoder family. No LP2 plaintext, key or new rune interpretation was recovered.
+**Classification:** exhaustive original-GP29 key searches for specified three-tap finite decoder families, with authentic-source planted-key recovery and disjoint physical-page test sets. No LP2 plaintext, key or cipher mechanism was recovered.
 
 ## Research question
 
 Could an unknown *local linear-feedback mechanism*, using several recent ciphertext runes rather than a single autokey, directly recover ordinary Gematria-Primus/English plaintext?
 
-For each order r = 1, 2, 3 we exhaustively evaluated
+The original consecutive-lag experiment exhaustively evaluated each order r = 1, 2, 3:
 
 ```
 P_i = C_i - a1*C_(i-1) - ... - ar*C_(i-r)  (mod 29),
@@ -17,7 +17,7 @@ The calculations treat the 55 rune-bearing LP2 pages as separate sequences and o
 
 **Scoring:** for each candidate, transform all available runes and compute the decoded index of coincidence I = Σ_s n_s(n_s−1)/[N(N−1)]. Search criterion is maximal I. This catches natural-language plaintext with nonuniform rune frequencies while remaining independent of a specific word list. It cannot recognize uniformly distributed intermediate codes.
 
-## Results
+## Consecutive-lag source results
 
 | Inverse memory | Distinct coefficient vectors | Positions scored | Best coefficients | Best decoded IoC |
 |---:|---:|---:|---|---:|
@@ -51,16 +51,42 @@ Eight seeded synthetic 29-symbol sequences had the same page lengths and an inde
 
 The actual LP2 order-3 best, **0.034599191**, lies inside this short null range. Eight simulations measure an illustrative null range, not a reliable family-wise extreme-tail p-value.
 
+## Motif-selected distant feedback: lags 5 and 6
+
+The ciphertext's separately documented five-back and six-back echoes motivate a distinct *direct* decoder that the consecutive-lag scan does not include. On the same authentic GP29 ordinal alphabet, we exhaustively test
+
+```text
+P_i = C_i - a*C_(i-1) - b*C_(i-5) - d*C_(i-6) (mod29)
+a,b,d in {0,...,28}.
+```
+
+For the **lag-(5,6)** family set a=0 and test all **841** key pairs. For **lag-(1,5,6)** test all **24,389** triples, including the first family; the models are stationary with no unknown nonlinear transform, skipped key steps, or collision repairs. We independently test history reset on each physical rune page and history continuous across the full unsolved rune stream. The first six source positions of each page (or of the continuous stream) are withheld from scoring; all 55 rune-bearing original LP2 pages contribute. Select each key from physical pages **0–27** only and measure the frozen inverse on pages **28–55**. A single IoC criterion is used throughout; an additive plaintext constant or nonzero multiplier cannot change IoC.
+
+| Scope | Models | Training runes | Held-out runes | Best training (a,b,d) | Training IoC | Frozen held-out IoC |
+| --- | ---: | ---: | ---: | --- | ---: | ---: |
+| Page-local, taps 5/6 | 841 | 6,593 | 6,033 | (0,3,25) | 0.034646374 | **0.034526506** |
+| Continuous, taps 5/6 | 841 | 6,755 | 6,195 | (0,3,25) | 0.034635965 | **0.034517614** |
+| Page-local, taps 1/5/6 | 24,389 | 6,593 | 6,033 | (1,0,0) | 0.035272728 | **0.035418703** |
+| Continuous, taps 1/5/6 | 24,389 | 6,755 | 6,195 | (1,0,0) | 0.035276823 | **0.035405505** |
+
+The selected three-tap winner **(1,0,0)** is the already documented first-difference anti-doublet signature. With that coefficient vector set aside, the strongest page-local genuine multi-tap selection, **(12,7,21)**, scores only **0.034704541 training** and **0.034455609 heldout**, essentially 1/29. Thus adding both source-motivated delayed taps does not expose a recovered GP-English plaintext.
+
+**Fully invertible original-layout positive control:** Encode a separate 12,956-rune wordwise-GP English excerpt from the independently pinned Shakespeare text beginning after character180,000. Encrypt the exact original physical page sizes with true secret triple **(7,11,19)** and six transparent starting IVs on every page. The search recovers the exact secret triple at **rank 1 of 24,389**, with training IoC **0.059588244**, and decrypts and forward re-encrypts **all 12,956 runes exactly**. This demonstrates the search's detection power against the stated direct feedback construction, using source text that is independently unrelated to original LP2.
+
+The authentic original flat heldout scores provide a finite model-family negative, with the same plaintext-register limitations as the historical consecutive-lag search. The original ciphertext has not been deciphered, and the test leaves hidden changing state, compressed or binary intermediates, and additional nonlinear output layers open.
+
+Exact CommonJS implementation: [sims/affine_156_feedback_inverse.cjs](../sims/affine_156_feedback_inverse.cjs). [Successful manually dispatched source-original GitHub Actions run 42837751879](https://github.com/FlareZ123/liber-primus/actions/runs/42837751879).
+
 ## Reproduction
 
 - [Exact implementation](../sims/affine_feedback.py), using pinned sources from [the shared corpus parser](../sims/homophonic_information_bound.py)
 - [Successful on-demand GitHub Actions run 42739449534](https://github.com/FlareZ123/liber-primus/actions/runs/42739449534)
 - Python 3.12, NumPy 2.3.5, no stochastic components in the observed-data sweep. Synthetic null uses seed 3301. Input checksums are validated before decoding.
 
-## What this does and does not establish
+## Interpretation and limits
 
-The corpus lacks the distinctive decoded letter-frequency concentration produced by any of the **24,389 exhaustive affine feedback kernels with up to three consecutive lags**. This closes a multi-tap extension to classic single-lag ciphertext autokey under a specific operation (mod 29), page-reset convention, and plaintext-linguistic assumption.
+Neither the complete **24,389 consecutive-lag coefficient family**, nor the separately complete **24,389 lag-(1,5,6) family** (containing the **841 lag-(5,6) keys**) generates the distinctive source-language IoC concentration on the original unknown LP2 rune pages. The new latter family is explicitly checked in both page-local and continuous causal scopes with a fixed unseen original physical-page half. These source-conditioned exclusions concern affine GP29 ciphertext feedback; they do not establish the manuscript's actual encryption method.
 
-This test does **not** cover a filter that re-keys would-be doublets after encoding, nonlinear feedback, unknown alphabet permutations, nonconsecutive or page-crossing feedback, variable coefficients, unknown intermediate codebooks, long keystreams, or arbitrary substitution tables. Those remain open.
+Nonlinear feedback, unobserved plaintext-conditioned or evolving key states, output collision repair, different alphabets or binary/compressed intermediate registers, other nonconsecutive tap choices, and external running keys remain open.
 
 Related prior exclusions of **single-lag arbitrary ciphertext-selected alphabet tables** are in [Wulfic's LP2 logic findings §10, C12](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/reference/findings/lp2_logic_findings_2026-09-29.md). This experiment targets the **multi-tap linear combination** absent from that one-lag family.
