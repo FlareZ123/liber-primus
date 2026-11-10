@@ -128,7 +128,9 @@ function main() {
     'resources/liber-primus/lp2-corpus.json'), 'utf8'));
   const source = fs.readFileSync(path.join(ROOT,
     'resources/control/shakespeare_first300k.txt'), 'utf8');
-  const cipherWords = parseSharedCorpus().words;
+  const parsed = parseSharedCorpus();
+  const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+  const cipherWords = parsed.words.map(word => [...word.runes].map(rune => runeIndex.get(rune)));
   const lengths = cipherWords.map(w => w.length);
   const total = lengths.reduce((a, b) => a + b, 0);
   const trainWords = base.corpusWords(source.slice(0, 200000));
