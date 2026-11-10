@@ -16,8 +16,10 @@ const {encode}=require('./grid_keyskip_viterbi.cjs');
 const root=path.resolve(__dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const GP=JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
-const english=encode(read('resources/control/shakespeare_first300k.txt'));
-const solved=encode(read('resources/liber-primus/lp1-plaintext-reference.txt')
+const wordwise=text=>(text.toUpperCase().match(/[A-Z]+/g)||[])
+  .flatMap(word=>encode(word));
+const english=wordwise(read('resources/control/shakespeare_first300k.txt'));
+const solved=wordwise(read('resources/liber-primus/lp1-plaintext-reference.txt')
   .replace(/^\s*#.*$/gm,''));
 const pages=GP.pages.filter(p=>p.page<56&&p.indices.length);
 assert.equal(pages.length,55);
