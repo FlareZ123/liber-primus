@@ -458,7 +458,7 @@ function sparseMaskAudit() {
   const raw = fs.readFileSync(path.join(__dirname, '..', 'resources', 'lp2-transcription.txt'), 'utf8');
   const maskCorpus = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'));
   const maskRuneIndex = new Map(maskCorpus.runes.map((r, i) => [r, i]));
-  const isRunic = /[\\u16A0-\\u16FF]/u;
+  const isRunic = /[\u16A0-\u16FF]/u;
   const segments = raw.split('%').slice(0, 55);
   const words = [];
   const pageRuneCounts = Array(55).fill(0);
