@@ -1,0 +1,724 @@
+{
+  "schema": 1,
+  "name": "Cicada 2014 onion-2 growing-string byte arrivals and five-minute intervals",
+  "evidence_class": "archived historical witnesses, reconciled by Dukotah/cicada3301; derived source reference",
+  "source": {
+    "repository": "Dukotah/cicada3301",
+    "merge_script": "liber-primus/analysis/round43/F5bT-timing-keystream/merge_witnesses.py",
+    "merged_record": "liber-primus/analysis/round43/F5bT-timing-keystream/merged_intervals.json",
+    "witnesses": [
+      "BotSottile absolute timestamps",
+      "Cripion101 elapsed intervals",
+      "Uncovering Cicada wiki exports 00120 and 00140"
+    ],
+    "anomalous_clock_transcription": "pos168 source clock 25 versus wiki clock 15; both agree 5-minute interval"
+  },
+  "final_hex": "634292ba49fe336edada779a34054a335c2ec12c8bbaed4b92dcc05efe98f76abffdc2389bdb9de2cf20c009acdc1945ab095a52609a5c219afd5f3b3edf10fcb25950666dfe8d8c433cd10c0b4c72efdfe12c6270d5cfde291f9cf0d73cb1211140136e4057380c963d70c76948d9cf6775960cf98fbafa435c44015c5959837a0f8d9f46e094f27c5797b7f8ab49bf28fa674d2ad2f726e197839956921dab29724cd48e1a81fc9bab3565f7513e3e368cd0327b47cf595afebb78d6b5bca92ba021cd6734f4362a0b341f359157173b53d49ea5dff5889d2c9de6b0d7e8c615286ce596bfa83f50b6eeabd153aaf50cd75f39929ba11fb0f8e8d611442846",
+  "final_bytes_sha256": "05acf0d8e2ba7d851e2b4bbc32b85e461a1bd41576a50504487f33d4c1522c56",
+  "pos_indexing": "1-based positions within full 256-byte growing string",
+  "interval_unit_minutes": 5,
+  "interval_cells": [
+    {
+      "pos": 143,
+      "hex_byte": "49",
+      "k_5min": 2,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 144,
+      "hex_byte": "bf",
+      "k_5min": 6,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 145,
+      "hex_byte": "28",
+      "k_5min": 2,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 146,
+      "hex_byte": "fa",
+      "k_5min": 3,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 147,
+      "hex_byte": "67",
+      "k_5min": 1,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 148,
+      "hex_byte": "4d",
+      "k_5min": 1,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 149,
+      "hex_byte": "2a",
+      "k_5min": 2,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 150,
+      "hex_byte": "d2",
+      "k_5min": 3,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 151,
+      "hex_byte": "f7",
+      "k_5min": 1,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 152,
+      "hex_byte": "26",
+      "k_5min": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 153,
+      "hex_byte": "e1",
+      "k_5min": 4,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 154,
+      "hex_byte": "97",
+      "k_5min": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 155,
+      "hex_byte": "83",
+      "k_5min": 2,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 156,
+      "hex_byte": "99",
+      "k_5min": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 157,
+      "hex_byte": "56",
+      "k_5min": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 158,
+      "hex_byte": "92",
+      "k_5min": 2,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 159,
+      "hex_byte": "1d",
+      "k_5min": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 160,
+      "hex_byte": "ab",
+      "k_5min": 5,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 161,
+      "hex_byte": "29",
+      "k_5min": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 162,
+      "hex_byte": "72",
+      "k_5min": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 163,
+      "hex_byte": "4c",
+      "k_5min": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 164,
+      "hex_byte": "d4",
+      "k_5min": 4,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 165,
+      "hex_byte": "8e",
+      "k_5min": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 166,
+      "hex_byte": "1a",
+      "k_5min": 4,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 167,
+      "hex_byte": "81",
+      "k_5min": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 168,
+      "hex_byte": "fc",
+      "k_5min": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 169,
+      "hex_byte": "9b",
+      "k_5min": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 170,
+      "hex_byte": "ab",
+      "k_5min": 2,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 171,
+      "hex_byte": "35",
+      "k_5min": 7,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 172,
+      "hex_byte": "65",
+      "k_5min": 2,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 173,
+      "hex_byte": "f7",
+      "k_5min": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 174,
+      "hex_byte": "51",
+      "k_5min": 2,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 175,
+      "hex_byte": "3e",
+      "k_5min": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 176,
+      "hex_byte": "3e",
+      "k_5min": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 177,
+      "hex_byte": "36",
+      "k_5min": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 178,
+      "hex_byte": "8c",
+      "k_5min": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 179,
+      "hex_byte": "d0",
+      "k_5min": 5,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 180,
+      "hex_byte": "32",
+      "k_5min": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 181,
+      "hex_byte": "7b",
+      "k_5min": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 182,
+      "hex_byte": "47",
+      "k_5min": 2,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 183,
+      "hex_byte": "cf",
+      "k_5min": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 184,
+      "hex_byte": "59",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 185,
+      "hex_byte": "5a",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 186,
+      "hex_byte": "fe",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 187,
+      "hex_byte": "bb",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 188,
+      "hex_byte": "78",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 189,
+      "hex_byte": "d6",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 192,
+      "hex_byte": "a9",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 193,
+      "hex_byte": "2b",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 194,
+      "hex_byte": "a0",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 195,
+      "hex_byte": "21",
+      "k_5min": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 196,
+      "hex_byte": "cd",
+      "k_5min": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 197,
+      "hex_byte": "67",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 198,
+      "hex_byte": "34",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 199,
+      "hex_byte": "f4",
+      "k_5min": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 200,
+      "hex_byte": "36",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 201,
+      "hex_byte": "2a",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 202,
+      "hex_byte": "0b",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 203,
+      "hex_byte": "34",
+      "k_5min": 4,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 204,
+      "hex_byte": "1f",
+      "k_5min": 5,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 205,
+      "hex_byte": "35",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 206,
+      "hex_byte": "91",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 207,
+      "hex_byte": "57",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 208,
+      "hex_byte": "17",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 209,
+      "hex_byte": "3b",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 210,
+      "hex_byte": "53",
+      "k_5min": 4,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 211,
+      "hex_byte": "d4",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 212,
+      "hex_byte": "9e",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 213,
+      "hex_byte": "a5",
+      "k_5min": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 214,
+      "hex_byte": "df",
+      "k_5min": 5,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 215,
+      "hex_byte": "f5",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 216,
+      "hex_byte": "88",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 217,
+      "hex_byte": "9d",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 218,
+      "hex_byte": "2c",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 219,
+      "hex_byte": "9d",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 220,
+      "hex_byte": "e6",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 221,
+      "hex_byte": "b0",
+      "k_5min": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 222,
+      "hex_byte": "d7",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 223,
+      "hex_byte": "e8",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 224,
+      "hex_byte": "c6",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 225,
+      "hex_byte": "15",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 226,
+      "hex_byte": "28",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 227,
+      "hex_byte": "6c",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 228,
+      "hex_byte": "e5",
+      "k_5min": 6,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 229,
+      "hex_byte": "96",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 230,
+      "hex_byte": "bf",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 231,
+      "hex_byte": "a8",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 232,
+      "hex_byte": "3f",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 233,
+      "hex_byte": "50",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 234,
+      "hex_byte": "b6",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 235,
+      "hex_byte": "ee",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 236,
+      "hex_byte": "ab",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 237,
+      "hex_byte": "d1",
+      "k_5min": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 238,
+      "hex_byte": "53",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 239,
+      "hex_byte": "aa",
+      "k_5min": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 240,
+      "hex_byte": "f5",
+      "k_5min": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 241,
+      "hex_byte": "0c",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 242,
+      "hex_byte": "d7",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 243,
+      "hex_byte": "5f",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 244,
+      "hex_byte": "39",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 245,
+      "hex_byte": "92",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 246,
+      "hex_byte": "9b",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 247,
+      "hex_byte": "a1",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 248,
+      "hex_byte": "1f",
+      "k_5min": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 249,
+      "hex_byte": "b0",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 250,
+      "hex_byte": "f8",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 251,
+      "hex_byte": "e8",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 252,
+      "hex_byte": "d6",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 253,
+      "hex_byte": "11",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 254,
+      "hex_byte": "44",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 255,
+      "hex_byte": "28",
+      "k_5min": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 256,
+      "hex_byte": "46",
+      "k_5min": 2,
+      "confidence": "single-witness"
+    }
+  ],
+  "bounded_bridge": {
+    "positions": [
+      190,
+      191
+    ],
+    "sum_min": 30,
+    "variants_k": [
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        1
+      ]
+    ]
+  },
+  "limitations": "Only positions 143-189 and 192-256 attested. Positions 190-191 have one 30-minute sum and five allowed pairs. Positions 1-142 have no interval evidence. No direct LP2 key role is established."
+}
