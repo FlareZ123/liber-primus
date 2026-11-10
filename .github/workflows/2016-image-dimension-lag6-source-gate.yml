@@ -24,6 +24,15 @@ jobs:
           node-version: '22'
       - name: Reconstruct source-derived lag-six rule and test bounded key candidates
         run: node sims/2016_image_dimension_lag6_source_gate.cjs
+      - name: Upload source-gate diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: t6-source-gate-diagnostics
+          path: |
+            t6-source-gate-result.json
+            t6-source-gate-candidates.json
+          if-no-files-found: warn
 
   t6-register-gate:
     runs-on: ubuntu-latest
