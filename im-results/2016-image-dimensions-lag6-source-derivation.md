@@ -217,20 +217,26 @@ This rejects the straightforward keyed-feedback construction, not every possible
 
 ## Interpretation and next work
 
-This is a coherent **candidate solve path if the 2016 image is relevant**:
+The 2016 source chain remains a coherent candidate solve path if the signed artifact is relevant:
 
 1. Notice the authenticated 2016 message and its oak-tree image.
 2. Connect the oak image to the LP tree artwork and p54 Ac.
-3. Read the image dimensions as directions into the 256-byte grid and the visually selected 128-rune second half.
+3. Read the image dimensions as directions into the original 256-byte grid and the visually selected second half.
 4. Recover the source constants 6, 24 and 2, which reconstruct the known lag-six affine relation.
 
-It is not a complete cipher. The direct prime-indexed grid-totient pads and bare six-symbol seeds are rejected (72 combinations), as is the straightforward keyed T6 feedback recurrence (192 variants; see below). The remaining question is narrower: **is there an independently sourced state or semantic use of the grid, beyond these direct and linearly forced constructions, that produces authentic plaintext?** Do not repeat direct grid AES/ChaCha, literal grid-pad, prime-indexed grid-totient additive pads, bare or keyed T6 recurrence seeds, or historical RSA-modulus families already tested in the repository.
+This establishes a source-motivated relation C_i = 24 - 2 C_(i-6) (mod 29) at 80 of 1,290 eligible word-interior positions. It is not a complete cipher or plaintext recovery. The direct prime-indexed grid-totient pads, bare six-symbol seeds and straightforward keyed T6 feedback recurrences remain rejected; do not repeat direct grid AES/ChaCha, literal grid-pad, prime-indexed additive pads, bare/keyed T6 seeds, or historical RSA-modulus families already tested.
 
-The S rune at offset 57 and the five intervening positions may also be relevant to the separately observed S5 motif, but this is only a possible second clue; no new S5 generator is established here.
+**Cross-round Rad↔Ac / projective audit (Agent 38).** The 2014 square selects Rad=4 → Ac=24. The p3/p39 cross-triad root z=23+27u, with u²=3u+8, induces the projective map M(x)=(23x+13)/(27x+17) on P¹(F29), including infinity as the 30th state. This map has order 30 and satisfies M^(-3)(4)=24. The exact three inverse steps match the length of each marked red triad; the signed 2016 image-dimension gap is six, or twice three. This is a plausible orientation/phase selector, not decryption evidence.
 
-This remains an intermediate finding and belongs in im-results/, not results/README.md. No authoritative synthesis has been changed because no plaintext, key or complete mechanism has been recovered.
+The direct lag-six projective tests do **not** reproduce the sparse T6 mask: M^6 matches 51/1,290 positions and M^(-6) matches 41/1,290, against 80/1,290 for the affine T6 map; their overlaps with the T6 event positions are 5 and 0 respectively. Thus M^(±6) is not the missing event rule.
 
+The 2014 edge also gives a natural 32×8 coordinate, row Ac=24 / column Rad=4: row-major index 196 contains byte 176 ≡ 2 (mod 29). The 2016 dimension residues 51 and 57 contain bytes 59 and 118. However, treating each byte as the next table index sends starts 51, 57, 196 and the transposed control 152 into the same 11-cycle, whose basin contains 252/256 table cells. That walk is therefore non-discriminating, not a unique route.
 
+Finally, the 32-cell toroidal path fixed by offsets 51→57 (one row down, two columns left) was tested as a phase schedule over the 13-dot intervals. Mapping each path byte through the T6 28-cycle and using it as the EA/log15 interval phase yielded 46 LP1-dictionary word hits, below the existing word-clock baseline of 49; the reverse path yielded 35. A cross-triad projective path clock scored at best 47 across the tested start/direction/update/reset choices. No long plaintext word or source-predicted event mask emerged. Reproduce the bounded projective/coordinate audit with [agent38_issue18_rad_ac_projective_gate.cjs](../sims/agent38_issue18_rad_ac_projective_gate.cjs); the interval-clock tests are documented in Issue #18.
+
+**Decision:** the affine lag-six relation remains a reproducible candidate clue, but the tested Rad↔Ac coordinate, byte-pointer walk, direct projective lag-six map, and 32-interval phase schedules do not provide its sparse event mask or a decryption. Keep the exact M^(-3)(Rad)=Ac relation as a possible orientation constraint for independent projective-state research; do not expand it into free rotations, postselected masks, or geographic searches. A distinct, independently sourced nonlinear state/transport operation remains necessary.
+
+This remains an intermediate finding and belongs in im-results/, not results/README.md. No authoritative synthesis has changed because no plaintext, key, or complete mechanism has been recovered.
 ## Authenticity and interpretation limits
 
 The 2016 extraction log reports “Good signature” from “Cicada 3301 (845145127)” using RSA key 0x181F01E57A35090F, fingerprint 6D85 4CD7 9333 22A6 01C3 286D 181F 01E5 7A35 090F. The repository's control and historical 2012 public-key files are byte-identical, so the signature is linked to the same key already preserved for earlier Cicada material. The GPG warning is only that the key lacks web-of-trust certification; it is not a cryptographic signature failure. The 4chan thread's “pi related” remark is situated in discussion of the Pi.Mobi URL and its decimal-\(\pi\) branding, not prime-counting. A later article quotes an email attributed to “Z 3301” saying “2016 it was pi mobi. We didn’t work that year”; this attribution is not independently authenticated ([article and quotation](https://therealsamizdat.com/2019/09/12/cicada-files-schoenberger-1/)). The evidence therefore cuts both ways: the payload is PGP-signed under the known key, while the status of the Pi.Mobi site and the meaning of the image remain contested. The message itself says “Beware false paths.” The dimension/grid/rune alignment is reproducible, but creator intent is **unestablished**; it could be a deliberate clue, a signed decoy, or an incidental correspondence.

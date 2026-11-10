@@ -66,6 +66,16 @@ Read as zero-based column indices, these select columns **7 and 8** in the print
 
 There is a natural indexing ambiguity. Treating the 1-based cell numbers 6 and 7 directly as 1-based table columns selects printed columns **6 and 7**, not 7 and 8. Both interpretations were tested below.
 
+## Rad↔Ac as a 32×8 table coordinate: bounded negative
+
+The 2014 edge can be read as a coordinate in the original 32×8 LP2 table without a fitted transform: Ac=24 as the row and Rad=4 as the column gives row-major index 24×8+4=196. The original byte there is **176**, or **2 mod 29**. The signed 2016 image dimensions independently select offsets 563 mod 256 = **51** and 569 mod 256 = **57**, whose table bytes are **59** and **118**.
+
+A tempting “numbers are direction” interpretation is to treat each byte as the next table index. It is not selective. Starts 51, 57, 196 and the transposed-coordinate control 152 all enter the same 11-cycle:
+
+247 → 192 → 0 → 203 → 68 → 199 → 47 → 76 → 114 → 197 → 115 → 247.
+
+That cycle's functional-graph basin contains **252 of 256** cells. Convergence from the source-selected starts is therefore expected for almost any start and does not define a route or event mask. The selected coordinate and dimension offsets are exact arithmetic, but their pointer-walk interpretation is rejected. This is distinct from the already rejected φ(byte)/bearing transfer above. Reproduce with [agent38_issue18_rad_ac_projective_gate.cjs](../sims/agent38_issue18_rad_ac_projective_gate.cjs).
+
 ## Direct LP2 direction-field transfer: bounded negative
 
 The simplest transfer of the 2014 map to the original 32×8 table was fixed before inspecting any route output:
