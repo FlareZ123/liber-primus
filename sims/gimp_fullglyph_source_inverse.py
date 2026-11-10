@@ -273,6 +273,129 @@ def unknown_row_permutation_original_screen(
             })
     return output
 
+
+def equal_public_state_pairs(keys: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """All position pairs sharing one exact fixed byte+phase public register."""
+    order = np.argsort(keys, kind="stable")
+    sorted_keys = keys[order]
+    starts = np.r_[0, np.flatnonzero(np.diff(sorted_keys) != 0) + 1]
+    ends = np.r_[starts[1:], len(order)]
+    left, right = [], []
+    for start, end in zip(starts, ends):
+        group = order[start:end]
+        for i in range(len(group)):
+            if i + 1 < len(group):
+                left.extend([int(group[i])] * (len(group) - 1 - i))
+                right.extend(map(int, group[i + 1:]))
+    return np.asarray(left, dtype=np.int32), np.asarray(right, dtype=np.int32)
+
+
+def secret_period79_original_screen(admitted: dict, field: np.ndarray,
+                                    shakespeare: np.ndarray,
+                                    gibran: np.ndarray,
+                                    corpus: dict) -> list[dict]:
+    """Does a 79-phase *plus* original pixel-byte state rescue native GP?
+
+    Rows may be ANY unknown permutation independently for all possible
+    255*79 states. Public phase clock has original global rune offsets or
+    page-local printed rune offsets. This is an exact key-free necessary
+    condition, not a claim about a particular cipher key.
+    """
+    source_base = {}
+    tally = 0
+    for page in corpus["pages"]:
+        if page["page"] > 55:
+            continue
+        source_base[page["page"]] = tally
+        tally += len(page["indices"])
+    assert tally == 12956
+    rng = np.random.default_rng(0x79C1CA)
+    output = []
+    for anchor in ("ink_center_y", "printed_peak_y"):
+        for family in ("direct29", "predecessor28"):
+            for clock in ("global_cipher_rune", "physical_page_rune"):
+                keys, symbols = [], []
+                for page, rows in admitted.items():
+                    n = len(rows)
+                    cipher = rows[:, 0]
+                    phase = (source_base[page] + np.arange(n)
+                             if clock == "global_cipher_rune"
+                             else np.arange(n)) % 79
+                    x = rows[:, 1]
+                    y = rows[:, 2] if anchor == "ink_center_y" else rows[:, 3]
+                    byte = field[y, x].astype(np.int32)
+                    combined = byte * 79 + phase
+                    if family == "direct29":
+                        keys.extend(combined.tolist())
+                        symbols.extend(cipher.tolist())
+                    else:
+                        # Page IV and observed immediate repetitions are not
+                        # treated as ordinary 28-rank symbols.
+                        keep = cipher[1:] != cipher[:-1]
+                        keys.extend(combined[1:][keep].tolist())
+                        symbols.extend(
+                            ((cipher[1:][keep] - cipher[:-1][keep] - 1)
+                             % 29).tolist())
+                state = np.asarray(keys, dtype=np.int32)
+                observed = np.asarray(symbols, dtype=np.int16)
+                pair_left, pair_right = equal_public_state_pairs(state)
+                assert len(pair_left) > 400
+                measured = int(np.count_nonzero(
+                    observed[pair_left] == observed[pair_right]))
+                original_rate = measured / len(pair_left)
+                source_results = {}
+                for author, text in (("Shakespeare", shakespeare),
+                                     ("Gibran", gibran)):
+                    native = text if family == "direct29" else text[text != 28]
+                    n = len(observed)
+                    assert len(native) > n + 2000
+                    hits = []
+                    for _ in range(300):
+                        start = int(rng.integers(0, len(native) - n + 1))
+                        seq = native[start:start + n]
+                        hits.append(int(np.count_nonzero(
+                            seq[pair_left] == seq[pair_right])))
+                    source_results[author] = {
+                        "controls": 300,
+                        "min_equal_pairs": min(hits),
+                        "mean_equal_pairs": float(np.mean(hits)),
+                        "max_equal_pairs": max(hits),
+                        "at_or_below_original": sum(x <= measured for x in hits),
+                    }
+                # Secret-key plant: each actually occupied byte+phase state
+                # receives its own independent uniformly random permutation.
+                occupied, inverse_labels = np.unique(
+                    state, return_inverse=True)
+                alphabet = 29 if family == "direct29" else 28
+                source_plain = (gibran if alphabet == 29
+                                else gibran[gibran != 28])
+                plant = source_plain[2000:2000 + len(state)]
+                secret = np.asarray(
+                    [rng.permutation(alphabet) for _ in occupied],
+                    dtype=np.int16)
+                encrypted = secret[inverse_labels, plant]
+                dec = np.argsort(secret, axis=1)[inverse_labels, encrypted]
+                assert np.array_equal(dec, plant)
+                assert np.count_nonzero(
+                    encrypted[pair_left] == encrypted[pair_right]) == (
+                        np.count_nonzero(
+                            plant[pair_left] == plant[pair_right]))
+                output.append({
+                    "clock": clock,
+                    "family": family,
+                    "source_coordinate": anchor,
+                    "period": 79,
+                    "source_byte_states": 255,
+                    "occupied_byte_phase_states": len(occupied),
+                    "n": len(observed),
+                    "within_same_byte_phase_pairs": len(pair_left),
+                    "original_equal_pairs": measured,
+                    "original_equality_rate": original_rate,
+                    "GP_source_windows": source_results,
+                    "random_unknown_state_permutation_exact_plant": len(state),
+                })
+    return output
+
 def main():
     corpus = json.loads((IMAGE_DIR / "lp2-corpus.json").read_text(encoding="utf-8"))
     by_page = {x["page"]: x["indices"] for x in corpus["pages"]}
@@ -356,6 +479,9 @@ def main():
             (counts / counts.sum()) * prior)),
         "uniform_unigram_logGP": float(prior.mean()),
         "sorted_by_discovery_half_training_score": results,
+        "key_independent_byte_phase79_permutations":
+            secret_period79_original_screen(
+                admitted, field, shakespeare, gibran, corpus),
         "key_independent_all_secret_row_bijections":
             unknown_row_permutation_original_screen(
                 admitted, field, shakespeare, gibran),
