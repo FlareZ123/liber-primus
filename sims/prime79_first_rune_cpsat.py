@@ -13,6 +13,7 @@ import math
 import os
 from pathlib import Path
 import random
+import re
 from ortools.sat.python import cp_model
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -135,6 +136,53 @@ def plant(native: list[int], top: set[int]) -> dict:
             "nativeTop8PlaintextStarts": sum(p in top for p in inverse["firsts"])}
 
 
+
+def english_reference_control(raw: str, labels: list[str], top: set[int]) -> dict:
+    """Count stride-78 GP letter windows in an independent English text."""
+    normalized = (raw.upper().replace("QU", "CW").replace("V", "U")
+                  .replace("K", "C").replace("Z", "S").replace("ING", "NG"))
+    tokens = sorted(((s, i) for i, s in enumerate(labels)),
+                    key=lambda item: -len(item[0]))
+    gp = []
+    for match in re.finditer("[A-Z]+", normalized):
+        word = match.group()
+        i = 0
+        while i < len(word):
+            for symbol, index in tokens:
+                if word.startswith(symbol, i):
+                    gp.append(index)
+                    i += len(symbol)
+                    break
+            else:
+                i += 1
+    n = 95
+    hits = [int(x in top) for x in gp]
+    windows = 0
+    low = 0
+    total = 0
+    minimum = 96
+    maximum = 0
+    for residue in range(78):
+        sub = hits[residue::78]
+        if len(sub) < n:
+            continue
+        count = sum(sub[:n])
+        for j in range(n - 1, len(sub)):
+            if j >= n:
+                count += sub[j] - sub[j - n]
+            windows += 1
+            total += count
+            low += int(count <= 39)
+            minimum = min(minimum, count)
+            maximum = max(maximum, count)
+    assert windows == len(gp) - (n - 1) * 78
+    return {"GP": len(gp), "top8Frequency": sum(hits) / len(gp),
+            "windows": windows, "atMost39": low,
+            "empiricalLowerTail": low / windows,
+            "meanTop8Starts": total / windows,
+            "range": [minimum, maximum]}
+
+
 def run() -> None:
     data = json.loads((ROOT / "resources/liber-primus/lp2-corpus.json").read_text(encoding="utf8"))
     assert data["runes"] == list(GP)
@@ -146,6 +194,15 @@ def run() -> None:
     counter = Counter(native)
     top = set(sorted(range(29), key=lambda i: (-counter[i], i))[:8])
     control = plant(native, top)
+    reference = {}
+    for name, filename, expected in [
+        ("Shakespeare", "shakespeare_first300k.txt", 217644),
+        ("Gibran", "gibran_prophet_58585.txt", 62696)
+    ]:
+        raw = (ROOT / "resources/control" / filename).read_text(encoding="utf8")
+        result = english_reference_control(raw, data["translit"], top)
+        assert result["GP"] == expected
+        reference[name] = result
     baseline = full_inverse(cipher, starts, WITNESS)
     assert baseline["validPackets"] == 95
     # The two-digit prefix uses at most 433 of 784 radix28 pairs.
@@ -205,6 +262,7 @@ def run() -> None:
                     for v in values) / len(values) if values else -10000.0)
             if inv["validPackets"] == 95 and nats > self.best_nats:
                 self.best = {"order": order, "nativeUnigramLogPerRune": nats,
+                             "actualTop8Starts": sum(v in top for v in full_inverse(cipher, starts, order)["firsts"]),
                              **inv}
                 self.best_nats = nats
             if self.n <= 4 or self.n % 20 == 0:
@@ -231,8 +289,10 @@ def run() -> None:
         "nativeTop8Frequency": sum(counter[k] for k in top) / len(native),
         "nativeControlRunes": len(native), "ambiguousLeadingDigitPairs": ambiguous,
         "syntheticPositive": control,
+        "referenceEnglishControls": reference,
         "priorArbitraryOrder": {"validPackets": baseline["validPackets"],
-                                "runeIoC": baseline["ioc"]},
+                                "runeIoC": baseline["ioc"],
+                                "actualTop8Starts": sum(p in top for p in baseline["firsts"])},
         "bestCompleteOriginalCandidate": observer.best,
         "interpretation": "Conditional optimistic GP-first-rune upper bound, not established LP2 plaintext or authentic key."
     }
