@@ -135,9 +135,56 @@ function randomPadCalibration(group,winner){
     perCandidateUpperTail:(above+1)/501,bonferroniUpperBound:
       Math.min(1,(keyList.length*3*3*2*2*2)*(above+1)/501)};
 }
+
+/**
+ * Select only from pages16–18, then predict equality on untouched pages19–22.
+ * A continuous key is advanced across the training pages before evaluation.
+ * Null streams respect the model's reset/continuous/page-IV key sharing.
+ */
+function splitHoldout(){
+  const left=section.slice(0,3),right=section.slice(3);
+  const selected=scan(left);
+  const winner=selected.top[0];
+  const source=keyList.find(x=>x.name===winner.key);
+  assert.ok(source);
+  const truePad=padFor(section,winner.cipher,source.key,winner.align,
+    winner.drop,winner.mapping).slice(3);
+  const cipher=right.map(x=>x.indices);
+  const out=score(cipher,truePad,winner.sign);
+  const nulls=[];
+  for(let rep=0;rep<1000;rep++){
+    const max=Math.max(...section.map(p=>p.indices.length));
+    let fake;
+    if(winner.align==='continuous'){
+      const length=section.reduce((n,p)=>n+p.indices.length,0);
+      const master=Uint8Array.from({length},()=>draw(256)%29);
+      let at=0;
+      fake=section.map(p=>{
+        const sub=master.subarray(at,at+p.indices.length);
+        at+=p.indices.length;return sub;
+      }).slice(3);
+    } else if(winner.align==='reset'){
+      const shared=Uint8Array.from({length:max},()=>draw(256)%29);
+      fake=right.map(p=>shared.subarray(0,p.indices.length));
+    } else {
+      fake=right.map(p=>Uint8Array.from({length:p.indices.length},
+        ()=>draw(256)%29));
+    }
+    nulls.push(score(cipher,fake,winner.sign));
+  }
+  nulls.sort((a,b)=>a-b);
+  const larger=nulls.filter(x=>x>=out).length;
+  return {selectedPages:[16,17,18],heldoutPages:[19,20,21,22],
+    selectedWinner:winner,holdoutScore:out,
+    heldoutNullMedian:nulls[500],heldoutNull95:nulls[950],
+    heldoutUpperTailP:(larger+1)/1001,holdoutNullExceedances:larger,
+    note:'Heldout p is valid only for a frozen key and stationary plaintext model; selection family and source register may still require additional controls.'};
+}
+
 function main(){
   const next16=scan(next),s16to22=scan(section),all55=scan(all);
   const calibration=randomPadCalibration(section,s16to22.top[0]);
+  const pageSplit=splitHoldout();
   const control=plantControl();
   const result={
     source:'Exact Fibonacci-indexed prime spiral on original LP2 JPEG 32',
@@ -145,7 +192,7 @@ function main(){
     decoder:'additive GP rune pad with unknown bijective ciphertext alphabet',
     configurations:{next16:next16.count,following16to22:s16to22.count,
       all55:all55.count},
-    following16to22:{best:s16to22.top,calibration},
+    following16to22:{best:s16to22.top,calibration,pageSplit},
     next16:{best:next16.top},
     all55:{best:all55.top},
     positive:control,
@@ -155,4 +202,4 @@ function main(){
   return result;
 }
 if(require.main===module)main();
-module.exports={scan,padFor,plantControl,main};
+module.exports={scan,padFor,plantControl,splitHoldout,main};
