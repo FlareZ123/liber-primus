@@ -224,6 +224,32 @@ assert.deepEqual(offsets.map(i=>plantedCipher[i]),symbols);
 const recovered = decode(plantedCipher,[187],1).plain;
 assert.deepEqual(recovered,plantedPlain);
 
+/**
+ * Independent solved-book GP-English 273-rune windows, one sliding window
+ * for each placement inside its own solved original LP1 physical page.
+ * Exclude editor comments, bare hex hashes, and number-only matrix rows.
+ * @returns {{windows:number,min:number,median:number,max:number}}
+ */
+function knownEnglishWindowBaseline() {
+  const sections = reference.split(/^###\s+(\d+)\s*$/gm);
+  const values = [];
+  for (let i=1; i<sections.length; i+=2) {
+    const lines = sections[i+1].split(/\r?\n/)
+      .filter(line => !line.startsWith("[") &&
+        !/^\s*[0-9a-f ]{30,}$/i.test(line) &&
+        !/^\s*\d[\d ]{40,}$/.test(line));
+    const gp = encodeGP(lines.join(" "));
+    for (let start=0;start+C.length<=gp.length;start++)
+      values.push(ioc29(gp.slice(start,start+C.length)));
+  }
+  values.sort((a,b)=>a-b);
+  assert.equal(values.length,765);
+  assert.ok(values[0] > maximum.ioc);
+  return {windows:values.length,min:values[0],
+    median:values[Math.floor(values.length/2)],max:values[values.length-1]};
+}
+
+const baseline = knownEnglishWindowBaseline();
 const output = {
   classification:"Exact original LP2 page17 cubic full-page inverse; negative",
   source:"resources/liber-primus/lp2-corpus.json",
@@ -238,6 +264,7 @@ const output = {
   },
   originalIocMedian:sorted[sorted.length/2],
   originalIocP99:sorted[Math.floor(0.99*sorted.length)],
+  knownNativeEnglish273RuneWindows:baseline,
   syntheticNativeControl:{
     ciphertextRunes:plantedCipher.length,exactRecovered:recovered.length,
     ioc29:ioc29(recovered),
