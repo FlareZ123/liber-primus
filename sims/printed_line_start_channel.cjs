@@ -36,7 +36,7 @@ const pages = sourcePages.map((s, page) => ({
   rows: s.split('/').map(runes).filter(r => r.length)
 }));
 for (const {page, rows} of pages) {
-  assert.deepEqual(rows.flat(), corpus.pages[page].indices);
+  assert.deepEqual(rows.flat(), corpus.pages[page >= 50 ? page + 1 : page].indices);
 }
 const rows = pages.flatMap(p => p.rows);
 assert.equal(rows.length, 594);
