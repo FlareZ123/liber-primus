@@ -32,6 +32,23 @@ Whenever a zero step occurs, \(P_i=28\). Thus the **next** nonzero step is encry
 
 The statement also excludes the entire fixed first-order plaintext-feedback subfamily \(\log_{15}(\Delta_i)=P_i+f(P_{i-1})\pmod{28}\) for all **arbitrary unknown functions \(f\)**, subject to the same GP-EA source register and stationary row. It is stronger than the previously reported 784 affine \(f(p)=ap+b\) trial ([that earlier inverse](ea-anchored-plaintext-feedback-inverse.md)).
 
+## Generalization to all 29 possible fixed plaintext markers
+
+The original 85 post-repeat ciphertext differences include **all 28 nonzero GP29 values**. The all-secret theorem does not require choosing GP-EA as the marker. For **any single unknown fixed plaintext marker** \(\rho\) selected from all 29 GP symbols, let every plaintext predecessor \(u\) have its own arbitrary secret bijection \(\pi_u\) mapping the other 28 plaintext symbols to the 28 nonzero differences. A zero output step exposes \(P_i=\rho\). The very next nonzero output step must use the same row \(\pi_\rho\) after every such event. As that bijection can only relabel 28 different steps, the **85 hidden plaintext successors must together include all 28 other GP runes**.
+
+The independent [all-29-marker gate](../sims/all29_marker_successor_support.cjs) examines every occurrence of every one of 29 marker candidates in the **entire** pinned GP-encoded source texts, counting all distinct immediate nonmarker successors. The test is deliberately more permissive than seeking a contiguous quotation: even an arbitrary selection of source positions cannot acquire a symbol that never follows the marker anywhere in the source.
+
+| Source or observed channel | GP runes | Greatest distinct successors after any one fixed marker, anywhere in source | Greatest distinct successors in a consecutive 85-event window |
+| --- | ---: | ---: | ---: |
+| LP2 original post-repeat differences | 12,956 | **28 of 28** | **28** |
+| Shakespeare | 218,800 | **26 of 28** | 24 |
+| Gibran | 63,114 | **25 of 28** | 23 |
+| Emerson | 324,630 | **27 of 28** | 23 |
+
+The exhaustive 85-event comparison covers **209,228** Shakespeare windows, **59,133** Gibran windows and **312,883** Emerson windows, **581,244** across all 29 possible marker identities. None reaches 28 distinct following symbols. All these windows overlap; their tally is a finite-source exclusion, not a set of independent significance trials. The stronger whole-source support obstruction does not rely on their contiguity.
+
+The all-29-marker program also constructs and exactly reverses a source-native **12,956-rune** cipher under a different marker, **E (GP index 18)**, using 29 independently seeded secret 28-permutation rows. It recovers and reencrypts every symbol and checks every output difference; the earlier two EA-marker original-length plants likewise invert. This is a **key-independent exclusion of the entire fixed-marker, stationary predecessor-plaintext-row family for these three finite GP-English texts**. It cannot exclude specially authored prose, changed orthography, other languages, a moving key/state, ciphertext-dependent rows, or a hidden outer alphabet. No unknown LP2 plaintext is recovered.
+
 ## Literal native-GP source constraints
 
 Encode complete checked-in Shakespeare, Gibran and Emerson texts using the existing greedy GP digraph convention and the usual QU/V/K/Z spelling normalization. For each occurrence of source GP-EA followed by another GP rune, retain the **next** plaintext symbol. Exhaustively check every contiguous window of exactly **85 such EA-successor events** in each source, with no choice of secret row, key, output label or favorable passage:
