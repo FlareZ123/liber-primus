@@ -210,6 +210,24 @@ const score = (xs) => languageScore(xs, model);
 const preview = (xs) => xs.slice(0, 100).map((i) => corpus.translit[i]).join("");
 const rawPhysical = allPages.flatMap((p) => p.indices);
 
+function base29ByteStats(order) {
+  const symbols = order.flatMap((p) => pageByNumber.get(p).indices);
+  let value = 0n;
+  for (const symbol of symbols) value = value * 29n + BigInt(symbol);
+  let hex = value.toString(16);
+  if (hex.length % 2) hex = "0" + hex;
+  const bytes = Buffer.from(hex, "hex");
+  const printable = [...bytes].filter((b) => b >= 32 && b <= 126).length;
+  return {
+    byteLength: bytes.length,
+    printableFraction: printable / bytes.length,
+    first32Hex: bytes.subarray(0, 32).toString("hex"),
+    asciiPreview: [...bytes.subarray(0, 80)]
+      .map((b) => b >= 32 && b <= 126 ? String.fromCharCode(b) : ".")
+      .join("")
+  };
+}
+
 function decodeTotient(order, resetPage, skipOwnPageF) {
   const globalKeys = primeTotients(totalRunes);
   const pageKeys = primeTotients(maxPageLength);
@@ -386,6 +404,10 @@ const summary = {
     rawPhysical: score(rawPhysical),
     knownSolvedP56Plaintext: score(knownP56Plain),
     totalRunes
+  },
+  base29BigEndianBytes: {
+    physical: base29ByteStats(physical),
+    diagonal: base29ByteStats(diagonal)
   },
   tests: tests.sort((a, b) => b.score - a.score)
 };
