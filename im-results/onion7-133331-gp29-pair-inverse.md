@@ -98,10 +98,44 @@ The original LP2 has no positive heldout GP likelihood, no authentic key and no 
 
 This section's complete original and planted assertions passed [GitHub Actions run 42853638723](https://github.com/FlareZ123/liber-primus/actions/runs/42853638723) on Node.js 22. Unlike our initial static pair inverse, the feedback oscillator has no independent static equality/frequency bound; its conclusion is an **exhaustive key-conditional likelihood negative**, backed by true-key blind plant recovery.
 
+## Exhaustive 29⁴-key order-four public-feedback closure
+
+The fixed two-register oscillator above is only one choice of ciphertext drive into the source-root quarter-turn. Consider the entire algebraic family of two-register linear states over F29 whose state matrix A satisfies A² = −I, public ciphertext drive B and output row L. For the hidden scalar key K[t]=L*S[t], matrix elimination gives the exact recurrence
+
+\[
+K_{t+2}=-K_t+aC_t+bC_{t+1}\pmod{29},\qquad a=LAB,\ b=LB\pmod{29}.
+\]
+
+Encryption is \(\ C_t=P_t+K_t\pmod{29}\). All 29² tap choices (a,b) and all 29² startup keys (K0,K1) are allowed, yielding exactly **29⁴=707,281 distinct keys** in the book-continuous model. Opposite additive signs are absorbed by negating both taps and both seeds.
+
+The [full 707,281-key original-inverse SFT](../sims/onion7_133331_general_oscillator.cjs) exhausts every one analytically: compute source-only response streams \(X_t=C_{t-2}-X_{t-2}\) and \(Y_t=C_{t-1}-Y_{t-2}\) modulo29 (both initialized at zero), then use
+
+\[
+K_t=aX_t+bY_t+(-1)^{\lfloor t/2\rfloor}s_{t\bmod2}\pmod{29}.
+\]
+
+For each of the 841 tap pairs, group candidate GP plaintext symbols into four source-phase histograms. The even and odd startup seeds independently shift disjoint phase groups and each is maximized exactly over all 29 possibilities. This is a mathematical reparameterization of **every** four-parameter key, with no beam-search or approximate search. Select exclusively from the first **6,478 original runes** and score the *unchanged selected key* against the final **6,478 untouched original runes** under the same frozen GP-English source prior described above.
+
+| Original-input quantity | Exact result |
+| --- | ---: |
+| Exhausted tap-and-key combinations | **707,281/707,281** |
+| Training-selected (a,b,K0,K1) | **(16,16,26,4)** |
+| First-half GP-vs-uniform log ratio/rune | **−0.80037106** |
+| Second-half frozen log ratio/rune | **−0.92493693** |
+| Original unknown LP2 plaintext/key recovered | **None** |
+
+**Blind original-layout English positive:** Encrypt the final 12,956 Shakespeare GP runes with source-root taps **(17,12)** and hidden seed pair **(13,11)**. When a tentative emitted rune duplicates its predecessor, perform a different-symbol rewrite at probability **0.81**, feeding the **actual emitted rune** into the future key recurrence. The deterministic control generates **331 genuinely changed glyphs**. The exact exhaustive key-recovery search returns **all four correct hidden parameters**, despite the rewrites, with GP log ratios **+0.36565050** on first-half training and **+0.34562865** on untouched heldout. Given the true key, decoding recovers **12,625/12,956** original English runes; re-encrypting this decoded control yields the **exact 12,956 emitted ciphertext runes**.
+
+The same script verifies that a deliberately wrong key **also** perfectly decrypts/re-encrypts all 12,956 original manuscript glyphs. This check detects encoder/decoder bugs, and has **zero key-identification power**. The actual exclusion comes from the frozen-language failure on the original, compared with robust blind planted true-key recovery.
+
+This is an exact, full finite-family original-input negative **only under one book-continuous state, the GF29 order-four public-feedback linear register and immediate GP29 English-like additive plaintext**. Per-page independent state changes, an unobserved plaintext drive, nonlinear or variable-length transformations, and other registers remain open. It **does not** identify the historical encryption method.
+
+The executable original data analysis and both controls passed [manually dispatched GitHub Actions run 42854934864](https://github.com/FlareZ123/liber-primus/actions/runs/42854934864) on Node.js 22.
+
 ## Decision
 
-The historical source numbers provide an exact, constrained **candidate** for a GP29 quarter-turn, two-rune mixing and a two-register ciphertext-feedback mechanism. Both tested inverse families fail to recover native-GP text from original LP2. Crucially, an unconstrained secret permutation of each whole-book or page-wide output channel cannot rescue normal English-like letter frequencies without a substantial, otherwise unexplained edit or evolving-state layer.
+The historical source numbers provide an exact, constrained **candidate** for a GP29 quarter-turn, two-rune mixing and a two-register ciphertext-feedback mechanism. All tested inverse families, including the complete 707,281-key book-continuous order-four linear feedback closure, fail to recover native GP-English from original LP2. Crucially, an unconstrained secret permutation of each whole-book or page-wide output channel cannot rescue normal English-like letter frequencies without a substantial, otherwise unexplained edit or evolving-state layer.
 
-**Prioritize a different mechanism if pursuing 133/331:** a key schedule or state rule more informative than the now-exhausted second-order public-feedback oscillator, with a key independently recovered and a held-out original plaintext interval. The arithmetical coincidences alone cannot authenticate a key.
+**Prioritize a different mechanism if pursuing 133/331:** a key schedule or state rule beyond the now-exhausted whole-book order-four linear public-feedback family, with a key independently recovered and a held-out original plaintext interval. The arithmetical coincidences alone cannot authenticate a key.
 
 The complete self-contained Node.js 22/CommonJS runner reads the archived HTML, original rune corpus and independent English control, enforces the 58/29 arithmetic, performs 24 original inversions, calculates all source-symbol capacity bounds and executes both true-key positives. It passed [manual GitHub Actions run 42850152363](https://github.com/FlareZ123/liber-primus/actions/runs/42850152363) with all assertions.
