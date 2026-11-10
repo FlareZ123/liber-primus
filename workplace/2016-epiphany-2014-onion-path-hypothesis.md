@@ -23,9 +23,9 @@ The 2014 comment is not merely a generic patience phrase. Under the published GP
 
 761 is the 135th prime, and:
 
-[
+\[
 \varphi(761)=760=29\cdot26+6.
-]
+\]
 
 Thus the 2014 “devoted/patience” clue supplies a prime (761), while the 2016 “epiphany” clue supplies 6 January; the already-solved p56 mechanism uses φ(prime) modulo 29. This is a plausible selector for a six-step or p135-start interpretation, but it is not proof that the p56 cipher transfers.
 
@@ -33,7 +33,9 @@ Do not duplicate broad tests already in the repository:
 - sims/audio761_numeric_prng_seed_probe.cjs includes 761 among source-derived seeds and tests six common 32-bit PRNG families over all 12,956 original LP2 runes.
 - sims/prime_totient_long_offset_inversion.py tests two million prime-start offsets for direct transfer of the solved p56 φ(prime) key; the p135 start corresponding to 761 is inside that search.
 
-The 761→p135 idea is therefore not an untested gap. Any future use of the 6 residue must be distinguished from the already-tested direct p135 start and must have a source-visible rule fixing its role.
+I independently scored the existing 761/LCG-A/rankCyclic/page-reset/sign+ candidate with a GP29 Shakespeare trigram model. Its score is **−6.2546**, versus **−6.2960** for raw LP2 and **−6.3025** for one random control; among the 960 seed/PRNG/clock/mode/sign combinations in the existing 761 probe, this candidate ranks **48th** by trigram score. Its decoded rune stream is visibly non-linguistic. The existing unigram winner is therefore not plaintext evidence.
+
+The 761→p135 idea is not an untested gap, and the obvious direct seed/prime-start transfers are not currently promising. Any future use of the 6 residue must be distinguished from these tested transfers and must have a source-visible rule fixing its role.
 
 ## What this does and does not establish
 
