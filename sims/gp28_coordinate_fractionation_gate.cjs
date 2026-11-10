@@ -287,16 +287,15 @@ function main() {
     assert.equal(pages.reduce((n,p)=>n+p.length,0),N);
     for (const clock of ["global","page"]) {
       const parts=clock==="page"?pages:[pages.flat()];
-      for (const period of PERIODS) for (const shift0 of SHIFTS) {
-        const shift=shift0%period;
-        if (shift===0) continue;
+      for (const period of PERIODS) for (const shift of
+        new Set(SHIFTS.map(value=>value%period).filter(Boolean))) {
         tests.push({mode,clock,period,shift,...pairCap(parts,period,shift)});
       }
     }
   }
   const best=tests.reduce((a,b)=>a.bound>=b.bound?a:b);
   const worst=tests.reduce((a,b)=>a.bound<=b.bound?a:b);
-  assert.equal(tests.length,556);
+  assert.equal(tests.length,492);
   assert.equal(best.bound,766);
   assert.ok(best.bound<minRef);
   const planted=hiddenKeyPlant(toNativeGP28(
