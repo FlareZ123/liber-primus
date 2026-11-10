@@ -1,0 +1,16 @@
+name: JPEG-to-grid literal pad screen
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  jpeg-grid-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test complete 24-model search and known-plaintext recovery
+        run: node sims/jpeg_grid_ascii_probe.cjs
