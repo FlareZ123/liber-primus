@@ -3,7 +3,7 @@
  * Exhaustive LP2 page-0 body versus the original CicadaOS DATA/560.13 pad.
  * Exact one-draw collision skip inverse, arbitrary starting byte offset, and
  * two additive GP key signs. Source: ISO byte stream, not an invented key.
- * Command: node sims/iso56013_full_offset_screen.cjs <560.13> <mod|reject> <result.json>
+ * Command: node sims/iso56013_full_offset_screen.cjs <560.13> <mod|reject|mod-rev|reject-rev> <result.json>
  * Pure Node.js 22 CommonJS. Runs on the repository's committed corpus.
  */
 const assert = require('node:assert/strict');
@@ -198,7 +198,11 @@ function run(inputFile,mapMode,outputFile) {
   assert.equal(raw.length,EXPECTED_SIZE,'Original Cicada OS asset size');
   const sha=crypto.createHash('sha256').update(raw).digest('hex');
   assert.equal(sha,EXPECTED_SHA,'Original Cicada OS asset SHA256');
-  const key=mapBytes(raw,mapMode),pre=prepare(key);
+  const reverse=mapMode.endsWith('-rev');
+  const baseMap=reverse?mapMode.slice(0,-4):mapMode;
+  const key=mapBytes(raw,baseMap);
+  if(reverse)key.reverse();
+  const pre=prepare(key);
   const corpus=JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
   const page=corpus.pages.find(p=>p.page===0).indices;
   assert.equal(page.length,262);
@@ -261,7 +265,7 @@ function run(inputFile,mapMode,outputFile) {
 }
 if(require.main===module){
   assert.equal(process.argv.length,5,
-    'Usage: node sims/iso56013_full_offset_screen.cjs 560.13 mod|reject result.json');
+    'Usage: node sims/iso56013_full_offset_screen.cjs 560.13 mod|reject|mod-rev|reject-rev result.json');
   run(process.argv[2],process.argv[3],process.argv[4]);
 }
 module.exports={enc,mapBytes,prepare,train,scoreAt,plant,scan,run};
