@@ -1,15 +1,31 @@
-name: LP2 word-local five-back affine autokey exact inverse
+name: LP2 Agent 1 exact inverse and source-locked key experiments
 on:
   workflow_dispatch:
+    inputs:
+      experiment:
+        description: Choose independently reproducible experiment
+        required: true
+        type: choice
+        default: word-lag5
+        options:
+          - word-lag5
+          - red-225
+permissions:
+  contents: read
 jobs:
   decrypt:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - name: Source word cross-page check
+        if: ${{ inputs.experiment == 'word-lag5' }}
         run: node sims/test_lp2_word_pages.cjs
-      - name: Find all exact affine autokey/English source candidates
+      - name: Find all exact affine autokey and English source candidates
+        if: ${{ inputs.experiment == 'word-lag5' }}
         run: node sims/word_lag5_affine_keyfree_inverse.cjs
+      - name: Test manuscript 15x15 red-square key on disjoint original pages
+        if: ${{ inputs.experiment == 'red-225' }}
+        run: node sims/red_225_square_key_holdout.cjs
