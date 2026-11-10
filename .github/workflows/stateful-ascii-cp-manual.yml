@@ -1,6 +1,15 @@
 name: LP2 stateful ASCII source constraint (manual)
 on:
   workflow_dispatch:
+    inputs:
+      probe:
+        description: Select source original 7-bit ASCII key-independent transport gate
+        type: choice
+        required: true
+        default: stateful
+        options:
+          - stateful
+          - binary47
 
 jobs:
   survivor:
@@ -10,5 +19,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install pinned constraint solver
         run: python -m pip install --disable-pip-version-check ortools==9.15.6755
-      - name: Solve final stateful ASCII framing under original-source constraints
+      - name: Solve original predecessor-29-row stateful ASCII framing
+        if: inputs.probe == 'stateful'
         run: python sims/stateful_ascii_survivor_cp.py
+      - name: Positive hidden-cyclic-order ASCII source capacity control
+        if: inputs.probe == 'binary47'
+        run: python sims/prime78_ascii_bit_cp.py --plant --seconds 60
+      - name: Search original 164 packet leaders under all 29 cyclic orders
+        if: inputs.probe == 'binary47'
+        run: python sims/prime78_ascii_bit_cp.py --original --seconds 300
