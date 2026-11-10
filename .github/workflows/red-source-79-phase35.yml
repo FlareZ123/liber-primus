@@ -14,3 +14,5 @@ jobs:
         run: node sims/red_source_79_phase35_order_gate.cjs
       - name: Exact red79 first-appearance cyclic order and all-page rotation null
         run: node sims/red79_first_occurrence_packet_gate.cjs
+      - name: Source-original prime79 stationary affine checksum rank and planted inverse
+        run: node sims/prime79_unknown_checksum_gate.cjs
