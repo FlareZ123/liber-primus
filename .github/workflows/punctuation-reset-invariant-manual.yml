@@ -1,0 +1,14 @@
+name: LP2 punctuation-reset key reuse invariant (manual)
+on:
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test shared reset cipher on source and English controls
+        run: node sims/punctuation_reset_collision_invariant.cjs
