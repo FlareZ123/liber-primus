@@ -204,9 +204,8 @@ def main() -> None:
                     top = hits[0]
                     true_pos = score_full(fake, key_direction, stride, PLANT_OFFSET, table,
                                           0, len(fake))
-                    rank = 1 + sum(h["trainPerRune"] > score_full(fake, key_direction,
-                                stride, PLANT_OFFSET, table, 0, PREFIX_RUNES)
-                                for h in hits)
+                    rank = next(i + 1 for i, h in enumerate(hits)
+                                if h["sourceIndex"] == PLANT_OFFSET)
                     assert top["sourceIndex"] == PLANT_OFFSET, (model, hits, PLANT_OFFSET)
                     assert true_pos == top["wholePagePerRune"]
                     controls.append({**model, "plantedSourceOffset": PLANT_OFFSET,
