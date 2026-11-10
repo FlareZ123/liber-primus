@@ -1,6 +1,6 @@
-# LP2 27×27 row-column cipher: a key-free Fourier invariant and original-source inverse
+# LP2 27×27 row-column ciphers: key-free Fourier invariants and source-native inverses
 
-**Evidence:** Original-input, source-native negative result for a fully specified additive GP29 family, Agent 4, 10 November 2026. No unknown-page plaintext, authentic key or destination recovered.
+**Evidence:** Original-input, source-native bounded negatives for two fully specified cipher families: additive GP29 direct plaintext, and ciphertext-feedback GP28 with a repeat marker. Agent 4, 10 November 2026. No unknown-page plaintext, authentic key or destination recovered.
 
 ## Why the opening 729 runes matter
 
@@ -55,10 +55,63 @@ The same original-cipher family permits an independent inverse by fitting all 54
 
 The original model's fitted score is **worse than the shuffled-input mean**; add-one upper-tail **31/41 ≈ 0.75610**. The planted model is simultaneously detected by the independent Fourier invariant and practically inverted from GP-English statistics, while the original fails both. The original source can always be re-encrypted exactly from its fitted arbitrary pads; that trivial property must not be confused with a solution.
 
+
+## Second original-cipher family: ciphertext-feedback rank28 with a reserved EA marker
+
+The **direct GP29** experiment above excludes arbitrary additive row/column masks on direct plaintext. The source has an additional measurable feature: its **first 729 ciphertext runes contain only four exact adjacent repeats**. We therefore investigate a different **28-symbol feedback cipher** with 28-way row/column keys, conditioning on the actual preceding published ciphertext rune.
+
+### Exact reversible mechanism
+
+Transmit initial ciphertext C₀ as an IV. For subsequent plaintext GP indices Pᵢ with row r=⌊i/27⌋ and column c=i mod27, define
+
+\[
+C_i=\begin{cases}
+C_{i-1}, & P_i=28\ (\text{reserved EA marker}),\\
+C_{i-1}+1+((P_i+u_r+v_c)\bmod28)\pmod{29}, & P_i\in\{0,\ldots,27\}.
+\end{cases}
+\]
+
+The decoder observes repeated ciphertext runes directly. They give reserved GP symbol 28; at every other location the source-computable rank is Rᵢ=(Cᵢ−Cᵢ₋₁−1) mod29 in 0..27. The initial IV is likewise masked as unknown symbol28. Actual p0–2 produces **five sentinel sites** (first IV and four exact repeats). The reserved-marker choice and feedback equation are **hypotheses selected to explain source repetition scarcity**; neither is an authenticated Cicada mechanism.
+
+The rank28 Fourier matrix assigns exp(2πikRᵢ/28) to nonmarker cells and **zero** to every sentinel. Under ANY modulo28 row/column pad, it remains a product of the plaintext matrix and two unitary diagonal phase factors: \(\ M_k(R)=D_k(u)M_k(P_{\mathrm{masked}})D_k(v)\). Consequently its singular values are **exactly unchanged by all 28^53 distinct row/column pad choices** (one global key gauge removed). Freeze the maximum top singular value across k=1..14 without selecting original keys.
+
+### Original-source spectral test and positive
+
+A native solved-LP1 positive encrypts 729 authentic plaintext GP runes from original LP1 section 4, using independently random modulo28 row and column keys, a transmitted initial ciphertext rune 3, and genuine source EA=28 tokens as the reserved ciphertext-repeat markers. The original plaintext and encrypted ciphertext yield identical masked Fourier spectra. There are six marker positions in this source-native plant, including its IV.
+
+To calibrate the actual source, **2,500** deterministic controls (seed 0x330128) independently permute only the **724 nonmarker rank values**, preserving the complete original GP28-rank histogram and all five marker positions. Every control recomputes the complete 14-character Fourier statistic.
+
+| Source | Maximum Fourier singular value |
+| --- | ---: |
+| Original p0–2 transformed to feedback ranks | **10.18962765** |
+| Source-fixed-marker shuffled original median | **10.05647611** |
+| Shuffled original 95th percentile | **10.42229203** |
+| Source-native solved-LP1 encrypted positive | **11.13719299** |
+| 27 overlapping native solved-LP1 plaintext windows | **10.72993943–11.18373749** |
+
+Of the 2,500 shuffled original controls, **588** meet or exceed the actual original statistic, add-one **589/2501≈0.23551**. Only one shuffled original control meets or exceeds the native positive, demonstrating conditional detection power. The 27 native source windows overlap and do not constitute independent experiments.
+
+### Full blind key fitting and plaintext recovery attempt
+
+Take the same independent Shakespeare GP frequency source used in the direct GP29 study (**218,800 GP training runes**), condition on the 28 ordinary tokens by excluding index28, then fit all 54 unknown modulo28 row/column key components. The fitter uses 100 seeded independent random starts and at most 35 exact 28-way coordinate-ascent sweeps per start. Sentinels are masked from language scoring and fixed to GP=28; the cipher's transmitted first rune remains available to verify complete source re-encryption.
+
+| Measurement | Native solved-source cipher plant | Original LP2 ciphertext |
+| --- | ---: | ---: |
+| Best independent GP-unigram log score | **−2155.88828** | **−2342.81186** |
+| Exact original GP rune recovery | **696/723 decodable runes** | No authentic plaintext |
+| Exact output re-encryption from fitted pad | Yes | Yes, algebraically |
+| Comparison with 40 fully refitted shuffled original rank streams | Positive outside this comparison | **33/40** at least as good |
+
+The shuffled rank-stream score mean is **−2335.83531**, range **−2350.29871 to −2307.74235**, giving an actual-original add-one upper-tail **34/41≈0.82927**. Each null uses the same 100-start blind key fitting, preserving original marker coordinates and ordinary rank histogram, with RNG seed 0x20261110. The true-key source plant scores −2156.37314 and is essentially recovered by the blind optimizer, confirming that full GP message recovery is feasible when this exact model holds. Exact re-encryption of real ciphertext from any arbitrary fitted row/column mask is a tautology of the modeled inverse and supplies no authentic plaintext evidence.
+
+**Conclusion:** Even under an explicit source-compatible predecessor-exclusion cipher that explains the scarcity of adjacent repeated runes, the actual opening LP2 ciphertext shows no recoverable direct GP-English plaintext for *any* separable modulo28 row/column pad. The feedback architecture and EA marker semantics are optional hypothetical features, and this negative does not cover nonlinear feedback, a different outer alphabet, other languages, transposition, or additional encryption layers.
+
+Reproduce with [sims/lp2_rank28_rowcol_inverse.py](../sims/lp2_rank28_rowcol_inverse.py), a separate source-native Python/NumPy original and planted inverse. It reads the resources through the existing GP29 reproducer, asserts actual source-repeat counts, exact original/planted re-encryption, source-true positive recovery, 2,500 exact masked Fourier controls and 40 fully refitted key-search controls.
+
 ## Interpretation and next useful experiment
 
-The result rejects an otherwise vast keyspace **without selecting any key or plaintext hypothesis on the original**. Unlike a search over a few table offsets, it covers **every** 27-row-plus-27-column additive mask under the specified physical layout. Its independent solved-LP1 plant establishes that the test has power on authentic manuscript-style GP-English, and its source-blind MLE also establishes that the inversion implementation can recover the majority of a true hidden message.
+Both tests eliminate vast families of additive keys **without selecting a plaintext hypothesis on the original ciphertext**. Unlike a search over a few table offsets, it covers **every** 27-row-plus-27-column additive mask under the specified physical layout. Its independent solved-LP1 plant establishes that the test has power on authentic manuscript-style GP-English, and its source-blind MLE also establishes that the inversion implementation can recover the majority of a true hidden message.
 
-A next productive attack would require a source-defined cipher transformation outside this family, such as a cryptographically justified nonlinear alphabet map or a specific, independently determined position permutation. Blindly searching more row/column key strings cannot rescue this model. The external 27×27 geometric route and its existing full block-39 enumeration have already been explored; do not duplicate them.
+A next productive attack would require a source-defined cipher transformation outside both tested families, such as a cryptographically justified nonlinear alphabet map or a specific, independently determined position permutation. Blindly searching more row/column key strings cannot rescue this model. The external 27×27 geometric route and its existing full block-39 enumeration have already been explored; do not duplicate them.
 
 **Reproduce** with the single source-reading Python/NumPy program at [sims/lp2_rowcol_fourier_inverse.py](../sims/lp2_rowcol_fourier_inverse.py). It asserts exact original page lengths, the native solved-LP1 source and Shakespeare training count, synthetic Fourier invariance, real-code re-encryption, and matched permutation-calibrated results. All original data and control resources are already in this repository.
