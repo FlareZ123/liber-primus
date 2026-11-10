@@ -196,13 +196,20 @@ function run(nullTrials = 80, plantTrials = 12) {
       const generated = plant(SOURCE, prior,
         (0x21950000 + Math.round(repair * 1000) + i * 1009) >>> 0, repair);
       const result = fit(generated.pages, SEED);
-      const nCorrect = result.shifts.filter((s,j) =>
-        s === generated.shifts[j] - generated.shifts[0]).length;
+      // A free global key-position origin survives even when the first
+      // page is used as an optimization anchor: if one page is an outlier,
+      // the remaining pages may synchronize at a different common origin.
+      const shiftGroups = new Map();
+      result.shifts.forEach((s,j) => {
+        const delta = s - generated.shifts[j];
+        shiftGroups.set(delta, (shiftGroups.get(delta) || 0) + 1);
+      });
+      const nCorrect = Math.max(...shiftGroups.values());
       const congruent = Array.from({length:MOD}, (_,delta) =>
         result.offsets.filter((x,j) =>
           (x - generated.offsets[j] + MOD) % MOD === delta).length);
       positives.push({repair, heldout:result.heldout, train:result.train,
-        shiftAligned:nCorrect, largestOffsetGroup:Math.max(...congruent),
+        largestShiftGroup:nCorrect, largestOffsetGroup:Math.max(...congruent),
         overwritten:generated.repaired});
     }
   }
