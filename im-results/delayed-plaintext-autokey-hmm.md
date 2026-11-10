@@ -1,63 +1,61 @@
-# Delayed plaintext-autokey with integrated collision rewriting: exact inversion
+# Delayed GP29 plaintext autokey: exact inversions under two collision-repair channels
 
-**Evidence status (2026-11-10):** completed negative on original LP2 for an explicitly bounded 1,008-configuration family, with exact forward hidden-state likelihood, plaintext-producing Viterbi inversion and a strong heldout GP-English known-key positive. **No original unknown LP2 plaintext or key has been recovered.**
+**Evidence as of 2026-11-10:** two positive-controlled, original-LP2 **bounded negative results**; no original unknown plaintext, key, or destination. Across 2,016 different specified decoders, the best original manuscript likelihood remains below its matched uniform-source null. The same algorithms identify the true planted key at rank one and recover over 95% of heldout planted plaintext runes.
 
-## Original-source question
+## Cryptanalytic question and original corpus
 
-Test the possibility that the near-zero adjacent-rune equality in the unresolved Liber Primus second release is the result of a classical **delayed plaintext-autokey modulo 29** followed by a stochastic overwrite whenever an output collides with the immediately preceding ciphertext rune. Prior tests include simple first-order plaintext feedback without this exact overwrite mechanism and word-local lag-five special cases. The present attack tests delays 1–12, all 28 invertible feedback coefficients, and all three independently defined reset scopes in a *single exact probabilistic inversion*.
+There are 12,956 original unsolved LP2 runes on 55 rune-bearing physical pages (physical page 50 is numeric-only); 2,896 intact rune words cross 32 printed page boundaries. Earlier tests documented both unusually suppressed adjacent repeat runes and **80 of 1,290** word-internal six-rune affine echoes of the transformation T(x)=24−2x modulo29. These ciphertext observations motivate testing an unknown delayed autokey with optional collision overwrites.
 
-The model on positions `j>=L` within a reset unit is
+Within a reset scope, model the pre-repair output at position j greater than or equal to delay L as X[j] = P[j] + a P[j−L] modulo29. Test **all L=1..12** and **all a=1..28**. The first L ciphertext runes are unconstrained IV outputs, with hidden plaintext initial values assigned a pre-trained GP-English rune marginal. Both parameters are shared across the original book, for each of three alternative reset scopes: each of the 55 rune pages; each of the nine source runic sections, lengths [729,1145,1729,9,1894,1021,1524,1589,3316]; and one continuous 12,956-rune stream. Physical page breaks never create artificial word boundaries.
 
-```text
-R[j] = (P[j] + a*P[j-L]) mod 29,  L=1..12, a=1..28.
-If R[j] = C[j-1], replace R[j] by a uniformly chosen
-different rune with probability q=0.81.
-Otherwise publish R[j] directly.
-```
+Two explicit alternate **hypothetical** emission mechanisms share a fixed collision-rewrite probability **q=0.81**, chosen from prior LP2 observations:
 
-The first `L` ciphertext runes in each reset unit are unrestricted visible IV symbols, and the latent first `L` plaintext runes follow the learned GP-English rune marginal. Candidate reset units are **55 original physical rune pages** (one numeric-only page 50 omitted), **nine runic sections** with lengths `[729,1145,1729,9,1894,1021,1524,1589,3316]`, or the **single uninterrupted 12,956-rune stream**. The page scope is physically page-local, unlike word-local cipher proposals; punctuation and red marks do not reset the key. The rewrite is an explicit *hypothetical nuisance model*, not an established Cicada procedure.
+1. **U, uniform-other:** when tentative X equals prior published C, with probability q replace it with a uniformly selected glyph different from C.
+2. **T6, manuscript-motivated deterministic target:** at original complete-word offset six or greater, if tentative X equals the preceding published C, with probability q publish T(the rune six positions earlier within that same original word). At word offsets zero through five use the same uniform-other replacement as U. If the T target equals preceding C, the rewrite can leave the emitted symbol unchanged.
 
-## Exact inverse and independent power check
+These are separate candidate mechanisms, not discoveries of Cicada's underlying algorithm. Total finite family: 12 delays × 28 coefficients × 3 resets × 2 rewrite channels = **2,016 original models**.
 
-The ciphertext previous-rune value is known. For each fixed `(L,a)`, separate residue classes modulo `L` form **29-state hidden Markov chains** with hidden plaintext `P[j]`. The forward sum-product algorithm integrates both possible sources of each noncolliding published rune:
+## Exact plaintext-producing inverse and genuine source-disjoint positives
 
-- Literal publication: `P[j] = C[j]-a*P[j-L] mod29`.
-- Hidden repaired collision: `P[j] = C[j-1]-a*P[j-L] mod29`, with likelihood `q/28`, whenever `C[j]!=C[j-1]`.
+An **exact 29-state HMM sum-product algorithm** integrates over every latent ordinary or rewritten output. At a nonrepeating published symbol, the possible tentative symbol is either the published rune itself or the immediately preceding published rune. The latter is allowed only when the proposed rewrite can emit the actual symbol. At a repeated output, only an unrepaired collision or equal-target branch is allowed. Known word-local T6 history is derived from **published original cipher**, including words spanning physical pages. No hidden collision positions are hand-selected.
 
-When the output itself repeats the prior ciphertext rune, only the first possibility survives with weight `1-q`. Exact 29-state normalization produces the log marginal likelihood for every candidate and the Viterbi max-product pass produces an explicit plaintext candidate with local rewrite flags. Every returned Viterbi path is asserted to regenerate **all original published ciphertext runes** from its recovered source, original IVs and chosen replacement outputs.
+A separate Viterbi backtrace constructs an explicit model-consistent plaintext and rewrite pattern and verifies that every non-IV original ciphertext rune can be published again by the proposed generator. Exact reproduction *alone* is insufficient evidence for an authentic decryption because the model has multiple source preimages.
 
-GP-English rune priors were trained from the first **240,000 characters** of `resources/control/shakespeare_first300k.txt`. A second **60,000 characters** were held back and sampled into independent plaintext controls with the identical **55 page-length positions**. The planted procedure was `L=5, a=17`, with seed `0x1acf31ab` and stochastic collision-rewrites at `q=0.81`. The real source contains 12,956 rune positions and exactly 86 within-page adjacent repeats; the plant had 362 rewritten positions and 64 unrepaired collisions.
+GP-English rune priors are trained on the first **240,000 characters** of the pinned Shakespeare control. Source for the blind key-recovery plants is restricted to the **independent final 60,000 characters** and uses identical physical manuscript page lengths and word-offset layout. Each genuine synthetic text was encrypted with **L=5, a=17**, with the candidate collision rule actually applied. T6 targets in the positive control are calculated from its own freshly published glyphs and its original word-offset layout.
 
-The true planted `(L,a)=(5,17)` ranked **first of 336** configurations in its page-reset family. It gave **+0.232516549 nats per scored rune** over the matched iid-uniform-plaintext baseline, while the next candidate scored **-0.117929252**. Exact Viterbi decoded **95.3381%** of the original planted plaintext runes despite hidden rewrites. Thus this attack has direct constructive power for its stated source generation mechanism; the positive data were not used to fit the English marginals.
+| Heldout control fact | U | T6 |
+| --- | ---: | ---: |
+| Effective collision rewrites | 362 | 350 |
+| True parameter rank among 336 page-reset candidates | **1** | **1** |
+| True-model evidence gain per scored rune, nats | **+0.232516549** | **+0.232858684** |
+| Second-best evidence gain, nats/rune | −0.117929252 | −0.122877996 |
+| Exact Viterbi recovery of known source plaintext runes | **95.3381%** | **95.3844%** |
+| Source-driven ciphertext re-emission assertion | passed | passed |
 
-## Full original LP2 results
+The positive controls have realistic nonzero repeated-output counts and deliberately hidden overwrite locations. They demonstrate concrete sensitivity to this family; they do not establish the real manuscript uses either channel.
 
-The comparison is the log-likelihood improvement over the **exact observable iid-uniform plaintext model with the same q**: repeated published rune has probability `(1-q)/29` and each distinct next published rune probability `(1+q/28)/29`. Candidate comparisons exclude the respective first L IV positions and normalize on each candidate's scored positions.
+## Full original ciphertext inversion
 
-| Reset policy | Highest-scoring delay L | Coefficient a | Evaluated positions | Model log likelihood / rune | Matched uniform baseline / rune | Improvement / rune |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Physical page | 12 | 21 | 12,296 | -3.474261352 | -3.350455262 | **-0.123806089** |
-| Nine sections | 1 | 1 | 12,947 | -3.500536087 | -3.349998571 | **-0.150537516** |
-| Continuous manuscript | 1 | 1 | 12,955 | -3.500208329 | -3.349991642 | **-0.150216687** |
+Each row shows the winning parameter values selected among **all 336 candidates of that model/scope**. The score is per-rune exact GP-English marginal likelihood minus that of the **exact same-channel iid-uniform-plaintext baseline** at the identical non-IV positions. For U, the probability of a published repeat is (1−q)/29, and each other rune has probability (1+q/28)/29. For T6 when target B differs from prior published symbol A, the probability is (1−q)/29 at A, (1+q)/29 at B, and 1/29 elsewhere; if B equals A, every output is 1/29.
 
-**All 336 configurations in each of the three families performed below their corresponding exact matched uniform baseline.** The strongest original score, page-reset lag 12 / coefficient 21, is still substantially below the baseline and has an unintelligible decoded GP-runic string. The original Viterbi path, by construction, produces exact source-ciphertext re-encryption, so perfect re-encryption alone is **not proof of real plaintext recovery**. The meaningful discriminator is independently trained plaintext likelihood and its behavior in the genuine heldout positive.
+| Channel | Reset scope | Best L | Best a | Scored positions | Model log likelihood/rune | Matched null log likelihood/rune | Gain/rune |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| U | 55 pages | 12 | 21 | 12,296 | −3.474261352 | −3.350455262 | **−0.123806089** |
+| U | Nine sections | 1 | 1 | 12,947 | −3.500536087 | −3.349998571 | **−0.150537516** |
+| U | Global | 1 | 1 | 12,955 | −3.500208329 | −3.349991642 | **−0.150216687** |
+| T6 | 55 pages | 12 | 16 | 12,296 | −3.477733323 | −3.349585926 | **−0.128147397** |
+| T6 | Nine sections | 1 | 1 | 12,947 | −3.513405335 | −3.349071565 | **−0.164333770** |
+| T6 | Global | 1 | 1 | 12,955 | −3.513071522 | −3.349065208 | **−0.164006313** |
 
-The next-best positive model did not resemble the planted true-key signal. The original best-in-family model does not recover a plausible English register.
+**All 2,016 original hypotheses produce negative likelihood gain, including the full manuscript-inspired T6 collision channel.** The decoded original MAP rune strings remain unintelligible. A simple delayed GP29 plaintext feedback with one fixed coefficient, under these specific priors/reset/rewrite assumptions, is inconsistent with the manuscript when compared with the matched flat-rune source; a genuine planted source instead gives a large positive gain and precise key recovery.
 
-## Cryptanalytic interpretation and scope
+These measurements are exact model-conditional likelihood comparisons, not broadly calibrated statistical proof that all conceivable LP2 autociphers are impossible. They assume ordinary GP-English rune marginal, fixed q, no other hidden pad or output permutation, time-independent feedback multiplier, delay at most 12, and the documented source-aligned overwrite policy. Exotic plaintext encoding, different source genres, optional key skips, longer nonlinear state or additional cipher layers remain open. A stronger research direction is an independently identified source of genuine LP2 keystream information capable of decoding **unfitted** original words.
 
-Under ordinary GP-English-like rune marginals, this **finite delayed additive-plaintext-autokey family with q=0.81 stochastic collision rewrites** does not explain the original LP2 symbol stream. A direct decoder can reconstruct plaintext when such a mechanism is planted, while the original corpus remains less compatible with its English source than an exact flat-rune null.
+## Independent reproduction
 
-This experiment **does not exclude** different plaintext alphabets, word-specific source registers, hidden key streams, unknown output-alphabet permutations, time-dependent coefficients, feedback based on external symbols, special repair rules tied to the documented lag-six motif, other reset sources, or a different collision suppression probability. It does not calculate a comprehensive discovery-wide p-value and must not be interpreted as an unconditional proof of the true underlying encryption scheme.
+- [Uniform-other exact inverse](../sims/delayed_plaintext_autokey_hmm.cjs) and its [successful full CI run 42784959115](https://github.com/FlareZ123/liber-primus/actions/runs/42784959115). Seed 0x1acf31ab.
+- [Word-local six-back T6 exact inverse](../sims/delayed_autokey_t6_repair_hmm.cjs) and its [successful full CI run 42787025558](https://github.com/FlareZ123/liber-primus/actions/runs/42787025558). Seed 0x5a63a120.
+- Both are complete runnable CommonJS tests with Node.js22 and no third-party libraries. Both workflows are manual only: [U](../.github/workflows/delayed-plaintext-autokey-hmm.yml) and [T6](../.github/workflows/delayed-autokey-t6-repair-hmm.yml).
+- Canonical original sources: [rune page indices](../resources/liber-primus/lp2-corpus.json), [whole-word punctuation and offsets](../resources/lp2-transcription.txt), [independent English train/test](../resources/control/shakespeare_first300k.txt).
 
-The important next step is an **independently specified key-generation mechanism that can predict and exactly reproduce new, unfit LP2 rune positions**, preferably tied to original page art, red ink, the 256-byte grid or external Cicada material. Scanning larger ranges of a similar invented recurrence without such a constraint is low priority.
-
-## Reproduction and evidence
-
-- Executable CommonJS source: [`sims/delayed_plaintext_autokey_hmm.cjs`](../sims/delayed_plaintext_autokey_hmm.cjs). Run with Node.js 22. No third-party dependencies.
-- Original 55 rune-bearing unsolved pages and exact GP indices: [`resources/liber-primus/lp2-corpus.json`](../resources/liber-primus/lp2-corpus.json).
-- Training/heldout source: [`resources/control/shakespeare_first300k.txt`](../resources/control/shakespeare_first300k.txt).
-- Manual-only action: [`.github/workflows/delayed-plaintext-autokey-hmm.yml`](../.github/workflows/delayed-plaintext-autokey-hmm.yml). No per-commit trigger.
-- [Successful full original/positive output, GitHub Actions run 42784959115](https://github.com/FlareZ123/liber-primus/actions/runs/42784959115), Node.js 22, 2026-11-10 08:44 UTC.
-
-No LP2 decryption or artifact destination is claimed.
+**No actual LP2 plaintext recovered.**
