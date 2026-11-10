@@ -168,7 +168,7 @@ function plantControl(original) {
     for (let j = 0; j < word.length && plain.length < original.xs.length; j++) {
       plain.push(word[j]);
       starts.push(j === 0);
-      ends.push(j === word.length - 1 && plain.length < original.xs.length);
+      ends.push(j === word.length - 1);
     }
     if (plain.length === original.xs.length) break;
   }

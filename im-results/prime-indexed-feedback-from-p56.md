@@ -14,7 +14,7 @@ where the feedback state is either the previous plaintext rune or the previous c
 
 ## Exact original-input test
 
-The reproducer, sims/lp2_prime_feedback_gate.cjs, reconstructs the original LP2 input and asserts its source coordinates before testing:
+The established solved-page mechanism is documented in [lp2-punctuation-solved-clock.md](lp2-punctuation-solved-clock.md) and independently implemented in [solved_cipher_regression.cjs](../sims/solved_cipher_regression.cjs). The reproducer, [lp2_prime_feedback_gate.cjs](../sims/lp2_prime_feedback_gate.cjs), reconstructs the original LP2 input and asserts its source coordinates before testing:
 
 - 55 rune-bearing unsolved physical pages, 12,956 runes;
 - 2,896 canonical words, preserving words that cross page boundaries;
@@ -35,7 +35,7 @@ A smoothed GP trigram model is trained on the first 240,000 characters of the re
 
 The best original candidate uses previous-plaintext feedback, the additive sign (sign = −1 in the reproducer's convention), a reset at every printed word, and seed 4. Its decoded prefix is not coherent plaintext. Its small score improvement over raw ciphertext is negligible beside the gap to the genuine English control; it is not evidence of a key or language recovery.
 
-All **16/16** source-native positive controls (two feedback types × two signs × four reset rules) encrypt and decrypt exactly under their planted parameters. Thus the negative is not caused by a broken inverse implementation.
+All **16/16** layout-matched synthetic GP-English positive controls (two feedback types × two signs × four reset rules) encrypt and decrypt exactly under their planted parameters. Thus the negative is not caused by a broken inverse implementation.
 
 ## Scope and decision
 
