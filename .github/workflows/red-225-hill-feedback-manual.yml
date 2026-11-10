@@ -16,3 +16,5 @@ jobs:
         run: node sims/red_225_hill_feedback_inverse.cjs
       - name: Red 225-core and 31-stencil rim 16x16 original-source inverse
         run: node sims/red_256_rim_hill_inverse.cjs
+      - name: Exact solved-page literal-F gate of red256 event pad keys
+        run: node sims/red256_literal_f_source_gate.cjs
