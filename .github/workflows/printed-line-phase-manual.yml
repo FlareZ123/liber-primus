@@ -2,18 +2,35 @@ name: Printed-line-phase diagnostic
 
 on:
   workflow_dispatch:
+    inputs:
+      attack:
+        description: Choose original phase screen or physical pixel-width measurement
+        type: choice
+        required: true
+        default: phase
+        options:
+          - phase
+          - pixel-measure
 
 jobs:
   printed-line-invariant:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
+        if: ${{ inputs.attack == 'phase' }}
         with:
           node-version: '22'
       - name: Run exact line-phase and planted-control experiment
+        if: ${{ inputs.attack == 'phase' }}
         run: |
           node sims/printed_line_phase_invariant.cjs
           node sims/printed_line_start_channel.cjs
           node sims/printed_line_greedy_width_inverse.cjs 1000
+      - name: Install original-JPEG geometric model dependencies
+        if: ${{ inputs.attack == 'pixel-measure' }}
+        run: python3 -m pip install --user numpy pillow
+      - name: Fit pixel-derived glyph widths and test held-out page initials
+        if: ${{ inputs.attack == 'pixel-measure' }}
+        run: python3 sims/printed_line_width_mechanism.py
