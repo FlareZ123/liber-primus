@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Cross-clue AES and ChaCha decryption of unsolved sections
         run: node sims/grid_square_iv_keys.cjs
+      - name: Invert four 829-rune bookend blocks using four source square-row keys
+        run: node sims/fibonacci829_fourrow_source_inverse.cjs
