@@ -49,6 +49,12 @@ assert.equal(second.remainder, 0);
 assert.equal(second.quotient.length, 254);
 
 const acSquare = [1, mod(-48), mod(24 * 24)]; // (X-24)^2
+const plantedProduct = multiply(multiply(sourceA, sourceB), acSquare);
+const plantedFirst = divideLinear(plantedProduct, 24);
+const plantedSecond = divideLinear(plantedFirst.quotient, 24);
+assert.equal(plantedFirst.remainder, 0);
+assert.equal(plantedSecond.remainder, 0);
+assert.deepEqual(plantedSecond.quotient, multiply(sourceA, sourceB));
 let bestMatch = { matched: -1 };
 for (const reverseA of [false, true]) {
   for (const reverseB of [false, true]) {
