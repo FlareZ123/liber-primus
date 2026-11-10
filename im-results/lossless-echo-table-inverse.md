@@ -69,6 +69,24 @@ The program also samples authentic GP words from the same solved Cicada referenc
 
 **Interpretation:** this closes a further, genuinely untouched-original discrimination channel on the specific frozen candidate key without adding another post-hoc mechanism. It does not reject all conceivable source-grid schedules, nor does it authenticate the transparent-EA assumption or its plaintext letters. An original-ciphertext forward roundtrip under an arbitrary tableau key is automatic and cannot by itself identify the historical cipher.
 
+## Key-independent 267-anchor known-source fingerprint (Agent 41)
+
+The entire original ciphertext also permits a stronger **plaintext-source attack requiring no secret key bytes** under this *specific* lossless tableau. Its three reserved echo outputs and the transparent-repeat output each identify an exact GP plaintext symbol. Inverting only those four reserved channels yields **267 labeled positions** among the **12,956 original runes**: **EA 86, T 81, U 83, E 17**. This is an explicit consequence of the published causal permutation and original printed word boundaries; the labels remain *hypothetical* because the model was itself designed retrospectively. The 267 positions are **not 267 authenticated decoded plaintext runes**.
+
+For a putative verbatim reference excerpt, at a fixed alignment each of these 267 plaintext symbol equalities must hold. A sparse exact cross-correlator scans **every possible contiguous 12,956-GP-rune passage**, allowing the original printed 2,896 word breaks to differ from the plaintext source, in three independently stored long texts: Shakespeare, Gibran and Emerson. The orthographic normalizer and greedy GP digraph map are **the same `gpText` implementation used by the tableau's genuine forward source generator**, including `ING→NG`.
+
+| Independent source, full-book contiguous window | GP runes | Best anchored-symbol matches / 267 | Unmatched forced anchors |
+| --- | ---: | ---: | ---: |
+| Shakespeare, first 300k characters | 217,644 | **28** | 239 |
+| Gibran, *The Prophet* | 62,696 | **30** | 237 |
+| Emerson, *Essays* | 323,083 | **28** | 239 |
+
+The best full-book window is **Gibran GP offset 39,142**, with matching symbol counts **U 10, T 11, E 6, EA 3**, so 237 of 267 exact source constraints fail there. The source-wide maximum of 30 does not stand out statistically: **25/32** seeded nulls reach at least 30 when the original anchor positions are fixed and their 267 labels are randomly reassigned while keeping each label's exact count. The plus-one empirical tail is **26/33 ≈ 0.788**. This finite null only diagnoses the source-search score; **the exact 237 symbol contradictions are the decisive deterministic exclusion of verbatim copying from these three source texts under the specified tableau**.
+
+A constructive positive uses the original LP2 word lengths, an independent *known original grid-column* key and a **12,956-symbol contiguous Shakespeare plaintext** with its source offset frozen at **13,000**. The exact lossless encoder and decoder re-encrypt all 12,956 symbols, and the same key-free fingerprint locates every generated reserved symbol at its original source offset. This demonstrates sensitivity to a true copied passage inside the candidate architecture. The grid is original source material; its use as a **synthetic** key does not make it the historical key.
+
+The attack is reproducible in [`sims/lossless_echo_crib_fingerprint.cjs`](../sims/lossless_echo_crib_fingerprint.cjs). It is a new **source-exact exclusion**, rather than another claim that a plausible English word was decrypted. It does not exclude distinct lost books, edited or noncontiguous material, a different 29-symbol register, or the many alternative stateful encryption mechanisms. No unknown LP2 plaintext, genuine key or destination was recovered.
+
 ## Decision
 
 This is an explicit **lossless counterexample** to the assumption that lag-six/five echoes and severely reduced doublets require unrecoverable overwritten ciphertext. The original printed ciphertext admits a deterministic inverse and exact re-encryption under the model, but its hidden text is not readable with the tested original grid schedules. Preserve the implementation as an alternative to lossy surrogate generators and a reusable candidate for independently recovered key bytes. **Do not promote to established LP2 cipher**, and avoid expanding another unanchored key sweep simply to optimize the synthetic feature match.
