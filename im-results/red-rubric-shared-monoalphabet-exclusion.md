@@ -8,8 +8,8 @@ The original LP2 image-color annotations identify whole red rubric headings at *
 
 | Source | Original ciphertext glyphs | GP length |
 |---|---|---:|
-| LP2 page 3, second red word | \`ᛇᚻᛝᚳᚦᛏᚫᛄᛏᛉᚻ\` | 11 |
-| LP2 page 27, second red word | \`ᛚᛋᚩᚪᚫᚻᛚᛖᛇᛁᛗᛚ\` | 12 |
+| LP2 page 3, second red word | `ᛇᚻᛝᚳᚦᛏᚫᛄᛏᛉᚻ` | 11 |
+| LP2 page 27, second red word | `ᛚᛋᚩᚪᚫᚻᛚᛖᛇᛁᛗᛚ` | 12 |
 
 Test a source-driven hypothesis: **a single fixed but otherwise completely unknown bijective substitution of the 29 GP rune labels applies to both headings**, and their plaintext words are in the pinned 29,060-distinct-GP-word TextBlob English lexicon. First allow **zero or one arbitrary inserted ciphertext null per source word**, then extend exactly to **up to two insertions per word**. The source-word order and all surviving source characters are intact, and the symbol substitution must remain injective across both words. A per-page changing alphabet, unknown intermediate register, transcription-altering deletions, more than two insertions per word or source words outside the selected lexicon are explicitly outside the test.
 
@@ -49,7 +49,7 @@ The same test builds a source-independent **held-out eight-rune synthetic cipher
 
 ## Recovery control and consequence
 
-Generate a new uniformly permuted 29-rune alphabet using deterministic seed \`0x1807f0e3\`, apply it to known GP word lengths 10 and 11, and insert one arbitrary extra rune at zero-based positions **5** and **11**. The planted source words are *GRANDMOTHER* and *COMPLICATED*, neither known to the inverse as a fixed answer. The same candidate enumerator and global-assignment test recover the true source pair with **both exact deletion positions**, among five jointly compatible candidates. A second planted test inserts **two** arbitrary runes per word at positions [4,9] and [3,11] with the same hidden substitution alphabet; the inverse verifies both whole plaintext words and all four deleted positions. It also verifies the separately generated eight-rune held-out SPIRIT control described above. The planted algorithms are therefore within the searched families and correctly invertible.
+Generate a new uniformly permuted 29-rune alphabet using deterministic seed `0x1807f0e3`, apply it to known GP word lengths 10 and 11, and insert one arbitrary extra rune at zero-based positions **5** and **11**. The planted source words are *GRANDMOTHER* and *COMPLICATED*, neither known to the inverse as a fixed answer. The same candidate enumerator and global-assignment test recover the true source pair with **both exact deletion positions**, among five jointly compatible candidates. A second planted test inserts **two** arbitrary runes per word at positions [4,9] and [3,11] with the same hidden substitution alphabet; the inverse verifies both whole plaintext words and all four deleted positions. It also verifies the separately generated eight-rune held-out SPIRIT control described above. The planted algorithms are therefore within the searched families and correctly invertible.
 
 **Consequence:** The two distant red headings do not behave as direct dictionary-covered GP-English words encoded by **one constant, global monoalphabetic substitution**, under at most two inserted runes per word across the original highlighted headings. The two anchor words alone first become compatible at four deletions, but all resulting global alphabets are excluded by additional original ink-selected eight-rune headings. This closes a source-highlighted, mathematically exact shared-alphabet family and disfavors treating all red headings as a separately solved, uncomplicated substitution cipher. A real decipherment still requires an original-key/transform recovery and independent passage verification.
 
