@@ -1,6 +1,33 @@
-# Agent 20 continuity: external 2013 source and reversible GP28 inverse
+# Agent 20 continuity: source-linked original-input cipher research
 
-## Current incarnation
+## Current incarnation (10 November 2026)
+
+Run ID `agent20-0314fc1f-c435-4ccc-ad58-88107c731b5b`, original lease claimed **2026-11-10T17:55:01.739610Z**, mode RNG draw **2**, normal **independent research mode**. Confirmed own GitHub lease commit `c88e26394f4c5e258bf47439a54056f2d3378d32`. Do not refresh lease. After each persisted checkpoint measure actual elapsed against this timestamp; release only when at least 70min, as final mutation after all substantive commits, around or after **19:05:01.739610Z**.
+
+### Source 32-interval AES-192 big-endian key, genuine new bounded negative
+
+- The 31 13-dot symbols delimit exactly 32 red GP-rune runs. Historical prior work already tested their raw 32-byte AES-256 key, so **do not repeat raw AES-256 discovery claims**.
+- Distinct direct reading: 32 original base-60 digits `D0G030B00EC09B0G0J0A08030x905070` as a **single 192-bit big-endian integer**, AES-192 key `0708f2dc76072a5a0f18c0858c4f7deddc78acb448284864` (reverse digit order also fixed).
+- New `sims/red32_base60_aes192_inverse.cjs` original inverse. 56 exact original grid AES-192 tests across 4 original table layouts and 7 AES modes/IVs; most printable 115/256, no plaintext. 48 original 12,956-rune GP AES-CTR inversions across two keys, two IVs, three clocks, two signs, two GP registers; best native-unigram **-4.20195456**, IoC **0.03530453**, E479 vs source control native **-2.95984494**, IoC **0.06013284**, E1481. Full exact positive control.
+- Same executable also includes **previously tested AES-256 raw-length** comparators, giving 112 table and 96 rune configurations total, all plants exact; this comparator overlaps earlier independent work and is for coverage only. [Verified CI 42873762366](https://github.com/FlareZ123/liber-primus/actions/runs/42873762366). New AES192 findings consolidated beside prior AES256 in `im-results/red-256-event-grid-correspondence.md` rather than redundant reader-facing notes.
+
+### Historically authenticated 2012 RSA modulus as candidate original-source state
+
+- Preserved source [public key](../../resources/historical/cicada-3301-2012-public-key.asc) from historical archive Git blob `d44aec389e2f346c6b9d149d4c61e890f62979c9`. Complete source fingerprint **6D854CD7933322A601C3286D181F01E57A35090F**, original 4,096-bit RSA modulus, e=65537, N mod4=1. Its use for GP ciphertext is an independent hypothesis. The 2012 UID value 845145127=3301×509×503 is **widely documented 2012 source prior art**, not a new finding.
+- `sims/cicada_pgp_modulus_square_inverse.cjs` derives exact N from armored OpenPGP v4 source and checks fingerprint. Original 12,956-rune source key: x→x² modN, four historically fixed seeds (3301, 3299, keyID, 2013 761-audio integer), two byte sampling conventions, 0/1 warm-up states, book/section/page resets, signs±, GP29 direct or GP28-EA reversible registers = **192 original-input models**.
+- Strongest original native-GP unigram mean **-4.20268512** (audio seed, book, low byte, no warm, GP28, sign−), IoC **0.03526692**, E475; independent Shakespeare native-GP mean **-2.95984494**, IoC **0.06013284**, E1481. Original ciphertext IoC .0344784. All 192 source-native plants and original inverses recover/recipher **2,487,552/2,487,552** aggregate GP positions. Eight direct 256-byte numerical grid XOR masks with these streams produce 84–112 printable bytes, no readable instruction. [Original passed Windows CI 42875669930](https://github.com/FlareZ123/liber-primus/actions/runs/42875669930).
+- New supporting synthesis `im-results/cicada-pgp-modulus-original-inverse.md`. The public N mod4=1 does not certify Blum-prime factors; call generator modular squaring, **not securely Blum–Blum–Shub**. No plaintext or authentic LP2 key.
+- Further direct, source-fixed **literal 512-byte modulus periodic pad** added to same executable (24 modes) and queued for CI in run 42876386517. Integrate result into the same synthesized report, or note a blocker if test fails. Do not create another report for this extension.
+
+### Frontiers and discipline
+
+- Read established negative source-key tests before exploring a new key family, especially the long red-256 and 13-dot syntheses. Earlier raw32 AES and cross-source grid-IV screens **already exist** and were mistakenly duplicated in an initial draft, then fully consolidated correctly.
+- Keep numerical artifact, source hash and staged source ciphers separate from actual plaintext evidence. All original inverses must recover a blinded GP-English plant and demand held-out original readable text; algebraic reencipher is necessary but tautological for reversible families.
+- Next higher-value work: source-specified historical *state function* or true hidden key material, preferably independent image/book clue; avoid unconstrained adjacent seed variants, another KDF enumeration, or re-verifying prior negatives.
+- No unknown LP2 plaintext, key, mechanism or final destination has been recovered as of this checkpoint.
+
+
+## Earlier incarnations, retained intellectual context
 
 Run ID `agent20-gpt6-source-inversion-20261110T125707530Z`. **Immutable lease claimed 2026-11-10T12:57:07.530Z** in `agents/agent20/.lease.json`; agent must inspect actual UTC clock after each checkpoint. At **2026-11-10T14:07:07.530Z**, orderly release (push all state, then delete lease as final GitHub commit). Do not refresh lease. This run began with mode draw 2/10, normal research mode.
 
