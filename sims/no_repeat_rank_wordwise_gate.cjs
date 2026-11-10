@@ -221,14 +221,14 @@ function positivePlant(kind, seed) {
   for (const word of source) (pools[word.length] ||= []).push(word);
   let previousCipher = null;
   let recovered = 0, firstRecovered = 0, rankRecovered = 0;
-  let markers = 0, reciphered = 0, pageResets = 0;
+  let markers = 0, reciphered = 0, pageBoundaryWordStarts = 0;
   for (let wi = 0; wi < targets.length; wi++) {
     const target = targets[wi];
     const pageReset = wi === 0 ||
       targets[wi - 1].endPage !== target.startPage;
     if (pageReset) {
       previousCipher = null;
-      pageResets++;
+      pageBoundaryWordStarts++;
     }
     const previousAtStart = previousCipher;
     const pool = pools[target.length];
@@ -284,7 +284,7 @@ function positivePlant(kind, seed) {
   assert.equal(reciphered, 12956);
   return {rankConvention: kind, recovered, firstRecovered, rankRecovered,
     markerErasures: markers, forwardCiphertextRunes: reciphered,
-    exactForwardRoundTrip: true, pageResets};
+    exactForwardRoundTrip: true, pageBoundaryWordStarts};
 }
 const planted = {
   sorted: positivePlant("sorted", 0x51515151),

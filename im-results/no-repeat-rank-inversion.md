@@ -51,24 +51,23 @@ Any fixed per-word permutation of the 28 ranks preserves that word's collision c
 
 For each of the 2,896 LP2 words, independently sample a source GP-English word of exactly the same encoded rune length, with replacement, and apply the same within-word erasure positions. The source tokenizer and GP encoder are the repository's existing controls; IA is folded to I and EA to code 27 to give the same 28-symbol register. All 2,896 target lengths are represented in every source pool. Each replicate therefore preserves the entire original word-length sequence and the 63 within-word erasures, not merely a length histogram.
 
-Each reference used **5,000** seeded manuscripts. The score is the same aggregate within-word collision count divided by 39,930; the rank permutation is allowed to differ independently for every word.
+Each reference used **5,000** seeded manuscripts. The score is the same aggregate within-word collision count divided by 39,930; the rank permutation is allowed to differ independently for every word. The implementation uses the repository's `seededRandom` generator and samples each matched source word with `floor(random × poolSize)`.
 
 | Reference source | Control mean IoC | SD | Sorted z | Cyclic z | Controls at or below either LP2 score |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Shakespeare | 0.05361538 | 0.00153870 | −11.440 | −10.659 | 0 / 5,000 |
-| Gibran | 0.05163704 | 0.00158304 | −9.870 | −9.110 | 0 / 5,000 |
-| Emerson | 0.05084995 | 0.00147921 | −10.030 | −9.218 | 0 / 5,000 |
+| Shakespeare | 0.05357532 | 0.00151057 | −11.626 | −10.830 | 0 / 5,000 |
+| Gibran | 0.05157201 | 0.00155769 | −9.989 | −9.217 | 0 / 5,000 |
+| Emerson | 0.05082604 | 0.00153464 | −9.652 | −8.869 | 0 / 5,000 |
 
 The plus-one lower-tail estimate is **1/5,001 = 0.00019996** for each of the six source × rank-convention comparisons. A conservative Bonferroni bound over those six comparisons is **≤0.00120**. This correction is local to these controls; it does not account for the repository-wide historical search over cipher families.
 
 ### Positive-control implementation
 
-A synthetic word-reset cipher independently chooses a 29-symbol leader permutation and a 28-symbol rank permutation for every word, preserves the original 23 word-start and 63 within-word marker positions, and resets at the original page boundaries. Under both sorted and cyclic conventions, the inverse recovers **12,870/12,870** non-marker plaintext symbols and the forward encoder reproduces **12,956/12,956** ciphertext symbols exactly. This verifies the implementation and the collision invariant; it is not evidence that LP2 used this mechanism.
+A synthetic word-reset cipher independently chooses a 29-symbol leader permutation and a 28-symbol rank permutation for every word, preserves the original **23 word-start** and **63 within-word** marker positions, and retains the original page-boundary word continuations. Under both sorted and cyclic conventions, the inverse recovers **12,870/12,870** non-marker plaintext symbols and the forward encoder reproduces **12,956/12,956** ciphertext symbols exactly. This verifies the implementation and the collision invariant; it is not evidence that LP2 used this mechanism.
 
 ### Scope
 
 This rejects the two specified natural predecessor-exclusion rank orders followed by an arbitrary fixed 28-symbol permutation per word, under English-like GP plaintext and the canonical original word boundaries. It does **not** reject a rank order that itself changes by word, a permutation that evolves within a word, an additional running key, a different language or intermediate register, altered segmentation, or another encoding of the repeated outputs. No LP2 plaintext or authentic key is recovered.
-
 ## Conclusion
 
 The global/page-reset experiment excludes its declared fixed rank conventions under English-like GP plaintext even when the 28-symbol register is renamed globally or independently by page. The word-reset extension is stricter about key scope: it allows an unrelated arbitrary 28-symbol bijection for every canonical word. Nevertheless, the original within-word rank collision IoC remains **0.036013 / 0.037215** for sorted/cyclic order, far below exact word-length- and erasure-matched English controls. Therefore neither natural rank order followed by a fixed per-word permutation supplies a plausible direct English-GP inverse.

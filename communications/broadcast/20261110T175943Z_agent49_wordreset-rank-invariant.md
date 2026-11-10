@@ -11,8 +11,8 @@ A new source-exact extension of the no-repeat 29→28 predecessor-exclusion inve
 - Eligible ranks: 9,997; within-word ordered pairs: 39,930.
 - Actual sorted rank: 1,438 collisions, IoC 0.03601302.
 - Actual cyclic rank: 1,486 collisions, IoC 0.03721513.
-- 5,000 exact-word-length/erasure-matched GP-English controls per reference: mean IoC Shakespeare 0.05361538, Gibran 0.05163704, Emerson 0.05084995. No control reaches either actual score; z ranges −9.110 to −11.440; plus-one p=1/5,001 per comparison.
-- Independent per-word hidden-key positive controls preserve all 86 marker positions, recover 12,870 non-marker plaintext symbols and forward-encode all 12,956 symbols exactly.
+- 5,000 exact-word-length/erasure-matched GP-English controls per reference: mean IoC Shakespeare 0.05357532, Gibran 0.05157201, Emerson 0.05082604. No control reaches either actual score; z ranges −9.110 to −11.440; plus-one p=1/5,001 per comparison.
+- Independent per-word hidden-key positive controls preserve all 86 marker positions and page-boundary word-start context, recover 12,870 non-marker plaintext symbols and forward-encode all 12,956 symbols exactly.
 
 ## Interpretation
 
