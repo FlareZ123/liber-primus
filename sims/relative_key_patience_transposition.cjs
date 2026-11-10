@@ -224,6 +224,7 @@ function study() {
   const inverseColumnScore=score(reorderColumns(d,inverted),log);
   const rand=randomGenerator(39393);
   let plantWins=0,comparisons=0,plantTop5=0;
+  let onePagePlantWins=0,onePagePlantTop5=0,onePagePlantChecks=0;
   const advantages=[];
   for (let k=0; k<60; k++) {
     const offset=1000+510*k;
@@ -243,6 +244,10 @@ function study() {
     const recovered=reorderRows(scrambled,PATIENCE);
     assert.deepEqual(recovered,known);
     const trueScore=score(recovered,log);
+    const oneSideKnown=diff(ca,reorderRows(sb,PATIENCE));
+    assert.deepEqual(oneSideKnown,known);
+    const oneSideTrue=marginalScore(oneSideKnown,marginal)+score(oneSideKnown,log);
+    let oneSideBeat=0;
     let beat=0,mean=0;
     for(let t=0;t<250;t++){
       const order=[0,1,2,3,4,5,6,7];
@@ -253,10 +258,16 @@ function study() {
       const alternative=score(reorderRows(scrambled,order),log);
       beat+=alternative<=trueScore;
       mean+=alternative;
+      const oneSideOther=diff(ca,reorderRows(sb,order));
+      const joint=marginalScore(oneSideOther,marginal)+score(oneSideOther,log);
+      oneSideBeat+=(joint<=oneSideTrue);
     }
     plantWins+=beat;
     comparisons+=250;
     plantTop5+=(beat>=238);
+    onePagePlantWins+=oneSideBeat;
+    onePagePlantChecks+=250;
+    onePagePlantTop5+=(oneSideBeat>=238);
     advantages.push(trueScore-mean/250);
   }
   advantages.sort((a,b)=>a-b);
@@ -277,9 +288,12 @@ function study() {
       exactSourceInversePassed:60,
       correctKeyBeatsRandomFraction:plantWins/comparisons,
       positiveTopFivePercentCases:plantTop5,
-      medianTrueKeyAdvantageNats:advantages[30]
+      medianTrueKeyAdvantageNats:advantages[30],
+      onePageTrueKeyBeatsRandomFraction:onePagePlantWins/onePagePlantChecks,
+      onePageTrueKeyTopFivePercentCases:onePagePlantTop5,
+      onePageExactRoundTripsPassed:60
     },
-    conclusion:'Source ordering is only top ~5.7% for within-row permutation; true-key source plants have partial power. No independent original plaintext/key. Columnar reading is weaker.'
+    conclusion:'The historically source-fixed PATIENCE order ranks only 2315/40320 for joint rowwise permutation. Single-page transposition destroys the already postselected p28/p42 difference inventory. No original plaintext or authentic key recovered.'
   };
 }
 if(require.main===module) console.log(JSON.stringify(study(),null,2));
