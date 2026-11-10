@@ -134,6 +134,58 @@ function positiveControl(order) {
   return {packets: 95, decodedRunes: decoded, reencryptedRunes: encoded};
 }
 
+/**
+ * A violated first-two-digit constraint references only two or three
+ * original rune labels. Any satisfying secret order must change the assigned
+ * cyclic position of at least one label in each violated constraint.
+ * Minimum vertex cover of this finite 29-vertex hypergraph therefore gives
+ * an EXACT lower bound on the number of altered label assignments.
+ * It is not a proof that a permutation at that distance is feasible.
+ * @param {number[]} pi
+ */
+function mandatoryChangedLabels(pi) {
+  const edges = [];
+  for (const s of blockStarts) {
+    const a = original[s - 1], b = original[s], c = original[s + 1];
+    const d0 = (pi[b] - pi[a] + 28) % 29;
+    const d1 = (pi[c] - pi[b] + 28) % 29;
+    if (d0 > 15) edges.push((1 << a) | (1 << b));
+    else if (d0 === 15 && d1 > 12)
+      edges.push((1 << a) | (1 << b) | (1 << c));
+  }
+  const pop = mask => {
+    let n = 0;
+    for (; mask; mask &= mask - 1) n++;
+    return n;
+  };
+  const unique = [...new Set(edges)].sort((a, b) => pop(a) - pop(b));
+  let minimum = 29;
+  function search(rest, selected) {
+    if (selected >= minimum) return;
+    if (rest.length === 0) { minimum = selected; return; }
+    const degree = new Int32Array(29);
+    for (const edge of rest) {
+      for (let mask = edge; mask; mask &= mask - 1)
+        degree[31 - Math.clz32(mask & -mask)]++;
+    }
+    let choice = rest[0], best = -1;
+    for (let i = 0; i < Math.min(rest.length, 12); i++) {
+      let score = 0;
+      for (let mask = rest[i]; mask; mask &= mask - 1)
+        score += degree[31 - Math.clz32(mask & -mask)];
+      if (score > best) { best = score; choice = rest[i]; }
+    }
+    const labels = [];
+    for (let mask = choice; mask; mask &= mask - 1)
+      labels.push(31 - Math.clz32(mask & -mask));
+    labels.sort((a, b) => degree[b] - degree[a]);
+    for (const label of labels)
+      search(rest.filter(edge => !(edge & (1 << label))), selected + 1);
+  }
+  search(unique, 0);
+  return minimum;
+}
+
 const cases = [];
 for (const reverse of [false, true]) {
   const ordered = reverse ? nonzero.slice().reverse() : nonzero;
@@ -141,7 +193,8 @@ for (const reverse of [false, true]) {
     const runeOrder = ordered.slice();
     runeOrder.splice(zeroPosition, 0, 21);
     const stats = originalGate(inverseOrder(runeOrder));
-    cases.push({reverse, zeroPosition, ...stats});
+    const mandatoryChanged = mandatoryChangedLabels(inverseOrder(runeOrder));
+    cases.push({reverse, zeroPosition, ...stats, mandatoryChanged});
   }
 }
 assert.equal(cases.length, 58);
@@ -161,6 +214,12 @@ const result = {
   candidateSourceOrders: cases.length,
   ordersPassingAllPackets: cases.filter(c => c.badFull === 0).length,
   minimumInvalidPackets: min,
+  minimumNecessaryChangedRuneLabels:
+    Math.min(...cases.map(c => c.mandatoryChanged)),
+  necessaryChangeHistogram: cases.reduce((hist, c) => {
+    hist[c.mandatoryChanged] = (hist[c.mandatoryChanged] || 0) + 1;
+    return hist;
+  }, {}),
   bestOriginalOrderCases: best,
   literalGpOrder: originalGate(inverseOrder(
     Array.from({length: 29}, (_, i) => i))),
