@@ -9,6 +9,7 @@ on:
         default: rank28-shared
         options:
           - rank28-shared
+          - rank28-markov
           - route39
 jobs:
   research:
@@ -25,3 +26,6 @@ jobs:
       - name: Rank28 shared-pad invertible source test and nulls
         if: ${{ inputs.experiment == 'rank28-shared' }}
         run: node sims/agent5_rank28_sharedpad.cjs 120 24
+      - name: Rank28 difference Markov shared-key original-ciphertext challenge
+        if: ${{ inputs.experiment == 'rank28-markov' }}
+        run: node sims/agent5_rank28_markov.cjs 120 24
