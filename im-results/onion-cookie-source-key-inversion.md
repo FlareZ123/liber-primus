@@ -1,6 +1,17 @@
-# Fixed 2013 onion-cookie key material under direct LP2 stream ciphers
+# Historical Cicada source material under original-LP2 reversible stream-key inversions
 
-**Evidence class:** source-defined candidate-key experiment with exact planted decryption and independent original-page holdout. Agent 13, 2026-11-10. **No recovered plaintext, key, or intended puzzle destination.**
+**Evidence class:** finite source-selected candidate-key families with planted decryption and original-page holdout. Agent 13, 10 November 2026. **No unknown LP2 plaintext, authentic key, cipher mechanism, or intended destination recovered.**
+
+Two independently documented pieces of historical Cicada cryptographic data have now been challenged under precisely declared AES-256-CTR/ChaCha20 stream systems. Both sources fail on original LP2. The common method handles up to one collision-rejected keystream draw per plaintext symbol through the same exact constrained inverse; source-heldout GP-English controls show the approach can discriminate a correct key.
+
+| Source-derived candidate family | Fixed model count | True-key language-ranked plant | Original train-selected model, frozen heldout |
+| --- | ---: | ---: | ---: |
+| 2013 onion cookie values 167/761, including bounded derived keys | 112 keyskip; 168 direct-stream | 1,260/1,260 GP runes recovered under known key | −5.722980 nats/rune (keyskip); direct-stream heldout IoC 0.03448625 |
+| 2014 factored RSA-432 private/public integers p,q,n,d | 192 keyskip | 1,258/1,260 blindly; 1,260/1,260 with planted exact skip witness | **−6.032611** nats/rune; postselected best heldout −5.578974 |
+
+The language-ranked positive plant's heldout score is −2.540183 for the 2013-cookie family and −2.703607 for the 2014-RSA family. These are diagnostic source-model scores, not universal p-values. Source-specific tested derivations and modes are given below.
+
+## 2013 onion-cookie source keys
 
 ## Independent historical key hypothesis
 
@@ -49,8 +60,30 @@ The highest training-ranked source model on actual LP2 emits gibberish under all
 
 Reproducer: [`sims/onion_cookie_keyskip_inverse.cjs`](../sims/onion_cookie_keyskip_inverse.cjs), invoked in the same manual workflow as the direct test.
 
+## Factored 2014 RSA-432 material: a separate historical key source
+
+Cicada's original 2014 RSA-432 factoring challenge was solved publicly, providing the exact two factors
+`p = 97513779050322159297664671238670850085661086043266591739338007321` and
+`q = 77506098606928780021829964781695212837195959082370473820509360759`, with exponent `e=65537`. The [historical solver account](https://connortumbleson.com/2021/02/15/the-cicada-3301-mystery-puzzle-3-part1/) records both factors, independent of our cipher hypotheses. The [runnable source-key test](../sims/rsa2014_factored_key_inverse.cjs) computes their product `n`, Euler totient, and modular-inverse private exponent `d` exactly, checking that the public modulus is the expected 432-bit number.
+
+For a bounded key-derivation family, SHA-256 is applied to unsigned minimal big-endian `p`, `q`, `n`, `d`, and concatenated `p||q` and `q||p`; SHA-256 of the decimal `n` and `d` strings is also tested. The leading and trailing 32 bytes of unsigned big-endian `n` and `d` give four direct 256-bit truncation candidates. This fixes **12** candidate keys without using any LP2 ciphertext values to build them. Crossing **two ciphers × two IV clocks (all-zero versus physical-page index) × two byte-to-GP reductions × two signs** yields **192** original-input models.
+
+Original selection uses the first 130 runes of six authentic red-heading physical LP2 pages **0, 3, 8, 23, 27, 40**. Their next 80 runes per page form unchanged continuation holdouts, with each page's inferred rejected-draw offset carried forward. The common Viterbi language model trains on an independent 210,000-character Shakespeare reference interval. The fixed stream model allows zero or one collision-rejected pad draw per plaintext symbol, up to 34 extra draws in the original 130-rune prefix. Source bytes and IVs are frozen before training, and original text influences only the ranking among complete source-fixed models.
+
+The [completed manual CI run 42799084155](https://github.com/FlareZ123/liber-primus/actions/runs/42799084155) reports:
+
+| Measured candidate | Mean train GP-trigram score | Frozen original heldout |
+| --- | ---: | ---: |
+| Source-true synthetic GP-English plant, RSA-derived `SHA256(p||q)`, AES-256-CTR, page-index IV, modulo-29, positive sign | −2.512006 | −2.703607 |
+| Original training winner, `SHA256(n)`, ChaCha20, page-index IV, scaled-29, positive sign | **−5.680608** | **−6.032611** |
+| Descriptive postselected original heldout winner, `SHA256(p)`, AES-256-CTR, zero IV, modulo-29, negative sign | −5.848564 | −5.578974 |
+
+The planted source-correct key/mode ranks **1/192**. The blind language-model inverse correctly assigns **1,258/1,260** known GP-English runes; a separately retained exact synthetic skip-state witness proves **1,260/1,260** correct known-key plaintext recovery and forward re-encryption. The two language-ranked errors are explicit and should not be described as perfect blind recovery. The manuscript candidates are random-looking rune strings with much worse scores than the source-true positive. There is no genuine unknown LP2 plaintext, private key relation to LP2, or decoded destination.
+
+This experiment excludes only these SHA-256/truncation key derivations in the declared cipher and clock families. The RSA factors themselves are independently valid historical solver material; their proposed use as LP2 AES/ChaCha keys is unsupported, and the negative original result closes that specific reuse of the clue. A source-authenticated instruction would be needed to justify expanding the RSA derivation family.
+
 ## Interpretation and reproducibility
 
-The two reported 2013 cookie values, the tested concatenation/XOR/reversal constructions, and the stated direct and one-key-collision-rejected AES-256-CTR/ChaCha20 modulo-29 stream models fail to explain the original LP2 ciphertext. The finite results leave open intermediate KDFs, word-local transformations, alternative state machines, independently unknown IVs, non-English source registers, or unrelated archived key material.
+The 2013 cookie source and 2014 RSA-factor source fail to explain original LP2 under the exact source-byte derivations and AES/ChaCha20 collision-keyskip architectures above. An independently demonstrated original-source inverse remains the decisive requirement. The finite results leave open intermediate KDFs, word-local transformations, alternative state machines, independently unknown IVs, non-English source registers, or unrelated archived key material.
 
-Reproducer: [`sims/onion_cookie_key_probe.cjs`](../sims/onion_cookie_key_probe.cjs) reads the original LP2 corpus, generates every byte stream using built-in Node.js cryptography, checks the planted-key rank, and prints all original-training leaders plus the holdout decision. The [manual-only runner](../.github/workflows/onion-cookie-key-manual.yml) invokes both reproducible tests without adding per-commit CI. These source values should not be promoted to established LP2 key material without an independently demonstrated inverse on original ciphertext.
+Reproducer: [`sims/onion_cookie_key_probe.cjs`](../sims/onion_cookie_key_probe.cjs) reads the original LP2 corpus, generates every byte stream using built-in Node.js cryptography, checks the planted-key rank, and prints all original-training leaders plus the holdout decision. The [manual-only runner](../.github/workflows/onion-cookie-key-manual.yml) invokes both reproducible tests without adding per-commit CI. Neither historical source should be promoted to established LP2 key material without an independently demonstrated inverse on original ciphertext.
