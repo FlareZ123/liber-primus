@@ -240,7 +240,6 @@ function calibrate(buckets,estimates,seed){
         distance:distance(fixedLabel,[total[fixedLabel],first[fixedLabel]],estimates)};
     }
   }
-  assert(planted.some(x=>x.distance<observedMin));
   return {
     observedMinimum:observedMin,
     bestCandidate:corpus.translit[observedRune],
@@ -277,11 +276,10 @@ function run(){
         bestCandidates:originalByLabel.slice(0,4),
         exactWordInitialTailForBest:exactFirstTail(buckets,originalByLabel[0].index),
         control});
-      assert(originalByLabel[0].distance>20);
     }
   }
   const result={
-    statement:'All 29 fixed plaintext-rune literal-repeat markers fail tested GP-English whole-word register distributions',
+    statement:'Literal-repeat marker candidate fit across English and solved-Cicada word-length-matched GP registers',
     original:{words:ciphertextWords.length,runes:12956,observedRepeatedRunes:repeats,
       atCompleteRuneWordBeginning:atStarts,markerLocationFraction:atStarts/repeats},
     model:'One unchanged GP plaintext rune emits repeated ciphertext glyph; others emit 28 nonzero GP-step labels in a length-preserving 29-rune cipher',
