@@ -15,6 +15,26 @@
 
 - Archived extraction: https://github.com/micheloosterhof/cicada-2016/blob/master/stage01/4gq25.jpg.outguess
 - Git blob SHA: `a0d8bd2d73613e01cd8a2103d5721b2b998ee482` (1,136 bytes).
-- The file is an ASCII OpenPGP clear-signed message with key ID `7A35090F`. It contains the same visible instruction text, including “The path lies empty; epiphany seeks the devoted” and “Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.” It does not add an explicit A-road name, coordinate, cipher key, or LP2 plaintext.
+- The file is an ASCII OpenPGP clear-signed message with key ID `7A35090F`. The archive's `stage01/README.md` documents extraction with `outguess -r 4gq25.jpg 4gq25.jpg.outguess` and reports `seed: 230, len: 1136`. It also reports a good GPG signature from “Cicada 3301 (845145127)” using RSA key `0x181F01E57A35090F`, fingerprint `6D85 4CD7 9333 22A6 01C3 286D 181F 01E5 7A35 090F`. This invocation inspected the archived payload and README but did not independently rerun OutGuess or GPG.
+
+The complete signed text in the archived extraction is:
+
+```text
+Hello.
+
+The path lies empty; epiphany seeks the devoted.
+
+Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.
+
+Seek and you will be found.
+
+Good luck.
+
+3301
+
+Beware false paths. Verify OpenPGP 7A35090F.
+```
+
+The explicit **“Beware false paths”** warning is important: semantic/geographic matches must be tested against alternatives and an independently fixed stopping rule. The signed text does not add an explicit A-road name, coordinate, cipher key, or LP2 plaintext.
 
 This is a reference record for the archived copies. The blob SHA establishes that the two repository copies are byte-identical to each other, not that either archive independently authenticates the original publication.
