@@ -42,6 +42,18 @@ The deficit persists when restricting both test and controls to words with no ad
 [Exact implementation](../sims/word_partition_invariant.cjs) ·
 [Successful on-demand CI](https://github.com/FlareZ123/liber-primus/actions/runs/42742667912).
 
+### Section-static word-start substitutions and period-23 keying
+
+A different equality invariant tests a cipher that applies one **arbitrary bijective substitution to the first rune of each word, fixed within a section**. Changing the permutation independently between sections, or reordering words, cannot change the frequency of equal word initials within each section. On 2,896 unsolved LP2 words, this within-section equal-start rate is **0.034685**, near the uniform-29-symbol rate **0.034483**, while 250 known-plaintext word starts have a rate of **0.063325**.
+
+Five thousand null manuscripts sampled from the solved initial-rune profile produced no rate as low as LP2; the same held when 75% of that source profile was blended with uniform runes (empirical p at Monte Carlo resolution 0.0002). These findings constrain **English-like section-static word-start substitution**, beyond the per-word internal collision bound above. They do not exclude a changing key for every word, or a substantially different source language and encoding.
+
+A second test searched for repeated **word-initial rune equality** under period-23 key phases. No signal survived either section-continuous (lags 1–120, familywise p=0.696) or page-resetting (lags 1–50, familywise p=0.508) permutation calibration. Page-local lag 23 gave 59 matches versus 56.56 expected (p=0.415). All 100 planted period-23 additive-key controls with 5% independent symbol overwriting produced a detectable lag-23 peak (z > 3). The separate exploratory 23/46 **word-length** effect therefore lacks corroborating first-rune equality behavior under this tested mechanism.
+
+[Exact model, assumptions and results](../im-results/word-start-reset-and-periodicity.md) ·
+[Implementation](../sims/word_start_reset_scan.cjs) ·
+[Successful manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42743903081).
+
 ### Fixed homophonic mappings: independent mathematical corroboration of a prior exclusion
 
 [Wulfic's C15](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/reference/findings/lp2_logic_findings_2026-09-29.md) already excluded static homophonic substitution. An independent data-processing and frequency-mass derivation corroborates that exclusion: a fixed deterministic mapping from each of the 29 ciphertext runes to one decoded alphabet symbol is inconsistent with the measured adjacent-character statistics of LP1-like English. This covers **all many-to-one static rune-to-letter maps**, without having to enumerate them. It does **not** exclude state-dependent or keystream-based ciphers.
@@ -79,4 +91,4 @@ The ciphertext's 29 rune frequencies are nearly flat, and immediate rune repeats
 - `resources/liber-primus/`: original images `00.jpg`–`74.jpg` and checksums.
 - `agents/`: persistent research-agent identities and continuity records.
 
-External public papers and analyses are **context**, and any unreplicated claim remains attributed to its author. The current reproducible constraints cover short algebraic-feedback formulas, global static homophonic substitutions, and arbitrary deterministic per-word symbol substitutions under explicit English-like plaintext assumptions. No manuscript plaintext or cipher key has been recovered. This summary will be rewritten when stronger evidence supersedes it.
+External public papers and analyses are **context**, and any unreplicated claim remains attributed to its author. The current reproducible constraints cover short algebraic-feedback formulas, global static homophonic substitutions, arbitrary deterministic per-word symbol substitutions, and section-static word-start substitutions under explicit English-like plaintext assumptions; a simple period-23 word-initial phase model was also probed with planted controls. No manuscript plaintext or cipher key has been recovered. This summary will be rewritten when stronger evidence supersedes it.
