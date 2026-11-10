@@ -1,0 +1,23 @@
+# Agent 15: shared-pad affine-alphabet constructive cryptanalysis
+
+## 10 November 2026, current incarnation
+
+Claimed at **2026-11-10T06:07:30.934Z** as run `agent15-gpt6-20261110060730934-matrixcrypt`. Initial random mode draw 7 (normal). Claims must not be refreshed or released until the actual 70-minute lease-age threshold.
+
+Main research insight: a **common hidden mod29 pad can be analytically cancelled across pages even when each physical page has its own unknown invertible affine rune alphabet**, after recovering Fourier frequency alignments. For C[j,t]=a[j](P[j,t]+K[t])+b[j] mod29, fit h[j]*a[j]=q; with u=q^-1, define Y[j,t]=u*h[j]*C[j,t]. Then Y[i,t]-Y[j,t]=(P[i,t]-P[j,t])+(B[i]-B[j]) mod29, independent of K[t]. Fit relative offsets using the exact GP-English pair-difference distribution r(d)=sum_x p(x)p(x-d). Infer key symbols and candidate plaintext only after pair offsets. This removes a major otherwise unconstrained key-fitting dimension. Needs a real *independent key-sharing clue* or positive held-out language evidence before asserting LP2 plaintext.
+
+### Durable reusable implementation
+
+- `sims/affine_page_spectral_sync.cjs` implements blind Fourier harmonic search under 49 independent page-affine rune labels; three fixed reference pages, 14 reference harmonics, 28 per-page frequency choices, 3 coordinate rounds, train-even/test-odd. 160 real page-rotation nulls, 24 new independent positive controls. Final successful run [42769529099](https://github.com/FlareZ123/liber-primus/actions/runs/42769529099): real heldout0.9652, null mean1.0103, p0.5963; 11/12 zero-rewrite and 11/12 81%-rewrite plants detected, often recovering 39–46 true relative page multipliers.
+- `sims/affine_page_joint_inverse.cjs` uses train-only 36-page spectral core, 28 global multipliers, exact pair-difference likelihood matrices for all 630 pairs of pages, four initialized graph coordinate-ascent solves and full column-key posterior maxima. 75 even original positions fit, odd phase keys inferred from half the pages and scored on the other half. Final successful run [42770844605](https://github.com/FlareZ123/liber-primus/actions/runs/42770844605): original heldout English-GP loglik -4.31568, rotated null mean -4.26123, p0.85366 (40 nulls). **Constructively recovered** 70.787% of untouched planted plaintext glyphs on average in 8 unedited, 51.009% in 8 collision-rewritten plants; at least one plant had all 36 selected affine multipliers exact and 88% of held-out original GP glyphs recovered. Still no original LP2 decryption.
+- `sims/grid256_affine_phase_spectral.cjs` tests **one continuous global 256-period pad** motivated by the 256-byte original number grid: reorders 33 original LP2 physical pages with >=256 runes by exact key index (global rune offset mod256), preserving distinct symbols, and fits page-wise affine labels blindly. Run [42771243434](https://github.com/FlareZ123/liber-primus/actions/runs/42771243434): observed heldout1.05047 vs null1.00404, p0.3540, detected 10/12 unedited and 9/12 repaired plants. No original signal.
+
+Supporting synthesis: `im-results/affine-page-spectral-sync.md`, `im-results/affine-page-joint-inverse.md`. Both runnable via manual-only workflows `.github/workflows/affine-page-spectral-sync.yml` and `.github/workflows/affine-page-joint-inverse.yml`. Neither creates scheduled jobs. Existing repo results are extensive; avoid another marginal seed scan.
+
+### Opportunities worth actually pursuing
+
+The most promising next constructive extension, if time, is **joint graph synchronization under latent key-position slip** (rather than changing the key bytes), or a **source-based nonperiodic key** derived from visual/page markers. The current spectral inversion assumes exact one-symbol-per-rune synchronized keystream, page-reset or known 256-period global schedule, and English GP marginals. It has not tested nonuniform intermediate texts, random per-page key-start phases, key consumption on rejected collisions, or arbitrary output alphabets with source key clues.
+
+For any original-data claim require original rune indices and held-out evidence; the current best real heldout p-values 0.35–0.85 supply no actual decrypted LP2 plaintext. Do not promote positive synthetic controls as a Cicada solve.
+
+Source original JPEG archive is mounted locally in this invocation only; repository is primary source of truth. Agent15 has a claimed lease and must release according to prompt after 70 measured minutes.
