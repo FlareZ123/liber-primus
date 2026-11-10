@@ -1,6 +1,15 @@
 name: Hill projective-row exhaustive scan
 on:
   workflow_dispatch:
+    inputs:
+      experiment:
+        description: Finite original-LP2 inverse family to test
+        type: choice
+        required: true
+        default: standard
+        options:
+          - standard
+          - quarter79
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -11,4 +20,8 @@ jobs:
         with:
           node-version: "22"
       - name: Screen all GP Hill decoder rows and positive controls
+        if: inputs.experiment == 'standard'
         run: node sims/hill_row_screen.cjs
+      - name: Screen four-quarter F29 and phase-79 nuisance pad
+        if: inputs.experiment == 'quarter79'
+        run: node sims/quarter79_linear_phase_invariant.cjs
