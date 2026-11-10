@@ -92,13 +92,13 @@ function originalKeys(bytes,layout){
  * @param {'columns'|'chunks'} layout Original 8x32-byte serialization.
  * @returns {Array<{name:string,blocks:Array<{key:Buffer,nonce:Buffer}>}>}
  */
-function keyNonceOptions(bytes,layout){
+function keyNonceOptions(bytes,layout,digestBytes=DIGEST){
   const blocks=originalKeys(bytes,layout);
   if(IV_MODE==='digest-key')return [0,1].flatMap(keyHalf=>
     [0,1].map(nonceHalf=>({
       name:'digest-half'+keyHalf+'-grid-half'+nonceHalf,
       blocks:blocks.map(b=>({
-        key:DIGEST.subarray(32*keyHalf,32*keyHalf+32),
+        key:digestBytes.subarray(32*keyHalf,32*keyHalf+32),
         nonce:b.subarray(16*nonceHalf,16*nonceHalf+16)
       }))
     })));
@@ -151,9 +151,9 @@ function assignment(matrix){
 }
 
 /** @param {number[]} bytes @returns {object} */
-function attack(bytes){
+function attack(bytes,digestBytes=DIGEST){
   const models=[];
-  for(const layout of LAYOUTS)for(const scheme of keyNonceOptions(bytes,layout)){
+  for(const layout of LAYOUTS)for(const scheme of keyNonceOptions(bytes,layout,digestBytes)){
     const keys=scheme.blocks;
     for(const algorithm of ALGORITHMS){
       const stream=Object.fromEntries(REDUCERS.map(reducer=>[
@@ -163,19 +163,25 @@ function attack(bytes){
         const matrix=OBS[clock].map(o=>
           stream[reducer].map(k=>ioc(hist(o,k,sign,0,TRAIN),TRAIN)));
         const selected=assignment(matrix),pooled=new Int32Array(RADIX);
-        const trainPool=new Int32Array(RADIX);
-        let holdMean=0;
+        const trainPool=new Int32Array(RADIX),futurePool=new Int32Array(RADIX);
+        let holdMean=0,futureN=0;
         for(let j=0;j<8;j++){
           const obs=OBS[clock][j],pad=stream[reducer][selected.chosen[j]];
           const h=hist(obs,pad,sign,TRAIN,TRAIN+HOLD);
           const t=hist(obs,pad,sign,0,TRAIN);
           holdMean+=ioc(h,HOLD)/8;
-          for(let x=0;x<RADIX;x++){pooled[x]+=h[x];trainPool[x]+=t[x];}
+          const later=hist(obs,pad,sign,TRAIN+HOLD,obs.length);
+          futureN+=obs.length-TRAIN-HOLD;
+          for(let x=0;x<RADIX;x++){
+            pooled[x]+=h[x];trainPool[x]+=t[x];futurePool[x]+=later[x];
+          }
         }
         models.push({nonce:scheme.name,layout,algorithm,reducer,sign,clock,
           assignment:selected.chosen,trainMean:selected.score,
           heldoutMean:holdMean,
           heldoutPooled:ioc(pooled,8*HOLD),
+          independentTailPooled:ioc(futurePool,futureN),
+          independentTailCount:futureN,
           trainPooled:ioc(trainPool,8*TRAIN)});
       }
     }
@@ -248,18 +254,36 @@ function main(){
   const control=plant();
   const trials=Number(process.env.LP2_FIELD_NULLS||100);
   assert.ok(Number.isInteger(trials)&&trials>=0&&trials<=1000);
-  const maxima=[];
+  const maxima=[],futureMaxima=[];
   for(let rep=0;rep<trials;rep++){
     const shuffled=[...grid.bytes];
     for(let j=255;j>0;j--){
       const k=Math.floor(random()*(j+1));
       [shuffled[j],shuffled[k]]=[shuffled[k],shuffled[j]];
     }
-    maxima.push(attack(shuffled).champion.heldoutPooled);
+    const nullModel=attack(shuffled).champion;
+    maxima.push(nullModel.heldoutPooled);
+    futureMaxima.push(nullModel.independentTailPooled);
   }
   const target=original.champion.heldoutPooled;
   const exceeds=maxima.filter(x=>x>=target).length;
+  const futureTarget=original.champion.independentTailPooled;
+  const futureExceeds=futureMaxima.filter(x=>x>=futureTarget).length;
   const mean=maxima.reduce((s,x)=>s+x,0)/(maxima.length||1);
+  const digestNull=[];
+  if(IV_MODE==='digest-key'){
+    const next=xorshift(0x33015333);
+    for(let k=0;k<trials;k++){
+      const scrambled=Buffer.from(DIGEST);
+      for(let j=63;j>0;j--){
+        const h=Math.floor(next()*(j+1));
+        [scrambled[j],scrambled[h]]=[scrambled[h],scrambled[j]];
+      }
+      const chosen=attack(grid.bytes,scrambled).champion;
+      digestNull.push({holdout:chosen.heldoutPooled,
+        independentTail:chosen.independentTailPooled});
+    }
+  }
   console.log(JSON.stringify({
     hypothesis:'EA transparent 28-step log15 GP + eight 256-bit grid AES/ChaCha keys + unknown output permutation',
     corpus:{physicalPages:55,runes:12956,sectionLengths:lengths,
@@ -276,7 +300,16 @@ function main(){
     shuffledGridFamilywise:{
       trials,seed:'0x2890a991',mean,
       atLeastOriginal:exceeds,addOneUpperP:(exceeds+1)/(trials+1),
+      independentTailAtLeastOriginal:futureExceeds,
+      independentTailAddOneUpperP:(futureExceeds+1)/(trials+1),
       sortedHeldoutPooled:maxima.sort((a,b)=>a-b).slice(-5)},
+    shuffledDigestFamilywise:IV_MODE==='digest-key'?{
+      trials,seed:'0x33015333',
+      holdoutAtLeastOriginal:digestNull.filter(x=>x.holdout>=target).length,
+      holdoutAddOneUpperP:(1+digestNull.filter(x=>x.holdout>=target).length)/(trials+1),
+      independentTailAtLeastOriginal:digestNull.filter(x=>x.independentTail>=futureTarget).length,
+      independentTailAddOneUpperP:(1+digestNull.filter(x=>x.independentTail>=futureTarget).length)/(trials+1)
+    }:null,
     interpretation:'An exact plant exercises output-permutation uncertainty, key assignment, and all 12956 reversible GP runes; a low original holdout score does not identify the genuine cipher or plaintext.'
   },null,2));
 }
