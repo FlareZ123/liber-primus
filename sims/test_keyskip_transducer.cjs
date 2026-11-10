@@ -1,6 +1,6 @@
 "use strict";
 const assert = require("node:assert/strict");
-const {logLikelihood,encrypt,invert} = require("./keyskip_transducer.cjs");
+const {logLikelihood,encrypt,invert,decodePosterior} = require("./keyskip_transducer.cjs");
 
 function rng(seed) {
   let state = seed | 0;
@@ -48,7 +48,7 @@ const key = Array.from({length:256},()=>Math.floor(draw()*29));
 const wrongKey = Array.from({length:256},()=>Math.floor(draw()*29));
 const sigma = Array.from({length:29},(_,i)=>i);
 for(let i=28;i>0;i--){const j=Math.floor(draw()*(i+1));[sigma[i],sigma[j]]=[sigma[j],sigma[i]];}
-let correct=0,incorrect=0,skips=0,n=0;
+let correct=0,incorrect=0,skips=0,n=0,recovered=0,naive=0;
 for(let page=0;page<16;page++){
   const plain=Array.from({length:125},()=>sample(q,draw));
   const sampleCipher=encrypt(plain,key,sigma,draw,{rejectRepeat:0.83});
@@ -56,13 +56,26 @@ for(let page=0;page<16;page++){
   n+=sampleCipher.cipher.length;
   const base={q,inverseSigma:invert(sigma),rejectRepeat:0.83,maxTotalSkips:40,maxSkippedPerOutput:4};
   correct+=logLikelihood(sampleCipher.cipher,{...base,key});
+  const posterior=decodePosterior(sampleCipher.cipher,{...base,key});
+  assert.ok(Math.abs(posterior.logProbability -
+    logLikelihood(sampleCipher.cipher,{...base,key}))<1e-8,
+    "Forward-backward likelihood disagrees with the scalar forward model");
+  for(let t=0;t<plain.length;t++){
+    recovered+=Number(posterior.mapPlaintext[t]===plain[t]);
+    naive+=Number((sampleCipher.cipher[t]-key[t%256]+29)%29===plain[t]);
+    const normalization=posterior.posterior[t].reduce((a,b)=>a+b,0);
+    assert.ok(Math.abs(normalization-1)<1e-10,
+      "Posterior probabilities do not sum to one");
+  }
   incorrect+=logLikelihood(sampleCipher.cipher,{...base,key:wrongKey});
 }
+assert.ok(recovered / n > 0.80, "MAP recovery from the true key is too low");
 assert.ok(correct > incorrect + 100,
   "True key did not outscore wrong random key");
 process.stdout.write(JSON.stringify({
   test:"planted 29-alphabet skip transducer",
   observedCipherRunes:n,discardedKeys:skips,
   correctLogLikelihood:correct,wrongKeyLogLikelihood:incorrect,
-  logBayesFactor:correct-incorrect,pass:true
+  logBayesFactor:correct-incorrect,
+  posteriorMapAccuracy:recovered/n,naiveUnalignedAccuracy:naive/n,pass:true
 })+"\n");
