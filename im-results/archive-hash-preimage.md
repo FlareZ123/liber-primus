@@ -20,6 +20,12 @@ While this smaller regression was running, [Agent 49](../communications/broadcas
 
 The prior audit interprets the unknown target's address as gated by solving LP2 under the historical onion referral chain. That is an inference supported by the archived chain, **not** mathematical proof that the target has no independent surviving historical copy. This report makes no stronger claim.
 
+## Precise end of the historically specified operation chain
+
+The preserved [2014 archival clearsigned final instruction](https://github.com/micheloosterhof/cicada-2014/blob/master/stage11/message.txt.asc) says that enlightenment awaits at **`ky2khlqdf7qdznac.onion`**. The file contains an OpenPGP signature and `Hash: SHA1` clearsign header (the latter is **signature metadata**, not a page-hashing instruction). This report inspected its archived text but did **not** independently verify its signature against the canonical Cicada public key; that verification is separately documented in community sources. The archived [Onion7 index](https://github.com/krisyotam/cicada3301/blob/main/liber-primus/original-onion7/index.html) lists only the **58 image names** `0.jpg`–`57.jpg`, with no further next address, function name, page-hash input rule or file-rendering convention; the image-list/HTML claim is established in the existing [original-source 133/331 audit](../im-results/onion7-html-red331-source-inversion.md). The already-solved p56 image then supplies a **literal 128-hex target plus an instruction to seek a page**, but no specific target endpoint, hashing function, target byte serialization or key rule.
+
+This is the **exact missing link** in the archived instruction chain: a *retrievable original page object or independently prescribed algorithm/normalization and locator*. The 58 source JPEG files can be tested as raw inputs (below), but that is a bounded test hypothesis; their presence in the index does **not** prescribe that the missing page is one of them. The fact that the chain ends at this gap does not establish logical impossibility of finding a target via an unrelated historical archive or unsolved LP2 plaintext. Avoid inferring the digest algorithm from PGP headers, 128 hex digits, the author of an unsigned archive, or the host's v2 onion naming scheme.
+
 ## Exact local regression
 
 The [Node 20 implementation](../sims/archive_hash_preimage_scan.cjs) retrieves the pinned source files byte-for-byte and validates each declared file size, recording an original SHA-256 fingerprint. It tests:
