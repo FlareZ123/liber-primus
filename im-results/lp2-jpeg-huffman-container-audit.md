@@ -37,10 +37,29 @@ Reproducer summary:
 SUMMARY files=58 dht_reoptimization_exact=58 dqt_reoptimization_exact=58 identical_APP2=58 identical_APP0=58 same_DQT_within_color_mode=58 clean_single_JPEG_no_extra_APP=58 geometry_2400x3600_8bit=58 RGB=35 grayscale=23
 ~~~
 
+## Limited quantized-AC coefficient LSB screen
+
+A separate first-pass screen now examines the coefficient values themselves. The reproducer uses libjpeg's coefficient API and traverses each component in block-raster order, then each block's 63 AC coefficients in JPEG zigzag order. It emits the coefficient-parity stream for both the JSteg-style eligibility rule (absolute coefficient greater than one) and a broader nonzero-only sensitivity stream, both all-component and per-component. The Python analyzer checks both bit orders, both byte orders for a 32-bit length prefix, common four-byte-or-longer file signatures, and whether any JPEG-like prefix parses as a complete JPEG with SOF, SOS and EOI.
+
+Compile and run from the repository root:
+
+~~~sh
+cc -O3 -Wall -Wextra sims/jpeg_ac_lsb_screen.c -ljpeg -o /tmp/jpeg_ac_lsb_screen
+mkdir -p /tmp/lp2-jpeg-ac
+for n in $(seq -w 17 74); do
+  /tmp/jpeg_ac_lsb_screen resources/liber-primus/$n.jpg /tmp/lp2-jpeg-ac/$n > /tmp/lp2-jpeg-ac/$n.json
+done
+python3 sims/jpeg_ac_lsb_analyze.py /tmp/lp2-jpeg-ac
+~~~
+
+Across all **58 LP2 images**, the scan emitted **25,517,550** eligible absolute-value-greater-than-one AC coefficient bits and checked **372** all-component/per-component streams. No stream begins with a plausible 32-bit byte-length header in either bit or byte order; no common four-byte-or-longer payload signature appears; and no candidate parses as a valid embedded JPEG. The per-page odd-parity ratio for eligible coefficients averages **0.46680598** (population SD **0.00875679**, range **0.43884826–0.47802273**). This descriptive statistic is not itself evidence of steganography, and no matched external-image control was used.
+
+The broader nonzero-only sensitivity stream produces **35** three-byte FFD8FF-like prefixes, but none has a valid following JPEG marker/segment sequence or a complete SOF/SOS/EOI structure. These are not recovered payloads. The screen is deliberately limited: component-major traversal may differ from a particular implementation's scan order, and it does not test F5, keyed/permuted coefficient selection, matrix-encoded embedding, or every DCT-domain method. It is a useful negative for a straightforward JSteg-style AC-LSB/length-header route, not a general exclusion of coefficient-domain steganography.
+
 ## Interpretation
 
 The DHT tables—including the non-ascending symbol order within some equal-code-length groups—are completely explained by the ordinary optimized-Huffman encoder applied to the original quantized coefficients. There is no residual per-page choice in the DHT ordering that supports an independent hidden message. The shared APP0/APP2 markers, stable per-mode DQT tables, and absence of additional APP/comment/trailing segments likewise provide no separate metadata channel.
 
-This is a bounded exclusion of a **DHT-symbol-order / extra-APP-metadata / trailing-payload** hypothesis for the 58 LP2 JPEGs. It does **not** test or exclude data embedded in the quantized DCT coefficient values themselves, subtle pixel/color-channel modulation, or a different source-level interpretation of the visible artwork. The LP1 JPEG payloads therefore remain genuine evidence of container-level puzzle design, but they do not establish that LP2 repeats those particular mechanisms.
+This is a bounded exclusion of a **DHT-symbol-order / extra-APP-metadata / trailing-payload** hypothesis and a limited negative for straightforward **JSteg-style AC-coefficient LSB** extraction across the 58 LP2 JPEGs. It does **not** exclude F5, keyed/permuted coefficient selection, matrix-encoded embedding, subtle pixel/color-channel modulation, or a different source-level interpretation of the visible artwork. The LP1 JPEG payloads therefore remain genuine evidence of container-level puzzle design, but they do not establish that LP2 repeats those particular mechanisms.
 
 No unknown LP2 plaintext, authentic key, cipher mechanism, or final destination was recovered.
