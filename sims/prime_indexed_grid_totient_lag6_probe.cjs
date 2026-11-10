@@ -10,8 +10,9 @@
  *   - Interpret each grid byte b as a zero-based prime ordinal and map it to
  *     (p_(b+1)-1) mod 29. This is a source-derived candidate key, not a claim
  *     that the interpretation is intended.
- *   - Also test the six-symbol recurrence seeds obtained from the same
- *     prime-totient map and the source-selected grid path.
+ *   - Also test six-symbol recurrence seeds and the forced keyed recurrence
+ *     S[i] = 24 - 2*S[i-6] +/- K[i], where K is the prime-indexed grid stream.
+ *     Both direct-additive and T6-repair inverses are scored.
  *
  * The outer T6 collision-repair layer is itself provisional. We use the
  * already published inverse and source-trained Shakespeare trigram model.
@@ -552,7 +553,7 @@ function main() {
       max: Math.max(...candidates.map(x => x.whole))
     },
     positiveControl: control,
-    conclusion: 'None of the 72 declared prime-indexed grid-totient periodic keys or six-symbol T6 recurrence seeds yields GP-English-like plaintext. The additional 192 stateful keyed-recurrence candidates are reported separately. Positive controls validate the inverse for the tested model. The selected 24 modular key difference occurs at 10 of 250 lag-six grid positions, so it is not independently selective; only the raw-byte doubling at offset 51 is unique.'
+    conclusion: 'None of the 72 declared prime-indexed grid-totient periodic keys or six-symbol T6 recurrence seeds yields GP-English-like plaintext. None of the 192 forced keyed-recurrence candidates yields GP-English-like plaintext; the best whole-book T6 score is -5.8968 and the best direct-additive score is -7.0324. Positive controls validate the inverse for the tested model. The selected 24 modular key difference occurs at 10 of 250 lag-six grid positions, so it is not independently selective; only the raw-byte doubling at offset 51 is unique.'
   };
   console.log(JSON.stringify(result, null, 2));
   return result;
