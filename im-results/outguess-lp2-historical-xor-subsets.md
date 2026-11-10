@@ -31,6 +31,12 @@ Because all source streams share a 1,417-byte leading template, a hidden payload
 
 The extended scan was executed with the **same 16 original extracted arrays** in [successful GitHub Actions run 42783306685](https://github.com/FlareZ123/liber-primus/actions/runs/42783306685) and preserved in [machine-output artifact 13746658165](https://github.com/FlareZ123/liber-primus/actions/runs/42783306685/artifacts/13746658165) under xor-share-summary.json. Every claim is restricted to the two checked PGP signatures; arbitrary encrypted or compressed binary after the shared template remains possible.
 
+## Full 65,535-subset all-offset closure
+
+An exact Gray-code incremental XOR scan expanded the all-byte-position PGP check to **every one of the 65,535 nonempty subsets** of these 16 source arrays. For every 58,152-byte aligned XOR result, it searched all positions for raw **-----BEGIN PGP** and base64 **LS0tLS1CRUdJTiBQR1A**. **Zero occurrences** were found in the complete family. The genuine historical three-share PGP message and its expected rune-coded body remain the positive control.
+
+The exhaustive local Python/NumPy computation completed in **1.793 seconds** on the preserved original arrays. [Exact runnable complete-family source](../sims/outguess_lp2_xor_graycode.py). The earlier 2,500-subset search was independently executed in GitHub Actions, but this final full-family extension was executed locally, without a separate Actions run. It is a bounded exclusion for the historical direct aligned XOR operation and these PGP markers, including after common leading padding. Unaligned combinations and other formats are outside scope.
+
 ## Controlled execution
 
 [The exact runnable CommonJS test](../sims/outguess_lp2_share_xor.cjs) reads all 16 original binary outputs produced by [the authentic OutGuess source extraction](outguess-lp2-original.md), asserts their original lengths, computes the exact all-image common prefix and suffix, and recovers the true three-share 2014 signed-message positive control from the repository's independent stable 2014 source. It enumerates all **560** original three-payload XOR combinations, checks the exact PGP prefix and reports the maximum ASCII fraction. The 2014 reference positive **passes**, the LP2 PGP signature count is **0**, and the 1,417/1,554 shared-envelope invariants are checked.
