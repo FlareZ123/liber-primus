@@ -19,8 +19,7 @@ const ROOT = path.resolve(__dirname, "..");
 const source = JSON.parse(fs.readFileSync(
   path.join(ROOT, "resources/liber-primus/lp2-grid-256.json"), "utf8"));
 assert.equal(source.bytes.length, 256);
-assert.equal(source.shape.rows, 32);
-assert.equal(source.shape.columns, 8);
+assert.equal(source.shape, "32 rows by 8 columns across LP2 pages 49, 50, 51");
 
 /** @param {number} x */
 function prime(x) {
