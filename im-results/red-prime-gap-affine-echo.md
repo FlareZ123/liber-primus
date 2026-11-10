@@ -31,6 +31,31 @@ The eight-rune page-40 red heading ends with **ᚻ**, GP index **8**, which is t
 
 This is a *postselected* source arithmetic factorization, not a recovered key. The common 13-dot punctuation does not occur in the selected page-40 red heading, and no independent authorial instruction identifies 13 as an exponent. Its source specificity and genuine cipher relevance remain uncertain.
 
+## Exact all-secret affine-orbit obstruction at lag six
+
+The same source-fixed formula also selects a stronger **necessary condition** for a particularly simple, reversible cipher interpretation. Suppose every printed word-local sixth-back output is obtained by repeatedly applying the page-40 transformation about its fixed point, with an arbitrary secret, potentially position-varying, nonzero multiplier:
+
+\[
+ C_{w,j} = 8 + a_{w,j}\big(C_{w,j-6}-8\big)\pmod{29},\qquad
+ j\ge6,\quad a_{w,j}\in\mathbb F_{29}^{\times}.
+\]
+
+Since 8 is the exact fixed point, **a multiplication can never change whether the input is 8**. This statement holds across *every* choice of secret state, key, feedback and rune-to-exponent mapping inside this family. A variation suggested directly by the arithmetic is \(a=(-2)^k\), where \(k\) ranges over all 28 exponent states because \(-2\equiv15^{13}\) is a primitive root of \(\mathbb F_{29}\).
+
+The exact original 2,896-word corpus contains **1,290** eligible lag-six pairs, including words crossing physical page boundaries. Their decomposition, independently reproduced with the [source-exact SFT](../sims/p40_t6_fixedpoint_orbit_gate.cjs), is:
+
+| Original pair type | Count | Consequence |
+| --- | ---: | --- |
+| Earlier H(index 8) → current non-H | **45** | Algebraically impossible for every nonzero multiplier |
+| Earlier non-H → current H | **39** | Algebraically impossible for every nonzero multiplier |
+| H → H | **2** | All 28 exponents coincide; no invertible exponent readout |
+| Non-H → non-H | **1,204** | Unique multiplicative ratio and exponent can be recovered |
+| **Total** | **1,290** | **84 mandatory violations** of the fixed-point invariant |
+
+Of the previously measured **80 exact T6 matches**, **78** are genuinely non-H pairs with exponent \(k=1\); the remaining **2** are H→H and hence nonidentifying. On the 1,204 unambiguous positions, even granting *any unknown fixed 28-symbol permutation* of exponent states, the 12 most frequent symbols can cover only **616/1,204** positions. For scale, the 12 most common non-EA labels of the checked-in, editor-normalized solved-Cicada GP source cover **2,533/3,227** occurrences. The latter contrast is only a source-register diagnostic, not a universal linguistic exclusion, because the original plain-word boundaries, representational alphabet, and conditioning on non-H are unresolved.
+
+The complete fixed-H nonzero-multiplier **full-coverage** hypothesis is therefore mathematically false on the original ciphertext, regardless of any hidden key. The exact 84 original violations also identify what a proposed extension must explicitly explain: a separate 29th-symbol output/escape or an operation that changes the affine center. One such escape could map a plaintext marker to H, but that is a *different model* requiring an independently specified inverse and recoverable state. The same SFT proves its exponent decoder on a 1,290-position non-H native-28-symbol planted control and re-encrypts all positive outputs exactly. This bounded obstruction does **not** invalidate the narrower interpretation that T6 hits are special plaintext markers, since that interpretation never asserted that the other 1,210 sites share the same affine rotor.
+
 ## Exhaustive competing equal-prime-gap centers
 
 There are exactly **two** centers with equal preceding and succeeding gaps among all 29 assigned GP primes:
