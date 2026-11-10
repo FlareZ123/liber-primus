@@ -8,7 +8,7 @@ The repository's [authentic LP1 p03/p04 recovery](../sims/authentic_lp1_p03_p04_
 
 - Key indices: [23, 10, 1, 10, 9, 10, 16, 26].
 - GP transliteration: D I U I N I T Y (the GP alphabet merges U/V; the intended Latin keyword is DIVINITY).
-- Ciphertext rune F (index 0) is literal and does not consume a key position.
+- In the recovered p03/p04 stream, 11 specific ciphertext F positions are recorded as literal and do not consume key positions. For LP2, the tested generalization was to treat every F as literal/non-consuming; the alternative was to consume a key position for every rune.
 - The original LP1 recovery carries key phase continuously across pages 03–04.
 
 This is a concrete historical mechanism and key, not a guessed keyword. A human solver might reasonably ask whether the same key was reused elsewhere in the manuscript. The transfer test therefore keeps the cipher operation fixed and varies only the plausible starting phase, page clock, and literal-F treatment.
