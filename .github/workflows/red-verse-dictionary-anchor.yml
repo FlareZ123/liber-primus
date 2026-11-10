@@ -1,0 +1,14 @@
+name: LP2 red verse exact dictionary-anchored key search
+on:
+  workflow_dispatch:
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Enumerate all lexicon-anchored mod29 keys and no-doublet matched nulls
+        run: node sims/red_verse_dictionary_anchor.cjs
