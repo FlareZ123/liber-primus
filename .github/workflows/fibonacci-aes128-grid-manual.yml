@@ -21,3 +21,5 @@ jobs:
 
       - name: Original Latin GP29 two-register marker inverse and native-language plant
         run: node sims/dual_marker_latin_field_inverse.cjs
+      - name: All-alphabet full-word GP29 two-marker composite source gate
+        run: node sims/dual_marker_wordrole_gate.cjs
