@@ -113,6 +113,7 @@ function decode(c,s,mode){
     const byte29=mode.scaled?Math.floor(29*x/256):x%29;
     if(mode.step28&&!PSTART.has(i)){
       const d=mod(c[i]-prev,29);
+      if(d===0&&mode.skipEA)pointer--;
       const byte28=mode.scaled?Math.floor(28*x/256):x%28;
       output[i]=d===0?28:mod(logs[d]+mode.sign*byte28,28);
     } else output[i]=mod(c[i]+mode.sign*byte29,29);
@@ -135,7 +136,7 @@ function encodePlain(plain,s,mode){
     const byte29=mode.scaled?Math.floor(29*x/256):x%29;
     const byte28=mode.scaled?Math.floor(28*x/256):x%28;
     if(mode.step28&&!PSTART.has(i)){
-      if(plain[i]===28)c[i]=previous;
+      if(plain[i]===28){c[i]=previous;if(mode.skipEA)pointer--;}
       else c[i]=mod(previous+powers[mod(plain[i]-mode.sign*byte28,28)],29);
     } else c[i]=mod(plain[i]-mode.sign*byte29,29);
     previous=c[i];
@@ -169,17 +170,18 @@ function run(){
       for(const scaled of [false,true])
         for(const reset of [false,true])
           for(const drop of [0,256])
-            for(const step28 of [false,true]){
-              const mode={sign,scaled,reset,drop,step28};
-              const plain=decode(CIPHER,pad,mode);
-              cfg.push({name:candidate.name,algorithm:candidate.algorithm,mode,
-                ...score(plain,step28)});
-            }
+            for(const step28 of [false,true])
+              for(const skipEA of step28?[false,true]:[false]){
+                const mode={sign,scaled,reset,drop,step28,skipEA};
+                const plain=decode(CIPHER,pad,mode);
+                cfg.push({name:candidate.name,algorithm:candidate.algorithm,mode,
+                  ...score(plain,step28)});
+              }
   }
-  assert.equal(cfg.length,48*3*2*2*2*2*2);
+  assert.equal(cfg.length,48*3*2*2*2*2*3);
   cfg.sort((a,b)=>b.train-a.train);
   const planted=cfg.find(m=>m.name===keys()[0].name+":AES128"&&
-    m.mode.sign===-1&&!m.mode.scaled&&!m.mode.reset&&m.mode.drop===0&&m.mode.step28);
+    m.mode.sign===-1&&!m.mode.scaled&&!m.mode.reset&&m.mode.drop===0&&m.mode.step28&&!m.mode.skipEA);
   assert.ok(planted);
   const ref=fs.readFileSync(path.join(ROOT,
     "resources/control/shakespeare_first300k.txt"),"utf8");
@@ -190,6 +192,9 @@ function run(){
   const fwd=encodePlain(plain,fakePad,planted.mode);
   const reversed=decode(fwd,fakePad,planted.mode);
   assert.deepEqual(reversed,plain);
+  const skipMode={...planted.mode,skipEA:true};
+  const skipCipher=encodePlain(plain,fakePad,skipMode);
+  assert.deepEqual(decode(skipCipher,fakePad,skipMode),plain);
   const allKeys=keys();
   const summary={
     sourceKeyRings:{physical:4,square:8,keySizes:[16,32],sourceKeys:allKeys.length},
@@ -201,7 +206,7 @@ function run(){
       originalDirectIoC:score(CIPHER,false)
     },
     positive:{source:"heldout Shakespeare GP text",
-      fullReencryptMatches:true,fullRunesRecovered:N,
+      fullReencryptMatches:true,transparentKeyskipAlsoExact:true,fullRunesRecovered:N,
       knownKey:planted.name,knownKeyMode:planted.mode,
       recoveredIoC:score(reversed,true)},
     note:"Evidence gate: no key without source-native GP English on untouched data."
