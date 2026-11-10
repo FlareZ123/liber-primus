@@ -3,11 +3,14 @@
  * Keyless source-fixed necessary condition for historical Parable-modulus BBS.
  *
  * Exact source 2013 AUDIO/761.MP3 metadata = 1259*1031*1229.
- * Both 1259 and 1031 are 3 (mod4) primes. For ANY starting BBS state
- * x_1=x_0^2 mod(1259*1031), x_{t+1224} == x_t for every t>=1:
- * 1259-QR subgroup order629, ord_629(2)=72;
- * 1031-QR subgroup order515, ord_515(2)=204;
- * lcm(72,204)=1224.
+ * For ANY source starting state, 1259-QR group order629 has squaring
+ * order72 and 1031-QR order515 has squaring order204. The full original
+ * 3-prime factor 1229 satisfies 1229-1=4*307: after two squarings its
+ * nonzero field component lies in the order-307 odd subgroup, with
+ * squaring order102. Since lcm(72,204,102)=1224, BOTH the two-prime
+ * Blum modulus and the entire 1595277641 historical source number force
+ * x_{t+1224}=x_t at every position t>=2 after two squarings.
+ * This is an exact CRT conclusion for all seeds, including zero factors.
  *
  * Thus direct extracted state keys and five-packed parity keys have period
  * dividing1224, while eight consecutive parity bits/symbol yield period
@@ -29,8 +32,9 @@ const co=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const pages=co.pages.filter(p=>p.page<=55&&p.indices.length).map(p=>p.indices);
 const lens=pages.map(p=>p.length),original=pages.flat();
 assert.equal(original.length,12956);
-const P=1259,Q=1031,M=P*Q;
+const P=1259,Q=1031,R=1229,M=P*Q,FULL=M*R;
 assert.equal(M,1298029);
+assert.equal(FULL,1595277641);
 const gcd=(a,b)=>b?gcd(b,a%b):a;
 const lcm=(a,b)=>a/gcd(a,b)*b;
 function order2(n){
@@ -40,7 +44,20 @@ function order2(n){
 }
 const ordP=order2((P-1)/2),ordQ=order2((Q-1)/2);
 const statePeriod=lcm(ordP,ordQ);
-assert.deepEqual([ordP,ordQ,statePeriod],[72,204,1224]);
+const ordR=order2((R-1)/4),fullPeriod=lcm(statePeriod,ordR);
+assert.deepEqual([ordP,ordQ,ordR,statePeriod,fullPeriod],[72,204,102,1224,1224]);
+/** BigInt source witnesses; theorem above, not samples, proves all seeds. */
+function squareWitness(modulus,seed,transient){
+  const m=BigInt(modulus);let x=BigInt(seed)%m;
+  for(let i=0;i<transient;i++)x=x*x%m;
+  const expected=x;
+  for(let i=0;i<fullPeriod;i++)x=x*x%m;
+  assert.equal(x,expected);
+}
+for(const seed of [0,1,2,761,1033,3301,1259,1031,1229,FULL-1]){
+  squareWitness(M,seed,1);
+  squareWitness(FULL,seed,2);
+}
 const period8=statePeriod/gcd(8,statePeriod);
 const period5=statePeriod/gcd(5,statePeriod);
 assert.deepEqual([period8,period5],[153,1224]);
@@ -63,9 +80,9 @@ function rank28(cipher){
   return out;
 }
 /** Exact lag-pair identical-symbol count, dropping -1 GP28 erasures. */
-function lagPair(indices,L) {
+function lagPair(indices,L,minIndex=0) {
   let valid=0,equal=0;
-  for(let i=0;i+L<indices.length;i++){
+  for(let i=minIndex;i+L<indices.length;i++){
     if(indices[i]<0||indices[i+L]<0)continue;
     valid++;
     if(indices[i]===indices[i+L])equal++;
@@ -80,6 +97,8 @@ const control153=lagPair(control,period8);
 const original29=[period8,period5].map(L=>lagPair(original,L));
 const origRanks=rank28(original);
 const original28=[period8,period5].map(L=>lagPair(origRanks,L));
+const fullSourcePostTransientGP29=[period8,period5].map(L=>lagPair(original,L,2));
+const fullSourcePostTransientGP28=[period8,period5].map(L=>lagPair(origRanks,L,2));
 const controlRank=Int16Array.from(control, x=>x===28?-1:x);
 const control28=[period8,period5].map(L=>lagPair(controlRank,L));
 
@@ -125,13 +144,17 @@ function plant28(L){
 function main(){
   const result={
     historicalSource:"Cicada 2013 761.MP3 ID3 Parable 1595277641=1259*1031*1229",
-    twoPrimeBlumModulus:M,primeQrOrders:[(P-1)/2,(Q-1)/2],
-    squareMapOrders:[ordP,ordQ],
+    twoPrimeBlumModulus:M,fullHistoricalThreePrimeModulus:FULL,
+    postSquareOddOrders:[(P-1)/2,(Q-1)/2,(R-1)/4],
+    squareMapOrders:[ordP,ordQ,ordR],
+    sourceTransientSquaresFullModulus:2,fullModulusStatePeriodMultiple:fullPeriod,
     exactStatePeriodMultiple:statePeriod,bit5GroupPeriodMultiple:period5,
     bit8GroupPeriodMultiple:period8,sourceRunes:original.length,
     originalGP29:original29,
     englishNativeGP29:[control153,controlSameKeyGP29],
     originalNonzeroFieldGP28:original28,
+    threePrimePostTransientGP29:fullSourcePostTransientGP29,
+    threePrimePostTransientGP28:fullSourcePostTransientGP28,
     englishNativeNonEA_GP28:control28,
     witnessedAdditive29:[plant29(period8),plant29(period5)],
     witnessedField28:[plant28(period8),plant28(period5)],

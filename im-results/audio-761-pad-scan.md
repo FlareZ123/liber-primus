@@ -88,22 +88,26 @@ This genuinely exhausts *every seed* for the specific **two-factor** modular-squ
 
 Reproduction: [`sims/parable_blum_exhaustive_state_inverse.cjs`](../sims/parable_blum_exhaustive_state_inverse.cjs), successful [Actions run 42838419477](https://github.com/FlareZ123/liber-primus/actions/runs/42838419477) via the existing [manual prime-source suite](../.github/workflows/fibonacci-prime-spiral.yml). No novel unknown LP2 plaintext or authentic key identified.
 
-### Seed-independent cyclic equality bound from the same two primes
+### Seed-independent 1,224-step cycle from *all three* historic Parable primes
 
-There is a stronger *mathematical restriction* on the BBS state map than any fixed-seed shortlist or finite 5.2-million-case screen. In the **1,298,029** two-prime Blum modulus, the multiplicative quadratic-residue subgroups have orders **629** (mod1259) and **515** (mod1031). Squaring acts on these odd cyclic groups with orders **ord₆₂₉(2)=72** and **ord₅₁₅(2)=204**. CRT gives `lcm(72,204)=1224`: **every possible** initial modular-square state, including states divisible by one factor, returns after **at most 1,224 state iterations**, from the first post-square state onward. Packing five parity bits per symbol preserves a guaranteed key period dividing **1,224**; packing eight consecutive parity bits per symbol reduces it to a period dividing **153**, because gcd(8,1224)=8. This holds regardless of any seed guessed or fitted to ciphertext.
+There is a stronger *mathematical restriction* on the modular-squaring state map than either the fixed-seed shortlists or the full 5.2-million-state screen. For **M₂=1259×1031=1,298,029**, the two quadratic-residue groups have orders **629** and **515**; squaring on those odd groups has orders **ord₆₂₉(2)=72** and **ord₅₁₅(2)=204**. Thus all initial states of M₂, including those divisible by either prime, have eventual period dividing **lcm(72,204)=1,224** after the first square.
 
-Consequently any *globally continuous, unslipped* additive GP29 source key, even with an unknown static one-to-one outer rune alphabet, must reproduce natural-source equality at positions separated by 153 or 1224 runes (when the corresponding key extraction is periodic at that length). For the transparent-EA GP28 exponent-step output, the analogous equality is preserved **between the nonzero-difference discrete-log ranks**, excluding duplicate-output and page-initial sites. This key-independent logic is the fixed source-prime refinement of the more general [phase coincidence invariant already established](phase-coincidence-invariant.md); the source selection of 153 and 1224 is new to this historical hypothesis.
+**This result also holds for the full historical source number, M₃=1,595,277,641=1259×1031×1229, with no seed restriction.** The third factor satisfies **1229−1=4×307**. After *two* squarings its nonzero component belongs to an odd group of order **307**, where the squaring map has order **ord₃₀₇(2)=102**. Since **lcm(72,204,102)=1,224**, the CRT-combined source state satisfies **x(t+1224)=x(t)** for every starting seed after at most two squarings. States divisible by any prime factor have the corresponding zero component and obey the same bound. BigInt recurrence witnesses for ten disparate seeds pass under **both** moduli; the all-seed claim follows from the group-order proof.
 
-| Actual original LP2 cipher statistic | Source-forced lag | Original equal symbols | Independent GP-English source control |
-| --- | ---: | ---: | ---: |
-| Direct GP29 output | 153 | **416/12,803 = 0.0324924** | **773/12,803 = 0.0603765** |
-| Direct GP29 output | 1,224 | **421/11,732 = 0.0358848** | **684/11,732 = 0.0583021** |
-| Nonzero GP28 difference ranks | 153 | **494/12,529 = 0.0394285** | **0.0614** after excluding EA and physical page heads |
-| Nonzero GP28 difference ranks | 1,224 | **390/11,478 = 0.0339780** | **0.0590** after excluding EA and physical page heads |
+Any source cipher whose keystream is *directly* produced from this state repeats its key after a divisor of **1,224 output symbols**. Five consecutive parity bits packed per rune retain this period. Eight parity bits packed per rune instead yield period dividing **153**, since gcd(8,1224)=8. For the full three-prime model, conservatively exclude the first **two** rune positions as potentially transient.
 
-Two independent native-GP encryption controls each use arbitrary 153/1224-position source pads and assert **exactly equal** pre-/post-encryption same-phase collision counts (all four proofs passed). They do not fit an unknown key; they test an equality identity that eliminates every secret initial state under its assumptions. The original corpus lacks the English-GP collision excess at either source-forced period in either channel.
+A globally continuous, unslipped additive GP29 pad must preserve ciphertext-rune equality at separations 153 or 1224 exactly, regardless of secret initial state. For a reversible GP28 exponent-step pad, the corresponding invariant is equality of the **nonzero-difference discrete-log ranks**, omitting unchanged-output and physical page-initial positions. These are source-specific instances of the more general [phase coincidence invariant](phase-coincidence-invariant.md) already established elsewhere in the repository; the full historic number selects the same two exact candidate periods independently.
 
-Proof, original counts and exact planted equality controls: [`sims/parable_blum_keyless_period_gate.cjs`](../sims/parable_blum_keyless_period_gate.cjs), successful [manual original-data CI 42840012568](https://github.com/FlareZ123/liber-primus/actions/runs/42840012568). The exclusion concerns a *synchronized, globally continuous* BBS source whose period is not disrupted by collision-driven hidden key skips, per-page secret phase shifts, changing output permutations or an encrypted intermediate rather than native GP-English. Other architectures evade this exact equality identity.
+| Output channel and source-forced lag | Original LP2 equality, first two runes excluded | Independent GP-English sample |
+| --- | ---: | ---: |
+| GP29 additive, 153 | **416/12,801 = 0.0324975** | Approximately **0.0604** |
+| GP29 additive, 1,224 | **421/11,730 = 0.0358909** | Approximately **0.0583** |
+| Nonzero GP28 field steps, 153 | **494/12,528 = 0.0394317** | Approximately **0.0614** |
+| Nonzero GP28 field steps, 1,224 | **390/11,477 = 0.0339810** | Approximately **0.0590** |
+
+Source-native positive controls with arbitrary 153/1,224-period GP29 and GP28 pads preserve the corresponding valid plaintext equality counts **exactly**, independently of the unknown key values. The original manuscript lacks the GP-English collision excess predicted by the direct synchronized source model under either modulus. The argument excludes an entire two- and three-prime starting-state domain for these synchronous channels, **without exhaustively scanning 1.595 billion full-modulus seeds**.
+
+Reproducer: [`sims/parable_blum_keyless_period_gate.cjs`](../sims/parable_blum_keyless_period_gate.cjs), from the manually dispatched [prime-source CI suite](../.github/workflows/fibonacci-prime-spiral.yml). The exclusion still allows variable hidden key consumption, independent per-page secret state, a nonnative intermediate alphabet, nonperiodic extra key layers, and undiscovered segmentation.
 
 ### Exhaustive unknown-state search with collision-only hidden key consumption
 
