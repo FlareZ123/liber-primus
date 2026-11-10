@@ -142,7 +142,7 @@ function main() {
   assert.equal(pages.reduce((n,p)=>n+p.indices.length,0),12956);
   const source=fs.readFileSync(path.join(
     ROOT,"resources","liber-primus","lp1-plaintext-reference.txt"),"utf8");
-  const plain=encode(source.split("BELIEVE NOTHING")[1].split("### 3")[0]).slice(0,WINDOW);
+  const plain=encode(source.split("### 3")[1].split("### 4")[0]).slice(0,WINDOW);
   assert.equal(plain.length,WINDOW);
   const plant=encrypt(plain,keys[0].key,29,1,0x05a3301f);
   const replay=decode(plant.cipher,keys[0].key,29,1,lm);
