@@ -14,3 +14,4 @@ jobs:
       - run: node sims/grid_rsa_crt_factor.cjs
       - run: node sims/base60_aes_schedule_necessary.cjs
       - run: node sims/grid_red_factor_screen.cjs
+      - run: node sims/page48_grid_common_factor_sft.cjs
