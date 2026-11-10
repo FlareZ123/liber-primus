@@ -121,7 +121,8 @@ def load_pages():
             if ch in rune_to_index:
                 xs.append(rune_to_index[ch]); starts.append(not active)
                 ends.append(False); active = True
-            elif ch in '-.$&§':
+            elif ch not in '/ \t\r\n':
+                # Printed slash/newlines only wrap lines; other nonrunes split words.
                 if ends:
                     ends[-1] = True
                 active = False
