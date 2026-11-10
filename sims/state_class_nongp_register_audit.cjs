@@ -379,6 +379,44 @@ function main() {
   }).map(m => ({ global_offset: m.pos, physical_page: m.page, local_offset: m.offset }));
   assert.deepEqual(resetStateNonDoublets.map(x => x.global_offset), [848, 9522]);
 
+  // A visible mark or physical page may independently restart a byte bit clock.
+  // This is an optimistic necessary-condition bound: we even allow phase
+  // changes and incomplete boundary bytes that strict Base32 would reject.
+  const codeSourceOffsets = unknownPages.flatMap(p =>
+    Array.from({ length: p.indices.length - 1 },
+      (_, i) => pageStarts.get(p.page) + i + 1));
+  assert.equal(codeSourceOffsets.length, 12901);
+  function independentPhaseLowerBound(codes, boundaryOffsets) {
+    const cuts = [...new Set([0, unknownRunes, ...boundaryOffsets])]
+      .sort((a, b) => a - b);
+    let totalBad = 0, sourceSymbols = 0, segmentCount = 0, zeroBadSegments = 0;
+    let idx = 0;
+    for (let ci = 0; ci < cuts.length - 1; ci++) {
+      while (idx < codes.length && codeSourceOffsets[idx] < cuts[ci]) idx++;
+      const counts = Array(8).fill(0);
+      let run = 0;
+      while (idx < codes.length && codeSourceOffsets[idx] < cuts[ci + 1]) {
+        if (codes[idx] >= 16) counts[run % 8]++;
+        idx++; run++;
+      }
+      const best = Math.min(...counts);
+      totalBad += best;
+      sourceSymbols += run;
+      segmentCount++;
+      if (!best) zeroBadSegments++;
+    }
+    assert.equal(sourceSymbols, codes.length);
+    return {
+      segments: segmentCount,
+      source_five_bit_symbols: sourceSymbols,
+      minimum_forced_non_ascii_first_bytes: totalBad,
+      segments_with_zero_forced_non_ascii_first_bytes: zeroBadSegments
+    };
+  }
+  const pageOnlyCuts = pageInitialPositions;
+  const punctuationOnlyCuts = unknownMarks13.map(m => m.pos);
+  const unionCuts = [...pageOnlyCuts, ...punctuationOnlyCuts];
+
   const registerVariants = {};
   for (const direction of ["forward", "inverse"]) {
     const codes = makeFiveBitRegister(direction);
@@ -403,6 +441,12 @@ function main() {
       ascii7ByGlobalBase32Phase.map(x => x.forced_non_ascii_leaders),
       [707, 711, 695, 708, 733, 703, 703, 738]
     );
+    assert.equal(independentPhaseLowerBound(codes, pageOnlyCuts)
+      .minimum_forced_non_ascii_first_bytes, 503);
+    assert.equal(independentPhaseLowerBound(codes, punctuationOnlyCuts)
+      .minimum_forced_non_ascii_first_bytes, 610);
+    assert.equal(independentPhaseLowerBound(codes, unionCuts)
+      .minimum_forced_non_ascii_first_bytes, 492);
     registerVariants[direction] = {
       symbols: codes.length,
       base32_length_mod_8: residue,
@@ -415,6 +459,11 @@ function main() {
       source_reset_non_doublet_reserved_codes: resetStateNonDoublets,
       uniform_base32_expected_reserved_codes: codes.length / 8,
       key_independent_7bit_ascii_phase_gates: ascii7ByGlobalBase32Phase,
+      freely_rephased_on_original_boundaries: {
+        each_physical_page: independentPhaseLowerBound(codes, pageOnlyCuts),
+        each_13_dot_fragment: independentPhaseLowerBound(codes, punctuationOnlyCuts),
+        page_or_13_dot_mark: independentPhaseLowerBound(codes, unionCuts)
+      },
       base32_prefix: base32Text.slice(0, 80),
       base32_suffix: base32Text.slice(-40),
       decoded_byte_stats: byteStats(bytes)
