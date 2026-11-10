@@ -1,0 +1,26 @@
+name: LP2 original-JPEG OutGuess message extraction
+
+on:
+  workflow_dispatch:
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out original JPEGs and extractor
+        uses: actions/checkout@v4
+      - name: Install OutGuess 0.2
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y outguess
+      - name: Retrieve hidden messages from every LP2 page
+        run: node sims/outguess_lp2_scan.cjs
+      - name: Preserve exact recovered payloads and summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: outguess-lp2-default-key
+          path: outguess-results/
+          if-no-files-found: warn
+          retention-days: 30
