@@ -30,7 +30,35 @@ Thus **29/29** possible GP symbols map to an A-road number. The mapping alone do
 
 The British A/B-road numbering scheme is geographic: Great Britain is divided into nine zones, and the leading digit identifies the zone (with A1–A9 as the principal radial roads / boundaries). That is not a direct compass-bearing or travel-direction code. A-road numbers help identify routes, but their numeric values do not by themselves specify a direction of travel.
 
-### 2. The proposed six-road sequence is not a connected route
+### 2. The totient walk has no natural stop at Ethel
+
+The proposed walk is the state map
+
+`T±(x) = x ± (p_x − 1) mod 29`,
+
+where `p_x` is the GP prime attached to rune index `x`. This is a newly tested walk hypothesis, **not the p56 cipher itself**.
+
+With addition, the Ac path is:
+
+`Ac → Rad → Eolh → Thorn → Gyfu → Ethel → Beorc → Mannaz → Thorn …`
+
+It has a preperiod of 3 and then enters the 5-cycle:
+
+`Thorn → Gyfu → Ethel → Beorc → Mannaz → Thorn`.
+
+Ethel is therefore a node inside a cycle, not a mathematical terminal. Stopping at Ethel requires an external stop rule (for example, selecting it because its gloss suggests an estate); the arithmetic does not stop there.
+
+Exhausting all 29 starting runes gives three addition cycles: fixed-point Tiwaz (basin 1), Ur→Os→Nyd→Haegl→Ur (basin 8), and Thorn→Gyfu→Ethel→Beorc→Mannaz→Thorn (basin 20). **20/29** starting runes eventually enter the same five-cycle as Ac.
+
+Subtraction is also a natural direction to test because the solved p56 decryption subtracts `φ(p)=p−1`. Under subtraction, Ac instead follows:
+
+`Ac → Sigel → Ing → Ur → Ear → Wynn → Eh → Is → Nyd → Is …`
+
+It enters the 2-cycle Is↔Nyd after a preperiod of 7. Across all starts, that cycle has basin **28/29**; Tiwaz is the sole fixed point. Thus the source material presently supplied does not select the positive direction over the negative one. Since every GP prime value already has an A-road counterpart, both signs produce road-number labels; the A-road mapping cannot resolve this ambiguity.
+
+Reproduction: `node sims/gp_prime_totient_rune_walk.cjs`. The script asserts the Ac paths, preperiods, periods, and cycle-basin sizes for both signs.
+
+### 3. The proposed six-road sequence is not a connected route
 
 | Road | Grounded route facts | Consequence for the proposed sequence |
 |---|---|---|
@@ -51,7 +79,7 @@ For the five consecutive pairs in the proposed order, direct road adjacency is:
 
 Only **2 of 5** consecutive transitions are direct junctions. A47 does also meet A17 at King's Lynn, but the proposed order puts A5 between them; reaching A17 after A5 would require an unspecified connector or backtracking. A journey could of course be routed between any two roads using other roads, but the sequence itself does not specify those connectors and is not a literal chain of successive A-road junctions.
 
-### 3. Inveraray is a genuine thematic endpoint, but not yet a unique one
+### 4. Inveraray is a genuine thematic endpoint, but not yet a unique one
 
 Historic Environment Scotland confirms that the A83 runs along Loch Fyne beside the Inveraray Castle designed landscape. Its inventory describes the **Oak Walk** as the primary northward axial route through the estate towards **Carloonan Dovecot**. This is a real and unusually close thematic fit to an Ac/oak → Ethel/estate interpretation at the A83 endpoint.
 
@@ -62,13 +90,14 @@ The geographic coincidences are evidence for a possible landscape/destination cl
 ## Decision
 
 - **Reject** the strict interpretation that `A97 → A11 → A47 → A5 → A17 → A83` is a single connected sequence of successive A-road junctions.
-- **Do not treat** the prime-to-A-road mapping as evidence by itself: all 29 GP prime values have A-road counterparts.
+- **Reject** Ethel as a mathematically determined stopping point: it is inside the positive walk's five-cycle, and the opposite sign produces a different walk.
+- **Do not treat** prime-to-A-road mapping as evidence by itself: all 29 GP prime values have A-road counterparts.
 - **Retain provisionally** the Inveraray endpoint motif (A83, Oak Walk, Carloonan Dovecot) and the A97/Duff House comparison as an unverified historical/geographic lead.
-- Do not promote this to `results/`; no ciphertext has been decrypted and no executable source-defined route rule has been recovered.
+- Do not promote this to `results/`; no ciphertext has been decrypted and no source-selected sign, stop rule, or connector rule has been recovered.
 
 ## Most discriminating next test
 
-If this line is continued, freeze a source-derived route rule before scoring any destinations. It must specify (a) why Ac is the start, (b) how the `φ(p) mod 29` step determines each next road, (c) whether transitions require direct junctions or which connector roads are permitted, and (d) what counts as a destination match. Apply the same rule to all 29 possible starting runes and compare the resulting road paths against a predeclared set of estate/oak/dovecot features. Without that control, selecting Inveraray after noticing its Oak Walk is vulnerable to post-selection.
+If this line is continued, freeze a source-derived rule before scoring destinations. It must specify (a) why Ac is the start, (b) whether the step is plus or minus, (c) why and where the walk stops, (d) whether transitions require direct junctions or which connector roads are permitted, and (e) what counts as a destination match. Apply the same rule to all 29 starting runes and compare the resulting paths against a predeclared set of estate/oak/dovecot features. Without those controls, selecting the positive sign and stopping at Ethel after noticing Inveraray's Oak Walk is vulnerable to post-selection.
 
 ## Sources
 
