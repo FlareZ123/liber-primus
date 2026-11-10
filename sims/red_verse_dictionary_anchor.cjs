@@ -99,10 +99,12 @@ function phases(cipher,skipF){
  */
 function search(cipherWords,dict,keep=5){
   const starts=wordPositions(cipherWords),cipher=cipherWords.flat();
-  const baseStart=starts[anchorIndex],lengths=cipherWords.map(w=>w.length);
+  const targetAnchor=cipherWords.findIndex(w=>w.length===11);
+  assert.ok(targetAnchor>=0);
+  const baseStart=starts[targetAnchor],lengths=cipherWords.map(w=>w.length);
   assert.equal(cipher.length,50);
   const best=[];let accepted=0;
-  const seedAnchor=cipherWords[anchorIndex];
+  const seedAnchor=cipherWords[targetAnchor];
   /** @param {object} obj */
   function save(obj){
     best.push(obj);best.sort((a,b)=>b.score-a.score||b.longMatched-a.longMatched);
@@ -138,7 +140,7 @@ function search(cipherWords,dict,keep=5){
         decoded.push(...w);
         const hit=dict.words.get(w.join(','));
         wordTexts.push(hit?hit.english: w.map(x=>gp.translit[x]).join('').toLowerCase());
-        if(j===anchorIndex)continue; // Never score the forced English anchor.
+        if(j===targetAnchor)continue; // Never score the forced English anchor.
         if(hit){
           matched++;
           if(w.length>=3)longMatched++;
@@ -220,15 +222,29 @@ function plant(words,dict){
     totalMatchedWords:output.best[0].matched};
 }
 
+/** The red arrow motivates a deliberately small, predeclared reading-order family. */
+function readingOrders(words){
+  return [
+    {name:'printed-order',words},
+    {name:'reverse-glyph-and-word-order',words:words.slice().reverse().map(w=>w.slice().reverse())},
+    {name:'reverse-word-order',words:words.slice().reverse().map(w=>w.slice())},
+    {name:'mirror-each-word',words:words.map(w=>w.slice().reverse())}
+  ];
+}
+
 function main(){
   const words=sourceWords(),dict=lexicon();
-  const observed=search(words,dict);
+  const orientations=readingOrders(words);
+  const selected=orientations.map(o=>({name:o.name,output:search(o.words,dict)}));
+  const strongest=selected.slice().sort((a,b)=>b.output.best[0].score-a.output.best[0].score)[0];
+  const observed=strongest.output;
   const positive=plant(words,dict);
   const next=rng(0x32719e20);
-  const count=80,nullScores=[];
+  const count=40,nullScores=[];
   for(let t=0;t<count;t++){
     const shuffled=randomize(words,next);
-    nullScores.push(search(shuffled,dict,1).best[0].score);
+    const controls=readingOrders(shuffled).map(o=>search(o.words,dict,1).best[0].score);
+    nullScores.push(Math.max(...controls));
   }
   const actual=observed.best[0].score;
   nullScores.sort((a,b)=>a-b);
@@ -236,10 +252,11 @@ function main(){
     redRunes:words.flat().length,sourceWordLengths:words.map(x=>x.length),
     lexiconRunes:dict.words.size,anchorOptions:dict.anchors.length,
     hypothesis:'A GP additive/atbash repeating key of period 1..11 with a lexicon word at the unique 11-rune anchor, optional literal-F skip',
-    real:{evaluatedKeys:observed.evaluatedKeys,best:observed.best.map(x=>({...x,decoded:undefined}))},
+    real:{bestOrientation:strongest.name,perOrientation:selected.map(o=>({name:o.name,score:o.output.best[0].score,longWords:o.output.best[0].longMatched,matched:o.output.best[0].matched})),
+      evaluatedKeys:observed.evaluatedKeys,best:observed.best.map(x=>({...x,decoded:undefined}))},
     positive,
     matchedNull:{replicates:count,wordLengths:'fixed',runeHistogram:'fixed',
-      adjacentDoublets:0,meanBest:nullScores.reduce((a,b)=>a+b,0)/count,
+      adjacentDoublets:0,readingOrders:'four fixed variants selected as a family',meanBest:nullScores.reduce((a,b)=>a+b,0)/count,
       medianBest:nullScores[Math.floor(count/2)],maxBest:nullScores[count-1],
       empiricalUpperTail:(1+nullScores.filter(x=>x>=actual).length)/(count+1)},
     status:'A candidate must decrypt held-out non-anchor words into sustained readable language to qualify as recovered text'
