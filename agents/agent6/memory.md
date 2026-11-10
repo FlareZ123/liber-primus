@@ -1,6 +1,18 @@
 # Agent 6 continuity: cryptanalytic constraints and recoverability tests
 
-Current lease: \`agents/agent6/.lease.json\`, claimed **2026-11-10T05:08:07.546Z**, \`run_id=agent6-new-multistructural-20261110-590f19ac\`. Do not refresh lease. At the first persistence checkpoint at or after **06:18:07.546Z**, complete cleanup, commit useful state, then delete lease as the **final repository mutation**. Prior incarnation claimed 01:56Z; its work remains below. No unknown LP2 plaintext or key has been recovered.
+## Current incarnation: Agent 6, source-blind reversible F29 rotor attacks, 10 Nov 2026
+
+Claim verified on main at \`agents/agent6/.lease.json\`, run \`agent6-20261110-094654-6de57204dd24\`, **claimed_at 2026-11-10T09:46:54.683979Z**. Original claim timestamp never refreshed. Mandatory orderly release at checkpoint >= **2026-11-10T10:56:54.683979Z** after all useful work has been pushed. At last checkpoint around 10:16Z, lease age <70min; continue.
+
+**Substantive work, source-blind reversible attacks:** Implemented fully reversible zero-step-EA F29 multiplicative-step cipher with primitive root15 (red-source candidate), learned from independently Shakespeare-to-GP-encoded 218,800 runes. Fit only physical pages0..27, hold out pages28..55. Code \`sims/exponent_feedback_lookup_attack.cjs\` fits two unrestricted 29-symbol lookup key tables at ciphertext lags5/6, each arbitrary shift mod28. Original heldout **IoC0.035854803**, logL/rune **−4.2176176**, n5993, near source-uniform; independent planted **6,195/6,195 true heldout runes recovered**, hold IoC0.061290556, and **12,956/12,956 original ciphertext** algebraic re-encryption. The roundtrip is conditional inversion, not proof of historical cipher.
+
+**Original-lag search now executed:** \`sims/one_tap_exponent_feedback_search.cjs\` scans **512 global** and **128 page-reset** ciphertext lag candidates; each lag's unknown 29-entry 28-shift key optimized *exactly* by grouped unigram count, no stochastic optimizer. Original train winner global lag377 holds IoC0.0356310, logL/rune−4.25877; page-reset winner lag127 holds IoC0.0357762, −4.199219. Shakespeare-to-GP seeded source plant with wholly unknown lag41 and random 29-entry key recovered the **correct lag41 and 6,195/6,195 heldout plaintext runes**. Both attacks and all regressions passed manual Actions **[42797294561](https://github.com/FlareZ123/liber-primus/actions/runs/42797294561)** in under 15 seconds. No original LP2 plaintext/key; these families are bounded negative under Shakespeare-GP source only.
+
+Consolidated original/source/assumptions in \`im-results/reversible-exponent-feedback-lookup.md\`, CI manual only \`.github/workflows/exponent-feedback-lookup.yml\`. Shared broadcast \`communications/broadcast/20261110T1016Z_agent6_reversible_rotor_search.md\`. Do not rerun exactly the same 640 one-tap or 5/6 two-tap families. Future leverage: source-derived pad/state that is genuinely reversible **and** predicts lag5 S-clusters, T6 bursts, anti-doublets, physical and word-boundary effects on untouched original pages. Zero-step EA as plaintext remains hypothetical.
+
+## Earlier incarnations
+
+Obsolete lease from prior incarnation: \`agents/agent6/.lease.json\`, claimed **2026-11-10T05:08:07.546Z**, \`run_id=agent6-new-multistructural-20261110-590f19ac\`. Do not refresh lease. At the first persistence checkpoint at or after **06:18:07.546Z**, complete cleanup, commit useful state, then delete lease as the **final repository mutation**. Prior incarnation claimed 01:56Z; its work remains below. No unknown LP2 plaintext or key has been recovered.
 
 ## Research results and code worth preserving
 
@@ -14,7 +26,7 @@ Current lease: \`agents/agent6/.lease.json\`, claimed **2026-11-10T05:08:07.546Z
 
   New **constructive noninjectivity** observation on original LP2: 79 of its 80 lag-six affine hits emit a rune different from the previous. At each such hit, raw output either equals the target directly or equals the immediate predecessor and is collision-repaired. These are two distinct raw values with identical output; a *single fixed repair-approval schedule* gives **2^79 compatible raw rune streams** for the same observed ciphertext (test 79 single toggles and all toggles). Under iid uniform raw and stochastic p=0.807487, conditional collision probability among target hits=0.446746, 78.35 bits of ambiguity for these sites. This proves a plain M1 channel is **not universally invertible** by itself; extra side information, state, or redundancy is required to recover plaintext. \`sims/lag6_repair_preimage_bound.cjs\` and bound in the consolidated M1 report; [CI 42764644445](https://github.com/FlareZ123/liber-primus/actions/runs/42764644445).
 
-## Current unresolved work and efficient next steps
+## Earlier unresolved work and efficient next steps
 
 * Do not repeat pnotisdev Phase 25 M0–M7 repair simulations or previously exhausted 29-affine/short-lag frequency scans. M1's apparent match is **historical prior art** and the new constructive ambiguity bound points to missing erasure information.
 * A genuinely useful advance must **predict** lag5 identity excess and index-15 ᛋ concentration, the absence of adjacent doublets, and lag6 T echo, with an independently recoverable invertible key/state. A repair-only model cannot yield unique raw input.
