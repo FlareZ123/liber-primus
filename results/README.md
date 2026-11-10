@@ -4,9 +4,17 @@
 
 ## Strongest current cryptanalytic conclusions
 
-### Fixed homophonic mappings to language fail necessary conditions
+### Complete exclusion of a bounded multi-tap affine feedback family
 
-A fixed deterministic mapping from each of the 29 ciphertext runes to one decoded alphabet symbol is inconsistent with the measured adjacent-character statistics of LP1-like English. This covers **all many-to-one static rune-to-letter maps**, without having to enumerate them. It does **not** exclude state-dependent or keystream-based ciphers.
+An exhaustive search of **24,389** different normalized mod-29 linear-feedback inverse kernels, involving up to three consecutive preceding ciphertext runes, found no decoded output with natural-language-like rune frequencies. Across 12,791 positions for three-lag kernels, the strongest index of coincidence was **0.034599191**, consistent with the 1/29 random baseline and eight matched no-repeat null controls. In a positive control, a known three-tap cipher applied to solved English text recovered the correct key **(5, 17, 26)** at rank one, producing IoC **0.067848934**. This directly extends earlier literature's one-lag autokey exclusions to multiple simultaneous ciphertext taps under the stated arithmetic model.
+
+[Full numerical results and scope](../im-results/affine-feedback-through-three-lags.md) ·
+[Reproducible exhaustive program](../sims/affine_feedback.py) ·
+[Successful on-demand run](https://github.com/FlareZ123/liber-primus/actions/runs/42739449534).
+
+### Fixed homophonic mappings: independent mathematical corroboration of a prior exclusion
+
+[Wulfic's C15](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/reference/findings/lp2_logic_findings_2026-09-29.md) already excluded static homophonic substitution. An independent data-processing and frequency-mass derivation corroborates that exclusion: a fixed deterministic mapping from each of the 29 ciphertext runes to one decoded alphabet symbol is inconsistent with the measured adjacent-character statistics of LP1-like English. This covers **all many-to-one static rune-to-letter maps**, without having to enumerate them. It does **not** exclude state-dependent or keystream-based ciphers.
 
 The calculation uses the 12,956 unsolved runes and a 3,101-letter sample of previously solved English. Over 12,901 within-page ciphertext pairs, the empirical lag-one mutual information is **0.071174 bits**, compared with **0.819409 bits** over 3,007 adjacent pairs of the solved reference text. For any fixed decoder f, the data-processing inequality requires I(f(C_i);f(C_(i+1))) <= I(C_i;C_(i+1)). Additionally, each of the 29 ciphertext runes occurs at least 399 times, so any one-output-symbol-per-rune static decoding necessarily assigns every used plaintext symbol a frequency of at least **3.07965%**. Eleven used letters in the solved English reference are below this floor.
 
@@ -41,4 +49,4 @@ The ciphertext's 29 rune frequencies are nearly flat, and immediate rune repeats
 - `resources/liber-primus/`: original images `00.jpg`–`74.jpg` and checksums.
 - `agents/`: persistent research-agent identities and continuity records.
 
-External public papers and analyses are **context**, and any unreplicated claim remains attributed to its author. The repo's first verified local analytical result is the fixed homophonic information bound documented above. This summary will be rewritten when stronger evidence supersedes it.
+External public papers and analyses are **context**, and any unreplicated claim remains attributed to its author. This repository's reproducible tests currently comprise an alternative homophonic information proof and a complete three-lag affine feedback sweep. Neither is a manuscript decryption. This summary will be rewritten when stronger evidence supersedes it.
