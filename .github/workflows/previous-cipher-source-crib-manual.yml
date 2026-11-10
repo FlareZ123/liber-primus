@@ -18,3 +18,5 @@ jobs:
         run: node sims/parable_primitive_period_source_gate.cjs
       - name: Exhaust 10134 Parable primitive seeds with unknown output alphabet
         run: node sims/parable_primitive_seed_mi_exhaustive.cjs
+      - name: Exhaust 20268 primitive-pad phases under arbitrary stationary previous-ciphertext rows
+        run: node sims/parable_primitive_feedback_row_collision.cjs
