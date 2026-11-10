@@ -38,7 +38,17 @@ The first return is to Thorn after eight distinct runes. The eventual cycle is *
 
 The negative direction is also deterministic and produces **Ac → Sigel → Ing → Ur → Ear → Wynn → Eh → Is → Nyd**, then returns to Is. Both directions are reproducible; the signed message does not by itself specify which arithmetic sign to use.
 
-The exact calculation is reproduced by `sims/a_road_walk_route_gate.cjs`.
+### Exhaustive start-state control
+
+The exact functional graph was evaluated from **all 29** possible starting runes, with cycles canonicalized so rotations of the same cycle are counted once.
+
+- **Addition:** three cycles. Tyr is a fixed point with basin 1; Ur→Os→Nyd→Haegl→Ur has basin **8**; Thorn→Gyfu→Ethel→Beorc→Mann→Thorn has basin **20**. Thus 20/29 starts eventually enter the same five-cycle as Ac.
+- **Subtraction:** Tyr is a fixed point with basin 1; Nyd↔Is is the only other cycle and has basin **28**.
+- At exactly five positive transitions, **four** starts reach Ethel: **Cen, Ethel, Ac, Ior**. The Ac start is therefore not uniquely selected by the stop depth either.
+
+These basin counts reinforce that the walk is a many-to-one functional graph, not a reversible route permutation. The positive five-cycle and the negative two-cycle are properties of the chosen arithmetic map; neither supplies a geographic route or a terminal condition.
+
+The exact calculation and all-start assertions are reproduced by `sims/a_road_walk_route_gate.cjs`.
 
 ## Base-rate result: every GP prime already has an A-road
 
