@@ -85,6 +85,24 @@ The source repeats a complex two-sided tree ornament across LP2 physical pp40–
 
 This rules out **page-dependent coefficient editing within these decorative margins** if any such editing changes an audited quantized coefficient. It does **not** exclude an identical repeated global payload, image data outside the margins, or channels unaffected by these coefficients. The visible asymmetric solid/hollow five-dot design still admits a clue interpretation but does not specify a cipher operation or source key.
 
+## Apparently grayscale RGB pages: original hidden-chroma gate
+
+An RGB JPEG with visually grayscale content can still carry otherwise invisible information in its chrominance coefficients. That is a concrete, image-format-motivated test, distinct from the existing AC-LSB search. The new [original DCT-chroma source gate](../sims/jpeg_achromatic_chroma_gate.c) enumerates all **58 LP2 JPEGs**, fully decodes RGB pages, selects those with **at most four 8-bit levels** of channel disagreement in any pixel, and then compares their **entire quantized Cb/Cr coefficient arrays**, including DC and zeros, without any guessed stego key.
+
+Of the **35 RGB** and **23 grayscale** images, exactly **ten RGB** originals have this visually achromatic output. Their **43,200,000** chroma coefficient positions contain just **198 nonzero values** in total. The complete ten-page inventory partitions into five *exact byte-for-byte coefficient-equivalent classes*:
+
+| LP2 physical pages | Original images | Nonzero Cb+Cr coefficients **per image** | Relationship |
+| --- | --- | ---: | --- |
+| 1 | 18.jpg | 0 | All Cb/Cr coefficients zero |
+| 4,5 | 21.jpg,22.jpg | 1 | Exactly identical chroma arrays |
+| 9,11,13 | 26.jpg,28.jpg,30.jpg | 28 | Exactly identical chroma arrays |
+| 10,12 | 27.jpg,29.jpg | 28 | Exactly identical chroma arrays |
+| 34,35 | 51.jpg,52.jpg | 28 | Exactly identical chroma arrays |
+
+The page9–13 class alternates left/right chroma coefficient locations in correspondence with the repeated side ornaments, while the page34–35 class repeats the same upper-page chroma coordinates. The one-coefficient synthetic mutation control returns **one detected difference**. Thus none of the nine nonzero-chroma instances among these ten pages holds a unique per-page modification of the hidden Cb/Cr arrays: all nonzero patterns are shared exactly by at least one other page. The values are tiny (maximum absolute quantized coefficient 2), consistent with conversion of reused near-gray ornament artwork.
+
+This excludes **page-unique arbitrary chroma-coefficient embedding in the ten visually achromatic RGB files**, unless an alleged message deliberately reuses identical coefficient patterns across pages. It does **not** exclude a shared/repeated message, steganography in pages with visible red ink (the other 25 RGB pages), or data carried by a different feature. An RGB file flag by itself is therefore a poor indicator of otherwise invisible LP2 payload material.
+
 ## Interpretation
 
 The DHT tables—including the non-ascending symbol order within some equal-code-length groups—are completely explained by the ordinary optimized-Huffman encoder applied to the original quantized coefficients. There is no residual per-page choice in the DHT ordering that supports an independent hidden message. The shared APP0/APP2 markers, stable per-mode DQT tables, and absence of additional APP/comment/trailing segments likewise provide no separate metadata channel.
