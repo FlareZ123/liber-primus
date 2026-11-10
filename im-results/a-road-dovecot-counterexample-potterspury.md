@@ -48,6 +48,12 @@ The Furtho evidence makes this more than a generic nearby dovecote:
 
 This creates a more exact possible reading of the 2016 phrase **“the path lies empty”**: the deserted village's hollow road, with the dovecote and church surviving beside it. “Epiphany seeks the devoted” could then be read through the church/dove symbolism or the Queen's Oak's traditional first meeting of Edward IV and Elizabeth Woodville. These are still conjectural wordplays; no source links Cicada to Furtho.
 
+## Signed-clue warning
+
+The archived OutGuess extraction of the signed 2016 message ends with **“Beware false paths. Verify OpenPGP 7A35090F.”** The archive's extraction notes report a good GPG signature from the Cicada 3301 key. Reference: [the 2016 image/payload source record](../resources/cicada2016-4gq25.md).
+
+This explicit warning is directly relevant: the A5/Potterspury/Furtho cluster and the A83/Inveraray cluster both fit parts of the poetic wording. Neither should be promoted based on semantic resemblance alone. A valid route hypothesis needs a source-fixed operation and a discriminator that rules out competing sites without post-hoc stopping.
+
 ## Decision
 
 Keep both Inveraray and Potterspury/Furtho as competing location hypotheses if the A-road interpretation remains active. Any proposed stopping rule must distinguish them using an additional clue that is independent of the candidate locations. In particular, the 2016 phrase “path lies empty; epiphany seeks the devoted” is not yet sufficiently specific to select either site. Do not promote either destination to established fact.
