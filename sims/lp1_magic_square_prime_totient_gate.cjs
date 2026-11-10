@@ -15,10 +15,13 @@
  *        x {raw value, Euler phi(value), phi(prime_at_1_based_index)}
  *        x {row-major, column-major}
  *        x {subtract, add}
- *        x {book-global, reset each physical page}.
+ *        x {book-global, reset each physical page};
+ *   6. tests prime-ordinal starts 174 and 464 under the exact solved-p56
+ *      prime-totient inverse, exhaustively selecting per-page literal-F masks.
  *
  * The prime-index transform is phi(p_n)=p_n-1, motivated by the p16
  * "primes/totient" instruction and the independently solved p56 cipher.
+ * The 174/464 starts are the prime ordinals of the two magic constants.
  * This does NOT establish that either square is an LP2 key.
  *
  * Run from repository root:
@@ -28,6 +31,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
 const assert = require("node:assert/strict");
+const { primeTotients, trainNativeGP, exhaustLiteralF } =
+  require("./historical_solve_path_transfer.cjs");
+const { plaintextWords } = require("./authentic_decryption_regression.cjs");
 
 const ROOT = path.resolve(__dirname, "..");
 const read = (p) => fs.readFileSync(path.join(ROOT, p), "utf8");
@@ -131,6 +137,19 @@ function firstPrimes(count) {
 }
 const maxCell = Math.max(...A.flat(), ...B.flat());
 const primeList = firstPrimes(maxCell);
+const primeOrdinal = (value) => primeList.indexOf(value) + 1;
+const magicPrimeOrdinals = {
+  p05: { constant: 1033, primeOrdinal: primeOrdinal(1033) },
+  p16: { constant: 3301, primeOrdinal: primeOrdinal(3301) },
+  ordinalGap: primeOrdinal(3301) - primeOrdinal(1033),
+  interveningLP1Images: 16 - 5 - 1
+};
+assert.deepEqual(magicPrimeOrdinals.p05, { constant: 1033, primeOrdinal: 174 });
+assert.deepEqual(magicPrimeOrdinals.p16, { constant: 3301, primeOrdinal: 464 });
+assert.equal(magicPrimeOrdinals.ordinalGap, 290);
+assert.equal(magicPrimeOrdinals.ordinalGap, 29 * magicPrimeOrdinals.interveningLP1Images);
+assert.equal(A[1][0], 366, "source rune ᛠ is GP EA (prime 109), not IA (prime 107)");
+assert.equal(A[3][4], 366);
 function colMajor(M) {
   return Array.from({ length: 5 }, (_, j) =>
     Array.from({ length: 5 }, (_, i) => M[i][j])).flat();
@@ -260,6 +279,68 @@ assert.ok(range("ioc").max < positiveMin.ioc);
 assert.ok(range("top12").max < positiveMin.top12);
 assert.ok(range("trigram").max < positiveMin.trigram);
 
+// The two magic constants are also exact prime ordinals. Test the most
+// direct transfer suggested by p16: start the solved p56 phi(prime) stream
+// at either ordinal, reset at each physical page, and exhaust every visible-F
+// literal/nonconsuming mask. The authentic p56 page is the positive control.
+const nativeModel = trainNativeGP(emerson);
+const PAGE56_ENGLISH =
+  "AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EVERY PILGRIM TO SEEK OUT THIS PAGE";
+const p56Cipher = corpus.pages.find((p) => p.page === 56).indices;
+const p56Plain = plaintextWords(PAGE56_ENGLISH).flat();
+const p56Control = exhaustLiteralF(
+  p56Cipher, primeTotients(p56Cipher.length, 1), nativeModel, p56Plain
+);
+assert.equal(p56Cipher.length, 85);
+assert.equal(p56Plain.length, 85);
+assert.equal(p56Control.correctMask, 8);
+assert.equal(p56Control.exactMatches, 1);
+const offsetPages = corpus.pages.filter((p) => p.page < 56 && p.indices.length > 0);
+assert.equal(offsetPages.length, 55);
+const maxPageLength = Math.max(...offsetPages.map((p) => p.indices.length));
+const primeOrdinalOffsetTransfer = [174, 464].map((startIndex) => {
+  const keys = primeTotients(maxPageLength, startIndex);
+  const perPage = offsetPages.map((page) => {
+    const result = exhaustLiteralF(page.indices, keys, nativeModel);
+    return {
+      physicalPage: page.page,
+      length: result.ciphertextRunes,
+      visibleFCount: result.positions.length,
+      exhaustiveMasks: result.totalMasks,
+      bestMask: result.best.mask,
+      bestScorePerRune: result.best.score,
+      bestPreview32: result.best.plaintext.slice(0, 32)
+        .map((i) => corpus.translit[i]).join("")
+    };
+  });
+  const scores = perPage.map((p) => p.bestScorePerRune).sort((a, b) => a - b);
+  const totalMasks = perPage.reduce((s, p) => s + p.exhaustiveMasks, 0);
+  const totalRunes = perPage.reduce((s, p) => s + p.length, 0);
+  assert.equal(totalMasks, 249802);
+  assert.equal(totalRunes, 12956);
+  assert.ok(perPage.every((p) => p.bestScorePerRune < p56Control.correctScore));
+  return {
+    startPrimeOrdinal: startIndex,
+    firstTotientKey: keys[0],
+    lastTotientKey: keys[maxPageLength - 1],
+    physicalPages: perPage.length,
+    originalRunes: totalRunes,
+    exhaustiveFMaskChoices: totalMasks,
+    p56TrueMask: p56Control.correctMask,
+    p56TrueScorePerRune: p56Control.correctScore,
+    pagesReachingP56TrueScore: perPage.filter(
+      (p) => p.bestScorePerRune >= p56Control.correctScore
+    ).length,
+    bestPageScore: Math.max(...scores),
+    medianPageScore: scores[Math.floor(scores.length / 2)],
+    meanPageScore: scores.reduce((s, x) => s + x, 0) / scores.length,
+    topPages: perPage.slice().sort(
+      (a, b) => b.bestScorePerRune - a.bestScorePerRune
+    ).slice(0, 8),
+    perPage
+  };
+});
+
 const result = {
   status: "PASS: bounded negative; no LP2 plaintext recovered",
   originalImageSha256: expectedImageSha,
@@ -267,6 +348,7 @@ const result = {
   p05LineSums: AStats,
   p16MagicSquare: B,
   p16LineSums: BStats,
+  magicConstantPrimeOrdinals: magicPrimeOrdinals,
   p05AndP16Both180DegreeSymmetric: true,
   p05Literal18CellsPreserved: true,
   originalUnknownRunes: original.length,
@@ -282,6 +364,18 @@ const result = {
   bestCandidateTrigram: variants.slice().sort((a, b) => b.trigram - a.trigram)[0],
   bestCandidateIoC: variants.slice().sort((a, b) => b.ioc - a.ioc)[0],
   bestCandidateTop12: variants.slice().sort((a, b) => b.top12 - a.top12)[0],
+  primeOrdinalOffsetTransfer: {
+    model: "phi(p_n)=p_n-1, p56 subtraction direction, physical-page reset, exhaustive literal-F skip masks",
+    nativeGPModelRunes: nativeModel.symbolCount,
+    p56PositiveControl: {
+      ciphertextRunes: p56Cipher.length,
+      exactKnownPlaintextMatches: p56Control.exactMatches,
+      trueLiteralFMask: p56Control.correctMask,
+      rankOfKnownPlaintext: p56Control.rankOfKnownPlain,
+      trueScorePerRune: p56Control.correctScore
+    },
+    starts: primeOrdinalOffsetTransfer
+  },
   variants
 };
 console.log(JSON.stringify(result, null, 2));
