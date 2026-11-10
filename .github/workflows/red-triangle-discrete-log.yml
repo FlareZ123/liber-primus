@@ -24,3 +24,7 @@ jobs:
         run: node sims/contextual_marker29_period225_key_recovery.cjs
       - name: Recover full 225-digit pad using native GP bigram coordinate optimization
         run: node sims/contextual_marker29_bigram225_key_recovery.cjs
+      - name: Original versus source-native GP bigrams at clue-period keys
+        run: node sims/contextual_marker29_clueperiod_bigrams.cjs
+      - name: Exact original reversal with observable special-marker skip clocks
+        run: node sims/contextual_marker29_skipstream_inverse.cjs
