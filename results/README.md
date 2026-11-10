@@ -2,6 +2,18 @@
 
 **State as of 2026-11-10:** The unresolved second release of Liber Primus (LP2 pages 0–55) is **not decrypted**. Neither a validated general decryption method nor the associated keys or intended destination have been recovered in this repository. The 56 unresolved pages include one table/diagram page with no rune text; the other 55 pages comprise 12,956 ciphertext runes. LP2 pages 56–57 are previously solved. The earlier Liber Primus release has established partial/complete plaintexts.
 
+## Decision-relevant research frontier
+
+The exact page-15 Fibonacci-indexed prime spiral is the strongest currently documented **manuscript-derived numerical construction**. It specifies sixteen values and their reading order without adjustable per-cell parameters. The straightforward repeating mod-29 key interpretation has failed its initial direct test. The useful next step is a **clue-constrained, nontrivial key derivation** with a reversible ciphertext transformation and an independently predicted LP2 interval; arbitrary permutations of those sixteen values would add little evidence. [Primary construction and bounded test](fibonacci-prime-spiral.md).
+
+The LP2 **page-28/page-42 difference histogram** is a reproducible, selected-pair anomaly, but competing bigram, trigram and exact-marginal decoding models disagree about the physical alignment. No common keystream or plaintext has been recovered. The single consolidated [candidate investigation](../im-results/page28-page42-relative-key-anomaly.md) records the controls and model-selection caveats. A legitimate next result would reconstruct *both* plaintext streams and one independently matching key over a fresh interval, with exact re-encryption. Additional post-selected language-score improvements on these same two pages are not independent discoveries.
+
+The page-local **23/46 word-length harmonic** remains exploratory and near the corrected test threshold, while its simple columnar interpretation failed. See [corrected canonical-word analysis](../im-results/word_length_order_20261110.md). The two word-internal echoes and the unusually suppressed word-boundary rune repetitions below are **constraints to explain**, rather than decoded instructions or validated key schedules.
+
+The LP1 JPEG reverse-hex magic-square payload and concatenated JPEG streams are authentic **source-file structures**; their intentional cryptographic relevance to LP2 is unresolved. Treat direct image-byte pads, base-60-grid interpretations, and seeded-stream searches as *explicit bounded hypotheses* until they produce a recovered key. [Image 05 evidence](../im-results/jpeg05-palindromic-magic-square.md) · [Image 10 evidence](../im-results/jpeg10-concatenated-pages.md) · [Grid test example](../im-results/grid-outer-permutation-heldout.md) · [Seeded-stream coverage and assumptions](../im-results/py27-mt-s2-tail.md).
+
+**Priority test:** a candidate must predict and reproduce previously unfitted rune positions from an original LP2 page, specifying the key, source input, segmentation and exact inverse/forward transformation. Authentic solved-Cicada regressions already exist; reuse them. The scoped exclusions and structural statistics below support hypothesis selection, but the absence of LP2 recovered plaintext remains the decisive limitation.
+
 ## Strongest current cryptanalytic conclusions
 
 ### Arbitrary finite-context substitution feedback: 29!-permutation invariants
