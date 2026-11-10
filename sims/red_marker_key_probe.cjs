@@ -7,9 +7,9 @@ const pages = JSON.parse(fs.readFileSync(path.join(root, "resources/liber-primus
 const grid = JSON.parse(fs.readFileSync(path.join(root, "resources/liber-primus/base60-grid.json"), "utf8"));
 const byPage = new Map(pages.map((p) => [p.page, p.indices]));
 const p53 = byPage.get(53);
-const red = p53.slice(129);
+const red = p53.slice(128);
 const bytes = Buffer.from(grid.byte_rows.flat());
-if (p53.length !== 179 || red.length !== 50 || bytes.length !== 256) throw Error("Input contract mismatch");
+if (p53.length !== 179 || red.length !== 51 || bytes.length !== 256) throw Error("Input contract mismatch");
 const alphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
 /** @param {number[]} a @returns {number} */
 function ioc(a) {
@@ -23,7 +23,7 @@ function base29(a) {
   for (const x of a) n = n * 29n + BigInt(x);
   return Buffer.from((n & ((1n << 256n) - 1n)).toString(16).padStart(64, "0"), "hex");
 }
-const families = {red50: red, red53: p53.slice(-53), red56: p53.slice(-56), black129: p53.slice(0, 129)};
+const families = {red51: red, red53: p53.slice(-53), red56: p53.slice(-56), black128: p53.slice(0, 128)};
 const keys = [];
 for (const [name, value] of Object.entries(families)) {
   for (const reversed of [false, true]) {
@@ -38,7 +38,7 @@ const runePages = [52, 54, 55];
 const cipher = runePages.flatMap((p) => byPage.get(p));
 const periodic = [];
 for (const [name, digits] of Object.entries(families)) {
-  if (name === "black129") continue;
+  if (name === "black128") continue;
   for (const reversed of [false, true]) {
     const pad = reversed ? digits.slice().reverse() : digits;
     for (let offset = 0; offset < pad.length; offset++) {
