@@ -240,4 +240,4 @@ async function main(){
  }));
 }
 if(require.main===module)main().catch(e=>{console.error(e);process.exitCode=1;});
-module.exports={targetIndex,scan,cleanGutenberg,selectBooks};
+module.exports={targetIndex,scan,cleanGutenberg,selectBooks,fetchEdition};
