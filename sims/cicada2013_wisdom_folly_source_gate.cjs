@@ -25,7 +25,7 @@ assert.equal(crypto.createHash('sha1')
 const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const pages = corpus.pages.filter(p => p.status === 'unsolved').map(p => p.indices);
 const sourceCipher = pages.flat();
-assert.equal(pages.length, 56);
+assert.equal(pages.length, 55); // physical p50 has no runes
 assert.equal(sourceCipher.length, 12956);
 const native = corpus.pages.find(p => p.page === 56).indices;
 assert.equal(native.length, 85);
