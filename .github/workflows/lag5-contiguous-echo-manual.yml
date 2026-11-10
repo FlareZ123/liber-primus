@@ -13,6 +13,7 @@ on:
           - frozen-predictor
           - grid-rank28
           - fibonacci-logstep-inverse
+          - step-log-feedback-inverse
       train:
         description: 'Independent null calibration replicates'
         required: false
@@ -61,3 +62,7 @@ jobs:
       - name: Exact Fibonacci28 logarithmic-step GP-word inverse
         if: ${{ inputs.experiment == 'fibonacci-logstep-inverse' }}
         run: node sims/fibonacci_step_word_inverse.cjs 40
+
+      - name: Exact original F29 log-step ciphertext-feedback inverse
+        if: ${{ inputs.experiment == 'step-log-feedback-inverse' }}
+        run: node sims/step_log_feedback_exact_inverse.cjs 24
