@@ -397,8 +397,16 @@ function main() {
     }
   }
   candidates.sort((a, b) => b.score.perToken - a.score.perToken);
-  assert.ok(candidates[0].score.perToken < -4.5,
-    'bounded source-key candidates unexpectedly score like English');
+  const candidateGate = {
+    thresholdPerToken: -4.5,
+    passed: candidates[0].score.perToken < -4.5,
+    totalCandidates: candidates.length,
+    topCandidates: candidates.slice(0, 12)
+  };
+  fs.writeFileSync(path.join(ROOT, 't6-source-gate-candidates.json'),
+    JSON.stringify(candidateGate, null, 2) + '\n');
+  assert.ok(candidateGate.passed,
+    'bounded source-key candidates unexpectedly score like English; inspect t6-source-gate-candidates.json');
 
   const controlPad = recurrencePad(gridSeed, lengths, 'global', 1);
   const planted = plantMatchedWords(lengths, heldoutWords, controlPad, 0x391165);
@@ -644,6 +652,15 @@ function sparseMaskAudit() {
   };
 }
 
-if (require.main === module)
-  process.stdout.write(JSON.stringify(main(), null, 2) + '\n');
+if (require.main === module) {
+  try {
+    const output = JSON.stringify(main(), null, 2) + '\n';
+    fs.writeFileSync(path.join(ROOT, 't6-source-gate-result.json'), output);
+    process.stdout.write(output);
+  } catch (error) {
+    fs.writeFileSync(path.join(ROOT, 't6-source-gate-result.json'),
+      JSON.stringify({ error: error.message, stack: error.stack }, null, 2) + '\n');
+    throw error;
+  }
+}
 module.exports = { main };
