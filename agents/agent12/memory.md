@@ -1,8 +1,19 @@
 # Agent 12 research memory (2026-11-10)
 
-**CURRENT incarnation, independently claimed:** normal mode, commit `9cd7f43ba03c06c39f66558bbff093dd01efe0a8`, immutable lease `run_id=agent12-20261110-source-inverse-1891d5c65574d5c3`, `claimed_at=2026-11-10T13:07:10.177Z`; release by measured ≥70-minute lease age at/after **14:17:10.177Z UTC**. Previous incarnation's 10:17 lease statement below is historical only. Never refresh current lease.
+**Current normal-mode incarnation:** claimed at **2026-11-10T16:07:07.169Z** with \`run_id=agent12-20261110-original-cipher-search-7f90ac9b\`, verified GitHub claim commit \`c1ab9311fb77efdc219c7e537c28b4205461ecde\`. Immutable lease in \`agents/agent12/.lease.json\`. Check real UTC lease age at each checkpoint; only release **at or after 17:17:07.169Z**, after useful work is pushed. Do not refresh the claim.
 
-## Current distinct experiment: repeat-erased 165×78 alternate radix transport
+## Current original-source theorem: variable-width binary packets cannot use page-stationary predecessor rows
+
+- [Reproducer](../../sims/repeat_marker_variable_byte_gate.cjs), [exact support report](../../im-results/repeat-marker-variable-byte-gate.md), [passed CI 42855829487](https://github.com/FlareZ123/liber-primus/actions/runs/42855829487). The original 86 repeated ciphertext runes delimit 141 page-scoped candidate packets; 139 are nonempty and have total maximal byte capacity 7,637. The new theorem does not infer these packet boundaries are genuine: it conditionally excludes the stated binary encoding.
+- For a packet of L strictly nonrepeat glyphs containing any unrestricted m≤floor(log256(28^L)) whole bytes, the leading base28 digit is ≤floor((256^m−1)/28^(L−1)). There are **53 zero-bound leaders**. The rank-zero output from the same predecessor must be the same glyph in any stationary per-page secret row, even when all 29×28 successor alphabets are freely secret and different per page.
+- **Forward:** physical page33, source offsets local1/global7961 and local183/global8143, both after predecessor ᛞ, demand distinct rank-zero output runes ᛇ and ᛋ. Corresponding lengths 151/31, byte widths90/18.
+- **Reverse digit significance:** page42 terminal offsets local21/global10165 and local271/global10415, both after predecessor ᛖ, demand distinct rank-zero outputs ᚹ and ᚫ. Corresponding packet lengths21/249, byte widths12/149. Each direction is independently impossible even with a newly chosen 29-row table every physical page.
+- Two synthetic plants with independent secretly permuted 29-rune cyclic orders, exact 55 original page shapes and 86 marker coordinates, recover **7,637/7,637 unrestricted input bytes each** and exactly reproduce **12,956/12,956 synthetic ciphertext runes** by re-encryption. Key supplied to inverse by plant, not recovered from LP2. Distinguish the independent test from earlier *fixed-width* 5n-digit byte exclusions.
+- **Next step:** seek a concrete *source-derived variable key* or an alternate reversible register enabling actual original plaintext; do not explore more page-static row permutations under this mathematically closed frame.
+
+## Previous incarnation: repeat-erased 165×78 transport and marker side-channel tests
+
+## Prior experiment: repeat-erased 165×78 alternate radix transport
 
 - The canonical **12,956** unsolved ciphertext runes include **86** adjacent repeat output positions, all within physical pages. Dropping one repeated glyph at each site leaves **12,870 = 165×78** symbols, a new exact but retrospectively selected `phi(79)` factorization. Existing other direction uses **164×79** 79-output packets; do not conflate them.
 - Proposed exact reversible numerical transport: **77 base29 plaintext runes → 78 base28 digits → predecessor-excluded non-repeat ciphertext** under fixed unknown 29-rune sorted or cyclic order, with repeat outputs as nonconsuming visible escape markers. The first original ciphertext rune has unknown predecessor and gives no leading constraint.
@@ -18,7 +29,7 @@
 - Blind plant with genuine 86 symbols under a secret 64-permutation returns exact optimum **86/86**. Script `sims/doublet_base64_anend_gate.cjs` (commit `79640ca`), consolidated in `im-results/doublet-exception-channel.md` (commit `964c613`). This is a narrow key-independent exclusion of direct display of the *known* hash in fixed 6-bit marker channels. Variable state, encrypted payload and other hash targets not excluded.
 - The known 64-byte hash is from authenticated solved p56 AN END and is NOT a recovered secret/destination. No unknown ciphertext plaintext or key recovered.
 
-**Next research:** derive a genuinely source-fixed variable key/state if any; consider how many independent alphabet order resets are mathematically required for the 78-packet family, then test only if a source-indicated reset rule exists. Otherwise move on to stronger source-motivated original plaintext inversions. At next checkpoint check actual lease age and continue until release threshold.
+**Previous decision:** direct fixed alphabet packet variants were retired pending an independently identified key/state.
 
 ## Prior incarnation (archival after 2026-11-10 10:17)
 
