@@ -87,7 +87,31 @@ The frequency-matched nominal plus-one tail bound is **1/1,347 ≈0.000742** und
 
 Positive controls explicitly apply arbitrary per-position T powers and a hidden static bijection mapping one of four independently selected GP source symbols to index8. The four observed occurrence classes remain unchanged in every plant, as required by the proved invariant. See the [single-file full-corpus reproducer](../sims/lag6_outersigma_fixedpoint_allsecret_gate.cjs), which outputs all original scores, source controls, and native-GP synthetic confirmations.
 
-**Decision:** Even granting the whole arbitrary fixed outer substitution key, an otherwise direct power-of-T transformation remains inconsistent with the occurrence-position fingerprints of these native-GP English control sources. The useful future space is a changing output alphabet, intermediate encoding, inserted/dropped text, or a mechanism where T describes only a sparse echo rather than the entire cipher. No original plaintext or historical key is identified.
+### Sixteen independent outer alphabets at all original red-ink starts
+
+The source-colored manuscript offers one particularly economical place for a secret alphabet to change: **each red-rune span start**. The ink census specifies 16 distinct zero-based starts in physical pp0–55:
+
+    0, 729, 848, 1541, 1860, 1874, 3603, 3612,
+    5506, 6527, 7960, 8051, 9519, 9640, 12597, 12648
+
+Each start is **exactly the start of a complete manuscript rune word**, with no fitted segmentation offset. This yields 16 authentic consecutive sections containing, respectively, **[158,22,154,74,5,383,2,435,224,326,23,326,29,657,12,66]** whole words. This includes two extremely short sections, which offer the proposed cipher extra per-section relabeling freedom.
+
+Allow a fresh *entirely arbitrary unknown alphabet π_section* in each section, while still allowing arbitrary per-position T exponents. Now the invariant symbol can change among all 29 GP plaintext letters at **every** source-red boundary. Fit all 87 language-source/symbol choices **independently in every section**, summing their minimal four-bucket discrepancies. This is a much larger key family than a single global unknown π and does not assume a common section-key schedule.
+
+The original's joint minimum is **67.38065**. Under the same frozen section segmentation and length-stratified second-half literary controls, select a random independent hidden plaintext fixed symbol for every section, then repeat the identical all-29/all-three-source section-wise minimization:
+
+| Native-GP control source | Synthetic manuscripts | Largest joint discrepancy | At least as discrepant as original |
+| --- | ---: | ---: | ---: |
+| Gibran | 450 | 46.58212 | **0** |
+| Shakespeare | 450 | 63.25577 | **0** |
+| Emerson | 450 | 52.11987 | **0** |
+| **Total** | **1,350** | **63.25577** | **0** |
+
+This **unconditioned** source-native comparison gives an illustrative add-one tail bound 1/1,351 ≈ **0.000740**, with no source-symbol frequency filter. The source boundaries were chosen from the manuscript; however, the *rotor T hypothesis itself* was postselected from manuscript echoes, and separate studies have repeatedly examined these pages. The table measures how strongly the specific direct-GP architecture disagrees with three frozen genre-limited English controls, not a research-wide probability of solving the book.
+
+**Decision:** Neither one whole-book outer alphabet nor independent secret alphabets at every one of the 16 source-red starts make the pure T-power mechanism a convincing direct GP-English decryption. A changing alphabet *within* those sections, additional plaintext coding, text insertion/deletion, or a mechanism where T describes only a sparse echo remains untested. The result supplies a broad conditional obstruction, with no original plaintext or authentic key.
+
+
 
 ## A source-grid-driven six-lane recurrence with exact secret-seed recovery
 
@@ -120,7 +144,7 @@ This is an operational hidden-key inversion algorithm but its tested *source-der
 
 The word-local affine echo remains a real ordering anomaly under the existing selected-family controls. A fixed six-phase T key and independent word offsets would offer an explicit, reproducible route to decrypt it; the blind dictionary voting attack does **not** find that key. More generally, a cipher formed solely of powers of T acting directly on GP-English ought to preserve H positions and fails the present independently powered necessary-condition check.
 
-A model that survives these constraints needs a **changing** (rather than one static) alphabet or an intermediate encoding, substantially changing phases, text-dependent rewrite/insertion, or a different source register. A static hidden outer relabeling, which escaped the initial H-only test, is now covered by the all-29-symbol necessary-condition gate above under the tested native-GP English sources. A sparse echo imposed by a separate layer remains outside these simple rotor models. These remaining mechanisms are hypotheses, not authenticated features of LP2.
+A model that survives these constraints must handle the source-conditioned **sixteen-red-section all-label gate** as well as the earlier literal H leak. Merely changing the static outer alphabet at every red-marked section boundary does not rescue native-GP English under direct powers of T. More frequent relabeling, a non-GP intermediate alphabet, text-dependent rewrite/insertion, a different state register, or an echo imposed by a separate layer remain possible and unproven.
 
 For a new key candidate, the available exact relative-phase vote engine is preferable to a general plaintext-fitting search: it gives unambiguous key hypotheses and a disjoint-word confirmation threshold on the actual transcript. A true hit must reconstruct full plaintext and re-encrypt authentic runes, especially across word and page boundaries.
 
