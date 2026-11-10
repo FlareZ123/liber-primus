@@ -89,13 +89,18 @@ This is not explained by the observed properties of **individual ciphertext word
 [Reproducible code](../sims/cross_word_repeat_invariant.cjs) ·
 [Successful manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42745733143).
 
-### Sparse lag-six affine echo: word-composition and doublet-independent excess
+### Two sparse word-internal echoes survive exact word-composition controls
 
-An independently reported [word-internal six-position echo](https://github.com/pnotisdev/cicada3301/blob/main/STATUS.md) has been reproduced on the canonical LP2 cipher corpus: **80 of 1,290** eligible pairs satisfy \`c_i = 24 - 2c_(i-6) (mod 29)\`, spread across **74** separate words. A new control randomly reorders runes inside each long word while retaining **its complete rune multiset and exact number of neighboring equal-rune pairs**. Over 3,000 such randomizations, the predicted count was **45.934 ± 6.533** (SD); zero reached 80 (Monte Carlo upper p 0.000333). The original relation also surpasses the maximum across all **28 powers of its affine transform** under every matched control (orbit-familywise p 0.000333). These tests constrain word-internal symbol order beyond its per-word frequencies and immediate-doublet rate.
+Two distinct, independently reported LP2 relationships have now been reproduced with **each tested word's full rune multiset, length and exact immediate-doublet count held fixed** in randomized controls. This separates the distinctive relationships from the already-known doublet deficit and unusual frequencies inside individual words.
 
-The six-lag formula and transform were selected in earlier exploratory research; the current orbit correction does not adjust for the historical all-formulas/all-lags search. An affine autokey decoder has already failed independent plaintext tests, and the echo alone is insufficient to recover a key or distinguish a sparse rewrite from other stateful mechanisms. It is a measurable constraint to require of future candidate encryption models, **not a decryption**.
+| Word-internal relationship | Observed | Strictly word-conditioned null | Multiple-testing correction |
+|---|---:|---:|---|
+| \`c_i = 24 - 2c_(i-6) (mod 29)\` | **80 of 1,290** positions in 74 words | Mean 45.934, SD 6.533 (3,000 nulls) | No null maximum across the transform's **28 affine orbit powers** reached 80; p 0.000333 |
+| \`c_i = c_(i-5) = ᛋ\` (rune index 15) | **11 pairs** in 11 distinct words | Train mean 2.039, SD 1.313 (3,000 nulls) | **0 of 3,000** independent test nulls had a maximum standardized score across all **29 rune identities** as extreme; p 0.000333 |
 
-[Conditional reproducible experiment](../im-results/lag6-conditioned-echo.md) · [Deterministic CommonJS runner](../sims/lag6_conditioned_echo.cjs) · [Prior published analysis](https://github.com/pnotisdev/cicada3301/blob/main/docs/registry.toml).
+The lag-five ᛋ count is a striking *value-specific* signal, whereas the six-position affine echo is spread across the alphabet. A candidate encryption model must account for both as well as the globally suppressed adjacent ciphertext repetitions. These were initially selected through external exploratory research, so the controls **do not adjust for the historic search across lags and formulas**. Neither signal proves a reversible mechanism; the natural-language affine lag-feedback decoder has already failed independent tests. The core ciphertext remains encrypted.
+
+[Lag-six full control](../im-results/lag6-conditioned-echo.md) · [Lag-five 29-rune familywise control](../im-results/lag5-rune-specific-echo.md) · [Scripts](../sims/lag6_conditioned_echo.cjs) / [lag-five script](../sims/lag5_rune_specific_echo.cjs) · [Published prior observations](https://github.com/pnotisdev/cicada3301/blob/main/results/analysis/echo_values.txt).
 
 ### The known low-dependence ciphertext profile
 
