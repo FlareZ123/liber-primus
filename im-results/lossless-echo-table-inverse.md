@@ -46,6 +46,17 @@ The best training original-grid setting is **reverse-column, page reset, byte mo
 
 The original failure is specific to this tableau, this source grid, these 6,336 serializations and this plaintext-language prior. Other state schedules, word segmentations, real keys and binary intermediate registers remain open.
 
+## Full-ciphertext forward likelihood with unknown key integrated out
+
+Under this tableau architecture, a *fresh uniform hidden rank rotation* makes the output law directly testable without recovering a key. Each reserved output gets the independently trained Shakespeare GP probability of its mapped plaintext rune; all unreserved outputs share the remaining GP probability mass equally. At every original published rune, the program computes the complete normalized conditional distribution from only the previously published rune history, sums \`log(29*P(C_i | C_<i))\`, and calculates its conditional mean and variance. All 12,956 original output positions enter. The resulting standardized scores are **descriptive**, with neither model selection nor the source-language assumption independently authenticated.
+
+| Six-back plaintext symbol | Observed full-sequence log ratio to uniform | Conditional mean | Conditional SD | Descriptive deviation |
+| --- | ---: | ---: | ---: | ---: |
+| **T (index16)**, original provisional rule | **+243.810 nats** | +239.238 | 17.373 | +0.263 SD |
+| **S (index15)**, page-40 red quotient 435/29 | **+242.749 nats** | +251.231 | 18.229 | −0.465 SD |
+
+Both are internally compatible with their specified *independent-key* output processes. GP S=15 is an independently visible source pointer, although interpreting it as a six-back plaintext symbol is a new post hoc hypothesis. These full-ciphertext likelihoods provide a stronger falsifiable diagnostic than the nine selected echo counts alone. They remain insufficient to infer plaintext, key material, original algorithm, or the cipher's intended source language. The 6,336 grid-key failure and rank-one source-matched planted positive concern **T**, which is the code's default full encrypt/decrypt channel.
+
 ## Decision
 
 This is an explicit **lossless counterexample** to the assumption that lag-six/five echoes and severely reduced doublets require unrecoverable overwritten ciphertext. The original printed ciphertext admits a deterministic inverse and exact re-encryption under the model, but its hidden text is not readable with the tested original grid schedules. Preserve the implementation as an alternative to lossy surrogate generators and a reusable candidate for independently recovered key bytes. **Do not promote to established LP2 cipher**, and avoid expanding another unanchored key sweep simply to optimize the synthetic feature match.

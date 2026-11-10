@@ -84,7 +84,7 @@ assert.deepEqual(META.map((_, i) => ORIGINAL[i]),
  * @param {number} i Word-local position
  * @returns {{reserved:Int8Array,assigned:Int8Array,free:number[],outputs:number[]}}
  */
-function partial(previous, history, i) {
+function partial(previous, history, i, sixPlain=16) {
   const reserved = new Int8Array(29).fill(-1);
   const assigned = new Int8Array(29).fill(-1);
   const used = new Uint8Array(29);
@@ -100,7 +100,7 @@ function partial(previous, history, i) {
     used[output] = 1;
   }
   take(28, previous);
-  if (i >= 6) take(16, mod(24 - 2 * history[i - 6]));
+  if (i >= 6) take(sixPlain, mod(24 - 2 * history[i - 6]));
   if (i >= 5) {
     const special = history[i - 5] === 15 ||
       (i >= 6 && history[i - 1] === history[i - 6]);
@@ -271,6 +271,38 @@ function scanGrid(prepared, prior) {
   return choices.sort((a, b) => b.train - a.train);
 }
 
+/**
+ * Key-independent forward likelihood after marginalizing a fresh uniform
+ * hidden rotation over all currently free GP29 tableau slots.
+ * The conditional moments are based on the observed printed prefix.
+ * @param {number[][]} book @param {Float64Array} logPrior @param {15|16} sixPlain
+ */
+function marginalLikelihood(book, logPrior, sixPlain) {
+  assert.ok(sixPlain === 15 || sixPlain === 16);
+  const q = Array.from(logPrior, x => Math.exp(x) / 29);
+  let prev = 8, n = 0, observed = 0, expected = 0, variance = 0;
+  for (const word of book) for (let i = 0; i < word.length; i++) {
+    const ctx = partial(prev, word, i, sixPlain);
+    const mass = ctx.free.reduce((s, p) => s + q[p], 0) / ctx.free.length;
+    const probs = new Float64Array(29).fill(mass);
+    for (let p = 0; p < 29; p++)
+      if (ctx.assigned[p] >= 0) probs[ctx.assigned[p]] = q[p];
+    assert.ok(Math.abs(probs.reduce((s,p) => s+p,0)-1) < 1e-10);
+    let mean = 0, second = 0;
+    for (const p of probs) {
+      const value = Math.log(29*p);
+      mean += p*value; second += p*value*value;
+    }
+    observed += Math.log(29*probs[word[i]]);
+    expected += mean; variance += second-mean*mean;
+    prev = word[i]; n++;
+  }
+  return {sixPlain:GP.translit[sixPlain],n,observedLogOdds:observed,
+    expectedConditional:expected,conditionalSD:Math.sqrt(variance),
+    descriptiveZ:(observed-expected)/Math.sqrt(variance),
+    caveat:"The hidden rank rotation is marginalized uniformly per rune; historical source keys remain unknown"};
+}
+
 function main() {
   const measured = features(WORDS);
   assert.deepEqual(measured, {doublets:86,first:23,last:19,six:80,five:104,
@@ -317,6 +349,8 @@ function main() {
     sources:{unresolvedRunes:ORIGINAL.length,words:WORDS.length,
       GPTrainingRunes:first.length,GPHeldoutRunes:hold.length},
     actual:measured,
+    originalMarginalLikelihood:[marginalLikelihood(WORDS,prior,16),
+      marginalLikelihood(WORDS,prior,15)],
     generator:{seed:"0x17952601",trials,summary,
       key:"independent uniform xorshift byte every rune",
       plaintext:"contiguous held-out Shakespeare GP runes; cipher words independent of plaintext words"},
@@ -332,4 +366,4 @@ function main() {
 }
 if (require.main === module) console.log(JSON.stringify(main(),null,2));
 module.exports={gpText,partial,permutation,encrypt,descriptors,decryptPrepared,
-  gridKey,features,unigramModel,scanGrid,main};
+  gridKey,features,unigramModel,scanGrid,marginalLikelihood,main};
