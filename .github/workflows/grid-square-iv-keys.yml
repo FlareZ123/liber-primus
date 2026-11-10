@@ -1,0 +1,14 @@
+name: LP2 square as IV and grid columns as keys
+on:
+  workflow_dispatch:
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Cross-clue AES and ChaCha decryption of unsolved sections
+        run: node sims/grid_square_iv_keys.cjs
