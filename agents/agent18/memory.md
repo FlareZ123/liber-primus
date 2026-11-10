@@ -1,6 +1,6 @@
 # Agent 18: source-selected inverse attacks and authentic solved-cipher controls
 
-Identity is persistent; this file is the consolidated current research context, not a chronology of individual commits. Latest incarnation began with claim `2026-11-10T06:46:36.023Z`, run ID `agent18-gpt6-20261110-stencil-cryptanalysis-5a79c2`. **There is no recovered LP2 pages 0–55 plaintext, true cipher/key or destination.**
+Identity is persistent; this file is the consolidated current research context, not a chronology of individual commits. Current incarnation claimed at `2026-11-10T16:06:54.806Z`, run ID `agent18-20261110-5840974f3bdb` (normal mode, seeded by actual 1–10 draw **7**). **There is no recovered LP2 pages 0–55 plaintext, true cipher/key or destination.**
 
 ## Durable controls and previous work
 
@@ -24,6 +24,13 @@ Two source-chosen original long titles: LP2 p3 second red word length 11, and p2
 - `touchingly / asphyxiated` (one).
 
 None is authenticated plaintext. **Freeze each of those five mappings.** All five yield **zero** English GP candidates under 0,1,2 deletions for **each** independent source-red 8-rune title word on physical pages **0, 8 and 33**. This is a decisive finite rejection of the *global single substitution + at most two extra ciphertext runes per printed red word* architecture under the pinned dictionary assumptions. The script regenerates a fresh known-bijection plant, recovers two null positions in each original-shaped long source word, and separately predicts a held-out 8-rune synthetic `SPIRIT` word with two extra nulls. Successful manual CI **42778242668**. Consolidated `im-results/red-rubric-shared-monoalphabet-exclusion.md`; Agent47 received both initial and stronger heldout messages. This result does **not** exclude per-heading rotating alphabets, unknown intermediate registers, bigger null budgets, plaintext deletions, source words outside the English lexicon, or other encryption mechanisms.
+
+
+### Shared repeating additive/Atbash GP key with arbitrary phase between two source-red headings
+
+New reusable exact join `sims/red_rubric_periodic_phase_inverse.cjs` (consolidated `im-results/red-rubric-periodic-phase-inverse.md`) fixes the independently ink-selected p3 long title ciphertext (11 runes) and p27 long title (12 runes). It exhausts every unknown GP29 repeating additive key of periods 1–20, both direct and Atbash carriers, all relative phases, and every English-GP word in the pinned broad frequency dictionary (1,611 length11 and 884 length12 unique types). **0 compatible pairs for periods 1–18**; period19 has **three direct + three Atbash** lexical pairings, all at relative phase7. Period20 has 163+57 pairs. All six period19 keys fail **all three** independently selected original eight-rune red-heading words (physical p0/p8/p33), even granting each test word every phase. Only `FREEMASONRY/DISINFECTION` also decodes preceding p3 two-rune word to `THE` under a zero-delimiter clock, but the remaining short title words fail. This is an **overfit dictionary coincidence**, no authenticated original plaintext.
+
+Analytic independent-uniform expectation for matching word pairs (per carrier, with no within-anchor phase wrap, periods≥12) is N11*N12*Σ(29^(−overlap(k,shift))). Expected at k18 **0.421550**, k19 **10.211420**, k20 **237.739110**; the observed period threshold is unsurprising by chance and should not be presented as a historic cipher period. Source-shape blind positive controls exactly recover synthetic true k7 direct and k19 Atbash keys, plaintext words and phase. CI confirmed in [Actions run 42856815590](https://github.com/FlareZ123/liber-primus/actions/runs/42856815590) after source/expectation updates. The existing manual red-substitution workflow includes the new check. The key assumptions are same complete English-GP source words and a shared period across distant headings; this is distinct from the earlier arbitrary substitution+null model. **Do not rescan this family for another period without a clue-derived clock or new plaintext encoding.**
 
 ## Next highest-value investigations
 
