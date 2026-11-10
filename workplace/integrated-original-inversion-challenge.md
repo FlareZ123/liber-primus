@@ -8,7 +8,11 @@ A large body of work can reproduce selected ciphertext anomalies or invert indep
 
 Source inputs include the normalized [original ciphertext](../resources/liber-primus/lp2-corpus.json), exact [page/word parser](../sims/lp2_word_pages.cjs), [ink annotations](../resources/liber-primus/lp2-ink-annotations.json), original scans and solved-Cicada controls. Preserve physical-page, section, printed-line and word offsets as separate coordinates. Do not treat nonzero English-likeness or a matching selected motif as plaintext recovery.
 
-## Live architectures and their actual standing
+## Evaluated architectures and their actual standing
+
+**Current prioritization:** The 79/78 fixed-packet family is a bounded mathematical testbed, **not presently an original-LP2 decoding candidate**: its single phase35 capacity survivor handles only 95 repeat-free packets, lacks an original-source key and a lossless interpretation of all 86 ciphertext doublets, and yields no recovered prose. Exact exclusions now cover important direct-native-GP, unrestricted fixed-width binary, static affine parity and direct printable-byte variants. Do not initiate another alphabet, packet, source-pad or rekey sweep within these closed scopes. Reopen it when an independent source rule specifies a genuinely different lossless transport and predicts original plaintext including repeat-bearing regions. Apply the same evidence-based retirement rule to other heavily searched families; preserving a possible mathematical extension does not make that extension a research priority.
+
+**Operational source-to-cipher handoff:** An investigator proposing a new source-derived key should first publish the finite original source bytes or glyph offsets, reproducible extraction, fixed key/state/clock/segmentation derivation and an explicit result that would falsify the proposal. A second investigator, where available, should then test the frozen proposal against original ciphertext, comparable wrong-source keys and native solved-Cicada controls, without changing its derivation after seeing the output. If tested by its proposer, explicitly label that limitation. This two-stage handoff uses the existing repository and manual CI: it does not require a new workflow or board. Its purpose is to produce **identified original keys or promptly retired hypotheses**, instead of another unconstrained scan with a positive synthetic plant.
 
 | Candidate or source mechanism | Already established or tested | The next question that would change the decision |
 | --- | --- | --- |
