@@ -154,29 +154,108 @@ selected exploratorily from these same two pages.
 (Node.js CommonJS; fixed seed 7831001; 400 trials; direct corpus consistency
 assertions and exact per-word enumeration).
 
+## Exact marginalized language probability and source-matched controls
+
+An additional, **non-Viterbi** test sums the probabilities of *all* compatible
+plaintext rune sequences under the pre-specified scale-four shared-key
+equation, rather than optimizing one favorable decoded string. For every
+alignment, the dynamic program tracks 29 possible latent page-28 plaintext
+runes, infers the corresponding page-42 runes through the observed
+difference, and evaluates English GP bigram transition probabilities.
+The process explicitly uses each page's independent rune-word start/end
+flags and divides by the exact language-model likelihood of each physical
+word-boundary mask. It therefore yields a normalized log-likelihood ratio
+against 29-way uniform differences.
+
+The model is trained on the first **240,000 Shakespeare characters**
+(**44,370** GP word tokens). A separate position-conditioned IID model
+uses training rune frequencies classified by word start, interior,
+word end, or single-rune word. This distinguishes frequency and delimiter
+effects from genuinely sequential language information.
+
+| Model for the original zero-shift alignment of pages 28/42 | Log likelihood ratio or incremental log ratio | Rank against all 272 page-42 cyclic rune shifts |
+|---|---:|---:|
+| Exact marginalized bigram language likelihood against uniform differences, scale 4 | **−1.643180 nats** | **1/272** |
+| Word-position-conditioned IID GP difference likelihood against uniform differences, scale 4 | **+8.375961 nats** | **1/272** |
+| Extra information from bigram dependence, bigram minus slot-IID | **−10.019141 nats** | **252/272** |
+| Exact bigram likelihood using unscaled difference, scale 1 | +0.758591 nats | 2/272 |
+
+The apparently winning alignment under scale four **comes from the
+single-rune/word-position marginal, not from normal English rune-order
+dependence**. Adding natural bigram structure to the hypothesis sharply
+reduces the original alignment's likelihood and moves its *incremental*
+rank near the bottom. These ranks are descriptive within the previously
+selected pair and scale, not independent family-wise p-values.
+
+**Matched positive and negative controls:** Using only the final **60,000
+held-out Shakespeare characters**, 250 true-key plaintext pairs were
+sampled with **exactly the same GP rune-word lengths and boundary flags**
+as the original 269-rune page-28 and 272-rune page-42 streams. Each was
+encrypted with an independently generated common random mod-29 keystream
+under `C=4P+K`. An additional 250 matched pairs received independent
+keys on each page. The true-key samples preserve the physical masks
+precisely, including the incomplete trailing word on page 42, and
+hold their lexical sample source out of language training.
+
+| Statistic | LP2 actual | True shared-key English controls, 250 samples | Independent-key controls, 250 samples |
+|---|---:|---:|---:|
+| Bigram-forward LLR | −1.64318 | Median +11.06392; 3/250 <= real (add-one lower-tail p 0.01594) | Median −16.78222 |
+| Slot-IID LLR | +8.37596 | Median +8.03688; 134/250 <= real (p 0.53785) | Median −12.56614 |
+| Bigram minus IID | **−10.01914** | Median +2.96115; 0/250 <= real (p **0.003984**) | Median −4.14074; 17/250 <= real |
+
+The controls show **selective compatibility with GP word-position
+frequency structure and selective incompatibility with ordinary
+English-like sequential structure** under the specific common-key
+factor-four generator. The result is consistent with the separate exact
+word-overlap contradiction above. It does not identify an alternative
+encryption scheme. The actual cipher's repeat-suppression process may
+differ from the true-key controls, and different plaintext registers,
+permutations, stateful processing, or word-boundary semantics remain open.
+
+Reproduce with [the fully specified 29-state forward solver and matched
+control generator](../sims/relative_key_forward_likelihood.cjs) and
+[successful manual GitHub Actions run 42747490883](https://github.com/FlareZ123/liber-primus/actions/runs/42747490883).
+The first exploratory execution was
+[42747097513](https://github.com/FlareZ123/liber-primus/actions/runs/42747097513).
+Both records contain actual numeric evidence; neither recovers LP2 text
+or key material.
+
 ## Current interpretation and next genuinely discriminating tests
 
-The **same-offset, symmetric cross-page difference anomaly** remains a genuine
-reproducible observation, and the **factor-four template** remains the best of
-the preselected affine histogram profiles on a training-half/heldout-half
-comparison. However, the explicit shared-key *English-plaintext interpretation*
-now faces two independent mechanistic failures: the joint trigram solver does
-not recover intelligible text, and the exact **24-overlap word test finds
-only 2 compatible dictionary-word crossings** where held-out, noise-repaired
-true-key controls average about 14. The factor-four histogram fit must not be
-presented as positive evidence of an executable decryption.
+The **same-offset symmetric cross-page difference anomaly** remains
+reproducible, and the **factor-four template** remains the strongest
+preselected affine histogram fit. Under a hypothesis of two ordinary
+GP-English plaintexts with physical word boundaries and the same
+factor-four additive stream, however, multiple distinct decoding tests
+now reject the proposed *plaintext structure*:
 
-A different plaintext register or coding, a structural dependence other than
-a common additive key, or a rare null-tail alignment could cause the observed
-histogram. A 14-page separation is not a generic period: 40 other pairs of
-that separation show no comparable signal. The aligned delimiter overlap is
-12 versus 12.29 expected under independent layouts.
+- The trigram Viterbi decoder cannot produce readable words and ranks the
+  original scale-four alignment only 13/272 under its optimized-path score.
+- An exact 24-overlap dictionary compatibility test finds only two
+  compatible word crossings, versus mean 14.0875 on 400 matched
+  noise-repaired true-key samples.
+- The fully marginalized bigram language likelihood scores worse
+  than expected from matching word-position rune marginals:
+  incremental log likelihood **−10.01914 nats**, below all 250
+  matched true-key English plants.
 
-**Most informative next investigation:** identify a mathematical transformation
-that predicts **new page positions or an extractable keystream** independently
-from the already-selected histogram; recover candidate words from an explicitly
-different cipher/encoding and reconstruct a *single* identical stream from
-both original ciphertexts. If no inversion mechanism can do that, prioritize
-other unsolved sections or manuscript-art clues over more resampling of the
-same factor-four family. Image-level cross-checks of uncertain glyphs remain
-useful. No LP2 plaintext or key has yet been recovered.
+These different tests reuse the same ciphertext and assumptions, so their
+reported tail probabilities should **not** be multiplied as independent
+significance tests. They do give convergent, explicit evidence that the
+factor-four histogram relation is **insufficient to infer a shared
+English-plaintext encryption mechanism**.
+
+A different plaintext register, coding, transformation before key reuse,
+stateful cipher, or a rare selected-pair null-tail event may account for
+the observed residue distribution. The separation of 14 pages does not
+generalize to other page pairs, and the observed word-delimiter overlap
+is essentially the independence expectation.
+
+**Most informative next research:** derive a transformation that predicts
+new ciphertext positions, produces decryptable words, or reconstructs
+keystream material independently of the already-selected histogram.
+Test a different motivated plaintext alphabet or operation before
+expanding general language-model search. Additional tests must preserve
+the possibility of an unknown anti-doublet step, since the matched
+true-key controls are model-specific. No LP2 plaintext or key has been
+recovered.
