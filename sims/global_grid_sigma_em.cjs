@@ -31,11 +31,13 @@ function split(flat) {
 }
 
 /** @param {number[][]} columns @param {number[]} lengths */
-function keysFor(columns,lengths){
+function keysFor(columns,lengths,settings={}){
+  const {algorithm="aes-256-ctr",reversed=false,scaled=false,sign=1}=settings;
   return columns.map((c,i)=>{
     const width=lengths[i],drift=Math.ceil(width*.06)+18;
-    const pad=cipherBytes(c,"aes-256-ctr",width+drift+3);
-    return [...pad].map(x=>x%29);
+    const key=reversed?c.slice().reverse():c;
+    const pad=cipherBytes(key,algorithm,width+drift+3);
+    return [...pad].map(x=>MOD(sign*(scaled?Math.floor(x*29/256):x%29)));
   });
 }
 
@@ -164,7 +166,23 @@ function study() {
     meanLogScore:real.average,init:real.init,drift:real.drift,
     alphabet:real.inv,preview:real.firstPlain,history:real.history
   }));
-  return {plant,real};
+  const variants=[];
+  for(const algorithm of ["aes-256-ctr","chacha20"])
+    for(const reversed of [false,true])
+      for(const scaled of [false,true])
+        for(const sign of [-1,1]){
+          const settings={algorithm,reversed,scaled,sign};
+          const keys2=keysFor(columnKeys,LENGTHS,settings);
+          const result=algorithm==="aes-256-ctr"&&!reversed&&!scaled&&sign===1
+            ? real:recover(ciphers,contexts,keys2,model);
+          variants.push({...settings,score:result.average,
+            init:result.init,drift:result.drift,preview:result.firstPlain,
+            inverse:result.inv});
+        }
+  variants.sort((a,b)=>b.score-a.score);
+  console.log("MODES",JSON.stringify({count:variants.length,top:variants.slice(0,8),
+    worstScore:variants.at(-1).score,baselineScore:real.average}));
+  return {plant,real,variants};
 }
 if(require.main===module)study();
 module.exports={split,keysFor,assignGlobal,alignAll,recover,study};
