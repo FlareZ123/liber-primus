@@ -29,13 +29,15 @@ const LENGTH = pages.reduce((n, p) => n + p.indices.length, 0);
 const GROUPS = 4;
 const PERIODS = [78, 79];
 const CONVENTIONS = ['cyclic', 'sorted'];
+const GROUPINGS = ['page', 'equal-quarter'];
 const REPS = 3000;
-const RAW_REPS = 1000;
-const SEED = 0x79f401c3;
+const RAW_REPS = 2200;
+const SEED = 0x7941e170;
 
 assert.equal(pages.length, 55);
 assert.equal(LENGTH, 12956);
 assert.equal(LENGTH, 79 * 164);
+assert.equal(LENGTH, 4 * 41 * 79);
 
 /**
  * @param {number} page
@@ -52,6 +54,7 @@ function redPrimeSum(page, start, count) {
 assert.equal(redPrimeSum(15, 0, 9), 638);
 assert.equal(redPrimeSum(53, 128, 51), 2262);
 assert.equal(corpus.prime[21], 79);
+assert.equal(corpus.prime[12], 41);
 
 /** @param {number} seed @returns {() => number} */
 function random32(seed) {
@@ -86,13 +89,15 @@ function differences(ciphertext, convention) {
  * @param {number} period
  * @returns {{mean:number,min:number,pooled:number,groupPairs:Array<{groups:string,hit:number,total:number,rate:number}>}}
  */
-function phaseScore(rows, period) {
+function phaseScore(rows, period, grouping = 'page') {
   const hist = Array.from({length: GROUPS}, () => new Uint16Array(period * 28));
   const count = Array.from({length: GROUPS}, () => new Uint16Array(period));
   let absoluteRune = 0;
   for (let pageNumber = 0; pageNumber < rows.length; pageNumber++) {
-    const group = Math.floor(pageNumber * GROUPS / rows.length);
     for (const rank of rows[pageNumber]) {
+      const group = grouping === 'equal-quarter'
+        ? Math.floor(absoluteRune / (LENGTH / GROUPS))
+        : Math.floor(pageNumber * GROUPS / rows.length);
       const phase = absoluteRune % period;
       if (rank >= 0) {
         assert.ok(rank < 28);
@@ -137,7 +142,8 @@ function rotate(rows, shifts) {
 }
 
 const settings = CONVENTIONS.flatMap((convention) =>
-  PERIODS.map((period) => ({convention, period})));
+  PERIODS.flatMap((period) => GROUPINGS.map((grouping) =>
+    ({convention, period, grouping}))));
 const original = {
   cyclic: differences(pages.map((p) => p.indices), 'cyclic'),
   sorted: differences(pages.map((p) => p.indices), 'sorted')
@@ -145,7 +151,7 @@ const original = {
 const removed = original.cyclic.flat().filter((x) => x < 0).length;
 assert.equal(removed, 55 + 86);
 const observed = settings.map((s) => ({
-  ...s, ...phaseScore(original[s.convention], s.period)
+  ...s, ...phaseScore(original[s.convention], s.period, s.grouping)
 }));
 
 /** Matched null calibrating four source-related, finite models simultaneously. */
@@ -158,7 +164,8 @@ function calibrate() {
     const b = rotate(original.sorted, shifts);
     for (let model = 0; model < settings.length; model++) {
       const s = settings[model];
-      samples[model].push(phaseScore(s.convention === 'cyclic' ? a : b, s.period).mean);
+      samples[model].push(phaseScore(
+        s.convention === 'cyclic' ? a : b, s.period, s.grouping).mean);
     }
   }
   const averages = samples.map((arr) => arr.reduce((a, b) => a + b, 0) / arr.length);
@@ -188,7 +195,7 @@ function calibrate() {
 /** Additional independent null rotating original ciphertext before differencing. */
 function originalCipherNull() {
   const rand = random32(0x79bee310);
-  const actual = observed.find((s) => s.convention === 'cyclic' && s.period === 79);
+  const actual = observed.find((s) => s.convention === 'cyclic' && s.period === 79 && s.grouping === 'page');
   let exceedMean = 0, exceedMin = 0, sum = 0;
   for (let trial = 0; trial < RAW_REPS; trial++) {
     const shifts = pages.map((p) => rand() % p.indices.length);
@@ -244,8 +251,8 @@ function positiveControl() {
   }
   assert.equal(valid, LENGTH - 55);
   assert.equal(recovered, valid);
-  const originalMean = observed.find((s) => s.convention === 'cyclic' && s.period === 79).mean;
-  const planted = phaseScore(decoded, 79);
+  const originalMean = observed.find((s) => s.convention === 'cyclic' && s.period === 79 && s.grouping === 'equal-quarter').mean;
+  const planted = phaseScore(decoded, 79, 'equal-quarter');
   assert.ok(planted.mean > 0.050 && planted.mean > originalMean);
   return {model: '79-state 28-rank additive chain', recovered, valid,
     exactInversion: true, observedOriginalMean: originalMean,
@@ -255,12 +262,15 @@ function positiveControl() {
 function main() {
   const result = {
     source: 'original LP2 ciphertext, original source-marked red runes',
-    sourcePrimeSums: {page15: 638, page53: 2262, primeIndex22: 79},
-    sourceRunes: LENGTH, period79Blocks: 164, pages: pages.length,
+    sourcePrimeSums: {page15: 638, page53: 2262,
+      primeIndex22: 79, primeIndex13: 41},
+    sourceRunes: LENGTH, period79Blocks: 164,
+    fourQuarterLengths: [3239, 3239, 3239, 3239], pages: pages.length,
     excludedPageStartsAndRepeats: removed,
     referenceUniformRankCoincidence: 1 / 28,
     observed: observed.map((s) => ({
-      convention: s.convention, period: s.period, mean: s.mean,
+      convention: s.convention, period: s.period,
+      grouping: s.grouping, mean: s.mean,
       min: s.min, pooled: s.pooled, groupPairs: s.groupPairs
     })),
     calibration: calibrate(), independentOriginalCipherNull: originalCipherNull(),

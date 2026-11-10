@@ -1,65 +1,71 @@
-# A source-selected period-79 phase excess in predecessor-excluded LP2 differences
+# LP2's source-selected 4×41×79 lattice and weak 79-phase difference-rank recurrence
 
-**Classification: provisional, reproducible ciphertext-only structural signal. No unknown LP2 plaintext, encryption key, general decoder or external destination has been recovered.** Agent 50, 2026-11-10.
+**Status (2026-11-10, Agent 50): reproducible source arithmetic and provisional ciphertext-only correlation. No unknown plaintext, cipher key, validated 79-stage generator, or destination recovered.** The candidate numbers and models were chosen during analysis; the statistical probabilities are conditional on declared comparisons.
 
-## A finite source-constrained question
+## Why 4×41×79 is an explicit candidate rather than a fitted free-key search
 
-The corrected original-image red title over the LP2 page-15 Fibonacci-prime square has nine runes with Gematria Primus prime sum **638 = 29 × 22**. The 22nd ordinary prime is **79**. The separately red-marked page-53 stanza has 51 runes with sum **2262 = 29 × 78**, and **φ(79) = 78**. These figures and original red-rune offsets are documented separately in [the source-level prime/totient analysis](red-prime-totient-crosslink.md) and [the canonical original-image annotations](../resources/liber-primus/lp2-ink-annotations.json). The source-derived numerical relation was **identified post-selection**; the test below is not independent confirmation of its intentionality.
+The corrected **nine-rune red title on physical LP2 page 15**, immediately above the already identified 4×4 Fibonacci-prime spiral, has GP prime sum **638 = 29×22**. The **22nd prime is 79**. The independently red-marked **51-rune stanza on page 53** has GP sum **2262 = 29×78**, with **78 = φ(79)**. Source annotation fixes all rune offsets. This red-to-red arithmetic was discovered by Agent 30 and was **postselected**, with no key-use rule; see [the exact source test](red-prime-totient-crosslink.md).
 
-The 55 rune-bearing unsolved pages, in manuscript order, contain exactly **12,956 = 79 × 164** canonical ciphertext runes. This exact divisibility motivated the following test, but it too was noticed after observing the source's numeral 79. Period 78, the paired totient, is the primary alternative. The number of original pages, runes, and red-span prime sums are asserted by the reproducer.
-
-For a 29-symbol ciphertext page with indexed runes \(c_i\), assign the cyclic predecessor-excluded rank
+The **13-dot large punctuation stencil** (31 physical LP2 marks including one black exception) provides a possible, independently visible ordinal **13**, whose ordinary prime is **41**. The page-15 number square is visibly **4×4**. The 55 unresolved rune-bearing LP2 pages contain **exactly**
 
 \[
-r_i = ((c_i-c_{i-1}) \bmod 29)-1 \quad \text{when }i>0,\ c_i \ne c_{i-1}.
+12,956 = 4\times41\times79 = 4\times3,239.
 \]
 
-Thus \(r_i\) has 28 values, **0–27**. A physical page's first rune has no within-page predecessor and is omitted; the 86 observed adjacent-repeat pairs are also marked as erasures. **All 12,956 original rune positions continue to advance the phase clock**, including those 141 erasures. This is a specific forward-invertible 28-ary nonzero-step representation. The comparison alternative is the ordered/rank-excluding predecessor \(r_i=c_i-\mathbf{1}[c_i>c_{i-1}]\), which has a different 28-label geometry.
+Consequently there is a source-motivated but unproven **four-plane, 41-row, 79-column** reshape of the *complete canonical unsolved ciphertext*. The three ingredient choices and the desire to factor the ciphertext length were made after knowing the manuscript; no authorial design probability or plaintext follows from the equality. Alternative interpretations of 13, 4 and the red sums remain possible.
 
-Divide the 55 original rune-bearing pages into **four consecutive groups of 14, 14, 14 and 13 pages** without changing manuscript order. Under a hypothetical continuous, repeating rank-key mechanism of period 79, positions from different groups having the same absolute original-rune offset modulo 79 can retain a shared rank structure. For each of six group pairs, count matching **nonerased** ranks at the same phase; take the unweighted mean of the six matching ratios. A uniformly distributed rank reference has coincidence \(1/28=0.0357142857\).
+## A reversible 28-label field on the original rune sequence
 
-## Original-ciphertext observations
+Represent each rune by its GP alphabet index \(c_i\in\{0,\dots,28\}\). Within each original physical page, convert every **unequal** predecessor step to
 
-| Group pair | Exact matching pairs | Eligible pairs | Same-phase rank coincidence |
+\[
+r_i=((c_i-c_{i-1})\bmod29)-1 \in\{0,\dots,27\}.
+\]
+
+The first rune of each of 55 physical rune-bearing pages and the 86 immediate repetitions yield **141 erasures**. The absolute original-rune phase advances through them, without resynchronization. This rank map has an exact inverse given an initial rune and the 28-ary step, and can represent a stateful no-repeat ciphertext. It does **not** invert the unknown LP2 cipher.
+
+Compare rank-symbol equality at matching global positions modulo **79** across the four exactly equal 3,239-rune ciphertext quarters. Each quarter contains precisely **41 complete 79-rune rows**. For context, compare the original four consecutive physical-page groups (14/14/14/13 pages), period **78** (the separately sourced prime totient), and sorted predecessor exclusion \(r_i=c_i-\mathbf 1[c_i>c_{i-1}]\). All tests require the original physical-page starts and erasures. Raw ciphertext periodicity provides a negative check.
+
+### Exact source-ciphertext scores
+
+| Equal-quarter pair | Matching rank pairs | Eligible pairs | Match rate |
 | --- | ---: | ---: | ---: |
-| 0–1 | 5,123 | 141,454 | 0.03621672 |
-| 0–2 | 5,268 | 145,445 | 0.03621988 |
-| 0–3 | 4,363 | 120,800 | 0.03611755 |
-| 1–2 | 5,048 | 137,898 | 0.03660677 |
-| 1–3 | 4,225 | 114,533 | 0.03688893 |
-| 2–3 | 4,224 | 117,772 | 0.03586591 |
+| 0–1 | 4,711 | 130,070 | 0.03621896 |
+| 0–2 | 4,723 | 129,870 | 0.03636714 |
+| 0–3 | 4,698 | 130,026 | 0.03613124 |
+| 1–2 | 4,749 | 129,823 | 0.03658058 |
+| 1–3 | 4,804 | 129,982 | 0.03695896 |
+| 2–3 | 4,671 | 129,777 | 0.03599251 |
 
-All six cross-group rates exceed the uniform 28-rank reference. The **unweighted mean is 0.0363192927544**, or **0.000605007 above 1/28**. The minimum is **0.0358659104032**.
+Mean of the six rates: **0.036374896592**; pooled rate **0.036374924957**; minimum **0.035992510229**. Uniform 28-ary coincidence is **1/28=0.035714285714**. Every pair exceeds that baseline, with the overall mean only **0.000660611** higher. The corresponding 14/14/14/13 physical-page partition mean is **0.036319292754**.
 
-This is a small excess. Direct raw-rune modulo-79 phase coincidence is **0.0345302742458**, extremely close to the uniform 29-rune reference. Exactly one-lag-79 cyclic-rank identity is **442/12,598 = 0.0350849341**, *below* 1/28. Transposing the 164 × 79 rune array, and interpreting the apparent columns as a plaintext reading order, yields no English-readable original output. These diagnostics prevent interpreting the above difference-rank cross-phase effect as a recovered repeating pad.
+The direct **29-rune** modulo-79 phase collision is **0.034530274246**, close to the uniform **1/29** expectation. The direct **one-lag** cyclic-rank identity at 79 is **442/12,598 = 0.035084934117**, below the 28-ary uniform expectation. A straightforward 164×79 transposition therefore has no supporting direct-rune period signal, and a 79-position cipher key remains unrecovered.
 
-## Null calibration and model family
+## Correcting for the eight candidate interpretations
 
-The primary null rotates the **entire observed difference-rank sequence within each physical page**, independently, without modifying any rank values or their local order; the 141 erasure markers are carried along. Original physical page lengths, whole manuscript position clocks and the four-group membership stay fixed. The **same random rotations** are used for every one of four candidate interpretations: cyclic-vs-sorted predecessor exclusion and period 78-vs-79. The statistic is the four-group mean described above, not a fitted English-language score.
+The source-conditional null independently rotates each *entire observed 28-ary difference sequence within each physical page*, retaining its exact symbols, interior order, length, and original erasure count. The same random page rotations feed all **eight** combinations of two periods (78,79), two excluded-predecessor conventions (cyclic,sorted), and two groupings (four original page groups vs four equal 3,239-rune quarters). For each model the statistic is the unweighted mean of six cross-group equality rates.
 
-Across **3,000** seeded controls (\`0x79f401c3\`):
+In **3,000** fixed-seed controls \`0x7941e170\`:
 
-| Model | Observed mean | Rotation-null mean | Z relative to simulated SD | Single-model upper-tail p |
-| --- | ---: | ---: | ---: | ---: |
-| Cyclic rank, period 78 | 0.03586607 | 0.03575135 | 0.56 | 0.28757 |
-| **Cyclic rank, period 79** | **0.03631929** | **0.03576045** | **2.66** | **0.00433** |
-| Sorted rank, period 78 | 0.03545677 | 0.03573248 | -1.31 | 0.90903 |
-| Sorted rank, period 79 | 0.03553935 | 0.03572898 | -0.89 | 0.81573 |
+| Convention and period | Page-group mean (upper p) | Equal-quarter mean (upper p) |
+| --- | ---: | ---: |
+| Cyclic 78 | 0.03586607 (0.28224) | 0.03570428 (0.56681) |
+| **Cyclic 79** | **0.03631929 (0.00367)** | **0.03637490 (0.00167)** |
+| Sorted 78 | 0.03545677 (0.90403) | 0.03554991 (0.79207) |
+| Sorted 79 | 0.03553935 (0.81939) | 0.03554750 (0.78141) |
 
-After calibrating the **maximum standardized score across all four alternatives** on each of the same 3,000 surrogate books, **48/3,000** null maxima equal or exceed the observed maximum. Add-one familywise upper tail is **49/3,001 = 0.0163279**. The number is conditional on these four candidate families and this source-preserving rotation null; it does not correct for the project-wide history of looking for patterns.
+The equal-quarter cyclic-79 score is **3.029** simulated standard deviations above its rotation-null mean **0.035741715337**. Calibrating the **largest standardized score across all eight interpretations** against each complete surrogate family yields **22/3,000** null maxima as large as observed: add-one familywise **p=23/3,001=0.00766411**. This finite-model family correction accounts for the two groupings; it does not correct the extensive exploratory history, the discovered factorization, the choice of 13-dot stencils, or the broader space of possible numbers.
 
-Two independently coded checks guard against a rotation/erasure artifact: (1) rotate the **original ciphertext page**, then recompute the 28-symbol difference rank and the four-group statistic; an earlier 2,200-trial run gave an empirical mean-statistic p **0.00227** and minimum-statistic p **0.00318**; (2) hold the first-rune erasure fixed and rotate each page's interior difference-rank array, 5,000 trials, seed \`0x79ff1102\`: **30/5,000** matched or exceeded the real mean and likewise the real minimum, add-one p **0.0061988** for each. Both reinforce the existence of a *narrow statistical effect under these nulls*; neither explains its source or enciphering rule. The source reproducer includes the original-cipher rotation check as a separate positive-null diagnostic.
+An independently calculated **5,000-trial** control retains the first-rune erasure fixed at each original physical page start and cyclically rotates only the remaining difference ranks. The *page-group* 79-phase mean and minimum each have **30** null exceedances (add-one upper p **0.0061988**; seed \`0x79ff1102\`). A separate **2,200-trial** null rotates original complete ciphertext pages before recomputing their ranks and tests the page-group 79-phase signal, producing p **0.00227** (mean) and **0.00318** (minimum). Both test a slightly different source-preservation contract; neither generates plaintext.
 
-## Known-source inverse and original holdout
+## Real-data inverse failure and calibrated positive
 
-The program constructs a planted, exact, 79-phase repeating **28-symbol additive key** on GP-encoded Shakespeare control text. It encrypts each symbol after the first position of every physical page by adding a nonzero cyclic predecessor step modulo 29, and inverts using the true 79-value key. All **12,901** eligible planted positions are recovered exactly, and the planted 79-phase cross-group coincidence mean is above **0.05**, unlike the original mean 0.03631929. The planted source is mapped from 29 GP rune indices to a 28-label model by \`p % 28\`; this is a detector-function control for the specific rank channel, with no claim that Cicada applied this encoding.
+The accompanying standalone code encrypts independently sampled GP-encoded English control text with a fully specified **79-position, 28-label additive step key**, then inverts it. Its per-rune 28-symbol plaintext is GP indexed modulo28, its ciphertext step is \((1+p_t+k_{t\bmod79})\bmod29\) from the previous ciphertext rune, and its page-start initial states are source-independent. All **12,901** eligible synthetic positions are recovered **exactly** using the true 79-symbol key. The planted cross-group coincidence exceeds **0.05**, far greater than original LP2's ~0.03637.
 
-For the actual original LP2 data, a completely separate held-out trial used first 41 pages to fit a smoothed, 79-position rank-symbol histogram and scored the last 14 pages against its source-register baseline. Across 1,300 original-page-rotation controls, the best of the tested fixed smoothings still had **negative heldout log likelihood improvement** (α=800: −0.000389 log units per rune; rotation-null upper-tail p≈0.08455). The other smoothings α=50, 100, 200, 400 had p≈0.291, 0.214, 0.140, 0.106. **No plaintext classification, key symbols or exact original inverse have been recovered.**
+A separately computed original-source heldout test learned the phase-rank histogram on the first 41 physical rune-bearing pages and tested the last 14 with independently chosen smoothing parameters. Its best tested smoothing, α=800, produced a **negative heldout log-likelihood improvement of −0.000389 per rune** against the source-specific baseline, with page-rotation upper p≈0.0846 among 1,300 trials. More aggressive smoothing yielded upper p from 0.106 to 0.291. This source/test split failed to recover any text or fixed phase-key profile.
 
-## Interpretation and next decisive experiment
+## Next mechanism gate
 
-The observed result may represent a weak global phase-associated bias in the nonzero-step labels, a formatting/dependency effect not captured by the null, or a multiple-testing accident. A shared 79-state key operating directly on natural-language GP symbols would normally produce a **much larger** same-phase recurrence under the tested forward model, and the genuine period-79 lag-one match is unexceptional. The data give no support for calling the red source relationship a decryption key.
+Any true cipher interpretation of the 4×41×79 reshape must specify **a source-determined traversal, 79-stage state/key and exact forward/inverse rune transformation**, reconstruct *unfitted* original LP2 ciphertext, and yield independently defensible plaintext. The present 0.00066 excess could arise from dependence not reproduced by the null, broad exploratory selection, a weak latent state, or chance. Its small magnitude and negative original inversion strongly caution against promoting it to a decryption mechanism.
 
-The next useful test is a specific source-determined 79-state key-generator or outer state-machine model that reconstructs **actual held-out LP2 runes** from original ciphertext and independently derived key material, then re-encrypts them exactly. The current small difference-histogram signal is only a constraint on such a model. Larger period sweeps or extra fitted language scores on these same 79 phases would repeat the existing selection problem.
-
-**Reproducer:** [\`sims/prime79_chain_phase_crossfit.cjs\`](../sims/prime79_chain_phase_crossfit.cjs). Requires Node.js 22, the canonical corpus, image-audited annotation and the existing independent English source/GP encoder; no extra dependencies. It checks all source invariants, prints the exact six group-pair counts, original and control scores, finite-family maximum calibration and all 12,901 synthetic inversions. [On-demand GitHub Actions CI, successful run 42779258288](https://github.com/FlareZ123/liber-primus/actions/runs/42779258288). This workflow runs only when explicitly dispatched.
+**Reproduction:** [\`sims/prime79_chain_phase_crossfit.cjs\`](../sims/prime79_chain_phase_crossfit.cjs), self-contained Node.js 22/CommonJS program on repository-pinned LP2 corpus, original image-ink annotations and existing Shakespeare/GP encoder. It asserts the original source numbers, all 141 erasures and the exact inverse control; it prints eight original models, the paired 3,000-surrogate family maximum, and a separate original-cipher rotation check. Manual-only [GitHub workflow](../.github/workflows/prime79-chain-phase.yml); previously successful baseline [CI 42779258288](https://github.com/FlareZ123/liber-primus/actions/runs/42779258288). A model-specific statistical p-value is a conditional test result, not proof of Cicada's intended mechanism.
