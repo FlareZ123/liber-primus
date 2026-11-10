@@ -19,3 +19,5 @@ jobs:
         run: node sims/radix28_stateful_byte_capacity_witness.cjs
       - name: Enumerate all state-dependent byte-code capacity cases
         run: node sims/stateful_28rank_allwidth.cjs
+      - name: Exact ASCII-octet necessary bound for 29-row stateful radix28
+        run: node sims/stateful_28rank_ascii_octet_bound.cjs
