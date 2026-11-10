@@ -111,13 +111,25 @@ Two explicit limiting examples:
 
 These are upper bounds on *what the cipher can express*, not measured candidate plaintexts. For those source-like marginal assumptions, no book-wide row table and no arbitrary rekey schedule with at most **14 epochs (native solved-Cicada)**, **13 epochs (English)** or **23 epochs (Latin)** can encode the full original text with direct bijective predecessor rows. A solution with more epochs passes only these necessary marginal tests; it still needs an authentic key/state and complete original plaintext.
 
+
+**Prospective-style source-model sensitivity check (conditional, postselection-aware):** The same 796 solved-Cicada GP words used by the adjacent hidden-mode study were sampled **uniformly and independently within each exact printed-word-length bucket**, respecting all 2,896 printed LP2 word lengths and exactly 12,956 GP rune positions. For **3,000 seeded samples** (\`0x33011415\`), re-evaluate the *full 28-rank* optimal epoch lower bound on each generated source's actual symbol counts:
+
+| Minimum whole-page key epochs required | Source-native resamples |
+| ---: | ---: |
+| 14 | 120 |
+| 15 | 2,640 |
+| 16 | 231 |
+| 17 | 9 |
+
+Thus **3,000/3,000** draws require at least 14 distinct whole-page row tables, while **2,880/3,000 (96%)** require at least 15. The sampled top rune count averages **1,576.56** and top-eight count averages **7,834.93**, illustrating why single-symbol frequency alone is less discriminating than the full ranked-marginal envelope. A fixed native reference sample gave the 15-epoch threshold above; length-matched resampling confirms it is typical **under this specific source model**. Sampling power and selection effects limit interpretation: the data-dependent choice of cipher family and source model prevents treating 0/3,000 as a discovery-wide p-value or a proof against atypical native-like text. The manuscript's true word boundaries and plaintext distribution remain unknown.
+
 ### Constructive controls and limits
 
 One original-input witness builds all 29 arbitrary inverse row permutations and achieves the 714 bound while round-tripping the actual ciphertext. An independent genuine source-language positive encrypts 12,956 held-out Shakespeare GP runes with random 29×29 row permutations: **1,484 authentic E symbols** on noninitial positions, ciphertext row capacity **1,586**, exact **12,956/12,956** rune decryption and re-encryption. A separate **14-epoch planted source positive** uses 14 independently seeded bijective row tables, with unknown-change intervals spanning whole pages. All **12,956** runes invert and re-encrypt exactly, while the rank-m capacity certificate is valid for each of the 28 tested ranks.
 
 The key-independent theorem does not cover **within-page table changes, an external/hidden clock or evolving keystream, lossy repeat-repair rewrites, alternate symbol encodings, binary data, or an unusually flat plaintext distribution**. In particular it is not a universal exclusion of a reversible F29 zero-step EA architecture, whose unknown 28-symbol pad may vary at every position. The only overlap with that architecture is its restricted *book-wide fixed predecessor-ciphertext pad* case. Nor is this theorem interchangeable with the page-local or 2/3-symbol context simulations elsewhere in this document.
 
-[Reproducible exact full-source theorem, original-cipher witness and positive controls](../sims/previous_cipher_row_symbol_bound.cjs) · [passed original-source and native-Cicada manual CI run 42802957015](https://github.com/FlareZ123/liber-primus/actions/runs/42802957015).
+[Reproducible exact full-source theorem, original-cipher witness and positive controls](../sims/previous_cipher_row_symbol_bound.cjs) · [passed native-source 3,000-plant calibration and original-input CI run 42804002012](https://github.com/FlareZ123/liber-primus/actions/runs/42804002012).
 
 ### Extension: two arbitrary hidden alphabet modes
 
