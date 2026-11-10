@@ -1,11 +1,6 @@
 name: LP2 79-78 peel with Parable root 68
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'sims/lp2_79_78_peeled_primitive_root_probe.cjs'
-      - '.github/workflows/lp2-79-78-peeled-root68.yml'
   workflow_dispatch:
 
 permissions:
