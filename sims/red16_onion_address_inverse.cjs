@@ -146,8 +146,7 @@ function plant29() {
   const targets = [toBase29(a),toBase29(b)];
   assert.equal(targets[0].at(-1),targets[1].at(-1));
   const plantedCipher = Array.from({length:29},(_,i)=>((i*11+7)%29));
-  plantedCipher[targets[0].at(-1)] = 13;
-  // Preserve the full permutation after insisting on the public dot marker.
+  // Swap the existing 13 to the source-specified marker digit position.
   const previous = plantedCipher.indexOf(13);
   if(previous !== targets[0].at(-1)) {
     [plantedCipher[previous], plantedCipher[targets[0].at(-1)]] =
