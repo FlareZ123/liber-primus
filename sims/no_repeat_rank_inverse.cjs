@@ -21,9 +21,13 @@ const corpus=JSON.parse(fs.readFileSync(path.join(ROOT,"resources/liber-primus/l
 const originals=corpus.pages.filter(p=>p.status==="unsolved"&&p.indices.length);
 assert.equal(originals.length,55);
 assert.equal(originals.reduce((n,p)=>n+p.indices.length,0),12956);
-const source=fs.readFileSync(path.join(ROOT,"resources/control/shakespeare_first300k.txt"),"utf8");
-const english=encodeEnglish(source);
-assert(english.length>20000);
+const references=[
+  ["Shakespeare","shakespeare_first300k.txt"],
+  ["Gibran","gibran_prophet_58585.txt"],
+  ["Emerson","emerson_essays_2944.txt"]
+].map(([author,file])=>({
+  author, english:encodeEnglish(fs.readFileSync(path.join(ROOT,"resources/control",file),"utf8"))
+}));
 const rng=seededRandom(0x49333031);
 const hist=Array(M).fill(1);
 for(const p of originals)for(const x of p.indices)hist[x]++;
@@ -88,7 +92,7 @@ const duplicateSites=originals.map(p=>new Set(p.indices.flatMap((c,i)=>
   i&&c===p.indices[i-1]?[i]:[])));
 assert.equal(duplicateSites.reduce((sum,s)=>sum+s.size,0),86);
 /** @param {number} offset */
-function plant(offset) {
+function plant(english,offset,kind) {
   let at=offset;
   return originals.map((page,pi)=>{
     const out=[];
@@ -97,7 +101,8 @@ function plant(offset) {
       let p=english[at++%english.length];
       p=p===27?10:p===28?27:p;
       const last=i?out[i-1]:M;
-      const c=last===M?p:p>=last?p+1:p;
+      const c=last===M?p:
+        kind==="sorted"?(p>=last?p+1:p):(last+1+p)%M;
       out.push(duplicateSites[pi].has(i)?last:c);
     }
     return out;
@@ -144,26 +149,36 @@ for(const m of methods){
     withinPageSymbolIoC:calibrate(actual[m].withinPageIoC,nullPage[m])
   };
 }
-const planted=[];
-for(let rep=0;rep<20;rep++){
-  const start=Math.floor(rng()*(english.length-12956));
-  const v=plant(start);
-  planted.push({start,...Object.fromEntries(methods.map(m=>[m,count(v,m)]))});
+const planted={};
+for(const {author,english} of references)for(const m of methods){
+  const trials=[];
+  for(let rep=0;rep<20;rep++){
+    const maxStart=Math.max(1,english.length-12956);
+    const start=Math.floor(rng()*maxStart);
+    const values=count(plant(english,start,m),m);
+    trials.push(values);
+  }
+  const keys=["eq","pooledIoC","withinPageIoC"];
+  planted[author+"-"+m]={
+    sourceRunes:english.length,
+    ...Object.fromEntries(keys.map(k=>[k,{
+      min:Math.min(...trials.map(x=>x[k])),
+      median:trials.map(x=>x[k]).sort((a,b)=>a-b)[10],
+      max:Math.max(...trials.map(x=>x[k])),
+      aboveReal:trials.filter(x=>x[k]>actual[m][k]).length
+    }]))
+  };
 }
-const sortedPlant=planted.map(x=>x.sorted.eq).sort((a,b)=>a-b);
 console.log(JSON.stringify({
   model:"fixed unknown 28-code-symbol permutation followed by exclusion of last emitted cipher rune",
   invertedRankMethods:methods,originalRunes:12956,erasuresFromExactObservedDoubletSites:86,
   original:actual,
   null:{replicates:REPS,seed:"0x49333031",source:"observed GP ciphertext marginal, conditioned on no adjacent equality, exact original 86 repeat positions",
     ...summaries},
-  planted:{replicates:planted.length,source:"authentic length-matched 29-GP Shakespeare with IA folded into I; deterministic rank cipher; exact 86 repeat-site overwrites",
-    sortedMin:sortedPlant[0],sortedMedian:sortedPlant[10],sortedMax:sortedPlant.at(-1),
-    sortedAboveActual:planted.filter(x=>x.sorted.eq>actual.sorted.eq).length,
-    cyclicAboveActual:planted.filter(x=>x.cyclic.eq>actual.cyclic.eq).length,
-    sortedPooledIoC:planted.map(x=>x.sorted.pooledIoC),
-    sortedWithinPageIoC:planted.map(x=>x.sorted.withinPageIoC),
-    sortedPooledAboveActual:planted.filter(x=>x.sorted.pooledIoC>actual.sorted.pooledIoC).length,
-    sortedWithinPageAboveActual:planted.filter(x=>x.sorted.withinPageIoC>actual.sorted.withinPageIoC).length},
+  planted:{
+    trialsPerModelPerAuthor:20,
+    sources:"Shakespeare, Gibran, Emerson original GP prose (IA folded into I), with exact 86 duplicate-site overwrites",
+    controls:planted
+  },
   interpretation:"Constrains keyless fixed rank and global bijection models only. A secret changing key, an evolving rank permutation, different source register, or nonuniform insertion rule is untested."
 },null,2));
