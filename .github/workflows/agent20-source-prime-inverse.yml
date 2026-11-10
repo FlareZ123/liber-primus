@@ -20,3 +20,6 @@ jobs:
       - name: Original exact six-lane inverse and matched-key controls
         shell: pwsh
         run: node sims/red53_autoregressive_pad_inverse.cjs
+      - name: Source-selected global six-lane key and original heldout
+        shell: pwsh
+        run: node sims/red53_global_pad_inverse.cjs
