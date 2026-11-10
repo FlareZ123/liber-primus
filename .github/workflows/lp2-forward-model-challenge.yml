@@ -1,0 +1,35 @@
+name: LP2 joint forward-generator constraint challenge
+
+on:
+  workflow_dispatch:
+    inputs:
+      repetitions:
+        description: Independent length-matched source controls per mechanism
+        type: string
+        required: true
+        default: '250'
+
+permissions:
+  contents: read
+
+jobs:
+  challenge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Cross-check all physical LP2 page segments
+        run: node sims/test_lp2_word_pages.cjs
+      - name: Generate all forward-model panels and compare joint observables
+        env:
+          REPS: ${{ inputs.repetitions }}
+        run: node sims/lp2_forward_model_challenge.cjs "$REPS" | tee forward-model-results.json
+      - name: Preserve joint inference dataset
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-forward-generator-joint-panel
+          retention-days: 90
+          path: forward-model-results.json
