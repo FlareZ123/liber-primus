@@ -168,5 +168,53 @@ def run() -> dict:
                       'not a general rejection of nonlinear feedback or different marker semantics.'}
 
 
+
+def latin_robustness(original: np.ndarray) -> dict:
+    """Check both direct GP29 and feedback GP28 against independent Vulgate Latin."""
+    from pathlib import Path
+    from lp2_rowcol_fourier_inverse import spectrum, search_mle
+    root = Path(__file__).resolve().parents[1]
+    counts_data = json.loads((root / 'resources/control/latin-vulgate-gp-trigrams.json').read_text(encoding='utf8'))
+    held = json.loads((root / 'resources/control/latin-vulgate-heldout-gp.json').read_text(encoding='utf8'))
+    assert counts_data['n'] == 203357 and len(held['runes']) == 2400
+    latin = np.array(held['runes'][:729], dtype=np.int16).reshape(27, 27)
+    counts29 = np.array(counts_data['u'], dtype=np.float64)
+    assert counts29.shape == (29,) and int(counts29.sum()) == 203357
+    log29 = np.log((counts29 + 0.25) / (counts29.sum() + 29 * 0.25))
+    direct = search_mle(original, log29, starts=100)
+    rng = np.random.default_rng(0x99)
+    direct_null = [search_mle(rng.permutation(original.reshape(-1)).reshape(27, 27),
+                             log29, starts=100)['score'] for _ in range(20)]
+
+    p28 = latin.copy()
+    p28[0, 0] = 28
+    ranks = feedback_rank(original)
+    log28 = np.log((counts29[:28] + 0.25) / (counts29[:28].sum() + 28 * 0.25))
+    feedback = blind_fit(ranks, log28, starts=100)
+    rng = np.random.default_rng(0x99)
+    feedback_null = [blind_fit(randomized_rank(ranks, rng), log28, starts=100)['score']
+                     for _ in range(20)]
+    return {
+        'source': 'Independent Latin Vulgate heldout Revelation GP; 203357 separate Latin GP training runes',
+        'directGP29': {
+            'authenticLatinFourier': float(spectrum(latin).max()),
+            'originalFourier': float(spectrum(original).max()),
+            'originalBestLogScore': direct['score'],
+            'nullMeanBestScore': float(np.mean(direct_null)),
+            'shufflesAtLeastOriginal': sum(v >= direct['score'] for v in direct_null),
+            'addOneP': (1 + sum(v >= direct['score'] for v in direct_null)) / 21
+        },
+        'feedbackGP28': {
+            'authenticLatinFourier': spectral(p28),
+            'originalFourier': spectral(ranks),
+            'originalBestLogScore': feedback['score'],
+            'nullMeanBestScore': float(np.mean(feedback_null)),
+            'shufflesAtLeastOriginal': sum(v >= feedback['score'] for v in feedback_null),
+            'addOneP': (1 + sum(v >= feedback['score'] for v in feedback_null)) / 21
+        },
+        'limits': 'Twenty source-matched full-key-refit controls per Latin architecture; conditional register check only.'
+    }
+
+
 if __name__ == '__main__':
-    print(json.dumps(run(), indent=2))
+    print(json.dumps({**run(), 'latinRobustness': latin_robustness(load()[0])}, indent=2))
