@@ -31,3 +31,6 @@ jobs:
 
       - name: Exact shared-alphabet red-rubric inversion with planted nulls
         run: node sims/red_rubric_shared_monoalphabet_inverse.cjs
+
+      - name: Exact shared periodic-key red-heading inverse and original holdouts
+        run: node sims/red_rubric_periodic_phase_inverse.cjs
