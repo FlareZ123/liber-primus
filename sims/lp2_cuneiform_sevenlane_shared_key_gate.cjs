@@ -187,9 +187,9 @@ function main() {
   // Its row *and column* sums equal 1033 == 18 (mod29); consequently any
   // arbitrary common GP29 column pad remains common after a Hill inverse.
   const historicalSquares = read("resources/cicada2014-openpuff-magic-squares.txt")
-    .trim().split(/\\r?\\n\\s*\\r?\\n/u)
-    .map((square) => square.trim().split(/\\r?\\n/u)
-      .map((line) => line.trim().split(/\\s+/u).map(Number)));
+    .trim().split(/\r?\n\s*\r?\n/u)
+    .map((square) => square.trim().split(/\r?\n/u)
+      .map((line) => line.trim().split(/\s+/u).map(Number)));
   const square = historicalSquares[1];
   assert.deepEqual(square.map((row) => row.reduce((a, b) => a + b)), Array(7).fill(1033));
   assert.deepEqual(transpose(square).map((row) => row.reduce((a, b) => a + b)),
