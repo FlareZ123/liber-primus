@@ -5,6 +5,7 @@
  * visually selected 128+128 p53-p55 rune block.
  *
  * This is a source-interpretation test, not a recovered LP2 key or plaintext.
+ * The manual CI workflow runs this exact original-input gate and positive plant.
  * The 563x569 dimensions are reported for 4gq25.jpg in the contemporaneous
  * 2016 archive; the signed message says Liber Primus words are a map and
  * numbers are direction, and identifies the image as containing an Oak Tree
