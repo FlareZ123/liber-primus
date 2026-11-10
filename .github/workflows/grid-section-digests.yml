@@ -18,3 +18,5 @@ jobs:
         run: node sims/grid_prime_state_permutation_invariant.cjs
       - name: Original 256-event color-stencil candidate inverse and solved-native positive controls
         run: node sims/red_256_event_key_inverse.cjs
+      - name: Fixed digest correspondence between 256 ink events and grid columns
+        run: node sims/red_256_event_grid_hash.cjs
