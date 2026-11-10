@@ -1,0 +1,14 @@
+name: LP2 79 red-rune digest original Viterbi
+on:
+  workflow_dispatch:
+jobs:
+  original-red79-digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test hash KDF on original and seeded English GP plant
+        run: node sims/red79_hash_viterbi.cjs
