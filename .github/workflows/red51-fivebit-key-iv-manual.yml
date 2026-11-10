@@ -1,13 +1,26 @@
-name: Agent 11 packed-red-51 key and black-128 IV
+name: Red 51 rune source-key inversion
 on:
   workflow_dispatch:
+    inputs:
+      probe:
+        description: 'Choose the fixed source-key construction'
+        type: choice
+        required: true
+        default: fivebit
+        options:
+          - fivebit
+          - radix29
 jobs:
-  source-packed-key-inversion:
+  source-key-inversion:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Reproduce source-anchored finite inversion
+      - name: Earlier 5-bit red key and black128 IV
+        if: ${{ inputs.probe == 'fivebit' }}
         run: node sims/red51_fivebit_key_iv.cjs
+      - name: Exact radix-29 padded 256-bit AES key
+        if: ${{ inputs.probe == 'radix29' }}
+        run: node sims/red51_radix29_aes.cjs
