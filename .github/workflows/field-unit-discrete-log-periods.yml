@@ -10,6 +10,7 @@ on:
         options:
           - period
           - csprng-28
+          - anend-nonce
 permissions:
   contents: read
 jobs:
@@ -24,4 +25,9 @@ jobs:
       - if: inputs.attack == 'period'
         run: node sims/field_unit_discrete_log_periods.cjs 80
       - if: inputs.attack == 'csprng-28'
+        run: node sims/field_unit_csprng_alphabet_inverse.cjs
+      - if: inputs.attack == 'anend-nonce'
+        env:
+          LP2_FIELD_IV: anend
+          LP2_FIELD_NULLS: '100'
         run: node sims/field_unit_csprng_alphabet_inverse.cjs
