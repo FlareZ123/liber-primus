@@ -246,6 +246,76 @@ function assertPlantedMajorization(plain,encrypted,epochs){
   }
 }
 
+
+/**
+ * Native-Cicada word-length-matched source model, mirroring the same
+ * 796 solved-reference source words and 2,896 original printed word lengths
+ * as the adjacent hidden-mode capacity challenge. This is a probabilistic
+ * source *condition*, not a randomly generated LP2 true plaintext.
+ * @param {string[]} referenceLines
+ * @param {Int32Array[]} exactCap
+ */
+function sourceNativeEpochMonteCarlo(referenceLines,exactCap){
+  const {parseSharedCorpus}=require("./lp2_word_pages.cjs");
+  const lengths=parseSharedCorpus().words.map(w=>w.length);
+  assert.equal(lengths.length,2896);
+  assert.equal(lengths.reduce((a,b)=>a+b,0),12956);
+  const words=(referenceLines.join(" ").match(/[A-Za-z]+/g)||[])
+    .map(englishGP);
+  assert.equal(words.length,796);
+  const buckets=new Map();
+  for(const word of words){
+    const counts=new Int32Array(M);
+    for(const x of word)counts[x]++;
+    if(!buckets.has(word.length))buckets.set(word.length,[]);
+    buckets.get(word.length).push(counts);
+  }
+  for(const length of lengths)assert.ok(buckets.has(length));
+  const random=rng(0x33011415),samples=3000;
+  const histogram=new Int32Array(pages.length+1);
+  const rank9Threshold=exactCap[9][14]+pages.length;
+  const rank11Threshold=exactCap[11][14]+pages.length;
+  let totalLeading=0,totalTop8=0;
+  for(let trial=0;trial<samples;trial++){
+    const counts=new Int32Array(M);
+    for(const n of lengths){
+      const bucket=buckets.get(n);
+      const word=bucket[random()%bucket.length];
+      for(let i=0;i<M;i++)counts[i]+=word[i];
+    }
+    const ordered=Array.from(counts).sort((a,b)=>b-a);
+    totalLeading+=ordered[0];
+    totalTop8+=ordered.slice(0,8).reduce((a,b)=>a+b,0);
+    let sum=0,required=1;
+    for(let rank=1;rank<M;rank++){
+      sum+=ordered[rank-1];
+      let k=1;
+      while(k<=pages.length &&
+          exactCap[rank][k]+pages.length<sum)k++;
+      assert.ok(k<=pages.length);
+      required=Math.max(required,k);
+    }
+    histogram[required]++;
+  }
+  assert.deepEqual(Array.from(histogram.slice(14,18)),
+    [120,2640,231,9]);
+  assert.equal(histogram.reduce((a,b)=>a+b,0),samples);
+  return {
+    seed:"0x33011415",sourceWords:words.length,
+    originalPrintedWordLengths:lengths.length,samples,
+    histogram:Array.from(histogram).map((n,k)=>({k,n}))
+      .filter(x=>x.n),
+    fractionNeedingAtLeast14:1,
+    fractionNeedingAtLeast15:(samples-histogram[14])/samples,
+    sourceGPMeanLeadingCount:totalLeading/samples,
+    sourceGPMeanTop8Count:totalTop8/samples,
+    original14EpochTop9Capacity:rank9Threshold,
+    original14EpochTop11Capacity:rank11Threshold,
+    caveat:"Monte Carlo source-family coverage, not a posterior probability " +
+      "of an actual LP2 cipher; historical model selection was post hoc"
+  };
+}
+
 function main() {
   const counts = rows(pages);
   const total = counts.flat().reduce((a, b) => a + b, 0);
@@ -330,6 +400,8 @@ function main() {
     [7889,8032]);
   assert.ok(nativeEpochs.bindingRanks.includes(1));
   assert.ok(nativeEpochs.bindingRanks.includes(8));
+  const nativeCalibration=sourceNativeEpochMonteCarlo(
+    nativeLines,exactCap);
 
   assert.ok(englishEpochs.bindingRanks.includes(8));
   assert.ok(latinEpochs.bindingRanks.includes(11));
@@ -375,6 +447,7 @@ function main() {
       nativeCicadaBindingRanks: nativeEpochs.bindingRanks,
       nativeCicadaTop1Share: nativeEpochs.byRank[0].sourceShare,
       nativeCicadaTop8Share: nativeEpochs.byRank[7].sourceShare,
+      nativeCicadaWordLengthMatchedSampling: nativeCalibration,
       nativeCicadaTop1Bounds: [14,15].map(k=>
         ({epochs:k,maximumSourceLikeRunes:exactCap[1][k]+55})),
       nativeCicadaTop8Bounds: [14,15].map(k=>
