@@ -14,3 +14,6 @@ jobs:
           node-version: '22'
       - name: Source field construction, exact original seed gate and native plant
         run: node sims/lp2_red_triad_primitive_field_inverse.cjs
+
+      - name: Nonlinear source-grid polynomial evaluations over the red GF841 field
+        run: node sims/lp2_red_triad_polynomial_eval_inverse.cjs
