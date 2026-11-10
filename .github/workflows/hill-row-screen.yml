@@ -45,6 +45,7 @@ jobs:
         run: |
           python -m pip install numpy scipy
           python sims/hill_fourier_blind_inverse.py
+          python sims/sliding_five_linear_recurrence_fft.py
       - name: Test exact reversible zero-step EA model and native source
         if: inputs.experiment == 'ea-anchor'
         run: node sims/ea_zero_step_reversible.cjs
