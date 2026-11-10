@@ -8,6 +8,11 @@ on:
         type: choice
         options: [standard, prime79, prime79prefix2, prime79cpsat]
         default: standard
+      page_shuffle_seed:
+        description: "Nonzero CP-SAT matched-null seed; shuffle whole original LP2 pages"
+        required: true
+        type: string
+        default: '0'
       prefix_samples:
         description: "Bounded source-language inverse candidates for surviving phase35; 0 disables"
         required: true
@@ -100,4 +105,5 @@ jobs:
           PHASE_START: ${{ inputs.phase_start }}
           PREFIX_TWO_DIRECTION: ${{ inputs.prefix_direction }}
           CPSAT_SECONDS: '540'
+          PAGE_SHUFFLE_SEED: ${{ inputs.page_shuffle_seed }}
         run: python sims/prime79_prefix2_cpsat.py
