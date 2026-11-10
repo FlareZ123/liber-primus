@@ -74,6 +74,20 @@ function keyTables(stream) {
     out.set(label + "/gridTranspose",Array.from({length:256},(_,i) =>
       bytes[(i % 32)*8 + Math.floor(i / 32)]));
   }
+  // Each of the 31 13-dot stencils separates two red-rune runs.
+  // Including leading/trailing and empty intervals yields 32 base-60 digits.
+  const lengths=[];
+  let count=0;
+  for(const symbol of stream) {
+    if(symbol.kind===1) count++;
+    else {lengths.push(count);count=0;}
+  }
+  lengths.push(count);
+  assert.equal(lengths.length,32);
+  assert.equal(lengths.reduce((a,b)=>a+b,0),225);
+  assert.equal(Math.max(...lengths),59);
+  out.set("redRun32/forward",lengths);
+  out.set("redRun32/reverse",lengths.slice().reverse());
   return out;
 }
 
@@ -121,7 +135,7 @@ function transform(input,key,mode,encode) {
       previous=-1;
       if(mode.reset==="page") clock=0;
     }
-    const k=key[clock++ % 256];
+    const k=key[clock++ % key.length];
     const v=input[i];
     let x;
     if(mode.family==="add") {
@@ -207,6 +221,9 @@ function run() {
     sourceSha256:crypto.createHash("sha256")
       .update(Buffer.from(originalKey)).digest("hex"),
     gridBytes:gridByte.length,
+    stencilRunLengths:tables.get("redRun32/forward"),
+    stencilRunBase60:tables.get("redRun32/forward")
+      .map(v=>"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx"[v]).join(""),
     exactFixedClockGridMatches:{directByte:strict,lowFiveBits:low5},
     originalRunes:ciphertext.length,
     variants:rows.length,
