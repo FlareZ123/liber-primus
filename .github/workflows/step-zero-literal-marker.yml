@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Original repeated step and 29-rune held-out source controls
         run: node sims/step_zero_gp_literal_marker_exclusion.cjs
+      - name: Check solved Cicada EA locations across word positions
+        run: node sims/step_zero_ea_wordposition_heldout.cjs
