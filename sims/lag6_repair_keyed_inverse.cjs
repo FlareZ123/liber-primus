@@ -87,10 +87,14 @@ function run(){
   for(const w of heldout)if(w.length<30)bins[w.length].push(w);
   const lengths=parseSharedCorpus().words.map(w=>w.length);
   assert.equal(lengths.reduce((a,b)=>a+b,0),12956);
-  const rand=rng(0x391165),source=lengths.map(n=>{
+  const holdoutStream=heldout.flat(),rand=rng(0x391165);
+  let fallbackWords=0;
+  const source=lengths.map(n=>{
     const bin=bins[n];
-    assert(bin&&bin.length,"No heldout English GP word with length "+n);
-    return bin[Math.floor(rand()*bin.length)];
+    if(bin&&bin.length)return bin[Math.floor(rand()*bin.length)];
+    fallbackWords++;
+    const offset=Math.floor(rand()*(holdoutStream.length-n));
+    return holdoutStream.slice(offset,offset+n);
   });
   const pad=Array.from({length:12956},()=>Math.floor(rand()*29));
   const planted=encipher(source,pad,rand,.81);
@@ -110,7 +114,7 @@ function run(){
   }
   assert.equal(originalWithinCandidates,12956,"Every true GP rune must be in the exact inverse candidate set");
   return {source:"GP-English heldout Shakespeare source words matched to 2,896 exact LP2 word lengths",
-    seed:"0x391165",runes:12956,words:lengths.length,
+    seed:"0x391165",runes:12956,words:lengths.length,fallbackWords,
     sourceTraining:"First 240,000 Shakespeare characters, word-position GP unigram model",
     sourceHoldout:"Last 60,000 Shakespeare characters",
     q:0.81,withKnownPad:true,actualCiphertextRecovered:false,
