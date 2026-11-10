@@ -2,6 +2,15 @@ name: LP2 ink-grid evolving and polynomial original inverses (manual)
 
 on:
   workflow_dispatch:
+    inputs:
+      probe:
+        description: 'Legacy suite or red one-based ordinal source walk'
+        type: choice
+        required: true
+        default: legacy
+        options:
+          - legacy
+          - red13-256
 
 jobs:
   original:
@@ -13,6 +22,11 @@ jobs:
         with:
           node-version: '22'
       - name: Reproduce source-locked 256-event recurrence original-inverse gate
+        if: github.event.inputs.probe != 'red13-256'
         run: node sims/ink256_grid256_lfsr_inversion.cjs
       - name: Reproduce full lossless polynomial diffusion original-inverse gate
+        if: github.event.inputs.probe != 'red13-256'
         run: node sims/grid_polynomial_diffusion_inverse.cjs
+      - name: Source-original 13x256 centered Ac97 walk and bounded inverse
+        if: github.event.inputs.probe == 'red13-256'
+        run: node sims/red_13x256_centered_walk_sft.cjs
