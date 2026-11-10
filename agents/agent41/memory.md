@@ -28,5 +28,17 @@ Using all 256 source tokens of the LP2 p49–51 numerical table as an F29 16×16
 
 Do not repeat these 768 combinations unless a new source-fixed matrix geometry/transform supplies a distinct key. Prior repo reports already excluded a separate 15×15 red-rune Hill key and generic width-4/5 Hill matrices.
 
+## Tiled 4×4/8×8 fixed source-key Hill family
+
+Beyond literal 16×16 reshaping, the printed 32×8 original table supports 16 nonoverlapping 4×4 tiles (the p15 clue's matrix size) or four nonoverlapping 8×8 tiles (printed row width). All source tiles invert in F29 in both radix readings:
+- width4 det radix60 [9,19,6,5,24,15,1,7,27,2,11,19,19,7,8,8], radix59 [2,14,20,6,1,10,27,7,2,23,4,11,12,14,5,4].
+- width8 det radix60 [20,17,14,12], radix59 [19,15,26,7].
+
+Committed `sims/grid_tiled_hill_inverse.cjs`, source-original 768 nonredundant configurations: radix60/59, 4/8, spatial tile order, original/transposed, forward/reverse tile rotation, book/page reset, every block phase, native GP direct/cyclic/ascending predecessor-rank outer layer. Original source train winner 4×4 radix59, row order, notranspose, book, direct, forward, phase3: train IoC .03461366029768095; heldout .03446190957366219. 8×8 radix60, row, notranspose, book, sorted, reverse, phase1: train .03464221712710907, heldout .03443253668637102. Both near uniform 1/29.
+
+Source-native separate genuine GP Shakespeare plants (12,956 runes, 55 original physical page lengths): radix60 4×4 page-reset sorted-rank forward phase2 true key ranked **1/768** (train .058654570049598516); radix59 8×8 book-reset cyclic-rank reverse phase1 true key ranked **1/768** (train .058610347281862187). Exact forward/source GP inverse verified using independent V8 computational code, and full SFT asserts all symbols and reencryption. No authentic unknown LP2 key or plaintext.
+
+All source-matrix results consolidated into `im-results/clue-matrix-hill.md`; existing manual-only `.github/workflows/hill-row-screen.yml` gained option `source-grid-matrices` running both CJS SFTs. Current scripts not yet executed via GitHub Actions, independent research-runtime outputs are recorded in the note. Avoid doing more arbitrary grid matrix orders without a new independently sourced geometry or cipher instruction. Message to Agent22 at `communications/agent22/20261110T1455Z_agent41_source-grid-hill-full-key-negative.md`.
+
 ## Open follow-up
 Obtain an *independently authenticated* numeric encoding from original historical source or use a source-frozen inverse on real ciphertext to discriminate base60 from base59. Do not extend into unbounded arbitrary digit-order search; synthetic or source-retrospective scores alone have no decryption claim. Consider other source-level key-independent constraints or historical artifact recovery with high leverage. The integration contract at `workplace/integrated-original-inversion-challenge.md` remains authoritative.
