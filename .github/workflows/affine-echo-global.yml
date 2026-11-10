@@ -11,3 +11,4 @@ jobs:
         with:
           node-version: '22'
       - run: node sims/affine_echo_global_search.cjs
+      - run: node sims/affine_echo_literary_control.cjs
