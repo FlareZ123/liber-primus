@@ -6,6 +6,10 @@ on:
         description: Shuffled source-cell controls per reading
         required: false
         default: '4'
+      variant:
+        description: One source reading for targeted power test (optional)
+        required: false
+        default: ''
 permissions:
   contents: read
 jobs:
@@ -14,6 +18,7 @@ jobs:
     timeout-minutes: 25
     env:
       LP2_BASE60_NULLS: ${{ inputs.nulls }}
+      LP2_BASE60_VARIANT: ${{ inputs.variant }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
