@@ -1,0 +1,35 @@
+# LP2 adjacent doublets as a putative fixed-plaintext-letter channel
+
+**Agent 43, 2026-11-10. Status:** original-cipher necessary-condition attack with independent literary controls. It recovers **no LP2 plaintext or key**. An English-like fixed-letter marker is not supported by the currently tested statistical models.
+
+## Explicit inversion hypothesis
+
+The unsolved LP2 rune stream has only **86 immediate identical-rune pairs** in 12,956 runes. A potentially exploitable cipher could emit an identical adjacent ciphertext rune whenever the current plaintext rune belongs to one privileged GP symbol `r`; the marked symbol might be recoverable without the rest of the key. Under the simplest position-independent marker rule, those 86 **second** cipher-rune positions should occupy word lengths and within-word positions similar to the occurrences of one true plaintext letter.
+
+To test this before assigning any decryptions, the canonical first 55 rune-bearing segments were parsed into eight sections, 2,896 complete words and 12,956 runes, keeping words continuous across printed line and page wraps. All 86 events were detected **across word boundaries as well as inside words**. Exactly **23** events are word-initial, and 85 whole words contain one event each except one word containing two. The actual event counts by GP rune-word length are `2:4, 3:16, 4:17, 5:12, 6:9, 7:7, 8:11, 9:3, 10:3, 12:4`.
+
+For each of 29 putative leaked GP letters, train a positional probability `q(letter | length, position)` from an independently selected natural-English corpus, converted to the 29-rune alphabet with the same greedy digraph transliteration as the repository's existing authentic-control programs. For each length, normalize the target letter's per-position frequency over all word positions. The score is the sum of `log(length * q)` over the real doublet events. The length-conditioned uniform-position null has score zero. Maximization over all 29 letters supplies a direct selection rule for which, if any, plaintext symbol might be exposed. This tests word-position evidence without fitting a stream key, and does not assume the ciphertext rune value at the marked sites equals the plaintext symbol.
+
+The **familywise 5,000-draw permutation null** relocates the observed number of events inside every *same original word*, sampling distinct positions without replacement. It preserves every word's runic length and its exact event count, the eight section boundaries and the overall 86 events. Every replicate reselects the strongest candidate from the same 29-letter family. Separate independently sourced Shakespeare, Gibran, and Emerson English controls check author/register sensitivity.
+
+## Reproducible observations
+
+| English source | Highest ranked GP rune | Observed max log-likelihood advantage vs flat | Empirical familywise upper-tail p |
+|---|---|---:|---:|
+| Shakespeare, first 300k characters | N | -6.84624 | **0.13837** (691/5,000 exceed) |
+| Gibran, *The Prophet* | AE | +0.70670 | **0.06919** (345/5,000 exceed) |
+| Emerson essays | L | -6.24254 | **0.27714** (1,385/5,000 exceed) |
+
+The leading letter changes with the source corpus. Under every source, the actual 29-letter maximum remains inside the familywise random-position distribution. Even the best candidate provides **no statistical evidence** for one fixed plaintext-letter marker.
+
+A previously suggested special-case interpretation, **F = ᚠ as an interruption symbol**, is particularly inconsistent with the location profile: its total log-likelihood advantage versus a flat within-length model is **-76.492** (Shakespeare), **-75.745** (Gibran), and **-77.834** (Emerson). The simpler first-versus-interior distinction likewise finds 23 actual word-start doublets, versus approximately 40, 38 and 36 expected from 86 exchangeably thinned plaintext F occurrences respectively under the three controls (2,000 sample trials). Those tests constrain a *position-independent* F-trigger, not Cicada's known distinct LP1 F-interruption conventions.
+
+To verify the scoring/search pipeline finds its own positive family, 250 independent synthetic 86-event datasets sampled from each best candidate's actual GP-English position profile were independently rescored over all 29 letters. The generating marker was top-ranked **249/250 Shakespeare, 249/250 Gibran and 250/250 Emerson**. These are source-matched detection checks, and their success does not validate the model as a description of LP2.
+
+## Implications and next step
+
+This is a **bounded failure of a proposed inversion path**. An immediately repeated ciphertext rune does not provide a justified English plaintext letter via one position-independent fixed-symbol event marker. No 86 plaintext cribs were asserted.
+
+A hidden symbol whose appearance probability depends on preceding state, word location, plaintext identity and key consumption, or a plaintext code unrelated to the tested English register, can evade this test. So can an event marking a cipher operation or an edit rather than any specific plaintext symbol. Further work requires an explicit *reversible* event-generation rule and a key candidate that predicts previously unseen LP2 runes; merely fitting a marker to these 86 positions does not solve the cipher.
+
+**Reproduce:** `node sims/doublet_plaintext_letter_marker.cjs`, Node.js 22, using tracked `resources/lp2-transcription.txt` and three tracked English controls. Manual GitHub Actions run [42758864963](https://github.com/FlareZ123/liber-primus/actions/runs/42758864963) succeeded on the exact committed program. CI workflow is dispatch-only and cannot run per commit. Random seeds: `0x430f3301 + sourceIndex * 1009`. Results were not promoted to `results/` because no manuscript plaintext/key or recovered architectural mechanism resulted.
