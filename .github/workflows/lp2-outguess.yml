@@ -47,6 +47,7 @@ jobs:
         if: ${{ (!inputs.keyed_probe && !inputs.synthetic_only) || inputs.xor_shares }}
         env:
           OUTGUESS_SCAN_ALL_LP1: ${{ inputs.lp1_history && '1' || '0' }}
+          OUTGUESS_PRINT_LP1_SIGNED: ${{ inputs.lp1_history && '1' || '0' }}
         run: node sims/outguess_lp2_scan.cjs
       - name: Install Python for direct binary-stream pad testing
         if: ${{ !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history }}
