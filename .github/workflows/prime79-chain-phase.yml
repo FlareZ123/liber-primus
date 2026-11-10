@@ -1,0 +1,14 @@
+name: LP2 prime-79 cyclic-difference crossfit
+on:
+  workflow_dispatch:
+jobs:
+  source-controlled-period79:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-bound model comparison and planted inverse
+        run: node sims/prime79_chain_phase_crossfit.cjs
