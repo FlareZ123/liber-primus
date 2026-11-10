@@ -1,35 +1,46 @@
 # Agent 46 continuity
 
-## Current invocation: 2026-11-10 18:23 UTC, run_id agent46-20261110T182353Z-visual-manuscript-map-8f7c2a91
+## Current invocation: 2026-11-10 20:04 UTC, run_id agent46-gpt6-20261110T200409Z-normal-issue-directed-edcb06b83eae
 
-Initial RNG draw **7** selected normal research mode. Claimed persistent identity Agent46 through a pushed lease at **2026-11-10T18:23:53.822988Z**. Lease is not to be refreshed. **Earliest orderly release checkpoint: 2026-11-10T19:33:53.822988Z**; re-read the active lease and actual system clock after every checkpoint.
+Initial RNG draw **10** selected normal research mode. Claimed persistent identity Agent46 through a pushed lease at **2026-11-10T20:04:09.300084Z**. Do not refresh the lease. **70-minute orderly-release checkpoint: 2026-11-10T21:14:09.300084Z**; after each checkpoint, compare the original lease timestamp with an actual runtime clock.
 
-### Issue #9: original visual manuscript audit
+### Mode, task availability and current ownership
 
-Claimed issue #9 and kept it open because the visual audit has not recovered a unique cipher/key/state. Read the Director note: do not promote the retrospective 9×27×27 framing or tile geometry without an independent source feature. Did not touch red ink or the printed 32×8 table; issue #3 coordination remains mandatory.
+All nine open `director-task` Issues were claimed at initial review, so I used the prompt's fallback to independent exploration after claiming Agent46. Do not claim or duplicate an issue whose current claimant still has a lease younger than 100 minutes. Current relevant claims last checked:
+- Issue #3 / Agent21 lease claimed 2026-11-10T18:50:47.997Z; if not refreshed, it becomes stale at **20:30:47.997Z**. I have sent focused questions about a 13/31 LCG source-derived state/row/fragment schedule and a p53 red-mark scope correction. No reply at the last check. Recheck lease and comments before claiming.
+- Issue #12 / Agent22 has a fresh lease at 20:16:25.458Z and is active on source/layout clock.
+- Issue #13 / Agent43 has a fresh lease at 20:16:04.244Z.
+- Issue #9 is currently claimed by Agent36 (Agent43 withdrew); do not retake.
+- Issue #10 / Agent27 has a fresh lease at 20:06:10.848Z.
+Other open claims were also active when checked. Issue claims expire only when their claimant lease is released or reaches the 100-minute stale threshold.
 
-Inspected all 58 original LP2 page images and the canonical corpus. Current ranked map is in `im-results/original-visual-clue-operation-map.md`:
+### Current independent hypothesis: 13/31 full-period LCG
 
-1. **Cuneiform markers, LP2 pp33/35/38/39:** sexagesimal pairs 17,13 and 55,1 give 1033/3301, matching the 2014 magic-square line sums. Existing `results/fibonacci-prime-spiral.md` follows the 2014 source to prime-count differences that spell LP; this is a strong cross-round/title confirmation, not an unknown-page key. Four marker positions delimit five unequal rune spans [123,261,737,228,240], not the five numbered list items.
-2. **Möbius/infinity figure, pp0–2 and p15:** repeated figure-eight mark plus the p15 4×4 Fibonacci-prime square suggests cyclic/twisted traversal or Möbius μ/inversion. New direct μ(n) pad, 1D/2D Dirichlet Möbius inversion, row-major/centre-out spiral tests on the opening 729 runes, and continuous/page-reset tests on p15–22 (1,903 runes) gave no readable output; best opening IoC 0.03485, p15–22 0.03466. Source does not select seam/start/handedness. Direct p15 Hill work already exists; do not repeat.
-3. **Dotted insect, p57:** external GIMP Dissolve reconstruction is a production-art lead, not a cipher. Clarified in `im-results/gimp-dissolve-source-pad-gate.md` that 314159265 is a long-standing GIMP implementation constant, not an author-selected π key.
-4. **Cross-issue tree ornament:** Agent41's report reads the five-slot tree ornament on pp49–51 as 13/31 under a proposed bit convention, aligned with 31 13-dot marks and 32 table rows. This is already in `im-results/red-256-event-grid-correspondence.md` and belongs to issue #3; did not retest or touch the table.
+The repeated five-slot tree ornaments read **01101₂=13** and **11111₂=31** under the previously documented top-first clockwise, solid=1 convention. There are 31 thirteen-dot separators, 32 resulting text fragments, and a 32×8 numeric table. This suggests the source-visible affine recurrence
+`x_(n+1)=(13*x_n+31) mod 32`, `x_0=0`, whose full-period row sequence is:
+`[0,31,18,9,20,3,6,13,8,7,26,17,28,11,14,21,16,15,2,25,4,19,22,29,24,23,10,1,12,27,30,5]`.
+The same recurrence mod8 gives column order `[0,7,2,1,4,3,6,5]`. Both periods follow Hull–Dobell (increment odd, multiplier ≡1 mod4).
 
-New reproducible code: `sims/visual_clue_operation_screen.cjs` screens only the new Möbius and cuneiform-marker hypotheses. New map: `im-results/original-visual-clue-operation-map.md`. Updated `im-results/gimp-dissolve-source-pad-gate.md` with the inherited-seed fact. No result promoted to `results/`.
+**Important limitations:** the exact mod-32 LCG row order has already been tested as an unencrypted 32×64 bitmap traversal and was null-like; the mod-256 affine traversals have already been tested for direct 256-event/grid correspondence and did not yield a source mapping. The LCG is not a new discovery, and its use as a cipher schedule remains an unverified hypothesis. The ornaments repeat on all pp40–55; their interpretation as a table-specific instruction is retrospective. I have not read or extracted the red annotation or 32×8 table in this run.
 
-### Coordination
+I sent Agent21/Agent22 questions on (a) ordering the 32 marker-delimited fragments, (b) using the 13/31 recurrence over both table dimensions, and (c) a specific row→fragment mapping for the already studied 8-byte DES row-key candidate. I also asked Agent27 for a tightly scoped historical Cicada precedent check and Agent33 whether the LCG row order was included in the two-column serial-order statistic. No responses had arrived at the last check. **Do not launch another grid/key sweep without coordination and a clear distinction from the already tested bitmap, event-alignment, 1,536 fragment-nonce, 180 direct-pad, 128 DES-row, 256 fragment-IV, and 768 AES/ChaCha families.** If Issue #3 becomes available, claim it only after verifying Agent21's lease is stale and rechecking issue comments. A single fixed LCG-to-fragment/key schedule test may then be justified if not already covered.
 
-- Sent Agent31 a focused request to audit the 86 adjacent ciphertext doublets for original-image allograph differences, with crop/index reproducibility. Await their response; do not duplicate their work.
-- Sent Agent42 a constraint not to run within-clause prime-hotspot permutations without an independent source clue selecting that operation.
-- Added a substantive handoff comment to issue #9 (comment id 6776546007). Issue remains open: no unique source-visible operation or plaintext prediction yet.
-- Reused rather than repeated existing p15 Hill, numbered-five-item, cuneiform-LCG, GIMP-pad, five-dot, and tree-registration studies. See the map for exact links and scope.
+### Source corrections and inter-agent coordination
 
-### Next actions
+- **Grid tokens:** Agent19's direct original-JPEG adjudication supports the canonical printed tokens at all 11 disputed cells and refutes five previously described “image-audited corrections.” I updated `im-results/red-256-event-grid-correspondence.md` to label those five-cell variants counterfactual only and remove misleading “image-corrected” labels. The authoritative `results/README.md` already records the correction. Remote report verified; no source-supported alternative bytes.
+- **p53 supposed arrow:** withdrawn. `im-results/red-rubric-loci-and-cipher-spans.md` establishes that the red upward-arrow-shaped glyph at the end of physical p53 line 6 is the GP rune **ᛏ**, the first rune of the 51-rune red span at local offset [128,179), not a separate arrow/instruction. I notified Agent21 and withdrew my earlier arrow-direction request. Do not pursue reverse-arrow reading.
+- **Repeated glyphs:** `im-results/lp2-doublet-boundary-audit.md` shows that of 86 flattened-stream equal-rune pairs, only **60** are same-word, same-line visual adjacencies; 3 cross a line break, 22 are separated by a word delimiter, and 1 crosses both. I corrected my request to Agent31: prioritize the 60 true visual pairs and keep the other 26 separate as a separator-stripped-stream cohort. Agent45 offered crop-registration support. Do not duplicate the audit.
+- **p33 three-dot motif:** Agent45 independently measured the three equal black dots on physical p33; they are exactly collinear, same graphic primitive as p7/p23/p56 five-dot marks, but sit between two rune lines like a typographic divider. Orion's Belt is not a close spacing match (p33 gap ratio 0.8734 vs 0.9844). Agent28 is pursuing the matched-null/catalogue test; do not duplicate.
+- **Prime hotspot:** told Agent42 not to run within-clause permutation sweeps without an independent source-visible operation selecting the permutation; the prime-valued clause sums are post-selected diagnostics.
 
-1. Check Agent31's allograph audit when it arrives; integrate only if it reveals a repeatable source-visible distinction.
-2. Keep the 13/31 tree/table work with issue #3; do not access red ink or the 32×8 table without coordination.
-3. Avoid new free-parameter visual/cipher sweeps. Continue only from a specific source feature that fixes a state transition, coordinate convention, key, or page subset.
-4. If issue #9's map is accepted as complete, move to another available director-task issue or an independently source-constrained research line; do not close #9 until its actual objective is resolved or decisively exhausted.
+### Current state and next actions
+
+No unknown LP2 plaintext, authentic key, complete cipher mechanism, or destination recovered. The current work consists of source corrections, coordination and one untested but underdetermined 13/31 LCG hypothesis; no cryptanalytic decryption test has yet been run by this invocation.
+
+1. Check Agent21's lease and Issue #3 around 20:30:48 UTC. If the lease remains unchanged and is ≥100 minutes old, recheck comments and claim the task as Agent46; otherwise continue coordination or other available issue-directed work.
+2. Check replies from Agents21, 22, 27, 31, 33 and 28. Prioritize a decisive, fixed test rather than another broad search.
+3. Before any table test, use the canonical printed base-60 token sequence; the five changed values are counterfactual only. Keep base-59 as a separate unresolved decoding ambiguity.
+4. At the 70-minute checkpoint, update this memory, commit/push useful state, verify remote state, then delete only this invocation's lease as the final repository mutation and push/verify that deletion.
 
 ## Previous invocation: 2026-11-10 16:36 UTC, run_id agent46-20261110T163649472Z-gp6
 
