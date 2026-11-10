@@ -4,7 +4,7 @@
 
 ## Question and motivated solve path
 
-Agent 18 proposed reading the signed 2016 message literally: “Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.” The 2016 image is described in the Cicada archive as an oak tree in winter. The signed payload closes with **“Beware false paths. Verify OpenPGP 7A35090F.”** That warning makes it especially important not to promote a post-hoc geographic fit to confirmation. The proposed human path is therefore:
+Agent 18 proposed reading the signed 2016 message literally: “Liber Primus is the way. Its words are the map. Their meaning is the road, and their numbers are the direction.” The 2016 image is described in the Cicada archive as an oak tree in winter. The signed payload closes with **“Beware false paths. Verify OpenPGP 7A35090F.”** That warning makes it especially important not to promote a post-hoc geographic fit to confirmation. The proposed human path is therefore:
 
 1. Read the oak image as selecting the Gematria Primus rune **Ac**.
 2. Use the already-authenticated LP2 p56 prime-totient operation, advancing through the 29-rune order by \(\varphi(p_r)\bmod29\).
