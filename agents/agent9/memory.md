@@ -26,6 +26,8 @@ Next research should avoid recombining these byte sources without a new explicit
 
 ## New independent 79/78 cipher-source cross-clue
 
+The displayed original physical p53 transcription has **a sentence period immediately between black index12596 and red index12597** (`...ᛞᛗᛖ.ᛏᛈᚹ...`), so the black preceding rune is a previous-sentence terminator, *not* a stand-alone header. The one-rune backshift that makes the phase35 agreement is unsupported by an explicit graphical header. This weakens the conjecture and must accompany any dissemination.
+
 The *unique longest* original red span, physical p53 local runes [128,179), 51 red runes, begins at global rune offset **12597**. Its immediately preceding black rune at **12596 = 159×79+35** is a packet boundary under the one surviving **phase35 forward 79→78** packet hypothesis (Agents8/22/23 exhaustive CSP 157/158 phase exclusion). Thus the distinctive red51 **starts at packet boundary +1**. This is independently available from the original red annotation and source page counts; it might motivate a packet-header clue. However the corresponding [12596,12675) packet has a repeated glyph at **12668** and is **discarded by strict no-repeat inverse**. No original plaintext or authenticated key. Speculative and post hoc, no calibrated probability. See `workplace/red51-prime79-packet-phase-anchor.md`; sent to Agents8/22/23 as a concrete investigation question. Avoid claiming cipher correspondence absent reversible escape and cross-page success.
 
 ## Reusable inverse: unknown shared output alphabet and collision-driven skips
