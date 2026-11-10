@@ -1,36 +1,43 @@
-# LP2 exact and two-edit word-length literary crib scan (2026-11-10)
+# LP2 literary plaintext-source searches under preserved word boundaries
 
-**Status: intermediate negative. No LP2 plaintext or key recovered.**
+**Status:** intermediate, source- and spelling-specific negatives; **no LP2 plaintext, key, or validated quotation recovered**. The 2,896 canonical whole-word lengths from 12,956 unsolved LP2 runes are the common input to both experiments. Printed lines and physical pages may bisect words, so they are not token separators. The numeric-only physical LP2 page 50 is absent from the rune stream.
 
-## Hypothesis and design
+## Ciphertext-source hypotheses and implementation
 
-Word (`-`), clause (`.`), and section (`$`) boundaries survive the apparent rune cipher. Consequently each rune-word length is a potential cleartext fingerprint: a direct quotation from a known text can be detected without first recovering the keystream. The source is the Wulfic/rtkd master transcription checked into `resources/transcriptions/liber_primus_master.txt`; LP2 pages 0–55 hold **12,956 runes, 2,896 words**, with one numeric-only page (LP2 page 50). Do not split words at line (`/`) or page (`%`) wraps.
+The first search requires a source-text word to have the **exact same GP-rune length** as its ciphertext counterpart, allowing at most two isolated length mismatches over the matched run. The second permits **zero or one extra cipher rune in every word**, testing whether insertion/padding obscures a directly quoted plaintext passage. Both preserve word order and all visible word boundaries. They do not search arbitrary word transpositions, deletion, altered original word segmentation, encrypted English spelling, or unseen source texts.
 
-The trial English-to-GP length encoder uses two-letter runes `TH, EO, OE, AE, IA, EA, NG`, handles `ING` as one NG rune (as in PARABLE), and maps `V→U`, `K→C`, `Z→S`, `QU→CW`. It is **one specific spelling policy**, potentially incomplete for unsolved plaintext. Source texts are tokenized into A–Z words and Gutenberg front/back boilerplate is cropped using its BEGIN/END markers when present. Text retained within the BEGIN/END boundaries may still include transcription credits or editor notes.
+Both use the declared approximate English-to-GP spelling policy: digraphs TH/EO/OE/AE/IA/EA/NG, special ING contraction, V→U, K→C, Z→S and QU→CW. The calibrated solved LP2 PARABLE passage produces all 20/20 correct lengths. The source editions are public-domain texts; Gutenberg opening/closing boilerplate is cropped where recognized, but remaining editorial material is possible.
 
-Calibration: the solved *PARABLE* page (LP2 page 57) yields all **20/20 English-word lengths exactly** using the independently entered English transcription `PARABLE LIKE THE INSTAR TUNNELING TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIVINITY WITHIN AND EMERGE`. A 20-word positive control with two deliberately altered rune lengths is recovered by the two-mismatch scanner (20 words, exactly two errors).
+The exhaustive six-word seed index for the zero/one insertion model indexes all 64 patterns of per-word length increment and extends every found seed bidirectionally while the specified length relation holds. A 19-word valid match necessarily contains at least one uninterrupted six-word seed (by the pigeonhole principle under this binary increment condition), so the procedure does not selectively pick a literary phrase. **A length match is only a candidate crib; an actual decipherment requires an explicit independently predictive cipher and re-encryption of original ciphertext.**
 
-The exact matching algorithm indexes every 6-word length window in the LP2 corpus and looks for matches in the literary sources, extending each matching seed to the right. For a full 18-word alignment with at most two **length substitutions** (no insertions or deletions), the pigeonhole principle guarantees one intact run of at least 6 words: 16 matching positions divided by three runs. Thus the seeded two-mismatch scanner is exhaustive for proposed alignments **18 words or longer**, even if its reported shorter best matches are merely lower bounds.
+## Original four-literature-source comparison
 
-## Results
+| Named source | Source words | Best exact-length run | Best up to two independent length substitutions | Best zero/one-added-rune run |
+|---|---:|---:|---:|---:|
+| Emerson, *Essays, First Series* | 74,866 | 9 | 14 | 14 |
+| Blake, *The Marriage of Heaven and Hell* | 4,680 | 8 | 11 | 12 |
+| Gibran, *The Prophet* | 12,572 | 9 | 13 | **19** |
+| Hesse, *Siddhartha* | 39,793 | 9 | 16 | 16 |
 
-| Literature source | Source words after crop | Longest exact match | Best up-to-two-errors candidate (6-seed filtered) | Git blob SHA |
-|---|---:|---:|---:|---|
-| Emerson — Essays, First Series | 74,866 | 9 | 14 | `a92be8ba5b3511a003a22ba31523c14397aaa83a` |
-| Blake — The Marriage of Heaven and Hell | 4,680 | 8 | 11 | `44149cc32fa8a46501a95059283526a8a3429705` |
-| Gibran — The Prophet | 12,572 | 9 | 13 | `df260a07d56bf5998d40a6360b6132c35c252d10` |
-| Hesse — Siddhartha | 39,793 | 9 | 16 | `b93c2c989fb0e4b14b8887622456bf60f1736635` |
+The exact/2-substitution implementation is [`sims/wordlength_crib_scan.js`](../sims/wordlength_crib_scan.js); the original matching algorithm uses one exact six-word seed and is exhaustive for **18 or more words with at most two substituted lengths**. No 18-word candidates occurred under that policy. The source editions have Git blob hashes `a92be8ba5b3511a003a22ba31523c14397aaa83a`, `44149cc32fa8a46501a95059283526a8a3429705`, `df260a07d56bf5998d40a6360b6132c35c252d10`, and `b93c2c989fb0e4b14b8887622456bf60f1736635` respectively, from the following repositories:
+[Emerson](https://github.com/GITenberg/Essays---First-Series_2944),
+[Blake](https://github.com/GITenberg/The-Marriage-of-Heaven-and-Hell_45315),
+[Gibran](https://github.com/GITenberg/The-Prophet_58585),
+[Hesse](https://github.com/GITenberg/Siddhartha_2500).
 
-Zero exact matches span 10 words, and **zero 18-word spans align with two or fewer altered lengths**, among these specific editions under this source encoder. The longest approximate candidates are short and compatible with coincidence. Do not interpret them as recovered plaintext.
+The 19-word Gibran zero/one-increment candidate occurs at **ciphertext word 843**, source word **4759**, with ten inserted-length words, beginning “field or go with our brothers to the sea”. The candidate has **no deciphered rune support**. Across 300 seeded within-$-section shuffles of all 2,896 observed word lengths, repeating the same four-book maximum search, 16 shuffles produced a match of 19 or more words: plus-one family maximum upper-tail **17/301 = 0.05648**. The null median maximum was 16 and maximum 21. The Gibran-only tail was 3/301=0.00997, but the book was not designated as the unique target in advance.
 
-Pinned source paths (Git blob identifiers above):
-- Emerson — Essays, First Series: https://github.com/GITenberg/Essays---First-Series_2944/blob/master/2944.txt
-- Blake — The Marriage of Heaven and Hell: https://github.com/GITenberg/The-Marriage-of-Heaven-and-Hell_45315/blob/master/45315.txt
-- Gibran — The Prophet: https://github.com/GITenberg/The-Prophet_58585/blob/master/58585-0.txt
-- Hesse — Siddhartha: https://github.com/GITenberg/Siddhartha_2500/blob/master/2500.txt
+Independent corroboration was absent: on a second 350-shuffle run, the largest Gibran match **outside** the 19-word neighbourhood was 14 words, equal to the null median, upper-tail **0.79487**. The total count of Gibran matches of length at least 12 was 18 against null median 17 (upper-tail 0.49003). These comparisons are exploratory and rely on the specified 0/+1 insertion model.
 
-## Interpretation and limitations
+## Expanded fixed philosophical and mystical source set
 
-The tested sources provide **no direct, long, verbatim quotation** recoverable from the surviving word lengths using the trial phonetic spelling rule. This cannot exclude non-verbatim adaptation, ordinary original prose, a shifted or split quotation, other writings, or alternative transcription and spelling conventions. Matching length alone would not prove plaintext without independent cryptographic confirmation. False positives from the look-elsewhere search must be calibrated before promoting any candidate.
+[`sims/padded_wordlength_corpus.cjs`](../sims/padded_wordlength_corpus.cjs) defines **69 GitHub-hosted GITenberg repository slugs in source order**, spanning hermeticism, philosophy, Buddhism, mysticism, theosophy, yoga, and related genres. It downloads fixed `id.txt` or `id-0.txt` paths, measures a SHA-256 over each cropped text, runs the same zero/one-increment six-gram search, and reports exact source/target offsets for top matches. Reproduction is via a **manual-only** [GitHub Actions workflow](../.github/workflows/padded-wordlength-corpus.yml); successful [69-source run 42762220365](https://github.com/FlareZ123/liber-primus/actions/runs/42762220365).
 
-Reproduce using the pure CommonJS module `sims/wordlength_crib_scan.js` and the test `sims/test_wordlength_crib_scan.js`, with source data tied to the listed Git blob hashes. The module performs no automatic downloads or disk writes; supply each book's text to `scanText(makeIndex(parseMaster(master).cipherLengths), bookText)`.
+Of 69 configured repositories, **64 source texts were available** under these two path conventions; five failed with HTTP 404 (IDs 4095, 55201, 57145, 7297, 57292). **None** of the 64 yielded an 18-word zero/one-increment match. The largest were 17 words in Boethius' *The Consolation of Philosophy* (ID 14328), *The Philosophy of Spinoza* (31205) and Swedenborg's *Angelic Wisdom about Divine Providence* (18507). These maxima were selected from a larger corpus and are compatible with accidental matching; this expanded scan has no separate calibrated familywise false-positive rate and supports no claimed decryption.
+
+The implementation uses ordinary ASCII alphabetic tokenization and may include material other than the named author's text. Its source editions and exact SHA-256 checksums are emitted by the reproducible workflow. The earlier Gutendex catalogue-based attempt [run 42761572628](https://github.com/FlareZ123/liber-primus/actions/runs/42761572628) obtained **zero sources** because of network 403/timeouts; it supplies no negative evidence.
+
+## Inference and useful next step
+
+Under these two constrained source-matching models, no direct quotation was verified. The manuscript's unusually weak adjacent word-length dependence is an independent difficulty for **independent one-rune padding of ordinary ordered English** (see [word-length architecture tests](wordlength-order.md)). A clue-derived source text remains worth checking **only if accompanied by a cipher architecture or a predicted longer held-out passage**. Further breadth-first source matching without stronger constraints will produce additional coincidental short runs.
+
