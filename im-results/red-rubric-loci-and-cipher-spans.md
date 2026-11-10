@@ -56,6 +56,60 @@ Across original LP2 scans `17.jpg`–`74.jpg`, the original detector found 25 im
 
 These pixel totals are **not** complete measures of individual rune colours; small punctuation and decoration can fall below thresholds. The source audit above has the exact source-facing annotation. The old preliminary identity/Atbash/prime/reversal scans of the trailing **50 runes** were run before recognizing the opening ᛏ; they are historical probes on an incomplete interval and provide no cryptanalytic evidence about the corrected full 51-rune passage. The dedicated corrected 51-rune inversion report supersedes them.
 
+## Direct 225-red-rune Hill-matrix inversion
+
+**Source-derived, explicitly reversible candidate, tested on real ciphertext.**
+The verified 225 red GP glyphs happen to form exactly one 15×15 matrix when
+laid out in source order. Their rune indices, GP prime assignments (mod29),
+and both source-order and alternating-row-reversed orientations give **four
+literal full-rank matrices over F29**. Each matrix and its transpose can
+be inverted exactly with Gauss–Jordan elimination. This provides **eight
+different actual source-derived keys**, not 29!-way fitted keys.
+
+The [full original-cipher inverse](../sims/red225_hill15_inverse.cjs)
+tests these 8 source keys on each of three block restart policies
+(physical page, eight text sections, continuous manuscript), 15 fixed
+block phases and either modular decryption sign, for **720** declared
+configurations. It selects a winner by source-trained GP-English
+unigram log likelihood on the first ~6,500 original rune positions,
+then freezes all settings for the remaining ~6,400 rune positions.
+The highest original training score is **−0.840893 nats per rune
+against uniform**: source red-serpentine-prime matrix, section reset,
+phase6, negative sign. Its untouched heldout score is **−0.896511**,
+with rune IoC **0.0345016**; the apparent plaintext begins
+`MNGFUBEOETHIBIFNGHRNGEFTHRHCXBRETHFYIAEOEONG...`.
+No setting produces readable GP text. The best retrospectively selected
+heldout score is itself **−0.840798**, and therefore gives no
+heldout decipherment.
+
+A blind, separately held-out Shakespeare GP source of the same
+**12,956-rune original page-length layout** was encrypted with the
+actual red-row-index matrix under physical-page 15-rune Hill blocks.
+It incurred **347 genuine 81%-chance adjacent-collision overwrites**
+on emitted ciphertext and was then decoded without supplying the
+plaintext. The exact red matrix inverse correctly recovered **68.185%**
+of 12,645 tested complete-block rune positions, gave original
+heldout IoC **0.0471647**, and a source-language log-likelihood
+**+0.035177 nats/rune**. The independently wrong red key gave
+**−0.892584 nats/rune** and IoC **0.0345278** on the identical plant.
+This confirms sensitivity to a correct source key despite realistic
+ciphertext overwrites.
+
+The test rules out this bounded **direct 225-red-rune 15×15 Hill use**
+under ordinary GP-English with printed physical or section block
+resets. It does **not** address an additional nonlinear KDF,
+unknown outer alphabet, changed matrices per page, feedback chaining,
+different source register, or other red-rune uses. It yields neither
+unknown LP2 plaintext nor a genuine cryptographic key.
+
+Reproduction: [Node22 exact key, matrix inverse and planted
+control](../sims/red225_hill15_inverse.cjs) and
+[successful original/positive CI run
+42790721132](https://github.com/FlareZ123/liber-primus/actions/runs/42790721132).
+The job is dispatched through the **existing** manual
+[Hill screen runner](../.github/workflows/hill-row-screen.yml)
+with `experiment=red225`; no new workflow is needed.
+
 ## Research implication
 
 The page-7 14-rune red line, page-53 51-rune red passage, and the complete physical positions of all 36 punctuation events provide **image-selected targets** for testing an explicitly specified key, reset, reading-order or encoding hypothesis. A meaningful positive result should preselect its rule without fitting the target, decode actual source ciphertext, and re-encrypt unfit positions exactly; red highlighting alone is not evidence of a separate cipher regime. Do not interpret a word fit after extensive key searching as recovered plaintext. Use the one consistent physical-page and rune-offset contract to compare hypotheses across independent passages.
