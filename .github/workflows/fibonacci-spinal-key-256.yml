@@ -13,3 +13,4 @@ jobs:
       - run: node sims/fibonacci_spiral_key_derivation.cjs
       - run: node sims/fibonacci_square_grid_payload.cjs
       - run: node sims/fibonacci_heading_crib.cjs
+      - run: node sims/fibonacci_title_gematria_alignment.cjs
