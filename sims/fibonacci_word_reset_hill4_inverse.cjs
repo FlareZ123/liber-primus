@@ -159,13 +159,15 @@ for (const [family, base] of forms) {
             continue;
           }
           const candidate = transform(words, decoding, tail, alignment);
-          const restored = transform(candidate, encoding, tail, alignment);
           // For partial blocks the encoder must use inverses of the
           // *decoder's principal submatrices*, not slices of encoding.
-          // The blockwise primary channel tests the intended inverse;
-          // for the principal channel verify with independently
-          // assembled exact inverses of each used block size below.
-          let roundtrip = restored.every((w,i) => w.every((x,k)=>x===words[i][k]));
+          // This differs from taking principal slices of a full inverse.
+          let roundtrip = false;
+          if (tail === "identity") {
+            const restored = transform(candidate, encoding, tail, alignment);
+            roundtrip = restored.every((w,i) =>
+              w.every((x,k) => x === words[i][k]));
+          }
           if (tail === "principal") {
             const matrices = principalSizes(decoding);
             const correctEnc = matrices.map((mat,r) => r ? matrixInverse(mat) : []);
