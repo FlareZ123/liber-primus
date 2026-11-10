@@ -97,8 +97,77 @@ function positivePlant() {
     exactRuneRoundtrip:N,
     pageHighGlyphCapacityViolations:inspection.violatingPages.length};
 }
+/**
+ * Even stronger source-only theorem: 29 independent secret bijections,
+ * each indexed by the previous PUBLISHED ciphertext rune.
+ * Pageheads have no predecessor and are excluded from this argument.
+ */
+function bookFixedPreviousCipherRows(cipher,frame) {
+  const heads=new Set(pageRanges.map(x=>x.start));
+  const successorSets=Array.from({length:29},()=>new Set());
+  for(const packet of frame.positions){
+    const t=packet[0];
+    if(t===0||heads.has(t))continue;
+    successorSets[cipher[t-1]].add(cipher[t]);
+  }
+  const counts=successorSets.map((glyphs,prev)=>({
+    predecessor:prev,distinctSuccessors:glyphs.size,
+    excessOver24:Math.max(0,glyphs.size-(HIGH_ALLOWED+1))
+  }));
+  return {clock:frame.clock,phase:frame.phase,order:frame.order,
+    maxDistinctNextRune:Math.max(...counts.map(x=>x.distinctSuccessors)),
+    violatingPreviousRuneStates:counts.filter(x=>x.excessOver24>0),
+    allPreviousRuneStates:counts};
+}
+/**
+ * A genuine secret preceding-ciphertext indexed alphabet control:
+ * C[t]=(7*P[t]+C[t-1]) mod29, pageheads C=7*P, which is an
+ * independently chosen bijective GP29 row for each predecessor.
+ */
+function sourceRowPlant() {
+  const {compressed}=plantByteStream();
+  const frame=frames.find(x=>x.clock==='page'&&x.phase===0&&x.order==='forward');
+  const plain=new Array(N).fill(0);
+  for(let i=0;i<frame.positions.length;i++) {
+    let value=compressed[(3*i)%compressed.length]*65536+
+      compressed[(3*i+1)%compressed.length]*256+
+      compressed[(3*i+2)%compressed.length];
+    const digits=Array(5);
+    for(let j=4;j>=0;j--){digits[j]=value%29;value=Math.floor(value/29)}
+    assert.equal(value,0);
+    frame.positions[i].forEach((t,j)=>{plain[t]=digits[j]});
+  }
+  const cipher=new Array(N), recovered=new Array(N);
+  for(const {start,end} of pageRanges){
+    for(let t=start;t<end;t++){
+      const prev=t===start?0:cipher[t-1];
+      cipher[t]=(7*plain[t]+prev)%29;
+      recovered[t]=mod((cipher[t]-prev)*25);
+    }
+  }
+  assert.deepEqual(recovered,plain);
+  const originalLike=bookFixedPreviousCipherRows(cipher,frame);
+  assert.equal(originalLike.violatingPreviousRuneStates.length,0);
+  const bytes=[];
+  for(const packet of frame.positions){
+    let value=0;
+    for(const t of packet)value=value*29+recovered[t];
+    assert.ok(value<=MAX);
+    bytes.push(value>>16 &255,value>>8 &255,value&255);
+  }
+  assert.deepEqual(Buffer.from(bytes.slice(0,compressed.length)),compressed);
+  assert.ok(zlib.gunzipSync(compressed).length>1000);
+  return {secretPredecessorRows:29,
+    exactRoundtripGpRunes:N,decodedBytes:bytes.length,
+    gzipSourceBytes:compressed.length,
+    artificialSourceViolatingRows:0};
+}
+
 if(require.main===module) {
   const source=derive(),plant=positivePlant();
+  const rowBounds=frames.map(frame=>bookFixedPreviousCipherRows(C,frame));
+  assert.ok(rowBounds.every(x=>x.violatingPreviousRuneStates.length>=27));
+  const rowPlant=sourceRowPlant();
   const summary=source.map(x=>({
     clock:x.clock,phase:x.phase,order:x.order,
     packets:x.completePackets,
@@ -116,7 +185,14 @@ if(require.main===module) {
       Math.max(...summary.map(x=>x.pageAlphabetsForcedToExceed24))],
     original:summary,
     nativeGzipPositive:plant,
+    predecessorRowsKeyFree:{all20FramesExcluded:rowBounds.length,
+      minimumImpossiblePredecessorRows:Math.min(...rowBounds.map(x=>x.violatingPreviousRuneStates.length)),
+      maximumImpossiblePredecessorRows:Math.max(...rowBounds.map(x=>x.violatingPreviousRuneStates.length)),
+      models:rowBounds.map(x=>({clock:x.clock,phase:x.phase,order:x.order,
+        rowsExceeding24:x.violatingPreviousRuneStates.length,
+        maximumDistinctNextCipherGlyphs:x.maxDistinctNextRune}))},
+    predecessorRowSyntheticControl:rowPlant,
     scope:'strict 5-rune per 3-byte packet frames, global or page reset, five phases, two digit orders. Allows each page its own unknown fixed alphabet. Excludes neither dynamically evolving alphabets nor other binary coding ratios, hidden marker deletion or entropy coding.'
   },null,2));
 }
-module.exports={derive,inspect,positivePlant};
+module.exports={derive,inspect,positivePlant,bookFixedPreviousCipherRows,sourceRowPlant};
