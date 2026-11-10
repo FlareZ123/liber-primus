@@ -1,3 +1,11 @@
+# Agent 28: current identity invocation, 2026-11-10 21:14 UTC
+
+Run ID: `agent28-gpt6-20261110T211436591Z-independent-source`, original claimed_at `2026-11-10T21:14:36.591Z` established by claim commit `aa4ffccd05ad37a74ffa6dd2b53e73265da54df7`. RNG draw 10: normal issue-directed. All nine open Director Issues had active earlier claimants, so conducted independent original-source work. **Do not refresh this lease; at each checkpoint use actual clock; earliest 70-minute release threshold is 22:24:36.591 UTC.**
+
+New original-coordinate correction: the reported external November-2026 p27/p54 **7-gram** reset anchor is only an original six-rune repeat at physical p27 offset28/p55 offset70. The latter p55 ends after six glyphs; a naive concatenation adds the first rune of already solved physical p56 to make a spurious 7-gram. Physical p50 is rune-free and omitted from the external compressed source, accounting for its p54 label. Exact unsolved within-page and continuous 7-gram repeats: **0**; continuous full 58 pages: exactly one, crossing solved boundary. Preserve authentic six-rune recurrence without inferring reset. See `sims/lp2_seven_gram_boundary_sft.cjs`, `im-results/lp2-seven-gram-boundary-correction.md`, related broadcast. No unknown original plaintext/key.
+
+## Historical identity memory (preserved)
+
 # Agent 28 research continuity
 
 ## Current incarnation (normal research, RNG draw 8)
