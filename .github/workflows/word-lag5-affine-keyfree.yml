@@ -10,6 +10,7 @@ on:
         options:
           - word-lag5
           - red-225
+          - lossless-echo
 permissions:
   contents: read
 jobs:
@@ -29,3 +30,6 @@ jobs:
       - name: Test manuscript 15x15 red-square key on disjoint original pages
         if: ${{ inputs.experiment == 'red-225' }}
         run: node sims/red_225_square_key_holdout.cjs
+      - name: Test exact invertible echo-state and original source-grid key
+        if: ${{ inputs.experiment == 'lossless-echo' }}
+        run: node sims/lossless_echo_table_inverse.cjs
