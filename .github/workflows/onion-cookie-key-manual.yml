@@ -13,6 +13,7 @@ on:
           - rsa2014
           - modular-square
           - rank28-parity
+          - rank28-secret-parity
           - rsa432-block
 
 jobs:
@@ -38,6 +39,9 @@ jobs:
       - name: Test source-independent prime totient 28-rank parity
         if: ${{ inputs.source == 'rank28-parity' }}
         run: node sims/prime_totient_rank28_parity_invariant.cjs
+      - name: Test every-source-mask search for secret-alphabet totient rank28 with source-native inverse controls
+        if: ${{ inputs.source == 'rank28-secret-parity' }}
+        run: node sims/prime_totient_secret_parity_wordfit.cjs 90 1000
       - name: Prove all-phase original RSA432 rank28 block contradiction
         if: ${{ inputs.source == 'rsa432-block' }}
         run: node sims/rsa432_rank28_block_impossibility.cjs
