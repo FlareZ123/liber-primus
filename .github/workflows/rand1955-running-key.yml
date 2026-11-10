@@ -1,4 +1,4 @@
-name: Source-key recovery (RAND table and prime-totient)
+name: Original-LP2 source-key challenge (RAND / prime / literal-F)
 
 on:
   workflow_dispatch:
@@ -32,6 +32,10 @@ jobs:
         run: |
           set -o pipefail
           python sims/prime_totient_long_offset_inversion.py | tee prime-totient-2m-offsets.log
+      - name: Prime source-index Viterbi with optional authentic literal-F clock pauses
+        run: |
+          set -o pipefail
+          python sims/prime_totient_F_interrupt_viterbi.py | tee prime-totient-F-viterbi.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -40,3 +44,4 @@ jobs:
           path: |
             rand1955-lp2-keyscan.log
             prime-totient-2m-offsets.log
+            prime-totient-F-viterbi.log
