@@ -240,7 +240,7 @@ const lp2Pages = canonical.byStartPage.map((words) =>
 const containedPages = canonical.byContainedPage.map((words) =>
   words.map((word) => Math.min(BINS, word.length)));
 const lp2Clauses = clauses(LP2.split("%").slice(0, 55).join("%")
-  .replace(/%\\s*/g, ""));
+  .replace(/%\s*/g, ""));
 const lp1Clauses = clauses(LP1);
 const model = englishLengthModel(englishClauses(ENGLISH.slice(0, 180000)));
 const runeCount = canonical.runeCount;
