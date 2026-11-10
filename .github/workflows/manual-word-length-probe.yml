@@ -13,4 +13,6 @@ jobs:
         with:
           node-version: '22'
       - name: Reproduce page-local word-length structural tests
-        run: node sims/word_length_order_probe.cjs
+        run: |
+          node sims/test_lp2_word_pages.cjs
+          node sims/word_length_order_probe.cjs
