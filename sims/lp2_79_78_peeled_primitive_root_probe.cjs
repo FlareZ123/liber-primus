@@ -14,7 +14,7 @@ function languageModel(){
  const score=s=>{let v=0;for(let i=2;i<s.length;i++)v+=logP(s[i-2],s[i-1],s[i]);return v/(s.length-2);};
  return{training,test,score};
 }
-function redSum(page){const a=INK.pages.find(p=>p.page===page).red_spans[0],d=[...a.runes].map(r=>GP.runes.indexOf(r));assert(d.every(x=>x>=0));return{length:d.length,sum:d.reduce((s,x)=>s+x,0)};}
+function redSum(page){const a=INK.pages.find(p=>p.page===page).red_spans[0],d=[...a.runes].map(r=>GP.runes.indexOf(r));assert(d.every(x=>x>=0));return{length:d.length,sum:d.reduce((s,x)=>s+GP.prime[x],0)};} // sum is prime-value sum, not rune-index sum
 function multiply(A,B){const n=A.length,m=B[0].length,k=B.length,O=Array.from({length:n},()=>Array(m).fill(0));for(let i=0;i<n;i++)for(let t=0;t<k;t++){const v=A[i][t];if(v)for(let j=0;j<m;j++)O[i][j]=(O[i][j]+v*B[t][j])%M;}return O;}
 function inverseMod(a){let r=1,b=a,n=27;while(n){if(n&1)r=r*b%M;b=b*b%M;n>>=1;}return r;}
 function invert(A){const n=A.length,Z=A.map((row,i)=>[...row,...Array.from({length:n},(_,j)=>Number(i===j))]);let rank=0;for(let col=0;col<n;col++){let p=rank;while(p<n&&Z[p][col]===0)p++;if(p===n)continue;[Z[rank],Z[p]]=[Z[p],Z[rank]];const inv=inverseMod(Z[rank][col]);for(let j=0;j<2*n;j++)Z[rank][j]=mod(Z[rank][j]*inv);for(let i=0;i<n;i++)if(i!==rank){const f=Z[i][col];if(f)for(let j=0;j<2*n;j++)Z[i][j]=mod(Z[i][j]-f*Z[rank][j]);}rank++;}return{rank,inverse:rank===n?Z.map(row=>row.slice(n)):null};}
