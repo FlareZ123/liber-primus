@@ -1,0 +1,16 @@
+name: LP2 latent page-aligned pad likelihood
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test common-pad likelihood with rotated-page null and plants
+        run: node sims/latent_page_pad.cjs
