@@ -142,6 +142,56 @@ function main() {
   assert.deepEqual(survivors[0].witnesses.map(x=>[x.rotationA,x.rotationB]),
     [[0,0],[40,14]]);
 
+
+  // Check which cryptographic readings of a common 21-rune plaintext
+  // are already contradicted by the two original quoted cipher intervals.
+  const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+  const cipher=corpus.pages.filter(p=>p.page<56).flatMap(p=>p.indices);
+  const a=cipher.slice(9811,9832),b=cipher.slice(12522,12543);
+  assert.equal(a.length,21);assert.equal(b.length,21);
+  assert.equal(a[0],a[16]);assert.notEqual(b[0],b[16]);
+  const delta=a.map((v,i)=>(v-b[i]+29)%29);
+  /** @param {number[][]} input */
+  function rank29(input){
+    const M=input.map(row=>row.map(v=>(v%29+29)%29));
+    let r=0;
+    for(let j=0;j<M[0].length;j++){
+      let h=-1;for(let i=r;i<M.length;i++)if(M[i][j]){h=i;break;}
+      if(h<0)continue;
+      [M[r],M[h]]=[M[h],M[r]];
+      let inv=1;while(M[r][j]*inv%29!==1)inv++;
+      for(let k=j;k<M[r].length;k++)M[r][k]=M[r][k]*inv%29;
+      for(let i=0;i<M.length;i++)if(i!==r&&M[i][j]){
+        const t=M[i][j];
+        for(let k=j;k<M[i].length;k++)
+          M[i][k]=(M[i][k]-t*M[r][k]+29*29)%29;
+      }
+      if(++r===M.length)break;
+    }
+    return r;
+  }
+  const X=Array.from({length:11},(_,i)=>
+    Array.from({length:10},(_,j)=>delta[i+9-j]));
+  const rankX=rank29(X),rankAug=rank29(X.map((row,i)=>[...row,delta[i+10]]));
+  assert.equal(rankX,10);assert.equal(rankAug,11);
+  const mask40=corpus.pages[40].indices.slice(0,8);
+  const mask53=corpus.pages[53].indices.slice(128,179);
+  const directRed=[];
+  for(const encoding of ["index","primeMod29"])
+    for(const clock of ["quote","page"])
+      for(const s40 of [-1,1])for(const s53 of [-1,1]){
+        let matches=0;
+        for(let i=0;i<21;i++){
+          let k40=mask40[(i+(clock==="page"?171:0))%8];
+          let k53=mask53[(i+(clock==="page"?53:0))%51];
+          if(encoding==="primeMod29"){
+            k40=corpus.prime[k40]%29;k53=corpus.prime[k53]%29;
+          }
+          if((a[i]+29+s40*k40)%29===(b[i]+29+s53*k53)%29)matches++;
+        }
+        directRed.push({encoding,clock,s40,s53,matches});
+      }
+  assert.equal(Math.max(...directRed.map(x=>x.matches)),2);
   const out = {
     finding:"Unique five-word length sequence at two independent quote openings",
     source:"Canonical unsolved LP2 words and independent original quote annotations",
@@ -152,6 +202,9 @@ function main() {
     allFiveWordQuotePairs:comparisons,
     exactConditionalFamilyProbability:"2/2145",
     probability:2/2145,
+    conditionalSharedPlaintextGates:{fixedBijectionPositions:[0,16],
+      commonLinearKeystreamOrder10:{coefficientRank:rankX,augmentedRank:rankAug},
+      directRedSourceVariants:directRed},
     caution:"Original five-word plaintext equality and cipher key are unproved. Rotations test only this fixed quote-start/page-word null, with no discovery-wide selection correction."
   };
   console.log(JSON.stringify(out,null,2));
