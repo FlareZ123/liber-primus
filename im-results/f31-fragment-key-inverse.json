@@ -2,7 +2,8 @@
   "classification": "Single source-derived F31 fragment→row/key mapping; candidate cipher family only",
   "source": {
     "originalCipherRunes": 12956,
-    "physicalRunePages": 56,
+    "sourcePageRecords": 56,
+    "runeBearingPages": 55,
     "redRuneTotal": 225,
     "markerTotal": 31,
     "redMarkers": 30,
@@ -375,6 +376,8 @@
   },
   "raw": {
     "englishGP": -6.195857373846908,
+    "trainEnglishGP": -6.213356590621974,
+    "heldoutEnglishGP": -6.177305932508818,
     "trainIoC": 1.0012234741409272,
     "heldoutIoC": 0.999107729015043
   },
