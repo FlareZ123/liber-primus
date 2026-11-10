@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Run source-constrained original and exact planted inverse
         run: node sims/red_225_hill_feedback_inverse.cjs
+      - name: Red 225-core and 31-stencil rim 16x16 original-source inverse
+        run: node sims/red_256_rim_hill_inverse.cjs
