@@ -44,6 +44,16 @@ This source-multiset-conditional test does not claim every 51-symbol key origin 
 
 The script creates a planted 256-byte AES-CBC ciphertext, then recovers **all 256 original bytes** under the correct red-derived key. It also encrypts all 12,956 GP source positions by a candidate AES-CTR mod29 additive stream and inverts all positions exactly. Those true forward/inverse tests establish the mechanism is correctly implemented.
 
+## Distinct source-constrained test: three 80-bit onion identifiers in 51 GP red runes
+
+The same original **51 contiguous red runes** also admit the exact capacity-matched splitting **3×17 base-29 digits**. One 80-bit Tor-v2 address of 16 Base32 characters occupies at most 17 native GP digits; the [historical source manifest](../resources/cicada-hiddenservice-256-candidates.json) records three contemporary 16-character onion identifiers. This test asks whether the marked stanza directly encodes *those specific three addresses* in some order; their historical presence does not establish that they were intended as its plaintext.
+
+The [exact known-target inversion](../sims/red51_onion_v2_source_crib.cjs) tries all **3! permutations of the three known labels**, both complete red-string directions and both Base32 digit orientations, permitting **one entirely unknown bijection of all 29 GP digits**. Hungarian optimization solves all **29! potential rune substitution alphabets exactly** for each alignment. The best of the **24** original-source cases matches only **26 of 51** aligned digits, so **25 digit mismatches are mathematically unavoidable** under any fixed alphabet. After 400 source-rune multiset shuffles, **300/400** complete optimizer runs attain at least 26 matches (conditional add-one p **301/401=0.75062**). A planted cipher with an arbitrary secret 29-symbol permutation recovers **51/51** matches.
+
+A second, independent source-motivated decoder uses the **actual solved LP2 p56 prime/totient key recurrence**, both signs, either clock direction, a free global GP shift and unknown start within the first **2,000,000 primes**. The first original or reverse-orientation **17 red runes** are tested as a complete known-address crib under six label/orientation variants, **48** first-block modes in total. The largest exact initial matched prefix was **6/17**, with **zero** complete 17-rune source crib matches. A planted onion encoded at secret prime index 194,031 with hidden additive sign and offset was recovered **17/17**. This is a finite direct prime-clock exclusion. It does not cover cipher-key interruptions not observable in that prefix, unknown addresses, arbitrary rune alphabets *combined* with a prime stream, or a nonlinear external transformation.
+
+Both source inverses ran successfully under [manual CI 42839883665](https://github.com/FlareZ123/liber-primus/actions/runs/42839883665), and neither establishes an unknown LP2 plaintext or destination.
+
 ## Decision
 
 **No usable original plaintext or independently predictive key occurs in this bounded source-radix29/AES family.** The best grid result is typical under the matching complete-family null, and the best rune result remains near uniform. Repeating the same orientations and AES modes does not add evidence.
