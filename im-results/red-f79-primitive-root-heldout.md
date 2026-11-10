@@ -58,6 +58,42 @@ The source-window control preserves authentic contiguous word order and concentr
 
 [Exact original-source invariant and sliding-window reproducer](../sims/red_f79_zero_mask_invariant.cjs) · [successful Windows manual CI run 42780496333](https://github.com/FlareZ123/liber-primus/actions/runs/42780496333).
 
+## Family-level extension: all nine reversible GP-prime field moduli
+
+The preceding zero-mask theorem generalizes without selecting F79 from the red triangle. Consider *every* modulus in the 29-element canonical GP prime-value list. Under the literal embedding `E_q(i)=GPprime[i] mod q`, a standalone deterministic symbolwise field-unit cipher must have **29 distinct embedded residues**, so that different runes are distinguishable when the nonzero multiplicative key is known. Exactly **nine of 29** possible prime moduli satisfy this necessary injectivity condition:
+
+| Field prime q | Mandatory preserved zero rune | Original rune count |
+| ---: | --- | ---: |
+| 61 | ᛒ, B (index 17) | 445 |
+| 67 | ᛖ, E (18) | 439 |
+| 73 | ᛚ, L (20) | 460 |
+| 79 | ᛝ, NG (21) | 454 |
+| 83 | ᛟ, OE (22) | 492 |
+| 89 | ᛞ, D (23) | 439 |
+| 97 | ᚪ, A (24) | 482 |
+| 103 | ᚣ, Y (26) | 448 |
+| 109 | ᛠ, EA (28) | 460 |
+
+The other **20** GP-source prime moduli map at least two GP rune labels to the same field residue, so a literal one-rune-in/one-rune-out unit multiplication cannot invert all 29 different symbols without an extra disambiguating channel. Every injective q has a **specific plaintext rune** fixed at all zero-residue positions, independent of the secret key. This supplies an unknown-key necessary condition for all nine eligible models.
+
+To avoid rejecting on frequency alone, the new source-locked [familywise challenger](../sims/gp_prime_field_unit_marker_family.cjs) uses all **2,896 original LP2 word lengths**, including page-crossing words, and simultaneously measures the fixed marker's **total occurrences, occurrences at word starts and occurrences at word ends**. A source English register is sampled by GP-word length, and analytical expectations and standard deviations are computed for all nine candidates. For each candidate, calculate the largest absolute standardized deviation among the three counts, with a declared +0.25 variance ridge for genuinely rare source cells. Select the **smallest** such deviation across *all nine* candidate moduli, then re-select on 2,000 independently seeded, length-matched source-book replicates. This calibrates the family selection, including cases where a marker's total frequency is close to the ciphertext.
+
+In all three English references, the **most compatible** surviving field is q=73, zero rune **L**. The LP2 original marker-L observations are **(460 total, 97 first, 106 last)**.
+
+| GP-English register | Matched expected L (total, first, last) | Smallest maximum absolute z across nine fields | Null replicate exceedances / 2,000 |
+| --- | --- | ---: | ---: |
+| Shakespeare | (585.19, 91.59, 107.62) | **5.083** | **0** |
+| Gibran | (561.37, 98.27, 85.63) | **4.247** | **0** |
+| Emerson | (583.54, 84.81, 122.14) | **5.018** | **0** |
+
+Each source-specific familywise empirical upper tail is **1/2,001 ≈ 0.00049975**; the greatest null minimum-score values were only **1.360, 1.296, 1.209** respectively. The cross-source tests are supporting sensitivity checks, not three statistically independent proofs about the unknown manuscript. The candidate-selection method is exceptionally permissive: it lets the cipher choose *any* injective field modulus as its best source-conditional explanation. It still fails the English GP marker-frequency/word-position gate. In particular, q=89, marker D, can appear superficially plausible by overall frequency in one English register but predicts hundreds of **word-final D** occurrences; LP2 has only **93**.
+
+A complete constructive known-key positive encrypts a fresh **12,956-rune GP-English sample** separately under every one of the nine possible fields, taking nonzero multiplication keys that map the source symbols into the permitted 29-symbol embedding. Given those synthetic keys, each inverse recovers **12,956/12,956** runes, and the corresponding marker's entire zero-position mask is exactly preserved. The forward/inverse code asserts all 9 successes. This establishes the intended exclusion against a working, reversible cryptographic construction.
+
+**Decision:** For ordinary English encoded into canonical GP symbols, a literal GP-prime-residue, source-prime-modulus, one-symbol-per-rune unit cipher fails under every injective field choice. This is conditional on the declared plaintext register and preserved original word boundaries. Unmarked field moduli, alternative symbol embeddings, additive translations, variable-length coding, hidden per-word permutations, and non-English intermediates remain outside the conclusion. **No unknown LP2 plaintext is recovered.**
+
+[Source and reproducible family correction](../sims/gp_prime_field_unit_marker_family.cjs) · [successful Windows Node22 execution 42781511854](https://github.com/FlareZ123/liber-primus/actions/runs/42781511854).
+
 ## Interpretation and decision
 
 The 53-primitive-root/79-field/78-order relationship is an exact new mathematical refinement of the existing red-pointer triangle. It offers an independently source-bounded candidate generator with 78 values and a product-state period of 2262. **The tested simple additive and affine mappings into the 29-rune cipher are unsupported**, including independently heldout pages. No authentic F79 plaintext representation or 29-rune embedding is specified by the artwork. More unconstrained scans of phase, offset, output alphabet and residue reduction would risk overfitting. Future use of F79 should begin by deriving an independently constrained, invertible mapping or testing a new observable that the above finite family could not reproduce.
