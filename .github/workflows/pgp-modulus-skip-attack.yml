@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node sims/red_13x256_skip_hmm.cjs > red-event-skip-hmm-result.json
+      - run: node sims/red_13x256_skip_hmm.cjs | tee red-event-skip-hmm-result.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
