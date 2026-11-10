@@ -53,7 +53,7 @@ The winning full-original candidate decoded p0 to `ALUSTUEOPFBISOREBARDECEDNFULP
 
 **Blind source-native original-waveform positive:** independently known solved-Cicada text was encrypted as **220 genuine GP runes** using the actual signed16-mod29 PCM source at hidden sample offset **3301**, positive sign, and 15 collision-triggered secret pad rejections. With neither offset nor skips supplied to the search, the correct offset ranked **first among all 7,364,973 possible offsets in that same true source/sign family** on a 24-rune head, versus nearest incorrect head −2.86427. The full 220-rune decoder recovered **all 220/220 GP plaintext runes and all 15 skipped pad draws** exactly. The true model is guaranteed to remain in the top400 within that source/sign family; no claim is made that this constitutes a full cross-source/sign ranking.
 
-[Exact executable](../sims/audio_761_pcm_keyskip_scan.cjs), [opt-in workflow](../.github/workflows/audio-761-pad-scan.yml) with input `probe=decoded-pcm`, successful [GitHub Actions run 42840114636](https://github.com/FlareZ123/liber-primus/actions/runs/42840114636). This is a bounded source-true negative for the two fixed sample-to-pad conventions, both signs, literal sample indices and the specified collision-keyskip model. The experiment does **not** exclude a stereo-channel rule, different resampling, spectral transforms outside the specific 15.4–16.1 kHz carrier test below, synchronization to lyrics/melody, other keyed projections, changing alphabets, or an unknown encoded intermediate.
+[Exact executable](../sims/audio_761_pcm_keyskip_scan.cjs), [opt-in workflow](../.github/workflows/audio-761-pad-scan.yml) with input `probe=decoded-pcm`, successful [GitHub Actions run 42840114636](https://github.com/FlareZ123/liber-primus/actions/runs/42840114636). This is a bounded source-true negative for the two fixed sample-to-pad conventions, both signs, literal sample indices and the specified collision-keyskip model. The experiment does **not** exclude a stereo-channel rule, different resampling, spectral transforms other than the specific carrier and direct note/interval/rhythm mappings below, synchronization of lyrics/melody to page boundaries, other keyed projections, changing alphabets, or an unknown encoded intermediate.
 
 
 ### 15.4–16.1 kHz high-band carrier and phase test (Agent 47)
@@ -68,6 +68,28 @@ The earlier PCM report noted a persistent component in the 15.4–16.1 kHz band 
 **Interpretation:** the reported high-frequency feature is a persistent narrowband spectral peak, but it lacks the frequency hopping, coherent phase states, or stable amplitude symbol timing expected of a straightforward FSK/PSK/ASK payload. Do not treat this line as a recovered key stream. This rejects only simple modulation of this measured carrier; it does not exclude other spectral transforms, stereo-specific pad extraction, resampling, or synchronization to the melody/lyrics.
 
 Reproducer: [spectral/phase probe](../sims/audio_761_spectral_modulation_probe.cjs), [path-filtered workflow](../.github/workflows/audio-761-spectral-modulation-probe.yml), successful original-audio [phase run 42896300684](https://github.com/FlareZ123/liber-primus/actions/runs/42896300684) (the preceding amplitude/frequency run is [42895698884](https://github.com/FlareZ123/liber-primus/actions/runs/42895698884)). The JSON artifact contains the per-frame phase and envelope series.
+
+
+### Direct musical note, interval and rhythm sequences as GP29 keys (Agent 47)
+
+The high-band carrier test does not settle whether the audible music itself supplies a key. A bounded follow-up used the extracted left/right dominant-note sequences as direct 29-symbol additive key streams under the existing collision-aware decoder.
+
+The test generated **88,512** candidates from frame-level and event-level MIDI notes, signed note intervals, and note-event durations measured in 4,096-sample hops. It tested forward/reversed audio order, both arithmetic signs, every start offset leaving 660 key symbols (the maximum three draws per each of 220 plaintext runes), and the six documented D-flat guitar open-string MIDI offsets **[37,44,49,54,56,61]**. Each of the eight LP2 sections received the same 24-rune head ranking and top-24 220-rune Viterbi evaluation.
+
+| LP2 section | Best 220-rune score |
+| ---: | ---: |
+| 0 | −5.208 |
+| 1 | −5.475 |
+| 2 | −5.441 |
+| 3 | −5.457 |
+| 4 | −5.563 |
+| 5 | −5.346 |
+| 6 | −5.535 |
+| 7 | −5.566 |
+
+The best short-head matches do not survive the full window: decoded strings remain incoherent, with no authentic plaintext. The best full-window score (section 0, −5.208) is far below the independently planted control (approximately −2.49/rune) and is not a decryption. This is a negative for direct MIDI/mod29, signed-interval/mod29, and duration-hop/mod29 key mappings, including the source-derived open-string offsets. It does **not** test lyric-to-text synchronization, note-to-fretboard transposition, or a different music-derived intermediate; those remain hypotheses requiring a more specific clue.
+
+Reproducer: `sims/audio_761_note_key_probe.cjs`; workflow: `../.github/workflows/audio-761-spectral-modulation-probe.yml`; successful original-audio [note-key run 42897650301](https://github.com/FlareZ123/liber-primus/actions/runs/42897650301).
 
 
 ## Historical Parable-number seed inversion (Agent 22)

@@ -90,3 +90,12 @@ The real bottleneck is **finding external/source-derived key material or a rever
 - Added phase extraction and reran successfully as 42896300684. Individual-channel phase coherence orders 1–4 are all <0.02; no BPSK/QPSK constellation, phase fit residual 3.9–8.0 rad. Left-right phase difference is highly coherent (0.9946 order-1) with 0.116 rad residual and only 11 projected transitions, consistent with a fixed stereo phase relationship rather than differential data. Amplitude threshold runs have median two frames and no stable bit clock. No simple ASK/FSK/PSK payload is supported.
 - Updated the existing audio synthesis in `im-results/audio-761-pad-scan.md`; code/workflow are in `sims/audio_761_spectral_modulation_probe.cjs` and `.github/workflows/audio-761-spectral-modulation-probe.yml`. Artifact from run 42896300684 was downloaded and examined.
 - Next: do not pursue the 15.64 kHz peak as a simple carrier. The report's still-open audio avenues are melody/lyrics synchronization, a nontrivial stereo-channel pad rule, or other source-motivated transforms. Avoid another generic spectral sweep without a specific clue.
+
+
+## Current incarnation: 2026-11-10 20:45 UTC — direct musical-note key test
+
+- Extended the audio investigation beyond the rejected 15.64 kHz carrier to the explicitly open melody route. The spectral artifact from run 42896300684 supplied left/right dominant MIDI notes and event durations.
+- Tested **88,512** GP29 key candidates across all eight LP2 sections: frame/event MIDI mod29 with shifts 0 and the six D-flat guitar open-string pitches [37,44,49,54,56,61], signed intervals mod29, and event duration in 4,096-sample hops mod29; forward/reverse order; both signs; all offsets leaving 660 symbols. The existing 24-rune shortlist and 220-rune collision-aware Viterbi were used.
+- Best full scores by section: [-5.208,-5.475,-5.441,-5.457,-5.563,-5.346,-5.535,-5.566]. The strongest short-head candidates collapse on 220 runes; no coherent GP-English passage or key recovered. This rejects these direct MIDI/interval/rhythm-as-key mappings, not lyric alignment or more specific fretboard/score-derived transforms.
+- Updated `im-results/audio-761-pad-scan.md` with the carrier-phase and direct note-key negatives. Reproducer: `sims/audio_761_note_key_probe.cjs`; successful run 42897650301.
+- Next: do not broaden arbitrary MIDI mapping sweeps. A further music investigation needs a concrete clue for note-to-rune mapping or synchronization; otherwise move to a different source-derived path.
