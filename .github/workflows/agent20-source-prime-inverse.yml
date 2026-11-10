@@ -2,9 +2,19 @@ name: Agent 20 source-prime exact inverse
 
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: Choose existing source-prime suite or coordinate fractionation proof
+        type: choice
+        default: source
+        required: true
+        options:
+          - source
+          - coordinate
 
 jobs:
   source-prime-inverse:
+    if: ${{ inputs.mode != 'coordinate' }}
     runs-on: windows-latest
     timeout-minutes: 20
     steps:
@@ -37,3 +47,16 @@ jobs:
       - name: Original lag-six orbit permutation invariant with native-GP controls
         shell: pwsh
         run: node sims/lag6_orbit_static_mapping_gate.cjs
+
+  coordinate-fractionation:
+    if: ${{ inputs.mode == 'coordinate' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Key-independent original GP28 coordinate gate and secret-key plant
+        shell: pwsh
+        run: node sims/gp28_coordinate_fractionation_gate.cjs
