@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Run source-bound model comparison and planted inverse
         run: node sims/prime79_chain_phase_crossfit.cjs
+      - name: Run cyclic 164-packet public-IV inverse and state-invariant controls
+        run: node sims/prime79_cyclic_salt_inverse.cjs
