@@ -2,17 +2,6 @@ name: 2016 image-dimension lag-six source gate
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'sims/2016_image_dimension_lag6_source_gate.cjs'
-      - 'sims/t6_source_register_gate.cjs'
-      - 'resources/liber-primus/lp2-corpus.json'
-      - 'resources/liber-primus/lp2-ink-annotations.json'
-      - 'resources/liber-primus/lp1-plaintext-reference.txt'
-      - 'resources/liber-primus/base60-grid.json'
-      - 'resources/lp2-transcription.txt'
-      - 'resources/control/shakespeare_first300k.txt'
-
 jobs:
   source-gate:
     runs-on: ubuntu-latest
