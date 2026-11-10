@@ -1,0 +1,27 @@
+name: Unknown six-rune word-local T-rewrite inverse
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/test_lp2_word_pages.cjs
+      - name: Scan original long rune words with algebraically unrestricted six-rune keys
+        run: |
+          set -o pipefail
+          node sims/word_period6_exact_T_inverse.cjs | tee word-period6-inverse.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: word-period6-inverse
+          retention-days: 90
+          path: word-period6-inverse.json
