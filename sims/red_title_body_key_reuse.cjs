@@ -42,7 +42,7 @@ function corpusBodies() {
   });
   assert.deepEqual(bodies.map(a => a.length),
     [716, 1129, 1717, 1883, 1005, 1505, 1581, 3308]);
-  assert.equal(bodies.reduce((s, x) => s + x.length, 0), 11844);
+  assert.equal(bodies.reduce((s, x) => s + x.length, 0), 12844);
   return bodies;
 }
 
