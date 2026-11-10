@@ -154,7 +154,12 @@ def main() -> None:
 
     data = json.loads((Path(__file__).parent.parent /
         "resources/liber-primus/lp2-corpus.json").read_text(encoding="utf-8"))
-    cipher = [x for p in data["pages"] if p["page"] < 56 for x in p["indices"]]
+    page_sequences = [list(p["indices"]) for p in data["pages"]
+                      if p["page"] < 56 and p["indices"]]
+    shuffle_seed = int(os.environ.get("PAGE_SHUFFLE_SEED", "0"))
+    if shuffle_seed:
+        random.Random(shuffle_seed).shuffle(page_sequences)
+    cipher = [x for page in page_sequences for x in page]
     assert len(cipher) == 12956
     phase = int(os.environ.get("PHASE_START", "55"))
     direction = os.environ.get("PREFIX_TWO_DIRECTION", "forward")
@@ -162,7 +167,8 @@ def main() -> None:
     assert 0 <= phase < 79 and direction in ("forward", "reverse")
     assert 1 <= seconds <= 720
     print("CPSAT_ENV", json.dumps({"ortools": ortools.__version__,
-        "phase": phase, "direction": direction, "maxSeconds": seconds}), flush=True)
+        "phase": phase, "direction": direction, "maxSeconds": seconds,
+        "wholePageShuffleSeed": shuffle_seed}), flush=True)
     plant()
     solve(cipher, phase, direction, seconds)
 
