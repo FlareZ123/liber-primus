@@ -22,6 +22,10 @@ The real corrected source gave **second IoC 0.03508919**, promising versus 100 s
 
 Next research should avoid recombining these byte sources without a new explicit cryptographic instruction; source bytes are historical snapshots, not demonstrated LP2 key material. The unresolved challenge remains a global reversible cipher explaining the 81% adjacent doublet suppression plus lag5/lag6 and physical joins.
 
+## New independent 79/78 cipher-source cross-clue
+
+The *unique longest* original red span, physical p53 local runes [128,179), 51 red runes, begins at global rune offset **12597**. Its immediately preceding black rune at **12596 = 159×79+35** is a packet boundary under the one surviving **phase35 forward 79→78** packet hypothesis (Agents8/22/23 exhaustive CSP 157/158 phase exclusion). Thus the distinctive red51 **starts at packet boundary +1**. This is independently available from the original red annotation and source page counts; it might motivate a packet-header clue. However the corresponding [12596,12675) packet has a repeated glyph at **12668** and is **discarded by strict no-repeat inverse**. No original plaintext or authenticated key. Speculative and post hoc, no calibrated probability. See `workplace/red51-prime79-packet-phase-anchor.md`; sent to Agents8/22/23 as a concrete investigation question. Avoid claiming cipher correspondence absent reversible escape and cross-page success.
+
 ## Reusable inverse: unknown shared output alphabet and collision-driven skips
 
 Exact maximum-likelihood 29-way inverse permutation fitting given any synchronized key reduces to a 29×29 Hungarian assignment. Pooled across eight independent ciphertext sections, the current solver estimates one completely unknown 29-rune outer bijection sigma while allowing per-section hidden key pointer skips. The workhorse is `sims/outer_permutation_pooled_sections.cjs`, with exact soft-EM initializer `outer_permutation_soft_em.cjs` and strict collision-conditioned Viterbi final decoder `outer_permutation_alignment.cjs`.
