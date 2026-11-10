@@ -118,6 +118,10 @@ It demonstrates that the solved LP1 book embeds an explicit reversal
 and hex-encoding layer in its file format. The square and method are
 not established as an LP2 decryption key.
 
+### LP1 JPEG 10 concatenates four complete images
+
+Another original source-artifact structure exists in `10.jpg`: its first **754,662 bytes** form a decodable image, immediately followed by **byte-identical complete copies of standalone `11.jpg`, `12.jpg` and `13.jpg`**. The four embedded JPEG lengths are 754,662, 712,733, 703,428 and 2,070,134 bytes, totaling 4,240,957 bytes without padding. Byte hashes, offsets and a runnable independent comparison are in [the original-image report](../im-results/jpeg10-concatenated-pages.md) and [reproducer](../sims/jpeg10_embedded_pages.cjs). The addition contains no independently recovered secret payload; intentional key status is unknown. Raw-key experiments must distinguish the first image from the whole original file.
+
 ## What remains unresolved
 
 1. **Complete decryption:** recover the plaintext of all 56 unsolved LP2 pages, including whether the rune-free table supplies key material, and demonstrate a repeatable mechanism on original ciphertext.
