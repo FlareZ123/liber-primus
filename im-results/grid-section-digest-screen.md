@@ -30,6 +30,16 @@ Read every original printed two-character grid token under both its published **
 
 [Original red-title/grid 38,016-comparison SFT](../sims/grid_red_title_digest_gate.cjs); the existing [manually dispatched grid-digest workflow](../.github/workflows/grid-section-digests.yml) now includes this independent step.
 
+## Record-wise grid-row digest interpretation
+
+The original manuscript has exactly **31 thirteen-dot punctuation marks**, including a black mark on physical LP2 p7. Reading each as a record terminator produces **32 successive manuscript records** (including two empty records) and covers all **13,136 original LP2 runes**, including solved p56–57. This is a separate source-visible reason to test whether the printed **32 rows of eight bytes** are **64-bit checksums of those records**. It is distinct from the section/page source-to-32-byte-column hypotheses above.
+
+[The exact CommonJS source-only test](../sims/thirteendot_fragment_gridrow_digest.cjs) implements eight declared fragment serializations: zero-/one-based GP index bytes, GP prime bytes, UTF-8 original runes, upper- and lowercase Latin transliterations, and comma-separated decimal indices/primes. It hashes each record in natural or reverse rune order using **SHA-256, SHA3-256, BLAKE2s-256, SHA-512, BLAKE2b-512, SHA-1, or MD5**. Either first or last eight digest bytes are compared to any of the **32 original grid rows** in either byte direction. This broadens beyond the one-to-one corresponding-row hypothesis and grants the best possible record-to-row pairing without fitting a secret key.
+
+**Executed result: 0 full eight-byte matches in 458,752 comparisons.** The greatest matching prefix was **two bytes** (fragment 0, row 24, uppercase transliteration/BLAKE2b-512, forward rune reading, first eight digest bytes). Synthetic rows constructed from the exact SHA-256 first eight bytes of every one of the 32 source fragments are recovered **32/32**, and the implementation checks the published SHA-256(`abc`) digest. [Successful original-input manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42884498650) preserves all 32 original record lengths and complete output.
+
+**Conclusion for this framing:** the printed grid does **not** contain direct standard hash snippets of any of the image-delimited ciphertext records under these encodings. The matching 31/32 count is a legitimate source-structure hypothesis, yet it does not establish an actual cryptographic relationship. This result leaves hashes of unknown plaintext, keyed/salted commitments, other serializations, and entirely different row semantics open. No unknown LP2 plaintext or key is recovered.
+
 ## Interpretation
 
 The table columns or row-major 32-byte chunks do **not** directly contain any of the tested standard 256-bit digests of the *visible runic ciphertext* under the specified normalizations. This weakens the easy interpretation that the numeric grid is a literal authentication table for the already visible text.
