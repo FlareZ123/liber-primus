@@ -1,0 +1,14 @@
+name: LP2 unknown-alphabet no-repeat rank inversion
+on:
+  workflow_dispatch:
+jobs:
+  rank-inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test 28-symbol rank inverse, matched null and authentic controls
+        run: node sims/no_repeat_rank_inverse.cjs
