@@ -173,7 +173,7 @@ const openingOrders = {
   rowMajor: Array.from({ length: 729 }, (_, i) => i),
   columnMajor: Array.from({ length: 729 }, (_, i) => (i % 27) * 27 + Math.floor(i / 27)),
   clockwiseSpiral: spiralIndices(27),
-  counterclockwiseSpiral: spiralIndices(27).reverse(),
+  reverseClockwiseSpiral: spiralIndices(27).reverse(),
   boustrophedon: Array.from({ length: 729 }, (_, i) => {
     const row = Math.floor(i / 27);
     const col = i % 27;
@@ -290,7 +290,8 @@ const cuneiformLengthTests = [];
 const nextSection = Array.from({ length: 14 }, (_, i) => pages.get(40 + i)).flat();
 for (const [keyName, raw] of Object.entries(cuneiformLengthKeys)) {
   for (const target of [
-    { name: 'marked-section', data: cuneiformSection, resetAt: cuneiformOffsets },
+    { name: 'marked-section-continuous', data: cuneiformSection, resetAt: null },
+    { name: 'marked-section-reset-at-markers', data: cuneiformSection, resetAt: cuneiformOffsets },
     { name: 'following-pages-40-53', data: nextSection, resetAt: null }
   ]) {
     for (let phase = 0; phase < 5; phase++) {
@@ -298,10 +299,23 @@ for (const [keyName, raw] of Object.entries(cuneiformLengthKeys)) {
         for (const skipLiteralF of [false, true]) {
           cuneiformLengthTests.push({
             key: keyName, target: target.name, phase, sign, skipLiteralF,
-            ...stats(keyDecode(target.data, raw, phase, sign, skipLiteralF))
+            ...stats(keyDecode(target.data, raw, phase, sign, skipLiteralF, target.resetAt))
           });
         }
       }
+    }
+    for (const sign of [-1, 1]) {
+      const shifted = new Array(cuneiformSection.length);
+      for (let block = 0; block < cuneiformBlockLengths.length; block++) {
+        for (let i = cuneiformOffsets[block]; i < cuneiformOffsets[block + 1]; i++) {
+          shifted[i] = mod(cuneiformSection[i] + sign * raw[block]);
+        }
+      }
+      cuneiformLengthTests.push({
+        key: keyName, target: 'marked-section-per-block-constant',
+        phase: null, sign, skipLiteralF: false,
+        ...stats(shifted)
+      });
     }
   }
 }
