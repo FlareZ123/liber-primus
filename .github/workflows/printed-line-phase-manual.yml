@@ -16,3 +16,4 @@ jobs:
         run: |
           node sims/printed_line_phase_invariant.cjs
           node sims/printed_line_start_channel.cjs
+          node sims/printed_line_greedy_width_inverse.cjs 1000
