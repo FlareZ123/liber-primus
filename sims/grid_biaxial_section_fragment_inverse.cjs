@@ -39,7 +39,7 @@ for(let p=0;p<12956;p++){
   while(k<markers.length&&markers[k]===p){k++;f++;}
   fragments[p]=f;
 }
-assert.equal(k,28);
+assert.equal(k,27);
 assert.equal(fragments[12955],27);
 let cursor=0;
 const section=[];
