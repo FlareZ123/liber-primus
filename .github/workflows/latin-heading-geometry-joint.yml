@@ -6,11 +6,11 @@ permissions:
 jobs:
   original-geometry-null:
     runs-on: windows-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Original LP2 p0 candidate and conditional 100000 shuffle null
-        run: node sims/latin_heading_geometry_joint_null.cjs 100000
+      - name: Original LP2 p0 candidate and conditional 1000000 shuffle null
+        run: node sims/latin_heading_geometry_joint_null.cjs 1000000
