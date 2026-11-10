@@ -30,13 +30,17 @@ The complete fragment lengths are:
 
 ## Tested reversible family
 
-For fragment (f), let (R_f) be its assigned 8-byte grid row. At position (i), use (k_i=R_f[(i-start_f)mod8]), projected to the symbol register by either (bmod m) or (lfloor mb/256floor).
+For fragment `f`, let `R_f` be its assigned 8-byte grid row. At position `i`, use:
+
+`k_i = R_f[(i - start_f) mod 8]`
+
+and project byte `b` to the symbol register by either `b mod m` or `floor(m*b/256)`.
 
 The test covers only 16 fixed variants:
 
 - two row orders: printed and black-mark-anchored de-Bruijn;
 - two output registers:
-  - direct additive GP29, (P_i=C_i-s k_ipmod{29});
+  - direct additive GP29: `P_i = (C_i - s*k_i) mod 29`;
   - the solved-page-style GP28 predecessor-exclusion register, with a fragment-local first-rune passthrough and repeated ciphertext symbols representing the transparent marker 28;
 - two byte projections: remainder or proportional scaling;
 - both additive signs.
@@ -47,7 +51,7 @@ No key byte, row, phase, fragment boundary, alphabet order, or ciphertext offset
 
 All 16 variants decode and exactly re-encrypt all 12,956 original runes. That is a generic invertibility check, not evidence that any key is authentic.
 
-The original ciphertext IoC is **0.0344783979**. The eight direct-GP29 outputs have IoC **0.0344495141–0.0345143954**, essentially the uniform 29-symbol baseline (1/29approx0.03448276). Their leading transliterations are not readable prose. The strongest direct-GP29 IoC is the black-mark-anchored order, remainder projection, negative sign:
+The original ciphertext IoC is **0.0344783979**. The eight direct-GP29 outputs have IoC **0.0344495141–0.0345143954**, essentially the uniform 29-symbol baseline `1/29 ≈ 0.03448276`. Their leading transliterations are not readable prose. The strongest direct-GP29 IoC is the black-mark-anchored order, remainder projection, negative sign:
 
 `NGPLELFUEANGTHLWMUEOEOEAEOTEOFHOSNGMOEXEONGPTAPXSONOXLNGOOXHPBCWYTJTAMNGICROEATMMEOELEAEOELUNPWIACRMAHWFOEWSHTETHMEREOHIATHSJ`
 
