@@ -66,6 +66,7 @@ assert.equal(red39[0],intercept);
 
 // The first marked target rune encodes the affine intercept, so the first
 // marked input is not itself expected to match the transport.
+assert.equal(T(page3[119]),page39[119]);
 assert.notEqual(f(page3[119]),page39[119]);
 for(const i of [120,121,122])assert.equal(f(page3[i]),page39[i]);
 // Position122 is the first non-red rune, withheld from the two red payload
@@ -105,6 +106,13 @@ for(let left=0;left+gap<=55;left++){
 assert.equal(pairs.length,19);
 assert.deepEqual(pairs.flatMap(p=>p.tripleStarts.map(at=>
   [p.left,p.right,at])),[[3,39,120]]);
+const transcription=fs.readFileSync(path.join(root,"resources/lp2-transcription.txt"),"utf8");
+const textPages=transcription.split("%");
+for(const [page,triad] of [[3,red3],[39,red39]]){
+  const glyphs=triad.map(i=>corpus.runes[i]).join("");
+  assert(textPages[page].includes("&\\n"+glyphs+"."),
+    "red triple must follow 13-dot marker and finish before period");
+}
 const source3Unicode=page3.slice(119,124).map(i=>corpus.runes[i]).join("");
 const source39Unicode=page39.slice(119,124).map(i=>corpus.runes[i]).join("");
 console.log(JSON.stringify({
@@ -113,6 +121,8 @@ console.log(JSON.stringify({
   priorT6:"T(x)=(24-2x) mod29",pageSeparation:gap,
   fixedReverseMap:{steps:gap,multiplier,intercept},
   markedTriples:{page3:red3,page39:red39},
+  visualGrammar:"Both p3 and p39 have 13-dot marker, a three-red-rune unit, a period, and a black word starting at offset122",
+  firstMarkedSymbolMapsByOneT6Step:T(red3[0])===red39[0],
   heldoutAdjacentBlackRune:{
     sourceIndex:122,sourceGlyph:corpus.translit[page3[122]],
     predictedTargetIndex:f(page3[122]),
