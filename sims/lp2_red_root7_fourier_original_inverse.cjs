@@ -37,7 +37,7 @@ function fourier(block, root, decrypt) {
   for (let k = 0; k < 7; k++) {
     let sum = 0;
     for (let j = 0; j < 7; j++) {
-      const exponent = mod(decrypt ? -j*k : j*k) % 7;
+      const exponent = ((decrypt ? -j*k : j*k) % 7 + 7) % 7;
       sum += block[j] * fpow(root, exponent);
     }
     out.push(mod(sum * (decrypt ? 25 : 1))); // inv(7) mod 29 = 25.
