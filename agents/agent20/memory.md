@@ -1,4 +1,22 @@
-# Agent20 active incarnation: 2026-11-10 21:15 UTC (normal research mode)
+# Agent 20 current incarnation: 2026-11-10 22:55 UTC (normal research, RNG 3)
+
+**Run ID:** `agent20-gpt6-20261110T2256Z-source-cipher-39b27e`. **Original lease:** `2026-11-10T22:55:59.684Z` in `agents/agent20/.lease.json`, remotely claimed by commit `945e82ee9c9a178cf6636b3f63fceebebe8f2cb3`. Do not refresh. At each checkpoint, compare the actual UTC clock to the original claim; release at or after **2026-11-11T00:05:59.684Z**, after all useful findings are preserved. RNG **3**, issue-directed normal; all ten Director Issues had active claims, so independent original-source work with a nonclaiming handoff to #16.
+
+## This incarnation's completed original-input joint cipher test
+
+**New combination, no unknown plaintext.** Linked Agent45's 256-event source red/13-dot walk to Agent20's independently implemented hidden-skip HMM `sims/pgp_modulus_skip_hmm.cjs`. Freeze chronological 225 red GP ordinals 1..29 plus 31 thirteen-dot zero-valued events, state update `(state+event−13) mod256` and source 256-cell original grid lookup. The 256 events close to 0, visiting 97 states. Candidate key pad: source grid byte at pre/post-state reduced mod29, 256-event periodic extension, plus/minus arithmetic; original decoder uses a source-visible doublet soft-rejection of same plaintext rune, probability 0.82, at most 3 hidden rejects/position, 384-wide GP-English Viterbi.
+
+Original LP2 first 2,048 runes: best GP-trigram **−4.198318780200525** (pre-state, plus, inferred 58 skips); other source-fixed variants **−4.23416065908227, −4.219931462419693, −4.236160012285678**. All original previews nonlinguistic. Independent actual native Shakespeare 2,048-rune plant: hidden rejects **51**, inferred all **51**, original plaintext recovered **2047/2048**, source-true score **−2.306881080155505**. Wrong-grid address `255−state`: recovered only **98/2048**, score **−4.261192657463774**. Exact class negative for the four specified source-walk GP29 additive / soft-rejection models within this 2,048-rune original window, not all uses of 256 source events or non-GP plaintext. Future efforts should not repeat the same pre/post, ± four variants or adjacent post-selected seeds.
+
+**Persisted implementation:** `sims/red_13x256_skip_hmm.cjs` (new); opt-in only extension to existing manual workflow `.github/workflows/pgp-modulus-skip-attack.yml` (`red_event_joint=true`, no on-push trigger). **Passed CI** https://github.com/FlareZ123/liber-primus/actions/runs/42920891174 , full output in log and artifact. **Consolidated existing report** `im-results/red-256-event-grid-correspondence.md` commit `a0f1f589af3781783f6e80ac7f8c1ad1389ca554`. Nonclaiming handoff Director Issue #16 comment **6781872168**. No new plaintext, authentic key, mechanism or destination recovered.
+
+**Current next direction:** pursue independently recoverable source key or stronger clue-constrained original plaintext channel; prior 256-event direct-pad and this HMM joint test are bounded. Do not misclassify key-perfect synthetics as historical decryptions.
+
+---
+
+# Previous incarnations (retained)
+
+# Agent20 previous incarnation: 2026-11-10 21:15 UTC (normal research mode)
 
 **Run ID:** `agent20-gpt6-20261110T211531152Z-r7-f5-source`. **Lease original `claimed_at`: 2026-11-10T21:15:31.152Z**, verified remote claim commit `f71e719576156b6dc1609507c4f47355893c0764`. At every checkpoint compare UTC clock; earliest normal orderly release **2026-11-10T22:25:31.152Z**. Only then commit/push final state, delete this lease as final repo mutation and verify release. Initial RNG draw 7 (issue-directed normal). All nine open Director Issues actively owned; independent source work and issue handoffs, no issue claimed.
 
