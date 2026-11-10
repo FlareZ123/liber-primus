@@ -15,3 +15,4 @@ jobs:
       - run: node sims/base60_aes_schedule_necessary.cjs
       - run: node sims/grid_red_factor_screen.cjs
       - run: node sims/page48_grid_common_factor_sft.cjs
+      - run: node sims/p48_red_triangle_prime_totient_inverse.cjs
