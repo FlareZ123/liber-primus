@@ -8,6 +8,7 @@ const P = 29, PERIOD = 56, RUNES = 12956;
 const read = p => fs.readFileSync(path.join(ROOT,p),'utf8');
 const json = p => JSON.parse(read(p));
 const mod = x => (x % P + P) % P;
+const mod56 = x => (x % PERIOD + PERIOD) % PERIOD;
 const inv = x => {
   assert.notEqual(mod(x),0);
   for(let y=1;y<P;y++) if(mod(x*y)===1) return y;
@@ -38,7 +39,7 @@ assert.equal(pages.filter(p=>p.indices.length).length,55);
 assert.equal(cipher.length,RUNES);
 assert.equal(p54.indices[0],24);
 const redTriad=page=>ink.pages.find(p=>p.page===page).red_spans
-  .filter(s=>s.length===3).map(s=>s.runes.map(r=>corpus.runes.indexOf(r)));
+  .filter(s=>s.length===3).map(s=>Array.from(s.runes,r=>corpus.runes.indexOf(r)));
 assert.deepEqual(redTriad(3),[[13,23,2]]);
 assert.deepEqual(redTriad(39),[[27,5,15]]);
 assert.deepEqual([mod(15*24*24),mod(-30*24),15],[27,5,15]);
@@ -103,8 +104,8 @@ function score(ids){
 const ioc=ids=>{const h=new Uint32Array(P);for(const x of ids)h[x]++;return h.reduce((n,x)=>n+x*(x-1),0)/(ids.length*(ids.length-1));};
 const preview=ids=>ids.slice(0,150).map(i=>corpus.translit[i]).join('').slice(0,180);
 const stateIndex=(clock,page,g,local)=>{
-  if(clock==='global-rune')return mod(g-p54Offset);
-  if(clock==='page-state')return mod(page-54);
+  if(clock==='global-rune')return mod56(g-p54Offset);
+  if(clock==='page-state')return mod56(page-54);
   if(clock==='page-reset')return local%PERIOD;
   throw new Error('bad clock');
 };
@@ -180,8 +181,10 @@ for(const clock of ['global-rune','page-reset']){
   const t=rows.find(r=>r.x===19&&r.y===14),n=rows.find(r=>r.x===25&&r.y===3);
   const bestPlain=decodeAdd(keyFromPair(rows[0].x,rows[0].y),clock,-1);
   const sorted=rows.map(r=>r.scorePerLetter).sort((a,b)=>a-b);
+  const aboveRaw=rows.filter(r=>r.scorePerLetter>raw.scorePerLetter).length;
   exhaustive.push({
-    clock,tested:rows.length,
+    clock,tested:rows.length,aboveRaw,
+    bestDeltaFromRaw:rows[0].scorePerLetter-raw.scorePerLetter,
     best:{k0:rows[0].x,k1:rows[0].y,scorePerLetter:rows[0].scorePerLetter,
       missingQuadgrams:rows[0].missingQuadgrams,ioc:rows[0].ioc,preview:preview(bestPlain)},
     second:{k0:rows[1].x,k1:rows[1].y,scorePerLetter:rows[1].scorePerLetter},
@@ -191,8 +194,6 @@ for(const clock of ['global-rune','page-reset']){
     norm:{rank:rows.indexOf(n)+1,scorePerLetter:n.scorePerLetter}
   });
 }
-assert.ok(exhaustive.every(x=>x.best.scorePerLetter<raw.scorePerLetter));
-
 assert.equal(exhaustive.find(x=>x.clock==='global-rune').aboveRaw,1);
 assert.equal(exhaustive.find(x=>x.clock==='page-reset').aboveRaw,0);
 assert.ok(exhaustive.find(x=>x.clock==='global-rune').bestDeltaFromRaw<0.002);
@@ -212,5 +213,5 @@ console.log(JSON.stringify({
   fixedSourceProjections:{tested:fixed.length,best:fixed[0],all:fixed},
   allSecretLinearObservationPads:exhaustive,
   positiveControl:{solvedP57Runes:plant.length,exactRecovery:true},
-  conclusion:'No authentic LP2 plaintext or key. The exact order-56 twisted-Frobenius state is a source-motivated hypothesis; all 840 direct-additive linear-observation keys fail to improve the original English-quadgram score.'
+  conclusion:'No authentic LP2 plaintext or key. The exact order-56 twisted-Frobenius state is a source-motivated hypothesis; the 840-key family gives no meaningful language gain (one global key edges raw by only about 0.00104 nats per letter and remains gibberish).'
 },null,2));
