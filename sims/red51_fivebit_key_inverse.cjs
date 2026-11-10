@@ -148,7 +148,7 @@ function inverse(groups,key,iv,reset,mode,byteMap,sign) {
       else if(c===previous)plain=28;
       else {
         const step=(c-previous+29)%29;
-        const d=mode==='rank'?step-1:LOG[step];
+        const d=mode==='rank'?c-(c>previous?1:0):mode==='delta'?step-1:LOG[step];
         plain=(d+sign*k+56)%28;
       }
       previous=c;
@@ -162,7 +162,7 @@ function runeProbe(keys) {
     ['last-grid',grid.subarray(240)]];
   let tested=0,jointOver0045=0,bestNear=null,bestFar=null,bestJoint=null;
   for(const {name,key} of keys)for(const [ivLabel,iv] of ivs)
-    for(const reset of [false,true])for(const mode of ['add','rank','log'])
+    for(const reset of [false,true])for(const mode of ['add','rank','delta','log'])
       for(const byteMap of ['mod','scale'])for(const sign of [-1,1]){
         const near=ioc(inverse(scopes.near,key,iv,reset,mode,byteMap,sign));
         const far=ioc(inverse(scopes.far,key,iv,reset,mode,byteMap,sign));
@@ -173,7 +173,7 @@ function runeProbe(keys) {
         if(!bestFar||far>bestFar.far)bestFar=rec;
         if(!bestJoint||rec.mean>bestJoint.mean)bestJoint=rec;
       }
-  assert.equal(tested,1152);assert.equal(jointOver0045,0);
+  assert.equal(tested,1536);assert.equal(jointOver0045,0);
   assert.ok(bestNear.near<0.037&&bestFar.far<0.038);
   const key=keys.find(x=>x.name==='fwd/msb/end1').key,iv=Buffer.alloc(16);
   const plant=Array.from({length:699},(_,i)=>(i*i+7*i+2)%29);
