@@ -3,7 +3,7 @@
  * Exhaustive LP2 page-0 body versus the original CicadaOS DATA/560.13 pad.
  * Exact one-draw collision skip inverse, arbitrary starting byte offset, and
  * two additive GP key signs. Source: ISO byte stream, not an invented key.
- * Command: node sims/iso56013_full_offset_screen.cjs <560.13> <mod|reject|mod-rev|reject-rev> <result.json>
+ * Command: node sims/iso56013_full_offset_screen.cjs <560.13> <mod[-rev][-atbash]|reject[-rev][-atbash]> <result.json>
  * Pure Node.js 22 CommonJS. Runs on the repository's committed corpus.
  */
 const assert = require('node:assert/strict');
@@ -122,12 +122,13 @@ function seedRng(seed){
   let state=seed>>>0;
   return ()=>{state^=state<<13;state^=state>>>17;state^=state<<5;return(state>>>0)/4294967296;};
 }
-function plant(P,key,start,sign,rng){
+function plant(P,key,start,sign,rng,atbash=false){
   const out=[];let j=start,prev=-1,skips=0;
   for(const p of P){
-    let c=mod(p-sign*key[j]);
+    const rawPlain=atbash?28-p:p;
+    let c=mod(rawPlain-sign*key[j]);
     if(prev>=0 && c===prev && rng()<0.82){
-      skips++;j++;c=mod(p-sign*key[j]);
+      skips++;j++;c=mod(rawPlain-sign*key[j]);
     }
     out.push(c);prev=c;j++;
   }
@@ -198,8 +199,11 @@ function run(inputFile,mapMode,outputFile) {
   assert.equal(raw.length,EXPECTED_SIZE,'Original Cicada OS asset size');
   const sha=crypto.createHash('sha256').update(raw).digest('hex');
   assert.equal(sha,EXPECTED_SHA,'Original Cicada OS asset SHA256');
-  const reverse=mapMode.endsWith('-rev');
-  const baseMap=reverse?mapMode.slice(0,-4):mapMode;
+  const modes=mapMode.split('-');
+  const baseMap=modes[0];
+  const reverse=modes.includes('rev');
+  const atbash=modes.includes('atbash');
+  assert.ok(modes.every(x=>['mod','reject','rev','atbash'].includes(x)));
   const key=mapBytes(raw,baseMap);
   if(reverse)key.reverse();
   const pre=prepare(key);
@@ -208,6 +212,8 @@ function run(inputFile,mapMode,outputFile) {
   assert.equal(page.length,262);
   const cipher=page.slice(13),firstN=96;
   const model=train(read('resources/control/shakespeare_first300k.txt'));
+  const ranking=atbash?
+    Float64Array.from(model.logp,(_,x)=>model.logp[28-x]):model.logp;
   const maximumOffset=key.length-cipher.length-24-1;
   const n=process.env.LP2_TEST_OFFSETS?
     Math.min(Number(process.env.LP2_TEST_OFFSETS),maximumOffset):maximumOffset;
@@ -215,15 +221,15 @@ function run(inputFile,mapMode,outputFile) {
   const rows=[];
   for(const sign of [-1,1]){
     console.log(JSON.stringify({kind:'begin',sign,mapMode,offsets:n}));
-    rows.push(scan(cipher,key,pre,model.logp,sign,n,firstN,64,true));
+    rows.push(scan(cipher,key,pre,ranking,sign,n,firstN,64,true));
   }
   const shortTop=rows.flatMap(x=>x.bestOffsets).sort((a,b)=>b.score-a.score);
   const finalists=shortTop.map(row=>{
-    const d=scoreAt(cipher,key,pre,model.logp,row.offset,row.sign,
+    const d=scoreAt(cipher,key,pre,ranking,row.offset,row.sign,
       cipher.length,24,true);
     return {...row,bodyScore:d.score,bodyScorePerRune:d.score/cipher.length,
       skips:d.totalSkips,skipPositions:d.skips,
-      possiblePlaintext:d.transliteration};
+      possiblePlaintext:(atbash?d.plaintext.map(x=>28-x):d.plaintext).map(x=>LATIN[x]).join('')};
   }).sort((a,b)=>b.bodyScore-a.bodyScore);
   const gibran=enc(read('resources/control/gibran_prophet_58585.txt'));
   assert.ok(gibran.length>2000);
@@ -233,15 +239,15 @@ function run(inputFile,mapMode,outputFile) {
     const offset=1000+73313*t;
     const p=gibran.slice(800+41*t,800+41*t+firstN);
     const sign=t%2?-1:1;
-    const synth=plant(p,key,offset,sign,rng);
-    const result=scoreAt(synth.cipher,key,pre,model.logp,offset,sign,firstN,
+    const synth=plant(p,key,offset,sign,rng,atbash);
+    const result=scoreAt(synth.cipher,key,pre,ranking,offset,sign,firstN,
       DRIFT,true);
-    const recovered=result.plaintext.filter((x,i)=>x===p[i]).length;
+    const recovered=result.plaintext.filter((x,i)=>(atbash?28-x:x)===p[i]).length;
     positive.push({offset,sign,plantedSkips:synth.skips,inferredSkips:result.totalSkips,
       recovered,sourceRunes:p.length,score:result.score,
       aboveOriginalMaximum:result.score>discoveryBar});
   }
-  const result={source:'2013 Cicada OS DATA/560.13 original ISO',mapMode,
+  const result={source:'2013 Cicada OS DATA/560.13 original ISO',mapMode,atbash,reverse,
     originalBytes:raw.length,sha256:sha,keyRunes:key.length,
     cipher:'LP2 page0 black body, indices 13..261 inclusive',
     training:'first 300k Shakespeare characters, GP digraph encoder',
