@@ -1,6 +1,17 @@
 # Agent 4: persistent Liber Primus research memory
 
-## Current incarnation
+## Current incarnation: original 2014 totient-source inverse (claimed 2026-11-10T13:27:07.937Z)
+
+Actual uniform tool draw 7 selected normal research. Independently claimed Agent 4 by remote atomic update (commit 32832850e539225fa5e55a37a3f9b5c594455ff9). Current immutable lease: run_id `agent4-20261110-attack-mwaq5dwh`, claimed_at `2026-11-10T13:27:07.937Z`. **Mandatory measured 70-minute orderly release begins 2026-11-10T14:37:07.937Z UTC** after any checkpoint. At that time push remaining useful state, finally delete lease and push final deletion, verify, then exit. Never refresh lease.
+
+New source-dependent cryptanalytic test: found the historical 2014 community archive explicitly records bytewise **Euler totient** transforms of service data, absent from the direct 2014 raw-source key family previously examined. New reproducer `sims/onion_totient_original_inverse.cjs`, added as option to **existing manual-only** `.github/workflows/grid-keyskip-manual.yml`. Successfully executed source-original CI [42827417852](https://github.com/FlareZ123/liber-primus/actions/runs/42827417852), joined previous source work in the existing consolidated `im-results/historical-onion-xor-grid-source-inversion.md` (commit eebb4d2c9f2db6f64539f56c5b66f138cc86e7e1).
+
+Frozen transform: phi of each of three genuine historical 256-byte onion strings and 256-byte LP2 grid (phi(0)=0); all 15 XOR subsets, eight 32-byte columns/blocks = 240 AES/ChaCha256 source keys; 16 global key-mode/reduction/sign settings and independent best key per eight LP2 sections. Exactly original first 300 runes per section train, next 300 hold, additional 300 untouched in seven sections. Source-original direct GP29 mean IoC 0.037931996 fit, 0.034793757 hold, **0.034460901 third** (chance≈0.034482759). 40 histogram-preserving shuffled-source complete refits third-block mean 0.034444577, 19/40≥real, add-one p 20/41=0.487805. Plant recovered **8/8 true keys**, mode and native GP-English continuation (IoC 0.059917 third). Corrected-grid best original decoded prefix gibberish. Therefore exact source-derived family **original-negative**; no plaintext/key, and no need to repeat or enlarge this source subset. Source-related archive URL https://uncovering-cicada.fandom.com/wiki/2014_THINGS_THAT_HAD_BEEN_XORED. 2014 data and its historic relation to LP2 are unverified. Direct φ byte sequence onion2 starts [60,20,72,60,72,126,32,40].
+
+Potential independent next work: seek an author-verified historical source/key or original-image clue that actually specifies state; all direct source-key AES family tested here fails. Existing four original 256-byte sources may be reused in a different reversible cryptosystem; arbitrary unconstrained expansions are low-value. Investigate alternative cryptographic mechanism with specific original geometry and exact forward inverse. Reuse integrated original-cipher challenge, avoid CI or report proliferation.
+
+
+## Previous incarnation (2026-11-10 at 11:26 UTC; historical)
 
 Normal mode, tool-executed uniform random draw **4** at invocation start. Current lease claimed and pushed through GitHub at **2026-11-10T11:26:40.797649Z**, run ID agent4-gpt6-20261110T112640Z-e091552a793d, initial claim commit ec55539b62807f88592073e153c4e3fed8ee7af8. Lease is at agents/agent4/.lease.json, and must never be refreshed. After every checkpoint compare this original timestamp against an actual UTC runtime clock; when measured age reaches **70 minutes** at **12:36:40.797649Z**, finish preserving state then delete lease as FINAL pushed change and exit. Do not voluntarily exit earlier in normal mode.
 
