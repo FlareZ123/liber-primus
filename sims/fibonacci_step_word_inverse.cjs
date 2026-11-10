@@ -112,7 +112,7 @@ function fit(publishedSteps,plaintext,direction="forward") {
   const possible=[];
   const aValues=known[0]<0?
     Array.from({length:RING},(_,i)=>i):[known[0]];
-  const bValues=known[1]<0?
+  const bValues=n===1 || known[1]<0?
     Array.from({length:RING},(_,i)=>i):[known[1]];
   for(const a of aValues)for(const b of bValues){
     let first=a,second=b,compatible=true;
@@ -177,8 +177,8 @@ function encipher(plaintext,draw,direction="forward") {
  * @param {"forward"|"reverse"} direction
  * @param {number} [minLength]
  */
-function scan(ciphertext,lex,direction="forward",minLength=MIN_LENGTH) {
-  const allSteps=steps(ciphertext,8),hits=[],byLength={};
+function scan(ciphertext,lex,direction="forward",minLength=MIN_LENGTH,previous=-1) {
+  const allSteps=steps(ciphertext,previous),hits=[],byLength={};
   for(let wi=0;wi<ciphertext.length;wi++) {
     const target=allSteps[wi],n=target.length;
     if(n<minLength)continue;
@@ -222,7 +222,7 @@ function run(trials=40) {
       assert.ok(seeds.some(x=>x[0]===planted.keys[i][0] &&
         x[1]===planted.keys[i][1]),"True source/key excluded: "+i);
     }
-    const fitOriginal=scan(planted.words,lex,direction);
+    const fitOriginal=scan(planted.words,lex,direction,MIN_LENGTH,8);
     assert.ok(fitOriginal.wordsWithCandidates>=source.longWordsInLexicon);
     positive[direction]={trueSeedAndSourceRecovered:source.plaintext.length,
       sourceLongInLexicon:source.longWordsInLexicon,
@@ -230,9 +230,9 @@ function run(trials=40) {
       zeroStepMarkers:planted.markers};
   }
   const nulls=[],same=encipher(source.plaintext,random,"iid").words;
-  nulls.push(scan(same,lex).wordsWithCandidates);
+  nulls.push(scan(same,lex,"forward",MIN_LENGTH,8).wordsWithCandidates);
   for(let i=1;i<trials;i++)
-    nulls.push(scan(encipher(source.plaintext,random,"iid").words,lex).wordsWithCandidates);
+    nulls.push(scan(encipher(source.plaintext,random,"iid").words,lex,"forward",MIN_LENGTH,8).wordsWithCandidates);
   return {mechanism:"GP nonzero difference = 15^((P + Fibonacci28-key) mod 28); GP EA emits a zero difference",
     source:{unknownOriginalRunes:12956,wholeWords:2896,
       originalTranscriptSha256:createHash("sha256").update(RAW).digest("hex"),
