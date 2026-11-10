@@ -16,3 +16,5 @@ jobs:
         run: node sims/f79_f29_bijective_marker_inverse.cjs
       - name: Exact EA-anchored plaintext-feedback inverse and heldout native-language gate
         run: node sims/ea_anchored_plain_feedback_inverse.cjs
+      - name: Recover a second-order 28-ary key from EA-transparent original-ciphertext steps
+        run: node sims/ea_field29_order2_key_recovery.cjs
