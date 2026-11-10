@@ -113,6 +113,30 @@ function main() {
   assert.deepEqual(singlePages, [10,11,29,36]);
   assert.deepEqual(doublePages, [29]);
 
+  // Complete source-marked candidate census, without fitting a polynomial to
+  // the observed plaintext-like output or searching unmarked page fragments.
+  const redFactorMatches = [];
+  for (const annotatedPage of ink.pages) {
+    for (const span of annotatedPage.red_spans || []) {
+      if (span.length < 3) continue;
+      const original = [...span.runes].map(g => corpus.runes.indexOf(g));
+      assert(original.every(x => x >= 0));
+      for (const reversed of [false, true]) {
+        const polynomial = reversed ? original.slice().reverse() : original;
+        const sourcePages = pages.filter(p =>
+          divide(p.indices, polynomial).remainder.every(v => v === 0)).map(p => p.page);
+        const table = divide(grid.bytes, polynomial).remainder.every(v => v === 0);
+        if (sourcePages.length || table) redFactorMatches.push({
+          redPage:annotatedPage.page,start:span.start,length:span.length,
+          reversed,sourcePages,table
+        });
+      }
+    }
+  }
+  assert.deepEqual(redFactorMatches, [{
+    redPage:39,start:119,length:3,reversed:true,sourcePages:[29],table:true
+  }]);
+
   const p29 = pages.find(p => p.page === 29).indices;
   assert.equal(p29.length, 277);
   const p29Divide = divide(p29, factor);
@@ -140,6 +164,7 @@ function main() {
     gridBytes:256,p29Runes:p29.length,
     root24PageHits:singlePages,doubleRoot24PageHits:doublePages,
     gcdTablePage29:[1,10,25],
+    redFactorMatches,
     page29QuotientRunes:p29Divide.quotient.length,
     gridQuotientSlots:gridDivide.quotient.length,
     page29QuotientIoC:coincidence(p29Divide.quotient),
