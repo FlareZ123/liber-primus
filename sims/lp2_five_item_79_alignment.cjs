@@ -105,6 +105,82 @@ function run() {
   });
   assert.deepEqual(sevenPacketDoublets, [0, 1, 0, 0, 0, 0, 0]);
 
+
+  // Observed 79-step salt-subsequence is H UAA UAG C. UAA, UAG, UGA
+  // are RNA termination codons. This biological interpretation was
+  // noticed only after inspection and is exploratory.
+  const indices = Uint8Array.from(actualRunes.map((rune) =>
+    corpus.runes.indexOf(rune)));
+  const U = corpus.translit.indexOf("U");
+  const A = corpus.translit.indexOf("A");
+  const G = corpus.translit.indexOf("G");
+  const C = corpus.translit.indexOf("C");
+  const H = corpus.translit.indexOf("H");
+
+  /** @param {Uint8Array} values @param {number} i @param {number} stride */
+  function isStop(values, i, stride) {
+    return values[i] === U &&
+      ((values[i + stride] === A &&
+          (values[i + 2 * stride] === A || values[i + 2 * stride] === G)) ||
+       (values[i + stride] === G && values[i + 2 * stride] === A));
+  }
+
+  /** @param {Uint8Array} values @param {number} stride */
+  function countAdjacentStopPairs(values, stride) {
+    let count = 0;
+    for (let i = 0; i + 6 * stride < values.length; i++) {
+      if (values[i + stride] !== U || values[i + 4 * stride] !== U)
+        continue;
+      if (isStop(values, i + stride, stride) &&
+          isStop(values, i + 4 * stride, stride))
+        count++;
+    }
+    return count;
+  }
+
+  const saltLetters = phase35SaltIndexes.map((i) =>
+    corpus.translit[indices[i]]);
+  assert.deepEqual(saltLetters, ["H", "U", "A", "A", "U", "A", "G", "C"]);
+  assert.equal(indices[first - 1], H);
+  assert.equal(indices[last - 1], C);
+  assert.equal(countAdjacentStopPairs(indices, 79), 1);
+
+  // Fixed original statistic: whether any of all 79 phases anywhere in
+  // the manuscript yields two consecutive RNA stop codons at lag 79.
+  // The codon feature itself was recognized after seeing the source,
+  // so this permutation tail is conditional, not discovery-wide.
+  const pageSources = corpus.pages.filter((p) =>
+    p.page < 56 && p.indices.length > 0).map((p) => p.indices);
+  const pageStarts = [];
+  let pageStart = 0;
+  for (const p of pageSources) {
+    pageStarts.push(pageStart);
+    pageStart += p.length;
+  }
+  assert.equal(pageStart, 12956);
+  let rng = 0x48a79035;
+  function nextInt() {
+    rng ^= rng << 13;
+    rng ^= rng >>> 17;
+    rng ^= rng << 5;
+    return rng >>> 0;
+  }
+  const rotated = new Uint8Array(indices.length);
+  let rotationsContainingStopPair = 0;
+  const rotationCount = 10000;
+  for (let trial = 0; trial < rotationCount; trial++) {
+    for (let p = 0; p < pageSources.length; p++) {
+      const source = pageSources[p];
+      const offset = nextInt() % source.length;
+      for (let i = 0; i < source.length; i++)
+        rotated[pageStarts[p] + i] = source[(i + offset) % source.length];
+    }
+    if (countAdjacentStopPairs(rotated, 79) > 0)
+      rotationsContainingStopPair++;
+  }
+  assert.equal(rotationsContainingStopPair, 3);
+  const sourceStopCodonAtPhase35 = saltLetters.join("");
+
   const result = {
     classification: "source-observed 79-clock alignment; no recovered plaintext",
     tenDotMarks: tenDots,
@@ -117,6 +193,11 @@ function run() {
     sevenBlocksWithinPacketDoublets: sevenPacketDoublets,
     totalAdjacentDoubletsInsideEnclosure: repeatCount,
     canonicalOriginalRunes: actualRunes.length,
+    sourceStopCodonAtPhase35,
+    doubleRNAStopPairsAnywhereInOriginalAtStride79: 1,
+    pageRotationNullTrials: rotationCount,
+    pageRotationNullTrialsContainingAnyPair: rotationsContainingStopPair,
+    conditionalRotationTail: (rotationsContainingStopPair + 1) / (rotationCount + 1),
     caveat: "The alignment was recognized after the existing phase35 hypothesis; no cipher, key or real plaintext recovered."
   };
   console.log(JSON.stringify(result, null, 2));

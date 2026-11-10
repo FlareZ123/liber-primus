@@ -16,3 +16,5 @@ jobs:
         run: node sims/red79_first_occurrence_packet_gate.cjs
       - name: Source-original prime79 stationary affine checksum rank and planted inverse
         run: node sims/prime79_unknown_checksum_gate.cjs
+      - name: Source-enclosed five-item 79-clock and page-rotation stop-codon audit
+        run: node sims/lp2_five_item_79_alignment.cjs
