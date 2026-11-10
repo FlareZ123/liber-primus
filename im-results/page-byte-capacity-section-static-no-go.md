@@ -57,6 +57,16 @@ It also creates a byte-to-rune **positive plant** with one hidden 29-rune cyclic
 
 The [on-demand workflow run 42864888897](https://github.com/FlareZ123/liber-primus/actions/runs/42864888897) passed every assertion. Select the existing manual LP2 adaptive radix-28 workflow, probe **sectionbytes**, to rerun without installing extra dependencies.
 
+## Seven forced-zero digits as AES/ChaCha crib
+
+The zero-rank observation can also test a *different*, explicitly masked-digit encoding: a page-specific additive pad shifts public predecessor ranks, and the underlying maximal-byte digits still begin with zero. Unlike the section-static direct-rank theorem above, this alternative permits changing page keys or IVs. It supplies **seven source-native known-digit cribs** independent of English likelihood scoring.
+
+[Reproducible source-locked key screen](../sims/page_zero_crib_grid_nonce_inverse.cjs) uses only the original **eight 32-byte table columns** or **eight contiguous 32-byte row-major chunks** as AES-256/ChaCha20 keys, forward and reversed. It checks original source pages8–14 under forward/backward traversal, big/little digit order, sorted/cyclic publicly known GP28 predecessor ranks, AES-256-CTR/ChaCha20, two raw-byte-to-28 reductions, both additive signs, and **13 explicit page IV/nonce conventions**: all zero or physical/scan/local page integers in little/big-endian head/tail uint32 form. Each of the **26,624 declared configurations** must satisfy seven exact leading-rank equations to be an authentic decoder under its own assumptions. There is no fitted unknown alphabet or hidden offset in this screen.
+
+**Executed original:** 20,684 settings match **0/7**, 5,293 match **1/7**, 600 match **2/7**, and 47 match **3/7**. **Zero match four or more; zero match all seven**. The selected maximum is an incidental three-hit pattern, with no plaintext. A source-realistic AES-CTR hidden-key synthetic plant using one authentic column key and the physical-page little-endian tail nonce correctly satisfies **7/7**, establishing correct key and nonce handling under the declared model. The existing [manual workflow, probe `pagezero`](https://github.com/FlareZ123/liber-primus/actions/runs/42867278372) completed successfully.
+
+The original source thus excludes **these exact 26,624 public-GP28 stream-pad parameterizations** for this byte-capacity hypothesis. It says nothing about an arbitrary secret 29×28 predecessor table, unknown grid-to-key derivations, unseen IV conventions, another key schedule, a cross-page binary packet, or a nonzero origin in the underlying byte stream. No original LP2 plaintext has been recovered.
+
 ## Cryptanalytic consequence and limit
 
 **Excluded:** Independent whole-byte messages in each physical page, encoded by a predecessor-excluding 28-digit alphabet with one page IV, transparent original repeats, and one fixed secret successor-to-digit table per predecessor throughout the seven-page section. In particular, adding AES/ChaCha decryption after this exact transport cannot rescue its impossible original input.
