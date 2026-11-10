@@ -18,6 +18,11 @@
 const assert = require("node:assert/strict");
 const red = require("./red16_spiral_4d_native_crib.cjs");
 const { C, N, pages, nativeSymbols } = red;
+const fs = require("node:fs");
+const path = require("node:path");
+const REGISTER = process.env.GP_REGISTER === "latin" ? "latin" : "solved-cicada";
+const latin = REGISTER === "latin" ? JSON.parse(fs.readFileSync(path.join(__dirname,"..","resources","control","latin-vulgate-gp-trigrams.json"),"utf8")) : null;
+const latinHoldout = REGISTER === "latin" ? JSON.parse(fs.readFileSync(path.join(__dirname,"..","resources","control","latin-vulgate-heldout-gp.json"),"utf8")).runes : null;
 const P = 29, STATES = P ** 4, EA = 28;
 const mod = x => (x % P + P) % P;
 assert.equal(STATES, 707281);
@@ -51,7 +56,8 @@ const pow = Array.from({ length: 28 }, (_, j) => {
 const logarithm = new Int8Array(P).fill(-1);
 pow.forEach((x, j) => { logarithm[x] = j; });
 const freq = new Float64Array(P).fill(0.5);
-for (const p of nativeSymbols) freq[p]++;
+if(latin)latin.u.forEach((n,i)=>{freq[i]+=n;});
+else for (const p of nativeSymbols) freq[p]++;
 const total = freq.reduce((a,b)=>a+b,0);
 const nonEA = total - freq[EA];
 const score29 = Array.from(freq,x=>Math.log(P*x/total));
@@ -278,7 +284,12 @@ function experiment(label,A,cipher,knownState=null) {
  * Fourier expansion remains sparse in the full 4D key-state grid.
  */
 const pairFreq = Array.from({length:28},()=>new Float64Array(28).fill(0.5));
-for(let t=1;t<nativeSymbols.length;t++) {
+if(latin) {
+  for(const [index,n] of latin.b) {
+    const a=Math.floor(index/29),b=index%29;
+    if(a!==EA&&b!==EA)pairFreq[a][b]+=n;
+  }
+}else for(let t=1;t<nativeSymbols.length;t++) {
   const a=nativeSymbols[t-1],b=nativeSymbols[t];
   if(a!==EA&&b!==EA)pairFreq[a][b]++;
 }
@@ -391,7 +402,7 @@ function pairExperiment(label,A,cipher,known=null) {
   assert.deepEqual(encrypt(decoded,V,best),cipher);
   const output={
     sourceMatrix:label,objective:"unfitted consecutive non-EA GP source bigrams",
-    sourceBigrams:nativeSymbols.length-1,
+    sourceBigrams:latin?latin.b.reduce((s,p)=>s+p[1],0):nativeSymbols.length-1,
     stateSpaceExhausted:STATES,trainPairs:sparse.eligible,
     originalTraining:directPairScore(cipher,V,best,true),
     frozenHeldout:directPairScore(cipher,V,best,false),
@@ -415,8 +426,10 @@ function pairExperiment(label,A,cipher,known=null) {
   return output;
 }
 
-const plantedPlain=Array.from({length:N},(_,t)=>nativeSymbols[t%nativeSymbols.length]);
-const report={classification:"Exhaustive 4D F29 source-matrix inverse (not an LP2 solution)",
+const sourcePlant=latinHoldout || nativeSymbols;
+const plantedPlain=Array.from({length:N},(_,t)=>sourcePlant[t%sourcePlant.length]);
+const report={classification:"Exhaustive 4D F29 source-matrix inverse (not an LP2 solution)",register:REGISTER,
+  sourceTrainingRunes:latin?.n||nativeSymbols.length,sourcePlantBaseRunes:sourcePlant.length,
   assumption:"Continuous A-powered 4-state key, transparent EA marker, 15-root step cipher",
   originalAndControls:[]};
 for(const source of matrices) {
