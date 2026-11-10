@@ -16,5 +16,6 @@ jobs:
         run: |
           node sims/test_lp2_grid.cjs
           node sims/grid_shamir_rs_inverse.cjs
+          node sims/onion256_shamir_cross_source_gate.cjs
           node sims/grid_coordinate_free_share_rank.cjs
           node sims/grid_anend_hash_bridge.cjs
