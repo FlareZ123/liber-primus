@@ -47,8 +47,8 @@ function inputs() {
 }
 
 /** @param {number[]} source @param {string} algorithm @param {number} width */
-function cipherBytes(source, algorithm, width) {
-  const cipher = crypto.createCipheriv(algorithm, Buffer.from(source), Buffer.alloc(16));
+function cipherBytes(source, algorithm, width, iv = Buffer.alloc(16)) {
+  const cipher = crypto.createCipheriv(algorithm, Buffer.from(source), iv);
   return Buffer.concat([cipher.update(Buffer.alloc(width)), cipher.final()]);
 }
 
@@ -99,12 +99,12 @@ function popcount(n) {
 }
 
 /** @param {number[][]} groups @param {number[][]} columns */
-function evaluate(groups, columns) {
+function evaluate(groups, columns, iv = Buffer.alloc(16)) {
   const N = groups.reduce((sum, arr) => sum + arr.length, 0);
   const maxLength = Math.max(...groups.map(a => a.length));
   const results = [];
   for (const algorithm of SETTINGS) for (const reverse of [false, true]) {
-    const streams = columns.map(key => cipherBytes(reverse ? key.slice().reverse() : key, algorithm, maxLength));
+    const streams = columns.map(key => cipherBytes(reverse ? key.slice().reverse() : key, algorithm, maxLength, iv));
     for (const scaled of [false, true]) for (const sign of [-1, 1]) {
       const weighted = groups.map(group => streams.map(pad => group.length * ioc(group, pad, sign, scaled)));
       const optimum = assign(weighted);
