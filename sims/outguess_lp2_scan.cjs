@@ -56,6 +56,16 @@ try {
         opening:data.subarray(0, 72).toString('utf8').replace(/[^\x20-\x7e]/g, '.')
       };
       found.push(item);
+      if (process.env.OUTGUESS_PRINT_LP1_SIGNED === '1' && page <= 16 &&
+          data.subarray(0, 34).toString('utf8').startsWith('-----BEGIN PGP SIGNED MESSAGE-----')) {
+        const signed = data.toString('utf8');
+        const textOnly = signed.split('-----BEGIN PGP SIGNATURE-----')[0];
+        console.log('LP1_AUTHENTICATION_PENDING_TEXT ' + JSON.stringify({
+          page, bytes: data.length, sha256: item.sha256,
+          signedText: textOnly.slice(0, 15000),
+          truncated: textOnly.length > 15000
+        }));
+      }
       console.log('UNVALIDATED_EXTRACTION ' + JSON.stringify(item));
     } else {
       fs.rmSync(staging, {force:true});
