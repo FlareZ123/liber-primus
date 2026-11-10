@@ -37,3 +37,5 @@ jobs:
         run: node sims/red256_patience_original_gp_pad.cjs
       - name: Source 13-dot-fragment all-secret GP five-bit ASCII capacity proof
         run: node sims/gp29_fixed5bit_ascii_capacity.cjs
+      - name: Source 31 thirteen-dot records versus 32 eight-byte grid-row hashes
+        run: node sims/thirteendot_fragment_gridrow_digest.cjs
