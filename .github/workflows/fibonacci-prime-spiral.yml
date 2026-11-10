@@ -31,3 +31,5 @@ jobs:
         run: node sims/parable_blum_exhaustive_state_inverse.cjs
       - name: Test 153 and 1224 modulus-forced GP cipher equality on original ciphertext
         run: node sims/parable_blum_keyless_period_gate.cjs
+      - name: Exhaust every Parable Blum state under exact hidden collision-keyskip GP29 inverse
+        run: node sims/parable_blum_allstate_keyskip.cjs
