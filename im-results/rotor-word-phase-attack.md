@@ -60,6 +60,33 @@ There is **no positive evidence** that ciphertext index8 retains English H's pos
 
 The same script reports **80/1,290** observed within-word lag-six T hits versus a *descriptive* **75.07** expected same-rune repeats at lag six from **length-matched GP-English training words**, *if* T were the block-to-block rotor. This numerical match is not an independent validation: the map T was originally selected on this ciphertext, and the fixedpoint test contradicts its simplest GP-English explanation. The alternative prior [Agent 19 literary control](lag6-conditioned-echo.md) measured directly applying the **T relation to unrotated English**, a different expectation from same-rune repetition after a hypothetical rotor; its numbers should not be conflated with 75.07.
 
+## A source-grid-driven six-lane recurrence with exact secret-seed recovery
+
+**Original-input model excluded under direct GP-native language; no recovered authentic plaintext or key.** The original printed numerical table contains 256 bytes, the GP field has primitive root 15, and the previously observed affine lag-six transformation is 24−2x mod29. A new lossless cipher hypothesis links them through a six-lane source-driven key recurrence:
+
+\[
+K_i=(a-2K_{i-6}+G_i)\bmod29,\quad K_0,\ldots,K_5\in\mathbb F_{29},
+\]
+
+with a=0 or 24, and G_i a published-grid byte mapped to a 28- or 29-valued drive. The proposed 29-way transparent marker transducer emits C_(i−1) when P_i=GP EA(28); otherwise it emits C_(i−1)+15^((P_i+sign*(K_i mod28)) mod28) mod29. Both output and plaintext are rune-valued; the marker convention remains conjectural.
+
+**Exact economical source-key inverse.** For any fixed drive, the recurrence has K_i=A_i*s_(i mod6)+B_i mod29, with known A_i,B_i. Thus each of the six unknown seeds can be recovered by just **29 independent GP-unigram likelihood trials per lane**, rather than 29^6 combined candidates. The inverse takes base-15 discrete logs of each nonzero ciphertext step and maps zero steps to hypothetical plaintext EA. Its forward encoder re-encrypts the actual original ciphertext under every inferred key, which is a deterministic roundtrip property and does not authenticate a key.
+
+**Original-source experiment.** Grid traversals: 256-byte row-major, 256-byte column-major and one 32-byte column per section. Byte maps: remainder mod29, floor(29*byte/256), remainder mod28. Each combines with a=0/24 and sign ±1: exactly **36 fixed programs**. The eight authentic post-red-heading black bodies have lengths **716,1129,1717,1883,1005,1505,1581,3308**; the independent nine-rune dollar-sign bridge is excluded. For each body, fit hidden seeds from only its first n−200 runes, n=min(1000, body length); withhold the next **200 original ciphertext runes**, giving 1,600 fully unseen original outputs. The frozen 29-GP unigram language prior is trained only on the first 190,000 characters of the checked-in Shakespeare source and scores average log(29*P(source symbol)).
+
+| Direct key schedule | Original training score | Frozen original holdout score | Plaintext |
+| --- | ---: | ---: | --- |
+| Highest training: column-major, byte mod29, constant24, sign+ | **−0.50901028** | **−0.92613752** | Unreadable |
+| Highest *postselected holdout*: section grid columns, byte mod28, constant24, sign+ | −0.53300509 | −0.76205796 | Unreadable |
+| Correct planted Shakespeare: row-major, byte scaled29, constant24, sign+ | +0.37825078 | **+0.40137398** | **7,716/7,716 exact** |
+| Correct planted solved-Cicada GP source with same true key family | +0.41976938 | **+0.42635474** | **7,716/7,716 exact** |
+
+Both independently sampled GP-English plaintext plants were encrypted using unknown six-lane seeds and the original source-grid drive. The same frozen 36-family training search ranked the true family **first** in both controls. The exact decoder recovers every one of their original 7,716 symbols and exactly forward re-encrypts them, including reserved EA symbols and varied physical body lengths. By contrast, the most favorable original-language holdout score among all 36 wrong source-grid hypotheses is still negative and requires after-the-fact selection.
+
+This is an operational hidden-key inversion algorithm but its tested *source-derived recurrence* fails to yield authentic LP2 plaintext. A historical state update, key derivation or intermediate plaintext encoding would need to come from evidence independent of these original fitted scores. Do not present decoded snippets or original exact re-encryption under free seeds as evidence of the authentic manuscript cipher.
+
+[Complete CommonJS reproducible original and positive tests](../sims/grid_six_lane_recurrence_inverse.cjs), deterministic seed 0x27657915, [passed manual CI run 42811936967](https://github.com/FlareZ123/liber-primus/actions/runs/42811936967). The test reuses the existing manual rotor-phase workflow.
+
 ## Research implications
 
 The word-local affine echo remains a real ordering anomaly under the existing selected-family controls. A fixed six-phase T key and independent word offsets would offer an explicit, reproducible route to decrypt it; the blind dictionary voting attack does **not** find that key. More generally, a cipher formed solely of powers of T acting directly on GP-English ought to preserve H positions and fails the present independently powered necessary-condition check.
