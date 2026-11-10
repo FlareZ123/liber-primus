@@ -15,3 +15,5 @@ jobs:
         run: node sims/grid179sq_255_terminal_bridge.cjs
       - name: Ac field-root and 127-pair original gate
         run: node sims/grid_ac24_double_root_pair_gate.cjs
+      - name: P53 red 256-bit and black 128-rune source gate
+        run: node sims/p53_red256_black128_source_gate.cjs
