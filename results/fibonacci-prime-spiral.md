@@ -38,19 +38,33 @@ In particular, the final **1206** and **4516** arise because the two largest pri
 
 **Interpretation:** this is a precise, clue-derived prime-selection mechanism with a Fibonacci index schedule and an explicit spiral reading order. It supplies viable mathematical material for constructing or recognizing a cipher key. It does **not** demonstrate that these integers are an LP2 keystream or distinguish all possible uses of the clue.
 
-## Direct LP2 key interpretation tested
+## Consequences for key material: bounded negative decryption screens
 
-As the immediate next step, the reproducer tests **five fixed, clue-derived sixteen-number streams**, each with 16 cyclic offsets and both additive signs under mod-29 GP arithmetic (\`C_i=P_i+K_i mod29\`). Streams are clockwise square values, their corresponding primes, the prime ordinals, printed row-major values, and reversed clockwise square values. The following deliberately narrow tests use the original repository LP2 page-index contract, with one key draw per rune and no skips, remappings, or hidden offsets. Each span therefore evaluates **160 configurations**.
+The exact numerical construction supplies two natural but distinct cryptographic interpretations. Both have been tested on the original ciphertext without fitting an unknown key.
 
-| LP2 rune interval | Runes | Original IoC | Highest recovered IoC |
+**A periodic 16-rune additive pad:** Five fixed integer streams taken from the square and its construction (clockwise values, prime values, prime ordinals, printed row-major values, reverse clockwise values), each at all 16 cyclic offsets and both signs modulo 29, give **160 configurations per interval**:
+
+| LP2 interval | Ciphertext runes | Raw IoC | Best deciphered IoC |
 |---|---:|---:|---:|
-| Page 16, directly after the square | 267 | 0.033539 | **0.036045** |
+| Page 16, directly after square | 267 | 0.033539 | **0.036045** |
 | Pages 16–22 concatenated | 1,744 | 0.034510 | **0.034776** |
 | All unsolved pages 0–55 | 12,956 | 0.034478 | **0.034574** |
 
-A uniform 29-symbol stream has asymptotic IoC \`1/29=0.034483\`; the highest candidate over the long spans is near this level. The implementation also re-enciphers and precisely recovers **251 authentic solved LP1 GP runes** with the proposed sixteen-position stream to verify that a correctly supplied clue-derived key is invertible and produces the known nonuniform decoded distribution. These exact tests give **no LP2 readable plaintext or supported direct period-16 additive key**. The short 267-rune page's higher best result is selected from 160 options and has no independent significance.
+The original test re-encrypts and precisely recovers 251 actual solved LP1 GP runes using the selected test pad, verifying that the direct operation is reversible. Its longer real-LP2 scores remain near the uniform-rune IoC baseline 1/29.
 
-The cipher might require a nonperiodic Fibonacci-prime generator, use the *ordering* or prime ranks only, interact with the red annotation, select material by word or page, seed an unrelated cryptographic transform, or have additional layers. None of those interpretations was tested here.
+**A 256-bit secret from the sixteen printed values:** Each square number occupies at most 16 bits; serializing all sixteen as 16 unsigned 16-bit fields produces **exactly 32 bytes**, a natural AES-256 or ChaCha20 key. The added [clue-derived key test](../sims/fibonacci_spiral_key_derivation.cjs) explores 32 fixed seed variants (absolute square values, underlying prime numbers, prime ordinals and Fibonacci numbers, either spiral or row-major, big- or little-endian, raw or SHA-256 hashed). Each is passed through an existing AES-256-CTR/ChaCha20/RC4 rune pad implementation at alternate page IVs, drop offsets, byte-to-rune mappings and signs. This yields **2,432 configurations per interval**, with one key draw for each ciphertext rune and page-reset alignment.
+
+| LP2 interval | Best key-masked IoC across 2,432 tests |
+|---|---:|
+| Page 16, 267 runes | 0.0390865 |
+| Pages 16–22, 1,744 runes | 0.0351767 |
+| Entire 12,956-rune unsolved corpus | **0.0345751** |
+
+A planted GP-English-like corpus encrypted under the literal **clockwise absolute-values 32-byte big-endian key**, AES-256-CTR and an 81% adjacent-repeat rewrite, is correctly recovered as the **top candidate**, IoC **0.0654700**. The real ciphertext shows no corresponding nonuniform distribution or readable plaintext under this prescribed aligned-key family. More complicated key skips, changed mapping, other serialization and mixed encryption layers remain untested.
+
+**The numeric table as an AES-256 payload:** A separate [binary-grid test](../sims/fibonacci_square_grid_payload.cjs) asks whether the very same clue-derived 32-byte keys decrypt the 256-byte base-60 table on pages 49–51. It tests 36 raw or hashed square-derived AES-256 keys, five physical grid readout layouts, ECB/CBC/CTR/CFB/OFB and four IV choices where applicable, for **3,060 configurations**. Top printable-byte output is only **128/256**, and the highest count of low-range 0–28 GP-index bytes is **48/256**; no candidate resembles plaintext or a self-evident serialized rune message. A genuine AES-256-CBC 256-byte English plant decrypts exactly, with **256/256 printable bytes**. These are recognizability screens and cannot exclude a second encryption layer or a binary plaintext with no recognizable header.
+
+**Conclusion:** The square is a genuine, precisely derived mathematical clue with potential cryptographic significance. Its simple periodic-pad, natural 32-byte stream-key, and direct AES-256 grid-payload interpretations have produced no actual LP2 decryption. Selection over large finite test families is accounted for in their descriptive scope; isolated short-window maxima are not recognized as hits.
 
 ## Reproduction and next attack
 

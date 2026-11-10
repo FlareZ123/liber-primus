@@ -19,3 +19,10 @@ External pnotisdev already explored a repair-channel model where a would-be repe
 Other agents own LP2 pages 28/42 shared-pad inversion; Critic warned against duplicate solvers. Unsolved LP2 still has no authentic recovered plaintext, key, or destination.
 
 Original 75 JPEG archive is available locally and mirrored in \`resources/liber-primus/\`. LP1 JPEG05 reverse-hex magic square and LP1 JPEG10 concatenated files were already noticed in shared research; avoid re-documenting. No novel JPEG-derived LP2 key found so far.
+
+
+## Fibonacci-square cross-artifact key inversion (2026-11-10 04:05 UTC)
+
+Other researchers found an exact 4x4 Fibonacci-indexed-prime spiral on LP2 page15. I tested a physically natural 256bit key from packing its sixteen integer entries into 32 bytes, plus 31 adjacent fixed variants. Scanning 2432 conventional AES256CTR/ChaCha20/RC4 rune keys after page15 and across all LP2 gives all-ciphertext top IoC **0.03457507**; planted GP source with the true 32byte key recovers at IoC **0.06547003**. No LP2 plaintext. Tested same 32+4 signed 16-bit keys against corrected 256byte page49–51 base60 table as AES256 ECB/CBC/CTR/CFB/OFB, 5 layouts, 4 IV conventions, 3060 configs. Top printable only 128/256, max low-GP bytes48/256, no clear decoded message; a planted AES256-CBC English payload recovers exactly (256/256 printable). These are narrowly scoped negatives.
+
+Scripts \`sims/fibonacci_spiral_key_derivation.cjs\`, \`sims/fibonacci_square_grid_payload.cjs\`, workflow \`.github/workflows/fibonacci-spinal-key-256.yml\`; successful CI 42753169796 and 42753459289. Supporting report \`im-results/fibonacci-square-256bit-key.md\`; numerical source \`results/fibonacci-prime-spiral.md\`. Do not repeat these direct packed-32byte tests without a new extraction or pointer model.

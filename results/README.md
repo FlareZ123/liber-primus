@@ -142,9 +142,11 @@ The ciphertext's 29 rune frequencies are nearly flat, and immediate rune repeats
 
 ### LP2 page 15 contains an exact Fibonacci-indexed prime spiral
 
-The 4×4 number square on LP2 page 15 (original scan \`32.jpg\`) contains **16/16 exact matches** to \`abs(3301-p_(F_n+1))\`, where \`p_k\` is the kth prime and \`F_n\` traverses the first 16 **distinct** Fibonacci numbers beginning at zero. The values are placed in a clockwise outward spiral starting at the red **3299**. The final values, 1206 and 4516, require the absolute difference because the corresponding indexed primes exceed 3301. This is a real, reproducible key-generation **clue**, not an LP2 decryption. A direct 16-period mod-29 additive-key screen over five natural order/value choices, 16 offsets, and two signs peaks at IoC **0.034776** on following pages 16–22, near random-rune baseline. No original unknown plaintext or key is recovered.
+The 4×4 number square on LP2 page 15 (original scan \`32.jpg\`) contains **16/16 exact matches** to \`abs(3301-p_(F_n+1))\`, where \`p_k\` is the kth prime and \`F_n\` traverses the first 16 **distinct** Fibonacci numbers beginning at zero. The entries follow a clockwise outward spiral starting at the red **3299**. The last two integers, 1206 and 4516, use absolute differences because their indexed primes exceed 3301. This is a reproducible clue-derived *number generation rule* with no recovered LP2 plaintext or proven key.
 
-[Full construction, exact primary-source table and limits](fibonacci-prime-spiral.md) · [Executable reconstruction and key test](../sims/fibonacci_prime_spiral.cjs).
+The immediate 16-period additive-pad screen (160 interpretations), a new natural 256-bit serializations-of-sixteen-values stream-key screen (2,432 candidates), and a proposed AES-256 decryption of the manuscript's 256-byte numerical table using those keys (3,060 candidates) all yield **bounded negative outcomes**. The 12,956-rune stream-key IoC peaks at **0.034575**, close to uniform 1/29; its genuine planted control recovers at IoC **0.065470**. The AES table scan yields at most 128 printable bytes of 256, without recognizable plaintext. None of these screens excludes an indirect role for the matrix as a generator, offset selector, transposition, or key-derivation clue.
+
+[Exact construction and consolidated implications](fibonacci-prime-spiral.md) · [Key-schedule executable](../sims/fibonacci_spiral_key_derivation.cjs) · [Grid payload executable](../sims/fibonacci_square_grid_payload.cjs) · [Full supporting test](../im-results/fibonacci-square-256bit-key.md).
 
 ### Original JPEG 05 contains a reverse-hex encoded magic square
 
