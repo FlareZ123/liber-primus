@@ -184,9 +184,67 @@ const wrong=decode(stream("aes-256-ctr",wrongKey,zeroIV,originalAll.length),
   "gp28-log15",-1,"global",originalPages);
 const rawGP28=originalPages.flatMap(page=>page.slice(1).map((v,j)=>
   mod(v-page[j],29)===0?28:log15[mod(v-page[j],29)]));
+
+/**
+ * Invert the exact GP29 big-integer transport used by the established binary
+ * original-source gate, retaining all repeated runes without inventing markers.
+ * @param {number[]} digits
+ * @returns {Buffer}
+ */
+function gp29Bytes(digits){
+  let v=0n;
+  for(const d of digits)v=v*29n+BigInt(d);
+  let h=v.toString(16);
+  if(h.length%2)h="0"+h;
+  return Buffer.from(h,"hex");
+}
+/** @param {string} alg @param {Buffer} raw @param {Buffer} candidate */
+function authenticatedEnvelope(alg,raw,candidate){
+  const nonce=raw.subarray(0,12);
+  const encrypted=raw.subarray(12,-16);
+  const tag=raw.subarray(-16);
+  try{
+    const cipher=crypto.createDecipheriv(alg,candidate,nonce,{authTagLength:16});
+    cipher.setAuthTag(tag);
+    return Buffer.concat([cipher.update(encrypted),cipher.final()]);
+  }catch(e){
+    if(/authenticat/i.test(String(e.message)))return null;
+    throw e;
+  }
+}
+const allSourceGP29=originalPages.flat();
+const natural=gp29Bytes(allSourceGP29);
+assert.equal(natural.length,7868);
+const gp29Orientations=[
+  ["natural",natural],
+  ["reverse-runes",gp29Bytes([...allSourceGP29].reverse())],
+  ["atbash",gp29Bytes(allSourceGP29.map(x=>28-x))],
+  ["reverse-atbash",gp29Bytes([...allSourceGP29].reverse().map(x=>28-x))],
+  ["reverse-bytes",Buffer.from(natural).reverse()]
+];
+const aeadAlgos=["aes-256-gcm","chacha20-poly1305"];
+for(const alg of aeadAlgos){
+  const controlNonce=Buffer.from("000102030405060708090a0b","hex");
+  const sample=Buffer.from("LIBER PRIMUS SOURCE KEY TEST");
+  const cipher=crypto.createCipheriv(alg,key,controlNonce,{authTagLength:16});
+  const encrypted=Buffer.concat([cipher.update(sample),cipher.final()]);
+  const transport=Buffer.concat([controlNonce,encrypted,cipher.getAuthTag()]);
+  assert.deepEqual(authenticatedEnvelope(alg,transport,key),sample);
+  assert.equal(authenticatedEnvelope(alg,transport,wrongKey),null);
+}
+const validAEAD=[];
+for(const [orientation,payload] of gp29Orientations){
+  assert.equal(payload.length,7868);
+  for(const alg of aeadAlgos){
+    const plain=authenticatedEnvelope(alg,payload,key);
+    if(plain)validAEAD.push({orientation,alg,length:plain.length,preview:plain.toString("utf8").slice(0,200)});
+  }
+}
+
 console.log(JSON.stringify({
   hypothesis:"Newton rows [15,27,21] plus p54 Ac root row24 => 32-byte key",
   sourceKeyRows:rowIndices,sourceKeyHex:key.toString("hex"),
+  wholeStreamAEAD:{orientations:gp29Orientations.map(x=>x[0]),algorithms:aeadAlgos,attempts:gp29Orientations.length*aeadAlgos.length,authentications:validAEAD,positiveControls:2,unknownCiphertextBytes:natural.length},
   zeroIV:"00000000000000000000000000000000",gridIV:gridIV.toString("hex"),
   sourceGridSha256:crypto.createHash("sha256").update(Buffer.from(bytes)).digest("hex"),
   originalRunes:originalAll.length,originalPages:pages.length,models:settings.length,
