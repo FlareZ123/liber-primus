@@ -39,6 +39,7 @@ function main(){
   assert.deepEqual(shares.map(x=>x.length),[991,991,991]);
   const historicalText=xor(shares);
   assert.ok(historicalText.toString("utf8",0,40).startsWith("-----BEGIN PGP SIGNED MESSAGE-----"));
+  assert.ok(historicalText.toString("utf8").replace(/\s+/gu," ").includes(historical.expectedReconstruction.bodyCode));
   const prefix=commonPrefix(streams),suffix=commonSuffix(streams);
   assert.ok(prefix>=1417&&suffix>=1554);
   assert.ok(!streams[0].subarray(0,prefix).includes(Buffer.from("-----BEGIN PGP")));
