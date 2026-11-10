@@ -99,6 +99,37 @@ for (const reverse of [false, true]) {
     }
   }
 }
+/** Exact best possible total for an arbitrary secret GP29-to-GP29 lookup. */
+function maxLookupMatches(source, target) {
+  const counts = Array.from({ length: 29 }, () => Array(29).fill(0));
+  for (let i = 0; i < source.length; i++) counts[source[i]][target[i]]++;
+  return counts.reduce((sum, row) => sum + Math.max(...row), 0);
+}
+const sourceTest = sourceB.map((value) => mod(value * 7 + 3));
+assert.equal(maxLookupMatches(sourceB, sourceTest), 127);
+let bestLaneLookup = { matches: -1 };
+for (const trim of ["first", "last"]) {
+  for (const layout of ["halves", "even-odd"]) {
+    for (const reverseA of [false, true]) {
+      for (const reverseB of [false, true]) {
+        for (const reverseQ of [false, true]) {
+          const a0 = trim === "first" ? sourceA.slice(1) : sourceA.slice(0, 127);
+          const a = reverseA ? a0.reverse() : a0;
+          const b = reverseB ? [...sourceB].reverse() : sourceB;
+          const q = reverseQ ? [...second.quotient].reverse() : second.quotient;
+          const qA = layout === "halves" ? q.slice(0, 127) : q.filter((_, i) => i % 2 === 0);
+          const qB = layout === "halves" ? q.slice(127) : q.filter((_, i) => i % 2 === 1);
+          const matches = maxLookupMatches(a, qA) + maxLookupMatches(b, qB);
+          if (matches > bestLaneLookup.matches) {
+            bestLaneLookup = { matches, trim, layout, reverseA, reverseB, reverseQ };
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(bestLaneLookup.matches, 81);
+
 results.sort((a, b) => b.ioc - a.ioc);
 assert.equal(results.length, 24);
 console.log(JSON.stringify({
@@ -108,6 +139,7 @@ console.log(JSON.stringify({
   rootRemainders: [first.remainder, second.remainder],
   quotientLength: second.quotient.length,
   highestConvolutionMatch: bestMatch,
+  bestTwoLaneArbitraryLookup: bestLaneLookup,
   originalIoc: baseline,
   highestDirectQuotientPadIoc: results[0],
   lowestDirectQuotientPadIoc: results[results.length - 1]
