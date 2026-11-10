@@ -72,28 +72,30 @@ The matching five-word length prefix does not establish that the two quotations 
 
 For each non-marker transition, define `dᵢ = (cᵢ − cᵢ₋₁) mod 29` and `eᵢ = log₁₅(dᵢ) mod 28`. The candidate cipher uses `eᵢ = π⁻¹(Pᵢ) + s·K[(tᵢ+φ) mod 78] mod 28`, with one shared unknown 28-symbol permutation `π`, sign `s`, key clock `t`, and phase `φ`. If both intervals encode the same 21 plaintext runes under the same `π`, their decoded 28-symbol labels must agree at all 21 positions.
 
+The original-source offsets below are fixed against both `lp2-corpus.json` and the independent quotation interval annotation. An earlier script mistakenly used local offset 152 for p40 even though global offset 9,811 is local 171, and therefore stopped at its source-coordinate assertion before running the reported family test. The corrected original-input calculation and source-anchored regression assertions supersede the former histogram.
+
 The canonical source confirms the exact starts and segmentation:
 
-- Physical p40, global offset **9,811**, local offset **152**, previous ciphertext rune **27**; word lengths **5, 7, 2, 3, 4**.
+- Physical p40, global offset **9,811**, local offset **171**, previous ciphertext rune **16**; word lengths **5, 7, 2, 3, 4**.
 - Physical p53, global offset **12,522**, local offset **53**, previous ciphertext rune **22**; word lengths **5, 7, 2, 3, 4**.
 
 The 21 successor differences are:
 
 ```text
-p40: [22,21,20,22,28,8,19,10,23,7,14,11,1,9,27,14,27,18,7,13,23]
+p40: [13,23,10,24,7,7,19,9,20,16,9,18,23,16,17,4,10,16,13,25,7]
 p53: [ 6,15,12,15,21,28,10,2,19,20,23,22,26,2,7,11,15,3,11,24,26]
 ```
 
 After the source-selected base-15 logarithm, the aligned exponents are:
 
 ```text
-p40: [2,11,4,2,14,25,19,5,8,16,15,3,0,18,13,15,13,17,16,10,8]
+p40: [10,8,5,20,16,16,19,18,4,24,18,17,8,24,7,26,5,24,10,12,16]
 p53: [22,1,21,1,11,14,5,27,19,4,8,2,9,27,16,3,1,23,3,20,9]
 ```
 
 **Key-independent word-reset obstruction.** Because the two openings have identical word lengths, a shared deterministic 28-state key sequence reset at each word uses the same key position at every aligned within-word rune. Under the successor model, identical plaintext and identical key position require identical step differences. The observed base-15 exponents disagree at **all 21 positions**. Therefore no common word-reset key sequence—regardless of its 28-state values or period—can make these two spans the same plaintext under this successor architecture.
 
-**Finite page/continuous-clock test.** I also exhaustively evaluated the full **192-configuration** source-derived family: four F79-to-Z28 key mappings (residue, scaled residue, consecutive difference, and discrete logarithm base 53), both signs, page/word/continuous resets, phases 0/15/22/53, and both repeated-marker advance conventions. No configuration yields an identical decoded 21-rune sequence. Across all configurations, **130** have zero aligned matches, **49** have one, and **13** have two; the maximum is **2/21**. All **192 × 2** source-native planted positive controls recover the same planted 21-rune sequence exactly at both locations.
+**Finite page/continuous-clock test.** I also exhaustively evaluated the full **192-configuration** source-derived family: four F79-to-Z28 key mappings (residue, scaled residue, consecutive difference, and discrete logarithm base 53), both signs, page/word/continuous resets, phases 0/15/22/53, and both repeated-marker advance conventions. No configuration yields an identical decoded 21-rune sequence. Across all configurations, **129** have zero aligned matches, **36** have one, **24** have two, and **3** have three; the maximum is **3/21**. All **192 × 2** source-native planted positive controls recover the same planted 21-rune sequence exactly at both locations. The three maximal original matches arise from continuous clocks only: residue key (phase 22, sign −, advance on marker), residue key (phase 22, sign +, hold on marker), and consecutive-difference key (phase 0, sign +, advance on marker).
 
 This is a deterministic, conditional exclusion, not a probability claim. The word-reset result is key-independent within the shared word-reset successor architecture; the page/continuous result excludes only the enumerated source-derived F79/F29 schedules. The two quotations may not encode the same plaintext at all, and page-specific evolving state, separate per-quote alphabets, or another cipher family are outside this test. No plaintext or authentic key was recovered.
 

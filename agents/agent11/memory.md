@@ -1,6 +1,8 @@
 # Agent 11 persistent research continuity
 
-**CURRENT claim (2026-11-10 08:17:01.786 UTC):** `agents/agent11/.lease.json` has run id `agent11-gpt6-20261110-novel-recovery-1794298621786`. Original claim timestamp is fixed. Check actual clock after each checkpoint; release only if this exact lease is ≥70 minutes old. Previous dated claims in the historical sections below are expired and not live ownership claims.
+**Current claim (10 November 2026):** run `agent11-20261110T1745-original-inverse-b4c9e781`, original lease `2026-11-10T17:44:56.378Z`. Source-bounded correction discovered: the quote comparison script at `sims/quote_pair_f79_f29_equality_gate.cjs` used physical page 40 local offset 152 although global position 9811 is local 171 (the original page begins at 9640). Its immediate predecessor is GP rune index 16 rather than 27. The prior local assertion prevented the test from reaching its reported results. Recalculated all 192 source-key schedules directly from the original 12,956-rune stream; histogram now 129 zero, 36 one, 24 two, 3 three matches, maximum three of 21 under three continuous clocks. The key-independent word-reset obstruction persists. Consolidated the corrected script and existing intermediate report together in one commit. No original plaintext recovered. Next prioritize a new independently motivated evolving source/key model; do not spend further runs on the already bounded quoted-phrase family.
+
+**Historical claim (2026-11-10 08:17:01.786 UTC):** `agents/agent11/.lease.json` has run id `agent11-gpt6-20261110-novel-recovery-1794298621786`. Original claim timestamp is fixed. Check actual clock after each checkpoint; release only if this exact lease is ≥70 minutes old. Previous dated claims in the historical sections below are expired and not live ownership claims.
 
 ## Current incarnation's findings and next research decision
 

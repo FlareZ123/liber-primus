@@ -36,7 +36,7 @@ assert.equal(cursor, 12956);
 assert.equal(wordRanges.length, 2896);
 
 const quoteSpecs = [
-  {name:'p40', start:9811, page:40, local:152, wordIndex:2201},
+  {name:'p40', start:9811, page:40, local:171, wordIndex:2201},
   {name:'p53', start:12522, page:53, local:53, wordIndex:2802}
 ];
 const expectedLengths = [5, 7, 2, 3, 4];
@@ -166,6 +166,8 @@ for (const advance of [false, true])
   configs.push({...family, sign, reset, phase, advance});
 assert.equal(configs.length, 192);
 
+assert.deepEqual(quotes.map(q => q.previous), [16, 22]);
+assert.deepEqual(quotes.map(q => q.steps[0]), [13, 6]);
 const decodedSteps = quotes.map(q => q.steps.map(step => {
   assert.notEqual(step, 0, 'the frozen quote spans contain no zero steps');
   return log15[step];
@@ -194,8 +196,8 @@ for (const cfg of configs) {
 const maximum = Math.max(...records.map(r => r.matches));
 const fullMatches = records.filter(r => r.matches === 21);
 assert.equal(fullMatches.length, 0);
-assert.equal(maximum, 2);
-assert.deepEqual(histogram, {'0':130, '1':49, '2':13});
+assert.equal(maximum, 3);
+assert.deepEqual(histogram, {'0':129, '1':36, '2':24, '3':3});
 assert.equal(byReset.word.length, 64);
 assert.equal(Math.max(...byReset.word), 0);
 
