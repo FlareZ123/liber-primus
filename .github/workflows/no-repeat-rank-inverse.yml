@@ -10,6 +10,7 @@ on:
         options:
           - all
           - wordwise-bijection
+          - wordwise-gp29-phase
 jobs:
   rank-inverse:
     runs-on: ubuntu-latest
@@ -31,3 +32,6 @@ jobs:
       - name: Test direct GP29 arbitrary per-word permutation equality invariant
         if: ${{ inputs.gate == 'wordwise-bijection' }}
         run: node sims/lp2_wordwise_bijection_pattern_gate.cjs
+      - name: Test arbitrary direct GP29 phase-specific per-word permutations
+        if: ${{ inputs.gate == 'wordwise-gp29-phase' }}
+        run: node sims/lp2_wordwise_gp29_phase_gate.cjs
