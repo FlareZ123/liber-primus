@@ -157,7 +157,8 @@ function transform(input,pad,mode,encode) {
       else if(encode)next=value===28?prev:mod(prev+1+mod(value+mode.sign*key,28),29);
       else next=value===prev?28:mod(mod(value-prev-1,29)-mode.sign*key,28);
       result[i]=next;
-      if(mode.family==="exclude")prev=encode?next:value;
+      // Both nonadditive families need the previous ciphertext rune as state.
+    if(mode.family!=="add")prev=encode?next:value;
     }
   }
   return result;
@@ -190,6 +191,8 @@ const secondPad=stream(keyOrders[3][1],"sha256-row","chacha20",rowOrders[1][1]);
 const planted2=transform(plant,secondPad,{family:"exclude",sign:1,projection:"mod"},true);
 assert.deepEqual(transform(planted2,secondPad,{family:"exclude",sign:1,projection:"mod"},false),plant);
 const planted3=transform(plant,secondPad,{family:"exp",sign:1,projection:"scale"},true);
+// Detect accidental identity transforms: the exp path must actually encode.
+assert.notDeepEqual(planted3,plant);
 assert.deepEqual(transform(planted3,secondPad,{family:"exp",sign:1,projection:"scale"},false),plant);
 /** The de Bruijn route also supplies a literal 256-byte repeating pad.
  * This independent simple-source test uses no AES, ChaCha, or fitted alphabet.
