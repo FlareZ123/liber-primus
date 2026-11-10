@@ -332,6 +332,26 @@ function main() {
     gridBytes[(outguessSeed - i + gridBytes.length) % gridBytes.length] % 29);
   assert.deepEqual(outguessGridSeed, [1, 1, 19, 2, 22, 5]);
   assert.deepEqual(outguessGridSeedReverse, [1, 0, 28, 17, 15, 23]);
+
+  // Retrospective cross-artifact clue: pi(563)=103 and pi(569)=104;
+  // the 2016 message's nested-suffix prime-index gap is also 309-206=103.
+  // Test these two prime ordinals as low-confidence offsets into the p49 grid.
+  const primeOrdinalGridSeeds = {};
+  for (const start of [103, 104]) {
+    const forward = Array.from({ length: 6 }, (_, i) =>
+      gridBytes[(start + i) % gridBytes.length] % 29);
+    const reverse = Array.from({ length: 6 }, (_, i) =>
+      gridBytes[(start - i + gridBytes.length) % gridBytes.length] % 29);
+    primeOrdinalGridSeeds[start] = { forward, reverse };
+  }
+  assert.deepEqual(primeOrdinalGridSeeds[103], {
+    forward: [3, 6, 5, 2, 15, 14],
+    reverse: [3, 3, 26, 25, 5, 14]
+  });
+  assert.deepEqual(primeOrdinalGridSeeds[104], {
+    forward: [6, 5, 2, 15, 14, 10],
+    reverse: [6, 3, 3, 26, 25, 5]
+  });
   const source = fs.readFileSync(path.join(ROOT,
     'resources/control/shakespeare_first300k.txt'), 'utf8');
   const trainWords = base.corpusWords(source.slice(0, 200000));
@@ -354,7 +374,11 @@ function main() {
     ['grid-six-byte-seed', gridSeed],
     ['rune-six-symbol-seed', runeSeed],
     ['outguess-seed230-grid-six-byte-control-forward', outguessGridSeed],
-    ['outguess-seed230-grid-six-byte-control-reverse', outguessGridSeedReverse]
+    ['outguess-seed230-grid-six-byte-control-reverse', outguessGridSeedReverse],
+    ['prime-ordinal-103-grid-six-byte-control-forward', primeOrdinalGridSeeds[103].forward],
+    ['prime-ordinal-103-grid-six-byte-control-reverse', primeOrdinalGridSeeds[103].reverse],
+    ['prime-ordinal-104-grid-six-byte-control-forward', primeOrdinalGridSeeds[104].forward],
+    ['prime-ordinal-104-grid-six-byte-control-reverse', primeOrdinalGridSeeds[104].reverse]
   ]) {
     for (const clock of ['global', 'word']) {
       for (const sign of [1, -1]) {
@@ -460,6 +484,11 @@ function main() {
         interpretation: 'One-off control: treat the extracted OutGuess header seed as a start offset into the 256-byte grid. OutGuess 0.2 normally searches 0..255 and optimizes this seed, so it is not presumed intentional.',
         forwardGridSeed: outguessGridSeed,
         reverseGridSeed: outguessGridSeedReverse
+      },
+      lowConfidencePrimeOrdinalGridOffsetControl: {
+        primeOrdinals: [103, 104],
+        crossArtifactRelation: 'pi(563)=103; pi(569)=104; 2016-message nested-suffix prime-index gap=309-206=103',
+        seeds: primeOrdinalGridSeeds
       },
       originalCandidates: candidates,
       positiveControl: {
