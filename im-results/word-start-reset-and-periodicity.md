@@ -48,6 +48,39 @@ The reference's unbiased observed Q=0.063325 is distinct from the 0.067092 expec
 
 **Supported exclusion:** a bijective substitution fixed for each section's word initials, even if a different permutation is used for each section, cannot transform ordinary LP1-like initial-letter coincidences into those measured in LP2. The tested discrepancy persists when 75% of the English-like source distribution is replaced by uniform noise. Different language registers, mappings changed within sections, per-word keys, and encodings containing multiple or fewer than one plaintext letters per rune are outside the claim. This does not identify the actual cipher.
 
+## Exact one-rune-word capacity for arbitrary secret alphabets
+
+A separate **exact original-input exclusion** avoids any guessed English frequency profile. Of the **2,896** canonical whole ciphertext words, **83** contain exactly one rune, and those 83 words use **28 different GP symbols**. Suppose a genuine one-rune ciphertext word represents one genuine one-rune plaintext word from a fixed set of \(k\) symbols. For ordinary native GP-English, the permitted set is **A** and **I**, indexed 24 and 10. Give the cipher an *arbitrary, secret 29-symbol permutation* for each public key phase. The permutation may be independently chosen for the entire book, each of the eight nonempty \`$\` sections, or each original physical page. These freedoms favor the hypothesis.
+
+Let \(n_{g,r}\) count the observed one-rune ciphertext words carrying rune \(r\) in key state \(g\). Order each state's 29 frequencies from largest to smallest. Because any bijection maps the \(k\) permitted plaintext symbols into **at most \(k\) distinct ciphertext symbols**, the exact maximum number of source words compatible with the model is
+
+\[
+ B_k=\sum_g\sum_{j=1}^k n_{g,(j)},\qquad
+ \text{forced exceptions}=83-B_k.
+\]
+
+This bound is **sharp on the singleton evidence alone**: the unknown permutation for each state can always send the \(k\) allowed plaintext symbols to its \(k\) most common original ciphertext labels. No secret-table search, language model, or statistical null is required.
+
+| Unknown-alphabet scope | Forced exceptions if native singleton alphabet has 2 symbols (A/I) | If 3 symbols | If 4 symbols | Minimum *additional* contiguous key epochs for exact A/I within the scope |
+| --- | ---: | ---: | ---: | ---: |
+| One book-wide 29-permutation | **73 / 83** | 68 | 63 | **40** |
+| Independent permutation for each of eight nonempty source sections | **57 / 83** | 47 | 38 | **34** |
+| Independent permutation on each physical page, with crossing words assigned to their start | **13 / 83** | 4 | 1 | **10** |
+
+The 13 page-local A/I violations occur across **nine** original page indices **4, 10, 13, 16, 17, 19, 21, 28 and 30**. Within a scope, the minimum further rekeys are obtained by greedily partitioning the singleton outputs into consecutive epochs containing no more than two distinct glyphs. Rekeys may occur anywhere between two successive singleton words. Thus even independently secret page alphabets cannot explain the original native A/I singletons without more rekeys or some explicitly reversible source exception.
+
+A more permissive model chooses one secret alphabet for each \`(scope, whole-word-ordinal mod P)\` state, where word ordinals reset at the stated scope. Exhaustive **original-source** necessary-condition testing at every period \(P=1,\ldots,256\) finds the *first* period with zero forced A/I exceptions as:
+
+| Reset scope | First unexcluded word-key period | Exceptions at word period 23 | Exceptions at word period 29 |
+| --- | ---: | ---: | ---: |
+| Book-wide | **130** | 40 | 27 |
+| Each source section | **28** | 2 | 2 |
+| Each physical page | **6** | 0 | 0 |
+
+Survival of the singleton condition is only a *necessary* condition; later periods can again fail as word-ordinal residues collide. An unconstrained ciphertext-conditioned state, a changing hidden key, inserted or removed runes, redefined word boundaries, different languages, and an intermediate non-native plaintext representation remain possible. In particular this does not establish that a length-130 key is present, recover any plaintext, or identify a viable cipher.
+
+The on-original exact implementation is [\`sims/singleton_word_key_capacity.cjs\`](../sims/singleton_word_key_capacity.cjs). It preserves all **32 words crossing page boundaries** and verifies the independent shared whole-word parser. Three **12,956-rune reversible positive-control encryptions**, each with genuine planted A/I singletons and independent arbitrary keyed per-state permutations, fully invert and correctly return zero singleton exceptions. Its original and planted assertions passed the existing [manual word-start workflow, run **42854530210**](https://github.com/FlareZ123/liber-primus/actions/runs/42854530210). The separate [wordwise 29-to-28-radix nonce bound](wordwise-radix-nonce-capacity.md) concerns a different \(L-1\)-plaintext-runes-per-\(L\)-cipher-runes architecture; it should not be conflated with this same-length model.
+
 ## Interword repeated-phase test
 
 A period-23 additive key on word initials would have C(word,0) = P(word,0) + K(word mod 23) (mod 29). Initials at word positions separated by 23 or 46 then share a key phase, so equality of ciphertext initials equals equality of plaintext initials. This remains true under arbitrary common additive page shifts. Ordinary English-like word initials predict elevated same-rune matches at these lags.
