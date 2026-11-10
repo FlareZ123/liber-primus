@@ -47,9 +47,9 @@ source-language comparisons found no equally low-IoC window:
 
 | Native GP-English reference | All consecutive 91-rune windows | Lowest IoC | At/below original |
 | --- | ---: | ---: | ---: |
-| Shakespeare pinned excerpt | **213,701** | 0.0412698413 | **0** |
-| Emerson *Essays, First Series* | **318,577** | 0.0412698413 | **0** |
-| Gibran *The Prophet* | **61,777** | 0.0439560440 | **0** |
+| Shakespeare pinned excerpt | **218,710** | 0.0415140415 | **0** |
+| Emerson *Essays, First Series* | **324,540** | 0.0412698413 | **0** |
+| Gibran *The Prophet* | **63,024** | 0.0439560440 | **0** |
 
 These are exhaustive, heavily overlapping finite reference windows,
 not independent population p-values. To establish positive decoding
@@ -62,6 +62,13 @@ without knowing any higher polynomial coefficients. This excludes
 naturally aligned Shamir shares** under those references. A second
 secret encryption layer, source-specified shift or non-GP plaintext
 register remains possible. No actual LP2 secret is recovered.
+
+The 2026-11-10 source-control refresh uses the existing canonical
+English-to-GP substitutions **K→C, QU→CW, Q→C, V→U, Z→S**
+before recognizing GP digraphs. Earlier baseline counts that simply
+discarded K/Q/V/Z are superseded by this row's exact reference-window
+counts; every original-source inference and positive inverse remains
+unchanged.
 
 The exact Shamir test is integrated into
 [`sims/lp2_five_clause_rs79_parity_sft.cjs`](../sims/lp2_five_clause_rs79_parity_sft.cjs);
@@ -94,9 +101,9 @@ There is **no fitted offset, cipher key, word scoring, or reset search**.
 | GP rune prime totients, period 91 | Add | **0.0354037267** |
 
 All outputs remain visibly nonlinguistic. Every one is below the
-lowest of **213,631 Shakespeare**, **318,507 Emerson** and **61,707
+lowest of **218,640 Shakespeare**, **324,470 Emerson** and **62,954
 Gibran** native GP-English contiguous 161-rune windows, whose
-respective minimum IoCs are **0.04759317, 0.04759317, 0.04953416**.
+respective minimum IoCs are **0.04681677, 0.04751553, 0.04922360**.
 The unchanged inverses recover all **161/161** genuine English
 symbols and exactly re-encrypt full 161-rune positive plants under
 each source-derived key mapping and sign. This rules out only
