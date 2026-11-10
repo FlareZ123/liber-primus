@@ -73,11 +73,26 @@ const targetForPrime = p => ({
   primeFragment: mod(p,32) || 32,
   label: mod(p-1,29)
 });
-function matches(records,p) {
-  const t=targetForPrime(p), a=records[t.phiFragment-1], b=records[t.primeFragment-1];
+function matchPosition(records,p,seedSlot=-1) {
+  const t=targetForPrime(p);
+  if(seedSlot>=0 && (t.phiFragment-1===seedSlot || t.primeFragment-1===seedSlot)) return null;
+  const a=records[t.phiFragment-1], b=records[t.primeFragment-1];
   const emptyA=a.length===0, emptyB=b.length===0;
-  return (emptyA!==emptyB) &&
-    ((emptyA && b.includes(t.label)) || (emptyB && a.includes(t.label)));
+  if(emptyA===emptyB) return null;
+  const target=emptyA?b:a, position=target.indexOf(t.label);
+  if(position<0) return null;
+  return {p,label:t.label,position,fragment:emptyA?t.primeFragment:t.phiFragment};
+}
+function matches(records,p) { return matchPosition(records,p)!==null; }
+function findArithmeticProgressions(records,seedSlot) {
+  const ps=[...new Set(records[seedSlot].map(r=>primes[r]))].sort((a,b)=>a-b);
+  const hits=ps.map(p=>matchPosition(records,p,seedSlot)).filter(Boolean);
+  const aps=[];
+  for(let i=0;i<hits.length;i++) for(let j=i+1;j<hits.length;j++) for(let k=j+1;k<hits.length;k++) {
+    const x=hits[i],y=hits[j],z=hits[k],d1=y.position-x.position,d2=z.position-y.position;
+    if(d1===d2 && d1!==0) aps.push({primeTriple:[x.p,y.p,z.p],positions:[x.position,y.position,z.position],step:d1});
+  }
+  return aps;
 }
 const perRune = seed.map((rune,position) => {
   const p=primes[rune],t=targetForPrime(p);
@@ -111,7 +126,7 @@ function randInt(max){const limit=Math.floor(0x100000000/max)*max;let x;do{x=nex
 const slots=Array.from({length:32},(_,i)=>i).filter(i=>i!==5 && i!==6);
 const originalOther=slots.map(i=>fragments[i]);
 const SAMPLES=200000,histogram=Array(9).fill(0);
-let tail=0;
+let tail=0,tailDesc6=0;
 for(let trial=0;trial<SAMPLES;trial++){
   const shuffled=originalOther.slice();
   for(let i=shuffled.length-1;i>0;i--){const j=randInt(i+1);[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}
@@ -120,8 +135,37 @@ for(let trial=0;trial<SAMPLES;trial++){
   const score=nonAnchorUnique.filter(p=>matches(records,p)).length;
   histogram[score]++;
   if(score>=observedNonAnchorMatches)tail++;
+  const positions=nonAnchorUnique.map(p=>matchPosition(records,p,6)).filter(Boolean).sort((a,b)=>a.p-b.p);
+  let desc6=false;
+  for(let i=0;i<positions.length;i++) for(let j=i+1;j<positions.length;j++) for(let k=j+1;k<positions.length;k++) {
+    if(positions[i].position-positions[j].position===6 && positions[j].position-positions[k].position===6) desc6=true;
+  }
+  if(desc6)tailDesc6++;
 }
 const pAddOne=(tail+1)/(SAMPLES+1);
+const pDesc6AddOne=(tailDesc6+1)/(SAMPLES+1);
+const observedNonAnchorPositions=nonAnchorUnique.map(p=>matchPosition(fragments,p,6)).filter(Boolean).sort((a,b)=>a.p-b.p);
+const observedDesc6=observedNonAnchorPositions.length>=3 &&
+  observedNonAnchorPositions.some((x,i)=>observedNonAnchorPositions.some((y,j)=>j>i &&
+    observedNonAnchorPositions.some((z,k)=>k>j && x.position-y.position===6 && y.position-z.position===6)));
+const observedSeedsWithAnyAP=fragments.map((_,i)=>({seed:i+1,aps:findArithmeticProgressions(fragments,i)})).filter(x=>x.aps.length>0);
+
+// Global familywise null: permute all 32 fragment records, scan all 32 possible
+// seed slots, and allow any nonzero arithmetic-progression step.
+let globalRng=0x3301;
+function nextGlobal32(){globalRng^=globalRng<<13;globalRng^=globalRng>>>17;globalRng^=globalRng<<5;return globalRng>>>0;}
+function randGlobalInt(max){const limit=Math.floor(0x100000000/max)*max;let x;do{x=nextGlobal32();}while(x>=limit);return x%max;}
+const GLOBAL_SAMPLES=100000;
+let globalTail=0;
+for(let trial=0;trial<GLOBAL_SAMPLES;trial++){
+  const order=Array.from({length:32},(_,i)=>i);
+  for(let i=31;i>0;i--){const j=randGlobalInt(i+1);[order[i],order[j]]=[order[j],order[i]];}
+  const records=order.map(i=>fragments[i]);
+  let any=false;
+  for(let seedSlot=0;seedSlot<32 && !any;seedSlot++) if(findArithmeticProgressions(records,seedSlot).length) any=true;
+  if(any)globalTail++;
+}
+const globalFamilywiseP=(globalTail+1)/(GLOBAL_SAMPLES+1);
 
 // Positive control: plant one empty/label pair for each of the nine distinct
 // prime weights; the exact same detector must recover all nine.
@@ -149,6 +193,10 @@ console.log(JSON.stringify({
   allFragmentScan:{nonemptyFragments:allFragmentScores.length,fragment7RankByUniqueMatchRate:fragment7Rank,
     fragment7Score:allFragmentScores.find(x=>x.fragment===7),top:allFragmentScores.slice(0,5)},
   conditionalNull:{condition:"fragments 6 and 7 fixed; other 30 fragment records permuted",
-    samples:SAMPLES,seed:"0x199",histogram,tailCount:tail,pAddOne},
+    samples:SAMPLES,seed:"0x199",histogram,tailCount:tail,pAddOne,
+    observedNonAnchorPositions,observedDescendingStep6:observedDesc6,
+    descendingStep6TailCount:tailDesc6,pDescendingStep6AddOne:pDesc6AddOne},
+  positionFamilywise:{observedSeedsWithAnyAP,globalScan:"all 32 seed slots; any nonzero AP step",
+    samples:GLOBAL_SAMPLES,seed:"0x3301",tailCount:globalTail,pAddOne:globalFamilywiseP},
   positiveControl:{plantedPairs:uniquePrimes.length,recoveredMatches:plantedMatches}
 },null,2));
