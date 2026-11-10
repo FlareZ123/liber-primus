@@ -246,8 +246,8 @@ function historical256Xor() {
     note: "Three archived hidden-service 256-byte strings have unverified original provenance."};
 }
 
-/** @returns {object} */
-function run() {
+/** @param {boolean} [allPages=false] @returns {object} */
+function run(allPages = false) {
   const reference = authentic2014();
   const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
   const p0 = corpus.pages.find(item => item.page === 0).indices;
@@ -272,7 +272,7 @@ function run() {
   assert.equal(unsolved.positions.length, 14);
   assert.equal(unsolved.totalMasks, 16384);
   const p0Best = unsolved.best;
-  return {
+  const output = {
     class: "Historical solved controls and frozen original LP2 probes, no key or plaintext recovered",
     genuine2014: reference,
     historicalPermutationOnOriginalP0: {
@@ -307,6 +307,38 @@ function run() {
     },
     direct256HistoricalXor: historical256Xor()
   };
+  if (allPages) {
+    const pages = corpus.pages.filter(page => page.page < 56 && page.indices.length);
+    assert.equal(pages.length, 55);
+    const rows = pages.map(page => {
+      const result = exhaustLiteralF(page.indices, key, emersonModel);
+      return {
+        physicalPage: page.page,
+        length: page.indices.length,
+        visibleFCount: result.positions.length,
+        skipMasks: result.totalMasks,
+        bestMask: result.best.mask,
+        bestScorePerRune: result.best.score,
+        first32GP: result.best.plaintext.slice(0, 32).map(i => corpus.translit[i]).join("")
+      };
+    });
+    const totalCipherRunes = rows.reduce((sum, page) => sum + page.length, 0);
+    const totalSkipMasks = rows.reduce((sum, page) => sum + page.skipMasks, 0);
+    assert.equal(totalCipherRunes, 12956);
+    assert.equal(totalSkipMasks, 249802);
+    rows.sort((a, b) => b.bestScorePerRune - a.bestScorePerRune);
+    output.authenticatedPrimeTotientTransfer.originalAllPages = {
+      physicalPages: rows.length,
+      originalRunes: totalCipherRunes,
+      totalExhaustiveSkipMasks: totalSkipMasks,
+      strongerThanSolvedP56: rows.filter(p => p.bestScorePerRune >= solved.correctScore).length,
+      highestScore: rows[0].bestScorePerRune,
+      lowestScore: rows[rows.length - 1].bestScorePerRune,
+      allPagesByBestScore: rows
+    };
+  }
+  return output;
 }
-if (require.main === module) console.log(JSON.stringify(run(), null, 2));
+if (require.main === module)
+  console.log(JSON.stringify(run(process.argv.includes("--all-pages")), null, 2));
 module.exports = { run, rowPermute, decodeFMask, exhaustLiteralF };
