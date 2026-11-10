@@ -1,0 +1,16 @@
+name: LP2 primitive red-triad field inverse (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  field:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source field construction, exact original seed gate and native plant
+        run: node sims/lp2_red_triad_primitive_field_inverse.cjs
