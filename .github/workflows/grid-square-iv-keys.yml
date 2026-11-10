@@ -14,3 +14,5 @@ jobs:
         run: node sims/grid_square_iv_keys.cjs
       - name: Invert four 829-rune bookend blocks using four source square-row keys
         run: node sims/fibonacci829_fourrow_source_inverse.cjs
+      - name: Test final sixteen physical pages using sixteen AES-128 grid keys and printed square IVs
+        run: node sims/final16_grid_square_pagekeys.cjs
