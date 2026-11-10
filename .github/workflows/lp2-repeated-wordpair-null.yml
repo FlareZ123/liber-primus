@@ -19,3 +19,5 @@ jobs:
         run: node sims/lp2_repeated_wordpair_probe.cjs resources/lp2-transcription.txt 20000
       - name: Exact 81-square QR finder feasibility and source-shuffled control
         run: node sims/lp2_81square_qr_finder_gate.cjs
+      - name: Test exact 81-to-80 nested-square GP29 correspondence and controls
+        run: node sims/lp2_nested_squares_correspondence.cjs
