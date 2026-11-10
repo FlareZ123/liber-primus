@@ -44,6 +44,15 @@ LP2 global-phase Viterbi, with mask choices optimized over the full input, remai
 Reproduction: sims/lp2_historical_vigenere_skip_viterbi.cjs. Evidence: im-results/lp2-historical-vigenere-skip-viterbi.md. Do not repeat direct DIVINITY/FIRFUMFERENFE key transfer or the selective-F Viterbi family. Other roles for these keywords remain open only if supported by a distinct clue.
 
 
+### Three historical onion-service byte strings as direct GP29 keys
+
+The external DyrneCipher byte-string compilation explicitly suggests the three historical 256-byte service strings as Vigenère keys. Tested all three source strings (onion2/cu343, onion3/fv7, onion4/avowy) against original LP2: forward/reverse order, byte mod29 or scaled29 mapping, Vigenère subtraction/addition or Beaufort, each with and without Atbash, page-repeat/global-repeat/page-one-shot clocks, and all valid rotations. Total **42,408** settings. The fourth 256-byte value is the LP2 base60 grid itself and was excluded as circular.
+
+Best candidate: onion2 reversed, scaled29, Vigenère subtraction, global-repeat, rotation 30. Train **−5.929811**, holdout **−6.157999**, all-page **−6.192649**, later-page **−6.219805**. Raw ciphertext was **−6.179907 / −6.215354**. Page-28 output is gibberish; the highest page score is only −5.7272. An independent 8-page planted control using onion2 forward/mod29/Vigenère-subtraction/global-repeat/rotation37 ranks the exact setting **1/42,408**. This validates detection for the tested family, not every possible use of the strings.
+
+Artifacts: sims/historical_onion_bytes_vigenere_gate.cjs and im-results/historical-onion-byte-vigenere-lp2.md. This is a bounded negative for direct GP29 repeating/page-one-shot Vigenère/Beaufort use; KDFs, nonlinear derivations, XOR shares, AES/ChaCha roles, or other key functions remain distinct. Do not repeat this direct family.
+
+
 ## Durable controls and previous work
 
 - `sims/solved_cipher_regression.cjs` / `im-results/solved-cipher-regression.md`: authentic LP1 A WARNING reverse-GP decrypts **184** runes into **45** published English words; authentic LP2 p56 AN END with prime-minus-one GP key decrypts **85** runes, **25** published words, and the actual literal-F interrupter at offset **56**. The latter is the unique exact match among **32** subsets of five F symbols; exact re-encryption recovers source. These are verified regressions, not novel LP2 decipherments.

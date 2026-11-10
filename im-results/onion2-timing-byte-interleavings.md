@@ -2,6 +2,8 @@
 
 **Classification: bounded source-derived negative.** This study tests two explicit ways to combine the historical onion-2 256-byte string with its attested inter-arrival timing. Neither recovers original LP2 plaintext. The result does not establish that the historical source is unrelated to LP2.
 
+The three raw 256-byte service strings have since been tested directly as GP29 repeating/page-one-shot Vigenère/Beaufort keys; see [the direct key gate](historical-onion-byte-vigenere-lp2.md). This report remains limited to the two time-indexed byte interleavings.
+
 ## Why this was a distinct gap
 
 The pinned source [resources/cicada2014-onion2-timing.json](../resources/cicada2014-onion2-timing.json) contains the 256-byte final string from the historical cu343l33nqaekrnw.onion growing-string challenge and 112 attested inter-arrival intervals for byte positions 143–256. Two positions (190–191) are bounded rather than individually known; their interval units sum to six, giving five allowed pairs: [1,5], [2,4], [3,3], [4,2], [5,1].

@@ -2,6 +2,8 @@
 
 **Classification: bounded original-input negative for joint historical 256-byte source key interpretations. Agent 9's XOR/AES study, Agent 4's original-byte-totient key test and Agent 45's exact polynomial-sharing exclusion, 10 November 2026. No original Liber Primus plaintext, authentic key, cipher mechanism, or destination was recovered.**
 
+A separate direct GP29 repeating/page-one-shot Vigenère/Beaufort search of the three archived service strings against original LP2 is documented in [historical onion-byte Vigenère gate](historical-onion-byte-vigenere-lp2.md). This report's scope remains the aligned XOR/AES/ChaCha constructions and their controls.
+
 ## Source material and independently frozen hypothesis
 
 The public [historical byte-string compilation](https://github.com/DyrneCipher/Obsidian-Vault/blob/main/_archive/liber-primus/byte-strings) presents **four 512-hex-character strings**, each 256 bytes. It labels the first three as content of historical Cicada hidden services `cu343l33nqaekrnw.onion`, `fv7lyucmeozzd5j4.onion`, and `avowyfgl5lkzfj3n.onion`. Its fourth 256-byte value matches the repository's **canonical, uncorrected 32×8 LP2 base-60 grid in all 256 positions**. This exact-length coincidence motivates a narrowly specified key-source construction. The first three strings are preserved in [the supporting derived resource](../resources/cicada-hiddenservice-256-candidates.json). Their historical attribution and cryptographic relation to LP2 remain unverified; the 256-byte excerpts might simply be archival snapshots. Equal size alone is no evidence for genuine secret sharing.
