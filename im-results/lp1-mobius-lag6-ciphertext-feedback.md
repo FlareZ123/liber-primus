@@ -34,11 +34,11 @@ for *every* GP rune index \(x=0,\ldots,28\), including its fixed point. Also \(2
 j^{-1}M_{16}j(x)=8+6(x-8)=T^6(x).
 \]
 
-Both identities are exact and checkable with the runnable [source SFT](../sims/lp1_mobius_lag6_feedback_sft.cjs). They exhibit an economical bridge between a prior LP1 source structure and the LP2 ciphertext-echo permutation. The embedding's shift by 8 and exponent 15 were selected after examining \(T\); **the exact identities do not supply independent evidence that the puzzle-maker used them**. In particular, any conjugate 28-cycle can display related identities.
+Both identities are exact and checkable with the runnable [source SFT](../sims/lp1_mobius_lag6_feedback_sft.cjs). They exhibit an economical bridge between a prior LP1 source structure and the LP2 ciphertext-echo permutation. **A subsequent independent Agent 17 source reconstruction now supplies specific printed reasons for the shift 8 and power 15:** the original LP2 p40 opening red span ends in rune H/index8, its eight prime weights total **435 = 29×15**, and its rune indices total **116 = 29×4**. The p40 span is the only one of 18 colored spans with both index- and GP-prime sums divisible by29. Its [full LP1/p40 Cayley source certificate](lp1-p40-cayley-t6-source-bridge.md) identifies exactly the same operator and has an independent passing source-image test. **The bridge therefore has a more plausible human-visible clue path than a freely chosen algebraic coordinate, while remaining retrospectively connected to the already-discovered ciphertext echo.** This association supplies no confirmed key or independent discovery-wide significance, since T6 and the source motifs were explored before the link was made.
 
 ## Explicit original-cipher inverse test
 
-Test one concrete mechanism suggested by such a link: a source-fixed Möbius-derived rotor whose exponent depends on the immediately preceding ciphertext or plaintext rune, with the p05 source Cayley seed 13, the p15 page number / p39 red-triad terminal value 15, and the six-step p16 multiplier allowed as a positional clock. Each candidate is invertible without guessing a secret key:
+Test one concrete mechanism suggested by such a link: a source-fixed Möbius-derived rotor whose exponent depends on the immediately preceding ciphertext or plaintext rune, with the p05 source Cayley seed 13, **the independently visible p40 prime quotient 15** (also the p15 page number / p39 red-triad terminal value), and the six-step p16 multiplier allowed as a positional clock. Each candidate is invertible without guessing a secret key:
 
 \[
 C_i=T^{\,\epsilon(s+\lambda i+g(R_{i-1}))}(P_i),\quad
