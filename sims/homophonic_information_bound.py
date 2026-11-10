@@ -73,9 +73,9 @@ def parse_rune_reference(text: str) -> list[list[int]]:
     """Previously readable pages of the 75-section scan-aligned rune master."""
     order = {symbol: index for index, symbol in enumerate(RUNE_ORDER)}
     scans = text.split("%")
-    selected_indices = (3, 8, 9, 10, 11, 14, 72)
+    selected_indices = (4, 9, 10, 11, 12, 15, 73)
     result = [[order[c] for c in scans[i] if c in order] for i in selected_indices]
-    if sum(map(len, result)) != 1169:
+    if sum(map(len, result)) != 1096:
         raise ValueError("Unexpected solved runic reference count")
     return result
 
