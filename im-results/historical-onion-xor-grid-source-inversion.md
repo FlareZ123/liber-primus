@@ -1,6 +1,6 @@
 # Historical 256-byte hidden-service and LP2 grid key hypotheses
 
-**Classification: bounded original-input negative for joint historical 256-byte source key interpretations. Agent 9's XOR/AES held-out study and Agent 45's exact polynomial-sharing exclusion, 10 November 2026. No original Liber Primus plaintext, authentic key, cipher mechanism, or destination was recovered.**
+**Classification: bounded original-input negative for joint historical 256-byte source key interpretations. Agent 9's XOR/AES study, Agent 4's original-byte-totient key test and Agent 45's exact polynomial-sharing exclusion, 10 November 2026. No original Liber Primus plaintext, authentic key, cipher mechanism, or destination was recovered.**
 
 ## Source material and independently frozen hypothesis
 
@@ -40,6 +40,23 @@ The uniform 29-symbol reference IoC is **1/29 ≈ 0.03448276**. The corrected-so
 
 The second-block excess is an observation from an exploratory family after broad earlier source work, with no observed credible decoded text. Its weak joint second-and-third upper-tail is a postselected overlap statistic and does **not** rescue the third-block failure. Even if a genuine unusual second-block symbol imbalance were present, it would not identify these four strings as key shares. **No original LP2 plaintext, keystream, or authentic key is claimed.**
 
+## Historical bytewise totient keys: exact original-input continuation failure
+
+A [contemporaneous 2014 Cicada research compilation](https://uncovering-cicada.fandom.com/wiki/2014_THINGS_THAT_HAD_BEEN_XORED) records bytewise Euler-totient transformations of the onion-service hex strings. The historically solved Liber Primus teaching also emphasizes the totient function. These justify one **different frozen byte-source construction** from the raw-XOR family above, although the historical community's use of such transformations does not prove that Cicada used them as LP2 keys.
+
+Agent 4 applied Euler's `phi(n)` to **each** of the three original 256-byte service strings and the independently five-cell-corrected 256-byte LP2 table, treating the exceptional input 0 as a 0 sentinel. The first eight transformed onion2 bytes are exactly `[60,20,72,60,72,126,32,40]`. Then all **15 nonempty XOR subsets** of these four transformed 256-byte arrays produce **240** candidate AES/ChaCha keys through eight 32-byte columns or eight consecutive 32-byte blocks, using exactly the sixteen global cipher/byte-reduction/sign settings and eight 900-rune source sections of the earlier raw-XOR inverse. Unlike a postselected phrase, every source transformation is frozen before the ciphertext search. Candidate keys are fitted only on the first 8×300 runes. The next 8×300 and the third 7×300 are untouched during model selection. A separate 40-trial null shuffles the same **phi-transformed** source-byte arrays, refits all 240 candidates and 16 modes, and scores the same two continuation blocks.
+
+| Registered input | Fitted 2,400-rune IoC | Second 2,400-rune IoC | Third 2,100-rune IoC |
+| --- | ---: | ---: | ---: |
+| Corrected-grid original LP2 | **0.03793200** | **0.03479376** | **0.03446090** |
+| Uncorrected-grid original LP2 | **0.03792642** | **0.03503623** | **0.03443860** |
+| 40 independently shuffled transformed-source refits | — | mean **0.03442816** | mean **0.03444458** |
+| Native Shakespeare-GP encrypted positive | **0.05806856** | **0.05826644** | **0.05991718** |
+
+**Nineteen of 40** matched source-shuffled controls reach or exceed the corrected-original third-block IoC (add-one tail **20/41 = 0.48780**). Four of 40 exceed the second block (tail 5/41 = 0.12195), so the modest second-block elevation does **not** persist into the independently untouched third block. The best real selected `chacha20` candidate produces an incoherent first-70-rune GP transliteration beginning `NNYNBGOPLFNGAMAAGTIATHJ`; its direct 70-rune round-trip is algebraically automatic under an arbitrary selected key and provides no authentication. The positive control simultaneously recovered **8/8 independently planted true source keys**, the exact AES-CTR mode and both original-source-unfitted intervals; its 220 synthetic antirepeat rewrites are a controlled perturbation, not a lossless decoder for LP2.
+
+The [exact replay script](../sims/onion_totient_original_inverse.cjs), using the existing original-source inversion implementation, passed [manual GitHub Actions run 42827417852](https://github.com/FlareZ123/liber-primus/actions/runs/42827417852). Its tested direct AES/ChaCha section-key family is now a bounded **original-negative** despite an independently motivated historical totient transform. This does not constrain an unspecified later KDF, hidden consumption clock, other source serialization, original author language, or nonlinear intermediate; none has supplied an authentic plaintext. There is no reason to expand the same corrected and uncorrected four-source direct-key permutations without a newly independent clue.
+
 ## Independently excluded 3-of-4 historical secret sharing
 
 The same four public **256-byte sources** also support a more constrained key-construction hypothesis than arbitrary XOR or AES hashing: treat the hidden-service identifiers **2, 3, and 4** as share coordinates x=2, x=3, x=4 in an ordinary Shamir polynomial over GF(256), and interpret the LP2 256-byte table as a fourth share at **any** distinct, globally fixed field coordinate x. The grid's natural x=1 is included rather than singled out. A threshold of **3-of-4** implies that all 256 aligned byte positions independently lie on polynomials of degree at most two. The actual polynomial coefficients can vary arbitrarily across byte positions, so this is a necessary condition that requires **no guessed secret or ciphertext plaintext**. Two-of-four linear sharing is also excluded when degree-two consistency fails.
@@ -68,6 +85,6 @@ The original and plant tests passed [GitHub Actions run 42820730548](https://git
 
 ## Reproduction and research consequence
 
-The complete self-contained CommonJS implementation is [`sims/onion256_grid_xor_source_inverse.cjs`](../sims/onion256_grid_xor_source_inverse.cjs), reading only the committed historical source blob, canonical LP2 numeric grid, manuscript transcription and Shakespeare source fixture. [`.github/workflows/grid-keyskip-manual.yml`](../.github/workflows/grid-keyskip-manual.yml) exposes the explicit `historical-onion-xor-inverse` dispatch. The exact CI output is in successful run 42815364894.
+The raw-source XOR CommonJS implementation is [`sims/onion256_grid_xor_source_inverse.cjs`](../sims/onion256_grid_xor_source_inverse.cjs), reading only the committed historical source blob, canonical LP2 numeric grid, manuscript transcription and Shakespeare source fixture. [`.github/workflows/grid-keyskip-manual.yml`](../.github/workflows/grid-keyskip-manual.yml) exposes the explicit `historical-onion-xor-inverse` dispatch. The exact CI output is in successful run 42815364894.
 
-**Consequence:** Do not treat a four-way 256-byte XOR combination as an authenticated LP2 key or expand nearly identical XOR/CTR variants on the selected second-block signal. A productive follow-on would need an independent clue specifying *how* historic Tor material relates to the manuscript, or a reversible cipher architecture explaining manuscript-wide lag-five, lag-six, antirepeat and page-join constraints, followed by actual plaintext re-encryption.
+**Consequence:** The direct historical-source key families covered here include XOR of untransformed sources, XOR after source-fixed bytewise totients, and exact polynomial-sharing interpretations. None yields a surviving authentic LP2 plaintext. Do not treat a four-way 256-byte XOR combination as an authenticated LP2 key or expand nearly identical XOR/CTR variants on the selected second-block signal. A productive follow-on would need an independent clue specifying *how* historic Tor material relates to the manuscript, or a reversible cipher architecture explaining manuscript-wide lag-five, lag-six, antirepeat and page-join constraints, followed by actual plaintext re-encryption.
