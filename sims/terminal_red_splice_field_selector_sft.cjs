@@ -233,6 +233,86 @@ assert.deepEqual(valueAndDerivative(coefficients, 24), [0, 0]);
 assert.deepEqual(polyValue([1, 18, 11], z), [0, 0]);
 assert.deepEqual(valueAndDerivative([27, 5, 15].reverse(), 24), [0, 0]);
 
+
+/**
+ * Independently source-demarcated red polynomial checks. Read each red span
+ * in the SAME forward descending orientation as the 256-byte original
+ * numeric table. The p39 three-rune instruction is shown in both directions
+ * to make the reciprocal 23/24 root distinction explicit.
+ */
+function divideAtRoot(coeffs, root) {
+  const q = [coeffs[0]];
+  for (let i = 1; i + 1 < coeffs.length; i++)
+    q.push(mod(coeffs[i] + root * q[q.length - 1]));
+  const remainder = mod(coeffs[coeffs.length - 1] +
+    root * q[q.length - 1]);
+  return {q, remainder};
+}
+function sourceRedPolynomialChecks() {
+  const p40 = marked(40, 0);
+  const p53PlusOne = p53.slice();
+  p53PlusOne[p53PlusOne.length - 1] =
+    mod(p53PlusOne[p53PlusOne.length - 1] + 1);
+  const cases = {
+    "p39-red-forward-at-23": valueAndDerivative(p39, 23),
+    "p39-red-reverse-at-24": valueAndDerivative(p39.slice().reverse(), 24),
+    "p40-red-heading-at-24": valueAndDerivative(p40, 24),
+    "p53-red-body-at-24": valueAndDerivative(p53, 24),
+    "p53-red-plus-one-at-24": valueAndDerivative(p53PlusOne, 24),
+    "p54-red-heading-at-24": valueAndDerivative(p54, 24),
+    "p54-red-heading-at-19": valueAndDerivative(p54, 19),
+    "p49-51-table-at-24": valueAndDerivative(coefficients, 24)
+  };
+  assert.deepEqual(cases, {
+    "p39-red-forward-at-23": [0, 0],
+    "p39-red-reverse-at-24": [0, 0],
+    "p40-red-heading-at-24": [0, 18],
+    "p53-red-body-at-24": [28, 0],
+    "p53-red-plus-one-at-24": [0, 0],
+    "p54-red-heading-at-24": [0, 4],
+    "p54-red-heading-at-19": [0, 0],
+    "p49-51-table-at-24": [0, 0]
+  });
+  assert.equal(mod(23 * 24), 1);
+  assert.equal(mod(27 * 23 * 23), 15);
+  assert.equal(mod(15 * 24 * 24), 27);
+
+  const divisionPrograms = [
+    {name: "p39-forward", input: p39, roots: [23, 23]},
+    {name: "p39-reverse", input: p39.slice().reverse(), roots: [24, 24]},
+    {name: "p40-heading", input: p40, roots: [24]},
+    {name: "p53-red-plus-one", input: p53PlusOne, roots: [24, 24]},
+    {name: "p54-heading", input: p54, roots: [24, 19, 19]},
+    {name: "original-grid", input: coefficients, roots: [24, 24]}
+  ];
+  const factored = divisionPrograms.map(program => {
+    let q = program.input;
+    for (const root of program.roots) {
+      const result = divideAtRoot(q, root);
+      assert.equal(result.remainder, 0);
+      q = result.q;
+    }
+    return {name: program.name, sourceCoefficients: program.input.length,
+      roots: program.roots, quotientLength: q.length,
+      quotientPreview: q.slice(0, 12)};
+  });
+  assert.deepEqual(factored.map(x => x.quotientLength),
+    [1, 1, 7, 49, 6, 254]);
+  const allRedAt24 = spans.map(s => ({
+    page: s.page, offset: s.start, length: s.symbols.length,
+    value: valueAndDerivative(s.symbols, 24)
+  }));
+  assert.deepEqual(allRedAt24.filter(s => s.value[0] === 0)
+    .map(s => [s.page, s.offset, s.length]),
+  [[40, 0, 8], [54, 0, 9]]);
+  return {cases, factored,
+    originalRedSpanCount: allRedAt24.length,
+    originalUnshiftedRoot24Spans: allRedAt24.filter(s =>
+      s.value[0] === 0).map(s => ({page: s.page, offset: s.offset})),
+    note: "All identities exact. Root and +1 operations remain clues, not an authenticated LP2 cipher or plaintext."};
+}
+const redPolynomialChecks = sourceRedPolynomialChecks();
+
 let power = [1, 0];
 let log = -1;
 for (let i = 0; i < 840; i++) {
@@ -343,6 +423,7 @@ console.log(JSON.stringify({
   },
   empiricalMatchedLengthWindows: empirical,
   directTraceInverse,
+  redPolynomialChecks,
   uniformIIDFiveWindowProbability: 141 / 29 ** 5,
   warning: "Exploratory source selector and postselected coincidence; no recovered key, original plaintext or authenticated cipher."
 }, null, 2));
