@@ -31,6 +31,90 @@ def gp_ioc(symbols: list[int]) -> float:
     return sum(symbols.count(v) * (symbols.count(v) - 1) for v in range(P)) / (n * (n - 1))
 
 
+
+def affine_119_pair_gate(source: list[int], black: list[int], terminal: list[int]) -> dict[str, object]:
+    """Solve every key matrix and translation from 3 independent aligned pairs.
+
+    Source 238 residues become 119 pairs. Black 128 loses 9 source-title
+    glyphs, terminal 127 loses 8 source-grid columns; test each edge and
+    pair/order orientation. This is exhaustive for an unknown affine GF29²
+    vector map on each of 128 predeclared geometric alignments.
+    """
+    assert len(source) == 238 and len(black) == 128 and len(terminal) == 127
+    views: list[tuple[str, list[list[int]]]] = []
+    for layout in ("adjacent", "halves"):
+        original = ([[source[2*i], source[2*i+1]] for i in range(119)]
+                    if layout == "adjacent" else
+                    [[source[i], source[i+119]] for i in range(119)])
+        for reverse in (False, True):
+            for swap in (False, True):
+                pairs = [pair[:] for pair in original]
+                if reverse:
+                    pairs.reverse()
+                if swap:
+                    pairs = [[b, a] for a, b in pairs]
+                views.append((f"{layout}/reverse={reverse}/swap={swap}", pairs))
+
+    best = {"matched_pairs": -1}
+    tried = 0
+    for source_name, X in views:
+        p0 = X[0]
+        pivots = None
+        for i in range(1, 119):
+            for j in range(i+1, 119):
+                dx1 = [(v-w) % P for v,w in zip(X[i],p0)]
+                dx2 = [(v-w) % P for v,w in zip(X[j],p0)]
+                det = (dx1[0]*dx2[1] - dx1[1]*dx2[0]) % P
+                if det:
+                    pivots = (i, j, dx1, dx2, pow(det, -1, P))
+                    break
+            if pivots is not None:
+                break
+        assert pivots is not None
+        i, j, dx1, dx2, det_inv = pivots
+        for black_cut in ("first9", "last9"):
+            B = black[9:] if black_cut == "first9" else black[:119]
+            for red_cut in ("first8", "last8"):
+                R = terminal[8:] if red_cut == "first8" else terminal[:119]
+                for swap in (False, True):
+                    for reverse in (False, True):
+                        Y = [[B[k],R[k]] for k in range(119)]
+                        if swap:
+                            Y = [[r,b] for b,r in Y]
+                        if reverse:
+                            Y.reverse()
+                        mat = []
+                        for output in range(2):
+                            d1 = (Y[i][output] - Y[0][output]) % P
+                            d2 = (Y[j][output] - Y[0][output]) % P
+                            mat.append([
+                                ((d1*dx2[1] - d2*dx1[1])*det_inv) % P,
+                                ((d2*dx1[0] - d1*dx2[0])*det_inv) % P,
+                            ])
+                        bias = [(Y[0][r] - sum(mat[r][k]*X[0][k]
+                                 for k in range(2))) % P for r in range(2)]
+                        matched = sum(
+                            all((sum(mat[r][k]*X[t][k] for k in range(2))
+                                 + bias[r]) % P == Y[t][r] for r in range(2))
+                            for t in range(119)
+                        )
+                        tried += 1
+                        if matched > best["matched_pairs"]:
+                            best = {
+                                "source": source_name,
+                                "black_trim": black_cut,
+                                "terminal_trim": red_cut,
+                                "target_swap": swap,
+                                "target_reverse": reverse,
+                                "matrix": mat,
+                                "bias": bias,
+                                "matched_pairs": matched,
+                                "forced_fitted_pivots": [0, i, j],
+                            }
+    assert tried == 128
+    return {"fixed_geometries": tried, "best": best}
+
+
 def main() -> dict[str, object]:
     grid = json.loads((ROOT / "resources/liber-primus/base60-grid.json").read_text(encoding="utf-8"))
     ink = json.loads((ROOT / "resources/liber-primus/lp2-ink-annotations.json").read_text(encoding="utf-8"))
@@ -80,6 +164,27 @@ def main() -> dict[str, object]:
     assert len(octets) == 145
     assert printable == 49
 
+    corpus = json.loads((ROOT / "resources/liber-primus/lp2-corpus.json").read_text(encoding="utf-8"))
+    black = next(page for page in corpus["pages"] if page["page"] == 53)["indices"][:128]
+    terminal = (next(page for page in corpus["pages"] if page["page"] == 53)["indices"][128:]
+                + next(page for page in corpus["pages"] if page["page"] == 55)["indices"])
+    affine = affine_119_pair_gate(payload, black, terminal)
+    assert affine["best"]["matched_pairs"] == 4
+
+    # Independent native-GF29 positive: an unknown invertible affine matrix
+    # maps 119 source pairs to 119 target pairs with page-source margins.
+    native_pairs = [[payload[2*i],payload[2*i+1]] for i in range(119)]
+    matrix = [[3,5],[7,11]]
+    bias = [13,17]
+    planted_pairs = [[(sum(matrix[r][k]*v[k] for k in range(2)) + bias[r]) % P
+                      for r in range(2)] for v in native_pairs]
+    plant = affine_119_pair_gate(
+        payload,
+        [0]*9 + [v[0] for v in planted_pairs],
+        [1]*8 + [v[1] for v in planted_pairs]
+    )
+    assert plant["best"]["matched_pairs"] == 119
+
     result: dict[str, object] = {
         "classification": "Exact complete GF29 factorization; possible clue, no recovered plaintext",
         "original_sha256": EXPECTED_SHA,
@@ -98,6 +203,8 @@ def main() -> dict[str, object]:
         "large_factor_direct_base29_bigendian_bytes": len(octets),
         "large_factor_direct_printable_ascii_bytes": printable,
         "exact_product_reconstructs_original": True,
+        "two_register_affine_original": affine,
+        "two_register_affine_native_plant": plant,
     }
     print(json.dumps(result, indent=2))
     return result

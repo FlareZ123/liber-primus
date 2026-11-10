@@ -44,6 +44,14 @@ The residual degree is **238 = 2×119**. The *only two source red three-rune ins
 
 The readings above offer a concise testable hypothesis: the red triads might instruct how to remove recognizable polynomial factors and the residual 238 coefficients might represent **119 two-coordinate symbols over GF(29²)**, indexed by the repeated offset119. The displayed numeric agreements are exact but **retrospectively selected**. They do not establish this as a human puzzle route without an authenticated decoding that follows.
 
+## Cross-artifact 119×2 affine register inverse
+
+The 238 nonleading coefficients of \(Q_{238}\) form 119 pairs. Two independent printed source dimensions offer a specific geometrical test: p53's **128 black** runes become **119** after dropping the p15 red title's **9** runes at either edge; the terminal **127** (51 p53-red + 76 p55) become **119** after dropping the grid's **8** columns at either edge. Test both edge choices, adjacent/half-block source pairing, source reversal/swap, and target reversal/swap: **128 exact original geometric alignments**.
+
+For each geometry, allow a completely *unknown* affine two-coordinate map \(Y_i=AX_i+b\) over GF29. Derive all six secret matrix/offset coordinates from the first **three affinely independent** aligned pairs, then test the remaining 116 original pairs without refitting. The maximum is only **4/119 fully matched original pairs**, including the **three** forced fit pairs; the sole additional hit is insufficient to identify a map or plaintext. In a native positive control, an independently planted nonsingular 2×2 affine map and source-fixed margins recover **119/119** pairs. This is an all-secret-key exclusion for **this affine 119-pair interpretation**, and it is distinct from the previously tested 127-target stationary pair lookup.
+
+The source-to-target relationship could still be nonlinear, position dependent or differently indexed. The negative preserves the meaningful 2×119 clue while blocking a simple direct field-map claim. The [complete factorization SFT](../sims/lp2_grid_gf29_factorization_sft.py) includes both exact inversions and their plant.
+
 ## Immediate original-payload checks and outcome
 
 Using the monic \(Q_{238}\) factor, discard its formal leading one and read the remaining **238 coefficients as GP29 indices**. Their index of coincidence is only **0.034633100102**, close to the uniform-symbol baseline \(1/29\). Interpret those same base29 coefficients as one big-endian integer and serialize as bytes: it produces **145 bytes**, of which **49** are printable 7-bit ASCII; no plain-language payload or recognized header is present. Pairing 238 coefficients as 119 GF29² elements and projecting their trace or norm in the natural adjacent/half-block layouts also produces near-uniform GP29 data, not text (exploratory direct controls).
