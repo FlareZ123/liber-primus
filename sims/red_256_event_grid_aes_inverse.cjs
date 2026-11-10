@@ -8,7 +8,7 @@ const assert=require("node:assert/strict");
 const fs=require("node:fs");
 const path=require("node:path");
 const crypto=require("node:crypto");
-const {events}=require("./red_256_event_key_inverse.cjs");
+const {events,keyTables}=require("./red_256_event_key_inverse.cjs");
 const root=path.join(__dirname,"..");
 const corpus=JSON.parse(fs.readFileSync(
   path.join(root,"resources/liber-primus/lp2-corpus.json"),"utf8"));
@@ -30,6 +30,9 @@ const flag=packBits(event.map(x=>Number(x.kind===0)));
 const parity=packBits(event.map(x=>x.kind?x.value%2:1));
 const primeParity=packBits(event.map(x=>x.kind?corpus.prime[x.value]%2:1));
 const sha256=x=>crypto.createHash("sha256").update(x).digest();
+const redRun32=Buffer.from(keyTables(event).get("redRun32/forward"));
+const base60="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx";
+const redRunBase60=Buffer.from([...redRun32].map(x=>base60[x]).join(""),"ascii");
 const keys={
   markBits:flag,
   gpIndexParity:parity,
@@ -37,7 +40,11 @@ const keys={
   sha256GpIndices:sha256(n),
   sha256GpPrimes:sha256(prime),
   sha256MarkBits:sha256(flag),
-  sha256GpParity:sha256(parity)
+  sha256GpParity:sha256(parity),
+  redRunLengths:redRun32,
+  reversedRedRunLengths:Buffer.from(redRun32).reverse(),
+  sha256RedRunLengths:sha256(redRun32),
+  sha256RedRunBase60:sha256(redRunBase60)
 };
 const row=Buffer.from(grid.flat());
 const col=Buffer.from(Array.from({length:256},(_,i)=>
@@ -98,10 +105,12 @@ function run() {
   const encrypted=runCipher(native,keys.sha256GpIndices,"ctr/zero",true);
   assert.deepEqual(runCipher(encrypted,keys.sha256GpIndices,"ctr/zero",false),native);
   assert.equal(printableFraction(native),1);
-  assert.equal(candidates.length,140);
+  assert.equal(candidates.length,220);
   return {class:"fixed source-derived AES-256 original-grid ASCII inverse",
     candidateCount:candidates.length,sourceEventCount:event.length,
     sourceGridBytes:row.length,
+    runLengthsHex:redRun32.toString("hex"),
+    runLengthsBase60:redRunBase60.toString("ascii"),
     best:candidates.slice(0,10),
     maxPrintable:candidates[0].printable,
     naturalAsciiThreshold075:candidates.filter(x=>x.printable>=0.75).length,
