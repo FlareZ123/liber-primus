@@ -89,18 +89,22 @@ This is not explained by the observed properties of **individual ciphertext word
 [Reproducible code](../sims/cross_word_repeat_invariant.cjs) ·
 [Successful manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42745733143).
 
-### Two sparse word-internal echoes survive exact word-composition controls
+### Two word-local ciphertext echoes constrain a possible repair channel
 
-Two distinct, independently reported LP2 relationships have now been reproduced with **each tested word's full rune multiset, length and exact immediate-doublet count held fixed** in randomized controls. This separates the distinctive relationships from the already-known doublet deficit and unusual frequencies inside individual words.
+Two externally reported LP2 patterns survive randomization of **each actual word's complete rune multiset, exact length, and adjacent-doublet count**. These are constraints on ciphertext generation, with no recovered rune plaintext or key.
 
-| Word-internal relationship | Observed | Strictly word-conditioned null | Multiple-testing correction |
+| Word-local pattern | Observed | Mechanism-matched conditional null | Scope of correction |
 |---|---:|---:|---|
-| \`c_i = 24 - 2c_(i-6) (mod 29)\` | **80 of 1,290** positions in 74 words | Mean 45.934, SD 6.533 (3,000 nulls) | No null maximum across the transform's **28 affine orbit powers** reached 80; p 0.000333 |
-| \`c_i = c_(i-5) = ᛋ\` (rune index 15) | **11 pairs** in 11 distinct words | Train mean 2.039, SD 1.313 (3,000 nulls) | **0 of 3,000** independent test nulls had a maximum standardized score across **174 hypotheses (29 runes × lags 2–7)** as extreme; p 0.000333 |
+| \`c_i = 24 - 2c_(i-6) (mod29)\` | **80/1,290** eligible positions in 74 words | Expected **45.775 ± 6.654** | Best of **5,684** bijective affine maps at lags 2–8; **12/1,000** disjoint null maxima reach the observed z = 5.144, familywise **p = 0.01299** |
+| \`c_i = c_(i-5) = ᛋ\` (index 15) | **11** matches in 11 words | Expected **2.039 ± 1.313** | Best of 29 possible rune identities at selected lag 5; **0/3,000** null maxima reach the observed z = 6.826, familywise **p = 0.000333** |
 
-The lag-five ᛋ count is a striking *value-specific* signal, whereas the six-position affine echo is spread across the alphabet. A separate 28-map test found **no statistically convincing non-ᛋ affine lag-five recurrence fixing rune index 15** (best slope 16, 249/2,000 matched null maxima at least as large, familywise p 0.125). A candidate encryption model must account for both established echo patterns as well as the globally suppressed adjacent ciphertext repetitions. These were initially selected through external exploratory research, so the controls **do not adjust for the historic search across lags and formulas**. Neither signal proves a reversible mechanism; the natural-language affine lag-feedback decoder has already failed independent tests. The core ciphertext remains encrypted.
+The affine relation localizes to **80/1,290 = 6.20%** of lag-six pairs contained within whole ciphertext words, compared with **402/11,660 = 3.45%** across word boundaries on the uninterrupted manuscript rune stream. The relation has exactly **40 matches in each half** of the 2,896 words. This points toward a *word-scoped* rule, although the choice of mapping followed earlier exploratory searches. The full historical hypothesis-selection process remains uncorrected; the two p-values apply to their stated finite candidate families.
 
-[Lag-six full control](../im-results/lag6-conditioned-echo.md) · [Lag-five 174-hypothesis control and model test](../im-results/lag5-rune-specific-echo.md) · [Lag-five corrected scan](../sims/short_lag_rune_identity_scan.cjs) · [Published prior observations](https://github.com/pnotisdev/cicada3301/blob/main/results/analysis/echo_values.txt).
+A further reference-register challenge sampled whole GP-encoded English words matching LP2's exact word lengths. For the affine lag-six pattern, the reference means were **62.98** (Shakespeare), **54.62** (Gibran), and **52.62** (Emerson), against LP2's 80. The lag-five \`ᛋ\` coincidence gave reference means **17.26**, **22.56**, and **19.98** against LP2's 11. These source-dependent comparisons show why GP-English word associations alone cannot be naively equated with LP2's nearly flat rune output. They are descriptive controls for the *already selected* patterns, not independent cipher-discovery p-values.
+
+A candidate generator should explain the word-boundary contrast, both sparse echoes, and adjacent-repeat suppression, then supply a reversible key/erasure mechanism. Existing attempts to turn the lag-six relation into a general affine autokey decryption have failed; a sparse correction channel remains conjectural.
+
+[Lag-six controls and mechanism caveats](../im-results/lag6-conditioned-echo.md) · [Lag-five rune-specific test](../im-results/lag5-rune-specific-echo.md) · [5,684-candidate executable](../sims/affine_echo_global_search.cjs) · [Three-register word-length control](../sims/affine_echo_literary_control.cjs) · [Successful CI](https://github.com/FlareZ123/liber-primus/actions/runs/42752182238) · [External prior observation](https://github.com/pnotisdev/cicada3301/blob/main/results/analysis/echo_values.txt).
 
 ### The known low-dependence ciphertext profile
 
