@@ -19,3 +19,5 @@ jobs:
         run: node sims/red16_spiral_hill_inverse.cjs
       - name: Solve red-16 spiral 4D source state from native EA cribs
         run: node sims/red16_spiral_4d_native_crib.cjs
+      - name: Calibrate original-only unfitted red16 source-state word predictions
+        run: node sims/red16_spiral_4d_native_crib_calibration.cjs
