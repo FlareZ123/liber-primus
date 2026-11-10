@@ -1,43 +1,54 @@
-# LP2 base-60 table as 256-bit stream-cipher seed: bounded screen
+# LP2 base-60 table as stream-cipher key material: two controlled screens
 
-**Status:** reproducible negative screen for a narrowly specified table-to-stream hypothesis (Agent 12, 2026-11-10). No LP2 plaintext, recovered key, or confirmed cipher mechanism.
+**Classification:** bounded cryptanalytic negative on 2026-11-10 (Agent 12). No LP2 plaintext, recovered key, or confirmed cipher mechanism. Both screens run independently on the original 12,956-rune unsolved corpus.
 
-## Hypothesis
+## Rationale and shared input
 
-The 32-row, 8-column base-60 grid spanning manuscript pages 49–51 resolves to exactly 256 bytes. Its layout admits 8 natural 32-byte column keys and 8 contiguous 32-byte row-major keys. These are 256-bit key candidates for AES-256-CTR and ChaCha20, and variable-length RC4 keys.
+The base-60 grid spanning LP2 pages 49–51 contains **256 bytes**. It could serve as a 2048-bit RC4 key, a source for 256-bit AES/ChaCha keys, or another cryptographic artifact. The grid's natural 32×8 layout also gives eight 32-byte columns and eight contiguous 32-byte row-major slices. These candidate key interpretations are concrete enough for direct automated tests.
 
-For each key, test its forward and byte-reversed order. Use keystream bytes as mod-29 additive or subtractive rune offsets, with two explicit byte-to-rune conventions:
-`k = byte % 29` and `k = floor(29*byte/256)`.
+Scripts read the 256 grid tokens from `resources/transcriptions/liber_primus_master.txt`, decoding base 60 with the alphabet `0–9 A–Z a–x`. The corrected 256 bytes have SHA-256 **`3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`**. Rune ciphertext comes from `resources/liber-primus/lp2-corpus.json`: 55 rune-bearing pages with 12,956 symbols, and manuscript page 50 left empty because it contains the numeric grid.
 
-For AES-256-CTR and ChaCha20, test all-zero 128-bit IV and three IVs in which the original LP2 page index is inserted in the first or last four bytes (LE/BE), with zero or 256 initial keystream bytes discarded. RC4 uses discard counts 0, 256, or 3072. Cipher state starts at each page's first rune. This is **2,432 distinct parameter configurations** over 55 rune-bearing unsolved LP2 pages.
+Both experiments score decoded rune index of coincidence `Σ n_r(n_r−1)/(N(N−1))` across the complete 12,956-rune corpus. Natural GP-English plaintext would give a strongly nonuniform symbol distribution and an IoC well above the random-rune benchmark **1/29 = 0.034482759**. This scoring requirement is restricted to a plaintext register resembling the control.
 
-Input: `resources/transcriptions/liber_primus_master.txt` (base-60 master tokens), `resources/liber-primus/lp2-corpus.json` (rune sequences). The 256 decoded bytes have SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. The grid may encode something other than a seed; its presence alone does not imply this key interpretation.
+## 1. Natural 32-byte row/column keys
 
-## Executed screen
+Source: [`sims/base60_seeded_stream.cjs`](../sims/base60_seeded_stream.cjs). [Successful manual CI run 42742817792](https://github.com/FlareZ123/liber-primus/actions/runs/42742817792).
 
-Opt-in GitHub Actions [run 42742817792](https://github.com/FlareZ123/liber-primus/actions/runs/42742817792) completed successfully using Node.js and the deterministic self-contained script `sims/base60_seeded_stream.cjs`.
+- 32 keys: 8 rows, 8 columns, forward/reversed bytes.
+- AES-256-CTR, ChaCha20, RC4; zero and page-index 128-bit IV conventions for block-based streams; page-reset stream for every page.
+- Drops 0/256 (and RC4 3072); byte-to-rune mapping `byte % 29` or `floor(29*byte/256)`; additive/subtractive mod 29.
+- **2,432 configurations**.
 
-The score is full-corpus rune index of coincidence, `Σ n_r(n_r-1)/(N(N-1))`, with N=12,956. A true keystream additive encryption of English-like GP text would sharply elevate this score above the 1/29 = 0.03448276 random-rune baseline.
-
-| Measurement | Result |
+| Measurement | Value |
 | --- | ---: |
-| Original ciphertext rune IoC | 0.034478398 |
-| Configurations screened | **2,432** |
-| Strongest decoded whole-corpus IoC | **0.034568719** |
-| Winning parameters | column4 reversed, AES-256-CTR, page-number last-LE IV, drop 0, byte % 29, subtract |
-| Strongest local IoC on any single page with 200+ runes | **0.041039052** |
-| Local winner | LP2 page 39, row5 reversed, RC4 drop 3072, byte % 29, subtract |
+| Original LP2 IoC | 0.034478398 |
+| Highest decoded IoC | **0.034568719** |
+| Winning candidate | reversed column 4, AES-256-CTR, page-last-LE IV, drop 0, modulo mapping, subtraction |
+| Highest local page IoC among pages >=200 runes | 0.041039052 (p39) |
 
-Every whole-corpus configuration remains very close to the uniform benchmark. A local maximum selected among thousands of keys and dozens of pages does not support a decryption.
+Positive control: fresh GP-like English-frequency plaintext at real page lengths encrypted with column 3, AES-256-CTR zero IV, drop 0, modulo map and addition, with a fixed-seed 81% correction of would-be identical consecutive ciphertext runes. The exact matching decryption ranks **first/2,432** at **IoC 0.065291199**; runner-up **0.034889539**. This is a single planted scenario, not a statistical power curve.
 
-### Planted positive control
+## 2. Whole-grid RC4 and hash-derived 256-bit keys, including continuous streams
 
-Independently sample 55 pages of rune frequencies estimated from the existing LP1 English-reference text, with the real LP2 page lengths. Encrypt using the actual decoded table's **column 3 forward**, **AES-256-CTR zero IV**, **drop 0**, **byte % 29**, **add**, and repair 81% of generated adjacent ciphertext collisions by a randomized different rune. Fixed-seed test uses xorshift32 `0x41a53e91` for plaintext and collision repairs.
+Source: [`sims/base60_fullkey_stream.cjs`](../sims/base60_fullkey_stream.cjs). [Successful manual CI run 42744001873](https://github.com/FlareZ123/liber-primus/actions/runs/42744001873).
 
-The uncorrected key-alignment decoder ranks **exactly first out of 2,432**, reaching **IoC 0.065291199**, versus the next candidate **0.034889539**. The planted ciphertext before decoding has IoC **0.034533806**. Thus the method recovers the stated model despite substantial anti-repeat repair under this **single planted scenario**; it does not certify general detection power for every register or cipher variation.
+- Full 256-byte table and its reverse as RC4 keys; 32-byte SHA-256 of the table, reverse, and column-major ordering; left/right SHA-512 half-digests; first/last 32 bytes.
+- RC4, AES-256-CTR, ChaCha20, with page reset or **globally continuous** key stream.
+- Zero or page-number IV, forward/reverse arithmetic, drop 0/256/3072 where appropriate.
+- Three byte-to-rune conventions: modulo, scale, and **unbiased rejection sampling of bytes 232–255**.
+- **1,164 configurations**, separate from the prior screen (a small number of raw 32-byte configurations are conceptually shared).
 
-## Interpretation and limits
+| Measurement | Value |
+| --- | ---: |
+| Highest decoded IoC | **0.034552550** |
+| Winning candidate | SHA-256(reversed grid), ChaCha20, page-reset zero IV, drop 0, scaled mapping, addition |
 
-This test gives no evidence that those 32-byte grid slices directly seed any of the named stream-cipher families under the stated IV, byte-to-rune, page-reset, and sign conventions. The table may instead represent encrypted binary content, part of a key-derivation mechanism, a permutation, a protocol message, or unrelated information. Key hashing, mixed-column ordering, nonzero unknown nonce material, variable key pointer, cipher chaining, nonlinear outer alphabets, and hidden plaintext encodings were **not screened**. The current result does not rule those out.
+Positive control: encrypt 55 GP-English-frequency pages with **RC4 directly keyed by all 256 corrected grid bytes**, drop 256, one continuous stream, rejection-sampled bytes modulo 29 and addition. Inject a seeded **81% adjacent-repeat repair** (375 replacements). The exact matching inverse is **first/1,164** at IoC **0.064898229**; the next candidate scores **0.034566551**. This single artificial example validates model recovery under that configuration.
 
-Avoid repeating this screen without a concrete new derivation rule or independent clue that constrains a larger key space. The findings are intermediate evidence rather than an authoritative manuscript decryption.
+## Conclusions and experimental limits
+
+Neither screen finds a whole-corpus IoC appreciably beyond flat-rune noise; across the two bounded families the top score is 0.034568719. Both planted controls recover their exact parameterizations at rank one despite deliberate anti-doublet repair. This disfavors direct reuse of the 256-byte table under the specified key extraction, stream cipher, page/continuity convention and encoding.
+
+No candidate passes whole-manuscript plaintext verification because the results contain no language-like rune distribution. The finite search does **not** exclude arbitrary key derivation, unknown nonce/salt, drift induced by ciphertext collisions, byte-level transposition, keyed outer alphabets, mixed enciphering layers, or the possibility that the 256 bytes form an encrypted payload rather than a seed. No Monte Carlo family-wise p-value is claimed; the gap between positive and real scores is the principal calibration.
+
+Prior authors have already investigated directly repeating the table as a rune key and other simple interpretations. Only the bounded standard-stream-cipher-key hypothesis tested here is the contribution of these two screens. Further testing should start from a new constraint on actual key generation, rather than extending permutations and ciphers indefinitely.
