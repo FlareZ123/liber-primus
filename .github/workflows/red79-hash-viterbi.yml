@@ -11,4 +11,9 @@ jobs:
         with:
           node-version: '22'
       - name: Test hash KDF on original and seeded English GP plant
-        run: node sims/red79_hash_viterbi.cjs
+        run: node sims/red79_hash_viterbi.cjs > red79-hash-viterbi-results.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: red79-hash-viterbi-results
+          path: red79-hash-viterbi-results.json
+          retention-days: 30
