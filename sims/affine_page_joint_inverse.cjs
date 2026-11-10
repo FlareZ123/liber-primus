@@ -78,6 +78,101 @@ function optimize(pages,spectral,factor){
     train:train/(n*T)};
 }
 /**
+ * The unknown pad cancels identically when two synchronized pages are
+ * subtracted after their tentative affine-multiplier inverses:
+ *
+ * Y[i,t]-Y[j,t] = P[i,t]-P[j,t]+b[i]-b[j] (mod29).
+ *
+ * Optimize all pairwise page-offset likelihoods against the exact
+ * GP-English difference distribution, independent of the unknown K[t].
+ * Graph synchronization is anchored at page zero and uses three
+ * deterministic initializations. Infer K[t] from single-page marginals
+ * only after fitting the offsets.
+ *
+ * @param {number[][]} pages
+ * @param {{frequencies:number[],phaseReal:number[],phaseImag:number[]}} spectral
+ * @param {number} factor
+ */
+function optimizePairs(pages,spectral,factor){
+  const n=pages.length,prior=logq.map(Math.exp);
+  const difference=Array(MOD).fill(0);
+  for(let d=0;d<MOD;d++)for(let x=0;x<MOD;x++)
+    difference[d]+=prior[x]*prior[mod(x-d)];
+  const logDifference=difference.map(Math.log);
+  const transformed=pages.map((page,j)=>Int8Array.from(
+    Array.from({length:T},(_,t)=>mod(factor*spectral.frequencies[j]*page[2*t]))));
+  const pair=Array.from({length:n},()=>Array(n).fill(null));
+  for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){
+    const hist=new Uint16Array(MOD);
+    for(let t=0;t<T;t++)hist[mod(transformed[i][t]-transformed[j][t])]++;
+    const score=new Float64Array(MOD);
+    for(let delta=0;delta<MOD;delta++)
+      for(let d=0;d<MOD;d++)score[delta]+=hist[d]*logDifference[mod(d-delta)];
+    pair[i][j]=score;
+  }
+  const rng=rng32(0xa15f0a11+factor);
+  let chosen=null;
+  for(let restart=0;restart<4;restart++){
+    const shift=new Int8Array(n);
+    if(restart===0){
+      const ref=quantize(spectral.phaseReal[0],spectral.phaseImag[0]);
+      for(let j=1;j<n;j++)shift[j]=mod(factor*(
+        quantize(spectral.phaseReal[j],spectral.phaseImag[j])-ref));
+    }else for(let j=1;j<n;j++)shift[j]=Math.floor(rng()*MOD);
+    for(let round=0;round<15;round++){
+      let updates=0;
+      for(let j=1;j<n;j++){
+        let best=-Infinity,value=shift[j];
+        for(let b=0;b<MOD;b++){
+          let score=0;
+          for(let i=0;i<j;i++)score+=pair[i][j][mod(shift[i]-b)];
+          for(let i=j+1;i<n;i++)score+=pair[j][i][mod(b-shift[i])];
+          if(score>best){best=score;value=b;}
+        }
+        if(value!==shift[j])updates++;
+        shift[j]=value;
+      }
+      if(updates===0)break;
+    }
+    let pairScore=0;
+    for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)
+      pairScore+=pair[i][j][mod(shift[i]-shift[j])];
+    if(chosen===null||pairScore>chosen.pairScore)
+      chosen={shift:Array.from(shift),pairScore,restart};
+  }
+  const shift=chosen.shift,key=new Int8Array(T);
+  const inferKey=()=>{
+    for(let t=0;t<T;t++){
+      let best=-Infinity,value=0;
+      for(let k=0;k<MOD;k++){
+        let score=0;
+        for(let j=0;j<n;j++)score+=logq[mod(transformed[j][t]-shift[j]-k)];
+        if(score>best){best=score;value=k;}
+      }
+      key[t]=value;
+    }
+  };
+  for(let round=0;round<4;round++){
+    inferKey();
+    for(let j=1;j<n;j++){
+      let best=-Infinity,value=shift[j];
+      for(let b=0;b<MOD;b++){
+        let score=0;
+        for(let t=0;t<T;t++)score+=logq[mod(transformed[j][t]-b-key[t])];
+        if(score>best){best=score;value=b;}
+      }
+      shift[j]=value;
+    }
+  }
+  inferKey();
+  let train=0;
+  for(let j=0;j<n;j++)for(let t=0;t<T;t++)
+    train+=logq[mod(transformed[j][t]-shift[j]-key[t])];
+  return {factor,shift,key:Array.from(key),train:train/(n*T),
+    pairScore:chosen.pairScore,initialization:chosen.restart};
+}
+
+/**
  * @param {number[][]} pages
  * @param {ReturnType<typeof optimize>} hypothesis
  * @param {number[]} frequency
@@ -151,7 +246,7 @@ function decode(pages,knownPlain=null,actualMultipliers=null){
     reduced={frequencies:core.map(j=>spectrum.frequencies[j]),
       phaseReal:core.map(j=>spectrum.phaseReal[j]),
       phaseImag:core.map(j=>spectrum.phaseImag[j])},cases=[];
-  for(let u=1;u<MOD;u++)cases.push(optimize(selected,reduced,u));
+  for(let u=1;u<MOD;u++)cases.push(optimizePairs(selected,reduced,u));
   cases.sort((a,b)=>b.train-a.train);
   const winner=cases[0];
   const held=holdout(selected,winner,reduced.frequencies,
@@ -189,7 +284,7 @@ function run(nullCount=40){
     originalCorpus:{pages:49,runesPerPage:PREFIX,
       evenRuneOffsetsPerPage:75,oddRuneOffsetsPerPage:75,
       keyFitPagesPerOddOffset:25,unfittedEvaluationPagesPerOddOffset:24},
-    estimator:"Select 36 pages by even-offset coherence; 28 global multiplicative hypotheses, nine deterministic row/key coordinate steps; no original plaintext known",
+    estimator:"Select 36 train-only coherent pages; 28 multiplier factors; GP-English pair-difference key cancellation, 4 offset graph starts, 15 coordinate sweeps and key refinement; no original plaintext known",
     observed:real,
     null:{repetitions:nullCount,seed:"0xa15f701a",
       heldoutMean:nulls.reduce((a,b)=>a+b,0)/nulls.length,
@@ -204,4 +299,4 @@ function run(nullCount=40){
   };
 }
 if(require.main===module)console.log(JSON.stringify(run(Number(process.argv[2]||40)),null,2));
-module.exports={quantize,optimize,holdout,decode,run};
+module.exports={quantize,optimize,optimizePairs,holdout,decode,run};
