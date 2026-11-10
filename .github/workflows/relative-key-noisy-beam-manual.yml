@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: '22'
       - name: Previous noisy shared-key dictionary beam
-        if: ${{ inputs.probe != 'dual-section' }}
+        if: ${{ inputs.probe == 'noisy-beam' }}
         run: node sims/relative_key_noisy_dictionary_beam.cjs
       - name: Original dual-section difference inverse
         if: ${{ inputs.probe == 'dual-section' }}
