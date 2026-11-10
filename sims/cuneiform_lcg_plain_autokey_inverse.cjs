@@ -150,7 +150,7 @@ function run(){
  ranked.sort((a,b)=>b.score-a.score);
  const finalists=ranked.slice(0,24).map(x=>{
    const test=decrypt(pages,x.config);
-   assert.deepEqual(encrypt(test.decoded,x.config),pages,
+   assert.deepEqual(encrypt(test.decoded,x.config),pages.map(p=>({page:p.page,indices:p.indices})),
      "Original candidate must exactly re-encrypt every genuine GP rune");
    return{...x,heldout:test.heldout};
  });
