@@ -133,7 +133,7 @@ function randomPadCalibration(group,winner){
   const above=nullScores.filter(x=>x>=winner.value).length;
   return {sampleCount:500,median:nullScores[250],maximum:nullScores[499],
     perCandidateUpperTail:(above+1)/501,bonferroniUpperBound:
-      Math.min(1,(keyList.length*3*3*2*2*2)*(above+1)/501)};
+      Math.min(1,(keyList.length*8*2*2*2)*(above+1)/501)};
 }
 
 /**
