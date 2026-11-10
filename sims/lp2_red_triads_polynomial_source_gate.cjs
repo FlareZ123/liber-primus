@@ -106,6 +106,41 @@ function run() {
   const red=ink.pages.find(p=>p.page===53).red_spans[0];
   assert.deepEqual([red.start,red.length],[128,51]);
   assert.equal(2*(red.length+76),quotient.length);
+  // Independent 51×254 whole-book framing hypothesis. The original
+  // 12,956 ciphertext runes equal 51 red p53 runes × 254 source quotient
+  // symbols, plus 2 unspecified terminal/leading frame symbols.
+  // Exhaust the three edge positions for those 2 and both key signs,
+  // with both natural grid-column directions. This is NOT proof of a
+  // source-authenticated matrix cipher or segmentation.
+  const cipher=corpus.pages.filter(p=>p.page<=55).flatMap(p=>p.indices);
+  assert.equal(cipher.length,12956);
+  const rowKeys=page(53).indices.slice(128);
+  assert.equal(rowKeys.length,51);
+  const panelLength=rowKeys.length*quotient.length;
+  assert.equal(panelLength,12954);
+  assert.equal(cipher.length-panelLength,2);
+  const panelModels=[];
+  for(const [frame,start] of [["leading",2],["split",1],["trailing",0]])
+    for(const reverse of [false,true])
+      for(const rowSign of [-1,1])
+        for(const colSign of [-1,1]) {
+          const decoded=cipher.slice(start,start+panelLength).map((x,i)=>m(
+            x-rowSign*rowKeys[Math.floor(i/254)]-colSign*
+              quotient[reverse ? 253-i%254 : i%254]));
+          panelModels.push({frame,reverse,rowSign,colSign,ioc:ioc(decoded)});
+        }
+  assert.equal(panelModels.length,24);
+  panelModels.sort((x,y)=>y.ioc-x.ioc);
+  assert(panelModels[0].ioc<0.035);
+  // A real solved-page GP stream is encrypted into the exact source-derived
+  // 51×254 geometry and decoded losslessly with the matching fixed source.
+  const solved=page(57).indices;
+  const nativePlant=Array.from({length:panelLength},(_,i)=>solved[i%solved.length]);
+  const sourceCipher=nativePlant.map((x,i)=>m(x+
+    rowKeys[Math.floor(i/254)]+quotient[i%254]));
+  const nativeRecovered=sourceCipher.map((x,i)=>m(x-
+    rowKeys[Math.floor(i/254)]-quotient[i%254]));
+  assert.deepEqual(nativeRecovered,nativePlant);
   // Planted factor control and single-residue corruption.
   const synthetic=Array.from({length:254},(_,i)=>m(i*i+7*i+13));
   const plantedF=multiply(synthetic,factorDesc);
@@ -128,6 +163,11 @@ function run() {
     plaintextIocOfUnkeyedQuotient:ioc(quotient),
     p53RedPlusP55SourceRunes:red.length+76,
     positiveControl:"254/254 exact",
+    sourcePanelGeometry:"12956 = 51×254 + 2",
+    testedDirectSeparablePanelModels:panelModels.length,
+    strongestPanelIoc:panelModels[0],
+    weakestPanelIoc:panelModels.at(-1),
+    solvedPagePlantRecovered:panelLength,
     note:"Existing original-input pair gate excludes direct stationary 127-pair decoding"
   },null,2));
 }
