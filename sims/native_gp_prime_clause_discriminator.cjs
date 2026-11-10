@@ -22,7 +22,7 @@ const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const master=read("resources/transcriptions/liber_primus_master.txt");
 const lookup=new Map(corpus.runes.map((c,i)=>[c,i]));
 const gpPrime=corpus.prime;
-const originalPageIDs=[4,15,73];
+const originalSegmentIDs=[4,15,73];
 /** @param {number} n @returns {boolean} */
 function isPrime(n) {
   if(!Number.isSafeInteger(n)||n<2)return false;
@@ -36,7 +36,11 @@ function parseClauses(page) {
     .filter(clause=>clause.length>0);
 }
 const masterPages=master.split("%");
-const known=originalPageIDs.map(n=>parseClauses(masterPages[n]));
+const known=originalSegmentIDs.map(n=>parseClauses(masterPages[n]));
+const sourceIndices=(i)=>[...masterPages[i]].filter(x=>lookup.has(x)).map(x=>lookup.get(x));
+// The original transcription has one fewer segment than physical JPEG scans.
+assert.deepEqual(sourceIndices(16),corpus.pages[0].indices);
+assert.deepEqual(sourceIndices(73),corpus.pages[57].indices);
 assert.deepEqual(known.map(page=>page.map(clause=>clause.length)),
   [[10,17,24,23,7,76],[12,13,26,14,17,7],[7,30,30,28]]);
 const sums=known.map(page=>page.map(clause=>clause.reduce(
@@ -122,8 +126,8 @@ function main(){
   }
   const result={
     status:"source-authenticated plaintext score, not a decryption",
-    source:"exact original rune sequences, physical first-release scans 04, 15, and solved second-release scan 73",
-    pageIDs:originalPageIDs,
+    source:"exact master segments 4, 15, 73; segment 73 matches solved LP2 physical page 57 (JPEG 74)",
+    transcriptionSegmentIDs:originalSegmentIDs,
     physicalClausePrimeSums:sums,
     original:originalRank,
     plantedUnknownShift:{secretShift,highest:plantedRank[0],runnerUp:plantedRank[1]},
