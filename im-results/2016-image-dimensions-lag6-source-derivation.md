@@ -16,16 +16,6 @@ Reducing those two image dimensions against the manuscript's existing source str
 The contemporaneous thread does say “pi related,” but its surrounding posts connect this to the Pi.Mobi site whose domain begins with the decimal digits of the constant \(\pi\), plus references to timers and “Path.” It does **not** specifically instruct solvers to use the prime-counting function. A separate, retrospective operation nevertheless gives an exact numerical alignment: \(\pi(563)=103\), \(\pi(569)=104\); modulo 29 these are GP indices 16 and 17, T (Tir, prime 59) and B (Beorc, prime 61). Their prime-value gap is 2, and the adjacent S/T/B prime values are 53, 59, 61, so S→T is 6 and T→B is 2. The rune-poem glosses describe Sigel as a hope to seafarers, Tir as a sign that keeps its course, and Beorc as a tree ([Old English Rune Poem text and translation](https://norserunes.com/learn/rune-poems/old-english-rune-poem/); [Wikisource text](https://en.wikisource.org/wiki/Runic_and_Heroic_Poems_of_the_Old_Teutonic_Peoples/The_Runic_Poems/The_Anglo-Saxon_Runic_Poem)). This is an interesting semantic/numeric fit, but it is **post hoc** and must not be counted as independent evidence that the Pi.Mobi poster intended prime counting.
 
 
-This gives a compact S–T–B prime chain in the 29-rune alphabet:
-
-| Rune | GP index | Gematria prime | Role in the rule |
-|---|---:|---:|---|
-| S (Sigel) | 15 | 53 | \(53\bmod29=24\), the intercept |
-| T (Tir) | 16 | 59 | \(59-53=6\), the lag; also grid cell 51 |
-| B (Beorc) | 17 | 61 | \(61-59=2\), the slope magnitude |
-
-So the same three adjacent rune values give \(24\), \(6\), and \(2\): S supplies the residue used as intercept; S→T supplies the lag; T→B supplies the slope magnitude. The image dimensions independently repeat the two gaps (height minus width is 6; the selected grid values have ratio 2). The grid's first selected value, 59, is exactly the T rune's Gematria prime. This is a much tighter source chain than treating the constants as unrelated coincidences, although the prime-counting interpretation and the visually chosen 128-rune half remain hypotheses.
-
 
 The dimension difference is six. Together these source values specify the non-sign parameters of the already observed LP2 word-local relation:
 
