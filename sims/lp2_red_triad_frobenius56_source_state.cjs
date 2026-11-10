@@ -201,6 +201,25 @@ const plant=p57.indices,keyPlant=keyFromPair(7,19);
 const plantC=plant.map((x,i)=>mod(x+keyPlant[i%PERIOD]));
 assert.deepEqual(plantC.map((x,i)=>mod(x-keyPlant[i%PERIOD])),plant);
 
+// One source-fixed multiplicative use of the norm: one scalar per LP2 page.
+const normPageKeys=Array.from({length:56},(_,page)=>normKey[mod56(page-54)]);
+assert.equal(normPageKeys[54],25);
+assert.equal(normPageKeys[55],3);
+assert.ok(Array.from({length:28},(_,i)=>normPageKeys[i]===normPageKeys[i+28]).every(Boolean));
+const normPagePlain=pages.flatMap(page=>page.indices.map(value=>mod(value*inv(normPageKeys[page.page]))));
+const normPageScore=score(normPagePlain);
+let pageCursor=0,withinPageIoCPreserved=true;
+for(const page of pages){
+  const decoded=normPagePlain.slice(pageCursor,pageCursor+page.indices.length);
+  if(Math.abs(ioc(page.indices)-ioc(decoded))>1e-15)withinPageIoCPreserved=false;
+  pageCursor+=page.indices.length;
+}
+assert.ok(withinPageIoCPreserved);
+const p57NormKey=normKey[mod56(57-54)];
+const p57NormCipher=p57.indices.map(value=>mod(value*p57NormKey));
+const p57NormRecovered=p57NormCipher.map(value=>mod(value*inv(p57NormKey)));
+assert.deepEqual(p57NormRecovered,p57.indices);
+
 console.log(JSON.stringify({
   source:{pages:pages.length,runeBearingPages:pages.filter(p=>p.indices.length).length,
     runes:cipher.length,p54GlobalRuneOffset:p54Offset,p54FirstRune:p54.indices[0],
@@ -212,6 +231,13 @@ console.log(JSON.stringify({
   solvedP57:{...score(p57.indices),preview:preview(p57.indices)},
   fixedSourceProjections:{tested:fixed.length,best:fixed[0],all:fixed},
   allSecretLinearObservationPads:exhaustive,
+  sourceFixedMultiplicativeNormPageKey:{
+    keyByPage:normPageKeys,p54Key:normPageKeys[54],p55Key:normPageKeys[55],period28:true,
+    candidate:{...normPageScore,ioc:ioc(normPagePlain),preview:preview(normPagePlain)},
+    deltaFromRaw:normPageScore.scorePerLetter-raw.scorePerLetter,
+    withinPageIoCPreserved
+  },
+  multiplicativeNormPositiveControl:{p57PageKey:p57NormKey,solvedP57Runes:p57.indices.length,exactRecovery:true},
   positiveControl:{solvedP57Runes:plant.length,exactRecovery:true},
   conclusion:'No authentic LP2 plaintext or key. The exact order-56 twisted-Frobenius state is a source-motivated hypothesis; the 840-key family gives no meaningful language gain (one global key edges raw by only about 0.00104 nats per letter and remains gibberish).'
 },null,2));

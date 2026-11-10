@@ -54,12 +54,21 @@ The canonical source-fixed trace/norm additive and affine projections were also 
 
 A 95-rune solved-p57 plant encrypted and decrypted exactly under a synthetic member of the 840-key family. All candidate transformations re-encrypt exactly by construction. That is an implementation check, not evidence that a candidate key is authentic.
 
+## Source-fixed multiplicative norm page key
+
+The same field construction gives a second, distinct output rule: assign one multiplicative GP29 key to each page using the norm of its source-anchored field state, k_p = N(T^(p-54)(24,0)) mod 29. This is the most direct page-level use of the order-56 state cycle because LP2 has 56 pages and p54 supplies the Ac24 anchor. The resulting norm sequence starts **25, 3**, repeats every **28** pages, and has no fitted phase or scale. Test the standard multiplicative inverse P = C * k_p^(-1) mod 29 on all 12,956 original LP2 runes.
+
+The result is negative: the raw Duko Round 27 score is **−17.131577** per letter (IoC **0.034478**); the multiplicative page-norm output scores **−17.199143** (IoC **0.034456**), a **−0.067566** change. The 95-rune solved-p57 positive control, encrypted and decrypted with its corresponding source-cycle page key (**18**), recovers exactly. As expected for a nonzero scalar multiplication, within-page IoC is invariant; only cross-page symbol labels change.
+
+**Decision:** retire this direct source-fixed multiplicative norm page-key. This does not exclude other nonlinear outputs, a different state clock, or a non-GP use of the field element. Reproduction is included in [the existing field SFT](../sims/lp2_red_triad_frobenius56_source_state.cjs).
+
 ## Interpretation and limits
 
 This test retires only:
 
 1. A direct additive GP29 pad whose stream is any nonzero linear observation of T(x)=u x²⁹, under the exhaustive 840-key global or page-reset clock.
 2. The source-fixed trace/norm additive and affine projections, under the tested global-rune, page-reset, and one-state-per-page clocks.
+3. The direct source-fixed multiplicative norm page key, one scalar per page, under the p54-anchored 56-page clock.
 
 It does **not** exclude other nonlinear output functions, nonlinear state transitions, non-GP intermediate registers, different source-derived clocks, or a different use of the red polynomials. The exact order-56 construction is a hypothesis, not a recovered Cicada mechanism. The apparent 56-page and norm-79 matches must not be multiplied as independent probabilities.
 
