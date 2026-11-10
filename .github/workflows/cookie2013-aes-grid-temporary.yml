@@ -1,0 +1,13 @@
+name: Historical onion cookie AES grid smoke (temporary)
+on:
+  workflow_dispatch:
+jobs:
+  cookie-grid:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/cookie2013_aes_grid.cjs
