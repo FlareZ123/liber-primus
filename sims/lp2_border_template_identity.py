@@ -48,28 +48,29 @@ def digest(pixels: np.ndarray) -> str:
 def run() -> dict:
     cv2.setNumThreads(1)
     source_scans = sorted({scan for group in GROUPS.values() for scan in group["scans"]})
-    originals = {scan: image(scan) for scan in source_scans}
     findings = {}
     for title, group in GROUPS.items():
         scans = group["scans"]
         hashes = {}
-        for side in group["sides"]:
-            reference = crop(originals[scans[0]], side)
-            reference_hash = digest(reference)
-            for scan in scans[1:]:
-                current = crop(originals[scan], side)
-                if not np.array_equal(current, reference):
-                    raise AssertionError(
-                        f"{title}/{side}: scan {scan} differs from {scans[0]}"
-                    )
-                assert digest(current) == reference_hash
-
-            # A one-channel, one-pixel change is detected by the same check.
-            changed = reference.copy()
-            changed[0, 0, 0] ^= 1
-            assert not np.array_equal(changed, reference)
-            assert digest(changed) != reference_hash
-            hashes[side] = reference_hash
+        references = {}
+        for scan in scans:
+            pixels = image(scan)
+            for side in group["sides"]:
+                current = crop(pixels, side)
+                if side not in references:
+                    # Keep one small immutable decoded-pixel reference per side.
+                    references[side] = current.copy()
+                    hashes[side] = digest(current)
+                    changed = current.copy()
+                    changed[0, 0, 0] ^= 1
+                    assert not np.array_equal(changed, references[side])
+                    assert digest(changed) != hashes[side]
+                else:
+                    if not np.array_equal(current, references[side]):
+                        raise AssertionError(
+                            f"{title}/{side}: scan {scan} differs from {scans[0]}"
+                        )
+                    assert digest(current) == hashes[side]
 
         findings[title] = {
             "original_scans": scans,
