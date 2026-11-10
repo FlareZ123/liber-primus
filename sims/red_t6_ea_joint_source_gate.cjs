@@ -144,6 +144,31 @@ function decrypt(ciphertext,secret){
   for(let i=0;i<N;i++)p.push(table(ciphertext,i,secret[i]).indexOf(ciphertext[i]));
   return p;
 }
+
+/** Key-independent original plaintext symbols implied by the exact two-reserve map. */
+function originalFixedSymbols(){
+  const observed=sourceMarkers(C);
+  const s=new Set(observed.s);
+  let collisions=0,collisionEA=0,relocated=0;
+  const relocatedAt=[];
+  for(const i of eligible){
+    const t=mod(24-2*C[i-6]);
+    if(i>0&&!first.has(i)&&t===C[i-1]){
+      collisions++;
+      collisionEA+=Number(C[i]===t);
+      if(C[i]===mod(t+1)){relocated++;relocatedAt.push(i);s.add(i);}
+    }
+  }
+  const out={EA:observed.ea.size,S:s.size,
+    fixedOriginalPositions:observed.ea.size+s.size,
+    collisionStates:collisions,collisionEA,collisionRelocatedS:relocated,
+    relocatedSOffsets:relocatedAt};
+  assert.deepEqual(out,{EA:86,S:81,fixedOriginalPositions:167,
+    collisionStates:33,collisionEA:1,collisionRelocatedS:2,
+    relocatedSOffsets:[889,9101]});
+  return out;
+}
+
 /** @param {number} n */
 function run(n=600){
   assert(Number.isSafeInteger(n)&&n>=100);
@@ -190,7 +215,7 @@ function run(n=600){
     out.push(entry);
   }
   return {status:"conditional source-register test, no unknown plaintext or authentic key",
-    observed:{runes:N,words:words.length,eligible:eligible.size,...actual},
+    observed:{runes:N,words:words.length,eligible:eligible.size,...actual,conditionalExactReservedSymbols:originalFixedSymbols()},
     sourceModels:{trialsPerRegister:n,sourceWordBoundariesIndependentOfPrintedWords:true,
       results:out},
     limitation:"GP EA and S channel assignments are postselected; arbitrary unknown secret rotation bytes are not recovered; simulated forward cipher exhibits 29 invertible output labels per state; model is only a viable hypothesis"};
