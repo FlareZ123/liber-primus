@@ -40,6 +40,14 @@ function canonicalCycle(indices) {
   return rotations[0];
 }
 
+function stateAfter(start, sign, steps) {
+  let index = start;
+  for (let i = 0; i < steps; i++) {
+    index = (index + sign * ((GP[index][1] - 1) % GP.length) + GP.length * GP.length) % GP.length;
+  }
+  return index;
+}
+
 function basinSummary(sign) {
   const basins = new Map();
   for (let start = 0; start < GP.length; start++) {
@@ -61,6 +69,7 @@ const plus = walk('Ac', +1);
 const minus = walk('Ac', -1);
 const plusBasins = basinSummary(+1);
 const minusBasins = basinSummary(-1);
+const plusEthelAtFive = GP.filter((_, start) => stateAfter(start, +1, 5) === 22).map(([name]) => name);
 
 assert.deepEqual(plus.path.map(x => x.name),
   ['Ac', 'Rad', 'Eolh', 'Thorn', 'Gyfu', 'Ethel', 'Beorc', 'Mann']);
@@ -71,6 +80,7 @@ assert.deepEqual(minus.path.map(x => x.name),
   ['Ac', 'Sigel', 'Ing', 'Ur', 'Ear', 'Wynn', 'Eh', 'Is', 'Nyd']);
 assert.deepEqual(plusBasins.map(x => x.basinSize), [1, 8, 20]);
 assert.deepEqual(minusBasins.map(x => x.basinSize), [1, 28]);
+assert.deepEqual(plusEthelAtFive, ['Cen', 'Ethel', 'Ac', 'Ior']);
 
 console.log(JSON.stringify({
   rule: 'i_next = i + sign * (prime[i] - 1) mod 29',
@@ -79,4 +89,5 @@ console.log(JSON.stringify({
   minus,
   plusBasins,
   minusBasins,
+  plusEthelAtFive,
 }, null, 2));
