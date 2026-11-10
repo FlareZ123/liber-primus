@@ -320,6 +320,62 @@ for (let source = 0; source < 3; source++) {
   });
 }
 
+// IMPORTANT scope check: the observed T fixes ciphertext rune H. If an extra
+// unknown *post*-rotor substitution is allowed, the output fixed point can be
+// any of 29 ciphertext glyphs. Scan all 29*29 possible cipher/plain fixed
+// symbols, not just the intended T index8, and apply the identical models.
+// This wider family is less sharply excluded by the native-source controls.
+const byCipherRune = Array.from({length: 29}, (_, rune) => counts(original, rune));
+function freeOutputBestFit(histogram) {
+  let best = {statistic: Infinity};
+  for (let cipherRune = 0; cipherRune < 29; cipherRune++) {
+    for (const m of allProfiles) {
+      let statistic = 0;
+      for (let i = 0; i < 4; i++)
+        statistic += (histogram[cipherRune][i] - m.expected[i]) ** 2 /
+          Math.max(1, m.variance[i]);
+      if (statistic < best.statistic)
+        best = {statistic, cipherRune, plaintextSymbol: m.symbol, source: m.source};
+    }
+  }
+  return best;
+}
+const freeOutputOriginal = freeOutputBestFit(byCipherRune);
+let freeOutputRng = 0x395D2331;
+function freeOutputRandom() {
+  freeOutputRng = (Math.imul(freeOutputRng, 1664525) + 1013904223) >>> 0;
+  return freeOutputRng / 0x100000000;
+}
+const freeOutputNull = [];
+for (let source = 0; source < 3; source++) {
+  const pool = poolByLength(half[source][1], references[source]);
+  const scores = [];
+  for (let trial = 0; trial < 350; trial++) {
+    const plaintextFixed = Math.floor(freeOutputRandom() * 29);
+    const cipherFixed = Math.floor(freeOutputRandom() * 29);
+    const otherOutput = [...Array(29).keys()].filter(x => x !== cipherFixed);
+    const histogram = Array.from({length: 29}, () => [0, 0, 0, 0]);
+    for (const [length, nWords] of lengths) {
+      const words = pool.get(length);
+      for (let i = 0; i < nWords; i++) {
+        const word = words[Math.floor(freeOutputRandom() * words.length)];
+        for (let j = 0; j < length; j++) {
+          const c = word[j] === plaintextFixed ? cipherFixed :
+            otherOutput[Math.floor(freeOutputRandom() * 28)];
+          histogram[c][bucket(length, j)]++;
+        }
+      }
+    }
+    scores.push(freeOutputBestFit(histogram).statistic);
+  }
+  const ordered = [...scores].sort((a, b) => a - b);
+  freeOutputNull.push({
+    source: sourcePaths[source], count: scores.length,
+    median: ordered[175], maximum: ordered.at(-1),
+    exceedances: scores.filter(x => x >= freeOutputOriginal.statistic).length
+  });
+}
+
 // Synthetic test: any secret global outer permutation can relabel the fixed
 // plaintext symbol, and any per-rune rotor exponent is allowed. The four
 // ciphertext buckets must equal the plaintext source symbol's buckets.
@@ -374,6 +430,11 @@ console.log(JSON.stringify({
     originalStatistic: originalSectionScore,
     sectionFits: originalSectionFits,
     null: sectionNull
+  },
+  arbitraryPostRotorRelabel: {
+    original: freeOutputOriginal,
+    outputFixedPointUnknown: true,
+    control: freeOutputNull
   },
   plantChecks,
   limits: 'English-like native-GP words with canonical word boundaries; no model-independent ciphertext solution'
