@@ -42,6 +42,8 @@ This is an exact source-to-source necessary condition for authentic GP28 prose a
 | Shakespeare source-window median | 786 (6.1599%) | 779 (6.1914%) |
 | Gibran source-window median | 792 (6.2069%) | 737 (5.8576%) |
 
+An additional **author-native language control** comes from the repository's editor-normalized, previously solved Cicada prose in `resources/liber-primus/lp1-plaintext-reference.txt`, the same native solved source used by Agent 43. It contains **3,736 GP runes**, including 30 EA; after removing EA it has **3,706 GP28 symbols**. Its period-55 equality rate is **242/3,651 = 6.6283%** and its period-233 rate is **239/3,473 = 6.8817%**. Both are considerably above the original 3.5% and consistent with the independent literary controls. This native register is shorter than 12,815 symbols and so provides **empirical author-style evidence**, rather than another exhaustive full-book-source exclusion. Its editorial normalization and mixture of solved sections should not be treated as a historically exact LP2 plaintext prior.
+
 The checked-in Shakespeare source, converted with the established GP tokenizer and omitting GP-EA, has **217,167 GP28 symbols**. Every one of the **204,353** possible full-manuscript-length windows is scanned without skipping any offsets. The checked-in Gibran *Prophet* reference has **62,508 GP28 symbols** and **49,694** possible windows. The exhaustive sliding-window test updates each window's collision count in constant time, avoiding approximate sampling or fitted search.
 
 **Zero of the 254,047 candidate source windows** from either reference achieves the original LP2 equality count at either period. The original gaps from even the closest literal-source match are: 269 and 268 equal pairs for Shakespeare at periods 55 and 233; 277 and 240 for Gibran. These are deterministic finite exclusions of **entire original-source copies** for this declared architecture. They make no assumption of random independence between overlapping source windows and require no post-hoc p-value.
@@ -59,7 +61,7 @@ The deficit relative to ordinary GP English occurs in both halves, instead of be
 
 [`sims/gp28_fibonacci_55x233_collision_gate.cjs`](../sims/gp28_fibonacci_55x233_collision_gate.cjs) constructs **four** independent tests: both source books under each of the two periods. It chooses **55 or 233 independent secret 28-way random permutations**, enciphers 12,815 actual source-GP28 symbols in their positions, reconstructs all **12,956** page-shaped GP29 runes while retaining the 86 exact original repeat-marker locations and 55 physical page IVs, and then completely recovers the secret GP28 plaintext using the synthetic inverses. All **four** plants recover **12,815/12,815** original source symbols and reproduce their exact source lag-collision counts. The original source fails these same necessary conditions without requiring any attempt to fit the permutations.
 
-The script was run on the exact checked-in canonical corpus and both source texts, and all original, source-count, inverse and forward-encryption assertions passed.
+The script was run on the exact checked-in canonical corpus and both source texts plus the editor-normalized solved Cicada reference, and all original, source-count, inverse and forward-encryption assertions passed.
 
 ## Inference and unresolved possibilities
 
