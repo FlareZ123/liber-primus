@@ -12,6 +12,7 @@ on:
           - source
           - coordinate
           - red32
+          - pgp4096
 
 jobs:
   source-prime-inverse:
@@ -80,3 +81,16 @@ jobs:
       - name: Original red32 base60 AES192 source-key, grid and rune inverses
         shell: pwsh
         run: node sims/red32_base60_aes192_inverse.cjs
+
+  original-signing-key-modular-square:
+    if: ${{ inputs.mode == 'pgp4096' }}
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Authentic 2012 signing modulus original and GP-native plant challenge
+        shell: pwsh
+        run: node sims/cicada_pgp_modulus_square_inverse.cjs
