@@ -15,6 +15,25 @@ The two words `ᛞᛄᚢ` and `ᛒᛖᛁ` occur **exactly twice each**, together
 
 Over all 2,896 actual words and all eligible adjacent within-section two-word positions, **this is the sole repeated ordered two-word type of *any* length**. In particular, the six matching runes are authentic and the lexical boundaries are both `3|3`. The preceding assertion about the seventh rune remains false.
 
+## Source-exact 3⁸/81-square alignment and its cryptanalytic test
+
+The six authentic rune glyphs form a **numerically exact internal terminal marker**, a detail previously absent from this report. In the full original unresolved ciphertext stream, the first copy occupies zero-based global positions **6,555–6,560**, so the position immediately after it is **6,561 = 3⁸ = 81²**. The final copy occupies positions **12,950–12,955**, precisely the manuscript's last six ciphertext runes. Removing the first 6,561 symbols leaves **6,395 = 80²−5** ciphertext runes. The **first three physical LP2 pages** independently contain **262+266+201 = 729 = 3⁶ = 9×81** original runes. This suggests the testable geometric reading of a complete 81×81 first block (whose first 9 rows are the first 3 pages) and a second 80×80 block with five unspecified terminal cells. The block split passes through physical page27's second printed line; there is no separately authenticated cipher reset at this position.
+
+**These squares are derived after recognizing the six-rune duplication.** This is an exact new organization of source coordinates and a hypothesis-generating observation, with no selection-adjusted evidence that Cicada chose square matrix ciphers. It does not change the prior section- and page-conditioned permutation nulls for the repeated words.
+
+A direct, mathematically exact model-family test now uses [the source-square Fourier SFT](../sims/lp2_81square_bookend_fourier.py) and [passing Windows CI run 42825288380](https://github.com/FlareZ123/liber-primus/actions/runs/42825288380). For every possible row and column additive key over `Z/29Z`, Fourier character matrices of a cipher `C[r,c]=P[r,c]+u[r]+v[c]` differ from plaintext matrices only by unit-modulus diagonal left/right multipliers, so their singular values are **exactly key-independent**. The same theorem works for a predecessor-exclusion GP28 nonzero-step rank with observed repeat markers and page IV cells zero-masked. The Fourier harmonic **k=4** is chosen from the *independently encoded Shakespeare GP prior*, never fitted to original ciphertext. Native GP controls comprise 200 Shakespeare and 200 Gibran authentic prose windows per geometry. The synthetic secret-row/column-key plants exactly decode/reencrypt all original-shaped valid cells and preserve the invariant numerically.
+
+| Source-specified geometry/register | Original Fourier top singular value | Original shuffled-histogram median | Lowest authentic GP-prose control |
+| --- | ---: | ---: | ---: |
+| 81×81, direct GP29, 6,561 runes | **17.8402** | 17.3490 | **26.9946** |
+| 81×81, GP28 nonzero step, 6,492 valid cells | **17.4788** | 17.2635 | **25.8676** |
+| 80×80 five-terminal-unknown, direct GP29, 6,395 printed runes | **17.2396** | 17.2500 | **26.6886** |
+| 80×80, GP28 nonzero step, 6,322 valid cells | **17.5384** | 17.09597 | **25.6204** |
+
+**All four models have 0/400 native GP-English windows with a Fourier score as low as the original**, despite the arbitrary secret separable key. The original scores remain near histogram-preserving spatial shuffles (250 per model). **An additional exact missing-five obstruction** applies to the direct 80×80 case: filling the five unspecified terminal cells with *any* unit-modulus GP symbols changes the largest singular value by at most `√5 ≈ 2.23607` (the Frobenius bound on the five-cell difference matrix). The maximum possible fully completed score is therefore **17.23960+√5 ≈ 19.47567**, still below every authentic GP prose window in the tested reference set. The missing cells cannot rescue this particular model under its specified placement; no guessed filler rune or fitted key was needed.
+
+This **rules against native-GP-English plus 81×81 or terminal-five-omitted 80×80 separable additive row/column pads** in these exact geometries, even with arbitrary keys and the declared hypothetical EA markers. The original cipher may employ a nonlinear layer, hidden transposition, changing state, binary or non-English intermediate, or different framing. The 6561 boundary is not an authenticated historical encryption boundary and no original plaintext is recovered.
+
 ## Matched section-local permutation test
 
 To measure how exceptional the *pairing*, rather than just repeated individual words, is, `sims/lp2_repeated_wordpair_probe.cjs` shuffles whole ciphertext words **only among slots of the same word length inside the same of eight sections**. Each shuffle preserves:
