@@ -56,6 +56,19 @@ The candidate also predicts about **44.47** word-internal lag-six identical-rune
 
 **This generator does not satisfy the full known LP2 ciphertext profile.** It should not be promoted as the cipher or a means to recover the underlying plaintext. Its strongest use is as a small explicit demonstration that a **sparse 80%-rate collision-repair channel** can create the lag-six anomaly while preserving nearly uniform ciphertext and suppressing immediate repeats across words.
 
+## Constructive information-loss bound
+
+Even setting aside the lag-five failure, the published M1 repair mechanism **cannot be a universally invertible cipher by itself**. The [independent executable proof](../sims/lag6_repair_preimage_bound.cjs), successfully run as part of [CI 42764644445](https://github.com/FlareZ123/liber-primus/actions/runs/42764644445), identifies **79 of the 80** actual lag-six affine matches where the emitted rune differs from its immediate predecessor. Let \(Y_i=T(C_{i-6})\ne C_{i-1}\) at any such site. Holding the past *output* fixed, a collision-approval bit of 1 and either of these two distinct raw input runes produces the identical \(C_i=Y_i\):
+
+* raw \(U_i=Y_i\): the rune is emitted directly, with no collision;
+* raw \(U_i=C_{i-1}\): a collision is approved and rewritten as \(Y_i\).
+
+Since both cases emit the same rune, subsequent feedback is identical. The code constructs a **single fixed collision-approval mask** with all 79 such bits set to 1; it verifies that the original raw stream, each of 79 individually modified raw streams, and the stream with all 79 changes emit *exactly the observed 12,956 LP2 runes*. Every subset gives another valid raw preimage with that same mask. Consequently, **one legitimate fixed approval schedule admits at least \(2^{79}\approx6.04\times10^{23}\) distinct raw input strings** mapping to this ciphertext. The bound is constructive and does not depend on assumed language frequencies. It is a statement about this candidate mechanism, **not** proof that the actual LP2 cipher used it.
+
+Under the stochastic iid uniform-input model with independent collision-repair probability \(p=0.807487...\), and treating the approval decisions as unobserved, the posterior probability that each ambiguous affine output originated from a repaired collision is \(p/(1+p)=0.4467458\). The corresponding binary conditional entropy is **0.9918015 bit per site**, or approximately **78.35 bits** across the 79 sites, apart from any other ambiguous outputs. This entropy figure is conditional on the specified iid model; any external message redundancy can reduce linguistic ambiguity, and a separate repair/erasure side channel could restore exact decoding.
+
+A stream key whose values are *known* does not generally repair this many-to-one information loss: additive stream decryption maps each of the distinct raw inputs to a distinct underlying plaintext. A lossless implementation requires additional state, redundant coding, or auxiliary collision information. The mechanism thus provides a useful *forward* explanation for the affine anomaly while leaving the actual plaintext-recovery architecture fundamentally underspecified.
+
 ## Consequence for cryptanalysis
 
 The original lag-six anomaly need not imply a dense six-state cipher or a six-period keystream. A stateful rare-event rewrite could reproduce it. For comparison, the separately tested 3301-residue additive recurrence [failed a positive-control-backed held-out plaintext attack](affine-3301-keystream-heldout.md).
