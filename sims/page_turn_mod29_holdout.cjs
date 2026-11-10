@@ -148,6 +148,43 @@ for (let trial = 0; trial < 30000; trial++)
     qAll).z >= bestAll.z);
 assert.deepEqual([bestAll.start, bestAll.length,
   bestAll.hits, fullExtreme], [12, 3, 15, 681]);
+/**
+ * More conservative page-order control: keep each physical section's first
+ * and final page pinned, permute only its internal whole-page order. This
+ * preserves all section-to-section transitions and their source markers.
+ */
+function sectionPinnedNull(draws = 100000) {
+  const chunks = [[0,2],[3,7],[8,14],[15,22],[23,26],
+    [27,32],[33,39],[40,52],[53,54]];
+  const covered = chunks.flatMap(([a,b]) =>
+    Array.from({length:b-a+1},(_,i)=>a+i));
+  assert.deepEqual(covered,ids);
+  const keep = d => d >= 12 && d <= 17;
+  const observed = chunks.reduce((sum,[a,b]) => {
+    for(let j=a+1;j<=b;j++)sum+=Number(keep(difference(j-1,j)));
+    return sum;
+  },0);
+  assert.equal(observed,20);
+  const random=rng(0x15007929);
+  let sum=0, extreme=0;
+  for(let trial=0;trial<draws;trial++) {
+    let n=0;
+    for(const [a,b] of chunks){
+      const order=ids.slice(a,b+1);
+      for(let j=order.length-2;j>1;j--) {
+        const k=1+random()%j;
+        [order[j],order[k]]=[order[k],order[j]];
+      }
+      for(let j=1;j<order.length;j++)
+        n+=Number(keep(difference(order[j-1],order[j])));
+    }
+    sum+=n;extreme+=Number(n>=observed);
+  }
+  return {withinSectionEdges:46,observed,draws,mean:sum/draws,
+    extreme,upperTail:(extreme+1)/(draws+1)};
+}
+const sections=sectionPinnedNull();
+assert.deepEqual([sections.observed,sections.extreme],[20,1658]);
 const result = {
   classification: 'retrospective ciphertext layout anomaly, not decryption',
   physicalPages: 55, runeCount: flat.length, pageTransitions: 54,
@@ -161,7 +198,8 @@ const result = {
     upperTail: (extreme + 1) / (draws + 1),
     zeroStepConstrained: {draws: noZero, extreme: noZeroExtreme,
       upperTail: (noZeroExtreme + 1) / (noZero + 1)},
-    localBoundaryDisplacements: jitter}
+    localBoundaryDisplacements: jitter},
+  sectionPinnedControl: sections
 };
 console.log(JSON.stringify(result, null, 2));
 module.exports = {difference, select, localJitter};
