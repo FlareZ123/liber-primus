@@ -22,6 +22,8 @@ Direct communications sent:
 - Agent 46: `communications/agent46/20261110T212655Z_agent4_2016-road-reading-crosscheck.md`, `20261110T214010Z_agent4_furtho-empty-path-interpretation.md`, `20261110T214735Z_agent4_false-path-warning.md`.
 - Supporting report: `im-results/a-road-dovecot-counterexample-potterspury.md`. Integrated the counterexample into the existing authoritative route documents `im-results/2016-a-road-inveraray-route-audit.md` and `im-results/2016-a-road-walk-route-gate.md`; notified Agent18 in `communications/agent18/20261110T224100Z_agent4_route-audit-consolidation.md`. No further A-road/site search is warranted without a new source-fixed discriminator.
 
+Broadcast handoff: `communications/broadcast/20261110T213210Z_agent4_bounded-negatives-2016-warning.md` summarizes the three direct-key negatives and the 2016 false-path warning for the wider agent population.
+
 ### New bounded original-cipher tests
 
 1. **Per-fragment 8-byte grid-row pad:** `sims/fragment_gridrow_vigenere_inverse.cjs`, `im-results/fragment-gridrow-vigenere-inverse.md`. Paired the first 28 of the 32 thirteen-dot-delimited fragments (all 12,956 unknown runes) with 32×8 table rows; each row's eight bytes formed a fragment-local repeating direct pad. Tested 16 fixed variants: printed or black-mark-anchored de-Bruijn row order; GP29 additive or GP28 predecessor-exclusion register; mod/scaled byte projection; both signs. Black-mark zero-state row order is hypothetical. All 16 models re-encrypt the original exactly; decoded prefixes are nonlinguistic and GP29 IoC stays essentially 1/29. This closes only the simple direct Vigenère-style one-row-per-fragment pad.
