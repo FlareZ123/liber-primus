@@ -302,9 +302,104 @@ function serpentinePermutationGate(grid,order,reverseOdd) {
     globalMaximum:largest};
 }
 
+/**
+ * Source-visible 13/31 ornament meanings introduce genuine ambiguity into
+ * the earlier historical-PATIENCE low5 partial match:
+ *   13 is the number of dots on each punctuation stencil;
+ *   29 is the first unused GP ordinal after 29 rune types;
+ *   31 is the all-solid 11111 five-dot ornament code.
+ * In parallel the printed table's two supported decoders are radix60
+ * and radix59 without lowercase f. These six source-constrained variants
+ * are frozen independently of the original alignment scores.
+ *
+ * The null enumerates all 8! column permutations jointly, preserving
+ * every source row and event position. The family-adjusted exact fraction
+ * counts permutations with a minimum six-variant upper-tail at least as
+ * favorable as the historic PATIENCE order's minimum. This conditional
+ * permutation measure does not account for historical hypothesis selection.
+ *
+ * @param {number[]} historical Fixed original PATIENCE order.
+ * @returns {{observed:object[],conditionalFamilywiseTail:number,
+ *   familywiseAtLeast:number,permutations:number}}
+ */
+function ornamentSelectedMarkerGate(historical) {
+  const candidates=[];
+  for(const [codec,grid] of Object.entries({
+    base60:rows,base59:rows59
+  })) for(const marker of [13,29,31]) {
+    const source=stream.map(e=>e.kind?e.value:marker);
+    const matrix=Array.from({length:8},(_,eventColumn)=>
+      Array.from({length:8},(_,gridColumn)=>{
+        let count=0;
+        for(let r=0;r<32;r++)
+          count+=Number(source[8*r+eventColumn]===
+            (grid[r][gridColumn]&31));
+        return count;
+      }));
+    const score=p=>p.reduce((v,col,j)=>v+matrix[j][col],0);
+    const allScores=allOrders.map(score);
+    const histogram=new Uint16Array(257);
+    for(const n of allScores)histogram[n]++;
+    const tail=new Uint32Array(257);
+    for(let n=256,running=0;n>=0;n--){
+      running+=histogram[n];
+      tail[n]=running;
+    }
+    const observedScore=score(historical);
+    candidates.push({codec,marker,observedScore,
+      atLeastAsHigh:tail[observedScore],allScores,tail});
+  }
+  const observed=candidates.map(c=>({
+    codec:c.codec,marker:c.marker,matched:c.observedScore,
+    atLeastAsHigh:c.atLeastAsHigh,permutations:allOrders.length,
+    conditionalTail:c.atLeastAsHigh/allOrders.length
+  }));
+  assert.deepEqual(observed.map(c=>[c.matched,c.atLeastAsHigh]),
+    [[15,776],[15,135],[14,274],
+      [11,14458],[13,5027],[10,15937]]);
+
+  const originalMinTail=Math.min(...observed.map(c=>c.atLeastAsHigh));
+  let familywiseAtLeast=0;
+  for(let i=0;i<allOrders.length;i++){
+    if(candidates.some(c=>c.tail[c.allScores[i]]<=originalMinTail))
+      familywiseAtLeast++;
+  }
+  assert.equal(familywiseAtLeast,315);
+  assert.equal(originalMinTail,135);
+
+  // Fully original-layout positive: the visible 31 marker is literal and
+  // the PATIENCE source column order is known only to the generator.
+  const planted=syntheticAlignedGrid(historical);
+  for(let r=0;r<32;r++)for(let j=0;j<8;j++){
+    if(stream[8*r+j].kind===0) {
+      const col=historical[j];
+      planted[r][col]=(planted[r][col]&224)|31;
+    }
+  }
+  const plantSource=stream.map(e=>e.kind?e.value:31);
+  const plantScore=p=>{
+    let matched=0;
+    for(let r=0;r<32;r++)for(let j=0;j<8;j++)
+      matched+=Number((planted[r][p[j]]&31)===
+        plantSource[8*r+j]);
+    return matched;
+  };
+  assert.equal(plantScore(historical),256);
+  assert.equal(allOrders.filter(p=>plantScore(p)===256).length,1);
+  return {source:"original tree masks 13/31; original 29-rune GP alphabet",
+    candidateCodecs:["base60","base59"],markerCodes:[13,29,31],
+    columnAssignmentNull:"all 40320 exact 8-column permutations",
+    observed,minimumUnadjustedTail:originalMinTail/allOrders.length,
+    familywiseAtLeast,permutations:allOrders.length,
+    conditionalFamilywiseTail:familywiseAtLeast/allOrders.length,
+    plantedMarker31:{matches:256,uniqueHistoricalPermutation:true},
+    decision:"Historical 15/256 partial match is tied to radix60 and marker29; no authenticated key or plaintext"};
+}
+
 function run() {
   const historical=historicOrder();
   const order=historical.order;
+  const ornamentMarkerRobustness=ornamentSelectedMarkerGate(order);
   const tests={
     entireLow5:measure(rows,0,32,"low5",order),
     first16Low5:measure(rows,0,16,"low5",order),
@@ -390,6 +485,7 @@ function run() {
     allSecretSymbolFunctionBounds:unknownMaps,
     allEventOrdersAndAnyFixedAlphabetCapacity:{base60:orderFree,base59:orderFree59},
     originalMirrorSerpentineCounterchecks:snakes,
+    ornamentMarkerAndRadixAmbiguity:ornamentMarkerRobustness,
     plantedPositive:{
       score:controls.syntheticTrueSource.historicalScore,
       atLeastAsHigh:controls.syntheticTrueSource.atLeastAsHigh,
