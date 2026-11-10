@@ -33,6 +33,25 @@ Under the explicit null that 256 grid bytes were drawn independently and uniform
 
 Consequently, **the empty lowercase-f column alone cannot statistically select one codec against the other under the uniform-byte model**. If an investigator invokes the rarity of absent lowercase `f` to confirm the conventional base60 format, the same observation is expected by construction under radix59, which instead pays an identical likelihood cost for the absent `4G..4J` forms. This is a structural ambiguity in interpreting the published table, not evidence of ciphertext meaning. The exact support argument requires no independence assumption about printed glyph *positions* for the decoder's validity, but its probability calculation does require iid uniform bytes. Different justified byte priors or an independently corroborated authorial numeral convention could favor either interpretation. **An actual source-context clue exists:** the repeated Babylonian numeral artwork on LP2 p33–39 is conventionally read as 1033 and 3301 in sexagesimal notation ([source-bounded cuneiform probe](../sims/cuneiform_affine_anchor.py)), and the linked historical Wiki base59 comparison expressly favors radix60 for this reason. The identical token-sequence likelihoods cannot cancel such a separate source-context prior. The evidence remains insufficient to recover a cipher key.
 
+## Source-marked polynomial discrimination between the codecs
+
+The exact **token-only** likelihood tie above holds under its stated uniform-byte model. There is also a cross-page, conditional source constraint: the red three-rune inscription on physical p39 at local rune offset 119 has GP indices \`[27,5,15]\`, defining \`27+5X+15X² = 15(X−24)²\` over GF29. The oversized Ac on physical p54 has GP index \`24\`. Read the independently printed 256-token table as descending GF29 polynomial coefficients and require the p39 quadratic to divide it. A double root at the source-fixed value 24 means both \`P(24)=0\` and \`P'(24)=0\`.
+
+| Numeral interpretation | Byte layout | Read direction | P(24) | P'(24) |
+| --- | --- | --- | ---: | ---: |
+| Base60 | Printed row-major | Forward | **0** | **0** |
+| Base60 | Printed row-major | Reverse | 16 | 4 |
+| Base60 | Column-major | Forward | 16 | 1 |
+| Base60 | Column-major | Reverse | 24 | 2 |
+| Base59 without lowercase f | Printed row-major | Forward | 20 | 12 |
+| Base59 without lowercase f | Printed row-major | Reverse | 22 | 2 |
+| Base59 without lowercase f | Column-major | Forward | 18 | 3 |
+| Base59 without lowercase f | Column-major | Reverse | 28 | 26 |
+
+The **original forward row-major base60** interpretation is the sole member of these eight options with the exact source-selected quadratic factor. The decoded 256-byte SHA-256 hashes are \`3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290\` (base60) and \`511d4fdb69ffbae4707ef93acf7465421f5480208e28d8e8c598cafa0d33cb79\` (base59). A fixed seed 73013, xorshift32, 50,000 table-byte-multiset permutation null with the same independently frozen \`X=24\` has **63** simultaneous double-root hits (add-one 64/50,001, or 0.001280). See [the tested standalone source gate](../sims/lp2_grid_radix_source_factor_gate.cjs). This is only a conditional control; the earlier research searched many source motifs, field models and numerical operations, so the reported frequency does **not** calibrate the overall post-selection process.
+
+**Interpretation:** the p39 factor and visible p54 rune make base60 preferable **conditional on polynomial-factor use**. The numerals-only model remains non-identifying, and the polynomial framing itself was selected retrospectively. This does not authenticate a cipher, key, original plaintext, or destination. It does provide a concrete source-constrained choice of codec and order for any later genuine polynomial inverse.
+
 ## Cryptanalytic consequence and decision
 
 Existing original-cipher key searches often assume the transcribed `byte_rows` are canonical byte material. Those rows are a *derived* radix-60 reading of the original two-character tokens. A proposal claiming an independently derived source key should say which numeral alphabet fixes the input. A test that is demonstrably insensitive to changing these 220 bytes already covers both. Otherwise the alternative is a distinct input, and a concrete **source-fixed inverse** would be needed to establish it.
