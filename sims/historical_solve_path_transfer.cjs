@@ -125,9 +125,12 @@ function languageScore(symbols, model) {
   return sum / symbols.length;
 }
 /** @param {number} count */
-function primeTotients(count) {
+function primeTotients(count, startIndex = 1) {
+  assert.ok(Number.isInteger(count) && count > 0);
+  assert.ok(Number.isInteger(startIndex) && startIndex > 0);
+  const needed = startIndex + count - 1;
   const primes = [];
-  for (let candidate = 2; primes.length < count; candidate++) {
+  for (let candidate = 2; primes.length < needed; candidate++) {
     let prime = true;
     for (let i = 0; i < primes.length; i++) {
       if (primes[i] * primes[i] > candidate) break;
@@ -135,7 +138,8 @@ function primeTotients(count) {
     }
     if (prime) primes.push(candidate);
   }
-  return primes.map(value => value - 1);
+  return primes.slice(startIndex - 1, startIndex - 1 + count)
+    .map(value => value - 1);
 }
 /**
  * @param {number[]} ciphertext
@@ -342,4 +346,4 @@ function run(allPages = false) {
 }
 if (require.main === module)
   console.log(JSON.stringify(run(process.argv.includes("--all-pages")), null, 2));
-module.exports = { run, rowPermute, decodeFMask, exhaustLiteralF };
+module.exports = { run, rowPermute, decodeFMask, exhaustLiteralF, primeTotients, trainNativeGP, languageScore };
