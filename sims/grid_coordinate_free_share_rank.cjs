@@ -164,7 +164,7 @@ function run(){
   return {hypothesis:'Eight Shamir/RS shares with shared arbitrary unknown x coordinates and degree<=6, even with fixed column affine encodings',
     source:'resources/liber-primus/lp2-grid-256.json, full 32 by 8 row matrix',
     tests,
-    conclusion:'Excluded exactly over the three specified fields and this source grid. Full row and difference rank8 rules out common-coordinate polynomial degree<=6 even with unknown coordinates and per-column affine shifts/scales. Four disjoint 8x8 invertible row blocks require at least four entire rows to be altered before rank can drop below8.',
+    conclusion:'Excluded exactly over the three specified fields and this source grid. Full row and difference rank8 rules out common-coordinate polynomial degree<=6 even with unknown coordinates and per-column affine shifts/scales. In the unshifted model four disjoint 8x8 invertible row blocks require changing at least four complete rows to reduce raw rank below8. The per-column-shift-invariant exclusion instead uses centered rank8.',
     limits:'Does not test 8-of-8 degree7 shares (vacuous), row-specific evaluation coordinates, nonlinear per-column maps, encrypted bytes, different fields, or altered original transcription.'};
 }
 if(require.main===module)console.log(JSON.stringify(run(),null,2));
