@@ -58,8 +58,10 @@ function run() {
       const measurement = metric(tests, fitted, q).lift;
       lifts.push(measurement);
       if (measurement >= baseline) upper++;
-      for (let k = 0; k < 4; k++) {
-        diagnosticHits[k] += metric(tests, fitted, q, k).hits;
+      for (const [rune, , candidates] of tests) {
+        for (let k = 0; k < 4; k++) {
+          if (candidates[k] >= 0 && rune === candidates[k]) diagnosticHits[k]++;
+        }
       }
     }
     models[name] = {
