@@ -370,6 +370,15 @@ function main() {
         periodicPad(key, phase, sign, totalRunes));
     }
   }
+  const gridIndexedFull = gridBytes.map(value => runeBlock[value]);
+  const gridIndexedHalf = gridBytes.map(value => secondHalf[value % 128]);
+  for (const [name, key] of [['grid-indexed-full256', gridIndexedFull],
+    ['grid-indexed-second128', gridIndexedHalf]]) {
+    for (const phase of [0, 51, 57]) for (const sign of [1, -1]) {
+      addCandidate(name + ':phase' + phase + ':sign' + sign,
+        periodicPad(key, phase, sign, totalRunes));
+    }
+  }
   candidates.sort((a, b) => b.score.perToken - a.score.perToken);
   assert.ok(candidates[0].score.perToken < -4.5,
     'bounded source-key candidates unexpectedly score like English');
