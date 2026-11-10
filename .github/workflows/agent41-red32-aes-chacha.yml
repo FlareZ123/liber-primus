@@ -17,3 +17,10 @@ jobs:
         with:
           name: red32-original-results
           path: red32-original-results.json
+      - name: Original 13-dot fragment-reset grid-row nonce inverse
+        run: node sims/red32_fragment_gridrow_nonce_inverse.cjs > red32-fragment-results.json
+      - name: Preserve fragment-reset original inverse diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: red32-fragment-original-results
+          path: red32-fragment-results.json
