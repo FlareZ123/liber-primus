@@ -1,6 +1,6 @@
-# A three-page red-ink pointer and prime-totient triangle
+# A three-page red-ink triangle and its two multiplicative-field interpretations
 
-**Classification: new exploratory source-marked arithmetic relationship, with an exact conditional rotation-family probability. No unknown LP2 plaintext, key, cipher method, or destination has been recovered.** The relation was constructed *after* examination of the existing red-ink prime-sum crosslink, so even an extreme exact conditional probability is not a discovery-wide significance estimate.
+**Classification: exact exploratory red-source arithmetic, a conditional rotation-family probability, and two powered negative original-cipher key interpretations. No unknown LP2 plaintext, key, established cipher method, or destination has been recovered.** The red triangle itself was constructed *after* examination of the existing prime-sum crosslink, so even an extreme exact conditional probability is not a discovery-wide significance estimate. The later F79 and F29 operations were also recognized after examining those three quotients.
 
 ## Source and complete arithmetic rule
 
@@ -51,7 +51,7 @@ This is an *exact union probability under the fixed model*, stronger than the lo
 
 The already-selected original page-40/page-15/page-53 rotations alone have probability `1/(231×159×179)=1/6,574,491`. That targeted number must not be confused with the full 16-span family probability.
 
-## A self-indexing primitive root and a directly tested 78-cycle key
+## First interpretation: self-indexing primitive root and 78-cycle in F79
 
 The same three ciphertext-derived integers generate two further exact modular facts:
 
@@ -77,12 +77,39 @@ Original and null results from the **successful [GitHub Actions run 42778598625]
 
 The explicitly source-complete last model has within-model add-one upper-tail **74/501≈0.1477**; it does not produce a material key/cipher dependence relative to the layout-preserving null. It remains dramatically weaker than the authentic-register plants. The MI statistic avoids supposing an outer alphabet and the strong control confirms sensitivity for the tested GP-English distribution. It does not exclude exotic intermediate alphabets, stateful transpositions, other exponent schedules, or an unknown external key.
 
-**Mechanistic conclusion:** The triple is a mathematically consistent seed for a full-cycle multiplicative group, yet the literal additive mod29 key stream and selected ᛋ clock rule do **not** recover GP-English from the original source-selected bodies. This is a direct, bounded cryptanalytic result. It is not a genuine decipherment.
+**F79 mechanistic conclusion:** The triple selects a valid full-cycle F79 generator, but its literal additive mod29 key stream and chosen ᛋ clock rule recover no GP-English from the original source-selected bodies. The negative inference is confined to that tested transformation family.
+
+## Second interpretation: a squaring tower in F29 and a 28-ary discrete-log chain
+
+A separate arithmetic relationship is visible in exactly the **same three source-derived red quotients**, in the existing A→B→C order. Over the manuscript's independently established **29-symbol** GP field:
+
+\[
+15^2\equiv22\pmod{29}, \qquad 22^2\equiv20\equiv78\pmod{29}.
+\]
+
+The multiplicative orders of \`15\`, \`22\` and \`78 mod 29 = 20\` are respectively **28, 14 and 7**. Thus 15 is a primitive root of the 28-element nonzero group of F29, and the three quotient residues are its consecutive squarings: **15¹, 15², 15⁴**. This is an *additional exact relation* among the already discovered source numbers. It is not an independent statistical replication of the red triangle and receives no separate authorial-intent probability.
+
+This supplies a precise possible 28-ary **ciphertext-step alphabet**. Given two successive published GP rune indices \`c[i−1]\`, \`c[i]\`, the difference \`d=(c[i]−c[i−1]) mod29\` lies in **1..28** unless the rune repeats. Because 15 is a primitive root, the **discrete logarithm** \`r=log₁₅(d) mod28\` is an exactly invertible relabeling of all 28 nonzero steps; the inverse is \`c[i]=(c[i−1]+15ʳ) mod29\`. The source has **86 literal doublets** and **55 initial runes**, held as **141 explicit erasures** in this representation. Nothing in this coordinate transformation establishes that the author used discrete logarithms, or explains the 86 exceptions. It creates a falsifiable alternative to assigning each nonzero difference its usual cyclic rank \`d−1\`.
+
+A direct hypothesized cipher \`r=(P−sK) mod28\`, with sign \`s=±1\`, was checked against **5,632 source-derived configurations**, using exactly the published 12,956 original unsolved GP runes. The running-key families are: direct 256-byte grid mapped into mod28 by remainder or scaling; the page-15 Fibonacci-prime spiral; 78-position powers of 53 mod79, mapped directly or after squaring; and the ordinary prime and prime-minus-one sequences also present in the already solved page-56 method. Exhausted source families include their finite positional offsets, both signs, global versus physical-page resets and whether erasures advance the clock. The model was selected by **even-numbered physical pages**, with **odd pages kept untouched** for evaluation.
+
+| Cipher screen | Even-page training IoC | Odd-page held-out IoC |
+| --- | ---: | ---: |
+| Untreated 28-label log-step | approximately **0.03576** pooled | approximately **0.0357** |
+| Best of 5,632 source-key configurations on original | **0.03591273** | **0.03567551** |
+| Strongest heldout configuration selected after looking at heldout | **0.03563119** on train | **0.03589940** |
+| Fully planted original-layout English-GP with an exact grid key | **0.05945149** | **0.05889868** |
+
+The uniform 28-label IoC is **1/28≈0.03571429**. The key selected by training on original LP2 stays at this random floor on heldout. The planted control uses the **same original 55 page boundaries and 86 repeated-rune erasures**, a late GP-transliterated Shakespeare sample, and a declared \`grid-scaled28\` key (offset103, sign+1, page reset, clock skipping erasures). Its 29-rune chain forward-encrypts and reverse-decrypts **all 12,815 original nonerasure positions byte-exactly**, and the exhaustive original key search recovers the planted key as the *top* training configuration. This demonstrates meaningful detection power for the specified English-GP case.
+
+**Current inference:** 15's discrete-log alphabet is a source-anchored, exactly reversible *representation* of the 28 nonrepeated step types. No tested direct page/grid/prime/F79 key makes the original rank distribution resemble held-out GP-English, and the experiment does not identify original plaintext or keys. A new source-selected rule for a nonperiodic exponent stream, the 86 exceptional steps, or another plaintext alphabet would be required to turn the arithmetic into a genuine solution.
+
+[Original-source SFT](../sims/red_triangle_discrete_log_step.cjs) · [successful manually dispatched CI run 42783355623](https://github.com/FlareZ123/liber-primus/actions/runs/42783355623).
 
 ## Interpretation, falsification and next action
 
 The source-defined input, exact GP arithmetic, and all-16-span family calculation are reproducible. **The choice to treat a red quotient as both a physical-page pointer and a zero-based GP-prime index was motivated by the observed numbers.** The page-15 spiral and solved page-56 totient transform predate this investigation, but the combined three-edge rule was not preregistered. Numerous alternative arithmetic constructions were historically examined. The exact tail is conditional on *this* post-selected rule and cannot establish authorial intent, actual encryption architecture, or an LP2 decryption.
 
-The constructive next experiment is to infer a **single exact, reversible transformation** from the triangle's three independently marked sources, including an explicit use for the values 15, 22, 53, 79 and 78. Select the key schedule without fitting target ciphertext English, invert a fresh unsolved page, and show original-rune exact forward re-encryption. A number coincidence that does not predict unknown plaintext remains exploratory.
+The next genuine decryption would need a **source-determined full-length exponent or state schedule** that beats the finite F79/F29 inverses described above, an explicit account of the 86 repeated steps, and plaintext that exact-forward-encrypts on an untouched original page. A number coincidence or invertible relabeling without recovered text remains exploratory.
 
 **Reproducer:** [single runnable Node.js 22 CommonJS script](../sims/red_span_triangle.cjs). It checks exact rune agreement with the original annotation, all eligible triples, rotation histograms, exact rational probability and the original triangle. It does not need a stochastic estimate.
