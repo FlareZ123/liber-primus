@@ -272,7 +272,18 @@ function run() {
   const perRadix = [60, 59].map(radix => {
     const modes = original.filter(row => row.radix === radix);
     assert.equal(modes.length, 384);
-    return {radix, bestTraining: modes[0],
+    const chosen = modes[0];
+    const matrix = MATRICES.find(key => key.radix === chosen.radix
+      && key.reading === chosen.reading
+      && key.transposed === chosen.transposed);
+    assert(matrix);
+    const recovered = hill(decodeOuter(PAGES, chosen.outer, chosen.reset),
+      matrix.inverse, chosen.reset, chosen.phase).pages;
+    const reencrypted = encodeOuter(hill(recovered, matrix.matrix,
+      chosen.reset, chosen.phase).pages, chosen.outer, chosen.reset);
+    assert.deepEqual(reencrypted, PAGES,
+      'Every original rune must exactly forward-reencrypt under the selected inverse');
+    return {radix, bestTraining: chosen, originalReencryptedRunes: 12956,
       postselectedMaximumHeldout: Math.max(...modes.map(row => row.heldoutIoC))};
   });
   assert(originalBest.heldoutIoC < 0.04);
