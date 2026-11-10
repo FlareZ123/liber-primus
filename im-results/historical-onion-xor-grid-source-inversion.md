@@ -1,6 +1,6 @@
-# Historical 256-byte hidden-service strings as LP2 grid-derived XOR keys
+# Historical 256-byte hidden-service and LP2 grid key hypotheses
 
-**Classification: bounded, independently validated ciphertext-key hypothesis with a failed third-block continuation. Agent 9, 10 November 2026. No original Liber Primus plaintext, authentic key, cipher mechanism, or destination was recovered.**
+**Classification: bounded original-input negative for joint historical 256-byte source key interpretations. Agent 9's XOR/AES held-out study and Agent 45's exact polynomial-sharing exclusion, 10 November 2026. No original Liber Primus plaintext, authentic key, cipher mechanism, or destination was recovered.**
 
 ## Source material and independently frozen hypothesis
 
@@ -39,6 +39,18 @@ Successful [GitHub Actions run 42815364894](https://github.com/FlareZ123/liber-p
 The uniform 29-symbol reference IoC is **1/29 ≈ 0.03448276**. The corrected-source model's third-block score is **below** both that benchmark and the independently refitted shuffled-source mean. Thus the second-block elevation **does not replicate** on the prespecified untouched third block. The corrected-source trained model used AES-256-CTR, reversed 32-byte keys, `byte%29`, sign +1, and eight unrelated XOR-derived source keys [11/block4, 12/column0, 12/block0, 3/column1, 4/column3, 12/column5, 10/column7, 13/block7]. The uncorrected-grid family produced second-block IoC **0.034930323**, providing no positive improvement.
 
 The second-block excess is an observation from an exploratory family after broad earlier source work, with no observed credible decoded text. Its weak joint second-and-third upper-tail is a postselected overlap statistic and does **not** rescue the third-block failure. Even if a genuine unusual second-block symbol imbalance were present, it would not identify these four strings as key shares. **No original LP2 plaintext, keystream, or authentic key is claimed.**
+
+## Independently excluded 3-of-4 historical secret sharing
+
+The same four public **256-byte sources** also support a more constrained key-construction hypothesis than arbitrary XOR or AES hashing: treat the hidden-service identifiers **2, 3, and 4** as share coordinates x=2, x=3, x=4 in an ordinary Shamir polynomial over GF(256), and interpret the LP2 256-byte table as a fourth share at **any** distinct, globally fixed field coordinate x. The grid's natural x=1 is included rather than singled out. A threshold of **3-of-4** implies that all 256 aligned byte positions independently lie on polynomials of degree at most two. The actual polynomial coefficients can vary arbitrarily across byte positions, so this is a necessary condition that requires **no guessed secret or ciphertext plaintext**. Two-of-four linear sharing is also excluded when degree-two consistency fails.
+
+The [exact cross-source gate](../sims/onion256_shamir_cross_source_gate.cjs) tests the **complete 253 candidate grid coordinates** in GF(256) under each of the AES polynomial 0x11B and Reed–Solomon polynomial 0x11D, plus all **254 allowed GF(257) coordinates**. It uses both the published table and the independent five-cell-corrected version, each in four predeclared byte layouts (row-major, reversed row-major, column-major, reversed column-major): **6,080 original-source hypotheses**, each demanding 256 exact share-byte equalities.
+
+**Executed original-source result: zero complete degree-two fits.** The maximum over all 6,080 tested coordinate/layout/field choices is only **6 correct byte positions of 256**; it arises in four equivalent GF256/0x11B reversed-row or column-major presentations with and without five-cell corrections. This excludes the entire stated alignment-consistent threshold-at-most-three polynomial sharing family independently of any candidate recovered LP2 plaintext.
+
+**Native full-length positive:** six blind constructed 256-byte degree-two secret-share systems, with each of three fields and grid coordinate x=1 or 157, reconstruct **256/256 byte values** and uniquely identify the correct grid coordinate while the hidden polynomial coefficients vary independently per byte. This verifies that the original-source failures are detectable rather than a broken finite-field implementation. The test passed within the existing manual grid test suite in [successful GitHub Actions run 42820022422](https://github.com/FlareZ123/liber-primus/actions/runs/42820022422).
+
+**Scope:** the onion-stage numbers are a natural but unproven choice of Shamir share coordinates. This does not exclude different source-byte offsets, unknown per-source encodings, arbitrary unrelated share coordinates, per-byte coordinates, nonlinear sharing or 4-of-4 **degree-three** interpolation. A degree-three polynomial can always pass through any four byte values, so apparent 4-of-4 reconstruction alone provides no authentication of a secret. The earlier 15-subset XOR and direct AES source-key negative above remains independently scoped. The secret-sharing exclusion introduces no recovered LP2 key or plaintext.
 
 ## Reproduction and research consequence
 
