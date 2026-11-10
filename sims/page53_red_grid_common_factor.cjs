@@ -231,6 +231,30 @@ assert.deepEqual(gpFieldRoots,
 const rootAt179 = modPolynomial(256 % 179, 179);
 assert.deepEqual(rootAt179, {value: 0, first: 23, second: 172});
 
+
+// Exact source-selected inverse of the multiplicity-two factor (X-24)^2.
+// The quotient has 254 GP29 coefficients. Test its native prose signal
+// before proposing extra transformations; none is recovered.
+function divideByRoot29(coefficients, root) {
+  const quotient = [coefficients[0] % 29];
+  for (let i = 1; i < coefficients.length - 1; i++) {
+    quotient.push((coefficients[i] + root * quotient[i - 1]) % 29);
+  }
+  const remainder = (coefficients[coefficients.length - 1] +
+    root * quotient[quotient.length - 1]) % 29;
+  return {quotient, remainder};
+}
+const dividedOnce = divideByRoot29(original, 24);
+const dividedTwice = divideByRoot29(dividedOnce.quotient, 24);
+assert.equal(dividedOnce.remainder, 0);
+assert.equal(dividedTwice.remainder, 0);
+assert.equal(dividedTwice.quotient.length, 254);
+const counts254 = new Uint32Array(29);
+for (const digit of dividedTwice.quotient) counts254[digit]++;
+const gpQuotientIoC = counts254.reduce((sum, n) => sum + n * (n - 1), 0) /
+  (254 * 253);
+assert.ok(Math.abs(gpQuotientIoC - 0.03277208925959354) < 1e-12);
+
 console.log(JSON.stringify({
   originalGridBits: N.toString(2).length,
   page53RuneCount: p53.runic_count,
@@ -246,6 +270,8 @@ console.log(JSON.stringify({
   redSmallPrimeFactors: factors,
   observedSmallPrimeLog2Bits: originalSmooth.bits,
   polynomial29UniqueDoubleRoot: gpFieldRoots,
+  strippedDoubleRootGP254IoC: gpQuotientIoC,
+  strippedDoubleRootGP254Prefix: dividedTwice.quotient.slice(0, 40).map(x => corpus.translit[x]).join(""),
   naturalRadix179Root: rootAt179,
   observedMediumPrimeCount: originalSmooth.primesAtLeast10000,
   smoothnessNull: {cutoff: 300000, seed: "0x53179", samples: smoothDraws,
