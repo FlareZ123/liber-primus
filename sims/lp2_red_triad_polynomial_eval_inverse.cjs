@@ -8,8 +8,9 @@
  * 840. The p39 triple is 15(X-24)^2 and divides the 256-byte grid polynomial.
  * Since u^360 = 24, phase 360 is a source-derived candidate grid-key origin.
  *
- * For each nonzero field element u^t, evaluate the complete printed grid
- * polynomial F(u^t). Project through coordinates, trace, norm, or discrete
+ * For each nonzero field element u^t, evaluate either the complete printed
+ * polynomial F or the exact quotient Q=F/[15(X-24)^2]. Project through
+ * coordinates, trace, norm, or discrete
  * logarithms, then use the period-840 result in reversible GP29/GP28 ciphers.
  * This is a finite original-input hypothesis test, not a historical decoder.
  * Original and source-native planted plaintext are never interchanged.
@@ -45,9 +46,33 @@ function evaluate(coefficients, value) {
   return state;
 }
 
-/** @param {number[]} bytes */
-function constructKeys(bytes) {
-  const coefficients = bytes.map(m);
+/**
+ * Divide the exact source polynomial by the red p39 factor 15(X-24)^2,
+ * keeping the original high-degree leading zero as a fixed-width slot.
+ * @param {number[]} bytes
+ * @returns {number[]}
+ */
+function quotientByRedFactor(bytes) {
+  let coefficients = bytes.map(m);
+  for (let pass = 0; pass < 2; pass++) {
+    const quotient = [coefficients[0]];
+    for (let i = 1; i < coefficients.length - 1; i++) {
+      quotient.push(m(coefficients[i] + 24 * quotient[i - 1]));
+    }
+    assert.equal(m(coefficients.at(-1) + 24 * quotient.at(-1)), 0);
+    coefficients = quotient;
+  }
+  assert.equal(coefficients.length, 254);
+  return coefficients.map((value) => m(2 * value)); // 15^-1 = 2 (mod 29)
+}
+
+/**
+ * @param {number[]} bytes
+ * @param {"full"|"quotient"} mode
+ */
+function constructKeys(bytes, mode = "full") {
+  const coefficients = mode === "quotient" ?
+    quotientByRedFactor(bytes) : bytes.map(m);
   const elementLogs = new Map();
   const states = [];
   let u = /** @type {Field} */ ([1, 0]);
@@ -70,7 +95,13 @@ function constructKeys(bytes) {
       logMod29: log === undefined ? 0 : log % 29};
   });
   const roots = output.flatMap((v, i) => v.a === 0 && v.b === 0 ? [i] : []);
-  assert.deepEqual(roots, [360, 433, 797]);
+  assert.deepEqual(roots, mode === "quotient" ? [433, 797] : [360, 433, 797]);
+  if (mode === "quotient") {
+    assert.deepEqual(output[360], {
+      a: 23, b: 0, trace: 17, norm: 7,
+      logLow: 4, logHigh: 17, logMod29: 16
+    });
+  }
   return {roots, table: output};
 }
 
@@ -185,7 +216,9 @@ function main() {
     page.page <= 55 && page.indices.length).map((page) => page.indices);
   const cipher = flatten(cipherPages);
   assert.equal(cipher.length, 12956);
-  const {roots, table} = constructKeys(bytes);
+  const mode = process.env.LP2_POLYNOMIAL_MODE === "quotient" ?
+    "quotient" : "full";
+  const {roots, table} = constructKeys(bytes, mode);
   const fields = ["a", "b", "trace", "norm",
     "logLow", "logHigh", "logMod29"];
   const all = [];
@@ -234,6 +267,7 @@ function main() {
   console.log(JSON.stringify({
     classification: "original-input bounded negative; no recovered original plaintext",
     originalGridBytes: bytes.length, fieldStates: table.length,
+    polynomial: mode, polynomialCoefficientCount: mode === "full" ? 256 : 254,
     polynomialRootsOnNonzeroField: roots, root24Phase: 360,
     symbols: cipher.length, sourceIoC: ioc(cipher),
     originalCases: all.length * 840,
@@ -251,4 +285,5 @@ function main() {
 }
 
 if (require.main === module) main();
-module.exports = {m, mul, evaluate, constructKeys, encode, decode, ioc};
+module.exports = {m, mul, evaluate, quotientByRedFactor, constructKeys,
+  encode, decode, ioc};
