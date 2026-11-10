@@ -42,6 +42,25 @@ function analyze(data,reference) {
   }
   const synthetic=yc.slice();
   assert(matching(synthetic)===70,"known-answer one-to-one substitution");
+  // Exact all-transposition/all-secret-bijection census: each alphabet label's
+  // multiplicity is invariant under every position permutation and every
+  // globally one-to-one alphabet relabeling.
+  function histogram(source){
+    const counts=new Map();
+    for(const x of source)counts.set(x,(counts.get(x)||0)+1);
+    return [...counts.values()].sort((a,b)=>b-a);
+  }
+  const cipherCounts=histogram(p53),commandCounts=histogram([...command]);
+  const allOrderMax=cipherCounts.reduce((sum,n,i)=>sum+Math.min(n,commandCounts[i]||0),0);
+  assert(cipherCounts.length===28 && commandCounts.length===25,"full alphabet census");
+  assert(allOrderMax===56 && 70-allOrderMax===14,"all-permutation histogram bound");
+  // Plant an arbitrary alphabet relabeling and a full 70-position reversal;
+  // both preserve the multiplicity profile and therefore admit all 70 matches.
+  const planted=yc.map(v=>((v+7)%29)).reverse();
+  const plantCounts=histogram(planted);
+  const plantMax=plantCounts.reduce((sum,n,i)=>sum+Math.min(n,commandCounts[i]||0),0);
+  assert(plantMax===70,"arbitrary transposition/secret-bijection plant");
+
   const observed=[matching(p53),matching(colRead(p53)),matching(colInverse(p53))];
   let seed=20261110|0;
   function rand(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0;}
@@ -93,7 +112,7 @@ function analyze(data,reference) {
   const encrypted=plant.map((v,i)=>(v+key[i%key.length])%29);
   assert(inverse(encrypted,key,-1,0,0).every((v,i)=>v===plant[i]),"native-key plant");
   assert(colInverse(colRead(encrypted)).every((v,i)=>v===encrypted[i]),"native-transpose plant");
-  return {originalPage53:[53,123],originalPage40:[171,229],quoteLengths:[p53.length,p40.length],historicalCommandLength:command.length,observedMappingMatches:observed,shuffledTrials:trials,shuffledExceeding:exceed,shuffledFamilyTail:(exceed+1)/(trials+1),keyCandidates:count,bestHistoricalCipher:best,emersonRuneLength:corpus.length,nativeWindowCount:nativeScores.length,nativeMinimum,nativeMedian,positiveControls:"70/70 known-message relabeling; 70/70 source-key plant; 70/70 transposition inverse"};
+  return {originalPage53:[53,123],originalPage40:[171,229],quoteLengths:[p53.length,p40.length],historicalCommandLength:command.length,distinctRuneTypes:cipherCounts.length,distinctHistoricalCharacterTypes:commandCounts.length,allTranspositionAndSecretBijectionMaximumMatches:allOrderMax,forcedEditsUnderThatClass:70-allOrderMax,observedMappingMatches:observed,shuffledTrials:trials,shuffledExceeding:exceed,shuffledFamilyTail:(exceed+1)/(trials+1),keyCandidates:count,bestHistoricalCipher:best,emersonRuneLength:corpus.length,nativeWindowCount:nativeScores.length,nativeMinimum,nativeMedian,positiveControls:"70/70 known-message relabeling; 70/70 source-key plant; 70/70 transposition inverse"};
 }
 const root=path.resolve(__dirname,"..");
 const data=JSON.parse(fs.readFileSync(path.join(root,"resources/liber-primus/lp2-corpus.json"),"utf8"));
