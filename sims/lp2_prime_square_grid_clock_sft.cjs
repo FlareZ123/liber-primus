@@ -30,6 +30,9 @@ for(let p=2;p<=M;p++){
 }
 assert.ok(primes.length>=count+41);
 assert.equal(primes[40],179);
+assert.equal(grid.alphabet.indexOf("f"),41);
+assert.deepEqual([...grid.alphabet].filter(ch=>!grid.rows.flat().some(cell=>cell[1]===ch)),["f"]);
+assert.deepEqual(Array.from({length:60},(_,i)=>i+1).filter(n=>primes[n-1]**2%256===n),[41]);
 const mod=(a,n)=>(a%n+n)%n;
 /** @param {number} i @returns {number} */
 function indexAt(i){
