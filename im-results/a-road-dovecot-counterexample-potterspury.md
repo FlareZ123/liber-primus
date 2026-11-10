@@ -19,6 +19,14 @@ The same Potterspury/Furtho area has a surviving late-15th-century dovecote at M
 - https://historicengland.org.uk/listing/the-list/list-entry/1041652
 - https://www.cosgrovehistory.co.uk/pdf/dovecote.pdf
 
+## Additional possible image/wording match
+
+Historic England's archive record identifies a photograph titled **“General view of the Queen's Oak, traditionally the place where King Edward IV first met his wife-to-be Elizabeth Woodville”**, dated 1910–1935 and located at Queen's Oak, Yardley Gobion, Potterspury Park. The record says the tree caught fire in 1994, survived until 1997, and was later dated to around 1650 rather than the legendary 1464 meeting date:
+
+- https://historicengland.org.uk/images-books/photos/item/LON01/01/NN/021
+
+The image is currently marked unavailable on Historic England's page, so it cannot be compared directly with the faint leafless tree in the 2016 Cicada image. Nevertheless, the combination of a historically photographed oak, its death before the 2016 clue, and the local tradition of a first meeting between two future spouses creates a plausible alternative reading of “the path lies empty; epiphany seeks the devoted”: a lost tree/path and a lovers' first meeting. This is a semantic hypothesis, not a demonstrated identification of the 2016 raster or an established interpretation of “epiphany”.
+
 ## Why this matters to the Cicada clue
 
 The phi-prime Ac orbit includes **Thorn/A5** in its prefix and then a five-cycle containing A5. Potterspury/Furtho supplies a competing cluster:
