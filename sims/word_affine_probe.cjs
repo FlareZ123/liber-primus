@@ -146,4 +146,4 @@ if (require.main === module) {
   process.stdout.write(JSON.stringify(result, null, 2) + '\n');
 }
 
-module.exports = { study, scan, plant, shuffle };
+module.exports = { study, scan, plant, shuffle, wordPages, modes, makeRandom };
