@@ -1,6 +1,6 @@
-# A source-square 16-phase public-state cipher cannot reproduce native-GP collision structure
+# Public predecessor-state permutation ciphers and native-GP collision structure
 
-**Agent 25, 10 November 2026. Evidence class:** executed original-input, exact label-invariant necessary-condition test with 1,200 byte-for-byte reversible GP-English positive controls. This supplies a substantial *conditional exclusion* of a previously open, source-suggested stateless cipher family. It recovers **no unknown plaintext, authentic key or destination**.
+**Agent 25, 10 November 2026. Evidence class:** executed original-input, exact label-invariant conditional tests against **1,700 fully reversible GP-English positive controls**. Fixed public phase plus one predecessor and the broader two-predecessor public-row families both fail to reproduce native-GP conditional collision structure. Their original-output equality patterns are key-invariant under every stationary secret row bijection. This is a source-conditioned statistical rejection, with **no recovered unknown plaintext, authentic key or destination**.
 
 ## Original-source hypothesis
 
@@ -59,9 +59,31 @@ For each of **150 independent draws per source and each of four clocks**, resamp
 
 Every row's 150 matched plants yield a lower-tail add-one resolution of **1/151 ≈ 0.00662**. Their **visible repeat counts** average 82.86 (Cicada) and 88.21 (Shakespeare), comparable to LP2's **86**. Thus the failure cannot be attributed to positive controls having the wrong order of magnitude of EA-transparent doublets. The collision difference persists even with a perfectly reversible, completely unknown secret alphabet for every public phase/context row.
 
+## Extension: two ciphertext predecessors and 1/8/16 public phases
+
+A stronger explicitly reversible model allows **841 entirely independent secret GP29 permutations** indexed by the last **two** published ciphertext runes, or **6,728 / 13,456** rows when combined with the original 8-column grid / page-15 16-cell source-motivated public page phases. At each position i≥2 in a physical rune-bearing page,
+
+    C[i] = S[(i mod K), C[i-2], C[i-1]][P[i]],    K ∈ {1,8,16}.
+
+The first two ciphertext runes of each physical page are explicit transmitted seeds. Every row is a completely arbitrary bijection of 29 glyphs. For synthetic source plants, GP EA maps exactly to the previously published glyph; each row's other 28 outputs are independently shuffled, and every full 12,956-rune plant is **decoded and re-encoded exactly**. The *collision invariant* applies to all secret row permutations, with no requirement that EA map to a repeat. After the two public seeds per page, **12,846** original positions remain, including **85** visible adjacent repeats.
+
+Compute the same within-state matching-pair ratio R using the larger published state (phase, previous two ciphertext glyphs), pooling rows across all 55 physical rune pages. GP source words are independently sampled within all **2,896 authentic word-length buckets** and reflowed to the exact 55 page lengths. The original ciphertext is never used to choose the secret alphabets in the planted controls.
+
+| Public K | Original equal / eligible pairs | Original R | Lowest solved-Cicada GP plant | Lowest Shakespeare GP plant | Controls per source |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| **1** | **3,511 / 100,584** | **0.0349061481** | 0.06387062 | 0.06094099 | 100 |
+| **8** | **431 / 12,619** | **0.0341548459** | 0.06005121 | 0.05815592 | 75 |
+| **16** | **237 / 6,302** | **0.0376071089** | 0.05843149 | 0.05809450 | 75 |
+
+**Zero of 500** separate full-manuscript native-GP plants attain the original's low conditional collision rate. For each source and K, the lower-tail add-one Monte Carlo resolution is **1/101** (K=1) or **1/76** (K=8,16). This is source-conditioned evidence rather than a key-independent English impossibility theorem: an adversarially constructed plaintext, a secret rekey within a public state, or a different intermediate register might fit. The GP EA transparency clause reproduces an appropriate doublet scale; with K=8/16, sampled Shakespeare plants have median **86** visible repeats against **85** eligible original repeats.
+
+The measured original rates remain close to the residual roughly uniform alphabet despite extending from 464 public state rows to as many as **13,456** independent secret permutation rows. This supplies a distinct condition against increasing public ciphertext memory alone while leaving a fixed secret substitution table. It does not constrain truly hidden evolving state or altered page-seed semantics.
+
+**Reproduction:** [independent two-predecessor CommonJS SFT](../sims/two_register_public_row_invariant.cjs), assertions on all original pair counts, synthetic full inverses and exact re-encryption, Node.js 22 in the existing manual-only [phase coincidence suite](../.github/workflows/phase-coincidence-invariant.yml), successful [GitHub Actions run 42864079701](https://github.com/FlareZ123/liber-primus/actions/runs/42864079701).
+
 ## Implication for the unfinished decipherment
 
-The authentic p15 4×4 square supplies the *16*, and the apparent EA-sized repeat channel supplies the transparent-marker model. Combined, they do **not** recover GP-readable ciphertext under this broad stationary phase16-plus-public-predecessor architecture, **even when the phase explicitly skips each observable EA-style repeated ciphertext symbol**. A natural-source solution must use a **different cryptographic structure**: for example a genuinely hidden/evolving secret state, key draws/skips, a prior non-GP ciphertext layer, or an unconventional plaintext frequency register.
+The authentic p15 4×4 square supplies the *16*, and the EA-sized repeat channel motivates transparent-marker plants. Original LP2 fails the known-native-GP equality test under the fixed phase16-plus-one-predecessor model even when the phase skips observable repeated glyphs. Adding a second published predecessor, with or without source-inspired page phases, retains the low original rates against all tested native-GP plants. A natural-source solution must use a **different cryptographic structure**: for example a genuinely hidden/evolving secret state, key draws/skips, a prior non-GP ciphertext layer, or an unconventional plaintext frequency register.
 
 The result is conditional on the plaintext resembling the tested GP-English author registers. Exact per-state collision identity is unconditional, while *comparing* it to these source families remains a model test. Independently changing the private table midstream, varying phase based on a truly hidden state, using secret-dependent skips or changing the outer output alphabet outside the per-state bijection lies outside the statement. The tested event skips are deterministic from the published ciphertext and are distinguishable from private state evolution.
 
