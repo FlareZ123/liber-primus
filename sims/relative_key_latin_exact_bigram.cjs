@@ -162,6 +162,39 @@ function scan(x,y,lm){
     decodedZero:{first100a:render(decoded.p),first100b:render(decoded.q),pathLogScore:decoded.score},
     path:decoded};
 }
+
+/**
+ * Test sequence-order contribution **conditional on exact original D counts**,
+ * rather than the post-selected nonuniform/symmetric difference histogram.
+ * A true two-time pad encrypting independent natural-language strings should
+ * often preserve source-bigram order beyond this fixed marginal histogram.
+ * @param {number[]} x
+ * @param {number[]} y
+ * @param {ReturnType<typeof latinModel>} lm
+ * @param {number} samples
+ * @param {number} seed
+ */
+function conditionalOrderTest(x,y,lm,samples=256,seed=0x32424679) {
+  const d=diff(x,y),observed=marginal(d,lm)-unigramLikelihood(d,lm);
+  const rand=rng(seed),nullScores=[];
+  for(let trial=0;trial<samples;trial++){
+    const shuffled=Uint8Array.from(d);
+    for(let i=shuffled.length-1;i>0;i--){
+      const j=Math.floor((i+1)*rand());
+      const tmp=shuffled[i];shuffled[i]=shuffled[j];shuffled[j]=tmp;
+    }
+    nullScores.push(marginal(shuffled,lm)-unigramLikelihood(shuffled,lm));
+  }
+  const mean=nullScores.reduce((a,b)=>a+b,0)/samples;
+  const sd=Math.sqrt(nullScores.reduce((a,b)=>a+(b-mean)**2,0)/(samples-1));
+  const exceed=nullScores.filter(v=>v>=observed).length;
+  nullScores.sort((a,b)=>a-b);
+  return {samples,seed:'0x'+seed.toString(16),observed,mean,sd,
+    median:nullScores[Math.floor(samples/2)],
+    percentile95:nullScores[Math.floor(samples*.95)],
+    exceed,pUpper:(exceed+1)/(samples+1)};
+}
+
 function study(){
   const latin=latinModel();
   const english=train(read('resources/control/shakespeare_first300k.txt').slice(0,200000));
@@ -170,6 +203,12 @@ function study(){
   const originalLatin=scan(a,b,latin),originalEnglish=scan(a,b,english);
   const plantedClean=scan(clean.x,clean.y,latin);
   const plantedRepaired=scan(repaired.x,repaired.y,latin);
+  const orderEvidence={
+    originalLatin:conditionalOrderTest(a,b,latin),
+    originalEnglish:conditionalOrderTest(a,b,english),
+    plantedLatinClean:conditionalOrderTest(clean.x,clean.y,latin),
+    plantedLatinRepaired:conditionalOrderTest(repaired.x,repaired.y,latin)
+  };
   const correct=(actual)=>actual.path.p.filter((v,i)=>v===p[i]).length;
   const trueOffsetExpected=diff(clean.x,clean.y).every((v,i)=>v===mod(p[i]-q[i]));
   assert.ok(trueOffsetExpected);
@@ -184,9 +223,10 @@ function study(){
     positionCount:N,rotations:SHIFTS,sourceLanguage:'Latin Vulgate source vs English Shakespeare GP',scale:4,
     latinSourceTrainRunes:latin.symbols,latinPlantSource:'Disjoint Vulgate Revelation GP indices 0..268 and 800..1068',
     original:{latin:strip(originalLatin),english:strip(originalEnglish)},
+    orderEvidence,
     positive:{clean:{...strip(plantedClean),recoveredFirstPlaintext:correct(plantedClean),outOf:N},
       repaired:{...strip(plantedRepaired),recoveredFirstPlaintext:correct(plantedRepaired),outOf:N,repairs:repaired.repaired}},
     classification:'No plaintext unless coherent original zero-shift inverse with heldout clue. Pair and scale postselected in prior LP2 research.'};
 }
 if(require.main===module)process.stdout.write(JSON.stringify(study(),null,2)+'\n');
-module.exports={marginal,unigramLikelihood,viterbi,diff,scan,study};
+module.exports={marginal,unigramLikelihood,viterbi,diff,scan,conditionalOrderTest,study};
