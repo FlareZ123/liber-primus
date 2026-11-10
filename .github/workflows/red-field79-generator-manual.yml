@@ -13,3 +13,5 @@ jobs:
         run: node sims/red_field79_generator_heldout.cjs
       - name: Test exact F79 zero-mask invariant against literary controls
         run: node sims/red_f79_zero_mask_invariant.cjs
+      - name: Test all injective GP-prime field-unit markers with family controls
+        run: node sims/gp_prime_field_unit_marker_family.cjs
