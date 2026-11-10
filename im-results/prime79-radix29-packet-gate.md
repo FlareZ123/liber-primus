@@ -44,13 +44,21 @@ For the more flexible fixed-*cyclic*-order family, run the exact finite-domain n
 
 The ten source-original CI runs completed successfully and cover contiguous phases 1–78, in groups: [1–8](https://github.com/FlareZ123/liber-primus/actions/runs/42794437916), [9–16](https://github.com/FlareZ123/liber-primus/actions/runs/42794444780), [17–24](https://github.com/FlareZ123/liber-primus/actions/runs/42794452707), [25–32](https://github.com/FlareZ123/liber-primus/actions/runs/42794459345), [33–40](https://github.com/FlareZ123/liber-primus/actions/runs/42794465685), [41–48](https://github.com/FlareZ123/liber-primus/actions/runs/42794472245), [49–56](https://github.com/FlareZ123/liber-primus/actions/runs/42794479458), [57–64](https://github.com/FlareZ123/liber-primus/actions/runs/42794486597), [65–72](https://github.com/FlareZ123/liber-primus/actions/runs/42794493647), and [73–78](https://github.com/FlareZ123/liber-primus/actions/runs/42794501470). The 79-phase conclusion must retain the open 19+5 cyclic cases; only the naturally aligned phase zero is conclusively excluded for both cyclic orientations.
 
-## Independent GF79 constant-checksum exclusion across all 79 origins
+## Exact GF79 geometric-position checksum exclusion
 
-A separate possible 79-symbol code family would impose a block checksum in GF79 while hiding a fixed rune-to-field mapping `f`. If each complete source packet `P` obeyed `sum f(glyph) = b (mod 79)` with one constant `b`, then the unknown 29-component vector `f` would lie in the kernel of the between-packet glyph-count differences.
+A separate possible 79-symbol code family would impose a block checksum in **GF79** while hiding a fixed rune-to-field mapping `f`. Consider every nonzero field multiplier `g=1,...,78` and every 79-rune block phase `phase=0,...,78`, with the source-indexed position weights `g^j mod79`, for `j=0,...,78`. Require one fixed, unknown checksum `b` common to all complete 79-rune blocks:
 
-Every packet has length 79, so the all-constant `f` is always in that kernel. A nonconstant rune embedding, including any injective mapping, requires a second independent null vector. Exact finite-field elimination over the genuine source produces **rank 28 and nullity 1 for all 79 possible block phases**. No fixed nonconstant GP-rune map to GF79 can satisfy any constant additive 79-rune checksum across all 163 or 164 complete source packets.
+```text
+sum(j=0..78) g^j * f(C[phase + 79*block + j]) = b (mod79).
+```
 
-The [reproducer](../sims/prime79_glyph_checksum_rank.cjs) generates 100 synthetic 79-rune packets using a hidden injective 29-glyph field map and exact checksum zero; the blind rank test detects its extra null vector. It asserts the all-phase original-source result and passed in [CI42796108672](https://github.com/FlareZ123/liber-primus/actions/runs/42796108672). This rule covers fixed glyph maps and one block-constant target. Position-dependent weights, section-specific targets and key-dependent or variable-length encodings remain open. The GF79 choice follows the already examined 79 clue, and no plaintext is recovered.
+For each `(g,phase)` build a 29-column matrix whose rows contain each rune's *weighted* occurrence sum in a block, then subtract the first row to remove the unknown `b`. The all-constant rune mapping is necessarily in the difference kernel, because the total sum of positional weights is the same for every block. Any nonconstant rune embedding, including an arbitrary injective hidden GP alphabet, would require a second independent kernel vector.
+
+Exact finite-field elimination on the original LP2 source gives **rank28 and nullity1 in all 6,162 = 78×79 combinations**. Consequently, within this finite family **only constant `f` can yield the same additive checksum**. This rejects every nonconstant fixed rune-to-GF79 embedding for arbitrary constant checksum `b`, including the source-linked primitive root `g=53`, and all shifted global block origins. The unweighted case is `g=1`.
+
+The [reproducer](../sims/prime79_glyph_checksum_rank.cjs) also creates 100 synthetic 79-rune packets using an unseen injective alphabet field mapping and exact checksum zero at **g=1 and g=53**; the same blind rank test returns nontrivial kernels in both. All original and positive-control assertions passed in the [successful source-original Actions run 42797361281](https://github.com/FlareZ123/liber-primus/actions/runs/42797361281), Node22, 10 November 2026. This is an **exact original-input necessary-condition test**, with no Monte Carlo significance assignment.
+
+This conclusion is bounded to a fixed glyph map, a global packet clock, a geometric positional weight, and one shared checksum value. It does not constrain arbitrary non-geometric weights, position-dependent or changing glyph maps, per-section checksum resets, nonlinear codes, or variable-length encodings. The GF79 interpretation follows already examined prime79/totient78 clues, and no plaintext is recovered.
 
 ## Synthetic recovery and independent execution
 
