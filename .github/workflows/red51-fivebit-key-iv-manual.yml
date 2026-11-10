@@ -12,6 +12,7 @@ on:
           - radix29
           - triangle
           - primewalk
+          - triad-nonce
 jobs:
   source-key-inversion:
     runs-on: ubuntu-latest
@@ -32,3 +33,6 @@ jobs:
       - name: Exact radix-29 padded 256-bit AES key
         if: ${{ inputs.probe == 'radix29' }}
         run: node sims/red51_radix29_aes.cjs
+      - name: Source triad p53 radix29 key with p15-p40 nonces
+        if: ${{ inputs.probe == 'triad-nonce' }}
+        run: node sims/red_triangle_radix29_nonce.cjs
