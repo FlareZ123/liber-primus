@@ -1,0 +1,18 @@
+name: LP2 pooled outer-alphabet section inversion
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pooled:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Shared outer alphabet planted and real sections
+        run: |
+          node --check sims/outer_permutation_pooled_sections.cjs
+          node sims/outer_permutation_pooled_sections.cjs
