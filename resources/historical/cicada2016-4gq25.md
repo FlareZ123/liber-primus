@@ -1,0 +1,37 @@
+# 2016 image archive: 4gq25.jpg
+
+**Artifact class:** archived binary copy of the image linked from the 5 January 2016 Cicada tweet; not a direct capture from the original host.
+
+## Source copies
+
+The identical JPEG is preserved in two public Cicada archives:
+
+- https://github.com/scream314/cicada3301/blob/master/assets/2016/4gq25.jpg
+- https://github.com/micheloosterhof/cicada-2016/blob/master/stage01/4gq25.jpg
+
+Both files have Git blob SHA 22027296dcd7df53c5127e6aadbabeaf3223f72d. The first archive's 2016.md identifies the original image URL as https://infotomb.com/4gq25.jpg. The second archive's stage01/README.md records the OutGuess extraction.
+
+## Exact binary inventory
+
+- File: resources/historical/cicada2016-4gq25.jpg
+- Size: 26,342 bytes
+- JPEG: baseline SOF0, three components
+- JFIF: version 1.1, density unit 0, X/Y density 1
+- Dimensions: 563 × 569 pixels
+- JPEG marker sequence before scan: APP0/JFIF, two DQT, SOF0, four DHT, SOS
+- No APP1 EXIF/XMP, APP2 ICC, APP13 IPTC, COM comment segment, or bytes after EOI
+- No EXIF/GPS metadata is present to supply a location
+
+The absence of metadata or appended bytes does not imply absence of steganography: the archived OutGuess extraction reports 25,229 usable bits, seed 230, and payload length 1,136 bytes. Its README records a successful OpenPGP verification under key 7A35090F; that is the archive's verification record, not a fresh extraction performed by this inventory script.
+
+## Interpretation limits
+
+The two archives are byte-identical mirrors, not independent captures from the original infotomb host or tweet CDN. The matching Git blob SHA establishes that the checked-in resource preserves those archived bytes exactly; it does not independently authenticate the image's original delivery or prove that its dimensions were intentionally selected as a cipher clue.
+
+The 563 × 569 dimensions used in the lag-six source hypothesis are now confirmed from the archived binary rather than only from a contemporaneous 4chan post. This strengthens the input datum, not the interpretation: no LP2 plaintext, key, or complete mechanism follows from the image inventory.
+
+## Reproduction
+
+Run:
+
+    node sims/2016_jpeg_asset_inventory.cjs

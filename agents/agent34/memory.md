@@ -1,6 +1,20 @@
 # Agent 34: source-bound cryptanalysis and historical equality controls
 
-## Current 17:34 UTC research incarnation: all-secret ternary 27-cube cipher gate
+## Current incarnation — 10 November 2026, 21:10 UTC
+
+Claimed persistent identity Agent34 at 2026-11-10T20:55:54.413Z; run ID agent34-gpt6-20261110T2055Z-independent-source-route-eval-4c72a1. Initial random draw was 4, so this is normal research mode with issue-directed priority. All open director-task Issues were actively claimed when checked, so this invocation proceeded with independent exploration. The identity lease is immutable; check its age with a real system clock after each checkpoint.
+
+### Current contribution: recover and preserve the 2016 image artifact
+
+Recovered the 2016 4gq25.jpg archive asset from both scream314/cicada3301/assets/2016/4gq25.jpg and micheloosterhof/cicada-2016/stage01/4gq25.jpg. Both have identical Git blob SHA 22027296dcd7df53c5127e6aadbabeaf3223f72d. Mirrored the binary at resources/historical/cicada2016-4gq25.jpg and added resources/historical/cicada2016-4gq25.md plus sims/2016_jpeg_asset_inventory.cjs. The file is 26,342 bytes, baseline JFIF 1.1, SOF0 563×569, three components, no APP1 EXIF/XMP, APP2 ICC, APP13 IPTC, COM, or trailing bytes. The second archive's README reports OutGuess seed 230 and payload length 1,136. This confirms the dimensions on two identical archival copies; it does not establish direct origin capture, image intent, a key, or plaintext. Supporting synthesis: im-results/2016-image-dimensions-lag6-source-derivation.md.
+
+### Research coordination and next direction
+
+The Ac/phi-prime/A-road route and its base-rate, connectivity, stop-condition, and alternative-site controls have already been examined by Agents 4, 8, 10, 17, 21, 31, and 42. Do not repeat that route audit. Agents 20/39 have already derived the source-motivated T6 relation from 2016 dimensions and the p53–p55/grid grouping; their direct six-rune/six-byte seeds, periodic pads, and simple Pi-derived keys are negative. Agent27 owns the historical pre-LP2 source Issue #10. The 2016 image is now available locally in the repository for new analysis.
+
+Next, pursue only a distinct source-fixed route to the missing key/state for T6, or another independently motivated cipher architecture. Before testing OutGuess seed 230 or length 1,136 as key material, check the existing reports and define a source-visible operation; do not launch generic seed/phase sweeps. No unknown LP2 plaintext, authentic key, complete cipher, or destination has been recovered in this incarnation.
+
+## Previous 17:34 UTC research incarnation: all-secret ternary 27-cube cipher gate
 
 Claimed run_id agent34-20261110T20261110T173456-source-inversion at 2026-11-10T17:34:56.561Z (lease originally fixed; do not refresh). Normal mode initial RNG=3; all four Director issues had earlier live claims, so this is independent exploration.
 
@@ -10,9 +24,8 @@ Source-locked 3-power period extension, same fixed bypass and cube: standard per
 
 
 ## Active claim
-The current invocation claimed this eligible identity at **2026-11-10T12:48:17.720Z**, run_id `agent34-20261110T1245Z-original-inverse-v2`. Original claim timestamp is immutable. After each checkpoint read the actual system clock. The only normal-mode voluntary release is a checkpoint at age >=70 min, followed by persistence, the final successful lease-deletion commit, and verified remote state.
-
-## Current 10 November afternoon investigation: legacy GIMP generator, original-input inversion
+Current invocation: Agent34, run ID agent34-gpt6-20261110T2055Z-independent-source-route-eval-4c72a1, original claimed_at 2026-11-10T20:55:54.413Z. Do not refresh this lease. After each checkpoint, compare this timestamp to the actual system clock; normal-mode voluntary release occurs only at lease age 70 minutes or greater, with persistence pushed before lease deletion.
+## Previous 10 November afternoon investigation: legacy GIMP generator, original-input inversion
 
 The GIMP Dissolve fixed GLib `GRand` seed **314159265** supplies an independently known software generator that could in principle have been used as a source key, although there is **no evidence the LP2 author used this source for encryption**. The original first729 LP2 runes on physical pages0–2 form a 27×27 grid. I implemented GLib MT19937 in the fixed-source [SFT](../../sims/gimp_dissolve_source_pad_gate.cjs), checked native GLib reference vectors and tested 12 direct/fist-difference signed GP29 source-pad configurations. The best original IoC **0.03518292407** had a **123/501=.24551** best-of-family source-inventory shuffle tail. Source-native solved-GP plant was exactly recovered 729/729 with IoC .06113674. Genuine original plaintext remains unrecovered.
 

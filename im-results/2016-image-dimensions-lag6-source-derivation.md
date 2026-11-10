@@ -4,7 +4,7 @@
 
 ## Executive finding
 
-The archived 5 January 2016 image is reported as **563×569 pixels**. Its extracted payload says that Liber Primus's words are a map, their meanings are the road, and their numbers are the direction; the image is identified as containing an **Oak Tree In Winter**. The archive reports a good OpenPGP signature under key 7A35090F. Its fingerprint matches the Cicada public key preserved in this repository's 2012/control key files; the GPG warning is that the key lacks web-of-trust certification, not that the signature failed. However, the relationship between the signed image and the Pi.Mobi site is disputed, so do not assume the site itself is official or that this particular route is intended. A contemporaneous 2016 archive thread records the dimensions and notes that its background tree is the same image used on Liber Primus page 49.
+The archived 5 January 2016 image is now mirrored at [resources/historical/cicada2016-4gq25.jpg](../resources/historical/cicada2016-4gq25.jpg). The 26,342-byte baseline JFIF 1.1 file has SOF0 dimensions **563×569**. Byte-identical copies in the scream314/cicada3301 and micheloosterhof/cicada-2016 archives share Git blob SHA **22027296dcd7df53c5127e6aadbabeaf3223f72d**. The binary has no EXIF/XMP, ICC, IPTC, or comment segment and no bytes after EOI. This confirms the dimensions on the archived file, not a direct byte-for-byte capture from the original tweet/Infotomb host. Its extracted payload says that Liber Primus's words are a map, their meanings are the road, and their numbers are the direction; the image is identified as containing an **Oak Tree In Winter**. The archive reports a good OpenPGP signature under key 7A35090F. Its fingerprint matches the Cicada public key preserved in this repository's 2012/control key files; the GPG warning is that the key lacks web-of-trust certification, not that the signature failed. However, the relationship between the signed image and the Pi.Mobi site is disputed, so do not assume the site itself is official or that this particular route is intended. A contemporaneous 2016 archive thread records the dimensions and notes that its background tree is the same image used on Liber Primus page 49.
 
 Reducing those two image dimensions against the manuscript's existing source structures selects the same two offsets, **51 and 57**, in two independent artifacts:
 
@@ -37,6 +37,8 @@ The same archive identifies the image as containing the “Cicada Logo” and �
 
 - [scream314's archived 2016 message and extraction](https://github.com/scream314/cicada3301/blob/master/2016.md)
 - [the contemporaneous 4chan archive thread](https://4chanarchives.com/board/x/thread/17183963/post-all-your-cicada-3301-clues-here), which records 4gq25.jpg as **563×569px** and says its background tree is the same image appearing on Liber Primus page 49.
+
+The archived binary and reproducible marker inventory are documented in [the source manifest](../resources/historical/cicada2016-4gq25.md) and [the JPEG inventory script](../sims/2016_jpeg_asset_inventory.cjs). The second archive's stage01 README records OutGuess retrieval of 25,229 usable bits with seed 230 and payload length 1,136 bytes; these are extraction parameters, not yet an LP2 key.
 
 The 4chan archive is used here only for the image-dimension and contemporaneous visual observation; it is not evidence of message authenticity. The signed message and its oak-tree description are preserved in the separate Cicada archive.
 
