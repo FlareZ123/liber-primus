@@ -105,6 +105,52 @@ assert.deepEqual(fragmentDigits, p48.slice(-8));
 const fragmentValue = numeral(fragmentDigits, 29);
 assert.equal(fragmentValue, 207035949198n);
 assert.equal(fragmentValue % BigInt(redPrimeSum), 0n);
+
+// The three color-marked triangle intervals (red p40 heading, red p15
+// heading, red p53 stanza) omit exactly one GP glyph: E, prime value67.
+// That separately known source number also divides the printed fragment.
+const triangleSymbols = [];
+for (const page of [40, 15, 53]) {
+  const source = ink.pages.find(p => p.page === page).red_spans[0];
+  const indices = corpus.pages.find(p => p.page === page).indices;
+  triangleSymbols.push(...indices.slice(source.start, source.start + source.length));
+}
+const missingSymbols = corpus.prime.flatMap((prime, index) =>
+  triangleSymbols.includes(index) ? [] : [{ index, prime }]);
+assert.deepEqual(missingSymbols, [{ index: 18, prime: 67 }]);
+const missingPrime = missingSymbols[0].prime;
+const crossDivisor = redPrimeSum * missingPrime;
+assert.equal(fragmentValue % BigInt(crossDivisor), 0n);
+const residualPrime = fragmentValue / BigInt(crossDivisor);
+assert.equal(residualPrime, 1366087n);
+// Elementary exact trial division suffices for this seven-digit integer.
+for (let d = 2n; d * d <= residualPrime; d++)
+  assert.notEqual(residualPrime % d, 0n, 'residual is composite');
+
+// Exact 7! permutation test, preserving the final GP-F and the whole
+// eight-rune printed fragment inventory, avoids using a random sample.
+const perm = fragmentDigits.slice(0, -1);
+let permutationCount = 0;
+let sumDivisible = 0;
+let sumAndMissingDivisible = 0;
+function walk(start) {
+  if (start === perm.length) {
+    permutationCount++;
+    const value = numeral([...perm, fragmentDigits.at(-1)], 29);
+    if (value % BigInt(redPrimeSum) === 0n) sumDivisible++;
+    if (value % BigInt(crossDivisor) === 0n) sumAndMissingDivisible++;
+    return;
+  }
+  for (let j = start; j < perm.length; j++) {
+    [perm[start], perm[j]] = [perm[j], perm[start]];
+    walk(start + 1);
+    [perm[start], perm[j]] = [perm[j], perm[start]];
+  }
+}
+walk(0);
+assert.deepEqual([permutationCount, sumDivisible, sumAndMissingDivisible],
+  [5040, 132, 10]);
+
 const matchingTerminalFragments = transcript.flatMap((page, i) => {
   const word = lastFragment(page);
   const value = numeral([...word].map(rune => glyphMap.get(rune)), 29);
@@ -227,6 +273,13 @@ console.log(JSON.stringify({
     originalWordContinuesNextPage: true,
     p48FragmentGP29: fragmentValue.toString(),
     fragmentQuotient2262: (fragmentValue / BigInt(redPrimeSum)).toString(),
+    missingTriangleGP: 'E (index18, prime67)',
+    fragmentDivisorRedSumTimesMissingPrime: crossDivisor,
+    remainingPrime: residualPrime.toString(),
+    terminalEightPermutations: {
+      total: permutationCount, redSumDivisible: sumDivisible,
+      redSumTimesMissingPrimeDivisible: sumAndMissingDivisible
+    },
     allPageFinalNonzeroFragmentMatches: matchingTerminalFragments
   },
   conditionalShuffle: {
