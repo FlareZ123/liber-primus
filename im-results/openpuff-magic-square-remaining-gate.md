@@ -70,7 +70,20 @@ rules out the **combined 7×7 source Hill + arbitrary shared column pad**
 family for directly readable GP-English under these two layouts. The
 comparison is key-free; testing extra pad phases would add nothing.
 
-### Source-marked Ac24 root-of-seven Fourier recovery attempt
+### Source-marked Ac24 root-of-seven Fourier with an unknown shared pad
+
+**Prior-work boundary.** The source p39 red triad / Ac24 root, seven-page
+cuneiform enclosure and twelve direct GP29 Fourier inverses of the same
+1,589-rune interval were already tested in
+[`sims/lp2_red_root7_fourier_original_inverse.cjs`](../sims/lp2_red_root7_fourier_original_inverse.cjs),
+with negative original-native-GP language results. That direct transform
+is not a new discovery here. The distinct extension below admits an
+**arbitrary secret 227-symbol output pad** and derives a *key-free six-row
+original-plaintext prediction* which the earlier direct inverse did
+not test. The independently 10-dot-enclosed **553=7×79** original
+passage supplies a second, separately source-visible application under
+the same unknown-pad relaxation.
+
 
 A still more ambitious, *key-eliminating* interpretation uses the independently
 highlighted Ac rune (GP index **24**) in the p39 red polynomial and p54's
