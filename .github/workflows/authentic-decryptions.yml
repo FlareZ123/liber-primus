@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Decode original runic ciphertext with documented historical keys
         run: node sims/authentic_decryption_regression.cjs
+      - name: Test five-dot artwork reflection against solved page-56 totient inverse
+        run: node sims/fivedot_reflection_totient_inverse.cjs
