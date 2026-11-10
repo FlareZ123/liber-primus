@@ -85,9 +85,8 @@ function score(a,b,am,bm,shift=0){
 }
 function matched(mask,english,rnd,reverse=false){
   const byLength=new Map();
-  for(const w of english)for(let k=0;k<2;k++){
-    const v=k?w.slice().reverse():w;
-    let a=byLength.get(v.length);if(!a)byLength.set(v.length,a=[]);a.push(v);
+  for(const w of english){
+    let a=byLength.get(w.length);if(!a)byLength.set(w.length,a=[]);a.push(w);
   }
   const all=[],indices=[];
   for(let at=0;at<mask.xs.length;){
