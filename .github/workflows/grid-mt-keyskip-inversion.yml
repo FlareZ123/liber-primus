@@ -1,0 +1,13 @@
+name: LP2 MT grid column key-skip exact inversion
+
+on:
+  workflow_dispatch:
+
+jobs:
+  inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Solve all source-derived seed-column assignments with bounded collision skips
+        run: python3 sims/grid_mt_keyskip_inversion.py
