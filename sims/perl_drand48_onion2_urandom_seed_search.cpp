@@ -176,6 +176,69 @@ static SearchStats search_interleaved(const vector<uint8_t>& target,int scale,
   return z;
 }
 
+
+static bool full_interleaved_suffix_match(uint32_t seed,const vector<uint8_t>& suffix,
+                                          int scale,int order,const array<int,31>& kvals) {
+  uint64_t s=((uint64_t)seed<<16)|0x330eULL;
+  for(int i=0;i<(int)suffix.size();i++) {
+    const int pos=143+i;
+    if(order==0) {
+      s=step(s);
+      if(out_value(s,scale)!=suffix[i]) return false;
+      s=step(s);
+      if(pos>=152&&pos<=182 && out_interval(s)!=kvals[pos-152]) return false;
+    } else {
+      s=step(s);
+      if(pos>=152&&pos<=182 && out_interval(s)!=kvals[pos-152]) return false;
+      s=step(s);
+      if(out_value(s,scale)!=suffix[i]) return false;
+    }
+  }
+  return true;
+}
+static SearchStats search_interleaved_suffix(const vector<uint8_t>& suffix,int scale,
+                                             int order,const array<int,31>& kvals) {
+  SearchStats z;
+  // Suffix starts at byte 143. Byte 152 is its tenth event: draw 19 or 20.
+  const uint64_t byte_draw=(order==0)?19:20;
+  const SeedMap m=seed_map_at_draw(byte_draw);
+  const int idx=152-143;
+  auto [lo,hi]=x_range_for_output(scale,suffix[idx],m.low16);
+  z.candidate_states=hi>=lo?hi-lo+1:0;
+  for(uint64_t xx=lo;xx<=hi;xx++) {
+    const uint32_t x=(uint32_t)xx;
+    const uint32_t seed=seed_for_high32(x,m);
+    const uint64_t state=state_for_high32(x,m);
+    if(out_value(state,scale)!=suffix[idx]) continue;
+    const uint64_t interval_state=(order==0)?step(state):inv_step(state);
+    if(out_interval(interval_state)!=kvals[0]) continue;
+    z.first_interval_passes++;
+    if(full_interleaved_suffix_match(seed,suffix,scale,order,kvals)) {
+      z.full_matches++;
+      z.full_seeds.push_back(seed);
+    }
+  }
+  return z;
+}
+static vector<uint8_t> generate_interleaved_suffix(uint32_t seed,int scale,int order,
+                                                   array<int,31>& kvals) {
+  vector<uint8_t> out; out.reserve(114);
+  uint64_t s=((uint64_t)seed<<16)|0x330eULL;
+  for(int i=0;i<114;i++) {
+    const int pos=143+i;
+    if(order==0) {
+      s=step(s); out.push_back(out_value(s,scale));
+      s=step(s);
+      if(pos>=152&&pos<=182) kvals[pos-152]=out_interval(s);
+    } else {
+      s=step(s);
+      if(pos>=152&&pos<=182) kvals[pos-152]=out_interval(s);
+      s=step(s); out.push_back(out_value(s,scale));
+    }
+  }
+  return out;
+}
+
 static vector<uint8_t> generate_direct(uint32_t seed,int scale) {
   vector<uint8_t> out; out.reserve(256);
   uint64_t s=((uint64_t)seed<<16)|0x330eULL;
@@ -245,6 +308,24 @@ int main() {
            order==0?"byte-delay":"delay-byte",plant,(unsigned long long)z.full_matches);
   }
 
+
+  // The timing corpus begins at byte 143, not at byte 1. Test the
+  // source-supported alternative that the PRNG stream begins with this suffix.
+  const vector<uint8_t> suffix(target.begin()+142,target.end());
+  for(int scale:{256,255}) {
+    auto p=generate_direct(plant,scale); p.resize(114);
+    auto z=search_direct(p,scale);
+    if(!contains(z.full_seeds,plant)){fprintf(stderr,"suffix direct positive control failed scale=%d\n",scale);return 6;}
+    printf("positive_control_suffix_direct_scale_%d: recovered=0x%08x matches=%llu\n",scale,plant,(unsigned long long)z.full_matches);
+  }
+  for(int order:{0,1}) {
+    array<int,31> pk{};
+    auto p=generate_interleaved_suffix(plant,256,order,pk);
+    auto z=search_interleaved_suffix(p,256,order,pk);
+    if(!contains(z.full_seeds,plant)){fprintf(stderr,"suffix interleaved positive control failed order=%d\n",order);return 7;}
+    printf("positive_control_suffix_interleaved_order_%s: recovered=0x%08x matches=%llu\n",order==0?"byte-delay":"delay-byte",plant,(unsigned long long)z.full_matches);
+  }
+
   printf("source_target_sha256=05acf0d8e2ba7d851e2b4bbc32b85e461a1bd41576a50504487f33d4c1522c56\n");
   printf("target_first4=");
   for(int i=0;i<4;i++) printf("%02x",target[i]);
@@ -263,6 +344,22 @@ int main() {
              scale,order==0?"byte-delay":"delay-byte");
     print_stats(name,z);
   }
+
+  printf("suffix_start_pos=143 suffix_length=%zu suffix_first4=",suffix.size());
+  for(int i=0;i<4;i++) printf("%02x",suffix[i]);
+  printf(" suffix_pos152=%02x\n",suffix[9]);
+  for(int scale:{256,255}) {
+    const auto z=search_direct(suffix,scale);
+    char name[100]; snprintf(name,sizeof(name),"original_suffix143_direct_int_rand_%d",scale);
+    print_stats(name,z);
+  }
+  for(int scale:{256,255}) for(int order:{0,1}) {
+    const auto z=search_interleaved_suffix(suffix,scale,order,KVALS);
+    char name[120];
+    snprintf(name,sizeof(name),"original_suffix143_interleaved_scale_%d_order_%s",scale,order==0?"byte-delay":"delay-byte");
+    print_stats(name,z);
+  }
+
   const auto ms=chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now()-t0).count();
   printf("elapsed_ms=%lld\n",(long long)ms);
   return 0;
