@@ -1,0 +1,14 @@
+name: LP2 source-wordlength public-domain crib discovery
+on:
+  workflow_dispatch:
+jobs:
+  source-cribs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Match exact original GP word-lengths against source texts
+        run: node sims/source_wordlength_gutenberg_cribs.cjs
