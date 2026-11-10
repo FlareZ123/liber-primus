@@ -50,6 +50,37 @@ const t6Log15={
  bookClock:stats(decodeLog15('book','global')),
  pageClock:stats(decodeLog15('page','page'))
 };
+// A distinct source clock: advance the same T6-derived exponent state only on
+// original red-rune events. Test event count or red GP value, global/word/13-dot
+// reset, and whether the current red event advances before or after its rune.
+let earlyOffset=0;const earlyPageOffset=new Map();
+for(const p of C.pages){earlyPageOffset.set(p.page,earlyOffset);earlyOffset+=p.indices.length;}
+const redRunePositions=new Set(),dotResetPositions=new Set();
+for(const p of A.pages)if(p.page<56){
+ for(const sp of p.red_spans||[])for(let j=0;j<sp.length;j++)redRunePositions.add(earlyPageOffset.get(p.page)+sp.start+j);
+ for(const q of p.large_punctuation||[])if(q[1]===13)dotResetPositions.add(earlyPageOffset.get(p.page)+q[0]);
+}
+assert.equal(redRunePositions.size,213);
+assert.equal(dotResetPositions.size,26); // 28 events include two coincident pairs
+function decodeRedClock({reset='global',timing='pre',mode='count'}={}){
+ const out=[];let prev=null,state=0;
+ for(let i=0;i<N;i++){
+  if(reset==='word'&&wordPos[i]===0)state=0;
+  if(reset==='dot'&&dotResetPositions.has(i))state=0;
+  const isRed=redRunePositions.has(i);
+  const step=()=>mode==='count'?1:cipher[i];
+  if(isRed&&timing==='post')state=mod(state+step(),28);
+  const key=mod(24+13*state,28);
+  if(i===0)out.push(mod(cipher[i]-key,29));
+  else{const d=mod(cipher[i]-prev,29);out.push(d===0?28:mod(log15[d]-key,28));}
+  prev=cipher[i];
+  if(isRed&&timing==='pre')state=mod(state+step(),28);
+ }
+ return out;
+}
+const redOnlyT6Clock=[];
+for(const mode of ['count','value'])for(const reset of ['global','word','dot'])for(const timing of ['pre','post'])
+ redOnlyT6Clock.push({mode,reset,timing,...stats(decodeRedClock({mode,reset,timing}))});
 // T6's 28-cycle from Ac excludes fixed-point Haegl. Use it as a candidate
 // alphabet order; adjacent zero differences are the reserved Haegl marker.
 const T=x=>mod(24-2*x,29),orbit=[],rank=Array(29).fill(-1);let x=24;
@@ -107,7 +138,7 @@ for(let i=0;i<N;i++){const d=mod(plantCipher[i]-pv,29);if(!d)roundMarkers.push(i
 assert.deepEqual(roundDigits,plantDigits);assert.deepEqual(new Set(roundMarkers),plantMarkers);
 assert.deepEqual(pack(roundDigits).bytes,plantBytes);assert.equal(pack(roundDigits).invalid,0);
 const out={
- t6SourceComposition:t6,t6Log15,
+ t6SourceComposition:t6,t6Log15,redOnlyT6Clock:{redRuneEvents:redRunePositions.size,unique13DotResetPositions:dotResetPositions.size,tests:redOnlyT6Clock},
  hMarkerBase28:{
   orbit,repeatMarkers:markers.length,dataDigits:digits.length,groups:digits.length/3,
   invalidGroups:packed.invalid,validGroups:packed.validGroups,validOutputBytes:packed.bytes.length,

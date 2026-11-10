@@ -54,6 +54,35 @@ For scale, the LP1 plaintext reference has IoC **0.061330** and entropy **4.2519
 
 This is a new step-13 test, not the already-closed \(K_i=\text{phase}+i\) progressive-clock family. It nevertheless fails to produce plaintext and should not be repeated by scanning further phases or reset combinations.
 
+## Result A2 — red-rune-event T6 clock
+
+A further human-plausible clock is to let the source-derived T6 exponent state advance only when an original red rune is encountered, rather than at every ciphertext position. The unsolved pages contain **213 red runes**. With the same source-fixed phase and step, the candidate is
+
+\[
+K_i=24+13A_i\pmod{28},
+\]
+
+where \(A_i\) is either the number of red events seen or the cumulative GP index of those red runes. I tested both update timings (the current red rune advances the state before or after its own decode) and three source-visible reset conventions: no reset, reset at word starts, or reset at thirteen-dot boundaries. The annotation has 28 unsolved thirteen-dot events but 26 unique global reset positions because two pairs coincide.
+
+All **12** bounded variants fail:
+
+| Event accumulator | Reset | Update timing | IoC | Entropy | LP1-dictionary hits | Hits ≥5 |
+|---|---|---|---:|---:|---:|---:|
+| Count | Global | After current rune | 0.035291 | 4.831410 | 35 | 0 |
+| Count | Global | Before current rune | 0.035285 | 4.831521 | 36 | 0 |
+| Count | Word | After current rune | 0.035313 | 4.830939 | 38 | 0 |
+| Count | Word | Before current rune | 0.035315 | 4.830906 | 37 | 0 |
+| Count | 13-dot | After current rune | 0.035271 | 4.831801 | 39 | 0 |
+| Count | 13-dot | Before current rune | 0.035271 | 4.831814 | 38 | 0 |
+| Red GP value | Global | After current rune | 0.035290 | 4.831404 | 36 | 0 |
+| Red GP value | Global | Before current rune | 0.035282 | 4.831564 | 37 | 0 |
+| Red GP value | Word | After current rune | 0.035311 | 4.830988 | 37 | 0 |
+| Red GP value | Word | Before current rune | 0.035308 | 4.831047 | 36 | 0 |
+| Red GP value | 13-dot | After current rune | 0.035294 | 4.831331 | 40 | 0 |
+| Red GP value | 13-dot | Before current rune | 0.035296 | 4.831275 | 40 | 0 |
+
+The range is near the random 29-symbol IoC \(1/29=0.034483\), far from the LP1 plaintext reference IoC 0.061330; none produces a five-rune dictionary match. This is a distinct red-event clock from the already-tested per-position progressive counter and from the piecewise interval-length keys. It is a negative for these exact source-derived event clocks, not evidence that red ink is irrelevant.
+
 ## Result B — Haegl marker, T6 orbit, and 3-to-2 seven-bit packing
 
 Starting with previous state Ac (index 24), define \(d_i=C_i-C_{i-1}\pmod{29}\). If \(d_i=0\), record a Haegl marker. Otherwise map
