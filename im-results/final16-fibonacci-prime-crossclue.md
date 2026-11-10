@@ -1,6 +1,6 @@
 # Final LP2 section: source-derived 829-block and sixteen-page square/grid key inversions
 
-**10 November 2026, Agent 45. Supporting original-cipher evidence, not newly recovered LP2 plaintext.** The keyless and keyed tests below are finite original-source challenges. The strongest result is an **exact exclusion of eight page-local Fibonacci-square prime-totient schedules** under the *same selective literal-F transducer that exactly decrypts solved physical p56*. It requires no language assumption for the original-cipher exclusion. The 829-block and AES grid tests are independently bounded negatives. Nothing here identifies an authentic key, new plaintext, hidden-service URL or destination.
+**10 November 2026, Agent 45. Supporting original-cipher evidence, not newly recovered LP2 plaintext.** The keyless and keyed tests below are finite original-source challenges. The strongest result is an **exact exclusion of eight page-local Fibonacci-square prime-totient schedules and a further 88 independent grid/square AES or ChaCha key constructions** under the *same selective literal-F transducer that exactly decrypts solved physical p56*. These cryptographic impossibilities require **no original-plaintext language assumption**. The direct-score 829-block and AES grid tests are separately bounded negatives. Nothing here identifies an authentic key, new plaintext, hidden-service URL or destination.
 
 ## Unexploited source geometry
 
@@ -46,10 +46,28 @@ Two independent power checks run through the *same* script:
 
 [Exact solved/unknown input source and inverse](../sims/final16_fibonacci_totient_fmask.cjs) · [successful manual GitHub Actions run 42856960766](https://github.com/FlareZ123/liber-primus/actions/runs/42856960766). The selective-F inverse is strictly stronger than merely observing low IoC after a guessed prime pad: no choice of the unknown F-skip mask can produce the original source under any of the eight declared starts/signs.
 
+## Exact 88-model transparent-F gate over source-derived binary keystreams
+
+The selective-F model above has an additional powerful necessary condition independent of the cipher *family*: any deterministic byte-keystream GP29 additive transform, equipped with plaintext-F→literal-cipher-F and no consumed key at F, must have **at least one feasible schedule of secret F skips** on the original ciphertext. There is no GP language assumption. The [new reusable source-key gate](../sims/final16_transparent_f_gate.cjs) propagates **all reachable key-byte clocks** simultaneously after every original GP rune, adding a no-key-advance branch at every observed cipher-F and forbidding a key-consuming branch whenever its predicted plaintext would itself be F.
+
+Apply this exact finite mechanism to the same **40** source-frozen per-page AES-128 grid/square candidate keys and **48** four-by-829 AES-256/ChaCha20 square-derived keys tested above. The page case resets one byte stream at each original physical page, retaining the empty p50; the block case resets at each of four contiguous 829-rune section blocks. Crucially, the test allows *every possible* visible-F mask and therefore subsumes the earlier fixed-key-index reading if the true cipher really follows the solved-page F rule.
+
+| Original source family, exact key clock | Key candidates | Fully feasible on original | Smallest number of individually impossible original units |
+| --- | ---: | ---: | ---: |
+| Grid-derived AES-128 CTR, physical page reset, square IVs | **40** | **0** | **12 of 15** rune-bearing pages |
+| Square-derived AES-256 CTR/ChaCha20, four 829-rune resets | **48** | **0** | **4 of 4** blocks |
+| **Combined** | **88** | **0** | Every key model fails |
+
+For example, the page-key model using 16 row-major AES-128 keys, zero IV, `byte%29`, sign− is impossible already at p40 offset **4**, and fails on fourteen of fifteen original rune-bearing pages. The first-block AES-256-CTR source-row big-endian key with the same reduction/sign becomes impossible at original block offset **65** and separately fails in all four blocks. No inferred English score is needed for either conclusion.
+
+To establish that rejection is not an artifact of the dynamic program, the script independently encodes **3,316 native GP-English control runes** under the page-key model, and a second source-disjoint arrangement under the four-block key model. Both positive controls are exact source-law encryptions, with **70 plaintext F interrupters** in the tested source; the same exhaustive decoder verifies **all 3,316 symbols feasible** in both planted controls. This tests the declared feasibility invariant and key-clock branching, without asserting which branch is the historical choice.
+
+[Successful manual GitHub Actions run 42857899474](https://github.com/FlareZ123/liber-primus/actions/runs/42857899474) records every candidate's first impossible original coordinate and the two successful source-controlled plants. The result is a complete, language-free exclusion of **these 88 specific source-derived direct GP29 key schedules conditioned on the authentic solved-p56 interrupter law**. It does not exclude an AES/ChaCha intermediate with an unknown cipher layer, different page/byte clock registration, alternate F handling, output repair or independent secret keys.
+
 ## Boundaries and next source clue required
 
-These results rule out three **specific** interpretations of independently visible source relationships; they do not rule out a hidden binary intermediate, grid-key transposition, additional byte transformations, non-page resets, non-source-aligned starts, cipher-repair steps, or a mixed alphabet. In particular, the selective-F exclusion assumes the **same pure interrupter law as solved p56** extends to these pages and that the page clock starts exactly at its square-selected ordinal. If either assumption fails, the impossibility ceases to apply.
+These tests exclude a shared four-block pad phase and four source-frozen keyed architectural families in their specified direct forms. They do **not** exclude a hidden binary intermediate, grid-key transposition, additional byte transformations, non-page resets, non-source-aligned starts, cipher-repair steps, or a mixed alphabet. In particular, the selective-F exclusion assumes the **same pure interrupter law as solved p56** extends to these pages and that the page clock starts exactly at its square-selected ordinal. If either assumption fails, the impossibility ceases to apply.
 
 The useful next attack needs an original clue predicting which **non-page-aligned clock or key-state** is actually used, or whether a first encryption layer explains the unusually uniform ciphertext before any GP prose appears. Further ad hoc shifts/seed lists on the same eight rejected schedules will not unlock the manuscript.
 
-All three tests are available in the existing **manual-only** [grid/square cross-clue workflow](../.github/workflows/grid-square-iv-keys.yml), run on Node.js 22 with original repo sources and a source-disjoint English control. Do not promote this note to a recovered decryption in `results/README.md`.
+All four keyed analyses are available in the existing **manual-only** [grid/square cross-clue workflow](../.github/workflows/grid-square-iv-keys.yml), run on Node.js 22 with original repo sources and a source-disjoint English control. Do not promote this note to a recovered decryption in `results/README.md`.
