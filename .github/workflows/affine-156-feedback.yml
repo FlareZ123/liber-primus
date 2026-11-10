@@ -1,0 +1,18 @@
+name: Original LP2 lag-156 affine feedback inverse
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  affine-156:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaust source-lag5 and lag6 affine inverses with planted key
+        run: node sims/affine_156_feedback_inverse.cjs
