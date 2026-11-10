@@ -44,6 +44,32 @@ Two coordinate systems are independently motivated by the source:
 | Seven contiguous 227-rune rows formed from the entire p33–39 body | **159/4,767 (3.3354%)** | Shakespeare: minimum **239**, median **291** in 2,002 windows; Emerson: minimum **245**, median **303** in 2,007 windows |
 | Seven physical page starts, 123 shared columns (page lengths after heading 123, 261, 271, 238, 228, 228, 240) | **93/2,583 (3.6005%)** | Shakespeare: minimum **119**, median **158**; Emerson: minimum **117**, median **165**, using the *same seven source-page offsets* |
 
+The same source motivates a **stronger two-layer model with an unknown
+shared keystream**. The historical 2014 OpenPuff 7×7 square has row and column
+sums 1033 ≡ 18 (mod 29). Consequently its inverse also maps a constant
+column vector to a constant column vector. Under
+`C[:,j] = M P[:,j] + K[j]·1`, subtracting the unknown `K[j]` is
+unnecessary: `M⁻¹ C[:,j]` has exactly the same cross-row equalities as
+`P[:,j]`, regardless of the arbitrary 227-symbol key. The equivalent
+statement holds for each natural source-matrix orientation (M, Mᵀ,
+M⁻¹, M⁻ᵀ).
+
+| Seven-page source-matrix orientation | 7×227 equalities | Native seven-page, 123-column equalities |
+| --- | ---: | ---: |
+| M | 185 | 84 |
+| Mᵀ | 152 | 107 |
+| M⁻¹ | 176 | 73 |
+| M⁻ᵀ | 163 | 82 |
+
+Even the strongest original value remains below the minimum in **both**
+independently pinned English control collections (**239** packed,
+**117** native). The SFT fully encrypts and recovers a 1,589-rune
+source-native plant through **each** source-matrix orientation plus an
+arbitrary common 227-step pad, including forward re-encryption. This
+rules out the **combined 7×7 source Hill + arbitrary shared column pad**
+family for directly readable GP-English under these two layouts. The
+comparison is key-free; testing extra pad phases would add nothing.
+
 For each reference the program converts a pinned literary work to the canonical
 29-character GP transliteration, discards nonrunes, samples approximately 2,000
 deterministic consecutive 1,589-rune windows, and computes exactly the same
