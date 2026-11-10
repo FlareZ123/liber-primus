@@ -1,6 +1,15 @@
-name: LP2 printed-initial heldout replication (manual)
+name: LP2 physical-line and page-turn replication (manual)
 on:
   workflow_dispatch:
+    inputs:
+      analysis:
+        description: Select original printed-initial replication or width-matched page-turn test
+        type: choice
+        required: true
+        default: line-initial
+        options:
+          - line-initial
+          - page-turn-width
 permissions:
   contents: read
 jobs:
@@ -12,5 +21,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Test printed line initials and negative controls on the canonical manuscript
+      - name: Test printed line initials and negative controls on canonical manuscript
+        if: ${{ inputs.analysis == 'line-initial' }}
         run: node sims/physical_line_initial_crosspage_heldout.cjs
+      - name: Refit width/section/word-matched page-turn arcs on original source
+        if: ${{ inputs.analysis == 'page-turn-width' }}
+        run: node sims/page_turn_width_word_matched_crossfit.cjs
