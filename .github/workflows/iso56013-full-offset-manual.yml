@@ -1,0 +1,39 @@
+name: CicadaOS full 56013 pad offset scan
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    name: ISO pad full offset ${{ matrix.map }}
+    runs-on: windows-latest
+    timeout-minutes: 65
+    strategy:
+      fail-fast: false
+      matrix:
+        map: [mod, reject]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve original Cicada OS data
+        shell: pwsh
+        run: |
+          $output = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13' --output $output
+          if ($LASTEXITCODE -ne 0) { throw "Original asset download failed" }
+      - name: Scan every byte offset and calibrate positives
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          $outfile = Join-Path $env:RUNNER_TEMP "iso56013_${{ matrix.map }}.json"
+          node sims/iso56013_full_offset_screen.cjs $asset '${{ matrix.map }}' $outfile
+          if ($LASTEXITCODE -ne 0) { throw "Pad screen failed" }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: iso56013-${{ matrix.map }}
+          path: ${{ runner.temp }}/iso56013_${{ matrix.map }}.json
+          retention-days: 15
