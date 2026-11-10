@@ -113,7 +113,7 @@ function prefix(values){
   return values.slice(0,160).map(v=>corpus.translit[v]).join("");
 }
 function run(){
-  const variants=[];
+  const variants=[],keyProperties=[];
   const plant29=Array.from({length:C.length},(_,i)=>PLANT[i%PLANT.length]);
   const plant28=Array.from({length:C.length},(_,i)=>
     i%157===27?28:PLANT[i%PLANT.length]%28);
@@ -121,6 +121,10 @@ function run(){
   for(const order of ["subset","superset"])
     for(const ring of ["mod256","xor"]){
       const key=inverse8(B,order,ring);
+      const counts=new Array(256).fill(0);
+      for(const byte of key)counts[byte]++;
+      keyProperties.push({name:order+"-"+ring,unique:counts.filter(x=>x>0).length,
+        maxMultiplicity:Math.max(...counts),fixedPoints:key.filter((v,i)=>v===i).length});
       for(const family of ["add","exclude"])
         for(const projection of ["mod","scaled"])
           for(const sign of [-1,1])
@@ -143,7 +147,7 @@ function run(){
       originalRunes:C.length,thirteenDotFragments:bounds.length,
       unsolvedFragments:28,unsolvedEnd:bounds[28],fragmentLengths:lengths,
       operation:"8-bit Boolean Mobius inverse over row-major table vector"},
-    originalIoC:ioc(C),variantCount:variants.length,plantChecks,variants
+    originalIoC:ioc(C),keyProperties,variantCount:variants.length,plantChecks,variants
   };
 }
 if(require.main===module)console.log(JSON.stringify(run(),null,2));
