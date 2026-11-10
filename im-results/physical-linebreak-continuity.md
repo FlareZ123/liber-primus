@@ -28,6 +28,18 @@ Whole-page permutation and original-neighborhood displacement controls test whet
 | Restrict whole-page permutations to both halves with no equal adjacent rune at their joins | Same source statistic | **61/10,770** eligible trials as extreme; p = **62/10,771 = 0.00576** |
 | Choose independent ±10-rune local displacements for the same 26 test page breaks | Fixed arc **12–17**: **12** hits, expected **5.4762** by 26 distinct local probabilities | Exact Poisson-binomial upper tail **0.0029801291** |
 
+A stronger **section-preserving shuffle** partitions the 55 rune-bearing
+pages into nine visible page ranges (p0–2, p3–7, p8–14, p15–22, p23–26,
+p27–32, p33–39, p40–53, p54–55). Keep the first and last page of each
+range fixed, and permute only its internal complete pages. Thus all eight
+inter-section joins and their punctuation are unchanged. Among **46**
+within-section joins, **20** have a 12–17 step. In **100,000** seeded
+pinned-section shuffles, the mean is **13.31438**, and **1,658** meet or
+exceed 20 (add-one **p = 1,659/100,001 ≈ 0.01659**). The effect remains
+under section grouping, with weaker conditional evidence. This test also
+postdates the original discovery of the 12–17 interval and cannot be
+counted as an independent discovery.
+
 Every whole-page permutation retains the page's actual rune order, glyph inventory, first/last rune identities, and typographic layout. The test's marginal expected counts use every possible end-to-start pairing of the pages in its split. The local displacement null keeps all original ciphertext positions and only randomizes which neighboring adjacency is treated as the boundary. Both comparisons therefore distinguish the physical joins from commonplace within-page adjacency effects.
 
 **Scope:** The arc 12–17 and split were investigated after inspecting the source, so even the page-disjoint test is only a conditional replication within a historically explored manuscript. Multiple conditional p-values cannot be multiplied to infer authorial intent. Glyph spacing, typography, or a latent page-state cipher could in principle contribute. Neither a 29-symbol page-reset key nor any original plaintext has been recovered. The frozen 12–17 criterion is suitable as a secondary test for future *source-derived* forward models.
