@@ -90,7 +90,9 @@ for(const [name,states] of [["pre",pre],["post",post]]){
 const sourcePad=pad(pre);
 const positive=encryptSoft(clear,sourcePad,1);
 const recovered=decode(positive.ciphertext,sourcePad,1,WIDTH);
-const wrongGridPad=Array.from({length:SIZE+1024},(_,i)=>\n  mod(bytes[255-pre[i%256]]));\nconst wrong=decode(positive.ciphertext,wrongGridPad,1,WIDTH);
+const wrongGridPad=Array.from({length:SIZE+1024},(_,i)=>
+  mod(bytes[255-pre[i%256]]));
+const wrong=decode(positive.ciphertext,wrongGridPad,1,WIDTH);
 const correct=recovered.decoded.filter((x,i)=>x===clear[i]).length;
 const wrongCorrect=wrong.decoded.filter((x,i)=>x===clear[i]).length;
 assert.ok(correct>0.9*SIZE,"True-source planted decoder failed calibration");
