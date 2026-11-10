@@ -1,0 +1,16 @@
+name: LP2 blind affine-page common-pad synchrony
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test 29-ary shared pad under unknown page-wise affine alphabets
+        run: node sims/affine_page_spectral_sync.cjs
