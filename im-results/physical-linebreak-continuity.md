@@ -42,6 +42,20 @@ counted as an independent discovery.
 
 Every whole-page permutation retains the page's actual rune order, glyph inventory, first/last rune identities, and typographic layout. The test's marginal expected counts use every possible end-to-start pairing of the pages in its split. The local displacement null keeps all original ciphertext positions and only randomizes which neighboring adjacency is treated as the boundary. Both comparisons therefore distinguish the physical joins from commonplace within-page adjacency effects.
 
+**Source-register specificity:** Repeat the complete 377-arc train/test
+procedure after replacing GP indices by the *different, pre-existing*
+GP prime-value assignments reduced modulo 29. Training then selects
+prime-weight residues **20–21**, **6/27**; the disjoint last-page group
+contains only **1/26** (expected **2.7462**). A separate 30,000-trial
+page-order shuffle/refit null attains at least that original holdout score
+**26,621** times (add-one **p = 26,622/30,001 ≈ 0.88737**).
+Thus this exploratory effect is specifically associated with the canonical
+GP **ordinal rune-index cyclic geometry**, not an automatic consequence
+of assigning each GP rune its historical prime weight. This is a
+pre-existing alternate register tested *after* observing the ordinal
+signal and is not an independent confirmation that the ordinal
+geometry is authorial.
+
 **Scope:** The arc 12–17 and split were investigated after inspecting the source, so even the page-disjoint test is only a conditional replication within a historically explored manuscript. Multiple conditional p-values cannot be multiplied to infer authorial intent. Glyph spacing, typography, or a latent page-state cipher could in principle contribute. Neither a 29-symbol page-reset key nor any original plaintext has been recovered. The frozen 12–17 criterion is suitable as a secondary test for future *source-derived* forward models.
 
 **Reproduce:** `node sims/page_turn_mod29_holdout.cjs` (CommonJS, Node.js 22) prints the original exact summary and asserts 30,000 full-source shuffles, 60,000 two-half shuffles, the no-repeat subset, and the exact independent local-displacement tail.
