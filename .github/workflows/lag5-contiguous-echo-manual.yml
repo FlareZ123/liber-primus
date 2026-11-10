@@ -14,6 +14,7 @@ on:
           - grid-rank28
           - fibonacci-logstep-inverse
           - step-log-feedback-inverse
+          - echo-predecessor-clock-capacity
       train:
         description: 'Independent null calibration replicates'
         required: false
@@ -66,3 +67,7 @@ jobs:
       - name: Exact original F29 log-step ciphertext-feedback inverse
         if: ${{ inputs.experiment == 'step-log-feedback-inverse' }}
         run: node sims/step_log_feedback_exact_inverse.cjs 24
+
+      - name: Exact all-secret 29-predecessor and word-clock lossless tableau GP-E bound
+        if: ${{ inputs.experiment == 'echo-predecessor-clock-capacity' }}
+        run: node sims/lossless_echo_predecessor_clock_capacity.cjs
