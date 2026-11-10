@@ -22,7 +22,7 @@
  */
 const assert=require("node:assert/strict");
 const {source,sourceCounts,flattened,observedProfiles}=require("./prime_totient_secret_parity_wordfit.cjs");
-const bins=[0,2,6,14,30],TOTAL=62,TOP=1<<28;
+const bins=[0,0,2,6,14,30],TOTAL=62,TOP=1<<28;
 const sourceLen=source.length;
 const data=source.map(({seq,weight,len})=>({seq,weight,len,alphabetMask:seq.reduce((a,x)=>a|(1<<x),0),code:0}));
 const reverse=Array.from({length:28},()=>[]);
