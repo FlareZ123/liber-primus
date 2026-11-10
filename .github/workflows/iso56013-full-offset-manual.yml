@@ -34,11 +34,11 @@ jobs:
         shell: pwsh
         run: |
           $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
-          $outfile = Join-Path $env:RUNNER_TEMP "iso56013_${{ matrix.map }}.json"
-          node sims/iso56013_full_offset_screen.cjs $asset '${{ matrix.map }}' $outfile
+          $outfile = Join-Path $env:RUNNER_TEMP "iso56013_${{ inputs.map }}.json"
+          node sims/iso56013_full_offset_screen.cjs $asset '${{ inputs.map }}' $outfile
           if ($LASTEXITCODE -ne 0) { throw "Pad screen failed" }
       - uses: actions/upload-artifact@v4
         with:
-          name: iso56013-${{ matrix.map }}
-          path: ${{ runner.temp }}/iso56013_${{ matrix.map }}.json
+          name: iso56013-${{ inputs.map }}
+          path: ${{ runner.temp }}/iso56013_${{ inputs.map }}.json
           retention-days: 15
