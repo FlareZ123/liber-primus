@@ -141,3 +141,19 @@ These small positive unigram residuals at delays two through five are **insuffic
 A disjoint original-layout **synthetic positive** is encrypted with delay six, `a=7,b=11`, and exactly the same bijective contextual alphabets. The blind inverse selects both true coefficients, recovers **all 12,956** source runes, and obtains heldout free-alphabet excess **+1.271436 nats/rune**, far above the original's largest frozen excess of +0.034166. The original selected decoders also support **exact re-encryption of all 12,956 original runes** for their respective assumed keys. That reversibility is conditional and does not imply those decoded runes are authentic.
 
 This supplies a **single complete original-input forward/inverse** combining the three source-selected collision classes and a plaintext-state key, while still failing the crucial readability/key-identification gate. Reproduce from [`sims/integrated_marker_plaintext_autokey_inverse.cjs`](../sims/integrated_marker_plaintext_autokey_inverse.cjs). Its exact original roundtrip and blind positive are built-in assertions. A stronger candidate needs a cryptographically derived key and a clear GP language signal on withheld original text; otherwise, isolated +0.03 unigram excess should remain unpromoted.
+
+
+### Independent heldout GP trigram check of the integrated inverse
+
+The integrated candidates' small unigram excess was further tested with a **separately trained GP trigram model** (first 100,000 GP Shakespeare reference runes), conditioned on each original position's *actual set of permitted free-symbol plaintext outputs*. The score is the candidate plaintext's trigram log probability minus the average trigram log probability of every allowable free GP symbol in precisely that fixed original context. This avoids treating the postselected excluded-marker alphabet's intrinsic bias as a plaintext signal.
+
+| Frozen original candidate | Training conditional trigram excess | Heldout conditional trigram excess |
+| --- | ---: | ---: |
+| L2 (7,24) | +0.059994 | **+0.018422** |
+| L5 (14,23) | +0.031984 | **+0.016485** |
+| L8 (24,24) | +0.023300 | **+0.011403** |
+| Disjoint true-source plant L6 (7,11) | **+2.200828** | **+2.187189** |
+
+All scores are nats per original **unreserved** rune and exclude positions where the hypothetical original special markers force the plaintext by construction. The *entire* output register, including the marker emissions, supplies trigram history. The frozen original candidates remain effectively at the source-conditional uniform baseline, whereas the planted correct key produces roughly two nats of contextual language signal per rune. The first hundred GP transliteration labels of the original L2 and L5 reconstructions are unrecognizable as continuous English; their full decoded candidate streams have no independently authenticated plaintext content.
+
+The script now computes this discriminant and exact re-encryption for **all eight delay-specific fitted original keys**, and prints the comparable source-positive results. The weak first-order residuals are appropriately classified as non-recoveries; a plausible cipher solution must substantially exceed this source-controlled language gap.
