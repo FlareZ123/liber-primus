@@ -697,7 +697,7 @@ function prefixTwoLanguageScan(candidates) {
     caveat:'The candidate enumeration is one deterministic CSP traversal, not an exhaustive key search; selecting by train half cannot certify real plaintext.'};
 }
 module.exports.prefixTwoLanguageScan=prefixTwoLanguageScan;
-if(require.main===module && process.env.PREFIX_TWO_LANGUAGE_SAMPLES){
+if(require.main===module && Number(process.env.PREFIX_TWO_LANGUAGE_SAMPLES || '0') > 0){
   const n=Number(process.env.PREFIX_TWO_LANGUAGE_SAMPLES);
   assert(Number.isInteger(n)&&n>=1&&n<=50000);
   process.stdout.write('PREFIX_TWO_LANGUAGE '+
