@@ -34,7 +34,7 @@ const mod = (n, m = MOD) => (n % m + m) % m;
 
 /** PostScript srand values are integers 1..2^31-2. */
 function postscriptRand(seed, size, reducer = "mod") {
-  let state = mod(seed, M - 1) + 1;
+  let state = mod(seed - 1, M - 1) + 1;
   const output = new Uint8Array(size);
   for (let i = 0; i < size; i++) {
     state = (state * 16807) % M;
@@ -144,6 +144,15 @@ function evaluate(bodies, lm, candidate, wantText = false) {
 }
 
 function run() {
+  // RFC-style Park–Miller sequence with literal initial state 1.
+  let checkState = 1;
+  const expectedStates = [16807, 282475249, 1622650073, 984943658, 1144108930];
+  for (const expected of expectedStates) {
+    checkState = (checkState * 16807) % M;
+    assert.equal(checkState, expected);
+  }
+  assert.deepEqual(Array.from(postscriptRand(1, 5, "mod")),
+    expectedStates.map(n => n % MOD));
   const original = originalBodies();
   assert.deepEqual(original.map(x => x.length), Array(8).fill(WIDTH));
   const shakespeare = read("resources/control/shakespeare_first300k.txt");
