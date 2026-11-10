@@ -113,7 +113,18 @@ function plant() {
   assert.equal(rank, 1, 'Source-true collision-rejected plant should win');
   assert.ok(ranked[0].heldout > -4,
     'Heldout planted passage must retain GP-language signal');
-  return {trueRank: rank, rejected, top: ranked.slice(0, 2).map(compact)};
+  const directRecovered = pages.map((page, j) => {
+    const pad = getPad(target, page.page);
+    const result = viterbi(encrypted[j], pad, target.sign, model);
+    const actual = english.slice(j * (T + H), (j + 1) * (T + H));
+    const correct = result.plaintext.filter((x, i) => x === actual[i]).length;
+    return {page: page.page, correct, total: actual.length, inferredSkips: result.skips};
+  });
+  const totalRecovered = directRecovered.reduce((n, x) => n + x.correct, 0);
+  return {
+    trueRank: rank, rejected, totalRecovered, totalPlain: pages.length * (T + H),
+    directRecovered, top: ranked.slice(0, 2).map(compact)
+  };
 }
 
 function compact(row) {
