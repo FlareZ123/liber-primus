@@ -73,9 +73,9 @@ def load_cipher() -> np.ndarray:
     runes = [RUNE_TO_INT[ch] for ch in unsolved if ch in RUNE_TO_INT]
     assert len(runes) == 12956
     # The first two contiguous groups must have 8 and 5 runes.
-    first = segments[0].split("-")
-    assert len([x for x in first[0] if x in RUNE_TO_INT]) == 8
-    assert len([x for x in first[1] if x in RUNE_TO_INT]) == 5
+    first = re.findall(f"[{ALPHABET}]+", segments[0])
+    assert len(first[0]) == 8
+    assert len(first[1]) == 5
     return np.array(runes[:360], dtype=np.int64)
 
 
