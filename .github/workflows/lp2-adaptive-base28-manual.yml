@@ -58,3 +58,6 @@ jobs:
           PHASE_START: ${{ inputs.phase_start }}
           PHASE_END: ${{ inputs.phase_end }}
         run: node sims/prime79_radix29_28_exact_gate.cjs
+      - name: Exclude fixed GF79 glyph checksum on every possible 79-rune packet origin
+        if: ${{ inputs.probe == 'prime79' }}
+        run: node sims/prime79_glyph_checksum_rank.cjs
