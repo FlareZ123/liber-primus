@@ -216,6 +216,79 @@ function crossTest(source, channels, replicates, seed) {
   return output;
 }
 
+
+/**
+ * Test the line-initial, new-word subset conditionally on every page's
+ * observed genuine word initials. For each page, select an identically sized
+ * random subset of word-start sites without replacement. This preserves
+ * the actual word-initial rune frequency, printed word segmentation, and
+ * line-start counts by page; only their association is randomized.
+ * @param {PrintedPage[]} source
+ * @param {number} trials
+ * @param {number} seed
+ */
+function wordInitialConditional(source, trials, seed) {
+  const even = source.filter(p => p.page % 2 === 0);
+  const odd = source.filter(p => p.page % 2 === 1);
+  for (const p of source) {
+    const allowed = new Set(p.wordStarts);
+    for (const pos of p.beginWords)
+      assert.ok(allowed.has(pos),
+        'Print-line word initial must be a genuine word start on page ' + p.page);
+  }
+
+  /** @param {PrintedPage[]} group @param {number[][]|null} chosen */
+  function matchedResidual(group, chosen) {
+    const observed = new Float64Array(29);
+    const expected = new Float64Array(29);
+    for (let j = 0; j < group.length; j++) {
+      const page = group[j];
+      const sites = chosen ? chosen[j] : page.beginWords;
+      for (const site of sites) observed[page.runic[site]]++;
+      const base = page.wordStarts;
+      const counts = new Float64Array(29);
+      for (const site of base) counts[page.runic[site]]++;
+      for (let i = 0; i < 29; i++)
+        expected[i] += counts[i] * page.beginWords.length / base.length;
+    }
+    return Float64Array.from(observed,(x,i)=>
+      (x - expected[i]) / Math.sqrt(expected[i]));
+  }
+  const train = matchedResidual(even,null), heldout = matchedResidual(odd,null);
+  const observedDot = dot(train,heldout);
+  const random = prng(seed);
+  let exceed = 0, total = 0, maximum = -Infinity;
+  /** @param {PrintedPage[]} group */
+  function draw(group) {
+    return group.map(page => {
+      const candidates = page.wordStarts.slice();
+      const picks = [];
+      for (let i = 0; i < page.beginWords.length; i++) {
+        const j = i + random() % (candidates.length - i);
+        [candidates[j],candidates[i]] = [candidates[i],candidates[j]];
+        picks.push(candidates[i]);
+      }
+      return picks;
+    });
+  }
+  for (let t = 0; t < trials; t++) {
+    const a = matchedResidual(even,draw(even));
+    const b = matchedResidual(odd,draw(odd));
+    const statistic = dot(a,b);
+    total += statistic;
+    exceed += Number(statistic >= observedDot);
+    maximum = Math.max(maximum,statistic);
+  }
+  return {
+    comparison:'Among each page original word starts, line-wrap new-word positions selected preferentially by original text layout',
+    subset:'151 line starts after explicit wrap word boundary, conditional on 2896 original word starts',
+    originalDot:observedDot,trainChi:dot(train,train),testChi:dot(heldout,heldout),
+    trials,seed:'0x'+seed.toString(16),exceedances:exceed,
+    addOneP:(exceed+1)/(trials+1), nullMean:total/trials,nullMaximum:maximum,
+    caution:'Selection is within pages conditional on original word-start rune marginals, not a simulation of a real typesetter',
+  };
+}
+
 function run() {
   assert.ok(Number.isInteger(REPS) && REPS >= 100);
   const source = pages();
@@ -238,10 +311,11 @@ function run() {
     null:'independent uniform pagewise circular rune rotations; preserve original page glyph string and page and printed layout',
     seed:'0x'+TRAINING_SEED.toString(16), nullReplicates:REPS,
     statistics,
+    wordStartSelection:wordInitialConditional(source,REPS,0x19c1da31),
     caution:'A typesetting rule, printed boundary selection or other visual mechanism could create the bias; nominal rotation p values do not correct the history of choosing line starts.'
   };
   process.stdout.write(JSON.stringify(report,null,2)+'\n');
   return report;
 }
 if (require.main === module) run();
-module.exports = {pages,residual,dot,prng,randomRotation,crossTest,run};
+module.exports = {pages,residual,dot,prng,randomRotation,crossTest,wordInitialConditional,run};
