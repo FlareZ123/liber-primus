@@ -190,16 +190,56 @@ function nullSearch(bodies){
     median:maxima[Math.floor(maxima.length/2)],largest:maxima[maxima.length-1]};
 }
 
+/** English GP-dependent word-length transitions, trained independently on a source split. */
+function englishDirectionModel(){
+  const {englishWords,runeLength}=require("./wordlength_crib_scan.js");
+  const words=englishWords(read("resources/control/shakespeare_first300k.txt"));
+  const cut=Math.floor(words.length*0.8);
+  const a=words.slice(0,cut).map(w=>category(runeLength(w)));
+  const cells=Array.from({length:3},()=>Array(3).fill(0));
+  for(let i=1;i<a.length;i++)cells[a[i-1]][a[i]]++;
+  const rows=cells.map(v=>v.reduce((s,x)=>s+x,0));
+  const cols=[0,1,2].map(j=>cells.reduce((s,v)=>s+v[j],0));
+  const n=rows.reduce((s,x)=>s+x,0);
+  return cells.map((row,i)=>row.map((v,j)=>
+    Math.log(((v+0.5)/(rows[i]+1.5))/((cols[j]+0.5)/(n+1.5)))));
+}
+/** @param {number[][]} groups @param {number[][]} weights */
+function directionalScore(groups,weights){
+  let value=0;
+  for(const g of groups)
+    for(let i=1;i<g.length;i++)value+=weights[category(g[i-1])][category(g[i])];
+  return value;
+}
+/** @param {number[][]} groups @param {Int32Array[]} permutations */
+function restoreSections(groups,permutations){
+  return groups.map((g,k)=>{
+    const decoded=new Array(g.length);
+    for(let i=0;i<g.length;i++)decoded[permutations[k][i]]=g[i];
+    return decoded;
+  });
+}
+
 function main(){
   const bodies=manuscriptBodies();
   const identity=bodies.map(a=>Int32Array.from({length:a.length},(_,i)=>i));
   const unsolved={observedChi2:chiSquare(inverseTransitions(bodies,identity)),...search(bodies)};
   const controls=[plant(bodies,0),plant(bodies,0.45)];
+  const weights=englishDirectionModel();
+  const chosen=unsolved.champion;
+  const decoded=restoreSections(bodies,permutations(bodies.map(g=>g.length),
+    chosen.seed,chosen.engine,chosen.mode));
+  const directional={
+    training:"independent first-80%-Shakespeare GP word-length transition model",
+    original:directionalScore(bodies,weights),
+    recoveredByChi2Winner:directionalScore(decoded,weights),
+    preference:"A higher score means a better fit to English word-length order"
+  };
   const nulls=nullSearch(bodies);
   const exceed=nulls.maxima.filter(x=>x>=unsolved.champion.chi2).length;
   const out={hypothesis:"clue-number-seeded Fisher-Yates shuffling of complete section-body words",
     bodyWords:bodies.map(x=>x.length),
-    modes:MODES,engines:ENGINES,seedDomain:"0..4095",unsolved,controls,
+    modes:MODES,engines:ENGINES,seedDomain:"0..4095",unsolved,directional,controls,
     null:{...nulls,exceed,pUpper:(exceed+1)/(NULL_TRIALS+1)},
     evidence:"Candidate seed is genuine only if a visible-word-length shuffle also produces actual plaintext under an independently predictive rune cipher."};
   console.log(JSON.stringify(out,null,2));
