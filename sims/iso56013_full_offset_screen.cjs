@@ -194,8 +194,14 @@ function saveAtomic(file,obj) {
     fs.renameSync(temp,file);
   }finally{fs.closeSync(fd);fs.rmSync(lock,{force:true});fs.rmSync(temp,{force:true});}
 }
+function memoryStage(stage) {
+  const m=process.memoryUsage();
+  console.log(JSON.stringify({kind:'memory',stage,heapMB:Math.round(m.heapUsed/1048576),
+    externalMB:Math.round(m.external/1048576),rssMB:Math.round(m.rss/1048576)}));
+}
 function run(inputFile,mapMode,outputFile) {
   const raw=fs.readFileSync(inputFile);
+  memoryStage('asset-read');
   assert.equal(raw.length,EXPECTED_SIZE,'Original Cicada OS asset size');
   const sha=crypto.createHash('sha256').update(raw).digest('hex');
   assert.equal(sha,EXPECTED_SHA,'Original Cicada OS asset SHA256');
@@ -206,12 +212,15 @@ function run(inputFile,mapMode,outputFile) {
   assert.ok(modes.every(x=>['mod','reject','rev','atbash'].includes(x)));
   const key=mapBytes(raw,baseMap);
   if(reverse)key.reverse();
+  memoryStage('key-mapped');
   const pre=prepare(key);
+  memoryStage('gap-precomputed');
   const corpus=JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
   const page=corpus.pages.find(p=>p.page===0).indices;
   assert.equal(page.length,262);
   const cipher=page.slice(13),firstN=96;
   const model=train(read('resources/control/shakespeare_first300k.txt'));
+  memoryStage('model-trained');
   const ranking=atbash?
     Float64Array.from(model.logp,(_,x)=>model.logp[28-x]):model.logp;
   const maximumOffset=key.length-cipher.length-24-1;
