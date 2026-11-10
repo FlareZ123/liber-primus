@@ -10,6 +10,7 @@ on:
         options:
           - source-bytes
           - seeded-number
+          - prime-start
           - decoded-pcm
 jobs:
   scan:
@@ -40,3 +41,7 @@ jobs:
         run: |
           node sims/audio761_numeric_prng_seed_probe.cjs
           node sims/onion7_html_133_331_seed_inverse.cjs
+
+      - name: Historical 761 and 167 as prime-totient start values on original LP2
+        if: inputs.probe == 'prime-start'
+        run: node sims/instar761_prime_start_original_gate.cjs
