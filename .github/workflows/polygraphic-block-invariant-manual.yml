@@ -1,0 +1,14 @@
+name: Page-local polygraphic block collision invariant
+on:
+  workflow_dispatch:
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original pages and source-matched planted controls
+        run: node sims/polygraphic_block_collision_invariant.cjs
