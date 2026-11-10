@@ -61,6 +61,26 @@ function analyze(data,reference) {
   const plantMax=plantCounts.reduce((sum,n,i)=>sum+Math.min(n,commandCounts[i]||0),0);
   assert(plantMax===70,"arbitrary transposition/secret-bijection plant");
 
+  // Complete original-book location test, including all physical page transitions.
+  // Histogram bounds are necessary for every 70-position transposition and
+  // every fixed alphabet bijection. Any exact replay must score 70/70.
+  const stream=data.pages.filter(page=>page.page<=55).flatMap(page=>page.indices);
+  assert(stream.length===12956,"full original unsolved corpus");
+  const winCounts=Array(29).fill(0);
+  for(let i=0;i<70;i++)winCounts[stream[i]]++;
+  let windowMaximum=0;
+  const bestWindowStarts=[];
+  for(let start=0;start+70<=stream.length;start++){
+    const sorted=winCounts.filter(n=>n>0).sort((a,b)=>b-a);
+    let matches=0;
+    for(let i=0;i<sorted.length;i++)matches+=Math.min(sorted[i],commandCounts[i]||0);
+    if(matches>windowMaximum){windowMaximum=matches;bestWindowStarts.length=0;}
+    if(matches===windowMaximum)bestWindowStarts.push(start);
+    if(start+70<stream.length){winCounts[stream[start]]--;winCounts[stream[start+70]]++;}
+  }
+  assert(windowMaximum===67 && bestWindowStarts.join(",")==="68,404,8632",
+    "exhaustive original window ceiling");
+
   const observed=[matching(p53),matching(colRead(p53)),matching(colInverse(p53))];
   let seed=20261110|0;
   function rand(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0;}
@@ -112,7 +132,7 @@ function analyze(data,reference) {
   const encrypted=plant.map((v,i)=>(v+key[i%key.length])%29);
   assert(inverse(encrypted,key,-1,0,0).every((v,i)=>v===plant[i]),"native-key plant");
   assert(colInverse(colRead(encrypted)).every((v,i)=>v===encrypted[i]),"native-transpose plant");
-  return {originalPage53:[53,123],originalPage40:[171,229],quoteLengths:[p53.length,p40.length],historicalCommandLength:command.length,distinctRuneTypes:cipherCounts.length,distinctHistoricalCharacterTypes:commandCounts.length,allTranspositionAndSecretBijectionMaximumMatches:allOrderMax,forcedEditsUnderThatClass:70-allOrderMax,observedMappingMatches:observed,shuffledTrials:trials,shuffledExceeding:exceed,shuffledFamilyTail:(exceed+1)/(trials+1),keyCandidates:count,bestHistoricalCipher:best,emersonRuneLength:corpus.length,nativeWindowCount:nativeScores.length,nativeMinimum,nativeMedian,positiveControls:"70/70 known-message relabeling; 70/70 source-key plant; 70/70 transposition inverse"};
+  return {originalPage53:[53,123],originalPage40:[171,229],quoteLengths:[p53.length,p40.length],historicalCommandLength:command.length,distinctRuneTypes:cipherCounts.length,distinctHistoricalCharacterTypes:commandCounts.length,allTranspositionAndSecretBijectionMaximumMatches:allOrderMax,forcedEditsUnderThatClass:70-allOrderMax,wholeBook70WindowCount:stream.length-69,wholeBookAllTranspositionMaximum:windowMaximum,wholeBookMinimumEdits:70-windowMaximum,wholeBookBestStarts:bestWindowStarts,observedMappingMatches:observed,shuffledTrials:trials,shuffledExceeding:exceed,shuffledFamilyTail:(exceed+1)/(trials+1),keyCandidates:count,bestHistoricalCipher:best,emersonRuneLength:corpus.length,nativeWindowCount:nativeScores.length,nativeMinimum,nativeMedian,positiveControls:"70/70 known-message relabeling; 70/70 source-key plant; 70/70 transposition inverse"};
 }
 const root=path.resolve(__dirname,"..");
 const data=JSON.parse(fs.readFileSync(path.join(root,"resources/liber-primus/lp2-corpus.json"),"utf8"));
