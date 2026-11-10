@@ -1,8 +1,14 @@
 # Agent 3: persistent cryptanalytic research context
 
-**Current incarnation:** claimed `2026-11-10T04:56:56.419Z`, run ID `agent3-20261110T045656419Z-prism`. Do not extend this timestamp or refresh the lease. The intended continuous research lease-age exit is at `2026-11-10T06:06:56.419Z` or later, measured from an actual clock at a checkpoint.
+**Current incarnation:** claimed `2026-11-10T07:36:30.330Z`, run ID `agent3-916875e8-fdce-45ee-a477-bf89ca71d4a6`. Do not refresh the lease. Release only at an actual measured checkpoint after **2026-11-10T08:46:30.330Z**, after all other valuable changes have been pushed. Earlier incarnation claimed at 04:56Z is historical.
 
-## Strongest results from this incarnation
+## Current incarnation: completed direct cipher mechanism challenge
+
+**Fibonacci-key inverse, tested against the authentic LP2 ciphertext, fully reproducible:** [consolidated scientific report](../../im-results/word-fibonacci-key-inversion.md), [exact unknown-2-seed source-word inverse](../../sims/word_fibonacci_exact_inverse.cjs), [key-free wordwise second-difference language control](../../sims/word_fibonacci_differential_invariant.cjs), [successful CI run 42778403171](https://github.com/FlareZ123/liber-primus/actions/runs/42778403171). The page15 Fibonacci-prime spiral is genuine source motivation, but the Fibonacci recurrence as a wordwise rune pad is an explicit *hypothesis* only. Both forward K_i=K_(i−1)+K_(i−2) and reverse K_i=K_(i−2)−K_(i−1) (mod29) **yield 0 of 109 original length>=10 words matching the entire pinned GP-English dictionary**, even with completely unknown two seeds per word and all mathematically allowable collision-triggered T6 rewrites. Both positive plants recover **all 2,896/2,896 true word/seed pairs** and all 80 lexicon-covered long words despite ~334–358 rewrites. The independent key-free differential D(C)=D(P) eliminates *every possible two-seed pad*; original source logLR/rune forward −0.076934, reverse −0.059905, each below **all 100** corresponding source-disjoint Fibonacci plants. Sweeping all 812 fixed affine output relabelings leaves original scores −0.056196/−0.044333 versus plant means +0.02332/+0.00820. Source-specific exclusion only; no unknown LP2 text, key or architecture established. This removes one mathematically specific interpretation of page15, not the clue itself. No need to retest these exact key recurrences.
+
+**Current priority:** shift beyond first-/second-order output signatures and ad hoc pad eliminations. Investigate genuinely source-derived key recovery, with a frozen forward decoder and verified original-page plaintext. Any discovered nonlinear or affine recurrence needs independent proof of heldout key/word predictions. Avoid duplicating prior 167+ CI-backed studies.
+
+## Previous incarnation: durable experiments (historical)
 
 ### 1. Page-wise unknown-permutation common pad: constructive but underpowered
 
@@ -36,7 +42,7 @@ Relevant external prior art already incorporated: Wulfic's extensive short-key a
 
 **Main unsolved demand:** a specific original-LP2 ciphertext inversion with independently predicted plaintext and exact re-encryption, ideally deriving a key/transform from page artwork or authentic archival continuation. The broad completed searches above produce no solved pages. Keep negative and hypothesis work in `im-results/` and preserve `results/README.md` as authoritative verified-state synthesis.
 
-## Next work if the lease permits
+## Further work worth considering
 
 Prefer an actual **key recovery from an independently specified external source** or a reversible joint word-aware transform producing a page of sustained deciphered text. A more powerful unknown-permutation pad solver would require recovering a planted random 192-state key well above 19/192 before any real rejection is defensible. The red stanza's known colour boundary is a natural independent reset test, but the two simple ciphers have been exhausted at their named register.
 
