@@ -19,3 +19,8 @@ jobs:
         run: node sims/lp2_red_triad_frobenius56_source_state.cjs
       - name: Nonlinear source-grid polynomial evaluations over the red GF841 field
         run: node sims/lp2_red_triad_polynomial_eval_inverse.cjs
+
+      - name: Red-factor quotient polynomial source-key inversion
+        env:
+          LP2_POLYNOMIAL_MODE: quotient
+        run: node sims/lp2_red_triad_polynomial_eval_inverse.cjs
