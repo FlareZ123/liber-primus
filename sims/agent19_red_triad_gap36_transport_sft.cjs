@@ -110,7 +110,7 @@ const transcription=fs.readFileSync(path.join(root,"resources/lp2-transcription.
 const textPages=transcription.split("%");
 for(const [page,triad] of [[3,red3],[39,red39]]){
   const glyphs=triad.map(i=>corpus.runes[i]).join("");
-  assert(textPages[page].includes("&\\n"+glyphs+"."),
+  assert(textPages[page].includes("&"+String.fromCharCode(10)+glyphs+"."),
     "red triple must follow 13-dot marker and finish before period");
 }
 const source3Unicode=page3.slice(119,124).map(i=>corpus.runes[i]).join("");
