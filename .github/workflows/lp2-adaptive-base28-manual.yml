@@ -13,3 +13,5 @@ jobs:
           node-version: '22'
       - name: Invert base-28 no-repeat output and check impossible byte codewords
         run: node sims/lp2_adaptive_base28_binary.cjs
+      - name: Test global secret glyph and modular-difference order sieves
+        run: node sims/lp2_adaptive_radix28_permutation_sieve.cjs
