@@ -12,6 +12,7 @@ on:
           - phase
           - pixel-measure
           - pixel-initial-control
+          - width-residual
 
 jobs:
   printed-line-invariant:
@@ -20,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        if: ${{ inputs.attack == 'phase' }}
+        if: ${{ inputs.attack == 'phase' || inputs.attack == 'width-residual' }}
         with:
           node-version: '22'
       - name: Run exact line-phase and planted-control experiment
@@ -29,6 +30,9 @@ jobs:
           node sims/printed_line_phase_invariant.cjs
           node sims/printed_line_start_channel.cjs
           node sims/printed_line_greedy_width_inverse.cjs 1000
+      - name: Test line starts conditional on source-JPEG rune widths
+        if: ${{ inputs.attack == 'width-residual' }}
+        run: node sims/printed_line_width_conditioned_residual.cjs 10000
       - name: Install original-JPEG geometric model dependencies
         if: ${{ inputs.attack == 'pixel-measure' }}
         run: python3 -m pip install --user numpy pillow
