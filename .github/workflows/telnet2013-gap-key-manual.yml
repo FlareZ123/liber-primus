@@ -1,0 +1,16 @@
+name: LP2 2013 omitted-prime source key (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  gap-key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source-selected 180-prime keys with heldout and planted controls
+        run: node sims/telnet2013_missing_primes_holdout.cjs
