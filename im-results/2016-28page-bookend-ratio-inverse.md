@@ -33,6 +33,20 @@ For identical i=j, add nonoverlapping \((n_i)_4/[2N(N-1)]\) and overlapping \((n
 
 The p27 illustration shows a single insect wing above the beginning of its passage; the last unsolved p55 shows a winged insect beneath a tree. This is a relevant **source-visible thematic correspondence**, not proof that the artwork specifies a 28-page cipher.
 
+## A source-derived 179-word clock, and its direct-key failure
+
+The repeated ciphertext starts at printed word indexes 1,462 and 2,894, a separation of exactly **1,432 = 8 × 179** canonical words. Both the **eight-column** 256-byte grid and the **179-rune p53** inscription are pre-existing, independent manuscript counts (the source grid's integer is also repeatedly divisible by 179). Thus the bookend points to a concrete **179-word** key clock that merits an explicitly fixed inverse. This 8×179 arithmetic was noticed retrospectively; many integer factors could have been selected, and a numerical coincidence is possible. There are **230** exact same-word occurrence pairs in the manuscript; besides the two component words of the repeated formula at separation 1,432, one other three-rune word recurs at separation 895=5×179. This additional recurrence is weak given a 179-way residue choice and is no proof of a cycle.
+
+If a **word-index-period-179 additive GP29 key**, with per-word-rune-position symbols, encrypts both GP-native plaintexts while preserving printed word lengths, then two ciphertext words separated by 179 words **and of equal rune length** cancel the same key at each corresponding rune. The key-free source-English two-message difference likelihood is therefore a necessary fingerprint. The frozen 160,000-GP-rune Shakespeare marginal yields the following exact original data, with no fitted keys:
+
+| Original comparison | Equal-length word pairs | Compared GP runes | Native-English difference score vs uniform |
+| --- | ---: | ---: | ---: |
+| Word separation **179** | **427** | **1,547** | **−34.962946 nats** |
+| Terminal-bookend separation **1,432** | **197** | **758** | **−11.131327 nats** |
+| Source-native true-key, shared period-179 additive pad | **427** | **1,547** | **+33.265288 nats** |
+
+At lag1,432 the two deliberately selected exact matching terminal words are excluded from the likelihood, preventing the bookend from confirming itself. The plant creates 2,896 source-disjoint source-native GP pseudo-words in the exact original word lengths from the held-out Shakespeare tail, then masks every word with a seeded unknown 179-phase, position-specific 29-symbol pad. The same inverse cancels the hidden pad **exactly**, scoring +33.265288. The original score is decisively in the opposite direction, weakening this most direct **179-word reused additive keystream under English GP and preserved word boundaries**. A 179-word *permutation, routing, evolving nonlinear cipher, or alternative plaintext register* is not tested. The source phase and true authorial relevance are not established.
+
 ## Original-source key-free cryptanalysis
 
 The test fixes all original runes and uses a native-GP English language model trained only on the first **160,000** GP runes of the independent Shakespeare reference. It excludes the final six identical-rune anchors when scoring both aligned streams. A complete circular shift of the second stream supplies a conditional reference distribution for each predeclared observable.
@@ -55,7 +69,7 @@ The rotation ranks are conditional on this retrospectively identified bookend, i
 
 ## Research decision
 
-The **unique repeated two-word formula**, its source-inventory rarity certificate, the exact **566-rune half-book imbalance**, corresponding 2016 image arithmetic, and **6,195-rune bookend-anchored alignment** are reproducible structural inputs. The direct shared additive inverse is rejected in its stated GP-English form. The multiplicative-step single-symbol signal is not accompanied by its necessary English serial fingerprint; it supplies no plaintext or authenticated key.
+The **unique repeated two-word formula**, its source-inventory rarity certificate, the exact **566-rune half-book imbalance**, corresponding 2016 image arithmetic, and **6,195-rune bookend-anchored alignment** are reproducible structural inputs. The direct shared additive inverse, including the 179-word period suggested by the duplicated word gap, is rejected in its stated GP-English form. The multiplicative-step single-symbol signal is not accompanied by its necessary English serial fingerprint; it supplies no plaintext or authenticated key.
 
 Any next attempt should identify an independent source instruction connecting the two halves to a particular key, coding rule or state and demand original-text recovery. Re-scanning arbitrary offsets or interpreting the marginal ratio peak as a decode would repeat a weak model.
 
