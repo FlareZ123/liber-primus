@@ -88,6 +88,23 @@ This genuinely exhausts *every seed* for the specific **two-factor** modular-squ
 
 Reproduction: [`sims/parable_blum_exhaustive_state_inverse.cjs`](../sims/parable_blum_exhaustive_state_inverse.cjs), successful [Actions run 42838419477](https://github.com/FlareZ123/liber-primus/actions/runs/42838419477) via the existing [manual prime-source suite](../.github/workflows/fibonacci-prime-spiral.yml). No novel unknown LP2 plaintext or authentic key identified.
 
+### Seed-independent cyclic equality bound from the same two primes
+
+There is a stronger *mathematical restriction* on the BBS state map than any fixed-seed shortlist or finite 5.2-million-case screen. In the **1,298,029** two-prime Blum modulus, the multiplicative quadratic-residue subgroups have orders **629** (mod1259) and **515** (mod1031). Squaring acts on these odd cyclic groups with orders **ord₆₂₉(2)=72** and **ord₅₁₅(2)=204**. CRT gives `lcm(72,204)=1224`: **every possible** initial modular-square state, including states divisible by one factor, returns after **at most 1,224 state iterations**, from the first post-square state onward. Packing five parity bits per symbol preserves a guaranteed key period dividing **1,224**; packing eight consecutive parity bits per symbol reduces it to a period dividing **153**, because gcd(8,1224)=8. This holds regardless of any seed guessed or fitted to ciphertext.
+
+Consequently any *globally continuous, unslipped* additive GP29 source key, even with an unknown static one-to-one outer rune alphabet, must reproduce natural-source equality at positions separated by 153 or 1224 runes (when the corresponding key extraction is periodic at that length). For the transparent-EA GP28 exponent-step output, the analogous equality is preserved **between the nonzero-difference discrete-log ranks**, excluding duplicate-output and page-initial sites. This key-independent logic is the fixed source-prime refinement of the more general [phase coincidence invariant already established](phase-coincidence-invariant.md); the source selection of 153 and 1224 is new to this historical hypothesis.
+
+| Actual original LP2 cipher statistic | Source-forced lag | Original equal symbols | Independent GP-English source control |
+| --- | ---: | ---: | ---: |
+| Direct GP29 output | 153 | **416/12,803 = 0.0324924** | **773/12,803 = 0.0603765** |
+| Direct GP29 output | 1,224 | **421/11,732 = 0.0358848** | **684/11,732 = 0.0583021** |
+| Nonzero GP28 difference ranks | 153 | **494/12,529 = 0.0394285** | **0.0614** after excluding EA and physical page heads |
+| Nonzero GP28 difference ranks | 1,224 | **390/11,478 = 0.0339780** | **0.0590** after excluding EA and physical page heads |
+
+Two independent native-GP encryption controls each use arbitrary 153/1224-position source pads and assert **exactly equal** pre-/post-encryption same-phase collision counts (all four proofs passed). They do not fit an unknown key; they test an equality identity that eliminates every secret initial state under its assumptions. The original corpus lacks the English-GP collision excess at either source-forced period in either channel.
+
+Proof, original counts and exact planted equality controls: [`sims/parable_blum_keyless_period_gate.cjs`](../sims/parable_blum_keyless_period_gate.cjs), successful [manual original-data CI 42840012568](https://github.com/FlareZ123/liber-primus/actions/runs/42840012568). The exclusion concerns a *synchronized, globally continuous* BBS source whose period is not disrupted by collision-driven hidden key skips, per-page secret phase shifts, changing output permutations or an encrypted intermediate rather than native GP-English. Other architectures evade this exact equality identity.
+
 ### Interpretation
 
 The published audio tag provides a genuine historical prior clue and a mathematical route to exact key-state enumeration. The original ciphertext has failed the 960 historic integer/PRNG tests, 480 fixed-seed modular-square inverses, 120 collision-keyskip source tests, and full **5,201,280** two-prime seed-independent modular-squaring inverses. These finite negatives have independently positive-tested recovery power within their declared output models. They **do not establish** how Cicada intended the three Parable primes to be used, if at all, in the unsolved manuscript. Further arbitrary source-seed and bit-order variants without a fresh source instruction are unlikely to advance a genuine decipherment.
