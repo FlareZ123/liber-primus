@@ -132,6 +132,35 @@ function study({nullReplicates=4000}={}){
     nullMedian:wrong[500],nullMax:wrong[999],
     tailP:(1+wrong.filter(x=>x>=test.score).length)/1001
   };
+  // A matched-key control for the alternative model in which repeats are
+  // rewritten in place, without advancing the keystream.
+  const clean=encrypt(text,key,sigma,random,0);
+  const modified=clean.ciphertext.slice();
+  let rewrites=0;
+  for(let i=1;i<modified.length;i++){
+    if(modified[i]===modified[i-1] && random()<.81){
+      modified[i]=(modified[i]+1+Math.floor(random()*28))%29;
+      rewrites++;
+    }
+  }
+  const aligned=fit(clean.ciphertext,key.slice(0,N),contexts,model);
+  const rewritten=fit(modified,key.slice(0,N),contexts,model);
+  const matched=(candidate)=>candidate.inverse.filter((g,c)=>sigma[g]===c).length;
+  const compare=(candidate,ct)=>{
+    const controls=[];
+    for(let i=0;i<1000;i++) {
+      const k=pad("rewritten/null/"+i,"suffixBE",N);
+      controls.push(fit(ct,k,contexts,model).score);
+    }
+    controls.sort((a,b)=>a-b);
+    return {score:candidate.score,matchedAlphabet:matched(candidate),
+      nullMax:controls.at(-1),
+      pUpper:(1+controls.filter(v=>v>=candidate.score).length)/1001};
+  };
+  output.alignedControls={
+    noFilter:compare(aligned,clean.ciphertext),
+    antiRepeatRewrite:compare(rewritten,modified),rewriteCount:rewrites
+  };
   return output;
 }
 if(require.main===module)console.log(JSON.stringify(study(),null,2));
