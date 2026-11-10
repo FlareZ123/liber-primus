@@ -48,11 +48,11 @@ function main(){
         headerMatchesLP2:value.headerConsistent&&value.seed===REFERENCE[key][0]&&value.length===REFERENCE[key][1]});
       fs.rmSync(target,{force:true});
     }
-    // Synthetic-cover positive verifies the extractor can distinguish a real message.
+    // Original-source positive verifies the extractor can distinguish a real message.
     const message=path.join(OUTPUT,"message.incomplete");
     const stego=path.join(OUTPUT,"embedded-key79.jpg");
     fs.writeFileSync(message,"KEYED SYNTHETIC SOURCE POSITIVE 79\n");
-    const embed=run("outguess",["-k","79","-d",message,jpeg,stego]);
+    const embed=run("outguess",["-k","79","-d",message,path.join(ROOT,"resources/liber-primus/17.jpg"),stego]);
     assert.equal(embed.status,0,"Could not embed keyed positive "+embed.stderr);
     const extracted=run("outguess",["-k","79","-r",stego,target]);
     assert.equal(extracted.status,0,"Could not recover keyed positive "+extracted.stderr);
@@ -61,7 +61,7 @@ function main(){
     const exact=result(extracted,target);
     const report={syntheticSHA256:h,keys:KEYS,control:{actualEmbeddedMessage:true,
       exactRecovery:authentic,bytes:fs.statSync(message).size,reported:exact},
-      sourceNoPayload:true,results:outputs};
+      sourceNoPayload:true,positiveCover:"original 17.jpg",results:outputs};
     const tmp=path.join(OUTPUT,"summary.json.incomplete");
     fs.writeFileSync(tmp,JSON.stringify(report,null,2)+"\n");
     fs.renameSync(tmp,path.join(OUTPUT,"summary.json"));
