@@ -1,6 +1,15 @@
 name: LP2 highlighted stanza historical prime-totient anchor attack
 on:
   workflow_dispatch:
+    inputs:
+      attack:
+        description: Exact source-constrained key family to evaluate
+        required: true
+        type: choice
+        default: historical
+        options:
+          - historical
+          - source-strides
 jobs:
   invert:
     runs-on: ubuntu-latest
@@ -10,5 +19,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Solve original highlighted stanza with authentic totient-prime sequence
+      - name: Historical prime-totient contiguous-index anchor scan
+        if: ${{ inputs.attack == 'historical' }}
         run: node sims/red_verse_prime_totient_anchor.cjs
+      - name: Source-constrained 22-78-79 prime-index-stride anchor scan
+        if: ${{ inputs.attack == 'source-strides' }}
+        run: node sims/red_prime_stride_anchor.cjs
