@@ -2,6 +2,8 @@
 
 **Status, 10 November 2026:** source-key-independent conditional-rune distribution invariant, executed on original LP2 and independent English-GP positive controls. It is a broad statistical exclusion of the specified stationary causal cipher family under the GP-English plaintext-register assumption. **No original unknown LP2 plaintext is recovered.**
 
+**Relation to existing stronger repository evidence:** The [previous-cipher S-box invariant](previous-cipher-sbox-invariant.md) already establishes a stronger exact GP-E count/capacity exclusion of this same stationary predecessor-state class (maximum 769 occurrences of any plaintext symbol, versus 1,574.5±33.3 expected GP E). The conditional-IoC test below supplies a **different independent, key-free distributional diagnostic and a word-position-conditioned source control**. It must be read as complementary confirmation, not as the repository's first or strongest exclusion of this family.
+
 ## The complete unknown-key cipher class
 
 Index the GP runes 0..28, reserve index 28 (EA) for an exact repeat of the previous ciphertext rune, and allow **an arbitrary 28-permutation \(\pi_x\)** for every previous ciphertext rune \(x\in\{0,\ldots,28\}\). Specifically, at any position after the physical page's first rune:
