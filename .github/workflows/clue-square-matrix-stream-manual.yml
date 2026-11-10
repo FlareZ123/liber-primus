@@ -37,5 +37,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Invert Fibonacci bilinear 81x81 and 80x80 source-key squares
+        run: node sims/fibonacci_bilinear_square_inverse.cjs
       - name: Compare proposed 6561 reset against all neighboring original-cipher cuts
         run: node sims/bookend_6561_changepoint.cjs
