@@ -80,6 +80,37 @@ function stats(values) {
 }
 
 /**
+ * Exact local 300-rune GP index-of-coincidence peak, constrained to original
+ * thirteen-dot marker fragments. No window crosses a known source boundary.
+ * @param {number[]} symbols
+ */
+function peak300(symbols) {
+  const length = 300, denominator = length * (length - 1);
+  let offset = 0, best = { normalizedIoC: 0, fragment: -1, offsetInFragment: -1 };
+  for (let g = 0; g < 28; g++) {
+    const count = fragments[g].length;
+    if (count < length) { offset += count; continue; }
+    const histogram = Array(29).fill(0);
+    for (let j = 0; j < length; j++) histogram[symbols[offset+j]]++;
+    let pairs = histogram.reduce((total, v) => total + v * (v-1), 0);
+    for (let j = 0; j <= count-length; j++) {
+      const ioc = 29 * pairs / denominator;
+      if (ioc > best.normalizedIoC) best = {
+        normalizedIoC: +ioc.toFixed(6), fragment: g, offsetInFragment: j
+      };
+      if (j === count-length) break;
+      const oldRune = symbols[offset+j], newRune = symbols[offset+j+length];
+      pairs -= 2 * (histogram[oldRune] - 1);
+      histogram[oldRune]--;
+      pairs += 2 * histogram[newRune];
+      histogram[newRune]++;
+    }
+    offset += count;
+  }
+  return best;
+}
+
+/**
  * @param {Uint8Array} useKey
  * @param {number} nonceShift
  * @returns {Uint8Array[]}
@@ -206,7 +237,8 @@ for (const control of controls) for (const type of ["gp29", "rank28"])
     const decoded = decode(control.stream, type, sign, reset);
     results.push({
       source: control.name, register: type, sign, reset,
-      ...stats(decoded.values), markers: decoded.markers,
+      ...stats(decoded.values), peak300: peak300(decoded.values),
+      markers: decoded.markers,
       withinPageSame: decoded.pageDoublets,
       plaintextFirst30: decoded.values.slice(0, 30)
         .map(v => corpus.translit[v]).join(""),
@@ -240,6 +272,7 @@ console.log(JSON.stringify({
   fragmentLengths: fragments.map(f => f.length),
   registerHandling: "gp29 additive or rank28 with transparent EA repeat",
   originalBaseline: stats(fragments.slice(0,28).flat().map(item => item.c)),
+  originalPeak300: peak300(fragments.slice(0,28).flat().map(item => item.c)),
   chachaGridMessage: (() => {
     const bytes = chacha20orig(key, new Uint8Array(8), gridCipher);
     assert.deepEqual(chacha20orig(key, new Uint8Array(8), bytes), gridCipher);
