@@ -1,0 +1,25 @@
+name: Padded word-length literary corpus search
+on:
+  workflow_dispatch:
+    inputs:
+      max_books:
+        description: 'Maximum Gutendex-selected books to scan'
+        required: false
+        default: '140'
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      MAX_BOOKS: ${{ inputs.max_books }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Search public-domain plaintext word-length cribs
+        run: node sims/padded_wordlength_corpus.cjs
