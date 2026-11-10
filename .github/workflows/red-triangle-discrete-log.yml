@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Prove source arithmetic and scan original with an inverse control
         run: node sims/red_triangle_discrete_log_step.cjs
+      - name: Challenge reversible F79 Fibonacci / F29 field successor cipher
+        run: node sims/f79_f29_bijective_marker_inverse.cjs
