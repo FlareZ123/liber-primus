@@ -1,6 +1,10 @@
 name: LP2 source-4D Fourier exact full-key inverse
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'sims/source_4d_fourier_fullkey_inverse.cjs'
+      - '.github/workflows/source-4d-fourier-fullkey-manual.yml'
 jobs:
   exhaustive-source-4d:
     runs-on: ubuntu-latest
