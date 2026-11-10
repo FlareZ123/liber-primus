@@ -44,9 +44,11 @@ const expected=prior.reduce((s,p,i)=>s+p*cnt[i]/total,0);
  *  @param {"forward"|"reverse"} direction
  *  @returns {number[][]} */
 function streams(input,scope,direction){
-  const ordered=input.map(a=>direction==="reverse"?a.toReversed():a);
-  const blocks=scope==="global"?[ordered.flat()]:ordered;
-  return scope==="global"&&direction==="reverse"?[ordered.flat().toReversed()]:blocks;
+  if(scope==="global"){
+    const combined=input.flat();
+    return [direction==="reverse"?combined.toReversed():combined];
+  }
+  return input.map(a=>direction==="reverse"?a.toReversed():a);
 }
 
 /**
