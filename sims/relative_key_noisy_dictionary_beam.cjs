@@ -136,7 +136,7 @@ function crypt(p,key,random){
   return {xs,repaired};
 }
 
-function study({beam=800,noisyTop=14,epsilon=.056,errorBudget=26}={}){
+function study({beam=800,noisyTop=14,epsilon=.056,errorBudget=26,perErrorBeam=96}={}){
   const source=fs.readFileSync(path.join(ROOT,'resources/control/shakespeare_first300k.txt'),'utf8');
   const trainWords=base.corpusWords(source.slice(0,240000));
   const testWords=base.corpusWords(source.slice(240000));
