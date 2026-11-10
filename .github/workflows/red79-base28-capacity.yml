@@ -1,0 +1,14 @@
+name: LP2 red79 exact radix28 byte-capacity inversion
+on:
+  workflow_dispatch:
+jobs:
+  source-red79-byte-capacity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Enumerate exact original invalid packet leaders and byte positive
+        run: node sims/red79_base28_byte_capacity.cjs
