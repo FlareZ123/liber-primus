@@ -88,8 +88,9 @@ assert.ok(equalWords(reencrypt(zero.raw, zero.mask), words));
 
 const all = constructRaw(words, sites);
 assert.ok(equalWords(reencrypt(all.raw, all.mask), words));
+const originalStream = words.flat();
 const changed = all.raw.flat().filter((value, i) => value !==
-  words.flat()[i]).length;
+  originalStream[i]).length;
 assert.equal(changed, 79);
 for (const site of sites) {
   const trial = constructRaw(words, [site]);
