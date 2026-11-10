@@ -11,6 +11,7 @@ on:
           - line-initial
           - page-turn-width
           - spread-interleave
+          - punctuation-clock
 permissions:
   contents: read
 jobs:
@@ -31,3 +32,6 @@ jobs:
       - name: Check lossless spread traversal and matched original-source boundaries
         if: ${{ inputs.analysis == 'spread-interleave' }}
         run: node sims/lp2_spread_traversal_sft.cjs
+      - name: Replicate historic p56 dot-mark prime-key clock discriminator
+        if: ${{ inputs.analysis == 'punctuation-clock' }}
+        run: node sims/lp2_punctuation_solved_clock_sft.cjs
