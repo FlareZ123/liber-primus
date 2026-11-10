@@ -253,6 +253,151 @@ for (let t = 0; t < 12; t++) {
 assert.equal(controls.length, 24);
 assert.ok(controls.every(x => x.recovered >= x.length - 4), 'a planted control fell outside the four-rune tolerance');
 
+
+function mod29(x) { return ((x % 29) + 29) % 29; }
+function transposeMatrix(a) { return a[0].map((_, j) => a.map(row => row[j])); }
+function modInverse(a) {
+  for (let x = 1; x < 29; x++) if (mod29(a * x) === 1) return x;
+  throw new Error("noninvertible pivot in F29");
+}
+function inverseMatrix(input) {
+  const n = input.length;
+  const a = input.map((row, i) => row.map(mod29).concat(
+    Array.from({length:n}, (_, j) => i === j ? 1 : 0)
+  ));
+  for (let col = 0; col < n; col++) {
+    let pivot = col;
+    while (pivot < n && a[pivot][col] === 0) pivot++;
+    if (pivot === n) throw new Error("Hill matrix singular over F29");
+    [a[col], a[pivot]] = [a[pivot], a[col]];
+    const inv = modInverse(a[col][col]);
+    a[col] = a[col].map(value => mod29(value * inv));
+    for (let row = 0; row < n; row++) {
+      if (row === col) continue;
+      const factor = a[row][col];
+      a[row] = a[row].map((value, j) => mod29(value - factor * a[col][j]));
+    }
+  }
+  return a.map(row => row.slice(n));
+}
+function determinantMod29(input) {
+  const n = input.length;
+  const a = input.map(row => row.map(mod29));
+  let determinant = 1;
+  for (let col = 0; col < n; col++) {
+    let pivot = col;
+    while (pivot < n && a[pivot][col] === 0) pivot++;
+    if (pivot === n) return 0;
+    if (pivot !== col) {
+      [a[col], a[pivot]] = [a[pivot], a[col]];
+      determinant = mod29(-determinant);
+    }
+    const value = a[col][col];
+    determinant = mod29(determinant * value);
+    const inv = modInverse(value);
+    for (let row = col + 1; row < n; row++) {
+      const factor = mod29(a[row][col] * inv);
+      for (let j = col; j < n; j++) a[row][j] = mod29(a[row][j] - factor * a[col][j]);
+    }
+  }
+  return determinant;
+}
+function hillTransform(input, keyMatrix, phase, operation) {
+  const transform = operation === "inverse" ? inverseMatrix(keyMatrix) : keyMatrix;
+  const output = input.slice();
+  for (let start = phase; start + 5 <= input.length; start += 5) {
+    const block = input.slice(start, start + 5);
+    const mapped = transform.map(row =>
+      mod29(row.reduce((sum, coefficient, j) => sum + coefficient * block[j], 0))
+    );
+    for (let j = 0; j < 5; j++) output[start + j] = mapped[j];
+  }
+  return output;
+}
+function hillMetrics(output) {
+  let bigram = 0;
+  for (let i = 1; i < output.length; i++) bigram += logP[output[i - 1]][output[i]];
+  const counts = Array(29).fill(0);
+  for (const value of output) counts[value]++;
+  const pairs = counts.reduce((sum, n) => sum + n * (n - 1), 0);
+  return {
+    bigramPerRune: bigram / Math.max(1, output.length - 1),
+    ioc: pairs / (output.length * Math.max(1, output.length - 1))
+  };
+}
+function hillMatrixTests() {
+  const originalTests = [];
+  const sourceOrientations = [
+    {page:7, name:"LP1 square row-major / p7 baseline", key:matrix.map(row => row.map(mod29))},
+    {page:23, name:"LP1 square vertically reflected / p23 mirror", key:matrix.slice().reverse().map(row => row.map(mod29))}
+  ];
+  for (const source of sourceOrientations) {
+    const cipher = corpus.pages[source.page].indices;
+    for (const [matrixOrder, key] of [
+      ["printed", source.key],
+      ["transpose", transposeMatrix(source.key)]
+    ]) {
+      for (const operation of ["inverse", "direct"]) {
+        for (let phase = 0; phase < 5; phase++) {
+          const plain = hillTransform(cipher, key, phase, operation);
+          originalTests.push({
+            page:source.page, orientation:source.name, matrixOrder, operation, phase,
+            ...hillMetrics(plain),
+            preview:plain.slice(0, 100).map(value => corpus.translit[value]).join("")
+          });
+        }
+      }
+    }
+  }
+  originalTests.sort((a, b) => b.bigramPerRune - a.bigramPerRune);
+
+  const positiveControls = [];
+  for (const source of sourceOrientations) {
+    const n = corpus.pages[source.page].indices.length;
+    const plain = holdout.slice(100, 100 + n);
+    if (plain.length !== n) throw new Error("insufficient held-out Hill control text");
+    for (const [matrixOrder, key] of [
+      ["printed", source.key],
+      ["transpose", transposeMatrix(source.key)]
+    ]) {
+      for (const operation of ["inverse", "direct"]) {
+        for (let phase = 0; phase < 5; phase++) {
+          const inverseOperation = operation === "inverse" ? "direct" : "inverse";
+          const cipher = hillTransform(plain, key, phase, inverseOperation);
+          const recovered = hillTransform(cipher, key, phase, operation);
+          const matches = recovered.reduce((sum, value, i) => sum + Number(value === plain[i]), 0);
+          positiveControls.push({page:source.page, matrixOrder, operation, phase, matches, length:n});
+        }
+      }
+    }
+  }
+  if (positiveControls.length !== 40 ||
+      positiveControls.some(control => control.matches !== control.length))
+    throw new Error("Hill cipher synthetic positive control failed");
+
+  const matrix29 = matrix.map(row => row.map(mod29));
+  const vertical29 = matrix.slice().reverse().map(row => row.map(mod29));
+  const englishControls = [208, 213].map(n => hillMetrics(holdout.slice(100, 100 + n)));
+  const bestByPage = [7, 23].map(page =>
+    originalTests.filter(test => test.page === page).sort((a, b) => b.bigramPerRune - a.bigramPerRune)[0]
+  );
+  const phaseZeroByPage = [7, 23].map(page =>
+    originalTests.filter(test => test.page === page && test.phase === 0)
+      .sort((a, b) => b.bigramPerRune - a.bigramPerRune)[0]
+  );
+  return {
+    matrixMod29:matrix29,
+    determinantMod29:determinantMod29(matrix29),
+    verticalReflectionDeterminantMod29:determinantMod29(vertical29),
+    originalTests:originalTests.length,
+    bestByPage,
+    phaseZeroByPage,
+    heldOutEnglishControls:englishControls,
+    positiveControls:{exact:positiveControls.filter(x => x.matches === x.length).length,total:positiveControls.length}
+  };
+}
+
+
 const controlScores = controls.map(x => x.scorePerRune);
 const summary = {
   keyRowMajor: rowMajor,
@@ -269,4 +414,5 @@ const summary = {
   }
 };
 
+summary.hillMatrix = hillMatrixTests();
 console.log(JSON.stringify(summary, null, 2));

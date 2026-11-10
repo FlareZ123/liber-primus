@@ -1,6 +1,6 @@
-# LP1 5x5 magic square as a direct GP29 key for the LP2 five-dot pages
+# LP1 5x5 magic square as a direct GP29 pad and Hill matrix for the LP2 five-dot pages
 
-**Classification:** source-motivated, positive-control-backed bounded negative. No unknown LP2 plaintext, authentic key, or continuation recovered.
+**Classification:** two source-motivated, positive-control-backed bounded negatives. No unknown LP2 plaintext, authentic key, or continuation recovered.
 
 ## Human-visible solve-path hypothesis
 
@@ -56,8 +56,34 @@ Twenty-four synthetic controls use 12 independent held-out Shakespeare GP window
 
 **Decision:** the direct, source-locked interpretation of the LP1 square as a repeating additive GP29 key for p7/p23 is not supported. This is a useful rejection of the simplest five-dot ↔ 5x5-square solve path. It does not exclude using the square as a transposition, state seed, nonlinear key source, or part of a further cipher layer; those would require independent instructions rather than free parameter expansion.
 
+## Second natural interpretation: 5×5 Hill cipher over F29
+
+The same 5×5 object is not only a 25-symbol sequence; it is also a literal square matrix. Reducing its entries modulo 29 gives:
+
+| 11 | 22 | 22 | 15 | 6 |
+|---:|---:|---:|---:|---:|
+| 18 | 25 | 14 | 1 | 18 |
+| 23 | 13 | 4 | 13 | 23 |
+| 18 | 1 | 14 | 25 | 18 |
+| 6 | 15 | 22 | 22 | 11 |
+
+Its determinant is **3 mod 29**, so it is invertible and a valid 5-symbol Hill key over the GP29 field. This is a more natural use of the 5×5 square than treating its entries only as a repeating pad. The source-fixed p7 key is row-major; p23 uses the vertically reflected matrix indicated by the five-dot mirror.
+
+Tested 40 bounded inverses: for each page, the source-fixed matrix and its transpose (row/column-vector convention), direct multiplication and inverse multiplication, and all five possible 5-symbol block phases. Incomplete leading/trailing symbols are left unchanged; no padding is guessed.
+
+| Page | Best of 20 | Best bigram score (nats/rune) | IoC |
+|---|---|---:|---:|
+| 7 | Printed matrix, direct, phase 3 | **−4.864048** | 0.037022 |
+| 23 | Transpose of reflected matrix, direct, phase 1 | **−4.858036** | 0.034458 |
+
+These are not source-consistent settings: the two pages prefer different operations and phases, and the best scores remain far below held-out English GP controls (−2.6823 and −2.6903 nats/rune; IoC 0.06429 and 0.06506). The natural phase-zero results are weaker still: p7 −5.109939 and p23 −4.906512 nats/rune.
+
+All **40/40** synthetic Hill plants recover exactly under the same matrix, orientation, operation and phase used to encrypt them. Thus the inverse is functional; the original outputs are the failure.
+
+**Decision:** the direct additive pad and the 5×5 Hill-matrix interpretation are both unsupported for the p7/p23 five-dot pages. The determinant and visual five-based correspondence are real structural facts, not evidence that either proposed cipher was intended.
+
 ## Reproduction
 
-Run node sims/magic_square_5x5_gp_pad_inverse.cjs from the repository root with Node.js 22. The script reads only resources/liber-primus/lp2-corpus.json and resources/control/shakespeare_first300k.txt, asserts the square's 12 magic sums and the two original page lengths, executes the four source-fixed models per page, and runs 24 deterministic planted controls. It has no external dependencies and does not write files.
+Run node sims/magic_square_5x5_gp_pad_inverse.cjs from the repository root with Node.js 22. The script reads only resources/liber-primus/lp2-corpus.json and resources/control/shakespeare_first300k.txt, asserts the square's 12 magic sums and the two original page lengths, executes the four source-fixed additive-pad models per page with 24 deterministic planted controls, then tests 40 source-oriented Hill inverses with 40 exact synthetic controls. It has no external dependencies and does not write files.
 
 This is intermediate evidence, not an established decryption; the authoritative results/README.md is therefore unchanged.
