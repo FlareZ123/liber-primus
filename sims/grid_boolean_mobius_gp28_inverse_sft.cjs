@@ -33,8 +33,9 @@ const mod=(n,m)=>(n%m+m)%m;
  * @param {"subset"|"superset"} order
  * @returns {number[]}
  */
-function inverseGrid(law,order){
-  const rows=grid.byte_rows.map(r=>r.slice());
+function inverseGrid(law,order,rowMap=Array.from({length:32},(_,i)=>i)){
+  const rows=Array.from({length:32},()=>Array(8).fill(0));
+  for(let i=0;i<32;i++)rows[rowMap[i]]=grid.byte_rows[i].slice();
   for(let bit=0;bit<5;bit++)for(let s=0;s<32;s++) {
     const isSet=(s&(1<<bit))!==0;
     if((order==="subset"&&isSet)||(order==="superset"&&!isSet)){
@@ -108,6 +109,42 @@ function main(){
     }
   }
   variants.sort((a,b)=>b.ioc-a.ioc);
+  // The five-bit stencil's proposed de Bruijn state ordering is a separate,
+  // source-specific hypothesis; its black-stencil anchor puts state zero at
+  // fragment 8. Reorder the printed rows to five-bit masks *before* Mobius.
+  const cycle=[31,30,28,25,19,6,13,26,20,9,18,4,8,16,0,1,2,5,10,21,11,23,14,29,27,22,12,24,17,3,7,15];
+  const blackPhase=(cycle.indexOf(0)-8+32)%32;
+  const stateOrders=[
+    ["printed",Array.from({length:32},(_,i)=>i)],
+    ["deBruijn",cycle],
+    ["black-zero",[...cycle.slice(blackPhase),...cycle.slice(0,blackPhase)]]
+  ];
+  assert.equal(stateOrders[2][1][8],0);
+  const extended=[];
+  for(const [rowMapName,rowMap] of stateOrders){
+    assert.deepEqual(rowMap.slice().sort((a,b)=>a-b),
+      Array.from({length:32},(_,i)=>i));
+    for(const law of ["mod256","xor"])for(const order of ["subset","superset"]){
+      const stateKey=inverseGrid(law,order,rowMap);
+      for(const clock of ["mask-flat","source-row-major","source-col-major"]){
+        const key=Array.from({length:256},(_,i)=>{
+          if(clock==="mask-flat")return stateKey[i];
+          const r=clock==="source-row-major"
+            ? rowMap[Math.floor(i/8)] : rowMap[i%32];
+          const c=clock==="source-row-major"?i%8:Math.floor(i/32);
+          return stateKey[8*r+c];
+        });
+        for(const reducer of ["mod","scaled"])for(const sign of [-1,1]){
+          const plain=decrypt(C,key,sign,reducer);
+          assert.deepEqual(encrypt(plain,key,sign,reducer),C);
+          extended.push({rowMapName,law,order,clock,reducer,sign,ioc:ioc(plain)});
+        }
+      }
+    }
+  }
+  extended.sort((a,b)=>b.ioc-a.ioc);
+  assert.equal(extended.length,144);
+  assert(extended[0].ioc<0.045,"source-ordered Mobius variant unexpectedly linguistic");
   // Independent 2,400-rune Latin-GP positive, parameters frozen by source
   // conventions, not selected from the unknown original output.
   const model={law:"mod256",order:"subset",reducer:"mod",sign:1};
@@ -122,6 +159,8 @@ function main(){
     originalRunes:C.length,originalAdjacentRepeats:expectedEA,
     sourceVariants:variants.length,originalCipherIoC:ioc(C),
     best:variants[0],worst:variants.at(-1),
+    deBruijnSourceOrderFamily:{settings:extended.length,
+      best:extended[0],worst:extended.at(-1)},
     all:variants.map(({first50,...meta})=>meta),
     independentPlant:{source:"Latin Vulgate GP holdout",
       runes:PLANT.length,correct:replay.filter((x,i)=>x===PLANT[i]).length,
