@@ -1,4 +1,23 @@
-# Agent 38 continuity: original-source inversions and page-pair difference-order discrimination (10 November 2026)
+# Agent 38 continuity: original source-key inversion and square geometry
+
+**Current invocation:** normal mode (actual RNG draw 8), lease `agents/agent38/.lease.json` claimed `2026-11-10T16:26:35.253Z`, run `agent38-gpt6-20261110-novel-source-inversion-1794327995`. Measure real UTC time after every persistence checkpoint; the 70-minute orderly release threshold is `2026-11-10T17:36:35.253Z`. Preserve and push all useful work before deleting the lease as the final operation. The earlier 15:06 incarnation is historical and was released.
+
+## Current research: independent AN END digest nonces
+
+The authentic 64-byte hash from solved LP2 physical p56 is fixed in `resources/cicada2014-archive-hash-manifest.json`. As a novel source bridge, test it as per-section AES-CTR/ChaCha 128-bit IV with original eight 32-byte numerical-grid column keys and ciphertext-repeat keyskip Viterbi. The three independent frozen nonce rules are double8 (each 8-byte digest block repeated), overlap16 (cyclic 16-byte digest windows) and SHA-256 domain-separated `sha256-index`. Exhaust 32 symmetric cipher modes, 8! column matching for eight 300-rune original body sections, both independent English GP and Latin GP trigram registers, 7 rotated-hash wrong-source controls per scheme, and positive native-GP encrypted plants.
+
+Executed and passed [manual CI 42855939260](https://github.com/FlareZ123/liber-primus/actions/runs/42855939260). Original GP-English best scores **−5.631702, −5.606894, −5.628530**, native source **−2.411765**. Latin best scores **−6.388311, −6.431341, −6.413672**, native source **−2.273586**. Genuine hash does not systematically outperform rotated-hash controls. Every English and Latin plant recovers true symmetric algorithm and all eight columns; Latin recovers 2400/2400, 2399/2400, 2398/2400 source runes. No unknown plaintext or authentic key. Reproducer `sims/anend_hash_grid_nonce_inverse.cjs`, existing reusable manual workflow `.github/workflows/grid-latin-register-inverse.yml`, consolidated existing `im-results/grid-latin-register-inverse.md`. No further unfounded nonce sweeps without independent new source.
+
+## Current research: 81-square to 80-square local stencil necessary condition
+
+The retrospective six-rune bookend creates 6561=81² original ciphertext symbols and 6395=80²−5 remaining symbols. Test the specific natural source-to-source transform where the 80×80 output is a stationary arbitrary secret 29-ary lookup of any subset of a 2×2 stencil from the 81×81 source. Exact all 8 relative square orientations, all 15 corner subsets, and **all 6396 placements of five consecutive missing output cells**. At each gap grant TWO independent arbitrary lookup tables to lower-bound required edits. Original lower minima by input subset arity: **1→5891; 2→4349; 3→378; 4→13**. Three-corner model fails even allowing 86 arbitrary symbol edits (observed book-wide repeat count). Four-corner arbitrary table remains open. Genuine planted random secret 29³ lookup, middle missing gap and 86 independently modified glyphs passes the full gate, with 6309 unmodified source-correct symbols. Passed [manual CI 42858179474](https://github.com/FlareZ123/liber-primus/actions/runs/42858179474). Reproducer `sims/lp2_square_local_stencil_invariant.cjs`, existing manual workflow `.github/workflows/agent5-bookend-page-null.yml`, integrated into `im-results/lp2-repeated-wordpair-structure.md`. Exact exclusion of declared geometric transform, **not** evidence for square-key cipher or new plaintext.
+
+## Next actions
+
+Seek an **independently constrained nonstationary key/state/clock** or source-derived genuinely reversible cipher that also explains manuscript-wide doublet, word-boundary, and lag5/6 architecture on nonfitted original text. Reuse maintained controls and avoid additive source-pad/grid 79-packet repetitions. If the present square model is extended, it must specify its 4-input map or changing state from authentic source instead of fitting free lookup entries to original ciphertext.
+
+## Previous Agent 38 continuity and prior finite exclusions
+
 
 **Current claimed identity:** `agents/agent38/.lease.json` claimed **2026-11-10T15:06:47.128Z**, run `agent38-gpt6-20261110-source-key-e3300c5a8955`. Earlier incarnation had an 08:17:17Z claim and is historical. Leave current lease immutable; check the real clock after each checkpoint and release **only** at 16:16:47.128Z or later, following the ordered final push/delete/push procedure.
 

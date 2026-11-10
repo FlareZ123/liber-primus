@@ -34,6 +34,23 @@ The planted Latin ciphertext books score **−2.3686 to −2.3818 nats/rune** un
 
 The positive tests have exact GP-rune recovery and correct AES/column assignments, so English-only model mismatch is **insufficient** to explain these negative results under the specified source cipher family if the hidden plaintext were comparable to the independent Latin control.
 
+## Solved AN END hash as a frozen grid-column nonce source
+
+A new original-source handoff tests the exact **64-byte / 512-bit digest** printed on solved LP2 page 56 (source-fixed in [the archived hash manifest](../resources/cicada2014-archive-hash-manifest.json)) as an AES-CTR/ChaCha20 nonce source. The same eight original 32-byte numerical-grid column keys, red-title-stripped eight 300-rune body prefixes, original GP-rune Viterbi with collision-triggered hidden keystream consumption, 32 algorithm/key-order/reduction/sign modes and globally optimal **8!** column assignment are retained.
+
+The three 128-bit per-section nonce derivations are **double8** (the digest's consecutive 8-byte chunk repeated twice), **overlap16** (16 digest bytes starting at offset `8×section`, cyclically), and **sha256-index** (first 16 bytes of SHA-256 of the fixed UTF-8 domain separator `Liber Primus AN END LP2 IV\0`, the complete original 64-byte digest and a final one-byte section index). All rules are fixed independently of decoded original LP2 symbols. English and Latin source registers have completely independent GP trigram controls.
+
+| Frozen hash-derived nonce | Best original English GP nats/rune | Best original Latin GP nats/rune | Rotated-hash competitors ≥ genuine, English/Latin (of 7 each) |
+| --- | ---: | ---: | --- |
+| double8 | **−5.631702** | **−6.388311** | 2 / 1 |
+| overlap16 | **−5.606894** | **−6.431341** | 1 / 7 |
+| sha256-index | **−5.628530** | **−6.413672** | 2 / 2 |
+| Independent held-out source text (no encryption) | **−2.411765** | **−2.273586** | N/A |
+
+For every scheme and language, the same secret-grid cipher family, with a hidden 8! assignment and 81% collision skips, recovers the genuine model and all eight key assignments from **synthetic independently encoded English or Latin GP text**. Latin plants recover **2,400, 2,399 and 2,398** of 2,400 true source runes respectively; English plants recover the true mode and all eight key assignments and meet the previously validated plant-recovery threshold. No tested authentic LP2 configuration yields recognizable native-GP plaintext, and the correct hash fails to outscore alternative 8-byte rotations consistently. These controls distinguish a genuine source-key identification from a reversible model's routine wrong-key round trip.
+
+**Decision:** the particular direct native-GP, source-grid AES/ChaCha collision-consumption architecture is negative under all three historical-digest IV serializations. This does not exclude keyed or more complex uses of the solved hash, other nonce functions, non-GP intermediate encodings or a different state machine. [Exact implementation](../sims/anend_hash_grid_nonce_inverse.cjs) runs via the existing manual [Latin-grid workflow](../.github/workflows/grid-latin-register-inverse.yml) and passed [original-result GitHub Actions run 42855939260](https://github.com/FlareZ123/liber-primus/actions/runs/42855939260).
+
 ## Decision and limitations
 
 The source-locked eight-section grid-column AES/ChaCha stream models with collision key consumption have **no demonstrated plaintext recovery under either independent English GP or Latin GP source**. Latin source controls close a concrete false-negative weakness of the earlier English-only tests. They do **not** exclude ancient or modern language registers outside these controls, a wholly different binary or 28-symbol intermediate alphabet, a different nonce construction, a transformed grid key, more aggressive insertion/deletion, or cryptosystem types not tested. The 20 nulls per family limit tail precision; the actual log-likelihood gap to genuine Latin plants is large and the source grids are ordinary among nulls. The original wording, intended destination and keys remain unknown.
