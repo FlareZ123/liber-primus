@@ -26,7 +26,7 @@ The GP spelling of DIVINITY is **DIUINITY** (the GP alphabet represents V with U
 | English quadgram coverage | 44.13% | 45.11% |
 | Mean log quadgram count | −1.1380 | −1.0297 |
 
-The best DIVINITY configuration is **per-word reset, subtraction, phase 5**. It scores **−1.1411** with **43.96%** quadgram coverage. None of the 32 configurations yields readable English. For calibration, the same scorer gives the known p56 and p57 cleartext controls scores **+5.7606** (100% coverage) and **+5.6010** (97.62% coverage), respectively. These are model scores, not p-values.
+The best DIVINITY configuration is **per-word reset, subtraction, phase 5**. It scores **−1.1411** with **43.96%** quadgram coverage. None of the 32 configurations yields readable English. For calibration, the same scorer gives the known p56 and p57 cleartext controls scores **+5.7606** (100% coverage) and **+6.0524** (100% coverage), respectively. These are model scores, not p-values.
 
 The interior's IoC remains at the uniform 29-symbol floor and its doublet rate remains close to the original ciphertext's suppressed rate. Thus the literal edge-removal operation does not expose native GP English, and the explicit DIVINITY key does not repair it under the declared clock/sign family.
 
