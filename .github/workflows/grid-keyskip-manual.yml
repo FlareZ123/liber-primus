@@ -13,6 +13,7 @@ on:
           - corrected-grid-inverse
           - historical-onion-xor-inverse
           - historical-onion-shamir4-inverse
+          - historical-onion-totient-inverse
 jobs:
   grid-probe:
     runs-on: ubuntu-latest
@@ -39,6 +40,9 @@ jobs:
       - name: Original LP2 source-key inverse from three historical hidden-service blobs and numeric grid
         if: ${{ inputs.probe == 'historical-onion-xor-inverse' }}
         run: node sims/onion256_grid_xor_source_inverse.cjs
+      - name: Original LP2 inverse with source-fixed 2014 bytewise totient keys
+        if: ${{ inputs.probe == 'historical-onion-totient-inverse' }}
+        run: node sims/onion_totient_original_inverse.cjs
       - name: Exact source-derived Shamir4 original LP2 key inverse with unseen continuations
         if: ${{ inputs.probe == 'historical-onion-shamir4-inverse' }}
         run: node sims/onion256_shamir4_original_inverse.cjs
