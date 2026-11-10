@@ -79,6 +79,39 @@ function makeCandidates(word,allowInsertion){
 }
 
 /**
+ * Keep the highest WIDTH candidates in a streaming min-heap. Avoid creating
+ * millions of temporary candidate paths for large dictionary length bins.
+ * @param {object[]} heap
+ * @param {object} candidate
+ * @param {number} capacity
+ */
+function pushBest(heap,candidate,capacity){
+  if(heap.length>=capacity&&candidate.score<=heap[0].score)return;
+  if(heap.length<capacity){
+    let i=heap.length;
+    heap.push(candidate);
+    while(i>0){
+      const p=(i-1)>>1;
+      if(heap[p].score<=candidate.score)break;
+      heap[i]=heap[p];i=p;
+    }
+    heap[i]=candidate;
+  }else{
+    let i=0;
+    const length=heap.length;
+    while(true){
+      const left=2*i+1,right=left+1;
+      if(left>=length)break;
+      let child=left;
+      if(right<length&&heap[right].score<heap[left].score)child=right;
+      if(heap[child].score>=candidate.score)break;
+      heap[i]=heap[child];i=child;
+    }
+    heap[i]=candidate;
+  }
+}
+
+/**
  * @param {number[][]} cipherWords
  * @param {boolean} allowInsertion
  * @param {number} width
@@ -94,8 +127,11 @@ function infer(cipherWords,allowInsertion,width=WIDTH){
   const stages=[];
   for(const id of sequence){
     const next=[];
+    let survivors=0;
     for(const partial of beam){
       for(const word of candidates[id]){
+        const newScore=partial.score+word.score;
+        if(next.length>=width&&newScore<=next[0].score)break;
         let good=true;
         for(let i=0;i<word.source.length;i++){
           const c=word.cipher[i],p=word.source[i];
@@ -105,6 +141,7 @@ function infer(cipherWords,allowInsertion,width=WIDTH){
           }
         }
         if(!good)continue;
+        survivors++;
         const map=partial.map.slice(),inv=partial.inv.slice();
         for(let i=0;i<word.source.length;i++){
           map[word.cipher[i]]=word.source[i];
@@ -112,13 +149,13 @@ function infer(cipherWords,allowInsertion,width=WIDTH){
         }
         const chosen=partial.chosen.slice();
         chosen[id]=word;
-        next.push({score:partial.score+word.score,map,inv,chosen});
+        pushBest(next,{score:newScore,map,inv,chosen},width);
       }
     }
     next.sort((a,b)=>b.score-a.score);
-    beam=next.slice(0,width);
+    beam=next;
     stages.push({word:id,variants:candidates[id].length,
-      surviving:next.length,retained:beam.length});
+      surviving:survivors,retained:beam.length});
     if(!beam.length)break;
   }
   return {
@@ -165,7 +202,7 @@ function plant(seed){
     const useInsert=random()<.45&&c.length>1;
     const len=c.length-Number(useInsert);
     const opts=[...dictionary.words.values()].filter(w=>
-      w.indices.length===len&&w.freq>=10);
+      w.indices.length===len&&w.freq>=10).sort((a,b)=>b.freq-a.freq);
     assert(opts.length>0);
     // English words selected with moderate frequency and no unused glyph type
     // assumption; this is a complete model-matched synthetic plaintext.
@@ -184,10 +221,17 @@ function plant(seed){
 function nullCipher(random){
   const src=CIPHER.flat(),n=src.length;
   const out=src.slice();
-  for(let i=n-1;i>0;i--){
-    const j=Math.floor(random()*(i+1));
-    [out[i],out[j]]=[out[j],out[i]];
+  // Condition on the observed absence of adjacent ciphertext doublets,
+  // while fixing both the 51-rune histogram and 12 word lengths.
+  let valid=false;
+  for(let attempt=0;attempt<1000&&!valid;attempt++){
+    for(let i=n-1;i>0;i--){
+      const j=Math.floor(random()*(i+1));
+      [out[i],out[j]]=[out[j],out[i]];
+    }
+    valid=out.every((c,i)=>i===0||c!==out[i-1]);
   }
+  assert(valid,"Unable to draw a no-doublet conditional null");
   let p=0;
   return LENGTHS.map(len=>{const result=out.slice(p,p+len);p+=len;return result;});
 }
