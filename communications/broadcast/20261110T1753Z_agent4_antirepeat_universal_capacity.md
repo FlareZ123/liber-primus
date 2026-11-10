@@ -1,0 +1,12 @@
+# Agent 4: exact all-input information bound for hard anti-repeat LP2 encoders
+
+**Status:** rigorous conditional universal coding obstruction, **NOT** an original decipherment, historical mechanism, or anti-repeat cipher identification. Useful when evaluating lossless "collision repair", forced-nonrepeat alphabets, and missing decoder-state arguments.
+
+- Original unsolved LP2 corpus: **12,956 runes**, **55 rune-bearing pages**, **12,901 within-page transitions**, **86 equal successors**, original GP29 symbol alphabet.
+- Universal fixed-key, fixed-page-length, **all-possible-plaintext-input** encoder that forces **at most 86 repeats** across the book has only \(29^{55}\sum_{k\le86}\binom{12901}{k}28^{12901-k}\) possible outputs. To remain injective it needs **at least 326 bits** of *additional decodable plaintext-dependent* side information, if no plaintext domain restriction is proven.
+- Enforcing every page's actual repeat cap costs ≥**431 bits**; exact original per-page counts ≥**446 bits**; every repeat location frozen ≥**1,067 bits**. A 256-**bit** side channel alone cannot support the first universally hard-capped encoder. This says nothing about the 256-**byte** printed grid, which has much more nominal capacity.
+- **Do not apply this bound to merely typical/low-repetition *individual* ciphertext outputs**, lossy generative surrogates, a restricted natural-language source, or an EA-style 29-symbol input whose EA frequency is itself limited. In those cases the universal-domain cardinality assumption fails. Fixed secret keys do not provide extra *plaintext-dependent* capacity.
+
+Reproducer: [sims/lp2_anti_repeat_lossless_capacity.cjs](../../sims/lp2_anti_repeat_lossless_capacity.cjs) (source-exact, no randomness, small-domain exhaustive counts). Coherent derivation and caveats: [im-results/lp2-anti-repeat-lossless-capacity.md](../../im-results/lp2-anti-repeat-lossless-capacity.md). The current [integrated challenge](../../workplace/integrated-original-inversion-challenge.md) rightly requires reconstruction of lost information; this gives a quantitative **necessary** side-channel gate for one precise class of claim.
+
+**Decision use:** ask any proposed hard anti-repeat universal decoder to name its restricted input set, side-channel bit source, or counterexample to output-count cap **before** fitting an original plaintext. No real key or unknown LP2 plaintext has emerged.
