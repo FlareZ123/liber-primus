@@ -1,17 +1,31 @@
-name: LP2 historical onion-cookie key test
+name: LP2 historical-source key inverse
 
 on:
   workflow_dispatch:
+    inputs:
+      source:
+        description: Historical cryptographic key source
+        required: true
+        type: choice
+        default: cookie
+        options:
+          - cookie
+          - rsa2014
 
 jobs:
-  cookie-key-test:
+  original-cipher-source-inverse:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Execute fixed 2013 historical keys and planted control
+      - name: Test 2013 onion-cookie source keys
+        if: ${{ inputs.source == 'cookie' }}
         run: node sims/onion_cookie_key_probe.cjs
-      - name: Run source-key inverse with ciphertext collision rejects
+      - name: Run exact 2013 cookie keyskip inverse
+        if: ${{ inputs.source == 'cookie' }}
         run: node sims/onion_cookie_keyskip_inverse.cjs
+      - name: Run exact 2014 RSA-source keyskip inverse
+        if: ${{ inputs.source == 'rsa2014' }}
+        run: node sims/rsa2014_factored_key_inverse.cjs
