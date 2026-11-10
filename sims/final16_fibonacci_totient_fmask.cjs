@@ -133,7 +133,8 @@ function infer(cipher,start,sign) {
       if(normalPlain!==0)visit(normalPlain,false);
       if(c===0)visit(0,true);
     }
-    assert.ok(next.size>0,'No reversible source-key state at pos '+i);
+    if(!next.size)return {plain:[],mask:[],score:-Infinity,perRune:-Infinity,
+      skips:0,impossibleAt:i};
     traces.push(next);
     active=next;
   }
@@ -172,13 +173,15 @@ function score(cipherPages){
       infer(page,setting.starts[i],setting.sign));
     const training=decoded.slice(0,TRAIN_PAGES);
     const held=decoded.slice(TRAIN_PAGES);
-    const trainLL=training.reduce((s,x)=>s+x.score,0)/TRAIN_COUNT;
-    const heldLL=held.reduce((s,x)=>s+x.score,0)/(3316-TRAIN_COUNT);
+    const trainLL=training.some(x=>x.impossibleAt!==undefined) ? -Infinity :
+      training.reduce((s,x)=>s+x.score,0)/TRAIN_COUNT;
+    const heldLL=held.some(x=>x.impossibleAt!==undefined) ? -Infinity :
+      held.reduce((s,x)=>s+x.score,0)/(3316-TRAIN_COUNT);
     output.push({setting,decoded,trainLL,heldLL,
       heldoutCount:3316-TRAIN_COUNT,
       skips:decoded.reduce((n,x)=>n+x.skips,0)});
   }
-  output.sort((a,b)=>b.trainLL-a.trainLL);
+  output.sort((a,b)=>a.trainLL===b.trainLL?0:(a.trainLL>b.trainLL?-1:1));
   return output;
 }
 /** @param {ReturnType<typeof score>[number]} result */
@@ -187,6 +190,8 @@ function summary(result){
     sign:result.setting.sign,trainLL:result.trainLL,
     heldLL:result.heldLL,skips:result.skips,
     selectedPageSkips:result.decoded.map(x=>x.skips),
+    impossiblePages:result.decoded.map((x,i)=>x.impossibleAt===undefined?null:
+      ({page:pages[i].page,localOffset:x.impossibleAt})).filter(Boolean),
     startPrimes:result.setting.starts};
 }
 const excerpt='AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE';
@@ -241,6 +246,8 @@ function run(){
   assert.ok(found===0,'Planted p15 roots must rank first among eight source-frozen keys');
   assert.ok(matched>0.85*3316,'Inferred hidden F masks should recover the known GP language');
   const realBest=original[0];
+  const fullyReversibleOriginal=original.filter(x=>x.decoded.every(d=>
+    d.impossibleAt===undefined));
   const result={
     classification:'Original-source finite inverse, not an authenticated LP2 key or decryption',
     source:{physicalPages:'40..55',runes:3316,primeStarts:'p15 red-centered Fibonacci-prime 4x4 square',
@@ -248,7 +255,9 @@ function run(){
       cipherSigns:[-1,1],keyChoices:settings.length},
     exactSolvedSourceControl:authentic,
     original:{trainedOn:'physical 40–43, 1050 runes',heldout:'physical 44–55, 2266 runes',
+      fullyReversibleOriginalModels:fullyReversibleOriginal.length,
       winning:summary(realBest),topThree:original.slice(0,3).map(summary),
+      allSourceCases:original.map(summary),
       first40DecodedGp:realBest.decoded[0].plain.slice(0,40).map(v=>corpus.translit[v]).join('')},
     hiddenFPlant:{trueSource:summary(sourceBest),
       selectedKeyRank:found+1,
