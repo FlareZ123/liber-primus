@@ -227,7 +227,9 @@ function run(nulls=12) {
   return {
     hypothesis:"C_i = sigma(P_i+sign*grid[row(C_(i-1)), col(clock_i)] mod29)",
     corpus:{runes:records.length,words:2896,trainingRunes:training.length,
-      heldoutRunes:heldout.length,trainPages:"0..27",holdoutPages:"28..55"},
+      heldoutRunes:heldout.length,
+      trainingPages:"physical LP2 0..27",
+      heldoutPages:"physical LP2 28..55 except rune-free page 50"},
     variants:configs.length,source:"original LP2 base60 32x8 byte grid",
     language:"Shakespeare GP transliteration, first 160000 characters",
     realTop:real.slice(0,5).map(x=>({config:x.config,
