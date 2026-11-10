@@ -1,0 +1,84 @@
+"use strict";
+/**
+ * Power and false-positive calibration of the prefix-bootstrapped
+ * unknown-outer-alphabet / hidden-skip method. Reproducible Monte Carlo.
+ *
+ * Each run creates a fresh arbitrary sigma, independent GP key stream and
+ * collision-rejected English-like plaintext. A matched wrong pad is searched
+ * with the same number of prefix choices and optimization passes.
+ */
+const fs=require("node:fs");
+const path=require("node:path");
+const {encrypt,seededRandom,shuffledPermutation}=
+  require("./outer_permutation_assignment.cjs");
+const {words,flatten,training,fit}=
+  require("./outer_permutation_word_context.cjs");
+const {viterbi}=require("./outer_permutation_alignment.cjs");
+
+function experiment({replicates=50}={}){
+  const text=fs.readFileSync(path.join(__dirname,"..","resources",
+    "control","shakespeare_first300k.txt"),"utf8");
+  const corpus=words(text),test=flatten(corpus.slice(0,600));
+  const model=training(flatten(corpus.slice(600,50000)));
+  const N=1200;
+  const plain=test.values.slice(0,N),contexts=test.classes.slice(0,N);
+  const positionLogPrior=contexts.map(c=>model.logProb[c]);
+  const config={strict:true,maxDrift:100,suppress:.81,positionLogPrior};
+  const widths=[60,100,160,300];
+  const master=seededRandom(20261110);
+  function tryKey(cipher,key){
+    let winner={score:-Infinity,correctMap:null,drift:null,width:null};
+    for(const width of widths){
+      let inv=fit(cipher.slice(0,width),key,contexts.slice(0,width),model).inverse;
+      for(let iteration=0;iteration<5;iteration++){
+        const solution=viterbi(cipher,key,model.prior,inv,config);
+        if(solution.score>winner.score)
+          winner={score:solution.score,correctMap:inv.slice(),
+            drift:solution.drift,width};
+        const indices=[...solution.drift].map((d,i)=>i+d);
+        const updated=fit(cipher,key,contexts,model,indices).inverse;
+        if(updated.every((x,i)=>inv[i]===x))break;
+        inv=updated;
+      }
+    }
+    return winner;
+  }
+  const rows=[];
+  for(let replicate=0;replicate<replicates;replicate++){
+    const seed=Number((master()*0x100000000)>>>0);
+    const rng=seededRandom(seed);
+    const sigma=shuffledPermutation(Array.from({length:29},(_,i)=>i),rng);
+    const actualInverse=Array.from({length:29},(_,c)=>sigma.indexOf(c));
+    const trueKey=Array.from({length:N+400},()=>Math.floor(rng()*29));
+    const planted=encrypt(plain,trueKey,sigma,rng,.81);
+    const fake=Array.from({length:N+400},()=>Math.floor(rng()*29));
+    const trueResult=tryKey(planted.ciphertext,trueKey);
+    const fakeResult=tryKey(planted.ciphertext,fake);
+    const labels=trueResult.correctMap.filter((x,i)=>x===actualInverse[i]).length;
+    const correctDrift=[...trueResult.drift].filter((d,i)=>
+      d===planted.keyIndices[i]-i).length;
+    rows.push({replicate,seed,firstSkip:planted.keyIndices.findIndex((x,i)=>x>i),
+      extras:planted.extraDraws, labels,
+      correctPositionRate:correctDrift/N,
+      trueScore:trueResult.score,fakeScore:fakeResult.score,
+      scoreMargin:trueResult.score-fakeResult.score,
+      winningPrefix:trueResult.width});
+  }
+  const vals=rows.map(x=>x.scoreMargin).sort((a,b)=>a-b);
+  return {
+    model:"word-contextual prefix-bootstrapped 29-way permutation plus skip Viterbi",
+    trials:replicates,seed:20261110,simulation:"English GP + truly uniform mod29 key; q=.81 filter",
+    widthChoices:widths,iterationsPerWidth:5,
+    exactAlphabetRecoveries:rows.filter(x=>x.labels===29).length,
+    atleast20LabelRecoveries:rows.filter(x=>x.labels>=20).length,
+    trueBeatsWrong:rows.filter(x=>x.scoreMargin>0).length,
+    medianLabels:rows.map(x=>x.labels).sort((a,b)=>a-b)[Math.floor(replicates/2)],
+    medianDriftAccuracy:rows.map(x=>x.correctPositionRate).sort((a,b)=>a-b)[Math.floor(replicates/2)],
+    scoreMarginQuantiles:{min:vals[0],q05:vals[Math.floor(replicates*.05)],
+      median:vals[Math.floor(replicates*.5)],q95:vals[Math.floor(replicates*.95)],
+      max:vals.at(-1)},
+    first10:rows.slice(0,10),failed:rows.filter(x=>x.labels<20).slice(0,8)
+  };
+}
+if(require.main===module)console.log(JSON.stringify(experiment(),null,2));
+module.exports={experiment};
