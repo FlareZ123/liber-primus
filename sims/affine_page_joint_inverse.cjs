@@ -109,20 +109,60 @@ function holdout(pages,hypothesis,frequency,knownPlain=null){
     correct:knownPlain?correct/predictions.length:null,
     inferredKeys};
 }
+/**
+ * Select pages that agree most strongly with the fit on training positions.
+ * The selector never sees odd-offset ciphertext. Wrong-frequency pages in a
+ * planted manuscript produce incoherent Fourier components; a robust 36-page
+ * core can learn a common pad without forcing those outliers into the key.
+ *
+ * @param {number[][]} pages
+ * @param {ReturnType<typeof fit>} spectrum
+ */
+function coherentCore(pages,spectrum){
+  const n=pages.length,cos=Math.cos,sin=Math.sin,score=new Float64Array(n);
+  const re=new Float64Array(75),im=new Float64Array(75);
+  for(let t=0;t<75;t++){
+    let sr=0,si=0;
+    for(let j=0;j<n;j++){
+      const a=2*Math.PI*spectrum.frequencies[j]*pages[j][2*t]/MOD;
+      const r=cos(a),i=sin(a),pr=spectrum.phaseReal[j],
+        pi=spectrum.phaseImag[j];
+      sr+=r*pr+i*pi;si+=i*pr-r*pi;
+    }
+    re[t]=sr;im[t]=si;
+  }
+  for(let j=0;j<n;j++){
+    let v=0;
+    for(let t=0;t<75;t++){
+      const a=2*Math.PI*spectrum.frequencies[j]*pages[j][2*t]/MOD,
+        r=cos(a),i=sin(a),pr=spectrum.phaseReal[j],pi=spectrum.phaseImag[j];
+      const cr=r*pr+i*pi,ci=i*pr-r*pi;
+      v+=cr*re[t]+ci*im[t];
+    }
+    score[j]=v;
+  }
+  return Array.from({length:n},(_,j)=>j).sort((a,b)=>score[b]-score[a])
+    .slice(0,36).sort((a,b)=>a-b);
+}
 /** @param {number[][]} pages */
 function decode(pages,knownPlain=null,actualMultipliers=null){
-  const spectrum=fit(pages),cases=[];
-  for(let u=1;u<MOD;u++)cases.push(optimize(pages,spectrum,u));
+  const spectrum=fit(pages),core=coherentCore(pages,spectrum),
+    selected=core.map(j=>pages[j]),
+    reduced={frequencies:core.map(j=>spectrum.frequencies[j]),
+      phaseReal:core.map(j=>spectrum.phaseReal[j]),
+      phaseImag:core.map(j=>spectrum.phaseImag[j])},cases=[];
+  for(let u=1;u<MOD;u++)cases.push(optimize(selected,reduced,u));
   cases.sort((a,b)=>b.train-a.train);
   const winner=cases[0];
-  const held=holdout(pages,winner,spectrum.frequencies,knownPlain);
+  const held=holdout(selected,winner,reduced.frequencies,
+    knownPlain?core.map(j=>knownPlain[j]):null);
   let correctMultiplier=null;
   if(actualMultipliers){
-    correctMultiplier=spectrum.frequencies.filter((h,j)=>
-      mod(winner.factor*h*actualMultipliers[j])===1).length;
+    correctMultiplier=reduced.frequencies.filter((h,j)=>
+      mod(winner.factor*h*actualMultipliers[core[j]])===1).length;
   }
   return {train:winner.train,heldout:held.perRune,factor:winner.factor,
-    spectralHeldout:spectrum.heldout,
+    spectralHeldout:spectrum.heldout,selectedPages:core.length,
     correctMultiplier,correctPlaintext:held.correct,
     recoveredGPPreview:held.predictions.slice(0,60).map(i=>corpus.translit[i]).join("")};
 }
@@ -149,7 +189,7 @@ function run(nullCount=40){
     originalCorpus:{pages:49,runesPerPage:PREFIX,
       evenRuneOffsetsPerPage:75,oddRuneOffsetsPerPage:75,
       keyFitPagesPerOddOffset:25,unfittedEvaluationPagesPerOddOffset:24},
-    estimator:"29^1 global multiplicative hypotheses (1..28), nine deterministic row/key coordinate steps; no original plaintext known",
+    estimator:"Select 36 pages by even-offset coherence; 28 global multiplicative hypotheses, nine deterministic row/key coordinate steps; no original plaintext known",
     observed:real,
     null:{repetitions:nullCount,seed:"0xa15f701a",
       heldoutMean:nulls.reduce((a,b)=>a+b,0)/nulls.length,
