@@ -105,7 +105,7 @@ The following small, source-constrained decryptions were tested against an indep
 - The solved p56 consecutive-prime-totient additive transform on physical, diagonal, and square-spiral page orders, with continuous and page-reset clocks. A weak extra control also skipped an F only when it occurred at a local offset equal to its physical page number. Candidate scores remained near random (about −6.5); the known p56 plaintext scores about −2.38.
 - The three clause sums modulo 29 as a period-three Vigenère key **[12,16,11]**, both signs and continuous/page-reset clocks, on the same page orders. No English recovery.
 - The 55-rune red sequence as a repeating Vigenère key, both signs and clocks, on physical and square-spiral page order. No English recovery.
-- The 55-rune red sequence as one Caesar shift per nonempty page, on physical and square-spiral page order. No English recovery.
+- The 55-rune red sequence as one Caesar shift per nonempty page, on physical and square-spiral page order. No English recovery. A stable ascending/descending sort of the 55 nonempty pages by those red-key values, read raw or followed by the p56 totient transform, also remained near random (best score about −6.50).
 - Base-29 big-endian conversion of the physical and diagonal page-concatenated streams. The outputs were binary-looking and did not expose readable text or a recognizable file header.
 
 These failures reject those **specific combinations**, not the page-map structure. In particular, the literal-F handling needed to transfer the p56 cipher to LP2 is not established by this map.
