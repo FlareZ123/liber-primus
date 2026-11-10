@@ -1,0 +1,14 @@
+name: Hill projective-row exhaustive scan
+on:
+  workflow_dispatch:
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Screen all GP Hill decoder rows and positive controls
+        run: node sims/hill_row_screen.cjs
