@@ -40,4 +40,6 @@ The program includes a positive planted p57 ciphertext under share 0 with known 
 
 ## Reproduce
 
+Executed regression: [successful GitHub Actions run 42755515932](https://github.com/FlareZ123/liber-primus/actions/runs/42755515932). This run executed the positive-control assertions, the signed-message XOR invariant, and all seven selected LP2 page scans without error.
+
 Run the pure CommonJS [script](../sims/stego2014_lp2_probe.cjs) against the pinned local reference. Its default configuration tests the seven selected pages; `--all` tests every nonempty unsolved page. It prints source hashes, all settings counts, the top candidates and positive-control status as JSON. A proposed actual key would need independently reproduced plaintext and a held-out page or passage with substantially stronger evidence.
