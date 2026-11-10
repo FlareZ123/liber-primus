@@ -182,8 +182,10 @@ def solve(packets, seconds=300, tail_octets=1):
 def main():
     packets, excluded_markers = read_original_packets()
     challenges = []
-    for q in (1, 2):
-        result = solve(packets, tail_octets=q)
+    # The cheaper one-tail test reached UNKNOWN after five minutes on original LP2.
+    # Start from stronger exact low-byte conditions to improve contradiction search.
+    for q in (2, 3):
+        result = solve(packets, seconds=420, tail_octets=q)
         challenges.append(result)
         print("Challenge q=" + str(q) + " status=" + result["status"], flush=True)
         if result["status"] != "OPTIMAL":
