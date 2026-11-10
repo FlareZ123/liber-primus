@@ -20,3 +20,5 @@ jobs:
         run: node sims/red_256_event_key_inverse.cjs
       - name: Fixed digest correspondence between 256 ink events and grid columns
         run: node sims/red_256_event_grid_hash.cjs
+      - name: Direct AES-256 inversion of the original grid with all source event bitkeys
+        run: node sims/red_256_event_grid_aes_inverse.cjs
