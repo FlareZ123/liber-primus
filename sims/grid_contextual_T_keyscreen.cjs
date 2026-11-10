@@ -15,7 +15,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const {parseSharedCorpus} = require("./lp2_word_pages.cjs");
 const {inputs, cipherBytes, assign} = require("./grid_section_column_keys.cjs");
-const {words} = require("./outer_permutation_word_context.cjs");
+const {words,category} = require("./outer_permutation_word_context.cjs");
 const {train, inverseCandidates, ngramProbability, decodeWord, plant} =
   require("./lag6_repair_contextual_inverse.cjs");
 const {encipher} = require("./lag6_repair_keyed_inverse.cjs");
@@ -78,7 +78,7 @@ function wordEvidence(options,model) {
   let states=new Map([[BOS*(M+1)+BOS,1]]);
   for(let j=0;j<n;j++){
     const next=new Map();
-    const cls=require("./outer_permutation_word_context.cjs").category(n,j);
+    const cls=category(n,j);
     for(const [state,mass] of states){
       const a=Math.floor(state/(M+1)),b=state%(M+1);
       for(const option of options[j]){
@@ -129,10 +129,11 @@ function predecessor(groups,groupIndex){
 }
 
 /** @param {number[][][]} groups @param {number[][]} padByGroup @param {ReturnType<typeof train>} lm */
-function scorePaired(groups,padByGroup,lm) {
+function scorePaired(groups,padByGroup,lm,initialPrevious=-1) {
   const byGroup=[];
   for(let s=0;s<groups.length;s++){
-    const options=inverseCandidates(groups[s],padByGroup[s],predecessor(groups,s));
+    const options=inverseCandidates(groups[s],padByGroup[s],
+      s===0?initialPrevious:predecessor(groups,s));
     const cut=spans(groups)[s].train;
     let trainScore=0,testScore=0,trainRunes=0,testRunes=0;
     for(let i=0;i<options.length;i++){
@@ -186,9 +187,8 @@ function screen(cipherGroups,cols,lm) {
           for(let s=0;s<8;s++){
             for(let col=0;col<8;col++){
               const p=pad(keyed[col],sizes[s],scaled,sign);
-              const res=scorePaired([cipherGroups[s]],[p],lm);
-              // Replace intentionally blank section predecessor by actual
-              // earlier group last rune, which only affects the first rune.
+              const res=scorePaired([cipherGroups[s]],[p],lm,
+                predecessor(cipherGroups,s));
               matrix[s][col]={train:res[0].trainScore,test:res[0].testScore,
                 trainRunes:res[0].trainRunes,testRunes:res[0].testRunes};
             }
