@@ -32,6 +32,28 @@ The *identical* 16-mode, complete eight-assignment inversion recovers the precis
 
 [Successful GitHub Actions run 42771911949](https://github.com/FlareZ123/liber-primus/actions/runs/42771911949) executed the full original search, complete plant, and sixteen matched nulls on Node 22. It ran from the corrected section-body source code and passed all positive recovery assertions. Reproduce using `node sims/grid_stream_collision_viterbi.cjs`, which requires only the committed original source files and built-in Node APIs.
 
+## Red-title-derived AES/ChaCha IVs, tested against original runes
+
+A second direct original-ciphertext test uses the *verified red section title* as the nonce associated with each major section, rather than an all-zero nonce. The exact eight title positions in `resources/liber-primus/lp2-ink-annotations.json` are `(page,start,length) = (0,0,13), (3,0,16), (8,0,12), (15,9,11), (23,0,16), (27,0,19), (33,91,8), (40,0,8)`. The nine-rune bridge on LP2 page 15 precedes its true eleven-rune title and is excluded.
+
+Two narrowly specified source-derived 128-bit nonce schemes are evaluated:
+
+- `sha256-utf8`: SHA-256 of the red title's exact Unicode UTF-8 bytes, first sixteen digest bytes.
+- `repeat-gp-indices`: repeat the red title's 29-symbol Gematria Primus integer indices until sixteen bytes are available.
+
+The cipher is still the section-starting AES/ChaCha stream with a collision-conditioned consumed-key Viterbi; all **16** cipher/key-order/GP-reduction/sign families and the full eight-column bijective assignment are searched *separately for each nonce scheme*. Code `sims/red_title_nonce_grid_viterbi.cjs` contains the exact original-source nonce extraction. The *same* independently trained GP trigram model and original 8×300-rune cuts are retained. Two genuine-source synthetic plants use the actual table columns and correct derived nonces under hidden AES-CTR/8! key assignment. They recover all eight true keys and complete cipher settings, with **2,396/2,400** original GP runes under SHA-256-UTF8 nonces, and **2,400/2,400** under repeated-GP-index nonces.
+
+The real original manuscript results remain inconsistent with decoded GP-English under either nonce:
+
+| Original title-nonce construction | Best original 2,400-rune log score per rune | All-parameter real winner | Shuffled-grid key null upper-tail |
+| --- | ---: | --- | ---: |
+| SHA-256 title UTF-8 prefix | **−5.62941310** | ChaCha20, forward key, scaled29, sign +, assignment `[3,1,4,0,7,5,2,6]` | **11/21=0.52381** |
+| Repeated GP title indices | **−5.63246662** | ChaCha20, reversed key, scaled29, sign −, assignment `[7,5,4,1,2,3,0,6]` | **9/21=0.42857** |
+
+For each scheme, **20** independently shuffled variants of the eight original 32-byte column keys each rerun the complete 16-mode, 8! assignment selection on the original ciphertext. These nulls do not favor the original grid. Both real-best rune streams are unrecognizable and close to −5.63/rune, sharply worse than the known-correct synthetic English controls near −2.50/rune.
+
+The successful [expanded CI run 42772798473](https://github.com/FlareZ123/liber-primus/actions/runs/42772798473) executes both the original zero-IV experiment and the nonce-based extension with two independently recovered positive plants. Both schemes preserve exact title-to-physical-page provenance in the program; no additional assumptions about unknown scan bytes were introduced.
+
 ## Cryptanalytic consequence
 
 The authentic grid columns, used directly as AES/ChaCha stream keys with collision-conditioned extra key consumption, have not decoded an original LP2 passage. The original scores lack natural GP-English evidence and are compatible with shuffled columns despite strong power to recover the planted scheme. Further unconstrained tuning of the same cipher family is unlikely to be profitable without new evidence tying a particular column, IV, page or rune transformation to an original plaintext position.
