@@ -81,14 +81,14 @@ const identity = Array.from({length:B},(_,i)=>i);
  * Every secret permutation of the eight columns is covered (8!=40320).
  * DP reconstructs the winning order, including its cyclic starting position.
  */
-function fit(y) {
+function fit(y,score=logOdds) {
   const W=Array.from({length:B},()=>new Float64Array(B));
   const X=Array.from({length:B},()=>new Float64Array(B));
   for(let k=0;k<trainBlocks;k++) {
     const at=k*B;
     for(let i=0;i<B;i++)for(let j=0;j<B;j++)if(i!==j) {
-      W[i][j]+=logOdds(y[at+i],y[at+j]);
-      if(k+1<trainBlocks) X[i][j]+=logOdds(y[at+i],y[at+B+j]);
+      W[i][j]+=score(y[at+i],y[at+j]);
+      if(k+1<trainBlocks) X[i][j]+=score(y[at+i],y[at+B+j]);
     }
   }
   const subsets=1<<B,full=subsets-1;
@@ -132,15 +132,15 @@ function fit(y) {
   return best;
 }
 /** GP word-length sequence heldout likelihood under a frozen permutation. */
-function heldout(y,pi) {
+function heldout(y,pi,score=logOdds) {
   let value=0,links=0;
   for(let at=cutoff;at+B<=end;at+=B) {
     for(let j=1;j<B;j++){
-      value+=logOdds(y[at+pi[j-1]],y[at+pi[j]]);
+      value+=score(y[at+pi[j-1]],y[at+pi[j]]);
       links++;
     }
     if(at+2*B<=end){
-      value+=logOdds(y[at+pi[B-1]],y[at+B+pi[0]]);
+      value+=score(y[at+pi[B-1]],y[at+B+pi[0]]);
       links++;
     }
   }
@@ -251,6 +251,71 @@ function latinWindowComparison() {
     limitation:"Overlapping windows are dependent; finite Latin-source comparison, not a genre-wide p-value or decrypted text."
   };
 }
+/**
+ * Independent GP-Latin source register: fit the complete 8! secret key on
+ * original LP2, then freeze it on the same 1,160-word heldout region. The
+ * reference Markov model trains on the first 20k Vulgate GP rune-words;
+ * the plant uses a disjoint 2,896-word Latin source interval.
+ */
+function latinPermutationControl() {
+  const raw=fs.readFileSync(path.join(ROOT,
+    "resources/control/latin-vulgate-gp-wholewords.txt"),"utf8");
+  const latin=raw.split(/\r?\n/u).map(w=>w.trim())
+    .filter(w=>/^[0-9A-S]+$/u.test(w)).map(w=>w.length);
+  assert.equal(latin.length,39835);
+  const cats=7,bin=n=>Math.min(cats-1,n-1);
+  const count=Array.from({length:cats},()=>new Float64Array(cats));
+  const from=new Float64Array(cats),to=new Float64Array(cats);
+  for(let i=1;i<20000;i++) {
+    const a=bin(latin[i-1]),b=bin(latin[i]);
+    count[a][b]++;from[a]++;to[b]++;
+  }
+  const weights=Array.from({length:cats},(_,i)=>Array.from(
+    {length:cats},(_,j)=>Math.log((count[i][j]+2)/(from[i]+2*cats))
+      -Math.log((to[j]+2*cats)/(19999+2*cats*cats))));
+  const latinScore=(x,y)=>weights[bin(x)][bin(y)];
+  const actual=fit(printed,latinScore);
+  const heldGain=heldout(printed,actual.pi,latinScore).value
+    -heldout(printed,identity,latinScore).value;
+  const random=seeded(0x32a71b2c),repetitions=1000;
+  const values=[];
+  let atLeast=0;
+  for(let j=0;j<repetitions;j++) {
+    const sample=pageShuffle(random);
+    const chosen=fit(sample,latinScore);
+    const improvement=heldout(sample,chosen.pi,latinScore).value
+      -heldout(sample,identity,latinScore).value;
+    atLeast+=Number(improvement>=heldGain);
+    values.push(improvement);
+  }
+  const plant=latin.slice(25000,25000+end),secret=permute(identity,random);
+  assert.equal(plant.length,end);
+  const cipher=plant.slice();
+  for(let block=0;block<blockCount;block++)
+    for(let j=0;j<B;j++)
+      cipher[block*B+secret[j]]=plant[block*B+j];
+  const recovered=fit(cipher,latinScore).pi;
+  const exactKey=recovered.every((v,i)=>v===secret[i]);
+  let matched=0;
+  for(let i=0;i<end;i++)
+    matched+=Number(cipher[Math.floor(i/B)*B+recovered[i%B]]===plant[i]);
+  assert.equal(exactKey,true);
+  assert.equal(matched,end);
+  values.sort((a,b)=>a-b);
+  return {
+    source:"resources/control/latin-vulgate-gp-wholewords.txt",
+    trainedSourceWords:20000,plantSourceOffset:25000,
+    original:{selectedPermutation:actual.pi,trainingLogOdds:actual.score,
+      heldoutGain:heldGain},
+    matchedPageShuffles:{iterations:repetitions,seed:"0x32a71b2c",
+      atLeastOriginal:atLeast,upperTail:(atLeast+1)/(repetitions+1),
+      medianGain:values[500],p95Gain:values[950]},
+    positivePlant:{secret,recovered,exactKey,matchedWordLengths:matched,
+      totalWordLengths:end,heldoutGain:heldout(cipher,recovered,latinScore).value
+        -heldout(cipher,identity,latinScore).value},
+    limitation:"Only fixed zero-phase eight-column whole-word order, GP-Latin Vulgate source model; not a cipher decryption."
+  };
+}
 function main() {
   const actualFit=fit(printed);
   const originalDelta=heldout(printed,actualFit.pi).value
@@ -294,7 +359,8 @@ function main() {
       p95:values[Math.floor(repetitions*.95)]
     },
     positivePlant:plant,
-    independentLatinWordOrderControl:latinWindowComparison()
+    independentLatinWordOrderControl:latinWindowComparison(),
+    latinHiddenEightColumnPermutation:latinPermutationControl()
   };
   console.log(JSON.stringify(results,null,2));
 }
