@@ -240,6 +240,37 @@ function main() {
       ? 2 * expected
       : 2 * (observed * Math.log(observed / expected) - (observed - expected));
   }
+  const uniformExpectedUnigram = unknownRunes / N;
+  const unigramUniformChiSquare = runeFrequencies.reduce(
+    (sum, observed) => sum + (observed - uniformExpectedUnigram) ** 2 / uniformExpectedUnigram, 0
+  );
+  const oneFifthSurvival = 0.2;
+  let oneFifthDiagonalChiSquare = 0;
+  let oneFifthDiagonalPoissonDeviance = 0;
+  for (let i = 0; i < N; i++) {
+    const expected = oneFifthSurvival * diagonalExpectedByRune[i];
+    const observed = diagonalCounts[i];
+    oneFifthDiagonalChiSquare += (observed - expected) ** 2 / expected;
+    oneFifthDiagonalPoissonDeviance += observed === 0
+      ? 2 * expected
+      : 2 * (observed * Math.log(observed / expected) - (observed - expected));
+  }
+  let rowConditionedOffDiagonalChiSquare = 0;
+  let rowConditionedOffDiagonalCells = 0;
+  let minimumRowConditionedExpected = Infinity;
+  for (let i = 0; i < N; i++) {
+    const rowTotal = diagonalCounts[i] + offDiagonalCounts[i].reduce((sum, x) => sum + x, 0);
+    for (let j = 0; j < N; j++) {
+      if (i === j) continue;
+      const expected = rowTotal * probabilities[j] / (1 - probabilities[i]);
+      minimumRowConditionedExpected = Math.min(minimumRowConditionedExpected, expected);
+      if (expected >= 5) {
+        rowConditionedOffDiagonalCells++;
+        rowConditionedOffDiagonalChiSquare +=
+          (offDiagonalCounts[i][j] - expected) ** 2 / expected;
+      }
+    }
+  }
   let offDiagonalPearsonChiSquare = 0;
   let offDiagonalCellsExpectedAtLeastFive = 0;
   let offDiagonalTotal = 0;
@@ -367,6 +398,16 @@ function main() {
     claim: "No source-selected non-GP plaintext register recovered; the frozen 32x8 Base32 completion is invertible but produces random-like bytes.",
     source_sha256: sourceHashes,
     repeat_filter_statistics: {
+      unigram_uniform_pearson_chi_square: unigramUniformChiSquare,
+      unigram_uniform_df: 28,
+      unigram_min_count: Math.min(...runeFrequencies),
+      unigram_max_count: Math.max(...runeFrequencies),
+      one_fifth_survival_expected_doublets: oneFifthSurvival * expectedDoubletsIID,
+      one_fifth_survival_per_rune_pearson_chi_square: oneFifthDiagonalChiSquare,
+      one_fifth_survival_per_rune_poisson_deviance: oneFifthDiagonalPoissonDeviance,
+      row_conditioned_off_diagonal_pearson_chi_square: rowConditionedOffDiagonalChiSquare,
+      row_conditioned_off_diagonal_cells_expected_at_least_five: rowConditionedOffDiagonalCells,
+      minimum_row_conditioned_off_diagonal_expected_count: minimumRowConditionedExpected,
       adjacent_pairs: adjacentPairCount,
       adjacent_pair_overlap_pairs: adjacentPairPairs,
       observed_doublets: observedDoublets,
