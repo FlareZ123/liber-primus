@@ -31,6 +31,19 @@ For an **unknown fixed cyclic alphabet order**, the first digit requires `1 ≤ 
 
 These constraints are **necessary only**: the actual 79-digit values impose still more restrictions. Thus a proof of UNSAT at the leading-digit level eliminates the candidate without reconstructing whole blocks or a key. The search is complete for phase zero, with a one-million-node cap that **was not reached**. An interrupted or capped future run reports UNKNOWN and cannot support exclusion.
 
+## Exhaustive packet-origin scan
+
+The same exact test was independently executed at **all 79 possible global block phases**. For each phase, take the maximum number of full 79-rune packets that fit in the 12,956-rune original stream, discard any packet with a source doublet, and rescan **both** digit directions. All 158 fixed-*sorted*-order tests fail the distinct-leading-glyph necessary condition, independently of which of the 29! glyph orders is selected.
+
+For the more flexible fixed-*cyclic*-order family, run the exact finite-domain necessary-condition CSP separately at every phase and both digit orientations. The complete 158 cases produce **134 UNSAT**, **19 SAT**, and **five UNKNOWN** with the explicitly imposed one-million-node cap per case. A SAT status proves only that its first-digit edges can be labeled consistently; it is **not** a valid 79-digit numeric decode or recovered key.
+
+| Cyclic direction | Proven UNSAT phases | First-edge SAT phases | Node-cap UNKNOWN phases |
+| --- | ---: | --- | --- |
+| Forward | **67/79** | **1, 11, 18, 29, 35, 46, 56, 58, 60** | **37, 53, 55** |
+| Reversed | **67/79** | **4, 8, 11, 13, 14, 19, 26, 28, 63, 73** | **22, 60** |
+
+The ten source-original CI runs completed successfully and cover contiguous phases 1–78, in groups: [1–8](https://github.com/FlareZ123/liber-primus/actions/runs/42794437916), [9–16](https://github.com/FlareZ123/liber-primus/actions/runs/42794444780), [17–24](https://github.com/FlareZ123/liber-primus/actions/runs/42794452707), [25–32](https://github.com/FlareZ123/liber-primus/actions/runs/42794459345), [33–40](https://github.com/FlareZ123/liber-primus/actions/runs/42794465685), [41–48](https://github.com/FlareZ123/liber-primus/actions/runs/42794472245), [49–56](https://github.com/FlareZ123/liber-primus/actions/runs/42794479458), [57–64](https://github.com/FlareZ123/liber-primus/actions/runs/42794486597), [65–72](https://github.com/FlareZ123/liber-primus/actions/runs/42794493647), and [73–78](https://github.com/FlareZ123/liber-primus/actions/runs/42794501470). The 79-phase conclusion must retain the open 19+5 cyclic cases; only the naturally aligned phase zero is conclusively excluded for both cyclic orientations.
+
 ## Synthetic recovery and independent execution
 
 A deterministic positive control generated 24 random 78-digit base29 plaintext packets, encoded each as exactly 79 base28 digits, and mapped those digits to nonrepeating GP glyphs under a **secret randomly permuted cyclic rune order**. Its decoder exactly recovered all **1,872/1,872** plaintext digits, and the blind necessary-condition solver returned SAT after only 28 nodes. This checks the cipher's direction, integer representation, predecessor state, alphabet-permutation handling and matching original-group sizes.
@@ -39,6 +52,6 @@ A deterministic positive control generated 24 random 78-digit base29 plaintext p
 
 ## What remains open
 
-The proof concerns **fixed-sized 78→79 numeric packing** under a **single global fixed rune ordering**, natural global 79-rune alignment, and nonrepeat transitions carrying base28 digits. It does not exclude packet boundaries shifted relative to the manuscript start, page-reset packing, state-dependent 29×28 row mappings, key-dependent changing alphabets, intentional transposition of runes, variable-length arithmetic/range coding, or extra escape/repair characters that change the block clock. Testing those requires a specific reversible encoder and evidence of a key or source-derived state, rather than expanding a generic language-score screen.
+The proof concerns **fixed-sized 78→79 numeric packing** under a **single global fixed rune ordering**, natural global 79-rune alignment, and nonrepeat transitions carrying base28 digits. The all-phase fixed-sorted-order impossibility extends beyond natural alignment, while the 19 SAT and five UNKNOWN cyclic-order phase/direction cases remain open even at the necessary-condition level. The proof does not exclude page-reset packing, state-dependent 29×28 row mappings, key-dependent changing alphabets, intentional transposition of runes, variable-length arithmetic/range coding, or extra escape/repair characters that change the block clock. Testing those requires a specific reversible encoder and evidence of a key or source-derived state, rather than expanding a generic language-score screen.
 
 The equality 12,956=164×79 is an exact property of the source, but selecting it because of the known 79 clue is post-selection. The exclusion is mathematical for the stated model and **not** a claim about Cicada's intended mechanism. Further effort should seek a source-grounded stateful model that predicts untouched LP2 plaintext and forward reproduces the genuine ciphertext.
