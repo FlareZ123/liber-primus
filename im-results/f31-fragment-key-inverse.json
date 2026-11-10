@@ -1,0 +1,706 @@
+{
+  "classification": "Single source-derived F31 fragment→row/key mapping; candidate cipher family only",
+  "source": {
+    "originalCipherRunes": 12956,
+    "physicalRunePages": 56,
+    "redRuneTotal": 225,
+    "markerTotal": 31,
+    "redMarkers": 30,
+    "blackMarkers": 1,
+    "sourceFragments": 32,
+    "unknownFragments": 28,
+    "gridRows": 32,
+    "primitiveRoot": 13,
+    "modulus": 31,
+    "order": 30,
+    "leadingFragmentSentinel": 31,
+    "markers": [
+      {
+        "page": 0,
+        "offset": 13,
+        "ink": "red"
+      },
+      {
+        "page": 2,
+        "offset": 201,
+        "ink": "red"
+      },
+      {
+        "page": 3,
+        "offset": 16,
+        "ink": "red"
+      },
+      {
+        "page": 3,
+        "offset": 119,
+        "ink": "red"
+      },
+      {
+        "page": 3,
+        "offset": 122,
+        "ink": "red"
+      },
+      {
+        "page": 6,
+        "offset": 71,
+        "ink": "red"
+      },
+      {
+        "page": 6,
+        "offset": 82,
+        "ink": "red"
+      },
+      {
+        "page": 7,
+        "offset": 194,
+        "ink": "black"
+      },
+      {
+        "page": 7,
+        "offset": 194,
+        "ink": "red"
+      },
+      {
+        "page": 7,
+        "offset": 208,
+        "ink": "red"
+      },
+      {
+        "page": 14,
+        "offset": 137,
+        "ink": "red"
+      },
+      {
+        "page": 15,
+        "offset": 0,
+        "ink": "red"
+      },
+      {
+        "page": 15,
+        "offset": 9,
+        "ink": "red"
+      },
+      {
+        "page": 15,
+        "offset": 20,
+        "ink": "red"
+      },
+      {
+        "page": 22,
+        "offset": 131,
+        "ink": "red"
+      },
+      {
+        "page": 23,
+        "offset": 16,
+        "ink": "red"
+      },
+      {
+        "page": 26,
+        "offset": 265,
+        "ink": "red"
+      },
+      {
+        "page": 27,
+        "offset": 19,
+        "ink": "red"
+      },
+      {
+        "page": 32,
+        "offset": 121,
+        "ink": "red"
+      },
+      {
+        "page": 33,
+        "offset": 10,
+        "ink": "red"
+      },
+      {
+        "page": 33,
+        "offset": 91,
+        "ink": "red"
+      },
+      {
+        "page": 33,
+        "offset": 99,
+        "ink": "red"
+      },
+      {
+        "page": 39,
+        "offset": 119,
+        "ink": "red"
+      },
+      {
+        "page": 39,
+        "offset": 122,
+        "ink": "red"
+      },
+      {
+        "page": 39,
+        "offset": 240,
+        "ink": "red"
+      },
+      {
+        "page": 53,
+        "offset": 179,
+        "ink": "red"
+      },
+      {
+        "page": 54,
+        "offset": 9,
+        "ink": "red"
+      },
+      {
+        "page": 55,
+        "offset": 76,
+        "ink": "red"
+      },
+      {
+        "page": 56,
+        "offset": 5,
+        "ink": "red"
+      },
+      {
+        "page": 56,
+        "offset": 85,
+        "ink": "red"
+      },
+      {
+        "page": 57,
+        "offset": 7,
+        "ink": "red"
+      }
+    ],
+    "markerLabels": [
+      1,
+      13,
+      14,
+      27,
+      10,
+      6,
+      16,
+      0,
+      22,
+      7,
+      29,
+      5,
+      3,
+      8,
+      11,
+      19,
+      30,
+      18,
+      17,
+      4,
+      21,
+      25,
+      15,
+      9,
+      24,
+      2,
+      26,
+      28,
+      23,
+      20,
+      12
+    ],
+    "rowForFragment": [
+      31,
+      1,
+      13,
+      14,
+      27,
+      10,
+      6,
+      16,
+      0,
+      22,
+      7,
+      29,
+      5,
+      3,
+      8,
+      11,
+      19,
+      30,
+      18,
+      17,
+      4,
+      21,
+      25,
+      15,
+      9,
+      24,
+      2,
+      26,
+      28,
+      23,
+      20,
+      12
+    ],
+    "redFragmentLengths": [
+      13,
+      0,
+      16,
+      0,
+      3,
+      0,
+      11,
+      0,
+      0,
+      14,
+      12,
+      0,
+      9,
+      11,
+      0,
+      16,
+      0,
+      19,
+      0,
+      10,
+      0,
+      8,
+      0,
+      3,
+      0,
+      59,
+      9,
+      0,
+      5,
+      0,
+      7,
+      0
+    ],
+    "keyByLabel": [
+      0,
+      0,
+      9,
+      11,
+      0,
+      9,
+      11,
+      12,
+      0,
+      0,
+      0,
+      16,
+      0,
+      16,
+      0,
+      3,
+      0,
+      10,
+      0,
+      0,
+      7,
+      8,
+      14,
+      0,
+      59,
+      0,
+      0,
+      3,
+      5,
+      0,
+      19,
+      13
+    ],
+    "keyByLabelHex": "0000090b00090b0c0000001000100003000a000007080e003b0000030500130d",
+    "boundaries": [
+      0,
+      13,
+      729,
+      745,
+      848,
+      851,
+      1541,
+      1552,
+      1860,
+      1860,
+      1874,
+      3603,
+      3603,
+      3612,
+      3623,
+      5506,
+      5522,
+      6527,
+      6546,
+      7960,
+      7970,
+      8051,
+      8059,
+      9519,
+      9522,
+      9640,
+      12648,
+      12657,
+      12956
+    ],
+    "trainStop": 6546
+  },
+  "tested": {
+    "models": 384,
+    "keyRepresentations": [
+      "raw-f31",
+      "reverse-f31",
+      "sha256-f31",
+      "sha256-reverse-f31"
+    ],
+    "nonceModes": [
+      "row-zero",
+      "zero-row",
+      "row-row",
+      "sha256-row"
+    ],
+    "algorithms": [
+      "aes-256-ctr",
+      "chacha20"
+    ],
+    "families": [
+      "add",
+      "exclude",
+      "exp"
+    ],
+    "signs": [
+      -1,
+      1
+    ],
+    "projections": [
+      "mod",
+      "scale"
+    ],
+    "permutationsSearched": false
+  },
+  "raw": {
+    "englishGP": -6.195857373846908,
+    "trainIoC": 1.0012234741409272,
+    "heldoutIoC": 0.999107729015043
+  },
+  "bestTraining": [
+    {
+      "key": "raw-f31",
+      "iv": "row-row",
+      "algorithm": "aes-256-ctr",
+      "family": "exclude",
+      "sign": -1,
+      "projection": "mod",
+      "trainIoC": 1.0241318358857583,
+      "heldoutIoC": 1.0222517135979556,
+      "trainEnglishGP": -6.064968222184612,
+      "heldoutEnglishGP": -6.181810479108447,
+      "prefix": "SOTIAFEOJEOGMUOEOTHBODLERHHEOXAEDWESNPTOEJTHMYBFJDWHXEOEBCTFSHL"
+    },
+    {
+      "key": "sha256-f31",
+      "iv": "row-zero",
+      "algorithm": "chacha20",
+      "family": "exclude",
+      "sign": 1,
+      "projection": "scale",
+      "trainIoC": 1.0234305871336118,
+      "heldoutIoC": 1.0223505410804667,
+      "trainEnglishGP": -6.087926179209343,
+      "heldoutEnglishGP": -6.247743564567106,
+      "prefix": "SAGNSAGRNODSDTHORLYMAITCCDXWHDYAGEOYHOEWYNYLFRROEIAWISNMWNU"
+    },
+    {
+      "key": "reverse-f31",
+      "iv": "zero-row",
+      "algorithm": "aes-256-ctr",
+      "family": "add",
+      "sign": 1,
+      "projection": "mod",
+      "trainIoC": 1.00064947902334,
+      "heldoutIoC": 1.0014019384304784,
+      "trainEnglishGP": -6.094651101321536,
+      "heldoutEnglishGP": -6.238201573341222,
+      "prefix": "IADIAEANFIRTXLLBOULRYEDPIAHJEUUNGCNGOIOMEODUIAAEOEWEAWXOWTHAWEEAHST"
+    },
+    {
+      "key": "sha256-reverse-f31",
+      "iv": "zero-row",
+      "algorithm": "aes-256-ctr",
+      "family": "exclude",
+      "sign": -1,
+      "projection": "scale",
+      "trainIoC": 1.0227861963883962,
+      "heldoutIoC": 1.0238950734499968,
+      "trainEnglishGP": -6.096937190836588,
+      "heldoutEnglishGP": -6.213002500798385,
+      "prefix": "SCMFRUUUXAWJHTHTGWFODDWSNGHTAPYOBPDBXTHOEAMHHEEODIEOFHNGEAEPAEU"
+    },
+    {
+      "key": "raw-f31",
+      "iv": "sha256-row",
+      "algorithm": "aes-256-ctr",
+      "family": "exp",
+      "sign": 1,
+      "projection": "scale",
+      "trainIoC": 1.0233764366508207,
+      "heldoutIoC": 1.022240419028526,
+      "trainEnglishGP": -6.097926324300898,
+      "heldoutEnglishGP": -6.12833330594874,
+      "prefix": "SXAEFJIAHAEDOEUEOOETHBAEAPFBNGFEDEOAEUFIEOOEOEYMTHCJBMRHIANYAEOANGTJBNGE"
+    },
+    {
+      "key": "sha256-f31",
+      "iv": "row-zero",
+      "algorithm": "aes-256-ctr",
+      "family": "exclude",
+      "sign": 1,
+      "projection": "mod",
+      "trainIoC": 1.0241291283616187,
+      "heldoutIoC": 1.0226173752832466,
+      "trainEnglishGP": -6.104529800160127,
+      "heldoutEnglishGP": -6.179457287274029,
+      "prefix": "SONGSJOJTHIAGRWITHBRTSJFGHOAETAEWRHJCOOTHIGGNGTHLEOYSUGEONGAEWOEIIM"
+    },
+    {
+      "key": "sha256-reverse-f31",
+      "iv": "row-row",
+      "algorithm": "chacha20",
+      "family": "exclude",
+      "sign": -1,
+      "projection": "mod",
+      "trainIoC": 1.0232058626300282,
+      "heldoutIoC": 1.0212973224811346,
+      "trainEnglishGP": -6.108000467423822,
+      "heldoutEnglishGP": -6.171879718266647,
+      "prefix": "STHFABEJSEYOEGETHGWOEEOYOTHAEYSYCCTHNDTXIMTCFMIUOAEFOEEONGTSAOEWWPG"
+    },
+    {
+      "key": "sha256-f31",
+      "iv": "sha256-row",
+      "algorithm": "chacha20",
+      "family": "exclude",
+      "sign": 1,
+      "projection": "mod",
+      "trainIoC": 1.0222352152259955,
+      "heldoutIoC": 1.0223350110475007,
+      "trainEnglishGP": -6.116698804920433,
+      "heldoutEnglishGP": -6.1899858295375845,
+      "prefix": "SNGUNLOETHSXJYETHEAEIPAAELNGOEOEJNGUHIAUNGGAMXIACETTEONAEYAOELMLLU"
+    },
+    {
+      "key": "reverse-f31",
+      "iv": "sha256-row",
+      "algorithm": "chacha20",
+      "family": "exp",
+      "sign": -1,
+      "projection": "scale",
+      "trainIoC": 1.0232139852024469,
+      "heldoutIoC": 1.023800481431022,
+      "trainEnglishGP": -6.116854014469607,
+      "heldoutEnglishGP": -6.222913686149014,
+      "prefix": "SJHYOEIALLYSMPATHSIAXLGBPFBOEAMOEUJOEOEEOSYXOEEIAGTHXEOTPJBUNWRYN"
+    },
+    {
+      "key": "raw-f31",
+      "iv": "sha256-row",
+      "algorithm": "chacha20",
+      "family": "add",
+      "sign": 1,
+      "projection": "mod",
+      "trainIoC": 0.9991210816465574,
+      "heldoutIoC": 1.000532256584381,
+      "trainEnglishGP": -6.120091063387336,
+      "heldoutEnglishGP": -6.1538468793232886,
+      "prefix": "GEOHCXLEOEHLXEAIANGYRNWNGBENNGEGAYYWXIATHNGTHJMUBEACMEAAXDNGSXCJHTNGF"
+    },
+    {
+      "key": "sha256-f31",
+      "iv": "zero-row",
+      "algorithm": "chacha20",
+      "family": "exp",
+      "sign": -1,
+      "projection": "scale",
+      "trainIoC": 1.0239274178132214,
+      "heldoutIoC": 1.022453604026514,
+      "trainEnglishGP": -6.122708575675176,
+      "heldoutEnglishGP": -6.1589261968464735,
+      "prefix": "SDAELJDXGBBGEMTHAEXTONBXWRBGJFGIIAPBIYOEUOYCNUNGEEGAEUOPLBAYR"
+    },
+    {
+      "key": "reverse-f31",
+      "iv": "sha256-row",
+      "algorithm": "aes-256-ctr",
+      "family": "exp",
+      "sign": -1,
+      "projection": "mod",
+      "trainIoC": 1.0267608418252727,
+      "heldoutIoC": 1.0215232138697312,
+      "trainEnglishGP": -6.123178096257909,
+      "heldoutEnglishGP": -6.214756397214924,
+      "prefix": "SSERWHDREOLYSITHYTHJTWGSUENUOETHNDIBJGOPWHSTHPSAEMTBSIPWNGRARR"
+    }
+  ],
+  "bestHeldout": [
+    {
+      "key": "reverse-f31",
+      "iv": "row-zero",
+      "algorithm": "aes-256-ctr",
+      "family": "add",
+      "sign": 1,
+      "projection": "scale",
+      "trainIoC": 0.9993254997190943,
+      "heldoutIoC": 1.0021134963045581,
+      "trainEnglishGP": -6.134192802207772,
+      "heldoutEnglishGP": -6.077556999616619,
+      "prefix": "IEEACALCAEAWIASOEWNGUEWNGPAEMIATHAILIISYYMBSCEOLAEEOEIAETHHGUEOETHPNGYB"
+    },
+    {
+      "key": "sha256-f31",
+      "iv": "row-row",
+      "algorithm": "chacha20",
+      "family": "exclude",
+      "sign": -1,
+      "projection": "scale",
+      "trainIoC": 1.0227374609538842,
+      "heldoutIoC": 1.0242988543071134,
+      "trainEnglishGP": -6.2527419770282915,
+      "heldoutEnglishGP": -6.089833262173687,
+      "prefix": "SFFEODFCASUNIASTHINAIAWOEHAYLISJFHBILTAEOEGHSDRGWMIAGAETREMOTM"
+    },
+    {
+      "key": "reverse-f31",
+      "iv": "zero-row",
+      "algorithm": "chacha20",
+      "family": "exclude",
+      "sign": 1,
+      "projection": "mod",
+      "trainIoC": 1.0254639377624226,
+      "heldoutIoC": 1.0223999548217222,
+      "trainEnglishGP": -6.149960379592435,
+      "heldoutEnglishGP": -6.102649203498037,
+      "prefix": "SYTWPAAEIAACPIADTHFTHYUOEHEGAXCNGCDJAXEOWJMTHBDETHARTWAIAFWAJOEHXP"
+    },
+    {
+      "key": "raw-f31",
+      "iv": "zero-row",
+      "algorithm": "chacha20",
+      "family": "exclude",
+      "sign": 1,
+      "projection": "mod",
+      "trainIoC": 1.0252825336450722,
+      "heldoutIoC": 1.0242875597376837,
+      "trainEnglishGP": -6.184883498113285,
+      "heldoutEnglishGP": -6.103035075703137,
+      "prefix": "SNGYNXEIATHRBHMOETHPWEONGSFOCBCJTHEABOEROIHMGIFPHTRWEOYEOYEAILTHPNG"
+    },
+    {
+      "key": "sha256-reverse-f31",
+      "iv": "sha256-row",
+      "algorithm": "chacha20",
+      "family": "exclude",
+      "sign": 1,
+      "projection": "scale",
+      "trainIoC": 1.0232897958783547,
+      "heldoutIoC": 1.023340227726756,
+      "trainEnglishGP": -6.214925097251451,
+      "heldoutEnglishGP": -6.103764844170687,
+      "prefix": "SYXAEFHEAETHHUOEMTHEOJNGNTHDXBCWEOBIPPPNGCIEOJIJOEILSTHEOEOMLJYFAPYEO"
+    },
+    {
+      "key": "sha256-f31",
+      "iv": "row-zero",
+      "algorithm": "aes-256-ctr",
+      "family": "add",
+      "sign": 1,
+      "projection": "scale",
+      "trainIoC": 0.998913956049881,
+      "heldoutIoC": 1.000568963935028,
+      "trainEnglishGP": -6.228995095648675,
+      "heldoutEnglishGP": -6.107798664801673,
+      "prefix": "IAIOEXIMOENMYPRCPLSIALTNNGIMLEAEAIYTHEOHJWSEEAEAJIANGOMTHYDRIAXTHIASNGH"
+    },
+    {
+      "key": "raw-f31",
+      "iv": "sha256-row",
+      "algorithm": "aes-256-ctr",
+      "family": "exclude",
+      "sign": 1,
+      "projection": "scale",
+      "trainIoC": 1.0237730889372665,
+      "heldoutIoC": 1.022014527639929,
+      "trainEnglishGP": -6.195518103258971,
+      "heldoutEnglishGP": -6.113584963315492,
+      "prefix": "SCUYEUEIAHUIMATHWFDEWAAEJNPTHAECEAETHTHAEAETUNGNTYTHOEBIAOEOCMNHWIASTHAE"
+    },
+    {
+      "key": "sha256-f31",
+      "iv": "zero-row",
+      "algorithm": "aes-256-ctr",
+      "family": "exclude",
+      "sign": -1,
+      "projection": "mod",
+      "trainIoC": 1.0220863013983195,
+      "heldoutIoC": 1.0214215627448628,
+      "trainEnglishGP": -6.181641534925253,
+      "heldoutEnglishGP": -6.11674723299479,
+      "prefix": "SLEEOIGFNCRBEOJTHIANHOCXIBAEYCTHWGJDUMLEOOENNGPEMNGTHSAMOELEOAEJBIENG"
+    },
+    {
+      "key": "raw-f31",
+      "iv": "zero-row",
+      "algorithm": "chacha20",
+      "family": "exp",
+      "sign": 1,
+      "projection": "mod",
+      "trainIoC": 1.0233615452680531,
+      "heldoutIoC": 1.022819265711805,
+      "trainEnglishGP": -6.218544328610605,
+      "heldoutEnglishGP": -6.11972085813964,
+      "prefix": "STHOEJWTBFMIIAEOLTHDRPTHNGIAOEYSNGTHXGTHRCEOENSGDRAEYDWIANGOMCNMRRRX"
+    },
+    {
+      "key": "raw-f31",
+      "iv": "zero-row",
+      "algorithm": "chacha20",
+      "family": "add",
+      "sign": -1,
+      "projection": "scale",
+      "trainIoC": 0.9989843516775097,
+      "heldoutIoC": 1.0001312993696219,
+      "trainEnglishGP": -6.194678375215617,
+      "heldoutEnglishGP": -6.119815350343645,
+      "prefix": "THSIAMHJXBCHIAJWTNEOAEMAEPNOEDMTAEXAECCSNGTHHTHDIEOEAOEEDUIACAERFBTHYXU"
+    },
+    {
+      "key": "sha256-f31",
+      "iv": "zero-row",
+      "algorithm": "chacha20",
+      "family": "exclude",
+      "sign": 1,
+      "projection": "mod",
+      "trainIoC": 1.0236756180682423,
+      "heldoutIoC": 1.0224507803841565,
+      "trainEnglishGP": -6.239246039252532,
+      "heldoutEnglishGP": -6.120853754182931,
+      "prefix": "SLMDDUTNGGEUHEOTHAXWCOLCAYEAOXHMIITTHSOEOEEAEXOPIRAIATHWMBWGNO"
+    },
+    {
+      "key": "sha256-f31",
+      "iv": "zero-row",
+      "algorithm": "chacha20",
+      "family": "exclude",
+      "sign": -1,
+      "projection": "scale",
+      "trainIoC": 1.0241792175582007,
+      "heldoutIoC": 1.024311560697722,
+      "trainEnglishGP": -6.178598500267755,
+      "heldoutEnglishGP": -6.121153939198049,
+      "prefix": "SXUEEAEAHTHASAENGTHSBSHTAEEDWAJRAAEBEOTHBTRLWOXLMTHEOJGHTFJCOEWJ"
+    }
+  ],
+  "positiveControl": {
+    "plaintext": "withheld Shakespeare English mapped to GP",
+    "runes": 12956,
+    "exactRecovered": 12956,
+    "plaintextEnglishGP": -2.400197309139374,
+    "recoveredEnglishGP": -2.400197309139374,
+    "cipherEnglishGP": -6.157111414095566
+  },
+  "status": "No LP2 plaintext claim; compare held-out language score and IoC to raw before accepting any candidate"
+}
