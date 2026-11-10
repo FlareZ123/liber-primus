@@ -1,0 +1,21 @@
+name: LP2 scale-four relative key with per-word nulls
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout research corpus
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Invert pair28-42 with hidden null sites and matched plant
+        run: node sims/relative_key_nullbeam.cjs
