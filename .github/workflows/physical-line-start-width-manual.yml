@@ -16,3 +16,10 @@ jobs:
         run: python -m pip install --disable-pip-version-check numpy pillow
       - name: Evaluate image-rune horizontal advances on source-disjoint physical pages
         run: python sims/physical_line_start_width_probe.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce independent first-ink-run mode widths from source JPEGs
+        run: python sims/physical_line_start_ink_modes.py
+      - name: Test untouched manuscript pages against frozen glyph widths
+        run: node sims/lp2_line_start_size_bias.cjs
