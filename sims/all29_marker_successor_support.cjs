@@ -89,8 +89,8 @@ function run(){
   texts.push(source);
   reports.push({name,runes:expected,all29MarkersTested:true,
     fullSourceMaximumDistinctSuccessors:maximumFull,
-    85EventMaximumDistinctSuccessors:maximum85,
-    85EventWindows:rows.reduce((n,x)=>n+x.windows,0),rows});
+    eightyFiveEventMaximumDistinctSuccessors:maximum85,
+    eightyFiveEventWindows:rows.reduce((n,x)=>n+x.windows,0),rows});
  }
  const plant=positive(texts[0]);
  const result={classification:"Conditional all-secret fixed-marker negative for three finite native GP-English sources, no LP2 plaintext recovered",
