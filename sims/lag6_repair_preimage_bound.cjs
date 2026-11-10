@@ -8,7 +8,10 @@
  * C[i]=T(C[i-6]) with T(C[i-6])!=C[i-1] can have arisen from:
  *  (A) raw=output; or
  *  (B) raw=previous output and a collision repaired to the target.
- * Each eligible event doubles the count of compatible unfiltered streams.
+ * A *single fixed collision-approval mask* suffices: if approval=1 at
+ * every qualifying site, both raw values lead to exactly the same output.
+ * Each eligible event doubles the compatible raw streams even when that
+ * approval mask is known in advance.
  *
  * Run: node sims/lag6_repair_preimage_bound.cjs
  */
@@ -84,24 +87,24 @@ const {sites, hits} = candidateSites(words);
 assert.equal(hits, 80);
 assert.equal(sites.length, 79);
 const zero = constructRaw(words, []);
-assert.ok(equalWords(reencrypt(zero.raw, zero.mask), words));
-
 const all = constructRaw(words, sites);
-assert.ok(equalWords(reencrypt(all.raw, all.mask), words));
+const fixedApprovalMask = all.mask;
+assert.ok(equalWords(reencrypt(zero.raw, fixedApprovalMask), words));
+assert.ok(equalWords(reencrypt(all.raw, fixedApprovalMask), words));
 const originalStream = words.flat();
 const changed = all.raw.flat().filter((value, i) => value !==
   originalStream[i]).length;
 assert.equal(changed, 79);
 for (const site of sites) {
   const trial = constructRaw(words, [site]);
-  assert.ok(equalWords(reencrypt(trial.raw, trial.mask), words));
+  assert.ok(equalWords(reencrypt(trial.raw, fixedApprovalMask), words));
 }
 
 const repairProbability = 1 - 29 * 86 / 12955;
 const q = repairProbability / (1 + repairProbability);
 const entropyBit = -q * Math.log2(q) - (1-q) * Math.log2(1-q);
 process.stdout.write(JSON.stringify({
-  proof:'Two distinct raw rune options at each qualifying site; all 79 individually and jointly reconstructed',
+  proof:'Two raw choices per qualifying site with one identical fixed approval mask; 79 single toggles and all toggles reconstructed',
   source:'First 55 unsolved LP2 rune records, 2896 words',
   affineMatches:hits,
   matchedPreviousCipherRune:hits-sites.length,
