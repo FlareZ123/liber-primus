@@ -178,6 +178,40 @@ function trigramScore(p){
   }
   return score/n;
 }
+/**
+ * Conditional GP trigram excess over the SAME context-specific free-rune
+ * alphabet. This independent heldout discriminant uses none of the original
+ * plaintext candidate letters to train its source model.
+ * @param {Uint8Array} p
+ * @param {ReturnType<typeof records>} recs
+ */
+function conditionalTrigramExcess(p,recs){
+  const seq=source.slice(0,100000),
+    tri=new Int32Array(29**3),bi=new Int32Array(29**2),
+    unigram=new Int32Array(29);
+  for(let i=0;i<seq.length;i++){
+    unigram[seq[i]]++;
+    if(i)bi[seq[i-1]*29+seq[i]]++;
+    if(i>=2)tri[(seq[i-2]*29+seq[i-1])*29+seq[i]]++;
+  }
+  /** @param {number} a @param {number} b @param {number} x */
+  function probability(a,b,x){
+    return .8*(tri[(a*29+b)*29+x]+.25)/(bi[a*29+b]+7.25)
+      +.2*(bi[b*29+x]+.25)/(unigram[b]+7.25);
+  }
+  const total=[0,0],count=[0,0];
+  for(let i=2;i<N;i++){
+    const r=recs[i];
+    if(r.type!==2)continue;
+    const x=p[i-2],y=p[i-1],z=p[i],group=i<trainCut?0:1;
+    const baseline=r.freeP.reduce((s,v)=>
+      s+Math.log(probability(x,y,v)),0)/r.freeP.length;
+    total[group]+=Math.log(probability(x,y,z))-baseline;
+    count[group]++;
+  }
+  return {train:total[0]/count[0],held:total[1]/count[1],
+    trainRunes:count[0],heldRunes:count[1]};
+}
 const recs=records(original),delays=[1,2,3,4,5,6,7,8];
 const ranks=search(recs,delays);
 const selected=ranks.slice().sort((a,b)=>b.train-a.train);
@@ -185,6 +219,7 @@ const checked=selected.slice(0,3).map(r=>{
   const inv=decode(recs,r.delay,r.a,r.b);
   assert.deepEqual(encrypt(Array.from(inv.p),r.delay,r.a,r.b),original);
   return {...r,heldTrigramLogProbability:trigramScore(inv.p),
+    heldConditionalTrigramExcess:conditionalTrigramExcess(inv.p,recs),
     first60: Array.from(inv.p.slice(0,60)).map(x=>gp.translit[x]).join(" ")};
 });
 const trueDelay=6,trueA=7,trueB=11;
@@ -204,6 +239,7 @@ console.log(JSON.stringify({
   originalByDelay:ranks,
   originalTopWithExactlyReencryption:checked,
   planted:{trueDelay,trueA,trueB,selected:positive,
-    exactRecovered:N,heldTrigramLogProbability:trigramScore(recovered.p)},
+    exactRecovered:N,heldTrigramLogProbability:trigramScore(recovered.p),
+    heldConditionalTrigramExcess:conditionalTrigramExcess(recovered.p,controlRec)},
   conclusion:"Original heldout unigram gains are small and no authentic new LP2 plaintext is recovered."
 },null,2));
