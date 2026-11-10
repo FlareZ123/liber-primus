@@ -29,7 +29,14 @@ assert.equal(corpus.runes.length, 29);
  */
 function toGp(text) {
   const index = new Map(corpus.translit.map((name, i) => [name, i]));
-  const upper = text.toUpperCase();
+  // Preserve letters without dedicated GP runes, using the standard
+  // explicit transliteration policy of the existing corpus controls.
+  const upper = text.toUpperCase()
+    .replaceAll("QU", "CW")
+    .replaceAll("K", "C")
+    .replaceAll("Q", "C")
+    .replaceAll("V", "U")
+    .replaceAll("Z", "S");
   const output = [];
   for (let i = 0; i < upper.length; i++) {
     const digraph = upper.slice(i, i + 2);
