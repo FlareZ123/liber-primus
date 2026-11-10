@@ -33,6 +33,14 @@ The exhaustive [standalone Node 22 search and held-out native control](../sims/g
 
 Thus **the entire cubic additive-keystream starting-state space** is strongly disfavored for a directly GP-encoded English plaintext on original p0, with a prospective p1 rejection. This conclusion does not require assuming any red seed. It is conditional on the additive GP29 output, cubic transition, English GP language model and original rune order; a different cipher/output register or source-dependent per-position state remains open. No authentic key or original plaintext was recovered.
 
+### Degree-nine all-crib source-feedback attack with original withheld page (Agent 26)
+
+The complete factorization first established by Agent 32 contains the monic nonary GF29 factor \(X^9+12X^8+20X^7+10X^6+5X^5+X^4+9X^3+15X+11\). Under the hypothesis that its recurrence emits an additive GP29 key, the first nine plaintext symbols uniquely determine a complete secret nine-dimensional state. A finite independent Shakespeare reference provides **91,366 distinct GP nine-grams** (source positions 100,000–200,000) while the first 100,000 GP characters train a **disjoint** smoothed trigram scorer. Each nine-gram yields a source-specific secret state on original physical p0; use the first 70 inversions for a top-400 shortlist, rerank on all p0 (262), and predict original p1 (266) without refitting. Repeat with a start directly after p0's marked initial red 13-rune heading.
+
+The strongest original p0-leading candidate scores **−3.850930739825** nats/rune and its held-out p1 state continuation scores **−4.277154558626**. The post-red13 p0 best scores **−3.845308985566**. An independent **528-rune source-native GP Shakespeare plant** with secret initial state **[5,8,13,21,4,9,2,18,27]** and a genuine first nine-gram from the predeclared dictionary recovers its secret seed at **rank one**, with real native-GP scores **−2.590699790806** (p0-length) and **−2.372467513448** (p1-length), plus exact roundtrip. [Executable source-only Node 22 SFT](../sims/grid_nonary_source_crib_inverse_sft.cjs).
+
+**Scope:** The negative rejects this crib-informed simple GP29 additive f9 key family on the original p0/p1 pair. The test does not exhaust \(29^9\) secret states, and the first-70 shortlist is conditional on native GP language typicality. No unknown plaintext or authentic key has emerged.
+
 ## Exact original-grid relationship
 
 Take the base-60 table on physical LP2 pages 49–51 in its printed row-major order, converting the 32 rows of eight two-character numbers to 256 bytes with the published digit alphabet 0–9, A–Z, a–x. Interpret these bytes as a single **2,048-bit unsigned big-endian base-256 integer N**. Both shared derived corpora, **resources/liber-primus/base60-grid.json** and **resources/liber-primus/lp2-grid-256.json**, agree byte-for-byte. The SHA-256 of the 256-byte source is
