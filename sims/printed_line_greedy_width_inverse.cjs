@@ -298,7 +298,7 @@ function main(trials = 1000) {
       baseline:score(trainingLast,baselineForward), ...a},
     backward: {trainPages:'26–55 excluding rune-free 50',
       testPages:'0–25',cutoff:backward.boundary,
-      baseline:score(trainingFirst,baselineBackward),...b},
+      glyphWidths:backward.weights, baseline:score(trainingFirst,baselineBackward),...b},
     crossFitGlyphWidthPearson:cov/Math.sqrt(var1*var2),
     caveats:'This recovers only a predictive visual line-break model. Printed source glyph widths are not directly measured and the model is not an LP2 cipher or plaintext recovery.'
   };
