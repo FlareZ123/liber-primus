@@ -40,7 +40,7 @@ These are the *best original frozen holdout advantages* (GP log units per keyed 
 | 225 | −0.02383 | −0.01398 |
 | 256 | +0.01867 | −0.00764 |
 
-The mild **period28/page-local** excess is the largest of 16 *postselected* candidates and remains tiny relative to +1.28 nats/rune on the known-true source plant. It does not resemble decisive recovery of the solved-author GP distribution. An independent original **bigram holdout diagnostic** was therefore implemented to discriminate a weak true source signal from selected unigrams, without using holdout text for key fitting.
+The period28/page-local excess was the largest among 16 *postselected* alternatives, while remaining tiny relative to +1.28 nats/rune on the planted true-source model. An **independent source bigram diagnostic** using that frozen key yields original physical pages28–55 conditional-bigram score **−4.021711**, versus **−2.4385 to −2.4925** on six independent native-GP plants. The six positive plants recovered **28/28 true key digits and all 6,195 withheld plaintext runes** each. Thus the weak original period28 score does not extrapolate to solved-author-native bigram language. Exact script: [sims/contextual_marker29_clueperiod_bigrams.cjs](../sims/contextual_marker29_clueperiod_bigrams.cjs).
 
 ## Native-GP conditional-bigram recovery
 
@@ -57,10 +57,23 @@ Original GP bigrams remain unlike the real source, even though training objectiv
 
 The original cipher always exactly roundtrips under any fitted key because it is constructed to be bijective. **Such roundtrip is algebraic consistency, not plaintext recovery.** Independent source-language predictions and planted truth establish the distinction.
 
+## Key-consumption skip-clock inversion
+
+A source-key clock may advance only for key-dependent output positions. All 265 conditional marker positions (86 EA, 77 S, 91 L, 11 E) are **observable directly from original ciphertext** under the postselected model. The new complete [marker-skip inverse](../sims/contextual_marker29_skipstream_inverse.cjs) therefore uses a deterministic 225-key counter that skips known reserved markers, globally or page-locally, without a latent synchronization repair.
+
+| Marker-skip source-key hypothesis | Frozen original heldout log/rune | Expected uniform | Gain |
+| --- | ---: | ---: | ---: |
+| 225 arbitrary unknown digits, global skip | −4.174875 | −4.196365 | +0.02149 |
+| 225 arbitrary unknown digits, page-local skip | −4.159527 | −4.196365 | +0.03684 |
+| Best training-selected *direct red-prime* global skip | −4.186849 | −4.196365 | +0.00952 |
+| Best training-selected *direct red-prime* page skip | −4.162244 | −4.196365 | +0.03412 |
+
+The direct red-source scan covers **3,600 schedules** across two clocks, two signs, both red reading directions, both red index/prime alphabets and all 225 phases. On **eight independent native-GP plants** whose true encryption used the skip clock, fitting all 225 unknown pad digits from the first half recovered **220–225 correct digits and 98.95%–100% heldout plaintext**. The original +0.037 top source-language advantage is small compared with the planted +1.26, and was chosen among candidate architectures. No original text is authenticated.
+
 ## Reproduction and status
 
 - \`node sims/contextual_marker29_period225_key_recovery.cjs\`: complete unknown key column fit, source-native positive controls, 16 clue-period/clock original scans. [Passed manual CI 42801381531](https://github.com/FlareZ123/liber-primus/actions/runs/42801381531).
 - \`node sims/contextual_marker29_bigram225_key_recovery.cjs\`: source-native conditional bigram coordinate optimizer, original frozen holdout and complete positive controls. Same successful run.
-- \`node sims/contextual_marker29_clueperiod_bigrams.cjs\`: 16 clue-period frozen original bigram source evaluations, with separate true period28/page source plant. Pending independent run results at the time of this first synthesis.
+- [Clue-period GP bigram inverse](../sims/contextual_marker29_clueperiod_bigrams.cjs) and [fully deterministic skip-clock inverse](../sims/contextual_marker29_skipstream_inverse.cjs) both passed alongside the original tests in [manual Actions run 42802080633](https://github.com/FlareZ123/liber-primus/actions/runs/42802080633).
 
 **Research implication:** Under this fully specified GP29 transducer, a direct unknown periodic key of clue lengths up to 256 is insufficient to reveal actual LP2 plaintext. A more complex source-derived key state, fundamentally different word/letter register, or different cipher structure would be required. The model's postselected reserved output rules also leave a measurable excess of observed five-position ciphertext repeats. Do not promote this construction or its fitted original plaintext-looking strings to \`results/\`.
