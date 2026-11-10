@@ -1,0 +1,94 @@
+name: Import verified Liber Primus JPEGs
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: one-time-liber-primus-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Download, verify, and commit JPEGs in 10-file batches
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+          import subprocess
+          import time
+          from urllib.request import Request, urlopen
+
+          root = Path('resources/liber-primus')
+          root.mkdir(parents=True, exist_ok=True)
+          base = 'https://raw.githubusercontent.com/rtkd/iddqd/master/liber-primus__images--full'
+          expected = 'cdda41395a52761be5d00c52ec4a2c1c769f9a9f756974a7ec62d4bbf4156dc1'
+          aggregate = hashlib.sha256()
+          checksums = []
+
+          for i in range(75):
+              name = f'{i:02d}.jpg'
+              url = f'{base}/{name}'
+              for attempt in range(3):
+                  try:
+                      with urlopen(Request(url, headers={'User-Agent': 'LiberPrimus-Archive-Import'}), timeout=90) as response:
+                          data = response.read()
+                      break
+                  except (OSError, TimeoutError):
+                      if attempt == 2:
+                          raise
+                      time.sleep(2 ** attempt)
+              if not data.startswith(b'\xff\xd8'):
+                  raise ValueError(f'Invalid JPEG header: {name}')
+              target = root / name
+              temp = root / f'.{name}.tmp'
+              with temp.open('xb') as stream:
+                  stream.write(data)
+              os.replace(temp, target)
+              aggregate.update(data)
+              checksums.append(f'{hashlib.sha256(data).hexdigest()}  {name}')
+              print(f'Downloaded {name} ({len(data)} bytes)', flush=True)
+
+          actual = aggregate.hexdigest()
+          if actual != expected:
+              raise RuntimeError(f'Image set differs from uploaded ZIP: expected {expected}, found {actual}')
+
+          (root / 'SHA256SUMS.txt').write_text('\n'.join(checksums) + '\n', encoding='ascii')
+          (root / 'README.md').write_text(
+              '# Liber Primus original-image archive\n\n'
+              'This folder contains 75 JPEG files, 00.jpg through 74.jpg.\n\n'
+              'The files were downloaded from the public rtkd/iddqd '
+              'liber-primus__images--full archive and verified byte-for-byte '
+              'against the 75-image ZIP supplied by the repository owner.\n\n'
+              'Combined SHA-256 of JPEG contents concatenated in filename order: '
+              f'{expected}.\n\n'
+              'Individual checksums are in SHA256SUMS.txt. '
+              'The filenames reflect the ordering of the community archive.\n',
+              encoding='utf-8',
+          )
+          subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'], check=True)
+          subprocess.run(['git', 'config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com'], check=True)
+
+          for start in range(0, 75, 10):
+              end = min(start + 10, 75)
+              paths = [str(root / f'{j:02d}.jpg') for j in range(start, end)]
+              if start == 0:
+                  paths.extend([str(root / 'README.md'), str(root / 'SHA256SUMS.txt')])
+              subprocess.run(['git', 'add', '--', *paths], check=True)
+              subprocess.run(['git', 'commit', '-m', f'Import verified Liber Primus JPEGs {start:02d}-{end - 1:02d}'], check=True)
+              subprocess.run(['git', 'push', 'origin', 'HEAD:main'], check=True)
+              print(f'Pushed batch {start:02d}-{end - 1:02d}', flush=True)
+
+          print('Complete: all 75 JPEGs verified and pushed', flush=True)
+          PY
