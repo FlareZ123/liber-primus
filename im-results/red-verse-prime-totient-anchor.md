@@ -34,6 +34,19 @@ The positive control constructs a full 51-rune dictionary-compatible GP passage 
 
 **Interpretation:** An ordinary GP-English 11-rune word, carrying no more than two alterations in this highlighted word, is incompatible with any of the tested **50,000** historical prime-totient starts under these orientations/carriers. This is a strong finite cryptanalytic exclusion of one plausible **historically demonstrated** mechanism on a source-selected passage. It does not exclude a hidden intermediate register, greater alteration count, cipher-dependent key skips within the anchor, dynamic key state, or an unrelated generator.
 
+
+## Additional source-constrained prime-index strides (Agent 39, 2026-11-10)
+
+The separately documented [p15→p53 red-prime-totient crosslink](red-prime-totient-crosslink.md) names three independently visible integers: the red p15 title sum divided by 29 gives **22**, the 22nd prime in the p15 Fibonacci square is **79**, and the p53 red stanza sum divided by 29 gives **78 = φ(79)**. This additional bounded inverse treats each number **22, 78, 79** as a potential *stride in the ordinal of the prime*, while retaining the historically authenticated prime-totient output rule:
+
+`K_i = (prime_(s + d*i + 1) - 1) mod 29`, for zero-based prime index `s=0…79` and source-fixed stride `d∈{22,78,79}`.
+
+The original source-selected 51-rune red stanza and its fourth, 11-rune whole word are unchanged. Runic GP-English anchors come from exactly the same 1,611-word lexicon as the previous historically authentic contiguous-index attack. The **9-of-11 deletion-signature index** covers **every** candidate anchor with up to two arbitrary altered rune positions for any fixed key. Per stride the code checks 80 initial starts, four fixed reading orders, both signs, raw/Atbash carrier, and literal-F clock choices: **2,560 configurations per stride, 7,680 total**. It does not search arbitrary strides or alter source word boundaries.
+
+**Original result:** **Zero 11-rune dictionary anchors within two errors**, for each of the three strided-key families. No other red-stanza words were decrypted. **Powered synthetic positive:** true `s=22,d=79` with two anchor runes deliberately corrupted at offsets 2 and 9 recovers the exact planted `accompanied` anchor and **seven independently encoded long non-anchor words**. The exact source and planted test succeeded on [manual CI run 42775130683](https://github.com/FlareZ123/liber-primus/actions/runs/42775130683), using [`sims/red_prime_stride_anchor.cjs`](../sims/red_prime_stride_anchor.cjs). The existing [red-verse-prime-totient manual workflow](../.github/workflows/red-verse-prime-totient.yml) now accepts `attack=source-strides` without changing its default historical experiment.
+
+**Decision:** This is a narrowly defined rejection of source-red **prime-index strides** 22/78/79 applied as continuous prime-totient keystreams to conventional GP-English anchor plaintext with at most two rune changes. It cannot exclude the source red relationship itself, a different key schedule/position/reading rule, non-lexicon plaintext, variable key consumption within the anchor, or multiple encryption layers. This belongs in intermediate evidence; it is not a recovered key or plaintext.
+
 ## Reproduction
 
 - Exact standalone script: [`sims/red_verse_prime_totient_anchor.cjs`](../sims/red_verse_prime_totient_anchor.cjs).
