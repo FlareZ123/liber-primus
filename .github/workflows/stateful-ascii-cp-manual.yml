@@ -10,6 +10,16 @@ on:
         options:
           - stateful
           - binary47
+      charset:
+        description: ASCII payload register (source-only control choice)
+        type: choice
+        required: true
+        default: 7bit
+        options:
+          - 7bit
+          - printable
+          - upper
+          - lower
 
 jobs:
   survivor:
@@ -24,7 +34,7 @@ jobs:
         run: python sims/stateful_ascii_survivor_cp.py
       - name: Positive hidden-cyclic-order ASCII source capacity control
         if: inputs.probe == 'binary47'
-        run: python sims/prime78_ascii_bit_cp.py --plant --seconds 60
+        run: python sims/prime78_ascii_bit_cp.py --plant --charset ${{ inputs.charset }} --seconds 60
       - name: Search original 164 packet leaders under all 29 cyclic orders
         if: inputs.probe == 'binary47'
-        run: python sims/prime78_ascii_bit_cp.py --original --seconds 300
+        run: python sims/prime78_ascii_bit_cp.py --original --charset ${{ inputs.charset }} --seconds 300
