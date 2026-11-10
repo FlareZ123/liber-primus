@@ -1,0 +1,14 @@
+name: LP2 relative-key English probe
+on:
+  workflow_dispatch:
+jobs:
+  language-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Language-based joint decoder and held-out positive control
+        run: node sims/relative_key_english_probe.cjs
