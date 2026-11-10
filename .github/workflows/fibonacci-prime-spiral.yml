@@ -11,3 +11,9 @@ jobs:
           node-version: '22'
       - name: Reconstruct exact LP2 numeric spiral and test key interpretation
         run: node sims/fibonacci_prime_spiral.cjs
+      - name: Test p15 red-heading checksum on original ink spans with heldout null
+        run: node sims/red_span_prime_checksum_holdout.cjs
+      - name: Evaluate square-derived 16-word routes with full-family randomized null
+        run: node sims/fibonacci_wordroute_length_test.cjs
+      - name: Test 16-step multiplicative and affine field-29 keys with planted control
+        run: node sims/fibonacci_affine_field29_heldout.cjs
