@@ -105,6 +105,23 @@ Two independent native-GP encryption controls each use arbitrary 153/1224-positi
 
 Proof, original counts and exact planted equality controls: [`sims/parable_blum_keyless_period_gate.cjs`](../sims/parable_blum_keyless_period_gate.cjs), successful [manual original-data CI 42840012568](https://github.com/FlareZ123/liber-primus/actions/runs/42840012568). The exclusion concerns a *synchronized, globally continuous* BBS source whose period is not disrupted by collision-driven hidden key skips, per-page secret phase shifts, changing output permutations or an encrypted intermediate rather than native GP-English. Other architectures evade this exact equality identity.
 
+### Exhaustive unknown-state search with collision-only hidden key consumption
+
+The complete two-factor square-state domain can be searched even when the original cipher is allowed to **discard a proposed pad element only when that element would have repeated the previous ciphertext rune**, rather than simply using a direct unslipped BBS stream. A source-independent GP-English trigram Viterbi handles the hidden consumption pattern. This is a stronger attack than the 120 preselected seeds above.
+
+For each of all **325,080 possible first-post-square states**, the runner tries four actual state/bit reductions and both GP29 arithmetic signs, **2,600,640 original ciphertext head candidates**. Each exact first-28-rune hidden-keyskip dynamic program may discard **up to four** additional source digits, with an explicit collision proof required for every discard. Retain the **800** best first28 candidates; fit their first **130** physical page0 runes with full collision-only Viterbi and freeze the inferred consumed key clock into the following **80** genuinely unfit original runes.
+
+| Original source model | First28 log score | First130 log score | Following80 log score |
+| --- | ---: | ---: | ---: |
+| Highest first-28 fit, x1=546,646, five parity bits MSB, sign− | **−3.374314480** | −4.922075167 | **−5.638057234** |
+| Highest first-130 fit, x1=1,011,455, low8 state, sign− | −3.967926963 | **−4.836599383** | **−6.373770724** |
+| Highest following80 score *post-selected from 800*, x1=1,101,804, low8 state, sign+ | −3.992541638 | −5.580133348 | **−4.914078043** |
+| Source-native blind positive, x1=819,027, five MSB parity bits, sign+ | **−2.721774930** | **−2.477103158** | **−2.359453230** |
+
+The planted positive takes **210 genuine independently sourced GP-English runes**, encrypts them with a secret original-domain BBS start and six actual collision-rejected key draws (**one** inside the first28), and hides the key, sign, starting state and skip pattern from the search. The exact source model **ranks #1 of all 2,600,640 candidates**; the 210-rune inverse recovers **210/210 original GP symbols and all six rejected pad draws exactly**. Thus a single hidden source-key rejection does not prevent this model family from being detected. Original first130 candidates and frozen 80-rune continuations remain nonlexical and far from the planted-language scores.
+
+Reproducer: [`sims/parable_blum_allstate_keyskip.cjs`](../sims/parable_blum_allstate_keyskip.cjs); successful [manual CI run 42841349115](https://github.com/FlareZ123/liber-primus/actions/runs/42841349115). The exhaustive claim concerns every source **state**, all four explicitly chosen 29-key readouts and two signs, **up to four proven skips in the first28 runes**, an additional full 130/80-rune Viterbi among the 800 source-ranked contenders. It does not globally enumerate arbitrary secret key-skip histories, nor prove that p0 should contain English GP plaintext. No historical plaintext or authentic key was recovered.
+
 ### Interpretation
 
 The published audio tag provides a genuine historical prior clue and a mathematical route to exact key-state enumeration. The original ciphertext has failed the 960 historic integer/PRNG tests, 480 fixed-seed modular-square inverses, 120 collision-keyskip source tests, and full **5,201,280** two-prime seed-independent modular-squaring inverses. These finite negatives have independently positive-tested recovery power within their declared output models. They **do not establish** how Cicada intended the three Parable primes to be used, if at all, in the unsolved manuscript. Further arbitrary source-seed and bit-order variants without a fresh source instruction are unlikely to advance a genuine decipherment.
