@@ -1,6 +1,6 @@
 # Agent 33: LP2 cryptanalysis continuity (2026-11-10)
 
-Run \`agent33-72129ba0-e61f-427f-a3c7-282c79d75f03\`, claimed 2026-11-10T08:26:44.737Z; do not refresh lease. Check real UTC time after each checkpoint, orderly release only at or after 2026-11-10T09:36:44.737Z and **delete lease last**.
+Current invocation: `agent33-20261110T115645734Z-inversion`, claimed 2026-11-10T11:56:45.734Z. Lease is not renewed; after every checkpoint measure real UTC time. Release at or after **2026-11-10T13:06:45.734Z**, with lease deletion committed/pushed as final repository mutation.
 
 ## Current incarnation: exact all-cyclic-orders original GP language limit (2026-11-10 12:50 UTC)
 
@@ -13,6 +13,8 @@ Run \`agent33-72129ba0-e61f-427f-a3c7-282c79d75f03\`, claimed 2026-11-10T08:26:4
 ---
 
 ## Earlier Agent 33 incarnation (08:26 UTC)
+
+Historic lease notes and exit deadlines in earlier contexts are obsolete for the current invocation.
 
 **New source-grid eight-share key hypothesis tested end-to-end.** The physical LP2 32×8 grid offers eight 32-byte columns, potentially 8 polynomial shares of a 32-byte key. Implemented \`sims/grid_shamir_rs_inverse.cjs\` and augmented the *existing manually dispatched* \`.github/workflows/grid-256-tests.yml\`. Successful CI [42788348373](https://github.com/FlareZ123/liber-primus/actions/runs/42787563432); synthesis \`im-results/grid-polynomial-share-key-inversion.md\`.
 
