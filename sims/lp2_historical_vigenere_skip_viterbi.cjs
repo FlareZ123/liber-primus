@@ -24,6 +24,8 @@ const lp1Text = read('resources/transcriptions/lp1_wulfic_canonical.txt');
 const plaintextReference = read('resources/liber-primus/lp1-plaintext-reference.txt');
 const sourceRegression = read('sims/authentic_decryption_regression.cjs');
 const corpus = JSON.parse(corpusRaw);
+assert(sourceRegression.includes('DIVINITY'));
+assert(sourceRegression.includes('FIRFUMFERENFE'));
 
 const MOD = 29;
 const PREV_STATES = 30; // 0..28 plus sentinel 29 at page/word start
@@ -345,12 +347,16 @@ for (const [name, key] of Object.entries(keys)) {
     key,
     exactSourcePhase0: {
       all: {
-        ...exactPhase.all,
+        bigramScore: exactPhase.all.bigramScore,
+        skipCount: exactPhase.all.skipCount,
+        summary: exactPhase.all.summary,
         samplePage0: samplePage(exactPhase.all.decoded, 0),
         samplePage28: samplePage(exactPhase.all.decoded, 28)
       },
       prime: {
-        ...exactPhase.prime,
+        bigramScore: exactPhase.prime.bigramScore,
+        skipCount: exactPhase.prime.skipCount,
+        summary: exactPhase.prime.summary,
         samplePage2: samplePage(exactPhase.prime.decoded, 2),
         samplePage29: samplePage(exactPhase.prime.decoded, 29)
       }
@@ -358,17 +364,32 @@ for (const [name, key] of Object.entries(keys)) {
     bestOfAllStartingPhases: {
       phase: best.phase,
       all: {
-        ...best.all,
+        bigramScore: best.all.bigramScore,
+        skipCount: best.all.skipCount,
+        summary: best.all.summary,
         samplePage0: samplePage(best.all.decoded, 0),
         samplePage28: samplePage(best.all.decoded, 28)
       },
       prime: {
-        ...best.prime,
+        bigramScore: best.prime.bigramScore,
+        skipCount: best.prime.skipCount,
+        summary: best.prime.summary,
         samplePage2: samplePage(best.prime.decoded, 2),
         samplePage29: samplePage(best.prime.decoded, 29)
       }
     },
-    wrongKeyPhase0: wrong
+    wrongKeyPhase0: {
+      all: {
+        bigramScore: wrong.all.bigramScore,
+        skipCount: wrong.all.skipCount,
+        summary: wrong.all.summary
+      },
+      prime: {
+        bigramScore: wrong.prime.bigramScore,
+        skipCount: wrong.prime.skipCount,
+        summary: wrong.prime.summary
+      }
+    }
   };
 }
 
