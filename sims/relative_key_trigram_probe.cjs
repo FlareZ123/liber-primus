@@ -56,28 +56,29 @@ function trainTrigram(words){
  * @param {number} shift
  * @param {boolean} withText
  */
-function solve(pa,pb,lm,shift=0,withText=false,plaintextScale=1){
+function solve(pa,pb,lm,shift=0,withText=false,plaintextScale=1,lmB=lm){
   const n=Math.min(pa.xs.length,pb.xs.length),secondLength=pb.xs.length;
   assert.ok(n>=2);
   const inverse=Array.from({length:28},(_,i)=>i+1).find(v=>mod(v*plaintextScale)===1);
   assert.notEqual(inverse,undefined,'Scale must be invertible modulo 29');
   const D=new Uint8Array(n);
   for(let t=0;t<n;t++)D[t]=mod(inverse*(pa.xs[t]-pb.xs[(t+shift)%secondLength]));
-  const at=(a,b,c)=>lm[(a*N+b)*N+c];
+  const atA=(a,b,c)=>lm[(a*N+b)*N+c];
+  const atB=(a,b,c)=>lmB[(a*N+b)*N+c];
   const head=new Float64Array(29);
   for(let p=0;p<29;p++){
     const q=mod(p-D[0]);
-    head[p]=at(START,START,p)+at(START,START,q)
-      +(pa.end[0]?at(START,p,END):0)+(pb.end[0]?at(START,q,END):0);
+    head[p]=atA(START,START,p)+atB(START,START,q)
+      +(pa.end[0]?atA(START,p,END):0)+(pb.end[0]?atB(START,q,END):0);
   }
   let dp=new Float64Array(STATES),next=new Float64Array(STATES);
   const back=withText?new Uint8Array(n*STATES):null;
   for(let p=0;p<29;p++)for(let c=0;c<29;c++){
     const q=mod(p-D[0]),r=mod(c-D[1]);
     const pCtx=pa.start[1]?START:p,qCtx=pb.start[1]?START:q;
-    dp[p*29+c]=head[p]+at(pCtx===START?START:START,pCtx,c)
-      +at(qCtx===START?START:START,qCtx,r)
-      +(pa.end[1]?at(pCtx,c,END):0)+(pb.end[1]?at(qCtx,r,END):0);
+    dp[p*29+c]=head[p]+atA(pCtx===START?START:START,pCtx,c)
+      +atB(qCtx===START?START:START,qCtx,r)
+      +(pa.end[1]?atA(pCtx,c,END):0)+(pb.end[1]?atB(qCtx,r,END):0);
   }
   for(let t=2;t<n;t++){
     next.fill(-Infinity);
@@ -94,9 +95,9 @@ function solve(pa,pb,lm,shift=0,withText=false,plaintextScale=1){
         const endP=pa.end[t],endQ=pb.end[t];
         for(let c=0;c<29;c++){
           const qc=mod(c-diff);
-          const s=old+at(ctxPU,ctxPV,c)+at(ctxQU,ctxQV,qc)
-            +(endP?at(pNew?START:v,c,END):0)
-            +(endQ?at(qNew?START:qv,qc,END):0);
+          const s=old+atA(ctxPU,ctxPV,c)+atB(ctxQU,ctxQV,qc)
+            +(endP?atA(pNew?START:v,c,END):0)
+            +(endQ?atB(qNew?START:qv,qc,END):0);
           const st=v*29+c;
           if(s>next[st]){next[st]=s;if(back)back[t*STATES+st]=u;}
         }
