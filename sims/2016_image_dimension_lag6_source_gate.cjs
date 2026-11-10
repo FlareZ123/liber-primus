@@ -198,6 +198,12 @@ function main() {
   const runeBlock = [...firstHalf, ...secondHalf];
   const gridBytes = grid.byte_rows.flat();
 
+  assert.equal(p53.length, 179);
+  assert.equal(p53.slice(0, 128).length, 128);
+  assert.equal(p53.slice(128).length, 51); // span marked by the red numeral 1
+  assert.equal(p54[0], 24); // oversized Ac initial; remainder of p54 is excluded
+  assert.equal(p55.length, 76);
+  assert.equal(p53.length + 1 + p55.length, 256);
   assert.equal(firstHalf.length, 128);
   assert.equal(secondHalf.length, 128);
   assert.equal(runeBlock.length, 256);
@@ -380,6 +386,9 @@ function main() {
       widthMod128: r0, heightMod128: r1,
       difference: lag },
     sourceAnchors: {
+      runeGrouping: { p53Total: p53.length, p53BlackBlock: firstHalf.length,
+        p53RedMarker1Span: p53.slice(128).length, p54SelectedInitial: corpus.translit[p54[0]],
+        p55Total: p55.length, assembledTotal: runeBlock.length },
       primeCounting: { piWidth, piHeight, modulo29: [tirIndex, beorcIndex],
         runes: [corpus.translit[tirIndex], corpus.translit[beorcIndex]],
         gematriaPrimes: [corpus.prime[tirIndex], corpus.prime[beorcIndex]],
