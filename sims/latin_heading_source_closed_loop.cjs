@@ -140,7 +140,7 @@ function printedWords() {
     if(isRune.has(glyph)) {
       if(!current) current={start:runeOffset,length:0,before:punctuation};
       current.length++;runeOffset++;punctuation='';
-    } else if(!'/ %\\r\\n\\t'.includes(glyph)) {
+    } else if(!'/ %\r\n\t'.includes(glyph)) {
       if(current) {result.push(current);current=null;}
       punctuation+=glyph;
     }
