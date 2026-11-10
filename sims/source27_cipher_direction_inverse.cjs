@@ -166,6 +166,7 @@ function run(){
  const plantRank=rank(planted,lp);
  assert.deepEqual(plantRank[0].mode,plantedMode);
  const inverted=convert(plantRank[0].mode,planted,false);
+ const nativeFlat=native.flat();
  assert.deepEqual(inverted,native);
  assert.deepEqual(convert(plantRank[0].mode,inverted,true),planted);
  const repeat=t=>t.reduce((s,p)=>s+p.slice(1).filter((x,i)=>x===p[i]).length,0);
@@ -191,7 +192,7 @@ function run(){
     lowest:Math.min(...wrongOriginal),highest:Math.max(...wrongOriginal)},
    decodedFirst65:realClear.flat().slice(0,65).map(i=>GP.translit[i]).join(" ")},
   positive:{trueMode:plantedMode,actualTrainingRank:1,
-   correctPlaintextRunes:inverted.flat().filter((x,i)=>x===native.flat()[i]).length,
+   correctPlaintextRunes:inverted.flat().filter((x,i)=>x===nativeFlat[i]).length,
    total:12227,doublets:repeat(planted),wrongSource:{shuffles:n,outperform:abovePlant,
     addOneUpperTail:(abovePlant+1)/(n+1)}},
   conclusion:"No recovered LP2 plaintext or authenticated original cipher key; the declared finite source-guided walker fails a strong prospective original heldout."
