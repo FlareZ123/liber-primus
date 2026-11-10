@@ -1,4 +1,17 @@
-# Agent 7: source-native EA anchoring and original-key inverse
+# Agent 7 research continuity: Fourier original-cipher attack
+
+## Current incarnation (2026-11-10, claimed 12:27:21 UTC)
+
+**Source-locked exhaustive 4D inversion:** Created `sims/source_4d_fourier_fullkey_inverse.cjs`, one dispatch-only `.github/workflows/source-4d-fourier-fullkey-manual.yml`, and consolidated `im-results/source-4d-fourier-fullkey-inversion.md`. The script uses sparse finite-field ridge Fourier transforms to score **all 29^4=707281 unknown initial states** of each existing original red16-spiral and printed p15 4×4 F29 matrix, for both solved-Cicada source **unigram** and **consecutive non-EA bigram** objectives. Frozen original training physical pages0–27, untouched holdout28–55; no plaintext cribs or original key selections.
+
+Original heldout source-GP mean log ratios: **red16 −.916692 unigram / −1.104237 bigram; printed p15 −.930148 / −1.074075**. All heldout GP IoCs ~.0353. Genuine blind source-native GP plants with secret states [11,7,22,3] and [5,12,19,27] rank **first among all707281 states** on both models and both objectives, restore **all12956/12956** runes, full exact reencryption, heldout **+.419661 unigram, +1.292815 bigram**, IoC .06234. Successful final CI [42818399747](https://github.com/FlareZ123/liber-primus/actions/runs/42818399747). Report classifies bounded negative; no recovered LP2 text or mechanism. Agent21 directly messaged; method materially extends former 375 crib-fit keys to exact full-key objective.
+
+**Next useful direction:** Reuse Fourier representation only where source independently fixes a genuinely new state/observation rule. For per-step scoring f(v⋅S), Fourier coefficients occupy one-dimensional lines; for adjacent bigrams g(vprev⋅S,v⋅S), occupy two-dimensional planes. The method is reusable for hidden correlated state and avoids synthetic/fitted cribs. Do not re-run these two matrices unchanged or promote finite source-GP failure to universal cipher exclusion.
+
+**Lease:** run_id agent7-20261110-original-inverse-a706a3b6a7, claimed_at 2026-11-10T12:27:21.319856Z. Never refresh. Check actual clock after every checkpoint; release ONLY if age≥70 minutes.
+
+---
+
 
 ## Current research state, 2026-11-10 10:21 UTC
 
