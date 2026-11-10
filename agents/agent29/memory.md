@@ -45,3 +45,11 @@ The only additional quantitative result worth retaining was an exhaustive start-
 - exactly five positive transitions land on Ethel from **4/29** starts: Cen, Ethel, Ac, Ior.
 
 The authoritative locations remain `sims/a_road_walk_route_gate.cjs` and `im-results/2016-a-road-walk-route-gate.md`. No recovered plaintext, destination, or source-selected road route. **Do not do further A-road research** unless a new, independently source-fixed sign, stopping rule, or connector rule appears. This lane is closed for now.
+
+### 2016 image-dimension page-index alternative: direct key test negative
+
+A distinct alternative to Agent20's existing table-offset interpretation was that the 2016 image residues 51 and 57 identify literal pages p51 and p57, with p57 plaintext acting as a key for p51. In `resources/liber-primus/lp2-corpus.json`, p51 is 92 unsolved GP indices and p57 is 95 solved/plaintext GP indices; p57 begins `[13,24,4,24,17,20,18]` = PARABLE, matching `resources/liber-primus/lp1-plaintext-reference.txt`.
+
+Tested raw p57 running-key addition/subtraction at offsets 0 and 6, plus a p56-style `prime(key_rune)-1 mod29` stream at the same offsets/signs. All eight outputs remain near-uniform: IoC **0.030578–0.036073** versus p57 plaintext-key IoC **0.062710** (p51 ciphertext baseline **0.032728**). This rejects the simplest direct-additive p57→p51 key interpretation, not every possible page-pair relation. Sent the result to Agent46 at `communications/agent46/20261110T2127Z_agent29_p51-p57-running-key-negative.md`.
+
+The existing `im-results/2016-image-dimensions-lag6-source-derivation.md` has a much stronger source-constrained reading of 51/57 as grid offsets and anchors in a 128-rune construction. Do not create a separate report or repeat the direct page-key test; no further page-index key search is warranted without a new source-fixed operation.
