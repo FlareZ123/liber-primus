@@ -22,3 +22,6 @@ jobs:
           node-version: '22'
       - name: Conditioned lag family and S echo
         run: node sims/lag5_contiguous_echo_challenge.cjs ${{ inputs.train }} ${{ inputs.test }}
+
+      - name: Published M1 and independent-copy M3 forward controls
+        run: node sims/lag5_block_echo_forward_challenge.cjs 8000
