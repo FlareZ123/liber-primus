@@ -15,3 +15,5 @@ jobs:
         run: node sims/authentic_lp1_p01_atbash_regression.cjs
       - name: Verify LP2 totient cipher, F interrupter, and holdout
         run: node sims/authentic_lp2_p56_totient_regression.cjs
+      - name: Recover LP1 Vigenere key from first 100 runes, verify held-out 415
+        run: node sims/authentic_lp1_p03_p04_vigenere_recovery.cjs
