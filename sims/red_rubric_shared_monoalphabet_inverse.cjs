@@ -3,7 +3,7 @@
 /**
  * Exact two-anchor inversion of a single, unknown 29-symbol monoalphabetic
  * bijection across two independent red chapter headings. Each printed
- * ciphertext word can contain zero or one arbitrary inserted null rune.
+ * ciphertext word may contain up to two arbitrary inserted null runes.
  *
  * One complete English GP word must map injectively onto every remaining
  * ciphertext symbol. Both source words are chosen by original red ink,
@@ -69,12 +69,21 @@ function indexLexicon() {
 /**
  * @param {number[]} word
  * @param {Map<string,object[]>} byPattern
- * @param {number} maxInsertion 0 or 1
+ * @param {number} maxInsertion 0, 1 or 2
  */
 function candidates(word, byPattern, maxInsertion) {
+  assert.ok(Number.isInteger(maxInsertion) && maxInsertion >= 0 && maxInsertion <= 2);
   const choices = [];
-  for (let omit = -1; omit < (maxInsertion ? word.length : 0); omit++) {
-    const ciphertext = word.filter((_, i) => i !== omit);
+  // Scalars retain compatibility with the original single-null positive.
+  const omissions = [-1];
+  if (maxInsertion >= 1)
+    for (let i = 0; i < word.length; i++) omissions.push(i);
+  if (maxInsertion >= 2)
+    for (let i = 0; i < word.length; i++)
+      for (let j = i + 1; j < word.length; j++) omissions.push([i,j]);
+  for (const omit of omissions) {
+    const removed = Array.isArray(omit) ? omit : omit === -1 ? [] : [omit];
+    const ciphertext = word.filter((_, i) => !removed.includes(i));
     const key = ciphertext.length + ":" + signature(ciphertext);
     for (const entry of byPattern.get(key) || [])
       choices.push({
@@ -122,7 +131,17 @@ function jointCandidates(a, b) {
   return {totalPairs:a.length * b.length, compatiblePairs:count, examples};
 }
 
-/** Deterministic positive with unknown 29-symbol alphabet, two word nulls. */
+/** @param {object[]} a @param {object[]} b */
+function firstCompatiblePair(a, b) {
+  for (const x of a)
+    for (const y of b)
+      if (compatible(x,y))
+        return {first:x.text, firstOmit:x.omit,
+          second:y.text, secondOmit:y.omit};
+  return null;
+}
+
+/** Deterministic positive with unknown 29-symbol alphabet, inserted nulls. */
 function positiveTest(byPattern) {
   const source = lexicon().words;
   const first = [...source.values()].find(x => x.english === "grandmother");
@@ -152,9 +171,24 @@ function positiveTest(byPattern) {
     "planted unknown alphabet and both inserted nulls must invert exactly");
   const decoded = jointCandidates(a,b);
   assert.ok(decoded.compatiblePairs >= 1);
+  // Independently plant TWO arbitrary ciphertext nulls per source word.
+  const c3 = first.indices.map(i => perm[i]);
+  const c4 = second.indices.map(i => perm[i]);
+  c3.splice(4, 0, 9);
+  c3.splice(9, 0, 4);
+  c4.splice(3, 0, 22);
+  c4.splice(11, 0, 24);
+  const a2 = candidates(c3, byPattern, 2), b2 = candidates(c4, byPattern, 2);
+  const x2 = a2.find(z => z.text === "grandmother" &&
+    Array.isArray(z.omit) && z.omit[0] === 4 && z.omit[1] === 9);
+  const y2 = b2.find(z => z.text === "complicated" &&
+    Array.isArray(z.omit) && z.omit[0] === 3 && z.omit[1] === 11);
+  assert.ok(x2 && y2 && compatible(x2,y2),
+    "planted unknown alphabet and both double-null patterns must invert");
   return {first:"grandmother", second:"complicated",
     trueNullPositions:[5, 11], exactRecovered:true,
-    compatibleCandidates:decoded.compatiblePairs};
+    compatibleCandidates:decoded.compatiblePairs,
+    twoNullPositions:[[4,9],[3,11]], twoNullExactRecovered:true};
 }
 
 function main() {
@@ -172,6 +206,28 @@ function main() {
   const padded = jointCandidates(paddedA,paddedB);
   assert.equal(strictB.length, 0);
   assert.equal(padded.compatiblePairs,0);
+  // Test the complete edit budget 0..2 deletions per original word.
+  const allA = candidates(a,byPattern,2);
+  const allB = candidates(b,byPattern,2);
+  const kind = z => Array.isArray(z.omit) ? 2 : z.omit === -1 ? 0 : 1;
+  const partsA = [0,1,2].map(n => allA.filter(z => kind(z) === n));
+  const partsB = [0,1,2].map(n => allB.filter(z => kind(z) === n));
+  assert.deepEqual(partsA.map(x => x.length),[1,45,2811]);
+  assert.deepEqual(partsB.map(x => x.length),[0,12,795]);
+  let lowest = null;
+  for (let total = 0; total <= 4 && lowest === null; total++)
+    for (let n1 = 0; n1 <= 2 && lowest === null; n1++) {
+      const n2 = total - n1;
+      if (n2 < 0 || n2 > 2) continue;
+      const firstFit = firstCompatiblePair(partsA[n1],partsB[n2]);
+      if (firstFit !== null)
+        lowest = {totalOmissions:total, firstOmissions:n1,
+          secondOmissions:n2, firstFit};
+    }
+  assert.ok(lowest !== null);
+  assert.equal(lowest.totalOmissions,4);
+  assert.equal(lowest.firstOmissions,2);
+  assert.equal(lowest.secondOmissions,2);
   const plant = positiveTest(byPattern);
   process.stdout.write(JSON.stringify({
     source:"original LP2 red headings, physical pages 3 and 27",
@@ -180,6 +236,12 @@ function main() {
     exact:{individualCandidates:[strictA.length,strictB.length],...strict},
     atMostOneNullEach:{
       individualCandidates:[paddedA.length,paddedB.length],...padded
+    },
+    withinTwoNullsPerWord:{
+      individualCandidatesByExactDeletionCount:[
+        partsA.map(x => x.length), partsB.map(x => x.length)
+      ],
+      minimumJointDeletionBudget:lowest
     },
     plantedExactInverse:plant,
     interpretation:"Finite English lexicon and shared arbitrary bijection excluded; no manuscript plaintext or real key."
