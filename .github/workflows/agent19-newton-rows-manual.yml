@@ -13,3 +13,5 @@ jobs:
         run: node sims/agent19_newton_rows_source_key_sft.cjs
       - name: Two red triads and their source-fixed 36-page transport
         run: node sims/agent19_red_triad_gap36_transport_sft.cjs
+      - name: Four seven-cycle source-grid original inverse
+        run: node sims/agent19_t6_sevencycle_grid_row_inverse_sft.cjs
