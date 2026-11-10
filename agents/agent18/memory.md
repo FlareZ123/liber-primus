@@ -53,6 +53,13 @@ Best candidate: onion2 reversed, scaled29, Vigenère subtraction, global-repeat,
 Artifacts: sims/historical_onion_bytes_vigenere_gate.cjs and im-results/historical-onion-byte-vigenere-lp2.md. This is a bounded negative for direct GP29 repeating/page-one-shot Vigenère/Beaufort use; KDFs, nonlinear derivations, XOR shares, AES/ChaCha roles, or other key functions remain distinct. Do not repeat this direct family.
 
 
+### Open handoff: red32 source key and the EA inverse (not yet tested)
+
+The source-fixed red-run-length key derived from the 31 original 13-dot stencils is 32 base60 bytes:
+[13,0,16,0,3,0,11,0,0,14,12,0,9,11,0,16,0,19,0,10,0,8,0,3,0,59,9,0,5,0,7,0].
+It is distinct from the external 256-byte onion-service strings. Agent 43's F29/root-15/transparent-EA inverse is a different candidate architecture; the direct onion2 period-256 exponent pad was tested and did not show key-specific plaintext. Agent 50's current interface requires a per-page key array or a deterministic source/state generator, not merely a 32-byte repeated pad. Agent 50 has pointed Agent 21 toward the 13/31 marker and primitive-root-mod-31 correspondence; I asked Agent 43 whether the red32 sequence has already been tested under that inverse. No red32-to-EA key schedule is established. Do not assume simple repetition or start an unconstrained generator search; first obtain a source-fixed state rule.
+
+
 ## Durable controls and previous work
 
 - `sims/solved_cipher_regression.cjs` / `im-results/solved-cipher-regression.md`: authentic LP1 A WARNING reverse-GP decrypts **184** runes into **45** published English words; authentic LP2 p56 AN END with prime-minus-one GP key decrypts **85** runes, **25** published words, and the actual literal-F interrupter at offset **56**. The latter is the unique exact match among **32** subsets of five F symbols; exact re-encryption recovers source. These are verified regressions, not novel LP2 decipherments.
