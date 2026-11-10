@@ -375,6 +375,61 @@ function hillMatrixTests() {
       positiveControls.some(control => control.matches !== control.length))
     throw new Error("Hill cipher synthetic positive control failed");
 
+  const globalCipher = corpus.pages
+    .filter(page => page.page <= 55 && page.indices.length)
+    .flatMap(page => page.indices);
+  assert.equal(globalCipher.length, 12956);
+  const globalTests = [];
+  for (const source of [
+    {name:"global row-major", key:matrix.map(row => row.map(mod29))},
+    {name:"global vertical reflection", key:matrix.slice().reverse().map(row => row.map(mod29))}
+  ]) {
+    for (const [matrixOrder, key] of [
+      ["printed", source.key],
+      ["transpose", transposeMatrix(source.key)]
+    ]) {
+      for (const operation of ["inverse", "direct"]) {
+        for (let phase = 0; phase < 5; phase++) {
+          const plain = hillTransform(globalCipher, key, phase, operation);
+          globalTests.push({
+            orientation:source.name, matrixOrder, operation, phase,
+            ...hillMetrics(plain),
+            preview:plain.slice(0, 120).map(value => corpus.translit[value]).join("")
+          });
+        }
+      }
+    }
+  }
+  globalTests.sort((a, b) => b.bigramPerRune - a.bigramPerRune);
+
+  const globalPlain = holdout.slice(100, 100 + globalCipher.length);
+  if (globalPlain.length !== globalCipher.length)
+    throw new Error("insufficient held-out global Hill control text");
+  const globalPositiveControls = [];
+  for (const source of [
+    {name:"global row-major", key:matrix.map(row => row.map(mod29))},
+    {name:"global vertical reflection", key:matrix.slice().reverse().map(row => row.map(mod29))}
+  ]) {
+    for (const [matrixOrder, key] of [
+      ["printed", source.key],
+      ["transpose", transposeMatrix(source.key)]
+    ]) {
+      for (const operation of ["inverse", "direct"]) {
+        for (let phase = 0; phase < 5; phase++) {
+          const inverseOperation = operation === "inverse" ? "direct" : "inverse";
+          const cipher = hillTransform(globalPlain, key, phase, inverseOperation);
+          const recovered = hillTransform(cipher, key, phase, operation);
+          const matches = recovered.reduce((sum, value, i) => sum + Number(value === globalPlain[i]), 0);
+          globalPositiveControls.push({orientation:source.name, matrixOrder, operation, phase,
+            matches, length:globalCipher.length});
+        }
+      }
+    }
+  }
+  if (globalPositiveControls.length !== 40 ||
+      globalPositiveControls.some(control => control.matches !== control.length))
+    throw new Error("global Hill cipher synthetic positive control failed");
+
   const matrix29 = matrix.map(row => row.map(mod29));
   const vertical29 = matrix.slice().reverse().map(row => row.map(mod29));
   const englishControls = [208, 213].map(n => hillMetrics(holdout.slice(100, 100 + n)));
@@ -393,7 +448,17 @@ function hillMatrixTests() {
     bestByPage,
     phaseZeroByPage,
     heldOutEnglishControls:englishControls,
-    positiveControls:{exact:positiveControls.filter(x => x.matches === x.length).length,total:positiveControls.length}
+    positiveControls:{exact:positiveControls.filter(x => x.matches === x.length).length,total:positiveControls.length},
+    globalContinuousStream:{
+      length:globalCipher.length,
+      lengthModulo5:globalCipher.length % 5,
+      tests:globalTests.length,
+      best:globalTests[0],
+      bestPhaseZero:globalTests.filter(test => test.phase === 0)
+        .sort((a, b) => b.bigramPerRune - a.bigramPerRune)[0],
+      heldOutEnglishControl:hillMetrics(globalPlain),
+      positiveControls:{exact:globalPositiveControls.filter(x => x.matches === x.length).length,total:globalPositiveControls.length}
+    }
   };
 }
 

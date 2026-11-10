@@ -69,7 +69,7 @@ The same 5×5 object is not only a 25-symbol sequence; it is also a literal squa
 
 Its determinant is **3 mod 29**, so it is invertible and a valid 5-symbol Hill key over the GP29 field. This is a more natural use of the 5×5 square than treating its entries only as a repeating pad. The source-fixed p7 key is row-major; p23 uses the vertically reflected matrix indicated by the five-dot mirror.
 
-Tested 40 bounded inverses: for each page, the source-fixed matrix and its transpose (row/column-vector convention), direct multiplication and inverse multiplication, and all five possible 5-symbol block phases. Incomplete leading/trailing symbols are left unchanged; no padding is guessed.
+Tested 40 page-local inverses: for each page, the source-fixed matrix and its transpose (row/column-vector convention), direct multiplication and inverse multiplication, and all five possible 5-symbol block phases. Incomplete leading/trailing symbols are left unchanged; no padding is guessed. A second, global-stream test applies either the row-major or vertically reflected matrix continuously to all 12,956 unknown runes (rather than resetting at pages), again testing transpose, direct/inverse operation and all five phases: 40 further settings.
 
 | Page | Best of 20 | Best bigram score (nats/rune) | IoC |
 |---|---|---:|---:|
@@ -80,10 +80,12 @@ These are not source-consistent settings: the two pages prefer different operati
 
 All **40/40** synthetic Hill plants recover exactly under the same matrix, orientation, operation and phase used to encrypt them. Thus the inverse is functional; the original outputs are the failure.
 
+The **global continuous-stream** interpretation also fails. The best of its 40 settings is the vertically reflected printed matrix, direct multiplication, phase 4: **−5.125289 nats/rune**, IoC **0.034485**. The best phase-zero setting is row-major printed/direct at **−5.149117**. A held-out 12,956-rune English GP control scores **−2.620232**, IoC **0.057352**. All **40/40** global synthetic controls recover exactly. Thus neither page-local use nor a single continuous global Hill stream produces plaintext.
+
 **Decision:** the direct additive pad and the 5×5 Hill-matrix interpretation are both unsupported for the p7/p23 five-dot pages. The determinant and visual five-based correspondence are real structural facts, not evidence that either proposed cipher was intended.
 
 ## Reproduction
 
-Run node sims/magic_square_5x5_gp_pad_inverse.cjs from the repository root with Node.js 22. The script reads only resources/liber-primus/lp2-corpus.json and resources/control/shakespeare_first300k.txt, asserts the square's 12 magic sums and the two original page lengths, executes the four source-fixed additive-pad models per page with 24 deterministic planted controls, then tests 40 source-oriented Hill inverses with 40 exact synthetic controls. It has no external dependencies and does not write files.
+Run node sims/magic_square_5x5_gp_pad_inverse.cjs from the repository root with Node.js 22. The script reads only resources/liber-primus/lp2-corpus.json and resources/control/shakespeare_first300k.txt, asserts the square's 12 magic sums and the two original page lengths, executes the four source-fixed additive-pad models per page with 24 deterministic planted controls, then tests 40 page-local and 40 global-continuous Hill inverses, each with 40 exact synthetic controls. It has no external dependencies and does not write files.
 
 This is intermediate evidence, not an established decryption; the authoritative results/README.md is therefore unchanged.
