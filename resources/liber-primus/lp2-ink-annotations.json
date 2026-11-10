@@ -1,0 +1,462 @@
+{
+  "schema": 1,
+  "title": "LP2 colored-rune spans and complete 10/13/23-dot punctuation",
+  "source": {
+    "repository": "cicada-solvers/Rain-3301",
+    "path": "Liber Primus 57.txt",
+    "git_blob_sha": "4d346cd5c0c85dac71624cc2ad3c100f963404bc",
+    "method": "Decode bracketed rune spans and ᛭/⁕ punctuation in 58 original page positions; validate all runes against lp2-corpus.json, correct ink of page7 first 13-dot mark using the original JPEGs"
+  },
+  "orientation": "Page-local rune offsets are zero-based and count runes only; punctuation marks are after preceding rune. ᛭⁕ is one 23-dot glyph, not two marks. Red-rune spans are independent of punctuation ink color.",
+  "counts": {
+    "runes": 13136,
+    "red": 225,
+    "large": 36,
+    "red13": 30,
+    "black13": 1,
+    "red10": 4,
+    "red23": 1
+  },
+  "pages": [
+    {
+      "page": 0,
+      "rune_count": 262,
+      "red_spans": [
+        {
+          "start": 0,
+          "length": 13,
+          "runes": "ᛋᚻᛖᚩᚷᛗᛡᚠᛋᚣᛖᛝᚳ"
+        }
+      ],
+      "large_punctuation": [
+        [
+          13,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 2,
+      "rune_count": 201,
+      "large_punctuation": [
+        [
+          201,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 3,
+      "rune_count": 217,
+      "red_spans": [
+        {
+          "start": 0,
+          "length": 16,
+          "runes": "ᛚᛄᛇᚻᛝᚳᚦᛏᚫᛄᛏᛉᚻᛏᚢᛟ"
+        },
+        {
+          "start": 119,
+          "length": 3,
+          "runes": "ᛈᛞᚦ"
+        }
+      ],
+      "large_punctuation": [
+        [
+          16,
+          13,
+          "red"
+        ],
+        [
+          119,
+          13,
+          "red"
+        ],
+        [
+          122,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 6,
+      "rune_count": 196,
+      "red_spans": [
+        {
+          "start": 71,
+          "length": 11,
+          "runes": "ᚪᛏᛉᛒᛗᚷᛡᛋᛒᛉᛇ"
+        }
+      ],
+      "large_punctuation": [
+        [
+          71,
+          13,
+          "red"
+        ],
+        [
+          82,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 7,
+      "rune_count": 208,
+      "red_spans": [
+        {
+          "start": 194,
+          "length": 14,
+          "runes": "ᛞᚩᛟᛏᚦᚫᚳᚹᛄᛉᛠᚷᛠᛗ"
+        }
+      ],
+      "large_punctuation": [
+        [
+          194,
+          13,
+          "black"
+        ],
+        [
+          194,
+          13,
+          "red"
+        ],
+        [
+          208,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 8,
+      "rune_count": 255,
+      "red_spans": [
+        {
+          "start": 0,
+          "length": 12,
+          "runes": "ᛉᛁᛉᛗᚢᛉᛗᚳᚦᛈᚩᛒ"
+        }
+      ]
+    },
+    {
+      "page": 14,
+      "rune_count": 137,
+      "large_punctuation": [
+        [
+          137,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 15,
+      "rune_count": 159,
+      "red_spans": [
+        {
+          "start": 0,
+          "length": 9,
+          "runes": "ᚠᚢᛚᛗᚪᛠᚣᛟᚪ"
+        },
+        {
+          "start": 9,
+          "length": 11,
+          "runes": "ᛚᚢᛝᚾᚳᚢᛒᚾᛏᚠᛝ"
+        }
+      ],
+      "large_punctuation": [
+        [
+          0,
+          13,
+          "red"
+        ],
+        [
+          9,
+          13,
+          "red"
+        ],
+        [
+          20,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 22,
+      "rune_count": 131,
+      "large_punctuation": [
+        [
+          131,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 23,
+      "rune_count": 213,
+      "red_spans": [
+        {
+          "start": 0,
+          "length": 16,
+          "runes": "ᚢᚪᚹᛝᚷᛉᛞᚷᛁᛒᛁᛇᛏᛒᛁᚣ"
+        }
+      ],
+      "large_punctuation": [
+        [
+          16,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 26,
+      "rune_count": 265,
+      "large_punctuation": [
+        [
+          265,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 27,
+      "rune_count": 234,
+      "red_spans": [
+        {
+          "start": 0,
+          "length": 19,
+          "runes": "ᛗᛈᚣᛚᛋᚩᚪᚫᚻᛚᛖᛇᛁᛗᛚᛚᛋᚳᛈ"
+        }
+      ],
+      "large_punctuation": [
+        [
+          19,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 32,
+      "rune_count": 121,
+      "large_punctuation": [
+        [
+          121,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 33,
+      "rune_count": 214,
+      "red_spans": [
+        {
+          "start": 0,
+          "length": 10,
+          "runes": "ᛞᛇᛉᚳᚠᛁᚪᚹᚻᚷ"
+        },
+        {
+          "start": 91,
+          "length": 8,
+          "runes": "ᛝᚦᛇᛁᚠᚳᛟᛇ"
+        }
+      ],
+      "large_punctuation": [
+        [
+          10,
+          13,
+          "red"
+        ],
+        [
+          91,
+          13,
+          "red"
+        ],
+        [
+          99,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 36,
+      "rune_count": 238,
+      "large_punctuation": [
+        [
+          99,
+          10,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 38,
+      "rune_count": 228,
+      "large_punctuation": [
+        [
+          186,
+          10,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 39,
+      "rune_count": 240,
+      "red_spans": [
+        {
+          "start": 119,
+          "length": 3,
+          "runes": "ᛡᚳᛋ"
+        }
+      ],
+      "large_punctuation": [
+        [
+          119,
+          13,
+          "red"
+        ],
+        [
+          122,
+          13,
+          "red"
+        ],
+        [
+          240,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 40,
+      "rune_count": 231,
+      "red_spans": [
+        {
+          "start": 0,
+          "length": 8,
+          "runes": "ᚠᚾᛗᚣᚷᛞᚫᚻ"
+        }
+      ]
+    },
+    {
+      "page": 49,
+      "rune_count": 66,
+      "large_punctuation": [
+        [
+          66,
+          10,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 53,
+      "rune_count": 179,
+      "red_spans": [
+        {
+          "start": 128,
+          "length": 51,
+          "runes": "ᛏᛈᚹᛇᛋᚹᛒᛇᚦᚾᚻᚷᛄᚱᛡᛞᛡᚦᚪᛁᛇᚫᛉᛚᛇᛠᛡᚪᛄᚻᚱᚦᛈᛞᛄᛝᚩᚷᚠᛇᛗᚳᚻᛞᚩᛏᚳᚢᚱᛈᚾ"
+        }
+      ],
+      "large_punctuation": [
+        [
+          179,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 54,
+      "rune_count": 232,
+      "red_spans": [
+        {
+          "start": 0,
+          "length": 9,
+          "runes": "ᚪᛗᛝᛞᛡᚦᛉᛁᛗ"
+        }
+      ],
+      "large_punctuation": [
+        [
+          9,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 55,
+      "rune_count": 76,
+      "large_punctuation": [
+        [
+          76,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 56,
+      "rune_count": 85,
+      "red_spans": [
+        {
+          "start": 0,
+          "length": 5,
+          "runes": "ᚫᛄᛟᛋᚱ"
+        }
+      ],
+      "large_punctuation": [
+        [
+          5,
+          13,
+          "red"
+        ],
+        [
+          45,
+          10,
+          "red"
+        ],
+        [
+          85,
+          13,
+          "red"
+        ]
+      ]
+    },
+    {
+      "page": 57,
+      "rune_count": 95,
+      "red_spans": [
+        {
+          "start": 0,
+          "length": 7,
+          "runes": "ᛈᚪᚱᚪᛒᛚᛖ"
+        }
+      ],
+      "large_punctuation": [
+        [
+          7,
+          13,
+          "red"
+        ],
+        [
+          95,
+          23,
+          "red"
+        ]
+      ]
+    }
+  ]
+}
