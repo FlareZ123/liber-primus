@@ -56,9 +56,9 @@ function originalKeys(){
  * Use the first sufficiently many consecutive AES or ChaCha20 bytes, taking
  * integer remainders or the explicit scaled mapping to mod29.
  */
-function streamKey(key,mode,n=TARGET_PREFIX+MAX_EXTRA+8){
+function streamKey(key,mode,n=TARGET_PREFIX+MAX_EXTRA+8,iv=Buffer.alloc(16)){
   const actual=mode.reverseKey?Buffer.from(key).reverse():key;
-  const c=crypto.createCipheriv(mode.algo,actual,Buffer.alloc(16));
+  const c=crypto.createCipheriv(mode.algo,actual,iv);
   const data=Buffer.concat([c.update(Buffer.alloc(n)),c.final()]);
   return Array.from(data,b=>mode.reducer==="mod29"?b%29:Math.floor(29*b/256));
 }
