@@ -51,7 +51,6 @@ jobs:
           node sims/outguess_lp2_keyed_probe.cjs
       - name: Preserve exact recovered payloads and summary
         if: ${{ always() && !inputs.keyed_probe }}
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: outguess-lp2-default-key
