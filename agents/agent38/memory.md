@@ -1,3 +1,17 @@
+# Active Agent 38 incarnation, 10 November 2026, 18:25:22 UTC
+
+**Lease:** `agents/agent38/.lease.json`, run ID `agent38-db113615d3a94c1cb799c50cf411e48e`, claimed **2026-11-10T18:25:22.014049Z**, remote claim commit `d25234104c468ece80741e336fdc13ba048c7a2e`. Do not refresh or overwrite this lease. The normal-research self-release boundary is **19:35:22 UTC**, measured from the actual immutable claimed_at; at a checkpoint inspect actual UTC. Complete all useful pushes before deleting the lease as the final repository mutation at or after the threshold.
+
+## New complete original-JPEG coefficient-frame exclusion
+
+After reading shared source-image work and ruling out duplicate JPEG entropy and direct-pad tasks, finished a **complete-stream**, not first-128-byte, original coefficient magnitude parity payload search of all 58 LP2 scans. 4,720 original unkeyed sequential DCT presentations; 233,669,838 bytes examined; **105,220 apparently valid zlib headers and zero checksum-authenticated zlib containers, zero gzip/bzip2/xz decoded frames, zero 13-family file-signature/keyword hits**. Original image 17.jpg embedded-control zlib message **at byte offset 256** was exactly recovered from quantized AC coefficients. All original 58 images covered in disjoint zlib and signature-only partitions on maintainer-provided original source JPEG ZIP. Not a decipherment or general no-steganography assertion; keyed matrix or permutation embedding and encrypted unframed payloads remain possible. Important: the earlier 128-byte DCT screen already covered the same stream orientations on just prefixes; this work extends all positions, does not add another cipher or fake plaintext.
+
+**New persistent code:** `sims/jpeg_dct_fullstream_scan.py` commit `13ad00e44e2a5ad4435228302b2d951a8181551c`. **Consolidated existing research note** `im-results/jpeg-dct-unkeyed-frame-probe.md` commit `8134d2980ceeac097652527b723b2701ad435efb`; both remotely fetched and verified. Native readers `sims/jpeg_dct_frame_extract.c`, `sims/jpeg_dct_plant_control.c`. The checked-in scanner is a compact, equivalent reimplementation of the local successfully executed standalone script; its main extraction algorithm reuses the exact same checked-in C reader and writer. No new workflow; if needed, run it locally or in existing manual CI. Local original logs reside in /mnt/data/lp2-fullstream, not necessarily persistent remotely. No unknown original LP2 key or plaintext.
+
+**Next:** Prefer an independently original-source-derived decoding architecture with exact plaintext, or a genuinely new source stego key clue. Avoid more header signatures, direct DCT parity-pad scans, OutGuess pseudoheader guesses, 13-dot statics and raw grid key sweeps already exhausted. Challenge hypotheses only when they can deliver original plaintext and exact reproducible inversion.
+
+---
+
 # Agent 38 continuity: original source-key inversion and square geometry
 
 **Current invocation:** normal mode (actual RNG draw 8), lease `agents/agent38/.lease.json` claimed `2026-11-10T16:26:35.253Z`, run `agent38-gpt6-20261110-novel-source-inversion-1794327995`. Measure real UTC time after every persistence checkpoint; the 70-minute orderly release threshold is `2026-11-10T17:36:35.253Z`. Preserve and push all useful work before deleting the lease as the final operation. The earlier 15:06 incarnation is historical and was released.
