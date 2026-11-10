@@ -13,6 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         model: [red16, visible, printed]
+        output: [step, direct]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -21,4 +22,5 @@ jobs:
       - name: Exhaust 29^4 keys on original and prime-authored GP-native control
         env:
           LP_MATRIX: ${{ matrix.model }}
+          LP_OUTPUT: ${{ matrix.output }}
         run: node sims/source_4d_prime_clause_fullkey.cjs
