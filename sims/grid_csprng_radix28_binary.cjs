@@ -163,6 +163,28 @@ function packBytes(bytes) {
   return digits;
 }
 /**
+ * Recover the exact candidate binary bytes when every radix28 block is
+ * a legal 24-bit integer; invalid codewords are retained only for counting.
+ * @param {number[]} ranks
+ * @param {Uint8Array} key
+ * @param {number} sign
+ * @returns {{bytes:Buffer,invalid:number}}
+ */
+function recoverBytes(ranks,key,sign){
+  const bytes=Buffer.alloc(Math.floor(ranks.length/5)*3);
+  let invalid=0;
+  for(let i=0,j=0;i+5<=ranks.length;i+=5,j+=3){
+    let n=0;
+    for(let t=0;t<5;t++)n=n*28+
+      (ranks[i+t]-sign*key[i+t]+56)%28;
+    invalid+=+(n>=CAP);
+    bytes[j]=(n>>16)&255;
+    bytes[j+1]=(n>>8)&255;
+    bytes[j+2]=n&255;
+  }
+  return {bytes,invalid};
+}
+/**
  * Construct byte-for-byte positive control with actual grid AES-CTR keys.
  * Each section begins with complete gzip bytes, then deterministic filler.
  * @returns {{ciphertext:number[][],bytes:Buffer[]}}
@@ -191,6 +213,15 @@ function plant(){
   return {ciphertext:output,bytes:plainBytes};
 }
 const synthetic=plant();
+const exactRecovered=synthetic.ciphertext.map((section,i)=>{
+  const ranks=inverseRank(section,'sorted');
+  const recovered=recoverBytes(ranks,
+    pad(KEYS.columns[i],'aes-256-ctr','mod',0),1);
+  assert.equal(recovered.invalid,0);
+  assert.deepEqual(recovered.bytes,
+    synthetic.bytes[i].subarray(0,recovered.bytes.length));
+  return recovered.bytes.length;
+});
 const positives=scan(synthetic.ciphertext),actual=scan(SECTIONS);
 const rank=positives.findIndex(x=>x.layout==='columns'&&x.algo==='aes-256-ctr'&&
   x.map==='mod'&&x.drop===0&&x.sign===1&&x.rank==='sorted'&&x.phase===0)+1;
@@ -209,7 +240,8 @@ console.log(JSON.stringify({
     source:'original grid 8 x 32-byte AES/ChaCha keys',
     limitations:'direct grid stream key, zero nonce, source-order section restarts; no hidden KDF/variable widths'},
   positive:{trueCandidateRank:rank,trueCandidate:truth,best:positives.slice(0,3),
-    firstSourceBytes:synthetic.bytes[0].subarray(0,8).toString('hex')},
+    firstSourceBytes:synthetic.bytes[0].subarray(0,8).toString('hex'),
+    exactByteRecovery:exactRecovered.reduce((a,b)=>a+b,0)},
   original:{top:actual.slice(0,8),zeroTraining:actual.filter(x=>x.trainOverflows===0).length,
     zeroHeldout:actual.filter(x=>x.heldOverflows===0).length,
     zeroBoth:actual.filter(x=>x.heldOverflows===0&&x.trainOverflows===0).length},
