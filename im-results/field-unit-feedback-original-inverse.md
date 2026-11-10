@@ -157,3 +157,17 @@ The integrated candidates' small unigram excess was further tested with a **sepa
 All scores are nats per original **unreserved** rune and exclude positions where the hypothetical original special markers force the plaintext by construction. The *entire* output register, including the marker emissions, supplies trigram history. The frozen original candidates remain effectively at the source-conditional uniform baseline, whereas the planted correct key produces roughly two nats of contextual language signal per rune. The first hundred GP transliteration labels of the original L2 and L5 reconstructions are unrecognizable as continuous English; their full decoded candidate streams have no independently authenticated plaintext content.
 
 The script now computes this discriminant and exact re-encryption for **all eight delay-specific fitted original keys**, and prints the comparable source-positive results. The weak first-order residuals are appropriately classified as non-recoveries; a plausible cipher solution must substantially exceed this source-controlled language gap.
+
+
+### Key-free marker reachability under multi-tap plaintext feedback
+
+The integrated inverse also records a source-exact **causal reachability diagnostic**. Treat each original observed zero-step as a *hypothetical* GP EA anchor; alternatively admit all 265 original exact-output contextual marker locations (EA plus conditional E/L five-back and S six-back mappings). For a proposed feedback requiring all states `P[i-L1]`, `P[i-L2]`, etc., mark `P[i]` as directly known from the model's observed marker if reserved, or propagate known status only after **all** its feedback inputs are already known. Use the original entire 12,956-rune concatenation, independent of fitted key parameters.
+
+| Known original marker set | Initial known sites | One-tap L5 reachability | One-tap L6 | Two taps (1,5) | Two taps (1,6) | Two taps (5,6) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| EA zero-steps only | 86 | **12,061** | **12,218** | 86 | 86 | 86 |
+| All conditional contextual markers | 265 | **12,708** | **12,810** | 272 | 266 | **288** |
+
+These are **determined original positions under single-pass forward substitution**; the last contextual two-tap (5,6) result reaches only **148 of the 6,429** original heldout-page runes. The failure of such propagation alone says that the sparse candidate marker locations cannot directly synchronize a genuinely multi-input recurrence throughout the manuscript without some extra source state, further known plaintext, or a different mechanism.
+
+This diagnostic is deliberately **not a theorem that the missing symbols are cryptographically unrecoverable**: correlated unknown seeds might still be constrained by language and other external information, and a degenerate/noninjective key rule might reduce the required dependencies. The 86 zero outputs bypass the nonzero exponent equation, so they furnish plaintext reset values but do not themselves supply ordinary linear equations on unknown preceding values. The tool's `stateReachability` output preserves the original input counts and the precise declared local-propagation rule.
