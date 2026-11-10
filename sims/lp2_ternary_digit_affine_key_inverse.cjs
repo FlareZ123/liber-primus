@@ -149,6 +149,95 @@ for (let run = 0; run < TRIALS; run++) {
 const sourceGain = source.score - source.baseline;
 const more = controls.filter(gain => gain >= sourceGain).length;
 assert.equal(more, 21);
+
+/**
+ * Full additive separable model:
+ * K(i) = b + sum_j g_j[d_j(i)], g_j(0)=0,
+ * with BOTH g_j(1) and g_j(2) unrestricted (16 independent coefficients).
+ * The triple differences make all other g_k cancel before likelihood fitting.
+ * @param {number[]} cipher
+ */
+function invertFullTritTables(cipher) {
+  assert.equal(cipher.length, N);
+  const keys = [], gaps = [];
+  for (let j = 0; j < 8; j++) {
+    const step = 3 ** j, width = 3 * step;
+    const histogram = Array.from({length:29}, () => new Uint32Array(29));
+    for (let start = 0; start < N; start += width)
+      for (let t = 0; t < step; t++) {
+        const u = mod(cipher[start + step + t] - cipher[start + t]);
+        const v = mod(cipher[start + 2 * step + t] - cipher[start + t]);
+        histogram[u][v]++;
+      }
+    const candidates = [];
+    for (let u = 0; u < 29; u++)
+    for (let v = 0; v < 29; v++) {
+      let score = 0;
+      for (let x = 0; x < 29; x++)
+        for (let y = 0; y < 29; y++)
+          if (histogram[x][y]) score += histogram[x][y] *
+            tripleLog[mod(x-u)][mod(y-v)];
+      candidates.push({u, v, score});
+    }
+    candidates.sort((a, b) => b.score - a.score);
+    keys.push([candidates[0].u, candidates[0].v]);
+    gaps.push(candidates[0].score - candidates[1].score);
+  }
+  let score = -Infinity, phase = -1;
+  for (let b = 0; b < 29; b++) {
+    let value = 0;
+    for (let i = 0; i < N; i++) {
+      let p = cipher[i] - b;
+      for (let j = 0; j < 8; j++)
+        if (digit[j][i]) p -= keys[j][digit[j][i] - 1];
+      value += logProb[mod(p)];
+    }
+    if (value > score) {score = value; phase = b;}
+  }
+  const plaintext = cipher.map((r, i) => {
+    let v = r - phase;
+    for (let j = 0; j < 8; j++)
+      if (digit[j][i]) v -= keys[j][digit[j][i] - 1];
+    return mod(v);
+  });
+  return {keys, gaps, phase, score,
+    baseline:cipher.reduce((sum, r) => sum + logProb[r], 0), plaintext};
+}
+/** @param {number[]} plaintext @param {number[][]} tables @param {number} phase */
+function encipherFullTritTables(plaintext, tables, phase) {
+  return plaintext.map((r, i) => {
+    let v = r + phase;
+    for (let j = 0; j < 8; j++)
+      if (digit[j][i]) v += tables[j][digit[j][i] - 1];
+    return mod(v);
+  });
+}
+const fullSecret = [[15,9],[22,16],[5,25],[7,3],
+  [13,17],[3,14],[0,24],[27,11]];
+const fullCipher = encipherFullTritTables(shakespeare, fullSecret, secretPhase);
+const fullPlant = invertFullTritTables(fullCipher);
+assert.deepEqual(fullPlant.keys, fullSecret);
+assert.equal(fullPlant.phase, secretPhase);
+assert.deepEqual(fullPlant.plaintext, shakespeare);
+assert.deepEqual(encipherFullTritTables(fullPlant.plaintext, fullPlant.keys,
+  fullPlant.phase), fullCipher);
+const fullSource = invertFullTritTables(original);
+assert.deepEqual(encipherFullTritTables(fullSource.plaintext, fullSource.keys,
+  fullSource.phase), original);
+const fullRandom = random(0x331573), fullControls = [];
+for (let run = 0; run < 20; run++) {
+  const shuffled = original.slice();
+  for (let i = N - 1; i > 0; i--) {
+    const j = fullRandom() % (i + 1);
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  const result = invertFullTritTables(shuffled);
+  fullControls.push(result.score - result.baseline);
+}
+const fullGain = fullSource.score - fullSource.baseline;
+const fullMore = fullControls.filter(gain => gain >= fullGain).length;
+assert.equal(fullMore, 17);
+
 const compact = x => ({
   keys:x.keys, phase:x.phase,
   scorePerRune:x.score / N,
@@ -174,5 +263,28 @@ console.log(JSON.stringify({
     minimum:Math.min(...controls), maximum:Math.max(...controls),
     nullAtLeastOriginal:more, plusOneTail:(more+1)/(TRIALS+1)
   },
-  status:"Source-native conditional negative; no unknown LP2 plaintext or key recovered"
+  arbitraryThreeStateTritTables:{
+    model:"C(i) = P(i) + b + sum_j g_j[d_j(i)] (mod29); g_j(0)=0; 16 unrestricted table values",
+    original:{
+      keys:fullSource.keys, phase:fullSource.phase,
+      scorePerRune:fullSource.score/N,
+      rawScorePerRune:fullSource.baseline/N,
+      logLikelihoodGain:fullGain,
+      perAxisRunnerUpGaps:fullSource.gaps
+    },
+    sourceMatchedShakespearePlant:{
+      plantedKeys:fullSecret, plantedPhase:secretPhase,
+      recoveredKeys:fullPlant.keys, recoveredPhase:fullPlant.phase,
+      exactRecoveredRunes:N, exactReencryption:true,
+      scorePerRune:fullPlant.score/N,
+      logLikelihoodGain:fullPlant.score-fullPlant.baseline
+    },
+    originalInventoryShuffle:{
+      trials:20, seed:0x331573,
+      meanGain:fullControls.reduce((a,b)=>a+b,0)/20,
+      minimum:Math.min(...fullControls), maximum:Math.max(...fullControls),
+      nullAtLeastOriginal:fullMore, plusOneTail:(fullMore+1)/21
+    }
+  },
+  status:"Both source-native conditional negatives; no unknown LP2 plaintext or key recovered"
 }, null, 2));

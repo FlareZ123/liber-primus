@@ -1,6 +1,6 @@
 # 3-adic coordinate additive inverse on the original 81² source square
 
-**Agent 11, 10 November 2026. Classification: a source-anchored, bounded negative for an exact reversible GP29 cipher, with an exact positive original-layout source-language recovery; no unknown Liber Primus plaintext or historical key recovered.** Reproducer: [lp2_ternary_digit_affine_key_inverse.cjs](../sims/lp2_ternary_digit_affine_key_inverse.cjs).
+**Agent 11, 10 November 2026. Classification: source-anchored, bounded negatives for two exact reversible GP29 cipher families, with an exact positive original-layout source-language recovery; no unknown Liber Primus plaintext or historical key recovered.** Reproducer: [lp2_ternary_digit_affine_key_inverse.cjs](../sims/lp2_ternary_digit_affine_key_inverse.cjs).
 
 ## Mechanism and exact key-recovery reduction
 
@@ -26,6 +26,21 @@ The constant and every other ternary-digit coefficient disappear. Construct `T[u
 The native-language plant uses 6,561 *consecutive* real GP-encoded Shakespeare runes, not independently sampled plaintext letters. Its smallest single-axis first-versus-second candidate separation is **66.35 nats**, compared with only **1.04–14.71 nats** across the eight original axes. This exposes the original data's much weaker source-conditioned coefficient signal.
 
 To calibrate the fitted full-source score, exactly preserve the original 6,561 ciphertext glyph inventory, Fisher–Yates shuffle that inventory forty independent seeded times (xorshift32 seed 33011553), and **refit all eight coefficients plus b on each shuffled surrogate**. The original 418.431-nat gain is exceeded or equalled in **21/40** shuffles; corrected Monte Carlo upper-tail **22/41 ≈ 0.536585**. The test therefore fails even a straightforward original-inventory-conditioned distinguishability screen. The positive plant independently meets the stronger requirement of exact same-key re-encryption.
+
+## Stronger source-family extension: unrestricted ternary digit tables
+
+The previous affine coefficient family sets `g_j(1)=a_j` and `g_j(2)=2a_j`. A strict superset lets **each of the eight source trits have any independent additive GP29 three-state table** `g_j(0)=0,` `g_j(1)=u_j,` `g_j(2)=v_j`; together with the free constant b this is **17 secret GP29 values** (16 independent table entries plus b). The ciphertext remains exactly reversible under every one of the 29¹⁷ possible choices. This extension is nonlinear in the numerical trit value but separable between the eight trits.
+
+The same exact triple subtraction removes every other secret table. Maximizing the triple marginal `Σ log T[U-u_j,V-v_j]` across the **841 possible pairs** for each independent trit recovers all 16 candidate parameters without enumerating the astronomical joint key space. Recover b from the source-native unigram model after this table fit.
+
+| Source-original or positive control | Recovered model score | Gain over unmodified source |
+| --- | ---: | ---: |
+| Original LP2 6,561-rune prefix, all eight unrestricted table pairs and constant refitted | **−4.259045 nats/rune** | **375.749 nats** |
+| Shakespeare source-native plant, hidden table pairs `[[15,9],[22,16],[5,25],[7,3],[13,17],[3,14],[0,24],[27,11]]`, constant 8 | **−2.944064 nats/rune** | **8,805.967 nats**; **all 16 parameters and phase recovered exactly**, **6,561/6,561** runes inverted and re-enciphered |
+
+The original source's inferred table pairs are `[[25,3],[19,1],[3,15],[23,8],[3,8],[1,18],[5,9],[19,10]]` and constant **14**. The weakest of its eight table-entry fit margins is only **0.391 nats**, whereas the positive Shakespeare source's smallest is **9.751 nats**. Source-inventory-preserving, freshly fitted shuffles (20 runs, independent fixed xorshift32 seed `0x331573`) achieve an equal-or-greater GP fit gain **17/20** times, plus-one upper-tail **18/21 ≈ 0.857143**.
+
+This directly screens the broader **all-secret, stationary per-trit additive-table family** under the stated plaintext prior. It does not rule out interactions between trits, hidden alphabet relabeling, a different source language, source-key changes, or a distinct 81² interpretation. In particular, the fitted original output is far from the authentic-plaintext control despite the extra freedom. The code runs both the affine and the unrestricted-table inversions from the same original source corpus, with independent genuine-language planted recoveries.
 
 ## Scope and research decision
 
