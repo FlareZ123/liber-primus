@@ -6,7 +6,7 @@ permissions:
 jobs:
   aes128-grid:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -18,3 +18,6 @@ jobs:
         run: node sims/fibonacci_grid_selector_rank28.cjs
       - name: Source-key AES128 with keyless within-word insertion drift
         run: node sims/fibonacci_grid_keyless_null_word_inverse.cjs
+
+      - name: Original Latin GP29 two-register marker inverse and native-language plant
+        run: node sims/dual_marker_latin_field_inverse.cjs
