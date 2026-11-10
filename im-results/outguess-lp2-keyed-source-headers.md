@@ -53,6 +53,16 @@ This pattern holds for **all 22 tested passwords** (the artifact includes the en
 
 The previously extracted **16 default-password 58,152-byte blobs** all shared reported seed41408 and length58152, a related anomaly now strengthened by the explicit many-password original-image test. This does not prove every candidate blob is necessarily accidental or that the old images cannot hide deliberately encrypted binary data. It does expose a reproducible systematic false-positive channel that defeats any claim based solely on OutGuess success and claimed header length.
 
+## Independent payload-free synthetic JPEG falsifies the header detector
+
+The missing negative control in the original-image tests was a truly fresh image that **provably could not contain a Cicada-embedded message**. A deterministic C generator created an original-independent **2,400×3,600 RGB JPEG**, pixel values from a fixed xorshift seed and coordinate-dependent gradients, using libjpeg. This synthetic source is produced solely by code in [jpeg_synthetic_control.c](../sims/jpeg_synthetic_control.c), with SHA-256 **4b98fdb604ce7017680c7094a6fc646562987f575241bfdbf94052ee7f88d871**. No payload was ever embedded in that JPEG.
+
+**All eight tested passwords nevertheless yielded a successful OutGuess extraction header with a positive claimed length and an output file of exactly that length.** The eight synthetic-image password/seed/length pairs were: 22→42493/11413, 79→36896/11488, 2262→539/4654, 638→61458/29030, 3301→37842/55907, fibonacci→41905/6631, totient→20470/41448, CICADA3301→21411/12069. These differ from the original LP2 same-password header pairs; the existence of these **eight successful false-positive outputs from a known clean image** is decisive. It proves the implementation's apparent header success is **not sufficient evidence of an embedded payload**.
+
+Separately, a newly embedded 35-byte real message with password79 into the original source 17.jpg yielded the correct genuine 35-byte output and a distinct real header (seed242, length35). Thus the same extractor detects authentic embeds and generates false headers on known payload-free images. This comparison eliminates the possibility that merely matching claimed lengths under OutGuess is an authentication method.
+
+Executed source and complete positive/negative outputs: [synthetic detector](../sims/outguess_header_synthetic_probe.cjs), [completed manual GitHub Actions run 42782492897](https://github.com/FlareZ123/liber-primus/actions/runs/42782492897), [machine output artifact](https://github.com/FlareZ123/liber-primus/actions/runs/42782492897/artifacts/13745984522). The source JPEG and historical LP2 images remain unchanged.
+
 ## Scope and research consequence
 
 No original LP2 hidden PGP-signed message or readable nonempty content was recovered under these 22 exact passwords. Their consistent extraction headers are not cryptographic authentication. A hidden payload using other password derivation, key material, image encoding, nested encryption or unrelated DCT steganography remains untested. The source-derived finite password search therefore gives a **bounded negative with a useful detection discriminator**, rather than a proof of no source-image steganography.
