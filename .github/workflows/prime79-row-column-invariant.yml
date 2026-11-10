@@ -1,0 +1,14 @@
+name: LP2 prime-79 row and column pad invariant
+on:
+  workflow_dispatch:
+jobs:
+  exact-79-row-column-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Measure original 79-column invariant and inverse controls
+        run: node sims/prime79_row_column_cipher_invariant.cjs
