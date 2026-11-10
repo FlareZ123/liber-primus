@@ -429,6 +429,166 @@ function pairExperiment(label,A,cipher,known=null) {
   return output;
 }
 
+
+/**
+ * An alternative 29-symbol output architecture:
+ *    C_t = P_t + e0 * A^t * S (mod 29).
+ * This is NOT the same as the transparent-EA predecessor-step cipher.
+ * Every rune, including printed page heads and repeated ciphertexts,
+ * is directly enciphered and must be exactly recovered.
+ * Source-native unigrams and 29x29 adjacent GP bigrams are scored over
+ * all 29^4 initial states with an exact Fourier convolution.
+ */
+const directPairFreq=Array.from({length:P},()=>new Float64Array(P).fill(0.5));
+if(latin) {
+  for(const [index,count] of latin.b)
+    directPairFreq[Math.floor(index/P)][index%P]+=count;
+} else {
+  for(let i=1;i<nativeSymbols.length;i++)
+    directPairFreq[nativeSymbols[i-1]][nativeSymbols[i]]++;
+}
+const directPairTotal=directPairFreq.reduce(
+  (s,row)=>s+row.reduce((a,b)=>a+b,0),0);
+const directPairLog=directPairFreq.map(row=>
+  Array.from(row,v=>Math.log(P*P*v/directPairTotal)));
+/**
+ * Fourier transform of g(c-k,d-l): select the single source bigram
+ * kernel, transform it once and apply the observed ciphertext phase.
+ * @returns {Spectrum}
+ */
+function directPairKernel() {
+  const re=new Float64Array(P*P),im=new Float64Array(P*P);
+  const tempRe=new Float64Array(P*P),tempIm=new Float64Array(P*P);
+  for(let m=0;m<P;m++)for(let y=0;y<P;y++) {
+    let x=0,z=0;
+    for(let a=0;a<P;a++) {
+      const phase=m*a%P,weight=directPairLog[a][y]/P;
+      x+=weight*cos[phase];z+=weight*sin[phase];
+    }
+    tempRe[m*P+y]=x;tempIm[m*P+y]=z;
+  }
+  for(let m=0;m<P;m++)for(let n=0;n<P;n++) {
+    let x=0,z=0;
+    for(let b=0;b<P;b++) {
+      const index=m*P+b,phase=n*b%P,
+        w=tempRe[index],v=tempIm[index];
+      x+=(w*cos[phase]-v*sin[phase])/P;
+      z+=(w*sin[phase]+v*cos[phase])/P;
+    }
+    re[m*P+n]=x;im[m*P+n]=z;
+  }
+  return {re,im};
+}
+const directKernel=process.env.GP_DIRECT==="1" ? directPairKernel() : null;
+/** @param {number[]} cipher @param {number[][]} V @param {number[]} state */
+function directPlain(cipher,V,state) {
+  return cipher.map((c,t)=>mod(c-matrixKey(V,t,state)));
+}
+/** @param {number[]} plain @param {number[][]} V @param {number[]} state */
+function directCipher(plain,V,state) {
+  return plain.map((c,t)=>mod(c+matrixKey(V,t,state)));
+}
+function directLikelihood(cipher,V,state,train,pair) {
+  let sum=0,count=0;
+  for(let t=0;t<N;t++) {
+    if(Boolean(isTrain[t])!==train)continue;
+    if(pair) {
+      if(t===0||isHead[t]||Boolean(isTrain[t-1])!==train)continue;
+      const u=mod(cipher[t-1]-matrixKey(V,t-1,state));
+      const v=mod(cipher[t]-matrixKey(V,t,state));
+      sum+=directPairLog[u][v];count++;
+    } else {
+      sum+=score29[mod(cipher[t]-matrixKey(V,t,state))];count++;
+    }
+  }
+  return {sum,mean:sum/count,count};
+}
+/**
+ * A 1-ridge observation induces at most 29 Fourier frequencies in
+ * full 4D state space, independent of any secret key.
+ */
+function directUnigramSpectrum(cipher,V) {
+  const re=new Float64Array(STATES),im=new Float64Array(STATES);
+  let eligible=0;
+  for(let t=0;t<N;t++) {
+    if(!isTrain[t])continue;
+    const f=precomputed[28+cipher[t]],v=V[t];
+    for(let m=0;m<P;m++) {
+      const index=(m*v[0]%P)+P*((m*v[1]%P)+P*((m*v[2]%P)+P*(m*v[3]%P)));
+      re[index]+=f.re[m];im[index]+=f.im[m];
+    }
+    eligible++;
+  }
+  return {re,im,eligible};
+}
+/**
+ * For pair (c,d), Fourier coefficient is G(m,n)*exp[-2πi
+ * (m*c+n*d)/29]. Source kernel G itself is independently computed
+ * using +2πi GP plaintext phase. Every coefficient is added on the
+ * linear span m*v_(t-1)+n*v_t in the full F29^4 key space.
+ */
+function directBigramSpectrum(cipher,V) {
+  assert.ok(directKernel);
+  const re=new Float64Array(STATES),im=new Float64Array(STATES);
+  let eligible=0;
+  for(let t=1;t<N;t++) {
+    if(!isTrain[t]||!isTrain[t-1]||isHead[t])continue;
+    const a=V[t-1],b=V[t],x=cipher[t-1],y=cipher[t];
+    for(let m=0;m<P;m++)for(let n=0;n<P;n++) {
+      const index=(m*a[0]+n*b[0])%P+
+        P*((m*a[1]+n*b[1])%P+
+        P*((m*a[2]+n*b[2])%P+
+        P*((m*a[3]+n*b[3])%P)));
+      const z=m*P+n,phase=(m*x+n*y)%P;
+      const u=directKernel.re[z],v=directKernel.im[z];
+      re[index]+=u*cos[phase]+v*sin[phase];
+      im[index]+=v*cos[phase]-u*sin[phase];
+    }
+    eligible++;
+  }
+  return {re,im,eligible};
+}
+function directExperiment(label,A,cipher,knownState=null) {
+  const V=vectors(A),summary={};
+  for(const pair of [false,true]) {
+    const sparse=pair?directBigramSpectrum(cipher,V):
+      directUnigramSpectrum(cipher,V);
+    const scores=fourierSynthesis(sparse.re,sparse.im);
+    for(const state of [[0,0,0,0],[11,7,22,3],[5,12,19,27]]) {
+      const d=directLikelihood(cipher,V,state,true,pair).sum;
+      assert.ok(Math.abs(d-scores[stateIndex(state)])<1e-5,
+        "Exact Fourier score must reproduce direct full-GP arithmetic");
+    }
+    const best=topRanks(scores,6);
+    const top=best[0].state;
+    const decoded=directPlain(cipher,V,top);
+    assert.deepEqual(directCipher(decoded,V,top),cipher,
+      "Original ciphertext must exactly re-encrypt from found state");
+    const output={
+      initialState:top,
+      eligibleOriginalTraining:sparse.eligible,
+      train:directLikelihood(cipher,V,top,true,pair),
+      frozenHeldout:directLikelihood(cipher,V,top,false,pair),
+      heldoutIoC:coincidence(decoded.slice(trainCount)),
+      statesExhausted:STATES,
+      wholeCipherExactlyReencrypted:N,
+      firstHeldoutGP:decoded.slice(trainCount,trainCount+40)
+    };
+    if(knownState) {
+      const trueValue=scores[stateIndex(knownState)];
+      const rank=1+scores.reduce((sum,value)=>
+        sum+Number(value>trueValue+1e-7),0);
+      assert.equal(rank,1,"Native GP source plant must recover true key");
+      assert.deepEqual(directPlain(cipher,V,knownState),plantedPlain);
+      output.nativePlant={secret:knownState,rank,
+        GPPlaintextExactlyRestored:N,
+        heldout:directLikelihood(cipher,V,knownState,false,pair)};
+    }
+    summary[pair?"gp29Bigram":"gp29Unigram"]=output;
+  }
+  return {sourceMatrix:label,sourceA:A,results:summary};
+}
+
 const sourcePlant=latinHoldout || nativeSymbols;
 const plantedPlain=Array.from({length:N},(_,t)=>sourcePlant[t%sourcePlant.length]);
 const report={classification:"Exhaustive 4D F29 source-matrix inverse (not an LP2 solution)",register:REGISTER,
@@ -447,5 +607,20 @@ for(const source of matrices) {
   const plantedBigram=pairExperiment(source.label,source.A,plantedCipher,secret);
   report.originalAndControls.push({original:actual,blindSourceNativeControl:control,
     originalBigram,blindSourceNativeBigramControl:plantedBigram});
+}
+if(process.env.GP_DIRECT==="1") {
+  report.classification="Exhaustive direct 29-symbol additive 4D cipher, different from transparent EA step model";
+  report.assumption="C[t]=(P[t]+first(A^t*S)) mod29, continuously over all 12956 runes";
+  report.originalAndControls=[];
+  for(const source of matrices) {
+    const V=vectors(source.A);
+    const secret=source.label === "red16-prime-sum-spiral" ? [11,7,22,3] :
+      source.label === "red16-visible-count-spiral" ? [1,9,18,27] : [5,12,19,27];
+    const plantedCipher=directCipher(plantedPlain,V,secret);
+    assert.deepEqual(directPlain(plantedCipher,V,secret),plantedPlain);
+    const original=directExperiment(source.label,source.A,C);
+    const blindNativeControl=directExperiment(source.label,source.A,plantedCipher,secret);
+    report.originalAndControls.push({original,blindNativeControl});
+  }
 }
 process.stdout.write(JSON.stringify(report,null,2)+"\n");
