@@ -129,21 +129,23 @@ function main() {
   const references=[
     "resources/control/shakespeare_first300k.txt",
     "resources/control/gibran_prophet_58585.txt",
+    "resources/liber-primus/lp1-plaintext-reference.txt",
+    "resources/control/emerson_essays_2944.txt",
     ...process.argv.slice(2),
   ];
   const output=[];
   for(const name of references) {
     const filename=path.isAbsolute(name)?name:abs(name);
     const source=toGematria(fs.readFileSync(filename,"utf8"));
-    if(source.length<cipher.length) {
-      output.push({reference:name,gpRunes:source.length,bookScan:"source shorter than book"});
-      continue;
-    }
-    const whole=locate(observed,source);
-    const sectionResults=sectionBounds.map((s)=>({
-      section:s.name,runes:s.hi-s.lo,
-      ...locate(observed.slice(s.lo,s.hi),source),
-    }));
+    const whole=source.length>=cipher.length
+      ? locate(observed,source) : "source shorter than book";
+    const sectionResults=sectionBounds.map((s)=>{
+      const target=observed.slice(s.lo,s.hi);
+      return {section:s.name,runes:target.length,
+        ...(source.length>=target.length
+          ? locate(target,source)
+          : {status:"source shorter than section"})};
+    });
     const controls=[1000,10000,20000]
       .filter((i)=>i+cipher.length<=source.length)
       .map((i)=>plant(source,i));
