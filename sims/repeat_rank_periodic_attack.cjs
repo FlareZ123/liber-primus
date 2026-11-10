@@ -229,26 +229,29 @@ function modPow(value,exponent,prime){
  * @param {number[]} sequence @param {number} prime
  */
 function linearComplexity(sequence,prime){
-  const C=[1],B=[1];
-  let L=0,shift=1,scale=1;
-  for(let t=0;t<sequence.length;t++){
-    let discrepancy=sequence[t]%prime;
-    for(let j=1;j<=L;j++)
-      discrepancy=(discrepancy+(C[j]||0)*(sequence[t-j]%prime))%prime;
-    if(discrepancy===0){shift++;continue;}
+  const size=sequence.length;
+  const C=new Array(size+1).fill(0),B=new Array(size+1).fill(0);
+  C[0]=B[0]=1;
+  let degree=0,scale=1,lastUpdate=-1;
+  for(let t=0;t<size;t++){
+    let discrepancy=0;
+    for(let j=0;j<=degree;j++)
+      discrepancy=(discrepancy+C[j]*(sequence[t-j]%prime))%prime;
+    if(discrepancy===0)continue;
     const old=C.slice();
     const factor=discrepancy*modPow(scale,prime-2,prime)%prime;
-    for(let j=0;j<B.length;j++){
+    const shift=t-lastUpdate;
+    for(let j=0;j+shift<=size;j++){
       const at=j+shift;
-      C[at]=((C[at]||0)-factor*B[j]+prime*prime)%prime;
+      C[at]=((C[at]-factor*B[j])%prime+prime)%prime;
     }
-    if(2*L<=t){
-      L=t+1-L;
-      B.length=0;B.push(...old);
-      scale=discrepancy;shift=1;
-    }else shift++;
+    if(2*degree<=t){
+      degree=t+1-degree;
+      for(let j=0;j<=size;j++)B[j]=old[j];
+      scale=discrepancy;lastUpdate=t;
+    }
   }
-  return L;
+  return degree;
 }
 /** @param {number[][]} material @param {"linear"|"circular"} model */
 function feedbackRecurrence(material,model){
