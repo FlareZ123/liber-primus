@@ -173,6 +173,57 @@ function pageAffineAdditive(black, clock, allowed) {
   return impossible.sort((a,b) => a-b);
 }
 
+
+/**
+ * Original p17 three-singleton counterexample even if any subset of
+ * ciphertext Fehu F=0 skips the affine key clock (as in solved p56).
+ * @param {Word[]} words
+ */
+function literalFPage17AffineCore(words) {
+  const source = corpus.pages.find(p => p.page === 17);
+  assert.ok(source);
+  const positions = [113,188,204], cipher = [17,16,4];
+  const witness = positions.map((x,i) => {
+    const w = words.find(w => w.page === 17 &&
+      w.pageRuneIndex === x && w.sequence.length === 1 && !w.red);
+    assert.ok(w);
+    assert.equal(w.rune,cipher[i]);
+    return {page:17,localRuneOffset:x,rune:corpus.runes[w.rune],gpIndex:w.rune};
+  });
+  const fehu = source.indices.flatMap((v,i) => v === 0 ? [i] : []);
+  assert.equal(fehu.length,12);
+  assert.deepEqual(fehu.filter(x => x>113 && x<188),[187]);
+  assert.deepEqual(fehu.filter(x => x>188 && x<204),[]);
+  const mod = n => ((n%29)+29)%29;
+  const cases=[];
+  for (const skip of [false,true]) {
+    const d12=skip?74:75;
+    const target=skip?11:14;
+    const residues=new Set();
+    let solutions=0;
+    for (const p1 of [3,10,24]) for (const p2 of [3,10,24])
+      for (const p3 of [3,10,24]) {
+        residues.add(skip?mod(2*p2-p1-p3):
+          mod(16*(p2-p1)-17*(p3-p2)));
+        for (let a=0;a<29;a++)
+          if (mod(p2-p1+a*d12)===mod(16-17) &&
+              mod(p3-p2+16*a)===mod(4-16))solutions++;
+      }
+    assert.ok(!residues.has(target));
+    assert.equal(solutions,0);
+    cases.push({skipAt187:skip,target,attainableResidues:residues.size,solutions});
+  }
+
+  // Independent synthetic p17 three-singleton A/I/O ciphertext with exact
+  // inverse under a planted affine slope and one nonconsuming F.
+  const plain=[24,10,3], slope=7, intercept=11;
+  const planted=plain.map((v,i)=>mod(v+slope*(positions[i]-(i?1:0))+intercept));
+  const inverted=planted.map((v,i)=>mod(v-slope*(positions[i]-(i?1:0))-intercept));
+  assert.deepEqual(inverted,plain);
+  return {witness,allOriginalFehu:fehu,betweenWitnesses:[187],
+    cases,plantedPositive:{plain,planted,inverted,slope,intercept,skipAt187:true}};
+}
+
 function originalGate(words) {
   const all = words.filter(w => w.sequence.length === 1);
   const black = all.filter(w => !w.red);
@@ -241,7 +292,8 @@ function originalGate(words) {
   assert.ok(byPageAffine.runeAIO.includes(4));
   return {
     allSingletons:all.length, blackSingletons:black.length,
-    outcomes, witnesses, byPageAdditive, byPageAffine
+    outcomes, witnesses, byPageAdditive, byPageAffine,
+    literalFCore:literalFPage17AffineCore(words)
   };
 }
 

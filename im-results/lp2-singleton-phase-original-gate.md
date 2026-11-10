@@ -1,5 +1,7 @@
 # One-rune words exclude page-reused phase substitution under literal English spacing
 
+This study extends the earlier [all-secret singleton-word capacity and word-period analysis](word-start-reset-and-periodicity.md#exact-one-rune-word-capacity-for-arbitrary-secret-alphabets), which already established 83 original singleton words, generic book/section/page key bounds, and arbitrary page-word phase limits. The additional contribution here is the black-ink-specific four-clock and fixed-GP numerical tests with independent page keys, plus the new literal-Fehu-key-skip three-word certificate below. These are bounded mechanism exclusions, never an asserted decryption.
+
 **Original-input necessary condition, 10 November 2026.** The 55 rune-bearing, still-unsolved LP2 pages contain 12,956 runes in 2,896 canonical words. There are 83 one-rune words, of which **81 are black-ink** under the repository's independent ink annotation. The conclusions below are conditional on interpreting each printed one-rune word as a one-letter word of English plaintext. This is an exact exclusion of a specified cipher family, **not** a recovered original plaintext, historical key, or evidence that printed spaces are truly preserved.
 
 ## What the condition proves
@@ -58,6 +60,29 @@ Enumerating every period 1..256 with **all 81 original black singleton words** g
 Even after allowing a distinct *affine slope and offset per page*, **eight of 40** pages containing black one-rune words are individually impossible with A/I/O on the page-rune clock; **six of 40** are individually impossible on the page-word clock. Every candidate slope and intercept in F29 was enumerated. In contrast, an arbitrary *page-specific additive period-79 phase table* has no contradiction in these singleton observations alone. The latter is only lack of a necessary-condition failure, not evidence that the cipher works.
 
 Numeric differences of A/I/O GP indices rule out additive output only. They do not constrain the same-per-page input symbols under an arbitrary page-specific secret permutation, and neither result survives arbitrary state feedback or reinterpreted word boundaries.
+
+## Page 17: three original singleton words reject every literal-Fehu affine-key skip mask
+
+The authentic solved LP2 p56 decryption skips key advancement at one **literal Fehu (F=0)** ciphertext rune. To test this actual mechanism as generously as possible, permit **any subset** of the original Fehu runes on each unsolved page to be literal and nonconsuming. Also permit completely independent affine keystream parameters \`K_(p,t)=a_p*t+b_p mod29\` on every physical page. Assume original one-rune words are GP A/I/O and their visible single-rune boundaries are authentic.
+
+The following three **black** one-rune words on original physical p17 already falsify the family:
+
+| Physical p17 local rune offset | Source glyph | GP index |
+| ---: | --- | ---: |
+| 113 | ᛒ | 17 |
+| 188 | ᛏ | 16 |
+| 204 | ᚱ | 4 |
+
+There are **12 ciphertext Fehu positions** on p17: \`42,51,56,58,98,187,221,228,230,248,264,272\`. The only Fehu **between** the three witnesses is local offset **187**, between 113 and 188. No Fehu falls between 188 and 204. An arbitrary subset of Fehu skips before position113 changes only the unrestricted affine intercept; later Fehu cannot affect the three words. All **2¹²=4096** full-page skip masks consequently reduce to two possible relative intervals: first gap **75** or **74** if Fehu187 does not consume key, followed by gap **16**.
+
+Write unknown singleton plaintext GP values \`p1,p2,p3 ∈ {3,10,24}\` (O/I/A). Eliminating both secret page slope and intercept in \`C_i=p_i+a_p*t_i+b_p (mod29)\` yields:
+
+- Fehu187 consumes key: \`4*p2+13*p1+12*p3 = 14 (mod29)\`.
+- Fehu187 skips key: \`2*p2-p1-p3 = 11 (mod29)\`.
+
+Enumerating the **27** admissible A/I/O triples yields **zero solutions** in either case. The first left-hand side attains 20 residues but never 14; the second attains 12 residues but never 11. This is a three-original-word certificate, not a language-model score or a large parameter search. The source gate asserts every index, the entire original Fehu position list, both algebraic exclusions, and an independent three-word affine/Fehu planted exact inverse.
+
+**Decision:** even an arbitrary choice of every possible historic-style literal-F skip, independent page slope and page IV cannot explain these three original black singleton words through a linear running-key GP29 cipher under literal English A/I/O segmentation. A nonlinear, history-dependent or differently clocked key, or nonliteral word segmentation, remains possible. A contradiction on p17 rules out a uniform manuscript-wide use of the stated family.
 
 ## Reproduction and scope
 
