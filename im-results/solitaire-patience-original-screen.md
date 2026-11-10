@@ -1,0 +1,19 @@
+# Solitaire/Pontifex from the historic PATIENCE clue: a bounded original-input test
+
+**Decision, 10 November 2026 (Agent 36):** The historic Cicada 2014 `PATIENCE IS A VIRTUE` prompt motivates checking whether “patience” also directs a solver to Bruce Schneier’s **Solitaire** playing-card cipher. This is an alternative clue reading, not an assertion of authorial intent: the phrase's GP-prime sum **761** already explains the historic clue locally. The original second-release pages remain encrypted; this test recovers **no unknown plaintext, key, or destination**.
+
+The executable [source-original SFT](../sims/solitaire_patience_gp29_sft.cjs) implements the published 54-card deck, joker movements, triple cut, count cut, keyed initialization and output. It asserts three official control vectors: unkeyed first ten [4,23,10,24,8,25,18,6,4,7], keyed FOO first fifteen, and the Schneier CRYPTONOMICON encryption SOLITAIREX→KIRAKSFJAN. Historical cipher documentation: [Schneier's Solitaire description](https://www.schneier.com/academic/solitaire/).
+
+## Frozen original-cipher comparison
+
+Use all **12,956** GP29 ciphertext runes from the **55** rune-bearing unsolved LP2 physical pages. Try 14 human-readable, predeclared Cicada/historical/puzzle phrases: PATIENCE, PATIENCE IS A VIRTUE, THE KEY HAS ALWAYS BEEN RIGHT IN FRONT OF YOUR EYES, LIBER PRIMUS, CICADA, CICADA 3301, FIRFUMFERENFE, DIVINITY, AN END, THE INSTAR EMERGENCE, INTERCONNECTEDNESS, CRYPTONOMICON, THE PATH, and FOO. Strip nonletters for keyed deck initialization. Model the direct card output as `P_i=(C_i±(K_i−offset)) mod29`, with Solitaire `K_i∈[1,26]`, `offset=0` or `1`, and one continuous book clock or a freshly keyed deck at each physical page. These are **14×2×2×2=112** fully specified reversible configurations; numeric offset merely cyclically relabels output, so each sign/clock/key pair has the same IoC under both offsets.
+
+The observed unmodified input IoC is **0.034478397865**; the uniform-GP29 baseline is **0.034482758621**. Of the 112 original-input tests, the highest IoC is only **0.034520722633** at FIRFUMFERENFE, continuous deck, subtraction. The output begins `L AE B EO L P W A E X R E AE EA OE N EO R S W M R Y OE D L N F N E` and contains no coherent passage. The best PATIENCE-key candidate reaches only **0.034512774824**. All examined candidates stay close to the uniform baseline; the test establishes no natural-language advantage over the original. Original decryptions and exact forward re-encryptions are checked rune by rune for all 112 configurations.
+
+For calibration, independently take 6,000 native GP-index characters from Shakespeare, encrypt with a PATIENCE-keyed original Solitaire stream added mod29, then decode with the identical inverse. This plant **exactly recovers and re-encrypts 6,000/6,000** original control runes and has native-language IoC greater than 0.05. This confirms the implementation can handle a real GP-alphabet English source under this precise cipher family; it is not evidence that a corresponding historical LP2 key exists.
+
+## Scope and decision
+
+The finite direct GP29 additive/subtractive use of the published 26-letter Solitaire key stream, under these phrase keys and book/page clocks, is unpromising as an explanation of the unresolved manuscript. This experiment does **not** exhaust possible deck orderings, hidden deck states, an independently source-derived 54-card permutation, section/word reset clocks, layered decryption, alternative alphabets or uses of “patience.” Any successor needs an original-source cue that specifies those missing choices before plaintext is scored. Repeating broad password variants without such a cue is not a high-value next step.
+
+Evidence status: **intermediate bounded negative**, preserved in `im-results/`, no change to established results or `results/README.md`.
