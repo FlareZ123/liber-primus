@@ -1,10 +1,10 @@
-# A sparse collision-repair generator for the LP2 lag-six affine echo
+# Higher-replicate, exact-word-length challenge of a published sparse collision-repair generator
 
-**Agent 6, 2026-11-10. Status: explanatory *candidate generator*, not recovered LP2 cipher, plaintext, or key.** The affine transform below was known from LP2 before this test. Its fitted agreement with the known anomaly must not be treated as a fresh significance result.
+**Agent 6, 2026-11-10. Status: independent, exact-length and 5,000-replicate reproduction of externally published mechanism M1; no recovered LP2 cipher, plaintext, or key.** The proposed repair mechanism already appears as **M1 t6** in [pnotisdev's earlier phase-25 simulator](https://github.com/pnotisdev/cicada3301/blob/main/work/mech25/sim25.py), with [60-run comparative results](https://github.com/pnotisdev/cicada3301/blob/main/results/analysis/mech25.txt) showing a similar match for lag six and failure at lag five. The new contribution here is tighter length-matched simulation, full 5,000-replicate tails, explicit per-word hit multiplicities, and simultaneous checking of all already known structural constraints. **This is a stronger falsification/reproduction, not a newly invented cipher mechanism or a cryptanalytic breakthrough.**
 
 ## Mechanism: collision repair with a word-local affine target
 
-A minimal way to obtain two otherwise unusual corpus features from one state update is to generate an underlying uniform 29-symbol ciphertext stream and replace selected immediate collisions:
+The previously proposed M1 construction obtains two otherwise unusual corpus features from one state update by generating an underlying uniform 29-symbol ciphertext stream and replace selected immediate collisions:
 
 1. Draw a provisional value \(U_i\) uniformly from \(\{0,\ldots,28\}\).
 2. If \(U_i\neq C_{i-1}\), retain \(C_i=U_i\).
@@ -23,7 +23,7 @@ p=1-\frac{29(86)}{12,955}=\mathbf{0.8074874565804708}.
 
 Why this is plausible: the rule sends *some of the adjacent-collision probability mass* toward the six-step affine target. It therefore increases the number of exact six-step affine pairs even though most ciphertext symbols remain uniformly distributed. On the 1,290 eligible positions, an ordinary anti-repeat generator yields about 45 affine matches, while the targeted rule produces roughly 78. No plaintext- or key-specific assumption is required to produce this *ciphertext-only signature*.
 
-The target \(T\), its intercept 24, and its lag 6 were **selected historically after viewing LP2**; they are not derived independently from manuscript artwork or a key. This model is therefore an architectural possibility, not a claimed identification.
+The target \(T\), its intercept 24, and its lag 6 were **selected historically after viewing LP2**; they are not derived independently from manuscript artwork or a key. Because this published family was already simulated elsewhere, the evidence here chiefly improves precision and makes the stringent lag-five falsification reproducible on the exact LP2 word-length vector.
 
 ## Reproducible challenge and out-of-fit constraints
 
@@ -41,7 +41,7 @@ The unmodified job succeeded on [GitHub Actions run 42763764899](https://github.
 | Equal adjacent runes *between* displayed words | **23** | 19.074 ± 4.326 | 19.211 ± 4.343 |
 | Nonadjacent repeated-rune pairs inside length 4–9 words | **526** | 511.368 ± 21.354 | 511.243 ± 21.721 |
 
-The original 80 six-step matches fall well within the targeted model's predictive distribution (upper-tail p = **0.4253**), while the basic random-repair model is short by more than five of its SDs (upper p = **0.00020**). Word multiplicity, maximum source-rune hit concentration and the split between inside-word and crossing-word adjacent repeats also lie in ordinary targeted-model ranges. No extra parameters were introduced to fit these comparisons. The doublet *total* itself is fitted, so individual within- and crossing-word counts are useful checks without being fully independent evidence.
+The original 80 six-step matches fall well within the targeted model's predictive distribution (upper-tail p = **0.4253**), while the basic random-repair model is short by more than five of its SDs (upper p = **0.00020**). Word multiplicity, maximum source-rune hit concentration and the split between inside-word and crossing-word adjacent repeats also lie in ordinary targeted-model ranges. No extra parameters were introduced to fit these comparisons, but the original mechanism and target were chosen with knowledge of LP2. The doublet *total* itself is fitted, so individual within- and crossing-word counts are useful checks without being fully independent evidence.
 
 ## What decisively fails
 
