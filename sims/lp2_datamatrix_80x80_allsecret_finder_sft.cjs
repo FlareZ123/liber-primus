@@ -70,18 +70,25 @@ function orient(row, col, sym) {
  * @param {number} omittedBefore
  * @returns {number}
  */
-function bandCost(runes, route, sym, band, omittedBefore) {
-  /** @type {number[][]} */
-  const counts = Array.from({ length: 29 }, () => [0, 0]);
+function bandCost(runes, route, sym, band, omittedBefore, mode = 'global') {
+  const states = mode === 'row-column' ? 4 : mode === 'global' ? 1 : 2;
+  /** @type {number[][][]} */
+  const counts = Array.from({ length: states },
+    () => Array.from({ length: 29 }, () => [0, 0]));
   for (let pos = band * BAND; pos < (band + 1) * BAND; pos++) {
     const original = pos - omittedBefore;
     // Impossible assignments are only *relaxed* by omitting source limits.
     if (original < 0 || original >= runes.length) continue;
     const [row, col] = orient(...routeCell(pos, route), sym);
     const expected = finderBit(row, col);
-    if (expected !== null) counts[runes[original]][expected]++;
+    if (expected === null) continue;
+    const phase = mode === 'row-parity' ? row % 2
+      : mode === 'column-parity' ? col % 2
+      : mode === 'checkerboard' ? (row + col) % 2
+      : mode === 'row-column' ? 2 * (row % 2) + col % 2 : 0;
+    counts[phase][runes[original]][expected]++;
   }
-  return counts.reduce((total, row) => total + Math.min(row[0], row[1]), 0);
+  return counts.flat().reduce((total, row) => total + Math.min(row[0], row[1]), 0);
 }
 
 /**
@@ -90,7 +97,7 @@ function bandCost(runes, route, sym, band, omittedBefore) {
  * Each omission-free band has a constant prefix omission count 0...5.
  * @param {number[]} runes 6395 symbols in original order
  */
-function analyze(runes) {
+function analyze(runes, mode = 'global') {
   assert.equal(runes.length, 6395);
   let best = Number.POSITIVE_INFINITY;
   let bestCase = null;
@@ -102,7 +109,7 @@ function analyze(runes) {
         let minimum = Number.POSITIVE_INFINITY;
         for (let missingBefore = 0; missingBefore <= OMITTED; missingBefore++) {
           minimum = Math.min(minimum,
-            bandCost(runes, route, symmetry, band, missingBefore));
+            bandCost(runes, route, symmetry, band, missingBefore, mode));
         }
         minima.push(minimum);
         universalMinimumBand = Math.min(universalMinimumBand, minimum);
@@ -126,6 +133,14 @@ const source = allUnsolved.slice(81 * 81);
 const observed = analyze(source);
 assert.equal(observed.lowerBound, 51);
 assert.equal(observed.minimumUnbrokenBand, 16);
+const rowParity = analyze(source, 'row-parity');
+const columnParity = analyze(source, 'column-parity');
+const checkerboard = analyze(source, 'checkerboard');
+const rowColumn = analyze(source, 'row-column');
+assert.equal(rowParity.lowerBound, 16);
+assert.equal(columnParity.lowerBound, 16);
+assert.equal(checkerboard.lowerBound, 34);
+assert.equal(rowColumn.lowerBound, 0);
 
 let seed = 3301;
 /** @returns {number} */
@@ -157,6 +172,11 @@ console.log('[SFT] All 32 orientations/routes and all 6 prefix insert states');
 console.log('[SFT] Original minimum intact-band correction:', observed.minimumUnbrokenBand);
 console.log('[SFT] Original arbitrary-secret-rune-bit global lower bound:',
   observed.lowerBound, 'finder-module mismatches');
+console.log('[SFT] Two independent secret binary alphabets by public row parity:',
+  rowParity.lowerBound, 'column parity:', columnParity.lowerBound,
+  'checkerboard parity:', checkerboard.lowerBound);
+console.log('[SFT] Four secret alphabets by public row/column parity:',
+  rowColumn.lowerBound, '(finder alone permits, no payload validation)');
 console.log('[SFT] Original best case:', JSON.stringify(observed.bestCase));
 console.log('[SFT] Fully secret planted bit alphabet, five omissions:',
   JSON.stringify([...deleted]), 'bound:', control.lowerBound);
