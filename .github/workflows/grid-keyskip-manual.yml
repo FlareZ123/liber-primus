@@ -10,6 +10,7 @@ on:
         options:
           - keyskip
           - fullword-prng
+          - corrected-grid-inverse
 jobs:
   grid-probe:
     runs-on: ubuntu-latest
@@ -25,3 +26,11 @@ jobs:
       - name: Exact fullword PRNG source inversions
         if: ${{ inputs.probe == 'fullword-prng' }}
         run: node sims/grid_fullword_prng_exact_inversion.cjs
+      - name: Five-cell original-source direct-grid inversion and native English controls
+        if: ${{ inputs.probe == 'corrected-grid-inverse' }}
+        run: node sims/grid_five_cell_corrected_inversion.cjs
+      - name: Five-cell corrected-grid hidden-skip shared-alphabet inverse
+        if: ${{ inputs.probe == 'corrected-grid-inverse' }}
+        env:
+          LP2_GRID_FIVE_CORRECTIONS: '1'
+        run: node sims/outer_permutation_unknown_column_assignment.cjs
