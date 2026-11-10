@@ -1,16 +1,16 @@
 "use strict";
 /**
- * An exact key-independent 79-packet checksum sieve over GF(79).
+ * Exact 79-packet checksum sieve over GF(79) for all 78 geometric weights.
  *
  * Any fixed nonconstant embedding f of 29 GP rune values in GF(79) that
- * satisfies sum_i f(C_i) = fixed b for every intact 79-rune packet must be
+ * satisfies sum_i g^i f(C_i) = fixed b for every intact 79-rune packet must be
  * a nonconstant vector in the kernel of the between-packet count differences.
  * The constant vector is always in that kernel because every packet has
  * length 79. Rank 28 proves no other vector exists, for any possible
  * (including noninjective) f and any constant b.
  *
- * Run all 79 global block origins, synthetic planted unknown-f control,
- * preserve enough details for independent reproduction.
+ * Run all 79 global block origins × all 78 nonzero multipliers g in GF79,
+ * synthetic planted unknown-f controls, full deterministic original scan.
  *
  * @module prime79_glyph_checksum_rank
  */
@@ -69,11 +69,16 @@ function original() {
  * @param {number} phase
  * @returns {number[][]} Glyph-occurrence vectors, one per complete 79-rune packet.
  */
-function blockRows(source, phase) {
+function blockRows(source, phase, generator = 1) {
+  assert(Number.isInteger(generator) && generator >= 1 && generator < P);
+  const weights = Array(79).fill(1);
+  for (let i = 1; i < 79; i++) weights[i] = weights[i-1] * generator % P;
   const rows = [];
   for (let start = phase; start + 79 <= source.length; start += 79) {
     const row = Array(ALPHABET).fill(0);
-    for (let j = start; j < start + 79; j++) row[source[j]]++;
+    for (let j = start; j < start + 79; j++) {
+      row[source[j]] = (row[source[j]] + weights[j - start]) % P;
+    }
     rows.push(row);
   }
   return rows;
@@ -103,8 +108,11 @@ function random(seed) {
 }
 
 /** @returns {object} */
-function positiveControl() {
-  const next = random(0x79993301);
+function positiveControl(generator = 1) {
+  const next = random(0x79993301 ^ generator);
+  const powers = Array(79).fill(1);
+  for (let j = 1; j < 79; j++) powers[j] = powers[j-1] * generator % P;
+  assert.equal(powers[78], 1);
   // Secret injective alphabet, unavailable to the test statistic.
   const weights = Array.from({length: ALPHABET}, (_, i) => (2*i+7)%P);
   const inverseWeights = new Map(weights.map((value, i) => [value, i]));
@@ -113,19 +121,21 @@ function positiveControl() {
     let found = false;
     while (!found) {
       const packet = Array.from({length: 78}, () => next() % ALPHABET);
-      const target = (P - packet.reduce((sum, rune) => sum + weights[rune], 0) % P) % P;
+      const target = (P - packet.reduce((sum, rune, j) =>
+        sum + powers[j] * weights[rune], 0) % P) % P;
       const last = inverseWeights.get(target);
       if (last === undefined) continue;
       packet.push(last);
-      assert.equal(packet.reduce((sum, rune) => sum + weights[rune], 0) % P, 0);
+      assert.equal(packet.reduce((sum, rune, j) =>
+        sum + powers[j] * weights[rune], 0) % P, 0);
       source.push(...packet);
       found = true;
     }
   }
-  const rows = blockRows(source, 0);
+  const rows = blockRows(source, 0, generator);
   const observed = constantChecksumRank(rows);
   assert(observed <= ALPHABET - 2);
-  return {blocks, hidden_nonconstant_injective_field_mapping: true,
+  return {generator, blocks, hidden_nonconstant_injective_field_mapping: true,
     exact_original_checksum_roundtrip: true,
     rank: observed, nullity: ALPHABET - observed};
 }
@@ -133,25 +143,37 @@ function positiveControl() {
 /** @returns {object} */
 function main() {
   const source = original();
-  const positive = positiveControl();
-  const results = Array.from({length:79}, (_, phase) => {
-    const rows = blockRows(source, phase);
-    const r = constantChecksumRank(rows);
-    return {phase, blocks: rows.length, rank: r, kernel_dimension: ALPHABET-r};
-  });
-  assert(results.every(x => x.rank === 28));
+  const positive = [positiveControl(1), positiveControl(53)];
+  const byGenerator = [];
+  let evaluations = 0;
+  for (let generator = 1; generator < 79; generator++) {
+    const ranks = [];
+    for (let phase = 0; phase < 79; phase++) {
+      const rows = blockRows(source, phase, generator);
+      const r = constantChecksumRank(rows);
+      assert.equal(r, 28,
+        "Nonconstant checksum candidate: g=" + generator + ", phase=" + phase + ", rank=" + r);
+      ranks.push(r);
+      evaluations++;
+    }
+    byGenerator.push({generator, phases: ranks.length,
+      min_rank: Math.min(...ranks), max_rank: Math.max(...ranks)});
+  }
+  assert.equal(evaluations, 78 * 79);
   return {
     source_runes: source.length,
-    prime_field:79,
-    packet_length:79,
-    unknowns:29,
-    proposition:"Every fixed GP-glyph-to-GF79 map with a constant sum across packets must be constant; no nonconstant injective map exists under any of the 79 global packet phases.",
-    phases_tested:79,
-    minimum_rank:Math.min(...results.map(x=>x.rank)),
-    maximum_rank:Math.max(...results.map(x=>x.rank)),
+    field_prime: 79,
+    packet_length: 79,
+    unknown_rune_labels: 29,
+    weight: "g^j modulo 79 for any g=1..78 and positions j=0..78",
+    checksum: "sum_j g^j*f(C[phase+79*b+j]) = b, same unknown b for all blocks",
+    tests: evaluations,
+    all_cases_have_rank28_nullity1: true,
+    interpretation: "For every fixed phase and multiplier g, only a constant f could yield a common checksum; no nonconstant source-alphabet embedding exists under this family.",
     positive,
-    results
+    byGenerator
   };
 }
+
 if (require.main === module) process.stdout.write(JSON.stringify(main(), null, 2)+"\n");
 module.exports = {rank, original, blockRows, constantChecksumRank, positiveControl, main};
