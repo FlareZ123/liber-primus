@@ -63,3 +63,6 @@ jobs:
       - name: All-secret 5x6 29-runes-plus-word-space coordinate capacity proof
         shell: pwsh
         run: node sims/gp30_space_fractionation_gate.cjs
+      - name: Exhaustive all 41,471 nonzero full-book cyclic shifts of both alphabets
+        shell: pwsh
+        run: node sims/coordinate_fractionation_all_lag_gate.cjs
