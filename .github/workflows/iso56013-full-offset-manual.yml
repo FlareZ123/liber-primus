@@ -16,6 +16,11 @@ on:
           - reject-atbash
           - mod-rev-atbash
           - reject-rev-atbash
+      test_offsets:
+        description: Optional offset count for bounded smoke tests; blank scans full source
+        required: false
+        default: ''
+        type: string
 
 permissions:
   contents: read
@@ -38,6 +43,9 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Original asset download failed" }
       - name: Scan every byte offset and calibrate positives
         shell: pwsh
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
+          LP2_TEST_OFFSETS: ${{ inputs.test_offsets }}
         run: |
           $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
           $outfile = Join-Path $env:RUNNER_TEMP "iso56013_${{ inputs.map }}.json"
