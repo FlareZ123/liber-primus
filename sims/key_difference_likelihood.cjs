@@ -29,8 +29,8 @@ const corpus = JSON.parse(fs.readFileSync(
 const MOD = 29;
 const LENGTH = 200;
 const GAP = 8;
-const RESTARTS = 10;
-const SWEEPS = 120;
+const RESTARTS = 5;
+const SWEEPS = 85;
 const ROTATIONS = 12;
 const SEED = 0x6e3f481a;
 
