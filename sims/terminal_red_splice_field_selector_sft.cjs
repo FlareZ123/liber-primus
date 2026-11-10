@@ -162,6 +162,81 @@ const fullTripleAtU = add(z, mul([splice[2], 0], mul(u, u)));
 assert.deepEqual(fullTripleAtU, [10, 4]);
 assert.deepEqual(polyValue(coefficients, fullTripleAtU), [13, 28]);
 
+
+/**
+ * The duplicated terminal red trigram selects the existing table root z.
+ * A canonical, fully frozen simple cipher interpretation is the trace
+ * keystream Tr(z^i) over the same field. Test it on the ACTUAL unknown LP2,
+ * with only two source-motivated initial states and two physical clocks.
+ * This direct-GP hypothesis does not prescribe the original repeat mask.
+ */
+function traceOriginalInverse() {
+  const {englishSource} = require("./no_repeat_periodic_key_phase_invariant.cjs");
+  const pages = unsolved.map(p => p.indices);
+  const original = pages.flat();
+  const native = englishSource(original.length);
+  const trace = x => mod(2 * x[0] + 3 * x[1]);
+  const ioc = values => {
+    const counts = Array(29).fill(0);
+    for (const x of values) counts[x]++;
+    return counts.reduce((n, v) => n + v * (v - 1), 0) /
+      (values.length * (values.length - 1));
+  };
+  const seeds = [{name: "unit", value: [1, 0]},
+    {name: "p54-Ac24", value: [24, 0]}];
+  const rootConjugate = [17, 2];
+  const rows = [];
+  let best = -Infinity;
+  for (const seed of seeds) {
+    for (const clock of ["book", "physical-page"]) {
+      for (const sign of [-1, 1]) {
+        let state = seed.value, at = 0;
+        const decoded = [];
+        const planted = [];
+        const roundtrip = [];
+        for (const page of pages) {
+          if (clock === "physical-page") state = seed.value;
+          for (const cipher of page) {
+            const pad = trace(state);
+            decoded.push(mod(cipher + sign * pad));
+            const nativeCipher = mod(native[at] - sign * pad);
+            planted.push(nativeCipher);
+            roundtrip.push(mod(nativeCipher + sign * pad));
+            at++;
+            state = mul(state, z);
+          }
+        }
+        assert.deepEqual(roundtrip, native);
+        assert.equal(decoded.length, original.length);
+        const nativeIoC = ioc(native);
+        const decodedIoC = ioc(decoded);
+        assert(nativeIoC > 0.05);
+        assert(decodedIoC < 0.036);
+        best = Math.max(best, decodedIoC);
+        rows.push({seed: seed.name, clock, sign,
+          originalDecodedIoC: decodedIoC,
+          nativeControlIoC: nativeIoC,
+          first12GP: decoded.slice(0, 12),
+          nativeControlRecovered: roundtrip.length});
+      }
+    }
+  }
+  // Since trace(a^29)=trace(a), the alternative extension root is
+  // analytically the same keystream: it is not a second independent key.
+  let s = [1, 0], t = [1, 0];
+  for (let i = 0; i < 840; i++) {
+    assert.equal(trace(s), trace(t));
+    s = mul(s, z);
+    t = mul(t, rootConjugate);
+  }
+  assert.deepEqual([s, t], [[1, 0], [1, 0]]);
+  return {sourceRoot: z, rootConjugate, traceOrbit: 840,
+    originalCipherIoC: ioc(original), tested: rows,
+    maxOriginalDecodedIoC: best,
+    decision: "Eight direct GP29 trace-pad decodings are nonlinguistic; no source-selected plaintext was recovered. Source-native controls all invert exactly."};
+}
+const directTraceInverse = traceOriginalInverse();
+
 console.log(JSON.stringify({
   input: {sourceRedSpans: 18, redRunes: 225, originalRunes: 12956},
   redUniqueNearRepeat: redPairs,
@@ -178,6 +253,7 @@ console.log(JSON.stringify({
     PofFullTripleQuadratic: polyValue(coefficients, fullTripleAtU)
   },
   empiricalMatchedLengthWindows: empirical,
+  directTraceInverse,
   uniformIIDFiveWindowProbability: 141 / 29 ** 5,
   warning: "Exploratory source selector and postselected coincidence; no recovered key, original plaintext or authenticated cipher."
 }, null, 2));
