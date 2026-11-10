@@ -227,3 +227,5 @@ function main(){
   console.log(JSON.stringify(out,null,2));
 }
 if(require.main===module)main();
+
+module.exports={lift,digits};
