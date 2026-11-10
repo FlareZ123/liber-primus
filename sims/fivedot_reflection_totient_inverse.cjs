@@ -297,8 +297,6 @@ function positives(page, mode) {
     const ciphertext = encode(plaintext, "phi", -1, 0, reserved);
     const readBack = reflectedPrintedRoundtrip(ciphertext, shape, mode);
     assert.deepEqual(readBack, ciphertext);
-    const mask = [...literalPositions(ciphertext, (1 << 16) - 1)]
-      .indexOf(literal);
     // Derive the true bit mask from ciphertext F occurrence positions.
     const fAt = [];
     ciphertext.forEach((v, j) => {if (v === 0) fAt.push(j);});
@@ -320,6 +318,135 @@ function positives(page, mode) {
     exactRecoveries};
 }
 
+
+/**
+ * Alternative interpretation: the reflection changes prime-key traversal
+ * across physical glyph positions, while plaintext is read normally.
+ * Exact F-mask bits follow the physical-key traversal, not printed order.
+ * @param {number} page
+ * @param {"I"|"H"|"V"|"HV"} mode
+ * @returns {number[]}
+ */
+function sourceKeyPath(page, mode) {
+  let offset = 0;
+  const sourceLines = printedLines(page).map((line) => {
+    const row = line.map((_, i) => offset + i);
+    offset += line.length;
+    return row;
+  });
+  return reflect(sourceLines, mode).flat();
+}
+
+/**
+ * @param {number[]} cipher
+ * @param {number[]} visitOrder
+ * @param {number} mask
+ * @returns {number[]}
+ */
+function decodeSpatialKey(cipher, visitOrder, mask) {
+  const plaintext = new Array(cipher.length);
+  let primeOrdinal = 0, zeroOrdinal = 0;
+  for (const position of visitOrder) {
+    const glyph = cipher[position];
+    if (glyph === 0 && mask & (1 << zeroOrdinal)) {
+      plaintext[position] = 0;
+      zeroOrdinal++;
+      continue;
+    }
+    if (glyph === 0) zeroOrdinal++;
+    plaintext[position] = mod29(glyph - (primes[primeOrdinal++] - 1));
+  }
+  return plaintext;
+}
+
+/**
+ * @param {number[]} plaintext
+ * @param {number[]} visitOrder
+ * @param {Set<number>} literalPositionsOnPaper
+ * @returns {number[]}
+ */
+function encodeSpatialKey(plaintext, visitOrder, literalPositionsOnPaper) {
+  const ciphertext = new Array(plaintext.length);
+  let primeOrdinal = 0;
+  for (const position of visitOrder) {
+    const glyph = plaintext[position];
+    if (literalPositionsOnPaper.has(position)) {
+      assert.equal(glyph, 0);
+      ciphertext[position] = 0;
+    } else {
+      ciphertext[position] = mod29(glyph + primes[primeOrdinal++] - 1);
+    }
+  }
+  return ciphertext;
+}
+
+/**
+ * @param {number[]} ciphertext
+ * @param {number[]} visitOrder
+ * @returns {{mask:number,score:number,plaintext:number[]}}
+ */
+function bestSpatialMask(ciphertext, visitOrder) {
+  const fCount = ciphertext.filter((v) => v === 0).length;
+  assert.ok(fCount < 20);
+  let best = {mask: 0, score: -Infinity, plaintext: []};
+  for (let mask = 0; mask < 2 ** fCount; mask++) {
+    const plaintext = decodeSpatialKey(ciphertext, visitOrder, mask);
+    const value = score(plaintext);
+    if (value > best.score) best = {mask, score: value, plaintext};
+  }
+  return best;
+}
+
+/** @param {number} page @param {"I"|"H"|"V"|"HV"} mode */
+function spatialSourceControls(page, mode) {
+  const sourceCipher = corpus.pages[page].indices;
+  const visitOrder = sourceKeyPath(page, mode);
+  const originalScore = bestSpatialMask(sourceCipher, visitOrder).score;
+  let recoveries = 0, lows = 0, minimum = Infinity;
+  for (let i = 0; i < 120; i++) {
+    const n = sourceCipher.length;
+    const plain = shakespeare.slice(i * n, (i + 1) * n);
+    assert.equal(plain.length, n);
+    const firstF = firstLiteralF(plain);
+    const literalPositions = new Set(firstF < 0 ? [] : [firstF]);
+    const ciphertext = encodeSpatialKey(plain, visitOrder, literalPositions);
+    let trueMask = 0, zeroOrdinal = 0;
+    for (const position of visitOrder) {
+      if (ciphertext[position] === 0) {
+        if (literalPositions.has(position)) trueMask |= (1 << zeroOrdinal);
+        zeroOrdinal++;
+      }
+    }
+    const recovered = decodeSpatialKey(ciphertext, visitOrder, trueMask);
+    assert.deepEqual(recovered, plain);
+    assert.deepEqual(encodeSpatialKey(recovered, visitOrder, literalPositions),
+      ciphertext);
+    recoveries++;
+    const best = bestSpatialMask(ciphertext, visitOrder).score;
+    if (best <= originalScore) lows++;
+    minimum = Math.min(minimum, best);
+  }
+  return {recoveries, trials: 120, bestMaskBelowOriginal: lows,
+    minimumBestMaskPositiveScore: minimum};
+}
+const spatialKeyTraversal = [7, 23, 56].map((page) => {
+  const direction = page === 7 ? "H" : page === 23 ? "HV" : "I";
+  const visitOrder = sourceKeyPath(page, direction);
+  const original = bestSpatialMask(corpus.pages[page].indices, visitOrder);
+  return {page, direction, mask: original.mask, score: original.score,
+    excerpt: transliterate(original.plaintext.slice(0, 50))};
+});
+assert.equal(spatialKeyTraversal[2].score, score(expected));
+assert.equal(spatialKeyTraversal[2].mask, 8);
+assert.ok(spatialKeyTraversal[0].score < -4.1);
+assert.ok(spatialKeyTraversal[1].score < -4.0);
+const spatialControls = {
+  page7: spatialSourceControls(7, "H"),
+  page23: spatialSourceControls(23, "HV")
+};
+assert.equal(spatialControls.page7.bestMaskBelowOriginal, 0);
+assert.equal(spatialControls.page23.bestMaskBelowOriginal, 0);
+
 const controls = {
   page7: positives(7, "H"),
   page23: positives(23, "HV")
@@ -337,6 +464,8 @@ console.log(JSON.stringify({
     solvedSign: -1, literalFMask: 8, exact: true},
   original,
   frozenSourceControls: controls,
+  alternateSpatialKeyTraversal: spatialKeyTraversal,
+  spatialSourceControls: spatialControls,
   keyBlindRoundtripWarning: "A wrong-key roundtrip is not evidence of a historical key",
   status: "NO UNKNOWN LP2 PLAINTEXT RECOVERED"
 }, null, 2));
