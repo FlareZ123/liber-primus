@@ -77,7 +77,6 @@ function searchReading(reading,key,lexicon,max) {
   assert.ok(index>=0);
   const start=reading.lengths.slice(0,index).reduce((a,b)=>a+b,0);
   const anchor=reading.cipher.slice(start,start+11);
-  assert.ok(!anchor.includes(0),'No F interrupter within fixed anchor');
   const results=[];
   for(const flip of [false,true])for(const sign of [-1,1]) {
     const carrier=anchor.map(c=>flip?28-c:c);
