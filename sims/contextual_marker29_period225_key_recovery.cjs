@@ -188,7 +188,7 @@ function report(){
       periodicPage:{...realPage,key:undefined},
       preselectedByTrain:realBest.clock,
       frozenGain:realBest.heldoutMean-realBest.baseline,
-      otherCluePeriods
+      otherCluePeriods:otherPeriods
     },
     nativeControls:{
       sourceLength:source.length,trialCount:plants.length,seed:"0x2253ea15",
