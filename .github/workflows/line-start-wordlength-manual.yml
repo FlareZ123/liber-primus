@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Compare printed line-start runes against same-page same-length word starts
         run: node sims/line_start_wordlength_conditional.cjs
+      - name: Frozen LP2 first-rune acrostic inversion with original-page null and planted message
+        run: node sims/line_initial_acrostic_inverse.cjs 800
