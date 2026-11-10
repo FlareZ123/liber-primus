@@ -200,6 +200,9 @@ function main() {
   const intercept = runeA;
   const slopeMagnitude = gB / gA;
   const lag = IMAGE_HEIGHT - IMAGE_WIDTH;
+  const gridCoords = gridPos.map(index => ({ row: Math.floor(index / 8), column: index % 8 }));
+  const deltaRow = gridCoords[1].row - gridCoords[0].row;
+  const deltaColumn = gridCoords[1].column - gridCoords[0].column;
   const piWidth = primePi(IMAGE_WIDTH), piHeight = primePi(IMAGE_HEIGHT);
   const sigelIndex = 15;
   const tirIndex = piWidth % 29, beorcIndex = piHeight % 29;
