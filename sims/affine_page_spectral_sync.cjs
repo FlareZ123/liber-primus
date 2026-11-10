@@ -137,18 +137,22 @@ function plant(reference,prior,overwriteRate,seed){
   const sample=()=>{const u=rng();const index=cumulative.findIndex(x=>x>u);
     return index>=0?index:MOD-1;};
   let repairs=0;
+  const plainPages=[];
   const pages=reference.map((page,j)=>{
-    const out=[];
+    const out=[],plain=[];
     for(let t=0;t<page.length;t++) {
-      let c=(multiplier[j]*(sample()+pad[t%PREFIX])+shift[j])%MOD;
+      const plaintext=sample();
+      plain.push(plaintext);
+      let c=(multiplier[j]*(plaintext+pad[t%PREFIX])+shift[j])%MOD;
       if(t>0&&c===out[t-1]&&rng()<overwriteRate){
         c=(c+1+Math.floor(rng()*28))%MOD;repairs++;
       }
       out.push(c);
     }
+    plainPages.push(plain);
     return out;
   });
-  return {pages,multiplier,shift,repairs};
+  return {pages,plainPages,pad,multiplier,shift,repairs};
 }
 /** @param {number[]} xs */
 function average(xs){return xs.reduce((x,y)=>x+y,0)/xs.length;}
