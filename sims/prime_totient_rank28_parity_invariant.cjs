@@ -82,7 +82,7 @@ function primes(count){
  */
 function plant(scheme,primeStart){
   const source=english.slice(26000);
-  const ps=primes(primeStart+300);
+  const ps=primes(primeStart+Math.max(...pages.map(p=>p.indices.length))+3);
   const sample=[],expected=[];
   let at=0;
   for(const page of pages){
