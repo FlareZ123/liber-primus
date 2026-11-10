@@ -161,16 +161,26 @@ def main() -> None:
         random.Random(shuffle_seed).shuffle(page_sequences)
     cipher = [x for page in page_sequences for x in page]
     assert len(cipher) == 12956
-    phase = int(os.environ.get("PHASE_START", "55"))
+    first = int(os.environ.get("PHASE_START", "55"))
+    last = int(os.environ.get("PHASE_END", str(first)))
     direction = os.environ.get("PREFIX_TWO_DIRECTION", "forward")
     seconds = float(os.environ.get("CPSAT_SECONDS", "540"))
-    assert 0 <= phase < 79 and direction in ("forward", "reverse")
+    assert 0 <= first <= last < 79 and direction in ("forward", "reverse", "both")
     assert 1 <= seconds <= 720
     print("CPSAT_ENV", json.dumps({"ortools": ortools.__version__,
-        "phase": phase, "direction": direction, "maxSeconds": seconds,
+        "phaseStart": first, "phaseEnd": last, "direction": direction,
+        "maxSecondsPerCase": seconds,
         "wholePageShuffleSeed": shuffle_seed}), flush=True)
     plant()
-    solve(cipher, phase, direction, seconds)
+    counts = {"OPTIMAL": 0, "FEASIBLE": 0, "INFEASIBLE": 0, "UNKNOWN": 0}
+    for phase in range(first, last + 1):
+        directions = ("forward", "reverse") if direction == "both" else (direction,)
+        for orientation in directions:
+            result = solve(cipher, phase, orientation, seconds)
+            counts[result["status"]] += 1
+    print("CPSAT_SUMMARY", json.dumps({"sourcePageShuffleSeed": shuffle_seed,
+        "phaseStart": first, "phaseEnd": last, "direction": direction,
+        "counts": counts}), flush=True)
 
 
 if __name__ == "__main__":
