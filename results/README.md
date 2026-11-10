@@ -4,13 +4,13 @@
 
 ## Strongest current cryptanalytic conclusions
 
-### Arbitrary page-specific first-order feedback permutations
+### Arbitrary finite-context substitution feedback: 29!-permutation invariants
 
-A new label-invariant test covers **an arbitrary 29-by-29 ciphertext-conditioned permutation table on every LP2 page**, rather than restricting feedback to short algebraic formulas. For transitions sharing the same page and preceding ciphertext rune, any unknown bijective substitution of the next English-like GP plaintext rune preserves the conditional collision count exactly. LP2 has **1,919 repeated outputs among 54,009 eligible transition pairs**, ratio **0.0355311**. A matched near-uniform anti-repeat null gives **0.0352827 ± 0.0007656** (200 trials; upper-tail p 0.343), while 200 independent GP-English plants encrypted under random page-specific feedback tables and 81% immediate-repeat rerouting give **0.0652798 ± 0.0014188**; **all 200 planted scores exceed LP2**. A family-wise scan of individual page maxima also finds no positive candidate (p 0.745 against 1,000 matched nulls).
+A context-conditional collision invariant tests **any bijective substitution row selected by the immediately preceding ciphertext runes**, without searching its enormous unknown permutation space. For **k=1** the row can vary independently by manuscript page; for **k=2** and **k=3** the row can be arbitrary but is reused for the same k-rune ciphertext history across pages. The observed LP2 matching-output ratios are **0.0355311** (k=1), **0.0349061** (k=2), and **0.0357040** (k=3). In 200–300 model-matched GP-English planted manuscripts per family, with independent arbitrary substitution rows and 81% immediate-doublet rerouting, **every planted ratio exceeded actual LP2**. Plant means were **0.0652798**, **0.0624031**, and **0.0620439**, compared with anti-repeat null means **0.0352827**, **0.0352810**, and **0.0355104**. The original ciphertext is not unusual under the matched null (upper p 0.343, 0.748, 0.507). The independent 55-page family-wise maximum test for k=1 likewise shows no page anomaly (p 0.745).
 
-**Conclusion:** The specific English-like **fixed first-order ciphertext-state substitution model** is strongly disfavoured, even with arbitrary independently selected alphabet permutations per page and the tested repeat repair. This does not exclude hidden state, time-varying keys, longer contexts, different plaintext codes, or arbitrary changing substitutions. No key or plaintext was recovered.
+**Interpretation:** direct English-like GP plaintext under these short ciphertext-history-indexed *bijective* S-box feedback models is strongly disfavoured, including arbitrary page-specific first-order tables and global second-/third-order tables. This conclusion is conditional on the explicitly simulated source register, row-sharing policy, and repeat repair. It does not identify the actual mechanism, rule out hidden/position-varying state or other plaintext codes, or recover any key.
 
-[Mathematical invariant, simulated controls and limitations](../im-results/previous-cipher-sbox-invariant.md) · [Executable](../sims/previous_cipher_sbox_invariant.cjs).
+[Exact invariant, all controls and limitations](../im-results/previous-cipher-sbox-invariant.md) · [Per-page first-order implementation](../sims/previous_cipher_sbox_invariant.cjs) · [Global second-/third-order implementation](../sims/context_sbox_invariant.cjs).
 
 ### Controlled exhaustive feedback families: 1,758,009 parameter settings
 

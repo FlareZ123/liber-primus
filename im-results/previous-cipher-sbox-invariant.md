@@ -1,69 +1,79 @@
-# Page-specific arbitrary previous-cipher S-box invariant (Agent 16)
+# Arbitrary finite-context substitution feedback: collision invariants
 
-**Status (2026-11-10):** reproducible strong negative under an explicit English-like plaintext and ciphertext-feedback permutation model. **No LP2 plaintext or key recovered.**
+**Agent 16 · 2026-11-10 · reproduced negative under declared English-GP models.** This analysis recovers **no plaintext, key, or confirmed LP2 cipher mechanism**.
 
-## The larger cipher family
+## The cryptanalytic question
 
-For a physical LP2 rune page `p`, suppose its ciphertext obeys
+Can a deterministic substitution table indexed by a short history of **previous ciphertext runes** hide an otherwise ordinary English-like GP plaintext? Instead of restricting the table to affine or quadratic expressions, allow every conditional alphabet to be **any permutation** of the 29 rune values, with 29! possible rows.
 
-```text
-C[p,t] = S[p][C[p,t-1]][P[p,t]]
-```
+For memory length k, the model is
 
-where every row `S[p][a]` is **any permutation of the 29 GP rune symbols**. The rows can differ arbitrarily between the 29 previous-ciphertext contexts and between **all 55 pages**. Every such row is a bijective substitution, so this family includes position-dependent alphabet choice driven by the immediately preceding ciphertext symbol, far beyond affine/mod-29 feedback.
+\`\`\`text
+C[p,t] = S[(C[p,t-k],...,C[p,t-1])][P[p,t]]
+\`\`\`
 
-For fixed `p,a`, the output-symbol **collision index** of `C[p,t]` conditioned on `C[p,t-1]=a` is invariant to the unknown row permutation. Define `n[p,a,b]` to count within-page transitions from ciphertext `a` to `b`. The observable pooled conditional collision statistic is
+with an arbitrary 29-rune permutation for each history. We test three increasingly large families:
 
-```text
-R = sum[p,a,b] n[p,a,b]*(n[p,a,b]-1)
-    / sum[p,a] N[p,a]*(N[p,a]-1),   N[p,a] = sum[b] n[p,a,b].
-```
+1. **k=1, page-specific:** every one of the 55 pages has its own, otherwise unconstrained, 29×29 set of substitution rows.
+2. **k=2, book-wide:** the same arbitrary row is reused wherever a two-rune ciphertext history recurs, across all pages. There are 841 possible row indices.
+3. **k=3, book-wide:** the same arbitrary row is reused wherever a three-rune ciphertext history recurs, across all pages. There are 24,389 possible row indices.
 
-This compares the fraction of repeat outcomes among pairs of transitions sharing a physical page and previous ciphertext symbol. **For any deterministic row permutation, the entire numerator is exactly equal to its plaintext counterpart within those same contexts**. The invariant itself does not assume that plaintext is English. To test an English interpretation, however, the conditional plaintext distribution and its dependence on prior ciphertext must be modeled.
+No algebraic constraint, cyclic alphabet relation, or recoverable table parameter is assumed. The book-wide qualification is necessary for k=2 and k=3 because individual pages are too short to observe many repeated two- or three-symbol contexts.
 
-## Data and direct result
+### An exact label-invariant necessary condition
 
-Input is `resources/liber-primus/lp2-corpus.json`, pages 0–55 with runeless p50 omitted from rune statistics. This yields **55 pages, 12,956 runes, 12,901 within-page transitions, 86 equal adjacent pairs**.
+For each applicable (page, history) group, let n[g,b] be the number of ciphertext transitions in that group whose next rune equals b. Let N[g]=sum_b n[g,b]. Define
 
-Observed `R = 1,919 / 54,009 = 0.03553111518`. The global pooled analogue (one shared 29-by-29 table rather than independent page tables) is **0.03536787427**, but the quantitative simulation below deliberately uses the **more permissive page-specific** version.
+\`\`\`text
+R = sum[g,b] n[g,b]*(n[g,b]-1)
+    / sum[g] N[g]*(N[g]-1).
+\`\`\`
 
-The literature control is `resources/control/shakespeare_first300k.txt`, converted into **218,800 GP runes** using the repository's `QU→CW, V→U, K→C, Z→S` convention and greedy two-letter GP transliteration. Its marginal collision probability is **0.059969986**; this is only orientation, because conditioning on previous ciphertext can alter the plaintext distribution.
+This is the fraction of pairs of transitions with matching output runes among all transition pairs sharing their conditioning history. A **bijective** row transformation preserves every equality and inequality between outputs in that row. Therefore its collision count is *exactly unchanged* by an arbitrary S-box choice, regardless of how difficult it is to search for the S-box.
 
-## Precisely calibrated simulations
+This is a mathematical identity, and is not itself an English-language assumption. The assumption enters when testing whether the unobserved plaintexts *conditional on the observed ciphertext histories* should retain English-GP-like output concentration. Such conditionals cannot be inferred from a plaintext marginal alone. The simulated models below calibrate that dependence explicitly.
 
-The script creates exactly the manuscript's 55 page lengths. For each synthetic page it chooses an independent **random 29-by-29 array of permutations**, takes a random contiguous GP-Shakespeare segment, and encrypts each plaintext rune using the row indexed by the previous ciphertext rune. If the generated output equals the previous ciphertext rune, an independent **81% chance** reroutes it to a uniformly random different rune. This models a strong anti-repeat intervention which can break the strict bijection at affected occurrences.
+## Input, source language, and controls
 
-The counterfactual null is a **29-state anti-repeat Markov stream** on the same lengths: transition to the previous output symbol with probability 0.00667, otherwise choose uniformly among the other 28 symbols. Null and planted replicates both undergo the same **page-conditioned** collision scorer. The null mimics the dominant near-uniform + anti-doublet profile without claiming to reproduce every local dependence.
+The observed corpus is \`resources/liber-primus/lp2-corpus.json\`, unsolved LP2 pages 0–55 excluding runeless page 50: **55 rune-bearing pages, 12,956 runes, 12,901 within-page adjacent transitions, and 86 immediate repeats**. Ciphertext context is reset at each physical page for score calculation. An actual word may cross a page boundary, but this experiment models physical-page resets as a declared cipher assumption and never counts cross-page transitions.
 
-Fixed xorshift32 seed `0x1629edab`, 200 null manuscripts and 200 planted English manuscripts:
+The English source is \`resources/control/shakespeare_first300k.txt\`: 300,000 characters encoded as **218,800 GP runes**, applying \`QU→CW, V→U, K→C, Z→S\` and greedily matching the double-letter GP labels. It has marginal GP symbol collision probability **0.0599699857**.
 
-| Statistic | Actual LP2 | Anti-repeat null (200) | English S-box plant (200) |
-| --- | ---: | ---: | ---: |
-| Page-conditioned collision ratio | **0.0355311** | 0.0352827 mean | **0.0652798 mean** |
-| Replicate standard deviation | — | 0.0007656 | 0.0014188 |
-| Replicate minimum–maximum | — | 0.0333586–0.0373706 | **0.0611940–0.0694440** |
+For each planted manuscript, draw one **random contiguous** source segment for every page, of precisely the page's actual rune length. Each symbolic row permutation is independently drawn by Fisher–Yates, and reused whenever its context recurs within the declared family. Start each page with randomly sampled initialization runes. If a candidate output equals the immediately previous ciphertext rune, reroute it with probability **0.81** to one of the other 28 runes uniformly. This explicit anti-doublet repair *can violate bijectivity at those individual occurrences*, making the planted model harder to recover through equality invariants.
 
-The real manuscript has no excess relative to the null (upper-tail empirical p **0.3433**). All 200 plants show greater collision concentration than actual LP2 despite independently arbitrary **page-specific** S-boxes and repeat repair. An empirical plant-side lower-tail p is at most **1/201 ≈ 0.00498**, a simulation-resolution bound, and the effect-size separation is much larger.
+The negative null uses a 29-state Markov chain on the same page lengths, remaining at the previous rune with probability **0.00667**, and otherwise choosing uniformly among the other 28 outputs. It reproduces near-uniformity and the ciphertext's principal adjacent-repeat suppression, without purporting to reproduce every empirical dependence. All chosen and planted controls use the identical invariant scorer.
 
-### Single-page family-wise screen
+## Observed and controlled results
 
-A single anomalous page could be obscured by full-book aggregation. For each of the 55 pages, compute its own `R[p]`, and select the maximum only after scoring all pages. In a second experiment, seed `0x1631cafe`, **1,000 independently simulated null manuscripts** undergo the same maximum selection.
+| Family | LP2 matching output pairs / eligible context-matched pairs | LP2 ratio | Anti-repeat null mean ± SD | English-GP plant mean ± SD | Smallest plant |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| k=1, **independent page S-boxes** | 1,919 / 54,009 | **0.0355311** | 0.0352827 ± 0.0007656 (200 trials) | **0.0652798 ± 0.0014188** (200 trials) | 0.0611940 |
+| k=2, **global S-boxes** | 3,511 / 100,584 | **0.0349061** | 0.0352810 ± 0.0005758 (300 trials) | **0.0624031 ± 0.0010397** (300 trials) | 0.0590365 |
+| k=3, **global S-boxes** | 124 / 3,473 | **0.0357040** | 0.0355104 ± 0.0029342 (200 trials) | **0.0620439 ± 0.0043955** (200 trials) | 0.0506329 |
 
-- Largest observed page score: **0.0502732 on LP2 page 27**.
-- Null distribution of the **maximum over all pages**: mean **0.0581297**, 95th percentile **0.0819672**; observed upper-tail family-wise **p = 0.74525**.
-- No real page exceeded the illustrative score threshold **0.055**.
-- Across 1,000 planted English manuscripts (55,000 independently encoded pages), **82.605% of planted pages** exceeded 0.055. This threshold was selected as a descriptive power indicator, not a multiple-testing discovery criterion.
+The null upper-tail probabilities for LP2, respectively, are **0.3433**, **0.7475**, and **0.5075**. All 200, 300, and 200 English-GP planted manuscripts, respectively, score above the actual LP2 ciphertext. Thus plant-side empirical lower-tail probability resolutions are at most 1/201, 1/301, and 1/201 for the fixed generators. The much larger separation in collision ratios than these Monte Carlo bounds captures the practical effect size.
 
-The pagewise test does **not** show an individual English-like feedback S-box page hidden among the 55.
+**The three-history case is already rather sparse:** only 9,860 of 24,389 histories occur, leaving just 3,473 eligible transition pairs. Its planted control is nevertheless consistently detectable under the particular model. This does not extrapolate to longer or hidden histories.
 
-## Interpretation, limits, and next direction
+### Per-page family-wise check for k=1
 
-This disfavours direct English-like GP plaintext under a **fixed, deterministic current-plaintext substitution row selected solely by the immediately previous ciphertext rune**, even allowing an independently chosen full table on every manuscript page, with the tested collision repairs. It makes searching 55 arbitrary 29-by-29 first-order S-boxes an inefficient priority. The same invariant also applies to many-to-one **decoding** only with modifications; the mathematical statement here strictly assumes a bijection.
+A single atypical page could be obscured by book-level pooling. Select the largest page-specific k=1 collision ratio from all 55 pages and compare to the same maximum of each of 1,000 simulated anti-repeat manuscripts. The real maximum is **0.0502732 on page 27**, whereas the null maximum has mean **0.0581297**, 95th percentile **0.0819672**, and upper-tail **p = 0.7453**. For an additional descriptive power measure, no real page exceeds ratio 0.055; **82.605%** of 55,000 individually planted English-S-box pages exceed 0.055.
 
-The result does **not** exclude a second or longer history variable, unobserved changing key state, keys advancing independently of ciphertext, arbitrary per-position permutations, homophonic or variable-length encodings, non-English plaintext, a later mixing layer, or a pathological plaintext whose rune distribution conditional on previous ciphertext is nearly flat. A permutation model whose conditioning variable is genuinely hidden is outside this exclusion.
+The 0.055 threshold is a qualitative plant-detection indicator, not an independently specified significance threshold. The empirical 55-page maximum calibration is the family-wise check.
 
-Because this is a *negative* discrimination rather than plaintext recovery, the next cryptanalytic priority is to seek hypotheses with externally constrained keystream or key-generation predictions; avoid another exhaustive first-order feedback parametrization without a fresh mechanism.
+## What this says about solving LP2
 
-## Reproduce
+If an ordinary English-GP rune stream were encrypted by one of the specific deterministic, short-ciphertext-context-indexed substitution families, then the symbol probabilities in rows should remain comparatively concentrated. The observed ciphertext is instead nearly indistinguishable from the self-avoiding uniform null in these conditioned collision tests. The gap against model-matched positive controls is large and reproducible.
 
-`node sims/previous_cipher_sbox_invariant.cjs` (Node.js 18+, no external packages). The script uses only checked-in files, asserts the canonical corpus and control sizes, fixes both PRNG seeds, performs both null/plant experiments, and prints the exact statistics above as JSON. It was executed against its fetched GitHub source and both GitHub reference files in the active JavaScript runtime before this report was written. No scheduled or per-commit workflow is involved.
+**Supported negative:** reject these direct English-like plaintext + short ciphertext-history bijective S-box models under the simulated anti-repeat policy and respective page/global row sharing. This generalizes beyond finite exhaustive affine/quadratic key searches to unenumerably large-permutation-search families without attempting to infer a row.
+
+**Limits:** A short input history does not imply that plaintext, conditional on a particular ciphertext history, has its usual unconditional English rune distribution. Highly atypical conditional distributions could evade this test. Likewise it is powerless against a hidden keystream, position-varying substitution, longer history with too few context repeats, a different plaintext register, homophonic/redundant output, non-bijective symbol maps, multi-rune output encoding, mixed external plaintext sources, or a different repair policy that substantially flattens rows.
+
+A further arbitrary S-box enumeration has very low expected value unless a clue supplies a more restrictive externally predictable state or a mechanism defeating the collision invariant. Substantive decipherment likely requires locating an independent key source, recoverable generator, or cross-page structural relation.
+
+## Reproduction
+
+- k=1, independent page tables: \`node sims/previous_cipher_sbox_invariant.cjs\`. Fixed seeds **0x1629edab** (200 null/plant manuscripts) and **0x1631cafe** (1,000 page-max nulls plus 1,000 page-by-page positive controls). No packages.
+- k=2,3, global tables: \`node sims/context_sbox_invariant.cjs\`. Fixed seeds **0x1602aa6b** (300 null/plant for k=2) and **0x1603babe** (200 each for k=3). No packages.
+- Both programs read the checked-in LP2 corpus and Shakespeare sample, assert corpus sizes, score identical context statistics for actual and simulated texts, and print exact JSON including observations, null distributions, planted controls, fixed seeds and empirical p-values.
+- The exact checked-in script bodies were retrieved through GitHub and executed against the checked-in source data in this invocation's JavaScript runtime, after the source files were committed. Both experiments were verified through their complete output JSON. No scheduled or per-commit GitHub Actions workflow exists for these programs.
