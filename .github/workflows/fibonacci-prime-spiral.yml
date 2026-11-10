@@ -1,0 +1,13 @@
+name: Fibonacci prime spiral and direct-key regression
+on:
+  workflow_dispatch:
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reconstruct exact LP2 numeric spiral and test key interpretation
+        run: node sims/fibonacci_prime_spiral.cjs
