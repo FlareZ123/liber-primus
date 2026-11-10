@@ -75,6 +75,23 @@ function marginal(differences,lm){
   return log;
 }
 
+
+/**
+ * Independent zero-context source-matched difference likelihood, retaining
+ * full 29-symbol language marginals but ignoring all rune order. This is
+ * the exact distribution one would get from two independently sampled
+ * source-language GP rune strings under identical additive pads.
+ */
+function unigramLikelihood(differences,lm){
+  const prior=Float64Array.from(lm.unigram,Math.exp);
+  const byDifference=new Float64Array(29);
+  for(let d=0;d<29;d++)for(let p=0;p<29;p++)
+    byDifference[d]+=prior[p]*prior[mod(p-d)];
+  let ll=0;
+  for(const d of differences)ll+=Math.log(byDifference[d]);
+  return ll;
+}
+
 /** Exact maximum two-stream source-bigram Viterbi path for fixed difference tape. */
 function viterbi(differences,lm){
   let prev=new Float64Array(29),next=new Float64Array(29);
@@ -123,12 +140,21 @@ function cipherPlant(plainA,plainB,repair=false,seed=0x32428119){
 
 /** Search all original page42 rotations, no scale/language parameters fit to real LP2. */
 function scan(x,y,lm){
-  const scores=Array.from({length:y.length},(_,shift)=>({shift,score:marginal(diff(x,y,shift),lm)}));
+  const scores=Array.from({length:y.length},(_,shift)=>{
+    const d=diff(x,y,shift),score=marginal(d,lm),unigram=unigramLikelihood(d,lm);
+    return {shift,score,unigram,orderResidual:score-unigram};
+  });
+  const residualRank=[...scores].sort((v,w)=>w.orderResidual-v.orderResidual)
+    .findIndex(x=>x.shift===0)+1;
+  const unigramRank=[...scores].sort((v,w)=>w.unigram-v.unigram)
+    .findIndex(x=>x.shift===0)+1;
   scores.sort((v,w)=>w.score-v.score);
   const observed=scores.find(x=>x.shift===0);
   const decoded=viterbi(diff(x,y),lm);
   const render=arr=>arr.slice(0,100).map(i=>ALPHABET[i]).join('');
   return {zeroRank:scores.findIndex(x=>x.shift===0)+1,
+    unigramZeroRank:unigramRank,orderResidualZeroRank:residualRank,
+    zeroUnigramScore:observed.unigram,zeroOrderResidual:observed.orderResidual,
     bestShift:scores[0].shift,observedScore:observed.score,
     bestScore:scores[0].score,secondScore:scores[1].score,
     medianScore:scores[Math.floor(scores.length/2)].score,
@@ -149,7 +175,9 @@ function study(){
   assert.ok(trueOffsetExpected);
   assert.equal(plantedClean.zeroRank,1,'Exact correct Latin shared pad must rank original alignment first');
   assert.ok(correct(plantedClean)>=N*0.15,'Positive Latin Viterbi should partially recover plaintext');
-  const strip=run=>({zeroRank:run.zeroRank,bestShift:run.bestShift,
+  const strip=run=>({zeroRank:run.zeroRank,unigramZeroRank:run.unigramZeroRank,
+    orderResidualZeroRank:run.orderResidualZeroRank,zeroUnigramScore:run.zeroUnigramScore,
+    zeroOrderResidual:run.zeroOrderResidual,bestShift:run.bestShift,
     observedScore:run.observedScore,bestScore:run.bestScore,secondScore:run.secondScore,
     medianScore:run.medianScore,topFive:run.topFive,decodedZero:run.decodedZero});
   return {hypothesis:'Physical LP2 p28 vs p42 share unknown scale4 additive key; exact pair difference constraint',
@@ -161,4 +189,4 @@ function study(){
     classification:'No plaintext unless coherent original zero-shift inverse with heldout clue. Pair and scale postselected in prior LP2 research.'};
 }
 if(require.main===module)process.stdout.write(JSON.stringify(study(),null,2)+'\n');
-module.exports={marginal,viterbi,diff,scan,study};
+module.exports={marginal,unigramLikelihood,viterbi,diff,scan,study};
