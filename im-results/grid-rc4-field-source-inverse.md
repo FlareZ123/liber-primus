@@ -1,6 +1,6 @@
 # LP2 numerical grid as an RC4 source: base60 and base59 original inverses
 
-**Current conclusion, 10 November 2026:** neither supported reading of the printed 32×8 numeric grid produces an authentic LP2 key or readable plaintext under the finite RC4 source-pad architectures tested here. The executable synthetic controls recover full GP-native plaintext exactly. The result is a *bounded original-input negative* for 1,024 specified configurations, not an assertion that RC4, the numeric grid, or either radix is historically irrelevant.
+**Current conclusion, 10 November 2026:** neither supported reading of the printed 32×8 numeric grid produces an authentic LP2 key or readable plaintext under the finite whole-grid and source-aligned per-fragment RC4 source-pad architectures tested here. The executable synthetic controls recover full GP-native plaintext exactly. The result is a *bounded original-input negative* for 1,024 specified configurations, not an assertion that RC4, the numeric grid, or either radix is historically irrelevant.
 
 ## Actual source and reversible architectures
 
@@ -29,8 +29,18 @@ The highest original training score across **all 1,024** configurations is the b
 
 The original finite 512-setting base60-only experiment and its base60 Shakespeare positive are preserved in [original executable](../sims/grid_rc4_field_inverse.cjs) and [manual CI 42800026403](https://github.com/FlareZ123/liber-primus/actions/runs/42800026403). The extended two-radix single-file runner is [`sims/grid_radix59_rc4_inverse.cjs`](../sims/grid_radix59_rc4_inverse.cjs), [successful CI 42834410599](https://github.com/FlareZ123/liber-primus/actions/runs/42834410599), dispatched through the *existing manual-only* [grid regression workflow](../.github/workflows/grid-256-tests.yml).
 
+## Source-aligned 32-fragment / 8-byte row-key RC4 extension
+
+The 31 original 13-dot marks delimit **32 fragments**, exactly matching the 32 printed rows of eight bytes. The first 28 fragments cover all **12,956 unsolved runes**; the final four cover the solved 180-rune tail. This supplies a more specific solve-path hypothesis than treating all 256 bytes as one RC4 key: use row r as an eight-byte RC4 key for fragment r, resetting the RC4 state at each 13-dot boundary. The row-to-fragment mapping and order are fixed by the printed sources; no row permutation or per-fragment offset is fitted.
+
+The first 28 row keys were tested under both byte-valid source readings (base60/base59), RC4 drop 0/256, low-byte modulo-29 or high-five-bit projection, and both additive signs: **16 configurations**. The first 45% of each fragment is the selection interval and the remaining 55% is held out. The best original training result is base60, drop0, high-five, sign+1: **0.034586072760** train IoC and **0.034484839153** heldout IoC, against uniform 1/29 = **0.034482758621**. Its recovered preview remains nonlinguistic. The other configurations do not produce a meaningful language-bearing improvement.
+
+**Blind positive control:** a held-out Shakespeare GP stream is encrypted using the source-fixed base59 row keys, drop256, high-five projection, sign−1, with one RC4 reset per fragment. The 16-setting inverse ranks that exact setting **first** and recovers **12,956/12,956** symbols. This validates the per-fragment implementation and scoring discrimination, not the historical key.
+
+**Decision:** the natural one-row-per-13-dot-fragment RC4 key interpretation is not supported under these 16 source-locked settings. This is distinct from, and now extends, the whole-grid RC4 scan above. It does not rule out a different cipher, a separately sourced state, or another use of the 32×8 table. Do not repeat this exact row-key mapping without new source evidence.
+
 ## Scope and research decision
 
-The two source-valid digit alphabets have now both failed **direct** grid-to-RC4 source key derivation with fixed sign, byte projection, page clock and these two reversible GP29 output channels. Source byte ambiguity does not rescue this already tested architecture under ordinary GP-English assumptions. This test says nothing about RC4 with an independently derived salt/hidden state, prior transpositions, a different spoken-language/alphabet register, variable segmentation, or cryptographic uses of the numeric grid other than the specified 1,024 settings.
+The two source-valid digit alphabets have now both failed **direct** whole-grid RC4 derivation and the natural 32-row/32-fragment row-key mapping, with fixed sign, byte projection and source-defined clocks. Source byte ambiguity does not rescue this already tested architecture under ordinary GP-English assumptions. This test says nothing about RC4 with an independently derived salt/hidden state, prior transpositions, a different spoken-language/alphabet register, variable segmentation, or cryptographic uses of the numeric grid other than the specified 1,024 settings.
 
 Avoid further arbitrary RC4 drops, KDF labels, byte clocks or table traversals absent an independent instruction selecting them. A materially useful successor would derive and freeze a state/key from original source material *before* original-cipher scoring, yield coherent plaintext on real LP2, and exactly regenerate the original ciphertext.

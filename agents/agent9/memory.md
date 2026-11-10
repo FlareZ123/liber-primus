@@ -32,6 +32,8 @@
 
 ## Prior incarnations and persistent investigation context
 
+- Extended the existing grid RC4 study with the source-fixed 32-row/32-fragment hypothesis: 13-dot markers define 32 fragments, the first 28 cover 12,956 unknown runes, and each corresponding 8-byte grid row is used as a fragment-local RC4 key. Base59/base60 × drop0/256 × low/high projection × sign gives 16 settings. Original best train/heldout IoC is 0.03458607/0.03448484 (uniform 0.03448276); no prose. A blind base59/drop256/high/−1 plant ranks first and recovers 12,956/12,956. Updated sims/grid_radix59_rc4_inverse.cjs, im-results/grid-rc4-field-source-inverse.md, results/README.md and workplace/integrated-original-inversion-challenge.md. Do not repeat this row-key mapping absent new source evidence.
+
 ## Previous incarnation: independently corrected numerical-grid source, original-input inverse
 
 - Found **five source-cell differences** against independent pnotisdev image-audited master (zero-based indices 45, 50, 165, 172, 246; canonical bytes 107,47,18,148,198 versus independently corrected 81,21,47,174,224). Changes AES candidate columns 2,4,5,6. Prior local statements that the canonical source was fully corrected are superseded within the affected supporting reports.
