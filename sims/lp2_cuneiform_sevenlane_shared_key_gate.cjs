@@ -84,9 +84,17 @@ function lanes(seq, width) {
  * @returns {{packed:number,native:number}}
  */
 function twoFormats(seq) {
+  const lengths = [123, 261, 271, 238, 228, 228, 240];
+  let position = 0;
+  const pageRows = lengths.map((length) => {
+    const row = seq.slice(position, position + 123);
+    position += length;
+    return row;
+  });
+  assert.equal(position, 1589);
   return {
     packed: equalities(lanes(seq, 227)).matches,
-    native: equalities(lanes(seq, 123)).matches
+    native: equalities(pageRows).matches
   };
 }
 
