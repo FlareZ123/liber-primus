@@ -28,3 +28,18 @@ synthetic same-key controls and evidence from independent LP2 page pairs.
 Avoid repeating short affine feedback and already exhausted simple pad families.
 
 See the report and source file for parameters and independent provenance.
+
+## Follow-on: page28/page42 factor-four test, 2026-11-10
+
+Authored and executed sims/relative_key_word_overlap.cjs with the actual
+numeric corpus and original word boundaries. A 5,002-unique-word GP Shakespeare
+training lexicon can satisfy only 2 of 24 simultaneous four-plus-rune
+word-overlaps under a shared factor-four mod29 key at same rune offsets.
+400 true shared-key heldout English controls with 81% simulated doublet
+suppression have mean 14.0875 supported, min5, median14, max21; mean
+13.33 word tokens absent from training lexicon; 0/400 as low as real.
+The exact per-model tail fraction is 1/401, conditional on the model and
+lexicon, and the pair/model were discovered on these pages. Therefore the
+simple English interpretation of the statistical anomaly is weakened,
+not independently disproved for an unknown language/encoding.
+Consolidated im-results/page28-page42-relative-key-anomaly.md accordingly.

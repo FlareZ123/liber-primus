@@ -95,10 +95,88 @@ A planted held-out positive control takes two separate post-training Shakespeare
 
 **Reproducer:** [sims/relative_key_exact_marginal.cjs](../sims/relative_key_exact_marginal.cjs) (Node 22, one runnable test file, JSON output, exact three-rune cross-check, deterministic controls).
 
+## Word-level exact inversion test: factor-four shared key fails ordinary English dictionary support
+
+The same proposed model has a stronger, plaintext-producing **necessary-condition
+test** at positions where a word on page 28 overlaps a word on page 42:
+if \`C28=4P28+K\` and \`C42=4P42+K\`, then
+\`P28[i]-P42[i]=22*(C28[i]-C42[i]) (mod29)\`.
+Each known word boundary fixes a length and an offset for the unknown English GP
+word. Enumerate all candidates of exactly that rune length from the
+**5,002 distinct** GP-encoded Shakespeare training words (first 240,000
+characters) and search for a pair matching the observed difference at **every
+overlapping position**. No guessed keys or optimized language scores enter this
+check; existence of at least one word-pair is the statistic.
+
+On the exact original transcription of LP2 pages 28 and 42, there are
+**24 aligned overlaps of at least four runes**, and **only 2** admit a pair of
+words in that lexicon. Detailed breakdown:
+
+| Overlap width (runes) | Number of crossings | Compatible crossings |
+|---:|---:|---:|
+| 4 | 11 | 2 |
+| 5 | 8 | 0 |
+| 6 | 5 | 0 |
+| **Total** | **24** | **2** |
+
+This is a severe lexical constraint on the proposed transformed
+English shared-key model: 22 locally constrained intervals cannot be made into
+two simultaneous length-correct dictionary words.
+
+**Powered, independently sourced controls:** 400 seeded planted true-key pairs
+reuse the exact original page word-length templates, sample every plaintext word
+by rune length from the last **60,000 Shakespeare characters** (held out of
+lexicon construction), generate one common random mod-29 keystream, encrypt with
+the exact factor-four model, and suppress each immediate ciphertext doublet with
+probability 0.81 by selecting a different rune. That suppression rule is an
+illustrative nuisance model and is **not known to be Cicada's actual rule**.
+
+The real-data support is 2/24. On held-out true-key plants, mean support is
+**14.0875/24** (minimum **5**, median **14**, maximum **21**); zero of 400
+supported as few as two overlaps. The add-one simulation-tail fraction
+\`1/401 = 0.002494\` is conditional on this particular word-generation and
+repair model, **not** a familywise probability establishing an actual cipher.
+A mean **13.33 held-out plaintext word tokens** per planted pair are absent from
+the training lexicon, while the simulated doublet filter modifies a mean
+**14.5175 rune positions**, so the controls do not simply leak the training
+vocabulary or assume an error-free pad.
+
+**Evidence strength and limits:** this is stronger negative evidence against
+**ordinary English words, preserved physical word boundaries, and a single
+factor-four additive key shared at equal rune offsets** than the earlier
+trigram-rank diagnostic. It does not exclude a much larger or different word
+lexicon, GP multiword coding, different segmentation, cipher variants,
+state-dependent symbol transforms, per-page key differences, or a relation
+unconnected to plaintext. The original page-pair and factor-four family were
+selected exploratorily from these same two pages.
+
+**Reproduce:** [sims/relative_key_word_overlap.cjs](../sims/relative_key_word_overlap.cjs)
+(Node.js CommonJS; fixed seed 7831001; 400 trials; direct corpus consistency
+assertions and exact per-word enumeration).
+
 ## Current interpretation and next genuinely discriminating tests
 
-The **same-offset, symmetric cross-page difference anomaly** is reproducible, and a **factor-four affine marginal relationship** is preferred after training-half selection and heldout evaluation. The most concrete candidate is common additive key material with transformed plaintext symbols, `C28=4P28+K` and `C42=4P42+K` modulo29. The linear relation alone does not justify accepting this construction: joint trigram English decoding fails to reveal readable plaintext, and exact marginal trigram alignment favors several rotated alternatives, the model family was suggested after inspecting the anomaly, and original source images have not been independently transcribed glyph-by-glyph.
+The **same-offset, symmetric cross-page difference anomaly** remains a genuine
+reproducible observation, and the **factor-four template** remains the best of
+the preselected affine histogram profiles on a training-half/heldout-half
+comparison. However, the explicit shared-key *English-plaintext interpretation*
+now faces two independent mechanistic failures: the joint trigram solver does
+not recover intelligible text, and the exact **24-overlap word test finds
+only 2 compatible dictionary-word crossings** where held-out, noise-repaired
+true-key controls average about 14. The factor-four histogram fit must not be
+presented as positive evidence of an executable decryption.
 
-An alternative transformation, non-English rune-plaintext register, structural coupling of pages, or a rare but real null-tail event may explain the same evidence. Separation by 14 pages is incidental under current measurements: the other 40 page pairs at that separation show no comparable aggregate effect. Aligned word-delimiter overlap is 12 versus 12.29 expected under independent layouts.
+A different plaintext register or coding, a structural dependence other than
+a common additive key, or a rare null-tail alignment could cause the observed
+histogram. A 14-page separation is not a generic period: 40 other pairs of
+that separation show no comparable signal. The aligned delimiter overlap is
+12 versus 12.29 expected under independent layouts.
 
-**Useful next work**: a genuinely independent key/word-lattice recovery test on the *pre-specified scaled model*; independent page-level predictions such as a shared reconstructed keystream passing held-out glyphs; and image-level adjudication of all relevant transcription symbols. If true plaintext is discovered, both pages must re-encrypt exactly under the **same** extracted key stream. Until that occurs, this belongs in `im-results/` as a significant provisional investigation, with no claim of solved pages.
+**Most informative next investigation:** identify a mathematical transformation
+that predicts **new page positions or an extractable keystream** independently
+from the already-selected histogram; recover candidate words from an explicitly
+different cipher/encoding and reconstruct a *single* identical stream from
+both original ciphertexts. If no inversion mechanism can do that, prioritize
+other unsolved sections or manuscript-art clues over more resampling of the
+same factor-four family. Image-level cross-checks of uncertain glyphs remain
+useful. No LP2 plaintext or key has yet been recovered.
