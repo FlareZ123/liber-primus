@@ -38,9 +38,9 @@ function manuscriptBodies(){
   assert.deepEqual(sections.map(words=>words.length),[158,255,383,2,435,224,349,355,735]);
   assert.equal(sections.reduce((n,x)=>n+x.reduce((m,w)=>m+w.length,0),0),12956);
   const merged=[sections[0],sections[1],sections[2],
-    sections[3].concat(sections[4]),sections[5],sections[6],sections[7],sections[8]];
+    sections[4],sections[5],sections[6],sections[7],sections[8]];
   const bodies=merged.map((words,i)=>words.slice(TITLE_WORDS[i]).map(w=>[...w].filter(isRune).length));
-  assert.deepEqual(bodies.map(a=>a.length),[156,252,381,434,220,346,353,733]);
+  assert.deepEqual(bodies.map(a=>a.length),[156,252,381,432,220,346,353,733]);
   return bodies;
 }
 
