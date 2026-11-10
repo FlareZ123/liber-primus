@@ -110,6 +110,54 @@ The job is dispatched through the **existing** manual
 [Hill screen runner](../.github/workflows/hill-row-screen.yml)
 with `experiment=red225`; no new workflow is needed.
 
+## Red-225 matrix as an evolving reversible keystream
+
+A distinct *direct inversion* uses the same 225 red source runes as
+the coefficients of a 15×15 state-transition matrix `M` over F29
+rather than as a Hill block encoder. A source-defined initial
+15-rune vector is emitted as key symbols before each update
+`state ← M × state mod29`. Encryption uses
+`cipher = plaintext ± key mod29`. The test fixes eight exact
+row/serpentine GP-index/GP-prime matrices including orientation,
+four source-defined seed vectors (first row, last row, first column,
+diagonal), two first-step conventions, either additive sign, and
+page/section/book resets. No coefficients are learned from LP2.
+A total of **384** candidate decoders are selected exclusively by
+Shakespeare-GP unigram likelihood on the first **6,480 original
+ciphertext positions**, with one frozen remaining-page holdout.
+
+The best original configuration is red-prime column matrix,
+diagonal seed, initial advance, positive decryption sign and
+physical-page resets. Its language excess log-likelihood is
+**−0.840450 nats/rune** on selection and **−0.893946** on untouched
+original positions, with heldout IoC **0.0344875**. The output begins
+`SATAEALOPROIANNGXSNGOWWCHBEAJJWGWNGE...`, and is unreadable.
+Even the hindsight-optimized best holdout mode scores
+**−0.845135**, showing no evidence for this mechanism on LP2.
+
+In a source-disjoint, blind original-page-layout GP-English positive,
+the **actual red-index transition matrix and first-row seed** encrypt
+12,956 genuine plaintext runes and apply **373** stochastic
+adjacent-repeat rewrites. At the fixed true source settings, the
+decoder yields **+0.347220 nats/rune** GP-English log-excess
+on the original-sized holdout with IoC **0.0567642**. An unrelated
+red source matrix/seed returns **−0.871300** and IoC **0.0345940**
+on those same encrypted runes. The positive verifies sensitivity
+to even a key-dependent nonlinear-looking output profile.
+
+The results strictly challenge this **fully specified red-matrix
+linear-state keystream** under literal GP alphabet and source-key
+layout. Unknown nonlinear states, alternative seed derivations,
+changing key clocks, ciphertext-dependent rewrites or transformed
+plaintext remain open; no unknown LP2 text is decoded. This
+extends the earlier static 15×15 use above without redefining it.
+
+Reproducer: [red225 evolving-matrix exact forward/inverse](../sims/red225_matrix_stream_inverse.cjs);
+[successful manual original and positive test, GitHub Actions
+42791306887](https://github.com/FlareZ123/liber-primus/actions/runs/42791306887);
+reuses the existing [Hill screen workflow](../.github/workflows/hill-row-screen.yml)
+with `experiment=red225stream`.
+
 ## Research implication
 
 The page-7 14-rune red line, page-53 51-rune red passage, and the complete physical positions of all 36 punctuation events provide **image-selected targets** for testing an explicitly specified key, reset, reading-order or encoding hypothesis. A meaningful positive result should preselect its rule without fitting the target, decode actual source ciphertext, and re-encrypt unfit positions exactly; red highlighting alone is not evidence of a separate cipher regime. Do not interpret a word fit after extensive key searching as recovered plaintext. Use the one consistent physical-page and rune-offset contract to compare hypotheses across independent passages.
