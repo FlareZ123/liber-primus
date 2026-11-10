@@ -43,24 +43,42 @@ def input_source() -> tuple[list[int], list[int]]:
     return original, clean
 
 
-def exact_allowed() -> list[list[int]]:
-    """Safe overapproximation of all 3-rank prefixes yielding 7bit byte1."""
+def exact_allowed(charset: str = "7bit") -> tuple[list[list[int]],int]:
+    """Proof-safe 3-rank prefix domain for the first two ASCII byte slots.
+
+    Every possible high two-byte integer for this prefix is included,
+    even if the 75 unknown remaining digits cannot generate it. This
+    overapproximation can only admit false candidates, never reject the
+    actual proposed transport.
+    """
+    def character(b: int) -> bool:
+        if charset == "7bit":
+            return 0 <= b < 128
+        if charset == "printable":
+            return 32 <= b <= 126
+        if charset == "upper":
+            return b == 32 or 65 <= b <= 90
+        if charset == "lower":
+            return b == 32 or 97 <= b <= 122
+        raise ValueError(charset)
     runs = []
     legal = 0
     for prefix in range(RADIX**PREFIX_DIGITS):
         lo = prefix*FACTOR//DIVISOR
         hi = (prefix+1)*FACTOR//DIVISOR
-        valid = any((value & 255) < 128 for value in range(lo, hi+1))
+        valid = any(character(value>>8) and character(value&255)
+                    for value in range(lo,hi+1))
         if not valid:
             continue
         legal += 1
         if runs and runs[-1][1] == prefix-1:
             runs[-1][1] = prefix
         else:
-            runs.append([prefix, prefix])
-    assert legal == 11130 and len(runs) == 126
-    assert runs[0] == [0, 87]
-    return runs
+            runs.append([prefix,prefix])
+    expected = {"7bit":(11130,126),"printable":(6186,94),
+                "upper":(553,54),"lower":(550,54)}
+    assert (legal,len(runs)) == expected[charset]
+    return runs,legal
 
 
 def packet_starts(clean: list[int]) -> list[tuple[int, int, int, int]]:
@@ -68,12 +86,14 @@ def packet_starts(clean: list[int]) -> list[tuple[int, int, int, int]]:
     return [tuple(clean[k*DIGITS-1:k*DIGITS+3]) for k in range(1,PACKETS)]
 
 
-def planted_source() -> tuple[list[int], list[int]]:
+def planted_source(charset: str = 'upper') -> tuple[list[int], list[int]]:
     text = (ROOT / "resources/liber-primus/lp1-plaintext-reference.txt").read_text(encoding="utf-8")
     text = " ".join(s for s in text.splitlines() if s and not s.startswith(("#","["))
                     and not s[0].isdigit()).upper()
     plain = " ".join("".join(c if "A" <= c <= "Z" else " " for c in text).split())+" "
     assert len(plain) > 3500
+    if charset == "lower":
+        plain = plain.lower()
     payload = (plain*((PACKETS*BYTES)//len(plain)+1))[:PACKETS*BYTES].encode("ascii")
     gen = random.Random(0x33017847)
     order = list(range(GP))
@@ -169,24 +189,25 @@ def main() -> None:
     parser.add_argument("--plant",action="store_true")
     parser.add_argument("--original",action="store_true")
     parser.add_argument("--seconds",type=float,default=180.0)
+    parser.add_argument("--charset",choices=("7bit","printable","upper","lower"),default="7bit")
     args = parser.parse_args()
     assert args.plant != args.original
-    legal = exact_allowed()
+    legal,legal_count = exact_allowed(args.charset)
     original,clean = input_source()
     if args.plant:
-        clean,key = planted_source()
+        clean,key = planted_source(args.charset)
         label = "synthetic7bit-positive"
         outcome = solve(clean,legal,args.seconds,key)
         assert outcome["status"] in ("OPTIMAL","FEASIBLE"), outcome
     else:
         label = "authentic-LP2-original"
         outcome = solve(clean,legal,args.seconds)
-    result = {"case":label,
+    result = {"case":label,"ascii_charset":args.charset,
               "original_indices_sha256":hashlib.sha256(bytes(original)).hexdigest(),
               "unsolved_runes":len(original),
               "clean_rank28_digits":len(clean),
               "packets":PACKETS,"ranks_per_packet":DIGITS,
-              "bytes_per_packet":BYTES,"allowed_first3_rank_patterns":11130,
+              "bytes_per_packet":BYTES,"allowed_first3_rank_patterns":legal_count,
               "total_first3_rank_patterns":21952,
               "scope":"Only original 164 known-predecessor packets and 7bit second-byte MSB",
               **outcome}
