@@ -33,3 +33,14 @@ jobs:
           node-version: '22'
       - name: Test T6-derived exponent clock, Haegl marker transport, and 13-dot interval states
         run: node sims/t6_source_register_gate.cjs
+
+  prime-dimensions-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test 2016 consecutive-prime starts and all-state squaring periodicity
+        run: node sims/cicada2016_dimensions_prime_state_gate.cjs
