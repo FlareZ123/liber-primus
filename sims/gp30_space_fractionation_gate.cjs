@@ -231,9 +231,8 @@ function main() {
   let n=0,max=null,min=null,passed=0;
   for(const clock of ["global","section"]) {
     const chunks=clock==="global"?[original]:parts;
-    for(const period of PERIODS)for(const s of SHIFTS) {
-      const shift=s%period;
-      if(shift===0)continue;
+    for(const period of PERIODS)for(const shift of
+      new Set(SHIFTS.map(value=>value%period).filter(Boolean))) {
       const values=pairCapacity(chunks,period,shift);
       const record={clock,period,shift,...values};
       if(!max||record.allKeyCap>max.allKeyCap)max=record;
@@ -242,7 +241,7 @@ function main() {
       n++;
     }
   }
-  assert.equal(n,314);
+  assert.equal(n,280);
   assert.equal(max.allKeyCap,1867);
   assert.ok(max.allKeyCap<smallest);
   const plant=positiveControl(nativeGP30(
