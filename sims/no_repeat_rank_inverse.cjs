@@ -40,18 +40,29 @@ function invertRank(word,kind) {
 }
 /** @param {number[][]} pages @param {"sorted"|"cyclic"} kind */
 function count(pages,kind){
-  let eq=0,n=0,all=0,erased=0;
+  let eq=0,n=0,all=0,erased=0,withinPairs=0,withinEquals=0;
+  const pooled=Array(28).fill(0);
   for(const page of pages){
     const code=invertRank(page,kind);
+    const local=Array(28).fill(0);
     for(let i=1;i<code.length;i++){
       if(code[i]===28){erased++;continue;}
       all++;
+      pooled[code[i]]++;
+      local[code[i]]++;
       if(i<2||code[i-1]<0||code[i-1]===28)continue;
       n++;
       eq+=(code[i]===code[i-1]?1:0);
     }
+    const v=local.reduce((s,c)=>s+c,0);
+    withinPairs+=v*(v-1);
+    withinEquals+=local.reduce((s,c)=>s+c*(c-1),0);
   }
-  return {eq,n,rate:eq/n,erased,valid:all};
+  return {
+    eq,n,rate:eq/n,erased,valid:all,
+    pooledIoC:pooled.reduce((s,c)=>s+c*(c-1),0)/(all*(all-1)),
+    withinPageIoC:withinEquals/withinPairs,
+  };
 }
 /** @param {number} x */
 function sampleSymbol(x){
@@ -108,28 +119,38 @@ const methods=["sorted","cyclic"],originalRunes=originals.map(p=>p.indices);
 const actual=Object.fromEntries(methods.map(m=>[m,count(originalRunes,m)]));
 assert.equal(actual.sorted.valid,12956-55-86);
 assert(actual.sorted.n>12000);
-const REPS=500,nullCounts={sorted:[],cyclic:[]},nullZ=[];
+const REPS=500,nullCounts={sorted:[],cyclic:[]};
+const nullPooled={sorted:[],cyclic:[]},nullPage={sorted:[],cyclic:[]};
 for(let i=0;i<REPS;i++){
   const v=antiRepeatNull();
-  for(const m of methods)nullCounts[m].push(count(v,m).eq);
+  for(const m of methods){
+    const stats=count(v,m);
+    nullCounts[m].push(stats.eq);
+    nullPooled[m].push(stats.pooledIoC);
+    nullPage[m].push(stats.withinPageIoC);
+  }
+}
+function calibrate(value,values){
+  const mean=values.reduce((s,x)=>s+x,0)/values.length;
+  const sd=Math.sqrt(values.reduce((s,x)=>s+(x-mean)**2,0)/(values.length-1));
+  return {nullMean:mean,nullSD:sd,observedZ:(value-mean)/sd,
+    upperTailPlusOne:(1+values.filter(x=>x>=value).length)/(values.length+1)};
 }
 const summaries={};
 for(const m of methods){
-  const values=nullCounts[m],mean=values.reduce((s,x)=>s+x,0)/REPS;
-  const sd=Math.sqrt(values.reduce((s,x)=>s+(x-mean)**2,0)/(REPS-1));
   summaries[m]={
-    nullMean:mean,nullSD:sd,
-    observedZ:(actual[m].eq-mean)/sd,
-    upperTailPlusOne:(1+values.filter(x=>x>=actual[m].eq).length)/(REPS+1)
+    consecutiveRankEquality:calibrate(actual[m].eq,nullCounts[m]),
+    pooledSymbolIoC:calibrate(actual[m].pooledIoC,nullPooled[m]),
+    withinPageSymbolIoC:calibrate(actual[m].withinPageIoC,nullPage[m])
   };
 }
 const planted=[];
 for(let rep=0;rep<20;rep++){
   const start=Math.floor(rng()*(english.length-12956));
   const v=plant(start);
-  planted.push({start,...Object.fromEntries(methods.map(m=>[m,count(v,m).eq]))});
+  planted.push({start,...Object.fromEntries(methods.map(m=>[m,count(v,m)]))});
 }
-const sortedPlant=planted.map(x=>x.sorted).sort((a,b)=>a-b);
+const sortedPlant=planted.map(x=>x.sorted.eq).sort((a,b)=>a-b);
 console.log(JSON.stringify({
   model:"fixed unknown 28-code-symbol permutation followed by exclusion of last emitted cipher rune",
   invertedRankMethods:methods,originalRunes:12956,erasuresFromExactObservedDoubletSites:86,
@@ -138,7 +159,11 @@ console.log(JSON.stringify({
     ...summaries},
   planted:{replicates:planted.length,source:"authentic length-matched 29-GP Shakespeare with IA folded into I; deterministic rank cipher; exact 86 repeat-site overwrites",
     sortedMin:sortedPlant[0],sortedMedian:sortedPlant[10],sortedMax:sortedPlant.at(-1),
-    sortedAboveActual:planted.filter(x=>x.sorted>actual.sorted.eq).length,
-    cyclicAboveActual:planted.filter(x=>x.cyclic>actual.cyclic.eq).length},
+    sortedAboveActual:planted.filter(x=>x.sorted.eq>actual.sorted.eq).length,
+    cyclicAboveActual:planted.filter(x=>x.cyclic.eq>actual.cyclic.eq).length,
+    sortedPooledIoC:planted.map(x=>x.sorted.pooledIoC),
+    sortedWithinPageIoC:planted.map(x=>x.sorted.withinPageIoC),
+    sortedPooledAboveActual:planted.filter(x=>x.sorted.pooledIoC>actual.sorted.pooledIoC).length,
+    sortedWithinPageAboveActual:planted.filter(x=>x.sorted.withinPageIoC>actual.sorted.withinPageIoC).length},
   interpretation:"Constrains keyless fixed rank and global bijection models only. A secret changing key, an evolving rank permutation, different source register, or nonuniform insertion rule is untested."
 },null,2));
