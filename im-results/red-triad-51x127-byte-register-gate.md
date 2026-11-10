@@ -37,8 +37,32 @@ The plant uses the complete source quotient and 51 real red row multipliers, det
 
 The adjacent [field-state program](../sims/red_triad_gf841_127cycle_inverse.cjs) tests a separate 51-cycle, source-forced field recurrence with \`S_0\` equal to the first two original ciphertext GP indices \`[15,8]\`, \`P_t=C_t-S_t\`, and \`S_(t+1)=u S_t+Q_(t mod127)\`. It exactly re-encrypts all 12,954 payload glyphs; the original decoded GP-index IoC is **0.0344807853**, while the original payload IoC is **0.0344789617**. The first decoded passage is nonlinguistic. An independent 12,954-GP-rune Shakespeare-based plant decrypts **12,954/12,954** and has IoC **0.06632997**; rotating the 127 source quotient pairs for that plant produces only **425/12,954** correct runes, with IoC **0.03447976**. Thus the particular source-fixed direct-GP evolving-field inverse yields no readable original plaintext despite a working true-source control.
 
+## All-secret terminal GF(29²) affine-state output gate (Agent 7)
+
+A second source-constrained interpretation of the **same exact 254-coefficient quotient** addresses the original *terminal* 127-rune target, rather than treating the table as a recurring 51×127 key: append p53's **51 red** runes to p55's **76** runes, in source order. The original p3 red triad defines \(u^2=3u+8\) over GF(29²), the p39 red triad supplies the two Ac24 roots of the table polynomial, and p54's enlarged Ac supplies 24. In the natural adjacent pairing, the **254 fixed-width quotient coefficients**, including their leading zero, form 127 field elements \(Q_i\). The alternative first-half/second-half pairing is reported separately, rather than optimized.
+
+The candidate mechanism is a forced two-coordinate affine register with *all secret initial states and every fixed linear observation allowed*. Let \(F_0=0,\ F_{i+1}=uF_i+Q_i\), and set \(U_i=u^i\). Every candidate direct GP29 output is
+
+\[
+c_i=\operatorname{Tr}(W U_i+V F_i)+b\pmod{29},
+\qquad W,V\in\mathrm{GF}(29^2),\ b\in\mathrm{GF}(29).
+\]
+
+The arbitrary \(W,V,b\) contain **five free GF29 coordinates**. This is deliberately more permissive than fixing the original state to Ac24 and using a single nonzero secret observation multiplier: any such true affine field model is included. For each \(i\), the right side is a known row of five GF29 coefficients. Exact Gaussian elimination supplies a key-independent decision, with **no plaintext-model scoring or optimized source key**.
+
+| Quotient pairing | Rank of 127×5 source matrix | Rank after appending original 127 ciphertext runes | Earliest inconsistent prefix | Disjoint six-rune blocks inconsistent with every five-parameter secret |
+| --- | ---: | ---: | ---: | ---: |
+| Adjacent, printed forward | **5** | **6** | **6** runes | **21/21** |
+| First half / second half, printed forward | **5** | **6** | **6** runes | **20/21** |
+
+Each incompatible six-rune block requires at least one altered observed rune in any single direct-output reconstruction. Because the blocks do not overlap, any five-secret-parameter model would require at least **21 edits** (adjacent) or **20 edits** (halves) in the 127 original ciphertext values. Source-shaped synthetic controls constructed from hidden values of all five coordinates have augmented rank exactly five and reproduce all 127 symbols.
+
+For a different **fully specified GP29 additive inverse**, choosing source-visible \(W=24\), \(V=23+27u\) and \(b=13\), the original ciphertext-minus-key mod29 outputs have GP-index IoC **0.0373703287** (adjacent) or **0.0334958130** (halves), versus **0.0346206724** before decoding; no coherent original plaintext appears. The source-picked generator directly equals only **3/127** or **8/127** original ciphertext runes. All 127 original inverses re-encrypt exactly; the independently constructed GP29 encrypted plant recovers all 127 positions.
+
+**Decision and limit:** This excludes the complete five-secret-parameter *direct terminal GP29 register-output* family defined above, and yields an original-input negative for the explicitly source-selected additive inverse. It does **not** exclude an unknown plaintext added to an unknown register, nonlinear field observations, secret per-position output tables, or a different interpretation of the 127 terminal runes. The 127-rune grouping and the choice of a field recurrence are candidate mechanisms, not authenticated historical instructions. [Executable single-file test](../sims/red_triad_terminal_linear_state_allsecret_sft.cjs) · [successful manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42927189771).
+
 ## Interpretation and open mechanism
 
-The byte gate is an exact original-input obstruction to a **canonical one-byte-per-two-runes** field transport with only row-wise secret offsets under the two declared source-multiplier rules. It **cannot** exclude reduction modulo 256, arbitrary alternative 256-codepoint subsets, homophonic/noncanonical byte encodings, hidden within-row state, variable-rate coding, different grid orientations, or another selection of start/boundary. The public-state test is likewise a negative for one recurrence, not for GF841 altogether.
+The byte gate and separate all-secret terminal-register test are finite exclusions under different source interpretations. The byte gate is an exact original-input obstruction to a **canonical one-byte-per-two-runes** field transport with only row-wise secret offsets under the two declared source-multiplier rules. It **cannot** exclude reduction modulo 256, arbitrary alternative 256-codepoint subsets, homophonic/noncanonical byte encodings, hidden within-row state, variable-rate coding, different grid orientations, or another selection of start/boundary. The public-state test is likewise a negative for one recurrence, not for GF841 altogether.
 
 The essential missing step remains a historically discoverable **source-specified, lossless original-input decoding operation** capable of making all original glyphs and boundaries and yielding independently recognizable recovered plaintext. Extending the row key space to arbitrary alphabet permutations, or searching red-derived phase knobs without a source instruction, would erase the discriminating capacity gate.
