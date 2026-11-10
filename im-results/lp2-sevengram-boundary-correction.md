@@ -1,10 +1,10 @@
 # Correction: the reported LP2 seven-rune repeat is a solved-page splice
 
-**Cryptanalytic result, 2026-11-10.** The often-repeated claim that the unsolved LP2 cipher has one seven-rune repeated substring between page 27 and page 54 is incorrect for the actual 12,956-rune ciphertext. The seventh matching rune belongs to the *previously solved* `AN END` page. The true unsolved repeat is six runes long.
+**Cryptanalytic result, 2026-11-10.** The often-repeated claim that the unsolved LP2 cipher has one seven-rune repeated substring between physical page 27 and transcription segment 54 (physical LP2 page 55) is incorrect for the actual 12,956-rune ciphertext. The seventh matching rune belongs to the *previously solved* `AN END` page. The true unsolved repeat is six runes long.
 
 ## Original claimed clue and direct counterexample
 
-The published upstream `Dukotah/cicada3301/liber-primus/analysis/round43/F3-hand-feasibility/KEY-LOCALIZATION.md` §1 calls the apparent seven-rune repeat a 0.5%-chance clue between page 27 offset 28 and page 54 offset 70. Its own text treats pages 0–55 as encrypted while later corpus definitions distinguish 55 rune-bearing unresolved segments plus solved terminal pages.
+The published upstream `Dukotah/cicada3301/liber-primus/analysis/round43/F3-hand-feasibility/KEY-LOCALIZATION.md` §1 calls the apparent seven-rune repeat a 0.5%-chance clue between page 27 offset 28 and segment 54 offset 70 (physical LP2 page 55, original scan 72.jpg). Its own text treats pages 0–55 as encrypted while later corpus definitions distinguish 55 rune-bearing unresolved segments (omitting numeric-only physical page 50) plus solved terminal pages.
 
 The canonical project source `resources/lp2-transcription.txt`, split on `%` page boundaries and reduced to the literal runes `U+16A0..U+16FF`, contains **57 segments**. The first 55 hold **12,956 unsolved rune ciphertext symbols**. Segment 54 (last unsolved segment) is 76 runes long; segment 55 (`AN END`) is **85 already-solved runes**; segment 56 (`PARABLE`) is 95 previously solved runes.
 
@@ -13,8 +13,8 @@ The cross-page concatenation creates the illusion:
 | Position | Actual symbols |
 |---|---|
 | Unsolved page 27, offset 28 | `ᛞᛄᚢᛒᛖᛁᚫ` |
-| Unsolved page 54, offset 70 (last six ciphertext runes) | `ᛞᛄᚢᛒᛖᛁ` |
-| **First rune of SOLVED AN END, page 55** | **`ᚫ`** |
+| Unsolved source segment 54 = physical LP2 page 55 (72.jpg), offset 70 (last six ciphertext runes) | `ᛞᛄᚢᛒᛖᛁ` |
+| **First rune of SOLVED AN END, source segment 55 = physical LP2 page 56 (73.jpg)** | **`ᚫ`** |
 | Invalid concatenation across the decryption boundary | `ᛞᛄᚢᛒᛖᛁ` + solved `ᚫ` = apparent `ᛞᛄᚢᛒᛖᛁᚫ` |
 
 The six-rune `ᛞᛄᚢᛒᛖᛁ` motif **really occurs twice** in the unsolved source at global 0-based rune offsets **6,555** and **12,950**. No unsolved-only seven-rune substring repeats at any position after exhaustive direct enumeration. Retaining continuous runes *across the 55 unsolved page boundaries* does not change this conclusion; only extending into a solved page creates the seventh matching symbol.

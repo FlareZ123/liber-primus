@@ -10,8 +10,8 @@ The committed transcription `resources/lp2-transcription.txt` contains 12,956 un
 
 The two words `ᛞᛄᚢ` and `ᛒᛖᛁ` occur **exactly twice each**, together as the word bigram **`ᛞᛄᚢ-ᛒᛖᛁ`** both times:
 
-- Section 5 (zero-based), word index 5, in LP2 page 27 near the beginning of that section.
-- Section 7, word index 733, in LP2 page 54, the final two words of unresolved ciphertext.
+- Section 5 (zero-based), word index 5, in physical LP2 page 27 (original scan 44.jpg) near the beginning of that section.
+- Section 7, word index 733, in physical LP2 page **55** (original scan **72.jpg**), the final two words of unresolved ciphertext. This is zero-based rune-bearing transcription **segment 54**; the printed number-only page 50 has no rune segment.
 
 Over all 2,896 actual words and all eligible adjacent within-section two-word positions, **this is the sole repeated ordered two-word type of *any* length**. In particular, the six matching runes are authentic and the lexical boundaries are both `3|3`. The preceding assertion about the seventh rune remains false.
 
@@ -56,7 +56,7 @@ The first copy is on original page image [`resources/liber-primus/44.jpg`](../re
 
 ## What this establishes and what it does not
 
-**Established:** There is a peculiar exact duplication of an adjacent 3-rune + 3-rune ciphertext word pair near a section opening and at the end of the cipher. Given these same visible words and lengths, random section-local ordering yields an equally long repeated adjacent word pair in only 4/20,000 simulations.
+**Established:** There is a peculiar exact duplication of an adjacent 3-rune + 3-rune ciphertext word pair near a section opening and at the end of the cipher on **physical LP2 page 55**, not original page 54 (a source-segment numbering ambiguity). Given these same visible words and lengths, random section-local ordering yields an equally long repeated adjacent word pair in only 4/20,000 simulations.
 
 **Limits:** The word arrangement is inherited from the author's manuscript and has other structured constraints. The null deliberately allows adjacent repeated-rune word endpoints that the ciphertext's anti-doublet process suppresses. A content-generating encryption mechanism may produce repeated words or pairs for reasons outside this shuffle null. This is one exploratory family after extensive other investigations, with no global search correction; its p-value does not establish a Cicada-intended clue, plaintext equality, cipher reuse or a key. In particular, it must **not be used to promote the invalid seventh-rune crib**.
 
