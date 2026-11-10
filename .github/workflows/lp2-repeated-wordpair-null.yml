@@ -11,6 +11,7 @@ on:
           - legacy
           - allalphabet
           - qr36
+          - qr36-twobit
           - ninetile
 
 permissions:
@@ -28,6 +29,18 @@ jobs:
           node-version: '22'
       - name: Prove nine-tile all-secret D4 / GP29 Caesar/S-box bound and run independent controls
         run: node sims/lp2_ninetile_d4_caesar_sbox_gate.cjs
+
+  qr36-twobit:
+    if: inputs.mode == 'qr36-twobit'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test authentic two-bit-per-rune QR36 function pattern and secret row-column pads
+        run: node sims/lp2_161_qr36_twobit_gate.cjs
 
   qr36:
     if: inputs.mode == 'qr36'
