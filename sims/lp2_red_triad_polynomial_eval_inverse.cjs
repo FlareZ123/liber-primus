@@ -174,7 +174,9 @@ function slicePages(whole, lengths) {
 function main() {
   const grid = load("resources/liber-primus/lp2-grid-256.json");
   const corpus = load("resources/liber-primus/lp2-corpus.json");
-  const latin = load("resources/control/latin-vulgate-heldout-gp.json");
+  const {nativeGP} = require("./red_triad_gf841_127cycle_inverse.cjs");
+  const shakespeare = fs.readFileSync(
+    path.join(ROOT, "resources/control/shakespeare_first300k.txt"), "utf8");
   const bytes = grid.bytes;
   assert.equal(bytes.length, 256);
   assert.equal(crypto.createHash("sha256").update(Buffer.from(bytes))
@@ -210,7 +212,7 @@ function main() {
   const bestPerType = ["add29", "step28"].map((type) =>
     all.find((x) => x.type === type));
   assert.ok(bestPerType.every((x) => x.ioc < 0.036));
-  const native = latin.runes.slice(0, cipher.length);
+  const native = nativeGP(shakespeare).slice(0, cipher.length);
   assert.equal(native.length, cipher.length);
   assert.ok(native.every((x) => Number.isInteger(x) && x >= 0 && x < 29));
   const lengths = cipherPages.map((page) => page.length);
