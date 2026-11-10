@@ -54,4 +54,6 @@ This rules strongly against **ordinary GP-English 28-code plaintext, passed thro
 
 It does **not** exclude irregular skip pointers, per-word or per-section *independent* keys, time-changing outer glyph permutations before rank inversion, any unmodeled reversible handling of the doublet sites, a different exclusion ordering, transpositions, or a flat intermediate code preceding another encryption layer. Even a genuinely random-looking rank stream is compatible with many cryptographic mechanisms. Neither this statistic nor the planted proof recovers an actual LP2 source rune.
 
+Verified through [successful reused manual GitHub Actions run 42772906114](https://github.com/FlareZ123/liber-primus/actions/runs/42772906114), which executed the existing shared phase-invariant regression followed by the new rank-phase test.
+
 Reproduce using the self-contained deterministic CommonJS [program](../sims/no_repeat_periodic_key_phase_invariant.cjs), the committed [original LP2 numeric corpus](../resources/liber-primus/lp2-corpus.json) and [Shakespeare control](../resources/control/shakespeare_first300k.txt). The program asserts page/rune/doublet counts, prints all 24 original scores, all four positive controls, and the 300-sample rotation calibration with seed 0x28256225. No added workflow or dependency is necessary.
