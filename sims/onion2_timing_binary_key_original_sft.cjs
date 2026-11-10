@@ -44,6 +44,20 @@ function encode(gaps,k190,k191) {
 function transform(plain,pad,sign,start=0) {
   return plain.map((x,i)=>mod(x+sign*pad[(start+i)%pad.length]));
 }
+/** Can exactly nine unknown 1..7-tick gaps precede an authenticated suffix
+ * to produce the specified binary header? @param {string} targetBits
+ * @param {string} confirmedAfterFirstNine */
+function possibleHeaderBoundary(targetBits,confirmedAfterFirstNine) {
+  for(let s=9;s<targetBits.length;s++) {
+    const first=targetBits.slice(0,s);
+    const gapWords=first.split('1');
+    if(gapWords.length!==10||!first.endsWith('1'))continue;
+    if(gapWords.slice(0,9).some(z=>z.length>6))continue;
+    if(confirmedAfterFirstNine.startsWith(targetBits.slice(s)))return s;
+  }
+  return null;
+}
+
 function main() {
   const t = read('resources/cicada2014-onion2-timing.json');
   const c = read('resources/liber-primus/lp2-corpus.json');
@@ -102,6 +116,11 @@ function main() {
   }
   assert.equal(results.length,80);
   assert.ok(results.every(v=>v.originalReenciphers));
+  const post152=Array.from({length:38},(_,i)=>gaps.get(i+152)).map(k=>'0'.repeat(k-1)+'1').join('');
+  const literalHeader=[...'AN END'].map(c=>c.charCodeAt(0).toString(2).padStart(8,'0')).join('');
+  assert.equal(literalHeader.length,48);
+  assert.equal(possibleHeaderBoundary(literalHeader,post152),null);
+  assert.equal(possibleHeaderBoundary(encode(gaps,3,3).bitstring.slice(0,48),post152),21);
   results.sort((a,b)=>b.ioc-a.ioc);
   assert.equal(ioc(original),0.03447839786450569);
   assert.equal(results[0].ioc,0.03454412518027051);
@@ -116,4 +135,4 @@ function main() {
     caveat:'30-byte 5-minute occupancy stream is recovered only for observed 2014 suffix; neither direct GP29 key register nor AN prefix gives LP2 plaintext.'},null,2));
 }
 if(require.main===module)main();
-module.exports={encode,transform,ioc};
+module.exports={encode,transform,ioc,possibleHeaderBoundary};
