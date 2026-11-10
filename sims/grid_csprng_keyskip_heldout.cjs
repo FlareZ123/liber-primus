@@ -300,7 +300,7 @@ assert.equal(plantRankings.length,216);
 assert.equal(actualRankings.length,216);
 assert.equal(expected,1,'source-selected planted key did not win');
 assert.deepEqual(plantedWinner.assignment,[0,1,2,3,4,5,6,7]);
-assert.ok(plantedHeldout.score>-3.1,'planted heldout linguistic signal lost');
+assert.ok(plantedHeldout.accuracy>0.65,'planted heldout exact key recovery too weak');
 /** @param {object} x */
 const compact=x=>({
   layout:x.layout,algorithm:x.algorithm,iv:x.ivName,
