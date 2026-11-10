@@ -1,0 +1,91 @@
+name: PHP legacy MT19937 opening-crib seed search
+
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: Inclusive unsigned 32-bit seed
+        type: string
+        required: true
+        default: '0'
+      end:
+        description: Exclusive seed (up to 4294967296)
+        type: string
+        required: true
+        default: '1000000'
+      shards:
+        description: Number of exact, nonoverlapping intervals (1-256)
+        type: string
+        required: true
+        default: '1'
+
+permissions:
+  contents: read
+
+jobs:
+  partition:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: \${{ steps.plan.outputs.matrix }}
+    steps:
+      - name: Build disjoint exhaustive seed intervals
+        id: plan
+        env:
+          START: \${{ inputs.start }}
+          END: \${{ inputs.end }}
+          SHARDS: \${{ inputs.shards }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          first, last, parts = (int(os.environ[x]) for x in ('START', 'END', 'SHARDS'))
+          assert 0 <= first < last <= 2**32
+          assert 1 <= parts <= 256 and parts <= last-first
+          ranges = [{'part': i+1, 'start': first+(last-first)*i//parts,
+                     'end': first+(last-first)*(i+1)//parts} for i in range(parts)]
+          assert ranges[0]['start'] == first and ranges[-1]['end'] == last
+          assert all(a['end'] == b['start'] for a,b in zip(ranges,ranges[1:]))
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write('matrix='+json.dumps({'include':ranges},separators=(',',':'))+'\n')
+          print(json.dumps({'start':first,'end':last,'shards':parts,'ranges':ranges[:3]}))
+          PY
+
+  seed-search:
+    needs: partition
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 16
+      matrix: \${{ fromJson(needs.partition.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compile and verify legacy-PHP generator
+        run: |
+          gcc -O3 -std=c11 -Wall -Wextra -o /tmp/php-mt-scan sims/php_mt_wordscan.c
+          node -e 'const fs=require("node:fs");const w=require("./sims/php_wordlist.cjs");fs.writeFileSync("/tmp/php-plant.bin",w.makeDictionary("DIVINITY LIGHT HOLY",false))'
+          /tmp/php-mt-scan /tmp/php-plant.bin 777 778 777 | tee /tmp/php-plant.log
+          grep -q 'HIT seed=777 ' /tmp/php-plant.log
+      - name: Build natural-language word crib dictionary
+        run: |
+          node sims/php_wordlist.cjs resources/control/shakespeare_first300k.txt /tmp/php-real.bin
+          sha256sum /tmp/php-real.bin
+      - name: Search exact nonoverlapping seed interval
+        env:
+          START: \${{ matrix.start }}
+          END: \${{ matrix.end }}
+        run: |
+          /tmp/php-mt-scan /tmp/php-real.bin "$START" "$END" | tee scan.log
+          grep -q "SUMMARY seeds=$((END-START)) " scan.log
+      - name: Preserve complete candidate record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: php-mt-crib-\${{ matrix.part }}
+          retention-days: 90
+          if-no-files-found: warn
+          path: |
+            scan.log
+            /tmp/php-plant.log
