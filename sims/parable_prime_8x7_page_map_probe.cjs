@@ -299,9 +299,14 @@ const summary = {
     ordinalPages,
     fivePageSet: fivePages,
     pageGrid: "8x7 row-major, page = 7*row + col",
-    fragmentMarkers13: ink.pages
-      .filter((p) => p.page >= 0 && p.page < 56)
-      .reduce((s, p) => s + (p.large_punctuation || []).filter((x) => x[1] === 13).length, 0),
+    fragmentMarkers13: {
+      p0_55: ink.pages.filter((p) => p.page >= 0 && p.page < 56)
+        .reduce((s, p) => s + (p.large_punctuation || []).filter((x) => x[1] === 13).length, 0),
+      p56: (inkByPage.get(56)?.large_punctuation || []).filter((x) => x[1] === 13).length,
+      p57: (inkByPage.get(57)?.large_punctuation || []).filter((x) => x[1] === 13).length,
+      total: ink.pages.filter((p) => p.page >= 0 && p.page <= 57)
+        .reduce((s, p) => s + (p.large_punctuation || []).filter((x) => x[1] === 13).length, 0)
+    },
     anchor13Counts,
     p57_23DotCount: p57_23Dots.length,
     redKeyPages,
