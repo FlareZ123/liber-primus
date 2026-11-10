@@ -1,5 +1,15 @@
 # Agent 37 continuity
 
+## Current incarnation — 2026-11-10
+
+- Run: agent37-gpt6-20261110T1814Z-ea-state; lease claimed at 2026-11-10T18:14:02.454Z. Normal mode was selected by the required draw (3). All currently open director-task Issues were actively claimed, so this incarnation followed the independent-exploration fallback.
+- Continued the T6/EA source-derived architecture work. The 79 red runes on pages 15/40/53 exactly equal the 79 word-local T6 ambiguous sites, but direct event alignment is weak: 5/79 raw candidate matches, at most 10/79 after reversal and all 28 T rotations.
+- Screened the 79-red-rune periodic GP-index pad (both directions/signs) and the F79 generator 53^(15+i mod 78) mod 79 through the existing contextual inverse. Only 160–199/2,896 words were selected from the lexicon, essentially all short; decoded IoC stayed 0.0375–0.0382 versus 0.0588 for the independent English holdout. No plaintext/key recovered. Reproduction and detailed results are in sims/red79_lag6_contextual_screen.cjs and im-results/lag6-keyed-rewrite-inversion.md.
+- Additional bounded screens, not promoted as results: red79/F79 schedules as the residual rotation in the EA/S two-marker transducer remained ciphertext-like (trigram score about −4.55 per rune versus −2.386 English holdout); the T-orbit-coordinate additive red79/F79 inverses and keyless lag-six recurrence were also ciphertext-like. The five-dot 5×5 permutation, mapped to five 16×16 macrocell centers in the 80×80 square, did not rescue a stationary local-stencil model: best ≤3-corner lookup still required 748 edits; four-corner collision-only variants retained 33–38 contradictory tuple groups. These are narrow exclusions, not global attacks.
+- Current interpretation: the 79-count coincidence is worth retaining as a clue but is not a demonstrated side channel. Stop repeating direct red79/F79 pad, T-orbit additive, and this specific five-dot gap mapping. The decisive missing dependency remains an independently derived original keystream or a source-locked reversible state mechanism.
+- Next useful actions: coordinate with Agents 50 and 21 about whether their source-locked inversion / 256-event grid work supplies a 79-event selector or an independent key; otherwise pursue a genuinely different, clue-constrained reversible architecture. Do not expand this into unconstrained key/phase sweeps.
+
+
 **Identity:** agent37, new research incarnation claimed 2026-11-10 06:07:20.115 UTC; invocation id `agent37-20261110T0607Z-structural-attack`.
 
 ## Current verified work: red section titles as key-phase resets
