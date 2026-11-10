@@ -1,61 +1,53 @@
-# Five numbered LP2 passages: a cross-alignment hub and its key-reuse failure
+# Five numbered LP2 passages: a source-bounded alignment hub and failed inversions
 
-**Classification:** exploratory ciphertext relationship, independently reproducible within a fully specified *conditional* test. **No recovered LP2 plaintext, cryptographic key, or confirmed mechanism.** Analysis by Agent 29, 2026-11-10.
+**Classification:** Exploratory, selected ciphertext relationship. No LP2 plaintext, actual key, decipherment mechanism or destination is established. This is the consolidated current account of Agent 29's five-numbered-block investigation (10 November 2026).
 
-## Why this section is a useful, bounded target
+## Original-source boundaries
 
-Original LP2 archive JPEGs **53.jpg–55.jpg** display five conspicuous red enumeration labels **1, 2, 3, 4, 5**. Each label starts a prose interval; the fifth interval also contains the material before the next paragraph terminator. Their respective rune counts, from the repository's canonical master transcription, are exactly **139, 91, 98, 96, 290**. This is a manuscript-defined set of five related ciphertext samples, potentially more informative than choosing arbitrary pairs from 55 pages.
+Original JPEGs **53–55** visibly enumerate five passages with red **1–5**. The fifth passage ends at a conspicuous **red-dot separator** on JPEG55, before the following unnumbered paragraph. In the canonical master transcription the separator is the first `%\n` after the `5-` label; using the later `&` separator incorrectly incorporates the next paragraph. The corrected complete rune counts are **[139, 91, 98, 96, 171]**. Earlier analysis reported 290 for item 5 by including the following 119 runes; the earlier five-item span description and null calibration are superseded. A competing 129-rune count exists in a separate item-key experiment; this source-checked and transcription-reproducible boundary is 171.
 
-The first numbered block is held as the anchor, and each of the other four is compared to it at every **noncyclic rune offset -40 through +40**. Let N_s be the count of overlapping runes and E_s the count of identical runes. The unconditioned uniform-rune collision z-score is
+This matters to a source-driven decoding hypothesis because five numerical labels define five specific items. The previously reported peak lag for item 5 uses only its first 130 runes, so the four selected equality peaks remain numerically unchanged when the source boundary is repaired. All null controls below were recomputed with the **171-rune** fifth item.
 
-    Z_s = (E_s - N_s / 29) / sqrt(N_s * (1/29) * (28/29)).
+## Observed alignment: first item as fixed anchor
 
-The per-pair peak is the maximum across all 81 offsets, and the five-passage statistic is the **minimum of four independently optimized pair scores**. The latter asks whether passage 1 connects unusually well to *all* four other enumerated passages.
+The script compares the 139-rune first item against each other whole item at noncyclic rune shifts `[-40,+40]`. For a candidate shift, `N` is overlap length and `E` exact runic equalities. Its standardised score is `z=(E-N/29)/sqrt(N*28/841)`. A four-link statistic is the **minimum** of the four independently maximized scores.
 
-## Exact observations
+| Pair | Selected partner shift | Exact equalities | Full z | Held-out equalities | Held-out z |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 1 / 2 | −24 | 11/91 | 4.51684 | 6/46 | 3.56658 |
+| 1 / 3 | −20 | 11/98 | 4.21891 | 5/49 | 2.59176 |
+| 1 / 4 | −34 | 10/96 | 3.74186 | 5/48 | 2.64589 |
+| 1 / 5 | −9 | 13/130 | 4.09399 | 5/65 | 1.87523 |
 
-| Comparison | Peak lag of partner | Coincidences | Full z | Heldout coincidences / positions | Heldout z |
-|---|---:|---:|---:|---:|---:|
-| Block 1 / 2 | -24 | 11 / 91 | 4.51684 | 6 / 46 | 3.56658 |
-| Block 1 / 3 | -20 | 11 / 98 | 4.21891 | 5 / 49 | 2.59176 |
-| Block 1 / 4 | -34 | 10 / 96 | 3.74186 | 5 / 48 | 2.64589 |
-| Block 1 / 5 | -9 | 13 / 130 | 4.09399 | 5 / 65 | 1.87523 |
+The full-score minimum is **3.7418562366**. Each shift's matched overlap is split in half; three training-best shifts are eligible for selection by the *unfitted* second half. The minimum of four such validation z-scores is **1.8752289238**. These are selected descriptive scores; interpreting an individual z as an unadjusted statistical test would be incorrect.
 
-All four full-sample maxima exceed **z=3.74**; the observed minimum is **3.7418562366**. A short sequence can attain such a high post-optimization z-score by chance, so these are *not* individual hypothesis-test p-values.
+**Recomputed conditional empirical nulls, all 81 offsets and the same top-three holdout choice re-optimized in every trial:**
 
-For a more stringent split check, divide **each offset's own overlap** into a first training half and second validation half. Choose the three highest-z training offsets per partner, then score the best of those three on its *unfitted* second half. This is a permissive, three-choice validation rule whose selection must be included in controls. All four originally selected full peaks were among the three training choices; their validation z-scores are given in the table. The minimum validation z is **1.8752289238**.
+| Fixed-anchor control | Trials | Full-minimum exceedances | Full add-one p | Validation-minimum exceedances | Validation add-one p |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Four mutually disjoint authentic LP2 rune windows of item-matched lengths, LCG seed 1013539 | 10,000 | 0 | 0.000100 | 6 | 0.000700 |
+| Independent within-item exact-histogram rune shuffles, LCG seed 730031 | 10,000 | 1 | 0.000200 | 2 | 0.000300 |
 
-## Exact conditional nulls
+Both controls keep the original first item fixed. The authentic-window control preserves native neighboring-rune structure within each sampled window, and the shuffle control preserves each item's full unigram histogram. These p values condition on an *exploratorily chosen* first-item hub, number-labelled source group, offset window and score family, so they do not establish a puzzle-wide statistical discovery.
 
-The implementation performs the **entire offset optimization and split-selection procedure again in each control trial**. Both controls keep the observed first block fixed, preserving any unusual hub rune distribution.
+The **45** equalities are dispersed across **24 of 29** anchor rune types. Only five anchor positions appear in two or more partner-match sets; position 93 matches three partners. A concentrated single-rune anchor artifact does not explain the four selected links.
 
-**Real-manuscript-window null:** Choose four nonoverlapping windows matching the lengths 91, 98, 96 and 290 from the concatenated 12,956 genuine LP2 runes. Do this for 10,000 trials with deterministic seed 1013539. No trial attained the observed full-peak minimum: add-one p **1/10001=0.00009999**. Four trials attained the observed split-validation minimum: add-one p **5/10001=0.00049995**. This null retains authentic neighboring-runic structure inside randomly drawn windows, including the known anti-doublet deficit.
+## Direct cryptographic inversions
 
-**Exact-histogram shuffle null:** Keep the four actual partners' symbol multisets fixed; uniformly shuffle the order within each block in every trial, with seed 730031. Of 10,000 trials, none attained the observed full-peak minimum, and two attained the observed split-validation minimum. Add-one p values: **0.00009999** and **0.00029997**, respectively. This addresses the possibility that unusual individual rune frequencies create the apparent hub.
+**One common additive key fails transitivity.** Offsets `[0,−24,−20,−34,−9]` force six additional pairwise offsets. These compare items 2–5 at **16/541** matching runes (2.96%, below the 1/29 uniform reference), compared with the first-item hub's 45 matches. The exact forced pairs 2/3, 2/4, 2/5, 3/4, 3/5 and 4/5 yield respectively **3/91, 4/81, 0/91, 3/84, 3/98, 3/96**. A five-way shared reused modulo29 additive pad for ordinary, independently worded GP-English passages cannot be inferred from this hub. The existing source-matched English difference-distribution search also failed to recover a shared affine multiplier.
 
-The null probabilities are **conditional on this manuscript-defined five-block set, chosen anchor, scanning range, statistic, and analysis path**. They do not correct for searching many sections, anchor selections, cipher hypotheses, or all possible human pattern discoveries. Consequently they support further investigation of an anomaly; they do not provide a family-wise claim about the entire Liber Primus ciphertext or an identified encryption architecture.
+**Polynomial-share test motivated by red labels 1–5 and prime field F29.** If each numbered passage represented direct evaluations at x=1,...,5 of one rune-wise polynomial over F29, the first 3, 4 and 5 shares would satisfy, respectively,
 
-## The most important cryptographic obstacle: no transitive common pad
+- degree ≤1: `C1 − 2C2 + C3 = 0 (mod 29)`;
+- degree ≤2: `C1 − 3C2 + 3C3 − C4 = 0 (mod 29)`;
+- degree ≤3: `C1 − 4C2 + 6C3 − 4C4 + C5 = 0 (mod 29)`.
 
-A single additive key reused at the chosen pairwise offsets cannot explain the alignment table in the simplest way. If block 1 aligns with blocks 2, 3, 4 and 5 at offsets [0,-24,-20,-34,-9], the common key must cancel also between the other six pairs at offsets obtained by subtracting their inferred shifts.
+A common nonzero affine relabelling of output runes preserves these conditions. At the five natural item starts, their hits are only **4/91, 2/91 and 4/91**; at the pre-existing hub offsets they are **3/91, 4/81 and 3/81**. Exact genuine shares would satisfy *every* relation at every jointly valid site. A planted random cubic five-share construction recovers **81/81** exact fourth-difference relations.
 
-The observed exact coincidences at these six *forced* alignments are:
+For the three-item degree-one case, a wider exhaustive scan of `[-40,+40]^2` relative offsets tests **4,048** placements with at least 60 jointly covered rune positions. The maximum is 12/91 at shifts (−20,−20), z **5.09135537**. In **500 independently sampled pairs of authentic LP2 rune windows**, the same complete search attains or exceeds that z **87** times (seed **1901107**, add-one p **88/501 ≈ 0.17565**). It is an unsuccessful inversion, not a linear-share decoding. Arbitrary non-affine output permutations, nonuniform erasures, unread source extraction orders or additional encryption remain outside these exact-model negatives.
 
-| Other pair | Forced offset | Rune coincidences |
-|---|---:|---:|
-| 2 / 3 | +4 | 3 / 91 |
-| 2 / 4 | -10 | 4 / 81 |
-| 2 / 5 | +15 | 0 / 91 |
-| 3 / 4 | -14 | 3 / 84 |
-| 3 / 5 | +11 | 3 / 98 |
-| 4 / 5 | +25 | 3 / 96 |
+## Reproduction and decision
 
-**16/541 = 2.96%** of forced comparisons coincide, slightly *below* the uniform 1/29 reference. An actual common additive pad masking two independently sampled, similarly distributed ordinary English-GP rune streams would generally preserve a *higher* character equality probability at corresponding key phases. The pairwise links involving block 1 are therefore mutually inconsistent with a straightforward five-way identical keystream. This is an informative architectural failure, subject to the unspecified true plaintext distribution and possible state/skipping rules.
+Run `node sims/numbered_five_alignment.cjs` for the corrected complete four-link scan, item-boundary assertions, 10,000-trial nulls and forced other-pair checks. Run `node sims/numbered_five_alignment.cjs --field-share` for the degree-one-to-three exact modular equations, the 4,048-placement degree-one scan, its 500 genuine-window controls and its planted full cubic-share positive. Requires Node.js 22, `resources/transcriptions/liber_primus_master.txt` and `resources/liber-primus/lp2-corpus.json`. Both modes read original committed resources and use fixed LCG seeds.
 
-A direct English-GP difference-distribution likelihood screen at these selected offsets also did not identify one consistent affine multiplier for all four pairs. Thus neither the high exact matches nor the per-pair English-like score is a decryption.
-
-## Reproduction and next decision
-
-**Run:** node sims/numbered_five_alignment.cjs from the repo root, Node.js 22. The script reads resources/transcriptions/liber_primus_master.txt and resources/liber-primus/lp2-corpus.json, asserts the five counts and entire 12,956-rune pool, and emits all offsets, full scores, train/validation choices, complete null counts and forced transitivity comparisons. No external library, API, or secret is required.
-
-**Inversion requirement before promotion:** Find an independently motivated rule producing these four offsets *and* an explanation for why the other six forced alignments fail. Apply that rule to untouched rune positions or to another independently selected manuscript section. Recover reproducible plaintext and re-encrypt it exactly. Absent such a rule, the correct status remains an intriguing but post-selected hub pattern. Additional score optimization on the same five passages alone is unlikely to resolve it.
+**Decision:** The corrected five-item source group still has a conditional first-item coincidence anomaly. It has no validated five-way common pad or simple 29-field polynomial-share rule. A useful next hypothesis must derive its relative offsets and reversible copying/key state from another source constraint and reconstruct independently held-out original plaintext. Re-optimizing the same four coincidences does not constitute decryption.

@@ -26,11 +26,11 @@ for (let number = 1; number <= 5; number++) {
   const begin = master.indexOf('\n' + number + '-', entry);
   const end = number < 5
     ? master.indexOf('\n' + (number + 1) + '-', begin)
-    : master.indexOf('\n&', begin);
+    : master.indexOf('\n%', begin);
   assert.ok(begin >= 0 && end > begin, 'missing numbered passage ' + number);
   passages.push([...master.slice(begin + 3, end)].filter(ch => symbol.has(ch)).map(ch => symbol.get(ch)));
 }
-assert.deepEqual(passages.map(p => p.length), [139, 91, 98, 96, 290]);
+assert.deepEqual(passages.map(p => p.length), [139, 91, 98, 96, 171]);
 const pool = corpus.pages.filter(p => p.page <= 55).flatMap(p => p.indices);
 assert.equal(pool.length, 12956);
 
@@ -175,7 +175,7 @@ function study() {
   const observed = passages.slice(1).map(p => scan(passages[0], p));
   return {
     classification: 'exploratory, no LP2 key or plaintext recovered',
-    source: 'LP2 labels 1-5 across original JPEGs 53-55, canonical master',
+    source: 'LP2 labels 1-5 across original JPEGs 53-55, stopping block 5 at its red-dot separator',
     passageLengths: passages.map(p => p.length),
     lagRange: [-40,40],
     fixedAnchor: 1, trainSearchChoices: 3,
@@ -189,5 +189,114 @@ function study() {
   };
 }
 
-if (require.main === module) process.stdout.write(JSON.stringify(study(), null, 2) + '\n');
-module.exports = {scan, study};
+/**
+ * Test the independently numbered 1..5 passages as polynomial evaluations in F29.
+ * Five values from a cubic polynomial obey the exact fourth finite difference:
+ * C1 - 4*C2 + 6*C3 - 4*C4 + C5 = 0 (mod 29).
+ * Common affine output alphabets preserve these vanishing differences.
+ *
+ * Direct item starts and the existing equality-derived hub shifts are predeclared
+ * finite checks; the separate degree-1 relative-shift scan is selection-calibrated.
+ */
+function fieldShareStudy() {
+  const coefficientSets = [
+    {degree:1, coefficients:[1,-2,1]},
+    {degree:2, coefficients:[1,-3,3,-1]},
+    {degree:3, coefficients:[1,-4,6,-4,1]}
+  ];
+  const mod = x => ((x % 29) + 29) % 29;
+
+  /** @param {number[][]} blocks @param {number[]} shifts @param {number[]} coefficients */
+  function measure(blocks, shifts, coefficients) {
+    const low = Math.max(0, ...coefficients.map((_,i) => -shifts[i]));
+    const high = Math.min(blocks[0].length,
+      ...coefficients.map((_,i) => blocks[i].length - shifts[i]));
+    let hits = 0;
+    for(let position=low;position<high;position++) {
+      let total = 0;
+      for(let i=0;i<coefficients.length;i++)
+        total += coefficients[i] * blocks[i][position+shifts[i]];
+      hits += Number(mod(total)===0);
+    }
+    return {hits,compared:Math.max(0,high-low),z:zscore(hits,Math.max(0,high-low))};
+  }
+
+  const itemStarts = [0,0,0,0,0];
+  const hubShifts = [0,-24,-20,-34,-9];
+  const measured = [
+    {name:'numbered-item-initial-runes',shifts:itemStarts},
+    {name:'existing-hub-coincidence-shifts',shifts:hubShifts}
+  ].map(mode=>({
+    ...mode,
+    conditions:coefficientSets.map(f=>({
+      degree:f.degree,...measure(passages,mode.shifts,f.coefficients)
+    }))
+  }));
+
+  /** Search one specified F29 linear-share relation, not arbitrary coefficients. */
+  function shiftedLinearScreen(blocks) {
+    let best={z:-Infinity};
+    let tested=0;
+    for(let offset2=-40;offset2<=40;offset2++)
+      for(let offset3=-40;offset3<=40;offset3++) {
+        const shifts=[0,offset2,offset3];
+        const low=Math.max(0,-offset2,-offset3);
+        const high=Math.min(blocks[0].length,blocks[1].length-offset2,blocks[2].length-offset3);
+        const n=high-low;
+        if(n<60)continue;
+        tested++;
+        let hits=0;
+        for(let i=low;i<high;i++)
+          hits+=Number(mod(blocks[0][i]-2*blocks[1][i+offset2]+blocks[2][i+offset3])===0);
+        const z=zscore(hits,n);
+        if(z>best.z)best={offset2,offset3,hits,compared:n,z};
+      }
+    return {tested,best};
+  }
+
+  const screen = shiftedLinearScreen(passages);
+  const random = rng(1901107);
+  const controls=500;
+  let exceed=0;
+  for(let t=0;t<controls;t++) {
+    const st2=Math.floor(random()*(pool.length-passages[1].length));
+    const st3=Math.floor(random()*(pool.length-passages[2].length));
+    const blocks=[passages[0],
+      pool.slice(st2,st2+passages[1].length),
+      pool.slice(st3,st3+passages[2].length)];
+    if(shiftedLinearScreen(blocks).best.z>=screen.best.z)exceed++;
+  }
+
+  // A synthetic 81-rune, five-share cubic plant has an exact direct inverse.
+  const planted = passages.map(block=>block.slice());
+  const plantRandom = rng(3301);
+  for(let i=34;i<115;i++) {
+    const coefficients=Array.from({length:4},()=>Math.floor(plantRandom()*29));
+    for(let j=0;j<5;j++) {
+      const x=j+1;
+      const encoded=mod(coefficients[0]+coefficients[1]*x+
+        coefficients[2]*x*x+coefficients[3]*x*x*x);
+      planted[j][i+hubShifts[j]]=encoded;
+    }
+  }
+  const positive=measure(planted,hubShifts,coefficientSets[2].coefficients);
+  assert.deepEqual([positive.hits,positive.compared],[81,81]);
+
+  return {
+    status:'No direct F29 numbered-share reconstruction in LP2',
+    source:'Original numbered items 1..5, fifth item ends before red-dot paragraph separator',
+    pageItemLengths:passages.map(p=>p.length),
+    measured,
+    shiftedLinearScreen:screen,
+    shiftedLinearWindowControl:{trials:controls,seed:1901107,exceed,
+      p:(exceed+1)/(controls+1)},
+    plantedFiveShareCubic:{hits:positive.hits,compared:positive.compared},
+    caveat:'This excludes direct common-affine-output low-degree polynomial shares at the tested phases; an unknown non-affine alphabet, transposition, or additional encryption remains outside the test.'
+  };
+}
+
+if (require.main === module) {
+  const result=process.argv.includes('--field-share') ? fieldShareStudy() : study();
+  process.stdout.write(JSON.stringify(result,null,2)+'\n');
+}
+module.exports = {scan, study, fieldShareStudy};
