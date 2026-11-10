@@ -1,0 +1,28 @@
+# Pre-LP2 prime records and the 2014 May-2 whitespace handoff
+
+**Evidence classification:** exact source-script inspection and a source-frozen original-cipher negative. **No recovered unknown LP2 plaintext, historical key, or genuine cipher.** This addresses [Director Issue #10](https://github.com/FlareZ123/liber-primus/issues/10) and supplements [the historical handoff](../workplace/historical-solve-path-to-original-lp2.md).
+
+## Source findings and their effect on the key search
+
+The historical 2013 Cicada OS screen has been reported to omit the primes 73–1223. The recovered [2013 ISO source script prime_echo](https://github.com/neuroretransmit/cicada/blob/main/2013/002-3301/rootfs-contents/usr/local/bin/prime_echo) (Git blob SHA-1 **65a569cf1b3eecb0f7c17ffc569a54ed8ecdf649**) actually prints **all 464 primes from 2 to 3301** in ascending order, exactly once. An executable parse of each echo statement finds **zero omissions, duplicates, nonprime numbers or reordered values**. Values 73, 79, 83, …, 1223 explicitly appear. Hence the missing-prime sequence observed in a terminal capture is **not an omission specified by this script**. Deriving a key from the purported omission requires evidence from some other original executable or interaction. It has no support from this recovered source.
+
+The repository's [archived 2 May 2014 clearsigned reply](../resources/cicada2014-may2-signed-message.asc) has eleven ordered whitespace-run counts **2,3,5,7,11,13,17,23,29,31,37**, corresponding to the first twelve primes **with 19 omitted**. The **5** before the onion address is leading indentation. The other **ten** counts occur as trailing spaces or whitespace-only lines. As explicitly specified in the historically applicable [OpenPGP RFC 4880 §7](https://datatracker.ietf.org/doc/html/rfc4880#section-7), cleartext signatures remove trailing spaces and tabs before signing; see also [RFC 9580 §7.1](https://www.rfc-editor.org/rfc/rfc9580.html#section-7.1). Thus the PGP signature can authenticate the nontrailing text and the leading five spaces, **while it cannot authenticate the other ten run lengths**. An independently captured contemporaneous byte stream would be required to establish those counts as authentic key material. The absence of 19 does not independently prescribe a key schedule or cipher operation.
+
+## Executed original-LP2 test
+
+Earlier Cicada phases used GP-index Vigenere and prime-totient shifts. To test the eleven historical values without searching arbitrary keys, the [single-file CommonJS reproducer](../sims/may2_historical_source_gate.cjs) freezes their visual order and forms three natural direct **periodic GP29 subtraction keys**: each prime minus one, its canonical GP prime index, or prime modulo 29. It also tests the competing first eleven *consecutive* primes (with 19 restored) under the prime-minus-one rule.
+
+For each key, the frozen decoder reads original physical **LP2 page 0, 262 runes**, with key clock reset at the page beginning. It exhausts all **16,384** possible masks of the 14 literal/nonconsuming ciphertext F symbols (65,536 original-input decodings across four keys). It scores using an independently trained GP trigram of Gibran's *The Prophet* and compares against all **62,435** complete equal-length windows of the same source.
+
+| Key derivation | Best original p0 score, nats/rune | Best F mask |
+| --- | ---: | ---: |
+| Historical 11 primes, prime minus 1 | **−5.661101** | 13416 |
+| Historical 11 primes, GP index | **−5.639080** | 1728 |
+| Historical 11 primes, residue mod29 | **−5.346064** | 14542 |
+| Competing first 11 primes including 19, prime minus 1 | **−5.803807** | 4416 |
+
+The untreated original p0 scores **−6.275811**. The worst independent literary window scores **−2.394686**, median **−2.080088**: **zero of 62,435** natural-GP windows have scores as poor as any of these maximally fitted decryptions. The outputs contain no readable native-GP English. This is a bounded exclusion of **these particular four direct GP29 periodic subtractions** with every observable F skip mask. It does not exclude an independently indicated nonlinear state, a different textual register, another word segmentation, or a separate source-locked mechanism.
+
+## Remaining dependency
+
+The first obstacle is a **byte-authentic 2014 HTTP capture** of the May-2 response before it was recopied and normalized; its signed content cannot certify the trailing-space counts. The second and larger obstacle is a **contemporary instruction that determines a concrete LP2 cipher, key extraction, clock, state and starting register from those sources**. The existing publicly recovered Cicada chain delivers the 58 scans without fixing that operation. The historical ISO full prime sequence and the mostly unsigned 11-run whitespace pattern presently cannot serve as an identified original key.
