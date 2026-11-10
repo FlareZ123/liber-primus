@@ -1,0 +1,14 @@
+name: LP2 five-dot ornament LFSR row-order inverse (manual)
+on:
+  workflow_dispatch:
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source-selected 31-cycle row mapping and reversible controls
+        run: node sims/lp2_fivedot_lfsr_fragment_row_inverse.cjs
