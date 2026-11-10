@@ -48,6 +48,8 @@ jobs:
                   prefix = $_.possiblePlaintext.Substring(0, [Math]::Min(140, $_.possiblePlaintext.Length))
                 }
               })
+              $offsetsPerCell = $null
+              if ($r.rows) { $offsetsPerCell = $r.rows[0].offsets }
               $results = [ordered]@{
                 run = $id
                 file = $file.Name
@@ -55,7 +57,7 @@ jobs:
                 mapping = $r.mode
                 sourceSHA256 = $r.sha256
                 offsetsPerSign = $r.search.offsetsPerSign
-                offsetsPerCell = $r.rows[0].offsets
+                offsetsPerCell = $offsetsPerCell
                 originalBestPrefix = $r.originalMaxPrefixScore
                 original = $r.original
                 rows = $r.rows
