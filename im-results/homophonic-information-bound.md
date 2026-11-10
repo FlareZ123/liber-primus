@@ -4,7 +4,7 @@
 
 ## Research question and contribution
 
-Could an undiscovered **fixed**, possibly many-to-one, mapping of the 29 ciphertext runes directly to plaintext letters produce ordinary English? This is the 29-to-k "homophonic-downward" possibility listed as unmeasured in [Dukotah's measured ceiling, section 3](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/MEASURED-CEILING.md).
+Could a **fixed**, possibly many-to-one, mapping of the 29 ciphertext runes directly to plaintext letters produce ordinary English? [Wulfic's October 2026 findings §15, C15](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/reference/findings/lp2_logic_findings_2026-09-29.md) had **already excluded ordinary homophonic substitution** using an exhaustive allocation and χ² argument. The analysis here is an independent and simpler information-theoretic derivation, extending the presentation to arbitrary fixed maps and phase-conditional bounds. Do not count the overlapping exclusion as a newly cracked cipher.
 
 There are two necessary conditions for such a map, both computable **without enumerating mappings**:
 
@@ -38,9 +38,9 @@ A phase-dependent but position-predictable decoder f_(i mod m) obeys the **phase
 
 ## Implications and precise exclusions
 
-- **Excluded as a mechanism for LP1-like English:** one-rune-to-one-letter **static substitution**, including a non-injective map from 29 runes down to fewer than 29 English letter symbols. The result includes conventional simple substitutions and fixed disjoint-alphabet homophonic encoders whose plaintext decoder is static and unambiguous.
-- **Strongly disfavored for short periodic substitutions:** independent, page-phase-specific alphabets with periods 2–8, when the target register resembles ordinary English; the phase-conditional bound applies even if the maps in adjacent phases differ.
+- **Already excluded by prior work and independently corroborated here for LP1-like English:** one-rune-to-one-letter **static substitution**, including a non-injective map from 29 runes down to fewer than 29 English letter symbols. The result includes conventional simple substitutions and fixed disjoint-alphabet homophonic encoders whose plaintext decoder is static and unambiguous.
+- **A related necessary-condition check for short periodic substitutions:** independent, page-phase-specific alphabets with periods 2–8, when the target register resembles ordinary English; the phase-conditional bound applies even if the maps in adjacent phases differ.
 - **Untested here:** context-dependent or stateful substitutions, nonlinear recurrent transformations, word- or rune-position resets conditional on text, insertions/deletions, multiple plaintext symbols per rune, additive/pseudorandom streams, true external key material, transpositions, and nonlinguistic plaintext.
 - **No new decrypted passage or key** is asserted. The contribution closes a concrete otherwise-unenumerated decoder family with an information-theoretic necessary condition, and narrows attention to mechanisms that can create plaintext dependence from a low-dependence ciphertext.
 
-The doublet deficit and broad flatness were already known, as documented by [Dukotah's Solvers' Dossier](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/SOLVERS-DOSSIER.md). The added contribution is the **universal map bound** and its explicit application to fixed downward homophonic decoders without trying individual mappings.
+The doublet deficit and broad flatness were already known, as documented by [Dukotah's Solvers' Dossier](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/SOLVERS-DOSSIER.md). The additional contribution within this repository is the **alternative universal data-processing proof** and its explicit phase-conditioned extension. The underlying fixed homophonic family was already excluded independently by Wulfic's C15, so this note is supporting mathematical evidence rather than a novel decryption or a new global exclusion.
