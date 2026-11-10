@@ -20,3 +20,5 @@ jobs:
         run: node sims/ea_field29_order2_key_recovery.cjs
       - name: Exact contextual GP29 marker cipher source-key inversion and motif controls
         run: node sims/contextual_marker29_reversible.cjs
+      - name: Recover 225 arbitrary contextual pad columns on untouched original pages
+        run: node sims/contextual_marker29_period225_key_recovery.cjs
