@@ -1,0 +1,14 @@
+name: Numbered LP2 paragraph shared pad test
+on:
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test explicitly numbered five-part source for shared key
+        run: node sims/numbered_five_item_pad.cjs
