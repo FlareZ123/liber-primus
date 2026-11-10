@@ -19,10 +19,21 @@ const CORPUS = readJSON('resources/liber-primus/lp2-corpus.json');
 const GRID = readJSON('resources/liber-primus/base60-grid.json');
 const PAGES = CORPUS.pages.filter(p => p.status === 'unsolved' && p.indices.length)
   .map(p => ({page: p.page, indices: p.indices}));
-const BYTES = GRID.byte_rows.flat();
+const BASE60 = GRID.alphabet;
+const BASE59 = BASE60.replace('f', '');
+const BYTES60 = GRID.byte_rows.flat();
+const BYTES59 = GRID.rows.flat().map(token =>
+  BASE59.indexOf(token[0]) * 59 + BASE59.indexOf(token[1]));
+assert.equal(BASE60.length, 60);
+assert.equal(BASE59.length, 59);
+assert(GRID.rows.flat().every(token => !token.includes('f')));
+assert(BYTES59.every(value => value >= 0 && value <= 255));
+assert.deepEqual(GRID.rows.flat().map(token =>
+  BASE60.indexOf(token[0]) * 60 + BASE60.indexOf(token[1])), BYTES60);
 assert.equal(PAGES.length, 55);
 assert.equal(PAGES.reduce((sum, p) => sum + p.indices.length, 0), 12956);
-assert.equal(BYTES.length, 256);
+assert.equal(BYTES60.length, 256);
+assert.equal(BYTES59.length, 256);
 assert.equal(GRID.rows.length, 32);
 assert(GRID.rows.every(row => row.length === 8));
 const WIDTH = 16;
@@ -60,24 +71,28 @@ function invert(matrix) {
   return {inverse: a.map(row => row.slice(WIDTH)), determinant};
 }
 const transpose = matrix => matrix[0].map((_, j) => matrix.map(row => row[j]));
-function matrixFor(reading) {
+function matrixFor(reading, radix = 60) {
+  const bytes = radix === 60 ? BYTES60 : BYTES59;
   const order = reading === 'row'
-    ? BYTES
+    ? bytes
     : Array.from({length: 256},
-      (_, i) => BYTES[(i % 32) * 8 + Math.floor(i / 32)]);
+      (_, i) => bytes[(i % 32) * 8 + Math.floor(i / 32)]);
   return Array.from({length: WIDTH},
     (_, r) => order.slice(WIDTH * r, WIDTH * (r + 1)).map(v => v % 29));
 }
-const MATRICES = ['row', 'column'].flatMap(reading => {
-  const base = matrixFor(reading);
-  return [false, true].map(transposed => {
-    const matrix = transposed ? transpose(base) : base;
-    const inverse = invert(matrix);
-    assert(inverse, 'All four original source matrices must be invertible');
-    return {reading, transposed, matrix, ...inverse};
-  });
-});
-assert.deepEqual(MATRICES.map(m => m.determinant), [25, 25, 15, 15]);
+const MATRICES = [60, 59].flatMap(radix =>
+  ['row', 'column'].flatMap(reading => {
+    const base = matrixFor(reading, radix);
+    return [false, true].map(transposed => {
+      const matrix = transposed ? transpose(base) : base;
+      const inverse = invert(matrix);
+      assert(inverse, 'All eight original source matrices must be invertible');
+      return {radix, reading, transposed, matrix, ...inverse};
+    });
+  })
+);
+assert.deepEqual(MATRICES.map(m => m.determinant),
+  [25, 25, 15, 15, 27, 27, 25, 25]);
 
 /** Bijective predecessor-exclusion outer encoder. */
 function encodeOuter(pages, mode, reset) {
@@ -198,13 +213,13 @@ function allModels(ciphertext) {
         for (let phase = 0; phase < WIDTH; phase++) {
           const transformed = hill(rank, key.inverse, reset, phase);
           rows.push({
-            reading: key.reading, transposed: key.transposed,
+            radix: key.radix, reading: key.reading, transposed: key.transposed,
             outer, reset, phase,
             ...scores(transformed, reset, phase)
           });
         }
       }
-  assert.equal(rows.length, 384);
+  assert.equal(rows.length, 768);
   rows.sort((a, b) => b.trainIoC - a.trainIoC);
   return rows;
 }
@@ -236,7 +251,7 @@ function sourcePlain() {
 }
 function run() {
   const original = allModels(PAGES);
-  const key = MATRICES.find(k => k.reading === 'column' && !k.transposed);
+  const key = MATRICES.find(k => k.radix === 60 && k.reading === 'column' && !k.transposed);
   const config = {outer: 'sorted', reset: 'page', phase: 5};
   const plain = sourcePlain();
   const inner = hill(plain, key.matrix, config.reset, config.phase).pages;
@@ -249,23 +264,30 @@ function run() {
     config.reset, config.phase).pages, config.outer, config.reset), encrypted,
     'Recovered source-native plaintext must exactly re-encrypt');
   const positives = allModels(encrypted);
-  const targetRank = positives.findIndex(row => row.reading === key.reading
+  const targetRank = positives.findIndex(row => row.radix === key.radix && row.reading === key.reading
     && row.transposed === key.transposed && row.outer === config.outer
     && row.reset === config.reset && row.phase === config.phase) + 1;
   assert.equal(targetRank, 1, 'True source key must rank first');
   const originalBest = original[0];
+  const perRadix = [60, 59].map(radix => {
+    const modes = original.filter(row => row.radix === radix);
+    assert.equal(modes.length, 384);
+    return {radix, bestTraining: modes[0],
+      postselectedMaximumHeldout: Math.max(...modes.map(row => row.heldoutIoC))};
+  });
   assert(originalBest.heldoutIoC < 0.04);
   return {
     classification: 'Exact source-grid 16x16 Hill inverse, bounded negative on original LP2',
-    source: '32x8 original physical LP2 256-byte numeric table and 12956 source runes',
+    source: '32x8 original physical LP2 numeric table, both radix60 and radix59 interpretations, 12956 source runes',
     originalCipherRunes: 12956, sourceMatrixDeterminants: MATRICES.map(m => ({
-      reading: m.reading, transposed: m.transposed, determinantMod29: m.determinant
+      radix: m.radix, reading: m.reading, transposed: m.transposed, determinantMod29: m.determinant
     })),
     modelCount: original.length,
     trainBest: originalBest,
+    perRadix,
     originalOtherTrainBest: original.slice(1, 5),
     originalLargestHeldoutPostselected: Math.max(...original.map(x => x.heldoutIoC)),
-    sourceNativeControl: {trueKey: {...config, reading: key.reading, transposed: key.transposed},
+    sourceNativeControl: {trueKey: {...config, radix: key.radix, reading: key.reading, transposed: key.transposed},
       targetRank, recoveredRunes: 12956, reencryptedRunes: 12956,
       trueTrainingIoC: positives[0].trainIoC,
       trueHeldoutIoC: positives[0].heldoutIoC},
