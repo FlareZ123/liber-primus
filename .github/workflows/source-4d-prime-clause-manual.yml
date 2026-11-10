@@ -34,3 +34,6 @@ jobs:
         env:
           LP_MATRIX: ${{ matrix.model }}
         run: node sims/source_4d_radix29_packed3.cjs
+      - name: Key-independent per-page secret-alphabet 5rune-to-3byte source bound
+        if: matrix.model == 'red16' && matrix.output == 'direct'
+        run: node sims/radix29_packed3_page_permutation_invariant.cjs
