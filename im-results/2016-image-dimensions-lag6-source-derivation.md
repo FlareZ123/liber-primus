@@ -104,6 +104,26 @@ The original-source count is reproduced by sims/2016_image_dimension_lag6_source
 
 ## Bounded key-recovery tests
 
+
+### Exact dimension-prime starts and all-secret modular-square state
+
+**Original-source finite negative.** The original archived 2016 signed JPEG is **563×569**, and these are the successive ordinary primes **p103=563** and **p104=569**. The historically solved LP2 p56 prime-totient cipher supplies one plausible way to consume these numbers as first primes. With its exact known 85-rune plaintext, the authentic start p1=2 and skip mask8 recover the solved page with independently trained Emerson-GP trigram score **−2.383854/rune**, first of all 32 masks. On unsolved physical p0, exhaustive search of all **16,384 visible-F skip masks per start** yields:
+
+| First prime | Best literal-F mask | Best p0 GP trigram/rune |
+| --- | ---: | ---: |
+| 2 (historical comparator) | 8,901 | −5.99102987 |
+| **563** (p103) | **7,025** | **−6.13355789** |
+| **569** (p104) | **12,288** | **−6.15849125** |
+
+Neither source-dimension start recovers a readable unknown passage under the unchanged authentic solved-page cipher and this exact page-reset framing. These finite negatives leave other transformations and clocks open.
+
+**Keyless, all-initial-state modulus theorem.** Take `N=563×569=320,347` and `x(t+1)=x(t)² mod N`. Since `563−1=2×281` and `569−1=8×71`, while `2^70≡1 (mod281)` and `2^70≡1 (mod71)`, CRT forces **x(t+70)=x(t) for every t≥3**, independent of any secret seed. Zero CRT components remain zero; after at most three squarings the nonzero components have odd order dividing281 or71. All **320,347 initial states**, including nonunits and zero, were independently exhaustively enumerated and checked in the SFT. N is not a Blum integer (569=1 mod4); this is a hypothetical source-derived squaring generator, not an authenticated Cicada PRNG.
+
+Under *every* secret **phase-stationary bijective GP29 output alphabet** indexed only by that generator state, lag-70 equality is invariant: `P_i=P_(i+70)` if and only if `C_i=C_(i+70)` after the transient. On the complete **12,956 original unknown runes**, there are only **433/12,883** lag-70 equalities after the transient, versus minimum **728** across **310,128** equal-length contiguous Emerson-GP windows and minimum **693** across **204,689** Shakespeare-GP windows. With independent state reset on each physical page the observed within-page count is **293/8,948**, versus minima **498** Emerson and **469** Shakespeare across **1,000** layout-matched control windows each. Reference windows overlap and represent only two specific native-GP literary sources; this is an exact finite source comparison, not a universal all-English claim. A positive plant using the true 320,347-state squaring stream with seed 2016 recovers **12,956/12,956** GP-English symbols and preserves all **832** native source lag-70 equalities. These results reject direct same-length native-GP bijective emissions from every generator seed under either declared clock, while key skips, non-GP intermediates, homophonic and evolving states remain untested.
+
+No unknown LP2 plaintext, authentic key, or intended numeric reading is established. [Source-native reproducer](../sims/cicada2016_dimensions_prime_state_gate.cjs) · [passing 2016 manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42908998411).
+
+
 A source-derived feedback rule is not a key. I tested the most direct key/state readings suggested by the same offsets, using the exact two-candidate inverse for the hypothesized T-overwrite model (q = 0.81) and a GP trigram Viterbi model trained on the first 200,000 characters of the committed Shakespeare control.
 
 1. **Six-byte grid seed:** the six grid bytes at offsets 51–56 are [59, 86, 171, 156, 80, 254], reduced modulo 29 to [1, 28, 26, 11, 22, 22]. Generate a six-lag key state with \(K_i=24-2K_{i-6}\pmod{29}\), testing global and per-word resets and both additive signs.
