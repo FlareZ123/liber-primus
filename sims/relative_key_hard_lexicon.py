@@ -174,6 +174,49 @@ def search(a, b, tries, scale=4, shift=0, depth=None):
     return {'depth':n, 'peak_states':maxima, 'last_states':len(states)}
 
 
+
+def synthetic_controls(pages, words, tries, trials=5):
+    """Construct authentic-boundary GP dictionary plaintext and shared-key pairs."""
+    import random
+    gen = random.Random(3301)
+    pool = collections.defaultdict(list)
+    for word in words:
+        if len(word) < 24:
+            pool[len(word)].append(word)
+
+    def sample(page):
+        result = []
+        i = 0
+        ends = page['end']
+        while i < len(ends):
+            j = i
+            while j + 1 < len(ends) and not ends[j]:
+                j += 1
+            length = j-i+1
+            available = pool[length] if ends[j] else [
+                word for k, options in pool.items() if k >= length for word in options
+            ]
+            if not available:
+                raise ValueError(f'No positive-control word of length {length}')
+            word = gen.choice(available)
+            result.extend(word[:length])
+            i = j+1
+        return result
+
+    a, b = pages[28], pages[42]
+    results = []
+    for trial in range(trials):
+        pa, pb = sample(a), sample(b)
+        key = [gen.randrange(29) for _ in range(len(pb))]
+        ca = dict(a, xs=[(4*p + key[i])%29 for i,p in enumerate(pa)])
+        cb = dict(b, xs=[(4*p + key[i])%29 for i,p in enumerate(pb)])
+        check = search(ca, cb, tries, scale=4)
+        expected = min(len(pa), len(pb))
+        assert check['depth'] == expected, f'Shared-key plant rejected: {check}'
+        results.append({'trial':trial,'expected':expected,**check})
+    return results
+
+
 def run(args):
     words, spelling_words = load_lexicon()
     tries = build_tries(words)
@@ -185,6 +228,8 @@ def run(args):
               'initial_page_fragment':'unconstrained',
               'dictionary':'TextBlob 0.19.0 en-spelling + CMUdict 1.1.3',
               'search':'exact length-conditioned product tries; no beam or OOV fallback'}
+    if args.self_test:
+        output['planted_controls'] = synthetic_controls(by_page, words, tries)
     if args.all:
         candidates = []
         histogram = collections.Counter()
@@ -212,6 +257,7 @@ if __name__ == '__main__':
     parser.add_argument('--pair',type=int,nargs=2,default=[28,42])
     parser.add_argument('--scales',type=int,nargs='+',default=[1,4,7,22])
     parser.add_argument('--all',action='store_true')
+    parser.add_argument('--self-test',action='store_true')
     parser.add_argument('--max-depth',type=int,default=None)
     parser.add_argument('--threshold',type=int,default=100)
     run(parser.parse_args())
