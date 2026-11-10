@@ -22,6 +22,52 @@ Finally, among the **12,403** noninitial possible windows of length553, **2,047*
 
 Reproduce the complete, source-asserted 79/78 packet and genuine-ciphertext window checks with `node sims/numbered_five_alignment.cjs --packet79` (Node.js 22), alongside the pre-existing exact five-item analyses below. The existing manual [workflow succeeded](https://github.com/FlareZ123/liber-primus/actions/runs/42821065345) on the new original-source test. The code contains a clean-packet exact numeric decode-and-re-encode check and no new always-on CI workflow was introduced.
 
+## Five labelled shares: direct threshold-five Shamir secret inverse
+
+The five red Arabic item labels are exactly **1, 2, 3, 4, 5**.
+They therefore give a specific, key-free secret-sharing hypothesis without
+any offset or key search: if corresponding rune positions are five
+degree≤4 Shamir shares in F29 at those x-coordinates, the withheld
+secret is the unique polynomial's value at **x=0**. All five
+source items share **91** leading rune positions. Ordinary Lagrange
+interpolation fixes the complete candidate secret,
+
+`P₀[j] = 5·C₁[j] + 19·C₂[j] + 10·C₃[j] + 24·C₄[j] + C₅[j] (mod29)`,
+
+for every `j=0..90`. The four freely varying, per-position
+higher-degree polynomial coefficients cancel exactly. The original
+secret is therefore **fully determined under this model**, even if
+each position has an independent unknown degree≤4 share polynomial.
+
+**Source-original output:** 91 candidate GP runes, pooled
+**IoC = 320/(91·90) = 0.0390720391**, transliterating to
+`IALWTPWTEOJOJCXMHUIAPTHEAAJWOWMUNGPMTHSMG...`
+and continuing without coherent prose. These exact 91-rune
+source-language comparisons found no equally low-IoC window:
+
+| Native GP-English reference | All consecutive 91-rune windows | Lowest IoC | At/below original |
+| --- | ---: | ---: | ---: |
+| Shakespeare pinned excerpt | **213,701** | 0.0412698413 | **0** |
+| Emerson *Essays, First Series* | **318,577** | 0.0412698413 | **0** |
+| Gibran *The Prophet* | **61,777** | 0.0439560440 | **0** |
+
+These are exhaustive, heavily overlapping finite reference windows,
+not independent population p-values. To establish positive decoding
+power, the program constructs **five authentic 91-symbol shares**
+using a genuine, separately hidden Shakespeare GP-English secret
+and four independently position-varying degree1–4 coefficients.
+The *unchanged* x=0 inverse reproduces **91/91** true secret runes
+without knowing any higher polynomial coefficients. This excludes
+**direct native GP-English plaintext as the x=0 secret of five
+naturally aligned Shamir shares** under those references. A second
+secret encryption layer, source-specified shift or non-GP plaintext
+register remains possible. No actual LP2 secret is recovered.
+
+The exact Shamir test is integrated into
+[`sims/lp2_five_clause_rs79_parity_sft.cjs`](../sims/lp2_five_clause_rs79_parity_sft.cjs);
+the same SFT also evaluates the independently source-marked 7×79
+two-parity interpretation next.
+
 ## Five numbered data lanes plus two residual parity lanes: exact F29 RS test
 
 The five original red-numbered passages have lengths **139, 91, 98, 96,
