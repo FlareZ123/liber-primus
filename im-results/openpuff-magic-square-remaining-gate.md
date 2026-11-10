@@ -117,6 +117,43 @@ prediction failed. The exact executable is the same unified
 `sims/lp2_cuneiform_sevenlane_shared_key_gate.cjs` SFT. No original
 plaintext or historical key was recovered.
 
+#### The independently ten-dot-framed 553 = 7 × 79 passage
+
+The five numbered red paragraphs on pp36–38 lie between ten-dot punctuation
+at global unsolved-rune offsets 8,804 and 9,357. Their **553 intervening
+runes** (`[8,805, 9,358)`) admit two natural exact 7×79 layouts: seven
+successive 79-rune rows, or seven glyph lanes separated by a seven-rune
+stride. Unlike the 7×227 cuneiform packing, the boundary and the 7×79
+length are supplied by **visible enclosure marks**. Combining that source
+framing with the adjacent highlighted Ac24 order-seven root gives a second
+key-free Fourier plaintext prediction.
+
+The same exact inverse DFT reveals the six non-DC rows independently of
+an otherwise arbitrary secret common 79-position GP29 output pad. These
+are **474 original glyphs whose putative plaintext is fully determined
+under the model**:
+
+| 7×79 original layout | Decoded six-row IoC | Minimum Shakespeare control | Minimum Emerson control |
+| --- | ---: | ---: | ---: |
+| Seven consecutive 79-rune rows | **0.0354858565** | 0.0536212879 | 0.0540494732 |
+| Seven interleaved seven-stride lanes | **0.0344064727** | 0.0536212879 | 0.0540494732 |
+
+The controls are 2,012 Shakespeare and 2,001 Emerson deterministic
+consecutive 553-rune windows; the reference comparison uses exactly
+474 subsequent GP-English runes per window. Those windows overlap and
+give finite comparative minima, rather than independent p-values.
+Both candidate plaintexts remain nonlinguistic. A separate native
+553-rune GP-English plant passes exact forward DFT, unknown-pad addition,
+the key-free recovery of all six non-DC rows, first-row correction and
+whole-block forward re-encryption in both directions.
+
+This **rejects the specific source-framed seven-way linear Fourier
+mixer with any common output pad** as a native GP-English decoder. It
+also illustrates a useful stopping rule: the visible seven-by-79 geometry
+alone cannot justify further phases or arbitrary row keys after its
+unique key-free prediction fails. The source framing may still have
+a different intended use.
+
 For each reference the program converts a pinned literary work to the canonical
 29-character GP transliteration, discards nonrunes, samples approximately 2,000
 deterministic consecutive 1,589-rune windows, and computes exactly the same
