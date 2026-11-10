@@ -1,4 +1,18 @@
-# Agent 11 continuity (2026-11-10)
+# Agent 11 persistent research continuity
+
+**CURRENT claim (2026-11-10 08:17:01.786 UTC):** `agents/agent11/.lease.json` has run id `agent11-gpt6-20261110-novel-recovery-1794298621786`. Original claim timestamp is fixed. Check actual clock after each checkpoint; release only if this exact lease is ≥70 minutes old. Previous dated claims in the historical sections below are expired and not live ownership claims.
+
+## Current incarnation's findings and next research decision
+
+- Executed **source-defined cross-clue inversion** by packing exactly 128 parity bits of `53^(15+t) mod79` (derived from the original red q-values page40=15, page15=22, page53=78) into a 128-bit IV `c9fbf82f9c6c080fa0c727efe0be71b0`, reusing eight authentic 32-byte base60-grid columns as candidate AES-256-CTR / ChaCha20 keys. The existing Agent37 exact Viterbi/matching decoder searches all 16 modes and 8! assignments across 8 original post-title 300-rune prefixes.
+- Positive plant with this exact IV and actual grid keys retrieves **2,398/2,400** GP-English runes, authentic algorithm, all eight column assignments. Actual original has best score **−5.618172382552036 nats/rune** and no readable strings; **4/20** shuffled-grid full searches reach/exceed it (p=5/21≈0.238095). [Successful manual CI 42783297094](https://github.com/FlareZ123/liber-primus/actions/runs/42783297094). The bounded direct-IV hypothesis does not recover a key or plaintext.
+- Persistent reproducer `sims/red_triangle_grid_keyskip.cjs`; reused Agent11's existing `.github/workflows/red51-fivebit-key-iv-manual.yml` as `probe: triangle`, without creating another workflow. Consolidated negative and limits into the existing `im-results/red-span-triangle.md` F79 section. Concurrent Agent28 independently wrote `sims/red_field79_grid_iv_viterbi.cjs` testing *different* 16-byte residue-power IVs (source/direct bytes, not parity bits); avoid duplicating that work.
+- A separate genuine-plaintext search compared the **exact original 2,896 ciphertext word-length sequence** with word lengths of three local reference books in Latin and GP digraph encodings (six streams). Longest exact matches were 9,9,9,9,10,9 words. The maximum 10 was entirely typical or smaller than 300 null manuscripts that shuffle all original word lengths or shuffle 4-/8-word blocks (max-family upper p≈0.983,0.950,0.957). No known-source text crib surfaced; avoid scaling this blind search without an independently indicated reference work.
+- Original 213 unsolved red runes' pooled 29-bin frequency profile was indistinguishable from 20,000 page-preserving red-span rotations (Pearson chi²25.82096, one-sided p≈0.447; IoC0.033838, p≈0.532). This is an auxiliary negative, not a decrypted red passage. Source region data remains `resources/liber-primus/lp2-ink-annotations.json`.
+
+**Next valuable pivot:** Hunt a new, reversible, *ciphertext-driven prime-ordinal* key clock constrained by authentic page56's prime-totient key rather than repeat fixed-offset IV or short-period pad screens. Require an exact original ciphertext inference with matched solved-page source register and positive controls. Agent28 now owns F79 residue-power IV and F29 log-step scans; do not retread. Explore source-guided decode of genuine original runes with heldout language/word confirmation, and communicate only actionable constraints.
+
+## Historical incarnations (archival records, no live leases)
 
 **Claim:** `agents/agent11/.lease.json` created 2026-11-10T01:50:59.997391Z by run `cryptographic-invariants-7e8cb2df6bcb8f3d6284aba2`. Continue until actual lease age reaches 70 minutes; do not refresh lease.
 
