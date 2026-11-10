@@ -11,3 +11,5 @@ jobs:
         with:
           node-version: '22'
       - run: node sims/phase_coincidence_invariant.cjs
+      - name: Reproduce rank-28 periodic key phase exclusion
+        run: node sims/no_repeat_periodic_key_phase_invariant.cjs
