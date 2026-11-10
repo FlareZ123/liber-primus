@@ -38,7 +38,7 @@ const LETTERS = {
 };
 
 assert(sourceScript.includes('const key = [23, 10, 1, 10, 9, 10, 16, 26]'));
-assert(/literalFs\\s*=\\s*\\[48,\\s*74,\\s*84,\\s*132,\\s*159,\\s*160,\\s*250,\\s*421,\\s*443,\\s*465,\\s*514\\]/.test(sourceScript));
+assert(/literalFs\s*=\s*\[48,\s*74,\s*84,\s*132,\s*159,\s*160,\s*250,\s*421,\s*443,\s*465,\s*514\]/.test(sourceScript));
 function sha256(s) {
   return crypto.createHash('sha256').update(s, 'utf8').digest('hex');
 }
