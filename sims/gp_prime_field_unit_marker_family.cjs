@@ -41,6 +41,51 @@ const candidates=corpus.prime.flatMap((q,marker)=>{
   return distinct===29?[{q,marker,name:corpus.translit[marker]}]:[];
 });
 assert.deepEqual(candidates.map(x=>x.q), [61,67,73,79,83,89,97,103,109]);
+
+/**
+ * Purely algebraic impossibility of nonidentity affine GP-prime residue
+ * automorphisms. A map x->a*x+b on F_q permuting a 29-element subset S
+ * must preserve its centered second moment V:
+ *    V == a^2*V (mod q).
+ * Every legal q has V nonzero, so a=+1 or -1. The mean fixes b.
+ * Reflection x->2*mu-x fails on an explicit source-set witness for each q.
+ * Hence the ONLY affine GP-prime symbol permutation is identity.
+ *
+ * @returns {object[]} Short certificates for all nine candidate moduli.
+ */
+function affineStabilizerCertificates() {
+  const src=corpus.prime;
+  const mod=(n,q)=>(n%q+q)%q;
+  return candidates.map(({q})=>{
+    const values=src.map(x=>x%q), set=new Set(values);
+    let reciprocal29=-1;
+    for(let k=1;k<q;k++)if(k*29%q===1){reciprocal29=k;break;}
+    assert.ok(reciprocal29>=0);
+    const sum=values.reduce((a,b)=>a+b,0)%q;
+    const mean=mod(sum*reciprocal29,q);
+    const second=values.reduce((a,b)=>a+b*b,0)%q;
+    const centeredSecond=mod(second-29*mean*mean,q);
+    assert.notEqual(centeredSecond,0,
+      'Second-moment proof requires nonzero variance in F'+q);
+    // Reflection is the only possible remaining candidate because a=-1.
+    const reflectedShift=2*mean%q;
+    const witness=values.find(x=>!set.has(mod(reflectedShift-x,q)));
+    assert.notEqual(witness,undefined);
+    const image=mod(reflectedShift-witness,q);
+    // Independent finite search also enumerates all a,b, establishing
+    // arithmetic regression for the moment-based proof above.
+    const maps=[];
+    for(let a=1;a<q;a++)for(let b=0;b<q;b++){
+      if(values.every(x=>set.has((a*x+b)%q)))maps.push([a,b]);
+    }
+    assert.deepEqual(maps,[[1,0]]);
+    return {modulus:q,mean,centeredSecond,
+      rejectedReflection:{scale:q-1,shift:reflectedShift,
+        witnessResidue:witness,imageNotInAlphabet:image},
+      allAffineStabilizers:maps};
+  });
+}
+const fieldCertificates=affineStabilizerCertificates();
 const K=candidates.length, V=3*K;
 const originals=parseUnsolved(read('resources/lp2-transcription.txt'));
 assert.equal(originals.length,2896);
@@ -217,6 +262,7 @@ function run(){
     allGPPrimeFields:corpus.prime.length,
     injectiveFields:candidates,
     noninjectiveFieldCount:corpus.prime.length-K,
+    affineFieldAlphabetCertificates:fieldCertificates,
     originalRunes:12956,originalWords:2896,
     criterion:'Across nine legal field primes, select smallest maximum absolute word-length matched z of total, word-initial and word-final zero-marker counts. Refit in every independent null book.',
     sourceTests:detailed,syntheticKeyedPositive:positives,
@@ -226,4 +272,4 @@ function run(){
   return final;
 }
 if(require.main===module)run();
-module.exports={features,moments,evaluate,plantedPositive,run};
+module.exports={affineStabilizerCertificates,features,moments,evaluate,plantedPositive,run};
