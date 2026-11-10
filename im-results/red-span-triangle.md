@@ -162,6 +162,21 @@ The direct test and IV test yielded **unreadable original rune strings**. Their 
 
 [Executable original/plant/null challenge](../sims/fibonacci_red_field79_inversion.cjs) · [successful manual CI execution 42787792672](https://github.com/FlareZ123/liber-primus/actions/runs/42787792672).
 
+### Per-red-heading Fibonacci-state IVs, eight independent section nonces
+
+A third, pre-data-defined implementation of the same F79 Fibonacci construction uses **each of the eight visible red section titles** to choose its own 128-bit nonce. For a given title, take the **GP prime weights of its first two printed red runes modulo79** as the pair of initial states `(a₀,a₁)`; emit sixteen consecutive bytes of `a_(n+2)=a_(n+1)+a_n mod79`. This candidate uses every source title directly, whereas the preceding fixed-IV experiment treats all eight sections identically. The 16 bytes per heading and 256-bit key per section are motivated by the 4×4 source square and the eight 32-byte columns of the original numeric grid, respectively.
+
+For every possible assignment of original numeric-grid columns to the eight exact 300-rune post-heading LP2 ciphertext bodies, the exact skip-aware AES-256-CTR/ChaCha20 decoder searched 16 mode/reduction/sign settings, then compared the complete model selection against 30 shuffled-grid controls. All IVs were fixed directly from the original red titles before examining any GP-language scores.
+
+| Test | Observed |
+| --- | ---: |
+| Planted authentic-register GP-English with the source-selected distinct nonces, real grid keys and ciphertext collision-skips | **2,400/2,400 original source runes exactly recovered**, including correct algorithm and all eight keys |
+| Best original LP2 2,400-rune language score | **−5.61444494 nats/rune**, no recognizable plaintext |
+| Whole-family shuffled-grid nulls reaching/exceeding original | **4/30** |
+| Plus-one empirical upper-tail p | **5/31 = 0.16129** |
+
+This supplies a separate negative for a **per-section Fibonacci key schedule**, with strong source-matched positive calibration. It does not exclude a distinct byte serialization or cryptographic design, and does not recover a single authenticated LP2 plaintext rune. [Exact CommonJS inverse](../sims/fibonacci_title_grid_iv_inversion.cjs) · [successfully executed workflow 42788697778](https://github.com/FlareZ123/liber-primus/actions/runs/42788697778).
+
 ## Interpretation, falsification and next action
 
 The source-defined input, exact GP arithmetic, and all-16-span family calculation are reproducible. **The choice to treat a red quotient as both a physical-page pointer and a zero-based GP-prime index was motivated by the observed numbers.** The page-15 spiral and solved page-56 totient transform predate this investigation, but the combined three-edge rule was not preregistered. Numerous alternative arithmetic constructions were historically examined. The exact tail is conditional on *this* post-selected rule and cannot establish authorial intent, actual encryption architecture, or an LP2 decryption.
