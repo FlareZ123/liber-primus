@@ -17,3 +17,5 @@ jobs:
         run: node sims/gp_prime_field_unit_marker_family.cjs
       - name: Exhaust complete GP-prime field projective automorphisms
         run: node sims/gp_prime_projective_stabilizer.cjs
+      - name: Decrypt original LP2 bodies with red F79 generator IV and 256-bit grid-key Viterbi
+        run: node sims/red_field79_grid_iv_viterbi.cjs
