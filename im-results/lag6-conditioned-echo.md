@@ -61,6 +61,22 @@ The comparison also includes the independently documented [lag-five same-\`ᛋ\`
 
 The references are author- and transcription-dependent and do not simulate a realistic unknown LP2 cipher. Their empirical tail fractions are comparisons of already-selected features and cannot be treated as independent discovery-wide p-values.
 
+## Source-marked 36-page affine transport and limited original-cipher prediction
+
+The *previously discovered*, post-selected lag-six map T(x)=24−2x mod29 also gives a concrete cross-page original-source calculation, independent of arbitrary unknown-key fitting. The manuscript's **only two red three-rune spans**, both marked by 13-dot punctuation, begin at **the same local rune offset 119** on physical pages **3 and 39**. The page gap of 36 fixes the reverse-iterate map by the exact full-order-28 formula:
+
+\[
+T^{-36}(x)=8+(-2)^{-36}(x-8)=23x+27\pmod{29}.
+\]
+
+The source red indices are p3 **[13,23,2]** and p39 **[27,5,15]**. The derived multiplier **23** equals p3's middle marked rune, while its intercept **27** equals p39's first marked rune. The *two aligned red payload* equalities are f(23)=5 and f(2)=15. This uses both marked red triples, an independently measured 36-page separation, and the already-observed affine transform. The first marked rune does **not** obey this same 36-page transport (f(13)=7 versus actual27). It separately satisfies T(13)=27, an exact but retrospectively recognized first-step relation.
+
+**One source-disjoint glyph prediction:** Immediately after both three-red-rune spans sits another visible red 13-dot mark (rendered '.' in the transcription); the following first **black** rune at local position122 has GP index **12** on p3 and **13** on p39. The red-derived map correctly predicts **f(12)=13**, and that target black rune also repeats the p3 first red index13. Thus the source-marked four-position windows comprise p3 **[13,23,2 | 12]** and p39 **[27,5,15 | 13]**, with the vertical stroke denoting the next 13-dot punctuation boundary, not a rune. The derived f has exact order **7**, fixed point8, and four seven-cycles on the other 28 rune indices. These are arithmetic observations, not independently proved creator instructions.
+
+The full aligned physical page-pair supplies **7/217** affine matches (uniform reference **7.48**), with the three consecutive matches only at indices120–122. Across the **19** available page pairs spaced by exactly36 (4,010 aligned positions), that is the **only three-position consecutive run** under the same fixed map. The absence of full-page enrichment contradicts a literal one-layer global 36-page affine copy. The correctly predicted single post-marker black rune is intriguing but remains a 1-of-29-type conditional confirmation; map family, direction, and relevant source symbols were identified after extensive manuscript exploration. It does not supply an original LP2 key, plaintext or successful message extraction.
+
+[Source-exact finite census and reproduced punctuation grammar](../sims/agent19_red_triad_gap36_transport_sft.cjs) · [successful manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42921976881). A fruitful next *source-constrained* test would identify a visible punctuation-triggered state update and predict multiple previously unused glyphs outside the two small marked windows. Changing affine exponents to match additional ciphertext is not evidence of that mechanism.
+
 ## Mechanistic implications and next inversion test
 
 The word-local excess over the constrained randomization is **34.225/1,290 = 0.02653 additional matches per eligible pair**. This is numerically close to a collision-rejection frequency of approximately \`0.81/29 = 0.02793\` in a uniform-symbol model, as earlier outside researchers observed with a different null. The similarity motivates a **latent collision-repair channel**: a tentative output equal to its previous rune might be replaced by \`T(c_(i-6))\` when six prior runes are present in the same word. That example is a *hypothesis*, and its apparent rate match is not plaintext evidence. A direct overwrite of the original symbol could also destroy information, requiring an explicit reversible protocol or erasure recovery.
