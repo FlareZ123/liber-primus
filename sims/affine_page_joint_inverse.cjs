@@ -34,7 +34,7 @@ function rng32(seed){let x=seed|0;return ()=>{x^=x<<13;x^=x>>>17;x^=x<<5;
   return (x>>>0)/4294967296;};}
 /** @param {number} real @param {number} imaginary */
 function quantize(real,imag){
-  return mod(Math.round(MOD*Math.atan2(imaginary,real)/(2*Math.PI)));
+  return mod(Math.round(MOD*Math.atan2(imag,real)/(2*Math.PI)));
 }
 /**
  * @param {number[][]} pages
