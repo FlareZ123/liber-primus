@@ -66,7 +66,7 @@ jobs:
         if: ${{ inputs.probe == 'hensel-skip' }}
         run: node sims/lp2_grid_hensel29_skipbeam_sft.cjs
       - name: P39 value-derivative jet autonomous-state original gate
-        if: \${{ inputs.probe == 'jet' }}
+        if: ${{ inputs.probe == 'jet' }}
         run: node sims/p39_grid_jet_autonomous_state_sft.cjs
 
       - name: Archived 2014 onion-2 and original LP2 grid direct bridge
