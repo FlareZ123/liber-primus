@@ -1,6 +1,6 @@
 # 2014 stage04 magic-square direction map: cell 6 Rad ↔ cell 7 Ac
 
-**Status:** a reproducible cross-round fragment-structure hypothesis, including an exact 199 → empty fragment 6 / Ac fragment 7 bridge, alongside a bounded failed direct table transfer. No LP2 plaintext or authentic key has been recovered.
+**Status:** a reproducible cross-round fragment-structure hypothesis, including an exact 199 → empty fragment 6 / Ac fragment 7 bridge, alongside bounded negative tests of direct table transfer and the simplest recursive prime-fragment continuation. No LP2 plaintext or authentic key has been recovered.
 
 ## 2014 source and selector
 
@@ -90,7 +90,20 @@ The two 13-dot boundaries are on LP2 page 6 at normalized offsets 71 and 82; the
 
 **Controls and statistical limits:** the same residue rule applied to all 13 distinct square values yields only **5/13** one-empty/one-label pairs (272, 131, 151, 199, 91). A deterministic 500,000-permutation null over all 32 fragment records has mean **2.482** matches and tail probability **0.0862** for at least five. Conditional on selecting only the three prime entries and their fixed adjacent fragment pairs, the exact permutation probability for all three one-empty/one-label matches is **0.01774**; this is *not* a global p-value and does not correct for selecting the prime subset or the arithmetic rule after inspection. The result is therefore a promising, clue-constrained route hypothesis, not proof of intent or a decryption.
 
-The 2016 “Beware false paths” warning may distinguish the externally selected 6→7 Rad→Ac route from other matching pairs; that interpretation remains conjectural. The next useful question is what the 11-rune Ac fragment instructs a solver to do, and whether the other prime-linked pairs are deliberate decoys or part of a larger route. Do not turn this observation into an unconstrained cipher or offset search.
+The 2016 “Beware false paths” warning may distinguish the externally selected 6→7 Rad→Ac route from other matching pairs; that interpretation remains conjectural. A first source-fixed recursive test of the 11-rune Ac fragment is below and is not selective. Any continuation now requires a distinct semantic or historical clue, not another unconstrained modulo/φ loop.
+
+### Direct recursive continuation of the 11-rune Ac fragment: not selective
+
+A natural one-rule continuation treats each of fragment 7's 11 red runes as a Gematria Primus prime weight (p), then reuses the exact 2014 bridge: inspect adjacent fragments (phi(p)\bmod32) and (p\bmod32), and look for the label (phi(p)\bmod29) in the nonempty member. This introduces no new modulus, offset, or cipher choice.
+
+The 11 positions yield **5/11** one-empty/one-label matches. Deduplicating the repeated rune-prime values gives **4/9** matches; one is the (p=71) self-pair **6/7**, which reuses the already-selected 199/Ac anchor, and one (p=47) match is counted twice because X appears twice. Removing both the anchor pair and duplicate leaves **3/8** unique non-anchor targets:
+- (p=47): fragments 14/15, label B in fragment 14, fragment 15 empty
+- (p=17): fragments 16/17, label T in fragment 16, fragment 17 empty
+- (p=53): fragments 20/21, label D in fragment 20, fragment 21 empty
+
+A conditional **200,000**-permutation null fixes fragments 6 and 7 (the externally selected empty/Ac pair) and permutes the other 30 original fragment records. The probability of at least three matches among the eight unique non-anchor prime targets is **0.13419**. In a separate within-corpus scan, fragment 7 ranks only **8th of 17** nonempty fragments by unique-match rate under the same rule. A planted nine-pair positive control is recovered **9/9**.
+
+**Decision:** this obvious recursive prime→fragment continuation is not selective and does not turn the 11-rune fragment into a route or plaintext. It does not disprove the original 199/Ac bridge; it only rejects this direct recursive extension. Do not continue applying the same arithmetic rule to every fragment. Reproduction: [deterministic Node 22 SFT](../sims/fragment7_recursive_prime_fragment_gate.cjs).
 
 ## LP2 table selector suggested by the same cells
 
