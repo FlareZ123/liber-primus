@@ -184,7 +184,8 @@ function plant(){
     }
     plain.push(p);cipher.push(c);recovered.push(out);
   }
-  const correct=recovered.flat().filter((v,i)=>v===plain.flat()[i]).length;
+  const plainFlat=plain.flat();
+  const correct=recovered.flat().filter((v,i)=>v===plainFlat[i]).length;
   assert.equal(correct,12956);
   // Fit exactly as in real attack but on the planted manuscript.
   const savedSkip=OBS['skip-zero'],savedConsume=OBS['consume-zero'];
