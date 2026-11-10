@@ -20,6 +20,15 @@ assert.match(hex,/^[0-9a-f]{512}$/i);
 const onionBytes=Array.from({length:256},(_,i)=>parseInt(hex.slice(2*i,2*i+2),16));
 const onionRows=Array.from({length:32},(_,i)=>onionBytes.slice(8*i,8*i+8));
 const gridRows=grid.byte_rows;
+// Exact competing five-cell reading documented in
+// im-results/historical-onion-xor-grid-source-inversion.md.
+const alternateRows=gridRows.map(row=>row.slice());
+for(const [index,current,alternate] of [
+  [45,107,81],[50,47,21],[165,18,47],[172,148,174],[246,198,224]
+]){
+  assert.equal(gridRows[Math.floor(index/8)][index%8],current);
+  alternateRows[Math.floor(index/8)][index%8]=alternate;
+}
 const sources=[
   {name:"original printed LP2 grid",rows:gridRows,boundaries:[0,10,23,32]},
   {name:"independent historical onion2 byte string",rows:onionRows,boundaries:[0,32]}
@@ -105,11 +114,18 @@ function assess(source,boundaries,seed){
 }
 const gridPrinted=assess(sources[0],[0,32],SEED);
 const gridPerPage=assess(sources[0],[0,10,23,32],SEED^0x65a50617);
+const altSource={name:"five-cell alternate grid reading",rows:alternateRows,boundaries:[0,10,23,32]};
+const altPrinted=assess(altSource,[0,32],SEED);
+const altPerPage=assess(altSource,[0,10,23,32],SEED^0x65a50617);
 const onionControl=assess(sources[1],[0,32],SEED);
-console.log(JSON.stringify({gridPrinted,gridPerPage,onionControl},null,2));
+console.log(JSON.stringify({gridPrinted,gridPerPage,altPrinted,altPerPage,onionControl},null,2));
 assert.deepEqual(gridPrinted.columns,[7,8],"canonical table selected pair changed");
 assert.deepEqual(gridPerPage.columns,[7,8],"within-page selected pair changed");
 assert(gridPrinted.plusOneP<0.03 && gridPerPage.plusOneP<0.03,
   "original serial-order signal not reproduced within exploratory threshold");
+assert.deepEqual(altPrinted.columns,[7,8]);
+assert.deepEqual(altPerPage.columns,[7,8]);
+assert(altPrinted.plusOneP<0.03 && altPerPage.plusOneP<0.03,
+  "alternate five-cell grid reading loses original signal");
 assert(onionControl.plusOneP>0.1,"onion source unexpectedly exhibits serial ordering");
 console.log("SFT PASS: exploratory source ordering confirmed; no LP2 key, cipher or plaintext.");
