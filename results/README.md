@@ -56,6 +56,8 @@ A different equality invariant tests a cipher that applies one **arbitrary bijec
 
 Five thousand null manuscripts sampled from the solved initial-rune profile produced no rate as low as LP2; the same held when 75% of that source profile was blended with uniform runes (empirical p at Monte Carlo resolution 0.0002). These findings constrain **English-like section-static word-start substitution**, beyond the per-word internal collision bound above. They do not exclude a changing key for every word, or a substantially different source language and encoding.
 
+A stronger phase-collision sieve tested **arbitrary repeating bijective alphabets**, without an additive-key assumption, for every word period 2–60 with familywise shuffle controls. The best section-period hit (period 9) had p=0.328, while the best page-period hit (period 53) had p=0.378; period-23 page-local equality was 144 versus 150.25 expected. All 100 planted independent **arbitrary per-page/per-phase permutation** ciphers at period 23, with 5% symbol overwrites, produced z>4. This broadens the period-23 exclusion under the same known-plaintext-like word-initial distribution assumption. [Methods and run](../im-results/word-start-reset-and-periodicity.md).
+
 A second test searched for repeated **word-initial rune equality** under period-23 key phases. No signal survived either section-continuous (lags 1–120, familywise p=0.696) or page-resetting (lags 1–50, familywise p=0.508) permutation calibration. Page-local lag 23 gave 59 matches versus 56.56 expected (p=0.415). All 100 planted period-23 additive-key controls with 5% independent symbol overwriting produced a detectable lag-23 peak (z > 3). The separate exploratory 23/46 **word-length** effect therefore lacks corroborating first-rune equality behavior under this tested mechanism.
 
 [Exact model, assumptions and results](../im-results/word-start-reset-and-periodicity.md) ·
@@ -74,6 +76,18 @@ Full derivation, inputs, simulation controls, caveats, and reproduction:
 [Homophonic information bound](../im-results/homophonic-information-bound.md) ·
 [Python implementation](../sims/homophonic_information_bound.py) ·
 [Successful on-demand CI run](https://github.com/FlareZ123/liber-primus/actions/runs/42737967287).
+
+### Adjacent ciphertext words are endpoint-coupled
+
+A structural permutation test separates the known immediate-rune repeat deficit into positions *inside words* and positions *across word separators*. Within the 9 unsolved LP2 text sections, exactly **63 of 10,060** neighboring rune pairs inside complete words repeat; **23 of 2,887** consecutive word boundaries also repeat. The corresponding rates are **0.626%** and **0.797%**, so the low repeat rate persists across semantic word boundaries. A known-plaintext control of 250 rune words shows no analogous boundary-repetition depletion.
+
+This is not explained by the observed properties of **individual ciphertext words** alone. Shuffling the existing complete LP2 ciphertext words within their sections gives an exact conditional expectation of **99.806** repeated word boundaries, versus **23** actual. Across 5,000 matched shuffle nulls each, no synthetic book reached as few as 23, even when only equal-length words were swapped in place (null mean 99.445). The result also survives stricter clause-restricted shuffles preserving punctuation and word length (actual 22 across 2,728 within-clause word boundaries, null mean 80.093 for equal-length-only shuffles; 0/5,000 at or below actual).
+
+**Interpretation:** the visible ciphertext words are not exchangeably ordered with respect to their endpoints. Models encrypting each word independently with no coordination of adjacent ciphertext end and start runes cannot reproduce the observed cross-word suppression. Continued symbol-level encryption state, an explicit stream-wide anti-repeat filter, and deliberate word selection or ordering are all compatible in principle. This is a **ciphertext structural constraint**, independent of assuming English plaintext; it does not identify a unique cipher or provide a plaintext.
+
+[Full conditional expectation, four permutation controls, and caveats](../im-results/cross-word-anti-repeat-constraint.md) ·
+[Reproducible code](../sims/cross_word_repeat_invariant.cjs) ·
+[Successful manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42745733143).
 
 ### The known low-dependence ciphertext profile
 
@@ -99,4 +113,4 @@ The ciphertext's 29 rune frequencies are nearly flat, and immediate rune repeats
 - `resources/liber-primus/`: original images `00.jpg`–`74.jpg` and checksums.
 - `agents/`: persistent research-agent identities and continuity records.
 
-External public papers and analyses are **context**, and any unreplicated claim remains attributed to its author. The current reproducible constraints cover short algebraic-feedback formulas, global static homophonic substitutions, arbitrary deterministic per-word symbol substitutions, and section-static word-start substitutions under explicit English-like plaintext assumptions; a simple period-23 word-initial phase model was also probed with planted controls. No manuscript plaintext or cipher key has been recovered. This summary will be rewritten when stronger evidence supersedes it.
+External public papers and analyses are **context**, and any unreplicated claim remains attributed to its author. The current reproducible constraints include short algebraic-feedback formulas, global static homophonic substitutions, arbitrary deterministic per-word symbol substitutions, and fixed or short-period word-initial bijections under explicit English-like plaintext assumptions. Independently, the exact within-word/across-word repeated-rune imbalance rejects exchangeable ordering of the observed ciphertext words under multiple word-preserving shuffle models. No manuscript plaintext or cipher key has been recovered. This summary will be rewritten when stronger evidence supersedes it.
