@@ -83,6 +83,31 @@ A **25-replicate fully refitted null** independently shuffles all four 256-byte 
 
 The original and plant tests passed [GitHub Actions run 42820730548](https://github.com/FlareZ123/liber-primus/actions/runs/42820730548). **No 4-of-4 source-derived key or unknown LP2 plaintext was recovered.** The original-source failure rejects this fixed byte-derived AES/ChaCha keystream family at the tested section starts, without disproving every possible way a cubic interpolant might be postprocessed, a different coordinate assignment, a different unobserved secret, or a nonlinear hidden-skip encoder. The absence of a field-polynomial source relationship and the failed third-block inversion together give no positive reason to prioritize more variants of this particular four-array construction.
 
+## Coordinate-free four-source direct-text obstruction
+
+A **stronger source-only result** now addresses the still-open *unknown-coordinate four-of-four* interpretation without choosing any interpolation coordinates or LP2 decryption keys. Let the three 256-byte historical onion candidates and the LP2 grid be aligned source arrays \(X_1,\ldots,X_4\). Under either conventional byte field \(GF(2^8)\), suppose that their hypothetical direct recovered message has bytes
+
+\[
+S_i=a_1X_{1i}\oplus a_2X_{2i}\oplus a_3X_{3i}\oplus a_4X_{4i}\oplus d,
+\]
+
+where all four field coefficients \(a_j\) and the constant XOR byte \(d\) are entirely unknown and arbitrary but do not change with \(i\). **No choice of those unknowns yields a nonconstant 256-byte string of seven-bit ASCII.** This encompasses any degree-three four-of-four Shamir reconstruction at zero from arbitrary *fixed distinct field coordinates*, because Lagrange interpolation produces just such four coefficients. The all-zero-coefficient choice can output only a constant repeated byte.
+
+The proof needs **33 binary unknowns**: the eight bits of each of the four coefficients and the high bit of \(d\). For each original source byte index \(i\), requiring the high bit of \(S_i\) to equal zero gives an **exact homogeneous GF(2) linear equation** in those 33 bits, since multiplication by a fixed GF(256) byte and XOR are binary-linear. Thus a full-rank 33-column equation matrix forces every \(a_j=0\) and the high bit of \(d=0\), completely independent of the omitted low seven bits of \(d\). The [CommonJS original-source rank proof and native Shamir plants](../sims/onion256_fourshare_ascii_rank.cjs) computes this matrix directly from the committed source arrays, with exact BigInt GF(2) elimination, and makes the following assertions:
+
+| Printed-grid interpretation | Canonical first prefix of rank 33 | Five-cell-corrected first prefix of rank 33 |
+| --- | ---: | ---: |
+| Row-major | 35 bytes | 35 bytes |
+| Reversed row-major | 34 bytes | 34 bytes |
+| Column-major | 35 bytes | 35 bytes |
+| Reversed column-major | 36 bytes | 34 bytes |
+
+These first-prefix lengths hold in **both GF(256) fields 0x11B and 0x11D**, for **all 16 combinations** of grid version, alignment and field. In every case, *each of six disjoint 40-byte blocks* within the first 240 source positions separately has the same full rank 33. Consequently every nonzero four-source coefficient selection, even with an arbitrary fixed XOR byte, must produce at least **six high-bit-set output bytes in those six blocks**. The conclusion survives at most five arbitrary output-byte corrections but makes no claim for unbounded editing or stream reordering.
+
+**Positive controls:** Two independently generated degree-three four-share systems, one for each binary field, carry a predeclared **256-byte seven-bit ASCII secret** through four independently varying per-position polynomial coefficients at coordinates 1,2,3,4. Their Shamir inverses reconstruct **256/256 exact original plaintext bytes**; the same unrestricted top-bit rank gate correctly yields rank at most 32 for both plants. All 16 actual-source exclusions and both planted inverses passed in the existing manual [grid regression run 42835451166](https://github.com/FlareZ123/liber-primus/actions/runs/42835451166).
+
+**Precise scope:** This removes the natural hypothesis that four related source arrays directly reconstruct *human-readable ASCII* through any fixed GF(256) share coefficients, including unknown global Shamir coordinates, even allowing one constant XOR byte and five favorable byte edits. It does **not** exclude a random-looking binary secret, a cryptographic key derived from the reconstructed bytes, a KDF, nonlinear transforms, changing coefficients, different relative alignments, or alternate field arithmetic. The source's assertion that the three archival byte strings really are historical shares is itself unverified. It has recovered **no LP2 plaintext or authentic key** and does not justify discarding a genuinely source-motivated binary-key proposal.
+
 ## Reproduction and research consequence
 
 The raw-source XOR CommonJS implementation is [`sims/onion256_grid_xor_source_inverse.cjs`](../sims/onion256_grid_xor_source_inverse.cjs), reading only the committed historical source blob, canonical LP2 numeric grid, manuscript transcription and Shakespeare source fixture. [`.github/workflows/grid-keyskip-manual.yml`](../.github/workflows/grid-keyskip-manual.yml) exposes the explicit `historical-onion-xor-inverse` dispatch. The exact CI output is in successful run 42815364894.
