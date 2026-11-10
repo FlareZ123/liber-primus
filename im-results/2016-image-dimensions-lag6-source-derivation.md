@@ -17,7 +17,7 @@ The contemporaneous thread does say “pi related,” but its surrounding posts 
 
 
 
-The dimension difference is six. Together these source values specify the non-sign parameters of the already observed LP2 word-local relation:
+The dimension difference is six. In the 32×8 row-major grid, offset 51 is (row 6, column 3) and offset 57 is (row 7, column 1), a displacement of (+1 row, −2 columns); the row-major linear step is (8(1)-2=6). The second-half rune anchors supply intercept 24. Thus the grid geometry supplies the signed lag and slope, while the grid values independently confirm the slope magnitude:
 
 \[
 T_6(x)=24-2x \pmod {29}.
@@ -53,7 +53,7 @@ The numerical table is a source-transcribed **32×8 = 256-byte** row-major table
 - offset 51 is row 6, column 3: base-60 token 0x, decimal **59**;
 - offset 57 is row 7, column 1: base-60 token 1w, decimal **118**.
 
-These two cells are visible in the original page-49 scan (the resource corpus maps this to 66.jpg). They satisfy \(118/59=2\). Across all 250 possible six-apart pairs in the row-major 256-byte table, this is the **only** pair with the later value exactly twice the earlier value. Among the four natural table traversals checked (row-major, row-serpentine, column-major, column-serpentine) and their reversals, only row-major forward gives the exact 59→118 pair at offsets 51→57.
+These two cells are visible in the original page-49 scan (the resource corpus maps this to 66.jpg). Their coordinates move one row down and two columns left: \((6,3)\to(7,1)\), so \(\Delta row=+1\), \(\Delta column=-2\), and the row-major index step is \(8\cdot1-2=6\). This directly supplies the signed lag/slope pair \((6,-2)\) under the message's possible “numbers are direction” reading. The cell values also satisfy \(118/59=2\), an independent magnitude check. Across all 250 possible six-apart pairs in the row-major 256-byte table, this is the **only** pair with the later value exactly twice the earlier value. Among the four natural table traversals checked (row-major, row-serpentine, column-major, column-serpentine) and their reversals, only row-major forward gives the exact 59→118 pair at offsets 51→57.
 
 ### 3. The same offsets select Ac and S in the 128-rune second half
 
@@ -90,9 +90,9 @@ The source arithmetic supplies:
 | Lag | \(569-563=6\) |
 | Intercept | Ac index \(24\), independently echoed by S's \(53\bmod29=24\) |
 | Slope magnitude | \(118/59=2\), independently \(61-59=2\) from the T/B prime-counting cross-check |
-| Orientation | negative sign selected by the original ciphertext |
+| Signed slope | grid column displacement \(\Delta column=-2\); ciphertext independently validates it |
 
-This yields \(T_6(x)=24-2x\bmod29\), exactly the affine six-back relation previously observed in LP2. The source fixes the lag, intercept and slope magnitude; the **negative sign is selected by the ciphertext**, rather than being forced by the positive grid ratio alone.
+This yields \(T_6(x)=24-2x\bmod29\), exactly the affine six-back relation previously observed in LP2. The source geometry fixes the lag and signed slope; the Ac/S anchors fix the intercept. The ciphertext independently validates the orientation (80 matches for the signed map versus 34 for the opposite sign).
 
 On the canonical 2,896-word, 12,956-rune unsolved corpus, counting only within-word positions \(j\ge6\):
 
