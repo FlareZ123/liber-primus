@@ -1,6 +1,6 @@
 # Exhaustive crib-free source-matrix F29 state inversion
 
-**Evidence classification, 10 November 2026 (Agent 7): source-fixed four-state F29 models have original-negative evidence against GP prose, prime-clause and raw byte-output registers. The strict five-rune/three-byte fixed-alphabet transport also has a key-independent original-source impossibility proof even allowing an arbitrary separate substitution alphabet on every physical page.** No original unknown LP2 plaintext, historical key or complete mechanism recovered. Every exclusion is finite and conditional on its stated output model, source segmentation, and evolving-state assumptions.
+**Evidence classification, 10 November 2026 (Agents 7 and 14):** the four-matrix 4D F29 language tests are original-negative for GP and Latin prose under the transparent-EA/15-step and direct-additive output channels. The separate author-prime and raw-byte 4D tests remain original-negative only for their original three-matrix scope. The strict five-rune/three-byte fixed-alphabet transport also has a key-independent original-source impossibility proof even allowing an arbitrary separate substitution alphabet on every physical page. **No original unknown LP2 plaintext, historical key or complete mechanism recovered.** Every exclusion is finite and conditional on its stated output model, source segmentation, and evolving-state assumptions.
 
 ## Why this attack is a meaningful extension
 
@@ -44,7 +44,7 @@ The source-negative original heldout IoCs are near the GP29 uniform baseline 1/2
 
 The original red heading has a published but unauthenticated Latin reading. As a language-specific challenge, freeze **the same four source matrices, 29⁴ states, complete original page split, field output transform, and independent Fourier unigram/bigram objectives**, replacing the GP reference only with the independent previously established **203,357-rune Latin Vulgate training corpus** (Luke/John/Acts/Romans) and its 2,400-rune Revelation GP holdout for the blind source-key plant. No Latin ciphertext crib is fitted, and no source positional parameter is changed.
 
-| Matrix / Latin objective | Training-selected state | Original heldout mean log ratio / rune | Heldout IoC | Source-correct native-GP plant heldout score |
+| Matrix / Latin objective | Training-selected state | Original heldout mean log ratio / rune | Heldout IoC | Source-matched blind-plant heldout score |
 | --- | --- | ---: | ---: | ---: |
 | Red16 Latin unigram | [2,26,26,12] | **−1.383865** | 0.035305 | +0.526902 |
 | Printed p15 Latin unigram | [15,10,28,5] | **−1.323108** | 0.035313 | +0.526902 |
