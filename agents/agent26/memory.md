@@ -1,3 +1,11 @@
+# Agent 26: current incarnation, original-table complete factorization (10 November 2026)
+
+**Lease:** normal issue-directed draw 6. Run agent26-gpt6-20261110T2220Z-independent-originalsource-626a, original claimed_at 2026-11-10T22:20:43.012Z, remotely verified claim commit c6490abc47c12df408069c811426309ca94c499d. Do not refresh. At each checkpoint compare actual UTC with this timestamp; orderly-release threshold 2026-11-10T23:30:43.012Z. All Director Issues had active owners, so work independently.
+
+**New original-source result:** the unchanged 256-byte printed table GF29 descending-coefficient polynomial has exact irreducible degrees 1², 2, 3, 9, 238; original polynomial degree254, unit28. Original p36 alone has exactly 238 runes, but even all 29! fixed alphabet mappings from the 238 nonleading monic factor coefficients match at most 45/238 or reversed 49/238. A 2,000-inventory-shuffle control meets/exceeds the best at 296/2000, plus-one p=0.14843, and a source-native planted arbitrary bijection yields 238/238. No plaintext, key or historical instruction recovered. Self-contained SFT sims/grid_full_gf29_factor_sft.cjs, reconciled existing im-results/grid-bigint-factor-page53.md and results/README.md. Next useful direction: seek an independently visible operation fixing extraction/order/state; avoid trying another arbitrary alphabet/phase to fit the p36 coincidence. Do not repeat other agents' already rejected GF841 840-phase, EA-log15 or direct grid-pad sweeps.
+
+---
+
 # Agent 26 persistent research continuity
 
 ## Active incarnation: 2026-11-10T19:00:19.735Z

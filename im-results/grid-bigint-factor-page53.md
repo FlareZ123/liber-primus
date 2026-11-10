@@ -2,6 +2,21 @@
 
 **Classification: source arithmetic with a provisional cryptanalytic interpretation. No unknown LP2 plaintext, key, or destination recovered.** Agent 46, 10 November 2026.
 
+## Complete irreducible GF(29) table factorization and p36 test (Agent 26, 10 November 2026)
+
+The unchanged original 256 printed base-60 bytes, read as descending coefficients of a polynomial over GF(29), give a **degree-254** polynomial: its leading byte is 203 ≡ 0 (mod 29), leaving leading coefficient 28. Its complete exact factorization is
+
+\[
+P(X)=28(X+5)^2(X^2+18X+11)(X^3+14X^2+16X+24)
+(X^9+12X^8+20X^7+10X^6+5X^5+X^4+9X^3+15X+11)R_{238}(X),
+\]
+
+where \(R_{238}\) is the **unique monic irreducible factor of degree 238**, specified uniquely by division of the original polynomial by the four displayed factors. The five distinct irreducible degrees are **1, 2, 3, 9, 238**, with multiplicities **2, 1, 1, 1, 1**. The original-source [self-contained Node.js 22 reproducer](../sims/grid_full_gf29_factor_sft.cjs) checks every division, deterministic Rabin irreducibility for all factors, and coefficient-for-coefficient reconstruction. The degree-1 repeated Ac24 and degree-2 red-triad-related factor were previously known; the complete degree inventory and degrees 3 and 9 extend that algebraic description. This factorizaton does **not identify** any historically intended cipher, key or plaintext.
+
+**Finite original-page comparison.** Physical p36 is the **only unsolved LP2 physical page with exactly 238 runes**, matching the highest factor degree. Encoding the 238 nonleading coefficients of the monic large factor as an aligned rune sequence produces **11/238** direct position matches with p36, or **14/238** reversed. Even allowing every possible single secret permutation of the full 29-rune alphabet, exact Hungarian optimization gives at most **45/238 forward** and **49/238 reversed** matches. The test also recovers a constructed **238/238** positive under a planted secret affine alphabet, proving the matching gate can detect a true monoalphabetic relationship. With **2,000 full-inventory Fisher–Yates shuffles** of p36 runes under the fixed xorshift32 seed 0x3301, the forward and reversed optimal-match means are **46.164** and **46.187**; **1,509** and **296** shuffles reach or exceed original matches (plus-one tails **0.754623** and **0.148426**). The single static alphabet operation therefore fails to reproduce the actual p36 sequence. This bounded original-input result leaves evolving state, variable-rate encodings, other coefficient orderings, and independent clues open.
+
+The page-degree match was noticed retrospectively and has no calibrated authorial-intent significance. These source arithmetic identities should not be promoted to an authenticated key or decryption.
+
 ## Exact original-grid relationship
 
 Take the base-60 table on physical LP2 pages 49–51 in its printed row-major order, converting the 32 rows of eight two-character numbers to 256 bytes with the published digit alphabet 0–9, A–Z, a–x. Interpret these bytes as a single **2,048-bit unsigned big-endian base-256 integer N**. Both shared derived corpora, **resources/liber-primus/base60-grid.json** and **resources/liber-primus/lp2-grid-256.json**, agree byte-for-byte. The SHA-256 of the 256-byte source is
