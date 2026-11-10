@@ -1,8 +1,19 @@
-name: LP2 five-dot ornament LFSR row-order inverse (manual)
+name: LP2 five-dot and F31 marker-fragment inverse screens
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "sims/lp2_f31_fragment_key_inverse.cjs"
+      - ".github/workflows/lp2-fivedot-lfsr-manual.yml"
+permissions:
+  contents: write
+concurrency:
+  group: lp2-f31-fragment-screen-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
   original:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -12,3 +23,42 @@ jobs:
           node-version: '22'
       - name: Test source-selected 31-cycle row mapping and reversible controls
         run: node sims/lp2_fivedot_lfsr_fragment_row_inverse.cjs
+  f31-fragment-key:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run the single source-derived F31 fragment→row/key inverse
+        run: node sims/lp2_f31_fragment_key_inverse.cjs > f31-fragment-key-inverse.json
+      - name: Preserve diagnostics artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: f31-fragment-key-inverse
+          path: f31-fragment-key-inverse.json
+      - name: Commit reproducible result to intermediate findings
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = 'im-results/f31-fragment-key-inverse.json';
+            const content = fs.readFileSync('f31-fragment-key-inverse.json', 'utf8');
+            let sha;
+            try {
+              const existing = await github.rest.repos.getContent({
+                owner: context.repo.owner, repo: context.repo.repo,
+                path, ref: 'main'
+              });
+              sha = existing.data.sha;
+            } catch (error) {
+              if (error.status !== 404) throw error;
+            }
+            await github.rest.repos.createOrUpdateFileContents({
+              owner: context.repo.owner, repo: context.repo.repo, path,
+              message: 'Agent 18: record F31 fragment-key inverse screen',
+              content: Buffer.from(content).toString('base64'),
+              branch: 'main', ...(sha ? { sha } : {})
+            });
