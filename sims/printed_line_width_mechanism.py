@@ -153,6 +153,58 @@ def holdout_bias(rows, widths):
     }
 
 
+
+def heldout_greedy_wrap(rows, widths, right_margin):
+    """Test whether the next glyph overflows independently frozen page width.
+
+    Restrict to genuine mid-word printed-line breaks. Keep each page's actual
+    set of successor runes fixed in random controls, permuting which visual
+    residual gap each successor rune would need to clear.
+    """
+    by_page = {}
+    for row in rows:
+        by_page.setdefault(row["page"], []).append(row)
+    groups = []
+    for page_rows in by_page.values():
+        pairs = []
+        for previous, successor in zip(page_rows[:-1], page_rows[1:]):
+            if previous["line"][-1] in INDEX:
+                pairs.append((right_margin - previous["right"], widths[successor["rune"]]))
+        if len(pairs) >= 2:
+            groups.append(np.asarray(pairs, dtype=float))
+    assert sum(len(g) for g in groups) > 45
+    def gate(group):
+        gap = group[:,0]
+        w = group[:,1]
+        return (np.count_nonzero(w > gap),
+                np.maximum(gap-w, 0).sum(),
+                float(np.dot(gap-gap.mean(),w-w.mean())))
+    actual = np.array([gate(g) for g in groups],dtype=float).sum(axis=0)
+    random = np.random.default_rng(0x39A11B)
+    sample = np.zeros((20000,3),dtype=float)
+    for trial in range(len(sample)):
+        for group in groups:
+            shuffled = group.copy()
+            random.shuffle(shuffled[:,1])
+            sample[trial] += gate(shuffled)
+    n = sum(len(g) for g in groups)
+    return {
+        "source":"Genuine within-word printed wraps; page-specific next-rune multiset fixed in controls",
+        "trainingFrozenRightMarginPx":right_margin,
+        "pages":len(groups), "wraps":n,
+        "observedOverflowFraction":float(actual[0]/n),
+        "nullOverflowMean":float(sample[:,0].mean()/n),
+        "overflowUpperP":float((1+np.count_nonzero(sample[:,0]>=actual[0]))/(len(sample)+1)),
+        "observedMeanUnfilledPx":float(actual[1]/n),
+        "nullMeanUnfilledPx":float(sample[:,1].mean()/n),
+        "unfilledLowerP":float((1+np.count_nonzero(sample[:,1]<=actual[1]))/(len(sample)+1)),
+        "gapWidthCovariance":float(actual[2]/n),
+        "nullGapWidthMean":float(sample[:,2].mean()/n),
+        "covarianceUpperP":float((1+np.count_nonzero(sample[:,2]>=actual[2]))/(len(sample)+1)),
+        "caution":"The model is necessary only for naive greedy single-glyph wrapping, with no lookahead to punctuation, word breaks, kerning, or justification."
+    }
+
+
 def main():
     rows, pages, skipped = build()
     train = [r for r in rows if r["page"] <= 27]
@@ -170,6 +222,7 @@ def main():
                    for r in test])
     true = np.array([r["width"] for r in test])
     base_rmse = float(np.sqrt(np.mean((true-tx@baseline_coef)**2)))
+    margin = float(np.max([r["right"] for r in train]))
     report = {
         "source":"Source-exact physical LP2 printed lines and original JPEGs; no OCR",
         "segment":"Pixel threshold 140, x=[595,1810), y=[350,3200), segment row gaps>18",
@@ -179,6 +232,7 @@ def main():
         "baselineConstantRuneWidthTestRMSE":base_rmse,
         "runeWidths":{r:round(float(w),3) for r,w in zip(RUNES,widths)},
         "heldoutInitialWidth":holdout_bias(rows,widths),
+        "heldoutGreedyWrap":heldout_greedy_wrap(test,widths,margin),
         "interpretation":"A font-width model is causal evidence only if it predicts heldout source geometry and original line starts; this does not decrypt LP2"
     }
     print(json.dumps(report,indent=2,ensure_ascii=False))
