@@ -26,3 +26,4 @@ jobs:
           node sims/grid_fibonacci_macro_key.cjs
           node sims/fibonacci_square_grid_unwrap.cjs
           node sims/circumference_corner_key_inverse.cjs
+          node sims/red16_grid_epoch_aes128_inverse.cjs
