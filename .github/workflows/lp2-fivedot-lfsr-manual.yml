@@ -1,14 +1,12 @@
 name: LP2 five-dot and F31 marker-fragment inverse screens
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "sims/lp2_f31_fragment_key_inverse.cjs"
-      - "sims/lp2_f31_direct_ea_pad.cjs"
-      - "sims/lp2_f31_fragment_row_pad_inverse.cjs"
-      - "sims/lp2_f31_red_fragment_transposition.cjs"
-      - ".github/workflows/lp2-fivedot-lfsr-manual.yml"
+    inputs:
+      run_f31_fragment_inverse:
+        description: Run the F31 fragment-key, EA-pad, row-pad, and red-fragment tests
+        type: boolean
+        required: false
+        default: false
 permissions:
   contents: write
 concurrency:
@@ -27,7 +25,7 @@ jobs:
       - name: Test source-selected 31-cycle row mapping and reversible controls
         run: node sims/lp2_fivedot_lfsr_fragment_row_inverse.cjs
   f31-fragment-key:
-    if: github.event_name == 'push'
+    if: inputs.run_f31_fragment_inverse
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
