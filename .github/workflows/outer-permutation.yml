@@ -1,0 +1,18 @@
+name: LP2 arbitrary outer-alphabet assignment controls
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  assignment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact matching implementation
+        run: node sims/test_outer_permutation.cjs
+      - name: Measure planted controls and drift impact
+        run: node sims/outer_permutation_assignment.cjs
