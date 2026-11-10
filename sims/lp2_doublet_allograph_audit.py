@@ -161,6 +161,20 @@ def similarity(a, b, max_shift=1):
     return best
 
 
+def restore_full_glyph(gray, box):
+    """Repair clipping from fixed 125px peak bands while keeping x registered.
+
+    The original 125px row mask sometimes ends 20+px before the actual
+    113-115px rune stem ends. Read an additional 15px above and 32px
+    below the initial source-registered box, then trim actual ink.
+    The vertical margins fit within the original native line spacing.
+    """
+    x0, y0, x1, y1 = box
+    ink = gray[max(0, y0 - 15):min(gray.shape[0], y1 + 32), x0:x1] < 110
+    yy, xx = np.where(ink)
+    return ink[yy.min():yy.max() + 1, xx.min():xx.max() + 1]
+
+
 def ink_color(rgb, box):
     x0, y0, x1, y1 = box
     pixels = rgb[y0:y1, x0:x1].astype(np.int16)
@@ -238,8 +252,10 @@ def main():
             expected_b_extra = b_shift + int((page, b_line) == (27, 0))
             assert len(scanned[a_row]) == lengths[a_line] + expected_a_extra, (page, at, a_line)
             assert len(scanned[b_row]) == lengths[b_line] + expected_b_extra, (page, at, b_line)
-            crop_a, box_a = scanned[a_row][a_pos]
-            crop_b, box_b = scanned[b_row][b_pos]
+            _, box_a = scanned[a_row][a_pos]
+            _, box_b = scanned[b_row][b_pos]
+            crop_a = restore_full_glyph(gray, box_a)
+            crop_b = restore_full_glyph(gray, box_b)
             score = similarity(crop_a, crop_b)
             if page == 43:
                 p43_doublet_used.update((at, at + 1))
@@ -290,12 +306,15 @@ def main():
     assert all(value >= .9 for value in primary)
     values = [r["jaccard_shift1"] for r in rows]
     outlier = [r for r in rows if r["jaccard_shift1"] < .9]
-    assert len(outlier) == 1 and (outlier[0]["page"],outlier[0]["offset"]) == (34,134)
-    assert outlier[0]["common_height_prefix_identical"]
+    assert not outlier
+    p34 = next(r for r in rows if (r["page"],r["offset"]) == (34,134))
+    assert p34["jaccard_shift1"] == 1.0
+    assert tuple(p34["a"]["shape"]) == (113,34)
+    assert tuple(p34["b"]["shape"]) == (113,34)
     assert all(r["a"]["ink"] == r["b"]["ink"] for r in rows)
     p43_gray, _ = image_data(43)
     result = {
-        "method": "source-indexed original-JPEG raster glyph morphology; black threshold 110; +/-1px maximum Jaccard alignment",
+        "method": "source-indexed original-JPEG raster glyph morphology; black threshold 110; +15/-32px safe recrop of clipped scan bands; +/-1px Jaccard alignment",
         "scope": "56 unsolved physical LP2 pages, 55 rune-bearing; within-page adjacent equals only",
         "total_pairs": len(rows),
         "boundary_cohorts": counts,
@@ -316,7 +335,7 @@ def main():
         "p43_control": control_distribution(p43_gray, labels43, p43_doublet_used),
         "outliers": outlier,
         "pairs": rows,
-        "conclusion": "No resolved visually distinct allograph class among all 86 source-registered adjacent repeats; does not decrypt or prove a 29-state cipher."
+        "conclusion": "No visually distinct allograph class among all 86 source-registered flattened repeats (60 literal printed adjacencies); clipped-source p34 glyph is identical after full-height restore; does not decrypt or prove a 29-state cipher."
     }
     print(json.dumps(result, indent=2, ensure_ascii=False))
 
