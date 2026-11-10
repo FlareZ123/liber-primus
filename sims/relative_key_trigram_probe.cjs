@@ -56,11 +56,13 @@ function trainTrigram(words){
  * @param {number} shift
  * @param {boolean} withText
  */
-function solve(pa,pb,lm,shift=0,withText=false){
+function solve(pa,pb,lm,shift=0,withText=false,plaintextScale=1){
   const n=Math.min(pa.xs.length,pb.xs.length),secondLength=pb.xs.length;
   assert.ok(n>=2);
+  const inverse=Array.from({length:28},(_,i)=>i+1).find(v=>mod(v*plaintextScale)===1);
+  assert.notEqual(inverse,undefined,'Scale must be invertible modulo 29');
   const D=new Uint8Array(n);
-  for(let t=0;t<n;t++)D[t]=mod(pa.xs[t]-pb.xs[(t+shift)%secondLength]);
+  for(let t=0;t<n;t++)D[t]=mod(inverse*(pa.xs[t]-pb.xs[(t+shift)%secondLength]));
   const at=(a,b,c)=>lm[(a*N+b)*N+c];
   const head=new Float64Array(29);
   for(let p=0;p<29;p++){
@@ -127,6 +129,10 @@ function study(){
   const shifts=[];for(let shift=0;shift<b.xs.length;shift++)shifts.push({shift,score:solve(a,b,model,shift).score});
   shifts.sort((u,v)=>v.score-u.score);
   const rank=shifts.findIndex(s=>s.shift===0)+1;
+  const scaled=solve(a,b,model,0,true,4);
+  const scaledShifts=[];for(let shift=0;shift<b.xs.length;shift++)scaledShifts.push({shift,score:solve(a,b,model,shift,false,4).score});
+  scaledShifts.sort((u,v)=>v.score-u.score);
+  const scaledRank=scaledShifts.findIndex(s=>s.shift===0)+1;
   // Independent heldout passages, same keystream (true two-time pad).
   const p=base.stream(testWords.slice(0,400),269),q=base.stream(testWords.slice(500,900),269);
   assert.equal(p.xs.length,269);assert.equal(q.xs.length,269);
@@ -145,6 +151,8 @@ function study(){
       score:observed.score,rankAmong272Rotations:rank,secondBest:shifts[1],medianShiftScore:shifts[135].score,
       page28Candidate:observed.pText,page42Candidate:observed.qText
     },
+    scaledTarget:{scale:4,score:scaled.score,rankAmong272Rotations:scaledRank,secondBest:scaledShifts[1],medianShiftScore:scaledShifts[135].score,
+      page28Candidate:scaled.pText,page42Candidate:scaled.qText},
     heldoutPositive:{score:synthetic.score,rankAmong269Rotations:plantRank,runeAccuracy:accuracy,
       candidateText:synthetic.pText,actualText:p.xs.map(i=>runeTranslit[i]).join('')},
     interpretation:'Candidate strings from stochastic language optimization are not authenticated plaintext; key sharing remains unproven'
