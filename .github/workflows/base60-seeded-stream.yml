@@ -1,0 +1,11 @@
+name: Base60 seeded stream screen
+on:
+  workflow_dispatch:
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run AES-CTR ChaCha20 RC4 screen with planted control
+        run: node sims/base60_seeded_stream.cjs
