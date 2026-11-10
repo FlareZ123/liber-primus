@@ -97,6 +97,65 @@ function main() {
     (c - (sevenKeys[i] + fiveKeys[i]) % 29 + 29) % 29), synthetic);
   assert.deepEqual(full.map((p, i) =>
     (p + sevenKeys[i] + fiveKeys[i]) % 29), original);
+  // Distinct, cross-page 7x7 Hill hypothesis. Align the first 123 source
+  // runes of each of the seven physical pages, then apply the exact
+  // historical square as the simultaneous seven-lane GP29 cipher matrix.
+  // Unequal source page lengths mean this tests only the fully populated
+  // 123-column rectangle, without inventing a padding/continuation rule.
+  const mod = (v) => ((v % 29) + 29) % 29;
+  const n = 7;
+  const aug = seven.map((row, i) => row.map(mod)
+    .concat(Array.from({ length: n }, (_, j) => Number(i === j))));
+  for (let col = 0; col < n; col++) {
+    const pivot = aug.findIndex((row, i) => i >= col && row[col] !== 0);
+    assert.ok(pivot >= col, "Historical 7x7 square must invert modulo29");
+    [aug[pivot], aug[col]] = [aug[col], aug[pivot]];
+    let inversePivot = 1;
+    while (mod(aug[col][col] * inversePivot) !== 1) inversePivot++;
+    for (let k = 0; k < 2 * n; k++) aug[col][k] = mod(aug[col][k] * inversePivot);
+    for (let row = 0; row < n; row++) {
+      if (row === col) continue;
+      const factor = aug[row][col];
+      for (let k = 0; k < 2 * n; k++)
+        aug[row][k] = mod(aug[row][k] - factor * aug[col][k]);
+    }
+  }
+  const inv = aug.map((row) => row.slice(n));
+  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+    const product = mod(seven[i].reduce((sum, v, k) => sum + v * inv[k][j], 0));
+    assert.equal(product, Number(i === j), "Inverse identity failed");
+  }
+  const pageStreams = corpus.pages.filter((p) => p.page >= 33 && p.page <= 39)
+    .map((p) => p.indices.slice(p.page === 33 ? 91 : 0));
+  const sharedWidth = Math.min(...pageStreams.map((p) => p.length));
+  assert.equal(sharedWidth, 123);
+  /** @param {number[][]} matrix @param {number[][]} columns */
+  const transform = (matrix, columns) => matrix.map((row) =>
+    Array.from({ length: sharedWidth }, (_, column) =>
+      mod(row.reduce((sum, value, k) => sum + value * columns[k][column], 0))));
+  const originalHillRows = pageStreams.map((p) => p.slice(0, sharedWidth));
+  const candidateHillRows = transform(inv, originalHillRows);
+  assert.deepEqual(transform(seven, candidateHillRows), originalHillRows);
+  // The same exact inversion reconstructs an authentic solved-Cicada GP
+  // sample planted under the true seven-lane matrix.
+  const syntheticHillRows = Array.from({ length: 7 }, (_, lane) =>
+    Array.from({ length: sharedWidth }, (_, col) =>
+      sourcePlain[(lane * sharedWidth + col) % sourcePlain.length]));
+  assert.deepEqual(transform(inv, transform(seven, syntheticHillRows)),
+    syntheticHillRows);
+  const crossPageHill = {
+    originalRuneColumns: sharedWidth,
+    originalCipherRunes: sharedWidth * 7,
+    originalIoC: Number(ioc(originalHillRows.flat()).toFixed(9)),
+    candidateIoC: Number(ioc(candidateHillRows.flat()).toFixed(9)),
+    recoveredOriginalText: false,
+    sourcePageHeaders: candidateHillRows.map((row, index) => ({
+      page: 33 + index,
+      preview: row.slice(0, 55).map((v) => corpus.translit[v]).join("")
+    }))
+  };
+  assert.ok(crossPageHill.candidateIoC < 0.04);
+
   const result = {};
   for (const kind of ["original", "seven", "five", "both"]) {
     const decoded = kind === "original" ? original : decrypt(kind);
@@ -114,6 +173,7 @@ function main() {
     sourceNumberedItemSpan: itemStarts,
     historicalMagicSums: [1033, 3301],
     knownP56PlainIoC: Number(ioc(sourcePlain).toFixed(9)),
+    originalSevenLaneHill: crossPageHill,
     results: result,
     claim: "No recovered original plaintext; invertibility/planted recovery are implementation checks."
   }, null, 2));
