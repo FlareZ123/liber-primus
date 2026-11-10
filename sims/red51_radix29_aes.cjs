@@ -113,6 +113,6 @@ console.log(JSON.stringify({
   gridSha256:crypto.createHash('sha256').update(gridBytes).digest('hex'),
   originalFullIoC:ioc(ciphertext),originalPrefix4096IoC:ioc(ciphertext.slice(0,4096))},
  gridTrialCount:gridScores.length,bestGrid:gridScores.slice(0,6),
- runeTrialCount:runeScores.length,bestRunes:runeScores.slice(0,6),
+ runeTrialCount:runeScores.length,bestWholeRune:runeScores.slice().sort((a,b)=>b.wholeIoC-a.wholeIoC)[0],bestRunes:runeScores.slice(0,6),
  plantedInverse:{aes256CBC:true,aes256CTRGP:true}
 },null,2));
