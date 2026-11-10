@@ -29,6 +29,9 @@ assert.equal(STATES, 707281);
 assert.equal(N, 12956);
 const matrices = [
   { label: "red16-prime-sum-spiral", A: red.A },
+  { label: "red16-visible-count-spiral", A: [
+    [9,11,16,19],[12,13,16,10],[14,11,3,8],[9,22,8,3]
+  ] },
   { label: "printed-p15-prime-spiral", A: [
     [3258,3222,3152,3038], [3278,3299,3298,2838],
     [3288,3294,3296,2472], [4516,1206,708,1820]
@@ -434,7 +437,8 @@ const report={classification:"Exhaustive 4D F29 source-matrix inverse (not an LP
   originalAndControls:[]};
 for(const source of matrices) {
   const V=vectors(source.A);
-  const secret=source.label.startsWith("red16")?[11,7,22,3]:[5,12,19,27];
+  const secret=source.label === "red16-prime-sum-spiral" ? [11,7,22,3] :
+    source.label === "red16-visible-count-spiral" ? [1,9,18,27] : [5,12,19,27];
   const plantedCipher=encrypt(plantedPlain,V,secret);
   assert.deepEqual(decrypt(plantedCipher,V,secret),plantedPlain);
   const actual=experiment(source.label,source.A,C);
