@@ -48,6 +48,32 @@ assert.equal(first.remainder, 0);
 assert.equal(second.remainder, 0);
 assert.equal(second.quotient.length, 254);
 
+// A distinct 256-position source alignment: p53 all179 + p54 oversized Ac + p55 all76.
+const terminal256 = [...corpus.pages[53].indices, corpus.pages[54].indices[0], ...corpus.pages[55].indices];
+assert.equal(terminal256.length, original.length);
+const directDecoded = [];
+for (const reverse of [false, true]) {
+  for (const sign of [-1, 1]) {
+    for (const shift of [0, 1, 24]) {
+      const key = reverse ? [...terminal256].reverse() : terminal256;
+      const output = original.map((value, i) => mod(value + sign * key[(i + shift) % 256]));
+      directDecoded.push({ reverse, sign, shift, ioc: ioc(output) });
+    }
+  }
+}
+directDecoded.sort((a, b) => b.ioc - a.ioc);
+assert.equal(directDecoded.length, 12);
+const byteMajorityCapacity = (source, target, domain) => {
+  const counts = Array.from({ length: 29 }, () => Array(domain).fill(0));
+  for (let i = 0; i < source.length; i++) counts[source[i]][target[i]]++;
+  return counts.reduce((sum, row) => sum + Math.max(...row), 0);
+};
+const directRuneByteCapacity = byteMajorityCapacity(terminal256, grid.bytes, 256);
+const directRuneGP29Capacity = byteMajorityCapacity(terminal256, original, 29);
+assert.equal(directRuneByteCapacity, 44);
+assert.equal(directRuneGP29Capacity, 44);
+assert.equal(byteMajorityCapacity(terminal256, terminal256.map(x => mod(7 * x + 3)), 29), 256);
+
 const acSquare = [1, mod(-48), mod(24 * 24)]; // (X-24)^2
 const plantedProduct = multiply(multiply(sourceA, sourceB), acSquare);
 const plantedFirst = divideLinear(plantedProduct, 24);
@@ -140,6 +166,9 @@ console.log(JSON.stringify({
   quotientLength: second.quotient.length,
   highestConvolutionMatch: bestMatch,
   bestTwoLaneArbitraryLookup: bestLaneLookup,
+  terminalSource256Length: terminal256.length,
+  terminalRuneByteMappingUpperBound: directRuneByteCapacity,
+  direct256AdditiveBestIoc: directDecoded[0],
   originalIoc: baseline,
   highestDirectQuotientPadIoc: results[0],
   lowestDirectQuotientPadIoc: results[results.length - 1]
