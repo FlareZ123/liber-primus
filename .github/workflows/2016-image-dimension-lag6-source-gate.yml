@@ -1,0 +1,23 @@
+name: 2016 image-dimension lag-six source gate
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'sims/2016_image_dimension_lag6_source_gate.cjs'
+      - 'resources/liber-primus/lp2-corpus.json'
+      - 'resources/liber-primus/base60-grid.json'
+      - 'resources/lp2-transcription.txt'
+      - 'resources/control/shakespeare_first300k.txt'
+
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reconstruct source-derived lag-six rule and test bounded key candidates
+        run: node sims/2016_image_dimension_lag6_source_gate.cjs
