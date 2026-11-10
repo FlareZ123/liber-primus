@@ -192,7 +192,36 @@ function run() {
   const plantRanking=search(plant);
   const rank=plantRanking.findIndex(x=>x.mode===trueMode)+1;
   assert.equal(rank,1,'Source-native true key must rank first in independent plant');
+  // The correct rank28 null is intrinsically biased toward a high IoC:
+  // fixed adjacent-repeat markers all map to GP symbol 28, the other
+  // noninitial positions to ranks 0..27, and page initials to GP29.
+  const holdPages=pages.slice(4).filter(p=>p.indices.length);
+  const markerCount=holdPages.reduce((s,p)=>s+p.indices.slice(1).filter((x,i)=>x===p.indices[i]).length,0);
+  const starts=holdPages.length;
+  const N=original.length-cutoff;
+  const ordinary=N-markerCount-starts;
+  const conditionalIoc=(
+    markerCount*(markerCount-1)+
+    2*markerCount*starts/29+
+    starts*(starts-1)/29+
+    2*starts*ordinary/29+
+    ordinary*(ordinary-1)/28
+  )/(N*(N-1));
+  const avg28=logp.slice(0,28).reduce((s,x)=>s+x,0)/28;
+  const avg29=logp.reduce((s,x)=>s+x,0)/29;
+  const var28=logp.slice(0,28).reduce((s,x)=>s+(x-avg28)**2,0)/28;
+  const conditionalGPScore=(ordinary*avg28+starts*avg29+markerCount*logp[28])/N;
+  const conditionalGPScoreStd=Math.sqrt(ordinary*var28+starts*(
+    logp.reduce((s,x)=>s+(x-avg29)**2,0)/29))/N;
   const output={
+    nullCalibration:{conditionalOnMarkers:markerCount,pageInitials:starts,
+      ordinaryRank28:ordinary,originalHeldoutRunes:N,
+      expectedIoc:conditionalIoc,observedIoc:results[0].heldoutIoc,
+      expectedUnigramLL:conditionalGPScore,
+      observedUnigramLL:results[0].heldout,
+      sigmaUnigramLL:conditionalGPScoreStd,
+      observedZ:(results[0].heldout-conditionalGPScore)/conditionalGPScoreStd,
+      caution:'Analytic iid uniform conditional-rank null, not a familywise original-key p-value.'},
     hypothesis:'16-page decorated block maps the 256 printed bytes into 16 page-specific AES-128 keys; evolving predecessor-exclusion GP28 rank and repeat marker 28.',
     sourcePages:'LP2 physical 40..55',originalRunes:3316,gridBytes:256,
     tableVariants:Object.keys(tableVariants),
