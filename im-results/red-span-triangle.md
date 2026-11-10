@@ -96,15 +96,15 @@ A direct hypothesized cipher \`r=(P−sK) mod28\`, with sign \`s=±1\`, was chec
 | Cipher screen | Even-page training IoC | Odd-page held-out IoC |
 | --- | ---: | ---: |
 | Untreated 28-label log-step | approximately **0.03576** pooled | approximately **0.0357** |
-| Best of 5,632 source-key configurations on original | **0.03591273** | **0.03567551** |
-| Strongest heldout configuration selected after looking at heldout | **0.03563119** on train | **0.03589940** |
+| Best of 16,432 source-key configurations on original | **0.03591826** | **0.03567658** |
+| Strongest heldout configuration selected after looking at heldout | **0.03565443** on train | **0.03590835** |
 | Fully planted original-layout English-GP with an exact grid key | **0.05945149** | **0.05889868** |
 
 The uniform 28-label IoC is **1/28≈0.03571429**. The key selected by training on original LP2 stays at this random floor on heldout. The planted control uses the **same original 55 page boundaries and 86 repeated-rune erasures**, a late GP-transliterated Shakespeare sample, and a declared \`grid-scaled28\` key (offset103, sign+1, page reset, clock skipping erasures). Its 29-rune chain forward-encrypts and reverse-decrypts **all 12,815 original nonerasure positions byte-exactly**, and the exhaustive original key search recovers the planted key as the *top* training configuration. This demonstrates meaningful detection power for the specified English-GP case.
 
-**Current inference:** 15's discrete-log alphabet is a source-anchored, exactly reversible *representation* of the 28 nonrepeated step types. No tested direct page/grid/prime/F79 key makes the original rank distribution resemble held-out GP-English, and the experiment does not identify original plaintext or keys. A new source-selected rule for a nonperiodic exponent stream, the 86 exceptional steps, or another plaintext alphabet would be required to turn the arithmetic into a genuine solution.
+**Current inference:** 15's discrete-log alphabet is a source-anchored, exactly reversible *representation* of the 28 nonrepeated step types. No tested direct 225-red-rune/page/grid/prime/F79 key makes the original rank distribution resemble held-out GP-English, and the experiment does not identify original plaintext or keys. A new source-selected rule for a nonperiodic exponent stream, the 86 exceptional steps, or another plaintext alphabet would be required to turn the arithmetic into a genuine solution.
 
-[Original-source SFT](../sims/red_triangle_discrete_log_step.cjs) · [successful manually dispatched CI run 42783355623](https://github.com/FlareZ123/liber-primus/actions/runs/42783355623).
+[Original-source SFT](../sims/red_triangle_discrete_log_step.cjs) · [successful expanded 16,432-model manual CI run 42784133928](https://github.com/FlareZ123/liber-primus/actions/runs/42784133928).
 
 ## Interpretation, falsification and next action
 
