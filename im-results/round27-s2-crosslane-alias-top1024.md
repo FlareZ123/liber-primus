@@ -42,12 +42,27 @@ A separate [read-only heldout runner](../sims/round27_s2_top1024_holdout.cjs) ap
 
 The English controls use 40 fixed windows from the source-independent [Shakespeare control text](../resources/control/shakespeare_first300k.txt), starting 100,000 original characters into the text, with windows every 1,000 normalized letters. Their length matches the recovered candidates' typical 280–300 transliteration characters. The comparison is a direct, heldout likelihood separation, **not a post-hoc calibrated global p-value**, and the source language could in principle be Latin, Old English, Welsh, a non-natural code register or something else.
 
-Both SFTs passed the single frozen original-input [manual GitHub Actions run 42870891541](https://github.com/FlareZ123/liber-primus/actions/runs/42870891541), Node 22, including all source oracles and the exhaustive 1,024-key pass. **No S2 key candidate in the published leading list produces natural English under the exact declared inverse.**
+Both SFTs passed the single frozen original-input [manual GitHub Actions run 42870891541](https://github.com/FlareZ123/liber-primus/actions/runs/42870891541), Node 22, including all source oracles and the exhaustive 1,024-key pass. **No S2 key candidate in the published leading list produces naturally distributed English or source-trained Latin GP under the exact declared inverse.**
+
+## Independent native-Latin GP test of the same exhaustive list
+
+The [Latin SFT](../sims/round27_s2_top1024_latin.cjs) rescored the *same 1,024 exact keyskip1 inverse outputs* in their native **29-rune GP alphabet**, using the independent [203,357-rune Vulgate GP training source](../resources/control/latin-vulgate-gp-trigrams.json) and its separately [withheld 2,400 GP-rune continuation](../resources/control/latin-vulgate-heldout-gp.json). The Jelinek-Mercer GP conditional likelihood uses the documented 0.70 trigram / 0.20 bigram / 0.09 unigram / residual uniform interpolation, with absent contexts reverting to the uniform reserve. The heldout control was divided into ten disjoint 240-GP-rune windows; no key candidates were selected by this Latin score.
+
+| Native GP-Latin conditional log10 probability per scored rune | Value |
+| --- | ---: |
+| Worst among 1,024 first-stage-selected real-source inverses | −2.0274232905 |
+| Median | **−1.8757150418** |
+| Best, seed **743972212** (original first-stage rank 302) | **−1.7155483328** |
+| Worst of ten genuinely withheld 240-GP-rune Latin Vulgate passages | **−1.0301548015** |
+| Reference median | **−0.9842899233** |
+| Original candidates reaching even weakest native-Latin control | **0 / 1,024** |
+
+This adds independent evidence that the published first-stage seed list does not hide direct native Latin plaintext under the actual keyskip1 decoder. It is specifically a *source-native Vulgate GP model*, not the source experiment's original nine-language LM panel. The complete 128-vector reproduction, 1,024 English extension, and 1,024 GP-Latin source tests all passed [manual CI 42872200363](https://github.com/FlareZ123/liber-primus/actions/runs/42872200363).
 
 ## Decision and remaining obstacle
 
 - The published S2 top seed's duplicated first-stage success is a **zero-skip cross-mode alias**. It should not be counted as independent confirmation of an authentic MT key.
-- None of the 1,024 selected seeds survives even the relatively permissive native-English quadgram comparison when the real ciphertext interval is extended from 120 to 240 GP runes. Repeating a full 2³² sweep merely to reproduce this archive's top-1,024 ranking is poor priority without an independent source selecting the MT seed or a changed cipher model.
+- None of the 1,024 selected seeds survives either the native-English quadgram or independent native-Latin GP-trigram comparison when the real ciphertext interval is extended from 120 to 240 GP runes. Repeating a full 2³² sweep merely to reproduce this archive's top-1,024 ranking is poor priority without an independent source selecting the MT seed or a changed cipher model.
 - A numerical **S2 240-rune nine-register `pmax`** adjudication remains open, because the third-party source repo does not commit its original nine-register `panel.npz`. It can be regenerated from version-locked historical corpora, but that is an additional reconstruction and must not be silently replaced by our English-quadgram output.
 - This bounded result does not exclude any seed outside the top 1,024 archived partial-sweep hits; changing the plaintext register, keyskip rule, MT key derivation, manuscript section boundary or encoding would require a separately selected hypothesis and new controls.
 
