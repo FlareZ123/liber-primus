@@ -1,0 +1,16 @@
+name: LP2 cross-page relative-key scan
+on:
+  workflow_dispatch:
+jobs:
+  relative-key-scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Synthetic shared-key and independent-key controls
+        run: node sims/relative_key_reuse_scan.cjs --selftest
+      - name: Scan all LP2 pairs and calibrate family-wise maxima
+        run: node sims/relative_key_reuse_scan.cjs --trials 1000
