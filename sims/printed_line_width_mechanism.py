@@ -35,7 +35,7 @@ def line_bounds(page: int, expected: int) -> list[tuple[int, int]] | None:
     """Segment full horizontal text bands from original image, no glyph recognition."""
     with Image.open(ROOT / f"resources/liber-primus/{page + 17:02d}.jpg") as image:
         pixels = np.asarray(image.convert("L"))
-    black = pixels[350:3200, 550:1800] < 140
+    black = pixels[350:3200, 595:1810] < 140
     y = np.flatnonzero(black.sum(axis=1) > 35)
     if y.size == 0:
         return None
@@ -50,8 +50,8 @@ def line_bounds(page: int, expected: int) -> list[tuple[int, int]] | None:
         ink = np.flatnonzero(columns > 2)
         if not ink.size:
             return None
-        left, right = 550 + int(ink[0]), 550 + int(ink[-1])
-        if left < 585 or left > 720 or right > 1790 or right - left < 250:
+        left, right = 595 + int(ink[0]), 595 + int(ink[-1])
+        if left < 590 or left > 730 or right > 1809 or right - left < 250:
             return None
         bounds.append((left, right))
     return bounds
@@ -172,7 +172,7 @@ def main():
     base_rmse = float(np.sqrt(np.mean((true-tx@baseline_coef)**2)))
     report = {
         "source":"Source-exact physical LP2 printed lines and original JPEGs; no OCR",
-        "segment":"Pixel threshold 140, x=[550,1800), y=[350,3200), segment row gaps>18",
+        "segment":"Pixel threshold 140, x=[595,1810), y=[350,3200), segment row gaps>18",
         "matchedPages":len(pages), "matchedLines":len(rows),
         "matchedPageNumbers":pages, "skippedPageExpectedLineCounts":skipped,
         "train":quality(train,coef), "test":quality(test,coef),
