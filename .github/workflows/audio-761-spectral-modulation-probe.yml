@@ -1,0 +1,35 @@
+name: Audio 761 high-band spectral modulation probe
+
+on:
+  push:
+    paths:
+      - 'sims/audio_761_spectral_modulation_probe.cjs'
+      - '.github/workflows/audio-761-spectral-modulation-probe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  spectral-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install FFmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Download original archival 761.MP3
+        run: curl --fail --location --silent --show-error --output /tmp/761.MP3 https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3
+      - name: Decode stereo float PCM at 44.1 kHz
+        run: ffmpeg -hide_banner -loglevel error -i /tmp/761.MP3 -ac 2 -ar 44100 -c:a pcm_f32le -f f32le /tmp/761-stereo.f32le
+      - name: Analyze 15.4–16.1 kHz hum, stereo phase, and musical chroma
+        run: node sims/audio_761_spectral_modulation_probe.cjs /tmp/761-stereo.f32le artifacts/audio-761-spectral-analysis.json
+      - name: Upload spectral analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: audio-761-spectral-analysis
+          path: artifacts/audio-761-spectral-analysis.json
+          if-no-files-found: error
