@@ -16,3 +16,5 @@ jobs:
         run: cc -O2 -Wall -Wextra -o /tmp/lp_jpeg_dct_bits sims/jpeg_dct_bits.c -ljpeg
       - name: Test all original page-local DCT pads with heldout synthetic control
         run: LP_DCT_BITS=/tmp/lp_jpeg_dct_bits node sims/jpeg_dct_bitpad_attack.cjs
+      - name: Test original JPEGs for sequential stego payload headers
+        run: LP_DCT_BITS=/tmp/lp_jpeg_dct_bits node sims/jpeg_sequential_payload_gate.cjs
