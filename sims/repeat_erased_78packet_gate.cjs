@@ -267,10 +267,125 @@ function analyze(C) {
     conclusion:'Fixed 29-rune sorted or cyclic order 77->78 base-radix packing is excluded under all 78 origins and two directions; source-side repeat deletion assumed. No plaintext or historical key recovered.'};
 }
 
+
+/**
+ * Find exact minimum invalid 78-packet first digits over all 8! assignments
+ * of eight original 32-byte grid columns to eight original text sections.
+ * A grid column defines one cyclic rune order by sorting its first 29 bytes;
+ * the remaining three bytes per column are not used. Both 8-section bridge
+ * conventions and the separately audited five-cell correction are admitted.
+ * @param {number[]} C Original 12,956 GP ciphertext rune labels
+ * @param {number[][]} grid Original canonical 32x8 grid byte rows
+ */
+function gridSectionKeyGate(C,grid) {
+  assert.equal(grid.length,32);
+  assert(grid.every(row=>row.length===8));
+  const raw=grid.flat();
+  const corrections={45:81,50:21,165:47,172:174,246:224};
+  const byteSources=[raw,raw.map((v,i)=>corrections[i]??v)];
+  const layouts=[
+    [729,1145,1738,1894,1021,1433,1680,3316],
+    [729,1145,1729,1903,1021,1524,1589,3316]
+  ];
+  const {obs}=observe(C);
+  const expanded=[];
+  let p=0;
+  for(let i=0;i<C.length;i++){
+    if(i&&C[i]===C[i-1])continue;
+    expanded.push({prev:obs[p].prev,curr:obs[p].curr,site:i});
+    p++;
+  }
+  assert.equal(expanded.length,12870);
+
+  /** @param {number[][]} cost A row/column cost matrix */
+  function assign(cost) {
+    const n=8,full=(1<<n)-1;
+    const dp=Array(1<<n).fill(Infinity);
+    const ancestor=Array(1<<n);
+    dp[0]=0;
+    for(let mask=0;mask<full;mask++){
+      let row=0;
+      for(let bits=mask;bits;bits&=bits-1)row++;
+      for(let col=0;col<8;col++)if(!(mask&(1<<col))){
+        const next=mask|(1<<col);
+        const total=dp[mask]+cost[row][col];
+        if(total<dp[next]){
+          dp[next]=total;
+          ancestor[next]=[mask,col];
+        }
+      }
+    }
+    const selection=Array(n);
+    let mask=full;
+    for(let row=n-1;row>=0;row--){
+      const [prior,col]=ancestor[mask];
+      selection[row]=col;
+      mask=prior;
+    }
+    return {invalid:dp[full],assignment:selection};
+  }
+
+  const plantedMap=[5,0,7,2,1,6,3,4];
+  const plantCost=Array.from({length:8},(_,r)=>
+    Array.from({length:8},(_,k)=>k===plantedMap[r]?0:7));
+  assert.deepEqual(assign(plantCost),{invalid:0,assignment:plantedMap});
+
+  const results=[];
+  for(let g=0;g<2;g++)for(let s=0;s<2;s++){
+    const ends=[0];
+    for(const len of layouts[s])ends.push(ends.at(-1)+len);
+    assert.equal(ends.at(-1),C.length);
+    const section=expanded.map(e=>ends.findIndex((z,i)=>
+      i<8&&e.site>=z&&e.site<ends[i+1]));
+    assert(section.every(i=>i>=0));
+    for(const descending of [false,true]){
+      const orders=Array.from({length:8},(_,col)=>{
+        const sorted=Array.from({length:29},(_,i)=>i);
+        sorted.sort((a,b)=>{
+          const d=byteSources[g][a*8+col]-byteSources[g][b*8+col];
+          return descending ? -d||a-b : d||a-b;
+        });
+        const rank=Array(29);
+        sorted.forEach((r,i)=>{rank[r]=i;});
+        return rank;
+      });
+      for(const reverse of [false,true])for(let phase=0;phase<78;phase++){
+        const cost=Array.from({length:8},()=>Array(8).fill(0));
+        let known=0;
+        for(let j=phase;j+78<=expanded.length;j+=78){
+          const i=j+(reverse?77:0),e=expanded[i];
+          if(e.prev===null)continue;
+          known++;
+          for(let col=0;col<8;col++){
+            const digit=(orders[col][e.curr]-orders[col][e.prev]+28)%29;
+            if(digit>14)cost[section[i]][col]++;
+          }
+        }
+        const best=assign(cost);
+        results.push({grid:g,sectionLayout:s,descending,reverse,
+          phase,knownLeadingPackets:known,
+          ...best,identity:cost.reduce((sum,row,i)=>sum+row[i],0)});
+      }
+    }
+  }
+  assert.equal(results.length,1248);
+  results.sort((a,b)=>a.invalid-b.invalid);
+  assert.equal(results[0].invalid,43);
+  assert(results.every(r=>r.invalid>0));
+  return {testedConfigs:results.length,
+    assignmentsPerConfig:40320,lowestForcedInvalidPackets:results[0].invalid,
+    best:results.slice(0,8),sourceKeyPlant:{minimum:0,trueAssignmentRecovered:true},
+    interpretation:'Eight source-grid-derived, section-variable cyclic rune orders fail the numeric first-digit capacity test under any global 78-packet origin, digit orientation, allowed grid source/section partition and 8! key-column assignment.'};
+}
+
 if(require.main===module){
   const filename=path.join(__dirname,'..','resources','liber-primus','lp2-corpus.json');
   const corpus=JSON.parse(fs.readFileSync(filename,'utf8'));
   const source=corpus.pages.filter(p=>p.page<56).flatMap(p=>p.indices);
-  process.stdout.write(JSON.stringify(analyze(source),null,2)+'\n');
+  const table=JSON.parse(fs.readFileSync(
+    path.join(__dirname,'..','resources','liber-primus','base60-grid.json'),'utf8'));
+  const report=analyze(source);
+  report.gridSectionKeyGate=gridSectionKeyGate(source,table.byte_rows);
+  process.stdout.write(JSON.stringify(report,null,2)+'\n');
 }
-module.exports={analyze,observe,packetEdges,gate,synthetic};
+module.exports={analyze,observe,packetEdges,gate,synthetic,gridSectionKeyGate};
