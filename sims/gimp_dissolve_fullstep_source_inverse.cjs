@@ -56,7 +56,10 @@ function inverse(ciphertext,model){
 function forward(plain,model){
   const out=[plain[0]],key=keys[model.row],n=plain.length;
   for(let i=1;i<n;i++){
-    const p=plain[i],delta=p===28?0:EXP[((p+model.sgn*key[model.offset+(model.reverse?n-1-i:i)])%28)+28)%28];
+    const p=plain[i];
+    const k=key[model.offset+(model.reverse?n-1-i:i)];
+    const shifted=((p+model.sgn*k)%28+28)%28;
+    const delta=p===28?0:EXP[shifted];
     out.push((out[i-1]+delta)%29);
   }
   return out;
