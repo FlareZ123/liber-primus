@@ -1,0 +1,13 @@
+name: LP2 grid 256-bit MT19937 column-seed screen
+
+on:
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run direct inverse and independently sourced planted control
+        run: python3 sims/grid_mt_fullseed_sieve.py
