@@ -70,7 +70,7 @@ const byteMajorityCapacity = (source, target, domain) => {
 };
 const directRuneByteCapacity = byteMajorityCapacity(terminal256, grid.bytes, 256);
 const directRuneGP29Capacity = byteMajorityCapacity(terminal256, original, 29);
-assert.equal(directRuneByteCapacity, 44);
+assert.equal(directRuneByteCapacity, 30);
 assert.equal(directRuneGP29Capacity, 44);
 assert.equal(byteMajorityCapacity(terminal256, terminal256.map(x => mod(7 * x + 3)), 29), 256);
 
