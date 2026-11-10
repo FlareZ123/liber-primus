@@ -17,6 +17,14 @@ where \(R_{238}\) is the **unique monic irreducible factor of degree 238**, spec
 
 The page-degree match was noticed retrospectively and has no calibrated authorial-intent significance. These source arithmetic identities should not be promoted to an authenticated key or decryption.
 
+### Source-marked 3/9-rune seeds as factor feedback state
+
+The full factorization offers an additional bounded, **clue-linked original cipher test**: use the exact factor cubic \(X^3+14X^2+16X+24\) or factor nonary \(X^9+12X^8+20X^7+10X^6+5X^5+X^4+9X^3+15X+11\) as a GF(29) linear feedback polynomial \(s_{i+d}=-\sum_{j=0}^{d-1}c_js_{i+j}\). The original ink supplies two three-rune red spans at p3:119 and p39:119 and two nine-rune red spans at p15:0 and p54:0, each of the required state length. Use their **exact original red GP indices** as initial states, with no plaintext-fitted seed.
+
+The [reproducer](../sims/grid_cubic_nonary_seed_inverse_sft.cjs) fixes the four source states, both seed directions, both arithmetic signs, and book-continuous versus physical-page-reset clocks: **32 reversible GP29 additive inversions over all 12,956 original unknown runes**. Every original output exactly reencripts, and a separate held-out **2,400-rune native Latin GP** plaintext plant is recovered exactly by the same 32 source-native inverses. The authentic original ciphertext IoC is **0.0344783978645**, while the 32 candidate inverses range **0.0344427935825–0.0345289802531**, without a native-language signal. The independent Latin GP control has IoC **0.0720286230374**. The best original comes from p54's original-order nine-rune seed, positive additive sign, continuous book clock, and IoC **0.0345289802531**.
+
+This is a **finite negative for direct GP29 additive factor-LFSR pads with these four source-selected red seeds**. It does not rule out distinct output projections, a non-GP register, cryptographic use of the factors elsewhere, or different source instructions. The seed association was discovered after the factor-degree result; exactly matching a red-span length does not authenticate it as the creator's intended state.
+
 ## Exact original-grid relationship
 
 Take the base-60 table on physical LP2 pages 49–51 in its printed row-major order, converting the 32 rows of eight two-character numbers to 256 bytes with the published digit alphabet 0–9, A–Z, a–x. Interpret these bytes as a single **2,048-bit unsigned big-endian base-256 integer N**. Both shared derived corpora, **resources/liber-primus/base60-grid.json** and **resources/liber-primus/lp2-grid-256.json**, agree byte-for-byte. The SHA-256 of the 256-byte source is

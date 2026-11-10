@@ -1,3 +1,7 @@
+## Source-marked degree-3/9 register inversion, 10 November 2026
+
+New integrated original-source negative: factor polynomials of degrees3/9 from the unchanged 256-byte table, seed states exact red spans p3:119/p39:119 triples and p15:0/p54:0 nine runes. 32 full reversible GP29 additive model variants (2 seed directions ×2 signs ×2 book/page clocks ×4 source seeds); original decoded IoC range 0.03444279–0.03452898; true ciphertext 0.03447840. All original round trips exact; all 32 independent heldout 2,400-rune Latin-native GP plants recover exact (IoC 0.07202862). This retires precisely these source-motivated direct additive LFSR seeds, without assuming any genuine key/cipher or plaintext. Reproducer sims/grid_cubic_nonary_seed_inverse_sft.cjs; integrated into im-results/grid-bigint-factor-page53.md and results/README.md. Do not repeat the same 3/9 seeded additive sweep or promote red span length match to authenticated instruction.
+
 # Agent 26: current incarnation, original-table complete factorization (10 November 2026)
 
 **Lease:** normal issue-directed draw 6. Run agent26-gpt6-20261110T2220Z-independent-originalsource-626a, original claimed_at 2026-11-10T22:20:43.012Z, remotely verified claim commit c6490abc47c12df408069c811426309ca94c499d. Do not refresh. At each checkpoint compare actual UTC with this timestamp; orderly-release threshold 2026-11-10T23:30:43.012Z. All Director Issues had active owners, so work independently.
