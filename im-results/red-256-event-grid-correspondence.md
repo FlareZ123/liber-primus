@@ -26,6 +26,28 @@ The highest original *training* GP-unigram score is obtained by corrected-base59
 
 **Decision:** under this exact 640-model AES-128/GP28 emission family, neither the decorated border nor table selects authentic plaintext. The only demonstrated full recovery is the independently encrypted plant. This does not exclude other genuinely source-specified byte transports, longer-state ciphers, external keys or other meanings of the border. Further arbitrary AES key-layout scans without a new printed instruction would retread this negative family.
 
+### Five-dot left-shift register and a complete 32-row de Bruijn traversal
+
+**Exact mathematics conditional on a visual interpretation; no historical cipher selector established.** The five-dot tree ornaments show a left mask `01101₂=13` when filled dots are 1, and a right mask `11111₂=31`. Reading *hollow dots as active feedback taps* instead yields the left mask `10010₂=18` and keeps the right all-on state as seed 31. The explicit five-bit Fibonacci recurrence
+
+`state = ((state << 1) & 31) | parity(state & 18)`
+
+started at 31, visits **each of the 31 nonzero five-bit states exactly once** before returning to 31. The state cycle is
+
+`31,30,28,25,19,6,13,26,20,9,18,4,8,16,1,2,5,10,21,11,23,14,29,27,22,12,24,17,3,7,15`.
+
+There is a **source-independent canonical way to include the missing zero row** while preserving four-bit overlaps in the resulting 32-state cyclic traversal. Insert zero between 16 and 1, which produces
+
+`31,30,28,25,19,6,13,26,20,9,18,4,8,16,0,1,2,5,10,21,11,23,14,29,27,22,12,24,17,3,7,15`.
+
+These 32 integers are a permutation of the printed table's row IDs 0–31. Every successive pair (including final 15 to initial 31) has the last four bits of the earlier state equal to the first four bits of the next. Equivalently, its appended-bit stream is a binary order-five de Bruijn cycle, with all 32 possible five-bit windows appearing once. **This is a fully specified combinatorial construction, not evidence of a recovered cryptographic row order.** A human could plausibly connect the five-dot drawings, 31 large punctuation stencils, and 32 printed rows. The polarity choice and left-shift rule were inferred after observing the source; among the ten possible two-tap masks, two yield a full 31-state cycle under this conventional left-shift construction, so the numerical fit alone is not decisive.
+
+The [original-corpus reproducible source-code SFT](../sims/lp2_fivedot_lfsr_fragment_row_inverse.cjs) tests the complete order as well as two weaker variants that place row zero at either end. Its **1,152 source-key AES-256-CTR/ChaCha20 fragment-reset inverses** take the preexisting 32 red-rune interval lengths as an unfitted 32-byte master key (literal, reverse, or either SHA-256), derive four nonce layouts from each permuted eight-byte table row, and decode all **12,956** unknown-page runes in direct GP29, predecessor-exclusion GP28 or GF29 primitive-root exponential step GP28 modes, with both signs and both documented byte projections. On original LP2, the **de Bruijn-specific** first-6,546-rune training winner freezes at normalized `29×IoC = 1.02650769` training and **1.02216842** on the remaining 6,410 runes. It produces nonlinguistic text. The overall strongest fitted training model among all three table orders reaches **1.02714531** training, dropping to **1.02268514** held out. The two weaker zero-placement orders also fail to recover native-GP prose.
+
+The same SFT tests a simpler, direct use of the **256 bytes in de Bruijn row order as a cyclic pad**, without AES or ChaCha. Its **180** original-input candidates cover row-internal direction, book/page/13-dot-fragment clock resets, GP29 versus two GP28 difference registers, three byte reductions, both signs, and consuming/nonconsuming visible repeat markers. The training-selected candidate gives normalized `29×IoC=1.02759686` on 6,500 runes and **1.02157626** on 6,456 frozen runes. All candidates reencrypt the original. Three independent cryptographic source-key positive plants and one direct-table-pad plant recover **12,956/12,956 runes each**, validating the implementations without implying an authentic key. All source counts, recurrence and row cycles are asserted; [successful original-and-plant CI run 42887120290](https://github.com/FlareZ123/liber-primus/actions/runs/42887120290).
+
+**Decision:** the five-dot ornaments admit an exact, economical 32-row traversal worth retaining as a candidate intended solve path; the direct GP29/GP28 cipher uses tested so far do not recover plaintext. The artwork is one repeated template, the source does not explicitly command a shift register, and the remaining missing dependency is the operation that turns the row order into a real decryption key or an independently confirmed plaintext transformation. Do not repeat the listed 1,332 row-derived source-pad variants without a new clue selecting a different mechanism.
+
 ### Source-locked red-run-length AES/ChaCha inversion, including the 13/31 visual candidate
 
 The 31 original 13-dot separators fix a 32-element sequence of red-rune interval lengths (sum 225, maximum 59). Treat those **unmodified 32 bytes** as an AES-256/ChaCha20 key; four prespecified interpretations are literal, reverse, SHA-256(literal), and SHA-256(reverse). Six 16-byte IVs are fixed independently by source clues: zero, all-13, all-31, alternating 13/31, first 16 numeric-grid bytes, and last 16 grid bytes. This extends the tested direct repeating-key family to actual cryptographic pseudorandom streams, without deriving parameters from recovered-looking plaintext.
