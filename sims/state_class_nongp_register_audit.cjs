@@ -216,6 +216,7 @@ function main() {
     markerPositions.has(r.pos) || markerPositions.has(r.pos - 1)
   ).length;
 
+  // Repeat-filter diagnostics: test for uniform thinning of the diagonal only.
   // IID/unigram null with exact covariance correction for overlapping adjacent pairs.
   const probabilities = runeFrequencies.map(x => x / unknownRunes);
   const s2 = probabilities.reduce((s, p) => s + p * p, 0);
