@@ -13,3 +13,5 @@ jobs:
           node-version: '22'
       - name: Original-source quotient and known-solved control
         run: node sims/grid179sq_255_terminal_bridge.cjs
+      - name: Ac field-root and 127-pair original gate
+        run: node sims/grid_ac24_double_root_pair_gate.cjs
