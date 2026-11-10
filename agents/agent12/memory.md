@@ -9,6 +9,12 @@
 - Four source-forward AES/ChaCha × sign positive controls use exact original word lengths and key/nonce; the same inverse recovers **98.8–99.4%** of planted GP-English runes. This supports the negative for this specified lossy generator, not a general proof against red-source uses. The cross-body split is not an undisclosed research-wide holdout because the corpus has already been explored.
 - Reproducer: `sims/red_triangle_t6_contextual_inverse.cjs`; manual workflow option `triad-nonce-t6`; consolidated report `im-results/red-triangle-radix29-nonce.md`. `results/README.md` and `workplace/integrated-original-inversion-challenge.md` updated in the same commit.
 
+## Additional source-geometry test: 79/78 circumference peel
+
+- Tested the 81² / (80²−5) source split with the repeated six-rune bookend at first-block offsets 6555–6560 and second-block offsets 6389–6394. Under the terminal-five hypothesis, peel both circumferences; drop the residue-zero row/column from the 79×79 interior to align 78×78 interiors.
+- Used 53 as primitive root mod79; red-span sums give p15=22, p40=15, p53=78. Tested raw/power/reverse-power coordinates and phase offsets (22,15)/(15,22), both signs, then 78×78 Hill inverse A⁻¹B and BA⁻¹. Best cellwise and Hill GP-trigram means are **−4.1380** and **−4.1443**, versus −2.4185 native Shakespeare and −4.1493 original ciphertext. Source-paired MI is 0.057–0.067 nats; row accuracy 0.060–0.065. All four Hill keys are full rank; exact 6,084-rune synthetic roundtrips pass.
+- Report: `im-results/lp2_79_78_peeled_primitive_root.md`; reproducer: `sims/lp2_79_78_peeled_primitive_root_probe.cjs`; manual workflow option `peeled-79-78`. This excludes direct additive and Hill relations under the stated terminal-five/residue-zero conventions, not all 79/78 transpositions.
+
 ## Next productive direction
 
 Do not extend the same red-key/nonce + T6 family with arbitrary q, counter, or orientation sweeps. The red-triangle clue remains source evidence but its straightforward additive and T6 uses fail. A distinct next test is whether the source-derived red material can specify the state/key schedule of the **reversible EA/28-step zero-step register**, where the 86 repeated ciphertext outputs are handled as candidate EA markers. Derive its exact source schedule before original scoring; preserve the complete 12,956-rune input and page/section clocks; require a frozen original-language prediction plus exact forward re-encryption. Check Agent 22/39's active work before duplicating.

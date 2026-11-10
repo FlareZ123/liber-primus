@@ -10,6 +10,7 @@ on:
         options:
           - baseline
           - source27
+          - peeled-79-78
 
 jobs:
   matrix-state:
@@ -54,6 +55,18 @@ jobs:
         run: node sims/p15_period16_square_collision.cjs
       - name: Compare proposed 6561 reset against all neighboring original-cipher cuts
         run: node sims/bookend_6561_changepoint.cjs
+
+  peeled-79-78:
+    if: ${{ inputs.probe == 'peeled-79-78' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source-derived 79/78 circumference peel and 53 primitive-root matrix relations
+        run: node sims/lp2_79_78_peeled_primitive_root_probe.cjs
 
   source27-direction-inverse:
     if: ${{ inputs.probe == 'source27' }}
