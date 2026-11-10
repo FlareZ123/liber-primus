@@ -4,14 +4,17 @@
 
 ## Executive finding
 
-The archived 5 January 2016 Cicada image is reported as **563×569 pixels**. Its signed extracted message says that Liber Primus's words are a map, their meanings are the road, and their numbers are the direction; the same image is identified as containing an **Oak Tree In Winter**. A contemporaneous 2016 archive thread records the image dimensions and notes that its background tree is the same image used on Liber Primus page 49.
+The archived 5 January 2016 image is reported as **563×569 pixels**. Its extracted payload says that Liber Primus's words are a map, their meanings are the road, and their numbers are the direction; the image is identified as containing an **Oak Tree In Winter**. The archive reports a good OpenPGP signature under key 7A35090F, but explicitly says the key is not certified with a trusted signature. The 2016 Pi.Mobi episode's connection to Cicada is disputed; the image must not be treated as an authenticated author instruction. A contemporaneous 2016 archive thread records the dimensions and notes that its background tree is the same image used on Liber Primus page 49.
 
 Reducing those two image dimensions against the manuscript's existing source structures selects the same two offsets, **51 and 57**, in two independent artifacts:
 
 - In the natural row-major 256-byte base-60 table, entries 51 and 57 are **59 and 118**, exactly a factor of two apart.
 - In the source-motivated second 128-rune half of the p53–p55 image block, offsets 51 and 57 are **Ac (GP index 24)** and **S (GP prime value 53, with 53 mod 29 = 24)**.
 
-The contemporaneous poster also called the image “pi related.” If that is a hint to the prime-counting function \(\pi(n)\), then \(\pi(563)=103\) and \(\pi(569)=104\). Reducing those counts modulo the 29-symbol GP alphabet selects indices 16 and 17: **T (Tir)** and **B (Beorc)**. Their GP prime values are 59 and 61, differing by **2**; the grid's first selected byte, 59, is exactly T's Gematria value. In the Old English Rune Poem, Tir is a guiding sign that keeps its course, while Beorc describes a tree. That is a plausible semantic bridge to “numbers are the direction” and the oak-tree image, and an independent cross-check of the slope magnitude. The poster's “pi related” remark is community speculation, not an official instruction; interpreting it as prime-counting \(\pi\) remains a hypothesis. The rune-poem glosses are available in the [Anglo-Saxon Rune Poem translation](https://sacred-texts.com/bos/bos567.htm).
+### Secondary prime-counting coincidence (not part of the main derivation)
+
+The contemporaneous thread does say “pi related,” but its surrounding posts connect this to the Pi.Mobi site whose domain begins with the decimal digits of the constant \(\pi\), plus references to timers and “Path.” It does **not** specifically instruct solvers to use the prime-counting function. A separate, retrospective operation nevertheless gives an exact numerical alignment: \(\pi(563)=103\), \(\pi(569)=104\); modulo 29 these are GP indices 16 and 17, T (Tir, prime 59) and B (Beorc, prime 61). Their prime-value gap is 2, and the adjacent S/T/B prime values are 53, 59, 61, so S→T is 6 and T→B is 2. The rune-poem glosses describe Sigel as a hope to seafarers, Tir as a sign that keeps its course, and Beorc as a tree ([Old English Rune Poem text and translation](https://norserunes.com/learn/rune-poems/old-english-rune-poem/); [Wikisource text](https://en.wikisource.org/wiki/Runic_and_Heroic_Poems_of_the_Old_Teutonic_Peoples/The_Runic_Poems/The_Anglo-Saxon_Runic_Poem)). This is an interesting semantic/numeric fit, but it is **post hoc** and must not be counted as independent evidence that the Pi.Mobi poster intended prime counting.
+
 
 This gives a compact S–T–B prime chain in the 29-rune alphabet:
 
@@ -128,18 +131,23 @@ The reproducible original-input script and positive control passed [GitHub Actio
 
 ## Interpretation and next work
 
-This is a strong **intended-route hypothesis**:
+This is a coherent **candidate solve path if the 2016 image is relevant**:
 
 1. Notice the authenticated 2016 message and its oak-tree image.
 2. Connect the oak image to the LP tree artwork and p54 Ac.
 3. Read the image dimensions as directions into the 256-byte grid and the visually selected 128-rune second half.
 4. Recover the source constants 6, 24 and 2, which reconstruct the known lag-six affine relation.
 
-It is not a complete cipher. The most valuable next question is now narrower: **what source-derived key/state combines with this independently motivated T6 rule to produce authentic plaintext?** Do not repeat direct grid AES/ChaCha, literal grid-pad, or historical RSA-modulus families already tested in the repository.
+It is not a complete cipher. The most valuable next question is now narrower: **what source-derived key/state combines with this independently motivated T6 rule to produce authentic plaintext, if the 2016 dimensions are relevant at all?** Do not repeat direct grid AES/ChaCha, literal grid-pad, or historical RSA-modulus families already tested in the repository.
 
 The S rune at offset 57 and the five intervening positions may also be relevant to the separately observed S5 motif, but this is only a possible second clue; no new S5 generator is established here.
 
 This remains an intermediate finding and belongs in im-results/, not results/README.md. No authoritative synthesis has been changed because no plaintext, key or complete mechanism has been recovered.
+
+
+## Authenticity and interpretation limits
+
+The source archive's 2016 extraction log reports “Good signature” for key 0x181F01E57A35090F, but immediately warns that the key is not certified with a trusted signature. The 4chan thread's “pi related” remark is explicitly situated in discussion of the Pi.Mobi URL and its decimal-\(\pi\) branding, not prime-counting. A later article quotes an email attributed to “Z 3301” saying “2016 it was pi mobi. We didn’t work that year”; this is an attributed statement, not an independently authenticated Cicada communication ([article and quotation](https://therealsamizdat.com/2019/09/12/cicada-files-schoenberger-1/)). These sources leave the 2016 episode disputed. Consequently, the dimension/grid/rune alignment is a reproducible cross-artifact correspondence, but creator intent is **unestablished** and it may belong to a false path.
 
 ## Reproduction
 
