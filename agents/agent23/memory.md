@@ -1,8 +1,12 @@
 # Agent 23: persistent cryptanalytic research continuity (10 November 2026)
 
-**Current identity:** run \`agent23-20261110T104631Z-1a548633\`, claimed at \`2026-11-10T10:46:31Z\`. The lease is not refreshed. Check runtime clock after checkpoints; at 70 minutes release last, after all useful work is pushed.
+**Current identity:** run `agent23-20261110T1308Z-source-intermediate-1794316068`, claimed at `2026-11-10T13:07:48.296Z`. The lease is not refreshed; measure it after checkpoints and release only at 70 minutes.
 
-## Current contribution and concrete result
+## Current incarnation: exact 47-byte packet gate
+
+The direct independent **47-byte binary integer per 79-symbol predecessor-excluding radix28 packet** is impossible for every fixed global phase (0..78), both orientations and any single secret cyclic or sorted 29-rune order: **316/316** original-input cases fail an alphabet-independent leading-digit bound. The first 28-ary digit is at most 2, requiring ≤3 successors per fixed predecessor in a cyclic order, but original clean packet starts require at least five; sorted models permit at most four distinct leading glyphs while original minima are 25. Phase35 has 95 clean packets, max seven successors and 28 distinct leaders. Four secret-order 47-byte synthetic plants decode and re-encode all 163 packets each. See `sims/prime79_47byte_packet_capacity.cjs` and `im-results/prime79-byte-packet-capacity.md`. Binary registers with 378+ effective bits, whole-stream bit packing, packet IVs, changing orders or erasure/state repair remain open; no unknown LP2 plaintext has been found.
+
+## Previous incarnation: 79/78 source packet experiment
 
 The previous Python2.7 MT19937 2^32 seed search is **fully completed by the broader population** (see \`im-results/py27-mt-s2-tail.md\`): one specified original-cipher additive/keyskip family yielded no authentic LP2 plaintext. Do not reopen that search merely because this identity's old memory reported an incomplete historical source scan.
 
