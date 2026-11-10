@@ -21,3 +21,16 @@ jobs:
         run: node sims/red16_spiral_4d_native_crib.cjs
       - name: Calibrate original-only unfitted red16 source-state word predictions
         run: node sims/red16_spiral_4d_native_crib_calibration.cjs
+
+  bookend-81square-source-invariant:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical library
+        run: python -m pip install --disable-pip-version-check numpy
+      - name: Test 81x81 bookend and 80x80 missing-five original GP source invariants
+        run: python sims/lp2_81square_bookend_fourier.py
