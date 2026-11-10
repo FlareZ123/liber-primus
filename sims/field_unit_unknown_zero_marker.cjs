@@ -119,10 +119,13 @@ function moments(lengths,bins) {
  */
 function squaredDistance(s,total,first) {
   const dx=total-s.meanTotal,dy=first-s.meanFirst;
-  const determinant=s.varTotal*s.varFirst-s.cov*s.cov;
-  assert.ok(s.varTotal>0&&s.varFirst>0&&determinant>1e-9,
-    'Ill-conditioned English source moment matrix');
-  return (s.varFirst*dx*dx-2*s.cov*dx*dy+s.varTotal*dy*dy)/determinant;
+  // Fixed 0.25 variance ridge only guards genuinely absent/rare symbols
+  // whose empirical word-start variance can be zero in a small source.
+  // Null simulations use the exact SAME regularized distance statistic.
+  const varTotal=s.varTotal+0.25,varFirst=s.varFirst+0.25;
+  const determinant=varTotal*varFirst-s.cov*s.cov;
+  assert.ok(determinant>0);
+  return (varFirst*dx*dx-2*s.cov*dx*dy+varTotal*dy*dy)/determinant;
 }
 
 /**
@@ -222,7 +225,7 @@ function run(repetitions=5000,seed=0x17ef3301) {
       allMarkersOutOfBand:observed.every(x=>x.empiricalUpperP<.01)});
   }
   return {cipherContract:'D[i]=(P[i]-a)*K[i] modulo29, a fixed unknown GP marker, K[i] any nonzero unit',actual:{doublets:actual.total,wordInitialDoublets:actual.first,words:original.length,runes:12956},repetitions,seed:'0x'+(seed>>>0).toString(16),results:generated,
-    caveat:'Length-matched independently sampled English-word reference models. This does not exclude plaintext transposition, word-boundary changes, non-English codes, mixed zero symbols, or a keyed zero/nonzero remapping.'};
+    caveat:'Exact-length independently sampled English-word reference models; squared distance uses fixed 0.25 variance ridge for rare-marker singularity. This does not exclude plaintext transposition, word-boundary changes, non-English codes, mixed zero symbols, or a keyed zero/nonzero remapping.'};
 }
 if(require.main===module){
   const n=Number(process.argv[2]||'5000');
