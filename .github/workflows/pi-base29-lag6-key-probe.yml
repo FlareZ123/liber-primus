@@ -1,0 +1,22 @@
+name: Pi.Mobi pi-derived key probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'sims/pi_base29_lag6_key_probe.cjs'
+      - 'resources/liber-primus/lp2-corpus.json'
+      - 'resources/lp2-transcription.txt'
+      - 'resources/control/shakespeare_first300k.txt'
+
+jobs:
+  pi-key-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test direct pi-derived GP keystream mappings under the T6 inverse
+        run: node sims/pi_base29_lag6_key_probe.cjs
