@@ -39,3 +39,5 @@ jobs:
         run: node sims/gp29_fixed5bit_ascii_capacity.cjs
       - name: Source 31 thirteen-dot records versus 32 eight-byte grid-row hashes
         run: node sims/thirteendot_fragment_gridrow_digest.cjs
+      - name: Source 1729 taxicab cubes and solved-page totient cipher inverse
+        run: node sims/taxicab1729_prime_cube_inverse.cjs
