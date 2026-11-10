@@ -11,3 +11,6 @@ jobs:
           node-version: '22'
       - name: Run source-locked arithmetic and 250k rotations
         run: node sims/red_prime_totient_crosslink.cjs
+
+      - name: Audit red heading 331/662 seed inverses and source-native plant
+        run: node sims/red_heading_331_seed_inverse.cjs
