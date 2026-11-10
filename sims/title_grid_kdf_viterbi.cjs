@@ -179,12 +179,47 @@ function positive(columns,titles,model) {
     recovery:heldoutHits};
 }
 
+
+/** Entire familywise train-selection null, preserving eight column byte sets. */
+function nullControls(columns,titles,cipher,model,actual,n=64) {
+  const random=rng(0x3201babe);
+  const scores=[];
+  for(let sample=0;sample<n;sample++) {
+    const replacement=columns.map(column=>{
+      const b=Buffer.from(column);
+      for(let i=b.length-1;i>0;i--) {
+        const j=Math.floor(random()*(i+1));
+        const x=b[i];b[i]=b[j];b[j]=x;
+      }
+      return b;
+    });
+    const result=fit(cipher,replacement,titles,model);
+    scores.push({train:result.trainMean,heldout:result.heldoutMean});
+  }
+  const held=scores.map(x=>x.heldoutMean);
+  const train=scores.map(x=>x.train);
+  const mean=a=>a.reduce((x,y)=>x+y,0)/a.length;
+  const standardDeviation=a=>{
+    const mu=mean(a);
+    return Math.sqrt(a.reduce((x,y)=>x+(y-mu)*(y-mu),0)/(a.length-1));
+  };
+  const exceed=held.filter(x=>x>=actual.heldoutMean).length;
+  return {replicates:n,seed:'0x3201babe',
+    selection:'96 settings, exact eight-column assignment, first 160 rune training only',
+    heldoutOriginal:actual.heldoutMean,heldoutNullMean:mean(held),
+    heldoutNullSD:standardDeviation(held),heldoutNullMax:Math.max(...held),
+    heldoutNullMin:Math.min(...held),heldoutExceedances:exceed,
+    heldoutEmpiricalUpperTail:(exceed+1)/(n+1),
+    trainNullMean:mean(train),trainNullMax:Math.max(...train)};
+}
+
 function main() {
   const titles=originalTitles(),keys=originalKeys(),texts=originalBodies();
   assert.ok(keys.every(k=>k.length===32)&&texts.every(t=>t.length===300));
   const model=train(read('resources/control/shakespeare_first300k.txt').slice(0,200000));
   const planted=positive(keys,titles,model);
   const original=fit(texts,keys,titles,model);
+  const nulls=nullControls(keys,titles,texts,model,original);
   const out={model:'Red-title KDF-derived 256-bit grid-column key inversion',
     targetRings:'Eight source-designated section bodies, first 160 training + next 140 ciphertext runes',
     targetOriginalRunes:8*300,kdfSchemes:['SHA256(column||title)','HMAC-SHA256(column,title)','HKDF-SHA256(column,salt=title,info=empty)'],
@@ -192,9 +227,9 @@ function main() {
     ciphers:['AES-256-CTR','ChaCha20'],nonceSchemes:['zero','SHA256(title)[:16]'],
     padByteMappings:['byte mod29','floor(byte*29/256)'],
     additiveSigns:[1,-1],skipPenalty:3.5,skipCap:34,
-    trainingReferenceGP:model.symbols,positive:planted,original,
+    trainingReferenceGP:model.symbols,positive:planted,original,nulls,
     status:'A held-out language score alone never establishes decrypted plaintext; inspect candidateRunes and re-encode before claiming recovery.'};
   process.stdout.write(JSON.stringify(out,null,2)+'\n');
 }
 if(require.main===module)main();
-module.exports={originalTitles,titleBytes,derive,nonce,pad,fit,positive,SETTINGS};
+module.exports={originalTitles,titleBytes,derive,nonce,pad,fit,positive,nullControls,SETTINGS};
