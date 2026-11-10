@@ -27,3 +27,5 @@ jobs:
         run: node sims/parable_threeprime_bbs_source_inverse.cjs
       - name: Test Parable modular-squaring source with collision-only hidden key skips
         run: node sims/parable_bbs_keyskip_inverse.cjs
+      - name: Exhaust every historical Parable Blum-square state on original LP2 and blinded source text
+        run: node sims/parable_blum_exhaustive_state_inverse.cjs
