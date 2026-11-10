@@ -1,0 +1,25 @@
+name: Shifted page shared-pad crossfit (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      null_trials:
+        description: 'Number of full refitted page rotations'
+        type: number
+        required: false
+        default: 80
+      plant_trials:
+        description: 'Positive synthetic tests per repair model'
+        type: number
+        required: false
+        default: 12
+jobs:
+  shifted-page-pad:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source/cipher plant, full null fit and summary
+        run: node sims/shifted_page_pad_crossfit.cjs ${{ inputs.null_trials }} ${{ inputs.plant_trials }}
