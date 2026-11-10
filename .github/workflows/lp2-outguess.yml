@@ -2,6 +2,12 @@ name: LP2 original-JPEG OutGuess message extraction
 
 on:
   workflow_dispatch:
+    inputs:
+      keyed_probe:
+        description: Test 22 source-defined OutGuess passphrases against LP2 sources
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   extract:
@@ -23,22 +29,41 @@ jobs:
           make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
           sudo make install
       - name: Retrieve hidden messages from every LP2 page
+        if: ${{ !inputs.keyed_probe }}
         run: node sims/outguess_lp2_scan.cjs
       - name: Install Python for direct binary-stream pad testing
+        if: ${{ !inputs.keyed_probe }}
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - name: Install numeric dependencies
+        if: ${{ !inputs.keyed_probe }}
         run: python -m pip install --disable-pip-version-check numpy numba
       - name: Scan original LP2 runes against all extracted pad-stream positions
+        if: ${{ !inputs.keyed_probe }}
         env:
           OUTGUESS_NULL_REPLICATES: 64
         run: python sims/outguess_lp2_directpad.py
+      - name: Probe source-defined passwords for authentic hidden LP2 messages
+        if: ${{ inputs.keyed_probe }}
+        run: |
+          node --check sims/outguess_lp2_keyed_probe.cjs
+          node sims/outguess_lp2_keyed_probe.cjs
       - name: Preserve exact recovered payloads and summary
+        if: ${{ always() && !inputs.keyed_probe }}
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: outguess-lp2-default-key
           path: outguess-results/
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Preserve source-key OutGuess extraction candidates
+        if: ${{ always() && inputs.keyed_probe }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: outguess-lp2-keyed
+          path: outguess-results-keyed/
           if-no-files-found: warn
           retention-days: 30
