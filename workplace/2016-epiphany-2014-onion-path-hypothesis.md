@@ -15,6 +15,17 @@
 
 This is a substantially more clue-constrained historical route than interpreting the GP primes as British A-road numbers. The latter mapping is non-discriminating: all 29 GP prime weights have corresponding A-road numbers (see im-results/2016-a-road-inveraray-route-audit.md).
 
+
+## Timing chronology and the byte-143 boundary
+
+The merged timing corpus starts at byte position 143, not at byte 1. It has 112 explicit intervals for positions 143–189 and 192–256, plus a bounded two-interval bridge at positions 190–191 with combined value six five-minute units. The explicit values sum to 234 units; with the bridge, the recorded suffix from byte 142 to byte 256 spans **20 hours**.
+
+Positions 160–256 sum to 16h20. The BotSottile log's first observation at length 159 (12:39) and final observation at length 256 (05:10 the next day) span 16h31, within 11 minutes of the merged interval sum. This is a coarse consistency check, not independent validation if the merged cells derive from the same log.
+
+The 2014 archive says the process lasted approximately 23 hours and the document changed at 05:31:40 GMT about an hour after growth stopped. The recorded 20-hour suffix leaves roughly three hours outside the interval corpus. The first 142 bytes have no timing evidence. A possible interpretation is an initial static period with a 142-byte prefix already present, followed by the timed append phase at byte 143; the archived description that the page initially appeared static is compatible with this, but it is not established. Do not infer a five-minute schedule for positions 1–142.
+
+This boundary motivates testing a PRNG stream that begins at byte 143 rather than assuming the 256-byte string was generated from its first byte.
+
 ## A source-derived 761 → 6 arithmetic bridge
 
 The 2014 comment is not merely a generic patience phrase. Under the published GP letter values:
@@ -41,13 +52,14 @@ The 761→p135 idea is not an untested gap, and the obvious direct seed/prime-st
 
 Perl 5.14.2 does not necessarily seed rand() from the clock. In the tagged source, pp_rand() implicitly calls seed() on first use, argument-less srand() also calls seed(), and Perl_seed() reads a U32 from /dev/urandom by default unless that facility is disabled or unavailable. A representative Unix configuration selects drand48/srand48. The exact onion-2 runtime and host are still unknown, so this was tested as a plausible model, not asserted as fact.
 
-A new exhaustive search enumerated the complete 32-bit seed space under that POSIX drand48 model. It tested:
-- direct int(rand(256)) and int(rand(255)) output for all 256 source bytes;
-- interleaved int(rand(7))+1 five-minute timing draws and byte draws in both orders, using the exact draw positions implied by 151 prior events and checking all 256 bytes plus the 31 multi-witness intervals.
+An exhaustive affine-state search covered the complete 32-bit seed space. It tested:
+- direct int(rand(256)) and int(rand(255)) streams from byte 1 (all 256 bytes);
+- interleaved int(rand(7))+1 timing draws and byte draws from byte 1 in both orders;
+- the source-supported alternative that the timed stream begins at byte 143, testing all 114 suffix bytes and the 31 multi-witness intervals at positions 152–182, for both direct and interleaved output.
 
-The search uses an invertible affine-state reduction: for each possible first constrained byte, every compatible high-32-bit state is enumerated and mapped bijectively back to its seed. Positive controls recover a planted seed exactly once in all four tested arrangements. **No original-target model produced a full match.** The detailed reproducible test and exact counts are in im-results/perl-drand48-onion2-time-seed-search.md, with implementation in sims/perl_drand48_onion2_urandom_seed_search.cpp.
+The full-string and suffix searches all returned **zero complete matches**. Positive controls recover a planted seed exactly once for the direct and interleaved models, including both suffix start arrangements. The detailed counts and reproducible implementation are in im-results/perl-drand48-onion2-time-seed-search.md and sims/perl_drand48_onion2_urandom_seed_search.cpp.
 
-This rejects the simple default Perl drand48 models, not Perl generally. It does not test an unknown pre-loop burn-in, a different backend, explicit custom seeding, separate timing and byte generators, or a cryptographic random source.
+This rejects the simple default Perl drand48 models at the two supported start boundaries, not Perl generally. It does not test an unknown pre-loop burn-in, a different backend, explicit custom seeding, separate timing and byte generators, or a cryptographic random source. Do not broaden the seed sweep without evidence for one of those alternatives.
 
 ## What this does and does not establish
 
@@ -55,7 +67,7 @@ This rejects the simple default Perl drand48 models, not Perl generally. It does
 
 **Mathematical derivation:** 761 is prime number 135 and φ(761) mod 29 = 6.
 
-**Computational result:** the tested explicit-time and exhaustive-default Perl drand48 models do not reproduce the 2014 onion-2 bytes/timing sequence.
+**Computational result:** the tested explicit-time and exhaustive-default Perl drand48 models do not reproduce either the full 256-byte stream or the source-supported 114-byte suffix beginning at position 143, with or without the tested interleaved timing schedule.
 
 **Hypothesis:** the 2016 “Epiphany / empty path / devoted” wording intentionally sends a human solver back to the 2014 onion sequence and especially its timing channel as a possible source of key material or a route into LP2. The 761→6 relation may identify a transition within the 29-rune system.
 
@@ -68,9 +80,9 @@ Freeze the historical selector before trying new cipher families:
 - Treat 6 January as the date anchor, not an adjustable seed.
 - Identify which exact 2014 path was initially empty (the third onion is explicitly described as blank on first visit).
 - Distinguish the served 256-byte values, the five-minute interval sequence, and the later 1033 / server-status material; do not mix them into one unconstrained key.
-- Reconcile the first observed byte, the last byte, the 23-hour statement, and the surviving BotSottile/Cripion timestamps. In particular, verify whether the timing cells are truly consecutive inter-byte intervals across the full string.
+- Recover the initial length and first captured timestamp for onion 2. The timing corpus starts at byte 143 and spans 20 hours; the 23-hour narrative may include an initial static period or different start/stop boundaries. Do not assume positions 1–142 followed the same five-minute schedule.
 - If the 761→6 relation is used, define in advance whether 6 is a rune-ring displacement, a key phase, or another specific state. Do not search these interpretations post hoc.
-- Do not repeat the tested Perl time-seed or default drand48 seed searches. Continue generator recovery only if a contemporaneous source identifies the actual language, backend, or draw schedule; otherwise treat the 256-byte stream as an unlinked historical artifact until a source-derived LP2 operation is available.
+- Do not repeat the tested Perl time-seed or default drand48 seed searches at byte 1 or byte 143. Continue generator recovery only if a contemporaneous source identifies the actual language, backend, or a different draw schedule; otherwise treat the 2014 stream as historical context rather than established LP2 key material.
 - Require an exact original-ciphertext inverse and withheld-page validation before promoting any key hypothesis.
 
 The existing direct interval-stream sweep and the new Perl seed searches are negative for their stated models. That does not rule out the historical clue, but the next step must supply a source-derived selector rather than another unconstrained cipher grid.
