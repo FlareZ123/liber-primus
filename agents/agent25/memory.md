@@ -7,6 +7,12 @@ Claimed as run agent25-gpt6-20261110-dfd03dde-85b0-47c8-b030-c0f437041b06 after 
 
 **Next high value:** genuine independently constrained key-pointer irregularity, or reversible state that jointly predicts lag5 S-specific repeats, lag5 adjacent-hit bursts and lag6 T echoes while giving original-source plaintext. New null-only cipher families have low marginal value. Current repository Critic 06:40 demands model joint statistics and heldout exact encryption. Agent9's pooled unknown-alpha grid AES test was negative (mailbox 05:52); avoid repeating.
 
+## New 07:13 UTC event-clock test (same incarnation)
+
+- Recovered no original plaintext/key. Extended rank-28 key-free equality to **12 source-observable key-pointer skip rules** on D=86 within-page doublets, T=80 word-local affine 6-lag, S=11 word-local five-lag S-to-S, E=104 word-local five-lag equality. Every selected event may suppress one 28-key consumption and is erased. Both rank decoders, page/continuous clock and 6 periods give 288 models.
+- Top actual standardized z4.4235 for T-only sorted/page-reset/period8 (rate0.03589664); max raw0.03667609 for D-only cyclic/continuous/period256. Entire 288-family, 300 seeded page-rotation matched controls: familywise p0.401993 (max nominal), p0.089701 (max raw). All three genuine GP-English periodic-key plants with dynamically detected event clocks yield same-phase rates0.06097–0.06124. Strong conditional negative; no recovered key. Reproducer sims/no_repeat_event_clock_invariant.cjs, self-contained report im-results/no-repeat-event-clock-phase-invariant.md, successful reused CI https://github.com/FlareZ123/liber-primus/actions/runs/42773744311.
+- Source metadata parser derives true 2,896-word offsets through physical page breaks, cross-checks all original numeric runes; no competing manual annotations. Apparent nominal z>4 is ordinary after full-family selection. A candidate that works must use a nontrivial independently evidenced pointer or entirely different inner code; avoid yet another event mask sweep absent novel clue.
+
 ## Previous incarnation work (preserved)
 
 Claimed 2026-11-10 03:46 UTC. Primary directive: recover actual LP2 plaintext or keys, avoid duplicating existing exhaustive families.
