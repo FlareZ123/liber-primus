@@ -70,6 +70,53 @@ rules out the **combined 7×7 source Hill + arbitrary shared column pad**
 family for directly readable GP-English under these two layouts. The
 comparison is key-free; testing extra pad phases would add nothing.
 
+### Source-marked Ac24 root-of-seven Fourier recovery attempt
+
+A still more ambitious, *key-eliminating* interpretation uses the independently
+highlighted Ac rune (GP index **24**) in the p39 red polynomial and p54's
+oversized initial. It has **multiplicative order seven in F29**:
+`24^1,…,24^7 = 24,25,20,16,7,23,1`. Together with the seven
+visually cuneiform-marked pages, this permits a source-constrained
+**seven-point discrete Fourier transform** over F29, with the natural
+page order and no fitted coefficients.
+
+If the original seven aligned ciphertext rows obey
+`C[k,j] = Σ_r (24^(k·r) × P[r,j]) + K[j] (mod29)`, where `K[j]` may
+be **any unknown 227-symbol pad**, inverse DFT yields exactly
+`P[r,j]` for **six rows r=1…6**, because the common pad occupies only
+the zero-frequency/DC component. The remaining first row alone
+contains the unknown pad. The converse transform convention has the
+same six-row prediction. This is a particularly high-value original
+test: the proposed *actual plaintext* of six lanes is obtained with
+zero brute-force key search, and exact forward encoding is defined.
+
+The source-frozen six-row original outputs are:
+
+| Layout | Six original recovered candidates, pooled IoC | Lowest same-format Shakespeare GP-English control | Lowest Emerson GP-English control |
+| --- | ---: | ---: | ---: |
+| 7×227 packed | **0.034330592** across 1,362 runes | 0.055838056 | 0.058891439 |
+| Seven native starts ×123 | **0.034075741** across 738 runes | 0.054362335 | 0.057068685 |
+
+Both transform directions yield equivalent pooled-six-rune IoC because
+their six non-DC lanes differ only by a fixed invertible symbol scaling
+and lane permutation. Original previews are nonlinguistic in all six
+streams. Source-native GP-English controls fully recover **six of seven
+independently aligned plaintext rows without knowing the pad**; adding
+the single DC correction recovers the first row, then exactly
+re-encrypts all 1,589 symbols. This rejects the specified GP29
+**7-point Fourier mixing followed by an arbitrary common output pad**
+as an original LP2 decoder for either visible layout under the two
+native-GP-English references. It does not reject nonlinear/non-GP
+layering, row-distinct pads, or another independently specified
+seven-page alignment.
+
+The seven/Ac clue chain and DFT choice are **hypotheses**, not
+historically documented instructions. They supplied a discrete
+source-based test with a strong original-plaintext prediction; the
+prediction failed. The exact executable is the same unified
+`sims/lp2_cuneiform_sevenlane_shared_key_gate.cjs` SFT. No original
+plaintext or historical key was recovered.
+
 For each reference the program converts a pinned literary work to the canonical
 29-character GP transliteration, discards nonrunes, samples approximately 2,000
 deterministic consecutive 1,589-rune windows, and computes exactly the same
