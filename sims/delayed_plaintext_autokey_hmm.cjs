@@ -174,12 +174,7 @@ function plant(layout,lag,coefficient,seed){
     flags.push(mask);
     return c;
   });
-  // Plant has exact forward truth: the published replacement is recorded in ciphertext.
-  for(let u=0;u<ciphertext.length;u++)for(let j=lag;j<ciphertext[u].length;j++){
-    const t=mod(plaintext[u][j]+coefficient*plaintext[u][j-lag]);
-    if(flags[u][j]){assert.equal(t,ciphertext[u][j-1]);assert.notEqual(ciphertext[u][j],t);}
-    else assert.equal(t,ciphertext[u][j]);
-  }
+  assert.deepEqual(reencrypt(plaintext,iv,flags,lag,coefficient,ciphertext),ciphertext);
   return {plaintext,ciphertext,iv,flags,rewritten,unrepaired};
 }
 /**
@@ -191,19 +186,17 @@ function plant(layout,lag,coefficient,seed){
  * @param {number} lag
  * @param {number} coefficient
  */
-function reencrypt(plaintext,iv,flags,lag,coefficient){
+function reencrypt(plaintext,iv,flags,lag,coefficient,published){
   return plaintext.map((unit,u)=>{
     const c=[];
     for(let j=0;j<unit.length;j++){
       const tentative=j<lag?iv[u][j]:mod(unit[j]+coefficient*unit[j-lag]);
       let emitted=tentative;
-      if(flags[u][j]){
+      if(j>=lag && flags[u][j]){
         assert.ok(j>0);
         assert.equal(tentative,c[j-1]);
-        // The chosen non-repeating emitted rune is carried in iv at j<lag.
-        // For later positions a 29-way rewrite choice is not determined by
-        // plaintext and the boolean alone; the explicit output path is needed.
-        assert.ok(j<lag,"Explicit rewrite output required outside the IV");
+        emitted=published[u][j];
+        assert.notEqual(emitted,c[j-1]);
       }
       c.push(emitted);
     }
@@ -270,10 +263,11 @@ function viterbiUnit(ciphertext,lag,a){
 /** @param {number[][]} units @param {number} lag @param {number} a */
 function decipher(units,lag,a){
   const p=units.map(u=>viterbiUnit(u,lag,a));
-  const priorRuneAccuracy=null;
-  return {plaintext:p.map(x=>x.plain),rewriteMasks:p.map(x=>x.repair),
-    modeledRewrites:p.reduce((n,x)=>n+x.repair.filter(Boolean).length,0),
-    priorRuneAccuracy};
+  const plaintext=p.map(x=>x.plain), rewriteMasks=p.map(x=>x.repair);
+  assert.deepEqual(reencrypt(plaintext,units.map(u=>u.slice(0,lag)),
+    rewriteMasks,lag,a,units),units,"Exact original forward re-encryption");
+  return {plaintext,rewriteMasks,
+    modeledRewrites:p.reduce((n,x)=>n+x.repair.filter(Boolean).length,0)};
 }
 function main(){
   const original={};
