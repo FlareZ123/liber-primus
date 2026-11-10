@@ -66,9 +66,9 @@ function train(source) {
  * @param {number[]} pad
  * @returns {{candidate:number, logEmission:number}[][][]}
  */
-function inverseCandidates(ciphertext, pad) {
+function inverseCandidates(ciphertext, pad, initialPrevious = -1) {
   const out = [];
-  let last = -1, offset = 0;
+  let last = initialPrevious, offset = 0;
   for (const word of ciphertext) {
     const options = [];
     for (let j = 0; j < word.length; j++) {
@@ -274,4 +274,4 @@ function run() {
   };
 }
 if (require.main === module) console.log(JSON.stringify(run(), null, 2));
-module.exports = {train, inverseCandidates, decodeWord, decode, plant, evaluate, run};
+module.exports = {train, inverseCandidates, ngramProbability, decodeWord, decode, plant, evaluate, run};
