@@ -56,6 +56,24 @@ Across all **58 LP2 images**, the scan emitted **25,517,550** eligible absolute-
 
 The broader nonzero-only sensitivity stream produces **35** three-byte FFD8FF-like prefixes, but none has a valid following JPEG marker/segment sequence or a complete SOF/SOS/EOI structure. These are not recovered payloads. The screen is deliberately limited: component-major traversal may differ from a particular implementation's scan order, and it does not test F5, keyed/permuted coefficient selection, matrix-encoded embedding, or every DCT-domain method. It is a useful negative for a straightforward JSteg-style AC-LSB/length-header route, not a general exclusion of coefficient-domain steganography.
 
+## Historically successful LP1 OutGuess-carrier encoder fingerprint
+
+A source-native positive comparison, [`jpeg_carrier_quantization_audit.py`](../sims/jpeg_carrier_quantization_audit.py), now extracts the exact JPEG DQT table bytes, baseline SOF component count, and ICC APP2 payload from **all 75 original image files**. It is independent of the DHT reoptimization and AC-parity tests above. The source set's historical nine LP1 default-OutGuess carriers are **00, 01, 02, 03, 08, 10, 11, 12, 13** ([documented independent extraction](https://cicadanotebook.com/sessions/37.html); [2014 source walk-through](https://uncovering-cicada.fandom.com/wiki/What_Happened_Part_1_%282014%29)). They are known positive carrier labels; DQT is a *container fingerprint*, never a payload detector.
+
+The complete observed source partition, with SHA-256 **first 12 hex characters** over canonical, table-ID-ordered DQT bytes, is:
+
+| Original images | DQT fingerprint | JPEG components | ICC APP2 | Source group |
+| --- | --- | --- | --- | --- |
+| LP1 00,01,02,13 | `2e058848a5a8` | 3 | absent | Four documented OutGuess carriers |
+| LP1 03,08,10,11,12 | `21ca47152d84` | 3 | absent | Five documented OutGuess carriers |
+| LP1 04,05,06,07,09,14,15,16 | `002e6e642964` | 3 | absent | Eight remaining LP1 images |
+| LP2 17–74 (35 RGB pages) | `002e6e642964` | 3 | 2,576 bytes | All LP2 RGB pages |
+| LP2 17–74 (23 grayscale pages) | `dd67edb0d106` | 1 | 2,576 bytes | All LP2 grayscale pages |
+
+The **same ICC bytes** occur in all 58 LP2 pages (SHA-256 prefix `942e0f66212e`). The nine known LP1 OutGuess carriers occupy precisely the two DQT signatures absent from the eight LP1 noncarriers; **none of 58 LP2 images** uses those signatures. The 35 LP2 RGB pages exactly reuse the LP1 noncarrier DQT set. The historical carrier labels precede this comparison, but the quantizer choice is confounded with the JPEG creation pipeline: this is descriptive source separation, **not a likelihood ratio for hidden payloads**.
+
+The comparison supports a practical original-source decision: the **historically observed LP1 OutGuess carrier encoder footprint** is not reproduced in LP2. Together with LP2's deterministic optimized DHT and uniform ICC structure, this lowers the priority of further default-key OutGuess/LP1-container repetition. It does **not** exclude coefficient-preserving embedding, key-controlled OutGuess, JPEG matrix embedding, encrypted payloads, or a pre-render source-level channel. All of those would need an independently indicated selector before more scans are useful.
+
 ## Interpretation
 
 The DHT tables—including the non-ascending symbol order within some equal-code-length groups—are completely explained by the ordinary optimized-Huffman encoder applied to the original quantized coefficients. There is no residual per-page choice in the DHT ordering that supports an independent hidden message. The shared APP0/APP2 markers, stable per-mode DQT tables, and absence of additional APP/comment/trailing segments likewise provide no separate metadata channel.
