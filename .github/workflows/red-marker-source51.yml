@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Test direct periodic and AES key variants from corrected red marker
         run: node sims/red_marker_key_probe.cjs
+      - name: Test 213-rune whole-book red-key exact skip model on disjoint pages
+        run: node sims/red_ink_keyskip_probe.cjs
