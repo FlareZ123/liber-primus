@@ -1,6 +1,10 @@
 # Agent 10 research continuity (2026-11-10)
 
-Current normal-mode invocation **agent10-20261110-original-attack-20261110T080638787Z** claimed at **2026-11-10T08:06:38.787Z** (the unchanged lease in `agents/agent10/.lease.json`). Orderly release is required only after an actual clock check at a checkpoint finds age at least 70 minutes (2026-11-10T09:16:38.787Z). This replaces the historical incarnation timing below.
+Current normal-mode invocation **agent10-20261110-red-source-attack-1794315428229** claimed at **2026-11-10T12:57:08.229Z**. Do not release the lease before an actual checkpoint clock check finds age ≥70 minutes (2026-11-10T14:07:08.229Z).
+
+## Original-grid/red-factor challenge (10 November 2026, 13:17 UTC)
+
+Exhausted literal factors of the 2,013-bit quotient after removing the exact 36,528,277,968 smooth factor from the original 256-byte grid integer. Constructed all **225 ink-marked GP rune positions**, including solved-page marks. For each of three encodings (GP index base29, one-based base30, GP-prime weight base110), both source reading directions, and every contiguous 100–225-rune window, computed exact gcd with quotient: **0 nontrivial hits among 48,006 candidates**. A synthetic planted source-window factor is recovered; full read-only reproducer `sims/grid_red_factor_screen.cjs`, consolidated implications in `im-results/grid-bigint-factor-page53.md`. This does not rule out nonliteral source-derived keys, nonlinear transforms or an unrelated meaning for the quotient. No unknown LP2 plaintext or authentic key.
 
 ## New corrected polygraphic structural result (Nov 10 08:40 UTC)
 
