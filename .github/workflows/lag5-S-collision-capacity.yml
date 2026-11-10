@@ -1,0 +1,18 @@
+name: LP2 lag-five S collision-capacity stress test
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  maximal-echo:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test T-only, maximal S-target collision repair and q upper limit
+        run: node sims/lag5_S_collision_capacity.cjs
