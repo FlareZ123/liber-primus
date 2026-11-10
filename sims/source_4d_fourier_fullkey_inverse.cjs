@@ -270,6 +270,151 @@ function experiment(label,A,cipher,knownState=null) {
     firstHeldoutGpIndices:recovered.slice(trainCount,trainCount+40),
     knownStateControl:known};
 }
+
+/**
+ * Source-GP bigram likelihood on non-EA consecutive runes.
+ * Unlike the 1D unary case, the key-dependent potential is a function
+ * of TWO projections of the same global secret state. A two-dimensional
+ * Fourier expansion remains sparse in the full 4D key-state grid.
+ */
+const pairFreq = Array.from({length:28},()=>new Float64Array(28).fill(0.5));
+for(let t=1;t<nativeSymbols.length;t++) {
+  const a=nativeSymbols[t-1],b=nativeSymbols[t];
+  if(a!==EA&&b!==EA)pairFreq[a][b]++;
+}
+const pairSum = pairFreq.reduce((s,row)=>
+  s+row.reduce((a,b)=>a+b,0),0);
+const pairLog = pairFreq.map(row=>
+  Array.from(row,x=>Math.log(784*x/pairSum)));
+/** @typedef {{re:Float64Array,im:Float64Array}} Spectrum */
+const pairCache=new Array(28*28);
+/**
+ * Exact two-dimensional 29x29 discrete Fourier coefficients for f(k,l)
+ * where k,l are projected state values in F29. A value of 28 aliases
+ * key zero under the tested cipher's 28-step output rule.
+ * @param {number} earlierExponent @param {number} laterExponent
+ * @returns {Spectrum}
+ */
+function pairSpectrum(earlierExponent,laterExponent) {
+  const tag=28*earlierExponent+laterExponent;
+  if(pairCache[tag])return pairCache[tag];
+  const midwayR=new Float64Array(P*P),midwayI=new Float64Array(P*P);
+  const outR=new Float64Array(P*P),outI=new Float64Array(P*P);
+  for(let l=0;l<P;l++)for(let m=0;m<P;m++) {
+    let a=0,b=0;
+    for(let k=0;k<P;k++) {
+      const val=pairLog[(earlierExponent-k%28+28)%28]
+        [(laterExponent-l%28+28)%28]/P;
+      const phase=m*k%P;
+      a+=val*cos[phase]; b-=val*sin[phase];
+    }
+    midwayR[m*P+l]=a;midwayI[m*P+l]=b;
+  }
+  for(let m=0;m<P;m++)for(let n=0;n<P;n++) {
+    let a=0,b=0;
+    for(let l=0;l<P;l++) {
+      const ix=m*P+l,phase=n*l%P,c=cos[phase],s=sin[phase];
+      a+=(midwayR[ix]*c+midwayI[ix]*s)/P;
+      b+=(midwayI[ix]*c-midwayR[ix]*s)/P;
+    }
+    outR[m*P+n]=a;outI[m*P+n]=b;
+  }
+  return (pairCache[tag]={re:outR,im:outI});
+}
+/**
+ * Sum the two-ridge F29 Fourier coefficients into the global 4D grid.
+ * Pageheads and immediate repeats are omitted in this model's bigram
+ * objective. Both source positions must be wholly inside the same split.
+ * @param {number[]} cipher @param {number[][]} V
+ */
+function sparsePairSpectrum(cipher,V) {
+  const re=new Float64Array(STATES),im=new Float64Array(STATES);
+  const exponents=logstep(cipher);
+  let eligible=0;
+  for(let t=1;t<N;t++) {
+    if(!isTrain[t]||!isTrain[t-1]||
+      isHead[t]||isHead[t-1]||
+      exponents[t]<0||exponents[t-1]<0)continue;
+    const f=pairSpectrum(exponents[t-1],exponents[t]);
+    const a=V[t-1],b=V[t];
+    for(let m=0;m<P;m++)for(let n=0;n<P;n++) {
+      const index=(m*a[0]+n*b[0])%P+
+        P*((m*a[1]+n*b[1])%P+
+        P*((m*a[2]+n*b[2])%P+
+        P*((m*a[3]+n*b[3])%P)));
+      const ix=m*P+n;
+      re[index]+=f.re[ix];im[index]+=f.im[ix];
+    }
+    eligible++;
+  }
+  return {re,im,eligible};
+}
+/**
+ * Direct independent check on the original step-pair scoring functional.
+ * @param {number[]} cipher @param {number[][]} V
+ * @param {number[]} state @param {boolean} train
+ */
+function directPairScore(cipher,V,state,train) {
+  const exponent=logstep(cipher);
+  let value=0,count=0;
+  for(let t=1;t<N;t++) {
+    if(Boolean(isTrain[t])!==train||
+      Boolean(isTrain[t-1])!==train||
+      isHead[t]||isHead[t-1]||
+      exponent[t]<0||exponent[t-1]<0)continue;
+    const k0=matrixKey(V,t-1,state)%28,k1=matrixKey(V,t,state)%28;
+    value+=pairLog[(exponent[t-1]-k0+28)%28]
+      [(exponent[t]-k1+28)%28];
+    count++;
+  }
+  return {sum:value,mean:value/count,count};
+}
+/**
+ * Second objective, exhaustive across the entire state space, based
+ * on solved-Cicada GP source bigrams. Training and heldout original
+ * positions remain identical to the 1D attack.
+ * @param {string} label @param {number[][]} A
+ * @param {number[]} cipher @param {number[]|null} known
+ */
+function pairExperiment(label,A,cipher,known=null) {
+  const V=vectors(A);
+  const sparse=sparsePairSpectrum(cipher,V);
+  const score=fourierSynthesis(sparse.re,sparse.im);
+  for(const s of [[0,0,0,0],[1,2,3,4],[11,7,22,3]]) {
+    const direct=directPairScore(cipher,V,s,true).sum;
+    assert.ok(Math.abs(direct-score[stateIndex(s)])<1e-5,
+      "Two-dimensional source Fourier score must match exact direct sum");
+  }
+  const ranked=topRanks(score,10);
+  const best=ranked[0].state;
+  const decoded=decrypt(cipher,V,best);
+  assert.deepEqual(encrypt(decoded,V,best),cipher);
+  const output={
+    sourceMatrix:label,objective:"unfitted consecutive non-EA GP source bigrams",
+    sourceBigrams:nativeSymbols.length-1,
+    stateSpaceExhausted:STATES,trainPairs:sparse.eligible,
+    originalTraining:directPairScore(cipher,V,best,true),
+    frozenHeldout:directPairScore(cipher,V,best,false),
+    bestStates:ranked.slice(0,5).map(x=>({...x,
+      heldout:directPairScore(cipher,V,x.state,false).mean})),
+    heldoutPlaintextIOC:coincidence(decoded.slice(trainCount)),
+    cipherRunesExactlyReencrypted:N,
+    firstUnfittedGpIndices:decoded.slice(trainCount,trainCount+32)
+  };
+  if(known) {
+    const trueScore=score[stateIndex(known)];
+    const rank=1+score.reduce((s,x)=>s+Number(x>trueScore+1e-7),0);
+    const truth=decrypt(cipher,V,known);
+    assert.deepEqual(truth,plantedPlain);
+    assert.equal(rank,1,
+      "Native GP source plant must identify its hidden 4D state");
+    output.knownStateControl={state:known,rank,
+      exactRecoveredPlaintext:N,
+      heldout:directPairScore(cipher,V,known,false)};
+  }
+  return output;
+}
+
 const plantedPlain=Array.from({length:N},(_,t)=>nativeSymbols[t%nativeSymbols.length]);
 const report={classification:"Exhaustive 4D F29 source-matrix inverse (not an LP2 solution)",
   assumption:"Continuous A-powered 4-state key, transparent EA marker, 15-root step cipher",
@@ -281,6 +426,9 @@ for(const source of matrices) {
   assert.deepEqual(decrypt(plantedCipher,V,secret),plantedPlain);
   const actual=experiment(source.label,source.A,C);
   const control=experiment(source.label,source.A,plantedCipher,secret);
-  report.originalAndControls.push({original:actual,blindSourceNativeControl:control});
+  const originalBigram=pairExperiment(source.label,source.A,C);
+  const plantedBigram=pairExperiment(source.label,source.A,plantedCipher,secret);
+  report.originalAndControls.push({original:actual,blindSourceNativeControl:control,
+    originalBigram,blindSourceNativeBigramControl:plantedBigram});
 }
 process.stdout.write(JSON.stringify(report,null,2)+"\n");
