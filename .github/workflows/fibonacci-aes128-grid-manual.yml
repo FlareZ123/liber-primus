@@ -23,3 +23,5 @@ jobs:
         run: node sims/dual_marker_latin_field_inverse.cjs
       - name: All-alphabet full-word GP29 two-marker composite source gate
         run: node sims/dual_marker_wordrole_gate.cjs
+      - name: Latin two-marker word-length conditional full-family gate
+        run: node sims/dual_marker_latin_length_gate.cjs
