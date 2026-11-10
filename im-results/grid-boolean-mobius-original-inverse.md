@@ -42,7 +42,7 @@ The strongest original setting is black-zero anchored, XOR/subset Möbius, sourc
 
 The 256-byte table can also be treated as a single (2^8)-element vector, applying the named Boolean Möbius operation across all eight index bits in printed row-major order. This is less directly supported than the five-bit reading—the ornament explicitly has five slots—but the literal **MOBIUS** clue and exact 256 = (2^8) table size motivate one finite extension. No bit permutation, table reordering, or fitted state is searched.
 
-The full 8-bit inverse produces four fixed 256-byte arrays: subset/superset partial order × subtraction in (mathbb Z/256) or XOR in characteristic two. Each is tested as a repeating key under **64** original-input variants: GP29 additive or GP28 predecessor-exclusion; byte projection by remainder or proportional scaling; both signs; and book-global or 13-dot-fragment-reset key clocks. In GP28 mode the previous-ciphertext state resets at each source fragment. The first 28 source fragments cover all 12,956 unknown runes.
+The full 8-bit inverse produces four fixed 256-byte arrays: subset/superset partial order × subtraction modulo 256 or XOR in characteristic two. None is a permutation/S-box: their distinct-byte counts are **163, 165, 175 and 174**, with maximum byte multiplicities **6, 5, 4 and 4**, respectively. Each is tested as a repeating key under **64** original-input variants: GP29 additive or GP28 predecessor-exclusion; byte projection by remainder or proportional scaling; both signs; and book-global or 13-dot-fragment-reset key clocks. In GP28 mode the previous-ciphertext state resets at each source fragment. The first 28 source fragments cover all 12,956 unknown runes.
 
 | Full 8-bit result | Observation |
 | --- | ---: |
