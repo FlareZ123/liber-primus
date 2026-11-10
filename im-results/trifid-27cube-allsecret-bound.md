@@ -1,6 +1,6 @@
 # Original LP2: all-secret ternary Trifid 27-cube exclusion
 
-**Finding and status.** The original 29-symbol GP alphabet admits a direct 3×3×3 Trifid test with fixed transparent IA and EA glyphs (indices 27 and 28). After stripping those two controls, **every fixed 27-cell secret cube** in both reversible orientations is excluded as a direct encoding of all windows in the three pinned native-GP English literary corpora for the eight tested continuous 3-power periods **3,9,27,81,243,729,2187,6561**. The earlier key-independent nine-slice source frequency bound handles 13 of those 16 configurations. A new exact key-independent **three-rune collision-multiplicity invariant** handles all eight standard-direction configurations, including the three previously unexcluded large periods. This is a source-controlled conditional negative. **No authentic LP2 cipher key, unknown plaintext passage or destination has been recovered.**
+**Finding and status.** The 29-symbol GP alphabet admits direct 3×3×3 Trifid with two unchanged transparent IA and EA glyphs (indices 27 and 28). Under **any book-fixed ordering of all 27 cube symbols**, an exact original-source triplet-equality invariant excludes **all 4,008 continuous standard-period lengths divisible by three, from 3 to 12,024**, as direct native-GP encodings of every window in Shakespeare, Gibran and Emerson source controls. The earlier independent nine-slice key-free frequency ceiling additionally excludes all eight 3-power reverse-orientation periods. The conclusion remains a precisely scoped original-source negative for one-layer direct-GP cipher hypotheses. **No authentic LP2 key, unknown plaintext or destination was recovered.**
 
 | Constraint on original 12,956-rune ciphertext | Result |
 | --- | ---: |
@@ -58,11 +58,25 @@ The [original-source triple-invariant SFT](../sims/trifid_triple_equality_invari
 | **2,187** | **10,935** | **340** | **4** | **5,208** | **7,521** | **5,256** |
 | **6,561** | **6,561** | **110** | **3** | **1,826** | **2,422** | **1,809** |
 
+### Complete original-input exclusion of all 4,008 divisible-by-three periods
+
+The bijection just proved holds for **every period \(p=3m\)**, independently of whether \(m\) is a power of three. Original core length is **12,026** after removing the two controlled glyphs, so periods with at least one complete block comprise precisely **4,008** candidates \(p=3,6,\ldots,12,024\).
+
+For each period the [exhaustive original-input SFT](../sims/trifid_all_multiple3_invariant_sft.cjs) constructs all complete-block triples, \(K(p)=\lfloor12026/p\rfloor p/3\), and their collision pairs \(H(p)=\sum_v {n_v\choose2}\). The exhaustive original-source enumeration establishes:
+
+- **Minimum complete-block prefix:** \(K_{\min}=2,005\) triplets over all 4,008 periods.
+- **Largest original collision-pair count:** \(H_{\max}=475\), at **period 273**.
+- **Every eligible 2,005-triplet native-GP core window in Shakespeare, Gibran, Emerson:** at least **1,519/2,005/1,479** collision pairs across **209,790/56,039/314,480** distinct starts and all phases.
+
+The same model's unknown cube induces one identical bijection on every complete source triple, so \(H(p)\) must be preserved in recovered plaintext. For any larger plaintext window \(K(p)\ge K_{\min}\), the collision count is at least that of its first 2,005 triples: adding occurrences cannot remove previously existing matching pairs. Hence each putative original-derived plaintext has at most **475** pairs and every reference-derived candidate has at least **1,479**. These bounds hold simultaneously for **all 4,008 periods and all 27! cubes**, with no parameter fitting to a decoded candidate.
+
+The script tested synthetic hidden-cube direct-GP encryption/inversion and source-original inverse/re-encryption over **all 12,956 runes** at independent representative periods **3, 3,300, 6,015 and 12,024**. The exact source-only exhaustive computation, positive controls and short-window minima passed [manual GitHub Actions run 42923026151](https://github.com/FlareZ123/liber-primus/actions/runs/42923026151).
+
 For the 729-rune period alone the SFT exhaustively screens **204,141 Shakespeare**, **50,390 Gibran** and **308,831 Emerson** possible source-core window starts across all phases. The original's 354 repeated-triplet pairs are far below all three independent minima. Even the shortest complete 6,561-rune case has 110 pairs versus reference minima of 1,826/2,422/1,809. This exact mismatch survives **any** fixed secret cube: none of the stated direct native-GP plaintexts could produce the original grouped triple-equality partition.
 
 The SFT asserts equality of the full triple-frequency fingerprint and a two-way equality partition under a deterministic hidden cube on the **real original ciphertext decoded under that artificial cube**. It separately encrypts a native-GP Shakespeare plant, reverses it for **12,956/12,956** runes and checks the same triple-equality law. Thus the source result is a genuine key-independent obstruction, while an arbitrary original round trip remains only an implementation check. [Successful manual Actions run 42922098995](https://github.com/FlareZ123/liber-primus/actions/runs/42922098995).
 
-These results close the original **large standard 3-power period gap** for this explicitly stated direct-GP model. They do not establish that the authors used Trifid or that all English text has the reference-corpus repetition rate. They do not restrict an evolving cube, different transparent controls, unequal/word/page-based clocks, ciphertext edits, non-GP intermediate alphabets or additional layers.
+These results close the **entire continuous standard-Trifid divisible-by-three period family** for this explicitly stated direct-GP model. They do not establish that the authors used Trifid or that all English text has the reference-corpus repetition rate. They do not restrict an evolving cube, different transparent controls, unequal/word/page-based clocks, ciphertext edits, non-GP intermediate alphabets or additional layers.
 
 ## Reproduction and scope
 
@@ -71,6 +85,7 @@ Run the exact original-source tests on Node 22 from the repository root:
     node sims/trifid_27cube_allsecret_gate.cjs
     node sims/trifid_27cube_periods_gate.cjs
     node sims/trifid_triple_equality_invariant_sft.cjs
+    node sims/trifid_all_multiple3_invariant_sft.cjs
 
 This source file reads the canonical physical-page-aware LP2 corpus and the three existing pinned reference texts. It prints the exact per-glyph bounds, branch counts and source-window minima. A hidden deterministic 27-cube plant recovers all **12,956/12,956** source-native GP symbols and re-encrypts them exactly in both directions. It also validates the full original-cipher round trip for an arbitrary cube, explicitly reporting that a bijective round trip **does not identify a genuine key**.
 
