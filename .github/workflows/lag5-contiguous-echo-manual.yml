@@ -1,0 +1,24 @@
+name: LP2 lag-five contiguous echo challenge (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      train:
+        description: 'Independent null calibration replicates'
+        required: false
+        default: '2000'
+      test:
+        description: 'Independent familywise null replicates'
+        required: false
+        default: '5000'
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Conditioned lag family and S echo
+        run: node sims/lag5_contiguous_echo_challenge.cjs ${{ inputs.train }} ${{ inputs.test }}
