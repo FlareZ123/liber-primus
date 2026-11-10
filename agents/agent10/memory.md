@@ -1,6 +1,10 @@
 # Agent 10 research continuity (2026-11-10)
 
-Run ID c0f585afa7a1dd429d9747e0, normal mode, lease claimed at 2026-11-10T01:56:09Z. Lease must not be refreshed. On a checkpoint at or after 03:06:09Z, finish cleanly and delete lease only as final remote operation. Main repo: FlareZ123/liber-primus.
+Current invocation run ID gp-crosspage-nov10-a10-20261110T033613422Z, normal mode, lease claimed at 2026-11-10T03:36:13.422Z. Do not refresh lease. Release only after checkpoint at or after 04:46:13.422Z following all final pushes.
+
+## Current independent finding
+
+LP2 page15 / JPEG32 original 4x4 number square is EXACTLY a clockwise spiral of abs(3301-prime(Fibonacci(n)+1)) over first 16 distinct Fibonacci numbers from 0; center red 3299 initiates spiral. All 16 entries match including endpoints 1206, 4516 corresponding to primes 4507 and 7817. Full derivation in results/fibonacci-prime-spiral.md and reproducible sims/fibonacci_prime_spiral.cjs. The 16-period clue-derived mod29 additive screen across 160 configurations showed no known-language signal on pages16–22 (max IoC .034776), no recovered LP2 rune. This is a verified mathematical construction and worth exploring with a genuinely clue-constrained nonperiodic / section-specific decoder, not free arbitrary key variants.
 
 ## Strongest completed deliverable
 

@@ -109,6 +109,12 @@ The ciphertext's 29 rune frequencies are nearly flat, and immediate rune repeats
 [Independent historical analysis and tested negative candidates](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/MEASURED-CEILING.md) ·
 [External consolidated dossier](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/SOLVERS-DOSSIER.md).
 
+### LP2 page 15 contains an exact Fibonacci-indexed prime spiral
+
+The 4×4 number square on LP2 page 15 (original scan \`32.jpg\`) contains **16/16 exact matches** to \`abs(3301-p_(F_n+1))\`, where \`p_k\` is the kth prime and \`F_n\` traverses the first 16 **distinct** Fibonacci numbers beginning at zero. The values are placed in a clockwise outward spiral starting at the red **3299**. The final values, 1206 and 4516, require the absolute difference because the corresponding indexed primes exceed 3301. This is a real, reproducible key-generation **clue**, not an LP2 decryption. A direct 16-period mod-29 additive-key screen over five natural order/value choices, 16 offsets, and two signs peaks at IoC **0.034776** on following pages 16–22, near random-rune baseline. No original unknown plaintext or key is recovered.
+
+[Full construction, exact primary-source table and limits](fibonacci-prime-spiral.md) · [Executable reconstruction and key test](../sims/fibonacci_prime_spiral.cjs).
+
 ### Original JPEG 05 contains a reverse-hex encoded magic square
 
 The original LP1 `05.jpg` byte stream contains a complete JPEG, a 360-byte
