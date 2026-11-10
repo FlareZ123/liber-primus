@@ -19,3 +19,4 @@ jobs:
           node sims/onion256_shamir_cross_source_gate.cjs
           node sims/grid_coordinate_free_share_rank.cjs
           node sims/grid_anend_hash_bridge.cjs
+          node sims/grid_fibonacci_macro_key.cjs
