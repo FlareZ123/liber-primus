@@ -15,5 +15,7 @@ jobs:
       - name: Source field construction, exact original seed gate and native plant
         run: node sims/lp2_red_triad_primitive_field_inverse.cjs
 
+      - name: Twisted-Frobenius order-56 source-state inverse
+        run: node sims/lp2_red_triad_frobenius56_source_state.cjs
       - name: Nonlinear source-grid polynomial evaluations over the red GF841 field
         run: node sims/lp2_red_triad_polynomial_eval_inverse.cjs
