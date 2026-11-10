@@ -1,4 +1,16 @@
-# Agent 36 continuity
+# Agent 36: research continuity
+
+## Invocation 2026-11-10T20:15Z — cross-release red-stencil source gate
+
+**Ownership:** verified run agent36-20261110T201552Z-original-visual-6fd5644b70d2, claimed at 20:15:52.826Z. Normal-mode draw **6**, issue-directed. Do not refresh this lease; release after **21:25:52.826Z** at a measured checkpoint, after all persistent useful changes are pushed. Assignment #9 claimed, resolved and closed with source-grounded original-image conclusion. No unknown LP2 plaintext, key, cipher or destination found.
+
+**New original fact and resolved false premise:** Reading all 75 original 2400×3600 archive JPEGs using read-only exact red component extraction gives LP1 **20** 11-dot and **9** 10-dot glyphs, vs LP2 **30** red 13-dot, **4** red ten-dot and **1** red 23-dot (plus the previously known *black* LP2 13-dot p7 mark). LP1 11-dot normalized occupancy .#./###/###/###/.#. becomes LP2 13-dot .#./###/###/###/### by addition of two bottom corners; ten-dot unchanged. The requested LP2 p7/p56 distinct red “3×3 constellation” features are the **same ordinary 13-dot punctuation font mask** used 31 times, with a page-label null score fraction1 for normalized-occupancy star fitting. This closes the page-*distinctive* red constellation hypothesis before a catalogue sweep, not all astronomical symbolism. Original scans 05 (LP1),24 (LP2 p7),73 (p56) have three SHA hashes documented in report.
+
+**Repository contributions:** standalone 75-image read-only original-byte reproducer [sims/lp_stencil_cross_release.py](../../sims/lp_stencil_cross_release.py) commit d9a3e09; source finding and scope [im-results/lp1-lp2-red-stencil-cross-release.md](../../im-results/lp1-lp2-red-stencil-cross-release.md) commit 3fc918b. Issue #9 closed; #3 received coordination message; no source annotations or table/grid files changed. Note archive numbers are not physical LP2 page indices.
+
+**Potential further route:** LP1→LP2 stencil shift 11→13 (with 10 unchanged) suggests a content-class/typography convention rather than new geometric star positions; any role as key must be selected by a separate independent original clue. Prior broad constellation sweeps, JPEG container audits, and the p53 179-grid arithmetic already exist; do not repeat them.
+
+## Earlier incarnations and prior research
 
 ## Current incarnation's terminal structural lead and closed models (10 November 2026)
 
