@@ -7,6 +7,7 @@ on:
       - "sims/lp2_f31_fragment_key_inverse.cjs"
       - "sims/lp2_f31_direct_ea_pad.cjs"
       - "sims/lp2_f31_fragment_row_pad_inverse.cjs"
+      - "sims/lp2_f31_red_fragment_transposition.cjs"
       - ".github/workflows/lp2-fivedot-lfsr-manual.yml"
 permissions:
   contents: write
@@ -40,6 +41,8 @@ jobs:
         run: node sims/lp2_f31_direct_ea_pad.cjs > f31-direct-ea-pad.json
       - name: Run the F31 one-row-per-fragment GP pad inverse
         run: node sims/lp2_f31_fragment_row_pad_inverse.cjs > f31-fragment-row-pad.json
+      - name: Test the fixed F31 ordering of the 225 red runes
+        run: node sims/lp2_f31_red_fragment_transposition.cjs > f31-red-fragment-transposition.json
       - name: Preserve diagnostics artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -48,6 +51,7 @@ jobs:
             f31-fragment-key-inverse.json
             f31-direct-ea-pad.json
             f31-fragment-row-pad.json
+            f31-red-fragment-transposition.json
       - name: Commit reproducible results to intermediate findings
         uses: actions/github-script@v7
         with:
@@ -56,7 +60,8 @@ jobs:
             for (const [source, path] of [
               ['f31-fragment-key-inverse.json', 'im-results/f31-fragment-key-inverse.json'],
               ['f31-direct-ea-pad.json', 'im-results/f31-direct-ea-pad.json'],
-              ['f31-fragment-row-pad.json', 'im-results/f31-fragment-row-pad.json']
+              ['f31-fragment-row-pad.json', 'im-results/f31-fragment-row-pad.json'],
+              ['f31-red-fragment-transposition.json', 'im-results/f31-red-fragment-transposition.json']
             ]) {
               const content = fs.readFileSync(source, 'utf8');
               let sha;
