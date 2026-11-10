@@ -304,19 +304,19 @@ for (const [keyName, raw] of Object.entries(cuneiformLengthKeys)) {
         }
       }
     }
-    for (const sign of [-1, 1]) {
-      const shifted = new Array(cuneiformSection.length);
-      for (let block = 0; block < cuneiformBlockLengths.length; block++) {
-        for (let i = cuneiformOffsets[block]; i < cuneiformOffsets[block + 1]; i++) {
-          shifted[i] = mod(cuneiformSection[i] + sign * raw[block]);
-        }
+  }
+  for (const sign of [-1, 1]) {
+    const shifted = new Array(cuneiformSection.length);
+    for (let block = 0; block < cuneiformBlockLengths.length; block++) {
+      for (let i = cuneiformOffsets[block]; i < cuneiformOffsets[block + 1]; i++) {
+        shifted[i] = mod(cuneiformSection[i] + sign * raw[block]);
       }
-      cuneiformLengthTests.push({
-        key: keyName, target: 'marked-section-per-block-constant',
-        phase: null, sign, skipLiteralF: false,
-        ...stats(shifted)
-      });
     }
+    cuneiformLengthTests.push({
+      key: keyName, target: 'marked-section-per-block-constant',
+      phase: null, sign, skipLiteralF: false,
+      ...stats(shifted)
+    });
   }
 }
 
