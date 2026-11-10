@@ -192,7 +192,8 @@ function run(){
   }
   assert.equal(n,totalDecoded);
   assert.ok(correct/totalDecoded>.55);
-  assert.ok(plantedResult.holdout>.05);
+  assert.ok(plantedResult.holdout>wrong.holdout+.02,
+    'True-key planted score must outperform independently wrong red Hill key');
   return {
     model:'source-225-red-rune 15x15 Hill F29, complete 15-rune ciphertext blocks, possible independent 81% adjacent-doublet overwrite',
     exactInput:{redMarkedRunes:red.length,sourceRedPageCount:ink.pages.length,
