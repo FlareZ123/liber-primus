@@ -1,0 +1,15 @@
+name: LP2 adaptive radix-28 binary probe (manual)
+on:
+  workflow_dispatch:
+
+jobs:
+  decode:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Invert base-28 no-repeat output and check impossible byte codewords
+        run: node sims/lp2_adaptive_base28_binary.cjs
