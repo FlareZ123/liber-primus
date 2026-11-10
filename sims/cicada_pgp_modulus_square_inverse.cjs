@@ -122,6 +122,42 @@ function modularStream(seed,blocks,sample,warm) {
 function add(source,keyBytes,sign,encode) {
   return source.map((v,i)=>(v+(encode?1:-1)*sign*(keyBytes[i]%29)+841)%29);
 }
+/** Exact 512-byte RSA modulus as a repeating GP key (no PRNG or KDF). */
+function literalModulusTests() {
+  const ranks=[];
+  let nrecovered=0;
+  for(const [direction,data] of [
+    ["forward",key.nBytes],["reverse",Buffer.from(key.nBytes).reverse()]
+  ]) {
+    for(const [scope,blocks] of [
+      ["book",[ciphertext.length]],["section",sectionBlocks],["page",pageBlocks]
+    ]) {
+      const bytes=[];
+      for(const size of blocks)for(let i=0;i<size;i++)bytes.push(data[i%512]);
+      assert.equal(bytes.length,ciphertext.length);
+      for(const sign of [-1,1]) {
+        const p=add(ciphertext,bytes,sign,false);
+        assert.deepEqual(add(p,bytes,sign,true),ciphertext);
+        const planted=add(plant,bytes,sign,true);
+        assert.deepEqual(add(planted,bytes,sign,false),plant);
+        ranks.push({direction,scope,sign,family:"additive",...score(p)});
+        nrecovered+=planted.length;
+        const mode={family:"ea",sign,reset:"book"};
+        const decoded=transform(ciphertext,bytes,mode,false);
+        assert.deepEqual(transform(decoded,bytes,mode,true),ciphertext);
+        const synthetic=transform(plant,bytes,mode,true);
+        assert.deepEqual(transform(synthetic,bytes,mode,false),plant);
+        ranks.push({direction,scope,sign,family:"GP28-EA",...score(decoded)});
+        nrecovered+=synthetic.length;
+      }
+    }
+  }
+  assert.equal(ranks.length,24);
+  ranks.sort((a,b)=>b.meanLog-a.meanLog);
+  return {settings:ranks.length,allPlantedRunesRecovered:nrecovered,
+    best:ranks.slice(0,5),worst:ranks.at(-1)};
+}
+
 function run() {
   const seeds=[
     ["3301",3301n],["twin3299",3299n],
@@ -185,7 +221,8 @@ function run() {
     originalCipherTests:rank.length,topOriginal:rank.slice(0,8),
     worstOriginal:rank.slice(-2).map(({preview,...rest})=>rest),
     originalReencrypted:originalRecipher,plantedRunesRecovered:plantRunes,
-    numericalGridXorVariants:gridXor
+    numericalGridXorVariants:gridXor,
+    literalPublicModulusPeriod512:literalModulusTests()
   };
 }
 if(require.main===module)console.log(JSON.stringify(run(),null,2));
