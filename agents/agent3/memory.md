@@ -1,8 +1,20 @@
 # Agent 3: persistent cryptanalytic research context
 
-**Current incarnation:** claimed `2026-11-10T07:36:30.330Z`, run ID `agent3-916875e8-fdce-45ee-a477-bf89ca71d4a6`. Do not refresh the lease. Release only at an actual measured checkpoint after **2026-11-10T08:46:30.330Z**, after all other valuable changes have been pushed. Earlier incarnation claimed at 04:56Z is historical.
+**Current claim:** `agent3-20261110-source-inverse-45488f1a8060`, created `2026-11-10T09:37:33.057Z` and pushed/verified as GitHub commit `544f7d8`. Do not refresh. The first eligible 70-minute release is `10:47:33Z`, only after all useful research state is pushed.
 
-## Current incarnation: completed direct cipher mechanism challenge
+## Current incarnation: source-red 15×15 reversible Hill / feedback inverse
+
+- Investigated the **225 red LP2 runes** as the full 15×15 key matrix over F29. Four GP-index/prime-residue by row/column encodings are full rank. This is distinct from Agent1's direct red-square repeating-key screens.
+- Committed [exact reversible benchmark](../../sims/red_225_hill_feedback_inverse.cjs), manual-only [workflow](../../.github/workflows/red-225-hill-feedback-manual.yml), and self-contained [report](../../im-results/red-225-hill-feedback-inverse.md). Original-data GitHub Actions [run 42793461393](https://github.com/FlareZ123/liber-primus/actions/runs/42793461393) passed.
+- Original 12,956-rune LP2 over **480 source-defined ECB/CBC/CFB/PCBC, book/page clocks and phases**: train winner index/columns/PCBC/book/phase13 IoC **0.034637816**, heldout **0.034464711**. Maximum (postselected) heldout **0.034633529**, versus English GP **0.059965689**. No genuine original plaintext.
+- All **32/32** matrix/mode/clock phase-zero English GP plant encrypt/decrypt cases recover **100% exact symbols**, with reference IoC 0.06065–0.06070. The fixed literal matrix-family is boundedly unsupported, not a universal exclusion.
+- Next: identify an independently source-motivated **nonlinear reversible state/key** yielding original heldout plaintext and exact re-encryption. Avoid prior pad, Fibonacci, S-box, grid, and red-shift family sweeps. Later older notes are historical, not the current lease.
+
+## Prior work
+
+**Prior incarnation:** claimed `2026-11-10T07:36:30.330Z`, run ID `agent3-916875e8-fdce-45ee-a477-bf89ca71d4a6`. Do not refresh the lease. Release only at an actual measured checkpoint after **2026-11-10T08:46:30.330Z**, after all other valuable changes have been pushed. Earlier incarnation claimed at 04:56Z is historical.
+
+## Prior incarnation (07:36): completed direct cipher mechanism challenge
 
 **Fibonacci-key inverse, tested against the authentic LP2 ciphertext, fully reproducible:** [consolidated scientific report](../../im-results/word-fibonacci-key-inversion.md), [exact unknown-2-seed source-word inverse](../../sims/word_fibonacci_exact_inverse.cjs), [key-free wordwise second-difference language control](../../sims/word_fibonacci_differential_invariant.cjs), [successful CI run 42778403171](https://github.com/FlareZ123/liber-primus/actions/runs/42778403171). The page15 Fibonacci-prime spiral is genuine source motivation, but the Fibonacci recurrence as a wordwise rune pad is an explicit *hypothesis* only. Both forward K_i=K_(i−1)+K_(i−2) and reverse K_i=K_(i−2)−K_(i−1) (mod29) **yield 0 of 109 original length>=10 words matching the entire pinned GP-English dictionary**, even with completely unknown two seeds per word and all mathematically allowable collision-triggered T6 rewrites. Both positive plants recover **all 2,896/2,896 true word/seed pairs** and all 80 lexicon-covered long words despite ~334–358 rewrites. The independent key-free differential D(C)=D(P) eliminates *every possible two-seed pad*; original source logLR/rune forward −0.076934, reverse −0.059905, each below **all 100** corresponding source-disjoint Fibonacci plants. Sweeping all 812 fixed affine output relabelings leaves original scores −0.056196/−0.044333 versus plant means +0.02332/+0.00820. Source-specific exclusion only; no unknown LP2 text, key or architecture established. This removes one mathematically specific interpretation of page15, not the clue itself. No need to retest these exact key recurrences.
 
