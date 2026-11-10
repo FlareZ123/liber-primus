@@ -33,19 +33,33 @@ Do not duplicate broad tests already in the repository:
 - sims/audio761_numeric_prng_seed_probe.cjs includes 761 among source-derived seeds and tests six common 32-bit PRNG families over all 12,956 original LP2 runes.
 - sims/prime_totient_long_offset_inversion.py tests two million prime-start offsets for direct transfer of the solved p56 φ(prime) key; the p135 start corresponding to 761 is inside that search.
 
-I independently scored the existing 761/LCG-A/rankCyclic/page-reset/sign+ candidate with a GP29 Shakespeare trigram model. Its score is **−6.2546**, versus **−6.2960** for raw LP2 and **−6.3025** for one random control; among the 960 seed/PRNG/clock/mode/sign combinations in the existing 761 probe, this candidate ranks **48th** by trigram score. Its decoded rune stream is visibly non-linguistic. The existing unigram winner is therefore not plaintext evidence.
+The existing 761/LCG-A/rankCyclic/page-reset/sign+ candidate was independently scored with a GP29 Shakespeare trigram model. Its score is **−6.2546**, versus **−6.2960** for raw LP2 and **−6.3025** for one random control; among the 960 seed/PRNG/clock/mode/sign combinations in the existing 761 probe, this candidate ranks **48th** by trigram score. Its decoded rune stream is visibly non-linguistic. The existing unigram winner is therefore not plaintext evidence.
 
 The 761→p135 idea is not an untested gap, and the obvious direct seed/prime-start transfers are not currently promising. Any future use of the 6 residue must be distinguished from these tested transfers and must have a source-visible rule fixing its role.
 
+## Default Perl seed test (newly completed)
+
+Perl 5.14.2 does not necessarily seed rand() from the clock. In the tagged source, pp_rand() implicitly calls seed() on first use, argument-less srand() also calls seed(), and Perl_seed() reads a U32 from /dev/urandom by default unless that facility is disabled or unavailable. A representative Unix configuration selects drand48/srand48. The exact onion-2 runtime and host are still unknown, so this was tested as a plausible model, not asserted as fact.
+
+A new exhaustive search enumerated the complete 32-bit seed space under that POSIX drand48 model. It tested:
+- direct int(rand(256)) and int(rand(255)) output for all 256 source bytes;
+- interleaved int(rand(7))+1 five-minute timing draws and byte draws in both orders, using the exact draw positions implied by 151 prior events and checking all 256 bytes plus the 31 multi-witness intervals.
+
+The search uses an invertible affine-state reduction: for each possible first constrained byte, every compatible high-32-bit state is enumerated and mapped bijectively back to its seed. Positive controls recover a planted seed exactly once in all four tested arrangements. **No original-target model produced a full match.** The detailed reproducible test and exact counts are in im-results/perl-drand48-onion2-time-seed-search.md, with implementation in sims/perl_drand48_onion2_urandom_seed_search.cpp.
+
+This rejects the simple default Perl drand48 models, not Perl generally. It does not test an unknown pre-loop burn-in, a different backend, explicit custom seeding, separate timing and byte generators, or a cryptographic random source.
+
 ## What this does and does not establish
 
-**Established from the archived sources:** the 2016 message is signed; the 2014 round's archived start date is 6 January; the second onion had the patience comment and timed 256-byte growth; the third onion initially showed a blank page; and the phrase's GP value is 761.
+**Established from archived sources:** the 2016 message is signed; the 2014 round's archived start date is 6 January; the second onion had the patience comment and timed 256-byte growth; the third onion initially showed a blank page; and the phrase's GP value is 761.
 
 **Mathematical derivation:** 761 is prime number 135 and φ(761) mod 29 = 6.
 
+**Computational result:** the tested explicit-time and exhaustive-default Perl drand48 models do not reproduce the 2014 onion-2 bytes/timing sequence.
+
 **Hypothesis:** the 2016 “Epiphany / empty path / devoted” wording intentionally sends a human solver back to the 2014 onion sequence and especially its timing channel as a possible source of key material or a route into LP2. The 761→6 relation may identify a transition within the 29-rune system.
 
-**Not established:** that the 2014 timing channel is an LP2 key; that the 2016 message specifically selects the 256-byte string rather than another part of the 2014 path; or that the published “approximately 23 hours” description and surviving timing samples give a complete, mutually consistent absolute chronology.
+**Not established:** that the 2014 timing channel is an LP2 key; that the 2016 message specifically selects the 256-byte string rather than another part of the 2014 path; that onion 2 and onion 3 shared a host or Apache parent; or that the published “approximately 23 hours” description and surviving timing samples give a complete, mutually consistent absolute chronology.
 
 ## Best next test
 
@@ -56,9 +70,10 @@ Freeze the historical selector before trying new cipher families:
 - Distinguish the served 256-byte values, the five-minute interval sequence, and the later 1033 / server-status material; do not mix them into one unconstrained key.
 - Reconcile the first observed byte, the last byte, the 23-hour statement, and the surviving BotSottile/Cripion timestamps. In particular, verify whether the timing cells are truly consecutive inter-byte intervals across the full string.
 - If the 761→6 relation is used, define in advance whether 6 is a rune-ring displacement, a key phase, or another specific state. Do not search these interpretations post hoc.
-- Test only a mechanism that maps one of these source-fixed channels into LP2 with an independently specified alignment and operation. Require an exact original-ciphertext inverse and withheld-page validation.
+- Do not repeat the tested Perl time-seed or default drand48 seed searches. Continue generator recovery only if a contemporaneous source identifies the actual language, backend, or draw schedule; otherwise treat the 256-byte stream as an unlinked historical artifact until a source-derived LP2 operation is available.
+- Require an exact original-ciphertext inverse and withheld-page validation before promoting any key hypothesis.
 
-The existing direct interval-stream sweep is negative for its pre-registered simple transforms; that does not rule out the historical clue, but it means the next step must supply a source-derived selector rather than another unconstrained cipher grid.
+The existing direct interval-stream sweep and the new Perl seed searches are negative for their stated models. That does not rule out the historical clue, but the next step must supply a source-derived selector rather than another unconstrained cipher grid.
 
 ## Source links
 
@@ -67,3 +82,5 @@ The existing direct interval-stream sweep is negative for its pre-registered sim
 - Original stage-3 archive and README: https://github.com/scream314/cicada3301/tree/master/assets/2014/stage03
 - Archived onion-2 timing witnesses and reconciliation: https://github.com/Dukotah/cicada3301/tree/master/liber-primus/analysis/round43/F5-stored
 - Timing-channel negative result and coverage limits: https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F5bT-timing-keystream/RESULTS.md
+- Perl 5.14.2 pp_rand / pp_srand: https://github.com/Perl/perl5/blob/v5.14.2/pp.c
+- Perl 5.14.2 default seed implementation: https://github.com/Perl/perl5/blob/v5.14.2/util.c
