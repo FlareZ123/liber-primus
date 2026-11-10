@@ -2,6 +2,7 @@
 
 const fs = require("node:fs");
 const path = require("node:path");
+const {parseSharedCorpus} = require("./lp2_word_pages.cjs");
 
 /**
  * Investigate preserved LP2 word boundaries without presuming rune plaintext.
@@ -233,24 +234,33 @@ function columnarCandidates(pages, model) {
   };
 }
 
-const lp2Pages = LP2.split("%").slice(0, 55).map(runeLengths);
-const lp2Clauses = clauses(LP2.split("%").slice(0, 55).join("%"));
+const canonical = parseSharedCorpus();
+const lp2Pages = canonical.byStartPage.map((words) =>
+  words.map((word) => Math.min(BINS, word.length)));
+const containedPages = canonical.byContainedPage.map((words) =>
+  words.map((word) => Math.min(BINS, word.length)));
+const lp2Clauses = clauses(LP2.split("%").slice(0, 55).join("%")
+  .replace(/%\\s*/g, ""));
 const lp1Clauses = clauses(LP1);
 const model = englishLengthModel(englishClauses(ENGLISH.slice(0, 180000)));
-const runeCount = LP2.split("%").slice(0, 55).join("%")
-  .split("").filter((rune) => RUNE_WORD.test(rune)).length;
+const runeCount = canonical.runeCount;
 const wordCount = lp2Pages.reduce((sum, part) => sum + part.length, 0);
-if (lp2Pages.length !== 55 || runeCount !== 12956 || wordCount !== 2928) {
+if (lp2Pages.length !== 55 || runeCount !== 12956 || wordCount !== 2896) {
   throw new Error("LP2 transcription or boundary parser changed");
 }
 
 const report = {
   corpus: {lp2RuneCount: runeCount, lp2Pages: lp2Pages.length,
-    lp2WordCount: wordCount, lp2ClauseCount: lp2Clauses.length},
+    lp2WordCount: wordCount,
+    extraPageFragments: canonical.originalPageFragments - wordCount,
+    crossPageWords: canonical.crossPageWords,
+    lp2ClauseCount: lp2Clauses.length},
   adjacency: {lp2: testMI(lp2Clauses, 123, 1000),
     lp1: testMI(lp1Clauses, 456, 1000)},
   harmonic: harmonicScan(lp2Pages, model),
+  harmonicContainedOnly: harmonicScan(containedPages, model),
   transposition: columnarCandidates(lp2Pages, model),
+  transpositionContainedOnly: columnarCandidates(containedPages, model),
   method: "9 capped rune-length bins, Shakespeare digraph-collapsed bigram model; page/section-aware permutation nulls"
 };
 process.stdout.write(JSON.stringify(report, null, 2) + "\n");
