@@ -36,9 +36,24 @@ Source GP positive controls encrypt 12,956 runes drawn cyclically from the estab
 
 The source-negative original heldout IoCs are near the GP29 uniform baseline 1/29 = 0.034483. No candidate recovers sustained source-native GP text under either fitted objective. The original 12,956 symbols can be exactly re-encrypted under any state; this exactness is a necessary implementation check, not evidence of an authentic historical key.
 
+## Independent Latin-original 4D exhaustion (same cipher states, new source register)
+
+The original red heading has a published but unauthenticated Latin reading. As a language-specific challenge, freeze **the same two source matrices, 29⁴ states, complete original page split, field output transform, and independent Fourier unigram/bigram objectives**, replacing the GP reference only with the independent previously established **203,357-rune Latin Vulgate training corpus** (Luke/John/Acts/Romans) and its 2,400-rune Revelation GP holdout for the blind source-key plant. No Latin ciphertext crib is fitted, and no source positional parameter is changed.
+
+| Matrix / Latin objective | Training-selected state | Original heldout mean log ratio / rune | Heldout IoC | Source-correct native-GP plant heldout score |
+| --- | --- | ---: | ---: | ---: |
+| Red16 Latin unigram | [2,26,26,12] | **−1.383865** | 0.035305 | +0.526902 |
+| Printed p15 Latin unigram | [15,10,28,5] | **−1.323108** | 0.035313 | +0.526902 |
+| Red16 Latin bigram | [11,1,28,0] | **−2.855965** | 0.035306 | +1.386850 |
+| Printed p15 Latin bigram | [6,12,10,26] | **−2.972565** | 0.035259 | +1.386850 |
+
+The unmodified full enumeration places the correct hidden key first among **707,281** states for **all four** Latin native-source cipher controls, reconstructing and exactly re-encrypting **12,956/12,956** runes. The 2,400 independent Latin heldout runes are recycled to fill the original 12,956-symbol layout; this is a *synthetic key-recovery positive*, so the repeated plaintext itself does not create independent evidence for Cicada intent. The original source remains near uniform and no original Latin is recovered. The independent source-register check is a **finite two-language negative** for the declared two-matrix cipher architecture, and no stronger assertion about arbitrarily encoded non-prose is implied.
+
+The current workflow additionally executes `GP_REGISTER=latin node sims/source_4d_fourier_fullkey_inverse.cjs`. [Completed original-and-Latin-source CI run 42820784243](https://github.com/FlareZ123/liber-primus/actions/runs/42820784243).
+
 ## Reproduce and next decision
 
 - [Exact CommonJS full-state Fourier engine](../sims/source_4d_fourier_fullkey_inverse.cjs): both matrices, unconditional all-key enumeration, exact direct-score comparisons, heldout original inverses, native GP blind-key positives and exact whole-book forward re-encryption.
 - [Dispatch-only CI](../.github/workflows/source-4d-fourier-fullkey-manual.yml), [successful full unigram run 42817630661](https://github.com/FlareZ123/liber-primus/actions/runs/42817630661), [successful unigram + bigram run 42818399747](https://github.com/FlareZ123/liber-primus/actions/runs/42818399747). The latter supersedes the former for the current source code.
 
-The source-locked constant-matrix four-state/transparent-EA cipher can now be rejected as a *recovery path using the supplied source-native GP model* for either original clue matrix, rather than merely being tested against a handful of fitted cribs. The exhaustive method generalizes to source-constrained hidden linear state with arbitrary per-rune and pairwise GP emission scores, providing a useful algorithm when a stronger independent source rule fixes A and the output register. Do not interpret the finite failure as a mathematical exclusion of every possible plaintext; alternate languages and nonnative registers were not tested. Further search with these exact A and output assumptions is low-value unless new source evidence modifies the state or observation model.
+The source-locked constant-matrix four-state/transparent-EA cipher can now be rejected as a *recovery path using the supplied source-native English and independent Latin GP models* for either original clue matrix, rather than merely being tested against a handful of fitted cribs. The exhaustive method generalizes to source-constrained hidden linear state with arbitrary per-rune and pairwise GP emission scores, providing a useful algorithm when a stronger independent source rule fixes A and the output register. Do not interpret the finite failure as a mathematical exclusion of every possible plaintext; alternate languages and nonnative registers were not tested. Further search with these exact A and output assumptions is low-value unless new source evidence modifies the state or observation model.
