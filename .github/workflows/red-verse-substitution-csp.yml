@@ -1,0 +1,30 @@
+name: Red-highlight substitution CSP inversion
+on:
+  workflow_dispatch:
+    inputs:
+      null_replicates:
+        description: 'Matched histogram/no-doublet null manuscripts'
+        required: false
+        default: '12'
+      beam_width:
+        description: 'Maximum candidate substitution maps retained per word'
+        required: false
+        default: '900'
+
+permissions:
+  contents: read
+
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NULL_REPLICATES: ${{ inputs.null_replicates }}
+      BEAM_WIDTH: ${{ inputs.beam_width }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Invert highlighted runes against complete-word lexicon
+        run: node sims/red_verse_substitution_csp.cjs
