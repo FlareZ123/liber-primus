@@ -1,0 +1,14 @@
+name: Agent41 red32 source AES ChaCha original inverse
+on:
+  workflow_dispatch:
+jobs:
+  verify-source-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original ciphertext and source-control inversion
+        run: node sims/red32_aes_chacha_original_inverse.cjs
