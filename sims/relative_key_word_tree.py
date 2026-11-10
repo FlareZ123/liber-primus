@@ -102,7 +102,7 @@ def hamming_message(source, scores, requested):
     return minimum, witness
 
 
-def invert(a, b, words, scale=4, shift=0):
+def invert(a, b, words, scale=4, shift=0, reverse_a=False, reverse_b=False):
     """Exact global minimum edits, plus a witness plaintext word for each vertex."""
     count = min(len(a['xs']), len(b['xs']))
     parts_a = segments(a, count)
@@ -112,7 +112,13 @@ def invert(a, b, words, scale=4, shift=0):
     by_length = defaultdict(list)
     for word in words:
         by_length[len(word)].append(word)
-    possibilities = [domain(p, by_length) for p in parts]
+    by_length_rev = defaultdict(list)
+    for n, entries in by_length.items():
+        by_length_rev[n] = [w[::-1] for w in entries]
+    possibilities = [
+        domain(part, by_length_rev if (reverse_a if i < b_begin else reverse_b) else by_length)
+        for i, part in enumerate(parts)
+    ]
     a_data = np.asarray(a['xs'][:count], dtype=np.int16)
     b_data = np.array([b['xs'][(t + shift) % len(b['xs'])]
                        for t in range(count)], dtype=np.int16)
@@ -193,6 +199,7 @@ def invert(a, b, words, scale=4, shift=0):
             '0123456789abcdefghijklmnopqrs'[c] for c in row))
     violated = np.flatnonzero((plaintext_a - plaintext_b - delta) % MOD != 0)
     return {'page_pair': [a['page'], b['page']], 'scale': scale, 'shift': shift,
+            'reverse_a': reverse_a, 'reverse_b': reverse_b,
             'runes': count, 'minimum_exceptions': len(violated),
             'exception_offsets': violated.tolist(),
             'component_count': len(parts) - len(edges),
@@ -206,6 +213,8 @@ def main():
     parser.add_argument('--pair', type=int, nargs=2, default=[28,42])
     parser.add_argument('--scales', type=int, nargs='+', default=[1,4,7,22])
     parser.add_argument('--all-scales', action='store_true')
+    parser.add_argument('--orientations', action='store_true',
+                        help='Test all four fixed per-word reading directions')
     parser.add_argument('--shifts', type=int, nargs='+', default=[0])
     args = parser.parse_args()
     words, _ = load_lexicon()
@@ -213,12 +222,15 @@ def main():
     a, b = [pages[p] for p in args.pair]
     scales = range(1, MOD) if args.all_scales else args.scales
     results = []
+    orientations = [(False, False), (False, True), (True, False), (True, True)] \
+        if args.orientations else [(False, False)]
     for scale in scales:
         for shift in args.shifts:
-            result = invert(a, b, words, scale, shift)
-            results.append({k:v for k,v in result.items()
-                            if k not in ('witness_page_a','witness_page_b')})
-            print(json.dumps(results[-1]), flush=True)
+            for ra, rb in orientations:
+                result = invert(a, b, words, scale, shift, ra, rb)
+                results.append({k:v for k,v in result.items()
+                                if k not in ('witness_page_a','witness_page_b')})
+                print(json.dumps(results[-1]), flush=True)
     print('SUMMARY ' + json.dumps({
         'lexicon_gp_words':len(words), 'samples':len(results),
         'lowest_exception_count':min(x['minimum_exceptions'] for x in results),
