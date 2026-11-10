@@ -1,0 +1,19 @@
+name: Word self-key hypothesis
+on:
+  workflow_dispatch:
+    inputs:
+      trials:
+        description: "Page-rotation null trials"
+        required: false
+        default: "128"
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Scan prime-sum, index-sum and anchor self-key models
+        run: node sims/word_selfkey_scan.cjs --trials ${{ inputs.trials }}
