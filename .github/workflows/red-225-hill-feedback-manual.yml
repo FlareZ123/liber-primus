@@ -1,0 +1,16 @@
+name: Red 225 Hill / feedback inverse (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-constrained original and exact planted inverse
+        run: node sims/red_225_hill_feedback_inverse.cjs
