@@ -28,17 +28,19 @@ function independentEmission(observed,previous){
  * plaintext) / P(outputs | independent iid keys), conditioned on
  * both observed word boundary masks.
  */
-function score(A,B,T,prior){
+function score(A,B,T,prior,shareProbability=1){
+  assert.ok(shareProbability>=0&&shareProbability<=1);
   const n=Math.min(A.xs.length,B.xs.length);
   let state=new Float64Array(M*M),temp=new Float64Array(M*M);
   let next=new Float64Array(M*M),logNumerator=0,logIndependent=0;
   for(let t=0;t<n;t++){
     const prevA=t?A.xs[t-1]:-1,prevB=t?B.xs[t-1]:-1;
     const opts=channels(A.xs[t],B.xs[t],prevA,prevB);
-    const w=new Float64Array(M);
-    for(const x of opts)w[x.d]=x.weight/M;
-    logIndependent+=Math.log(independentEmission(A.xs[t],prevA))+
-      Math.log(independentEmission(B.xs[t],prevB));
+    const independent=independentEmission(A.xs[t],prevA)*
+      independentEmission(B.xs[t],prevB);
+    const w=new Float64Array(M).fill((1-shareProbability)*independent);
+    for(const x of opts)w[x.d]+=shareProbability*x.weight/M;
+    logIndependent+=Math.log(independent);
     let z=0;
     if(t===0){
       for(let p=0;p<M;p++)for(let q=0;q<M;q++){
@@ -124,6 +126,20 @@ function study(trials=50){
   const A=base.lp2Page(28),B=base.lp2Page(42),n=A.xs.length;
   const prior=singleLogZ(A,T,n)+singleLogZ(B,T,n);
   const actual=score(A,B,T,prior),random=rng(2026111087);
+  assert.ok(Math.abs(score(A,B,T,prior,0))<1e-8,
+    'Independent-key mixture endpoint must have zero log Bayes factor');
+  const half=134;
+  const shortA={...A,xs:A.xs.slice(0,half)};
+  const shortB={...B,xs:B.xs.slice(0,half)};
+  const shortPrior=singleLogZ(A,T,half)+singleLogZ(B,T,half);
+  const mixture=Array.from({length:21},(_,i)=>{
+    const fraction=i/20;
+    const first=score(shortA,shortB,T,shortPrior,fraction);
+    const full=score(A,B,T,prior,fraction);
+    return {fraction,first,heldout:full-first,full};
+  });
+  const selected=mixture.slice().sort((x,y)=>y.first-x.first)[0];
+  const optimalAll=mixture.slice().sort((x,y)=>y.full-x.full)[0];
   const positive=[],negative=[];
   for(let i=0;i<trials;i++){
     const a=matched(A,heldout,random),b=matched(B,heldout,random);
@@ -147,7 +163,8 @@ function study(trials=50){
     model:'shared uniform per-position key plus 0.81 adjacent-repeat output rewrite, GP-bigram source',
     method:'841-state exact forward marginal, no Viterbi, exact printed word starts/ends',
     n,trainingWords:training.length,trials,
-    originalLLR:actual,sourceMatchedSharedKey:summary(positive),
+    originalLLR:actual,mixture:{trainingLength:half,selected,optimalAll,
+      grid:mixture},sourceMatchedSharedKey:summary(positive),
     sourceMatchedIndependentKey:summary(negative),
     caveat:'Tests precisely this noise channel, page synchronization, source register and independent key-symbol prior. It neither recovers plaintext nor excludes other nonuniform/keyed schedules.'
   };
