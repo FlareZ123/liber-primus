@@ -203,6 +203,7 @@ def main():
     data = json.loads((SOURCE / "lp2-corpus.json").read_text(encoding="utf8"))
     raw = (SOURCE / "lp2-transcription.txt").read_text(encoding="utf8")
     transcribed = lines_from_transcription(raw)
+    transcript_segments = raw.split("%")[:55]
     assert len(data["pages"]) == 58
     rows = []
     labels43 = data["pages"][43]["indices"]
@@ -242,7 +243,17 @@ def main():
             score = similarity(crop_a, crop_b)
             if page == 43:
                 p43_doublet_used.update((at, at + 1))
+            segment = transcript_segments[page - int(page > 50)]
+            rune_positions = [i for i, char in enumerate(segment) if char in RUNES]
+            between = segment[rune_positions[at] + 1:rune_positions[at + 1]]
+            word_boundary = any(char in "-.&$§" for char in between)
+            line_boundary = any(char in "/\r\n" for char in between)
+            category = ("crossWordCrossLine" if word_boundary and line_boundary
+                        else "crossWordSameLine" if word_boundary
+                        else "sameWordCrossLine" if line_boundary
+                        else "sameWordSameLine")
             rows.append({
+                "boundary_category": category,
                 "page": page, "jpeg": f"{page+17:02d}.jpg",
                 "offset": at, "rune_index": indices[at],
                 "rune": data["runes"][indices[at]],
@@ -269,6 +280,14 @@ def main():
                 data["pages"][p]["indices"],
                 data["pages"][p]["indices"][1:]))
     }
+    counts = {name: sum(r["boundary_category"] == name for r in rows)
+              for name in ("sameWordSameLine", "sameWordCrossLine",
+                           "crossWordSameLine", "crossWordCrossLine")}
+    assert counts == {"sameWordSameLine": 60, "sameWordCrossLine": 3,
+                      "crossWordSameLine": 22, "crossWordCrossLine": 1}
+    primary = [r["jaccard_shift1"] for r in rows
+               if r["boundary_category"] == "sameWordSameLine"]
+    assert all(value >= .9 for value in primary)
     values = [r["jaccard_shift1"] for r in rows]
     outlier = [r for r in rows if r["jaccard_shift1"] < .9]
     assert len(outlier) == 1 and (outlier[0]["page"],outlier[0]["offset"]) == (34,134)
@@ -279,6 +298,11 @@ def main():
         "method": "source-indexed original-JPEG raster glyph morphology; black threshold 110; +/-1px maximum Jaccard alignment",
         "scope": "56 unsolved physical LP2 pages, 55 rune-bearing; within-page adjacent equals only",
         "total_pairs": len(rows),
+        "boundary_cohorts": counts,
+        "true_adjacent_same_word_same_line": counts["sameWordSameLine"],
+        "primary_true_adjacent_iou_min": min(primary),
+        "primary_true_adjacent_iou_median": float(np.median(primary)),
+        "primary_true_adjacent_exact": sum(v == 1 for v in primary),
         "sampled_pages": len({r["page"] for r in rows}),
         "pairs_at_or_above_0.9": sum(s >= .9 for s in values),
         "perfect_jaccard": sum(s == 1 for s in values),
