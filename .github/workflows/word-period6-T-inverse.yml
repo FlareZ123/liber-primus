@@ -1,4 +1,4 @@
-name: Unknown six-rune word-local T-rewrite inverse
+name: Exact wordwise pad inverses (period-six and Fibonacci)
 
 on:
   workflow_dispatch:
@@ -20,8 +20,11 @@ jobs:
         run: |
           set -o pipefail
           node sims/word_period6_exact_T_inverse.cjs | tee word-period6-inverse.json
+          node sims/word_fibonacci_exact_inverse.cjs | tee word-fibonacci-inverse.json
       - uses: actions/upload-artifact@v4
         with:
-          name: word-period6-inverse
+          name: wordwise-exact-inverses
           retention-days: 90
-          path: word-period6-inverse.json
+          path: |
+            word-period6-inverse.json
+            word-fibonacci-inverse.json
