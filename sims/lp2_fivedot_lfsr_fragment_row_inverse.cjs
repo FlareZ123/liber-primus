@@ -198,7 +198,7 @@ const pageBounds=[...pages.map(p=>{
   let count=0;for(const x of pages){if(x===p)break;count+=x.indices.length}
   return count;
 }),C.length];
-assert.equal(pageBounds.length,56);
+assert.equal(pageBounds.length,57);
 const clocks={continuous:[0,C.length],page:pageBounds,fragment:boundaries};
 const rowWords=reverseColumns=>deBruijn.flatMap(i=>reverseColumns?
   grid.byte_rows[i].slice().reverse():grid.byte_rows[i].slice());
