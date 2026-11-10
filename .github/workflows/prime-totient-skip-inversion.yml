@@ -1,0 +1,16 @@
+name: Prime-totient collision-skipping inversion
+
+on:
+  workflow_dispatch:
+
+jobs:
+  prime-totient-attack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Search unknown LP2 prime offsets with collision skips
+        run: node sims/prime_totient_collision_probe.cjs
