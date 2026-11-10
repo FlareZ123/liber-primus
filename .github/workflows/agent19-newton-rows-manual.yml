@@ -11,3 +11,5 @@ jobs:
           node-version: '22'
       - name: Original LP2 and source-native inverse control
         run: node sims/agent19_newton_rows_source_key_sft.cjs
+      - name: Two red triads and their source-fixed 36-page transport
+        run: node sims/agent19_red_triad_gap36_transport_sft.cjs
