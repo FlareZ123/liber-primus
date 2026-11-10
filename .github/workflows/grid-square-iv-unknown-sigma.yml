@@ -1,0 +1,14 @@
+name: LP2 clue-derived IV with hidden alphabet (manual)
+on:
+  workflow_dispatch:
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test Fibonacci square IVs and 256-bit grid keys against LP2
+        run: node sims/grid_square_iv_unknown_sigma.cjs
