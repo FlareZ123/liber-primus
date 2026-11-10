@@ -1,0 +1,13 @@
+name: LP2 RC4 source-column hidden-keyskip inversion
+
+on:
+  workflow_dispatch:
+
+jobs:
+  inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Invert RC4 numeric-grid keys under exact collision-only key rerolls
+        run: python3 sims/grid_rc4_keyskip_inversion.py
