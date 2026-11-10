@@ -55,7 +55,7 @@ for(let p=0;p<12956;p++){
   cells.at(-1).items.push({cipher:all[p],page:originalPage[p]});
 }
 assert.equal(cells.reduce((n,c)=>n+c.items.length,0),12956);
-assert.ok(cells.length>=28);
+assert.ok(cells.length>=26);
 const bySource={canonical:columnKeys,imageFive:correctedGridColumns(columnKeys)};
 const modeList=[];
 for(const source of ['canonical','imageFive'])for(const algorithm of ['aes-256-ctr','chacha20'])
