@@ -123,6 +123,91 @@ function positiveControl(bytes) {
     bestErrors: result.best.errors};
 }
 
+/**
+ * Precompute exact repeated-byte constraints for all 4,096 alignments.
+ * Each group lists rune positions whose corresponding grid byte is equal.
+ * @param {number[]} bytes
+ */
+function constraintGroups(bytes) {
+  const models = [];
+  for (const order of readingOrders(bytes)) {
+    for (const glyphDirection of ['forward', 'reverse']) {
+      for (let gap = 0; gap < SIZE; gap++) {
+        const group = new Map();
+        for (let i = 0; i < SIZE - 1; i++) {
+          const b = order.values[i + (i >= gap ? 1 : 0)];
+          if (!group.has(b)) group.set(b, []);
+          group.get(b).push(glyphDirection === 'forward' ? i : 254 - i);
+        }
+        models.push({collisions: 255 - group.size,
+          repeated: [...group.values()].filter(v => v.length > 1)});
+      }
+    }
+  }
+  assert.equal(models.length, 4096);
+  return models;
+}
+
+/**
+ * Exact lookup optimum, computed from repeated-input groups alone.
+ * @param {number[]} glyphs
+ * @param {{collisions:number,repeated:number[][]}[]} models
+ */
+function groupedBestErrors(glyphs, models) {
+  let minimum = 255;
+  for (const model of models) {
+    let agreements = 0;
+    for (const positions of model.repeated) {
+      let largest = 1;
+      for (const i of positions) {
+        let same = 0;
+        for (const j of positions)
+          if (glyphs[i] === glyphs[j]) same++;
+        if (same > largest) largest = same;
+      }
+      agreements += largest - 1;
+    }
+    minimum = Math.min(minimum, model.collisions - agreements);
+  }
+  return minimum;
+}
+
+/**
+ * Familywise conditional null: resample rune positions but retain the
+ * original 255-rune multiset and refit all 4,096 source alignments.
+ * @param {number[]} glyphs
+ * @param {number[]} bytes
+ * @param {number} [trials=500]
+ */
+function shuffledControl(glyphs, bytes, trials = 500) {
+  const models = constraintGroups(bytes);
+  const observed = groupedBestErrors(glyphs, models);
+  let seed = 0x533055;
+  function next() {
+    seed ^= seed << 13;
+    seed ^= seed >>> 17;
+    seed ^= seed << 5;
+    return seed >>> 0;
+  }
+  let exceed = 0, sum = 0, lowest = 255;
+  for (let trial = 0; trial < trials; trial++) {
+    const shuffled = glyphs.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = next() % (i + 1);
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const current = groupedBestErrors(shuffled, models);
+    if (current <= observed) exceed++;
+    if (current < lowest) lowest = current;
+    sum += current;
+  }
+  return {observed, trials, atLeastAsCompatible: exceed,
+    addOneLowerTail: (exceed + 1) / (trials + 1),
+    nullMean: sum / trials, lowestNullError: lowest,
+    seed: '0x533055',
+    conditioning: 'exact original 255-rune histogram and full 4096-model refit'};
+}
+
 function main() {
   const p53 = corpus.pages.find(p => p.page === 53);
   const p55 = corpus.pages.find(p => p.page === 55);
@@ -132,15 +217,19 @@ function main() {
   const glyphs = [...p53.indices, ...p55.indices];
   const original = search(glyphs, table.bytes);
   const plant = positiveControl(table.bytes);
+  const nullControl = shuffledControl(glyphs, table.bytes);
   assert.equal(original.models, 4096);
   assert.equal(original.best.errors, 83);
   assert.equal(original.best.repeatedByteConstraints, 94);
+  assert.equal(nullControl.observed, original.best.errors);
+  assert.equal(nullControl.atLeastAsCompatible, 110);
   return {hypothesis: 'one skipped 256-byte grid cell and a single arbitrary fixed byte-to-rune map',
-    original, plant,
+    original, plant, nullControl,
     interpretation: 'Exact finite contradiction for the named direct encoding, not an LP2 decryption or a general exclusion of keyed stateful transforms.'};
 }
 
 if (require.main === module)
   process.stdout.write(JSON.stringify(main(), null, 2) + '\n');
 
-module.exports = {readingOrders, exactOneGap, search, positiveControl, main};
+module.exports = {readingOrders, exactOneGap, search, positiveControl,
+  constraintGroups, groupedBestErrors, shuffledControl, main};
