@@ -10,11 +10,24 @@ on:
         options:
           - legacy
           - allalphabet
+          - qr36
 
 permissions:
   contents: read
 
 jobs:
+  qr36:
+    if: inputs.mode == 'qr36'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original QR36 source checkerboard and all-secret GF2 contradiction
+        run: node sims/lp2_161_checkerboard_qr36_gate.cjs
+
   allalphabet:
     if: inputs.mode == 'allalphabet'
     runs-on: ubuntu-latest
@@ -27,7 +40,7 @@ jobs:
       - name: Exact source-square all-secret-alphabet capacity and English plant
         run: node sims/bookend_dual_square_allalphabet_capacity.cjs
   simulate:
-    if: inputs.mode != 'allalphabet'
+    if: inputs.mode == 'legacy'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
