@@ -158,6 +158,30 @@ function scoreNeighbors(solution) {
   });
 }
 
+/**
+ * Exact expected number of matching English-GP dictionary pairs when the two
+ * ciphertext anchors are independent uniform GP strings. Applicable to
+ * periods >=12, where no key position repeats within either individual word.
+ * Its purpose is to calibrate the number of accidental dictionary fits.
+ */
+function independentUniformExpectedPairs(period) {
+  assert.ok(period>=12);
+  const firstLength = original.left.length;
+  const secondLength = original.right.length;
+  const firstSlots = new Set(Array.from({length:firstLength},(_,i)=>i));
+  const possibleWords = (byLength.get(firstLength)||[]).length *
+    (byLength.get(secondLength)||[]).length;
+  let expectation = 0;
+  for(let shift=0;shift<period;shift++) {
+    let collisions=0;
+    for(let j=0;j<secondLength;j++) {
+      if(firstSlots.has((shift+j)%period)) collisions++;
+    }
+    expectation += possibleWords / Math.pow(N,collisions);
+  }
+  return expectation;
+}
+
 /** Exact planted-key recovery in both short-period and period-19 regimes. */
 function plantedPositive(period,carrier,shift) {
   const first = (byLength.get(11) || []).find(w=>w.english==="spectacular");
@@ -222,7 +246,11 @@ function run() {
       (byLength.get(11)||[]).length,(byLength.get(12)||[]).length
     ],
     hypothesis:"one shared periodic mod29 additive key, arbitrary phase and either carrier",
-    exactCounts:summary,firstCompatiblePeriod:firstPeriod,
+    exactCounts:summary,
+    independentUniformExpectedPairs:[18,19,20].map(period=>({
+      period,perCarrier:independentUniformExpectedPairs(period)
+    })),
+    firstCompatiblePeriod:firstPeriod,
     candidatePairsAtFirstPeriod:solutions,
     independentAllPhaseHoldoutPages:[0,8,33],
     plantedPositive:plants,
