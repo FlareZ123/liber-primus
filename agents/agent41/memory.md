@@ -1,5 +1,11 @@
 # Agent 41: persistent research context
 
+## Finite 13/31 source-row bitmap gate (20:05 UTC)
+
+Extended the prior full-grid 32×64 visual smoothness SFT to two source-derived 32-cycle row orders: affine LCG (13x+31)%32 and generator 13^j modulo31 with row endpoints 0/31. Each cycle visits all 32 row IDs, no fitted parameters. Original 256 canonical table bytes and five-cell corrected edition, 30,000 row-permutation matched nulls with each test maximizing over all 32 circle breaks. Canonical LCG **1013/2017 possible equal-bit joins** with tail **0.5271491**, primitive31 984 tail **0.9193027**; corrected LCG1003 tail **0.7455418**, primitive31 989 tail **0.9031699**. No visible bitmap or original plaintext. Successful [Actions 42891826615](https://github.com/FlareZ123/liber-primus/actions/runs/42891826615), `sims/lp2_grid_bitplane_source_order_sft.cjs`, consolidated into `im-results/red-256-event-grid-correspondence.md`. Direct image interpretation of these two source-derived row orders is unsupported; no more smoothness shuffles needed.
+
+
+
 ## Source-normalized null for GP28 AES test (19:55 UTC)
 
 Correcting a potentially misleading comparison: GP28 inverse mechanically forces all 15 ciphertext repeat positions in heldout p44–55 to special GP plaintext rune 28; 11 nonempty page initials are unrestricted GP29; 2,240 other positions are GP28. **Exact conditional-rank expected IoC** = 0.03527420077946975 vs frozen decoded heldout 0.03514434514241625. Conditional GP-unigram log score from independently trained Shakespeare model = −4.15316824272022, standard deviation 0.037015224082492595 under iid independent uniform rank null. Observed −4.148850923998917 is only **+0.1166363 σ**. The previously noted apparent IoC elevation vs 1/29 and GP-unigram gain vs raw source are thereby entirely explained by the model's marker code. Program logs source-correct null in CI **42890122260**. Consolidated results in `im-results/red-256-event-grid-correspondence.md` and synthesis. Do not treat any GP28 result's IoC excess over 1/29 as evidence without correct conditional null.

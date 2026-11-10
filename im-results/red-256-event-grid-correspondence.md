@@ -26,6 +26,21 @@ The highest original *training* GP-unigram score is obtained by corrected-base59
 
 **Decision:** under this exact 640-model AES-128/GP28 emission family, neither the decorated border nor table selects authentic plaintext. The only demonstrated full recovery is the independently encrypted plant. This does not exclude other genuinely source-specified byte transports, longer-state ciphers, external keys or other meanings of the border. Further arbitrary AES key-layout scans without a new printed instruction would retread this negative family.
 
+### Two additional 13/31-guided row orders: direct 32×64 binary-image gate
+
+The five-bit source interpretation also supplies two **different, independently named** 32-row orderings of the 256-byte numerical table. The recurrence `x → (13x + 31) mod 32` starts at zero and visits all 32 row indices because its multiplier is 1 mod4 and increment is odd. A separate multiplicative ordering uses `13^j mod31` for all 30 nonzero residues, with row indices 0 and 31 as visible sentinel endpoints. Both are explicit permutations requiring no plaintext-fitted parameters; neither is printed as an original instruction. Reading each eight-byte row as a **64-bit black/white raster line** is an additional independently declared hypothesis.
+
+The [existing 32×64 visual-smoothness SFT](../sims/lp2_grid_bitplane_source_order_sft.cjs) now scores both number-derived orders beside the previously tested printed and de Bruijn orders. It counts equal-position bits across 31 of 32 circular row boundaries, maximizing over the 32 choices of omitted join. Every one of **30,000 seeded row-shuffle controls** receives exactly the same best-break advantage and table-byte inventory; a planted visually smooth raster yields best31 **1,953**.
+
+| Original table interpretation | Traversal | Best 31-join agreement | Row-shuffle controls at least as good | Add-one upper tail |
+| --- | --- | ---: | ---: | ---: |
+| Canonical base-60 256 bytes | `x → (13x+31) mod32` | **1,013** | 15,814 / 30,000 | **0.52715** |
+| Canonical base-60 256 bytes | multiplicative 13 mod31 plus 0/31 | **984** | 27,579 / 30,000 | **0.91930** |
+| Five-cell image-corrected base-60 bytes | `x → (13x+31) mod32` | **1,003** | 22,366 / 30,000 | **0.74554** |
+| Five-cell image-corrected base-60 bytes | multiplicative 13 mod31 plus 0/31 | **989** | 27,095 / 30,000 | **0.90317** |
+
+Null mean best31 is **1,013.92497** (canonical) or **1,016.56180** (five-cell corrected). Neither new clue-derived ordering produces a smoother 32×64 unencrypted bitmap than chance. Original printed-row and 31-state de Bruijn orders were tested in the same earlier SFT and are not new discoveries. The test is narrow: it does not exclude encrypted, compressed, transposed within-row, color or non-bitmap uses of the bytes, and recovers no hidden payload. [Successful manual Actions 42891826615](https://github.com/FlareZ123/liber-primus/actions/runs/42891826615).
+
 ### Five-dot left-shift register, 32-row de Bruijn traversal and black-marker phase anchor
 
 **Exact combinatorial consequence of a visual hypothesis; no historical cipher selector or new plaintext recovered.** The original numerical-table JPEGs use a repeated five-dot tree ornament. The left filled-mask is `01101₂=13`, the right filled-mask `11111₂=31`. Taking the **two hollow positions** in the left drawing as active feedback taps gives `10010₂=18`; the all-solid right tree supplies seed 31. The explicit five-bit Fibonacci recurrence
