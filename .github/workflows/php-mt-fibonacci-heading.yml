@@ -1,8 +1,18 @@
 name: PHP MT19937 Fibonacci heading crib
 on:
   workflow_dispatch:
+    inputs:
+      aggregate_run_id:
+        description: Existing exhaustive run to aggregate, or 0 for full sweep
+        required: true
+        type: string
+        default: '0'
+permissions:
+  contents: read
+  actions: read
 jobs:
   smoke:
+    if: inputs.aggregate_run_id == '0'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -13,6 +23,7 @@ jobs:
           /tmp/fib-heading 0 2000
   exhaustive:
     needs: smoke
+    if: inputs.aggregate_run_id == '0'
     runs-on: ubuntu-latest
     timeout-minutes: 50
     strategy:
@@ -33,3 +44,27 @@ jobs:
           name: fib-heading-${{ matrix.shard }}
           path: fib-heading-${{ matrix.shard }}.log
           retention-days: 10
+  aggregate:
+    if: inputs.aggregate_run_id != '0'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check aggregator planted parser
+        run: node sims/aggregate_php_mt_fibonacci.cjs --selftest
+      - name: Fetch original 128 immutable shard artifacts and require exact 2^32 coverage
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN: ${{ inputs.aggregate_run_id }}
+        run: |
+          set -o pipefail
+          gh run download "$SOURCE_RUN" --repo "$GITHUB_REPOSITORY" --dir fibonacci-artifacts
+          node sims/aggregate_php_mt_fibonacci.cjs fibonacci-artifacts | tee fibonacci-heading-aggregate.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fibonacci-heading-verified-coverage
+          retention-days: 90
+          path: fibonacci-heading-aggregate.json
