@@ -120,6 +120,85 @@ function exactColumnRanking(d, log, transform) {
   };
 }
 
+/**
+ * Source-free reference difference marginal. The original p28/p42
+ * alignment and scale four were selected by this model in earlier work.
+ * This test checks whether PATIENCE applied to one stream preserves it.
+ * @param {number[]} training
+ */
+function differenceMarginalLogs(training) {
+  const h = new Float64Array(MOD);
+  for(const x of training) h[x]++;
+  const q=Float64Array.from(h,v=>(v+1)/(training.length+MOD));
+  const out=new Float64Array(MOD);
+  for(let d=0;d<MOD;d++) {
+    let prob=0;
+    for(let x=0;x<MOD;x++)prob+=q[x]*q[mod(x-d)];
+    out[d]=Math.log(MOD*prob);
+  }
+  return out;
+}
+
+/** @param {ArrayLike<number>} d @param {Float64Array} marginal */
+function marginalScore(d,marginal) {
+  let score=0;
+  for(let t=0;t<d.length;t++)score+=marginal[d[t]];
+  return score;
+}
+
+/** @param {ArrayLike<number>} a @param {ArrayLike<number>} b */
+function diff(a,b){
+  const d=new Uint8Array(LENGTH);
+  for(let t=0;t<LENGTH;t++)d[t]=mod(22*(a[t]-b[t]));
+  return d;
+}
+
+/**
+ * Test a source-fixed 8-column permutation to ONLY ONE ciphertext page,
+ * prior to cancellation of a hypothetical shared additive pad.
+ * Both paths retain all 256 original observed GP glyphs.
+ * @param {number[]} a
+ * @param {number[]} b
+ * @param {Float64Array} bigram
+ * @param {Float64Array} marginal
+ * @param {'A'|'B'} side
+ */
+function onePageRanking(a,b,bigram,marginal,side){
+  const perm=[0,1,2,3,4,5,6,7], rows=[];
+  function walk(i){
+    if(i===WIDTH){
+      const x=side==='A'?reorderRows(a,perm):a;
+      const y=side==='B'?reorderRows(b,perm):b;
+      const d=diff(x,y);
+      const mono=marginalScore(d,marginal);
+      const transition=score(d,bigram);
+      rows.push({key:perm.join(''),mono,transition,joint:mono+transition});
+      return;
+    }
+    for(let j=i;j<WIDTH;j++){
+      [perm[i],perm[j]]=[perm[j],perm[i]];
+      walk(i+1);
+      [perm[i],perm[j]]=[perm[j],perm[i]];
+    }
+  }
+  walk(0);
+  const key=PATIENCE.join(''),reversed=new Array(WIDTH);
+  PATIENCE.forEach((v,i)=>{reversed[v]=i;});
+  const r={side};
+  for(const field of ['mono','transition','joint']){
+    rows.sort((x,y)=>y[field]-x[field]);
+    r[field]={
+      historicalKeyRank:rows.findIndex(v=>v.key===key)+1,
+      inverseKeyRank:rows.findIndex(v=>v.key===reversed.join(''))+1,
+      candidates:rows.length,
+      best:rows[0][field],
+      median:rows[20160][field],
+      historicalKeyScore:rows.find(v=>v.key===key)[field]
+    };
+  }
+  return r;
+}
+
 /** @param {number} seed */
 function randomGenerator(seed) {
   let state=seed>>>0;
@@ -132,6 +211,7 @@ function study() {
   assert.equal(train.length,174998);
   assert.equal(heldout.length,43802);
   const log=differenceTransitionLogs(train);
+  const marginal=differenceMarginalLogs(train);
   const a=corpus.pages.find(p=>p.page===28).indices;
   const b=corpus.pages.find(p=>p.page===42).indices;
   assert.equal(a.length,269);
@@ -187,6 +267,11 @@ function study() {
     sourceKey:PATIENCE, pair:[28,42], inputRunes:LENGTH,
     baselineScore:score(d,log), rowOrdering:rowRanking,
     columnOrdering:columnRanking, inverseColumnScore,
+    onePageBeforePadCancellation: {
+      rawMono:marginalScore(d,marginal), rawTransition:score(d,log),
+      onlyPage28:onePageRanking(a.slice(0,LENGTH),b.slice(0,LENGTH),log,marginal,'A'),
+      onlyPage42:onePageRanking(a.slice(0,LENGTH),b.slice(0,LENGTH),log,marginal,'B')
+    },
     synthetic:{
       trials:60, randomOrdersPerTrial:250,
       exactSourceInversePassed:60,
@@ -198,4 +283,4 @@ function study() {
   };
 }
 if(require.main===module) console.log(JSON.stringify(study(),null,2));
-module.exports={differenceTransitionLogs,reorderRows,scrambleRows,reorderColumns,score,exactColumnRanking,study};
+module.exports={differenceTransitionLogs,differenceMarginalLogs,reorderRows,scrambleRows,reorderColumns,score,exactColumnRanking,onePageRanking,study};
