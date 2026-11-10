@@ -96,6 +96,32 @@ function rankShifts(a,b,order) {
   return {zeroRank:scores.findIndex(x=>x.shift===0)+1,zero:scores.find(x=>x.shift===0),top:scores.slice(0,8),median:scores[Math.floor(scores.length/2)],tested:scores.length};
 }
 
+/** Conditional on the *exact observed difference histogram*, test whether
+ *  its rune order carries more continuous-prose evidence than shuffled order.
+ *  This removes any advantage from the already-selected factor-four monograms.
+ *  @param {number[]} a @param {number[]} b @param {number} seed
+ */
+function differenceOrderNull(a,b,seed) {
+  const original=differences(a,b,0),observed=marginal(original,3);
+  const random=rng(seed),ordered=[],trials=400;
+  let exceeding=0,sum=0,sq=0,best=-Infinity;
+  for(let trial=0;trial<trials;trial++) {
+    const shuffled=Uint8Array.from(original);
+    for(let i=shuffled.length-1;i>0;i--){
+      const j=Math.floor(random()*(i+1));
+      [shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];
+    }
+    const value=marginal(shuffled,3);
+    if(value>=observed)exceeding++;
+    sum+=value;sq+=value*value;
+    if(value>best)best=value;
+  }
+  const mean=sum/trials;
+  return {observed,trials,exceeding,addOneUpperTail:(exceeding+1)/(trials+1),
+    nullMean:mean,nullSD:Math.sqrt(Math.max(0,sq/trials-mean*mean)),
+    nullMaximum:best,source:'shuffle original scale-four difference labels only'};
+}
+
 /** @param {number} seed */
 function rng(seed) {let x=seed>>>0;return () => ((x=(Math.imul(1664525,x)+1013904223)>>>0)/4294967296);}
 function study() {
@@ -109,9 +135,12 @@ function study() {
   assert.equal(originalBigram.zeroRank,1);
   assert.equal(plantedBigram.zeroRank,1);
   const originalTrigram=rankShifts(a,b,3), plantedTrigram=rankShifts(ca,cb,3);
+  const originalDifferenceOrder=differenceOrderNull(a,b,0x428042);
+  const plantedDifferenceOrder=differenceOrderNull(ca,cb,0x330142);
   return {model:'continuous unspaced GP: scale-four shared-pad exact marginal',trainingRunes:train.length,
     heldoutRunes:test.length,originalBigram,plantedBigram,originalTrigram,plantedTrigram,
+    originalDifferenceOrder,plantedDifferenceOrder,
     note:'Pair and factor four are earlier postselected LP2 hypotheses; rotation ranks are within-study diagnostics. Neither a conditional rank nor a key-blind recipher proves plaintext.'};
 }
 if(require.main===module)console.log(JSON.stringify(study(),null,2));
-module.exports={probabilities,differences,marginal,rankShifts,study};
+module.exports={probabilities,differences,marginal,rankShifts,differenceOrderNull,study};
