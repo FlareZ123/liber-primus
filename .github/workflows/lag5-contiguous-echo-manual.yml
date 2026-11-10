@@ -25,3 +25,6 @@ jobs:
 
       - name: Published M1 and independent-copy M3 forward controls
         run: node sims/lag5_block_echo_forward_challenge.cjs 8000
+
+      - name: Conditioned lag-five and lag-six hit-pattern coupling
+        run: node sims/lag5_t6_joint_hitpatterns.cjs
