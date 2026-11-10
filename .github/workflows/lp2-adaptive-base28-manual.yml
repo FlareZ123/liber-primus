@@ -6,7 +6,7 @@ on:
         description: "Select existing binary probes or source-aligned 79/78 radix gate"
         required: true
         type: choice
-        options: [standard, sectionbytes, continuous, prime79, prime79prefix2, prime79cpsat, prime79trigram, prime79terminal, prime79gp, prime79binary, section78, markerbytes]
+        options: [standard, sectionbytes, pagezero, continuous, prime79, prime79prefix2, prime79cpsat, prime79trigram, prime79terminal, prime79gp, prime79binary, section78, markerbytes]
         default: standard
       cpsat_seconds:
         description: "Per-alignment CP-SAT timeout in seconds"
@@ -60,6 +60,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Test grid-source page AES and ChaCha against seven forced zero ranks
+        if: ${{ inputs.probe == 'pagezero' }}
+        run: node sims/page_zero_crib_grid_nonce_inverse.cjs
       - name: Prove all-secret per-page byte-capacity section contradiction
         if: ${{ inputs.probe == 'sectionbytes' }}
         run: node sims/page_byte_capacity_section_static_gate.cjs
