@@ -1,0 +1,74 @@
+name: Temporary OpenPuff 4.00 Windows UI probe
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: temporary-openpuff-v400-ui-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare output
+        shell: pwsh
+        run: New-Item -ItemType Directory -Force -Path probe-output | Out-Null
+
+      - name: Download and verify authentic OpenPuff 4.00
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $expected = "324e8c3d6f86c4a749a2e14b727560b97bfd0848b39ae3dec18227621c747ff7"
+          $urls = @(
+            "https://packetstormsecurity.com/files/download/114680/OpenPuffv400.zip",
+            "https://softradar.com/openpuff/download/4.0/"
+          )
+          $zip = Join-Path $env:RUNNER_TEMP "OpenPuffv400.zip"
+          $valid = $false
+          foreach ($url in $urls) {
+            try {
+              Write-Host "Trying $url"
+              Remove-Item $zip -Force -ErrorAction SilentlyContinue
+              Invoke-WebRequest -Uri $url -Headers @{ "User-Agent" = "Mozilla/5.0" } -OutFile $zip
+              $actual = (Get-FileHash $zip -Algorithm SHA256).Hash.ToLowerInvariant()
+              Write-Host "SHA256 $actual"
+              if ($actual -eq $expected) { $valid = $true; break }
+              Write-Host "Checksum mismatch; trying next mirror."
+            } catch {
+              Write-Host "Download failed: $($_.Exception.Message)"
+            }
+          }
+          if (-not $valid) { throw "Could not obtain a checksum-verified OpenPuff 4.00 archive." }
+          $extract = Join-Path $env:RUNNER_TEMP "OpenPuffv400"
+          Expand-Archive -LiteralPath $zip -DestinationPath $extract -Force
+          $exe = Get-ChildItem -Path $extract -Filter "OpenPuff.exe" -Recurse | Select-Object -First 1
+          if (-not $exe) { throw "OpenPuff.exe not found in verified archive." }
+          Write-Host "OpenPuff.exe: $($exe.FullName)"
+          Write-Host "File version: $($exe.VersionInfo.FileVersion)"
+          "OPENPUFF_EXE=$($exe.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "ARCHIVE_SHA256=$actual" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Install UI inspection dependency
+        shell: pwsh
+        run: python -m pip install --disable-pip-version-check pywinauto
+
+      - name: Inspect OpenPuff main and Unhide panels
+        shell: pwsh
+        run: python sims/openpuff_ui_probe.py --exe "$env:OPENPUFF_EXE" --out probe-output
+
+      - name: Upload probe evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: openpuff-v400-ui-probe
+          path: probe-output/
+          if-no-files-found: warn

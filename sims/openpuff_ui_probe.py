@@ -1,0 +1,110 @@
+import argparse
+import json
+import sys
+import time
+import traceback
+from pathlib import Path
+
+from pywinauto.application import Application
+
+
+def control_record(control):
+    try:
+        rect = control.rectangle()
+        rectangle = [rect.left, rect.top, rect.right, rect.bottom]
+    except Exception:
+        rectangle = None
+    def safe(method):
+        try:
+            return method()
+        except Exception:
+            return None
+    return {
+        "text": safe(control.window_text),
+        "class": safe(control.class_name),
+        "friendly_class": safe(control.friendly_class_name),
+        "control_id": safe(control.control_id),
+        "rectangle": rectangle,
+        "visible": safe(control.is_visible),
+        "enabled": safe(control.is_enabled),
+    }
+
+
+def snapshot(window, output_dir, label):
+    output_dir.mkdir(parents=True, exist_ok=True)
+    records = [control_record(c) for c in window.descendants()]
+    (output_dir / f"{label}-controls.json").write_text(
+        json.dumps(records, indent=2), encoding="utf-8"
+    )
+    try:
+        window.capture_as_image().save(output_dir / f"{label}.png")
+    except Exception as exc:
+        (output_dir / f"{label}-screenshot-error.txt").write_text(
+            repr(exc), encoding="utf-8"
+        )
+    return records
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--exe", required=True)
+    parser.add_argument("--out", default="probe-output")
+    args = parser.parse_args()
+
+    exe = Path(args.exe).resolve()
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    if not exe.is_file():
+        raise FileNotFoundError(exe)
+
+    (out / "binary-path.txt").write_text(str(exe), encoding="utf-8")
+    app = Application(backend="win32").start(str(exe), work_dir=str(exe.parent))
+    time.sleep(4)
+
+    windows = app.windows()
+    (out / "windows.json").write_text(
+        json.dumps([control_record(w) for w in windows], indent=2),
+        encoding="utf-8",
+    )
+    main_window = app.top_window()
+    main_window.set_focus()
+    main_controls = snapshot(main_window, out, "main")
+
+    candidates = [
+        c for c in main_window.descendants()
+        if "unhide" in (c.window_text() or "").lower()
+    ]
+    if not candidates:
+        raise RuntimeError(
+            "No control containing 'Unhide' was found; inspect main-controls.json"
+        )
+
+    candidates[0].click_input()
+    time.sleep(2)
+    unhide_window = app.top_window()
+    unhide_window.set_focus()
+    unhide_controls = snapshot(unhide_window, out, "unhide")
+
+    (out / "probe-summary.json").write_text(
+        json.dumps({
+            "exe": str(exe),
+            "main_control_count": len(main_controls),
+            "unhide_control_count": len(unhide_controls),
+            "unhide_window_title": unhide_window.window_text(),
+            "unhide_window_class": unhide_window.class_name(),
+        }, indent=2),
+        encoding="utf-8",
+    )
+    app.kill()
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception:
+        Path("probe-output").mkdir(exist_ok=True)
+        Path("probe-output/error.txt").write_text(
+            traceback.format_exc(), encoding="utf-8"
+        )
+        print(traceback.format_exc(), file=sys.stderr)
+        sys.exit(1)
