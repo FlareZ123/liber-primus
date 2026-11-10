@@ -3,8 +3,9 @@
 /**
  * Source-indexed, lossless physical-page/printed-line traversal challenge.
  *
- * A facing-page reading order is motivated by the manuscript's alternating
- * tree margins on physical pages 8–13. This script checks the entire original
+ * Two facing-page reading conventions are motivated by the manuscript's
+ * alternating tree margins on physical pages 8–14. The odd/even-facing
+ * pairing has ornamented inner margins on p9–10, p11–12 and p13–14. This script checks the entire original
  * unsolved LP2 source (including the runeless numeric page 50) and asks a
  * narrow question: is a simple line-by-line spread traversal compatible with
  * the low repeat rate across ordinary physical printed-line joins?
@@ -78,16 +79,23 @@ function parseSource() {
  * @param {PhysicalSource} source
  * @returns {number[]}
  */
-function spreadOrder(source) {
+function spreadOrder(source, parity = 0) {
+  assert.ok(parity === 0 || parity === 1);
   /** @type {number[]} */
   const order = [];
-  for (let p = 0; p <= 54; p += 2) {
+  if (parity === 1) {
+    for (const line of source.linesByPage.get(0)) order.push(...line);
+  }
+  for (let p = parity; p <= 54; p += 2) {
     const left = source.linesByPage.get(p) || [];
     const right = source.linesByPage.get(p + 1) || [];
     for (let k = 0; k < Math.max(left.length, right.length); k++) {
       if (left[k]) order.push(...left[k]);
       if (right[k]) order.push(...right[k]);
     }
+  }
+  if (parity === 1) {
+    for (const line of source.linesByPage.get(55)) order.push(...line);
   }
   return order;
 }
@@ -111,9 +119,10 @@ function invertOrder(order, size) {
 }
 
 /** @param {PhysicalSource} source @returns {number[][]} */
-function spreads(source) {
+function spreads(source, parity = 0) {
+  assert.ok(parity === 0 || parity === 1);
   const pairs = [];
-  for (let p = 0; p <= 54; p += 2) {
+  for (let p = parity; p <= 54; p += 2) {
     if (source.linesByPage.has(p) && source.linesByPage.has(p + 1)) {
       pairs.push([p, p + 1]);
     }
@@ -281,46 +290,51 @@ function matchedRightPageNull(source, pairs, glyphs, trials) {
 function main() {
   const source = parseSource();
   const originalGlyphs = source.coordinates.map(c => c.glyph);
-  const order = spreadOrder(source);
-  const inverse = invertOrder(order, source.coordinates.length);
-  assert.ok(order.every((id, j) => inverse[id] === j));
-  assert.equal(new Set(order).size, 12956);
-  const pairs = spreads(source);
   const ordinary = ordinaryLineWraps(source, originalGlyphs);
   assert.deepEqual(ordinary, {equal:4, joins:539});
-  const trees = [[8,9],[10,11],[12,13]];
-  const natural = transitions(source, pairs, originalGlyphs);
-  const illustrated = transitions(source, trees, originalGlyphs);
 
-  // Detector plant: construct a source-position indexed surrogate whose
-  // output glyph alternates along the *candidate* interleaved traversal.
-  // It must have no repeat at either type of traversed cross-page link.
-  const planted = Array(source.coordinates.length);
-  order.forEach((originalIndex, i) => {
-    planted[originalIndex] = i % 2 === 0 ? "ᚠ" : "ᚢ";
-  });
-  const plant = transitions(source, pairs, planted);
-  assert.equal(plant[0], 0);
-  assert.equal(plant[1], 0);
+  const conventions = {};
+  for (const parity of [0, 1]) {
+    const order = spreadOrder(source, parity);
+    const inverse = invertOrder(order, source.coordinates.length);
+    assert.ok(order.every((id, j) => inverse[id] === j));
+    assert.equal(new Set(order).size, 12956);
+    const pairs = spreads(source, parity);
+    const natural = transitions(source, pairs, originalGlyphs);
 
+    // Synthetic detector: known distinct alternating glyphs in the candidate
+    // interleaved order necessarily have zero equalities at every new link.
+    const planted = Array(source.coordinates.length);
+    order.forEach((originalIndex, i) => {
+      planted[originalIndex] = i % 2 === 0 ? "ᚠ" : "ᚢ";
+    });
+    const plant = transitions(source, pairs, planted);
+    assert.equal(plant[0], 0);
+    assert.equal(plant[1], 0);
+    const label = parity === 0 ? "evenOdd" : "oddEven";
+    conventions[label] = {
+      map:{permutationSize:order.length, exactRoundtrip:true,
+        firstOriginalOffsets:order.slice(0,16)},
+      pairs:pairs.length,
+      natural:{AB:{equal:natural[0],total:natural[2]},
+        BA:{equal:natural[1],total:natural[3]}},
+      planted:{AB:plant[0],BA:plant[1]},
+      eightOrientationScores:orientedFamily(source,pairs,originalGlyphs).modes,
+      conditionalNull:matchedRightPageNull(source,pairs,originalGlyphs,TRIALS)
+    };
+  }
+  const trees = [[9,10],[11,12],[13,14]];
+  const t = transitions(source,trees,originalGlyphs);
   const result = {source:{runes:source.coordinates.length,
-    runePages:source.linesByPage.size, printedLines:source.totalLines,
-    physicalGridPage:50}, map:{permutationSize:order.length,
-    firstOriginalOffsets:order.slice(0,16),
-    exactRoundtrip:order.every((id, i) => inverse[id] === i)},
-    ordinaryWraps:ordinary, facingSpreads:{pairs:pairs.length,
-    AB:{equal:natural[0], total:natural[2]},
-    BA:{equal:natural[1], total:natural[3]}},
-    visuallyMirroredTreePages:{pairs:trees,
-    AB:{equal:illustrated[0], total:illustrated[2]},
-    BA:{equal:illustrated[1], total:illustrated[3]}},
-    plant:{AB:plant[0],BA:plant[1]},
-    eightOrientationScores:orientedFamily(source,pairs,originalGlyphs).modes,
-    conditionalNull:matchedRightPageNull(source,pairs,originalGlyphs,TRIALS),
-    interpretation:"No support for one globally repeat-suppressed " +
-      "line-interleaved facing-spread ciphertext stream. This does not " +
-      "exclude arbitrary position-dependent or rekeyed ciphers."};
-  console.log(JSON.stringify(result, null, 2));
+    runePages:source.linesByPage.size,printedLines:source.totalLines,
+    physicalGridPage:50},ordinaryWraps:ordinary,
+    visuallyFacingTreePages:{pairs:trees,
+      AB:{equal:t[0],total:t[2]},BA:{equal:t[1],total:t[3]}},
+    conventions,interpretation:
+      "Neither candidate spread parity nor any simple mirrored " +
+      "line traversal shows a matched original-source repeat-suppression " +
+      "signal; no key or plaintext has been recovered."};
+  console.log(JSON.stringify(result,null,2));
 }
 
 if (require.main === module) main();
