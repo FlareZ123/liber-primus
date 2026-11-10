@@ -662,5 +662,5 @@
       80
     ]
   ],
-  "notes": "32x8 base-60 representation of 256 bytes. Derived transcription with mixed-case glyph ambiguity; inspect original scans for disputed positions. Not a recovered LP2 key. Byte order is scan then row then column."
+  "notes": "32x8 table, original two-character tokens in physical scan-row-column order. Original 2400x3600 scans 66.jpg-68.jpg independently confirm the existing printed tokens at eleven disputed indices 25,45,50,165,172,175,182,199,215,237,246 (im-results/lp2-grid-11-original-glyph-adjudication.md); this is not an audit of all 256 cells. Base60 bytes are a derived numeric interpretation with a separate historical base59 ambiguity. Not a recovered cipher key."
 }
