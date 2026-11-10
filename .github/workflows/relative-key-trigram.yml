@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Decode paired English-trigram streams and heldout control
         run: node sims/relative_key_trigram_probe.cjs
+      - name: Invert both pages with reversed GP word order
+        run: node sims/relative_key_reversal_trigram.cjs
