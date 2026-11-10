@@ -157,7 +157,22 @@ const experiment=function experiment(corpus, lexicon, repetitions=0){
     expected:"NOW",decoded:lexical(recovered)?.display,exactRoundtrip:recovered===target};
   let rng=0x20261110;
   function next(){rng^=rng<<13;rng^=rng>>>17;rng^=rng<<5;return rng>>>0}
-  function shuffle(src){const a=src.slice();for(let i=a.length-1;i>0;i--){const j=next()%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
+  // Condition on the authentic physical source and ciphertext of block 38.
+  // Scrambling any of these seven cells invalidates its frozen outgoing forecast.
+  const anchorCells=[[11,13],[12,13],[13,13],[5,17],[6,17],[7,17],[8,17]];
+  const anchors=new Set(anchorCells.map(([r,c])=>n0(r,c)-1));
+  function shuffle(src){
+    const result=src.slice();
+    const movable=Array.from({length:src.length},(_,i)=>i).filter(i=>!anchors.has(i));
+    const values=movable.map(i=>src[i]);
+    for(let i=values.length-1;i>0;i--){
+      const j=next()%(i+1);
+      [values[i],values[j]]=[values[j],values[i]];
+    }
+    movable.forEach((index,i)=>{result[index]=values[i]});
+    for(const index of anchors)assert(result[index]===src[index],"anchor must be frozen");
+    return result;
+  }
   const nulls=[];
   for(let i=0;i<repetitions;i++){
     nulls.push(run(shuffle(grid)));
@@ -173,7 +188,7 @@ const experiment=function experiment(corpus, lexicon, repetitions=0){
   return {version:"2026-11-10",original:real,positive,
     source:"pages0-2; 729 original GP indices; row-major 27x27",
     fullRuleScope:"Reports00-15 with frozen published block38 state, plus Report16 independently sourced TextBlob lexicon (freq>=20)",
-    nullCount:repetitions,seed:"0x20261110",
+    nullCount:repetitions,seed:"0x20261110",fixedAnchorCells:anchorCells,
     nulls:{sourceAssignments:summarize("sourceAssignments"),
       afterReport02Mode:summarize("afterReport02Mode"),
       lexicalAssignments:summarize("lexicalAssignments"),
