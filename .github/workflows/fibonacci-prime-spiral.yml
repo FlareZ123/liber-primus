@@ -17,3 +17,5 @@ jobs:
         run: node sims/fibonacci_wordroute_length_test.cjs
       - name: Test 16-step multiplicative and affine field-29 keys with planted control
         run: node sims/fibonacci_affine_field29_heldout.cjs
+      - name: Challenge twin-prime 3299/3301 prime-totient offsets with heldout seed null
+        run: node sims/twin_prime_totient_holdout.cjs
