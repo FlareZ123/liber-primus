@@ -103,7 +103,7 @@ function run() {
           recoveredOriginalGpPrefix:genuine.best.bodyEvidence.map(x=>x.gpPrefix)
         },
         planted:{
-          correct:register==="englishGP"?planted.totalCorrect:planted.correct,
+          correct:planted.correct,
           total:2400, modeRecovered:register==="englishGP"
             ?planted.modeRecovered:planted.originalGridModeRecovered,
           assignmentRecovered:register==="englishGP"
