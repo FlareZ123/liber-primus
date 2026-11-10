@@ -163,7 +163,8 @@ for(const [label,matrix] of [["printed",A],["transposed",transpose(A)]]) {
       v=v.map((_,j)=>mod(v.reduce((s,x,k)=>s+x*matrix[k][j],0)));
     }
     const det=determinant(rows);
-    assert.notEqual(det,0,"source square tap must be observable");
+    if(label==="printed" && tap===0)
+      assert.notEqual(det,0,"selected source red16 tap must be observable");
     tapDeterminants[label].push(det);
   }
 }
@@ -377,7 +378,7 @@ const report={
   model:"global continuous 4D F29 state using red16 prime-sum spiral matrix; coordinate0 mod28, primitive root 15 nonzero steps, GP EA transparent zero step",
   fieldAlgebra:{characteristicPolynomialMod29:characteristic,
     observabilityDeterminantsMod29:tapDeterminants,
-    consequence:"All 10 row/transpose, four coordinate/one sum-tap choices generate the same scalar stream family with unrestricted 4-coordinate F29 initial state; a single fully observable representative is exhaustive for those choices."},
+    consequence:"The selected red16 row-matrix first-coordinate tap is fully observable. The other tap determinants are reported for scope; zero indicates a lower-dimensional family not covered by this inverse."},
   original:{
     runes:N,physicalRunePages:pages.length,EAmarkers:originalMarker.length,
     sourceSelectedWords:fittingWords.map(w=>w.name),
