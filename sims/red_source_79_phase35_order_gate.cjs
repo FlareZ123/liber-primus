@@ -15,7 +15,7 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
-const {cleanStarts,original}=require('./prime79_radix29_28_exact_gate.cjs');
+const {cleanStarts}=require('./prime79_radix29_28_exact_gate.cjs');
 const {encode}=require('./grid_keyskip_viterbi.cjs');
 
 const ROOT=path.join(__dirname,'..');
@@ -106,7 +106,9 @@ function unpack(value){
 }
 
 function main(){
-  const c=original(),starts=cleanStarts(c,35);
+  const c=load('resources/liber-primus/lp2-corpus.json').pages
+    .filter(p=>p.page<56).flatMap(p=>p.indices);
+  const starts=cleanStarts(c,35);
   assert.equal(c.length,12956);
   assert.equal(starts.length,95);
   const orders=sourceOrders();
