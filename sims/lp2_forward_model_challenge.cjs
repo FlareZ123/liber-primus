@@ -31,8 +31,11 @@ function inputs(){
   assert.equal(parsed.crossPageWords,32);
   assert.equal(parsed.words.length,2896);
   assert.equal(parsed.runeCount,12956);
-  const sections=raw.split("%").slice(0,55).join("%").split("$").map(piece=>
-    [...piece].filter(c=>value.has(c)).length).filter(n=>n);
+  const master=fs.readFileSync(path.join(ROOT,"resources/transcriptions/liber_primus_master.txt"),"utf8");
+  const start=master.indexOf("ᛋᚻᛖᚩᚷᛗᛡᚠ");
+  assert(start>0);
+  const sections=master.slice(start).split("%").slice(0,56).join("%").split("$")
+    .map(piece=>[...piece].filter(c=>value.has(c)).length).filter(n=>n);
   assert.deepEqual(sections,[729,1145,1729,9,1894,1021,1524,1589,3316]);
   const wordLengths=parsed.words.map(w=>w.length);
   const original=parsed.words.map(w=>[...w.runes].map(c=>value.get(c)));
