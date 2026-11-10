@@ -127,7 +127,9 @@ function examine(pages, width, reset, policy, reverse, phase) {
 
 /** @param {number[][]} pages @returns {object} */
 function study(pages = PAGES) {
-  const summaries = [], survivors = [];
+  const summaries = [], survivors = [], nullLogs = [];
+  const log10KeySpace = 29 * Array.from({length: 28}, (_, i) => Math.log10(i + 1))
+    .reduce((a, b) => a + b, 0);
   for (const width of WIDTHS) {
     const cases = [];
     for (const reset of ['page', 'book'])
@@ -136,6 +138,12 @@ function study(pages = PAGES) {
           for (let phase = 0; phase < width; phase++)
             cases.push(examine(pages, width, reset, policy, reverse, phase));
     assert.equal(cases.length, 8 * width);
+    // Conditional iid-uniform nonmarker ciphertext null. For any fixed
+    // 29-row key, every retained packet has iid-uniform radix-28 digits,
+    // hence probability 98^(3D/5)/28^D of exactly all ASCII octets.
+    // Union bound over (28!)^29 possible row keys, then over framings.
+    const packetLog = 3 * width / 5 * Math.log10(98) - width * Math.log10(28);
+    for (const entry of cases) nullLogs.push(log10KeySpace + entry.cleanPackets * packetLog);
     survivors.push(...cases.filter(x => !x.hardExcluded));
     summaries.push({
       width, byteCount: 3 * width / 5,
@@ -149,8 +157,19 @@ function study(pages = PAGES) {
       maxCleanPackets: Math.max(...cases.map(x => x.cleanPackets))
     });
   }
+  const largestLog = Math.max(...nullLogs);
+  const log10NullFamilyUnionBound = largestLog + Math.log10(nullLogs.reduce(
+    (sum, v) => sum + 10 ** (v - largestLog), 0));
+  assert.ok(Math.abs(log10NullFamilyUnionBound + 1280.1522710975) < 1e-6);
   return {totalSettings: summaries.reduce((n, x) => n + x.settings, 0),
     hardExcluded: summaries.reduce((n, x) => n + x.hardExcluded, 0),
+    conditionalNull: {
+      model: 'Fix repeated-rune positions, choose each other next ciphertext rune uniformly from 28 possibilities; conditional on any one stationary secret row table, nonmarker packet digits are iid-uniform in 0..27',
+      totalStationaryRowTablesLog10: log10KeySpace,
+      asciiOctetsPerPacket: '3D/5, each from 98 values',
+      unionOverFramingsAndRowsLog10UpperBound: log10NullFamilyUnionBound,
+      caution: 'This is a family-union bound under the specified random-ciphertext null, not a probability that a designed Cicada cipher could not encode ASCII, nor a deterministic original-source exclusion.'
+    },
     summaries, survivors};
 }
 
