@@ -208,7 +208,8 @@ function main(){
   const originalPages=corpus.pages.filter(p=>p.status==="unsolved").slice(0,4);
   const original=originalPages.flatMap(p=>p.indices);
   assert.equal(originalPages.length,4);
-  const pairs=Math.ceil((original.length+600)/2);
+  const markedOffsets=[0,120]; // two marked triples begin at one-based rune 120.
+  const pairs=Math.ceil((original.length+720)/2);
   const liftResult=lift(bytes.map(BigInt),pairs);
   const keys=digits(liftResult.x,pairs);
 
@@ -224,13 +225,27 @@ function main(){
     "Heldout native-GP skip-aware positive control accuracy "+accuracy);
 
   const wrong=decode(planted.cipher,keys.BA,1,model.score,600);
+  const markedPlant=encryptWithRejection(
+    heldout,keys.AB.slice(120),1,0x15ac1234^120
+  );
+  const markedRecovered=decode(
+    markedPlant.cipher,keys.AB.slice(120),1,model.score,600
+  );
+  const markedAccuracy=markedRecovered.plain.filter(
+    (v,i)=>v===heldout[i]
+  ).length/heldout.length;
+  assert.ok(markedAccuracy>=0.9,
+    "marked offset 120 positive plant recovery "+markedAccuracy);
+
   const originalCandidates=[];
-  for(const order of ["AB","BA"])
-    for(const sign of [-1,1]){
-      const decoded=decode(original,keys[order],sign,model.score,600);
-      const fixed=rigid(original,keys[order],sign);
+  for(const phase of markedOffsets)
+    for(const order of ["AB","BA"])
+      for(const sign of [-1,1]){
+      const clock=keys[order].slice(phase);
+      const decoded=decode(original,clock,sign,model.score,600);
+      const fixed=rigid(original,clock,sign);
       originalCandidates.push({
-        order,sign,length:original.length,
+        phase,order,sign,length:original.length,
         beamScorePerRune:decoded.perRune,
         rigidScorePerRune:fixed.reduce(
           (sum,v,i)=>sum+model.score(
@@ -258,6 +273,7 @@ function main(){
       positiveScorePerRune:recovered.perRune,
       wrongCoordinateScorePerRune:wrong.perRune
     },
+    markedPlant:{phase:120,hiddenSkips:markedPlant.skips,accuracy:markedAccuracy},
     originalCandidates,
     limits:"Conditional additive with rejection-skip filter; not rewrite/non-GP",
     status:"No original LP2 plaintext recovered"
