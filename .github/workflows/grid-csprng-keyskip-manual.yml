@@ -1,4 +1,4 @@
-name: Original grid source-key inverse challenge
+name: Source-key inverses and exact ciphertext row bound
 on:
   workflow_dispatch:
     inputs:
@@ -11,13 +11,14 @@ on:
           - english
           - latin
       attack:
-        description: GP rune inverse or binary radix28 capacity test
+        description: Grid rune/binary inverse or exact book-wide S-box row capacity
         required: true
         type: choice
         default: unigram
         options:
           - unigram
           - binary
+          - sbox_bound
 jobs:
   source-csprng:
     runs-on: ubuntu-latest
@@ -35,3 +36,6 @@ jobs:
       - name: Source-key GP28 binary capacity inverse with byte-control
         if: ${{ inputs.attack == 'binary' }}
         run: node sims/grid_csprng_radix28_binary.cjs
+      - name: Exact book-wide predecessor-ciphertext S-box row bound and synthetic controls
+        if: ${{ inputs.attack == 'sbox_bound' }}
+        run: node sims/previous_cipher_row_symbol_bound.cjs
