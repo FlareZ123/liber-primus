@@ -4,7 +4,7 @@
 
 ## Proposed chain
 
-The 2016 signed Cicada message says: “Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.” The proposed interpretation starts at the oversized **Ac** rune on LP2 physical p54, takes its GP prime weight 97, and repeatedly advances through the 29-stanza rune-poem ring by φ(p) mod 29. The proposed six-rune chain is:
+The 2016 signed Cicada message says: “Liber Primus is the way. Its words are the map. Their meaning is the road, and their numbers are the direction.” The proposed interpretation starts at the oversized **Ac** rune on LP2 physical p54, takes its GP prime weight 97, and repeatedly advances through the 29-stanza rune-poem ring by φ(p) mod 29. The proposed six-rune chain is:
 
 | Rune | Proposed meaning | GP prime | A-road |
 |---|---|---:|---|
