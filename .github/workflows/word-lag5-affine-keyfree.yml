@@ -1,0 +1,15 @@
+name: LP2 word-local five-back affine autokey exact inverse
+on:
+  workflow_dispatch:
+jobs:
+  decrypt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source word cross-page check
+        run: node sims/test_lp2_word_pages.cjs
+      - name: Find all exact affine autokey/English source candidates
+        run: node sims/word_lag5_affine_keyfree_inverse.cjs
