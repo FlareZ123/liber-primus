@@ -30,6 +30,12 @@ assert.equal(pages.flat().length, 12956);
 const keys = Object.fromEntries(sources.sourceServices.map(s =>
   [s.id, Array.from(s.hex.match(/../g), v => parseInt(v, 16))]));
 keys.grid = grid.byte_rows.flat();
+ // The unique 179-linked D4 orientation: reverse each row of the 32x8
+ // onion-2 byte arrangement. No other orientation or phase is searched.
+ keys.onion2_flipLR = Array.from({ length: 32 }, (_, r) =>
+   keys.onion2.slice(r * 8, (r + 1) * 8).reverse()
+ ).flat();
+ assert.equal(keys.onion2_flipLR.length, 256);
 for (const arr of Object.values(keys)) {
   assert.equal(arr.length, 256);
   for (const n of arr) assert(Number.isInteger(n) && n >= 0 && n <= 255);
@@ -167,13 +173,20 @@ const plant = encrypt(slices, keys.onion2, 'mod');
 const recovery = decrypt(plant, keys.onion2, 'mod');
 assert.deepEqual(recovery, slices);
 assert.deepEqual(encrypt(recovery, keys.onion2, 'mod'), plant);
+const mirrorPlant = encrypt(slices, keys.onion2_flipLR, 'mod');
+const mirrorRecovery = decrypt(mirrorPlant, keys.onion2_flipLR, 'mod');
+assert.deepEqual(mirrorRecovery, slices);
+assert.deepEqual(encrypt(mirrorRecovery, keys.onion2_flipLR, 'mod'), mirrorPlant);
 console.log(JSON.stringify({
-  source: '256-byte archived 2014 onion-2 vs three wrong sources',
+  source: '256-byte archived 2014 onion-2, its fixed flipLR orientation, three wrong sources, and the printed grid',
   cipher: 'F29 primitive-root 15; zero step -> GP-EA; period256 byte%28',
   originalRunes: original.length,
   nativeReferenceRunes: native.length,
   nativeHoldoutLogTrigram: score(holdout),
   nativePlantRecoveredRunes: recovery.flat().length,
   nativePlantExact: true,
+  mirrorOrientation: 'reverse each 8-byte row of the 32x8 onion-2 arrangement',
+  mirrorPlantRecoveredRunes: mirrorRecovery.flat().length,
+  mirrorPlantExact: true,
   candidates
 }, null, 2));
