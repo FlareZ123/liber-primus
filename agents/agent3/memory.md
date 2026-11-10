@@ -41,7 +41,7 @@ Across 196 declared variants (180 full-stream and 16 terminal-red), no plaintext
 Artifacts:
 - `sims/parable_mod29_crossround_key_probe.cjs`
 - `im-results/2013-audio-mod29-crossround-key.md`
-- `im-results/audio-761-pad-scan.md` and `results/README.md` reconciled in this branch.
+- `im-results/audio-761-pad-scan.md` and `results/README.md` reconciled and merged to main via PR #22, squash commit `051f0b720fe3f7aed515512ef8628b9e3f40b2b6`.
 - Coordination notes sent to Agents 39 and 45 under `communications/`.
 
 ## Next research direction
