@@ -90,10 +90,13 @@ The dynamic program optimizes over **every legal page-boundary partition**, so t
 
 To turn these mathematical capacities into a cryptanalytic exclusion, use an explicit **conditional assumption**: the unknown plaintext's 29-rune *ranked* relative-frequency spectrum matches the source's GP spectrum. This comparison tests the repository's original-normalized Shakespeare English sample (153,216 runes) and Vulgate Latin sample (203,357 runes). It does **not** assert that actual LP2 plaintext is English/Latin, or that its word/register statistics exactly match either sample.
 
+The strongest author-adjacent reference is solved-Cicada plaintext in \`resources/liber-primus/lp1-plaintext-reference.txt\`: **3,248 native GP runes**, excluding editorial page headings, bracketed continuation notes and long hexadecimal annotations, using the same GP normalization. The reference is a short, heterogeneous, partly repeated edited source sample, so its ranked profile is explicitly a *conditional model* of unknown LP2 plaintext. It complements the longer external-language samples.
+
 For each \`m\`, compare \`D[k,55]+55\` to the reference fraction belonging to the **m most frequent plaintext runes**, using exact integer cross-products. The optimizer was run for every \`m=1..28\` and every number of page epochs \`k=1..55\`. **Necessary** epoch counts:
 
 | Source-ranked GP model | Minimum independent page-block row tables satisfying all rank capacities | Strongest rank constraint |
 | --- | ---: | --- |
+| Solved Cicada native GP | **15** | ranks 1, 8–12 |
 | Shakespeare English GP | **14** | ranks 8–19 |
 | Latin Vulgate GP | **24** | rank 11 |
 
@@ -101,10 +104,12 @@ Two explicit limiting examples:
 
 | Source model and rune set | Reference expected original-sized count | 1 fewer epoch: exact absolute capacity | Threshold epoch: capacity |
 | --- | ---: | ---: | ---: |
+| Solved Cicada GP, top 1 rune (12.3461%) | 1,599.555 | **1,590** with k=14 | **1,631** with k=15 |
+| Solved Cicada GP, top 8 runes (61.4532%) | 7,961.877 | **7,889** with k=14 | **8,032** with k=15 |
 | English, top 8 symbols (59.7881%) | 7,746.152 | **7,742** with k=13 | **7,889** with k=14 |
 | Latin, top 11 symbols (84.0478%) | 10,889.228 | **10,879** with k=23 | **11,013** with k=24 |
 
-These are upper bounds on *what the cipher can express*, not measured candidate plaintexts. For those source-like marginal assumptions, no book-wide row table and no arbitrary rekey schedule with at most **13 epochs (English)** or **23 epochs (Latin)** can encode the full original text with direct bijective predecessor rows. A solution with more epochs passes only these necessary marginal tests; it still needs an authentic key/state and complete original plaintext.
+These are upper bounds on *what the cipher can express*, not measured candidate plaintexts. For those source-like marginal assumptions, no book-wide row table and no arbitrary rekey schedule with at most **14 epochs (native solved-Cicada)**, **13 epochs (English)** or **23 epochs (Latin)** can encode the full original text with direct bijective predecessor rows. A solution with more epochs passes only these necessary marginal tests; it still needs an authentic key/state and complete original plaintext.
 
 ### Constructive controls and limits
 
@@ -112,7 +117,7 @@ One original-input witness builds all 29 arbitrary inverse row permutations and 
 
 The key-independent theorem does not cover **within-page table changes, an external/hidden clock or evolving keystream, lossy repeat-repair rewrites, alternate symbol encodings, binary data, or an unusually flat plaintext distribution**. In particular it is not a universal exclusion of a reversible F29 zero-step EA architecture, whose unknown 28-symbol pad may vary at every position. The only overlap with that architecture is its restricted *book-wide fixed predecessor-ciphertext pad* case. Nor is this theorem interchangeable with the page-local or 2/3-symbol context simulations elsewhere in this document.
 
-[Reproducible exact full-source theorem, original-cipher witness and positive controls](../sims/previous_cipher_row_symbol_bound.cjs) · [passed manual CI run 42801123813](https://github.com/FlareZ123/liber-primus/actions/runs/42801123813).
+[Reproducible exact full-source theorem, original-cipher witness and positive controls](../sims/previous_cipher_row_symbol_bound.cjs) · [passed original-source and native-Cicada manual CI run 42802957015](https://github.com/FlareZ123/liber-primus/actions/runs/42802957015).
 
 ### Extension: two arbitrary hidden alphabet modes
 
