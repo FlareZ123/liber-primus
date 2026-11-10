@@ -149,6 +149,31 @@ function distance(label,point,estimates){
   return 0;
 }
 
+/**
+ * Exact Poisson-binomial first-of-word tail for a fixed GP plaintext letter:
+ * source-word draws are independent but each must match the manuscript's
+ * source-defined rune-word length. The array tracks P(F<=23).
+ * @param {Map<number,EncodedWord[]>} buckets
+ * @param {number} marker
+ */
+function exactFirstTail(buckets,marker){
+  const dp=new Float64Array(observed[1]+1);
+  dp[0]=1;let mean=0;
+  for(const [length,n] of wordLengthCounts){
+    const bucket=buckets.get(length);
+    let hits=0;for(const w of bucket)hits+=Number(w.first===marker);
+    const q=hits/bucket.length;
+    mean+=n*q;
+    for(let i=0;i<n;i++)
+      for(let j=observed[1];j>=0;j--)
+        dp[j]=dp[j]*(1-q)+(j?dp[j-1]*q:0);
+  }
+  let below=0;
+  for(let j=0;j<observed[1];j++)below+=dp[j];
+  return {mean,lowerOrEqual:below+dp[observed[1]],
+    upperOrEqual:Math.max(0,1-below),exact:dp[observed[1]]};
+}
+
 /** @param {number[]} total @param {number[]} initial @param {ReturnType<typeof model>} estimates */
 function smallest(total,initial,estimates){
   let best={distance:Infinity, label:-1};
@@ -167,9 +192,7 @@ function smallest(total,initial,estimates){
  * @param {number} seed
  */
 function calibrate(buckets,estimates,seed){
-  const random=rng(seed),actual=smallest(
-    new Array(M).fill(0).map((_,i)=>i===0?observed[0]:0),
-    new Array(M).fill(0).map((_,i)=>i===0?observed[1]:0),estimates);
+  const random=rng(seed);
   // All labels posit the SAME observed marker count vector, regardless
   // of which hidden plaintext symbol is claimed to trigger the repeat.
   let observedMin=Infinity,observedRune=-1;
@@ -179,7 +202,6 @@ function calibrate(buckets,estimates,seed){
   }
   const sequence=[...wordLengthCounts.entries()];
   let atLeast=0,sumMin=0,largest=0;
-  let plantedMarker=null;
   const planted=Array.from({length:20},()=>null);
   for(let trial=0;trial<TRIALS;trial++){
     const total=new Int32Array(M),first=new Int32Array(M);
@@ -234,7 +256,9 @@ function run(){
       const control=calibrate(buckets,expected,0x497e1200+(id*2+Number(ingAlias))*11579);
       out.push({register,ingAlias,referenceWords:[...buckets.values()]
         .reduce((s,words)=>s+words.length,0),
-        bestCandidates:originalByLabel.slice(0,4),control});
+        bestCandidates:originalByLabel.slice(0,4),
+        exactWordInitialTailForBest:exactFirstTail(buckets,originalByLabel[0].index),
+        control});
       assert(originalByLabel[0].distance>20);
     }
   }
