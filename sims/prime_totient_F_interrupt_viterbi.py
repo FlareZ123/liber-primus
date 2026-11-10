@@ -13,7 +13,7 @@ import math
 import numpy as np
 from numba import njit, prange
 from rand1955_running_key import CORPUS, SRC_TEXT, encode
-from prime_totient_long_offset_inversion import primes_to, solved_p56_regression
+from prime_totient_long_offset_inversion import EXAMPLE_TRUE, primes_to, solved_p56_regression
 
 N = 2000000
 KMAX = 9
@@ -104,6 +104,40 @@ def plant(plain,key,sign,off):
         emitted.append(c)
     return np.asarray(emitted,dtype=np.uint8),repairs
 
+def traceback(c, key, sign, logp, source_start):
+    """Exact Viterbi path and plaintext, including unknown literal F positions."""
+    n = len(c)
+    states = np.full((n+1, KMAX+1), LOW, dtype=np.float64)
+    parents = [[None]*(KMAX+1) for _ in range(n+1)]
+    states[0,0] = 0.0
+    for i, raw in enumerate(c):
+        r = int(raw)
+        for skipped in range(KMAX+1):
+            previous = states[i,skipped]
+            if previous < LOW/2:
+                continue
+            p = (r+sign*int(key[source_start+i-skipped]))%29
+            regular = previous+logp[p]+(USED if r==0 else 0.0)
+            if regular > states[i+1,skipped]:
+                states[i+1,skipped] = regular
+                parents[i+1][skipped] = (skipped,int(p),False)
+            if r==0 and skipped<KMAX:
+                literal = previous+logp[0]+LIT
+                if literal > states[i+1,skipped+1]:
+                    states[i+1,skipped+1] = literal
+                    parents[i+1][skipped+1] = (skipped,0,True)
+    state = int(np.argmax(states[n]))
+    recovered = []
+    skipped_at = []
+    for i in range(n,0,-1):
+        prev,plain,literal = parents[i][state]
+        recovered.append(plain)
+        if literal:
+            skipped_at.append(i-1)
+        state = prev
+    return list(reversed(recovered)),list(reversed(skipped_at))
+
+
 def main():
     primes=primes_to(N+500)
     p56=solved_p56_regression(primes)
@@ -113,6 +147,11 @@ def main():
     original56=np.asarray(next(p["indices"] for p in CORPUS["pages"] if p["page"]==56),dtype=np.uint8)
     solvedhits=recover(original56,key,-1,logp,60)
     solvedrank=next((i+1 for i,v in enumerate(solvedhits) if v["sourceOffset"]==0),None)
+    blind_plain,blind_skips=traceback(original56,key,-1,logp,solvedhits[0]["sourceOffset"])
+    assert solvedrank==1
+    assert blind_skips==[56],blind_skips
+    assert blind_plain==encode(EXAMPLE_TRUE).tolist()
+    print("BLIND_P56_DECIPHERMENT",json.dumps({"recoveredPrimeIndex":solvedhits[0]["sourceOffset"],"unknownLiteralFMaskRecovered":blind_skips,"GPsymbolsMatched":85,"text":EXAMPLE_TRUE}),flush=True)
     print("AUTHENTIC_P56",json.dumps({"expectedSource":0,"foundRank":solvedrank,"top":solvedhits[:3]}),flush=True)
     english=encode(SRC_TEXT[240000:])[:262]
     positives=[]
