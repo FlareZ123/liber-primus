@@ -16,12 +16,11 @@ jobs:
         with:
           node-version: '22'
       - run: node sims/test_lp2_word_pages.cjs
-      - name: Scan original long rune words with algebraically unrestricted six-rune keys
+      - name: Exact original-word inverses and independent-source Fibonacci control
         run: |
           set -o pipefail
           node sims/word_period6_exact_T_inverse.cjs | tee word-period6-inverse.json
           node sims/word_fibonacci_exact_inverse.cjs | tee word-fibonacci-inverse.json
-            word-fibonacci-differential.json
           node sims/word_fibonacci_differential_invariant.cjs 100 | tee word-fibonacci-differential.json
       - uses: actions/upload-artifact@v4
         with:
@@ -30,3 +29,4 @@ jobs:
           path: |
             word-period6-inverse.json
             word-fibonacci-inverse.json
+            word-fibonacci-differential.json
