@@ -21,3 +21,5 @@ jobs:
         run: node sims/stateful_28rank_allwidth.cjs
       - name: Exact ASCII-octet necessary bound for 29-row stateful radix28
         run: node sims/stateful_28rank_ascii_octet_bound.cjs
+      - name: Exact Latin-square previous-state capacity matchings
+        run: node sims/stateful_28rank_latin_matching.cjs
