@@ -1,6 +1,6 @@
 # LP2 pages 28 and 42: an aligned, symmetric residue-difference anomaly
 
-**Classification:** reproducible exploratory structural lead with calibrated family-wise significance for a defined statistic. **No recovered plaintext or key.** First identified by Agent 11 on 2026-11-10. This page consolidates the evidence, its limitations, and the strongest next cryptanalytic test.
+**Classification:** genuine original-ciphertext residue-histogram anomaly, with strong bounded evidence against the ordinary-English shared-key reading. **No recovered plaintext or key.** First identified by Agent 11 on 2026-11-10. Earlier word-aware and continuous-rune scores are reconciled below. In particular, the apparent first-ranked continuous trigram alignment **fails an order-only fixed-histogram test** that succeeds on a real shared-key positive.
 
 ## Why this pair is interesting
 
@@ -91,9 +91,41 @@ Across **all 272** cyclic offsets of page 42, the original physical alignment (o
 
 A planted held-out positive control takes two separate post-training Shakespeare passages (269 runes each) and independently forms \`C_A=4P_A+K\` and \`C_B=4P_B+K\` using **one identical seeded 269-rune random key**. Over **all 269 cyclic offsets**, the original zero offset is **rank 1/269**, scoring **−1136.237523**; second-best offset 70 scores **−1209.802267**, a **73.564745**-nat advantage for the true alignment. This within-model sensitivity check uses one language pair, so it cannot calibrate a real-cipher p-value. It demonstrates that the exact marginal method sharply favors the correct alignment for a genuine shared-key plant, whereas LP2 does not have a similarly isolated optimum.
 
-**Interpretation:** the scale-four histogram fit and the exact **bigram** marginal result (original offset rank 1 of all 272 rotations, −1182.709666 versus second −1184.620015) remain worth investigating as anomalies. Yet a stronger **trigram** marginal test ranks the original alignment 20th among all 272 possible offsets under a model that ranks the genuine planted alignment first among all 269. This raises the possibility that the symmetric profile is a statistical or structural effect unrelated to two ordinary-English GP texts sharing a scale-four additive pad. Model misspecification, sparse training, unusual text register, and other masking remain possible. No actual LP2 plaintext has been recovered.
+**Interpretation:** the word-boundary-aware exact bigram marginal ranks the original offset first of 272 (−1182.709666 versus next −1184.620015), while its stronger word-aware trigram counterpart ranks it **20th of 272**. This conflict motivated the word-boundary-free reconstruction below, which again ranks the source alignment first before a more discriminating histogram-conditioned check removes its apparent support. The shared-key hypothesis therefore has no independently demonstrated English-like ordering, and no original plaintext has been recovered.
 
 **Reproducer:** [sims/relative_key_exact_marginal.cjs](../sims/relative_key_exact_marginal.cjs) (Node 22, one runnable test file, JSON output, exact three-rune cross-check, deterministic controls). [Successful exhaustive CI run 42747699436](https://github.com/FlareZ123/liber-primus/actions/runs/42747699436).
+
+## Continuous-rune exact marginal: the shift lead vanishes when the difference histogram is fixed (Agent 38)
+
+**Decision:** The first-place original alignment under both unspaced bigram and unspaced trigram marginalization is real and reproducible; its score comes from an already-selected **difference-symbol inventory**. With that inventory held fixed, its actual ordering is **less English-like than 377/400 random orderings**. An actual same-key English-GP plant is more English-like than **all 400** of its similarly shuffled controls. There is consequently **no positive sequence-order evidence for the source page28/page42 shared-key interpretation**. This is a conditional model test, not a universal exclusion of sharing or an identified manuscript key.
+
+### Exact inversion without printed word boundaries
+
+The earlier trigram forward-sum treated visible page28 and page42 word delimiters as true plaintext breaks. Source-wide LP2 word-length dependence is exceptionally weak, so a stronger sensitivity check erases those delimiters **only from the language model**. It retains the original 269 page28 and 272 page42 rune values exactly. The original page pair and scale four are **frozen from earlier analysis**; no key digits, plaintext words, or free shift are fitted.
+
+Let `d[i]=22*(C28[i]-C42[(i+shift)%272]) mod29`. Sum the probabilities of every pair of potential source streams with `P42[i]=P28[i]-d[i] mod29` using exact finite-state forward recursion, with no Viterbi maximization. Each stream has a separately trained smoothed 29-symbol bigram or trigram transition model learned by concatenating GP runes across all source words in the **first 240,000 original Shakespeare-reference characters** (174,998 training runes). Independently held-out source positions generate a same-pad control under `C28=4*P28+K`, `C42=4*P42+K`, with random `K[i]`.
+
+| Exact forward-summed model | Original zero-alignment rank | Original zero log score | Next-best shifted log score | True-key planted zero rank |
+| --- | ---: | ---: | ---: | ---: |
+| Unspaced bigram, all 272/269 shifts | **1/272** | **−896.798872** | −902.809331 (shift86) | **1/269** |
+| Unspaced trigram, all 272/269 shifts | **1/272** | **−898.650970** | −903.757432 (shift19) | **1/269** |
+
+The source zero-shift trigram score sits **15.7196 nats above its 272-shift median**. It appears attractive in a rotation test, in contrast to the earlier *word-aware* trigram zero-shift rank20/272. However, the pair and factor four were already selected because their aligned **difference histogram** has an unusual symmetric distribution. Cyclically shifting page42 changes that histogram. Thus the apparently independent improvement in the stronger n-gram test could be inherited from the original unigram anomaly.
+
+### Histogram-conditioned test isolates higher-order information
+
+To test the missing ingredient directly, freeze **all 269 values of the genuine zero-shift scaled difference stream as a multiset** and independently Fisher–Yates-shuffle their *position order* 400 times (seed `0x428042`). Recompute the *same continuous exact trigram forward probability*, without refitting the model or scale. Repeat identically on the genuinely shared-key held-out GP-English plant (seed `0x330142`). Each shuffle preserves the **complete 29-label frequency histogram**, including the chosen factor-four alignment's distinctive peak and symmetry; it destroys any genuine cross-position English-linguistic dependency of the difference sequence.
+
+| Difference-stream input | Actual unspaced trigram score | Mean shuffled score | Shuffles scoring at least as well | Conditional plus-one upper-tail |
+| --- | ---: | ---: | ---: | ---: |
+| Original LP2 pages28/42, scale four | **−898.650970** | **−895.659766** | **377/400** | **378/401 = 0.94264** |
+| Independent genuine shared-pad GP-English plant | **−897.363945** | **−904.721116** | **0/400** | **1/401 = 0.002494** |
+
+This resolves the earlier contrast. The actual zero-shift source rank is driven by the *marginal difference inventory*. Its **observed ordering reduces** the English joint-trigram likelihood by approximately **2.99 nats relative to the fixed-inventory shuffle mean**, whereas the planted genuine shared-key order **raises** it by **7.36 nats**. The original-data null is intentionally conditional on the selected difference histogram; it is not an all-page, all-model discovery-level p-value. The true shared-key control proves this diagnostic has sensitivity for a source-matched English register.
+
+A proposed explanation of the original symmetric difference anomaly must now predict something beyond this histogram, ideally a source-fixed key rule and new plaintext or a sequence-order dependency on untouched manuscript coordinates. The evidence does not exclude an unrelated binary intermediate, a different plaintext language, or an encryption architecture whose shared relation preserves symbol frequencies while scrambling rune order.
+
+**Exact reproducer:** [continuous-marginal source](../sims/relative_key_continuous_marginal.cjs) on the original numeric GP corpus, 29-state and 841-state normalized forward recursions, 400 fixed-histogram shuffles each, 269-rune genuine same-pad plant, and complete 272/269 shift checks. [Original-input and planted successful GitHub Actions run 42848759211](https://github.com/FlareZ123/liber-primus/actions/runs/42848759211). The manually dispatched CI variant is `continuous-trigram` in [relative-key-exact-marginal.yml](../.github/workflows/relative-key-exact-marginal.yml).
 
 ## Word-level exact inversion test: factor-four shared key fails ordinary English dictionary support
 
