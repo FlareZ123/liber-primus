@@ -1,8 +1,8 @@
-name: LP2 grid-stream collision-skip rune inversion
+name: LP2 red-title and grid-key inversion suite
 on:
   workflow_dispatch:
 jobs:
-  grid-rune-inversion:
+  invert:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -12,7 +12,13 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: '22'
-      - name: Invert real LP2 prefixes and source-English plants with AES/ChaCha Viterbi
+      - name: Original red-heading additive pad discriminator
+        run: node sims/red_title_body_key_reuse.cjs
+      - name: Corrected numeric-seed whole-word shuffle inversion
+        run: node sims/wordlength_seeded_shuffle.cjs
+      - name: Corrected grid-key whole-word permutation inversion
+        run: node sims/grid_word_order_inversion.cjs
+      - name: Actual GP-rune grid-stream collision-skip Viterbi inversion
         run: node sims/grid_stream_collision_viterbi.cjs
-      - name: Run original red-heading nonce grid-key rune inversion with planted controls
+      - name: Actual GP-rune red-title IV grid-stream collision-skip inversion
         run: node sims/red_title_nonce_grid_viterbi.cjs
