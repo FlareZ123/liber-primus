@@ -28,3 +28,5 @@ jobs:
         run: node sims/outer_permutation_context_power.cjs
       - name: Joint skip-and-alphabet search against actual LP2
         run: node sims/outer_permutation_real_skip_scan.cjs
+      - name: Compare paired two-early-skip bootstrap on independent controls
+        run: node sims/outer_permutation_two_skip_power.cjs
