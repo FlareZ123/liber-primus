@@ -168,8 +168,50 @@ function bootstrap(){
       exceedances:hits[6*A+14],
       addOneTail:(hits[6*A+14]+1)/(REPS+1)}};
 }
+/**
+ * Competing model: all 86 repeat events are residual outcomes of a soft
+ * no-repeat rule, independent of word role/length. Condition on exactly
+ * 86 events, sample their 21 physical word-role-by-length cells in proportion
+ * to available predecessor transitions, and compare a multinomial G^2.
+ */
+function uniformLeakage(){
+  const cells=[];
+  for(let cat=0;cat<3;cat++)for(let b=0;b<BINS;b++)
+    if(opportunities[cat][b])cells.push({
+      opportunities:opportunities[cat][b],observed:observation[cat][b]});
+  const events=cells.reduce((sum,x)=>sum+x.observed,0);
+  const chances=cells.reduce((sum,x)=>sum+x.opportunities,0);
+  assert.equal(events,86);
+  assert.equal(chances,12861);
+  assert.equal(cells.length,21);
+  const expected=cells.map(x=>events*x.opportunities/chances);
+  const test=count=>count.reduce((sum,x,i)=>
+    sum+(x?2*x*Math.log(x/expected[i]):0),0);
+  const actual=test(cells.map(x=>x.observed));
+  const cumulative=[];
+  let acc=0;
+  for(const x of cells){acc+=x.opportunities/chances;cumulative.push(acc);}
+  const random=randomGenerator(0x33014728),samples=100000;
+  let exceed=0,sum=0;
+  for(let k=0;k<samples;k++){
+    const counts=new Uint16Array(cells.length);
+    for(let n=0;n<events;n++){
+      const u=random();let i=0;
+      while(u>cumulative[i])i++;
+      counts[i]++;
+    }
+    const stat=test(counts);
+    exceed+=Number(stat>=actual);
+    sum+=stat;
+  }
+  return {model:'single global leakage probability after conditioning on 86 repeated output pairs',
+    eventCount:events,opportunities:chances,wordRoleLengthCells:cells.length,
+    actualG2:actual,sourceIndependentNullMeanG2:sum/samples,
+    matchedSampleCount:samples,exceedanceCount:exceed,
+    addOneTail:(exceed+1)/(samples+1)};
+}
 function main(){
-  const ranking=ranks(),nulls=bootstrap();
+  const ranking=ranks(),nulls=bootstrap(),leakage=uniformLeakage();
   const report={
     classification:'Conditional word-length GP-Latin necessary-condition gate',
     sourceLatinWords:latin.length,
@@ -182,6 +224,7 @@ function main(){
       fullFamilyBest:ranking.best,
       previouslyPooledLatinGX:ranking.fixedGX},
     nulls,
+    uniformLeakage:leakage,
     conclusion:'Retains exact source word-length conditioning when identifying '+
       'two zero-step marker labels. Results constrain only literal GP-Latin '+
       'word-preserving markers, not other text, transformed segmentation '+
