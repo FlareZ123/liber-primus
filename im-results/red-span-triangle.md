@@ -1,4 +1,4 @@
-# A three-page red-ink triangle and its two multiplicative-field interpretations
+# A three-page red-ink triangle and its finite-field interpretations
 
 **Classification: exact exploratory red-source arithmetic, a conditional rotation-family probability, and two powered negative original-cipher key interpretations. No unknown LP2 plaintext, key, established cipher method, or destination has been recovered.** The red triangle itself was constructed *after* examination of the existing prime-sum crosslink, so even an extreme exact conditional probability is not a discovery-wide significance estimate. The later F79 and F29 operations were also recognized after examining those three quotients.
 
@@ -136,6 +136,31 @@ A further **source-vocabulary-conditional location test** subdivides the 86 repe
 The **86 repeats may reflect author-specific EA code statistics, a ciphertext-side collision-repair/rejection process, or an intermediate encoding with its own hidden word segmentation**. The current data do not distinguish these explanations. The next stronger test should model unknown source vocabulary and page starts together, asking whether any *plausible* original English GP words could supply the observed 19 word-final repeats. A realistic cipher-side collision-repair mechanism remains a live alternative. Recovering readable held-out original plaintext with a reversible key is still mandatory.
 
 [Latest corrected eight-register regression CI42787169242](https://github.com/FlareZ123/liber-primus/actions/runs/42787169242) · [complete source-bound SFT](../sims/step_zero_gp_literal_marker_exclusion.cjs). Previous six-register outputs remain historical and should not be used to exclude the author-specific EA marker.
+
+## Third interpretation: a source-specified Fibonacci eigensystem over F79
+
+The already identified **4×4 Fibonacci-prime spiral on physical page 15** makes a new arithmetic relation among the same original red spans worth testing. The *first* page-15 highlighted word has **nine runes** whose GP prime sum is `638=29×22`; the *second* highlighted word contains **eleven runes** with sum430. Thus **22=2×11** is fixed independently by the original red word boundary. The page-40 red quotient15 selects GPprime[15]=53, and the same first page-15 quotient22 selects ordinary prime79. In the field F79:
+
+```text
+53^4  ≡ 40  (mod 79)     original source page 40
+53^11 ≡ 30  (mod 79)     11 = second p15 red-word length
+53^15 ≡ 15  (mod 79)     15 = p40 red quotient
+53^22 ≡ 31  (mod 79)     22 = first p15 red quotient = 2 × 11
+30²   ≡ 31 = 30 + 1 (mod 79)
+```
+
+Consequently **30 is a root of the Fibonacci recurrence characteristic polynomial** `X²−X−1 mod79`; its other root is50. Their multiplicative orders are **78** and **39**, and the source p53 red quotient `2262/29=78` equals the full period of the Fibonacci transition matrix modulo79. In particular the deterministic recurrence `a_(n+2)=a_(n+1)+a_n mod79`, initialized at the two earlier red quotients **(15,22)**, returns to its exact initial *pair* after **78** terms with no earlier pair repetition. These are exact arithmetic relationships conditional on the already postselected red triangle. They do **not** independently prove intentional encoding, despite their overlap with the Fibonacci-prime square.
+
+Two sharply specified reversible decoders were executed on **eight real 300-rune LP2 post-heading bodies**. First use the full source Fibonacci cycle reduced modulo29 as a running additive rune key, admitting one hidden collision-rejected key draw per output through the same Viterbi inverse used for other source-key challenges, both signs, fixed per-body reset. Second serialize exactly the **first sixteen F79 Fibonacci residues** to one 128-bit IV, `0f16253b114c0e0b19243d1200121224`, and try the eight authentic 256-bit grid columns under AES-256-CTR/ChaCha20 with 16 mode/reduction/sign choices, hidden key skips and exact optimal key-column assignment. The visible 4×4 square motivates sixteen *whole bytes*, with no fitted IV material.
+
+| Original-cipher challenge | Positive planted source-English GP recovery | Best original GP language score per rune | Matched randomized-source comparison |
+| --- | --- | ---: | --- |
+| Fibonacci 78-cycle direct GP pad with collision skips | **2,400/2,400** original-language plant recovered | **−5.903434** | **116/120** shuffled 78-cycle key arrangements at least as high (plus-one p **117/121 = 0.96694**) |
+| Source Fibonacci 16-byte IV + authentic grid keys | Correct AES/ChaCha mode and eight-column assignment recovered in planted control | **−5.639900** | **16/20** shuffled grid-key tests at least as high (plus-one p **17/21 = 0.80952**) |
+
+The direct test and IV test yielded **unreadable original rune strings**. Their planted controls verify the exact inversions' discriminatory power under the tested source-language register, but the controls do not make the original a valid decryption. This new Fibonacci key interpretation is a **bounded negative**, while the red-to-Fibonacci *arithmetic* remains a potentially useful, postselected source hint for a different cryptographic architecture.
+
+[Executable original/plant/null challenge](../sims/fibonacci_red_field79_inversion.cjs) · [successful manual CI execution 42787792672](https://github.com/FlareZ123/liber-primus/actions/runs/42787792672).
 
 ## Interpretation, falsification and next action
 
