@@ -1,6 +1,6 @@
-# LP2 page 53: the 51-rune red passage and two constructive English decoders
+# LP2 page 53: independently selected red passage, failed English inverses, and quotation test
 
-**Current classification:** a confirmed physical colour-marked text interval and **two bounded negative candidate-key inversions**, with their original-ciphertext trials and independent positive controls. **No recovered LP2 plaintext or key.**
+**Current classification:** a confirmed physical colour-marked text interval, **two bounded negative candidate-key inversions**, and one bounded quotation-source exclusion, with original-ciphertext trials and independent controls. **No recovered LP2 plaintext or key.**
 
 ## Fixed original-image input
 
@@ -32,8 +32,16 @@ In **100** independent shuffled-red-rune controls retaining all 51 rune labels' 
 
 [Successful 100-null manual run 42763544993](https://github.com/FlareZ123/liber-primus/actions/runs/42763544993); [manual-only workflow](../.github/workflows/red-verse-substitution-csp.yml). The source code prints every candidate mapping, its per-word insertion position and reproducible seed, alongside selected control metrics. The zero/one insertion decoder is a **heuristic beam**, so its negative signal is bounded by its observed control power rather than proving impossibility of all padded substitutions.
 
+## Source-frozen twelve-word quotation search
+
+The same image-locked 51-rune passage supplies twelve visible word lengths: **[5,4,4,11,2,3,2,6,5,5,2,2]**, unchanged by any rune-to-rune substitution. To test a distinct potential key-recovery input, the [dedicated twelve-word scanner](../sims/red51_source_phrase_crib.cjs) evaluates exact GP-rune word lengths for consecutive twelve-word excerpts from the **92 previously selected GITenberg philosophical, religious and mystical editions**, without searching ciphertext rune letters or choosing the books using this result. It tests the source's ordinary word order and complete reversal of word order (two declared orientations); the spelling transform is shared with the solved-page-calibrated literary word-length tool, including its documented contractions and spelling conventions.
+
+The [original-source manual CI run 42829670577](https://github.com/FlareZ123/liber-primus/actions/runs/42829670577) downloaded **87/92** editions successfully and evaluated **15,105,946 source windows across both orientations**. No source window matched **10 or more** of the twelve lengths; in particular **zero fully matched all twelve**. The highest observed match count was **9/12**, reached in several different books and orientations. The five missing editions (GITenberg IDs 4095, 55201, 57145, 7297, 57292) returned HTTP 404, so no negative conclusion is drawn about their unavailable contents. A deterministic source-disjoint fabricated twelve-word positive was recovered at the exact planted offsets under both declared reading directions, validating the alignment and GP-length calculation.
+
+This tests a **verbatim, word-order-preserving, length-preserving plaintext quotation** from those specific accessible editions. The result excludes that restricted crib-source hypothesis under the declared spelling conventions. It cannot exclude independently authored Cicada prose, different source editions or languages, word insertion/deletion, enciphered spaces, alternative GP digraph spelling, or text that has been significantly edited. No approximate nine-length match is promoted to a plaintext hypothesis because no rune-level key or reciphering evidence accompanies it.
+
 ## Decision-relevant conclusion
 
-The red passage is a genuine *independently visible interval* worth retaining as a future key-reset or clue anchor. Two distinct straightforward inversion mechanisms, including the arbitrary page-local output-label permutation model, have failed to read it as continuous ordinary-English GP text. A viable proposed decryption must supply **new source-constrained key material or a concrete reversible transform** that predicts unfitted runes; merely finding words after trying a flexible key or insertion policy does not count.
+The red passage is a genuine *independently visible interval* worth retaining as a future key-reset or clue anchor. Two straightforward inversion mechanisms, including the arbitrary page-local output-label permutation model, have failed to read it as continuous ordinary-English GP text. The independently bounded quotation search additionally found no full or near-full (10/12) twelve-word-length source alignment in the 87 accessible historical editions. A viable proposed decryption must supply **new source-constrained key material or a concrete reversible transform** that predicts unfitted runes; merely finding words after trying a flexible key or insertion policy does not count.
 
 The GP spellings, colour boundaries, lexicon source, source text and readout order are fully specified in the linked scripts and resource annotations. Do not repeat the earlier 50-rune scan or promote short word hits from this passage as recovered plaintext.
