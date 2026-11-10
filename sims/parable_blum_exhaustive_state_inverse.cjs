@@ -142,8 +142,7 @@ function insert(heap,hit) {
 
 function screen(cipher,states){
   const best=[];
-  const scoreByTruth=[];
-  let totalChecks=0;
+    let totalChecks=0;
   for(const firstState of states){
     for(const mode of MODE){
       const key=keystream(firstState,mode,head);
@@ -178,8 +177,8 @@ function frozenContinuation(cipher,top) {
     for(const n of hist)ioc+=n*(n-1);
     ioc/=segment.length*(segment.length-1);
     return {...hit,heldLog:tail/(total-head),heldIoC:ioc,
-      headRunes:p.slice(0,45).map(v=>alphabet[v]).join(""),
-      heldRunes:p.slice(head,head+40).map(v=>alphabet[v]).join("")};
+      headRunes:Array.from(p.slice(0,45),v=>alphabet[v]).join(""),
+      heldRunes:Array.from(p.slice(head,head+40),v=>alphabet[v]).join("")};
   });
   return {rankedByTrain:out.slice(0,8),
     bestHeldoutPostselected:[...out].sort((a,b)=>b.heldLog-a.heldLog).slice(0,5)};
