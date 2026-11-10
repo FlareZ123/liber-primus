@@ -90,7 +90,7 @@ The proposed “epiphany → dove/dovecot” association is also conjectural. Th
 
 ## Semantic coverage gap
 
-The walk's intermediate rune names are **Rad, Eolh, Thorn, Gyfu** (ride/journey, elk-sedge, thorn, gift) before reaching **Ethel** (ancestral estate). The current geographic interpretation uses Ac/oak to choose the start and Ethel/estate to recognize the endpoint, but it does not explain how Rad, Eolh, Thorn, and Gyfu map to intermediate roads, landmarks, or route instructions. That leaves the 2016 sentence's “words are the map” and “their meaning is the road” only partially operationalized. A valid solve path needs a source-constrained interpretation for those intermediate terms, not just the two endpoint matches.
+The walk's intermediate rune names are **Rad, Eolh, Thorn, Gyfu** (ride/journey, elk-sedge, thorn, gift) before reaching **Ethel** (ancestral estate). The Inveraray interpretation uses Ac/oak to choose the start and Ethel/estate to recognize the endpoint; the Potterspury interpretation instead tries to stop at Thorn/A5 via Queen's Oak Walk and Furtho's empty/hollow road. Neither explains how the remaining rune meanings map to intermediate roads, landmarks, or route instructions, nor supplies a source-fixed stop condition. That leaves the 2016 sentence's “words are the map” and “their meaning is the road” only partially operationalized. A valid solve path needs a source-constrained interpretation for the intermediate terms and a stop rule that distinguishes competing sites.
 
 ## Decision
 
@@ -99,7 +99,7 @@ The walk's intermediate rune names are **Rad, Eolh, Thorn, Gyfu** (ride/journey,
 - **Retain Inveraray, Potterspury/Furtho and Banff/Duff House only as competing low-confidence location hypotheses**; none is a source-authenticated destination, and the A-road conversion is not selective.
 - Do not launch a broad route or place-name search from this alone. The signed message's “Beware false paths” warning requires a pre-registered discriminator that rejects the competing sites.
 
-To reopen, an independent source must fix the country/road system, arithmetic sign, route-connection rule, and stop condition before the location is interpreted. A useful next test would compare the same pre-registered procedure against all alternative start runes and equivalent road-number systems, with an explicit estate/dovecot base-rate control.
+To reopen, a new independent source must fix the country/road system, arithmetic sign, route-connection rule, and stop condition before any location is interpreted. Without such a clue, do not run more route, start-rune, or place-name searches; the present evidence is insufficient and the signed warning explicitly cautions against false paths.
 
 ## Prior-art boundary
 
