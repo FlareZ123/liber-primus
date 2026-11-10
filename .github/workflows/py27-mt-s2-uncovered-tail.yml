@@ -46,6 +46,7 @@ jobs:
           END: ${{ matrix.end }}
         run: |
           python3 -c 'import os,json; json.dump([{"lane":"S2","reducer":"random29","relation":"exact","offset":0,"from":int(os.environ["START"]),"to":int(os.environ["END"]),"cand_bar":5.0,"claim_bar":7.6341931878728095}],open("tail-plan.json","w"))'
+          mkdir -p tail-run
           GRIND27_S2_CONTROL_OK=1 ./grind27 --data engine.dat --plan tail-plan.json --threads 4 --run-dir tail-run
           python3 -c 'import json; s=json.load(open("tail-run/STATUS.json")); print("FINAL",json.dumps({"coverage":s["aggregate"],"from":s["from"],"to":s["to"],"hits":s["flagged_survivors"],"workers":s["workers"]},separators=(",",":")))'
       - name: Preserve raw seed candidates and terminal state
