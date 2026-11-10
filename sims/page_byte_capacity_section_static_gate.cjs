@@ -189,6 +189,102 @@ function positive(traversal, significance) {
     exactInverse:true};
 }
 
+
+/**
+ * Convert a page's maximum unrestricted-byte payload to a constraint on
+ * its most-significant 28-ary output digit. The unknown predecessor row
+ * may map the observed next rune to any rank <= upperBound.
+ * @param {{page:number,indices:number[]}} page
+ * @param {"forward"|"backward"} traversal
+ * @param {"big"|"little"} significance
+ * @returns {{page:number,predecessor:number,successor:number,upperBound:number}}
+ */
+function leadingConstraint(page,traversal,significance) {
+  const seq=traversal==="forward"?page.indices:
+    page.indices.slice().reverse();
+  const edges=transitions(seq),D=edges.length;
+  const m=maximumWholeBytes(D);
+  const cap=Number(((256n**BigInt(m))-1n)/pow28(D-1));
+  const [predecessor,successor]=significance==="big"?edges[0]:edges.at(-1);
+  return {page:page.page,predecessor,successor,upperBound:Math.min(cap,27)};
+}
+
+/**
+ * Construct a complete 28-way row assignment witnessing feasibility of
+ * all leading-digit upper bounds in one fixed-key interval.
+ *
+ * For every predecessor, coalesce identical successors to their tightest
+ * bound. Sort distinct outgoing symbols by the bound and assign ranks
+ * 0,1,2,... in that order; this is feasible iff each bound >= its index.
+ * This is a necessary/sufficient matching theorem for the *leading*
+ * byte-capacity inequalities alone, not sufficient for all packet digits.
+ *
+ * @param {{predecessor:number,successor:number,upperBound:number}[]} events
+ * @returns {boolean}
+ */
+function feasibleLeadingRows(events) {
+  const byPrevious=new Map();
+  for(const e of events) {
+    const row=byPrevious.get(e.predecessor)||new Map();
+    const prior=row.get(e.successor);
+    row.set(e.successor,Math.min(prior===undefined?27:prior,e.upperBound));
+    byPrevious.set(e.predecessor,row);
+  }
+  for(const row of byPrevious.values()) {
+    const ranked=[...row.values()].sort((a,b)=>a-b);
+    if(ranked.length>28||ranked.some((cap,index)=>index>cap))return false;
+  }
+  return true;
+}
+
+/** Reproduce exact necessary minimum fixed-row key epochs, using all
+ * 55 source rune-bearing pages, with a mandatory reset at 8 original
+ * large text-section boundaries. Greedy maximal feasible segments are
+ * globally optimal because adding a page only adds constraints.
+ */
+function minimumSectionEpochs() {
+  const sections=[[0,2],[3,7],[8,14],[15,22],
+    [23,26],[27,32],[33,39],[40,55]];
+  const pages=corpus.pages.filter(p=>p.page<56&&p.indices.length);
+  assert.equal(pages.length,55);
+  const out=[];
+  const targets={"forward/big":9,"forward/little":11,
+    "backward/big":9,"backward/little":9};
+  for(const traversal of ["forward","backward"])
+    for(const significance of ["big","little"]) {
+      const events=pages.map(p=>leadingConstraint(p,traversal,significance));
+      const groups=[];
+      for(const [start,end] of sections) {
+        const selected=events.filter(e=>e.page>=start&&e.page<=end);
+        let current=[];
+        for(const e of selected) {
+          if(current.length&&!feasibleLeadingRows([...current,e])) {
+            assert.ok(feasibleLeadingRows(current));
+            groups.push({section:[start,end],
+              pages:[current[0].page,current.at(-1).page]});
+            current=[];
+          }
+          current.push(e);
+        }
+        if(current.length) {
+          assert.ok(feasibleLeadingRows(current));
+          groups.push({section:[start,end],
+            pages:[current[0].page,current.at(-1).page]});
+        }
+      }
+      assert.equal(groups.length,targets[traversal+"/"+significance]);
+      assert.ok(feasibleLeadingRows([]));
+      // Every output group has a constructive per-row rank witness.
+      const knownZero=events.filter(e=>e.upperBound===0).length;
+      assert.equal(knownZero,23);
+      out.push({traversal,significance,knownZeroLeadingPages:knownZero,
+        minimumEpochs:groups.length,
+        additionalRekeysBeyondEightSectionResets:groups.length-8,
+        epochs:groups});
+    }
+  return out;
+}
+
 function run() {
   const proofs = [], positiveControls = [];
   for (const traversal of ["forward", "backward"])
@@ -205,6 +301,7 @@ function run() {
       "a deterministic predecessor row even under arbitrary secret alphabets.",
     forcedZeroPagesPerOrientation:7,
     original:proofs,
+    minimumSourceKeyEpochs:minimumSectionEpochs(),
     syntheticControls:positiveControls,
     limits:"Assumes page-local IVs, same-page doublets treated as markers, "+
       "page-local unrestricted m-byte integer capacity with "+

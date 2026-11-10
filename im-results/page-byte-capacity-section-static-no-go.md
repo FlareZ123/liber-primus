@@ -57,6 +57,23 @@ It also creates a byte-to-rune **positive plant** with one hidden 29-rune cyclic
 
 The [on-demand workflow run 42864888897](https://github.com/FlareZ123/liber-primus/actions/runs/42864888897) passed every assertion. Select the existing manual LP2 adaptive radix-28 workflow, probe **sectionbytes**, to rerun without installing extra dependencies.
 
+## Extending leading-capacity bounds across the 55 rune pages
+
+The same exact high-digit argument applies to every source page. **23 of the 55 rune-bearing pages have a forced-zero leading rank** under maximal unrestricted whole-byte packing. On the other 32 pages, the largest admissible leading rank can be 1–27; each supplies a corresponding upper-bound constraint without assuming a rune order.
+
+This permits a stronger, entirely key-independent question: *how many distinct contiguous fixed secret 29×28 predecessor-table epochs are necessary to satisfy even the original **leading-digit capacity inequalities**, if keys reset at the eight canonical text-section boundaries?* For each predecessor rune, combine observations of the same successor into its tightest allowed rank ceiling. Sort distinct successors by increasing ceiling. There exists an injective secret mapping into ranks 0–27 exactly when **every ordered ceiling is at least its zero-based position**. This elementary Hall-style capacity criterion handles arbitrary unknown secret row permutations.
+
+An interval becomes infeasible monotonically when it receives more pages. Greedily extending each current section's interval until adding the next page creates an impossible row therefore yields the **provably smallest number of contiguous key epochs** for these constraints. The test constructs a feasible row-rank assignment for each retained interval, establishing tightness for the *leading-digit constraints*. Its whole-book results are:
+
+| Source rune traversal | Packet digit significance | Minimum contiguous epochs across eight sections | Extra mandatory within-section rekeys |
+| --- | --- | ---: | ---: |
+| Forward | Big-endian | **9** | **1**, before physical p12 |
+| Forward | Little-endian | **11** | **3**, before p10, p11 and p25 |
+| Backward | Big-endian | **9** | **1**, before p13 |
+| Backward | Little-endian | **9** | **1**, before p12 |
+
+The result includes page50 as a runeless page without a digit packet and leaves the original eight section boundaries intact. **At least one within-section key change is unavoidable for every tested orientation** in this candidate model; forward-little requires three. This bound is necessary for the declared encoder, and feasibility of a leading-digit assignment is not a complete byte-packet decoding witness. A model with new per-page keys can evade this obstruction, and the record supplies no independent instructions for those keys.
+
 ## Seven forced-zero digits as AES/ChaCha crib
 
 The zero-rank observation can also test a *different*, explicitly masked-digit encoding: a page-specific additive pad shifts public predecessor ranks, and the underlying maximal-byte digits still begin with zero. Unlike the section-static direct-rank theorem above, this alternative permits changing page keys or IVs. It supplies **seven source-native known-digit cribs** independent of English likelihood scoring.
