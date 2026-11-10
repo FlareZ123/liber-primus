@@ -97,7 +97,9 @@ function invertNoisy(A,B,dict,lm,cfg={}){
     states=layer.flatMap((items,e)=>items.sort((a,b)=>b.score-a.score)
       .slice(0,e===0?beam:perErrorBeam));
   }
-  const best=states[0],p=new Uint8Array(n),q=new Uint8Array(n),err=[];
+  // Strata protect low-error paths during pruning; the final MAP path must
+  // compete across all error counts, not default to the zero-error stratum.
+  const best=states.reduce((x,y)=>y.score>x.score?y:x),p=new Uint8Array(n),q=new Uint8Array(n),err=[];
   let node=best;
   for(let t=n-1;t>=0;t--){
     p[t]=node.p;q[t]=node.q;if(node.corrupt)err.push(t);
