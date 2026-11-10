@@ -68,7 +68,7 @@ function measure(words,pageLists,sections){
   const flat=words.flat(),frequency=new Uint32Array(29);
   assert.equal(flat.length,12956);
   let internal=0,cross=0,eligibleInternal=0,eligibleCross=0,
-    nonadj=0,nonadjPossible=0,lag6=0,lag5S=0;
+    nonadj=0,nonadjPossible=0,lag6=0,lag6Reverse=0,lag6Adjacent=0,lag5S=0;
   for(let i=0;i<flat.length;i++)frequency[flat[i]]++;
   for(let wi=0;wi<words.length;wi++){
     const w=words[wi];
@@ -82,7 +82,10 @@ function measure(words,pageLists,sections){
         if(w[i]===w[j])nonadj++;
       }
     }
-    for(let i=6;i<w.length;i++)if(w[i]===mod(24-2*w[i-6]))lag6++;
+    for(let i=6;i<w.length;i++){
+      if(w[i]===mod(24-2*w[i-6])){lag6++;if(w[i]===w[i-1])lag6Adjacent++;}
+      if(w[i-6]===mod(24-2*w[i]))lag6Reverse++;
+    }
     for(let i=5;i<w.length;i++)if(w[i]===15&&w[i-5]===15)lag5S++;
     if(wi+1<words.length&&sections[wi]===sections[wi+1]){
       eligibleCross++;
@@ -99,7 +102,7 @@ function measure(words,pageLists,sections){
   return {runes:flat.length,words:words.length,
     internal,eligibleInternal,cross,eligibleCross,
     nonadj,nonadjPossible,physicalAdj,physicalPairs,
-    lag6,lag5S,
+    lag6,lag6Reverse,lag6Adjacent,lag5S,
     chi2,pagePositionRate:phase.rate,global256Rate:globalRate256(pageLists)};
 }
 /**
@@ -167,12 +170,14 @@ function run(repetitions=250){
   assert.equal(real.nonadj,526);
   assert.equal(real.physicalAdj,86);
   assert.equal(real.physicalPairs,12901);
+  assert.equal(real.lag6Reverse,44);
+  assert.equal(real.lag6Adjacent,1);
   const sourceBins=Array.from({length:15},()=>[]);
   for(const word of loadWords().shakespeare)if(word.length<sourceBins.length)
     sourceBins[word.length].push(word);
   const types=["plaintext","iid","global-rewrite","word-rewrite","global-T-rewrite","global-counter6"];
   const metrics=["internal","cross","nonadj","physicalAdj","chi2",
-    "pagePositionRate","global256Rate","lag6","lag5S"];
+    "pagePositionRate","global256Rate","lag6","lag6Reverse","lag6Adjacent","lag5S"];
   const rng=random(0x3901a7d0),panels={};
   for(const type of types)panels[type]={samples:Object.fromEntries(metrics.map(k=>[k,[]]))};
   let contextWords=0;
