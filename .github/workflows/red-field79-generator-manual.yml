@@ -11,3 +11,5 @@ jobs:
           node-version: '22'
       - name: Test source-selected F79 inverse
         run: node sims/red_field79_generator_heldout.cjs
+      - name: Test exact F79 zero-mask invariant against literary controls
+        run: node sims/red_f79_zero_mask_invariant.cjs
