@@ -1,0 +1,15 @@
+name: LP2 discrete-log field-unit key inverse
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/field_unit_discrete_log_periods.cjs 80
