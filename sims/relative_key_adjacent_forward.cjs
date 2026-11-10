@@ -140,6 +140,26 @@ function study(trials=50){
   });
   const selected=mixture.slice().sort((x,y)=>y.first-x.first)[0];
   const optimalAll=mixture.slice().sort((x,y)=>y.full-x.full)[0];
+  const alternativeRegisters=[
+    ['Emerson','emerson_essays_2944.txt'],
+    ['Gibran','gibran_prophet_58585.txt']
+  ].map(([name,filename])=>{
+    const words=base.corpusWords(fs.readFileSync(
+      path.join(ROOT,'resources/control',filename),'utf8'));
+    const transform=train(words).conditional;
+    const modelPrior=singleLogZ(A,transform,n)+singleLogZ(B,transform,n);
+    const modelShortPrior=singleLogZ(A,transform,half)+singleLogZ(B,transform,half);
+    const alternatives=mixture.map(({fraction})=>{
+      const first=score(shortA,shortB,transform,modelShortPrior,fraction);
+      const full=score(A,B,transform,modelPrior,fraction);
+      return {fraction,first,heldout:full-first,full};
+    });
+    return {name,trainingWords:words.length,
+      sourceFrozenFraction:selected.fraction,
+      frozen:alternatives.find(x=>x.fraction===selected.fraction),
+      selectedBySource:alternatives.slice().sort((x,y)=>y.first-x.first)[0],
+      bestFull:alternatives.slice().sort((x,y)=>y.full-x.full)[0]};
+  });
   const positive=[],negative=[];
   for(let i=0;i<trials;i++){
     const a=matched(A,heldout,random),b=matched(B,heldout,random);
@@ -164,6 +184,7 @@ function study(trials=50){
     method:'841-state exact forward marginal, no Viterbi, exact printed word starts/ends',
     n,trainingWords:training.length,trials,
     originalLLR:actual,mixture:{trainingLength:half,selected,optimalAll,
+      alternativeRegisters,
       grid:mixture},sourceMatchedSharedKey:summary(positive),
     sourceMatchedIndependentKey:summary(negative),
     caveat:'Tests precisely this noise channel, page synchronization, source register and independent key-symbol prior. It neither recovers plaintext nor excludes other nonuniform/keyed schedules.'
