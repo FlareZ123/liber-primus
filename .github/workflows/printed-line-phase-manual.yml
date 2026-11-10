@@ -13,4 +13,6 @@ jobs:
         with:
           node-version: '22'
       - name: Run exact line-phase and planted-control experiment
-        run: node sims/printed_line_phase_invariant.cjs
+        run: |
+          node sims/printed_line_phase_invariant.cjs
+          node sims/printed_line_start_channel.cjs
