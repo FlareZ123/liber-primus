@@ -1,0 +1,15 @@
+name: Authentic LP2 page-56 decryption regression
+
+on:
+  workflow_dispatch:
+
+jobs:
+  authentic-known-decryption:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify authentic solved ciphertext, key, and holdout
+        run: node sims/authentic_lp2_p56_totient_regression.cjs
