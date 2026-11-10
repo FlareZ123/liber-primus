@@ -1,19 +1,24 @@
 name: CicadaOS full 56013 pad offset scan
 on:
   workflow_dispatch:
+    inputs:
+      map:
+        description: Byte-to-GP conversion
+        required: true
+        default: mod
+        type: choice
+        options:
+          - mod
+          - reject
 
 permissions:
   contents: read
 
 jobs:
   scan:
-    name: ISO pad full offset ${{ matrix.map }}
+    name: ISO pad full offset ${{ inputs.map }}
     runs-on: windows-latest
     timeout-minutes: 65
-    strategy:
-      fail-fast: false
-      matrix:
-        map: [mod, reject]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
