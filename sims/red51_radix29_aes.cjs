@@ -107,12 +107,56 @@ const enc=ciphertext.map((p,i)=>(p+pad[i]%29)%29);
 const dec=enc.map((c,i)=>(c-pad[i]%29+29)%29);
 if(dec.some((p,i)=>p!==ciphertext[i]))
  throw Error('GP rune stream synthetic full roundtrip failed');
+
+/** @param {number} seed @returns {() => number} */
+function random32(seed){
+ let state=seed>>>0;
+ return ()=>{state^=state<<13;state^=state>>>17;state^=state<<5;return state>>>0;};
+}
+/** @param {number[]} sourceDigits @returns {number} */
+function maximalAscii(sourceDigits){
+ let best=0;
+ const ops=[
+  sourceDigits,sourceDigits.slice().reverse(),
+  sourceDigits.map(x=>28-x),
+  sourceDigits.slice().reverse().map(x=>28-x)
+ ];
+ for(const digits of ops){
+  const k=base29Key(digits);
+  for(const iv of ivs)for(const mode of ['cbc','ctr','cfb','ofb','ecb']){
+   if(mode==='ecb'&&iv.name!=='zero')continue;
+   const clear=decrypt(gridBytes,k,mode,mode==='ecb'?null:iv.bytes);
+   const count=[...clear].filter(x=>x===9||x===10||x===13||(x>=32&&x<=126)).length;
+   if(count>best)best=count;
+  }
+ }
+ return best;
+}
+// Keep the original marked stanza's exact 51-rune multiset. Randomize only
+// its ordering; every 36-model family is searched identically in each control.
+const rng=random32(0x22a51e51);
+const nullTrials=4000;
+let maxExceed=0,maxTotal=0;
+const observedMax=gridScores[0].asciiLike;
+for(let trial=0;trial<nullTrials;trial++){
+ const sample=rs.slice();
+ for(let i=sample.length-1;i>0;i--){
+  const j=rng()%(i+1);
+  [sample[i],sample[j]]=[sample[j],sample[i]];
+ }
+ const candidate=maximalAscii(sample);
+ maxTotal+=candidate;
+ if(candidate>=observedMax)maxExceed++;
+}
+const gridCalibration={originalMax:observedMax,conditionalShuffles:nullTrials,
+ seed:'0x22a51e51',controlMean:maxTotal/nullTrials,
+ exceedCount:maxExceed,addOneP:(maxExceed+1)/(nullTrials+1)};
 console.log(JSON.stringify({
  source:{unresolvedRunes:ciphertext.length,redDigits:51,gridBytes:gridBytes.length,
   redIndicesSha256:crypto.createHash('sha256').update(Buffer.from(rs)).digest('hex'),
   gridSha256:crypto.createHash('sha256').update(gridBytes).digest('hex'),
   originalFullIoC:ioc(ciphertext),originalPrefix4096IoC:ioc(ciphertext.slice(0,4096))},
- gridTrialCount:gridScores.length,bestGrid:gridScores.slice(0,6),
+ gridTrialCount:gridScores.length,bestGrid:gridScores.slice(0,6),gridCalibration,
  runeTrialCount:runeScores.length,bestWholeRune:runeScores.slice().sort((a,b)=>b.wholeIoC-a.wholeIoC)[0],bestRunes:runeScores.slice(0,6),
  plantedInverse:{aes256CBC:true,aes256CTRGP:true}
 },null,2));
