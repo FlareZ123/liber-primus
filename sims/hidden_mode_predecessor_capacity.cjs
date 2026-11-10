@@ -118,6 +118,70 @@ function originalWitness(book, modes, target) {
   return {count, plaintext, chosenModes, forward, inverse};
 }
 
+/** Arbitrary book-wide predecessor S-box keyed by a fixed public phase clock. */
+function periodicRowCounts(book, period, scope) {
+  assert.ok(Number.isInteger(period) && period >= 1);
+  assert.ok(scope === "page" || scope === "book");
+  const rows = Array.from({length: period * 29}, () => new Uint16Array(29));
+  let absolute = 0;
+  for (const page of book) {
+    for (let i = 1; i < page.length; i++) {
+      const clock = scope === "page" ? i : absolute + i;
+      rows[(clock % period) * 29 + page[i - 1]][page[i]]++;
+    }
+    absolute += page.length;
+  }
+  return rows;
+}
+
+/** Sharp key-independent native-symbol capacity for any fixed phase period. */
+function periodicCapacity(book, period, scope) {
+  return book.length + periodicRowCounts(book, period, scope)
+    .reduce((sum, row) => sum + Math.max(...row), 0);
+}
+
+/**
+ * Tight original-input witness under a fixed public phase clock; independently
+ * construct an arbitrary permutation at each phase/predecessor context.
+ */
+function periodicWitness(book, period, scope, target) {
+  const counts = periodicRowCounts(book, period, scope);
+  const forward = [], inverse = [];
+  for (const row of counts) {
+    const fav = Array.from({length: 29}, (_, i) => i)
+      .sort((a, b) => row[b] - row[a] || a - b)[0];
+    const perm = Array(29).fill(-1), inv = Array(29).fill(-1);
+    perm[target] = fav;
+    inv[fav] = target;
+    let plain = 0;
+    for (let cipher = 0; cipher < 29; cipher++) {
+      if (cipher === fav) continue;
+      while (plain === target) plain++;
+      perm[plain] = cipher;
+      inv[cipher] = plain;
+      plain++;
+    }
+    forward.push(perm); inverse.push(inv);
+  }
+  let count = 0, absolute = 0, roundTrip = 0;
+  for (const page of book) {
+    count++;
+    roundTrip++;
+    for (let i = 1; i < page.length; i++) {
+      const clock = scope === "page" ? i : absolute + i;
+      const row = (clock % period) * 29 + page[i - 1];
+      const plain = inverse[row][page[i]];
+      assert.equal(forward[row][plain], page[i]);
+      if (plain === target) count++;
+      roundTrip++;
+    }
+    absolute += page.length;
+  }
+  assert.equal(count, periodicCapacity(book, period, scope));
+  assert.equal(roundTrip, N);
+  return {count, roundTrip};
+}
+
 /** Author-native solved GP words; identical normalization to EA source tests. */
 function nativeWords() {
   const lines = load("resources/liber-primus/lp1-plaintext-reference.txt")
@@ -246,6 +310,49 @@ function nativePlant(model) {
   return {sourceE: eCount, twoModeCapacity: cap, roundTrip: N};
 }
 
+/** Authentic solved-source control with a fixed visible phase and secret row keys. */
+function nativePeriodicPlant(model, period, scope) {
+  const random = rng(0x33012979);
+  const plain = [];
+  for (const n of printedLengths) {
+    const pool = model.buckets.get(n);
+    plain.push(...pool[random() % pool.length]);
+  }
+  assert.equal(plain.length, N);
+  const rows = Array.from({length: period * 29}, () => {
+    const perm = Array.from({length: 29}, (_, i) => i);
+    for (let i = 28; i > 0; i--) {
+      const j = random() % (i + 1);
+      [perm[i], perm[j]] = [perm[j], perm[i]];
+    }
+    return perm;
+  });
+  const inverse = rows.map(row => {
+    const inv = Array(29).fill(-1);
+    for (let i = 0; i < 29; i++) inv[row[i]] = i;
+    return inv;
+  });
+  const cipher = [];
+  let offset = 0;
+  for (const len of pageLengths) {
+    const page = [plain[offset]];
+    for (let i = 1; i < len; i++) {
+      const clock = scope === "page" ? i : offset + i;
+      const state = (clock % period) * 29 + page[i - 1];
+      const c = rows[state][plain[offset + i]];
+      assert.equal(inverse[state][c], plain[offset + i]);
+      page.push(c);
+    }
+    offset += len;
+    cipher.push(page);
+  }
+  assert.equal(offset, N);
+  const eCount = plain.filter(x => x === E).length;
+  const cap = periodicCapacity(cipher, period, scope);
+  assert.ok(cap >= eCount);
+  return {sourceE: eCount, capacity: cap, exactForwardInverse: N};
+}
+
 function main() {
   const rows = transitionCounts(pages);
   const capacities = [1, 2, 3, 4].map(m => capacity(rows, m, 55));
@@ -255,6 +362,21 @@ function main() {
   const source = sourceModel();
   const tail = chernoffLowerTail(source, capacities[1]);
   const positive = nativePlant(source);
+  const periodic = Array.from({length: 16}, (_, i) => ({
+    period: i + 1,
+    pageReset: periodicCapacity(pages, i + 1, "page"),
+    bookClock: periodicCapacity(pages, i + 1, "book")
+  }));
+  assert.deepEqual(periodic[9], {period: 10, pageReset: 1356, bookClock: 1381});
+  assert.deepEqual(periodic[11], {period: 12, pageReset: 1472, bookClock: 1475});
+  assert.deepEqual(periodic[14], {period: 15, pageReset: 1625, bookClock: 1620});
+  const max10 = Math.max(...periodic.slice(0, 10)
+    .flatMap(x => [x.pageReset, x.bookClock]));
+  const max12 = Math.max(...periodic.slice(0, 12)
+    .flatMap(x => [x.pageReset, x.bookClock]));
+  const exactClockWitness = periodicWitness(pages, 10, "book", E);
+  assert.equal(exactClockWitness.count, max10);
+  const periodicPlant = nativePeriodicPlant(source, 10, "book");
   return {
     claim: "Conditional two-hidden-mode global predecessor-S-box exclusion; no LP2 plaintext recovered",
     sourceSha256: createHash("sha256").update(rawCorpus).digest("hex"),
@@ -267,6 +389,15 @@ function main() {
       ECeiling: capacities[1],
       lowerTailChernoff: tail},
     positiveControl: positive,
+    publicPhaseClocks: {periods: periodic,
+      maxCapacityAnyPeriodUpTo10EitherClock: max10,
+      lowerTailUpperBoundUpTo10: chernoffLowerTail(source, max10),
+      maxCapacityAnyPeriodUpTo12EitherClock: max12,
+      lowerTailUpperBoundUpTo12: chernoffLowerTail(source, max12),
+      originalPeriod10TightWitness: exactClockWitness,
+      solvedNativePeriod10Plant: periodicPlant,
+      firstPeriodPermittingMeanE: periodic.find(x =>
+        x.pageReset >= source.mean && x.bookClock >= source.mean).period},
     sparseOverrides: {baseOneModeMaxE: capacities[0],
       requiredOverridesAtSourceMean: Math.ceil(source.mean - capacities[0]),
       sourceMeaning: "Override must be genuinely different from book-wide base bijective row"},
@@ -275,4 +406,5 @@ function main() {
 }
 if (require.main === module) console.log(JSON.stringify(main(), null, 2));
 module.exports = {transitionCounts, capacity, originalWitness, nativeWords,
-  sourceModel, chernoffLowerTail, nativePlant, main};
+  sourceModel, chernoffLowerTail, nativePlant, nativePeriodicPlant,
+  periodicRowCounts, periodicCapacity, periodicWitness, main};

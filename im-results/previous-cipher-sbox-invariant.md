@@ -132,6 +132,33 @@ For a source register sampled independently from the **796 solved-Cicada GP word
 
 **Reproduce:** \`node sims/hidden_mode_predecessor_capacity.cjs\`; the script asserts original capacities **769/1414/2026/2619**, constructs the tight original-input witness, computes the native length-conditioned Chernoff bound, and runs a fresh two-mode source-planted **12,956-rune exact forward/inverse** regression. No actual LP2 key or plaintext is claimed.
 
+### Extension: a *publicly clocked* key can require even more than two modes
+
+For a fixed period \`L\`, suppose the book uses a separate arbitrary 29-symbol permutation for **each** pair \`(position mod L, preceding ciphertext rune)\`. A decoder knows the phase from the published coordinate, and all row keys are otherwise unrestricted; unlike an unknown hidden-state path, the same fixed phase/previous-rune pair must always reuse a single permutation. The exact one-symbol capacity becomes \`55 + Σ_{phase,x} max_y n[phase,x,y]\`. Calculate the phase from (a) the entire concatenated manuscript or (b) the physical-page-local rune offset. The original-input exact bounds are:
+
+| Fixed period | Continuous-book clock | Page-reset clock |
+| ---: | ---: | ---: |
+| 1 | 769 | 769 |
+| 2 | 853 | 878 |
+| 3 | 968 | 966 |
+| 4 | 1,019 | 1,023 |
+| 5 | 1,083 | 1,108 |
+| 6 | 1,166 | 1,169 |
+| 7 | 1,220 | 1,232 |
+| 8 | 1,256 | 1,271 |
+| 9 | 1,334 | 1,345 |
+| 10 | 1,381 | 1,356 |
+| 11 | 1,408 | 1,429 |
+| 12 | 1,475 | 1,472 |
+| 13 | 1,540 | 1,527 |
+| 14 | 1,557 | 1,567 |
+| 15 | 1,620 | 1,625 |
+| 16 | 1,641 | 1,642 |
+
+Consequently **all periods L ≤ 10 in both clock conventions** yield at most **1,381** GP E symbols even with entirely arbitrary predecessor-/phase-dependent alphabet permutations. All \`L ≤ 12\` allow at most 1,475. The first integer period whose maximum even reaches the author-native **expected** E frequency of 1,574.499 is **L=15**, for both clocks. These are sharp finite-ciphertext limits, independent of key and any 29! search. The new script constructs a period-10 original-ciphertext witness that exactly re-encrypts every symbol, and encrypts/decrypts a genuine independent source-native periodic-key positive control. Its emitted Chernoff bounds quantify the rarity of such low E totals under precisely the same native word-sampling model as above.
+
+This strengthens the prior phase-collision analysis for the specific **predecessor-conditioned, fixed-public-period** architecture. It does not constrain hidden phase skips, unknown page shifts, state dependent on plaintext, independent page-specific rows, an additional whitening layer, or naturally low-E source text. The number 15 is a *necessary period to accommodate the source-model mean in these two clock conventions*, not a discovered period or authorial parameter.
+
 ## What this says about solving LP2
 
 If an ordinary English-GP rune stream were encrypted by one of the specific deterministic, short-ciphertext-context-indexed substitution families, then the symbol probabilities in rows should remain comparatively concentrated. The observed ciphertext is instead nearly indistinguishable from the self-avoiding uniform null in these conditioned collision tests. The gap against model-matched positive controls is large and reproducible.
