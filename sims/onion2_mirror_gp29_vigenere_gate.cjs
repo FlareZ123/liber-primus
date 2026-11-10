@@ -85,7 +85,8 @@ const red = ink53.red_spans.flatMap((span) =>
 );
 assert.equal(red.length, 51);
 assert.equal(ink53.red_spans.length, 1);
-assert.deepEqual(ink53.red_spans[0], { start: 128, length: 51 });
+assert.equal(ink53.red_spans[0].start, 128);
+assert.equal(ink53.red_spans[0].length, 51);
 const R = red.reduce((value, digit) => value * 29n + BigInt(digit), 0n);
 
 const orientationGcds = d4.map(([name, m]) => ({
@@ -364,7 +365,7 @@ console.log(JSON.stringify({
     redGridGcd: gcd(R, N).toString(),
     mirrorSha256: crypto.createHash('sha256').update(mirroredBytes).digest('hex')
   },
-  d4OrientationGcds,
+  d4OrientationGcds: orientationGcds,
   selectedOrientation: 'flipLR (reverse each 8-byte row)',
   mirrorGcdWithGrid: gcd(N, H).toString(),
   mirrorGcdWithP53Red: gcd(R, H).toString(),
