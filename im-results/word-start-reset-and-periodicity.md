@@ -77,6 +77,26 @@ A more permissive model chooses one secret alphabet for each \`(scope, whole-wor
 | Each source section | **28** | 2 | 2 |
 | Each physical page | **6** | 0 | 0 |
 
+### Previous-ciphertext-keyed alphabets
+
+A self-synchronizing architecture may select a book-, section-, or page-specific secret alphabet by the *preceding ciphertext rune*:
+
+\[
+ C_i=S_{g,C_{i-1}}(P_i),
+\]
+
+where every row is an entirely arbitrary, otherwise unknown bijective GP29 permutation. This is different from the whole-word-ordinal key clock above. Exclude the **one** original singleton word beginning at a physical page's first rune, since its preceding within-page ciphertext state requires an unknown IV. Exactly **82** original one-rune words then have observable previous-ciphertext states. The same sharp top-two capacity bound applies independently inside each state:
+
+| Secret predecessor-alphabet reset scope | Eligible singleton words | Observed states | Forced A/I exceptions |
+| --- | ---: | ---: | ---: |
+| Book-wide | 82 | 28 | **31** |
+| Independently each of eight nonempty sections | 82 | 67 | **2** |
+| Independently each physical page | 82 | 80 | **0** |
+
+Thus book-global and section-global fixed predecessor-indexed arbitrary permutations cannot explain all the original native A/I singleton words. Page-specific rows escape this *singleton-only* condition because 80 state keys are observed at merely 82 singleton events; survival is not positive evidence of a cipher. The separate [full-corpus ciphertext-history collision study](previous-cipher-sbox-invariant.md) imposes additional language-conditioned constraints on page-specific rows.
+
+The [same script](../sims/singleton_word_key_capacity.cjs) constructs three stateful, reversible, original-layout control encryptions with actual GP A/I singleton plaintext, random hidden previous-ciphertext-keyed 29-permutations, and a full **12,956/12,956** symbol inverse. All yield zero forced singleton exceptions. The original-source figures and these independent controls passed the [manual CI run 42856477400](https://github.com/FlareZ123/liber-primus/actions/runs/42856477400). This remains a conditional source-register impossibility theorem and recovers no actual LP2 plaintext.
+
 Survival of the singleton condition is only a *necessary* condition; later periods can again fail as word-ordinal residues collide. An unconstrained ciphertext-conditioned state, a changing hidden key, inserted or removed runes, redefined word boundaries, different languages, and an intermediate non-native plaintext representation remain possible. In particular this does not establish that a length-130 key is present, recover any plaintext, or identify a viable cipher.
 
 The on-original exact implementation is [\`sims/singleton_word_key_capacity.cjs\`](../sims/singleton_word_key_capacity.cjs). It preserves all **32 words crossing page boundaries** and verifies the independent shared whole-word parser. Three **12,956-rune reversible positive-control encryptions**, each with genuine planted A/I singletons and independent arbitrary keyed per-state permutations, fully invert and correctly return zero singleton exceptions. Its original and planted assertions passed the existing [manual word-start workflow, run **42854530210**](https://github.com/FlareZ123/liber-primus/actions/runs/42854530210). The separate [wordwise 29-to-28-radix nonce bound](wordwise-radix-nonce-capacity.md) concerns a different \(L-1\)-plaintext-runes-per-\(L\)-cipher-runes architecture; it should not be conflated with this same-length model.
