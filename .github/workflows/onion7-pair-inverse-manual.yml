@@ -13,4 +13,4 @@ jobs:
         with:
           node-version: "22"
       - name: Verify original source-root inverse and native-language control
-        run: node sims/onion7_133331_pair_inverse.cjs
+        run: |\n          node sims/onion7_133331_pair_inverse.cjs\n          node sims/onion7_133331_feedback_inverse.cjs
