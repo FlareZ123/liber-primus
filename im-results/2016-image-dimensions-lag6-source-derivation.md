@@ -57,14 +57,7 @@ These two cells are visible in the original page-49 scan (the resource corpus ma
 
 ### 3. The same offsets select Ac and S in the 128-rune second half
 
-The earlier visual grouping of physical LP2 pages 53–55 is:
-
-- p53 black runes: **128**;
-- p53 red runes: **51**;
-- the oversized illuminated p54 initial **ᚪ (Ac)**: **1** (already counted as p54's first red rune; not an extra glyph);
-- p55 runes: **76**.
-
-Thus the proposed second half is \(51+1+76=128\) runes, following the first 128 black p53 runes. This is a visually motivated grouping, not a contiguous transcription, and remains a hypothesis.
+The visual concatenation is all **179 p53 runes + the oversized p54 initial ᚪ (Ac) + all 76 p55 runes = 256**. The p53 sequence splits into an initial **128-rune black block** and a **51-rune span marked by the red numeral 1** (the rune glyphs themselves are black; “red span” refers to the red section marker/punctuation). The p54 Ac is one selected initial; the rest of p54's text is not included in this proposed concatenation. The resulting second half is \(51+1+76=128\), following the first 128 p53 runes. This is a visually motivated, non-contiguous source selection and remains a hypothesis.
 
 The 2016 dimensions also select offsets within this 128-rune half:
 
