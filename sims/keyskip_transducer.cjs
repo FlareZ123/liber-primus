@@ -126,4 +126,105 @@ function invert(sigma) {
   return out;
 }
 
-module.exports = {logLikelihood,encrypt,invert};
+
+
+/**
+ * Exact posterior plaintext distribution, summing all key-skip alignments
+ * allowed by the same fixed-P rejection mechanism.
+ *
+ * @param {number[]} cipher
+ * @param {Model} model
+ * @returns {{
+ *   logProbability:number,
+ *   mapPlaintext:number[],
+ *   posterior:number[][]
+ * }}
+ */
+function decodePosterior(cipher, model) {
+  const { key, q, inverseSigma } = model;
+  const M = q.length, L = key.length;
+  const r = model.rejectRepeat === undefined ? 0.83 : model.rejectRepeat;
+  const offset = model.offset || 0;
+  const extra = model.maxTotalSkips === undefined ? 40 : model.maxTotalSkips;
+  const perOutput = model.maxSkippedPerOutput === undefined
+    ? 4 : model.maxSkippedPerOutput;
+  const size = cipher.length + extra + 2;
+  const forward = [new Float64Array(size)];
+  forward[0][0] = 1;
+  const scales = [];
+  let logProbability = 0;
+
+  // Enumerate posterior-key-pair paths without redrawing a plaintext
+  // character when rejecting a would-be duplicate ciphertext symbol.
+  function transitions(t, start, visit) {
+    const c = cipher[t], prev = t ? cipher[t - 1] : -1;
+    const a = inverseSigma[c], b = prev < 0 ? -1 : inverseSigma[prev];
+    const accept = c === prev ? 1 - r : 1;
+    const last = Math.min(start + (t ? perOutput : 0), t + extra);
+    for (let j = start; j <= last; j++) {
+      const p = mod(a - key[(offset + j) % L], M);
+      let allowed = true;
+      for (let h = start; h < j; h++) {
+        if (mod(p + key[(offset + h) % L], M) !== b) {
+          allowed = false;
+          break;
+        }
+      }
+      if (allowed) {
+        visit(j + 1, p, accept * q[p] * r ** (j - start));
+      }
+    }
+  }
+
+  for (let t = 0; t < cipher.length; t++) {
+    const next = new Float64Array(size);
+    const current = forward[t];
+    const lastStart = Math.min(t + extra, size - 2);
+    for (let start = t; start <= lastStart; start++) {
+      const oldMass = current[start];
+      if (oldMass === 0) continue;
+      transitions(t, start, (nextCursor, p, mass) => {
+        next[nextCursor] += oldMass * mass;
+      });
+    }
+    let scale = 0;
+    for (let j = t + 1; j < size; j++) scale += next[j];
+    if (scale === 0) throw new Error("Invalid observation model");
+    const invScale = 1 / scale;
+    for (let j = t + 1; j < size; j++) next[j] *= invScale;
+    forward.push(next);
+    scales.push(scale);
+    logProbability += Math.log(scale);
+  }
+
+  const backward = Array.from(
+    { length: cipher.length + 1 }, () => new Float64Array(size)
+  );
+  backward[cipher.length].fill(1);
+  const posterior = Array.from(
+    { length: cipher.length }, () => Array(M).fill(0)
+  );
+  for (let t = cipher.length - 1; t >= 0; t--) {
+    const current = forward[t], nextBack = backward[t + 1];
+    const prior = backward[t], out = posterior[t], norm = scales[t];
+    for (let start = t; start <= Math.min(t + extra, size - 2); start++) {
+      let suffixMass = 0;
+      transitions(t, start, (nextCursor, p, weight) => {
+        const term = weight * nextBack[nextCursor];
+        suffixMass += term;
+        out[p] += current[start] * term / norm;
+      });
+      prior[start] = suffixMass / norm;
+    }
+    const total = out.reduce((s, p) => s + p, 0);
+    for (let p = 0; p < M; p++) out[p] /= total;
+  }
+
+  return {
+    logProbability,
+    mapPlaintext: posterior.map((probs) => probs.indexOf(Math.max(...probs))),
+    posterior
+  };
+}
+
+module.exports = {logLikelihood,encrypt,invert,decodePosterior};
