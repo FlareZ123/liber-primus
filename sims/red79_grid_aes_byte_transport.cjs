@@ -56,24 +56,47 @@ assert.equal(entries.length, 12870);
 assert.equal(entries.length % packetDigits, 0);
 
 const token59 = grid.alphabet.replace("f", "");
-const rows59 = grid.rows.map((r) => r.map((t) =>
-  token59.indexOf(t[0]) * 59 + token59.indexOf(t[1])));
-assert(rows59.flat().every((n) => n >= 0 && n <= 255));
+const repairs = [[45, 107, 81], [50, 47, 21],
+  [165, 18, 47], [172, 148, 174], [246, 198, 224]];
+/** Independently image-audited five-cell alternative, as printed base60 tokens. */
+function sourceGridRows(radix, corrected) {
+  const tokens = grid.rows.flat();
+  if (corrected) for (const [index, previous, replacement] of repairs) {
+    const oldToken = tokens[index];
+    const oldValue = grid.alphabet.indexOf(oldToken[0]) * 60 +
+      grid.alphabet.indexOf(oldToken[1]);
+    assert.equal(oldValue, previous);
+    tokens[index] = grid.alphabet[Math.floor(replacement / 60)] +
+      grid.alphabet[replacement % 60];
+  }
+  const alphabet = radix === 59 ? token59 : grid.alphabet;
+  const bytes = tokens.map((t) =>
+    alphabet.indexOf(t[0]) * radix + alphabet.indexOf(t[1]));
+  assert(bytes.every((n) => n >= 0 && n <= 255));
+  return Array.from({length: 32}, (_, i) => bytes.slice(i * 8, i * 8 + 8));
+}
+assert.deepEqual(sourceGridRows(60, false), grid.byte_rows);
 
 /**
  * @param {number[][]} rows
  * @param {"column"|"block"} layout
- * @param {boolean} backwards
+ * @param {"identity"|"reverse"|"patience"|"patienceInverse"} order
  * @returns {Buffer[]}
  */
-function sectionKeys(rows, layout, backwards) {
+function sectionKeys(rows, layout, order) {
   const flat = rows.flat();
   const keys = Array.from({length: 8}, (_, k) =>
     layout === "column"
       ? Buffer.from(rows.map((r) => r[k]))
       : Buffer.from(flat.slice(k * 32, k * 32 + 32)));
   assert(keys.every((b) => b.length === 32));
-  return backwards ? keys.reverse() : keys;
+  const patience = [6, 5, 3, 0, 2, 4, 7, 1];
+  const inverse = Array(8);
+  for (let i = 0; i < 8; i++) inverse[patience[i]] = i;
+  const choices = {identity: [0, 1, 2, 3, 4, 5, 6, 7],
+    reverse: [7, 6, 5, 4, 3, 2, 1, 0],
+    patience, patienceInverse: inverse};
+  return choices[order].map((i) => keys[i]);
 }
 
 /** @param {Buffer[]} keys @returns {Uint8Array} */
@@ -180,7 +203,8 @@ function bestOfSource(glyphs, padsByFamily, collectBest = 8) {
           const evidence = measure(fromDigits(unmasked, backwards));
           scores.push({
             direction, insertion, radix: family.radix,
-            layout: family.layout, keyReverse: family.keyReverse,
+            corrected: family.corrected, layout: family.layout,
+            keyOrder: family.keyOrder,
             sign, backwards, ...evidence
           });
         }
@@ -197,14 +221,15 @@ function bestOfSource(glyphs, padsByFamily, collectBest = 8) {
 }
 
 const families = [];
-for (const [radix, rows] of [[60, grid.byte_rows], [59, rows59]]) {
+for (const radix of [60, 59]) for (const corrected of [false, true]) {
+  const rows = sourceGridRows(radix, corrected);
   for (const layout of ["column", "block"])
-    for (const keyReverse of [false, true]) {
-      families.push({radix, layout, keyReverse,
-        pads: derivePads(sectionKeys(rows, layout, keyReverse))});
+    for (const keyOrder of ["identity", "reverse", "patience", "patienceInverse"]) {
+      families.push({radix, corrected, layout, keyOrder,
+        pads: derivePads(sectionKeys(rows, layout, keyOrder))});
     }
 }
-assert.equal(families.length, 8);
+assert.equal(families.length, 32);
 
 /** Make 165 exact 47-byte natural ASCII packets, with no overflow. */
 function positivePlain() {
@@ -251,8 +276,8 @@ function encryptRanks(digits, pads, cycle) {
 function run() {
   const actual = bestOfSource(entries.map((e) => e.glyph), families);
   const target = cycles.find((x) => x.direction === 1 && x.insertion === 11);
-  const key = families.find((x) => x.radix === 60 &&
-    x.layout === "column" && !x.keyReverse);
+  const key = families.find((x) => x.radix === 60 && !x.corrected &&
+    x.layout === "column" && x.keyOrder === "identity");
   const truePlain = positivePlain();
   const planted = encryptRanks(toDigits(truePlain), key.pads, target.cycle);
   const inverse = fromDigits(unpad(extractRanks(target.cycle, planted),
@@ -263,7 +288,8 @@ function run() {
   assert.equal(recovered.top[0].printable, 7755);
   assert.equal(recovered.top[0].radix, 60);
   assert.equal(recovered.top[0].layout, "column");
-  assert.equal(recovered.top[0].keyReverse, false);
+  assert.equal(recovered.top[0].corrected, false);
+  assert.equal(recovered.top[0].keyOrder, "identity");
   assert.equal(recovered.top[0].direction, 1);
   assert.equal(recovered.top[0].insertion, 11);
   assert.equal(recovered.top[0].sign, 1);
@@ -293,6 +319,8 @@ function run() {
       packets: 165, bytes: 7755, red79: firstSeen,
       missingSymbol: omitted[0], sections: starts},
     familySize: actual.count,
+    auditedCells: repairs.map((x) => x[0]),
+    historicalPatienceGPPrimeOrder: [6, 5, 3, 0, 2, 4, 7, 1],
     original: actual,
     plant: {fullRecoveredBytes: truePlain.length, allMarkersReproduced: dupes,
       chosen: recovered.top[0], runnerUp: recovered.top[1]}
