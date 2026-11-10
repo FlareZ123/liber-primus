@@ -34,6 +34,15 @@ assert.equal(grid.alphabet.indexOf("f"),41);
 assert.deepEqual([...grid.alphabet].filter(ch=>!grid.rows.flat().some(cell=>cell[1]===ch)),["f"]);
 assert.deepEqual(Array.from({length:60},(_,i)=>i+1).filter(n=>primes[n-1]**2%256===n),[41]);
 const mod=(a,n)=>(a%n+n)%n;
+const powers=[],logs=Array(29).fill(-1);
+let power=1;
+for(let e=0;e<28;e++){
+  assert.equal(logs[power],-1);
+  powers.push(power);logs[power]=e;
+  power=power*15%29;
+}
+assert.equal(power,1);
+assert.equal(powers.length,28);
 /** @param {number} i @returns {number} */
 function indexAt(i){
   const n=41+i,p=primes[n-1];
@@ -54,7 +63,7 @@ const first256=Array.from({length:256},(_,i)=>indexAt(i));
 assert.ok(first256.every(i=>i>=0&&i<256));
 /**
  * @param {number[][]} pageSequences
- * @param {"add29"|"rank28"} family
+ * @param {"add29"|"rank28"|"log15"} family
  * @param {"mod"|"scaled"} projection
  * @param {-1|1} sign
  * @param {boolean} pageReset
@@ -72,7 +81,12 @@ function cipher(pageSequences,family,projection,sign,pageReset,encode){
       const x=page[i],t=pageReset?i:ordinal,k=keyAt(t,n,projection);
       let y;
       if(family==="add29") y=mod(x+(encode?1:-1)*sign*k,29);
-      else if(encode){
+      else if(family==="log15"){
+        if(encode) y=previous===null?x:x===28?previous:
+          mod(previous+powers[mod(x+sign*k,28)],29);
+        else y=previous===null?x:x===previous?28:
+          mod(logs[mod(x-previous,29)]-sign*k,28);
+      }else if(encode){
         y=previous===null?x:x===28?previous:mod(previous+1+mod(x+sign*k,28),29);
       }else y=previous===null?x:x===previous?28:mod(mod(x-previous-1,29)-sign*k,28);
       previous=encode?y:x;
@@ -91,7 +105,7 @@ function ioc(x){
 const plant=latin.runes.slice(0,2400);
 assert.equal(plant.length,2400);
 const variants=[];
-for(const family of ["add29","rank28"])
+for(const family of ["add29","rank28","log15"])
  for(const projection of ["mod","scaled"])
   for(const sign of [-1,1])
    for(const pageReset of [false,true]){
@@ -104,7 +118,7 @@ for(const family of ["add29","rank28"])
        originalIoC:ioc(flat),first40:flat.slice(0,40).map(i=>corpus.translit[i]).join(" ")});
    }
 variants.sort((a,b)=>b.originalIoC-a.originalIoC);
-assert.equal(variants.length,16);
+assert.equal(variants.length,24);
 assert.ok(variants.every(r=>r.originalIoC<0.045));
 console.log(JSON.stringify({
   source:"Original 32x8 256-cell table, missing units glyph f index41, GP corpus",
@@ -115,6 +129,6 @@ console.log(JSON.stringify({
   plantedLatinLength:plant.length,plantedLatinIoC:ioc(plant),
   exactOriginalAndPlantRoundTrip:true,
   variants,
-  decision:"The source-selected prime-square row/ordinal-column schedule fails both direct GP29 and rank28 decipherments; no plaintext, mechanism, or key recovered.",
+  decision:"The source-selected prime-square row/ordinal-column schedule fails direct GP29, rank28, and GF29 log15 decipherments; no plaintext, mechanism, or key recovered.",
   scope:"A specific source-derived schedule only; other uses of prime179 and the table are open."
 },null,2));
