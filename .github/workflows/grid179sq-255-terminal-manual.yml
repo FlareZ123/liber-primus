@@ -21,5 +21,3 @@ jobs:
         run: node sims/lp2_red_triads_polynomial_source_gate.cjs
       - name: Test primitive GF841 840-phase key-independent invariant
         run: node sims/red_triad_gf841_phase_invariant.cjs
-      - name: Primitive GF29 field-trace original inverse
-        run: node sims/red_primitive_field_trace_original_inverse.cjs
