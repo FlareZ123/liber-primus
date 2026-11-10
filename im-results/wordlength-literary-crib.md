@@ -45,7 +45,30 @@ The search covers Shakespeare, Emerson, Gibran, the native solved-Cicada registe
 
 The same search performs a true-source positive with a fresh source-disjoint contiguous 12,956-rune Shakespeare segment, encrypted under an independently specified exact zero-step GP alphabet transition. It rediscovers the **correct original offset in all eight synthetic sections**, with Hamming distance zero and total **12,956/12,956** true plaintext positions covered; per-section marker counts **[2,4,7,6,3,6,17,40]**. The original-source failure is informative for the narrow model of a verbatim quote using this zero-to-EA law; no key, authentic LP2 plaintext, or destination follows from the partial Tannhäuser match. [Successful 87-book manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42812406652). The existing [literary-source manual workflow](../.github/workflows/padded-wordlength-corpus.yml) now has an *exclusive* `ea-fingerprint` mode so rerunning this test does not also launch the older word-length search.
 
+## Order-independent whole-section word-bag source locator
+
+The historical ciphertext's word-length adjacency is atypically weak for ordinary GP-English, so a new inverse allows **arbitrary permutation of intact words within every full LP2 text section**, a much larger family than any fixed columnar permutation. If an LP2 section directly copies a contiguous source excerpt without altering word boundaries or per-word GP length, its **whole-section length histogram must match exactly** regardless of how all words were scrambled. This creates an exact, permutation-key-free necessary-condition test for a copied and rearranged source passage.
+
+The original eight source-canonical sections contain **[158, 255, 385, 435, 224, 326, 378, 735] words**, comprising **2,896 words and 12,956 runes**. The [exact sliding source locator](../sims/lp2_wordbag_source_locator.cjs) uses the same explicit English-to-GP digraph/ING length rule and the same 92-book frozen GITenberg bibliography as the preceding experiments. Every contiguous source window with the section's number of words is examined using an incrementally maintained word-length histogram. The sum of absolute histogram differences is twice the **minimum number of individual word-length replacements** required to make the two multisets equal; an exact match has zero replacements.
+
+| LP2 section | Original words | Fewest replacements among all scanned source windows | Source Gutenberg ID |
+| ---: | ---: | ---: | ---: |
+| 0 | 158 | **6** | 14209 |
+| 1 | 255 | **12** | 12894 |
+| 2 | 385 | **15** | 12894 |
+| 3 | 435 | **17** | 1998 |
+| 4 | 224 | **10** | 1998 / 1397 |
+| 5 | 326 | **9** | 12894 |
+| 6 | 378 | **13** | 12894 / 1397 |
+| 7 | 735 | **35** | 1998 |
+
+**Observed exact matches: zero across all eight sections and all 87 accessible source books.** The same five previously inaccessible Gutenberg editions returned HTTP 404; all 92 configured IDs were attempted. A positive control takes eight independent known-source windows of precisely the original section word counts from Gibran's *The Prophet*, shuffles **every word within each window** using deterministic seeds, and has the unchanged blind histogram scanner find a zero-distance original-source window for **8/8 planted sections**. Due to overlapping equal-histogram windows, the earliest zero-distance source offset can differ by a few words from the planted offset; the true offset itself is independently checked to be exact.
+
+The scanner's algorithm has no unknown secret permutation, key, source offset, or plaintext-symbol assignment to fit. It is exhaustive for the **particular hypothesis of exact GP word lengths, intact words and a contiguous source excerpt per section**. The result rejects direct arbitrary word-order rearrangements of these specific 87 available books under that model. It neither rejects original prose, other source texts, mixed excerpts, changing word breaks, rune padding, Latin orthography, nor arbitrary per-word changes. No probability is inferred from the best postselected matches.
+
+The [manual source scan passed on the original input and positive controls](https://github.com/FlareZ123/liber-primus/actions/runs/42857287721). The existing [literary source workflow](../.github/workflows/padded-wordlength-corpus.yml) has an exclusive wordbag option, so this run does not repeat the earlier ordered-word or EA-marker scans.
+
 ## Inference and useful next step
 
-Under these two constrained source-matching models, no direct quotation was verified. The manuscript's unusually weak adjacent word-length dependence is an independent difficulty for **independent one-rune padding of ordinary ordered English** (see [word-length architecture tests](wordlength-order.md)). A clue-derived source text remains worth checking **only if accompanied by a cipher architecture or a predicted longer held-out passage**. Further breadth-first source matching without stronger constraints will produce additional coincidental short runs.
+Under the ordered-length, EA-marker and whole-section order-independent word-bag models, no direct quotation was verified. The manuscript's unusually weak adjacent word-length dependence is an independent difficulty for **independent one-rune padding of ordinary ordered English** (see [word-length architecture tests](wordlength-order.md)). A clue-derived source text remains worth checking **only if accompanied by a cipher architecture or a predicted longer held-out passage**. Further breadth-first source matching without stronger constraints will produce additional coincidental short runs.
 
