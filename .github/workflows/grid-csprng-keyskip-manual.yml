@@ -1,6 +1,15 @@
 name: Original grid AES ChaCha20 eight-key inverse challenge
 on:
   workflow_dispatch:
+    inputs:
+      register:
+        description: Frozen model language register
+        required: true
+        type: choice
+        default: english
+        options:
+          - english
+          - latin
 jobs:
   source-csprng:
     runs-on: ubuntu-latest
@@ -11,4 +20,6 @@ jobs:
         with:
           node-version: '22'
       - name: Exact source-key standard CSPRNG inverse with frozen assignment and heldout
+        env:
+          GP_REGISTER: ${{ inputs.register }}
         run: node sims/grid_csprng_keyskip_heldout.cjs
