@@ -41,6 +41,26 @@ None approaches the recovered genuine p56 or the two English-GP plants on comple
 
 The separate **no-literal-F-pause** search at [prime_totient_long_offset_inversion.py](../sims/prime_totient_long_offset_inversion.py) searches both source directions, both additive signs and every possible prime index up to two million on **47** longer unsolved pages (11,995 original runes). It recovered two independent real-key English plants at source index123456, each rank1, with 10 or7 actual glyph collision repairs; its own eight-five-rune original p56 regression re-enciphers the established plaintext under the known single F mask. Its best original complete-page score is **−3.642927**, and its best original withheld-segment score is **−3.701815**. A no-skip negative alone cannot exclude the authentic p56 mechanism, hence the separate unknown-F Viterbi experiment above.
 
+## Ciphertext-driven prime-ordinal clocks with exact collision-rejected draws (Agent 11)
+
+An independent, reversible extension addresses a different class of hidden clock error than the literal-F interruption above. Starting from the historically verified `K_j=(p_j−1) mod29`, update the **prime ordinal** after every emitted ciphertext rune by either **1**, the **one-based published GP index**, its **GP prime weight**, or its **GP prime weight minus one**. Six independent source-derived starting ordinals are **1,15,22,53,78,79** (the natural origin and red-triangle numbers). Both additive signs are tested, yielding **48 source-fixed models** across eight complete authentic section-body prefixes, each 300 original runes. A rejected key draw is allowed before each published rune only if its tentative output exactly collides with the preceding published rune. The full necessary equality constraint is enforced; hidden skip count and previous skip bit are optimized with exact bigram/trigram Viterbi, up to 26 extra draws per section.
+
+The strongest model is selected from just the **first 150 original ciphertext runes of each of eight bodies** (1,200 source-selection runes). Its **Viterbi boundary state is frozen**; the subsequent 150 runes per body are scored without refitting model, start, sign or preceding skip state. Source/G P-English language scoring uses an independently pinned Shakespeare training interval. A matched control randomizes the totient tape and repeats the entire 48-model selection and frozen heldout continuation on the same actual LP2 ciphertext.
+
+| Measurement | Exact result |
+| --- | --- |
+| Independently planted GP-English ciphertext with the authentic totient tape, ciphertext-GP-prime ordinal clock, and 81%-chance collision skips | **2,396 / 2,400 runes recovered** |
+| Plant source-key model selected by all 48-model competition | **Exact true rule gp-prime, start22, sign+1 at rank 1** |
+| Plant train and frozen heldout log scores per rune | **−2.51516** and **−2.51452** |
+| Best original LP2 selected model | **unit ordinal stride, start15, sign−1** |
+| Original train and frozen heldout scores per rune | **−5.70882** and **−5.84428** |
+| Matched 30 wrong-totient-tape heldout scores | median **−5.93035**, **2/30** at least as high |
+| Add-one heldout upper p | **3/31 = 0.09677** |
+
+The source-selected original winner has **no readable GP-English plaintext**, and the original heldout log score remains over three nats/rune below the corresponding fully invertible genuine-language plant. Its modest advantage against the small null is insufficient for any key claim, especially with 48 model choices, source-start postselection and imperfect null calibration. This result exercises **a text-dependent prime walk with genuinely variable hidden state**, beyond the two-million-fixed-offset additive/literal-F models above; it does not exclude other message-dependent transitions, longer skipped-draw runs, external secrets or secondary alphabet transforms.
+
+Exact source and test code: [sims/ciphertext_prime_walk_inversion.cjs](../sims/ciphertext_prime_walk_inversion.cjs). [Successful original-source workflow 42786268230](https://github.com/FlareZ123/liber-primus/actions/runs/42786268230), invoked through the Agent 11 existing manual source-inversions workflow with `probe: primewalk`. The source file includes the actual reversible planted encoder, source-prime sieve, byte-exact hidden-skip forward rule and frozen-boundary Viterbi.
+
 ## Interpretation, limits and reproduction
 
 **Positive:** This is a reproducible constructive exact inversion of the **authentic historical p56 cipher mechanism** which recovers the starting key index, exact skip mask and plaintext under a fixed genuine language reference, without giving those as decoding inputs. It clears a considerably stronger control standard than an arbitrary synthetic key model and enables later source-key search on truly unknown LP2 pages. The ciphertext p56 was already solved, so this is a mechanism/recovery technique advance rather than a newly deciphered page.
