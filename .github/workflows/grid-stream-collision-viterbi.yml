@@ -11,6 +11,8 @@ on:
           - original-grid
           - title-kdf-english
           - title-kdf-latin
+          - title-kdf-base59-english
+          - title-kdf-base59-latin
           - field79-english
           - field79-latin
 jobs:
@@ -47,6 +49,18 @@ jobs:
         run: node sims/title_grid_kdf_viterbi.cjs
       - name: Source-red headings with grid column KDF, Vulgate-Latin
         if: ${{ inputs.suite == 'title-kdf-latin' }}
+        run: node sims/title_grid_kdf_viterbi.cjs --latin
+      - name: Source-red headings with original 59-digit grid KDF, GP-English
+        if: ${{ inputs.suite == 'title-kdf-base59-english' }}
+        env:
+          LP2_GRID_RADIX: '59'
+          LP2_GRID_FIVE_CORRECTIONS: '1'
+        run: node sims/title_grid_kdf_viterbi.cjs
+      - name: Source-red headings with original 59-digit grid KDF, Vulgate-Latin
+        if: ${{ inputs.suite == 'title-kdf-base59-latin' }}
+        env:
+          LP2_GRID_RADIX: '59'
+          LP2_GRID_FIVE_CORRECTIONS: '1'
         run: node sims/title_grid_kdf_viterbi.cjs --latin
       - name: Field79 red-prime triangle as AES-ChaCha key, GP-English
         if: ${{ inputs.suite == 'field79-english' }}
