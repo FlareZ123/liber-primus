@@ -434,6 +434,78 @@ function markerResetControl(draws=60){
       'or unknown intermediate language remain open.'};
 }
 
+/**
+ * A stronger key-free cancellation: give each successive post-EA segment its
+ * own unknown mod-28 additive mask, while retaining the common fixed pad
+ * shape K[phase] after marker reset. E_i=P_i + A_segment + K[phase].
+ * Taking E_i-E_0 cancels each segment's arbitrary A_segment. Equality of
+ * these differences between segments cancels K[i]-K[0]. Ordinary native GP
+ * source shows a detectable coincidence surplus in planted controls.
+ * @param {number[][]} cipher
+ * @param {number} window
+ */
+function postMarkerDifferentialStatistic(cipher,window=28){
+  const h=Array.from({length:window},()=>new Uint16Array(28));
+  let intervals=0;
+  for(const page of cipher){
+    let segment=[],active=false;
+    /** Consume a completed run after a repeated rune. */
+    function flush(){
+      if(segment.length===0)return;
+      intervals++;
+      for(let j=1;j<=window&&j<segment.length;j++)
+        h[j-1][(segment[j]-segment[0]+28)%28]++;
+    }
+    for(let j=1;j<page.length;j++){
+      const d=mod(page[j]-page[j-1]);
+      if(d===0){flush();segment=[];active=true;}
+      else if(active)segment.push(logs[d]);
+    }
+    flush();
+  }
+  let hits=0,pairs=0;
+  for(const row of h){
+    let n=0;
+    for(const count of row){hits+=count*(count-1)/2;n+=count;}
+    pairs+=n*(n-1)/2;
+  }
+  return {intervals,window,hits,pairs,equalityRate:hits/pairs};
+}
+function postMarkerDifferentialControl(draws=120){
+  const random=rng(0x15ea3301),original=postMarkerDifferentialStatistic(pages);
+  assert.deepEqual(original,{intervals:85,window:28,hits:2689,
+    pairs:75390,equalityRate:2689/75390});
+  const rates=[];
+  let exactRecovered=0,atOrBelow=0;
+  for(let trial=0;trial<draws;trial++){
+    const plain=samplePlain(random);
+    const pad=Array.from({length:256},()=>random()%28);
+    const keys=plain.map(page=>{
+      let phase=0,shift=random()%28;
+      return page.map((p,i)=>{
+        if(i===0)return random()%29;
+        if(p===EA){phase=0;shift=random()%28;return 0;}
+        return (pad[(phase++)%pad.length]+shift)%28;
+      });
+    });
+    const cipher=encrypt(plain,keys);
+    assert.deepEqual(decrypt(cipher,keys),plain);
+    exactRecovered+=N;
+    const rate=postMarkerDifferentialStatistic(cipher).equalityRate;
+    atOrBelow+=Number(rate<=original.equalityRate);
+    rates.push(rate);
+  }
+  rates.sort((a,b)=>a-b);
+  return {assumption:'all post-EA intervals share one F28 additive pad '+
+    'modulo an arbitrary unknown offset per interval',
+    original,uniformReference:1/28,
+    planted:{draws,exactDecodedSymbols:exactRecovered,
+      min:rates[0],median:rates[Math.floor(draws/2)],
+      max:rates[draws-1],atOrBelowOriginal:atOrBelow},
+    caveat:'Original LP2 plaintext and source text unknown; this excludes '+
+      'only the shared-shape affine-offset family under native GP language.'};
+}
+
 function main(){
   const originalLogStep=new Uint16Array(28);
   for(const p of pages)for(let j=1;j<p.length;j++){
@@ -464,6 +536,7 @@ function main(){
     fixedMarkerNull:rotationNull(),
     finiteSolvedSourceTransparentRuneRanking:nativeSymbolRanking(),
     postEAResetPhaseInvariant:markerResetControl(),
+    postEAOffsetInvariant:postMarkerDifferentialControl(),
     nativeLosslessPositive:controls(),
     conditionalConsequence:'If the actual cipher is exactly this 29-rune '+
       'zero-step-EA transducer, 86 source GP EA rune identities and '+
@@ -479,4 +552,5 @@ function main(){
 }
 if(require.main===module)main();
 module.exports={powers,logs,encrypt,decrypt,markerIndices,rotationNull,
-  samplePlain,controls,motifs,markerResetStatistic,markerResetControl,main};
+  samplePlain,controls,motifs,markerResetStatistic,markerResetControl,
+  postMarkerDifferentialStatistic,postMarkerDifferentialControl,main};
