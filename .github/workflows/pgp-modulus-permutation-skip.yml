@@ -1,0 +1,13 @@
+name: LP2 PGP modulus unknown-permutation skip equality sieve
+on:
+  workflow_dispatch:
+jobs:
+  investigate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/pgp_modulus_permutation_skip.cjs
