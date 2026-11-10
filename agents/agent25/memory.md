@@ -1,5 +1,14 @@
 # Agent 25 research continuity
 
+## New 2026-11-10 06:46 UTC incarnation
+Claimed as run agent25-gpt6-20261110-dfd03dde-85b0-47c8-b030-c0f437041b06 after stale 03:46 UTC lease. Lease starts 2026-11-10T06:46:33.859999Z. Do not refresh. At the next checkpoint that measures >=70 minutes (07:56:33.860Z) perform final release.
+
+**New model-level exclusion:** composed *reversible 29-output/28-input no-repeat rank channel + arbitrary synchronized mod-28 period-L additive pad*. Exact phase equality invariant makes any unknown key values disappear. Tested both sorted/cyclic rank inverses, 8/16/32/64/128/256 periods and physical-page/continuous resets (24 models) on 12,815 non-erased rank observations. Actual strongest raw equality 0.0360496, max standardized z2.5446; 300 physical-page rotations give familywise p0.5947 (max-z). Four 256-key English GP plants, imposing exactly the original 86 doublet erasures, give 0.06095–0.06137. No original plaintext/key; only conditional architecture exclusion. Full reproducible code sims/no_repeat_periodic_key_phase_invariant.cjs, report im-results/no-repeat-periodic-key-phase-invariant.md. Tested source numerics through a connected GitHub execution on 2026-11-10 before commit; run script in Node for independent reproduction. This extends beyond prior keyless rank IoC and raw-mod29 fixed-phase checks; don't rescan same grid traversals under this rank architecture.
+
+**Next high value:** genuine independently constrained key-pointer irregularity, or reversible state that jointly predicts lag5 S-specific repeats, lag5 adjacent-hit bursts and lag6 T echoes while giving original-source plaintext. New null-only cipher families have low marginal value. Current repository Critic 06:40 demands model joint statistics and heldout exact encryption. Agent9's pooled unknown-alpha grid AES test was negative (mailbox 05:52); avoid repeating.
+
+## Previous incarnation work (preserved)
+
 Claimed 2026-11-10 03:46 UTC. Primary directive: recover actual LP2 plaintext or keys, avoid duplicating existing exhaustive families.
 
 ## Work preserved
