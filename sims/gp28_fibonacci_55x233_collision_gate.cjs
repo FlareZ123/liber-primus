@@ -64,20 +64,43 @@ assert.equal(referenceSources.Shakespeare.length,217167);
 assert.equal(referenceSources.Gibran.length,62508);
 
 /**
+ * Exhaustive O(source length) scan of EVERY 12,815-GP28-rune candidate source
+ * window. An arbitrary period-indexed secret alphabet preserves the number
+ * of same-rune pairs separated by exactly 'period'. No key can change that.
  * @param {number[]} source
  * @param {number} period
- * @returns {{windows:number,min:number,median:number,max:number,wholeSource:number}}
+ * @returns {{windows:number,min:number,minSourceOffset:number,minTies:number,median:number,max:number,wholeSource:number,controlsAtOrBelowOriginal:number}}
  */
 function windowStats(source,period) {
-  const len=channel.length;
-  const rates=[];
-  for(let start=0;start+len<=source.length;start+=333)
-    rates.push(collision(source.slice(start,start+len),period).rate);
-  assert(rates.length>=100);
-  rates.sort((a,b)=>a-b);
-  return {windows:rates.length,min:rates[0],median:rates[Math.floor(rates.length/2)],
-    max:rates.at(-1),wholeSource:collision(source,period).rate,
-    controlsAtOrBelowOriginal:rates.filter(x=>x<=collision(channel,period).rate).length};
+  const len=channel.length,n=len-period;
+  const match=new Uint8Array(source.length-period);
+  for(let i=0;i<match.length;i++)
+    if(source[i]===source[i+period]) match[i]=1;
+  let count=0;
+  for(let i=0;i<n;i++)count+=match[i];
+  const originalCount=collision(channel,period).same;
+  const windows=source.length-len+1;
+  let min=count,minSourceOffset=0,minTies=1,max=count;
+  let controlsAtOrBelowOriginal=count<=originalCount?1:0;
+  const hist=new Uint32Array(n+1);
+  hist[count]++;
+  for(let start=1;start<windows;start++){
+    count+=match[start+n-1]-match[start-1];
+    hist[count]++;
+    if(count<min){min=count;minSourceOffset=start;minTies=1;}
+    else if(count===min)minTies++;
+    if(count>max)max=count;
+    if(count<=originalCount)controlsAtOrBelowOriginal++;
+  }
+  let cum=0,median=min;
+  for(let k=min;k<=max;k++){
+    cum+=hist[k];
+    if(cum>windows/2){median=k;break}
+  }
+  return {windows,min,minRate:min/n,minSourceOffset,minTies,
+    median,medianRate:median/n,max,maxRate:max/n,
+    wholeSource:collision(source,period).rate,
+    controlsAtOrBelowOriginal};
 }
 
 /** @param {number} seed @returns {()=>number} */
