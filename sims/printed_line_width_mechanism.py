@@ -205,6 +205,50 @@ def heldout_greedy_wrap(rows, widths, right_margin):
     }
 
 
+
+def source_pixel_break_prediction(rows, model, baseline, capacity):
+    """Predict actual held-out line ends with widths learned only from train JPEGs."""
+    def evaluate(weights):
+        by_page = {}
+        for row in rows:
+            by_page.setdefault(row["page"], []).append(row)
+        counts = {name:0 for name in (
+            "total", "exact", "withinOne", "withinTwo",
+            "withinWordTotal", "withinWordExact", "withinWordWithinOne"
+        )}
+        error = 0
+        mapping = {letter:float(weights[i+1]) for i,letter in enumerate(VARIABLES)}
+        for page_rows in by_page.values():
+            for previous, successor in zip(page_rows[:-1], page_rows[1:]):
+                chain = previous["line"]+successor["line"]
+                consumed = float(weights[0])
+                actual_length = len(previous["line"])
+                predicted_length = 0
+                for letter in chain:
+                    next_advance = mapping.get(letter,0.0)
+                    if consumed+next_advance>capacity:
+                        break
+                    consumed += next_advance
+                    predicted_length += 1
+                distance = abs(predicted_length - actual_length)
+                counts["total"]+=1
+                counts["exact"]+=int(distance==0)
+                counts["withinOne"]+=int(distance<=1)
+                counts["withinTwo"]+=int(distance<=2)
+                if previous["line"][-1] in INDEX:
+                    counts["withinWordTotal"]+=1
+                    counts["withinWordExact"]+=int(distance==0)
+                    counts["withinWordWithinOne"]+=int(distance<=1)
+                error+=distance
+        counts["meanAbsoluteRuneBreakError"] = float(error/counts["total"])
+        return counts
+    return {
+        "frozenCapacityPx":float(capacity),
+        "pixelLearned":evaluate(model),
+        "equalRuneWidth":evaluate(baseline),
+        "explanation":"Whole next-line prefixes are used only to measure distance from each independently predicted boundary; all glyph advances and physical capacity are fitted on early image pixels."
+    }
+
 def main():
     rows, pages, skipped = build()
     train = [r for r in rows if r["page"] <= 27]
@@ -223,6 +267,8 @@ def main():
     true = np.array([r["width"] for r in test])
     base_rmse = float(np.sqrt(np.mean((true-tx@baseline_coef)**2)))
     margin = float(np.max([r["right"] for r in train]))
+    capacity = margin - float(np.median([r["left"] for r in train]))
+    constant_widths = np.r_[baseline_coef[0], np.repeat(baseline_coef[1],29), baseline_coef[2:]]
     report = {
         "source":"Source-exact physical LP2 printed lines and original JPEGs; no OCR",
         "segment":"Pixel threshold 140, x=[595,1810), y=[350,3200), segment row gaps>18",
@@ -233,6 +279,7 @@ def main():
         "runeWidths":{r:round(float(w),3) for r,w in zip(RUNES,widths)},
         "heldoutInitialWidth":holdout_bias(rows,widths),
         "heldoutGreedyWrap":heldout_greedy_wrap(test,widths,margin),
+        "independentImageBreakPrediction":source_pixel_break_prediction(test,coef,constant_widths,capacity),
         "interpretation":"A font-width model is causal evidence only if it predicts heldout source geometry and original line starts; this does not decrypt LP2"
     }
     print(json.dumps(report,indent=2,ensure_ascii=False))
