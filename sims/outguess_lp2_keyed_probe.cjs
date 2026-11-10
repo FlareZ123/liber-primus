@@ -15,7 +15,8 @@ const KEYS=[
   "15","22","53","78","79","435","638","2262","3299","3301",
   "fibonacci","FIBONACCI","totient","TOTIENT","divinity","DIVINITY",
   "firfumferenfe","FIRFUMFERENFE","cicada3301","CICADA3301",
-  "liberprimus","LIBERPRIMUS"
+  "liberprimus","LIBERPRIMUS",
+  "DJUBEI","djubei","DJU-BEI","dju-bei","DJU BEI","ᛞᛄᚢᛒᛖᛁ"
 ];
 const PAGES=Array.from({length:58},(_,i)=>17+i);
 const SHA=b=>crypto.createHash("sha256").update(b).digest("hex");
