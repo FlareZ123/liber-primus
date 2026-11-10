@@ -192,10 +192,20 @@ function main() {
   const model = train(read('resources/control/shakespeare_first300k.txt'));
   const reference = read('resources/liber-primus/lp1-plaintext-reference.txt');
   const testPlain = encode(reference.slice(reference.indexOf('BELIEVE NOTHING'), reference.indexOf('### 3'))).slice(0, 180);
-  const planted = plant(testPlain, key, 37, 0x3301ad42);
+  let planted, chosenStart = -1;
+  for (let start = 0; start < 256; start++) {
+    const attempt = plant(testPlain, key, start, 0x3301ad42);
+    if (attempt.skipped >= 4 && attempt.skipped <= 12) {
+      planted = attempt;
+      chosenStart = start;
+      break;
+    }
+  }
+  assert.ok(planted && chosenStart >= 0, 'No skipped-key control could be constructed');
   const positive = solve(planted.cipher, key, -1, model);
   const recovered = positive.plaintext.filter((v, i) => v === testPlain[i]).length;
-  console.log(JSON.stringify({kind:'positive_control',length:testPlain.length,planted_skips:planted.skipped,recovered,recovery_rate:recovered/testPlain.length,score:positive.perRune,offset:positive.start,inferred_skips:positive.skips}));
+  console.log(JSON.stringify({kind:'positive_control',length:testPlain.length,true_start:chosenStart,planted_skips:planted.skipped,recovered,recovery_rate:recovered/testPlain.length,score:positive.perRune,inferred_start:positive.start,inferred_skips:positive.skips}));
+  assert.ok(recovered >= testPlain.length * 0.95, 'Known-key planted text not recovered');
   const pages = corpus.pages.filter(p => p.page <= 55 && p.indices.length >= 3);
   assert.equal(pages.length, 55);
   assert.equal(pages.reduce((a,p) => a + p.indices.length, 0), 12956);
