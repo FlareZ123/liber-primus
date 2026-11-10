@@ -70,8 +70,13 @@ function wordLog(lm,a,b,c) {
  * @param {number} maxHolds
  * @param {boolean} withTrace
  */
+function logAdd(a,b) {
+  if(a===-Infinity)return b;
+  if(b>a){const tmp=a;a=b;b=tmp;}
+  return a+Math.log1p(Math.exp(b-a));
+}
 function viterbi(c,key,offset,sign,lm,maxHolds,withTrace=false) {
-  let states = new Map([[M*(M+1)+M, {h:0,a:M,b:M,s:0,trace:null}]]);
+  let states = new Map([[M*(M+1)+M, {h:0,a:M,b:M,s:0,w:0,trace:null}]]);
   let peakStates=1;
   for(let t=0;t<c.length;t++) {
     const current=c[t], prev=t?c[t-1]:-1;
@@ -79,30 +84,50 @@ function viterbi(c,key,offset,sign,lm,maxHolds,withTrace=false) {
     for(const st of states.values()) {
       const ki=(offset+t-st.h+256*2)%256;
       const pNormal=mod29(current-sign*key[ki]);
-      const ns=st.s+wordLog(lm,st.a,st.b,pNormal)+(current===prev?LOG_DUP:0);
+      const logNormal=wordLog(lm,st.a,st.b,pNormal)+(current===prev?LOG_DUP:0);
+      const ns=st.s+logNormal;
+      const nf=st.w+logNormal;
       const normalCode=(st.h*M+st.b)*(M+1)+pNormal;
       const older=next.get(normalCode);
-      if(!older||ns>older.s)next.set(normalCode,{
-        h:st.h,a:st.b,b:pNormal,s:ns,
+      if(!older)next.set(normalCode,{
+        h:st.h,a:st.b,b:pNormal,s:ns,w:nf,
         trace:withTrace?{prev:st.trace,value:pNormal,held:false}:null
       });
+      else {
+        older.w=logAdd(older.w,nf);
+        if(ns>older.s){
+          older.s=ns;
+          older.trace=withTrace?{prev:st.trace,value:pNormal,held:false}:null;
+        }
+      }
       if(t>0&&current!==prev&&st.h<maxHolds) {
         const pHold=mod29(prev-sign*key[ki]);
-        const hs=st.s+wordLog(lm,st.a,st.b,pHold)+LOG_HOLD;
+        const logHold=wordLog(lm,st.a,st.b,pHold)+LOG_HOLD;
+        const hs=st.s+logHold, hf=st.w+logHold;
         const code=((st.h+1)*M+st.b)*(M+1)+pHold;
         const other=next.get(code);
-        if(!other||hs>other.s)next.set(code,{
-          h:st.h+1,a:st.b,b:pHold,s:hs,
+        if(!other)next.set(code,{
+          h:st.h+1,a:st.b,b:pHold,s:hs,w:hf,
           trace:withTrace?{prev:st.trace,value:pHold,held:true}:null
         });
+        else {
+          other.w=logAdd(other.w,hf);
+          if(hs>other.s){
+            other.s=hs;
+            other.trace=withTrace?{prev:st.trace,value:pHold,held:true}:null;
+          }
+        }
       }
     }
     states=next;
     if(states.size>peakStates)peakStates=states.size;
   }
-  let best=null;
-  for(const state of states.values())if(!best||state.s>best.s)best=state;
-  const out={score:best.s,length:c.length,holds:best.h,peakStates};
+  let best=null,forwardScore=-Infinity;
+  for(const state of states.values()){
+    if(!best||state.s>best.s)best=state;
+    forwardScore=logAdd(forwardScore,state.w);
+  }
+  const out={score:best.s,forwardScore,length:c.length,holds:best.h,peakStates};
   if(withTrace){
     const p=[],holds=[];let node=best.trace;
     while(node){p.push(node.value);holds.push(node.held);node=node.prev;}
@@ -136,7 +161,7 @@ function scan(cipher,bytes,lm,{early=72,beam=12,maxHolds=16}={}) {
     for(let offset=0;offset<256;offset++){
       const fit=viterbi(cipher.slice(0,earlyLength),keys[o],offset,sign,lm,
         Math.min(maxHolds,Math.ceil(earlyLength*.16)));
-      screen.push({orientation:o,sign,offset,earlyScore:fit.score});
+      screen.push({orientation:o,sign,offset,earlyScore:fit.forwardScore});
     }
     screen.sort((a,b)=>b.earlyScore-a.earlyScore);
     finalists.push(...screen.slice(0,beam));
@@ -144,7 +169,7 @@ function scan(cipher,bytes,lm,{early=72,beam=12,maxHolds=16}={}) {
   let best=null;
   for(const f of finalists) {
     const fit=viterbi(cipher,keys[f.orientation],f.offset,f.sign,lm,maxHolds);
-    if(!best||fit.score>best.score)best={...f,...fit};
+    if(!best||fit.forwardScore>best.forwardScore)best={...f,...fit};
   }
   return {best,screened:4*2*256,finalists:finalists.length,
     early,beam,maxHolds};
@@ -181,7 +206,7 @@ function shuffle(array,random) {
   return a;
 }
 
-function study({nullReps=24,seed=0x3301ab17}={}) {
+function study({nullReps=20,seed=0x3301ab17}={}) {
   const corpus=JSON.parse(fs.readFileSync(path.join(ROOT,"resources/liber-primus/lp2-corpus.json"),"utf8"));
   const raw=fs.readFileSync(path.join(ROOT,"resources/control/shakespeare_first300k.txt"),"utf8");
   const lm=train(encodeEnglish(raw));
@@ -200,26 +225,36 @@ function study({nullReps=24,seed=0x3301ab17}={}) {
   const plantFit=scan(control.cipher,bytes,lm);
   const decoded=viterbi(control.cipher,key,trueOffset,1,lm,16,true);
   const plantAccuracy=decoded.plaintext.filter((v,i)=>v===reference[i]).length/reference.length;
-  const realFit=scan(target,bytes,lm);
-  const random=seededRandom(seed), nullScores=[];
-  for(let t=0;t<nullReps;t++)
-    nullScores.push(scan(target,shuffle(bytes,random),lm).best.score);
-  const mean=nullScores.reduce((a,b)=>a+b,0)/nullScores.length;
-  const sd=Math.sqrt(nullScores.reduce((s,x)=>s+(x-mean)**2,0)/
-    Math.max(1,nullScores.length-1));
-  const upperTail=(1+nullScores.filter(s=>s>=realFit.best.score).length)/
-    (nullReps+1);
-  return {model:"repeat repair holds key index",source:"LP2 page 0, 262 runes",
-    q:Q,transformed:"actual base-60 table, four directions and two signs",
-    observed:realFit,positive:{seed:seed^0x11112345,trueOffset,
+  const random=seededRandom(seed),observed=[];
+  for(const pageId of [0,20,49,51,55]){
+    const cipher=ps.find(p=>p.page===pageId).indices;
+    const realFit=scan(cipher,bytes,lm,{maxHolds:Math.ceil(cipher.length*0.07)+6});
+    const nullFits=[];
+    for(let t=0;t<nullReps;t++)
+      nullFits.push(scan(cipher,shuffle(bytes,random),lm,
+        {maxHolds:Math.ceil(cipher.length*0.07)+6}).best);
+    const nullScores=nullFits.map(s=>s.forwardScore);
+    const mean=nullScores.reduce((a,b)=>a+b,0)/nullScores.length;
+    const sd=Math.sqrt(nullScores.reduce((s,x)=>s+(x-mean)**2,0)/
+      Math.max(1,nullScores.length-1));
+    const upperTail=(1+nullScores.filter(s=>s>=realFit.best.forwardScore).length)/
+      (nullReps+1);
+    observed.push({page:pageId,length:cipher.length,
+      model:realFit.best,relativePerRuneLogLikelihood:(realFit.best.forwardScore+Math.log(29)*cipher.length)/cipher.length,
+      null:{replicates:nullReps,mean,sd,upperTail,
+        min:Math.min(...nullScores),max:Math.max(...nullScores),
+        holdsMean:nullFits.reduce((sum,x)=>sum+x.holds,0)/nullFits.length}});
+  }
+  return {model:"M04 repeat repair holds key index; exact forward path likelihood plus Viterbi traceback",
+    q:Q,orientations:"actual base-60 table, four directions and two signs",
+    screensPerPage:2048,perFamilyFinalists:12,seed,observed,
+    positive:{seed:seed^0x11112345,trueOffset,
       trueSign:1,trueOrientation:0,holds:control.holds,
       globalFit:plantFit.best,correctModel:decoded.score,
       exactPlaintextAccuracyAtTrueParams:plantAccuracy,
       globallyRecovered:plantFit.best.offset===trueOffset&&
         plantFit.best.orientation===0&&plantFit.best.sign===1},
-    null:{replicates:nullReps,seed,mean,sd,upperTail,
-      min:Math.min(...nullScores),max:Math.max(...nullScores)},
-    limitations:"Viterbi max path, shortlist top12 per orientation from first72 runes; English register trained on Shakespeare"};
+    limitations:"Top12 offsets per orientation selected from first72 runes; 29-rune Shakespeare language model; pagewise no external key derivation"};
 }
 if(require.main===module)console.log(JSON.stringify(study(),null,2));
 module.exports={train,viterbi,scan,plant,study};
