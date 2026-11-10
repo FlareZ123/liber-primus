@@ -8,6 +8,7 @@ on:
         options:
           - prime
           - generic
+          - f79-f29
         default: prime
 
 permissions:
@@ -23,4 +24,8 @@ jobs:
         with:
           node-version: '22'
       - name: Exact original-LP2 phase search with planted affine control
+        if: ${{ inputs.mode != 'f79-f29' }}
         run: node sims/${{ inputs.mode == 'generic' && 'quote_pair_generic_invariants.cjs' || 'quote_pair_affine_prime_crib.cjs' }}
+      - name: Source-derived F79/F29 equality gate for frozen p40/p53 crib
+        if: ${{ inputs.mode == 'f79-f29' }}
+        run: node sims/quote_pair_f79_f29_equality_gate.cjs
