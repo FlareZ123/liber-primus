@@ -199,12 +199,12 @@ assert.ok(rank>0);
 assert.equal(truth.trainOverflows,0);
 assert.equal(truth.heldOverflows,0);
 assert.deepEqual(truth.assignment,[0,1,2,3,4,5,6,7]);
-assert.equal(actual.length,240);
-assert.equal(positives.length,240);
+assert.equal(actual.length,480);
+assert.equal(positives.length,480);
 console.log(JSON.stringify({
   scope:{originalRunePages:PAGE.length,originalRuneCount:FLAT.length,
     sectionLengths:LENGTHS,rankPolicy:'first rune context, subsequent equal output erased',
-    candidateModels:240,fitRankDigits:[0,TRAIN],holdoutRankDigits:[TRAIN,END],
+    candidateModels:480,fitRankDigits:[0,TRAIN],holdoutRankDigits:[TRAIN,END],
     test:'5 x radix28 digits represent an exact unsigned 24-bit integer',
     source:'original grid 8 x 32-byte AES/ChaCha keys',
     limitations:'direct grid stream key, zero nonce, source-order section restarts; no hidden KDF/variable widths'},
