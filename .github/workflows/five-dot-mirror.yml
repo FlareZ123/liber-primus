@@ -20,9 +20,15 @@ jobs:
         run: |
           set -o pipefail
           node sims/gimp_dissolve_all_row_seed_inversion.cjs | tee gimp-dissolve-all-row-seeds.json
+      - name: Exact invertible GP28-step and EA GIMP all-row original-source attack
+        run: |
+          set -o pipefail
+          node sims/gimp_dissolve_fullstep_source_inverse.cjs | tee gimp-gp28-step.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: gimp-dissolve-all-row-seeds
           retention-days: 60
-          path: gimp-dissolve-all-row-seeds.json
+          path: |
+            gimp-dissolve-all-row-seeds.json
+            gimp-gp28-step.json
