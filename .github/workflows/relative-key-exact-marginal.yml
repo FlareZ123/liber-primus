@@ -1,6 +1,15 @@
 name: LP2 exact marginal scaled-pair check
 on:
   workflow_dispatch:
+    inputs:
+      variant:
+        description: Exact independent-register model to run
+        required: true
+        type: choice
+        default: latin-bigram
+        options:
+          - latin-bigram
+          - original-trigram
 permissions:
   contents: read
 jobs:
@@ -8,9 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
-      - name: Forward-sum scaled pair and exact brute-force regression
+      - name: Existing forward-summed English trigram and brute-force regression
+        if: ${{ inputs.variant == 'original-trigram' }}
         run: node sims/relative_key_exact_marginal.cjs
+      - name: Independent Vulgate-Latin exact bigram marginal and constructive two-stream inverse
+        if: ${{ inputs.variant == 'latin-bigram' }}
+        run: node sims/relative_key_latin_exact_bigram.cjs
