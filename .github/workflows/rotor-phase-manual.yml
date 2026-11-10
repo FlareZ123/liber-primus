@@ -19,3 +19,5 @@ jobs:
         run: node sims/rune_passthrough_word_position.cjs
       - name: Test arbitrary delayed public-state row keys against native GP plaintext
         run: node sims/delayed_motif_row_invariant.cjs
+      - name: Test six-lane grid recurrence original and planted author-key inverse
+        run: node sims/grid_six_lane_recurrence_inverse.cjs
