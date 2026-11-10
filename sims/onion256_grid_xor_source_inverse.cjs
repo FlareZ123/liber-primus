@@ -32,7 +32,7 @@ const {encode}=require("./grid_keyskip_viterbi.cjs");
 const {seededRandom}=require("./outer_permutation_assignment.cjs");
 
 const ROOT=path.join(__dirname,"..");
-const TRAIN=300,HOLD=300,N=29,SHUFFLES=40;
+const TRAIN=300,HOLD=300,THIRD=300,WIDTH=TRAIN+HOLD+THIRD,N=29,SHUFFLES=100;
 const mod=x=>(x%N+N)%N;
 const textRead=name=>fs.readFileSync(path.join(ROOT,name),"utf8");
 
@@ -104,7 +104,7 @@ function streams(pool){
       const label=`${algorithm}:${reverse?"rev":"fwd"}`;
       table[label]=pool.map(({key})=>cipherBytes(
         reverse?key.slice().reverse():key,
-        algorithm,TRAIN+HOLD
+        algorithm,WIDTH
       ));
     }
   return table;
@@ -125,7 +125,7 @@ function invert(groups,pool){
       for(const scaled of [false,true])
         for(const sign of [-1,1]){
           let total=0;
-          const chosen=[],train=[],held=[];
+          const chosen=[],train=[],held=[],third=[];
           for(let s=0;s<8;s++){
             const [c0,c1]=obs[s];
             let best=-1,bi=-1,be=-1;
@@ -149,12 +149,25 @@ function invert(groups,pool){
             }
             let num=0;for(const n of test)num+=n*(n-1);
             be=num/(HOLD*(HOLD-1));
+            if(s>0){
+              const c2=groups[s].slice(TRAIN+HOLD,WIDTH);
+              assert.equal(c2.length,THIRD);
+              const next=new Uint16Array(N);
+              for(let i=0;i<THIRD;i++){
+                const k=scaled?Math.floor(testpad[TRAIN+HOLD+i]*N/256):
+                  testpad[TRAIN+HOLD+i]%N;
+                next[mod(c2[i]+sign*k)]++;
+              }
+              let pairs=0;for(const n of next)pairs+=n*(n-1);
+              third.push(pairs/(THIRD*(THIRD-1)));
+            }else third.push(null);
             chosen.push(bi);train.push(best);held.push(be);total+=best;
           }
           if(!overall||total>overall.train*8){
             overall={algorithm,reverse,scaled,sign,chosen,
               train:total/8,held:held.reduce((a,b)=>a+b,0)/8,
-              sectionTrain:train,sectionHeld:held};
+              third:third.slice(1).reduce((a,b)=>a+b,0)/7,
+              sectionTrain:train,sectionHeld:held,sectionThird:third};
           }
         }
     }
@@ -179,16 +192,16 @@ function planted(sources){
   let offset=0,rewrites=0;
   const fake=[];
   for(let s=0;s<8;s++){
-    const pad=cipherBytes(pool[indices[s]].key,"aes-256-ctr",TRAIN+HOLD);
-    const p=known.slice(offset,offset+TRAIN+HOLD);
-    assert.equal(p.length,TRAIN+HOLD);
+    const pad=cipherBytes(pool[indices[s]].key,"aes-256-ctr",WIDTH);
+    const p=known.slice(offset,offset+WIDTH);
+    assert.equal(p.length,WIDTH);
     const ct=p.map((v,i)=>mod(v+pad[i]%N));
     for(let i=1;i<ct.length;i++)
       if(ct[i]===ct[i-1]&&rng()<.81){
         ct[i]=mod(ct[i]+1+Math.floor(rng()*28));
         rewrites++;
       }
-    fake.push(ct);offset+=TRAIN+HOLD;
+    fake.push(ct);offset+=WIDTH;
   }
   const found=invert(fake,pool);
   const matched=found.chosen.filter((id,i)=>id===indices[i]).length;
@@ -196,9 +209,9 @@ function planted(sources){
   assert.ok(found.algorithm==="aes-256-ctr"&&!found.reverse&&
     !found.scaled&&found.sign===-1,
     "positive must recover planted cryptographic mode");
-  assert.ok(found.held>0.045,"planted heldout must be English-like");
+  assert.ok(found.held>0.045&&found.third>0.045,"planted independent continuations must be English-like");
   return {sourceKeysRecovered:matched,modeRecovered:true,rewrites,
-    fitted:found.train,held:found.held,keys:found.keys};
+    fitted:found.train,held:found.held,third:found.third,keys:found.keys};
 }
 
 /** @param {number[][]} sources @param {()=>number} rng */
@@ -220,19 +233,22 @@ function main(){
   const actual=invert(groups,candidates(actualArrays));
   const prior=invert(groups,candidates(sourceArrays(false)));
   const rng=seededRandom(0x3301eed5);
-  const nullHeld=[],nullTrain=[];
+  const nullHeld=[],nullTrain=[],nullThird=[];
   for(let i=0;i<SHUFFLES;i++){
     const controls=shuffleSources(actualArrays,rng);
     const row=invert(groups,candidates(controls));
-    nullHeld.push(row.held);nullTrain.push(row.train);
+    nullHeld.push(row.held);nullTrain.push(row.train);nullThird.push(row.third);
   }
   const outrank=nullHeld.filter(x=>x>=actual.held).length;
+  const thirdOutrank=nullThird.filter(x=>x>=actual.third).length;
+  const jointOutrank=nullThird.filter((x,i)=>
+    x>=actual.third&&nullHeld[i]>=actual.held).length;
   console.log(JSON.stringify({
     hypothesis:"15 XOR subsets of 4 historical 256B sources, 240 AES/ChaCha section keys",
     sources:["onion2","onion3","onion4","LP2 numerical grid"],
     sourceVariants:"five-cell corrected LP2 grid; canonical alternative",
     search:{families:16,candidateKeysPerFamily:240,sections:8,
-      trainingRunes:8*TRAIN,heldoutRunes:8*HOLD},
+      trainingRunes:8*TRAIN,heldoutRunes:8*HOLD,thirdBlockRunes:7*THIRD},
     positive:native,
     authenticCorrected:actual,
     authenticCanonical:{train:prior.train,held:prior.held,mode:{
@@ -241,6 +257,10 @@ function main(){
     matchedNull:{shuffles:SHUFFLES,
       trainMean:nullTrain.reduce((a,b)=>a+b,0)/SHUFFLES,
       heldMean:nullHeld.reduce((a,b)=>a+b,0)/SHUFFLES,
+      thirdMean:nullThird.reduce((a,b)=>a+b,0)/SHUFFLES,
+      thirdMin:Math.min(...nullThird),thirdMax:Math.max(...nullThird),
+      thirdOutrank,thirdUpperTail:(thirdOutrank+1)/(SHUFFLES+1),
+      jointlyOutrank:jointOutrank,jointUpperTail:(jointOutrank+1)/(SHUFFLES+1),
       heldMax:Math.max(...nullHeld),heldMin:Math.min(...nullHeld),
       outrank,empiricalUpperTail:(outrank+1)/(SHUFFLES+1)},
     outputRestriction:"no authentic plaintext is claimed unless heldout statistics and direct rune reading actually warrant it"
