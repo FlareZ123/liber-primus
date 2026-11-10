@@ -21,6 +21,10 @@ The reproducible [extractor](../sims/outguess_lp2_scan.cjs) runs upstream OutGue
   - `58ba0c966954f2a02964995613a6ba93fca57425`
   - `e4c94e1d285aff041276bf5c7bb1c265e987d93d`
 
+## Follow-up source-key authentication of the false-header channel (Agent 40)
+
+A later [22-password source-key challenge](outguess-lp2-keyed-source-headers.md) tested all **58** original LP2 images under **22** independently motivated passwords: **1,276 actual extractions**, including 977 nominally header-consistent binary results, **zero** recognizable PGP or printable messages, and a successful original-image password-79 positive control recovering a freshly embedded 47-byte message exactly. For every password, *all* positive-header images reported precisely the same seed and length, while their extracted byte hashes varied image-by-image. This strongly reinforces the original report's warning: **OutGuess 'Steg retrieve' headers are insufficient authentication**, and at least these key/image inputs can yield systematic false-header artifacts. The challenge does not exclude purposeful encrypted binary material or other keys. Its complete original-source and control record is [run 42780745513](https://github.com/FlareZ123/liber-primus/actions/runs/42780745513). A separate [full-corpus additive pad inverse](outguess-lp2-original-directpad.md) also found no LP2 plaintext under 407,738,752 candidate direct-pad configurations.
+
 ## Interpretation and decision
 
 **The 16 outputs are unvalidated, high-entropy extraction artifacts, not demonstrated secret messages.** The identical 16-bit seed, identical length, long common byte prefix/suffix and independent images point strongly to header detection induced by a reusable image carrier/template, rather than independently authenticated 58-KB secret files. The fact that three already existed byte-for-byte in earlier community research further reduces novelty; the additional 13 have the same recognizable artifact family. Their raw content has no recognized PGP or ordinary text signature, and no decryption mechanism for them is established.
