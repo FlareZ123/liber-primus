@@ -1,0 +1,13 @@
+name: Agent19 source-locked Newton-row key test
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original LP2 and source-native inverse control
+        run: node sims/agent19_newton_rows_source_key_sft.cjs
