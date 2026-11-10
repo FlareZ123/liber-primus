@@ -66,6 +66,18 @@ function run() {
   assert(!squares.has(disc(a))); // Irreducible GP29 quadratic.
   assert.deepEqual(a.map(x=>m(x*inv(2))),[21,26,1]);
   // p3: 13+23u+2u²=2(u²-3u-8), so u²=3u+8 in GF(29²).
+  // The p3 red polynomial is primitive: u cycles all 29²−1 states.
+  let state=[1,0];
+  const seen=new Set(),witnesses={};
+  for(let i=0;i<840;i++) {
+    if([120,168,280,420].includes(i)) witnesses[i]=[...state];
+    assert(!seen.has(state.join(",")));
+    seen.add(state.join(","));
+    state=[m(8*state[1]),m(state[0]+3*state[1])];
+  }
+  assert.deepEqual(state,[1,0]);
+  assert.equal(seen.size,840);
+  assert.deepEqual(witnesses,{120:[7,0],168:[18,15],280:[23,23],420:[28,0]});
   const selectedRoot=m(-b[1]*inv(2*b[2]));
   assert.equal(selectedRoot,24);
   assert.equal(page(54).indices[0],24); // Oversized Ac.
@@ -106,6 +118,8 @@ function run() {
     classification:"Exact cross-artifact arithmetic; not an LP2 plaintext or key",
     redThreeRuneSpans:triads.map(t=>({...t,discriminant:disc(t.values)})),
     page3FieldRelation:"u²=3u+8 in GF(29²)",
+    p3PrimitiveCycleLength:seen.size,
+    p3RootPowerProperDivisorWitnesses:witnesses,
     page39Factor:"27+5u+15u²=15(u-24)² mod29",
     independentlyMarkedP54Root:selectedRoot,
     gridSha256:hash,gridRoots:roots,gridSecondDerivative:23,
