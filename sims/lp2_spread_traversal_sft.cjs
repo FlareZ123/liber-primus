@@ -160,6 +160,55 @@ function ordinaryLineWraps(source, glyphs) {
   return {equal, joins};
 }
 
+
+/**
+ * Eight geometrically simple alternate facing-spread conventions:
+ * either page first, each page's individual lines left-to-right or mirrored.
+ * Only newly introduced cross-page links are scored. All preserve an exact
+ * inverse back to source coordinates; none alters the printed runes.
+ * @param {PhysicalSource} source
+ * @param {number[][]} pairs
+ * @param {string[]} glyphs
+ */
+function orientedFamily(source, pairs, glyphs) {
+  const modes = [];
+  for (let reverseLeft = 0; reverseLeft <= 1; reverseLeft++) {
+    for (let reverseRight = 0; reverseRight <= 1; reverseRight++) {
+      for (let rightFirst = 0; rightFirst <= 1; rightFirst++) {
+        let equal = 0, links = 0;
+        for (const [a, b] of pairs) {
+          const A = source.linesByPage.get(a);
+          const B = source.linesByPage.get(b);
+          assert.ok(A && B);
+          for (let k = 0; k < Math.min(A.length, B.length); k++) {
+            const first = rightFirst ? B[k] : A[k];
+            const second = rightFirst ? A[k] : B[k];
+            const firstReverse = rightFirst ? reverseRight : reverseLeft;
+            const secondReverse = rightFirst ? reverseLeft : reverseRight;
+            const end = (line, reverse) =>
+              glyphs[reverse ? line[0] : line.at(-1)];
+            const start = (line, reverse) =>
+              glyphs[reverse ? line.at(-1) : line[0]];
+            equal += Number(end(first, firstReverse) ===
+              start(second, secondReverse));
+            links++;
+            const next = (rightFirst ? B : A)[k + 1];
+            if (next) {
+              equal += Number(end(second, secondReverse) ===
+                start(next, firstReverse));
+              links++;
+            }
+          }
+        }
+        modes.push({reverseLeft:Boolean(reverseLeft),
+          reverseRight:Boolean(reverseRight),rightFirst:Boolean(rightFirst),
+          equal, links});
+      }
+    }
+  }
+  return {modes, minEqual:Math.min(...modes.map(mode => mode.equal))};
+}
+
 /** Deterministic xorshift32 for fully reproducible control permutations. */
 function rng(seed) {
   let s = seed >>> 0;
@@ -191,7 +240,9 @@ function matchedRightPageNull(source, pairs, glyphs, trials) {
   const random = rng(0x13310);
   const histAB = Array(actual[2] + 1).fill(0);
   const histBA = Array(actual[3] + 1).fill(0);
-  let sumAB = 0, sumBA = 0;
+  let sumAB = 0, sumBA = 0, sumMinimum = 0;
+  let familyHits = 0;
+  const observedFamily = orientedFamily(source,pairs,glyphs);
   for (let t = 0; t < trials; t++) {
     const rights = pairs.map(pair => pair[1]);
     for (const ids of groups.values()) {
@@ -210,6 +261,9 @@ function matchedRightPageNull(source, pairs, glyphs, trials) {
     histBA[result[1]]++;
     sumAB += result[0];
     sumBA += result[1];
+    const minEqual = orientedFamily(source,permuted,glyphs).minEqual;
+    sumMinimum += minEqual;
+    familyHits += Number(minEqual <= observedFamily.minEqual);
   }
   const lowerTail = (h, v) =>
     (1 + h.slice(0, v + 1).reduce((a, b) => a + b, 0)) / (trials + 1);
@@ -218,7 +272,10 @@ function matchedRightPageNull(source, pairs, glyphs, trials) {
     AB:{observed:actual[0], links:actual[2], nullMean:sumAB/trials,
       lowerTail:lowerTail(histAB, actual[0])},
     BA:{observed:actual[1], links:actual[3], nullMean:sumBA/trials,
-      lowerTail:lowerTail(histBA, actual[1])}};
+      lowerTail:lowerTail(histBA, actual[1])},
+    eightOrientationFamily:{observedMin:observedFamily.minEqual,
+      nullMeanMin:sumMinimum/trials,
+      correctedLowerTail:(1+familyHits)/(trials+1)}};
 }
 
 function main() {
@@ -258,6 +315,7 @@ function main() {
     AB:{equal:illustrated[0], total:illustrated[2]},
     BA:{equal:illustrated[1], total:illustrated[3]}},
     plant:{AB:plant[0],BA:plant[1]},
+    eightOrientationScores:orientedFamily(source,pairs,originalGlyphs).modes,
     conditionalNull:matchedRightPageNull(source,pairs,originalGlyphs,TRIALS),
     interpretation:"No support for one globally repeat-suppressed " +
       "line-interleaved facing-spread ciphertext stream. This does not " +
@@ -267,4 +325,4 @@ function main() {
 
 if (require.main === module) main();
 module.exports = {parseSource,spreadOrder,invertOrder,spreads,
-  transitions,ordinaryLineWraps,matchedRightPageNull};
+  transitions,orientedFamily,ordinaryLineWraps,matchedRightPageNull};
