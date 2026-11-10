@@ -128,12 +128,13 @@ function toGp(text) {
 }
 
 /**
- * Every GP-native five-share degree-four Shamir candidate has one completely
- * determined 91-rune secret p(0) from the first 91 runes of all five labelled
- * original items. Count exact 91-rune English control IoCs using a sliding
+ * For a five-share Shamir candidate, a 91-rune secret p(0) is completely
+ * determined from the first 91 runes of all five labelled original items.
+ * Count exact full-source English control IoCs using a sliding
  * histogram, not a sampled subset or a fitted cipher parameter.
  * @param {string} sourceFile
  * @param {number} originalPairs
+ * @param {number} width
  */
 function fullSourceReference(sourceFile, originalPairs, width) {
   const source = toGp(read(sourceFile));
@@ -316,7 +317,7 @@ function main() {
   }
 
   console.log(JSON.stringify({
-    status: "EXACT RS(7,5) SOURCE-PARITY MODEL EXCLUDED; NO ORIGINAL PLAINTEXT",
+    status: "DIRECT SHAMIR, SUCCESSOR PAD AND RS(7,5) MODELS EXCLUDED; NO ORIGINAL PLAINTEXT",
     sourceMarkedCounts: items.map((p) => p.length),
     field: 29, interpolationPositions: [1, 2, 3, 4, 5, 6, 7],
     parity6: w6, parity7: w7, original,
