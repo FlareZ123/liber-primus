@@ -58,6 +58,23 @@ There is **one setting unexcluded by this *necessary* condition**: width 30 (18 
 
 The five-/ten-digit cases are especially decisive: all 29 predecessor states occur with **more than 13 distinct leading ciphertext successors** in every one of their respective tested frame variants. Their ASCII impossibility cannot be repaired by arbitrarily relabeling the 28 possible successors in every row.
 
+## Conditional whole-text random-ciphertext bound (separate from the exact exclusions)
+
+The same source framing makes a stronger **conditional null-model calculation** possible without trying any secret row table. Fix the source's observed adjacent-repetition event positions as external markers. At every other position, independently select the next ciphertext rune uniformly from the 28 glyphs different from the predecessor. For *each fixed* 29-row bijective key, the corresponding 28-rank digits at nonmarker positions are therefore independent uniform symbols, even though the ciphertext transitions themselves are stateful. The complete, mutually disjoint, clean source packets retain this independence after conditioning on the marker pattern.
+
+Under that specifically declared random-ciphertext model, a packet of \(D=5n\) digits has exactly \(28^D\) equiprobable digit sequences, but **at most** \(98^{3n}\) of them decode to \(3n\) ASCII/whitespace octets. Their integers all fit the full \(D\)-digit radix28 range, so the fraction is precisely \(98^{3n}/28^D\). The entire fixed stationary-key space has \((28!)^{29}\) elements. Union-bounding over **every** stationary key and all **840** framings, using each original framing's count \(N_f\) of disjoint unmarked packets, gives
+\[
+\Pr_{\rm marker\text{-}conditioned\ null}\!\left(
+\exists\text{ key/framing yielding entirely ASCII clean packets}
+\right)\le
+\sum_{f=1}^{840}(28!)^{29}
+ \left(\frac{98^{3D_f/5}}{28^{D_f}}\right)^{N_f}
+<10^{-1280.15}.
+\]
+The log-sum-exp of these 840 terms is **−1280.1522711**; it is dominated by the two phase-29, page-reset, marker-skip, 30-digit direction variants with 282 clean packets each. The [reproducer](../sims/stateful_28rank_ascii_octet_bound.cjs) now computes and asserts this number directly from the same exact source corpus and each framing's packet counts.
+
+**Scope:** this is a severe null-model family bound, *not* a deterministic theorem about deliberately constructed Cicada ciphertext and *not* a claim that original LP2 randomly generated its symbols. It does not replace the 839/840 **exact original-source** exclusions above, nor show that the single surviving frame is impossible. A genuine direct-ASCII encoder would be deliberately structured and need not follow this random null. Its value is to quantify why an unrestricted stationary table with only 855 decimal orders of key freedom cannot generally force thousands of uniformly random bytes to become grammatical or even printable ASCII by chance.
+
 ## Independent roundtrip test and preserved execution
 
 The exact [CommonJS implementation](../sims/stateful_28rank_ascii_octet_bound.cjs) checks the original corpus counts, computes the finite exhaustive bound, asserts the 839/840 exclusions and one survivor, and includes a source-disjoint **1,000-packet ASCII plaintext positive control** at each of widths 5, 15 and 30. Each positive picks 29 independently shuffled secret row permutations, encodes genuine ASCII bytes as full-width base-28 integers, emits a valid no-repeat ciphertext stream, then inverts all symbols through the secret rows and recovers the bytes exactly. The key-free bound correctly reports **zero forced forbidden octets** for each planted original-key framing. It recovers all **3,000, 9,000 and 18,000** positive-control bytes, respectively.
