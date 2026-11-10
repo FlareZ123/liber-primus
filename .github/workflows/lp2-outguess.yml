@@ -70,7 +70,7 @@ jobs:
           node --check sims/outguess_header_synthetic_probe.cjs
           node sims/outguess_header_synthetic_probe.cjs
       - name: Preserve exact recovered payloads and summary
-        if: ${{ always() && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares }}
+        if: ${{ always() && !inputs.keyed_probe && !inputs.synthetic_only }}
         uses: actions/upload-artifact@v4
         with:
           name: outguess-lp2-default-key
