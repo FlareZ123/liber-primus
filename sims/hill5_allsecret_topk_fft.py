@@ -87,6 +87,19 @@ def original() -> np.ndarray:
     return cipher
 
 
+
+def page_reset_cipher(phase: int) -> tuple[np.ndarray, int]:
+    """Concatenate complete five-rune blocks, resetting a common phase at pages."""
+    source = json.loads((ROOT/"resources/liber-primus/lp2-corpus.json").read_text("utf8"))
+    pages = [np.asarray(p["indices"],dtype=np.int16) for p in source["pages"]
+             if p["status"]=="unsolved" and p["indices"]]
+    assert len(pages)==55 and sum(len(p) for p in pages)==N
+    kept = [p[phase:phase+5*((len(p)-phase)//5)] for p in pages]
+    joined = np.concatenate(kept)
+    assert len(joined)%5==0
+    return joined, N-len(joined)
+
+
 def plant(rows: np.ndarray) -> dict:
     """Source-authenticated LP1 05 magic matrix encrypts a controlled GP source."""
     rng = np.random.default_rng(3301)
@@ -131,12 +144,23 @@ def main() -> None:
         result = bound(cipher,rows,phase)
         print("ORIGINAL "+json.dumps(result,separators=(",",":")),flush=True)
         checks.append(result)
+    pages = []
+    for phase in args.phases:
+        joined, missing = page_reset_cipher(phase)
+        result = bound(joined,rows,0)
+        result["phase"] = phase
+        result["uncovered_original_page_edges"] = missing
+        result["any_one_GP_plaintext_rune_upper"] = result["top5_total"]+missing
+        print("PAGE_RESET "+json.dumps(result,separators=(",",":")),flush=True)
+        pages.append(result)
     if args.positive:
         print("PLANTED "+json.dumps(plant(rows),separators=(",",":")),flush=True)
     print("SUMMARY "+json.dumps({
         "runes":N,"tested_phases":len(checks),"all_five_checked":len(checks)==5,
-        "maximum_any_one_plain_symbol":max(x["any_one_GP_plaintext_rune_upper"]
-                                           for x in checks),
+        "maximum_global_any_one_plain_symbol":max(x["any_one_GP_plaintext_rune_upper"]
+                                                  for x in checks),
+        "maximum_common_page_reset_symbol":max(x["any_one_GP_plaintext_rune_upper"]
+                                               for x in pages),
         "hypothesis":"global five-rune Hill over GP29; arbitrary secret output "+
                      "per-column alphabets, any invertible secret matrix",
         "no_original_plaintext":True},separators=(",",":")),flush=True)
