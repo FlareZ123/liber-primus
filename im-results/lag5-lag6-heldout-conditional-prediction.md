@@ -80,6 +80,28 @@ We generated **5,000** full synthetic books under **each** model, preserving the
 
 **Decision:** Although the joint score is unusually high under M1 and under strict word-interior nulls, **the M3 forward surrogate is not rejected by that aggregate score**. The source's larger S5 and two-contiguous-copy counts remain relevant constraints under the earlier joint count tests, and M3 has no cryptographic inverse. Candidate ciphers must explain all these sparse events and recover an actual key and original language. This gate [ran successfully in CI 42784487866](https://github.com/FlareZ123/liber-primus/actions/runs/42784487866) from [lp2_echo_forward_model_gate.cjs](../sims/lp2_echo_forward_model_gate.cjs).
 
+## Eight-section leave-one-out generalization
+
+A second, stronger geographic-of-the-book challenge withholds **each of the eight originally marked nonempty $-delimited source sections** in turn. These sections have **[729, 1145, 1738, 1894, 1021, 1433, 1680, 3316] runes**, covering **all 12,956 unknown runes** without splitting the 2,896 original rune words. The source's nine individual $-delimited records include a nine-rune bridge; sections here are the eight nonempty groups after correctly merging that title/bridge into the following source-body group. This grouping is dictated by the manuscript's section structure and the full original word boundaries. Every heldout fold fits the same four historically identified feature coefficients and baseline adjacent-repeat rate on **only the other seven sections**, then predicts the omitted original section.
+
+For each 1,500 control iterations (xorshift32 seed `0x12083301`), we independently shuffle **each heldout section's word interiors**, preserving each word's length, exact rune inventory, first and last runes and number of adjacent identical runes. The fitted weights never change with control data. This is a conditional test for whether the fixed features generalize across independently withheld original source sections, not a claim of discovery-independent replication.
+
+| Withheld section | Source runes | Original heldout log likelihood lift (nats) | Same-fold null exceedances / 1,500 |
+| ---: | ---: | ---: | ---: |
+| 0 | 729 | **+2.062721** | 15 |
+| 1 | 1,145 | **+0.095809** | 184 |
+| 2 | 1,738 | **+2.380787** | 102 |
+| 3 | 1,894 | **+3.289060** | 1 |
+| 4 | 1,021 | **+0.262913** | 208 |
+| 5 | 1,433 | **+2.695377** | 10 |
+| 6 | 1,680 | **+4.064735** | 3 |
+| 7 | 3,316 | **+8.421229** | 0 |
+| **All eight fixed folds** | **12,956** | **+23.272631** | **0** |
+
+The full-source eight-fold prediction improves over baseline in **all eight** withheld sections, but the smaller boosts in sections 1 and 4 are individually unremarkable. The combined **+23.2726308971 nats** exceeds all **1,500** joint heldout-surrogate sums, whose median is **−12.1911084**, 95th percentile **−4.3536453**, and maximum **+3.7269955** (finite-model add-one **1/1,501 ≈ 0.00066622**). This is a shared **word-local output-pattern generalization** rather than evidence of unique architecture, plaintext, a key or any independently invertible map. The features were themselves selected using all real sections in earlier research; all stated conditional tails lack discovery-wide correction.
+
+Full regression: [`sims/lp2_echo_section_crossfit.cjs`](../sims/lp2_echo_section_crossfit.cjs). Successful on-original-source [GitHub Actions run **42785865593**](https://github.com/FlareZ123/liber-primus/actions/runs/42785865593) records all eight actual trained weight vectors, every fold, the control seed and complete aggregate. This adds a source-section predictive gate for a prospective **reversible** cipher. It does not resolve the full decryption.
+
 ## Reproduce and cryptanalytic consequence
 
 - [Self-contained Node.js 22 CommonJS implementation](../sims/lp2_heldout_echo_predictor.cjs), with source count and input-fingerprint assertions, exact likelihood normalization, frozen parameters, deterministic constrained randomization, and zero-weight baseline check.
