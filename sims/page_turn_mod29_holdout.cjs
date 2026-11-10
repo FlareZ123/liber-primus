@@ -185,6 +185,42 @@ function sectionPinnedNull(draws = 100000) {
 }
 const sections=sectionPinnedNull();
 assert.deepEqual([sections.observed,sections.extreme],[20,1658]);
+/**
+ * Independent source register control: repeat page-edge crossfit after
+ * replacing GP ordinal labels by their prime values modulo29. The
+ * alternate source alphabet is fixed in lp2-corpus.json, not fitted.
+ */
+function primeWeightControl(draws=30000) {
+  const weights=corpus.prime;
+  const firstPrime=pages.map(p=>weights[p.indices[0]]%29);
+  const lastPrime=pages.map(p=>weights[p.indices.at(-1)]%29);
+  const primeStep=(i,j)=>mod(firstPrime[j]-lastPrime[i]);
+  const pSteps=order=>order.slice(1).map((j,i)=>primeStep(order[i],j));
+  function pMarginal(group) {
+    const prob=Array(29).fill(0);
+    for(const i of group)for(const j of group)
+      prob[primeStep(i,j)]+=1/(group.length*group.length);
+    return prob;
+  }
+  const qT=pMarginal(trainIds),qH=pMarginal(holdIds);
+  const winner=select(pSteps(trainIds),qT);
+  const heldoutSteps=pSteps(holdIds);
+  const testZ=score(heldoutSteps,winner,qH);
+  let extreme=0;
+  const random=rng(0x290f7901);
+  for(let trial=0;trial<draws;trial++){
+    const chosen=select(pSteps(shuffle(trainIds,random)),qT);
+    extreme+=Number(score(pSteps(shuffle(holdIds,random)),
+      chosen,qH)>=testZ);
+  }
+  return {trainArc:winner,heldoutHits:hits(heldoutSteps,winner),
+    heldoutExpected:heldoutSteps.length*probability(qH,winner),
+    heldoutZ:testZ,draws,extreme,upperTail:(extreme+1)/(draws+1)};
+}
+const primeControl=primeWeightControl();
+assert.deepEqual([primeControl.trainArc.start,
+  primeControl.trainArc.length,primeControl.trainArc.hits,
+  primeControl.heldoutHits,primeControl.extreme],[20,2,6,1,26621]);
 const result = {
   classification: 'retrospective ciphertext layout anomaly, not decryption',
   physicalPages: 55, runeCount: flat.length, pageTransitions: 54,
@@ -199,7 +235,8 @@ const result = {
     zeroStepConstrained: {draws: noZero, extreme: noZeroExtreme,
       upperTail: (noZeroExtreme + 1) / (noZero + 1)},
     localBoundaryDisplacements: jitter},
-  sectionPinnedControl: sections
+  sectionPinnedControl: sections,
+  alternativeGPPrimeWeightControl: primeControl
 };
 console.log(JSON.stringify(result, null, 2));
 module.exports = {difference, select, localJitter};
