@@ -16,6 +16,8 @@ on:
           - rank28-secret-parity
           - rank28-secret-parity-pilot
           - rank28-secret-parity-exact
+          - rank28-primekey-sigma-pilot
+          - rank28-primekey-sigma-full
           - rsa432-block
 
 jobs:
@@ -50,6 +52,12 @@ jobs:
       - name: Exhaust all 40116600 secret GP parity masks
         if: ${{ inputs.source == 'rank28-secret-parity-exact' }}
         run: node sims/prime_totient_secret_parity_exact.cjs
+      - name: Recover blinded prime starts on authentic source-shaped GP controls and test real LP2 pilot
+        if: ${{ inputs.source == 'rank28-primekey-sigma-pilot' }}
+        run: node sims/prime_totient_rank28_unknown_sigma_keysearch.cjs 50000
+      - name: Search 2000000 prime starts under every fixed hidden alphabet and four 28-rank models
+        if: ${{ inputs.source == 'rank28-primekey-sigma-full' }}
+        run: node sims/prime_totient_rank28_unknown_sigma_keysearch.cjs 2000000
       - name: Prove all-phase original RSA432 rank28 block contradiction
         if: ${{ inputs.source == 'rsa432-block' }}
         run: node sims/rsa432_rank28_block_impossibility.cjs
