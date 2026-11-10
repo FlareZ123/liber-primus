@@ -93,7 +93,17 @@ assert.equal(lfsr.length,31);
 assert.equal(seed,31);
 assert.deepEqual(lfsr.slice().sort((a,b)=>a-b),Array.from({length:31},(_,i)=>i+1));
 assert.deepEqual(lfsr,[31,30,28,25,19,6,13,26,20,9,18,4,8,16,1,2,5,10,21,11,23,14,29,27,22,12,24,17,3,7,15]);
+const zeroAt=lfsr.indexOf(16)+1;
+assert(zeroAt>0);
+const deBruijn=[...lfsr.slice(0,zeroAt),0,...lfsr.slice(zeroAt)];
+assert.equal(deBruijn.length,32);
+/** Left-to-right adjacent 5-bit words overlap in precisely 4 bits,
+ * including the wraparound. This is the first source-constrained full
+ * 32-state row traversal; an actual LP2 cipher is still unconfirmed.
+ */
+for(let i=0;i<32;i++)assert.equal((deBruijn[i]<<1)&30,deBruijn[(i+1)%32]&30);
 const rowOrders=[
+  ["de-bruijn",deBruijn],
   ["seed-first",[...lfsr,0]],
   ["sentinel-first",[0,...lfsr]]
 ];
@@ -184,7 +194,7 @@ assert.deepEqual(transform(planted3,secondPad,{family:"exp",sign:1,projection:"s
 variants.sort((a,b)=>b.trainIoC-a.trainIoC);
 const output={
   classification:"Source-ornament 5-bit LFSR row order hypothesis; no authenticated original key or decryption",
-  lfsrTapMask:18, lfsrSeed:31, lfsrNonzeroCycle:lfsr, rowOrders:rowOrders.map(([name,rows])=>({name,rows})),
+  lfsrTapMask:18, lfsrSeed:31, lfsrNonzeroCycle:lfsr, deBruijnFullCycle:deBruijn, rowOrders:rowOrders.map(([name,rows])=>({name,rows})),
   originalRuneCount:C.length, sourceFragments:32, unsolvedFragments:28, gridRows:32,
   genuineControlsRecovered:3*C.length, sourcePlantIoC:normIoC(plant,0,C.length),
   modelCount:variants.length, trainStop, heldoutRunes:C.length-trainStop,
