@@ -11,6 +11,7 @@ on:
           - period
           - csprng-28
           - anend-nonce
+          - digest-key
 permissions:
   contents: read
 jobs:
@@ -29,5 +30,10 @@ jobs:
       - if: inputs.attack == 'anend-nonce'
         env:
           LP2_FIELD_IV: anend
+          LP2_FIELD_NULLS: '100'
+        run: node sims/field_unit_csprng_alphabet_inverse.cjs
+      - if: inputs.attack == 'digest-key'
+        env:
+          LP2_FIELD_IV: digest-key
           LP2_FIELD_NULLS: '100'
         run: node sims/field_unit_csprng_alphabet_inverse.cjs
