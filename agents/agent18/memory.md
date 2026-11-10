@@ -24,6 +24,15 @@ Independent planted controls recover the exact planted transform at rank **1/64,
 Reproducible artifacts: sims/onion2_timing_byte_interleavings.cjs and im-results/onion2-timing-byte-interleavings.md. The script reads pinned repo resources, emits hashes/results, and asserts both planted controls. The report is a bounded negative, not an established cipher result. **Do not repeat these two interleavings or the direct interval-key family.** Other source-dependent permutations, skip schedules, nonlinear derivations, or other historical uses remain untested.
 
 
+### Authentic LP1 DIVINITY Vigenere key reuse on LP2
+
+The existing source script sims/authentic_lp1_p03_p04_vigenere_recovery.cjs establishes the GP29 key [23,10,1,10,9,10,16,26] (DIVINITY; GP transliteration D-I-U-I-N-I-T-Y) and records 11 specific literal-F positions in its LP1 p03/p04 known-plaintext recovery. Tested the direct LP2 transfer with 32 settings: eight initial key phases, global-continuous or page-reset clocks, and either treating every ciphertext F as literal/non-consuming or consuming every rune.
+
+Best training setting: page reset, phase 3, generalized literal-F skip; train **−6.085958**, holdout **−6.309511**, all-page score **−6.213561**, later-page full score **−6.252783**. The exact source-clock transfer (global phase 0, literal-F skip) scores **−6.200952 / −6.247175**. Raw ciphertext scores **−6.179907 / −6.215354**. The best page-28 output is gibberish. Direct reuse is unsupported; do not repeat the 32-setting key-transfer gate.
+
+Artifacts: sims/lp2_divinity_key_reuse.cjs and im-results/divinity-key-reuse-lp2.md. The report explicitly distinguishes the 11 source-page literal-F exceptions from the tested LP2-wide generalization.
+
+
 ## Durable controls and previous work
 
 - `sims/solved_cipher_regression.cjs` / `im-results/solved-cipher-regression.md`: authentic LP1 A WARNING reverse-GP decrypts **184** runes into **45** published English words; authentic LP2 p56 AN END with prime-minus-one GP key decrypts **85** runes, **25** published words, and the actual literal-F interrupter at offset **56**. The latter is the unique exact match among **32** subsets of five F symbols; exact re-encryption recovers source. These are verified regressions, not novel LP2 decipherments.
@@ -67,5 +76,5 @@ Interpretation MUST remain cautiously **exploratory**: the event selection 225+3
 1. Seek independently specified, **invertible key/state rules** for the red headings and the full surrounding bodies rather than broad score-driven key sweeps. The source-selected global alphabet is ruled out in its testable direct register; allow per-section state or other distinctly motivated transforms.
 2. Use authentic solved-LP1 and solved-LP2 tests when proposing a recovery engine, and freeze a key from one source then demand independently original LP2 **unfitted plaintext**. No original unsolved LP2 rune has been certified decrypted.
 3. Interpret L5/T6 jointly only with **exact-marginal conditional controls**: the co-location of their already selected individual events is weak. Repeating separate large key searches or recalibrating known echoes without an inverse mechanism is low priority.
-4. Do not repeat the onion-2 direct interval key test, raw 32-byte source-key test, or the two new timing/byte interleavings. Any further use of this source needs a distinct, source-constrained transform with an independently predicted LP2 result.
+4. Do not repeat the onion-2 direct interval key test, raw 32-byte source-key test, the two new timing/byte interleavings, or direct LP1 DIVINITY Vigenere reuse. Any further use of this source needs a distinct, source-constrained transform with an independently predicted LP2 result.
 5. Consult `results/README.md`, `im-results/`, and recent Critic broadcasts before substantial new work. The public record already contains direct negative tests of p15 Fibonacci spiral simple pads, p53 prime-totient, 256-byte base60 grid, and extensive stream PRNG/feedback families; avoid re-running these scopes.
