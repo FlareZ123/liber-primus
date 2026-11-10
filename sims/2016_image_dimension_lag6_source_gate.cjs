@@ -291,6 +291,9 @@ function main() {
     }
     affineCounts[name] = { hits, eligible, rate: hits / eligible };
   }
+  assert.equal(affineCounts['24-2x'].hits, 80);
+  assert.equal(affineCounts['24-2x'].eligible, 1290);
+  assert.equal(affineCounts['24+2x'].hits, 34);
 
   const gridSeed = gridBytes.slice(g0, g1).map(x => x % 29);
   const runeSeed = secondHalf.slice(r0, r1);
@@ -334,12 +337,16 @@ function main() {
     }
   }
   candidates.sort((a, b) => b.score.perToken - a.score.perToken);
+  assert.ok(candidates[0].score.perToken < -4.5,
+    'bounded source-key candidates unexpectedly score like English');
 
   const controlPad = recurrencePad(gridSeed, lengths, 'global', 1);
   const planted = plantMatchedWords(lengths, heldoutWords, controlPad, 0x391165);
   const recovered = decodeViterbi(planted.ciphertext, controlPad, lm);
   const truth = planted.plaintext.flat(), guess = recovered.flat();
   const correct = guess.reduce((n, value, i) => n + Number(value === truth[i]), 0);
+  assert.ok(correct / totalRunes > 0.95,
+    'positive plant should be recovered by the T6 inverse');
 
   return {
     sourceImage: { width: IMAGE_WIDTH, height: IMAGE_HEIGHT,
