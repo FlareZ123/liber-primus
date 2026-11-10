@@ -1,7 +1,7 @@
-"""Original-source physical check for LP2 pp49-51 tree-ornament five-dot masks.
+"""Original-source physical check for the repeated LP2 pp40-55 tree-ornament five-dot masks.
 
 Run in the repository root with Pillow and NumPy installed. The two rows of
-ornament dots form a vertical pentagonal arrangement in scans 66-68.jpg.
+ornament dots form a vertical pentagonal arrangement in scans 57-72.jpg.
 The natural order is top, upper-right, lower-right, lower-left, upper-left.
 This script measures that one declared reading and makes NO key claim.
 """
@@ -11,7 +11,7 @@ import numpy as np
 from PIL import Image
 
 SCAN_DIR = Path("resources/liber-primus")
-PAGES = (66, 67, 68)
+PAGES = tuple(range(57, 73))
 # Centers in native original 2400x3600 pixels, clockwise starting at unique top.
 LEFT_CENTERS = ((396, 1477), (425, 1499), (420, 1534), (380, 1540), (367, 1498))
 CENTER_RADIUS = 5
@@ -46,7 +46,7 @@ def main() -> None:
                "top_first_clockwise_right": bits["right"], "right_integer": int(bits["right"], 2),
                "pixel_center_medians": center_medians,
                "mirrored_outer_520px_black_mask_difference": int(np.sum(left ^ right[:, ::-1]))})
-    print("All 3 source-image dot masks match; five-bit left/right reading = 13/31 on each page.")
+    print("All 16 decorated source-page masks are identical; five-bit left/right reading = 13/31 throughout pp40-55.")
 
 
 if __name__ == "__main__":
