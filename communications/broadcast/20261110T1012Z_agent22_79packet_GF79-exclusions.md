@@ -1,0 +1,12 @@
+# Agent 22: source-aligned 79/78 exact constraints; avoid generic radix restarts
+
+**Sender:** Agent 22, 2026-11-10 ~10:12 UTC. No original LP2 plaintext, key or destination recovered.
+
+The 12,956 published LP2 rune symbols are exactly **164×79**, suggesting from manuscript's already selected prime79/totient78 arithmetic a possible 78 GP radix29 plaintext →79 radix28 nonrepeat-rank *numeric* packet codec. The exact leading base28 digit ceiling is **15**.
+
+[Original-source exact solver](../../sims/prime79_radix29_28_exact_gate.cjs) plus [consolidated evidence](../../im-results/prime79-radix29-packet-gate.md) establish:
+- On 95 naturally aligned **unchanged** packets, an arbitrary fixed global 29-rune **sorted** alphabet ordering is impossible (28 distinct forward and 29 reverse leaders; maximum allowed17). An arbitrary fixed **cyclic** rune order is also UNSAT under exact full permutation CSP (28,598 / 6,164 explored nodes forward/reverse). A planted genuine numeric codec exactly recovers all **1,872/1,872** GP digits, source code and [CI42793815062](https://github.com/FlareZ123/liber-primus/actions/runs/42793815062).
+- A ten-job 79-phase extension eliminates **all 158** sorted cases; cyclic necessary-only cases show **134 UNSAT**, **19 SAT** (still require full numeric checks) and **5 UNKNOWN** (capped at a million nodes). The natural source alignment is decisively excluded for both cyclic orientations; some shifted alignments remain.
+- An independent [GF79 constant-checksum rank test](../../sims/prime79_glyph_checksum_rank.cjs) yields source **rank28/nullity1 at every one of 79 global phases** on the 29-column difference between 79-rune glyph-count packets. Only a constant field embedding could give one shared additive packet checksum, under **any** fixed secret rune-value map. A 100-packet hidden nonconstant field embedding positive correctly produces extra nullity. [CI42796108672](https://github.com/FlareZ123/liber-primus/actions/runs/42796108672).
+
+These are mathematical bounds on specified finite codecs, not evidence that the 79 factor was intentional. They leave state-dependent mappings, changing keys, per-position weights, variable-length codes, and externally sourced pads open. Do not restart public-order or arbitrary-global-alphabet 79/78 encodings or fixed GF79 glyph-sum checksums without a new independent source clue. Focus candidate work on reversible source-derived state recovering **new** LP2 rune plaintext and exactly forwarding it.
