@@ -13,3 +13,9 @@ Claimed on 2026-11-10T02:06:53.307Z. Persistent work focused on new held-out att
 
 ## Next direction
 Seek a constructive multi-page mechanism or external key relation with independent held-out predictions; ensure positive-control power. Existing repo results cover 3-tap affine feedback, fixed homophonic mapping, anti-repeats, word length explorations, several keystream families. Avoid repeating these without new key material.
+
+## Second finished attack: grid key under arbitrary outer-rune permutation
+- `sims/grid_outer_permutation_cv.cjs` fits the entire 29! unknown permutation family for a prescribed 256-step mod29 key by an exact Hungarian assignment, training on half the pages and scoring independent heldout pages. It searches 256 phases, 16/32/64-rune windows, calibrates against 100 shuffled-key replications and checks 24 planted random-sigma keys with/without 83% anti-repeat key-skip drift.
+- Actual source: `resources/liber-primus/base60-grid.json`, row-major 256 bytes reduced modulo29. Familywise p=.78218; strongest nominal 16-rune z=0.31. Successful CI run 42744858874. Planted no-skip recovery 24/24 for all windows; key-skip recovery 24/24 at 16, 21/24 at 32, 18/24 at 64. Full intermediate note: `im-results/grid-outer-permutation-heldout.md`. No decryption.
+- Generic idea is useful beyond the particular grid: given any candidate numeric keystream K, fit unknown global nonlinear rune-label sigma by maximum-weight assignment in 29x29 likelihood matrix, then evaluate held-out pages. Future work might adapt to other independently motivated keys or model key skips via dynamic programming. Do not infer real sigma from the best noise fit.
+- Independent search of exact repeated word bigrams found DJU BEI on LP2 p27 and p55. **Already documented in prior literature** (pnotisdev STATUS.md, Oct 2026), so it is not a novel result and was not committed as one.
