@@ -236,6 +236,43 @@ Crucially, **omitting the T6 repair entirely** also places original zero first (
 
 [Successful run 42772266410](https://github.com/FlareZ123/liber-primus/actions/runs/42772266410) and its uploaded JSON artifact preserve all 272 alignment scores summarized by rank and the exact control seeds, pages and model. The **earlier exact bigram/trigram marginal penalties and severe full-word dictionary incompatibility remain decisive obstacles** to interpreting the pair as shared-key **ordinary GP-English plaintext**. No key, plaintext or original encryption rule is recovered, and the post-selected pair/factor-scale should not receive a new discovery p-value from these within-pair ranks.
 
+## Exact adjacent-rewrite and intermittent shared-key inverse
+
+An exact scale-four shared-key model permits each page to rewrite a tentative
+ciphertext glyph, with probability 0.81, only when it repeats that page's
+previous observed glyph. This is a *hypothesized* output channel. Each
+original aligned pair admits at most four possible tentative-glyph
+differences, so both per-position shared key and repair uncertainty can
+be summed analytically. A dictionary/trigram inverse recovers **73.23% /
+73.98%** of plaintext runes and **73.61%** of key runes on a
+source-disjoint, exact-word-mask shared-key plant, while the actual
+LP2 pages **28/42 remain unreadable**. A previous noisy beam returned
+the first error-count stratum rather than the highest-scoring final
+state; correcting this bug does not recover any original plaintext.
+
+The exact **841-state bigram forward** model gives the real full-shared
+key log Bayes factor **−0.08214 nats** against independent keys. Fifty
+source-matched shared-key controls have median **+10.94484**, while
+fifty independent-key controls have median **−14.52068**. A partial
+key-sharing mixture fitted on the first 134 positions selects
+**sharing probability 0.70**; its untouched 135-position holdout factor
+is **+1.44064 nats**. At that same frozen fraction, Emerson and Gibran
+GP-language models give **+3.29547** and **+1.02809** nats heldout.
+However, each source's printed-word-position IID model performs
+*better*: the ordered-bigram *increment* over IID on the same holdout
+is **−3.16732** (Shakespeare), **−1.71496** (Emerson), and
+**−2.75386** (Gibran). The apparent mixture fit is thus supported by
+word-slot rune marginals, without identifiable plaintext sequences,
+keys, or the intended original cipher. This is a model-bounded negative,
+not a general exclusion of code streams or other source registers.
+
+Reproduce with [exact noisy repair decoder](../sims/relative_key_adjacent_repair_beam.cjs)
+and [its successful controlled run](https://github.com/FlareZ123/liber-primus/actions/runs/42785081649),
+[exact marginalized model with IID control](../sims/relative_key_adjacent_forward.cjs)
+and [successful run](https://github.com/FlareZ123/liber-primus/actions/runs/42786901639).
+The [repaired older beam](../sims/relative_key_noisy_dictionary_beam.cjs)
+was rerun successfully in [42784369735](https://github.com/FlareZ123/liber-primus/actions/runs/42784369735).
+
 ## Current interpretation and next genuinely discriminating tests
 
 The **same-offset symmetric cross-page difference anomaly** remains
@@ -243,7 +280,9 @@ reproducible, and the **factor-four template** remains the strongest
 preselected affine histogram fit. Under a hypothesis of two ordinary
 GP-English plaintexts with physical word boundaries and the same
 factor-four additive stream, however, multiple distinct decoding tests
-now reject the proposed *plaintext structure*:
+now reject the proposed *plaintext structure*. The exact adjacent-rewrite
+and intermittent-sharing variant likewise fails the independent
+word-position IID language-order discriminator:
 
 - The trigram Viterbi decoder cannot produce readable words and ranks the
   original scale-four alignment only 13/272 under its optimized-path score.
