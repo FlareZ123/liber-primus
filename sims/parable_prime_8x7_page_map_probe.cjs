@@ -189,6 +189,17 @@ const allPages = corpus.pages
   .sort((a, b) => a.page - b.page);
 const totalRunes = allPages.reduce((s, p) => s + p.indices.length, 0);
 const maxPageLength = Math.max(...allPages.map((p) => p.indices.length));
+const nonemptyPhysical = allPages.filter((p) => p.indices.length > 0).map((p) => p.page);
+function keySortedPageOrder(direction) {
+  return nonemptyPhysical
+    .map((page, i) => ({ page, key: redKey[i], i }))
+    .sort((a, b) => direction * (a.key - b.key) || a.i - b.i)
+    .map((x) => x.page);
+}
+const keySortedOrders = [
+  ["red55-key-sort-ascending", keySortedPageOrder(1)],
+  ["red55-key-sort-descending", keySortedPageOrder(-1)]
+];
 const control = read("resources/control/emerson_essays_2944.txt");
 const model = trainNativeGP(control);
 const knownP56Plain = plaintextWords(
@@ -306,6 +317,27 @@ for (const [orderName, order] of [["physical", physical], ["square-spiral", squa
   }
 }
 
+for (const [orderName, order] of keySortedOrders) {
+  const raw = order.flatMap((p) => pageByNumber.get(p).indices);
+  tests.push({
+    family: "red55-stable-page-sort",
+    order: orderName,
+    operation: "raw page permutation",
+    score: score(raw),
+    preview: preview(raw)
+  });
+  for (const resetPage of [false, true]) {
+    const out = decodeTotient(order, resetPage, false);
+    tests.push({
+      family: "red55-stable-page-sort-plus-p56-totient",
+      order: orderName,
+      clock: resetPage ? "page-reset" : "continuous",
+      score: score(out),
+      preview: preview(out)
+    });
+  }
+}
+
 const summary = {
   source: {
     parableAudioNumber,
@@ -342,7 +374,13 @@ const summary = {
       visitsUntilAllUnique: squareSpiral.visits,
       first: squareSpiral.order.slice(0, 12),
       order: squareSpiral.order
-    }
+    },
+    red55KeySort: keySortedOrders.map(([name, order]) => ({
+      name,
+      length: order.length,
+      first: order.slice(0, 15),
+      last: order.slice(-10)
+    }))
   },
   scoreReference: {
     rawPhysical: score(rawPhysical),
