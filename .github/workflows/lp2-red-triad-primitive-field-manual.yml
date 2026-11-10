@@ -27,3 +27,6 @@ jobs:
 
       - name: Two-coordinate field norm-trace affine cipher original inverse
         run: node sims/lp2_red_triad_normtrace_affine_inverse.cjs
+
+      - name: Nonlinear two-rune original/plaintext feedback inverse
+        run: node sims/lp2_red_triad_poly_two_rune_feedback.cjs
