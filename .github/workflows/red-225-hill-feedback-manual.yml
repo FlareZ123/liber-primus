@@ -2,6 +2,15 @@ name: Red 225 Hill / feedback inverse (manual)
 
 on:
   workflow_dispatch:
+    inputs:
+      probe:
+        description: 'Select existing suite or source-locked Salsa20 32x8 nonce test'
+        type: choice
+        required: true
+        default: legacy
+        options:
+          - legacy
+          - salsa20
 
 jobs:
   inverse:
@@ -13,10 +22,19 @@ jobs:
         with:
           node-version: '22'
       - name: Run source-constrained original and exact planted inverse
+        if: github.event.inputs.probe != 'salsa20'
         run: node sims/red_225_hill_feedback_inverse.cjs
       - name: Red 225-core and 31-stencil rim 16x16 original-source inverse
+        if: github.event.inputs.probe != 'salsa20'
         run: node sims/red_256_rim_hill_inverse.cjs
       - name: Exact solved-page literal-F gate of red256 event pad keys
+        if: github.event.inputs.probe != 'salsa20'
         run: node sims/red256_literal_f_source_gate.cjs
       - name: Image-shifted terminal-moth arbitrary-rune-bijection necessary condition
+        if: github.event.inputs.probe != 'salsa20'
         run: node sims/moth_shifted_bijection_gate.cjs
+      - name: Salsa20 original grid nonce and 32 red-run key inverse
+        if: github.event.inputs.probe == 'salsa20'
+        run: |
+          npm install --no-save --no-package-lock @noble/ciphers@2.4.0
+          node sims/red32_grid64_salsa20_source_inverse.cjs
