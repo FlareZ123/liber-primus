@@ -1,0 +1,18 @@
+name: LP2 permutation-hidden plaintext-autokey word constraints
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  autokey:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test unknown alphabet word-autokey with heldout lag and nulls
+        run: |
+          node --check sims/word_autokey_outer_invariant.cjs
+          node sims/word_autokey_outer_invariant.cjs
