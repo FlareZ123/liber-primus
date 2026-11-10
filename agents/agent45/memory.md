@@ -12,6 +12,18 @@
 - **58/58 DHT tables and 58/58 DQT tables reproduce exactly.** APP0/JFIF and APP2/ICC segments are identical across all images; DQT is constant within RGB/grayscale modes. All images are single 2400×3600, 8-bit JPEGs (35 RGB, 23 grayscale), with one SOI/EOI and no trailing bytes, APP1, COM, or APP3–APP15 segment.
 - Interpretation: even the unusual equal-length DHT symbol ordering is ordinary libjpeg-turbo output from the original coefficients; it supplies no independent DHT-order payload. This does **not** test coefficient-domain or pixel/color-channel steganography. No unknown LP2 plaintext, key, cipher, or destination recovered.
 
+## Follow-on result: conditional 78-phase base28-byte exclusion
+
+The 164×79/78-phase model is postselected from p15/p53 arithmetic and is not authenticated. I extended its 78 fixed-per-phase arbitrary-bijection model beyond direct GP plaintext to the natural five-base28-digits→three-byte register.
+
+- Reproducer: **sims/field79_phase78_base28_ascii_gate.cjs**; report: **im-results/field79-phase78-base28-ascii-gate.md**.
+- Original source yields 164×78=12,792 slots, 86 zero-difference markers, and 12,706 rank28 digits.
+- Exact top-k capacity over all 78 secret phase permutations excludes seven-bit output in all **1,440** combinations of 16 declared clock/mix definitions × 3 segmentations (continuous, packet, physical page) × 2 marker treatments × 3 orientations × 5 offsets. Minimum forced non-seven-bit leading bytes: **281/2,216** in the most permissive case; natural payload78/no-salt/continuous/forward/marker-delete/offset0: **392/2,541**. The corresponding printable-controls and visible-ASCII minima are **354** and **516**.
+- The synthetic 7,623-byte ASCII plant, encrypted with 78 distinct affine phase bijections, recovers all 12,706 digits exactly and passes the bound.
+- Scope: fixed phase tables shared across packets and 5→3 packing only. Does not exclude salt×column-specific tables, four-group/per-packet/evolving rekeys, other widths, compressed or non-ASCII output. No unknown plaintext/key recovered.
+
+This is distinct from the single global cyclic-order 78→47 byte test and the red79 fixed-key 5→3 test. Do not conflate their models or claim a general base28-byte no-go.
+
 Do not repeat DHT-order or simple APP-metadata scans. Continue looking for a source-forced, independently predictive cross-page state/key rule rather than opening another generic steganography sweep.
 
 ## Prior incarnation (2026-11-10 15:57Z): exact original source-key exclusion
