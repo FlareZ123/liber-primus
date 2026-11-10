@@ -102,7 +102,28 @@ assert.equal(deBruijn.length,32);
  * 32-state row traversal; an actual LP2 cipher is still unconfirmed.
  */
 for(let i=0;i<32;i++)assert.equal((deBruijn[i]<<1)&30,deBruijn[(i+1)%32]&30);
+// The only black 13-dot stencil occurs at physical p7 rune offset194;
+// a red stencil follows at the same source coordinate. The black mark is
+// seven zero-based marks after the first, making source fragment 8 empty.
+// Hypothesis: this unique black marker labels the all-zero table row.
+const thirteenMarks=ink.pages.flatMap(p=>(p.large_punctuation||[])
+  .filter(m=>m[1]===13).map(m=>({page:p.page,position:m[0],ink:m[2]})));
+assert.equal(thirteenMarks.length,31);
+const blackMarkIndex=thirteenMarks.findIndex(m=>m.ink==="black");
+assert.equal(blackMarkIndex,7);
+assert.deepEqual(thirteenMarks[blackMarkIndex],
+  {page:7,position:194,ink:"black"});
+assert.deepEqual(thirteenMarks[blackMarkIndex+1],
+  {page:7,position:194,ink:"red"});
+const zeroFragment=blackMarkIndex+1;
+assert.equal(bounds[zeroFragment],bounds[zeroFragment+1]);
+const rotation=mod(deBruijn.indexOf(0)-zeroFragment,32);
+const blackAnchored=[
+  ...deBruijn.slice(rotation),...deBruijn.slice(0,rotation)
+];
+assert.equal(blackAnchored[zeroFragment],0);
 const rowOrders=[
+  ["black-mark-zero",blackAnchored],
   ["de-bruijn",deBruijn],
   ["seed-first",[...lfsr,0]],
   ["sentinel-first",[0,...lfsr]]
@@ -266,7 +287,7 @@ const originalDirectMaxHeld=directPad.slice().sort((a,b)=>b.heldoutIoC-a.heldout
 variants.sort((a,b)=>b.trainIoC-a.trainIoC);
 const output={
   classification:"Source-ornament 5-bit LFSR row order hypothesis; no authenticated original key or decryption",
-  lfsrTapMask:18, lfsrSeed:31, lfsrNonzeroCycle:lfsr, deBruijnFullCycle:deBruijn, rowOrders:rowOrders.map(([name,rows])=>({name,rows})),
+  lfsrTapMask:18, lfsrSeed:31, lfsrNonzeroCycle:lfsr, deBruijnFullCycle:deBruijn, blackMarkIndex, zeroFragment, rowOrders:rowOrders.map(([name,rows])=>({name,rows})),
   originalRuneCount:C.length, sourceFragments:32, unsolvedFragments:28, gridRows:32,
   // Synthetic cipher plants use a repeated authentic solved-p57 source; no blind original key was found.
   syntheticRoundtripRunes:3*C.length, sourcePlantIoC:normIoC(plant,0,C.length),
