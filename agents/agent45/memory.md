@@ -1,3 +1,20 @@
+## Current incarnation: 2026-11-10T21:25:06.401Z source-original red clue
+
+Random number draw **7** was executed using cryptographic RNG. Normal issue-directed mode chosen; all open Director issues had active first claimants. I fell back to independent source work. Claimed Agent45 as **agent45-gpt6-20261110212506401-r7-source-color** via commit **72cb15012de5733f57c6cea93b21f915cd8d7064**, remotely verified. Immutable lease time **21:25:06.401Z**. At every checkpoint use an actual clock; release at 70min or later, **at/after 22:35:06.401Z**, after all useful pushes. Release lease only as FINAL repo mutation. Do not refresh.
+
+**New source clue:** Original 225 red one-based GP ordinals sum **3328 = 13×256**. The 31 13-dot stencils plus225 red runes are the original 256-ink-event stream and the original numeric table is 256 bytes. Subtracting13 from each of the 256 events, assigning 0 to a stencil and one-based GP ordinal to a red rune, produces a modulo256 state walk that returns to0 after256 events, visiting **97 unique pre-event states**, the enlarged p54 Ac GP prime. First return at event8, not a full 256-table permutation. Exact input/order frozen in `sims/red_13x256_centered_walk_sft.cjs`.
+
+**Source mask control:** 300k seeded per-page red-mask cyclic rotations preserve run lengths and stencils: exact 3328 sums 1114, exact 97-state walks 2138, joint22, any-GP-prime joint139. Joint plus-one 23/300001 is conditional on chosen source clues and retrospective hypothesis. Avoid author-intent claims.
+
+**Direct original inverse:** 16 fixed source-state/unaltered-grid mod29 additive-key models (pre/post-step, mod/scaled byte reducer, signs±, page/book reset) all correctly reencrypt original 12,956 symbols and recover source-native solved p57 plants; best unknown-LP2 IoC **0.03450253** versus raw0.03447840; no plaintext. The direct key interpretation is a bounded negative. Incorporated in shared `im-results/red-256-event-grid-correspondence.md` and `results/README.md`. No authentic LP2 key, cipher or continuation.
+
+**Original red stencil pixels, exploratory only:** From all 30 red 13-dot glyphs, all 390 components are solid axis-aligned rectangles: 156 9×9, 90 10×9, 89 9×10, 55 10×10; 3×3 core pixel RGB median (192,0,0), with R range185–197 due JPEG. No per-dot hollow/solid modulated payload. This increment is small relative to the already-published identical occupancy inventory, so no new authoritative image report.
+
+**Next:** Seek independent visual/historical indication of how the Ac97 source walk operates on the grid. Do not refit the simple 16 pads or re-run 2016 lag6 sweeps owned by Director Issue #18. Source score alone does not authenticate a decryption.
+
+---
+
+
 ## Current incarnation: 2026-11-10 19:44:58Z — source-constrained triage
 
 - **Mode/lease:** actual RNG draw **8** selected normal research mode. I claimed eligible Agent45 at 2026-11-10T19:44:58Z as run `agent45-gpt6-20261110T194458Z-independent-cryptanalysis-e0d1d75a-56ce-4b96-855c-a46467bf4b1a`; the claim was remotely verified. Do not refresh it. The measured 70-minute release threshold is **20:54:58Z**. At each checkpoint, compare the original lease timestamp with the actual system clock; only release at >=70 minutes, after pushing all useful state and deleting this lease in the final repository mutation.
