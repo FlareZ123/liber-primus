@@ -116,12 +116,12 @@ function poolByLength(words, full) {
  * @param {number[][]} full
  * @returns {Array<{symbol:number,expected:number[],variance:number[]}>}
  */
-function profiles(source, full) {
+function profiles(source, full, requiredLengths = lengths) {
   const pools = poolByLength(source, full);
   const out = [];
   for (let symbol = 0; symbol < 29; symbol++) {
     const expected = [0, 0, 0, 0], variance = [0, 0, 0, 0];
-    for (const [length, nWords] of lengths) {
+    for (const [length, nWords] of requiredLengths) {
       const ws = pools.get(length);
       assert(ws && ws.length, 'missing source word length ' + length);
       const sum = [0, 0, 0, 0], square = [0, 0, 0, 0];
@@ -222,6 +222,104 @@ for (let source = 0; source < 3; source++) {
   });
 }
 
+// Independent, source-visible red-ink boundaries are a natural location for
+// a static *section-specific* outer alphabet to change. Every such boundary
+// also coincides with an original complete rune-word start, so no word or
+// native-English control is split during this gate.
+const ink = JSON.parse(read('resources/liber-primus/lp2-ink-annotations.json'));
+const pageOffsets = [];
+let running = 0;
+for (let page = 0; page <= 55; page++) {
+  pageOffsets.push(running);
+  running += corpus.pages[page].indices.length;
+}
+assert.equal(running, 12956);
+const redStarts = [0, ...ink.pages.flatMap(page => page.page <= 55 ?
+  (page.red_spans || []).map(s => pageOffsets[page.page] + s.start) : [])
+  .filter(x => x > 0)].sort((a, b) => a - b);
+const redBreaks = [...new Set(redStarts)];
+assert.equal(redBreaks.length, 16);
+const originalStarts = [];
+let currentWord = false, runeOffset = 0;
+for (const c of transcript.split('%').slice(0, 55).join('%')) {
+  if (runeMap.has(c)) {
+    if (!currentWord) originalStarts.push(runeOffset);
+    currentWord = true;
+    runeOffset++;
+  } else if (c === '%' || c === '/' || /\s/u.test(c)) { /* wrap */ }
+  else currentWord = false;
+}
+assert.equal(runeOffset, 12956);
+assert.equal(originalStarts.length, original.length);
+const originalStartSet = new Set(originalStarts);
+for (const start of redBreaks)
+  assert(originalStartSet.has(start), 'red boundary is not a word boundary');
+const redSections = redBreaks.map(() => []);
+original.forEach((word, i) => {
+  let sectionIndex = 0;
+  for (let k = 1; k < redBreaks.length; k++) {
+    if (redBreaks[k] > originalStarts[i]) break;
+    sectionIndex = k;
+  }
+  redSections[sectionIndex].push(word);
+});
+assert.equal(redSections.flat().length, original.length);
+const redSectionLengths = redSections.map(group => {
+  const count = new Map();
+  for (const word of group) count.set(word.length, (count.get(word.length) || 0) + 1);
+  return count;
+});
+const sectionModels = redSectionLengths.map(lengthCount =>
+  half.flatMap(([training], source) => profiles(training, references[source], lengthCount)
+    .map(p => ({...p, source}))));
+function bestSectionFit(observed, models) {
+  let best = {statistic: Infinity};
+  for (const m of models) {
+    let statistic = 0;
+    for (let i = 0; i < 4; i++)
+      statistic += (observed[i] - m.expected[i]) ** 2 / Math.max(1, m.variance[i]);
+    if (statistic < best.statistic)
+      best = {statistic, source: m.source, symbol: m.symbol};
+  }
+  return best;
+}
+const originalSectionFits = redSections.map((words, i) =>
+  bestSectionFit(counts(words, 8), sectionModels[i]));
+const originalSectionScore = originalSectionFits.reduce((a, x) => a + x.statistic, 0);
+let sectionRng = 0x395D2331;
+function nextSectionRandom() {
+  sectionRng = (Math.imul(sectionRng, 1664525) + 1013904223) >>> 0;
+  return sectionRng / 0x100000000;
+}
+const sectionNull = [];
+for (let source = 0; source < 3; source++) {
+  const pool = poolByLength(half[source][1], references[source]);
+  const scores = [];
+  for (let trial = 0; trial < 450; trial++) {
+    let score = 0;
+    for (let section = 0; section < redSections.length; section++) {
+      const symbol = Math.floor(nextSectionRandom() * 29);
+      const observed = [0, 0, 0, 0];
+      for (const [length, nWords] of redSectionLengths[section]) {
+        const ws = pool.get(length);
+        for (let i = 0; i < nWords; i++) {
+          const word = ws[Math.floor(nextSectionRandom() * ws.length)];
+          for (let j = 0; j < length; j++)
+            if (word[j] === symbol) observed[bucket(length, j)]++;
+        }
+      }
+      score += bestSectionFit(observed, sectionModels[section]).statistic;
+    }
+    scores.push(score);
+  }
+  const ordered = [...scores].sort((a, b) => a - b);
+  sectionNull.push({
+    source: sourcePaths[source], syntheticManuscripts: scores.length,
+    median: ordered[225], p95: ordered[427], maximum: ordered.at(-1),
+    exceedances: scores.filter(x => x >= originalSectionScore).length
+  });
+}
+
 // Synthetic test: any secret global outer permutation can relabel the fixed
 // plaintext symbol, and any per-rune rotor exponent is allowed. The four
 // ciphertext buckets must equal the plaintext source symbol's buckets.
@@ -268,6 +366,15 @@ console.log(JSON.stringify({
     fixedPointCipherRune: 8, GP: 'H', positions: originalH,
     occurrences: originalH.reduce((a, b) => a + b, 0), bestFit: originalFit},
   lexicalProfiles: allProfiles.length, sourceHalfSplit: true,
-  nullBySource, plantChecks,
+  nullBySource,
+  sectionModel: {
+    source: 'all 16 original unsolved red-span starts, 16 independent outer alphabets',
+    breaks: redBreaks, sourceWordBreakAligned: true,
+    sectionWordCounts: redSections.map(x => x.length),
+    originalStatistic: originalSectionScore,
+    sectionFits: originalSectionFits,
+    null: sectionNull
+  },
+  plantChecks,
   limits: 'English-like native-GP words with canonical word boundaries; no model-independent ciphertext solution'
 }, null, 2));
