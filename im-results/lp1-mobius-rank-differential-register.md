@@ -31,8 +31,8 @@ The input is all **12,956** canonical runes from 56 physical page records (55 ru
 
 | Measurement | Original | GP-English reference | Best candidate |
 | --- | ---: | ---: | ---: |
-| IoC | 0.03447840 | 0.06238554 | 0.03527454 |
-| Top-12 symbol mass | 0.42976227 | 0.78029175 | 0.44234332 |
+| IoC | 0.03447840 | 0.06238554 | 0.03525983 |
+| Top-12 symbol mass | 0.42976227 | 0.78029175 | 0.44079963 |
 | Emerson-GP trigram mean log score | −14.00447 | −7.74692 | −14.01567 |
 
 The best candidate is the **M05-inverse, global, full29** variant. It is slightly worse than the raw ciphertext on the same trigram model and remains far from native GP-English. All eight original inverses are random-looking; none produces a sustained readable passage.

@@ -191,6 +191,7 @@ for (const [direction, A, opposite] of [
       const wrongCodec = makeCodec(opposite, eaMode, clock);
       const wrongDirectionPlant = flatten(wrongCodec.decode(encodedPlant));
       const wrongDirectionExact = same(wrongDirectionPlant, flatten(plantPages));
+      assert.ok(!wrongDirectionExact, 'wrong-orientation decoder unexpectedly recovered plant');
 
       let zeroTransitions = 0, withinPageZeroTransitions = 0;
       for (let p = 0; p < decodedPages.length; p++) {
