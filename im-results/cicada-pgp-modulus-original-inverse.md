@@ -1,0 +1,26 @@
+# Historical Cicada signing-key modulus as an LP2 cipher source
+
+**Evidence:** source-verified historical cryptographic key, reproducible original-input negative for an explicit reversible cipher family, and independent native-GP recovery controls. **No unknown LP2 plaintext, authentic cipher key, or hidden destination recovered.**
+
+## Source and hypothesis
+
+Cicada's authenticated 2012 OpenPGP key (fingerprint **`6D854CD7933322A601C3286D181F01E57A35090F`**) precedes the Liber Primus release. The key's public RSA modulus is a concrete 4,096-bit source artifact. A 2012 puzzle message also said *"The key has always been right in front of your eyes."* In its original setting this was a PGP-authentication clue, so its reuse as an LP2 keystream is **only a hypothesis**. The 2012 UID integer `845145127=3301×509×503` was the well-known original image-dimension solution; its factorization is historical prior art rather than a new finding here.
+
+The exact public-key armor is retained in [resources/historical/cicada-3301-2012-public-key.asc](../resources/historical/cicada-3301-2012-public-key.asc), mirrored from [krisyotam/cicada3301 PGP archive](https://github.com/krisyotam/cicada3301/blob/main/pgp/key/cicada-3301-public-key.asc), source Git blob `d44aec389e2f346c6b9d149d4c61e890f62979c9`. The [CommonJS reproducer](../sims/cicada_pgp_modulus_square_inverse.cjs) parses the first OpenPGP v4 packet, asserts RSA exponent 65,537, exactly 4,096 modulus bits and the complete SHA-1 public-key fingerprint *before* constructing a candidate key. The modulus satisfies **N mod 4 = 1**; no knowledge of its prime factors or the Blum-prime condition is claimed. The following is a **modular-squaring generator**, and should not be represented as a proven secure Blum–Blum–Shub instance.
+
+## Fully specified original-source inverse
+
+For each fixed historical seed `3301`, `3299` (highlighted twin prime in the LP2 p15 square), `0x7A35090F` (the original key ID), and `1595277641` (the prior 2013 audio clue), generate `x_(t+1)=x_t² mod N`. Sample either the low **eight bits of each successive state** or eight successive **low bits assembled most-significant-first**. Use the starting integer or one initial squaring before the first sample; reset at the original entire book, published section positions, or physical rune-page boundaries. The decoded register is either `P=(C−s*(byte mod29)) mod29` or the exact invertible GP28 ciphertext-difference logarithm with the EA zero-step rule, with both `s=−1,+1`. All seeds, sample conventions, initial states, reset boundaries, GP register directions and signs are fixed independently of the original plaintext.
+
+This yields **192 explicit finite original-cipher inversions** over all **12,956** unsolved LP2 ciphertext runes. The best candidate was audio-source seed 1,595,277,641, book clock, one source-square per output byte, no initial warm-up, GP28 difference carrier and sign−. Its measured native Shakespeare-GP unigram average is **−4.20268512 nats/rune**, IoC **0.0352669231**, and GP-E count **475**. A separate 12,956-rune native-GP source control has **−2.95984494 nats/rune**, IoC **0.0601328440**, and **1,481** E runes. Original ciphertext itself has IoC **0.0344783979**, only **439** E runes. The original result remains close to uniform and yields no independently readable unknown plaintext.
+
+Each of the 192 candidate original inversions re-encrypts its entire original ciphertext under the exact same convention. Separately, 192 native-source GP-English plants have their genuine key applied and recover the entire planted text, **2,487,552/2,487,552** rune positions in aggregate. Since all reversible keys automatically re-encrypt source ciphertext, only the independent plants validate method correctness; neither establishes an LP2 key.
+
+For the separate **256-byte numerical table**, eight direct source masks (four seeds × two modular-squaring sampling conventions, book clock, no initial warm-up) were XORed with original printed row-major bytes. They produced between **84 and 112/256 ASCII-printable** bytes. The highest-printable output begins `2a2626bb60ec7f1858f5c833a3b3b929`. All eight 256-byte planted ASCII originals recover exactly with the true mask. This finite mask family offers no recognizable original table plaintext.
+
+[Windows Node 22 CI run 42875669930](https://github.com/FlareZ123/liber-primus/actions/runs/42875669930) completed successfully, including full original-input and native-source assertions.
+
+## Cryptanalytic decision
+
+These source-locked modular-squaring output conventions **do not produce native-GP prose or an obvious plaintext table payload**. This limits specific public-modulus seed/sampling/carrier interpretations. It does not exclude historically unknown IVs, nonlinear key schedules, different output samplers, a binary intermediary, altered segmentation, or different plaintext languages. The signing key was historically used for authentication; no evidence currently connects its RSA modulus to LP2 encryption. Future work should require an independent original clue specifying the modulation before expanding the family.
+
