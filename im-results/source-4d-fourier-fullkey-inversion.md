@@ -1,6 +1,6 @@
 # Exhaustive crib-free source-matrix F29 state inversion
 
-**Evidence classification, 10 November 2026 (Agent 7): original-negative for three fully specified 4D F29 stream models.** No unknown LP2 plaintext, historical key or complete mechanism recovered. This experiment eliminates the possibility that an *unknown initial four-coordinate state alone*, under each of the three locked matrices and the declared EA/step output rule, produces source-native GP plaintext with the tested train/holdout behavior. It does not constrain other output maps, page resets, matrices or alternate plaintext registers.
+**Evidence classification, 10 November 2026 (Agent 7): original-negative for three source-fixed four-state F29 matrices under multiple independent GP emission and plaintext criteria.** No unknown LP2 plaintext, historical key or complete mechanism recovered. The original source matrices fail solved-Cicada and Latin GP reference likelihoods, and now also fail the historically evidenced author-prime clause checksum in both the direct additive and transparent-EA output architectures. Every conclusion is bounded by its declared output map, original clause segmentation and global state clock.
 
 ## Why this attack is a meaningful extension
 
@@ -55,9 +55,39 @@ The unmodified full enumeration places the correct hidden key first among **707,
 
 The current workflow additionally executes `GP_REGISTER=latin node sims/source_4d_fourier_fullkey_inverse.cjs`. [Completed three-matrix English-and-Latin original/full-key controls 42821696704](https://github.com/FlareZ123/liber-primus/actions/runs/42821696704).
 
+## Author-prime clause complete state inversion: six original full-key tests
+
+**Agent 7, 10 November 2026.** The independently authenticated 2013 Cicada audio metadata product **1,595,277,641 = 1,259 × 1,031 × 1,229** corresponds to the GP-prime sums of the three solved *Parable* body clauses. Agent43's [author-native source discriminator](author-native-prime-clause-discriminator.md) records **13 prime-valued among 16** printed clauses in three solved Cicada passages. This supplies a language-independent, author-specific plaintext criterion distinct from the previously exhausted GP-English/Latin unigram and bigram models.
+
+The [exact author-prime inverter](../sims/source_4d_prime_clause_fullkey.cjs) aligns all original 12,956 cipher runes and printed period punctuation against the master. Of **168** nonempty dot-delimited clauses, the source-specified solved-Cicada maximum length of **76** gives **101** clauses of length 3–76. Freeze **50 training clauses (1,590 runes)** wholly in physical pages 0–27 and **51 heldout clauses (1,759 runes)** wholly in pages 28–55. A clause crossing the split is excluded. Original page and word positions, physical-page initials, and a globally continuous state clock are preserved in the inverse.
+
+For each of the three previously source-fixed 4×4 matrices, enumerate **all 29⁴ = 707,281 initial-state keys**, choosing the state with the greatest number of prime-valued training clause sums and then scoring the later clauses with the key frozen. Two independently specified original forward/inverse channels are checked:
+
+- Transparent GP EA (28) produces a repeated ciphertext rune; all other runes are primitive-root-15 nonzero predecessor steps with a state mask reduced mod28. Page initials use GP29 addition.
+- Direct addition in GP29 uses the same four-coordinate matrix state, with every plaintext symbol decoded as ciphertext minus the state projection mod29.
+
+Both are reversible. Reencryption of any chosen original-state candidate is an algebraic sanity check and does not authenticate that candidate.
+
+| Frozen matrix | Output rule | Highest train primes / 50 | Heldout primes / 51 | Heldout GP IoC |
+| --- | --- | ---: | ---: | ---: |
+| Red16 prime-value spiral | EA / 15-step | **20** (7 tied) | **1** | 0.035251 |
+| Red16 visible-count spiral | EA / 15-step | **20** (3 tied) | **8** | 0.035252 |
+| Printed Fibonacci prime square | EA / 15-step | **21** (2 tied) | **10** | 0.035198 |
+| Red16 prime-value spiral | GP29 direct addition | **21** (unique) | **10** | 0.034542 |
+| Red16 visible-count spiral | GP29 direct addition | **22** (unique) | **8** | 0.034547 |
+| Printed Fibonacci prime square | GP29 direct addition | **21** (unique) | **8** | 0.034497 |
+
+The apparent training maxima are expected to be inflated by **707,281-way key selection**. Frozen validation never exceeds **10 of 51**, and the decoded heldout unigram collision rates remain close to uniform. No original state gives independent source-authenticated plaintext.
+
+**Author-prime control with exact key recovery.** A separate native solved-Cicada GP corpus (3,248 runes) was recycled over the exact 12,956-position original page layout. A predetermined 13-of-16 selection of original-shaped short clauses received at most two GP symbol edits where necessary, enforcing **83 prime clauses** and yielding **84/101** prime clause sums in total, with **70 changed runes**. Independently keyed copies were forward encrypted under each of the six matrix/output families. The same 707,281-key scorer, blinded to the secret state, recovered the actual planted key **at rank 1 in all six families**. Their independently withheld score is **43/51**, compared with **41/50** on training. Each planted plaintext decoded and reencrypted exactly, **12,956/12,956 symbols**. This demonstrates recovery power for the declared author-prime signal; no synthetic authoring rule is claimed for the unknown manuscript.
+
+**Scope and decision.** All **4,243,686 source-model original keys**, plus equivalent positive controls, were evaluated exactly. The complete direct-addition and transparent-EA four-state families lack the independent author-prime signal under the frozen matrix, global clock, period segmentation, GP value map and length criterion. Alternative plaintext registers, editorial segmentation, key schedules, source matrices or nonlinear output channels remain open. Retuning length limits on the same original key scores would amount to fitting the observed negative and requires a new independent source rule.
+
+[Six-job original-input and planted-control successful CI 42841743152](https://github.com/FlareZ123/liber-primus/actions/runs/42841743152) provides exact original training score histograms, the ten top frozen keys and holdout counts per model. [Manual parallel workflow](../.github/workflows/source-4d-prime-clause-manual.yml) and [complete CommonJS SFT](../sims/source_4d_prime_clause_fullkey.cjs) make the full finite search reproducible.
+
 ## Reproduce and next decision
 
 - [Exact CommonJS full-state Fourier engine](../sims/source_4d_fourier_fullkey_inverse.cjs): three source-defined matrices, unconditional all-key enumeration, exact direct-score comparisons, heldout original inverses, native GP blind-key positives and exact whole-book forward re-encryption.
 - [Dispatch-only CI](../.github/workflows/source-4d-fourier-fullkey-manual.yml), [successful full unigram run 42817630661](https://github.com/FlareZ123/liber-primus/actions/runs/42817630661), [successful unigram + bigram run 42818399747](https://github.com/FlareZ123/liber-primus/actions/runs/42818399747), and [all three matrices in both English and Latin, CI 42821696704](https://github.com/FlareZ123/liber-primus/actions/runs/42821696704). The final run is the reproducible current source test.
 
-The source-locked constant-matrix four-state/transparent-EA cipher can now be rejected as a *recovery path using the supplied source-native English and independent Latin GP models* for all three source-fixed clue matrices, rather than merely being tested against a handful of fitted cribs. The exhaustive method generalizes to source-constrained hidden linear state with arbitrary per-rune and pairwise GP emission scores, providing a useful algorithm when a stronger independent source rule fixes A and the output register. Do not interpret the finite failure as a mathematical exclusion of every possible plaintext; alternate languages and nonnative registers were not tested. Further search with these exact A and output assumptions is low-value unless new source evidence modifies the state or observation model.
+The source-locked constant-matrix four-state/transparent-EA cipher can now be rejected as a *recovery path using the supplied source-native English and independent Latin GP models* for all three source-fixed clue matrices, rather than merely being tested against a handful of fitted cribs. The exhaustive method generalizes to source-constrained hidden linear state with arbitrary per-rune and pairwise GP emission scores, providing a useful algorithm when a stronger independent source rule fixes A and the output register. Do not interpret the finite failure as a mathematical exclusion of every possible plaintext; alternate languages and nonnative registers were not tested. The new author-prime clause scorer supplies a separate, independently motivated observation criterion and has also been exhausted for the six original source-matrix/output combinations above. Repeated search using these same matrices and channels is low-value without an independently grounded change to state construction or source assumptions.
