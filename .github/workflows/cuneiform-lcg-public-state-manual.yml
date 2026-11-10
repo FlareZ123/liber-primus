@@ -1,0 +1,16 @@
+name: Source-fixed cuneiform LCG original inverse and invariant
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-invariant:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Assert exact source-native encryption, decryption and original bound
+        run: node sims/cuneiform_lcg_public_state_invariant.cjs
