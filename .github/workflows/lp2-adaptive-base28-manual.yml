@@ -6,7 +6,7 @@ on:
         description: "Select existing binary probes or source-aligned 79/78 radix gate"
         required: true
         type: choice
-        options: [standard, prime79]
+        options: [standard, prime79, prime79prefix2]
         default: standard
       phase_start:
         description: "First 79-packet phase to test"
@@ -29,28 +29,28 @@ jobs:
         with:
           node-version: '22'
       - name: Exclude stationary stateful base29 fixed-packet byte codecs
-        if: ${{ inputs.probe != 'prime79' }}
+        if: ${{ inputs.probe == 'standard' }}
         run: node sims/stateful_29rank_byte_capacity_sieve.cjs
       - name: Invert base-28 no-repeat output and check impossible byte codewords
-        if: ${{ inputs.probe != 'prime79' }}
+        if: ${{ inputs.probe == 'standard' }}
         run: node sims/lp2_adaptive_base28_binary.cjs
       - name: Test global secret glyph and modular-difference order sieves
-        if: ${{ inputs.probe != 'prime79' }}
+        if: ${{ inputs.probe == 'standard' }}
         run: node sims/lp2_adaptive_radix28_permutation_sieve.cjs
       - name: Construct and verify stateful byte-capacity witness
-        if: ${{ inputs.probe != 'prime79' }}
+        if: ${{ inputs.probe == 'standard' }}
         run: node sims/radix28_stateful_byte_capacity_witness.cjs
       - name: Enumerate all state-dependent byte-code capacity cases
-        if: ${{ inputs.probe != 'prime79' }}
+        if: ${{ inputs.probe == 'standard' }}
         run: node sims/stateful_28rank_allwidth.cjs
       - name: Exact ASCII-octet necessary bound for 29-row stateful radix28
-        if: ${{ inputs.probe != 'prime79' }}
+        if: ${{ inputs.probe == 'standard' }}
         run: node sims/stateful_28rank_ascii_octet_bound.cjs
       - name: Exact Latin-square previous-state capacity matchings
-        if: ${{ inputs.probe != 'prime79' }}
+        if: ${{ inputs.probe == 'standard' }}
         run: node sims/stateful_28rank_latin_matching.cjs
       - name: Construct Latin-square five-digit packet witnesses
-        if: ${{ inputs.probe != 'prime79' }}
+        if: ${{ inputs.probe == 'standard' }}
         run: node sims/stateful_28rank_latin_five.cjs
       - name: Test exact base29-78 to base28-79 block inverse over any fixed rune alphabet
         if: ${{ inputs.probe == 'prime79' }}
@@ -61,3 +61,11 @@ jobs:
       - name: Exclude fixed GF79 glyph checksum on every possible 79-rune packet origin
         if: ${{ inputs.probe == 'prime79' }}
         run: node sims/prime79_glyph_checksum_rank.cjs
+      - name: Exact 79/78 two-leading-digit secret-cyclic-alphabet necessary gate
+        if: ${{ inputs.probe == 'prime79prefix2' }}
+        env:
+          PREFIX_TWO_DIGIT: '1'
+          PHASE_START: ${{ inputs.phase_start }}
+          PHASE_END: ${{ inputs.phase_end }}
+          PREFIX_TWO_MAX_NODES: '100000'
+        run: node sims/prime79_radix29_28_exact_gate.cjs
