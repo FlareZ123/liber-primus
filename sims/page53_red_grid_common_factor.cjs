@@ -208,6 +208,29 @@ for (let t = 0; t < smoothDraws; t++) {
 assert.deepEqual([p53SmoothHits, p27SmoothHits,
   familySmoothHits, fourMediumPrimeHits], [2, 3, 5, 6]);
 
+
+// Treat the 256 printed bytes as coefficients of a polynomial over GP F29:
+// P(X) = b[0]X^255 + ... + b[255]. The natural byte radix 256 maps to
+// residue 24 mod 29. Evaluate derivative congruences by Horner directly.
+function modPolynomial(x, p) {
+  let value = 0, first = 0, second = 0;
+  for (const byte of original) {
+    second = (second * x + 2 * first) % p;
+    first = (first * x + value) % p;
+    value = (value * x + byte) % p;
+  }
+  return {value, first, second};
+}
+const gpFieldRoots = [];
+for (let x = 0; x < 29; x++) {
+  const v = modPolynomial(x, 29);
+  if (v.value === 0) gpFieldRoots.push({x, ...v});
+}
+assert.deepEqual(gpFieldRoots,
+  [{x: 24, value: 0, first: 0, second: 23}]);
+const rootAt179 = modPolynomial(256 % 179, 179);
+assert.deepEqual(rootAt179, {value: 0, first: 23, second: 172});
+
 console.log(JSON.stringify({
   originalGridBits: N.toString(2).length,
   page53RuneCount: p53.runic_count,
@@ -222,6 +245,8 @@ console.log(JSON.stringify({
     x.divisibleByOwnPageLength).map(x => ({page: x.page, length: x.length})),
   redSmallPrimeFactors: factors,
   observedSmallPrimeLog2Bits: originalSmooth.bits,
+  polynomial29UniqueDoubleRoot: gpFieldRoots,
+  naturalRadix179Root: rootAt179,
   observedMediumPrimeCount: originalSmooth.primesAtLeast10000,
   smoothnessNull: {cutoff: 300000, seed: "0x53179", samples: smoothDraws,
     p53Hits: p53SmoothHits, otherEligibleP27Hits: p27SmoothHits,
