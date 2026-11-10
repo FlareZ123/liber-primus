@@ -134,12 +134,12 @@ The current source-gate script includes these path and grid-indexed candidates a
 
 ### Prime-indexed grid-totient key screen
 
-A distinct, source-fixed extension of the p56 mechanism is to treat each base-60 grid byte (b) as a **zero-based prime ordinal** and use (K_b=phi(p_{b+1})=p_{b+1}-1 pmod{29}). This uses the solved p56 prime-totient operation, the original 256-byte table, and the image-selected offsets 51/57 without fitting a key to ciphertext. It gives grid bytes 59 and 118 the key values 19 and 14, whose difference is 24. This is an arithmetic correspondence, not by itself evidence of a key: the same lag-six key delta 24 occurs at **10 of 250** possible positions in the full table, while the raw byte-doubling relation 59→118 remains unique at offset 51.
+A distinct, source-fixed extension of the p56 mechanism is to treat each base-60 grid byte b as a **zero-based prime ordinal** and use K_b = φ(p_{b+1}) = p_{b+1} − 1 (mod 29). This uses the solved p56 prime-totient operation, the original 256-byte table, and the image-selected offsets 51/57 without fitting a key to ciphertext. Specifically, byte 59 selects p₆₀ = 281, so φ(p₆₀) = 280 ≡ 19; byte 118 selects p₁₁₉ = 653, so φ(p₁₁₉) = 652 ≡ 14. Their difference is 24 modulo 29. This is an arithmetic correspondence, not by itself evidence of a key: the same lag-six key delta 24 occurs at **10 of 250** possible positions in the full table, while the raw byte-doubling relation 59→118 remains unique at offset 51.
 
-The original 12,956-rune input was tested under the provisional T6 collision-repair inverse (word-local (T_6(x)=24-2x), (q=0.81), GP trigram Viterbi). The finite family comprised:
+The original 12,956-rune input was tested under the provisional T6 collision-repair inverse (word-local T₆(x) = 24 − 2x (mod 29), q = 0.81, GP trigram Viterbi). The finite family comprised:
 
 - 256-byte row-major prime-indexed-totient pads, phases 51 and 57;
-- a 32-cell toroidal grid path beginning at row 6, column 3, with step ((+1,-2)), and its reverse;
+- a 32-cell toroidal grid path beginning at row 6, column 3, with step (+1, −2), and its reverse;
 - six-symbol T6 recurrence seeds derived from the diagonal path, the row-major grid slice, and the second-half p53–p55 rune slice;
 - both directions where applicable, both additive signs, and global, page, section, or word resets: **72 candidates total**.
 
