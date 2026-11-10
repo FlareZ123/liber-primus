@@ -28,3 +28,6 @@ jobs:
           node-version: '22'
       - name: Invert highlighted runes against complete-word lexicon
         run: node sims/red_verse_substitution_csp.cjs
+
+      - name: Exact shared-alphabet red-rubric inversion with planted nulls
+        run: node sims/red_rubric_shared_monoalphabet_inverse.cjs
