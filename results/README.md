@@ -28,6 +28,20 @@ Reproduced in on-demand CI:
 [1,662,976 configurations](https://github.com/FlareZ123/liber-primus/actions/runs/42740092990) ·
 [70,644 configurations](https://github.com/FlareZ123/liber-primus/actions/runs/42740601269).
 
+### Word-level arbitrary substitutions: repeated-symbol invariant
+
+A further necessary-condition test generalizes beyond a single global substitution alphabet. Suppose **each word has its own completely arbitrary deterministic rune-to-rune mapping**, including non-injective mappings. If two plaintext rune positions inside one word are equal, the resulting ciphertext positions must also be equal. Therefore the number of repeated rune pairs at nonadjacent positions **cannot decrease** under such a position-independent mapping, even when the mapping changes from word to word.
+
+Using the correct **2,896** page-crossing rune-word tokens, the 1,536 LP2 words of length 4–9 contain **526** nonadjacent equal-rune pairs. Length-matched natural-English GP word samples predict **707.879** (SD **26.442**, z = **−6.878**) for Shakespeare word tokens, **747.604** for solved LP1 word tokens, and **662.076** for the unique Shakespeare vocabulary. Each of 20,000 length-matched resamples exceeded the observed value (Monte Carlo p < 0.00005; limited by simulation resolution).
+
+The deficit persists when restricting both test and controls to words with no adjacent equal runes, addressing the already-known anti-doublet suppression: LP2 has **517** nonadjacent repeated pairs versus **721.498** predicted by similarly filtered Shakespeare words (z = **−7.952**). An exact positive control with an independent random bijection for every word preserves the entire collision pattern by construction and in execution.
+
+**Conclusion:** The observed word-level repeated-rune structure is strongly inconsistent with tested English-like plaintext transformed through one deterministic symbol mapping per word. This claim depends on faithful ciphertext word boundaries and an English-like word repertoire. It allows unrelated alphabets across words, and does not rule out symbol-dependent keystreams, random per-occurrence homophones, transposition, other languages or a different intermediate plaintext code. No LP2 word was decrypted.
+
+[Mechanism, comparison, controls, caveats](../im-results/wordwise-equality-invariant.md) ·
+[Exact implementation](../sims/word_partition_invariant.cjs) ·
+[Successful on-demand CI](https://github.com/FlareZ123/liber-primus/actions/runs/42742667912).
+
 ### Fixed homophonic mappings: independent mathematical corroboration of a prior exclusion
 
 [Wulfic's C15](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/reference/findings/lp2_logic_findings_2026-09-29.md) already excluded static homophonic substitution. An independent data-processing and frequency-mass derivation corroborates that exclusion: a fixed deterministic mapping from each of the 29 ciphertext runes to one decoded alphabet symbol is inconsistent with the measured adjacent-character statistics of LP1-like English. This covers **all many-to-one static rune-to-letter maps**, without having to enumerate them. It does **not** exclude state-dependent or keystream-based ciphers.
@@ -65,4 +79,4 @@ The ciphertext's 29 rune frequencies are nearly flat, and immediate rune repeats
 - `resources/liber-primus/`: original images `00.jpg`–`74.jpg` and checksums.
 - `agents/`: persistent research-agent identities and continuity records.
 
-External public papers and analyses are **context**, and any unreplicated claim remains attributed to its author. This repository's reproducible tests currently comprise an independently derived homophonic information bound and three fully screened algebraic-feedback families. No manuscript plaintext or cipher key has been recovered. This summary will be rewritten when stronger evidence supersedes it.
+External public papers and analyses are **context**, and any unreplicated claim remains attributed to its author. The current reproducible constraints cover short algebraic-feedback formulas, global static homophonic substitutions, and arbitrary deterministic per-word symbol substitutions under explicit English-like plaintext assumptions. No manuscript plaintext or cipher key has been recovered. This summary will be rewritten when stronger evidence supersedes it.
