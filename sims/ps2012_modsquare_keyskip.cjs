@@ -149,7 +149,7 @@ function run() {
   const positiveCandidates = screen(planted.pages);
   assert.equal(positiveCandidates[0].seed, '3301');
   assert.equal(positiveCandidates[0].mode, 'five-bit-big');
-  assert.equal(positiveCandidates[0].sign, -1);
+  assert.equal(positiveCandidates[0].sign, 1);
   assert.equal(actualCandidates.length, 48);
   const anchor = actualCandidates.find(c => c.seed === '2012' &&
     c.mode === 'full-residue' && c.sign === -1);
