@@ -1,17 +1,23 @@
 'use strict';
 /**
- * Source-aligned 58 GP radix-29 symbols -> 59 predecessor-excluded radix-28
- * digits: exact original-cipher necessary-condition test.
+ * 59/58 radix-29 -> radix-28 packet-capacity test.
  *
- * The reported 59-rune sections in the 2016 message motivate the *test*, not the cipher.
- * On a clean 59-output packet, its base-28 integer must be < 29^78.
- * This places an unconditional ceiling on the most significant digit.
+ * Motivation: a community analysis of the authenticated 2016 Cicada message
+ * reports three 59-rune sections and a Fibonacci-indexed prime-sum structure.
+ * This test asks whether 59 predecessor-excluded base-28 digits can encode
+ * 58 base-29 plaintext digits under one fixed cyclic ordering of the 29 GP
+ * symbols. It is a hypothesis test, not an established cipher.
  *
- * Test every unknown fixed cyclic rune ordering with a complete finite-domain CSP.
- * Repeated-rune packets are conservatively ignored as damaged/escape packets.
- * A bounded search reports "unknown", never an unsupported exclusion.
+ * Since 29^58 - 1 begins [7,18] in 59 base-28 digits, each clean packet must
+ * have leading digit <=7; if it is 7, the second digit must be <=18.
+ * The exact finite-domain CSP tests this necessary condition over every
+ * fixed cyclic ordering (modulo global rotation), in both orientations.
  *
- * Node 22, CommonJS, original canonical LP2 numeric corpus.
+ * Repeated-adjacent-rune packets are conservatively excluded as possible
+ * damaged/escape packets. UNSAT excludes this specified model and packet
+ * origin; SAT is only a necessary condition, not a plaintext recovery.
+ *
+ * Node 22, CommonJS, canonical LP2 pages 0-55.
  */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -95,288 +101,9 @@ function cleanStarts(cipher, phase) {
 }
 
 /**
- * @param {number[]} cipher
- * @param {number[]} starts
- * @param {'forward'|'reverse'} direction
- * @returns {number[][]}
- */
-function leadingEdges(cipher, starts, direction) {
-  const at = direction === 'forward' ? 0 : CIPHER_BLOCK - 1;
-  return starts.map(start => [cipher[start + at - 1], cipher[start + at]]);
-}
-
-/** @param {number[]} cipher @param {number[]} starts */
-function literalPacketChecks(cipher, starts) {
-  const stats = [];
-  for (const mode of ['cyclic', 'sorted']) {
-    for (const orientation of ['forward', 'reverse']) {
-      let valid = 0;
-      for (const start of starts) {
-        const digits = [];
-        for (let j = start; j < start + CIPHER_BLOCK; j++) {
-          const before = cipher[j - 1], after = cipher[j];
-          const rank = mode === 'cyclic'
-            ? (after - before + ALPHABET - 1) % ALPHABET
-            : after - Number(after > before);
-          assert(rank >= 0 && rank < 28);
-          digits.push(rank);
-        }
-        if (orientation === 'reverse') digits.reverse();
-        let value = 0n;
-        for (const digit of digits) value = value * BASE + BigInt(digit);
-        valid += Number(value < LIMIT);
-      }
-      stats.push({mode, orientation, valid, invalid: starts.length - valid});
-    }
-  }
-  return stats;
-}
-
-/**
- * Every ordering must give the first of a valid 59-digit block radix-28
- * digit <=15. Sorted exclusion rank(d) <=15 can only involve 17 of the
- * 29 glyph labels, regardless of which 29! fixed order was chosen.
- * @param {number[][]} edges
- */
-function sortedOrderingGate(edges) {
-  const distinct = new Set(edges.map(edge => edge[1])).size;
-  return {distinct_leading_glyphs: distinct, maximum_allowed: LEADING_MAX + 2,
-    excluded: distinct > LEADING_MAX + 2};
-}
-
-/**
- * Complete finite-domain search over all 29! fixed cyclic rune orders,
- * modulo the harmless global rotation that fixes rune 0 at position 0.
- * For each edge prev->current require modular order distance in 1..16.
- *
- * Arc consistency and all-different singleton propagation prune branches;
- * depth-first branching exhausts the remaining assignments. This is
- * deterministic, with no random seeds or heuristic statistical p-values.
- *
- * @param {number[][]} input
- * @param {number} [maxNodes=1000000]
- * @returns {{status:string,nodes:number,unique_edges:number,witness:number[]|null}}
- */
-function cyclicOrderingGate(input, maxNodes = 1000000) {
-  const edges = [...new Set(input.map(pair => pair.join(',')))]
-    .map(value => value.split(',').map(Number));
-  const degree = Array(ALPHABET).fill(0);
-  for (const [a, b] of edges) { degree[a]++; degree[b]++; }
-  let nodes = 0, capped = false;
-
-  /** @param {number[]} domains @returns {number[]|null} */
-  function propagate(domains) {
-    let changed = true;
-    while (changed) {
-      changed = false;
-      let singles = 0;
-      for (const domain of domains) {
-        if (!domain) return null;
-        if (!(domain & (domain - 1))) {
-          if (singles & domain) return null;
-          singles |= domain;
-        }
-      }
-      for (let i = 0; i < ALPHABET; i++) {
-        const domain = domains[i];
-        if (domain & (domain - 1)) {
-          const next = domain & ~singles;
-          if (!next) return null;
-          if (next !== domain) { domains[i] = next; changed = true; }
-        }
-      }
-      for (const [a, b] of edges) {
-        const da = domains[a], db = domains[b];
-        let nextA = 0, nextB = 0;
-        for (const value of bits(da)) {
-          if (FORWARD[value] & db) nextA |= 1 << value;
-        }
-        if (!nextA) return null;
-        for (const value of bits(db)) {
-          if (BACKWARD[value] & nextA) nextB |= 1 << value;
-        }
-        if (!nextB) return null;
-        if (nextA !== da) { domains[a] = nextA; changed = true; }
-        if (nextB !== db) { domains[b] = nextB; changed = true; }
-      }
-    }
-    return domains;
-  }
-
-  /** @param {number[]} domains @returns {number[]|null} */
-  function search(domains) {
-    nodes++;
-    if (nodes > maxNodes) { capped = true; return null; }
-    domains = propagate(domains);
-    if (!domains) return null;
-    let selected = -1, minimum = ALPHABET + 1, bestDegree = -1;
-    for (let i = 0; i < ALPHABET; i++) {
-      const options = population(domains[i]);
-      if (options > 1 && (options < minimum ||
-        (options === minimum && degree[i] > bestDegree))) {
-        selected = i;
-        minimum = options;
-        bestDegree = degree[i];
-      }
-    }
-    if (selected < 0) return domains;
-    for (const position of bits(domains[selected])) {
-      const branch = domains.slice();
-      branch[selected] = 1 << position;
-      const found = search(branch);
-      if (found) return found;
-      if (capped) return null;
-    }
-    return null;
-  }
-
-  const initial = Array(ALPHABET).fill(ALL);
-  initial[0] = 1;
-  const solution = search(initial);
-  const witness = solution?.map(domain => [...bits(domain)][0]) ?? null;
-  if (witness) {
-    assert.equal(new Set(witness).size, ALPHABET);
-    assert.equal(witness[0], 0);
-    for (const [a, b] of edges) {
-      const distance = (witness[b] - witness[a] + ALPHABET) % ALPHABET;
-      assert(distance >= 1 && distance <= MAX_FORWARD_DISTANCE);
-    }
-  }
-  return {status: solution ? 'SAT' : capped ? 'UNKNOWN' : 'UNSAT',
-    nodes, unique_edges: edges.length, witness};
-}
-
-/** @param {number} seed */
-function rng(seed) {
-  let state = seed >>> 0;
-  return () => {
-    state ^= state << 13;
-    state ^= state >>> 17;
-    state ^= state << 5;
-    return state >>> 0;
-  };
-}
-
-/**
- * Blindly test exact packet and transition inverses on a hidden fixed cyclic
- * ordering and generated base-29 plaintext. The SAT solver must recognize
- * that at least one unknown alphabet exists.
- */
-function positiveControl() {
-  const next = rng(0x33017978);
-  const order = Array.from({length: ALPHABET}, (_, i) => i);
-  for (let i = 28; i > 0; i--) {
-    const j = next() % (i + 1);
-    [order[i], order[j]] = [order[j], order[i]];
-  }
-  const inverse = Array(29);
-  for (let i = 0; i < 29; i++) inverse[order[i]] = i;
-  const plaintext = [], ciphertext = [];
-  let previous = 17;
-  for (let block = 0; block < 24; block++) {
-    const source = Array.from({length: PLAIN_BLOCK}, () => next() % ALPHABET);
-    plaintext.push(source);
-    let value = 0n;
-    for (const digit of source) value = 29n * value + BigInt(digit);
-    const digits = Array(CIPHER_BLOCK).fill(0);
-    for (let i = CIPHER_BLOCK - 1; i >= 0; i--) {
-      digits[i] = Number(value % 28n);
-      value /= 28n;
-    }
-    assert.equal(value, 0n);
-    let packed = 0n;
-    for (const digit of digits) {
-      packed = packed * BASE + BigInt(digit);
-      const rank = (order[previous] + digit + 1) % ALPHABET;
-      previous = inverse[rank];
-      ciphertext.push(previous);
-    }
-    assert(packed < LIMIT);
-  }
-  let predecessor = 17, exact = 0;
-  for (let i = 0; i < 24; i++) {
-    let integer = 0n;
-    for (let j = 0; j < CIPHER_BLOCK; j++) {
-      const current = ciphertext[i*CIPHER_BLOCK+j];
-      const digit = (order[current] - order[predecessor] + 28) % ALPHABET;
-      assert(digit >= 0 && digit < 28);
-      integer = integer * BASE + BigInt(digit);
-      predecessor = current;
-    }
-    const recovered = Array(PLAIN_BLOCK);
-    for (let j = PLAIN_BLOCK - 1; j >= 0; j--) {
-      recovered[j] = Number(integer % 29n);
-      integer /= 29n;
-    }
-    assert.equal(integer, 0n);
-    assert.deepEqual(recovered, plaintext[i]);
-    exact += recovered.length;
-  }
-  const starts = cleanStarts(ciphertext, 0);
-  const gate = cyclicOrderingGate(leadingEdges(ciphertext, starts, 'forward'));
-  assert.equal(starts.length, 23);
-  assert.equal(gate.status, 'SAT');
-  return {synthetic_blocks: 24, exact_recovered_plaintext_runes: exact,
-    secret_order_hidden_from_solver: true, blind_gate: gate.status,
-    solver_nodes: gate.nodes};
-}
-
-/**
- * @param {{phaseStart?:number,phaseEnd?:number,maxNodes?:number}} [options]
- */
-function run(options = {}) {
-  const source = original();
-  const {phaseStart = 0, phaseEnd = 0, maxNodes = 1000000} = options;
-  assert(Number.isInteger(phaseStart) && phaseStart >= 0 && phaseStart <= 78);
-  assert(Number.isInteger(phaseEnd) && phaseEnd >= phaseStart && phaseEnd <= 58);
-  const positive = positiveControl();
-  const cases = [];
-  for (let phase = phaseStart; phase <= phaseEnd; phase++) {
-    const starts = cleanStarts(source, phase);
-    const directions = {};
-    for (const direction of ['forward', 'reverse']) {
-      const edges = leadingEdges(source, starts, direction);
-      directions[direction] = {
-        sorted: sortedOrderingGate(edges),
-        cyclic: cyclicOrderingGate(edges, maxNodes),
-      };
-    }
-    cases.push({phase, clean_packets: starts.length,
-      direct: phase === 0 ? literalPacketChecks(source, starts) : undefined,
-      directions});
-  }
-  if (phaseStart === 0) {
-    assert.equal(cases[0].clean_packets, 95);
-    assert.equal(cases[0].directions.forward.sorted.distinct_leading_glyphs, 28);
-    assert.equal(cases[0].directions.reverse.sorted.distinct_leading_glyphs, 29);
-    assert.equal(cases[0].directions.forward.cyclic.status, 'UNSAT');
-    assert.equal(cases[0].directions.reverse.cyclic.status, 'UNSAT');
-  }
-  return {
-    source: 'canonical 55 rune-bearing original LP2 pages',
-    original_runes: source.length,
-    aligned_79_digit_packets: source.length / 79,
-    radix29_plaintext_digits_per_packet: 78,
-    maximum_permitted_leading_radix28_digit: LEADING_MAX,
-    erasures: 'Discard entire 59-output packet if any adjacent glyph repeats; first packet has unknown predecessor',
-    positive, cases,
-    interpretations: 'UNSAT excludes the specified fixed-rune-order 78-to-79 numeric packing; UNKNOWN means an explicit solver cap was reached. No LP2 plaintext/key recovered.',
-  };
-}
-
-if (require.main === module && process.env.PREFIX_TWO_DIGIT !== '1') {
-  const phaseStart = Number(process.env.PHASE_START ?? '0');
-  const phaseEnd = Number(process.env.PHASE_END ?? '0');
-  process.stdout.write(JSON.stringify(run({phaseStart, phaseEnd}), null, 2) + '\n');
-}
-module.exports = {run, cleanStarts, leadingEdges, literalPacketChecks,
-  sortedOrderingGate, cyclicOrderingGate, positiveControl};
-
-
-/**
- * Strengthened source-linked 78->79 radix capacity gate: because the radix-28
- * digits of 29^78 - 1 begin 15,12, a clean packet must have leading digit
- * <=15, and if it equals 15 then its second digit must be <=12.
+ * 59/58 capacity gate: the radix-28 digits of 29^58 - 1 begin [7,18], so a
+ * clean packet must have leading digit <=7, and if it equals 7 its second
+ * digit must be <=18.
  *
  * Unknown cyclic rune ordering is handled by exact finite-domain search.
  * This is a necessary ciphertext-only constraint, not a language decode.
