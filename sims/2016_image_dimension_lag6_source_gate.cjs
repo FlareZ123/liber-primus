@@ -319,6 +319,18 @@ function main() {
 
   const gridSeed = gridBytes.slice(g0, g1).map(x => x % 29);
   const runeSeed = secondHalf.slice(r0, r1);
+
+  // A source-motivated additional seed: the archived 2016 OutGuess extraction
+  // reports seed 230. Test it only as a starting offset into the 256-byte grid,
+  // with the six values required by the independently derived T6 recurrence.
+  // This is a finite candidate, not evidence that OutGuess seed is an LP2 key.
+  const outguessSeed = 230;
+  const outguessGridSeed = Array.from({ length: 6 }, (_, i) =>
+    gridBytes[(outguessSeed + i) % gridBytes.length] % 29);
+  const outguessGridSeedReverse = Array.from({ length: 6 }, (_, i) =>
+    gridBytes[(outguessSeed - i + gridBytes.length) % gridBytes.length] % 29);
+  assert.deepEqual(outguessGridSeed, [1, 1, 19, 2, 22, 5]);
+  assert.deepEqual(outguessGridSeedReverse, [1, 28, 28, 13, 3, 6]);
   const source = fs.readFileSync(path.join(ROOT,
     'resources/control/shakespeare_first300k.txt'), 'utf8');
   const trainWords = base.corpusWords(source.slice(0, 200000));
@@ -337,8 +349,12 @@ function main() {
       preview: preview(decoded, corpus.translit, 6)
     });
   }
-  for (const [name, seed] of [['grid-six-byte-seed', gridSeed],
-    ['rune-six-symbol-seed', runeSeed]]) {
+  for (const [name, seed] of [
+    ['grid-six-byte-seed', gridSeed],
+    ['rune-six-symbol-seed', runeSeed],
+    ['outguess-seed230-grid-six-byte-seed-forward', outguessGridSeed],
+    ['outguess-seed230-grid-six-byte-seed-reverse', outguessGridSeedReverse]
+  ]) {
     for (const clock of ['global', 'word']) {
       for (const sign of [1, -1]) {
         addCandidate(name + ':' + clock + ':sign' + sign,
@@ -430,6 +446,12 @@ function main() {
     },
     keyTests: {
       method: 'Exact two-candidate inverse for the T-overwrite model; GP trigram Viterbi trained on Shakespeare first 200k characters.',
+      sourceSeedCandidate: {
+        outguessSeed: outguessSeed,
+        interpretation: 'Use the 2016 OutGuess extraction seed as a start offset into the 256-byte grid; take six consecutive bytes (or reverse order) as the T6 recurrence state.',
+        forwardGridSeed: outguessGridSeed,
+        reverseGridSeed: outguessGridSeedReverse
+      },
       originalCandidates: candidates,
       positiveControl: {
         source: 'Shakespeare 240k+ holdout words matched to all 2,896 original LP2 word lengths',
