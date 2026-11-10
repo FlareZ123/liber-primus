@@ -16,22 +16,34 @@ The [original-input source locator](../sims/ea_marker_source_locator.cjs) conver
 
 ## Original-input results
 
-| Scope | Original equality markers | Shakespeare max matched | Gibran max matched |
-| --- | ---: | ---: | ---: |
-| All 55 rune pages, 12,956 GP runes | **86** | **7** | **7** |
-| p0–2, 729 runes | 4 | 2 | 3 |
-| p3–7, 1,145 runes | 6 | 3 | 2 |
-| p8–14, 1,729 runes | 9 | 3 | 3 |
-| p15–22, 1,903 runes | 10 | 3 | 3 |
-| p23–26, 1,021 runes | 11 | 3 | 3 |
-| p27–32, 1,433 runes | 13 | 4 | 3 |
-| p33–39, 1,680 runes | 12 | 3 | 3 |
-| p40–53, 3,008 runes (page50 rune-free) | 18 | 4 | 4 |
-| p54–55, 308 runes | 3 | 2 | 2 |
+The source locator has now been run against **four** checked-in references. The two added sources were chosen independently of the ciphertext: the author's own historically solved LP1/LP2 text and Emerson's *Essays* (which includes *Self-Reliance*, cited in historical Cicada material). Both are especially useful necessary-condition challenges because their hypothesized plaintext is source-locked before any nonzero-step cipher-key search. The original LP1 reference is editor-normalized and contains headers, omissions and some repeated explanatory lines; the checked-in Emerson fixture includes its edition's extra text. Therefore the tests apply to **contiguous GP-tokenized windows in these exact checked-in texts**, without proving that a source-edited or rearranged excerpt was excluded.
 
-The full checked-in Shakespeare source has **218,800** GP runes (1,633 EA). Its best complete-book offset is **169,582**, with 7/86 mandatory matches. The checked-in Gibran *Prophet* source has **63,114** GP runes (606 EA); its best complete-book offset is **5,472**, also 7/86. These maximizations consider all **205,845** and **50,159** possible full-book windows respectively. All nine section searches restart the source offset independently, which makes them a stronger, more permissive test than demanding one passage for the whole book. There is no section with all its mandatory markers.
+| GP-tokenized reference | Runes | GP-EA sites | Best complete-book EA anchor matches | Sections with every observed marker |
+| --- | ---: | ---: | --- | ---: |
+| Shakespeare (checked-in first 300k characters) | 218,800 | 1,633 | **7/86** | **0/9** |
+| Gibran, *The Prophet* | 63,114 | 606 | **7/86** | **0/9** |
+| Solved Cicada LP1/LP2 editor-normalized reference | **3,736** | **30** | Too short for a 12,956-rune book | **0/9** |
+| Emerson, *Essays: First Series* | **324,630** | **2,224** | **6/86** (15 tied best offsets) | **0/9** |
 
-The Gibran 3/4 near-match at p0–2 is too weak to identify a passage; it was selected from tens of thousands of source offsets and still fails one required marker. No source copy is inferred from it.
+The two large reference books have 205,845 and 50,159 possible full-book windows, respectively. Emerson has **311,675**; its best whole-book window begins at GP offset **3,217**. All 86 mandatory marker positions must match for an authentic exact source quotation under the stated reversible hypothesis, so 6 or 7 matches are far from identification.
+
+The section-by-section scan resets the candidate source offset independently in each of the nine physical LP2 sections. The table gives the **maximum satisfied original equality anchors**, not the number of inferred plaintext letters, and maximizes over every legal source offset:
+
+| LP2 physical section | Original runes | Original markers | Shakespeare | Gibran | Solved-Cicada reference | Emerson |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| p0–2 | 729 | 4 | 2 | 3 | 2 | 2 |
+| p3–7 | 1,145 | 6 | 3 | 2 | 2 | 3 |
+| p8–14 | 1,729 | 9 | 3 | 3 | 2 | 3 |
+| p15–22 | 1,903 | 10 | 3 | 3 | 2 | 3 |
+| p23–26 | 1,021 | 11 | 3 | 3 | 3 | 3 |
+| p27–32 | 1,433 | 13 | 4 | 3 | 2 | 4 |
+| p33–39 | 1,680 | 12 | 3 | 3 | 3 | 3 |
+| p40–53 | 3,008 | 18 | 4 | 4 | 2 | 3 |
+| p54–55 | 308 | 3 | 2 | 2 | 2 | 2 |
+
+The first two source runs gave Shakespeare's best full-book offset **169,582** and Gibran's **5,472**; the added native-text and Emerson tests find no complete section match even though the matching rule is intentionally permissive: additional EA runes at nonmarker sites are accepted. No authentic original quote, unknown plaintext, secret key or encryption mechanism is recovered.
+
+**Instrument correction:** The original locator skipped every source shorter than 12,956 runes, preventing any section scan on the solved-Cicada source despite its sufficient length for all nine individual sections. The same exact counted-offset algorithm now handles independent section scans even when the whole book cannot be searched. No new workflow, ciphertext-fit parameter or original-data split was introduced.
 
 ## Full-cipher positive controls
 
