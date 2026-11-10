@@ -12,7 +12,6 @@
  */
 const assert=require('node:assert/strict');
 const {dictionary,source} = require('./red_verse_second_order_key.cjs');
-const {toGpRunes} = require('./authentic_lp2_p56_totient_regression.cjs');
 const mod = n => (n % 29 + 29) % 29;
 const MAX_START = Number(process.env.PRIME_ANCHOR_STARTS || 50000);
 assert.ok(Number.isInteger(MAX_START) && MAX_START>2500 && MAX_START<=200000);
@@ -79,7 +78,7 @@ function variations(cipher,lengths) {
 
 /** @param {number[]} cipher @param {boolean} skipF */
 function phases(cipher,skipF) {
-  const arr=[],seen=0;
+  const arr=[];
   let clock=0;
   for(const c of cipher){
     arr.push(clock);
