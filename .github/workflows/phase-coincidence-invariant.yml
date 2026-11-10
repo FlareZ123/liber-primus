@@ -1,0 +1,13 @@
+name: LP2 phase coincidence, outer-permutation invariant
+on:
+  workflow_dispatch:
+jobs:
+  phase-scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/phase_coincidence_invariant.cjs
