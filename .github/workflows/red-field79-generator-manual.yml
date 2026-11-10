@@ -15,3 +15,5 @@ jobs:
         run: node sims/red_f79_zero_mask_invariant.cjs
       - name: Test all injective GP-prime field-unit markers with family controls
         run: node sims/gp_prime_field_unit_marker_family.cjs
+      - name: Exhaust complete GP-prime field projective automorphisms
+        run: node sims/gp_prime_projective_stabilizer.cjs
