@@ -76,6 +76,42 @@ const V = numeral(p48, 29);
 assert.equal(gcdBig(V, N), BigInt(factor));
 assert.equal(V % BigInt(factor), 0n);
 
+// A distinct visible source interval has the same factor: the final
+// eight-rune PRINTED FRAGMENT of p48, immediately before the next page.
+// It is only a fragment, since the canonical word continues with p49's
+// first IA rune. Do not describe it as an entire eight-rune cipher word.
+const ink = JSON.parse(fs.readFileSync(
+  path.join(root, 'resources', 'liber-primus', 'lp2-ink-annotations.json'), 'utf8'
+));
+const red53 = ink.pages.find(p => p.page === 53).red_spans[0];
+assert.equal(red53.start, 128);
+assert.equal(red53.length, 51);
+const redPrimeSum = corpus.pages.find(p => p.page === 53).indices
+  .slice(red53.start, red53.start + red53.length)
+  .reduce((sum, value) => sum + corpus.prime[value], 0);
+assert.equal(redPrimeSum, 2262);
+assert.equal(factor, 36 * redPrimeSum);
+
+const transcript = fs.readFileSync(
+  path.join(root, 'resources', 'lp2-transcription.txt'), 'utf8'
+).split('%').slice(0, 55);
+const lastFragment = source => [...source.matchAll(/[\u16A0-\u16FF]+/gu)].at(-1)[0];
+const p48LastRunes = lastFragment(transcript[48]);
+assert.equal(p48LastRunes, 'ᛇᚠᚢᛞᚣᚪᛚᚠ');
+assert.equal(transcript[49].match(/[\u16A0-\u16FF]/u)[0], 'ᛡ');
+const glyphMap = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const fragmentDigits = [...p48LastRunes].map(rune => glyphMap.get(rune));
+assert.deepEqual(fragmentDigits, p48.slice(-8));
+const fragmentValue = numeral(fragmentDigits, 29);
+assert.equal(fragmentValue, 207035949198n);
+assert.equal(fragmentValue % BigInt(redPrimeSum), 0n);
+const matchingTerminalFragments = transcript.flatMap((page, i) => {
+  const word = lastFragment(page);
+  const value = numeral([...word].map(rune => glyphMap.get(rune)), 29);
+  return value > 0n && value % BigInt(redPrimeSum) === 0n ? [i] : [];
+});
+assert.deepEqual(matchingTerminalFragments, [48]);
+
 const highPageGcds = physical.map(p => ({
   page: p.page, gcd: gcdBig(numeral(p.indices, 29), N)
 })).filter(x => x.gcd >= 100n).map(x => ({
@@ -140,6 +176,9 @@ const trials = 300000;
 let divisible = 0;
 let atLeast = 0;
 let exact = 0;
+let fragmentDivisible = 0;
+let exactAndFragment = 0;
+let atLeastAndFragment = 0;
 for (let t = 0; t < trials; t++) {
   for (let j = interior.length - 1; j > 0; j--) {
     const k = uniformIndex(j + 1);
@@ -147,14 +186,25 @@ for (let t = 0; t < trials; t++) {
   }
   // All intermediates are exact safe JS integers: smooth*29 < 2^53.
   let remainder = p48[0];
-  for (const digit of interior) remainder = (remainder * 29 + digit) % smooth;
+  let wordRemainder = 0;
+  for (let j = 0; j < interior.length; j++) {
+    remainder = (remainder * 29 + interior[j]) % smooth;
+    if (j >= interior.length - 7)
+      wordRemainder = (wordRemainder * 29 + interior[j]) % redPrimeSum;
+  }
   remainder = (remainder * 29 + p48.at(-1)) % smooth;
+  wordRemainder = (wordRemainder * 29 + p48.at(-1)) % redPrimeSum;
   const g = gcdSmall(remainder, smooth);
+  const fragmentMatches = wordRemainder === 0;
   if (remainder % factor === 0) divisible++;
   if (g >= factor) atLeast++;
   if (g === factor) exact++;
+  if (fragmentMatches) fragmentDivisible++;
+  if (g === factor && fragmentMatches) exactAndFragment++;
+  if (g >= factor && fragmentMatches) atLeastAndFragment++;
 }
 assert.deepEqual([divisible, atLeast, exact], [420, 1186, 214]);
+assert.deepEqual([fragmentDivisible, exactAndFragment, atLeastAndFragment], [3918, 1, 15]);
 
 console.log(JSON.stringify({
   corpusPages: physical.length,
@@ -171,11 +221,22 @@ console.log(JSON.stringify({
     prefix: quotient.slice(0, 100).map(x => corpus.translit[x]).join(' ')
   },
   fourGlyphChecksumOptions: suffixes.map(x => x.join(',')),
+  sourceMarkedCrosslink: {
+    p53RedGPPrimeSum: redPrimeSum,
+    p48FinalPrintedFragment: p48LastRunes,
+    originalWordContinuesNextPage: true,
+    p48FragmentGP29: fragmentValue.toString(),
+    fragmentQuotient2262: (fragmentValue / BigInt(redPrimeSum)).toString(),
+    allPageFinalNonzeroFragmentMatches: matchingTerminalFragments
+  },
   conditionalShuffle: {
     trials,
     fixedFirst: p48[0],
     fixedLast: p48.at(-1),
     exactGcdMatches: exact,
+    fragmentDivisibleMatches: fragmentDivisible,
+    exactGcdAndFragmentMatches: exactAndFragment,
+    atLeastGcdAndFragmentMatches: atLeastAndFragment,
     divisibleMatches: divisible,
     atLeastGcdMatches: atLeast,
     addOneDivisibilityTail: (divisible + 1) / (trials + 1),
