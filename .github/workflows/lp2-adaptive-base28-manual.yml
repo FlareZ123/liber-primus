@@ -6,7 +6,7 @@ on:
         description: "Select existing binary probes or source-aligned 79/78 radix gate"
         required: true
         type: choice
-        options: [standard, prime79, prime79prefix2, prime79cpsat]
+        options: [standard, prime79, prime79prefix2, prime79cpsat, prime79trigram]
         default: standard
       cpsat_seconds:
         description: "Per-alignment CP-SAT timeout in seconds"
@@ -97,6 +97,12 @@ jobs:
           PREFIX_TWO_DIRECTION: ${{ inputs.prefix_direction }}
           PREFIX_TWO_LANGUAGE_SAMPLES: ${{ inputs.prefix_samples }}
         run: node sims/prime79_radix29_28_exact_gate.cjs
+      - name: Train-frozen GP trigram key recovery for sole phase35 cyclic order
+        if: ${{ inputs.probe == 'prime79trigram' }}
+        env:
+          PRIME79_ENUMERATE: ${{ inputs.prefix_samples }}
+          PRIME79_NODES: ${{ inputs.prefix_nodes }}
+        run: node sims/prime79_trigram_keysearch.cjs
       - uses: actions/setup-python@v5
         if: ${{ inputs.probe == 'prime79cpsat' }}
         with:
