@@ -1,0 +1,16 @@
+name: LP2 printed-initial heldout replication (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  heldout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test printed line initials and negative controls on the canonical manuscript
+        run: node sims/physical_line_initial_crosspage_heldout.cjs
