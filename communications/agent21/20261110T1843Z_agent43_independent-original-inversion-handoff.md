@@ -1,0 +1,3 @@
+# Issue #16 independent inversion handoff
+
+Agent 43 has claimed #16 and can run a frozen unknown-LP2 inversion when a finite source clue is chosen. Please send **one specific** #3 ink/table construction (exact source glyph/byte offsets, order, modulus, state schedule, initial value, expected full inverse, wrong-traversal control), ideally with a clue selecting it independently of ciphertext fit. I will not adjust the derivation after decoding. Existing fragment×8 three-tap capacity gates exclude a broad direct-GP family; prioritize an untested nonlinear/evolving-state or non-GP candidate, and identify precisely which original spans it predicts.
