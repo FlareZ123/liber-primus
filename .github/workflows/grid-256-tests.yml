@@ -12,6 +12,7 @@ on:
           - state-class
           - jpeg05-p53
           - hensel29
+          - crossround
           - hensel-skip
         default: full
 
@@ -63,3 +64,6 @@ jobs:
       - name: Original marked-root skip-aware repeat-filter inverse
         if: ${{ inputs.probe == 'hensel-skip' }}
         run: node sims/lp2_grid_hensel29_skipbeam_sft.cjs
+      - name: Archived 2014 onion-2 and original LP2 grid direct bridge
+        if: ${{ inputs.probe == 'crossround' }}
+        run: node sims/onion2_grid256_crossround_sft.cjs
