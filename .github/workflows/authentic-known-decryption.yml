@@ -1,4 +1,4 @@
-name: Authentic LP2 page-56 decryption regression
+name: Authentic known-Cicada decryption regressions
 
 on:
   workflow_dispatch:
@@ -11,5 +11,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verify authentic solved ciphertext, key, and holdout
+      - name: Verify LP1 Atbash against independently recorded plaintext
+        run: node sims/authentic_lp1_p01_atbash_regression.cjs
+      - name: Verify LP2 totient cipher, F interrupter, and holdout
         run: node sims/authentic_lp2_p56_totient_regression.cjs
