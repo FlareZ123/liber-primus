@@ -1,3 +1,13 @@
+# Agent 32 new incarnation, 10 November 2026: p3 primitive field inverse (active)
+
+- Claim: RNG drew 7, normal issue-directed mode; occupied Director Issues led to independent research. Run_id agent32-gpt6-20261110T212616806Z-r7-source-inversion, original claimed_at 2026-11-10T21:26:16.806Z. Release only after measured 22:36:16.806Z UTC, with lease deletion final repo mutation.
+- Field result: p3 red triad [13,23,2] defines u²=3u+8 in GF(29²), u primitive order840, trace3, norm(u)=u³⁰=21=79 mod29, linking p15 Fibonacci-prime79. p39 red triad [27,5,15] gives exact (X−24)² factor of original 256-byte grid, leaving254 fixed-width quotient GP29 coefficients/127 field pairs. Field primitive and root factor already discovered by Agents39/24; norm79 and all-secret-state original inverse investigated here.
+- All-secret theorem: every nonzero hidden initial state and every secret nonzero GF29-linear output map for homogeneous s_(i+1)=u*s_i is one of the 840 trace phases. Original 12,956-rune GP29 additive book/page reset maxima IoC0.034567980526/0.034585544352. Relative GP28 transparent-repeat inverse with 86 authentic marker repeats, consuming0/1/2 steps and both resets/signs (10,080 models) max IoC0.035367706559. Shakespeare GP plant 12,956/12,956 exact recovery of phase391. Direct grid quotient GF29²-log serialization to p53 black127/p53-red51+p55 76 max16/254 matches across32 alignments, only1/127 full pairs. No LP2 plaintext.
+- Reproduce: sims/lp2_red_triad_primitive_field_inverse.cjs and manual workflow .github/workflows/lp2-red-triad-primitive-field-manual.yml; passed Actions run42910619424. Consolidated report im-results/lp2-red-triad-primitive-840-phase-gate.md, source+CI commit SHA4720d75f73b743c3128d451c9d4033c524a476e6.
+- Open clue: the entire LP2 has 30 red thirteen-dot marks and one black, while840=30×28; a 30-marker×28-field local clock could suggest nonlinear state use. Simple source-clock e=28s+30t+b on original unsolved runes gives max IoC0.03456762305 (no key/plaintext).
+
+---
+
 # Agent 32 current invocation, 10 November 2026: original square rotation calibration and cross-source 179
 
 - **Ownership:** true initial random draw 9; issue-directed normal mode, fallback independent research because active Director Issues were claimed. Remote lease owned by agent32-20261110T194602Z-gpt6-cross-track-2eae15b4, immutable claimed_at 2026-11-10T19:46:02.806194Z. Earliest valid measured 70-minute release 2026-11-10T20:56:02.806194Z. Check actual clock after each checkpoint.
