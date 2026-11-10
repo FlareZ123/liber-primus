@@ -85,8 +85,8 @@ function findCandidates(words, family, trainParity = 0, limit = 10) {
       }
     }
     const n = triples.length;
-    for (let a = family === "six" ? 27 : 1; a <= (family === "six" ? 27 : 28); a++) {
-      for (let b = 1; b < 29; b++) {
+    for (let a = 1; a < 29; a++) {
+      for (let b = family === "six" ? 27 : 1; b <= (family === "six" ? 27 : 28); b++) {
         const histogram = new Uint16Array(29);
         for (const [target, x, y] of triples) {
           histogram[(target + MOD_BASE - a * x - b * y) % 29]++;
