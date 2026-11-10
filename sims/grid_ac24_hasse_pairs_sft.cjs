@@ -96,12 +96,46 @@ for(const name of ['adjacent','halves']){
 }
 assert.equal(layouts.adjacent.repeatedPairOccurrences,13);
 assert.equal(layouts.halves.repeatedPairOccurrences,7);
+
+// The simplest stateful two-lane interpretation: each F29 pair (a,b)
+// acts as x -> a*x+b, starting at the oversized Ac=24.
+const affineRecurrences = [];
+for (const orientation of ['asc','desc']) {
+  const source = orientation === 'asc' ? z : z.slice().reverse();
+  for (const layout of ['adjacent','halves']) {
+    for (const swap of [false,true]) {
+      const entries = pairs(source,layout).map(([a,b])=>swap?[b,a]:[a,b]);
+      let state=24, freeMatches=0, teacherMatches=0;
+      const planted=[];
+      let plantedState=24;
+      for(let i=0;i<127;i++) {
+        const [a,b]=entries[i];
+        const teacherPrev=i===0?24:target[i-1];
+        if(m(a*teacherPrev+b)===target[i]) teacherMatches++;
+        state=m(a*state+b);
+        if(state===target[i]) freeMatches++;
+        plantedState=m(a*plantedState+b);
+        planted.push(plantedState);
+      }
+      assert.equal(planted.length,127);
+      let recovered=24;
+      for(let i=0;i<127;i++){
+        const [a,b]=entries[i];
+        recovered=m(a*recovered+b);
+        assert.equal(recovered,planted[i]);
+      }
+      assert.ok(teacherMatches<127);
+      affineRecurrences.push({orientation,layout,swap,teacherMatches,freeMatches});
+    }
+  }
+}
+assert.equal(Math.max(...affineRecurrences.map(x=>x.teacherMatches)),8);
 console.log(JSON.stringify({
   source:'LP2 32x8 grid; p53 red 51 runes; p55 76 runes',
   gridSha256:crypto.createHash('sha256').update(Buffer.from(bytes)).digest('hex'),
   root:24, taylorFirstFour:t.slice(0,4),
   taylorPayloadLength:z.length,taylorPayloadIoC:ioc(z),
   originalTargetLength:target.length,originalTargetIoC:ioc(target),
-  layouts,positivePlant:'both pair maps exact',
+  layouts,affineRecurrences,positivePlant:'both pair maps and eight affine state plants exact',
   inverseShift:'all 256 F29 coefficients exact'
 },null,2));
