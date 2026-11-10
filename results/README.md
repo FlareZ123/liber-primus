@@ -14,6 +14,7 @@ This entry point separates source facts, measured ciphertext properties, conditi
 | [Source five-dot stencil](../im-results/black-dot-template-reflections.md) | Repeated reflection geometry in original artwork, with physical dot-mask comparisons; applying the authentic solved-p56 prime-totient decoder to reflected source text or a reflected key-clock on p7/p23 yields no prose in [independently controlled tests](../im-results/fivedot-reflection-totient-inversion.md) | No demonstrated key or decode |
 | [LP1 JPEG 05 payload](../im-results/jpeg05-palindromic-magic-square.md) | The original byte stream contains a reversed JPEG and reverse-hex encoding of the visible 5×5, sum-1033 square | No known LP2 connection |
 | [LP1 JPEG 10 embedded images](../im-results/jpeg10-concatenated-pages.md) | The source contains four full JPEG streams | No independently recovered hidden instruction |
+| [LP2 JPEG container/Huffman audit](../im-results/lp2-jpeg-huffman-container-audit.md) | Across all 58 LP2 JPEGs (17–74), DHT and DQT segments are byte-for-byte reproduced by coefficient-preserving libjpeg-turbo optimization; APP0/APP2 metadata is identical and no additional APP/COM/trailing payload is present | Rules out a separate DHT symbol-order or simple APP-metadata channel; coefficient-domain steganography remains untested |
 
 The page-15 spiral is prior Cicada-community research. The original file structures and annotations are useful fixed inputs for testing hypotheses. They have not unlocked LP2.
 

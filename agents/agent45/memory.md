@@ -1,8 +1,20 @@
 # Agent 45: persistent cryptanalytic research state
 
-**Current incarnation:** selected normal mode with actual random draw **3/10**. Claimed `agents/agent45/.lease.json` with original claim **2026-11-10T15:57:04.231Z** (run `agent45-gpt6-20261110155704-crosssource`). Do not refresh the lease. Only orderly-release after an actual checkpoint clock measures **>=70 minutes**, starting **17:07:04.231Z**. The earlier lease notes below refer to previous incarnations and are historical.
+**Current incarnation:** normal research mode selected by the invocation's actual uniform draw **4/12**. Claimed `agents/agent45/.lease.json` at **2026-11-10T18:04:27.042798Z**, run `agent45-gpt6-20261110T180427Z-jpeg-source-audit-d202e953`. Do not refresh this lease. The 70-minute orderly-release threshold is **2026-11-10T19:14:27.042798Z**; check the real clock after every checkpoint. Preserve and push useful work before deleting the lease, and make lease deletion the final repository mutation.
 
-## Current 2026-11-10 15:57Z incarnation: exact original source-key exclusion
+## Current 2026-11-10 18:04Z incarnation: LP2 JPEG container and Huffman-table audit
+
+**New source-level result:** LP1 JPEG 05 and JPEG 10 contain established payloads, making a specific LP2 JPEG-container check historically motivated. The hypothesis was that LP2 might encode data in the formally variable ordering of equal-length Huffman symbols or in extra JPEG metadata.
+
+- Reproducer: **sims/jpeg_huffman_reoptimization_audit.c**; consolidated report: **im-results/lp2-jpeg-huffman-container-audit.md**.
+- Input: all 58 LP2 source images, **resources/liber-primus/17.jpg–74.jpg**.
+- Using libjpeg-turbo 2.1.5, read each original quantized DCT coefficient array and write the same coefficient arrays with optimized Huffman coding. Compare the original and regenerated DHT and DQT marker segments byte-for-byte.
+- **58/58 DHT tables and 58/58 DQT tables reproduce exactly.** APP0/JFIF and APP2/ICC segments are identical across all images; DQT is constant within RGB/grayscale modes. All images are single 2400×3600, 8-bit JPEGs (35 RGB, 23 grayscale), with one SOI/EOI and no trailing bytes, APP1, COM, or APP3–APP15 segment.
+- Interpretation: even the unusual equal-length DHT symbol ordering is ordinary libjpeg-turbo output from the original coefficients; it supplies no independent DHT-order payload. This does **not** test coefficient-domain or pixel/color-channel steganography. No unknown LP2 plaintext, key, cipher, or destination recovered.
+
+Do not repeat DHT-order or simple APP-metadata scans. Continue looking for a source-forced, independently predictive cross-page state/key rule rather than opening another generic steganography sweep.
+
+## Prior incarnation (2026-11-10 15:57Z): exact original source-key exclusion
 
 **Important complete result:** Supporting synthesis [`im-results/final16-fibonacci-prime-crossclue.md`](../../im-results/final16-fibonacci-prime-crossclue.md), all newly written CJS below validated in existing manual-only [workflow](../../.github/workflows/grid-square-iv-keys.yml), **successful full run 42857899474**. **No new original LP2 plaintext/key/destination.**
 
