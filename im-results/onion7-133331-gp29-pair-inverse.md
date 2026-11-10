@@ -64,10 +64,43 @@ Despite 266 ciphertext edits, the unchanged direct inverse still recovers **12,4
 
 The small page-order hypothesis from the same 58-page residues fares poorly: the previously identified 12–17 GP step arc appears in **23/54 actual sequential page joins**, compared with **10/54** in the 17-multiplier page order and **18/54** in the inverse 41-multiplier order. These are descriptive counts on a previously selected statistic, and no discovery-wide significance attaches to them.
 
+## Original-input GP29 quarter-turn feedback oscillator with fully exhausted hidden seeds
+
+A source-root two-rune *static* transform is excluded above. A changing, source-constrained mechanism is substantially different: use the two square roots of −1 as time-evolution multipliers, with the **previously emitted ciphertext** driving the state,
+
+[
+u_{t+1}=17u_t+C_t,qquad v_{t+1}=12v_t+C_t,qquad K_t=u_t+v_tpmod{29}.
+]
+
+Since (17+12=0) and (17^2=12^2=-1pmod{29}), every possible such state obeys the **observable feedback recurrence**
+
+[
+K_{t+2}=2C_{t+1}-K_tpmod{29}.
+]
+
+The two unrestricted initial GP29 registers ((K_0,K_1)) cover *all* possible initial oscillator states: the two corresponding observation equations are invertible because (12-17=-5
+e0mod29). Model encryption is (C_t=P_t+sK_tmod29), with (sin{+1,-1}) selected. Decrypt and re-encrypt follow exactly by recurrence, **without guessing missing ciphertext or constructing a heuristic plaintext**. There are (2	imes29^2=1,682) distinct source-fixed seed/sign choices per reset stream.
+
+[Source-locked blind inverse and actual-English control](../sims/onion7_133331_feedback_inverse.cjs) exhaustively fits every seed/sign on the **first half of each reset unit**, then freezes that choice for the completely untouched second half. The only GP-language model is the 174,207 GP runes obtained from the first 240,000 bytes of the independent Shakespeare control text, with GP-word transliteration and 0.5 unigram pseudocounts. Scores below are mean natural-log ratios of the candidate's GP symbol likelihood relative to a uniform GP29 source; positive numbers denote natural-English-like concentration under this frozen prior.
+
+| State reset scope | Exact original models searched | Original fitted train log ratio/rune | Original untouched heldout log ratio/rune | Blind native-English true seed recovered | Native-English with sparse repair heldout ratio/rune |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Whole book | 1,682 | −0.810570 | **−0.941854** | **1/1** | **+0.338908** |
+| Eight source sections | 13,456 | −0.676652 | **−0.930013** | **8/8** | **+0.346014** |
+| 55 rune-bearing physical pages | 92,510 | −0.396626 | **−0.921263** | **54/55** | **+0.344001** |
+
+These are **107,648 independently scored candidate seed/sign configurations across the three declared clocks**, with no unrestricted per-symbol key fitting. The original's apparent training improvement from more resets is a multiple-selection effect: the independently heldout output remains dramatically unlike native GP-English for all clocks.
+
+**Genuine forward-encrypted source control:** draw the final 12,956 held-out Shakespeare GP runes and encrypt under *unseen random 29² register seeds* at the beginning of each reset unit, always using sign +1. The encoder optionally overwrites a tentative repeated ciphertext rune with a different rune at probability 0.81 and feeds the actual published glyph back into the oscillator. This is a **causally synchronized edit model**: any changed glyph corrupts only its own decoded plaintext position. Respectively 369, 365 and 362 genuine edits occur under whole-book, section and page resets. The blind, first-half-selected search recovers the exact hidden oscillator seeds in 1/1, 8/8 and 54/55 units. With the genuine keys, the decoder recovers exactly **12,587 / 12,591 / 12,594** original English GP runes in the three controls, and the recovered rune sequence re-encrypts to the **identical 12,956 printed ciphertext runes in all three cases**. This provides both independent key-recovery power and a full forward-inverse channel witness.
+
+The original LP2 has no positive heldout GP likelihood, no authentic key and no recoverable GP-English span in this reversible oscillator class. Evolving state and sparse collision handling alone do not rescue this exact source-root mechanism, although a different state recurrence, hidden non-GP intermediate, or side-channel key remains possible.
+
+This section's complete original and planted assertions passed [GitHub Actions run 42853638723](https://github.com/FlareZ123/liber-primus/actions/runs/42853638723) on Node.js 22. Unlike our initial static pair inverse, the feedback oscillator has no independent static equality/frequency bound; its conclusion is an **exhaustive key-conditional likelihood negative**, backed by true-key blind plant recovery.
+
 ## Decision
 
-The historical source numbers provide an exact, constrained **candidate** for a GP29 quarter-turn and pair transform, but the direct cipher family does **not** recover native-GP text from original LP2. Crucially, an unconstrained secret permutation of each whole-book or page-wide output channel cannot rescue normal English-like letter frequencies without a substantial, otherwise unexplained edit or evolving-state layer.
+The historical source numbers provide an exact, constrained **candidate** for a GP29 quarter-turn, two-rune mixing and a two-register ciphertext-feedback mechanism. Both tested inverse families fail to recover native-GP text from original LP2. Crucially, an unconstrained secret permutation of each whole-book or page-wide output channel cannot rescue normal English-like letter frequencies without a substantial, otherwise unexplained edit or evolving-state layer.
 
-**Prioritize a different mechanism if pursuing 133/331:** explicit ciphertext-position-dependent state driven by the HTML source or the manuscript's printed clues, with a key independently recovered and a held-out original plaintext interval. The arithmetical coincidences alone cannot authenticate a key.
+**Prioritize a different mechanism if pursuing 133/331:** a key schedule or state rule more informative than the now-exhausted second-order public-feedback oscillator, with a key independently recovered and a held-out original plaintext interval. The arithmetical coincidences alone cannot authenticate a key.
 
 The complete self-contained Node.js 22/CommonJS runner reads the archived HTML, original rune corpus and independent English control, enforces the 58/29 arithmetic, performs 24 original inversions, calculates all source-symbol capacity bounds and executes both true-key positives. It passed [manual GitHub Actions run 42850152363](https://github.com/FlareZ123/liber-primus/actions/runs/42850152363) with all assertions.
