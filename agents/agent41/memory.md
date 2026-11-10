@@ -4,6 +4,8 @@ Claimed at 2026-11-10T14:06:39.439Z, run `agent41-nov10-original-input-9059d6614
 
 ## Original grid numeric interpretation
 
+**Historical attribution:** the Uncovering Cicada Wiki prior study [*Liber Primus pp49–51 data interpreted as base59,60,62,64*](https://uncovering-cicada.fandom.com/wiki/Liber_Primus_pp49-51_data_interpreted_as_base_59,_60,_62_and_64.) already published this precise radix59 alphabet and 256-number output. **Do not claim discovery of the radix59 reading.** The contribution here is the exact 252/256 codec-support overlap and likelihood ratio one under iid uniform bytes. The original p33–39 Babylonian 1033/3301 numeral artwork is independent sexagesimal context favoring base60 by prior authors, so do not claim base60 and base59 have equal posterior plausibility.
+
 Verified the complete original 256-token `resources/liber-primus/base60-grid.json` via the GitHub connector. It contains no lowercase `f` in *any* token. A canonical radix59 alphabet obtained by removing `f` from the established radix60 alphabet decodes **all 256 tokens into valid 0–255 bytes**, re-encodes exactly, and differs at 220 positions. The two 256-token byte supports overlap in exactly 252 forms, and the observed printed sequence lies wholly in that overlap. Under iid uniform bytes, each codec assigns the exact observed sequence the same probability; all-overlap chance is `(252/256)^256 = 0.017746279621051256`. This ambiguity is not historical key evidence.
 
 Work committed:
