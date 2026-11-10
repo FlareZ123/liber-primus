@@ -216,6 +216,10 @@ function main() {
   assert.equal(corpus.prime[runeS], 53);
   assert.equal(corpus.prime[runeS] % 29, 24);
   assert.equal(lag, 6);
+  assert.deepEqual(gridCoords, [{ row: 6, column: 3 }, { row: 7, column: 1 }]);
+  assert.equal(deltaRow, 1);
+  assert.equal(deltaColumn, -2);
+  assert.equal(8 * deltaRow + deltaColumn, lag);
   assert.deepEqual([piWidth, piHeight], [103, 104]);
   assert.deepEqual([tirIndex, beorcIndex], [16, 17]);
   assert.deepEqual([corpus.translit[tirIndex], corpus.translit[beorcIndex]], ['T', 'B']);
@@ -346,7 +350,9 @@ function main() {
         sigel: { index: sigelIndex, gematriaPrime: corpus.prime[sigelIndex], primeMod29: corpus.prime[sigelIndex] % 29 },
         primeGaps: { sigelToTir: corpus.prime[tirIndex] - corpus.prime[sigelIndex], tirToBeorc: corpus.prime[beorcIndex] - corpus.prime[tirIndex] } },
       grid: { index51: gA, index57: gB, ratio: slopeMagnitude,
-        rowMajorCells: [[6, 3], [7, 1]], base60Tokens: ['0x', '1w'] },
+        rowMajorCells: [[6, 3], [7, 1]],
+        geometry: { deltaRow, deltaColumn, rowMajorStep: 8 * deltaRow + deltaColumn },
+        base60Tokens: ['0x', '1w'] },
       secondRuneHalf: {
         length: secondHalf.length,
         index51: { rune: corpus.runes[runeA], translit: corpus.translit[runeA],
@@ -362,7 +368,8 @@ function main() {
       lag,
       intercept,
       slopeMagnitude,
-      ciphertextSelectedOrientation: 'T(x) = 24 - 2*x mod29',
+      sourceDerivedOrientation: 'T(x) = 24 - 2*x mod29',
+      signedSlopeFromGridColumnStep: deltaColumn,
       counts: affineCounts
     },
     keyTests: {
