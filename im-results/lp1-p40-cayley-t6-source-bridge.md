@@ -21,6 +21,12 @@ Three independently printed features motivate a limited operation:
    \]
    Here the point `x=−1` maps to projective infinity; the identity is interpreted on the complete 30-point projective line `P¹(F29)`.
 
+## A second independent arithmetic reading of the same red heading
+
+The eight p40 rune **indices** are `[0,9,19,26,6,23,25,8]`, whose sum is **116 = 4×29**, while their corresponding original GP **prime weights** are `[2,29,71,103,17,89,101,23]`, summing to **435 = 15×29**. Among all **18** red spans recorded in the original-image annotation, p40 is the **only span** for which **both** raw index sum and assigned-prime sum are divisible by 29. Three spans have prime-weight sums divisible by 29: p15 (638), p40 (435), and p53 (2262); only p40 has the companion index-sum property. The complete double-divisibility assertion is now tested automatically in the same original-source SFT.
+
+The ordered quotients `(4,15)` are source measurements independent of the ciphertext. Their meaning as a checksum, key pair or instruction has **not been established**; interpreting either quotient as a cipher parameter without another clue would be speculative.
+
 ## Exact derived map, no fitted coefficient
 
 Over `F29`, the LP1 matrix satisfies `h(Ax)−8 = 2(h(x)−8)`. Applying it the **15** times specified by the LP2 red prime quotient gives `2^15 ≡ −2 (mod29)`, hence
