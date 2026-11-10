@@ -41,12 +41,14 @@ function parseWords(raw) {
   };
   let page = 0, section = 0, runes = [], startPage = 0;
   let lastRunePage = 0, startSection = 0, runeCount = 0;
+  let previousRune = null, previousRunePage = -1;
+  let precedingWordRune = null, runePages = [];
 
   function finish() {
     if (!runes.length) return;
     const keys = {book: 0, section: startSection, page: startPage};
-    const word = {indices: runes, page: startPage,
-      endPage: lastRunePage, section: startSection};
+    const word = {indices: runes, runePages, previousCipher: precedingWordRune,
+      page: startPage, endPage: lastRunePage, section: startSection};
     for (const [scope, key] of Object.entries(keys)) {
       const count = ordinals[scope].get(key) || 0;
       word[scope + "Ordinal"] = count;
@@ -54,6 +56,7 @@ function parseWords(raw) {
     }
     words.push(word);
     runes = [];
+    runePages = [];
   }
 
   for (const ch of source) {
@@ -61,9 +64,13 @@ function parseWords(raw) {
       if (!runes.length) {
         startPage = page;
         startSection = section;
+        precedingWordRune = previousRunePage === page ? previousRune : null;
       }
       runes.push(RUNES.get(ch));
+      runePages.push(page);
       lastRunePage = page;
+      previousRune = RUNES.get(ch);
+      previousRunePage = page;
       runeCount++;
     } else if (ch === "%") {
       page++;
@@ -164,6 +171,50 @@ function minimumRekeys(words, scope, k = 2) {
   return additional;
 }
 
+/**
+ * A sharper original-only exclusion for a self-synchronizing alphabet row
+ * selected by the PREVIOUS ciphertext rune, not the word ordinal:
+ *
+ *   C[i] = S[scope][C[i-1]][P[i]]
+ *
+ * Each S row is ANY secret bijection of all 29 GP symbols. Count only
+ * singleton words whose first rune has a known within-page predecessor;
+ * original physical-page first symbols have unknown IVs and are excluded.
+ *
+ * The same top-k theorem is exact on those eligible observed words.
+ * @param {object[]} words
+ * @param {"book"|"section"|"page"} scope
+ * @param {number} k Allowed native one-letter GP symbols
+ */
+function feedbackCapacity(words, scope, k = 2) {
+  const hist = new Map();
+  let eligible = 0;
+  for (const word of words) {
+    if (word.indices.length !== 1 || word.previousCipher === null)
+      continue;
+    eligible++;
+    const domain = scope === "book" ? 0 : word[scope];
+    const key = String(domain) + ":" + word.previousCipher;
+    const frequencies = hist.get(key) || new Uint16Array(MOD);
+    frequencies[word.indices[0]]++;
+    hist.set(key, frequencies);
+  }
+  let covered = 0;
+  const violations = [];
+  for (const [key, frequencies] of hist) {
+    const sorted = [...frequencies].sort((a, b) => b - a);
+    const n = sorted.reduce((a, b) => a + b, 0);
+    const max = sorted.slice(0, k).reduce((a, b) => a + b, 0);
+    covered += max;
+    if (max !== n) violations.push({
+      key, total: n, distinct: sorted.filter(n => n > 0).length,
+      forced: n - max
+    });
+  }
+  return {eligible, states: hist.size, covered,
+    forcedExceptions: eligible - covered, violatingStates: violations};
+}
+
 /** @param {number} seed Nonzero uint32 seed. */
 function rng(seed) {
   let state = seed >>> 0;
@@ -224,6 +275,56 @@ function positiveControl(words, scope, period) {
     forcedExceptions: gate.forcedExceptions};
 }
 
+/**
+ * Positive with the actual stateful feedback equation. For each GP rune
+ * use a keyed 29-symbol permutation based on the previous emitted C,
+ * resetting the predecessor to an unknown random IV on each page.
+ * Independently invert all 12,956 symbols; assign A/I at singleton words.
+ * @param {object[]} words
+ * @param {"book"|"section"|"page"} scope
+ */
+function feedbackPositiveControl(words, scope) {
+  const random = rng((0x6a711c49 +
+    {book: 0, section: 1, page: 2}[scope]) >>> 0);
+  const tables = new Map();
+  const synthetic = [];
+  let priorPage = -1, previous = null, recovered = 0;
+  for (const word of words) {
+    const input = [];
+    let predecessor = null;
+    for (let i = 0; i < word.indices.length; i++) {
+      const physicalPage = word.runePages[i];
+      if (physicalPage !== priorPage) {
+        previous = random() % MOD;
+        priorPage = physicalPage;
+        if (i === 0) predecessor = null;
+      } else if (i === 0) {
+        predecessor = previous;
+      }
+      const domain = scope === "book" ? 0 :
+        scope === "page" ? physicalPage : word.section;
+      const key = String(domain) + ":" + previous;
+      if (!tables.has(key)) tables.set(key, permutation(random));
+      const row = tables.get(key);
+      const plain = word.indices.length === 1
+        ? (random() % 2 ? 24 : 10) : random() % MOD;
+      const ciphertext = row[plain];
+      assert.equal(row.indexOf(ciphertext), plain);
+      input.push(ciphertext);
+      previous = ciphertext;
+      recovered++;
+    }
+    synthetic.push({...word, indices: input,
+      previousCipher: predecessor});
+  }
+  const bound = feedbackCapacity(synthetic, scope);
+  assert.equal(bound.forcedExceptions, 0);
+  assert.equal(bound.eligible, 82);
+  assert.equal(recovered, 12956);
+  return {scope, states: tables.size, recovered,
+    eligibleSingletons: bound.eligible, forcedExceptions: bound.forcedExceptions};
+}
+
 function main() {
   const {words, source, runeCount} = parseWords(SOURCE);
   const singleton = words.filter(w => w.indices.length === 1);
@@ -260,6 +361,14 @@ function main() {
     scopes[scope].firstPermittedWordPhasePeriod), [130, 28, 6]);
   assert.deepEqual(["book", "section", "page"].map(scope =>
     scopes[scope].minimumExtraKeyEpochs), [40, 34, 10]);
+  const feedback = Object.fromEntries(["book", "section", "page"]
+    .map(scope => [scope, feedbackCapacity(words, scope)]));
+  assert.deepEqual(["book", "section", "page"].map(scope =>
+    feedback[scope].forcedExceptions), [31, 2, 0]);
+  assert.deepEqual(["book", "section", "page"].map(scope =>
+    feedback[scope].eligible), [82, 82, 82]);
+  const feedbackPlants = ["book", "section", "page"]
+    .map(scope => feedbackPositiveControl(words, scope));
   const plants = [
     positiveControl(words, "book", 23),
     positiveControl(words, "section", 23),
@@ -271,7 +380,7 @@ function main() {
     sourceRunes: runeCount, words: words.length, singleton: singleton.length,
     singletonCipherSymbols: 28,
     assumedNativePlaintextSingletonAlphabet: [10, 24],
-    scopes, plants,
+    scopes, plants, feedback, feedbackPlants,
     qualification: "Assumes original one-rune words are one-rune plaintext words from a fixed k-symbol vocabulary and one alphabet per specified public word-ordinal key phase; variable segmentation, state keyed by ciphertext, insertions, and unconstrained rekeys are not excluded."
   };
   console.log(JSON.stringify(output, null, 2));
@@ -279,4 +388,4 @@ function main() {
 }
 
 if (require.main === module) main();
-module.exports = {parseWords, state, capacity, minimumRekeys, positiveControl, main};
+module.exports = {parseWords, state, capacity, minimumRekeys, positiveControl, feedbackCapacity, feedbackPositiveControl, main};
