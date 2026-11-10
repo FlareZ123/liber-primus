@@ -89,6 +89,14 @@ This is not explained by the observed properties of **individual ciphertext word
 [Reproducible code](../sims/cross_word_repeat_invariant.cjs) ·
 [Successful manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42745733143).
 
+### Sparse lag-six affine echo: word-composition and doublet-independent excess
+
+An independently reported [word-internal six-position echo](https://github.com/pnotisdev/cicada3301/blob/main/STATUS.md) has been reproduced on the canonical LP2 cipher corpus: **80 of 1,290** eligible pairs satisfy \`c_i = 24 - 2c_(i-6) (mod 29)\`, spread across **74** separate words. A new control randomly reorders runes inside each long word while retaining **its complete rune multiset and exact number of neighboring equal-rune pairs**. Over 3,000 such randomizations, the predicted count was **45.934 ± 6.533** (SD); zero reached 80 (Monte Carlo upper p 0.000333). The original relation also surpasses the maximum across all **28 powers of its affine transform** under every matched control (orbit-familywise p 0.000333). These tests constrain word-internal symbol order beyond its per-word frequencies and immediate-doublet rate.
+
+The six-lag formula and transform were selected in earlier exploratory research; the current orbit correction does not adjust for the historical all-formulas/all-lags search. An affine autokey decoder has already failed independent plaintext tests, and the echo alone is insufficient to recover a key or distinguish a sparse rewrite from other stateful mechanisms. It is a measurable constraint to require of future candidate encryption models, **not a decryption**.
+
+[Conditional reproducible experiment](../im-results/lag6-conditioned-echo.md) · [Deterministic CommonJS runner](../sims/lag6_conditioned_echo.cjs) · [Prior published analysis](https://github.com/pnotisdev/cicada3301/blob/main/docs/registry.toml).
+
 ### The known low-dependence ciphertext profile
 
 The ciphertext's 29 rune frequencies are nearly flat, and immediate rune repeats are rare: **86 of 12,901** within-page adjacent pairs. A matched no-repeat Markov model reproduces the measured mutual information without a detected excess (600 replicates; upper-tail p ≈ 0.278). The raw uniformity and repeat deficit were already established in independent public work. These statistics favor mechanisms with substantial symbol-by-symbol mixing or state dependence, but do not uniquely identify a generator, key schedule, or encryption mechanism.
