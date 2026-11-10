@@ -41,14 +41,16 @@ function fit(pages) {
   assert(n > 5 && pages.every(p => p.length >= PREFIX));
   const zr = new Float64Array(tcount), zi = new Float64Array(tcount);
   let best = null;
+  for (const reference of [0,Math.floor(n/3),Math.floor(2*n/3)]) {
   for (let anchor=1;anchor<=14;anchor++) {
     const h = new Int8Array(n), pr = new Float64Array(n), pi = new Float64Array(n);
-    h[0] = anchor; pr[0]=1;
+    h[reference] = anchor; pr[reference]=1;
     for (let t=0;t<tcount;t++) {
-      const c=pages[0][2*t];zr[t]=CT[anchor][c];zi[t]=ST[anchor][c];
+      const c=pages[reference][2*t];zr[t]=CT[anchor][c];zi[t]=ST[anchor][c];
     }
     // Choose each page's strongest train-only anchored Fourier harmonic.
-    for (let j=1;j<n;j++) {
+    for (let j=0;j<n;j++) {
+      if (j===reference) continue;
       let top=-1, optH=1, optR=1, optI=0;
       for (let f=1;f<MOD;f++) {
         let cr=0,ci=0;
@@ -76,7 +78,8 @@ function fit(pages) {
     // Exact single-page frequency/phase coordinate maximization with a
     // fixed reference page; never consult held-out symbols.
     for(let iteration=0;iteration<3;iteration++) {
-      for(let j=1;j<n;j++) {
+      for(let j=0;j<n;j++) {
+        if (j===reference) continue;
         accumulate(j,-1);
         let top=-1,optH=1,optR=1,optI=0;
         for(let f=1;f<MOD;f++) {
@@ -97,7 +100,8 @@ function fit(pages) {
     train/=n*tcount;
     if(best===null||train>best.training)
       best={training:train,frequencies:Array.from(h),phaseReal:Array.from(pr),
-        phaseImag:Array.from(pi),anchor};
+        phaseImag:Array.from(pi),anchor,reference};
+  }
   }
   let hold=0;
   for(let t=1;t<PREFIX;t+=2) {
@@ -163,22 +167,22 @@ function run(repeats=160){
   for(const q of [0,0.81])for(let i=0;i<12;i++){
     const generated=plant(pages,prior,q,(0xa15f2000+i*1033+Math.floor(q*1000))>>>0);
     const candidate=fit(generated.pages);
-    const keyH=(candidate.frequencies[0]*generated.multiplier[0])%MOD;
-    const aligned=candidate.frequencies.filter((f,j)=>
-      (f*generated.multiplier[j])%MOD===keyH).length;
+    const groups=Array(MOD).fill(0);
+    candidate.frequencies.forEach((f,j)=>groups[(f*generated.multiplier[j])%MOD]++);
+    const aligned=Math.max(...groups);
     planted.push({overwrite:q,seed:i,repairs:generated.repairs,
       train:candidate.training,heldout:candidate.heldout,
       aboveRealNull95:candidate.heldout>sorted[Math.floor(.95*repeats)],
-      correctFrequencyPages:aligned});
+      largestSharedFrequencyGroup:aligned});
   }
   return {
     model:"Shared page-reset mod29 pad, one unknown invertible affine multiplier and additive offset per page",
     source:"Original LP2 55 unsolved rune pages; cohort 49 with >=150 runes",
     pages:pages.length,prefix:PREFIX,trainingOffsets:"even 0..148",
     untouchedOffsets:"odd 1..149",
-    harmonicSearch:"14 reference harmonics, 28 per nonreference page, 3 train-only coordinate passes",
+    harmonicSearch:"3 fixed reference pages x 14 reference harmonics, 28 per nonreference page, 3 train-only coordinate passes",
     original:{training:actual.training,heldout:actual.heldout,
-      selectedReferenceHarmonic:actual.anchor},
+      selectedReferenceHarmonic:actual.anchor,selectedReferencePage:actual.reference},
     null:{method:"Independent full-page rotations; identical exhaustive fit each time",
       seed:"0xa15f111e",trials:repeats,mean:average(nullScores),
       min:sorted[0],max:sorted.at(-1),q95:sorted[Math.floor(.95*repeats)],
