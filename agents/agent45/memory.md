@@ -18,9 +18,9 @@ The 164×79/78-phase model is postselected from p15/p53 arithmetic and is not au
 
 - Reproducer: **sims/field79_phase78_base28_ascii_gate.cjs**; report: **im-results/field79-phase78-base28-ascii-gate.md**.
 - Original source yields 164×78=12,792 slots, 86 zero-difference markers, and 12,706 rank28 digits.
-- Exact top-k capacity over all 78 secret phase permutations excludes seven-bit output in all **1,440** combinations of 16 declared clock/mix definitions × 3 segmentations (continuous, packet, physical page) × 2 marker treatments × 3 orientations × 5 offsets. Minimum forced non-seven-bit leading bytes: **281/2,216** in the most permissive case; natural payload78/no-salt/continuous/forward/marker-delete/offset0: **392/2,541**. The corresponding printable-controls and visible-ASCII minima are **354** and **516**.
-- The synthetic 7,623-byte ASCII plant, encrypted with 78 distinct affine phase bijections, recovers all 12,706 digits exactly and passes the bound.
-- Scope: fixed phase tables shared across packets and 5→3 packing only. Does not exclude salt×column-specific tables, four-group/per-packet/evolving rekeys, other widths, compressed or non-ASCII output. No unknown plaintext/key recovered.
+- Exact top-k capacity over all 78 secret phase permutations excludes two direct byte registers. Across **2,592** combinations of 16 declared clock/mix definitions × 3 segmentations (continuous, packet, physical page) × 2 marker treatments × 3 orientations × 4 offsets for 4→2 and 5 offsets for 5→3: the 4→2 codec forces **2,269/2,871** invalid leading bytes in its most permissive case (natural payload78/no-salt continuous: **2,557/3,176**); the 5→3 codec forces **281/2,216** non-seven-bit leaders (natural: **392/2,541**). The 5→3 printable-controls and visible-ASCII minima are **354** and **516**.
+- Synthetic ASCII plants for both codecs (6,352 bytes for 4→2; 7,623 bytes for 5→3), encrypted with 78 distinct affine phase bijections, recover all 12,706 digits exactly and pass the bound.
+- Scope: fixed phase tables shared across packets and 4→2 / 5→3 packing only. Does not exclude salt×column-specific tables, four-group/per-packet/evolving rekeys, larger/variable widths, compressed or non-ASCII output. No unknown plaintext/key recovered.
 
 This is distinct from the single global cyclic-order 78→47 byte test and the red79 fixed-key 5→3 test. Do not conflate their models or claim a general base28-byte no-go.
 

@@ -1,58 +1,69 @@
-# 78-phase base-28-to-byte capacity gate
+# 78-phase base28-to-byte capacity gate
 
-**Classification:** exact conditional exclusion of one binary output register under the postselected 164×79 / 78-phase source-rank model. It is not a recovered plaintext or an authenticated cipher architecture.
+**Classification:** exact conditional exclusion of two direct binary output registers under the postselected 164×79 / 78-phase source-rank model. This is not a recovered plaintext or an authenticated cipher architecture.
 
 ## Hypothesis and solve-path motivation
 
 A source-derived arithmetic pattern has suggested a 164-packet construction: 12,956 unsolved runes equal 164×79; the p15 red title yields 149 = p35 from its first four runes and 638 = 29×22 with p22 = 79; the p53 red span yields 2,262 = 29×78. Those relationships are interesting but retrospective and do not authenticate the construction.
 
-The existing phase78 investigation treats each of the 78 payload positions as a base-28 rank, with a separate secret 28-symbol permutation for each phase, fixed across all packets. The direct-GP output register has already been challenged. A natural alternative is that the 12,706 nonzero ranks are **base-28 digits**, packed into bytes rather than mapped directly to GP prose.
+The phase78 investigation treats each of the 78 payload positions as a base-28 rank, with a separate secret 28-symbol permutation for each phase, fixed across all packets. A natural alternative to direct GP prose is that the rank symbols are base-28 digits packed into bytes.
 
-The highest-throughput elementary conversion is five base-28 digits to three bytes, since 28⁵ = 17,210,368 and 256³ = 16,777,216. The test below asks whether *any* choice of the 78 secret phase permutations can make every resulting three-byte group begin with a permitted ASCII byte.
+I tested two elementary, source-agnostic packings: **four base-28 digits to two bytes** (a lower-throughput alternative) and **five digits to three bytes** (the maximum-throughput elementary packing, since 28⁵ = 17,210,368 and 256³ = 16,777,216).
 
 ## Exact bound
 
-For a five-digit block d₀…d₄, its integer value is
+For a D-digit base-28 block d₀…dᴅ₋₁ packed into K bytes, its integer value is
 
 ~~~text
-V = d₀·28⁴ + d₁·28³ + d₂·28² + d₃·28 + d₄
+V = Σ dᵢ · 28^(D−1−i)
 ~~~
 
-The first output byte is floor(V / 65,536). For a fixed leading digit d₀, the remaining four digits can vary over the full range 0…28⁴−1. This gives an exact set of leading base-28 digits that could possibly yield an allowed first byte:
+The most-significant output byte is floor(V / 256^(K−1)). For a fixed leading digit d₀, the remaining D−1 digits span the exact interval from d₀·28^(D−1) through (d₀+1)·28^(D−1)−1. This determines the set of leading base-28 digits that could possibly yield an allowed first byte.
 
-| Output requirement | Allowed leading digits | Count |
-|---|---|---:|
-| Any seven-bit byte | 0–13 | 14 |
-| Printable ASCII plus TAB/LF/CR | 0, 1, 3–13 | 13 |
-| Visible ASCII only | 3–13 | 11 |
+| Codec | Any seven-bit byte | Printable ASCII + TAB/LF/CR | Visible ASCII |
+|---|---|---|---|
+| 4 digits → 2 bytes | {0,1} | {0,1} | {0,1} |
+| 5 digits → 3 bytes | 0–13 | 0, 1, 3–13 | 3–13 |
 
-At each phase, an arbitrary bijection can assign the allowed leading-digit set to at most k of the 28 observed rank values. To maximize valid groups, assign those k digit values to the k most frequent rank values at that phase. Summing the 78 phase-wise top-k counts is therefore an exact, optimistic upper bound over **all** secret fixed phase permutations. It only tests the leading byte; it does not assume anything about the remaining bytes or use a language model.
+At each phase, an arbitrary bijection can assign the allowed leading-digit set to at most k of the 28 observed rank values. To maximize valid groups, assign those k digit values to the k most frequent rank values at that phase. Summing the 78 phase-wise top-k counts is therefore an exact, optimistic upper bound over **all** secret fixed phase permutations. It only tests the most-significant output byte; it does not assume anything about later bytes or use a language model.
 
-## Source framing and exhaustive finite variants
+## Source framing and finite variants
 
-The source-derived candidate is represented as 164 packets, each with one leading salt transition and 78 payload transitions. The 86 zero-difference transitions are treated both as erased digits and as markers that invalidate any five-slot group containing one, leaving 12,706 nonzero rank digits.
+The candidate source framing is represented as 164 packets, each with one leading salt transition and 78 payload transitions. The 86 zero-difference transitions are treated both as erased digits and as markers that invalidate any group containing one, leaving 12,706 nonzero rank digits.
 
-The reproducer enumerates 1,440 combinations:
+For each codec, the reproducer enumerates:
 
 - Four declared phase clocks × four salt/phase mixes.
-- Continuous, 164 packet-local, and 55 physical-page-local output segmentation.
+- Continuous, 164 packet-local, and physical-page-local output segmentation.
 - Delete-marker versus discard-any-group-touching-a-marker treatment.
 - Forward, reverse-stream, and reverse-within-block digit orientation.
-- Every five-digit starting offset, 0–4.
+- Every group offset: 0–3 for 4→2 and 0–4 for 5→3.
 
-For each case, one arbitrary secret bijection is allowed at each of the 78 phases, shared across all packets. No key is guessed or searched.
+This is **1,152** framing cases for 4→2 and **1,440** for 5→3, or **2,592** total per output constraint. Each case allows one arbitrary secret bijection at each of the 78 phases, shared across all packets.
 
 ## Results
 
-| Required output | Minimum forced-invalid leading bytes across all 1,440 cases | Most permissive case |
-|---|---:|---|
-| Seven-bit bytes | **281** | 2,216 groups |
-| Printable ASCII plus TAB/LF/CR | **354** | 2,216 groups |
-| Visible ASCII | **516** | 2,216 groups |
+| Codec / required output | Minimum forced-invalid leading bytes | Groups in most permissive case | Natural payload78/no-salt/continuous case |
+|---|---:|---:|---:|
+| 4→2, seven-bit | **2,269** | 2,871 | **2,557 / 3,176** |
+| 4→2, printable controls | **2,269** | 2,871 | **2,557 / 3,176** |
+| 4→2, visible ASCII | **2,269** | 2,871 | **2,557 / 3,176** |
+| 5→3, seven-bit | **281** | 2,216 | **392 / 2,541** |
+| 5→3, printable controls | **354** | 2,216 | **472 / 2,541** |
+| 5→3, visible ASCII | **516** | 2,216 | **648 / 2,541** |
 
-Even the most permissive seven-bit case therefore forces at least 281 of 2,216 groups (12.68%) to begin with a non-seven-bit byte. The natural payload78 / no-salt / continuous / forward / marker-deletion / offset-0 interpretation has 2,541 groups and forces **392** non-seven-bit leading bytes. Its corresponding bounds are 472 for printable ASCII plus TAB/LF/CR and 648 for visible ASCII.
+The 4→2 codec is more strongly excluded: even the most permissive of its 1,152 cases forces 2,269 of 2,871 groups (79.03%) to begin with a byte outside the required set. For 5→3, even the most permissive seven-bit case forces 281 of 2,216 groups (12.68%) to begin with a non-seven-bit byte.
 
-The committed reproducer also creates a 7,623-byte seven-bit ASCII positive control, converts it to 12,705 base-28 digits plus one tail digit, encrypts those digits under 78 deterministic but distinct affine phase permutations, and verifies exact inverse recovery of all 12,706 digits. The positive control passes the same top-k capacity bound, confirming that the bound does not reject a valid 5-to-3 ASCII plant.
+The natural payload78/no-salt/continuous/forward/marker-deletion/offset-0 interpretation forces 2,557 of 3,176 leading bytes for 4→2 and 392 of 2,541 for 5→3 to be non-seven-bit.
+
+## Positive controls
+
+The reproducer builds a valid ASCII stream for each codec, converts it to base-28 digits, encrypts the digits under 78 distinct deterministic affine phase permutations, and inverts them:
+
+- 4→2: **6,352** ASCII bytes become 12,704 packed digits plus two tail digits.
+- 5→3: **7,623** ASCII bytes become 12,705 packed digits plus one tail digit.
+
+Both controls recover every one of the 12,706 digits exactly and pass the same top-k capacity bound. Thus the bounds do not reject a valid plant under the stated phase model.
 
 Reproduce from the repository root:
 
@@ -62,6 +73,6 @@ node sims/field79_phase78_base28_ascii_gate.cjs
 
 ## Interpretation and limits
 
-This excludes direct 5-base28-digit-to-3-byte seven-bit ASCII output for the tested **fixed 78-phase permutation** family. The bound is exact for the declared 1,440 source-clock/framing cases and all 78 secret bijections; it is not a search over keys.
+These results exclude direct 4→2 and 5→3 ASCII byte registers for the tested **fixed 78-phase permutation** family. The bounds are exact for the declared 2,592 clock/framing cases and all 78 secret bijections; they are not searches over keys.
 
-It does **not** exclude salt×column-specific tables, four-group or per-packet rekeys, evolving hidden state, other base-28 pack widths, variable-length framing, compressed or encrypted bytes, UTF-8/non-ASCII output, or a different cipher architecture. The 164×79/78 framing itself remains a postselected hypothesis, not an established intention. No unknown plaintext, authentic key, cipher mechanism, or final destination was recovered.
+They do **not** exclude salt×column-specific tables, four-group or per-packet rekeys, evolving hidden state, larger or variable-width base-28 packings, compressed or encrypted bytes, UTF-8/non-ASCII output, or a different cipher architecture. The 164×79/78 framing itself remains a postselected hypothesis, not an established intention. No unknown plaintext, authentic key, cipher mechanism, or final destination was recovered.
