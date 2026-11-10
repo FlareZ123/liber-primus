@@ -41,6 +41,86 @@ for (let i = 0; i + phrase.length <= all.length; i++) {
 }
 assert.deepEqual(allOccurrences, [6555, 12950]);
 assert.deepEqual(second.slice(-6), phrase);
+
+/**
+ * Exact canonical word parser. Printed line and physical page transitions are
+ * transparent; punctuation separates words. Compare the parsed runes to the
+ * unchanged source corpus before any word-level inference.
+ */
+const transcript = fs.readFileSync(path.join(root, 'resources/lp2-transcription.txt'), 'utf8');
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const allWords = [];
+let currentWord = [];
+for (const glyph of transcript.split('%').slice(0, 55).join('%')) {
+  if (runeIndex.has(glyph)) {
+    currentWord.push(runeIndex.get(glyph));
+  } else if (glyph === '%' || glyph === '/' || /\s/u.test(glyph)) {
+    // Neither a physical page nor a line break ends the manuscript word.
+  } else if (currentWord.length) {
+    allWords.push(currentWord);
+    currentWord = [];
+  }
+}
+if (currentWord.length) allWords.push(currentWord);
+assert.equal(allWords.length, 2896);
+assert.deepEqual(allWords.flat(), all);
+
+const wordIDs = allWords.map((word) => word.join(','));
+const wordType = new Map();
+const pairOccurrences = new Map();
+for (let i = 0; i < wordIDs.length; i++) {
+  const k = wordIDs[i];
+  const item = wordType.get(k) || { count: 0, length: allWords[i].length };
+  item.count++;
+  wordType.set(k, item);
+  if (i + 1 < wordIDs.length) {
+    const pair = k + '|' + wordIDs[i + 1];
+    const found = pairOccurrences.get(pair) || [];
+    found.push(i);
+    pairOccurrences.set(pair, found);
+  }
+}
+const repeatedPairs = [...pairOccurrences.values()].filter((a) => a.length >= 2);
+assert.equal(wordType.size, 2731);
+assert.equal(repeatedPairs.length, 1);
+assert.deepEqual(repeatedPairs[0], [1462, 2894]);
+const repeatedTypes = [...wordType.values()].filter((w) => w.count >= 2);
+assert.equal(repeatedTypes.length, 120);
+const N = allWords.length;
+/** @param {number} n @param {number} k @returns {number} */
+function falling(n, k) {
+  let out = 1;
+  for (let i = 0; i < k; i++) out *= Math.max(0, n - i);
+  return out;
+}
+/*
+ * Fix the EXACT observed word inventory. Shuffle the 2,896 whole-word tokens
+ * uniformly. For ordered DISTINCT types (a,b) to form a repeated nonoverlap
+ * bigram, the expected pair count is (n_a)_2 (n_b)_2/[2N(N-1)].
+ * For identical types, add nonoverlapping (n_a)_4/[2N(N-1)] and
+ * overlapping (n_a)_3/[N(N-1)]. Sum ONLY pairs totaling >=6 runes.
+ * The expectation upper bounds P(at least one such repeat) by Markov.
+ */
+let expectedLongPairCollisions = 0;
+for (let i = 0; i < repeatedTypes.length; i++) {
+  const a = repeatedTypes[i];
+  if (2 * a.length >= 6) {
+    expectedLongPairCollisions += falling(a.count, 4) / (2 * N * (N - 1));
+    expectedLongPairCollisions += falling(a.count, 3) / (N * (N - 1));
+  }
+  for (let j = 0; j < repeatedTypes.length; j++) {
+    if (i === j) continue;
+    const b = repeatedTypes[j];
+    if (a.length + b.length < 6) continue;
+    expectedLongPairCollisions += falling(a.count, 2) * falling(b.count, 2) /
+      (2 * N * (N - 1));
+  }
+}
+assert.ok(Math.abs(expectedLongPairCollisions - 0.00006417045964179009) < 1e-14);
+const conditionalSpecificAB = 2 / (N * (N - 1));
+assert.ok(Math.abs(conditionalSpecificAB - 2.385518945791467e-7) < 1e-17);
+assert.equal(wordType.get('23,11,1').count, 2);
+assert.equal(wordType.get('17,18,10').count, 2);
 const firstPage27Start = pages.filter((p) => p.page < 27).reduce((s, p) => s + p.indices.length, 0);
 const secondPage55Start = pages.filter((p) => p.page < 55).reduce((s, p) => s + p.indices.length, 0);
 assert.equal(6555 - firstPage27Start, 28);
@@ -272,6 +352,13 @@ console.log(JSON.stringify({
     sourceImageDimensions: [563, 569],
     phraseGP: phrase,
     sourcePhraseOffsets: allOccurrences,
+    wordInventory: {
+      totalWords: N, distinctWordTypes: wordType.size,
+      typesUsedAtLeastTwice: repeatedTypes.length,
+      onlyRepeatedBigramAtWordIndexes: repeatedPairs[0],
+      conditionalExactThisABTwoCopies: conditionalSpecificAB,
+      allInventoryLongBigramShuffleProbabilityUpperBound: expectedLongPairCollisions
+    },
     alignedStart: start,
     alignedLength: A.length,
     excludedFromFirstHalf: { prefix: start, suffix: 200 },
