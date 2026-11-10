@@ -121,6 +121,8 @@ function plant() {
     return {page: page.page, correct, total: actual.length, inferredSkips: result.skips};
   });
   const totalRecovered = directRecovered.reduce((n, x) => n + x.correct, 0);
+  assert.equal(totalRecovered, pages.length * (T + H),
+    'The original source-key inverse must recover every planted GP rune');
   return {
     trueRank: rank, rejected, totalRecovered, totalPlain: pages.length * (T + H),
     directRecovered, top: ranked.slice(0, 2).map(compact)
