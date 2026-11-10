@@ -50,7 +50,7 @@ The language scorer is the repository's smoothed GP29 trigram model (same mappin
 
 The top time-expansion training candidate is bridge [1,5], reversed, scaled-byte mapping, Vigenère subtraction, page-reset repeat, rotation 208. All five bridge variants tie at the top training score; their untouched holdout scores remain near the random baseline. Its page-28 output begins EA L Y X F X O M O B U R O T O O U P D..., not recognizable plaintext.
 
-The top cumulative-sampling candidate is bridge [3,3], forward, scaled-byte mapping, Atbash-plus-Vigenère subtraction, global repeat, rotation 92. Its page-28 output begins EA X H TH S U R H TH I W EA B NG TH I EA W..., also nonlinguistic.
+The top cumulative-sampling candidate is bridge [3,3], forward, scaled-byte mapping, Atbash-plus-Vigenère subtraction, global repeat, rotation 92. Its page-28 output begins D B OE N I T L A J R D D AE B EO J E O D T U O H EO R IA EO G F G EO W EO S C U I T A O T M P S I R S F Y L G OE R H H G B A EO D R J TH G B T E AE F EA H X R W P EA EO G EO EO N Y O G A O IA L OE U P Y EA S I IA S S R P P N W L B U AE C U AE TH B X B X IA T B M B, also nonlinguistic.
 
 For scale, the same model scores the known plaintext references for LP2 pages 56 and 57 at **−3.473939** and **−2.420295** respectively; an independent 5,000-symbol deterministic random GP sequence scores **−6.254534**. The Shakespeare heldout sample scores **−2.327945**. The original candidate holdouts therefore do not resemble the known English controls and are at or below the random-symbol reference. The single random sequence is a scale reference, not a calibrated p-value.
 
