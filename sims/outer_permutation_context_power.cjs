@@ -29,16 +29,38 @@ function experiment({replicates=50}={}){
   function tryKey(cipher,key){
     let winner={score:-Infinity,correctMap:null,drift:null,width:null};
     for(const width of widths){
-      let inv=fit(cipher.slice(0,width),key,contexts.slice(0,width),model).inverse;
-      for(let iteration=0;iteration<5;iteration++){
-        const solution=viterbi(cipher,key,model.prior,inv,config);
-        if(solution.score>winner.score)
-          winner={score:solution.score,correctMap:inv.slice(),
-            drift:solution.drift,width};
-        const indices=[...solution.drift].map((d,i)=>i+d);
-        const updated=fit(cipher,key,contexts,model,indices).inverse;
-        if(updated.every((x,i)=>inv[i]===x))break;
-        inv=updated;
+      const part=cipher.slice(0,width),ctx=contexts.slice(0,width);
+      const base=fit(part,key,ctx,model),proposals=[{
+        inverse:base.inverse,score:base.score,firstSkip:null
+      }];
+      if(width<=100){
+        const candidates=[];
+        for(let at=1;at<width;at++){
+          const indices=Array.from({length:width},(_,i)=>i+(i>=at?1:0));
+          const fitted=fit(part,key,ctx,model,indices);
+          candidates.push({inverse:fitted.inverse,score:fitted.score,firstSkip:at});
+        }
+        candidates.sort((a,b)=>b.score-a.score);
+        const seen=new Set([base.inverse.join(",")]);
+        for(const p of candidates){
+          const id=p.inverse.join(",");
+          if(seen.has(id))continue;
+          proposals.push(p);seen.add(id);
+          if(proposals.length>=5)break;
+        }
+      }
+      for(const hypothesis of proposals){
+        let inv=hypothesis.inverse;
+        for(let iteration=0;iteration<5;iteration++){
+          const solution=viterbi(cipher,key,model.prior,inv,config);
+          if(solution.score>winner.score)
+            winner={score:solution.score,correctMap:inv.slice(),
+              drift:solution.drift,width,firstSkipHypothesis:hypothesis.firstSkip};
+          const indices=[...solution.drift].map((d,i)=>i+d);
+          const updated=fit(cipher,key,contexts,model,indices).inverse;
+          if(updated.every((x,i)=>inv[i]===x))break;
+          inv=updated;
+        }
       }
     }
     return winner;
@@ -69,6 +91,7 @@ function experiment({replicates=50}={}){
     model:"word-contextual prefix-bootstrapped 29-way permutation plus skip Viterbi",
     trials:replicates,seed:20261110,simulation:"English GP + truly uniform mod29 key; q=.81 filter",
     widthChoices:widths,iterationsPerWidth:5,
+    earlySkipHypotheses:"first skip at each position 1..W-1 for W<=100; top four distinct prefix fits plus zero-skip control",
     exactAlphabetRecoveries:rows.filter(x=>x.labels===29).length,
     atleast20LabelRecoveries:rows.filter(x=>x.labels>=20).length,
     trueBeatsWrong:rows.filter(x=>x.scoreMargin>0).length,
