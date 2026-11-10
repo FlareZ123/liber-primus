@@ -73,26 +73,42 @@ function train(text) {
  * @param {number} skipPenalty Negative log-odds penalty per consumed extra key.
  * @returns {{score:number,perRune:number,plaintext:number[],start:number,skips:number}}
  */
-function solve(cipher, key, sign, model, maxAdvance = 3, skipPenalty = 3.5) {
+function solve(cipher, key, sign, model, maxAdvance = 3, skipPenalty = 3.5, boundaryBefore = null, edgePenalty = Infinity) {
   assert.ok(cipher.length >= 3);
   assert.equal(key.length, WIDTH);
   const count = WIDTH * maxAdvance;
   const decode = (c, j) => mod(c + sign * key[j]);
+  // A special hypothesis allows one deliberately consumed key at a word edge.
+  // After that edge step, all other skipped keys still require a cipher collision.
+  const transitionCost = (previousCipher, currentPlain, oldJ, d, atEdge) => {
+    let collisions = true;
+    for (let h = 1; h < d; h++) {
+      if (mod(currentPlain - sign * key[(oldJ + h) & 255]) !== previousCipher) {
+        collisions = false; break;
+      }
+    }
+    let best = collisions ? (d - 1) * skipPenalty : Infinity;
+    if (atEdge && d >= 2 && Number.isFinite(edgePenalty)) {
+      let allowed = true;
+      for (let h = 2; h < d; h++) {
+        if (mod(currentPlain - sign * key[(oldJ + h) & 255]) !== previousCipher) {
+          allowed = false; break;
+        }
+      }
+      if (allowed) best = Math.min(best, edgePenalty + (d - 2) * skipPenalty);
+    }
+    return best;
+  };
   const back = new Int16Array(cipher.length * count).fill(-1);
   let prev = new Float64Array(count).fill(-1e100);
   for (let j0 = 0; j0 < WIDTH; j0++) {
     const p0 = decode(cipher[0], j0);
     for (let d = 1; d <= maxAdvance; d++) {
       const j1 = (j0 + d) & 255, p1 = decode(cipher[1], j1);
-      let eligible = true;
-      for (let h = 1; h < d; h++) {
-        if (mod(p1 - sign * key[(j0 + h) & 255]) !== cipher[0]) {
-          eligible = false; break;
-        }
-      }
-      if (!eligible) continue;
+      const cost = transitionCost(cipher[0], p1, j0, d, Boolean(boundaryBefore?.[1]));
+      if (!Number.isFinite(cost)) continue;
       const state = j1 * maxAdvance + d - 1;
-      const score = model.unigram[p0] + model.bigram[p0 * MOD + p1] - skipPenalty * (d - 1);
+      const score = model.unigram[p0] + model.bigram[p0 * MOD + p1] - cost;
       if (score > prev[state]) prev[state] = score;
     }
   }
@@ -109,16 +125,11 @@ function solve(cipher, key, sign, model, maxAdvance = 3, skipPenalty = 3.5) {
       for (let d = 1; d <= maxAdvance; d++) {
         const jNew = (j + d) & 255;
         const p = decode(cipher[i], jNew);
-        let eligible = true;
-        for (let h = 1; h < d; h++) {
-          if (mod(p - sign * key[(j + h) & 255]) !== cipher[i - 1]) {
-            eligible = false; break;
-          }
-        }
-        if (!eligible) continue;
+        const cost = transitionCost(cipher[i - 1], p, j, d, Boolean(boundaryBefore?.[i]));
+        if (!Number.isFinite(cost)) continue;
         const nextState = jNew * maxAdvance + d - 1;
         const ll = model.trigram[(pPrevious2 * MOD + pPrevious1) * MOD + p];
-        const score = base + ll - skipPenalty * (d - 1);
+        const score = base + ll - cost;
         if (score > next[nextState]) {
           next[nextState] = score;
           back[i * count + nextState] = state;
