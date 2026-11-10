@@ -1,0 +1,19 @@
+name: Verify LP2 unsolved longest-repeat boundary
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Exhaustively enumerate unsolved six- and seven-rune repeats
+        run: node sims/lp2_repeat_boundary_audit.cjs
