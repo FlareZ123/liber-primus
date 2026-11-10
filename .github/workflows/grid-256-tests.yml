@@ -29,3 +29,6 @@ jobs:
           node sims/red16_grid_epoch_aes128_inverse.cjs
           node sims/grid_byte_split_nonlinearity_sft.cjs
           node sims/lp2_grid_rank_state_original_inverse.cjs
+          node sims/grid_two_channel_serial_order_sft.cjs
+          node sims/grid_boolean_mobius_gp28_inverse_sft.cjs
+          node sims/grid_missing_f_prime179_sft.cjs
