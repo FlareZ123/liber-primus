@@ -43,7 +43,7 @@ function readWords(raw) {
   const sections = full.split('$').map(str => str.split(/[-.&\s]+/)
     .map(token => [...token].filter(c => INDEX.has(c))
       .map(c => INDEX.get(c)))
-    .filter(w => w.length));
+    .filter(w => w.length)).filter(section => section.length);
   const words = sections.flat();
   assert.equal(words.length, 2896);
   assert.equal(words.reduce((s, w) => s + w.length, 0), 12956);
