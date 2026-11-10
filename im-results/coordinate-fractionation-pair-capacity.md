@@ -46,18 +46,18 @@ The theorem applies to stationary secret rectangles, with two ciphertext coordin
 
 ## Exhaustive finite original clocks
 
-Every named test is evaluated on all original symbols, with no key fitting. Two reset clocks are allowed: continuous across the book or restarted independently at each physical rune-bearing page (28 register), or each of the eight canonical sections (30 register). The clock period is one of the listed values, and the column shift is nonzero modulo its period. The final partial block at a reset boundary wraps cyclically within its own actual length.
+Every named test is evaluated on all original symbols, with no key fitting. Two reset clocks are allowed: continuous across the book or restarted independently at each physical rune-bearing page (28 register), or each of the eight canonical sections (30 register). The clock period is one of the listed values, and the column shift is nonzero modulo its period. Equivalent shifts that reduce to the same residue within a period are counted once. The final partial block at a reset boundary wraps cyclically within its own actual length.
 
 | Register | Periods | Proposed shifts, reduced modulo each period | Exact original variants |
 | --- | --- | --- | ---: |
-| GP28 predecessor ranks, both cyclic and sorted | 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 14, 16, 17, 23, 28, 29, 32, 41, 55, 79, 128, 233, 256, 466 | 1, 2, 3, 5, 7, 11; skip zero | **556** |
-| GP29 plus literal word space, fixed 5×6 grid | 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 23, 28, 29, 30, 32, 41, 55, 79, 128, 233, 256, 466 | 1, 2, 3, 5, 7, 11; skip zero | **314** |
+| GP28 predecessor ranks, both cyclic and sorted | 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 14, 16, 17, 23, 28, 29, 32, 41, 55, 79, 128, 233, 256, 466 | 1, 2, 3, 5, 7, 11; skip zero | **492** |
+| GP29 plus literal word space, fixed 5×6 grid | 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 23, 28, 29, 30, 32, 41, 55, 79, 128, 233, 256, 466 | 1, 2, 3, 5, 7, 11; skip zero | **280** |
 
 There is no p-value and no claim that these parameters were selected before looking at original LP2. Each inequality is a deterministic falsification of the *specified mathematical family* for the reference plaintext windows.
 
 ### Original 28-symbol channel
 
-Among all **556** original rank-channel variants, the largest upper bound on the count of the most frequent decoded plaintext rune is **766 out of 12,815**. Its generous maximum occurs for cyclic predecessor ranks, page-local reset, period16 and shift2. The minimum bound is **689**, at sorted ranks with book-global period17, shift11.
+Among all **492** original rank-channel variants, the largest upper bound on the count of the most frequent decoded plaintext rune is **766 out of 12,815**. Its generous maximum occurs for cyclic predecessor ranks, page-local reset, period16 and shift2. The minimum bound is **689**, at sorted ranks with book-global period17, shift11.
 
 For every length-12,815 contiguous native-GP source window with GP-EA omitted, compute the frequency of the most common rune. The exact minimum among the three independently archived sources is **1,393**. Therefore no secret rectangular grid and no shift/period from the tested list can generate any of these original source windows, irrespective of all 28! possible key placements.
 
@@ -68,7 +68,7 @@ A source-native secret-grid positive used a 4×7 grid, period7, shift1 and 12,81
 
 ### Original 30-symbol GP-plus-space channel
 
-The separate 30-symbol parser recovers eight section lengths **886, 1,399, 2,122, 2,328, 1,244, 1,758, 2,057, 4,050**. The exact section total is **15,844**, including **2,888** single word-space tokens. The all-secret 5×6 row/column upper bounds for **314** tested clocks lie between **1,440 and 1,867 occurrences** of any one plaintext symbol. The generous maximum is book-global period15, shift11, where independently relaxed row and column bounds are **1,882 and 1,867** respectively. A looser top30-pairs-only test gives **3,070** for that case and sometimes admits source controls, demonstrating why the rectangular row/column constraint matters.
+The separate 30-symbol parser recovers eight section lengths **886, 1,399, 2,122, 2,328, 1,244, 1,758, 2,057, 4,050**. The exact section total is **15,844**, including **2,888** single word-space tokens. The all-secret 5×6 row/column upper bounds for **280** tested clocks lie between **1,440 and 1,867 occurrences** of any one plaintext symbol. The generous maximum is book-global period15, shift11, where independently relaxed row and column bounds are **1,882 and 1,867** respectively. A looser top30-pairs-only test gives **3,070** for that case and sometimes admits source controls, demonstrating why the rectangular row/column constraint matters.
 
 The source-native GP-plus-space windows have the following *exact* minimum maximum-symbol counts. The most frequent token in the relevant control windows is the word-space marker; it is permitted to move during encryption.
 
@@ -79,7 +79,7 @@ The source-native GP-plus-space windows have the following *exact* minimum maxim
 | Emerson | 402,561 | 386,718 | **2,729** |
 | **Combined** | | **708,084** | **≥2,729** |
 
-The original maximum permitted count **1,867** is below the **2,729** minimum among every tested source window. Thus every one of the **314** tested secret 5×6 fractionations is excluded as a direct source-native GP29-plus-word-space encoding. No secret key search can change the inequality.
+The original maximum permitted count **1,867** is below the **2,729** minimum among every tested source window. Thus every one of the **280** tested secret 5×6 fractionations is excluded as a direct source-native GP29-plus-word-space encoding. No secret key search can change the inequality.
 
 For a true source-native control, the program generated an entirely hidden random 30-symbol 5×6 grid and encrypted **15,844** contiguous source symbols in eight original-sized sections with period15, shift11. The matching inverse recovered **15,844/15,844** source symbols and re-encrypted the entire generated ciphertext. The control's most common plaintext token occurred **3,178** times, and the original-input bound correctly admitted at least **3,537**. This checks that the negative original-source gate can accept an actual member of its hypothesized family.
 
