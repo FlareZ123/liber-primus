@@ -107,3 +107,37 @@ A genuinely encrypted, source-disjoint **delay-six positive** with secret `a=7,b
 The bounded negative concerns the *single delayed plaintext tap* with one shared coefficient and additive offset, 16 fixed delays, a primitive-root F29/28-unit output and global manuscript state. It cannot reject nonlinear or multi-tap feedback, variable key/clock state, or separately keyed passages. The residue-class synchronization principle remains useful if a future independently sourced plaintext-state rule is discovered.
 
 **Reproduction:** the same [EA-anchor plaintext-autokey CJS program](../sims/ea_anchor_plaintext_autokey_inverse.cjs) now executes first-order page/global modes plus the whole-book delayed search and exact lag-six positive, without adding a scheduled CI workload.
+
+
+## Integrated three-marker bijective inverse with plaintext-feedback key
+
+A further attempt directly addresses the shared [integrated-original-inversion challenge](../workplace/integrated-original-inversion-challenge.md). It combines the previously described **lossless contextual marker alphabet** (EA emits a zero step, conditional E/L emits the five-back rune, S emits the affine six-back T transformation, collision priorities followed by unique unused-field-power fallback) with an **unknown plaintext-dependent free-alphabet rotation**:
+
+```text
+K[i] = a * (P[i-L] mod28) + b
+       with declared initial source state 0 for i<L
+
+C[i] - C[i-1] = reserved-step(P[i], original word context)
+        OR     freeDelta[(freeRank(P[i]) + K[i]) mod freeRadix(i)]
+```
+
+Every local context defines an exact **29-to-29 permutation**, even where multiple candidate markers target the same output, and the page-initial output uses a separate additive modulo29 expression. Original whole-word offsets and physical page initial indices are read from the original transcription; page-split words remain continuous. The unknown source plaintext state is a single shared delayed feedback with `L=1..8` and `(a,b)∈Z28²`, giving **6,272** complete original inverses. The original-source word-specific E/L/S markers remain explicitly **postselected hypotheses**.
+
+Select by GP-Shakespeare log-likelihood excess over a **contextually matched uniform free-alphabet baseline** on physical rune-bearing pages 0–26, then freeze and test pages 27–55. Original fixed-source results:
+
+| Delay | Selected (a,b) | Training excess nats/rune | Frozen heldout excess |
+| --- | --- | ---: | ---: |
+| 1 | (0,23) | +0.067691 | +0.003352 |
+| 2 | (7,24) | +0.086248 | +0.034166 |
+| 3 | (14,23) | +0.087275 | +0.020624 |
+| 4 | (3,21) | +0.075340 | +0.020690 |
+| 5 | (14,23) | +0.083752 | +0.030594 |
+| 6 | (12,22) | +0.069826 | −0.012666 |
+| 7 | (20,15) | +0.068129 | −0.047838 |
+| 8 | (24,24) | +0.087352 | −0.021673 |
+
+These small positive unigram residuals at delays two through five are **insufficient to authenticate the model or identify plaintext**. The marker classes, word-context transformations and test model were motivated by patterns observed on the same manuscript, so the table's nominal scores are exploratory. A best genuine control must recover a much larger, coherent language signal.
+
+A disjoint original-layout **synthetic positive** is encrypted with delay six, `a=7,b=11`, and exactly the same bijective contextual alphabets. The blind inverse selects both true coefficients, recovers **all 12,956** source runes, and obtains heldout free-alphabet excess **+1.271436 nats/rune**, far above the original's largest frozen excess of +0.034166. The original selected decoders also support **exact re-encryption of all 12,956 original runes** for their respective assumed keys. That reversibility is conditional and does not imply those decoded runes are authentic.
+
+This supplies a **single complete original-input forward/inverse** combining the three source-selected collision classes and a plaintext-state key, while still failing the crucial readability/key-identification gate. Reproduce from [`sims/integrated_marker_plaintext_autokey_inverse.cjs`](../sims/integrated_marker_plaintext_autokey_inverse.cjs). Its exact original roundtrip and blind positive are built-in assertions. A stronger candidate needs a cryptographically derived key and a clear GP language signal on withheld original text; otherwise, isolated +0.03 unigram excess should remain unpromoted.
