@@ -161,6 +161,118 @@ def stats(seq: np.ndarray, log_prior: np.ndarray):
     }
 
 
+
+def same_state_invariant(state: np.ndarray, glyph: np.ndarray,
+                         symbols: int = 29) -> dict:
+    """Key-independent pair-equality statistic for all secret bijective rows.
+
+    If C_i = permutation[state_i](P_i), C_i=C_j iff P_i=P_j whenever
+    state_i=state_j. The identical property holds for GP28 predecessor
+    nonzero-step rank, provided observed ciphertext repeat sites are omitted.
+    """
+    table = np.bincount(state.astype(np.int32) * symbols + glyph,
+                        minlength=255 * symbols).reshape(255, symbols)
+    group_sizes = table.sum(axis=1)
+    pairs = int(np.sum(group_sizes * (group_sizes - 1) // 2))
+    hits = int(np.sum(table * (table - 1) // 2))
+    capacity = int(np.max(table, axis=1).sum())
+    return {
+        "pair_collisions": hits,
+        "within_state_pairs": pairs,
+        "pair_equality_rate": hits / pairs,
+        "one_plain_rune_max_count": capacity,
+        "one_plain_rune_max_fraction": capacity / len(glyph),
+        "n": len(glyph),
+    }
+
+
+def unknown_row_permutation_original_screen(
+        admitted: dict, field: np.ndarray,
+        shakespeare: np.ndarray, gibran: np.ndarray) -> list[dict]:
+    """Original-key-free screen for *any* 255 fixed secret state permutations.
+
+    Secret 29! or 28! row permutations are never fitted. Train/test language
+    comparison uses original coordinate-locked image-byte states, with a
+    separate independent plaintext source and 300 shifted prose windows
+    per author. A true randomized secret permutation plant is inverted exactly.
+    """
+    rng = np.random.default_rng(0xC1CA3301)
+    output = []
+    for anchor in ("ink_center_y", "printed_peak_y"):
+        for family in ("direct29", "predecessor28"):
+            states, glyphs = [], []
+            symbols = 29 if family == "direct29" else 28
+            for page, rows in admitted.items():
+                xs = rows[:, 1]
+                ys = rows[:, 2] if anchor == "ink_center_y" else rows[:, 3]
+                state = field[ys, xs].astype(np.int16)
+                cipher = rows[:, 0]
+                if family == "direct29":
+                    states.extend(state.tolist())
+                    glyphs.extend(cipher.tolist())
+                    continue
+                # First page symbol is an IV, with no predecessor-rank.
+                # Observed equality sites are hypothetical EA marker outputs.
+                keep = cipher[1:] != cipher[:-1]
+                states.extend(state[1:][keep].tolist())
+                glyphs.extend(
+                    ((cipher[1:][keep] - cipher[:-1][keep] - 1) % 29).tolist())
+            state = np.asarray(states, dtype=np.int16)
+            original = np.asarray(glyphs, dtype=np.int16)
+            observed = same_state_invariant(state, original, symbols)
+            by_author = {}
+            for name, src in (("Shakespeare", shakespeare),
+                              ("Gibran", gibran)):
+                plain = src if symbols == 29 else src[src != 28]
+                n = len(original)
+                assert len(plain) > n + 2000
+                rates, e_counts = [], []
+                for _ in range(300):
+                    start = int(rng.integers(0, len(plain) - n + 1))
+                    candidate = plain[start:start + n]
+                    control = same_state_invariant(state, candidate, symbols)
+                    rates.append(control["pair_equality_rate"])
+                    e_counts.append(int(np.count_nonzero(candidate == 18)))
+                by_author[name] = {
+                    "prose_windows": len(rates),
+                    "min_pair_equality_rate": float(np.min(rates)),
+                    "mean_pair_equality_rate": float(np.mean(rates)),
+                    "max_pair_equality_rate": float(np.max(rates)),
+                    "source_windows_at_or_below_original": int(
+                        np.count_nonzero(
+                            np.asarray(rates) <= observed["pair_equality_rate"])),
+                    "source_mean_E_count": float(np.mean(e_counts)),
+                    "source_min_E_count": min(e_counts),
+                    "source_max_E_count": max(e_counts),
+                }
+            # Explicit blind key positive control: arbitrary permutation at
+            # each of 255 possible original source-image byte states.
+            plant_source = (gibran if symbols == 29
+                            else gibran[gibran != 28])
+            plant_plain = plant_source[4000:4000 + len(original)]
+            secret = np.asarray([rng.permutation(symbols)
+                                 for _ in range(255)], dtype=np.int16)
+            secret_inverse = np.argsort(secret, axis=1)
+            plant_cipher = secret[state, plant_plain]
+            assert np.array_equal(
+                secret_inverse[state, plant_cipher], plant_plain)
+            plant = same_state_invariant(state, plant_cipher, symbols)
+            plain_measure = same_state_invariant(state, plant_plain, symbols)
+            assert plant["pair_collisions"] == plain_measure["pair_collisions"]
+            assert plant["within_state_pairs"] == plain_measure["within_state_pairs"]
+            output.append({
+                "family": family,
+                "source_coordinate": anchor,
+                "public_GIMP_byte_states": 255,
+                "latent_secret_permutations":
+                    "one arbitrary fixed bijection per distinct byte state",
+                "observed": observed,
+                "independent_GP_prose_windows": by_author,
+                "positive_random_hidden_key_exact_recovery": len(original),
+                "positive_random_hidden_key_equality_matches": True,
+            })
+    return output
+
 def main():
     corpus = json.loads((IMAGE_DIR / "lp2-corpus.json").read_text(encoding="utf-8"))
     by_page = {x["page"]: x["indices"] for x in corpus["pages"]}
@@ -244,6 +356,9 @@ def main():
             (counts / counts.sum()) * prior)),
         "uniform_unigram_logGP": float(prior.mean()),
         "sorted_by_discovery_half_training_score": results,
+        "key_independent_all_secret_row_bijections":
+            unknown_row_permutation_original_screen(
+                admitted, field, shakespeare, gibran),
         "qualification": "Image coordinates are cipher-output dependent and supplied as fixed side-state; the synthetic plant does not re-typeset its output. Original plaintext is not authenticated by a synthetic roundtrip.",
     }
 
