@@ -43,3 +43,7 @@ jobs:
       - name: Frozen predictive LP2 lag5/lag6 heldout test
         if: ${{ inputs.experiment == 'frozen-predictor' }}
         run: node sims/lp2_heldout_echo_predictor.cjs
+
+      - name: Forward adequacy against original-trained conditional score
+        if: ${{ inputs.experiment == 'frozen-predictor' }}
+        run: node sims/lp2_echo_forward_model_gate.cjs
