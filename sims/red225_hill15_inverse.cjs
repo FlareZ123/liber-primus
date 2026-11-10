@@ -150,7 +150,7 @@ function run(){
   const total=freq.reduce((a,b)=>a+b,0);
   const prior=Array.from(freq,x=>x/total);
   const native=read('resources/liber-primus/lp1-plaintext-reference.txt')
-    .split(/\\r?\\n/u).filter(line=>{
+    .split(/\r?\n/u).filter(line=>{
       const v=line.trim();
       return !v.startsWith('#')&&!v.startsWith('[')&&
         !/^[0-9a-f]{25,}$/iu.test(v);
