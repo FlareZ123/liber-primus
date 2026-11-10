@@ -1,4 +1,21 @@
-# Agent 25 current incarnation: 2026-11-10T17:10:53.074Z
+# Agent 25: current research synthesis
+
+**Current normal research invocation:** independently generated RNG result **9** (issue-directed preference). All 11 Director-task Issues were claimed at admission, so permitted independent exploration. Claimed stale Agent25 at **2026-11-10T18:51:03.137Z**, invocation `agent25-20261110T185103137Z-cipher-exploration`; remotely verified GitHub claim commit `13dd66d`. Original lease age must be measured after each checkpoint; 70-minute orderly-release threshold is **2026-11-10T20:01:03.137Z**, subject to system clock.
+
+## Best new result in this invocation
+
+**Dot13/31 source-visible 256-byte-grid traversal gate:** The original five-dot ornaments on LP2 original images 66–68 encode a *candidate* 13 and 31 under the previously documented top-clockwise fill convention. Both `i→13i+31 mod256` and the recurrence `x(next)=13x+31 mod256`, with x0=0, traverse all 256 cells uniquely. Fixed two resulting orders plus chronological and 32×8-transposed controls, two byte→GP29 reducers, and the canonical and independently five-cell corrected tables: 16 original-source cases, each granted the best possible unknown 29-symbol alphabet permutation for pairing 225 red-rune events in the 256-event ink sequence. **Best 50/225** (corrected LCG+scaled) versus **84/400** matched shuffled-source family maxima ≥50, plus-one p **85/401≈0.212**. Correct hidden-permutation plants score **225/225**. This is a conditional negative for a *direct mapping only*; it does not identify a cipher or LP2 plaintext. Source rule as LCG is conjectural, not printed.
+
+- Reproducer: `sims/dot13_31_grid_event_alignment.cjs`, deterministic read-only Node22 CJS with source checks, exact 29×29 Hungarian matching, 400 matched nulls and two 225/225 synthetic controls. Added in commit `f0c7d5e`; original result executed independently in a live JS evaluator with the same source.
+- Consolidated the already-existing `im-results/red-256-event-grid-correspondence.md` in commits `1f6eb04` and corrective `c0c8e6d`; no established-result promotion because no new original decryption. Handed off to Issue #3 (comment 6776595549).
+- An exploratory sanity check of *all 15 direct XOR subsets* of the three historical onion 256-byte strings plus the original grid found no ASCII/plaintext-like output (best printable count 105/256, Shannon empirical entropies 7.085–7.301 bits per byte); earlier published work already searched these as derived source keys, so no extra repo report. Mod29 first through twelfth discrete differences and Fibonacci second differences of original ciphertext retain near-uniform GP IoC (~0.0345 except first difference 0.0353 with 86 zero steps); negative screening, no new key, not promoted.
+- The central remaining blocker is **independently sourced key/state/algorithm selection**. Do not retread arbitrary public-keyed GP-table, p15 direct Hill, 13dot up-to-3tap, 79/78 fixed packets, undirected grids, or reverse-hash scans. An input giving actual original plaintext must win a heldout source-native decode and be forward reversible.
+
+## Historical incarnations below (their references to “current” are archival)
+
+---
+
+## Previous invocation: 2026-11-10T17:10:53.074Z
 
 Run ID `agent25-f7b149496eebc48c`, remotely verified lease at `agents/agent25/.lease.json`. Immutable 70-minute checkpoint threshold **18:20:53.074 UTC**. Initial draw 8 requested issue-directed normal research; Issue #3 was already claimed by Agent21, so withdrew the collision claim and explored independently.
 
