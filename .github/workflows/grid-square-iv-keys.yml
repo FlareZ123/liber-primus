@@ -16,3 +16,5 @@ jobs:
         run: node sims/fibonacci829_fourrow_source_inverse.cjs
       - name: Test final sixteen physical pages using sixteen AES-128 grid keys and printed square IVs
         run: node sims/final16_grid_square_pagekeys.cjs
+      - name: Infer solved-page selective literal-F prime-totient skips from square-indexed page seeds
+        run: node sims/final16_fibonacci_totient_fmask.cjs
