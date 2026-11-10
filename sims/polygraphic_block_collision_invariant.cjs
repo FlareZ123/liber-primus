@@ -10,6 +10,7 @@
 const assert=require("node:assert/strict");
 const fs=require("node:fs");
 const path=require("node:path");
+const {parseSharedCorpus}=require("./lp2_word_pages.cjs");
 const ROOT=path.join(__dirname,".."),N=29,ROUNDS=300;
 const DIGRAPHS={TH:2,NG:21,EO:12,OE:22,AE:25,IA:27,EA:28};
 const LETTERS={A:24,B:17,C:5,D:23,E:18,F:0,G:6,H:8,I:10,J:11,K:5,L:20,M:19,N:9,O:3,P:13,Q:5,R:4,S:15,T:16,U:1,V:1,W:7,X:14,Y:26,Z:15};
@@ -60,6 +61,41 @@ function doublets(pages){
   for(const p of pages)for(let i=1;i<p.length;i++)n+=Number(p[i]===p[i-1]);
   return n;
 }
+/** @param {string} text @returns {Map<number, number[][]>} */
+function wordBank(text){
+  const out=new Map();
+  for(const m of text.toUpperCase().matchAll(/[A-Z]+/g)){
+    const codes=encode(m[0]);
+    if(!out.has(codes.length))out.set(codes.length,[]);
+    out.get(codes.length).push(codes);
+  }
+  return out;
+}
+/**
+ * Preserve every original whole-word length, including 32 page-spanning words.
+ * @param {Map<number,number[][]>} bank
+ * @param {number[]} lengths
+ * @param {number[][]} template
+ * @param {() => number} rng
+ * @returns {number[][]}
+ */
+function matchedWords(bank,lengths,template,rng){
+  const flat=[];
+  for(const width of lengths){
+    const options=bank.get(width);
+    assert.ok(options?.length, "Missing source GP word length "+width);
+    flat.push(...options[randInt(rng,options.length)]);
+  }
+  assert.equal(flat.length,12956);
+  const pages=[];
+  let offset=0;
+  for(const page of template){
+    pages.push(flat.slice(offset,offset+page.length));
+    offset+=page.length;
+  }
+  assert.equal(offset,flat.length);
+  return pages;
+}
 /** @param {number[]} src @param {number[][]} template @param {() => number} rng @returns {number[][]} */
 function drawPages(src,template,rng){
   return template.map(p=>{
@@ -108,21 +144,27 @@ function main(){
   assert.equal(pages.length,55);
   assert.equal(pages.flat().length,12956);
   assert.equal(doublets(pages),86);
+  const wordLengths=parseSharedCorpus().words.map(w=>w.length);
+  assert.equal(wordLengths.length,2896);
+  assert.equal(wordLengths.reduce((a,b)=>a+b,0),12956);
   const authors=[
     ["Shakespeare","resources/control/shakespeare_first300k.txt"],
     ["Emerson","resources/control/emerson_essays_2944.txt"],
     ["Gibran","resources/control/gibran_prophet_58585.txt"]
-  ].map(([name,file])=>({name,runes:encode(read(file))}));
+  ].map(([name,file])=>{const text=read(file);return {name,runes:encode(text),bank:wordBank(text)};});
   const widths=[2,3,4,5,6,7];
   const original=Object.fromEntries(widths.map(w=>[w,
     Array.from({length:w},(_,phase)=>collisions(pages,w,phase))]));
   const all=[];
   for(const [sourceNumber,src] of authors.entries()){
     assert.ok(src.runes.length>20000);
-    const rng=random(0x52d44a89^((sourceNumber+1)*0x9e3779b9));
+    for(const mode of ["contiguous","word_length_matched"]){
+    const rng=random(0x52d44a89^((sourceNumber+1)*0x9e3779b9)^(mode.length*0x45ac31ad));
     const records=new Map(widths.map(w=>[w,{raw:[],plant:[],repeats:[],checks:0}]));
     for(let t=0;t<ROUNDS;t++){
-      const plaintext=drawPages(src.runes,pages,rng);
+      const plaintext=mode==="contiguous"
+        ?drawPages(src.runes,pages,rng)
+        :matchedWords(src.bank,wordLengths,pages,rng);
       for(const w of widths){
         const rec=records.get(w);
         rec.raw.push(Math.min(...Array.from(
@@ -140,7 +182,7 @@ function main(){
     }
     for(const w of widths){
       const rec=records.get(w),worst=Math.max(...original[w]);
-      all.push({source:src.name,source_runes:src.runes.length,width:w,
+      all.push({source:src.name,mode,source_runes:src.runes.length,width:w,
         original_by_phase:original[w],original_worst_phase:worst,
         raw_source_best_phase:summary(rec.raw),
         repaired_block_cipher:summary(rec.plant),
@@ -150,6 +192,7 @@ function main(){
           planted:rec.plant.filter(x=>x<=worst).length,
           trials:ROUNDS
         },exact_bijection_checks:rec.checks});
+    }
     }
   }
   console.log(JSON.stringify({
