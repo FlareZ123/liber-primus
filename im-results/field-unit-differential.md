@@ -1,6 +1,6 @@
-# Field-unit differential LP2 inversion: EA-marker contradiction and original-grid key test
+# Field-unit difference inversions: zero-step marker, direct grid units and unknown-alphabet AES/ChaCha keys
 
-**Agent 34, 10 November 2026. Executed intermediate cryptanalytic negative. No recovered plaintext or key.**
+**Agents 34 and 9, 10 November 2026. Source-constrained reversibility and bounded original-data negative results. No previously unknown LP2 plaintext, genuine key, established cipher, or continuation recovered.**
 
 ## Exact reversible construction
 
@@ -16,7 +16,7 @@ All 86 actual doublet events, including those spanning word boundaries, were loc
 | Gibran, The Prophet | 10.1612 | 23 | 1.50e-5 |
 | Emerson, Essays | 10.3253 | 23 | 1.16e-5 |
 
-The simple fixed-EA mechanism is thus **strongly incompatible with ordinary-GP-English word-position structure**, provided the displayed ciphertext word boundaries are the plaintext word boundaries. The statistical test is conditional on each reference register and the chosen smoothing; it is not a discovery-wide p-value. The cipher could manipulate word breaks, transform the plaintext alphabet, vary the specific zero-mapped symbol, or use a non-English source, so this is a mechanistic exclusion rather than a universal impossibility.
+The simple fixed-EA mechanism is thus **strongly incompatible with ordinary-GP-English word-position structure**, provided the displayed ciphertext word boundaries are the plaintext word boundaries. The statistical test is conditional on each reference register and the chosen smoothing; it is not a discovery-wide p-value. The cipher could manipulate word breaks, transform the plaintext alphabet, vary the specific zero-mapped symbol, or use a non-English source, so this is a mechanistic exclusion rather than a universal impossibility. Later exact original-mask/author-native controls substantially narrow the interpretation: independent plaintext/ciphertext word-boundary shifts make the same four-bin repeat-role profile ordinary (original conditional χ² 2.165; 7,017/12,956 exact original-mask shifts at least as deviant). The GP EA marker's overall count is also native-source compatible (82.83±8.87 against observed 86). See [reconciled marker model](red-span-triangle.md) and [lossless EA plant](../sims/ea_zero_step_reversible.cjs). The older table remains evidence only for the *matching-original-word-boundaries* assumption.
 
 ## Exact numeric-grid inversion attempt
 
@@ -26,8 +26,29 @@ The real text's best whole-corpus setting is **section reset, scaled unit, rever
 
 **Powered positive:** generate pages of exactly the original 55 lengths using independent contiguous Shakespeare GP source, a real original-grid unit key modulo28 plus one, page resetting, true phase37 and seeded page start values, and the same multiplicative formula. Scanning the identical 6,144 candidates recovers **the exact page/mod/forward/inverse/phase37 key specification ranked first**, with log-likelihood **-2.94166** per scored rune on 12,901 increments. The known cipher is therefore directly invertible by the implementation when the tested key mechanism is present.
 
+## Unknown 28-way alphabet plus full source-grid AES/ChaCha keys (Agent 9)
+
+The source's exact F29 prime-sum triangle gives a genuine primitive root 15 and its 28-step discrete-log coordinate. For every noninitial rune of an eight-section text stream, let D=(C_i−C_(i−1)) mod29. Consider this reversible model: when D=0, the plaintext is the single GP rune EA (index28); otherwise log₁₅(D) = σ(P_i) − sK_i (mod28). Here σ is an arbitrary shared bijection of the other 28 GP runes; s is ±1, and K_i is a 28-valued stream output from an original grid key. Unlike an ordinary direct substitution, this tests a *different ciphertext channel* with an exact one-to-one zero/nonzero step rule. The first glyph of each section is an initialization symbol.
+
+The 256 original table bytes define eight 32-byte column keys or eight consecutive row-major keys. Their assignment to the eight actual LP2 sections is unrestricted but one-to-one (8!, optimized exactly by subset DP). The nonzero 28-unit stream is obtained from AES-256-CTR or ChaCha20 with zero IV, byte%28 or floor(28×byte/256), either sign, and either advance or pause the key clock on every zero step. This is **32 global configurations**, each with all 8! source-key placements, sharing an arbitrary but unknown 28-way plaintext alphabet permutation. For each configuration, fit the key assignment *only* on the first 300 nonzero steps per section by maximizing its permutation-invariant recovered-symbol index of coincidence. The next 300 nonzero steps in each section are held out; the actual output permutation is never fitted to original ciphertext.
+
+The exact original-source [CommonJS implementation](../sims/field_unit_csprng_alphabet_inverse.cjs) completed successfully in [GitHub Actions run 42799195034](https://github.com/FlareZ123/liber-primus/actions/runs/42799195034), using the checked-in LP2 corpus and authentic grid source.
+
+| Evidence | First 300 nonzero steps per section (mean IoC) | Untouched 300 per section (pooled IoC) |
+| --- | ---: | ---: |
+| Original LP2, winning source-grid setting (row-major 32-byte chunks, ChaCha20, scaled residues, s=+1, skip zero) | **0.03727703456** | **0.03568431291** |
+| Independently planted English-GP corpus, actual column AES-256-CTR keys, mod28, s=+1, skip zero, unknown random σ | **0.06051560758** | **0.06141899403** |
+| Uniform 28-symbol expectation | 0.03571428571 | 0.03571428571 |
+
+The plant contains **12,956 symbols**, matches all eight source section lengths, uses the *actual 256 source bytes* as AES keys, and feeds plaintext through the forward 29-rune chain. The same model-selection code recovers the exact stream algorithm, alphabet clock, sign, eight of eight hidden column-to-section assignments, and recovers **12,956/12,956 GP plaintext symbols byte-for-byte** when supplied with the known planted σ. This validates the attack's capability even with the output alphabet left unrestricted during model selection.
+
+In **100 seeded shuffled-grid controls**, each independently shuffling all 256 original byte values and rerunning all 32 global settings and exact assignments, the selected held-out pooled IoC mean is **0.03571399541**. **59/100** control champions meet or exceed authentic LP2's selected held-out IoC, giving an add-one upper-tail probability **60/101≈0.59406**. Thus the genuine source keys fail this inverse even under an unrestricted global nonzero output alphabet; no key material or plaintext is identified.
+
+This is a *bounded direct-source conclusion*: no unknown IV, password KDF, non-grid key, discontinuous table rearrangement, large key-offset sweep, per-section output alphabet, or stateful skip beyond the two documented zero clocks was inferred. The trace is a test of a reversible *candidate cipher*, with positive actual-source-key recovery. The arithmetic zero-step architecture itself remains speculative, and the manuscript's separate lag-five/six phenomena remain unexplained.
+
 ## Interpretation and reproducer
 
-The field-unit multiplicative model merits attention because it explains extremely rare repeated symbols without a postprocessing repair step and gives an exact keyless plaintext marker. These two independent attacks show that **the specific EA-marker-with-original-word-breaks plus direct 256-grid byte-unit key family does not decode LP2 as ordinary GP English**. A secret field-alphabet permutation could move the zero symbol to another plaintext rune, and a more complex key expansion, phase slipping or boundary recoding remains outside this test. No manuscript plaintext, secret key or downstream destination was recovered.
+The field-unit multiplicative model merits attention because it explains extremely rare repeated symbols without a postprocessing repair step and gives an exact keyless plaintext marker. The matching-word-boundary marker test, 6,144 direct 256-grid unit inversions, and new 32-setting / exact 8! CSPRNG assignment scan each fail to identify a manuscript key or GP-English plaintext within their respective assumptions. The zero-marker interpretation becomes substantially less constrained when ciphertext and plaintext word boundaries differ. A secret field-alphabet permutation could move the zero symbol to another plaintext rune, and a more complex key expansion, phase slipping or boundary recoding remains outside this test. No manuscript plaintext, secret key or downstream destination was recovered.
 
-Reproduce with the single CommonJS program sims/field_unit_differential.cjs; it reads only already tracked LP2 corpus, original transcription, base60 grid and the three English control files, asserts the 55-page / 12,956-rune / 86-doublet contracts, executes the exact marker tails, exhaustive 6,144-grid setting scan and independent planted positive, and performs no writes or automatic CI triggers.
+Reproduce the original marker/direct-unit test with the single CommonJS program sims/field_unit_differential.cjs; it reads only already tracked LP2 corpus, original transcription, base60 grid and the three English control files, asserts the 55-page / 12,956-rune / 86-doublet contracts, executes the exact marker tails, exhaustive 6,144-grid setting scan and independent planted positive, and performs no writes or automatic CI triggers.
+Run the separate CSPRNG/unknown-alphabet attack with `node sims/field_unit_csprng_alphabet_inverse.cjs`. It is included as a choice in the existing manual-only `field-unit-discrete-log-periods.yml` workflow; it uses `LP2_FIELD_NULLS=100` by default and does not produce scheduled or push-triggered CI.
