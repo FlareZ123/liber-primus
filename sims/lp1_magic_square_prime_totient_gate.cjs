@@ -7,7 +7,7 @@
  *   2. parses the p05 5x5 mixed word/number grid and p16 5x5 numeric grid
  *      from the canonical LP1 transcription;
  *   3. maps p05 rune-words through the manuscript GP prime weights;
- *   4. verifies the resulting 1033 near-magic matrix and p16's 3301 magic
+ *   4. verifies two exact magic squares: the p05 1033 prime-sum matrix and p16's 3301 numeric
  *      square without repairing the two literal 18 cells;
  *   5. tests 48 predeclared 25-symbol periodic additive transfers on all
  *      12,956 original unknown LP2 runes:
@@ -98,8 +98,8 @@ function diagSums(M) {
 }
 const AStats = { rows: rowSums(A), columns: colSums(A), diagonals: diagSums(A) };
 const BStats = { rows: rowSums(B), columns: colSums(B), diagonals: diagSums(B) };
-assert.deepEqual(AStats.rows, [1033, 1031, 1033, 1031, 1033]);
-assert.deepEqual(AStats.columns, [1031, 1033, 1033, 1033, 1031]);
+assert.deepEqual(AStats.rows, [1033, 1033, 1033, 1033, 1033]);
+assert.deepEqual(AStats.columns, [1033, 1033, 1033, 1033, 1033]);
 assert.deepEqual(AStats.diagonals, [1033, 1033]);
 assert.deepEqual(BStats.rows, [3301, 3301, 3301, 3301, 3301]);
 assert.deepEqual(BStats.columns, [3301, 3301, 3301, 3301, 3301]);
