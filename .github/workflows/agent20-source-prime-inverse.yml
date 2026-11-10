@@ -13,6 +13,7 @@ on:
           - coordinate
           - red32
           - pgp4096
+          - pgpSkip
 
 jobs:
   source-prime-inverse:
@@ -94,3 +95,16 @@ jobs:
       - name: Authentic 2012 signing modulus original and GP-native plant challenge
         shell: pwsh
         run: node sims/cicada_pgp_modulus_square_inverse.cjs
+
+  original-signing-key-rejection-hmm:
+    if: ${{ inputs.mode == 'pgpSkip' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rejection-conditioned GP trigrams with original RSA source key and blind native control
+        shell: pwsh
+        run: node sims/pgp_modulus_skip_hmm.cjs
