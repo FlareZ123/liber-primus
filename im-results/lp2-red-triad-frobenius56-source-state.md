@@ -1,6 +1,8 @@
-# Twisted-Frobenius order-56 state: bounded original-cipher inverse
+# Twisted-Frobenius order-56 state: corrected bounded original-cipher inverse
 
 **Classification:** exact field arithmetic, a source-motivated state hypothesis, and a finite original-input negative. No unknown LP2 plaintext, authentic key, complete cipher, or destination recovered.
+
+**Correction to the initial checkpoint:** the first version indexed the 56-state stream with a modulo-29 helper, and treated the annotation's rune string as an array. This revision fixes both issues: state positions now use modulo 56, and red-span runes are decoded from their Unicode string. All global and page-state figures below supersede the first checkpoint. The page-reset all-secret figures happen to remain unchanged.
 
 ## Human-visible solve-path hypothesis
 
@@ -41,21 +43,23 @@ The original 12,956 runes (55 rune-bearing pages plus runeless p50) were tested 
 
 | Candidate | Keys | Best quadgram log score / letter | Raw ciphertext |
 |---|---:|---:|---:|
-| Global rune clock | 840 | −17.149508 (k₀,k₁)=(26,24) | −17.131577 |
+| Global rune clock | 840 | −17.130538 (k₀,k₁)=(15,25) | −17.131577 |
 | Page-reset rune clock | 840 | −17.135171 (k₀,k₁)=(5,9) | −17.131577 |
 
-Neither best candidate improves on the original ciphertext. The source-fixed trace sequence begins (19,14) and ranks 86/840 globally, 395/840 with page resets. The source-fixed norm sequence begins (25,3) and ranks 298/840 and 239/840, respectively.
+The global best is only 0.001039 nats per letter above raw, and its preview remains gibberish; exactly one of 840 keys edges the raw score. The page-reset search has no key above raw. The known solved p57 text scores −10.178885 under the same reference, about seven nats per letter better than the best candidate.
 
-The canonical source-fixed trace/norm additive and affine projections were also tested with a global rune clock and with one state per physical page. The best of these 12 reversible cases scores −17.208490 per letter, again below the raw ciphertext. The known solved p57 text scores −10.178885 under the same reference, a positive language control. A 95-rune solved-p57 plant encrypted and decrypted exactly under a synthetic member of the 840-key family.
+The source-fixed trace sequence begins (19,14) and ranks 370/840 globally, 395/840 with page resets. The source-fixed norm sequence begins (25,3) and ranks 163/840 and 239/840, respectively.
 
-All candidate transformations re-encrypt exactly by construction. That is an implementation check, not evidence that a candidate key is authentic.
+The canonical source-fixed trace/norm additive and affine projections were also tested with a global rune clock, a page-reset clock, and one state per physical page (18 reversible cases). The best score is −17.131486, just 0.000091 above raw, from a page-state affine map with trace as multiplier and norm as offset. Its preview is not language. Because that variant applies one affine substitution per page, it preserves within-page symbol equality; its tiny score edge is not evidence of plaintext.
+
+A 95-rune solved-p57 plant encrypted and decrypted exactly under a synthetic member of the 840-key family. All candidate transformations re-encrypt exactly by construction. That is an implementation check, not evidence that a candidate key is authentic.
 
 ## Interpretation and limits
 
 This test retires only:
 
 1. A direct additive GP29 pad whose stream is any nonzero linear observation of T(x)=u x²⁹, under the exhaustive 840-key global or page-reset clock.
-2. The source-fixed trace/norm additive and affine projections, under the tested global-rune and one-state-per-page clocks.
+2. The source-fixed trace/norm additive and affine projections, under the tested global-rune, page-reset, and one-state-per-page clocks.
 
 It does **not** exclude other nonlinear output functions, nonlinear state transitions, non-GP intermediate registers, different source-derived clocks, or a different use of the red polynomials. The exact order-56 construction is a hypothesis, not a recovered Cicada mechanism. The apparent 56-page and norm-79 matches must not be multiplied as independent probabilities.
 

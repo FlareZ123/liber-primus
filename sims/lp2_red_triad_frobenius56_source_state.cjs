@@ -50,6 +50,7 @@ assert.equal(spow(19,14),28);
 assert.deepEqual(pow(u,30),[21,0]);
 assert.equal(tr(u),3);
 assert.equal(nm(u),21);
+assert.equal(79 % P,nm(u));
 assert.equal(spow(21,14),28);
 assert.equal(spow(21,28),1);
 for(const d of [1,2,4,7,14]) assert.notEqual(spow(21,d),1);
@@ -192,6 +193,9 @@ for(const clock of ['global-rune','page-reset']){
 }
 assert.ok(exhaustive.every(x=>x.best.scorePerLetter<raw.scorePerLetter));
 
+assert.equal(exhaustive.find(x=>x.clock==='global-rune').aboveRaw,1);
+assert.equal(exhaustive.find(x=>x.clock==='page-reset').aboveRaw,0);
+assert.ok(exhaustive.find(x=>x.clock==='global-rune').bestDeltaFromRaw<0.002);
 const plant=p57.indices,keyPlant=keyFromPair(7,19);
 const plantC=plant.map((x,i)=>mod(x+keyPlant[i%PERIOD]));
 assert.deepEqual(plantC.map((x,i)=>mod(x-keyPlant[i%PERIOD])),plant);
