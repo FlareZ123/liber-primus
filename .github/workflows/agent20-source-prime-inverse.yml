@@ -14,6 +14,7 @@ on:
           - red32
           - pgp4096
           - pgpSkip
+          - pgpSkipSections
 
 jobs:
   source-prime-inverse:
@@ -107,4 +108,19 @@ jobs:
           node-version: '22'
       - name: Rejection-conditioned GP trigrams with original RSA source key and blind native control
         shell: pwsh
+        run: node sims/pgp_modulus_skip_hmm.cjs
+
+  original-signing-key-section-skip-hmm:
+    if: ${{ inputs.mode == 'pgpSkipSections' }}
+    runs-on: windows-latest
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Eight authentic LP2 source sections with native GP planted controls
+        shell: pwsh
+        env:
+          LP2_PGP_SECTION: '1'
         run: node sims/pgp_modulus_skip_hmm.cjs
