@@ -22,13 +22,13 @@ The canonical corpus and ink annotations give:
 - 55 page-initial runes, treated as visible IVs in the transducer test;
 - 31 13-dot marks over LP2, of which 27 are inside the unknown stream and one is at its end;
 - 32 fragments delimited by the 31 marks; the first 28 fragments contain all 12,956 unknown runes;
-- none of the 86 doublets starts at a page-initial position or coincides with a 13-dot marker immediately before or between its two runes.
+- **exactly one** of the 86 doublets begins at the first rune of a physical page: the **ᚹᚹ** at p51 offsets **0–1** (book offsets **12,114–12,115**), immediately after p49’s 10-dot mark and the 256-byte printed table; none coincides with a 13-dot marker immediately before or between its two runes.
 
 The 28 unknown-fragment lengths are:
 
 `13, 716, 16, 103, 3, 690, 11, 308, 0, 14, 1729, 0, 9, 11, 1883, 16, 1005, 19, 1414, 10, 81, 8, 1460, 3, 118, 3008, 9, 299`.
 
-The absence of boundary alignment does not disprove a repeat class, but it gives no support for treating the 86 doublets as page/ornament control events.
+The uniquely page-initial doublet is source-localized to the table continuation, giving a concrete boundary constraint for any proposed cipher state. It does not establish a repeat-control channel: the remaining 85 doublets do not begin at a physical page start, and none is aligned immediately after a 13-dot marker. The absence of a systematic marker association weakens a general repeat-as-control interpretation.
 
 ## Adjacent-repeat structure
 

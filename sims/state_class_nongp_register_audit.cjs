@@ -211,7 +211,11 @@ function main() {
   assert.equal(adjacentPairCount, 12901);
   const markerPositions = new Set(marks13.filter(m => m.pos < unknownRunes).map(m => m.pos));
   const pageInitialSet = new Set(pageInitialPositions);
-  const repeatAtPageInitial = repeats.filter(r => pageInitialSet.has(r.pos)).length;
+  // repeats[].pos is the SECOND rune; subtract one to test a page-start pair.
+  const pageInitialDoublets = repeats.filter(r => pageInitialSet.has(r.pos - 1));
+  const repeatAtPageInitial = pageInitialDoublets.length;
+  assert.deepEqual(pageInitialDoublets.map(r => ({page:r.page, secondRuneBookOffset:r.pos})),
+    [{page:51, secondRuneBookOffset:12115}]);
   const repeatAtMarkerOrAdjacent = repeats.filter(r =>
     markerPositions.has(r.pos) || markerPositions.has(r.pos - 1)
   ).length;
