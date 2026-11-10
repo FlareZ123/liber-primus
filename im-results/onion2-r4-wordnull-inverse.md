@@ -13,6 +13,8 @@ This is a deliberately narrow bridge between two independently motivated observa
 
 The external R4 model is not established as Cicada's cipher. Its own audit notes that its fitted null-placement model allowed word-edge positions, while its earlier decoder and positive controls covered interior positions only. This experiment explicitly includes both leading and trailing nulls.
 
+Related current-repository work: sims/fibonacci_grid_keyless_null_word_inverse.cjs already has an edge-inclusive, keyless one-null-per-word DP for a different AES-CTR key derived from the Fibonacci/grid source. That implementation does not include the R4 lag-six collision-repair channel and does not test the Onion2 additive GP29 key. The present result is the distinct combination of that source family, Onion2 bytes, and T-repair; it should not be read as the first edge-null decoder in this repository.
+
 ## Fixed candidate
 
 - Key: the original Onion2 final_hex, 256 bytes, period 256, global clock starting at byte 0.
