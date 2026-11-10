@@ -36,3 +36,52 @@ console.log(JSON.stringify({
   pageFragments:lp2.originalPageFragments, crossPageWords:lp2.crossPageWords,
   unambiguousWithinPageWords:lp2.byContainedPage.flat().length
 },null,2));
+
+/*
+ * Full physical-page crosswalk regression. LP2 page 50 is the rune-free
+ * numerical grid and is absent from the 57 transcript segments. Both
+ * resources share an upstream transcription lineage: this verifies
+ * indexing and lossless rune conversion, not independent source accuracy.
+ */
+const fs = require("node:fs");
+const path = require("node:path");
+const root = path.resolve(__dirname, "..");
+const numeric = JSON.parse(fs.readFileSync(
+  path.join(root, "resources/liber-primus/lp2-corpus.json"), "utf8"));
+const rawTranscript = fs.readFileSync(
+  path.join(root, "resources/lp2-transcription.txt"), "utf8");
+const segments = rawTranscript.split("%");
+const alphabet = new Map(numeric.runes.map((rune, index) => [rune, index]));
+assert.equal(numeric.runes.length, 29);
+assert.equal(numeric.pages.length, 58);
+assert.equal(segments.length, 57);
+assert.deepEqual(numeric.pages.map(p => p.page),
+  Array.from({length: 58}, (_, index) => index));
+assert.equal(numeric.pages[50].status, "numeric_grid_only");
+assert.deepEqual(numeric.pages[50].indices, []);
+assert.deepEqual(numeric.pages.slice(0, 56).map(p => p.status),
+  Array.from({length: 56}, (_, i) =>
+    i === 50 ? "numeric_grid_only" : "unsolved"));
+assert.deepEqual(numeric.pages.slice(56).map(p => p.status),
+  ["solved", "solved"]);
+let unsolvedRunes = 0;
+for (let segment = 0; segment < segments.length; segment++) {
+  const page = physicalLP2Page(segment);
+  const runes = [...segments[segment]].filter(character =>
+    /[\u16A0-\u16FF]/u.test(character));
+  const indices = runes.map(character => {
+    assert.ok(alphabet.has(character),
+      "unrecognized rune on transcript segment " + segment);
+    return alphabet.get(character);
+  });
+  assert.deepEqual(indices, numeric.pages[page].indices,
+    "mismatch at transcript segment " + segment +
+    ", physical LP2 page " + page);
+  assert.equal(indices.length, numeric.pages[page].runic_count);
+  if (page <= 55) unsolvedRunes += indices.length;
+}
+assert.equal(unsolvedRunes, 12956);
+assert.equal(physicalLP2Page(55), 56);
+assert.equal(physicalLP2Page(56), 57);
+console.log("Full LP2 transcript/JSON physical-page crosswalk passed: " +
+  segments.length + " rune-bearing segments mapped to 58 physical pages");
