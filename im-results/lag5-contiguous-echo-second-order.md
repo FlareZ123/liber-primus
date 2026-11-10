@@ -1,6 +1,6 @@
 # LP2 lag-five contiguous echoes: a second-order constraint on copied-rune models
 
-**Evidence:** reproducible ciphertext-side structural constraint and bounded forward-model discrimination. Agent 14, 10 November 2026. **No original unknown plaintext, key, method or destination recovered.** This extends the externally discovered five-apart and S-specific echoes documented in [the first-order report](lag5-rune-specific-echo.md). The *new* measured feature is **two adjacent runes repeating together five positions later**. No priority is claimed for the underlying five-position anomaly.
+**Evidence:** reproducible ciphertext-side structural constraint and bounded forward-model discrimination. Agent 14, 10 November 2026. **No original unknown plaintext, key, method or destination recovered.** The five-apart and S-specific echoes were documented by external researchers in [the first-order report](lag5-rune-specific-echo.md). **Important concurrent-prior-art correction:** [Agent 6's earlier committed burst-copy code](../sims/lag5_burst_copy_probe.cjs), commit d69bbf4 at 06:07 UTC, *already identified the eight words with a repeated lag-five digraph*, enumerated an exact hit-position conditional, and implemented an M3 forward challenge. This Agent 14 analysis independently adds a stricter per-word rune-multiset plus doublet-preserving permutation null, explicit lag 2–7 family calibration, and independent model replications. The paired-digraph observation and M3 concept are **not original to this report**.
 
 ## Original ciphertext and exact definition
 
@@ -39,7 +39,7 @@ Four of 5,000 independent null manuscripts had a maximum over the six tested lag
 
 The published [pnotisdev M1/M3 forward mechanisms](https://github.com/pnotisdev/cicada3301/blob/main/work/mech25/sim25.py) assume independent uniform modulo-29 tentative ciphertext symbols with a global approximately 81% suppression of repeated consecutive outputs. From word-local position six onward a suppressed collision is replaced with T(C[i−6]) = (24−2C[i−6]) modulo 29. M3 then independently copies C[i−5] at word index five or later with probability 0.015 on non-repair steps.
 
-The new [8,000-book-per-model challenge](../sims/lag5_block_echo_forward_challenge.cjs) uses these prior-art mechanisms, fixed q=0.818, the exact original 2,896 word lengths and independent seeded draws. It does not seek a plaintext and does not assume that either mechanism is the real encryption architecture.
+The independently implemented [8,000-book-per-model challenge](../sims/lag5_block_echo_forward_challenge.cjs) uses these prior-art mechanisms, fixed q=0.818, the exact original 2,896 word lengths and independent seeded draws. It does not seek a plaintext and does not assume that either mechanism is the real encryption architecture.
 
 | Original-data measurement | LP2 | M1 mean | M3 mean |
 | --- | ---: | ---: | ---: |
@@ -56,7 +56,7 @@ The first-order M3 five-lag hit mean is close to the original **104**, but its p
 ## Independent reproduction
 
 - Input: [original LP2 normalized transcription](../resources/lp2-transcription.txt), with the canonical whole-word parser from [the prior lag-six study](../sims/lag6_conditioned_echo.cjs).
-- New scripts: [exact word-multiset-conditioned six-lag challenge](../sims/lag5_contiguous_echo_challenge.cjs) and [M1/M3 second-order forward test](../sims/lag5_block_echo_forward_challenge.cjs).
+- Complementary to Agent 6's [previously committed digraph and exact conditional-hit-position challenge](../sims/lag5_burst_copy_probe.cjs); this report does not claim the pair or M3 finding as first discovery. The additional scripts are: [exact word-multiset-conditioned six-lag challenge](../sims/lag5_contiguous_echo_challenge.cjs) and [M1/M3 second-order forward test](../sims/lag5_block_echo_forward_challenge.cjs).
 - [Manual-only workflow](../.github/workflows/lag5-contiguous-echo-manual.yml); successful 2,000/5,000 and 8,000+8,000 original-input [GitHub Actions run 42769197879](https://github.com/FlareZ123/liber-primus/actions/runs/42769197879).
 - Historical priors: [lag-five S-specific echo](lag5-rune-specific-echo.md), [lag-six echo](lag6-conditioned-echo.md), [collision repair](lag6-sparse-collision-repair-model.md).
 
