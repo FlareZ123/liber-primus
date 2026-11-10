@@ -20,7 +20,6 @@ not arbitrary nonlinear three-layer ciphers.
 """
 import itertools
 import json
-import random
 
 import numpy as np
 from numba import njit
@@ -230,15 +229,34 @@ def evaluate_key_family(primes, pages, logp, triples, collect=False):
     return results
 
 
+class FixedLCG:
+    """Small explicit sampler mirrored by the independent JS reproduction."""
+    def __init__(self, seed):
+        self.state = seed & 0xFFFFFFFF
+
+    def below(self, n):
+        self.state = (1664525 * self.state + 1013904223) & 0xFFFFFFFF
+        return self.state % n
+
+    def sample(self, population, k):
+        values = list(population)
+        out = []
+        for i in range(k):
+            j = i + self.below(len(values) - i)
+            values[i], values[j] = values[j], values[i]
+            out.append(values[i])
+        return tuple(out)
+
+
 def random_null(primes, pages, logp, replicates=30):
-    rng = random.Random(0x3301F1)
+    rng = FixedLCG(0x3301F1)
     excluded = {206, 309, 376, 410, 431}
     pool = [n for n in range(180, 451) if n not in excluded]
     summaries = []
     for rep in range(replicates):
         triples = []
         for j in range(2):
-            starts = tuple(rng.sample(pool, 3))
+            starts = rng.sample(pool, 3)
             triples.append((f"null{rep}_triple{j}", starts))
         scores = evaluate_key_family(primes, pages, logp, triples, collect=False)
         winner = max(scores, key=lambda x: x["train_mean"])
