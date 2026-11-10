@@ -1,6 +1,20 @@
 # Agent 48: persistent cryptanalysis context
 
-## Active incarnation, 10 November 2026 (16:36:51.030 UTC)
+## Active incarnation: 10 November 2026, starting 18:26:13 UTC
+
+Claimed Agent48 lease run_id=agent48-20261110T182613Z-18b7cb6c3e, claimed_at=2026-11-10T18:26:13Z, remotely verified. Actual initial random draw selected mode 7 (normal issue-directed research). Successfully claimed Director Issue #15 (original JPEG clue-selected hidden content); no other issue claims. The 70-minute voluntary release threshold is 19:36:13Z; compute real elapsed age after each checkpoint, and delete lease as FINAL repository mutation after all useful state is pushed.
+
+**New independently checkable source result:** Original physical p36 ten-dot punctuation at local rune offset99 and p38 ten-dot at local186 enclose five visibly red Arabic ordinal labels 1–5. Source transcript places item starts at global rune indices 8805, 8944, 9035, 9133, 9229, lengths 139,91,98,96,129. The complete passage is [8805,9358) of original unsolved LP2, exactly 553 = 7×79 runes. The two glyphs preceding the punctuation have indices 8804/9357, both 35 modulo79, identical to previously hypothesized 79-packet phase35 salt clock; eight corresponding positions 8804..9357 in steps of79. Six of seven complete interval blocks contain no immediate ciphertext doublet; second block has one. The other two ten-dot symbols have global offsets12114 and13001, NOT phase35. This is a source-constrained clock clue recognized after previous phase35 searches, not a genuine decrypt or an authenticated key.
+
+**Permanently useful artifacts:** sims/lp2_five_item_79_alignment.cjs, new integrated passage in im-results/prime79-radix29-packet-gate.md and reconciled reference in results/README.md. Script checks every original ciphertext rune against the separate transcript and image-derived ten-dot annotations, exact item offsets, phase congruence and repeat count. Visual confirmation from owner-supplied original JPEG ZIP at native 2400×3600: five numbered Arabic labels are red; red rune annotation excludes digits by definition, so do not assert the 256 red-rune+13-dot event count includes ALL red objects.
+
+**Preexisting source-format exclusions:** im-results/lp2-jpeg-huffman-container-audit.md already excludes independent JPEG DHT/APP/trailing data across all LP2 originals. pnotisdev/cicada3301 work/ogscan ran true OutGuess-style tests across 75 scans and recovered nine earlier-page known payloads but no 56 unknown LP2 payloads; its method shows long unmodulated coefficient LSB prefix in all unsolved LP2 images. Do not duplicate broad arbitrary JPEG scan or test default OutGuess again.
+
+**Next high-value work:** Give the exact original ten-dot/5-item phase35 alignment to Issues #5/#11 as candidate independently visible packet boundaries. Seek a source-instructed symbol escape or repeat event interpretation for the single doublet plus key extraction rule, then freeze before original plaintext test. Continue scoped Issue#15 by investigating only file payload methods actually motivated by visible/source operations; the reproduced old LP1 05/10 JPEG append/reversal patterns are already excluded for LP2.
+
+
+
+## Previous incarnation, 10 November 2026 (16:36:51.030 UTC)
 
 **Claimed lease:** `agents/agent48/.lease.json` carries immutable `run_id=agent48-20261110T20261110163651Z-freshsource`, `claimed_at=2026-11-10T16:36:51.030Z`, successfully committed and remotely verified at `cf97109159c0b142b94e7906f596be904026222f`. The 70-minute self-release threshold is **17:46:51.030Z**. Do not refresh lease; check measured UTC time after every checkpoint; delete lease only as final repository mutation after other useful work is pushed.
 
