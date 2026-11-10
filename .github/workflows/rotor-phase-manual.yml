@@ -17,3 +17,5 @@ jobs:
         run: node sims/lag6_rotor_consistency.cjs
       - name: Check literal rune passthrough on all rune associations
         run: node sims/rune_passthrough_word_position.cjs
+      - name: Test arbitrary delayed public-state row keys against native GP plaintext
+        run: node sims/delayed_motif_row_invariant.cjs
