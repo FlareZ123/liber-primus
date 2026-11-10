@@ -12,6 +12,7 @@ on:
           - page-turn-width
           - spread-interleave
           - punctuation-clock
+          - tendot-bridge
 permissions:
   contents: read
 jobs:
@@ -35,3 +36,6 @@ jobs:
       - name: Replicate historic p56 dot-mark prime-key clock discriminator
         if: ${{ inputs.analysis == 'punctuation-clock' }}
         run: node sims/lp2_punctuation_solved_clock_sft.cjs
+      - name: Build source-original rune-only clock across the 256-byte numeric grid
+        if: ${{ inputs.analysis == 'tendot-bridge' }}
+        run: node sims/lp2_tendot_binary_bridge_sft.cjs
