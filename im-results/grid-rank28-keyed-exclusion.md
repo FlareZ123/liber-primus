@@ -1,6 +1,6 @@
-# LP2 numerical-grid columns under a reversible 28-symbol predecessor-exclusion cipher
+# LP2 predecessor-exclusion rank28: grid keys and shared section keys
 
-**Evidence class (Agent 12, 2026-11-10):** executed source-original, finite grid-key inversion negative, with blind planted source-key recovery. No unknown LP2 plaintext, original key, or intended destination recovered.
+**Evidence class (Agents 12 and 5, 2026-11-10):** two original-source, source-bounded rank28 inversions (grid-column keys and cross-section key reuse), each with exact synthetic forward/inverse controls. No unknown LP2 plaintext, actual key or intended destination recovered.
 
 ## Cipher architecture actually tested
 
@@ -32,6 +32,24 @@ The best **original** training candidate is **sorted predecessor-exclusion, AES-
 To assess whether the grid order specifically supplies a useful key, shuffle the **32 byte positions inside each original column**, preserving the per-column byte inventory, then independently repeat the complete **32-setting + 8! optimized assignment** family selection. Among **12** full matched shuffled-grid searches, **3** train winners score at least as high as the genuine-grid training winner and **1** has heldout score at least as high as the genuine-grid selected winner. Add-one finite null tails are **4/13 ≈ 0.30769** (train) and **2/13 ≈ 0.15385** (heldout). The literal column order is therefore **not meaningfully preferred** in this small matched trial.
 
 **Conclusion:** the direct original-grid AES/ChaCha **28-rank additive encryption** under the 32 natural modes and every exact eight-column assignment produces no recoverable original LP2 English-GP plaintext or independent key evidence. It also fails to account for the 86 original equal-adjacent glyphs except as externally unspecified erasures. The test does not exclude hidden key skips, alternative IV/key derivation, different source language, an arbitrary outer alphabet, or another 28-symbol generative map. An exact source-key plant is perfectly reversible; the real original result is unpromising.
+
+## Reversible EA-sentinel and shared section keys (Agent 5)
+
+A complementary full-29-rune candidate is exactly invertible given its key and initial transmitted ciphertext rune. The rare **EA** plaintext rune (GP index 28) emits a repeat of the preceding ciphertext rune. The other GP tokens (0..27) use a cyclic predecessor rank:
+
+- When P[i]=28, C[i]=C[i−1].
+- Otherwise C[i]=(C[i−1]+1+((P[i]+K[i]) mod28)) mod29.
+- The key index advances on every rune, including EA. The first ciphertext rune is an IV.
+
+Thus R[i]=(C[i]−C[i−1]−1) mod29 is one of 0..27 on nonrepeat positions, and the exact inverse gives P[i]=(R[i]−K[i]) mod28; repeats give P[i]=28. **When two sections share aligned K modulo28, subtracting their nonrepeat R values removes K exactly**, yielding the difference of two unknown GP plaintext residues. This is a fully defined alternative to the earlier grid-key source, motivated by the manuscript's near absence of doublets. It is still a hypothesis.
+
+The source-original scan preserves eight text sections, lengths **[729,1145,1738,1894,1021,1433,1680,3316]** (12,956 runes), and the observed **86** within-section adjacent doublets. It tests all **28** section pairs and relative offsets from −150 to +150, retaining **8,274** alignments with at least 600 overlapping positions. The first 300 aligned positions are training; the next 300 are untouched holdout. The 28-symbol difference likelihood is derived from the first 240,000 Shakespeare source characters, converted by the supplied GP encoder to 174,998 runes. Plaintext EA is an explicit sentinel and excluded from the rank-28 likelihood.
+
+**Original result:** the strongest trained alignment is section 3 versus 6, offset +122, with **+7.288794 nats** of source-language likelihood advantage against uniform differences on training and **−5.195973 nats** on validation. The best validation score among the 20 highest training candidates is **−1.204198 nats**. In 120 matched controls that independently rotate each section's observed rank vector, preserving its marginal and repeat-event inventory, **106** achieve at least the original top-20 validation score; add-one **p=107/121=0.88430**. This supports no reused 28-pad under the declared model. Separately, the earlier selected physical page 28/42 pair has only **10.79775** symmetric rank-28 difference chi-square over 267 nonrepeat aligned symbols: its raw mod29 anomaly does not carry over to this particular reversible transform.
+
+**Exact positive controls:** 24 independently planted source-disjoint eight-section manuscripts reuse one random modulo28 key across sections 2 and 5 at offset +73. The program exactly recovers and re-encrypts every source symbol after the transmitted initial cipher rune, including sentinel EA. The true alignment ranks #1 in **6/24**, top 20 in **12/24**, and has positive heldout evidence in **24/24** (median **+4.997419 nats**). With top-20 selection power only 50%, this is a conditional negative signal, **not a proof that no shared section key is possible**. Hidden segmentation, different plaintext register, longer drift, unknown offsets, and source transforms remain untested. The GP training EA rate is **0.74058%**, close to 86/12,956, but one matching frequency does not establish a cipher; the original word-final repeat placements remain a serious obstacle for literal EA with preserved spaces.
+
+Reproduce with [the original-rune and exact planted-source experiment](../sims/agent5_rank28_sharedpad.cjs), using the existing manual Agent5 workflow option rank28-shared. [Successful Actions run 42792940661](https://github.com/FlareZ123/liber-primus/actions/runs/42792940661).
 
 ## Reproduce
 
