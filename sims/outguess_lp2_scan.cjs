@@ -19,7 +19,9 @@ const root = path.resolve(__dirname, '..');
 const images = path.join(root, 'resources', 'liber-primus');
 const output = path.resolve(process.env.OUTGUESS_OUTPUT || path.join(root, 'outguess-results'));
 const key = process.env.OUTGUESS_KEY || '';
-const sources = [0, 8, ...Array.from({length: 58}, (_, i) => i + 17)];
+const sources = process.env.OUTGUESS_SCAN_ALL_LP1 === '1'
+  ? Array.from({length: 75}, (_, i) => i)
+  : [0, 8, ...Array.from({length: 58}, (_, i) => i + 17)];
 
 fs.mkdirSync(output, {recursive: true});
 const lock = path.join(output, '.scan.lock');
