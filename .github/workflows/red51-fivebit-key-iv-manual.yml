@@ -13,6 +13,7 @@ on:
           - triangle
           - primewalk
           - fibonacci
+          - fibonacciTitles
           - triad-nonce
 jobs:
   source-key-inversion:
@@ -34,6 +35,9 @@ jobs:
       - name: Source Fibonacci root GP pad and grid-CTR inversion
         if: ${{ inputs.probe == 'fibonacci' }}
         run: node sims/fibonacci_red_field79_inversion.cjs
+      - name: Source per-heading Fibonacci nonce grid cipher inverse
+        if: ${{ inputs.probe == 'fibonacciTitles' }}
+        run: node sims/fibonacci_title_grid_iv_inversion.cjs
       - name: Exact radix-29 padded 256-bit AES key
         if: ${{ inputs.probe == 'radix29' }}
         run: node sims/red51_radix29_aes.cjs
