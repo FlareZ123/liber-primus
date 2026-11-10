@@ -77,7 +77,7 @@ The archived 2016 message says Liber Primus's words are a map, their meaning the
 Those dimensions select offsets 51 and 57:
 - 563 mod256 = 51; 569 mod256 = 57; difference = 6.
 - In the original 32x8 row-major base-60 grid, cells 51 and 57 are 0x=59 and 1w=118, exactly 2x. This is the only exact six-apart doubling pair in the 256-byte row-major grid; among four natural traversals and their reversals, only row-major forward gives it at those offsets.
-- The p53-p55 source grouping is 128 black p53 runes, then a second 128-rune half made from 51 red p53 runes + the p54 Ac initial + 76 p55 runes. Within that second half, 563 mod128=51 selects Ac (GP index24) and 569 mod128=57 selects S (GP index15, Gematria prime53, 53 mod29=24). This is the only six-apart pair in that half with the first rune at GP index24 and the second rune's prime residue 24.
+- The p53-p55 visual concatenation is all179 p53 runes + the oversized p54 Ac initial + all76 p55 runes =256. The first128 p53 runes form the black block; the next51 form the span marked by the red numeral1 (the runes themselves are black). The second half is that 51-rune marker span + p54 initial Ac + p55's76 runes. Within that second half, 563 mod128=51 selects Ac (GP index24) and 569 mod128=57 selects S (GP index15, Gematria prime53, 53 mod29=24). This is the only six-apart pair in that half with the first rune at GP index24 and the second rune's prime residue 24.
 - In the 32x8 row-major grid, positions51->57 are coordinates(6,3)->(7,1), vector(+1,-2); the row-major linear step is 8*1-2=6. Thus grid geometry supplies lag6 and signed slope -2, while cell values59->118 independently confirm magnitude2. The second-half Ac/S pair supplies intercept24. This gives T6(x)=24-2x mod29; the ciphertext independently matches 80/1,290 versus 34/1,290 for the positive slope. Existing reports already document the motif; this is the new cross-artifact source derivation.
 
 ### Bounded key tests and persistence
@@ -121,3 +121,8 @@ The row-major grid geometry is the key signed-slope observation: offset51=(row6,
 
 A parser bug was caught before finalizing reproducibility: parseSharedCorpus().words are objects with a .runes string, not numeric arrays. Both scripts now explicitly map word.runes through the GP rune index. The fully asserted source-gate run 42894532661 passes: source pairs and geometry, exact 80/1290 and34/1290 counts, bounded candidate score below English, and positive-control recovery above95%. The corrected Pi.Mobi key probe run 42894161342 also passes; its tested pi streams remain negative (best T6 score -5.1348/token; direct additive base29 -7.0602/token). Earlier pre-parser-fix successful source-gate runs should not be cited as validation of the original-ciphertext/key scores; use 42894532661.
 
+
+
+### Source-image inspection clarification
+
+Inspected the uploaded original JPEGs 53.jpg, 54.jpg and 55.jpg directly. “Red p53 runes” is imprecise: the GP glyphs are black; the red numeral 1 and red punctuation visually mark the 51-rune p53 suffix/span. The assembled source block is p53 all179 runes + p54's oversized first Ac rune + p55 all76 runes =256; p54's remaining text is intentionally excluded by this visual-selection hypothesis. The split is p53 first128 + (p53 marker-1 span51 + Ac1 + p55 76)=128. Report and source-gate assertions now state this accurately, including p53 length179, marker span51, p54 initial index24 and p55 length76. This is still a post-selected visual grouping, not an independently established intended segmentation.
