@@ -9,5 +9,10 @@
   "source_sha256": "0911bf3c8cc3a73bbb346f82ba65daff3eb81914c4826060ac168bd0f55e267e",
   "target_hex": "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4",
   "verification": "bytes.fromhex(target_hex) has byte length 64, SHA-256 source_sha256, and git blob-object SHA-1 source_git_blob_sha1 (SHA1 of b'blob 64\\0' + bytes).",
-  "limitations": "Historical researcher Git commit is unsigned, not an independently authenticated Cicada HTTP capture. Bytes are the recorded target, not the missing preimage or a digest algorithm clue."
+  "limitations": "Historical researcher Git commit is unsigned, not an independently authenticated Cicada HTTP capture. Bytes are the recorded target, not the missing preimage or a digest algorithm clue.",
+  "first_observed_commit_in_examined_parent_chain": "06f57643821f1cadf597471c2b9c813bd08d2e37",
+  "first_observed_commit_recorded_at": "2014-05-11T21:56:12Z",
+  "first_observed_path": "stage11/ky2khlqdf7qdznac.onion/56.bin",
+  "first_observed_parent_without_blob": "a9201dd469a1a514eb0d8ff8f3449dbe2e7f7462",
+  "provenance_note": "2014-05-11 21:56:12Z 'page 56' commit first contains identical Git blob in historical onion7 staging path; subsequent move to stage11/56.bin retained same object. Author dates are Git metadata, not external timestamp or Cicada authentication."
 }
