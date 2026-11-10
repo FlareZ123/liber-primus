@@ -1,0 +1,145 @@
+"use strict";
+
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+
+const WIDTH = 81;
+const SEED = 0x9e3779b9;
+const REPLICATES = 2000;
+
+/** Read the authentic first 81² unsolved GP29 glyphs as numeric indices. */
+function source() {
+  const file = path.join(__dirname, "..", "resources", "liber-primus", "lp2-corpus.json");
+  const corpus = JSON.parse(fs.readFileSync(file, "utf8"));
+  const pages = corpus.pages.filter(p => p.page <= 55 && p.indices && p.indices.length);
+  assert.equal(pages.length, 55);
+  const stream = pages.flatMap(p => p.indices);
+  assert.equal(stream.length, 12956);
+  return stream.slice(0, WIDTH * WIDTH);
+}
+
+/**
+ * Coordinates that must be a known QR finder or its one-module separator.
+ * Three 7x7 finder patterns are at the upper-left, upper-right and lower-left.
+ * The white one-module separator inside the image is included; outside-image
+ * separator positions are clipped.
+ * @returns {Array<[number,number,number]>} row, column, required bit
+ */
+function finderCells() {
+  const marked = new Map();
+  const finder = (row, col) => {
+    for (let dr = -1; dr <= 7; dr++) for (let dc = -1; dc <= 7; dc++) {
+      const r = row + dr, c = col + dc;
+      if (r < 0 || r >= WIDTH || c < 0 || c >= WIDTH) continue;
+      const inside = dr >= 0 && dr <= 6 && dc >= 0 && dc <= 6;
+      const black = inside && (
+        dr === 0 || dr === 6 || dc === 0 || dc === 6 ||
+        (dr >= 2 && dr <= 4 && dc >= 2 && dc <= 4));
+      const pos = r * WIDTH + c;
+      if (marked.has(pos)) assert.equal(marked.get(pos), Number(black));
+      marked.set(pos, Number(black));
+    }
+  };
+  finder(0, 0);
+  finder(0, WIDTH - 7);
+  finder(WIDTH - 7, 0);
+  assert.equal(marked.size, 192);
+  return [...marked].map(([pos, bit]) => [Math.floor(pos / WIDTH), pos % WIDTH, bit]);
+}
+
+/**
+ * Enumerate four explicit reading orders x eight square dihedral transforms.
+ * Repeated equivalent orientations are permitted; the reported min is exact
+ * over the declared finite family.
+ */
+function routes(pattern) {
+  const all = [];
+  for (const route of ["row", "serprow", "col", "serpcol"]) {
+    for (let orient = 0; orient < 8; orient++) {
+      const spots = pattern.map(([row, col, bit]) => {
+        let r = (orient & 1) ? WIDTH - 1 - row : row;
+        let c = (orient & 2) ? WIDTH - 1 - col : col;
+        if (orient & 4) [r, c] = [c, r];
+        let position;
+        if (route === "row") position = r * WIDTH + c;
+        else if (route === "serprow") position = r * WIDTH + (r & 1 ? WIDTH - 1 - c : c);
+        else if (route === "col") position = c * WIDTH + r;
+        else position = c * WIDTH + (c & 1 ? WIDTH - 1 - r : r);
+        return [position, bit];
+      });
+      all.push({route, orient, spots});
+    }
+  }
+  return all;
+}
+
+/**
+ * Exact best feasible fit over all 2^29 fixed glyph-to-bit assignments.
+ * Each original glyph's contribution is independent: choose its more common
+ * mandatory bit and count the cells requiring the opposite value.
+ */
+function mismatch(stream, route) {
+  const counts = Array.from({length: 29}, () => [0, 0]);
+  for (const [position, bit] of route.spots) counts[stream[position]][bit]++;
+  return counts.reduce((sum, [white, black]) => sum + Math.min(white, black), 0);
+}
+
+/** Deterministic xorshift32, used only for null shuffles and a planted QR. */
+function generator(initial = SEED) {
+  let state = initial >>> 0;
+  return () => {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return (state >>> 0) / 0x100000000;
+  };
+}
+
+function run() {
+  const stream = source();
+  const transforms = routes(finderCells());
+  const scores = transforms.map(route => ({
+    route: route.route, orient: route.orient, errors: mismatch(stream, route)
+  })).sort((a, b) => a.errors - b.errors);
+  assert.equal(scores[0].errors, 58);
+  const random = generator();
+  const nulls = [];
+  for (let run = 0; run < REPLICATES; run++) {
+    const shuffled = stream.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    let minimum = Infinity;
+    for (const route of transforms) minimum = Math.min(minimum, mismatch(shuffled, route));
+    nulls.push(minimum);
+  }
+  const planted = stream.slice();
+  for (const [position, bit] of transforms[0].spots) {
+    planted[position] = bit ? 0 : 14; // Two disjoint glyph classes encode the required bits.
+  }
+  assert.equal(mismatch(planted, transforms[0]), 0);
+  const exceed = nulls.filter(score => score <= scores[0].errors).length;
+  const summary = {
+    source: "original LP2 unsolved GP29 stream, first 6561 glyphs",
+    square: "81x81",
+    requiredFinderSeparatorCells: 192,
+    testedRouteOrientations: transforms.length,
+    minimumUnavoidableBitErrors: scores[0].errors,
+    bestLayouts: scores.filter(s => s.errors === scores[0].errors),
+    fixedGlyphBinaryPlantErrors: mismatch(planted, transforms[0]),
+    nullShuffles: REPLICATES,
+    nullSeed: SEED,
+    nullMin: Math.min(...nulls),
+    nullMedian: [...nulls].sort((a, b) => a - b)[1000],
+    nullMean: nulls.reduce((s, a) => s + a, 0) / nulls.length,
+    nullAtMostOriginal: exceed,
+    nullLowerTailAddOne: (exceed + 1) / (REPLICATES + 1)
+  };
+  console.log(JSON.stringify(summary, null, 2));
+  return summary;
+}
+
+if (require.main === module) run();
+module.exports = {source, finderCells, routes, mismatch, generator, run};
