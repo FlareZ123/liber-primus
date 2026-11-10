@@ -4,12 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       probe:
-        description: "Choose the full grid regression or the source-locked state/class audit"
+        description: "Choose full regression or one source-locked finite audit"
         required: false
         type: choice
         options:
           - full
           - state-class
+          - jpeg05-p53
         default: full
 
 jobs:
@@ -22,7 +23,7 @@ jobs:
         with:
           node-version: '22'
       - name: Verify 256-token payload, token cases and SHA-256
-        if: ${{ inputs.probe != 'state-class' }}
+        if: ${{ inputs.probe == 'full' || inputs.probe == '' }}
         run: |
           node sims/test_lp2_grid.cjs
           node sims/red_run_grid_affine_membership.cjs
@@ -47,3 +48,6 @@ jobs:
       - name: Source-locked state/class capacity and Base32 padding audit
         if: ${{ inputs.probe == 'state-class' }}
         run: node sims/state_class_nongp_register_audit.cjs
+      - name: LP1 hidden 179-byte key transfer to LP2 physical page 53
+        if: ${{ inputs.probe == 'jpeg05-p53' }}
+        run: node sims/jpeg05_hidden179_p53_direct_key_sft.cjs
