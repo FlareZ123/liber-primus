@@ -20,3 +20,5 @@ jobs:
         run: node sims/spectral_two_lag_exponent_attack.cjs
       - name: Fixed original 256-byte source key through RC4 and reversible field decoder
         run: node sims/grid_rc4_field_inverse.cjs
+      - name: Test word-local nonlinear autokey and independent page splits
+        run: node sims/word_local_exponent_autokey.cjs
