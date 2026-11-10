@@ -15,3 +15,5 @@ jobs:
         run: node sims/clue_square_matrix_stream.cjs
       - name: Recover original-source GP crib keys from hidden four-dimensional matrix state
         run: node sims/source_native_4d_matrix_crib_attack.cjs
+      - name: Test red-16 Fibonacci spiral Hill key on original LP2 and positive source
+        run: node sims/red16_spiral_hill_inverse.cjs
