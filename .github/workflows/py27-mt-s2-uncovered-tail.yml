@@ -1,0 +1,64 @@
+name: Py27 MT exact-relation uncovered high tail
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mt-s2-tail:
+    name: S2 high-tail ${{ matrix.part }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        include:
+          - { part: 1, start: 4140000000, end: 4160000000 }
+          - { part: 2, start: 4160000000, end: 4180000000 }
+          - { part: 3, start: 4180000000, end: 4200000000 }
+          - { part: 4, start: 4200000000, end: 4220000000 }
+          - { part: 5, start: 4220000000, end: 4240000000 }
+          - { part: 6, start: 4240000000, end: 4260000000 }
+          - { part: 7, start: 4260000000, end: 4280000000 }
+          - { part: 8, start: 4280000000, end: 4294967296 }
+    steps:
+      - name: Fetch pinned upstream S2 screening engine
+        uses: actions/checkout@v4
+        with:
+          repository: Dukotah/cicada3301
+          ref: f63501d8f2d835b80c30230eb89a1110fb9197d2
+          path: upstream
+          sparse-checkout: |
+            liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy
+      - name: Gate model, compile bit-exact reference engine, and run known test vectors
+        working-directory: upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy
+        run: |
+          python3 check_panel_gate.py
+          gcc -O2 -Wall -Wextra -std=gnu17 -fopenmp -ffp-contract=off -o grind27 grind27.c -lm
+          ./grind27 --data engine.dat --self-test
+      - name: Sweep disjoint untested seed interval
+        working-directory: upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy
+        env:
+          START: ${{ matrix.start }}
+          END: ${{ matrix.end }}
+        run: |
+          python3 -c 'import os,json; json.dump([{"lane":"S2","reducer":"random29","relation":"exact","offset":0,"from":int(os.environ["START"]),"to":int(os.environ["END"]),"cand_bar":5.0,"claim_bar":7.6341931878728095}],open("tail-plan.json","w"))'
+          GRIND27_S2_CONTROL_OK=1 ./grind27 --data engine.dat --plan tail-plan.json --threads 4 --run-dir tail-run
+          python3 -c 'import json; s=json.load(open("tail-run/STATUS.json")); print("FINAL",json.dumps({"coverage":s["aggregate"],"from":s["from"],"to":s["to"],"hits":s["flagged_survivors"],"workers":s["workers"]},separators=(",",":")))'
+      - name: Preserve raw seed candidates and terminal state
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: py27-s2-tail-part-${{ matrix.part }}
+          if-no-files-found: warn
+          retention-days: 90
+          path: |
+            upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/tail-plan.json
+            upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/tail-run/STATUS.json
+            upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/tail-run/HIT-CANDIDATE.json
+            upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/tail-run/top_S2.json
+            upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/tail-run/hist_S2.u64
+            upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/tail-run/candidates.jsonl
