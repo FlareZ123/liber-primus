@@ -4,9 +4,16 @@
 
 The 56 unsolved LP2 physical pages contain 12,956 original ciphertext runes across 55 rune-bearing pages and one runeless numeric grid. No independently recoverable original LP2 plaintext, historical cipher key or final destination has been recovered. [Authoritative synthesis](../../results/README.md). Avoid redoing finite shared-pad, short-key, grid, red IV or generic echo-fitting exclusions without a new independently specified source state. Work toward an exactly reversible original-cipher input/output with out-of-fit predictions.
 
-## 10 November 2026, current incarnation (lease 19:53)
+## 10 November 2026, current incarnation (lease 21:34)
 
-- **Current lease:** `agent30-gpt6-20261110T195351Z-issue-directed-fallback`, original `claimed_at=2026-11-10T19:53:56.360Z`. Do not refresh. The 70-minute release threshold is **2026-11-10T21:03:56.360Z**. Check the actual system clock after every checkpoint.
+- **Current lease:** `agent30-gpt6-20261110T213403Z-mobius-totient`, original `claimed_at=2026-11-10T21:34:03.259Z`. Do not refresh. The 70-minute release threshold is **2026-11-10T22:44:03.259Z**.
+- Initial random draw was **10**, selecting normal research mode. All open `director-task` issues were actively claimed, so independent exploration was appropriate.
+- **New LP1 corner-Möbius relation:** p05 corners [[272,151],[151,272]] reduce to M05=[[11,6],[6,11]] mod29; p16 corners [[434,966],[966,434]] reduce to M16=[[28,9],[9,28]]. Exact identity M16=21*M05^6 in PGL2(F29). The Cayley coordinate h(x)=(x−1)/(x+1) conjugates M05 to u→2u (order28=phi29) and M16 to u→6u (order14). p05 MOBIUS cell226 gives x0=23 and h(x0)=13. The seed-23 projective orbit gives GP order [23,14,20,17,13,2,5,22,21,3,1,26,8,7,24,27,16,12,9,15,6,4,18,10,0,19,11,25]; M16 advances six positions. The 2016 image dimensions563×569 are prime with totient gap6; phi(226)=112=4*28. This is a verified structural clue, not a decryption.
+- Bounded negative tests: direct PGL2 substitutions M05/M05^-1/M16/M16^-1; 10 source-seeded EA-zero-step differential variants (multipliers1,2,15,6,5 with book/page clocks); seed-13 256-event recurrences compared with grid bytes; and the 56-point GF(29²) orbit of the red-triad grid-polynomial root (only the original root and conjugate remain roots). Synthetic differential round trips pass, but original LP2 remains ciphertext-like. The 2016 OutGuess payload is signed plaintext, not an encrypted block. Reproducer: `sims/lp1_mobius_corner_power6.cjs`; synthesis: `im-results/magic-square-5x5-direct-pad.md`.
+
+## 10 November 2026, prior incarnation (lease 19:53)
+
+- **Prior lease:** `agent30-gpt6-20261110T195351Z-issue-directed-fallback`, original `claimed_at=2026-11-10T19:53:56.360Z`; its 70-minute release threshold was **2026-11-10T21:03:56.360Z**. This is not the current lease.
 - Initial random draw was **11** (Critic preference); the Critic role lease was already held, so I fell back without redrawing. Agent30 was successfully claimed. All open `director-task` issues were already claimed, so I used independent exploration.
 - **LP1 paired-square source structure:** LP1 image 05's mixed rune/number 5×5 grid becomes an exact 1033 magic square when each rune-word is replaced by the sum of its GP prime weights. The crucial token is `ᚫᚦᛖᚱᛠᛚ`: `ᛠ` is EA (prime weight 109), giving 366; reading it as IA (107) gives the wrong total. The resulting matrix is:
   ```
@@ -26,8 +33,7 @@ The 56 unsolved LP2 physical pages contain 12,956 original ciphertext runes acro
 
 ## Next profitable line
 
-Investigate one exact non-additive relation between the p05 GP-prime-sum square, the p16 numeric square, the literal MOBIUS token, and the totient sentence. Begin with number-theoretic relationships that are uniquely implied by the artifact (rather than arbitrary μ/φ combinations); test only a fixed operation with an independent/held-out original-cipher prediction. Do not repeat the 48 periodic variants, direct p05/p16 matrix pad/Hill interpretations, or p174/p464/p493 prime-totient starts. If no unique operation emerges, switch to a different source-constrained LP2 lead rather than sweeping functions.
-
+Obtain independent assessments from Agent 38 (T6/2016 dimensions), Agent 2 (256-event/grid state), and Agent 7 (prior Möbius work). The next research step must explain how the verified order-28/step-6 projective state enters an original LP2 or historical-source operation and make a held-out prediction. Direct substitutions, simple EA-zero-step codecs, and the two natural seed-13 event recurrences are already negative; do not repeat them.
 ## 10 November 2026, prior incarnation (lease 18:13)
 
 - **Prior lease:** `agent30-gpt6-20261110T1813Z-punctuation-state`, original `claimed_at=2026-11-10T18:13:33.481Z`; its 70-minute threshold was 19:23:33.481Z. This is not the current lease.
@@ -38,7 +44,7 @@ Investigate one exact non-additive relation between the p05 GP-prime-sum square,
 - The first chapter's literal 13 red runes sum `662=2*331` in GP prime weights; page15 first title `638=29*22`, page40 `435=29*15`, p53 red stanza `2262=29*78`. These are known observations already covered by other agents. Further blind seeds from them are low priority.
 - The locally available 75-image user archive can be opened at `/mnt/data/liber-primus-jpegs.zip` within the **current** invocation; later incarnations must use committed `resources/liber-primus` source instead.
 
-## New investigations in this incarnation
+## New investigations in 19:53 incarnation
 
 - **Onion7 HTML metadata / p56 hash decimal:** the early 2014 archive [index.html](https://github.com/micheloosterhof/cicada-2014/blob/master/stage11/ky2khlqdf7qdznac.onion/index.html) contains `<title>133</title>` and `<div id="331">`. The exact p56 target digest's 154-digit decimal representation contains `133` at offsets 16 and 34 and `331` at offset 110, as noticed in a 2019 [Reddit thread](https://www.reddit.com/r/cicada/comments/edd3jq/). This is **not a discriminating signature**: among the 58 LP2 JPEG SHA-512 decimal digests in the uploaded archive, page 33 also has `133` twice and `331` once (overlapping occurrences at offsets 21/22/24). The 133/331 modulo-58 interpretation selects pages17/41, both 273 runes, but six pages share that length; direct Vigenère and predecessor-excluded additive page-pair tests produced no language (best IoC 0.03836). The source index HTML's SHA-512 is not the p56 target. Treat this as a weak historical coincidence, not a key clue. Handoff to Agent 2: `communications/agent2/20261110T184010Z_agent30_onion7-html-hash-markers.md`.
 - **Punctuation-count π hypothesis:** 31 thirteen-dot, 4 ten-dot and 1 twenty-three-dot marks can be read post hoc as `31-4-1 → 3.141`. Decimal π digits and base-28/base-29 π expansions were tested as additive keys against the full original 12,815-symbol nonrepeat rank stream, with both rank conventions, signs, continuous/page clocks and integer/fractional starts. Best IoC stayed about `0.03579`, far below native GP prose. No plaintext. Do not expand this into further π-key variants absent a new source constraint; the documented GIMP default seed 314159265 is a software rendering parameter, not a demonstrated cipher key.
@@ -53,6 +59,3 @@ Investigate one exact non-additive relation between the p05 GP-prime-sum square,
 - Original red spans: page15 red title prime sum 638=29×22; page40 heading 435=29×15; corrected page53 51-red-rune stanza 2262=29×78. 22nd ordinary prime=79, phi(79)=78. Exact arithmetic, but retrospective model selection and direct key-family negatives preclude decryption claims. Source in `sims/red_prime_totient_crosslink.cjs` / `im-results/red-prime-totient-crosslink.md` and later refined [red triangle synthesis](../../im-results/red-span-triangle.md). The distinct page-pointer triangle was extended by other agents.
 - LP2 repeated bigram DJU BEI p27/p55 is already historical community prior art; not a novel cryptographic breakthrough.
 
-## Next profitable line from prior incarnation
-
-Find a true external clue that specifies a deterministic key/clock for a reversible alphabet map. Agent 2 now has the Onion7 HTML/hash decimal null-control result; Agent 21 has the p15-prime→grid AES/Blowfish negative. Check their replies before any overlapping follow-up. Avoid further generic π, HTML-number, page-pair, AES or Blowfish variations. Prefer a new source-fixed, nonstationary mechanism with a positive control and a decisive test on original ciphertext plus an untouched page. Do not update the authoritative results index unless genuine plaintext or a reusable cipher mechanism is recovered.

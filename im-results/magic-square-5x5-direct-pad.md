@@ -181,14 +181,75 @@ Reproducer: `sims/lp1_mobius_grid_2d_inverse.cjs`. It reads the canonical 32×8 
 
 A distinct Boolean subset-lattice Möbius inverse of the same 32×8 table has also been tested independently by Agent 33. That route treats the 32 rows as five-bit subsets, computes four byte arrays from modular subtraction/XOR and subset/superset partial orders, then tests 16 fixed GP28 predecessor-exclusion inverses. It also remains at ciphertext-level statistics. This is not the same operation as the linear-index Dirichlet μ(n) transform above; see [the Boolean-lattice report](grid-boolean-mobius-original-inverse.md) and [its reproducer](../sims/grid_boolean_mobius_gp28_inverse_sft.cjs).
 
+
+### Corner matrices expose an exact sixth-power relation in PGL2(F29)
+
+This is distinct from the previously tested whole-cell pointwise maps and the linear/Boolean Möbius inversions. Read each 5×5 square's corners in row-major order (TL, TR; BL, BR) as a 2×2 matrix, then reduce modulo 29:
+
+```
+M05 = [[272,151],[151,272]] mod 29 = [[11,6],[6,11]]
+M16 = [[434,966],[966,434]] mod 29 = [[28,9],[9,28]]
+M05^6 mod 29 = [[11,17],[17,11]]
+M16 = 21 * M05^6 mod 29
+```
+
+The scalar 21 is irrelevant in PGL2. Both matrices are nonsingular. The p05 map
+`f(x)=(11x+6)/(6x+11)` has fixed points (x=\pm1). In the Cayley coordinate
+`u=(x-1)/(x+1)`, its action is exactly `u -> 2u`. Since
+`ord_29(2)=28=phi(29)`, the p05 projective map has order 28. The p16 map is
+its sixth power, `u -> 2^6 u = 6u`, of order 14. Thus p16 advances six positions
+in the same 28-cycle.
+
+The p05 square's literal **MOBIUS** cell has prime-weight sum 226:
+`226 mod 29 = 23`, and its Cayley coordinate is `u(23)=13`. This supplies a
+source-derived seed and gives the 28-cycle, starting at projective point 23,
+as the following GP-symbol order (the projective point at infinity is assigned
+to the otherwise omitted GP index 1; EA/index 28 is the other fixed point):
+
+`[23,14,20,17,13,2,5,22,21,3,1,26,8,7,24,27,16,12,9,15,6,4,18,10,0,19,11,25]`.
+
+The source alignment is unusually specific: p05 says **MOBIUS** (six letters);
+p16 explicitly invokes primes and totients; `phi(29)=28`; the 2016 image's
+563×569 dimensions are both prime and their totients differ by six
+(`568-562=6`); and `phi(226)=112=4*28`, matching four matrix coefficients
+times the 28-state cycle. The 13 derived from the MOBIUS cell also matches the
+13-dot stencil value used in the 256-event source stream. These are coherent
+solve-path clues, not proof that this is the intended LP2 cipher.
+
+**Bounded applications tested.** The direct projective substitutions M05,
+M05-inverse, M16 and M16-inverse do not produce language. A reversible
+EA-zero-step differential codec was also tested: `delta=C[i]-C[i-1] mod 29`;
+zero maps to EA; otherwise take the base-2 discrete log after dividing by
+`13*m^t`, then map the rank through the source-derived 28-cycle. The fixed
+multipliers `m in {1,2,15,6,5}` cover the identity, p05/p16 maps and their
+inverses; both book-global and page-reset clocks were tested. Synthetic
+round-trip controls pass exactly, but the original output remains
+ciphertext-like and its language score stays near baseline.
+
+The 256 red-rune/13-dot event stream was also passed through the two natural
+seed-13 affine recurrences using multipliers 2 and 6; neither aligns exactly
+with the 256 grid bytes under modulo-29 or scaled-29 readings (best observed
+match: 17/256). Finally, applying the p05 map to the GF(29²) grid-polynomial
+root from the red-triad work does not preserve that polynomial's roots: only
+the original seed and its Frobenius conjugate are roots among the 56 points in
+their two Möbius orbits. The 2016 OutGuess payload is an ASCII-armored signed
+plaintext message, not an encrypted 1,136-byte block; its length should not be
+treated as a key-length clue.
+
+**Status:** exact cross-page projective structure established; its role in LP2
+remains unresolved. No unknown plaintext, key, or continuation destination
+recovered. The reproducible tests are in
+`sims/lp1_mobius_corner_power6.cjs`; the independent 2016 dimension evidence
+is in [the dimension/totient report](2016-image-dimensions-lag6-source-derivation.md).
+
 ### Decision
 
-The p05/p16 pair remains a real source-level structure: two 5×5 magic squares, prime constants whose prime ordinals differ by ten 29-symbol blocks, and explicit p16 prime/totient language. The direct 25-cell additive transfers, p174/p464/p493 p56-prime-totient starts, one-dimensional Dirichlet Möbius/zeta transforms, two-dimensional 32×8 product-divisor Möbius/zeta transforms, and the distinct five-bit Boolean subset-lattice inversion above do not decrypt LP2. These are bounded negatives, not evidence that the LP1 source clues are meaningless. Any successor should identify a new source-fixed operation or state rule before scoring original ciphertext; do not repeat these direct additive transfers, tested divisor or Boolean transforms, arbitrary matrix transformations, or prime-offset sweeps.
+The paired squares are more than isolated magic-square constants: their four-corner matrices give an exact sixth-power relation in PGL2(F29), with a 28-cycle and a six-step operator. This is a verified source-derived structural relationship and a plausible intended state mechanism, not a recovered cipher. The direct corner substitutions, source-seeded EA-zero-step differential codecs, 256-event/grid recurrences, and GF(29²) grid-root orbit test remain negative. Earlier direct additive transfers, p174/p464/p493 p56-prime-totient starts, one-dimensional Dirichlet Möbius/zeta transforms, two-dimensional 32×8 product-divisor transforms, and Boolean subset-lattice inversions also remain bounded negatives. Do not repeat these simple applications or unconstrained matrix scans; the next useful step must specify how the 28-cycle/6-step state enters an independently testable original-cipher or historical-source operation.
 
-Reproducers: `sims/lp1_magic_square_prime_totient_gate.cjs` verifies both original image hashes and both magic-square structures, runs the 48 periodic-key variants, and reuses the p56 inverse helpers for the p174/p464/p493 offset tests. `sims/lp1_mobius_grid_inverse.cjs` tests the one-dimensional divisor transforms; `sims/lp1_mobius_grid_2d_inverse.cjs` tests the 32×8 product-divisor transforms above, each with exact planted controls.
+Reproducers: `sims/lp1_magic_square_prime_totient_gate.cjs` verifies both original image hashes and both magic-square structures; `sims/lp1_mobius_corner_power6.cjs` verifies the corner-matrix power identity, projective order/conjugacy, seeded 28-cycle, direct substitutions, EA-zero-step differential tests with exact planted controls, 256-event/grid comparisons, and the GF(29²) grid-root orbit gate. `sims/lp1_mobius_grid_inverse.cjs` tests the one-dimensional divisor transforms; `sims/lp1_mobius_grid_2d_inverse.cjs` tests the 32×8 product-divisor transforms; the Boolean reports/reproducers retain their separate bounded negatives.
 
 ## Reproduction
 
-Run node sims/magic_square_5x5_gp_pad_inverse.cjs, node sims/lp1_magic_square_prime_totient_gate.cjs, node sims/lp1_mobius_grid_inverse.cjs, and node sims/lp1_mobius_grid_2d_inverse.cjs from the repository root with Node.js 22. The script reads the LP2 corpus and Shakespeare control, embeds the measured five-dot center coordinates from black-dot-template-reflections.md, asserts the square's 12 magic sums and the two original page lengths, executes the direct additive-pad models, 40 page-local and 40 global-continuous Hill inverses, and 16 local plus 16 global matrix-state settings. Each family has exact synthetic controls (24 direct-pad, 40+40 Hill, and 16+16 matrix-state). It has no external dependencies and does not write files.
+Run node sims/magic_square_5x5_gp_pad_inverse.cjs, node sims/lp1_magic_square_prime_totient_gate.cjs, node sims/lp1_mobius_corner_power6.cjs, node sims/lp1_mobius_grid_inverse.cjs, and node sims/lp1_mobius_grid_2d_inverse.cjs from the repository root with Node.js 22. The script reads the LP2 corpus and Shakespeare control, embeds the measured five-dot center coordinates from black-dot-template-reflections.md, asserts the square's 12 magic sums and the two original page lengths, executes the direct additive-pad models, 40 page-local and 40 global-continuous Hill inverses, and 16 local plus 16 global matrix-state settings. Each family has exact synthetic controls (24 direct-pad, 40+40 Hill, and 16+16 matrix-state). It has no external dependencies and does not write files.
 
 This is intermediate evidence, not an established decryption. The authoritative results/README.md records the bounded negative without promoting it as recovered plaintext.
