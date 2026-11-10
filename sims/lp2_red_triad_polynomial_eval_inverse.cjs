@@ -275,7 +275,8 @@ function main() {
     bestTenModels: all.slice(0, 10),
     rootPhaseModels: all.filter((r) => r.field === "trace" && r.clock === "global"),
     plant: {
-      cipher: "transparent GP28 successor; source phase360; trace(F(u^t))",
+      cipher: "transparent GP28 successor; source phase360; trace(" +
+        (mode === "full" ? "F" : "Q") + "(u^t))",
       recovered: flatten(plantedRecovered).length,
       nativeIoC: ioc(native), decodedIoC: ioc(flatten(plantedRecovered)),
       wrongPhaseIoC: ioc(wrongRecovered), fullExact: true
