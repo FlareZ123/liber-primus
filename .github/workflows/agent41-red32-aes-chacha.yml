@@ -11,4 +11,9 @@ jobs:
         with:
           node-version: '22'
       - name: Original ciphertext and source-control inversion
-        run: node sims/red32_aes_chacha_original_inverse.cjs
+        run: node sims/red32_aes_chacha_original_inverse.cjs > red32-original-results.json
+      - name: Preserve exact original inversion diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: red32-original-results
+          path: red32-original-results.json
