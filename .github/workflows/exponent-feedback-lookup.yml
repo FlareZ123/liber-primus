@@ -24,3 +24,5 @@ jobs:
         run: node sims/word_local_exponent_autokey.cjs
       - name: Lossless source-word echo permutation with 640 control plants
         run: node sims/lossless_word_echo_permutation.cjs
+      - name: Key-free arbitrary 29-row permutation inverse and original-source invariant
+        run: node sims/conditional_permutation_ioc_invariant.cjs
