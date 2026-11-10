@@ -274,7 +274,8 @@ function main() {
   const output = {
     classification: 'Single source-derived F31 fragment→row/key mapping; candidate cipher family only',
     source: {
-      originalCipherRunes: C.length, physicalRunePages: pages.length,
+      originalCipherRunes: C.length, sourcePageRecords: pages.length,
+      runeBearingPages: pages.filter(p => p.indices.length > 0).length,
       redRuneTotal: 225, markerTotal: marks.length,
       redMarkers: 30, blackMarkers: 1, sourceFragments: lengths.length,
       unknownFragments: 28, gridRows: grid.byte_rows.length,
@@ -288,8 +289,10 @@ function main() {
     tested: { models: variants.length, keyRepresentations: keyOrders.map(x => x[0]),
       nonceModes, algorithms, families, signs, projections,
       permutationsSearched: false },
-    raw: { englishGP: rawEnglishGP, trainIoC: rawTrainIoC,
-      heldoutIoC: rawHeldoutIoC },
+    raw: { englishGP: rawEnglishGP,
+      trainEnglishGP: languageScore(C.slice(0, boundaries[18])),
+      heldoutEnglishGP: languageScore(C.slice(boundaries[18])),
+      trainIoC: rawTrainIoC, heldoutIoC: rawHeldoutIoC },
     bestTraining: variants.slice(0, 12),
     bestHeldout: byHeldout.slice(0, 12),
     positiveControl: {
