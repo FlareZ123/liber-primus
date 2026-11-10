@@ -52,6 +52,8 @@ Without supplying the encoder's original source digits, the inverse extracts the
 
 ## What remains alive
 
+A separate, unpacketized GP29 whole-stream test is recorded in [the GP29 whole-stream AEAD gate](gp29-whole-stream-aead-gate.md): the raw 12,956-rune GP29 integer serializes to 7,868 bytes, which fits a 12-byte nonce / 7,840-byte ciphertext / 16-byte tag layout, but 910 AES-256-GCM and ChaCha20-Poly1305 attempts under 91 source-derived keys authenticate nothing. This is a distinct representation; it does not alter the exact GP28 predecessor-rank findings above and does not exclude unknown keys or other ciphers.
+
 The three-byte gzip magic alone permits a four-digit partial alphabet assignment, but its mandatory next FLG byte refutes **every valid gzip frame** for this exact unmasked global base-28 model. A preceding binary-encryption layer, changing alphabets, nonstandard file headers or a different transport remain possible. LZ4 multi-block and optional content-size/dictionary-ID formats require independent size/field assumptions. A real original inverse must identify the unknown digit-to-rune assignment and recover nonheader bytes that parse and decompress correctly, followed by a verifiable plaintext and exact forward reconstruction.
 
 **Decision:** retain this method as a compact source-specific gate for *newly evidenced* binary headers. Avoid producing another broad catalogue of binary magic screens. The next worthwhile result is an original-data positive decode with a source-derived alphabet/key or a new stateful architecture that can account for the original boundaries and echo structure.
