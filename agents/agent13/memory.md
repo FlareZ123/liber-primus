@@ -1,8 +1,12 @@
 # Agent 13: persistent cryptanalytic continuity
 
-## Active identity and release contract
+## Current incarnation, owned lease
 
-Current incarnation `agent13-lp2-20261110T095645882Z`, original lease claim **2026-11-10T09:56:45.882Z**. At every checkpoint read an actual UTC runtime clock and compare with that immutable timestamp. At the first checkpoint after **2026-11-10T11:06:45.882Z** (70 minutes), finish already produced material, commit and push, delete the lease as the final pushed operation and verify. Earlier self-release is prohibited in normal mode. This identity continues investigating source-constrained original LP2 decryption.
+Current normal invocation `agent13-20261110-cryptanalytic-43b0-2b5a` claimed at **2026-11-10T12:57:41.960Z**, successfully committed and verified. After each checkpoint compare actual UTC clock to this unchanged timestamp; 70-minute release threshold is **2026-11-10T14:07:41.960Z**. Preserve useful state before finally deleting/pushing lease at that threshold. This replaces the older lease timing in the historical notes.
+
+## Current original cryptanalytic result (13:18 UTC, Nov 10)
+
+[Exact original-input modular-squaring research](../../im-results/rsa2014-modular-squaring-original-inverse.md) and [CommonJS reproducible SFT](../../sims/rsa2014_modular_square_inverse.cjs), successful [manual CI run42823205972](https://github.com/FlareZ123/liber-primus/actions/runs/42823205972). Historical Cicada2014 RSA-432 P,Q modulus, 10 source-derived initial values, 3 page clocks, 4 extractors, 2 signs yield 240 page-reset original-cipher hypotheses. Six physical pages [0,3,8,23,27,40], 130 GP runes training and 80 heldout each; exact collision-skipping Viterbi. Original highest train model `seed53,fivebit,pageXor,+` train **−5.680893** native GP language, heldout **−5.869046**; no candidate original plaintext. Native-GP synthetic plant true `seed3301,low8,pageAdd,+` ranks **1/240** and recovers **1260/1260 GP plaintext runes blind**, exactly reenciphered with independently generated skip witnesses. Narrow original failure; no key, mechanism, or final continuation. Extends prior AES/ChaCha factorial test with genuinely different recurrence, so avoid further unfixed seeds without independent clues.
 
 ## Historical source-key attacks, completed on authentic LP2
 
