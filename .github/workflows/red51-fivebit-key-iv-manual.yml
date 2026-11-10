@@ -15,6 +15,7 @@ on:
           - fibonacci
           - fibonacciTitles
           - triad-nonce
+          - triad-nonce-t6
           - onion-v2-crib
           - aead-grid-auth
 jobs:
@@ -52,3 +53,6 @@ jobs:
       - name: Source triad p53 radix29 key with p15-p40 nonces
         if: ${{ inputs.probe == 'triad-nonce' }}
         run: node sims/red_triangle_radix29_nonce.cjs
+      - name: Source triad key/nonce with contextual collision-T inverse
+        if: ${{ inputs.probe == 'triad-nonce-t6' }}
+        run: node sims/red_triangle_t6_contextual_inverse.cjs
