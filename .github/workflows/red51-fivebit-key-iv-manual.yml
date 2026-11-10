@@ -1,0 +1,13 @@
+name: Agent 11 packed-red-51 key and black-128 IV
+on:
+  workflow_dispatch:
+jobs:
+  source-packed-key-inversion:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce source-anchored finite inversion
+        run: node sims/red51_fivebit_key_iv.cjs
