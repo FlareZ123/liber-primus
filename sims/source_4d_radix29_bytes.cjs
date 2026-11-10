@@ -214,4 +214,4 @@ function main(){
   },null,2));
 }
 if(require.main===module)main();
-module.exports={retainHighStates,transparentMarkerObstruction};
+module.exports={retainHighStates,transparentMarkerObstruction,vectors,keyAt,stateOf,indexOf,models,C,pages,N,STATES,pageRanges,trainEnd,mod,plantByteStream};
