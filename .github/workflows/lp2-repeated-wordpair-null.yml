@@ -13,6 +13,7 @@ on:
           - qr36
           - qr36-twobit
           - ninetile
+          - ninetile-quads
 
 permissions:
   contents: read
@@ -29,6 +30,18 @@ jobs:
           node-version: '22'
       - name: Prove nine-tile all-secret D4 / GP29 Caesar/S-box bound and run independent controls
         run: node sims/lp2_ninetile_d4_caesar_sbox_gate.cjs
+
+  ninetile-quads:
+    if: inputs.mode == 'ninetile-quads'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Enumerate exact source-original affine/D4 four-panel bounds
+        run: node sims/lp2_ninetile_affine_quads.cjs top
 
   qr36-twobit:
     if: inputs.mode == 'qr36-twobit'
