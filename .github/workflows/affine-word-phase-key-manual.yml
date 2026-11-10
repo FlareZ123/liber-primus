@@ -1,0 +1,15 @@
+name: Affine word-phase key inversion (manual)
+on:
+  workflow_dispatch:
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recover phase signatures and run source-disjoint positive
+        run: node sims/affine_word_phase_key_recovery.cjs
