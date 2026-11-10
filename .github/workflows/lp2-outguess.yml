@@ -23,6 +23,17 @@ on:
         type: boolean
         required: false
         default: false
+      cicada2016:
+        description: Reproduce the byte-exact 2016 4gq25 OutGuess payload and verify its signature
+        type: boolean
+        required: false
+        default: false
+  push:
+    paths:
+      - '.github/workflows/lp2-outguess.yml'
+      - 'resources/historical/cicada2016-4gq25.jpg'
+      - 'resources/historical/cicada2016-4gq25-outguess.asc'
+      - 'resources/control/cicada-3301-public-key.asc'
 
 jobs:
   extract:
@@ -43,14 +54,25 @@ jobs:
           CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
           make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
           sudo make install
+      - name: Reproduce exact 2016 OutGuess extraction and verify signature
+        if: ${{ github.event_name == 'push' || inputs.cicada2016 }}
+        run: |
+          set -euo pipefail
+          mkdir -p outguess-2016-results
+          outguess -r resources/historical/cicada2016-4gq25.jpg outguess-2016-results/4gq25.jpg.outguess
+          test "$(wc -c < outguess-2016-results/4gq25.jpg.outguess)" -eq 1136
+          cmp --silent outguess-2016-results/4gq25.jpg.outguess resources/historical/cicada2016-4gq25-outguess.asc
+          gpg --batch --import resources/control/cicada-3301-public-key.asc
+          gpg --batch --verify outguess-2016-results/4gq25.jpg.outguess
+          sha256sum outguess-2016-results/4gq25.jpg.outguess
       - name: Retrieve hidden messages from every LP2 page
-        if: ${{ (!inputs.keyed_probe && !inputs.synthetic_only) || inputs.xor_shares }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.cicada2016 && ((!inputs.keyed_probe && !inputs.synthetic_only) || inputs.xor_shares) }}
         env:
           OUTGUESS_SCAN_ALL_LP1: ${{ inputs.lp1_history && '1' || '0' }}
           OUTGUESS_PRINT_LP1_SIGNED: ${{ inputs.lp1_history && '1' || '0' }}
         run: node sims/outguess_lp2_scan.cjs
       - name: Install Python for direct binary-stream pad testing
-        if: ${{ !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 }}
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -68,17 +90,17 @@ jobs:
           node --check sims/outguess_lp2_share_xor.cjs
           node sims/outguess_lp2_share_xor.cjs
       - name: Probe source-defined passwords for authentic hidden LP2 messages
-        if: ${{ inputs.keyed_probe && !inputs.synthetic_only }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.keyed_probe && !inputs.synthetic_only && !inputs.cicada2016 }}
         run: |
           node --check sims/outguess_lp2_keyed_probe.cjs
           node sims/outguess_lp2_keyed_probe.cjs
       - name: Verify synthetic JPEG false headers and real keyed embedding
-        if: ${{ inputs.synthetic_only }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.synthetic_only && !inputs.cicada2016 }}
         run: |
           node --check sims/outguess_header_synthetic_probe.cjs
           node sims/outguess_header_synthetic_probe.cjs
       - name: Preserve exact recovered payloads and summary
-        if: ${{ always() && !inputs.keyed_probe && !inputs.synthetic_only }}
+        if: ${{ always() && github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.cicada2016 }}
         uses: actions/upload-artifact@v4
         with:
           name: outguess-lp2-default-key
@@ -87,7 +109,7 @@ jobs:
           retention-days: 30
 
       - name: Preserve source-key OutGuess extraction candidates
-        if: ${{ always() && inputs.keyed_probe && !inputs.synthetic_only }}
+        if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.keyed_probe && !inputs.synthetic_only && !inputs.cicada2016 }}
         uses: actions/upload-artifact@v4
         with:
           name: outguess-lp2-keyed
@@ -96,10 +118,19 @@ jobs:
           retention-days: 30
 
       - name: Preserve synthetic-image authentication test
-        if: ${{ always() && inputs.synthetic_only }}
+        if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.synthetic_only && !inputs.cicada2016 }}
         uses: actions/upload-artifact@v4
         with:
           name: outguess-lp2-synthetic-header
           path: outguess-synthetic-results/summary.json
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Preserve reproduced 2016 payload
+        if: ${{ always() && (github.event_name == 'push' || inputs.cicada2016) }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: cicada2016-outguess-reproduction
+          path: outguess-2016-results/
           if-no-files-found: warn
           retention-days: 30
