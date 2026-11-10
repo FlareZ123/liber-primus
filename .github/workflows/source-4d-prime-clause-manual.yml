@@ -24,3 +24,8 @@ jobs:
           LP_MATRIX: ${{ matrix.model }}
           LP_OUTPUT: ${{ matrix.output }}
         run: node sims/source_4d_prime_clause_fullkey.cjs
+      - name: Exhaust original radix29 binary pairs and positive gzip inverse
+        if: matrix.output == 'direct'
+        env:
+          LP_MATRIX: ${{ matrix.model }}
+        run: node sims/source_4d_radix29_bytes.cjs
