@@ -1,0 +1,14 @@
+name: Agent 5 source-row DES fragment inverse
+on:
+  workflow_dispatch:
+jobs:
+  source-row-des:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original and synthetic source-fragment DES inversions
+        run: node sims/des_row13_fragment_inverse.cjs
