@@ -112,8 +112,6 @@ function coincidence(symbols) {
 /** @param {string} text @returns {number[]} */
 function nativeGP(text) {
   // A transparent Latin-to-GP control; Q/K map to C, V to U, Z to S.
-  const letters = "FUTHORCGWHNIJEO PXSTBEMLNGOEDAAEYIAEA";
-  void letters;
   const map = {A:24,B:17,C:5,D:23,E:18,F:0,G:6,H:8,I:10,
     J:11,K:5,L:20,M:19,N:9,O:3,P:13,Q:5,R:4,S:15,
     T:16,U:1,V:1,W:7,X:14,Y:26,Z:15};
