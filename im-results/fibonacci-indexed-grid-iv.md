@@ -1,6 +1,6 @@
-# LP2 page-15 Fibonacci selectors into the 256-byte grid: IV and master-key inversions
+# LP2 page-15 Fibonacci selectors into the 256-byte grid: key and clock inversions
 
-**Classification:** two source-constrained, independently executed **negative original-cipher decryption tests**. Historical page-15 square and 256-byte grid are genuine source inputs; proposed key roles are hypotheses. Agent 32's section-IV work and Agent 47's master-key/field-step extension were executed 10 November 2026. **Neither recovered an authentic LP2 key, unknown rune plaintext, or destination.**
+**Classification:** three source-constrained, independently executed **negative original-cipher decryption tests**. Historical page-15 square and 256-byte grid are genuine source inputs; proposed key roles are hypotheses. Agent 32's section-IV work and Agent 47's master-key/field-step and keyless-insertion extensions were executed 10 November 2026. **Neither recovered an authentic LP2 key, unknown rune plaintext, or destination.**
 
 ## Exact source construction and two distinct ways to use it
 
@@ -10,7 +10,7 @@ The authentic page-15 4×4 square gives an independently documented Fibonacci-in
 
 The corresponding ordinary primes, square values `abs(3301−prime)`, and both rank conventions are legitimate finite selectors. LP2 physical pages 49–51 print a 32×8 base-60 table, interpreted as 256 bytes in [the derived source](../resources/liber-primus/base60-grid.json). Read that table in row-major or column-major order, then use sixteen indices chosen from (a) one-based ranks minus one, (b) one-based ranks, (c) prime values, or (d) printed square values, each modulo 256. Exactly **eight fixed 16-byte selections** result. The original square derivation predates this repository; neither choice of selection convention nor downstream key role is authenticated by a solved LP2 passage.
 
-The two cryptographic models assign **different meanings** to those same selections, so their negative results do not duplicate one another.
+The three cryptographic models assign different meanings to the same selectors or different key-consumption rules, so their negative results cover distinct finite mechanisms.
 
 ## Model I: extracted 16 bytes as IV for eight 256-bit grid-column keys
 
@@ -59,8 +59,29 @@ No coherent GP-English emerges and neither the selected model nor the retrospect
 
 [Executable Model II](../sims/fibonacci_grid_selector_rank28.cjs) · [Successful Actions run 42825870385](https://github.com/FlareZ123/liber-primus/actions/runs/42825870385) · [manual workflow](../.github/workflows/fibonacci-aes128-grid-manual.yml). The script asserts source size, distinct page boundaries, mode count, all repeated steps, planted true-key first rank, exact planted inversion, and exact re-encryption of real ciphertext.
 
+## Model III: extracted AES-128 keys with keyless mid-word null insertion
+
+An otherwise missed key-clock hypothesis permits exactly **zero or one extra source ciphertext rune per printed word**, inserted anywhere in that word and consuming **no keystream byte**. Such an insertion desynchronizes all subsequent additive decryption until the accumulated count is inferred. This candidate is motivated by earlier, separately published word-length/null-insertion investigations, not established by Cicada's original image or a known key. It is genuinely different from Model II's 28-state EA transducer and Model I's simple additive direct-pad convention.
+
+Use the same eight extracted **AES-128 master keys** with zero CTR IV, signs ± and byte reducers `byte mod29` or `floor(29×byte/256)`: **32 key configurations**. For a ciphertext word of length L, plaintext is either all L runes or the L−1 runes remaining after deleting one arbitrary hidden ciphertext position. Actual plaintext rune `p` emits additive ciphertext `c = (p−sign×K) mod29`; the deleted null rune can be any original GP symbol and consumes **no K**. The hypothesized independent insertion probability is fixed to **0.42 per eligible word** (L greater than one), chosen from existing external word-length hypotheses. A dynamic program jointly infers the cumulative null count (and therefore AES key-stream offset), each within-word insertion location, and the total GP-language likelihood, using a fixed Shakespeare-trained GP trigram model and the explicit null prior.
+
+**Locked original source test:** the first **350** of 2,896 actual cipher words train the selection and estimate the accumulated key drift. Freeze the selected source key, reducer, sign and starting heldout drift before evaluating the following **400 original words**. These 750 printed words contain **3,384 original ciphertext runes**. The hidden null positions within the holdout are inferred afresh by the same predeclared decoder; the source key cannot be refitted. For controls, each of **12 independent random-source replicates** replaces all eight 16-byte master keys and repeats the entire 32-mode training search and frozen heldout test.
+
+| Test | GP word likelihood per printed rune, heldout |
+| --- | ---: |
+| Real manuscript: best training-selected source key (column-major / rank one-based; sign −; scaled29) | **−3.915314** |
+| Wrong-source random-key replicates, same 32-mode selection | range **−3.949526 to −3.844614** |
+| Wrong-key replicates equal or better than genuine selection | **7/12** (add-one upper tail **0.615385**) |
+| Independently sourced GP-English known-key and 42%-insertion plant | **−2.442961** |
+
+**Positive control:** construct 750 independently sampled Shakespeare/Gibran GP plaintext words fitting the *exact original cipher-word lengths*, insert 314 source GP null runes and encode with a known one of the eight source keys. The decoder ranks the actual 16-byte key, sign and reducer **first of 32**. Its inferred training insertion count is **153**, precisely the independently planted true training count. With the known insertion-position witness, the forward and reverse maps recover **all 3,070 underlying GP plaintext runes exactly** while maintaining every source word length. This validates the hidden-drift implementation and shows a large source-language gap on the genuine ciphertext. The true original key and insertion path were never recovered.
+
+The model tests a single keyless insertion per word, a fixed prior and a standard additive GP29 cipher with a Fibonacci-selected AES128 key. More than one insertion, unknown source keys, key-consuming insertions, collision repair, other language or alphabets, or a different clock/cipher state remain live hypotheses. The negative result is strong for this precise family because the secret extra-rune positions were optimized in both original and synthetic arms.
+
+[Executable Model III](../sims/fibonacci_grid_keyless_null_word_inverse.cjs) · [Successful Actions run 42828945135](https://github.com/FlareZ123/liber-primus/actions/runs/42828945135) · [shared manual workflow](../.github/workflows/fibonacci-aes128-grid-manual.yml).
+
 ## Consolidated research decision
 
-Both direct candidate uses of the Fibonacci-extracted bytes fail **original-source heldout plaintext tests** under their precise, source-locked modes: the eight 256-bit column-key/16-byte IV interpretation and the complementary eight AES-128-master-key/zero-IV, reversible field-step interpretation. The success of their source-register controls establishes meaningful power for those models. Neither claimed numerical bridge supplies an authenticated original key, and no undeciphered LP2 symbol has been recovered.
+All three finite candidate architectures fail **original-source heldout plaintext tests** under their precise, source-locked modes: eight 256-bit column keys with selected 16-byte IVs, eight selected 128-bit AES keys with a 28-state reversible GP-step alphabet, and eight selected 128-bit AES keys under an exact keyless mid-word insertion/Viterbi clock drift. Their synthetic GP-language controls identify the true source keys, and the third model additionally recovers the true inserted-word drift. Neither claimed numerical bridge supplies an authenticated original key, and no undeciphered LP2 symbol has been recovered.
 
-These are **bounded exclusions**. Different byte index semantics, secret key material, a keyed derivation, a genuinely different plaintext alphabet or nonperiodic state, correlated unknown substitutions, additional key skips, and independent outer encodings have not been ruled out. In particular the zero-step GP-EA hypothesis is conditional, not a proven mechanism. Further work should first uncover a *specific source-prescribed key consumption or cipher inversion rule* with predictive leverage, instead of extending the same selection menu and reranking noise in a larger search space.
+These are **bounded exclusions**. Different byte index semantics, secret key material, a keyed derivation, a genuinely different plaintext alphabet or nonperiodic state, correlated unknown substitutions, more than one within-word null, other null or key-skip grammars, and independent outer encodings have not been ruled out. In particular the zero-step GP-EA hypothesis is conditional, not a proven mechanism. Further work should first uncover a *specific source-prescribed key consumption or cipher inversion rule* with predictive leverage, instead of extending the same selection menu and reranking noise in a larger search space.
