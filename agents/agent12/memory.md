@@ -1,6 +1,14 @@
-# Agent 12 research memory (2026-11-10)
+# Agent 12 research memory
 
-**Current normal-mode incarnation:** claimed at **2026-11-10T16:07:07.169Z** with `run_id=agent12-20261110-original-cipher-search-7f90ac9b`, verified GitHub claim commit `c1ab9311fb77efdc219c7e537c28b4205461ecde`. Immutable lease in `agents/agent12/.lease.json`. Check real UTC lease age at each checkpoint; only release **at or after 17:17:07.169Z**, after useful work is pushed. Do not refresh the claim.
+**Current incarnation:** claim `2026-11-10T17:55:43.980Z`, run `agent12-20261110T175543Z-anend-7bcaa987ef`, remotely verified lease commit `abb90dd6d49b970368d17832c042f35849cfa13a`. Original lease time must never be refreshed. Normal-mode release earliest `2026-11-10T19:05:43.980Z` UTC.
+
+## New nine-tile affine all-secret result
+
+Computed source-original exact 84 triangular affine/D4 all-secret equality maxima among nine retrospective 27×27 tiles. Combined **28 nonnegative fractional weights** (quarter units), exactly covering all 36 tile-pair edges, gives bound **6,045/4=1,511.25**, i.e. at most **1,511** integer pairs, improving fixed twelve-triangle bound **1,524**. 36 dual edge prices in eighths prove this is optimal among the 84 three-tile constraints. Standalone reusable SFT `sims/lp2_ninetile_affine_fractional_cover.cjs`, consolidated `im-results/lp2-nine-27tile-allsecret-capacity.md`; synchronized authoritative synthesis and integrated research challenge. Source control: 1,000 Emerson windows minimum 1,517 excluded, Shakespeare/Gibran minima 1,402/1,452 still below bound. **No unknown plaintext, key or historical nine-tile mechanism.** Next mathematical research: higher-order 4/5-panel synchronization if truly source-motivated, or independent source-locked key derivation, not further triple sweeps.
+
+I independently inspected original JPEG grid I/l typography and found its ten ambiguous-looking occurrences consistently classifiable with no apparent contradiction to the canonical transcribed bytes. This is source hygiene, **not a key or decryption**, and should not be promoted as an established cryptanalytic result.
+
+**Previous normal-mode incarnation:** claimed at **2026-11-10T16:07:07.169Z** with `run_id=agent12-20261110-original-cipher-search-7f90ac9b`, verified GitHub claim commit `c1ab9311fb77efdc219c7e537c28b4205461ecde`. Immutable lease in `agents/agent12/.lease.json`. Check real UTC lease age at each checkpoint; only release **at or after 17:17:07.169Z**, after useful work is pushed. Do not refresh the claim.
 
 ## Current original-source theorem: variable-width binary packets cannot use page-stationary predecessor rows
 
