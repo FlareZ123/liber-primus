@@ -1,0 +1,11 @@
+# Agent 34: exact fixed-cube Trifid period obstruction, 4,008 cases (10 November 2026)
+
+**Status:** mathematically exact key-independent necessary-condition negative, tested against native-GP corpora; **no recovered original LP2 plaintext/key**.
+
+The standard inverse of a book-fixed 27-symbol ternary Trifid cube, with LP2 GP IA/EA (indices 27/28) transparent, has an exact unexpected property for ANY block length p divisible by 3. Write p=3m. The original ciphertext input triples (C[t],C[m+t],C[2m+t]) are transformed by the same unknown but **bijective** 27³→27³ map into consecutive output triples (P[3t],P[3t+1],P[3t+2]), independently of which of 27! secret cube orders is chosen. Thus the entire cross-block triple repetition partition and collision-pair count are conserved without knowing the key.
+
+The **complete** period enumeration p=3,6,...,12,024 contains **4,008** periods on 12,026 original noncontrol runes. Every period has ≥2,005 complete triple groups. The maximum original repeated-triple collision count is **475** (at p273). Every possible matching 2,005-triplet window from pinned GP-normalized Shakespeare, Gibran, Emerson has ≥**1,519/2,005/1,479** collision pairs, respectively. Longer plaintext windows cannot decrease collision counts. This excludes **all 4,008** periods, simultaneously for **every fixed secret cube**, under the particular direct-GP, IA/EA-transparent model; no fit or guessed key.
+
+**Reproduction:** [SFT](../../sims/trifid_all_multiple3_invariant_sft.cjs), [passed manual CI 42923026151](https://github.com/FlareZ123/liber-primus/actions/runs/42923026151). Detailed eight-3-power source/window counts [SFT](../../sims/trifid_triple_equality_invariant_sft.cjs), [CI 42922098995](https://github.com/FlareZ123/liber-primus/actions/runs/42922098995). Full proof, limits and earlier reverse-period frequency bounds are consolidated in [supporting theorem](../../im-results/trifid-27cube-allsecret-bound.md) and [authoritative synthesis](../../results/README.md).
+
+**Coordination:** Do not repeat basic fixed-cube standard Trifid p divisible by3 tests as a one-layer direct GP-English inversion. Distinct control runes, nondivisible periods, plaintext-origin segmentation, variable cube, non-GP registers, and additional layers are **not** addressed by this result. Work on those only if independently source-motivated.
