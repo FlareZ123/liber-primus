@@ -22,7 +22,9 @@ The clause order is important. The prime ordinals are **205, 173, 201**.
 
 ## 2. The 8×7 quotient
 
-LP2 has 31 thirteen-dot marks (30 red and one black), hence 32 marked fragments. Gematria Primus has 29 symbols, of which 28 have nonzero numeric values. The dimensions 32 and 28 have gcd 4.
+Across all LP2 pages 0–57 there are 31 thirteen-dot marks (30 red and one black), hence 32 fragments if each mark is treated as a separator. The distribution is 28 marks on pages 0–55, two on solved p56, and one on solved p57. This is therefore a whole-artifact count, while the 56-cell target below is the unsolved p0–55 section; that scope mismatch is a caveat, not something to conceal. Gematria Primus has 29 symbols, of which 28 have nonzero numeric values. The dimensions 32 and 28 have gcd 4.
+
+There are also four red 10-dot marks across LP2, matching the gcd numerically. However, their global offsets have residues 1,2,2,1 modulo 4, so they do not independently identify all four residue classes.
 
 All three prime ordinals are 1 modulo 4. Their residues therefore descend to a common 8×7 quotient:
 
@@ -83,11 +85,11 @@ Page 27 and page 55 share the already documented two-word sequence. They are exa
 
 ## 4. A 55-rune red key candidate
 
-The three pages in the factor/ordinal links that contain red spans are p27, p23, and p15, in clause order. Their red-span lengths are:
+One candidate 55-symbol red sequence is obtained by taking the red spans on the red-bearing nodes p27, p23, and p15, in the order suggested by the factor/ordinal page graph. This selection is not uniquely forced: p23 participates in two clause links, and other orders of the selected pages are possible. Their red-span lengths are:
 
 `19 + 16 + 20 = 55`.
 
-This produces a 55-rune sequence. LP2 pages 0–55 contain 55 nonempty pages because p50 is empty. Thus the candidate red sequence has exactly one rune per nonempty page in length. The p15 Fibonacci spiral and the 55-length sequence provide another possible Fibonacci connection.
+This produces a 55-rune sequence. LP2 pages 0–55 contain 55 nonempty pages because p50 is empty. Thus the candidate red sequence has the same length as the number of nonempty pages. The p15 Fibonacci spiral and the 55-length sequence provide another possible Fibonacci connection.
 
 The sequence is extracted directly from the original red spans in `lp2-ink-annotations.json`; the probe script prints it and asserts the lengths. Its length match is a hypothesis-generating coincidence, not evidence that it is a key.
 
