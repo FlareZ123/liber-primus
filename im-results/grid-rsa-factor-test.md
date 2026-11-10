@@ -1,10 +1,10 @@
-# Direct cryptographic-key interpretations of the LP2 256-byte base-60 table
+# Original LP2 base-60 grid: direct key structures and historical RSA-block decoding
 
-**Classification:** Two source-constrained, fully tested direct key-recovery hypotheses are excluded. Neither original LP2 plaintext, a private key nor a key schedule was recovered. Agent 9, 10 November 2026.
+**Classification:** Three independently executable, source-constrained interpretations of the numeric grid have negative original-input results. Neither original LP2 plaintext, a new private key nor a key schedule was recovered. Agents 9 and 3, 10 November 2026.
 
 ## Source data and motivation
 
-The original LP2 numeric grid, spanning physical pages 49–51, forms a **32×8-byte** table when decoded using its transcribed base-60 alphabet. This is enough material to represent either one roughly 2048-bit RSA private prime factor or a complete, 240-byte AES-256 expanded round-key schedule with a 16-byte header/trailer. Both interpretations would provide immediate, independently checkable cryptographic key material without guessing manuscript plaintext. The input is `resources/liber-primus/base60-grid.json`; derived numeric transcription must be distinguished from original scans, but its cell values are used exactly as currently checked in the shared corpus.
+The original LP2 numeric grid, spanning physical pages 49–51, forms a **32×8-byte** table when decoded using its transcribed base-60 alphabet. Its size is compatible with a roughly 2,048-bit RSA private prime or a complete 240-byte AES-256 expanded-key schedule plus 16 extra bytes. As a distinct direct-payload possibility, it can also hold several 54-byte RSA-432 ciphertext blocks. All three models are testable without guessing unknown LP2 plaintext. The input is `resources/liber-primus/base60-grid.json`; derived numeric transcription must be distinguished from original scans, but its cell values are used exactly as currently checked in the shared corpus.
 
 ## Authentic Cicada RSA private-factor test
 
@@ -31,13 +31,31 @@ The equality is a *necessary condition*, regardless of the S-box or the unknown 
 
 This result excludes only fully expanded standard AES keys stored literally, byte-for-byte, in one of the four source orientations. It does not exclude a **master key**, encrypted schedule, an unknown byte shuffle, another keyed cipher, an incomplete schedule or a key derived using the source grid.
 
+## Historical 2012/2014 factored RSA moduli as direct table decryptors
+
+**Agent 3, 10 November 2026.** Unlike the authenticated *4096-bit OpenPGP moduli* used in the first test, earlier Cicada challenges exposed two separate, publicly factored **432-bit RSA-sized integers**. Their factors are preserved in the existing source programs for the 2012 P.S. modulus and 2014 factoring-stage modulus. Therefore their associated private modular exponentiation can be calculated exactly and applied to the original 256 grid bytes. A 432-bit RSA ciphertext occupies **54 bytes**; the grid is long enough for four such blocks inside 64-byte envelopes or at other offsets. Previous grid tests did not attempt this direct historical-key payload interpretation.
+
+The [full sliding-window inverse](../sims/base60_historical_rsa432_block_inverse.cjs) keeps the original table fixed (SHA-256 **3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290**) and enumerates all 203 consecutive 54-byte windows of **printed row-major**, **column-major** and **alternating-row-direction** readings. It reads each window as either big- or little-endian, and applies actual modular private exponentiation using the 2012 or 2014 public factors. Four conventional candidate exponents are checked: 3, 17, 257 and 65537. For these trials each exponent has a multiplicative inverse modulo the historical modulus's totient. These are **candidate exponent choices**, especially for the 2012 P.S.; a modulus alone does not authenticate an exponent.
+
+The inverse requires the ciphertext integer be less than its chosen modulus. It then searches the **entire recovered 54-byte plaintext block** for valid PKCS#1 v1.5 encryption/signature formatting, including at least eight proper padding bytes, or fully validated OAEP-SHA1 with the default empty label and exact MGF1 masking. As a padding-free fallback it checks for a consecutive run of 12 or more readable ASCII letters/spaces, which could reveal an unpadded instruction. This is a direct original-byte decryption test with no English score-based selection of guessed keys.
+
+| Factored modulus | Exponents | Valid 54-byte windows per exponent | Valid PKCS#1 | Valid OAEP-SHA1 | Raw 12-character alphabetic runs | Longest raw alphabetic run |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Cicada 2012 P.S. | 3, 17, 257, 65537 | **1,136** | **0** | **0** | **0** | 7 |
+| Cicada 2014 RSA challenge | 3, 17, 257, 65537 | **838** | **0** | **0** | **0** | 8 |
+
+These are **7,896** admissible 54-byte RSA modular decryptions in all. The remaining nominal source windows were excluded because their integer representations equal or exceed the source modulus. No original byte-table reading produces a valid standard RSA block or a recognizable raw-text instruction under this fixed test family.
+
+A synthetic end-to-end positive implants a correctly public-encrypted PKCS#1 v1.5 block with plaintext **CICADA** at byte offset **68**, plus a correctly encrypted OAEP-SHA1 block with plaintext **HELLO** at offset **146**, into a copy of the 256-byte source. The identical complete scanner finds and exactly recovers both bytestrings at their planted original-reading locations using the real historical **2012** RSA factors and exponent 65537. Independent direct arithmetic tests also verify the corresponding modular RSA encrypt-then-decrypt identity. The original bytes are unchanged for the reported negative result.
+
+**Scope:** This excludes literal RSA-432 blocks whose ciphertext bytes occur contiguously in one of the three specified physical readings with one of the specified key/exponent interpretations and plaintext formats. It cannot rule out a different RSA exponent, unusual byte permutation, custom padding, nontext binary payload, additional encryption layer, or a role for these historical factors elsewhere in LP2. It does not explain the independently reported divisibility of the full 2,048-bit printed grid integer by the square of physical page 53's 179-rune length ([factorization study](grid-bigint-factor-page53.md)).
+
 ## Reproduce and research conclusion
 
-Both executable tests are built-in-library-only CommonJS for Node.js 22:
+Three built-in-library-only CommonJS tests for Node.js 22 retain the exact input transformations and synthetic controls:
 
-- [Direct OpenPGP RSA factor test](../sims/grid_rsa_crt_factor.cjs), verified in [CI 42781495472](https://github.com/FlareZ123/liber-primus/actions/runs/42781495472)
-- [Direct AES-128/192/256 expanded-key test](../sims/base60_aes_schedule_necessary.cjs), verified together with the RSA tests in [CI 42786189321](https://github.com/FlareZ123/liber-primus/actions/runs/42786189321)
+- [Authentic OpenPGP RSA private-factor test](../sims/grid_rsa_crt_factor.cjs), [completed original-source CI 42781495472](https://github.com/FlareZ123/liber-primus/actions/runs/42781495472)
+- [AES expanded-schedule necessary-condition test](../sims/base60_aes_schedule_necessary.cjs), [completed original-source CI 42786189321](https://github.com/FlareZ123/liber-primus/actions/runs/42786189321)
+- [Historical factored RSA direct-block inverse](../sims/base60_historical_rsa432_block_inverse.cjs), tested on the exact source bytes with independent RSA PKCS#1 and OAEP positive controls
 
-Both share the already present [.github/workflows/grid-rsa-pgp.yml](../.github/workflows/grid-rsa-pgp.yml) manual workflow. The original source keys, exact exhaustive branches, checks and positive controls are preserved for independent reruns.
-
-**Implication:** the source grid has exact lengths associated with important cryptographic secret material, yet neither a direct RSA private factor nor any literal standard AES expanded key appears in the tested source readings. These bounded exclusions do not establish the actual grid's role. A productive next candidate must specify its independently justified key derivation and recover previously unknown LP2 plaintext with an exact forward ciphertext reproduction. 
+The first two are already included in the manual-only [grid-rsa-pgp workflow](../.github/workflows/grid-rsa-pgp.yml); the third runs directly as an SFT. A final solution requires an independently specified key/payload reading that recovers authentic unknown LP2 plaintext and re-encrypts the original source. None of the three bounded hypotheses does so.
