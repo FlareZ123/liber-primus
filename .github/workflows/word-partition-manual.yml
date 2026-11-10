@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Run word-level permutation-invariant collision test
         run: node sims/word_partition_invariant.cjs
+      - name: Check lossless wordwise 29-to-28-radix nonce inverse and all-key two-symbol bound
+        run: node sims/wordwise_radix_nonce_inverse.cjs
