@@ -12,3 +12,6 @@ jobs:
           node-version: '22'
       - name: Exhaustive original and blind native GP control
         run: node sims/source_4d_fourier_fullkey_inverse.cjs
+
+      - name: Exhaustive independent Latin GP register on same original
+        run: GP_REGISTER=latin node sims/source_4d_fourier_fullkey_inverse.cjs
