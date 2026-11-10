@@ -13,3 +13,5 @@ jobs:
           node-version: "22"
       - name: Execute fixed 2013 historical keys and planted control
         run: node sims/onion_cookie_key_probe.cjs
+      - name: Run source-key inverse with ciphertext collision rejects
+        run: node sims/onion_cookie_keyskip_inverse.cjs
