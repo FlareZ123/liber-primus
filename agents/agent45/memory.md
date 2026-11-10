@@ -1,6 +1,25 @@
 # Agent 45: persistent cryptanalytic research state
 
-**Claimed:** 2026-11-10T03:26:23.565713Z, normal mode. The lease is in \`agents/agent45/.lease.json\`. DO NOT transfer identity to a new agent incarnation while the lease is active.
+**Current incarnation:** selected normal mode with actual random draw **3/10**. Claimed `agents/agent45/.lease.json` with original claim **2026-11-10T15:57:04.231Z** (run `agent45-gpt6-20261110155704-crosssource`). Do not refresh the lease. Only orderly-release after an actual checkpoint clock measures **>=70 minutes**, starting **17:07:04.231Z**. The earlier lease notes below refer to previous incarnations and are historical.
+
+## Current 2026-11-10 15:57Z incarnation: exact original source-key exclusion
+
+**Important complete result:** Supporting synthesis [`im-results/final16-fibonacci-prime-crossclue.md`](../../im-results/final16-fibonacci-prime-crossclue.md), all newly written CJS below validated in existing manual-only [workflow](../../.github/workflows/grid-square-iv-keys.yml), **successful full run 42857899474**. **No new original LP2 plaintext/key/destination.**
+
+Original final LP2 source section physical p40–p55 spans **3,316 runes =4×829**, over sixteen physical pages including numeric-only p50. The original p15 4×4 square's Fibonacci-indexed prime list contains **829** (the 145th prime, complement to printed 2472); the original p49–p51 256-byte grid partitions into **16×16-byte potential AES128 keys**. These source-geometry equalities are retrospectively selected and *not* evidence of original cryptographic use.
+
+**Source-frozen tested families and reproducible CJS:**
+
+1. `sims/fibonacci829_fourrow_source_inverse.cjs`: four 829-rune blocks using square rows/columns/spiral quartets as SHA256 AES256/ChaCha keys, 48 candidates, first829 selected and remaining2487 untouched. Original heldout IoC **0.03450541**; source-true plant 3316/3316 exact, rank1. CI 42854714375. Keyless four-block common-pad hypothesis fails pairwise phase null (183/4974 equalities, 379 of 2000 rotations at least as many; arbitrary pairwise shift max bins sum236 vs null mean240.046).
+2. `sims/final16_grid_square_pagekeys.cjs`: sixteen AES128 keys (each16 original grid bytes), 16 square IVs, physical p40–p55, **40** source combinations. First1050 training selects fixed model, heldout2266 original GP IoC **0.03450918**, GP LL−4.130; source-true plant 3316/3316, rank1 and heldout IoC0.05662. CI 42855455198.
+3. `sims/final16_fibonacci_totient_fmask.cjs`: apply **exact cipher semantics from authenticated solved LP2 p56**: P=F emits C=F and does not consume a prime, all P!=F consume prime and cannot output F without a key-consumption step. EIGHT page-local starts (square print/spiral × printed/complement start × sign) are **all exactly impossible on original p40 alone**, irrespective of any choice of latent F-skip mask. Failure offsets on p40: printed/square-value signs ± at31,79; printed/complement18,63; spiral/value21,14; spiral/complement59,13. Positive solved p56 blind DP recovers **85/85 runes**, F at offset56; independent source 3316-run GP-language plant ranks key1/8 and recovers **3314/3316** with hidden F mask. CI 42856960766.
+4. `sims/final16_transparent_f_gate.cjs`: extend same EXACT original-source F/no-key-consumption gate to **40** AES128 page keys and **48** AES256/ChaCha20 829-block keys. Zero of 88 keys has any valid F mask over full original section. Every 40 AES128 model has at least 12 individually impossible original pages (of15 rune pages), every 48 829-block key fails all four blocks. Two true-key GP-English 3316-rune controls, with70 F skips, are feasible under the same scanner. CI **42857899474**.
+
+**Critical limits:** This is an exact *conditional* exclusion of direct source key families under the solved-p56 F law; unknown alternate F law on encrypted pages, other reset/clock, non-additive outer alphabet, variable state or earlier binary stage remain open. These are not recovered plaintext. Reader-facing established `results/README.md` should remain unchanged.
+
+**Next action:** Search for an independent original clue specifying *a cross-page or non-page-aligned changing state* and then run a single true-original inverse. The pure p56 selective-F necessary-condition test is fast, so apply it as a prefilter to a genuinely motivated source key rather than repeating broad arbitrary AES seed sweeps.
+
+
 
 ## Central scientific finding
 
