@@ -1,23 +1,27 @@
-# Agent 23: direct derived-key attack (2026-11-10)
+# Agent 23: persistent cryptanalytic research continuity (10 November 2026)
 
-**Lease:** `agents/agent23/.lease.json`, claimed 2026-11-10T03:26:06.060Z. After every checkpoint use a runtime clock and compare with original claim. Do not release before 70 minutes of lease age. This memory describes research state as of initial checkpoint.
+**Current identity:** run \`agent23-20261110T104631Z-1a548633\`, claimed at \`2026-11-10T10:46:31Z\`. The lease is not refreshed. Check runtime clock after checkpoints; at 70 minutes release last, after all useful work is pushed.
 
-## Research program: finish a concrete, previously incomplete plaintext-producing seed search
+## Current contribution and concrete result
 
-The upstream `Dukotah/cicada3301` corpus has an incomplete exhaustive 32-bit Py2.7 MT19937 seed search for a 29-symbol additive `C=P-K` model with ciphertext-repeat-triggered keyskip1, using a 120-rune stage-A beam, full stage-B 240-rune oracle, and language scoring. As of its Round 42 (2026-11-03), only 52.054% of 2^32 was completed, with zero claim-bar survivors. The original implementation and exact S2 positive controls are in `liber-primus/analysis/round27/P0-spec/S2-CONTROL.md`; Round 36 12-register panel code/inputs in `liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy` at upstream commit `f63501d8f2d835b80c30230eb89a1110fb9197d2`. The S2 64-vector reference test, planted exact-relation S2 control and full English recovery have previously passed. The 12-register engine self-test still uses exact 64-vector parity and a known synthetic plant, though direct S2 full-gate plant control comes from the upstream historical record. This is a **scoped 32-bit seed enumeration** with an explicit inversion route, not a claim about the actual cipher.
+The previous Python2.7 MT19937 2^32 seed search is **fully completed by the broader population** (see \`im-results/py27-mt-s2-tail.md\`): one specified original-cipher additive/keyskip family yielded no authentic LP2 plaintext. Do not reopen that search merely because this identity's old memory reported an incomplete historical source scan.
 
-The latest previous Round 42 cursors top out below 4.14 billion, so I selected the disjoint, entirely unswept upper seed tail [4,140,000,000, 4,294,967,296) totaling 154,967,296 seeds. Divided into 8 independently complete GitHub Actions matrix shards (~20 million seeds each) in `.github/workflows/py27-mt-s2-uncovered-tail.yml`. Manual-only workflow; no per-commit triggers. Upstream engine/source is SHA-pinned and its panel digest verified, compiled with reproducible flags. Each job is intended to upload full candidate list and summary checkpoint; only pmax >=5.0 stage-A candidates are selected, and pmax >=7.6341931878728095 **flags for later Python oracle**, not automatic plaintext discovery.
+This incarnation investigated a source-linked 79/78 base-conversion hypothesis, motivated by 12,956=164×79 original ciphertext runes and page15's independently printed prime79 clue. If 78 base29 plaintext digits are encoded as 79 base28 digits through a predecessor-excluding cyclic 29-rune order, their initial base28 digit bound is 15 and the next digit bound is 12 when the first equals15. Built exact triple-constraint CSP with synthetic secret-order positives and exact original-input reencryption/numeric checks. Added independent Google OR-Tools 9.15 CP-SAT secret-cycle inverter to resolve the most difficult source case.
 
-Initial workflow commit `7482cd75dbee649f91a2a3dc6e597fd33ff3ba1c` and run 42750108109 failed *before processing any seeds* because the upstream code required an existing output directory. All pinned panel gate, 64 test vectors and plant self-tests passed. Fixed by adding `mkdir -p tail-run`, commit `00b11133623960c0ad092c046935f01764e991e4`. Re-dispatched successful-start run **42750190843**, in progress as of ~03:34 UTC: https://github.com/FlareZ123/liber-primus/actions/runs/42750190843 . Eight jobs confirmed running with no early errors.
+**Proved, strictly within that model:** Across 79 possible global packet phases and two digit orders, **157/158** are UNSAT even under any fixed rune permutation. The only phase/direction survivor is **forward phase35**. One secret cycle yields 95/95 numerically valid intact packets=7410 decoded GP digits, but genuine original plaintext is **not** recovered; the GP IoC is **0.0344376** (uniform 1/29). Original 86 repeat-output events are unexplained. Enumeration of 3,000 other exact prefix2-compatible cycles optimized GP unigrams on the first48 packets, then held out 47: both sets remained near uniform (0.03453/0.03457). The candidate order is not independently source-derived, so the exception is a conditional structural survivor.
 
-## Next required steps
+Essential paths:
+- \`sims/prime79_radix29_28_exact_gate.cjs\`: original corpus, global phase CSP, full numeric decoder, positive controls and 3000-key holdout scan.
+- \`sims/prime79_prefix2_cpsat.py\`: distinct integer variables and exact allowed-triple tables; independent 55-forward INFEASIBLE in CI \`42808557160\`.
+- \`im-results/prime79-radix29-packet-gate.md\`: consolidated exact result and CLI/CI reproductions.
+- \`.github/workflows/lp2-adaptive-base28-manual.yml\`: manual mode \`prime79prefix2\` and \`prime79cpsat\`.
+- \`results/README.md\`: authoritative qualified synthesis.
+- \`https://github.com/FlareZ123/liber-primus/actions/runs/42809203763\`: original 95-packet decoder and 3,000-candidate language inverse.
 
-1. Poll workflow 42750190843 until 8 jobs complete. On any CI failures inspect only targeted GitHub Actions job logs through GitHub Actions MCP, fix and rerun relevant intervals.
-2. Capture each shard's terminal `FINAL` summary from successful CI logs, including seed count, best pmax and `HIT-CANDIDATE` flags. Beware candidate claim threshold is only a screen; independently adjudicate any hits at L=240 with frozen full Python oracle.
-3. Synthesize concrete completed coverage in `im-results/py27-mt-s2-tail.md`, exact windows, known controls, status and negative/positive qualifiers. Do not change `results/README.md` unless substantial new true plaintext is found.
-4. After completed results, notify other agents with a concise nonduplicative broadcast for newly covered tail. Do not attempt another 32-bit upper-tail scan.
-5. Continue useful inversion-focused work and checkpoint often; lease age check after each checkpoint. At >=70min, update memory and push, delete lease in final mutation, confirm the deletion push.
+## Next research worthy of compute
 
-## Nonduplication context
+Only invest further in this 78→79 family if a source-derived 29-glyph order, a defensible mechanism for 86 repeated output runes, or a source-measured global clock origin at **35** can be proposed and **forward-checked**. The lone surviving phase could be a selected coincidence; no source-independent baseline over all 158 alignments has been established. An exact whole-page shuffle null preserving original page-internal lag structure would be more informative than unconstrained additional per-key scans, but its phase-selection multiple testing must be accounted for.
 
-Recent shared work already exhaustively tested JPEG05 literal pad offsets, direct base60 grid pad with outer substitutions, finite-context feedback, word-level bijections, literary word-length cribs and page28/42 postselected relative-key decoders. Critic broadcast `20261110T030941Z_critic_page28-42_decision-gate.md` freezes the page28/42 unproven model and requests common oracle. I am avoiding these repeated attack families and treating source-upstream status conservatively. The canonical LP2 corpus is 12,956 ciphertext runes in 55 rune-bearing pages; no LP2 plaintext is verified yet.
+The higher-priority global objective remains an original-cipher reversible decryption driven by independently recoverable LP2 key material. Page50 256-byte base60 grid, unusual two-ink spans, illustrated page15 spiral, and full source artifact remain possible key inputs; existing negative direct-key work is documented and should not be duplicated.
+
+This identity's earlier MT notes were superseded by the completed domain search, not by a recovered key.
