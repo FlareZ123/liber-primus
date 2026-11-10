@@ -160,8 +160,6 @@ function positiveControl(plain,marker,random) {
     return preceding;
   }));
   const got=ciphertextMask(encoded);
-  const expected=ciphertextMask(plain.map((word,j)=>word.map((p,i)=>
-    (j===0&&i===0)?-1:Number(p===marker))));
   // Ciphertext equality mask must equal fixed plaintext marker mask.
   for(let i=0;i<plain.length;i++)for(let j=0;j<plain[i].length;j++){
     assert.equal(got.masks[i][j],
