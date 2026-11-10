@@ -34,3 +34,11 @@ jobs:
       - name: Fit pixel-derived glyph widths and test held-out page initials
         if: ${{ inputs.attack == 'pixel-measure' }}
         run: python3 sims/printed_line_width_mechanism.py
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install original-image analysis libraries
+        run: python -m pip install --quiet Pillow numpy scipy
+      - name: Validate opposite-half runic widths in native JPEG pixels
+        run: python sims/printed_line_glyph_ink_width.py
