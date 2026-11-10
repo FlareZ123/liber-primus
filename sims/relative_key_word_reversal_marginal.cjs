@@ -138,13 +138,13 @@ function run(){
       best=Math.max(best,score(a,b,models[oa],models[ob],shift).excess);
     allShiftMax.push(best);
   }
-  const random= random(0x3301c5a7),controlTrials=150;
+  const rnd= random(0x3301c5a7),controlTrials=150;
   const controls=Array.from({length:4},()=>[]);
   const wrongModels=Array.from({length:4},()=>[]);
   for(let t=0;t<controlTrials;t++){
     const oa=t%2,ob=(t>>1)%2;
-    const p=matched(a,holdout,random,Boolean(oa)),q=matched(b,holdout,random,Boolean(ob));
-    const [ca,cb]=encryptShared(p,q,random);
+    const p=matched(a,holdout,rnd,Boolean(oa)),q=matched(b,holdout,rnd,Boolean(ob));
+    const [ca,cb]=encryptShared(p,q,rnd);
     for(let i=0;i<4;i++){
       const mi=i>>1,mj=i&1;
       const v=score(ca,cb,models[mi],models[mj]).excess;
