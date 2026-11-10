@@ -50,6 +50,13 @@ const keys=grid.byte_rows.map(row=>{
   return b;
 });
 const original=segments.map(s=>s.map(p=>p.c));
+const altBytes=Buffer.from(grid.byte_rows.flat());
+const fiveCorrections=[[45,107,81],[50,47,21],[165,18,47],[172,148,174],[246,198,224]];
+for(const [i,initial,corrected] of fiveCorrections){
+  assert.equal(altBytes[i],initial);
+  altBytes[i]=corrected;
+}
+const sourceKeys={canonical:keys,imageFive:Array.from({length:32},(_,i)=>altBytes.subarray(i*8,i*8+8))};
 
 /** DES-ECB stream block using three identical EDE3 keys, exactly DES E_K. */
 function desStream(key, length, row, mode){
@@ -72,15 +79,15 @@ function desStream(key, length, row, mode){
   return buf.subarray(0,length);
 }
 function keyBytes(mode){
-  return keys.map((base,row)=>desStream(mode.reverse?Buffer.from(base).reverse():base,
+  return sourceKeys[mode.source].map((base,row)=>desStream(mode.reverse?Buffer.from(base).reverse():base,
       segments[row].length,row,mode));
 }
 const modes=[];
-for(const stream of ['ctr','ofb'])for(const salt of ['zero','row'])
+for(const source of ['canonical','imageFive'])for(const stream of ['ctr','ofb'])for(const salt of ['zero','row'])
 for(const reverse of [false,true])for(const format of ['direct29','diff28'])
 for(const reducer of ['mod','scaled'])for(const sign of [-1,1])
-  modes.push({stream,salt,reverse,format,reducer,sign});
-assert.equal(modes.length,64);
+  modes.push({source,stream,salt,reverse,format,reducer,sign});
+assert.equal(modes.length,128);
 function keydigit(x,base,mode){return mode.reducer==='mod'?x%base:Math.floor(x*base/256);}
 function decode(segs,pads,mode){
   return segs.map((seq,r)=>{
@@ -138,7 +145,7 @@ function search(segs){
   }).sort((a,b)=>b.train-a.train);
 }
 function plant(){
-  const truth={stream:'ctr',salt:'row',reverse:false,
+  const truth={source:'canonical',stream:'ctr',salt:'row',reverse:false,
     format:'diff28',reducer:'scaled',sign:1};
   const ref=nativeRef.slice(0,12956);
   let start=0;
