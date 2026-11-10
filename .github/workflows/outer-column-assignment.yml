@@ -1,0 +1,18 @@
+name: LP2 joint grid-column and outer-alphabet inference
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  joint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recover hidden column assignment on independent plants
+        run: |
+          node --check sims/outer_permutation_unknown_column_assignment.cjs
+          node sims/outer_permutation_unknown_column_assignment.cjs
