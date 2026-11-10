@@ -109,22 +109,43 @@ function emRefine(cipher,key,logPrior,initial,{maxDrift=100,suppress=.81,iterati
   return {inverse,history,auxScore:summary.score,posterior:summary.posterior};
 }
 function seeds(cipher,key,contexts,model){
-  const proposals=[];
-  for(const width of [60,100]){
+  const unique=[],seen=new Set();
+  function push(x){
+    const id=x.inverse.join(",");
+    if(!seen.has(id)){seen.add(id);unique.push(x);}
+  }
+  for(const width of [60,100,160,300]){
     const chunk=cipher.slice(0,width),cls=contexts.slice(0,width);
-    proposals.push({inverse:fit(chunk,key,cls,model).inverse,width,at:0});
+    const base=fit(chunk,key,cls,model);
+    push({inverse:base.inverse,width,at:0,score:base.score});
+    if(width>100)continue;
+    const singles=[];
     for(let at=1;at<width;at++){
       const indices=Array.from({length:width},(_,i)=>i+(i>=at?1:0));
       const result=fit(chunk,key,cls,model,indices);
-      proposals.push({inverse:result.inverse,width,at,score:result.score});
+      singles.push({inverse:result.inverse,width,at,score:result.score});
     }
-  }
-  proposals.sort((a,b)=>(b.score??-Infinity)-(a.score??-Infinity));
-  const seen=new Set(),unique=[];
-  for(const p of proposals){
-    const id=p.inverse.join(",");
-    if(!seen.has(id)){seen.add(id);unique.push(p);}
-    if(unique.length===6)break;
+    singles.sort((a,b)=>b.score-a.score);
+    let picked=0;
+    for(const s of singles){
+      if(seen.has(s.inverse.join(",")))continue;
+      push(s);if(++picked===4)break;
+    }
+    if(width===60){
+      const doubles=[];
+      for(let at=1;at<44;at++)for(let at2=at+1;at2<=45;at2++){
+        const indices=Array.from({length:width},(_,i)=>
+          i+(i>=at?1:0)+(i>=at2?1:0));
+        const result=fit(chunk,key,cls,model,indices);
+        doubles.push({inverse:result.inverse,width,at,at2,score:result.score});
+      }
+      doubles.sort((a,b)=>b.score-a.score);
+      let selected=0;
+      for(const s of doubles){
+        if(seen.has(s.inverse.join(",")))continue;
+        push(s);if(++selected===5)break;
+      }
+    }
   }
   return unique;
 }
