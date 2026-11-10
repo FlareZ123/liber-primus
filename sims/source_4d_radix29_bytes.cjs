@@ -146,7 +146,7 @@ const markerProof=transparentMarkerObstruction();
 /** A valid compressed binary member, expanded as transport data. */
 function plantByteStream() {
   const source=fs.readFileSync(path.join(__dirname,'..','resources',
-    'liber-primus','lp1-plaintext-reference.txt'),'utf8');
+    'transcriptions','liber_primus_master.txt'),'utf8').slice(0,8000);
   const compressed=zlib.gzipSync(Buffer.from(source,'utf8'));
   assert.ok(compressed.length<Math.floor(N/2));
   return {compressed,plain:Array.from(compressed)};
