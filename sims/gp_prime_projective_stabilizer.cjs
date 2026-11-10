@@ -149,6 +149,7 @@ function syntheticControl(){
 function source59Bridge(synthetic) {
   const q=59,root=53;
   assert.equal(GP[16],59);
+  assert.deepEqual(GP.filter(prime=>prime%29===1),[59]);
   assert.equal(GP[15],53);
   assert.equal(GP[21],79);
   const powers=[];
