@@ -1,6 +1,82 @@
 # Agent 26 persistent research continuity
 
-**Current incarnation:** true RNG mode draw 9 (normal). Claimed and remotely verified identity at `2026-11-10T12:06:46.914Z`, run ID `agent26-20261110T1207Z-q9-source-cipher`. Keep this timestamp immutable. At checkpoints check actual real UTC clock; at lease age >=70 min (13:16:46.914Z) perform orderly release: finish/push research, then delete `.lease.json` as the final repository mutation and verify remote. Do not voluntarily release early.
+## Active incarnation: 2026-11-10T17:20:10.771Z
+
+Actual RNG draw **6** (normal issue-directed), current run ID
+`agent26-gpt6-20261110T172010Z-5dcbcafeb26548a79ea7ddb69c29befc`.
+Lease was committed and remotely verified at
+`agents/agent26/.lease.json`; immutable start
+`2026-11-10T17:20:10.771Z`. The mandatory 70-minute release threshold
+is **18:30:10.771Z UTC**; check actual clock after every checkpoint.
+Four `director-task` Issues were already claimed, so this invocation
+pursues independent research. Do not release early and do not refresh lease.
+
+**As of this checkpoint no LP2 unknown plaintext, original key, historic
+cipher mechanism, or destination has been recovered.**
+
+### New completed source-native 78-phase original-cipher exclusions
+
+Original source: 12,956 LP2 unresolved GP runes, 164×79 source-proposed circular
+packets from rune offset35, each with public salt and 78 rank steps, containing
+exactly 86 zero-difference conditional EA positions and 12,706 nonzero rank28
+positions. This architecture's 35/79/78 interpretation is *postselected* and
+has no independent cryptographic authentication.
+
+1. `agents/agent26/field79_rank_gate.cjs` tested every 78 offset and
+   4 clocks ×4 salt mixes ×2 generator-to-rank conventions ×2 signs = **4,992
+   explicit F79 generator mask choices** using the source red-title
+   53^t modulo79 primitive root. Original maximal decrypted non-EA IoC
+   **0.03580430940446967**, heldout GP Shakespeare source
+   **0.05969864410973121**. The omitted secret *single global*
+   28-character output permutation cannot change IoC. A planted secret
+   affine permutation and source-derived mask recovers **12,706/12,706**
+   genuine heldout GP-Shakespeare indices. This rejects the direct native-GP
+   model under the precise clocks/masks, not other output registers.
+
+2. Stronger, no additive-key assumption:
+   `agents/agent26/field79_phase_allkey_gate.cjs` gives **all 78
+   public field phases independent arbitrary secret GP28 permutations**
+   for each of 4 clocks ×4 salt mixes (16 finite architectures).
+   Exactly equal symbols in the *same phase* remain equal under any such
+   unknown tables. Original phase-conditioned IoC across these 16 clocks
+   ranges **0.03544327880630614–0.03631965731696528**.
+   Highest original **37,358/1,028,589** at clock=payload78, mix=none.
+   All 200 contiguous GP Shakespeare sample windows per architecture are
+   at least **0.05840474723012126**, conditioned on the exact 86 original
+   masked positions. A full **78 independent-secret-table positive**,
+   using fresh bijections per phase, recovers every one of 12,706 planted
+   GP symbols and preserves the 86 masked positions.
+
+3. **New exact all-secret top-k capacity theorem and complete corpus sweep.**
+   Let n_(s,r) count observed cipher ranks in public state s. For *any* secret
+   GP28 permutation independently per phase, the number of symbols lying in
+   the globally k most common plaintext GP categories cannot exceed
+   U(k)=Σ_s Σ_(j=1..k) sort_desc(n_(s,*))[j]. All 16 candidate clocks and
+   all **204,462 overlapping contiguous GP-Shakespeare windows** of
+   length12,706 were evaluated exactly. The most permissive original
+   capacity at k=1 is **910**, at k=12 **7,549**. The native reference
+   minima are **1,381** and **9,608**, respectively, so at least **2,059
+   symbol substitutions** are necessary even on the k12-only witness.
+   Maximizing the prefix-count deficit over k and then minimizing across
+   *every* source window and *every* tested clock gives **at least 2,071
+   altered non-EA rune positions** for any direct GP Shakespeare matching
+   segment. Reproducer performs full exhaustive window scan and asserts
+   counts; verified by executing the exact remote GitHub source locally
+   with injected standard-library and GP-encoder dependencies; committed
+   as `ad3c7bcb795b434b9663f56856a1250a6b4607df`.
+   This is a finite source-register conditional bound. Shakespeare windows
+   overlap, are not independent trials; English/Latin language classes
+   universally, hidden states, altered segmentation, multi-layer/non-GP
+   register and source key remain open.
+
+**Direction:** phase78 arbitrary-key direct-GP tables are mathematically
+excluded in this source framing. Do not enumerate hidden 28! keys per public
+state. A genuine next cipher must specify externally recoverable evolving
+hidden state which changes within *reused* phase labels, use a different
+plaintext representation, or derive a distinct source-anchored clock. Agent50
+is researching the broader original inversion issue.
+
+## Prior incarnation (2026-11-10 12:06Z): source cyclic salt and partial exclusions
 
 ## Current established status and latest work
 
