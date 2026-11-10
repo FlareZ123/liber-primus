@@ -60,6 +60,35 @@ There is **no positive evidence** that ciphertext index8 retains English H's pos
 
 The same script reports **80/1,290** observed within-word lag-six T hits versus a *descriptive* **75.07** expected same-rune repeats at lag six from **length-matched GP-English training words**, *if* T were the block-to-block rotor. This numerical match is not an independent validation: the map T was originally selected on this ciphertext, and the fixedpoint test contradicts its simplest GP-English explanation. The alternative prior [Agent 19 literary control](lag6-conditioned-echo.md) measured directly applying the **T relation to unrotated English**, a different expectation from same-rune repetition after a hypothetical rotor; its numbers should not be conflated with 75.07.
 
+### All 29 hidden outer labels: fixed-point position gate
+
+The preceding result covers literal GP index8 as the fixed plaintext symbol. A **stronger, key-independent test** grants the attacker a completely unknown *static* outer substitution, including all 29 possible identities of that fixed plaintext symbol. In a cipher of the form C_i = T^{k_i}(π(P_i)), the exponent k_i may be arbitrary, changing at every rune. Because T fixes exactly index8, the ciphertext positions of rune8 are **identical** to the plaintext positions of the single unknown symbol s = π^{-1}(8), regardless of the unknown exponent sequence. This remains necessary for all 29! possibilities for π, without enumerating them.
+
+On the 2,896 exact original LP2 words (12,956 symbols), index8 appears in four mutually exclusive word-position classes as follows:
+
+| One-rune word | First of length≥2 | Last of length≥2 | Strict interior | Total |
+| ---: | ---: | ---: | ---: | ---: |
+| **4** | **89** | **91** | **230** | **414** |
+
+For each candidate plaintext s in all 29 native-GP symbols, train the expected four counts and word-sampling variance separately from the **first halves** of the pinned Gibran, Shakespeare and Emerson sources, conditioning on the manuscript's exact observed distribution of word lengths 1–14. Rare lengths absent in one half use that source's full-length pool. For a four-count vector h, score each source/symbol proposal by the variance-stabilized descriptive discrepancy Σ_j(h_j−E_j)²/max(1,Var_j), and **select the best of all 87 proposals**, thereby granting the model its entire hidden static output alphabet. This statistic is a diagnostic, not a parametric χ² p-value.
+
+The best original assignment is **plaintext rune M**, using the Emerson model. The original's minimum discrepancy is **76.35285**, versus expected four counts approximately **[0.15, 133.46, 55.99, 168.23]**. A different source or hidden GP letter cannot directly explain the original 414 ciphertext fixed-symbol locations under this model.
+
+Matched controls sample new complete manuscripts, matching all 14 original word-length counts, from the **second halves** of the three source books. For each, all 29 candidate true hidden fixed symbols are represented across 130 replicates, and the same all-87-best-model selection is rerun. Because the original fixed ciphertext symbol appears **414** times, a broad frequency-matched subset retains controls with 330–500 such symbols:
+
+| Control source | All synthetic manuscripts | Frequency-matched | Matched discrepancy ≥76.35285 |
+| --- | ---: | ---: | ---: |
+| Gibran | 3,770 | 322 | **0** |
+| Shakespeare | 3,770 | 534 | **0** |
+| Emerson | 3,770 | 490 | **0** |
+| **Total** | **11,310** | **1,346** | **0** |
+
+The frequency-matched nominal plus-one tail bound is **1/1,347 ≈0.000742** under these specific sampled literary controls. **The unrestricted, unconditioned pool is less decisive:** archaic/genre-shifted source symbols of different overall frequency can exceed this discrepancy, so the matched result must not be read as an absolute, source-independent impossibility. The original count determines the matching interval, and T was originally selected from the same manuscript, so this is not an independent discovery-wide p-value.
+
+Positive controls explicitly apply arbitrary per-position T powers and a hidden static bijection mapping one of four independently selected GP source symbols to index8. The four observed occurrence classes remain unchanged in every plant, as required by the proved invariant. See the [single-file full-corpus reproducer](../sims/lag6_outersigma_fixedpoint_allsecret_gate.cjs), which outputs all original scores, source controls, and native-GP synthetic confirmations.
+
+**Decision:** Even granting the whole arbitrary fixed outer substitution key, an otherwise direct power-of-T transformation remains inconsistent with the occurrence-position fingerprints of these native-GP English control sources. The useful future space is a changing output alphabet, intermediate encoding, inserted/dropped text, or a mechanism where T describes only a sparse echo rather than the entire cipher. No original plaintext or historical key is identified.
+
 ## A source-grid-driven six-lane recurrence with exact secret-seed recovery
 
 **Original-input model excluded under direct GP-native language; no recovered authentic plaintext or key.** The original printed numerical table contains 256 bytes, the GP field has primitive root 15, and the previously observed affine lag-six transformation is 24−2x mod29. A new lossless cipher hypothesis links them through a six-lane source-driven key recurrence:
@@ -91,7 +120,7 @@ This is an operational hidden-key inversion algorithm but its tested *source-der
 
 The word-local affine echo remains a real ordering anomaly under the existing selected-family controls. A fixed six-phase T key and independent word offsets would offer an explicit, reproducible route to decrypt it; the blind dictionary voting attack does **not** find that key. More generally, a cipher formed solely of powers of T acting directly on GP-English ought to preserve H positions and fails the present independently powered necessary-condition check.
 
-A model that survives these constraints must account for an additional label permutation or non-GP intermediate alphabet, substantially changing phases, text-dependent rewrite or insertion, or a different source register. An unknown **outer symbol relabeling** would change which plaintext letter maps to T's fixed rune, so the H test does not exclude that alternative. A sparse echo imposed by a separate layer also escapes both simple rotor models. These are remaining model families, not evidence that any is true.
+A model that survives these constraints needs a **changing** (rather than one static) alphabet or an intermediate encoding, substantially changing phases, text-dependent rewrite/insertion, or a different source register. A static hidden outer relabeling, which escaped the initial H-only test, is now covered by the all-29-symbol necessary-condition gate above under the tested native-GP English sources. A sparse echo imposed by a separate layer remains outside these simple rotor models. These remaining mechanisms are hypotheses, not authenticated features of LP2.
 
 For a new key candidate, the available exact relative-phase vote engine is preferable to a general plaintext-fitting search: it gives unambiguous key hypotheses and a disjoint-word confirmation threshold on the actual transcript. A true hit must reconstruct full plaintext and re-encrypt authentic runes, especially across word and page boundaries.
 
