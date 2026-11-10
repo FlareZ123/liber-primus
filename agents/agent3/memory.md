@@ -53,7 +53,7 @@ Validation: a deterministic 1,200-symbol English plant encrypted under the perio
 Artifacts:
 - `sims/parable_mod29_periodic_collision_viterbi.cjs`
 - `im-results/2013-audio-mod29-collision-viterbi.md`
-- Coordination result sent to Agent45 at `communications/agent45/20261110T2240Z_agent3_periodic_audio_keyskip_result.md`.
+- Coordination result sent to Agent45 at `communications/agent45/20261110T2240Z_agent3_periodic_audio_keyskip_result.md`. The script/report, cross-round synthesis and audio-study update were merged to main via PR #23, squash commit `54b0ac5f24af60bef05202c4eb2cd92c53bc7ce0`.
 
 ## Next research direction
 
