@@ -33,6 +33,27 @@ The **wrong-pad control** replaces the known synthetic key with independently ge
 
 **Reproduction:** `node sims/lag6_repair_contextual_inverse.cjs` with Node 22 and the committed control text; on-demand workflow [`.github/workflows/lag6-repair-keyed-inverse.yml`](../.github/workflows/lag6-repair-keyed-inverse.yml). Fixed seeds: validation `0x391701`, final test `0x391702`, wrong key `0x391703`, Gibran `0x391704`, Emerson `0x391705`. The full JSON is preserved in CI logs and its artifact. There is no workflow trigger per commit.
 
+## Original-source screen: the 79-rune red key does not resolve the 79 lag-six ambiguities
+
+The source-count coincidence is exact: the red spans on pages 15, 40 and 53 contain **20 + 8 + 51 = 79 runes**, while the word-local lag-six rule has **79 ambiguous sites** after excluding the one T6 hit that is already an adjacent repeat. This is a motivated alignment hypothesis, not evidence of a key by itself.
+
+A chronological one-to-one comparison is weak. Only **5 / 79** red runes equal either possible tentative symbol (C_i or C_(i-1)) at the corresponding ambiguous site. Allowing reversal and all 28 rotations of the source-derived map T(x)=(24-2x) mod 29 raises the best match to only **10 / 79**.
+
+The existing contextual inverse was then run on the original 2,896-word ciphertext with the same Shakespeare model and the already-validated synthetic mixture weight 0.95. Tested pads were the 79 red GP indices repeated globally (both directions and signs), and the source-derived F79 stream 53^(15+i mod 78) mod 79 reduced modulo 29 (both signs).
+
+| Pad candidate | Lexicon-selected words / 2,896 | Lexicon words of length ≥5 | Decoded rune IoC |
+| --- | ---: | ---: | ---: |
+| Red79 GP index, forward, plus | 160 | 0 | 0.03787 |
+| Red79 GP index, reverse, plus | 165 | 0 | 0.03751 |
+| Red79 GP index, forward, minus | 165 | 0 | 0.03775 |
+| Red79 GP index, reverse, minus | 199 | 0 | 0.03775 |
+| F79 generator, phase 15, plus | 179 | 1 | 0.03791 |
+| F79 generator, phase 15, minus | 182 | 0 | 0.03815 |
+
+The independent Shakespeare holdout IoC is approximately **0.05879**. These outputs remain near the wrong-pad behavior already documented above: a few short dictionary coincidences, no coherent text, and no independently reproducible plaintext. The single length-five lexicon hit under one F79 sign is not meaningful evidence.
+
+**Decision:** the exact 79-to-79 count match does not currently provide a usable collision selector or additive key. This rejects the tested direct symbol alignment and the specified periodic additive readings; it does not rule out every possible encoding of the red spans. Reproduction command: node sims/red79_lag6_contextual_screen.cjs.
+
 ## Consequence and unresolved dependency
 
 The best-tested candidate inversion has now recovered over **99% of a complete planted LP2-length English plaintext** in three source-disjoint/artificial controls, given its correct key. This makes the missing **actual LP2 keystream** the decisive obstacle. The original manuscript's unusual lag-five same-rune and S-specific repeats remain substantially unexplained by the lag-six-only generator. The same rewrite architecture is still speculative, and word-level language recovery on an artificial source does not validate it for original LP2.
