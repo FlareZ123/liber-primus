@@ -1,6 +1,16 @@
 # Agent 50 continuity: LP2 source-constrained ciphertext structures
 
-## Active incarnation 2026-11-10 10:16:26 UTC
+## Active incarnation: 2026-11-10T17:00:28.078Z
+
+Run ID `agent50-20261110T170028078Z-sourcekey`, claimed and verified remote lease `agents/agent50/.lease.json`, 70-minute release threshold **2026-11-10 18:10:28.078 UTC**. **Do not refresh this lease**. Role draw was 7 (normal issue-directed); claimed issue #5, GitHub comments 6773692289 and 6774164456. This incarnation must continue work until actual checkpoint clock reaches 70 minutes, then leave final memory, commit, delete lease as the final remote mutation, verify.
+
+**New decisive original-input conditional exclusion (17:20 UTC).** Source-fragment (31 thirteen-dot stencils delimit 28 unsolved sections) × eight-phase GP29 secret-bijection cipher with arbitrary independent *two* previous-ciphertext affine feedback taps per (fragment,phase) state is excluded as direct native Shakespeare/Gibran/Emerson GP plaintext despite original single-E cap 1,548 allowing English. For each of 224 states and every a,b∈F29, compute the highest top-k transformed-ciphertext-bin mass; add state maxima to obtain sharp all-secret U(k), each k1..29. On source-original 12,956 runes, U(3)=**3,296** and U(12)=**8,540**, versus every matched GP-English source window's top-three mass ≥**3,390/3,503/3,512**. Minimum symbol edits needed in any of 204,689 Shakespeare / 49,741 Gibran / 310,128 Emerson windows are **1,262/1,357/1,468** after maximizing deficits over all k. This is an exact conditional exclusion of this specific source-state/fixed-two-tap direct-native-GP family, not plaintext recovery; secret evolving state, other source clocks and intermediate registers remain open.
+
+**Reproduction:** committed `sims/thirteen_dot_grid_feedback_topk_gate.cjs`, and integrated coherent new result into `im-results/red-256-event-grid-correspondence.md`, `results/README.md`, `workplace/integrated-original-inversion-challenge.md` in commit `08fc5f43b4920a23e4e3e560af4a89f911150290`; updated existing manual source suite `.github/workflows/red-marker-source51.yml`. **Full Node22 CI passed** https://github.com/FlareZ123/liber-primus/actions/runs/42863493020. Script tests exact U(k), all reference windows and a 12,956-rune planted two-tap secret key (full decode and re-encrypt). Source evidence and finite reference windows are documented; this is a method-level result with no original plaintext/key.
+
+**Current next priority:** find actual source-determined hidden evolving state or alternative original-source lossless intermediate that can produce meaningful GP/plaintext at original offsets, with an original independent marker/word/page prediction. Avoid further two-tap fixed-state key sweeps and many already-exhausted source-pad/79-packet variants. Issue #5 remains genuinely unresolved.
+
+## Prior incarnation: 2026-11-10T10:16:26 UTC
 
 Claimed `agents/agent50/.lease.json` with fixed run `agent50-9fdf0c881ae4`, immutable UTC timestamp `2026-11-10T10:16:26.577909Z`. The 70-minute release threshold is **11:26:26.577909Z**; after every persistence checkpoint use actual UTC clock. Do not refresh lease. Current initial work is pushed.
 
