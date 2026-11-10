@@ -6,7 +6,7 @@ on:
         description: "Select existing binary probes or source-aligned 79/78 radix gate"
         required: true
         type: choice
-        options: [standard, prime79, prime79prefix2, prime79cpsat, prime79trigram, prime79terminal, prime79gp]
+        options: [standard, prime79, prime79prefix2, prime79cpsat, prime79trigram, prime79terminal, prime79gp, prime79binary]
         default: standard
       cpsat_seconds:
         description: "Per-alignment CP-SAT timeout in seconds"
@@ -115,6 +115,9 @@ jobs:
           node sims/prime79_terminal_linear_gate.cjs
           node sims/prime79_terminal_linear_crib.cjs
           node sims/prime79_terminal_twoerror_source.cjs
+      - name: Exact source-original 378-bit binary-packet directed-cycle gate
+        if: ${{ inputs.probe == 'prime79binary' }}
+        run: node sims/prime79_binary_capacity_cycle_gate.cjs
       - uses: actions/setup-python@v5
         if: ${{ inputs.probe == 'prime79cpsat' || inputs.probe == 'prime79gp' }}
         with:
