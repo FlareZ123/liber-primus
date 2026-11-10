@@ -23,6 +23,9 @@ jobs:
       - name: Source-selected global six-lane key and original heldout
         shell: pwsh
         run: node sims/red53_global_pad_inverse.cjs
+      - name: Original 2013 Instar source-seed GP28 inverse and planted control
+        shell: pwsh
+        run: node sims/instar2013_source_seed_inverse.cjs
       - name: Label invariant 168-position original key recurrence exclusion
         shell: pwsh
         run: node sims/red53_period168_label_invariant.cjs
