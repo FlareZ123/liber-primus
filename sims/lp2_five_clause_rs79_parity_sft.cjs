@@ -128,9 +128,8 @@ function toGp(text) {
  * @param {string} sourceFile
  * @param {number} originalPairs
  */
-function fullSource91Reference(sourceFile, originalPairs) {
+function fullSourceReference(sourceFile, originalPairs, width) {
   const source = toGp(read(sourceFile));
-  const width = 91;
   const counts = Array(29).fill(0);
   for (let i = 0; i < width; i++) counts[source[i]]++;
   let orderedPairs = counts.reduce((sum, n) => sum + n * (n - 1), 0);
@@ -254,13 +253,54 @@ function main() {
   assert.deepEqual(recoveredSecret, secret91);
 
   const shamir91Controls = [
-    fullSource91Reference("resources/control/shakespeare_first300k.txt", secretPairs),
-    fullSource91Reference("resources/control/emerson_essays_2944.txt", secretPairs),
-    fullSource91Reference("resources/control/gibran_prophet_58585.txt", secretPairs)
+    fullSourceReference("resources/control/shakespeare_first300k.txt", secretPairs, 91),
+    fullSourceReference("resources/control/emerson_essays_2944.txt", secretPairs, 91),
+    fullSourceReference("resources/control/gibran_prophet_58585.txt", secretPairs, 91)
   ];
   assert.deepEqual(shamir91Controls.map((r) => r.atOrBelow), [0, 0, 0]);
   assert.deepEqual(shamir91Controls.map((r) => r.windows),
     [213701, 318577, 61777]);
+
+  // A source-motivated downstream key test: five labelled shares end at
+  // global rune 9358; the following UNNUMBERED paragraph runs through
+  // physical p38 remainder 42 and p39 pre-red-heading 119 = 161 runes.
+  // Use all 91 recovered x=0 symbols as the period-91 GP additive pad.
+  // Both native Cicada signs are fixed; no phase/key fitting is allowed.
+  const following = book.slice(9358, 9519);
+  assert.equal(following.length, 161);
+  assert.equal(following.slice(42).length, 119);
+  const followingPadTests = [-1, 1].map((sign) => {
+    const output = following.map((x, i) => mod(x + sign * possibleSecret[i % 91]));
+    const counts = Array(29).fill(0);
+    for (const x of output) counts[x]++;
+    const orderedPairs = counts.reduce((sum, n) => sum + n * (n - 1), 0);
+    return { sign, originalOutputIoC: orderedPairs / (161 * 160),
+      preview: output.slice(0, 40).map((x) => corpus.translit[x]).join("") };
+  });
+  assert.ok(Math.abs(followingPadTests[0].originalOutputIoC -
+    0.033385093167701864) < 1e-12);
+  assert.ok(Math.abs(followingPadTests[1].originalOutputIoC -
+    0.03641304347826087) < 1e-12);
+  const highestOriginalPairs = Math.round(Math.max(
+    ...followingPadTests.map((r) => r.originalOutputIoC)) * 161 * 160);
+  const followingControls = [
+    fullSourceReference("resources/control/shakespeare_first300k.txt", highestOriginalPairs, 161),
+    fullSourceReference("resources/control/emerson_essays_2944.txt", highestOriginalPairs, 161),
+    fullSourceReference("resources/control/gibran_prophet_58585.txt", highestOriginalPairs, 161)
+  ];
+  assert.deepEqual(followingControls.map((r) => r.atOrBelow), [0, 0, 0]);
+  assert.deepEqual(followingControls.map((r) => r.windows), [213631, 318507, 61707]);
+
+  // Genuine-English 161-rune successor encrypted using the *actual 91-rune*
+  // original Shamir candidate. Both algebraic signs recover every rune
+  // and exactly re-encrypt the unmodified planted ciphertext.
+  for (const sign of [-1, 1]) {
+    const actual = shakespeare.slice(50000, 50161);
+    const planted = actual.map((x, i) => mod(x - sign * possibleSecret[i % 91]));
+    const decoded = planted.map((x, i) => mod(x + sign * possibleSecret[i % 91]));
+    assert.deepEqual(decoded, actual);
+    assert.deepEqual(decoded.map((x, i) => mod(x - sign * possibleSecret[i % 91])), planted);
+  }
 
   console.log(JSON.stringify({
     status: "EXACT RS(7,5) SOURCE-PARITY MODEL EXCLUDED; NO ORIGINAL PLAINTEXT",
@@ -269,6 +309,8 @@ function main() {
     parity6: w6, parity7: w7, original,
     directThresholdFiveShamirSecret: shamir0Original,
     shamir91NativeLanguageControls: shamir91Controls,
+    shamirDerived91PeriodIntoFollowing161: followingPadTests,
+    following161NativeLanguageControls: followingControls,
     sourceNativePlant: "395 GP-English runes, arbitrary 79-step pad, one unknown error per column: 553/553 repaired and reencoded"
   }, null, 2));
 }
