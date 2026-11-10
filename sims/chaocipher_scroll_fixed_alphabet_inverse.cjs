@@ -80,6 +80,48 @@ function analyze(data,reference) {
       candidates.push({left:leftName,right:rightName,nadir,clock:clockName,score:score(recovered),head:recovered.slice(0,80).map(x=>alpha[x]).join("")});
     }
   }
+  // Ciphertext doublet suppression is a separate architectural prediction.
+  // No initial left alphabet affects *whether* two adjacent outputs coincide:
+  // changing left labels globally only relabels the ciphertext alphabet.
+  const pageSizes=pages.map(p=>p.indices.length);
+  function pageDoublets(input){
+    let at=0,count=0;
+    for(const length of pageSizes){
+      for(let k=1;k<length;k++)if(input[at+k]===input[at+k-1])count++;
+      at+=length;
+    }
+    return count;
+  }
+  const nativeFull=english.slice(20000,20000+cipher.length);
+  const sourceDoublets=pageDoublets(cipher),nativeDoublets=pageDoublets(nativeFull);
+  assert(sourceDoublets===86 && nativeDoublets===340,"Original and source GP doublets");
+  let shuffleSeed=0x33011331;
+  function random(){
+    shuffleSeed^=shuffleSeed<<13;shuffleSeed^=shuffleSeed>>>17;shuffleSeed^=shuffleSeed<<5;
+    return shuffleSeed>>>0;
+  }
+  function shuffle(values){
+    const out=values.slice();
+    for(let i=out.length-1;i>0;i--){
+      const j=random()%(i+1);[out[i],out[j]]=[out[j],out[i]];
+    }
+    return out;
+  }
+  const randomRightAlphabetControls={};
+  for(const nadir of [13,14]){
+    const values=[];
+    for(let run=0;run<200;run++){
+      const ciphertextPlant=chaocipher(nativeFull,straight,shuffle(straight),nadir,true);
+      values.push(pageDoublets(ciphertextPlant));
+    }
+    const mean=values.reduce((a,b)=>a+b,0)/values.length;
+    const sd=Math.sqrt(values.reduce((a,b)=>a+(b-mean)**2,0)/values.length);
+    randomRightAlphabetControls[nadir]={sampleCount:values.length,min:Math.min(...values),mean,max:Math.max(...values),sd,
+      atMostOriginal:values.filter(x=>x<=sourceDoublets).length};
+  }
+  assert(randomRightAlphabetControls[13].min===392 && randomRightAlphabetControls[14].min===398,
+    "Hidden-right-wheel-key independent-GP control");
+
   candidates.sort((a,b)=>b.score-a.score);
   const control=english.slice(20000,20729),planted=chaocipher(control,reverse,straight,14,true),recovered=chaocipher(planted,reverse,straight,14,false);
   assert(control.length===729 && recovered.every((x,i)=>x===control[i]),"729/729 native GP source plant");
@@ -88,7 +130,7 @@ function analyze(data,reference) {
     model:"29-symbol straight/mirrored GP dual alphabet, nadir=13/14, 3 source clocks",settings:candidates.length,
     known26Vector:"WELLDONEISBETTERTHANWELLSAID → OAHQHCNYNXTSZJRRHJBYHQKSOUJY",
     nativeGP729Control:{exact:recovered.filter((x,i)=>x===control[i]).length,referenceScore:score(control),encryptedScore:score(planted)},
-    originalRawScore:score(cipher),originalBest:candidates[0],nextCandidates:candidates.slice(1,5)};
+    originalRawScore:score(cipher),originalWithinPageDoublets:sourceDoublets,nativeSourceWithinPageDoublets:nativeDoublets,randomRightAlphabetControls,originalBest:candidates[0],nextCandidates:candidates.slice(1,5)};
 }
 const root=path.resolve(__dirname,"..");
 const data=JSON.parse(fs.readFileSync(path.join(root,"resources/liber-primus/lp2-corpus.json"),"utf8"));
