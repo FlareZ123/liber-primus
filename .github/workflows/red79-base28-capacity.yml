@@ -11,6 +11,7 @@ on:
           - red79
           - hidden-mode
           - binary47
+          - grid-aes-bytes
 jobs:
   source-red79-byte-capacity:
     runs-on: ubuntu-latest
@@ -31,3 +32,6 @@ jobs:
         run: |
           node sims/prime78_ascii_order_inversion.cjs
           node sims/prime78_ascii_order_inversion.cjs --lowercase
+      - name: Invert source-red79 byte packets under eight grid AES keys
+        if: inputs.probe == 'grid-aes-bytes'
+        run: node sims/red79_grid_aes_byte_transport.cjs
