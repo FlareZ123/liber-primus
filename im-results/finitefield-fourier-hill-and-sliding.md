@@ -1,4 +1,4 @@
-# Blind F29 linear inverse search: Hill blocks, sliding feedback and lag-six triples
+# Blind F29 inverse searches: five-rune Hill, rank inversion and lag-six triples
 
 **Agent 24, 10 November 2026. Classification:** original-source keyless Fourier/affine exhaustive attacks and synthetic inverse recovery, with negative original-source results for the declared fixed-linear families. No unknown LP2 plaintext, authentic key or established cipher has been recovered.
 
@@ -36,6 +36,26 @@ A blind **five-consecutive-rune sliding-window** scan searches every 29^5 Fourie
 
 The training peaks do not survive on withheld original runes, and these five-position tests reveal no new affine-feedback cipher. The established **word-local lag-six** relation is outside the five-consecutive-position window and remains a separate open clue.
 
+## Exact no-repeat rank inversion followed by unknown five-rune Hill mixing
+
+The width-five test above directly analyzes the published GP rune indices. A plausible additional encryption layer could first apply a stationary Hill matrix, then transform every symbol through a bijective alphabet determined by the previously printed rune. The manuscript's unusual suppression of adjacent identical runes supplies two source-motivated candidate outer transforms. For a current rune `c` and known previous output `p`, invert them exactly:
+
+- **Cyclic rank:** `d = (c-p-1) mod 29`. Equal ciphertext runes map to distinguished value `28`.
+- **Sorted rank:** `d = c - [c>p]` when `c != p`; equal ciphertext runes map to `28`. All 29 current rune choices give different rank digits under either transformation.
+
+Both are fully reversible with the preceding ciphertext state. Only the initial rune of each independent stream lacks a predecessor; that context position is excluded rather than guessed. To recover a possible *inner* 5×5 Hill inverse, run the identical blind five-dimensional FFT on these **derived rank streams** for all five phases under book-continuous and page-resetting clocks.
+
+| Source-derived outer rank | Tested original framings | Largest leading-row training contrast | Heldout contrast of that leading row | Approx. heldout null mean |
+| --- | ---: | ---: | ---: | ---: |
+| Cyclic | 10 | **.0640731** (page phase 3) | **.0239139** | .0222046 |
+| Sorted | 10 | **.0718176** (page phase 0) | **.0282079** | .0218579 |
+
+None of the **20 original rank-then-Hill framings** yielded a training-selected row with a heldout GP-English-scale signal. The stronger train maxima are the expected effects of searching many unknown rows, phases and framings; their frozen heldout contrasts are close to the finite-sample uniform baseline.
+
+To verify the full layered inverse, separately sample GP-English-like 5-rune plaintext blocks, mix them through a seeded dense invertible random 5×5 F29 matrix, encode the mixed stream using the exact preceding-rune sorted or cyclic rank transducer, then independently rewrite 81% of the attempts to repeat the preceding printed rune. Each positive experiment rewrites **349 ciphertext symbols**. The original blind algorithm recovers **5/5 exact inverse projective rows** after both layers, with the strongest row's heldout contrasts **.4685596 (cyclic)** and **.4693612 (sorted)**. This is an encrypted-and-recovered synthetic test with a fully known key, not a genuine LP2 decryption.
+
+Source: [exact rank-plus-Hill key recovery](../sims/no_repeat_rank_hill_fourier.py). [Successful original plus planted run 42799362658](https://github.com/FlareZ123/liber-primus/actions/runs/42799362658). Manual runner option `rankhill`. The negative is limited to these two particular bijective preceding-rune codings and the stationary dense 5×5 Hill model; arbitrary secret 29-way state-dependent permutations and unknown hidden-source registers remain open.
+
 ## Seven-position, three-support inverse including the real lag-six echo
 
 The original word-local six-back echo occurs outside the prior sliding width-five scan. A separate exhaustive F29 inverse evaluates **all 35 choices of three offsets among seven positions** and all **28² nonzero coefficient pairs**, normalizing the first coefficient to one: **27,440 distinct three-support directions**. A possible affine offset rotates the output histogram without changing its contrast. Training and heldout halves use the **same original 2,896 intact words**, giving 645 windows on each side; the full-book setting has 6,475 on each side. Direction selection uses training alone.
@@ -59,7 +79,7 @@ Two fully random invertible finite-field mixing matrices encrypted independent s
 
 For the sliding relation, a separate planted length-12,956 stream applied the four-back recurrence `C_i = 3*C_(i-1) + 5*C_(i-2) + 7*C_(i-3) + 11*C_(i-4) + 13 (mod 29)` at **7% of positions**, sampling the remaining outputs uniformly while avoiding adjacent repeats. The same blind Fourier scan recovered the planted true inverse projective direction `[1,27,11,24,21]`. The planted top row produced a heldout contrast of `.1680178` against the null `.0043237`. Its source and seed are specified in the [program](../sims/sliding_five_linear_recurrence_fft.py). The positive is deliberately stronger than the original manuscript's sparse echoes.
 
-**Conclusions:** The current LP2 source fails these no-key, five-rune stationary-Hill and short sliding-linear/three-support seven-window inversions under the GP-English nonuniform-symbol assumption, despite powered synthetic recoveries. This does not exclude dynamic or page-varying matrices, unmodeled transpositions, encrypted intermediary codes with flat distributions, alternate symbol alphabets, nonlinear feedback, or the documented six-back and five-back word-local motifs. The search itself is a reusable mechanism-specific inverse and can be rerun for other widths or source-defined segments when justified by a new clue.
+**Conclusions:** The current LP2 source fails these no-key, five-rune stationary-Hill, its two exact state-dependent rank-coding composites, and the short sliding-linear/three-support seven-window inversions under the GP-English nonuniform-symbol assumption, despite powered synthetic recoveries. This does not exclude dynamic or page-varying matrices, unmodeled transpositions, encrypted intermediary codes with flat distributions, alternate symbol alphabets, nonlinear feedback, or the documented six-back and five-back word-local motifs. The search itself is a reusable mechanism-specific inverse and can be rerun for other widths or source-defined segments when justified by a new clue.
 
 ## Reproduction
 
