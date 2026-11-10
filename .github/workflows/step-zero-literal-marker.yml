@@ -16,3 +16,5 @@ jobs:
         run: node sims/step_zero_ea_wordposition_heldout.cjs
       - name: Exercise fully reversible three-reserved-state GP forward and inverse
         run: node sims/lp2_lossless_three_reserve_forward.cjs
+      - name: Exhaustively test conditional GP source cribs against genuine LP2 and planted source
+        run: node sims/lp2_reserved_marker_source_crib.cjs
