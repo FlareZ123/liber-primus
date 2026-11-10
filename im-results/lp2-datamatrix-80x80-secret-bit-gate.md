@@ -27,6 +27,20 @@ All **32** route/symmetry combinations and all **8×6** band/prefix states fail:
 
 This lower bound is stronger than trying a few known rune-to-bit mappings: a secret single-rune alphabet, five freely inserted modules and arbitrary full image orientation cannot repair the required ECC200 finder pattern. The self-contained positive plant supplies a valid 80×80 ECC200 mandatory finder with random interior bits, encodes using a concealed GP29 binary mapping, removes modules at original raster positions **13, 499, 1,207, 3,456, 6,383**, and the same algorithm reports a bound of **0**. It demonstrates that the gate admits a genuine encoded symbol using exactly the declared source length and missing-module model.
 
+## Independent source-visible parity clocks
+
+The same all-secret eight-band proof can grant **separate hidden binary alphabets** under simple public pixel-phase clocks. Their original lower bounds, with all five insertions and 32 traversals, are **16** finder errors for independent maps on even/odd target row, **16** on even/odd column and **34** on even/odd checkerboard parity `(row+column) mod 2`. Thus none of those three natural two-phase repairs rescues direct terminal ECC200 encoding.
+
+Granting **four independent** rune-bit tables indexed by the pair `(row mod 2, column mod 2)` *does* reduce the finder-only obstruction to **zero**. That is expected: ECC200's mandatory black/white perimeter at 20-module tile boundaries is itself completely determined by the pair of row/column parities. This is **not** a successful original data-channel decryption or evidence of a valid Reed–Solomon codeword. The test therefore exposes exactly where the key-independent finder restriction stops: a position-aware four-state clock can satisfy this particular necessary condition and would require a separate original-payload or source-rule test.
+
+| Static output alphabet scope | Guaranteed finder-bit corrections |
+| --- | ---: |
+| One arbitrary secret table per rune | 51 |
+| Two tables by row parity | 16 |
+| Two tables by column parity | 16 |
+| Two tables by checkerboard parity | 34 |
+| Four tables by both row/column parity | 0 (finder only; not an authenticated barcode) |
+
 ## Scope
 
 This rejects **direct single-rune-to-one-bit** rendering with static rune identities, a source-ordered 80×80 cell raster, up to five insertions, the declared 32 conventional orientation/scan orders, and exactly the ECC200 mandatory borders. It does **not** reject a position-dependent key, pre-transposition/cryptographic decoding before barcode rendering, variable-length bit representation, independent multi-rune codewords, nonstandard matrices, a different cyclic start, or a plain 80×80 image without ECC200 finder structure. The 81² / 80²−5 segmentation itself remains a retrospective hypothesis; these negatives are conditional and do not establish that Cicada attempted a barcode.
