@@ -191,6 +191,75 @@ const planted2=transform(plant,secondPad,{family:"exclude",sign:1,projection:"mo
 assert.deepEqual(transform(planted2,secondPad,{family:"exclude",sign:1,projection:"mod"},false),plant);
 const planted3=transform(plant,secondPad,{family:"exp",sign:1,projection:"scale"},true);
 assert.deepEqual(transform(planted3,secondPad,{family:"exp",sign:1,projection:"scale"},false),plant);
+/** The de Bruijn route also supplies a literal 256-byte repeating pad.
+ * This independent simple-source test uses no AES, ChaCha, or fitted alphabet.
+ */
+const pageBounds=[...pages.map(p=>{
+  let count=0;for(const x of pages){if(x===p)break;count+=x.indices.length}
+  return count;
+}),C.length];
+assert.equal(pageBounds.length,56);
+const clocks={continuous:[0,C.length],page:pageBounds,fragment:boundaries};
+const rowWords=reverseColumns=>deBruijn.flatMap(i=>reverseColumns?
+  grid.byte_rows[i].slice().reverse():grid.byte_rows[i].slice());
+/** @param {number[]} input @param {number[]} bytes @param {object} cfg
+ * @param {boolean} encode @returns {number[]} */
+function directTransform(input,bytes,cfg,encode){
+  const out=new Array(input.length);
+  for(let s=0;s<clocks[cfg.clock].length-1;s++){
+    let prev=-1,tick=0;
+    const bounds=clocks[cfg.clock];
+    for(let i=bounds[s];i<bounds[s+1];i++){
+      const cur=input[i],relative=cfg.mode!=="GP29",m=relative?28:29;
+      const byte=bytes[tick%256];
+      const k=cfg.projection==="mod"?byte%m:
+        cfg.projection==="scaled"?Math.floor(byte*m/256):(byte>>>3)%m;
+      const marker=relative&&prev>=0&&(encode?cur===28:cur===prev);
+      let v;
+      if(!relative)v=mod(cur+(encode?1:-1)*cfg.sign*k,29);
+      else if(prev<0)v=cur;
+      else if(marker)v=encode?prev:28;
+      else if(encode){
+        const step=mod(cur+cfg.sign*k,28);
+        v=mod(prev+(cfg.mode==="GP28linear"?step+1:GP_POW[step]),29);
+      }else{
+        const d=mod(cur-prev,29);
+        const step=cfg.mode==="GP28linear"?d-1:GP_LOG[d];
+        assert(step>=0&&step<28);
+        v=mod(step-cfg.sign*k,28);
+      }
+      out[i]=v;
+      if(relative)prev=encode?v:cur;
+      if(!(marker&&cfg.skip))tick++;
+    }
+  }
+  return out;
+}
+const directPad=[];
+for(const reversed of [false,true]){
+  const bytes=rowWords(reversed);
+  assert.equal(bytes.length,256);
+  for(const clock of Object.keys(clocks))
+  for(const mode of ["GP29","GP28linear","GP28exp"])
+  for(const projection of ["mod","scaled","hi5"])
+  for(const sign of [-1,1])
+  for(const skip of [false,true]){
+    if(mode==="GP29"&&skip)continue;
+    const cfg={reversed,clock,mode,projection,sign,skip};
+    const decoded=directTransform(C,bytes,cfg,false);
+    assert.deepEqual(directTransform(decoded,bytes,cfg,true),C);
+    directPad.push({...cfg,trainIoC:normIoC(decoded,0,6500),
+      heldoutIoC:normIoC(decoded,6500,C.length),
+      prefix:decoded.slice(0,48).map(x=>corpus.translit[x]).join("")});
+  }
+}
+const directSourceControl={clock:"page",mode:"GP28exp",projection:"mod",sign:1,skip:true};
+const keyControl=rowWords(false);
+const directPlant=directTransform(plant,keyControl,directSourceControl,true);
+assert.deepEqual(directTransform(directPlant,keyControl,directSourceControl,false),plant);
+directPad.sort((a,b)=>b.trainIoC-a.trainIoC);
+const originalDirectBest=directPad[0];
+const originalDirectMaxHeld=directPad.slice().sort((a,b)=>b.heldoutIoC-a.heldoutIoC)[0];
 variants.sort((a,b)=>b.trainIoC-a.trainIoC);
 const output={
   classification:"Source-ornament 5-bit LFSR row order hypothesis; no authenticated original key or decryption",
@@ -199,6 +268,10 @@ const output={
   genuineControlsRecovered:3*C.length, sourcePlantIoC:normIoC(plant,0,C.length),
   modelCount:variants.length, trainStop, heldoutRunes:C.length-trainStop,
   sourceBoundaryPositions:boundaries,
+  topByRowOrder:rowOrders.map(([name])=>({name,winner:variants.find(v=>v.rowOrder===name)})),
+  directPadModelCount:directPad.length, directPadPositiveRecovered:C.length,
+  directPadTrainingWinner:originalDirectBest,
+  directPadHeldoutMaximum:originalDirectMaxHeld,
   trainTop10:variants.slice(0,10),
   heldoutTop10:variants.slice().sort((a,b)=>b.heldoutIoC-a.heldoutIoC).slice(0,10)
 };
