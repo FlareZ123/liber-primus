@@ -10,10 +10,11 @@ on:
         options:
           - source-bytes
           - seeded-number
+          - decoded-pcm
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -23,8 +24,14 @@ jobs:
         if: inputs.probe != 'seeded-number'
         run: curl --fail --location --silent --show-error --output /tmp/761.MP3 https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3
       - name: Exhaustive 4 million byte offset keyskip screen
-        if: inputs.probe != 'seeded-number'
+        if: inputs.probe == 'source-bytes'
         run: node sims/audio_761_pad_scan.cjs
+      - name: Decode archival MP3 at native sample frequency to mono signed16 PCM
+        if: inputs.probe == 'decoded-pcm'
+        run: ffmpeg -hide_banner -loglevel error -i /tmp/761.MP3 -ac 1 -c:a pcm_s16le -f s16le /tmp/761.pcm
+      - name: Search every signed16 waveform sample start under collision-only keyskip GP29
+        if: inputs.probe == 'decoded-pcm'
+        run: node sims/audio_761_pcm_keyskip_scan.cjs
       - name: Historical Parable-number exact PRNG inverse and plant
         if: inputs.probe == 'seeded-number'
         run: node sims/audio761_numeric_prng_seed_probe.cjs
