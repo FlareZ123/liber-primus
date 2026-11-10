@@ -6,7 +6,7 @@ on:
         description: "Select existing binary probes or source-aligned 79/78 radix gate"
         required: true
         type: choice
-        options: [standard, continuous, prime79, prime79prefix2, prime79cpsat, prime79trigram, prime79terminal, prime79gp, prime79binary, section78, markerbytes]
+        options: [standard, sectionbytes, continuous, prime79, prime79prefix2, prime79cpsat, prime79trigram, prime79terminal, prime79gp, prime79binary, section78, markerbytes]
         default: standard
       cpsat_seconds:
         description: "Per-alignment CP-SAT timeout in seconds"
@@ -60,6 +60,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Prove all-secret per-page byte-capacity section contradiction
+        if: ${{ inputs.probe == 'sectionbytes' }}
+        run: node sims/page_byte_capacity_section_static_gate.cjs
       - name: Invert whole-stream base28 binary-file headers under every hidden alphabet
         if: ${{ inputs.probe == 'continuous' }}
         run: node sims/lp2_continuous_binary_header_inverse.cjs
