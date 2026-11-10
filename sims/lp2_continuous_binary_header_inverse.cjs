@@ -102,7 +102,6 @@ assert.equal(lz4HC(0x60,0x70),115);
 const lz4Head=(f,b)=>[4,34,77,24,f,b,lz4HC(f,b)];
 const headers=[
   ['gzip-magic', [31,139,8]],
-  ['gzip-FLG-zero', [31,139,8,0]],
   ['7zip-version-0.4', [55,122,188,175,39,28,0,4]],
   ['XZ', [253,55,122,88,90,0]],
   ['ZIP', [80,75,3,4]],
@@ -112,6 +111,8 @@ const headers=[
   ['PDF', [...Buffer.from('%PDF-')]],
   ['JPEG', [255,216,255]]
 ];
+for(let flag=0;flag<32;flag++)
+  headers.push(['gzip-FLG-'+flag,[31,139,8,flag]]);
 for(let n=1;n<=9;n++)
   headers.push(['bzip2-'+n,[...Buffer.from('BZh'+n+'1AY&SY')]]);
 const headerResults=headers.map(([name,prefix])=>({name,
@@ -155,8 +156,10 @@ for(const flg of [0x40,0x60,0x50,0x44,0x70,0x64,0x54,0x74])
   }
 assert.equal(lz4.tested,64);
 assert(Object.values(lz4.oneBlockSurvivors).every(x=>x===0));
-assert(headerResults.find(x=>x.name==='gzip-FLG-zero')
-  .possible[0].conflicts.cyclic!==null);
+const allGzip=headerResults.filter(x=>x.name.startsWith('gzip-FLG-'));
+assert.equal(allGzip.length,32);
+assert(allGzip.every(x=>x.possible.length===1 &&
+  Object.values(x.possible[0].conflicts).every(v=>v!==null)));
 
 /*
  * Source-shaped positive: an actual valid uncompressed one-block LZ4 frame,

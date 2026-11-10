@@ -22,6 +22,8 @@ Intersect this interval with the *exactly N-digit* base-28 interval \([28^{N-1},
 
 For **every one of 28! secret bijections**, two fixed digits are identical exactly when the two ciphertext labels at the corresponding positions are identical. Similarly, distinct fixed digits require distinct labels. The first violated pair is a rigorous all-alphabet contradiction, independent of language, likelihood scores, secret-key enumeration or decompressor details.
 
+The script also evaluates **all 32 allowed gzip FLG bytes** (flags 0–31, including optional-extra fields); each yields the same decisive fifth digit, so this is an exhaustive compliant-gzip header exclusion within the model.
+
 The [runnable CJS original-input inversion](../sims/lp2_continuous_binary_header_inverse.cjs) evaluates byte lengths 7,694–7,708, confirms the original rune/marker counts, computes each fixed prefix numerically using BigInt, and checks the two predecessor registers in both orientations.
 
 ## Original-source results
@@ -29,7 +31,7 @@ The [runnable CJS original-input inversion](../sims/lp2_continuous_binary_header
 | Declared original-file prefix | Exact constraint from original LP2 |
 | --- | --- |
 | Gzip magic \`1F 8B 08\` only | Compatible: four forced base-28 digits, with a valid partial secret-label assignment. This **does not** authenticate gzip |
-| Gzip magic with FLG=0, \`1F 8B 08 00\` | Rejected in all four registers: forced base-28 digits \`[11,16,4,26,11]\` repeat digit 11 at positions 0 and 4, whereas original ciphertext labels there differ |
+| **Every valid gzip FLG byte 0–31**, following \`1F 8B 08\` | **All 32 valid flags rejected in all four registers**: the forced leading five base-28 digits are always \`[11,16,4,26,11]\`, repeating digit 11 at positions 0 and 4; the corresponding original ciphertext labels differ. Bits 5–7 of the gzip flag byte are reserved and must be zero |
 | BZIP2 \`BZh1\`…\`BZh9\`, plus block magic \`1AY&SY\` | All nine compression levels rejected in all four registers: digits 3 and 4 must both equal 27, but original labels differ |
 | 7-Zip \`37 7A BC AF 27 1C 00 04\` | Rejected in all four registers through its fixed leading twelve base-28 digits |
 | PDF \`%PDF-\` | Rejected in all four registers through its unavoidable repeated first-digit pattern |
@@ -50,6 +52,6 @@ Without supplying the encoder's original source digits, the inverse extracts the
 
 ## What remains alive
 
-The full three-byte gzip header still permits a partial four-digit assignment in all four registers. Gzip with a nonzero optional FLG, an independent source-derived key or an explicit inner stream cipher remains possible. LZ4 multi-block and optional content-size/dictionary-ID formats require independent size/field assumptions. A real original inverse must identify the unknown digit-to-rune assignment and recover nonheader bytes that parse and decompress correctly, followed by a verifiable plaintext and exact forward reconstruction.
+The three-byte gzip magic alone permits a four-digit partial alphabet assignment, but its mandatory next FLG byte refutes **every valid gzip frame** for this exact unmasked global base-28 model. A preceding binary-encryption layer, changing alphabets, nonstandard file headers or a different transport remain possible. LZ4 multi-block and optional content-size/dictionary-ID formats require independent size/field assumptions. A real original inverse must identify the unknown digit-to-rune assignment and recover nonheader bytes that parse and decompress correctly, followed by a verifiable plaintext and exact forward reconstruction.
 
 **Decision:** retain this method as a compact source-specific gate for *newly evidenced* binary headers. Avoid producing another broad catalogue of binary magic screens. The next worthwhile result is an original-data positive decode with a source-derived alphabet/key or a new stateful architecture that can account for the original boundaries and echo structure.
