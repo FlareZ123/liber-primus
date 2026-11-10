@@ -1,0 +1,68 @@
+name: CicadaOS source-pad artifact inspection
+on:
+  workflow_dispatch:
+    inputs:
+      run_ids:
+        description: Comma-separated completed source-pad run IDs
+        required: true
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  summarize:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Summarize real LP2 candidates from numeric artifacts
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_RUNS: ${{ inputs.run_ids }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          foreach ($id in ($env:SOURCE_RUNS -split ',')) {
+            $id = $id.Trim()
+            if (-not $id) { continue }
+            $folder = Join-Path $env:RUNNER_TEMP "pad-$id"
+            New-Item -ItemType Directory -Path $folder -Force | Out-Null
+            gh run download $id --repo $env:GITHUB_REPOSITORY --dir $folder
+            if ($LASTEXITCODE -ne 0) {
+              Write-Output "ARTIFACT_UNAVAILABLE run=$id"
+              continue
+            }
+            foreach ($file in (Get-ChildItem -LiteralPath $folder -Recurse -Filter '*.json')) {
+              $r = Get-Content -LiteralPath $file.FullName -Raw | ConvertFrom-Json
+              $top = @($r.finalists | Select-Object -First 8 | ForEach-Object {
+                [ordered]@{
+                  offset = $_.offset
+                  sign = $_.sign
+                  scheme = $_.scheme
+                  trainScore = $_.score
+                  wholeScore = $_.bodyScore
+                  wholePerRune = $_.bodyScorePerRune
+                  skipped = $_.skips
+                  prefix = $_.possiblePlaintext.Substring(0, [Math]::Min(140, $_.possiblePlaintext.Length))
+                }
+              })
+              $results = [ordered]@{
+                run = $id
+                file = $file.Name
+                mode = $r.mapMode
+                mapping = $r.mode
+                sourceSHA256 = $r.sha256
+                offsetsPerSign = $r.search.offsetsPerSign
+                offsetsPerCell = $r.rows[0].offsets
+                originalBestPrefix = $r.originalMaxPrefixScore
+                original = $r.original
+                rows = $r.rows
+                positive = $r.positives
+                controls = $r.controls
+                finalists = $top
+              }
+              Write-Output ('BEGIN_SOURCE_PAD_RESULT ' + ($results | ConvertTo-Json -Depth 12 -Compress))
+            }
+          }
