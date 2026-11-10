@@ -1,6 +1,6 @@
 /**
  * Search for word-to-next-word affine state transfer in LP2 rune indices.
- * The permutation null preserves each page's exact word contents and page membership.
+ * The permutation null preserves canonical words grouped by first-rune page.
  * Run using Node.js 20+ from the repository root.
  */
 'use strict';
@@ -24,16 +24,25 @@ for (const left of offsetSet) {
   }
 }
 
-const wordPages = [];
 for (const page of corpus.pages) {
   if (page.status !== 'unsolved') continue;
   const text = pageTexts[page.page > 50 ? page.page - 1 : page.page];
   const indices = Array.from(text).filter(c => alphabet.has(c)).map(c => alphabet.get(c));
   assert.deepEqual(indices, page.indices, 'Rune mismatch on page ' + page.page);
-  const tokens = text.replace(/[\/\r\n]/g, '').split(/[-.&$§\s]+/);
-  wordPages.push(tokens.map(token => Array.from(token).filter(c => alphabet.has(c)).map(c => alphabet.get(c))).filter(w => w.length));
 }
+
+// Preserve the 32 whole rune-words spanning physical page boundaries.
+// For page-local tests, assign each crossing word to its first-rune page.
+// The nonlinear scanner imports this exact same canonical grouping.
+const { parseSharedCorpus } = require('./lp2_word_pages.cjs');
+const parsed = parseSharedCorpus();
+assert.equal(parsed.words.length, 2896, 'Page fragments are not words');
+assert.equal(parsed.crossPageWords, 32);
+assert.equal(parsed.runeCount, 12956);
+const wordPages = parsed.byStartPage.map(words =>
+  words.map(word => Array.from(word.runes, rune => alphabet.get(rune))));
 assert.equal(wordPages.length, 55);
+assert.equal(wordPages.reduce((n, words) => n + words.length, 0), 2896);
 assert.equal(wordPages.reduce((s, ws) => s + ws.reduce((n, w) => n + w.length, 0), 0), 12956);
 
 const maps = [];
@@ -137,7 +146,7 @@ function study(replicates = 500, controls = 50, seed = 3301) {
     controlPlant: '3% forced penultimate-to-penultimate mapping a=9,b=4',
     controlRecoveries: controlHits,
     controlTrials: controls,
-    caveat: 'Page breaks treated as word boundaries; permutation null preserves words but not the observed cross-word anti-doublet rule; boundary-adjacent mode excluded.'
+    caveat: 'Canonical 2896 words, including 32 page-crossing words assigned by first-rune page; this page grouping is a modeling choice. Null preserves words but not cross-word anti-doublet suppression; immediate boundary mode excluded.'
   };
 }
 
