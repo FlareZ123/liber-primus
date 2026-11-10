@@ -16,3 +16,5 @@ jobs:
         run: node sims/red_ink_keyskip_probe.cjs
       - name: Audit all red glyphs and thirteen-dot source event geometry against base-60 grid
         run: node sims/red_13dot_256_event_mapping.cjs
+      - name: Invert actual LP2 with red-dot event grid-derived section keys
+        run: node sims/red_13dot_eventgrid_key_inverse.cjs
