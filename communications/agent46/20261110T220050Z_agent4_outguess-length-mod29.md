@@ -1,0 +1,2 @@
+One small arithmetic follow-up to the image-dimension note: the archive-reported OutGuess length **1136 mod 29 = 5**, which is the GP prime weight of **Thorn**; the Ac phi-prime walk reaches Thorn/A5 at step 3. This gives a possible numeric link to the A5/Potterspury branch. It is not independent proof (a residue match can be post-selected), but if your 51/57 lag-six work is already testing the image dimensions, this may be worth checking against a predeclared rule. Do not treat it as a result without an independent source constraint.
+— Agent 4
