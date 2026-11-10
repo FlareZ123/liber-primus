@@ -1,6 +1,6 @@
-# Five-bit Boolean Möbius inversion of the 32×8 LP2 table
+# Boolean Möbius inversions of the LP2 table: 5-bit and full 8-bit readings
 
-**Evidence class:** source-clued, bounded original-input negative under one explicit family. No LP2 unknown plaintext, historical cipher, recovered key or continuation has been identified. Reproducer: [\`sims/grid_boolean_mobius_gp28_inverse_sft.cjs\`](../sims/grid_boolean_mobius_gp28_inverse_sft.cjs).
+**Evidence class:** source-clued, bounded original-input negatives for direct 5-bit and full 8-bit Boolean Möbius repeating-key readings. No LP2 unknown plaintext, historical cipher, recovered key or continuation has been identified. Reproducers: [5-bit source-stencil study](../sims/grid_boolean_mobius_gp28_inverse_sft.cjs) and [full 8-bit table study](../sims/grid_boolean_mobius_8bit_inverse.cjs).
 
 ## Why this operation is worth a separate test
 
@@ -38,8 +38,26 @@ The same original five-slot stencil has a previously reconstructed candidate **3
 
 The strongest original setting is black-zero anchored, XOR/subset Möbius, source-column-major serialisation, scaled-byte-to-28, sign+1. Its **full-book IoC is 0.03533404** (lowest of the 144 models is **0.03523914**), again close to chance and far below native Latin-GP reference **0.07202862**. None yields recognizable language. It changes the finite rejection scope to include this particular combination of the source five-bit row orders with Boolean Möbius inverses. There is no source evidence authorizing other clocks, arbitrary additional state or separately fitted section keys.
 
+## Full 8-bit Boolean-lattice extension
+
+The 256-byte table can also be treated as a single (2^8)-element vector, applying the named Boolean Möbius operation across all eight index bits in printed row-major order. This is less directly supported than the five-bit reading—the ornament explicitly has five slots—but the literal **MOBIUS** clue and exact 256 = (2^8) table size motivate one finite extension. No bit permutation, table reordering, or fitted state is searched.
+
+The full 8-bit inverse produces four fixed 256-byte arrays: subset/superset partial order × subtraction in (mathbb Z/256) or XOR in characteristic two. Each is tested as a repeating key under **64** original-input variants: GP29 additive or GP28 predecessor-exclusion; byte projection by remainder or proportional scaling; both signs; and book-global or 13-dot-fragment-reset key clocks. In GP28 mode the previous-ciphertext state resets at each source fragment. The first 28 source fragments cover all 12,956 unknown runes.
+
+| Full 8-bit result | Observation |
+| --- | ---: |
+| Tested original-input variants | **64** |
+| Direct-GP29 IoC range | **0.03445825–0.03453450** |
+| GP28 raw IoC range | **0.03524310–0.03530704** |
+| Exact original re-encryption | **64/64** |
+| Mechanics-only planted recovery | **64/64** |
+
+The best direct-GP29 output is superset/mod-256, remainder projection, positive sign, book clock (IoC **0.03453450**); its first 120 transliterations begin `CFEABDGAEPCCTBMBTHNGYPIAOSCOYIAWCDLBOUTHHNGDHWRBNIAPEOOGCORGNTNEOJIANIATHJJUIAYHOHWSOEOEOGOEWWNGOEAHOHHSLEAPTCLWGPPWRTEAOEPEJCUIAEAGJXEPLTDSPEONGDNG`. The best raw-GP28 output is subset/mod-256, remainder projection, negative sign, book clock (IoC **0.03530704**); its prefix begins `SNGCHEOEOTSMIAHHBTHSHAFFTEOMDADEODTHEDMEIJPJYGEOYFEOJIPIDTHSLWEODOTHMUUDCUJJXNCJOGCAEXAEALUAIXGAENGWMAEIAMOEYUIANTHNOEWPMLETISEOPEWPPGEOROESHJIAHIANG`. Neither is readable prose. GP28 raw IoC includes a distinguished transparent marker and is not an ordinary uniform-GP28 language statistic.
+
+This full-8-bit test is a distinct, bounded extension of the five-bit work, not evidence that the source intended the flattened 256-cell lattice. Its four arrays and all 64 ciphertext inverses remain nonlinguistic; exact re-encryption and the positive plants validate only the implementation.
+
 ## Cryptanalytic decision
 
-The source chain **MOBIUS → five binary slots → 32 rows → Boolean inverse** is human-plausible but incomplete: no original source currently instructs how its transformed rows should act on the ciphertext. The 16 direct grid-order and 144 original-stencil-order repeating-key interpretations fail. A successor needs an independent clue selecting an actual register/key/clock and must predict original unknown plaintext beyond the existing 16 tests, with lossless recovery of all 12,956 runes.
+The source chain **MOBIUS → five binary slots → 32 rows → Boolean inverse** is human-plausible but incomplete: no original source currently instructs how its transformed rows should act on the ciphertext. The 16 direct grid-order and 144 original-stencil-order five-bit repeating-key interpretations fail; the distinct full-8-bit flattened-table extension also fails across 64 fixed GP29/GP28 variants. These are bounded negatives for direct repeating-key uses of the tested Boolean Möbius arrays, not for every possible role of Möbius inversion. A successor needs an independent clue selecting an actual register/key/clock or state transition and must predict original unknown plaintext, with lossless recovery of all 12,956 runes.
 
-The authoritative [results synthesis](../results/README.md) continues to report no recovered unknown LP2 plaintext. This report belongs in intermediate findings rather than established results.
+The authoritative [results synthesis](../results/README.md) continues to report no recovered unknown LP2 plaintext. These five-bit and full-8-bit results belong in intermediate findings rather than established results.
