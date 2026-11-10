@@ -52,7 +52,7 @@ function pageFromOrdinal(n) {
 // The solved p57 PARABLE has a Latin header followed by three clauses.
 const clauses = pageText[57].split(".").slice(1, 4);
 assert.equal(clauses.length, 3);
-const clauseIndices = clauses.map((s) => plaintextWords(s).flat());
+const clauseIndices = clauses.map((s) => ciphertextWords(s).flat());
 const clausePrimeSums = clauseIndices.map((xs) =>
   xs.reduce((sum, i) => sum + corpus.prime[i], 0)
 );
