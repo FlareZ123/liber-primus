@@ -1,4 +1,4 @@
-# Reversible 29-to-28 feedback alphabet: periodic-key and marker inversion
+# Reversible 29-to-28 feedback alphabet: periodic-key, finite-field recurrence and marker inversion
 
 **Agent 42, 2026-11-10. Evidence class: bounded negative with exact original-rune inversion and positive controls.** No plaintext or key was recovered from unsolved LP2. The experiment uses the 55 original unsolved rune-bearing pages (12,956 runes), the corrected 2,896 continuous rune words, and the checked-in English-GP controls.
 
@@ -61,11 +61,32 @@ The 2,896 correct LP2 whole words contain **63** within-word adjacent repeats. D
 
 Thus, a cipher that leaves the exact location of GP EA in clear via an adjacent-repeat marker strongly disagrees with three distinct word-length-matched literary sources, especially at word ends. All 29 candidate plaintext runes were scored using the same three disjoint position counts and source-derived variances. The minimum descriptive diagonal-variance discrepancy across 29 glyphs is \`chi=26.288\` (Shakespeare W), \`chi=16.282\` (Emerson TH), \`chi=16.592\` (Gibran W). This approximate sum of standardized squared deviations is **not a formal discovery-adjusted p-value**; the controls make no claim about an unknown plaintext word source. The EA-specific position mismatch is nevertheless qualitatively substantial, and cannot be resolved by matching only its global frequency.
 
+## Exact finite-field recurrence exclusions on the same reversible channel
+
+A different generator class evades the previous frequency/key-period test: a high-period linear-feedback shift register (LFSR) over a finite field. Any sequence of rank symbols `r_t` that follows a fixed degree-`k` homogeneous linear recurrence in GF(`p`) has **Berlekamp–Massey linear complexity at most `k`** on every contiguous substring, regardless of its initial state or PRNG period. Mapping a 28-rank symbol to a residue in GF(2) or GF(7) preserves a hypothetical field-linear recurrence when that field is the intended output channel; viewing its numeric index in GF(29) tests a separate direct-field hypothesis.
+
+Treat all **86 actual within-page repeated ciphertext-rune sites as arbitrary erasures**. For each of the two reversible rank maps, collect every remaining contiguous original rank run of at least 100 symbols; there are **51** such runs, with longest **272 ranks** on LP2 page 17. This avoids claiming a recurrence must span erased/edited symbols. For each run compute its exact shortest homogeneous recurrence order over GF(2), GF(7) and GF(29). No plaintext model, periodic-key search or fitted parameters enter these exact linear-algebra calculations.
+
+| Rank coordinate | Field | Minimum complexity in any of 51 runs | Longest 272-symbol run complexity | Largest complexity |
+|---|---|---:|---:|---:|
+| Linear omission | GF(2) | 51 | **139** | 139 |
+| Linear omission | GF(7) | 50 | **136** | 136 |
+| Linear omission | GF(29) | 50 | **136** | 136 |
+| Circular nonzero step | GF(2) | 50 | **138** | 138 |
+| Circular nonzero step | GF(7) | 50 | **136** | 136 |
+| Circular nonzero step | GF(29) | 50 | **136** | 136 |
+
+The original longest repeat-free LP2 stream alone therefore **algebraically excludes any global homogeneous LFSR of degree at most 135** directly producing the GF(7) (or GF(29)) projection of either rank coordinate, under a model with no silent alteration of its nonrepeat outputs. For the GF(2) output projection, the corresponding upper excluded orders are 138 in linear omission and 137 in circular mode. Affine recurrences with a constant term can be converted to homogeneous recurrences with an additional state, so this also excludes lower affine orders by one. This exclusion is conditional on the exact source index mapping and a direct field-linear output; an LFSR used only as a key that is then nonlinearly mixed, truncated, permuted by varying state, or continuously modified can evade it.
+
+**Independent positive controls:** create a genuine 32-step GF(7) LFSR, add independent random four-way homophone labels to form the full 28-symbol rank alphabet as `r=state+7×h`, encode it through each of the two exact predecessor-feedback rules, and force **exactly the same 86 literal-repeat positions as the original ciphertext**. The 12,815 remaining rank symbols are recovered from the generated ciphertext exactly. On all 51 surviving clean runs, GF(7) Berlekamp–Massey complexity remains **32 for the linear plant**, and **31 for the circular plant**, never exceeding the generating order. These plants demonstrate that the detector finds a truly low-order recurrence even with English-unrelated, nearly uniform rank symbols and the source's exact repeat mask; the authentic 272-symbol run instead requires 136 steps.
+
+The original IoC and recurrence tests answer different questions: the original's period-94 peak is not a key, and the near-maximal linear complexity is a necessary-condition exclusion, not a proof of general cryptographic randomness. Neither method recovers any original plaintext.
+
 ## Scope and next discriminating step
 
-**Supported exclusion:** direct ordinary English-GP plaintext encoded as a **stationary 28-rank bijection selected by a period at most 128**, for either of the two precisely defined predecessor-excluding ranks, is unsupported by the original ciphertext under a repeat-mask-preserving null. The fixed-special-rune explanation of literal repeats also fails against the tested English source registers' positional structure.
+**Supported exclusion:** direct ordinary English-GP plaintext encoded as a **stationary 28-rank bijection selected by a period at most 128**, for either of the two precisely defined predecessor-excluding ranks, is unsupported by the original ciphertext under a repeat-mask-preserving null. The fixed-special-rune explanation of literal repeats also fails against the tested English source registers' positional structure. Exact finite-field linear complexity of the longest surviving 272-rank run independently excludes directly generated GF(7)/GF(29) homogeneous LFSR outputs of order up to 135 in either rank ordering.
 
-**Open:** variable or hidden key-pointer phase, cryptographically long nonrepeating keystreams, non-English plaintext, nonlinear many-to-one insertion/deletion, phase-dependent marker identity, and transforms that use history beyond the preceding ciphertext symbol. The rank architecture itself provides a valid reversible decoding coordinate system, but these tests do not establish it as the intended Liber Primus coordinate system.
+**Open:** variable or hidden key-pointer phase, cryptographically long nonrepeating keystreams, nonlinear high-order PRNG output maps, non-English plaintext, nonlinear many-to-one insertion/deletion, phase-dependent marker identity, and transforms that use history beyond the preceding ciphertext symbol. The rank architecture itself provides a valid reversible decoding coordinate system, but these tests do not establish it as the intended Liber Primus coordinate system.
 
 **Reproduce:** \`node sims/repeat_rank_periodic_attack.cjs\`, using:
 - \`resources/liber-primus/lp2-corpus.json\`
