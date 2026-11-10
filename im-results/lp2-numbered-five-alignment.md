@@ -22,6 +22,81 @@ Finally, among the **12,403** noninitial possible windows of length553, **2,047*
 
 Reproduce the complete, source-asserted 79/78 packet and genuine-ciphertext window checks with `node sims/numbered_five_alignment.cjs --packet79` (Node.js 22), alongside the pre-existing exact five-item analyses below. The existing manual [workflow succeeded](https://github.com/FlareZ123/liber-primus/actions/runs/42821065345) on the new original-source test. The code contains a clean-packet exact numeric decode-and-re-encode check and no new always-on CI workflow was introduced.
 
+## Five numbered data lanes plus two residual parity lanes: exact F29 RS test
+
+The five original red-numbered passages have lengths **139, 91, 98, 96,
+129**. Each contains at least **79** source runes. Taking exactly 79
+from each leaves excess lengths **60, 12, 19, 17, 50**, which sum to
+**158 = 2×79**. Because two ten-dot marks enclose **553 = 7×79**
+runes, the five printed labels `1–5` suggest a finite, falsifiable
+**five data streams plus two parity streams** interpretation. The
+source gives the first five evaluation indices; the next two
+natural evaluation indices are 6 and 7. Such an interpretation would
+be operationally useful: if the seven GP29 ciphertext symbols in
+each column were evaluations of a degree≤4 polynomial at 1,...,7,
+its two checks could validate the reading or correct one damaged
+rune without knowing the plaintext.
+
+The exact GF29 systematic Reed–Solomon parity equations from the
+numbered source labels are
+
+`C6 = C1 + 24·C2 + 10·C3 + 19·C4 + 5·C5 (mod29)`
+
+`C7 = 5·C1 + 5·C2 + 16·C3 + 18·C4 + 15·C5 (mod29)`.
+
+The weight sums are both **1 mod29**, so these checks are **unchanged
+by an arbitrary unknown 79-symbol common additive pad** added to
+every row of each column. More broadly, an arbitrary source-keyed
+degree≤4 polynomial pad in the seven row coordinates would also
+preserve the codeword conditions. As a stringent tolerance check,
+the decoder accepts an original column if its two independent
+syndromes permit exact recovery after correcting **zero or one**
+unknown erroneous glyph at any of its seven positions. The decoder
+infers that position and magnitude from the syndromes; it has no
+oracle for the error.
+
+| Original 7×79 source layout | Exact columns /79 | Columns consistent with ≤1 damaged rune /79 |
+| --- | ---: | ---: |
+| Seven sequential 79-rune blocks inside the ten-dot frame | **0** | **23** |
+| Seven interleaved seven-rune blocks inside the same frame | **0** | **11** |
+| First 79 of each numbered passage, then two forward residual lanes | **0** | **18** |
+| First 79 of each numbered passage, then two reversed residual lanes | **0** | **20** |
+| Last 79 of each numbered passage, then two forward residual lanes | **0** | **20** |
+| Last 79 of each numbered passage, then two reversed residual lanes | **0** | **17** |
+
+The four item-respecting layouts retain all source characters and
+their numbered order. The two contiguous/interleaved layouts are
+independent source-framed alternatives. **No layout has even one
+original column satisfying both parity checks exactly; at least
+56 of 79 columns in every layout require more than one glyph
+correction.** The nominal one-error-correctable column fraction
+under uniformly random independent GP29 vectors is
+`(1 + 7·28)/29² = 197/841`; the surviving counts here provide
+no supported plaintext or authorship claim.
+
+For a genuine independent positive control, the same SFT encodes
+395 native Shakespeare GP runes as five 79-rune data lanes, evaluates
+the two labelled-check parities, adds an **arbitrary unknown
+79-symbol common pad**, and changes **one genuinely unknown position
+in every original-style column**. Its key-independent decoder
+recovers **79/79 damaged columns** exactly; removing the known
+plant-only pad reproduces all 395 source GP runes, both parity rows
+and every one of the 553 encoded symbols with correct
+re-encryption. This rejects the explicit direct-F29
+**(7,5) labelled source-code interpretation, even with a shared pad
+and one wrong symbol per column**. It cannot exclude separate
+row-specific secret pads, hidden non-GP encodings, or an unrelated
+use of the five numbers. The 7×79 frame was noticed
+retrospectively, so this is a bounded model decision rather than
+a statement that the author intended Reed–Solomon.
+
+[Exact runnable SFT](../sims/lp2_five_clause_rs79_parity_sft.cjs):
+`node sims/lp2_five_clause_rs79_parity_sft.cjs`.
+This extends the older direct 1–5 degree≤3 polynomial-share
+test below by using the source-specified 79-rune rows, the two
+residual lanes and exact one-error correction; that earlier
+five-share test remains valid under its own narrower layout.
+
 ## Observed alignment: first item as fixed anchor
 
 The script compares the 139-rune first item against each other whole item at noncyclic rune shifts `[-40,+40]`. For a candidate shift, `N` is overlap length and `E` exact runic equalities. Its standardised score is `z=(E-N/29)/sqrt(N*28/841)`. A four-link statistic is the **minimum** of the four independently maximized scores.
