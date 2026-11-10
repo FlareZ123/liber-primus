@@ -48,9 +48,41 @@ function inputs() {
   const columnKeys = Array.from({ length: 8 }, (_, c) => grid.byte_rows.map(row => row[c]));
   assert.ok(columnKeys.every(key => key.length === 32 && key.every(x => Number.isInteger(x) && x >= 0 && x < 256)));
   assert.deepEqual([columnKeys[5][5], columnKeys[2][6], columnKeys[6][30]], [107, 47, 198]);
-  if (process.env.LP2_GRID_FIVE_CORRECTIONS === '1') {
-    const corrected = correctedGridColumns(columnKeys);
-    for (let col = 0; col < 8; col++) columnKeys[col] = corrected[col];
+
+  if (process.env.LP2_GRID_RADIX === '59') {
+    // The printed alphabet has no lowercase f. This opt-in interpretation
+    // removes f from the 60-symbol digit sequence and uses positional base59.
+    // If the five independently audited readings are enabled, correct their
+    // *printed two-character tokens* first, then decode those tokens in base59.
+    const alphabet60 = grid.alphabet;
+    const alphabet59 = alphabet60.replace('f', '');
+    assert.equal(alphabet60.length, 60);
+    assert.equal(alphabet59.length, 59);
+    const tokens = grid.rows.flat().slice();
+    assert.equal(tokens.length, 256);
+    if (process.env.LP2_GRID_FIVE_CORRECTIONS === '1') {
+      for (const [index, oldByte, newByte] of [[45, 107, 81], [50, 47, 21],
+        [165, 18, 47], [172, 148, 174], [246, 198, 224]]) {
+        const token = tokens[index];
+        const oldDecoded = alphabet60.indexOf(token[0]) * 60 + alphabet60.indexOf(token[1]);
+        assert.equal(oldDecoded, oldByte);
+        tokens[index] = alphabet60[Math.floor(newByte / 60)] + alphabet60[newByte % 60];
+      }
+    }
+    for (let index = 0; index < tokens.length; index++) {
+      const token = tokens[index], high = alphabet59.indexOf(token[0]);
+      const low = alphabet59.indexOf(token[1]);
+      assert(high >= 0 && low >= 0);
+      const value = 59 * high + low;
+      assert(value >= 0 && value < 256);
+      columnKeys[index % 8][Math.floor(index / 8)] = value;
+    }
+  } else {
+    assert(process.env.LP2_GRID_RADIX === undefined || process.env.LP2_GRID_RADIX === '60');
+    if (process.env.LP2_GRID_FIVE_CORRECTIONS === '1') {
+      const corrected = correctedGridColumns(columnKeys);
+      for (let col = 0; col < 8; col++) columnKeys[col] = corrected[col];
+    }
   }
 
   const master = read('resources/transcriptions/liber_primus_master.txt');
