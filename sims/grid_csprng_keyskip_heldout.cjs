@@ -102,10 +102,14 @@ function encode(s) {
   }
   return output;
 }
+const REGISTER=process.env.GP_REGISTER||'english';
+assert.ok(['english','latin'].includes(REGISTER));
+const latin=JSON.parse(read('resources/control/latin-vulgate-gp-trigrams.json'));
+const latinHeld=JSON.parse(read('resources/control/latin-vulgate-heldout-gp.json'));
 const reference=read('resources/control/shakespeare_first300k.txt');
 const trainText=encode(reference.slice(0,200000));
-const testText=encode(reference.slice(-80000));
-assert.ok(testText.length>=8*(TRAIN+HELD));
+const testText=REGISTER==='latin'?latinHeld.runes:encode(reference.slice(-80000));
+assert.ok(testText.length>=TRAIN+HELD);
 /** @param {number[]} values */
 function unigram(values){
   const hist=Array.from({length:R},()=>1);
@@ -113,7 +117,9 @@ function unigram(values){
   const n=values.length+R;
   return Float64Array.from(hist,x=>Math.log(x/n));
 }
-const logFreq=unigram(trainText);
+const logFreq=REGISTER==='latin'
+  ?Float64Array.from(latin.u,x=>Math.log((x+1)/(latin.n+R)))
+  :unigram(trainText);
 /** @param {number} n */
 const mod=n=>(n%R+R)%R;
 /**
@@ -266,7 +272,8 @@ function planted(sources){
     ivName:'zeros',map:'reject',drop:0,sign:-1};
   let pos=0;
   return sources.map((s,i)=>{
-    const truth=testText.slice(pos,pos+TRAIN+HELD);pos+=TRAIN+HELD;
+    const truth=Array.from({length:TRAIN+HELD},
+      (_,j)=>testText[(pos+j)%testText.length]);pos+=TRAIN+HELD;
     const k=pad(sourceKeys.columns[i],'aes-256-ctr','zeros','reject',0,600);
     let j=0;
     const encoded=[];
@@ -309,7 +316,7 @@ const compact=x=>({
   heldout:+heldout(x===plantedWinner?injected:sections,x).score.toFixed(6)
 });
 console.log(JSON.stringify({
-  scope:{sections:8,sectionLengths:lengths,fitPerSection:TRAIN,holdoutPerSection:HELD,
+  scope:{register:REGISTER,sections:8,sectionLengths:lengths,fitPerSection:TRAIN,holdoutPerSection:HELD,
     configurations:216,algorithms:generators,ivNames:ivs,mappings,drops,
     hiddenSkipDriftCap:MAX_DRIFT,confidence:'bounded direct 256-bit grid stream keys'},
   planted:{trueRank:expected,trueAssignment:plantedWinner.assignment,
