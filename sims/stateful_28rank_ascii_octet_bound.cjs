@@ -84,8 +84,11 @@ function transitionStreams(pages, reset, policy) {
  * @param {number} phase
  * @returns {object}
  */
-function examine(pages, width, reset, policy, reverse, phase) {
-  const allowed = allowedLeadingDigits(width);
+function examine(pages, width, reset, policy, reverse, phase, octetMode = 'printable') {
+  const allowed = octetMode === 'seven-bit'
+    ? Array.from({length: Number((128n * (256n ** BigInt(3 * width / 5 - 1)) - 1n)
+        / (28n ** BigInt(width - 1))) + 1}, (_, i) => i)
+    : allowedLeadingDigits(width);
   const k = allowed.length;
   const counts = Array.from({length: 29}, () => new Uint16Array(29));
   let clean = 0, complete = 0, markerPackets = 0;
@@ -157,6 +160,31 @@ function study(pages = PAGES) {
       maxCleanPackets: Math.max(...cases.map(x => x.cleanPackets))
     });
   }
+  // Robustness: permit any 7-bit ASCII octet, including NUL/DEL/C0,
+  // without assuming printable English. This yields at most 13/14
+  // possible leading digits per stationary conditioning row.
+  const sevenBit = WIDTHS.map(width => {
+    const cases = [];
+    for (const reset of ['page', 'book'])
+      for (const policy of ['drop', 'skip'])
+        for (const reverse of [false, true])
+          for (let phase = 0; phase < width; phase++)
+            cases.push(examine(pages, width, reset, policy, reverse, phase,
+              'seven-bit'));
+    const survivors = cases.filter(c => !c.hardExcluded);
+    return {
+      width, cases: cases.length, excluded: cases.length - survivors.length,
+      allowedLeadingDigits: Array.from({length: Number((128n *
+        256n ** BigInt(3 * width / 5 - 1) - 1n) /
+        28n ** BigInt(width - 1)) + 1}, (_, i) => i),
+      survivors: survivors.map(c => ({
+        reset: c.reset, policy: c.policy, reverse: c.reverse,
+        phase: c.phase, cleanPackets: c.cleanPackets
+      }))
+    };
+  });
+  assert.deepEqual(sevenBit.map(x => x.excluded),
+    [40, 80, 120, 160, 200, 214]);
   const largestLog = Math.max(...nullLogs);
   const log10NullFamilyUnionBound = largestLog + Math.log10(nullLogs.reduce(
     (sum, v) => sum + 10 ** (v - largestLog), 0));
@@ -170,7 +198,7 @@ function study(pages = PAGES) {
       unionOverFramingsAndRowsLog10UpperBound: log10NullFamilyUnionBound,
       caution: 'This is a family-union bound under the specified random-ciphertext null, not a probability that a designed Cicada cipher could not encode ASCII, nor a deterministic original-source exclusion.'
     },
-    summaries, survivors};
+    sevenBit, summaries, survivors};
 }
 
 /** @param {number} seed @returns {() => number} */
