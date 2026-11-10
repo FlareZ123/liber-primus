@@ -1,16 +1,30 @@
 name: LP2 cross-page relative-key scan
 on:
   workflow_dispatch:
+    inputs:
+      family:
+        description: "Reuse scan family: base or affine-gain"
+        required: false
+        type: choice
+        options:
+          - base
+          - affine-gain
+        default: base
 jobs:
   relative-key-scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - name: Synthetic shared-key and independent-key controls
+        if: ${{ inputs.family != 'affine-gain' }}
         run: node sims/relative_key_reuse_scan.cjs --selftest
       - name: Scan all LP2 pairs and calibrate family-wise maxima
+        if: ${{ inputs.family != 'affine-gain' }}
         run: node sims/relative_key_reuse_scan.cjs --trials 1000
+      - name: Scan affine-gain shared-pad model with familywise null
+        if: ${{ inputs.family == 'affine-gain' }}
+        run: node sims/relative_key_gain_scan.cjs --trials 600
