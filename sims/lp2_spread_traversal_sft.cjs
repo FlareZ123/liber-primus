@@ -189,7 +189,8 @@ function matchedRightPageNull(source, pairs, glyphs, trials) {
     groups.get(key).push(i);
   }
   const random = rng(0x13310);
-  const histAB = Array(100).fill(0), histBA = Array(100).fill(0);
+  const histAB = Array(actual[2] + 1).fill(0);
+  const histBA = Array(actual[3] + 1).fill(0);
   let sumAB = 0, sumBA = 0;
   for (let t = 0; t < trials; t++) {
     const rights = pairs.map(pair => pair[1]);
