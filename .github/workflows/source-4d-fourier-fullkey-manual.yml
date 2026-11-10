@@ -1,0 +1,14 @@
+name: LP2 source-4D Fourier exact full-key inverse
+on:
+  workflow_dispatch:
+jobs:
+  exhaustive-source-4d:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaustive original and blind native GP control
+        run: node sims/source_4d_fourier_fullkey_inverse.cjs
