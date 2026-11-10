@@ -6,7 +6,17 @@
 
 ## Ranked source-visible routes
 
-### 1. Babylonian numerals → 2014 magic-square source → prime counting
+### 1. Five-slot tree ornament → 13/31 stencil counts → 32×8 table (issue #3 owns this line)
+
+**Original locations:** LP2 pages 49–51 (49.jpg–51.jpg), with repeated 13-dot stencil marks elsewhere in the book.
+
+A separate Agent 41 source audit reports that the same five-slot tree ornament flanks the printed 32×8 table on all three pages. Under one explicit convention—topmost slot first, clockwise, solid=1 and hollow=0—the left and right ornaments read 01101₂=13 and 11111₂=31. The audit also reports 31 instances of the 13-dot stencil, yielding 32 intervening fragments, which matches the table's 32 rows.
+
+**What a solver could infer:** the repeated tree ornament and dot stencil may select a five-bit reading convention, then a 31-separator/32-fragment alignment with the printed table. This is the strongest direct visual-to-table candidate, but it is not a result of this invocation and the orientation/polarity convention remains a hypothesis.
+
+The evidence and current tests are already consolidated in [im-results/red-256-event-grid-correspondence.md](red-256-event-grid-correspondence.md); this belongs to issue #3. I did not touch the table, red ink, or repeat its experiments. Do not duplicate that work under issue #9; coordinate with issue #3 before any further use.
+
+### 2. Babylonian numerals → 2014 magic-square source → prime counting
 
 **Original locations:** LP2 pages 33, 35, 38, 39 (33.jpg, 35.jpg, 38.jpg, 39.jpg).
 
@@ -22,7 +32,7 @@ This is distinct from the existing 1033/3301 LCG studies and the existing five-n
 
 **Decision:** retain the 2014 cross-reference as a plausible intended human path. Do not promote marker-length residues or prime-totient resets as a key.
 
-### 2. Möbius / infinity figure → opening-page traversal or Möbius inversion
+### 3. Möbius / infinity figure → opening-page traversal or Möbius inversion
 
 **Original locations:** LP2 pages 0–2 and 15 (00.jpg–02.jpg, 15.jpg).
 
@@ -36,7 +46,7 @@ The direct 4×4 Hill interpretation of the page-15 square is already extensively
 
 **Decision:** the repeated figure is real, but the original pages do not uniquely select a Möbius transform. Keep this as a bounded unresolved visual lead; do not launch another free-parameter search without a source-visible seam or orientation rule.
 
-### 3. Dotted mayfly → GIMP Dissolve image operation, not a cipher key
+### 4. Dotted mayfly → GIMP Dissolve image operation, not a cipher key
 
 **Original location:** LP2 page 57 (57.jpg).
 
@@ -49,7 +59,7 @@ An external image reconstruction reports a strong match between the dotted insec
 ## Other artwork and exhausted routes
 
 - The five-dot stencil and its reflections are already covered by [im-results/black-dot-template-reflections.md](black-dot-template-reflections.md) and the solved-page inversion work. No new route is selected.
-- The tree/blur/outline relationship is already covered by [im-results/tree-outline-blur-registration.md](tree-outline-blur-registration.md). The repeated root, scrollwork, wing, cicada, and botanical motifs are useful section/template markers, but this audit found no independently selected cipher operation in them.
+- The tree/blur/outline relationship is already covered by [im-results/tree-outline-blur-registration.md](tree-outline-blur-registration.md). Apart from the issue-#3 13/31 ornament lead above, the repeated root, scrollwork, wing, cicada, and botanical motifs are useful section/template markers, but this audit found no independently selected cipher operation in them.
 - The page-22 horizontal object and corpse-like figure are visually ambiguous. Calling the upper object a rail fence or skeleton key would be an unsupported identification; no transposition is assigned from it.
 
 ## Handoff
