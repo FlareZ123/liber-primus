@@ -103,6 +103,31 @@ The page9–13 class alternates left/right chroma coefficient locations in corre
 
 This excludes **page-unique arbitrary chroma-coefficient embedding in the ten visually achromatic RGB files**, unless an alleged message deliberately reuses identical coefficient patterns across pages. It does **not** exclude a shared/repeated message, steganography in pages with visible red ink (the other 25 RGB pages), or data carried by a different feature. An RGB file flag by itself is therefore a poor indicator of otherwise invisible LP2 payload material.
 
+## Blank-margin chroma-coefficient gate across all RGB pages
+
+The ten visually achromatic RGB pages analyzed above leave the **25 pages with visible red ink and other page artwork** unresolved. A specific image-format question is whether the white page background itself carries a second, nearly invisible Cb/Cr layer that survives as nonzero quantized JPEG coefficients. The [original-source gate](../sims/jpeg_blank_chroma_gate.c) checks that directly on **all 35 RGB original JPEGs**, rather than inferring absence from decoded pixels or trusting OutGuess headers.
+
+For each 2,400×3,600 original image 17.jpg–74.jpg, the program uses libjpeg's quantized DCT-coefficient API to identify every 16×16-pixel chroma block containing **any nonzero value among all 64 Cb or all 64 Cr coefficients**. Independently, it decodes RGB pixels and marks a 16×16 block as visibly inked if at least one pixel has any color channel below 235/255. A coefficient block counts as *distant white-field chroma* only when its own 16×16 block **and all eight neighboring blocks** contain no such visible ink. The 1-block halo accounts for normal JPEG subsampling and block-boundary artifacts. This is a declared spatial channel test, with no secret-key or byte-extraction assumptions.
+
+**Original-source result:** all **58** original LP2 images have expected geometry, with **35 RGB and 23 grayscale**. The RGB set contains **1,181,250** chroma blocks (35 × 150 × 225). Exactly **10,834** have one or more nonzero original quantized Cb/Cr coefficients. **Zero** of these 10,834 occupied blocks lies outside the inked-block 3×3 neighborhood. The per-file gate asserts the expected source census and an **in-memory planted-block control** adds one artificial event in white space and must produce exactly one additional detector hit. The control checks detection logic; it is not a newly encoded JPEG.
+
+The visually grayscale **39.jpg / physical p22** is the important diagnostic: it contains **2,411** nonzero chroma blocks and only a small red printed mark. A naive red-only mask labels thousands of these as unexplained, but the amplified chroma maps track the **visible grayscale illustration along the bottom**. Using the full black/gray/red ink mask, there are 110 nonzero chroma blocks outside their *own* visible-ink blocks and **zero beyond the immediate 1-block halo**. Thus an invisible-whitespace claim based on this image would be a false positive. All other RGB pages have zero even outside their own occupied visible-ink blocks at the declared 235/255 threshold.
+
+**Scope:** There is no page-specific quantized **chroma coefficient** payload in the paper-white field beyond the declared neighboring-ink halo, provided such a payload would change at least one audited nonzero coefficient. This does **not** reject chroma steganography **within glyphs or illustrations**, deliberately repeated data, encoded information in nonchroma layers, or more subtle perturbations of nonzero values. Coefficient counts alone do not establish a cipher key, payload or hidden plaintext. This result complements the earlier 10 achromatic-RGB repeated-template inventory and the tree-border identity proof.
+
+Reproduction using libjpeg (tested with the local original image ZIP extracted to the canonical resources/liber-primus paths):
+
+~~~sh
+cc -O2 -Wall -Wextra sims/jpeg_blank_chroma_gate.c -ljpeg -o jpeg_blank_chroma_gate
+./jpeg_blank_chroma_gate resources/liber-primus
+~~~
+
+The final printed source result is:
+
+~~~text
+SUMMARY originals=58 RGB=35 grayscale=23 total_RGB_chroma_blocks=1181250 nonzero_RGB_chroma_blocks=10834 distant_blank_chroma_blocks=0 pixel_threshold=235 ink_halo_blocks=1 synthetic_positive=PASS
+~~~
+
 ## Interpretation
 
 The DHT tables—including the non-ascending symbol order within some equal-code-length groups—are completely explained by the ordinary optimized-Huffman encoder applied to the original quantized coefficients. There is no residual per-page choice in the DHT ordering that supports an independent hidden message. The shared APP0/APP2 markers, stable per-mode DQT tables, and absence of additional APP/comment/trailing segments likewise provide no separate metadata channel.
