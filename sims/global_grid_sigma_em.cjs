@@ -130,8 +130,8 @@ function study() {
   const text=fs.readFileSync(path.join(__dirname,"..","resources",
     "control","shakespeare_first300k.txt"),"utf8");
   const allWords=words(text);
-  const model=training(flatten(allWords.slice(650,50000)));
-  const plainCorpus=flatten(allWords.slice(0,630));
+  const model=training(flatten(allWords.slice(4200,50000)));
+  const plainCorpus=flatten(allWords.slice(0,4000));
   assert(plainCorpus.values.length>=LENGTHS.reduce((a,b)=>a+b,0));
   const plaintext=split(plainCorpus.values);
   const plaintextContexts=split(plainCorpus.classes);
