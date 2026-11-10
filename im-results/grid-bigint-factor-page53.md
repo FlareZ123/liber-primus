@@ -21,6 +21,31 @@ Physical LP2 page **53** contains **179 GP runes**, split 128 black and 51 red. 
 
 An [independent canonical byte transcription](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/pp49_51/canon_256.hex) reproduces this *same entire* byte string. Its [six-glyph source adjudication](https://github.com/Dukotah/cicada3301/blob/master/archive/branches-2026/claude_cicada3301-repo-review-wg0i9w/liber-primus/analysis/pp49_51/A04_glyph_adjudication/results.json) reports confirmation of all historically contested numeric glyphs from original scan crops. That supports stability of the numerical input, without proving Cicada intended the observed factors.
 
+## Page-53 red numeral: a second source-fixed factor of 179
+
+**New original-input result (Agent 7, 10 November 2026); cryptographic role unestablished.** The established \(179^2\mid N\) factor gives a precise page-specific test of another original ink channel. Physical p53 has **128 black runes followed by 51 contiguous red runes**. Read the **51 red symbols** in ordinary order as a nonnegative positional integer \(R\), using their canonical zero-based Gematria Primus indices \(0,\ldots,28\) in **base 29**. This is an independently specified 51-symbol source interval and a conventional, reversible numeral encoding.
+
+Exact BigInt arithmetic on the source inputs gives:
+
+- **\(\gcd(N,R)=358=2\cdot179\)**, where \(N\) is the canonical printed-grid 2,048-bit row-major base-60 integer.
+- **\(179^2\mid N\)** but **\(179^3\nmid N\)**; **\(179\mid R\)** but **\(179^2\nmid R\)**. The shared factor **179** equals the complete physical page's rune count, which was already associated with the grid before this red-number test.
+- Across the **18 complete colour-marked rune spans** in the original annotation, **p53's 51-rune span is the only one whose zero-based base-29 integer is divisible by the full rune count of its own physical page**. Its gcd with the grid is also the largest of those 18, the next largest being 56.
+- The exact **five alternative grid-cell readings** documented in [the source-audited key study](grid-section-column-keys.md), and the independently historically published **f-omitting radix-59** token interpretation, both yield grid integers **not divisible even by 179**. Thus the joint numerical relationship occurs under the canonical base-60/zero-based GP29 reading, rather than being invariant under plausible competing numeral codecs.
+
+Trial division of the 247-bit red integer \(R\) up to one million yields the exact small-prime decomposition
+
+\[
+R=(2\cdot113\cdot179\cdot27241\cdot39901\cdot68909\cdot265541)\,C,
+\]
+
+with **168-bit residual \(C=269573819958837950787541728931395654992696677965349\)**. The factorization is an exact product identity; the reproducer does not need to assert that the residual is prime. This supplies concrete potential number-theoretic material for a source-constrained decoder, but it does not itself identify one.
+
+**Conditional permutation check.** Freeze the actual 51 red GP digits as a multiset, shuffle their order uniformly with seeded rejection-sampled Fisher–Yates (**0x53179**) **200,000 times**, and measure divisibility by the **already discovered** page length 179. Exactly **1,110/200,000** shuffled integers are divisible by 179; add-one proportion **1,111/200,001 ≈ 0.005555**. Of the 51 exact cyclic rotations of the original red sequence, only the authentic rotation zero is divisible by 179. The parity factor 2 in the gcd is determined by the sum of the red digits and survives every reordering, so it must **not** be counted as an independent 1/2 rarity. This is a *source-multiset conditional* observation, **not a discovery-adjusted proof of intent**, because the prior selection of page 53 by the grid, the choice of numeral representation, and other possible arithmetic relationships were examined in an exploratory research setting.
+
+**Decision and next operational test.** The 179 link now touches the **table**, **physical page length**, and a **separate colour-marked integer**, making the factor a stronger candidate for an intended arithmetic clue than a table factor viewed alone. However, dividing \(R\) by 179 yields **50 base-29 digits of nonreadable GP text**, and no cipher state, genuine plaintext, or externally verifiable key has been recovered. A next decoding proposal should specify how \(N/179^2\), \(R/179\), or their factors drive a **lossless, independently constrained transformation** and predict an untouched original passage; enumerating arbitrary transforms around these numbers would overfit this relationship.
+
+[Full original-input CommonJS reproducer](../sims/page53_red_grid_common_factor.cjs) checks the source-annotation offsets, arithmetic and variants, complete 18-span comparison, all 51 rotations, and the seeded multiset null without modifying either transcription.
+
 ## Natural reading-order comparisons
 
 Applying the same exact prime-≤179 smooth-factor operation to alternate orders gives:
