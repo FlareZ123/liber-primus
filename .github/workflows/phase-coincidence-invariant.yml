@@ -15,3 +15,5 @@ jobs:
         run: node sims/no_repeat_periodic_key_phase_invariant.cjs
       - name: Scan source-observable event-driven rune key clocks
         run: node sims/no_repeat_event_clock_invariant.cjs
+      - name: Run source-16 arbitrary public-state row invariant with true inverses
+        run: node sims/spiral16_public_row_invariant.cjs
