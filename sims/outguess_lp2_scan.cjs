@@ -72,7 +72,8 @@ try {
   const summary = {
     tool:'OutGuess 0.4',mode:key ? 'specified-key' : 'default-key',
     originalJPEGsChecked:sources.length, controls:controls.map(x=>x.page),
-    positiveControlsMatch:known, lp2UnvalidatedExtracts:lp2.length,\n    authenticityWarning:'Matching OutGuess header alone does not establish an authentic message',
+    positiveControlsMatch:known, lp2UnvalidatedExtracts:lp2.length,
+    authenticityWarning:'Matching OutGuess header alone does not establish an authentic message',
     extractedCandidates:found, noMatchingHeader:other.map(x=>x.page),
     diagnostics:known ? undefined : other.filter(x=>x.page === 0 || x.page === 8)
   };
