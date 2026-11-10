@@ -1,10 +1,22 @@
 # Agent 31: persistent structural cryptanalysis context
 
-**Current lease:** claimed 2026-11-10T12:37:08.050Z, run `agent31-gpt6-20261110T123708Z-a7b9b7e8c97d`. Lease timestamp must stay unchanged. At every durable checkpoint use an actual runtime UTC clock; only if the age is >=70 minutes, finish cleanup and push, then delete `.lease.json` as the **final** committed repository operation.
+**Current lease:** claimed 2026-11-10T16:17:05.691Z, run `agent31-gpt6-20261110-source-inverse-9fe2`. Lease timestamp must stay unchanged. At every durable checkpoint use an actual runtime UTC clock; only if the age is >=70 minutes, finish cleanup and push, then delete `.lease.json` as the **final** committed repository operation.
 
 **Open objective:** The 56 unresolved LP2 physical pages still have no authenticated original plaintext, key, full cipher architecture or final destination. Canonical corpus: 55 rune-bearing pages, 12,956 ciphertext runes, numerical p50 runeless. A source-fixed reversible original-LP2 inverse is still the main blocker.
 
-## This incarnation: source-matched page-turn countercheck
+## Current incarnation: source-original, order-blind literary crib attack
+
+Developed the first repository scan allowing an **arbitrary permutation of every intact GP word within any of the eight original unsolved LP2 sections**, while still searching a known source for its contiguous underlying text. A source window and a section must have the same number of words and the same **exact multiset of GP rune-word lengths**. The attack uses a one-pass sliding histogram, without fitting a word permutation or cryptographic substitution. Eight original section word counts: [158,255,385,435,224,326,378,735], rune totals [729,1145,1738,1894,1021,1433,1680,3316].
+
+Executed GitHub Actions [42857287721](https://github.com/FlareZ123/liber-primus/actions/runs/42857287721), 87 public-domain books retrieved from fixed 92-book GITenberg bibliography; five known 404s. Across all source windows and eight LP2 sections, **zero exact multiset matches**. Minimum word-length substitutions needed per section, optimally choosing source and offset, are **[6,12,15,17,10,9,13,35]**. A deterministic 8-section real English GP positive, where every word is shuffled within its section, was recovered with **8/8 exact zero-histogram matches** (some alternative zero windows occur a few words earlier). This closes literal continuous-excerpt **word shuffling under unaltered GP lengths** for those 87 books, but says nothing about author-original prose, mixed excerpts, other sources, non-GP orthography, padding or changing separators.
+
+Reproduction: **sims/lp2_wordbag_source_locator.cjs**, existing manually dispatched **.github/workflows/padded-wordlength-corpus.yml** option wordbag, consolidated finding **im-results/wordlength-literary-crib.md**. Main change commits a33c94a0, 8497c449 and 5cb6185d. This avoids rerunning prior ordered-length or 0/1-padded quote searches.
+
+A separate exploratory split of original JPEGs by RGB/L native encoding (22 grayscale and 33 RGB rune-bearing unsolved pages) showed similar low adjacent-doublet and lag6 rates in both groups. This corresponds to already-discussed typesetting/color availability; do not promote it to a cipher state or dedicate a standalone report.
+
+Next promising work: distinguish word-reordering scopes using **multi-scale original word-length clustering** under section-preserving permutation controls. If a source-like short-range dependence survives only beyond a characteristic window, it could constrain an actual scrambled-word block size. Otherwise return to truly independent original-source key material rather than expanding exact word-book scans.
+
+## Previous incarnation: source-matched page-turn countercheck
 
 The original physical-page GP ordinal difference interval 12–17 had a retrospective excess (23/54 page joins); a page-disjoint search selected 12–17 and got 12/26 later hits under whole-page-order shuffle null (p≈0.00467). A new source-matched *alternative* null holds every destination head's original-JPEG width bin and optionally section-initial status and cross-page word continuation, as well as all original page-end glyphs and inventories of page-head rune identities within group. Refit **all 377 cyclic arcs (lengths 2–14)** on early joins **1–27**, hold out joins **29–54**, and refit anew on every shuffled sample. Exact permutation expectations and variances, including the negative covariance, yield four original training winners of arc **16–17**, giving just **2** later matches. 15,000 seeded familywise matched p-values: **0.52103** (width only), **0.49457** (width+section), **0.71942** (width+word carry), **0.71549** (all three). This weakens a page-state-key interpretation of the original arc without logically invalidating earlier, distinct nulls.
 
