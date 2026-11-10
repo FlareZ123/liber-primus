@@ -51,6 +51,27 @@ The three-corner optimum is **378 necessary altered output runes**, at relative 
 
 **Positive source control:** using the authentic first square, generate a secret random `29³`-entry three-corner lookup; encode the 6,395 visible positions after a gap at 3,472; modify precisely 86 separate symbol outputs. The exact same all-gap gate accepts the genuine stationary three-corner plant (minimum bound at most 86). The known synthetic key exactly recreates **6,309** unaltered outputs, though this is a control and does not identify an authentic LP2 key. The entire original-bound scan passed [manual CI run 42858179474](https://github.com/FlareZ123/liber-primus/actions/runs/42858179474); [the standalone CommonJS reproducer](../sims/lp2_square_local_stencil_invariant.cjs) prints the complete source and control results.
 
+### Four-corner local cubic functions: an independent exact field-rank obstruction
+
+The four-input arbitrary table is so expressive that its necessary-collision lower bound alone can be repaired with 86 changes. The original images, however, specify a **29-element Gematria Primus field register**, making the entire fixed-local polynomial family over `GF(29)` a separate, testable source-driven architecture. Any polynomial using all four neighboring symbols with **total degree at most three** has precisely **35 independently unknown monomial coefficients**. This includes all linear, quadratic, cubic, mixed and constant terms; no coefficient is fitted or even enumerated in the test.
+
+For each complete **36-symbol nonoverlapping block**, form its actual **36×35** matrix of cubic monomials of the four source-rune values and append the 36 observed output-rune values as a 36th column. If the augmented matrix has higher rank over `GF(29)`, **at least one output rune in that block must change for every possible cubic key**. The source-original certificate gives away a **different secret 35-coefficient polynomial for every 36-symbol block**, and drops the possible block straddling the five missing target cells. It scans all gap locations, all eight isometries, and **177 disjoint full blocks**. Because violating blocks are disjoint, their count is a rigorous minimum number of symbol edits required even under these relaxed, block-specific keys.
+
+| Relative square orientation | Inconsistent disjoint 36-rune blocks, no gap / five-shifted | Best lower bound over all 6,396 missing-gap positions |
+| ---: | --- | ---: |
+| 0 | 170 / 172 | 167 |
+| 1 | 172 / 171 | 169 |
+| 2 | 170 / 174 | 169 |
+| 3 | 169 / 176 | 168 |
+| 4 | 167 / 169 | **165** |
+| 5 | 170 / 171 | 169 |
+| 6 | 171 / 168 | 167 |
+| 7 | 171 / 173 | 170 |
+
+Thus **every total-degree-≤3, four-corner stationary GP29 polynomial source map needs at least 165 output edits**, **79 more than** the exploratory 86-glyph allowance, even when the model can secretly change its polynomial every 36 symbols. This excludes a much broader algebraic class than the initial short ±1-kernel checks, including arbitrary secret bilinear and mixed cubic coefficients. It makes no statement about degree four or higher, a fully arbitrary four-corner lookup, secret input relabeling, changing/nonlocal state or whether the geometric premise itself is intentional.
+
+A new independently encrypted **35-coefficient cubic synthetic control** uses the authentic 81² source geometry, a source-independent hidden polynomial and a middle five-cell gap, then changes **86** separate output runes. All **6,309** unaltered outputs follow the exact frozen key; the same source-blind certificate finds only **84** incompatible disjoint blocks and accepts the plant. The enhanced [all-gap source-square reproducer](../sims/lp2_square_local_stencil_invariant.cjs) passed [GitHub Actions run 42859774113](https://github.com/FlareZ123/liber-primus/actions/runs/42859774113). The older three-corner source minimum **378** remains unchanged.
+
 **Limits:** The omission is assumed to be five *consecutive* grid cells, but its location is unrestricted; larger or noncontiguous gaps, a time-varying map, a nonlocal input, an intermediate ciphertext layer, or a permutation other than the eight square isometries remain open. The proof is an exact impossibility for a declared source-to-source family, **not** evidence that the two-square framing is historical, a recovered plaintext, an authentic cryptographic key, or a solution.
 
 ## Cross-square GP29 additive source pad: all-secret-alphabet capacity bound
