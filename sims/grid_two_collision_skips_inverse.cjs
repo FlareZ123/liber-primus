@@ -17,7 +17,7 @@ const fs=require("node:fs");
 const path=require("node:path");
 const assert=require("node:assert/strict");
 const {train,encode}=require("./grid_keyskip_viterbi.cjs");
-const {originalKeys,originalBodies,streamKey,viterbi:legacyViterbi}=
+const {originalKeys,originalBodies,streamKey}=
   require("./grid_stream_collision_viterbi.cjs");
 const {matchColumns}=require("./grid_word_order_inversion.cjs");
 
@@ -89,11 +89,12 @@ function inverse(cipher,pad,sign,lm,maxLocal=MAX_REJECTED_PER_SYMBOL){
   for(let j=0;j<states;j++)
     if(prev[j]>best){best=prev[j];state=j;}
   assert.ok(Number.isFinite(best)&&state>=0);
-  const plain=new Array(n),skipLocations=[];
+  const plain=new Array(n),rejections=new Uint8Array(n),skipLocations=[];
   const skips=Math.floor(state/lane);
   let doubleSkips=0;
   for(let i=n-1;i>=1;i--){
     const E=Math.floor(state/lane),r=state%lane;
+    rejections[i]=r;
     plain[i]=decoded(i,E);
     assert.ok(r<=E);
     assert.ok(attemptsFit(i,E-r,r,plain[i]));
@@ -106,41 +107,21 @@ function inverse(cipher,pad,sign,lm,maxLocal=MAX_REJECTED_PER_SYMBOL){
   }
   plain[0]=p0;
   assert.ok(skips<=cap);
-  const encrypted=[];
-  let e=0,previous=-1;
-  const rejects=Array(n).fill(0);
-  for(const at of skipLocations)rejects[at]=0; // listed for audit below.
-  const reconstructedE=[];
-  state=-1;
-  // Verify all plaintext symbols can be exactly re-encrypted with a valid
-  // 0..2 collision-driven key rejection policy using the chosen Viterbi path.
-  const replay=new Array(n);
-  // Backtrack a second time via stored plaintext differences: for each
-  // intermediate source plaintext, locate the unique chosen skipped-draw
-  // count through the final optimized path retained above.
-  // Use the transcript constructed in the original trace reconstruction:
-  // skipLocations detects at least one reject but the exact full path needs
-  // the recovered count 2 when present. Reconstruct by matching recovered
-  // final value and the legal rejection constraint, preferring 2->1->0.
+  let cursor=0,prevCipher=-1;
   for(let i=0;i<n;i++){
-    const target=plain[i],curr=cipher[i];
-    let chosen=-1;
-    for(let r=0;r<=maxLocal&&i+e+r<pad.length;r++){
-      if(mod(target+sign*pad[i+e+r])!==curr)continue;
-      if(i>0&&!attemptsFit(i,e,r,target))continue;
-      chosen=r;break;
-    }
-    // Ambiguous locally equal draw values can lead to distinct valid paths.
-    // We audit exact original Viterbi trace separately below instead of
-    // asserting the greedy reconstruction equals optimized cumulative skips.
-    replay[i]=chosen;
-    if(chosen>=0)e+=chosen;
-    else break;
-    encrypted.push(curr);previous=curr;
+    const r=rejections[i];
+    for(let j=0;j<r;j++)
+      assert.equal(mod(plain[i]+sign*pad[i+cursor+j]),prevCipher,
+        "Rejected key must have produced previous original ciphertext rune");
+    const published=mod(plain[i]+sign*pad[i+cursor+r]);
+    assert.equal(published,cipher[i],"Recovered plaintext must exactly reencrypt original rune");
+    cursor+=r;
+    prevCipher=published;
   }
+  assert.equal(cursor,skips,"Recovered hidden skip sequence must reencrypt from same initial state");
   return {score:best,perRune:best/n,skips,doubleSkips,
     plaintext:plain,skipLocations:skipLocations.reverse(),
-    localGreedyReplayPositions:encrypted.length};
+    exactForwardRoundTrip:true};
 }
 
 /** @param {Buffer[]} keys @param {number[][]} bodies @param {object} lm */
@@ -157,7 +138,7 @@ function search(keys,bodies,lm){
           const x=decoded[section][key];
           return {section,gridKeyColumn:key,perRune:x.perRune,
             skips:x.skips,doubleSkips:x.doubleSkips,
-            localGreedyReplayPositions:x.localGreedyReplayPositions,
+            exactForwardRoundTrip:x.exactForwardRoundTrip,
             gpPrefix:x.plaintext.slice(0,65)};
         })};
     }
