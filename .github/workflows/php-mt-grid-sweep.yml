@@ -1,0 +1,89 @@
+name: PHP MT direct-grid generator key search
+
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: Inclusive seed
+        required: true
+        type: string
+        default: '0'
+      end:
+        description: Exclusive seed, at most 4294967296
+        required: true
+        type: string
+        default: '1000000'
+      shards:
+        description: Number of disjoint intervals (1-256)
+        required: true
+        type: string
+        default: '1'
+
+permissions:
+  contents: read
+
+jobs:
+  partition:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - name: Validate exact disjoint seed coverage
+        id: plan
+        env:
+          START: ${{ inputs.start }}
+          END: ${{ inputs.end }}
+          SHARDS: ${{ inputs.shards }}
+        run: |
+          python3 - <<'PY'
+          import json,os
+          start,end,shards=(int(os.environ[v]) for v in ('START','END','SHARDS'))
+          assert 0 <= start < end <= 2**32
+          assert 1 <= shards <= 256 and shards <= end-start
+          parts=[{'part':i+1,'start':start+(end-start)*i//shards,
+                  'end':start+(end-start)*(i+1)//shards} for i in range(shards)]
+          assert parts[0]['start']==start and parts[-1]['end']==end
+          assert all(x['end']==y['start'] for x,y in zip(parts,parts[1:]))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('matrix='+json.dumps({'include':parts},separators=(',',':'))+'\n')
+          print('SCHEDULE',start,end,shards)
+          PY
+
+  scan:
+    needs: partition
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 16
+      matrix: ${{ fromJson(needs.partition.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compile generator and read the original base60 table
+        run: |
+          gcc -O3 -std=c11 -Wall -Wextra -o /tmp/php-mt-grid sims/php_mt_grid.c
+          node -e 'const fs=require("node:fs"),c=require("node:crypto"),g=require("./resources/liber-primus/lp2-grid-256.json");const b=Buffer.from(g.bytes);if(b.length!==256||c.createHash("sha256").update(b).digest("hex")!=="3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290")throw Error("Unexpected grid");fs.writeFileSync("/tmp/grid.bin",b);'
+      - name: Recover planted seed 777 and exact bytes
+        run: |
+          /tmp/php-mt-grid /tmp/grid.bin 777 778 777 | tee plant.log
+          grep -q 'HIT seed=777 reducer=high8 traversal=0 offset=0 bytes=8' plant.log
+      - name: Scan exact seed interval
+        env:
+          START: ${{ matrix.start }}
+          END: ${{ matrix.end }}
+        run: |
+          /tmp/php-mt-grid /tmp/grid.bin "$START" "$END" | tee scan.log
+          grep -q "SUMMARY seeds=$((END-START)) " scan.log
+      - name: Retain candidate records and coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: php-mt-grid-${{ matrix.part }}
+          retention-days: 90
+          if-no-files-found: warn
+          path: |
+            scan.log
+            plant.log
