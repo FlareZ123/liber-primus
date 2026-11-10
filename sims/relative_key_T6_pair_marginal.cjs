@@ -21,6 +21,7 @@ const {lp2Page,corpusWords}=require("./relative_key_english_probe.cjs");
 const {encipher}=require("./lag6_repair_keyed_inverse.cjs");
 const {words}=require("./outer_permutation_word_context.cjs");
 const {plant}=require("./lag6_repair_contextual_inverse.cjs");
+const solved=require("./authentic_lp1_p03_p04_vigenere_recovery.cjs");
 
 const M=29, Q=.81, INV4=22;
 const MOD=x=>(x%M+M)%M;
@@ -75,9 +76,10 @@ function options(record){
  * @param {{xs:number[],start:boolean[],end:boolean[]}} bb
  * @param {number[]} prior
  */
-function ranked(aa,bb,prior,from=0,to=Math.min(aa.xs.length,bb.xs.length)){
+function ranked(aa,bb,prior,from=0,to=Math.min(aa.xs.length,bb.xs.length),noRepair=false){
   const n=Math.min(aa.xs.length,bb.xs.length);
-  const a=options(aa),b=options(bb);
+  const a=noRepair?aa.xs.map(x=>[{x,mass:1}]):options(aa);
+  const b=noRepair?bb.xs.map(x=>[{x,mass:1}]):options(bb);
   const source=Array.from({length:M},(_,d)=>{
     let sum=0;
     for(let p=0;p<M;p++)sum+=prior[p]*prior[MOD(p-INV4*d)];
@@ -137,6 +139,14 @@ function run(){
   const actualFirst=ranked(aa,bb,prior,0,134);
   const actualSecond=ranked(aa,bb,prior,134,269);
   const flat=ranked(aa,bb,Array(M).fill(1/M));
+  const direct=ranked(aa,bb,prior,0,269,true);
+  const authenticCount=prior.map(x=>100*x);
+  for(const symbol of solved.plaintext)authenticCount[symbol]++;
+  const nAuthentic=authenticCount.reduce((a,b)=>a+b);
+  const cicadaPrior=authenticCount.map(x=>x/nAuthentic);
+  const cicada=ranked(aa,bb,cicadaPrior);
+  const cicadaFirst=ranked(aa,bb,cicadaPrior,0,134);
+  const cicadaSecond=ranked(aa,bb,cicadaPrior,134,269);
   const random=rng(0x394290);
   const pad=Array.from({length:272},()=>Math.floor(random()*M));
   const ca=simulated(aa,heldout,pad,0x394291);
@@ -154,7 +164,8 @@ function run(){
     source:"Shakespeare GP prior first200000 chars; synthetic last60000 independent",
     channel:"exact word-local T6 collision rewrite 81%, first six random different",
     model:"at each step exact marginal over all 1..4 candidate tentative symbol pairs and all 29 GP source pairs; prior per rune iid",
-    actual,actualFirst,actualSecond,flatPrior:flat,
+    actual,actualFirst,actualSecond,flatPrior:flat,directNoRepair:direct,
+    cicadaPrior:{full:cicada,first:cicadaFirst,second:cicadaSecond},
     positive:{...positive,first:positiveFirst,second:positiveSecond,
       rewritesA:ca.rewrites,rewritesB:cb.rewrites},
     independentKeyNegative:{...negative,first:negativeFirst,second:negativeSecond},
