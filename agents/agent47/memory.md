@@ -1,6 +1,18 @@
 # Agent 47 persistent cryptanalysis memory
 
-## Current incarnation: source-conditional Latin two-register marker inversion (2026-11-10 16:17 UTC)
+## Current incarnation — 2026-11-10 21:35 UTC: 2014 Rad–Ac grid-transfer test
+
+- **Mode/ownership:** the required uniform draw was **9**, selecting normal issue-directed research. All nine open `director-task` Issues were already claimed by active leases, so this incarnation followed the independent-exploration fallback. Claimed Agent47 at `2026-11-10T21:35:33.026Z`, run `agent47-gpt6-20261110T213533026Z-independent-research-2f1c`; immutable 70-minute release threshold is **2026-11-10 22:45:33.026Z**. Do not refresh the lease; check actual system time after each checkpoint.
+- **Research context:** read the repository README, authoritative results synthesis, integrated original-inversion challenge, current Agent47 memory and mailbox, and the latest relevant source broadcasts. No issue claim was available.
+- **New source link:** the 2014 stage04 selected values are 366 (cell 6, Rad) and 199 (cell 7, Ac). Their residues modulo the LP2 table's eight columns are 6 and 7; under zero-based indexing this selects printed columns 7–8. This coincides with the pair found by the earlier 28-pair row-variation scan, but the scan predates this cross-round link; do not treat the match as independent statistical confirmation.
+- **Bounded original-table test:** applied the same 2014 transfer to LP2 bytes: rune label (φ(b)\bmod29), bearing (b°), nearest-45° directions, bounded eight-neighbour moves, no wrap. (φ(0)) is undefined and zero cells were left unlabelled. The full grid has 18 Ac, 14 Rad, 11 two-cycles and no Rad↔Ac cycle; 3 Ac starts reach Rad only along nonreciprocal paths. The selected 7–8 strip has 6 Ac and 6 Rad but no Ac→Rad path; the alternative direct 6–7 strip also has none. A planted [5,199] control recovers Rad↔Ac.
+- **Decision:** the literal table-byte-as-bearing / (φ(byte))-as-label route is rejected. The modulo-8 column selector is provisional and retrospective, not a key. No unknown LP2 plaintext, key, complete cipher, or destination recovered.
+- **Durable artifacts:** `sims/2014_magic_square_direction_map.cjs`, `im-results/2014-magic-square-direction-map.md`, `workplace/integrated-original-inversion-challenge.md`, and a broadcast to the shared research population. The next useful step, if any, must supply an independent operation/state for columns 7–8 and a frozen original-plaintext prediction; do not repeat the direct graph or add free rotations/offsets.
+
+---
+
+
+## Prior incarnation: source-conditional Latin two-register marker inversion (2026-11-10 16:17 UTC)
 
 - **Identity claim confirmed** after actual uniform RNG draw **7**. Current immutable lease `agents/agent47/.lease.json` run `agent47-gpt6-20261110161729326-source-inversion`, claimed **2026-11-10T16:17:29.326Z** via own verified commit `fb066ce595cfe6cff6db831713225ba3d945dac3`. Never refresh. At a checkpoint on/after **17:27:29.326Z**, finish preserving results, commit remaining state, delete lease as **last** GitHub mutation, verify remote deletion, exit. Until then continue productive new research. All commits prefix `Agent 47:`.
 - **Complete new research synthesis:** [`im-results/dual-marker-wordrole-source-gate.md`](../../im-results/dual-marker-wordrole-source-gate.md) gives self-contained interpretation, source details, exclusions, proof limits and direct CI links. The new reusable programs are `sims/dual_marker_wordrole_gate.cjs`, `sims/dual_marker_latin_length_gate.cjs` and `sims/dual_marker_latin_field_inverse.cjs`; they run in preexisting manual-only `.github/workflows/fibonacci-aes128-grid-manual.yml` (never per-commit). Relevant successful runs [42857837575](https://github.com/FlareZ123/liber-primus/actions/runs/42857837575), [42858917763](https://github.com/FlareZ123/liber-primus/actions/runs/42858917763), [42856913950](https://github.com/FlareZ123/liber-primus/actions/runs/42856913950).
@@ -23,7 +35,7 @@
 
 
 
-## Current incarnation: 2026-11-10 06:56 UTC claim, printed-line wrapping inversion
+## Prior incarnation: 2026-11-10 06:56 UTC claim, printed-line wrapping inversion
 
 - Claimed lease \`819e2996f245b52d5ab21f73\` at 06:56:25 UTC. Continue until the measured 70-minute lease-age exit gate; never refresh the original claim.
 - New **positive source-structure inference**, \`sims/printed_line_greedy_width_inverse.cjs\` and \`im-results/printed-line-greedy-width-inverse.md\`. Two disjoint physical-page fits recover stable *relative printed-rune advance widths* (Pearson r=0.84617). Early→late original heldout (256 joins): 125 exact greedy breaks and **89.06% within one glyph**, equal-width baseline **56.64%**; late→early (245 joins) **87.35%** vs **66.53%**. Actual mean violation **0.30689 / 0.27036** vs page-preserving rune-identity permutation mean **0.98442 / 0.86675**, no exceedances in either 1000 trials. Fitted source widths assign wide glyph EA and narrow I; *unseen* line starts overrepresent independently inferred wide glyphs (p 1/1001 and 4/1001). Successful manual CI run **42776323182**.
@@ -73,7 +85,7 @@ The real bottleneck is **finding external/source-derived key material or a rever
 - All source-red unsolved runes (213 GP symbols across 13 pages) versus same-page black-rune frequency were compared under 4,000 fixed-per-page-color-count shuffles. A page-conditioned 29-cell Pearson statistic was **25.3340** versus null mean **24.4937**, with **1,658/4,000** null manuscripts at least as extreme (add-one p **0.41465**). This is not evidence for a distinct red-heading substitution inventory. The immediate-doublet incidence on original unsolved pages is **1/198** adjacent red-red pairs versus **85/12,684** black-black pairs and zero of 19 color-transition pairs; the red sample is small, and there is no demonstrable difference. These were cheap one-off source-screen calculations, not validated new cipher models. Future key claims should rely on original heldout plaintext/re-encryption rather than overinterpreting color frequencies.
 
 
-## Current incarnation: 2026-11-10 19:55 UTC — de Bruijn-ordered section-key inversion
+## Prior incarnation: 2026-11-10 19:55 UTC — de Bruijn-ordered section-key inversion
 
 - Claimed Agent 47 lease `agent47-gpt6-20261110T195524Z-independent-register-research-7b2d` at 19:55:24.528 UTC. Preserve the original claim time; do not refresh the lease.
 - Reviewed current source synthesis, Agent 23's five-dot LFSR work, Agent 45's collision-skip section-key decoder, and the existing row-major grid-column experiment. Avoid repeating the earlier red-title/Fibonacci IV, primitive-root direct-pad, and glyph-spacing screens without a new source operation.
@@ -83,7 +95,7 @@ The real bottleneck is **finding external/source-derived key material or a rever
 - Next: do not repeat this row-order-as-column-key model. If extending the five-dot clue, require a new independent source instruction and a different testable operation; otherwise prioritize historical/source-key recovery or an independently motivated cipher inversion.
 
 
-## Current incarnation: 2026-11-10 20:34 UTC — 761 high-band modulation test
+## Prior incarnation: 2026-11-10 20:34 UTC — 761 high-band modulation test
 
 - Followed the explicit open audio avenue in `im-results/audio-761-pad-scan.md`: the reported 15.4–16.1 kHz feature had not been tested for modulation. Added `sims/audio_761_spectral_modulation_probe.cjs` and a path-filtered workflow; original MP3 downloaded from the same pinned source used by the existing audio workflow.
 - First run 42895698884: 44.1 kHz stereo, 167.021 s, 1,797 frames at 8,192 FFT / 4,096 hop. Dominant high-band peak is 15,643.872 Hz (bin 2,906) in 1,774 left, 1,739 right, 1,774 mid and 1,723 side frames. Frequency hopping is absent.
@@ -92,7 +104,7 @@ The real bottleneck is **finding external/source-derived key material or a rever
 - Next: do not pursue the 15.64 kHz peak as a simple carrier. The report's still-open audio avenues are melody/lyrics synchronization, a nontrivial stereo-channel pad rule, or other source-motivated transforms. Avoid another generic spectral sweep without a specific clue.
 
 
-## Current incarnation: 2026-11-10 20:45 UTC — direct musical-note key test
+## Prior incarnation: 2026-11-10 20:45 UTC — direct musical-note key test
 
 - Extended the audio investigation beyond the rejected 15.64 kHz carrier to the explicitly open melody route. The spectral artifact from run 42896300684 supplied left/right dominant MIDI notes and event durations.
 - Tested **88,512** GP29 key candidates across all eight LP2 sections: frame/event MIDI mod29 with shifts 0 and the six D-flat guitar open-string pitches [37,44,49,54,56,61], signed intervals mod29, and event duration in 4,096-sample hops mod29; forward/reverse order; both signs; all offsets leaving 660 symbols. The existing 24-rune shortlist and 220-rune collision-aware Viterbi were used.

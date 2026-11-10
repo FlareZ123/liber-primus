@@ -1,8 +1,8 @@
 # 2014 stage04 magic-square direction map: cell 6 Rad ↔ cell 7 Ac
 
-**Status: intermediate cross-round hypothesis; not an LP2 decryption.**
+**Status:** a reproducible cross-round source clue with a bounded failed LP2 transfer; not an LP2 decryption, authentic key, or destination.
 
-## Result
+## 2014 source and selector
 
 The 2014 stage04 server-status reconstruction contains this 5×5 magic square:
 
@@ -49,27 +49,53 @@ This gives:
 The resulting functional graph has 17 in-bounds edges and 8 exits. Its directed cycles are:
 
 1. **6 ↔ 7**, the unique reciprocal two-cell cycle: Rad ↔ Ac.
-2. 12 → 16 → 17 → 23 → 24 → 18 → 12, a separate six-cell cycle (Dæg → Gyfu → Eoh → Ing → Sigel → Mann).
+2. **12 → 16 → 17 → 23 → 24 → 18 → 12**, a separate six-cell cycle (Dæg → Gyfu → Eoh → Ing → Sigel → Mann).
 
-The longer cycle must remain visible in the evidence; it is not silently discarded. The cell-6/cell-7 pair is specifically the only mutual two-cell connection.
+The longer cycle remains part of the evidence; it is not silently discarded.
 
-The 2016 image is a dead-oak illustration, not a verified geographic photograph. The Uncovering Cicada Wiki attributes it to [this ClipartBest oak image](https://www.clipartbest.com/cliparts/abc/y97/abcy97qTL.jpeg). The archived 2016 JPEG is 563×569 and contains no EXIF/XMP/IPTC/ICC/comment metadata or trailing payload. Treat the oak as a symbolic Ac pointer; do not infer a physical starting location from the image.
+## LP2 table selector suggested by the same cells
 
-## Why this is worth pursuing
+The selected source numbers also satisfy:
 
-The 2016 message instructs the solver to interpret words as a map, meanings as roads, and numbers as directions. The 2014 matrix provides all three ingredients under one established operation:
+```
+366 mod 8 = 6
+199 mod 8 = 7
+```
 
-- `φ(n) mod 29` gives GP runes/words.
-- The rune meanings give semantic labels such as Rad (road) and Ac (oak).
-- The original numbers give a direction field.
+Read as zero-based column indices, these select columns **7 and 8** in the printed 32×8 LP2 numeric table. This is a plausible cross-round selector because the table has eight columns. It also happens to select the same pair with the lowest normalized adjacent-row variation in [the existing all-28-pair screen](grid-two-column-serial-order.md): (T=1.4505445), familywise permutation tail (631/100001=0.00630994). **Do not count these as independent confirmations:** the low-variation pair was discovered by scanning all 28 pairs before this modulo-8 cross-round link was noticed. The modulo-8 interpretation is a new hypothesis, not an authenticated column instruction.
 
-The Epiphany/PATIENCE selector points to cell 6, and the only reciprocal two-cell connection from that selected cell is Rad → Ac → Rad. The 2016 oak image independently agrees with Ac. This is a specific, reproducible cross-round alignment, not a recovered LP2 plaintext.
+There is a natural indexing ambiguity. Treating the 1-based cell numbers 6 and 7 directly as 1-based table columns selects printed columns **6 and 7**, not 7 and 8. Both interpretations were tested below.
 
-## Limits and falsification
+## Direct LP2 direction-field transfer: bounded negative
 
-The angle convention is an inference, not a proven instruction. Using compass bearings (0° north, clockwise) does **not** produce the cell-6 → cell-7 oak connection. The mathematical convention is favoured because it makes the selected cell's direction east, matching the adjacent Ac cell and the 2016 oak image. The nearest-45° quantization is motivated by the eight neighbouring cells of the square grid.
+The simplest transfer of the 2014 map to the original 32×8 table was fixed before inspecting any route output:
 
-This does not establish that the 2014 square is intended as an LP2 key, nor does it identify a physical location. The earlier fixed test treating all 25 values as bearings selecting perimeter runes from the LP2 15×15 red matrix was negative. The earlier direct transfer of the 2014 Vigenère key `WELCOME PILGRIM TO THE` to LP2 was also negative.
+1. For each positive table byte (b), assign the GP label (φ(b)mod29), using the same mapping as the 2014 square.
+2. Treat (b) itself as an angle in degrees, quantized to the nearest 45° sector under the same 0°-east, counter-clockwise convention.
+3. Follow the indicated eight-neighbour move in the printed rectangular grid. Moves beyond the grid exit; there is no toroidal wrap or fitted rotation.
+4. Since (φ(0)) is undefined, zero-valued cells retain their 0° direction but have no GP label.
+
+Results on the canonical original table:
+
+| Tested region | Ac labels | Rad labels | Ac-to-Rad directed paths | Reciprocal Rad↔Ac cycles |
+|---|---:|---:|---:|---:|
+| Full 32×8 table | 18 | 14 | 3 | 0 |
+| Modulo-8 selected printed columns 7–8 | 6 | 6 | 0 | 0 |
+| Direct 1-based cell-number columns 6–7 | 7 | 1 | 0 | 0 |
+
+The full grid has **11** reciprocal two-cell cycles, none labelled Rad↔Ac. The selected 32×2 columns 7–8 contain only **B↔F** and **S↔T** cycles. The alternative printed columns 6–7 contain **Thorn↔Rad**, **Haegl↔Beorc**, and **Gyfu↔Tir**, but no Ac-to-Rad path. Thus the direct transfer does not reproduce the source-selected Rad↔Ac cycle in either natural column interpretation. The three Ac-to-Rad paths in the full grid are non-reciprocal and do not select a unique route.
+
+A planted 1×2 positive control with bytes [5,199] does recover Rad→Ac→Rad under the exact same `φ` and angle rules (`φ(5) mod29 = 4`; `φ(199) mod29 = 24`). This checks the graph implementation; it does not authenticate the transfer hypothesis.
+
+**Decision:** the direct “table byte = bearing and φ(byte) = map label” reading is rejected for this LP2 table. The modulo-8 column selector remains an interesting but retrospective source alignment; it supplies no key, state, plaintext, or destination. Do not repeat this direct graph transfer or expand it into free rotations, offsets, or geographic searches.
+
+## Historical interpretation and limits
+
+The 2016 image is a dead-oak illustration, not a verified geographic photograph. The Uncovering Cicada Wiki attributes it to [this ClipartBest oak image](https://www.clipartbest.com/cliparts/abc/y97/abcy97qTL.jpeg). Treat the oak as a symbolic Ac pointer; do not infer a physical starting location from the image.
+
+The 2016 message's instruction that words are a map, meanings a road, and numbers directions is compatible with the 2014 matrix interpretation. However, the angle convention is an inference, not a proven instruction. Using compass bearings (0° north, clockwise) does not produce the cell-6 → cell-7 oak connection. The archived 2016 message also ends “Beware false paths,” so semantic and geographic matches require a source-fixed stopping rule.
+
+This result does not establish that the 2014 square is intended as an LP2 key or that the LP2 table is a literal direction map. It only rejects the simplest direct transfer above. A distinct use of columns 7–8 as key/state material remains untested, but it would need an independently sourced operation and a reversible original-cipher prediction before further work is justified.
 
 ## Reproduction
 
@@ -79,11 +105,7 @@ Run from the repository root:
 node sims/2014_magic_square_direction_map.cjs
 ```
 
-The script checks the magic constant, recomputes `φ(n) mod 29`, builds the 8-direction graph, enumerates all directed cycles, and asserts the cell-6 Rad ↔ cell-7 Ac pair.
-
-## Next research decision
-
-The useful next question is not another key sweep. Determine whether this selected Rad–Ac pair supplies a reproducible entry/exit rule for a specific LP2 structure—especially the 32×8 number table or the p49–p55 material—without introducing free rotations, arbitrary offsets, or a guessed geographic destination. Any proposed continuation should predict an untouched sequence or independently identifiable plaintext.
+The script checks the 1033 magic square, recomputes the `φ(n) mod29` rune labels and eight-direction graph, derives both natural table-column interpretations from cells 6 and 7, and runs the full-grid, selected-strip, alternate-strip, and planted positive-control tests using only Node's standard library and the pinned original grid/corpus resources.
 
 ## Source links
 
@@ -92,4 +114,5 @@ The useful next question is not another key sweep. Determine whether this select
 - [2016 signed message](https://github.com/iBotPeaches/cicada_3301/blob/master/messages/2016/hello-the-path-lies-empty.asc)
 - [2016 image archive entry](https://github.com/krisyotam/cicada3301/blob/76d3ee8c762f60025822c8c05edbf31351636469/archives/scream314/assets/2016/4gq25.jpg)
 - [2016 image's reported oak-clipart source](https://www.clipartbest.com/cliparts/abc/y97/abcy97qTL.jpeg)
+- [Original table order and 28-pair scan](grid-two-column-serial-order.md)
 - [Existing 2016/2014 selector hypothesis](../workplace/2016-epiphany-2014-onion-path-hypothesis.md)
