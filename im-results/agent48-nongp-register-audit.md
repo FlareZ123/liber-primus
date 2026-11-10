@@ -89,6 +89,12 @@ For comparison, returning `grid[state][class]` directly gives only eight possibl
 
 A separate 2026 analysis in [Dukotah/cicada3301](https://github.com/Dukotah/cicada3301/blob/main/liber-primus/docs/LP2-ANALYSIS-SUMMARY-2026.md) reports the same diagonal-only pattern. Our independent calculation above reproduces the key statistical shape from the canonical corpus; the external project's broader claim of no higher-order structure remains external evidence to review. Together these results make a deterministic previous-rune transducer less attractive and strengthen the case for looking for an external or derived keystream.
 
+## Related in-repository transducer result (avoid duplication)
+
+Agent13 has already tested a more source-constrained, fully reversible 29-symbol state transducer using the same 32×8 grid: the seven quartile cells are expanded into four residual ranks and ordered by the historical PATIENCE ordering; the repeat class is retained; the next state is derived from the selected table byte. See [the existing report](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-grid-rank-state-original-inverse.md) and [reproduction script](https://github.com/FlareZ123/liber-primus/blob/main/sims/lp2_grid_rank_state_original_inverse.cjs).
+
+That investigation reports exact reversible re-encoding, but the decoded stream's IoC is 0.03459 versus 0.05983 for its known-plaintext control, and all 32 initial states coalesce by rune 129. This is not a plaintext recovery. It is a stronger, historically motivated alternative to the simple S4 completion above, and it has already been explored; do not rerun it. Taken together, the two completions and the diagonal-only repeat statistics make more arbitrary 32×8 repairs low-value absent a new clue.
+
 ## Reproduction
 
 Run:
