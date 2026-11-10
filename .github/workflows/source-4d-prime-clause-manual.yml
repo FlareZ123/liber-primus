@@ -29,3 +29,8 @@ jobs:
         env:
           LP_MATRIX: ${{ matrix.model }}
         run: node sims/source_4d_radix29_bytes.cjs
+      - name: Exact 5GP29-to-3-byte compressed-binary all-key sweep
+        if: matrix.output == 'direct'
+        env:
+          LP_MATRIX: ${{ matrix.model }}
+        run: node sims/source_4d_radix29_packed3.cjs
