@@ -371,22 +371,50 @@ function main() {
     return codes;
   }
 
+  // State reset may produce class seven without a visible same-rune doublet.
+  const resetStateNonDoublets = unknownMarks13.filter(m => {
+    if (pageInitialSet.has(m.pos)) return false;
+    const resetRune = (m.color === "black" ? 31 : 13) % N;
+    return allRunes[m.pos] === resetRune && allRunes[m.pos] !== allRunes[m.pos - 1];
+  }).map(m => ({ global_offset: m.pos, physical_page: m.page, local_offset: m.offset }));
+  assert.deepEqual(resetStateNonDoublets.map(x => x.global_offset), [848, 9522]);
+
   const registerVariants = {};
   for (const direction of ["forward", "inverse"]) {
     const codes = makeFiveBitRegister(direction);
     const base32Text = codes.map(c => BASE32[c]).join("");
     const bytes = packFiveBit(codes);
     const residue = codes.length % 8;
-    const paddingBits = residue === 5 ? 3 : null;
+    // RFC 4648 unpadded Base32: residues 2/4/5/7 leave 2/4/1/3 zero bits.
+    const paddingByResidue = { 0: 0, 2: 2, 4: 4, 5: 1, 7: 3 };
+    const paddingBits = paddingByResidue[residue] ?? null;
+    const paddingMask = paddingBits === null ? null : (1 << paddingBits) - 1;
+    const highCodeCount = codes.filter(code => code >= 28).length;
+    assert.equal(highCodeCount, repeats.length + resetStateNonDoublets.length);
+    assert.equal(highCodeCount, 88);
+    const ascii7ByGlobalBase32Phase = Array.from({ length: 8 }, (_, phase) => {
+      const leaders = codes.filter((_, index) => index % 8 === phase);
+      return {
+        phase, block_leaders: leaders.length,
+        forced_non_ascii_leaders: leaders.filter(code => code >= 16).length
+      };
+    });
+    assert.deepEqual(
+      ascii7ByGlobalBase32Phase.map(x => x.forced_non_ascii_leaders),
+      [707, 711, 695, 708, 733, 703, 703, 738]
+    );
     registerVariants[direction] = {
       symbols: codes.length,
       base32_length_mod_8: residue,
       final_symbol_code: codes[codes.length - 1],
       final_padding_bits: paddingBits,
-      final_padding_value: paddingBits === null ? null : (codes[codes.length - 1] & 7),
+      final_padding_value: paddingBits === null ? null : (codes[codes.length - 1] & paddingMask),
       canonical_unpadded_base32_padding:
-        [0, 2, 4, 5, 7].includes(residue) &&
-        (residue !== 5 || (codes[codes.length - 1] & 7) === 0),
+        paddingBits !== null && (codes[codes.length - 1] & paddingMask) === 0,
+      reserved_28_to_31_codes: highCodeCount,
+      source_reset_non_doublet_reserved_codes: resetStateNonDoublets,
+      uniform_base32_expected_reserved_codes: codes.length / 8,
+      key_independent_7bit_ascii_phase_gates: ascii7ByGlobalBase32Phase,
       base32_prefix: base32Text.slice(0, 80),
       base32_suffix: base32Text.slice(-40),
       decoded_byte_stats: byteStats(bytes)

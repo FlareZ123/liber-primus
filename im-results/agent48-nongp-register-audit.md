@@ -72,7 +72,7 @@ To test whether the 32×8 table can supply the missing information, I froze one 
 
 Thus columns 0–6 permute the four members of each quartile, and column 7 selects one of the four reserved five-bit repeat codes 28–31. The 29 input transitions map injectively to 29 output codes for every one of the 32 states. The script verifies all 32×29 state/input pairs in both permutation directions with an exact round-trip control.
 
-After omitting the 55 page IVs, the source produces 12,901 five-bit symbols. This length is (5 mod 8), a syntactically allowed unpadded Base32 length. The forward-permutation direction ends in code 8, whose three padding bits are zero; the inverse direction ends in code 11 and fails that padding check. The forward byte stream nevertheless has:
+After omitting the 55 page IVs, the source produces 12,901 five-bit symbols. This length is (5 mod 8), a syntactically allowed unpadded Base32 length. The forward-permutation direction ends in code 8, whose **one required padding bit** is zero; the inverse direction ends in code 11 and fails that padding check. The forward byte stream nevertheless has:
 
 - 8,063 bytes;
 - 7.89415 bits/byte Shannon entropy;
@@ -81,7 +81,11 @@ After omitting the 55 page IVs, the source produces 12,901 five-bit symbols. Thi
 - longest printable run of 9;
 - no common file signature at offset zero.
 
-The valid padding is a weak coincidence (one of eight possible low-three-bit endings), not evidence of plaintext. The decoded bytes remain random-like.
+The valid padding is a weak coincidence (one of two possible low-bit endings), not evidence of plaintext. The decoded bytes remain random-like.
+
+**Key-independent original-input gate for the exact five-bit register.** The reserved 5-bit values 28–31 occur **88/12,901** times, independently of which lexicographic four-way permutation each table cell selects. Of these, **86** are ordinary within-page identical-rune doublets. Two further state-equality events arise after red 13-dot resets set the transducer state to 13: **p3 local 119 / global 848** and **p39 local 122 / global 9,522** have current GP rune 13 despite different actual preceding runes. This distinguishes state equality from literal adjacency.
+
+Uniform independent Base32 symbols would place **1,612.625** of the 12,901 outputs in values 28–31 on average; the exact Binomial(12,901, 1/8) lower tail at 88 is about **6.856×10⁻⁵⁹⁶**. This is a conditional incompatibility with uniform encrypted/compressed Base32 bytes, rather than a language-free impossibility of every binary payload. The deterministic 7-bit ASCII gate exploits quartile preservation: each eight-symbol Base32 block yields five bytes, and its first byte can be seven-bit ASCII only if the block's first code is below 16. For the **eight global packing phases**, the source forces respectively **707, 711, 695, 708, 733, 703, 703, 738** high-bit-first bytes out of 1,612 or 1,613 block leaders. No secret 32×8 grid permutation choice can repair those original positions. Hence this particular register cannot directly encode a continuous seven-bit ASCII text under any of the eight global alignments; further coding layers remain logically possible. These gates and the corrected RFC 4648 padding test are implemented in the same reproducer.
 
 For comparison, returning `grid[state][class]` directly gives only eight possible outputs per state and is non-injective; its 12,901-byte output has 7.00910 bits/byte entropy and is not readable text.
 
