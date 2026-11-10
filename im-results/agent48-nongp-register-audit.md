@@ -30,6 +30,16 @@ The 28 unknown-fragment lengths are:
 
 The absence of boundary alignment does not disprove a repeat class, but it gives no support for treating the 86 doublets as page/ornament control events.
 
+## Adjacent-repeat structure
+
+The doublet deficit is much more informative than the raw count. Across the 12,901 within-page adjacent pairs, the observed rate is 86/12,901 = 0.6666%. Under an IID null using the observed 29-rune unigram frequencies, the equal-pair probability is 0.0345529 and the expected count is 445.77. Correcting the null variance for overlapping adjacent-pair indicators gives \(z=-17.3409\). The observed diagonal count is only 19.29% of the IID expectation, i.e. an 80.71% suppression.
+
+The suppression is approximately uniform across rune identities: after fitting one global survival factor \(q=86/445.77=0.19293\), the per-rune diagonal counts give Pearson \(\chi^2=27.79\) on 28 degrees of freedom and Poisson deviance 28.39. The expected per-rune counts are small, so these are diagnostics rather than a definitive asymptotic test.
+
+The 812 off-diagonal ordered rune pairs all have expected counts at least 12.30 under the same unigram-independence model. Their Pearson statistic is 816.57, close to the 812-cell null scale; observed off-diagonal pairs total 12,815. This supports a diagonal-only deficit rather than a structured off-diagonal transition code.
+
+**Interpretation:** the 86 repeats behave like residual survivors of a global soft no-repeat filter much more naturally than like 86 deliberate control markers or a state-dependent plaintext channel. This is a statistical model, not identification of the filter's implementation. It weakens the motivation for assigning the repeat class a special plaintext meaning in the 32×8 transducer.
+
 ## Candidate A — fragment-wise base-29 integer coding
 
 The 13-dot marks give a natural, source-visible segmentation. For each fragment of length (L), interpret its GP indices (d_i) as one base-29 integer:
@@ -75,7 +85,7 @@ For comparison, returning `grid[state][class]` directly gives only eight possibl
 
 ## External lead (not used to tune these tests)
 
-A separate 2026 analysis in [Dukotah/cicada3301](https://github.com/Dukotah/cicada3301/blob/main/liber-primus/docs/LP2-ANALYSIS-SUMMARY-2026.md) reports diagonal-only adjacent-repeat suppression and no higher-order transition structure. Treat that as independent external evidence to review, not as a result established by this repository. If its analysis survives reproduction, it would make a deterministic previous-rune transducer less attractive and strengthen the case for looking for an external or derived keystream.
+A separate 2026 analysis in [Dukotah/cicada3301](https://github.com/Dukotah/cicada3301/blob/main/liber-primus/docs/LP2-ANALYSIS-SUMMARY-2026.md) reports the same diagonal-only pattern. Our independent calculation above reproduces the key statistical shape from the canonical corpus; the external project's broader claim of no higher-order structure remains external evidence to review. Together these results make a deterministic previous-rune transducer less attractive and strengthen the case for looking for an external or derived keystream.
 
 ## Reproduction
 
