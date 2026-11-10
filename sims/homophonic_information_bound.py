@@ -84,6 +84,35 @@ def information(pages: list[list[int]], alphabet_size: int) -> tuple[float, int,
     return mutual_information, pairs, equal
 
 
+
+
+def phase_information(pages: list[list[int]], alphabet_size: int, period: int) -> float:
+    """I(C_i; C_{i+1} | i mod period), weighted by phase, reset on each page."""
+    all_pairs = sum(max(len(page) - 1, 0) for page in pages)
+    weighted_bits = 0.0
+    for phase in range(period):
+        joint = Counter()
+        left = Counter()
+        right = Counter()
+        pairs = 0
+        for page in pages:
+            for i in range(phase, len(page) - 1, period):
+                a, b = page[i], page[i + 1]
+                joint[a, b] += 1
+                left[a] += 1
+                right[b] += 1
+                pairs += 1
+        if not pairs:
+            continue
+        if any(a >= alphabet_size or b >= alphabet_size for a, b in joint):
+            raise ValueError("Symbol outside claimed alphabet")
+        mutual_information = math.fsum(
+            (freq / pairs) * math.log2(freq * pairs / (left[a] * right[b]))
+            for (a, b), freq in joint.items()
+        )
+        weighted_bits += mutual_information * pairs / all_pairs
+    return weighted_bits
+
 def nonrepeat_null(lengths: list[int], equal_probability: float, rng: random.Random) -> list[list[int]]:
     """Independent uniform 29-way choices except a matched immediate-repeat rate."""
     output = []
@@ -109,6 +138,14 @@ def run() -> dict:
     translation = parse_reference(download_pinned("LP1_TRANSLATION"))
     observed, pair_count, doubles = information(ciphertext, 29)
     reference, ref_pairs, ref_doubles = information(translation, 26)
+    cipher_counts = Counter(symbol for page in ciphertext for symbol in page)
+    reference_counts = Counter(symbol for line in translation for symbol in line)
+    min_rune_fraction = min(cipher_counts.values()) / sum(cipher_counts.values())
+    infrequent_reference_letters = [
+        chr(symbol + 65) for symbol in sorted(reference_counts)
+        if reference_counts[symbol] / sum(reference_counts.values()) < min_rune_fraction
+    ]
+    periods = [1, 2, 3, 4, 5, 8]
     trials = 600
     rng = random.Random(3301)
     sample = sorted(
@@ -129,6 +166,20 @@ def run() -> dict:
                 "pairs": pair_count, "adjacent_equals": doubles,
                 "adjacent_equals_fraction": doubles / pair_count,
                 "mutual_information_bits": observed},
+        "fixed_map_unigram_floor": {
+            "min_rune_fraction": min_rune_fraction,
+            "min_rune_count": min(cipher_counts.values()),
+            "max_rune_count": max(cipher_counts.values()),
+            "LP1_English_letters_below_that_floor": infrequent_reference_letters,
+            "LP1_English_letters_below_that_floor_count": len(infrequent_reference_letters),
+        },
+        "phase_conditioned_MI_bits": {
+            "period_definition": "page-local zero-based rune/letter position modulo period",
+            "LP2": {str(period): phase_information(ciphertext, 29, period) for period in periods},
+            "LP1_solved_English": {
+                str(period): phase_information(translation, 26, period) for period in periods
+            },
+        },
         "LP2_matched_no_repeat_null": {"trials": trials, "seed": 3301,
                 "median_MI_bits": percentile(sample, .5),
                 "95pct_interval_bits": [percentile(sample, .025), percentile(sample, .975)],
@@ -141,8 +192,11 @@ def run() -> dict:
     }
     # The deterministic map case requires no optimization: for any f,
     # I(f(C_i); f(C_{i+1})) <= I(C_i; C_{i+1}) by data processing.
-    # This is an empirical-distribution identity. It does not constrain
-    # context-dependent ciphers, stream ciphers, or variable-length codes.
+    # This is an empirical-distribution identity. Phase-conditional DPI holds
+    # for maps f_{i % period}, with fixed page-local phase. A fixed map's used
+    # output symbols each have mass >= the smallest rune's empirical frequency.
+    # No bound here controls context-dependent ciphers, stream ciphers,
+    # variable-length codes, or unrelated plaintext registers.
     return result
 
 
