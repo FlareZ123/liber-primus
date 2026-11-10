@@ -117,10 +117,15 @@ function decode(ciphertext,pad,sign,beamWidth) {
       push(state,zero,t+1,0,C===Cprev?Math.log(0.18):0);
       // One hidden rejected draw is only possible when its tentative
       // ciphertext is exactly the previous accepted output.
-      if(i>0 && C!==Cprev && t+1<pad.length) {
-        const p=mod(C-sign*pad[t+1]);
-        if(mod(p+sign*pad[t])===Cprev)
-          push(state,p,t+2,1,Math.log(0.82));
+      if(i>0 && C!==Cprev) {
+        for(let skip=1;skip<=3 && t+skip<pad.length;skip++) {
+          const p=mod(C-sign*pad[t+skip]);
+          let valid=true;
+          for(let j=0;j<skip;j++)if(mod(p+sign*pad[t+j])!==Cprev){
+            valid=false;break;
+          }
+          if(valid)push(state,p,t+skip+1,skip,skip*Math.log(0.82));
+        }
       }
     }
     beam=Array.from(candidates.values()).sort((x,y)=>y.total-x.total)
@@ -153,8 +158,7 @@ function result() {
     const pad=modularStream(seed,[PAD],sample,0).map(v=>v%AL);
     const orig=decode(cipher,pad,sign,WIDTH);
     rows.push({name,meanGPTrigram:orig.meanScore,skips:orig.skips,
-      clock:orig.finalClock,preview:orig.prefix,
-      decodedMatchesNativeControl:orig.decoded.filter((v,i)=>v===plantNative[i]).length});
+      clock:orig.finalClock,preview:orig.prefix});
     if(name==="3301-byte-plus") {
       const encrypted=encryptSoft(plantNative,pad,sign);
       const predicted=decode(encrypted.ciphertext,pad,sign,WIDTH);
