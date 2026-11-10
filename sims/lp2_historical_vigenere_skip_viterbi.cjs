@@ -252,6 +252,10 @@ function globalDecode(pages, key, startPhase) {
     summary: scorePages(decoded)
   };
 }
+function samplePage(decoded, pageNumber) {
+  const row = decoded.find((x) => x[0] === pageNumber);
+  return row ? row[1].slice(0, 90).map((x) => RUNE_NAMES[x]).join(' ') : null;
+}
 function resetDecode(pages, key, startPhase) {
   const decoded = [];
   let skipCount = 0;
@@ -340,13 +344,29 @@ for (const [name, key] of Object.entries(keys)) {
   results[name] = {
     key,
     exactSourcePhase0: {
-      all: exactPhase.all,
-      prime: exactPhase.prime
+      all: {
+        ...exactPhase.all,
+        samplePage0: samplePage(exactPhase.all.decoded, 0),
+        samplePage28: samplePage(exactPhase.all.decoded, 28)
+      },
+      prime: {
+        ...exactPhase.prime,
+        samplePage2: samplePage(exactPhase.prime.decoded, 2),
+        samplePage29: samplePage(exactPhase.prime.decoded, 29)
+      }
     },
     bestOfAllStartingPhases: {
       phase: best.phase,
-      all: best.all,
-      prime: best.prime
+      all: {
+        ...best.all,
+        samplePage0: samplePage(best.all.decoded, 0),
+        samplePage28: samplePage(best.all.decoded, 28)
+      },
+      prime: {
+        ...best.prime,
+        samplePage2: samplePage(best.prime.decoded, 2),
+        samplePage29: samplePage(best.prime.decoded, 29)
+      }
     },
     wrongKeyPhase0: wrong
   };
