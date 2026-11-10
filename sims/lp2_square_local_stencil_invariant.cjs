@@ -309,16 +309,155 @@ function cubicPositive(first) {
       report.minIncompatibleDisjointBlocks,positiveAccepted:true};
 }
 
+
+/**
+ * This is the remaining unrestricted-four-corner lookup loophole:
+ * an arbitrary secret stationary table F(tuple) can overfit a few
+ * output collisions if output edits are freely permitted.
+ *
+ * Test the specific historical-motivated antirepeat architecture:
+ * F(tuple) is always the *first* tentative ciphertext glyph.
+ * An arbitrary redraw is permitted only when this first tentative
+ * glyph equals the preceding observed ciphertext glyph.
+ * Therefore, for every original output position i,
+ *
+ *     F(tuple_i) is in { C_i, C_(i-1) }.
+ *
+ * Even arbitrarily many candidate redraws, arbitrary secret lookup
+ * tables, and any redraw rule cannot evade this necessary condition.
+ * Repeated identical 4-rune source tuples must have a nonempty
+ * intersection of these two-symbol candidate sets. We again give
+ * the two sides of the five missing cells completely INDEPENDENT
+ * secret lookup tables to obtain a rigorously more permissive test.
+ */
+
+/** @param {Uint8Array} first @param {Uint8Array} observed */
+function collisionCandidateMasks(first,observed) {
+  const candidates=new Uint32Array(observed.length);
+  for(let i=0;i<observed.length;i++){
+    const prior=i===0?first[first.length-1]:observed[i-1];
+    candidates[i]=((1<<observed[i])|(1<<prior))>>>0;
+  }
+  return candidates;
+}
+
+/**
+ * Maintain the exact count of repeated-input tuple groups for which
+ * NO fixed tentative secret output is compatible with all instances.
+ * @param {Map<number,{total:number,counts:Uint16Array}>} groups
+ * @param {number} key Four-corner base29 source tuple key.
+ * @param {number} candidateMask Up to two possible tentative outputs.
+ * @param {1|-1} sign Insert or remove this observed position.
+ */
+function adjustCollisionGroup(groups,key,candidateMask,sign) {
+  let group=groups.get(key);
+  if(!group){assert.equal(sign,1);group={total:0,counts:new Uint16Array(RADIX)};groups.set(key,group);}
+  let oldMax=0;
+  for(let j=0;j<RADIX;j++)if(group.counts[j]>oldMax)oldMax=group.counts[j];
+  const before=Number(group.total>0&&oldMax<group.total);
+  for(let j=0;j<RADIX;j++)
+    if(candidateMask&(1<<j)) {
+      if(sign===-1)assert.ok(group.counts[j]>0);
+      group.counts[j]+=sign;
+    }
+  group.total+=sign;
+  let newMax=0;
+  for(let j=0;j<RADIX;j++)if(group.counts[j]>newMax)newMax=group.counts[j];
+  const after=Number(group.total>0&&newMax<group.total);
+  return after-before;
+}
+
+/**
+ * Minimum incompatible tuple groups across every possible contiguous
+ * five-cell gap, with TWO completely independent arbitrary secret
+ * lookup tables fitted to the groups on either side.
+ */
+function collisionTwoTableAllGap(keys,first,observed) {
+  assert.equal(keys.length,OUT*OUT);
+  const candidates=collisionCandidateMasks(first,observed);
+  const left=new Map(),right=new Map();
+  let conflictsL=0,conflictsR=0;
+  for(let i=0;i<observed.length;i++)
+    conflictsR+=adjustCollisionGroup(right,keys[i+HIDDEN],candidates[i],1);
+  let minimum=conflictsR,bestGap=0;
+  const firstGap=conflictsR;
+  for(let i=0;i<observed.length;i++){
+    conflictsR+=adjustCollisionGroup(right,keys[i+HIDDEN],candidates[i],-1);
+    conflictsL+=adjustCollisionGroup(left,keys[i],candidates[i],1);
+    if(conflictsL+conflictsR<minimum){
+      minimum=conflictsL+conflictsR;
+      bestGap=i+1;
+    }
+  }
+  assert.equal(conflictsR,0);
+  return {minimumIncompatibleTupleGroups:minimum,bestGap,
+    noPrefixCandidateConflicts:firstGap,noSuffixCandidateConflicts:conflictsL};
+}
+
+/** Test an arbitrary four-corner stationary secret table, without key search. */
+function collisionOriginal(first,observed) {
+  const perOrientation=[];
+  for(let orientation=0;orientation<8;orientation++){
+    const result=collisionTwoTableAllGap(
+      tupleKeys(first,15,orientation),first,observed);
+    perOrientation.push({orientation,...result});
+  }
+  const winning=perOrientation.reduce((a,b)=>
+    a.minimumIncompatibleTupleGroups<=b.minimumIncompatibleTupleGroups?a:b);
+  return {sourceInputArity:4,independentLookupTablesPerMissingGapSide:2,
+    outputSecretTablesMayBeCompletelyNonlinear:true,
+    outputRedrawIsConditionedOnlyOnTentativeEqualsPrecedingObservedGlyph:true,
+    bestMinimumContradictoryGroups:winning.minimumIncompatibleTupleGroups,
+    bestOrientation:winning.orientation,bestGap:winning.bestGap,
+    perOrientation};
+}
+
+/** A genuinely nonlinear four-input secret table with collision-only redraws. */
+function collisionPositive(first) {
+  const trueOrientation=6,trueGap=2880,next=xorshift(0x33018561);
+  const secret=Uint8Array.from({length:RADIX**4},()=>next()%RADIX);
+  const keys=tupleKeys(first,15,trueOrientation);
+  const output=new Uint8Array(VISIBLE);
+  let repairs=0,possibleCollisions=0;
+  for(let i=0;i<output.length;i++){
+    const tentative=secret[keys[i<trueGap?i:i+HIDDEN]];
+    const previous=i===0?first[first.length-1]:output[i-1];
+    let accepted=tentative;
+    if(tentative===previous){
+      possibleCollisions++;
+      if(repairs<ALLOWED_EDITS){
+        accepted=(tentative+1+next()%28)%RADIX;
+        assert.notEqual(accepted,previous);
+        repairs++;
+      }
+    }
+    output[i]=accepted;
+  }
+  assert.equal(repairs,ALLOWED_EDITS);
+  assert.ok(possibleCollisions>=repairs);
+  const result=collisionOriginal(first,output);
+  assert.equal(result.bestMinimumContradictoryGroups,0);
+  return {trueOrientation,trueGap,secretTableEntries:secret.length,
+    observedSourceGlyphs:output.length,
+    tentativePredecessorCollisions:possibleCollisions,
+    collisionConditionedOutputRepairs:repairs,
+    exactKnownKeyForwardOutputGlyphs:VISIBLE,
+    keyIndependentOriginalArchitectureGateAccepts:true};
+}
+
 function run(){
   const {first,second}=source();
   const originals=evaluate(first,second);
   const controls=positiveControl(first);
   const cubic=cubicOriginal(first,second);
   const cubicPlant=cubicPositive(first);
+  const antirepeat=collisionOriginal(first,second);
+  const antirepeatPlant=collisionPositive(first);
   assert.deepEqual(originals.map(x=>x.models),[32,48,32,8]);
   const three=originals.find(x=>x.arity===3);
   assert.ok(three.minimum>ALLOWED_EDITS);
   assert.ok(cubic.bestLowerBound>ALLOWED_EDITS);
+  assert.ok(antirepeat.bestMinimumContradictoryGroups>0);
   return {
     label:"Source-original key-independent conditional 81-square to 80-square nonlinear stencil capacity",
     sourceRunes:first.length+second.length,
@@ -336,9 +475,11 @@ function run(){
     syntheticPositive:controls,
     originalFullFourCornerCubicDegreeAtMostThreeBound:cubic,
     independentCubicPositive:cubicPlant,
-    conclusion:"Every stationary source-to-output stencil of at most three of the four adjacent source-square cells needs at least the reported alterations even under two secret tables, all 8 orientations and all contiguous five-cell gaps; an 86-output-edit repair cannot explain original LP2. Arbitrary four-input stationary tables are not excluded by the 86-edit gate, but ALL four-input total-degree-3 GF29 polynomial maps are separately excluded by the disjoint-block rank certificate.",
+    originalArbitraryFourCornerCollisionRedrawNecessaryCondition:antirepeat,
+    independentFourCornerCollisionRedrawPositive:antirepeatPlant,
+    conclusion:"Every stationary source-to-output stencil of at most three of the four adjacent source-square cells needs at least the reported alterations even under two secret tables, all 8 orientations and all contiguous five-cell gaps; an 86-output-edit repair cannot explain original LP2. Arbitrary four-input stationary tables cannot be ruled out if unrelated edits are completely free; however, ALL four-input stationary tables with first-tentative-output collision-only redraws fail an exact necessary intersection condition for every orientation and five-cell gap. Total-degree-3 GP29 four-input polynomials also fail an independent disjoint-block rank certificate even with 86 arbitrary edits.",
     caution:"The hypothetical square border is retrospectively selected. A changing state, nonconsecutive omissions, external input or different coordinate map is not addressed. No original plaintext, key, or destination is recovered."
   };
 }
 if(require.main===module)console.log(JSON.stringify(run(),null,2));
-module.exports={source,orient,tupleKeys,adjust,minTwoTableEdits,evaluate,positiveControl,cubicMonomials,cubicFeatures,cubicBlockInconsistent,cubicAllGapCertificates,cubicOriginal,cubicPositive,run};
+module.exports={source,orient,tupleKeys,adjust,minTwoTableEdits,evaluate,positiveControl,cubicMonomials,cubicFeatures,cubicBlockInconsistent,cubicAllGapCertificates,cubicOriginal,cubicPositive,collisionCandidateMasks,adjustCollisionGroup,collisionTwoTableAllGap,collisionOriginal,collisionPositive,run};
