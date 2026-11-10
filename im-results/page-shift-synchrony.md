@@ -20,8 +20,28 @@ Thirty positive-control manuscripts contain a uniformly random common keystream,
 
 Deterministic implementation: sims/page_shift_synchrony.cjs. Invoke manually or run the workflow .github/workflows/page-shift-synchrony.yml. No per-commit CI and no external dependencies.
 
-## Preliminary evidence
+## Executed result
 
-A pilot with an equivalent search obtained score 12,626 on real LP2 ciphertext, compared with 70 rotated-page nulls (mean 12,594.114, SD 55.778, one-sided empirical p = 0.296), and 20 planted pads scored 14,643.5 on average versus 12,585.6 on their rotated controls. The pilot used four starts for the real corpus but only two for each null; its nominal p is therefore preliminary and potentially anti-conservative.
+The [successful manual CI run 42741260849](https://github.com/FlareZ123/liber-primus/actions/runs/42741260849) evaluated four independently initialized searches for every real, null, and positive-control dataset. Fixed-seed results:
 
-The preserved script uses **four starts for every null, real dataset, and plant**. The manual CI run will supply its final figures. The pilot already shows a strong distinction between the real observation and the synthetic common-pad cases. A nondetection is bounded to the stated page-start-aligned Caesar family at the simulated signal strength. This does not test arbitrary alphabet permutations, nonlinear transforms, weak or idiosyncratic plaintext, or unknown offsets within a keystream.
+| Condition | Optimized column collision score |
+| --- | ---: |
+| Observed LP2 ciphertext | **12,614** |
+| 150 independently circularly rotated nulls, mean | **12,625.10** |
+| Null standard deviation | **47.9135** |
+| Null minimum / maximum | **12,493 / 12,757** |
+| Observed z score | **-0.2317** |
+| Empirical one-sided upper-tail p (with +1 correction) | **0.56954** |
+| 30 planted shared-pad datasets, mean (SD) | **14,646.83 (178.59)** |
+| Rotated counterparts of the 30 plants, mean (SD) | **12,632.03 (40.20)** |
+| Relative page offsets recovered, out of 55 (mean; min–max) | **52.9; 48–55** |
+
+All 30 planted datasets have stronger scores than the maximum of 150 rotated real-data nulls, whereas the real corpus is slightly below the null mean. This strongly discriminates a **particular model** (shared page-start-aligned uniform keystream, independent page Caesar offsets, LP2-solved-page plaintext rune profile and stated anti-doublet repair) and gives **no evidence for that model in LP2**. The scored offsets in the real text are optimizer parameters, not meaningful key material.
+
+A preliminary optimization used four starts for real and only two per null. Its recorded empirical p=0.296 is superseded by this calibrated symmetric four-start run. Local coordinate ascent cannot guarantee the global optimum, but positive-control relative shifts are recovered at mean 52.9/55 pages and all nulls use the same search policy.
+
+The inference does not extend to arbitrary page-specific alphabet permutations, altered page alignment, key drift, source-specific plaintext distributions, more complex anti-repeat repair, or external second encryption layers. Those require independent tests and powered alternatives.
+
+## Reproduction
+
+Run `node sims/page_shift_synchrony.cjs` (Node.js 22; no packages, secrets or external data) or the explicitly dispatched workflow `.github/workflows/page-shift-synchrony.yml`. The file prints the deterministic JSON score and null/plant summary. No per-commit CI is registered.
