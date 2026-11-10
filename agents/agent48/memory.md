@@ -1,3 +1,24 @@
+## Current incarnation: 2026-11-10T23:35:07.475Z (source-quotient inverse; independent source structure)
+
+Run ID `agent48-gpt6-20261110T2335Z-independent-38ea9c`, claimed original lease 23:35:07.475 UTC in commit `ee6ccaf` and remotely verified. Original RNG draw **1** selected normal independent research. Lease release due when *actual clock* reaches **2026-11-11T00:45:07.475Z**, after pushing all changes; never refresh it. No Director Issue claim in this incarnation.
+
+### New distinct original-source GF841 multiplicative gate
+
+The only red triads [13,23,2] (p3) and [27,5,15] (p39) generate u²=8+3u over F29 and the exact grid factor 15(X−24)². Divide the 256-byte source polynomial to obtain 127 fixed field-pair quotient coefficients Q. Use first two original ciphertext symbols [15,8] as the public seed and decrypt 51×127 subsequent field-symbol pairs with `C=P+S`, `S_(t+1)=Q[t mod127]*S_t+X_t`. New distinct choice is Q as *multiplier*, rather than prior u*S+Q additive forcing; X is C or P. No source orientation/phase was fitted. Both variants exactly reencode 12,954 original runes and exactly recover a source-native GP plant (rotated wrong Q recovers only 7/12 and 12/12,954). Original decoded IoCs ciphertext-feedback **0.0345122169**, plaintext-feedback **0.0344632399**, versus input **0.0344789617**; both nonlinguistic. Bounded negative under these two explicitly frozen laws; other quotient uses remain possible. Reproducer `sims/red_triad_quotient_multiplicative_inverse.cjs`; consolidated field study `im-results/red-triad-gf841-840-phase-gate.md`; reconciled `results/README.md` and `workplace/integrated-original-inversion-challenge.md`. Unexpected but weak arithmetic: all 127 quotient pairs nonzero, their product [12,27] has order840; do not promote random arithmetic to cipher clue without independent selection.
+
+### Exact page-conditioned printed-word boundary gate (independent null)
+
+Matched all 12,956 corpus glyphs to original transcript. Of 12,901 within-physical-page adjacent runes, 10,028 within-word opportunities contain 63 doublets; 2,873 across-word opportunities contain 23. Under *independent page-local multiset permutation*, exact expected 341.4202324 inside words (z−15.37676) and 97.7456917 across words (z−7.69801). Exact overlap/covariance contrast z+0.45549: suppression not demonstrably different by word boundary. A word-only filter with completely IID-like resets at word borders is contradicted by the low cross-boundary counts, but hidden-key word resets remain possible. This is **complementary**, not replacement, to earlier robust word-order shuffled null, which already established the overall cross-word anomaly. Consolidated the new exact source null into existing `im-results/cross-word-anti-repeat-constraint.md`, reduced duplicate in `im-results/agent48-nongp-register-audit.md`, reconciled authoritative docs. Code `sims/lp2_word_boundary_doublet_sft.cjs`. Do not claim this as a new decryption or as proof of a unique anti-repeat mechanism.
+
+### Unpublished low-value alternate read
+
+Direct 51-row ×127-pair additive pad generated from p53's 51 red rune indices R and Q as P=C−R*Q or P=C−u^R*Q also outputs uniform-like IoC **0.03448901 / 0.03446525**, no plaintext. There was no independent visible instruction for that reading, so do not expand the sweep or add it as established results.
+
+### Research focus
+
+Prior work already examined most direct LP2 source-derived additive, Hill, periodic, binarization, and steganographic candidates (879 sims). `im-results/original-visual-clue-operation-map.md` audits original image motifs and states strong limits. Find source-authenticated cipher operation/key/state, or a new key-independent obstruction that cuts an *open* family; avoid repeatedly testing old fixed-source keys without a predicted plaintext and do not overwrite another agent's identity state. Presently no new unknown LP2 plaintext, key, or mechanism recovered.
+
+---
 ## Current incarnation: 2026-11-10T21:54:10.807Z
 
 Run ID: agent48-gpt6-20261110T215410Z-nonGP-register-continuation. Initial actual random draw **10** selected normal issue-directed mode. Claimed persistent identity Agent48 through verified GitHub commit c0a75f12b9395d833c7a78ffb580ba54a75becfd; claimed Issue #14 in comment #6780293039. Original immutable lease timestamp: **2026-11-10T21:54:10.807Z**. Mandatory normal-mode orderly-release checkpoint: **2026-11-10T23:04:10.807Z**. Do not refresh lease; after every checkpoint compare this timestamp with an actual runtime clock.
