@@ -1,12 +1,14 @@
 # LP1 5x5 magic square as a direct GP29 pad and Hill matrix for the LP2 five-dot pages
 
-**Classification:** two source-motivated, positive-control-backed bounded negatives. No unknown LP2 plaintext, authentic key, or continuation recovered.
+**Classification:** reproducible LP1 paired-square source structure plus positive-control-backed bounded negatives for direct LP2 key transfers. No unknown LP2 plaintext, authentic key, or continuation recovered.
 
 ## Human-visible solve-path hypothesis
 
-LP1 original scan 05 contains a concealed 5x5 numerical magic square. LP2 physical pages 7 and 23 reuse the same five-dot stencil under an exceptionally close vertical reflection: original scans 24 and 40. The shared five-point artwork is documented in black-dot-template-reflections.md; the numerical square and its reversed-hex container are documented in jpeg05-palindromic-magic-square.md.
+LP1 original scan 05 contains a mixed 5x5 word/number grid. Replacing each rune-word by the sum of its Gematria Primus prime weights reconstructs the 5x5 magic square below, with constant 1033. LP1 original scan 16 contains a second 5x5 numeric magic square, with constant 3301, immediately after prose stating that the primes and the totient function are sacred and that all things should be encrypted. Both constants are prime: 1033 is p174 and 3301 is p464. Their prime-ordinal gap is 290 = 10×29, exactly 29 times the ten intervening LP1 image files 06–15. This is a concrete cross-page source relationship, not yet a key.
 
-A solver could reasonably connect the two five-based structures and ask whether the LP1 square supplies a 25-symbol key. The most economical direct GP29 interpretation is to reduce each square cell modulo 29, read p7 in the original row-major orientation, and vertically reflect that key for p23. This is a hypothesis, not an established authorial instruction.
+LP2 physical pages 7 and 23 reuse the same five-dot stencil under an exceptionally close vertical reflection: original scans 24 and 40. The shared five-point artwork is documented in black-dot-template-reflections.md; the numerical square and its reversed-hex container are documented in jpeg05-palindromic-magic-square.md.
+
+A solver could reasonably connect the LP1 squares, the explicit prime/totient language, and the LP2 five-dot structure. The direct GP29 pad, Hill, and matrix-state interpretations below are hypotheses, not established authorial instructions.
 
 ## Frozen source key
 
@@ -92,8 +94,57 @@ The page-local test covers both zero- and one-based rank seeds, row- or column-v
 
 The tested dot-seeded state cycles contain 28 states, and the dot-rank seeds are reproducible structure. Neither the local nor global state stream yields English. This closes this specific five-dot-rank / matrix-power keystream; other state seeds or nonlinear uses would need an independent source rule, not a free search over vectors.
 
+
+## LP1 p05/p16 prime-totient bridge and original-LP2 tests
+
+### Exact source reconstruction
+
+The p05 mixed grid is converted cell-by-cell as follows: printed decimal cells remain unchanged; each rune-word is replaced by the sum of the prime weights of its GP runes. The source token `ᚫᚦᛖᚱᛠᛚ` uses the EA rune `ᛠ` (prime weight 109), giving 366. It must not be misread as the IA rune `ᛡ` (107), which would give the wrong total. The resulting matrix is:
+
+| 272 | 138 | 341 | 131 | 151 |
+|---:|---:|---:|---:|---:|
+| 366 | 199 | 130 | 320 | 18 |
+| 226 | 245 | 91 | 245 | 226 |
+| 18 | 320 | 130 | 199 | 366 |
+| 151 | 131 | 341 | 138 | 272 |
+
+Every row, column, and main diagonal sums to **1033**. The word prime sums are: SHADOWS 341, AETHEREAL 366, BUFFERS 199, VOID 130, CARNAL 320, OBSCURA 245, FORM 91, MOBIUS 226, ANALOG 320, MOURNFUL 199, CABAL 341.
+
+The p16 numeric square is:
+
+| 434 | 1311 | 312 | 278 | 966 |
+|---:|---:|---:|---:|---:|
+| 204 | 812 | 934 | 280 | 1071 |
+| 626 | 620 | 809 | 620 | 626 |
+| 1071 | 280 | 934 | 812 | 204 |
+| 966 | 278 | 312 | 1311 | 434 |
+
+Every row, column, and main diagonal sums to **3301**. Both 5x5 matrices are 180-degree symmetric. Original image SHA-256 values, checked against the repository manifest, are p05 `2db94921ae5216d8a589890495fa5432446cd3227c45fbeb4934cbb0525112f7` and p16 `984668c680c6089b91587ef6d9eb2a1df1d2b7ee8ab3837655d3933f2adcbfbe`.
+
+The prime ordinals are independently reproducible: 1033 = p174 and 3301 = p464. Thus 464−174 = 290 = 10×29, matching the ten LP1 image files between p05 and p16. The p16 prose supplies an unusually explicit prime/totient clue. This may indicate a source-derived prime schedule, but does not uniquely specify one.
+
+### Periodic 25-symbol additive transfers
+
+The new reproducer tests both source matrices as 25-symbol additive keys over the original 12,956 unknown LP2 runes. For each matrix it tests raw cell values mod 29, Euler φ(cell) mod 29, and the one-based prime-index interpretation φ(p_n)=p_n−1 mod 29; row-major and column-major traversal; addition and subtraction; and book-global and physical-page-reset clocks. This is 48 fixed variants. No phase fitting or ciphertext-selected permutation is used.
+
+The custom GP trigram model is trained on 323,083 GP symbols from the Emerson control. Original ciphertext baseline: IoC 0.0344784, top-12 mass 0.429762, trigram score −14.00447 nats/rune. Authentic solved controls are substantially more language-like: p56 “AN END” (85 runes) IoC 0.070028, top-12 0.823529, score −7.95392; LP1 “A WARNING” (184) IoC 0.064029, top-12 0.804348, score −8.00334; “WELCOME” (116) IoC 0.055472, top-12 0.784483, score −8.02015.
+
+Across all 48 variants, IoC is 0.0344518–0.0345351, top-12 mass 0.428141–0.438793, and trigram score −14.0960 to −13.9830. None approaches the authentic controls. The raw p05 key is a reproduction/control for earlier direct-pad work; the transformed p05 and p16 keys are the new finite cases. This excludes only these direct periodic additive readings.
+
+### Prime-ordinal starts in the solved p56 totient cipher
+
+A second, more direct solve-path hypothesis treats the magic constants' prime ordinals themselves as starting positions in the independently solved p56 key schedule. The p56 cipher uses φ(p_n)=p_n−1 mod 29, subtracts the key, resets at a page, and can treat selected visible F runes as literal, non-consuming symbols. The new test starts that exact schedule at p174 (1033) and p464 (3301), resets at each original physical LP2 page, and exhausts every visible-F skip mask independently on each page.
+
+The authentic p56 positive control recovers its known 85-rune plaintext with literal-F mask 8 and scores −2.38511 nats/rune. Each offset tests 249,802 masks across all 55 rune-bearing unsolved pages (12,956 runes), or 499,604 masks total. With p174, the best page score is −5.65247, median −6.15684, and mean −6.11930. With p464, the best is −5.77056, median −6.08335, and mean −6.12419. **No page under either offset reaches the authentic p56 control score.** These are strong bounded negatives for the direct page-reset prime-totient transfer at the two source-derived offsets; they do not exclude a different stateful or non-additive use of the paired squares.
+
+### Decision and remaining lead
+
+The p05/p16 pair is a real source-level structure: two 5x5 magic squares, prime constants whose prime ordinals differ by ten 29-symbol blocks, and explicit p16 prime/totient language. The direct 25-cell additive transfers and the p174/p464 p56-prime-totient starts do not decrypt LP2. The p05 grid also contains the literal token **MOBIUS**; together with the p16 totient sentence this makes a Möbius/totient construction a plausible next *specific* question, not an established method. Any follow-up should specify one exact operation and key clock from those source clues before scoring original ciphertext. Do not broaden into arbitrary matrix transformations or prime-offset sweeps.
+
+Reproducer: `sims/lp1_magic_square_prime_totient_gate.cjs`. It verifies both original image hashes and both magic-square structures, runs the 48 periodic-key variants, and reuses the p56 inverse helpers for the two exhaustive prime-ordinal offset tests.
+
 ## Reproduction
 
-Run node sims/magic_square_5x5_gp_pad_inverse.cjs from the repository root with Node.js 22. The script reads the LP2 corpus and Shakespeare control, embeds the measured five-dot center coordinates from black-dot-template-reflections.md, asserts the square's 12 magic sums and the two original page lengths, executes the direct additive-pad models, 40 page-local and 40 global-continuous Hill inverses, and 16 local plus 16 global matrix-state settings. Each family has exact synthetic controls (24 direct-pad, 40+40 Hill, and 16+16 matrix-state). It has no external dependencies and does not write files.
+Run node sims/magic_square_5x5_gp_pad_inverse.cjs and node sims/lp1_magic_square_prime_totient_gate.cjs from the repository root with Node.js 22. The script reads the LP2 corpus and Shakespeare control, embeds the measured five-dot center coordinates from black-dot-template-reflections.md, asserts the square's 12 magic sums and the two original page lengths, executes the direct additive-pad models, 40 page-local and 40 global-continuous Hill inverses, and 16 local plus 16 global matrix-state settings. Each family has exact synthetic controls (24 direct-pad, 40+40 Hill, and 16+16 matrix-state). It has no external dependencies and does not write files.
 
 This is intermediate evidence, not an established decryption. The authoritative results/README.md records the bounded negative without promoting it as recovered plaintext.
