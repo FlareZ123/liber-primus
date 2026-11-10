@@ -120,6 +120,74 @@ function cyclicEventClock(grid,order) {
       .sort((a,b)=>b.score-a.score||a.shift-b.shift).slice(0,5)};
 }
 
+/**
+ * Exact unknown-label maximum for an arbitrary deterministic source symbol
+ * -> grid low-five-bit function. Set perColumn=true to grant eight completely
+ * independent unknown functions, one for each historical source column.
+ *
+ * This is a theorem for every possible mapping, including noninjective maps:
+ * each input value may choose only its most frequent observed output.
+ */
+function arbitraryMappingCapacity(grid,order,perColumn=false) {
+  const tables=Array.from({length:perColumn?8:1},()=>
+    Array.from({length:30},()=>new Uint8Array(32)));
+  for(let r=0;r<32;r++)for(let j=0;j<8;j++) {
+    const sourceValue=values[8*r+j];
+    const target=grid[r][order[j]]&31;
+    tables[perColumn?j:0][sourceValue][target]++;
+  }
+  let maximum=0;
+  for(const table of tables)for(const frequencies of table) {
+    maximum+=Math.max(...frequencies);
+  }
+  return maximum;
+}
+
+/** Exact full 8! conditional permutation reference for all-secret functions. */
+function unknownMappingPermutationGate(grid,order) {
+  const observedGlobal=arbitraryMappingCapacity(grid,order,false);
+  const observedPerColumn=arbitraryMappingCapacity(grid,order,true);
+  let globalTail=0,columnTail=0,globalSum=0,columnSum=0;
+  let bestGlobal=0,bestPerColumn=0;
+  for(const candidate of allOrders) {
+    const global=arbitraryMappingCapacity(grid,candidate,false);
+    const columns=arbitraryMappingCapacity(grid,candidate,true);
+    globalSum+=global;
+    columnSum+=columns;
+    if(global>=observedGlobal)globalTail++;
+    if(columns>=observedPerColumn)columnTail++;
+    bestGlobal=Math.max(bestGlobal,global);
+    bestPerColumn=Math.max(bestPerColumn,columns);
+  }
+  return {allSecretSharedFunction:{
+      maximumMatches:observedGlobal,minNecessaryEdits:256-observedGlobal,
+      permutationMean:globalSum/allOrders.length,
+      atLeastAsHigh:globalTail,permutations:allOrders.length,
+      upperTail:globalTail/allOrders.length,
+      anyPermutationMax:bestGlobal
+    },
+    allSecretOneFunctionPerColumn:{
+      maximumMatches:observedPerColumn,
+      minNecessaryEdits:256-observedPerColumn,
+      permutationMean:columnSum/allOrders.length,
+      atLeastAsHigh:columnTail,
+      permutations:allOrders.length,
+      upperTail:columnTail/allOrders.length,
+      anyPermutationMax:bestPerColumn
+    }};
+}
+
+/** Synthetic source-shape hidden substitution, unknown to capacity inverse. */
+function syntheticUnknownFunctionGrid(order,perColumn=false) {
+  const plant=rows.map(r=>r.slice());
+  for(let r=0;r<32;r++)for(let j=0;j<8;j++) {
+    const k=order[j],value=values[8*r+j];
+    const mapped=(5*value+(perColumn?3*j:0)+7)%32;
+    plant[r][k]=(plant[r][k]&224)|mapped;
+  }
+  return plant;
+}
+
 /** Reuse high bits but put the exact authentic event index in each low5 slot. */
 function syntheticAlignedGrid(order) {
   const plant=rows.map(r=>r.slice());
@@ -148,10 +216,21 @@ function run() {
   assert.equal(tests.entireResidue29.historicalScore,8);
   assert.deepEqual([tests.entireLow5.min,tests.entireLow5.max],[1,17]);
   const controls={
-    syntheticTrueSource:measure(syntheticAlignedGrid(order),0,32,"low5",order)
+    syntheticTrueSource:measure(syntheticAlignedGrid(order),0,32,"low5",order),
+    plantOneSecretFunction:arbitraryMappingCapacity(
+      syntheticUnknownFunctionGrid(order,false),order,false),
+    plantEightSecretColumnFunctions:arbitraryMappingCapacity(
+      syntheticUnknownFunctionGrid(order,true),order,true)
   };
   assert.equal(controls.syntheticTrueSource.historicalScore,256);
   assert.equal(controls.syntheticTrueSource.atLeastAsHigh,1);
+  assert.equal(controls.plantOneSecretFunction,256);
+  assert.equal(controls.plantEightSecretColumnFunctions,256);
+  const unknownMaps=unknownMappingPermutationGate(rows,order);
+  assert.deepEqual([
+    unknownMaps.allSecretSharedFunction.maximumMatches,
+    unknownMaps.allSecretOneFunctionPerColumn.maximumMatches
+  ],[50,157]);
   const locations=[];
   for(let r=0;r<32;r++)for(let j=0;j<8;j++) {
     const evt=stream[8*r+j],byte=rows[r][order[j]];
@@ -177,10 +256,13 @@ function run() {
     observed:summary,
     matchingPositions:locations,
     independentEventClockNull:cyclicEventClock(rows,order),
+    allSecretSymbolFunctionBounds:unknownMaps,
     plantedPositive:{
       score:controls.syntheticTrueSource.historicalScore,
       atLeastAsHigh:controls.syntheticTrueSource.atLeastAsHigh,
-      permutations:controls.syntheticTrueSource.comparisonOrders},
+      permutations:controls.syntheticTrueSource.comparisonOrders,
+      unknownSharedFunctionMaximum:controls.plantOneSecretFunction,
+      unknownColumnFunctionsMaximum:controls.plantEightSecretColumnFunctions},
     decision:"15/256 matches despite favorable permutation rank; weak partial numerical alignment, no complete source mapping or key"
   };
 }
