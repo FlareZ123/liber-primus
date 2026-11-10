@@ -1,0 +1,21 @@
+name: LP2 skip-drift harmonic periodogram
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout research corpus
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Scan periodic key drift against page-shift nulls and synthetic plant
+        run: node sims/skip_drift_period.cjs
