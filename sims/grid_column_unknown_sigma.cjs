@@ -18,7 +18,7 @@ const {words,flatten,training,fit} = require("./outer_permutation_word_context.c
 const {viterbi} = require("./outer_permutation_alignment.cjs");
 const {encrypt,shuffledPermutation,seededRandom} = require("./outer_permutation_assignment.cjs");
 
-const N = 240, WINDOW = 60, SURVIVORS = 12;
+const N = 240, WINDOW = 60, SURVIVORS = 128;
 const RUNES = [..."ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛇᛈᛉᛋᛏᛒᛖᛗᛚᛝᛟᛞᚪᚫᚣᛡᛠ"];
 const MAX_DRIFT = 34;
 const SEARCH_WIDTHS = [60,100];
@@ -165,6 +165,11 @@ function main(){
   assert.equal(source.length,N);
   const trueKey=candidates(columnKeys)[0].key;
   const planted=encrypt(source,trueKey,sigma,rand,.81);
+  const oracleInv=Array.from({length:29},(_,c)=>sigma.indexOf(c));
+  const aligned=fit(planted.ciphertext,trueKey,positive.classes.slice(0,N),model,planted.keyIndices);
+  const matchedLabels=aligned.inverse.filter((x,i)=>x===oracleInv[i]).length;
+  const oraclePath=viterbi(planted.ciphertext,trueKey,model.prior,oracleInv,{strict:true,maxDrift:MAX_DRIFT,suppress:.81,positionLogPrior:positive.classes.slice(0,N).map(c=>model.logProb[c])});
+  const alignedPositions=[...oraclePath.drift].filter((x,i)=>x===planted.keyIndices[i]-i).length;
   const test=evaluate(planted.ciphertext,positive.classes.slice(0,N),model,columnKeys);
   const pwin=test.winning;
   const correct=pwin.decoded.filter((v,i)=>v===source[i]).length;
@@ -175,11 +180,12 @@ function main(){
     extraKeyDraws:planted.extraDraws,outputRunes:N,
     best:test.top,correctPlaintextRunes:correct,
     topIsTrueVariant:!!trueVariant,
-    trueKeyRankAfterScreening:test.key0screenRank
+    trueKeyRankAfterScreening:test.key0screenRank,
+    oracle:{matchedLabels,alignedPositions,originalDrift:planted.keyIndices.at(-1)-(N-1),inferredDrift:oraclePath.finalDrift}
   }));
   const actual=evaluate(ciphertext,context,model,columnKeys);
   console.log("REAL",JSON.stringify({scope:"First LP2 section, 240 runes",top:actual.top}));
-  const nullN=12, nullScores=[],rng=seededRandom(0x25badd);
+  const nullN=8, nullScores=[],rng=seededRandom(0x25badd);
   for(let j=0;j<nullN;j++){
     const fake=evaluate(ciphertext,context,model,shuffle(columnKeys,rng));
     nullScores.push(fake.winning.fullScore);
