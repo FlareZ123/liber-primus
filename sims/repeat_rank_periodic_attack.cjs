@@ -310,7 +310,7 @@ function plantedFeedbackLfsr(model){
   if(exact!==n)throw Error("Planted linear-feedback rank did not invert");
   const result=feedbackRecurrence(material,model);
   if(result[7].runsBelowOrAt32!==result.uninterruptedRuns)
-    throw Error("True 32-step field recurrence was lost");
+    throw Error("True 32-step field recurrence was lost: "+JSON.stringify(result));
   return {order,exact,nonRepeatedRankSymbols:n,uninterruptedRuns:result.uninterruptedRuns,
     minDegree:result[7].smallestDegree,maxDegree:result[7].largestDegree};
 }
