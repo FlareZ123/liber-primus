@@ -55,6 +55,61 @@ This result links **an independently red-marked title over the established Fibon
 
 **Direct prime-totient key-start inversion attempted:** One source-locked interpretation takes each original red prime-sum quotient `q` as the one-based prime-stream index for the genuine LP2 p56 totient generator `K[i] = phi(prime[i]) = prime[i] - 1 (mod 29)`. A separately declared class starts instead at `prime[q]` or `phi(prime[q])` as the prime index. Test both signs, direct/atbash carriers and literal-F skips: **24 model configurations**, with the same rule across three source-marked positions. Decode the body after the red headings of p15 (1,883 runes) and p40 (2,400), and the subsequent terminal pages after p53 (299); the section/cipher positions are fixed before scoring. Select only on p15. Its best GP IoC is **0.03621022** with index `q-1`, sign plus, no atbash, F skip. The unchanged setting gives **0.03606121** and **0.03530785** on p40 and the terminal interval respectively. Even fitting each span separately, the maxima are only **0.03621022**, **0.03667361**, **0.03598123**, far below the approximately **0.06** of GP-encoded English controls. A plant using the three original q-derived prime-index starts exactly recovers **4,582/4,582** independently encoded Shakespeare runes (original p15-control IoC **0.06325685**). Therefore the remarkable p15→p53 arithmetic relationship **does not furnish a direct solved-page-style prime-totient running-key decryption** under these 24 source-derived conventions. [Exact runnable inverse](../sims/red_quotient_totient_key_holdout.cjs), [successful on-demand CI](https://github.com/FlareZ123/liber-primus/actions/runs/42776082402). The F-skipped model itself inflates the zero-rune frequency; the reported scores do not establish a key.
 
+## Opening red heading and historical square center: 331 is an exact but weakly selected arithmetic candidate
+
+**Agent 43, 10 November 2026.** A separate opening-red source arithmetic
+observation comes from the *two actual red words on physical LP2 page 0*,
+of lengths **8 and 5 runes**, without deciphering them. Their GP-prime
+sums are **347** and **315** respectively. The source-defined combined
+sum is **662 = 2 × 331**; the mean of the two word sums is therefore
+**331**, the historical middle value in Cicada's earlier
+seven-by-seven magic square. This is an exact cross-artifact
+number equality, not a new key or plaintext. The same 13 GP symbols
+are original ciphertext, regardless of an external proposed Latin
+reading `SECUENDI RATIO`.
+
+The relation was *noticed after reading these first-word sums*, so a
+single-target page-0 tail probability overstates its evidence. Holding
+the 13-red-rune span fixed and exhaustively circularly rotating the
+original full **262-rune page 0** yields the exact target sum 662 at
+**2 of 262** shifts (0 and 139). In a broader deterministic
+family-sensitivity calculation, examine **all 18 annotated red spans
+across 15 distinct physical pages, including the two solved-page
+headings**, against positive multiples 1–5 of all three historically
+named square centers **91, 331 and 809**. Rotating each complete
+source page independently through its exact set of offsets, preserving
+the red source window positions and lengths, gives an exact
+probability **0.17473925245832989** of at least one such hit anywhere
+in that 18-span family. The genuine input has just the page-0
+**662** hit under this class. These are *conditional null*
+calculations and do not correct the broader postselection of the
+mean, multiplier family, centers and red source subset.
+The arithmetic can motivate independently frozen hypotheses but
+does not establish deliberate encryption.
+
+To test a direct consequence rather than leave a numerological
+association unchallenged, the independently runnable
+[`red_heading_331_seed_inverse.cjs`](../sims/red_heading_331_seed_inverse.cjs)
+takes four *unfitted source integers* **331, 662, 347 and 315** as
+complete fixed 32-bit PRNG seeds. It tests six exact existing
+generators, two key clocks, five reversible F29/rank28 inversion
+models and both signs: **480 original LP2 models on all 12,956
+runes**, preserving original page boundaries. All 480 yield
+unintelligible near-flat GP outputs. The highest source-native
+GP-language score on the original is **−4.23570050 nats/rune**
+(seed347, Numerical Recipes LCG, book clock, field28, plus),
+compared with the **−2.93461644 nats/rune** native solved-LP1
+source reference. Directly seeded 331 ranks lower still,
+at **−4.24371405 nats/rune**. A seeded 331
+MT19937 true-source `field28` encrypt/decrypt plant recovers
+**12,901/12,901 noninitial GP runes**, with native score
+**−2.95824182**, showing the procedure can detect actual source
+ciphertext in this declared family. [Completed Windows
+CI](https://github.com/FlareZ123/liber-primus/actions/runs/42812546242)
+executes both the original red arithmetic and this new finite inverse.
+The result is **negative for those 480 raw-seed constructions**,
+with no claim against other key derivations or nonlinear algorithms.
+
 **Unresolved mechanism:** A different, independently specified rule must convert the arithmetic link into a repeatable ciphertext transformation before the relationship can support a decryption. Its coincidental or intentional origin remains unsettled.
 
 **Independent reproduction:** [single runnable CommonJS test](../sims/red_prime_totient_crosslink.cjs), with source-annotation assertions, exact prime sequence, exhaustive two-page rotations, full 250,000-sample 16-span familywise calibration. [Successful Windows Node.js 22 workflow, run 42771461787](https://github.com/FlareZ123/liber-primus/actions/runs/42771461787). [Manual-only workflow](../.github/workflows/red-prime-totient-crosslink.yml).
