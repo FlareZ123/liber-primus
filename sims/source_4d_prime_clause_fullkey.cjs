@@ -256,7 +256,23 @@ function plantedText() {
         }
       }
     }
-    assert.ok(found, 'author-prime clause must be craftable');
+    if (!found) {
+      // A short prime-length clause can resist all one-rune GP adjustments.
+      // Exhaust two changed runes to make the authored control lossless.
+      const u = rec.end - 2, v = rec.end - 1;
+      const baseline = originalSum - gpPrime[plain[u]] - gpPrime[plain[v]];
+      for (let x = 0; x < P && !found; x++) {
+        for (let y = 0; y < P; y++) {
+          if (sieve[baseline + gpPrime[x] + gpPrime[y]]) {
+            changed += Number(plain[u] !== x) + Number(plain[v] !== y);
+            plain[u] = x; plain[v] = y;
+            found = true;
+            break;
+          }
+        }
+      }
+    }
+    assert.ok(found, 'author-prime clause must be craftable within two edits');
   }
   const primeClauses = selected.reduce((n, rec) =>
     n + Number(sieve[plain.slice(rec.start, rec.end)
