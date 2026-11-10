@@ -11,6 +11,7 @@ on:
           - standard
           - quarter79
           - red225
+          - red225stream
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -29,3 +30,6 @@ jobs:
       - name: Invert physically red-marked 225-rune 15x15 Hill key
         if: inputs.experiment == 'red225'
         run: node sims/red225_hill15_inverse.cjs
+      - name: Decode with 225-red-rune evolving F29 15-state matrix
+        if: inputs.experiment == 'red225stream'
+        run: node sims/red225_matrix_stream_inverse.cjs
