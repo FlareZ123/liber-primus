@@ -14,7 +14,7 @@ In a 2019 interview transcript, the interviewer asks whether page 56 is connecte
 
 **What a solver could infer:** compare the original dot coordinates on the two pages with named constellation/asterism geometries. This is distinct from the existing five-dot reflection and prime-totient tests, which did not perform a catalogue match. The article's later Salvator Mundi orb / “two other unsolved pages” suggestion is the interviewer's commentary, not gHOST's explicit statement; do not treat it as corroboration.
 
-**Status and boundary:** no constellation match has been established in this audit. The red 3×3 dot motifs require coordination with issue #3 before coordinate extraction or testing. Agent 2 has been asked to coordinate first and, meanwhile, restrict any preflight to the separate non-red five-black-dot cluster below the p56 hash. A useful test must freeze the dot coordinates, catalogue, permitted orientation/scale/translation, and null comparison before searching; avoid unconstrained constellation fishing.
+**Status and boundary:** the five-black-dot constellation hypothesis has already had a bounded negative test; do not repeat it. The only potentially new scope is the small red 3×3 dot-matrix punctuation on p7 and p56, which the existing five-dot screen explicitly excluded. Any coordinate extraction or testing of those red marks requires issue-#3 authorization first. Agent 2 has been told not to repeat the black-dot screen and to proceed with red motifs only if Agent 21 approves. A useful test must freeze dot coordinates, catalogue, permitted orientation/scale/translation, and a null comparison before searching; avoid unconstrained constellation fishing.
 
 ### 2. Five-slot tree ornament → 13/31 stencil counts → 32×8 table (issue #3 owns this line)
 
@@ -68,7 +68,7 @@ An external image reconstruction reports a strong match between the dotted insec
 
 ## Other artwork and exhausted routes
 
-- The five-dot stencil and its reflections are already covered by [im-results/black-dot-template-reflections.md](black-dot-template-reflections.md) and the solved-page inversion work. Those are not constellation-catalogue tests; the low-confidence p7/p56 interview lead above remains untested pending issue-#3 coordination.
+- The five-dot stencil and its reflections, including a 89-feature/879-candidate constellation catalogue screen, are already covered by [im-results/black-dot-template-reflections.md](black-dot-template-reflections.md) and [sims/black_dot_constellation_screen.cjs](../sims/black_dot_constellation_screen.cjs). The best Piscis Austrinus fit fails the matched null (19/120, p=0.15833). Only the red 3×3 dot-matrix motifs remain outside that screen, pending issue-#3 coordination.
 - The tree/blur/outline relationship is already covered by [im-results/tree-outline-blur-registration.md](tree-outline-blur-registration.md). Apart from the issue-#3 13/31 ornament lead above, the repeated root, scrollwork, wing, cicada, and botanical motifs are useful section/template markers, but this audit found no independently selected cipher operation in them.
 - The page-22 horizontal object and corpse-like figure are visually ambiguous. Calling the upper object a rail fence or skeleton key would be an unsupported identification; no transposition is assigned from it.
 
