@@ -10,6 +10,7 @@ on:
         options:
           - latin-bigram
           - original-trigram
+          - continuous-trigram
 permissions:
   contents: read
 jobs:
@@ -27,3 +28,6 @@ jobs:
       - name: Independent Vulgate-Latin exact bigram marginal and constructive two-stream inverse
         if: ${{ inputs.variant == 'latin-bigram' }}
         run: node sims/relative_key_latin_exact_bigram.cjs
+      - name: Continuous unspaced shared-key forward-sum (all shifts and true-key plant)
+        if: ${{ inputs.variant == 'continuous-trigram' }}
+        run: node sims/relative_key_continuous_marginal.cjs
