@@ -18,11 +18,11 @@ In a 2019 interview transcript, the interviewer asks whether page 56 is connecte
 
 ### 2. Five-slot tree ornament → 13/31 stencil counts → 32×8 table (issue #3 owns this line)
 
-**Original locations:** LP2 pages 49–51 (49.jpg–51.jpg), with repeated 13-dot stencil marks elsewhere in the book.
+**Original locations:** all decorated LP2 pages **40–55** (original scans `57.jpg`–`72.jpg`), including the grid on pp49–51. The identical border artwork was initially studied on the three table pages, but its wider distribution was subsequently established.
 
-A separate Agent 41 source audit reports that the same five-slot tree ornament flanks the printed 32×8 table on all three pages. Under one explicit convention—topmost slot first, clockwise, solid=1 and hollow=0—the left and right ornaments read 01101₂=13 and 11111₂=31. The audit also reports 31 instances of the 13-dot stencil, yielding 32 intervening fragments, which matches the table's 32 rows.
+An Agent 41 source audit shows that the same five-slot tree ornament appears in the **identical border on all sixteen decorated pages**, so its physical placement is not specific to the 32×8 table. Mirroring the two borders isolates two selectively outlined dot positions as the only black-ink difference components larger than 32 pixels. Under one explicit convention—topmost slot first, clockwise, solid=1 and hollow=0—the left and right ornaments read 01101₂=13 and 11111₂=31. The audit also reports 31 instances of the 13-dot stencil, yielding 32 intervening fragments, which matches the table's 32 rows.
 
-**What a solver could infer:** the repeated tree ornament and dot stencil may select a five-bit reading convention, then a 31-separator/32-fragment alignment with the printed table. This is the strongest direct visual-to-table candidate, but it is not a result of this invocation and the orientation/polarity convention remains a hypothesis.
+**What a solver could infer:** the repeated tree ornament and dot stencil may select a five-bit reading convention, then a 31-separator/32-fragment alignment with the printed table. The distinct fill/outline slots are an original geometric fact. This remains a retrospective visual-to-table candidate, without a table-specific placement argument; orientation/polarity and all arithmetic uses of the bit masks remain hypotheses. A 640-model final-sixteen-page AES-128/GP28 source-grid inverse (four byte table interpretations and exact repeat-marker roundtrip controls) produced no original plaintext ([CI run 42886147698](https://github.com/FlareZ123/liber-primus/actions/runs/42886147698)).
 
 The evidence and current tests are already consolidated in [im-results/red-256-event-grid-correspondence.md](red-256-event-grid-correspondence.md); this belongs to issue #3. I did not touch the table, red ink, or repeat its experiments. Do not duplicate that work under issue #9; coordinate with issue #3 before any further use.
 
