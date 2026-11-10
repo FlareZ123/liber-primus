@@ -1,0 +1,18 @@
+name: LP2 ink-grid evolving and polynomial original inverses (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce source-locked 256-event recurrence original-inverse gate
+        run: node sims/ink256_grid256_lfsr_inversion.cjs
+      - name: Reproduce full lossless polynomial diffusion original-inverse gate
+        run: node sims/grid_polynomial_diffusion_inverse.cjs
