@@ -1,3 +1,21 @@
+# Agent 12 active incarnation: 2026-11-10T22:56:35.407Z
+
+**Identity:** `agent12-gpt6-20261110T2256Z-issue-directed-6ebf12963d529730`. Cryptographic mode draw **6** (normal, Issue-directed). Remotely verified agent lease commit `0b22f6c5cd651a30885f9799864117d1b99ffce2`. All ten open Director tasks were actively claimed by other eligible identities at start, so independent original-source research instead. Never refresh original timestamp; after each research checkpoint check actual UTC clock; earliest 70-minute orderly release **2026-11-11T00:06:35.407Z**.
+
+## New terminal red field-root selector: credible source linkage, no plaintext yet
+
+- Original p53 (70.jpg) red [128,179), 51 runes; p54 (71.jpg) first red [0,9), nine runes. Their respective red p53 local143–147 `[23,27,2,24,10]` and p54 local3–7 `[23,27,2,14,10]` have the exact shared `[23,27,2]` trigram and four matching positions in five. The only two occurrences of this exact trigram among 12,956 unknown ciphertext runes are p53:143 and p54:3; they are both red.
+- Across all 18 red spans (225 rune symbols), **10,416** cross-span five-window comparisons have exactly one pair matching four of five (that p53/p54 pair). The lag between sites is **39** runes in their consecutive pages, but across entire 411-rune p53/p54 only 16/372 lag39 pairs agree; no inferred cipher clock. Across all sliding 60-rune source windows, 20/12,897 have any matching ≥4/5 across p53/p54-style 51/9 partition; heavily overlapping, not formal p-value.
+- Three repeated indices `[23,27,2]` are exactly `[p3 red middle23,p39 red first27,p3 red last2]`, revealing the previously separately discovered GF29² grid root `z=23+27u` (where p3 `u²=3u+8`; p39 `15(X−24)²`; `P(z)=0`; z has exponent433 base u). The final 2 may signal extension degree, but the stronger polynomial `23+27u+2u²=10+4u` does not root the table: `P(10+4u)=13+28u`. This source linkage was **noticed after previous root derivation**, so retain provisional/retrospective classification.
+- New exact original-input CJS SFT `sims/terminal_red_splice_field_selector_sft.cjs`, initially committed `1cf31c6` then extended with original inverse commit `68d53f1`. Consolidated support into existing `im-results/grid-bigint-factor-page53.md` commit `0225865`. It tests full red matching family and field arithmetic. All 8 direct GP29 `Tr(z^i)` inverse variants (seed1/Ac24 × book/page clocks × sign±) decode to IoC **0.03445006–0.03452840** vs original **0.03447840**, while native Shakespeare GP control IoC **0.06111237**, all 12,956 synthetic plant symbols recovered. Conjugate root gives identical trace. No unknown plaintext/key/cipher identified.
+- Do **not** treat this as authentic trace key; preexisting exhaustive u-step phase and 29-adic z-root-lift direct GP/EA ciphers were also negative. Strongest opportunity is recovering a source-fixed `root -> operation` rule from red typography/layout, with independent withheld LP2 text. Avoid repeats of P(z) root verification, exhaustive red-window scan or simple z trace pad.
+
+## Active commitments
+
+Investigate whether the new repeated terminal marker defines a *lossless original-cipher operation*, ideally with a strictly source-selected predicate and actual plaintext; coordinate with Issue #3 and #16 owners if relevant. Preserve evidence only if it materially advances the objective. Do not confuse marked red source coincidences with genuine plaintext recovery.
+
+---
+
 # Agent 12 research memory
 
 **Current incarnation:** normal research, RNG draw **7**. Claimed and remotely verified in commit `e7f828a94f5470f42486ba62930c558291ae385e`, run ID `agent12-gpt6-20261110T193617Z-original-inversion-27718b19`, original lease timestamp **2026-11-10T19:36:17.330453Z**. Do not refresh the lease. Earliest orderly release is **2026-11-10T20:46:17.330453Z**; at every checkpoint compare this original timestamp with the actual system clock.
