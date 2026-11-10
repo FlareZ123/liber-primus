@@ -165,6 +165,81 @@ assert.equal(exactWitness, 7);
 assert.equal(nearby, 2);
 assert.equal(page45Witness, 2);
 
+
+/** @param {bigint} n @returns {number[]} Canonical unsigned base-29 digits. */
+function gpDigits(n) {
+  if (n === 0n) return [0];
+  const out = [];
+  for (let v = n; v; v /= 29n) out.push(Number(v % 29n));
+  return out.reverse();
+}
+/** @param {number[]} input @returns {number} */
+function indexOfCoincidence(input) {
+  const histogram = Array(29).fill(0);
+  for (const symbol of input) histogram[symbol]++;
+  return histogram.reduce((sum, count) => sum + count * (count - 1), 0) /
+    (input.length * (input.length - 1));
+}
+/**
+ * @param {number[]} input
+ * @param {number[]} key
+ * @param {-1|1} sign
+ */
+function mod29Pad(input, key, sign) {
+  return input.map((symbol, i) => (symbol + sign * key[i % key.length] + 29) % 29);
+}
+const quotientKeys = {
+  page45OverGcd: gpDigits(num45 / common),
+  page48OverGcd: gpDigits(num48 / common),
+  gridOverGcd: gpDigits(N / common),
+  page45Over223: gpDigits(num45 / 223n),
+  page48Over223: gpDigits(num48 / 223n),
+  gridOver223: gpDigits(N / 223n)
+};
+const cipherTargets = {
+  book: corpus.pages.filter((p) => p.page <= 55).flatMap((p) => p.indices),
+  page45: corpus.pages.find((p) => p.page === 45).indices,
+  page48: corpus.pages.find((p) => p.page === 48).indices
+};
+const quotientCipherGate = [];
+for (const [keyName, key] of Object.entries(quotientKeys)) {
+  for (const [targetName, ciphertext] of Object.entries(cipherTargets)) {
+    for (const sign of /** @type {(-1|1)[]} */([-1,1])) {
+      const candidate = mod29Pad(ciphertext, key, sign);
+      const restored = mod29Pad(candidate, key, /** @type {-1|1} */(-sign));
+      assert.deepEqual(restored, ciphertext);
+      quotientCipherGate.push({
+        key: keyName, keyLength: key.length, target: targetName, sign,
+        ioC: indexOfCoincidence(candidate),
+        first30: candidate.slice(0,30).map((v) => corpus.translit[v]).join(" ")
+      });
+    }
+  }
+}
+const highestIoC = (scope) => quotientCipherGate.filter((item) => item.target === scope)
+  .sort((a, b) => b.ioC - a.ioC)[0];
+assert.equal(quotientCipherGate.length, 36);
+assert.equal(cipherTargets.book.length, 12956);
+assert.equal(quotientKeys.page45OverGcd.length, 267);
+assert.equal(quotientKeys.page48OverGcd.length, 268);
+assert.equal(quotientKeys.gridOverGcd.length, 419);
+assert(indexOfCoincidence(cipherTargets.book) < 0.035);
+assert(highestIoC("book").ioC < 0.035);
+assert(highestIoC("page45").ioC < 0.036);
+assert(highestIoC("page48").ioC < 0.036);
+// Independent natural-English GP positive, using a source quotient as key.
+// Correct recovered GP sequence is exactly checked, not inferred by an IoC fit.
+const shakespeare = fs.readFileSync(
+  path.join(root, "resources/control/shakespeare_first300k.txt"), "utf8"
+).toUpperCase();
+const runeByTranslit = new Map(corpus.translit.map((name,i) => [name, i]));
+const native = [...shakespeare].filter((letter) => runeByTranslit.has(letter))
+  .slice(0,6000).map((letter) => runeByTranslit.get(letter));
+assert.equal(native.length,6000);
+const plant = mod29Pad(native, quotientKeys.gridOverGcd, 1);
+assert.deepEqual(mod29Pad(plant, quotientKeys.gridOverGcd, -1), native);
+assert(indexOfCoincidence(native) > 0.05);
+
 console.log(JSON.stringify({
   status: "Original arithmetic correspondence; no authenticated key/plaintext",
   source: ["LP2 p45 270 runes", "LP2 p48 271 runes", "256 source grid bytes"],
@@ -193,6 +268,17 @@ console.log(JSON.stringify({
     near3PageDivisibleBy16056: nearby,
     specificPage45DivisibleBy16056: page45Witness,
     totalDivisiblePageCandidates: totalDivisibleCandidates
+  },
+  quotientCipherGate: {
+    testedDirectGP29Models: quotientCipherGate.length,
+    sourceKeyLengths: Object.fromEntries(Object.entries(quotientKeys).map(([k,v])=>[k,v.length])),
+    bestBook: highestIoC("book"),
+    bestPage45: highestIoC("page45"),
+    bestPage48: highestIoC("page48"),
+    originalBookIoC: indexOfCoincidence(cipherTargets.book),
+    naturalGPPlant: {size: native.length, plainIoC: indexOfCoincidence(native),
+      cipherIoC: indexOfCoincidence(plant), exactInverse: true},
+    directGP29Conclusion: "No English-register recovery at fixed phase under six literal quotient pads and both signs"
   },
   caveat: "page pair and number were found retrospectively; this is a small conditional null, not an authentication of intent"
 }, null, 2));
