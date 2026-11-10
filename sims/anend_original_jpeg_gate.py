@@ -32,7 +32,7 @@ rows=[]; matches=[]
 for page in range(58):
     f = SOURCE / f"{page+17:02d}.jpg"
     data=f.read_bytes()
-    sha1=hashlib.sha1(f"blob {len(data)}\\0".encode().replace(b"\\0",b"\\x00")+data).hexdigest()
+    sha1=hashlib.sha1(b'blob '+str(len(data)).encode('ascii')+bytes([0])+data).hexdigest()
     row={"lp2_page":page, "file":str(f.relative_to(ROOT)), "size":len(data),
          "git_blob_sha1":sha1, "sha256":hashlib.sha256(data).hexdigest()}
     rows.append(row)
