@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Original LP2 p0 candidate and conditional 1000000 shuffle null
         run: node sims/latin_heading_geometry_joint_null.cjs 1000000
+      - name: Uncribbed source-geometric Latin model and 100000 max-null calibration
+        run: node sims/latin_heading_unlabeled_inverse.cjs 100000
