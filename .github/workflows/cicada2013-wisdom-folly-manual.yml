@@ -1,0 +1,19 @@
+name: LP2 historic 2013 wisdom-folly source-key gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  wisdom-folly-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify the 2013 source bytes and recover planted GP29/GP28 controls
+        run: node sims/cicada2013_wisdom_folly_source_gate.cjs
