@@ -72,6 +72,35 @@ Thus **every total-degree-≤3, four-corner stationary GP29 polynomial source ma
 
 A new independently encrypted **35-coefficient cubic synthetic control** uses the authentic 81² source geometry, a source-independent hidden polynomial and a middle five-cell gap, then changes **86** separate output runes. All **6,309** unaltered outputs follow the exact frozen key; the same source-blind certificate finds only **84** incompatible disjoint blocks and accepts the plant. The enhanced [all-gap source-square reproducer](../sims/lp2_square_local_stencil_invariant.cjs) passed [GitHub Actions run 42859774113](https://github.com/FlareZ123/liber-primus/actions/runs/42859774113). The older three-corner source minimum **378** remains unchanged.
 
+### Arbitrary four-corner table with ciphertext-collision-only redraw: impossible original intersection
+
+A genuinely unrestricted four-corner lookup has up to **29⁴** distinct source-input tuples and cannot be ruled out with an arbitrary 86-edit allowance: the observed source has only about 40 recurring four-glyph neighborhoods. There is, however, a much more specific source-motivated **anti-repeat** model. Let the secret table `F` generate the *first tentative output* from the complete 2×2 neighborhood. Permit a key advance or arbitrary output redraw **only when that tentative output would repeat the preceding observed ciphertext glyph**. This still permits every possible fixed nonlinear 29-ary lookup, any repeat-repair probability, and any replacement distribution.
+
+For every original observed position `i`, such a mechanism necessarily satisfies
+
+```text
+F(neighborhood_i) ∈ { originalCipher_i, originalCipher_(i-1) }.
+```
+
+The preceding glyph for the first 80-square output is the authentic final glyph of the 81-square first block. Since the secret table is stationary, **each repeated identical four-glyph neighborhood must have at least one candidate tentative output shared by all its occurrences**. This is a key-independent set-intersection constraint on the *actual* original source symbols and ciphertext. The implementation keeps each input tuple's counts for the 29 possible candidates, and sweeps all 6,396 possible contiguous five-cell gaps in linear time; as before, it gives the outputs before and after the gap **two completely separate, arbitrary secret tables**.
+
+| Relative orientation | Lowest original count of logically contradictory source-input groups, over every possible gap |
+| ---: | ---: |
+| 0 | 16 |
+| 1 | 17 |
+| 2 | 15 |
+| 3 | 14 |
+| 4 | 15 |
+| 5 | 15 |
+| 6 | **10** |
+| 7 | 16 |
+
+**Every** orientation and gap retains at least **10 source tuples** for which the tentative output would have to be two or more mutually incompatible rune values. Thus the **entire single-step, collision-conditioned redraw architecture fails the original 81²→80²−5 source geometry**, even for a fully arbitrary nonlinear four-corner lookup and even allowing completely independent secret tables across the five unknown cells. This is stronger than the 86-edit budget under its specified collision-only condition: the number of retries is unrestricted, but no retry can occur if the first proposed output differs from the preceding observed ciphertext.
+
+An independent positive produces a random secret **29⁴-entry four-corner table** from the original 81-square glyphs, inserts a five-cell gap, and implements the exact collision-only redraw rule with **86** source-independent symbol replacements among **232** tentative predecessor collisions. The known algorithm deterministically emits all **6,395** positive outputs, and the all-model gate reports **zero** contradictory groups. The result passed [manual CI run 42860863697](https://github.com/FlareZ123/liber-primus/actions/runs/42860863697) through the same [CommonJS source original script](../sims/lp2_square_local_stencil_invariant.cjs).
+
+This necessary condition does not exclude redraws triggered by other hidden state, missing input cells that are nonconsecutive, independent secret input rekeying per position, arbitrary non-collision output substitutions, or a geometry unrelated to the retrospective bookend. It recovers no authentic plaintext.
+
 **Limits:** The omission is assumed to be five *consecutive* grid cells, but its location is unrestricted; larger or noncontiguous gaps, a time-varying map, a nonlocal input, an intermediate ciphertext layer, or a permutation other than the eight square isometries remain open. The proof is an exact impossibility for a declared source-to-source family, **not** evidence that the two-square framing is historical, a recovered plaintext, an authentic cryptographic key, or a solution.
 
 ## Cross-square GP29 additive source pad: all-secret-alphabet capacity bound
