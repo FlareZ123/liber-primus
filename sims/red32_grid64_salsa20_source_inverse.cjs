@@ -213,6 +213,19 @@ const positive = {
   gp29: planted(sourceStreams, "gp29"),
   rank28: planted(sourceStreams, "rank28")
 };
+const gridCipher = Uint8Array.from(grid.flat());
+const gridMessage = salsa20(key, new Uint8Array(8), gridCipher);
+const gridTextMetrics = {
+  bytes: gridMessage.length,
+  asciiPrintable: Array.from(gridMessage).filter(x =>
+    (x >= 32 && x <= 126) || x === 9 || x === 10 || x === 13).length,
+  prefixHex: Buffer.from(gridMessage.slice(0, 32)).toString("hex"),
+  prefixLatin1: Buffer.from(gridMessage.slice(0, 32)).toString("latin1")
+    .replace(/[^\x20-\x7E]/g, "."),
+  interpretation: "Literal grid row-major as Salsa20 ciphertext, zero 64-bit nonce"
+};
+assert.deepEqual(salsa20(key, new Uint8Array(8), gridMessage), gridCipher);
+
 assert.equal(positive.gp29.exact, 12956);
 assert.equal(positive.rank28.exact, 12956);
 results.sort((a, b) => b.top12 - a.top12);
@@ -223,6 +236,7 @@ console.log(JSON.stringify({
   fragmentLengths: fragments.map(f => f.length),
   registerHandling: "gp29 additive or rank28 with transparent EA repeat",
   originalBaseline: stats(fragments.slice(0,28).flat().map(item => item.c)),
+  gridMessage: gridTextMetrics,
   positive, resultCount: results.length,
   results,
   decision: "A genuine direct-GP solution would yield original plaintext with strong GP-language mass and independent coherent text. Exact reencryption alone holds for every wrong key."
