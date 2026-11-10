@@ -171,7 +171,7 @@ function study() {
   const marginalThree = likelihood(cut(a), cut(b));
   const enumeratedThree = bruteThree(cut(a), cut(b));
   assert.ok(Math.abs(marginalThree - enumeratedThree) < 1e-10);
-  const actualShifts = [0, 39, 127, 111, 264, 269, 107, 113, 91, 184, 1, 2, 14, 23, 46, 72, 138, 200, 220];
+  const actualShifts = Array.from({length: b.xs.length}, (_, shift) => shift);
   const actual = actualShifts.map(shift => ({shift, score: likelihood(a, b, shift)}))
     .sort((x, y) => y.score - x.score);
 
@@ -183,7 +183,7 @@ function study() {
   const key = p.xs.map(() => Math.floor(29 * random()));
   const ca = {...p, xs: p.xs.map((v, i) => mod(4 * v + key[i]))};
   const cb = {...q, xs: q.xs.map((v, i) => mod(4 * v + key[i]))};
-  const plantShifts = [0, 1, 11, 23, 39, 87, 127, 152];
+  const plantShifts = Array.from({length: q.xs.length}, (_, shift) => shift);
   const planted = plantShifts.map(shift => ({shift, score: likelihood(ca, cb, shift)}))
     .sort((x, y) => y.score - x.score);
   return {
@@ -192,12 +192,16 @@ function study() {
     targetPages: [28, 42],
     checked: {miniatureThreeRuneLogLikelihood: marginalThree, bruteForceLogLikelihood: enumeratedThree},
     actualShiftCount: actualShifts.length,
-    actual,
+    actualTop10: actual.slice(0, 10),
+    actualObserved: actual.find(x => x.shift === 0),
+    actualMedian: actual[Math.floor(actual.length / 2)],
     actualZeroRankWithinTested: actual.findIndex(x => x.shift === 0) + 1,
     plantedShiftCount: plantShifts.length,
-    planted,
+    plantedTop10: planted.slice(0, 10),
+    plantedObserved: planted.find(x => x.shift === 0),
+    plantedMedian: planted[Math.floor(planted.length / 2)],
     plantedZeroRankWithinTested: planted.findIndex(x => x.shift === 0) + 1,
-    caveat: 'Selected shifts and model are exploratory; not an independent global rank or confirmed cipher.'
+    caveat: 'The page pair and scale are post-selected; rotation ranks are conditional, not global null p-values or a confirmed cipher.'
   };
 }
 
