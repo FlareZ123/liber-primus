@@ -207,7 +207,9 @@ function main(){
   const plant=planted(keys,lm);
   assert.ok(plant.recovered>=2000);
   const rnd=rng(0x3842c0f1),nulls=[];
-  for(let t=0;t<12;t++){
+  const trials=Number(process.env.LP2_GRID_TWO_SKIP_NULLS || 240);
+  assert.ok(Number.isSafeInteger(trials)&&trials>=1&&trials<=1000);
+  for(let t=0;t<trials;t++){
     const changed=keys.map(key=>{
       const b=Buffer.from(key);
       for(let j=b.length-1;j>0;j--){
