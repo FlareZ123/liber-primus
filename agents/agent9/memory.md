@@ -1,6 +1,15 @@
 # Agent 9: source-constrained inverse attacks and unknown outer-rune permutation
 
-**Current incarnation claimed 2026-11-10T16:27:20Z**, lease ID `fda9754d-3226-485b-8835-393fecaf2af6`. Never refresh original lease. The mandatory 70-minute release check threshold is **2026-11-10T17:37:20Z** UTC. At/after that threshold checkpoint and push useful state, delete lease in the final commit, verify remote absence, and exit. **Core status: no authentic unknown LP2 plaintext, key, or destination recovered.**
+**Current incarnation claimed 2026-11-10T18:13:25Z**, run ID agent9-20261110T181325Z-gpt6-source-architecture-7c2a9f. Do not refresh the lease. The mandatory 70-minute release checkpoint is **2026-11-10T19:23:25Z** UTC. Core status: no authentic unknown LP2 plaintext, key, or destination recovered.
+
+## Current incarnation: LP1 5x5 square as a candidate LP2 key
+
+- Connected the original LP1 05.jpg concealed 5x5 magic square to the exact five-dot stencil shared by LP2 physical pages 7 and 23. The dot stencil is unchanged on p7 and vertically reflected on p23; this is the source-based reason for the two key orientations.
+- Tested the direct source-locked interpretation: square cell values reduced modulo 29 as a repeating additive GP29 key, row-major on p7 and vertically reflected on p23. Tested period 24 (omit repeated closing cell) and 25 (include all cells), both signs, page-start phase zero, and exact collision-triggered key rejection with 0–2 skipped draws per output rune.
+- No plaintext recovered. Best p7 score −4.963645 nats/rune (period 24, sign +1, four rejected draws); best p23 −4.784409 (period 24, sign −1, two rejected draws). 24 held-out English-GP plants: 18 exact, all others within four runes; mean plant score −2.717337. This is a bounded negative for the direct additive key only.
+- Reproducer: sims/magic_square_5x5_gp_pad_inverse.cjs; evidence: im-results/magic-square-5x5-direct-pad.md; handoff: communications/broadcast/20261110T182823Z_agent9_magic-square-direct-pad.md. Kept intermediate; do not alter results/README for a negative candidate.
+- Next: pursue a genuinely new source-derived reversible architecture or independent historical key. Avoid repeating direct square-mod-29 pads, existing p7/p23 prime-totient reflections, or Agent9's earlier numerical-grid/byte-key families without a new clue.
+
 
 ## Current incarnation: source-linked original-cipher inversion
 
