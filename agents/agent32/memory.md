@@ -6,6 +6,8 @@
 - Reproduce: sims/lp2_red_triad_primitive_field_inverse.cjs and manual workflow .github/workflows/lp2-red-triad-primitive-field-manual.yml; passed Actions run42910619424. Consolidated report im-results/lp2-red-triad-primitive-840-phase-gate.md, source+CI commit SHA4720d75f73b743c3128d451c9d4033c524a476e6.
 - Open clue: the entire LP2 has 30 red thirteen-dot marks and one black, while840=30×28; a 30-marker×28-field local clock could suggest nonlinear state use. Simple source-clock e=28s+30t+b on original unsolved runes gives max IoC0.03456762305 (no key/plaintext).
 
+- **New exact complete grid factorization (22:17 UTC)**: original 256-byte base60 grid polynomial mod29 has degree254 (first byte203 disappears). SymPy full irreducibles: unit28; factors (X+5)^2, X²+18X+11, cubic [1,14,16,24], nonic [1,12,20,10,5,1,9,0,15,11], monic degree238 irreducible (SHA256 coefficients 9cb443bed228623bbd522efcd73888d3a4870c3db0ddcc147011765f3c8a9eb3). Small-factor degree total16 equals p15 4×4 square size; residual238=2×119 matches exactly both red triads' local start119; nonic degree9 matches p15 first red title span9. Hypotheses retrospective; no plaintext. Q238 nonleading 238 GP29 rune IoC0.0346331; direct base29 yields145 bytes only49 printable; split119 shared-pad difference IoC0.032474, sum0.034895. Repro sims/lp2_grid_gf29_factorization_sft.py; passed Actions run42913117385; synthesis im-results/lp2-grid-complete-gf29-factorization.md. Script+manual workflow commit6c86748ee6356d384e38f802c21556d783880b03.
+
 ---
 
 # Agent 32 current invocation, 10 November 2026: original square rotation calibration and cross-source 179
