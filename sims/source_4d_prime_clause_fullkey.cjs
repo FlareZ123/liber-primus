@@ -26,6 +26,7 @@ const corpus = JSON.parse(fs.readFileSync(
 const master = fs.readFileSync(path.join(__dirname, '..',
   'resources', 'transcriptions', 'liber_primus_master.txt'), 'utf8').split('%');
 const P = 29, STATES = P ** 4, MAXLEN = 76;
+const DIRECT = process.env.LP_OUTPUT === 'direct';
 const C = Array.from(red.C), N = C.length;
 const gpPrime = corpus.prime;
 const symbolMap = new Map(corpus.runes.map((x, i) => [x, i]));
@@ -141,7 +142,7 @@ function decrypt(cipher, V, s) {
   const plain = new Array(N);
   for (let i = 0; i < N; i++) {
     const k = keyAt(V, i, s);
-    if (heads[i]) plain[i] = mod(cipher[i] - k);
+    if (DIRECT || heads[i]) plain[i] = mod(cipher[i] - k);
     else {
       const d = mod(cipher[i] - cipher[i - 1]);
       plain[i] = d ? (log15[d] - (k % 28) + 28) % 28 : 28;
@@ -154,7 +155,7 @@ function encrypt(plain, V, s) {
   const cipher = new Array(N);
   for (let i = 0; i < N; i++) {
     const k = keyAt(V, i, s);
-    if (heads[i]) cipher[i] = (plain[i] + k) % P;
+    if (DIRECT || heads[i]) cipher[i] = (plain[i] + k) % P;
     else cipher[i] = plain[i] === 28 ? cipher[i - 1] :
       (cipher[i - 1] + pow15[(plain[i] + k % 28) % 28]) % P;
   }
@@ -178,7 +179,7 @@ function compile(cipher, spans, V) {
       const exponent = delta > 0 ? log15[delta] : -1;
       for (let k = 0; k < P; k++) {
         let decoded;
-        if (heads[i]) decoded = mod(cipher[i] - k);
+        if (DIRECT || heads[i]) decoded = mod(cipher[i] - k);
         else decoded = !delta ? 28 :
           (exponent - (k % 28) + 28) % 28;
         emit[j * P + k] = gpPrime[decoded];
@@ -312,7 +313,8 @@ function experiment(model) {
   const plantedHoldout = scoreKey(model.secret,
     compile(plantedCipher, hold, V));
   return {
-    matrix: model.id, sourceMatrix: model.A, states: STATES,
+    matrix: model.id, outputArchitecture: DIRECT ? 'direct-additive-GP29' : 'transparent-EA-nonzero-step',
+    sourceMatrix: model.A, states: STATES,
     original: {trainClauses: train.length, heldoutClauses: hold.length,
       primeTrainMaximum: original.best, tiedMaxKeys: original.ties,
       trainingHistogram: original.histogram, topFrozenCandidates: originalTop,
@@ -339,7 +341,8 @@ function main() {
   console.log(JSON.stringify({
     status: 'author-prime-clause 29^4 exact-key test; original plaintext is an unresolved hypothesis',
     source: 'original p0..55 / 2013 Cicada 761.MP3 independent clause-prime convention',
-    model: 'transparent GP-EA zero step and base15 nonzero step with F29 four-coordinate state',
+    model: DIRECT ? 'direct additive GP29 over F29 four-coordinate source state' :
+      'transparent GP-EA zero step and base15 nonzero step with F29 four-coordinate state',
     clausePolicy: {maxLength: MAXLEN, allSourceClauses: clauses.length,
       selectedClauses: selected.length, trainingClauses: train.length,
       heldoutClauses: hold.length, trainingEnd, sectionClock: 'globally continuous',
