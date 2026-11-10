@@ -47,3 +47,7 @@ jobs:
       - name: Forward adequacy against original-trained conditional score
         if: ${{ inputs.experiment == 'frozen-predictor' }}
         run: node sims/lp2_echo_forward_model_gate.cjs
+
+      - name: Eight source-section leave-one-out likelihood challenge
+        if: ${{ inputs.experiment == 'frozen-predictor' }}
+        run: node sims/lp2_echo_section_crossfit.cjs
