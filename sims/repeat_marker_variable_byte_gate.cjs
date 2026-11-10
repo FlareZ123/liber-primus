@@ -12,9 +12,9 @@
  * floor((256^m-1)/28^(L-1)); if this is zero, its first digit is forced.
  *
  * Original p33 contains a two-packet all-keys contradiction even when
- * page-specific alphabets are allowed. The source-native synthetic plant
- * exercises the complete reversible codec under a secretly permuted 29-rune
- * cyclic alphabet, 86 repeat markers, and exact original page shapes.
+ * page-specific alphabets are allowed. The source-native synthetic plant exercises forward and reversed digit order
+ * under a secretly permuted 29-rune cyclic alphabet with all 86 markers and
+ * exact original page shapes.
  *
  * Run: node sims/repeat_marker_variable_byte_gate.cjs
  */
@@ -121,6 +121,54 @@ function originalGate(){
     payloadBytes:byteCount,forcedZeroPacketLeaders:zeroLeaders,
     independentWithinPageContradictions:contradictions};
 }
+
+/**
+ * Reverse-significance packet order. The last printed digit becomes the
+ * most-significant base28 position. A zero bound therefore fixes the
+ * *last* transition in each packet under the same arbitrary row key.
+ */
+function reverseOriginalGate(){
+  const contradictions=[];
+  let global=0,forcedZeroLastDigits=0;
+  for(const p of pages){
+    const seen=new Map();
+    for(const packet of packets(p.indices)){
+      if(packet.length&&packet.limit===0){
+        forcedZeroLastDigits++;
+        const end=packet.start+packet.length-1;
+        const predecessor=p.indices[end-1];
+        const successor=p.indices[end];
+        const old=seen.get(predecessor);
+        const witness={start:packet.start,end,globalEnd:global+end,
+          length:packet.length,m:packet.m,successor};
+        if(old&&old.successor!==successor){
+          contradictions.push({
+            page:p.page,predecessorRune:gp.runes[predecessor],
+            forcedRank:0,
+            left:{globalOffset:old.globalEnd,localOffset:old.end,
+              packetLength:old.length,payloadBytes:old.m,
+              finalRune:gp.runes[old.successor]},
+            right:{globalOffset:witness.globalEnd,localOffset:end,
+              packetLength:packet.length,payloadBytes:packet.m,
+              finalRune:gp.runes[successor]}
+          });
+        }
+        if(!old)seen.set(predecessor,witness);
+      }
+    }
+    global+=p.indices.length;
+  }
+  assert.equal(forcedZeroLastDigits,53);
+  assert.deepEqual(contradictions,[{
+    page:42,predecessorRune:"ᛖ",forcedRank:0,
+    left:{globalOffset:10165,localOffset:21,packetLength:21,
+      payloadBytes:12,finalRune:"ᚹ"},
+    right:{globalOffset:10415,localOffset:271,packetLength:249,
+      payloadBytes:149,finalRune:"ᚫ"}
+  }]);
+  return {forcedZeroLastDigits,independentWithinPageContradictions:contradictions};
+}
+
 /** @param {number} seed @returns {()=>number} */
 function random(seed){
   let x=seed>>>0;
@@ -144,7 +192,8 @@ function secretOrder(next){
  * @param {number[]} positions
  * @returns {number[]}
  */
-function encodePage(template,bytesByPacket,order,positions){
+function encodePage(template,bytesByPacket,order,positions,direction="forward"){
+  assert.ok(direction==="forward"||direction==="reverse");
   const descriptors=packets(template);
   assert.equal(bytesByPacket.length,descriptors.length);
   const out=[template[0]];
@@ -156,7 +205,7 @@ function encodePage(template,bytesByPacket,order,positions){
     const digits=Array(d.length).fill(0);
     for(let j=d.length-1;j>=0;j--){digits[j]=Number(v%28n);v/=28n;}
     assert.equal(v,0n,"byte payload overflow");
-    for(const digit of digits){
+    for(const digit of (direction==="reverse"?digits.reverse():digits)){
       const prev=out[out.length-1];
       const glyph=order[(positions[prev]+digit+1)%N];
       assert.notEqual(glyph,prev);
@@ -174,14 +223,17 @@ function encodePage(template,bytesByPacket,order,positions){
  * @param {number[]} positions
  * @returns {number[][]}
  */
-function decodePage(ciphertext,positions){
+function decodePage(ciphertext,positions,direction="forward"){
+  assert.ok(direction==="forward"||direction==="reverse");
   return packets(ciphertext).map(packet=>{
-    let v=0n,prev=ciphertext[packet.start-1];
+    let v=0n,prev=ciphertext[packet.start-1],digits=[];
     for(let i=packet.start;i<packet.start+packet.length;i++){
       const current=ciphertext[i];
-      const rank=(positions[current]-positions[prev]-1+N)%N;
-      v=v*28n+BigInt(rank);prev=current;
+      digits.push((positions[current]-positions[prev]-1+N)%N);
+      prev=current;
     }
+    if(direction==="reverse")digits.reverse();
+    for(const rank of digits)v=v*28n+BigInt(rank);
     assert.ok(v<256n**BigInt(packet.m),"decoded byte capacity");
     const bytes=Array(packet.m);
     for(let k=packet.m-1;k>=0;k--){bytes[k]=Number(v%256n);v/=256n;}
@@ -189,8 +241,8 @@ function decodePage(ciphertext,positions){
     return bytes;
   });
 }
-function plant(){
-  const next=random(0x12003301);
+function plantDirection(direction,seed){
+  const next=random(seed);
   const order=secretOrder(next);
   const positions=Array(N);
   order.forEach((r,i)=>positions[r]=i);
@@ -198,10 +250,10 @@ function plant(){
   for(const p of pages){
     const desc=packets(p.indices);
     const bytes=desc.map(d=>Array.from({length:d.m},()=>next()%256));
-    const cipher=encodePage(p.indices,bytes,order,positions);
-    const decoded=decodePage(cipher,positions);
+    const cipher=encodePage(p.indices,bytes,order,positions,direction);
+    const decoded=decodePage(cipher,positions,direction);
     assert.deepEqual(decoded,bytes,"synthetic source-native byte inverse");
-    assert.deepEqual(encodePage(cipher,decoded,order,positions),cipher,
+    assert.deepEqual(encodePage(cipher,decoded,order,positions,direction),cipher,
       "exact ciphertext re-encryption");
     assert.deepEqual(packets(cipher).map(d=>d.marker),
       desc.map(d=>d.marker),"marker masks preserved");
@@ -212,19 +264,26 @@ function plant(){
   }
   assert.equal(total,7637);assert.equal(emitted,12956);
   assert.equal(markers,86);assert.equal(allBytes.length,total);
-  return {originalLayoutRuneCount:emitted,originalMarkerCount:markers,
-    distinctSecretOrderValues:new Set(order).size,
+  return {direction,originalLayoutRuneCount:emitted,
+    originalMarkerCount:markers,distinctSecretOrderValues:new Set(order).size,
     syntheticPlaintextBytes:total,exactlyRecoveredBytes:total,
-    exactReencryption:true,seed:"0x12003301"};
+    exactReencryption:true,seed:"0x"+seed.toString(16)};
 }
+function plant(){
+  return {
+    forward:plantDirection("forward",0x12003301),
+    reverse:plantDirection("reverse",0x12003302)
+  };
+}
+
 function main(){
   return {
     status:"key-independent bounded exclusion; no unknown plaintext or historical key",
     hypothesis:"86 original adjacent-rune repeats delimit maximal-width unrestricted base28-to-byte packets, with stationary predecessor permutations per page",
-    original:originalGate(),
+    original:{forward:originalGate(),reverse:reverseOriginalGate()},
     syntheticPositive:plant(),
     limitation:"Changing predecessor substitution within a page, different packet boundaries, restricted byte codebooks, nonmaximal or variable byte framing, and extra encryption are outside this finite theorem."
   };
 }
-module.exports={byteWidth,packets,originalGate,encodePage,decodePage,plant,main};
+module.exports={byteWidth,packets,originalGate,reverseOriginalGate,encodePage,decodePage,plantDirection,plant,main};
 if(require.main===module)console.log(JSON.stringify(main(),null,2));
