@@ -98,6 +98,10 @@ function maxAssignment(matrix){
   return {score:scores[255],assignment:paths[255]};
 }
 function search(cipher){
+  const nonzero=spans.reduce((sum,[start,end])=>{
+    for(let i=start+1;i<end;i++)if(cipher[i]!==cipher[i-1])sum++;
+    return sum;
+  },0);
   const candidates=[];
   for(const [name,iv] of Object.entries(ivs))
   for(const direction of ["forward","reverse"])
@@ -108,7 +112,7 @@ function search(cipher){
     const matrix=spans.map(span=>streams.map(stream=>decode(cipher,span,stream,sign,advanceZero).score));
     const best=maxAssignment(matrix);
     candidates.push({iv:name,direction,map,sign,advanceZero,...best,
-      meanLogOdds:best.score/12862});
+      meanLogOdds:best.score/nonzero});
   }
   return candidates.sort((a,b)=>b.score-a.score);
 }
