@@ -27,7 +27,7 @@ function countWords(s) {
 
 /** @param {string[]} ps */
 function sections(ps) {
-  return ps.join("%").split("$").slice(0, 8).map((s) => ({
+  return ps.join("%").split("$").filter((s) => onlyRunes(s).length > 0).map((s) => ({
     runes: onlyRunes(s).length,
     words: countWords(s)
   }));
@@ -82,8 +82,19 @@ function main() {
   assert.deepEqual(alternativeMarkers.map((m) => m.globalRuneOffset),
     [729, 1874, 3612, 5506, 6527, 8051, 9640, 12956]);
 
+  // Preserve both p33 headings as a third typographically possible clock.
+  const both = pages.slice();
+  both[33] = both[33].replace(/(&\s*)(ᛝᚦᛇ-ᛁᚠᚳᛟᛇ)/u,
+    "$1$\n$2");
+  assert.notEqual(both[33], pages[33]);
+  assert.equal(onlyRunes(both.join("%")), originalRunes);
+  const bothMarkers = markerPositions(both);
+  assert.deepEqual(bothMarkers.map((m) => m.globalRuneOffset),
+    [729, 1874, 3612, 5506, 6527, 7960, 8051, 9640, 12956]);
+
   const inherited = sections(pages);
   const redTitleClock = sections(variant);
+  const bothTitleClock = sections(both);
   assert.deepEqual(inherited.map((s) => s.runes),
     [729, 1145, 1738, 1894, 1021, 1433, 1680, 3316]);
   assert.deepEqual(redTitleClock.map((s) => s.runes),
@@ -94,20 +105,28 @@ function main() {
     [158, 255, 385, 435, 224, 349, 355, 735]);
   assert.equal(inherited.reduce((n, s) => n + s.words, 0), 2896);
   assert.equal(redTitleClock.reduce((n, s) => n + s.words, 0), 2896);
+  assert.deepEqual(bothTitleClock.map((s) => s.runes),
+    [729, 1145, 1738, 1894, 1021, 1433, 91, 1589, 3316]);
+  assert.deepEqual(bothTitleClock.map((s) => s.words),
+    [158, 255, 385, 435, 224, 326, 23, 355, 735]);
+  assert.equal(bothTitleClock.reduce((n, s) => n + s.runes, 0), 12956);
+  assert.equal(bothTitleClock.reduce((n, s) => n + s.words, 0), 2896);
 
   const report = {
-    status: "TWO COMPETING SOURCE CLOCKS; NO LP2 KEY OR PLAINTEXT",
+    status: "THREE SOURCE SEGMENTATION CLOCKS; NO LP2 KEY OR PLAINTEXT",
     originalRuneCount: originalRunes.length,
     originalWordCount: 2896,
     sourcePage33RedTitleOffsets: marked.map((s) => s.start),
     inheritedMarkers: currentMarkers,
     laterRedTitleMarkers: alternativeMarkers,
+    bothTitleMarkers: bothMarkers,
     inheritedSections: inherited,
     laterRedTitleSections: redTitleClock,
+    bothTitleSections: bothTitleClock,
     shiftedRunes: 91,
     shiftedWords: 23,
     originalCiphertextBitwisePreserved: true,
-    interpretation: "The second p33 red title is a plausible reset; the source alone does not certify any cipher reset."
+    interpretation: "The second p33 red title visually opens the repeated-cuneiform layout. Both source boundaries can be retained; no cipher reset is certified."
   };
   console.log(JSON.stringify(report, null, 2));
 }
