@@ -307,6 +307,29 @@ s_(i+1)=q_i+1/s_i,    s_i=1/(s_(i+1)-q_i).
 
 This is one natural, source-fixed interpretation of the LP1 “MOBIUS” clue, not an unconstrained key search. For each state, the test projected trace, norm, and both basis coordinates a,b, before and after the transition, with both additive signs (16 variants). All 127 states remained finite, but the best LP1-reference dictionary word-break covered only **5 of 127 characters**; most variants covered zero. No plausible plaintext emerged. This rejects this canonical two-sided continued-fraction output family as a direct pad for the 127-rune target, not all evolving GF(29²) or projective-state mechanisms. Reproduce with [agent38_grid_ac24_two_sided_mobius.cjs](../sims/agent38_grid_ac24_two_sided_mobius.cjs).
 
+### GF29-square event-state to grid-coordinate pad (Agent 38, 10 November 2026)
+
+A distinct output-map test of the source-motivated 256-event field recurrence shared by Agent 39. The original annotation supplies **225 red-rune events** and **31 thirteen-dot events** across all 58 pages. Events are ordered by physical page and rune offset; a marker precedes a rune at the same offset. Both p7:194 marker records (one black, one red) are retained as separate zero-input events before the red rune at that offset. For a red rune with GP index \(g\), set \(e_i=(g+1-13)\bmod29\); for a thirteen-dot marker set \(e_i=0\). This gives exactly 256 events.
+
+Using the p3 field \(u^2=3u+8\), the source-root multiplier \(z=23+27u\), and the Rad/Ac candidate initial state \(s_0=4+24u\), update
+\[
+s_{i+1}=z\,s_i+e_i \quad\text{in }\mathrm{GF}(29^2).
+\]
+For \(s_i=a_i+b_i u\), read the original forward-row-major base-60 table at row \(a_i\bmod32\), column \(b_i\bmod8\), and reduce that byte modulo 29. The resulting 256-symbol sequence is used as a book-continuous, period-256 additive GP29 key. This is a direct test of the previously proposed **state-to-table coordinate output**, distinct from Agent 39's \(P(s_i)\)/\(P'(s_i)\) discrete-log projections and from the separate modulo-256 additive event walk.
+
+Both state timing conventions (pre-event \(s_i\) and post-event \(s_{i+1}\)) and both additive signs were fixed in advance: four original-input inverses over all **12,956** unsolved runes. The raw ciphertext IoC is **0.0344783979** (uniform \(1/29=0.0344827586\)). The four decoded IoCs are:
+
+| State sample | Operation | Original decoded IoC | Entropy (bits/rune) |
+| --- | --- | ---: | ---: |
+| Pre-event | Subtract | 0.0344684601 | 4.8567096536 |
+| Pre-event | Add | 0.0344893008 | 4.8562888537 |
+| Post-event | Subtract | 0.0344560797 | 4.8569824853 |
+| Post-event | Add | 0.0344748351 | 4.8566047306 |
+
+All four remain random-looking and yield no readable plaintext. The field walk has 224 distinct pre-event states, which map to 153 distinct table cells and 112 distinct byte values. A deterministic 12,956-symbol GP29 plant round-trips exactly under each declared variant; this validates the implementation only, not the proposed historical key.
+
+**Decision:** this rejects the stated source-fixed \(s_0=4+24u,\ z=23+27u\), event encoding, \((a,b)\mapsto(a\bmod32,b\bmod8)\) table read, byte-mod-29 conversion, period-256 additive GP29 pad, for pre/post state and both signs. It does **not** reject the field recurrence as an intermediate state, other independently specified nonlinear output functions, or other source-fixed uses of the 256 events. No key or plaintext was recovered. Reproducer: [GF29-square event-state/table-coordinate SFT](../sims/gf29s2_event_state_grid_coordinate_pad.cjs).
+
 **Original-source red-factor inverse gate (Agent 10).** To check whether the marked rune material actually contains a literal factor of the residual 2,013-bit integer `Q`, take all **225 red rune indices**, including the two solved control pages, in physical reading order. Exhaust **every contiguous 100–225-rune window**, in forward and reverse reading directions, as a positional integer under three fully specified input encodings: 0-based GP symbols in base 29, 1-based symbols in base 30, or their GP prime weights in base 110. The latter radix can represent the largest GP prime weight (109). This gives exactly **48,006** windows, each checked by exact Euclidean `gcd(window,Q)`. **All 48,006 gcds equal 1.** A synthetic 1,005-bit factor consisting of the first 207 red GP digits is recovered by the same search when implanted in a substituted test integer; the original source remains untouched. [Reproduce the exhaustive factor gate](../sims/grid_red_factor_screen.cjs). This excludes only **literal contiguous red-code factors** under these three encodings and two directions; arbitrary rune permutations, altered alphabets, hidden source transformations, and non-factor meanings of the table remain open. No additional authorial-intent probability follows from this negative test.
 
 A genuinely stronger solution would require a **source-defined, reversible use of these factors or the 2,013-bit quotient**, predicting ciphertext/unknown plaintext of p53 and independently unfitted nearby pages (notably p55), with exact reencryption. The red stream has now been checked as a literal quotient factor under the bounded family above; avoid replaying those windows or the already-excluded generic unkeyed pad and RSA hypotheses.
