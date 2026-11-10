@@ -19,3 +19,5 @@ jobs:
           node-version: '22'
       - name: Evaluate exact difference-stream likelihood and held-out plants
         run: node sims/relative_key_forward_likelihood.cjs
+      - name: Test original page-pair wordwise reversal with exact marginalization
+        run: node sims/relative_key_word_reversal_marginal.cjs
