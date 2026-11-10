@@ -3,6 +3,14 @@ name: LP2 lag-five contiguous echo challenge (manual)
 on:
   workflow_dispatch:
     inputs:
+      experiment:
+        description: 'Original forward controls or frozen predictive holdout'
+        required: true
+        type: choice
+        default: forward-controls
+        options:
+          - forward-controls
+          - frozen-predictor
       train:
         description: 'Independent null calibration replicates'
         required: false
@@ -21,10 +29,17 @@ jobs:
         with:
           node-version: '22'
       - name: Conditioned lag family and S echo
+        if: ${{ inputs.experiment == 'forward-controls' }}
         run: node sims/lag5_contiguous_echo_challenge.cjs ${{ inputs.train }} ${{ inputs.test }}
 
       - name: Published M1 and independent-copy M3 forward controls
+        if: ${{ inputs.experiment == 'forward-controls' }}
         run: node sims/lag5_block_echo_forward_challenge.cjs 8000
 
       - name: Conditioned lag-five and lag-six hit-pattern coupling
+        if: ${{ inputs.experiment == 'forward-controls' }}
         run: node sims/lag5_t6_joint_hitpatterns.cjs
+
+      - name: Frozen predictive LP2 lag5/lag6 heldout test
+        if: ${{ inputs.experiment == 'frozen-predictor' }}
+        run: node sims/lp2_heldout_echo_predictor.cjs
