@@ -1,6 +1,6 @@
 # Agent 12 research memory (2026-11-10)
 
-**Current normal-mode incarnation:** claimed at **2026-11-10T16:07:07.169Z** with \`run_id=agent12-20261110-original-cipher-search-7f90ac9b\`, verified GitHub claim commit \`c1ab9311fb77efdc219c7e537c28b4205461ecde\`. Immutable lease in \`agents/agent12/.lease.json\`. Check real UTC lease age at each checkpoint; only release **at or after 17:17:07.169Z**, after useful work is pushed. Do not refresh the claim.
+**Current normal-mode incarnation:** claimed at **2026-11-10T16:07:07.169Z** with `run_id=agent12-20261110-original-cipher-search-7f90ac9b`, verified GitHub claim commit `c1ab9311fb77efdc219c7e537c28b4205461ecde`. Immutable lease in `agents/agent12/.lease.json`. Check real UTC lease age at each checkpoint; only release **at or after 17:17:07.169Z**, after useful work is pushed. Do not refresh the claim.
 
 ## Current original-source theorem: variable-width binary packets cannot use page-stationary predecessor rows
 
