@@ -13,7 +13,7 @@
  *
  * Expected English is independent literal text, re-encoded using
  * GP transliteration, including the single-rune "ING" spelling.
- * Segments 1,3,5 and page 56 compare verified prefixes; segment 0
+ * Segments 1,3,5 compare verified prefixes; segments 0 and page 56
  * checks all 45 words.
  *
  * Sources: Wulfic/Cicada3301-Liber_Primus/tools/lpcore/solved.py
@@ -131,7 +131,8 @@ const VECTORS = [
   },
   {
     section: "LP2 page 56", method: "totient", page: 56,
-    English: "AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO"
+    English: "AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EVERY PILGRIM TO SEEK OUT THIS PAGE",
+    fullSection: true
   }
 ];
 
@@ -184,7 +185,8 @@ function run() {
   assert.equal(report[1].recoveredRunes, 116);
   assert.equal(report[2].recoveredRunes, 104);
   assert.equal(report[3].recoveredRunes, 110);
-  assert.equal(report[4].recoveredRunes, 45);
+  assert.equal(report[4].recoveredRunes, 85);
+  assert.equal(report[4].FInterrupters, 1);
   return report;
 }
 
