@@ -197,7 +197,7 @@ mobiusResults.push({
   ...stats(twoDimensionalMobiusInverse(opening, 27, mobiusThrough(27)))
 });
 
-// The p15–22 visual section is a separate 1,903-rune candidate domain.
+// The p15–22 span associated with the p15 figure is a separate 1,903-rune candidate domain; this is a test scope, not an asserted formal section.
 const mobiusSectionPages = Array.from({ length: 8 }, (_, i) => pages.get(15 + i));
 const mobiusSection = mobiusSectionPages.flat();
 assert(mobiusSection.length === 1903, 'p15–22 section length mismatch');
