@@ -1,0 +1,16 @@
+name: Red triangle field79 Latin GP cipher inverse
+on:
+  workflow_dispatch:
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Original red triangle and independent Latin GP plant
+        run: node sims/red_triangle_field79_aes_inverse.cjs --latin
