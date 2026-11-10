@@ -6,7 +6,7 @@ on:
         description: "Select existing binary probes or source-aligned 79/78 radix gate"
         required: true
         type: choice
-        options: [standard, prime79, prime79prefix2, prime79cpsat, prime79trigram, prime79terminal, prime79gp, prime79binary]
+        options: [standard, prime79, prime79prefix2, prime79cpsat, prime79trigram, prime79terminal, prime79gp, prime79binary, section78]
         default: standard
       cpsat_seconds:
         description: "Per-alignment CP-SAT timeout in seconds"
@@ -118,6 +118,9 @@ jobs:
       - name: Exact source-original 378-bit binary-packet directed-cycle gate
         if: ${{ inputs.probe == 'prime79binary' }}
         run: node sims/prime79_binary_capacity_cycle_gate.cjs
+      - name: Secret per-section cyclic and sorted repeat-erased 78-rune packet gate
+        if: ${{ inputs.probe == 'section78' }}
+        run: node sims/repeat_erased_section_secret_order_gate.cjs
       - uses: actions/setup-python@v5
         if: ${{ inputs.probe == 'prime79cpsat' || inputs.probe == 'prime79gp' }}
         with:
