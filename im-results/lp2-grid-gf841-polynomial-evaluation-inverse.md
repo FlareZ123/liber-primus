@@ -51,10 +51,27 @@ The independent full-length Shakespeare GP plant under exactly Q(u^i), source ph
 
 The source-linked direct **Q(u^i) field-evaluation stream is therefore a second bounded negative**, closing the previously pending obvious polynomial-quotient branch. The direct F and Q tests together comprise **94,080** original complete-book inverse cases. They leave room for pair-driven feedback, a distinct cryptographic operation, and a different plaintext register. Multiplying or translating the polynomial arbitrarily to fit ciphertext is unmotivated without a new source-selected clue.
 
+## Source-invariant two-coordinate affine action
+
+The p3 quadratic specifies a field element rather than just a scalar. A separate directly reversible and mathematically natural use of the **same independently generated full and quotient field sequences** is an affine map over the GP29 alphabet:
+
+\[
+C_i=A_i P_i-s B_i\pmod {29},\quad
+A_i=N(z_i)\in\mathbb F_{29},\quad B_i=\operatorname{Tr}(z_i)\in\mathbb F_{29}.
+\]
+
+Here \(z_i=F(u^{i+\phi})\) or \(Q(u^{i+\phi})\); \(N(a+bu)=a^2+3ab-8b^2\) and \(\operatorname{Tr}(a+bu)=2a+3b\), all modulo29. The norm is nonzero except at the exact polynomial roots; at those **three full-F states** or **two Q states** a fixed explicit sentinel sets the multiplier to **1**. Thus every proposed symbol is losslessly invertible and has a checked exact forward encryption. This is one source-motivated two-coordinate field operation, rather than a new search for unconstrained alphabet maps.
+
+For each original field polynomial, test the **840** possible initial phases, global/page clocks, and both affine signs on all **12,956** original runes. That is **6,720 additional original complete-book inversions**. The best full-F model gives IoC **0.034577084164** at global phase444/minus sign, and the best quotient model **0.034578573634** at page phase618/plus sign. Source-selected root24 phase360 is similarly null, including quotient page/plus at **0.034505970926** and full global/minus at **0.034516182730**. There is no coherent original prose or recovered key.
+
+Both source-true full-length native GP-English affine plants, under the **same root24 phase360**, invert and re-encrypt every original-length rune (**12,956/12,956**) and restore GP IoC **0.066330479470**. Using wrong phase361 yields **0.034509462243** (F) or **0.034491636271** (Q). This sharply distinguishes the actual source-native plant from authentic unknown text under the specified affine transformation.
+
+The separate [complete affine-source SFT](../sims/lp2_red_triad_normtrace_affine_inverse.cjs) and [successful combined manual CI run 42920988626](https://github.com/FlareZ123/liber-primus/actions/runs/42920988626) preserve exact inputs, phase family, original roundtrips and independent correct/wrong-key controls. With the two scalar-projection families above, this investigation now comprises **100,800** complete-book original inversions. Both direct-scalar and natural two-coordinate affine uses of F or Q are bounded negatives; no creator-selected affine instruction has been authenticated.
+
 ## Interpretation and remaining attack surface
 
 The two results disfavor direct native-GP prose under these **full-table and exact-factor-quotient nonlinear GF(29²) evaluation clocks**, including every initial phase, both source coordinate projections, field trace/norm, three declared discrete-log reductions, physical-page and book clocks, and both exact additive/differential emissions. Earlier studies had eliminated the simpler homogeneous primitive-state trace, direct grid polynomial convolution and direct 127-pair serialization. Together these remove the most literal source-field transfer routes without requiring another sweep of arbitrary key offsets.
 
 This is **not** a universal exclusion of the p3/p39/grid crosslink. The source might instead fix an independent plaintext-dependent state, a nonlinear two-symbol register, a compression step, a different phase update dictated by visible punctuation, or a cryptographic key obtained elsewhere. Reopen this lane only when a source instruction fixes that additional operation and leads to predicted original plaintext.
 
-**Reproduction:** [single-file original-source SFT](../sims/lp2_red_triad_polynomial_eval_inverse.cjs), Node 22 CommonJS, reusing the repository's native-GP control converter. Run with environment `LP2_POLYNOMIAL_MODE=quotient` for exact-factor quotient; without it the full source polynomial is evaluated. [Successful full-source manual CI run 42915590861](https://github.com/FlareZ123/liber-primus/actions/runs/42915590861) executed the original-input exhaustive search and full positive, along with the prior primitive-root regression. No repository source images or reference data were modified.
+**Reproduction:** [scalar-projection original-source SFT](../sims/lp2_red_triad_polynomial_eval_inverse.cjs), Node 22 CommonJS, reusing the repository's native-GP control converter. Run with environment `LP2_POLYNOMIAL_MODE=quotient` for exact-factor quotient; without it the full source polynomial is evaluated. [Successful full-source manual CI run 42915590861](https://github.com/FlareZ123/liber-primus/actions/runs/42915590861) executed the original-input exhaustive search and full positive, along with the prior primitive-root regression. No repository source images or reference data were modified.
