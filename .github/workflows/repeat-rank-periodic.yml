@@ -1,6 +1,15 @@
 name: LP2 reversible 28-ary feedback rank attack
 on:
   workflow_dispatch:
+    inputs:
+      attack:
+        description: Reversible rank experiment
+        type: choice
+        required: true
+        default: legacy
+        options:
+          - legacy
+          - fibonacci233
 jobs:
   original-runes:
     runs-on: ubuntu-latest
@@ -13,4 +22,8 @@ jobs:
         with:
           node-version: '22'
       - name: Source-locked original LP2 rank, null, and planted inverse
+        if: inputs.attack == 'legacy'
         run: node sims/repeat_rank_periodic_attack.cjs
+      - name: Source-locked all-secret Fibonacci 233/466 original gate
+        if: inputs.attack == 'fibonacci233'
+        run: node sims/fibonacci233_nonzero_phase_gate.cjs
