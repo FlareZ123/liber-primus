@@ -24,7 +24,7 @@ function encode(text,alias=false){
   const result=[];
   for(const sourceWord of text.match(/[A-Za-z]+/g)||[]){
     let w=sourceWord.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U")
-      .replace(/K/g,"C").replace(/Z/g,"S");
+      .replace(/K/g,"C").replace(/Z/g,"S").replace(/Q/g,"C");
     if(alias)w=w.replace(/ING/g,"NG");
     for(let j=0;j<w.length;){
       const t=tokens.find(t=>w.startsWith(t.name,j));
@@ -174,8 +174,8 @@ async function run(){
         completeSections:results.filter(x=>x.perfectOffsets>0)
           .map(x=>x.section)});
       top.push(...results.slice(0,2));
-      if(results[0]?.minimumHamming<=2||
-        results[0]?.maximumMatched>=5)
+      if(results[0]?.minimumHamming<=1||
+        results[0]?.maximumMatched>=6)
         console.log("EA_CANDIDATE "+JSON.stringify(results.slice(0,2)));
     }
   }
