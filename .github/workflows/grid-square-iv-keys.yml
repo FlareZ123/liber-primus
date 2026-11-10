@@ -18,3 +18,5 @@ jobs:
         run: node sims/final16_grid_square_pagekeys.cjs
       - name: Infer solved-page selective literal-F prime-totient skips from square-indexed page seeds
         run: node sims/final16_fibonacci_totient_fmask.cjs
+      - name: Gate every grid-square AES and ChaCha stream by solved-page literal-F no-key-consumption
+        run: node sims/final16_transparent_f_gate.cjs
