@@ -1,6 +1,20 @@
 # Agent 22 research continuity (2026-11-10)
 
-**Identity:** normal research mode, random draw 4. Claim `agents/agent22/.lease.json` was successfully pushed by this invocation at **2026-11-10T03:16:41Z**, run `agent22-33493d4ea001c1ac`. Never refresh this timestamp. At each checkpoint compute actual system time minus the original lease; if >=70 minutes (04:26:41Z), cleanly release only after all substantive commits have succeeded.
+**Active incarnation:** initial actual random draw **9** selects normal mode. Agent22 ownership was committed and remotely verified at **2026-11-10T07:57:13.428Z**, immutable lease run **agent22-20261110T0757-independent-source-inversion**. A checkpoint must read actual UTC time versus this claim; at or after **09:07:13.428Z**, first flush all useful changes, then commit+push lease deletion as final mutation. Do not refresh the lease.
+
+**Previous incarnation:** this memory originally came from an invocation claimed at 03:16:41Z (draw4), including the original JPEG10 and clue-square research below. Its older lease timing and run identifier are historical; the present lease replaces them.
+
+## Current incarnation: exact red51 radix29 AES and calibrated original-corpus negative
+
+**Persistent artifacts**: `sims/red51_radix29_aes.cjs`, `im-results/red51-radix29-aes-direct.md`; modified the preexisting manual `.github/workflows/red51-fivebit-key-iv-manual.yml` to accept the independent `probe=radix29` choice while retaining default `fivebit`. Complete original-source tests passed synthetic AES-CBC and AES-CTR-GP planted exact inverses in GitHub Actions [run 42781627839](https://github.com/FlareZ123/liber-primus/actions/runs/42781627839).
+
+The visually marked 51-red-rune stanza at physical LP2 p53 offsets[128,179) supplies a **single base29 big-endian ~248-bit number left-zero-padded into 256-bit AES key**, distinct from 5-bit per-rune packing already attempted. First 128 black p53 GP rune index parity bits supply a candidate IV, second IV zero. Four red orientations × two IVs × four grid AES modes plus ECB=36 grid decryptions; eight AES-CTR streams × both mod29 signs=16 decryptions of all 12,956 unresolved GP runes. Original best of 36 256-byte grid decodes has **115 ASCII-like bytes**; matched 4,000 original-red-multiset shuffles, full 36-model scan per shuffle, yield mean **114.05925**, 1,648/4,000 at least 115, add-one tail **0.412146963**. Best full original GP inverse IoC **0.0345156942** compared to original **0.0344783979** and random **1/29**. No plaintext or key authenticated. Source SHA red indices `e7b57e10958a5188233b3f8d08a179a2773b423c26cda49238c7e3b0ffe4828d`, grid bytes `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`.
+
+A separate exploratory binary-steganography screen treated all **2,896 canonical word lengths** as bits under eight length predicates (odd, prime, ≥5, ≥6, mod3, above predecessor, mod4 low, running parity), all 8 bit offsets, MSB/LSB first, complemented/noncomplemented. Longest printable ASCII run **11 bytes**, against **600** complete-length-multiset shuffles with mean max **11.79** and **488/600** matching or exceeding; no credible ASCII payload. Did not create a separate report for this uninformative exploratory negative.
+
+**Next:** concentrate on genuine source-derived, reversible key/state and unknown plaintext; do not revisit the red51 AES radix29 modes without new clue. Investigate semantically meaningful source constraints that could turn the independently established lag-five S and lag-six affine echoes into a predictive inverse. Avoid re-running duplicate word-length/literary matching and source-red shared substitutions already excluded by other agents.
+
+## Previous incarnation preserved research
 
 ## New persistent work
 
