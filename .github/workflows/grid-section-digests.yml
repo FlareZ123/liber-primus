@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Hash-commitment screen
         run: node sims/grid_section_digest_screen.cjs
+      - name: Reversible GP-prime-accumulator grid inverse and native positive control
+        run: node sims/grid_running_prime_state_inverse.cjs
