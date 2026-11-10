@@ -111,6 +111,45 @@ function asGP(v) { return v.map(i => corpus.translit[i]).join(''); }
 function subtract(v, key) { return v.map((n,i) => mod(n-key[i%key.length])); }
 /** @param {number[]} v @param {number[]} key */
 function add(v, key) { return v.map((n,i) => mod(n+key[i%key.length])); }
+/** Moebius signature, used only by the independently published 27x27 body key.
+ * @param {number} n Positive integer.
+ */
+function mobius(n) {
+  if (n === 1) return 1;
+  let rest=n, sign=1;
+  for (let prime=2;prime*prime<=rest;prime++) {
+    if (rest % prime) continue;
+    rest/=prime;
+    sign=-sign;
+    if (rest % prime === 0) return 0;
+  }
+  return rest>1 ? -sign : sign;
+}
+/**
+ * Reconstruct complete rune words, preserving the actual printed punctuation
+ * before each word. Printed page/line breaks are not word breaks.
+ * @returns {Array<{start:number,length:number,before:string}>}
+ */
+function printedWords() {
+  const source = fs.readFileSync(path.join(__dirname, '..',
+    'resources', 'lp2-transcription.txt'), 'utf8').split('%').slice(0,55).join('%');
+  const isRune=new Set(corpus.runes);
+  const result=[];
+  let current=null, punctuation='', runeOffset=0;
+  for(const glyph of source) {
+    if(isRune.has(glyph)) {
+      if(!current) current={start:runeOffset,length:0,before:punctuation};
+      current.length++;runeOffset++;punctuation='';
+    } else if(!'/ %\\r\\n\\t'.includes(glyph)) {
+      if(current) {result.push(current);current=null;}
+      punctuation+=glyph;
+    }
+  }
+  if(current) result.push(current);
+  assert.equal(runeOffset,12956);
+  assert.equal(result.length,2896);
+  return result;
+}
 /** xorshift32, fixed seed. @param {number} seed */
 function rng(seed) {
   let x = seed >>> 0;
@@ -154,6 +193,43 @@ function main() {
     ['SECUENDI','RATIO']);
   assert.deepEqual(add(firstPlain,circuit.key4),firstCipher);
   assert.deepEqual(add(secondPlain,circuit.key3),secondCipher);
+
+  // Additional source-derived connection to a disjoint 7-rune p1 span
+  // already proposed by external 27x27-route researchers. The relationship
+  // between the root and the ciphertext-start offset and rectangle width
+  // was noticed after this exact proposed wording was public. It is not
+  // an independently predicted third plaintext passage.
+  const [rootRow,rootCol]=circuit.derivedRoot;
+  const [nw,ne]=circuit.corners;
+  const bodyLength=ne[1]-nw[1]+1;
+  const bodyStart=[rootRow,rootCol+rootRow];
+  assert.ok(bodyStart[1]<=DIM);
+  const [bodyR,bodyC]=bodyStart;
+  const sourceNode=[original[at(rootRow-1,rootCol-2)],
+    original[at(rootRow-1,rootCol-1)],
+    original[at(rootRow-1,rootCol)]];
+  const unaligned=[sourceNode[0],phi[sourceNode[1]],sourceNode[2]];
+  const phase=mod(unaligned.reduce((sum,v)=>sum+mobius(phi[v]),0))%3;
+  const bodyKey=[...unaligned.slice(phase),...unaligned.slice(0,phase)];
+  const index=at(bodyR-1,bodyC-1);
+  const bodyCipher=original.slice(index,index+bodyLength);
+  const bodyPlain=subtract(bodyCipher,bodyKey);
+  assert.deepEqual(sourceNode,[25,11,28]);
+  assert.deepEqual(bodyStart,[13,25]);
+  assert.equal(bodyLength,7);
+  assert.deepEqual(bodyKey,[25,10,28]);
+  assert.equal(index,348);
+  assert.deepEqual(bodyCipher,[20,25,9,2,13,1,14]);
+  assert.equal(asGP(bodyPlain),'ASIGOTHE');
+  assert.deepEqual(add(bodyPlain,bodyKey),bodyCipher);
+  const words=printedWords();
+  const target=words.filter(w=>w.start>=index&&w.start<index+bodyLength);
+  assert.deepEqual(target.map(w=>w.length),[2,1,2,2]);
+  assert.deepEqual(target.map(w=>w.before),['-','.','-','-']);
+  const sameLengthPattern=words.filter((_,i)=>i+3<words.length &&
+    [2,1,2,2].every((n,j)=>words[i+j].length===n));
+  assert.equal(sameLengthPattern.length,1);
+  assert.equal(sameLengthPattern[0].start,index);
 
   // Frozen 729-rune windows beginning at the existing source-defined
   // major section starts. The final one lacks 729 available unsolved runes.
@@ -205,6 +281,19 @@ function main() {
     conditionalLatinTitle:{plaintext:[asGP(firstPlain),asGP(secondPlain)],
       firstCipher,secondCipher,reencryptsExactly:true,
       qualification:'Both Latin words and their algebraic inversion were independently proposed before these source-root/product constraints'},
+    exploratoryRootLinkedBody:{
+      alreadyExternallyProposedPlaintext:asGP(bodyPlain),
+      page:1,withinPageRuneOffset:86,globalRuneOffset:index,
+      derivedStart:bodyStart,
+      derivedLength:bodyLength,
+      sourceHorizontalNode:sourceNode,
+      totientMiddleAndMobiusPhase:{unaligned,phase},
+      key:bodyKey,ciphertext:bodyCipher,reencryptsExactly:true,
+      originalPrintedWordLengths:target.map(w=>w.length),
+      printedPrewordSeparators:target.map(w=>w.before),
+      equalLengthPatternOccurrencesAmong2896Words:sameLengthPattern.length,
+      caveat:'The original separator after the first 2-rune word is a full stop, yielding AS. I GO THE; geometric start and length were selected retrospectively from this previously published body reading.'
+    },
     predeclaredSectionStarts:windows,
     nulls:{seed:'0x14132729',...calibrated},
     cautions:'All arithmetic/geometric gates were discovered after examining the original candidate. These are scoped conditional nulls, not discovery-wide evidence or proof of an authentic Cicada cipher.'
