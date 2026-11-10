@@ -1,0 +1,38 @@
+name: RAND 1955 source-key inverse (LP2 section-opening pages)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  key-source-inversion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: 'requirements.txt'
+      - name: Install pinned numerical dependencies
+        run: python -m pip install "numpy==2.2.6" "numba==0.61.2"
+      - name: Download pinned RAND original digit source
+        run: |
+          curl --fail --location --show-error --silent --retry 3 --output rand-1955-digits.txt "https://raw.githubusercontent.com/RANDCorporation/milliondigits/09739b344efb3ed20602f34023232c67f20f212a/digits.txt"
+          printf 'SOURCE_BYTES='
+          wc -c < rand-1955-digits.txt
+          printf 'SOURCE_SHA256='
+          sha256sum rand-1955-digits.txt
+      - name: Exhaustive source offsets on eight original LP2 section starts
+        run: |
+          set -o pipefail
+          python sims/rand1955_running_key.py rand-1955-digits.txt | tee rand1955-lp2-keyscan.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rand1955-lp2-source-keyscan
+          retention-days: 60
+          path: rand1955-lp2-keyscan.log
