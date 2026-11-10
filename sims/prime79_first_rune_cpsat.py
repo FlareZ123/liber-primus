@@ -179,12 +179,12 @@ def english_reference_control(raw: str, labels: list[str], top: set[int], logp: 
             score_windows.append(score)
             windows += 1
             total += count
-            low += int(count <= 39)
+            low += int(count <= 40)
             minimum = min(minimum, count)
             maximum = max(maximum, count)
     assert windows == len(gp) - (n - 1) * 78
     metadata = {"GP": len(gp), "top8Frequency": sum(hits) / len(gp),
-            "windows": windows, "atMost39": low,
+            "windows": windows, "atMost40": low,
             "empiricalLowerTail": low / windows,
             "meanTop8Starts": total / windows,
             "range": [minimum, maximum],
