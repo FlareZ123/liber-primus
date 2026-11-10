@@ -118,6 +118,26 @@ A complete constructive known-key positive encrypts a fresh **12,956-rune GP-Eng
 
 [Source and reproducible family correction](../sims/gp_prime_field_unit_marker_family.cjs) · [successful Windows Node22 execution 42781511854](https://github.com/FlareZ123/liber-primus/actions/runs/42781511854).
 
+## Original LP2 plaintext-recovery attempt: F79-derived IVs and the 256-byte grid
+
+An exact, constructive challenge translates the source mathematics into candidate **16-byte AES-CTR / ChaCha20 IVs** while retaining the independently documented **32×8-byte original base60 grid** as eight possible 256-bit symmetric keys. The visible page-15 **4×4 Fibonacci prime spiral** specifies 16 positions, and the red triangle selects unit53 in F79, cycle78 and the self-index `53^15≡15 (mod79)`. Two IV-generation routes were fixed before looking at any candidate output:
+
+1. **Common self-indexed IV:** for each of the eight red-heading section bodies, IV byte `i` is `53^(15+i) mod79`, for `i=0..15`.
+2. **Original red-heading-local IV:** for each body, let `S` be the exact GP assigned-prime sum of that body's original red heading. The exponent is `e=S mod78`, and byte `i` is `53^(e+i) mod79`. The eight source exponents, in physical section order, are **[38, 40, 56, 40, 6, 17, 61, 45]**.
+
+Both feed the **existing exact real-ciphertext Viterbi implementation** from Agent37, preserving its hidden key-consumption on output collisions, all 16 AES/ChaCha/reversed-key/reducer/sign modes, and optimal assignment of the eight original 32-byte grid columns to eight authentic source text bodies. The original ciphertext tested is **8×300 = 2,400** untouched post-title runes. The language model comes from GP-transliterated English Shakespeare, with the positive plaintext from an independently withheld Shakespeare slice. All input IV bytes, key materials, headings and GP outputs are emitted by the code.
+
+| Fixed F79 IV hypothesis | Authentic original best GP trigram score/rune | Shuffled-grid nulls at least as high | Exact independent planted recovery |
+| --- | ---: | ---: | ---: |
+| Common self-indexed exponent15 | **−5.598080** | **1/12**, add-one 0.153846 | **2,400/2,400**, exact algorithm and all eight key assignments |
+| Per-heading GP-sum exponents | **−5.612557** | **1/12**, add-one 0.153846 | **2,400/2,400**, exact algorithm and all eight key assignments |
+
+The first original winner is AES-256-CTR, ordinary byte mod29, positive sign, with eight chosen original column indices **[3,0,5,7,4,6,1,2]**. The second winner is ChaCha20, byte mod29, negative sign, with indices **[0,5,6,7,1,2,4,3]**. Its prefix outputs and the first model's outputs are unreadable GP sequences. Neither source-locked IV model beats its unchanged-selection randomized-grid controls convincingly. Both exact independent synthetic source models are recovered without error, so the original test has real sensitivity under the specifically proposed AES/ChaCha architecture. No original plaintext or key was recovered.
+
+The small 12-run shuffled control is only a rough failure indicator; it is not a high-precision statistical tail. Further re-fitting of arbitrary start exponents or different GP reductions would lose the independent source constraint. A future shared-grid success should recover real text at unfitted body positions and explain the second-order lag-five/lag-six anomalies.
+
+[Source-determined IV generator and direct original-rune Viterbi wrapper](../sims/red_field79_grid_iv_viterbi.cjs) · [successful Windows Node22 execution 42783339371](https://github.com/FlareZ123/liber-primus/actions/runs/42783339371) · [reused independently powered exact decoder](../sims/red_title_nonce_grid_viterbi.cjs).
+
 ## Interpretation and decision
 
 The 53-primitive-root/79-field/78-order relationship is an exact new mathematical refinement of the existing red-pointer triangle. It offers an independently source-bounded candidate generator with 78 values and a product-state period of 2262. **The tested simple additive and affine mappings into the 29-rune cipher are unsupported**, including independently heldout pages. No authentic F79 plaintext representation or 29-rune embedding is specified by the artwork. More unconstrained scans of phase, offset, output alphabet and residue reduction would risk overfitting. Future use of F79 should begin by deriving an independently constrained, invertible mapping or testing a new observable that the above finite family could not reproduce.
