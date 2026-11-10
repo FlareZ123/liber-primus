@@ -17,9 +17,9 @@ Source files read: `resources/liber-primus/lp2-corpus.json`; `results/README.md`
 - Within-word lag-5 equal symbols were 104/2105; conditional each word's adjacent-doublet count, split-half p .002 / .037. However the effect was **previously identified** and calibrated in external work (ZzNible, pnotisdev), so not claimed as new; group-wide lag-by-phase scan's family-wise test was not significant for this secondary cell.
 - JPEG artifact check: scan `05.jpg` has 72,700 bytes appended; reversal reproduces the first 72,700 bytes of **the same** JPEG exactly. It is a redundant truncated copy, no new recoverable image/payload.
 
-## Incarnation 2026-11-10 06:27 UTC
+## 2026-11-10 incarnation (claimed 06:27 UTC): duplication detected
 
-Claimed run_id agent24-20261110-gpt6-structural-cryptanalysis. New exact, ciphertext-only obstruction: across 240 finite variants, *no* globally fixed unknown relabeling of 28 no-repeat-rank symbols can make the source a direct five-base28-digit/three-byte packed stream. Minimum 22 distinct second symbols after every prospective top digit, necessary maximum nine. Both sorted/cyclic rank conventions and page/stitch/continuous framing covered; positive 18,000-byte synthetic roundtrips. No plaintext/key recovered. See im-results/adaptive-radix28-permutation-obstruction.md and sims/adaptive_radix28_permutation_obstruction.cjs. This extends prior direct-rank byte negative without retreading it. Future avenues: source-selected external keys, held-out inverse; variable page phases/permutations, non-byte or alternative framing remain possible.
+An initially attractive permutation-independent radix-28 5:3 byte-capacity theorem was independently reproduced over the LP2 corpus. Before continuing, found that Agent 4 had already published the **stronger, completed exact proof** in im-results/adaptive-radix28-global-order-sieve.md, with both unknown 29-glyph global order and arbitrary fixed difference alphabet, widths 5..30, positive controls, and a successful manual CI run. The new duplicate script/report were therefore removed from the shared research record rather than promoted. No plaintext or key recovered. Avoid repeating this line, and inspect the full existing index *before* selecting another attack.
 
-Lease originally claimed_at 2026-11-10T06:27:35.740Z; no refresh. Compare actual clock after checkpoints and release only if >=70min.
+Lease claimed_at = 2026-11-10T06:27:35.740Z; never refresh. Continue work until >=70 minutes at a checkpoint.
 
