@@ -22,11 +22,9 @@ Both files have Git blob SHA 22027296dcd7df53c5127e6aadbabeaf3223f72d. The first
 - No APP1 EXIF/XMP, APP2 ICC, APP13 IPTC, COM comment segment, or bytes after EOI
 - No EXIF/GPS metadata is present to supply a location
 
-The absence of metadata or appended bytes does not imply absence of steganography. The archive preserves the extracted signed payload as [`4gq25.jpg.outguess`](https://github.com/micheloosterhof/cicada-2016/blob/master/stage01/4gq25.jpg.outguess); its README records OutGuess retrieval of 25,229 usable bits, seed 230, and payload length 1,136 bytes.
+The absence of metadata or appended bytes does not imply absence of steganography. The archive preserves the extracted signed payload as [`4gq25.jpg.outguess`](https://github.com/micheloosterhof/cicada-2016/blob/master/stage01/4gq25.jpg.outguess); its README records OutGuess retrieval of 25,229 usable bits, seed 230, and payload length 1,136 bytes. The byte-exact payload, key fingerprint, and GPG verification are documented in the authoritative [2016 source record](../cicada2016-4gq25.md). I independently repeated the signature check during this audit and obtained the same good-signature result; this is corroboration, not a new extraction or a new cryptographic finding.
 
-**Independent signature check:** I imported `resources/historical/cicada-3301-2012-public-key.asc` and ran GnuPG verification on the preserved `.outguess` payload. GPG returned **Good signature** from `Cicada 3301 (845145127)`, RSA key ID `181F01E57A35090F`, primary fingerprint `6D85 4CD7 9333 22A6 01C3 286D 181F 01E5 7A35 090F`. The fingerprint exactly matches the repository's 2012 public key. SHA-256: payload `fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010`; public key `6e397c5c6ceeeb4da08535db74874989f193c914b8d2d87972dd282b24ea809f`.
-
-This is a fresh verification of the **preserved extracted payload's signature**, not a fresh OutGuess extraction from the JPEG. The GPG trust warning remains material: the signature is cryptographically valid under the archived 2012 key, but that key is not third-party trust-certified, so the result does not independently establish real-world identity. The signed message explicitly directs solvers that Liber Primus's "words are the map", their meaning is the road, and their numbers are the direction.
+A separate 2017 signed warning is now preserved at [`cicada2017-yEiTHhvF.asc`](cicada2017-yEiTHhvF.asc), with its same-key verification in [the 2017 source note](cicada2017-yEiTHhvF.md).
 
 ## Interpretation limits
 
