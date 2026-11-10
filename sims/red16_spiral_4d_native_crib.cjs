@@ -412,5 +412,7 @@ assert.ok(scored.length>0);
 // A recovered multi-site crib hypothesis is reported, not discarded;
 // source-selected verification follows from the full candidate records.
 assert.ok(report.plant.meanGPLogRatio>report.original.strongestOriginalGPUnigramScore);
-process.stdout.write(JSON.stringify(report,null,2)+"\n");
-module.exports={A,V,solve,key,encrypt,decrypt,recover,nativeMatches,report};
+if(require.main===module)process.stdout.write(JSON.stringify(report,null,2)+"\n");
+module.exports={A,V,solve,key,encrypt,decrypt,recover,nativeMatches,report,
+  C,N,pages,nativeEA,fittingWords,nativeSymbols,plantedPlain,
+  plantedCipher,originalMarker,markers,info};
