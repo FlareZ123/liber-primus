@@ -75,7 +75,7 @@ assert.equal(groups.length,8);
 assert.ok(groups.every(group=>group.length>=WIDTH));
 const orig=lp2();
 const observed=groups.map(group=>group.slice(0,WIDTH));
-const contexts=[];
+const contexts=[], controlContexts=[];
 let absolute=0;
 for(const group of groups) {
   contexts.push(orig.classes.slice(absolute,absolute+WIDTH));
@@ -88,6 +88,7 @@ const englishWords=words(english);
 const test=flatten(englishWords.slice(0,16000));
 const model=training(flatten(englishWords.slice(16000,50000)));
 assert.ok(test.values.length>=8*WIDTH);
+for(let s=0;s<8;s++)controlContexts.push(test.classes.slice(s*WIDTH,(s+1)*WIDTH));
 
 const rng=seededRandom(0x33015379);
 const sigma=shuffledPermutation(Array.from({length:MOD},(_,i)=>i),rng);
@@ -113,11 +114,8 @@ for(const spec of [
     planted.push(e.ciphertext);
     truth.push(p);
   }
-  const control=evaluate(planted,contexts,keys,model);
+  const control=evaluate(planted,controlContexts,keys,model);
   const matched=control.inverse.filter((x,i)=>x===inverse[i]).length;
-  const recovered=control.decodes.flat();
-  const source=truth.flat();
-  const recoveredMatches=recovered.filter((x,i)=>x===source[8*240+i%240+240*Math.floor(i/240)]).length;
   // Compare the heldout 240-rune tails of all eight independently planted
   // sections, without requiring any original plaintext for this control.
   let correct=0;
