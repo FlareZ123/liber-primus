@@ -142,15 +142,17 @@ function report(){
     const plain=nativePlant(r),cipher=encrypt(plain,direct,red);
     const inferred=recover(cipher,"global");
     const recovered=decrypt(cipher,direct,inferred.key);
-    let matched=0;
-    for(let i=0;i<N;i++)matched+=Number(recovered[i]===plain[i]);
+    let matched=0,totalHeldout=0;
+    for(let i=0;i<N;i++)if(!firstHalf(i)){
+      matched+=Number(recovered[i]===plain[i]);totalHeldout++;
+    }
     const matches=inferred.key.filter((x,i)=>x===red[i]).length;
     const exactOracle=decrypt(cipher,direct,red);
     assert.deepEqual(exactOracle,plain);
     if(trial===0){
       assert.deepEqual(encrypt(recovered,direct,inferred.key),cipher);
     }
-    plants.push({keyMatches:matches,holdoutAccuracy:matched/N,
+    plants.push({keyMatches:matches,holdoutAccuracy:matched/totalHeldout,
       fittedHoldout:inferred.heldoutMean,baseline:inferred.baseline});
   }
   const sorted=plants.map(p=>p.holdoutAccuracy).sort((a,b)=>a-b);
