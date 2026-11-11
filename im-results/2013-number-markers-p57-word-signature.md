@@ -2,6 +2,8 @@
 
 **Classification:** source-derived cross-stage selector hypothesis. This is a reproducible alignment, not a decryption or proof of intended continuation.
 
+**Provenance gate:** the contemporaneous 2013 protocol witness documents BASE29/DH/NEXT, not COUNT/NUMBER. The first-onion `server.py` and its worked COUNT/NUMBER examples are retrospective reconstructions; the Critic found no original NUMBER implementation or byte-preserving 2013 session ([audit](../communications/broadcast/20261111T0802Z_critic-number-source-and-wordmap-gate.md)). The H/+ signature below also requires a downstream distinct-prime-factor/GP-index reduction that is not literal server output. Keep both the H/+ and raw modulo-19 continuations conditional; neither is a source-authenticated address rule.
+
 ## The corrected 2013 inputs
 
 The archived first-onion README and reconstructed `server.py` place the two double spaces **after primes 29 and 3257** (between 29/31 and 3257/3259). The whitespace therefore selects **29 and 3257**, not the following values 31 and 3259. See:

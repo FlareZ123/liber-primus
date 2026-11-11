@@ -24,6 +24,19 @@ Exact original payload fingerprints:
 
 There is no fourth frame, hidden comment, attached picture or metadata padding in this **206-byte source tag**. Source identity and frame lengths are confirmed by the parser's strict offset/end-of-tag assertions, with a planted TIT2+COMM tag and planted padding also successfully recovered. A different payload hidden in MPEG compressed audio is outside this scoped audit; prior audio wave and pad scans remain separate.
 
+## GP-prime title sum matches the original basename
+
+The original ID3v2.3 `TIT2` frame stores **`The Instar Emergence`** (21-byte payload at file offset160), while the immutable original file is named **`761.MP3`**. Under the canonical Gematria Primus prime weights:
+
+| Title word | GP prime-weight calculation | Sum |
+|---|---|---:|
+| THE | TH=5 + E=67 | 72 |
+| INSTAR | I=31 + N=29 + S=53 + T=59 + A=97 + R=11 | 280 |
+| EMERGENCE | E=67 + M=71 + E=67 + R=11 + G=17 + E=67 + N=29 + C=13 + E=67 | 409 |
+| **Total** | **72 + 280 + 409** | **761** |
+
+The title sum equals the original basename exactly. This is an original-artifact positive control for GP-prime-sum numeric naming, independent of LP2 plaintext. It is not, by itself, an authenticated instruction that all words should be counted or that sums address pages/words. In particular, the later-preserved first-onion `COUNT`/`NUMBER` service is reconstructed; no original `NUMBER` implementation or byte-preserving session is known. The candidate decimal reversal `761→167` and the existence of a 2014 `167.jpg` prime page are therefore a possible cross-round association, not an authenticated page pointer. See [the consolidated address-source audit](gp-prime-address-source-audit.md).
+
 ## Cryptanalytic decision
 
 **Close the hypothesis that the untouched 2013 ID3 metadata contains an additional buried instruction or missing key field beyond the known Parable, title and artist.** The exact TXXX description number `1,595,277,641` and two literal `\n` separators can be reused directly if a future source-selected key derivation demands byte-exact metadata. They do not themselves select a GP29 operator, page index, or original LP2 decryption. Do not repeat the broad compressed-audio pad, keyskip or spectrogram sweeps under this metadata issue.
