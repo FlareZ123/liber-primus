@@ -117,9 +117,28 @@ def scan() -> None:
             "top": discoveries[:35],
             "source_earliest": sorted(discoveries, key=lambda hit: hit["line"])[:15]
         }
+        # Frozen original IRC discussion targets surfaced by the first,
+        # predeclared lexical screen. Preserve full local context to separate
+        # authentic source statements from guesses, jokes, and fake sources.
+        clue_context_lines = {
+            "#cicadasolvers.freenode.log": [188780, 204070, 216041],
+            "#cicadasolvers.freenode.2.log": [
+                87383, 230620, 264788, 285137, 307709
+            ]
+        }.get(name, [])
+        clue_contexts = [
+            {"center": at,
+             "lines": [
+                 {"line": j + 1, "text": lines[j].decode(
+                     "utf-8", errors="replace")[:480]}
+                 for j in range(max(0, at - 16), min(len(lines), at + 25))
+             ]}
+            for at in clue_context_lines
+        ]
         all_results.append({
             "archive": name, "size_bytes": len(data), "git_blob_sha1": actual_sha,
             "lp2_solution_claim_screen": specific_solve_claims,
+            "lp2_claim_contexts": clue_contexts,
             "line_count": len(lines), "matches": matches,
             "first_line": lines[0][:150].decode("utf-8", errors="replace"),
             "last_line": lines[-1][:150].decode("utf-8", errors="replace"),
