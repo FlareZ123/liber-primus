@@ -146,6 +146,41 @@ function main() {
     assert.deepEqual(jet(repaired, 13), [8, 0]);
   }
 
+  // This four-check code is not MDS / ordinary Reed–Solomon over GF29:
+  // (X^29-X)^2 = X^58 - 2X^30 + X^2 has only THREE nonzero coefficients
+  // and vanishes to multiplicity >=2 at BOTH marked nonzero field elements.
+  const sparseKernel = Array(256).fill(0);
+  sparseKernel[255 - 58] = 1;
+  sparseKernel[255 - 30] = 27; // -2 modulo29
+  sparseKernel[255 - 2] = 1;
+  assert.deepEqual(jet(sparseKernel, 13), [0, 0]);
+  assert.deepEqual(jet(sparseKernel, 24), [0, 0]);
+  const changedThree = official.map((x, i) => mod(x + sparseKernel[i]));
+  assert.deepEqual(jet(changedThree, 13), [8, 0]);
+  assert.deepEqual(jet(changedThree, 24), [0, 0]);
+  assert.equal(changedThree.filter((x, i) => x !== official[i]).length, 3);
+  const ratio = mod(13 * inverse(24));
+  assert.equal(ratio, 9);
+  let ratioOrder = 0;
+  let term = 1;
+  for (let i = 1; i <= 28; i++) {
+    term = mod(term * ratio);
+    if (term === 1) { ratioOrder = i; break; }
+  }
+  assert.equal(ratioOrder, 14);
+  // Any two-term homogeneous solution A X^i+B X^j must obey both
+  // 14|(i-j) (equal values at 13 and24) and 29|(i-j) (zero derivatives).
+  // No positive exponent difference <=255 is a multiple of 406.
+  assert.equal(14 * 29, 406);
+  assert.equal(
+    Array.from({length:255}, (_, i) => i + 1)
+      .filter((d) => d % 14 === 0 && d % 29 === 0).length,
+    0
+  );
+  // Therefore homogeneous code minimum Hamming distance is EXACTLY THREE.
+  // Two-symbol errors can be detected, but generic two-error correction is
+  // impossible despite using four source-derived parity constraints.
+
   // No byte-exact recovery: replacing one byte b by b±29 preserves all
   // GF29 polynomial computations. The source scan is still needed.
   const alternate = [...byteValues];
@@ -227,7 +262,10 @@ function main() {
     originalCiphertextIoC: coincidence(ciphertext),
     directPadIoC,
     plantedGP29Recovered: true,
-    gf29CannotDistinguishByte165: true
+    gf29CannotDistinguishByte165: true,
+    homogeneousMinimumHammingDistance: 3,
+    explicitWeightThreeKernelIndices: [197, 225, 253],
+    canGenerallyCorrectAtMostOneSymbolError: true
   }, null, 2));
   console.log("PASS: four-jet parity and bounded original source-derived direct pad exclusion.");
 }
