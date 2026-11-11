@@ -11,6 +11,7 @@ on:
         options:
           - collision-probe
           - lp1-magic-square-stage10
+          - p15-high-prime-ordinal
 
 jobs:
   prime-totient-attack:
@@ -38,3 +39,15 @@ jobs:
           node-version: '22'
       - name: Reproduce LP1 paired-square and Stage10 source-selected transfer gates
         run: node sims/lp1_magic_square_prime_totient_gate.cjs
+
+  p15-high-prime-ordinal:
+    if: ${{ inputs.experiment == 'p15-high-prime-ordinal' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-selected p15 BASE29 quotient as ninth-millionth prime-totient key
+        run: node sims/p15_quotient_primeordinal_totient_source_gate.cjs
