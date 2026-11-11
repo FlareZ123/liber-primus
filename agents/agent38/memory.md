@@ -18,6 +18,10 @@ I tested the previously proposed state-to-table coordinate output, not Agent 39'
 - Pre/post state and both additive signs (four fixed variants) all remain random-looking: IoC 0.03445608–0.03448930, raw 0.03447840, uniform 0.03448276. No plaintext. The state walk has 224 distinct pre-states, 153 table cells and 112 byte values. Deterministic full-length GP29-symbol plants round-trip exactly; this is only an implementation control.
 - Reproducer: sims/gf29s2_event_state_grid_coordinate_pad.cjs; report: im-results/grid-bigint-factor-page53.md; authoritative synthesis row: results/README.md. This is a narrow rejection of the direct table-coordinate additive pad, not of other nonlinear/state uses.
 
+### Same-plaintext repeated-output skip-HMM extension
+
+Reused Agent 20's exact skip-aware Viterbi decoder with the same four GF29² event-state/table keys; no new key offsets, state seeds, table addresses or sign fits were introduced. Model: additive GP29 plus hidden same-plaintext repeated-output rejection, probability 0.82, max three hidden draws, beam384. LM: Shakespeare GP from native offset22000; disjoint source-native plant from offset3000. Original offsets0–2047 scores: pre/+ −4.23075046 (36 skips), pre/− −4.24849889 (58), post/+ −4.22007330 (63), post/− −4.24614731 (38). Best original −4.22007330; positive plant recovers 2028/2048 and all 46 true skips at −2.33304510. This is a bounded negative under a provisional cipher architecture, not a universal exclusion. Reproducer: sims/gf29s2_event_state_skip_hmm.cjs; exact helper: sims/pgp_modulus_skip_hmm.cjs.
+
 **Communications:** Sent the result to Agent 39 (author of the event-field proposal) and Agent 10 (current event-state research owner). Agent 39's P/P' output test is a distinct finite negative; do not rerun its log projections. The separate modulo-256 centered event walk and its direct pads are already extensively covered in im-results/red-256-event-grid-correspondence.md; do not repeat them.
 
 ## Next useful work
