@@ -19,6 +19,46 @@ A page-0 cyclic-rotation null preserving the 13-rune window position gives the e
 **First transition consistency check:** from AE–I–EA, the external Report01 initial state (S=0,a=0) predicts next phase 2 and outer value 1 from block01 ciphertext positions 349–355, hence next key signature (+1,0,+1). The natural three-cell continuation at 354–356 is X–OE–X; applying φ(22)=10 gives unrotated X–I–X, with exactly that signature, phase 2, and aligned key X–X–I. External Report03 with B=(13,25), E=(14,4), M=(13,12), h=11 gives A=717, G=5, q=0 and τ=1, predicting a horizontal next block read leftmost-first. The published block02 cells 364–368 are row 14, columns 14–18, matching those features. The [p0 seed-selector SFT](../sims/lp2_27x27_p0_seed_selector_sft.py) reproduces this check. It predicts next-key signature, axis and boundary, **not** exact start or length; moreover these transition rules are from the same external proposal and this comparison is not blind. A further φ(22)=10 step / φ(22)/2=5 length formula matches block02 but is post-hoc and not accepted as a rule.
 
 This candidate narrows the earlier five-way opening-key ambiguity to one published first key **if** the 27×27 row-major layout, (row,column) convention, three-rune node and two-stave displacement interpretation are accepted. It is not yet an authenticated cipher. The 27×27 layout and coordinate convention remain assumptions; the three-projection clue is weak; and the block02 check is internal consistency, not independent validation. The 52-word block39 ambiguity remains. The proposed Latin **SECUENDI RATIO** is not an independent opening crib: the external walkthrough derives its RATIO key from the proposed block28 MAP source and ciphertext, and its opening word uses a different four-rune rectangle key. It is a conditional consistency check. The external block18 walkthrough also drops its initial coordinate selector and CENTER/OUTER heuristic after THEN. Therefore the 38-block plaintext remains a conditional candidate, not established decryption.
+### First-successor enumeration: block02 remains underdetermined
+
+The p0 seed-selector SFT gives a provisional opening state: source node **AE–J–EA**, derived key **AE–I–EA**, phase 0 and outer state 0; original cells 348–354 decrypt to **ASIGOTHE**. Agent17's existing first-transition check shows that the frozen external Reports 01 and 03 predict block02's key signature, ciphertext axis and reading boundary. The following test asks a stricter question: do the published successor constraints select block02's exact source node and ciphertext path without using English?
+
+Using block01's original coordinates and the published Reports **01–15**, the frozen successor constraints are:
+
+| Constraint | Prediction from block01 | Published block02 |
+|---|---|---|
+| Report 01 | Next phase 2; unrotated signature (+1,0,+1) | X–OE–X → X–I–X, signature (+1,0,+1), aligned X–X–I |
+| Reports 02–03 | Horizontal ciphertext, leftmost-first | Row 14, columns 14–18 |
+| Reports 04–05 | Next key center even-row/odd-column; next ciphertext endpoint and leftmost rows even | Center (14,5); both ciphertext endpoints on row 14 |
+| Reports 06 and 12 | Exact ray-offset score 0 from current leftmost cell (14,1) | Next beginning (14,14), score 0 |
+| Report 07 | Next original node is a mirror | X–OE–X has equal outer runes |
+| Report 09 | Next ciphertext's leftmost column is even | Column 14 |
+| Report 10 | Four squarefree-GCD conditions | All four GCDs are 1 |
+| Report 11 | Phase 2 does not skip a multiple of 7 from S=0 | S advances 0→2 |
+| Reports 13–14 | Next original source axis horizontal | X–OE–X is horizontal |
+| Report 15 | Next source radius odd | Radius 1 |
+
+These matches establish **internal consistency** of the proposed transition system, not independent validation: the reports belong to the same external route and do not specify an exact next center or block length.
+
+The bounded enumeration then considered every next horizontal three-rune source node satisfying the predicted center parity, mirror status, odd radius and signature (+1,0,+1), allowing either an unchanged center or the published φ(center) transform. It paired those nodes with every horizontal, leftmost-first ciphertext path satisfying the predicted row/column parities, exact ray-offset condition and minimum length of two runes, then applied all four Report 10 GCD tests.
+
+| Enumeration stage | Count |
+|---|---:|
+| Derived-key node variants | 6 |
+| Candidate ciphertext paths | 169 |
+| Node/path assignments | 1,014 |
+| Assignments passing all four GCD tests | 730 |
+| Assignments segmentable into complete words | 9 |
+| Distinct word outputs | 6 |
+
+The word filter uses the repository's independent resources/control/english_wordfreq_textblob.txt, retaining entries with frequency ≥10, normalizing QU→CW, V→U, K→C and Z→S, and allowing one-rune words only for A and I. The six outputs are **BE** (1 assignment), **GO** (2), **IV** (2), **OF** (1), **RD** (2) and **WEATHER** (1). IV and RD are weak abbreviation/lexical hits; even excluding them, BE, GO, OF and WEATHER remain. The published WEATHER node/path is included, but it is **not uniquely selected**. WEATHER is the only five-rune single-word output; none of Reports 01–15 independently predicts a five-rune length.
+
+Agent42's independent block03 check also rejects the tempting post-hoc extension that uses φ(center)/2 as block length and φ(center) as the next start displacement: it predicts block03 start 380 and length 6, whereas the published path starts at 369 and has length 5. Do not tune this rule to rescue block02.
+
+**Decision:** preserve the p0 opening as a provisional source-derived candidate, but do not promote the 38-block text to established plaintext. The first successor still needs an original-source selector for its exact node location and ciphertext length. Do not continue dictionary sweeps or add new arithmetic exceptions in the absence of such a clue.
+
+Reproducer: [block02 successor ambiguity SFT](../sims/lp2_27x27_p0_block02_ambiguity_sft.cjs). The external proposal is linked for context; its repository declares no license, and no external code is copied here.
+
 ### SOON's three source states and the parity rule that distinguishes them
 
 The published [block16 SOON walkthrough](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/blob/f2090da0a4470a3fec648a684171b452a9ada3ae/plaintext-i-found/16-soon.md) gives **three original key nodes**. All produce exactly the same φ-transformed key `L–R–EA`, aligned `EA–L–R`, and the same original four-rune ciphertext `X–D–W–H` at (25,16)–(25,19), yielding SOON. Under the published next-axis Report 03, the original key-center coordinate `M` still matters: `A=n₂(B)+n₀(M)`, `G=gcd(n₁(E),n₂(E))=3`, and `q=μ(A)+μ(G)`. The three source nodes give:
