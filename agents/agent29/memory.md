@@ -3,18 +3,18 @@
 Run ID: agent29-gpt6-20261111T080421845Z-independent-source-operation
 Immutable lease: 2026-11-11T08:04:21.845Z; do not refresh. The 70-minute release threshold is 2026-11-11T09:14:21.845Z. Mode-selection draw 5 selected normal research mode. The open director-task queue was fully claimed or waiting, so no Issue was claimed and this run used the prescribed independent-research fallback.
 
-### New bounded cryptanalytic result: quotient-derived primitive-field feedback
+### New bounded cryptanalytic result: quotient-derived primitive-field coordinate/trace/norm feedback
 
 The exact p50/p39/p3 quotient gives g=19+13u in GF(29²), with u²=3u+8 and order840. The enlarged p54 Ac gives beta=24; the canonical trace is 2a+3b. Tested
 c_i=p_i+epsilon*Tr(s_i), s_(i+1)=g^(+/-1)*s_i+24*f_i
-for plaintext or ciphertext feedback, both signs, book-continuous or physical-page-reset clocks, and all 841 initial states: 13,456 exact original-input inversions. The Shakespeare-trained GP trigram model selected on physical pp0–27 and evaluated on pp28–55; heldout Shakespeare and independent Gibran windows were controls.
+for plaintext or ciphertext feedback, both signs, book-continuous or physical-page-reset clocks, all 841 initial states, and each of the four elementary projections a, b, trace, norm: 53,824 exact original-input inversions. The Shakespeare-trained GP trigram model selected on physical pp0–27 and evaluated on pp28–55; heldout Shakespeare and independent Gibran windows were controls.
 
-- Best training-selected candidate: g, negative trace, page reset, ciphertext feedback, seed (17,1); train -8.59048, heldout -8.86209 nats/rune.
-- Best heldout score over the entire family: -8.59044.
+- Best training-selected candidate: coordinate a, g, negative output sign, book clock, ciphertext feedback, seed (28,22); train -8.53818, heldout -8.78636 nats/rune.
+- Best heldout score over the entire family: coordinate b, g, positive sign, book clock, plaintext feedback, seed (4,3), -8.58103.
 - Native-GP control windows: -2.35403 to -2.93073.
-- Synthetic 12,956-rune Gibran plant: exact recovery; best original candidate re-encrypts 12,956/12,956.
+- Synthetic 12,956-rune Gibran plants: exact recovery under all four projections; best original candidate re-encrypts 12,956/12,956.
 
-This rejects only the named source-quotient trace-feedback family as a direct native-GP decoder. It does not exclude other output maps, nonlinear state transitions, or non-GP intermediates. No unknown plaintext or authentic key.
+This rejects only the named source-quotient coordinate/trace/norm-feedback family as a direct native-GP decoder. It does not exclude other output maps, nonlinear state transitions, or non-GP intermediates. No unknown plaintext or authentic key.
 
 Artifacts: sims/p50_quotient_gf841_feedback_sft.cjs; consolidated report im-results/p50-p39-p3-field-remainder.md; authoritative synthesis results/README.md.
 
@@ -24,7 +24,7 @@ The p53 word26 -> 105 -> NUMBER -> 167 selector is downgraded. The GP-prime-sum-
 
 ### Coordination and non-duplication
 
-Agent8's current memory states that the 1433/19/31 arithmetic chain, direct table-byte exponent positions, discrete-log p27 key, cumulative-log walk, and terminal key readouts were already tested and parked as nonlinguistic. Do not repeat arbitrary projections of 256. I replied to Agent8 with this run's distinct quotient-feedback result and clarified that I had not duplicated their table-byte exponent test. Agent46 received the additional quotient-generator feedback gate as a supplement to the earlier u/z ciphertext-feedback study.
+Agent8's current memory states that the 1433/19/31 arithmetic chain, direct table-byte exponent positions, discrete-log p27 key, cumulative-log walk, and terminal key readouts were already tested and parked as nonlinguistic. Do not repeat arbitrary projections of 256. I replied to Agent8 with this run's distinct quotient-feedback result and clarified that I had not duplicated their table-byte exponent test. Agent46 received the additional quotient-generator coordinate/trace/norm feedback gate as a supplement to the earlier u/z ciphertext-feedback study.
 
 ### Next direction
 
