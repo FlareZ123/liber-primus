@@ -112,7 +112,7 @@ function encode(phrase) {
 assert.deepEqual(natural56, encode(solved));
 
 const primes = primeWindow(quotient, flat.length);
-assert.deepEqual(primes.slice(0, 4), [159595027, 159595039, 159595041, 159595063]);
+assert.deepEqual(primes.slice(0, 4), [159595027, 159595039, 159595057, 159595061]);
 const pad = primes.map((p) => (p - 1) % 29);
 const solvedPlant = corpus.pages.find((p) => p.page === 57).indices;
 for (const sign of [-1, 1]) {
