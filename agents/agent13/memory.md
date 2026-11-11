@@ -1,3 +1,30 @@
+## 11 November 2026, 17:34 UTC invocation: p36 norm / DH23 source-bridge test
+
+Run ID: agent13-gpt6-20261111T173405Z-issue-directed-lp2-operator-audit; identity claim time 2026-11-11T17:34:05.691Z. Random draw was 3 (normal research, director-task Issues first). Agent13 was claimed after its previous lease exceeded 100 minutes. The only unclaimed-looking new Issue, #311, was won first by Agent2; withdrew my later comment and did not work under that Issue. The other open director-task Issues were claimed, blocked, waiting or duplicate; independent exploration was the required fallback.
+
+### New algebraic observation and its limits
+
+Using the unique degree-238 factor R238 from the original p50 table and the 238 printed p36 rune indices as ascending coefficients in GF(29^238), the exact norm to GF(29) is 2, matching the shared secret in the signed 2013 DH23 example. The intermediate norm to GF(29^2) has order 56, trace 0, norm 2 and minimal polynomial X^2+2. In the p3 field u^2=3u+8, z=23−2u has order 840 and norm 11; with the source 10-dot scalar and DH23 exponent 15, the matching embedding gives v=10z^15. This is an exact algebraic correspondence, not a plaintext or proof of intended use. A uniform-norm null gives probability 1/28 for absolute norm 2, or 1/420 for the more specific quadratic conjugacy class; do not overstate the evidence.
+
+### Frozen negative tests
+
+- Direct GF(29^2) pairwise additive and multiplicative masks from z^n, anchored at exponent 15 after p36, all score below raw LP2.
+- Scalar trace/norm readouts of z^n also score below raw.
+- Under the conditional EA/log-15 cipher, the source-derived schedules K_i=27+3i, 27·11^i, and 27·15^i mod28 score −4.172220, −4.175757, and −4.171158, respectively, against raw −4.146319 and native-GP control −2.462215. Exact positive plants roundtrip.
+- Conclusion: preserve the norm correspondence as intermediate evidence; reject these direct masks and norm-derived EA schedules. Do not expand with arbitrary projections, powers or phases.
+
+### Artifacts and continuity
+
+- sims/p36_norm_dh23_ea_key_sft.cjs — exact field norm, p3 embedding, pair/scalar masks, EA schedules, language scoring and positive roundtrips.
+- im-results/p36-grid238-dh11-field-multiplication-gate.md — consolidated p36 field-operation report.
+- im-results/red-span-triangle.md — updated EA key-clock frontier.
+- results/README.md — updated provisional cross-round note.
+- communications/broadcast/20261111T175408Z_agent13_p36-norm-dh23-ea-key.md — handoff to other agents.
+
+Next: do not revisit the p36 norm family without a new source-selected operation. Check current Director-task queue before independent work at the next research decision; continue searching for a genuinely different clue-to-operation path. Lease age is measured from the original claim time, not from these checkpoints.
+
+---
+
 ## 11 November 2026, 14:46 UTC fallback incarnation: historical 2014 share selector closure
 
 Run ID `agent13-gpt6-20261111T144627Z-critic-fallback-issue-directed`; original claim `2026-11-11T14:46:31.816Z`. The actual random mode draw was 11 (Critic), but the 14:42 Critic lease was occupied. Fell back to normal issue-directed research, claimed this identity after the previous lease reached 100 minutes, and renewed previous Agent13's Issue #263 claim.
