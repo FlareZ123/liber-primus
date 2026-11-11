@@ -107,4 +107,111 @@ report('table_root24_low_degree_first', sTaylor);
 report('table_root24_high_degree_first', sTaylor.slice().reverse());
 report('p29_minus_table_root24_low_degree_first', difference);
 report('p29_minus_table_root24_high_degree_first', difference.slice().reverse());
-process.stdout.write('All exact GF29 inverse, source-size, derivative, and plant assertions passed.\n');
+/**
+ * Repeated polynomial-radix extraction is another complete source-defined
+ * readout. The two individually printed factors H and G (and their literal
+ * product) are the only allowed bases; no guessed digit permutations or keys.
+ *
+ * @param {number[]} descending
+ * @param {number[]} base low-degree-first
+ * @returns {number[][]} low-order polynomial-radix digits, each a degree<base polynomial
+ */
+function toRadixDigits(descending, base) {
+  const degree = base.length - 1;
+  const inverseLead = Array.from({ length: MOD - 1 }, (_, i) => i + 1)
+    .find(value => residue(value * base[degree]) === 1);
+  assert(inverseLead !== undefined);
+  let current = descending.slice().reverse();
+  while (current.length && current[current.length - 1] === 0) current.pop();
+  /** @type {number[][]} */
+  const digits = [];
+  while (current.length) {
+    const work = current.slice();
+    const quotient = Array(Math.max(0, current.length - degree)).fill(0);
+    for (let i = work.length - 1; i >= degree; i--) {
+      const factor = residue(work[i] * inverseLead);
+      quotient[i - degree] = factor;
+      for (let j = 0; j <= degree; j++) {
+        work[i - degree + j] = residue(
+          work[i - degree + j] - factor * base[j]);
+      }
+    }
+    digits.push(Array.from({ length: degree }, (_, i) => work[i] || 0));
+    current = quotient;
+    while (current.length && current[current.length - 1] === 0) {
+      current.pop();
+    }
+  }
+  return digits;
+}
+
+/**
+ * Recover exactly the original high-degree-first polynomial, including its
+ * source-preserved leading zero coefficients.
+ *
+ * @param {number[][]} digits
+ * @param {number[]} base
+ * @param {number} originalLength
+ * @returns {number[]}
+ */
+function fromRadixDigits(digits, base, originalLength) {
+  /** @type {number[]} */
+  let coefficients = [];
+  for (let i = digits.length - 1; i >= 0; i--) {
+    const next = Array(coefficients.length + base.length - 1).fill(0);
+    for (let j = 0; j < coefficients.length; j++) {
+      for (let k = 0; k < base.length; k++) {
+        next[j + k] = residue(next[j + k] + coefficients[j] * base[k]);
+      }
+    }
+    for (let j = 0; j < digits[i].length; j++) {
+      next[j] = residue(next[j] + digits[i][j]);
+    }
+    coefficients = next;
+  }
+  assert(coefficients.slice(originalLength).every(value => value === 0));
+  while (coefficients.length < originalLength) coefficients.push(0);
+  return coefficients.slice(0, originalLength).reverse();
+}
+
+/** @param {number[]} first @param {number[]} second @returns {number[]} */
+function multiply(first, second) {
+  const product = Array(first.length + second.length - 1).fill(0);
+  for (let i = 0; i < first.length; i++) {
+    for (let j = 0; j < second.length; j++) {
+      product[i + j] = residue(product[i + j] + first[i] * second[j]);
+    }
+  }
+  return product;
+}
+const H = [3, 26, 24]; // signed 2013 BASE29 3301=3QO, ascending powers
+const G = [27, 5, 15]; // printed red p39 factor, with double root Ac=24
+const HG = multiply(H, G);
+assert.deepEqual(HG, [23, 21, 11, 17, 12]);
+const differenceOriginal = Array.from({ length: p29.length }, (_, i) =>
+  residue(p29[p29.length - 1 - i] -
+    (i < s256.length ? s256[s256.length - 1 - i] : 0))).reverse();
+
+for (const [sourceName, original] of [
+  ['p29', p29],
+  ['table', s256],
+  ['p29_minus_table', differenceOriginal]
+]) {
+  for (const [baseName, base] of [['2013_H', H], ['p39_G', G], ['H_times_G', HG]]) {
+    const digits = toRadixDigits(original, base);
+    assert.deepEqual(fromRadixDigits(digits, base, original.length), original);
+    if (sourceName === 'p29_minus_table' && baseName === 'p39_G') {
+      assert.deepEqual(digits.slice(0, 2), [[0, 0], [2, 0]]);
+    }
+    if (sourceName === 'table' && baseName === 'H_times_G') {
+      assert.deepEqual(digits[0], [0, 0, 0, 0]);
+    }
+    const decoded = digits.flat();
+    report(sourceName + '_' + baseName + '_digits_low_to_high', decoded);
+    report(sourceName + '_' + baseName + '_digits_high_to_low',
+      digits.slice().reverse().flat());
+  }
+}
+const planted = toRadixDigits(known, G);
+assert.deepEqual(fromRadixDigits(planted, G, known.length), known);
+process.stdout.write('All exact GF29 polynomial inverses, root derivatives, and source-plaintext plants passed.\n');
