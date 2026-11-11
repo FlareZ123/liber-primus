@@ -182,10 +182,37 @@ assert.equal(ioc(source55), 0.037894736842105266);
 assert(Math.abs(results[0].ioc - 0.037894736842105266) < 1e-12);
 assert(Math.abs(results[1].ioc - 0.047017543859649125) < 1e-12);
 
+// Independent solved p57 word-source discriminator: only WE simultaneously
+// reaches p27 from p57 and transports offset28 to the repeated p55 offset70.
+const p57Candidates = words[57].map((word, bodyIndex) => ({
+  bodyIndex, word: translit(word), number: wordSum(word)
+})).filter((word) => (57 + word.number) % 58 === 27);
+assert.deepEqual(p57Candidates, [
+  { bodyIndex: 8, word: "WE", number: 86 },
+  { bodyIndex: 16, word: "DIUINITY", number: 376 }
+]);
+const pageAndOffset = p57Candidates.map((word) => ({
+  word: word.word, page: (27 + word.number) % 58, offset: 28 + phi(word.number)
+}));
+assert.deepEqual(pageAndOffset, [
+  { word: "WE", page: 55, offset: 70 },
+  { word: "DIUINITY", page: 55, offset: 212 }
+]);
+
+// Source-frozen T86 also predicts 28 original p27/p55 overlapping runes
+// before the repeated six; none of those 28 is identical. The proposed
+// transport is therefore only an exact six-rune bookend, not a copy cipher.
+const precedingMatches = Array.from({ length: 28 }, (_, local) =>
+  Number(source27[local] === source55[local + 42]))
+  .reduce((sum, match) => sum + match, 0);
+assert.equal(precedingMatches, 0);
+
 console.log(JSON.stringify({
   verifiedRoute: [[57, "WE"], [27, 28], [55, 70]],
   duplicateCiphertext: "DJU BEI",
   totient86: 42,
+  solvedP57DualCoordinateCandidates: pageAndOffset,
+  previous28RUNE_matches: precedingMatches,
   tableHandoff: { cell: globalCell, token: tokens[82], byte: values[82],
     signedWordLiesAdjacent: { cell: 83, token: tokens[83], byte: values[83] } },
   finalBEIWordRoute: pathBEI.trace,
