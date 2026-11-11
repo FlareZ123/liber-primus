@@ -189,11 +189,14 @@ A table-internal ordering does not rescue the channel. Following byte pointers f
 Other finite checks under the reverse hypothesis also fail: the 43 bytes have only **27 distinct residues modulo43**, and direct XOR or modular ± byte readouts using signed-word and selected-word sums reach at most **22/43** printable ASCII.
 
 
-## Source-constrained p27 5×43 prime-mask row selector (negative)
 
-**Human-route hypothesis.** The original p27 image has a 19-rune red title and a 215-rune black body, so a hypothetical 5×43 arrangement is possible. The p55 ornament has five left-side marks, 01101, with filled positions 2, 3 and 5. The signature-verified 2016 message has 43 words and says that its words are the map and their numbers the direction. One economical reading is to treat those 43 words as columns, use each word's GP-prime sum modulo 3 to select one of the three filled rows (2, 3, 5), and take one p27 rune from each column. This is a hypothesis: p27 is not physically printed as a 5×43 grid, and the sources do not explicitly prescribe modulo 3.
+## Source-constrained p27 5×43 prime-mask row selectors (negative)
 
-The fixed selector yields the 43-rune stream **EJSEAJFBOEONGEAREAOEDNEORNMOOCMEIAEOEPXNIRYEAGLOETDN**. Its row choices are 19/15/9 for rows 2/3/5. Treating that stream as a direct additive GP29 key for p55's 43 shed-interior runes gives no plaintext. The p55 interior word lengths are **[2,4,4,11,4,2,5,5,4,1,1]**. The four predeclared variants score:
+**Human-route hypothesis.** The original p27 image has a 19-rune red title and a 215-rune black body, allowing a hypothetical 5×43 arrangement. The p55 ornament's left-side marks are 01101, with filled positions 2, 3 and 5. The signature-verified 2016 message has 43 words and says that its words are the map and their numbers the direction. The following two fixed interpretations use only those source-visible dimensions and the GP-prime sums of the signed words. The 5×43 grid is hypothetical, not printed; neither modulo rule is explicitly stated in the sources.
+
+### A. Three-active-row selector
+
+Use each signed word's GP-prime sum modulo 3 to select one of active rows 2, 3, 5, then take that column's p27 rune. This yields **EJSEAJFBOEONGEAREAOEDNEORNMOOCMEIAEOEPXNIRYEAGLOETDN**, with row counts 19/15/9. Treating it as an additive GP29 key for p55's 43 shed-interior runes, forward/reverse and C−K/C+K, gives:
 
 | Variant | Mean GP-English log score | Output |
 | --- | ---: | --- |
@@ -202,9 +205,15 @@ The fixed selector yields the 43-rune stream **EJSEAJFBOEONGEAREAOEDNEORNMOOCMEI
 | reverse C−K | **−4.352920** | IT AEPOAE EAIAPA MSUBUGAAETB EOREN AEO ABWIW DFEAXE BSUM F F |
 | reverse C+K | −4.563905 | EAR EAEAXH YNGNGS HXIAOHAESTHIAYD EPWB LNG EOOCEC WACME ICHL OE W |
 
-The best output is still **5.61 SD below** the held-out native-English control (10,693 matched 43-rune windows; mean −2.912985, SD 0.256766, range −3.833366 to −2.035201). A familywise maximum over all four direction/sign variants, compared with **10,000** shuffles of the same 43 word-prime-sum multiset (xorshift seed 0x43a55), gives empirical upper tail **0.362764**; the source order is not distinguished from the matched null. Both the row-selection plant and additive GP29 round-trip controls recover exactly.
+The best output is **5.61 SD below** the held-out native-English control (10,693 matched 43-rune windows; mean −2.912985, SD 0.256766, range −3.833366 to −2.035201). A familywise maximum over all four direction/sign variants against **10,000** shuffles of the same 43 word-prime-sum multiset (xorshift seed 0x43a55) gives empirical upper tail **0.362764**.
 
-**Decision.** Reject this exact modulo-3 row selector and direct additive p55 bridge. This does not reject other 43-unit relationships; it supplies no plaintext, key or reversible operation. Do not expand the branch by tuning moduli, row orders, phases or key encodings.
+### B. Five-row selector filtered by the ornament mask
+
+The more literal five-row reading is one-based row **1 + (word-prime-sum mod 5)**; keep the selected rune only when that row is one of the ornament's filled positions 2, 3 or 5. This yields **TEBLOWFPDDRRCIPMFNGUOEOEDLOEDF** (26 runes) and skips 17 columns. The skipped count equals p55's 17 printed segments, but that is not independent evidence: the matched null preserves the same multiset of word-sum residues and therefore preserves the skip count.
+
+The forward/reverse 26-rune outputs score **−4.282326 / −4.237420**. The best is **5.15 SD below** the held-out native-English control (10,696 matched 26-rune windows; mean −2.904066, SD 0.258722, range −3.805502 to −2.052807). A familywise maximum over both directions against **10,000** shuffles (xorshift seed 0x5f43) gives empirical upper tail **0.223678**. Neither orientation is plaintext or distinguished from its matched null.
+
+Both selectors have exact synthetic row-selection controls; the additive GP29 bridge also round-trips exactly. **Decision:** reject these two exact row selectors and the direct additive p55 bridge. This does not reject all 43-unit relationships, but supplies no plaintext, key or reversible operation. Do not tune moduli, row orders, phases or key encodings.
 
 **Reproduce:** `node sims/p27_43word_prime_mask_row_selector_sft.cjs`
 
@@ -214,7 +223,7 @@ The durable route is:
 
 **FOLD → p55 → fragment18 → self-indexing p27 title → comparison mask50 = p50 → equality P/P = prime43 → 18-state table-pointer orbit → repeat76 = p55 length → cell82 → forward 43-cell interval.**
 
-The title fold and pointer orbit now select the table, a source-oriented side of the 43-cell interval, and the p55-length state 76 without relying on the cross-unit 1,432/1,433 coincidence. They still do not determine the reversible operation consuming the table interval, p55 interiors, and signed-message words. The 1,432-word / 1,433-rune coincidence must stay separate from direction claims unless a source instruction bridges those units. The exact modulo-3 prime-mask row selector tested above also fails; the wider 43-unit relationship remains unresolved.
+The title fold and pointer orbit now select the table, a source-oriented side of the 43-cell interval, and the p55-length state 76 without relying on the cross-unit 1,432/1,433 coincidence. They still do not determine the reversible operation consuming the table interval, p55 interiors, and signed-message words. The 1,432-word / 1,433-rune coincidence must stay separate from direction claims unless a source instruction bridges those units. The exact modulo-3 and modulo-5 prime-mask row selectors tested above also fail; the wider 43-unit relationship remains unresolved.
 
 Do not expand arbitrary byte KDFs, permutations or phase searches. The orientation question is materially narrowed; a useful successor needs an independent source-visible rule for the **reversible operation**.
 
