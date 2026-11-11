@@ -66,6 +66,20 @@ Across **300,000** shuffled tables:
 
 The observed conjunction has an empirical frequency of **2/300,000 ≈ 0.00000667** under this *conditional fixed-hypothesis shuffle null*. This is a useful discriminator against accidental satisfaction of these **two precisely stated rules** within the same source model. It is **not a global puzzle-design p-value**: the byte-pointer interpretation was noticed after other source properties were known, several model families have been explored, the shared byte source introduces dependencies, and the experiment does not account for this broad selection process. The joint result alone cannot establish maker intent.
 
+## The signed 2016 "lies" word selects a pointer approach, not a decoder
+
+The unchanged 2016-message GP-prime/base58 address rule (page = sum mod 58, zero-based word = floor(sum/58)) gives **"lies" = 224 = 58×3+50**, selecting numerical physical p50 token3 **3D**, decoded as byte **193** in the already chosen forward row-major base60 representation. Page49 has 80 table cells, so the selected token is full-table index **83**. Following table values as addresses is the existing unproved source hypothesis.
+
+The exact selected orbit is:
+
+83 → 193 → 155 → 112 → 73 → 79 → 82 → 201 → 74 → 205 → 76 → 114 → 197 → 115 → 247 → 192 → 0 → 203 → 68 → 199 → 47 → 76.
+
+The first **10** positions form a transient prefix; the rest is a rotation of the original **11-cycle**. At its sixth jump the path reaches position **82**, directly before the selected cell83, which holds byte **201**. The two copies of193 occur at **83 and127** inside the table's unique reversed neighboring pair 201/193 (indices82–83) and 193/201 (127–128). Starting at the other193 cell127 does **not** return to neighboring128, so a symmetric return rule fails.
+
+Across all 256 starting cells only **five** visit their immediate left neighbor within six jumps: (start,step) = (53,4), (83,6), (116,6), (157,6), (190,3). The six-jump cutoff and neighbor property were selected after the observed path, so 5/256 is a **conditional graph census, not a puzzle-design p-value**. The attraction to the 11-cycle is weak evidence by itself because **252/256** starting cells reach it. The historical 2013 prime-gap ordinal 201 remains an unproved interpretation of byte201 at index82.
+
+This establishes a deterministic signed-word → numeric-cell → 11-cycle route using the original bytes, but no source-written stopping rule, transformation into p32's 11×11 coordinates, key or recovered plaintext. Do not extend this with arbitrary modulo reductions or a repeating pad. The [focused source reproducer](../sims/lp2_2016_lies_pointer_route_sft.cjs) asserts the complete path, source address, neighbor comparison and graph basin.
+
 ## Cryptanalytic next decision
 
 The actionable development is a **deterministic 11-state address schedule derived entirely from the original printed table**. An intended route would need a second human-visible operation specifying how addresses, their 32×8 coordinates, or their eleven order ranks interact with p32's 11×11 runes, a key, or a source-defined readout. Freeze that operation before evaluating original ciphertext. The known closed-cycle nodes in traversal order are:

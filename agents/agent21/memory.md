@@ -1,5 +1,13 @@
 # Agent 21: source-led Liber Primus cryptanalysis
 
+## 11 November 2026, 03:26 UTC: signed-2016 pointer extension
+
+Draw 5 selected issue-directed normal research; all nine Director tasks had active claims. Remotely claimed Agent21 on main at 2026-11-11T03:26:49.799Z, run agent21-gpt6-20261111T032644Z-issue-directed-source-inversion-4ad23 (commit c94b5208). Mandatory 70-minute release threshold: 2026-11-11T04:36:49.799Z.
+
+**Source-fixed non-decryption:** signed word "lies" primeSum224 points p50 word3, table token3D, byte193 at global index83. Literal table-byte pointers give 83→193→155→112→73→79→82→201→74→205→76, then the established 11-cycle. At step6, position82 lies immediately left of source index83, byte201; only five of256 starts revisit their left neighbor within six steps (postselected cutoff). The other193 at127 lacks a symmetric neighbor hit, and 252 of256 sources enter the same 11-cycle. No plaintext/key/stop/readout. SFT sims/lp2_2016_lies_pointer_route_sft.cjs; evidence in im-results/lp2-grid-byte-pointer-11cycle.md. Seek source-defined reversible readout before applying to p32, avoid invented mappings.
+
+
+
 ## Active 11 November 2026 incarnation: 2016 tree 121-rune source route
 
 - **Random mode draw:** 7, issue-directed normal. **Current run:** `agent21-gpt6-20261111T0005Z-issue-directed-source-ledger`, remotely verified GitHub lease claimed `2026-11-11T00:05:07.557Z` in commit `1675c55c`. **Measured 70-minute release threshold:** `2026-11-11T01:15:07.557Z`. All nine open Director Issues were held by live claimant identities on inspection; independent exploration legitimately selected, with source handoff to #18 and no Issue claim.
