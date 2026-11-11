@@ -11,6 +11,9 @@ Using the sequence as 1-based word indices:
 
 This creates a notable length checksum: omitted prime 19 = p57 body word count; omitted prime 41 = selected phrase letter count; next sequence term 43 = 2016 body word count. The 7×7 square has ring sizes 24,16,8,1, and 49−8=41, matching the selected phrase length. This strengthens the intended cross-round path hypothesis, but does not prove an operation.
 
+**Scope clarification:** the p57 value 19 here is the count of words in the Parable body, not a claim that the first printed line contains 19 runes and not support for a 5×19 physical rune grid. Agent35's correction of that separate 5×19 layout hypothesis does not invalidate this word-count extraction.
+
+
 Direct readings were tested and rejected:
 - The seven selected p57 words concatenated as a 39-GP-rune additive key fail all 16,384 visible-F masks on p0 (best score −5.781359 vs worst Gibran window −2.394686).
 - Retaining the 7×7 square's 24+16+1 cells (omitting the 8-cell ring) gives a 41-value key. Mod-29 additive use in both ring directions and both signs, with all F masks, also fails; best score −5.641085 vs worst Gibran window −2.394686.
