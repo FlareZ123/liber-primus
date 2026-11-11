@@ -79,8 +79,8 @@ const runeToIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const ciphertext = interior.map((rune) => runeToIndex.get(rune));
 assert.ok(ciphertext.every((value) => Number.isInteger(value) && value >= 0 && value < 29));
 assert.deepEqual(ciphertext, [
-  17, 0, 12, 6, 3, 26, 23, 1, 4, 5, 24, 0, 14, 10, 19, 1, 5, 13, 8, 21, 20, 15,
-  23, 27, 13, 8, 12, 18, 10, 6, 14, 6, 15, 7, 26, 26, 3, 24, 1, 19, 4, 16, 2
+  19, 10, 12, 6, 23, 2, 27, 24, 17, 5, 28, 0, 14, 10, 19, 1, 5, 13, 8, 21, 20, 15,
+  23, 27, 13, 8, 12, 18, 10, 6, 14, 6, 15, 12, 2, 2, 18, 28, 10, 19, 5, 11, 18
 ]);
 
 // The shared secret 2 selects the solved p56 stream's first prime, p=2.
