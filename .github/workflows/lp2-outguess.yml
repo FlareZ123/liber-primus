@@ -54,7 +54,7 @@ jobs:
       - name: Build OutGuess from maintained source
         run: |
           sudo apt-get update
-          sudo apt-get install -y autoconf automake libtool build-essential libjpeg-dev
+          sudo apt-get install -y autoconf automake libtool build-essential libjpeg-dev file gnupg
           git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
           git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
           git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
@@ -101,7 +101,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install numeric dependencies
-        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 }}
         run: python -m pip install --disable-pip-version-check numpy numba
       - name: Scan original LP2 runes against all extracted pad-stream positions
         if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar }}
@@ -124,7 +124,7 @@ jobs:
           node --check sims/outguess_header_synthetic_probe.cjs
           node sims/outguess_header_synthetic_probe.cjs
       - name: Preserve exact recovered payloads and summary
-        if: ${{ always() && github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.fragment7 }}
+        if: ${{ always() && github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 }}
         uses: actions/upload-artifact@v4
         with:
           name: outguess-lp2-default-key
