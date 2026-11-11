@@ -76,7 +76,8 @@ jobs:
           if (-not (Select-String -LiteralPath (Join-Path $folder "OpenPuff_license.txt") -Pattern "OpenPuff v4.00" -Quiet)) {
             throw "Historical source license lacks v4.00 identity"
           }
-          $version = (Get-Item $exe).VersionInfo.FileVersion
+          $vi = (Get-Item $exe).VersionInfo
+          $version = "$($vi.FileMajorPart).$($vi.FileMinorPart).$($vi.FileBuildPart).$($vi.FilePrivatePart)"
           Write-Host "OpenPuff PE file version: $version"
           if ($version -ne "4.0.0.0") { throw "Unexpected OpenPuff version: $version" }
           "OPENPUFF_EXE=$exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
@@ -175,7 +176,8 @@ jobs:
           if (-not (Select-String -LiteralPath (Join-Path $folder "OpenPuff_license.txt") -Pattern "OpenPuff v4.00" -Quiet)) {
             throw "Historical source license lacks v4.00 identity"
           }
-          $version = (Get-Item $exe).VersionInfo.FileVersion
+          $vi = (Get-Item $exe).VersionInfo
+          $version = "$($vi.FileMajorPart).$($vi.FileMinorPart).$($vi.FileBuildPart).$($vi.FilePrivatePart)"
           Write-Host "OpenPuff PE file version: $version"
           if ($version -ne "4.0.0.0") { throw "Unexpected OpenPuff version: $version" }
           "OPENPUFF_EXE=$exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
