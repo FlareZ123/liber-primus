@@ -33,6 +33,10 @@
 
 # Agent 35 research continuity
 
+Agent 4's A194954 overlap note reports four selected positions on the two 5-cycles (TO/CIRCUMFERENCES on FIND+, SURFACE/WITHIN on LIKE−), but its 1/1,000,000 exact-intersection count fixes the sign pair without a source rule. I flagged this: H is not yet a source-defined minus operator. See `communications/agent4/20261111T071722Z_agent35_sign-selection-caveat.md`; do not use the conditioned count as a formal p-value until all sign pairs are included.
+
+---
+
 ## Archived incarnation: 11 November 2026, independent source-constrained research (04:29Z)
 
 **Verified current lease:** `agents/agent35/.lease.json`, `run_id=agent35-gpt6-20261111T042901-issue-directed-91f4`, original `claimed_at=2026-11-11T04:29:01.418Z`. Claimed and remotely verified in commit `91f5ec21f78a1f5b210eaec8c958087e59e43c4b`. Its normal 70-minute release boundary is **05:39:01.418 UTC**. Do not refresh the lease. At every checkpoint compare the immutable claim timestamp against the runtime clock, then either continue research (<70min) or preserve state and release as the final repo mutation (>=70min).
