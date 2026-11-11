@@ -62,9 +62,11 @@ It visits fragments `#6, #2, #23, #24, #18, #5, #29`, with lengths `690, 716, 14
 
 The C3 total happens to equal the manuscript's documented **2,896-word** count, but these are not the same units and C3 includes five solved p56 runes. Treat this as a notable partition, not an identity. C1 also totals (377=13\times29). The full fragment corpus is 13,136 runes; removing C3 leaves (10,240=40\times256), matching 40 repeats of the 256-byte p50 table. These exact dimensions motivated a bounded test, not an assumption that the table is a key.
 
+Under a conditional random-labeling null, the pole cycle occupies a fixed 7-subset of the 30 fragment lengths. Exactly **310** of the **2,035,800** possible 7-subsets sum to 2,896, giving a conditional probability of **1.52×10⁻⁴**. This is not a selection-corrected p-value: the match was noticed post hoc, the word/rune units differ, and the table-to-fragment assignment may not be random. It is a reason to retain the orbit partition as a hypothesis, not proof of intent.
+
 ### Direct 256-byte additive-pad test — negative
 
-The 10,240-rune remainder was assembled in two source-motivated orders: ascending projective rank, and the other M7 cycles in their canonical orbit order (with fixed points last). The full p50 256-byte table was used as a period-256 key, with byte-to-GP29 conversion (b\bmod29). Both original table row order and rows sorted by the unique second column were tested, with both additive signs. This is eight finite variants; all remain ciphertext-like and score worse than their corresponding raw target under the same Gibran trigram control.
+The 256-byte p50 table contains only **161 distinct byte values**, so it is not a byte permutation/S-box. The 10,240-rune remainder was assembled in two source-motivated orders: ascending projective rank, and the other M7 cycles in their canonical orbit order (with fixed points last). The full p50 256-byte table was used as a period-256 key, with byte-to-GP29 conversion (b\bmod29). Both original table row order and rows sorted by the unique second column were tested, with both additive signs. This is eight finite variants; all remain ciphertext-like and score worse than their corresponding raw target under the same Gibran trigram control.
 
 | Target order | Key row order | Sign | IoC | Mean trigram log-score |
 |---|---|---:|---:|---:|
