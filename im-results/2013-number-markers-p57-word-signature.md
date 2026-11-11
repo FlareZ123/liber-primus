@@ -21,7 +21,7 @@ The project already uses a downstream **factor-index reduction** for 2014 square
 
 ## Exact match in the 19 p57 body words
 
-Using the existing GP prime weights, the 19 human-readable body-word sums on p57 are:
+p57 has 20 words overall: the red heading PARABLE plus the 19 body words. The table excludes the heading; its prime sum 449 is treated separately in the conditional 449→944→59→95=5×19 selector chain. Using the existing GP prime weights, the 19 human-readable body-word sums on p57 are:
 
 | Position | Word | Prime sum | NUMBER/factor-index signature |
 |---:|---|---:|---|
