@@ -45,9 +45,25 @@ The 20-symbol balance is a stronger and more source-specific reason to test full
 
 The XOR case is historically motivated by Cicada's documented 2014 XOR-share operation, but no source tells the solver to XOR LP2's reflected pages or specifies an authentic 32-symbol plaintext alphabet. The first two recover no native GP29 language. A synthetic GP29 pad/inverse control passes exactly, which validates the implementation without making the key historical. A separately tested handful of alternative red placements and right-page read orientations had best IoC 0.034684364, again flat; no phase, offset, key or map was tuned to maximize language.
 
+## Source-frozen pair-dependence gate beyond addition and XOR
+
+The visual fold and red-cap balance determine one further test that does not assume a particular additive alphabet. Form source tape A as the top nine original p15 red runes, the complete p7–14 text, and the bottom eleven p15 red runes; form source tape B as the complete p16–23 text reversed. Both are exactly **1,957 GP29 symbols**. The direct sum/difference and XOR gates above address specific algebraic operations; they do not test arbitrary fixed bijective symbol recodings of the two tapes.
+
+A new label-independent paired mutual-information test counts the original **29×29** joint symbol table under this one preselected alignment. For a fixed symbol-by-symbol bijection between aligned tapes, mutual information is unchanged by any fixed GP29 symbol relabeling, so such a relation should produce strong dependence, even if the unknown relabeling looks random. Empirical calibration randomizes the complete B tape while preserving both original rune multisets; 1,500 deterministic shuffles use a frozen xorshift32 seed.
+
+| Fixed comparison | Mutual information (bits) |
+| --- | ---: |
+| Original mirrored 1,957-pair relation | **0.3334479499** |
+| Shuffled-B null average | **0.3278857298** |
+| Shuffled-B null SD | **0.0159850945** |
+
+Exactly **548/1,500** shuffled samples equal or exceed the original, giving a plus-one upper-tail fraction **549/1,501 = 0.36576**. The finite-sample upward bias in plug-in information is automatically present in the null. A planted invertible affine-symbol relationship `B=(7A+11) mod29` has the full single-tape entropy as its paired information and passes the decoder-independent control. **The source fold has no detectable one-symbol-pair dependency on this fixed alignment.** This retires a plaintext/source relationship premised on a single fixed relabeling or joint lookup producing strong pairwise correspondence; it does **not** exclude encrypted parallel texts under separate running keys, more complex positional/feedback operations, or other source-chosen geometries.
+
+[Single-file original-rune reproducer](../sims/lp2_p15_fold_mutualinfo_sft.cjs). This is a constrained exclusion, not recovered text or a new independent authorial cipher instruction.
+
 ## Cryptanalytic decision
 
-**Retire direct GP29 sum/difference and plain five-bit XOR of the p15-balanced streams as original plaintext operations.** Preserve the stronger verified source fact `p7–14 + p15 red(9+11) = p16–23`, with p7/p23's geometric mirror and p15's 16-position central diagram, as a candidate structural clue. There is still no source-chosen symbol-level pairing, word/punctuation restoration, key, reversible output representation or independently predicted plaintext.
+**Retire direct GP29 sum/difference, plain five-bit XOR, and a single fixed aligned symbol-by-symbol relabeling of the p15-balanced streams as explanations of original plaintext.** Preserve the stronger verified source fact `p7–14 + p15 red(9+11) = p16–23`, with p7/p23's geometric mirror and p15's 16-position central diagram, as a candidate structural clue. There is still no source-chosen symbol-level pairing, word/punctuation restoration, key, reversible output representation or independently predicted plaintext.
 
 An actionable successor would identify a **visible, historically plausible instruction** specifying what to do with the two 1,957-rune streams and the center's red inscriptions. It must explain all symbols of the proposed unit, yield an explicit inverse before examining its English output, and predict a withheld original segment. Do not expand to arbitrary placements, rotations, byte mappings or further numeric coincidences absent such a selector.
 
