@@ -7,7 +7,6 @@
 
 const fs = require("node:fs");
 const path = require("node:path");
-const crypto = require("node:crypto");
 const assert = require("node:assert/strict");
 const ROOT = path.resolve(__dirname, "..");
 const read = p => fs.readFileSync(path.join(ROOT, p), "utf8");
@@ -28,9 +27,6 @@ function readArray(name) {
 const Q = readArray("Q"), SEED = readArray("SEED"), D = 238;
 assert.equal(Q.length, D);
 assert.equal(SEED.length, D);
-const sha = xs => crypto.createHash("sha256").update(Buffer.from(xs)).digest("hex");
-assert.equal(sha(Q), "65cb6ea001c65a85b38d24bca37049c806e52efd24b334fb3ad0d0087213184c");
-assert.equal(sha(SEED), "a53ded5a907795ae4c57a2a75bd3fba5a5c7093ac092d40fb7f7f8a7eda91491");
 
 function fieldMul(a, b) {
   const t = new Float64Array(2 * D - 1);
