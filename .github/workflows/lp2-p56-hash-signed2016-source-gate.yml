@@ -1,0 +1,18 @@
+name: Solved LP2 p56 hash against signed 2016 and original tree sources
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-exact SHA-512 digest comparison and positive control
+        run: |
+          node --check sims/lp2_p56_hash_signed2016_original_sources_sft.cjs
+          node sims/lp2_p56_hash_signed2016_original_sources_sft.cjs
