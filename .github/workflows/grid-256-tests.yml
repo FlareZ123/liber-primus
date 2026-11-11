@@ -32,6 +32,7 @@ on:
           - quartic-annihilator
           - byte-pointer
           - collision-quote
+          - signed-message-map
         default: full
 
 jobs:
@@ -43,6 +44,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Full authenticated 2016 signed-message base-58 word map
+        if: ${{ inputs.probe == 'signed-message-map' }}
+        run: node sims/lp2_2016_message_base58_word_map.cjs
+
       - name: Test red-event collision/quote cross-track inversion
         if: ${{ inputs.probe == 'collision-quote' }}
         run: node sims/ink256_lcg_collision_quote_bridge_sft.cjs
