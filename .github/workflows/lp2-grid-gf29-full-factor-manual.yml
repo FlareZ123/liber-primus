@@ -32,3 +32,5 @@ jobs:
           node sims/grid_cubic_order12194_keyfree_sft.cjs
 
           node sims/lp2_marked_quadratic_crosspage_sft.cjs
+      - name: Source-signed 2013 DH2 and p29/table G-adic original inverse
+        run: node sims/p29_grid_2013_dh_gadic_bridge_sft.cjs
