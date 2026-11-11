@@ -114,7 +114,7 @@ def main():
         print(f"  OpenPGP hash id={parsed['hash_id']} digest-prefix={parsed['digest_prefix'].hex()} signature-digest={parsed['signature_digest'].hex()}")
         print(f"  representations={len(candidates)} comparisons={len(candidates)*len(algs)} matches={hits}")
     image = Path(args.image).read_bytes()
-    image_git_blob = hashlib.sha1(b"blob " + str(len(image)).encode("ascii") + b"\\0" + image).hexdigest()
+    image_git_blob = hashlib.sha1(b"blob " + str(len(image)).encode("ascii") + b"\0" + image).hexdigest()
     if len(image) != 26342 or image_git_blob != "22027296dcd7df53c5127e6aadbabeaf3223f72d":
         raise SystemExit(f"2016 JPEG source mismatch: bytes={len(image)} git_blob={image_git_blob}")
     image_sha512 = hashlib.sha512(image).hexdigest()
