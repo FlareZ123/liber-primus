@@ -106,7 +106,7 @@ The existing [p29 signed-2013 DH2/G-adic study](p29-signed2013-dh2-gadic-congrue
 [
 R=\operatorname{quo}\left((P_{29}-S_{50}-2G)/G^2\right),
 ]
-where (P_{29}) is the p29 GP-index polynomial, (S_{50}) is the 256-byte p50 table reduced modulo 29, and (G=[15,5,27]) is the p39 red-triad polynomial. The division has remainder **[13,5,0,21]**; it is therefore a quotient-with-remainder, not an exact divisibility claim. Its quotient length is **273 = 3×91 = 3×7×13**. This makes the 91-symbol map interior a candidate 7×13 plane for three residual layers, but the dimensional match alone does not specify an operation.
+where (P_{29}) is the p29 GP-index polynomial, (S_{50}) is the 256-byte p50 table reduced modulo 29, and (G=[15,5,27]) is the p39 red-triad polynomial. The division has **zero remainder [0,0,0,0]**: the source relation `P29 = S50 + 2G + G²R` is an **exact GF(29) identity**, as established independently in [the 2013 DH2/G-adic report](p29-signed2013-dh2-gadic-congruence.md). This exact divisibility supplies no decryption by itself. Its quotient length is **273 = 3×91 = 3×7×13**. This makes the 91-symbol map interior a candidate 7×13 plane for three residual layers, but the dimensional match alone does not specify an operation.
 
 ### Fixed, low-parameter tests
 
