@@ -2,14 +2,6 @@ name: LP1 and p32 full 28-cycle word-local Möbius rotors
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - sims/lp1_mobius_full28_word_rotor_sft.cjs
-      - sims/lp2_word_pages.cjs
-      - resources/liber-primus/lp2-corpus.json
-      - resources/lp2-transcription.txt
-      - resources/control/emerson_essays_2944.txt
-      - .github/workflows/lp1-mobius-full28-word-rotor-manual.yml
 
 jobs:
   full28-word-rotor:
