@@ -278,7 +278,7 @@ For fragment 7, whose exact input is **ATXBMGIASBXEO**, the selected row values 
 
 The same fixed operation was applied to every nonempty fragment. No complete fragment yields intelligible plaintext; occasional short letter substrings do not form a coherent message. One alternative-column φ variant skips fragment 29 because its selected pair contains zero and φ(0) is undefined; no replacement value is fitted.
 
-Reproduce with [`sims/lp2_2014_fragment_pair_key_sft.cjs`](../sims/lp2_2014_fragment_pair_key_sft.cjs) or the `fragment-pair` probe in [`.github/workflows/grid-256-tests.yml`](../.github/workflows/grid-256-tests.yml).
+Reproduce with [`sims/lp2_2014_fragment_pair_key_sft.cjs`](../sims/lp2_2014_fragment_pair_key_sft.cjs) or the `fragment-pair` probe in [`.github/workflows/grid-256-tests.yml`](../.github/workflows/grid-256-tests.yml). The push-triggered [GitHub Actions run 43023624217](https://github.com/FlareZ123/liber-primus/actions/runs/43023624217) completed successfully.
 
 **Decision:** reject the direct row-per-fragment, repeating two-rune additive-key interpretation for both natural column readings, raw/φ mappings, and both signs. This does not disprove every possible use of columns 7–8 as state or route material, but no source currently selects a more elaborate operation. Do not expand this into an affine/LFSR search without a new, independent clue.
 
