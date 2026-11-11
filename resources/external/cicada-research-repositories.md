@@ -78,6 +78,20 @@ Repository: https://github.com/anon5376/cicada
 
 A reproducible execution lab, explicitly not a claim that Liber Primus is solved. Its [EXP-LP-UNKNOWN-NEXT-001](https://github.com/anon5376/cicada/tree/main/experiments/EXP-LP-UNKNOWN-NEXT-001) reports `derived_kept=0` and `verified_new_decrypt_runes=0`; no new key or plaintext was retained.
 
+### Dukotah/cicada3301 (2026; inspected 11 November 2026)
+
+Repository: https://github.com/Dukotah/cicada3301 (inspected commit `f63501d8f2d835b80c30230eb89a1110fb9197d2`)
+
+A large independent Liber Primus research package with a 309-row experiment ledger, a measured-ceiling synthesis, and focused AN-END/deep-web-hash OSINT. It reports no verified LP2 p0–55 plaintext. Useful as a prior-art index and as a bound on what its enumerated experiments establish:
+
+- [MEASURED-CEILING.md](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/liber-primus/MEASURED-CEILING.md) and [FINAL-SYNTHESIS.md](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/liber-primus/FINAL-SYNTHESIS.md): document the tested cipher/key families and a large computational panel. The authors' “OTP-class” conclusion is a **measured ceiling over enumerated families**, not proof of a literal one-time pad or global impossibility. External-key and short-seed-derived streams remain outside that ceiling.
+- [AN-END / deep-web-hash OSINT](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/liber-primus/analysis/DEEPWEB-HASH-OSINT.md) and [the 27 July 2026 archive sweep](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/liber-primus/analysis/OSINT-SWEEP-2026-07-27.md): useful negative baseline for address-free retrieval and archived v2 onion candidates. The report does not recover the target page or its preimage; treat its closure as bounded by the sources/corpora it enumerates.
+- Its 2017 ArchiveBot/CDX inventory records a 4,521-byte root HTML capture and a 680-byte `/092317.html` response, but the raw WARC response bodies are not included in the repository. The third-party domain is not authenticated as a Cicada endpoint; do not promote it without a primary-chain link.
+
+### Historical onion-hash search tooling
+
+- [martinlindhe/gohash](https://github.com/martinlindhe/gohash): a historical SHA-512 preimage-search tool whose README gives a base32 `.onion` brute-force example. Enumerating all 16-character base32 labels is (32^{16}=2^{80}), not a practical attack. Its bundled [eight-address candidate list](https://github.com/martinlindhe/gohash/blob/master/data/onion-sites.txt) was checked against the AN-END digest using SHA-512, SHA3-512 and BLAKE2b-512 over bare-address and URL forms; no match. This is a historical attempt, not evidence that the full address space was searched.
+
 ### Parcae and Rune Decrypter Prime
 
 - [ToldByNun/Parcae](https://github.com/ToldByNun/Parcae): C++20 cryptanalysis toolkit with known-page regression fixtures; the README tutorial demonstrates Atbash on the already-solved “A Warning” page, not an unknown-page decryption.
