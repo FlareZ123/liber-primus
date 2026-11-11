@@ -121,6 +121,86 @@ def p55_independent_59_selector():
     assert corpus["translit"][center] == "I"
     assert corpus["prime"][center] == 31
 
+    # DIVINITY belongs to the minus 5-cycle. Under the conditional reading
+    # that this sign also selects the fold arithmetic, fold the 17 runes
+    # strictly between D markers as left-minus-right in source order.
+    between_d = span[1:-1]
+    assert len(between_d) == 17
+
+    def fold_left_minus_right(values):
+        folded = [
+            (values[i] - values[-1 - i]) % 29
+            for i in range(len(values) // 2)
+        ]
+        if len(values) % 2:
+            folded.append(values[len(values) // 2])
+        return folded
+
+    first_fold = fold_left_minus_right(between_d)
+    assert first_fold[:3] == [16, 7, 3]
+    assert "".join(corpus["translit"][i] for i in first_fold[:3]) == "TWO"
+
+    recursive = between_d[:]
+    while len(recursive) > 1:
+        recursive = fold_left_minus_right(recursive)
+    assert recursive == [13]
+    assert corpus["translit"][13] == "P"
+    assert corpus["prime"][13] == 43
+
+    two_p_sum = 2 * corpus["prime"][13]
+    assert two_p_sum == 86
+    assert [i + 1 for i, value in enumerate(SUMS) if value == two_p_sum] == [8]
+    assert WORDS[7] == "WE"
+
+    # P27 independently presents two P runes as the sole equal outer payload
+    # pair, so its pair also totals the same p57 word number 86.
+    p27 = next(page["indices"] for page in corpus["pages"] if page["page"] == 27)
+    assert p27[1] == p27[18] == 13
+    assert corpus["prime"][p27[1]] + corpus["prime"][p27[18]] == 86
+
+    # Compare against the correct source register: strict word interiors over
+    # the complete unknown corpus. The TWO-prefix/final-P recursive signature
+    # occurs exactly once, and it is this p55 D-between-D window.
+    transcription = (
+        ROOT / "resources" / "lp2-transcription.txt"
+    ).read_text("utf8")
+    rune_lookup = {rune: i for i, rune in enumerate(corpus["runes"])}
+    unknown_stream = "%".join(transcription.split("%")[:55])
+    words = []
+    current = []
+    for char in unknown_stream:
+        if char in rune_lookup:
+            current.append(rune_lookup[char])
+        elif char in "%/" or char.isspace():
+            continue
+        elif current:
+            words.append(current)
+            current = []
+    if current:
+        words.append(current)
+    assert len(words) == 2896
+    assert sum(map(len, words)) == 12956
+    all_interiors = [
+        value
+        for word in words if len(word) > 2
+        for value in word[1:-1]
+    ]
+    assert len(all_interiors) == 7247
+
+    def has_two_p_signature(window):
+        first = fold_left_minus_right(window)
+        reduced = window[:]
+        while len(reduced) > 1:
+            reduced = fold_left_minus_right(reduced)
+        return first[:3] == [16, 7, 3] and reduced == [13]
+
+    two_p_hits = [
+        i for i in range(len(all_interiors) - 16)
+        if has_two_p_signature(all_interiors[i:i + 17])
+    ]
+    assert two_p_hits == [7209]
+    assert all_interiors[two_p_hits[0]:two_p_hits[0] + 17] == between_d
+
     # The exact interior geometry itself supplies 5 and 19. Their product
     # reverses to 59, independently selecting the previously underdetermined
     # factor 59 in NUMBER(449), without concatenating segment labels.
@@ -160,6 +240,14 @@ def p55_independent_59_selector():
         "D_span_fold_value": int(fold_bits, 2),
         "D_span_center": corpus["translit"][center],
         "D_span_center_prime": corpus["prime"][center],
+        "between_D_fold_first_level": "".join(
+            corpus["translit"][i] for i in first_fold
+        ),
+        "between_D_fold_prefix": "TWO",
+        "between_D_recursive_fold_final": "P",
+        "two_P_prime_sum": two_p_sum,
+        "p57_unique_sum86_word": "WE",
+        "unknown_interior_twoP_signature_hits": two_p_hits,
         "product_5x19": product_5_19,
         "independently_selected_number": selected,
         "number59_reversed": reverse_decimal(selected),

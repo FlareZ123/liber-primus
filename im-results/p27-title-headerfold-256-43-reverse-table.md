@@ -82,6 +82,8 @@ Historical `NUMBER(193)` independently yields factors **17×23**, so the two fac
 
 This is also a numerical cross-check on the ornament pair. The p27 title fold selects outer **P/P**, with P at GP index **13**; the p55 D…D span selects center **I**, with GP prime **31**. Reading those independently selected runes as **PI** is a plausible circumference mnemonic. The mixed index/prime numerical match is supportive rather than an authenticated instruction.
 
+The p55 17-rune interval strictly between the D markers supplies a further conditional fold check. Outer-to-inner left-minus-right GP29 folding begins **T W O** and recursively reduces to **P**. That “TWO P” signature is unique across all 7,247 strict word-interior runes of unknown LP2. Numerically two P prime weights are **43+43=86**, exactly the GP-prime sum of p57 word **WE**, the shared node of its two five-cycles. The p27 outer P/P pair independently has the same total86. This triangulates the p27 P/P result with the p55 interior and solved p57 graph, conditional on the minus-fold sign.
+
 ## The pointer decomposition predicts a missing p55 corner
 
 The P=43 orbit decomposes into a **7-state preperiod** followed by an **11-state cycle**. These sizes are source-active rather than descriptive only:

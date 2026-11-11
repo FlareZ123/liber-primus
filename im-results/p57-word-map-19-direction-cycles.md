@@ -24,6 +24,14 @@ The 19-rune D…D span has one more exact fold relation: outer-to-inner equality
 
 The p57 page has **19 body words**, and the graph below has the two candidate **5-cycles**. Carrying the ornament pair's historical **+** marker into the graph from the newly selected DIVINITY node yields **DIVINITY → OWN → SHED → FIND → CIRCUMFERENCES** before entering the plus circumference cycle. The minus map from DIVINITY stays immediately on the five-cycle containing DIVINITY/WITHIN/SURFACE. This gives the sign choice a source-derived semantic interpretation, conditional on carrying the earlier + marker forward.
 
+### Conditional minus-FOLD exposes “TWO P” and selects WE
+
+The D…D span leaves **17 runes strictly between** its two markers. The source route has already selected **FOLD**, and DIVINITY is the anchor of the graph's **minus** five-cycle. Under the conditional reading that this minus sign also specifies the fold arithmetic, combine the 17 runes outer-to-inner as **left minus right modulo29**, carrying the center forward. The first fold level begins with the exact GP runes **T W O**. Repeating the same fold recursively until one rune remains ends at **P**.
+
+The complete strict-interior register of the 55-page unknown corpus contains **7,247 runes**. Across every 17-rune window in that register, the conjunction “first fold begins TWO” plus “recursive survivor is P” occurs **exactly once**, at this p55 D-between-D window. This is a corpus uniqueness statement for the selected register, not a discovery-wide p-value.
+
+The natural numerical read “TWO P” is unusually well connected to the independently selected sources. P has GP prime43, so two P values total **86**. On p57, **WE** is the unique body word with GP-prime sum86. WE is also position8, the sole node shared by the two five-cycles, and it begins the actionable sentence “WE MUST SHED OUR OWN CIRCUMFERENCES. FIND THE DIVINITY WITHIN AND EMERGE.” Independently, the p27 title's selected outer **P/P** pair has the same total86. Thus p55's fold signature and p27's P/P converge on the p57 junction WE. Treat “TWO P” as a candidate routing instruction rather than recovered LP2 plaintext because the left-minus-right fold sign is inferred from the DIVINITY minus cycle.
+
 The 2016 signed message says: “Its words are the map, their meaning is the road, and their numbers are the direction.” This is compatible with treating the 19 words as map nodes and their GP-prime sums as step sizes, though it does not explicitly specify the modular operation.
 
 ## Reproducible map operation
