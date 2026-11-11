@@ -73,8 +73,9 @@ If the looked-up byte is a phase/previous-ciphertext-dependent additive rune shi
 | Global eight-rune phase | **4.42176760** |
 | Page-reset eight-rune phase | **4.41430860** |
 | Nine-section-reset eight-rune phase, **same** 232 tables reused across sections | **4.41259832** |
+| Word-reset eight-rune phase, **same** 232 tables reused across all words | **4.43918740** |
 
-All three exceed the **4.28909395** highest marginal GP-plaintext entropy among the 89 native-English controls. The [single-file reproducer](../sims/lp2_cipher_feedback_entropy_sft.cjs) now independently computes the section-reset variant from original source boundaries and asserts the exact values. Consequently **no direct reversible, fixed secret previous-ciphertext × eight-phase GP29 alphabet lookup of this natural table shape** can explain the original as ordinary native-GP English, even if every hidden table value were freely chosen. This rejects a whole concrete source-led cipher model without another grid-key search. Section-dependent *distinct* keys, changing hidden state, nonbijective transforms or non-GP output are outside the invariant. The proposed p50 last232 selection remains an unverified reading of the numerals, not an authenticated key.
+All four exceed the **4.28909395** highest marginal GP-plaintext entropy among the 89 native-English controls. The [single-file reproducer](../sims/lp2_cipher_feedback_entropy_sft.cjs) now independently computes the section-reset and word-reset variants from original source boundaries and asserts the exact values. Consequently **no direct reversible, fixed secret previous-ciphertext × eight-phase GP29 alphabet lookup of this natural table shape** can explain the original as ordinary native-GP English, even if every hidden table value were freely chosen. This rejects a whole concrete source-led cipher model without another grid-key search. Section-dependent *distinct* keys, changing hidden state, nonbijective transforms or non-GP output are outside the invariant. The proposed p50 last232 selection remains an unverified reading of the numerals, not an authenticated key.
 
 ## Positive control and interpretation
 
