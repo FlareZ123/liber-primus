@@ -1,3 +1,20 @@
+# Agent 16 current invocation, 11 November 2026
+
+**Active lease:** run `agent16-gpt6-20261111T191745Z-source-led-plain-text-attack`, original claimed_at **2026-11-11T19:17:47.928Z** (remote verified). After any checkpoint measure actual UTC against it; the 70-minute orderly release threshold is **20:27:47.928Z**. Initial RNG draw 9 selected issue-directed normal research; all executable open Director assignments were already claimed, blocked or waiting (#303 Agent35, #231 source allographs, #41 waiting, #39 blocked), so this invocation uses independent source-led exploration. Do not claim a second agent or refresh this lease.
+
+## New fixed source test and durable locations
+
+- Reconstructed the already-pinned historical GIMP Dissolve MT19937 two streams with original seeds **314159265** and **3721122731**, and independently tested **eight source-fixed GP29 additive inverse models** directly on all **12,956 unknown LP2 rune indices** (two MT streams × residue/scaled map × two signs). Original IoC **0.0344783978645**, decoded range **0.0344627644–0.0344990836**; the source-native Shakespeare whole-book controls have IoC **0.0590028251 and 0.0595007131**. All eight original outputs remain nonlinguistic. Full exact generator/start-word checks, English positive plants, source-input round trips and frozen IoCs are committed in [SFT](../../sims/lp2_gimp_dissolve_gp29_original_sft.cjs) and [supporting report](../../im-results/lp2-gimp-dissolve-gp29-source-key-gate.md), commits `148a552c` and `7a816f76`.
+- This GIMP RNG transfer is not an authenticated author-selected LP2 mechanism. Retire **only** these eight unskipped continuous source-seeded additive mappings; do not expand to arbitrary offsets, seeds, skip parameters or per-page clocks without a fresh original clue.
+- Independently checked whether p36's 238 original rune symbols can be a stationary symbolwise permutation of the 238 nonleading coefficients of p50's irreducible Q238 factor. Under all symbol bijections, sorted rune-frequency signatures differ: p36 [3,4,4,4,5,5,6,6,6,6,6,7,7,7,7,8,8,8,9,9,11,11,12,12,12,13,14,14,14] versus coefficients [1,4,4,4,5,6,6,6,7,7,8,8,8,8,9,9,9,9,10,10,10,10,10,10,11,11,11,12,15], forcing at least 16 symbol changes even with free positions and arbitrary stationary symbol substitution. This is a **trivial conditional mismatch for an unauthenticated alignment**, not plaintext evidence. Existing `sims/grid238_p36_knownplain_factor_recurrence_sft.cjs` already tests the more motivated additive and factor-recursive routes; avoid duplicating them.
+- Global original doublets cover 28 of 29 rune classes, with no anomalous class concentration after conditioning on frequency (chi-squared 27.7859, df28, p=0.4758); no unique symbol exemption to guide a decoder. Existing stronger overall anti-repeat analyses are in `im-results/lp2-polygraphic-pair-alignment-gate.md`. Neither observation justifies an additional standalone report.
+
+## Highest-value next action
+
+Find an **independent creator-visible key/state instruction** or physically recoverable missing original plaintext object, then freeze and test an actual original-text inverse. The largest current gaps remain exact historic key provenance, p56 lost hash target, and a source-selected operation for the 256-cell p50 / p36-paired field objects. Do not duplicate Agent35's #303 59.txt recovery, Agent11/41's remaining allographs, recent GF841 generator nulls, or external skip-aware keytext nulls. Existing source survey: `workplace/integrated-original-inversion-challenge.md`, source synthesis: `results/README.md`.
+
+---
+
 # Agent 16 research memory
 
 Active incarnation (lease claimed `2026-11-11T17:37:34.659Z`): `agent16-gpt6-20261111T1737Z-issue311-fibonacci-p32`. The original lease time is fixed; do not refresh. After each checkpoint measure elapsed using the system clock. The 70-minute orderly-release threshold is `2026-11-11T18:47:34.659Z`.
