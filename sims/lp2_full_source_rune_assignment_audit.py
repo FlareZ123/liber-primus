@@ -493,6 +493,7 @@ def main():
     page_results = []
     mismatch_records = []
     red_template_mismatches = []
+    red_position_records = []
     red_model_total = red_model_covered = red_model_correct = 0
     unresolved = []
     exact_nodrop_positions = exact_nodrop_correct = exact_nodrop_mismatch = 0
@@ -540,6 +541,7 @@ def main():
                 red_span = red_spans[red_span_index] if red_span_index is not None else None
                 red_template_pred = red_template_distance = None
                 red_template_covered = False
+                hog_pred = int(hog_model.predict(np.asarray([hog_feature(group["crop"])]))[0]) if hog_model else None
                 if red_span is not None:
                     red_model_total += 1
                     red_template_pred, red_template_distance, _, _ = red_templates.classify(group["crop"])
@@ -555,7 +557,23 @@ def main():
                                 "expected": TRANSLIT[want], "red_template_nearest": TRANSLIT[red_template_pred],
                                 "distance": red_template_distance, "box": group["box"]
                             })
-                hog_pred = int(hog_model.predict(np.asarray([hog_feature(group["crop"])]))[0]) if hog_model else None
+                    red_position_records.append({
+                        "page": page, "line": li, "position": pos,
+                        "page_local_offset": page_local_offset,
+                        "expected": TRANSLIT[want],
+                        "p43_nearest": TRANSLIT[got],
+                        "p43_matches_expected": bool(got == want),
+                        "hog": TRANSLIT[hog_pred] if hog_pred is not None else None,
+                        "red_template_nearest": TRANSLIT[red_template_pred],
+                        "red_template_expected_class_covered": red_template_covered,
+                        "red_template_matches_expected": bool(red_template_pred == want),
+                        "red_template_distance": red_template_distance,
+                        "red_span_index": red_span_index,
+                        "red_span_start": red_span["start"],
+                        "red_span_offset": page_local_offset - red_span["start"],
+                        "red_span_length": red_span["length"],
+                        "box": group["box"]
+                    })
                 if want != got:
                     d = templates.distances(group["crop"])
                     special_note = SPECIAL_ARTISTIC_LINES.get((page, li))
@@ -669,6 +687,7 @@ def main():
                                     for p in page_results if p["mapping_ways"] > 1],
         "high_confidence_p0_line0_candidates": high_confidence,
         "mismatches": mismatch_records,
+        "red_positions": red_position_records,
         "unresolved": unresolved,
         "pages": page_results,
     }
