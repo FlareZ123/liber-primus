@@ -22,18 +22,26 @@ jobs:
           node --check sims/lp2_p56_freenet_chk_uri_sft.cjs
           node sims/lp2_p56_freenet_chk_uri_sft.cjs
           node --check sims/lp2_p56_hyphanet_live_fetch.cjs
-      - name: Start ephemeral historical Freenet 0.7 (Hyphanet) opennet node
+      - name: Prepare ephemeral 0.7 opennet node with first-run wizard configured
+        run: |
+          mkdir -p "$RUNNER_TEMP/lp2-hyphanet"
+          cp sims/lp2_p56_hyphanet_ephemeral_node.ini "$RUNNER_TEMP/lp2-hyphanet/freenet.ini"
+          chmod 777 "$RUNNER_TEMP/lp2-hyphanet"
+          chmod 666 "$RUNNER_TEMP/lp2-hyphanet/freenet.ini"
+      - name: Start isolated historical Freenet 0.7 (Hyphanet) opennet
         run: |
           docker pull ghcr.io/soren-work/freenet:latest
           docker image inspect ghcr.io/soren-work/freenet:latest --format '{{.Id}}'
-          docker run -d --name lp2-hyphanet --network host --memory 1536m -e FREENET_MEM=512m -e FREENET_STORE_SIZE=256M -e FREENET_BANDWIDTH=512k -e FREENET_BANDWIDTH_DOWN=1024k ghcr.io/soren-work/freenet:latest
+          docker run -d --name lp2-hyphanet --memory 1536m -p 127.0.0.1:8888:8888/tcp -p 28950:28950/udp -v "$RUNNER_TEMP/lp2-hyphanet:/data" ghcr.io/soren-work/freenet:latest
+      - name: Allow the ephemeral node a fixed real-time bootstrap interval
+        run: sleep 180
       - name: Probe four source-locked candidate CHKs and a documented public control
         run: node sims/lp2_p56_hyphanet_live_fetch.cjs
       - name: Collect bounded node bootstrap diagnostics
         if: always()
         run: |
           docker ps --filter name=lp2-hyphanet
-          docker logs --tail 120 lp2-hyphanet || true
+          docker logs --tail 80 lp2-hyphanet || true
       - name: Upload immutable request summaries and any raw target content
         if: always()
         uses: actions/upload-artifact@v4
