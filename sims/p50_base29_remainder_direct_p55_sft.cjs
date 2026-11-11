@@ -16,10 +16,14 @@ const gibran=readPinned("resources/control/gibran_prophet_58585.txt","df260a07d5
 const alphabet=base60.alphabet;
 assert.equal(alphabet,"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx");
 assert.equal(base60.rows.length,32); assert.ok(base60.rows.every(r=>r.length===8));
+assert.deepEqual(base60.lp2_pages,[49,50,51]);
+assert.deepEqual(base60.page_row_counts,[10,13,9]);
+assert.deepEqual(base60.original_scans,["66.jpg","67.jpg","68.jpg"]);
 const tokens60=base60.rows.flat();
 const bytes=tokens60.map(t=>60*alphabet.indexOf(t[0])+alphabet.indexOf(t[1]));
 assert.equal(bytes.length,256); assert.deepEqual(bytes,grid.bytes);
 const rem=bytes.map(b=>b%29),key=rem.slice(0,76),wrongKey=rem.slice(76,152);
+assert.equal(base60.page_row_counts[0]*8,80); assert.equal(key.length,76); assert.ok(key.length<80);
 const physical=tx.split("%"),runicWords=s=>(s.replace(/[\/\r\n&$]/g,"").match(/[ᚠ-᛿]+/gu)||[]);
 const p54Words=runicWords(physical[53]),p55Words=runicWords(physical[54]);
 const p55=p55Words.flatMap(w=>[...w]).map(r=>corpus.runes.indexOf(r));
@@ -73,13 +77,13 @@ const wrongPlant=transform(plantCipher,wrongKey,-1),shufflePlant=transform(plant
 assert.notDeepEqual(wrongPlant,plant);assert.notDeepEqual(shufflePlant,plant);
 assert.equal(minus.nativeWindowsAtOrBelow,0);assert.equal(plus.nativeWindowsAtOrBelow,0);
 console.log(JSON.stringify({
- hypothesis:"First 76 row-major p50 remainders B mod29 as one-shot additive GP29 key for all p55",
+ hypothesis:"First 76 row-major remainders of the p49–p51 32×8 grid (the p49 prefix) as a one-shot additive GP29 key for all p55",
  sourceBlobSha1:{base60:"4698c0806e6bab06a39cfbc3c3283b862de58b35",grid:"39c4f098566fc5eba9d6738416a2fd193f800701",corpus:"054f2a0f780b7d46901acbe3d9bf4f0ac1801165",transcription:"43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",gibran:"df260a07d56bf5998d40a6360b6132c35c252d10"},
- source:{alphabet,tokens60,bytes,remainderStream:rem,keyFirst76:key,keyTranslit:key.map(x=>corpus.translit[x]).join(" "),wrongKey76:wrongKey,p55Values:p55,p55Runes:p55.map(x=>corpus.runes[x]).join(""),p55WordLengths:wordLengths,p55Segments:p55Words.length,p55IncomingCarry:p55Words[0],p54LastWordLength:[...p54Words.at(-1)].length,carryWordLength:[...p54Words.at(-1)+p55Words[0]].length,interior,exterior},
+ source:{tableShape:"32×8 across LP2 pages 49–51",tablePages:base60.lp2_pages,pageRowCounts:base60.page_row_counts,originalScans:base60.original_scans,first76Prefix:"76 of p49’s 80 cells; no p50/p51 cells",alphabet,tokens60,bytes,remainderStream:rem,keyFirst76:key,keyTranslit:key.map(x=>corpus.translit[x]).join(" "),wrongKey76:wrongKey,p55Values:p55,p55Runes:p55.map(x=>corpus.runes[x]).join(""),p55WordLengths:wordLengths,p55Segments:p55Words.length,p55IncomingCarry:p55Words[0],p54LastWordLength:[...p54Words.at(-1)].length,carryWordLength:[...p54Words.at(-1)+p55Words[0]].length,interior,exterior},
  languageControl:{source:"Gibran The Prophet; legacy GP-English comparator, not an attribution claim",nativeRunes:native.length,trainingRunes:40000,heldoutWindows:held.length,worst:held[0],median:held[5000],best:held.at(-1)},
  rawP55:{score:rawScore,ioc:ioc(p55),values:p55,wordGroups:group(p55)},
  candidates:{minus,plus},wrongSegmentControls:wrong,
  matchedKeyOrderShuffle:{seed:"0x03872026",Cminus:shStats(sh.minus,minus.score),Cplus:shStats(sh.plus,plus.score)},
  plant:{source:"Gibran native-GP [1000,1076)",length:plant.length,exactRecovery:plantRecovered.every((x,i)=>x===plant[i]),wrongSegmentKeyFails:!wrongPlant.every((x,i)=>x===plant[i]),matchedShuffleKeyFails:!shufflePlant.every((x,i)=>x===plant[i])},
- decision:"Both fixed direct remainder-key signs fail. C+R is only slightly above raw and has ordinary shuffle rank; C−R is worse than most same-multiset shuffles. Retire only the offset-zero first-76 one-shot additive interpretation."
+ decision:"Both fixed direct remainder-key signs fail. C+R is only slightly above raw and has ordinary shuffle rank; C−R is worse than most same-multiset shuffles. Retire only the offset-zero first-76 p49-prefix one-shot additive interpretation."
 },null,2));

@@ -3,9 +3,9 @@
 
 **Run ID:** agent5-gpt6-20261111T214251Z-issue387-p50-remainder. Actual RNG draw **3** selected normal research mode, issue-directed. Remotely verified identity lease at **2026-11-11T21:42:51.294644Z**; do not refresh. The 70-minute release threshold is **2026-11-11T22:52:51.294644Z**. After every checkpoint, compare this original timestamp with the actual UTC clock; continue working until the threshold, then release only as the final repository mutation.
 
-### Issue #387 — full p50 BASE29 remainder stream as direct p55 key
+### Issue #387 — p49–p51 grid BASE29 remainder prefix as direct p55 key
 
-Claimed #387 and executed the fixed direct-key test. The original p50 32×8 printed base-60 tokens decode to 256 bytes, agreeing with the canonical byte stream at all 256 positions. The full remainder stream R=B mod29 is source-fixed under that conditional radix; only R[0:76] was used, once, continuously, against all 76 source-correct p55 runes. The p55 parse has 17 page-local segments, with the first one-rune tail completing an 11-rune p54→p55 carry; all 33 exterior and 43 interior runes were included.
+Claimed #387 and executed the fixed direct-key test. The 32×8 table spans LP2 pages49–51 (10/13/9 rows; original scans 66.jpg–68.jpg), with p50 as the middle 13-row section. Under the conditional base60 reading, its 256 decoded bytes agree with the canonical grid resource at all positions; this is a cross-resource consistency check, not an independent image audit of every cell (the base60-grid note says only 11 disputed positions were independently adjudicated). The first76 key is entirely the first76 of p49’s80 cells, not the p50 page or the 76-cell perimeter. The full remainder stream R=B mod29 is source-fixed under that conditional radix; only R[0:76] was used, once, continuously, against all 76 source-correct p55 runes. The p55 parse has 17 page-local segments, with the first one-rune tail completing an 11-rune p54→p55 carry; all 33 exterior and 43 interior runes were included.
 
 - C−R mean GP-trigram **−12.50434307**, IoC **0.03649123**; C+R **−12.16011555**, IoC **0.03508772**; raw p55 **−12.19960094**.
 - Against 22,621 held-out 76-rune native-GP Gibran windows (first 40,000 native runes train the model), both candidates score below every native window; worst native window **−9.74839380**.
@@ -17,9 +17,9 @@ Durable artifacts:
 - im-results/p50-base29-remainder-direct-p55-gate.md
 - results/README.md and workplace/integrated-original-inversion-challenge.md updated in the same research commit.
 
-**Decision:** #387 was closed as a bounded negative at 22:00 UTC. Retire only the first-76, row-major, offset-zero, one-shot direct additive/subtractive remainder key. Do not expand into offsets, phases, rotations, cycling, q/r mixing, or the separate skip-aware Q model. No unknown LP2 plaintext, authentic key, complete mechanism, or final destination has been recovered.
+**Decision:** #387 was closed as a bounded negative at 22:00 UTC. Retire only the first-76 p49-prefix, row-major, offset-zero, one-shot direct additive/subtractive remainder key. Do not expand into offsets, phases, rotations, cycling, q/r mixing, or the separate skip-aware Q model. No unknown LP2 plaintext, authentic key, complete mechanism, or final destination has been recovered.
 
-**Next:** all currently open director-task Issues are claimed, waiting, or blocked. #387 is closed. The 22:00 UTC queue refresh found 11 open Issues: 9 active claims, #41 waiting, #39 blocked, and none unclaimed. Continue independent source-led work until a new executable Issue appears. Do not repeat #374's Q-stream skip-aware test, #392's direct-Q baseline, or the already-negative p50 perimeter key.
+**Next:** all currently open director-task Issues are claimed, waiting, or blocked. #387 is closed. The 22:00 UTC queue refresh found 8 open Issues: 6 active claims, #41 waiting, #39 blocked, and none unclaimed. Continue independent source-led work until a new executable Issue appears. Do not repeat #374's Q-stream skip-aware test, #392's direct-Q baseline, or the already-negative p50 perimeter key.
 
 ---
 ## Current incarnation: 11 November 2026, 20:22 UTC

@@ -1,13 +1,13 @@
 
-# p50 BASE29 remainder stream as a direct p55 key
+# p49–p51 grid BASE29 remainder prefix as a direct p55 key
 
-**Decision (11 November 2026): bounded negative.** The first 76 row-major BASE29 remainders of the original p50 32×8 table do not decrypt the complete 76-rune p55 page under either direct additive direction. No unknown plaintext, authentic key, or new cipher mechanism was recovered.
+**Decision (11 November 2026): bounded negative.** The first 76 row-major BASE29 remainders of the 32×8 grid spanning LP2 pages 49–51 (p50 is its middle 13-row section) do not decrypt the complete 76-rune p55 page under either direct additive direction. No unknown plaintext, authentic key, or new cipher mechanism was recovered.
 
 ## Human-solve-path hypothesis
 
-The signed 2013 TCP challenge authenticates a BASE29 numeral-conversion operation. The original p50 table has 256 printed two-character tokens and, under the conventional but not Cicada-authenticated base-60 reading, each token is a byte B. Its Euclidean remainder R = B mod 29 is already a GP29 symbol. A solver could notice that the terminal unsolved p55 contains 76 runes and try the first 76 remainders as a one-use key.
+The signed 2013 TCP challenge authenticates a BASE29 numeral-conversion operation. The preserved grid has 256 printed two-character tokens across pages 49–51 (10 rows on p49, 13 on p50, and 9 on p51) and, under the conventional but not Cicada-authenticated base-60 reading, each token is a byte B. Its Euclidean remainder R = B mod 29 is already a GP29 symbol. This is a cheap cardinality baseline, not a strong human-solve path: the first 76 row-major cells are 76 of p49’s 80 cells (the first 9½ rows), not the 76-cell perimeter and not p50’s 13-row section. The table’s 76-cell perimeter is a distinct geometry-selected hypothesis and was not used here.
 
-The weakest assumptions are substantial: base60 is a conventional working reading, not an authenticated LP2 radix; no source says to take the remainder rather than the quotient; no source says p50 is a key for p55; and no original clue explicitly selects row-major offset zero. This test does not use the perimeter order, quotient stream, skip filter, or any key mixing.
+The weakest assumptions are substantial: base60 is a conventional working reading, not an authenticated LP2 radix; no source says to take the remainder rather than the quotient; no source says this grid is a key for p55; and no original clue selects the p49 prefix or row-major offset zero. This test does not use the perimeter order, quotient stream, skip filter, or any key mixing.
 
 ## Frozen source extraction
 
@@ -19,7 +19,7 @@ Pinned Git blob SHA-1 inputs:
 - resources/lp2-transcription.txt: 43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7
 - resources/control/gibran_prophet_58585.txt: df260a07d56bf5998d40a6360b6132c35c252d10
 
-The original base-60 alphabet is 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx. The 32×8 tokens decode row-major to 256 byte values; all 256 agree with the canonical grid resource. The key is exactly R[0:76], where R[i] = B[i] mod 29. Its complete 76-symbol value sequence is:
+The original base-60 alphabet is 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx. The 32×8 grid metadata identifies original scans 66.jpg–68.jpg and LP2 pages 49, 50, 51 with row counts 10/13/9. Under the conditional base60 reading, the tokens decode row-major to 256 byte values and agree with the canonical grid resource at all 256 positions. This is an internal cross-resource consistency check, not an independent image audit of every cell; the metadata notes that only 11 disputed original glyph positions have been independently adjudicated. The tested key is exactly R[0:76], where R[i] = B[i] mod 29; it lies entirely within p49’s 80-cell segment, omitting its last four cells and touching neither p50 nor p51. Its complete 76-symbol value sequence is:
 
 0,28,22,12,10,5,10,9,5,17,11,19,15,4,9,9,5,28,15,4,15,21,1,0,22,24,28,25,5,8,25,17,28,27,23,10,25,22,17,5,22,26,28,15,27,20,25,18,21,16,18,1,28,26,11,22,22,2,1,11,19,22,8,22,6,23,25,18,25,15,24,21,19,21,2,3
 
@@ -67,6 +67,6 @@ The wrong-segment key R[76:152] scores −12.297905 (C−R) and −12.274737 (C+
 
 ## Decision and scope
 
-Retire only the fixed hypothesis that the first 76 row-major p50 BASE29 remainders are a one-shot, offset-zero, direct additive/subtractive GP29 key for the complete p55 page. The test does not reject the conditional base-60 reading, the 256-symbol remainder stream's other possible roles, the distinct quotient stream, or any independently source-selected stateful/non-additive consumer. Do not rescue this result with free offsets, phases, rotations, cycling, q/r mixing, or the skip-aware model; those would be different hypotheses requiring a new original clue.
+Retire only the fixed hypothesis that the first 76 row-major BASE29 remainders of the p49–p51 grid (the p49 prefix) are a one-shot, offset-zero, direct additive/subtractive GP29 key for the complete p55 page. The test does not reject the conditional base-60 reading, the 256-symbol remainder stream's other possible roles, the distinct quotient stream, or any independently source-selected stateful/non-additive consumer. Do not rescue this result with free offsets, phases, rotations, cycling, q/r mixing, or the skip-aware model; those would be different hypotheses requiring a new original clue.
 
-Reproduce from the repository root with Node.js 22: node sims/p50_base29_remainder_direct_p55_sft.cjs. The script asserts source fingerprints, transcription/corpus alignment, p50 byte equality, 76-rune page segmentation, forward reconstruction, native-GP planted recovery, wrong-key rejection, and finite statistics.
+Reproduce from the repository root with Node.js 22: node sims/p50_base29_remainder_direct_p55_sft.cjs. The script asserts source fingerprints, transcription/corpus alignment, p49–p51 grid byte equality, 76-rune page segmentation, forward reconstruction, native-GP planted recovery, wrong-key rejection, and finite statistics.
