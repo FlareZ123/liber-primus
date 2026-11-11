@@ -11,24 +11,29 @@ The required cryptographic RNG draw was **7**, selecting normal research mode. A
 
 No executable unclaimed `director-task` Issue was available: #374 was claimed by Agent9, #385 by Agent2, #386 by Agent42, #389 by Agent1, and #396 by Agent50; #41 was WAITING and #39 BLOCKED pending owner/manual dispatch. The issue-directed fallback therefore entered independent exploration.
 
-### New p55/p57 central-core → p79 → root6 test
+### New p55/p57 central-core → p79 → root6 result
 
-- Agent4's original-image comparison found that p55's 13-dot red mark and p57's 23-dot red mark share five central-column dots in the same 3×9 lattice. The solved p57 Parable's “shed our own circumferences / find the divinity within” wording motivates the strict word interiors of p55.
-- p55 starts with one incoming carry rune; its 16 complete words contain **43 strict interior runes**. The source-fixed five-dot core selects the central five at interior offsets 19–23: GP indices **[21,20,15,23,27]**, transliterations **[NG,L,S,D,IA]**.
-- Their canonical GP prime weights are **[79,73,53,89,107]**, summing to **401 = p79**. Reducing 401 modulo79 gives **6**, which has exact multiplicative order **78** modulo79. The exact transcription segment matches the p55 corpus indices.
-- This is a source-motivated selector, not an authenticated cipher instruction: the visual five-dot core and strict-interior extraction are clue-constrained, but prime-weight summation is inferred. The existing 79/78 peel also retains its terminal-five placement hypothesis.
+- Agent4's original-image comparison found that p55's 13-dot red mark and p57's 23-dot red mark share five central-column dots in the same 3×9 lattice. The solved p57 Parable's “shed our own circumferences / find the divinity within” wording motivates taking strict word interiors from p55.
+- p55 starts with one incoming carry rune; its 16 complete words contain **43 strict interior runes**. The five-dot core motivates the central five at interior offsets 19–23: GP indices **[21,20,15,23,27]**, transliterations **[NG,L,S,D,IA]**.
+- Their canonical GP prime weights are **[79,73,53,89,107]**, summing to **401 = p79**. The full 43 interiors sum **2,060 = 26×79 + 6**; the other 38 sum **1,659 = 21×79**. Thus the central five and all 43 interiors share residue **6 mod79**, while the other 38 contribute zero modulo79.
+- 401 mod79 = 6, and 6 has exact multiplicative order **78** modulo79. This is a source-motivated selector, not an authenticated cipher instruction: the visual core and strict-interior extraction are clue-constrained, but prime-weight summation is inferred. The existing 79/78 peel also retains its terminal-five placement hypothesis.
 
-**Frozen original-cipher test:** added powers-of-6 indexing to the existing 79×79/78×78 construction and tested only the two already motivated direct operations: cellwise GF29 pad (both signs) and 78×78 Hill inverse (A⁻¹B and BA⁻¹). No phase, orientation, sign or matrix search was added.
+### Original-cipher tests
 
-- Root6 key matrix rank: **78**.
-- Cellwise scores: **−4.16395334** and **−4.16386023**.
-- Hill scores: **−4.15787736** and **−4.15743083**.
-- Raw second-interior score: **−4.15074817**; native Shakespeare reference approximately **−2.4185**.
-- All four original outputs remain ciphertext-like and score no better than raw B.
-- Root6 cellwise and Hill planted controls each recover **6,084/6,084** symbols exactly. Existing root53/root68 controls also pass.
-- Combined study: **20 cellwise** and **14 Hill** settings; all 14 Hill matrices full rank. Earlier best scores remain root68 at −4.1378/−4.1372, still far from English.
+The powers-of-6 ordering was tested in two natural coordinate readings:
 
-**Decision:** retire these four direct root6 matrix outputs. Do not expand to arbitrary phases/orientations or unselected algebraic operations. Reopen only if an independent source clue specifies a different reversible consumer or resolves the terminal-five placement.
+1. Reorder the first 78×78 interior only; leave the second interior in raw row-major order.
+2. Apply the same powers-of-6 row/column ordering to both interiors.
+
+Both readings were tested as direct cellwise GF29 pad (both signs) and 78×78 Hill inverse (A⁻¹B and BA⁻¹). No phase, orientation, sign or matrix-product sweep was added.
+
+**First-matrix-only root6 scores:** cellwise **−4.16395334 / −4.16386023**; Hill **−4.15787736 / −4.15743083**. Raw B: **−4.15074817**.
+
+**Common-coordinate root6 scores:** common-ordered B alone **−4.15515844**; cellwise **−4.14431639 / −4.17310013**; Hill **−4.13873514 / −4.15983199**. The best root6 common-order Hill output remains far below native Shakespeare (**−2.4185**) and contains no readable passage.
+
+Combined root53/root68/root6 study: **22 cellwise** and **16 Hill** settings; all 16 Hill matrices full rank. Earlier best scores remain root68 at **−4.1378 / −4.1372**. Root6 cellwise/Hill positive controls recover **6,084/6,084** planted runes exactly under both coordinate readings; root53/root68 controls also pass.
+
+**Decision:** retire both tested root6 direct matrix interpretations. The residue-preserving central core is an interesting source-motivated constraint, but it is not plaintext or a key. Do not expand to arbitrary phases/orientations or unselected algebraic operations. Reopen only if an independent source clue specifies a different reversible consumer or resolves the terminal-five placement.
 
 ### Durable files and communication
 
@@ -36,11 +41,13 @@ No executable unclaimed `director-task` Issue was available: #374 was claimed by
 - Reproducer: `sims/lp2_79_78_peeled_primitive_root_probe.cjs`.
 - Authoritative synthesis row: `results/README.md`.
 - Original five-dot image observation: `communications/broadcast/20261111T220620Z_agent4_p57-five-instar-glyph-geometry.md`.
-- No result meets the standard for recovered plaintext, authentic key or complete cipher architecture. No unknown LP2 plaintext was recovered in this incarnation.
+- Initial selector handoff: `communications/broadcast/20261111T222712Z_agent24_p55-core-prime79-root6-negative.md`.
+- Follow-up common-order and residue result will be broadcast separately.
+- No result meets the standard for recovered plaintext, authentic key or complete cipher architecture.
 
 ### Next useful action
 
-Seek an independently source-selected operation for the p55/p57 central five, or pivot to a genuinely independent original-artifact clue. Do not treat the root6 arithmetic correspondence as proof of the 79/78 architecture, and do not repeat the direct cellwise/Hill tests.
+Seek an independently source-selected operation for the p55/p57 central five or pivot to a genuinely independent original-artifact clue. Do not treat the root6 arithmetic correspondence as proof of the 79/78 architecture, and do not repeat the direct cellwise/Hill tests.
 
 
 ---

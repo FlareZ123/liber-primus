@@ -49,6 +49,9 @@ function run(){
  const p55Core=p55Interior.slice(19,24);
  const p55CorePrimeWeights=p55Core.map(i=>GP.prime[i]);
  const p55CorePrimeSum=p55CorePrimeWeights.reduce((a,b)=>a+b,0);
+ const p55InteriorPrimeSum=p55Interior.reduce((sum,i)=>sum+GP.prime[i],0);
+ const p55Outer38PrimeSum=p55InteriorPrimeSum-p55CorePrimeSum;
+ assert.equal(p55InteriorPrimeSum,2060);assert.equal(p55Outer38PrimeSum,1659);assert.equal(p55Outer38PrimeSum%79,0);assert.equal(p55InteriorPrimeSum%79,p55CorePrimeSum%79);
  let p55CorePrimeOrdinal=0;
  for(let n=2;n<=p55CorePrimeSum;n++){let prime=true;for(let d=2;d*d<=n;d++)if(n%d===0){prime=false;break;}if(prime)p55CorePrimeOrdinal++;}
  assert.equal(p55CorePrimeSum,401);assert.equal(p55CorePrimeOrdinal,79);
@@ -59,6 +62,7 @@ function run(){
  for(const q of [2,3,13])assert.notEqual(powmod(root6,78/q,79),1);
  const rev=powers.slice().reverse(),rev68=powers68.slice().reverse(),rev6=powers6.slice().reverse();
  const orderA=(order,rs=0,cs=0)=>Array.from({length:N},(_,i)=>Array.from({length:N},(_,j)=>A[order[(i+rs)%N]-1][order[(j+cs)%N]-1]));
+ const orderB=order=>Array.from({length:N},(_,i)=>Array.from({length:N},(_,j)=>B[order[i]-1][order[j]-1]));
  const maps=[
   {name:"raw-coordinate",matrix:A},
   {name:"pow53",matrix:orderA(powers)},
@@ -71,11 +75,17 @@ function run(){
   {name:"pow68-parable-2013-reverse",matrix:orderA(rev68)},
   {name:"pow6-p55-central-five-prime-sum",matrix:orderA(powers6)}
  ];
+ const map6=maps.find(m=>m.name==="pow6-p55-central-five-prime-sum");
+ const B6=orderB(powers6),B6flat=B6.flat();
  const lang=languageModel(),cellwise=[];
  for(const m of maps){const key=m.matrix.flat(),stats=pairStats(key,Bflat);for(const sign of [1,-1]){const p=key.map((v,i)=>mod(sign*(Bflat[i]-v)));cellwise.push({mapping:m.name,sign,meanLogProbability:lang.score(p),...stats,preview:p.slice(0,90).map(v=>GP.translit[v]).join("")});}}
+ const commonKey6=map6.matrix.flat(),commonStats6=pairStats(commonKey6,B6flat);
+ for(const sign of [1,-1]){const p=B6flat.map((v,i)=>mod(sign*(v-commonKey6[i])));cellwise.push({mapping:"pow6-common-order",sign,meanLogProbability:lang.score(p),...commonStats6,preview:p.slice(0,90).map(v=>GP.translit[v]).join("")});}
  const hill=[];
  const hillMaps=[...maps.slice(0,4),...maps.filter(m=>m.name.startsWith("pow68")),...maps.filter(m=>m.name.startsWith("pow6"))];
  for(const m of hillMaps){const inv=invert(m.matrix);if(!inv.inverse){hill.push({mapping:m.name,rank:inv.rank,invertible:false});continue;}for(const side of ["Ainv-times-B","B-times-Ainv"]){const P=side==="Ainv-times-B"?multiply(inv.inverse,B):multiply(B,inv.inverse),flat=P.flat();hill.push({mapping:m.name,rank:inv.rank,invertible:true,side,meanLogProbability:lang.score(flat),preview:flat.slice(0,100).map(v=>GP.translit[v]).join("")});}}
+ const inv6Common=invert(map6.matrix);assert.equal(inv6Common.rank,N);assert(inv6Common.inverse);
+ for(const side of ["Ainv-times-B","B-times-Ainv"]){const P=side==="Ainv-times-B"?multiply(inv6Common.inverse,B6):multiply(B6,inv6Common.inverse),flat=P.flat();hill.push({mapping:"pow6-common-order",rank:inv6Common.rank,invertible:true,side,meanLogProbability:lang.score(flat),preview:flat.slice(0,100).map(v=>GP.translit[v]).join("")});}
  const plant=Array.from({length:N},(_,r)=>lang.test.slice(r*N,(r+1)*N));
  const testKey=maps[1].matrix.flat(),cellCipher=plant.flat().map((v,i)=>mod(v+testKey[i]));
  assert.deepEqual(cellCipher.map((v,i)=>mod(v-testKey[i])),plant.flat());
@@ -91,7 +101,6 @@ function run(){
   assert.deepEqual(multiply(inv68Result.inverse,hillCipher68),plant);
   root68HillExact=true;
  }
- const map6=maps.find(m=>m.name==="pow6-p55-central-five-prime-sum");
  const testKey6=map6.matrix.flat(),cellCipher6=plant.flat().map((v,i)=>mod(v+testKey6[i]));
  assert.deepEqual(cellCipher6.map((v,i)=>mod(v-testKey6[i])),plant.flat());
  const inv6Result=invert(map6.matrix);
@@ -101,13 +110,13 @@ function run(){
  const root6HillExact=true;
  const bestCell=[...cellwise].sort((a,b)=>b.meanLogProbability-a.meanLogProbability),bestHill=hill.filter(x=>x.invertible).sort((a,b)=>b.meanLogProbability-a.meanLogProbability);
  const result={
-  classification:"source-motivated 79/78 peel test of red-derived root53, 2013 Parable-derived root68, and p55/p57-core-derived root6; direct mod-29 cellwise and Hill-matrix relations",
-  source:{totalRunes:stream.length,firstBlock:first.length,secondBlock:second.length,markerA:markerA.map(v=>GP.translit[v]).join(""),markerAOffsets:[6555,6560],markerB:markerB.map(v=>GP.translit[v]).join(""),markerBOffsets:[12950,12955],secondBlockMarkerOffsets:[6389,6394],assumedMissingSecondBlockCells:[6395,6399],redSpanSums:{p15,p40,p53},peeledDimensions:{first79:79*79,aligned78:N*N,second78:N*N},primitiveRoot:53,powerPrefix:powers.slice(0,12),powerLast:powers.at(-1),parableProduct:parable,parableResidue79:parable%79,parableResidue3301:parable%3301,parableRoot68Order:78,parableRoot68PowerPrefix:powers68.slice(0,12),parableRoot68PowerLast:powers68.at(-1),p55Core:{interiorCount:p55Interior.length,centerOffset:19,indices:p55Core,translit:p55Core.map(i=>GP.translit[i]),primeWeights:p55CorePrimeWeights,primeWeightSum:p55CorePrimeSum,primeOrdinal:p55CorePrimeOrdinal,rootModulo79:root6,rootOrder:new Set(powers6).size,powerPrefix:powers6.slice(0,12),powerLast:powers6.at(-1)}},
-  language:{nativeShakespeareTest:lang.score(lang.test),originalCipher:lang.score(stream),model:"continuous GP trigram: 0.8 smoothed trigram + 0.2 smoothed bigram; train first 200k Shakespeare chars, test from char 240k"},
+  classification:"source-motivated 79/78 peel test of red-derived root53, 2013 Parable-derived root68, and p55/p57-core-derived root6; direct and common-coordinate mod-29 cellwise/Hill relations",
+  source:{totalRunes:stream.length,firstBlock:first.length,secondBlock:second.length,markerA:markerA.map(v=>GP.translit[v]).join(""),markerAOffsets:[6555,6560],markerB:markerB.map(v=>GP.translit[v]).join(""),markerBOffsets:[12950,12955],secondBlockMarkerOffsets:[6389,6394],assumedMissingSecondBlockCells:[6395,6399],redSpanSums:{p15,p40,p53},peeledDimensions:{first79:79*79,aligned78:N*N,second78:N*N},primitiveRoot:53,powerPrefix:powers.slice(0,12),powerLast:powers.at(-1),parableProduct:parable,parableResidue79:parable%79,parableResidue3301:parable%3301,parableRoot68Order:78,parableRoot68PowerPrefix:powers68.slice(0,12),parableRoot68PowerLast:powers68.at(-1),p55Core:{interiorCount:p55Interior.length,centerOffset:19,indices:p55Core,translit:p55Core.map(i=>GP.translit[i]),primeWeights:p55CorePrimeWeights,primeWeightSum:p55CorePrimeSum,primeOrdinal:p55CorePrimeOrdinal,interiorPrimeWeightSum:p55InteriorPrimeSum,outer38PrimeWeightSum:p55Outer38PrimeSum,outer38MultipleOf79:p55Outer38PrimeSum/79,interiorResidue79:p55InteriorPrimeSum%79,coreResidue79:p55CorePrimeSum%79,rootModulo79:root6,rootOrder:new Set(powers6).size,powerPrefix:powers6.slice(0,12),powerLast:powers6.at(-1)}},
+  language:{nativeShakespeareTest:lang.score(lang.test),originalCipher:lang.score(stream),root6CommonOrderedB:lang.score(B6flat),model:"continuous GP trigram: 0.8 smoothed trigram + 0.2 smoothed bigram; train first 200k Shakespeare chars, test from char 240k"},
   cellwise:{tested:cellwise.length,best:bestCell.slice(0,5),scoreRange:[Math.min(...cellwise.map(x=>x.meanLogProbability)),Math.max(...cellwise.map(x=>x.meanLogProbability))],MIRange:[Math.min(...cellwise.map(x=>x.mutualInformation)),Math.max(...cellwise.map(x=>x.mutualInformation))],rowAccuracyRange:[Math.min(...cellwise.map(x=>x.rowAccuracy)),Math.max(...cellwise.map(x=>x.rowAccuracy))]},
   hillMatrix:{tested:hill.length,fullRank:hill.filter(x=>x.invertible).length,best:bestHill.slice(0,5),scoreRange:[Math.min(...bestHill.map(x=>x.meanLogProbability)),Math.max(...bestHill.map(x=>x.meanLogProbability))]},
-  positiveControl:{root53CellwiseExact:true,root53HillExact:true,root68CellwiseExact:true,root68HillExact,root6CellwiseExact:true,root6HillExact,runeRoundtrip:N*N},
-  interpretation:"The p55/p57 central-five prime-weight sum supplies a source-motivated primitive root 6 modulo79, but its natural power-order cellwise pad and 78x78 Hill inverses remain ciphertext-like. The prime-weight sum is inferred rather than explicitly prescribed, and the 79/78 peel retains the terminal-five placement caveat. This rejects only the tested direct matrix relations, not other independently specified stateful/transposition operations."
+  positiveControl:{root53CellwiseExact:true,root53HillExact:true,root68CellwiseExact:true,root68HillExact,root6CellwiseExact:true,root6HillExact,root6CommonOrderCellwiseExact:true,root6CommonOrderHillExact:true,runeRoundtrip:N*N},
+  interpretation:"The p55/p57 central-five prime-weight sum supplies a source-motivated primitive root 6 modulo79; the full 43-interior prime-weight sum has the same residue because the other 38 sum to 21*79. Both first-matrix-only and common-coordinate root6 cellwise/Hill relations remain ciphertext-like. The prime-weight summation is inferred rather than explicitly prescribed, and the 79/78 peel retains the terminal-five placement caveat. This rejects only the tested direct matrix relations, not other independently specified stateful/transposition operations."
  };
  console.log(JSON.stringify(result,null,2));return result;
 }
