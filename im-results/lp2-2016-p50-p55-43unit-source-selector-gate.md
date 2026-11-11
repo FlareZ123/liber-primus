@@ -114,6 +114,23 @@ The C-K output is HAE EOXEAU GIPD MOFDNGAEREAFDL ENYU IW BAEBBD EMMBX PWBI Y U w
 
 A synthetic positive control encrypts the first 43 solved-p57 body runes by adding this same key and recovers them exactly with C-K. This validates the arithmetic only; it cannot authenticate the historical key. **Decision:** reject this specific direct prime-sum-as-additive-shift reading. It does not rule out every semantic use of the signed words, but no further 43-way phases or transformations are justified without a new source-visible rule. The existing [combined reproducer](../sims/p32_p55_43symbol_additive_bridge.cjs) now emits both the p32-compass and signed-word-prime-sum results.
 
+## Two-stage signed-message book-map key → p55 interiors (bounded negative, Agent30)
+
+**A genuinely different direct consumer from the signed-word-sum key above:** Apply the independently published *provisional* base-58 book address to each of the 43 alphabetic words of the authenticated 2016 message, treating original GP-prime sum `S` as `page=S mod58; printed-word index=floor(S/58)`. Use the ING-aware GP spelling for **MEANING**. Under that hypothesis the known signed words **THEIR** and **MEANING** still point to independently solved p56 words **END** and **DEEP**, respectively. **LIES** points to page50, original p50-local cell3; this is printed global grid index83, base60 byte **193** (`3D`), **not** row-major global cell3. The remaining 42 selections address exact original LP2 printed rune words, including encrypted unknown words. This candidate does not require inventing their plaintext: compute each selected ciphertext word's sum of original GP prime weights modulo29; at LIES use the original byte `193 mod29=19`. The resulting **43-number** key is uniquely fixed by the two-stage hypothesis and is aligned, in authenticated signed-message order, with p55's **43 strict cross-page-correct word interior runes**, as motivated by the solved p57 PARABLE.
+
+The source does not authenticate the base-58 address grammar, or using *ciphertext* prime sums as the word's “numbers,” or stationary GP29 Vigenère; the tested model is a cheap reversible gate on an independently constructed candidate, not an explanation of Cicada's signed prose. Directly subtracting or adding these 43 source-mapped values modulo29 gives:
+
+| Stream | p55 interior IoC | Shakespeare GP trigram mean log score |
+| --- | ---: | ---: |
+| Original p55 interior, no transform | 0.034330 | −6.404211 |
+| Original minus mapped selected-word key | **0.036545** | **−6.695708** |
+| Original plus mapped selected-word key | **0.039867** | **−6.666670** |
+| 43 native GP-English source runes | 0.063123 | −2.129356 |
+
+The two original outputs are nonlinguistic, including when separated at source p55 word-interior boundaries; the plus output contains `IAWWAEEOOIANGNPPWJJIATHAEICDTOELGWITHNWOTHFCUHOTHLAECGTH`, with no coherent word sequence. Both signs recover **43/43** planted authentic-source p57 plaintext runes. The exact original key, source positions and transformed GP tokens are printed by the self-testing script, executed successfully on the complete repository in [manual original-input CI 43123300295](https://github.com/FlareZ123/liber-primus/actions/runs/43123300295): [`sims/lp2_2016_signed_bookmap_p55_inner_key_sft.cjs`](../sims/lp2_2016_signed_bookmap_p55_inner_key_sft.cjs).
+
+**Decision:** the two-stage original-ciphertext-word-number pad does not decrypt p55's 43 interiors. Retire only its exact stationary +/-GP29 consumer. It does not refute a map to actual **plaintext meanings**, nonlinear navigation, or an unknown original key; those require distinct evidence and cannot be inferred from this negative.
+
 ## Full-book 43×301 / 7×43² source-shape gate (bounded negative)
 
 The 55 rune-bearing LP2 pages contain 12,956 runes. The p0 red heading is the first **13** runes (two words of lengths 8 and 5); the next black line is **7** runes (two words of lengths 4 and 3), with GP indices **[2,11,6,25,0,11,22]**. Removing only the red heading leaves **12,943 = 43×301 = 7×43²** runes. Removing the following seven-rune line as a putative key leaves **12,936 = 7×1,848 = 7×(43²−1)**. The 2016 signed message contains **43 alphabetic words**. These are exact source counts, and they motivate a 43-position clock and a seven-layer reading; they do **not** establish that the text is a 43×43×7 tensor or that either preamble is a key.
