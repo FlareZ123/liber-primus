@@ -104,6 +104,26 @@ assert.equal(reverseMask, 8);
 assert.equal(grid.byte_rows.length, forwardMask);
 assert.ok(grid.byte_rows.every((row) => row.length === reverseMask));
 
+// Across all odd-length original red spans, p27 is the only one whose
+// mirrored-equality mask and reverse read reproduce the 32x8 grid dimensions.
+const pageByNumber = new Map(corpus.pages.map((page) => [page.page, page]));
+const redDimensionHits = [];
+for (const pageInk of ink.pages) {
+  for (const span of pageInk.red_spans ?? []) {
+    if (span.length < 3 || span.length % 2 === 0) continue;
+    const source = pageByNumber.get(pageInk.page).indices.slice(span.start, span.start + span.length);
+    const half = (source.length - 1) / 2;
+    const bits = [];
+    for (let i = 0; i < half; i += 1) bits.push(source[i] === source[source.length - 1 - i] ? 1 : 0);
+    const a = Number.parseInt(bits.join(''), 2);
+    const b = Number.parseInt(bits.slice().reverse().join(''), 2);
+    if ((a === 32 && b === 8) || (a === 8 && b === 32)) {
+      redDimensionHits.push({page: pageInk.page, start: span.start, length: span.length});
+    }
+  }
+}
+assert.deepEqual(redDimensionHits, [{page: 27, start: 0, length: 19}]);
+
 const flat = grid.byte_rows.flat();
 assert.equal(flat.length, 256);
 const matches = verticalFoldMatches(flat);
@@ -132,6 +152,16 @@ assert.equal(word26.residue, 18);
 assert.equal(selected.byte + title.length, word26.primeSum);
 assert.equal(grid.alphabet.indexOf('Q'), selectedWordOrdinal);
 
+// The unique folded cell also behaves like a complete word/letter address.
+const upperRowOneBased = selected.row + 1;
+const lowerRowOneBased = 32 - selected.row;
+const rowDifference = lowerRowOneBased - upperRowOneBased;
+const columnOneBased = selected.column + 1;
+assert.deepEqual([upperRowOneBased, lowerRowOneBased, columnOneBased], [16, 17, 3]);
+assert.equal(Math.floor(selected.byte / 60), rowDifference);
+assert.equal(columnOneBased, word26.indices.length);
+assert.equal(word26.indices[selected.column], lowerRowOneBased);
+
 const word19 = p53Words[18];
 assert.equal(selected.byte, word19.end);
 assert.equal(word19.ordinal, title.length);
@@ -148,23 +178,33 @@ assert.deepEqual(word26.indices.slice(-2), [1, 17]);
 
 function closureFor(flatBytes) {
   const found = verticalFoldMatches(flatBytes);
-  if (found.length !== 1) return {one: false, closure: false};
+  if (found.length !== 1) return {one: false, baseClosure: false, coordinateClosure: false};
   const hit = found[0];
   const ordinal = wordAt[hit.foldedIndex];
   const word = ordinal ? p53Words[ordinal - 1] : null;
-  const closure = Boolean(
-    word &&
+  if (!word) return {one: true, baseClosure: false, coordinateClosure: false};
+
+  const baseClosure = Boolean(
     hit.foldedIndex === word.end &&
     hit.byte % 60 === ordinal &&
     word.residue === 18
   );
-  return {one: true, closure};
+  const lowerRow = 32 - hit.row;
+  const rowDelta = lowerRow - (hit.row + 1);
+  const coordinateClosure = Boolean(
+    baseClosure &&
+    hit.column + 1 === word.indices.length &&
+    word.indices[hit.column] === lowerRow &&
+    Math.floor(hit.byte / 60) === rowDelta
+  );
+  return {one: true, baseClosure, coordinateClosure};
 }
 
 const rng = makeRng(0x45f01829);
-const trials = 100000;
+const trials = 200000;
 let oneMatch = 0;
-let fullClosure = 0;
+let baseClosure = 0;
+let coordinateClosure = 0;
 for (let trial = 0; trial < trials; trial += 1) {
   const shuffled = flat.slice();
   for (let i = shuffled.length - 1; i > 0; i -= 1) {
@@ -173,10 +213,12 @@ for (let trial = 0; trial < trials; trial += 1) {
   }
   const result = closureFor(shuffled);
   if (result.one) oneMatch += 1;
-  if (result.closure) fullClosure += 1;
+  if (result.baseClosure) baseClosure += 1;
+  if (result.coordinateClosure) coordinateClosure += 1;
 }
-assert.equal(oneMatch, 30520);
-assert.equal(fullClosure, 12);
+assert.equal(oneMatch, 60859);
+assert.equal(baseClosure, 34);
+assert.equal(coordinateClosure, 20);
 
 console.log(JSON.stringify({
   classification: 'source-constrained navigation candidate; no plaintext recovered',
@@ -189,7 +231,12 @@ console.log(JSON.stringify({
   gridFold: {
     matches,
     token: grid.rows[15][2],
-    lowBase60Digit: grid.alphabet.indexOf('Q')
+    lowBase60Digit: grid.alphabet.indexOf('Q'),
+    upperRowOneBased,
+    lowerRowOneBased,
+    rowDifference,
+    columnOneBased,
+    selectedRuneIndex: word26.indices[selected.column]
   },
   p53: {
     blackRunes: p53Black.length,
@@ -209,8 +256,10 @@ console.log(JSON.stringify({
   conditionalShuffle: {
     trials,
     exactlyOneVerticalMatch: oneMatch,
-    fullClosure: fullClosure,
-    plusOneFrequency: (fullClosure + 1) / (trials + 1),
+    baseClosure,
+    coordinateClosure,
+    basePlusOneFrequency: (baseClosure + 1) / (trials + 1),
+    coordinatePlusOneFrequency: (coordinateClosure + 1) / (trials + 1),
     seed: '0x45f01829'
   }
 }, null, 2));
