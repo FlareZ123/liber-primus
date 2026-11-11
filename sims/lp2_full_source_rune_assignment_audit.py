@@ -409,8 +409,8 @@ def main():
     templates = NearestTemplates(train_crops, train_labels)
     p43_loo = templates.leave_one_out(train_crops)
 
-    # Solved p56/p57 body controls. Their first visual line is a Latin red title,
-    # not ordinary GP glyph artwork, so it is deliberately excluded.
+    # Solved p56/p57 controls. Their first visual lines are known red GP rune
+    # spans ("AN END" and "PARABLE"), not Latin titles; retain them as red controls.
     solved = parse_solved_lines(args.root / "resources" / "external" / "Liber Primus 57.txt")
     control_crops, control_labels = [], []
     control_results = []
@@ -419,20 +419,26 @@ def main():
         alignment = align_lines([len(x) for x in lines], [len(x) for x in rows])
         assert alignment is not None
         mapping, skipped_rows, _, ways = alignment
-        for li, line in enumerate(lines[1:], start=1):
+        for li, line in enumerate(lines):
             row = rows[mapping[li]]
             result = segment_row_dp(gray, row, len(line), templates)
             assert result is not None
             groups, skipped_components, _ = result
             predicted = [g["pred"] for g in groups]
-            control_results.append({"page": page, "line": li, "expected": len(line),
-                                    "predicted": len(predicted),
+            control_results.append({"page": page, "line": li, "ink": "red" if li == 0 else "black",
+                                    "expected": len(line), "predicted": len(predicted),
                                     "correct": sum(a == b for a, b in zip(line, predicted)),
                                     "skipped_components": skipped_components})
             control_crops.extend(g["crop"] for g in groups)
             control_labels.extend(line)
     control_correct = sum(r["correct"] for r in control_results)
     control_total = len(control_labels)
+    red_control_results = [r for r in control_results if r["ink"] == "red"]
+    black_control_results = [r for r in control_results if r["ink"] == "black"]
+    red_control_correct = sum(r["correct"] for r in red_control_results)
+    red_control_total = sum(r["expected"] for r in red_control_results)
+    black_control_correct = sum(r["correct"] for r in black_control_results)
+    black_control_total = sum(r["expected"] for r in black_control_results)
     control_class_indices = set(control_labels)
     missing_control_classes = [TRANSLIT[i] for i in range(29) if i not in control_class_indices]
 
@@ -580,6 +586,8 @@ def main():
             "solved_p56_p57_body": {"correct": control_correct, "total": control_total,
                                     "classes": len(control_class_indices),
                                     "missing_classes": missing_control_classes,
+                                    "red_controls": {"correct": red_control_correct, "total": red_control_total},
+                                    "black_controls": {"correct": black_control_correct, "total": black_control_total},
                                     "lines": control_results},
             "hog_svm": hog_result,
         },
