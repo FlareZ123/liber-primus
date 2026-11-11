@@ -1,0 +1,20 @@
+name: Agent 7 AN END source gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile and run source-pinned candidates
+        run: |
+          python -m py_compile sims/anend_historical_signed_message_gate.py
+          python sims/anend_historical_signed_message_gate.py
