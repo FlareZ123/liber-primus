@@ -185,6 +185,54 @@ assert.equal(normH([productH[0], mod(productH[1] - 2)]), 19);
 assert.equal(normH([productH[0], mod(productH[1] - 5)]), 28);
 assert.equal(normH([productH[0], mod(productH[1] - 8)]), 26);
 
+// Finite, source-selected inversion: DH-motivated successive powers of the
+// original H-field quotient product beta on pairs of GP29 residual coefficients.
+// There is one unmated rune (273=136*2+1), left unchanged at either boundary.
+// No postselected key, phase, modulus, or symbol codebook is fitted to output.
+function powH(value, exponent) {
+  let base = value, n = exponent, result = [0, 1];
+  while (n > 0) {
+    if (n % 2) result = mulH(result, base);
+    n = Math.floor(n / 2);
+    base = mulH(base, base);
+  }
+  return result;
+}
+assert.deepEqual(powH(productH, 70), [0, 1]);
+assert.ok([1, 2, 5, 7, 10, 14, 35]
+  .every((x) => powH(productH, x).join() !== "0,1"));
+function fieldPowerTransport(runes, boundary, sign, firstExponent) {
+  assert.equal(runes.length % 2, 1);
+  const odd = boundary === "first" ? runes[0] : runes[runes.length - 1];
+  const sourcePairs = boundary === "first" ? runes.slice(1) : runes.slice(0, -1);
+  const mapped = [];
+  for (let i = 0; i < sourcePairs.length; i += 2) {
+    const exponent = ((sign * (i / 2 + firstExponent)) % 70 + 70) % 70;
+    mapped.push(...mulH([sourcePairs[i], sourcePairs[i + 1]],
+      powH(productH, exponent)));
+  }
+  return boundary === "first" ? [odd, ...mapped] : [...mapped, odd];
+}
+const betaPowerModels = [];
+const knownGP = corpus.pages.find((page) => page.page === 57).indices;
+const nativeLong = Array.from({length: residual.q.length},
+  (_, i) => knownGP[i % knownGP.length]);
+for (const boundary of ["first", "last"]) {
+  for (const sign of [-1, 1]) {
+    for (const firstExponent of [0, 1]) {
+      const decoded = fieldPowerTransport(residual.q, boundary, sign, firstExponent);
+      const restored = fieldPowerTransport(decoded, boundary, -sign, firstExponent);
+      assert.deepEqual(restored, residual.q);
+      const encryptedNative = fieldPowerTransport(nativeLong, boundary, -sign, firstExponent);
+      assert.deepEqual(fieldPowerTransport(encryptedNative,
+        boundary, sign, firstExponent), nativeLong);
+      const score = ioc(decoded);
+      assert.ok(score < 0.036);
+      betaPowerModels.push({boundary, sign, firstExponent, outputIoC: score});
+    }
+  }
+}
+
 // The signed 2013 BASE29 convention supplies a separate fixed binary reading:
 // interpret the recovered 273 GF29 coefficients as one big-endian base-29 integer.
 const packedNumber = residual.q.reduce((acc, digit) => acc * 29n + BigInt(digit), 0n);
@@ -279,7 +327,8 @@ console.log(JSON.stringify({
   crtHResidues: {pageResidueH, gridResidueH, productH,
     pageTraceNorm: [traceH(pageResidueH), normH(pageResidueH)],
     gridTraceNorm: [traceH(gridResidueH), normH(gridResidueH)],
-    productTraceNorm: [traceH(productH), normH(productH)]},
+    productTraceNorm: [traceH(productH), normH(productH)],
+    betaPowerModels},
   exploratoryDHJet: {root24, sourcePageJet: sourcePageJet.slice(0, 7),
     sourceGridJet: sourceGridJet.slice(0, 7), signedDHFull},
   exactCongruence: "P29 - S - 2G = G^2 R over GF(29)",
