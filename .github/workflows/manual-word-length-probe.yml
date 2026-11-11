@@ -11,6 +11,7 @@ on:
           - standard
           - grid-sort
           - block-inverse
+          - source-inversion
 permissions:
   contents: read
 jobs:
@@ -28,6 +29,11 @@ jobs:
       - name: Exact global eight-column word-order inverse
         if: ${{ inputs.scan_mode == 'block-inverse' }}
         run: node sims/word_block_hamiltonian_inverse.cjs
+      - name: Two original-input word-register inverse gates
+        if: ${{ inputs.scan_mode == 'source-inversion' }}
+        run: |
+          node sims/lp2_plaintext_wordsum_progressive_sft.cjs
+          node sims/lp2_word_prime_difference_affine_gate.cjs
       - name: Reproduce page-local word-length structural tests
         if: ${{ inputs.scan_mode == 'standard' }}
         run: |
