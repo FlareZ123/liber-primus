@@ -19,7 +19,7 @@ Existing direct 4×4 Hill inverses with the actual p15 matrix, spiral variants, 
 
 ## Key-independent proof and measured original
 
-Let X be an arbitrary original plaintext four-rune block and F any fixed injective map from 29^4 possible blocks to encoded four-rune blocks. Because F is injective, F(X)=F(Y) exactly when X=Y. Consequently the unordered pair count of equal aligned blocks is invariant under every such cipher, regardless of its key, the actual 4×4 matrix values, or a nonlinear lookup table. This holds for one **stationary map across the seven-page window**. If a key changes per page/block, or a stream layer modifies symbols, the condition need not hold.
+Let X be an arbitrary original plaintext four-rune block and F any fixed injective map from 29^4 possible blocks to encoded four-rune blocks. Because F is injective, F(X)=F(Y) exactly when X=Y. Consequently the unordered pair count of equal aligned blocks is invariant under every such cipher, regardless of its key, the actual 4×4 matrix values, or a nonlinear lookup table. This holds for one **stationary map across the analyzed window**, whether seven pages or the whole manuscript. If a key changes per page/block, or a stream layer modifies symbols, the condition need not hold.
 
 The 1,744 unmodified source runes contain **only one unordered equality pair among 436 four-rune blocks**. That pair is the exact sequence **ᛇᛉᚳᛠ** (GP EO, X, C, EA), at source-window offsets **604** and **1100**. These are global unresolved-rune offsets **4,366** and **4,862**, on physical **p18:64** and **p20:29** respectively, with zero-based coordinates. The other aligned four-rune blocks are all distinct.
 
@@ -39,9 +39,24 @@ Sliding strides are 100 runes for Shakespeare and 50 for Gibran/Latin. Overlappi
 
 As an implementation positive control, multiplication by the actual p15 matrix mod29 followed by its inverse reconstructs **all 1,744/1,744** original rune indices. Applying that invertible matrix to either original or independently encoded Shakespeare prose preserves the four-block collision count.
 
+## Stronger all-secret gate after p15 and across the entire unknown book
+
+The seven-page result already makes a stationary four-symbol substitution implausible for GP-natural English. The source-p15 four-dimensional geometry also motivates checking whether a **single secret four-symbol map remains unchanged over all subsequent p16–55 pages**, which comprise **9,194 original runes (2,298 complete four-blocks, plus two terminal runes)**. For completeness, the same calculation was made on all **12,956 unknown runes (3,239 complete four-blocks)**. Every one of four phase conventions was fixed before scoring, with trailing incomplete blocks omitted.
+
+| Original interval | Rune count | Original collision pairs, phases 0/1/2/3 | Shakespeare matched-window minima, four phases | Gibran matched-window minima, four phases |
+|---|---:|---|---|---|
+| **p16–55, after 4×4 source square** | **9,194** | **8 / 1 / 1 / 1** | 456 / 489 / 478 / 502 | 782 / 840 / 782 / 832 |
+| p0–55, all unknown text | 12,956 | 5 / 6 / 10 / 11 | 1,018 / 1,029 / 960 / 1,014 | 1,702 / 1,661 / 1,558 / 1,638 |
+
+The matched-window comparisons use unchanged real prose (Shakespeare **1,039** sliding windows of 9,194 runes or **1,020** of 12,956, and Gibran **188** or **170**, all sampled at 200-rune strides). The original values are compatible with an otherwise uniformly random GP29 ciphertext: the expected uniform pair count is **3.73155** among 2,298 four-blocks and **7.41423** among 3,239 four-blocks. The genuine GP-English controls have substantially more block repetition. Overlapping windows are finite controls, **not independent probability trials**.
+
+Because exact block equality is invariant under every stationary injective four-vector function, no secret four-vector lookup, permutation or Hill matrix can turn these real prose windows into the corresponding original sections under a *single unchanging map*. This is a key-independent exclusion far beyond a search of the p15 printed matrix. A changing encryption state, page/section-dependent key, extra output filter, and radically unusual input prose can defeat this argument; the p15 artwork does not establish whether the key would remain stationary across unrelated pages.
+
+The exact source p15 matrix and its inverse also recover **12,956/12,956** test symbols and preserve the full-book collision count. This checks the longer-window vector implementation separately from the smaller window's control.
+
 ## What this changes
 
-**Bounded decision:** Retire a **single stationary, lossless, four-rune lookup/Hill cipher yielding native GP-like Shakespeare, Gibran, or Latin prose** over original p16–22 as an actionable decipherment architecture. This is stronger than failing to find one printed p15 numerical key because it grants an arbitrary unknown injective map at the same block width.
+**Bounded decision:** Retire a **single stationary, lossless, four-rune lookup/Hill cipher yielding native GP-like Shakespeare, Gibran, or Latin prose** over original p16–55 under one fixed key as an actionable decipherment architecture. This is stronger than failing to find one printed p15 numerical key because it grants an arbitrary unknown injective map at the same block width.
 
 **Important exceptions:** Per-page key changes, mixed-radix or non-GP plaintext, an outer anti-repeat layer, original writing with unusually low four-gram repetition, a different original segment, and other natural-language styles remain possible. A separate bijection per page cannot be rejected by the across-page duplicate: there are **zero within-page four-block equalities** under page-local phase0, and some Shakespeare control windows also show zero under that weaker, page-specific measure. No author-supplied clue yet selects a block cipher at all.
 
