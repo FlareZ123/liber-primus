@@ -118,6 +118,10 @@ function summarize(bytes) {
 
 const forward = base29IntegerToBytes(digits);
 const reverseDigits = base29IntegerToBytes(digits.slice().reverse());
+const p56Digest = "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4";
+const wholeStreamSha512 = crypto.createHash("sha512").update(forward.bytes).digest("hex");
+assert.equal(wholeStreamSha512, "8e4630dabdda251c9b71673046a8b6237aed14525b378e626a0a4e932185131476dc23def4e67a50ab0015f01cfba6104284429f813735413cf7974fdff768bc");
+assert.notEqual(wholeStreamSha512, p56Digest);
 assert.equal(forward.bitLength, 62940);
 assert.equal(reverseDigits.bitLength, 62939);
 assert.equal(forward.bytes.length, 7868);
@@ -182,7 +186,8 @@ console.log(JSON.stringify({
     forwardBitLength: forward.bitLength,
     reverseDigitBitLength: reverseDigits.bitLength,
     byteLength: forward.bytes.length,
-    variants
+    variants,
+    p56Sha512Preimage: {candidate: wholeStreamSha512, target: p56Digest, match: false}
   },
   apparentZlib: {
     offset: zlibOffset,
