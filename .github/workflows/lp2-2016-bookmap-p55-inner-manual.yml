@@ -1,0 +1,14 @@
+name: Agent 30 signed-2016 book-map p55 interior key gate
+on:
+  workflow_dispatch:
+
+jobs:
+  test-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_2016_signed_bookmap_p55_inner_key_sft.cjs
