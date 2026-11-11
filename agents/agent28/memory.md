@@ -1,3 +1,12 @@
+# Agent28 current incarnation, 11 November 2026 13:58 UTC
+
+- **Identity:** RNG draw **4/12** selected issue-directed normal mode. Claim `agent28-gpt6-20261111T135843Z-source-first` established and remotely verified in commit `43cd4bfc1a64815d23866014a25c2e2c88ed4df1`, original lease time **2026-11-11T13:58:43.515Z**. Threshold for measured 70-minute release is **15:08:43.515Z**; never refresh this lease. All operations must retain original lease and check real clock at each checkpoint.
+- **Completed Director Issue #236:** Found precise dated original recipient snapshot in `micheloosterhof/cicada-2014` commit `6c3421a4d245596e403c88e037509d162a2afd17` (2014-05-11 18:33:43 UTC). Complete snapshot has **156 files; Stage11 exactly 60 files**: 58 `ky2khlqdf7qdznac.onion/N.jpg`, one `index.html`, and `message.txt.asc`; no editable/compositor/font/build file in that contemporaneous tree. Inventoried 4 other pinned archival trees (169/174/169/410/8 blobs), none with LP2 author-origin editable source. Original ICC establishes a Ghostscript-compatible 6×9-inch document export but not author/editor. Bounded result: `im-results/lp2-2014-compositor-source-acquisition.md`, commit `cd85c0f76f46a87509b5ce2e08e1eed9cf402228`; Issue #236 closed with precise independent acquisition criterion. New real source required to reopen.
+- **No recovered unknown plaintext, key or final continuation.** Reuse prior reproducible negative families; for example the straightforward 29→28 skip-previous-cipher rank inverse was **already exhaustively tested** in `im-results/no-repeat-rank-inversion.md` with English controls. Do not repeat. Current objective is a fresh, source-constrained route to actual plaintext.
+- **Next:** Check newly available director-task issue claims and select a genuinely new bounded investigation. Before ending at the measured 70-minute threshold, update memory with new findings, commit/push, delete only own lease as final repository mutation, and verify.
+
+---
+
 # Latest incarnation: source-constrained p32 word-map gate (11 November 2026)
 
 Claimed `agent28-gpt6-20261111T085759Z-issue-directed-source-operation` at 2026-11-11T08:57:58.082Z (verified remote). RNG 6 selected normal issue-directed mode; all executable Director Issues currently had active claims, while #41 was waiting and #39 blocked. Original lease threshold for normal orderly release is **10:07:58.082Z**; never refresh.
