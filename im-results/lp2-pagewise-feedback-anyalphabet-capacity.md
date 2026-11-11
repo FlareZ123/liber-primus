@@ -1,52 +1,70 @@
-# All-secret page-reset first-order feedback capacity gate
+# All-secret one-, two- and three-tap pagewise feedback capacity
 
-**Classification:** exact original-cipher necessary-condition exclusion for a defined family, with a complete reversible native-GP plaintext positive control. No previously unknown Liber Primus plaintext, authentic key, historical cipher, or destination is recovered.
+**Classification:** exact original-cipher necessary-condition exclusion for a bounded reversible model family, with a source-native full-length positive control. **No unknown Liber Primus plaintext, authentic key, historical cipher or destination has been recovered.**
 
-## Human solve-path hypothesis and scope
+## Source-motivated hypothesis and strongest objection
 
-The unsolved second-release pages show only **86 equal-adjacent rune pairs in 12,956 ciphertext runes**, including suppression across printed word boundaries. A reversible feedback cipher whose next output depends on the preceding output is a natural *candidate* explanation. Earlier work excluded the narrower constant first-difference alphabet `C[j]-C[j-1]=sigma(P[j])` globally ([first-difference gate](lp2-difference-allletter-capacity-source-gate.md)). This test closes a larger model without guessing any keys: **each physical rune-bearing page may have its own feedback multiplier and its own arbitrary secret 29-symbol alphabet permutation**. There is no independently authenticated LP2 instruction selecting this family, so the result is a cryptanalytic constraint, not an attribution.
+The unsolved second release has only **86 adjacent equal ciphertext rune pairs among 12,956 runes**, a strong observable feature that could be explained by a previous-ciphertext-dependent encoder. The original sources do **not** specify a first-, second- or third-order GF29 autoregression. This is an exploratory cipher-family test, not a claim about the author's chosen operation. Unlike a search over selected keys, the following necessary condition grants the decoder **all possible secrets independently on every source page**.
 
-For every physical page independently, let GP runes be elements of F29 and suppose:
-
-```text
-C[j] = beta_page*C[j-1] + sigma_page(P[j])  mod 29,  j >= 1
-```
-
-Here `beta_page` is **any** of the 29 residues, and `sigma_page` is **any** bijection of all 29 GP symbols, unconstrained by an affine formula or by another page's key. Page-first ciphertext symbols and page-first plaintext symbols may be arbitrary, and no feedback equation is imposed on them. The model therefore covers secret stationary per-page substitution followed by linear one-output feedback, including all page-specific `alpha*P+gamma` encoders. The clock resets at every original physical page. No word-boundary or red-span resets are assumed inside pages.
-
-## Exact source-conditional obstruction
-
-Rearrange the hypothesized equation for any `beta`:
+For each of the 55 nonempty physical ciphertext pages, let GP runes be F29 residues, `sigma_p` be *any* 29-symbol bijection, and all `b_{p,t}` be independently arbitrary elements of F29. For tap count `m=1,2,3`, the candidate encoder is
 
 ```text
-D[j,beta] = C[j] - beta*C[j-1] = sigma(P[j]) mod 29
+C[p,j] = sigma_p(P[p,j]) + sum(t=1..m) b[p,t]*C[p,j-t] (mod 29)
+                                                j >= m
 ```
 
-For one page and fixed `beta`, the positions occupied by any *one* plaintext rune, such as E, must all have the **same** `D` value. Changing `sigma` can only rename that value, never increase its count. Granting an adversary its choice of all 29 `beta` values and all 29 possible output labels for **every page independently**, the exact upper bound is:
+Each physical page resets its register; the first `m` plaintext positions on **every** page are granted adversarially free. The model covers completely unknown nonlinear symbol *substitutions*, since `sigma_p` may be any of the 29! permutations, even though feedback in the **observed ciphertext register** is linear. It includes the earlier global first-difference model as a strictly narrower special case. Words, lines, red/black ink and punctuation do not cause extra resets within these pages.
+
+## Exact, all-secret capacity proof
+
+For any coefficient vector on a given page, form the **observed** residuals
 
 ```text
-sum over 55 pages of max_beta max_r #{j>=1 : D[j,beta]=r} = 993
+D[p,j] = C[p,j] - sum(t=1..m) b[p,t]*C[p,j-t] (mod 29), j>=m.
 ```
 
-There are exactly **55** unconstrained page-first runes, so even treating every one as plaintext E yields an **absolute maximum of 1,048 E runes** in the 12,956-rune original. This uses all actual source ciphertext, including every in-page printed word boundary, with no chosen secret or language score.
+Under the candidate cipher these must equal `sigma_p(P[p,j])`. An arbitrary permutation can rename residual values but **cannot change their multiplicities or combine two distinct plaintext runes into one residual value**.
 
-For comparison, the separately pinned native English GP controls were encoded with the same canonical TH/EO/NG and other multi-letter rune conventions. Their **minimum E count over every contiguous 12,956-rune window** is:
+For a fixed plaintext rune, e.g. `E`, its page-internal count therefore cannot exceed the largest one of the 29 residual bins. For a fixed pair of distinct plaintext runes, e.g. `E` and `O`, the count cannot exceed the *sum of the two largest distinct residual bins*. Enumerate **all 29^m coefficient tuples independently for every page** and take the most favorable histogram for each bound. Finally grant the first `m` runes of each page to those target plaintext labels without restriction:
 
-| Native-GP source | Available runes | Minimum E in any source-length window |
-|---|---:|---:|
-| Gibran, *The Prophet* | 63,114 | **1,407** |
-| Shakespeare sample | 218,800 | **1,397** |
-| Emerson essays | 324,630 | **1,482** |
-| **Original cipher, all-secret family bound** | **12,956** | **at most 1,048** |
+```text
+U_k(m) = 55m + sum_{p=1}^{55}
+           max_{b in F29^m} [sum of k largest distinct bins of D_p(b)]
+```
 
-The gap is **at least 349 E runes**, even under independent per-page adversarial choices of `beta`, every secret alphabet permutation, and all 55 free initial runes. In the still-narrower **single book-global beta** model, the largest original noninitial transformed-symbol count among all 29 values is **513** (attained at beta26; beta1's first-difference count is 510). The page-specific 1,048 bound is the headline result because it grants substantially greater attacker freedom.
+This upper bound is exact for the displayed statistic, and the extremum is independently selected per page, not constrained by another page's true alphabet or coefficient vector.
 
-This is an exact exclusion of direct, full-length, source-native GP-English text *from the tested finite reference windows* under this precise family. It does **not** mathematically exclude all possible English styles, alternate plaintext alphabets, intentional omission of E, multi-stage encryption, key updates within pages, multiple state registers, nonlinear feedback, runic escapes, or changing word segmentation. In particular, it does not establish the mechanism causing the original doublet deficit.
+The canonical, original 55-page ciphertext produces:
 
-## Implemented, reversible positive and decision
+| Number of previous ciphertext taps | Secret coefficient choices **per page** | Maximum total E | Maximum total E+O | Free page-initial runes |
+|---|---:|---:|---:|---:|
+| **1** | 29 | **1,048** | **1,842** | 55 |
+| **2** | 841 | **1,299** | **2,104** | 110 |
+| **3** | 24,389 | **1,489** | **2,348** | 165 |
 
-[Standalone CommonJS SFT](../sims/lp2_pagewise_feedback_anyalphabet_capacity_sft.cjs) reads the canonical original ciphertext and the three pinned native-GP corpora, enumerates **all 29 feedback values for each of 55 pages**, and repeats the exact 993/1,048 necessary-condition calculation. It independently encodes a length-matched 12,956-rune Gibran control under **55 different secret alphabets** and page-dependent feedback multipliers, then exactly inverts every rune. The positive control also confirms that its E count is *below its own* blind capacity bound, so the check accepts a genuine instance of the proposed cipher rather than rejecting every text.
+The first-order E bound extends the earlier globally fixed `beta=1` first-difference gate (whose largest residual class had 510 members). The second- and third-order results close genuinely larger all-secret cipher families. For three taps the **single-letter** E bound alone has become inconclusive; the **two-letter joint capacity remains decisively restrictive**.
 
-**Research decision:** retire the entire pagewise stationary-permutation + one-previous-ciphertext linear-feedback family as a direct GP-English original decoder. The much flatter original transformed-symbol distributions cannot hide native E under any fixed alphabet/key on each printed page. Future work should prioritize source-derived nonlinear/changing-state rules or acquisition of an authentic key/decoder, instead of re-running isolated affine feedback guesses. This adds a distinct one-step memory constraint to the earlier global first-difference gate; it supplies no recovered unknown plaintext.
+## Native-GP plaintext controls
 
-**Inputs:** [canonical 58-page LP2 corpus](../resources/liber-primus/lp2-corpus.json) (pp0–55 unknown, p50 rune-free); [Gibran](../resources/control/gibran_prophet_58585.txt), [Shakespeare](../resources/control/shakespeare_first300k.txt), and [Emerson](../resources/control/emerson_essays_2944.txt) control texts. The prior [first-difference SFT](../sims/lp2_difference_allletter_capacity_sft.cjs) supplies the shared, source-fixed GP tokenizer, avoiding a second incompatible transliteration.
+The [standalone SFT](../sims/lp2_pagewise_feedback_anyalphabet_capacity_sft.cjs) uses the already-pinned GP rune tokenizer and controls. In **all three reference corpora, E and O are independently the two most frequent GP rune identities** across the complete source. Neither alphabet labels nor the source window are optimized from the original ciphertext. The scan then finds the *minimum* occupancy of these fixed two letters in **every contiguous original-length window of 12,956 GP runes**:
+
+| Source | GP runes available | Minimum E in any 12,956-rune window | Minimum E+O in any window |
+|---|---:|---:|---:|
+| Gibran, *The Prophet* | 63,114 | 1,407 | **2,556** |
+| Shakespeare sample | 218,800 | 1,397 | **2,430** |
+| Emerson essays | 324,630 | 1,482 | **2,455** |
+| **Original LP2 direct inverse under any three-tap/page alphabet** | **12,956** | at most 1,489 | **at most 2,348** |
+
+Even after maximally favorable **55 independently chosen secret alphabets and 55 independently chosen triples of feedback coefficients**, original ciphertext cannot supply the **E+O frequencies** in *any* of these source-native English windows. The shortest gap is **82 runes**, relative to the least concentrated Shakespeare window. Orders one and two fail by larger margins. This bound uses both within-word and across-word original ciphertext without fitting a source-language model or guessed key.
+
+For a positive power check, the SFT picks 12,956 native-GP Gibran symbols, preserves all 55 page lengths, encrypts each page with a different deterministic secret permutation and a different three-tap feedback triple, then exactly decrypts and checks **all 12,956 symbols**. It checks that the planted first page also passes the blind all-secret capacity bound. The reversible plant verifies implementability and absence of an automatic rejection of a genuine instance; the known seed and English passage are not historical key material.
+
+## Decision and remaining route to plaintext
+
+**Reject directly decoded, unmodified GP-English for every page-stationary `m=1,2,3` linear ciphertext-feedback cipher with arbitrary independent pagewise 29-symbol substitution alphabets and unrestricted page-initial ciphertext state.** The proof is exact for the specified family and the three finite native reference sources. The significant conclusion is the order-3 joint letter bound; do not generalize the result to every conceivable English composition.
+
+A hypothetical four-or-more-tap register, state updates within pages, nonlinear feedback, a changed intermediate alphabet, explicit escapes, transpositions that change the source sequence, or ciphertext carrying nonprose bytes is **outside** this theorem. None should be promoted to an authentic LP2 route without independent original clues selecting its state/key and supplying a withheld original-text prediction. The original doublet suppression remains unexplained.
+
+This consolidates the earlier one-tap work rather than repeating its independent report. The [earlier global first-difference gate](lp2-difference-allletter-capacity-source-gate.md) additionally addresses zero-marker word positions and has separate matched language controls. The present three-tap theorem is the new scope extension, with original-source enumerations and exact positive in the [CommonJS reproducer](../sims/lp2_pagewise_feedback_anyalphabet_capacity_sft.cjs).
+
+**Inputs:** [original rune corpus](../resources/liber-primus/lp2-corpus.json), [Gibran](../resources/control/gibran_prophet_58585.txt), [Shakespeare](../resources/control/shakespeare_first300k.txt), and [Emerson](../resources/control/emerson_essays_2944.txt).
