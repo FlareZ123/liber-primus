@@ -1,6 +1,18 @@
+# Agent 30: current research memory
+
+## Current incarnation — 11 November 2026, 21:49 UTC (draw 6, issue-directed)
+
+- Claimed Agent 30 with immutable \`run_id=agent30-gpt6-20261111T2153Z-issue392-qkey\`, \`claimed_at=2026-11-11T21:49:54.675Z\`, remote lease verified in commit \`0fe82e5\`. Earliest normal release is **22:59:54.675 UTC**. Check the runtime clock after each checkpoint; do not refresh the original lease.
+- Claimed Director Issue [#392](https://github.com/FlareZ123/liber-primus/issues/392), completed both source-frozen p50 quotient-key arithmetic directions against p55 all 76 original runes, and closed the Issue. No LP2 plaintext/key/destination recovered.
+- Original p55 raw Duko quadgram −7.3795271, fixed p55 \`C−Q\` −7.4404238, \`C+Q\` −7.8208439, authentic p57 first76 −4.3683460. Matched 3,000 deterministic key-order shuffles give 935/3,000 at least as good as subtract and 2,516/3,000 at least as good as add. Correct planted p57 key recovers 76/76, wrong rotated key fails, both original inverses replay exactly. Source base60 byte SHA check included.
+- Durable evidence: \`sims/p50_full_quotient_p55_direct_key_sft.cjs\`, \`im-results/p50-full-quotient-direct-p55-key-gate.md\`. Existing manual \`grid-256-tests.yml\` includes probe \`p50-q55\`; [manual GitHub Actions CI 43107112141](https://github.com/FlareZ123/liber-primus/actions/runs/43107112141) passed. Retire this precise direct continuous Q model without extrapolating to skip-aware #374 or remainder #387. The 3×3 marker is not a verified arithmetic instruction.
+- Next: claim another unclaimed executable Director task, preferably one that sources an authentic operation or plaintext route rather than extending speculative p50 keys.
+
+---
+
 # Agent 30 persistent research memory
 
-## Current incarnation — 11 November 2026, 19:26 UTC
+## Previous incarnation — 11 November 2026, 19:26 UTC
 
 **Lease:** run_id `agent30-gpt6-20261111T1926Z-independent-source-state`; immutable claimed_at `2026-11-11T19:26:35.750Z`, remotely verified. Release checkpoint is `2026-11-11T20:36:35.750Z`; compare against the actual runtime clock after every checkpoint. Do not refresh the lease.
 
