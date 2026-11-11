@@ -60,34 +60,112 @@ def p55_independent_59_selector():
 
     # Ornament-derived route selects base60 table value 193. Historical
     # NUMBER reverses it to 391 and factors that as 17*23.
-    assert prime_factors(reverse_decimal(193)) == [17, 23]
+    number193_factors = prime_factors(reverse_decimal(193))
+    assert number193_factors == [17, 23]
     assert [i for i, value in enumerate(grid["bytes"]) if value == 193] == [83, 127]
-    assert corpus["translit"][23] == "D"
 
-    # "Find the divinity within": among the 17 page-local segments, D occurs
-    # strictly inside only segments 5 and 9. The third D begins segment 16.
-    inside_d_segments = []
+    # Apply the project's already-established factor-index reduction to the
+    # distinct factors 17 and 23. They are the 7th and 9th GP primes, so
+    # zero-based indices 6+8 = 14 = X. Among the 19 p57 body-word factor
+    # signatures this selects DIVINITY uniquely.
+    factor_indices = [corpus["prime"].index(p) for p in number193_factors]
+    factor_signature_index = sum(factor_indices) % 29
+    factor_signature = corpus["translit"][factor_signature_index]
+    assert factor_indices == [6, 8]
+    assert factor_signature_index == 14
+    assert factor_signature == "X"
+
+    def word_factor_signature(value):
+        factors = sorted(set(prime_factors(value)))
+        if any(factor not in corpus["prime"] for factor in factors):
+            return None
+        index = sum(corpus["prime"].index(factor) for factor in factors) % 29
+        return corpus["translit"][index]
+
+    signatures = [word_factor_signature(value) for value in SUMS]
+    assert [i + 1 for i, value in enumerate(signatures) if value == "X"] == [16]
+    assert WORDS[15] == "DIVINITY"
+
+    # "Shed our own circumferences": the first p55 page-local segment is only
+    # the ending boundary rune of a word begun on p54. Every later segment of
+    # length >2 contributes only its strict interior.
+    interior = []
     offset = 0
+    inside_d_segments = []
     for segment, length in enumerate(lengths, start=1):
         word = p55[offset:offset + length]
-        if 23 in word[1:-1]:
-            inside_d_segments.append(segment)
+        if segment > 1:
+            middle = word[1:-1]
+            interior.extend(middle)
+            if 23 in middle:
+                inside_d_segments.append(segment)
         offset += length
+    assert len(interior) == 43
+    assert corpus["translit"][23] == "D"
+
+    d_positions = [i + 1 for i, value in enumerate(interior) if value == 23]
+    assert d_positions == [5, 23]
+    assert d_positions[1] - d_positions[0] - 1 == 17
+    assert d_positions[1] - d_positions[0] == 18
+    span = interior[d_positions[0] - 1:d_positions[1]]
+    assert len(span) == 19
     assert inside_d_segments == [5, 9]
-    selected = int("".join(map(str, inside_d_segments)))
+
+    fold_bits = "".join(
+        "1" if span[i] == span[-1 - i] else "0"
+        for i in range(len(span) // 2)
+    )
+    assert fold_bits == "100000000"
+    assert int(fold_bits, 2) == 256
+    center = span[len(span) // 2]
+    assert corpus["translit"][center] == "I"
+    assert corpus["prime"][center] == 31
+
+    # The exact interior geometry itself supplies 5 and 19. Their product
+    # reverses to 59, independently selecting the previously underdetermined
+    # factor 59 in NUMBER(449), without concatenating segment labels.
+    product_5_19 = d_positions[0] * len(span)
+    assert product_5_19 == 95
+    selected = reverse_decimal(product_5_19)
     assert selected == 59
     assert prime_factors(reverse_decimal(selected)) == [5, 19]
+
+    # Carrying the ornament's historical '+' marker into the p57 word graph
+    # from the newly selected DIVINITY node reaches the circumference cluster.
+    plus_path = []
+    seen = set()
+    x = 15
+    while x not in seen:
+        seen.add(x)
+        plus_path.append(x)
+        x = (x + (SUMS[x] % MOD)) % MOD
+    assert [WORDS[i] for i in plus_path[:5]] == [
+        "DIVINITY", "OWN", "SHED", "FIND", "CIRCUMFERENCES"
+    ]
+
     return {
         "number193_reversed": reverse_decimal(193),
-        "number193_prime_factors": [17, 23],
+        "number193_prime_factors": number193_factors,
+        "factor_prime_indices_zero_based": factor_indices,
+        "factor_index_signature": factor_signature,
+        "p57_unique_signature_word": "DIVINITY",
         "p55_page_local_segments": 17,
-        "gp_index23": "D",
+        "p55_shed_interior_count": len(interior),
         "inside_D_segment_numbers": inside_d_segments,
-        "selected_number": selected,
+        "inside_D_positions_1based": d_positions,
+        "strictly_between_D_count": 17,
+        "D_position_difference": 18,
+        "inclusive_D_span_length": len(span),
+        "D_span_fold_bits": fold_bits,
+        "D_span_fold_value": int(fold_bits, 2),
+        "D_span_center": corpus["translit"][center],
+        "D_span_center_prime": corpus["prime"][center],
+        "product_5x19": product_5_19,
+        "independently_selected_number": selected,
         "number59_reversed": reverse_decimal(selected),
         "number59_prime_factors": [5, 19],
+        "plus_path_from_DIVINITY": [WORDS[i] for i in plus_path],
     }
-
 
 def cycle(values, start, sign):
     seen = {}

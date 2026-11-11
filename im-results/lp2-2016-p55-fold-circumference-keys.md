@@ -61,6 +61,14 @@ This makes the solved p57 instruction “shed our own circumferences / find the 
 
 The result does not yet specify which unknown ciphertext should be decrypted with either key.
 
+## P55 literally realizes “divinity within”
+
+The cross-page-aware circumference strip on physical p55 leaves exactly **43 interior runes**. D is GP index23 and occurs in that interior stream exactly at positions **5 and23**. The two markers have **17** runes strictly between them, position difference **18**, and inclusive span **19**. The span folds outer-to-inner as **100000000₂=256** and has center rune **I**, whose GP prime is **31**.
+
+This geometry is independently linked to the ornament/table route: historical NUMBER(193) gives **391=17×23**. Its established factor-index signature is **X**, uniquely matching p57 word **DIVINITY**. The p55 interior therefore realizes the same 17/23 values physically after the source instruction has selected “within.” The first D position and inclusive span also give **5×19=95**, reversing to **59**, which resolves the formerly free 59 divisor used in the p57 5×19 route.
+
+The p27 title fold independently selects **P/P**, with P at GP index13. Pairing that selected P with the p55 span center I gives a plausible **PI** mnemonic for circumference, while the ornament values 13/31 match P's index and I's prime. Because that comparison mixes an alphabet index with a prime weight, retain PI as semantic corroboration rather than a key derivation.
+
 ## Corpus discriminator
 
 The page and fold were selected before this check: FOLD points to p55:w2, and a 17-word sequence has one natural center.

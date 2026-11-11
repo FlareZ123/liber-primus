@@ -38,11 +38,13 @@ That is 76 page-local runes. The leading one-rune segment is the final boundary 
 
 [19, 10, 12, 6, 23, 2, 27, 24, 17, 5, 28, 0, 14, 10, 19, 1, 5, 13, 8, 21, 20, 15, 23, 27, 13, 8, 12, 18, 10, 6, 14, 6, 15, 12, 2, 2, 18, 28, 10, 19, 5, 11, 18]
 
-The solved p57 Parable says, “We must shed our own circumferences. Find the divinity within and emerge.” This supports an interior-extraction interpretation, but it does not explicitly prescribe the exact per-word stripping convention, and it says nothing about pairing the resulting runes with p50 bytes or 2016 message words. Nor does it specify whether any exterior symbols should be retained or reinserted.
+The solved p57 Parable says, “We must shed our own circumferences. Find the divinity within and emerge.” Under the lossless cross-page-aware stripping above, this yields a concrete internal marker geometry. GP index23 is D, and the 43 interiors contain D exactly at one-based positions **5 and23**. There are **17 runes strictly between**, their position difference is **18**, and the inclusive D…D span has **19 runes**. Historical `NUMBER(193)` independently yields **391=17×23**, so both factors are realized without choosing a new key. The D…D span folds to **100000000₂=256** and its center is I, whose GP prime is31.
+
+This supports the interior-extraction convention substantially more strongly than cardinality alone. It still says nothing by itself about pairing the 43 interiors with p50 bytes or 2016 message words, and it does not specify whether boundary symbols should later be reinserted.
 
 ### The earlier historical instructions
 
-- The archived 2013 telnet NUMBER operation reverses decimal digits and factors the result. Applied to 193, it gives 391 = 17 × 23. This is a historically available operation, not an instruction to use those factors as a p50/p55 key, coordinate system, or ordering.
+- The archived 2013 telnet NUMBER operation reverses decimal digits and factors the result. Applied to 193, it gives 391 = 17 × 23. Under the project's established factor-index reduction, 17/23 map to GP signature **X**, uniquely matching solved p57 word **DIVINITY**. On p55 the same 17/23 pair is independently realized as the 17 runes strictly between the D markers and the second D's interior position23. This is strong navigation evidence, while it still does not define a 43-unit reversible cipher.
 - The 2013 wisdom/folly material says primes and the totient function are sacred and that all things should be encrypted. It supplies no 43-unit selector.
 - The 2014 Onion7 index has title value 133, div identifier 331, and 58 page links. The 2013 reversal operation relates 331 and 133, but the index does not prescribe any 43-unit correspondence.
 - The 2014 May message provides an onion destination and an enlightenment prompt, not a byte/rune alignment.
