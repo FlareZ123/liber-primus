@@ -47,7 +47,26 @@ assert.strictEqual(B30,'DIRECTIOARSEEKSPATHSLIESTHEAND');
 const AendIds=Aends.map(n=>non[n-1].id),BendIds=Bends.map(n=>n-1);
 assert.deepStrictEqual(AendIds,[2,6,10,15,23,28,31]);
 assert.deepStrictEqual(BendIds,[8,11,16,21,25,28,31]);
+
+// Treat A-words as seven row groups and B-words as seven column groups.
+// Each stream partitions the same chronological 30 nonempty fragments.
+const cells=Array.from({length:7},()=>Array.from({length:7},()=>[]));
+for(let rank=0;rank<non.length;rank++){
+ const item=non[rank];
+ const ag=Aends.findIndex(end=>rank<end);
+ const bg=Bends.findIndex(end=>item.id<end);
+ cells[ag][bg].push(item.id);
+}
+const rowMajor=cells.flat().flat();
+const columnMajor=Array.from({length:7},(_,b)=>Array.from({length:7},(_,a)=>cells[a][b]).flat()).flat();
+const chronological=non.map(x=>x.id);
+assert.deepStrictEqual(rowMajor,chronological);
+assert.deepStrictEqual(columnMajor,chronological);
+const overlapMatrix=cells.map(row=>row.map(cell=>cell.length));
 console.log(JSON.stringify({m7Ordinals:ords,p32Words:selected,p32Lengths:lengths,p32PrimeSums:sums,
  messageTokenCount:tokens.length,alphaOnlyCount:alpha.length,A,AwordLengths,B,BwordLengths,B44,
  fragmentCount:frags.length,fullRuneCount:full.length,unknownEnd:starts[28],empty,nonemptyCount:non.length,
- emptyLetters:empty.map(i=>B[i]).join(''),B30,AendIds,BendIds},null,2));
+ emptyLetters:empty.map(i=>B[i]).join(''),B30,AendIds,BendIds,
+ overlapMatrix,rowMajorIds:rowMajor,columnMajorIds:columnMajor,
+ bothGridReadingsEqualChronological:true,
+ interpretation:'The two source-derived word partitions form an interval-overlap matrix; row-major and column-major both reproduce chronological fragment order. They do not define a nontrivial fragment permutation.'},null,2));
