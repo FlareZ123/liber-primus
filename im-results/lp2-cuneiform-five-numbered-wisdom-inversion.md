@@ -51,6 +51,20 @@ For passage k, the source-selected row k starts at phase zero at the beginning o
 
 Decoded per-passage IoCs stay near 1/29: subtraction [0.03159,0.03150,0.03598,0.03640,0.03331]; addition [0.03347,0.03468,0.03450,0.03443,0.03331]. Neither direction yields recognizable source-native English text. The reencryption invariant verifies code correctness, while independent language evidence remains negative. As expected for a varying-position additive operation, it restores ordinary random-like numbers of adjacent duplicates rather than solving the text.
 
+## Five-passage column mixing under the solved prime-totient key
+
+A separate finite inverse addresses the source-interpretive **MIX** word identified by the historically mapped p36/p55 Wisdom-square route (see [direction-map source analysis](2014-magic-square-direction-map.md#nested-word-sum-instruction-candidate-mix)). The manuscript visibly enumerates exactly five passages with rune lengths **139, 91, 98, 96, 129**. Read their first runes in number order 1→5, then their second runes in the same order, continuing column-by-column and skipping exhausted passages. Reverse-number order 5→1 is the opposing direction. This is an invertible, variable-height five-column interleave with no guessed fillers or fitted indices.
+
+The only next cryptographic operation in this bounded test is the known solved-p56 **GP29 prime-totient key**: for the j-th runic symbol in the mixed sequence, `k_j=(prime(j+1)-1) mod29`, starting at the first prime 2 and resetting at the source 10-dot enclosure. Both additive signs were tested. The unchanged as-printed sequence is the baseline, giving six exact models. The original 553-rune stream has IoC **0.03423356**, and the candidate inverses yield:
+
+| Read order | Subtract shift IoC | Add shift IoC |
+| --- | ---: | ---: |
+| As printed | **0.03418115** | **0.03479702** |
+| Column interleave 1→5 | **0.03466599** | **0.03462012** |
+| Column interleave 5→1 | **0.03476426** | **0.03482323** |
+
+All six outputs have no discernible GP-native plaintext opening and remain near the uniform 29-symbol IoC of 0.03448. The exact inverses fully restore all **553/553** original symbols. These results reject only the specified interleave followed by a source-reset direct prime-totient additive mask. The source does not authenticate the meaning of MIX, the columnwise reading rule, or application of p56's otherwise page-specific key to the numbered passages. No unknown plaintext or key was recovered. [Single-file reproducible test](../sims/lp2_five_numbered_mix_primephi_sft.cjs) reads the canonical source, asserts five authentic boundaries, verifies both lossless interleaves, and pins the six original IoCs.
+
 ## Native JPEG glyph readback (Agent 27, 11 November 2026)
 
 A separate image-only nearest-template readback was run on the original scans 53–55. Its 29-symbol reference set is trained only on source-checked physical p43 (scan 60): 274 glyphs, all 29 GP symbols, with **274/274 leave-one-out exact classification**. No p36–p38 target glyph labels enter training.
