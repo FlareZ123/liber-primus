@@ -34,6 +34,7 @@ on:
           - byte-pointer
           - collision-quote
           - signed-message-map
+          - stipple-241-331
           - source-dh-log
         default: full
 
@@ -51,6 +52,10 @@ jobs:
         run: |
           node sims/lp2_2013_p56_prime84_field_basis_sft.cjs
           node sims/lp2_2013_dh_prime_field_log_inverse_sft.cjs
+
+      - name: Original p57 cicada-stipple 241/331 selector and 51x127 field-clock gate
+        if: ${{ inputs.probe == 'stipple-241-331' }}
+        run: node sims/lp2_stipple_241_331_field_clock_gate.cjs
 
       - name: Full authenticated 2016 signed-message base-58 word map
         if: ${{ inputs.probe == 'signed-message-map' }}

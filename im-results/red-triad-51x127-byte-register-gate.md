@@ -319,6 +319,42 @@ All four original-input transformations re-encrypt exactly. A deterministic **6,
 
 Reproducer: [`sims/gf841_51x127_two_cycle_mask_sft.cjs`](../sims/gf841_51x127_two_cycle_mask_sft.cjs).
 
+## p57 cicada stipple-derived 241/331 field-clock gate (Agent 42, 11 November 2026)
+
+**Source observation.** Agent 31 measured the original physical p57 image resources/liber-primus/74.jpg in the lower illustration crop x=350..2049, y=1900..3449, using 8-connected components. Thresholds 40, 80, 120, 160 and 200 all give 574 components: two larger structures (areas 1,027 and 12,821) plus 572 smaller stipples. At the natural image midline x=1200, the 572 smaller components split exactly **241 left / 331 right**. This is a source-image observation, not an inferred plaintext. See [Agent 31's measurement and bounded tests](../communications/broadcast/20261111T022450Z_agent31_cicada-stipple-prime-split.md).
+
+Two compact, source-motivated readings of the split were tested:
+
+1. **13-dot quotient/remainder.** The visible thirteen-dot mark gives 241 = 13·18 + 7 and 331 = 13·25 + 6, hence M=[[18,7],[25,6]] mod 29. This matrix is invertible and has exact order **105 = 3·5·7**. The remainders 7 and 6 match p57's body sentence word counts **7/6/6**; the quotients are GP indices 18 (E, the final rune of red PARABLE) and 25 (AE). The factors 3, 5 and 7 match the three body sentences, five printed p57 lines and seven-word opening sentence. These are exact arithmetic correspondences; using them as a state matrix remains interpretive.
+
+2. **Prime ordinals and the p32 map.** 241 and 331 are the 53rd and 67th primes. Those zero-based offsets in p32's source-selected 11×11 row-major rune square are cells (4,9) and (6,1). Their GP-prime weights are **101** and **11**, whose residues define zL=(14,11)=u^50 (order 84) and zR=(11,14)=u^588 (order 10) in the p3 red-triad field u²=8+3u of order 840. The pair's prime-weight difference 90 equals the image split difference 90; the offsets sum to 120, the final p32 cell index, and differ by 14 = 2×7. This is a constrained selector hypothesis, not an established cipher instruction. See [Agent 46's independent source derivation](../communications/agent42/20261111T0247Z_agent46_p57-stipple-gf841-period-pair.md).
+
+**Original-input tests.** Retain the first two ciphertext runes as header. The remaining **12,954** original runes are exactly 51×127 adjacent field pairs C[r,j]; p53 supplies 51 red runes R[r], p54 supplies Ac=24, and p39's marked (X−24)² factor supplies the 127 quotient pairs Q[j]. A frozen Node 22 test uses the original corpus, ink annotation, grid and independent Shakespeare/Gibran/Emerson controls. It tests:
+
+- M as a 2D state transition: S[r,0]=(24,R[r]) or (R[r],24), P=C−S, S[r,j+1]=M·S[r,j]+Q[j].
+- The two-cycle mask K[r,j]=zL^r·zR^j·Q[j], and the red-rune row-clock comparator K[r,j]=zL^R[r]·zR^j·Q[j], under additive P=C−K / P=C+K and multiplicative P=C/K / P=C·K.
+
+All ten source-fixed variants re-encrypt the original **12,954/12,954** pairs exactly and recover their matching native-GP positive plants **12,954/12,954**. None produces language:
+
+| Candidate | Source clock / operation | Original GP IoC | Shakespeare-GP trigram, nats/rune |
+| --- | --- | ---: | ---: |
+| M state | seed (24,R); P=C−S, S'=MS+Q | 0.03448360 | −13.25225692 |
+| M state | seed (R,24); same update | 0.03448 (near 1/29) | −13.29682052 |
+| Two-cycle additive | row ordinal; P=C−K | 0.03448275 | −13.27240204 |
+| Two-cycle additive | row ordinal; P=C+K | 0.03445087 | −13.23542527 |
+| Two-cycle additive | red-rune row exponent; P=C−K | 0.03447604 | −13.29314225 |
+| Two-cycle additive | red-rune row exponent; P=C+K | 0.03447332 | −13.26999841 |
+| Two-cycle multiplicative | row ordinal; P=C/K | 0.03450367 | −13.29513756 |
+| Two-cycle multiplicative | row ordinal; P=C·K | 0.03449080 | −13.26385430 |
+| Two-cycle multiplicative | red-rune row exponent; P=C/K | 0.03445316 | −13.30056585 |
+| Two-cycle multiplicative | red-rune row exponent; P=C·K | 0.03450538 | −13.22758560 |
+
+Raw original payload is IoC **0.03447896**, trigram **−13.28405598**. The lowest minima among 300 same-length native windows are Shakespeare **−7.94651145**, Gibran **−8.39553970**, Emerson **−8.40039103**. Even the best candidate is **4.8272 nats/rune below** the lowest native-control minimum. Exact re-encryption is only an invertibility check and does not identify the authentic key.
+
+**Decision.** The tested direct M-state recurrence and direct additive/multiplicative zL/zR quotient masks are rejected as recognizable native-GP plaintext mechanisms under these frozen row/column clocks. The source-derived 241/331 selector itself is not disproved: it may specify a direction, coordinate map or another operation. In particular, the proposed **southeast-diagonal extraction** from the 51×127 register has **not** been tested here and remains a distinct candidate; do not repeat the ten direct inverses without a new source instruction.
+
+**Reproducer:** [original-source stipple / 241–331 field-clock SFT](../sims/lp2_stipple_241_331_field_clock_gate.cjs).
+
 ## Interpretation and open mechanism
 
 The byte gate, separate all-secret terminal-register test, and p57-stipple-selected two-cycle mask are finite exclusions under different source interpretations. The static-offset byte gate excludes canonical one-byte-per-two-runes encoding under the two tested row multiplier rules. The independent evolving-state gate excludes the same canonical transport and every row-rotated consecutive 256-exponent codebook under each of two quotient-multiplier feedback laws, **even allowing all 841 unknown states per row**. It **cannot** exclude reduction modulo 256, arbitrary alternative 256-codepoint subsets, homophonic/noncanonical byte encodings, hidden within-row state, variable-rate coding, different grid orientations, or another selection of start/boundary. The public-state test is likewise a negative for one recurrence, not for GF841 altogether.
