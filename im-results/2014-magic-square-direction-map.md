@@ -213,6 +213,31 @@ Read as zero-based column indices, these select columns **7 and 8** in the print
 
 There is a natural indexing ambiguity. Treating the 1-based cell numbers 6 and 7 directly as 1-based table columns selects printed columns **6 and 7**, not 7 and 8. Both interpretations were tested below.
 
+## Columns 7–8 as a per-fragment two-rune key: bounded negative
+
+The modulo-8 selector has one simple key interpretation worth testing before considering more elaborate state models: align table row *r* with red fragment *r*, and use that row's two selected cells as a repeating two-rune additive key for the fragment. This is a hypothesis, not a source-established cipher: neither modulo 8 nor row/fragment alignment is authenticated.
+
+The original 13-dot annotations define **32 ordered fragments**, of which **17 are nonempty**. The 32×8 numeric table also has 32 rows. The 2014 stage04 cells 366 and 199 give zero-based residues 6 and 7, selecting printed columns **7–8**. The natural 1-based alternative selects printed columns **6–7**. For both selections, the test maps each pair either directly modulo 29 or through φ(byte) modulo 29, then tests both additive directions. It applies the row's two-symbol key cyclically within its corresponding fragment; no key fitting, row shifts, or word-specific exceptions are allowed.
+
+For fragment 7, whose exact input is **ATXBMGIASBXEO**, the selected row values and resulting outputs are:
+
+| Printed columns | Mapping | Direction | Row-7 byte pair | GP key | Fragment-7 output |
+|---|---|---|---|---|---|
+| 7–8 | raw mod 29 | subtract | [156, 80] | [11, 22] | `PDOAHPTOEGNGU` |
+| 7–8 | raw mod 29 | add | [156, 80] | [11, 22] | `GNAEIUEANHEAWD` |
+| 7–8 | φ then mod 29 | subtract | [156, 80] | [19, 3] | `CPAXFOHEOIAJOE` |
+| 7–8 | φ then mod 29 | add | [156, 80] | [19, 3] | `XMRLNNBEWBTH` |
+| 6–7 | raw mod 29 | subtract | [171, 156] | [26, 11] | `IACBGOEAURLOS` |
+| 6–7 | raw mod 29 | add | [171, 156] | [26, 11] | `NGIAJEATBAYXAEN` |
+| 6–7 | φ then mod 29 | subtract | [171, 156] | [21, 19] | `OYOEIAIATGAEAEAL` |
+| 6–7 | φ then mod 29 | add | [171, 156] | [21, 19] | `TGGWJAEMCNRR` |
+
+The same fixed operation was applied to every nonempty fragment. No complete fragment yields intelligible plaintext; occasional short letter substrings do not form a coherent message. One alternative-column φ variant skips fragment 29 because its selected pair contains zero and φ(0) is undefined; no replacement value is fitted.
+
+Reproduce with [`sims/lp2_2014_fragment_pair_key_sft.cjs`](../sims/lp2_2014_fragment_pair_key_sft.cjs) or the `fragment-pair` probe in [`.github/workflows/grid-256-tests.yml`](../.github/workflows/grid-256-tests.yml).
+
+**Decision:** reject the direct row-per-fragment, repeating two-rune additive-key interpretation for both natural column readings, raw/φ mappings, and both signs. This does not disprove every possible use of columns 7–8 as state or route material, but no source currently selects a more elaborate operation. Do not expand this into an affine/LFSR search without a new, independent clue.
+
 ## Rad↔Ac as a 32×8 table coordinate: bounded negative
 
 The 2014 edge can be read as a coordinate in the original 32×8 LP2 table without a fitted transform: Ac=24 as the row and Rad=4 as the column gives row-major index 24×8+4=196. The original byte there is **176**, or **2 mod 29**. The signed 2016 image dimensions independently select offsets 563 mod 256 = **51** and 569 mod 256 = **57**, whose table bytes are **59** and **118**.
@@ -328,7 +353,7 @@ The 2016 image is a dead-oak illustration, not a verified geographic photograph.
 
 The 2016 message's instruction that words are a map, meanings a road, and numbers directions is compatible with the 2014 matrix interpretation. However, the angle convention is an inference, not a proven instruction. The separate 15×15 red225 compass selector also fails its exact \\(\\phi(n)\\bmod29\\) target check (2/25; 225-phase empirical p=0.3022), so it is not a recovered route. Using compass bearings (0° north, clockwise) does not produce the cell-6 → cell-7 oak connection. The archived 2016 message also ends “Beware false paths,” so semantic and geographic matches require a source-fixed stopping rule.
 
-The direct byte-as-bearing transfer to the LP2 numeric table remains rejected, and the full 2014 direction graph does not select the sparse T6 event positions. The 199/Ac fragment bridge remains a source-constrained human solve-path hypothesis, but it does not specify a reversible cipher, recover plaintext, or establish the destination. The separate use of columns 7–8 as key/state material remains untested and must not be conflated with the fragment-index result.
+The direct byte-as-bearing transfer to the LP2 numeric table remains rejected, and the full 2014 direction graph does not select the sparse T6 event positions. The 199/Ac fragment bridge remains a source-constrained human solve-path hypothesis, but it does not specify a reversible cipher, recover plaintext, or establish the destination. The direct repeating two-rune additive-key interpretation of columns 7–8 is now tested and negative; other state/route interpretations remain untested and must not be expanded without a source-selected reversible operation.
 
 ## Reproduction
 

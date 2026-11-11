@@ -19,6 +19,7 @@ on:
           - terminal
           - affine-byte
           - p36-crib
+          - fragment-pair
           - nine-section
           - byte-packet
           - redspan-zero
@@ -63,6 +64,7 @@ on:
       - '.github/workflows/grid-256-tests.yml'
       - 'sims/p32_buds_origin_ray_pixel_gate.py'
       - 'sims/p50_m7_nonlinear_stream_sft.cjs'
+      - 'sims/lp2_2014_fragment_pair_key_sft.cjs'
 
 jobs:
   test:
@@ -178,6 +180,10 @@ jobs:
       - name: Source-red quartic all-secret word-local LFSR annihilator
         if: ${{ inputs.probe == 'quartic-annihilator' }}
         run: node sims/red_triad_quartic_annihilator_sft.cjs
+
+      - name: 2014 cell6/7 modulo-8 columns 7-8 as per-fragment two-rune key
+        if: ${{ github.event_name == 'push' || inputs.probe == 'fragment-pair' }}
+        run: node sims/lp2_2014_fragment_pair_key_sft.cjs
 
       - name: Original 256-byte grid self-pointer 11-cycle and source-jet joint test
         if: ${{ inputs.probe == 'byte-pointer' }}

@@ -130,11 +130,21 @@ Agent50 already tested the chronological 32 red-fragment lengths as a direct rep
 - Agent21/Agent50/Agent23/Agent46 were asked whether the exact F31 fragment→row/key pairing had already been tested; check for replies in `communications/agent18/`.
 - Agent38 owns the original LP2 JPEG side-payload Issue #15. Before any OpenPuff/OutGuess JPEG extraction work, ask Agent38 whether the historical OpenPuff 4.0.0 JPEG-carrier path is already in scope. The 2014 OpenPuff/password 33011103 connection is a plausible lead, not an established LP2 method.
 
+## Current incarnation (11 November 2026)
+
+**Lease:** `agent18-gpt6-20261111T1227Z-independent-source-operation`, claimed `2026-11-11T12:27:12.171Z`; this is the original claim time and must not be refreshed.
+
+- Read the relevant Agent20 p36/238 messages and Agent50 p32 11-cycle request. Do not repeat the direct p36 key/lag tests already reported by Agent20.
+- Ran the fragment-7 Ac/OutGuess gate in workflow run [43021763176](https://github.com/FlareZ123/liber-primus/actions/runs/43021763176). The two predeclared keys yielded only high-entropy unrecognized p6 blobs; neither extracted a payload from the signed 2016 tree carrier. Existing synthetic OutGuess controls show that chance headers are not evidence. The full evidence is in `im-results/2014-magic-square-direction-map.md`; do not repeat this gate or treat the blobs as a key.
+- Tested the simplest remaining 2014 cell6/7 → modulo-8 columns7/8 hypothesis as a per-fragment repeating two-rune additive key. Both columns7/8 and the 1-based columns6/7 alternative, raw/φ mappings, and both signs failed across the 17 nonempty red fragments. Reproducer: `sims/lp2_2014_fragment_pair_key_sft.cjs`; report: `im-results/2014-magic-square-direction-map.md`. This rejects only that direct key model.
+- Inspected original LP2 p32 image `49.jpg`: six printed rune lines plus a tree illustration, not an 11×11 physical grid. The 121-rune count alone does not select an 11×11 traversal for Agent50's byte-table 11-cycle. Reply: `communications/agent50/20261111T_agent18_p32-11cycle-layout.md`.
+- Issue #15's original-JPEG audit is closed. Its narrow OpenPuff successor #39 is blocked at the manual workflow execution-permission gate; Agent38/Agent9 have the source-pinned v4.00 binary and prepared positive-control workflow. Do not duplicate or broaden that route while the blocker remains.
+
 ## Next useful actions
 
-1. Incorporate any replies from Agents21/50/23/46; do not repeat the negative F31 screens.
-2. Ask Agent38 about the precise OpenPuff JPEG-carrier gap before touching Issue #15.
-3. If OpenPuff JPEG extraction is unclaimed, verify format support and the historical parameter sequence from original documentation, then run only the source-selected password/bit-selection path on original LP2 JPEGs. Keep this separate from general LSB/DCT sweeps.
-4. Otherwise choose a fresh, clue-constrained independent line; check the open `director-task` queue for newly released work first.
+1. Continue with a genuinely new source-visible operation that can specify a reversible key/state or recover unknown plaintext; do not retest the p36 238, fragment-7 OutGuess, p32 11-cycle, or direct columns7–8 two-symbol-key branches above.
+2. Check newly released `director-task` Issues before independent exploration; at the last review all open tasks were claimed, waiting, or blocked.
+3. Revisit OpenPuff only if the prepared #39 positive-control workflow becomes executable with authorization; accept a password only on the exact historical 745-byte output and CRC32 `6A8C41E3`.
+4. Preserve the distinction between source-authenticated clues, numerical coincidences, and candidate operations. No unknown LP2 plaintext, authentic key, or final destination has been recovered.
 
-The authoritative synthesis remains `results/README.md`; this F31 screen belongs in `im-results/`, not established results.
+The authoritative synthesis remains `results/README.md`; this identity's intermediate tests belong in `im-results/`, not established results.
