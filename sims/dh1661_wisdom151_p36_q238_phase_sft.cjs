@@ -185,6 +185,17 @@ assert.equal(q238[238], 1);
 
 const p36 = corpus.pages.find((p) => p.page === 36).indices;
 assert.equal(p36.length, 238);
+
+const transcription = read('resources/lp2-transcription.txt');
+const p36Raw = transcription.split('%')[36];
+const runeSet = new Set(corpus.runes);
+const headingChar = p36Raw.indexOf('1-');
+assert(headingChar >= 0);
+const runesBeforeHeading = Array.from(p36Raw.slice(0, headingChar)).filter((ch) => runeSet.has(ch)).length;
+assert.equal(runesBeforeHeading, 99);
+const p36WithHeading = [...p36.slice(0, runesBeforeHeading), 1, ...p36.slice(runesBeforeHeading)];
+assert.equal(p36WithHeading.length, 239);
+
 const keyBase = q238.slice(0, 238);
 const results = [];
 for (const orientation of ['forward', 'reverse']) {
@@ -230,6 +241,47 @@ for (const [name, key] of Object.entries(antiDiagonalKeys)) {
   }
 }
 
+const headingAnchoredResults = [];
+for (const direction of [1, -1]) {
+  const source = Array.from(
+    { length: 239 },
+    (_, tokenIndex) => q238[((238 + direction * (tokenIndex - runesBeforeHeading)) % 239 + 239) % 239],
+  );
+  assert.equal(source[runesBeforeHeading], 1);
+
+  const forwardMap = new Map();
+  const reverseMap = new Map();
+  let sameInputConflicts = 0;
+  let sameOutputConflicts = 0;
+  for (let i = 0; i < source.length; i++) {
+    const a = source[i];
+    const b = p36WithHeading[i];
+    if (forwardMap.has(a) && forwardMap.get(a) !== b) sameInputConflicts++;
+    else if (!forwardMap.has(a)) forwardMap.set(a, b);
+    if (reverseMap.has(b) && reverseMap.get(b) !== a) sameOutputConflicts++;
+    else if (!reverseMap.has(b)) reverseMap.set(b, a);
+  }
+
+  const decodedRows = [];
+  for (const sign of [-1, 1]) {
+    const decoded = [];
+    for (let tokenIndex = 0; tokenIndex < 239; tokenIndex++) {
+      if (tokenIndex === runesBeforeHeading) continue;
+      decoded.push(mod29(p36WithHeading[tokenIndex] + sign * source[tokenIndex]));
+    }
+    decodedRows.push({ sign, ...score(decoded) });
+  }
+
+  headingAnchoredResults.push({
+    direction: direction === 1 ? 'ascending-from-monic' : 'descending-from-monic',
+    sameInputConflicts,
+    sameOutputConflicts,
+    permutationPossible: sameInputConflicts === 0 && sameOutputConflicts === 0,
+    decodedRows,
+  });
+}
+assert(headingAnchoredResults.every((r) => !r.permutationPossible));
+
 const nativeWindows = [];
 for (let i = 0; i + 238 <= reference.length; i++) nativeWindows.push(score(reference.slice(i, i + 238)).trigramNatsPerRune);
 nativeWindows.sort((a, b) => a - b);
@@ -258,11 +310,17 @@ console.log(JSON.stringify({
     keys: antiDiagonalKeys,
     results: antiDiagonalResults,
   },
+  headingAnchor: {
+    runesBeforeHeading,
+    combinedTokens: p36WithHeading.length,
+    q238Coefficients: q238.length,
+    results: headingAnchoredResults,
+  },
   native238Windows: {
     count: nativeWindows.length,
     minimum: nativeWindows[0],
     median: nativeWindows[Math.floor(nativeWindows.length / 2)],
     maximum: nativeWindows.at(-1),
   },
-  decision: 'The phase-151 Q238 inverses and the 151-selected anti-diagonal raw/totient additive keys all score below every same-length native solved-reference window.',
+  decision: 'The phase-151, 151-selected anti-diagonal, and visible-heading-1 anchored Q238 additive models all fail; the heading-anchored 239-token alignment is also impossible under any fixed secret 29-symbol permutation.'
 }, null, 2));
