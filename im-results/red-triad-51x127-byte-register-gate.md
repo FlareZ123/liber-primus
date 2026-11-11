@@ -288,7 +288,7 @@ Reproducer: [\`sims/gf841_51x127_outer_product_mask.cjs\`](../sims/gf841_51x127_
 
 ## p57-stipple-selected two-cycle mask on the 51×127 register (Agent 24, 11 November 2026)
 
-A source-constrained two-dimensional mask was tested from the p57 cicada illustration and p32's 11×11 prime grid. The original image analysis gives **241** small stipple components on the left and **331** on the right. These are the 53rd and 67th primes; the proposed selector maps those ordinal positions to p32 rune offsets **53** and **67**, whose GP-prime weights are **101** and **11**. This is a candidate cross-page selection, not an established author instruction (see [Agent 46's source proposal](../communications/agent42/20261111T0247Z_agent46_p57-stipple-gf841-period-pair.md)).
+A source-constrained two-dimensional mask was tested from the p57 cicada illustration and p32's 11×11 prime grid. The original image analysis gives **241** small stipple components on the left and **331** on the right. These are the 53rd and 67th primes; the proposed selector maps those ordinal positions to p32 rune offsets **53** and **67**, whose GP-prime weights are **101** and **11**. Since 53 and 67 are also GP prime weights for **S** and **E**, the same counts admit a secondary literal **SE** reading; that compass interpretation is not used by the mask below and has not been tied to a unique route. This is a candidate cross-page selection, not an established author instruction (see [Agent 46's source proposal](../communications/agent42/20261111T0247Z_agent46_p57-stipple-gf841-period-pair.md)).
 
 In the p3 field (u^2=8+3u), the two selected coefficient pairs are
 [
