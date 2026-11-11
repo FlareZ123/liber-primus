@@ -122,12 +122,24 @@ function main() {
   const sha256 = crypto.createHash("sha256").update(jpg).digest("hex");
   assert.equal(sha256,
     "2db94921ae5216d8a589890495fa5432446cd3227c45fbeb4934cbb0525112f7");
-  const suffixLength = 72700;
-  assert.deepEqual(jpg.subarray(jpg.length - suffixLength - 2, jpg.length - suffixLength),
-    Buffer.from([0xff,0xd9]));
-  assert.deepEqual(jpg.subarray(-suffixLength),
-    Buffer.from(jpg.subarray(0,suffixLength)).reverse());
-  assert.equal(suffixLength / 100, diagonal(rev,true));
+  // The entire original JPEG is mirrored around a 360-byte embedded text section.
+  // A 72700-byte terminal match is merely a suffix of this 336353-byte mirror.
+  const prefixLength = (jpg.length - 360) / 2;
+  assert.equal(jpg.length, 673066);
+  assert.equal(prefixLength, 336353);
+  assert.equal(jpg.subarray(prefixLength - 2, prefixLength).toString("hex"), "ffd9");
+  assert.deepEqual(jpg.subarray(prefixLength + 360),
+    Buffer.from(jpg.subarray(0, prefixLength)).reverse());
+  const center = jpg.subarray(prefixLength, prefixLength + 360);
+  assert.equal(center.subarray(0, 2).toString("hex"), "0a0a");
+  const reversedHex = center.subarray(2).toString("ascii");
+  assert.match(reversedHex, /^[0-9a-f]{358}$/);
+  const embedded = Buffer.from(reversedHex.split("").reverse().join(""), "hex")
+    .toString("ascii").trimEnd().split(/\r?\n/)
+    .map((line) => line.trim().split(/\s+/).map(Number));
+  assert.deepEqual(embedded.map((row) => row.length), Array(5).fill(5));
+  assert.equal(embedded[2][2], 91);
+  assert.deepEqual([diagonal(embedded,false), diagonal(embedded,true)], [1033,1033]);
 
   const primes = primesUpToCount(1000);
   assert.deepEqual([primes[128],primes[173],primes[463]], [727,1033,3301]);
@@ -148,7 +160,7 @@ function main() {
     "IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE";
   assert.equal(solved.mask, 8);
   assert.deepEqual(solved.decoded, toGP(knownWords, corpus.translit));
-  const candidates = [1,129,464].map((start) => {
+  const candidates = [1,129,133,331,464].map((start) => {
     const b = searchF(p0, primes, start, score);
     return {startOrdinal: start, prime: primes[start-1], masksTested: 2**14,
       bestMask: b.mask, trigramNatsPerRune: b.score,
@@ -159,7 +171,8 @@ function main() {
     originalSources: {htmlTitle: title, htmlDiv: div, squareCenter: sq[3][3],
       originalDiagonals: [diagonal(sq,false),diagonal(sq,true)],
       reversedDiagonals: [diagonal(rev,false),diagonal(rev,true)],
-      jpeg05sha256: sha256, jpeg05AppendedReverseBytes: suffixLength,
+      jpeg05sha256: sha256, jpeg05MirroredPrefixBytes: prefixLength,
+      jpeg05EmbeddedSquareCenter: embedded[2][2],
       index3301: 464, index1033: 174, index727: 129},
     nativeControl: {page: 56, exactRunes: p56.length, mask: solved.mask,
       score: solved.score},
