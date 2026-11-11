@@ -96,6 +96,31 @@ The p55 predicted glyphs in the table are comparisons to the **original cipherte
 
 **Route B decision:** retire the simple GF29 Q238 polynomial multiple as the direct terminal plaintext or visible-rune encoder under the original row-major perimeter/interior mapping. Its original-table and independent-planted controls demonstrate full recovery when the hypothesized mechanism actually holds.
 
+## Complete family-wide divisor decision: all 48 direct GF29 source-factor codes
+
+The two endpoints above actually settle **every monic divisor of the original source table polynomial**, rather than merely two guessed generators. The [independent all-divisor rank SFT](../sims/p50_terminal_all48_factor_capacity_sft.cjs) uses the unchanged 256-byte source, reconstructs all 24 divisors of G16, confirms each still divides the original table polynomial, and computes its full 76-position perimeter syndrome rank.
+
+The exact factorization is
+
+\[
+P_{\mathrm{p50}}(X)=28\,G_{16}(X)Q_{238}(X)
+\]
+
+over GF29, where the monic G16 factors are **one repeated linear factor** (multiplicity two), and **one each** irreducible quadratic, cubic and degree-nine factor. The remaining Q238 is irreducible. Thus the full source polynomial has precisely
+
+\[
+(2+1)(1+1)^4=\boxed{48}
+\]
+
+distinct monic polynomial divisors. Each proposed code generator is a divisor of the original p50 table's *known* polynomial, with no chosen secret polynomial.
+
+- **The 24 divisors excluding Q238** have degree \(d\le16\). The source's original 76 border columns have *exact rank d in every one of these 24 cases*. Thus fixing **any** 180-symbol interior always leaves exactly \(29^{76-d}\) candidate p55 perimeters, ranging from \(29^{60}\) to \(29^{76}\). No such code can identify the original 76-rune page uniquely, even if its parity checks are exactly satisfied.
+- **The other 24 divisors contain Q238**, and therefore every codeword under them would also be a Q238 codeword. The original solved p56+p57 interior already contradicts Q238 by **159/180** observations after fitting its entire eighteen-symbol multiplier. No stronger multiple of Q238 can repair that failure. **All 24 are inconsistent with the known terminal plaintext** under the specified direct registration.
+
+This is a complete **all-source-divisor dichotomy**, rather than an unbounded survey or a statistical exclusion. There are **zero monic divisors of the actual p50 GP29 polynomial that both fit the original known p56+p57 interior and uniquely recover p55** under the declared terminal coefficient model. The 48-way count relies on the previously established complete irreducible factorization; the 24 independent low-degree ranks are newly exhaustively computed, and the Q238 full-rank inverse is an independent original-source test with positive controls.
+
+This closes the entire **direct polynomial-divisor terminal-code family**. It leaves open a cipher that acts on another register before polynomial coding, an independently specified permutation of the 256 table positions, an external key, or an entirely different role for the numbered table. Those are new mechanism requirements, not parameter tweaks within this exhausted family.
+
 ## What this changes for the Liber Primus solve
 
 The exact G16 and Q238 factors offer opposite kinds of information. **G16 has too little parity to determine p55**, while **Q238 has enough redundancy to determine it but demonstrably does not fit the known closing pages** under the stated source ordering and alphabet. These are complementary cryptanalytic decisions with directly reproducible original-input evidence.
