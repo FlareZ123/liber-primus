@@ -56,11 +56,47 @@ const plant=Array.from({length:43},(_,c) =>
   Array.from({length:5},(_,r)=>m((c+1)+3*(r+1)+7*(r+1)**2)));
 const positive=probe(plant.map(col=>col.map(x=>x)),"ordinal");
 assert.equal(positive.both,43);
+
+// Separate, simpler field check: the same p27 5x43 data could be checksums
+// for the 43 true p55 word interiors. Keep all-five or source-masked 2/3/5,
+// both group layouts, GP ordinal/prime encodings and +/-mod29. The supplied
+// p55 interiors are exact independent source positions, not selected words.
+const source = fs.readFileSync(path.join(__dirname, "..",
+  "resources", "lp2-transcription.txt"), "utf8");
+const runeMap = new Map(gp.runes.map((r, i) => [r, i]));
+const physicalP55 = source.split("%")[54].replace(/[\/\r\n]/gu, "");
+const interior = physicalP55.split(/[-.&$§,:!?]/u)
+  .map(w => (w.match(/[ᚠ-᛿]+/gu) ?? []).join(""))
+  .filter(Boolean)
+  .flatMap(w => [...w].slice(1, -1).map(r => runeMap.get(r)));
+assert.equal(interior.length, 43);
+const parityMatches = [];
+for (const [layout, grid] of [["row", rowMajor], ["five", groups]]) {
+  for (const encoding of ["ordinal", "prime"]) {
+    for (const mask of ["all", "235"]) {
+      for (const sign of [-1, 1]) {
+        const predicted = grid.map(col => col.reduce((sum, x, j) =>
+          sum + ((mask === "all" || [1, 2, 4].includes(j)) ?
+            (encoding === "ordinal" ? x : gp.prime[x]) : 0), 0));
+        const matched = predicted.filter((n, j) =>
+          ((sign * n) % 29 + 29) % 29 === interior[j]).length;
+        parityMatches.push({layout, encoding, mask, sign, matched});
+      }
+    }
+  }
+}
+assert.equal(parityMatches.length, 16);
+assert.equal(Math.max(...parityMatches.map(m => m.matched)), 3);
+assert.equal(parityMatches.filter(m => m.matched === 3).length, 1);
+assert.ok(parityMatches.every(x => x.matched < 43));
+
 console.log(JSON.stringify({
   status:"GF43 original 3-of-5 quadratic sharing falsified on all 43 columns",
   source:"p27 215 black runes and P/P prime43; p55 five-dot mask 01101",
   selectedRowsOneBased:[2,3,5],
   layouts:["row-major","groups-of-five"],
   encodings:["GP ordinal","GP prime mod43"],
-  original,syntheticPositive:positive
+  original,syntheticPositive:positive,
+  additiveChecksumReadout:{models:parityMatches.length, bestMatches:3,
+    matches:parityMatches, exactOriginalDecodings:0}
 },null,2));
