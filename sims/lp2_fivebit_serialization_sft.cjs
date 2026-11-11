@@ -179,6 +179,11 @@ function analyze(name, input, expectedDigest) {
   };
 }
 
+const solvedP57 = corpus.pages.find(page => page.page === 57);
+assert.ok(solvedP57 && solvedP57.status === 'solved');
+const plantedNativeGP = solvedP57.indices.slice(0, 32).concat([29], solvedP57.indices.slice(32));
+assert.deepEqual(unpack(pack(plantedNativeGP), plantedNativeGP.length), plantedNativeGP);
+
 const output = [
   analyze('GP29 runes only', runeValues, '18cff7fcdd3b33c8f8c33156e18de8784a8ef7cfce1e74963a1a3e08b59b3591'),
   analyze('GP29 plus canonical word breaks as value 29', separatedValues, '42382165b2a4bdd94c62f90a564354e9c80046aa124c70ecb2ac0c75ff2736e1')
