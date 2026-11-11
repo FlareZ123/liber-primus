@@ -45,6 +45,7 @@ on:
           - microqr-finder
           - signed-trifold
           - tree-inner7
+          - tree-2d-prefix
         default: full
 
 jobs:
@@ -56,6 +57,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Original 11x11 p32 source-axis 2D prefix-sum inverse
+        if: ${{ inputs.probe == 'tree-2d-prefix' }}
+        run: node sims/p32_source_axis_2d_prefix_inverse_sft.cjs
+
       - name: Original 11x11 tree-page inner7 to historical 7x7 magic-square decoder
         if: ${{ inputs.probe == 'tree-inner7' }}
         run: node sims/p32_inner7_historical_magic_inverse_sft.cjs
