@@ -11,14 +11,14 @@ const corpus = read('resources/liber-primus/lp2-corpus.json');
 const ink = read('resources/liber-primus/lp2-ink-annotations.json');
 const table = read('resources/liber-primus/base60-grid.json');
 
-/** @typedef {{position:number,kind:'rune'|'mark', index:number}} InkEvent */
+/** @typedef {{position:number,kind:'rune'|'mark', index:number, color?:string, page?:number}} InkEvent */
 /** @type {InkEvent[]} */
 const events = [];
 for (const page of ink.pages) {
   /** @type {InkEvent[]} */
   const local = [];
-  for (const [offset, count] of page.large_punctuation || []) {
-    if (count === 13) local.push({ position: offset, kind: 'mark', index: -1 });
+  for (const [offset, count, color] of page.large_punctuation || []) {
+    if (count === 13) local.push({ position: offset, kind: 'mark', index: -1, color, page:page.page });
   }
   for (const span of page.red_spans || []) {
     const runes = Array.from(span.runes);
@@ -101,6 +101,37 @@ for (const item of cases) {
   }
 }
 
+
+// The only black 13-dot stencil at p7:194 supplies an independent,
+// source-visible possible beginning of the circular 256-event register.
+// The adjacent red mark has the same rune coordinate but remains its own event.
+const blackIndex = events.findIndex((e) => e.kind === 'mark' && e.color === 'black');
+assert.equal(blackIndex, 50, 'only source-visible black marker's event index');
+assert.equal(events.filter((e) => e.kind === 'mark' && e.color === 'black').length, 1);
+assert.equal(events[blackIndex].page, 7);
+assert.equal(events[blackIndex].position, 194);
+const rotated = [
+  { name: 'black-first', events: events.slice(blackIndex).concat(events.slice(0, blackIndex)), expected: [
+    [17,0,2,7],[28,22,7,6],[12,19,5,18],[19,8,5,19],[1,1,10,18],[14,27,8,1],[11,2,5,23],[22,24,10,22],[6,21,8,5],
+  ] },
+  { name: 'after-black', events: events.slice(blackIndex + 1).concat(events.slice(0, blackIndex + 1)), expected: [
+    [18,12,25,9],[6,8,21,27],[5,27,11,14],[24,22,22,24],[12,18,18,13],[11,8,8,0],[26,7,22,28],[14,3,18,17],[13,22,8,4],
+  ] },
+];
+for (const orientation of rotated) {
+  assert.equal(orientation.events.length, 256);
+  for (const [i, item] of cases.entries()) {
+    const syndrome = remainder(orientation.events.map((e) => value(e, item.kind, item.marker)), F);
+    assert.deepEqual(syndrome, orientation.expected[i], orientation.name + '/' + item.kind + '/' + item.marker);
+    for (let slope = 1; slope < 29; slope++) {
+      for (let shift = 0; shift < 29; shift++) {
+        assert.ok(syndrome.some((x, j) => mod(slope * x + shift * ones[j]) !== 0),
+          'original black-anchor orientation unexpectedly forms an F codeword');
+      }
+    }
+  }
+}
+
 const redSegments = [[]];
 for (const e of events) {
   if (e.kind === 'mark') redSegments.push([]);
@@ -122,5 +153,8 @@ console.log(JSON.stringify({
   ink_hg_syndromes: cases.map((item) => ({ kind: item.kind, marker: item.marker, F: item.expected })),
   affine_variants_per_case: 812,
   total_affine_codeword_hits: 0,
+  black_marker: {event_index: blackIndex, source_page: 7, local_after_runes: 194},
+  independently_anchored_orientations: rotated.map((v)=>({name:v.name,syndromes:v.expected})),
+  all_affine_relabeling_checks: 21924,
   red_segments: { count: 32, empty, distinct: uniqueSegments, minimum_stationary_row_mismatches: 14 },
 }, null, 2));
