@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-set -u
+# Legacy filename retained: 00.jpg and 05.jpg are LP1 physical pages, not LP2.
+# This probe adds only source-derived keys from the visible LP1 page-05 text/table.
+set -euo pipefail
 
 BIN="$1"
 ROOT="$2"
@@ -70,3 +72,72 @@ if [ -s "$OUT/candidate-05.out" ] && [ -s "$OUT/candidate-05-main-only.out" ]; t
     echo "original-vs-main-only extracted payloads: DIFFERENT"
   fi
 fi
+
+# Bounded key list from the visible LP1 page-05 wording and 5x5 table.
+# No case variants, reversals, permutations, or generic password search.
+keys=(
+  "SHADOWS"
+  "AETHEREAL"
+  "BUFFERS"
+  "VOID"
+  "CARNAL"
+  "OBSCURA"
+  "FORM"
+  "MOBIUS"
+  "ANALOG"
+  "MOURNFUL"
+  "CABAL"
+  "SOME WISDOM"
+  "KNOW THIS"
+  "THE PRIMES ARE SACRED"
+  "THE TOTIENT FUNCTION IS SACRED"
+  "ALL THINGS SHOULD BE ENCRYPTED"
+  "LIBER PRIMUS"
+  "1033"
+  "91"
+  "130"
+  "SHADOWS AETHEREAL BUFFERS VOID CARNAL OBSCURA FORM MOBIUS ANALOG VOID MOURNFUL AETHEREAL CABAL"
+  "272 138 341 131 151 366 199 130 320 18 226 245 91 245 226 18 320 130 199 366 151 131 341 138 272"
+)
+
+: > "$OUT/keyed-results.tsv"
+: > "$OUT/keyed-key-map.tsv"
+printf 'index\tkey\texit\tbytes\tgpg_packet\n' >> "$OUT/keyed-results.tsv"
+index=0
+for key in "\${keys[@]}"; do
+  index=$((index+1))
+  printf -v label 'matrix-key-%02d' "$index"
+  output="$OUT/$label.out"
+  log="$OUT/$label.log"
+  rm -f "$output"
+  set +e
+  "$BIN" -k "$key" -r "$OUT/05-main-only.jpg" "$output" >"$log" 2>&1
+  rc=$?
+  set -e
+  bytes=0
+  if [ -f "$output" ]; then bytes=$(wc -c < "$output"); fi
+  gpg_packet=no
+  if [ -s "$output" ] && command -v gpg >/dev/null 2>&1 && gpg --batch --no-tty --list-packets "$output" >/dev/null 2>&1; then
+    gpg_packet=yes
+  fi
+  printf '%02d\t%s\n' "$index" "$key" >> "$OUT/keyed-key-map.tsv"
+  printf '%02d\t%s\t%s\t%s\t%s\n' "$index" "$key" "$rc" "$bytes" "$gpg_packet" >> "$OUT/keyed-results.tsv"
+  echo "keyed candidate $index: bytes=$bytes exit=$rc gpg_packet=$gpg_packet"
+  if [ "$gpg_packet" = yes ]; then
+    file "$output" || true
+    sha256sum "$output" || true
+    echo "Potential PGP payload from source key $index: $key"
+  fi
+done
+
+# Control that -k is active: a non-default key should not reproduce the
+# page-00 default-key PGP carrier.
+probe control-page00-key-MOBIUS "$ROOT/resources/liber-primus/00.jpg" -k "MOBIUS"
+if [ -s "$OUT/known-00.out" ] && [ -s "$OUT/control-page00-key-MOBIUS.out" ]; then
+  if cmp -s "$OUT/known-00.out" "$OUT/control-page00-key-MOBIUS.out"; then
+    echo "keyed page-00 control matches default output"
+  else
+    echo "keyed page-00 control differs from default output"
+  fi
+fi
+

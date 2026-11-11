@@ -1,6 +1,10 @@
-name: LP2 OutGuess page 05 probe (manual)
+name: LP1 physical page 05 source-derived keyed OutGuess probe (manual/push)
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'sims/outguess_lp2_page05_probe.sh'
+      - '.github/workflows/lp2-outguess-page05-probe.yml'
 permissions:
   contents: read
 jobs:
@@ -18,7 +22,7 @@ jobs:
       - name: Build pinned OutGuess 0.4 C extractor (BSD)
         run: |
           sudo apt-get update
-          sudo apt-get install -y autoconf automake libtool
+          sudo apt-get install -y autoconf automake libtool gnupg
           cd outguess-src
           ./autogen.sh
           ./configure --with-generic-jconfig
@@ -26,7 +30,7 @@ jobs:
           sed -i 's/^#undef HAVE_PROTOTYPES/#define HAVE_PROTOTYPES/' src/jpeg-6b-steg/jconfig.h
           make -j2
           echo "$GITHUB_WORKSPACE/outguess-src/src" >> "$GITHUB_PATH"
-      - name: Probe known carrier 00 and candidate 05
+      - name: Probe LP1 page00 control and source-keyed LP1 page05
         run: bash sims/outguess_lp2_page05_probe.sh outguess "$GITHUB_WORKSPACE" "$RUNNER_TEMP/outguess-probe"
       - uses: actions/upload-artifact@v4
         if: always()
