@@ -26,6 +26,15 @@ The inverse row map gives `BLACK⁻¹(24)=21` and `BLACK⁻¹(28)=28`. The full-
 
 The source-fixed BLACK-row × LCG8-column DES-key construction was tested in 96 configurations and failed to recover language; its positive control passes exactly. See [the bounded result](fragment-grid-des-debruijn-lcg8-inverse.md), [reproducer](../sims/fragment_grid_des_debruijn_lcg8_inverse.cjs), and [machine output](fragment-grid-des-debruijn-lcg8-inverse.json).
 
+## Conditional 5×8 rectangle / circumference check (Agent 8, 2026-11-11)
+
+The two zero rows are24 and28. Taking rows24–28 inclusive and the full eight-column width gives a 5×8 rectangle. Under the *candidate* 13/31 LCG8 column order `[0,7,2,1,4,3,6,5]`, the zero cells `(24,0)` and `(28,5)` become opposite corners. Removing the rectangle's outer ring leaves 3×6=18 cells, whose row-major values are `[21,209,74,194,68,127,84,6,175,70,61,251,151,148,219,58,59,51]`.
+
+The count18 superficially matches the 18-rune body after the leading M/GP19 of the p27 19-rune red title. **This is only a count match, not an alignment:** the BLACK inverse maps table rows24–28 to zero-based fragments `[21,29,1,18,28]` (one-based `[22,30,2,19,29]`) with lengths `[8,80,716,1414,5]`. The p27 title is one-based fragment18 (zero-based17), which maps to row29, outside this rectangle. The three interior rows therefore do not correspond to the p27 title body.
+
+Direct checks of the 18 interior values against the p27 title body (mod29, per-byte BASE29-digit affine transform, and rank-sort transposition) do not recover language. The first/last interpretation still depends on the unselected LCG8 ordering; in natural column order, column5 is not the right edge. The solved-tail row28 maps to fragment28, the first five runes of p56 (global `[12956,12961)`, page-local `[0,5)`), but this is a boundary coincidence unless an independent source instruction selects the column clock and stop semantics.
+
+**Conclusion:** the original source-derived fact remains that the two empty fragments8/11 map through BLACK to the two zero columns0/5. The stronger claim that the zeros are first/last byte or start/stop markers is not authenticated; the 5×8/18 geometry does not supply the missing selector or a reversible operation. Do not promote this to plaintext or expand arbitrary transforms.
 ## Research status and next decision
 
 - **Verified:** the two coincident printed-boundary pairs, their distinct original marks, and the two zero-length intervals.
