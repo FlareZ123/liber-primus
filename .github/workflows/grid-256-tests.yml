@@ -17,6 +17,7 @@ on:
           - hensel-skip
           - jet
           - terminal
+          - affine-byte
           - p36-crib
         default: full
 
@@ -87,6 +88,10 @@ jobs:
       - name: Source-selected GF841 all-secret 127-terminal-symbol register gate
         if: ${{ inputs.probe == 'terminal' }}
         run: node sims/red_triad_terminal_linear_state_allsecret_sft.cjs
+
+      - name: All-secret source-quotient affine byte capacity gate
+        if: ${{ inputs.probe == 'affine-byte' }}
+        run: node sims/grid_quotient_allsecret_affine_byte_gate.cjs
 
       - name: Archived 2014 onion-2 and original LP2 grid direct bridge
         if: ${{ inputs.probe == 'crossround' }}
