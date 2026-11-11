@@ -1,6 +1,6 @@
 # Terminal grid/rune 256-byte digest gate
 
-**Status, 11 November 2026:** a source-motivated bytewise composition of the original 32×8 table and the terminal 256 published LP2 runes does **not** reproduce the literal AN END digest under the frozen encodings, operations, and 64-byte digest families below. This is a bounded negative, not a decryption or a proof that the table/rune correspondence is unintended.
+**Status, 11 November 2026:** The source-motivated 76/180 terminal partition has two finite original-input negatives: the 36 tested direct byte-compositions produce no AN END digest match, and even a completely unknown stationary byte-to-rune lookup cannot map the 180 interior table cells to the two solved terminal pages under the eight natural rectangle orientations. The original source geometry remains exact, but a decoder, key, or unknown plaintext has not been recovered.
 
 ## Human-solve-path hypothesis
 
@@ -45,6 +45,18 @@ node sims/terminal_grid_xor_anend_digest_sft.cjs
 
 It reconstructs the partition from the source JSON files, asserts the 76/180 and 256/256 dimensions, prints every candidate digest, and asserts that no candidate equals the target.
 
+## Known-plaintext obstruction for the 180-cell interior
+
+The original printed 32×8 table's outer circumference contains **76 cells**, exactly the original unsolved p55 rune count; its 30×6 interior contains **180 cells**, exactly the **85+95 known runes of solved p56 and p57**. The latter allows a discriminator with genuine, historically solved text before extrapolating to p55. The hypothesis tested here is a *single stationary unknown codebook* mapping each independently printed source byte to a visible GP rune. Any such mapping must give the same rune at both occurrences of a byte, regardless of the codebook or secret alphabet.
+
+The [source-native SFT](../sims/terminal_grid_known_tail_lookup_gate.cjs) extracts the physically defined 180-cell interior and checks all eight natural rectangle orientations (row-major or column-major, two independent axis flips), both p56/p57 concatenation orders, and both the independently known p56 **plaintext** and p56 original **ciphertext** (p57 is independently solved and carried literally). It independently grants every possible stationary unknown output codebook for each full source byte or each source byte residue mod29, a total of **64** finite models. For each codebook input class the algorithm chooses the most common desired rune, so its error count is the **global exact minimum over all possible secret lookups**, with no key search left open in that family.
+
+The best **full-byte** reading forces at least **46/180** original rune discrepancies among **127 distinct original input bytes**; the best **mod29** reading forces **126/180** discrepancies. Both are incompatible with the exact known terminal text. Native GP plants encoded under a secret lookup are recovered with **0** changes; introducing one conflicting source-symbol target forces exactly **1** minimum change.
+
+For statistical context, the SFT refits the *entire eight-orientation, four-target-model family* to 2,000 deterministic target-position permutations that preserve each known rune inventory. **1,895/2,000** have a minimum change count **no worse than 46** (add-one upper-tail **p=0.947526**), so the observed best fit is fully consistent with chance under this family. The executable source and passed [manual GitHub Actions run](https://github.com/FlareZ123/liber-primus/actions/runs/42956587906) preserve both the original-source gate and the null calculation.
+
+**Decision:** Exclude a direct location-independent **one table cell → one GP rune** mapping for the solved 180-rune interior, whether the secret codebook acts on all 256 source byte values or only 29 residue classes. This does **not** exclude an evolving lookup, positional salt, multi-cell encoding, or a different original-source traversal. It makes an unchanged stationary byte-codebook explanation of the p55/p56/p57 76/180 correspondence untenable without inventing at least 46 edited solved runes.
+
 ## Alternative: four nested grid rings aligned with pp53–55
 
 The printed 32×8 numeric grid has four concentric circumferences of **[76, 68, 60, 52]** cells, exhausting all 256 entries. The three consecutive original illustrated pages **p53–p55** (original JPEGs `70.jpg`, `71.jpg`, `72.jpg`) carry a second, more differentiated source grouping than the known 76/180 terminal-page correspondence:
@@ -64,7 +76,7 @@ This is a **source-constrained terminal ring hypothesis**, supported by independ
 
 ## Decision and scope
 
-Retire this **direct source-aligned bytewise composition** as an AN END preimage candidate. In particular, the exact 76/180 geometry does not, by itself, turn GP indices, GP primes, or prime totients into a byte codec for the table.
+Retire the **direct source-aligned bytewise composition** as an AN END preimage candidate and the **stationary one-byte-to-one-rune lookup** as a known-terminal 180-cell decoder. The latter fails with every 29-way or 256-way secret codebook under the eight declared physical reading orientations. In particular, the exact 76/180 geometry does not, by itself, turn GP indices, GP primes, or prime totients into a byte codec for the table.
 
 This test is distinct from the earlier four-aligned-64-byte-share XOR test of the table alone: it combines the entire terminal 256-rune stream with the table using the source-derived perimeter/interior alignment. It also differs from the raw-grid serialization comparisons in the AN END hash audit.
 
