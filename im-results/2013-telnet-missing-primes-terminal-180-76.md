@@ -15,6 +15,21 @@ A historical 2013 Cicada telnet transcript lists the primes through 71, resumes 
 
 This gives a concrete, if retrospective, possible assignment: **omitted 2013 primes ↔ terminal interior**, **visible early primes ↔ p55 perimeter**. A solver could in principle make both connections from player-visible source numbers, if the historical transcript is authentic. The selection of the first 256 primes is motivated by the table only after seeing both artifacts, and the geometric-to-rune assignment was already under investigation before the telnet connection. These are independent source lengths, not independent evidence that Cicada designed the link.
 
+## A separate 2013 anchor: the PARABLE number's prime factors
+
+A distinct historical item makes the telnet omission worth investigating without adding speculative ciphers. The archived **2013 Cicada OS `AUDIO/761.MP3`** has an ID3 `Parable` number **1,595,277,641**, which independently equals the product of the **three prime-weight clause sums** of the later solved p57 PARABLE body. This identity was established before this investigation; see the [public pnotisdev analysis](https://github.com/pnotisdev/cicada3301/blob/main/STATUS.md) and [existing 2013 telnet/Parable SFT](../sims/cicada2013_parable_reversal_ring_sft.cjs). The novel question here is how those already anchored primes intersect the historically omitted interval.
+
+| Solved p57 clause | GP prime-weight sum | Prime ordinal | In 2013 telnet omitted interval? |
+| --- | ---: | ---: | --- |
+| Red heading PARABLE | 449 | 87 | Yes |
+| Body clause 1 | 1,259 | 205 | No |
+| Body clause 2 | 1,031 | 173 | Yes |
+| Body clause 3 | **1,229** | **201** | **No: first displayed after gap** |
+
+Exactly **1,259 × 1,031 × 1,229 = 1,595,277,641**. The telnet source resumes at 1,229, making one independently documented 2013 audio factor the **first surviving prime immediately after the 180-prime omission**. The next factor 1,259 is the fifth prime printed after the gap, and 1,031 lies inside it. The heading 449 also lies in the gap. These are original source-number intersections, now asserted in the [reproducer](../sims/lp2_telnet_prime_gap_terminal_sft.cjs). The interval could have drawn attention to the prior Parable factors, but no surviving instruction demonstrates this was Cicada's intention. The relationship does not determine an order, key, numeral encoding or reversible map on unknown LP2 ciphertext. Its strongest objection remains historical post-selection: the factor identities and the missing-prime interval were separately investigated before their intersection was noticed.
+
+**Decision:** This overlap is a more causal clue to examine than an arbitrary 180-number list. A useful successor would establish whether contemporary puzzle participants noticed an explicitly player-visible instruction to use the missing prime interval with the already supplied 2013 Parable number. Absent that, do not turn the 1,229 boundary coincidence into new additive-state parameter scans.
+
 ## Exact limited decryption test
 
 The reproducible [SFT](../sims/lp2_telnet_prime_gap_terminal_sft.cjs) constructs the 464 primes through 3301 and enforces the original boundaries. It extracts unchanged GP indices from [the canonical corpus](../resources/liber-primus/lp2-corpus.json):
