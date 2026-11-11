@@ -117,6 +117,61 @@ assert.deepEqual(totientFeasible(solvedP56), { possible: true, firstFailure: nul
 assert.deepEqual(totientFeasible(original), { possible: false, firstFailure: 30 });
 assert.deepEqual(totientFeasible(transformed), { possible: false, firstFailure: 4 });
 
+
+/** Independent seven-page original-cipher test, source-started at the second
+ * heading of physical p33 (local rune offset 91), then physical pp34–39.
+ * The historical period-seven inverse consumes whole blocks without padding.
+ */
+const p33 = corpus.pages.find(page => page.page === 33);
+const illustratedPassage = [
+  ...p33.indices.slice(91),
+  ...corpus.pages.filter(page => page.page >= 34 && page.page <= 39)
+    .flatMap(page => page.indices),
+];
+assert.equal(illustratedPassage.length, 1589);
+assert.equal(illustratedPassage.length / 7, 227);
+const illustratedInverse = reverseHistoricalColumns(illustratedPassage);
+assert.deepEqual(restoreHistoricalColumns(illustratedInverse), illustratedPassage);
+assert.equal(adjacent(illustratedPassage), 12);
+assert.equal(adjacent(illustratedInverse), 50);
+
+// The original 2014 inverse destroys most of the joint no-repeat signature.
+// Its 96 adjacent repeats are close to the median of all 7! row orders.
+// The exhaustive comparison is descriptive: the source key was not selected
+// from this distribution, and another LP2-dependent cipher could still exist.
+/** @param {number[]} values @param {number[]} order @returns {number[]} */
+function permuteSeven(values, order) {
+  const result = [];
+  for (let start = 0; start < values.length; start += 7) {
+    for (const position of order) result.push(values[start + position]);
+  }
+  return result;
+}
+const historicalJointRepeatCount = adjacent(transformed) + adjacent(illustratedInverse);
+assert.equal(historicalJointRepeatCount, 96);
+const permutationCounts = [];
+/** @param {number[]} order @param {number} position */
+function enumerateOrders(order, position) {
+  if (position === 7) {
+    permutationCounts.push(
+      adjacent(permuteSeven(original, order)) +
+      adjacent(permuteSeven(illustratedPassage, order)));
+    return;
+  }
+  for (let next = position; next < 7; next++) {
+    [order[position], order[next]] = [order[next], order[position]];
+    enumerateOrders(order, position + 1);
+    [order[position], order[next]] = [order[next], order[position]];
+  }
+}
+enumerateOrders([0, 1, 2, 3, 4, 5, 6], 0);
+permutationCounts.sort((a, b) => a - b);
+assert.equal(permutationCounts.length, 5040);
+assert.equal(permutationCounts[0], 21);
+assert.equal(permutationCounts[2520], 99);
+assert.equal(permutationCounts[5039], 146);
+assert.equal(permutationCounts.filter(value => value <= historicalJointRepeatCount).length, 2318);
+
 console.log(JSON.stringify({
   historicalProof: { input: historicalSource, recovered: historicalRecovered,
     sourceUrl: 'https://uncovering-cicada.fandom.com/wiki/What_Happened_Part_1_(2014)' },
@@ -125,6 +180,17 @@ console.log(JSON.stringify({
     gpIoC: ioc(original) },
   sourceInverse: { adjacentRepeats: adjacent(transformed), gpIoC: ioc(transformed),
     originalRestored: true },
+  illustratedP33toP39: { redHeadingOffset: 91, runes: illustratedPassage.length,
+    originalAdjacentRepeats: adjacent(illustratedPassage),
+    historicalInverseAdjacentRepeats: adjacent(illustratedInverse),
+    exactlyRestored: true },
+  stageOrderDiagnostic: { sourceSelectedInverseJointRepeats: historicalJointRepeatCount,
+    originalJointRepeats: adjacent(original) + adjacent(illustratedPassage),
+    allSevenFactorialOrders: permutationCounts.length,
+    range: [permutationCounts[0], permutationCounts[5039]],
+    median: permutationCounts[2520],
+    historicalLowerOrEqualRank: 2318,
+    note: 'Source inverse does not retain original near-absence of adjacent duplicate runes' },
   directVigenereDigitKey: directKeyScreen,
   directP56PrimeTotientGate: { solvedP56PositiveControl: totientFeasible(solvedP56), raw: totientFeasible(original),
     transposed: totientFeasible(transformed) },
