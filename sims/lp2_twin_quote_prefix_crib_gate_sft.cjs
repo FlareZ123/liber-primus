@@ -117,6 +117,26 @@ const a=allCipher.slice(aStart,aStart+21),b=allCipher.slice(bStart,bStart+21);
 assert.equal(a.length,21);assert.equal(b.length,21);
 const diff=a.map((v,i)=>(b[i]-v+29)%29);
 assert.equal(a.reduce((n,v,i)=>n+Number(v===b[i]),0),1);
+
+/**
+ * If the same 21 plaintext runes were encrypted with two continuous additive
+ * GP29 key streams with a shared period p, their ciphertext difference must
+ * have period p, independent of all secret key symbols and starting phases.
+ * @param {number[]} sequence
+ * @param {number} period
+ * @returns {number}
+ */
+function periodMismatches(sequence,period){
+  let mismatches=0;
+  for(let i=period;i<sequence.length;i++)
+    mismatches+=Number(sequence[i]!==sequence[i-period]);
+  return mismatches;
+}
+const differencePeriods=Array.from({length:20},(_,i)=>({
+  period:i+1,
+  mismatches:periodMismatches(diff,i+1),
+}));
+assert.ok(differencePeriods.every(x=>x.mismatches>0));
 /**
  * If both quotes contain the same first 21 plaintext runes, their key
  * differences must equal the observed ciphertext differences.
@@ -162,6 +182,12 @@ const plantedB=plaintext.map((v,i)=>(v+sourceKey[(bStart+i)%256])%29);
 const plantedDiff=plantedA.map((v,i)=>(plantedB[i]-v+29)%29);
 assert.equal(fit(sourceKey,aStart,bStart,1,plantedDiff),21);
 
+const plantedPeriodicKey=[2,7,11,3,5,13,17];
+const periodicA=plaintext.map((v,i)=>(v+plantedPeriodicKey[(aStart+i)%7])%29);
+const periodicB=plaintext.map((v,i)=>(v+plantedPeriodicKey[(bStart+i)%7])%29);
+const periodicDiff=periodicA.map((v,i)=>(periodicB[i]-v+29)%29);
+assert.equal(periodMismatches(periodicDiff,7),0);
+
 console.log(JSON.stringify({
   quotes:{originalFirstQuote:'LP2 p40 [9811,9869)',originalSecondQuote:'LP2 p53 [12522,12592)',
     firstFiveRuneWordLengths:firstPattern,firstFiveRunes:21,
@@ -172,6 +198,8 @@ console.log(JSON.stringify({
     conditionalMatchedPairs:matchedEligible},
   hypothesizedPlaintextEquality:'Unestablished; quotation punctuation and word lengths alone do not authenticate a shared phrase.',
   originalCipherSameRunePositions:a.reduce((n,v,i)=>n+Number(v===b[i]),0),
+  keyIndependentPeriodicDifferenceTest:{testedPeriods:'1 through 20',
+    originalMismatches:differencePeriods,positivePeriod7:periodMismatches(periodicDiff,7)},
   testedSourceFixedKeyFamilies:tests.length,bestKeyTests:tests.slice(0,6),
   authenticSolvedPagePositive:{runicSymbols:21,matchingKeyDifferences:21},
   conclusion:'Original quote openings suggest a bounded crib candidate, but no source-fixed tested additive key explains a shared 21-rune plaintext.',
