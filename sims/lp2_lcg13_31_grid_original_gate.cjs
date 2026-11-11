@@ -9,14 +9,14 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const {sourceFragments} = require("./fragment_gridrow_vigenere_inverse.cjs");
+const {originalFragments} = require("./lp2_f31_fragment_key_inverse.cjs");
 
 const root = path.resolve(__dirname, "..");
 const read = name => JSON.parse(fs.readFileSync(path.join(root, name), "utf8"));
 const corpus = read("resources/liber-primus/lp2-corpus.json");
 const grid = read("resources/liber-primus/base60-grid.json").byte_rows;
 const ciphertext = corpus.pages.filter(p => p.page < 56).flatMap(p => p.indices);
-const bounds = sourceFragments().bounds;
+const bounds = originalFragments().bounds;
 const mod = (x, n) => ((x % n) + n) % n;
 assert.equal(ciphertext.length, 12956);
 assert.equal(bounds.length, 32);
