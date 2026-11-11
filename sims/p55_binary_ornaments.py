@@ -27,6 +27,14 @@ CENTERS = {
 }
 
 
+def ioc(values: list[int]) -> float:
+    counts = [0] * 29
+    for value in values:
+        counts[value] += 1
+    n = len(values)
+    return sum(count * (count - 1) for count in counts) / (n * (n - 1))
+
+
 def main() -> None:
     assert hashlib.sha256(IMAGE.read_bytes()).hexdigest() == SHA256
     rgb = Image.open(IMAGE).convert("RGB")
@@ -94,6 +102,65 @@ def main() -> None:
         for mark in page.get("large_punctuation", [])
     )
     assert stencil_count == 31
+
+    # The same source-selected five-position mask yields exactly 31 p55
+    # positions when repeated over all 76 p55 runes: residues 1 and 4
+    # (one-based) are the hollow circumference-only cells.
+    corpus = json.loads(
+        (ROOT / "resources" / "liber-primus" / "lp2-corpus.json").read_text("utf8")
+    )
+    pages = sorted(corpus["pages"], key=lambda page: page["page"])
+    page_starts: dict[int, int] = {}
+    stream: list[int] = []
+    for page in pages:
+        page_starts[page["page"]] = len(stream)
+        stream.extend(page["indices"])
+    p55 = next(page["indices"] for page in pages if page["page"] == 55)
+    hollow_key = [
+        value for offset, value in enumerate(p55)
+        if offset % 5 in (0, 3)
+    ]
+    assert len(hollow_key) == 31
+
+    markers: list[tuple[int, str]] = []
+    for page in ink["pages"]:
+        for mark in page.get("large_punctuation", []):
+            if mark[1] == 13:
+                markers.append((page_starts[page["page"]] + mark[0], mark[2]))
+    markers.sort(key=lambda item: (item[0], 0 if item[1] == "black" else 1))
+    assert len(markers) == 31
+    cuts = [0, *(position for position, _ in markers), len(stream)]
+
+    unknown_end = sum(
+        len(page["indices"]) for page in pages if page["page"] <= 55
+    )
+    raw_ioc = ioc(stream[:unknown_end])
+    direct_fragment_ioc: dict[str, float] = {}
+    for key_order, key_values in (
+        ("forward", hollow_key),
+        ("reverse", list(reversed(hollow_key))),
+    ):
+        for side in ("preceding", "following"):
+            for sign_name, sign in (("minus", -1), ("plus", 1)):
+                decoded = list(stream)
+                for key_index, key_value in enumerate(key_values):
+                    fragment_index = (
+                        key_index if side == "preceding" else key_index + 1
+                    )
+                    for offset in range(
+                        cuts[fragment_index], cuts[fragment_index + 1]
+                    ):
+                        decoded[offset] = (
+                            stream[offset] + sign * key_value
+                        ) % 29
+                direct_fragment_ioc[
+                    f"{key_order}_{side}_{sign_name}"
+                ] = ioc(decoded[:unknown_end])
+
+    assert raw_ioc == 0.03447839786450569
+    assert min(direct_fragment_ioc.values()) > 0.03444
+    assert max(direct_fragment_ioc.values()) < 0.03450
+
     print(json.dumps({
         "source": str(IMAGE.relative_to(ROOT)),
         "sha256": SHA256,
@@ -109,6 +176,18 @@ def main() -> None:
         "orientation_bits": orientation_bits,
         "hollow_position_decimal_concatenation": int(
             "".join(str(position) for position in hollow_positions)
+        ),
+        "reversed_prime_pair": [13, 31],
+        "historical_number_response_for_either": "+",
+        "hollow_mask_p55_key_count": len(hollow_key),
+        "hollow_mask_p55_key_translit": "".join(
+            corpus["translit"][value] for value in hollow_key
+        ),
+        "raw_unknown_ioc": raw_ioc,
+        "direct_31key_fragment_caesar_ioc": direct_fragment_ioc,
+        "direct_31key_decision": (
+            "all eight chronological/reversed, preceding/following, +/- "
+            "models remain at ciphertext-level IoC"
         ),
         "caveat": "Hypothesis-generating visual bit reading. It may be decorative; "
                   "other source mechanisms and historical intention remain unproved."
