@@ -10,6 +10,7 @@ on:
         options:
           - historical
           - tree
+          - nine-base29
         default: historical
 
 permissions:
@@ -25,16 +26,19 @@ jobs:
         with:
           node-version: 22
       - name: Run exact-envelope authentication gate
-        if: ${{ inputs.target != 'tree' }}
+        if: ${{ inputs.target == 'historical' }}
         run: node sims/gp29_whole_stream_aead_gate.cjs
       - name: Run unknown-alphabet GP29 JPEG and LZ4 source gate
-        if: ${{ inputs.target != 'tree' }}
+        if: ${{ inputs.target == 'historical' }}
         run: node sims/lp2_gp29_whole_stream_header_sft.cjs
       - name: Run tree interior source-key capsule authentication
         if: ${{ inputs.target == 'tree' }}
         run: node sims/tree121_interior_aead_capsule_sft.cjs
+      - name: Test complete titled-unit BASE29 serialization (Issue 335)
+        if: ${{ inputs.target == 'nine-base29' }}
+        run: node sims/issue335_nine_base29_binary_sft.cjs
       - uses: actions/upload-artifact@v4
-        if: ${{ inputs.target != 'tree' }}
+        if: ${{ inputs.target == 'historical' }}
         with:
           name: gp29-whole-stream-aead-gate
           path: im-results/gp29-whole-stream-aead-gate.json
