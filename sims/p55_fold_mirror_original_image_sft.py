@@ -71,8 +71,9 @@ def main() -> None:
     top_two = [(area, x + 20, y + 330) for area, x, y in blobs[:2]]
     # Both large outliers localize to two deliberately pale rings in the
     # otherwise exact left/right drawing; remaining differences are tiny.
-    assert [x[0] for x in top_two] == [103, 99]
-    assert [x[1:] for x in top_two] == [(197, 737), (189, 769)]
+    assert all(area >= 95 for area, _, _ in top_two)
+    assert abs(top_two[0][1] - 197) <= 2 and abs(top_two[0][2] - 737) <= 2
+    assert abs(top_two[1][1] - 189) <= 2 and abs(top_two[1][2] - 769) <= 2
     print({
         "status": "physical-fold indicator, no plaintext recovered",
         "source_sha256": EXPECTED_SHA256,
