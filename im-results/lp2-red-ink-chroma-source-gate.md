@@ -8,9 +8,11 @@ The test uses all 58 original LP2 JPEGs, scans 17.jpg–74.jpg (physical pages 0
 
 0, 3, 6, 7, 8, 15, 23, 27, 33, 39, 40, 53, 54, 56, 57.
 
-The source images are 2400×3600. An 8-connected red mask R>150, G<80, B<80, with fixed morphology limits, identifies exactly **210 standard glyphs and 15 oversized initials**. Counts match the independent annotation page by page. A second, stricter interior mask R>180, G<60, B<60 independently reproduces the same 225 page counts. This includes both solved controls p56 and p57.
+The source images are 2400×3600. An 8-connected red mask R>150, G<80, B<80, with fixed morphology limits, identifies exactly **210 standard glyphs and 15 oversized initials**. Counts match the independent annotation page by page. A second, stricter interior mask R>180, G<60, B<60 independently reproduces the same 225 page counts.
 
-The matched paper reference for each glyph is the 24-pixel annulus around its component, restricted to neutral bright pixels (mean RGB>165, channel range<25). Every component's local-background median is [255,255,255]. Color is measured in OpenCV's 8-bit Lab representation as the glyph median minus that matched background median. The stricter mask is used only as an interior/threshold sensitivity check; no plaintext, key, reading direction, or cipher score is used to choose a threshold.
+The 15 oversized-initial boxes were checked against the previously audited source crop inventory in im-results/lp2-oversized-red-initials-source-gate.md; every coordinate (x, y, width, height) agrees within 2 pixels under the stricter color mask. Ordinary glyph crops are fixed 8-connected source components, not hand-selected by color score; their per-page counts match the independent red-span annotation at both thresholds. The stricter mask samples interior pixels and excludes the contaminated antialiased edge.
+
+The matched paper reference for each glyph is the 24-pixel annulus around its component, restricted to neutral bright pixels (mean RGB>165, channel range<25). Every component's local-background median is [255,255,255]. Color is measured in OpenCV's 8-bit Lab representation as the glyph median minus that matched background median. No plaintext, key, reading direction, or cipher score is used to choose a threshold.
 
 ## Results
 
@@ -30,7 +32,7 @@ The matched paper reference for each glyph is the 24-pixel annulus around its co
 
 The strong-core RGB median is [192,0,0] for **190/225** glyphs; across all 225 glyphs its component-wise range is only R=190–192, G=0, B=0–2. All 15 oversized initials have the same [192,0,0] core median and the same normalized Lab delta [-153,64,54]. The standard/large difference in the broad mask is therefore consistent with stroke coverage and antialiasing, not a separate pigment.
 
-The broad-mask Lab b-channel medians fall into two adjacent code values: 110 glyphs at 53 and 115 at 54. Under the stronger interior mask, the counts become **8 at 53 and 217 at 54**; **102/225 glyphs change bins**. Each of the 15 red-bearing pages has at least two such per-glyph bin changes. A putative two-color class is therefore not stable under an interior-pixel threshold change. The median hue in the broad mask is 40.156° (range 39.629°–40.156°); the one-code split is below a credible, human-visible pigment distinction and does not define a reproducible glyph class.
+The broad-mask Lab b-channel medians fall into two adjacent code values: 110 glyphs at 53 and 115 at 54. Under the stronger interior mask, the counts become **8 at 53 and 217 at 54**; **102/225 glyphs change bins**. Each of the 15 red-bearing pages has at least two such per-glyph bin changes. A putative two-color class is therefore not stable under an interior-pixel threshold change. The median hue in the broad mask is 40.156° (range 39.629°–40.156°); the one-code split is not a reproducible glyph class.
 
 ### Page-by-page threshold sensitivity
 
@@ -55,7 +57,9 @@ The broad-mask Lab b-channel medians fall into two adjacent code values: 110 gly
 
 ### Cross-page holdout
 
-The first eight red-bearing pages (p0, p3, p6, p7, p8, p15, p23, p27; 124 glyphs) were treated as a descriptive training partition. The remaining seven red-bearing pages (p33, p39, p40, p53, p54, p56, p57; 101 glyphs) were held out, including both solved-page controls. Both partitions have the same median normalized Lab vector [-154,64,54] and the same component-wise range. This confirms a shared rendering, not a class-to-plaintext prediction; no reading direction or binary codebook was selected.
+The first eight red-bearing pages (p0, p3, p6, p7, p8, p15, p23, p27; 124 glyphs) were treated as a descriptive training partition. The remaining seven red-bearing pages (p33, p39, p40, p53, p54, p56, p57; 101 glyphs) were held out, including both solved-page controls.
+
+The training partition's single-color core median is RGB [192,0,0] and normalized Lab [-153,64,54]. Applying the unchanged interior threshold to the holdout yields the same medians; 87/101 held-out glyphs have exact core RGB median [192,0,0], with the remainder differing by at most two RGB code values. Both partitions have the same core Lab component-wise range. The broad-mask 53/54 bin split is not a stable prediction: 55/124 training and 47/101 held-out glyphs change bins when the stricter core is sampled. This is a single-rendering prediction, not a class-to-plaintext prediction; no reading direction or binary codebook was selected.
 
 ## Interpretation and boundary
 
@@ -69,4 +73,4 @@ Run from the repository root:
 
 python sims/lp2_red_chroma_source_gate.py
 
-The program checks the source annotation, all 58 page modes and JPEG sampling/quantization strata, exact per-page glyph counts at both thresholds, matched-background Lab deltas, typography groups, and the fixed page holdout. It emits the complete JSON summary. Dependencies: Pillow, NumPy, and OpenCV.
+The program checks the source annotation, all 58 page modes and JPEG sampling/quantization strata, exact per-page glyph counts at both thresholds, the 15 audited oversized-initial boxes, matched-background Lab deltas, typography groups, and the fixed page holdout. It emits the complete JSON summary. Dependencies: Pillow, NumPy, and OpenCV.

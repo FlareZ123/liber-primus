@@ -42,6 +42,19 @@ LARGE = (300, 10000)       # minimum height and area for drop capitals
 TRAIN_PAGES = (0, 3, 6, 7, 8, 15, 23, 27)
 HOLDOUT_PAGES = (33, 39, 40, 53, 54, 56, 57)
 
+# Previously audited oversized red-drop-cap boxes (physical page, x, y, w, h).
+# Threshold 150/80/80 may move an edge by a pixel or two; require <=2 px.
+AUDITED_LARGE_BOXES = [
+    (0, 601, 667, 150, 498), (3, 601, 670, 149, 495),
+    (3, 601, 2099, 229, 493), (6, 601, 1722, 148, 496),
+    (8, 603, 667, 282, 498), (15, 601, 1732, 149, 496),
+    (23, 601, 1157, 230, 496), (27, 601, 913, 230, 496),
+    (33, 601, 667, 230, 498), (33, 602, 1909, 218, 497),
+    (39, 601, 1852, 231, 498), (40, 601, 667, 149, 498),
+    (54, 601, 914, 148, 495), (56, 601, 670, 149, 496),
+    (57, 601, 915, 279, 604),
+]
+
 
 def annotation_counts(path: Path) -> dict[int, int]:
     annotation = json.loads(path.read_text(encoding="utf-8"))
@@ -94,6 +107,7 @@ def run(images: Path, annotations: Path) -> dict:
     sampling = defaultdict(Counter)
     qtables = defaultdict(Counter)
     rows = []
+    observed_large_boxes = []
     page_components = Counter()
     strong_page_components = Counter()
 
@@ -123,7 +137,7 @@ def run(images: Path, annotations: Path) -> dict:
                   & (rgb[:, :, 1] < CORE_RED[1])
                   & (rgb[:, :, 2] < CORE_RED[2])).astype(np.uint8)
 
-        n, labels, stats, _ = cv2.connectedComponentsWithStats(red, 8)
+        _, labels, stats, _ = cv2.connectedComponentsWithStats(red, 8)
         _, _, sstats, _ = cv2.connectedComponentsWithStats(strong, 8)
         lab = cv2.cvtColor(rgb, cv2.COLOR_RGB2LAB).astype(np.float32)
         local_rows = []
@@ -134,6 +148,9 @@ def run(images: Path, annotations: Path) -> dict:
             if kind is None:
                 continue
             page_components[page] += 1
+            if kind == "large":
+                observed_large_boxes.append((page, int(x), int(y),
+                                             int(width), int(height)))
             component = labels[y:y+height, x:x+width] == component_id
             pixels = rgb[y:y+height, x:x+width][component]
             core = (component
@@ -199,6 +216,21 @@ def run(images: Path, annotations: Path) -> dict:
     if len(rows) != 225 or Counter(r["kind"] for r in rows) != Counter(
             {"standard": 210, "large": 15}):
         raise AssertionError((len(rows), Counter(r["kind"] for r in rows)))
+    if len(observed_large_boxes) != len(AUDITED_LARGE_BOXES):
+        raise AssertionError("oversized red-initial inventory changed")
+    remaining = list(observed_large_boxes)
+    for expected_box in AUDITED_LARGE_BOXES:
+        page, *expected_xywh = expected_box
+        candidates = [box for box in remaining if box[0] == page]
+        if not candidates:
+            raise AssertionError(("missing audited drop-cap page", expected_box))
+        actual = min(candidates, key=lambda box: sum(
+            abs(box[i+1] - expected_xywh[i]) for i in range(4)))
+        if any(abs(actual[i+1] - expected_xywh[i]) > 2 for i in range(4)):
+            raise AssertionError(("audited drop-cap crop mismatch", expected_box, actual))
+        remaining.remove(actual)
+    if remaining:
+        raise AssertionError(("unmatched drop-cap boxes", remaining))
 
     def matrix(items, field):
         return np.asarray([r[field] for r in items], dtype=float)
@@ -209,6 +241,7 @@ def run(images: Path, annotations: Path) -> dict:
         bg = matrix(items, "background_rgb_median")
         delta = matrix(items, "lab_delta")
         core_delta = matrix(items, "core_lab_delta")
+        core_rgb_codes = Counter(tuple(int(round(v)) for v in row) for row in core_rgb)
         hues = np.asarray([hue_degrees(d) for d in delta])
         core_hues = np.asarray([hue_degrees(d) for d in core_delta])
         base_b_codes = Counter(str(round(float(d[2]))) for d in delta)
@@ -223,8 +256,12 @@ def run(images: Path, annotations: Path) -> dict:
             "core_rgb_median": {"median": rounded_vector(np.median(core_rgb, axis=0)),
                                 "min": rounded_vector(np.min(core_rgb, axis=0)),
                                 "max": rounded_vector(np.max(core_rgb, axis=0))},
+            "core_rgb_median_counts": {str(k): v for k, v in core_rgb_codes.items()},
             "matched_background_rgb_median": rounded_vector(np.median(bg, axis=0)),
             "lab_delta_median": rounded_vector(np.median(delta, axis=0)),
+            "core_lab_delta_median": rounded_vector(np.median(core_delta, axis=0)),
+            "core_lab_delta_range": [rounded_vector(np.min(core_delta, axis=0)),
+                                     rounded_vector(np.max(core_delta, axis=0))],
             "lab_delta_range": [rounded_vector(np.min(delta, axis=0)),
                                 rounded_vector(np.max(delta, axis=0))],
             "lab_b_delta_code_counts_base": dict(base_b_codes),
@@ -265,6 +302,7 @@ def run(images: Path, annotations: Path) -> dict:
         "annotated_red_runes": sum(expected.values()),
         "segmented_glyph_components": len(rows),
         "segmented_by_kind": dict(Counter(r["kind"] for r in rows)),
+        "audited_oversized_initial_boxes_match_within_2px": True,
         "per_page_counts_match_annotation_at_both_thresholds": True,
         "per_page_counts": {str(p): {"annotated": expected.get(p, 0),
                                       "base": page_components[p],
