@@ -97,6 +97,53 @@ console.log(JSON.stringify({
   originalInteriorIoC: ioc(interior), originalExteriorIoC: ioc(exterior)
 }));
 
+
+// A competing 180-rune source framing is *already known plaintext*:
+// p56 has 85 published solved runes and clear p57 has 95. A direct prime
+// key on those 180 positions has an exact known-plaintext test independent
+// of any English statistical model.
+const known56 = "AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO " +
+  "IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE";
+const letterTokens = corpus.translit.map((token, i) => ({token, i}))
+  .sort((a, b) => b.token.length - a.token.length);
+/** @param {string} text */
+function encodeKnownGP(text) {
+  const out = [];
+  for (const word of text.split(" ")) {
+    for (let pos = 0; pos < word.length;) {
+      const found = letterTokens.find(({token}) => word.startsWith(token, pos));
+      assert.ok(found, "Cannot spell GP text " + word.slice(pos));
+      out.push(found.i);
+      pos += found.token.length;
+    }
+  }
+  return out;
+}
+const plain56 = encodeKnownGP(known56);
+assert.equal(plain56.length, 85);
+const solvedShifts = [
+  ...byPage.get(56).indices.map((v, i) => mod29(v - plain56[i])),
+  ...byPage.get(57).indices.map(() => 0)
+];
+assert.equal(solvedShifts.length, 180);
+for (const reducer of ["prime", "totient"]) {
+  for (const reversed of [false, true]) {
+    for (const sign of [-1, 1]) {
+      const key = missing.map(p => mod29(reducer === "prime" ? p : p - 1));
+      if (reversed) key.reverse();
+      const exact = solvedShifts.map((v, i) => v === mod29(-sign * key[i]));
+      const match56 = exact.slice(0, 85).filter(Boolean).length;
+      const match57 = exact.slice(85).filter(Boolean).length;
+      assert.ok(match56 < 85 || match57 < 95);
+      console.log(JSON.stringify({
+        knownPlaintextAlternative: "p56+p57 as 180 grid interior",
+        reducer, reversed, sign, match56, match57,
+        originalPositions: 180
+      }));
+    }
+  }
+}
+
 for (const [region, ciphertext, sourceKey] of [
   ["interior-p53-plus-p54-A", interior, missing],
   ["perimeter-p55", exterior, visible]
