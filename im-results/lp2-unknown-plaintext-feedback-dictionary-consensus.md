@@ -42,6 +42,34 @@ The same decoder and source lexicon were used for both controls, without tuning 
 
 The solved-LP1 positive shows that a realistic incomplete dictionary does not destroy all shared-table evidence when the hypothesis is true, and the length-matched positive demonstrates strong power at the original length profile.
 
+## Distinct ciphertext-rune feedback: a second all-secret lookup
+
+A separate, equally reversible causal interpretation updates the key from **the preceding printed ciphertext rune** rather than the recovered plaintext rune:
+
+C[w,j]=P[w,j]+K[w,j] (mod29);
+K[w,j+1]=K[w,j]+g(C[w,j]) (mod29).
+
+Again all 29 entries of g and all per-word initial keys are arbitrary and hidden. This is a genuinely different architecture: the table inputs are printed ciphertext symbols. The independent necessary equation becomes
+
+**g(C[w,j-1])=C[w,j]-C[w,j-1]-P[w,j]+P[w,j-1] (mod29).**
+
+The same independently defined 12,231-GP-English-word lexicon and fixed target profile apply; original results differ:
+
+| Ciphertext-feedback criterion | Original LP2 | Matched-length English plant |
+| --- | ---: | ---: |
+| Long target words ≥10 runes | 109 | 109 |
+| Anchor words ≥12 runes | 25 | 25 |
+| Internally admissible anchor partial maps | 741 | 783 |
+| Most other long words sharing any nonconflicting g map | **12 of 108** | **108 of 108** |
+| Most other long words agreeing on ≥3 shared table entries | **2 of 108** | **79 of 108** |
+
+The source-English positive uses one fixed hidden mapping g(c)=GPprime(c)+1 but different word starting states; all encrypted words decrypt and re-encrypt exactly. As an **independent authentic-language control**, retain 20 original solved-LP1 words of at least ten runes, of which 14 are represented in the external lexicon. After encryption under that same hidden ciphertext-update table and varying seeds, the original algorithm recovers **15/19** loose-compatible other words and **12/19** with at least three shared table inputs. The 15 loose hits include accidental matches: the 12 shared-input hits are the more meaningful comparison with only 14 covered lexicon words.
+
+The best original ≥3-shared agreement involves candidate COUNTERACTED at original index637, compatible with only two other long words. There is **no original cross-word consensus on a single hidden table**, in striking contrast to both controls. These numbers do not mathematically rule out obscure plaintext vocabulary or per-page changes in g, and no surviving source actually prescribes ciphertext feedback.
+
+**Independent executable reproducer:** [unknown ciphertext-feedback single-file SFT](../sims/lp2_unknown_cipher_feedback_dictionary_consensus_sft.cjs). All original-input, full-key-space table-consistency and native-positive assertions were executed successfully against the current eight GitHub-file snapshots.
+
+
 ## Interpretation and next decision
 
 These results strongly disfavor **a fixed global arbitrary plaintext-rune lookup feeding an additive wordwise GP29 key** for ordinary GP-English text retaining the original word boundaries. They are a conditional lexical exclusion, not a mathematical impossibility for all imaginable plaintext. Rare unrepresented vocabulary, a non-GP intermediate alphabet, altered word segmentation, changing f across sections, or additional cipher layers are distinct untested explanations. Fitting a different lookup table to every printed word would remove the historical clue constraint.
