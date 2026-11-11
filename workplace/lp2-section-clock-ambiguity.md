@@ -10,6 +10,10 @@ A source-native typographic control sharpens the first boundary: solved p57's re
 
 An independently maintained, upstream-related transcription inserts a section separator before the second p33 red heading and not after p32. That is a transcription-convention witness, not independent cryptographic evidence. The canonical transcription remains unchanged to preserve comparability. The visual analogy strengthens the two-heading segmentation as a reading of the artifact; it still does **not** prove that a cryptographic key clock resets at either heading.
 
+A further **17-based body partition** is visible once both title spans and their 13-dot punctuation are excluded. P33 has 214 runes / 53 words. The two red headings occupy 10+8 runes and the two punctuation marks 13+13, leaving **170 body runes = 10×17**. The body between the first title/punctuation and the second heading is **68 = 4×17** runes; the body after the second title/punctuation is **102 = 6×17**. Removing the two heading words leaves **51 body words = 3×17**. Physical p55 independently has 17 words. Thus p33's two body units have a 4:6 split of ten 17-rune rows, while the total body has three groups of 17 words.
+
+This is a source-derived structural candidate for a 10×17 arrangement, with the p33 headings fixing a 4-row/6-row division and p55 supplying a 17-word cross-page referent. It does **not** yet specify row/column order, a reversible operation, or a cipher target. Treat the 17-factorization as a lead for a discriminating human-solve-path test, not as evidence of a transposition or reset.
+
 Three lossless source clocks remain possible:
 
 | Segmentation | Runes per body (sum 12,956) | Words per body (sum 2,896) |
