@@ -21,27 +21,32 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install pinned WARC parser
-        run: python -m pip install --disable-pip-version-check warcio==1.8.2
-      - name: Download only the named ArchiveBot WARC
+      - name: Try raw WARC, then exact Wayback id_ replay if restricted
         shell: bash
         run: |
           set -euo pipefail
           WARC="/tmp/1711141131131.xyz-inf-20170629-043925-ewtko-00000.warc.gz"
-          curl --fail --location --retry 4 --retry-all-errors --retry-delay 5 \
-            --user-agent "Liber-Primus-archival-research/1.0" \
+          OUT="resources/external/warc/1711141131131.xyz/20170629-root"
+          mkdir -p "$OUT"
+          if curl --fail --location --max-time 120 --user-agent "Liber-Primus-archival-research/1.0" \
             "https://archive.org/download/falconk_archivebot_1711141131131_xyz_20170629/1711141131131.xyz-inf-20170629-043925-ewtko-00000.warc.gz" \
-            --output "$WARC"
-          test "$(stat -c '%s' "$WARC")" = "22508403"
-          python sims/extract_archivebot_root_warc.py \
-            --warc "$WARC" \
-            --output-dir "resources/external/warc/1711141131131.xyz/20170629-root"
+            --output "$WARC"; then
+            test "$(stat -c '%s' "$WARC")" = "22508403"
+            python -m pip install --disable-pip-version-check warcio==1.8.2
+            python sims/extract_archivebot_root_warc.py --warc "$WARC" --output-dir "$OUT"
+          else
+            echo "Archive.org WARC is restricted; trying exact Wayback id_ replay."
+            rm -f "$WARC"
+            python sims/extract_wayback_id_replay.py --output-dir "$OUT" --raw-warc-status "HTTP 403/401"
+          fi
       - name: Preserve extraction artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: agent3-2017-archivebot-root-warc
           path: resources/external/warc/1711141131131.xyz/20170629-root/
           retention-days: 90
+          if-no-files-found: warn
       - name: Commit the exact source and extracted entity
         shell: bash
         run: |
