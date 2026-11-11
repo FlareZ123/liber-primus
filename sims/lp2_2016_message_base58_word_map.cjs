@@ -166,6 +166,26 @@ function mapMessageWord(word, index) {
 }
 const fullMap = signedAllWords.map(mapMessageWord);
 const exceptions = fullMap.filter(row => row.runeWord === null);
+// All signed-message word indices are tiny compared with every rune-bearing
+// page's printed-word count. Therefore 42/43 valid addresses are automatic,
+// except when a word points to the deliberately rune-free numerical page 50.
+const minRunePageWords = Math.min(...lp2Pages.filter((_, p) => p !== 50).map(p => p.length));
+const maxMessageWordIndex = Math.max(...fullMap.map(r => r.wordIndex));
+assert.equal(minRunePageWords, 17);
+assert.equal(maxMessageWordIndex, 7);
+assert(fullMap.every(r => r.page === 50 || r.wordIndex < lp2Pages[r.page].length));
+// Finite 58-shift null: preserve each actual word's prime sum and duplicate
+// structure, but shift the base-58 page phase. Test both quotient and residue.
+const shiftedMissingCounts = Array.from({length: 58}, (_, shift) =>
+  fullMap.filter(r => {
+    const sum = r.sum + shift;
+    return !lp2Pages[sum % 58][Math.floor(sum / 58)];
+  }).length);
+const shiftedMissingHistogram = Object.fromEntries(
+  [...new Set(shiftedMissingCounts)].sort((a, b) => a - b)
+    .map(count => [count, shiftedMissingCounts.filter(x => x === count).length]));
+assert.deepEqual(shiftedMissingHistogram, {0: 30, 1: 19, 2: 7, 3: 1, 7: 1});
+assert.equal(shiftedMissingCounts[0], 1);
 assert.deepEqual(exceptions.map(({word, sum, page, wordIndex}) =>
   [word, sum, page, wordIndex]), [["lies", 224, 50, 3]]);
 assert.equal(lp2Pages[50].length, 0);
@@ -342,6 +362,8 @@ console.log(JSON.stringify({
       tableToken: page50Table.tokens[3], tableByte: page50Table.bytes[3]},
     unfittedAddresses: {found: [14, 2], beware: [32, 5]},
     pointerRoute: {fold: [14, 1], lastUnsolved: [55, 2], solvedEnd: [56, 1]},
+    addressBaseRate: {minRunePageWords,maxMessageWordIndex,
+      shiftedMissingHistogram,exactlyOneMissingShifts: 19,shiftCount: 58},
     printedWordCount: 2973, lineFragmentCount: 3367,
     completePointerWalk: {missingOnPage50: missing.length,
       convergeToCycles: cycles.length, visitSolvedEND: visitsEnd.length}}
