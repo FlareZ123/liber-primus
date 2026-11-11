@@ -58,13 +58,18 @@ def run(args: list[str], timeout: int = 180) -> dict[str, Any]:
                 "stderr": ("TIMEOUT after %ss; " % timeout) + str(e.stderr or "")[-1000:]}
 
 def image_meta(path: Path) -> dict[str, Any]:
-    n = int(path.stem)
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    try:
+        n = int(path.stem)
+    except ValueError:
+        return {"image": path.name, "image_index": None,
+                "release": "CONTROL", "page": None, "sha256": digest}
     return {
         "image": path.name,
         "image_index": n,
         "release": "LP1" if n < 17 else "LP2",
         "page": n if n < 17 else n - 17,
-        "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        "sha256": digest,
     }
 
 def detect_one(path: Path) -> dict[str, Any]:
