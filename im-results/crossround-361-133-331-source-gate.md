@@ -82,8 +82,29 @@ The 2013 selectors' values also satisfy \(1109-449=660=\varphi(661)\), and \(330
 
 An exhaustive search over all 3301 states found no exact match to the 256-byte onion2 string under low-byte or scaled-byte output, either output phase. A self-clocked model also required each state to generate a 1–7 five-minute delay and advance by that delay; with the two unobserved bridge intervals constrained to the five published splits, the best candidate matched only **31/112** exact intervals and **2/114** observed bytes. This was an exploratory finite check, not a recovered generator state; it does not justify further parameter or offset sweeps.
 
+## Source-fixed 19×19 circumference check
+
+The corrected 361-entry sequence also has the exact cardinality (19^2). I tested the most direct extension of the PARABLE's **“shed our own circumferences”** wording: fill a 19×19 square row-major with the sequence, peel concentric perimeters from outside inward, sum each perimeter, reduce each sum modulo 29, and read the residues through the canonical GP transliteration table. This borrows the operation used in the separately reported 7×7-shell `SEDEO` proposal; the 19×19 source does not itself prescribe it.
+
+| Shell, outside inward | Cells | Sum | Mod 29 | GP transliteration |
+|---:|---:|---:|---:|---|
+| 1 | 72 | 22,868 | 16 | T |
+| 2 | 64 | 20,062 | 23 | D |
+| 3 | 56 | 17,448 | 19 | M |
+| 4 | 48 | 14,890 | 13 | P |
+| 5 | 40 | 12,322 | 26 | Y |
+| 6 | 32 | 9,814 | 12 | EO |
+| 7 | 24 | 7,388 | 22 | OE |
+| 8 | 16 | 4,870 | 27 | IA |
+| 9 | 8 | 2,438 | 2 | TH |
+| 10 (center) | 1 | 6 | 6 | G |
+
+The resulting sequence is **`TDMPYEOOEIATHG`**, with center value **6**. It does not produce a recognizable English or Latin instruction. Perimeter sums are invariant under rotations and reflections, so orientation changes cannot rescue this particular test. This is a bounded negative for the **row-major 19×19 + shell-sum mod 29** interpretation only; it does not authenticate the secondary 2013 missing-prime list, and it does not refute the distinct 7×7 center/SEDEO clue.
+
+The exact shell values, canonical transliterations, and center are asserted by `sims/telnet2013_prime_gap361_gate.cjs`. No original LP2 plaintext or key is recovered.
+
 ## Decision and next useful action
 
-The corrected 361-entry count and zero-based selectors are reproducible, but none of the tested operations produces plaintext. Do **not** repeat direct additive, 35-stride DES, primitive-root exponent, 3301-LCG, or the fixed phase-zero 361-period direct-GP29 family.
+The corrected 361-entry count and zero-based selectors are reproducible. The fixed direct-GP29 key and source-motivated 19×19 shell-sum reading both fail to produce plaintext. Do **not** repeat direct additive, 35-stride DES, primitive-root exponent, 3301-LCG, or the fixed phase-zero 361-period direct-GP29 family.
 
 The 180-prime / 180-cell interior correspondence now also lacks a stationary direct-lookup interpretation under the eight literal table orientations. The remaining useful question is whether an **independent contemporaneous instruction** assigns a *different operation* to the 180 missing primes, 361-entry sequence, or ordered triple 361/133/331. The PARABLE's “instar / tunneling / shed circumferences” wording makes an inward square/ring reading plausible, but does not fix how to fill a 19×19 array, where to start, or which direction to traverse. The 2013 remote prime list remains a secondary transcription, and the straightforward direct-key use is now negative. Do not expand into arbitrary rotations, spirals, moduli, or key offsets without a source-fixed selector. If no such instruction or original server artifact can be recovered, retain the relationship as clue-level evidence and redirect effort to another independently sourced key family.

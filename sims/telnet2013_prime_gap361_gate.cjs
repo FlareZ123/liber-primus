@@ -133,6 +133,30 @@ function gpEncode(english) {
   return out;
 }
 
+
+function concentricShellSums(square) {
+  assert.ok(Array.isArray(square) && square.length > 0);
+  const n = square.length;
+  assert.ok(square.every(row => Array.isArray(row) && row.length === n));
+  const shells = [];
+  for (let layer = 0; layer < Math.ceil(n / 2); layer++) {
+    const lo = layer;
+    const hi = n - 1 - layer;
+    const values = [];
+    if (lo === hi) values.push(square[lo][lo]);
+    else {
+      values.push(...square[lo].slice(lo, hi + 1));
+      for (let row = lo + 1; row <= hi; row++) values.push(square[row][hi]);
+      for (let col = hi - 1; col >= lo; col--) values.push(square[hi][col]);
+      for (let row = hi - 1; row > lo; row--) values.push(square[row][lo]);
+    }
+    const sum = values.reduce((total, value) => total + value, 0);
+    const residue = mod(sum, MOD);
+    shells.push({size:values.length,sum,residue,translit:corpus.translit[residue]});
+  }
+  return shells;
+}
+
 function run() {
   assert.equal(pages.length, 55);
   const total = pages.reduce((sum, page) => sum + page.length, 0);
@@ -164,6 +188,22 @@ function run() {
     assert.deepEqual(recovered, language);
     positive.push({clock, exactRecovered: recovered.length, ioc: ioc(recovered)});
   }
+
+
+  // The 361=19^2 residual suggests a row-major 19x19 array. The PARABLE's
+  // "shed our own circumferences" wording motivates this one shell-sum read.
+  const square19 = Array.from({length: 19}, (_, row) =>
+    sequence.slice(row * 19, (row + 1) * 19));
+  const shellCheck = concentricShellSums(square19);
+  assert.deepEqual(shellCheck.map(x => x.size),
+    [72, 64, 56, 48, 40, 32, 24, 16, 8, 1]);
+  assert.deepEqual(shellCheck.map(x => x.sum),
+    [22868, 20062, 17448, 14890, 12322, 9814, 7388, 4870, 2438, 6]);
+  assert.deepEqual(shellCheck.map(x => x.residue),
+    [16, 23, 19, 13, 26, 12, 22, 27, 2, 6]);
+  assert.deepEqual(shellCheck.map(x => x.translit),
+    ['T', 'D', 'M', 'P', 'Y', 'EO', 'OE', 'IA', 'TH', 'G']);
+  assert.equal(square19[9][9], 6);
 
   const expected = [
     {clock: 'page', sign: -1, ioc: 0.034491326460880746},
@@ -203,6 +243,13 @@ function run() {
       fixedDirectGP29Models: models
     },
     positiveControl: positive,
+    sourceConstrained19x19ShellCheck: {
+      fill: 'row-major corrected 361-entry prime/gap sequence',
+      operation: 'outer-to-inner perimeter sum modulo 29',
+      shells: shellCheck,
+      center: square19[9][9],
+      result: shellCheck.map(x => x.translit).join('')
+    },
     decision: 'No original LP2 plaintext from the fixed phase-zero direct-GP29 use of this 361-value sequence.'
   };
 }
@@ -211,4 +258,4 @@ if (require.main === module) {
   process.stdout.write(JSON.stringify(run(), null, 2) + '\n');
 }
 
-module.exports = {primesInRange, sequence, key, ioc, decodeOriginal, run};
+module.exports = {primesInRange, sequence, key, ioc, decodeOriginal, concentricShellSums, run};
