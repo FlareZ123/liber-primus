@@ -28,6 +28,7 @@ on:
           - tree-wordmap
           - signed2016-derivative
           - terminal-circumference
+          - quartic-annihilator
           - byte-pointer
           - collision-quote
         default: full
@@ -71,6 +72,10 @@ jobs:
       - name: Original source terminal table border and solved-page known-plaintext gate
         if: ${{ inputs.probe == 'terminal-circumference' }}
         run: node sims/lp2_terminal_grid_border_ring_sft.cjs
+
+      - name: Source-red quartic all-secret word-local LFSR annihilator
+        if: ${{ inputs.probe == 'quartic-annihilator' }}
+        run: node sims/red_triad_quartic_annihilator_sft.cjs
 
       - name: Original 256-byte grid self-pointer 11-cycle and source-jet joint test
         if: ${{ inputs.probe == 'byte-pointer' }}
