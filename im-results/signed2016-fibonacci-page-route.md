@@ -41,9 +41,9 @@ The 2017 contribution is useful because it extends the 2016 sequence by the next
 
 ## Literal word-number continuation: bounded negative
 
-To test the most direct reading of “words are the map” without fitting a cipher, the canonical word parser was applied to the selected pages. Physical-page word-start counts are:
+To test the most direct reading of “words are the map” without fitting a cipher, the canonical word parser was applied to the selected pages. Canonical page-local **word-start** counts are:
 
-`[61, 55, 60, 25]` for pages `[13, 21, 34, 55]`.
+`[61, 55, 60, 16]` for pages `[13, 21, 34, 55]`. Physical p55 begins with one printed fragment that continues a word started on the preceding rune-bearing page, so its 17 printed fragments correspond to 16 canonical word starts.
 
 Two one-based indexing conventions were frozen:
 
