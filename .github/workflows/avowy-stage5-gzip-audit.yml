@@ -1,9 +1,6 @@
 name: avowy-stage5-archive-gzip-audit
 
 on:
-  push:
-    paths:
-      - ".github/workflows/avowy-stage5-gzip-audit.yml"
   workflow_dispatch:
 
 permissions:
@@ -13,6 +10,7 @@ jobs:
   inspect:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Download archived Stage 5 object
         run: |
           set -euo pipefail
@@ -82,6 +80,13 @@ jobs:
           print("byte_entropy",H,"distinct_bytes",len(counts))
           PY
           strings -a -n 8 data.out | head -150 >> audit.txt
+      - name: Recover original four-image candidate under historical bit and order transforms
+        run: |
+          set -euo pipefail
+          python3 -m venv /tmp/stage5-carve-venv
+          /tmp/stage5-carve-venv/bin/pip install --quiet Pillow==11.3.0
+          /tmp/stage5-carve-venv/bin/python sims/stage5_four_image_carve_sft.py --selftest
+          /tmp/stage5-carve-venv/bin/python sims/stage5_four_image_carve_sft.py data.out | tee stage5-four-image-carve.txt
       - name: Build maintained OutGuess 0.4
         run: |
           set -euo pipefail
@@ -146,6 +151,7 @@ jobs:
             stage5-object.gz
             data.out
             audit.txt
+            stage5-four-image-carve.txt
             tablet-front.jpg
             tablet-back.jpg
             trailer.bin
