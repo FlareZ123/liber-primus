@@ -1,6 +1,6 @@
 # 2016 signed-message word-map hypotheses: base-58 addresses and base-29 line:character PRNG
 
-**Status: the base-58 map and p32 M7 route remain provisional; a separate base-29 line:character reading yields PRNG, an operation clue, not a decryption.**
+**Status: the base-58 map remains provisional. Its full 43-word output, after p57 circumference stripping, yields a 91-symbol 7×13 stream; simple uses against the 273-symbol p29 residual are negative. The p32 M7 route and separate base-29 line:character PRNG reading remain provisional, not decryptions.**
 
 ## Hypothesis
 
@@ -88,6 +88,49 @@ The base-58 rule above was first tested on the conspicuous 16-word sentence and 
 **42 of 43 signed-message words address existing original rune words. Exactly one fails the rune-word contract: `lies`.** This in-bounds count is mechanically expected: every rune-bearing LP2 page has at least 17 words, whereas the mapped word indices are only 1–7. Under 19 of the 58 fixed page-phase shifts, exactly one address likewise targets a rune-free page (the matched-null check documented in [Issue #18](https://github.com/FlareZ123/liber-primus/issues/18)). The count is **not evidence** that the address rule was intended. Its canonical spelling `L-I-E-S` has GP prime weights `73+31+67+53=224`, and `224 = 58×3 + 50`: physical LP2 **page50, zero-based word index3**. This is the **only rune-free numerical page** among the 58 original LP2 page slots. The source sentence containing that word reads `The path lies empty; epiphany seeks the devoted.` This is an independently predicted and semantically suggestive page selection under the already-frozen rule, with an obvious alternative interpretation: the word's address could target a *table cell* in place of an absent rune word. Original p50 does have 104 two-digit cells; its fourth token is **`3D` = 193 only under the conventional base-60 grid codec**; under the source-compatible base-59 `f`-skip fork, the same printed token decodes to **190**. Reading a table cell at that position is a **new candidate semantic extension**, not part of the originally specified rune-word rule.
 
 Two further predictions arise without changing the addressing convention. The signed word `found` has prime sum `130 = 58×2+14`, pointing to **physical p14 word2**, immediately after the unique p14 word1 `FOLD` selected repeatedly by `the`. The word `Beware` sums to `322 = 58×5+32`, selecting **p32 page-local segment index5**, the same 11×11 tree page that independently matches the dimensions of the signed 2016 image. Neither of these selected unknown ciphertext words is established plaintext. Most of the other 42 selected rune words remain opaque. Their values must be read from the physical word boundaries, not from line-wrapped rune fragments.
+
+
+## PARABLE-stripped full-map interiors: a 91-symbol 7×13 plane and negative p29 gates
+
+**Status: new source-linked structure; no decoder recovered.** Freeze the complete 43-word base-58 map above. It yields 42 rune-bearing LP2 words; the remaining word, `lies`, selects p50 cell 3 (`3D` under the conventional base-60 codec). Apply p57's explicit “shed our own circumferences” instruction to each of the 42 selected rune words: remove its first and last rune, then concatenate the interiors in signed-message order. The result is exactly **91 GP symbols**, or (7×13):
+
+```text
+IARFEIOLOEEAEOBOLXIARFEIRUNEAOLSCNGRTHOLEAPSHNEAOLYOENTSDWRTHOLSTAENRDNGNTMIOTHETHEOGGFNIACTHRTTHHBEGIAPEAUAEMPSA
+```
+
+The stream's GP-index IoC is **0.037851**; it is not plaintext. The construction is reproducible from the existing [base-58 map SFT](../sims/lp2_2016_message_base58_word_map.cjs) and the physical word segmentation already used above.
+
+### Relation to the p29 G-adic residual
+
+The existing [p29 signed-2013 DH2/G-adic study](p29-signed2013-dh2-gadic-congruence.md) defines a 273-coefficient Euclidean quotient
+[
+R=\operatorname{quo}\left((P_{29}-S_{50}-2G)/G^2\right),
+]
+where (P_{29}) is the p29 GP-index polynomial, (S_{50}) is the 256-byte p50 table reduced modulo 29, and (G=[15,5,27]) is the p39 red-triad polynomial. The division has remainder **[13,5,0,21]**; it is therefore a quotient-with-remainder, not an exact divisibility claim. Its quotient length is **273 = 3×91 = 3×7×13**. This makes the 91-symbol map interior a candidate 7×13 plane for three residual layers, but the dimensional match alone does not specify an operation.
+
+### Fixed, low-parameter tests
+
+The 273 coefficients were split in source order into three contiguous 91-symbol layers. Repeating the 91-symbol map interior as a mod-29 additive/Beaufort key gives no language-like output:
+
+| R layer | Source IoC | Subtract key | Add key | Beaufort |
+|---:|---:|---:|---:|---:|
+| 0 | 0.03077 | 0.03590 | 0.03516 | 0.03590 |
+| 1 | 0.04249 | 0.03370 | 0.03614 | 0.03370 |
+| 2 | 0.03028 | 0.03101 | 0.03565 | 0.03101 |
+
+A simple per-layer transposition is also excluded: the multiset intersections between the 91-symbol key and the three R layers are **63/91, 59/91, and 59/91**, respectively.
+
+One fixed use of the p39 triad as the three-layer contraction,
+[
+T_i=15R_{0,i}+5R_{1,i}+27R_{2,i}\pmod{29},
+]
+matches only **5/91** key positions. Applying the key by subtraction, addition, or Beaufort to (T) remains nonlinguistic (IoCs **0.03516, 0.03810, 0.03516**). These are bounded tests of the simplest source-linked plane/key operations, not an exhaustive 3D search.
+
+### Interpretation and stop condition
+
+The factorization (273=3×7×13) has plausible source counterparts: the p39 three-rune G, p32's order-7 M7 map, and the repeated 13-dot mark. The full-map word `lies` also selects p50's `3D` token. But the token is a base-60 numeral (193 under that codec), not an explicit textual instruction to use three dimensions. Pixel-level analysis of the original 13-dot marks finds a repeated symmetric stencil with **no robust start, direction, or orientation bit** ([Agent16's original-image handoff](../communications/agent2/20261111T1150Z_agent16_13dot-stencil-geometry.md)). The p32 M7 wordmap gate separately finds no total segment-to-segment traversal because intermediate orbit residues are unoccupied.
+
+**Decision:** retain the 91-symbol stream and 3×7×13 correspondence as an intermediate structural observation. The repeated-key, simple transposition, and G-contraction readouts do not decrypt R. Do not enumerate arbitrary axis orders, rotations, coordinate reductions, or offsets without an independent original-source instruction fixing the operation. No plaintext or authentic key has been recovered by this branch.
 
 ## New p32 continuation: a 13-rune W selector reaches the M7 pole
 
@@ -326,6 +369,6 @@ Standard TEA/XTEA tests on the p50 table with direct message-sum, prime-index, p
 
 ## Current decision and reopening gate (11 November 2026)
 
-The base-58 word addresses and the p32 M7 W/infinity route are source-constrained but provisional navigation hypotheses; neither is plaintext or a reversible cipher by itself. The FOLD/END, p50 3D and exterior-symbol interpretations remain unverified. The earlier fold comparison was negative; do not repeat arbitrary fold/orientation sweeps.
+The base-58 word addresses and p32 M7 W/infinity route remain provisional. The full-map PARABLE-stripped 91-symbol plane is a new structural consequence, but its direct 3×91 key/field uses against the p29 residual are negative; 3×7×13 is not a decoder. FOLD/END and p50 3D are conditional anchors, not authenticated plaintext. No source-fixed tensor orientation/state exists; do not repeat arbitrary fold, orientation, or axis sweeps.
 
 A separate exploratory base-29 line:character mapping yields an apparent PRNG marker and a 13-token remainder. The subsequent source-selector audit in [2016-linechar-13token-prng-seed64-gate](2016-linechar-13token-prng-seed64-gate.md) found that the apparent marker depends on an unsupplied quotient/remainder orientation, punctuation counting, Latin-to-GP tokenization, and selecting signed-message words rather than LP words. Therefore neither PRNG nor its 64-bit remainder is authenticated as a source instruction or seed; reproducing the same output in two transcriptions does not resolve those choices. The PRNG seed is not a basis for further generic generator/seed searches. The 2012 P.S. RSA modulus/exponent remains a candidate, not a fact; simple RSA/RC4/MT stream-XOR and additive-key interpretations have failed. Do not broaden generic seed sweeps or continue unmotivated base-58 codecs.
