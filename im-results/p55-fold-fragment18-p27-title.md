@@ -1,6 +1,6 @@
 # P55 literal fold mismatch selects the p27 red section title
 
-**Evidence class:** source-image navigation hypothesis with exact original-corpus reproduction. **No unknown LP2 plaintext, cryptographic key, or destination is claimed.**
+**Evidence class:** provisional source-image navigation hypothesis with exact original-corpus reproduction. **No unknown LP2 plaintext, cryptographic key, cipher mechanism, or destination is claimed.**
 
 ## Source-visible path
 
@@ -54,7 +54,7 @@ occur at **p27 local 28–33** and again as **p55 local 70–75, the final six u
 
 The fold-derived route therefore connects p55 to a p27 source boundary that already has an independent p55 connection.
 
-## The repeated pair's word numbers specify reverse direction
+## The repeated pair's word-number gap does not yet authenticate reverse direction
 
 Under the canonical **2,896-word** parser, which keeps page and line wraps transparent inside printed words, the two copies of `DJU-BEI` begin at zero-based word offsets **1462** and **2894**. Their difference is therefore
 
@@ -65,9 +65,11 @@ The independently fold-selected p27 `$`
 
 `1432 mod 1433 = -1 mod 1433`.
 
-This is a finite, source-fixed reading of the signed 2016 phrase that the book's words are the map and their numbers are the direction: the duplicated words identify the p27/p55 connection, while their **word-number difference specifies backward traversal** on the independently selected 1,433-rune section. No phase or modulus was fitted after seeing language output.
+The numerical equality is exact and worth preserving, but it is **not presently a source-fixed direction rule**. The construction changes units from a difference of global **word ordinals** to a count of local **rune steps**, then introduces the selected section length as a modulus and interprets `1432 mod 1433 = -1` as backward traversal. No authenticated source currently specifies those unit changes or that modular operation. The fact that no phase or modulus was fitted after language scoring does not remove this upstream interpretive freedom.
 
-The direct consequence is still encrypted. Reversing the section, including cyclic reverse traversals anchored immediately before/at/after the p27 bookend, keeps the source trigram score at about **-13.914** versus **-13.904** forward and preserves the near-uniform IoC. Applying the already selected literal `FOLD` or its reversal `DLOF` as four-rune add/subtract/Beaufort keys on the natural reverse path also fails; the best such score is about **-13.961**. Thus **reverse direction survives as a navigation/state constraint, not a complete decipherment**.
+Accordingly, **reverse traversal remains a hypothesis rather than a recovered state/clock constraint**. A future promotion requires an independent rule telling a solver to convert the two word numbers into rune-step displacement on this section, or a calibrated null over the full comparable source-choice family.
+
+Conditional on the reverse hypothesis, direct reversal is negative. Reversing the section, including cyclic reverse traversals anchored immediately before/at/after the p27 bookend, keeps the source trigram score at about **-13.914** versus **-13.904** forward and preserves the near-uniform IoC. Applying literal `FOLD` or `DLOF` as four-rune add/subtract/Beaufort keys on those reverse paths also fails; the best such score is about **-13.961**. These tests bound those literal follow-ons only.
 
 ## First cryptographic consequences tested
 
@@ -76,11 +78,11 @@ The selected title was also tested as a periodic self-key on the 1,414 following
 
 ## Anchored p27 reverse-window → p55 direct-key gate
 
-The fold-selected p27 section, duplicated `DJU-BEI` bookend, and word-number direction together fix a stronger p55 experiment with **no phase search**. Align p55 local 75 with the matching p27-section local 33 and preserve the established backward step `−1 mod 1433`. Walking 75 positions backward from the anchor fixes one cyclic 76-rune source window. In forward p55 order it is exactly section positions **1391–1432 followed by 0–33**, and its final six runes reproduce `DJU-BEI`.
+Conditional on interpreting the 1432 equality as a backward step, the fold-selected p27 section and duplicated `DJU-BEI` bookend fix a stronger p55 experiment with **no phase search inside that hypothesis**. Align p55 local 75 with the matching p27-section local 33 and apply `−1 mod 1433`. Walking 75 positions backward from the anchor fixes one cyclic 76-rune source window. In forward p55 order it is exactly section positions **1391–1432 followed by 0–33**, and its final six runes reproduce `DJU-BEI`.
 
 That single window was tested as a same-alphabet p55 key under the two source-native projections **GP index** and **GP prime weight mod29**, with the three standard direct orientations `C−K`, `C+K`, and `K−C`. Across all **6** frozen variants, the best native-GP trigram score is **−11.64744321**. The worst of **1,000** matched 76-rune native-GP controls is **−8.87918067**, so **0/6** candidates enter the native reference range. Exact forward plants recover under every projection/orientation pair.
 
-**Decision:** preserve the fold-selected p27 target, exact bookend anchor, and backward direction as navigation constraints. Retire **direct additive use of the uniquely anchored 76-rune reverse p27 window**. A successor requires a separately sourced state transition, nonlinear operation, or readout; shifting the anchor or scanning phases would discard the strongest evidence in this route.
+**Decision:** preserve the fold-selected p27 target and exact bookend anchor as observations. The backward direction remains an unverified cross-unit interpretation. Conditional on that interpretation, retire **direct additive use of the uniquely anchored 76-rune reverse p27 window**. A successor should first source the direction/state rule independently rather than shift the anchor or scan phases.
 
 **Reproduce:** [single-file SFT](../sims/p55_p27_bookend_reverse76_gate.cjs); successful manual CI [run 42973494572](https://github.com/FlareZ123/liber-primus/actions/runs/42973494572).
 
@@ -89,6 +91,6 @@ That single window was tested as a same-alphabet p55 key under the two source-na
 
 The new result is a **navigation candidate**, not a decryption. Its weakest upstream premise is still the provisional signed-2016 word-address route that selected FOLD/p55. The five-bit interpretation is much less free once the physical fold has been chosen, because it uses only match/mismatch, the source has exactly 32 thirteen-dot fragments, and the selected address passes two unique structural checks plus the pre-existing p27/p55 ciphertext bookend.
 
-The next useful experiment should preserve the now source-fixed **p27 target plus reverse direction** and derive the missing operation/readout from the title, wing illustration, repeated p27/p55 bookend, or another independently authenticated source. Avoid generic title-key enumeration, arbitrary reverse-path key searches, or post hoc arithmetic.
+The next useful experiment should preserve the reproduced **p27 target and p27/p55 bookend** while seeking an independently authenticated rule for direction and operation/readout. The exact 1432 equality may motivate that search, but it does not by itself authorize reverse-path key searches, p50 table moves, phase choices, or compound arithmetic. Avoid generic title-key enumeration and post hoc arithmetic.
 
 **Reproducer:** [`p55_fold_fragment18_p27_title_sft.cjs`](../sims/p55_fold_fragment18_p27_title_sft.cjs).
