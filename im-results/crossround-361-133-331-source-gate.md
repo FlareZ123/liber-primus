@@ -27,19 +27,11 @@ The source-first candidate key is exactly `K[i]=S[i] mod 29`, with phase zero an
 
 The raw original IoC is **0.03447839786**; the uniform 29-symbol reference is **1/29 = 0.03448275862**. None of the four outputs develops an English-like frequency signal. A source-native positive control using 12,956 GP-encoded Shakespeare runes and the same page lengths recovers **12,956/12,956** exactly under both clocks, so the inverse and reset handling are functioning. This rejects the **fixed direct additive GP29 use** of this exact 361-value sequence at phase zero; it does not reject every possible role for the historical numbers. The reproducible [SFT](../sims/telnet2013_prime_gap361_gate.cjs) reconstructs the sequence from primes, asserts the zero-based selectors, tests the four original inverses, and runs the positive control.
 
-## Omitted 180 telnet primes versus the 180-cell table interior: a fixed-lookup exclusion
+## Missing 180 telnet primes and the 30×6 table interior
 
-A distinct, human-visible structural lead connects the **180 primes omitted** between p20=71 and p201=1229 in the archived 2013 telnet transcript with the **30×6=180 interior cells** of LP2's original **32×8** printed numeric table. This exact cardinality correspondence suggests a finite, source-first test: read the omitted primes p21..p200 in their natural ascending order and the table interior in one of its eight basic rectangular orientations (vertical and horizontal reversals, row-major and column-major); compare them under the natural GP29, printed radix60, and byte256 residues. Unlike the previously tested 361-entry prime/gap direct GP29 key, this candidate reads **only the missing primes** and **only the printed interior**.
+The 2013 telnet transcript's missing primes p21..p200 (180 entries) and the 180-cell interior of the original LP2 32×8 printed table are an exact source-cardinality correspondence. This relationship and the first forward-order direct-table negative were already established in the dedicated [missing-180 source study](2013-telnet-missing180-lp2-interior.md). An additional key-independent analysis now excludes **all eight elementary horizontal/vertical/row-/column-major interior readings** under *any fixed secret residue lookup*: ascending-prime input forces at least **132/180 mod29**, **148/180 mod60**, **69/180 mod256** wrong cells, even for many-to-one maps; the historically source-prescribed reversed-decimal-prime operation forces at least **135, 135, 38** wrong cells respectively. Positive planted stationary maps pass exactly. The [expanded SFT](../sims/telnet2013_missing180_grid_interior_sft.cjs) retains the finite scope.
 
-A completely unrestricted, *stationary* secret symbol lookup would have to send each repeated prime residue to a single output cell residue. For each of the 8 readings and 3 moduli, count outputs associated with each input residue, retain the modal output for that input, and treat all other cells as necessarily wrong. This grants **any function**, including many-to-one maps and every possible secret substitution, so the minimal forced errors are exact lower bounds independent of a chosen key:
-
-| Source residue modulus | Best matching cells of 180 with any one fixed lookup | Minimum unavoidable mismatches, all 8 natural readings |
-| --- | ---: | ---: |
-| GP29 | 48 | **132** |
-| Printed radix60 | 32 | **148** |
-| Byte256 | 111 | **69** |
-
-A planted, source-shaped stationary map yields **zero** forced mismatches under the same implementation, confirming the gate detects a genuine positive. This strictly rejects the simple direct **prime-residue → interior-cell lookup** reading in all eight orientations; it does not challenge the count equality or exclude position-dependent state, different orderings independently indicated by the source, nonlinear register transformations, or entirely different uses of the two artifacts. The 2013 transcript remains a secondary witness. Standalone [source-exact SFT](../sims/telnet2013_missing180_grid_interior_sft.cjs) and [commit ed3af207](https://github.com/FlareZ123/liber-primus/commit/ed3af207328b74893367274b0a7dca65bd120c64).
+This rejects straightforward stationary input-residue→table-interior lookup mappings, while leaving source-prescribed varying state, independently justified additional permutations and unrelated uses unexcluded. It does not supply LP2 plaintext or a key. The 2013 telnet transcript is a secondary witness.
 
 ## Reusing the 2013 `560.13` offset-XOR operation against 2014 onion-2 data
 
