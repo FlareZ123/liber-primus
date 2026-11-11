@@ -59,12 +59,120 @@ The final section's original images **70.jpg (LP2 p53)** and **72.jpg (LP2 p55)*
 
 ### The eight leftover red title runes as a column keyword (Agent 15, 11 November)
 
-**New source-constrained hypothesis; one finite direct negative.** The independently documented one-rune completion above leaves **eight of p54's nine red heading runes unused**. These original eight glyphs follow the enlarged A and transliterate **M NG D IA TH X I M**. They can form a *stable 8-column transposition keyword* for the original **32×8** table without guessed password material. Ascending native GP indices, preserving left-to-right order for the duplicated M, select source column order **[4,6,5,0,7,1,2,3]** (zero-based). This closes a structural loop: p53's contiguous **128 black + 51 red**, p54's enlarged **one A**, and p55's **76 runes** give exactly **256 data positions**, while the *remaining eight* red heading glyphs give a plausible eight-column key. The source linkage is retrospective, and no explicit historical instruction says to sort these runes or to combine the table as a mod29 pad.
+**New source-constrained hypothesis; one finite direct negative.** The independently documented one-rune completion above leaves **eight of p54's nine red heading runes unused**. These original eight glyphs follow the enlarged A and transliterate **M NG D IA TH X I M**. They can form a *stable 8-column transposition keyword* for the original **32×8** table without guessed password material. Ascending native GP indices, preserving left-to-right order for the duplicated M, select source column order **[4,6,5,0,7,1,2,3]** (zero-based). This closes a structural loop: p53's contiguous **128 black + 51 red**, p54's enlarged **one A**, and p55's **76 runes** give exactly **256 data positions**, while the *remaining eight* red heading glyphs give a plausible eight-column key. The source linkage is retrospective, and no explicit historical instruction says to sort these runes as a column key or to combine the table as a mod29 pad.
 
 A [single-file original-source test](../sims/terminal_red_heading_eight_column_grid_sft.cjs) uses **all original positions** with no transcription changes. It tries the printed table's original row-major read and three standard keyword column-read/untransposition conventions, with both GP29 additive directions (eight exact original inverses). The untransformed composite ciphertext IoC is **0.03431373**; the eight decoded IoCs are **[0.03425245, 0.03281250, 0.03477328, 0.03523284, 0.03541667, 0.03367034, 0.03382353, 0.03596814]**, all in the ciphertext-like band, with unreadable transliterations. Every case exactly re-encodes the 256 original source rune indices, and an independently sampled native GP-English plant exactly decodes in all four traversals. The straightforward **keyword-permuted grid as a native-GP additive pad** therefore fails; this does not exclude an image-derived key, different plaintext encoding, higher-entropy decryption or nonlinear treatment of the original 256 positions.
 
+### Direct classical columnar transposition of the 256-rune terminal composite (Agent 20, 11 November)
 
-This exact numerical correspondence is a **source-supported structural observation**, and a natural candidate for a 256-position cipher schedule with one reserved byte. The pages, motif family, byte count and special integer 255 were all considered during exploration, so the uniqueness count is *not* an independent p-value, and a 256-byte cipher schedule remains hypothetical. The ornament and final red dot do not yet supply a defined assignment to the unused byte. In particular, a graphic motif matching across pages is not evidence of a shared cryptographic key.
+The p54 eight-rune heading key also motivates a distinct, simple operation: transpose the **256 original p53 + p54 enlarged A + p55 runes** as a 32×8 matrix. This is not the previous additive-grid-pad test. The source-fixed column order is **[4,6,5,0,7,1,2,3]**, with zero-based columns, from ascending GP ordinal of p54 local offsets 1–8; equal M runes retain their original left-to-right order. The key runes are **ᛗᛝᛞᛡᚦᛉᛁᛗ**, GP ordinals **[19,21,23,27,2,14,10,19]**. The exact composite offsets are p53 local 0–178 at composite indices 0–178, p54 local 0 (the enlarged ᚪ / A, GP index24) at composite index179, and p55 local 0–75 at composite indices 180–255.
+
+Only the two mutually inverse classical operations were tested:
+
+1. **Read down columns in key order:** for output position j=32k+r, take composite source position i=8r+keyOrder[k].
+2. **Undo that columnar permutation:** for row-major output position j=8r+c, take composite source position i=32·keyOrder.indexOf(c)+r.
+
+For either operation, map a composite source index i back to the original page by i<179 → p53/local i, i=179 → p54/local 0, and i≥180 → p55/local (i−180). These formulae specify the complete 256-position source-offset map without changing, dropping, or inserting any rune.
+
+The exact GP-trigram scores (Emerson-trained model) are:
+
+| Readout | Score (nats/rune) |
+|---|---:|
+| Original 256-rune composite | −11.7872901307 |
+| Read down columns in key order | −11.9680599910 |
+| Undo the columnar permutation | −11.8008296778 |
+
+Neither direction improves the source; the best is still nonlinguistic. Its first 48 GP-transliterated symbols are IPDEOEOEOJTTDTHCAENUPOEJAEEOEAJTHWRNGFEAEEMEOTOIAEAYFESOEGAEUSDW (the inverse direction). The forward direction begins YOWHEIOESFJJSTOLTSJEOJOONGMIAEAHPEASCUMNOEBNGJXAEEGAEYODAEM. No spaces were inserted and no alphabet substitutions were made.
+
+**Familywise length-matched control:** the trigram model is trained on the first 50,000 GP symbols of the repository's Emerson text. There are **843 disjoint 256-symbol control windows**, starting at 70,000 with stride 300. Each window is passed through both transposition directions and only its maximum score is retained. The familywise maxima have minimum/median/maximum **−10.6608301743 / −10.1174870093 / −9.5802091058**. All **843/843** maxima equal or exceed the best original candidate (−11.8008296778), so the plus-one upper-tail empirical p is **1.000**. This is a finite empirical language calibration, not a universal proof about every possible plaintext language.
+
+**Positive control:** a 256-symbol native-GP sample from Gibran, positions 1024–1279, has score **−8.4176866160**. Both compositions recover it exactly: inverse(read-down(plant)) = plant and read-down(inverse(plant)) = plant. The two original transformations are exact permutations and preserve all 256 positions; this verifies the implementation, not an authentic key.
+
+### Exact 32×8 read-down-columns output
+
+Read each row left-to-right and concatenate the 32 rows to obtain the exact 256-rune output.
+
+~~~text
+ᚣᚩᚹᚻᛖᛁᛟᛋ
+ᚠᛄᛄᛋᛏᚩᛚᛏ
+ᛋᛄᛇᛄᚩᚩᛝᛗ
+ᛡᛠᚻᛈᛠᛋᚳᚢ
+ᛗᚾᛟᛒᛝᛄᛉᚫ
+ᛖᚷᚫᚣᚩᛞᚫᛗ
+ᛒᛡᛉᚱᚠᚳᛗᛇ
+ᛒᛉᛚᛒᛁᚦᛁᛖ
+ᚢᛟᛞᚷᛞᚢᛠᚳ
+ᛋᛇᚢᚫᛟᚳᚩᛞ
+ᚹᚱᚫᚻᚷᛏᚫᛋ
+ᚪᚠᛝᚠᛖᛇᛠᛒ
+ᛇᛉᛞᚱᛄᚷᛡᛇ
+ᛇᚪᛝᛋᛁᚾᛏᛇ
+ᛏᚦᛡᛇᛈᛗᚱᚹ
+ᛞᚢᛗᛗᛇᛉᛖᚳ
+ᛈᚷᛖᚢᛒᚣᚣᛗ
+ᚠᚠᚣᛠᚷᛖᛄᛖ
+ᛇᛞᛚᚦᛇᚢᛁᚷ
+ᚳᛁᛇᚻᚷᚦᛗᛁ
+ᚫᛁᚦᛗᚢᚣᛚᚱ
+ᚾᛝᚱᚠᛏᚻᚹᚢ
+ᛈᚾᚦᛠᛞᚳᛈᛋ
+ᚦᚹᚢᛋᚳᚷᛋᛉ
+ᛠᚢᛡᚾᚦᚱᚢᚩ
+ᛄᚢᛁᛖᛟᛞᛉᛒ
+ᚹᚻᚪᛡᛄᚻᚾᛒ
+ᚫᚱᚳᛞᛇᛋᚦᛞ
+ᚫᚾᚫᛖᛗᛖᛄᛈ
+ᛖᛝᚦᚢᚱᛗᛞᛗ
+ᛇᚷᛁᚪᛝᛞᚪᛉ
+ᚠᛒᛈᛡᛖᛖᛟᛄ
+~~~
+
+### Exact 32×8 inverse-columnar output
+
+Read each row left-to-right and concatenate the 32 rows to obtain the exact inverse 256-rune output.
+
+~~~text
+ᛁᛈᛞᛇᛇᛇᛄᛏ
+ᛏᛞᚦᚳᚫᚾᚢᛈ
+ᛟᛄᚫᛇᛠᛄᚦᚹ
+ᚱᛝᚠᛖᚫᛖᛗᛇ
+ᛏᚩᛡᛠᚣᚠᛖᛋ
+ᛟᚷᚪᛖᚢᛋᛞᚹ
+ᚩᚠᛒᛁᛗᛖᛝᛒ
+ᚷᛇᚳᚷᛈᚠᛒᛇ
+ᚾᛗᚢᛉᛉᚪᚷᚦ
+ᚻᚳᚹᚷᛁᛝᚣᚾ
+ᛞᚻᚱᛋᚢᚢᚱᚻ
+ᛗᛞᛒᛖᚾᛝᛖᚷ
+ᚩᚩᛠᛋᚩᛄᛁᛄ
+ᚳᛏᚠᛇᛟᛇᚢᚱ
+ᛞᚳᛉᚦᚾᚷᛄᛡ
+ᛖᚢᛁᚦᚷᚠᚣᛞ
+ᛏᚱᛗᛖᛞᛝᛡᛡ
+ᚹᛈᚢᛋᚦᚱᛚᚦ
+ᛉᚾᚳᚦᛡᛁᚢᚪ
+ᛞᚪᛈᛟᚫᚦᛄᛁ
+ᛚᛝᚻᚳᚹᛄᛟᛇ
+ᚩᚫᛝᛠᛞᚢᛠᚫ
+ᚫᛗᛚᛁᛟᚫᛉᛉ
+ᛄᛁᛇᛗᛖᚣᚣᛚ
+ᛇᚹᛗᚳᚱᛋᛇᛇ
+ᚢᛋᛋᛉᛗᚠᚱᛠ
+ᛒᛒᛞᛞᚾᛖᚩᛡ
+ᛗᛉᛡᛄᛖᚢᛈᚪ
+ᛏᛗᛈᚢᚻᛋᛋᛄ
+ᛞᛋᚠᛒᚷᚫᚳᚻ
+ᛗᛇᛒᛖᛒᚣᚫᚱ
+ᛖᚷᚻᛁᚢᛠᛗᚦ
+~~~
+
+**Decision:** The 256-rune framing and eight-rune heading key remain source-visible structural observations, but neither standard columnar direction yields plaintext. Retire this two-direction classical transposition. Do not expand to arbitrary column orders, key shifts, byte arithmetic, extra layers, or fitted spacing without a new source instruction.
+
+Reproduce with the committed source-only script: node sims/terminal_p54_eight_column_transposition_sft.cjs.
+
+
+
+This exact numerical correspondence is a **source-supported structural observation**, and a natural candidate for a 256-position cipher schedule with one reserved byte. The pages, motif family, byte count and special integer 255 were all considered during exploration, so the uniqueness count is *not* an independent p-value, and a 256-byte cipher schedule remains hypothetical. The two source-fixed p54-keyed classical columnar permutations tested below also fail to recover text. The ornament and final red dot do not yet supply a defined assignment to the unused byte. In particular, a graphic motif matching across pages is not evidence of a shared cryptographic key.
 
 **Finite direct inversion tested:** concatenate original p53 and p55 rune streams in source order, preserve their **65 original words**, and attempt `P_i = C_i ± f(grid[(offset ± i) mod256]) mod29` using all 256 phase offsets, two directions, both signs, and three source-defined byte maps (`byte%29`, `floor(29×byte/256)`, `byte%28`). This is **3,072** explicit, reversible candidate decryptions, scored using a frozen, word-local GP-English trigram reference. The best original decoded candidate scored **−1301.2461** nats and is unreadable. A GP-English source-layout synthetic plant using byte-map 2 and offset 27 recovered the original plaintext **exactly** and selected the true key with score **−484.9839**. The original direct-grid model provides no plaintext; longer stateful grid transformations, missing-symbol interpretations or unknown permutations are outside this finite negative gate.
 

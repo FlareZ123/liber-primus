@@ -2,6 +2,20 @@
 
 **Run ID:** `agent20-gpt6-20261111T051358Z-source-led-solve`. **Original lease:** `2026-11-11T05:14:03.989Z`, remotely verified by claim commit `174c45557246301968d47483d9ea42fb0216861f`. Do not refresh. The normal-mode 70-minute orderly-release threshold is **2026-11-11T06:24:03.989Z UTC**; after every checkpoint compare the real system clock with the original claim timestamp. Initial random mode draw was **5**, selecting issue-directed normal research.
 
+## Issue #45 completed: terminal p54-keyed columnar transposition — bounded negative
+
+- Claimed Issue #45 with comment 6787958902 after confirming no valid claim existed; Director note 6787951145 said Agent36 had proposed the same source hypothesis and that the first valid claim would own the finite test. Sent Agent36 a coordination message at communications/agent36/20261111T053305Z_agent20_issue45-columnar-coordination.md.
+- Frozen composite: p53's 179 original runes + p54 local rune0 (enlarged red A, GP index24) + p55's 76 runes = 256. The remaining p54 heading runes at offsets1–8 have GP ordinals [19,21,23,27,2,14,10,19] and rune sequence ᛗᛝᛞᛡᚦᛉᛁᛗ. Stable ascending-GP order gives columns [4,6,5,0,7,1,2,3].
+- Tested exactly two mutually inverse standard columnar permutations, with no additive pad, extra layer, key shift, or fitted spacing: read down columns in key order and undo that permutation. Source-offset map:
+  - Read-down output j=32k+r receives composite source i=8r+keyOrder[k].
+  - Inverse output j=8r+c receives composite source i=32·keyOrder.indexOf(c)+r.
+  - Composite i<179 → p53 local i; i=179 → p54 local0; i≥180 → p55 local i−180.
+- Exact scores: raw −11.7872901307; read-down −11.9680599910; inverse −11.8008296778. Neither direction improves raw. The inverse's first 48 GP transliteration symbols are IPDEOEOEOJTTDTHCAENUPOEJAEEOEAJTHWRNGFEAEEMEOTOIAEAYFESOEGAEUSDW; the forward preview begins YOWHEIOESFJJSTOLTSJEOJOONGMIAEAHPEASCUMNOEBNGJXAEEGAEYODAEM.
+- Familywise length-matched calibration: Emerson trigram model trained on first50,000 GP symbols; 843 non-overlapping 256-symbol windows from start70,000, stride300. Apply both directions to each and retain the maximum. Control max min/median/max −10.6608301743 / −10.1174870093 / −9.5802091058. All 843 controls exceed the best original candidate; empirical plus-one upper-tail p 1.0.
+- Native positive plant: Gibran GP symbols [1024,1280), length256, score −8.4176866160. Both composition directions recover exactly. No unknown plaintext, key, or cipher recovered.
+- Full exact 32×8 outputs, equations, source-offset mapping and controls are in the updated im-results/tree-outline-blur-crosspage.md under “Direct classical columnar transposition of the 256-rune terminal composite.” New reproducer: sims/terminal_p54_eight_column_transposition_sft.cjs.
+- Decision: close Issue #45 as a bounded negative. Do not extend to arbitrary column orders, key shifts, byte arithmetic, extra transformations, or fitted spaces absent a new source instruction.
+
 ## Issue #44 completed: p32 source-axis 2D prefix-sum inverse — bounded negative
 
 - Claimed Issue #44 with comment **6787736371** after rechecking that the new issue was unclaimed. The other then-open tasks (#39 and #41) had active claims; this was the available director-task.
