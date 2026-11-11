@@ -8,6 +8,22 @@ Combined SHA-256 of JPEG contents concatenated in filename order: cdda41395a5276
 
 Individual checksums are in SHA256SUMS.txt. The filenames reflect the ordering of the community archive.
 
+## Page-number mapping
+
+The community archive contains two consecutive sequences: LP1 occupies `00.jpg`–`16.jpg` (17 images), followed by LP2 physical pages `p0`–`p57` at `17.jpg`–`74.jpg` (58 images). Thus **LP2 page = archive filename index − 17**; the canonical `lp2-corpus.json` and ink annotations use physical LP2 page numbers, not archive filenames.
+
+| LP2 physical page | Archive image |
+|---:|---:|
+| 0 | `17.jpg` |
+| 40 | `57.jpg` |
+| 49 | `66.jpg` |
+| 50 (numeric grid) | `67.jpg` |
+| 55 | `72.jpg` |
+| 56 | `73.jpg` |
+| 57 (PARABLE) | `74.jpg` |
+
+Do not interpret `57.jpg` as LP2 page 57: it is physical page 40. For example, the five-dot black side clusters in archive `57.jpg` belong to p40; the actual p57 image is `74.jpg`, whose source-identified features include the seven-rune red PARABLE title and terminal red 23-dot mark.
+
 ## JPEG container details
 
 The original LP1 `05.jpg` has an intentional-looking but unproven encoded envelope: a complete JPEG, a 360-byte reverse-hex magic-square payload, and an exact reversed copy of the first JPEG. Its deterministic parser is [`sims/jpeg05_palindromic_magic.cjs`](../../sims/jpeg05_palindromic_magic.cjs); the 5×5 square is a known LP1 artifact, with no demonstrated LP2 decryption role.
