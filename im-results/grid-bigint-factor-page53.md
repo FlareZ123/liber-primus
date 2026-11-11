@@ -32,6 +32,37 @@ Random GP29 output gives **12,718/29 ≈ 438.55** and **1,025/29 ≈ 35.34** exp
 
 Reproduce with the [standalone source-factor LFSR gate](../sims/grid238_p36_seed_allpage_gate.cjs); it reconstructs the original degree-238 factor from its existing exact divisors, checks the untouched source, evaluates every eligible rune and verifies a full synthetic planted continuation.
 
+### p36-seeded LFSR as a direct additive GP29 keystream (Agent 20, 11 November 2026)
+
+The raw-generator test above asks whether the LFSR output is itself the ciphertext. A distinct stream-cipher interpretation treats the 238 original p36 runes as the initial state and the recurrence output as a direct additive GP29 key stream:
+
+\[P_i = C_i + \sigma K_i \pmod{29},\qquad \sigma\in\{-1,+1\}.\]
+
+The residual factor is the unique monic degree-238 factor \(R_{238}\), with ascending coefficients \(r_0,\ldots,r_{238}\). Its source-fixed recurrence is \(x_{t+238}=-\sum_{j=0}^{237}r_jx_{t+j}\pmod{29}\). No state, phase, or offset is fitted. Because \(r_0=5\), the recurrence is invertible and can be extended backwards from p36.
+
+Two source-natural clocks were tested: (1) p36-anchored, treating p36 as the key state and excluding its 238 runes, extending backwards over p0–p35 and forwards over p37–p55; (2) book-start, aligning the first recurrence output to p0, with the initial 238-symbol seed block also tested as the first key block. Both forward and reversed seed readings and both additive signs were tested, for 12 variants total.
+
+| Clock | Seed order | Seed block first | Sign | Decoded IoC |
+| --- | --- | --- | ---: | ---: |
+| p36-anchored | forward | no | −1 | 0.0344850 |
+| p36-anchored | forward | no | +1 | 0.0344634 |
+| p36-anchored | reversed | no | −1 | 0.0344789 |
+| p36-anchored | reversed | no | +1 | 0.0345338 |
+| book-start | forward | no | −1 | 0.0344973 |
+| book-start | forward | no | +1 | 0.0344786 |
+| book-start | forward | yes | −1 | 0.0344730 |
+| book-start | forward | yes | +1 | 0.0344688 |
+| book-start | reversed | no | −1 | 0.0344680 |
+| book-start | reversed | no | +1 | 0.0344797 |
+| book-start | reversed | yes | −1 | 0.0344698 |
+| book-start | reversed | yes | +1 | 0.0345032 |
+
+The original full stream has IoC **0.0344784** (excluding p36: **0.0344720**); the decoded variants span **0.0344634–0.0345338**, around the uniform 29-symbol baseline \(1/29\approx0.0344828\). None shows language. A positive control repeats the known p57 source plaintext to 12,956 symbols, encrypts it with the same p36-seeded recurrence pad, and recovers all **12,956/12,956** symbols exactly; the reproducer also asserts a 238-step backward/forward state roundtrip.
+
+**Decision:** reject p36 as the direct additive output of this source-fixed degree-238 LFSR under these natural clocks, orientations, and signs. This is distinct from the raw-generator test above and from the factor-as-known-plaintext bridge below. It does not reject a nonlinear output filter, another explicitly sourced operation, or use of the factor in a different key architecture; it recovers no plaintext or key.
+
+Reproduce with [the original-source keystream gate](../sims/grid238_p36_seeded_keystream_inverse.cjs).
+
 ### Full 238-element Frobenius-automorphism inverse on p36 (Agent 18, 11 November 2026)
 
 The unique original-source **irreducible degree-238 GF(29) polynomial** and unique **238-rune p36** also motivate a distinctly stronger field-arithmetic test. Interpret p36's untouched 238 GP ordinals as coefficients of an element in the finite field GF(29^238), reduced by that source polynomial. The prime-field Frobenius map **F(a)=a^29** is an invertible field automorphism; its powers F^k for k=0..237 are **the complete automorphism group** of this field. This is a closed, source-determined set of 238 candidate inversions with no fitted numeric key, plus the independent natural reversal of the original coefficient reading.
