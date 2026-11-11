@@ -34,6 +34,31 @@ The curated [scream314/cicada3301 LP transcript](https://github.com/scream314/ci
 - The preserved 2016 PGP-signed message in [scream314/cicada3301/2016.md](https://github.com/scream314/cicada3301/blob/master/2016.md) says “Liber Primus is the way” and that its words, meaning, and numbers are map/road/direction. It is a source-origin clue, but it discloses no unknown-page plaintext, key, or executable cipher operation.
 - The small IRC text files in [krisyotam/cicada3301](https://github.com/krisyotam/cicada3301/tree/main/archives/irc-logs) were searched for LP/page/decrypt/plaintext references; no qualifying unknown-page readout surfaced.
 
+### Dated May 2014 short-word progressive-shift cribs: exact local fits, failed general continuation
+
+A [raw-blob-verified 24 May 2014, 23:35 `#cicadasolvers` discussion](https://github.com/FlareZ123/liber-primus/actions/runs/43036813285) supplies a rare **historically dated explicit plaintext hypothesis** for the still-unknown LP2 pages. Physical source line **188,780** of `#cicadasolvers.freenode.log` (blob SHA-1 `bdd277c14f94c34b5ae714cd00c238065beeed4e`) reports a participant's earlier candidate: page35's three-rune contraction **IT'S** under rune shifts **26,27,28**, and page34's four-rune candidate **LESS** under **27,28,0,1**. The original speaker expressly cautions that the sequence works on the single short word only, with no continuation pattern.
+
+These two proposed local conversions are exact against the canonical GP29 original ciphertext, with no resegmentation:
+
+| Original physical page / local rune offset | Literal source GP symbols | Historical additive shifts mod29 | Alleged GP plaintext |
+| --- | --- | --- | --- |
+| p34 / **81** | `OE M S X` | **27,28,0,1** | **L E S S** |
+| p35 / **78** | `P E T` | **26,27,28** | **I T S** (apostrophe carries no GP rune) |
+
+A simple shared rule fitted to these guesses is **`P_(p,j)=(C_(p,j) + 3-p+j) mod29`**, where p is the physical page and j is the zero-based **within-word** rune position. This predicts the candidate words exactly and is reversible, so it can be tested on all the other printed words without guessing additional keys. The fixed rule was applied to all complete same-page rune words on adjacent original physical pages p33–37, yielding these decoded GP29 IoCs:
+
+| Page | In-page runes scored | Original IoC | Fixed progressive-rule IoC |
+| --- | ---: | ---: | ---: |
+| 33 | 213 | 0.03312960 | **0.03312960** |
+| 34 | 259 | 0.03343210 | **0.03340217** |
+| 35 | 268 | 0.03502152 | **0.03664263** |
+| 36 | 236 | 0.03573747 | **0.03512441** |
+| 37 | 228 | 0.03342608 | **0.03450808** |
+
+The five outputs remain near the flat 29-symbol IoC **1/29≈0.03448276**, far from ordinary GP-English text. No surrounding coherent prose, source-selected key schedule or secondary known plaintext was recovered. This **rejects the exact per-word/page progressive shift extension**, while preserving both precise 2014 cribs as historically interesting, **unverified** local guesses. It does not rule out an otherwise specified non-word-reset cipher or historically missing key.
+
+[Executable SFT with original offsets, all 2,896 source words, exact round-trip and five-page controls](../sims/lp2_2014_progressive_contraction_crib_sft.cjs) was successfully executed in [manual source-audit CI run 43038110314](https://github.com/FlareZ123/liber-primus/actions/runs/43038110314). The historical IRC file is source-authentic to the verified Git blob, while the speaker is a community participant; it is **not** an authenticated Cicada key or message.
+
 ### Large original IRC archives: access restored and 2016 Pastebin clarified
 
 The previously inaccessible multi-megabyte `neuroretransmit/cicada` IRC logs have now been downloaded **byte-exactly**, with all three Git blob SHA-1 hashes and byte lengths verified on a dedicated manual GitHub Actions runner. Together they cover **698,330 preserved log lines** across `#33012014.freenode.log`, `#cicadasolvers.freenode.log`, and `#cicadasolvers.freenode.2.log`. An exact-case-insensitive `uRkNsGsa` search finds **0, 0, and 2 matches**, respectively.
