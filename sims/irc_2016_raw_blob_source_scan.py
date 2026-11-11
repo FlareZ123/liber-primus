@@ -62,7 +62,12 @@ def scan() -> None:
                 "count": len(hit_positions),
                 "sample": [
                     {"line": i + 1,
-                     "text": lines[i].decode("utf-8", errors="replace")[:380]}
+                     "text": lines[i].decode("utf-8", errors="replace")[:380],
+                     "context": [
+                         {"line": j + 1,
+                          "text": lines[j].decode("utf-8", errors="replace")[:380]}
+                         for j in range(max(0, i - 12), min(len(lines), i + 13))
+                     ] if key.startswith("specific") else []}
                     for i in hit_positions[:(100 if key.startswith("specific") else 12)]
                 ],
             }
