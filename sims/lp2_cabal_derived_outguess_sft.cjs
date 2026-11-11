@@ -93,18 +93,22 @@ function main() {
     };
     fs.rmSync(scratch, { force: true });
 
-    const plantedText = Buffer.from("CABALUOIDFORM OUTGUESS POSITIVE CONTROL\n");
+    // Reuse the already-established epiphany plant control. The candidate
+    // CABALUOIDFORM is an extraction password hypothesis, not an embedding
+    // claim; testing its embedding capacity would be irrelevant to retrieval.
+    const controlKey = "epiphany";
+    const plantedText = Buffer.from("SIGNED 2016 SOURCE-SELECTED OUTGUESS POSITIVE CONTROL\n");
     const plantedPath = path.join(output, "plant.incomplete");
     const plantedImage = path.join(output, "plant.incomplete.jpg");
     fs.writeFileSync(plantedPath, plantedText, { flag: "wx" });
     const embedded = outguess([
-      "-k", key, "-d", plantedPath, path.join(src, "31.jpg"), plantedImage
+      "-k", controlKey, "-d", plantedPath, path.join(src, "31.jpg"), plantedImage
     ], 120000);
-    assert.equal(embedded.status, 0, "CABALUOIDFORM embed control failed: " + embedded.stderr);
-    const recovered = outguess(["-k", key, "-r", plantedImage, scratch], 120000);
-    assert.equal(recovered.status, 0, "CABALUOIDFORM recovery control failed: " + recovered.stderr);
-    assert(fs.readFileSync(scratch).equals(plantedText), "CABALUOIDFORM plant/recovery mismatch");
-    result.controls.planted = { exact: true, key, bytes: plantedText.length };
+    assert.equal(embedded.status, 0, "epiphany embed control failed: " + embedded.stderr);
+    const recovered = outguess(["-k", controlKey, "-r", plantedImage, scratch], 120000);
+    assert.equal(recovered.status, 0, "epiphany recovery control failed: " + recovered.stderr);
+    assert(fs.readFileSync(scratch).equals(plantedText), "epiphany plant/recovery mismatch");
+    result.controls.planted = { exact: true, key: controlKey, bytes: plantedText.length };
     for (const file of [plantedPath, plantedImage, scratch]) fs.rmSync(file, { force: true });
 
     for (const carrier of carriers) {
