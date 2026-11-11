@@ -63,6 +63,33 @@ The original full stream has IoC **0.0344784** (excluding p36: **0.0344720**); t
 
 Reproduce with [the original-source keystream gate](../sims/grid238_p36_seeded_keystream_inverse.cjs).
 
+### p36-seeded LFSR as a key on first differences (Agent 2, 11 November 2026)
+
+A September 2026 independent analysis, [Leo-Y-Zhang's Liber Primus report](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/main/docs/REPORT.md), describes the unknown stream through its adjacent differences and proposes a chain-cipher interpretation. Reproduction on this repository's canonical corpus gives **12,955** differences, **86** zero steps (the adjacent doublets), and **12,869** nonzero steps. The 28 nonzero counts range from **404 to 510** (expected **459.61** each); their unadjusted chi-square is **41.38** on 27 degrees of freedom (p≈**0.038**). This is near-uniform with a mild deviation, not exact uniformity.
+
+The identity \(C_i=C_{i-1}+\Delta C_i\pmod{29}\) holds for every 29-symbol stream. It is therefore a useful representation of the no-repeat fingerprint, but does not by itself identify a cipher or a plaintext/key relation. A decryption-bearing additive chain model must specify something such as
+\[
+\Delta C_i=P_i+K_i\pmod{29},
+\]
+where a source-derived \(K_i\) supplies the missing key. The direct p36-LFSR additive test above applied \(K_i\) to \(C_i\); this experiment tests the distinct first-difference domain.
+
+**Frozen source-key hypothesis:** use the unique monic degree-238 factor \(R_{238}\) of the original 256-byte table polynomial and the original 238-rune p36 block. Anchor the key at p36, whose first rune is at unknown-stream offset **8,706**: extend the recurrence backward for the **8,705** differences ending before p36, use the printed (or wholly reversed) p36 block as the key for the **238** differences ending on p36, then extend forward for the **4,012** differences after p36. This gives exactly **12,955** key symbols, with no fitted phase, offset, or language-dependent choice. Test both additive signs.
+
+| p36 seed reading | Key use on p36 | Sign in \(P=\Delta C+\sigma K\) | Decoded symbols | IoC |
+|---|---|---:|---:|---:|
+| printed | seed block | −1 | 12,955 | 0.034488905 |
+| printed | seed block | +1 | 12,955 | 0.034475689 |
+| reversed | reversed seed block | −1 | 12,955 | 0.034527113 |
+| reversed | reversed seed block | +1 | 12,955 | 0.034474902 |
+
+An alternative **state-only** clock omits the 238 differences ending on p36 and uses the recurrence only on the 8,705 preceding and 4,012 following differences. Its four orientation/sign variants yield IoC **0.034475231–0.034518803** on 12,717 symbols. Neither clock produces language. The original ciphertext IoC is **0.034478398**, raw first-difference IoC **0.035324615**, and native p57 plaintext IoC **0.062709966**. The decoded rune frequencies remain close to uniform; the p36 key matches the raw difference at only **450–462** positions, near the chance expectation of 446.7.
+
+A planted control repeats the known p57 plaintext to 12,956 symbols, encrypts it under the exact chain-additive model and the same p36-anchored key, then recovers **12,955/12,955** difference-domain plaintext symbols exactly. The test therefore has a functioning positive control.
+
+**Decision:** reject the source-fixed p36/R238 recurrence as the key for this first-difference chain-additive model under the two natural seed orientations, both signs, and the p36-anchored/state-only clocks. This does not reject every chain cipher or another independently sourced key. It does show that the attractive 238-rune/degree-238 correspondence does not supply the missing 28-step key under this direct reversible construction. No plaintext or key was recovered.
+
+Reproduce with [the standalone difference-domain SFT](../sims/grid238_p36_chain_difference_inverse.cjs); it reads the original corpus and 256-byte table JSON, reconstructs \(R_{238}\) from the exact small factors, checks all original offsets and includes the planted round-trip control.
+
 ### Source-constant field exponent inverses on p36 (Agent 18, 11 November 2026)
 
 A distinct, fully reversible direct-field interpretation of the same source factor was tested. Treat all **238 original physical p36 rune indices** as coefficients of an element of GF(29^238), represented in the standard power basis modulo the previously established **monic irreducible** degree-238 factor of the original base60 table. The original p05/p16 magic-square constants **1033** and **3301** are historical source values, and 2013 Cicada material separately documents finite-field-style modular exponentiation in a Diffie–Hellman task. **It is an inference, not an authenticated instruction**, to apply these constants as exponents to this 238-dimensional field. The direct output format (one field coefficient per GP rune) and two physical p36 coefficient orientations are frozen without any fitted secret offset, mask, basis transformation, or phase.

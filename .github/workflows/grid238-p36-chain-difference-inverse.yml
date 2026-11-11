@@ -1,0 +1,19 @@
+name: Grid238 p36 chain-difference inverse
+on:
+  push:
+    paths:
+      - "sims/grid238_p36_chain_difference_inverse.cjs"
+      - "resources/liber-primus/lp2-corpus.json"
+      - "resources/liber-primus/lp2-grid-256.json"
+      - ".github/workflows/grid238-p36-chain-difference-inverse.yml"
+  workflow_dispatch:
+jobs:
+  inverse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run source-fixed difference-domain inverse
+        run: node sims/grid238_p36_chain_difference_inverse.cjs
