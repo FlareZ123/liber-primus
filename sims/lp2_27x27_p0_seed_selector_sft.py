@@ -83,6 +83,8 @@ def main() -> None:
     red_words = before_marker.split("-")
     red_word_lengths = [len(word) for word in red_words]
     assert red_word_lengths == [8, 5]
+    red_word_length_difference = abs(red_word_lengths[0] - red_word_lengths[1])
+    assert red_word_length_difference == 3  # independent source cue for a 3-rune node
     red_word_prime_sums = [
         sum(prime[r] for r in red_runes[:8]),
         sum(prime[r] for r in red_runes[8:]),
@@ -128,6 +130,7 @@ def main() -> None:
     assert node == [25, 11, 28]
     assert node[1] == predicted_center
     node_symbols = symbols(node, alphabet)
+    assert len(node) == red_word_length_difference
     assert node_symbols == ["AE", "J", "EA"]
 
     key = [node[0], phi(node[1]), node[2]]
@@ -148,7 +151,9 @@ def main() -> None:
 
     node_start = node_positions[0]
     path_start = node_start + step
+    heading_center_step = red_line_count
     assert (node_start, path_start) == (334, 348)
+    assert center_index + heading_center_step == path_start  # 13 cells east from the node center
     path = list(range(path_start, path_start + block_length))
     assert path == list(range(348, 355))
     ciphertext = [flat[i] for i in path]
@@ -186,6 +191,23 @@ def main() -> None:
         next_unrotated_key[next_phase:] + next_unrotated_key[:next_phase]
     )
     assert aligned_next_key == [14, 14, 10]
+    assert symbols(next_node, alphabet) == ["X", "OE", "X"]
+
+    # Decrypt the published block02 path with the transition-predicted key.
+    # Its path/axis are imported from the external proposal, so this is a
+    # conditional original-cipher consistency check, not a blind prediction.
+    published_block2_path = list(range(364, 369))
+    block2_ciphertext = [flat[i] for i in published_block2_path]
+    block2_plaintext = [
+        (c - aligned_next_key[i % len(aligned_next_key)]) % 29
+        for i, c in enumerate(block2_ciphertext)
+    ]
+    block2_cipher_symbols = symbols(block2_ciphertext, alphabet)
+    block2_plaintext_symbols = symbols(block2_plaintext, alphabet)
+    block2_plaintext_compact = "".join(block2_plaintext_symbols)
+    assert block2_cipher_symbols == ["NG", "P", "EO", "O", "E"]
+    assert block2_plaintext_symbols == ["W", "EA", "TH", "E", "R"]
+    assert block2_plaintext_compact == "WEATHER"
 
     def n0(cell: tuple[int, int]) -> int:
         r, c = cell
@@ -217,7 +239,6 @@ def main() -> None:
     assert predicted_axis == "horizontal"
 
     # Published block02 is only a geometry comparison fixture.
-    published_block2_path = list(range(364, 369))
     block2_coords = [
         (i // grid_width + 1, i % grid_width + 1)
         for i in published_block2_path
@@ -237,6 +258,8 @@ def main() -> None:
         "red_heading": {
             "runes": symbols(red_runes, alphabet),
             "word_lengths": red_word_lengths,
+            "word_length_difference": red_word_length_difference,
+            "node_length_selected_by_word_difference": len(node),
             "word_prime_sums": red_word_prime_sums,
             "gp_prime_weights": red_prime_weights,
             "prime_sum": red_prime_sum,
@@ -260,7 +283,9 @@ def main() -> None:
         "jump": {"phi_center_original": phi(node[1]),
                  "phi_center_transformed": phi(key[1]),
                  "totient_sum_distance": step,
-                 "two_staves_times_first_black_line": visual_step},
+                 "two_staves_times_first_black_line": visual_step,
+                 "red_heading_length_from_node_center": heading_center_step,
+                 "center_plus_heading_length": center_index + heading_center_step},
         "first_black_line": {"runes": block_length, "symbols": first_black_line},
         "cipher_path": {"positions": path, "symbols": cipher_symbols},
         "plaintext_consequence": {"symbols": plaintext_symbols,
@@ -284,17 +309,21 @@ def main() -> None:
                          "predicted_axis": predicted_axis,
                          "n270_endpoint": n270(E), "tau": predicted_tau},
             "published_block2_path": published_block2_path,
+            "published_block2_cipher_symbols": block2_cipher_symbols,
+            "published_block2_plaintext_symbols": block2_plaintext_symbols,
+            "published_block2_plaintext_compact": block2_plaintext_compact,
             "published_block2_coordinates": block2_coords,
             "published_block2_axis": block2_axis,
             "published_block2_leftmost_first": bool(block2_tau),
             "scope": "predicts next key signature, axis and reading boundary; not exact start or length",
         },
         "caveats": [
-            "The two staves times the 7-rune first black line may select the 14-cell displacement; this is an interpretation, not a proven instruction.",
+            "The 8-5=3 red-word length difference is a source-visible cue for a three-rune node, but does not by itself authenticate the 27x27 cipher model.",
+            "The 14-cell displacement can be described either as two staves times the 7-rune first black line from the node start, or as the 13-rune heading length east from the node center; neither reading is yet a proven instruction.",
             "The direct phi(sum) mod29 center prediction is not statistically unique under p0 cyclic rotations (15/262); its source interpretation is postselected.",
-            "The 27x27 row-major flattening and three-rune node convention still need independent source justification.",
-            "The block02 transition comparison uses rules from the same external proposal and is not blind independent validation.",
-            "The decoded phrase was not used to select the node, key, path, or length.",
+            "The 27x27 row-major flattening and selected coordinate mapping remain hypotheses.",
+            "The block02 path and axis are supplied by external Reports 01 and 03; WEATHER is a conditional original-cipher consistency check, not blind independent validation.",
+            "ASIGOTHE can be segmented as AS I GO THE, but the word boundaries are not determined by the ciphertext block itself.",
         ],
     }, ensure_ascii=False, indent=2))
 
