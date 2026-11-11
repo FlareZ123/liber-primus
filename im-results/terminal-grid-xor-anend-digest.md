@@ -1,6 +1,6 @@
 # Terminal grid/rune 256-byte digest gate
 
-**Status, 11 November 2026:** The source-motivated 76/180 terminal partition has now been tested against both the later LP2 printed-token table and the earlier 2014 stage11 `sexagesimal.bin` table. Neither table produces an AN END digest match under the frozen direct byte-composition family; the 2014 raw source files also fail direct 64-byte digest tests. Separately, a completely unknown stationary byte-to-rune lookup cannot map the 180 interior cells to the two solved terminal pages under the eight natural rectangle orientations. The original source geometry remains exact, but a decoder, key, or unknown plaintext has not been recovered.
+**Status, 11 November 2026:** The source-motivated 76/180 terminal partition has now been tested against both the later LP2 printed-token table and the earlier 2014 stage11 `sexagesimal.bin` table. Neither table produces an AN END digest match under the frozen direct byte-composition family; the 2014 raw source files also fail direct 64-byte digest tests. Separately, a completely unknown stationary byte-to-rune lookup cannot map the 180 interior cells to the two solved terminal pages under the eight natural rectangle orientations. A separate one-to-one 76-byte clockwise table-perimeter key test on p55 (two natural byte-to-GP29 maps, both signs, both table versions) is also negative against held-out native Gibran windows. The original source geometry remains exact, but a decoder, key, or unknown plaintext has not been recovered.
 
 ## Human-solve-path hypothesis
 
@@ -56,6 +56,27 @@ This is a **historical source variant**, not the exact later LP2 table: it diffe
 The `sexagesimal.bin` commit is recorded 17 minutes 3 seconds before the repository's later [p56 digest commit](https://github.com/micheloosterhof/cicada-2014/commit/06f57643821f1cadf597471c2b9c813bd08d2e37). These are Git author timestamps, not independently authenticated chronology. Direct hashes of the three raw source files fail all four tested 64-byte digest families. The 2014 table's 36 ring/interior-to-terminal-rune compositions also produce no target match. This excludes only those direct forms; the table may still be a key or transformed input.
 
 Stable source transcription and provenance: [`resources/cicada2014-sexagesimal-source.json`](../resources/cicada2014-sexagesimal-source.json).
+
+## Direct table circumference as a 76-rune p55 key
+
+A solver following the solved p57 circumference language could take the **76-cell clockwise perimeter** of the 32×8 table as a one-to-one key for p55, which has exactly **76 runes**. This fixes the source order without phase or rotation search: top row left-to-right, right edge top-to-bottom, bottom row right-to-left, left edge bottom-to-top. The simplest reversible operation is GP29 addition/subtraction after mapping each byte to 0–28.
+
+Frozen test: both the 2014 `sexagesimal.bin` variant and LP2 canonical table; byte maps `b mod 29` and `floor(29b/256)`; signs C−K and C+K. This is **8 fixed variants**. A Gibran trigram model trained on the first 40,000 GP runes was compared against all **22,621** held-out 76-rune windows (native min/median/max **−9.748394 / −8.209936 / −6.843136**). Raw p55 scores **−12.199601**. Candidate scores:
+
+| Table | Byte map | Direction | Trigram score |
+|---|---|---|---:|
+| 2014 sexagesimal | `b mod 29` | C−K | −12.116275 |
+| 2014 sexagesimal | `b mod 29` | C+K | −12.125606 |
+| 2014 sexagesimal | `floor(29b/256)` | C−K | **−11.825488** |
+| 2014 sexagesimal | `floor(29b/256)` | C+K | −12.183507 |
+| LP2 canonical | `b mod 29` | C−K | −12.057880 |
+| LP2 canonical | `b mod 29` | C+K | −12.180217 |
+| LP2 canonical | `floor(29b/256)` | C−K | −11.866630 |
+| LP2 canonical | `floor(29b/256)` | C+K | −12.115735 |
+
+**All 8 candidates score below every held-out native 76-rune window**; even the best is more than 2.07 nats/rune below the worst native window. The result rejects the direct one-to-one perimeter-as-Vigenere-key interpretation, not every possible word-level or stateful use of circumference.
+
+The in-invocation computation used the same Gibran training/held-out method as the p50 GF(29²) report. Reproducer: `sims/p55_table_perimeter_key_sft.cjs` (added, not yet manually run). It includes exact positive-control encryption/decryption checks. No phase, orientation, key, or cipher-family sweep was performed.
 
 ## Known-plaintext obstruction for the 180-cell interior
 
