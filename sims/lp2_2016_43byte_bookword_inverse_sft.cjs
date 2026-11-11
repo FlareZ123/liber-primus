@@ -226,7 +226,7 @@ const byteReadouts = [
 console.log(JSON.stringify({
   interpretation: "provisional source-selected direct inverse, no LP2 decryption",
   signedWords: signedWords.length, addressedRuneWords: source.filter((w) => w.selected).length,
-  originalRuses: source.reduce((n, w) => n + w.indices.length, 0),
+  originalRunes: source.reduce((n, w) => n + w.indices.length, 0),
   source: {tableInterval: [84, 127], exception: ["lies", 50, 3, 193]},
   originalWordwiseGP29: results,
   shuffledKeyControlsPerSign: sampleCount,
