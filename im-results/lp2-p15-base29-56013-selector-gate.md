@@ -27,11 +27,24 @@ The bar marks an actual printed word boundary. Joining the two words yields the 
 
 Among the **18** source-annotated red rune spans across all 58 physical LP2 pages (including the two solved pages), this top p15 span is the **only** one with remainder 560 in either the forward or reverse reading. This is a descriptive census and is **not** a significance estimate for the larger after-the-fact space of lengths, operations, target numbers and orientations.
 
-## Concrete source-pad test
+## Source-pad inverse tests
 
 The independently documented [CicadaOS `560.13` prefix](../resources/derived/cicada2013-56013-reconstruction.md) contains the exact first **15,330** bytes reconstructed from two preserved 2013 XOR-stage outputs. Before any LP2 use, the reproducible test verifies the historical positive control: XOR the 23-byte 2013 ciphertext `28c07e1b102d4d5c4c1a376e064477e1416fcc94928765` with dataset bytes beginning at **12821** to recover exactly `gbyh7znm6c7ezsmr.onion\n`. This confirms the period-original byte operation and the available reconstructed bytes.
 
-For the proposed LP2 transfer, freeze the candidate file **560.13** and take the second red heading's exact remainder **2293** as the zero-based file offset. Test the **139 original p15 body runes after its two red headings**, with no offset or phase fitting:
+**A source-constrained but unproven filename discriminator:** Invert the *entire* p15 4×4 source grid to its sixteen underlying prime values `2,3,5,7,13,23,43,79,149,263,463,829,1481,2593,4507,7817`. Among the three actual 2013 dataset suffix values **0, 13 and 17**, only **13** occurs in this fixed prime list. Intersecting the proposed **560** red-heading stem with this prime-membership rule therefore selects **`DATA/560.13` uniquely** among the historical CicadaOS files. This is a concrete two-part source-derived candidate selector: exact initial heading remainder plus the p15 square's independently established prime values. The unknown is whether a solver was actually instructed to use GP29 positional reduction followed by filename-suffix prime membership. In particular, the matching suffix was recognized retrospectively.
+
+**Frozen historical-offset transfer to all 1,894 runes of the following section.** The contemporaneous third-onion walkthrough independently specifies **dataset 13 at zero-based offset 12821**. Use that *period-original* offset rather than guessing one from LP2 ciphertext. The entirety of the subsequent p15:9 through p22:end rune section contains **1,894 source runes** and fits into available reconstructed file bytes 12821 through 14714, inclusive. No free offset, key phase, or chosen subset of words is used. Results:
+
+| Historical file offset 12821; original 1,894-rune section | Observed |
+| --- | --- |
+| Historical byte XOR with GP indices 0..28 | **702/1894 printable ASCII**, 404 letters, three spaces; nonlinguistic |
+| Historical byte XOR with GP prime weights 2..109 | **688/1894 printable ASCII**, 393 letters, four spaces; nonlinguistic |
+| GP29 subtraction/addition, key = file bytes mod29 | IoC **0.03451107 / 0.03442796**; nonlinguistic |
+| GP29 subtraction/addition, key = floor(29×byte/256) | IoC **0.03452781 / 0.03447649**; nonlinguistic |
+
+The original same-section ciphertext has IoC **0.03449490**. The period-native XOR operations fail to produce ordinary ASCII. All four ordinary modulo-29 transfers remain ciphertext-like, with no language or known-key recovery. This retires these *specific* serializations of the strongest independent-offset transfer, without excluding a different cipher architecture using the same file.
+
+**Secondary speculative lower-heading-offset transfer.** For comparison, use the lower p15 red heading's modulo-3301 remainder **2293** as a proposed source-pad offset. This is less independently motivated than historical offset12821. Test the **139 original p15 body runes after both red headings** as a short diagnostic:
 
 | Fixed original-input operation | Observed result |
 | --- | --- |
@@ -42,6 +55,6 @@ For the proposed LP2 transfer, freeze the candidate file **560.13** and take the
 
 The unchanged original 139-rune body has IoC **0.03492858**. The GP29 results show no obvious improvement and do not recover a sentence; IoC on 139 symbols is a low-powered criterion, so this gate only retires these exact operations. The direct historical XOR outputs fail the much stronger threshold of ordinary readable ASCII.
 
-The source-selected **560** does not distinguish the suffixes `_560.00`, `560.13`, `560.17`. Neither `2293` as an offset nor byte-to-GP29 subtraction follows from the source; the p15 red headings additionally have printed word breaks. This currently supports **a plausible numeric coincidence and a failed conditional decoder**, rather than a key-selected mechanism. No further filename, phase, offset or serializer searches should depend on it without an independent original clue.
+The original **560** remainder identifies the historical numeric dataset family. The grid-prime suffix intersection conditionally selects **560.13**, while the *historical* offset12821 supplies one independent byte position. The proposed rules connecting LP2 red headings, suffixes and 2013 pads are still unauthenticated, and the exact transfer of this otherwise source-fixed material has failed on a long original section. The alternative **2293** offset remains speculative. The original red headings have printed word breaks; neither concatenation nor direct modulo-29 conversion is a confirmed cipher. No unknown LP2 plaintext or cryptographic mechanism is established. Additional pad scans need a new independent cue.
 
 **Reproducer:** [`sims/lp2_p15_base29_56013_bridge_sft.cjs`](../sims/lp2_p15_base29_56013_bridge_sft.cjs) asserts all source digits, arithmetic, red-span uniqueness, reconstructed-pad positive control, original runic body, and exact negative readouts. Run locally with Node.js using the existing repository files. The candidate is not promoted to `results/`.
