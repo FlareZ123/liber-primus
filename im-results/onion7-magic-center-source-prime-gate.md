@@ -18,7 +18,7 @@ None of these relationships supplies a documented operation or uniquely selects 
 
 ## Historically specified decimal reversal and the 16-cell ring (Agent 45, 11 November 2026)
 
-A specific 2013 puzzle operation narrows the otherwise retrospective PARABLE arithmetic: the documented original telnet `count parable` response was **`449*`**. The star denotes a prime whose decimal reversal is composite; the same server's `number` operation reverses a prime input and lists its factors (for example, `number 283` produces the factors of 382). Therefore the source-defined operation on the later red heading PARABLE is **449 → 944 = 2⁴×59**, with full divisor list **[1,2,4,8,16,59,118,236,472,944]**. The factor **16** matches the inner 5×5 perimeter of the historical middle 7×7 square, a natural object under PARABLE's wording “shed our own circumferences”. Selecting 16 from the possible divisors and choosing that particular ring remain hypotheses: the 2013 server never instructed solvers to apply NUMBER to the later manuscript.
+A retrospectively documented 2013 telnet operator suggests a test of the PARABLE arithmetic. A later reconstruction records `count parable` returning **`449*`**; its `number` behavior reverses a prime input and lists factors of the reversal (for example, `number 283` factors 382). No authenticated original server or raw `NUMBER` session survives ([source audit](https://github.com/FlareZ123/liber-primus/issues/113)). Conditional on transferring that reported operation to the later red heading PARABLE, the calculation is **449 → 944 = 2⁴×59**, with full divisor list **[1,2,4,8,16,59,118,236,472,944]**. The factor **16** matches the inner 5×5 perimeter of the historical middle 7×7 square, a natural object under PARABLE's wording “shed our own circumferences”. Selecting 16 from the possible divisors and choosing that particular ring remain hypotheses: the 2013 server never instructed solvers to apply NUMBER to the later manuscript.
 
 The 2014 Onion7 title/id **133 and 331** are decimal reversals. Under the same original telnet `number` behavior, entering the prime **331** returns the divisors of its reversal **133**, namely **[1,7,19,133]**. The nontrivial factors **7 and 19** are exactly the source-visible opening-sentence word count and entire-body word count of solved p57, giving a contemporaneously demonstrated arithmetic operation for the already known 7×19 relation. This is a more historically motivated way to *recognize* the Parable/Onion7 coincidence, but there is still no authenticated later instruction or new ciphertext plaintext.
 
@@ -26,13 +26,13 @@ An executable consequence of choosing the **16-cell** square circumference is le
 
 The three body-clause sums [1259,1031,1229] and their reversals [9521,1301,9221] are all prime. This should *not* be treated as independent high-significance evidence: **25 of 43** ordinary primes from 1000 through 1299 also have prime reversals, and the sentence sums were already selected by the earlier source correspondence. No authentic unknown-page key or destination has been recovered.
 
-**Sources:** [2013 telnet commands and original responses](https://github.com/neuroretransmit/cicada/blob/main/2013/004-first-onion/README.md), original corpus and 2014 magic squares already cited above. **Reproducer:** [2013 reversal / inner-ring original inverse SFT](../sims/cicada2013_parable_reversal_ring_sft.cjs).
+**Secondary command source:** [retrospective 2013 telnet reconstruction and example responses](https://github.com/neuroretransmit/cicada/blob/main/2013/004-first-onion/README.md), original corpus and 2014 magic squares already cited above. **Reproducer:** [2013 reversal / inner-ring original inverse SFT](../sims/cicada2013_parable_reversal_ring_sft.cjs).
 
 ## Cellwise 2013 NUMBER operation: a 41×316 candidate map
 
-The original [2013 first-onion server implementation](https://raw.githubusercontent.com/cicada-solvers/neuroretransmit-cicada/main/2013/004-first-onion/server.py) defines a `number` command: a prime input whose decimal reversal is also prime returns `+`; a prime with composite reversal is factorized after reversal; a composite input is factorized directly. The server returns distinct prime-factor keys, not multiplicities.
+A [retrospective reconstruction of the 2013 first-onion server implementation](https://raw.githubusercontent.com/cicada-solvers/neuroretransmit-cicada/main/2013/004-first-onion/server.py) defines a `number` command: a prime input whose decimal reversal is also prime returns `+`; a prime with composite reversal is factorized after reversal; a composite input is factorized directly. That reconstructed server returns distinct prime-factor keys, not multiplicities.
 
-Applying that exact historical operation to every entry of the three archived 2014 OpenPuff squares gives:
+Applying those reconstructed NUMBER semantics to every entry of the three archived 2014 OpenPuff squares gives:
 
 | Square | Cells | `+` outputs | Active cells | Factors outside GP prime weights |
 |---|---:|---:|---:|---|
