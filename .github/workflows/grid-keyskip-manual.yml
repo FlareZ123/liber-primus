@@ -9,6 +9,7 @@ on:
         default: keyskip
         options:
           - keyskip
+          - pair-keyskip2
           - fullword-prng
           - corrected-grid-inverse
           - base59-source-inverse
@@ -29,6 +30,9 @@ jobs:
       - name: Original constrained-grid keyskip search
         if: ${{ inputs.probe == 'keyskip' }}
         run: node sims/grid_keyskip_viterbi.cjs
+      - name: Original base60 grid under pair-consuming ciphertext rejection (keyskip2)
+        if: ${{ inputs.probe == 'pair-keyskip2' }}
+        run: node sims/grid_keyskip2_viterbi.cjs
       - name: Exact fullword PRNG source inversions
         if: ${{ inputs.probe == 'fullword-prng' }}
         run: node sims/grid_fullword_prng_exact_inversion.cjs
