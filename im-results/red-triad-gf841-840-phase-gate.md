@@ -14,42 +14,44 @@ Its discriminant is the nonsquare 19, so it defines a genuine quadratic extensio
 
 The latter red polynomial is \(27+5X+15X^2=15(X-24)^2\) modulo 29. The printed 256-byte table, in unmodified row-major order, is divisible **twice** by \(X-24\) when interpreted as a descending-coefficient polynomial over GF(29). Both remainders are zero, leaving 254 coefficients. The oversized p54 Ac rune has GP index 24. These original-source constraints are genuine algebraic coincidences, and the two red triads offer a possible human clue to read the 254 coefficients as 127 elements of the extension field. Whether their authors designed them for this purpose remains unknown.
 
-### A source-only construction of the second red triad from the first
+### First-triad-only prediction of an original grid factor
 
-A newly identified *exact, retrospectively selected* relation reconstructs **all three** p39 red indices from p3, without using any grid bytes. It is a finite candidate instruction worth investigating for a human solve path, with no authenticated cipher operation yet.
+The first unique three-rune red span occurs on LP2 p3 at local offset 119, with GP indices **A = [13,23,2]**. Interpreting these as ascending polynomial coefficients gives the irreducible equation \(13+23u+2u^2=0\) in \(\mathbb F_{29^2}\), hence \(u^2=3u+8\). The source itself then supplies a simple field element using only this first marked triad:
 
-Write the first marked triad as (A=[13,23,2]), and let (u^2=3u+8) as above. Square its middle GP ordinal as an exponent: (23^2=529). The corresponding field element is
+\[
+z=A_1-A_2u=23-2u=23+27u.
+\]
 
-[
-v=u^{529}=9+4u.
-]
+This **p3-only construction** exactly zeros the original 256-byte grid polynomial \(P(z)=0\), with the bytes in their printed row-major order reduced modulo 29. Among **12** signed, ordered readings \(A_i\pm A_ju\) with distinct coefficient positions \(i\ne j\), it is the **only** original-grid root. This is a stronger dependency constraint than the previously documented cross-triad root \(23+27u\), because the second red triad is unnecessary to select the field point. The second red triad on p39 independently begins with GP index **27 = −2 mod 29**, matching the predicted coefficient of \(u\).
 
-It has (mathrm{Tr}_{841/29}(v)=1) and (mathrm{N}_{841/29}(v)=3), so its monic minimal polynomial is **(X^2-X+3)**, with ascending coefficients (M=[3,28,1]). Perform componentwise division in (mathbb F_{29}) by the three original p3 red GP ordinals:
+Without inspecting grid coefficients, the field trace and norm of this p3-derived \(z\) are **11 and 11**. Consequently, its conjugate pair must satisfy the monic quadratic
 
-[
-Moslash A=[3/13,;28/23,;1/2]pmod{29}
-=[27,5,15]=B,
-]
+\[
+h(X)=X^2-11X+11=X^2+18X+11\pmod{29}.
+\]
 
-which exactly reproduces the *other* source-marked triad on p39. Conversely, (Aodot B=[3,28,1]) supplies the same polynomial. The field element (v) is primitive of order **840**. Exhaustively enumerating the 840 exponents of (u), the **only** exponents with this trace/norm pair are 221 and 529, the two Frobenius-conjugate roots. [Executable original-source assertions](../sims/lp2_red_triad_extension_root_sft.cjs) additionally check the original red offsets and rune indices.
+**The original grid polynomial is exactly divisible by this independently predicted \(h\).** Its discriminant is \(18^2-4\cdot11\equiv19\pmod{29}\), exactly the discriminant \(23^2-4\cdot13\cdot2\equiv19\pmod{29}\) of the raw first-triad polynomial. The second unique red triad **B = [27,5,15]** separately gives \(27+5X+15X^2=15(X-24)^2\), another exact factor of the original grid polynomial. These two marked-source quadratics therefore select the source-verified common quartic \((X-24)^2h(X)=X^4+28X^3+13X^2+9X+14\). The enlarged Ac at p54 has GP index24. This is a concrete possible creator-visible route from distinct marked manuscript clues to a factorization of the original numeric table.
 
-The relation extends to the original grid's **two extension-field roots**, without selecting plaintext or any ciphertext offset. The original first-red middle ordinal is 23. The source-reconstructed p39 first ordinal 27 makes (z=23+27u). This is an exact root of the original 256-byte grid polynomial, with the two conjugates
+### Retrospective self-power relationship and a second field generator
 
-[
-z=v^{-23}=[23,27]_{1,u},qquad z^{29}=v^{173}=[17,2]_{1,u}.
-]
+There is a further exact algebraic relationship between the two red triads. Using only the first triad, form \(v=u^{23^2}=u^{529}=9+4u\). Its field trace and norm are **1 and 3**, hence its monic minimal polynomial has ascending coefficients **[3,28,1]**. Componentwise division of that polynomial by the first red triad modulo29 gives the entire second one:
 
-The latter exponent **173** independently equals the sum of the p39 red triad's Gematria Primus *prime weights*: (107+13+53=173). In the 840-element nonzero field, this exponent relation follows from the Frobenius rule (173equiv-23\cdot29\pmod{840}). The arithmetic thus gives a closed proposed source trail: **first marked triad → primitive field → squared-middle self-power → second marked triad → original grid's conjugate roots and prime sum**. The GP prime-weight identity is independent of ciphertext interpretation; the selection of the self-power and coefficientwise quotient remains retrospective. The pre-existing exact roots were independently known, so this is a new cross-clue relationship rather than a new root discovery.
+\[
+[3,28,1]\oslash[13,23,2]=[27,5,15].
+\]
 
-**Interpretive limit:** the square-of-middle-ordinal rule and componentwise polynomial division were selected after observing the p39 triad. Both algebraic equalities hold exactly; a discovery-wide chance estimate or a contemporaneous instruction that a 2014 solver would recognize is absent. The shared local offset 119 and the p39 factor of the grid remain separate source clues, and there is no evidence this self-power relation was used to encrypt LP2. A consequential test would freeze (v), a source-specified clock and original ciphertext positions, and recover independently meaningful plaintext across previously unseen material. Merely confirming this equality again would add nothing.
+Conversely, componentwise multiplication of the two red triads gives \([3,28,1]\). The element \(v\) has exact multiplicative order **840**. Among the 840 powers of \(u\), only the Frobenius-conjugate exponents **221** and **529** have that minimal polynomial. The independently predicted grid roots can now be represented as \(z=v^{-23}=23+27u\) and \(z^{29}=v^{173}=17+2u\); here **173 = 107+13+53** is precisely the p39 red triad's GP *prime-weight sum*. The exponents satisfy \(173\equiv-23\cdot29\pmod{840}\), so their relation follows from Frobenius conjugation.
 
-### Source-self-power generator tested on all original unsolved runes
+**Evidence distinction:** the algebraic equalities, source rune indices, table bytes, root evaluations and factor divisions are exact. The rule to square the first triad's middle index and to divide polynomial coefficients **was selected after examining the second triad**. The choice \(A_1-A_2u\) also arose during retrospective source comparison. The twelve-candidate uniqueness is conditional on this declared short family, not a discovery-adjusted chance measure. Neither relation authenticates the creator's intent, nor identifies a decrypting key, meaningful unknown plaintext or continuation destination. [Original-source, positive/negative control SFT](../sims/lp2_red_triad_extension_root_sft.cjs).
 
-The new generator (v=u^{529}=9+4u) changes the 840-state traversal from (u^i) to (u^{529i}); this is a distinct, source-fixed stride not covered by the earlier (u^i) sequence. The [single-file original-cipher inversion](../sims/lp2_red_triad_selfpower_original_gate.cjs) freezes that stride and tests exactly **144** reversible GP29 direct-additive readings: the field state (v^i), original 256-byte polynomial (P(v^i)), or its exactly divided p39 quotient (Q(v^i)); four coordinate/trace/norm observations; book or page clocks; source phases **0, 120, 360**; and both signs. All **12,956** original symbols are deciphered and independently exactly re-encrypted under every candidate. A native Shakespeare-GP positive plant recovers all 12,956 runes.
+### Original-cipher gate for the self-power generator
 
-The original ciphertext's IoC is **0.0344783978645**. Every decoded candidate remains encrypted-looking, between **0.0344384800785** and **0.0345477714019**; the highest is (P(v^i)), second field coordinate, continuous book, phase360, positive sign. By comparison, source-native GP English in the previously established controls has IoC around **0.06**. [Successful manual CI 42939227858](https://github.com/FlareZ123/liber-primus/actions/runs/42939227858) executed both the new source identity assertions and this complete-original inverse.
+The distinct field step \(v=u^{529}\) moves through \(u^{529i}\), rather than the previously tested \(u^i\) schedule. A [single-file original-cipher inverse](../sims/lp2_red_triad_selfpower_original_gate.cjs) freezes this stride and tests **144** exactly reversible GP29 direct-additive readings on all **12,956** unknown ciphertext runes: \(v^i\), the original grid polynomial \(P(v^i)\), or its p39-factor quotient \(Q(v^i)\); four coordinate/trace/norm observations; continuous book or physical-page clock; source phases 0/120/360; and both signs. Every original candidate exactly re-encrypts. A native Shakespeare-GP plant recovers all 12,956 plaintext runes.
 
-**Decision:** direct GP29 additive projections of this derived field generator, with the stated fixed source clocks, do not unlock original plaintext. The self-power source relationship remains potentially useful as a *selector for another cipher/register*. This gate excludes neither feedback nor a non-GP intermediate representation, and does not justify retrying arbitrary offsets or secret projections without a clue.
+The input IoC is **0.0344783978645**, and every candidate's decoded IoC lies between **0.0344384800785** and **0.0345477714019**, far from the independently established native-GP English range around 0.06. The highest-scoring candidate is \(P(v^i)\), second field coordinate, continuous book, phase360, positive sign. [Successful original-input manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42939227858).
+
+**Decision:** these direct-GP29 source-fixed additive projections do not yield original plaintext. The source factors and second generator remain possible selectors for a different operation or intermediate register. Further work requires a human-credible source instruction choosing that operation before looking at language scores; arbitrary new offsets or key searches repeat known failures.
+
 
 A simple, economically testable proposed cipher would generate a single hidden state \(s_i=s_0u^i\) in this field and apply **any secret bijection of all 29 GP symbols chosen by that state**. The key may contain 840 unrelated 29! lookup rows, and their contents need never be recovered. Every state repeats by 840, therefore:
 

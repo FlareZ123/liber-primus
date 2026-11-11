@@ -200,8 +200,30 @@ function main() {
   assert.equal(P[0],0); // First byte 203 = 7 * 29.
   assert.equal(P[1],28); // Actual source polynomial degree 254.
 
-  const z=[a[1],b[0]];
+  // p3 alone gives the grid root: middle minus final coefficient times u.
+  // The second triad's first rune is independently the additive inverse
+  // of the p3 final rune (27 = -2 mod29).
+  const z=[a[1],mod(-a[2])];
   assert.deepEqual(z,[23,27]);
+  assert.equal(b[0],z[1]);
+  const signedP3Hits=[];
+  for(let i=0;i<3;i++)for(let j=0;j<3;j++)if(i!==j)
+    for(const sign of [-1,1]){
+      const point=[a[i],mod(sign*a[j])];
+      if(eval2(P,point).every(x=>x===0))
+        signedP3Hits.push({i,j,sign,point});
+    }
+  assert.deepEqual(signedP3Hits,[{i:1,j:2,sign:-1,point:[23,27]}]);
+  // A source-determined quadratic h(X) from the trace and norm of z.
+  const traceZ=mod(2*z[0]+3*z[1]);
+  const normZ=mod(z[0]*z[0]+3*z[0]*z[1]-8*z[1]*z[1]);
+  const predictedGridFactor=[1,mod(-traceZ),normZ];
+  assert.deepEqual([traceZ,normZ],[11,11]);
+  assert.deepEqual(predictedGridFactor,[1,18,11]);
+  const originalP3Discriminant=mod(a[1]*a[1]-4*a[2]*a[0]);
+  const predictedFactorDiscriminant=mod(predictedGridFactor[1]**2
+    -4*predictedGridFactor[2]);
+  assert.deepEqual([originalP3Discriminant,predictedFactorDiscriminant],[19,19]);
   // Source-only closed chain: first triad A -> u -> u^(A_middle²) ->
   // second triad B -> grid root. Conjugation supplies an independent
   // prime-weight exponent with no ciphertext or plaintext inputs.
@@ -254,6 +276,7 @@ function main() {
   // The two extension roots are Frobenius conjugates. Their trace and norm
   // both equal 11, so X²+18X+11 is a second exact grid polynomial factor.
   const h=[1,18,11];
+  assert.deepEqual(h,predictedGridFactor);
   const extFactor=divideMonic(P,h);
   assert.deepEqual(extFactor.remainder,[0,0]);
   const markFactor=[1,10,25]; // (X-24)^2 over F29.
@@ -278,7 +301,10 @@ function main() {
     gridRootsInDerivedGenerator:"v^(-23)=23+27u; v^173=(23+27u)^29=17+2u, with p39 red GP-prime sum 173",
     redLengthPositionExponent:"3 × (119+1) = 360; u^120 = 7; u^360 = 24 = oversized p54 Ac and p39 root",
     inversePositionPrediction:"log_u(24)=360; 3*k=360 mod840 implies k=120 mod280, uniquely local on both source pages",
-    crossSourcePoint:"p3 middle + p39 first * u = 23+27u",
+    sourceOnlyGridRoot:"p3 middle 23 minus p3 final 2 times u = 23-2u",
+    signedOrderedP3Candidates:12,sourceOnlyGridRootHits:signedP3Hits,
+    sourceOnlyPredictedFactor:"X²+18X+11, discriminant19 shared with p3 marked polynomial",
+    crossSourcePoint:"p3 middle + p39 first * u = 23+27u (p39 first = -p3 last mod29)",
     crossSourceCandidates:18,exactCrossSourceRootHits:crossHits,
     allNonzeroFieldRoots:roots,
     sourceIndexCRT:"433 mod28 = 13 (p3 first); 433 mod29 = 27 (p39 first); noted post hoc",
