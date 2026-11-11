@@ -1,0 +1,61 @@
+name: LP2 full-source rune assignment audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sims/lp2_full_source_rune_assignment_audit.py'
+      - 'resources/lp2-transcription.txt'
+      - 'resources/liber-primus/lp2-corpus.json'
+      - 'resources/liber-primus/*.jpg'
+      - 'resources/external/Liber Primus 57.txt'
+      - '.github/workflows/lp2-full-source-rune-assignment-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install reproducible dependencies
+        run: python -m pip install --disable-pip-version-check numpy pillow scipy scikit-image scikit-learn
+      - name: Run original-image assignment audit
+        run: python sims/lp2_full_source_rune_assignment_audit.py --json /tmp/lp2-full-source-rune-assignment-audit.json
+      - name: Summarize audit
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          p = Path('/tmp/lp2-full-source-rune-assignment-audit.json')
+          r = json.loads(p.read_text(encoding='utf-8'))
+          t = r['totals']
+          c = r['controls']
+          summary = {
+              'totals': t,
+              'p43_leave_one_out': c['p43_leave_one_out'],
+              'solved_p56_p57_body': {k:v for k,v in c['solved_p56_p57_body'].items() if k != 'lines'},
+              'hog_svm': {k:v for k,v in (c['hog_svm'] or {}).items() if not isinstance(v, dict)},
+              'ambiguous_line_mappings': r['ambiguous_line_mappings'],
+              'mismatch_count': len(r['mismatches']),
+              'unresolved_records': len(r['unresolved']),
+          }
+          print(json.dumps(summary, ensure_ascii=False, indent=2))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as f:
+              f.write('# LP2 original-image rune assignment audit\n\n')
+              f.write('\n'.join(f'{k}: {json.dumps(v, ensure_ascii=False)}' for k,v in summary.items()))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-full-source-rune-assignment-audit
+          path: /tmp/lp2-full-source-rune-assignment-audit.json
+          if-no-files-found: warn
+          retention-days: 7
