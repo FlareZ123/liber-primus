@@ -50,6 +50,17 @@ This supports the interior-extraction convention substantially more strongly tha
 - The 2014 May message provides an onion destination and an enlightenment prompt, not a byte/rune alignment.
 - The 2017 signed warning repeats “Beware false paths” and PGP verification; it adds no mapping rule.
 
+## p32 M7 pole → rune-free p50 → `lies` cell3 (provisional bridge)
+
+A separate p32 branch supplies a candidate reason to continue from the Möbius pole to the p50 numerical table:
+
+- The signed-2016 base-58 hypothesis maps `Beware` to p32 word5 `IARTTHF` at local offset25. The red 13-dot annotation motivates a 13-rune span through offset37; that span ends with the `HOMEX` marker at p32 indices33–37, the terminal X independently reached by the [2016 43-word compass SFT](../sims/lp2_2016_43word_compass_sft.cjs).
+- The 13-rune window's prime sum is **413≡7=W**. The horizontal-corner p32 M7 candidate has pole7, so **M7(7)=∞**. The 2016 phrase “The path lies empty” is consistent with this endpoint.
+- The corpus has exactly one physical page with `runic_count=0`: **p50**. The signed word `lies` has GP-prime sum **224=58×3+50**, selecting p50 cell3; the original table token there is **`3D`**.
+- Base60 makes `3D=193`; the existing `NUMBER(193)=391=17×23` / p55 D…D interior relationship above supplies a continuation to the Parable's divinity instruction. Independently, p32's residue7 endpoint word sum442 addresses p36 word7=386=2×193, and φ(386)=φ(193)=192≡18=E.
+
+This is a useful cross-round navigation bridge, not a solution of the 43-unit cipher. The base-58 word-address rule, 13-dot→13-rune interpretation, M7 corner convention, and infinity→p50 identification remain hypotheses. The M7 intermediate states8 and2 are absent on p32, so the orbit is not a literal word-to-word traversal; no reversible 43-byte/rune correspondence or unknown plaintext has been recovered. See the [integrated p32 report](lp2-2016-signed-message-base58-word-map.md) and [p32 13-rune SFT](../sims/p32_13runic_w_infinity_route_sft.cjs).
+
 ## Exact missing selector
 
 No surviving, contemporaneous instruction reviewed here establishes all of the following:

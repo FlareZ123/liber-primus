@@ -184,6 +184,22 @@ const endAddress=address(at7[0].sum);
 assert.deepEqual(endAddress,{page:36,wordIndex:7});
 assert.equal(sumWord(p36[7]),386);
 assert(signed2016.includes("The path lies empty;"));
+const grid256 = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+const emptyPages = corpus.pages.filter(page => page.runic_count === 0).map(page => page.page);
+assert.deepEqual(emptyPages, [50]);
+const liesSum = sumLatin("lies");
+assert.equal(liesSum, 224);
+const liesAddress = address(liesSum);
+assert.deepEqual(liesAddress, { page: 50, wordIndex: 3 });
+const p50Cell3 = grid256.pages.find(page => page.page === 50).tokens[3];
+assert.equal(p50Cell3, "3D");
+const base60_3D = 3 * 60 + 13;
+assert.equal(base60_3D, 193);
+assert.equal(2 * base60_3D, 386);
+assert.equal(phi(193), 192);
+assert.equal(phi(386), 192);
+assert.equal(mod(phi(193)), 18);
+assert.equal(mod(phi(386)), 18);
 
 console.log(JSON.stringify({
   status:"provisional navigation hypothesis; not a decryption",
@@ -196,5 +212,6 @@ console.log(JSON.stringify({
     residueCounts:counts,
     endpoint:{word:"WBSRXIAXA",sum:442,offset:64,gap:39,address:endAddress,p36Word7Sum:386}},
   independentDirections:{p55Triple,phi108:36,directionW:"W",p36Triple,phi386:192,directionE:"E"},
+  emptyPageBridge:{m7Pole:7,emptyPages,liesSum,liesAddress,p50Cell3,base60_3D,twice193:386,phi193:192,p36Word7Sum:386,phi386:192},
   conclusion:"Selector/pole correspondence only; the existing M7 gate rejects a total word-to-word traversal. No plaintext, key, or reversible cipher operation recovered."
 },null,2));
