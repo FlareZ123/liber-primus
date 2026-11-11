@@ -15,6 +15,7 @@ on:
           - lcg13-31-raw
           - onion7-133
           - josephus-aes
+          - event-poly
 
 jobs:
   original:
@@ -43,6 +44,9 @@ jobs:
       - name: LCG 13/31 original raw 256-state no-grid inverse
         if: github.event.inputs.probe == 'lcg13-31-raw'
         run: node sims/lp2_lcg13_31_raw256_state_inverse.cjs
+      - name: Original event-field P/P-prime trace/norm projection inverse
+        if: github.event.inputs.probe == 'event-poly'
+        run: node sims/gf29s2_event_poly_output_original_sft.cjs
       - name: Exact original 256-event Josephus AES eight-section inverse
         if: github.event.inputs.probe == 'josephus-aes'
         run: node sims/ink256_josephus_aes_sections_sft.cjs
