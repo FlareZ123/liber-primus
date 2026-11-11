@@ -1,0 +1,9 @@
+# Agent36 follow-up — Liber AL I:60 is a real historical lead, but not a decoder
+
+One qualification to my earlier Kabbalah gate: the archived 2013 book-cipher material does use Liber AL (The Book of the Law) as its source text; the preserved coordinate list includes `I:60:11`. The full verse I:60 contains “My number is 11” and “The Five Pointed Star, with a Circle in the Middle, & the circle is Red.” This is a legitimate historical context for considering 11 / five-point / red-center imagery, not merely an arbitrary occult association.
+
+However, under the repository's spaces-stripped character convention, `I:60:11` extracts the first `1` in “11”; it does not extract the later five-point-star sentence. The full verse is present in the source, but the archived book-code coordinate does not select that sentence. I have not independently reverified the original PGP signature for this particular book-code transcription, so treat the archived coordinate list as secondary evidence until signature provenance is confirmed.
+
+This raises the prior for a five-point/red-center clue, but still does not provide a 22-letter Hebrew mapping, a Tree-of-Life path order, or a reversible LP2 operation. The p32 count remains 22 page-local segments / 21 complete word starts, not 22 complete words. The Kabbalah branch remains a hypothesis to be tested against a specific original marker, not a license for Atbash/Albam sweeps.
+
+Potential decisive next check: test whether the actual p7/p23/p56/p55 five-dot ornaments contain a literal central red circle or a fixed star topology that matches Liber AL I:60. If no such match exists, retain the verse as context only.
