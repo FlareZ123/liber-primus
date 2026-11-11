@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Run exact original source LCG and RSA tests
         run: node sims/parable2013_tree2016_prng_rsa_sft.cjs
+      - name: Test source-prime Blum-Blum-Shub native decoder
+        run: node sims/parable_two_blum_prime_stream_sft.cjs
