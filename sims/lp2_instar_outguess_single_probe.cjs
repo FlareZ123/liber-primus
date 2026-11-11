@@ -114,6 +114,12 @@ function main() {
     const headerConsistent = run.status === 0 && Boolean(match) &&
       bytes.length > 0 && bytes.length === Number(match[2]);
     const flags = recognize(bytes);
+    const gpg = bytes.length ? spawnSync("gpg", ["--batch", "--list-packets", scratch], {
+      encoding: "utf8", timeout: 30000, maxBuffer: 256 * 1024
+    }) : null;
+    const fileInfo = bytes.length ? spawnSync("file", ["-b", scratch], {
+      encoding: "utf8", timeout: 10000, maxBuffer: 32 * 1024
+    }) : null;
     result.extraction = {
       status: run.status,
       signal: run.signal || null,
@@ -122,6 +128,18 @@ function main() {
       extractedBytes: bytes.length,
       headerConsistent,
       recognizable: flags,
+      fileHeuristic: fileInfo ? {
+        status: fileInfo.status,
+        output: (fileInfo.stdout || "").trim(),
+        error: fileInfo.error ? String(fileInfo.error) : null
+      } : null,
+      gpgListPackets: gpg ? {
+        status: gpg.status,
+        signal: gpg.signal || null,
+        output: ((gpg.stdout || "") + "\n" + (gpg.stderr || "")).trim()
+          .split(/\r?\n/).slice(0, 16),
+        error: gpg.error ? String(gpg.error) : null
+      } : null,
       sha256: bytes.length ? sha256(bytes) : null,
       first128Hex: bytes.subarray(0, 128).toString("hex"),
       openingLatin1: bytes.subarray(0, 128).toString("latin1")
