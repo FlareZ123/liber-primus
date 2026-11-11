@@ -1,0 +1,18 @@
+name: LP2 word-lag6 all-secret lookup source test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-inverse:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test original cipher and independent true-key positive control
+        run: node sims/lp2_wordlag6_allsecret_lookup_sft.cjs
