@@ -257,6 +257,122 @@ function main(){
   });
   assert.ok(directAdditiveTests.every(x=>Math.abs(x.ioc-0.03448)<0.0001));
 
+  // The 5x5 / 3301 square has four prime factors outside the 29 GP prime
+  // weights under NUMBER. Decompose those factors as base29 digit values,
+  // then read the digit values as GP alphabet indices. This GP-index reading
+  // is a new hypothesis; the historical BASE29 protocol itself printed
+  // alphanumeric digits such as 16I for 1033.
+  const base29Alphabet="0123456789ABCDEFGHIJKLMNOPQRS";
+  const asBase29Digits=(value)=>{
+    const digits=[];
+    for(let n=value;n>0;n=Math.floor(n/29))digits.unshift(n%29);
+    return digits.length?digits:[0];
+  };
+  const gpPrimeSet=new Set(c.prime);
+  const firstExternal=[...new Set(numberResults[0].flatMap(x=>x.factors)
+    .filter(x=>!gpPrimeSet.has(x)))].sort((a,b)=>a-b);
+  assert.deepEqual(firstExternal,[139,227,313,467]);
+  const externalFactorChunks=Object.fromEntries(firstExternal.map(value=>{
+    const digits=asBase29Digits(value);
+    assert.equal(digits.length,2);
+    return [value,{
+      digits,
+      protocolText:digits.map(x=>base29Alphabet[x]).join(""),
+      gpIndexText:digits.map(x=>c.translit[x]).join("")
+    }];
+  }));
+  assert.deepEqual(Object.fromEntries(Object.entries(externalFactorChunks)
+    .map(([k,v])=>[k,v.gpIndexText])),
+    {"139":"RD","227":"WA","313":"ID","467":"TO"});
+
+  const thirdExternal=[...new Set(numberResults[2].flatMap(x=>x.factors)
+    .filter(x=>!gpPrimeSet.has(x)))].sort((a,b)=>a-b);
+  assert.deepEqual(thirdExternal,[113]);
+  const thirdControlDigits=asBase29Digits(113);
+  const thirdControlGp=thirdControlDigits.map(x=>c.translit[x]).join("");
+  assert.equal(thirdControlGp,"OY");
+
+  // Among the 24 source-chunk permutations, the pinned English lexicon has
+  // only TOWARD and WARD as multi-chunk words. This is a bounded language
+  // observation, not a global significance test or a source-specified order.
+  const lexicon=new Map(read("resources/control/english_wordfreq_textblob.txt")
+    .split(/\r?\n/).flatMap(line=>{
+      const match=line.match(/^([a-z]+)\s+(\d+)$/);
+      return match?[[match[1].toUpperCase(),Number(match[2])]]:[];
+    }));
+  const chunkValues=Object.values(externalFactorChunks).map(x=>x.gpIndexText);
+  const permutations=(items,length,prefix=[],out=[])=>{
+    if(prefix.length===length){out.push(prefix.slice());return out;}
+    for(const item of items)if(!prefix.includes(item)){
+      prefix.push(item);permutations(items,length,prefix,out);prefix.pop();
+    }
+    return out;
+  };
+  const multiChunkLexiconHits=[];
+  for(let length=2;length<=4;length++)for(const parts of permutations(chunkValues,length)){
+    const word=parts.join("");
+    if(lexicon.has(word))multiChunkLexiconHits.push({
+      parts,word,count:lexicon.get(word)
+    });
+  }
+  multiChunkLexiconHits.sort((a,b)=>b.count-a.count||a.word.localeCompare(b.word));
+  assert.deepEqual(multiChunkLexiconHits.map(x=>x.word),["TOWARD","WARD"]);
+  const grammaticalPermutationFactors=[467,227,139,313];
+  const grammaticalPermutation=grammaticalPermutationFactors
+    .map(value=>externalFactorChunks[value].gpIndexText).join("");
+  assert.equal(grammaticalPermutation,"TOWARDID");
+  assert.equal(div,331);
+  assert.equal(squares[1][3][3],div);
+
+  // PARABLE says to shed circumferences and find what lies within. Enumerate
+  // only the eight physical square symmetries, then read the NUMBER-derived
+  // GP-index matrix by concentric circumferences from outside to center.
+  const orientations=(matrix)=>{
+    const out=[],seen=new Set();
+    for(const transpose of [false,true])for(const flipRows of [false,true])
+      for(const flipCols of [false,true]){
+        let v=matrix.map(row=>row.slice());
+        if(transpose)v=v[0].map((_,j)=>v.map(row=>row[j]));
+        if(flipRows)v=v.reverse();
+        if(flipCols)v=v.map(row=>row.reverse());
+        const key=JSON.stringify(v);
+        if(!seen.has(key)){seen.add(key);out.push(v);}
+      }
+    return out;
+  };
+  const inwardCoords=(n)=>{
+    const out=[];
+    for(let level=0;level<=Math.floor((n-1)/2);level++){
+      const lo=level,hi=n-1-level;
+      if(lo===hi){out.push([lo,lo]);continue;}
+      for(let col=lo;col<=hi;col++)out.push([lo,col]);
+      for(let row=lo+1;row<=hi;row++)out.push([row,hi]);
+      for(let col=hi-1;col>=lo;col--)out.push([hi,col]);
+      for(let row=hi-1;row>lo;row--)out.push([row,lo]);
+    }
+    return out;
+  };
+  const inwardD4=[...new Set(orientations(factorIndexMatrix).map(matrix=>
+    inwardCoords(7).map(([r,col])=>matrix[r][col]).filter(x=>x!==null)
+      .map(x=>c.translit[x]).join("")))];
+  assert.equal(inwardD4.length,4);
+  const inwardUnto=inwardD4.find(x=>x.startsWith("UNTO"));
+  assert.equal(inwardUnto,
+    "UNTOGHFOUNTOGHFOOOJOJNWFOOJOJNWFUHROUHROI");
+  const inwardUntoIndices=[...inwardUnto].map(token=>c.translit.indexOf(token));
+  assert.equal(inwardUntoIndices.length,41);
+  const inwardDirectTests=[
+    {name:"C-K",fn:(cipher,key)=>(cipher-key+29)%29},
+    {name:"C+K",fn:(cipher,key)=>(cipher+key)%29},
+    {name:"K-C",fn:(cipher,key)=>(key-cipher+29)%29}
+  ].map(({name,fn})=>{
+    const decoded=unknownCipher.map((cipher,i)=>fn(cipher,
+      inwardUntoIndices[i%inwardUntoIndices.length]));
+    return {name,ioc:indexOfCoincidence(decoded),
+      preview:decoded.slice(0,80).map(i=>c.translit[i]).join("")};
+  });
+  assert.ok(inwardDirectTests.every(x=>Math.abs(x.ioc-1/29)<0.00002));
+
   console.log(JSON.stringify({
     sources:["2014 seventh-onion delivery HTML", "three OpenPuff magic squares",
       "solved original LP2 p57 PARABLE", "original LP2 p0 red-ink span"],
@@ -289,7 +405,22 @@ function main(){
       unknownCipherLength:unknownCipher.length,
       candidateGrid:{rows:316,columns:41},
       signatureMarkerOffset2016:signatureMarkerOffset,
-      directAdditiveTests
+      directAdditiveTests,
+      externalFactorBase29GpIndex:{
+        firstSquareFactors:firstExternal,
+        chunks:externalFactorChunks,
+        controlThirdSquare:{factor:113,digits:thirdControlDigits,gpIndexText:thirdControlGp},
+        multiChunkLexiconHits,
+        grammaticalPermutationFactors,
+        grammaticalPermutation,
+        htmlDestinationCandidate:{attribute:"id",value:div},
+        orderingStatus:"hypothesis: NUMBER and base29 digit decomposition are source-derived; GP-index reading and TO-WA-RD-ID ordering are not source-specified"
+      },
+      inwardCircumferenceProbe:{
+        d4Sequences:inwardD4,
+        untoSequence:inwardUnto,
+        directAdditiveTests:inwardDirectTests
+      }
     },
     independentPredictionsAfterSelection:"Candidate structural map only: the per-cell GP-index sum and center-out path are interpretive; direct period-41 additive use fails, and no unknown plaintext or key is established."
   },null,2));
