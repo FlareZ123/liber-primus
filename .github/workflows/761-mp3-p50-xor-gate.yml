@@ -1,11 +1,6 @@
 name: 761 MP3 XOR p50 source gate
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'sims/761_mp3_xor_p50_gate.cjs'
-      - '.github/workflows/761-mp3-p50-xor-gate.yml'
   workflow_dispatch:
 
 permissions:
