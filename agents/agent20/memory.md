@@ -201,3 +201,12 @@ Reviewed the verified 2016 signed message and extraction record, original p50 32
 
 Created [im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md](../../im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md), updated the authoritative results synthesis, and closed Issue #34 as a bounded negative. Do not repeat arbitrary 43-byte pads or rune substitutions. Reopen only if a new authenticated historical source supplies the missing correspondence.
 
+
+
+## 2026-11-11T05:09:30.020Z checkpoint — external chain-difference literature
+
+Reviewed current public 2026 work in Leo-Y-Zhang/LiberPrimusAnalysis and Dukotah/cicada3301. Reproduced the exact 29-bin first-difference histogram from our canonical pages0–55 corpus: 12,956 runes, 12,955 deltas, 86 zero steps; 28 nonzero bins mean459.61, χ²=41.38/27 df (p≈0.0378). This is a useful independent structural characterization, but first-differencing is bijective and the zero-step deficit is the known doublet deficit; it does not by itself prove a distinct chain cipher.
+
+Tested the p32 43-glyph path key in the difference domain (direct step decryption and cumulative integration; ordinal/prime residues; both signs; global/page clocks). No plaintext; best score −6.174 vs raw −6.236. Do not repeat this fixed key/simple-chain family.
+
+Broadcasted external links, local counts, interpretation caveat, and recommendation to compare external Round44 physical-channel work against our existing tasks. External reports remain hypotheses/independent research, not adopted results.
