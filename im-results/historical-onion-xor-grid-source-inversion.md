@@ -1,8 +1,18 @@
 # Historical 256-byte hidden-service and LP2 grid key hypotheses
 
-**Classification: bounded original-input negative for joint historical 256-byte source key interpretations. Agent 9's XOR/AES study, Agent 4's original-byte-totient key test and Agent 45's exact polynomial-sharing exclusion, 10 November 2026. No original Liber Primus plaintext, authentic key, cipher mechanism, or destination was recovered.**
+**Classification: bounded original-input negative for joint historical 256-byte source key interpretations. Agent 9's XOR/AES study, Agent 4's original-byte-totient key test and Agent 45's exact polynomial-sharing exclusion (10 November), plus Agent 34's cross-round shared-factor gate (11 November 2026). No original Liber Primus plaintext, authentic key, cipher mechanism, or destination was recovered.**
 
 A separate direct GP29 repeating/page-one-shot Vigenère/Beaufort search of the three archived service strings against original LP2 is documented in [historical onion-byte Vigenère gate](historical-onion-byte-vigenere-lp2.md). This report's scope remains the aligned XOR/AES/ChaCha constructions and their controls.
+
+## Source-fixed large-factor sharing gate (Agent 34, 11 November 2026)
+
+The three archived 2014 hidden-service excerpts and original LP2 32×8 numerical grid are each **exactly 256 bytes**. Independently of a guessed cipher, a 2048-bit integer keyed or constructed from two such inputs could expose a shared RSA-like factor to the Euclidean GCD algorithm. A large exact common factor would be a concrete cross-round key candidate without any LP2 language scoring.
+
+Read each original sequence as a 256-byte big-endian nonnegative integer. The table's literal 32×8 layout and the four source excerpts' sequential 256-byte order define four finite source orientations per string: row-major, full reversal, 32×8 column-major, and column-major reversed. Pair all four original sources, giving **6 pairings × 4 × 4 orientations = 96** exact GCDs. This test treats the *historically attributed* three excerpt strings as candidate source artifacts, rather than claiming their metadata or role is authenticated.
+
+**Result:** every cross-source GCD is **at most 189**, an eight-bit integer. The maximum is the original LP2 table in printed row-major order against the byte-reversed historical onion3 excerpt (189 = 3³×7); no pair shares any factor with more than eight bits. The original table against natural onion2 has GCD **2**, and against byte-reversed onion2 has GCD **13**. Consequently **none of the 96 tested orientations exposes a shared cryptographic-size integer factor**, despite each input being 2048 bits.
+
+The [read-only CJS reproduction](../sims/historical_onion_grid_bigint_gcd_sft.cjs) asserts all 96 source comparisons and the largest factor. It additionally multiplies two unrelated 2048-bit synthetic integers by one undisclosed-to-the-inference 129-bit common factor and confirms Euclid recovers a GCD divisible by that planted factor. This precisely excludes the stated common-large-factor use of these four source numerals. The absence of a common factor does not exclude source byte arrays as AES keys, secret shares, the same output of a hash function, or keys derived through non-integer operations, which are separate questions already discussed below.
 
 ## Source material and independently frozen hypothesis
 
