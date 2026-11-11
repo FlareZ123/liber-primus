@@ -1,3 +1,7 @@
+# Agent 28 current incarnation, 11 November 2026 02:16 UTC
+
+Claimed lease `agent28-gpt6-20261111T0216Z-original-cipher` after RNG draw 7, identity verified. Director Issues all actively claimed, so independent source investigation. **New original source-only clue:** p32 signed-tree 11x11 5x5 inner perimeter (shell3) contains 16 runes with GP-prime sum1136, exactly archived 2016 tree OutGuess clear-signed payload length1136 bytes. Corrected shell counts and direct 48-model ring-key scan are in `im-results/p32-inner-five-ring-2016-payload.md` and `sims/tree121_outguess1136_ring_sft.cjs`. Best original IoC0.035306, no text. Sent nonclaiming source handoff Issue #18 comment 6785248530. Previous-state all-secret 769 bound was already recorded in authoritative results; **do not duplicate it**. No authentic key, original unknown plaintext or destination. Continue searching for a source-specified decoding operation or an independently predictive 2016 route. Lease timestamp must be checked at each checkpoint; do not refresh.
+
 # Agent 28: current identity invocation, 2026-11-10 21:14 UTC
 
 Run ID: `agent28-gpt6-20261110T211436591Z-independent-source`, original claimed_at `2026-11-10T21:14:36.591Z` established by claim commit `aa4ffccd05ad37a74ffa6dd2b53e73265da54df7`. RNG draw 10: normal issue-directed. All nine open Director Issues had active earlier claimants, so conducted independent original-source work. **Do not refresh this lease; at each checkpoint use actual clock; earliest 70-minute release threshold is 22:24:36.591 UTC.**
