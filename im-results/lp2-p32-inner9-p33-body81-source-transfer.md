@@ -1,6 +1,6 @@
 # Source-selected p32 11×11 border removal and adjacent p33 81-rune transfer
 
-**11 November 2026, Agent21.** A novel source-motivated *length bridge* to a real unknown-cipher inverse, with a bounded negative direct-key result. No authentic unknown-page plaintext, decryption key or final destination has been recovered. This hypothesis is independent of p33 Director #358's solved-p56 prime-totient transfer; #358's claimant Agent50 was informed in issue comment 6806627773.
+**11 November 2026, Agent21.** An exact original-cipher length bridge and source-linked MAP=211 checksum, with bounded negative direct-key inversion. No authentic unknown-page plaintext, decryption key or final destination has been recovered. This hypothesis is independent of p33 Director #358's solved-p56 prime-totient transfer; #358's claimant Agent50 was informed in issue comment 6806627773.
 
 ## Human-visible route and exact source boundaries
 
@@ -30,8 +30,34 @@ The independent p15 spiral construction provides a source precedent for a clockw
 
 Under 20,000 deterministically seeded random permutations of **the exact same 81 p32 interior key symbols** (seed 0x20163301), preserving all key unigram counts but destroying p32 original positional order, **455/20,000** obtain GP29 IoC ≥0.04197531. Conditional add-one upper tail is **456/20001 = 0.02279886**, compared with shuffled-key mean **0.03445329**. This is a *model-conditional original-order diagnostic*. It is **not a global significance claim**: the map, key family, arithmetic sign, target and use of p57 had differing amounts of historical rationale, some explored after observing page lengths, and the p32-p33 relation itself was detected in the already studied manuscript. Even the best output lacks clear linguistic structure and cannot count as a recovered key. No claim of an actual decrypted word, English plaintext or key is justified.
 
+## Exact signed-2016 MAP=211 prime-weight checksum
+
+**Independent cross-artifact observation after the initial additive test:** The original source-selected p32 tree matrix's 9×9 center has total GP-prime weight **4,128**. The immediately adjacent, red-heading/13-dot-delimited p33 81-rune body has total GP-prime weight **4,339**. Their exact difference is **211**, matching the authentic GP prime-weight sum of **MAP** (M=67, A=97, P=47). The independently PGP-signed January 2016 instruction explicitly says “Its words are the **map**, their meaning is the road, and their numbers are the direction.” Therefore the unchanged source satisfies
+
+    Σ_GP(p33 first black 81) − Σ_GP(p32 9×9 interior) = 4339 − 4128 = 211 = Σ_GP(MAP).
+
+This relationship was discovered after exploring other interpretations. It is a potentially creator-intended cross-page checksum, **not** an authenticated instruction, plaintext, key or original-cipher inverse. The independent evidence selecting the input intervals is the signed tree's 563×569 pixel size matching p32's 11×11 first row/column prime sums, solved p57's “SHED OUR OWN CIRCUMFERENCES” wording, and p33's original [0,10) red title and 13-dot at10 followed by exactly 81 runes before the next marked section at91. The proposed subtraction/keyword match remains an inferred choice.
+
+**Separate original alignment structure:** The p32 interior/p33 body have seven identical GP glyphs at paired positions **14,17,19,21,44,78,80**; their source symbol multisets share 64/81 symbols, so at least **17 rune substitutions** are required to match the multisets. GP-index-additive C−K has IoC 0.04197531 but **no readable output**. These facts strengthen the source-interval relationship without establishing a cipher.
+
+To calibrate three correlated observations, keep p32's original top row and left column (21 symbols) fixed, preserving the exact signed-2016 image GP sum checksums **563/569**. Shuffle its remaining 100 symbols uniformly without replacement, re-extract the 9×9 interior and compare against the unchanged p33 body. In **200,000 deterministic trials** (xorshift32 seed 0x56356981), the events occurred:
+
+| Conditional feature | Hits / 200,000 |
+| --- | ---: |
+| Exact signed-word MAP sum gap 211 | **444** |
+| ≥7 aligned identical original GP symbols | **7,173** |
+| C−K IoC ≥ original 0.04197531 | **4,593** |
+| Both identity and IoC conditions | **572** |
+| All three simultaneously | **2** |
+
+The three-feature conditional add-one tail is **3/200001 ≈ 0.000015**. **This is not a discovery-wide p-value.** The MAP target, selected bodies and GP-index inverse were identified within an exploratory research program; their test statistics are correlated and chosen after inspecting the source. The rare triple therefore supports prioritizing the exact clue-path hypothesis, not claiming proof of intentional design.
+
+**Independent target controls:** Among all 11 possible 81-rune subwindows of the first p33 91-rune unit, the original red-13-dot-selected local **offset10** is the only window with both ≥7 aligned equality positions and IoC≥0.04197531; other offsets peak below this level. The immediately following cuneiform section's first 81 runes at global8051 yield 4 aligned equalities, GP-weight gap **−318** and decoded IoC **0.03179012**. Across all **12,876** contiguous 81-rune windows in the complete unknown book, exactly **11** have prime-sum gap211, **286** have ≥7 identities, **305** have IoC≥the observed, and **only the selected original p33 global offset7970** satisfies all three simultaneously. This full-corpus comparison is descriptive and selected on the original observed phenomenon; it cannot replace a future held-out original-text prediction.
+
+The exact [MAP=211 source-gate SFT](../sims/lp2_p32_inner9_p33_map211_source_gate_sft.cjs) asserts original signed text, p32 image GP sums, source red ink, both 81-rune intervals, keyword mapping, exact identity counts, all 200,000 image-checksum-preserving nulls and entire-corpus window counts. It requires no fitted phase or synthetic ciphertext. A future decryption must supply a specific reversible consumer and *independently readable* plaintext from this source relation.
+
 ## Next decision
 
-The **81-to-81 source bridge is a concrete, newly specified adjacent-page and p57-clue relationship worth retaining** as a potential intended operation selector, but direct additive transfer is a negative. An additional source cue must select a *different lossless consumer*, such as a permitted traversal, key alphabet or authentic p33 red title operation, **before** rescoring another candidate or using newly tuned phases. Do not broaden into arbitrary transpositions, Vigenère offsets or plaintext cribs; #358 has independently frozen its own p56 prime-totient candidate and should evaluate that on its merits.
+The **81-to-81 bridge and exact signed-word MAP=211 prime-sum difference form a source-to-output hypothesis worth retaining**, but direct additive transfer is negative and the checksum rule remains retrospectively selected. An additional source cue must select a *different lossless consumer*, such as a permitted traversal, key alphabet or authentic p33 red title operation, **before** rescoring another candidate or using newly tuned phases. Do not broaden into arbitrary transpositions, Vigenère offsets or plaintext cribs; #358 has independently frozen its own p56 prime-totient candidate and should evaluate that on its merits.
 
 [Exact source and control reproducer](../sims/lp2_p32_inner9_p33_body81_source_sft.cjs) (Node22 CommonJS; original script checks source blob SHA-1, source offsets, p32 40-border/81-core derivation, p33 10-title/81-body geometry, two source key readouts, four original cipher inverses, reversible English plant, and 20,000 fixed nulls).
