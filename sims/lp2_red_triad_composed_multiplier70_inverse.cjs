@@ -198,7 +198,7 @@ function main() {
   }
   assert.equal(trace(beta), 9);
   assert.equal(norm(beta), 24);
-  assert.equal(mod(24 ** 7), 0); // overwritten below with exact modular power
+  assert.equal(mod(24 ** 7), 1); // 24 has exact order seven
   let normPower = 1;
   for (let i = 0; i < 7; i++) normPower = mod(normPower * 24);
   assert.equal(normPower, 1);
