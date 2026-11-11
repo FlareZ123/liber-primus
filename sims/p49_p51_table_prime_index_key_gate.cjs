@@ -89,7 +89,7 @@ function main(){
  const render=a=>{let i=0;return wordLengths.map(n=>a.slice(i,i+=n).map(x=>corpus.translit[x]).join("")).join(" ");};
  const directVariants=input=>{
   const k=input.map(b=>mod(ps[b]-1)),out=[];
-  for(const offset of [0,10])for(const reset of [false,true])for(const mask of masks){
+  for(const offset of [0,10])for(const reset of [false,true])for(const mask of directMasks){
    const plain=directDecode(stream,k,offset,reset?p49.length:null,mask.set);
    out.push({offset,resetAtP51:reset,nullMask:mask.name,score:trigramScore(plain,model),plaintext:render(plain)});
   }
