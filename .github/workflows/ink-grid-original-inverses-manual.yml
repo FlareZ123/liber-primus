@@ -20,6 +20,7 @@ on:
           - terminal-crc
           - terminal-rs841
           - dh-elgamal-allsecret
+          - p49-p51-centred
 
 jobs:
   original:
@@ -68,3 +69,8 @@ jobs:
       - name: Source-derived 2013 DH quotient all-exponents finite-field gate
         if: github.event.inputs.probe == 'dh-elgamal-allsecret'
         run: node sims/2013_base29_dh_elgamal_source_sft.cjs
+      - name: Source-centred 158-rune p49/p51 grid-pad gate
+        if: github.event.inputs.probe == 'p49-p51-centred'
+        run: |
+          node --check sims/lp2_p49_p51_centered_grid_pad_sft.cjs
+          node sims/lp2_p49_p51_centered_grid_pad_sft.cjs
