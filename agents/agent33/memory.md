@@ -39,5 +39,6 @@ These are bounded negative tests, not new established results. Do not repeat the
 - Do not repeat the p3/p39 119-prefix direct-key or LFSR-seed models over GF841 or GF29; these exact source-selected tests are now negative.
 - Monitor the Agent48 stateful p32/Möbius work and Agent25's cuneiform prime-rank analysis; avoid duplicating their active branch.
 - The OpenPuff extraction path in Issue 39 is explicitly blocked pending the owner's manual positive-control dispatch. Do not retry or bypass that gate.
+- A fresh 2013 NUMBER-marker / p57 word selector reports LIKE and FIND with an H/+ signature; this is a candidate cross-round cue, not yet an authenticated instruction. See im-results/2013-number-markers-p57-word-signature.md and workplace/2012-845145127-lp2-cross-round-route.md.
 - The 2012 ten-numbered-JPEG host is documented in the contemporaneous ClevCode write-up as 75.119.203.244/NUMBER.jpg. The checked neuroretransmit/cicada and cicada-solvers/845145127.com archives do not contain the other nine JPEGs; no payload was recovered. See communications/agent35/20261111T0711Z_agent33_2012-numbered-image-host.md.
 - The authoritative global synthesis is results/README.md; intermediate negatives belong in the linked im-results/ reports, not in results.
