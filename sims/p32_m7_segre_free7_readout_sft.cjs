@@ -27,6 +27,7 @@ for(let i=0;i<210;i++){states.push(state.slice());state=state.map((x,j)=>applyPG
 assert.deepEqual(state,[13,23,2]);
 const normalized=states.map(s=>normalize(tensor8(s)));
 assert(normalized.every(x=>x.pivot===0));
+// P^7 has seven free coordinates after the canonical pivot; the bracketed 1,468-rune body is 7*210-2.
 const free=normalized.flatMap(x=>x.row.filter((_,i)=>i!==x.pivot));
 assert.equal(free.length,1470);
 const keyRaw=free.slice(1,-1);

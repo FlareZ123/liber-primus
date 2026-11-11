@@ -154,6 +154,17 @@ The external chain-cipher hypothesis is indexed at [Leo-Y-Zhang/LiberPrimusAnaly
 
 Every model exactly re-encrypts the original target and recovers a native-GP positive plant. The raw bracketed body scores **−10.66230334**; the full page span scores **−10.66203386**. These are bounded negatives for the frozen prime/totient M7 key readout and chain-cipher family, not evidence against every possible projective readout. Reproducer: [p32_m7_prime_chain_readout_sft.cjs](../sims/p32_m7_prime_chain_readout_sft.cjs).
 
+
+## Seven projective degrees of freedom / exact 1,468-rune bracket gate
+
+A normalized Segre point in P⁷ has **seven free coordinates**: one of its eight homogeneous coordinates is the pivot fixed to 1. In this M7 orbit the canonical binary-order pivot is coordinate 0 for all 210 states. Removing that pivot from each state gives **7×210 = 1,470** free coordinates. Removing the first and last boundary coordinates gives **1,468**, exactly the source-bracketed cuneiform body p33 local91→p39 local119. The two outside units total **91+121 = 212 = 210+2**, matching the 210 fixed pivots plus the two endpoint coordinates. This is a structurally motivated readout, not proof that the endpoints should be discarded.
+
+The free-coordinate stream begins 15 and ends 20; the latter matches the preceding p33 interlude rune L/20. The 1,468 middle values were tested as a key stream:
+- **Chain family:** prime-weight and totient-prime mappings into Z28; identity and both DH-shared-key-2 symbol orders; reset IV D/23 or carried IV L/20; both key signs. **24 models**, best trigram **−10.62871244** versus weakest of 933 native 1,468-rune Latin-Vulgate windows **−7.32535910**; **0/24** enter the native range.
+- **Direct additive family:** prime or totient-prime mapping into Z29; both signs. **4 models**, best trigram **−10.65320020**; **0/4** enter the native range.
+
+All models re-encrypt the original bracketed body exactly and recover a native-GP positive plant. The raw body score is **−10.66230334**. The exact 7×210−2 length fit is worth preserving, but these fixed prime/totient readouts do not recover plaintext. Do not expand this family with arbitrary coordinate permutations, dropped positions, or phases. Reproducer: [p32_m7_segre_free7_readout_sft.cjs](../sims/p32_m7_segre_free7_readout_sft.cjs).
+
 ## What this changes
 
 The p32 row-major projective map can now be selected from the complete 16-member physical corner family using the adjacent cuneiform numbers. Those same values select its infinity cycle, prescribe the p3-to-p39 triad correction, and produce an 8×210 geometry across the full pp33–39 page span, not the 1,468-rune bracketed cuneiform body.
