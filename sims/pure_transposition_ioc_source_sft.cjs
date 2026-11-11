@@ -126,6 +126,41 @@ assert.equal(ioc(permuted), terminalIoc);
 assert.equal(minEditsAfterRelabelAndTranspose(terminal, permuted), 0);
 assert.equal(minEditsAfterRelabelAndTranspose(terminal, terminal.map(v => (v + 7) % 29)), 0);
 
+/**
+ * Optimal edit bound after granting each physical rune-bearing page a
+ * different 29-rune alphabet permutation and any within-page transposition.
+ * @param {number[]} target
+ * @returns {number}
+ */
+function pagewiseMinimumEdits(target) {
+  assert.equal(target.length, book.length);
+  let offset = 0, edits = 0;
+  for (const page of corpus.pages.filter(p => p.page < 56 && p.indices.length)) {
+    const n = page.indices.length;
+    edits += minEditsAfterRelabelAndTranspose(
+      page.indices, target.slice(offset, offset + n));
+    offset += n;
+  }
+  assert.equal(offset, book.length);
+  return edits;
+}
+
+/**
+ * @param {number[]} values
+ * @returns {{n:number,minEdits:number,medianEdits:number,maxEdits:number}}
+ */
+function pagewiseWindows(values) {
+  const edits = [];
+  for (let at = 0; at + book.length <= values.length; at += book.length)
+    edits.push(pagewiseMinimumEdits(values.slice(at, at + book.length)));
+  edits.sort((a, b) => a - b);
+  return {
+    n: edits.length, minEdits: edits[0],
+    medianEdits: edits[Math.floor(edits.length / 2)],
+    maxEdits: edits[edits.length - 1]
+  };
+}
+
 const sources = [
   "resources/control/emerson_essays_2944.txt",
   "resources/control/gibran_prophet_58585.txt",
@@ -137,7 +172,8 @@ const reference = sources.map(source => {
     source,
     symbols: gp.length,
     terminal: windows(gp, terminal, terminalIoc),
-    full: windows(gp, book, bookIoc)
+    full: windows(gp, book, bookIoc),
+    independentPageKeys: pagewiseWindows(gp)
   };
 });
 assert.deepEqual(reference.map(x => x.symbols), [323083, 62696, 217644]);
@@ -146,10 +182,13 @@ assert.deepEqual(reference.map(x => x.full.n), [24, 4, 16]);
 assert.ok(reference.every(x => x.terminal.belowOrEqual === 0 && x.full.belowOrEqual === 0));
 assert.deepEqual(reference.map(x => x.terminal.minEdits), [48, 51, 45]);
 assert.deepEqual(reference.map(x => x.full.minEdits), [4467, 4378, 4219]);
+assert.deepEqual(reference.map(x => x.independentPageKeys.n), [24, 4, 16]);
+assert.deepEqual(reference.map(x => x.independentPageKeys.minEdits), [3437, 3380, 3171]);
+assert.equal(pagewiseMinimumEdits(book), 0);
 
 console.log(JSON.stringify({
-  classification: "all-secret global alphabet relabeling and positional permutation bound",
+  classification: "all-secret global and physical-page-local alphabet and position permutation edit bounds",
   original: {terminalLength: terminal.length, terminalIoc, bookLength: book.length, bookIoc},
   references: reference,
-  logicalLimit: "Any global GP29 alphabet bijection plus arbitrary positional permutation; additional rune substitutions are bounded against finite GP-English controls. Page-changing keys, other registers, variable-rate transformations or additional cipher layers are not excluded."
+  logicalLimit: "Any global GP29 alphabet bijection plus arbitrary positional permutation; additional rune substitutions are bounded against finite GP-English controls. Subpage-changing keys, other registers, variable-rate transformations or additional cipher layers are not excluded."
 }, null, 2));

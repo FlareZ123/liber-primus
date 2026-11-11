@@ -46,8 +46,21 @@ This follows by matching largest frequency bins to largest bins; any less-ordere
 
 The reproducer asserts both actual original inputs and all reference lengths. It also confirms zero minimum edits after an arbitrary original position permutation or a bijective global alphabet rotation, and the per-source frequency-optimal minima above.
 
+## Independently arbitrary alphabet and position keys per printed page
+
+A stronger model permits **55 different secret GP29 alphabet bijections**, one for each rune-bearing original physical page, and a completely unrestricted reordering of rune positions **inside each page**. Only the original page lengths are fixed. For each full-length native-GP English control window, split its 12,956 symbols at the exact original 55 page boundaries, optimize the frequency matching separately within every page, then add the resulting edit minima. No column key or alphabet permutation is guessed.
+
+| Native-GP source | Full 12,956-rune control windows | Smallest substitutions required after independent page keys |
+| --- | ---: | ---: |
+| Emerson | 24 | **3,437** |
+| Gibran | 4 | **3,380** |
+| Shakespeare | 16 | **3,171** |
+| **Across all 44 controls** | **44** | **3,171/12,956 (24.48%)** |
+
+This is the exact optimum for the stated family and finite controls: **even resetting an arbitrary 29-symbol alphabet key at every physical page and permuting that page freely requires 3,171 symbol replacements to match the closest tested English text**. It does not exclude key changes *within* pages, hidden feedback, variable-length decoding, different languages or non-GP plaintext registers. It reinforces that a simple page-reset substitution/transposition is insufficient as the entire decipherment.
+
 ## Research decision and remaining problem
 
-The full original manuscript requires **at least 4,219 substitutions relative to every tested complete source-length native-GP English register**, even after giving a hypothetical solver a fully arbitrary global alphabet permutation **and** arbitrary positional transposition. Therefore pursuing any single fixed global substitution-transposition, including arbitrary 8-column keys or full page-order searches, cannot lead directly to prose with the observed GP-English frequency profile. This class is **rejected conditional on the tested prose registers**; historical authors may have encoded a genuinely different register.
+The full original manuscript requires **at least 4,219 substitutions under one global alphabet key**, and **at least 3,171 under independently arbitrary alphabet keys and position permutations for every printed page**, to match any of the tested complete source-length native-GP English registers. Therefore pursuing any single fixed global substitution-transposition, including arbitrary 8-column keys or full page-order searches, cannot lead directly to prose with the observed GP-English frequency profile. This class is **rejected conditional on the tested prose registers**; historical authors may have encoded a genuinely different register.
 
 The next useful clue must identify an operation that changes rune counts substantially, such as a **changing key/state**, **non-GP or compressed payload**, **variable-rate mapping**, or independently prescribed additional substitution, and must predict previously withheld original ciphertext in a reversible way. The present theorem does **not** identify which such operation was used. It supplies a quantitative gate against superficial transposition-based rescues without requiring any speculative key search.
