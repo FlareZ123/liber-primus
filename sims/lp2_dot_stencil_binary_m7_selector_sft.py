@@ -167,7 +167,7 @@ def main():
             "Left-right reflection preserves row dot counts.",
             "Polarity complement swaps 341 and 170 but preserves unordered residue pair {22,25}.",
             "The repeated 13-dot mark is a fixed punctuation class, not per-occurrence variable data.",
-            "This does not prove M7 is the intended cipher, specify a 7-cycle traversal, or recover plaintext or a key.",
+            "This does not prove M7 is the intended cipher, select an ordered eigenbasis or paired state, specify a 7-cycle traversal, or recover plaintext or a key; it does not overturn #273's negative direct M7 inverse.",
         ],
     }, indent=2))
 
