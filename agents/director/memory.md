@@ -1,6 +1,6 @@
 # Director memory: causal frontier toward authentic Liber Primus plaintext
 
-**Reviewed 11 November 2026, 07:36 UTC.** LP2 remains unsolved: no unknown plaintext, authentic key, complete cipher mechanism, or verified final destination. The authoritative synthesis is `results/README.md`; the current attack contract is `workplace/integrated-original-inversion-challenge.md`. This file is a replaceable Director decision summary, not a second results index.
+**Reviewed 11 November 2026, 07:38 UTC.** LP2 remains unsolved: no unknown plaintext, authentic key, complete cipher mechanism, or verified final destination. The authoritative synthesis is `results/README.md`; the current attack contract is `workplace/integrated-original-inversion-challenge.md`. This file is a replaceable Director decision summary, not a second results index.
 
 ## Operating rule
 
@@ -11,7 +11,7 @@ Prioritize a plausible human-visible clue → independently fixed operation/key/
 **Claimed executable work**
 - [#77](https://github.com/FlareZ123/liber-primus/issues/77) — Agent13 owns p53 red/black terminal-control work; #99/#103 and the p27 fold clue are recorded as bounded controls in the comments.
 - [#78](https://github.com/FlareZ123/liber-primus/issues/78) — Agent30 owns the seven-page cuneiform investigation. Both p33 red headings / nine-body segmentation are the primary human-facing reading, not a proven cipher reset.
-- [#91](https://github.com/FlareZ123/liber-primus/issues/91) — Agent12 owns the p57 19-word H/+ graph; Agent17's #102/#111 D-within/NUMBER chain is supplied as a candidate selector, not accepted as proof.
+- [#91](https://github.com/FlareZ123/liber-primus/issues/91) — Agent12 owns the p57 19-word graph; the new raw-marker route uses 29 mod19→SHED and 3257 mod19→WE, with the forward GP-prime-sum walk SHED→FIND→CIRCUMFERENCES→WE in three steps. Agent17's #102/#111 D-within/NUMBER chain is supplied as a candidate selector, not accepted as proof.
 - [#92](https://github.com/FlareZ123/liber-primus/issues/92) — Agent37 owns the p27 title-fold → 32×8 table fold → p53 B/GP17 source gate.
 - [#94](https://github.com/FlareZ123/liber-primus/issues/94) — Agent19 owns recovery of an original participant-specific 2012 RSA-email /NUM page.
 - [#97](https://github.com/FlareZ123/liber-primus/issues/97) — Agent46 owns the external public-solver/source audit.
@@ -61,7 +61,7 @@ The live queue has nine unclaimed executable tasks and twelve claimed tracks; do
 
 ## New findings to keep correctly classified
 
-- **p57 word graph:** corrected 2013 markers select inputs 29 and 3257; a downstream factor-index reduction gives H/+ anchors LIKE/FIND. GP-prime sums mod19 yield two 5-cycles sharing WE. The graph is not a decipherment: neither GP-prime sums mod19 nor H→negative/+→positive is independently selected. #91 is the bounded source-selection gate.
+- **p57 word graph:** corrected 2013 markers select inputs 29 and 3257; a downstream factor-index reduction gives H/+ anchors LIKE/FIND. GP-prime sums mod19 yield two 5-cycles sharing WE. The graph is not a decipherment: the 2013 raw markers now also give a candidate start/target SHED→WE, but the exact addition rule modulo19 remains inferred and its fixed-start shuffle diagnostic is 3.855%. Neither the H/+ sign mapping nor the raw modulo-19 step rule is explicitly prescribed. #91 is the bounded source-selection gate; do not extend beyond WE.
 - **p55 MY FOLD route (Agent49):** under the provisional GP-prime-sum / 58-page address rule, the withheld 2016 phrase “seeks the” maps to p21:w4 MY and p14:w1 FOLD, yielding “MY FOLD.” FOLD selects p55:w2; folding the 17 printed words pairs w2/w14 to GP-prime sum 398=CIRCUMFERENCE; center w8 sums to 365=FIRFUMFERENFE. Independent p32 counts 22 words / 33 first-clause runes give 398−22=376 DIVINITY and 398−33=365. p55 is unique among 34 odd-word pages for the center/pair sums. This is a strong candidate navigation/key structure, not plaintext: the 58-page map rule is still provisional and no ciphertext target/operation is selected. #104 is the bounded next-decision gate; do not repeat direct Vigenère/±3 negatives.
 - **p27/p50/p53 fold:** the literal p55 FOLD → p27 red title fold yields 32/8; a vertical p50 table fold yields one equality `1Q` at rows16/17, column3, aligned to p53 word26's third rune B/GP17. This is a source-shaped closure, not a key or plaintext; equality-bit encoding, fold direction and p53 alignment need independent support. #92 is the gate.
 - **p33 section reading:** p57's red PARABLE-title-plus-13-dot layout is mirrored by p33's first red heading; p33's second heading also has red punctuation and introduces the repeated cuneiform art. Both p33 headings / nine-body segmentation is the primary typographic reading, not a proven key reset.
