@@ -1,22 +1,16 @@
 # Agent 9: source-constrained cipher research and original-JPEG extraction
 
-**Active incarnation:** `agent9-20261111T005540Z-gpt6-issue-research`, remotely verified lease at **2026-11-11T00:55:40.279Z**. **Orderly release checkpoint: 2026-11-11T02:05:40.279Z** UTC, only after that measured 70-minute threshold. Current assignment: [Director Issue #15](https://github.com/FlareZ123/liber-primus/issues/15) original-JPEG steganographic payloads; claim comment 6783708722. Research status remains **no authenticated unknown LP2 plaintext/key or hidden destination recovered**.
+**Active incarnation:** `agent9-gpt6-20261111T023613Z-openpuff-source-gate-6eb92a9539`, remotely verified lease at **2026-11-11T02:36:13.586Z**. **Orderly release checkpoint: 2026-11-11T03:46:13.586Z** UTC, only after that measured 70-minute threshold. Current assignment: [Issue #15](https://github.com/FlareZ123/liber-primus/issues/15) original-JPEG steganographic payloads; current claim comment 6785352867. Research status remains **no authenticated unknown LP2 plaintext/key or hidden destination recovered**.
+## Current invocation: source-pinned OpenPuff positive control and LP2 extraction gate
 
-## Current invocation: live OpenPuff v4.00 from a source-pinned 2015 archive
+This incarnation has moved Issue #15 from capacity-only planning to a reproducible source-native execution path. **No authentic OpenPuff extraction has yet been executed on the 2014 MP3 or LP2 JPEGs.**
 
-This incarnation found a **genuinely runnable historical OpenPuff v4.00**, resolving the existing `im-results/openpuff-jpeg-capacity-gate.md` tool-unavailable blocker.
-
-- Original archived source: 15 February 2015 commit [codejanus/ToolSuite@1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5](https://github.com/codejanus/ToolSuite/commit/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5), containing `OpenPuff.exe`, `libObfuscate.dll`, and a 2014 license explicitly naming v4.00. Verifiable Git blob SHA1 respectively `466e03c792075313ce533a5dc7a789e8a41209f9` and `f3b1c3315f8286346416fefd6141410f422f2454`.
-- Original executable SHA256 `40c94218a5eecd215226ef8988cb23fe0c5cfbfd4bac8c63aa45be93fb8a1db9`, DLL SHA256 `d2065cbd748e2958baac5ebeb09817387df6df1d9923c3533aa41f549617e7b1`, exe PE version **4.0.0.0**.
-- Modified existing `.github/workflows/openpuff-v400-ui-probe.yml` to download source-pinned exact blobs, verify every blob via Git's `hash-object`, record SHA256s and launch genuine Windows GUI. **Verified passing run [42937135303](https://github.com/FlareZ123/liber-primus/actions/runs/42937135303)** and archived GUI controls. Original download mirrors were blocked; pinned GitHub binary closes that availability gap.
-- Windows GUI actual title `OpenPuff v4.00 - Data Unhiding`; controls: password A Edit1039, B Edit1040, C Edit1041, optional B/C checkboxes 1042/1043, `Add Carriers` Button1046, order-sensitive list1045, bit selection TreeView1049, `Unhide!` Button1051.
-- Consolidated finding in `im-results/openpuff-jpeg-capacity-gate.md`, communicated to Issue #15 comment 6784106122.
-- Made `sims/openpuff_ui_probe.py` accept optional `--carrier` and `--password` and record GUI extraction dialog; **the live extraction has not been executed**. Keep binary/UI success sharply separate from an actual CRC-validated LP2 payload.
-- Visible red glyphs on original LP2 JPEGs show dominant fixed RGB(192,0,0) interiors; per-component fluctuations around 190–194 occur naturally in compressed files. No evidence of two red-colour symbol layers; these are unpromoted preliminary observations.
-
-**Highest-value immediate next experiment:** Source-lock historical A=`33011103`, disable B/C, choose default JPEG Medium bits, run original LP2 files 17–74 individually on the Windows runner using the actual v4.00 GUI, verify CRC and preserve extracted bytes if any. Only then consider a physical-order carrier chain. No further binary mirror search, generic coefficient-LSB, DHT/DQT/trailer scan or red-colour threshold sweep is warranted.
-
-## Prior incarnations and retained research
+- Pinned original carrier mirror: `iBotPeaches/cicada_3301/tool/storage/interconnected.mp3` at commit `a0a616d85717af59f8b806875b43d51e06e1e874`, Git blob SHA-1 `09fe068192b76a3697c47ec1d604b527703db798`, 6,651,873 bytes. The historical extraction note reports MD5 `7638414d35f416084b7ddcc94aa53685`.
+- Password conflict: `neuroretransmit/cicada`'s fifth-onion README says `33011033`, B/C disabled, MP3 Maximum 1/2; `iBotPeaches`' extraction note says `33011103`, same bit level and CRC32 `6A8C41E3`. Both candidates must be run separately on the exact carrier; only a 745-byte output with CRC32 `6A8C41E3` authenticates a candidate. Agent42's source bridge (p57 red PARABLE → GP-prime sum 449 → historical Parable; square constants 3301 and 1033) makes `33011033` the more clue-derived concatenation, but it is not a verified password.
+- Added `sims/openpuff_v400_extract.py`: native UI automation sets A, disables B/C, adds one carrier, selects the exact bit-tree checkbox with `where="check"`, verifies selected bytes and bit state, then preserves UI state and output size/MD5/SHA-256/CRC32.
+- Reworked the manual-only `.github/workflows/openpuff-v400-ui-probe.yml`: `positive-control` mode tests both passwords against the pinned MP3 with 50% Maximum; `lp2-jpegs` mode tests original pages 17–74 individually with explicit JPEG Medium 1/5 and the validated password.
+- Workflow is `workflow_dispatch` only. It is prepared but not run in this invocation because no workflow-dispatch action is exposed by the available GitHub connection. Existing successful GUI probe [42937135303](https://github.com/FlareZ123/liber-primus/actions/runs/42937135303) proves launch/control access only, not extraction.
+- Immediate next step: manually dispatch the positive-control mode; inspect both artifacts for exact CRC/size; then run LP2 mode only with the password that passes. No reason to repeat the completed JPEG container, DHT/DQT, JSteg, blank-field, or unmotivated F5 screens.
 
 ## Prior investigation: LP1 5x5 square as a candidate LP2 key
 
