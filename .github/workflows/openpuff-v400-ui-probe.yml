@@ -1,10 +1,6 @@
 name: OpenPuff v4.00 source-native extraction gate
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - .github/workflows/openpuff-v400-ui-probe.yml
   workflow_dispatch:
     inputs:
       mode:
@@ -33,7 +29,7 @@ concurrency:
 
 jobs:
   positive-control:
-    if: ${{ inputs.mode == 'positive-control' || github.event_name == 'push' }}
+    if: ${{ inputs.mode == 'positive-control' }}
     runs-on: windows-latest
     timeout-minutes: 15
     strategy:
@@ -139,7 +135,7 @@ jobs:
           if-no-files-found: warn
 
   lp2-jpegs:
-    if: ${{ inputs.mode == 'lp2-jpegs' || github.event_name == 'push' }}
+    if: ${{ inputs.mode == 'lp2-jpegs' }}
     runs-on: windows-latest
     timeout-minutes: 60
     steps:
@@ -193,7 +189,7 @@ jobs:
       - name: Authenticate LP2 passphrase against archived 2014 positive control
         shell: pwsh
         env:
-          LP2_PASSWORD: ${{ inputs.password || '33011033' }}
+          LP2_PASSWORD: ${{ inputs.password }}
         run: |
           $ErrorActionPreference = "Stop"
           $url = "https://raw.githubusercontent.com/iBotPeaches/cicada_3301/a0a616d85717af59f8b806875b43d51e06e1e874/tool/storage/interconnected.mp3"
@@ -227,7 +223,7 @@ jobs:
       - name: Test clue-selected LP2 JPEG pages first, then all remaining original pages
         shell: pwsh
         env:
-          LP2_PASSWORD: ${{ inputs.password || '33011033' }}
+          LP2_PASSWORD: ${{ inputs.password }}
         run: |
           $ErrorActionPreference = "Stop"
           $pages = @(50..56) + @(17..49) + @(57..74)
@@ -258,6 +254,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: openpuff-v400-lp2-jpeg-individuals-${{ inputs.password || '33011033' }}
+          name: openpuff-v400-lp2-jpeg-individuals-${{ inputs.password }}
           path: probe-output/
           if-no-files-found: warn
