@@ -1,43 +1,64 @@
-# Page 57 “circumferences” clue: word-interior extraction is a negative
+# P57 circumference instruction: source-bounded word/ring gate
 
-**Classification:** source-motivated, reproducible negative. No plaintext, key, or target address recovered. This is an exploratory test of one literal reading of the parable, not a claim that the parable must specify a cipher.
+## Current conclusion
 
-## Human-solver hypothesis
+The solved p57 text supports a **lossless boundary/interior split**, but the visible source does not select a reversible, symbol-changing word transform. A ring-only permutation is also insufficient for p55: its 76-rune index of coincidence is below every matched native 76-rune English window. The missing element is an explicit source-derived state/update rule, not another key search.
 
-The solved physical LP2 page 57 (original combined image `resources/liber-primus/74.jpg`) reads:
+This is an intermediate negative result, not a claim that the wider p57 clue is irrelevant.
 
-> PARABLE: Like the instar tunneling to the surface. We must shed our own circumferences. Find the divinity within and emerge.
+## Source facts and exact counts
 
-“Instar” is the cicada nymph stage, not “instant”. A literal textual interpretation is to regard each printed rune-word as having a circumference, remove its first and last rune, and inspect the interior. “Find the divinity within” additionally makes the previously used GP Vigenère key DIVINITY a plausible, but not compelled, candidate for the interior.
+The p57 body has **19 words and 88 GP runes**. Its first sentence has **7 words**. Using the natural word-local definition of circumference:
 
-The test was fixed to the existing canonical continuous word parser. It did not split words at page wraps: the 32 words crossing page boundaries remain intact.
+- length 1: keep the sole rune once as the boundary; interior is empty;
+- length 2: keep both runes as the boundary; interior is empty;
+- length 3 or more: boundary is first and last rune; interior is the middle.
 
-## Exact test and result
+Applied to all 19 p57 body words, this gives **38 boundary runes and 50 interior runes**. Applied to the first seven words only, it removes **14 boundary runes**, leaving **74**. That 74 equals the combined cell count of the paired source-linked **7×7 and 5×5** squares. Their concentric ring sizes are:
 
-The original unsolved corpus contains **12,956 runes**, **2,896 continuous words**, and **32 cross-page words**. Removing both endpoint runes from every word leaves **7,247 interior runes**. Words of length one or two have no interior.
+- 7×7: 24, 16, 8, 1
+- 5×5: 16, 8, 1
 
-The GP spelling of DIVINITY is **DIUINITY** (the GP alphabet represents V with U). On the extracted interiors, test exactly 32 configurations: both Vigenère directions, all eight cyclic key starting phases, and either one continuous key clock or a reset at every word.
+There are seven rings and 74 cells in total. This is a notable count concordance: seven first-sentence words, seven rings, and 74 runes after removing the first seven words' endpoints. It is not yet an ordering or cipher rule. If “circumferences” applies to every word, the natural result is 50 interiors, not 74; the source does not explicitly fix that scope.
 
-| Measurement | Original words | Edge-stripped interiors |
-|---|---:|---:|
-| Runes | 12,956 | 7,247 |
-| Index of coincidence | 0.0344784 | 0.0344735 |
-| Within-word doublets | 63 / 10,060 = 0.006262 | 33 / 4,882 = 0.006760 |
-| English quadgram coverage | 44.13% | 45.11% |
-| Mean log quadgram count | −1.1380 | −1.0297 |
+The p55 page has **17 words and 76 runes**: one singleton, five two-rune words, and eleven longer words. The same lossless split gives **33 boundary runes and 43 interior runes**. No symbol is discarded.
 
-The best DIVINITY configuration is **per-word reset, subtraction, phase 5**. It scores **−1.1411** with **43.96%** quadgram coverage. None of the 32 configurations yields readable English. For calibration, the same scorer gives the known p56 and p57 cleartext controls scores **+5.7606** (100% coverage) and **+6.0524** (100% coverage), respectively. These are model scores, not p-values.
+## Ring and historical NUMBER checks
 
-The interior's IoC remains at the uniform 29-symbol floor and its doublet rate remains close to the original ciphertext's suppressed rate. Thus the literal edge-removal operation does not expose native GP English, and the explicit DIVINITY key does not repair it under the declared clock/sign family.
+The 7×7 square and the paired bottom 5×5 square both have magic sum 1033 in `resources/cicada2014-openpuff-magic-squares.txt`. Under the historical `NUMBER` interpretation documented in `im-results/onion7-magic-center-source-prime-gate.md`:
 
-## Scope
+- 7×7: 41 active cells, 8 `+` cells, 84 prime-factor tokens;
+- 5×5: 19 active cells, 6 `+` cells, 44 prime-factor tokens.
 
-This rejects only the direct “remove first and last rune of each printed word” reading, optionally followed by a repeating GP-DIUINITY Vigenère stream with the tested clocks. It does **not** rule out a different meaning of “circumferences”, a different use of DIVINITY, or a broader cipher whose intermediate plaintext is not native GP English. The page-57 parable may be philosophical rather than an operational instruction.
+The 5×5 active-cell count equals the 19 p57 body words; its 44 factor tokens plus six `+` markers equal the 50 all-word interiors. These are further count-level correspondences, not a demonstrated mapping. In the 19 active 5×5 cell factor sets, only one p57 word's pair of endpoint GP-prime weights occurs exactly: **INSTAR**, whose endpoint weights 31 and 11 match cell 341 = 11×31. The other 18 endpoint pairs do not match any active-cell factor set. At least one factor value (113) also lies outside the 29 GP prime weights, and the source supplies no reduction rule for it.
 
-No changes to authoritative `results/README.md` are warranted: this is a bounded negative, not an established decryption. Reproduce with:
+Thus the count matches preserve a plausible framing hypothesis, but neither the ring geometry nor the historical NUMBER output supplies a complete word-to-cell assignment, a factor-to-GP mapping, or a reversible update function.
 
-```sh
-node sims/instar_circumference_probe.cjs
-```
+## Decisive p55 permutation gate
 
-The script uses `sims/lp2_word_pages.cjs`, `resources/lp2-transcription.txt`, `resources/liber-primus/lp2-corpus.json`, and the checked-in English quadgram control.
+A pure ring traversal, rotation, reflection, or other permutation preserves symbol frequencies and index of coincidence. The original p55 76-rune stream has:
+
+- p55 IoC: **0.037895**
+- minimum over **47,959** body-only Gibran 76-rune GP windows: **0.041754**
+
+The p55 value is below every matched native window. Therefore no permutation-only use of the rings can give p55 the frequency structure of this native English control. This does not exclude every possible English text or a stateful substitution; it means a useful decoder must change symbols, and the source must specify how.
+
+The earlier literal edge-strip/`DIVINITY` test remains negative: the best direct additive output scored worse than raw p55 and worse than native controls. The old p55-only 43-interior extraction is lossy and is not being repeated.
+
+## What is and is not determined
+
+The only fully source-compatible reversible word operation presently fixed is the tuple split `(left boundary, interior, right boundary)` with the length-1/2 cases above; concatenating the tuple exactly reconstructs every original word. It is a representation change, not decryption.
+
+The source still does not determine:
+
+1. whether the first seven words alone or every word supplies the circumferences;
+2. which word controls which of the seven rings, or the ring start corner and traversal direction;
+3. how the two boundary runes update a 29-state register or alter the interior symbols;
+4. how square values, prime factors, and `+` markers map to GP29 symbols or shifts;
+5. the synchronization/reset rule across short words and page boundaries.
+
+“Tunnel to the surface” can motivate center-outward reading, but it does not settle those missing mappings. The 74-cell and 50-interior count matches, including the INSTAR/341 anchor, should be retained as hypotheses; they do not justify a fitted phase, an arbitrary exterior lookup table, or a free family of word ciphers.
+
+## Reproduction
+
+Run `node sims/instar_circumference_probe.cjs`. The script reports the exact p57/p55 word partitions, ring counts, conditional NUMBER outputs, endpoint-factor match, and matched p55/native IoC gate. It uses the original transcription, GP corpus, OpenPuff square resource, and Gibran body control.
