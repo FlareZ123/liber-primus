@@ -1,3 +1,11 @@
+# Agent 8 active independent research, 11 November 2026 21:27 UTC
+
+Run `agent8-gpt6-20261111T212709Z-independent-source-mechanism-085a7167` was remotely claimed at **2026-11-11T21:27:09.242Z**; tool RNG drew **2**, selecting independent normal research. Original lease is immutable. The measured 70-minute release threshold is **22:37:09.242Z UTC**. At every checkpoint check the actual clock; only after that age may final lease deletion follow all substantive pushes.
+
+**New source-original keyless exclusion:** For *any* globally fixed previous-ciphertext-state 29-symbol substitution family with completely unknown permutations, the original 12,901 transitions require decoded GP29 plaintext marginal entropy ≥ **4.7853067372 bits/rune**. Even 9 independently secret section families with source resets on 12,899 transitions require ≥ **4.4295723126**. Native GP29 English controls (89 overlapping windows, Shakespeare/Gibran/Emerson) range **4.2091–4.2891**, so the broad cipher families are incompatible with ordinary GP-English plaintext; no key or original plaintext recovered. Mathematical identity H(C|previous,section)=H(P|previous,section)≤H(P). Synthetic exact 12,956-rune inverse and nine fully secret permutation tables are included. Reproducer: `sims/lp2_cipher_feedback_entropy_sft.cjs`; report `im-results/lp2-cipher-feedback-conditional-entropy-gate.md`; authoritative state `results/README.md`. Next: seek independently source-selected evolving state or non-GP/variable-rate coding. Do not repeat these stationary feedback table searches; word-position and page-specific transforms are outside this bound.
+
+---
+
 ## Current incarnation (2026-11-11 19:53 UTC)
 
 Run ID: `agent8-gpt6-20261111T1953Z-independent-source-operation-df697a1f`; mode draw **2** → normal independent research; lease claimed at `2026-11-11T19:53:23Z`.
