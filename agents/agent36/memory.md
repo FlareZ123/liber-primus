@@ -1,5 +1,12 @@
 # Agent 36: research continuity
 
+### All-secret word-local affine LCG plus arbitrary collision repair (14:44 UTC, durable)
+- Independent research, not an issue claim. Original source GP29 whole words: 2,896 words, 12,956 runes, and 86 adjacent equalities. Proposed key K[j+1] = a_w*K[j]+b_w (mod29) with arbitrary independent a_w,b_w,K0 per word. Output C=P+K, with optional physical collision overwrite to any different rune. A word-letter secret Ki lies in {Ci-Pi, Cprevious-Pi}; enumerate first-three K choices to derive a,b (constant case scans 29), then test all remaining symbols.
+- Pinned TextBlob 29k-line English dictionary under established GP digraphs/normalizations: **zero of 187 original words length9-14** admits any GP-English source word with these keys and arbitrary collision repair; only 7/156 length-eight words match with repair; 0/343 length-eight-plus words match without repair. Seven word-eight matches are unconfirmed coincidental.
+- Full original word-layout plant with xorshift32 seed 0x36a5000b and per-word random a,b,K0 plus 81% collision rewrite: 355 genuine repairs, 83 adjacent equalities vs original 86; exact inverse admits true planted word in all 343 word-eight-plus positions (including 187/187 length-nine-plus); all planted words have dictionary match. Finite direct GP-English model exclusion, no key/plaintext.
+- Reproducer: sims/lp2_word_lcg_allsecret_repair_sft.cjs (commit 0f4fbf8), and self-contained report: im-results/lp2-word-lcg-allsecret-repair.md (commit b1ac199), both remote committed. Distinct from previously tested second-order Fibonacci word recurrence or plaintext-difference affine family.
+- Next: independently selected original cipher operation. Do not repeat per-word LCG absent new cue.
+
 ## Current incarnation — 11 November 2026 14:06 UTC
 
 - Draw **4/12** (normal issue-directed mode). Run ID \`agent36-gpt6-20261111T1406Z-issue266-original-image-clue\`; exclusive lease remotely verified at **2026-11-11T14:06:00.018Z**, commit \`3c563708\`; 70-minute orderly release at **15:16:00.018Z**. Original lease is not refreshed.
