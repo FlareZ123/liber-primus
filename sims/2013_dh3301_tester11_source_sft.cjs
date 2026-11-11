@@ -198,6 +198,54 @@ for (const e of testerCandidates) {
   assert.equal(modPow(dh.serverPublic, e, dh.modulus), dh.shared);
 }
 
+
+/** @param {number} n */
+function divisors(n) {
+  const out = [];
+  for (let d = 1; d * d <= n; d++) {
+    if (n % d !== 0) continue;
+    out.push(d);
+    if (d * d !== n) out.push(n / d);
+  }
+  return out.sort((a, b) => a - b);
+}
+
+/** @param {number} n */
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let d = 2; d * d <= n; d++) if (n % d === 0) return false;
+  return true;
+}
+
+/** @param {number} n */
+function oneBasedPrimeOrdinal(n) {
+  assert.equal(isPrime(n), true);
+  let rank = 0;
+  for (let k = 2; k <= n; k++) if (isPrime(k)) rank++;
+  return rank;
+}
+
+// Numeric cells visibly printed in the 2013 0_wisdom 5x5 square.
+// NUMBER factors composite input directly. Among the six DH representatives,
+// only 1661 exposes one of these source cells as a proper divisor.
+const wisdomNumericCells = [272, 138, 131, 151, 18, 226, 245];
+const wisdomCellSet = new Set(wisdomNumericCells);
+const numberRows = testerCandidates.map((exponent) => ({
+  exponent,
+  divisors: divisors(exponent),
+  wisdomDivisors: divisors(exponent).filter((d) => d !== 1 && d !== exponent && wisdomCellSet.has(d)),
+}));
+const numberMatches = numberRows.filter((r) => r.wisdomDivisors.length > 0);
+assert.deepEqual(numberMatches, [{
+  exponent: 1661,
+  divisors: [1, 11, 151, 1661],
+  wisdomDivisors: [151],
+}]);
+const sourceSelectedExponent = numberMatches[0].exponent;
+assert.equal(oneBasedPrimeOrdinal(151), 36);
+assert.equal(151 % 29, 6);
+assert.equal(sourceSelectedExponent % 29, 8);
+
 // Separate inbound-only log value. The base for that exchange is not preserved here.
 // These are arithmetic observations only, not a claim that its server selected base 5.
 assert.equal(modPow(5, testerExponentResidue, 3301), 3034);
@@ -338,7 +386,8 @@ assert.equal(invariantMatches[0].w[0], toyDh.serverPrivate);
 assert.equal(invariantMatches[0].coordinateSum, toyDh.modulus);
 assert.equal(invariantMatches[0].coordinateProduct, toyDh.clientPrivate);
 
-const selectedExponent = invariantMatches[0].exponent;
+assert.equal(invariantMatches[0].exponent, sourceSelectedExponent);
+const selectedExponent = sourceSelectedExponent;
 const selectedFieldExponent = invariantMatches[0].exponentMod840;
 const selectedInverseExponent = inverseModSmall(selectedFieldExponent, 840);
 assert.equal(selectedInverseExponent, 221);
@@ -406,6 +455,13 @@ console.log(JSON.stringify({
   },
   reference: { symbols: reference.length, holdout: score(holdout) },
   rawOriginal: score(original),
+  numberWisdomSelector: {
+    sourceNumericCells: wisdomNumericCells,
+    candidateRows: numberRows,
+    uniqueMatch: numberMatches[0],
+    primeOrdinal151: oneBasedPrimeOrdinal(151),
+    gpResidues: { cell151: 151 % 29, exponent1661: sourceSelectedExponent % 29 },
+  },
   invariantRows,
   selectedExponent: {
     privateExponent: selectedExponent,
@@ -413,7 +469,8 @@ console.log(JSON.stringify({
     inverseFieldExponent: selectedInverseExponent,
     base29Digits: base29Digits(selectedExponent),
     fieldElement: invariantMatches[0].w,
-    selectionCriterion: { trace: toyDh.generator, norm: toyDh.shared },
+    primarySelection: { numberDivisor: 151, oneBasedPrimeOrdinal: 36 },
+    independentFieldCorroboration: { trace: toyDh.generator, norm: toyDh.shared },
     secondaryChecks: {
       firstCoordinate: invariantMatches[0].w[0],
       coordinateSum: invariantMatches[0].coordinateSum,
