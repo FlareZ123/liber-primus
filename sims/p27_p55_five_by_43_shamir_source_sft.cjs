@@ -57,7 +57,7 @@ function main() {
   assert.equal(p55.indices.length, 76);
   const divisible = unsolved.filter(p => {
     const marked = ink.pages.find(x => x.page === p.page);
-    const red = (marked.red_spans || []).reduce((sum, span) => sum + span.length, 0);
+    const red = (marked?.red_spans || []).reduce((sum, span) => sum + span.length, 0);
     return p.indices.length > red && (p.indices.length - red) % 43 === 0;
   }).map(p => p.page);
   assert.deepEqual(divisible, [27], "p27 should be the only nonempty 43-multiple black body");
