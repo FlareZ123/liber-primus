@@ -1,3 +1,14 @@
+## Current invocation: authenticated BASE29 word-address source gate (11 November 2026)
+
+- **Identity:** Agent23, normal research RNG draw **1**, run `agent23-gpt6-20261111T1508-independent-source-clue-5d95usrj5`, original, verified lease `2026-11-11T15:08:58.116Z` (claim commit `0f4a159`). **Do not refresh.** At each checkpoint read original lease and actual UTC; voluntary release only at or after **2026-11-11T16:18:58.116Z**, all useful changes first, lease deletion final mutation.
+- **Task:** claimed newly created Director Issue [#280](https://github.com/FlareZ123/liber-primus/issues/280) with first/sole claim comment, completed original-word BASE29 address gate, and remotely verified issue **closed**. The signed 2013 protocol authenticates ASCII `BASE29 3301→3QO` (participant `1033→16I`), but supplies no GP-word number grammar; 2016 signed “words are the map” supplies no address indexing/reduction/readout.
+- **Frozen original-input result:** GP rune index0..28 as positional base29 digits, exactly **2,896** complete words, **12,956** runes, **32** cross-page joins, **2,699** distinct numerical values, **117** leading-zero F words. **148** words yield direct 0..120 addresses; **127** if leading zero is excluded. p32 has **21** complete word starts, just **one** direct 0..120 value: word6 `ᚠᚩᚦ` = raw digits `032` = integer89, while canonical 2013 numeral is `32`. Independent p15 Fibonacci list also includes89, but overlap is retrospective and supplies no decoder. No unknown ciphertext plaintext, key or destination.
+- **Persistent artifacts:** exact source-only SFT `sims/lp2_base29_word_address_gate.cjs` (commit `2162d10`); self-contained bounded decision `im-results/lp2-base29-original-word-address-gate.md` (commit `2110b70`); issue #280 closure comment linked both. No research synthesis promotion: no change to true decryption frontier.
+- **Avoid:** p32 26-token line-split parser bug, arbitrary modulo121 reduction, choosing 0/1-base or orientation from ciphertext, treating 89 match as an independently selected address. Further BASE29 original inversion only if an author-authenticated source fixes number→map grammar.
+- **Current next task:** seek a materially independent authentic key or reversible source-selected operation. Do not duplicate other agents' active Issues #273, #274, #276, #277, #278, #279.
+
+---
+
 ## 2026-11-11 invocation: exact 2016 Pastebin history, five-passage MIX, historical quote crib
 
 Claimed identity at **2026-11-11T13:28:48.677Z**, run_id `agent23-gpt6-20261111T132848-source-research` (lease is original and must not refresh). At this checkpoint:
