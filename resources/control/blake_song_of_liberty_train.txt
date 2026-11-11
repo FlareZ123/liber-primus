@@ -1,0 +1,31 @@
+# William Blake, "A Song of Liberty" — training portion only
+# Source transcription: Project Gutenberg eBook 45315, The Marriage of Heaven and Hell.
+# https://www.gutenberg.org/ebooks/45315
+# This eBook is for the use of anyone anywhere in the United States and most other parts
+# of the world at no cost and with almost no restrictions whatsoever. You may copy it,
+# give it away or re-use it under the terms of the Project Gutenberg License included
+# with this eBook or online at https://www.gutenberg.org/license. If you are not located
+# in the United States, you will have to check the laws of your country before using this eBook.
+# The source-selected chorus is deliberately excluded here and held out separately.
+BEGIN SOURCE TEXT
+The Eternal Female groan'd; it was heard over all the earth:
+Albion's coast is sick silent; the American meadows faint.
+Shadows of prophecy shiver along by the lakes and the rivers, and mutter across the ocean. France, rend down thy dungeon!
+Golden Spain, burst the barriers of old Rome!
+Cast thy keys, O Rome, into the deep--down falling, even to eternity down falling;
+And weep!
+In her trembling hands she took the new-born terror, howling.
+On those infinite mountains of light now barr'd out by the Atlantic sea, the new-born fire stood before the starry king.
+Flagg'd with grey-brow'd snows and thunderous visages, the jealous wings wav'd over the deep.
+The speary hand burn'd aloft; unbuckled was the shield; forth went the hand of jealousy among the flaming hair, and hurl'd the new-born wonder through the starry night.
+The fire, the fire is falling!
+Look up! look up! O citizen of London, enlarge thy countenance! O Jew, leave counting gold; return to thy oil and wine! O African, black African! (Go, winged thought, widen his forehead.)
+The fiery limbs, the flaming hair shot like the sinking sun into the Western sea.
+Wak'd from his eternal sleep, the hoary element roaring fled away.
+Down rush'd, beating his wings in vain, the jealous king, his grey-brow'd councillors, thunderous warriors, curl'd veterans, among helms and shields, and chariots, horses, elephants, banners, castles, slings, and rocks.
+Falling, rushing, ruining; buried in the ruins, on Urthona's dens.
+All night beneath the ruins; then their sullen flames, faded, emerge round the gloomy king.
+With thunder and fire, leading his starry hosts through the waste wilderness, he promulgates his ten commandments, glancing his beamy eyelids over the deep in dark dismay.
+Where the Son of Fire in his Eastern cloud, while the Morning plumes her golden breast,
+Spurning the clouds written with curses, stamps the stony law to dust, loosing the eternal horses from the dens of night, crying: "Empire is no more! and now the lion and wolf shall cease."
+END SOURCE TEXT

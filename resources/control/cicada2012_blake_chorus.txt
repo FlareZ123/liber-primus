@@ -1,0 +1,7 @@
+# Exact chorus transcription reproduced in the archived 2012 Cicada MIDI-puzzle message.
+# Secondary archive: https://github.com/cicada-solvers/The-Complete-Cicada3301-Archive/blob/main/2012/MIDI%20puzzle/Cicada%203301%20Puzzles.txt
+# Not independently signature-verified in this benchmark. Preserve its spelling variants:
+# "letchery" (Gutenberg Blake text: "lechery") and "every thing" (Gutenberg: "everything").
+BEGIN SOURCE TEXT
+Let the Priests of the Raven of dawn, no longer in deadly black, with hoarse note curse the sons of joy. Nor his accepted brethren, whom, tyrant, he calls free lay the bound or build the roof. Nor pale religious letchery call that virginity, that wishes but acts not. For every thing that lives is Holy.
+END SOURCE TEXT
