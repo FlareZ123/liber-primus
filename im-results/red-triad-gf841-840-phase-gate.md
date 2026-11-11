@@ -43,6 +43,14 @@ The latter exponent **173** independently equals the sum of the p39 red triad's 
 
 **Interpretive limit:** the square-of-middle-ordinal rule and componentwise polynomial division were selected after observing the p39 triad. Both algebraic equalities hold exactly; a discovery-wide chance estimate or a contemporaneous instruction that a 2014 solver would recognize is absent. The shared local offset 119 and the p39 factor of the grid remain separate source clues, and there is no evidence this self-power relation was used to encrypt LP2. A consequential test would freeze (v), a source-specified clock and original ciphertext positions, and recover independently meaningful plaintext across previously unseen material. Merely confirming this equality again would add nothing.
 
+### Source-self-power generator tested on all original unsolved runes
+
+The new generator (v=u^{529}=9+4u) changes the 840-state traversal from (u^i) to (u^{529i}); this is a distinct, source-fixed stride not covered by the earlier (u^i) sequence. The [single-file original-cipher inversion](../sims/lp2_red_triad_selfpower_original_gate.cjs) freezes that stride and tests exactly **144** reversible GP29 direct-additive readings: the field state (v^i), original 256-byte polynomial (P(v^i)), or its exactly divided p39 quotient (Q(v^i)); four coordinate/trace/norm observations; book or page clocks; source phases **0, 120, 360**; and both signs. All **12,956** original symbols are deciphered and independently exactly re-encrypted under every candidate. A native Shakespeare-GP positive plant recovers all 12,956 runes.
+
+The original ciphertext's IoC is **0.0344783978645**. Every decoded candidate remains encrypted-looking, between **0.0344384800785** and **0.0345477714019**; the highest is (P(v^i)), second field coordinate, continuous book, phase360, positive sign. By comparison, source-native GP English in the previously established controls has IoC around **0.06**. [Successful manual CI 42939227858](https://github.com/FlareZ123/liber-primus/actions/runs/42939227858) executed both the new source identity assertions and this complete-original inverse.
+
+**Decision:** direct GP29 additive projections of this derived field generator, with the stated fixed source clocks, do not unlock original plaintext. The self-power source relationship remains potentially useful as a *selector for another cipher/register*. This gate excludes neither feedback nor a non-GP intermediate representation, and does not justify retrying arbitrary offsets or secret projections without a clue.
+
 A simple, economically testable proposed cipher would generate a single hidden state \(s_i=s_0u^i\) in this field and apply **any secret bijection of all 29 GP symbols chosen by that state**. The key may contain 840 unrelated 29! lookup rows, and their contents need never be recovered. Every state repeats by 840, therefore:
 
 \[
