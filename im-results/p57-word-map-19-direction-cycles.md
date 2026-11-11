@@ -18,7 +18,7 @@ The 2016 signed message says: “Its words are the map, their meaning is the roa
 
 ## Reproducible map operation
 
-Number the 19 body words 1–19 in source order. Let (S_i) be the sum of the GP prime weights of word (i). Use the source-selected modulus 19 and the directed step:
+Number the 19 body words 1–19 in source order. Let S_i be the sum of the GP prime weights of word i. Use the source-selected modulus 19 and the directed step (with residue 0 represented by position 19):
 
 [
 f_{+}(i)=i+S_i\pmod{19},qquad
