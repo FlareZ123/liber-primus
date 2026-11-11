@@ -41,9 +41,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Use 32-bit Python for 32-bit OpenPuff UI automation
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: 'x86'
+
       - name: Validate OpenPuff output capture offline
         shell: pwsh
         run: |
+          python -c "import struct; assert struct.calcsize('P') == 4, 'OpenPuff requires 32-bit Python'"
           python -m pip install --disable-pip-version-check filelock
           python sims/openpuff_output_capture_sft.py
 
@@ -141,9 +148,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Use 32-bit Python for 32-bit OpenPuff UI automation
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: 'x86'
+
       - name: Validate OpenPuff output capture offline
         shell: pwsh
         run: |
+          python -c "import struct; assert struct.calcsize('P') == 4, 'OpenPuff requires 32-bit Python'"
           python -m pip install --disable-pip-version-check filelock
           python sims/openpuff_output_capture_sft.py
 
