@@ -68,17 +68,45 @@ PRNG: xorshift32, initial state `0x10a39b32`; each word is independently Fisher�
 
 The sample is a conditional layout-preserving null, not a discovery-wide p-value. The small tail indicates that the observed arrangement is unusual under this particular within-word randomization; it does not prove that the author selected these constants or that the page encodes a cipher key.
 
+## Adjacent p33 cuneiform prime-rank selector (provisional)
+
+The repeated cuneiform header on physical pp33–39 gives the sexagesimal values `(17,13)` and `(55,1)`, hence **1033** and **3301**. These are the two 2014 Onion7 magic-square sums and both are prime. Their one-based prime ranks are **174** and **464**. The manuscript's two natural moduli expose an exact alignment:
+
+| Prime value | Prime rank | Rank / 29 | Rank / 58 |
+| --- | ---: | ---: | ---: |
+| 1033 | 174 | **6** | **3** |
+| 3301 | 464 | **16** | **8** |
+
+Equivalently, `174 = 6×29 = 3×58` and `464 = 16×29 = 8×58`.
+
+These quotients independently reproduce p32's fixed geometry:
+
+- **6** concentric Chebyshev layers, with cell counts `[40,32,24,16,8,1]`;
+- **16** cells on the inner 5×5 perimeter;
+- **3** complete 11-rune rows (33 runes) in the first punctuation-delimited clause;
+- **8** complete 11-rune rows (88 runes) in the second clause.
+
+The same **6** and **16** are also the exponents in the existing cross-release projective relations `B = 21 A^6` and `M7 ~ Q2 A^16 Q2^-1` documented in `results/README.md`. The cuneiform appears immediately after p32, so it can plausibly be read as a backward selector for the preceding matrix. The 2014 text's “primes are sacred” and the 2016 signed message's “numbers are direction” make prime ranking a plausible human operation, though they do not prescribe this exact normalization.
+
+A small same-book control set does not show the property: the prime ranks of the nine LP1 warning-line sums `[757,1009,691,353,769,911,1051,859,677]` are `[134,169,125,71,136,156,177,149,123]`; none is divisible by 29 or 58. This is a specificity check, **not** a formal significance test: the constants and matching geometric features were not preregistered against every possible modulus or structure.
+
+This is a new exact cross-artifact alignment and a plausible source selector for p32's clause/ring geometry and matrix exponents. It is **not** a recovered key, plaintext, or proof of intent. Prime-rank normalization remains an inference; the next operation still needs independent source justification and a prospective result.
+
+Source anchors: original p33 image `resources/liber-primus/50.jpg`; historical square sums `resources/cicada2014-openpuff-magic-squares.txt`; 2016 signed message `resources/historical/cicada2016-4gq25-outguess.asc`; p32 transcription and ring reproducer `resources/liber-primus/lp2-transcription.txt` and `sims/p32_two_clause_ring_checksum.cjs`.
+
+## Bounded source-derived key tests on p55 (negative)
+
+The new 6/16 selector motivates two direct key candidates for the 76-rune p55 text. Both were tested with the same printed-word parser used by `sims/lp2_2016_message_base58_word_map.cjs`; no word-like plaintext appeared.
+
+1. **Inner 5×5 perimeter as a 16-symbol Vigenère key.** The perimeter was traversed clockwise from its top-left cell. Tested key encodings were GP ordinal indices `[18,14,7,23,15,23,27,17,11,28,27,21,12,27,6,27]`, prime weights modulo 29 `[9,18,19,2,24,2,20,3,8,22,20,21,12,20,17,20]`, and per-cell totients modulo 29 `[8,17,18,1,23,1,19,2,7,21,19,20,11,19,16,19]`. Forward/reversed keys and additive, subtractive and Beaufort conventions were tested. Best IoC was **0.042456**.
+
+2. **Six concentric-layer sums as a six-symbol key.** Outside-in sums are `[1917,1539,1046,1136,388,19]`; tested reductions were sum modulo 29 `[3,2,2,5,12,19]`, sum of per-cell totients modulo 29 `[21,28,7,18,3,18]`, and totient-of-layer-sum modulo 29 `[14,15,0,9,18,18]`. Forward/reversed keys and the same three conventions were tested. Best IoC was **0.042105**.
+
+3. **Cross-round 2×2 Hill use of the projective matrices.** Tested `A^6=[[11,17],[17,11]]`, `21A^6=[[28,9],[9,28]]`, `A^16=[[13,17],[17,13]]`, `M7=[[14,25],[25,28]]`, and `C=[[14,28],[25,20]]`, with direct/inverse and row/column vector conventions. Best IoC was **0.044561**.
+
+For comparison, p55 ciphertext IoC is **0.037895** and the solved p57 prose IoC is **0.062711**. The best outputs remain far below the known-prose reference and contain no recognizable text. These bounded negatives reject only the direct periodic Vigenère and 2×2 Hill applications tested; they do not disprove a navigation role or a different stateful operation. Do not repeat these direct-key families.
 ## Interpretation and next use
 
-The result is compatible with a human solve-path reading of the 2016 instruction that words form a map and numbers give direction, together with the solved PARABLE instruction to shed circumferences. The two punctuation-delimited clauses split the 11×11 page into 3 and 8 complete rows, while their prime sums reconcile to the inner/outer ring sums plus the independently documented 2014 center and LP2 table circumference. The second clause begins with the unique 11-rune p32 word whose prime sum equals the 2016 signature packet body length.
+The p33 cuneiform prime ranks now give an independent, source-motivated selector for p32's **3/8 clause partition**, **6/16 concentric geometry**, and the existing projective exponents **6/16**. This is the strongest new structural connection in this investigation. The direct Vigenère keys from the 16-cell perimeter and six layer sums, and direct 2×2 Hill uses of the p32/LP1 matrices on p55, have all failed; do not repeat them.
 
-That is a source-derived checksum and anchor, **not** an inverse transformation. It supplies no ordering of the ring cells, key schedule, plaintext, or destination. A useful continuation must find a separately motivated operation that uses the clause/ring partition and packet anchor to make a prospective prediction on an original LP2 interval or a historically solved control. Do not broaden the test into arbitrary ring partitions, constants, or language-score searches.
-
-## Reproduction inputs
-
-- `resources/lp2-transcription.txt` — printed word/punctuation stream.
-- `resources/liber-primus/lp2-corpus.json` — canonical GP rune indices and prime weights.
-- `resources/historical/cicada2016-4gq25-outguess.asc` — original 2016 signature armor.
-- `im-results/onion7-magic-center-source-prime-gate.md` — 2014 square center 331.
-- `im-results/2014-magic-square-direction-map.md` — 2014 5×5 source square and prime/totient mapping.
-- `results/README.md` — LP2 table geometry and current research limits.
+The remaining consequential question is whether the cuneiform-selected exponents and p32 projective matrices prescribe a unique stateful operation with a prospective prediction on an unknown page. Without a source-fixed state update, initialization and readout, further cipher-family sweeps would be unconstrained. No unknown LP2 plaintext, key, or complete decryption has been recovered.
