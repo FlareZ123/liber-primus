@@ -33,7 +33,7 @@ jobs:
               "onion": r"pklmx2eeh6fjt7zf",
               "icmp": r"icmp|echo request|echo reply",
               "hint": r"knock on the sky|sky and listen",
-              "ping-chat": r"\bping(?:ing|ed)?\b",
+              "ping-chat": r"ping",
               "second-onion": r"second onion|onion 2|tor 2"
           }
           for name, pattern in patterns.items():
@@ -41,7 +41,7 @@ jobs:
               rx = re.compile(pattern, re.I)
               for n, line in enumerate(lines, 1):
                   if rx.search(line):
-                      if name == "ping-chat" and re.search(r"ping timeout|\bping[!?:]?$", line, re.I):
+                      if name == "ping-chat" and "ping timeout" in line.lower():
                           continue
                       hits.append((n, line[:700]))
               print(f"\n[{name}] count={len(hits)}")
