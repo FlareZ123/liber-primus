@@ -190,6 +190,23 @@ assert.equal(lz4Cases, 64);
 assert.equal(headerCompatible, 0);
 assert.equal(reversedHeaderCompatible, 1);
 
+// Canonical PDF files begin with "%PDF-M.m". Unlike the five-byte
+// "%PDF-" prefix, each complete conventional version header 1.0..1.7
+// or 2.0 forces an equality contradiction under any fixed secret rune
+// permutation, in either physical or reversed whole-stream orientation.
+const pdfVersions = [...Array.from({length: 8}, (_, i) => "1." + i),
+  "2.0"];
+for (const version of pdfVersions) {
+  const prefix = [...Buffer.from("%PDF-" + version, "ascii")];
+  assert.deepEqual(survivingCases(prefix), []);
+  assert.deepEqual(survivingCases(prefix, reversedSource), []);
+}
+const forcedPdf = forcedDigits([...Buffer.from("%PDF-1.4")], 7867, 1);
+assert.deepEqual(forcedPdf.slice(0, 13),
+  [0, 7, 18, 26, 6, 28, 24, 21, 18, 13, 19, 18, 19]);
+assert.deepEqual(firstConflict(forcedPdf, source),
+  {first: 10, second: 12});
+
 // ASCII-armored OpenPGP begins with five literal minus signs. For the
 // B=7867, one-zero-leading-GP-digit regime, even THREE initial bytes '-'
 // force base29 digit 1 == digit 4, while original rune 1 != rune 4.
@@ -304,6 +321,14 @@ for (let i = armorHeader.length; i < armorPositive.length; i++) {
   armorPositive[i] = (i * 29 + 5) & 255;
 }
 positiveRoundTrip(armorPositive, 7867, [...armorHeader], 1);
+const pdfHeaderPositive = Buffer.alloc(7867);
+const pdfHeader = Buffer.from("%PDF-1.4\n", "ascii");
+pdfHeader.copy(pdfHeaderPositive);
+for (let i = pdfHeader.length; i < pdfHeaderPositive.length; i++) {
+  pdfHeaderPositive[i] = (i * 17 + 19) & 255;
+}
+positiveRoundTrip(pdfHeaderPositive, 7867, [...pdfHeader], 1);
+
 
 const lz4Head = lz4Header(0x60, 0x40);
 const lz4RawSize = 7868 - 15;
@@ -330,6 +355,8 @@ console.log(JSON.stringify({
     rawHeaderCompatible: headerCompatible,
     reversedRawHeaderCompatible: reversedHeaderCompatible,
     completeOneBlockSurvivors: 0},
+  pdf: {versionsExcluded: pdfVersions, bothOrientations: true,
+    forcedEqualityWitness: [10, 12]},
   openPgp: {asciiArmorSourcePrefix: "---", armorSurvivingCases: 0,
     reversedArmorSurvivingCases: 0,
     armorForcedDigitContradiction: [1, 4],
@@ -340,6 +367,7 @@ console.log(JSON.stringify({
   positive: {jpegHeader: "exact binary roundtrip",
     validUncompressedLZ4: "exact binary roundtrip",
     openPgpOnePassHeader: "exact binary roundtrip",
-    armoredOpenPgpHeader: "exact binary roundtrip"},
+    armoredOpenPgpHeader: "exact binary roundtrip",
+    pdfHeader: "exact binary roundtrip"},
   recoveredUnknownPlaintext: false,
 }, null, 2));
