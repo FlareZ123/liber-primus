@@ -43,7 +43,9 @@ jobs:
 
       - name: Validate OpenPuff output capture offline
         shell: pwsh
-        run: python sims/openpuff_output_capture_sft.py
+        run: |
+          python -m pip install --disable-pip-version-check filelock
+          python sims/openpuff_output_capture_sft.py
 
       - name: Prepare evidence directory
         shell: pwsh
@@ -140,7 +142,9 @@ jobs:
 
       - name: Validate OpenPuff output capture offline
         shell: pwsh
-        run: python sims/openpuff_output_capture_sft.py
+        run: |
+          python -m pip install --disable-pip-version-check filelock
+          python sims/openpuff_output_capture_sft.py
 
       - name: Prepare evidence directory
         shell: pwsh
