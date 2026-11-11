@@ -19,6 +19,7 @@ on:
           - terminal
           - affine-byte
           - p36-crib
+          - redspan-zero
         default: full
 
 jobs:
@@ -53,6 +54,10 @@ jobs:
           node sims/grid_two_channel_serial_order_sft.cjs
           node sims/grid_boolean_mobius_gp28_inverse_sft.cjs
           node sims/grid_missing_f_prime179_sft.cjs
+      - name: Red GP prime-sum page-conditioned circular-control audit
+        if: ${{ inputs.probe == 'redspan-zero' }}
+        run: node sims/red_span_gp29_zero_test.cjs
+
       - name: Source-locked state/class capacity and Base32 padding audit
         if: ${{ inputs.probe == 'state-class' }}
         run: node sims/state_class_nongp_register_audit.cjs
