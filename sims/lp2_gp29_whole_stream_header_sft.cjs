@@ -23,6 +23,9 @@ const N = source.length;
 assert.equal(N, 12956);
 assert.notEqual(source[0], source[1]);
 assert.deepEqual(source.slice(0, 9), [15, 8, 18, 3, 6, 19, 27, 0, 15]);
+const reversedSource = source.slice().reverse();
+assert.deepEqual(reversedSource.slice(0, 10),
+  [10, 18, 17, 1, 11, 23, 14, 5, 19, 10]);
 
 const RADIX = 29n;
 const RADIX_N_MINUS_2 = RADIX ** BigInt(N - 2);
@@ -133,6 +136,8 @@ const jpegFirstMarkers = [1,
   0xff]; // 0xff can be a fill byte preceding a normal first marker.
 for (const firstMarker of jpegFirstMarkers) {
   assert.deepEqual(survivingCases([255, 216, 255, firstMarker]), []);
+  assert.deepEqual(survivingCases([255, 216, 255, firstMarker],
+    reversedSource), []);
 }
 assert.equal(jpegFirstMarkers.length, 65);
 
@@ -152,10 +157,15 @@ const flags = [0x40, 0x60, 0x50, 0x44, 0x70, 0x64, 0x54, 0x74];
 const bds = [0x40, 0x50, 0x60, 0x70];
 let lz4Cases = 0;
 let headerCompatible = 0;
+let reversedHeaderCompatible = 0;
 for (const flg of flags) {
   for (const bd of bds) {
     const head = lz4Header(flg, bd);
     if (survivingCases(head).length > 0) headerCompatible++;
+    if (survivingCases(head, reversedSource).length > 0) {
+      reversedHeaderCompatible++;
+      assert.deepEqual([flg, bd], [0x50, 0x50]);
+    }
     for (const raw of [false, true]) {
       for (const byteLength of LENGTHS) {
         const payloadLength = byteLength - 7 - 4 - 4
@@ -168,6 +178,8 @@ for (const flg of flags) {
           const digits = forcedDigits([...head, ...sizeLE],
             byteLength, zeroPrefixes);
           assert(digits === null || firstConflict(digits, source) !== null);
+          assert(digits === null ||
+            firstConflict(digits, reversedSource) !== null);
         }
       }
       lz4Cases++;
@@ -176,6 +188,7 @@ for (const flg of flags) {
 }
 assert.equal(lz4Cases, 64);
 assert.equal(headerCompatible, 0);
+assert.equal(reversedHeaderCompatible, 1);
 
 // ASCII-armored OpenPGP begins with five literal minus signs. For the
 // B=7867, one-zero-leading-GP-digit regime, even THREE initial bytes '-'
@@ -185,6 +198,7 @@ assert.equal(headerCompatible, 0);
 const tripleHyphen = [45, 45, 45];
 const armorCases = survivingCases(tripleHyphen);
 assert.deepEqual(armorCases, []);
+assert.deepEqual(survivingCases(tripleHyphen, reversedSource), []);
 const forcedArmor = forcedDigits(tripleHyphen, 7867, 1);
 assert.deepEqual(forcedArmor.slice(0, 5), [0, 9, 7, 19, 9]);
 assert.deepEqual(firstConflict(forcedArmor, source),
@@ -212,6 +226,7 @@ for (const header of [0x90, 0xc4]) {
           const prefix = [header, 13, 3, signatureType, hash,
             publicKey, ...cicadaSigningKeyId, nested];
           assert.deepEqual(survivingCases(prefix), []);
+          assert.deepEqual(survivingCases(prefix, reversedSource), []);
           pgpOnePassCases++;
         }
       }
@@ -308,15 +323,19 @@ console.log(JSON.stringify({
   possibleMinimumByteLengths: LENGTHS,
   jpeg: {validFirstMarkerOrFillCasesTested: jpegFirstMarkers.length,
     survivingSecretPermutations: 0,
+    reversedRuneOrderSurvivors: 0,
     JFIF: {forcedDigits: jpegJfifDigits, witness: [4, 5]},
     TEM: {forcedDigits: jpegTemDigits, witness: [5, 6]}},
   lz4: {ordinaryOneBlockVariants: lz4Cases,
     rawHeaderCompatible: headerCompatible,
+    reversedRawHeaderCompatible: reversedHeaderCompatible,
     completeOneBlockSurvivors: 0},
   openPgp: {asciiArmorSourcePrefix: "---", armorSurvivingCases: 0,
+    reversedArmorSurvivingCases: 0,
     armorForcedDigitContradiction: [1, 4],
     onePassWithKnownCicadaSigningKey: pgpOnePassCases,
     survivingSecretPermutations: 0,
+    reversedOnePassSurviving: 0,
     typicalRsaSha256Contradiction: [1, 7]},
   positive: {jpegHeader: "exact binary roundtrip",
     validUncompressedLZ4: "exact binary roundtrip",
