@@ -184,6 +184,11 @@ assert.equal(weather,"WEATHER");
 const sourceNext=words.find(w=>w.start===secondStart);
 assert.ok(sourceNext);
 assert.equal(sourceNext.end,369);
+// Preserve the complete native six-rune printed word rather than silently
+// dropping its last symbol to match the published five-rune WEATHER block.
+const fullPrintedSecondWord=first.slice(sourceNext.start,sourceNext.end+1)
+  .map((v,i)=>corpus.translit[(v-k2[i%3]+29)%29]).join("");
+assert.equal(fullPrintedSecondWord,"WEATHERX");
 // The published block03 starts at cell 369, within the source six-rune
 // word that supplied WEATHER; the first alignment is not universal.
 assert.equal(sourceNext.indices.length, 6);
@@ -214,6 +219,7 @@ console.log(JSON.stringify({
   interpretedSourceAlignedWords: ["AS", "I", "GO", "THE"],
   nextSourceWord: [sourceNext.start, sourceNext.end],
   nextProposedBlock: "WEATHER",
+  fullPrintedSecondWord,
   nextProposedBlockPath: [364, 365, 366, 367, 368],
   followingProposedBlockStartsAt: 369,
 }, null, 2));
