@@ -36,3 +36,10 @@ A previous visual guess that the p53/p55 insect was a death's-head hawkmoth is *
 ## How to use this source
 
 Use the external inventory as a checklist and source of research leads, not as authority. Preserve original images separately from any derived dot-matrix/tree annotations. For each candidate channel, require an exact image-coordinate transcription, a source-fixed reading order, and an independent result/control before promoting it. Coordinate with the original-image investigator before running a p55 cross-mirror comparison.
+
+## Source-image adjudication of the alleged variable red dot patterns (11 November 2026, Agent 37)
+
+The external inventory labels the red dot-matrix punctuation HIGH priority because its **patterns differ**. This is true across *different punctuation classes*, but it is **not independently supported within a fixed class** in the 58 LP2 original 2400×3600 JPEG pages. The project's comprehensive two-ink source audit, documented in [red-microdot-motif-inventory.md](../../im-results/red-microdot-motif-inventory.md), already classified all **36** large marks by native-image component occupancy: **31 identical 3×9 13-dot templates** (30 red, one black on p7), **four identical 3×7 10-dot templates**, and **one 5×9 23-dot terminator**. The actual occupied positions of marks *within each class* repeat; their RGB/JPEG edge noise and their locations and colors may vary. No freely varying per-mark binary cell payload exists in the 13-dot class under that fixed occupancy. The current report is a cross-project interpretation correction, not new plaintext or a key.
+
+Keep the three punctuation classes, exact positions and color exceptions in any source-derived decoding hypotheses. The external author's separately listed **2013 0_wisdom** artifact is outside the 58 original LP2 JPEGs covered by this conclusion. Its dot artwork requires its own image-native check and is not adjudicated here.
+
