@@ -9,7 +9,7 @@ A historical 2013 Cicada telnet transcript lists the primes through 71, resumes 
 - Community transcript: [Possible hints never used, “missing primes on telnet”](https://github.com/krisyotam/cicada3301/blob/main/liber-primus/analysis/HINTS-NEVER-USED.md#missing-primes-on-telnet).
 - Independent historical description of the command: [The Telnet Prompt](https://uncovering-cicada.fandom.com/wiki/The_Telnet_Prompt). This page links to a historical pastebin record; it is not an independent authenticated transcript.
 - The original LP2 printed numeral table has 32×8 = **256** cells. Its outer one-cell perimeter contains **76 = 2(32+8)−4** cells and the rectangular interior contains **180 = 30×6** cells.
-- The terminal runic composition already independently noticed in [the terminal-grid hypothesis](../workplace/integrated-original-inversion-challenge.md) is p53's 179 runes followed by the oversized p54 initial Ac (GP index24), making **180**, while p55 has exactly **76** runes.
+- One independently noticed terminal composition is p53's 179 runes followed by the oversized p54 initial Ac (GP index24), making **180**, while p55 has exactly **76** runes. **A competing and independently established framing also has 180:** the 85 solved runes of p56 followed by the 95 clear runes of p57. Both alternatives are documented in [the existing circumference research](terminal-grid-circumference-knownplain-gate.md). No source instruction chooses between them.
 - Restricting the historical prime list to the **first 256 primes** creates another exact split: the missing ordinals 21–200 contain 180 primes, and the visible ordinals 1–20 plus 201–256 contain 20+56=**76** primes.
 
 This gives a concrete, if retrospective, possible assignment: **omitted 2013 primes ↔ terminal interior**, **visible early primes ↔ p55 perimeter**. A solver could in principle make both connections from player-visible source numbers, if the historical transcript is authentic. The selection of the first 256 primes is motivated by the table only after seeing both artifacts, and the geometric-to-rune assignment was already under investigation before the telnet connection. These are independent source lengths, not independent evidence that Cicada designed the link.
@@ -35,6 +35,19 @@ For each region, the *complete, predeclared direct key family* comprises prime v
 All 16 variants preserve the full original rune array under exact forward reencryption. Native-GP plants from cyclic repetitions of the *already solved* p57 runes recover every rune with the same fixed keys, confirming arithmetic reversibility; these are implementation controls, not evidence of the historical mechanism. As a descriptive reference, the 95-rune genuine plaintext p57 has IoC **0.06270997**, but this is a different-sized sample and must not be interpreted as a calibrated p-value.
 
 **Important false-positive trap:** one reversed, totient, additive p55 transliteration begins with the Latin string `SPONGEO...`. Its actual first five GP rune tokens are **S · P · O · NG · EO**, so the apparent substring `SPONGE` is produced by cutting the one-rune **EO** digraph. It is **not** the rune spelling of the word SPONGE, not a plaintext crib, and the remainder is nonlinguistic. The SFT records full rune-index outputs to prevent this ambiguity.
+
+## Competing 180-rune framing: exact known-plaintext disconfirmation
+
+The 180-cell table interior can also represent **p56+p57**, rather than p53+p54[0]. This alternate interpretation is especially valuable because the plaintext is known: p56's historically solved 85 GP runes and p57's 95 plainly printed runes. The [same SFT](../sims/lp2_telnet_prime_gap_terminal_sft.cjs) calculates the exact GP29 encryption shifts required at every one of those 180 original positions. The same eight direct prime/totient, forward/reverse, add/subtract interpretations are then compared to those required shifts *without language scoring*.
+
+| Prime-key reducer / direction | Matches of 85 solved p56 rune shifts (best sign) | Matches of 95 clear p57 rune shifts |
+| --- | ---: | ---: |
+| Prime, ascending | 3 | 0 |
+| Prime, reversed | 8 | 0 |
+| φ(prime), ascending | 5 | 2 |
+| φ(prime), reversed | 2 | 3 |
+
+The eight sign-specific totals range from **2 to 8 of 180 exact required shifts**; no direct GP29 prime-gap pad reproduces this known 180-rune control. This rejects only a pad that is also supposed to explain *both* historically solved pages with the same direct arithmetic. It does not exclude a distinct cipher on the unsolved terminal pages or a different role for the prime interval.
 
 ## Independent printed-table numeric check
 
