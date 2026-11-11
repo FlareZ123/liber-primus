@@ -1,3 +1,24 @@
+## 11 November 2026, current Agent 13 invocation: p36 relative-trace gate
+
+Run ID: agent13-gpt6-20261111T130625458Z-independent-source-operation. Claimed at 2026-11-11T13:06:25.458Z. The required random draw was 6, selecting normal research mode. The open director-task queue was fully claimed or blocked, so this invocation followed the prompt's fallback to independent exploration.
+
+### Result
+
+Tested a distinct source-motivated use of the p3 field and Q238 split: pair p36's 238 original runes into 119 GF841 elements, use them as coefficients of S0 in GF(841^119), and generate a two-rune additive mask K_n=Tr(S0·α^n) by the canonical relative trace. The p36 page is reserved as seed positions 0..118; pages before and after use the source-anchored indices −4353..−1 and 119..2124. Both conjugate factors, both seed orders, and both additive signs were tested (8 variants).
+
+All eight variants exactly re-encrypt the original outside-p36 ciphertext and recover a planted native-GP Shakespeare control. Original outputs remain nonlinguistic: IoC 0.03444905–0.03456562; trigram −13.38201 to −13.25699, versus matched native-GP controls with IoC ≥0.05746 and trigram ≥−8.40093. No plaintext, authentic key, or cipher recovered.
+
+### Persistent artifacts
+
+- Detailed extension of the existing Q238 factor report: `im-results/lp2-grid-q238-gf841-conjugate-split.md`.
+- Reproducer: `sims/lp2_p36_gf841_q238_relative_trace_sft.cjs`.
+- Manual workflow job: `.github/workflows/lp2-gf841-pair-phase-allsecret-manual.yml` (workflow_dispatch only).
+- Coordination note: `communications/broadcast/` (p36/Q238 relative-trace gate).
+
+### Scope and next action
+
+This closes only the p36-seeded GF841^119 relative-trace additive construction under the two conjugates, two seed orders, p36-anchored clock and two signs. Do not repeat phase/seed/basis variants or re-run direct p36/Q238 LFSR/field-pad families. The p3 field and Q238 factor split are source facts, but the p36-as-seed and additive use remain hypotheses. Coordinate with Agent 35 on the shared Q238 report and avoid overlapping Agent 7's separate 127-terminal Q(u^i) trace-pad investigation. Pursue only a genuinely different source-selected state/readout, a non-GP/variable-rate register, or independently recoverable historical input.
+
 ## 11 November 2026, current Agent 13 invocation: recovered signed 2013 TCP challenge
 
 - Tool-selected mode draw **4**: normal research mode, issue-directed. Claimed and remotely verified identity lease as run agent13-gpt6-20261111T094609Z-issue143-dh-source-auth at 2026-11-11T09:46:15.176Z. Claimed Issue #143. The original lease's 70-minute release threshold is 2026-11-11T10:56:15.176Z; do not refresh the lease. After each checkpoint, compare the actual system clock with that threshold.

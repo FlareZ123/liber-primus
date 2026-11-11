@@ -54,8 +54,24 @@ A further **source-locked linear-state test** uses the same 119 paired runes as 
 
 The argument has an important scope limit. There is no independent authentic instruction that says the factors and the two page prefixes are meant to be equivalent symbols, and the test does **not** exclude using those prefixes as a keystream, external index, one-time pad, permutation instruction, or within-position changing cipher. It does close the simplest fully invertible fixed symbol-register interpretation of the unique 119-offset coincidence. The updated SFT asserts the original 119 source offsets, both duplicate spectra and the impossibility for a fixed bijection without fitting any key.
 
+## p36-seeded relative-trace keystream gate (Agent 13, 11 November 2026)
+
+**Question.** Does the p36 page become a source-derived seed for the degree-119 extension over the p3 field, with the canonical relative trace supplying a two-rune additive keystream?
+
+The original 256-byte table gives the irreducible degree-238 residual Q238 over GF29. The p3 red triad [13,23,2] fixes K=GF29[u]/(u²−3u−8)=GF841. Over K, Q238 splits into the exact conjugate factors F119 and F119^(29). This equal-degree split is mathematically forced by the field extension; it is not independent evidence of authorial design.
+
+Physical p36 contains exactly 238 runes. Pairing adjacent runes in reading order as a+29b gives 119 elements of K. For each factor F119, interpret those 119 elements as the coefficient vector of S0 in L=K[X]/F119, with α=X. The candidate mask is the canonical relative trace K_n=Tr(L/K)(S0·αⁿ). The p36 page is reserved as seed positions n=0…118 and is not decrypted; the 4,353 pairs before p36 use n=−4353…−1, and the 2,006 pairs after p36 use n=119…2124.
+
+The finite model tests both conjugate factors, forward/reversed p36 coefficient order, and both additive signs: **8 variants**, with no fitted phase, free basis, or post-selected offset. Each variant exactly re-encrypts the original 12,718-rune stream outside p36 and exactly recovers a 12,718-rune native-GP Shakespeare plant. These round trips validate implementation only; they do not select a historical key.
+
+**Original result: negative.** Raw outside-p36 IoC is 0.03447201; the eight decoded outputs range 0.03444905–0.03456562. Matched 12,718-rune native-GP control windows have IoC ranges 0.05746–0.06228 (Shakespeare), 0.05957–0.06294 (Gibran), and 0.06124–0.06422 (Emerson). With the trigram model trained on Shakespeare, raw ciphertext scores −13.28185 and the eight candidates score −13.38201 to −13.25699; the matched native windows range from −8.40093 to −7.70762. The best candidate remains far below every native-text control and its decoded preview is nonlinguistic.
+
+The p36-as-seed interpretation and additive use of the relative trace are hypotheses, not an authenticated Cicada instruction. This test retires only this exact p36-seeded GF841^119 relative-trace additive construction under the two conjugates, two seed orders, p36-anchored clock and two signs. It does not exclude a distinct nonlinear state, a non-GP intermediate, or an independently recovered external key.
+
+Reproducer: [lp2_p36_gf841_q238_relative_trace_sft.cjs](../sims/lp2_p36_gf841_q238_relative_trace_sft.cjs). A manual job is included in [the GF841 pair-phase workflow](../.github/workflows/lp2-gf841-pair-phase-allsecret-manual.yml); no automatic commit/PR trigger was added.
+
 ## Consequence and stopping rule
 
-The **new reproducible object** is the exact unordered F119/conjugate pair; its direct coordinate readouts do not decrypt unknown LP2. The 119 pairing may be worth revisiting if an original illustration, punctuation sequence, or historical instruction independently selects one conjugate, an ordering of its coefficients and a reversible decoding operation. In the absence of such a rule, scanning arbitrary change-of-basis matrices, offsets, and language scorers would reopen the same unconstrained key search under another name.
+The **new reproducible objects** are the exact unordered F119/conjugate pair and the bounded p36-seeded relative-trace negative. The latter closes one canonical relative-trace additive stream from p36; it does not turn the degree-119 factors into a key. The 119 pairing may be revisited only if an original illustration, punctuation sequence, or historical instruction independently selects a different reversible state/readout. Do not repeat direct coordinate, p36 relative-trace, or arbitrary change-of-basis/offset sweeps; any successor needs a genuinely new source instruction or independently fixed non-GP/variable-rate register.
 
 Reproduction: run the [single CommonJS file](../sims/lp2_grid_q238_gf841_split_sft.cjs) against the canonical repository table. It explicitly checks the hash, original small-factor divisions, 119/119 split, exact coefficient product, and all six reported coordinate statistics.
