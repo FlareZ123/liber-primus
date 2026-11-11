@@ -1,12 +1,12 @@
 name: LP2 primitive red-triad field inverse (manual)
 on:
-  push:
-    paths:
-      - 'sims/lp2_red_triad_composed_multiplier70_inverse.cjs'
-      - 'sims/lp2_red_triad_pair_field_inverse.cjs'
-      - '.github/workflows/lp2-red-triad-primitive-field-manual.yml'
   workflow_dispatch:
     inputs:
+      composed_multiplier70:
+        description: "Run the source-composed p3/p39 scalar and two-rune field tests"
+        required: false
+        type: boolean
+        default: false
       qmult_gates:
         description: "Run source quotient-multiplier all-secret gates instead of legacy triad experiments"
         required: false
@@ -21,7 +21,7 @@ permissions:
   contents: read
 jobs:
   field:
-    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.primitive_rs }}
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.primitive_rs && !inputs.composed_multiplier70 }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -86,7 +86,7 @@ jobs:
         run: node sims/gf841_51x127_primitive_rs_original_sft.cjs
 
   composed-multiplier70:
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.composed_multiplier70 }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
