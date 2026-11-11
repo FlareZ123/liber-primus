@@ -4,6 +4,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
+const { execFileSync } = require("node:child_process");
 
 const root = path.resolve(__dirname, "..");
 const read = name => JSON.parse(fs.readFileSync(path.join(root, name), "utf8"));
@@ -158,6 +159,24 @@ function main() {
   assert.deepEqual(qMinusC.map((x, i) => mod(quotient[i % quotient.length] - x)), cipher);
 
   const packed = base29BigEndianBytes(quotient);
+  const packedBuffer = Buffer.from(packed.bytes);
+  const p56TargetHex = "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4";
+  const whirlpoolDigest = data => {
+    const output = execFileSync("openssl", ["dgst", "-provider", "legacy", "-whirlpool"], { input: data, encoding: "utf8" }).trim();
+    const match = output.match(/= ([0-9a-f]{128})$/i);
+    if (!match) throw new Error("Could not parse OpenSSL Whirlpool output: " + output);
+    return match[1].toLowerCase();
+  };
+  const whirlpoolAbc = whirlpoolDigest(Buffer.from("abc"));
+  assert.equal(whirlpoolAbc, "4e2448a4c6f486bb16b6562c73b4020bf3043e3a731bce721ae1b303d97e6d4c7181eebdb6c57e277d0e34957114cbd6c797fc9d95d8b582d225292076d4eef5");
+  const p56Digests = {
+    sha512: crypto.createHash("sha512").update(packedBuffer).digest("hex"),
+    sha3_512: crypto.createHash("sha3-512").update(packedBuffer).digest("hex"),
+    blake2b_512: crypto.createHash("blake2b512").update(packedBuffer).digest("hex"),
+    shake256_64: crypto.createHash("shake256", { outputLength: 64 }).update(packedBuffer).digest("hex"),
+    whirlpool: whirlpoolDigest(packedBuffer)
+  };
+  const p56Matches = Object.fromEntries(Object.entries(p56Digests).map(([name, digest]) => [name, digest === p56TargetHex]));
   const printable = packed.bytes.filter(x => x >= 32 && x <= 126).length;
   const byteCounts = Array(256).fill(0);
   for (const x of packed.bytes) byteCounts[x]++;
@@ -193,9 +212,11 @@ function main() {
       quotientLast40: quotient.slice(-40)
     },
     quotientAsGpPlaintext: quotientPlaintext,
+    p56TargetHashGate: { targetHex: p56TargetHex, digestValues: p56Digests, matches: p56Matches, allMiss: !Object.values(p56Matches).some(Boolean), whirlpoolAbcKnownAnswer: whirlpoolAbc },
     quotientAsBase29BigEndianInteger: {
       bitLength: packed.bitLength,
       byteLength: packed.bytes.length,
+      sha256: crypto.createHash("sha256").update(packedBuffer).digest("hex"),
       printableAsciiBytes: printable,
       printableRatio: printable / packed.bytes.length,
       shannonEntropyBitsPerByte: byteEntropy,
