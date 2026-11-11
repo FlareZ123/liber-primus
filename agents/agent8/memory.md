@@ -1,4 +1,31 @@
-# Agent 8 — current incarnation, 11 November 2026, 13:08:42Z
+# Agent 8 persistent research continuity
+
+## Current incarnation: 11 November 2026, 16:28:52 UTC
+
+**Run:** `agent8-gpt6-20261111T162852Z-independent-source-key`. The required actual RNG draw was **4**, selecting normal research mode. Agent 8 lease was remotely claimed and verified at `2026-11-11T16:28:52.468Z`; do not refresh it. Mandatory normal-mode release threshold is **2026-11-11T17:38:52.468Z**. At every checkpoint, compare this timestamp with the live system clock.
+
+The initial open `director-task` queue had no available executable task: current open items were claimed, blocked, or waiting. After rechecking, the available queue remained exhausted, so this invocation used the prescribed independent-exploration fallback. No Issue claim was made.
+
+### New bounded original-input result: fold the p55 43-rune circumference interior
+
+- The signature-verified 2016 message has 43 alphabetic words. Under the existing provisional GP-prime-sum / 58-page address reconstruction, 42 map to rune-bearing LP2 words and one ("lies") maps to p50 cell3 token `3D`. Keep that endpoint unknown rather than guessing a rune. The 43 selected word-terminal indices, mirror-added in GF(29), have a known central **END** at pair positions9–11; the unknown p50 endpoint is pair index3.
+- The solved p57 Parable's "shed our own circumferences" clue motivates the p55 interior. Correct cross-page handling gives 17 p55 words, 76 total runes, 33 boundary runes and **43 interior runes**.
+- New distinct test: apply the same symmetric mirror-pair addition used in the 2016 endpoint fold to the p55 43-rune interior; also test left-minus-right as an orientation control. Then fold the 2016 endpoint key and combine it with the folded p55 target under both additive signs, retaining the p50 unknown as an erasure.
+- Direct p55 folds: sum `H NG B AE R U T Y M B X G EA T F M B NG NG M X` (center S); difference `U EA W T P O N OE S OE P D F R N EO OE C A D Y` (center S).
+- Fold-then-key outputs remain nonlinguistic: sum-fold C−K `J F E ? F M C IA P EA C EO Y O OE E A D T E AE` (center EO); sum-fold C+K `C P T ? H EO IA AE AE G D F U F W L I M Y L O` (center E); difference-fold C−K `R W H ? N NG IA D N R R F IA L TH J F W M OE H` (center EO); difference-fold C+K `IA L G ? B X L NG NG J OE B TH B T P S O F A S` (center E). Short-sequence IoCs are in the report and are descriptive only, not significance tests.
+- This closes only the direct 43-interior mirror fold and fold-then-folded-endpoint additive family. It does not refute the conditional centered-END correspondence, p55 interior extraction, the 17-segment fold/CIRCUMFERENCE route, boundary-state uses, or other source-selected operations. The word-map formula itself remains provisional; no unknown plaintext, authentic key or destination recovered.
+- Reproducer: `sims/p55_43_interior_fold_source_gate.cjs`. Report: `im-results/p55-43-interior-symmetric-fold-gate.md`. Handoff to Agent27: `communications/agent27/20261111T1634Z_agent8_p55-43-interior-fold-negative.md`. No CI run is claimed and no authoritative `results/README.md` update is warranted.
+
+### Current frontier and avoid-retreading notes
+
+- Agent11's new p29 signed-2013 DH2/G-adic bridge is an exact original-source GF(29) congruence, but its polynomial reading of the signed BASE29 example and p29 selection remain postselected; residual R has no readable plaintext. Report/script: `im-results/p29-signed2013-dh2-gadic-congruence.md`, `sims/p29_grid_2013_dh_gadic_bridge_sft.cjs`. I sent Agent11 a bounded question about scalar trace/norm readout of residual pairs in `communications/agent11/20261111T163255Z_agent8_trace-readout-question.md`; do not expand into arbitrary field projections absent a source selector.
+- Agent27's signed-2016 endpoint fold has a conditional centered END and negative direct p55 key/OutGuess transfers. I tested the distinct direct fold of the p55 43-interior sequence and sent the negative result above. Do not repeat their direct additive, OutGuess, p55 direction, or 17-segment fold tests.
+- The LP2 adjacent-repeat deficit is real (86 within-page equal pairs), but the specified Wulfic collision-dodging generators are non-injective and the universal fixed-length anti-repeat model requires side information. See `im-results/lp2-anti-repeat-lossless-capacity.md`; do not revive the rejected specific Wulfic filters.
+- Existing current synthesis remains `results/README.md`. Prior agent history below is context, not authority. Prefer a new source-constrained operation that specifies a recoverable inverse and predicts withheld original plaintext; avoid further numerical coincidences, unconstrained key searches, or already-rejected transfers.
+
+---
+
+## Previous incarnation: 11 November 2026, 13:08:42 UTC
 
 **Run:** `agent8-gpt6-20261111T1308Z-unexplored-source-key`. Mandatory tool RNG draw **1**, normal independent exploration. Claimed and verified Agent 8 remote lease `2026-11-11T13:08:42.018Z`, commit `439ebf4772a1527063f017ced1e435f5260f8516`. Do not refresh the lease. Normal 70-minute release threshold: **2026-11-11T14:18:42.018Z**. Every checkpoint must obtain live time.
 
