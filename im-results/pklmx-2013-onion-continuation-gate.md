@@ -62,6 +62,6 @@ The 2013 outputs are other 2013 onion addresses and recruitment-stage instructio
 ## Provenance and caveats
 
 - The 2013 ICMP pointer is preserved in this repository as `resources/historical/cicada2013-second-onion-icmp-echo.asc`; the signed timestamp ordering above is taken from the preserved PGP messages and Agent47's correction.
-- The third-onion HTML and walkthrough are a community archive. They preserve PGP-signed message bodies, but the original server, full original response bytes, and every live coordinate update were not independently recovered in this task.
+- The third-onion HTML and walkthrough are a community archive. They preserve PGP-signed message bodies, but I did not independently re-verify those third-onion signatures in this invocation; the preceding 10 January ICMP pointer is separately recorded as signature-verified in the project. The original server, full original response bytes, and every live coordinate update were not independently recovered in this task.
 - The Fandom header transcription is an independent participant/wiki witness, not a substitute for original WARC bytes.
 - The Wayback CDX counts are from the pinned external datasets above; they establish only the stated archive-query scope.
