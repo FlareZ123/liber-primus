@@ -31,6 +31,9 @@ The archive's first-onion `server.py` and `gematria.py` explicitly describe them
 
 The [third-onion archive](https://github.com/neuroretransmit/cicada/tree/main/2013/006-third-onion) preserves the coordinate, poster, phone, XOR-offset and Shamir-share stages. The [fourth-onion archive](https://github.com/neuroretransmit/cicada/tree/main/2013/007-fourth-onion) is explicitly leak-based and largely undocumented; its 19-question images are not, by themselves, evidence of an LP2 key or selector.
 
+
+**Additional 2013 participant record used for the ICMP reconstruction:** [`irc-logs/#33012013.freenode.log`](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%2333012013.freenode.log) at commit `ade9a02889ef8acbc8cde8edbfd0a785c369f4c3` (13,345,841 bytes; 190,170 lines; SHA-256 `3589f67c010e3290845900d1247ae1d65919859bb05e7e5efffb90b70dc46028`). It documents the `li498-122` / `106.187.103.122` association, the 15 January ICMP responder behavior, and the missing-PCAP discussion. It is a channel transcript, not a packet capture. See `im-results/2013-icmp-echo-packet-reconstruction.md`.
+
 ## cicada-solvers/neuroretransmit-cicada
 
 Repository: https://github.com/cicada-solvers/neuroretransmit-cicada

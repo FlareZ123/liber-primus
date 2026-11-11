@@ -1,6 +1,6 @@
 # xsxnaks second-onion page: archive and chain gate
 
-**Disposition: bounded historical reconstruction; no original HTTP entity recovered and no LP2 handoff found.** This resolves the page's place in the 2013 sequence while preserving the remaining availability gap for Director Issue [#376](https://github.com/FlareZ123/liber-primus/issues/376).
+**Disposition: bounded historical reconstruction; no original HTTP entity or raw PCAP recovered, and no LP2 handoff found.** The payload is now reproducibly reconstructed, the replacement host's IP is documented in the contemporaneous IRC transcript, and the sample packet headers support a 3301-seeded prime-ID hypothesis. See [the ICMP reconstruction report](2013-icmp-echo-packet-reconstruction.md).
 
 ## Naming correction
 
@@ -70,15 +70,23 @@ The participant record preserves two distinct 501 responses for the same onion a
 1. **v1 / old host:** the error page identifies Apache/2.2.22 (Ubuntu), server **li528-4.members.linode.com**, Port 81. The archive links this hostname to 106.186.17.4 and says the clearnet host worked until the first Tor-2 service went down.
 2. **replacement / new host:** the later error page identifies **li498-122.members.linode.com**, Port 81, with a different Apache banner. The participant record says this host did not work on plainweb. It explicitly says the page did not simply reopen: it was hosted on another server with another Apache version.
 
-The ICMP packet transcript also identifies **li498-122.members.linode.com** as the echo-reply source. The payload is a gzip-wrapped PGP message, preserved in the community archive as [icmp-echo.txt](https://github.com/neuroretransmit/cicada/blob/6c6d3318414775f7febce3c982607039e70f176d/2013/005-second-onion/icmp-echo.txt) and [icmp-echo.asc](https://github.com/neuroretransmit/cicada/blob/6c6d3318414775f7febce3c982607039e70f176d/2013/005-second-onion/icmp-echo.asc). Its signed body says “Well done. You have come far.” and names **pklmx2eeh6fjt7zf.onion**. The participant reconstruction prints the gzip member's source-file mtime as **10 January 2013 22:07:15**, but gives no timezone. Agent45's direct OpenPGP packet decode gives the signed creation time as **10 January 2013 17:07:15 UTC**; these are distinct fields and must not be equated. The second host's numeric IP was not recovered in the sources checked; do not reuse the old li528 IP as if it identified li498.
+The ICMP packet transcript also identifies **li498-122.members.linode.com** as the echo-reply source. The payload is a gzip-wrapped PGP message, preserved in the community archive as [icmp-echo.txt](https://github.com/neuroretransmit/cicada/blob/6c6d3318414775f7febce3c982607039e70f176d/2013/005-second-onion/icmp-echo.txt) and [icmp-echo.asc](https://github.com/neuroretransmit/cicada/blob/6c6d3318414775f7febce3c982607039e70f176d/2013/005-second-onion/icmp-echo.asc). Its signed body says “Well done. You have come far.” and names **pklmx2eeh6fjt7zf.onion**. The gzip header stores mtime `1357837635`, exactly **10 January 2013 17:07:15 UTC**, and the OpenPGP signature creation epoch is the same value. The earlier **22:07:15** rendering was a local-time conversion error, not a second timestamp. They remain separate metadata fields whose stored values happen to match. The second host's numeric IP is now documented: the 11 January IRC log places an IP-lookup URL for `106.187.103.122` beside the DNS lookup for `li498-122.members.linode.com` (lines 15727–15731), and a 20 March entry explicitly prints `li498-122.members.linode.com. [106.187.103.122]` (line 71617). This is participant-recorded mapping, not an original packet-header extraction or authoritative DNS history; the exact DNS transition time remains unknown.
 
-This corrects a simple same-server interpretation: the participant account distinguishes the old li528 host from a replacement li498 host, and the packet capture names li498. The exact DNS/IP transition and the time at which the ICMP payload became publicly obtainable remain unresolved.
+This corrects a simple same-server interpretation: the participant account distinguishes the old li528 host from a replacement li498 host, and the packet capture names li498. The host/IP association is documented by 11 January and explicitly restated on 20 March, but the exact DNS transition time and first public availability of the ICMP payload remain unresolved.
 
 ## Human-puzzle implication and cross-artifact callback
 
 The v1 page is a deliberate-looking **waiting gate** in the participant reconstruction: its visible sentence says “Patience is a virtue” and its HTML comment immediately explains “come back soon.” The next observed state is “Welcome back,” followed by a short metaphor that suggests a recognizable operation, ICMP echo. This is a useful historical example of a compact human-facing clue selecting an operation, but it does not establish that the signed 14 January message caused the already-10-January-signed ICMP payload.
 
 The same community wiki's phrase table records “Patience is a virtue” as prime **761** and “For Every Thing That Lives Is Holy” as prime **1033** (onions 2 and 1 respectively). These are plausible callbacks to the 2013 761.mp3 / 1033 material. The phrase table and first-onion COUNT reconstruction are participant material, not part of the signed TCP-server specification; treat this as historical context, not an authenticated LP2 selector or key.
+
+
+
+### ICMP payload and packet-header update
+
+The pinned `neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3` snapshot also preserves `irc-logs/#33012013.freenode.log` (13,345,841 bytes; 190,170 lines; SHA-256 `3589f67c010e3290845900d1247ae1d65919859bb05e7e5efffb90b70dc46028`). It records the 11 January target/IP discovery, an earlier ping loop, and the 15 January custom-responder discussion: one data line per ping, with concurrent pingers splitting the stream and some routers/ISPs dropping the second ICMP reply. The archived 28-line hex stream reconstructs exactly to the signed 959-byte pklmx message.
+
+The three surviving tcpdump data fragments match hex lines 19–21 and carry ICMP identifiers 3457, 3461, and 3463. These are the 19th–21st primes after seed 3301, yielding a strong prediction that the 28 data replies use the next 28 primes (3307 through 3527). Only those three identifiers are observed; the full PCAP is still absent, so the sequence remains a falsifiable hypothesis. See [the detailed ICMP report](2013-icmp-echo-packet-reconstruction.md). The 17:32 tcpdump timestamps have no date and cannot be tied to the 10 January signature or the 11 January ping loop.
 
 ## Source inventory and archive limits
 
@@ -94,4 +102,4 @@ The same community wiki's phrase table records “Patience is a virtue” as pri
 
 The second-onion route ends at the signed pklmx pointer. The existing [pklmx continuation gate](pklmx-2013-onion-continuation-gate.md) documents the third-onion “Standby for coordinates” page and the later coordinates/poster/phone/SSSS recruitment chain; it found no authenticated LP2, p56, AN END, or LP2-key handoff. Nothing in the xsxnaks page or its ICMP continuation selects an LP2 operation or source-derived key.
 
-**Close the xsxnaks archive task as a bounded historical result.** Keep Issue #376 open for the distinct signature-time versus public-availability question. Reopen this archive branch only if an original WARC/HTTP entity, an independently timestamped raw capture, or a new authenticated LP2 cross-reference appears.
+**Close the xsxnaks archive task as a bounded historical result.** Issue #376 is closed. The 14 January hint's signature/publication times and the 15 January public ICMP discussion are now recorded here; they do not establish the first private or public extraction. Reopen this archive branch only if an original WARC/HTTP entity, an independently timestamped raw capture, or a new authenticated LP2 cross-reference appears.
