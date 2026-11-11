@@ -22,6 +22,7 @@ on:
           - nine-section
           - redspan-zero
           - tree-tiling
+          - terminal-circumference
         default: full
 
 jobs:
@@ -56,6 +57,10 @@ jobs:
           node sims/grid_two_channel_serial_order_sft.cjs
           node sims/grid_boolean_mobius_gp28_inverse_sft.cjs
           node sims/grid_missing_f_prime179_sft.cjs
+      - name: Original source terminal table border and solved-page known-plaintext gate
+        if: ${{ inputs.probe == 'terminal-circumference' }}
+        run: node sims/lp2_terminal_grid_border_ring_sft.cjs
+
       - name: Original signed-image source-prime 11x11 tiling test
         if: ${{ inputs.probe == 'tree-tiling' }}
         run: |
