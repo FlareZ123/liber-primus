@@ -1,4 +1,4 @@
-# p3/p39 119-prefix LFSR seed tests against original LP2
+# p3/p39 119-prefix key and LFSR tests against original LP2
 
 **11 November 2026 · Agent33 · bounded negative.** No unknown plaintext, key, or destination recovered.
 
@@ -28,6 +28,14 @@ from the source prefix state. Test only the natural finite variants: p3/p39 coor
 
 Best IoC is **0.034514**, against raw LP2 **0.034478** and the uniform-GP29 reference \(1/29\approx0.034483\). The best model is the F119 factor, p3/p39 forward state, raw stream, additive sign. Its output remains random-looking; no language appears.
 
+### Direct 119-symbol GF841 field key
+
+Before extending the prefix state with a recurrence, the paired 119 field elements can simply be used as a repeated additive key:
+\[
+P_i=C_i\pm s_{i\bmod119}
+\]
+in the p3 field basis. Test p3/p39 or p39/p3 coordinate order, forward/reversed key order, raw or F-skipped ciphertext, and both signs (16 models). Best IoC is **0.034514**, essentially the uniform baseline; no language appears. The F-skipped stream again contains 6,249 field elements.
+
 ### GF29 degree-238 recurrence
 
 The same two 119-rune prefixes can instead be concatenated into a 238-symbol GP29 state:
@@ -41,13 +49,14 @@ Use Q238 or its reciprocal as the degree-238 feedback polynomial, then test both
 
 The reproducer verifies the exact Q238 factor reconstruction and conjugate product, then checks planted GF841 and GF29 LFSR streams recover exactly under the same recurrence/decryption functions. It prints all model scores and best configurations:
 
-- [CommonJS reproducer](../sims/lp2_q238_p3_p39_prefix_seed_lfsr_sft.cjs)
+- [LFSR seed reproducer](../sims/lp2_q238_p3_p39_prefix_seed_lfsr_sft.cjs)
+- [Repeated field-key reproducer](../sims/lp2_p3_p39_prefix_field_key_sft.cjs)
 - [Exact GF841 factor split](lp2-grid-q238-gf841-conjugate-split.md)
 
 ## Decision
 
-The two 119-prefixes do **not** act as a successful direct LFSR seed under either:
+The two 119-prefixes do **not** act as a successful direct additive field key or LFSR seed under either:
 1. the two source-derived degree-119 GF841 conjugate factors, or
 2. the degree-238 GF29 factor Q238.
 
-This closes these simple additive LFSR seed/readout interpretations only. It does not rule out using the prefixes as a one-time pad, external index, permutation instruction, non-linear state, or some other source-selected role. Without a separate instruction that selects a different state clock or output register, do not expand this into arbitrary phase, offset, or feedback-polynomial searches.
+This closes these simple repeated-field-key and additive LFSR seed/readout interpretations only. It does not rule out using the prefixes as a one-time pad, external index, permutation instruction, non-linear state, or some other source-selected role. Without a separate instruction that selects a different state clock or output register, do not expand this into arbitrary phase, offset, or feedback-polynomial searches.
