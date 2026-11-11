@@ -1,33 +1,53 @@
-# p55 original glyph morphology against an independent native-printing baseline
+# Original p55 typography-carried key channel: native-shape and spacing controls
 
-**Status:** bounded original-source negative on a possible typography-carried key channel. This test recovers no unknown LP2 plaintext or cryptographic key.
+**Status:** two source-pixel, independently controlled negatives on proposed typography-carried key material. The tests yield no unknown LP2 plaintext, key or destination. Their scope is the original unsolved physical page 55, `72.jpg`.
 
-## Why this channel is worth a direct check
+## Hypothesis and human solve path
 
-The terminal unsolved physical LP2 page 55 (original `72.jpg`) has 76 GP runes and unusually sparse text immediately before the separately printed 10-dot terminator, tree and insect artwork. A second bit layer could in principle be carried by deliberate per-rune shape alternates, independently of the cipher values. Because a 256-byte numerical grid elsewhere in the book is already heavily studied as a putative key, a font-shape carrier is a genuinely different possible source of missing key material.
+The final unsolved page has only **76 GP runes** above a conspicuous tree and insect illustration. A human solver might suspect concealed information in irregular rune strokes or inter-rune distances, particularly given Cicada's established historical use of image steganography. A deliberately chosen glyph variant or additional 3-pixel inter-character gap could encode one independent bit per rune without changing the visible GP ciphertext. An actual extraction would require identifying a repeatable physical distinction, then a source-selected bit order, ideally demonstrable on solved pages.
 
-The necessary gate is whether p55 has **rune-preserving binary glyph alterations beyond ordinary printer/JPEG variability**. Its original image is compared against physical LP2 p43, original `60.jpg`, without fitting plaintext or secret bits.
+Two **keyless necessary-condition tests** can reject overt variants before guessing binary messages:
 
-## Frozen extraction and test
+1. Compare p55 binary glyph shapes to a separately printed original page, training on physical p43 (`60.jpg`). A genuine p55-specific alternate form should produce an unexplained shape displacement beyond ordinary rendering variability.
+2. Fit a normal rune-plus-punctuation spacing model from p43's first seven physical lines, and predict p43's last five lines and the four printed lines of p55 **without refitting on p55**. A deliberate 3px spacing-mark carrier should produce measurable out-of-baseline errors.
 
-The source-native [standalone test](../sims/lp2_p55_native_glyph_variants_sft.py) segments black ink in the normal text region of the unmodified 2400×3600 original JPEGs using the same geometric rule as the repository's [existing glyph-source readback](../sims/original_glyph_source_readback.py). Each component is matched to its exact GP symbol by original source order from `lp2-corpus.json`. The 86-pixel-high **red 10-dot mark** on p55 and the much larger central tree are explicitly excluded by their observed geometry; neither becomes an invented rune or payload bit.
+The original JPGs and canonical `lp2-corpus.json` provide source control. No OCR, language model or fitted ciphertext key is used. On p55 the separately printed 86px-high terminal red ten-dot mark and large central tree are **not** counted as runes or spacing events.
 
-Each isolated binary rune crop is zero-padded in a fixed top-left coordinate system. For p43, compute the nearest Hamming distance among **other** occurrences of the *same* rune, and separately verify that an unrestricted nearest template still identifies its true rune. For p55, use p43's unchanged occurrence templates, without any training on p55. This is a pixel-level source comparison, not a language-based decryption.
+## Test A: native glyph morphology
 
-| Measurement | p43 independent-sample baseline | p55 original target |
+The [self-contained shape reproducer](../sims/lp2_p55_native_glyph_variants_sft.py) uses original ink thresholds and native 2400×3600 coordinates. Each source-labelled rune is isolated as a binary bitmap, normalized at its top-left bounding corner, and compared using pixel Hamming distance to every native reference image of that same GP symbol on p43. The p43 baseline excludes the query image itself (leave-one-out). Independent unrestricted nearest-template classification is a readback control.
+
+| Measurement | p43 leave-one-out native baseline | p55 original |
 |---|---:|---:|
-| GP glyphs matched to source transcription | 274/274 | 76/76 |
-| Median same-rune binary pixel distance | 0 | 0 |
-| 95th-percentile distance | 117.05 | 120.5 |
-| Maximum distance | 271 | 227 |
-| Samples beyond p43 maximum | not applicable | **0/76** |
+| Correct source GP glyph readbacks | **274/274** | **76/76** |
+| Median same-rune Hamming distance | 0 | 0 |
+| 95th percentile | 117.05 pixels | 120.5 pixels |
+| Maximum | 271 pixels | 227 pixels |
+| Beyond baseline maximum | definition of control | **0/76** |
 
-The p43 control is intentionally *leave-one-out* and the p55 comparison is out-of-page. The p55 nearest-template maximum of 227 lies **below** the p43 ordinary-printing maximum of 271. Several repeated runes on p55 have pixel differences of about 100–200 pixels under strict binarization, but equivalent native-shape variability is already present in the p43 control. These differences cannot be labelled concealed bits without a separately motivated decoding convention.
+The p55 nearest-template distances lie within natural original-font variability. Differences of ~100–200 thresholded pixels between some same-rune impressions are also found among p43 glyphs. A shape-specific hidden alphabet is therefore unsupported in the particular p55-versus-p43 contrast. This cannot exclude a deliberately encoded bit within native font rasterization variants.
 
-## Decision and scope
+## Test B: original print advances and inter-rune spacing
 
-No original p55 rune is a **large binary font-shape outlier** against this independent native baseline. A proposal that p55 supplies an obvious alternate-glyph alphabet lacks its necessary distinct physical source feature. This test does **not** reject one-pixel microdots, subpixel kerning, a code that deliberately selects among ordinary renderer phases, a data-dependent JPEG coefficient channel, or a carrier present elsewhere in the book. The output is not plaintext and should remain intermediate evidence.
+The separate [source-kerning reproducer](../sims/lp2_p55_font_kerning_baseline_sft.py) reuses the existing physical glyph-position and typography-equation code in [`source_glyph_advance_inversion.py`](../sims/source_glyph_advance_inversion.py), extending its independently measured glyph advances to **p55 specifically**. Each gap between consecutive runes on one physical line equals the fitted width of the preceding rune, plus a fitted printed hyphen or period width where present. The model has 29 GP-rune advances and two punctuation advances, with weights fitted on the first seven lines of p43. All 72 p55 within-line gaps are then genuine out-of-sample observations.
 
-The next useful typography investigation would need an original-source visual instruction selecting a specific differentiating stroke, coordinate or font phase and must first show its operation on a solved page. Repeating generic image-quality threshold changes will not select a key.
+| Data and evaluation | Rune-to-rune gaps | Spacing RMSE (original pixels) | Maximum absolute residual |
+|---|---:|---:|---:|
+| p43 first seven lines, training | 152 | **0.49856** | 1.375 |
+| p43 final five lines, held-out native-print control | 110 | **0.72076** | 2.24305 |
+| p55 four original printed lines, independent target | 72 | **0.56801** | **1.375** |
+| p55 with a deliberately planted +3px on every other gap | 72 | **2.27866** | model-dependent |
 
-Reproduction: `python sims/lp2_p55_native_glyph_variants_sft.py` from the repository checkout with NumPy and Pillow; original source `resources/liber-primus/60.jpg`, `72.jpg` and `lp2-corpus.json`. The script asserts source count, glyph-label readback, and exact native distance maxima.
+The observed p55 spacing error is **smaller** than held-out native printing on p43. The alternating 3px planted test demonstrates that this operation has measurable sensitivity to a substantial regular kerning carrier; the same signal does not occur in the unaltered p55 image.
+
+The `72.jpg` segmentation initially includes a narrow 10-dot component beside the last text line and an illustration component lower down. Exact original transcription and source-component geometry fix the genuine line lengths at **24, 22, 22, 8 = 76** runes, giving **72** gaps. Counting the red dot as a rune would invent a false carrier position.
+
+## Cryptanalytic decision
+
+Neither p55 glyph shape nor its inter-rune advances supplies a detected **overt second font alphabet**. Both match ordinary native printing from an independent original image. Retire these two *direct*, prominent 76-bit-carrier hypotheses absent an independent instruction identifying the small residual bit code. The tests leave microdots, deliberately chosen natural renderer phases, subtle JPEG/quantization channels, and alternative pages genuinely open.
+
+These limited negative controls do not select a reversible LP2 cipher, authenticate a key or solve p55. Future work should target source-given byte/rune operations or genuinely anomalous original visual marks with a defined decoding rule. Generic threshold variation would merely rerun this same gate.
+
+## Reproduction
+
+From the repository checkout with Python 3, NumPy and Pillow, run `python sims/lp2_p55_native_glyph_variants_sft.py` and `python sims/lp2_p55_font_kerning_baseline_sft.py`. Required original input files are `resources/liber-primus/60.jpg`, `72.jpg`, `resources/liber-primus/lp2-corpus.json` and `resources/lp2-transcription.txt`. Each reproducer uses strict input counts and exact numeric assertions. The kerning test contains the source-specified planted +3px control and reports the observed and held-out residuals without refitting on p55.
