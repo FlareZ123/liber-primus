@@ -160,6 +160,9 @@ def extract(bitmap: bytes, bit_count: int, password: str) -> tuple[bytes, dict]:
         "length": length,
         "end_bit_offset": offset,
         "payload_sha256": hashlib.sha256(payload).hexdigest(),
+        "payload_sha512": hashlib.sha512(payload).hexdigest(),
+        "payload_tail_sha256": hashlib.sha256(tail).hexdigest() if tail else None,
+        "payload_tail_sha512": hashlib.sha512(tail).hexdigest() if tail else None,
         "entropy_bits_per_byte": entropy(payload),
         "printable_fraction": sum(
             32 <= value < 127 or value in (9, 10, 13) for value in payload
@@ -169,9 +172,11 @@ def extract(bitmap: bytes, bit_count: int, password: str) -> tuple[bytes, dict]:
             sum(32 <= value < 127 or value in (9, 10, 13) for value in tail) / len(tail)
             if tail else 0.0
         ),
-        "possible_openpgp_header_byte": bool(payload) and (payload[0] >> 6) in (2, 3),
+        # The first four bytes are the OutGuess container header; inspect the embedded tail.
+        "possible_openpgp_header_byte": bool(tail) and (tail[0] >> 6) in (2, 3),
         "prefix_hex": payload[:32].hex(),
-        "magic": detect_magic(payload),
+        "embedded_prefix_hex": tail[:32].hex(),
+        "magic": detect_magic(tail),
     }
     return payload, metadata
 
