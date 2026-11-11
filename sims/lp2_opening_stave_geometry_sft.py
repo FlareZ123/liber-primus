@@ -72,6 +72,38 @@ def exact_crop_match(a: np.ndarray, b: np.ndarray) -> bool:
     return a.shape == b.shape and np.array_equal(a, b)
 
 
+def major_projection_rows(image: np.ndarray, rotation: int = 0) -> list[int]:
+    """Return the three dominant cross-projection centers in a stave crop.
+
+    This is a descriptive row-span profile, not a rune classifier: for each
+    row it measures the horizontal extent of dark pixels, smooths the profile,
+    then keeps the three strongest local maxima separated by at least 80 px.
+    """
+    moving = np.rot90(image, rotation) if rotation else image
+    dark = moving < 100
+    spans = []
+    for row in dark:
+        xs = np.flatnonzero(row)
+        spans.append(int(xs[-1] - xs[0] + 1) if len(xs) else 0)
+    smoothed = cv2.GaussianBlur(
+        np.asarray(spans, dtype=np.float32).reshape(-1, 1),
+        (1, 91), 0, sigmaY=15,
+    ).ravel()
+    candidates = [
+        i for i in range(1, len(smoothed) - 1)
+        if smoothed[i] >= smoothed[i - 1]
+        and smoothed[i] > smoothed[i + 1]
+        and smoothed[i] > 80
+    ]
+    selected = []
+    for point in sorted(candidates, key=lambda i: smoothed[i], reverse=True):
+        if all(abs(point - prior) >= 80 for prior in selected):
+            selected.append(point)
+        if len(selected) == 3:
+            break
+    return sorted(selected)
+
+
 def main() -> None:
     root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("resources/liber-primus")
     crops = read_rois(root)
@@ -104,8 +136,17 @@ def main() -> None:
     )
     assert best[0] < 0.70
 
-    print("PASS: pp0–2 reuse one left/right stave pair; the pair is the same template at 180°; p22 is only a loose visual control.")
-    print("No page-specific stave variation or source-selected Ogham/rune/directional key is established.")
+    profiles = {
+        "p0-left": major_projection_rows(crops["p0-left"]),
+        "p0-right": major_projection_rows(crops["p0-right"]),
+        "p22-after-90deg": major_projection_rows(crops["p22-horizontal-control"], rotation=1),
+    }
+    for name, points in profiles.items():
+        print(f"three dominant transverse projections {name}: {points}")
+        assert len(points) == 3
+
+    print("PASS: pp0–2 reuse one left/right stave pair; the pair is the same template at 180°; p0 and p22 each show three dominant projections.")
+    print("The count may cue a three-rune node, but it does not establish an Ogham transcription, grid, or path.")
 
 
 if __name__ == "__main__":
