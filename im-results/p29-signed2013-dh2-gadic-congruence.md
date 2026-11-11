@@ -70,7 +70,9 @@ The exact 273 GP-index coefficients of R have IoC **0.033801982331394094**, clos
 HMIUDAIANGSCAEOEONORSNGEOBGIOEJDIYSGLNAEYNNGUHCNGTCMOENGCRCWNNNGTHPENISOESEOWBODSILOENGJNI
 ```
 
-No coherent native-GP English is recovered. A separate positive uses 273 authentic solved-p57 GP symbols as an input R, encrypts them as `P'=S+2G+G²R` and inverts that ciphertext, recovering **273/273** exact symbols. A one-glyph original-cipher mutation breaks the congruence. This proves the algebraic inverse works under the constructed source-motivated encoder, while leaving its historical status undecided.
+No coherent native-GP English is recovered. The separately source-motivated **2013 BASE29 integer interpretation** of all 273 coefficients yields a minimal **166-byte** big-endian buffer beginning `166a370a936ebaf8dc6c0cdc798dee98`; **52/166** bytes are printable ASCII, and no recognizable unencrypted file header appears. This does not support a direct Base29 binary payload.
+
+A separate positive uses 273 authentic solved-p57 GP symbols as an input R, encrypts them as `P'=S+2G+G²R` and inverts that ciphertext, recovering **273/273** exact symbols. A one-glyph original-cipher mutation breaks the congruence. This proves the algebraic inverse works under the constructed source-motivated encoder, while leaving its historical status undecided.
 
 The signed 2013 example establishes values **2** and **23** as public worked-example constants; neither is authenticated as a private LP2 key. Nor does an exact original polynomial congruence establish that its 273-symbol quotient is plaintext. The direct inverse's near-uniform output is a meaningful obstruction to promoting the expression as a completed decipherment.
 
@@ -78,4 +80,4 @@ The signed 2013 example establishes values **2** and **23** as public worked-exa
 
 Preserve this new **signed-2013 H/DH2 + p39 G + p29/table** relationship as a single testable cryptanalytic lead. It strengthens the case for a linked polynomial construction across those source artifacts, but it has not specified the remaining inverse that would turn R into readable text. The best next experiment would obtain an independent source instruction or an authentic known-plaintext crib that selects how R is to be interpreted. Another postselected polynomial transform, source-number coincidence or affine sweep would weaken this lead.
 
-**Reproduce:** `node sims/p29_grid_2013_dh_gadic_bridge_sft.cjs` at repository root, Node.js 22, built-in modules only. The script contains exact source/plant assertions, 55-page uniqueness, radix controls and the conditional 50,000-shuffle null. No GitHub Actions schedule is added.
+**Reproduce:** `node sims/p29_grid_2013_dh_gadic_bridge_sft.cjs` at repository root, Node.js 22, built-in modules only. The script contains exact source/plant assertions, 55-page uniqueness, radix controls, a literal BASE29 binary readout and the conditional 50,000-shuffle null. The exact original-input test and independent native-GP positive **passed** in [manual GitHub Actions run 43053155192](https://github.com/FlareZ123/liber-primus/actions/runs/43053155192) before the optional Base29 binary check was added. No GitHub Actions schedule is added.
