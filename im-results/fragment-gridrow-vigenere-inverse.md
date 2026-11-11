@@ -61,11 +61,23 @@ The GP28 outputs likewise show no readable prose. Their raw IoC is **0.035253291
 
 The script also performs mechanics-only positive plants under both registers and verifies exact recovery for all row-order/projection/sign combinations. These plants validate the implementation only; they do not authenticate the manuscript key.
 
+## Continuous global-column clock (Agent 37, 2026-11-11)
+
+A distinct clock is to let the table column advance continuously across 13-dot fragment boundaries, rather than resetting to column zero at each fragment: for unknown-rune offset \(i\), use column \(i\bmod8\), while the row changes according to the printed or black-anchored fragment order. This is a natural alternative because the table has eight columns and the 13-dot marks are punctuation events rather than runes. It is not an instruction printed in the manuscript.
+
+The full 58-page corpus has 13,136 runes (\(0\bmod8\)); the 12,956-rune unknown prefix ends at phase 4, and the 180-rune solved tail contributes the remaining four phases. This is a structural length relation, not proof that the unknown cipher's column clock continues through the solved tail.
+
+The reproducer tests eight continuous-clock GP29 additive inverses: printed/black-anchored row order × byte projection \(b\bmod29\) or \(\lfloor29b/256\rfloor\) × both signs. The column order is the literal printed order 0–7; no LCG8 phase or seed is fitted. Every model exactly re-enciphers the original 12,956 runes and passes a mechanics-only planted control. Original IoC is **0.0344783979**; the eight outputs range **0.0344498954–0.0345268116**. With the fixed Shakespeare GP-trigram model trained on the first 190,000 control characters, the original scores **−6.188688** and the eight outputs range **−6.284172 to −6.166210**. The best output remains nonlinguistic (prefix: `SNAELAEXBLSIAAENAIATHYLEOFOBCOEFPMGCFEOUTPIAGLGOEEAEONGTDTHCOTHYWIWEAPXRPIEALAEGRJEOTHJGOEEOCOENYIASTHDR`).
+
+**Decision:** the continuous clock is another bounded negative for direct table-row additive use. It does not supply the missing source instruction: total-length divisibility does not determine whether the 13-dot marks reset the column, whether the solved tail shares the unknown cipher, or how the bytes map to GP29. The global-phase variant is also within the already-established all-secret public fragment×8-phase substitution bound; do not expand it into a seed/phase sweep.
+
 ## Decision and scope
 
-The direct 8-byte repeating row-pad interpretation is a **bounded negative**: neither the printed row order nor the strongest five-dot/black-mark row order yields language-like GP output. This closes a simple direct Vigenère-style use of one table row per thirteen-dot fragment.
+The direct 8-byte repeating row-pad interpretation is a **bounded negative** under both clock conventions now tested: fragment-local column reset and continuous global column phase. Neither the printed row order nor the strongest five-dot/black-mark row order yields language-like GP output. This closes the simple direct Vigenère-style use of one table row per thirteen-dot fragment under these byte projections and clocks.
 
-It does not exclude a nonlinear cipher, a distinct source-derived state evolution, an outer encoding, a different plaintext register, or a different table interpretation. It does not establish that the 31-mark/32-row correspondence was intended; the counts and zero-state alignment remain retrospective source clues.
+The continuous clock is a source-motivated alternative, not an authenticated instruction. The manuscript does not say whether columns reset at a 13-dot mark, whether the solved tail shares the unknown cipher, or how table bytes become GP29 key values. The 31-mark/32-row correspondence and zero-state alignment remain structural clues, not proof that the maker intended this table as a cipher.
+
+This does not exclude a nonlinear cipher, a distinct source-derived state evolution, an outer encoding, a different plaintext register, or a different table interpretation. It does not establish that the 31-mark/32-row correspondence was intended.
 
 This result supplements, but does not replace, the broader original-input exclusions in [the 256-event/grid synthesis](red-256-event-grid-correspondence.md), which covers per-fragment AES/ChaCha row nonces, DES row keys, full-table pads, and all-secret feedback bounds.
 
@@ -77,4 +89,4 @@ Run from repository root with Node.js 22:
 node sims/fragment_gridrow_vigenere_inverse.cjs
 ```
 
-The script reads only the canonical corpus, original ink annotations and canonical base-60 grid; asserts the source event and fragment counts; enumerates all 16 fixed variants; checks exact original re-encryption; and validates both encoders/decoders with synthetic plants. It has no third-party dependencies and makes no repository-source modifications.
+The script reads only the canonical corpus, original ink annotations and canonical base-60 grid; asserts the source event and fragment counts; enumerates 16 fragment-reset and 8 continuous-global fixed variants; checks exact original re-encryption; and validates both encoders/decoders with synthetic plants. It has no third-party dependencies and makes no repository-source modifications.
