@@ -96,6 +96,39 @@ function projection(layout, generator) {
 }
 
 /**
+ * Without the reversible fallback, a zero trace factor makes the
+ * plaintext rune disappear. These original ciphertext positions then
+ * impose exact constraints on the unknown W[1] component even with
+ * arbitrary plaintext. Contradictory constraints refute every W.
+ * @param {'adjacent'|'halves'} layout
+ * @param {'u'|'z'} generator
+ * @returns {{positions:number[],forcedW1:number[]}}
+ */
+function degenerateTraceConstraints(layout, generator) {
+  /** @type {Field} */
+  const g = generator === 'u' ? [0, 1] : [23, 27];
+  /** @type {Field} */
+  let power = [1, 0];
+  const positions = [], forcedW1 = [];
+  for (let i = 0; i < 127; i++) {
+    if (trace(power) === 0) {
+      /** @type {Field} */
+      const Q = layout === 'adjacent'
+        ? [coefficient[2 * i], coefficient[2 * i + 1]]
+        : [coefficient[i], coefficient[i + 127]];
+      const required = mod(observed[i] - trace(mul(power, Q)));
+      const fieldW1Coefficient = trace(mul(power, [0, 1]));
+      positions.push(i);
+      forcedW1.push(mod(required * inverse(fieldW1Coefficient)));
+    }
+    power = mul(power, g);
+  }
+  assert.deepEqual(positions, [15, 45, 75, 105]);
+  assert(new Set(forcedW1).size > 1);
+  return { positions, forcedW1 };
+}
+
+/**
  * @param {number[]} text
  * @param {Field} W
  * @param {ReturnType<typeof projection>} t
@@ -176,6 +209,15 @@ function main() {
   for (const generator of /** @type {const} */ (['u', 'z'])) {
     for (const layout of /** @type {const} */ (['adjacent', 'halves'])) {
       const t = projection(layout, generator);
+      const withoutFallback = degenerateTraceConstraints(layout, generator);
+      const expected = {
+        'u/adjacent': [9, 22, 25, 12],
+        'u/halves': [12, 22, 12, 8],
+        'z/adjacent': [17, 4, 0, 12],
+        'z/halves': [20, 4, 16, 8]
+      };
+      assert.deepEqual(withoutFallback.forcedW1,
+        expected[generator + '/' + layout]);
       const native = heldout.slice(0, 127);
       const nativeCipher = encrypt(native, sourceSeed, t);
       assert.deepEqual(decrypt(nativeCipher, sourceSeed, t), native);
@@ -198,6 +240,8 @@ function main() {
       rows.push({
         generator, layout, fieldOffsetsTested: 841,
         zeroTracePositions: t.zeros, fallback: 'multiply by original u',
+        noFallbackForcedSecretW1: withoutFallback.forcedW1,
+        nonFallbackModelValidForAnySecretW: false,
         originalBestTrigram: best.score, originalBestSeed: best.W,
         originalBestIoC: ioc(best.plain),
         originalSourceSeedTrigram: sourceSeedScore,
