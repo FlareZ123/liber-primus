@@ -122,3 +122,82 @@ console.log(JSON.stringify({
   originalChi,latinChi,localChi,results,
   finding:"These eight reversible source-spiral original-input inverses do not restore native prose word-order structure"
 },null,2));
+
+
+// A separate source-identification gate is independent of rune substitutions:
+// if an entire 32-word passage of the historically selected 2012/2013 book
+// codes were plaintext, any within-16-word permutation would preserve two
+// consecutive exact sorted bags of GP word lengths in source order.
+/** @param {number[]} a @returns {string} */
+function bag16(a) {
+  assert.equal(a.length,16);
+  return a.slice().sort((x,y)=>x-y).join(",");
+}
+/** @param {string} s @param {boolean} isBlake @returns {number[]} */
+function sourceLengths(s,isBlake) {
+  let input=s.replace(/^\s*\d{1,3}\.\s*/gmu,"");
+  if(isBlake)input=input.replace(/([A-Za-z])-\s*\n\s*([A-Za-z])/gu,"$1$2");
+  return (input.toUpperCase().match(/[A-Z]+/gu)||[])
+    .map(w=>(w.match(/TH|NG|EO|OE|AE|IA|EA|[A-Z]/gu)||[]).length);
+}
+/**
+ * Exhaustive exact unordered 16-word block matches and fixed-stride adjacent
+ * block pairs, even allowing an arbitrary hidden permutation inside each block.
+ * @param {number[]} targetSource @param {number[]} reference
+ * @returns {{hits:{lpBlock:number,sourceWord:number}[],pairs:{lpBlock:number,sourceWord:number}[]}}
+ */
+function bagScan(targetSource,reference) {
+  assert.equal(targetSource.length%16,0);
+  const keys=[];
+  for(let i=0;i<targetSource.length;i+=16)keys.push(bag16(targetSource.slice(i,i+16)));
+  /** @type {Map<string,number[]>} */
+  const byBag=new Map();
+  for(let j=0;j+16<=reference.length;j++){
+    const k=bag16(reference.slice(j,j+16));
+    if(!byBag.has(k))byBag.set(k,[]);
+    byBag.get(k).push(j);
+  }
+  const hits=[],pairs=[];
+  for(let i=0;i<keys.length;i++){
+    for(const j of byBag.get(keys[i])||[]){
+      const h={lpBlock:i,sourceWord:j};
+      hits.push(h);
+      if(i+1<keys.length&&j+32<=reference.length&&
+         bag16(reference.slice(j+16,j+32))===keys[i+1])pairs.push(h);
+    }
+  }
+  return {hits,pairs};
+}
+const sourceNames=[
+  "2013-book-of-law-I.txt",
+  "2013-book-of-law-II.txt",
+  "2013-book-of-law-III.txt",
+  "2012-marriage-of-heaven-and-hell-page.txt",
+];
+const historical=sourceNames.map((name,i)=>({
+  name,lengths:sourceLengths(
+    fs.readFileSync("resources/external/"+name,"utf8"),i===3),
+}));
+const bagResults=historical.map(book=>{
+  const scan=bagScan(lengths,book.lengths);
+  return {name:book.name,sourceWords:book.lengths.length,
+    singleBagMatches:scan.hits.length,
+    distinctOriginalBlocks:new Set(scan.hits.map(x=>x.lpBlock)).size,
+    twoConsecutiveBlockMatches:scan.pairs.length,
+    firstHits:scan.hits.slice(0,10)};
+});
+assert.deepEqual(bagResults.map(r=>r.sourceWords),[1897,1968,2002,120]);
+assert.deepEqual(bagResults.map(r=>r.singleBagMatches),[1,1,3,0]);
+assert(bagResults.every(r=>r.twoConsecutiveBlockMatches===0));
+
+// Two original source blocks, reversibly scrambled within each 16-word group,
+// must remain source-identifiable by the same exact bag scanner.
+const plantedSource=historical[1].lengths.slice(100,132);
+const planted=plantedSource.slice(0,16).reverse()
+  .concat(plantedSource.slice(16,32).reverse());
+const positive=bagScan(planted,historical[1].lengths);
+assert(positive.pairs.some(h=>h.lpBlock===0&&h.sourceWord===100));
+console.log(JSON.stringify({historicalCodeTextBagScan:bagResults,
+  planted32WordSourceBlockFound:true,
+  result:"No contiguous 32-word exact source crib under arbitrary within-16-word transposition"
+},null,2));
