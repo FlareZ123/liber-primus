@@ -1,6 +1,6 @@
 'use strict';
 /**
- * Original LP2 terminal GF(29^2) Frobenius register: key-independent
+ * Original LP2 terminal GF(29^2) Frobenius register (scale 1 or source 24): key-independent
  * collision obstruction, preserving original p53-red/p55 ciphertext.
  * Run: node sims/red_triad_frobenius_terminal_sft.cjs
  * Hypothesis only; no decryption or historical cipher claim.
@@ -63,13 +63,13 @@ function pairInputs(layout) {
     : [d2.q[i], d2.q[i + 127]]);
 }
 /** @param {[number,number][]} inputs @param {[number,number]} seed */
-function trajectory(inputs, seed) {
+function trajectory(inputs, seed, scale) {
   let state = seed.slice();
   const states = [];
   for (const q of inputs) {
     states.push(state);
     const f = frobenius(state);
-    state = [mod(f[0] + q[0]), mod(f[1] + q[1])];
+    state = [mod(scale * f[0] + q[0]), mod(scale * f[1] + q[1])];
   }
   return states;
 }
@@ -88,11 +88,11 @@ function contradictions(states, output, separated) {
   return mismatches;
 }
 /** @param {[number,number][]} states */
-function unconditionalWitnesses(states) {
+function unconditionalWitnesses(states, period) {
   const first = new Map();
   const witnesses = [];
   for (let i = 0; i < states.length; i++) {
-    const key = (i < 51 ? 'R:' : 'B:') + (i % 2) + ':' + states[i].join(',');
+    const key = (i < 51 ? 'R:' : 'B:') + (i % period) + ':' + states[i].join(',');
     if (first.has(key)) {
       const j = first.get(key);
       if (target[j] !== target[i]) {
@@ -106,47 +106,60 @@ function unconditionalWitnesses(states) {
   return witnesses;
 }
 const cases = [];
-for (const layout of ['adjacent', 'halves']) {
-  const inputs = pairInputs(layout);
-  const zeroStates = trajectory(inputs, [0, 0]);
-  const witness = unconditionalWitnesses(zeroStates);
-  // Same parity => same F^i(seed), so zero-seed equality holds for all seeds.
-  const pairs = witness.map(x => [x.first, x.second]);
-  assert.deepEqual(pairs, layout === 'adjacent'
-    ? [[57, 107]]
-    : [[62, 70], [74, 78], [71, 105]]);
-  assert(witness.every(x => x.first >= 51 && x.second >= 51 &&
-    (x.second - x.first) % 2 === 0));
-  let singleSurvivors = 0, separateInkSurvivors = 0;
-  let minSingle = Infinity, minTwoInk = Infinity;
-  for (let a = 0; a < 29; a++) for (let b = 0; b < 29; b++) {
-    const states = trajectory(inputs, [a, b]);
-    const single = contradictions(states, target, false);
-    const twoInk = contradictions(states, target, true);
-    if (single === 0) singleSurvivors++;
-    if (twoInk === 0) separateInkSurvivors++;
-    minSingle = Math.min(minSingle, single);
-    minTwoInk = Math.min(minTwoInk, twoInk);
+for (const scale of [1, 24]) {
+  // Scalar 24 is the repeated p39 root and enlarged p54 Ac GP index.
+  // F^2=identity; scalar 24 has multiplicative order 7, so
+  // (24 F)^14=identity. This fixes the seed-independent collision clock.
+  const period = scale === 1 ? 2 : 14;
+  if (scale === 24) assert.deepEqual(pow([24, 0], 7), [1, 0]);
+  for (const layout of ['adjacent', 'halves']) {
+    const inputs = pairInputs(layout);
+    const zeroStates = trajectory(inputs, [0, 0], scale);
+    const witness = unconditionalWitnesses(zeroStates, period);
+    const pairs = witness.map(x => [x.first, x.second]);
+    const expectedPairs = scale === 1
+      ? (layout === 'adjacent'
+        ? [[57, 107]]
+        : [[62, 70], [74, 78], [71, 105]])
+      : (layout === 'adjacent'
+        ? [[31, 45], [80, 94]]
+        : [[52, 108]]);
+    assert.deepEqual(pairs, expectedPairs);
+    assert(witness.every(x => x.first < 51 === (x.second < 51) &&
+      (x.second - x.first) % period === 0));
+    let singleSurvivors = 0, separateInkSurvivors = 0;
+    let minSingle = Infinity, minTwoInk = Infinity;
+    for (let a = 0; a < 29; a++) for (let b = 0; b < 29; b++) {
+      const states = trajectory(inputs, [a, b], scale);
+      const single = contradictions(states, target, false);
+      const twoInk = contradictions(states, target, true);
+      if (single === 0) singleSurvivors++;
+      if (twoInk === 0) separateInkSurvivors++;
+      minSingle = Math.min(minSingle, single);
+      minTwoInk = Math.min(minTwoInk, twoInk);
+    }
+    assert.deepEqual([singleSurvivors, separateInkSurvivors], [0, 0]);
+    const expectedMin = scale === 1
+      ? (layout === 'adjacent' ? [6, 1] : [6, 3])
+      : (layout === 'adjacent' ? [4, 2] : [3, 1]);
+    assert.deepEqual([minSingle, minTwoInk], expectedMin);
+    const plantedStates = trajectory(inputs, [11, 7], scale);
+    const secretLookup = ([a, b]) => mod(a * a + 7 * a * b + 13 * b * b + 5);
+    const plant = plantedStates.map(secretLookup);
+    const twoInkPlant = plant.map((v, i) => mod(v + (i < 51 ? 0 : 11)));
+    assert.equal(contradictions(plantedStates, plant, false), 0);
+    assert.equal(contradictions(plantedStates, twoInkPlant, true), 0);
+    cases.push({ scale, phasePeriod: period, layout, testedSeeds: 841,
+      singleSurvivors, separateInkSurvivors, minSingle, minTwoInk, witness,
+      positiveControl: '127 symbols match secret one-ink and two-ink lookups' });
   }
-  assert.deepEqual([singleSurvivors, separateInkSurvivors], [0, 0]);
-  assert.deepEqual([minSingle, minTwoInk],
-    layout === 'adjacent' ? [6, 1] : [6, 3]);
-  const plantedStates = trajectory(inputs, [11, 7]);
-  const secretLookup = ([a, b]) => mod(a * a + 7 * a * b + 13 * b * b + 5);
-  const plant = plantedStates.map(secretLookup);
-  const twoInkPlant = plant.map((v, i) => mod(v + (i < 51 ? 0 : 11)));
-  assert.equal(contradictions(plantedStates, plant, false), 0);
-  assert.equal(contradictions(plantedStates, twoInkPlant, true), 0);
-  cases.push({ layout, testedSeeds: 841, singleSurvivors,
-    separateInkSurvivors, minSingle, minTwoInk, witness,
-    positiveControl: 'both stationary one-ink and two-ink secret lookups pass' });
 }
 console.log(JSON.stringify({
-  status: 'exact obstruction for specified Frobenius recurrence; not a decryption',
+  status: 'exact source-field Frobenius obstruction; not a decryption',
   originalCiphertextCount: target.length,
   sourceQuotientLength: d2.q.length,
   field: 'F29[u]/(u^2-3u-8)',
-  update: 'S[i+1] = S[i]^29 + Q[i]',
-  clock: 'source-order 127 pairs; separate p53 red and p55 black outputs permitted',
+  updates: ['S[i+1]=S[i]^29+Q[i]', 'S[i+1]=24*S[i]^29+Q[i]'],
+  clock: 'source-order 127 pairs; independent p53 red/p55 black outputs allowed',
   cases
 }, null, 2));
