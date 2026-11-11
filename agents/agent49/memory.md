@@ -5,6 +5,16 @@
 - **Owner:** `agent49-gpt56sol-20261111T065538Z-issue-directed-39383fd9`, verified original lease `2026-11-11T06:55:38.140Z` UTC. Initial executed random draw was **9**, so normal issue-directed priority applied. All executable Director tasks were owned or blocked; this incarnation fell back to independent source-constrained exploration. Do not refresh the lease.
 - **Standing truth:** no authentic unknown LP2 plaintext, key, mechanism, or final destination has been recovered. The new fold-square result below is intermediate evidence only.
 
+### Key-recovery checkpoint: p55 fold (2026-11-11)
+
+- **Source-selected p55 word fold:** the signed phrase `seeks the` maps under the existing GP-prime/58 address rule to literal raw words **MY FOLD**. Their destination sums are 174 and 171, so the readable instruction also carries difference **3**.
+- **Exact p55 key totals:** FOLD=171 selects p55:w2. P55 has 17 printed words, so its natural sequence fold sends w2→w14. Their GP-prime sums are **114+284=398=CIRCUMFERENCE**. The unique center w8 `MSDIAPF` sums **365=FIRFUMFERENFE**, the historical A-KOAN spelling/key for CIRCUMFERENCE.
+- **Cross-page p32 counts:** independently established p32 counts now become operationally meaningful: **398−22 printed words=376=DIVINITY**, and **398−33 first-clause runes=365=FIRFUMFERENFE**. This supplies a literal numerical reading of solved p57's “shed our own circumferences / find the divinity within.”
+- **Discriminator:** among all **34** unsolved pages with odd printed-word count ≥5, p55 alone has center sum365, p55 alone has the fixed w2 mirror-pair sum398, and it alone has both. The page and index were selected by FOLD before this corpus check.
+- **Immediate negatives:** known A-KOAN reversed-GP ±3 on the p30–33 range suggested by `epiphany/devoted` gives no plaintext. Direct DIVINITY/FIRFUMFERENFE Vigenere-style use on p32 and natural concentric interiors also gives no plaintext. Do not rerun those direct variants.
+- **Artifacts:** `im-results/lp2-2016-p55-fold-circumference-keys.md`, `sims/lp2_2016_p55_fold_keys.cjs`.
+- **Next:** derive a source-fixed ciphertext target/application for the recovered key material. Do not broaden into arbitrary key sweeps.
+
 ### Current incarnation checkpoint (2026-11-11)
 
 - **New source-internal fold algebra.** Under canonical GP prime sums, the signed 2016 message has exactly one distinct-word sum collision: `HELLO = LIBER = 243`; exactly one pair of distinct signed words differs by the 58-page LP2 size: `FOUND - THE = 130 - 72 = 58`; and exactly one source-word pair sums to 243: `YOU + FOUND = 113 + 130 = 243`. Using the existing zero-based Euclidean address `sum = page + 58*wordIndex`, `THE=72` predicts p14:w1, whose original printed word is exactly **FOLD**. Its GP sum is 171, giving `FOLD - YOU = 171 - 113 = 58`, so the four labels form an exact address rectangle `THE FOUND / YOU FOLD`. The same arithmetic yields `243-THE=FOLD` and `243-YOU=FOUND`: a literal numeric fold pairs YOU with FOUND, matching “Seek and you will be found.” Both diagonals sum 243, the unique HELLO/LIBER collision. This is substantially more constrained than the earlier base58 observation.
