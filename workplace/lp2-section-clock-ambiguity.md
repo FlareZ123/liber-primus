@@ -38,7 +38,7 @@ visits all 32 fragment indices exactly once. Its restriction to the four solved-
 
 Directly concatenating the 28 unknown fragments in LCG order does not improve GP trigram score: chronological −6.195857, forward −6.198043, inverse −6.195210; the inverse is ordinary against a 1,000-random-order null (upper-tail p=0.235). The 225 red-only runes also do not become readable under the same permutation. Thus the LCG is **not a direct plaintext transposition**. Its likely remaining role is a fragment index, clock, or row assignment; forward versus inverse orientation is unresolved.
 
-The economical next test is the source-fixed pairing of the 32 fragments with the 32 rows of the p49–p51 32×8 base-60 table under this LCG, with only forward/inverse assignments and a fixed within-fragment row clock. Do not expand into arbitrary permutations or repeat the already-negative F31 red-fragment/grid screens.
+**The proposed fixed row-pairing test is now complete.** The source-fixed 13/31 LCG traverses all 32 rows, 8 columns and, separately, all 256 cell addresses. Forty complete original-cipher inverses use the frozen row/column orders: 32 GP29/GP28 per-fragment reset variants and eight global 256-byte table-pad variants. All re-encrypt all 12,956 original runes and recover a native solved-page-derived plant, but their decoded outputs remain nonlinguistic. GP29 IoC stays **0.0344419952–0.0345017289**, compared with original **0.0344783979**; GP28 transparent outputs remain nonlinguistic. These direct table-pad and register uses are bounded negatives ([reproducer](../sims/lp2_lcg13_31_grid_original_gate.cjs); [consolidated report](../im-results/lp2_lcg32_fulltext_fragment_order.md)). Future use requires a separately signaled nonlinear or non-GP operation. Retain the original p33 boundary ambiguity and avoid free row rotations.
 
 ## Consequence and reproduction
 
@@ -46,6 +46,6 @@ Keep the canonical dollar-marker transcription unchanged. Section-reset ciphers 
 
 - Three clocks and original-image evidence: [source-clock SFT](../sims/lp2_section_clock_sft.cjs) and [original-JPEG cuneiform SFT](../sims/lp2_cuneiform_header_sft.py).
 - Direct 1033/3301 transfer: [prime-totient SFT](../sims/lp2_cuneiform_prime_totient_sft.cjs).
-- 13/31 fragment order and solved-tail control: [LCG reproducer](../sims/lp2_lcg32_fulltext_fragment_order.cjs) and [detailed report](../im-results/lp2_lcg32_fulltext_fragment_order.md).
+- 13/31 source-fragment cycle, solved-tail control and complete original grid gate: [fragment reproducer](../sims/lp2_lcg32_fulltext_fragment_order.cjs), [40-model original-inverse SFT](../sims/lp2_lcg13_31_grid_original_gate.cjs), and [consolidated report](../im-results/lp2_lcg32_fulltext_fragment_order.md).
 - Original ink annotations and normalized ciphertext: resources/liber-primus/lp2-ink-annotations.json and resources/liber-primus/lp2-corpus.json.
 - The p57 solved rune control is [Wulfic page 74](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/pages/page_74/runes.txt).
