@@ -1,31 +1,40 @@
-# Issue #253 — Liber AL keyword gate
+# Liber AL source text: direct-key, quotation and geometry gate
 
-**Disposition:** no source-selected LP2 inverse established. The literal keyword readings below are rejected. The broader III:47 geometric interpretation is not promoted: an earlier Agent 11 incarnation already ran a 10×8 shear gate, and the repository has substantial independent projective/Möbius work.
+**Disposition:** The historically referenced *Liber AL vel Legis* remains a legitimate source to investigate, but neither complete archived chapter text nor the source-visible keywords recover unknown LP2 plaintext by the direct rules below. No authentic LP2 cipher key, original decoder, or destination has been identified. This consolidates the earlier Director Issue #253 keyword/geometry test and an independent Agent 19 full-text/word-length test.
 
-## Source and human-solve hypothesis
+## Historical clue and scope
 
-The 2013 *Book of the Law* files in `resources/external/` contain two tempting cues:
+The archived 2013 Cicada book-code challenge points at *Liber AL vel Legis*. The three archived chapter transcriptions are exactly resources/external/2013-book-of-law-I.txt, -II.txt, and -III.txt. The historical source therefore provides an independently motivated candidate *text*, while supplying no instruction to treat it as a running GP29 cipher key, no LP2 source/page coordinate, and no decryption alignment.
 
-- I:24: “my word is six and fifty,” conventionally associated with Nuit and 56.
-- III:47: letter shapes and relative positions, a drawn line, a circle “squared in its failure,” and the word *Abrahadabra*.
+The earlier Issue #253 additionally examined the exact phrases I:24 (“my word is six and fifty”) and III:47 (letter positions, line/circle, *Abrahadabra*). The literal words NUIT and ABRAHADABRA suggest finite keyword and period choices, but do not select Vigenère or a Hill matrix. The original p32 11×11 layout and III:47 diagram are separately examined elsewhere; no direct geometry-to-plaintext mapping is established.
 
-A solver familiar with the 2013 Cicada material could reasonably try the literal words as keys, and could read the 11-letter *Abrahadabra* as selecting an 11-symbol period or square. The cues do **not**, by themselves, specify Vigenère, Hill, a matrix fill, or a unique line/circle transform. These are bounded tests of the simplest reversible readings, not claims that the verses are proven LP2 instructions.
+## Direct original-cipher operations
 
-## Reproducible tests
+All tests use the pinned **12,956 original unsolved GP29 rune indices**, including only the 55 rune-bearing physical pp0–55, from resources/liber-primus/lp2-corpus.json. Page turns preserve continuous clocks, never silently insert rune separators. Original IoC is **0.034478397865**.
 
-Input: `resources/liber-primus/lp2-corpus.json`, all 12,956 rune indices on the 55 rune-bearing unsolved pages (the numeric-table page has no rune stream). Arithmetic is mod 29, using the corpus's declared `translit` order. Key clocks run continuously across the concatenated stream; no page resets or tuned offsets.
+The existing [keyword/Hill reproducer](../sims/issue253_liber_al_keyword_gate.cjs) tests:
 
-1. **Vigenère with NUIT** (key indices `[9,1,10,16]`), both additive signs: no readable plaintext; output IoC is approximately 0.03449, essentially the random 29-symbol baseline.
-2. **Vigenère with ABRAHADABRA** (key indices `[24,17,4,24,8,24,23,24,17,4,24]`), both additive signs: no readable plaintext; output IoC remains approximately 0.03447–0.03452.
-3. **11×11 circulant Hill key from ABRAHADABRA.** Construct the matrix by cyclically shifting the 11 key values row by row. It is invertible over GF(29), so the inverse is well-defined. Both row/column vector conventions decrypt to non-language output; IoC is approximately 0.03445–0.03448, against the uniform 29-symbol baseline (1/29 \approx 0.03448). The reproduction script includes a synthetic encrypt/decrypt round-trip to validate the implementation.
-4. **Auxiliary map-key check:** treating the p32 11×11 rune array as a Hill key also gives an invertible matrix but no readable output. This is only a negative control on a tempting 11×11 interpretation; it does not reopen the p32/M7 work.
+1. NUIT GP29 key [9,1,10,16] with both additive orientations, producing IoC near **0.03449**.
+2. ABRAHADABRA GP29 key [24,17,4,24,8,24,23,24,17,4,24] with both signs, producing IoC **0.03447–0.03452**.
+3. The invertible 11×11 circulant matrix formed from ABRAHADABRA, both row/column orientations: IoC **0.03445–0.03448**.
+4. The original p32 11×11 rune matrix as an auxiliary invertible Hill key: no linguistic plaintext.
 
-The direct keyword and matrix readings therefore fail to recover plaintext. Exact outputs and implementation are in `sims/issue253_liber_al_keyword_gate.cjs`.
+The additional [full-text and quotation reproducer](../sims/2013_liber_al_fulltext_original_sft.cjs) freezes the **natural chapter order I/II/III**, eliminates printed verse numbers, strips punctuation and transliterates letters into the corpus's GP29 alphabet. K/Q→C, V→U, Z→S are explicitly conventional candidate mappings; GP digraphs TH/NG/EO/OE/AE/IA/EA each consume one rune. No chosen phase, secret source excerpt or fitted reset is allowed. Chapters supply **7,003/7,103/7,524 GP symbols**, respectively; their concatenation supplies **21,630** symbols. Twelve direct additive cases are tested: each natural chapter start and the concatenated I-II-III starting at its first symbol, under P=C-K, P=C+K, and Beaufort P=K-C modulo 29.
 
-## What this changes
+**Result:** The 12 original output IoCs are between **0.0344400 and 0.0345039**. None shows authentic GP29 prose. Every model correctly decodes and re-encodes a source-native repeated-p57 plaintext plant and exactly re-encodes the original after decoding it. As with every bijective cipher, such a round trip verifies the implementation but cannot select the historical key.
 
-- Do not continue generic NUIT/ABRAHADABRA Vigenère or keyword-derived 11×11 Hill searches.
-- Do not treat the phrases “line” and “circle” as permission for an unconstrained Möbius/projective parameter sweep. Agent 11 memory already records a III:47 10×8 shear test; the shared repository also contains substantial p32/projective/Möbius work.
-- The **missing input** is a source-authenticated construction that maps III:47's line/circle language to one specific reversible operation and fixes its parameters independently of the LP2 ciphertext. Without that, further geometry/key searches are underconstrained.
+## Independent literal-text crib
 
-This is a bounded negative result, not an established discovery or a claim that Liber AL is irrelevant. No change to `results/README.md` is warranted.
+A direct quotation can remain detectable via unchanged **printed word lengths**, even if the runes are obscured by an unconstrained word-preserving substitution. The standard shared parser finds 2,896 original LP2 words. Against the three historically archived *Liber AL* chapters without verse numbers, compare every contiguous aligned run in two conventions: ordinary Latin letter counts and native-GP counts after the same stated digraph normalization. The longest exact match anywhere is **eight words**. Results by chapter, as [Latin, GP] maxima:
+
+- **I:** [0,0] matches of length eight or longer.
+- **II:** [8,8] words.
+- **III:** [8,8] words.
+
+The test exhausts the supplied source text at unshifted word boundaries; a planted 16-word exact source excerpt would be distinguishable by the same equality criterion. Eight-word overlaps are isolated candidate coincidences, with no longer quote, independently identified source span, or original cipher key. This excludes an obvious long word-for-word reuse of these **specific archived transcriptions** with preserved word boundaries. Paraphrases, different editions, unknown punctuation edits, a source-dependent transposition, a non-GP intermediate and other cipher structures remain open.
+
+## Consequence
+
+The original *Liber AL* source has been tested beyond short keywords. **Retire the direct unshifted full-book GP29 running-key and long literal quotation ideas under the exact stated normalization**; do not expand them into arbitrary phases, verse resets, library editions, word alignments, or novel glyph alphabets without independent source instructions. Likewise, the earlier III:47 line/circle and 11×11 keyword matrix interpretations remain source-insufficient. A new historical artifact establishing a specific LP2 word coordinate, key operation or state initialization could reopen a focused test.
+
+No established result or complete-source synthesis is changed by these finite negative results.
