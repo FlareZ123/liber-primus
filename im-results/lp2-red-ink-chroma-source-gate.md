@@ -1,6 +1,6 @@
 # LP2 red-ink chroma source gate
 
-**Decision: bounded negative.** The 225 annotated red runes use one stable red rendering across the 15 pages that contain them. The apparent two-level chroma split is a one-code Lab quantization effect whose per-glyph assignment changes under a stricter interior-pixel threshold. No independently readable color class, key, or instruction is selected by the original manuscript. This closes the visible red-ink chroma-channel branch in Director issue #235; it does not address compressed-domain steganography or other image channels.
+**Decision: bounded negative.** The 225 annotated red runes and the separately detected non-glyph red marks use one ordinary red rendering with small antialiasing/JPEG variations. The apparent two-level glyph chroma split is a one-code Lab effect whose per-glyph assignment changes under a stricter interior-pixel threshold. No independently readable color class, key, or instruction is selected by the original manuscript. This closes the visible red-ink chroma-channel branch in Director issue #235; it does not address compressed-domain steganography or other image channels.
 
 ## Source and exact segmentation
 
@@ -21,6 +21,27 @@ The matched paper reference for each glyph is the 24-pixel annulus around its co
 - Across all 58 images, **35 are RGB and 23 are grayscale**.
 - All 15 red-rune pages are RGB. Every RGB page has the same JPEG component sampling factors (Y 2×2, Cb/Cr 1×1; 4:2:0) and the same quantization-table fingerprint (7dd0884b000cf41a). No red page belongs to a distinct JPEG rendering stratum.
 - The per-page annotation and image-component counts agree at both thresholds: 225/225 total.
+
+### Non-glyph red controls
+
+A separate whole-page control, independent of the rune-component mask, uses signed-channel cuts R−G>55, R−B>55, R>110 followed by 3×3 erosion and a matched 24-pixel neutral annulus. It finds **25 red-core pages**: the 15 annotated red-rune pages plus ten pages with non-glyph red marks (p2, p14, p22, p26, p32, p36, p37, p38, p49, p55). All 25 have white matched backgrounds and are RGB. The page-level modal RGB is (192,0,0) on 23 pages; only p2 and p22 have mode (193,0,0).
+
+The two exceptional modes are not separate color classes: (193,0,0) occurs only 37/668 pixels (5.54%) on p2 and 36/704 (5.11%) on p22. Their medians are both [190,0,2] and their normalized Lab deltas are both [-154,64,53], matching the standard-glyph broad-mask distribution. The red 13-dot punctuation on p2/p22 is therefore consistent with the same pigment. The red marginal numerals 2, 3, 4 on p37 have median [190,0,1] and the same Lab delta [-154,64,53]. Other non-glyph red marks remain within the same one-code range:
+
+| Physical page | Eroded red pixels | Pixel mode RGB (fraction) | Median RGB | Normalized Lab delta |
+|---:|---:|---:|---:|---:|
+| 2 | 668 | [193,0,0] (5.54%) | [190,0,2] | [-154,64,53] |
+| 14 | 702 | [192,0,0] (6.84%) | [190,0,2] | [-154,64,53] |
+| 22 | 704 | [193,0,0] (5.11%) | [190,0,2] | [-154,64,53] |
+| 26 | 642 | [192,0,0] (5.92%) | [190,0,2] | [-154,64,53] |
+| 32 | 713 | [192,0,0] (8.13%) | [192,0,1] | [-153,64,54] |
+| 36 | 1,426 | [192,0,0] (8.77%) | [191,0,2] | [-154,64,54] |
+| 37 | 4,754 | [192,0,0] (8.54%) | [190,0,1] | [-154,64,53] |
+| 38 | 2,045 | [192,0,0] (6.55%) | [190,0,1] | [-154,64,53] |
+| 49 | 544 | [192,0,0] (6.62%) | [191,0,1] | [-154,64,53] |
+| 55 | 728 | [192,0,0] (5.77%) | [192,0,1] | [-153,64,53] |
+
+This control prevents the p2/p22 punctuation modes or p37 numerals from being mistaken for a separate red alphabet. It is not a rune transcription and does not add these marks to the 225-glyph count.
 
 ### Color and typography
 
@@ -72,5 +93,6 @@ The original images support one red ink color with ordinary antialiasing and JPE
 Run from the repository root:
 
 python sims/lp2_red_chroma_source_gate.py
+python sims/lp2_red_non_glyph_core_controls.py
 
-The program checks the source annotation, all 58 page modes and JPEG sampling/quantization strata, exact per-page glyph counts at both thresholds, the 15 audited oversized-initial boxes, matched-background Lab deltas, typography groups, and the fixed page holdout. It emits the complete JSON summary. Dependencies: Pillow, NumPy, and OpenCV.
+The first program checks the source annotation, all 58 page modes and JPEG sampling/quantization strata, exact per-page glyph counts at both thresholds, the 15 audited oversized-initial boxes, matched-background Lab deltas, typography groups, and the fixed page holdout. The second independently checks all 25 pages with red interior pixels, including punctuation and marginal numerals outside the rune annotation. Both emit JSON summaries. Dependencies: Pillow, NumPy, and OpenCV.
