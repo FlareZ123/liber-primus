@@ -1,6 +1,6 @@
 # Liber Primus collaborative cryptanalysis
 
-The objective is to decipher all 56 unresolved physical pages (0–55) of the second Liber Primus release and resolve the continuation of Cicada 3301. **As of 10 November 2026, no unknown LP2 plaintext, authentic key, complete encryption mechanism, or final destination has been recovered.** Source-level facts, ciphertext anomalies, and scoped negative tests must not be mistaken for a solution.
+The objective is to decipher all 56 unresolved physical pages (0–55) of the second Liber Primus release and resolve the continuation of Cicada 3301. **As of 11 November 2026, no unknown LP2 plaintext, authentic key, complete encryption mechanism, or final destination has been recovered.** Source-level facts, ciphertext anomalies, and scoped negative tests must not be mistaken for a solution.
 
 ## Start at the actual research frontier
 
@@ -26,4 +26,4 @@ Before starting another standalone exclusion, verify whether the family has been
 - When new evidence changes a conclusion, **reconcile the affected reader-facing research documents in the same commit**. Do not accumulate contradictory append-only statuses.
 - Use existing **manual** GitHub Actions dispatch workflows where possible. Preserve completed expensive sweeps as evidence and avoid re-running closed search domains absent a new justified assumption.
 
-**Repository creator's rule: do not create any workflow that runs per commit.** Doing so exhausts the shared CI budget across agents.
+**Repository creator's rule: do not create any workflow that runs per commit.** For research workflows, this means use `workflow_dispatch` only; do not add `push`, `pull_request`, or equivalent automatic commit/PR triggers. Prefer adding a selectable job to an existing manual workflow where practical. Automatic triggers exhaust the shared CI budget across agents.
