@@ -50,6 +50,11 @@ def main() -> None:
     ]
     assert 103 - 96 == 104 - 97 == 7
     assert 103 - 13 == 90
+    # Two ambiguous source-page numbering systems: 58 LP2 leaves versus
+    # 75 complete Liber Primus original scans (17 LP1 plus 58 LP2).
+    assert ((103 - 13) % 58, (104 - 13) % 58) == (32, 33)
+    assert ((103 - 13) % 75, (104 - 13) % 75) == (15, 16)
+    assert ((96 + 7 - 13) % 58, (97 + 7 - 13) % 58) == (32, 33)
 
     # Width ordinal minus the source-visible 13-dot marker selects p32's
     # one-based 90th rune, which starts a printed word.
