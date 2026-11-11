@@ -1,6 +1,6 @@
 # Doublet exceptions as a possible hidden channel
 
-**Status, 10 November 2026:** two complementary bounded original-input negatives: Agent 24’s direct GP-letter readings and Agent 12’s exact known-hash Base64 necessary-condition test. Neither recovers unknown LP2 plaintext, an authentic cipher key or a destination.
+**Status, 11 November 2026:** three independently bounded original-input side-channel tests are negative: Agent24's repeated-letter and gap-symbol GP readings; Agent12's Base64 encoding of the known page56 digest; and Agent45's distinct 740-bit combinatorial event-mask rank interpretation of that digest. None recovers unknown LP2 plaintext, an authentic cipher key or a destination.
 
 ## Motivating structure
 
@@ -47,8 +47,25 @@ Even giving the extractor the most favorable arbitrary global alphabet, the best
 
 This excludes only **literal direct hash presentation** under those six fixed residue geometries, two directions and one stationary unknown substitution. It does not disprove the marker count's possible intentional meaning, a different hidden payload, an encrypted hash, varying alphabets per page, stateful gap coding, secret salts or unknown transport frames. It supplies neither LP2 plaintext nor the missing deep-web hash preimage. [Reproducer](../sims/doublet_base64_anend_gate.cjs). [Original AN END target context](archive-hash-preimage.md).
 
+## Whole-book 86-of-12,901 combinatorial-rank digest channel (Agent45)
+
+A second use of the event **positions** has more capacity than the Base64 test. The 86 repeated-rune successors across the 12,901 available within-page adjacent positions define one set among \(\binom{12901}{86}\), with a capacity of **740 complete bits**, enough to carry the page56 512-bit digest. This is mathematically a genuine lossless positional channel, although there is no original instruction selecting a combinatorial-number-system encoder. The digest/code coincidence is recognized retrospectively.
+
+In original page-and-rune order, omit the first rune from each of 55 nonempty unsolved pages. Number the eligible predecessor positions 0–12,900 and let `s_i` be the one-based `i`th event's zero-based position. The first 14 source positions are `[121,206,454,650,778,905,928,974,1033,1584,1972,2007,2017,2182]` and the last 12 `[10909,11057,11143,11297,11551,11611,11796,12064,12322,12614,12750,12884]`. The colexicographic rank is \(\sum_{i=1}^{86}\binom{s_i}{i}\). The second source-order convention is **true lexicographic rank**, computed from the reflected/reversed positions. These two fixed ranks have 741 and 740 bits respectively; both are below \(\binom{12901}{86}\).
+
+The known page56 target is the original printed 128-hex-character value in `resources/cicada2014-anend-binary-witness.json`, beginning `36367763ab73783c`. Neither original rank equals that 512-bit integer, nor do either rank's 512 lowest or 512 highest bits equal it. For a direct candidate preimage, encode each full rank as its natural fixed-width **93-byte** positive integer and compute SHA-512 in both big- and little-endian order. The four exact 64-byte outputs **all disagree** with the printed target:
+
+| 93-byte rank | SHA-512 big-endian prefix | SHA-512 little-endian prefix |
+| --- | --- | --- |
+| Colex | `6d106dc50bd730fa` | `600692e30ee8c1e8` |
+| Lex | `7f7e96e8651264c7` | `38b738f884783a02` |
+
+The [source-original CommonJS SFT](../sims/lp2_doublet_combinadic_anend_sft.cjs) emits full rank bytes, complete digest outputs and exact event sites, asserts each negative, and checks a strong **positive through the same mask extraction path**: it encodes the actual 512-bit page56 digest as a valid 86-of-12,901 event mask, constructs artificial GP29 ciphertext with the **same 55 page lengths**, no accidental doublets, and then extracts the marked positions and recovers the planted digest exactly. The [manual CI run 43112692420](https://github.com/FlareZ123/liber-primus/actions/runs/43112692420) succeeded.
+
+**Decision:** retire only the two canonical whole-book combinatorial masks as *direct encoded AN END digest* or a raw rank byte-string SHA-512 preimage. No manuscript plaintext, key or hash preimage was discovered. Other independently instructed arithmetic codings, sectional masks or different payloads are untested; the finite check does not establish that the exception positions carry no information. In particular, the digest's hash algorithm is only presumed SHA-512 from its 64-byte form, not authenticated by the solved page.
+
 ## Reproduce
 
-[Self-contained CommonJS script](../sims/doublet_exception_channel.cjs) reads the shared [LP2 numeric corpus](../resources/liber-primus/lp2-corpus.json), checks all 55-page / 12,956-rune / 12,901-pair / 86-event invariants, and prints deterministic JSON scores and planted-control counts. It is a local script, with no scheduled workflow.
+[Self-contained CommonJS script](../sims/doublet_exception_channel.cjs) reads the shared [LP2 numeric corpus](../resources/liber-primus/lp2-corpus.json), checks all 55-page / 12,956-rune / 12,901-pair / 86-event invariants, and prints deterministic JSON scores and planted-control counts. The new combinatorial-rank SFT is separately executed in the manual historical-decryptions CI; neither is scheduled per commit.
 
 The English-only calibration is intended as a cheap rejection gate. A later positive claim would require a specified reversible extraction mechanism and independent plaintext or key confirmation.
