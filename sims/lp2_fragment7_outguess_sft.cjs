@@ -7,9 +7,10 @@
  *   ATXBMGIASBXEO — exact GP transliteration of fragment 7
  *   OAK            — English meaning of the Ac rune that begins fragment 7
  *
- * The only carrier is original LP2 page 6, image 23.jpg: the two 13-dot
- * boundaries at normalized offsets 71 and 82 delimit the 11-rune fragment.
- * This is a two-reading, one-carrier test, not a password sweep.
+ * Fixed carriers are original LP2 p6 / 23.jpg (where the fragment occurs)
+ * and the authenticated 2016 signed tree image (the historical OutGuess
+ * carrier whose oak imagery independently supports the Ac reading). This is
+ * a two-reading, two-carrier test, not a password sweep.
  *
  * Run after building the pinned OutGuess version:
  *   node sims/lp2_fragment7_outguess_sft.cjs
@@ -24,7 +25,10 @@ const ROOT = path.resolve(__dirname, "..");
 const SOURCE = path.join(ROOT, "resources/liber-primus");
 const HISTORICAL = path.join(ROOT, "resources/historical");
 const OUTPUT = path.join(ROOT, "outguess-fragment7-results");
-const CARRIER = path.join(SOURCE, "23.jpg"); // LP2 page 6
+const CARRIERS = [
+  { id: "lp2-p6", path: path.join(SOURCE, "23.jpg"), reason: "LP2 p6, the physical page containing fragment 7" },
+  { id: "signed-2016-tree", path: path.join(HISTORICAL, "cicada2016-4gq25.jpg"), reason: "authenticated 2016 OutGuess carrier and oak/tree image" }
+];
 const VARIANTS = [
   { key: "ATXBMGIASBXEO", reading: "exact GP transliteration of fragment 7" },
   { key: "OAK", reading: "English meaning of the Ac rune anchoring fragment 7" }
@@ -146,7 +150,7 @@ function main() {
     hypothesis: "the source-selected 11-rune Ac fragment is an OutGuess passphrase for its own physical carrier",
     source: {
       bridge: "2014 stage04 cell 6 Rad -> cell 7 Ac (199); phi(199) mod 32 = empty fragment 6; 199 mod 32 = fragment 7",
-      carrier: "original LP2 p6 / 23.jpg",
+      carriers: CARRIERS.map(c => ({ id: c.id, reason: c.reason })),
       boundaries: [71, 82],
       fragment7RuneIndices: fragment7,
       fragment7Transliteration: translit
@@ -172,7 +176,7 @@ function main() {
     for (const variant of VARIANTS) {
       fs.rmSync(stegoFile, { force: true });
       fs.rmSync(recoveredFile, { force: true });
-      const embedded = outguess(["-k", variant.key, "-d", messageFile, CARRIER, stegoFile], 120000);
+      const embedded = outguess(["-k", variant.key, "-d", messageFile, CARRIERS[0].path, stegoFile], 120000);
       assert.equal(embedded.status, 0, "plant embed failed for " + variant.key + ": " + embedded.stderr);
       const recovered = outguess(["-k", variant.key, "-r", stegoFile, recoveredFile], 120000);
       assert.equal(recovered.status, 0, "plant retrieve failed for " + variant.key + ": " + recovered.stderr);
@@ -185,14 +189,15 @@ function main() {
     fs.rmSync(recoveredFile, { force: true });
 
     for (const variant of VARIANTS) {
-      fs.rmSync(scratch, { force: true });
-      const run = outguess(["-k", variant.key, "-r", CARRIER, scratch], 120000);
+      for (const carrier of CARRIERS) {
+        fs.rmSync(scratch, { force: true });
+        const run = outguess(["-k", variant.key, "-r", carrier.path, scratch], 120000);
       const combined = (run.stdout || "") + "\n" + (run.stderr || "");
       const match = /Steg retrieve:\s*seed:\s*(\d+),\s*len:\s*(\d+)/iu.exec(combined);
       const bytes = fs.existsSync(scratch) ? fs.readFileSync(scratch) : Buffer.alloc(0);
       const consistent = Boolean(match && bytes.length > 0 && bytes.length === Number(match[2]));
       const item = {
-        key: variant.key, reading: variant.reading,
+        key: variant.key, reading: variant.reading, carrier: carrier.id,
         status: run.status, signal: run.signal || null,
         error: run.error ? String(run.error) : null,
         header: match ? { seed: Number(match[1]), length: Number(match[2]) } : null,
@@ -205,12 +210,13 @@ function main() {
       };
       if (consistent) {
         item.diagnostics = diagnostic(scratch);
-        const saved = path.join(OUTPUT, "fragment7_" + (variant.key === "OAK" ? "oak" : "gp") + ".bin");
+        const saved = path.join(OUTPUT, "fragment7_" + (variant.key === "OAK" ? "oak" : "gp") + "_" + carrier.id + ".bin");
         fs.copyFileSync(scratch, saved);
         item.artifact = path.basename(saved);
       }
-      result.attempts.push(item);
-      fs.rmSync(scratch, { force: true });
+        result.attempts.push(item);
+        fs.rmSync(scratch, { force: true });
+      }
     }
     result.summary = {
       attempts: result.attempts.length,
