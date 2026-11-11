@@ -214,4 +214,108 @@ for (const [sourceName, original] of [
 }
 const planted = toRadixDigits(known, G);
 assert.deepEqual(fromRadixDigits(planted, G, known.length), known);
-process.stdout.write('All exact GF29 polynomial inverses, root derivatives, and source-plaintext plants passed.\n');
+/**
+ * Original-source cross-factor DH field candidate:
+ * - G-adic digit pairs of P29-S begin 0, then exactly 2 (2013 DH secret).
+ * - The independent irreducible H supplies the field GF(29^2).
+ * - The signed-DH-related field product beta is derived below from ORIGINAL
+ *   P29/G and S/(H*G) H-residues, never fitted from the output.
+ * Apply beta^(+-j) to each subsequent G-adic pair with the only two natural
+ * initial exponents 0 and 1. This is a new complete reversible direct
+ * readout; no LP2 plaintext is obtained. Other clocks require source clues.
+ */
+
+/**
+ * Ordinary low-degree-first GF29 polynomial long division.
+ *
+ * @param {number[]} dividend
+ * @param {number[]} divisor
+ * @returns {{quotient:number[],remainder:number[]}}
+ */
+function divideLow(dividend, divisor) {
+  const degree = divisor.length - 1;
+  const inv = Array.from({ length: MOD - 1 }, (_, i) => i + 1)
+    .find(value => residue(value * divisor[degree]) === 1);
+  assert(inv !== undefined);
+  const rem = dividend.slice();
+  const quotient = Array(Math.max(0, rem.length - degree)).fill(0);
+  for (let j = rem.length - 1; j >= degree; j--) {
+    const factor = residue(rem[j] * inv);
+    quotient[j - degree] = factor;
+    for (let k = 0; k <= degree; k++) {
+      rem[j - degree + k] = residue(rem[j - degree + k] -
+        factor * divisor[k]);
+    }
+  }
+  return { quotient, remainder: rem.slice(0, degree) };
+}
+
+/**
+ * Multiplication in GF29[X]/(H), where X^2=11X+18.
+ *
+ * @param {number[]} a [constant, X coefficient]
+ * @param {number[]} b [constant, X coefficient]
+ * @returns {number[]}
+ */
+function fieldMultiply(a, b) {
+  return [
+    residue(a[0] * b[0] + 18 * a[1] * b[1]),
+    residue(a[0] * b[1] + a[1] * b[0] + 11 * a[1] * b[1]),
+  ];
+}
+
+/** @param {number[]} value @param {number} exponent @returns {number[]} */
+function fieldPower(value, exponent) {
+  assert(Number.isInteger(exponent));
+  let n = ((exponent % 70) + 70) % 70;
+  let current = value;
+  let acc = [1, 0];
+  while (n > 0) {
+    if (n & 1) acc = fieldMultiply(acc, current);
+    current = fieldMultiply(current, current);
+    n = Math.floor(n / 2);
+  }
+  return acc;
+}
+const pDivG = divideLow(p29.slice().reverse(), G);
+const sDivHG = divideLow(s256.slice().reverse(), HG);
+assert.deepEqual(pDivG.remainder, [0, 0]);
+assert.deepEqual(sDivHG.remainder, [0, 0, 0, 0]);
+const aH = divideLow(pDivG.quotient, H).remainder;
+const bH = divideLow(sDivHG.quotient, H).remainder;
+assert.deepEqual(aH, [16, 19]);
+assert.deepEqual(bH, [5, 6]);
+const beta = fieldMultiply(aH, bH);
+assert.deepEqual(beta, [15, 24]);
+assert.deepEqual(fieldPower(beta, 70), [1, 0]);
+assert.notDeepEqual(fieldPower(beta, 35), [1, 0]);
+
+const gDigits = toRadixDigits(differenceOriginal, G);
+assert.deepEqual(gDigits.slice(0, 2), [[0, 0], [2, 0]]);
+const gPayload = gDigits.slice(2); // R=(P-S-2G)/G^2, now in actual G radix
+assert.equal(gPayload.length, 137);
+for (const sign of [-1, 1]) {
+  for (const start of [0, 1]) {
+    const decoded = gPayload.map((pair, i) =>
+      fieldMultiply(pair, fieldPower(beta, sign * (i + start))));
+    const reencryption = decoded.map((pair, i) =>
+      fieldMultiply(pair, fieldPower(beta, -sign * (i + start))));
+    assert.deepEqual(reencryption, gPayload);
+    const symbols = decoded.flat();
+    report('g_adic_H_field_DH_beta_sign_' + sign + '_phase_' + start,
+      symbols);
+    report('g_adic_H_field_DH_beta_reversed_sign_' + sign +
+      '_phase_' + start, symbols.slice().reverse());
+  }
+}
+
+// Source-native full inverse plant under the exact same G-adic/H-field clock.
+const knownEven = known.length % 2 === 0 ? known.slice() : [...known, 0];
+const knownPairs = Array.from({ length: knownEven.length / 2 }, (_, i) =>
+  knownEven.slice(2 * i, 2 * i + 2));
+const secretPlant = knownPairs.map((pair, i) =>
+  fieldMultiply(pair, fieldPower(beta, -(i + 1))));
+assert.deepEqual(secretPlant.map((pair, i) =>
+  fieldMultiply(pair, fieldPower(beta, i + 1))), knownPairs);
+process.stdout.write(
+  'All exact GF29 Hasse, polynomial-radix and source-DH field inverses passed.\n');
