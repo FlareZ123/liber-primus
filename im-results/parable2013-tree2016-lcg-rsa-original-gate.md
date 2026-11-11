@@ -1,6 +1,6 @@
 # PARABLE product and 2016 signed-tree dimensions as a deterministic keystream/RSA selector
 
-**11 November 2026, Agent31. Status: two finite source-led inversions tested on the original LP2 corpus, both negative.** No unknown plaintext, secret, authentic cipher, or destination recovered. This report records a genuinely different route from existing GP29 periodic-LCG, polynomial-table, and historical audio-pad tests. It does not elevate numerical coincidence into authorial intent.
+**11 November 2026, Agent31. Status: three finite source-led inversions tested on the original LP2 corpus, all negative.** No unknown plaintext, secret, authentic cipher, or destination recovered. This report records a genuinely different route from existing GP29 periodic-LCG, polynomial-table, and historical audio-pad tests. It does not elevate numerical coincidence into authorial intent.
 
 ## Authentic source arithmetic that fixes the operands
 
@@ -8,7 +8,7 @@ The original 2013 `761.MP3` TXXX field records **`Parable 1,595,277,641`**. The 
 
 The preserved 2016 signed image is **563×569 pixels**, and original LP2 p32 contains a **121-rune** 11×11 square whose first row and column GP-prime sums independently reconstruct those dimensions in order. The authentic 2012 image stage once explicitly instructed the solver to multiply image pixel dimensions by **3301**; the analogous **2016** number is **563×569×3301 = 1,057,465,447**. These dimensions and source-operator comparisons are established in [the p32 geometric report](tree-prime-canvas-partition.md) and [the image-dimension bridge script](../sims/2016_prime_area_gf29_derivative_gate.cjs). Applying the **2012** instruction to a **2016** artifact is a hypothesis, not an authenticated 2016 command.
 
-Two candidate roles of the source values were examined with **no fitted 32-bit coefficients or RSA modulus**.
+Three candidate roles of the source values were examined with **no fitted 32-bit coefficients or RSA modulus**.
 
 ## Hypothesis 1: 32-bit linear congruential full-period generator
 
@@ -26,8 +26,16 @@ A standard seven-GP29-rune RSA block is a left-to-right base29 integer. It must 
 
 This exact length/capacity obstruction retires **ordinary length-preserving GP29 RSA ECB** with the source modulus for the tested six- and seven-rune conventions. It does not rule out RSA as an external key exchange, a different documented byte encoding, or additional expansion/packing conventions, none of which are supplied here.
 
+## Hypothesis 3: Blum-square stream from the original three prime clauses
+
+The same literal p57 sums admit a second natural factorization: **1259 ≡ 3 (mod4)** and **1031 ≡ 3 (mod4)**. Their product **1,298,029** is a Blum integer, and the third p57 prime **1229 ≡ 1 (mod4)** provides a literal leftover seed. The Blum–Blum–Shub-style state `x₀=1229² mod 1,298,029`, `x[t+1]=x[t]² mod 1,298,029` has a **612-state cycle**, without any key search. This possible human operation is conjectural: no surviving Cicada clue selects a squaring stream or its output representation.
+
+The exact original-cipher test uses a continuous 12,956-rune clock, source seeds **1229** or **3301**, and three conventional output functions: state mod29, or five successive least-significant bits in either order, rejecting 29–31 to obtain GP29 symbols. Each masked output is inverted under both ± directions. All **12** original outputs have IoCs **0.034450–0.034523**, near untouched **0.0344784**; none is readable native GP. A repeated solved p57 plaintext plant recovers exactly at every position and every output reencrypts to its original source.
+
+This rejects this precise source-prime BBS additive decoder, without ruling out independently specified prime-state uses. [BBS single-file SFT](../sims/parable_two_blum_prime_stream_sft.cjs); successful [manual CI run 43114464032](https://github.com/FlareZ123/liber-primus/actions/runs/43114464032).
+
 ## Reproduction and decision
 
-Single-file original-source reproducer: [`sims/parable2013_tree2016_prng_rsa_sft.cjs`](../sims/parable2013_tree2016_prng_rsa_sft.cjs) with Node.js 22. It derives p57 clause values from the original transcription and p32 image dimensions from original GP-prime weights, checks all 55 rune-bearing unknown pages and exact synthetic inverse controls, uses only the selected seed/readout/exponent conventions above, and writes no files. Verified on [successful manual-only GitHub Actions run 43113194213](https://github.com/FlareZ123/liber-primus/actions/runs/43113194213).
+Primary original-source reproducer: [`sims/parable2013_tree2016_prng_rsa_sft.cjs`](../sims/parable2013_tree2016_prng_rsa_sft.cjs) with Node.js 22. It derives p57 clause values from the original transcription and p32 image dimensions from original GP-prime weights, checks all 55 rune-bearing unknown pages and exact synthetic inverse controls, uses only the selected seed/readout/exponent conventions above, and writes no files. Verified on [manual GitHub Actions run 43113194213](https://github.com/FlareZ123/liber-primus/actions/runs/43113194213), followed by both source-gated tests in [run 43114464032](https://github.com/FlareZ123/liber-primus/actions/runs/43114464032).
 
-The most economical finite inversions selected by combining those historical numbers fail on the original ciphertext. **Next action requires a distinct, original-source instruction selecting a reversible operator, intermediate register or decoder input**. Running more arbitrary PRNG seeds, extra RSA exponents or fitted output permutations from the same suggestive numbers would return to search without a credible human solve path.
+The most economical finite inversions selected by combining those historical numbers and by the separately determined Blum integer fail on the original ciphertext. **Next action requires a distinct, original-source instruction selecting a reversible operator, intermediate register or decoder input**. Running more arbitrary PRNG seeds, extra RSA exponents or fitted output permutations from the same suggestive numbers would return to search without a credible human solve path.
