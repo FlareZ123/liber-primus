@@ -19,6 +19,7 @@ on:
           - terminal
           - affine-byte
           - p36-crib
+          - nine-section
           - redspan-zero
           - tree-tiling
         default: full
@@ -65,6 +66,9 @@ jobs:
         if: ${{ inputs.probe == 'redspan-zero' }}
         run: node sims/red_span_gp29_zero_test.cjs
 
+      - name: Nine-section dual-quadratic source-register original test
+        if: ${{ inputs.probe == 'nine-section' }}
+        run: node sims/grid_double_quadratic_nine_section_sft.cjs
       - name: Source-locked state/class capacity and Base32 padding audit
         if: ${{ inputs.probe == 'state-class' }}
         run: node sims/state_class_nongp_register_audit.cjs
