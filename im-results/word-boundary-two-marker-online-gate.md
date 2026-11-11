@@ -2,6 +2,10 @@
 
 **Evidence class:** reproducible source-conditioned exclusion of one online GP29 architecture. **No unknown LP2 plaintext or historical decryption key recovered.**
 
+## Relation to established work and the actual novelty
+
+This test is a **finer GP-English word-position corroboration** of the **already completed all-841-pair architecture** in [the previous dual-marker word-role source gate](dual-marker-wordrole-source-gate.md), which tested first/middle/end categories, all 841 source-language marker pairs, 3,000 complete-word simulations per candidate and a length-sensitive Latin extension. It does **not** establish a previously untested cipher family or claim priority over that stronger prior investigation. Its independent contribution is the 10 first-position and 45 interior word-length/position/terminal strata in three English literary controls, plus an independent online-key positive control. The Bernoulli-bin calibration below is **weaker than the earlier native whole-word resampling** in its ability to model within-word dependence. Treat the two reports as mutually consistent, and retain the older report as the main comprehensive architecture decision.
+
 ## The exact reversible hypothesis
 
 A natural repair of the previously rejected *single* GP29 zero-marker model is to let printed word starts use a different transparent plaintext symbol than word interiors. For every noninitial original rune position `t`, consider
