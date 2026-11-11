@@ -15,6 +15,7 @@ on:
           - word-number-byte
           - prior-word-prime
           - corrected-oe-phase
+          - corrected-oe-marker
 permissions:
   contents: read
 jobs:
@@ -46,6 +47,9 @@ jobs:
       - name: Recheck all-secret LP2 phase register against corrected Old English source
         if: ${{ inputs.scan_mode == 'corrected-oe-phase' }}
         run: node sims/lp2_lcg32_allsecret_phase_invariant_sft.cjs
+      - name: All 29 reserved-repeat symbols on corrected Old English
+        if: ${{ inputs.scan_mode == 'corrected-oe-marker' }}
+        run: node sims/lp2_corrected_oldenglish_reserved_marker_sft.cjs
       - name: Reproduce page-local word-length structural tests
         if: ${{ inputs.scan_mode == 'standard' }}
         run: |
