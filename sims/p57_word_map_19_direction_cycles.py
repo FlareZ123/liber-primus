@@ -459,6 +459,64 @@ def all20_word_map(trials=100_000, seed=20261115):
             "both_reach_INSTAR_both_signs":counts["both_signs"],
             "null":"shuffle the 18 non-anchor word sums among the other 18 positions; keep LIKE/FIND sums and positions fixed"}}
 
+
+def p57_physical_word_layout():
+    """Return source-line coordinates for the 19 body words on physical p57."""
+    corpus = json.loads(
+        (ROOT / "resources" / "liber-primus" / "lp2-corpus.json").read_text("utf8")
+    )
+    segments = (
+        ROOT / "resources" / "liber-primus" / "lp2-transcription.txt"
+    ).read_text("utf8").split("%")
+    segment = segments[56]  # physical p57; the runeless physical p50 is omitted
+    rune_lookup = {rune: i for i, rune in enumerate(corpus["runes"])}
+    row, column = 1, 0
+    current = []
+    words = []
+    row_counts = []
+
+    def close_word():
+        if current:
+            first, last = current[0], current[-1]
+            words.append({
+                "text": "".join(corpus["translit"][x[2]] for x in current),
+                "runes": len(current),
+                "start": [first[0], first[1]],
+                "end": [last[0], last[1]],
+            })
+            current.clear()
+
+    for ch in segment:
+        if ch == "/":
+            row_counts.append(column)
+            row += 1
+            column = 0
+        elif ch in "\r\n":
+            continue
+        elif ch in rune_lookup:
+            current.append((row, column + 1, rune_lookup[ch]))
+            column += 1
+        elif ch in "-.":
+            close_word()
+    close_word()
+
+    assert row_counts == [20, 17, 17, 18, 23]
+    assert len(words) == 20 and words[0]["text"] == "PARABLE"
+    body = words[1:]
+    assert [w["text"] for w in body] == WORDS
+    return {
+        "physical_line_rune_counts_including_heading": row_counts,
+        "heading": words[0],
+        "body_words_1_based": [
+            {"position": i + 1, **word} for i, word in enumerate(body)
+        ],
+        "cross_line_words": [
+            w["text"] for w in body if w["start"][0] != w["end"][0]
+        ],
+        "note": "Coordinates are 1-based (physical row, rune column); slash is a line break, not a word boundary."
+    }
+
+
 def main():
     p55_selector = p55_independent_59_selector()
     minus_like = cycle(SUMS, LIKE, -1)
@@ -466,6 +524,7 @@ def main():
     plus_from_like = (LIKE + SUMS[LIKE] % MOD) % MOD
     result = {
         "p55_independent_59_selector": p55_selector,
+        "p57_physical_word_layout": p57_physical_word_layout(),
         "raw_marker_route": raw_marker_route(),
         "raw_marker_route_permutation_null": raw_route_permutation_null(),
         "words": WORDS,
