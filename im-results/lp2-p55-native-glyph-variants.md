@@ -11,7 +11,7 @@ Two **keyless necessary-condition tests** can reject overt variants before guess
 1. Compare p55 binary glyph shapes to a separately printed original page, training on physical p43 (`60.jpg`). A genuine p55-specific alternate form should produce an unexplained shape displacement beyond ordinary rendering variability.
 2. Fit a normal rune-plus-punctuation spacing model from p43's first seven physical lines, and predict p43's last five lines and the four printed lines of p55 **without refitting on p55**. A deliberate 3px spacing-mark carrier should produce measurable out-of-baseline errors.
 
-The original JPGs and canonical `lp2-corpus.json` provide source control. No OCR, language model or fitted ciphertext key is used. On p55 the separately printed 86px-high terminal red ten-dot mark and large central tree are **not** counted as runes or spacing events.
+The original JPGs and canonical `lp2-corpus.json` provide source control. No OCR, language model or fitted ciphertext key is used. On p55 the separately printed 86px-high terminal red thirteen-dot mark and large central tree are **not** counted as runes or spacing events.
 
 ## Test A: native glyph morphology
 
@@ -40,7 +40,7 @@ The separate [source-kerning reproducer](../sims/lp2_p55_font_kerning_baseline_s
 
 The observed p55 spacing error is **smaller** than held-out native printing on p43. The alternating 3px planted test demonstrates that this operation has measurable sensitivity to a substantial regular kerning carrier; the same signal does not occur in the unaltered p55 image.
 
-The `72.jpg` segmentation initially includes a narrow 10-dot component beside the last text line and an illustration component lower down. Exact original transcription and source-component geometry fix the genuine line lengths at **24, 22, 22, 8 = 76** runes, giving **72** gaps. Counting the red dot as a rune would invent a false carrier position.
+The `72.jpg` segmentation initially includes a narrow 13-dot component beside the last text line and an illustration component lower down. Exact original transcription and source-component geometry fix the genuine line lengths at **24, 22, 22, 8 = 76** runes, giving **72** gaps. Counting the red dot as a rune would invent a false carrier position.
 
 ## Cryptanalytic decision
 
