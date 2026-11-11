@@ -62,7 +62,11 @@ const QUOTES = [
 const CORPORA = [
   ["Gibran, The Prophet","control/gibran_prophet_58585.txt",15733],
   ["Emerson, Essays","control/emerson_essays_2944.txt",77932],
-  ["Shakespeare excerpt","control/shakespeare_first300k.txt",55407]
+  ["Shakespeare excerpt","control/shakespeare_first300k.txt",55407],
+  ["Book of the Law I (2013 source)","external/2013-book-of-law-I.txt",1897],
+  ["Book of the Law II (2013 source)","external/2013-book-of-law-II.txt",1968],
+  ["Book of the Law III (2013 source)","external/2013-book-of-law-III.txt",2002],
+  ["Marriage of Heaven and Hell (2012 excerpt)","external/2012-marriage-of-heaven-and-hell-page.txt",121]
 ];
 
 /** @param {number[]} lengths @param {number[]} shape
@@ -102,6 +106,8 @@ function main(){
       for(const q of QUOTES) {
         const report=scan(lengths,q.shape,words);
         assert.equal(report.fullMatches,0);
+        if (name.startsWith("Book of the Law")) assert.equal(report.matchesFive,0);
+        if (name.startsWith("Marriage of Heaven")) assert.ok(report.maxPrefix<=1);
         output.push({source:name,mode:method,quotePage:q.page,wordCount:words.length,...report});
       }
     }
