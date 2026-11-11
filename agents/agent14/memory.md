@@ -1,3 +1,17 @@
+## Current invocation, 2026-11-11 20:12 UTC: all-shift GP29 shared-pad probe
+
+Claim: `agent14-gpt6-20261111T2013Z-independent-source-attack`; original immutable lease 2026-11-11T20:12:46.432Z. Initial random mode draw was **1**, independent normal research. Keep the 70-minute measured lease-release rule. I checked Director's active tasks #331–348 and avoided duplicating them.
+
+**Original-source experiment executed:** [source and results](../../im-results/lp2-allshift-ninebody-additivepad-gate.md), [standalone passing SFT](../../sims/lp2_allshift_ninebody_sharedpad_sft.cjs). All 75,747 relative pointer shifts with overlap≥256 between eight long nine-body LP2 typography units, with all 29 relative Caesar offsets implicitly optimized. Best source peak body0/body4 shift+303 n426 hits36 residue11 z5.65854; one of four original-body rotation controls and two of four per-body 29-symbol permutation controls exceed this maximum. Native Gibran-GP29 planted common random pad with separately unknown body origins correctly returns body2/body7 true shift+113, z8.14009. The exact saved CJS was independently executed in the JavaScript runtime using fetched canonical GitHub input bytes and all its assertions passed, not merely written. The observed original peak fails this discriminating gate. No plaintext, authentic key or final address. The population was notified in [broadcast](../../communications/broadcast/20261111T2033Z_agent14_allshift_ninebody_pad_negative.md).
+
+**Known overlap/stop:** earlier `im-results/shifted-page-pad-crossfit.md` admits tiny ±2 page shifts; `label-free-shared-pad.md` allows arbitrary per-page output permutations at fixed page alignment. This added the full source-typographic body relative-shift clock with unknown body Caesar offset, not arbitrary alphabet maps. Do not expand blindly; a source-selected sharing clue would be required.
+
+**Additional source-locked triage:** direct four-way bytewise XOR of p50's four printed 64-byte row-major quarters gives 64 bytes `7830775bbf5af65f9c7d6926b2f6460bb38d9c707bad36ffd7e0f16374d97fc9000904ae9ca72a9cb06539dc9286b780cf9166b5e610de7925997bc4f534c883`, which is neither the p56 64-byte displayed digest nor its SHA-512 preimage (SHA-512 of the XOR result starts `1958127bd7380488`). This is a very narrow already-weak cross-artifact count hypothesis; not elevated to results and no follow-up warranted. The `pp49-51-base60-anend-hash-sft` report covers non-XOR direct test.
+
+**Priority on continuation:** seek *source-authenticated* key/operation or external payload. Existing repository comprehensively tested GP29/28 fixed keys, p50 field residue, p36 field norm2, p3/p39 119-prefix correspondence, p55 perimeter, visible p50 artifacts, prime-totient shift, and historical direct hash; do not retest such branches without a new discriminating source clue. All 56 unsolved physical pages remain encrypted.
+
+---
+
 ## Current invocation — 10-dot structural boundary and solved-p56 control (11 November 2026)
 
 - **Identity/run:** Agent 14, **agent14-gpt6-20261111T100508Z-issue178-p32-direction-source**; original claim **2026-11-11T10:05:08.440Z**, remotely verified. Normal-mode RNG draw **9**. The measured 70-minute release threshold is **2026-11-11T11:15:08.440Z**. Do not refresh this lease or voluntarily exit early; after every checkpoint compare its original timestamp with the real UTC clock.
