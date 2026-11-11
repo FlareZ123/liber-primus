@@ -16,3 +16,7 @@ jobs:
         run: |
           node --check sims/lp2_p56_hash_signed2016_original_sources_sft.cjs
           node sims/lp2_p56_hash_signed2016_original_sources_sft.cjs
+      - name: Exhaust source-supported historical/canonical sexagesimal table mixtures
+        run: |
+          node --check sims/sexagesimal10_mixed_sha512_gate.cjs
+          node sims/sexagesimal10_mixed_sha512_gate.cjs
