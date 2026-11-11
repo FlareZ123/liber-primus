@@ -1,6 +1,6 @@
 # Physical p0 cross half-turn: exact source motif, bounded original-cipher readout
 
-**Classification:** new original-JPEG visual fact and one finite source-selected cipher test. No unknown LP2 plaintext, key, complete mechanism, or destination is recovered. The visual symmetry is a possible human notice, not an authenticated instruction to reverse runes.
+**Classification:** original-JPEG triple-bar-cross **reused frame** on pp0–2, plus one finite, direct reversed-read-order cipher test. No unknown LP2 plaintext, key, complete mechanism, or destination is recovered. The visual half-turn is a static artwork feature, and no source authenticates rune reversal.
 
 ## The source image actually repeats a cross under a 180° rotation
 
@@ -22,7 +22,16 @@ Thresholding the original grayscale at 145, the lower-left crop compared with th
 
 The original grayscale mean absolute pixel difference **after rotation** is only **0.9463173/255**. The binary overlap remains 0.9823–0.9887 across thresholds 50–230. This is overwhelming evidence for **one reused graphic placed at opposing orientations**; the residual is compatible with local JPEG rasterization, and there is no separate content to decode from the cross drawings themselves.
 
-This is a stronger and more exact observation than simply calling both shapes similar. The likely mundane explanation is source artwork reuse and layout balance. The alternate puzzle-design reading is a deliberately noticeable **half-turn/order-reversal sign** at the opening page. Neither reading is forced by original instructions. No arbitrary cross glyph counts, fake messages, or orientation-dependent keys are inferred.
+### The whole pp0–2 cross frame is static
+
+The **same fixed crop coordinates** are present on the next two original scans, `18.jpg` (physical p1, SHA-256 `f804fae06a68315eb6206158a2b34f55fe157c7d663fa961639fbe8dfc52a39f`) and `19.jpg` (p2, SHA-256 `74e955ebe248e6d7442e2d2cd3029951f258017987d5762f48e7897cf6611e34`). Comparing each directly with p0 (without alignment, resizing, flipping or optimizations) gives:
+
+| Repeated frame crop | p1 vs p0 mask IoU | p2 vs p0 mask IoU | Grayscale MAE /255 |
+| --- | ---: | ---: | ---: |
+| Lower-left, 500×1,286 | 0.97042851 | 0.97042851 | 2.07543235 |
+| Upper-right, 500×1,286 | 0.97093754 | 0.97093754 | 2.05153810 |
+
+The p1 and p2 crop comparisons are **exactly equal** even down to grayscale pixel errors. Source artwork reused for the three-page introductory frame is the stronger interpretation: the crosses are not a unique p0 state marker. Their intentionally rotated orientation is still conspicuous, but no original instruction says that they specify ciphertext reversal. Future interpretations must explain why the same two forms persist across three physically distinct pages. Arbitrary cross glyph counts, orientation-dependent fitted keys and claimed hidden changes in the illustrations are unwarranted.
 
 ## One constrained, reversible read-order hypothesis tested on original p0
 
@@ -47,6 +56,6 @@ Both candidate inversions score well below **every** finite held-out control. Re
 
 ## Consequence and next original-cipher decision
 
-The paired crosses are source-identical under half-turn to within JPEG-level variation. Future interpretations invoking two distinct symbolic crosses or hidden differences between their ornaments must confront this direct equality. The cross symmetry alone does **not** identify a cipher key and its placement is readily explained by layout reuse. The documented one-operation transfer from the known p56 method fails on original p0. More variants should be attempted only if an independently authenticated clue selects a different cipher or key.
+The two paired crosses form an almost unchanged **pp0–2 decorative frame** under half-turn, and p1/p2 preserve the same artwork at the same coordinates. This makes a unique p0 reversal instruction substantially less plausible. The cross symmetry supplies no authentic key, and the documented direct transfer from the known p56 method fails on original p0. No further cipher variants are warranted without independently selected key material.
 
 **Reproducer:** [source-fixed standalone Python test](../sims/lp2_p0_inverted_cross_source_readout_sft.py), using the unchanged original scan, original canonical GP29 transcription, and frozen native-GP Shakespeare control. All source assertions and values are embedded. The script writes no files.
