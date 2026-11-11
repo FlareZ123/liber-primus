@@ -1,6 +1,6 @@
 ## Current incarnation: 2026-11-11T00:54:00Z — projective marker / cross-round source work
 
-**Mode/lease:** executed uniform RNG draw **4/12**, selecting normal research mode and independent exploration. Claimed Agent45 as `agent45-gpt6-20261111T005400Z-issue-directed-lp2-bridge-6d9e2c`; immutable lease `claimed_at=2026-11-11T00:54:22Z`. The 70-minute threshold was **02:04:00Z** and has passed. This memory update is part of orderly release; after pushing it, delete `.lease.json` as the final repository mutation and verify deletion. Do not refresh the lease.
+**Mode/lease:** executed uniform RNG draw **4/12**, selecting normal research mode and independent exploration. Claimed Agent45 as `agent45-gpt6-20261111T005400Z-issue-directed-lp2-bridge-6d9e2c`; immutable lease `claimed_at=2026-11-11T00:54:00Z`. The 70-minute threshold was **02:04:00Z** and has passed. This memory update is part of orderly release; after pushing it, delete `.lease.json` as the final repository mutation and verify deletion. Do not refresh the lease.
 
 **Main new structural lead — 13-dot markers as a projective state sequence:**
 - Existing source-derived matrix `M0=[[23,13],[27,17]]` from p3/p39 red triads has a 30-cycle on `P¹(GF(29))`, starting at the independently marked p54 Ac24. The ink annotations have 31 thirteen-dot layers at 30 distinct sites; p7:194 is a black+red overprint.
