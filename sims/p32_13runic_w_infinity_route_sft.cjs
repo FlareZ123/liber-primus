@@ -200,6 +200,31 @@ assert.equal(phi(193), 192);
 assert.equal(phi(386), 192);
 assert.equal(mod(phi(193)), 18);
 assert.equal(mod(phi(386)), 18);
+const p32Foth=p32RuneIndices.slice(p32BewareOffset+5,p32BewareOffset+8);
+const p32Home=p32RuneIndices.slice(p32BewareOffset+8,p32BewareOffset+13);
+const p32Suffix8=p32RuneIndices.slice(p32BewareOffset+5,p32BewareOffset+13);
+const p32FothSum=p32Foth.reduce((z,i)=>z+corpus.prime[i],0);
+const p32HomeSum=p32Home.reduce((z,i)=>z+corpus.prime[i],0);
+const p32Suffix8Sum=p32Suffix8.reduce((z,i)=>z+corpus.prime[i],0);
+const p32Suffix8Text=p32Suffix8.map(i=>corpus.translit[i]).join("");
+assert.equal(p32Foth.map(i=>corpus.translit[i]).join(""),"FOTH");
+assert.equal(p32FothSum,14);
+assert.equal(p32Home.map(i=>corpus.translit[i]).join(""),"HOMEX");
+assert.equal(p32HomeSum,215);
+assert.equal(p32Suffix8Text,"FOTHHOMEX");
+assert.equal(p32Suffix8Sum,229);
+assert.equal(p32Suffix8Sum,base60_3D+phi(108));
+assert.equal(p32ThirteenSum,wordPrimeSum(p32Beware)+p32Suffix8Sum);
+assert.equal(p32ThirteenSum,184+193+36);
+const p32Suffix229Hits=p32EligibleWordStarts.filter(row=>{
+ const word=p32CanonicalWords[row.index];
+ const suffix=p32RuneIndices.slice(row.offset+word.length,row.offset+13);
+ return suffix.reduce((z,i)=>z+corpus.prime[i],0)===229;
+});
+assert.deepEqual(p32Suffix229Hits,[{index:5,offset:25}]);
+function primeOrdinal(n){let count=0;for(let v=2;v<=n;v++){let prime=true;for(let d=2;d*d<=v;d++)if(v%d===0){prime=false;break;}if(prime)count++;}return count;}
+assert.equal(primeOrdinal(229),50);
+
 
 console.log(JSON.stringify({
   status:"provisional navigation hypothesis; not a decryption",
@@ -213,5 +238,6 @@ console.log(JSON.stringify({
     endpoint:{word:"WBSRXIAXA",sum:442,offset:64,gap:39,address:endAddress,p36Word7Sum:386}},
   independentDirections:{p55Triple,phi108:36,directionW:"W",p36Triple,phi386:192,directionE:"E"},
   emptyPageBridge:{m7Pole:7,emptyPages,liesSum,liesAddress,p50Cell3,base60_3D,twice193:386,phi193:192,p36Word7Sum:386,phi386:192},
+  p32Checksum:{selectedWord:"IARTTHF",selectedWordSum:184,suffix8:p32Suffix8Text,suffix8Sum:p32Suffix8Sum,p50Base60:base60_3D,p55Phi108:phi(108),window13Sum:p32ThirteenSum,identity:"413=184+193+36",suffixPrimeOrdinal:primeOrdinal(229),uniqueSuffix229WordStarts:p32Suffix229Hits},
   conclusion:"Selector/pole correspondence only; the existing M7 gate rejects a total word-to-word traversal. No plaintext, key, or reversible cipher operation recovered."
 },null,2));

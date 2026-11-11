@@ -59,6 +59,8 @@ A separate p32 branch supplies a candidate reason to continue from the Möbius p
 - The corpus has exactly one physical page with `runic_count=0`: **p50**. The signed word `lies` has GP-prime sum **224=58×3+50**, selecting p50 cell3; the original table token there is **`3D`**.
 - Base60 makes `3D=193`; the existing `NUMBER(193)=391=17×23` / p55 D…D interior relationship above supplies a continuation to the Parable's divinity instruction. Independently, p32's residue7 endpoint word sum442 addresses p36 word7=386=2×193, and φ(386)=φ(193)=192≡18=E.
 
+The 13-rune span also supplies an exact checksum: selected p32 word `IARTTHF` sums184; its unique 8-rune suffix `FOTHHOMEX` sums229; and **229=193+36**, with 193=base60(`3D`) and 36=φ(108) from p55. Thus the whole window sum is **413=184+193+36**. Among 19 eligible p32 word starts, only the selected offset25 has suffix sum229. The suffix sum229 is the 50th prime, another conditional pointer to p50.
+
 This is a useful cross-round navigation bridge, not a solution of the 43-unit cipher. The base-58 word-address rule, 13-dot→13-rune interpretation, M7 corner convention, and infinity→p50 identification remain hypotheses. The M7 intermediate states8 and2 are absent on p32, so the orbit is not a literal word-to-word traversal; no reversible 43-byte/rune correspondence or unknown plaintext has been recovered. See the [integrated p32 report](lp2-2016-signed-message-base58-word-map.md) and [p32 13-rune SFT](../sims/p32_13runic_w_infinity_route_sft.cjs).
 
 ## Exact missing selector
