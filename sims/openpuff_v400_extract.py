@@ -336,6 +336,8 @@ def main():
     app = None
     result = {
         "attempted": False,
+        "carrier": str(carrier),
+        "carrier_basename": carrier.name,
         "carrier_added": False,
         "password_A": args.password,
         "password_BC_states": None,
