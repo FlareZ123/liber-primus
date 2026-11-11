@@ -11,7 +11,7 @@ The original word map selects two unusually readable destinations:
 - All six source tokens THE/the select physical p14 word1, literal unknown ciphertext FOLD.
 - Both source tokens their select p56 word1, whose **independently solved** p56 prime-totient plaintext is END.
 
-The new hypothesis reads the final GP rune of every one of the 43 selected source words, in original signed-message order, and adds mirrored end-rune indices modulo29. The one address on the rune-free table page is source word lies (sum224), pointing to p50 cell3, original token 3D. Its final Latin character D is treated as GP rune D (index23). This unusual rune/table interpretation is an explicit, unresolved extra assumption.
+The new hypothesis reads the final GP rune of every one of the 43 selected source words, in original signed-message order, and adds mirrored end-rune indices modulo29. Exactly one mapped source word, **lies** (sum224), lands on the rune-free p50 numerical page. To form a complete 43-GP-symbol key, the exploratory branch treats the last Latin character D of its original cell3 token 3D as GP rune D (index23). **The central END does not depend on that substitution:** retain the 43 signed-word positions, leave the p50 slot undefined, and compute the remaining 20 of 21 mirrored pair sums. Only pair index3 is undefined; centered pair indices9–11 still give END from six original rune-bearing LP2 word destinations. A full 43-rune key does require an independent rule for the missing value.
 
 The exact original-sourced 43 GP index terminals, printed as canonical transliteration (multiletter GP tokens count as one symbol), are:
 
@@ -35,7 +35,9 @@ This is a readable output **from transformed ciphertext**, separate from recover
 
 Freeze the selected multiset of 43 GP end-runes, this symmetric GP29 addition, and the **particular centered END** target. Randomly permute the 43 source positions, keeping their symbol multiplicities and repeated source word structure. Of the 4,389,446,880 possible ordered selections of the six relevant endpoint slots, **148,000** yield the three specified sums. Thus the exact multiset-conditioned probability is **0.00003371723227232676**, calculated by an integer recurrence over source symbol counts rather than Monte Carlo.
 
-This is **not a discovery-wide significance level**. The base58 rule, END extraction, table-digit substitution, fold sign, centered position and target emerged over multiple exploratory steps. The 43-word source and two older FOLD/END pointer anchors motivated the test, but an independent historical instruction does not fix every choice. The match could be an intentionally recognizable waypoint or a postselected accident.
+A stronger table-independent control preserves the fixed missing slot and permutes only the **42 genuine rune-word ending indices**. Exactly **135,192 of 3,776,965,920** six-position ordered draws satisfy centered END, conditional probability **0.0000357938098631295**. The centered match therefore does not require guessing a GP reading of the source's numeric table.
+
+This is **not a discovery-wide significance level**. The base58 rule, word-end extraction, fold sign, centered position and target emerged over multiple exploratory steps. The 43-word source and two older FOLD/END pointer anchors motivated the test, but an independent historical instruction does not fix every choice. The match could be an intentionally recognizable waypoint or a postselected accident.
 
 ## Direct original-cipher inverse against 43 p55 interior runes
 
@@ -61,7 +63,7 @@ The four original-input readouts have **20, 15, 20 and 20 ASCII-printable bytes 
 
 ## Reproduction and next decision
 
-The [single runnable Node 22 SFT](../sims/signed2016_folded_wordends_p55_sft.cjs) reads the actual signed 2016 message, canonical original GP corpus and physical word transcription, 256-entry table and original p55. It checks all 43 indices, the p56 genuine END control, exact favored assignment count, and original-image-derived p55 interior indices. The [first successful manual Actions run 43049273696](https://github.com/FlareZ123/liber-primus/actions/runs/43049273696) verified the rune-fold and p55 operation. The [second run 43049966525](https://github.com/FlareZ123/liber-primus/actions/runs/43049966525) additionally executes the four p50 XOR source-key tests.
+The [single runnable Node 22 SFT](../sims/signed2016_folded_wordends_p55_sft.cjs) reads the actual signed 2016 message, canonical original GP corpus and physical word transcription, 256-entry table and original p55. It checks all 43 indices, the p56 genuine END control, exact favored assignment count, and original-image-derived p55 interior indices. The [first successful manual Actions run 43049273696](https://github.com/FlareZ123/liber-primus/actions/runs/43049273696) verified the rune-fold and p55 operation. The [second run 43049966525](https://github.com/FlareZ123/liber-primus/actions/runs/43049966525) additionally executes the four p50 XOR source-key tests. A subsequent original-source CI run tests the table-free END gate and its separate exact 42-symbol permutation null.
 
 The source-derived FOLD/END pairing merits attention as a conditional clue. A productive successor must independently specify what to do with the **other 18 GP symbols** or predict an actual unknown-page plaintext/key before promoting this to a solution. Further free-endpoint, alignment, or refolding searches would risk overfitting.
 
