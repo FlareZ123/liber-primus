@@ -14,6 +14,12 @@ The complete CicadaOS ISO member `DATA/560.13` is separately reported as **118,8
 
 The archived [third-onion walkthrough](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/006-third-onion/README.md) gives dataset 13, offset **12821**, and data hex `28c07e1b102d4d5c4c1a376e064477e1416fcc94928765`. XORing those 23 data bytes with the local prefix beginning at zero-based byte offset 12821 yields exactly `gbyh7znm6c7ezsmr.onion\\n`. This reproduces the documented 2013 offset-XOR result including its trailing newline. It validates the prefix bytes and offset convention used here; it does not validate bytes beyond offset 15,329.
 
+
+
+### 5-bit GP29 key test on the reconstructed prefix (11 November 2026)
+
+\`sims/iso56013_5bit_gp29_key_gate.cjs\` tests a direct 5-bit byte-to-GP29 pad from the 15,330-byte local prefix at offsets 0, 133, 331, 449 and 1109. It covers both bit orders, modulo-29 versus reject handling for values 29–31, both additive signs, and continuous/page-reset clocks (80 models), with 100 matched random-prefix nulls and exact planted-English controls. The best full-book IoC is 0.0345380 (41st null percentile); the best page-local IoC is 0.0396465 (29th null percentile). This rejects only the direct 5-bit key mapping at those source-fixed prefix offsets; it does not test arbitrary offsets or the remaining full 118,818,811-byte member. Full report: \`im-results/iso56013-5bit-gp29-key-gate.md\`.
+
 ## Scope of the local LP2 transfer test
 
 `sims/cicada2013_56013_offset_xor_lp2_gate.cjs` tests four source-selected offsets **133, 331, 449, 1109**, all within this prefix, against the 2014 256-byte onion-2 timing string. It does not scan the full 118 MB. The external full-file tests above already cover several broad direct-pad and skip-aware families; do not repeat generic 560.13 pad sweeps without a new, independently source-selected offset or operation.
