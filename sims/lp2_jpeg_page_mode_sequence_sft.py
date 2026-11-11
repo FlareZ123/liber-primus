@@ -133,11 +133,16 @@ def scan(original_dir: Path, zip_path: Path | None) -> dict:
 
     annotations_path = ROOT / "resources/liber-primus/lp2-ink-annotations.json"
     annotation_red = []
+    red_rune_start_pages = []
     if annotations_path.exists():
         annotations = json.loads(annotations_path.read_text(encoding="utf-8"))
         annotation_red = [q["page"] for q in annotations["pages"]
                           if q.get("red_spans") or any(
                               punct[2] == "red" for punct in q.get("large_punctuation", []))]
+        red_rune_start_pages = [
+            q["page"] for q in annotations["pages"]
+            if any(span["start"] == 0 for span in q.get("red_spans", []))]
+        assert not set(transitions).intersection(red_rune_start_pages)
         # p37's red characters are the visible numbered list 2,3,4,
         # outside the annotation's red-rune/punctuation scope.
         assert set(red_pages) - set(annotation_red) == {37}
@@ -147,6 +152,8 @@ def scan(original_dir: Path, zip_path: Path | None) -> dict:
                 runs=runs, transitions=transitions, red_pages=red_pages,
                 rgb_achromatic_pages=achromatic, annotation_red_pages=annotation_red,
                 motif_families=MOTIF_FAMILIES,
+                red_rune_start_pages=red_rune_start_pages,
+                transitions_that_are_red_rune_starts=[],
                 source_visual_model_matches_58_of_58=True,
                 pages=pages, total_rgb=35, total_grayscale=23,
                 all_red_pages_are_rgb=True, solved_controls={56: "R", 57: "R"})
