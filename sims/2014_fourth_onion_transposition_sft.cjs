@@ -49,8 +49,8 @@ const blocks = plaintext.match(/.{7}/g);
 assert.equal(blocks.length, rows.length);
 assert.deepEqual(blocks.map((block) => encodeRow(block, key)), rows);
 
-const host = plaintext.slice(35, 51);
-const suffix = plaintext.slice(51);
+const host = plaintext.slice(36, 52);
+const suffix = plaintext.slice(52);
 assert.equal(host, 'Q4UTGDI2N4M4UIM5');
 assert.equal(suffix, '9133');
 assert.equal(host.length, 16);
