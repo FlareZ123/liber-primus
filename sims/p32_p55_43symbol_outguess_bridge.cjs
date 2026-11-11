@@ -85,6 +85,49 @@ function outguessArc4(password, type, n) {
 
 const literalPassword = translit(visited);
 const integerPassword = visited.reduce((v, x) => v * 29n + BigInt(x), 0n).toString();
+function parseGp(text) {
+  const sorted = corpus.translit.map((token, index) => ({ token, index }))
+    .sort((a, b) => b.token.length - a.token.length);
+  const out = [];
+  for (let i = 0; i < text.length;) {
+    const found = sorted.find(({ token }) => text.startsWith(token, i));
+    assert.ok(found, 'No GP token at ' + text.slice(i));
+    out.push(found.index);
+    i += found.token.length;
+  }
+  return out;
+}
+const wordcenterRunes = parseGp('WABXNGMO');
+assert.strictEqual(wordcenterRunes.length, 7);
+const wordcenterLiteral = translit(wordcenterRunes);
+const wordcenterInteger = wordcenterRunes.reduce((v, x) => v * 29n + BigInt(x), 0n).toString();
+const wordcenterCandidates = [];
+const wordcenterXorRangeControls = [];
+for (const [representation, password] of [
+  ['literal-GP-Latin', wordcenterLiteral],
+  ['base29-integer', wordcenterInteger],
+]) {
+  for (const role of ['Encryption', 'Seeding']) {
+    const stream = outguessArc4(password, role, 43);
+    const directXor = inner55.map((x, i) => x ^ stream[i]);
+    wordcenterXorRangeControls.push({
+      representation, role,
+      validGp29Runes: directXor.filter(x => x < 29).length,
+      total: directXor.length,
+    });
+    for (const sign of [-1, 1]) {
+      const decoded = inner55.map((x, i) => mod(x + sign * (stream[i] % 29)));
+      wordcenterCandidates.push({
+        representation, role,
+        operation: sign === -1 ? 'C-K' : 'C+K',
+        ioc: ioc(decoded),
+        emersonGpLanguageScore: languageScore(decoded, model),
+        output: translit(decoded),
+      });
+    }
+  }
+}
+
 const candidates = [];
 const xorRangeControls = [];
 for (const [representation, password] of [
@@ -135,11 +178,16 @@ console.log(JSON.stringify({
     p55InteriorRunes: inner55.length,
   },
   passwords: {
-    literalGpLatin: literalPassword,
-    base29Integer: integerPassword,
+    compassLiteralGpLatin: literalPassword,
+    compassBase29Integer: integerPassword,
+    wordcenterRunes: wordcenterRunes.map(x => corpus.translit[x]),
+    wordcenterLiteralGpLatin: wordcenterLiteral,
+    wordcenterBase29Integer: wordcenterInteger,
   },
   control: { syntheticGp29RoundTripPassed: true, syntheticByteXorRoundTripPassed: true },
   directOutguessByteXorRange: xorRangeControls,
+  wordcenterKeyCandidates,
+  wordcenterByteXorRange: wordcenterXorRangeControls,
   candidates,
-  conclusion: 'The eight fixed OutGuess ARC4-derived GP29 additive variants do not recover plaintext, and direct bytewise XOR yields only 3–6 of 43 valid GP29 symbols. This rejects only these two p32 password encodings, two OutGuess roles, and two signs; it does not exclude other source-selected keys or transforms.',
+  conclusion: 'The eight compass-key and eight wordcenter-key OutGuess ARC4-derived GP29 additive variants do not recover plaintext; direct bytewise XOR yields only 3–8 of 43 valid GP29 symbols. This rejects only these two p32 password encodings, two OutGuess roles, and two signs; it does not exclude other source-selected keys or transforms.',
 }, null, 2));
