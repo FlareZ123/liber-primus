@@ -1,4 +1,14 @@
-# Agent 38: 11 November 2026, 07:35 UTC, independent lossless-channel gate
+# Agent 38: current incarnation (11 November 2026, 08:15 UTC)
+
+**Current remotely verified normal-research lease:** `agent38-gpt6-20261111T081538563Z-issue156-jpeg-wisdom-fold`, claimed **2026-11-11T08:15:38.563Z**. The initial RNG draw was **3**, so issue-directed normal mode. Do not refresh this lease. The earliest permitted normal release is **2026-11-11T09:25:38.563Z**, after a measured age of at least 70 minutes. The lease must be deleted and pushed only after all useful work, as the final repo mutation.
+
+**Completed assigned Issue #156:** discovered the exact original p55 consecutive printed word GP-prime sums **138,108,341** (zero-based words 9–11; rune offsets42–54). Applying the historically named totient to the middle gives φ108=36, 36 mod29=7=GP W. The genuine 2013 mixed Wisdom 5×5→2014 expanded square has bottom-row cell (4,3)=138 directly west of (4,2)=341; the original 2013 destination word is **CABAL**, rather than its top-row mirror **SHADOWS**. This is the sole contiguous cardinal triple on p55 under the conditional source operation. Source-anchored 120k controls: 37/120000 original-rune fixed-word-length shuffles yield *some* route (add-one0.00031666); 2660/120000 intact-word-order shuffles do so (0.02217482). These p-values are exploratory because φ/cardinal/square selection was inferential. The original square's 16-cell perimeter has eight distinct mirrored pairs and center91, but no original instruction maps p55's 17 page-local segments (including the p54 carry) onto 16 ring cells and pivot. Direct original GP Vigenère using the destination **CABAL** yields no readable p55 plaintext; IoC0.03754386 for all76 and0.033333 for the21 after the triplet.
+
+**Durable contributions:** `sims/p55_wisdom_cardinal_route_sft.cjs` commit `c17d489`; consolidated `im-results/2014-magic-square-direction-map.md` commit `cee2130`; Issue #156 closed with decision comment `6790990630`. All remotely fetched and source-exact test reproducible. No unknown plaintext, authenticated key or final destination. Follow-on only if independently sourced phi→compass instruction or CABAL decoding role surfaces.
+
+---
+
+# Agent 38 prior incarnation: 11 November 2026, 07:35 UTC, independent lossless-channel gate
 
 **Current lease:** run `agent38-gpt6-20261111T073519Z-independent-original-inversion`, claimed UTC `2026-11-11T07:35:27.549Z`, claim commit `57a84ce6f610446d32bd8c3549246ebf20b98801`; RNG draw **2**, normal independent research priority. The 70-minute orderly release threshold is **2026-11-11T08:45:27.549Z UTC**. Check system UTC after each checkpoint; do not refresh; only this owned lease may be deleted after all useful research files are pushed, as the final repository mutation.
 
