@@ -8,8 +8,12 @@ const read = p => fs.readFileSync(path.join(root, p), "utf8");
 const corpus = JSON.parse(read("liber-primus/lp2-corpus.json"));
 const latin = JSON.parse(read("control/latin-vulgate-heldout-gp.json"));
 const squareText = read("cicada2014-openpuff-magic-squares.txt");
-const square = squareText.trim().split(/\n\s*\n/)[1].trim()
-  .split(/\n/).map(row => row.trim().split(/\s+/).map(Number));
+const squareValues = (squareText.match(/\d+/g) || []).map(Number);
+assert.equal(squareValues.length, 99, "three archived squares contain 99 numeric cells");
+const matrixFrom = (order, start) => Array.from({length:order}, (_, row) =>
+  squareValues.slice(start + row * order, start + (row + 1) * order));
+const historicalSquares = [matrixFrom(5, 0), matrixFrom(7, 25), matrixFrom(5, 74)];
+const square = historicalSquares[1];
 const R = 7, C = 227, N = R * C;
 const mod = n => (n % 29 + 29) % 29;
 assert.equal(square.length, 7);
@@ -119,10 +123,34 @@ console.log(JSON.stringify({
  * source-square rings modulo the GP alphabet size yields S E D EO (SEDEO).
  * This is a candidate source key, not an independently authenticated cipher.
  */
-const shellSums = Array.from({length:4}, (_,k)=>
-  square.reduce((total,row,r)=>total+row.reduce((part,value,c)=>
-    part+(Math.min(r,c,6-r,6-c)===k ? value : 0),0),0));
-const shellOrdinals = shellSums.map(v=>mod(v));
+function concentricShellSums(matrix) {
+  const n = matrix.length;
+  return Array.from({length:Math.ceil(n/2)}, (_,layer) =>
+    matrix.reduce((total,row,r)=>total+row.reduce((part,value,c)=>
+      part+(Math.min(r,c,n-1-r,n-1-c)===layer ? value : 0),0),0));
+}
+const shellControls = historicalSquares.map(matrix => {
+  const n = matrix.length;
+  const sums = concentricShellSums(matrix);
+  const residues = sums.map(mod);
+  return {
+    order:n,
+    magicSum:matrix[0].reduce((a,b)=>a+b,0),
+    shellCellCounts:Array.from({length:Math.ceil(n/2)},(_,layer)=>
+      (n-2*layer)**2 - Math.max(n-2*layer-2,0)**2),
+    shellSums:sums,
+    residues,
+    translit:residues.map(i=>corpus.translit[i]).join("")
+  };
+});
+assert.deepEqual(shellControls.map(x=>x.order), [5,7,5]);
+assert.deepEqual(shellControls.map(x=>x.magicSum), [3301,1033,1033]);
+assert.deepEqual(shellControls.map(x=>x.shellCellCounts), [[16,8,1],[24,16,8,1],[16,8,1]]);
+assert.deepEqual(shellControls.map(x=>x.shellSums), [[10404,5292,809],[3756,1990,1154,331],[3286,1788,91]]);
+assert.deepEqual(shellControls.map(x=>x.residues), [[22,14,26],[15,18,23,12],[9,19,4]]);
+assert.deepEqual(shellControls.map(x=>x.translit), ["OEXY","SEDEO","NMR"]);
+const shellSums = shellControls[1].shellSums;
+const shellOrdinals = shellControls[1].residues;
 const shellPrime = shellOrdinals.map(i=>corpus.prime[i]);
 assert.deepEqual(shellSums, [3756,1990,1154,331]);
 assert.deepEqual(shellOrdinals, [15,18,23,12]);
@@ -227,6 +255,7 @@ console.log(JSON.stringify({
     shellSums,mod29:shellOrdinals,translit:"SEDEO",
     gpPrimeWeights:shellPrime
   },
+  allThreeSquaresShellControl:shellControls,
   status:"Retrospective candidate; not independently prescribed by Cicada.",
   originalGpBook:{ioc:ioc(allOriginal.flat()),score:score(allOriginal.flat())},
   nativeLatinControl:{ioc:ioc(native),score:score(native)},

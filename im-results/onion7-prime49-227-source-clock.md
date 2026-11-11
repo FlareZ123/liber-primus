@@ -55,6 +55,22 @@ In the independently solved LP2 p57 *PARABLE*, the text says **WE MUST SHED OUR 
 
 This yields **S E D EO**, spelling *SEDEO*, Latin for “I sit/remain,” or allowing the segmentation **SE DEO** (“oneself / [to] God,” an incomplete Latin fragment). The inner **D+EO** renders *DEO*, a Latin inflection of “God”, resonating with the source instruction to find “DIVINITY WITHIN.” Its outer **S+E** could render *se* (“oneself”). The 331 central entry is independently indicated by the contemporary Onion7 HTML id `331`; shell order follows the solved sentence. **This is a source-derived candidate text or key, not an authenticated historical message:** neither cell-sum reduction mod29 nor the Latin segmentation is explicitly instructed, and both were identified retrospectively. The central character is fixed; the other shell residues are correlated because total 7×1033 is constant.
 
+### Same-artifact control across all three recovered OpenPuff squares
+
+I applied the identical outside-in perimeter operation to **all three** matrices in the archived `magicsquares.txt`: sum each concentric shell, reduce the sum modulo 29, then read the residue through the original GP transliteration. The result is specific to the independently selected middle 7×7 square within this small source set:
+
+| Square | Shell cell counts | Shell sums | Residues mod 29 | GP output |
+| --- | --- | --- | --- | --- |
+| 5×5, magic sum 3301 | 16, 8, 1 | 10404, 5292, 809 | 22, 14, 26 | **OEXY** |
+| 7×7, magic sum 1033 | 24, 16, 8, 1 | 3756, 1990, 1154, 331 | 15, 18, 23, 12 | **SEDEO** |
+| 5×5, magic sum 1033 | 16, 8, 1 | 3286, 1788, 91 | 9, 19, 4 | **NMR** |
+
+Thus **SEDEO is the only plausible Latin word among the three outputs**; its inner two shells spell **DEO**, echoing “DIVINITY WITHIN.” This is a useful same-artifact control, not a global chance estimate. The 7×7 selection itself is independently supported by the Onion7 HTML `id=331` and the repeated 1033/3301 illustrated-page headers. The shell-sum operation and mod-29 readout, however, remain retrospective.
+
+The historical 2014 walkthrough reproduces the signed instruction to submit three magic squares of the required orders/magic sums and a Tor service; it does **not** prescribe summing the rings or reducing them modulo 29. It separately records the LP1 koan decrypted with Vigenère key `CIRCUMFERENCE`, which gives the later p57 “circumferences” wording a plausible historical context but does not select this arithmetic. A reference copy is [the 2014 recruitment-puzzle walkthrough](https://embeddedsw.net/doc/Openpuff_for_experts_Cicada_3301_recruitment_puzzle_2014.pdf).
+
+Treat `SEDEO` as one Latin word: *sedeō* means “I sit” and can extend to “remain, tarry, abide” ([Logeion](https://logeion.uchicago.edu/sedeo)). The alternative segmentation `SE DEO` is not a complete, unambiguous instruction. The nested `DEO` is an attractive semantic echo, but it is not independent of the same shell readout. This strengthens the candidate human-facing message; it does **not** identify a key, an LP2 decoder, or a next cipher operation. Keep the 48 original-cipher inversions below as bounded negatives and do not expand them into unconstrained key searches.
+
 The same [source/original SFT](../sims/onion7_prime49_227_clock_sft.cjs) asserts the original shell sums, GP ordinals **[15,18,23,12]**, transliteration and GP prime weights **[53,67,89,41]**. On all 12,956 unknown runes and the source-enclosed 1,589-rune illustrated passage, it evaluates **48** exact reversible and key-locked models: 2 target scopes × 2 source key values (GP ordinal or GP prime weight) × 3 cipher representations × both signs × both continuous and page-reset clocks. Representations are native GP29 additive, reserved literal-F GP28 additive (F does not consume key), and the ciphertext-displacement GP28 representation where adjacent duplicate ciphertext glyphs encode an unkeyed EA rune. The EA family can in principle account for every observed adjacent repeat; its first rune at each reset is a literal IV.
 
 **Passing original SFT / CI:** [successful manual workflow run 42943361117](https://github.com/FlareZ123/liber-primus/actions/runs/42943361117). Each of the 48 variants re-encrypts its original input *exactly*, and recovers a word-preserving native-Latin GP plant of the **same full input length** using a separate original word-preserving Vulgate corpus. The ciphertext native-GP language signal remains absent:
