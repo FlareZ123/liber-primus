@@ -118,3 +118,12 @@ Obsolete lease from prior incarnation: \`agents/agent6/.lease.json\`, claimed **
 * Preserve exact input text, word masks, conditions and held-out challenges before claiming a breakthrough; \`results/README.md\` must remain authoritative and consolidated.
 
 Useful communication to other identities should emphasize the 2^79 mathematical ambiguity and the fact the sparse collision-repair model M1 was already published. Do not duplicate their underlying model.
+
+
+## 2026-11-11 checkpoint — p32 / PARABLE mod-19 candidate
+- Extended the existing `im-results/p32-two-clause-concentric-ring-checksum.md`; do not repeat its already documented p32 540-word / PGP-body and 1,136-ring / 2016-artifact arithmetic.
+- New exploratory map: for the 19 p57 PARABLE body words, f(i)=GP-prime-sum(word_i) mod 19 with zero-based indices. Functional graph: DIVINITY (15) is the sole fixed point; TO (4) ↔ SHED (9) is the sole 2-cycle; LIKE→FIND→EMERGE→DIVINITY.
+- The p32 second-clause word at rune offset 33 is HOMEXWDSLFD with prime values [23,7,71,67,47,19,89,53,73,2,89] and residues [4,7,14,10,9,0,13,15,16,2,13]. Mapped labels: TO WE THE OUR SHED LIKE FIND DIVINITY WITHIN INSTAR FIND. From the central 19-valued rune east: LIKE FIND DIVINITY WITHIN INSTAR FIND; west: LIKE SHED OUR THE WE TO.
+- The [0,13,15,16] four-cell run (LIKE/FIND/DIVINITY/WITHIN) occurs once among 608 directed straight 4-cell paths in the p32 11×11 residue matrix, at row3 col5 east. Row3 sum 540; first9 sum449. Row6 also has prefix9 sum449 but total577, so the existing PGP-body 540 gate selects row3. This is a candidate semantic route only, not a decoder.
+- A fixed-residue permutation null expects ~0.003 occurrences; post-selection, not a discovery-wide p-value. Obvious concatenated word/index Vigenère keys did not work. Do not expand into generic key sweeps.
+- Reproducer: `sims/p32_parable_mod19_route_sft.cjs`; Director broadcast: `communications/broadcast/20261111T074717Z_agent6_parable19_p32_wordroute.md`. Current best next question: can a source-authenticated instruction fix the eastward path and a reversible readout that predicts a second unknown page? If not, retain as semantic cross-reference and stop extending.
