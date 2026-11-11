@@ -34,10 +34,16 @@ TRANSLIT = ["F", "U", "TH", "O", "R", "C", "G", "W", "H", "N", "I", "J",
             "A", "AE", "Y", "IA", "EA"]
 RUNE_INDEX = {r: i for i, r in enumerate(RUNES)}
 MANUAL_SPLITS = {
-    # Clear vertical valleys split a touching pair; the resulting crops match
-    # the expected C,B and C,TH glyphs, respectively.
-    (20, 9, 13): 54,
-    (25, 9, 18): 54,
+    # Cuts are measured from the connected-component crop, left to right.
+    # p2's thin infinity illustration crosses the top of a three-rune cluster;
+    # trim its upper 33 px before splitting the visible H,B,M glyph bodies.
+    (2, 0): {"component": 9, "cuts": [47, 86], "trim_top": 33, "expected": "ᚻᛒᛗ"},
+    # Clear vertical valleys split the touching C,B and C,TH pairs.
+    (20, 9): {"component": 13, "cuts": [50], "trim_top": 0, "expected": "ᚳᛒ"},
+    (25, 9): {"component": 18, "cuts": [50], "trim_top": 0, "expected": "ᚳᚦ"},
+}
+SPECIAL_ARTISTIC_LINES = {
+    (39, 5): "Five enlarged black glyphs immediately precede a three-rune red span and red 13-dot mark; template disagreements here are separately annotated, not transcription corrections."
 }
 
 
@@ -232,11 +238,14 @@ def merge_components(gray, row, start, count):
     return crop, box
 
 
-def split_component(entry, cut):
+def split_component(entry, cuts, trim_top=0):
     crop, box = entry
     x0, y0, _, _ = box
+    crop = crop[trim_top:, :]
+    y0 += trim_top
+    boundaries = [0] + list(cuts) + [crop.shape[1]]
     parts = []
-    for a, b in ((0, cut), (cut, crop.shape[1])):
+    for a, b in zip(boundaries, boundaries[1:]):
         part = crop[:, a:b]
         yy, xx = np.where(part)
         if len(xx):
@@ -249,11 +258,14 @@ def split_component(entry, cut):
 
 def apply_manual_splits(page, line_index, row):
     row = list(row)
-    cut = MANUAL_SPLITS.get((page, line_index))
-    if cut is None:
+    spec = MANUAL_SPLITS.get((page, line_index))
+    if spec is None:
         return row
-    component_index = 13 if page == 20 else 18
-    row[component_index:component_index + 1] = split_component(row[component_index], cut)
+    component_index = spec["component"]
+    if component_index >= len(row):
+        return row
+    row[component_index:component_index + 1] = split_component(
+        row[component_index], spec["cuts"], spec.get("trim_top", 0))
     return row
 
 
@@ -421,6 +433,8 @@ def main():
             control_labels.extend(line)
     control_correct = sum(r["correct"] for r in control_results)
     control_total = len(control_labels)
+    control_class_indices = set(control_labels)
+    missing_control_classes = [TRANSLIT[i] for i in range(29) if i not in control_class_indices]
 
     # Optional second feature family (HOG/SVM), independently trained on p43.
     hog_result = optional_hog(train_crops, train_labels, control_crops, control_labels)
@@ -478,9 +492,12 @@ def main():
                     red_span_index = next((j for j, span in enumerate(red_spans)
                                            if span["start"] <= page_local_offset < span["start"] + span["length"]), None)
                     red_span = red_spans[red_span_index] if red_span_index is not None else None
+                    special_note = SPECIAL_ARTISTIC_LINES.get((page, li))
                     item = {"page": page, "line": li, "position": pos,
                             "page_local_offset": page_local_offset,
                             "is_red": red_span is not None,
+                            "is_special_artistic_line": special_note is not None,
+                            "special_artistic_note": special_note,
                             "is_red_initial": bool(red_span is not None and page_local_offset == red_span["start"]),
                             "red_span_index": red_span_index,
                             "red_span_start": red_span["start"] if red_span is not None else None,
@@ -517,6 +534,7 @@ def main():
     red_mismatch_records = [m for m in heldout_mismatch_records if m["is_red"]]
     black_mismatch_records = [m for m in heldout_mismatch_records if not m["is_red"]]
     red_initial_mismatch_records = [m for m in heldout_mismatch_records if m["is_red_initial"]]
+    special_artistic_mismatch_records = [m for m in heldout_mismatch_records if m["is_special_artistic_line"]]
     high_confidence = [m for m in mismatch_records
                        if m["page"] == 0 and m["line"] == 0 and m["position"] in (9, 10, 11, 12)]
     report = {
@@ -526,8 +544,10 @@ def main():
             "line_registration": "monotonic DP; match cost=absolute row-count difference (max 5); skipped-row cost=2",
             "glyph_assignment": "nearest p43 line-level template in 100x100 top-left canvas, BOX-resized to 50x50",
             "component_segmentation": "DP to expected line count; skip penalty=5+max(0,40-nearest-distance); merge penalty=5",
-            "manual_splits": [{"page": 20, "line": 9, "component": 13, "cut": 54},
-                              {"page": 25, "line": 9, "component": 18, "cut": 54}],
+            "manual_splits": [{"page": page, "line": line, **spec}
+                              for (page, line), spec in sorted(MANUAL_SPLITS.items())],
+            "special_artistic_lines": [{"page": page, "line": line, "note": note}
+                                       for (page, line), note in sorted(SPECIAL_ARTISTIC_LINES.items())],
             "language_scoring": False,
         },
         "totals": {
@@ -548,6 +568,7 @@ def main():
             "red_mismatches_heldout": len(red_mismatch_records),
             "black_mismatches_heldout": len(black_mismatch_records),
             "red_initial_mismatches_heldout": len(red_initial_mismatch_records),
+            "special_artistic_line_mismatches_heldout": len(special_artistic_mismatch_records),
             "nearest_neighbor_matches_heldout": classified_positions - len(train_labels) - len(heldout_mismatch_records),
             "exact_count_no_drop_positions_including_p43": exact_nodrop_positions + len(train_labels),
             "exact_count_no_drop_positions_heldout": heldout_exact_positions,
@@ -557,7 +578,9 @@ def main():
         "controls": {
             "p43_leave_one_out": {"correct": p43_loo[0], "total": p43_loo[1]},
             "solved_p56_p57_body": {"correct": control_correct, "total": control_total,
-                                    "classes": len(set(control_labels)), "lines": control_results},
+                                    "classes": len(control_class_indices),
+                                    "missing_classes": missing_control_classes,
+                                    "lines": control_results},
             "hog_svm": hog_result,
         },
         "ambiguous_line_mappings": [{"page": p["page"], "ways": p["mapping_ways"]}
