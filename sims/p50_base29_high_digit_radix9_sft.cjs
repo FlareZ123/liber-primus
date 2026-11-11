@@ -106,7 +106,7 @@ const digitChi2 = digitsHistogram.reduce((sum, n) =>
   sum + (n - 256 / 9) ** 2 / (256 / 9), 0);
 const printable = [...decoded].filter(b => b >= 32 && b <= 126).length;
 assert.equal(printable, 35);
-assert.equal(digitChi2, 10.765625);
+assert(Math.abs(digitChi2 - 10.765625) < 1e-12);
 const outputEntropy = (() => {
   const counts = frequencies([...decoded], 256);
   return -counts.reduce((sum, n) => {
