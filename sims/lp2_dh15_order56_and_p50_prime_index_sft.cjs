@@ -209,7 +209,7 @@ for (const operation of ['divide', 'multiply']) {
 const plant = Uint8Array.from({ length: cipher.length }, (_, i) => mod(37 * i + 11));
 for (const projection of ['trace', 'norm']) {
   const key = states.map(s => projection === 'trace' ? trace(s) : norm(s));
-  const enc = pages.flatMap(page => page.indices.map((_, j) => 0)); // shape only
+  const enc = new Array(cipher.length);
   let pos = 0;
   for (const page of pages) {
     for (let j = 0; j < page.indices.length; j++) {
@@ -277,7 +277,7 @@ function firstPrimes(n) {
   }
   return ps;
 }
-const maxPrimeIndex = cipher.length - 1 + Math.max(...bytes);
+const maxPrimeIndex = Math.max(...bytes.map((b, j) => Math.max(b, j + b)));
 const primes = firstPrimes(maxPrimeIndex + 1);
 const p50Keys = {
   fixedIndex: bytes.map(b => mod(primes[b] - 1)),
