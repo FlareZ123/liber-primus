@@ -27,6 +27,7 @@ on:
           - tree-direction
           - tree-continuous-degrees
           - tree-buds-ray
+          - m7-nonlinear-stream
           - tree-corner-ownership
           - tree-redmark-self-description
           - tree-cuneiform-selector
@@ -61,6 +62,7 @@ on:
     paths:
       - '.github/workflows/grid-256-tests.yml'
       - 'sims/p32_buds_origin_ray_pixel_gate.py'
+      - 'sims/p50_m7_nonlinear_stream_sft.cjs'
 
 jobs:
   test:
@@ -205,8 +207,12 @@ jobs:
           python3 -m pip install --quiet Pillow
           python3 sims/tree121_directional_field_sft.py
 
+      - name: Source-derived M7 × p50 period-256 nonlinear stream composition gate
+        if: ${{ github.event_name == 'push' || inputs.probe == 'm7-nonlinear-stream' }}
+        run: node sims/p50_m7_nonlinear_stream_sft.cjs
+
       - name: Original 2016 image BUDS-to-HOME 318-degree tree-ray pixel gate
-        if: ${{ github.event_name == 'push' || inputs.probe == 'tree-buds-ray' }}
+        if: ${{ inputs.probe == 'tree-buds-ray' }}
         run: |
           python3 -m pip install --quiet Pillow numpy
           python3 sims/p32_buds_origin_ray_pixel_gate.py
