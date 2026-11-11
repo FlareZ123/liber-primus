@@ -1,11 +1,16 @@
 "use strict";
 const assert=require("node:assert/strict");
-const fs=require("node:fs"),path=require("node:path");
+const fs=require("node:fs"),path=require("node:path"),crypto=require("node:crypto");
 const root=path.resolve(__dirname,"..");
 const read=n=>JSON.parse(fs.readFileSync(path.join(root,n),"utf8"));
 const corpus=read("resources/liber-primus/lp2-corpus.json");
 const annotations=read("resources/liber-primus/lp2-ink-annotations.json");
 const grid=read("resources/liber-primus/lp2-grid-256.json");
+const alphabet60=grid.alphabet;
+const reconstructed=grid.pages.flatMap(p=>p.tokens.map(t=>60*alphabet60.indexOf(t[0])+alphabet60.indexOf(t[1])));
+assert.deepEqual(reconstructed,grid.bytes);
+const tableHash=crypto.createHash("sha256").update(Buffer.from(grid.bytes)).digest("hex");
+assert.equal(tableHash,"3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290");
 const mod=n=>(n%29+29)%29;
 const BLACK=[13,26,20,9,18,4,8,16,0,1,2,5,10,21,11,23,14,29,27,22,12,24,17,3,7,15,31,30,28,25,19,6];
 const F31=[31,1,13,14,27,10,6,16,0,22,7,29,5,3,8,11,19,30,18,17,4,21,25,15,9,24,2,26,28,23,20,12];
@@ -81,8 +86,10 @@ function main(){
  assert.equal(fragments.slice(0,28).filter(f=>f.length).length,26);
  assert.deepEqual(section,[0,0,1,1,1,1,1,1,1,1,2,3,3,3,3,4,4,5,5,5,5,6,6,6,6,7,7,7]);
  assert.equal(grid.bytes.length,256);
- const maxStart=Math.max(...grid.bytes),maxLen=Math.max(...fragments.slice(0,28).map(f=>f.length));
- const primeTable=primes(maxStart+maxLen+1);
+ const rowMaps=[BLACK,F31],columnMaps=[Array.from({length:8},(_,i)=>i),LCG8];
+ const maxPrimeIndexUsed=Math.max(...rowMaps.flatMap(rows=>columnMaps.flatMap(cols=>fragments.slice(0,28).map((f,i)=>f.length?grid.bytes[rows[i]*8+cols[section[i]]]+f.length-1:-1))));
+ const primeTable=primes(maxPrimeIndexUsed+1);
+ assert.ok(primeTable.length>maxPrimeIndexUsed);
  const tableCell=(rows,cols,f)=>grid.bytes[rows[f]*8+cols[section[f]]];
 
  // The cell at [fragment row, section column] selects a prime-stream start.
@@ -112,6 +119,7 @@ function main(){
  const unknown=fragments.slice(0,28).flat();
  const rawScore=model.score(unknown);
  const rows=[["BLACK",BLACK],["F31",F31]],cols=[["natural",Array.from({length:8},(_,i)=>i)],["LCG8",LCG8]];
+ assert.equal(new Set(BLACK).size,32);assert.equal(new Set(F31).size,32);assert.equal(new Set(LCG8).size,8);
  const primeVariants=[],shiftVariants=[];
  for(const [rn,r] of rows)for(const [cn,c] of cols)for(const sign of [-1,1]){
   const out=primeTransform(unknown,r,c,sign);
@@ -147,7 +155,7 @@ function main(){
    everyInternalSectionCutIsThirteenDot:cuts.slice(1,-1).every(x=>marks.some(m=>m.global===x)),
    fragmentSections:section,blackRows:BLACK.slice(0,28),selectedBlackNaturalCells:selectedKeys,
    unknownLiteralFCount:unknown.filter(x=>x===0).length,
-   keyTableBytes:grid.bytes.length,maxPrimeIndexUsed:maxStart+maxLen-1
+   keyTableBytes:grid.bytes.length,tableSha256:tableHash,maxPrimeIndexUsed
   },
   primeStartModel:{
    formula:"P_(f,t)=C_(f,t)-(prime[B_(f,s)+t+1]-1) mod 29",
