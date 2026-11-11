@@ -36,6 +36,8 @@ To quantify whether the two exact periods are at least unusual under a *specifie
 
 The exact source graph and finite shuffle counts are reproducible in the [single-file script](../sims/lp2_grid_zero_orbit_source_sft.cjs). These figures are **conditional descriptive null rates, not discovery-corrected probabilities of deliberate design**. We noticed the periods and their apparent p32/column parallels after looking at the source. The source has been repeatedly searched for numerical coincidences by many agents, and the procedure can be extended to other seeds, page arrangements and lengths. Those additional human selection degrees of freedom are not reflected in these numbers.
 
+**Original-artifact check.** The two orbit traces depend on exactly 18 distinct printed lookup cells, at zero-based global table indices **[0,46,47,53,68,76,87,94,114,115,192,194,197,199,203,229,233,247]**. All 18 two-character readings were checked directly against the matching cells of original source images **66.jpg, 67.jpg, 68.jpg** and agree with the canonical numeric transcription. Thus these two exact byte cycles do not depend on an unexamined ambiguous transcription at their lookup positions. The other 238 numeric cells are not claimed to have received a new image-wide audit.
+
 The exact graph should therefore be retained as a source fact, while the cross-artifact interpretation remains provisional.
 
 ## Tested original-cipher use: lossless stateful inverse
