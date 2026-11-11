@@ -98,8 +98,43 @@ function coincidence(symbols){
 /** @param {number[]} letters @returns {string} */
 function preview(letters){return letters.slice(0,80).map(x=>corpus.translit[x]).join(' ');}
 
-/** @param {number} replaceInfinity @param {'book'|'page'} reset @returns {object} */
-function test(replaceInfinity,reset){
+const gp = new Map(corpus.translit.map((letter, i) => [letter, i]));
+gp.set('ING', 21);
+/** @param {string} source @returns {number[]} */
+function englishToGP(source){
+  const s=source.toUpperCase().replace(/QU/g,'CW').replace(/V/g,'U').replace(/K/g,'C').replace(/Z/g,'S');
+  const out=[];
+  for(const word of s.match(/[A-Z]+/g)||[]){
+    for(let i=0;i<word.length;){
+      let index=-1,length=0;
+      for(const count of [3,2,1]){
+        const letter=word.slice(i,i+count);
+        if(gp.has(letter)){index=gp.get(letter);length=count;break;}
+      }
+      assert.ok(index>=0,'Unmapped source word '+word.slice(i));
+      out.push(index);i+=length;
+    }
+  }
+  return out;
+}
+const sourceGP=englishToGP(fs.readFileSync(path.join(ROOT,'resources/control/emerson_essays_2944.txt'),'utf8'));
+assert.ok(sourceGP.length>=60000);
+const training=sourceGP.slice(0,50000);
+const heldout=sourceGP.slice(50000,62000);
+const counts=new Uint32Array(29*29*29);
+for(let i=2;i<training.length;i++){
+  counts[training[i-2]*841+training[i-1]*29+training[i]]++;
+}
+const floor=0.2,total=training.length-2+floor*counts.length;
+/** @param {number[]} x @returns {number} */
+function trigram(x) {
+  let score=0;
+  for(let i=2;i<x.length;i++)score+=Math.log((floor+counts[x[i-2]*841+x[i-1]*29+x[i]])/total);
+  return score/(x.length-2);
+}
+
+/** @param {number} replaceInfinity @param {'book'|'page'} reset @param {'step'|'cayley'} labelMode @returns {object} */
+function test(replaceInfinity,reset,labelMode){
   const reserved=replaceInfinity===20?25:20;
   const orbit=long.map(x=>x===29?replaceInfinity:x);
   assert.equal(new Set(orbit).size,28);
@@ -118,7 +153,8 @@ function test(replaceInfinity,reset){
         const c=cipher[k];
         if(c===reserved){out.push(reserved);continue;}
         const step=(positions.get(c)-positions.get(previous)+28)%28;
-        out.push(step===0?28:plainSteps[step-1]);
+        const exponent=labelMode==='cayley'?(3*step)%28:step;
+        out.push(exponent===0?28:plainSteps[exponent-1]);
         previous=c;
       }
     }
@@ -134,7 +170,8 @@ function test(replaceInfinity,reset){
       for(let i=0;i<page.length;i++,k++){
         const p=plain[k];
         if(p===reserved){out.push(reserved);continue;}
-        const step=p===28?0:plainSteps.indexOf(p)+1;
+        const exponent=p===28?0:plainSteps.indexOf(p)+1;
+        const step=labelMode==='cayley'?(19*exponent)%28:exponent;
         assert.ok(step>=0&&step<28);
         const c=orbit[(positions.get(previous)+step)%28];
         out.push(c);
@@ -146,16 +183,19 @@ function test(replaceInfinity,reset){
   }
   const decrypted=decode(original);
   assert.deepEqual(encode(decrypted),original);
-  const planted=Array.from({length:original.length},(_,i)=>i%29);
+  const planted=sourceGP.slice(62000,62000+original.length);
+  assert.equal(planted.length,original.length);
   assert.deepEqual(decode(encode(planted)),planted);
-  return {replaceInfinity,reserved,reset,seed,rawIoC:coincidence(original),
-    decodedIoC:coincidence(decrypted),seedPlantRecovered:planted.length,
+  return {replaceInfinity,reserved,reset,labelMode,seed,rawIoC:coincidence(original),
+    decodedIoC:coincidence(decrypted),decodedTrigram:trigram(decrypted),seedPlantRecovered:planted.length,
     originalReenciphered:original.length,decodedFirst80:preview(decrypted)};
 }
 
 const variants=[];
 for(const replaceInfinity of [20,25]){
-  for(const reset of ['book','page'])variants.push(test(replaceInfinity,reset));
+  for(const reset of ['book','page']){
+    for(const labelMode of ['step','cayley'])variants.push(test(replaceInfinity,reset,labelMode));
+  }
 }
 assert.ok(variants.every(x=>x.decodedIoC<0.036));
 console.log(JSON.stringify({
@@ -167,7 +207,8 @@ console.log(JSON.stringify({
   exactRelations:'M32 = 3 Q M05^3 Q^-1; M32^2 = 17 Q M16 Q^-1 (mod29)',
   orbitLengths:cycles.map(x=>x.length),fixed:cycles.slice(1).map(x=>x[0]),
   cycleStart:long,
-  nativeControl:'all 29 rune indices repeated to original word/page lengths, forward-encode then decode exact',
+  nativeControl:{source:'independent Emerson GP text',trainingRunes:training.length,holdoutRunes:heldout.length,holdoutIoC:coincidence(heldout),holdoutTrigram:trigram(heldout),plainPlantRunes:original.length},
+  originalTrigram:trigram(original),
   variants,
-  decision:'The mathematically natural inclusion-rule yields a 28-state public cycle but four direct lossless source-cycle GP inverses remain ciphertext-like.'
+  decision:'The mathematically natural inclusion-rule yields a 28-state public cycle but eight direct lossless source-cycle GP inverses remain ciphertext-like.'
 },null,2));
