@@ -110,8 +110,8 @@ function analyze(pages) {
       const skippedRank = byte % 28;
       const nextSkipped = skippedRank < lastSkipped ? skippedRank : skippedRank + 1;
 
-      addTransition(lastCyclic, nextCyclic, plantedCyclic, plantedSkipped);
-      addTransition(lastSkipped, nextSkipped, plantedCyclic, plantedSkipped);
+      plantedCyclic[(nextCyclic - lastCyclic + 29) % 29 - 1]++;
+      plantedSkipped[nextSkipped < lastSkipped ? nextSkipped : nextSkipped - 1]++;
       lastCyclic = nextCyclic;
       lastSkipped = nextSkipped;
       nonrepeat++;
