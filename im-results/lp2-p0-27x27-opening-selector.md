@@ -1,6 +1,6 @@
 # p0 27×27 opening selector: source-constrained candidate and two-block consistency
 
-**Status: provisional opening hypothesis, with an independently falsified simple block-03 carry rule. No authenticated LP2 plaintext.** The source-visible arithmetic now gives a more economical reason for the three-rune node than the p0 marginal-stave projection count alone. The first two conditional plaintext blocks are consistent with the external 27×27 route, but the second block's path and axis are imported from that proposal rather than independently selected.
+**Status: provisional opening hypothesis. No authenticated LP2 plaintext.** The source-visible arithmetic, palindrome-like GP rune labels, and original period/grid/printed-line seams now give conditional ways to reconstruct the published three-rune key, first seven-rune address, and second central five-rune reading. These operation choices were identified retrospectively from the published 27×27 result; the simple endpoint carry is independently contradicted at block03. The two apparent plaintext blocks are reproducible locally, but the author-intended navigation and general decryption method remain unknown.
 
 ## Original-source selector
 
@@ -16,6 +16,8 @@ On p0:
 - The horizontal three-rune source node at zero-based flattened positions **334–336** is **AE–J–EA**. Applying φ to the center gives **AE–I–EA** as the candidate key.
 
 This uses the observed word-length difference to support node length 3; it does not depend on the irregular three-projection geometry of the two marginal staves.
+
+**Independent source-only node locator, tested against the entire matrix:** Gematria Primus has two two-letter transliteration pairs with reversed spellings, **AE↔EA** and **EO↔OE**. Enumerate all 27×27 adjacent, collinear, radius-one three-rune nodes in the four standard undirected axes (horizontal, vertical and two diagonals), and retain nodes whose outer GP transliterations are two-letter reversals. There are exactly **10** such original source nodes. Among the **24** literal J-index11 cells in the complete matrix, **only one** lies at the center of such a reversed-name node: the same **AE–J–EA** at row13, column12, positions334–336, oriented horizontally. Thus the red-heading-derived 11=J and the source's GP transliteration symmetries can jointly reproduce that key-node address *without imposing* the earlier row13/φ13 coordinate derivation. This is a conditional key-location operation, not proof that Cicada intended reversed GP-letter labels as an instruction; the criterion was noticed after the node's publication. [Exhaustive original-source SFT](../sims/lp2_27x27_opening_wordboundaries_sft.cjs), [successful CI run](https://github.com/FlareZ123/liber-primus/actions/runs/43056341817).
 
 ## First ciphertext block
 
