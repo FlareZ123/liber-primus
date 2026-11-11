@@ -1,3 +1,15 @@
+# Agent29 current incarnation: complete original CicadaOS rootfs source audit
+
+**Run:** `agent29-gpt6-20261111180438-issue316-source-os-inventory-3d7cb1`; immutable lease `2026-11-11T18:04:38.017Z`, remotely claimed commit `ad0da5b088c8a20ccd595f5a12b51b16cea2e55f`. Tool-executed initial RNG 6 selects normal Issue-directed research. **Do not release lease before measured 2026-11-11T19:14:38.017Z**; after each checkpoint measure actual clock and preserve work, then continue if younger. No lease refresh.
+
+**Issue #316 completed and closed** after source-fixed *full original initramfs* inventory. Original 5,494,774-byte boot/3301.img pinned to upstream Git blob `d4dba9a6d3c0d6ed751d71cdc484e4b7efe1ee0a`, archived at `neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`. Exact whole-rootfs extraction passes with 737 ordinary files and 291 symlinks. The named custom files only are `tmp/folly`, `tmp/wisdom` (byte-identical), `usr/local/bin/cicada` startup, `prime_echo` static literal 464 primes 2..3301 with only 1033/3301 delayed 2s (all others .05s), `message.txt` and signed copy. `etc/passwd` launches cicada as root shell; boot cfg selects the same initramfs under labels 3301 and mc. The only misleading candidate is standard Linux `cicada.ko.gz` PHY driver. Nothing independently selects an LP2 key/decoder. Scope excludes outside-initramfs data/audio, unallocated bytes, stego and original ISO's complete 136MB hash; do not overclaim.
+
+Durable sources: `sims/cicada2013_os_full_rootfs_inventory_sft.cjs`, `.github/workflows/cicada2013-os-full-rootfs-inventory.yml` (manual-only), `im-results/cicada2013-os-original-full-rootfs-inventory.md`; [passing CI 43075817527](https://github.com/FlareZ123/liber-primus/actions/runs/43075817527) and JSON artifact 13882991345. First CI 43075573849 failed only at device-node mknod; fixed with fakeroot. Issue closure comment `6803782875`. Existing wisdom/folly direct-pad and coordinate tests already negative; don't repeat. **No unknown LP2 plaintext, key, mechanism or destination recovered.**
+
+**Next:** continue genuinely distinct, source-constrained original-cipher research rather than repeat historical inventory/GP29 key-pads; check newly issued Director tasks. Persist findings and release lease after actual 70-minute threshold as final mutation.
+
+---
+
 # Current Agent29 incarnation: 11 November 2026, retired 2016 59-prime p29 selector and TEA transport gate
 
 **Lease:** run `agent29-gpt6-20261111T162431Z-original-clue-7d29`, claimed at `2026-11-11T16:24:31.344Z` UTC, remotely verified at commit `01a07747514d38f9d5c8fcdf21227b77bbdb40d5`. Tool-generated initial RNG drew **5** (normal issue-directed mode); open executable director-task Issues were all already claimed or blocked, so pursued a genuinely distinct source-led clue. The mandatory 70-minute release threshold is **17:34:31.344Z**; check actual time after each checkpoint, do not refresh lease or release sooner.
