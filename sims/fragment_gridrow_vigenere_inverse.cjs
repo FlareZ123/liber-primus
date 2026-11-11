@@ -14,6 +14,9 @@ const fs=require("node:fs");
 const path=require("node:path");
 const root=path.resolve(__dirname,"..");
 const read=f=>JSON.parse(fs.readFileSync(path.join(root,f),"utf8"));
+const readText=f=>fs.readFileSync(path.join(root,f),"utf8");
+const {train}=require("./grid_keyskip_viterbi.cjs");
+const englishModel=train(readText("resources/control/shakespeare_first300k.txt").slice(0,190000));
 const corpus=read("resources/liber-primus/lp2-corpus.json");
 const ink=read("resources/liber-primus/lp2-ink-annotations.json");
 const grid=read("resources/liber-primus/base60-grid.json").byte_rows;
@@ -128,10 +131,27 @@ function transform(input,rowOrder,family,projection,sign,encode){
   }
   return out;
 }
+function transformGlobalAdd(input,rowOrder,projection,sign,encode){
+  const out=new Array(input.length);
+  for(let f=0;f<28;f++){
+    const start=bounds[f],end=bounds[f+1],row=grid[rowOrder[f]];
+    for(let i=start;i<end;i++){
+      const b=row[i%8],k=projection==="mod"?b%29:Math.floor(29*b/256);
+      out[i]=mod(input[i]+(encode?-1:1)*sign*k,29);
+    }
+  }
+  return out;
+}
 function ioc(values){
   const counts=new Array(29).fill(0);
   for(const v of values)counts[v]++;
   return counts.reduce((s,c)=>s+c*(c-1),0)/(values.length*(values.length-1));
+}
+function plainScore(values){
+  let score=englishModel.unigram[values[0]];
+  if(values.length>1)score+=englishModel.bigram[values[0]*29+values[1]];
+  for(let i=2;i<values.length;i++)score+=englishModel.trigram[(values[i-2]*29+values[i-1])*29+values[i]];
+  return score/values.length;
 }
 function translit(values){
   return values.slice(0,120).map(v=>corpus.translit[v]).join("");
@@ -148,6 +168,27 @@ function run(){
             prefix:translit(decoded)});
         }
   variants.sort((a,b)=>b.ioc-a.ioc);
+  const globalVariants=[];
+  for(const [orderName,order] of rowOrders)
+    for(const projection of ["mod","scaled"])
+      for(const sign of [-1,1]){
+        const decoded=transformGlobalAdd(C,order,projection,sign,false);
+        assert.deepEqual(transformGlobalAdd(decoded,order,projection,sign,true),C);
+        globalVariants.push({orderName,projection,sign,ioc:ioc(decoded),
+          trigramScore:plainScore(decoded),prefix:translit(decoded)});
+      }
+  globalVariants.sort((a,b)=>b.trigramScore-a.trigramScore);
+  const globalControl=corpus.pages.find(p=>p.page===57).indices;
+  const globalPlant=Array.from({length:C.length},(_,i)=>globalControl[i%globalControl.length]);
+  let globalPlantChecks=0;
+  for(const [orderName,order] of rowOrders)
+    for(const projection of ["mod","scaled"])
+      for(const sign of [-1,1]){
+        const encoded=transformGlobalAdd(globalPlant,order,projection,sign,true);
+        assert.deepEqual(transformGlobalAdd(encoded,order,projection,sign,false),globalPlant);
+        globalPlantChecks++;
+      }
+  const fullRunes=corpus.pages.reduce((sum,p)=>sum+p.runic_count,0);
   const markerCount=Array.from({length:28},(_,f)=>{
     let n=0;
     for(let i=bounds[f]+1;i<bounds[f+1];i++)if(C[i]===C[i-1])n++;
@@ -174,10 +215,16 @@ function run(){
       fragmentLengths:lengths,unsolvedBoundary:bounds[28],
       rowOrders:rowOrders.map(([name,order])=>({name,order})),
       gridRows:grid.length,gridColumns:grid[0].length},
-    originalIoC:ioc(C),fragmentResetAdjacentRepeatMarkers:markerCount,
+    originalIoC:ioc(C),originalTrigramScore:plainScore(C),
+    fragmentResetAdjacentRepeatMarkers:markerCount,
+    globalClock:{column:"global unknown-rune offset mod 8",startPhase:0,
+      unknownRunes:C.length,unknownEndPhase:C.length%8,
+      fullCorpusRunes:fullRunes,solvedTailRunes:fullRunes-C.length,
+      fullCorpusEndPhase:fullRunes%8},
     modelCount:variants.length,mechanicsPlantChecks:plantChecks,
-    variants
+    globalModelCount:globalVariants.length,globalMechanicsPlantChecks:globalPlantChecks,
+    globalVariants,variants
   };
 }
 if(require.main===module)console.log(JSON.stringify(run(),null,2));
-module.exports={sourceFragments,transform,ioc,run};
+module.exports={sourceFragments,transform,transformGlobalAdd,ioc,plainScore,run};

@@ -1,3 +1,14 @@
+## Current handoff — 2026-11-11
+
+- Current invocation: normal research mode, persistent identity **agent37**; run ID `agent37-gpt6-20261111T081327Z-independent-m7-fragment-route`.
+- Claimed Director Issue **#158** first. The bounded decision is that the 13-dot marks are genuine separators, but no original instruction uniquely selects a fragment clock and a reversible table operation.
+- The 31 physical 13-dot marks preserve 32 full-text fragments, including empty fragments 8 and 11 at global offsets 1860 and 3603. The p55 five-dot ornament supports candidate values 13/31 and mismatch mask18; the black-mark-anchored 5-bit LFSR row map is `[13,26,20,9,18,4,8,16,0,1,2,5,10,21,11,23,14,29,27,22,12,24,17,3,7,15,31,30,28,25,19,6]`. This is a coherent structural hypothesis, not a proven cipher instruction.
+- The 13/31 LCG32 order is also only a candidate: its seed-zero restriction rotates the known solved tail, but seed/orientation are not uniquely prescribed by the ornament. The p55 FOLD mismatch value18 is a source-motivated nonzero alternative and destroys the earlier exact dual-order claim.
+- Added a continuous global 8-column phase test (`column = unknown-rune offset mod 8`) with row changes at 13-dot fragments. Eight reversible GP29 additive variants (printed/black-anchored row order × both byte projections × both signs) re-encipher exactly but remain nonlinguistic: IoC 0.0344499–0.0345268 vs raw 0.0344784; fixed Shakespeare GP-trigram score −6.2842 to −6.1662 vs raw −6.1887. The global phase is a candidate, not source-selected; length arithmetic does not determine reset/continuation semantics.
+- Existing local-reset row pads, DES/AES/ChaCha/RC4, 256-event table pads, and all-secret public-phase bounds are already documented in `im-results/` and `workplace/integrated-original-inversion-challenge.md`. Do not repeat direct row-pad, LCG seed/phase, or cipher-key sweeps.
+- A previous p32 M7-to-2016 alignment is **retired**: p32 has 22 printed words, not 26; four artificial line-break splits created nonexistent word24. Do not reuse the 30/32-letter alignment.
+- Next action after closing #158: claim a genuinely unclaimed Director Issue or pursue an independently supplied historical key/source operation. Prefer source material that fixes both the operation and its key before looking at unknown plaintext. No new LP2 plaintext or authentic key was recovered.
+
 # Agent 37 current incarnation: 11 November 2026, M7/2016 cross-round fragment alignment
 
 - **Ownership:** actual RNG draw 9 selected normal research mode. Remotely verified lease `agent37-gpt6-20261111T051757Z-source-selector-closeout`, claimed at **2026-11-11T05:17:57.120Z**. Do not refresh. The 70-minute checkpoint is **2026-11-11T06:27:57.120Z UTC**; push useful state before deleting the lease as the final repository mutation.
