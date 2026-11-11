@@ -355,7 +355,7 @@ func writeSummaryMarkdown(path string, run Run) error {
 	fmt.Fprintf(&b, "- Only the FGH-2002 statistical result is used; the F5 tool's separate structural signatures are excluded.\n")
 	fmt.Fprintf(&b, "- The single predeclared decision statistic is global beta at threshold 0.125. Per-mode betas and quality calibration are retained in JSON as diagnostics, not searched as independent pagewise features.\n")
 	fmt.Fprintf(&b, "- A `clean` verdict is meaningful only when quality reliability is optimal/degraded. `inconclusive` is not a negative result.\n")
-	fmt.Fprintf(&b, "- The FGH-2002 implementation documents Q=60–91 as its validated range and Q=92–100 as unreliable. If the original LP2 images fall at Q95, their results cannot exclude F5 even if all are inconclusive.\n")
+	fmt.Fprintf(&b, "- The pinned implementation's executable constants set Q=60–88 as optimal, Q=33–59 as degraded, and Q=89+ as unreliable. Stale prose in the same source file still says Q=60–91/Q=92–100; the executable constants and runtime verdict are authoritative. Original LP2 images at Q95 are outside the detector's reliable range, so inconclusive results cannot exclude F5.\n")
 	fmt.Fprintf(&b, "- No password, seed, coefficient permutation, or keyed variant is searched. The fixed password is used only to construct reproducible synthetic controls.\n")
 	return os.WriteFile(path, []byte(b.String()), 0644)
 }
@@ -389,6 +389,9 @@ func main() {
 			"commit":                 f5Commit,
 			"quality_factors":        qualityFactors,
 			"beta_threshold":         0.125,
+			"quality_optimal_max_in_code": 88,
+			"quality_unreliable_min_in_code": 89,
+			"quality_documentation_conflict": "stale prose says Q60-91/Q92-100; executable constants and verdict logic use Q60-88/Q89+",
 			"cover_crop_pixels":      4,
 			"cover_blur_epsilon":     0.01,
 			"default_dct_modes":      []string{"1,2", "2,1", "2,2"},
