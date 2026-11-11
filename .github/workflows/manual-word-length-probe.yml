@@ -12,6 +12,7 @@ on:
           - grid-sort
           - block-inverse
           - source-inversion
+          - word-number-byte
 permissions:
   contents: read
 jobs:
@@ -34,6 +35,9 @@ jobs:
         run: |
           node sims/lp2_plaintext_wordsum_progressive_sft.cjs
           node sims/lp2_word_prime_difference_affine_gate.cjs
+      - name: Frozen original source-word numbers as bytes and p50 addresses
+        if: ${{ inputs.scan_mode == 'word-number-byte' }}
+        run: node sims/lp2_wordwise_base29_p50_byte_gate_sft.cjs
       - name: Reproduce page-local word-length structural tests
         if: ${{ inputs.scan_mode == 'standard' }}
         run: |
