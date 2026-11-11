@@ -123,7 +123,7 @@ function run() {
         // A correctly constructed polynomial always passes on all rows
         // including the 19 genuinely held-out shares and any secret x=0.
         const coefficients=Array.from({length:13},(_,k)=>
-          (7+19*k+37*column)%field);
+          (7+19*k+37*column)%(field===257?257:256));
         const plant=xs.map(x=>evaluate(coefficients,x,field));
         for(let r=0;r<32;r++)assert.equal(
           interpolate(xs,plant,xs[r],field),plant[r]);
