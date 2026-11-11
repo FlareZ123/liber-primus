@@ -46,6 +46,24 @@ const outputs={
  readAsc:readColumnsFromRows(p55,ascending),
  readDesc:readColumnsFromRows(p55,descending)
 };
+const wordSumsMod4=bodyWordSums.map(x=>x%4);
+function rotateColumns(sign){
+ const grid=Array.from({length:4},(_,row)=>p55.slice(row*19,(row+1)*19));
+ const rotated=Array.from({length:4},()=>Array(19));
+ for(let col=0;col<19;col++)for(let row=0;row<4;row++)
+  rotated[row][col]=grid[mod(row+sign*wordSumsMod4[col],4)][col];
+ return rotated.flat();
+}
+const rotations={shiftPlus:rotateColumns(1),shiftMinus:rotateColumns(-1)};
+const expectedRotations={
+ shiftPlus:"NGAEMEBSEOCEOSUCXDAEFBEBCUWISEAOECEAMEAGDTHNGLIAASDIAPRWHBXMEMCPHXGEOMSEOTHTHFBTHFXIIEOEIGJUSEI",
+ shiftMinus:"NGAEMRBSEOCEOSMCPHAEFEOMBCUWFSEAOECEAMEOEIGNGLSESDIAPEWHBXMEUCXDXGBESEOTHTHIBTHFXIIEAGDTHJUIAAI"
+};
+for(const [name,indices] of Object.entries(rotations))assert.equal(indices.map(i=>corpus.translit[i]).join("").replace(/[^A-Z]/gu,""),expectedRotations[name]);
+ decryptDesc:decryptColumnsToRows(p55,descending),
+ readAsc:readColumnsFromRows(p55,ascending),
+ readDesc:readColumnsFromRows(p55,descending)
+};
 const expected={
  decryptAsc:"MDSCMIAXEAPEANGWUHUCMEOESTHEOEASAGFFEAESBNGWXUCSDAETHIEOBSXBIMBELRDCEOTHIAFTHMGCEIHGIXIEOBJPEOE",
  decryptDesc:"MXIAMCSUEAHEAUCNGPEWEOMDSGASEAEOWENGFBXAEFSSCUTHDSBEOITHRILXEDMBTHBEOCAEIAECGMTHBGEOIIJIHOEXEPF",
@@ -92,12 +110,17 @@ nativeScores.sort((a,b)=>a-b);
 assert.equal(nativeScores.length,47959);
 const rawScore=score(expand(p55));
 const candidateScores=Object.fromEntries(Object.entries(outputs).map(([name,indices])=>[name,score(expand(indices))]));
+const rotationScores=Object.fromEntries(Object.entries(rotations).map(([name,indices])=>[name,score(expand(indices))]));
+assert.ok(Object.values(rotationScores).every(x=>x.mean<rawScore.mean));
 assert.ok(Object.values(candidateScores).every(x=>x.mean<nativeScores[0]));
 const result={
   p57:{totalWords:words.length,heading:translit(words[0]),bodyWords:bodyWords.map(translit),bodyWordSums,terminalWord:translit(words[19])},
   p55:{runes:p55.length,rows:4,columns:19},
   keyOrders:{ascending,descending},
   outputs:Object.fromEntries(Object.entries(outputs).map(([name,indices])=>[name,expand(indices)])),
+  wordSumsMod4,
+  columnRotations:Object.fromEntries(Object.entries(rotations).map(([name,indices])=>[name,expand(indices)])),
+  rotationScores,
   scores:{raw:rawScore,candidates:candidateScores,native:{windows:nativeScores.length,minimum:nativeScores[0],median:nativeScores[Math.floor(nativeScores.length/2)]}},
   decision:"Using the 19 body-word prime sums as a stable 19-column key does not recover plaintext in either standard transposition direction. The best candidate remains below every native 76-rune Gibran window."
 };
