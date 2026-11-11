@@ -150,11 +150,13 @@ function primeRank(n) {
 }
 const spiralComplement = 3301 - spiral[10];
 const oneBasedPrimeOrdinal = primeRank(spiralComplement);
-const zeroBasedPrimeOrder = oneBasedPrimeOrdinal - 1; // p15's order table uses P0=2
-const addressedOffset = zeroBasedPrimeOrder;
+const fibonacciIndex = oneBasedPrimeOrdinal - 1; // p15 construction: 3301-v = p_(F+1)
+const zeroBasedPrimeOrder = fibonacciIndex;
+const addressedOffset = fibonacciIndex;
 const addressedWord = wordMeta.find((w) => w.start === addressedOffset);
 assert.equal(spiralComplement, 463);
 assert.equal(oneBasedPrimeOrdinal, 90);
+assert.equal(fibonacciIndex, 89);
 assert.equal(zeroBasedPrimeOrder, 89);
 assert.equal(addressedOffset, 89);
 assert.equal(addressedWord?.transliteration, 'OENGOMBUDS');
@@ -262,7 +264,7 @@ const result = {
   validSouthEastWordEdgePairs: validEdgePairs,
   route: { pathOffsets, runeLabels: pathIndices.map((i) => translit[i]), endpointSum, endpointDirection: 'E', innerWeights, innerSum, innerDirection: 'SE' },
   otherExact318Diagonals: exact318Diagonals,
-  p15Spiral: { values: spiral, eleventh: spiral[10], modulo360: spiral[10] % 360, complement: spiralComplement, oneBasedPrimeOrdinal, zeroBasedPrimeOrder, addressedOffset, addressedWord: addressedWord.transliteration, addressedSuffix, modulo121: spiral[10] % 121, possibleTargetPage: 55, targetPageRuneCount: p55.indices.length },
+  p15Spiral: { values: spiral, eleventh: spiral[10], modulo360: spiral[10] % 360, complement: spiralComplement, oneBasedPrimeOrdinal, fibonacciIndex, zeroBasedPrimeOrder, addressedOffset, addressedWord: addressedWord.transliteration, addressedSuffix, modulo121: spiral[10] % 121, possibleTargetPage: 55, targetPageRuneCount: p55.indices.length },
   tileRectangles,
   conditionalNull: {
     lexicon: 'resources/control/english_wordfreq_textblob.txt',
