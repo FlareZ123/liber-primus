@@ -1,6 +1,6 @@
 # Historical plaintext-guided Vigenere key: exact solved onion control and LP2 terminal-page gate
 
-**Agent 47, 11 November 2026.** A usable, independently historical *key-selection pattern* is reconstructed from a solved 2014 Cicada stage: a previously decrypted text supplies the key to a short subsequent GP29 Vigenere message. The same direct operation tested on the adjacent unsolved LP2 p55 using its actual solved terminal-page neighbors does **not** recover unknown plaintext. This report is a bounded attempt to transfer a concrete historical solve path, not a claim that the unsolved book uses Vigenere.
+**Agents 47 and 17, 11 November 2026.** A genuinely historical *key-selection pattern* is reconstructed from a solved 2014 Cicada stage: previously decrypted text provides the next GP29 Vigenere key. Two independently bounded LP2 transfers have now been tested: solved LP2 terminal-page keys on p55, and full prior-release LP1 prose on all 12,956 unknown LP2 ciphertext runes. Both remain nonlinguistic. These tests constrain one direct mechanism, without demonstrating an LP2 key or cipher.
 
 ## Executable original 2014 key-selection precedent
 
@@ -39,5 +39,26 @@ For each key, inverse `P_i=(C_i−K_j) mod 29` starts at zero, cycles only when 
 | Independently solved p56 plaintext control | **−2.436189913** |
 
 The best candidate opens `MWAENGETHEACAEPDEOCPEOJEUSTWESRILLHUWTAAOJE...`, with no recognizable continuous text. The **0.016** apparent score improvement over p55 raw is negligible compared with the solved-page separation, and the winning key came from an exploratory graph rather than a source instruction. This transfer does not recover LP2 p55 under the stated reversible family. It does not exclude chained plaintext-derived keys selected differently, word-local clocks, another cipher, or absent historical source material.
+
+## Whole prior-release plaintext as the next key (Agent 17)
+
+An independently historical reason to consider **prior solved Liber Primus prose as a running key** is the positive-controlled 2014 use of `WELCOME PILGRIM TO THE GREAT` above. That clue does not choose a specific LP2 page, so this test freezes the most literal source starts and clocks without tuning to ciphertext. The input is the editor-normalized [solved LP1 prose](../resources/liber-primus/lp1-plaintext-reference.txt), truncated before the later solved LP2 p56/p57 text. GP29 greedy encoding uses the same exact alphabet and U/V, C/K spellings as the positive control. Original [LP2 ciphertext](../resources/liber-primus/lp2-corpus.json) is 12,956 GP29 symbols over physical pp0–55, including the rune-free p50.
+
+Two distinct historically visible key starts are fixed: **A WARNING** on LP1's first solved page, giving 3,340 GP runes from the complete surviving solved first-release corpus; and **WELCOME** from the 2014 known-positive key stage, giving its 3,154-rune suffix. For each, test GP29 addition/subtraction, with position zero at the LP2 first rune and either uninterrupted running key or reset to key start on every physical page. Exactly **eight** original-input variants, no phase search, skipped-Fehu mask optimization, key edits or alternate plaintext attribution.
+
+| Model | Full 12,956-rune mean GP trigram log score |
+|---|---:|
+| Raw unknown LP2 ciphertext | **−3.41498819** |
+| Full LP1 key, continuous (subtract / add) | −3.41676472 / −3.41513770 |
+| Full LP1 key, each physical page reset (subtract / add) | −3.41454570 / −3.41163191 |
+| LP1 WELCOME-onward key, continuous (subtract / add) | −3.41442741 / −3.41519514 |
+| LP1 WELCOME-onward key, each page reset (subtract / add) | −3.41589484 / −3.41231449 |
+| **Independently solved p57 plaintext** | **−2.80745289** |
+
+This score is from one fixed add-one smoothed GP-trigram model trained on solved LP1 only; it uses no unknown text to tune the model. Even the numerically best original transfer differs from raw by just **0.00336** log units per trigram. Its 76-rune last-page output begins `TOXXTAENTHHGOEAALCOFCNCCIDMNSTHPOEGDIAPIR...`, without readable words. The source-positive 2014 onion recovery and a synthetic p57-text plant both decrypt exactly, and every candidate re-encrypts its unchanged original ciphertext. These positive controls test implementation, not identify LP2's key.
+
+The direct **whole-prior-LP1 plaintext as a simple GP29 additive running key** is retired for these source-fixed starts, directions, and clocks. It does not exclude a subset of the prior text selected by an original LP2 clue, a distinct prior text, a cipher other than direct GP29 addition or a historical secret. Avoid a new open-ended plaintext-derived key hunt without a source-selected phrase/offset and target page.
+
+[Full self-contained CommonJS SFT](../sims/lp1_prior_release_textguide_lp2_sft.cjs) reproduces the authentic 2014 positive, all eight original transfers, independent solved p57 language control, exact key lengths, and reversible native-GP plant.
 
 **Reproduction:** [single runnable CommonJS test](../sims/historical_text_guide_terminal_vigenere_sft.cjs) uses the canonical LP2 corpus and solved-text reference. Its positive control reconstructs the earlier real onion stage, and its original-source p55 inverse tests all 56 fixed keys/masks without fitting a target word. The decisive next lead would be **an original LP2 visible instruction selecting a solved-text region and a key clock**, which could be used on a fresh page to demonstrate unknown plaintext before widening this family. More free phase/skip/key searches would repeat previous exhaustive LP2 Vigenere failures.
