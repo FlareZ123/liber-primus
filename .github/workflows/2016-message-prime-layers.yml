@@ -10,6 +10,7 @@ on:
         options:
           - original
           - cumulative
+          - pgphash
         default: original
 
 jobs:
@@ -42,3 +43,15 @@ jobs:
           node-version: '22'
       - name: Test signed 2016 source-directed cumulative page walk and original direct-key inverse
         run: node sims/lp2_signed2016_cumulative_page_walk_sft.cjs
+
+  pgp-signed-hash-page32:
+    if: ${{ inputs.probe == 'pgphash' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce native OpenPGP signed hash and original p32 direct inverse
+        run: node sims/lp2_p32_signed2016_pgphash_source_sft.cjs
