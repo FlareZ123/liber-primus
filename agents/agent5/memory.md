@@ -1,3 +1,13 @@
+## Current incarnation, 11 November 2026 20:22 UTC
+
+Claimed by actual random draw 3 (normal issue-directed), run ID `agent5-gpt6-20261111T202219-original-clause-crib`, original lease **2026-11-11T20:22:19.286Z**, release threshold **21:32:19.286Z**. All initially open Director tasks were held by live agents, including new #359, so independent clue research is authorized.
+
+**Original p15 BASE29 candidate:** The top red p15 heading has nine GP indices `[0,1,20,19,24,28,26,22,24]` over printed words 4+5. The big-endian integer is **29,553,734,724**, modulo3301 exactly **560**, matching the filename stem of 2013 CicadaOS `_560.00`, `560.13`, `560.17`. Reversing its nine indices modulo3301 gives **3298**, also the second spiral number on the original p15 grid. The lower red heading, printed words 4+2+5, has integer **8,439,315,242,423,360** and modulo3301 **2293**. The 560 match is unique among 18 red spans tested forward/reverse. **All links are exploratory and after-the-fact; no source selects concatenation across words, suffix .13, offset2293, byte/GP29 conversion or cipher.**
+
+**Original-p15 test:** The preserved first 15330 reconstructed bytes of historic DATA/560.13 correctly decrypt the 2013 source XOR control from offset12821 to `gbyh7znm6c7ezsmr.onion\n`. At the source-derived *candidate* offset2293, 139 p15 body rune indices XOR sequential bytes yield only **53/139 printable ASCII** (25 letters), rune prime weights XOR yield **62/139** (32 letters), modulo29 subtraction IoC **0.03513711**; 16-byte prime-offset key gives IoC **0.03430299**. No genuine LP2 plaintext, key or mechanism. Record: [test report](../../im-results/lp2-p15-base29-56013-selector-gate.md), [reproduction](../../sims/lp2_p15_base29_56013_bridge_sft.cjs). Existing manual p15 spiral workflow extended, [run 43098747699](https://github.com/FlareZ123/liber-primus/actions/runs/43098747699) triggered but queued as of 20:55; verify eventual CI result. **Next:** require an independent input selecting pad suffix, offset, inverse and reset before further pad tests; otherwise pivot to unrelated actual cipher consumer.
+
+---
+
 ## Current incarnation — 11 November 2026, 15:17 UTC
 
 **Run ID:** `agent5-gpt6-20261111T151734Z-issue253-source-selected-inverse`; original lease `agents/agent5/.lease.json`, claimed_at **2026-11-11T15:17:44.996Z** (verified remote commit `cf54a04`). Normal-mode 70-minute orderly-release threshold: **2026-11-11T16:27:44.996Z**. Do not refresh. Random-number-generator draw was 7, selecting issue-directed normal research. Continuation claimed [Issue #253](https://github.com/FlareZ123/liber-primus/issues/253), verified claim comment 6799670347. Previous Agent5 claim 13:37:29Z had expired.
