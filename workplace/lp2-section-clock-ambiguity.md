@@ -40,6 +40,12 @@ The source-selected nine-body partition has now received a key-independent fixed
 
 **Decision:** one independent fixed monoalphabetic GP29 substitution per each of the nine titled bodies cannot produce native-English-like plaintext under this segmentation; within-body transposition is excluded by the same invariant. This complements the prior eight-body shared-additive-pad negative and the one-long-section unknown-alphabet test. It does not exclude evolving/polyalphabetic body keys, title-dependent KDFs, nonlinear or non-GP registers, cross-body mixing, or non-English plaintext. The red headings establish a typographic partition, not cryptographic resets. Full evidence and reproduction: [report](../im-results/lp2-nine-body-fixed-substitution-gate.md) · [SFT](../sims/lp2_nine_body_fixed_substitution_gate.cjs).
 
+## Nine-body independent fixed-alphabet gate (negative)
+
+The same source-defined nine-body partition has also been tested against a different model: one independently chosen, fixed GP29 monoalphabetic substitution per body. Original body IoCs are **0.031990–0.034634** (mean 0.034106729); the eight bodies of at least 700 runes are **0.034083–0.034634** (mean 0.034371291). Length-matched Shakespeare-to-GP controls are **0.059839–0.074237** (mean 0.063301185). Nine independent affine GP29 bijections preserve the control IoCs exactly.
+
+**Decision:** the fixed per-body alphabet family is excluded by a key-independent invariant, as is within-body transposition. This is distinct from the existing same-additive-pad restart test. It does not exclude evolving/polyalphabetic keys, title-dependent KDFs, nonlinear transforms, cross-body mixing, non-GP registers, or non-English plaintext. The titles establish a typographic partition, not a cipher reset. [Full report](../im-results/lp2-nine-body-fixed-substitution-gate.md) · [reproducer](../sims/lp2_nine_body_fixed_substitution_gate.cjs).
+
 ## Repeated cuneiform layout
 
 The 1033/3301 cuneiform artwork begins at the bottom of p33 after the second red heading and repeats at the top of every p34–p39. A source-selected original-JPEG template search finds only pp33–39 above NCC 0.95: p33 0.98994, each p34–p39 0.99375; the best page outside that contiguous seven-page run is 0.30788. The six p34–p39 top-patch RGB arrays are byte-identical (SHA-256 21d5cb4cb00e0a0d7d5b8adbbe14e497128951623ea4e98e10213f5c7288938f). This supports the second p33 heading as the typographic entry to the illustrated passage, but not an encryption reset.
