@@ -62,28 +62,28 @@ const all = words.flat();
 assert.deepEqual(all, corpus.pages.filter(p => p.page <= 55).flatMap(p => p.indices),
   "Word parser must preserve exact original rune sequence");
 
-/** @typedef {{length:number,position:number,page:number,section:number}} RuneState */
+/** @typedef {{length:number,position:number,page:number,startPage:number,section:number}} RuneState */
 /** @type {RuneState[][]} */
 const wordStates = [];
 let absolute = 0;
 for (const word of words) {
   const length = word.length;
   wordStates.push(word.map((_, position) => ({
-    length, position, page: pageAt[absolute + position],
+    length, position, page: pageAt[absolute + position], startPage:pageAt[absolute],
     section: sectionAt[absolute + position],
   })));
   absolute += length;
 }
 assert.equal(absolute, 12956);
 
-/** @param {RuneState} state @param {"word"|"section"|"page"} model */
+/** @param {RuneState} state @param {"word"|"section"|"page"|"startPage"} model */
 function stateKey(state, model) {
   const base = state.length + ":" + state.position;
   if (model === "word") return base;
-  return (model === "section" ? state.section : state.page) + ":" + base;
+  return (model === "section" ? state.section : model === "startPage" ? state.startPage : state.page) + ":" + base;
 }
 
-/** @param {number[][]} input @param {"word"|"section"|"page"} model */
+/** @param {number[][]} input @param {"word"|"section"|"page"|"startPage"} model */
 function histogramByState(input, model) {
   assert.equal(input.length, words.length);
   const map = new Map();
@@ -113,16 +113,16 @@ function conditionalEntropy(groups) {
   }
   return total;
 }
-const modes = ["word", "section", "page"];
+const modes = ["word", "section", "page", "startPage"];
 const actual = modes.map(mode => ({
   state: mode, groups: histogramByState(words, mode).size,
   entropy: conditionalEntropy(histogramByState(words, mode)),
 }));
-const expected = [4.7091878831286, 4.0167155154128, 2.3499969131473];
+const expected = [4.7091878831286, 4.0167155154128, 2.3499969131473, 2.3482944201938];
 for (let i = 0; i < modes.length; i++) {
   assert.ok(Math.abs(actual[i].entropy - expected[i]) < 1e-9);
 }
-assert.deepEqual(actual.map(x => x.groups), [105, 679, 3023]);
+assert.deepEqual(actual.map(x => x.groups), [105, 679, 3023, 3030]);
 
 const gpTokens = corpus.translit.map((s, i) => ({s, i}))
   .sort((a, b) => b.s.length - a.s.length);
@@ -169,7 +169,7 @@ const controls = [];
 const nativeLookups = data.slice(2).map(nativeWordsByLength);
 for (let src = 0; src < nativeLookups.length; src++) {
   const lookup = nativeLookups[src];
-  const rows = [[], [], []];
+  const rows = modes.map(() => []);
   for (let t = 0; t < 32; t++) {
     const sampled = sampleMatchingLengths(lookup);
     for (let k = 0; k < modes.length; k++) {
@@ -206,7 +206,7 @@ for (const line of latinRaw.split(/\r?\n/)) {
   latinWords++;
 }
 assert.equal(latinWords, 39835);
-const latinRows = [[], [], []];
+const latinRows = modes.map(() => []);
 let latinSeed = 0x29a21111;
 /** @param {number} n */
 function latinRandomIndex(n) {
@@ -261,13 +261,72 @@ for (const mode of modes) {
   const after = conditionalEntropy(histogramByState(encrypted, mode));
   if (mode === "page") assert.ok(Math.abs(before-after) < 1e-10);
 }
+// Grant a second hidden mechanism: one secret positional transposition per
+// (word-start-page, word length) group, followed by a different arbitrary
+// alphabet bijection at every (word-start-page,length,output-position).
+// Because the position shuffle is fixed throughout each group, it only
+// relabels the conditional histogram groups. All 3,030 alphabet bijections
+// and every word's original native-GP plaintext remain unknown to the inverse.
+const wordPositionShuffles = new Map();
+const startPagePerms = new Map(), startPageInverses = new Map();
+for (let w = 0; w < wordStates.length; w++) {
+  const states = wordStates[w];
+  const base = states[0].startPage + ":" + states[0].length;
+  if (!wordPositionShuffles.has(base)) {
+    const order = Array.from({length:states.length}, (_,i)=>i);
+    for (let i = order.length-1; i>0; i--) {
+      const j=nextUint() % (i+1);
+      [order[i],order[j]]=[order[j],order[i]];
+    }
+    wordPositionShuffles.set(base, order);
+  }
+  for (const state of states) {
+    const k = stateKey(state,"startPage");
+    if (startPagePerms.has(k)) continue;
+    const perm=Array.from({length:29},(_,i)=>i);
+    for (let i=28;i>0;i--) {
+      const j=nextUint()%(i+1);
+      [perm[i],perm[j]]=[perm[j],perm[i]];
+    }
+    const inverse=Array(29);
+    perm.forEach((val,i)=>{inverse[val]=i;});
+    startPagePerms.set(k,perm);
+    startPageInverses.set(k,inverse);
+  }
+}
+const transposedEncrypted = planted.map((word, wi) => {
+  const states=wordStates[wi];
+  const base=states[0].startPage+":"+states[0].length;
+  const order=wordPositionShuffles.get(base);
+  return word.map((_, j) =>
+    startPagePerms.get(stateKey(states[j],"startPage"))[word[order[j]]]);
+});
+const transposedRecovered = transposedEncrypted.map((word, wi) => {
+  const states=wordStates[wi];
+  const base=states[0].startPage+":"+states[0].length;
+  const order=wordPositionShuffles.get(base);
+  const recovered=Array(word.length);
+  for(let j=0;j<word.length;j++) {
+    recovered[order[j]]=startPageInverses.get(
+      stateKey(states[j],"startPage"))[word[j]];
+  }
+  return recovered;
+});
+assert.deepEqual(transposedRecovered,planted);
+const wordStartPlain=conditionalEntropy(histogramByState(planted,"startPage"));
+const wordStartCipher=conditionalEntropy(histogramByState(transposedEncrypted,"startPage"));
+assert.ok(Math.abs(wordStartPlain-wordStartCipher)<1e-10);
+
 console.log(JSON.stringify({
-  hypothesis: "Arbitrary fixed GP29 permutation keyed by word shape, plus optional section or physical page",
+  hypothesis: "Arbitrary fixed GP29 secret substitutions and fixed within-word transpositions keyed by word length, section, or word-start page",
   sourceSHA256: Object.fromEntries([...files.map((name,i)=>[name,sha256(data[i])]),[latinPath,sha256(latinRaw)]]),
   original: actual,
   controls,
   planted: {length:12956, stateTables:perms.size, exactRecovery:true,
     pageEntropyPlaintext:conditionalEntropy(histogramByState(planted,"page")),
     pageEntropyEncrypted:conditionalEntropy(histogramByState(encrypted,"page"))},
-  conclusion: "All secret bijections in this exact word-shape/page-or-section family preserve the observed group histograms; original conditional entropy is outside all matched-length native English and GP Latin controls. No plaintext recovered."
+  transposedPlanted: {secretPositionTables:wordPositionShuffles.size,
+    secretRuneTables:startPagePerms.size,exactRecovery:true,
+    wordStartPlain,wordStartCipher},
+  conclusion: "Even all secret fixed within-word position shuffles and state-specific rune bijections in the declared word-shape/source-section/word-start-page family preserve the state entropy; original ciphertext lies above all four native reference distributions. No plaintext recovered."
 }, null, 2));
