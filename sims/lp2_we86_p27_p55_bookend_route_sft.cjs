@@ -207,12 +207,43 @@ const precedingMatches = Array.from({ length: 28 }, (_, local) =>
   .reduce((sum, match) => sum + match, 0);
 assert.equal(precedingMatches, 0);
 
+// Director #410: the simplest *reversible* extended transport posits
+// an arbitrary UNKNOWN 29-symbol bijection sigma, held constant over this
+// source-selected 34-position p27→p55 overlay. The matched six-rune
+// bookend fixes sigma on D,J,U,B,E,I. The 28 withheld preceding pairs
+// violate those fixed mappings, so no secret substitution can rescue it.
+const mappedOutputs = Array.from({length: 29}, () => new Set());
+for (let local = 0; local < 34; local++) {
+  mappedOutputs[source27[local]].add(source55[local + 42]);
+}
+const sourceOutputContradictions = mappedOutputs
+  .flatMap((targets, runeIndex) => targets.size > 1 ? [runeIndex] : []);
+assert.equal(sourceOutputContradictions.length, 9);
+const anchoredFixedIndices = bookend;
+assert.equal(new Set(anchoredFixedIndices).size, 6);
+const forcedAnchorConflicts = Array.from({length: 28}, (_, local) => {
+  const s = source27[local];
+  return Number(anchoredFixedIndices.includes(s) && source55[42 + local] !== s);
+}).reduce((s, v) => s + v, 0);
+assert.equal(forcedAnchorConflicts, 5);
+// Example: source E at p27 local10 maps to X, whereas E at local32
+// in the bookend maps to E. Even non-injective deterministic maps fail.
+assert.equal(source27[10], corpus.translit.indexOf("E"));
+assert.equal(source27[32], corpus.translit.indexOf("E"));
+assert.equal(source55[52], corpus.translit.indexOf("X"));
+assert.equal(source55[74], corpus.translit.indexOf("E"));
+
 console.log(JSON.stringify({
   verifiedRoute: [[57, "WE"], [27, 28], [55, 70]],
   duplicateCiphertext: "DJU BEI",
   totient86: 42,
   solvedP57DualCoordinateCandidates: pageAndOffset,
   previous28RUNE_matches: precedingMatches,
+  anySecretStationaryBijectiveTransport: {
+    stateContradictions: sourceOutputContradictions.length,
+    forcedAnchorConflicts,
+    possible: false
+  },
   tableHandoff: { cell: globalCell, token: tokens[82], byte: values[82],
     signedWordLiesAdjacent: { cell: 83, token: tokens[83], byte: values[83] } },
   finalBEIWordRoute: pathBEI.trace,
