@@ -1,0 +1,16 @@
+name: F59 DH source-to-p56 original-key test
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source alternatives, known p56 and unknown p3
+        run: node sims/f59_dh_p56_start_original_gate_sft.cjs
