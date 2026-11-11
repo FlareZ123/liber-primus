@@ -19,19 +19,19 @@ FILES = (
 
 # Exact missing object first; broader terms only give historical context.
 TARGETS = {
-    "specific_2016_html": rb"uRkNsGsa(?:\\.htm)?",
+    "specific_2016_html": rb"uRkNsGsa(?:\.htm)?",
     "specific_filename_stem": rb"uRkNs",
     "known_2016_key_fingerprint": rb"7A35090F",
-    "an_end_phrase": rb"\\bAN[\\s_\\-]+END\\b",
-    "sha512_word": rb"SHA[\\s_\\-]*512",
-    "liber_primus": rb"\\bLIBER[\\s_\\-]+PRIMUS\\b",
-    "2016_reference": rb"\\b2016\\b",
+    "an_end_phrase": rb"\bAN[\s_\-]+END\b",
+    "sha512_word": rb"SHA[\s_\-]*512",
+    "liber_primus": rb"\bLIBER[\s_\-]+PRIMUS\b",
+    "2016_reference": rb"\b2016\b",
     "full_128_hex": rb"(?<![a-f0-9])[a-f0-9]{128}(?![a-f0-9])",
 }
 
 def git_blob_sha(data: bytes) -> str:
     """Return Git's object SHA-1 for raw byte-exact blob content."""
-    prefix = b"blob " + str(len(data)).encode("ascii") + b"\\x00"
+    prefix = b"blob " + str(len(data)).encode("ascii") + b"\x00"
     return hashlib.sha1(prefix + data).hexdigest()
 
 
