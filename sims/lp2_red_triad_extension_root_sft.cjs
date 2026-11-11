@@ -124,6 +124,44 @@ function main() {
     }
     return out;
   };
+  // Independently source-fixed candidate transformation: square the GP
+  // ordinal of the *middle* of the first unique red triad as an exponent.
+  // The exponent grammar was identified retrospectively, after seeing
+  // both triads; this proves algebraic compatibility, not authorial intent.
+  const squaredMiddleExponent=a[1]*a[1];
+  assert.equal(squaredMiddleExponent,529);
+  const alternativeGenerator=pow2([0,1],squaredMiddleExponent);
+  assert.deepEqual(alternativeGenerator,[9,4]);
+  // In F29[u]/(u²-3u-8), conjugation sends a+bu -> (a+3b)-bu.
+  // Trace and norm of u^529 uniquely determine the monic quadratic.
+  const vTrace=mod(2*alternativeGenerator[0]+3*alternativeGenerator[1]);
+  const vNorm=mod(alternativeGenerator[0]*alternativeGenerator[0]
+    +3*alternativeGenerator[0]*alternativeGenerator[1]
+    -8*alternativeGenerator[1]*alternativeGenerator[1]);
+  assert.deepEqual([vTrace,vNorm],[1,3]);
+  const minpolyAscending=[vNorm,mod(-vTrace),1];
+  const inverse29=x=>{
+    for(let j=1;j<29;j++)if(mod(x*j)===1)return j;
+    throw new Error("Noninvertible GP index");
+  };
+  // A completely specified componentwise operation on the source p3
+  // triad reconstructs *all three* p39 red glyph GP indices.
+  const derivedP39=minpolyAscending.map((v,j)=>mod(v*inverse29(a[j])));
+  assert.deepEqual(minpolyAscending,[3,28,1]);
+  assert.deepEqual(derivedP39,b);
+  // Both roots of the same minpoly are primitive and are Frobenius pairs.
+  const alternatives=[];
+  for(let k=0;k<840;k++){
+    const y=pow2([0,1],k);
+    const trace=mod(2*y[0]+3*y[1]);
+    const norm=mod(y[0]*y[0]+3*y[0]*y[1]-8*y[1]*y[1]);
+    if(trace===vTrace&&norm===vNorm)alternatives.push(k);
+  }
+  assert.deepEqual(alternatives,[221,529]);
+  assert.deepEqual(pow2(alternativeGenerator,840),[1,0]);
+  for(const divisor of [2,3,5,7])
+    assert.notDeepEqual(pow2(alternativeGenerator,840/divisor),[1,0]);
+
   const oneBasedMarkedOffset=triads[0].start+1;
   const markedSpanLength=a.length;
   assert.equal(triads[1].start+1,oneBasedMarkedOffset);
