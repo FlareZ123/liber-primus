@@ -4,7 +4,7 @@
 
 ## What independently printed material selects
 
-The [GPG-verified 2013 TCP challenge](../resources/external/2013-tcp-server-signed-source.md) specifies **BASE29 3301 → 3QO** and a worked **DH modulus 23** exchange whose **shared secret is 2**. These are two separate example operations within the same authenticated signed instruction. The BASE29 digits, as an ascending GP29 polynomial written in descending coefficient order, supply
+The [GPG-verified 2013 TCP challenge](../resources/external/2013-tcp-server-signed-source.md) specifies **BASE29 3301 → 3QO** and a worked **DH modulus 23** exchange whose **shared secret is 2**. These are two separate example operations within the same authenticated signed instruction. Reading the three BASE29 digits **3,26,24** as coefficients of successively increasing polynomial degree yields the candidate polynomial below. The historical signed message supplies those digits, while **their interpretation as polynomial coefficients is an additional modeling choice**:
 
 ```text
 H(X) = 24X² + 26X + 3.
@@ -80,4 +80,4 @@ The signed 2013 example establishes values **2** and **23** as public worked-exa
 
 Preserve this new **signed-2013 H/DH2 + p39 G + p29/table** relationship as a single testable cryptanalytic lead. It strengthens the case for a linked polynomial construction across those source artifacts, but it has not specified the remaining inverse that would turn R into readable text. The best next experiment would obtain an independent source instruction or an authentic known-plaintext crib that selects how R is to be interpreted. Another postselected polynomial transform, source-number coincidence or affine sweep would weaken this lead.
 
-**Reproduce:** `node sims/p29_grid_2013_dh_gadic_bridge_sft.cjs` at repository root, Node.js 22, built-in modules only. The script contains exact source/plant assertions, 55-page uniqueness, radix controls, a literal BASE29 binary readout and the conditional 50,000-shuffle null. The exact original-input test and independent native-GP positive **passed** in [manual GitHub Actions run 43053155192](https://github.com/FlareZ123/liber-primus/actions/runs/43053155192) before the optional Base29 binary check was added. No GitHub Actions schedule is added.
+**Reproduce:** `node sims/p29_grid_2013_dh_gadic_bridge_sft.cjs` at repository root, Node.js 22, built-in modules only. The script contains exact source/plant assertions, 55-page uniqueness, radix controls, a literal BASE29 binary readout and the conditional 50,000-shuffle null. The complete revised original-input test, independent native-GP positive, radix counterchecks and literal Base29 binary check all **passed** in [manual GitHub Actions run 43053884217](https://github.com/FlareZ123/liber-primus/actions/runs/43053884217). No GitHub Actions schedule is added.
