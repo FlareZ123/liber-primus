@@ -35,6 +35,19 @@ Every one of the four candidate transforms scores **worse than raw ciphertext**.
 
 **Embedded-key positive control:** retain the entire 2,896-rune original sidecar, encrypt 10,065 GP-native Gibran reference runes into only the complementary original positions with the source-derived per-word key and prime-index rule, then read out the sidecar from the resulting full planted ciphertext and invert it. All **10,065/10,065** planted GP runes must be recovered exactly. The SFT checks both equality and a strong native trigram score; this is a deliberately model-matched mechanism control rather than evidence of original plaintext.
 
+## Frozen terminal p56 AN END key anchor
+
+The projective cycle starts at pole rank 7 and ends at fragment #29, comprising the **five original runes of the solved p56 AN END heading**. Its printed original five-key stream is **AE, J, OE, S, R**, and the authenticated p56 decryption independently recovers the five GP symbols **A, N, E, N, D**. This gives a source-fixed key-ending check with no page/word-search freedom.
+
+Assign those five source key symbols in their published order to the **last five complete unknown manuscript words** on p55, namely ESEOTHTHES / THOE / CEAIMCX / DJU / BEI. The two already frozen φ-prime transforms yield:
+
+| Key source | Prime-index seed | Totient plus rune seed |
+| --- | --- | --- |
+| Printed p56 heading | CFOEIGHU / AJ / IIAUGMA / FJEA / WGD | NGBEOFAEIO / MN / JRPLTHN / WDJ / EOEOTH |
+| Solved AN END heading | NTHYEOIOEC / ONG / YTAEEAIP / AID / TNY | OEEPUYJR / NGJ / SHBAGP / PFB / OEOEEO |
+
+The source-fixed end anchor therefore **does not reveal a coherent terminal five-word plaintext** under either operation. The same [SFT](../sims/p50_m7_pole_word_seed_phi_sft.cjs) asserts these exact outputs rather than fitting a partial English string. The last-five-word test does not exclude a different p56 source-selected mode, but supplies an independent direct original-cipher consequence that the present architecture fails.
+
 ## Research decision
 
 The M7 pole orbit's numerical match with the 2,896 original words does **not**, under the two source-typical prime-seed rules, define the missing plaintext decoder. This finite result rules out only the four stated word-aligned φ-prime sidecar inverses, with the original visible key runes retained as ciphertext-sidecar. A scheme that moves key positions, chooses an unknown word-key alignment, introduces nonlinear state or ignores the source's order remains logically possible, but those additions have no independent selector here.
