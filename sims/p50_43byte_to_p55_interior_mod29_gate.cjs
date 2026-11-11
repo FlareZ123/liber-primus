@@ -8,7 +8,7 @@ const { createHash } = require("node:crypto");
 function readPinned(relative, expectedSha) {
   const raw = fs.readFileSync(path.join(__dirname, "..", relative));
   const blobSha = createHash("sha1")
-    .update(Buffer.from(`blob ${raw.length}\\0`))
+    .update(Buffer.from(`blob ${raw.length}\0`))
     .update(raw)
     .digest("hex");
   assert.equal(blobSha, expectedSha, `${relative} changed`);
