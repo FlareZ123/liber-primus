@@ -86,12 +86,15 @@ function outguessArc4(password, type, n) {
 const literalPassword = translit(visited);
 const integerPassword = visited.reduce((v, x) => v * 29n + BigInt(x), 0n).toString();
 const candidates = [];
+const xorRangeControls = [];
 for (const [representation, password] of [
   ['literal-GP-Latin', literalPassword],
   ['base29-integer', integerPassword],
 ]) {
   for (const role of ['Encryption', 'Seeding']) {
     const stream = outguessArc4(password, role, 43);
+    const directXor = inner55.map((x, i) => x ^ stream[i]);
+    xorRangeControls.push({ representation, role, validGp29Runes: directXor.filter(x => x < 29).length, total: directXor.length, firstValues: directXor.slice(0, 15) });
     for (const sign of [-1, 1]) {
       const decoded = inner55.map((x, i) => mod(x + sign * (stream[i] % 29)));
       candidates.push({
@@ -113,10 +116,14 @@ for (const [representation, password] of [
 const p57Runes = transcription.split('%')[56].match(/[\u16A0-\u16FF]/gu) || [];
 const p57 = p57Runes.slice(7, 50).map(r => runeIndex.get(r));
 assert.strictEqual(p57.length, 43);
-const controlPad = outguessArc4(literalPassword, 'Encryption', 43).map(x => x % 29);
+const controlStream = outguessArc4(literalPassword, 'Encryption', 43);
+const controlPad = controlStream.map(x => x % 29);
 const syntheticCipher = p57.map((x, i) => mod(x + controlPad[i]));
 const recovered = syntheticCipher.map((x, i) => mod(x - controlPad[i]));
 assert.deepStrictEqual(recovered, p57);
+const syntheticXorCipher = p57.map((x, i) => x ^ controlStream[i]);
+const syntheticXorRecovered = syntheticXorCipher.map((x, i) => x ^ controlStream[i]);
+assert.deepStrictEqual(syntheticXorRecovered, p57);
 
 console.log(JSON.stringify({
   source: {
@@ -131,7 +138,8 @@ console.log(JSON.stringify({
     literalGpLatin: literalPassword,
     base29Integer: integerPassword,
   },
-  control: { syntheticGp29RoundTripPassed: true },
+  control: { syntheticGp29RoundTripPassed: true, syntheticByteXorRoundTripPassed: true },
+  directOutguessByteXorRange: xorRangeControls,
   candidates,
   conclusion: 'The eight fixed OutGuess ARC4-derived GP29 variants do not recover plaintext. This rejects only these two p32 password encodings, two OutGuess roles, and two signs; it does not exclude other source-selected keys or transforms.',
 }, null, 2));
