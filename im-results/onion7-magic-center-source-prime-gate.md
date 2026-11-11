@@ -98,6 +98,10 @@ This gives a plausible human clue chain: marked red spans → GP prime weights �
 
 I tested the simplest direct use as a repeating Vigenère key: both key representations (GP indices and prime weights mod29), global versus per-page clocks, both additive signs, and either including or preserving the initial two-rune p0 header (16 variants). Every variant exactly recovers a same-length native-GP plant. On original LP2, IoCs remain **0.03446313–0.03454757** and trigram scores **−13.31350 to −13.25674**. The best is **4.8564 nats/rune below** the weakest minimum among 300 same-length native-GP windows (Shakespeare −7.94684; Gibran −8.39546; Emerson −8.40037). The 29-rune sequence is therefore **not** a direct repeating key under these source-fixed readings.
 
+A second conventional use of the same 29-rune key was tested as a stable-tie **columnar transposition**: GP-index versus prime-mod-29 ordering, ascending versus descending, global versus per-page scope, and with versus without the initial two-rune header (16 variants). Each source-derived transposition exactly inverts a same-length native-GP plant, but original trigram scores remain **−13.31539 to −13.26614** with unchanged IoC **0.03447840** (full-book permutation). The best is **4.8658 nats/rune below** the weakest same-length native-GP control-window minimum. The standard keyed-columnar reading therefore also fails.
+
+Reproducer: [\`sims/red_span_prime_residue24_columnar_sft.cjs\`](../sims/red_span_prime_residue24_columnar_sft.cjs).
+
 The residue-24 alignment remains a source-derived clue hypothesis, not a recovered key or plaintext. Its next useful role would need to be selected by an independent instruction (for example, a specified ordering, state update or operation); further unconstrained key transforms would not be justified.
 
 Reproducer: [\`sims/red_span_prime_residue24_key_sft.cjs\`](../sims/red_span_prime_residue24_key_sft.cjs).
