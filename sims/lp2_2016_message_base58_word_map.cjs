@@ -282,6 +282,39 @@ assert.equal(clearControl.length,43);
 const encryptedControl=clearControl.map((b,i)=>b^sourceWordBytes[i]);
 assert.deepEqual(encryptedControl.map((b,i)=>b^sourceWordBytes[i]),clearControl);
 
+const signedLiesWalk=[selectorGlobalIndex];
+for (let t=0;t<messageWords.length;t++) signedLiesWalk.push(grid.bytes[signedLiesWalk[t]]);
+assert.deepEqual(signedLiesWalk,[83,193,155,112,73,79,82,201,74,205,76,114,197,115,247,192,0]);
+assert.equal(messageWords.length,16);
+const zeroCycle=[];const visitedZero=new Set();let node=0;
+while(!visitedZero.has(node)){zeroCycle.push(node);visitedZero.add(node);node=grid.bytes[node];}
+assert.deepEqual(zeroCycle,[0,203,68,199,47,76,114,197,115,247,192]);
+assert.equal(node,0);
+function stepsToZero(start){
+ let i=start;const visited=new Set();
+ for(let t=0;t<256;t++){if(i===0)return t;if(visited.has(i))return -1;visited.add(i);i=grid.bytes[i];}
+ return -1;
+}
+const sixteenStarts=grid.bytes.flatMap((_,i)=>stepsToZero(i)===16?[i]:[]);
+assert.deepEqual(sixteenStarts,[63,65,83,127,179,181,209,217,222,231,244]);
+const threeAnchorStarts=sixteenStarts.filter(start=>{
+ let p=start;const route=[p];
+ for(let t=0;t<16;t++){p=grid.bytes[p];route.push(p);}
+ return [112,114,115].every(x=>route.includes(x));
+});
+assert.deepEqual(threeAnchorStarts,[83,127]);
+assert.equal(signedLiesWalk.includes(113),false);
+const finalPageAddresses=[112,113,114,115].map(value=>{
+ const page=value%58,wordIndex=Math.floor(value/58);
+ return {value,page,wordIndex,gp:decodeRunes(lp2Pages[page][wordIndex])};
+});
+assert.deepEqual(finalPageAddresses.map(x=>[x.page,x.wordIndex]),[[54,1],[55,1],[56,1],[57,1]]);
+assert.equal(finalPageAddresses[2].gp,"OESR");
+assert.equal(finalPageAddresses[3].gp,"LICE");
+assert.deepEqual(locate("you").map(x=>[x.sum,x.page,x.wordIndex]),[[113,55,1]]);
+
+
+
 console.log(JSON.stringify({
   status: "provisional source-constrained book-map hypothesis; not a decryption",
   modulus: 58,
@@ -296,6 +329,8 @@ console.log(JSON.stringify({
     signedWords:signedAllWords.length,selector:193,primeOrdinal:44,omittedOrdinal:24,
     bytePositions:hits(193),bracketPositions:hits(201),
     twoRouteCandidates,
+    selectedPointerRoute: {signedLiesWalk,zeroCycle,sixteenStarts,
+      threeAnchorStarts,finalPageAddresses},
     interiorBytes:signedInterior.length,printableXor:asciiPrintable,
     xorHex:Buffer.from(decodedSignedBytes).toString("hex")
   },

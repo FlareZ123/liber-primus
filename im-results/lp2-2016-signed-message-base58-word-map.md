@@ -116,6 +116,18 @@ There is a stronger **unique, key-free two-route meeting relation**. The 2016 wo
 The source matching, 43-byte alignment, prime-gap index and bracketing bytes were recognized retrospectively, so there is no discovery-adjusted significance claim or proven creator instruction. Under a fixed-source shuffle conditioned on 193 being present at selected offset 83, the other copy occupies the expected +44 offset with probability 1/255; this is a narrow conditional arrangement probability rather than evidence of a cryptographic key. The next decisive step is an independent historical instruction turning these 43 signed-word/byte pairs into a recoverable key or original plaintext, then testing a frozen inverse against unsolved LP2. The existing [book-map source SFT](../sims/lp2_2016_message_base58_word_map.cjs) asserts the full chain and bounded XOR result.
 
 
+### From the signed “lies” selector to the byte-pointer 11-cycle in 16 steps
+
+**Source-original numerical route; hypothesized use.** The previously frozen signed-word map picks LP2 p50 original numeric cell3, whose global row-major table index is **83** and whose value is **193**. Interpret each byte as the next zero-based address in the existing 256-cell table, with no free offset. The exact pointer route is:
+
+`83 → 193 → 155 → 112 → 73 → 79 → 82 → 201 → 74 → 205 → 76 → 114 → 197 → 115 → 247 → 192 → 0`
+
+This first reaches zero after **exactly 16 steps**, matching the word count of the signed 2016 central sentence “Its words are the map, their meaning is the road, and their numbers are the direction.” Starting at zero then traverses the **11-cycle** `0→203→68→199→47→76→114→197→115→247→192→0`, identified separately before the signed “lies” selector was noticed (see [the existing byte-pointer report](lp2-grid-byte-pointer-11cycle.md)). Starting at the *other* original 193 cell, index127, also reaches zero after 16 steps. Exhaustively, only **11 of the 256** table positions first reach zero in 16 steps: **[63,65,83,127,179,181,209,217,222,231,244]**. Of these, precisely the two 193 cells **83 and127** pass through all of positions **112,114,115** along the 16-step route.
+
+There is a further precise, still provisional source-navigation relationship: applying the **same previously frozen base-58 page/word interpretation** to the original route values **112,114,115** selects **p54 word1**, **p56 word1**, and **p57 word1** respectively. The second is the solved **END** (p56 ciphertext OESR under the independently verified prime-totient inverse); the third is the solved **LIKE** (p57 GP spelling LICE). The absent intervening value **113** selects **p55 word1**, which is still encrypted, and the signed 2016 message separately generates 113 from the source word **“you”**. Hence the route touches three of the four consecutive p54–57 page/word1 addresses but skips exactly the final unknown p55 one.
+
+All table bytes, addresses, word counts, and solved-text anchors are asserted by [the updated source SFT](../sims/lp2_2016_message_base58_word_map.cjs). They form an exact computational relationship and a candidate intended walk, not authenticated plaintext. The sixteen-step stopping condition was inferred after observing the source, and the source does not explicitly specify one pointer advance per signed word. The missing operational clue is how to read the route as plaintext or use it to decode the withheld **p55 word1**. Further ungrounded offset and key sweeps would dilute this constraint.
+
 ## Independent numerical bridge to the 2016 image
 
 The first four words, “Its words are the”, have GP prime sum:
