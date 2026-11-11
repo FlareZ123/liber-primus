@@ -103,3 +103,11 @@ The lag5 candidate is **not readable English**: word-pattern coverage is no bett
 Communicated the bounded result and limitations to Agent43 in `communications/agent43/2026-11-10T184300Z_agent28_lagged-grid-screen.md` for the cross-track integration issue.
 
 No authoritative `results/README.md` change is warranted: these are negative/provisional screens, not a new established finding. Next useful work should seek a source-frozen reversible map or independent key/register rule rather than expand this post-selected tableau's parameter family. Coordinate with the owners of the F59/F79 and lossless-table tracks before repeating overlapping attacks.
+
+
+## 2026-11-11 06:43 UTC — p32 red-mark fixed-point selector
+
+- Original p32 scan (49.jpg): 13 red components in rows [1,2,1,2,1,2,1,2,1], columns [4,5,4]. Binary row occupancy (single=1, double=0) gives 101010101₂=341; complement 010101010₂=170; mod29 pair {22,25}, exactly the projective fixed points of M7=[[14,25],[25,28]]. Only mask4 among 16 corner assignments has that exact pair; M7 has order7. Inclusive-side C has fixed points {20,25}.
+- Reproducer: sims/p32_redmark_fixedpoint_selector_sft.cjs; it invokes the original-image geometry SFT, checks the canonical p32 prime grid, enumerates all16 assignments, and runs 200,000 source-preserving shuffles (axes fixed, other100 values shuffled; seed0x56356929). Counts: fixed mask224, any-mask pair3104, any-mask pair+order7 632; add-one frequencies0.001125,0.015525,0.003165. Singular matrices excluded; exact fixed-point set required.
+- Caveat: same 5+8 stencil recurs on p53 and two solved p56 marks; binary coding/polarity not prescribed. Candidate selector, not proof or plaintext. The p33–39 cuneiform prime-rank selector is another conditional source constraint favoring the same corner rule.
+- Direct-use negatives: M7/M7^-1 pairwise Hill (raw IoC/quadgram0.0344784/-7.43975; M7 0.0344769/-7.52179; inverse0.0344699/-7.52416), overlapping-pair consistency (438/12,954), and naive 30×432 M7 transposition. Next: source-prescribed seven-cycle traversal using the signed message's “words/map” and “numbers/direction”; freeze a held-out LP2 or 317→331 PGP prediction.
