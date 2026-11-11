@@ -51,6 +51,9 @@ The 2016 signed message's “words are the map” / “numbers are the direction
 1. **Direct 51-symbol correspondence:** the row-major 3×17 interior and p53 red span have only 1 same-position match out of 51, different rune histograms, and no consistent one-to-one monoalphabetic substitution. They are not the same string or a simple transposition/substitution of one another.
 2. **Direction-walk test:** interpreting each p53 red rune's GP prime weight modulo 4 as a left / straight / right instruction on the 3×17 interior, starting at its centre, was tested over all four initial headings and both turn polarities. The path exits after only 4–7 visited cells; it does not traverse the 51-cell interior. Absolute direction interpretations using rune ordinal modulo 4 or prime ordinal modulo 4 cycle after three cells. These reject only the stated natural mappings, not every possible use of the red span.
 3. **Standard grid reads:** column-major, alternating-row, and clockwise-spiral readings of the full 5×19 array do not produce a second readable text; only row-major preserves the parable.
+
+5. **Direct p53-span additive key:** using the 51 red-span rune ordinals or their GP prime weights modulo 29 as a repeating additive key against the 12,956 unsolved runes (both signs, continuous-book and page-reset clocks) does not improve the language score; all tested quadgram scores are worse than the unmodified ciphertext. This rejects the direct period-51 GP29 key reading, not more complex mechanisms.
+
 4. **No plaintext recovered:** the 5×19 layout is a structural observation. It does not by itself decrypt the unsolved pages or identify a key.
 
 ## Decision
