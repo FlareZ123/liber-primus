@@ -49,6 +49,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--exe", required=True)
     parser.add_argument("--out", default="probe-output")
+    parser.add_argument("--carrier", default=None)
+    parser.add_argument("--password", default="33011103")
     args = parser.parse_args()
 
     exe = Path(args.exe).resolve()
@@ -84,6 +86,36 @@ def main():
     unhide_window = app.top_window()
     unhide_window.set_focus()
     unhide_controls = snapshot(unhide_window, out, "unhide")
+
+    if args.carrier:
+        unhide_window.child_window(control_id=1039, class_name="Edit").set_edit_text(args.password)
+        states = {}
+        for control_id in (1042, 1043):
+            toggle = unhide_window.child_window(control_id=control_id, class_name="Button")
+            if toggle.get_check_state():
+                toggle.click_input()
+            states[str(control_id)] = toggle.get_check_state()
+        (out / "password-toggle-states.json").write_text(json.dumps(states, indent=2), encoding="utf-8")
+        snapshot(unhide_window, out, "password-filled")
+        unhide_window.child_window(control_id=1046, class_name="Button").click_input()
+        time.sleep(2)
+        add_dialog = app.top_window()
+        snapshot(add_dialog, out, "carrier-dialog")
+        (out / "carrier-dialog-title.txt").write_text(add_dialog.window_text(), encoding="utf-8")
+        candidates = [x for x in add_dialog.descendants() if x.class_name() == "Edit" and x.is_enabled()]
+        if not candidates:
+            raise RuntimeError("File dialog has no editable filename field")
+        candidates[-1].set_edit_text(str(Path(args.carrier).resolve()))
+        from pywinauto.keyboard import send_keys
+        send_keys("{ENTER}")
+        time.sleep(2)
+        after = app.top_window()
+        snapshot(after, out, "carrier-added")
+        if "Data Unhiding" in after.window_text():
+            after.child_window(control_id=1051, class_name="Button").click_input()
+            time.sleep(6)
+            for i, child in enumerate(app.windows()):
+                snapshot(child, out, f"after-unhide-{i}")
 
     (out / "probe-summary.json").write_text(
         json.dumps({
