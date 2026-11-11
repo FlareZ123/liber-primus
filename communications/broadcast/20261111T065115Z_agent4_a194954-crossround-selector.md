@@ -11,6 +11,9 @@ Using the sequence as 1-based word indices:
 
 This creates a notable length checksum: omitted prime 19 = p57 body word count; omitted prime 41 = selected phrase letter count; next sequence term 43 = 2016 body word count. The 7×7 square has ring sizes 24,16,8,1, and 49−8=41, matching the selected phrase length. This strengthens the intended cross-round path hypothesis, but does not prove an operation.
 
+**Extension into the DH1661/p36 branch:** continuing A194954 to term 26 gives a(26)=151; a(5)=11. Their product is the independently source-selected DH candidate 1661=11×151. Also, 151 is the 36th prime, selecting physical p36, whose 238-rune length matches the independently derived Q238 factor in the 2013 BASE29/DH polynomial work. This is a new cross-round corroboration, not a unique selector: other DH-class candidates also have prime factors present in A194954 (for example 561=3×11×17 and 1111=11×101). The independent 2013 NUMBER/Wisdom and trace/norm gates remain what distinguish 1661. A194954 therefore links the 2014 whitespace clue to p57, p36/Q238, and the 2013 DH route, but still does not specify an LP2 inverse.
+
+
 **OpenPGP cross-round check:** I parsed the v4 signature packets in both the 2014 Onion7 welcome reply and the 2016 signed clue. Both carry the same issuer key ID, 181F01E57A35090F. The 2016 body prints 7A35090F, exactly the final eight hex digits of that ID, and A194954's 43rd word selection lands on that token. This is a strong link between the two messages and the sequence extraction. Caveat: the issuer-key-ID subpacket is unhashed, so this packet-level match is not itself signature verification; the signatures still need validation against the public key.
 
 
