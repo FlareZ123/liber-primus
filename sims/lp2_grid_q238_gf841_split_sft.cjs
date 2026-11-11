@@ -170,6 +170,43 @@ const screens={};
 for(const [name,coords] of Object.entries(bases)) {
   screens[name]=[inspectBasis(f,...coords),inspectBasis(conjugate,...coords)];
 }
+
+/**
+ * The two unique original red triples on physical pages 3 and 39 both start
+ * immediately after 119 printed runes. The preceding 119-rune prefixes form
+ * an original-source 119-pair comparison lane with no fitted parameters.
+ * Equalities within the 119 field pairs survive EVERY fixed injective
+ * substitution, affine or nonlinear, and every input/output reordering.
+ * This tests that one tempting alignment without assuming a GP plaintext.
+ */
+const corpus = JSON.parse(fs.readFileSync(path.join(__dirname, "../resources/liber-primus/lp2-corpus.json"), "utf8"));
+const p3 = corpus.pages[3].indices.slice(0,119);
+const p39 = corpus.pages[39].indices.slice(0,119);
+assert.equal(p3.length,119);
+assert.equal(p39.length,119);
+/** @param {number[][]} pairs @returns {Record<string,number>} */
+function duplicateSpectrum(pairs) {
+  const counts=new Map();
+  for (const pair of pairs) {
+    const key=pair.join(",");
+    counts.set(key,(counts.get(key)||0)+1);
+  }
+  const spectrum={};
+  for (const count of counts.values()) spectrum[count]=(spectrum[count]||0)+1;
+  return spectrum;
+}
+const prefixPairs=p3.map((r,i)=>[r,p39[i]]);
+const prefixSpectrum=duplicateSpectrum(prefixPairs);
+const factorSpectrum=duplicateSpectrum(f.slice(0,-1).map(v=>[v%29,Math.floor(v/29)]));
+const conjugateSpectrum=duplicateSpectrum(conjugate.slice(0,-1).map(v=>[v%29,Math.floor(v/29)]));
+assert.deepEqual(prefixSpectrum,{"1":99,"2":10});
+assert.deepEqual(factorSpectrum,{"1":96,"2":10,"3":1});
+assert.deepEqual(conjugateSpectrum,factorSpectrum);
+// An arbitrary bijection of 841 field symbols preserves this spectrum.
+// The source prefixes and the two source-derived factors cannot be related
+// by ANY stationary one-to-one GP29² substitution, regardless of pair order.
+assert.notDeepEqual(prefixSpectrum,factorSpectrum);
+
 console.log(JSON.stringify({
   originalGridBytes:bytes.length, sourcePolynomialDegree:254,
   irreducibleSourceResidualDegree:q.length-1,
@@ -177,6 +214,8 @@ console.log(JSON.stringify({
   splitDegrees:[f.length-1,conjugate.length-1],
   factorCoefficientsFirst12:f.slice(0,12),
   exactFrobeniusNorm:true,
+  marked119PrefixDuplicateSpectra:{p3p39:prefixSpectrum,factor:factorSpectrum},
+  fixedBijectionToBothMarkedPrefixes:false,
   sourceBasisScreens:screens,
   interpretation:"Exact source-factor split, no unknown LP2 plaintext or key."
 },null,2));
