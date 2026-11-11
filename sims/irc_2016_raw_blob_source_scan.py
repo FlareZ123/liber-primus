@@ -75,13 +75,13 @@ def scan() -> None:
         # It does not authenticate a speaker: only surfaces concrete dated
         # statements with both a target and an explicit solution verb.
         target = re.compile(
-            rb"\\b(?:liber[\\s_\\-]*primus|LP2|(?:page|pg|p\\.)[\\s#]*"
-            rb"(?:[0-4]?[0-9]|5[0-5])\\b)\\b", re.IGNORECASE
+            rb"\b(?:liber[\s_\-]*primus|LP2|(?:page|pg|p\.)[\s#]*"
+            rb"(?:[0-4]?[0-9]|5[0-5])\b)\b", re.IGNORECASE
         )
         claim = re.compile(
-            rb"\\b(?:solved?|solving|decrypted?|decrypting|decoded?|decoding|"
+            rb"\b(?:solved?|solving|decrypted?|decrypting|decoded?|decoding|"
             rb"deciphered?|translated?|translating|cracked?|cracking|plaintext|"
-            rb"key(?:s|word)?[\\s:=-]+(?:is|was|for))\\b", re.IGNORECASE
+            rb"key(?:s|word)?[\s:=-]+(?:is|was|for))\b", re.IGNORECASE
         )
         discoveries = []
         for i, line in enumerate(lines):
@@ -96,15 +96,15 @@ def scan() -> None:
                 continue
             # Priority is explicit recovery language, not page count.
             is_first_person = bool(re.search(
-                rb"\\b(?:i|we|someone)[\\s\\w]{0,35}\\b"
-                rb"(?:solved|decrypted|decoded|deciphered|cracked)\\b",
+                rb"\b(?:i|we|someone)[\s\w]{0,35}\b"
+                rb"(?:solved|decrypted|decoded|deciphered|cracked)\b",
                 line, re.IGNORECASE
             ))
             score = 4 * is_first_person + (3 if re.search(
-                rb"\\b(?:plaintext|key(?:word)?[\\s:=-]+(?:is|was))\\b",
+                rb"\b(?:plaintext|key(?:word)?[\s:=-]+(?:is|was))\b",
                 line, re.IGNORECASE
             ) else 0) + (2 if re.search(
-                rb"\\b(?:http|onion|pastebin|github|gist)\\b",
+                rb"\b(?:http|onion|pastebin|github|gist)\b",
                 line, re.IGNORECASE
             ) else 0) + (1 if gap <= 70 else 0)
             discoveries.append({
