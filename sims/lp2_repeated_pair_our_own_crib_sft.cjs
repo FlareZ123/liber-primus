@@ -48,11 +48,11 @@ function run() {
     const key = marker.map((c, i) =>
       mod(orientation === "C-P" ? c - crib[i] : c + crib[i]));
     const decode = (cipher, anchor) => cipher.map((c, i) => {
-      const k = key[mod(i - anchor) % 6];
+      const k = key[((i - anchor) % 6 + 6) % 6];
       return mod(orientation === "C-P" ? c - k : k - c);
     });
     const encode = (plain, anchor) => plain.map((p, i) => {
-      const k = key[mod(i - anchor) % 6];
+      const k = key[((i - anchor) % 6 + 6) % 6];
       return mod(orientation === "C-P" ? p + k : k - p);
     });
     const p55Plain = decode(p55, 70);

@@ -23,10 +23,10 @@ As one direct crypto-consumer test, fix the repeated original ciphertext `[D,J,U
 
 | Frozen source-crib test | p55 76-rune decoded IoC | p27 234-rune decoded IoC | Readout |
 | --- | ---: | ---: | --- |
-| `C=P+K`, inferred K=C−OUR OWN | **0.03263158** | **0.03609552** | Unreadable, despite anchored OUR OWN |
-| `C=K-P`, inferred K=C+OUR OWN | **0.03087719** | **0.03466491** | Unreadable, despite anchored OUR OWN |
+| `C=P+K`, inferred K=C−OUR OWN | **0.03403509** | **0.03477495** | Unreadable, despite anchored OUR OWN |
+| `C=K-P`, inferred K=C+OUR OWN | **0.03578947** | **0.03382121** | Unreadable, despite anchored OUR OWN |
 
-The solved p57 first 76 runes have IoC **0.05964912**. Neither original readout has recognizable contiguous prose; the first p55 plaintext begins `LCNPOERTDNEIAAONGEAST...` and the second `IAUOEAPITHEOOEMHMOIN...`. These facts reject this **exact six-period direct additive extension** of the proposed source-neighbor crib. The crib itself is unverified and could still represent a repeated literal marker, a different native GP phrase, or a different crypto mechanism. Do not treat successful anchor fitting or round-trip as plaintext recovery. Reproducer: [source-crib SFT](../sims/lp2_repeated_pair_our_own_crib_sft.cjs).
+The solved p57 first 76 runes have IoC **0.05964912**. Neither original readout has recognizable contiguous prose; the first p55 plaintext begins `AJHNTCLFHXNGAEYBXEAW...` and the second `PAGNMYBGGRXGJEFMEABB...`. These facts reject this **exact six-period direct additive extension** of the proposed source-neighbor crib. The crib itself is unverified and could still represent a repeated literal marker, a different native GP phrase, or a different crypto mechanism. Do not treat successful anchor fitting or round-trip as plaintext recovery. Reproducer: [source-crib SFT](../sims/lp2_repeated_pair_our_own_crib_sft.cjs).
 
 ## Source-exact 3⁸/81-square alignment and its cryptanalytic test
 
