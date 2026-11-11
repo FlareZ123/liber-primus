@@ -16,6 +16,20 @@ Further exact arithmetic is **retrospectively noticed**:
 
 None of these relationships supplies a documented operation or uniquely selects a key. Source-recognition is more plausible than an unrestricted numeric puzzle; the archive contains no signed instruction to add, reverse every cell, or apply a corresponding prime clock to LP2.
 
+## Original text independently specifies 19 and 7
+
+The solved PARABLE body has **exactly 19 printed words**: seven words in its first sentence, then six in each remaining sentence, yielding clause word counts **[heading: 1, body: 7, 6, 6]**. The opening sentence is **LIKE THE INSTAR TUNNELING TO THE SURFACE**. These are observable from original rune word separators with no cipher hypothesis or numeric factorization.
+
+The two text counts provide an exact **source-first generative candidate**:
+
+`[body_words², first_sentence_words × body_words, prime(prime(body_words))]`
+
+`= [19², 7×19, prime(prime(19))] = [361,133,331]`.
+
+These are exactly the three previously recognized PARABLE GP-prime body-clause remainders modulo heading sum **449**, in printed order. The last two match the later archived seventh-onion HTML title **133** and element id **331**. The first sentence's seven words directly provide the order of the unique historical 7×7 OpenPuff square, and 331 is its center.
+
+This is a substantially more *source-constrained explanation of why 19 and 7 arise* than inferring them from 361 and 133 alone. Choosing the squared/product/nested-prime functions and the heading-sum modulus remains a retrospective mathematical model with no authenticated instruction. The arithmetic may reflect a designed cross-artifact clue; it has not yielded an unknown-page plaintext, key or destination.
+
 ## The formerly unused PARABLE residual selects square order 7
 
 A separate [original solved-p57 source check](../sims/parable_449_onion7_header_modulo_sft.cjs) establishes that the solved *PARABLE* heading's GP prime sum is **449** and the three printed body-clause prime sums are **1259, 1031, 1229**. Their remainders modulo the heading are exactly **[361,133,331]** in textual order. This explains why the **last two** results appear as the historical Onion7 HTML title/id, though author intent is still unproved.
