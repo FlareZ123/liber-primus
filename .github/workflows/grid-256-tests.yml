@@ -58,6 +58,7 @@ on:
           - historical-cookies
           - framed8-repeated-key
           - p0-block03-source
+          - p50-base9
         default: full
 
 
@@ -70,6 +71,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Original p50 high-digit radix-9 direct payload gate
+        if: ${{ inputs.probe == 'p50-base9' }}
+        run: node sims/p50_base29_high_digit_radix9_sft.cjs
+
       - name: Source-only 27x27 third-block key, start, and length uniqueness
         if: ${{ inputs.probe == 'p0-block03-source' }}
         run: node sims/lp2_27x27_block03_source_uniqueness_sft.cjs
