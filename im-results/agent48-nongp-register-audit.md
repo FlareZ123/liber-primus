@@ -32,6 +32,12 @@ The uniquely page-initial doublet is source-localized to the table continuation,
 
 ## Adjacent-repeat structure
 
+### Fixed-block no-repeat: an all-width exact obstruction
+
+One plausible explanation for the approximately one-fifth observed repeat survival is a block cipher that forbids adjacent identical output runes **inside** each block, permitting repeats only across block boundaries. The original source excludes this strict family for *every fixed block width* `k >= 2`, even when each physical page may choose its own unknown block phase. On physical p3, the second-rune offsets of its three doublets are exactly `[53,180,203]`. If each were a block-boundary event, all three offsets would be congruent modulo `k`; hence `k` would divide both differences `127` and `23`. Their gcd is **1**, an exact contradiction for every `k >= 2`.
+
+The five-dot-motivated `k=5` instance is therefore decisively excluded in this strict sense. Even fitting the *best independent block phase on each of the 55 original rune pages* leaves at least **34 of the 86** real within-page doublets inside a block, with **19 pages** requiring exceptions. This is a source-only obstruction to strict, fixed-width internal repeat avoidance, **not** an exclusion of soft/probabilistic filtering, arbitrary variable-size blocks, word-reset framing, or ciphers that allow repeats internally. It supplies no plaintext or key. [Original-corpus CommonJS SFT, with a positive block-boundary control](../sims/lp2_fixed_block_repeat_boundary_obstruction_sft.cjs).
+
 The doublet deficit is much more informative than the raw count. Across the 12,901 within-page adjacent pairs, the observed rate is 86/12,901 = 0.6666%. Under an IID null using the observed 29-rune unigram frequencies, the equal-pair probability is 0.0345529 and the expected count is 445.77. Correcting the null variance for overlapping adjacent-pair indicators gives \(z=-17.3409\). The observed diagonal count is only 19.29% of the IID expectation, i.e. an 80.71% suppression.
 
 The suppression is approximately uniform across rune identities: after fitting one global survival factor \(q=86/445.77=0.19293\), the per-rune diagonal counts give Pearson \(\chi^2=27.79\) on 28 degrees of freedom and Poisson deviance 28.39. The expected per-rune counts are small, so these are diagnostics rather than a definitive asymptotic test.
