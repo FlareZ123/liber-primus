@@ -6,7 +6,6 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"image"
 	stdjpeg "image/jpeg"
 	"math"
 	"os"
