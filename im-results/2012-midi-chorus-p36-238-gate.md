@@ -1,6 +1,6 @@
 # 2012 MIDI chorus ↔ LP2 p36: exact 238-symbol alignment and field-key tests
 
-**Classification (Agents 7 and 17, 11 November 2026):** source-motivated cross-round clue with retrospective page selection; bounded negative for direct GP29 letters and full-block GF(29²³⁸) field-key transfers. No unknown plaintext, key, or intended continuation recovered.
+**Classification (Agents 7, 17 and 31, 11 November 2026):** source-motivated cross-round clue with retrospective page selection; bounded negative for direct GP29 letters, the exact historical 7-/14-column running-key permutations, and full-block GF(29²³⁸) field-key transfers. No unknown plaintext, key, or intended continuation recovered.
 
 ## Why this was worth testing
 
@@ -46,6 +46,23 @@ For each mapping, test the two natural additive directions. All 12 outputs remai
 
 No phases, reversals, tuned offsets, or language-score-selected variants were searched.
 
+### 1a. Source-fixed historical columnar transpositions
+
+The cross-round source analysis records a seven-column 2012 transposition with zero-based read order **[0,6,2,5,1,4,3]** and a fourteen-column 2014 transposition with order **[2,8,9,1,12,13,11,4,5,7,3,0,6,10]**. Since **238=34×7=17×14**, a solver could reasonably test these known operations on the 238-symbol chorus before using it as a p36 running key. This is a finite historical hypothesis, not a free permutation search; the source orders are documented in [the cross-round route analysis](../workplace/2012-845145127-lp2-cross-round-route.md).
+
+For each order, fill row-major and read columns in the stated order, then test the exact inverse. Use the resulting permuted GP29 chorus as the key against original p36, with both additive directions:
+
+| Historical operation | Key permutation | Subtract | Add |
+|---|---|---:|---:|
+| 2012 seven-column | Forward | 0.03623728 | 0.03382619 |
+| 2012 seven-column | Inverse | 0.03559905 | 0.03481899 |
+| 2014 fourteen-column | Forward | 0.03517356 | 0.03527993 |
+| 2014 fourteen-column | Inverse | 0.03503173 | 0.03435805 |
+
+The best IoC is **0.03623728**, close to the uniform GP29 baseline **0.034483** and far below the GP-mapped Blake chorus **0.064745**. None of the eight outputs is convincing plaintext. Applying the corresponding inverse permutation to p36 with the untransposed chorus gives an output that is exactly the inverse positional permutation of the key-transposed output; the reproducer verifies this identity, so it is not an independent key family. No other column orders, phases, or offsets were searched.
+
+This closes the two historically source-fixed columnar variants as running-key transformations. It does not prove that the 238-symbol alignment is accidental; it establishes that the obvious reuse of the known 2012/2014 columnar orders does not recover p36 plaintext.
+
 ### 2. Is the Blake chorus itself p36 plaintext?
 
 The 238-character crib does not admit a direct symbol substitution:
@@ -87,6 +104,6 @@ Every original output is close to uniform GP29 frequency; the highest IoC is **0
 
 ### Decision
 
-**Retire the direct p36-as-Blake-chorus crib and the simple 238-symbol running-key interpretations above.** The exact 238/238 length alignment remains an unresolved cross-round clue, not a decryption. A new attempt must identify an independently motivated reversible operation or key representation from an original source; do not rescue this route with arbitrary phase, reversal, transposition, or alphabet searches.
+**Retire the direct p36-as-Blake-chorus crib, the direct and source-fixed T7/T14 transposed running-key interpretations, and the tested full-block Q238 field-key correspondence.** The exact 238/238 length alignment remains an unresolved cross-round clue, not a decryption. A new attempt must identify a distinct independently motivated reversible operation or key representation from an original source; do not rescue this route with arbitrary phase, reversal, transposition, or alphabet searches.
 
-Reproducer: ../sims/2012_midi_chorus_p36_238_gate.cjs. Derived MIDI input: 2012-midi-chorus-p36-238-inputs.json. The script verifies the source-rank decode, page-length uniqueness, word counts, IoCs, substitution consistency, held-out affine-pair prediction, and the Q238 cross-round coefficient gate. The p50 factorization source is im-results/lp2-grid-complete-gf29-factorization.md.
+Reproducer: ../sims/2012_midi_chorus_p36_238_gate.cjs. Derived MIDI input: 2012-midi-chorus-p36-238-inputs.json. The script verifies the source-rank decode, page-length uniqueness, word counts, direct-key IoCs, source-fixed 7-/14-column transpositions in both directions, exact ciphertext-side permutation equivalence, substitution consistency, held-out affine-pair prediction, and the Q238 cross-round coefficient gate. The p50 factorization source is im-results/lp2-grid-complete-gf29-factorization.md.

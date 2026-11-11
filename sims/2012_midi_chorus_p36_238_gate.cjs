@@ -226,8 +226,65 @@ const pageWords = parseSharedCorpus().byStartPage[36];
 const chorusWords = sourceText.split(/\s+/).map((word) => word.replace(/[^A-Za-z]/g, "")).filter(Boolean);
 const matching238Pages = corpus.pages.filter((page) => page.runic_count === 238).map((page) => page.page);
 
+function columnarEncrypt(values, width, order) {
+  assert.equal(values.length % width, 0);
+  const columns = Array.from({ length: width }, () => []);
+  for (let index = 0; index < values.length; index++) columns[index % width].push(values[index]);
+  return order.flatMap((column) => columns[column]);
+}
+
+function columnarDecrypt(values, width, order) {
+  assert.equal(values.length % width, 0);
+  const rows = values.length / width;
+  const columns = Array(width);
+  let cursor = 0;
+  for (const column of order) {
+    columns[column] = values.slice(cursor, cursor + rows);
+    cursor += rows;
+  }
+  const output = [];
+  for (let row = 0; row < rows; row++) {
+    for (let column = 0; column < width; column++) output.push(columns[column][row]);
+  }
+  return output;
+}
+
+// Exact historical column orders from workplace/2012-845145127-lp2-cross-round-route.md.
+const sourceFixedColumnarOrders = [
+  { name: "2012 seven-column", width: 7, order: [0, 6, 2, 5, 1, 4, 3] },
+  { name: "2014 fourteen-column", width: 14, order: [2, 8, 9, 1, 12, 13, 11, 4, 5, 7, 3, 0, 6, 10] },
+];
+const sourceFixedTranspositionTests = [];
+for (const { name, width, order } of sourceFixedColumnarOrders) {
+  for (const direction of ["forward", "inverse"]) {
+    const transformedKey = direction === "forward"
+      ? columnarEncrypt(gpKey, width, order)
+      : columnarDecrypt(gpKey, width, order);
+    const cipherDirection = direction === "forward" ? "inverse" : "forward";
+    const transformedCipher = cipherDirection === "forward"
+      ? columnarEncrypt(p36, width, order)
+      : columnarDecrypt(p36, width, order);
+    for (const sign of [-1, 1]) {
+      const keyOutput = decrypt(transformedKey, sign);
+      const cipherOutput = transformedCipher.map((value, index) => mod(value + sign * gpKey[index]));
+      const cipherOutputReordered = direction === "forward"
+        ? columnarEncrypt(cipherOutput, width, order)
+        : columnarDecrypt(cipherOutput, width, order);
+      const exactCiphertextSideEquivalence = keyOutput.every((value, index) => value === cipherOutputReordered[index]);
+      assert.ok(exactCiphertextSideEquivalence);
+      assert.equal(ioc(keyOutput), ioc(cipherOutput));
+      sourceFixedTranspositionTests.push({
+        operation: name, direction, sign, ioc: ioc(keyOutput),
+        ciphertext_side_ioc: ioc(cipherOutput),
+        exact_ciphertext_side_equivalence: exactCiphertextSideEquivalence,
+        prefix: preview(keyOutput, 60),
+      });
+    }
+  }
+}
+
 const result = {
-  classification: "Source-motivated cross-round length match; bounded negative for the tested direct operations; no plaintext or key recovered.",
+  classification: "Source-motivated cross-round length match; bounded negative for direct and source-fixed historical columnar running-key operations, plus full-block field-key transfers; no plaintext or key recovered.",
   source_alignment: {
     p36_runes: p36.length,
     p36_is_only_238_rune_page: matching238Pages.length === 1 && matching238Pages[0] === 36,
@@ -246,7 +303,7 @@ const result = {
     p36_distinct_runes: new Set(p36).size,
     chorus_gp_distinct_symbols: new Set(gpKey).size,
   },
-  direct_running_key_tests: keyTests,
+  direct_running_key_tests: keyTests,\n  source_fixed_historical_columnar_tests: {\n    orders: sourceFixedColumnarOrders,\n    tests: sourceFixedTranspositionTests,\n    note: "The corresponding inverse permutation on p36 with the untransposed chorus is exactly permutation-equivalent; the script verifies this identity. No arbitrary column orders or phases are searched."\n  },
   source_crib_tests: {
     plaintext_symbol_to_cipher_conflicts: monoalphabetic.conflicts,
     plaintext_symbols: monoalphabetic.source_symbols,
@@ -266,4 +323,15 @@ assert.equal(homophonic.conflicts, 191);
 assert.equal(exactAffineSubstitutions, 0);
 assert.equal(q238CrossRoundTests.find((x) => x.name === "2012 MIDI alphabet rank").best_affine_high_to_low.matches, 19);
 assert.equal(q238CrossRoundTests.find((x) => x.name === "p36 known-plaintext keystream").best_affine_low_to_high.matches, 20);
+assert.equal(sourceFixedTranspositionTests.length, 8);
+const expectedTranspositionIocs = [
+  0.03623727972201539, 0.033826188703329436,
+  0.03559904974648087, 0.03481899088749424,
+  0.03517356309612452, 0.03527993475871361,
+  0.03503173421267241, 0.034358047016274866,
+];
+sourceFixedTranspositionTests.forEach((test, index) => {
+  assert.ok(Math.abs(test.ioc - expectedTranspositionIocs[index]) < 1e-14);
+  assert.equal(test.exact_ciphertext_side_equivalence, true);
+});
 console.log(JSON.stringify(result, null, 2));
