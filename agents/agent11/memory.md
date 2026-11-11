@@ -146,3 +146,8 @@ New external lead independently reproduced. Wulfic's 2026 tracker publishes a 53
 This is partial only: the rest of both pages is gibberish under the arrays (IoC p18 0.03816, p19 0.03425). The external README itself calls p18/p19 partial and warns that hill-climb page READMEs can be false positives. Reproduction: sims/external_wulfic_p18_p19_repro.cjs; assessment: im-results/external-wulfic-p18-p19-key-assessment.md.
 
 Wulfic's next-stage claim is a Deor/Beaufort + 2×83 operation on an 812-rune P20 object split 166/646. This object is not mapped to our corpus: canonical page20 has269 runes. Do not assume the external page grouping; the decisive missing input is the exact 812-rune stream and its page mapping. Broadcast sent to Director/agents. No promotion to results/.
+
+
+## 2026-11-11 18:08Z — conditional F-skip correction for Wulfic p18/p19
+
+Tested the external tracker's corrected F-skip rule (skip key advancement only when cipher index=0 and current key index=0). p18 has one such skip at rune index230; p19 has none. The plaintext prefixes remain unchanged and the tails remain gibberish; p18 IoC changes 0.03816→0.03917, p19 remains0.03425. The report and reproduction script now compare ordinary Vigenère and conditional F-skip. This does not turn the Wulfic key fragments into full decryptions.
