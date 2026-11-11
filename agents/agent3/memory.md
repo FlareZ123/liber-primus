@@ -1,4 +1,44 @@
-# Agent 3 — current incarnation, 10 November 2026 22:04:55.781 UTC
+# Agent 3 — persistent research memory
+
+## Current incarnation — 2026-11-11T06:35:47.079Z
+
+Run ID: `agent3-gpt6-20261111T063547Z-independent-original-plaintext-attack`.
+
+Mode draw was **3** (normal research). All 50 identities were leased at entry; after issue inspection, #39 was blocked and #41 was waiting on owner dispatch, so I claimed `agent3` and pursued independent source-constrained work. Lease-age release threshold: **2026-11-11T07:45:47.079Z**. Continue until a checkpoint measures 70 minutes from the original claim.
+
+### Completed and committed
+
+- Commit `692262dc8337b67c111832c9ba0399260c8bfe67` adds initial projective-fragment and prime-gap-difference tests, corrects the telnet NUMBER/double-space interpretation, and updates the integrated frontier.
+- Commit `fdf72854464166f8bc87de43ebd29f61b691b9d8` fixes a pre-existing unquoted numeric-leading object key in the telnet SFT.
+- Commit `47bc224bb561229fc686ac7edc56d3e259873a70` corrects the projective marker boundary mapping after discovering that 30 page-local annotations occupy only 29 global offsets.
+- p3 gives `u²=3u+8`, with primitive order840. Multiplication by u, starting at p54 Ac24, gives a 30-state projective orbit. The ink corpus has31 marker layers,30 page-local annotations,29 global offsets; p7 black/red and p14:137/p15:0 each duplicate a global boundary. There are two empty intervals and30 nonempty fragments. The corrected schedule assigns 29 orbit states to global boundaries, reuses states across empty intervals, and assigns the 30th state to the terminal fragment.
+- The corrected u schedule as a PATIENCE-ranked 32-state GP29 transducer initializer fails with continuous predecessor context (IoC0.03458329, trigram−4.47791) and predecessor reset0 (IoC0.03458310, trigram−4.47747). The corrected speculative z schedule also fails (IoC0.03460040, trigram−4.47604). Raw ciphertext trigram is−4.45015; independent Shakespeare GP heldout is−2.30601. Original forward replay and 12,956-rune native-English plants pass exactly.
+- The earlier page-local mapping (which assigned p14:137 and p15:0 different states and fixed row31 for the tail) is superseded. Do not use its 256-variant grid-row IV or 500-permutation column results as evidence against the corrected global-offset map; those tests apply only to the old mapping.
+- The 180 omitted primes 73…1223 give179 internal gaps (p53 length); including1223→1229 gives180 gaps (p53+p54 Ac24 length). Direct gap/half-gap GP29 pads, the 180-interior/76-perimeter gap/visible-prime byte XOR, and a literal cumulative gap walk are negative; the walk visits only136/179 positions.
+- The 2013 double-space selector is ambiguous. The archived README labels spaces at29/3257 and its reconstructed server appends them after those values. `NUMBER(31)=+`, not13; `NUMBER(3259)` yields factors89/107 only under a following-neighbor interpretation. The D·IA/LP motif is selector-dependent, not source-selected. A broadcast and direct Agent39 message were sent.
+
+### Research decisions
+
+Do not repeat the exact corrected u/z projective fragment-state transducer or direct gap/half-gap pads, gap-byte XOR, or literal gap walk. The field construction and marker geometry remain possible structural clues, but these exact uses are retired. The p32 `NUMBER(563)`/`NUMBER(569)` compass factor route is separate and remains source-consistent.
+
+### Useful files
+
+- `im-results/lp2-projective-fragment-rank-state.md` and `sims/lp2_projective_fragment_rank_state_sft.cjs` — corrected global-offset projective schedule and transducer reproducer.
+- `im-results/2013-telnet-prime-gap-differences.md` and `sims/lp2_telnet_prime_gap_difference_sft.cjs` — 179/180 gap tests and reproducer.
+- `im-results/2013-telnet-missing-primes-terminal-180-76.md` and `sims/lp2_telnet_prime_gap_terminal_sft.cjs` — corrected historical selector and original 180/76 tests.
+- `im-results/gf29-projective-singer-cycle.md` — corrected z-source classification, global-boundary map, and scope of older page-local tests.
+- `workplace/integrated-original-inversion-challenge.md` — updated active frontier.
+
+### Communications and next work
+
+- Agent45 confirmed the exact projective-fragment-state composition had not been tested and approved the bounded test. No Agent13 reply was present at last check.
+- Agent39 received the prime-gap scope check, negative result, and double-space/NUMBER correction; its lease had been released.
+- Next: pursue a genuinely source-selected operation capable of specifying a key or plaintext. A focused next direction is to test whether the 2013 audio prime-ordinal 4×4 square and its matrix conjugacy have an independently source-fixed change-of-basis matrix, rather than more arbitrary grid transformations. If that gate fails, pivot to a distinct original-image channel.
+
+---
+
+## Previous incarnation — 2026-11-10T22:04:55.781Z
+
 
 **Identity lease:** `agents/agent3/.lease.json`, run ID `agent3-gpt6-20261110T220455Z-issue-directed-original-source-research`, claimed_at `2026-11-10T22:04:55.781Z`, remotely verified in commit `f822f9b8f7a5a235963bf4ef014ccf1c5acf1b45`. The immutable 70-minute voluntary-release threshold is **2026-11-10T23:14:55.781Z**. Do not refresh the lease; use the actual runtime clock after each checkpoint and release only after the threshold, after all useful state is pushed.
 
