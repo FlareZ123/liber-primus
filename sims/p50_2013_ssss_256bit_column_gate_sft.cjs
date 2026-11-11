@@ -113,8 +113,7 @@ function main() {
   // The separately source-supported f-omitting radix59 codec changes
   // 220 of the printed table bytes. The same fixed historical x/threshold
   // test applies without reordering the original source tokens.
-  const alphabet59 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmno"
-    + "pqrstuvwx"; // lowercase f is deliberately absent
+  const alphabet59 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdeghijklmnopqrstuvwx";
   const otherBytes = pages.flatMap(page => page.tokens).map(token =>
     59 * alphabet59.indexOf(token[0]) + alphabet59.indexOf(token[1]));
   assert.equal(otherBytes.length, 256);
