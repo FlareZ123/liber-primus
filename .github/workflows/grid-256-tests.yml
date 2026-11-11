@@ -73,7 +73,9 @@ jobs:
 
       - name: Full authenticated 2016 signed-message base-58 word map
         if: ${{ inputs.probe == 'signed-message-map' }}
-        run: node sims/lp2_2016_message_base58_word_map.cjs
+        run: |
+          node sims/lp2_2016_message_base58_word_map.cjs
+          node sims/gp29_193_signed_source_aead_sft.cjs
 
       - name: Test red-event collision/quote cross-track inversion
         if: ${{ inputs.probe == 'collision-quote' }}
