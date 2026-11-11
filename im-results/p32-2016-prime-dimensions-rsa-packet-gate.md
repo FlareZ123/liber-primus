@@ -1,12 +1,14 @@
-# Signed-2016 prime-dimension pair: original p32 and table RSA-packet feasibility
+# Signed-2016 prime-dimension pair: new numeric-table RSA packet gate
 
-**Classification:** a source-motivated but conjectural cross-stage RSA interpretation, rejected at two exponent-independent packet-validity gates on original ciphertext. **No unknown Liber Primus plaintext, authentic encryption key, mechanism or continuation is recovered.**
+**Classification:** one additional exact source-ciphertext representation exclusion for the original 256-byte table; the p32 four-rune gate below is a recheck of **established prior work**, not a novel discovery. No unknown LP2 plaintext, authentic cipher key, mechanism or continuation is recovered.
+
+**Prior-art correction:** [The original signed-2016 tree-source study](lp2-tree121-signed2016-source-gate.md#source-prime-rsa-modulus-four-rune-original-cipher-capacity-gate) had already identified `563×569` as a candidate RSA modulus, rejected every direct four-GP-rune whole-book orientation, and independently checked a planted RSA positive. Its later redundant-quotient RSA 3→4 lift also failed original plaintext capacity. The p32-only subset documented below agrees with that earlier result. **The distinct contribution here is the new fixed three-byte/256-table ↔ 85-rune p56 length gate**, which uses different original bytes and a source-native positive control. Do not treat this report as reopening the closed GP29 3→4 RSA family.
 
 ## Independent source facts and reason to test
 
 The authentic 2016 Cicada tree image has original pixel dimensions **563×569**. Both numbers are prime. The previously established 11×11 interpretation of LP2 **physical p32** has exactly **121 original GP29 runes**; the GP prime-weight sum across its first printed row is **563**, and the corresponding first-column sum is **569**. This independent matching of image dimensions to rune-grid axes is documented in [the 2016 original-image source gate](lp2-tree121-signed2016-source-gate.md).
 
-A possible human solver might recognize two primes and test their **RSA product**. Cicada used RSA during earlier rounds, although the signed 2016 clue itself does **not** prescribe RSA, multiplication of the dimensions, an exponent, or a p32 ciphertext-packet format. This candidate has the particularly cheap prerequisite that a fixed-width encrypted-block representation must already be valid *before* any key search:
+Earlier investigators already recognized the two-prime RSA product, backed by Cicada's historical RSA usage and a 2012 dimension-product clue. The 2016 message itself still supplies no RSA exponent or packet grammar. The p32-only counts are included for consistency with the first source link; the substantive new decision concerns the table. This candidate has the particularly cheap prerequisite that a fixed-width encrypted-block representation must already be valid *before* any key search:
 
 - Candidate modulus: `n = 563 × 569 = 320347`, with `φ(n) = 562 × 568 = 319216`.
 - GP29 as literal radix29 digits: `29³ = 24389 < n < 29⁴ = 707281`. Thus a direct fixed-width ciphertext integer modulo `n` needs four GP29 digits per block.
@@ -14,7 +16,7 @@ A possible human solver might recognize two primes and test their **RSA product*
 
 That length equality motivates the packet test, but is not an authenticated instruction.
 
-## Original-ciphertext decision
+## Previously established p32 RSA packet obstruction, independently reconfirmed
 
 Read the canonical p32 GP29 **ordinal indices** in their original printed order, preserving all 121 runes. Decode each consecutive four-rune group as an ordinary base29 integer, both most-significant-first and least-significant-first. Check all leading offsets **0, 1, 2, 3, 4**; some have 30 complete blocks and others have 29. A valid direct RSA ciphertext packet must satisfy `0 ≤ block < 320347`, independently of which exponent, private key or padding is subsequently used.
 
@@ -30,7 +32,7 @@ Read the canonical p32 GP29 **ordinal indices** in their original printed order,
 
 The range condition itself is an exact exclusion for the stated representation. The historical premise that the image dimensions should be multiplied into an RSA modulus remains a conjecture; the failure does not exclude arbitrary cryptographic uses of the prime pair, variable-width encodings, byte-packed intermediate messages, or other pages.
 
-## Cross-page test: 256 numeric-table bytes against 85 solved runes
+## New cross-page test: 256 numeric-table bytes against 85 solved runes
 
 The authentic p49–51 table contains exactly **256 printed two-digit base60 cells**, giving 256 interpreted bytes in source order. The separately solved physical p56 contains exactly **85 GP runes**, and **256 = 1 + 85×3**. Under the same speculative prime-pair modulus `320347`, three bytes suffice to represent any RSA residue. Thus a one-byte header plus 85 three-byte ciphertext integers is another exact length-matching, source-visible packet hypothesis. This does not require guessing an RSA exponent.
 
@@ -53,4 +55,4 @@ A separate positive control packs 85 known source integers into valid RSA cipher
 
 The [CommonJS standalone reproducer](../sims/p32_2016_prime_dimensions_rsa_block_gate.cjs) asserts both original p32 axis sums and the exact original invalid-block tables for both original inputs. Its positive control constructs **30 valid RSA ciphertext packets** from distinct seeded messages using this same modulus, the conventional illustrative exponent `e=65537`, and its derived private exponent `d=160833`. The packet codec produces a 121-rune artifact with a single header rune; all **30/30** ciphertext packets meet the range condition and recover their exact source plaintext integers. The standalone algorithm and positive control were also independently executed in the connected JavaScript runtime on the remote canonical corpus. The exponent is a demonstration parameter and is not attributed to the 2016 signed message.
 
-**Research disposition:** retire the literal four-GP29-rune p32 and three-byte table RSA block readings. Reopen an RSA use of the dimensional prime pair only if an original source supplies the missing explicit packer/framing or ciphertext-output operation. Existing source-selected p32 grid relations continue to hold; the cipher itself remains unidentified.
+**Research disposition:** preserve the previously closed four-GP29-rune RSA exclusion, and now retire the distinct literal three-byte table RSA block reading. Reopen an RSA use of the dimensional prime pair only if an original source supplies the missing explicit packer/framing or ciphertext-output operation. Existing source-selected p32 grid relations continue to hold; the cipher itself remains unidentified.
