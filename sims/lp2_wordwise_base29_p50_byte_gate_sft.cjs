@@ -15,6 +15,39 @@ const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const table = grid.pages.flatMap((page) => page.bytes);
 
 /**
+ * Exact integer word value under the explicit Gematria Primus prime weights.
+ * @param {string} runes Canonical runes.
+ * @returns {number}
+ */
+function primeSum(runes) {
+  let sum = 0;
+  for (const rune of runes) {
+    const index = runeIndex.get(rune);
+    assert.notEqual(index, undefined);
+    sum += corpus.prime[index];
+  }
+  return sum;
+}
+
+/**
+ * Find a short source-alphabet GP word with an exact prescribed prime sum.
+ * This is used only for independent planted positive controls.
+ * @param {number} target Target integer.
+ * @returns {string}
+ */
+function primeWordFor(target) {
+  for (let i = 0; i < corpus.prime.length; i++) {
+    if (corpus.prime[i] === target) return corpus.runes[i];
+    for (let j = 0; j < corpus.prime.length; j++) {
+      if (corpus.prime[i] + corpus.prime[j] === target) {
+        return corpus.runes[i] + corpus.runes[j];
+      }
+    }
+  }
+  throw new Error(`Unrepresentable planted prime sum ${target}`);
+}
+
+/**
  * Source-fixed GP29 word integer, leading rune most significant.
  * @param {string} runes Word in canonical GP rune characters.
  * @returns {bigint}
@@ -94,6 +127,9 @@ assert.equal(wordValue(twoRuneAddress(3301 % 256)), BigInt(3301 % 256));
 const addresses = words.words.map((word) => wordAddress(word.runes));
 const originalLowBytes = addresses;
 const originalTableBytes = addresses.map((address) => table[address]);
+const primeAddresses = words.words.map((word) => primeSum(word.runes) % 256);
+const originalPrimeLowBytes = primeAddresses;
+const originalPrimeTableBytes = primeAddresses.map((address) => table[address]);
 
 const original = {
   words: words.words.length,
@@ -102,6 +138,8 @@ const original = {
   distinct_table_byte_values: new Set(table).size,
   byte_mod256: diagnostics(originalLowBytes),
   p50_lookup: diagnostics(originalTableBytes),
+  prime_sum_mod256: diagnostics(originalPrimeLowBytes),
+  prime_sum_p50_lookup: diagnostics(originalPrimeTableBytes),
 };
 
 // Positive controls verify both entire source-specified transports with fresh inputs.
@@ -115,7 +153,24 @@ const tablePositive = [84, 72, 69].map((character) => {
 assert.equal(Buffer.from(tablePositive.map((runes) => table[wordAddress(runes)])).toString("ascii"), "THE");
 
 // Frozen original-input outputs, computed without fitting offsets or any key.
+const rawPrimePositive = [72, 73].map((value) => primeWordFor(value));
+assert.equal(Buffer.from(rawPrimePositive.map((runes) => primeSum(runes) % 256)).toString("ascii"), "HI");
+const tablePrimePositive = [84, 72, 69].map((value) => primeWordFor(table.indexOf(value)));
+assert.equal(Buffer.from(tablePrimePositive.map((runes) => table[primeSum(runes) % 256])).toString("ascii"), "THE");
+
 assert.equal(original.byte_mod256.length, 2896);
+assert.equal(original.prime_sum_mod256.length, 2896);
+assert.equal(original.prime_sum_p50_lookup.length, 2896);
+assert.equal(original.prime_sum_mod256.distinct_byte_values, 256);
+assert.equal(original.prime_sum_p50_lookup.distinct_byte_values, 161);
+assert.equal(original.prime_sum_mod256.max_global_bijection_english27, 519);
+assert.equal(original.prime_sum_p50_lookup.max_global_bijection_english27, 967);
+assert.equal(original.prime_sum_mod256.max_global_bijection_ascii95, 1481);
+assert.equal(original.prime_sum_p50_lookup.max_global_bijection_ascii95, 2301);
+assert.equal(original.prime_sum_mod256.longest_printable_run, "oeZ$nRa");
+assert.equal(original.prime_sum_p50_lookup.longest_printable_run, " 8 Tj9EV!");
+assert(original.prime_sum_mod256.planted_english_trigrams.every(([, count]) => count === 0));
+assert(original.prime_sum_p50_lookup.planted_english_trigrams.every(([, count]) => count === 0));
 assert.equal(original.byte_mod256.distinct_byte_values, 256);
 assert.equal(original.p50_lookup.distinct_byte_values, 161);
 assert.equal(original.byte_mod256.max_global_bijection_english27, 496);
@@ -130,4 +185,4 @@ assert.equal(original.p50_lookup.longest_printable_run, "P*L\\ns4");
 assert(original.byte_mod256.planted_english_trigrams.every(([, count]) => count === 0));
 assert(original.p50_lookup.planted_english_trigrams.every(([, count]) => count === 0));
 
-console.log(JSON.stringify({ test: "PASS", original, controls: { raw: "HI", table: "THE" } }, null, 2));
+console.log(JSON.stringify({ test: "PASS", original, controls: { raw: "HI", table: "THE", prime_raw: "HI", prime_table: "THE" } }, null, 2));
