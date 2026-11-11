@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 
-// Fixed, source-pinned test of the p49-p51 256-cell table as a single
-// period-256 additive/subtractive GP29 key over all LP2 p0-p55 rune text.
-// This is distinct from the earlier 10,240-rune M7-orbit-complement test
-// and from the p55-only prefix-key gate.
+// Fixed, source-pinned tests of the p49-p51 256-cell table as a GP29 key.
+// Two natural clocks are tested: one continuous book-global clock and a
+// reset to key[0] at each original rune-bearing page. No phase is fitted.
 
 const fs = require("node:fs");
 const crypto = require("node:crypto");
