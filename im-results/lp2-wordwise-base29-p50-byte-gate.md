@@ -44,6 +44,6 @@ None of the four byte streams contains the ASCII trigrams `THE`, `AND`, `ING`, `
 
 ## Reproduce
 
-[Standalone Node.js SFT](../sims/lp2_wordwise_base29_p50_byte_gate_sft.cjs) requires no third-party dependencies and computes both complete streams directly from committed source artifacts. From the repository root run `node sims/lp2_wordwise_base29_p50_byte_gate_sft.cjs`. It asserts the source lengths, table uniqueness, empirical original-input diagnostics and all four positive text controls.
+[Standalone Node.js SFT](../sims/lp2_wordwise_base29_p50_byte_gate_sft.cjs) requires no third-party dependencies and computes both complete streams directly from committed source artifacts. From the repository root run `node sims/lp2_wordwise_base29_p50_byte_gate_sft.cjs`. It asserts the source lengths, table uniqueness, empirical original-input diagnostics, all-secret alphabet capacity and all four positive text controls. **Exact committed-script execution passed** in [manual GitHub Actions run 43038662425](https://github.com/FlareZ123/liber-primus/actions/runs/43038662425), selecting only the `word-number-byte` step.
 
 **Research decision:** retire these four literal byte transports. Reopen only if independent historic or original-page evidence prescribes a specific offset, operation, word-grouping rule, second cipher stage or missing decoding state. Do not promote this bounded negative to an established key/plaintext finding.
