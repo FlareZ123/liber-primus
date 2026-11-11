@@ -74,6 +74,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--2016", dest="p2016", default="resources/historical/cicada2016-4gq25-outguess.asc")
     ap.add_argument("--2017", dest="p2017", default="resources/historical/cicada2017-yEiTHhvF.asc")
+    ap.add_argument("--image", default="resources/historical/cicada2016-4gq25.jpg")
     args = ap.parse_args()
     algs = {
         "SHA-512": lambda b: hashlib.sha512(b).digest(),
@@ -112,6 +113,16 @@ def main():
         print(f"{year}: sha256={sha} bytes={len(raw)} cleartext={len(parsed['clear'])} canonical={len(parsed['signed_text'])}")
         print(f"  OpenPGP hash id={parsed['hash_id']} digest-prefix={parsed['digest_prefix'].hex()} signature-digest={parsed['signature_digest'].hex()}")
         print(f"  representations={len(candidates)} comparisons={len(candidates)*len(algs)} matches={hits}")
+    image = Path(args.image).read_bytes()
+    image_git_blob = hashlib.sha1(b"blob " + str(len(image)).encode("ascii") + b"\\0" + image).hexdigest()
+    if len(image) != 26342 or image_git_blob != "22027296dcd7df53c5127e6aadbabeaf3223f72d":
+        raise SystemExit(f"2016 JPEG source mismatch: bytes={len(image)} git_blob={image_git_blob}")
+    image_sha512 = hashlib.sha512(image).hexdigest()
+    image_match = bytes.fromhex(image_sha512) == TARGET
+    total += 1
+    if image_match:
+        hits_all.append(("2016-image", "raw-image-bytes", "SHA-512"))
+    print(f"2016 image: bytes={len(image)} git_blob={image_git_blob} SHA-512={image_sha512} match={image_match}")
     print(f"target={TARGET.hex()}")
     print(f"total_comparisons={total} all_matches={hits_all}")
 
