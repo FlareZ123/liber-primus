@@ -16,6 +16,7 @@ on:
           - onion7-133
           - josephus-aes
           - event-poly
+          - terminal-crc
 
 jobs:
   original:
@@ -47,6 +48,9 @@ jobs:
       - name: Original event-field P/P-prime trace/norm projection inverse
         if: github.event.inputs.probe == 'event-poly'
         run: node sims/gf29s2_event_poly_output_original_sft.cjs
+      - name: Test triad quartic, 256-ink and terminal 19-word source gate
+        if: github.event.inputs.probe == 'terminal-crc'
+        run: node sims/terminal_quartic_word19_crc_sft.cjs
       - name: Exact original 256-event Josephus AES eight-section inverse
         if: github.event.inputs.probe == 'josephus-aes'
         run: node sims/ink256_josephus_aes_sections_sft.cjs
