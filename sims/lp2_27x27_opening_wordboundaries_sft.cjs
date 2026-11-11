@@ -120,6 +120,26 @@ assert.equal(redLen,13);
 const redPrimeSum=first.slice(0,redLen).reduce((s,k)=>s+corpus.prime[k],0);
 assert.equal(redPrimeSum,662);
 assert.equal(phi(redPrimeSum)%29,11);
+// Optional mirror-name source selector: the authentic GP labels include AE/EA
+// and EO/OE. Enumerate all *adjacent* 3-rune axes in the complete 27x27 grid.
+// This label-reversal choice was recognized retrospectively.
+const dirs=[[0,1,"horizontal"],[1,0,"vertical"],[1,1,"diagonal-se"],[1,-1,"diagonal-sw"]];
+const mirrorNodes=[];
+for(let row=0;row<27;row++)for(let col=0;col<27;col++)
+ for(const [dy,dx,direction] of dirs) {
+  if(row-dy<0||row+dy>26||col-dx<0||col+dx>26) continue;
+  const sourcePositions=[(row-dy)*27+col-dx,row*27+col,(row+dy)*27+col+dx];
+  const [left,middle,right]=sourcePositions.map(p=>first[p]);
+  const lhs=corpus.translit[left],rhs=corpus.translit[right];
+  if(lhs.length>1 && lhs===rhs.split("").reverse().join(""))
+    mirrorNodes.push({row:row+1,col:col+1,direction,positions:sourcePositions,centerSymbol:middle});
+ }
+assert.equal(mirrorNodes.length,10);
+const mirroredCenterCandidates=mirrorNodes.filter(n=>n.centerSymbol===phi(redPrimeSum)%29);
+assert.equal(mirroredCenterCandidates.length,1);
+assert.deepEqual(mirroredCenterCandidates[0].positions,[334,335,336]);
+assert.equal(mirroredCenterCandidates[0].direction,"horizontal");
+
 const center=(redLen-1)*27+(phi(redLen)-1);
 assert.equal(center,335);
 const originalNode=first.slice(center-1,center+2);
@@ -181,6 +201,8 @@ console.log(JSON.stringify({
   punctuationPreservedReading: "AS. I GO THE",
   headerPrimeSum: redPrimeSum,
   firstKeySourceCenter: center,
+  GP29ReversedNameNodes: mirrorNodes.length,
+  uniqueRedDerivedJMirrorNode: mirroredCenterCandidates[0],
   originalKeyNode: originalNode.map(i=>corpus.translit[i]),
   derivedFirstKey: key.map(i=>corpus.translit[i]),
   firstBlackLineLength: blackCount,
