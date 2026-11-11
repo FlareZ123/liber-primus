@@ -22,6 +22,8 @@ const json = file => JSON.parse(fs.readFileSync(path.join(root,file),"utf8"));
 const base60 = json("resources/liber-primus/base60-grid.json");
 assert.equal(base60.byte_rows.length,32);
 assert(base60.byte_rows.every(row=>row.length===8));
+assert.equal(base60.rows.length,32);
+assert(base60.rows.every(row=>row.length===8));
 const original = base60.byte_rows.flat();
 const sourceTokens = base60.rows.flat();
 assert.equal(original.length,256);
@@ -29,7 +31,8 @@ assert.deepEqual([sourceTokens[45],sourceTokens[50],sourceTokens[246]],["1l","0l
 assert.deepEqual([original[45],original[50],original[246]],[107,47,198]);
 // The older flattened copy is retained only as an equality check, not as input.
 assert.deepEqual(json("resources/liber-primus/lp2-grid-256.json").bytes,original);
-assert.equal(createHash("sha256").update(Buffer.from(original)).digest("hex"),
+const sourceSha256=createHash("sha256").update(Buffer.from(original)).digest("hex");
+assert.equal(sourceSha256,
   "3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290");
 
 const mod = n => (n%29+29)%29;
@@ -193,7 +196,7 @@ assert.deepEqual(wrongFactors,{
 });
 
 console.log(JSON.stringify({
-  source:{file:"resources/liber-primus/base60-grid.json",shape:"32x8",caseGlyphs:[{index:45,token:"1l",byte:107},{index:50,token:"0l",byte:47},{index:246,token:"3I",byte:198}],flattenedCopyMatches:true},
+  source:{file:"resources/liber-primus/base60-grid.json",shape:"32x8",sha256:sourceSha256,caseGlyphs:[{index:45,token:"1l",byte:107},{index:50,token:"0l",byte:47},{index:246,token:"3I",byte:198}],flattenedCopyMatches:true},
   factors:{H,G,F,Fmonic},
   fieldStructure:{HDiscriminant:discriminant,HRootOrder:840,GDoubleRoot:24,
     GComponentOrder:203,orderOfXModuloF:24360},
