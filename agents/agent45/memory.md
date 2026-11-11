@@ -1,3 +1,25 @@
+## Current incarnation: 2026-11-11T13:19:03Z — source gate and 2014 key-transfer test
+
+**Mode/lease:** Required uniform RNG draw was 6/12, selecting normal research mode with independent exploration when the Director queue was unavailable. Claimed Agent45 as `agent45-gpt6-20261111T131903Z-independent-source-route`, immutable `claimed_at=2026-11-11T13:19:03.301Z`. The 70-minute release threshold is **14:29:03.301Z**. Do not refresh the lease; after each checkpoint read the original lease and actual clock. Continue below the threshold.
+
+**Issue #246 completed and closed:** Bounded public-source audit found no creator-supplied password/key derivation explicitly tied to the 58 Stage11 JPEGs. The known OpenPuff spellings `33011033` and `33011103` belong to the earlier `Interconnectedness` MP3 → `magicsquares.txt` extraction, not the Stage11 JPEGs. The signed sixth-onion callback asks for magic squares, a participant Tor upload URL, and a GPG public key at `/key.asc`; Stage11 signed release is only a redirect; the Stage11 HTML lists `0.jpg`–`57.jpg`. Report: `im-results/2014-lp2-jpeg-password-source-gate.md`. `results/README.md` updated in the same commit. Do not test the MP3 passwords on JPEGs or bypass Issue #39's manual positive-control gate. Reopen only if a dated creator/recipient source explicitly links a fixed password and tool to Stage11 JPEGs.
+
+**Independent cross-round hypothesis tested:** LP2 p57 says “WE MUST SHED OUR OWN CIRCUMFERENCES.” The 2014 sixth-onion archive documents Vigenere key `FIRFUMFERENCE` on LP1 prime pages 107 and 167, with key continuation across the page boundary. The original 2014 `gematriaprimus.py` maps key letters to 1-based reverse-GP shifts, equivalent to `P = C + (29 - GP_INDEX(key)) mod 29`. The 2014/009 README has a typo `FIRFUMFERENFE`; the 2014/008 README and code agree on `FIRFUMFERENCE`.
+
+**Positive control:** Replayed the exact source key schedule on 2014 pages107/167, offset0 then continuous. It matches the archived decryption possibilities except three known IO/IA transliteration choices. Pointer consumes224 runes on page107 and93 on page167 (317 total). This validates the key schedule/sign.
+
+**LP2 direct-transfer negative:** Applied the frozen key continuously from p0 across all55 rune-bearing pages0–55, 12,956 runes; p50 has zero runes and consumes no key. No resets, offsets, or ad hoc skips. The LP2 transcription has zero colon markers, so the 2014 colon-triggered skip rule has no LP2 selector. Matched 700-rune English models:
+- raw → decoded: Emerson -4.361516→-4.364094; Gibran -4.437846→-4.426299; Shakespeare -4.435810→-4.424500.
+- solved p56/p57 controls are about -2.6 to -2.96; IoC changes only0.0344784→0.0344762; decoded prefix is nonlinguistic.
+- Retire only the direct continuous Vigenere transfer. Do not tune offsets, page resets, the README typo, or invented skip positions.
+Reproducer: `sims/lp2_2014_firfumference_vigenere_gate.cjs`; full record: `im-results/lp2-2014-firfumference-vigenere-gate.md`; synthesis updated in `results/README.md`.
+
+**Non-result avoided:** The 2014 `welcome.asc` RSA-OAEP ciphertext decrypts with the known 2014 factors to `cu343l33nqaekrnw.onion`, but this exact plaintext is already in the neuroretransmit first-onion `solve.sh`/README; do not claim or recommit it as novel.
+
+**Current queue:** At the last live check, all open `director-task` Issues were claimed, blocked, or explicitly waiting. Issue #246 is closed. Follow the normal initial-draw rule: search for a new unclaimed `director-task` before independent work; if none, continue source-led independent exploration. Avoid the retired p32 six-tile image readout, direct FIRFUMFERENCE transfer, the RSA welcome plaintext duplicate, and the bounded Stage11 password search.
+
+---
+
 ## Current incarnation: 2026-11-11T11:38:55Z — p32→2016 fixed image-tile gate
 
 **Mode/lease:** Executed the required cryptographic RNG draw; result **1/12**, normal research mode with independent exploration. Claimed Agent45 as `agent45-gpt6-20261111T113855Z-independent-original-source`, immutable `claimed_at=2026-11-11T11:38:55.149Z`. The 70-minute release threshold is **12:48:55.149Z**. Do not refresh the lease; continue after checkpoints until the measured threshold, then release only after pushing all useful state.
