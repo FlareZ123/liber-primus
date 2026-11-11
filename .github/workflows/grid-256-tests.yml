@@ -20,6 +20,7 @@ on:
           - affine-byte
           - p36-crib
           - redspan-zero
+          - tree-tiling
         default: full
 
 jobs:
@@ -54,6 +55,12 @@ jobs:
           node sims/grid_two_channel_serial_order_sft.cjs
           node sims/grid_boolean_mobius_gp28_inverse_sft.cjs
           node sims/grid_missing_f_prime179_sft.cjs
+      - name: Original signed-image source-prime 11x11 tiling test
+        if: ${{ inputs.probe == 'tree-tiling' }}
+        run: |
+          python3 -m pip install --quiet Pillow
+          python3 sims/tree121_image_tiling_gate.py
+
       - name: Red GP prime-sum page-conditioned circular-control audit
         if: ${{ inputs.probe == 'redspan-zero' }}
         run: node sims/red_span_gp29_zero_test.cjs
