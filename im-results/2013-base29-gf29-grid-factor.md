@@ -83,7 +83,7 @@ The corresponding no-free-key coordinate-change test is fully reversible: writin
 
 This gives one precise way to perform the 2013 challenge's historically mentioned **Diffie–Hellman operation** in the same 29²-element field that p3's mark independently suggests. It does **not** identify an actual exchanged exponent, a key, a mapping from quotient symbols to text, or a reason to prefer the specific affine root change \(z=23-2u\) over other field-coordinate changes. All irreducible quadratics over the same field extension admit affine root correspondences. The field isomorphism and exponent 433 alone cannot be advertised as independent statistical confirmation.
 
-## Preserved DH 3301 tester exchange and a conditional exponent lock
+## Preserved DH 3301 tester exchange and a source-constrained exponent candidate
 
 A richer 2013 participant log supplies a real `DH 3301` exchange that was absent from the earlier protocol analysis. In `neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`, file `irc-logs/clientlog-1362290293-9.txt`, the participant server records:
 
@@ -95,46 +95,46 @@ Received line: '2800'
 Sending line: '03 DATA 1067'
 ```
 
-The participant implementation shown in the same archive chooses its server base and private integer with `random.randint(2, p)`. The server-side value **331 is participant randomness**. The client response is the source-controlled part of the exchange.
+The participant implementation chooses its own server base and private integer with `random.randint(2, p)`, so the logged server secret **331 is participant randomness**. The client response is the source-controlled part of the exchange. The multiplicative order of 2757 modulo 3301 is **550**. Therefore `2757^e ≡ 2800 (mod 3301)` fixes the Cicada-client exponent class **e ≡ 11 (mod 550)**. The logged shared key independently checks the same class because `1264^11 mod 3301 = 1067`. Restricting the ordinary private integer to 2 through 3300 leaves exactly **[11, 561, 1111, 1661, 2211, 2761] = 11×[1,51,101,151,201,251]**.
 
-The multiplicative order of 2757 modulo 3301 is **550**. Solving the logged relation `2757^e ≡ 2800 (mod 3301)` gives the client exponent class **e ≡ 11 (mod 550)**. The logged shared key checks the same class because `1264^11 mod 3301 = 1067`. Restricting the private integer to 2 through 3300 gives six representatives: **[11, 561, 1111, 1661, 2211, 2761]**.
+### Same-round NUMBER and 0_wisdom single out 1661
 
-### Conditional field-invariant selector gives e = 1661
-
-The earlier BASE29 bridge supplies the primitive p3-field root **z = 23 - 2u**, with `u^2 = 3u + 8`. Applying the six DH representatives to this independently fixed root gives six field elements. One representative is uniquely distinguished by the worked `DH 23` example:
+The 2013 first-onion `NUMBER` implementation is a historically specified operation: composite input is factorized directly. Applying it to the six transcript-compatible representatives gives one unique intersection with the numeric cells visibly printed in the earlier 2013 `0_wisdom` square. Only **1661** has such a proper divisor:
 
 ```text
-e = 1661
-e mod 840 = 821
-z^821 = 6 + 17u
-
-coordinate sum mod 29     = 23
-coordinate product mod 29 = 15
-field trace                = 5
-field norm                 = 2
+NUMBER 1661 -> divisors [1, 11, 151, 1661]
+0_wisdom numeric cell -> 151
 ```
 
-Those four values reconstruct the worked example without using unknown LP2 ciphertext: modulus **23**, recovered client private exponent **15**, generator **5**, and shared key **2**. The first coordinate **6** is also the recovered worked-example server private exponent. From these values, `5^6 mod 23 = 8` and `5^15 mod 23 = 19`, reproducing both public shares.
+The other five representatives have no proper divisor among the square's numeric values **{18, 131, 138, 151, 226, 245, 272}**. This supplies a same-round, source-only way to choose **1661** from the DH residue class without fitting unknown LP2 ciphertext. The choice to feed the recovered private-exponent representatives into `NUMBER` is still an inference; no surviving instruction explicitly orders that step.
 
-Among the six representatives, **1661 is the only one** satisfying all four displayed invariant equalities. Equivalently, the real `DH 3301` transcript gives `e ≡ 11 mod 550`, while the field embedding gives `e ≡ 821 mod 840`; the compatible class is **e ≡ 1661 mod 46200**. In the ordinary DH range below 3301 this selects **1661** exactly.
+Two exact consequences strengthen the human-route interpretation. **151 is the 36th prime**, selecting physical LP2 **p36**, whose ciphertext length is exactly **238 runes**, the degree of the independently established large irreducible table factor Q238. Also **151 mod29 = 6** and **1661 mod29 = 8**, reproducing the worked `DH 23` server private/public pair `6 -> 8`. The prime-ordinal-to-page step remains interpretive.
 
-This is a strong cross-source key candidate because the selector uses only pre-existing source values and canonical field operations. It is still **conditional**: no surviving Cicada instruction says to compare coordinate sum/product and field trace/norm in this way. The match is therefore a locked structural hypothesis rather than an authenticated key instruction.
+A frozen direct consequence was tested rather than expanded into a phase sweep: rotate Q238's 238 non-leading coefficients by the source value **151**, target only the source-selected **238-rune p36**, and try the two coefficient directions and two additive signs. All four outputs remain nonlinguistic. The best trigram score is **-11.05432 nats/rune**; the raw page is **-11.18074**. Every one of **2,976** same-length windows from the solved GP reference scores higher; their worst score is **-8.60260**. Exact planted controls round-trip. This retires the direct `151 -> Q238 phase -> p36 additive key` reading.
 
-### Direct uses of the selected exponent are negative
+Reproducer: [`sims/dh1661_wisdom151_p36_q238_phase_sft.cjs`](../sims/dh1661_wisdom151_p36_q238_phase_sft.cjs).
 
-In the p3 field, the selected exponent is **821 mod 840** and its multiplicative inverse is **221**. Applying `x -> x^221` to every original unknown LP2 two-rune field pair remains ciphertext-like. Whole-book pairing scores **IoC 0.03448013, trigram -11.06994 nats/rune**; physical-page pairing scores **0.03450286, -11.06752**. The raw ciphertext baseline is **0.03447840, -11.07314**, while held-out native GP reference is **0.06512502, -8.41667**.
+### Independent field invariants corroborate 1661
 
-The selected private integer has canonical BASE29 digits **[1, 28, 8]**. Repeating those three digits as an additive GP key, under both signs and book/page clocks, gives IoC **0.03449756 to 0.03450691** and trigram **-11.08220 to -11.06720**. No native plaintext appears.
+The earlier BASE29 bridge supplies the primitive p3-field root **z = 23 - 2u**, with `u^2 = 3u + 8`. Applying the six transcript-compatible exponents to this independently fixed root gives a second selector. Among all six representatives, **field trace 5 and norm 2 alone** uniquely select **e=1661**, matching the worked `DH 23` generator **5** and shared key **2** without using unknown ciphertext.
 
-A literal standard ElGamal interpretation also fails. On the whole unknown rune stream grouped as two field elements per block, one of 3,239 first components is zero, so the direct full-book ElGamal model is invalid. On the exact 252-slot table quotient, all 63 first components are nonzero, but decrypting with private exponent 821 gives a 126-rune output with **IoC 0.03403175** and **trigram -11.08247**; only **22 of 63** coordinate integers fall in byte range and **7** are printable ASCII.
+For the selected exponent, `1661 mod840 = 821` and `z^821 = 6+17u`. After selection, three extra relations appear: first coordinate **6** equals the worked server private exponent, coordinate sum **23** equals the worked modulus, and coordinate product **15** equals the worked client private exponent. The public shares then follow as `5^6 mod23=8` and `5^15 mod23=19`. These coordinate readings are corroborative observations and were not used to choose the candidate.
 
-For the broader exponent class, the six representatives reduce modulo 840 to **[11, 561, 271, 821, 531, 241]**. The 561 and 531 maps are non-bijective on the nonzero field because their gcd with 840 is 3. The other four exact inverses were all tested on original ciphertext and the table quotient, and all remain nonlinguistic. Native-GP power-map plants recover exactly.
+The combined congruences are `e ≡ 11 (mod550)` from the real `DH 3301` transcript and `e ≡ 821 (mod840)` from the trace/norm match, giving **e ≡ 1661 (mod46200)**. In the ordinary sub-3301 range this is exactly 1661. The invariant comparison remains conditional because no surviving Cicada instruction names it.
 
-A separate inbound-only log contains the client value **3034** after `DH 3301`. Arithmetic gives `5^11 ≡ 3034 (mod 3301)`, and both 5 and 3034 have multiplicative order **75** modulo 3301. The server response is absent, so base 5 is unestablished for that exchange. This order-75 relation is retained only as a conditional observation and is not used to select the decoder.
+### Direct uses of 1661 are negative
 
-**Decision:** the 2013 material now yields a sharply constrained **conditional exponent candidate 1661** through an independent field-invariant lock. Its simplest direct power, BASE29-additive, and ElGamal uses all fail on original LP2 data. The candidate remains valuable as possible key material for a separately specified register or state machine. More arbitrary field bases, clocks, or mappings are not justified without another source instruction or a withheld prediction.
+In the p3 field, exponent **821** has inverse **221** modulo 840. Applying `x -> x^221` to the original unknown LP2 two-rune field pairs remains ciphertext-like: whole-book pairing scores **IoC 0.03448013, trigram -11.06994**, and physical-page pairing scores **0.03450286, -11.06752**, versus raw **0.03447840, -11.07314** and held-out native GP **0.06512502, -8.41667**.
 
-Reproducer: [`sims/2013_dh3301_tester11_source_sft.cjs`](../sims/2013_dh3301_tester11_source_sft.cjs).
+The BASE29 digits of 1661 are **[1,28,8]**. Repeating them as an additive GP key under both signs and book/page clocks yields IoC **0.03449756 to 0.03450691** and trigram **-11.08220 to -11.06720**. A literal standard ElGamal interpretation also fails: the whole-stream model contains a zero first component, while the exact 252-slot table quotient has 63 valid first components but decrypts to a 126-rune output with **IoC 0.03403175**, **trigram -11.08247**, only **22/63** direct coordinate integers in byte range, and **7** printable ASCII values.
+
+For the broader exponent class, the six representatives reduce modulo 840 to **[11,561,271,821,531,241]**. The 561 and 531 maps are non-bijective because their gcd with 840 is 3. The four reversible inverse powers were all tested on original ciphertext and the table quotient, and all remain nonlinguistic. Native-GP power-map plants recover exactly.
+
+A separate inbound-only log contains client value **3034** after `DH 3301`. Arithmetic gives `5^11 ≡ 3034 (mod3301)`, and both 5 and 3034 have multiplicative order **75** modulo3301. The server response is absent, so base 5 is not established for that exchange. This order-75 relation remains a conditional observation and is not used as a decoder.
+
+**Decision:** the 2013 chain now supplies a source-constrained **candidate private exponent 1661** through the real DH transcript plus the historically available NUMBER/0_wisdom intersection. The later field trace/norm relation independently corroborates the same representative. The most direct power, BASE29-additive, ElGamal, and source-selected p36/Q238 phase uses are negative. Treat 1661/151 as candidate key and routing material for a separately motivated register rather than license for arbitrary new sweeps.
+
+Reproducer for the DH class and field tests: [`sims/2013_dh3301_tester11_source_sft.cjs`](../sims/2013_dh3301_tester11_source_sft.cjs).
 
 ### Worked-DH ElGamal quotient transport: an exact original-input negative
 
