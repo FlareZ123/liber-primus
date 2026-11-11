@@ -13,7 +13,6 @@ const assert = require("node:assert/strict");
 const read = (p) => fs.readFileSync(p, "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const annotations = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
-const mod = (n, m) => ((n % m) + m) % m;
 
 function base29(digits) {
   return digits.reduce((n, d) => n * 29n + BigInt(d), 0n);
@@ -63,17 +62,19 @@ const shared = modPow(clientPublic, BigInt(exponent), p);
 
 assert.equal(N.toString(), "5412445423142629857");
 assert.equal(M.toString(), "1420123033");
-assert.equal(N % 23n, 0n);
+assert.equal(N % 23n, 0n); // additional residue, not required by DH
 assert.equal(exponent, 7);
-assert.equal(heading.at(-1), 5);
+assert.equal(heading.at(-1), 5); // matches the source DH base
 assert.equal(clientPublic, 16n);
 assert.equal(serverPublic, 17n);
 assert.equal(shared, 18n);
 
-// Finite control: search every page-local 13-rune window on unsolved pages.
+// Finite control: search every page-local 13-rune window on LP2 pages 0–55.
+let scannedWindows = 0;
 const selectorHits = [];
 for (const page of corpus.pages.filter((p) => p.page <= 55)) {
   for (let start = 0; start + 13 <= page.indices.length; start++) {
+    scannedWindows++;
     const digits = page.indices.slice(start, start + 13);
     const value = base29(digits);
     if (value % 23n === 0n && value % 22n === 7n && digits.at(-1) === 5) {
@@ -82,6 +83,20 @@ for (const page of corpus.pages.filter((p) => p.page <= 55)) {
   }
 }
 assert.deepEqual(selectorHits, [{ page: 0, start: 0 }]);
+
+const redSpanDivisibleBy23 = [];
+for (const page of annotations.pages) {
+  for (const span of page.red_spans || []) {
+    const digits = corpus.pages[page.page].indices.slice(span.start, span.start + span.length);
+    const value = base29(digits);
+    if (value % 23n === 0n) {
+      redSpanDivisibleBy23.push({
+        page: page.page, start: span.start, length: span.length,
+        mod22: Number(value % 22n), finalDigit: digits.at(-1)
+      });
+    }
+  }
+}
 
 // Use the same canonical printed-word parser as the provisional 2016 map.
 const printedSource = read("resources/lp2-transcription.txt").split("%");
@@ -92,12 +107,73 @@ function printedWords(page) {
     .map((piece) => (piece.match(/[ᚠ-᛿]+/gu) || []).join(""))
     .filter(Boolean);
 }
-const pages = Array.from({ length: 58 }, (_, page) =>
+const wordsByPage = Array.from({ length: 58 }, (_, page) =>
   page === 50 ? [] : printedWords(printedSource[page > 50 ? page - 1 : page])
 );
-assert.equal(pages.reduce((n, page) => n + page.length, 0), 2973);
-const p18w7 = pages[18][6];
-const p18Indices = [...p18w7].map((r) => runeIndex.get(r));
-const p18PrimeWeights = p18Indices.map((i) => corpus.prime[i]);
-const p18PrimeSum = p18PrimeWeights.reduce((a, b) => a + b, 0);
-assert.equal(translit(p18Indices), "GA- A".replace(" ", "") === "GA-A" ? "never" : "GA- A"); // replaced below
+assert.equal(wordsByPage.reduce((n, page) => n + page.length, 0), 2973);
+function wordInfo(page, wordIndex) {
+  const runes = wordsByPage[page][wordIndex];
+  const indices = [...runes].map((r) => runeIndex.get(r));
+  assert(indices.every(Number.isInteger));
+  const primeWeights = indices.map((i) => corpus.prime[i]);
+  return {
+    page, wordIndex, wordNumber: wordIndex + 1, runes,
+    transliteration: translit(indices), length: indices.length,
+    primeWeights, primeSum: primeWeights.reduce((a, b) => a + b, 0)
+  };
+}
+const p18w7 = wordInfo(18, 6);
+assert.equal(p18w7.transliteration, "G-A-H-EA-L-G-O");
+assert.equal(p18w7.length, 7);
+assert.equal(p18w7.primeSum, 343);
+const sum343Words = [];
+for (let page = 0; page < wordsByPage.length; page++) {
+  for (let wordIndex = 0; wordIndex < wordsByPage[page].length; wordIndex++) {
+    const info = wordInfo(page, wordIndex);
+    if (info.primeSum === 343) sum343Words.push(info);
+  }
+}
+assert.equal(sum343Words.length, 5);
+assert.deepEqual(sum343Words.filter((x) => x.length === 7).map((x) => [x.page, x.wordNumber]), [[18, 7]]);
+
+// Conditional use of the provisional 2016 base-58 word-pointer rule.
+const p53w6 = wordInfo(343 % 58, Math.floor(343 / 58));
+const p53Next = {
+  page: p53w6.primeSum % 58,
+  wordIndex: Math.floor(p53w6.primeSum / 58)
+};
+const p18w5 = wordInfo(p53Next.page, p53Next.wordIndex);
+assert.equal(p53w6.transliteration, "D-OE-E-R");
+assert.equal(p53w6.primeSum, 250);
+assert.equal(p18w5.transliteration, "I-D-J");
+
+// Frozen DH→27×27 continuation test: (shared, exponent) as row18/column7.
+const opening = corpus.pages.slice(0, 3).flatMap((page) => page.indices);
+const center = (18 - 1) * 27 + (7 - 1); // zero-based center cell, row 18 col 7
+const node = opening.slice(center - 1, center + 2);
+const key = node.slice();
+key[1] = phi(node[1]);
+const predictedStart = center + 13; // same +13 center-to-block displacement as opening block
+const ciphertextBlock = opening.slice(predictedStart, predictedStart + 7);
+const decryptedBlock = ciphertextBlock.map((v, i) => (v - key[i % 3] + 29) % 29);
+assert.deepEqual(node, [26, 14, 23]); // Y-X-D
+assert.deepEqual(key, [26, 6, 23]); // Y-G-D
+assert.equal(predictedStart, 478);
+assert.equal(translit(ciphertextBlock), "N-P-A-Y-P-C-Y");
+assert.equal(translit(decryptedBlock), "EO-W-U-F-W-J-F");
+
+console.log(JSON.stringify({
+  heading: { indices: heading, transliteration: translit(heading), base29: N.toString(),
+    mod23: Number(N % 23n), mod22: exponent, finalDigit: heading.at(-1) },
+  firstBlackLine: { indices: firstBlackLine, transliteration: translit(firstBlackLine),
+    base29: M.toString(), mod23: Number(clientPublic), length: firstBlackLine.length },
+  dh23: { p: 23, base: 5, serverExponent: exponent, serverPublic: Number(serverPublic),
+    clientPublic: Number(clientPublic), sharedSecret: Number(shared) },
+  selectorControl: { scannedWindows, hits: selectorHits, redSpanDivisibleBy23 },
+  conditionalWordMap: { p18w7, sum343WordCount: sum343Words.length,
+    onlySevenRuneSum343: sum343Words.filter((x) => x.length === 7).map((x) => [x.page, x.wordNumber]),
+    p53w6, next: p18w5 },
+  dhTo27x27: { center, node: translit(node), key: translit(key), predictedStart,
+    ciphertext: translit(ciphertextBlock), decrypted: translit(decryptedBlock) },
+  conclusion: "candidate DH key derivation only; no symmetric LP2 cipher or plaintext recovered"
+}, null, 2));
