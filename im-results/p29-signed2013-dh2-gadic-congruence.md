@@ -101,6 +101,17 @@ No coherent native-GP English is recovered. The separately source-motivated **20
 
 A separate positive uses 273 authentic solved-p57 GP symbols as an input R, encrypts them as `P'=S+2G+G²R` and inverts that ciphertext, recovering **273/273** exact symbols. A one-glyph original-cipher mutation breaks the congruence. This proves the algebraic inverse works under the constructed source-motivated encoder, while leaving its historical status undecided.
 
+### Direct equal-length framed-page key test
+
+The **273 coefficients** of R happen to match the complete original rune lengths of physical **p41 and p44**, both members of the eight framed text pages preceding the numerical table. This is an additional *exploratory* source geometry, since those pages are near 273 runes by their similar typesetting and the manuscript does not say to use R as a key. Apply the sole fixed phase (both source streams start at their first rune), with the simplest candidate reversible GP29 additive pad `Pᵢ=Cᵢ±Rᵢ (mod29)`:
+
+| Physical framed page | Printed raw IoC | Subtract R IoC | Add R IoC |
+| --- | ---: | ---: | ---: |
+| p41, 273 runes | 0.033128636 | 0.033371041 | 0.033801982 |
+| p44, 273 runes | 0.034529196 | 0.035471881 | 0.034609998 |
+
+All four fixed original plaintext candidates remain near `1/29`, with no native-language recovery. The code checks the complete original re-encoding under both signs, which verifies arithmetic and is not authentication. A direct one-to-one pad use of R for these natural exact-length targets is therefore unproductive; no further phase or nonlinear operation is selected by this length coincidence.
+
 The signed 2013 example establishes values **2** and **23** as public worked-example constants; neither is authenticated as a private LP2 key. Nor does an exact original polynomial congruence establish that its 273-symbol quotient is plaintext. The direct inverse's near-uniform output is a meaningful obstruction to promoting the expression as a completed decipherment.
 
 ## Decision and next gate
