@@ -1,6 +1,6 @@
-# Signed tree-page original inverses: inner seven-square and border-seeded 2D transport
+# Signed tree-page original inverses: centered seven-square, source folding and 2D transport
 
-**Status, 11 November 2026: finite original-cipher negative.** The historically published 7×7 OpenPuff square and the source-selected 11×11 tree-page matrix give a precise 49-position experiment. Forty centered-seven standard reversible GP29 interpretations and six independent 10×10 edge-seeded difference transports fail to recover original English-like plaintext. **No unknown LP2 plaintext, authentic key, cipher mechanism or final destination was recovered.**
+**Status, 11 November 2026: finite original-cipher negative.** The historically published 7×7 OpenPuff square and the source-selected 11×11 tree-page matrix give a precise 49-position experiment. Forty direct centered-seven interpretations, sixty-six physically folded centered-seven interpretations and six edge-seeded 10×10 difference transports fail to recover original English-like plaintext. **No unknown LP2 plaintext, authentic key, cipher mechanism or final destination was recovered.**
 
 ## Why a solver might try this
 
@@ -64,6 +64,27 @@ No original variant beats any of the 1,000 matched controls. The best output beg
 
 **Reproduction:** `node sims/p32_source_axis_2d_prefix_inverse_sft.cjs`, a standalone CommonJS source asserting both source edges and the full inverse. [Exact executable](../sims/p32_source_axis_2d_prefix_inverse_sft.cjs) · [successful manual Actions run 42962185273](https://github.com/FlareZ123/liber-primus/actions/runs/42962185273), probe `tree-2d-prefix`.
 
+## Source-guided p14 FOLD → 11×11 tree → 7×7 overlay
+
+The original LP2 p14 ciphertext visibly includes the complete GP-transliterated word **FOLD**. An independent but provisional arithmetic reading of the signed 2016 sentence sends its repeated word “the” (GP-prime sum72) to p14's FOLD under `page=sum mod58; word=floor(sum/58)`. This selector remains retrospective; the earlier original-source phase null shows 19 of 58 shifted page phases also yield exactly one missing word from the full 43-word signed text. Its value here is to motivate a **physical folding test** distinct from simply extracting the inner seven square.
+
+Fold the two top and bottom rows and the two left and right columns of the 11×11 p32 tree matrix inward around its centered 7×7 square. The exact source-position map is `f(i)=1−i` for `i=0,1`; `f(i)=i−2` for `i=2..8`; `f(i)=15−i` for `i=9,10`. Every one of the **72 outer runes** maps to a 7×7 cell, with 3 source-rune overlays in each 2×2 corner, one at the other border positions and zero over the central 3×3. The 49 inner original runes are the unknown payload; the 72 retained outer rune values provide a fully known GP29 additive folding pad. No outer rune is discarded or fitted.
+
+**Frozen reversible inverse:** `P[r,c] = (C[r,c] ± Σ_outer(r,c)) mod29`, optionally also `±historical_magic[r,c] mod29` or `±Euler_phi(historical_magic[r,c]) mod29`. The historical square is the original 2014 7×7/1033 OpenPuff artifact, with eight physical rotations/reflections included rather than fitting an orientation. This gives **66 parameterized candidates**: 2 direct fold-only, plus 64 fold+magic. The same source-canonical GP alphabet, Emerson training prefix, smoothing and seven-row local trigram score as the independent 40-model centered-seven gate are used. Native English holdouts are drawn from an independent 1,000-window sequence under the exact seven-row, seven-column geometry.
+
+| 49-rune folded 7×7 interpretation | Mean row-local GP trigram score |
+|---|---:|
+| Untouched center | **−11.95613** |
+| Best direct fold only, subtract overlay | **−11.49458** |
+| Strongest of all 66, subtract overlay and original magic rotated | **−10.83740** |
+| Worst among 1,000 matched native-GP-English controls | **−9.13854** |
+| Matched native-control median | **−7.89257** |
+| Separate native English control | **−7.97761** |
+
+The best GP transliteration begins `WLOWNGWEA / UUAEAIJI / YOGSTHAN / GURATNGH / GIANSTWJ`, with no plausible plaintext. **Zero** of the 66 original variants beats even the least-English holdout. All **3,234/3,234 source interior glyphs** recover exactly under the paired forward inverse for the 66 candidate models, with their other 72 p32 glyphs preserved as key material; all **3,234/3,234 independent synthetic native-GP plant glyphs** are recovered by the same operators. This finite source motivated overlay hypothesis therefore does not produce a direct GP-English decoder. The result does not rule out nonadditive folding or any hidden author instruction that would determine a different way to combine overlaid glyphs.
+
+**Reproduction:** [`sims/p32_tree_two_ring_fold_magic_sft.cjs`](../sims/p32_tree_two_ring_fold_magic_sft.cjs), manually selected `tree-fold7` in the existing no-auto-run workflow. [Successful source-original GitHub Actions run 42964232948](https://github.com/FlareZ123/liber-primus/actions/runs/42964232948) includes all exact source mappings, positive-control inverses and control thresholds.
+
 ## Overall decision
 
-Retire literal source-aligned scalar GP29 additive/totient and standard Hill7 uses of this 2014 square on p32's centered seven-grid. Preserve the unproven visual ring alignment as an independent clue for any future source-specified operation. The broad original-cipher decoding problem remains unchanged.
+Retire the direct source-aligned GP29 scalar and Hill7 2014 square inverses, the exact two-ring additive FOLD overlays (alone or with the 2014 square), and border-initialized first-order / mixed two-dimensional prefix-sum transports under the tested natural-GP plaintext registers. Preserve the unproven visual ring alignment as an independent clue for any future source-specified operation. The broad original-cipher decoding problem remains unchanged.
