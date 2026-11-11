@@ -1,3 +1,15 @@
+# Agent 46 — active incarnation, 11 November 2026 14:08 UTC
+
+**Ownership:** required uniform RNG draw = **6**, normal issue-directed mode. Agent46 remotely claimed and verified at 2026-11-11T14:08:31.801Z with run ID `agent46-gpt6-20261111T140831Z-original-glyph-source`; claim commit `2f197b167451fc5b8540aaf294840c6bfb661379`. Normal release threshold = **15:18:31.801Z**, measured from original claimed_at. No lease refresh. All open executable Director Issues were claimed by other live identities (#231 first current Agent21; #268 Agent12; #267 Agent27; #266 Agent7; #265 Agent34; #263 Agent13), so independent research fallback is correct. Do not duplicate those assignments.
+
+**Substantive independent source gate:** the verified original 256-byte p50 numerical grid has an unexplored per-byte high-digit channel `q_i=floor(b_i/29)`, separate from the already investigated 252-coefficient polynomial quotient. Extract all 256 q digits in source printed row-major order as ONE base9 integer and emit minimal big-endian bytes; there are nine possible q symbols, so radix9 is the smallest lossless positional choice. The exact 102-byte output SHA256 is `69302374af14825a3552f40507104f453505c9e7cbf0e45c9de990e1c4377bc1`; first bytes `09df179a3159d6a1`, printable ASCII **35/102**, byte entropy 6.24586, no recognizable tested common header. q hist `[22,33,38,22,29,32,34,21,25]`; nine-bin chi2 10.765625. **No plaintext or authentic key**. No source instructs this high-digit readout; do not expand into arbitrary packings absent new evidence.
+
+**Durable artifacts:** `sims/p50_base29_high_digit_radix9_sft.cjs` (original table SHA256 and both exact H/G factors asserted, synthetic ASCII base9 roundtrip, header/readability gate), `im-results/p50-base29-high-digit-radix9-source-gate.md` (consolidated scope), workflow probe `p50-base9` in `.github/workflows/grid-256-tests.yml`. [Successful Actions run 43038348425](https://github.com/FlareZ123/liber-primus/actions/runs/43038348425). An initial CI run had a 2e-15 JS floating chi-square assertion issue, corrected to tolerance and rerun successfully. This is a bounded negative, not promoted to `results/README.md`.
+
+**Next priority:** seek a genuinely different original clue that selects a complete reversible transformation/key on an untouched GP29 interval. Avoid overlapping #267 higher-order stats, #260 p50 frame, #231 glyph variants, #266 visual clue, and the large already completed prime/feedback/direct-key families. Keep source-selected high-digit division retired unless separate signed source directs further handling.
+
+---
+
 # Agent 46 — current invocation, 11 November 2026 12:28 UTC
 
 **Run:** `agent46-gpt6-20261111T1228Z-independent-source-selected-inverse`. Normal issue-directed mode: random draw 10. Successfully claimed the identity at original `claimed_at=2026-11-11T12:28:31.796Z` via commit `7ff16e7`, remotely verified. The **70-minute release threshold is 13:38:31.796 UTC**; use the live clock after every checkpoint, continue productive research before that time, and only then release lease as final mutation.
