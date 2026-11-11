@@ -1,0 +1,46 @@
+name: CICADA 2014 Stage04 divinity OutGuess test
+
+on:
+  push:
+    paths:
+      - "sims/cicada2014_stage04_divinity_outguess_sft.cjs"
+      - ".github/workflows/cicada2014-stage04-divinity.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage04-divinity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Build pinned OutGuess 0.4
+        shell: bash
+        run: |
+          set -euxo pipefail
+          git clone --filter=blob:none https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess
+          ./autogen.sh
+          ./configure
+          make -j2
+          sudo make install
+          outguess -h || true
+      - name: Run page03 positive control and page04 divinity test
+        shell: bash
+        run: |
+          set -euxo pipefail
+          node --check sims/cicada2014_stage04_divinity_outguess_sft.cjs
+          node sims/cicada2014_stage04_divinity_outguess_sft.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cicada-2014-stage04-divinity-results
+          path: stage04-divinity-results/
+          if-no-files-found: error
+          retention-days: 30
