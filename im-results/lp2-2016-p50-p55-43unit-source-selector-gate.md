@@ -123,7 +123,24 @@ The [reproducer](../sims/p32_p55_43symbol_outguess_bridge.cjs) freezes only two 
 
 None of the outputs is plaintext. Even the best language score (the wrong **Seeding** role with literal GP-Latin and \(C+K\)) remains strongly non-linguistic. More literally, OutGuess encrypts carrier bytes by XOR: direct XOR of the p55 rune ordinals with the same ARC4 bytes leaves only **3–6 of 43** outputs inside the valid GP29 range across the four password/role combinations. A direct byte-XOR plaintext must produce 43/43 valid rune ordinals, so the literal OutGuess byte operation also fails without an additional, unsourced transform. The source-authenticated OutGuess generator therefore does not rescue this particular 43↔43 key/target pairing.
 
-**Decision:** retire these eight direct OutGuess ARC4-derived GP29 variants. This does not falsify the p32 route as a selector, the p55 interior extraction, or other source-selected key representations/operations. Do not expand into arbitrary password encodings or phases. The direct additive and OutGuess results together leave no supported reversible operation between these two 43-rune streams.
+### Seven-rune p32 word-center output as an alternative OutGuess password (bounded negative)
+
+The separate [p32 word-center route](p32-wordcenter-compass-route.md) produces the seven-rune sequence **W A B X NG M O**, transliterated **WABXNGMO**. This is another source-derived candidate password, distinct from the 43-rune compass output above. The same OutGuess KDF/ARC4 was tested with the literal GP-Latin password and its base29 integer (**4668414261**), both documented roles, and both GP29 additive signs.
+
+| Password | OutGuess role | Operation | IoC | Emerson-GP language score | Direct XOR values in GP29 range |
+|---|---|---|---:|---:|---:|
+| WABXNGMO | Encryption | \(C-K\) | 0.036545 | −6.214672 | 3/43 |
+| WABXNGMO | Encryption | \(C+K\) | 0.029900 | −6.845121 | 3/43 |
+| WABXNGMO | Seeding | \(C-K\) | 0.038760 | −5.322053 | 8/43 |
+| WABXNGMO | Seeding | \(C+K\) | 0.031008 | −7.297088 | 8/43 |
+| Base29 integer | Encryption | \(C-K\) | 0.025471 | −5.471394 | 5/43 |
+| Base29 integer | Encryption | \(C+K\) | 0.035437 | −6.882319 | 5/43 |
+| Base29 integer | Seeding | \(C-K\) | 0.033223 | −6.778547 | 3/43 |
+| Base29 integer | Seeding | \(C+K\) | 0.032115 | −6.476995 | 3/43 |
+
+No variant recovers plaintext. The best score, −5.322053, uses the wrong **Seeding** role and remains non-linguistic. Direct byte-XOR also produces at most 8/43 valid GP29 symbols, rather than the 43/43 required. This rejects only these two representations of the seven-rune word-center output as an OutGuess password.
+
+**Decision:** retire the eight compass-key and eight word-center-key OutGuess ARC4-derived GP29 variants. This does not falsify the p32 route as a selector, the p55 interior extraction, or other source-selected key representations/operations. Do not expand into arbitrary password encodings or phases. The direct additive and OutGuess results together leave no supported reversible operation between these two 43-rune streams.
 
 ## Exact missing selector
 
