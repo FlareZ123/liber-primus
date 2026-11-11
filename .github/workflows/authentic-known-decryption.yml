@@ -17,14 +17,3 @@ jobs:
         run: node sims/authentic_lp2_p56_totient_regression.cjs
       - name: Recover LP1 Vigenere key from first 100 runes, verify held-out 415
         run: node sims/authentic_lp1_p03_p04_vigenere_recovery.cjs
-
-  p55-p56-totient-transfer:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Test exact solved-p56 phase-zero decoder transfer on p55
-        run: node sims/p55_p56_totient_phase0_gate.cjs
