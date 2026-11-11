@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * Original LP2 printed-word-length source fingerprint, seven historically
+ * Original LP2 printed-word-length source fingerprint, eight historically
  * relevant English-language texts. Standalone CommonJS single-file test.
  *
  * This is an exact copied-text detector: it assumes ciphering preserves
@@ -22,7 +22,8 @@ const sourceFiles = [
   "resources/external/blake-marriage-1906-gutenberg45315.txt",
   "resources/external/2013-book-of-law-I.txt",
   "resources/external/2013-book-of-law-II.txt",
-  "resources/external/2013-book-of-law-III.txt"
+  "resources/external/2013-book-of-law-III.txt",
+  "resources/liber-primus/lp1-plaintext-reference.txt"
 ];
 const sectionText = read("resources/lp2-transcription.txt").split("$").slice(0, 8);
 /** @param {string} text */
@@ -55,9 +56,9 @@ const englishWords = text => text.toUpperCase().match(/[A-Z]+/g) || [];
  *
  * @param {number[][]} targets
  * @param {string[]} sourceWords
+ * @param {number} anchorLength
  */
-function scan(targets, sourceWords) {
-  const anchorLength = 9;
+function scan(targets, sourceWords, anchorLength = 9) {
   const index = new Map();
   for (let section = 0; section < targets.length; section++) {
     const target = targets[section];
@@ -93,9 +94,10 @@ function scan(targets, sourceWords) {
   return {totalSourceWords: sourceWords.length, anchorHits: hits, best};
 }
 const result = sourceFiles.map(file => ({
-  file, ...scan(sections, englishWords(read(file)))
+  file, ...scan(sections, englishWords(read(file)),
+    file.endsWith("lp1-plaintext-reference.txt") ? 7 : 9)
 }));
-assert.deepEqual(result.map(x => x.best.n), [9, 9, 9, 0, 0, 0, 0]);
+assert.deepEqual(result.map(x => x.best.n), [9, 9, 9, 0, 0, 0, 0, 7]);
 
 const controlSource = englishWords(read(sourceFiles[1]));
 const expectedControl = controlSource.slice(300, 360).map(gpWordLength);
@@ -108,5 +110,5 @@ console.log(JSON.stringify({
   model: "exact copied English GP29 phrase with intact word boundaries",
   sources: result,
   positivePlantedWordsRecovered: positive.best.n,
-  conclusion: "No verbatim GP-tokenized source phrase of length >=10 words occurs in the seven searched sources under this precise model. Paraphrase, word changes, other plaintext languages, and plaintext-independent spacing are untested."
+  conclusion: "No verbatim GP-tokenized source phrase of length >=10 words occurs in the seven literary sources, and no eight-word exact match from the authorial LP1 plaintext source under this precise model. Paraphrase, word changes, other plaintext languages, and plaintext-independent spacing are untested."
 }, null, 2));
