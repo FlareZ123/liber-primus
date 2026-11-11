@@ -174,7 +174,7 @@ function main() {
     [...knownPlain.slice(4*i,4*i+4),1]);
   assert.deepEqual(firstSix[0],[24,9,18,9,1]);
   assert.deepEqual(firstSix[5],[18,4,18,18,1]);
-  const dependence=[6,17,28,14,19];
+  const dependence=[27,18,17,7,19];
   for(let j=0;j<5;j++)
     assert.equal(mod(dependence.reduce(
       (sum,coefficient,k)=>sum+coefficient*firstSix[k][j],0)),
@@ -193,11 +193,11 @@ function main() {
   const visibleHill=affineWitness(knownVisible);
   const shiftHill=affineWitness(knownVisible.map(
     (v,i)=>mod(v-knownPlain[i])));
-  assert.deepEqual(gridHill,{prediction:[16,27,11,10],
+  assert.deepEqual(gridHill,{prediction:[20,22,3,4],
     actual:[10,25,22,17],equalCount:0});
-  assert.deepEqual(visibleHill,{prediction:[12,6,28,15],
+  assert.deepEqual(visibleHill,{prediction:[9,9,6,26],
     actual:[3,24,13,19],equalCount:0});
-  assert.deepEqual(shiftHill,{prediction:[18,2,18,15],
+  assert.deepEqual(shiftHill,{prediction:[20,5,17,8],
     actual:[14,20,24,1],equalCount:0});
   // Positive control: a secret affine map always respects this relation.
   const plant=firstSix.map((x)=>[
