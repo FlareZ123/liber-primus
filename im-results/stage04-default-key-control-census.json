@@ -1,0 +1,88 @@
+{
+  "extractor": "repository sims/outguess_extract.py + sims/outguess_bitmap_dump.c; source-faithful OutGuess 0.4 retrieval implementation",
+  "historical_default_key": "Default key",
+  "historical_version_note": "The preserved 2014 command is outguess -r without -k; the exact historical binary version is not pinned. OutGuess 0.2.x source declares the built-in key as 'Default key'.",
+  "archive": "resources/liber-primus/00.jpg through 74.jpg (75 images)",
+  "summary": {
+    "archive_images": 75,
+    "extracted": 29,
+    "rejected": 46,
+    "lp2_scan_range": "17.jpg-74.jpg",
+    "lp2_images": 58,
+    "lp2_extracted": 16,
+    "lp2_rejected": 42,
+    "lp2_rejection_reasons": {
+      "zero skip modulus": 39,
+      "length exceeds bitmap": 3
+    },
+    "lp2_58152_family": {
+      "count": 16,
+      "pages": [
+        17,
+        21,
+        43,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        68,
+        69,
+        70,
+        71
+      ],
+      "header_hex": "c0a128e3",
+      "seed": 41408,
+      "length": 58152,
+      "common_payload_prefix_bytes": 1417,
+      "common_payload_suffix_bytes": 1554,
+      "payload_entropy_bits_per_byte_range": [
+        7.996411,
+        7.997115
+      ],
+      "payload_printable_fraction_range": [
+        0.380847,
+        0.387313
+      ],
+      "recognized_payload_magic": []
+    },
+    "valid_output_length_counts": {
+      "140": 1,
+      "1234": 4,
+      "2899": 3,
+      "7524": 1,
+      "31809": 1,
+      "58152": 19
+    },
+    "page03_positive_control": {
+      "length": 31809,
+      "seed": 127,
+      "payload_git_blob_sha1": "2a355d1bf14d37041384f09d8700e2ee274a13e6",
+      "payload_sha1": "d888836fdaa6512f803512eb9cf20d3c6ee1ff82",
+      "payload_sha256": "a14c1e144760c361a39da41e4784a9a22a3ce490baf42d9eb99b37feab8a47c1",
+      "payload_prefix_hex": "2d2d2d2d2d424547494e20504750205349474e4544204d4553534147452d2d2d2d2d"
+    },
+    "page04_target": {
+      "length": 7524,
+      "seed": 38370,
+      "payload_git_blob_sha1": "d738b052bf0548e2f431e231af7ef1514becb4ad",
+      "payload_sha1": "18b50380fcd1ac5133fbc418b5d17f869da93aa0",
+      "payload_sha256": "35d31e61275c6b0420e7729161d5f6272122ea7edb87076fe84f3fe3c70af6db",
+      "payload_entropy_bits_per_byte": 7.978326,
+      "payload_printable_fraction": 0.385566,
+      "payload_max_printable_run": 8,
+      "payload_unique_byte_values": 256,
+      "payload_magic": [],
+      "unique_7524_byte_output_across_75_images": true
+    },
+    "page05_control": {
+      "status": "rejected",
+      "error": "OutGuess length exceeds bitmap: 58152 > 47198"
+    }
+  },
+  "interpretation": "Page04 is a reproducible, unique 7,524-byte default-key extraction across the 75-image archive and is not part of the common LP2 58,152-byte noise-like family. It remains opaque and is not authenticated as intentional payload or an LP2 key; do not interpret it further without a source-selected consumer."
+}

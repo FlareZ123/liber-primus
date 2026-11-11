@@ -1,6 +1,19 @@
 # Agent 2 — current incarnation handoff
 
-## 2026-11-11 independent research (random draw 8; issue queue exhausted)
+## Current run: Stage04 default-key census (2026-11-11; normal mode draw 9; Issue #385)
+
+- Run ID: agent2-gpt6-20261111T225647Z-stage04-outguess-controls
+- Original lease: 2026-11-11T22:56:47.784Z; mandatory normal release threshold: 2026-11-12T00:06:47.784Z. Do not refresh. After every checkpoint, compare the original lease timestamp to the real clock; continue research until the measured 70-minute threshold.
+- The initial uniform RNG draw was 9 (normal research mode). The six open director-task Issues were all claimed, blocked, or waiting; after successfully claiming Agent2, I reclaimed Issue #385 when its previous Agent2 claim had become stale.
+- **Default-key OutGuess census completed:** OutGuess 0.2.x source identifies the built-in key as Default key; the preserved 2014 outguess -r command omits -k, but does not pin the exact binary version. The repository's source-faithful 0.4 retrieval implementation reproduces the page-03 PGP file exactly (Git blob SHA-1 2a355d1bf14d37041384f09d8700e2ee274a13e6) and the page-04 object exactly (Git blob SHA-1 d738b052bf0548e2f431e231af7ef1514becb4ad).
+- Complete 75-image census: 29 completed default-key extractions, 46 rejected. The 58 LP2 scans (17–74) yield 16 completed extractions and 42 rejections. All 16 LP2 outputs are one noise-like family: seed 41408, length 58,152, common 1,417-byte payload prefix and 1,554-byte suffix, 7.996411–7.997115 bits/byte, 0.380847–0.387313 printable fraction, no recognized file magic. The pages are 17, 21, 43, 57–65, and 68–71. No LP2 scan yields 7,524 bytes.
+- Page04 is unique by output length across all 75 images (seed 38370, 7,524 bytes, SHA-1 18b50380fcd1ac5133fbc418b5d17f869da93aa0, SHA-256 35d31e61275c6b0420e7729161d5f6272122ea7edb87076fe84f3fe3c70af6db). Full-payload entropy is 7.978326 bits/byte, printable fraction 0.385566, maximum printable run 8, and no recognized magic. It is distinct from the LP2 noise-like family but not authenticated as an intentional payload; preserve it as unclassified and do not use it as LP2 key material absent a source-selected consumer.
+- **Tool correction:** the OutGuess header is separately decoded as header_hex; the first four bytes of the returned payload are file data (page03 begins ---- and the full payload matches the preserved PGP file). payload[4:] is only a post-four-byte diagnostic substring. Corrected sims/outguess_extract.py so magic/OpenPGP checks inspect the complete payload and the post-four-byte metrics remain explicitly diagnostic.
+- Reproducible artifacts: sims/stage04_default_key_control_census.py, im-results/stage04-default-key-control-census.json, and the updated im-results/cicada2014-stage04-256-p50-direct-identity-gate.md. Next independent lead after closing #385: inspect the 2,899-byte PGP-armored hex outputs extracted from archive pages 00–02 and compare their decoded 256-byte values against the 2014 Stage04 1033/512.raw objects; do not assume identity before exact hash comparison.
+
+
+
+## Previous incarnation (2026-11-11 independent research; random draw 8; issue queue exhausted)
 
 - Run ID: `agent2-gpt6-20261111T191341Z-independent-base29-historical-table`
 - Original lease: `2026-11-11T19:13:41.192Z`; mandatory normal release threshold: `2026-11-11T20:23:41.192Z`. Do not refresh. At checkpoint 2026-11-11T19:38:04Z the measured lease age was about 24m23s; continue after each checkpoint until the 70-minute threshold.

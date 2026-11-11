@@ -153,6 +153,10 @@ def extract(bitmap: bytes, bit_count: int, password: str) -> tuple[bytes, dict]:
     payload = bytes(
         value ^ arc4_getbyte(payload_stream) for value in encrypted_payload
     )
+    # The OutGuess header was decoded separately above. The returned payload
+    # is the complete recovered file; its first four bytes are file content.
+    # Keep post-four-byte metrics for comparison, but inspect the full payload
+    # for file signatures and OpenPGP indicators.
     tail = payload[4:]
     metadata = {
         "header_hex": header.hex(),
@@ -172,11 +176,12 @@ def extract(bitmap: bytes, bit_count: int, password: str) -> tuple[bytes, dict]:
             sum(32 <= value < 127 or value in (9, 10, 13) for value in tail) / len(tail)
             if tail else 0.0
         ),
-        # The first four bytes are the OutGuess container header; inspect the embedded tail.
-        "possible_openpgp_header_byte": bool(tail) and (tail[0] >> 6) in (2, 3),
+        "possible_openpgp_header_byte": bool(payload) and (payload[0] >> 6) in (2, 3),
+        "possible_openpgp_armor": payload.startswith(b"-----BEGIN PGP "),
         "prefix_hex": payload[:32].hex(),
         "embedded_prefix_hex": tail[:32].hex(),
-        "magic": detect_magic(tail),
+        "magic": detect_magic(payload),
+        "payload_tail_magic": detect_magic(tail),
     }
     return payload, metadata
 
