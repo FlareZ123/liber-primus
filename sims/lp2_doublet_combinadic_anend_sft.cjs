@@ -156,7 +156,7 @@ for (const [order, rank] of [["colex", colex], ["lex", lex]]) {
   const longHex = rank.toString(16).padStart(93 * 2, "0");
   const directMatches = {
     exact512bitInteger: rank === target,
-    high512bits: (rank >> BigInt(741 - 512)) === target,
+    high512bits: (rank >> BigInt(rank.toString(2).length - 512)) === target,
     low512bits: (rank & ((1n << 512n) - 1n)) === target
   };
   const digests = [];
