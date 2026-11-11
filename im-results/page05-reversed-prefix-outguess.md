@@ -1,8 +1,8 @@
-# LP2 page 05: reversed-prefix artifact and OutGuess probe
+# LP1 physical page 05: reversed-prefix artifact and OutGuess probe
 
 **Classification:** intermediate artifact finding / bounded negative; no plaintext recovered.  
 **Date:** 2026-11-11.  
-**Input:** original `resources/liber-primus/05.jpg` from the supplied 75-image collection.
+**Input:** original `resources/liber-primus/05.jpg` from the supplied 75-image collection. This is **LP1 physical page 05**, not LP2 page 05: the 75-image archive contains LP1 physical pages 00–16 followed by LP2 pages 00–57 as files 17–74. The workflow and script retain legacy `lp2` filenames for run-history continuity.
 
 ## Artifact structure
 
@@ -25,7 +25,7 @@ A pinned build of the reference C OutGuess 0.4 implementation was used, with its
 - [Successful workflow run](https://github.com/FlareZ123/liber-primus/actions/runs/42936210151)
 - OutGuess source commit: `24810e14327c2bbeedeaadd3e24491f2a4425c02`
 
-Page **00** is the positive control: default-key retrieval yields a **2,899-byte PGP-signed message**. This confirms that the C extractor build and its JPEG handler work on a known carrier in this collection.
+LP1 physical page **00** is the positive control: default-key retrieval yields a **2,899-byte PGP-signed message**. This confirms that the C extractor build and its JPEG handler work on a known carrier in this collection.
 
 Page **05** produces no valid default-key payload:
 

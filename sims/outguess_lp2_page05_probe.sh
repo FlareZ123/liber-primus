@@ -104,7 +104,7 @@ keys=(
 : > "$OUT/keyed-key-map.tsv"
 printf 'index\tkey\texit\tbytes\tgpg_packet\n' >> "$OUT/keyed-results.tsv"
 index=0
-for key in "\${keys[@]}"; do
+for key in "${keys[@]}"; do
   index=$((index+1))
   printf -v label 'matrix-key-%02d' "$index"
   output="$OUT/$label.out"
