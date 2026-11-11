@@ -105,6 +105,26 @@ const words = clear.match(/[A-Za-z]+/g) || [];
 assert.equal(words.length,43);
 assert.equal(words[12].toLowerCase(),"the");
 assert.equal(words[23].toLowerCase(),"road");
+
+ // Known solved p57 words in printed order. The 20-word model includes the red title;
+ // the 19-word alternative excludes it.
+ const p57PlaintextWords = ["PARABLE","LIKE","THE","INSTAR","TUNNELING","TO","THE","SURFACE","WE","MUST","SHED","OUR","OWN","CIRCUMFERENCES","FIND","THE","DIVINITY","WITHIN","AND","EMERGE"];
+ assert.equal(p57PlaintextWords.length,20);
+ function directWordAddress(modulus, wordList) {
+   return Array.from({length:55},(_,pageIndex)=>{
+     const values=interior(pageIndex).map((i)=>corpus.prime[i]);
+     const core=centerFive(values).values;
+     const sum=core.reduce((a,b)=>a+b,0);
+     const remainder=sum%modulus;
+     const oneBased=remainder===0?modulus:remainder;
+     const physicalPage=pageIndex>=50?pageIndex+1:pageIndex;
+     return {physicalPage,sum,remainder,index:oneBased,word:wordList[oneBased-1]};
+   });
+ }
+ const direct20=directWordAddress(20,p57PlaintextWords);
+ const direct19=directWordAddress(19,p57PlaintextWords.slice(1));
+ assert.equal(direct20.find((x)=>x.physicalPage===55).word,"PARABLE");
+ assert.equal(direct19.find((x)=>x.physicalPage===55).word,"THE");
 console.log(JSON.stringify({
   p55:{completeWords:p55Words.length,interiorCount:p55.length,centerOffset:core.start,
     centralIndices:core.values,primeWeights:weights,sum,base29:digits,output:text},
@@ -114,5 +134,11 @@ console.log(JSON.stringify({
     signed2016Words13and24:[words[12],words[23]]},
   controls:{p56:p56Text,p57:p57Text,p55SubsetNull:p55Null.p,
     p55SubsetCount:p55Null.count,p55SubsetTotal:p55Null.total,
-    familywiseAnyPageCenterSum401:familywise}
+    familywiseAnyPageCenterSum401:familywise},
+  directP57WordAddress:{
+    model20Sequence:direct20.map((x)=>x.word).join(" "),
+    model19Sequence:direct19.map((x)=>x.word).join(" "),
+    p55Model20:direct20.find((x)=>x.physicalPage===55),
+    p55Model19:direct19.find((x)=>x.physicalPage===55)
+  }
 },null,2));
