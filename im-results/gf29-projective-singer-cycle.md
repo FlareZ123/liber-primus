@@ -1,58 +1,89 @@
-# GF(29²) projective Singer-cycle inversion test
+# GF(29²) projective cycle and 13-dot marker alignment
 
-**Classification (10 November 2026):** bounded, source-motivated cipher-family test. The field arithmetic is exact; the selected use as a cipher is conjectural. No unknown LP2 plaintext, authentic key, or continuation has been recovered.
+**Classification (11 November 2026):** the field construction and its 30-state projective orbit are exact. A newly identified source-order correspondence maps the 30 unique thirteen-dot marker sites onto that orbit, but the intended use remains unproved. Direct substitution, additive-key, and the tested grid-row IV uses do not recover LP2 plaintext.
 
-## Source-derived construction
+## Source-derived field construction
 
-The two three-rune red inscriptions are p3 `[13,23,2]` and p39 `[27,5,15]`, both at local offset 119. The p3 polynomial defines
-[
-u^2=3u+8 quad	ext{over } mathrm{GF}(29),
-]
-and the independently printed grid has the cross-triad root
-[
-z=23+27u.
-]
-The existing exact field study establishes that (z) is primitive of order 840 in (mathrm{GF}(29^2)^	imes). Multiplication by (z) on coefficient pairs ((a,b)) is therefore the fixed linear map
-[
-(a,b)mapsto(23a+13b,;27a+17b),
-qquad
-M=egin{pmatrix}23&13\27&17end{pmatrix}pmod{29}.
-]
-Its determinant is 11, and (M^{30}=11I). Quotienting the 840-element multiplicative group by the 28-element scalar subgroup gives a **30-cycle** on the projective line (mathbf P^1(mathrm{GF}(29))): 29 finite points plus infinity. Starting at the separately marked Ac coordinate 24 gives the exact orbit
-[
-24,22,13,4,2,9,12,25,27,15,26,19,20,16,21,8,23,infty,
-3,18,5,10,6,7,0,11,28,1,14,17.
-]
-This offers a compact, source-linked 30-state interpretation of the 29-rune alphabet plus one distinguished state. It is not evidence that Cicada intended this quotient.
+The two three-rune red inscriptions are p3 `[13,23,2]` and p39 `[27,5,15]`, both at local offset119. The p3 polynomial gives `u² = 3u + 8` over GF(29), and the independently printed grid has the cross-triad root `z = 23 + 27u`. Multiplication by `z` is the exact linear map
 
-## Reversible candidates tested
+```text
+M0 = [[23,13],
+      [27,17]]  (mod 29)
+```
 
-Two minimal uses of the fixed projective action were tested against all 12,956 original unknown runes on 55 rune-bearing pages:
+`z` is primitive of order840 in GF(29²)×. The matrix has determinant11 and `M0^30 = 11 I`. Quotienting by the 28 nonzero scalar elements gives a projective action of order30 on `P¹(GF(29))`, consisting of the 29 finite coordinates and infinity.
 
-1. **30-phase projective substitution.** For each phase (j=0,ldots,29), apply (M^j) to the 29 finite alphabet points. To obtain a 29-symbol permutation, delete infinity from the domain and codomain and close the unique missing edge: the finite pole maps to the projective image of infinity. This gives a bijection on (mathrm{GF}(29)) at every phase. Test direct GP coordinates and the source-motivated Ac=24 translation, forward and reverse action, and book-continuous or physical-page-reset clocks (**8 variants**).
-2. **30-step additive key.** Iterate the projective orbit from Ac=24 and use its finite coordinates as an additive GP29 key; infinity maps to zero. Test GP-index, Ac-centred, prime-mod-29 and (phi(	ext{prime}))-mod-29 projections, both signs, forward/reverse orbit, and book/page clocks (**32 variants**).
+The separately marked Ac coordinate24 on p54 fixes the start. In the established chart `x=a/b`, the exact forward orbit is
 
-No key phase, alphabet permutation, start offset, or language-selected parameter was fitted. Every declared inverse exactly re-encrypts the original ciphertext, and every per-phase projective map is asserted to be a bijection. These round trips verify the implementations, not the authenticity of the key derivation.
+```text
+24,22,13,4,2,9,12,25,27,15,26,19,20,16,21,8,23,∞,
+3,18,5,10,6,7,0,11,28,1,14,17
+```
 
-## Original-input result
+This is a source-linked 30-state interpretation of the 29-rune alphabet plus one distinguished state. It is not, by itself, evidence that Cicada intended this quotient.
 
-The scoring reference is the repository's solved LP1/LP2 plaintext file, greedily tokenized into the 29-symbol GP alphabet. Editorial continuation lines and the long hexadecimal hash are excluded. The first 80% (2,570 GP symbols) trains a smoothed trigram model; the final 643 symbols are held out. This small source reference is a descriptive language control, not a discovery-adjusted statistical test.
+## New source-order correspondence: thirteen-dot markers
 
-| Stream | IoC | Top-12 symbol mass | GP trigram log score (nats/rune) |
-|---|---:|---:|---:|
-| Solved-reference holdout | 0.0651250 | 0.807154 | −8.41667 |
-| Original unknown LP2 | 0.0344784 | 0.429762 | −11.07314 |
-| Best projective substitution (Ac-centred, forward, page reset) | 0.0344680 | 0.430534 | −11.05375 |
-| Best additive orbit key (forward (phi(p)mod29), negative sign, page reset) | 0.0344876 | 0.432927 | −11.05264 |
+The ink annotation corpus contains **31 thirteen-dot marker layers at 30 distinct (page, offset) sites**. The duplicated site is p7:194, where the black layer is listed before the red layer. In source order, the 30 unique sites receive the 30 orbit states above:
 
-The best variants improve the raw ciphertext's trigram score by only about **0.02 nats/rune**. Their IoC and top-12 mass remain at the uniform-ciphertext level, not the solved-reference range. The recovered strings are incoherent; there is no sustained plaintext passage or independently predicted word.
+| Site | State | Site | State |
+|---|---:|---|---:|
+| p0:13 | 24 | p2:201 | 22 |
+| p3:16 | 13 | p3:119 | 4 |
+| p3:122 | 2 | p6:71 | 9 |
+| p6:82 | 12 | p7:194 | 25 |
+| p7:208 | 27 | p14:137 | 15 |
+| p15:0 | 26 | p15:9 | 19 |
+| p15:20 | 20 | p22:131 | 16 |
+| p23:16 | 21 | p26:265 | 8 |
+| p27:19 | 23 | p32:121 | ∞ |
+| p33:10 | 3 | p33:91 | 18 |
+| p33:99 | 5 | p39:119 | 10 |
+| p39:122 | 6 | p39:240 | 7 |
+| p53:179 | 0 | p54:9 | 11 |
+| p55:76 | 28 | p56:5 | 1 |
+| p56:85 | 14 | p57:7 | 17 |
 
-## Decision and scope
+Several cross-anchors are exact:
 
-This test retires the **fixed 30-phase projective permutation completion** and the **direct additive key streams** generated by the p3/p39 primitive element under the explicit conventions above. Do not rerun them with cosmetic phase offsets, arbitrary output relabelings, or more language-selected variants.
+- The orbit starts at Ac24 on p54.
+- The p7:194 black/red overprint is state25. p0's second red-word prime sum is315, and `315 mod 29 = 25`.
+- The following site p7:208 is state27, matching the first rune of the p39 red triad.
+- The p32:121 site is infinity; p32 is the 121-rune (`11²`) tree page.
+- The p55:76 site is state28, matching p0's first red-word prime sum: `347 mod 29 = 28`.
 
-It does **not** exclude a nonlinear GF(29²) state update, a quotient-pair-driven transducer with independently specified state recovery, a different intermediate register, or a distinct source-selected use of the 840-state field. The exact field root remains an interesting clue, but this simple projective quotient does not decrypt LP2.
+This is a **candidate marker-to-projective-state map**, not an independently proven instruction. The 30=|P¹(GF(29))| count alone is not sufficient; the cross-anchors make the correspondence worth investigating, but the mapping still needs an intended operation that predicts something beyond the selected sites.
 
-**Reproducer:** [`sims/gf29_projective_singer_cycle_probe.cjs`](../sims/gf29_projective_singer_cycle_probe.cjs), run with `node sims/gf29_projective_singer_cycle_probe.cjs`. It reads only the canonical corpus and solved reference already in `resources/`, asserts the 30-cycle and bijective maps, evaluates all 40 variants, and asserts exact original reencryption.
+## Mapping the 32 red fragments to the 32 grid rows
 
-**Related source result:** [Consolidated primitive 840-state field study](lp2-red-triad-primitive-840-phase-gate.md) and [earlier scalar-feedback study](red-triad-gf841-840-phase-gate.md).
+The 31 marker layers partition the 225 red-rune events into 32 fragments. Pair each fragment with its right-hand marker layer. The 30 unique projective states map to grid rows 0–29 (infinity maps to row29); the black duplicate layer at p7:194 receives extra row30; the trailing fragment receives row31. This produces the complete source-order fragment-to-grid-row permutation:
+
+```text
+[24,22,13,4,2,9,12,30,25,27,15,26,19,20,16,21,
+ 8,23,29,3,18,5,10,6,7,0,11,28,1,14,17,31]
+```
+
+The first 28 fragments cover the 12,956 unknown runes through p55:76 and use rows `[24,22,13,4,2,9,12,30,25,27,15,26,19,20,16,21,8,23,29,3,18,5,10,6,7,0,11,28]`. The remaining four fragments use rows `[1,14,17,31]`, corresponding to the p56/p57 markers and the trailing fragment. This is a compact way to align the marker sequence, the 32 fragments, and the 32×8 table without searching for a row permutation.
+
+## Cipher tests and negative result
+
+The existing direct tests remain negative:
+
+1. **30-phase projective substitution:** 8 variants over all 12,956 unknown runes, testing the finite-point completion, direct and Ac-centred coordinates, forward/reverse action, and continuous/page-reset clocks.
+2. **30-step additive orbit key:** 32 variants, testing GP-index, Ac-centred, prime-mod-29 and totient-prime-mod-29 projections, both signs, forward/reverse orbit, and continuous/page-reset clocks.
+
+Neither produces a coherent passage. The best previous trigram scores improve on raw ciphertext by only about0.02 nats/rune; IoC and top-12 symbol mass remain at ciphertext levels. Do not repeat these fixed families with cosmetic offsets or language-fitted parameters.
+
+The new marker-to-row map was then tested as a **per-fragment grid-row IV schedule** for all 28 unknown fragments. `sims/projective_marker_gridrow_nonce_probe.cjs` ran 256 variants: four fragment-length key orders, four row/zero IV layouts, AES-256-CTR and ChaCha20, additive and predecessor-exclusion families, both signs, and both pad projections. The best normalized IoCs were only about1.027 on the training segment and1.026 on heldout, versus a planted-control value of2.077; output prefixes remained incoherent. Thus this particular direct key/IV use is rejected. It does not invalidate the marker-state correspondence as a possible map or routing instruction.
+
+## Decision and next useful question
+
+Do not rerun the direct projective substitution, additive orbit, or the 256 tested row-IV variants. The useful unresolved question is **what operation does the source-order projective state sequence prescribe?** A worthwhile continuation must derive a fixed transformation of the 32 fragments or grid from the marker states and then make a held-out prediction. Arbitrary row permutations, extra key layers, or more cipher-mode sweeps are not justified.
+
+**Reproducers:**
+
+- `sims/gf29_projective_singer_cycle_probe.cjs` — field construction, 30-cycle, direct substitution and additive tests.
+- `sims/projective_marker_gridrow_nonce_probe.cjs` — marker deduplication, source-order state assignment, 32-row mapping, and the 256-variant negative IV test.
+- GitHub Actions run: https://github.com/FlareZ123/liber-primus/actions/runs/42944677668
+
+**Related studies:** `lp2-red-triad-primitive-840-phase-gate.md`, `red-triad-gf841-840-phase-gate.md`, and `red-256-event-grid-correspondence.md`.
