@@ -1,5 +1,8 @@
 # The 2013 BASE29 3301 example is an exact LP2 numerical-grid quadratic factor
 
+> **Command-provenance correction (11 November 2026):** the contemporaneous 2013 Twisted witness authenticates a participant-built BASE29/DH/NEXT service, not the first-onion NUMBER/PRIMES/count grammar. The NUMBER operation used below comes from later-preserved transcripts and a reconstructed server.py; no original first-onion server or raw NUMBER session is preserved. Treat NUMBER-based steps as secondary arithmetic hypotheses, not contemporaneous 2013 instructions.
+>
+
 **Classification (11 November 2026): exact, newly connected historical-source-to-original-manuscript polynomial identity. No unsolved LP2 plaintext, authentic encryption key or cipher reconstruction.** The equation is reproducible directly from the 2013 archival source example and the 256 original transcribed grid bytes. The interpretation as an intended solve instruction remains open.
 
 ## Previously unconnected historical input
@@ -97,9 +100,9 @@ Sending line: '03 DATA 1067'
 
 The participant implementation chooses its own server base and private integer with `random.randint(2, p)`, so the logged server secret **331 is participant randomness**. The client response is the source-controlled part of the exchange. The multiplicative order of 2757 modulo 3301 is **550**. Therefore `2757^e ≡ 2800 (mod 3301)` fixes the Cicada-client exponent class **e ≡ 11 (mod 550)**. The logged shared key independently checks the same class because `1264^11 mod 3301 = 1067`. Restricting the ordinary private integer to 2 through 3300 leaves exactly **[11, 561, 1111, 1661, 2211, 2761] = 11×[1,51,101,151,201,251]**.
 
-### 2013 NUMBER and 2014 Wisdom/05.jpg single out 1661
+### Later-preserved NUMBER transcript and 2014 Wisdom/05.jpg conditionally single out 1661
 
-The 2013 first-onion `NUMBER` implementation is a historically specified operation: composite input is factorized directly. Applying it to the six transcript-compatible representatives gives one unique intersection with the numeric cells visibly printed on the later 2014 Liber Primus **Wisdom/05.jpg** page. Only **1661** has such a proper divisor:
+A later-preserved first-onion transcript/reconstructed server reports a `NUMBER` operation that factorizes composite inputs directly. This command is not present in the contemporaneous 2013 BASE29/DH/NEXT witness, and no original first-onion server or raw session is preserved. Applying it to the six transcript-compatible representatives gives one unique intersection with the numeric cells visibly printed on the later 2014 Liber Primus **Wisdom/05.jpg** page. Only **1661** has such a proper divisor:
 
 ```text
 NUMBER 1661 -> divisors [1, 11, 151, 1661]
@@ -140,7 +143,7 @@ For the broader exponent class, the six representatives reduce modulo 840 to **[
 
 A separate inbound-only log contains client value **3034** after `DH 3301`. Arithmetic gives `5^11 ≡ 3034 (mod3301)`, and both 5 and 3034 have multiplicative order **75** modulo3301. The server response is absent, so base 5 is not established for that exchange. This order-75 relation remains a conditional observation and is not used as a decoder.
 
-**Decision:** the 2013→2014 chain now supplies a source-constrained **candidate private exponent 1661** through the real DH transcript plus the historically available NUMBER/Wisdom intersection. The later field trace/norm relation independently corroborates the same representative. The most direct power, BASE29-additive, ElGamal, and source-selected p36/Q238 phase uses are negative. Treat 1661/151 as candidate key and routing material for a separately motivated register rather than license for arbitrary new sweeps.
+**Decision:** the 2013→2014 chain now supplies a source-constrained **candidate private exponent 1661** through the real DH transcript plus the later-recorded NUMBER/Wisdom intersection. The later field trace/norm relation independently corroborates the same representative. The most direct power, BASE29-additive, ElGamal, and source-selected p36/Q238 phase uses are negative. Treat 1661/151 as candidate key and routing material for a separately motivated register rather than license for arbitrary new sweeps.
 
 Reproducer for the DH class and field tests: [`sims/2013_dh3301_tester11_source_sft.cjs`](../sims/2013_dh3301_tester11_source_sft.cjs).
 

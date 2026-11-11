@@ -16,7 +16,7 @@ Further exact arithmetic is **retrospectively noticed**:
 
 None of these relationships supplies a documented operation or uniquely selects a key. Source-recognition is more plausible than an unrestricted numeric puzzle; the archive contains no signed instruction to add, reverse every cell, or apply a corresponding prime clock to LP2.
 
-## Historically specified decimal reversal and the 16-cell ring (Agent 45, 11 November 2026)
+## Retrospectively recorded decimal reversal and the 16-cell ring (Agent 45, 11 November 2026)
 
 A retrospectively documented 2013 telnet operator suggests a test of the PARABLE arithmetic. A later reconstruction records `count parable` returning **`449*`**; its `number` behavior reverses a prime input and lists factors of the reversal (for example, `number 283` factors 382). No authenticated original server or raw `NUMBER` session survives ([source audit](https://github.com/FlareZ123/liber-primus/issues/113)). Conditional on transferring that reported operation to the later red heading PARABLE, the calculation is **449 → 944 = 2⁴×59**, with full divisor list **[1,2,4,8,16,59,118,236,472,944]**. The factor **16** matches the inner 5×5 perimeter of the historical middle 7×7 square, a natural object under PARABLE's wording “shed our own circumferences”. Selecting 16 from the possible divisors and choosing that particular ring remain hypotheses: no surviving authenticated instruction connects NUMBER to the later manuscript.
 
@@ -28,7 +28,7 @@ The three body-clause sums [1259,1031,1229] and their reversals [9521,1301,9221]
 
 **Secondary command source:** [retrospective 2013 telnet reconstruction and example responses](https://github.com/neuroretransmit/cicada/blob/main/2013/004-first-onion/README.md), original corpus and 2014 magic squares already cited above. **Reproducer:** [2013 reversal / inner-ring original inverse SFT](../sims/cicada2013_parable_reversal_ring_sft.cjs).
 
-## Cellwise 2013 NUMBER operation: a 41×316 candidate map
+## Cellwise later-preserved NUMBER transcript operation: a 41×316 candidate map
 
 A [retrospective reconstruction of the 2013 first-onion server implementation](https://raw.githubusercontent.com/cicada-solvers/neuroretransmit-cicada/main/2013/004-first-onion/server.py) defines a `number` command: a prime input whose decimal reversal is also prime returns `+`; a prime with composite reversal is factorized after reversal; a composite input is factorized directly. That reconstructed server returns distinct prime-factor keys, not multiplicities.
 
@@ -163,7 +163,7 @@ Thus all three PARABLE residues jointly specify **19, square order 7, center 331
 
 ## Red-heading sum collision audit
 
-The red-heading prime sums are exact source-derived arithmetic, but their cross-round matches are not rare enough to count as independent confirmation. Across all LP2 pages, the sum **662** occurs in **22 of 12,452** contiguous 13-rune windows; **1068** occurs in **36 of 12,053** contiguous 20-rune windows; and **449** occurs in **57 of 12,794** contiguous 7-rune windows. The p15 20-rune heading is the only 1068 window on p15, but 35 other windows elsewhere share the sum. The p0 662 sum occurs at offsets 0 and 139 on p0; the p57 449 sum occurs at offsets 0 and 85 on p57. Applying the historical NUMBER operator to these sums (662→331, 1068→89 among its factors, 449→944) and matching 331/89/16 to already-known IDs, offsets, or ring sizes is therefore a **post hoc coincidence hypothesis**, not a source-authenticated navigation rule. Likewise, 12 matching a 4×4 perimeter is not a source-selected operation. Retain the exact arithmetic as an observation; do not prioritize it over routes with a locked extraction rule.
+The red-heading prime sums are exact source-derived arithmetic, but their cross-round matches are not rare enough to count as independent confirmation. Across all LP2 pages, the sum **662** occurs in **22 of 12,452** contiguous 13-rune windows; **1068** occurs in **36 of 12,053** contiguous 20-rune windows; and **449** occurs in **57 of 12,794** contiguous 7-rune windows. The p15 20-rune heading is the only 1068 window on p15, but 35 other windows elsewhere share the sum. The p0 662 sum occurs at offsets 0 and 139 on p0; the p57 449 sum occurs at offsets 0 and 85 on p57. Applying the later-preserved NUMBER transcript operator to these sums (662→331, 1068→89 among its factors, 449→944) and matching 331/89/16 to already-known IDs, offsets, or ring sizes is therefore a **post hoc coincidence hypothesis**, not a source-authenticated navigation rule. Likewise, 12 matching a 4×4 perimeter is not a source-selected operation. Retain the exact arithmetic as an observation; do not prioritize it over routes with a locked extraction rule.
 
 The entire source relation is reproduced from original artifacts by [the standalone nested-prime/PARABLE SFT](../sims/onion7_parable19_nestedprime_sft.cjs) ([passed original-source CI](https://github.com/FlareZ123/liber-primus/actions/runs/42934735544)).
 
