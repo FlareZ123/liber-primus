@@ -1,0 +1,29 @@
+name: AN-END Common Crawl historical index probe
+
+on:
+  push:
+    paths:
+      - 'sims/anend_commoncrawl_probe.cjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  commoncrawl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Query 2014 and 2015 Common Crawl URL indexes
+        run: node sims/anend_commoncrawl_probe.cjs > anend-commoncrawl-cdx.json
+      - name: Preserve exact index results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: an-end-commoncrawl-cdx
+          path: anend-commoncrawl-cdx.json
+          if-no-files-found: error
