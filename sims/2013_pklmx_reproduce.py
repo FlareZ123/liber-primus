@@ -306,10 +306,10 @@ def main() -> None:
     wrong_output = bytes(a ^ b for a, b in zip(wrong, extracted)).strip()
     print(f"Annapolis all.txt transcription XORs to non-onion bytes: {wrong_output!r}")
 
-    good, bad = reproduce_shamir()
+    valid_subsets, _ = reproduce_shamir()
     print(f"SSSS threshold: {SHARE_THRESHOLD}; field: GF(2^{FIELD_BITS})")
     print(f"SSSS result: {SECRET.decode('ascii')}")
-    print(f"Five-share subsets from all seven observed decimal IDs: {len(good)}/21 match.")
+    print(f"Five-share subsets from all seven observed decimal IDs: {len(valid_subsets)}/21 match.")
     print("All seven observed shares, including signed share 10, are mutually consistent.")
     print("Three of the ten shares described by the historical walkthrough are absent from this archive.")
     print("All checks passed.")
