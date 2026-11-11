@@ -2,6 +2,15 @@ name: LP2 permutation-invariant reuse probe
 
 on:
   workflow_dispatch:
+    inputs:
+      attack:
+        description: "Select the original T-statistic or powered spectral test"
+        required: true
+        default: spectral
+        type: choice
+        options:
+          - spectral
+          - original
 
 permissions:
   contents: read
@@ -17,5 +26,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Run seeded circular-shift test
+      - name: Run original circular-shift test
+        if: inputs.attack == 'original'
         run: node sims/label_free_reuse.js
+      - name: Run powered spectral shared-pad detector
+        if: inputs.attack == 'spectral'
+        run: node sims/lp2_label_free_sharedpad_spectral_sft.cjs
