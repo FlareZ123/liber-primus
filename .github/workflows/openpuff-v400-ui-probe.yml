@@ -184,18 +184,57 @@ jobs:
         shell: pwsh
         run: python -m pip install --disable-pip-version-check pywinauto
 
-      - name: Test original LP2 JPEGs individually in physical page order
+      - name: Authenticate LP2 passphrase against archived 2014 positive control
         shell: pwsh
         env:
           LP2_PASSWORD: ${{ inputs.password }}
         run: |
           $ErrorActionPreference = "Stop"
-          foreach ($page in 17..74) {
+          $url = "https://raw.githubusercontent.com/iBotPeaches/cicada_3301/a0a616d85717af59f8b806875b43d51e06e1e874/tool/storage/interconnected.mp3"
+          $mp3 = Join-Path $env:RUNNER_TEMP "interconnected.mp3"
+          Invoke-WebRequest -Uri $url -OutFile $mp3
+          $length = (Get-Item $mp3).Length
+          $blob = (& git hash-object -- $mp3).Trim().ToLowerInvariant()
+          $md5 = (Get-FileHash $mp3 -Algorithm MD5).Hash.ToLowerInvariant()
+          if ($LASTEXITCODE -ne 0 -or $length -ne 6651873 -or $blob -ne "09fe068192b76a3697c47ec1d604b527703db798" -or $md5 -ne "7638414d35f416084b7ddcc94aa53685") {
+            throw "Archived 2014 carrier failed its pinned original-byte checks"
+          }
+          $out = "probe-output/positive-gate"
+          python sims/openpuff_v400_extract.py `
+            --exe "$env:OPENPUFF_EXE" `
+            --carrier "$mp3" `
+            --password "$env:LP2_PASSWORD" `
+            --bit-format "Mp3 (Audio)" `
+            --bit-level "1/2 (50%) - Maximum" `
+            --out "$out" `
+            --output-name "magicsquares.txt" `
+            --wait-seconds 25 `
+            --expected-crc32 "6A8C41E3" `
+            --expected-size 745
+          if ($LASTEXITCODE -ne 0) { throw "OpenPuff v4.00 could not execute 2014 control" }
+          $result = Get-Content "$out/result.json" -Raw | ConvertFrom-Json
+          if (-not $result.expected_match) {
+            throw "LP2 testing blocked: chosen passphrase failed 745-byte / CRC32 6A8C41E3 source-native positive control"
+          }
+          Write-Host "Authenticated historical password $env:LP2_PASSWORD; proceeding to source-selected LP2 JPEGs"
+
+      - name: Test clue-selected LP2 JPEG pages first, then all remaining original pages
+        shell: pwsh
+        env:
+          LP2_PASSWORD: ${{ inputs.password }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          $pages = @(50..56) + @(17..49) + @(57..74)
+          if ($pages.Count -ne 58 -or @($pages | Sort-Object -Unique).Count -ne 58) {
+            throw "LP2 image order must cover each archive scan 17–74 exactly once"
+          }
+          foreach ($page in $pages) {
             $name = $page.ToString("00")
             $carrier = Join-Path $env:GITHUB_WORKSPACE "resources/liber-primus/$name.jpg"
             if (-not (Test-Path -LiteralPath $carrier)) { throw "Missing original LP2 page $name.jpg" }
             $out = Join-Path $env:GITHUB_WORKSPACE "probe-output/p$name"
-            Write-Host "Testing original LP2 physical page $page with password A and JPEG Medium (1/5)"
+            $physical = $page - 17
+            Write-Host "Testing LP2 physical p$physical (source $name.jpg) with historically authenticated password and JPEG Medium (1/5)"
             python sims/openpuff_v400_extract.py `
               --exe "$env:OPENPUFF_EXE" `
               --carrier "$carrier" `
