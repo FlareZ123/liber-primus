@@ -1,6 +1,6 @@
 # The 2016 / p50 / p55 43-unit bridge: source-selector gate
 
-**Classification:** bounded source audit, negative. No source-authenticated, reversible 43-unit operation has been established. This closes the selector question without inventing a cipher or treating equal counts as evidence of decryption.
+**Classification:** bounded source audit, negative. No source-authenticated, reversible 43-unit operation has been established. The direct one-to-one GP29 additive/Beaufort bridge between the conditional p32 43-rune compass output and p55's 43 interior runes is also falsified under the six fixed forward/reverse variants below. This does not exclude other keyed, nonlinear, or stateful operations.
 
 ## Fixed source observations
 
@@ -63,6 +63,25 @@ The 13-rune span also supplies an exact checksum: selected p32 word `IARTTHF` su
 
 This is a useful cross-round navigation bridge, not a solution of the 43-unit cipher. The base-58 word-address rule, 13-dot→13-rune interpretation, M7 corner convention, and infinity→p50 identification remain hypotheses. The M7 intermediate states8 and2 are absent on p32, so the orbit is not a literal word-to-word traversal; no reversible 43-byte/rune correspondence or unknown plaintext has been recovered. See the [integrated p32 report](lp2-2016-signed-message-base58-word-map.md) and [p32 13-rune SFT](../sims/p32_13runic_w_infinity_route_sft.cjs).
 
+## Direct p32 compass output ↔ p55 interior bridge (bounded negative)
+
+The existing [2016 43-word compass SFT](../sims/lp2_2016_43word_compass_sft.cjs) takes the source-bracketed p50 bytes at offsets **84–126**, starts at p32 grid coordinate **(row 3, column 0)**, and visits 43 p32 runes, ending at **(3,4)**. The p55 interior extraction above independently yields 43 runes. This makes a direct one-to-one GP29 relation the cheapest reversible bridge worth testing before inventing a key schedule.
+
+Only six fixed variants were tested: natural and reversed alignment, each under \(C-K\), \(C+K\), and \(K-C\) modulo 29. No phase, shuffle, permutation, or key search was performed. The exact token outputs and all inputs are emitted by [the reproducer](../sims/p32_p55_43symbol_additive_bridge.cjs).
+
+| Alignment | Operation | IoC | Shakespeare-GP trigram log mean |
+|---|---:|---:|---:|
+| Forward | \(C-K\) | 0.035437 | −5.504694 |
+| Forward | \(C+K\) | 0.034330 | −6.325720 |
+| Forward | \(K-C\) | 0.035437 | −7.128081 |
+| Reverse | \(C-K\) | 0.035437 | −5.577572 |
+| Reverse | \(C+K\) | 0.034330 | −6.204847 |
+| Reverse | \(K-C\) | 0.035437 | −6.140020 |
+
+For scale, the first 43 body runes of solved p57 (after its seven-rune PARABLE heading) score IoC **0.056478** and trigram log mean **−2.571630** under the same model. A synthetic p57 segment encrypted by addition with the p32 stream is recovered exactly by \(C-K\), so the arithmetic implementation passes its positive control. The six real outputs remain near-uniform and substantially less English-like than the solved-page control.
+
+**Decision:** reject the direct stationary additive/Beaufort pairing between the conditional p32 compass output and p55's 43 interiors. This does not falsify the p32 route as a selector, nor does it test nonlinear/stateful transforms or a separately source-selected alignment. Do not expand this into arbitrary 43-way permutations or phases.
+
 ## Exact missing selector
 
 No surviving, contemporaneous instruction reviewed here establishes all of the following:
@@ -78,7 +97,7 @@ The current 43-word base-58 address map is a later reconstruction from GP prime 
 
 ## Decision
 
-**Stop arbitrary 43-way key expansion.** A newer source-derived navigation chain strengthens the cardinality selection while leaving the decoder incomplete. The repeated signed-word map selects **FOLD**; the p55 image fold selects one-based 13-dot fragment **18**; that fragment is the p27 red 19-rune title whose first rune is GP index **19**, leaving 18 payload runes. Folding that payload outer-to-inner gives **100000000₂ = 256**, and its only matching pair is **P/P**, whose GP prime is **43**. The full compound 19-rune signature occurs exactly once in the complete 13,136-rune LP2 source stream.
+**Stop arbitrary 43-way key expansion and direct additive/Beaufort pairing.** A newer source-derived navigation chain strengthens the cardinality selection while leaving the decoder incomplete. The repeated signed-word map selects **FOLD**; the p55 image fold selects one-based 13-dot fragment **18**; that fragment is the p27 red 19-rune title whose first rune is GP index **19**, leaving 18 payload runes. Folding that payload outer-to-inner gives **100000000₂ = 256**, and its only matching pair is **P/P**, whose GP prime is **43**. The full compound 19-rune signature occurs exactly once in the complete 13,136-rune LP2 source stream.
 
 The table itself provides a same-representation 43-cell bracket: the derived signed `lies` address selects byte193 at cell83; the only other byte193 is at cell127; their outward neighbors are both 201, giving **[201,193] … [193,201]** around cells84–126, exactly 43 cells. This materially improves the earlier count-only alignment. **Traversal orientation remains unresolved.** The duplicated p27/p55 word pair is 1,432 canonical words apart and the selected section has 1,433 runes, but those are different units and the numerical −1 relation does not supply direction without another instruction.
 
@@ -89,6 +108,7 @@ The reverse order 126→84 was nevertheless tested as a conditional branch. As p
 - Original signed extraction and source record: [cicada2016-4gq25-outguess.asc](../resources/historical/cicada2016-4gq25-outguess.asc), [cicada2016-4gq25.md](../resources/cicada2016-4gq25.md)
 - Original p50 bytes and GP corpus: [lp2-grid-256.json](../resources/liber-primus/lp2-grid-256.json), [lp2-corpus.json](../resources/liber-primus/lp2-corpus.json)
 - p55 and p57 transcription: [lp2-transcription.txt](../resources/lp2-transcription.txt)
+- Direct p32/p55 43-symbol additive/Beaufort reproducer: [p32_p55_43symbol_additive_bridge.cjs](../sims/p32_p55_43symbol_additive_bridge.cjs)
 - Provisional signed-message word map: [lp2-2016-signed-message-base58-word-map.md](lp2-2016-signed-message-base58-word-map.md)
 - 2013 historical number operation and its limitations: [cicada2013-reversed-prime-cookie-original-inverse.md](cicada2013-reversed-prime-cookie-original-inverse.md), [cicada2013_parable_reversal_ring_sft.cjs](../sims/cicada2013_parable_reversal_ring_sft.cjs)
 - 2013 wisdom/folly material: [cicada2013-wisdom-folly.md](../resources/cicada2013-wisdom-folly.md), [2013-0-wisdom-source.md](../resources/external/2013-0-wisdom-source.md)
