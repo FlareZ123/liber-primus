@@ -62,6 +62,20 @@ The same exact invariant applies when the key depends on the preceding ciphertex
 
 For every period **1 through 10** under both clocks, the original source's conditional entropy exceeds the **4.289094** maximum measured in any of the 89 English-GP reference windows. Period 11 no longer clears that benchmark. This is a finite English-register exclusion of all unknown 29×29 phase-row substitution families in this clock range, including source-suggested 5 and 7; it does not depend on selecting or guessing the \(29k\) secret permutations. Phases keyed by a hidden or evolving state, section plus phase, or varying word positions are outside this table. As phase buckets become smaller, empirical conditional entropy falls from finite-sample grouping even under uniform ciphertext, so a low bound is not positive evidence for a cipher.
 
+## Concrete eight-column key schedule from the original numeric grid
+
+The original p50 grid is exactly **32 rows × 8 columns**, each cell a two-character base-60 token interpreted as a byte. The separately oversized p54 Ac rune has GP29 index **24**, and the p54 text has **232 = 29×8** runes; this gives a conceivable yet **unverified** proposal to skip the grid's first 24 entries and interpret the remaining 232 cells as 29 GP29 predecessor rows × eight time phases. The 29-by-eight interpretation is a natural source-constrained feedback-key candidate, regardless of whether the p54 alignment was intentional.
+
+If the looked-up byte is a phase/previous-ciphertext-dependent additive rune shift, or **any** secret one-to-one substitution of the plaintext rune, this candidate is already covered by our period-eight invariant. Crucially, **every one of the 232 lookup rows may be a completely secret arbitrary permutation**; the actual p50 bytes need not be guessed.
+
+| State clock for the same 29×8 secret table | Original \(H(C_i\mid\text{previous }C,\text{phase})\), bits/rune |
+| --- | ---: |
+| Global eight-rune phase | **4.42176760** |
+| Page-reset eight-rune phase | **4.41430860** |
+| Nine-section-reset eight-rune phase, **same** 232 tables reused across sections | **4.41259832** |
+
+All three exceed the **4.28909395** highest marginal GP-plaintext entropy among the 89 native-English controls. The [single-file reproducer](../sims/lp2_cipher_feedback_entropy_sft.cjs) now independently computes the section-reset variant from original source boundaries and asserts the exact values. Consequently **no direct reversible, fixed secret previous-ciphertext × eight-phase GP29 alphabet lookup of this natural table shape** can explain the original as ordinary native-GP English, even if every hidden table value were freely chosen. This rejects a whole concrete source-led cipher model without another grid-key search. Section-dependent *distinct* keys, changing hidden state, nonbijective transforms or non-GP output are outside the invariant. The proposed p50 last232 selection remains an unverified reading of the numerals, not an authenticated key.
+
 ## Positive control and interpretation
 
 The [single-file CommonJS reproducer](../sims/lp2_cipher_feedback_entropy_sft.cjs) builds nine deterministic secret families of 29 independently shuffled 29-symbol permutations, encrypts a length-matched native-English rune stream using the previous *ciphertext* symbol, inverts all 12,956 positions exactly, and verifies the entropy identity to \(10^{-12}\) bits. It also asserts the two original counts, measured entropies and native-reference bounds.
