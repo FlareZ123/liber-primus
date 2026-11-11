@@ -270,6 +270,52 @@ function invMod(a, m) {
   for (let x = 1; x < m; x++) if (a * x % m === 1) return x;
   throw new Error("no modular inverse");
 }
+
+// Frozen one-key-per-physical-page test motivated by ord(v)=56 and LP2 pages 0..55.
+const pageOf = targetPages.flatMap(p => p.indices.map(() => p.page));
+const vP3 = scale2(z15, 10); // p36 norm v = 10*z^15 in the p3 basis [1,u]
+assert.deepEqual(vP3, [19, 26]);
+assert.equal(norm2(vP3), 2);
+assert.deepEqual(pow2(vP3, 56), [1, 0]);
+assert.deepEqual(pow2(vP3, 28), [28, 0]);
+assert.deepEqual(pow2(vP3, 8), [16, 0]);
+
+const pagePairKeys = [];
+for (let i = 0; i < raw.length; i += 2) pagePairKeys.push(pow2(vP3, pageOf[i]));
+assert.equal(pagePairKeys.length, raw.length / 2);
+let crossBoundaryPairs = 0;
+for (let i = 0; i < raw.length; i += 2) if (pageOf[i] !== pageOf[i + 1]) crossBoundaryPairs++;
+const pagePairOut = { addMinus: [], addPlus: [], mulDivide: [], mulTimes: [] };
+for (let i = 0; i < pagePairKeys.length; i++) {
+  const c = [raw[2 * i], raw[2 * i + 1]], k = pagePairKeys[i], ki = inv2(k);
+  pagePairOut.addMinus.push(...sub2(c, k));
+  pagePairOut.addPlus.push(...add2(c, k));
+  pagePairOut.mulDivide.push(...mul2(c, ki));
+  pagePairOut.mulTimes.push(...mul2(c, k));
+  const p = [reference[2 * i], reference[2 * i + 1]];
+  assert.deepEqual(sub2(add2(p, k), k), p, "page add-minus plant");
+  assert.deepEqual(add2(sub2(p, k), k), p, "page add-plus plant");
+  assert.deepEqual(mul2(mul2(p, k), ki), p, "page multiply/divide plant");
+  assert.deepEqual(mul2(mul2(p, ki), k), p, "page divide/multiply plant");
+}
+const pagePairScores = Object.fromEntries(Object.entries(pagePairOut).map(([k, v]) => [k, score(v)]));
+
+const pageScalarKeys = pageOf.map(p => powMod(2, p, 29)); // N(v^p) = 2^p
+const pageScalarOut = { minus: [], plus: [], multiply: [], divide: [] };
+for (let i = 0; i < raw.length; i++) {
+  const c = raw[i], k = pageScalarKeys[i], ki = invMod(k, 29);
+  pageScalarOut.minus.push(mod29(c - k));
+  pageScalarOut.plus.push(mod29(c + k));
+  pageScalarOut.multiply.push(mod29(c * k));
+  pageScalarOut.divide.push(mod29(c * ki));
+  const p = reference[i];
+  assert.equal(mod29(mod29(p + k) - k), p, "page scalar minus plant");
+  assert.equal(mod29(mod29(p - k) + k), p, "page scalar plus plant");
+  assert.equal(mod29(mod29(p * k) * ki), p, "page scalar multiply plant");
+  assert.equal(mod29(mod29(p * ki) * k), p, "page scalar divide plant");
+}
+const pageScalarScores = Object.fromEntries(Object.entries(pageScalarOut).map(([k, v]) => [k, score(v)]));
+
 function makeKeys(kind) {
   let clock = 0;
   return targetPages.map(page => page.indices.map(() => {
@@ -299,6 +345,24 @@ function encryptPage(plain, keys) {
       mod29(cipher[i - 1] + powMod(15, mod28(plain[i] + keys[i]), 29));
   return cipher;
 }
+const pageEAKeys = targetPages.map(p => p.indices.map(() => mod28(27 * p.page)));
+const pageEADecoded = targetPages.map((p, j) => decryptPage(p.indices, pageEAKeys[j])).flat();
+let pageOffset = 0;
+const pagePlantPages = targetPages.map(p => {
+  const x = reference.slice(pageOffset, pageOffset + p.indices.length);
+  pageOffset += p.indices.length;
+  return x;
+});
+const pagePlantedCipher = pagePlantPages.map((p, j) => encryptPage(p, pageEAKeys[j]));
+const pageRecovered = pagePlantedCipher.map((c, j) => decryptPage(c, pageEAKeys[j])).flat();
+assert.deepEqual(pageRecovered, reference, "page EA clock positive plant");
+const pageEAResult = {
+  trigram: score(pageEADecoded),
+  ioc: ioc(pageEADecoded),
+  EAcount: pageEADecoded.filter(x => x === 28).length,
+  positivePlantExact: true
+};
+
 const eaResults = {};
 for (const kind of ["step3", "power11", "power15"]) {
   const keys = makeKeys(kind);
@@ -334,5 +398,15 @@ console.log(JSON.stringify({
   },
   input: { beforeP36: before.length, p36Seed: seedPage.indices.length, afterP36: after.length, nonSeedRunes: raw.length, pages: targetPages.length },
   scores: { raw: rawScore, nativeGP: nativeScore, pairwiseGF29Squared: pairScores, scalarTraceNorm: scalarScores, EA: eaResults },
-  positiveControls: { PairMasksExact: true, ScalarMasksExact: true, EAPlantsExact: Object.values(eaResults).every(x => x.positivePlantExact) }
+  pageCycle: {
+    physicalPages: 56, targetRunePages: targetPages.length, excludedPages: [36, 50],
+    keyElementOrder: 56, crossBoundaryPairs,
+    pairwiseVPower: pagePairScores, scalarNormPower: pageScalarScores, EAKey: pageEAResult
+  },
+  positiveControls: {
+    PairMasksExact: true, ScalarMasksExact: true,
+    PagePairMasksExact: true, PageScalarMasksExact: true,
+    EAPlantsExact: Object.values(eaResults).every(x => x.positivePlantExact),
+    PageEAPlantExact: pageEAResult.positivePlantExact
+  }
 }, null, 2));

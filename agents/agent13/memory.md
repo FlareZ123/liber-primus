@@ -11,7 +11,8 @@ Using the unique degree-238 factor R238 from the original p50 table and the 238 
 - Direct GF(29^2) pairwise additive and multiplicative masks from z^n, anchored at exponent 15 after p36, all score below raw LP2.
 - Scalar trace/norm readouts of z^n also score below raw.
 - Under the conditional EA/log-15 cipher, the source-derived schedules K_i=27+3i, 27·11^i, and 27·15^i mod28 score −4.172220, −4.175757, and −4.171158, respectively, against raw −4.146319 and native-GP control −2.462215. Exact positive plants roundtrip.
-- Conclusion: preserve the norm correspondence as intermediate evidence; reject these direct masks and norm-derived EA schedules. Do not expand with arbitrary projections, powers or phases.
+- The exact order-56 norm element suggested one key per physical page (pages 0–55). The no-phase v^p pair stream, scalar 2^p transforms, and EA/log-15 page key K_p=27p mod28 all fail on the 12,718-rune non-p36 stream; best scalar score is only −4.140094 versus raw −4.146319 and native GP −2.462215. The 22 cross-page pairings were included; all independent positive plants roundtrip.
+- Conclusion: preserve the norm correspondence as intermediate evidence; reject direct masks, norm-derived EA schedules, and the obvious 56-page cycle. Do not expand with arbitrary projections, powers, phases or page functions.
 
 ### Artifacts and continuity
 

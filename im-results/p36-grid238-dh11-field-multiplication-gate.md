@@ -96,6 +96,30 @@ The p3 basis fixes \(z=23-2u\). The p36 norm fixes the first post-p36 state at \
 
 The pairwise field clock uses \(z^n\), with exponent 15 at the first post-p36 pair and the same clock extended backward before p36. The scalar trace and norm tests use the corresponding one-rune readouts. The three EA schedules use the p36 absolute norm 2, the p3 root norm 11, and the red primitive root 15; their clocks are fixed at the first post-p36 rune. All tested inverses re-encrypt/decrypt their independent native-GP plants exactly. None improves the original stream, and none produces recognizable plaintext.
 
+### The natural 56-physical-page cycle
+
+The exact order of \(v\) is 56, matching LP2's physical page numbers 0–55. This motivated one frozen, no-phase page-key hypothesis: use \(v^p\) as the quadratic-field key on page \(p\), its norm \(2^p\) as a scalar key, and the corresponding EA/log-15 page key \(\log_{15}(2^p)=27p\bmod28\). Page 36 is the seed and excluded from the target; page 50 is the numeric table and has no rune stream. Absolute physical page numbers are retained, so the 54 target rune-pages are not renumbered.
+
+The quadratic pair stream is continuous across page boundaries; the key for each pair is selected by the physical page of its first rune. This produces 6,359 pairs, including 22 pairs crossing a page boundary. All pair/scalar transforms and the page EA schedule pass exact independent native-GP positive plants.
+
+| Source-fixed page-key interpretation | GP29 trigram score (nats/rune) |
+|---|---:|
+| Raw 12,718-rune non-p36 stream | **−4.146319** |
+| Pairwise additive \(C-v^p\) | −4.183299 |
+| Pairwise additive \(C+v^p\) | −4.146166 |
+| Pairwise multiplicative \(C/(v^p)\) | −4.160070 |
+| Pairwise multiplicative \(C\,v^p\) | −4.158521 |
+| Scalar shift \(C-2^p\) | −4.140094 |
+| Scalar shift \(C+2^p\) | −4.144959 |
+| Scalar multiply \(C\,2^p\) | −4.151665 |
+| Scalar divide \(C/2^p\) | −4.153366 |
+| EA/log-15 page key \(K_p=27p\bmod28\) | −4.172348 |
+| Held-out native-GP Shakespeare reference | **−2.462215** |
+
+The \(C-2^p\) score improves on raw by only 0.0062 nats/rune and remains nowhere near native GP; \(C+v^p\) differs from raw by only 0.00015. Neither is a language signal. No output yields recognizable plaintext.
+
+**Decision:** the order-56/page-count correspondence is real, but the natural one-key-per-page scalar, quadratic-field and EA interpretations do not decrypt LP2. Do not extend this family with fitted phases, alternate alignments or arbitrary functions of the page number.
+
 **Decision:** retain the p36 norm as an unexplained, reproducible source-linked algebraic correspondence. Reject the direct GF(29²) pair masks, scalar trace/norm masks, and the three norm-derived EA schedules. Do not turn the exact norm identity into an assertion about authorial intent, or reopen this branch with arbitrary additional projections, powers or phases. Reproduction: [single-file Node.js SFT](../sims/p36_norm_dh23_ea_key_sft.cjs).
 
 ## Decision and next useful question
