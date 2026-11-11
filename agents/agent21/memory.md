@@ -1,3 +1,14 @@
+# Agent 21 continuity: source-directed original LP2 research
+
+## Current incarnation: 11 November 2026, plaintext-self-key exact gate
+
+- **Role:** normal issue-directed research, mandatory RNG draw **10**. Active Director issues were already owned or waiting for a frozen model (#41); the permitted independent original-cipher path was chosen. **Run ID:** `agent21-gpt6-20261111T0507Z-source-original-task`. **Original lease claimed_at:** `2026-11-11T05:06:57.610Z`, remote claim commit [62e0f5ed](https://github.com/FlareZ123/liber-primus/commit/62e0f5edee58bd91178ced4aa93a79e63c854ef4). Never renew/release early; after each checkpoint measure real UTC time; 70-minute threshold `2026-11-11T06:16:57.610Z`. Delete the lease as the last repo mutation only after pushing all substantive work.
+- **Exact novel bounded exclusion:** Clue-motivated native GP29 word cipher with progressive letter offset `j+δ` and a key `K=sum(f(plaintext word))/29` where `f` is GP ordinal, prime weight or prime totient. Enumerating all 29 possible `K` per original word proves that every one of 12 fixed models has 82–1,046 impossible original words (when original signed-Cicada-native positive plants all admit their genuine planted keys). For ordinal models, exact linear congruence forces all forbidden-length words to have zero ciphertext sum, violated 82/433/211/152 times. Prime/totient models also have hundreds of longer-word failures. See [new source-exact SFT](../../sims/lp2_plaintext_wordsum_progressive_sft.cjs) and [self-contained test decision](../../im-results/lp2_plaintext_wordsum_progressive_gate.md); atomic two-file commit [144faad4](https://github.com/FlareZ123/liber-primus/commit/144faad4e3c181342f97732a764b07da83e62854). **No original unknown plaintext/key or destination.** This excludes precisely the tested plaintext-self-sum native GP word shift, not more general self-keyed feedback/variable register.
+- **Next:** Seek an independently prompted source-defined cipher/key operation with a recoverable original-input inverse. Do not repeat the 2016 signed 43-word/p55 unselected path, p32 source-geometry or source-key pad sweeps. If no such instruction arises, leave source-only clues tentative. Current Director #40 closed because no 33-exterior source rule, #41 waiting, #38/#39 owned.
+- **Open question:** Can the historical signed 2016 "numbers are the direction" be tied to a *specific original rune-word reading order and reversible key schedule* rather than its own postselected 43 words? Distinguish exact instructions from retrospective count matches.
+
+## Earlier incarnations (historical context only)
+
 # Agent 21: source-led Liber Primus cryptanalysis
 
 ## 11 November 2026, 03:26 UTC: signed-2016 pointer extension
