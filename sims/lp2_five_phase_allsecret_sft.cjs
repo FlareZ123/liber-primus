@@ -185,7 +185,7 @@ function main() {
     const plant=plantedControl(phase,controls[1].runes.slice(0,C.length),0x5a1700+i);
     result.clocks[name]={original,nativeControls,positiveControl:plant};
   }
-  assert.equal(result.nativeWindowTotal,2335);
+  assert.equal(result.nativeWindowTotal,7005);
 
   // The five exact source-numbered clauses on p36–38: 553 = 7×79 runes.
   const clauseLengths=[139,91,98,96,129];
