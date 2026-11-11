@@ -46,6 +46,7 @@ const outputs={
  readAsc:readColumnsFromRows(p55,ascending),
  readDesc:readColumnsFromRows(p55,descending)
 };
+const mod=(n,m)=>((n%m)+m)%m;
 const wordSumsMod4=bodyWordSums.map(x=>x%4);
 function rotateColumns(sign){
  const grid=Array.from({length:4},(_,row)=>p55.slice(row*19,(row+1)*19));
