@@ -1,0 +1,18 @@
+name: Signed 2016 ARC4 collision-rejected source inverse
+
+on:
+  workflow_dispatch:
+
+jobs:
+  exact-keyskip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original ARC4 inverse and seeded English plant
+        run: |
+          node --check sims/lp2_2016_outguess_keyskip_viterbi_sft.cjs
+          node sims/lp2_2016_outguess_keyskip_viterbi_sft.cjs
