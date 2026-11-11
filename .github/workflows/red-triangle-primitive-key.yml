@@ -9,4 +9,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Verify source-native p3-to-p39 finite-field identity
+        run: node sims/lp2_red_triad_extension_root_sft.cjs
       - run: node sims/red_triangle_primitive_key.cjs
