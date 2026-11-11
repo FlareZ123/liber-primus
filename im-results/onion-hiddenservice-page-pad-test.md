@@ -4,37 +4,38 @@
 
 ## Hypothesis and source
 
-The three 256-byte objects in `resources/cicada-hiddenservice-256-candidates.json` (onion2/onion3/onion4; historical markers 761/1033/3301) might be page-reset key material for LP2. The human-motivated mapping is direct byte reduction modulo 29; a secondary, explicitly bounded mapping groups adjacent bytes as big-endian 16-bit values modulo 29. The 256-byte length makes a one-page pad plausible for pages no longer than the available key. This is a test of that narrow role, not a claim that the blobs are keys.
+The three 256-byte objects in `resources/cicada-hiddenservice-256-candidates.json` (onion2/onion3/onion4; historical markers 761/1033/3301) might be page-reset GP29 key material. This is a collision-aware extension of the existing direct-key gate in `im-results/historical-onion-byte-vigenere-lp2.md`, not an independent source discovery. The additional hypothesis is that the known LP2 collision-rejection rule is part of the pad's use.
 
 ## Exact test
 
 Reproduction: `node sims/onion_hiddenservice_page_pad_test.cjs`.
 
-- Corpus: 55 rune-bearing unsolved pages, 12,956 runes; pages longer than the pad are excluded for each mapping.
-- Byte mapping: `K[i] = byte[i] mod 29` (256 symbols). Pair mapping: `K[i] = (byte[2i] * 256 + byte[2i+1]) mod 29` (128 symbols).
-- Both key orientations and both additive signs; page-reset key pointer; offsets 0–20, maximized subject to full-page fit; no key wrap.
-- Collision-aware additive model ported from `sims/keyskip_transducer.cjs`: plaintext held fixed across rejected proposals, `rejectRepeat=0.83`, at most four local rejects and 40 total extra key positions.
-- English-versus-uniform log-likelihood ratio from the repository's GP29 encoding of `resources/control/shakespeare_first300k.txt`. This exact likelihood test does **not** include the separate F-null convention.
-- Positive plant: 200 known English GP29 symbols encrypted with the true Onion2 byte key, offset 7, and the same collision rule.
+- Corpus: 55 rune-bearing unsolved pages, 12,956 runes. Byte keys cover pages no longer than 256; pair keys cover pages no longer than 128.
+- Byte mapping: `K[i] = byte[i] mod 29` (256 symbols). Secondary mapping: adjacent big-endian byte pairs modulo 29 (128 symbols).
+- Both key orientations and additive signs; page-reset key pointer; offsets 0–20 maximized subject to full-page fit; no key wrap.
+- Collision-aware transducer ported from `sims/keyskip_transducer.cjs`: `rejectRepeat=0.83`, at most four local rejects and 40 total extra key positions.
+- English-vs-uniform likelihood uses the canonical `corpus.translit` GP29 alphabet and word-aware encoding of `resources/control/shakespeare_first300k.txt`. The exact likelihood does not include an F-null branch.
+- Independent p56 regression recovers its known plaintext exactly, including the fourth-F null convention.
+- Positive plant: 200 known English GP29 symbols encrypted with the true Onion2 byte key at offset 7 under the same collision rule.
 
 ## Results
 
-The positive plant passed: true-key LLR **+68.075** versus deterministic wrong-key LLR **−111.946**.
+The p56 regression passed. The positive plant scored **+78.608** under the true key versus **−129.412** under a deterministic wrong key.
 
-Byte-mod-29 scan: best LLR **−5.755**, page 49, Onion3, reversed, negative sign, offset 10. No byte candidate has positive English evidence.
+Byte-mod-29 scan: best LLR **−5.914**, page 49, Onion3, reversed, negative sign, offset 10. No byte candidate has positive English evidence.
 
-Pair-BE scan: best LLR **+0.412** total (only **+0.0062 per rune**), page 49, Onion3, forward, positive sign, offset 7. The pair family contains 4 eligible pages (32, 49, 51, 55).
+Pair-BE scan: best LLR **−1.398** total, page 49, Onion3, forward, positive sign, offset 7. The pair family contains four eligible pages (32, 49, 51, 55).
 
-Forty histogram-preserving byte-permutation nulls were run over the same pair-BE family. One null maximum exceeded the observed candidate (**+0.585**, page 49, shuffled Onion3, reversed, positive sign, offset 19), giving exploratory empirical `p = 2/41 = 0.0488`. The candidate is therefore not exceptional against the matched null family.
+Forty histogram-preserving byte-permutation nulls were run over the same pair-BE family. Two null maxima exceeded the observed candidate; empirical `p = 3/41 = 0.0732`. The best candidate is still negative against uniform and is not exceptional against the matched null family.
 
-A 30,000-state trigram beam for the best pair-BE candidate produces:
+A 30,000-state trigram beam for the best pair-BE candidate yields:
 
 `IBERBUUHTHEFLAEEAHEAWRYIEEARWYOHDGRYTHRWORLIMASSEAAOEIAGLRWBWTHCOEXEOAXIAAWBS`
 
-with log score **−5.365 per rune**. This is not credible English plaintext. The short 66-rune page 49 is also the maximum-producing page for most permutation nulls, explaining why a weak unigram statistic can rank there without yielding language.
+with log score **−5.146 per rune**. This is not credible English plaintext.
 
 ## Conclusion and limits
 
-**Reject the direct byte-mod-29 and adjacent-byte-pair-mod-29 per-page-pad interpretations under this collision model.** The only positive LLR is negligible, matched by a shuffled key, and fails the independent trigram readability check. No key or plaintext has been recovered.
+**Reject direct byte-mod-29 and adjacent-byte-pair-mod-29 per-page pads under this collision model.** The matched positive control works, while every real candidate is negative; the only near-zero pair result is matched by shuffled keys and fails the trigram check.
 
-This does not test nibble encodings, PRNG-seeded expansion, arbitrary transformations of the blobs, a different page assignment, or the F-null overlay. Those are separate hypotheses and should not be silently folded into this result. The current evidence does not justify expanding this branch without a new source-selected operation.
+This does not test nibble encodings, PRNG-seeded expansion, arbitrary transformations, other page assignments, or an F-null overlay. Those are separate hypotheses and should not be silently folded into this result. The evidence does not justify expanding this branch without a new source-selected operation.
