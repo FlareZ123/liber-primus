@@ -11,6 +11,7 @@ import zlib
 from pathlib import Path
 
 from filelock import FileLock
+from pywinauto import Desktop
 from pywinauto.application import Application
 from pywinauto.keyboard import send_keys
 
@@ -78,6 +79,24 @@ def snapshot(app, out_dir, stage):
     return records
 
 
+def snapshot_desktop(out_dir, stage):
+    """Capture visible top-level windows across processes, including common dialogs."""
+    desktop = Desktop(backend="win32")
+    records = []
+    for index, window in enumerate(desktop.windows()):
+        if not safe(window.is_visible):
+            continue
+        record = window_record(window)
+        record["index"] = index
+        records.append(record)
+        try:
+            window.capture_as_image().save(out_dir / f"{stage}-window-{index}.png")
+        except Exception:
+            pass
+    write_json_atomic(out_dir / f"{stage}-windows.json", records)
+    return records
+
+
 def tree_state(tree):
     state = []
     for root in tree.roots():
@@ -134,22 +153,52 @@ def disable_optional_passwords(window):
     return states
 
 
-def add_carrier(app, window, carrier):
+def add_carrier(app, window, carrier, out_dir):
+    previous_title = safe(window.window_text) or ""
     window.child_window(control_id=1046, class_name="Button").click_input()
-    time.sleep(1.5)
-    dialog = app.top_window()
-    edits = [
-        control for control in dialog.descendants()
-        if control.class_name() == "Edit" and control.is_enabled()
-    ]
-    if not edits:
+    time.sleep(2)
+    # The common file picker may be owned outside OpenPuff's process. Inspect
+    # all desktop windows rather than assuming app.top_window() is the dialog.
+    snapshot_desktop(out_dir, "carrier-dialog")
+    desktop = Desktop(backend="win32")
+    candidates = []
+    for candidate in desktop.windows():
+        if not safe(candidate.is_visible):
+            continue
+        if safe(candidate.class_name) != "#32770":
+            continue
+        title = safe(candidate.window_text) or ""
+        if title == previous_title or "Data Unhiding" in title or "OpenPuff" in title:
+            continue
+        edits = [
+            control for control in (safe(candidate.descendants) or [])
+            if safe(control.class_name) == "Edit"
+            and safe(control.is_visible)
+            and safe(control.is_enabled)
+        ]
+        if edits:
+            candidates.append((candidate, edits))
+    if not candidates:
         raise RuntimeError(
-            "OpenPuff carrier picker did not expose an editable filename field; "
-            f"dialog={dialog.window_text()!r}"
+            "OpenPuff did not expose a distinct editable file-picker window; "
+            "desktop window snapshots were saved"
         )
+    dialog, edits = candidates[-1]
+    dialog.set_focus()
     edits[-1].set_edit_text(str(carrier.resolve()))
-    send_keys("{ENTER}")
-    time.sleep(1.5)
+    open_buttons = [
+        control for control in (safe(dialog.descendants) or [])
+        if safe(control.class_name) == "Button"
+        and (safe(control.window_text) or "").strip().lower().replace("&", "") in {"open", "select"}
+        and safe(control.is_enabled)
+    ]
+    if open_buttons:
+        open_buttons[-1].click_input()
+    else:
+        send_keys("{ENTER}")
+    time.sleep(2)
+    snapshot_desktop(out_dir, "carrier-after-selection")
+    snapshot(app, out_dir, "carrier-after-selection-app")
     return app.top_window()
 
 
@@ -380,7 +429,7 @@ def main():
         if "too short" in password_status.lower():
             raise RuntimeError(f"OpenPuff rejected password length: {password_status}")
 
-        window = add_carrier(app, window, carrier)
+        window = add_carrier(app, window, carrier, out_dir)
         if "Data Unhiding" not in (safe(window.window_text) or ""):
             window = app.window(title_re=".*Data Unhiding.*")
             window.wait("visible", timeout=5)
