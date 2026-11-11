@@ -11,27 +11,27 @@ The third cue is a separate William Blake engraving, [*Laocoön*, ca. 1826–27]
 | Source-fixed candidate text | Original target pages | GP words / GP runes | Printed LP2 words in region | Longest exact word-length match |
 | --- | --- | ---: | ---: | ---: |
 | [KJV Daniel 4:10–12](https://original.sacred-texts.com/bib/kjv/dan004.htm), Nebuchadnezzar's great tree | p16–21, tree/branch marginalia | 96 / 323 | 373 | **5** |
-| [KJV Daniel 4:33](https://www.biblegateway.com/passage/?search=Daniel+4%3A33&version=KJV), king's birds' feathers and claws | p22–27, recumbent figure and insect wing | 45 / 177 | 303 | **5** |
+| [KJV Daniel 4:33](https://www.biblegateway.com/passage/?search=Daniel+4%3A33&version=KJV), king's birds' feathers and claws | p22–27, recumbent figure and insect wing | 45 / 176 | 303 | **5** |
 | [Blake, *Laocoön* tree inscriptions](https://blake.lib.asu.edu/html/laocoon.html) | p32, drawn tree | 15 / 47 | 21 | **2** |
 
 **Why these are concrete 40+ GP rune candidates:** each whole selected original passage exceeds forty GP rune symbols, with fixed spellings and word boundaries. If the manuscript were quoting any intact contiguous 40-rune block of them, its printed 1:1 GP word lengths would preserve a much longer sequence than the maximal displayed five or two. The authentic solved p56/p57 text provides independent historical evidence that genuine plain GP words can preserve printed delimiters, but this premise need not be true for the unknown sections.
 
 ## Frozen original-input test and control
 
-The [standalone CommonJS SFT](../sims/lp2_daniel4_blake_tree_source_crib_sft.cjs) uses the existing source-checked [complete page-spanning word parser](../sims/lp2_word_pages.cjs) on all 12,956 original runes and 2,896 printed words. It uses the historical seven GP digraphs and fixed `QU→CW, V→U, K/Q→C, Z→S` normalization; no manuscript text is selected or decoded by fitting a cipher key. The fixed pre-2014 KJV verses are encoded in the test source. The Blake quote is taken from the established ASU edition of the engraving.
+The [standalone CommonJS SFT](../sims/lp2_daniel4_blake_tree_source_crib_sft.cjs) uses the existing source-checked [complete page-spanning word parser](../sims/lp2_word_pages.cjs) on all 12,956 original runes and 2,896 printed words. It uses the historical seven GP digraphs plus the solved-page-attested `ING` single-rune option, and fixed `QU→CW, V→U, K/Q→C, Z→S` normalization; no manuscript text is selected or decoded by fitting a cipher key. The fixed pre-2014 KJV verses are encoded in the test source. The Blake quote is taken from the established ASU edition of the engraving.
 
 For a familywise no-crib control, the SFT shuffles the observed word lengths **inside each individual original page** while retaining the original printed word counts and per-page length inventories, then reruns the *entire* three-candidate/three-region maximum exact-match search. A deterministic 2,000-trial xorshift stream uses seed `0x041c3301`. Independent full quoted source-list lengths are planted into copied target vectors and recovered exactly, verifying that the matching algorithm would discover an actual preserved-boundary quotation when present.
 
 | Statistic | Result |
 | --- | ---: |
 | Maximum among three original-source windows | **5** words |
-| Mean maximum across 2,000 page-preserving shuffles | **5.741** words |
-| Null maxima distribution | 4:11, 5:815, 6:918, 7:211, 8:34, 9:6, 10:4, 12:1 |
+| Mean maximum across 2,000 page-preserving shuffles | **5.734** words |
+| Null maxima distribution | 4:11, 5:826, 6:910, 7:208, 8:34, 9:6, 10:4, 12:1 |
 | Null trials with a maximum ≥ original | **1,989 / 2,000** |
 | Plus-one tail estimate | **0.9945027486** |
 | Any source-selected intact 40-GP-rune word-boundary match | **No** |
 
-Executed successfully in dispatch-only [GitHub Actions run 43120074323](https://github.com/FlareZ123/liber-primus/actions/runs/43120074323), with full JSON result archived as workflow artifact `daniel4-blake-crib-source-gate`.
+Executed successfully in dispatch-only [GitHub Actions run 43121092878](https://github.com/FlareZ123/liber-primus/actions/runs/43121092878), with full JSON result archived as workflow artifact `daniel4-blake-crib-source-gate`.
 
 ## Interpretation and handoff
 
