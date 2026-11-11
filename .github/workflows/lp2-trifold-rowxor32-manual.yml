@@ -1,0 +1,14 @@
+name: Original source three-fold row-XOR 32-byte key test
+on:
+  workflow_dispatch:
+jobs:
+  original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify source and test original source-fold key
+        run: node sims/lp2_trifold_rowxor32_source_inverse_sft.cjs
