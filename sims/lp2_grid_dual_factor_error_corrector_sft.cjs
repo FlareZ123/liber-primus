@@ -157,9 +157,67 @@ assert.deepEqual(historicalOnionControls,[
   {id:"onion4",H:[26,17],G:[3,18]}
 ]);
 
+
+/**
+ * Error-correction strength of the *entire* H*G checksum. This is a
+ * rate-252/256 degree-four linear GF29 polynomial code, not Reed-Solomon:
+ * it has minimum Hamming distance THREE, correcting one arbitrary nonzero
+ * residue error at an unknown position, but not two arbitrary errors.
+ * This bounds the nine *known alternative readings* result above.
+ */
+const F = [12,17,11,21,23]; // Descending product of H and G, degree four.
+assert.deepEqual(remainder(original,F),[0,0,0,0]);
+const allSingleResidueSyndromes=new Map();
+for(let position=0;position<256;position++) {
+  const unit=Array(256).fill(0);
+  unit[position]=1;
+  const basis=remainder(unit,F);
+  assert(!zero(basis),"each polynomial position must have nonzero syndrome");
+  for(let delta=1;delta<29;delta++) {
+    const syndrome=basis.map(x=>mod(delta*x)).join(",");
+    assert(!allSingleResidueSyndromes.has(syndrome),
+      "single-symbol correction must have unique position and residue");
+    allSingleResidueSyndromes.set(syndrome,{position,delta});
+  }
+}
+assert.equal(allSingleResidueSyndromes.size,256*28);
+const oneWrong=original.slice(),syntheticIndex=123;
+const syntheticDelta=original[syntheticIndex]===255?28:1;
+oneWrong[syntheticIndex]=original[syntheticIndex]+(syntheticDelta===28?-1:1);
+const recoveredSingle=allSingleResidueSyndromes.get(remainder(oneWrong,F).join(","));
+assert.deepEqual(recoveredSingle,{position:syntheticIndex,delta:syntheticDelta});
+oneWrong[recoveredSingle.position]=
+  mod(oneWrong[recoveredSingle.position]-recoveredSingle.delta)+
+  29*Math.floor(original[syntheticIndex]/29);
+// Residue recovery is exact; full-byte recovery still needs upper-quotient data.
+assert.equal(mod(oneWrong[syntheticIndex]),mod(original[syntheticIndex]));
+
+// This source-factor-defined 26-term polynomial has exactly THREE nonzeros:
+// T(X)=1+25X^20+22X^25. H*G divides it exactly; code distance <=3.
+const sparseTriple=Array(26).fill(0);
+sparseTriple[0]=22;sparseTriple[5]=25;sparseTriple[25]=1;
+assert.deepEqual(remainder(sparseTriple,F),[0,0,0,0]);
+const added=Array(256).fill(0);
+added[230]=22;added[235]=25;added[255]=1;
+assert.deepEqual(remainder(added,F),[0,0,0,0]);
+const secondValid=original.map((x,i)=>mod(x+added[i]));
+const originalResidues=original.map(mod);
+const distance=(a,b)=>a.filter((x,i)=>x!==b[i]).length;
+assert.equal(distance(secondValid,originalResidues),3);
+const twoErrors=originalResidues.slice();
+twoErrors[235]=mod(twoErrors[235]+25);
+twoErrors[255]=mod(twoErrors[255]+1);
+assert.equal(distance(twoErrors,originalResidues),2);
+assert.equal(distance(twoErrors,secondValid),1);
+
 console.log(JSON.stringify({
   originalByteCount:original.length,
   historicalOnionControls,
+  sourceParityCode:{dimension:252,length:256,minimumDistance:3,
+    singleResidueSyndromes:allSingleResidueSyndromes.size,
+    correctedSyntheticResidueAt:recoveredSingle.position,
+    weightThreeWitness:"1+25X^20+22X^25",
+    arbitraryTwoResidueErrorCorrection:false},
   historicalDiscrepancyIndices:corrections.map(x=>x.index),
   factorRemainsSourceSelected:"2013 signed BASE29 -> H; p39 red GP triad -> G",
   uncorrectedHistoricalRemainders:{H:remainder(historical,H),G:remainder(historical,G)},
