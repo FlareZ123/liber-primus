@@ -19,9 +19,13 @@ jobs:
       - name: Compile the source-selected exponent-1661 recurrence
         run: g++ -O3 -std=c++17 -march=native sims/p36_dh1661_power_trace_stream_sft.cpp -o /tmp/p36_dh1661
       - name: Generate the 12,718-symbol relative-trace key
-        run: /tmp/p36_dh1661 p36_dh1661_power_trace_keys.bin | tee p36_dh1661_generation.json
+        run: |
+          set -o pipefail
+          /tmp/p36_dh1661 p36_dh1661_power_trace_keys.bin | tee p36_dh1661_generation.json
       - name: Score both additive signs against the original unknown stream
-        run: node sims/p36_dh1661_power_trace_score_sft.cjs p36_dh1661_power_trace_keys.bin | tee p36_dh1661_score.json
+        run: |
+          set -o pipefail
+          node sims/p36_dh1661_power_trace_score_sft.cjs p36_dh1661_power_trace_keys.bin | tee p36_dh1661_score.json
       - uses: actions/upload-artifact@v4
         with:
           name: p36-dh1661-power-trace

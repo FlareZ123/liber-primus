@@ -56,7 +56,7 @@ const hist=Array(29).fill(0);for(const x of key)hist[x]++;
 console.log(JSON.stringify({
   classification:"Candidate test for the source-selected p36-seeded x -> x^1661 state recurrence; compare both signs against raw and native GP-English baselines",
   source:{field:"GF(29^238)",modulus:"unique monic degree-238 factor R238 of original 32x8 table polynomial",p36SeedRunes:238,exponent:1661,update:"S[n+1]=S[n]^1661",output:"Tr_GF(29^238)/GF(29)(S[n])",clock:"8706 symbols backward to p36, then 4012 forward; p36 seed page excluded"},
-  key:{length:key.length,sha256:keySha,histogram,ioc:ioc(key)},
+  key:{length:key.length,sha256:keySha,histogram:hist,ioc:ioc(key)},
   metrics:{
     raw:{trigram:metrics.raw,ioc:ioc(original)},
     subtract:{trigram:metrics.subtract,ioc:ioc(minus)},
