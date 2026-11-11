@@ -40,6 +40,12 @@ The term order is the four-neighbour spiral starting at the red 3299 in row2,col
 
 The last two terms explain why a naive unsigned expression `3301 − prime` fails: once the prime exceeds **3301**, the manuscript prints the positive *absolute* difference. The initially puzzling 4516 and 1206 are essential confirmations of the rule, not exceptions. Independently, the p15 title, number choice `3301` and red 3299 provide a plausible intended human route to the seed: the offset from the Cicada identifier is the first prime 2, then 3 and 5. Reading consecutive 1,2,3,... prime indices directly would fail on the fourth step; the Fibonacci-index schedule and the square spiral explain all values.
 
+## Provisional cross-round red-heading checksum
+
+The two contiguous red-ink spans at the start of physical p15 (offsets 0–8 and 9–19) contain 20 runes. Their GP-prime-weight sums are **638** and **430**, for a combined **1068 = 2² × 3 × 89 = 12 × 89**. Among all 140 contiguous 20-rune windows on p15, the source-marked window at offset 0 is the **only** one with sum 1068.
+
+The historically documented 2013 `NUMBER` operation factors a composite input, so applying it to 1068 returns **[2, 2, 3, 89]**. The 89 factor independently matches the 11th distinct Fibonacci value in this grid and the candidate p32 rune offset 89. This is a useful cross-check for the p15→p32 address hypothesis, not proof that Cicada intended the 2013 command to be applied to LP2 red headings. The factor 12 has no assigned role. No cipher, key, or unknown plaintext follows from this checksum. The command's documented behavior and limitations are discussed in the [2013 NUMBER source report](../im-results/onion7-magic-center-source-prime-gate.md#historically-specified-decimal-reversal-and-the-16-cell-ring-agent-45-11-november-2026).
+
 ## What is established and what is still unknown
 
 The exact [single-file Node.js reproducer](../sims/lp2_p15_fibonacci_prime_spiral_sft.cjs) hashes the original scan, uses an explicitly human-transcribed 4×4 input grid, reconstructs all 16 primes, performs all 16 cell equality assertions, checks the distinct Fibonacci sequence/prime indices, and reconstructs the original row-major four-by-four arrangement from the spiral output. No fitted constants beyond the historically published **3301**, the exact printed cells, and the source-visible red starting point enter the derivation.
