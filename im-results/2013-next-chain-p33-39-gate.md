@@ -1,4 +1,4 @@
-# Authenticated 2013 NEXT chain key on p33–39: exact alignment, bounded negative
+# 2013 NEXT payload → p33–39 chain-key hypothesis: exact-length coincidence, bounded negative
 
 **Classification:** reproducible original-cipher negative. The source alignment is unusually specific, but no plaintext, authentic key, or verified LP2 chain mechanism was recovered.
 
@@ -12,7 +12,7 @@ An independent September 2026 analysis proposes that LP2's 86 adjacent repeated-
 
 This is a hypothesis, not an established mechanism. The external report is indexed at `resources/external/leo-y-zhang-liberprimusanalysis.md`.
 
-The p33–39 section has **1,680 runes**. The authenticated March 2013 NEXT payload is a particularly motivated candidate key source because the p33–39 region is the manuscript's 1033/3301 historical-protocol section. Its signed message is preserved at `resources/external/2013-do-not-share-this-information-2.asc`; the existing source note `resources/external/2013-tcp-server-signed-source.md` records its PGP verification and the participant-log link to NEXT.
+The p33–39 section has **1,680 runes**. Its 1033/3301 markers have been linked to the 2013 BASE29/DH protocol, making the independently signed March 2013 NEXT payload an obvious historical candidate to test—not an authenticated LP2 key selector. The signed message is preserved at `resources/external/2013-do-not-share-this-information-2.asc`; the existing source note `resources/external/2013-tcp-server-signed-source.md` records its PGP verification and the participant-log link to NEXT.
 
 ## Exact 1 + 1,680 alignment
 
@@ -47,7 +47,7 @@ The raw p33–39 stream has IoC **0.03436002** and GP-English trigram score **�
 
 The weakest of **2,105** native-GP Gibran 1,680-rune holdout windows scores **−8.30584825** (median **−8.01037896**). No candidate enters the native range (**0/16**); the best candidate remains about **3.44 nats/rune** below even the weakest native window. The totient-of-GP-prime key map has only 12 distinct values and also fails.
 
-**Decision:** the exact F-interrupted NEXT / IV-plus-1,680-step alignment is a real, source-motivated coincidence worth preserving, but the tested chain-key inverses do not decrypt p33–39. Retire this exact direct NEXT-key family. Do not rescue it with arbitrary offsets, alphabet permutations, phases, or new key transformations absent an independent source instruction.
+**Decision:** preserve the 1+1,680 arithmetic as a tempting but unsupported coincidence. The tested chain-key inverses do not decrypt p33–39, and the source does not select this participant-supplied text as a key. Retire the direct NEXT-key family. Do not rescue it with arbitrary offsets, alphabet permutations, phases, or new key transformations absent an independent source instruction.
 
 This is a distinct test from the earlier direct Vigenère broadcast. That earlier note's ciphertext interval was not preserved and has been withdrawn in `communications/broadcast/20261111T1754Z_agent24_next-running-key-range-correction.md`; its scores are not evidence for this result.
 
