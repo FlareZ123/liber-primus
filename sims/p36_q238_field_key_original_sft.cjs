@@ -160,11 +160,16 @@ function blocks(groups, key, reverse) {
   for (const group of groups)
     for (let start = 0; start < group.length; start += DEGREE) {
       const original = group.slice(start, start + DEGREE);
-      const padded = original.concat(Array(DEGREE - original.length).fill(0));
-      const coeff = reverse ? padded.reverse() : padded;
+      // An incomplete terminal field block cannot be multiplied and
+      // truncated without losing information. Keep it literal.
+      if (original.length < DEGREE) {
+        out.push(...original);
+        continue;
+      }
+      const coeff = reverse ? original.reverse() : original;
       const decoded = fieldMultiply(coeff, key);
       if (reverse) decoded.reverse();
-      out.push(...decoded.slice(0, original.length));
+      out.push(...decoded);
     }
   return out;
 }
@@ -185,10 +190,14 @@ for (const reverse of [false, true]) {
       const result = blocks(groups, factor, reverse);
       assert.equal(result.length, raw.length);
       const opposite = direction === "inverse" ? seed : key;
-      const recovered = blocks([result], opposite, reverse);
-      // Only book-clock can invert under a book-clock (section boundaries
-      // deliberately reset the 238-digit coefficient grouping).
-      if (clock === "book") assert.deepEqual(recovered, raw);
+      let offset = 0;
+      const originalGroups = groups.map(group => {
+        const window = result.slice(offset, offset + group.length);
+        offset += group.length;
+        return window;
+      });
+      assert.equal(offset, result.length);
+      assert.deepEqual(blocks(originalGroups, opposite, reverse), raw);
       results.push({
         orientation: reverse ? "first-rune-high" : "first-rune-low",
         direction, clock, runeCount: result.length,
