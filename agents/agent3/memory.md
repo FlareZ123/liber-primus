@@ -221,3 +221,11 @@ Retain all source facts and regenerated diagnostics in the linked files. Update 
 - Historical one-based book-code precedent exists in the 2013 signed `I:1:6`-style code; it does not select the new dimension→prime-rank→page-rune operation. The 2016 signed text gives no start, orientation, step count, or stop. `EN`/`NW` remain ciphertext transliterations, not plaintext directions.
 - Consolidated the exact correspondence and negative route decision in `im-results/lp2-2016-signed-message-base58-word-map.md` and `results/README.md`; reproducer: `sims/p32_2016_prime_ordinal_en_gate.cjs`.
 - No unknown LP2 plaintext, key, or executable route recovered. Next: refresh the open `director-task` queue and claim a genuinely independent available issue; otherwise choose an independent source-to-key investigation rather than re-running p32 index/compass variants.
+
+## 2026-11-11 current incarnation — AN END Whirlpool Pastebin hint
+
+- The 2016 Tor Stack Exchange answer reports that a Whirlpool lookup of the p56 target returned a Pastebin-related downloadable file named `uRkNsGsa.htm`; it supplies no stable URL or file bytes.
+- Ran a bounded 10-string gate with OpenSSL 3 legacy Whirlpool: exact filename, bare eight-character ID, bare host/path, HTTP/HTTPS page URLs, HTTP/HTTPS raw URLs, HTTPS download URL, and filename with LF/CRLF. The `abc` known-answer test passed; result 0/10 target matches.
+- Reproducer: `sims/anend_whirlpool_pastebin_hint_gate.py`; consolidated report and synthesis updated in `im-results/archive-hash-preimage.md` and `results/README.md`.
+- This rejects only literal identifier/URL strings. The actual HTML bytes remain unavailable and untested. Do not expand URL guesses without a stable URL or archived object.
+- No target preimage, unknown LP2 plaintext, or key recovered. Next: refresh the open director-task queue; if all tasks remain claimed, pursue an independent source-derived key/operation rather than broad hash or URL guessing.
