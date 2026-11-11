@@ -145,6 +145,46 @@ assert.equal(sourceGridJet[3], mod(
 assert.deepEqual(sourcePageJet.slice(4, 7), [20, 14, 6]);
 assert.deepEqual(sourceGridJet.slice(4, 7), [23, 28, 26]);
 
+// The signed 2013 H is irreducible: the quotient GF29[X]/H is GF(29^2).
+// Both source objects have natural H-field residues AFTER removing their
+// independent original-source polynomial factors.
+assert.ok(Array.from({length: M}, (_, i) => i)
+  .every((x) => mod((H[0] * x + H[1]) * x + H[2]) !== 0));
+const hLeadingInverse = Array.from({length: M - 1}, (_, i) => i + 1)
+  .find((v) => mod(v * H[0]) === 1);
+assert.equal(hLeadingInverse, 23);
+const monicLinear = mod(hLeadingInverse * H[1]);
+const monicConstant = mod(hLeadingInverse * H[2]);
+assert.deepEqual([monicLinear, monicConstant], [18, 11]);
+/** @param {number[]} a @returns {number} */
+function normH([a, b]) {
+  return mod(b * b - monicLinear * a * b + monicConstant * a * a);
+}
+/** @param {number[]} a @returns {number} */
+function traceH([a, b]) {
+  return mod(2 * b - monicLinear * a);
+}
+/** @param {number[]} u @param {number[]} v @returns {number[]} */
+function mulH([a, b], [c, d]) {
+  return [mod(a * d + b * c - monicLinear * a * c),
+    mod(b * d - monicConstant * a * c)];
+}
+const pageResidueH = div(pageG.q, H).r;
+const gridResidueH = div(gridF.q, H).r;
+assert.deepEqual(pageResidueH, [19, 16]);
+assert.deepEqual(gridResidueH, [6, 5]);
+const productH = mulH(pageResidueH, gridResidueH);
+assert.deepEqual(productH, [24, 15]);
+assert.deepEqual([traceH(pageResidueH), normH(pageResidueH)], [9, 2]);
+assert.deepEqual([traceH(gridResidueH), normH(gridResidueH)], [18, 26]);
+assert.deepEqual([traceH(productH), normH(productH)], [4, 23]);
+assert.equal(normH(productH), mod(normH(pageResidueH) * normH(gridResidueH)));
+assert.deepEqual(mulH(productH, productH),
+  [mod(4 * productH[0]), mod(4 * productH[1] - 23)]);
+assert.equal(normH([productH[0], mod(productH[1] - 2)]), 19);
+assert.equal(normH([productH[0], mod(productH[1] - 5)]), 28);
+assert.equal(normH([productH[0], mod(productH[1] - 8)]), 26);
+
 // The signed 2013 BASE29 convention supplies a separate fixed binary reading:
 // interpret the recovered 273 GF29 coefficients as one big-endian base-29 integer.
 const packedNumber = residual.q.reduce((acc, digit) => acc * 29n + BigInt(digit), 0n);
@@ -236,6 +276,10 @@ assert.equal(hits, 60);
 console.log(JSON.stringify({
   input: {page: 29, runes: P.length, tableCells: S.length},
   signedParameters: {H, DH}, originalTriad: G, product: F,
+  crtHResidues: {pageResidueH, gridResidueH, productH,
+    pageTraceNorm: [traceH(pageResidueH), normH(pageResidueH)],
+    gridTraceNorm: [traceH(gridResidueH), normH(gridResidueH)],
+    productTraceNorm: [traceH(productH), normH(productH)]},
   exploratoryDHJet: {root24, sourcePageJet: sourcePageJet.slice(0, 7),
     sourceGridJet: sourceGridJet.slice(0, 7), signedDHFull},
   exactCongruence: "P29 - S - 2G = G^2 R over GF(29)",
