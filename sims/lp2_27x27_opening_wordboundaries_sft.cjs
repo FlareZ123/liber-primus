@@ -192,6 +192,66 @@ assert.equal(fullPrintedSecondWord,"WEATHERX");
 // The published block03 starts at cell 369, within the source six-rune
 // word that supplied WEATHER; the first alignment is not universal.
 assert.equal(sourceNext.indices.length, 6);
+
+// Additional *conditional* two-step geometry. These precise transformations
+// were identified only after the external TURNS/COLD blocks had been published.
+// They are not authentic author-specified rules and MUST NOT be extrapolated
+// without a genuinely independent selector.
+const flat = (row,col) => (row-1)*27+(col-1);
+const secondSourceCenter=[14,5];
+assert.equal(first[flat(...secondSourceCenter)],22); // OE
+const thirdMirrorColumn=28-secondSourceCenter[1]; // D4 horizontal reflection
+const thirdRadius=phi(first[flat(...secondSourceCenter)]); // phi(OE22)=10
+assert.equal(thirdMirrorColumn,23);
+assert.equal(thirdRadius,10);
+const thirdSource=[flat(14-thirdRadius,thirdMirrorColumn),
+  flat(14,thirdMirrorColumn),flat(14+thirdRadius,thirdMirrorColumn)];
+assert.deepEqual(thirdSource,[103,373,643]);
+const thirdKey=thirdSource.map(i=>first[i]); // H NG C without center totient
+assert.deepEqual(thirdKey,[8,21,5]);
+assert.equal((thirdKey.reduce((s,k)=>s+mobius(phi(k)),0)+30)%3,0);
+const thirdCipherStart=secondStart+secondLength; // original cell369, next after WEATHER
+assert.equal(thirdCipherStart,369);
+const thirdPath=Array.from({length:secondLength},(_,i)=>thirdCipherStart-27*i);
+assert.deepEqual(thirdPath,[369,342,315,288,261]);
+const thirdPlain=thirdPath.map((where,i)=>
+  corpus.translit[(first[where]-thirdKey[i%3]+29)%29]).join("");
+assert.equal(thirdPlain,"TURNS");
+const thirdCenterRune=thirdKey[1]; // NG21
+const moveOuter=phi(thirdCenterRune),moveInner=phi(moveOuter);
+assert.deepEqual([moveOuter,moveInner],[12,4]);
+// Next source centre: move phi(NG) downward, phi(phi(NG)) leftward.
+// Next reading start: from old ciphertext end, move those same amounts
+// in interchanged axes, four rows down and twelve columns left.
+const fourthCenter=[14+moveOuter,thirdMirrorColumn-moveInner];
+assert.deepEqual(fourthCenter,[26,19]);
+const fourthSource=[flat(fourthCenter[0]-1,fourthCenter[1]),
+  flat(...fourthCenter),flat(fourthCenter[0]+1,fourthCenter[1])];
+assert.deepEqual(fourthSource,[666,693,720]);
+const fourthRawKey=fourthSource.map(i=>first[i]); // H TH H
+assert.deepEqual(fourthRawKey,[8,2,8]);
+const fourthDerived=fourthRawKey.slice();
+fourthDerived[1]=phi(fourthDerived[1]); // H U H
+const fourthPhase=((fourthDerived.reduce((s,k)=>s+mobius(phi(k)),0)%3)+3)%3;
+assert.equal(fourthPhase,1);
+const fourthKey=fourthDerived.slice(fourthPhase).concat(fourthDerived.slice(0,fourthPhase));
+assert.deepEqual(fourthKey,[1,8,8]); // U H H
+const priorEnd=thirdPath.at(-1),priorEndRow=Math.floor(priorEnd/27)+1,priorEndColumn=priorEnd%27+1;
+const fourthStart=flat(priorEndRow+moveInner,priorEndColumn-moveOuter);
+assert.equal(fourthStart,357);
+const fourthPath=Array.from({length:moveInner},(_,i)=>fourthStart-27*i);
+assert.deepEqual(fourthPath,[357,330,303,276]);
+const fourthPlain=fourthPath.map((where,i)=>
+  corpus.translit[(first[where]-fourthKey[i%3]+29)%29]).join("");
+assert.equal(fourthPlain,"COLD");
+// A literal repeated centre-shift rule fails immediately on published
+// block05. This explicit negative forbids claiming a general decoder.
+const fifthPredictedCenter=[fourthCenter[0]+phi(fourthRawKey[1]),
+  fourthCenter[1]-phi(phi(fourthRawKey[1]))];
+const fifthPublishedCenter=[15,8]; // source cells331,385,439, centre index385
+assert.deepEqual(fifthPredictedCenter,[27,18]);
+assert.notDeepEqual(fifthPredictedCenter,fifthPublishedCenter);
+
 console.log(JSON.stringify({
   unsolvedWords: words.length,
   matchingPatternCount: matches.length,
@@ -220,6 +280,9 @@ console.log(JSON.stringify({
   nextSourceWord: [sourceNext.start, sourceNext.end],
   nextProposedBlock: "WEATHER",
   fullPrintedSecondWord,
+  conditionalThird:{source:thirdSource,center:[14,thirdMirrorColumn],radius:thirdRadius,reading:thirdPath,key:thirdKey.map(k=>corpus.translit[k]),plain:thirdPlain},
+  conditionalFourth:{source:fourthSource,center:fourthCenter,offsets:[moveOuter,moveInner],reading:fourthPath,key:fourthKey.map(k=>corpus.translit[k]),plain:fourthPlain},
+  fifthPredictedCenter,fifthPublishedCenter,
   nextProposedBlockPath: [364, 365, 366, 367, 368],
   followingProposedBlockStartsAt: 369,
 }, null, 2));
