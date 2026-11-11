@@ -1,6 +1,6 @@
 # P27 title header-fold: 256 / prime-43 table-interval bridge
 
-**Status (11 November 2026): source-rare navigation structure selecting physical p50, the 256-cell table, P=43, and the left side of a 43-cell interval; the reversible decoder remains unresolved. No unknown LP2 plaintext or authentic cipher key recovered.**
+**Status (11 November 2026): source-rare navigation structure selecting physical p50, the 256-cell table, P=43, and the left side of a 43-cell interval; the reversible decoder remains unresolved. Direct p27 five-row selectors using both signed GP-prime word sums and GP-rune word lengths do not yield authentic p55 plaintext. No unknown LP2 plaintext or authentic cipher key recovered.**
 
 ## Upstream source route
 
@@ -216,6 +216,16 @@ The forward/reverse 26-rune outputs score **−4.282326 / −4.237420**. The bes
 Both selectors have exact synthetic row-selection controls; the additive GP29 bridge also round-trips exactly. **Decision:** reject these two exact row selectors and the direct additive p55 bridge. This does not reject all 43-unit relationships, but supplies no plaintext, key or reversible operation. Do not tune moduli, row orders, phases or key encodings.
 
 **Reproduce:** `node sims/p27_43word_prime_mask_row_selector_sft.cjs`
+
+## Signed 2016 GP word-length selector (bounded direct negative, Agent9)
+
+The earlier 43-word tests used each 2016 signed word's GP-prime sum as a hypothetical row selector for the p27 black-body 5×43 regrouping. A still simpler, independently nameable interpretation of the signed clue's “words ... numbers” is each word's **GP rune length**, including the single GP digraphs and original order. This is an alternative source-derived input; **no source explicitly tells us to take the length modulo five, to repack p27 as five rows, or to perform additive decryption**.
+
+Fix 43 ordered GP-rune lengths from the signed 2016 body (excluding the literal `3301` and OpenPGP armor), select `row = length mod 5` in the hypothetical five consecutive 43-rune p27 black rows, and read one index per column. Use the resulting 43 GP indices as a direct ±mod29 key against the exact 43 p55 “shed-circumference” interiors. Evaluate forward/reverse key order and both signs, four frozen variants, without searching phases or different masks.
+
+The original 43-symbol outputs all lack coherent GP language. The highest **unigram index of coincidence** is **0.05980066**, for reverse-key **C−K**, versus raw p55 interiors **0.03433001**. This initially looks more concentrated, and only 299 of **30,000** shuffles of the same signed-word-length multiset (word positions permuted, p27 and p55 fixed) match or exceed the best four-variant IoC (familywise empirical upper tail **0.0100**). Crucially, the same IoC-winning stream has **five EO and five NG runes** in 43 positions, rare in native English GP. An independently trained Gibran GP unigram log-likelihood on that stream is **−4.075729**; the best original-family likelihood is exceeded by **20,015/30,000** matched shuffled-family maxima (upper tail **0.66718**). A separate fixed native-GP trigram diagnostic also failed: 907/3,000 shuffles beat the best original score (upper tail **0.30257**). The IoC spike is therefore **not supported as language/plaintext recovery**, and no independently selected subsequent transposition exists.
+
+**Decision:** retire this exact GP-word-length/mod5 row-selector/direct-addition family. The interesting marginal concentration is a caution that high IoC alone can reward overproduction of rare GP runes. No keys, plaintext or original-cipher architecture have been recovered, and this test does not reject all possible roles of the five/43 geometry. [Deterministic full 30,000-trial reproducer](../sims/p27_2016_wordlength_row_gate_sft.cjs). The comparison uses a word-permutation conditional null and does not establish that the 5×43 regrouping is intentional.
 
 ## Decision
 
