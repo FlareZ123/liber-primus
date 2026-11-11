@@ -179,6 +179,38 @@ for (const [keyName, key] of [['p32-rune-ordinal', keyOrdinal], ['p32-GP-prime-w
   }
 }
 
+/* 4. DH/base29-number power permutations over the 180-cell table. */
+function powMod(a, n, m) {
+  let r = 1;
+  a %= m;
+  while (n) {
+    if (n & 1) r = (r * a) % m;
+    a = (a * a) % m;
+    n = Math.floor(n / 2);
+  }
+  return r;
+}
+const dhPowerPermutationTests = [];
+for (const base of [5, 23, 29]) {
+  const powers = Array.from({ length: 180 }, (_, n) => powMod(base, n, 181));
+  const positions = powers.map(v => v - 1);
+  const placed = Array(180).fill(null);
+  positions.forEach((position, i) => { placed[position] = interior[i] % 29; });
+  const gathered = positions.map(position => interior[position] % 29);
+  const inverseGathered = Array.from({ length: 180 }, (_, position) => {
+    const i = positions.indexOf(position);
+    return i < 0 ? null : interior[i] % 29;
+  });
+  const order = Array.from({ length: 181 }, (_, n) => n)
+    .find(n => n > 0 && powMod(base, n, 181) === 1);
+  dhPowerPermutationTests.push({
+    base, order, uniquePositions: new Set(positions).size,
+    gatheredMatches: matches(gathered, solved),
+    placedMatches: matches(placed, solved),
+    inverseGatheredMatches: matches(inverseGathered, solved)
+  });
+}
+
 const result = {
   classification: 'bounded source-fixed nonlinear tests; no unknown plaintext recovered',
   source: {
@@ -193,6 +225,7 @@ const result = {
   multiplicativeGapTests: gapTests,
   tableInteriorMultiplicativeGF29: tableTests,
   p32PrimeAddressKeyTests: p32Tests,
-  decision: 'Reject these fixed multiplicative and p32-anchored mappings; do not expand without a primary-source selector.'
+  dhPowerPermutationTests,
+  decision: 'Reject these fixed multiplicative, p32-anchored and DH-power mappings; do not expand without a primary-source selector.'
 };
 console.log(JSON.stringify(result, null, 2));
