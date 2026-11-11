@@ -157,6 +157,44 @@ The first natural columnar interpretation of “MIXING” is now tested and nega
 
 [Source-exact route SFT](../sims/p55_wisdom_cardinal_route_sft.cjs) asserts both original routes, original 2013 mixed-table token, alternative historical-square controls, both permutation experiments and the fixed original-key inverses. The first global-census version passed [manual CI run 42988336268](https://github.com/FlareZ123/liber-primus/actions/runs/42988336268); the new fragment-reset key test is a separate bounded negative. The parent [Director Issue #156](https://github.com/FlareZ123/liber-primus/issues/156) is closed: a 16-cell-ring cipher transfer remains **unselected**, and this new exact cross-page directional pattern is held as a **conditional** original-cipher lead requiring a next source-selected operation.
 
+### The 5×5 Wisdom square as a Hill mixing matrix: bounded negative
+
+The conditional p36/p55 route above yields the word `MIX` after the source-motivated totient mapping, with `NG` as the next GP rune. Since the historical 2013→2014 reconstruction is a genuine 5×5 numeric square, the cheapest recognizable matrix-mixing interpretation is a standard 5×5 Hill transform over GP29. This is a motivated test, not an authenticated cipher: the source does not name Hill or explicitly say that the square is a cipher key.
+
+Two fixed matrices were tested:
+
+- **Raw square:** each 2014 cell reduced modulo 29. Its determinant is `3 mod 29`.
+- **Totient square:** each cell mapped to `φ(n) mod 29`, the same source-motivated mapping used in the direction analysis. Its matrix is:
+
+```
+12 15 10 14  5
+ 4 24 19 12  6
+25 23 14 23 25
+ 6 12 19 24  4
+ 5 14 10 15 12
+```
+
+The totient matrix has determinant `28 mod 29`; both matrices are invertible. Each was applied to the original continuous unknown LP2 rune stream in non-overlapping five-rune blocks, testing the direct matrix and its inverse under both row-vector and column-vector conventions. No phase, page reset, key fitting, or padding was introduced. The canonical 12,956-rune stream therefore yields 2,591 complete blocks (12,955 runes) and one untouched terminal rune.
+
+The fixed Shakespeare GP29 trigram model reproduces the existing control scores exactly: native control `−2.229825` and raw unknown stream `−4.679452`. The eight matrix variants score:
+
+| Matrix | Transform | Vector convention | Trigram score (nats/rune) |
+|---|---|---|---:|
+| φ(square) | inverse | column | −4.6914218 |
+| φ(square) | inverse | row | −4.6939512 |
+| φ(square) | direct | column | −4.7048075 |
+| φ(square) | direct | row | −4.7158562 |
+| raw square | inverse | column | −4.7116969 |
+| raw square | inverse | row | −4.7153101 |
+| raw square | direct | column | −4.6951019 |
+| raw square | direct | row | −4.7244317 |
+
+No candidate improves on the raw ciphertext score, and every output remains visibly nonlinguistic. All complete blocks re-encrypt exactly under the opposite matrix; as the repository README cautions, that is an implementation invariant for a bijection, not evidence that the matrix is the historical key.
+
+**Decision:** reject the direct continuous 5×5 Hill interpretation for both natural square mappings, both matrix directions, and both vector conventions. Do not expand it into arbitrary phases, padding rules, or page-reset schedules without a new source selector. This does not reject other meanings of `MIXING` or a separately sourced matrix operation.
+
+Reproducer: [`sims/2014_wisdom_square_hill29_sft.cjs`](../sims/2014_wisdom_square_hill29_sft.cjs).
+
 ### Pre-2014 live TCP test reuses the 1033 / 3301 pair
 
 A separate historical route supplies **pre-2014 organizer selection of the same numbers**. The archived March 2013 TCP-server testing summary records Cicada issuing `BASE29 1033` and then `DH 3301` three times. A second preserved participant-server transcript records `BASE29 1033` → `16I`, followed by `DH 3301`, a completed exchange, and `NEXT`. The source manifest pins both archive files and their commit in [`resources/external/2013-tcp-live-test-vectors.json`](../resources/external/2013-tcp-live-test-vectors.json).
