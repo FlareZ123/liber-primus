@@ -16,3 +16,5 @@ jobs:
         run: node sims/lp2_2016_43word_compass_sft.cjs
       - name: Verify p32 signature payload boundary and whole-book direct inverse
         run: node sims/p32_2016_signed_wordmap_sft.cjs
+      - name: Test signed 2016 canvas and p53 red-51 source-prime boundary relation
+        run: node sims/p53_red51_signed2016_corner_paths_sft.cjs
