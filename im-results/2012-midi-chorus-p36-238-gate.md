@@ -59,8 +59,16 @@ The 238-character crib does not admit a direct symbol substitution:
 
 The IoC mismatch also excludes a pure transposition of the chorus under this GP mapping: positional permutation and monoalphabetic relabeling cannot raise the source chorus's frequency profile to match p36.
 
+### 3. The 2014 p50 degree-238 residual as a same-length key
+
+The independently derived p50 table factorization also has a unique monic degree-238 residual Q238. Its 238 non-leading coefficients are a natural cross-round candidate because the chorus and p36 both have 238 symbols. The reproducer divides the original 256-byte p50 polynomial by the four already-established low-degree factors, verifies zero remainder and a monic degree-238 quotient, then compares both coefficient orders against the chorus GP indices, Latin ordinals, MIDI alphabet ranks, note-plus-delta residues, and the p36 known-plaintext keystream.
+
+No exact equality or exact affine relabeling exists. The best post-hoc single-affine relabeling (812 possible scale/offset pairs) gives only 17–20 matches out of 238, depending on sequence and coefficient orientation; this optimized maximum is not a source-selected transform and is not evidence of a relationship. In particular, the best rank-stream fit is 19/238 and the best low-to-high fit to the p36 crib keystream is 20/238.
+
+This rejects the obvious direct Q238 coefficient/chorus/key-stream correspondence. It does not invalidate the independently established polynomial factorization or prove the three 238 counts are accidental.
+
 ### Decision
 
 **Retire the direct p36-as-Blake-chorus crib and the simple 238-symbol running-key interpretations above.** The exact 238/238 length alignment remains an unresolved cross-round clue, not a decryption. A new attempt must identify an independently motivated reversible operation or key representation from an original source; do not rescue this route with arbitrary phase, reversal, transposition, or alphabet searches.
 
-Reproducer: ../sims/2012_midi_chorus_p36_238_gate.cjs. Derived MIDI input: 2012-midi-chorus-p36-238-inputs.json. The script verifies the source-rank decode, page-length uniqueness, word counts, IoCs, substitution consistency, and held-out affine-pair prediction.
+Reproducer: ../sims/2012_midi_chorus_p36_238_gate.cjs. Derived MIDI input: 2012-midi-chorus-p36-238-inputs.json. The script verifies the source-rank decode, page-length uniqueness, word counts, IoCs, substitution consistency, held-out affine-pair prediction, and the Q238 cross-round coefficient gate. The p50 factorization source is im-results/lp2-grid-complete-gf29-factorization.md.

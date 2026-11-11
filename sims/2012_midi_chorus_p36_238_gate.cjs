@@ -8,6 +8,7 @@ const { parseSharedCorpus } = require("./lp2_word_pages.cjs");
 const ROOT = path.resolve(__dirname, "..");
 const read = (relative) => fs.readFileSync(path.join(ROOT, relative), "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const grid = JSON.parse(read("resources/liber-primus/base60-grid.json"));
 const chorusDoc = read("resources/control/cicada2012_blake_chorus.txt");
 const midi = JSON.parse(read("im-results/2012-midi-chorus-p36-238-inputs.json"));
 const p36 = corpus.pages.find((page) => page.page === 36).indices;
@@ -159,6 +160,68 @@ function affinePairGate(plain, cipher) {
 }
 
 const pairAffine = affinePairGate(gpKey, p36);
+
+function polyMultiply(a, b) {
+  const out = Array(a.length + b.length - 1).fill(0);
+  for (let i = 0; i < a.length; i++) {
+    for (let j = 0; j < b.length; j++) out[i + j] = mod(out[i + j] + a[i] * b[j]);
+  }
+  return out;
+}
+function polyDivide(dividend, divisor) {
+  const remainder = dividend.slice();
+  while (remainder.length && remainder[remainder.length - 1] === 0) remainder.pop();
+  const quotient = Array(Math.max(1, remainder.length - divisor.length + 1)).fill(0);
+  while (remainder.length >= divisor.length) {
+    const shift = remainder.length - divisor.length;
+    const coefficient = mod(remainder[remainder.length - 1] * inverse(divisor[divisor.length - 1]));
+    quotient[shift] = coefficient;
+    for (let i = 0; i < divisor.length; i++) remainder[i + shift] = mod(remainder[i + shift] - coefficient * divisor[i]);
+    while (remainder.length && remainder[remainder.length - 1] === 0) remainder.pop();
+  }
+  while (quotient.length && quotient[quotient.length - 1] === 0) quotient.pop();
+  return { quotient, remainder };
+}
+const knownFactors = [
+  [25, 10, 1],
+  [11, 18, 1],
+  [24, 16, 14, 1],
+  [11, 15, 0, 9, 1, 5, 10, 20, 12, 1],
+];
+const knownProduct = knownFactors.reduce((product, factor) => polyMultiply(product, factor), [1]);
+const p50Polynomial = grid.byte_rows.flat().reverse().map((value) => value % P);
+const divided = polyDivide(p50Polynomial, knownProduct);
+assert.equal(divided.remainder.length, 0);
+assert.equal(divided.quotient.length, 239);
+const q238Ascending = divided.quotient.map((value) => mod(value * 28));
+assert.equal(q238Ascending[238], 1);
+const q238Descending = q238Ascending.slice().reverse();
+const q238High = q238Descending.slice(1);
+const q238Low = q238Ascending.slice(0, 238);
+const knownPlaintextKeyStream = p36.map((value, index) => mod(value - gpKey[index]));
+function bestAffineMatch(source, target) {
+  let best = { matches: -1, scale: null, offset: null };
+  for (let scale = 1; scale < P; scale++) for (let offset = 0; offset < P; offset++) {
+    let matches = 0;
+    for (let i = 0; i < source.length; i++) if (mod(scale * source[i] + offset) === target[i]) matches++;
+    if (matches > best.matches) best = { matches, scale, offset };
+  }
+  return best;
+}
+const q238Candidates = [
+  ["GP-index chorus", gpKey],
+  ["Latin A=0 chorus", alphaKey],
+  ["2012 MIDI alphabet rank", rankKey],
+  ["MIDI note+delta mod29", eventSumMod29],
+  ["p36 known-plaintext keystream", knownPlaintextKeyStream],
+];
+const q238CrossRoundTests = q238Candidates.map(([name, sequence]) => ({
+  name,
+  exact_high_to_low: sequence.every((value, index) => value === q238High[index]),
+  exact_low_to_high: sequence.every((value, index) => value === q238Low[index]),
+  best_affine_high_to_low: bestAffineMatch(q238High, sequence),
+  best_affine_low_to_high: bestAffineMatch(q238Low, sequence),
+}));
 const pageWords = parseSharedCorpus().byStartPage[36];
 const chorusWords = sourceText.split(/\s+/).map((word) => word.replace(/[^A-Za-z]/g, "")).filter(Boolean);
 const matching238Pages = corpus.pages.filter((page) => page.runic_count === 238).map((page) => page.page);
@@ -192,6 +255,7 @@ const result = {
     exact_affine_monoalphabetic_maps: exactAffineSubstitutions,
     adjacent_pair_affine_GF29: pairAffine,
   },
+  q238_2014_table_crossround_tests: q238CrossRoundTests,
   decision: "Do not extend this into phase/reversal/permutation sweeps. Retain the 238 alignment as an unresolved clue only; a new attempt needs an independently source-selected reversible operation."
 };
 
@@ -200,4 +264,6 @@ assert.equal(pairAffine.determinant, 3);
 assert.equal(monoalphabetic.conflicts, 207);
 assert.equal(homophonic.conflicts, 191);
 assert.equal(exactAffineSubstitutions, 0);
+assert.equal(q238CrossRoundTests.find((x) => x.name === "2012 MIDI alphabet rank").best_affine_high_to_low.matches, 19);
+assert.equal(q238CrossRoundTests.find((x) => x.name === "p36 known-plaintext keystream").best_affine_low_to_high.matches, 20);
 console.log(JSON.stringify(result, null, 2));
