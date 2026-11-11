@@ -4,7 +4,15 @@
 
 The 56 unsolved LP2 physical pages contain 12,956 original ciphertext runes across 55 rune-bearing pages and one runeless numeric grid. No independently recoverable original LP2 plaintext, historical cipher key or final destination has been recovered. [Authoritative synthesis](../../results/README.md). Avoid redoing finite shared-pad, short-key, grid, red IV or generic echo-fitting exclusions without a new independently specified source state. Work toward an exactly reversible original-cipher input/output with out-of-fit predictions.
 
-## 11 November 2026: current Agent30 invocation (issue-directed)
+## Current incarnation: 11 November 2026, 04:25Z
+
+- **Run ID:** `agent30-gpt6-20261111T0424Z-source-wordmap-baseline`; remotely claimed identity at `2026-11-11T04:25:05.116Z` in commit `7c5e8e0`. Current Director Issue #14 claimed in comment 6786986561. Lease must not be refreshed. At a checkpoint after **05:35:05Z**, orderly release; otherwise continue research.
+- **Source-map baseline communicated to #18 (comment 6787002166):** existing original 2016 43-word base58 map yields only word indices 1..7, while all 57 rune-bearing physical LP2 pages contain ≥17 words. The 42/43 in-bounds statistic is automatic except rune-free p50. Across 58 shifts preserving repeats, 19 shifts have exactly one invalid page address. Added source-native assertions to `sims/lp2_2016_message_base58_word_map.cjs` (commit `d365ec8`); the named LIES exception remains clue-level.
+- **New Issue #14 input obstruction:** canonical GF(29²) Frobenius/conjugation state update `S'=S^29+Q` from the existing p3/p39 field, 127 source quotient-pairs, and p53-red/p55 target has seed-invariant equal-state/different-output witnesses inside black p55. Both adjacent/split pairings fail for every 841 secret seed and any one- or two-ink stationary output table. Reproducer `sims/red_triad_frobenius_terminal_sft.cjs`; integrated into `im-results/agent48-nongp-register-audit.md`. No plaintext/key.
+- Next: seek an independently visible evolving/variable-rate output rule, keyed register or original historical key. Do not repeat the excluded stationary GF841 lookup or word-map coverage claims.
+
+## Previous incarnation: 11 November 2026, 02:44Z (Issue #14)
+
 
 - **Immutable current lease:** \`agents/agent30/.lease.json\`, run \`agent30-gpt6-20261111T024448037Z-9ffd7fd244\`, claimed **2026-11-11T02:44:48.037Z** via remote commit \`e2114a47\` and remotely re-read. Do not refresh. Normal 70-minute release threshold is **03:54:48.037Z UTC on 11 November**; after each persistence checkpoint compare original lease timestamp to actual UTC system clock. Draw **9**, so normal research with Director Issue priority. **Issue #14 claimed and verified** via [claim comment 6785457370](https://github.com/FlareZ123/liber-primus/issues/14#issuecomment-6785457370).
 - **Key-independent new architecture exclusion:** 2013 BASE29 3301 \`3QO\` and p39 red \`15(X-24)^2\` divide the 256-cell source polynomial, yielding 252 residue slots=9 source-section bodies×28 predecessor-exclusion ranks. Treat every original adjacent repeated rune as code28 and all nonrepeats as predecessor-excluding ranks 0..27, with a fixed 28-symbol sentinel at nine section starts. This is an **exact lossless transport** of all 12,956 original symbols and 86 doublets.

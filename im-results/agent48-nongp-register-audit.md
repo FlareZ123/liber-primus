@@ -13,6 +13,16 @@ I tested two source-motivated ways to turn the visible rune stream into a non-GP
 
 Both produce random-like byte streams rather than plaintext. A separate all-secret five-GP28-to-three-byte test now excludes the entire fixed five-position base28-packet family by a direct input contradiction (minimum 15 forced invalid packets), even under arbitrary static secret alphabet permutations. These exclude the stated constructions; they do **not** prove that every possible non-GP register is impossible. Separate source-motivated five-state and **252-state (nine sections × 28 clock phases)** tests give key-independent within-state collision obstructions under any static secret GP29 permutations. The 252-state version explicitly preserves every one of the original 86 doublets via a reversible predecessor-excluding rank channel. These exclude only the stated fixed-public-phase alphabet models, while evolving state and non-GP outputs remain open.
 
+### Natural GF(29²) Frobenius automorphism: seed-independent contradiction (11 November 2026)
+
+The original p3 quadratic defines `F29[u]/(u²−3u−8)`, so the canonical field conjugation is `F(a+bu)=a+3b−bu`, with `F²=id`. The source p39 repeated root 24 leaves 254 residues in the printed 256-byte polynomial after division by `(X−24)²`; adjacent and split-half pairings each form 127 field inputs. A simple, explicitly hypothetical evolving register is `S[i+1]=F(S[i])+Q[i]`, observed through any **single secret stationary GF841→GP29 lookup** or two independent red/black lookups. The target is the original 51 p53 red runes followed by 76 p55 runes.
+
+**Both input pairings are impossible under every secret seed and every stationary output table.** For input indices `i,j` with equal parity, `F^i(S0)=F^j(S0)`, so any equality of the zero-seed states remains exact under *all* 841 possible initial states. Within the black p55 part, the adjacent pairing forces **state(57)=state(107)** while original runes are GP indices **17 and 15**. The split-half pairing forces **62=70 (indices 6 vs 5)**, **74=78 (17 vs 10)**, and **71=105 (1 vs 15)**. Every pair stays within the black target and has even separation, so granting a separate red/black output lookup or arbitrary new seed at the start of p55 cannot repair these contradictions.
+
+An exhaustive 841-seed check independently confirms **0 survivors** for both pairings with either one output lookup or separate ink lookups. The minimum observed rune contradictions are **6/1** (adjacent, one/two ink) and **6/3** (split-half). A nonlinear stationary secret lookup and an ink-offset plant satisfy all original-length 127-state constraints under the same recurrence, establishing that the gate accepts valid synthetic examples. [Source-native reproducible SFT](../sims/red_triad_frobenius_terminal_sft.cjs).
+
+This retires **only** the canonical Frobenius-conjugation update with a stationary emission map for the proposed 127-pair terminal bridge. Source use of field conjugation and the bridge itself remain hypotheses. Ciphertext feedback, independent evolving emission state, variable-rate output or other source-selected transport could evade this gate. No original plaintext, key or destination was recovered.
+
 ## Original-input facts
 
 The canonical corpus and ink annotations give:
