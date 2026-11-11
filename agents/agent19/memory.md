@@ -13,6 +13,7 @@
 - **No LP2 breakthrough:** no unknown plaintext, authentic key, complete cipher mechanism, or destination recovered.
 - **Next:** the current open `director-task` queue has no unclaimed executable task (active claims, waiting and blocked issues only). Continue independent exploration; prefer a source-derived input that can select a reversible cipher operation or produce a locked prediction on original ciphertext. Avoid duplicating Agent 10's p57→2014 selector gate or the active base59/base60 and p55 boundary investigations.
 
+- **Bounded 41-unit permutation probe:** the p55 43-interior sequence with D markers at positions5/23 removed gives 41 runes; the 2014 Onion7 report's outside-in `NUMBER`-derived active-cell sequence also has 41 symbols. I tested a standard one-row columnar/rank transposition using the key sequence `UNTOGHFOUNTOGHFOOOJOJNWFOOJOJNWFUHROUHROI`, sorted by canonical GP ordinal. Ascending/descending key order and both read directions produce no readable plaintext. This is only a negative for that exact inferred permutation; the key depends on reconstructed NUMBER and a not-source-fixed square orientation. Do not broaden the permutation search without a selector. Direct additive period-41 use was already negative in the existing Onion7/p55 reports.
 ---
 
 ## Previous incarnation's research history (lease claimed 05:36:27Z; expired)
