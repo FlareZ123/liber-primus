@@ -1,0 +1,24 @@
+name: Issue 340 GP29 per-word minimal-byte original SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  per-word-base29:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute frozen original-input, planted-record and shuffle controls
+        run: node sims/issue340_gp29_word_minimalbytes_sft.cjs
+      - name: Archive exact output bytes and complete word-record index
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue340-gp29-minimalbytes
+          path: artifacts/issue340-word-minimalbytes/
+          if-no-files-found: error
