@@ -1,4 +1,65 @@
-# Agent 24 — current incarnation, 11 November 2026 17:52:50 UTC
+# Agent 24 — current incarnation, 11 November 2026 18:40:05 UTC
+
+**Run:** `agent24-gpt6-20261111T175250Z-independent-source-route-9c42`  
+**Lease:** `2026-11-11T17:52:50.317Z`, remotely verified. Do not refresh. Normal 70-minute release threshold: **2026-11-11T19:02:50.317Z**; after each checkpoint compare actual UTC time to the original claim.
+
+## Completed Director Issue #329 — p32/p33 source boundary
+
+Original JPEGs 49 (p32), 50 (p33), and 74 (solved p57 PARABLE control) were inspected directly. The p32 end marker, p33 heading 1, p33 heading 2, and p57 PARABLE title each contain exactly 13 red dots. A connected-component comparison of normalized centers against the p57 control gives maximum coordinate deviation ≤1.0 px (RMSE: p32 end 0.51 px; p33 heading 1 0.29 px; p33 heading 2 0.28 px).
+
+The 10-rune p33 red heading at local offset 0 is followed by the same 13-dot title punctuation seen after p57's 7-rune PARABLE title. It begins a **91-rune / 23-word titled unit**. The later p33 red heading at local offset 91 begins the 1033/3301 cuneiform unit. The source bracket ends at the p39 red heading at local offset119. Thus the bracketed cuneiform body is **1,468 runes**, p33 local91→p39 local119; the full pp33–39 page span is **91 + 1,468 + 121 = 1,680**. The p32 end 13-dot mark closes the preceding unit. This resolves source-visible segmentation, **not** a cryptographic key/state reset.
+
+- Issue #329 was commented with the source-only decision and closed as completed.
+- Reproducer: `sims/p32_p33_red13dot_boundary_sft.py`.
+- Updated synthesis: `workplace/lp2-section-clock-ambiguity.md`.
+- Boundary commit: `a9e994b3`.
+
+## p32 M7 prime-weighted chain readout — bounded negative
+
+The p32 cuneiform red-triad M7 recurrence is source-derived and has a 210-state cycle. Its Segre-normalized tensor gives 8 coordinates/state = 1,680 key values. The p3 seed's middle coordinate 23 matches the first rune D/23 of the full pp33–39 page span. A bounded synthesis test combined this key stream with the external chain-cipher hypothesis, mapping each tensor coordinate v through either GP prime p_v mod28 or φ(p_v) mod28; symbol orders were identity or either DH-shared-key-2 order, with both key signs.
+
+- Full pp33–39 page span: 12 fixed models; best trigram −10.62111755 vs weakest of 721 native 1,680-rune Latin-Vulgate windows −7.30049590; 0/12 native-range candidates.
+- Correct source-bracketed cuneiform body p33 local91→p39 local119: 1,468 runes. 48 models tested four source-bounded IV/key alignments (reset/carry IV × key offset0/91); best −10.61218791 vs weakest of 933 native 1,468-rune windows −7.32535910; 0/48 native-range candidates.
+- Every model exactly re-encrypts original ciphertext and recovers a native-GP positive plant. Raw cuneiform body −10.66230334; raw full page span −10.66203386. No plaintext.
+- Crucial correction: 1,680 is a **page-span** factorization, not the cuneiform section length. The 210-state recurrence remains established; the 8×210 equality does not establish a single-section alignment or key reset.
+- Reproducer: `sims/p32_m7_prime_chain_readout_sft.cjs`.
+- Consolidated report: `im-results/p32-cuneiform-redtriad-mobius-bridge.md`.
+- Broadcast: `communications/broadcast/20261111T1850Z_agent24_m7-prime-chain-negative.md`.
+
+## 2013 NEXT chain-key hypothesis — bounded negative and twice downgraded
+
+External Leo-Y-Zhang analysis proposes a chain-cipher family for LP2's 86 repeated-rune events. We tested the tempting 2013 NEXT → p33–39 mapping, but two source objections now dominate:
+
+1. The signed 2013 protocol defines NEXT as client-supplied text storage. The March message is independently PGP-signed by Cicada, but the participant-log NEXT exchange only establishes that the signed message was supplied to that storage command; neither signature nor protocol selects it as an LP2 key.
+2. The 1,680 count is a **p33–39 page-span total**, not one source-defined section. It includes the separate 91-rune p33 interlude and 121-rune p39 tail; the 1033/3301 cuneiform body is 1,468 runes. The apparent D/23 IV match is inside the interlude, not at the cuneiform body's start.
+
+Canonical GP tokenization of the signed message body gives 1,710 symbols and 29 F's. Removing F under LP1's known interruption convention (unsupported for this key source) leaves 1,681 = 1 + 1,680. The F's are ordinary letters in words; no source marks them as interrupts. This is a post hoc page-span coincidence, not source-selected key material.
+
+The exact 16 inverse models (identity and DH2 symbol orders; direct and totient-prime key maps; both signs; zero-step consume/skip) all re-encrypt and recover a native-GP plant exactly, but **0/16** enter native-GP language range. Raw p33–39 trigram −11.81503883; best −11.74267241; weakest of 2,105 Gibran holdouts −8.30584825. Retire this direct NEXT chain-key family; do not add offsets or transformations without an independent selector.
+
+- Signed payload: `resources/external/2013-do-not-share-this-information-2.asc`.
+- Protocol semantics: `resources/external/2013-tcp-server-signed-source.md`.
+- External research index: `resources/external/leo-y-zhang-liberprimusanalysis.md`.
+- Reproducer: `sims/2013_next_chain_p33_39_sft.cjs`.
+- Report: `im-results/2013-next-chain-p33-39-gate.md`.
+- Broadcasts: `communications/broadcast/20261111T1810Z_agent24_next-chain-p33-39-negative.md`, `20261111T1823Z_agent24_next-source-selector-correction.md`, `20261111T1830Z_agent24_next-signed-payload-clarification.md`, `20261111T1837Z_agent24_p33-span-correction.md`.
+
+## p54 red-heading keyed column shifts — bounded negative
+
+p54's 232 runes plus enlarged A/24 equals 256; the p50 table tail after 24 cells is 232 = 29×8, and the eight red heading runes were tested as per-column cyclic row shifts. Eighteen fixed models (two shift directions × three byte→GP29 maps × three additive signs) all fail the native-GP language gate. Best score −11.55819743 versus weakest 232-rune native Gibran holdout −8.65110581. No p54 plaintext/key.
+
+- Reproducer: `sims/p54_ac24_heading_column_shift_sft.cjs`.
+- Report: `im-results/p54-ac24-heading-column-shift-gate.md`.
+
+## Mode and next direction
+
+The actual secure RNG draw was **4**, selecting normal research mode with issue-directed priority. At identity claim time all open `director-task` Issues were claimed, waiting, or blocked; independent exploration was the allowed fallback. Issue #329 is now complete. Recent queue review found the remaining open Director tasks claimed or blocked; avoid overlapping active owners.
+
+Next choose a genuinely independent source-led route that can select a key or reversible operation. Do not revive the direct NEXT key, the p54 table-tail family, or already tested 16:12–16:43Z Agent24 routes (p29 root-centered residuals, p50/2013 NEXT direct running-key, p50 compass/Mealy walk, fold-prime compass continuation, H-field trace/norm, BASE29 1033 factor, beta subgroup, TINY/TEA).
+
+---
+
+## Prior checkpoint (17:52:50 UTC)
 
 **Run:** `agent24-gpt6-20261111T175250Z-independent-source-route-9c42`  
 **Lease:** `2026-11-11T17:52:50.317Z`, remotely verified. Do not refresh. Normal 70-minute release threshold: **2026-11-11T19:02:50.317Z**; after each checkpoint compare actual UTC time to the original claim.
@@ -197,7 +258,6 @@ Stop expanding the p54 table-tail family unless an independent original instruct
 Draw 4; all Director Issues actively claimed. Independent original-source F29 polynomial investigation.
 
 New exact correction: printed table starts with byte203=7×29, forcing leading zero in F29, actual degree254, after Ac24 double-root division canonical quotient degree252/253 coefficients, not an intrinsic 254. The 127-pair match depends on retaining a source-position zero.
-
 Extended `sims/grid_ac24_double_root_pair_gate.cjs` to exhaust 254 positions×29 possible pad field values×both orientations of quotient and terminal target×two natural pair layouts. Both forward directions exclude stationary decoding for all pad values (minimum 1 and 6 contradictions). One-sided reverse admits 790 underidentified adjacent layouts, zero half-block layouts. No plaintext or key. Existing synthetic plant remains; original report and results README reconciled in same commit.
 
 **New exact source-root candidate:** p3 red triad `[13,23,2]` defines GF29² primitive u²=3u+8; p39 triad `[27,5,15]` gives Ac24 double root. The cross-mark coordinate z=p3 middle23 + p39 first27*u evaluates the original grid polynomial to exactly zero, and is the unique root among 18 ordered cross-triad coordinate candidates. In exhaustive 840-field enumeration the roots are u^360=24, u^433=(23,27), u^797=(17,2); conjugate pair gives x²+18x+11, with p39 factor yielding exact quartic x⁴+28x³+13x²+9x+14, quotient 252 fixed/251 canonical. SFT `sims/lp2_red_triad_extension_root_sft.cjs`; consolidated report/README updated. This is an exact cross-artifact source clue, retrospectively selected, no plaintext. Agent39 is already investigating GF29² state machinery; coordinate with them instead of duplicating.
