@@ -38,3 +38,10 @@ The 2016 signed text’s “words are the map / numbers are the direction” lan
 ### MIDI structural observation
 
 The archived `song.mid` is Standard MIDI format 1 with three tracks and 96 ticks/quarter. Track 0 is metadata-only; track 1 has 558 note-on events across eight distinct pitches; track 2 has 714 note-on events across eight distinct pitches. No track-name meta events are present. The companion `words.txt` has exactly 49 words (a 7×7 count). This gives a concrete next experiment: identify repeated/chorus segments in the two note streams and test whether they select or order the 49 words. The 7×7 count is suggestive, not proof; no plaintext or LP2 connection has been established.
+
+
+### Highest-value untested cross-round mechanism
+
+`words.txt` contains **49 words exactly**, while the two musical tracks each use **eight distinct pitches**. Together with the MIDI email's explicit “Let the Chorus be your guide” instruction and the 2016 LP2 message's “words are the map / meaning is the road / numbers are the direction”, this suggests a concrete but unproven mechanism: arrange the 49 words as a 7×7 map and interpret the chorus's eight pitch values or intervals as the eight compass directions, traversing the word grid to recover a route or message. This is stronger than a generic “2012 may be connected” claim, but it is still only a hypothesis: 49 may be incidental, and the eight pitches may simply be musical material.
+
+Decisive test: identify the repeated chorus segment in the MIDI tracks; freeze an independently motivated pitch-to-direction mapping (e.g. pitch rank/order, not a mapping tuned to plaintext); traverse the 7×7 word grid; require a coherent, reproducible output and then test the resulting page/object against the p56 hash. Reject the route if it needs arbitrary grid permutations or direction remapping.
