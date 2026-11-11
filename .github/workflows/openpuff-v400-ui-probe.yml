@@ -1,27 +1,51 @@
-name: Temporary OpenPuff 4.00 Windows UI probe
+name: OpenPuff v4.00 source-native extraction gate
 
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: Run the historical positive control first; LP2 mode should only be used after a password passes its CRC gate.
+        type: choice
+        required: true
+        default: positive-control
+        options:
+          - positive-control
+          - lp2-jpegs
+      password:
+        description: Password for the LP2 JPEG pass, after the positive-control run identifies the working spelling.
+        type: choice
+        required: true
+        default: "33011033"
+        options:
+          - "33011033"
+          - "33011103"
 
 permissions:
   contents: read
 
 concurrency:
-  group: temporary-openpuff-v400-ui-probe
+  group: openpuff-v400-source-native-extraction
   cancel-in-progress: false
 
 jobs:
-  probe:
+  positive-control:
+    if: ${{ inputs.mode == 'positive-control' }}
     runs-on: windows-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        password:
+          - "33011033"
+          - "33011103"
     steps:
       - uses: actions/checkout@v4
 
-      - name: Prepare output
+      - name: Prepare evidence directory
         shell: pwsh
         run: New-Item -ItemType Directory -Force -Path probe-output | Out-Null
 
-      - name: Retrieve pinned historical OpenPuff v4.00 and verify Git blobs
+      - name: Retrieve pinned historical OpenPuff v4.00 and verify original blobs
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
@@ -37,30 +61,149 @@ jobs:
             $path = Join-Path $folder $name
             Invoke-WebRequest -Uri "$source/$name" -OutFile $path
             $blob = (& git hash-object -- $path).Trim().ToLowerInvariant()
-            Write-Host "${name}: git blob $blob; SHA256 $((Get-FileHash $path -Algorithm SHA256).Hash.ToLowerInvariant())"
             if ($LASTEXITCODE -ne 0 -or $blob -ne $expected[$name]) {
-              throw "Historical OpenPuff blob mismatch: $name"
+              throw "Historical OpenPuff blob mismatch: $name ($blob)"
             }
+            Write-Host "${name}: git blob $blob; SHA256 $((Get-FileHash $path -Algorithm SHA256).Hash.ToLowerInvariant())"
           }
           $exe = Join-Path $folder "OpenPuff.exe"
           if (-not (Select-String -LiteralPath (Join-Path $folder "OpenPuff_license.txt") -Pattern "OpenPuff v4.00" -Quiet)) {
             throw "Historical source license lacks v4.00 identity"
           }
-          Write-Host "File version: $((Get-Item $exe).VersionInfo.FileVersion)"
+          $version = (Get-Item $exe).VersionInfo.FileVersion
+          Write-Host "OpenPuff PE file version: $version"
+          if ($version -ne "4.0.0.0") { throw "Unexpected OpenPuff version: $version" }
           "OPENPUFF_EXE=$exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
-      - name: Install UI inspection dependency
+      - name: Retrieve and verify the archived 2014 Interconnectedness MP3
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $url = "https://raw.githubusercontent.com/iBotPeaches/cicada_3301/a0a616d85717af59f8b806875b43d51e06e1e874/tool/storage/interconnected.mp3"
+          $mp3 = Join-Path $env:RUNNER_TEMP "interconnected.mp3"
+          Invoke-WebRequest -Uri $url -OutFile $mp3
+          $length = (Get-Item $mp3).Length
+          $blob = (& git hash-object -- $mp3).Trim().ToLowerInvariant()
+          $md5 = (Get-FileHash $mp3 -Algorithm MD5).Hash.ToLowerInvariant()
+          $sha256 = (Get-FileHash $mp3 -Algorithm SHA256).Hash.ToLowerInvariant()
+          Write-Host "Interconnectedness size=$length; git blob=$blob; MD5=$md5; SHA256=$sha256"
+          if ($LASTEXITCODE -ne 0 -or $length -ne 6651873 -or $blob -ne "09fe068192b76a3697c47ec1d604b527703db798" -or $md5 -ne "7638414d35f416084b7ddcc94aa53685") {
+            throw "Archived Interconnectedness MP3 failed its pinned size/blob/MD5 checks"
+          }
+          "INTERCONNECTEDNESS_MP3=$mp3" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Install UI automation dependency
         shell: pwsh
         run: python -m pip install --disable-pip-version-check pywinauto
 
-      - name: Inspect OpenPuff main and Unhide panels
+      - name: Run original-tool positive control with candidate password ${{ matrix.password }}
         shell: pwsh
-        run: python sims/openpuff_ui_probe.py --exe "$env:OPENPUFF_EXE" --out probe-output
+        run: |
+          $out = "probe-output/${{ matrix.password }}"
+          python sims/openpuff_v400_extract.py `
+            --exe "$env:OPENPUFF_EXE" `
+            --carrier "$env:INTERCONNECTEDNESS_MP3" `
+            --password "${{ matrix.password }}" `
+            --bit-format "Mp3 (Audio)" `
+            --bit-level "1/2 (50%) - Maximum" `
+            --out "$out" `
+            --output-name "magicsquares.txt" `
+            --wait-seconds 25 `
+            --expected-crc32 "6A8C41E3" `
+            --expected-size 745
+          if ($LASTEXITCODE -ne 0) { throw "OpenPuff UI automation failed for password ${{ matrix.password }}" }
+          $result = Get-Content "$out/result.json" -Raw | ConvertFrom-Json
+          if ($result.expected_match) {
+            Write-Host "POSITIVE CONTROL PASS: ${{ matrix.password }} recovered 745 bytes with CRC32 6A8C41E3"
+          } else {
+            Write-Host "No authenticated positive-control match for ${{ matrix.password }}; inspect result.json and UI evidence"
+          }
 
-      - name: Upload probe evidence
+      - name: Upload positive-control evidence and any extracted file
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: openpuff-v400-ui-probe
+          name: openpuff-v400-positive-control-${{ matrix.password }}
+          path: probe-output/${{ matrix.password }}/
+          if-no-files-found: warn
+
+  lp2-jpegs:
+    if: ${{ inputs.mode == 'lp2-jpegs' }}
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare evidence directory
+        shell: pwsh
+        run: New-Item -ItemType Directory -Force -Path probe-output | Out-Null
+
+      - name: Retrieve pinned historical OpenPuff v4.00 and verify original blobs
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $source = "https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff"
+          $folder = Join-Path $env:RUNNER_TEMP "OpenPuffv400"
+          New-Item -ItemType Directory -Force -Path $folder | Out-Null
+          $expected = @{
+            "OpenPuff.exe" = "466e03c792075313ce533a5dc7a789e8a41209f9"
+            "libObfuscate.dll" = "f3b1c3315f8286346416fefd6141410f422f2454"
+            "OpenPuff_license.txt" = "b0bab97d3c9906caada26fbb890a2a6fe028baa4"
+          }
+          foreach ($name in $expected.Keys) {
+            $path = Join-Path $folder $name
+            Invoke-WebRequest -Uri "$source/$name" -OutFile $path
+            $blob = (& git hash-object -- $path).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $blob -ne $expected[$name]) {
+              throw "Historical OpenPuff blob mismatch: $name ($blob)"
+            }
+            Write-Host "${name}: git blob $blob; SHA256 $((Get-FileHash $path -Algorithm SHA256).Hash.ToLowerInvariant())"
+          }
+          $exe = Join-Path $folder "OpenPuff.exe"
+          if (-not (Select-String -LiteralPath (Join-Path $folder "OpenPuff_license.txt") -Pattern "OpenPuff v4.00" -Quiet)) {
+            throw "Historical source license lacks v4.00 identity"
+          }
+          $version = (Get-Item $exe).VersionInfo.FileVersion
+          Write-Host "OpenPuff PE file version: $version"
+          if ($version -ne "4.0.0.0") { throw "Unexpected OpenPuff version: $version" }
+          "OPENPUFF_EXE=$exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Install UI automation dependency
+        shell: pwsh
+        run: python -m pip install --disable-pip-version-check pywinauto
+
+      - name: Test original LP2 JPEGs individually in physical page order
+        shell: pwsh
+        env:
+          LP2_PASSWORD: ${{ inputs.password }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          foreach ($page in 17..74) {
+            $name = $page.ToString("00")
+            $carrier = Join-Path $env:GITHUB_WORKSPACE "resources/liber-primus/$name.jpg"
+            if (-not (Test-Path -LiteralPath $carrier)) { throw "Missing original LP2 page $name.jpg" }
+            $out = Join-Path $env:GITHUB_WORKSPACE "probe-output/p$name"
+            Write-Host "Testing original LP2 physical page $page with password A and JPEG Medium (1/5)"
+            python sims/openpuff_v400_extract.py `
+              --exe "$env:OPENPUFF_EXE" `
+              --carrier "$carrier" `
+              --password "$env:LP2_PASSWORD" `
+              --bit-format "Jpeg (Image)" `
+              --bit-level "1/5 (20%) - Medium" `
+              --out "$out" `
+              --wait-seconds 10
+            if ($LASTEXITCODE -ne 0) { throw "OpenPuff UI automation failed for LP2 page $page" }
+          }
+          $summary = @()
+          foreach ($file in Get-ChildItem -Path probe-output -Filter result.json -Recurse) {
+            $summary += Get-Content $file.FullName -Raw | ConvertFrom-Json
+          }
+          $summary | ConvertTo-Json -Depth 8 | Set-Content probe-output/summary.json -Encoding utf8
+
+      - name: Upload original LP2 extraction evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: openpuff-v400-lp2-jpeg-individuals-${{ inputs.password }}
           path: probe-output/
           if-no-files-found: warn
