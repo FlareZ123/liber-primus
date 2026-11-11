@@ -13,6 +13,23 @@ This result continues the independently reproduced signed-2016 / p55 navigation 
 
 The duplicated p27/p55 DJU-BEI pair also has an exact numerical coincidence: its canonical word starts are 1,432 words apart, while the selected p27 section has 1,433 runes. These quantities use different units. The equality 1432 = 1433−1 is retained as an observation and **does not supply a direction, clock or state transition** without a source rule connecting word offsets to section-rune steps.
 
+## P27 black-body 5×43 link to p55, and a finite-field recovery gate
+
+An independent **original-source length** relationship sharpens the existing p27/p55 bookend clue. The physical p27 image contains **234 runes**, beginning with the original **19-rune red title**; its **215 ordinary black runes = 5×43**. Across all 56 unsolved physical pages, this is the **only nonempty black-rune count divisible by 43** (the rune-free p50 is excluded). P55 has **43 strict word-interior runes** after the source-derived circumference stripping, and its left ornament has **five positions 01101**, whose filled positions are **2,3,5**. The exact adjacent two-word ciphertext pair `DJU-BEI` occurs at p27 offsets **28–33** and p55 offsets **70–75**; these are the only repeated contiguous six-rune positions in the entire 12,956-rune unknown corpus. The p55 occurrence is the **terminal two words**. Physical pages 27 and55 are exactly **28 pages apart**, closing the two halves of the 56 unknown pages, with 28=φ(29). The repeated pair was already documented in the [p27/p53 source report](p27-title-gridfold-p53-closure.md); the black-body multiple-of-43 relationship is an additional conditional observation.
+
+This cluster **nominates a concrete original source-key experiment**: treat p27's 215 black runes as five source-symbol shares in each of 43 columns, then use the five-dot 01101 mask to select rows 2,3,5 for the 43 p55 interiors. The historically familiar 29-symbol alphabet supports a degree-2 Shamir polynomial over F29; if these were three of five authentic shares, the other two observed row values must match the unique degree-2 interpolant. For selected abscissae **2,3,5**, its value at zero uses coefficients **5,24,1 modulo29**. We fixed both ordinary ways to pack the source (five consecutive 43-rune rows and 43 consecutive five-rune groups) and both natural field readings (GP ordinals 0–28 and GP-prime weights modulo29), without searching secret coordinates or arbitrary row permutations.
+
+| Original 5×43 interpretation | Both withheld shares correct / 43 columns | Exactly one withheld share correct | Neither correct |
+|---|---:|---:|---:|
+| Five rows of43, GP ordinal | **0** | 2 | 41 |
+| Five rows of43, GP-prime residue | **0** | 5 | 38 |
+| 43 groups of five, GP ordinal | **0** | 3 | 40 |
+| 43 groups of five, GP-prime residue | **0** | 4 | 39 |
+
+A synthetic source-matched **43/43-column polynomial positive control passes**. All eight positionwise ± additive decodings using the interpolated 43-symbol candidates against the exact original p55 interior remain nonlinguistic (observed IoC **0.02215–0.05094**); no source-derived key or plaintext results. This **decisively rejects the direct quadratic 3-of-5 share interpretation of all five p27 glyphs** in the four fixed layouts/encodings. It leaves the page-pair and 5×43 dimensional observations available for a different *independently selected* reversible operation. Do not multiply alternative masks, row orders, coefficient rules, or decoder families merely to rescue the appealing arithmetic.
+
+[Reproducer: exact original source assertions, both layouts, positive polynomial plant and all eight original inverses](../sims/p27_p55_five_by_43_shamir_source_sft.cjs) · [successful Node22 CI run 43026602093](https://github.com/FlareZ123/liber-primus/actions/runs/43026602093).
+
 ## Self-indexing title header
 
 Fragment 18 is the 19-rune title MPYLSOAAEHLEEOIMLLSCP.
