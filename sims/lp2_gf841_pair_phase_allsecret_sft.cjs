@@ -6,8 +6,9 @@
  * two-rune symbols (p3 red irreducible quadratic). The p05 source Möbius
  * corner map has order 28; p39/Ac24 field element has order seven.
  * Test stationary per-pair maps (period 1), a free secret map for EACH
- * source-cycle phase seven or twenty-eight, both book-continuous and
- * physical-page-reset pair clocks, and two possible pair starting offsets.
+ * source-cycle phases seven and twenty-eight, and the p3 primitive-field
+ * period 840; both book-continuous and physical-page-reset pair clocks and
+ * both pair starting offsets are tested.
  *
  * The map at each phase can be ANY of 841! secret bijections; identical
  * ciphertext pair-symbol counts are necessarily identical plaintext
@@ -167,7 +168,7 @@ const rows = [];
 for (const pageReset of [false, true]) {
   for (const offset of [0, 1]) {
     const positions = pairCoordinates(offset, pageReset);
-    for (const period of [1, 7, 28]) {
+    for (const period of [1, 7, 28, 840]) {
       const input = coincidence(actual, positions, period);
       const reference = controls.map(native =>
         coincidence(native, positions, period).rate);
@@ -182,7 +183,34 @@ for (const pageReset of [false, true]) {
     }
   }
 }
-assert.equal(rows.length, 12);
+assert.equal(rows.length, 16);
+assert.equal(rows.filter(row => row.period === 840).length, 4);
+const expected840 = [
+  {clock: 'book-continuous', pairOffset: 0, rate: 0.001099605974525795,
+    equalPairs: 48, totalPairs: 43652, pairCount: 6478,
+    nativeMin: 0.005314762210208009},
+  {clock: 'book-continuous', pairOffset: 1, rate: 0.001145790366194601,
+    equalPairs: 50, totalPairs: 43638, pairCount: 6477,
+    nativeMin: 0.004812319538017324},
+  {clock: 'physical-page-reset', pairOffset: 0, rate: 0.001308293160784718,
+    equalPairs: 406, totalPairs: 310328, pairCount: 6462,
+    nativeMin: 0.005652084246345802},
+  {clock: 'physical-page-reset', pairOffset: 1, rate: 0.0013464264676372158,
+    equalPairs: 416, totalPairs: 308966, pairCount: 6439,
+    nativeMin: 0.005340393441349534}
+];
+for (const expected of expected840) {
+  const row = rows.find(candidate => candidate.period === 840 &&
+    candidate.clock === expected.clock &&
+    candidate.pairOffset === expected.pairOffset);
+  assert(row);
+  assert(Math.abs(row.authentic.rate - expected.rate) < 1e-14);
+  assert.equal(row.authentic.equalPairs, expected.equalPairs);
+  assert.equal(row.authentic.totalPairs, expected.totalPairs);
+  assert.equal(row.authentic.pairCount, expected.pairCount);
+  assert(Math.abs(row.nativeMin - expected.nativeMin) < 1e-14);
+  assert(row.authentic.rate < row.nativeMin);
+}
 assert(Math.abs(rows[0].authentic.rate -
   0.001225415716847936) < 1e-14);
 assert(Math.abs(rows.find(x => x.clock === 'physical-page-reset'
@@ -191,7 +219,7 @@ assert(Math.abs(rows.find(x => x.clock === 'physical-page-reset'
 console.log(JSON.stringify({
   originalRuneCount: N,
   independentlyHeldoutNativeWindows: controls.length,
-  hypotheses: rows.length, rows,
+  hypotheses: rows.length, periods: [1, 7, 28, 840], rows,
   originalPlaintextRecovered: false,
-  claim: 'all-secret necessary-condition exclusion for fixed-pair GP841 bijections'
+  claim: 'all-secret necessary-condition exclusion for fixed-pair GP841 bijections at public periods 1, 7, 28 and 840'
 }, null, 2));
