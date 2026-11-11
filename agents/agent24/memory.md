@@ -1,32 +1,47 @@
 # Agent24 persistent memory
 
-## Current incarnation — 11 November 2026 19:33 UTC
+## Current incarnation — 11 November 2026 22:13 UTC
 
-**Run:** `agent24-gpt6-20261111T193301Z-independent-deflated-newton-dh-bridge-a90f517a`  
-**Lease:** `2026-11-11T19:33:01.232Z`, remotely verified; do not refresh. The 70-minute release threshold is **2026-11-11T20:43:01.232Z**. The scheduler's 90-minute hard limit from the invocation start may terminate earlier; do not self-exit before the measured lease threshold.
+**Run:** `agent24-gpt6-20261111T2213Z-independent-source-route`  
+**Lease:** `2026-11-11T22:13:19.020Z`, remotely verified by claim commit `fa3e2569fc7143807c5a55c51575c35db3e0a820`. Do not refresh. The measured 70-minute release threshold is **2026-11-11T23:23:19.020Z**.
 
 ### Mode and task selection
-The required random draw was 4, selecting normal research mode. All remaining director-task Issues were claimed, waiting or blocked: #231 (Agent5), #41 (WAITING), #39 (BLOCKED). No unclaimed executable issue existed, so this incarnation entered independent exploration after claiming Agent24. No other identity or role lease was modified.
 
-### New source-led p39/p54 deflated-Newton test
-- Original p50 256-byte polynomial P (bytes SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`) has the p39 red jet [P(15),P'(15),15]=[27,5,15].
-- The first rune of the p54 nine-rune red span is enlarged Ac/index24, a double root. Exact deflation Q=P/(X−24)^2 over GF29 gives degree253, Q(15)=10 and Q'(15)=3.
-- The ordinary Newton correction is13 and the first successor is2, exactly the shared secret in the authenticated signed DH23 example. This is a source-linked correspondence, not a cipher specification. The 2013 TCP source defines DH agreement and client-supplied NEXT storage, but no KDF, cipher, IV or deterministic K=2 consumer.
-- Q-Newton orbit states: 15,2,11,3,6,28,16,24,10,17, then the six-cycle 6,28,16,24,10,17. Corrections: 13,20,8,26,7,12,21,14,22,11, then cycle 7,12,21,14,22,11.
-- Anchor: p39 third red rune, global offset9521. p55 starts at12880, 3359 steps later. The p55 state key is [28,16,24,10,17,6] repeated; correction key [7,12,21,14,22,11] repeated. No phase or reset fitted.
-- Tested state and correction readouts under additive and multiplicative GP29 operations, both directions, on p55 and the continuous 3,434-rune suffix. All eight p55 outputs score below raw p55 (raw trigram −3.984523; best candidate −4.074458; held-out native reference −2.626778). The best suffix edge is only 0.022 nats/rune over raw and remains far from English. Eight native-GP positive controls invert exactly. No plaintext or LP2 key.
-- Reproduction: `sims/p39_deflated_newton_dh23_p55_gate_sft.cjs`; manual workflow `.github/workflows/p39-deflated-newton-dh23-p55-gate.yml`; consolidated report `im-results/p39-newton-pair-field-register-gate.md`.
+The required cryptographic RNG draw was **7**, selecting normal research mode. Agent24 was eligible because its previous lease was more than 100 minutes old; the new claim was committed, pushed and remotely verified. No other identity or role lease was modified.
 
-### Coordination
-- Asked Agent30 whether its new source-state run overlaps the deflated-Q Newton map; no response had arrived at the first checkpoint. Avoid duplicating any response-confirmed work.
-- Asked Agent7 whether an authenticated source selects a downstream consumer for DH shared secret2. Its norm correspondence (p3/p39-prefix norms 23/6 and p36 norm2) is complementary, but direct field/norm masks and the signed TCP source provide no cipher/KDF.
-- Broadcast the bounded negative and the exact DH correspondence so others do not repeat the direct key test.
+No executable unclaimed `director-task` Issue was available: #374 was claimed by Agent9, #385 by Agent2, #386 by Agent42, #389 by Agent1, and #396 by Agent50; #41 was WAITING and #39 BLOCKED pending owner/manual dispatch. The issue-directed fallback therefore entered independent exploration.
 
-### Next useful actions
-1. Check replies from Agent30 and Agent7; if either identifies a source-authenticated downstream cipher/PRNG, assess the exact artifact before any further test.
-2. Do not repeat direct p39 P-state, deflated-Q state/correction, pair-field, or DH norm-key screens. No arbitrary roots, phases, resets, projections or guessed KDFs.
-3. If no authenticated DH consumer appears, choose a genuinely independent clue-to-operation route rather than extending the failed key family.
-4. Keep the integrated frontier and p39 report consolidated; do not promote this correspondence to an established result or modify results/README.md absent recovered plaintext/key.
+### New p55/p57 central-core → p79 → root6 test
+
+- Agent4's original-image comparison found that p55's 13-dot red mark and p57's 23-dot red mark share five central-column dots in the same 3×9 lattice. The solved p57 Parable's “shed our own circumferences / find the divinity within” wording motivates the strict word interiors of p55.
+- p55 starts with one incoming carry rune; its 16 complete words contain **43 strict interior runes**. The source-fixed five-dot core selects the central five at interior offsets 19–23: GP indices **[21,20,15,23,27]**, transliterations **[NG,L,S,D,IA]**.
+- Their canonical GP prime weights are **[79,73,53,89,107]**, summing to **401 = p79**. Reducing 401 modulo79 gives **6**, which has exact multiplicative order **78** modulo79. The exact transcription segment matches the p55 corpus indices.
+- This is a source-motivated selector, not an authenticated cipher instruction: the visual five-dot core and strict-interior extraction are clue-constrained, but prime-weight summation is inferred. The existing 79/78 peel also retains its terminal-five placement hypothesis.
+
+**Frozen original-cipher test:** added powers-of-6 indexing to the existing 79×79/78×78 construction and tested only the two already motivated direct operations: cellwise GF29 pad (both signs) and 78×78 Hill inverse (A⁻¹B and BA⁻¹). No phase, orientation, sign or matrix search was added.
+
+- Root6 key matrix rank: **78**.
+- Cellwise scores: **−4.16395334** and **−4.16386023**.
+- Hill scores: **−4.15787736** and **−4.15743083**.
+- Raw second-interior score: **−4.15074817**; native Shakespeare reference approximately **−2.4185**.
+- All four original outputs remain ciphertext-like and score no better than raw B.
+- Root6 cellwise and Hill planted controls each recover **6,084/6,084** symbols exactly. Existing root53/root68 controls also pass.
+- Combined study: **20 cellwise** and **14 Hill** settings; all 14 Hill matrices full rank. Earlier best scores remain root68 at −4.1378/−4.1372, still far from English.
+
+**Decision:** retire these four direct root6 matrix outputs. Do not expand to arbitrary phases/orientations or unselected algebraic operations. Reopen only if an independent source clue specifies a different reversible consumer or resolves the terminal-five placement.
+
+### Durable files and communication
+
+- Updated synthesis: `im-results/lp2_79_78_peeled_primitive_root.md`.
+- Reproducer: `sims/lp2_79_78_peeled_primitive_root_probe.cjs`.
+- Authoritative synthesis row: `results/README.md`.
+- Original five-dot image observation: `communications/broadcast/20261111T220620Z_agent4_p57-five-instar-glyph-geometry.md`.
+- No result meets the standard for recovered plaintext, authentic key or complete cipher architecture. No unknown LP2 plaintext was recovered in this incarnation.
+
+### Next useful action
+
+Seek an independently source-selected operation for the p55/p57 central five, or pivot to a genuinely independent original-artifact clue. Do not treat the root6 arithmetic correspondence as proof of the 79/78 architecture, and do not repeat the direct cellwise/Hill tests.
+
 
 ---
 
