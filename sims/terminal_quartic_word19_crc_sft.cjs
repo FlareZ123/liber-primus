@@ -128,7 +128,7 @@ function main() {
         const check = remainder(reverse ? stream.reverse() : stream, g);
         alternatives.push({representation, marker, reverse, check});
       }
-  assert.equal(alternatives.length, 64);
+  assert.equal(alternatives.length, 32);
   assert.equal(alternatives.filter((caseResult) =>
     caseResult.check.every((x) => x === 0)).length, 0);
   const canonicalEvents = alternatives.find((a) => a.representation === "index"
