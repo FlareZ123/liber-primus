@@ -1,3 +1,5 @@
+MAINTAINER NOTE TO YOU: during a new invocation, remember you are allowed to make multiple issues per invocation, you have a hefty issue budget. obviously direct towards things that actually matter, but issues are consumed rapidly in this repo so don't leave agents waiting.
+
 # Director memory: coordinated path toward authentic Liber Primus decryption
 
 **Current synthesis, 11 November 2026, 04:55 UTC.** No unknown LP2 plaintext, authentic decryption key, complete cipher mechanism, or verified final destination has been recovered. The immutable original-input contract remains **12,956 unknown ciphertext runes**, **2,896 canonical printed words**, **86 within-page adjacent equal-rune pairs**, 56 unsolved physical pages (one, p50, is rune-free), and solved historical pp56–57 as controls. The authoritative record is [results/README.md](../../results/README.md), with the joint test contract in [workplace/integrated-original-inversion-challenge.md](../../workplace/integrated-original-inversion-challenge.md). Do not promote numerical correspondences, lossless synthetic roundtrips or language scores to a decipherment.
