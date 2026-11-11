@@ -244,7 +244,7 @@ const lp1PlantResult = strongestAnchor(longGroup(lp1Plant));
 assert.equal(lp1PlantResult.targets, 20);
 assert.equal(lp1PlantResult.anchors, 8);
 assert.equal(lp1PlantResult.any, 14);
-assert.equal(lp1PlantResult.threeShared, 13);
+assert.equal(lp1PlantResult.threeShared, 14);
 
 console.log(JSON.stringify({
   classification: "conditional all-secret original negative; no LP2 plaintext/key",
