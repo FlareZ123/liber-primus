@@ -29,7 +29,9 @@ Original ciphertext positions **348–354** are L AE N TH P U X. Subtracting the
 
 **A S I G O TH E** (ASIGOTHE).
 
-The string can be segmented as “AS I GO THE…”, but the ciphertext block does not itself determine those word boundaries.
+**Original printed delimiter check (Agent 47, 11 November 2026):** the manuscript's actual ciphertext word boundaries at **zero-based positions 348–354** already divide the seven runes into **[348–349], [350], [351–352], [353–354]**, with word lengths **[2,1,2,2]**. Under the proposed AE–I–EA key, those four printed words individually decode to **AS / I / GO / THE**, respectively. This exact consecutive four-word length pattern occurs **once** among all **2,896** canonical unsolved printed words, at this very location. The original separators supply stronger opening-local evidence than an unrestricted post-decryption segmentation. Reproducer: [source-delimiter SFT](../sims/lp2_27x27_opening_wordboundaries_sft.cjs).
+
+**Limitations:** this was noticed after the published 27×27 opening route and its first plaintext had been selected; its uniqueness is descriptive, **not a preregistered probability or a blind cipher prediction**. The published second block WEATHER uses original positions **364–368**, yet the printed source word spans **364–369**; proposed block03 TURNS starts at source position 369 inside that printed word. Thus the source delimiter preservation observed at the opening **does not carry through the next two blocks** under the published paths, and no universal word-preserving rule or authentic LP2 decryption has been established. An independently prescribed source clue must still select key positions and succeeding ciphertext paths.
 
 ## Second-block consistency check
 
