@@ -52,6 +52,7 @@ on:
           - 28-page-samepad
           - tree-fold7
           - empty-fragment-aes128
+          - historical-cookies
         default: full
 
 jobs:
@@ -63,6 +64,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Historical 2013 reciprocal-prime cookies original p56 and 32-row grid
+        if: ${{ inputs.probe == 'historical-cookies' }}
+        run: node sims/cicada2013_reverse_prime_cookies_p56_sft.cjs
+
       - name: Original empty-fragment row8/row11 AES-128 source gate
         if: ${{ inputs.probe == 'empty-fragment-aes128' }}
         run: node sims/lp2_empty_fragment_aes128_source_gate.cjs
