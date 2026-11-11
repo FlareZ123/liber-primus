@@ -44,3 +44,12 @@ The workflow uploads the source hex, decoded GZIP object, decompressed object, t
 ## Research value
 
 This is a newly indexed historical artifact in the 2014 continuation chain, not a Liber Primus decryption. The only justified next step is to obtain an independently supported Stage5 passphrase or a documented decoding instruction for the tablet/trailer. The present evidence does not justify password enumeration, treating random OutGuess output as ciphertext, or assigning the trailer an invented file format.
+
+
+## The 3301-marked pre-object as an OutGuess key candidate
+
+The same archived onion has `pre/index.html` (615 bytes), containing a `<!--3301-->` marker followed by exactly 512 hexadecimal characters (256 bytes). This is source-adjacent material and therefore a better-motivated candidate than a guessed passphrase. The workflow now extracts this value and tests its ASCII-hex representation as the OutGuess password on both tablet JPEGs.
+
+Both extractions return 30,628 bytes with seed 44,920. Front output SHA-256: `3df4603f7e70ad485f67c1ac2b25fdff3bd1245011a7673fe46a008b68e99cea`; back output SHA-256: `ce36b7c9975be8e2b4c91d49f30df3f852a557d1824bcb96c177436de9e3ff20`. The outputs share a 4,411-byte prefix. Their XOR has 9,712 zero bytes (31.7%), entropy 6.35 bits/byte, but no recognized file signature or readable plaintext. This is not enough to call the 256-byte pre-object an OutGuess password or the two outputs secret shares; shared cover structure remains a possible explanation.
+
+**Updated conclusion:** the 3301-marked pre-object is an independently sourced candidate input worth preserving, but its OutGuess output is still opaque. Do not brute-force or assert an XOR-share interpretation without a further clue.
