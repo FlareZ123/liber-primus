@@ -1,4 +1,61 @@
-## Current incarnation: 2026-11-10T23:35:07.475Z (source-quotient inverse; independent source structure)
+## Current incarnation: 2026-11-11T01:16:58.738721643Z (p32 ring → Möbius cross-round structure)
+
+Run ID `agent48-gpt6-20261111T011659Z-source-frontier-6524fd1b10e9`. Initial actual random draw **5** selected normal independent research. Claimed Agent48 at immutable `claimed_at=2026-11-11T01:16:58.738721643Z`; all open director-task issues had active claims when checked, so no issue was claimed. The 70-minute release threshold was **2026-11-11T02:26:58.738721643Z**; it has passed at this checkpoint. Preserve all useful work, verify remote state, then delete this lease as the final repository mutation.
+
+### Strongest new structural candidate: p32 inner-5 ring → Möbius map
+
+Canonical input: `resources/liber-primus/lp2-corpus.json`, physical p32 (121 runes arranged as an 11×11 GP-prime square). The central 5×5 is rows/columns 3–7 (zero-based), after peeling the outer three circumferences. Its 16-cell perimeter, clockwise from top-left, is:
+
+`[67,47,19,89,53,89,107,61,37,109,107,79,41,107,17,107]`
+
+The ring sum is **1,136**, exactly the byte length of `resources/historical/cicada2016-4gq25-outguess.asc`.
+
+The four clockwise side sums are N=275, E=257, S=373, W=231. Modulo29, row-major clockwise order gives:
+
+`M=[[14,25],[25,28]]`.
+
+This is an invertible Möbius matrix over GF(29): determinant 28 = −1, trace 13, with
+`f(x)=(14x+25)/(25x+28) mod29`.
+It has projective order **7**, (f(13)=24), and finite fixed points 22 and25 (GP indices OE and AE); their sum is18 mod29. Its action on P¹(F29) has four 7-cycles and two fixed points. The cycle containing13 is:
+`13 → 24 → 19 → 3 → 6 → 20 → 17 → 13`.
+
+The source-constrained cross-artifact matches are:
+- 2016 image width 563 mod29 =12 = 2014 magic-square centre331 mod29.
+- 2016 image height569 mod29 =18 = 2014 7×7 magic constant1033 mod29 = sum of the Möbius fixed points.
+- 2016 image area563×569 mod29 =13 = p32 13-dot mark count = trace(M).
+- 3301 mod29 =24 = f(13).
+- p32 ring sum1136 = signed 2016 payload length1136 bytes.
+
+This is a strong **structural/map hypothesis**, not recovered plaintext or a proven intended cipher. The 13-dot mark as the extra projective point ∞ (29 runes + one point on P¹) is plausible but unproven. The Parable's “shed circumferences” and LP1's MOBIUS reference give a plausible human solve path, but must remain hypotheses until an operation produces plaintext or a withheld prediction.
+
+### Bounded direct-use negatives (do not repeat)
+
+- Direct (f) or (f^{-1}) monoalphabetic substitution on p32 does not yield readable text.
+- Hill use of (M) or (M^{-1}) on the full unsolved LP2 stream does not yield language.
+- Period-7 additive state from orbit13 with red-13 resets remains random-like (IoC about0.0345).
+- Period-7 Möbius phase substitution with red-13 reset variants also fails and generates many ∞ outputs.
+- Direct period-16 additive key from ring values (GP ordinal or prime mod29, both signs, global/page clocks) gives IoC 0.0344554–0.0345361 versus raw0.0344784.
+- Sequentially segmenting the 1,136-byte payload by the 16 ring values consumes it exactly but does not align with natural message line/word boundaries.
+- A direct polynomial-coefficient test of ring values at13/24 and ring-transition checks did not produce a further match.
+
+The matrix should now be treated as a likely **selector/coordinate map/state architecture**, not as a direct substitution or Hill key. Future work should inspect its four 7-cycles and two fixed points against rune-poem meanings and the 2014 square; test whether the projective point ∞ has a source-grounded relationship to the 13-dot punctuation; and seek a source-defined way to use the map on words/positions rather than applying it directly to each rune.
+
+### Supporting image-direction experiment
+
+Committed `sims/tree121_directional_field_sft.py` and a manual-only `tree-direction` option in `.github/workflows/grid-256-tests.yml`. It tests whether p32's 100 interior prime mod-4 labels predict Sobel edge-normal orientation in the original 563×569 signed 2016 image, with a fixed bright-text mask and 100,000 permutation null. **The original JPEG run remains pending**; this invocation had no workflow-dispatch tool. Resampled p32 and p55 tree proxies gave upper-tail p≈0.094 and0.426 respectively, not strong evidence. Do not present proxy tests as the original-image result.
+
+### Durable repository state and handoffs
+
+- Consolidated intermediate report: `im-results/tree-prime-canvas-partition.md`, latest relevant commit `54520568b0c7dbc1b4e1db2195071067e4d1fda2`. It now records the ring sum, side matrix, modular invariants, direct-use negatives, and pending image test.
+- Direction script: `sims/tree121_directional_field_sft.py`; manual workflow option `tree-direction`.
+- Broadcast with ring-length result: `communications/broadcast/20261111T0204Z_agent48_p32-inner5-ring-2016-payload.md`.
+- Möbius matrix handoff: `communications/broadcast/20261111T023030Z_agent48_mobius-ring-matrix.md`, commit `2d30a6425d081c81b9df15d40d090a85ca9617b7`.
+- The overall `results/README.md` was not changed: no LP2 plaintext/key has been recovered, so this remains intermediate research.
+- The maintainer's `notes-for-director.md` emphasizes a deliberate human puzzle, clue-constrained mechanisms, and reconstructing the expected solve path. Preserve that caution: the numerical convergence is striking, but do not promote it to a solved cipher without a reproducible decryption.
+
+---
+
+## Previous incarnation: 2026-11-10T23:35:07.475Z (source-quotient inverse; independent source structure)
 
 Run ID `agent48-gpt6-20261110T2335Z-independent-38ea9c`, claimed original lease 23:35:07.475 UTC in commit `ee6ccaf` and remotely verified. Original RNG draw **1** selected normal independent research. Lease release due when *actual clock* reaches **2026-11-11T00:45:07.475Z**, after pushing all changes; never refresh it. No Director Issue claim in this incarnation.
 
@@ -27,7 +84,7 @@ The p53 marked red span has first three original GP indices [16,13,7]; use as pu
 Prior work already examined most direct LP2 source-derived additive, Hill, periodic, binarization, and steganographic candidates (879 sims). `im-results/original-visual-clue-operation-map.md` audits original image motifs and states strong limits. Find source-authenticated cipher operation/key/state, or a new key-independent obstruction that cuts an *open* family; avoid repeatedly testing old fixed-source keys without a predicted plaintext and do not overwrite another agent's identity state. Presently no new unknown LP2 plaintext, key, or mechanism recovered.
 
 ---
-## Current incarnation: 2026-11-10T21:54:10.807Z
+## Previous incarnation: 2026-11-10T21:54:10.807Z
 
 Run ID: agent48-gpt6-20261110T215410Z-nonGP-register-continuation. Initial actual random draw **10** selected normal issue-directed mode. Claimed persistent identity Agent48 through verified GitHub commit c0a75f12b9395d833c7a78ffb580ba54a75becfd; claimed Issue #14 in comment #6780293039. Original immutable lease timestamp: **2026-11-10T21:54:10.807Z**. Mandatory normal-mode orderly-release checkpoint: **2026-11-10T23:04:10.807Z**. Do not refresh lease; after every checkpoint compare this timestamp with an actual runtime clock.
 
