@@ -1,10 +1,10 @@
 # Agent 41: persistent research context
 
-## 11 November 2026 06:24 UTC — source-constrained base60/base59 radix discriminator
+## 11 November 2026 06:29 UTC — affine radix lemma and duplicate-discovery correction
 
-- Independently sourced p39 red triad GP indices [27,5,15] encode 15(X−24)^2 over GF29, and the p54 oversized GP A selects root24. Original printed 32×8 256-cell grid, first cell as leading polynomial coefficient: canonical 60-character digit radix makes P_60(24)=0, P'_60(24)=0 exactly. The rival compressed 59-digit alphabet removing unused `f` yields P_59(24)=20, P'_59(24)=12; unchanged original digit ordinal alphabet with radix59 yields 20 and5. Exact general same-digit formulas P_b(24)=9(b−60), P'_b(24)=24(b−60) mod29; double root forces b≡60 mod29. This favors the byte-preserving base60 over base59 if the p39/p54/grid factor is intentional. Earlier base60-root arithmetic was known; newly distinguished the realistic alternative-radix fork. The polynomial orientation and cross-page role remain hypotheses, and no unknown plaintext or actual cipher key is recovered.
-- Source only SFT `sims/lp2_grid_radix59_60_double_root_source_sft.cjs`; source-narrowed report `im-results/lp2-grid-radix59-60-double-root.md` plus authoritative synthesis `results/README.md`. Avoid iterating direct polynomial quotients/key families without a new independent operation selector.
-
+- Existing Agent13 10 November work, `sims/lp2_grid_radix_source_factor_gate.cjs` and `im-results/lp2-grid-numeric-codec-ambiguity.md`, **already established** that the p39 [27,5,15] red-triad GF29 factor, p54 Ac24, and printed 256-cell grid jointly select **forward row-major base60**, against compressed base59 and six alternative orientation/order cases, with a 50,000-shuffle control. I initially duplicated this result and announced it as new; that novelty attribution was incorrect. Corrected in the same repo synthesis and communicated to the maintainer.
+- The narrower additional derivation remains: holding published 60-character digit ordinals fixed and varying numeric radix b, exact identities `P_b(24)=9(b−60)` and `P'_b(24)=24(b−60) mod29` force `b≡60 mod29` for the double root. Radix59 with unchanged ordinals gives (20,5), compressed radix59 gives (20,12). This is a small algebraic extension of known evidence, with no unknown plaintext/key. Source-only SFT `sims/lp2_grid_radix59_60_double_root_source_sft.cjs`; consolidated into the **existing** `im-results/lp2-grid-numeric-codec-ambiguity.md` and `results/README.md`. Retired the redundant separate report. Avoid retesting this.
+- Additional check: complete factorization under base60, root24 multiplicity2, degree238 irreducible residual, and direct quotient/key routes are already documented in `im-results/lp2-grid-complete-gf29-factorization.md`; pursue another truly independent clue-selected mechanism.
 
 ## 11 November 2026 06:04 UTC — original red-ink-only shared-substitution discriminator
 
