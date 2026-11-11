@@ -41,7 +41,7 @@ The page-32 eleven-runic dimension and the grid's original top-left position are
 
 ## Conditional rare-event experiment
 
-The exact [reproducer](../sims/lp2_grid_byte_pointer_11cycle_sft.cjs) first asserts all source arrays, first-cell hops, orbit components, and eight codec contrasts. It then shuffles the **existing 256 decoded byte values** uniformly by a deterministic Fisher–Yates process driven by xorshift32 seed `0x24a11b7d`. This preserves the complete byte multiset, including duplicate values and the number of occurrences of zero.
+The exact [reproducer](../sims/lp2_grid_byte_pointer_11cycle_sft.cjs), verified by [successful Node.js 22 CI run 42941238297](https://github.com/FlareZ123/liber-primus/actions/runs/42941238297), first asserts all source arrays, first-cell hops, orbit components, and eight codec contrasts. It then shuffles the **existing 256 decoded byte values** uniformly by a deterministic Fisher–Yates process driven by xorshift32 seed `0x24a11b7d`. This preserves the complete byte multiset, including duplicate values and the number of occurrences of zero.
 
 Across **300,000** shuffled tables:
 
