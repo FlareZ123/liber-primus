@@ -61,6 +61,31 @@ function decodeP56(cipher,keyPrimes) {
   });
 }
 
+/**
+ * Key-independent maximum matching for any secret stationary residue lookup.
+ * @param {number[]} inputs
+ * @param {number[]} outputs
+ * @returns {{residues:number,maxMatches:number,forcedMismatches:number}}
+ */
+function lookupCapacity(inputs,outputs) {
+  assert.equal(inputs.length,outputs.length);
+  const counts=new Map();
+  for(let i=0;i<inputs.length;i++){
+    if(!counts.has(inputs[i]))counts.set(inputs[i],new Map());
+    const histogram=counts.get(inputs[i]);
+    histogram.set(outputs[i],(histogram.get(outputs[i])||0)+1);
+  }
+  const maxMatches=[...counts.values()].reduce((sum,h)=>
+    sum+Math.max(...h.values()),0);
+  return {residues:counts.size,maxMatches,
+    forcedMismatches:inputs.length-maxMatches};
+}
+
+/** @param {number} n @returns {number} */
+function reverseDigits(n) {
+  return Number(String(n).split("").reverse().join(""));
+}
+
 /** @returns {object} */
 function main() {
   const corpus = readJson("resources/liber-primus/lp2-corpus.json");
@@ -120,6 +145,21 @@ function main() {
     terminalCiphertextVsMissingTotientsMod29:5,
     missingPrimeKeyVsSolvedP56Plaintext:5
   });
+  const reversed = missing.map(reverseDigits);
+  const lookup = {
+    prime256:lookupCapacity(missing.map(p=>p%256),interior),
+    prime29:lookupCapacity(missing.map(p=>p%29),interior),
+    reversed256:lookupCapacity(reversed.map(p=>p%256),interior),
+    reversed29:lookupCapacity(reversed.map(p=>p%29),interior)
+  };
+  assert.deepEqual(lookup,{
+    prime256:{residues:109,maxMatches:110,forcedMismatches:70},
+    prime29:{residues:28,maxMatches:29,forcedMismatches:151},
+    reversed256:{residues:141,maxMatches:141,forcedMismatches:39},
+    reversed29:{residues:29,maxMatches:30,forcedMismatches:150}
+  });
+  const reversedDirect=matches(interior,reversed.map(p=>p%256));
+  assert.equal(reversedDirect,0);
   const result = {
     source:"2013 telnet prime-list discontinuity (historical transcript)",
     omittedPrimeOrdinalsOneBased:[21,200],
@@ -135,6 +175,8 @@ function main() {
     tableBorderAndInterior:[border.length,interior.length],
     solvedTerminalLengths:[p56.length,p57.length],
     exactOriginalMatches:tests,
+    reversedDirectOriginalMatches:reversedDirect,
+    allSecretStationaryLookupBounds:lookup,
     authenticatedP56PositiveControl:matches(decodeP56(p56,primes),known),
     outcome:"structural source candidate; direct pad/integer mappings fail; no unknown plaintext"
   };

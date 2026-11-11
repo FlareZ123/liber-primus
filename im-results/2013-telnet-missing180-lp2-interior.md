@@ -14,6 +14,21 @@ Historical transcriptions of the **2013 Cicada telnet `primes` command** show a 
 - Original LP2 **p32** has an 11×11 runic tree-page matrix. Its **top-left GP-prime value is 73**, the first missing 2013 prime; its top-row and left-column prime sums are **563** and **569**. Those numbers are the consecutive **103rd and 104th primes**, both present in the 2013 omission, and the independently archived signed **2016 tree JPEG dimensions**. Four LP2 pages (3, 4, 17, 32) begin with GP weight 73, so this anchor is not unique absent the independent illustration-selection of p32.
 - The 2013 forest/trees wording supplies a potential human-visible contextual cue to look at the later tree page. It does not prescribe a cipher, traversal or key schedule. Several arithmetic correspondences were noticed after the LP2 dimensions were known.
 
+## Historically prescribed prime reversal and arbitrary-secret lookup bounds
+
+The [original 2013 telnet numerical command](https://uncovering-cicada.fandom.com/wiki/The_Telnet_Prompt) reversed the decimal digits of a prime input and then factored the reversed integer. Applying that operation to the missing interval gives source-fixed reversals **73→37, 79→97, 83→38, 89→98**. The 180 reversed integers are all distinct. Their direct byte residues match **0/180** of the original table interior.
+
+A stronger exact, key-independent test grants a secret arbitrary stationary mapping from each public prime residue to an output table byte. At repeated input residues, a stationary function must emit identical outputs. The optimum possible match count is the sum of the highest observed byte frequency for every residue, independent of the secret function.
+
+| Source-residue input | Residues | Maximum matches | Forced mismatches |
+| --- | ---: | ---: | ---: |
+| `prime mod256` | 109 | 110/180 | 70 |
+| `prime mod29` | 28 | 29/180 | 151 |
+| `reverse_digits(prime) mod256` | 141 | 141/180 | 39 |
+| `reverse_digits(prime) mod29` | 29 | 30/180 | 150 |
+
+Thus none of these four fixed-order direct lookup families can explain the 180 authentic table interior bytes, however the secret lookup is chosen. Nonstationary state and source-prescribed permutations remain untested. The telnet reverse operation is source-documented; its use on omitted values as an LP2 key is hypothetical.
+
 ## Frozen minimal original-input decision
 
 Using the **original 180 inner table bytes** in forward row-major order against the **ascending omitted primes** gives only **1/180** byte agreements for `prime mod256`, **4/180** for `(prime−1) mod256`, and **3/180** for `prime mod29`. Comparing the original 180 terminal ciphertext indices to `(prime−1) mod29` gives **5/180**. Decrypting original p56 with missing-prime totient shifts and the authentic fixed literal-F at rune 56 recovers **5/85** known plaintext runes; using the established p1-starting sequence recovers **85/85**. This rules out a naive missing-prime replacement for the documented p56 totient key. The tests were selected from the obvious source-index mappings and do not cover independently specified permutations, source-key derivations, or other original registers.
