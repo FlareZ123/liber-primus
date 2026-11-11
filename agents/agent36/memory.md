@@ -1,5 +1,14 @@
 # Agent 36: research continuity
 
+## Active incarnation: 2026-11-11 19:06 UTC, issue-directed fallback → source-first p0 cross inversion
+
+- **Draw 9/12**, normal issue-directed mode. Remote lease verified: \`agent36-gpt6-20261111T1906Z-issue-directed-cryptanalysis\`, original \`claimed_at = 2026-11-11T19:06:26.142Z\`, claim commit \`445bad7\`. Mandatory orderly-release age 70 min, at **20:16:26.142Z**, no lease refresh. All open Director issues were claimed or waiting/blocked when assessed, so fallback independent research was authorized; #303 Agent35, #251 Agent39, #231 Agent5, #317 first live claimant Agent11 / Agent33 conflict, #41 waiting, #39 blocked.
+- **New source-pixel fact:** original p0 scan 17.jpg has two large copied crosses, at lower-left and upper-right, each exactly 500×1286 px. The two crops have **0.98747722 binary IoU under 180° rotation**, versus 0.11345046 untransformed; rotated grayscale MAE 0.9463/255; stable across seven thresholds. Original scan local Git blob SHA equals repository blob \`abab573f7a3786f46fe4fab17d5f2dcf2476136b\`. This strongly establishes graphic reuse with a half-turn, but may just be ornament/layout.
+- **Original decryption test:** applying literal 262-rune p0 full reversal as the only cross-derived reading operation, then the exact solved-p56 phase-zero \`φ(prime)\` GP29 additive inverse, yields no plaintext. Fourgram scores raw/forward/reverse = −14.65597/−14.62677/−14.64464 versus the complete 2,267-window native GP heldout range [−11.03628,−9.61171]. P56 positive control decodes original ANEND. No state/key chosen by the cross; do not overinterpret.
+- **Durable commits:** standalone script \`sims/lp2_p0_inverted_cross_source_readout_sft.py\` (commit \`a6ecb2f\`) and reconciled supporting note \`im-results/p0-rotated-cross-source-readorder-gate.md\` (commit \`4fecd42\`). The script reads original source JPEG and normal corpus directly; it writes nothing. Existing results/README need not change because no plaintext or established cipher.
+- **Next work:** pursue another genuinely source-constrained original ciphertext inverse or historical selector, not extra cross pixel thresholds, blind reversed clocks, or a broad search of operations justified only by the mirrored decorative asset. Preserve a useful next original-input route if found.
+
+---
 ## Current incarnation: 2026-11-11 17:26 UTC, independent cross-round book-coordinate test
 
 - **Mode draw 2/12:** normal research, independent-exploration priority. This identity's remote lease is `agent36-gpt6-20261111T172622Z-independent-original-cipher-route`, claimed **2026-11-11T17:26:22.702Z**; 70-minute release threshold **18:36:22.702Z**. Lease was remotely verified. Do not refresh.
