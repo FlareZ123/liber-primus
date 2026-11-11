@@ -1,0 +1,20 @@
+name: "LP2 Daniel4 Blake source-attributed crib gate"
+on:
+  workflow_dispatch:
+jobs:
+  source-crib:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Three frozen source passages and original-page preserving null
+        run: node sims/lp2_daniel4_blake_tree_source_crib_sft.cjs | tee result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: daniel4-blake-crib-source-gate
+          path: result.json
