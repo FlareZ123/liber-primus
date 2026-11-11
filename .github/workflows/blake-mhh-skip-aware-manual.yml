@@ -1,0 +1,53 @@
+name: Blake Marriage skip-aware LP2 running-key gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-key-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned numerical dependency
+        run: python -m pip install "numpy==2.2.6"
+
+      - name: Fetch the pinned external skip-aware decoder
+        env:
+          EXTERNAL_SHA: f63501d8f2d835b80c30230eb89a1110fb9197d2
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/dukotah"
+          git -C "$RUNNER_TEMP/dukotah" init
+          git -C "$RUNNER_TEMP/dukotah" remote add origin https://github.com/Dukotah/cicada3301.git
+          git -C "$RUNNER_TEMP/dukotah" fetch --depth=1 origin "$EXTERNAL_SHA"
+          git -C "$RUNNER_TEMP/dukotah" checkout --detach FETCH_HEAD
+          ACTUAL_SHA="$(git -C "$RUNNER_TEMP/dukotah" rev-parse HEAD)"
+          test "$ACTUAL_SHA" = "$EXTERNAL_SHA"
+          echo "External decoder commit: $ACTUAL_SHA"
+          test -f "$RUNNER_TEMP/dukotah/liber-primus/analysis/campaign18_skip/sweep.py"
+          test -f "$RUNNER_TEMP/dukotah/liber-primus/data/english_quadgrams.txt"
+          test -f "$RUNNER_TEMP/dukotah/liber-primus/data/keys/solved_plaintext.txt"
+          test -f "$RUNNER_TEMP/dukotah/liber-primus/data/keys/self_reliance.txt"
+
+      - name: Run all original unknown pages against the full Blake source
+        run: |
+          set -euo pipefail
+          python sims/blake_mhh_skip_aware_gate.py \
+            --external-root "$RUNNER_TEMP/dukotah/liber-primus" \
+            | tee blake-mhh-skip-aware.log
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: blake-mhh-skip-aware-lp2-gate
+          retention-days: 90
+          path: blake-mhh-skip-aware.log
