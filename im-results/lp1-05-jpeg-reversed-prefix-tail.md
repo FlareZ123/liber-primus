@@ -28,6 +28,14 @@ The raw 12,956-rune unknown text scores **0.034478397865**; original native-GP E
 
 **Decision:** neither a bytewise additive read of the JPEG suffix nor its reversed-image-prefix form directly decrypts original LP2 under this fixed GP29 interpretation. This is a finite negative, and it does not rule out a source-specified nonlinear or changing-state use of the unique file feature.
 
+## Source-fixed 28-choice anti-repeat inverse
+
+The unknown LP2 ciphertext has only **86** adjacent equal-runic pairs among 12,956 symbols. A distinct, exact reversible model uses **28 nonzero steps** from the immediately preceding *ciphertext* symbol, with one GP symbol reserved for an unchanged repeat. This is independently motivated by the manuscript's diagonal-only repeat deficit; the JPEG trailer supplies its potential external pad. Freeze the rule globally across page breaks, starting from the first original rune, and map each trailer byte to either `byte mod28` or `floor(28*byte/256)`. For both physically read source directions and both signs, decrypt each non-repeated step `d=(C_i−C_{i−1}) mod29` to `P_i=(d−1±K_i) mod28`; direct doublets map to GP index28 (EA). The first published rune decrypts by the ordinary GP29 additive rule.
+
+Eight frozen original-input variants yield whole-manuscript IoCs **0.0352541–0.0353424**, still random-like and nowhere near natural GP language. Their page0 outputs are unreadable. The [separate GP28 source SFT](../sims/lp1_jpeg05_tail_nonrepeat_inverse_sft.cjs) asserts every numerical result and demonstrates exact forward/reverse recovery with an independently solved 95-rune p57 plant, including repeated-ciphertext escape states. This is an implementation control, not evidence that the external source supplied the true key.
+
+**Result:** the exact hidden trailer does not produce plaintext under either direct GP29 bytes or this GP28 predecessor-exclusion family. An unspecified key derivation or alternate cipher remains possible, but no known original instruction selects one.
+
 ## What it establishes and what it does not
 
 This is a **unique raw-file construction in the supplied LP1/LP2 corpus**, not a novel 72,700-byte cipher payload: its suffix adds **no independent content** because every byte is already present earlier in the same image. The coincidence with a page showing a symmetrical magic square makes a deliberately visible reverse/mirror production rule conceivable, but it can also be a distribution or file-editing artifact. There is no independent proof of when or why the suffix was appended.
