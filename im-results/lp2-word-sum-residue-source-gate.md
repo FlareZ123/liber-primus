@@ -49,10 +49,33 @@ The trigram control uses the first 100,000 GP-encoded runes of `resources/contro
 
 [Self-contained original-input and native-plant test](../sims/lp2_previous_word_prime_sum_feedback_sft.cjs). No authentic unknown plaintext or key recovered.
 
+## Nonlinear p32 M7 transform of the preceding ciphertext-word sum — bounded negative (Agent9, 11 November 2026)
+
+A single fixed nonlinear moving-word variant was tested because the source record offers three separate, recognizable components: (1) the 2013 `0_wisdom` mapping from GP words to sums of GP prime weights; (2) the p32 projectivity
+`M7(x)=(14x+25)/(25x+28) mod 29`, derived in [the tree-prime canvas analysis](tree-prime-canvas-partition.md); and (3) the signed-2016 instruction that words are a map and numbers give direction. The solved p56 inverse supplies a plausible subtract direction. **No source authenticates this composition**; it is a human-solve-path hypothesis, not an established cipher.
+
+The frozen reversible rule is:
+
+- Preserve the canonical 2,896-word stream, including its 32 cross-page words; do not reset at physical page boundaries.
+- Leave the first word unshifted because it has no preceding ciphertext word.
+- For each later word (i), compute (r_i=\sum_j \operatorname{GPprime}(C_{i-1,j})\bmod29) from the **preceding ciphertext word**, then set (k_i=M7(r_i)).
+- Decrypt every rune in the current word by (P_{i,j}=C_{i,j}-k_i\pmod{29}).
+- When (M7(r_i)=\infty) (only (r_i=7)), interpret the projective pole as the source phrase's “empty” state and use a zero/no-op shift.
+
+This is a ciphertext-autokey: the previous ciphertext word is available to both encryption and decryption, so the rule is exactly invertible. The pole-to-no-op interpretation and the composition of the three source components remain modelling choices.
+
+**Original-input result:** 92 of the 2,895 predecessor words hit the pole; the schedule uses 28 distinct finite shifts. The original stream has IoC **0.03447839786450569**; the inverse has **0.03448513026722634**. With a fixed GP-English trigram diagnostic (additive smoothing \(\alpha=0.1\)), Shakespeare-model score changes from **−4.679396311885891** to **−4.667196415621322**, while the independent Gibran-model score changes from **−4.349374190815645** to **−4.365713452958419**. The small gain against one model is not reproduced against the other; the decoded prefix begins `SHEOGMIAF NGOAIAJ GSIF UEOD EOEJ DONGTHNFWYAGS`, not readable prose. There is no plaintext recovery or consistent language signal.
+
+**Positive control:** the exact same encrypt/decrypt rule recovers the first **2,896** Shakespeare GP words (**11,628 runes**) exactly. The implementation also checks the order-seven action on all 30 points of (P^1(\mathbb F_{29})), and round-trips the original input; these are implementation controls, not evidence of intended use.
+
+Reproduction: [`sims/lp2_word_sum_m7_feedback_sft.cjs`](../sims/lp2_word_sum_m7_feedback_sft.cjs). The script uses the canonical corpus and word parser plus the pinned Shakespeare and Gibran controls. The original corpus blob is `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`; the transcript blob is `43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7`.
+
+This closes **only** the frozen forward-M7 / preceding-ciphertext-word / continuous / subtract / pole-as-no-op model. Do not extend it with arbitrary seeds, inverse M7, reset variants, or alternative pole patches without a new source clue. It does not exclude other source-selected nonlinear word-state mechanisms.
+
 ## Decisive boundary
 
 The tested **stationary 29-way GP-prime-sum code is incompatible with all four finite natural-language source controls**, even with an arbitrary secret fixed permutation, changed word lengths, and unrelated rune spellings. The usual short function words concentrate native prose word sums sharply, while LP2's printed sums are nearly uniform. A natural-language plaintext with an exceptionally flat word-sum histogram, a distinct language, a changing per-word/per-page sum substitution, numeric state, reordered plaintext words, or deliberately inserted/removed ciphertext words remains possible. No language-independent impossibility is asserted.
 
-The next decision is to identify a source-specified **moving** direction/key/word operation beyond the direct preceding-word constant shifts tested above. Retrospective individual sum coincidences such as CABAL and UOID/VOID cannot justify asserting that ciphertext prime sums directly reveal plaintext word identities without a corresponding full-register mechanism.
+The direct preceding-word constant shift and the single forward-M7 transform of the preceding ciphertext-word sum are both bounded negatives. The next decision is still to find an independently source-specified **moving** direction/key/word operation with a causal path to unknown plaintext; do not broaden into arbitrary word-state maps. Retrospective individual sum coincidences such as CABAL and UOID/VOID cannot justify asserting that ciphertext prime sums directly reveal plaintext word identities without a corresponding full-register mechanism.
 
 **Reproducer:** `sims/lp2_word_sum_residue_source_gate.cjs` uses canonical rune-word boundaries, the four pinned natural-language references, exact rolling-window Pearson statistics, literal four-word sum-source hits and the two-rune positive. It requires Node.js 22 and no external dependency.
