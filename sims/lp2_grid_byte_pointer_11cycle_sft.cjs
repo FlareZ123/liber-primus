@@ -97,6 +97,24 @@ for(const [radix,alphabet] of [[60,alphabet60],[59,alphabet59]]){
     }
   }
 }
+// The literal signature 3301 is printed in the independently signed 2016
+// Cicada tree clue. Under 29 GP symbols and 256 printed table cells,
+// two source-defined index interpretations land on the only two "00" tokens.
+// Choosing these two index formulas is still a retrospective hypothesis.
+const signature=3301;
+const zeroCells=canonical.flatMap((byte,i)=>byte===0?[i]:[]);
+assert.equal(signature%29,24);
+assert.equal(signature%256,229);
+assert.deepEqual(zeroCells,[192,229]);
+assert.equal(source.rows[signature%29][0],"00");
+assert.equal(source.rows[Math.floor((signature%256)/8)][signature%8],"00");
+const signatureStart=signature%256;
+assert.equal(canonical[signatureStart],0);
+assert.equal(canonical[24*8],0);
+const signaturePath=[signatureStart,...orbitFromZero(canonical).prefix];
+assert.deepEqual(signaturePath,
+  [229,0,203,68,199,47,76,114,197,115,247,192]);
+
 const observed=orbitFromZero(canonical);
 assert.deepEqual(observed.prefix,
   [0,203,68,199,47,76,114,197,115,247,192]);
@@ -148,6 +166,9 @@ assert.deepEqual([countCycle11,countRoot24,countJoint],[1900,352,2]);
 
 console.log(JSON.stringify({
   originalOrbit:observed,
+  originalZeroCells:zeroCells,
+  signature3301:{gpResidue24:signature%29,byteResidue229:signature%256,
+    signaturePath},
   originalGraph:components60,
   originalJet:jet24(canonical),
   codecComparators:interpretations,
