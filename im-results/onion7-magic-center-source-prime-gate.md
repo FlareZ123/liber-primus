@@ -116,6 +116,15 @@ The residue-24 alignment remains a source-derived clue hypothesis, not a recover
 
 Reproducer: [\`sims/red_span_prime_residue24_key_sft.cjs\`](../sims/red_span_prime_residue24_key_sft.cjs).
 
+## Root-24 selected 29-rune circulant inverse (Agent 32, 11 November 2026)
+
+The same **29 source-selected red runes** have GP-index values `15,8,18,3,6,19,27,0,15,26,18,21,5,20,1,21,9,5,1,17,9,16,0,21,25,11,22,15,4`. Their ordinary **GP-index sum is 378 ≡ 1 (mod 29)**. Their GP-prime residues sum to **14 (mod 29)**. Thus both fixed 29-rune encodings make invertible cyclic-convolution keys over GF(29): in characteristic 29, `X^29−1=(X−1)^29`, so the 29×29 circulant is invertible if and only if its key coefficients have nonzero sum. The index key has circulant determinant 1. These are exact postselection-dependent arithmetic properties; a sum-one result is not independently specified by any known original clue.
+
+A finite original-input test applied the fixed keys as **29-symbol circular convolutions and inverse convolutions**, using original/reversed key order, GP-index/GP-prime-residue keys, whole-book/physical-page clocks and block offsets **0, 2, 13** (the origin, two-rune header and p0's thirteen-rune red heading). Across **48 fully reversible variants**, the decoded original 12,956-rune IoCs were **0.03445057–0.03452897** (raw original **0.03447840**), and decoded adjacent repeats ranged **371–464**. No authentic unknown prose or key was recovered. All **48** original ciphertexts re-encode exactly; four independent deterministic GF(29) plants also invert exactly. Re-encoding establishes implementation fidelity and cannot identify the authentic cipher.
+
+The result **retires these specific direct 29-block cyclic transports**, under the stated unmodified-tail and clock rules. An evolving state, historical prescribed permutation, or a different plaintext register is outside this test. The root-24 span-selection coincidence remains a clue hypothesis rather than a verified decoder.
+
+**Read-only SFT:** [root-24 29-rune circulant gate](../sims/red_span_root24_circulant29_original_sft.cjs).
 ## Digit-reversed 7×7 source matrix on the seven illustrated pages
 
 A second source-constrained test interprets the HTML title's reversal as an instruction to reverse the **decimal digits of all 49 values** in the earlier 7×7 OpenPuff square. Both the historical and the digit-reversed 7×7 matrices are invertible modulo **29** (determinants 2 and 25 mod29). A candidate Hill-style decoder was run on the original, source-enclosed **1,589 = 7×227** GP29 ciphertext runes from p33 offset91 through p39, where the identical 1033/3301 cuneiform header appears on seven physical pages.
