@@ -12,7 +12,13 @@ The separate 193 → 391 = 17×23 corroboration remains conditional for three re
 2. a new span-geometry reading avoids changing factor 23 into a GP ordinal: base60 factors 17/23 can mean the D span's 17 strict-interior runes and endpoint23. But the competing base59 factors 2/5/19 can equally mean two D markers, start position5, and inclusive width19. Both maps distinguish D from the X control, but they map different span attributes and no source selects the mapping;
 3. the strengthened 59 derivation is arithmetically circular: construct 95 as 5×19, reverse to 59, then NUMBER(59) returns 5×19.
 
-The factorization therefore does not resolve the radix fork or independently authenticate the NUMBER-to-span mapping. No complete start, direction, stop, next address, key, or unknown plaintext is fixed.
+The factorization therefore does not resolve the radix fork or independently authenticate the NUMBER-to-span mapping; the operation itself is only retrospectively attested, not a contemporaneous 2013 instruction. No complete start, direction, stop, next address, key, or unknown plaintext is fixed.
+
+## Provenance of the NUMBER rule
+
+The `NUMBER` semantics used in this audit are **secondary and retrospective**, not an authenticated contemporaneous 2013 instruction. The preserved contemporaneous 16-Feb-2013 Twisted-Python witness and 3-Mar-2013 participant log document `BASE29`, `DH` and `NEXT`; they do **not** document the first-onion `NUMBER`, `PRIMES` or count-command grammar. The surviving NUMBER/PRIMES transcripts are later participant/server copies (public copies from 2022/2025), and the archived `server.py` is reconstructed rather than an original 2013 implementation. See [the scoped source inventory](../resources/external/2013-tcp-live-test-vectors.json).
+
+The 2013 `0_wisdom` prime-sum mapping to the 2014 5×5 square is a separate, source-backed cross-stage operation. It does not authenticate the first-onion NUMBER command. Accordingly, p50's literal word `NUMBER` is an LP2 source fact, but the reversal/factorization semantics below remain a retrospective hypothesis.
 
 ## Frozen source facts
 
@@ -23,7 +29,7 @@ The provisional signed-2016 word-address rule maps `lies` to physical p50, local
 
 The source does not explicitly settle that fork.
 
-Under the historically documented NUMBER semantics used by the project:
+Under the retrospective NUMBER semantics used by the project (not authenticated by the contemporaneous 2013 witness):
 
 - 193 is prime, so its decimal digits reverse to 391; `391 = 17×23`;
 - 190 is composite, so it is factored directly; `190 = 2×5×19`;
@@ -85,7 +91,7 @@ NUMBER returns factors **17 and23**. The route needs several incompatible interp
 | factor-index reduction | index6 + index8 |  | GP14 = X |
 | as p55 D-span geometry | 17 strict-interior runes | endpoint position23 | D[5..23] |
 
-The historical NUMBER service does not state that a returned prime factor should suddenly be read as a zero-based Gematria alphabet ordinal. The numeric route therefore changes representation without a source selector.
+The retrospective NUMBER transcripts do not state that a returned prime factor should suddenly be read as a zero-based Gematria alphabet ordinal. The numeric route therefore changes representation without a source selector.
 
 That ambiguity weakens the 193 → D numeric corroboration, but it does not negate the separate text-directed D hypothesis above. The factor-index interpretation yields X/DIVINITY; the poem's initial-letter reading yields D in the p55 word interiors. These are distinct routes and should not be presented as one consistent NUMBER operation.
 
