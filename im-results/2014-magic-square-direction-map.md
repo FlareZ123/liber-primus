@@ -52,6 +52,16 @@ The expanded square has all five row sums, all five column sums, and both princi
 
 **Evidence boundary:** the cellwise arithmetic identity is established and reproducible. Attribution of the prime-sum operation to intended author instruction is strongly clue-constrained by the page's explicit prose, but remains a historical interpretation. It does not recover LP2 plaintext or establish that every later LP2 page uses the same mechanism. The following `φ(n) mod 29` labels and degree bearings are the next operation in the 2014 analysis, not a newly proven LP2 cipher.
 
+### Pre-2014 live TCP test reuses the 1033 / 3301 pair
+
+A separate historical route supplies **pre-2014 organizer selection of the same numbers**. The archived March 2013 TCP-server testing summary records Cicada issuing `BASE29 1033` and then `DH 3301` three times. A second preserved participant-server transcript records `BASE29 1033` → `16I`, followed by `DH 3301`, a completed exchange, and `NEXT`. The source manifest pins both archive files and their commit in [`resources/external/2013-tcp-live-test-vectors.json`](../resources/external/2013-tcp-live-test-vectors.json).
+
+This changes the status of **1033** as a cross-round clue. It is the exact magic constant obtained above from the independently preserved 2013 `0_wisdom` table and later published as the 2014 stage04 square; the live 2013 tester chose that same value as the BASE29 argument. The adjacent fixed test modulus **3301** is the decimal reversal of 1033. Both are prime, with one-based prime ranks **174 = 6×29** and **464 = 16×29**. Those rank quotients are used separately in the p32/cuneiform investigation; the live test supports historical selection of the pair but does **not** prescribe taking prime ranks.
+
+The DH transcript also fixes an important provenance boundary. Under the published protocol, the participant server chooses the DH base and server secret randomly. In the preserved exchange, values 2757 and 331, the server public 1264, and the resulting shared key 1067 therefore depend on participant-side randomness and are not reusable Cicada constants. The stable clue-level data are the organizer requests **1033** and **3301** (plus session-specific client traffic), not the server's random DH state.
+
+This is strong evidence that 1033/3301 belonged to Cicada's active numerical vocabulary before the 2014 public puzzle. It strengthens the intendedness of the 2013→2014 magic-square relation while still supplying **no LP2 deciphering operation**. The existing direction, fragment and table-transfer tests below remain separate hypotheses. The reproducer asserts the live vector, `1033 → 16I`, decimal reversal, both prime ranks, and the equality between the live BASE29 argument and every reconstructed magic-square line sum. [Manual CI run 42973779449](https://github.com/FlareZ123/liber-primus/actions/runs/42973779449).
+
 ## Direction-field test
 
 Interpret the original magic-square numbers as angles, using the standard mathematical convention:
