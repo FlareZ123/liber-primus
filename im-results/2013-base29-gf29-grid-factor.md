@@ -97,16 +97,16 @@ Sending line: '03 DATA 1067'
 
 The participant implementation chooses its own server base and private integer with `random.randint(2, p)`, so the logged server secret **331 is participant randomness**. The client response is the source-controlled part of the exchange. The multiplicative order of 2757 modulo 3301 is **550**. Therefore `2757^e ≡ 2800 (mod 3301)` fixes the Cicada-client exponent class **e ≡ 11 (mod 550)**. The logged shared key independently checks the same class because `1264^11 mod 3301 = 1067`. Restricting the ordinary private integer to 2 through 3300 leaves exactly **[11, 561, 1111, 1661, 2211, 2761] = 11×[1,51,101,151,201,251]**.
 
-### Same-round NUMBER and 0_wisdom single out 1661
+### 2013 NUMBER and 2014 Wisdom/05.jpg single out 1661
 
-The 2013 first-onion `NUMBER` implementation is a historically specified operation: composite input is factorized directly. Applying it to the six transcript-compatible representatives gives one unique intersection with the numeric cells visibly printed in the earlier 2013 `0_wisdom` square. Only **1661** has such a proper divisor:
+The 2013 first-onion `NUMBER` implementation is a historically specified operation: composite input is factorized directly. Applying it to the six transcript-compatible representatives gives one unique intersection with the numeric cells visibly printed on the later 2014 Liber Primus **Wisdom/05.jpg** page. Only **1661** has such a proper divisor:
 
 ```text
 NUMBER 1661 -> divisors [1, 11, 151, 1661]
 0_wisdom numeric cell -> 151
 ```
 
-The other five representatives have no proper divisor among the square's numeric values **{18, 131, 138, 151, 226, 245, 272}**. This supplies a same-round, source-only way to choose **1661** from the DH residue class without fitting unknown LP2 ciphertext. The choice to feed the recovered private-exponent representatives into `NUMBER` is still an inference; no surviving instruction explicitly orders that step.
+The other five representatives have no proper divisor among the square's numeric values **{18, 131, 138, 151, 226, 245, 272}**. This supplies a historically ordered **2013 DH → 2014 Wisdom** way to choose **1661** from the DH residue class without fitting unknown LP2 ciphertext. The choice to feed the recovered private-exponent representatives into `NUMBER` is still an inference; no surviving instruction explicitly orders that step.
 
 Two exact consequences strengthen the human-route interpretation. **151 is the 36th prime**, selecting physical LP2 **p36**, whose ciphertext length is exactly **238 runes**, the degree of the independently established large irreducible table factor Q238. Also **151 mod29 = 6** and **1661 mod29 = 8**, reproducing the worked `DH 23` server private/public pair `6 -> 8`. The prime-ordinal-to-page step remains interpretive.
 
@@ -132,7 +132,7 @@ For the broader exponent class, the six representatives reduce modulo 840 to **[
 
 A separate inbound-only log contains client value **3034** after `DH 3301`. Arithmetic gives `5^11 ≡ 3034 (mod3301)`, and both 5 and 3034 have multiplicative order **75** modulo3301. The server response is absent, so base 5 is not established for that exchange. This order-75 relation remains a conditional observation and is not used as a decoder.
 
-**Decision:** the 2013 chain now supplies a source-constrained **candidate private exponent 1661** through the real DH transcript plus the historically available NUMBER/0_wisdom intersection. The later field trace/norm relation independently corroborates the same representative. The most direct power, BASE29-additive, ElGamal, and source-selected p36/Q238 phase uses are negative. Treat 1661/151 as candidate key and routing material for a separately motivated register rather than license for arbitrary new sweeps.
+**Decision:** the 2013→2014 chain now supplies a source-constrained **candidate private exponent 1661** through the real DH transcript plus the historically available NUMBER/Wisdom intersection. The later field trace/norm relation independently corroborates the same representative. The most direct power, BASE29-additive, ElGamal, and source-selected p36/Q238 phase uses are negative. Treat 1661/151 as candidate key and routing material for a separately motivated register rather than license for arbitrary new sweeps.
 
 Reproducer for the DH class and field tests: [`sims/2013_dh3301_tester11_source_sft.cjs`](../sims/2013_dh3301_tester11_source_sft.cjs).
 
