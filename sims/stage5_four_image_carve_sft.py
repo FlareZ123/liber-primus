@@ -8,8 +8,10 @@ from __future__ import annotations
 
 import hashlib
 import io
+import os
 from pathlib import Path
 import sys
+import tempfile
 
 from PIL import Image
 
@@ -85,10 +87,45 @@ def selftest() -> None:
     print("SELFTEST PASS: 4 positive transformations, zero-input negative")
 
 
+def recover(raw: bytes, destination: Path) -> None:
+    """Materialize four validated JPEGs, with content hashes pinned by the original scan."""
+    assert len(raw) == SOURCE_LENGTH
+    assert hashlib.sha256(raw).hexdigest() == SOURCE_SHA256
+    backwards = raw[TRAILER_START:][::-1]
+    chunks = (
+        raw[:823807],
+        raw[823807:TRAILER_START],
+        backwards[:638805],
+        backwards[638805:],
+    )
+    expected_hashes = (
+        "913e26462e51942f49ca3ce2e94ef56c5fb65110814442dccc02b0d88af2c5ca",
+        "b50c1536ea1f30847e7875835991d52951bafb599fb1ab04eb78c5c6e6c2b468",
+        "f0edba1084df9983353c11544bbf711f94ed7649edbf94b426c9b78549b64557",
+        "975cda73bbf829b2775f25beb609d34fa429728b2f2a4ce863c129b10b005089",
+    )
+    destination.mkdir(parents=True, exist_ok=True)
+    for index, (chunk, digest) in enumerate(zip(chunks, expected_hashes), 1):
+        assert hashlib.sha256(chunk).hexdigest() == digest
+        with Image.open(io.BytesIO(chunk)) as picture:
+            picture.load()
+            assert picture.format == "JPEG" and picture.size == (2400, 3600)
+        target = destination / f"stage5-image-{index:02d}.jpg"
+        with tempfile.NamedTemporaryFile(mode="wb", dir=destination,
+                                     prefix=f".stage5-{index:02d}-", delete=False) as handle:
+            handle.write(chunk)
+            name = handle.name
+        os.replace(name, target)
+        print(f"EXTRACTED image={index} file={target} bytes={len(chunk)} sha256={digest}")
+    print("EXTRACTED four complete source-authenticated Stage5 JPEGs")
+
+
 if __name__ == "__main__":
     if len(sys.argv) == 2 and sys.argv[1] == "--selftest":
         selftest()
+    elif len(sys.argv) == 4 and sys.argv[1] == "--extract":
+        recover(Path(sys.argv[2]).read_bytes(), Path(sys.argv[3]))
     elif len(sys.argv) == 2:
         run(Path(sys.argv[1]).read_bytes())
     else:
-        raise SystemExit("usage: stage5_four_image_carve_sft.py --selftest|data.out")
+        raise SystemExit("usage: stage5_four_image_carve_sft.py --selftest|data.out|--extract data.out DIRECTORY")
