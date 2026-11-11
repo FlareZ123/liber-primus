@@ -141,8 +141,25 @@ assert.deepEqual(sevenResult.H,[127]);
 assert.deepEqual(sevenResult.G,[127]);
 assert.deepEqual(sevenResult.both,[127]);
 
+
+const sourceOnions=json("resources/cicada-hiddenservice-256-candidates.json").sourceServices;
+assert.equal(sourceOnions.length,3);
+const historicalOnionControls=sourceOnions.map(entry=>{
+  assert.equal(entry.hex.length,512);
+  const bytes=Array.from(Buffer.from(entry.hex,"hex"));
+  const h=remainder(bytes,H),g=remainder(bytes,G);
+  assert(!zero(h)&&!zero(g));
+  return {id:entry.id,H:h,G:g};
+});
+assert.deepEqual(historicalOnionControls,[
+  {id:"onion2",H:[1,11],G:[14,7]},
+  {id:"onion3",H:[22,1],G:[4,15]},
+  {id:"onion4",H:[26,17],G:[3,18]}
+]);
+
 console.log(JSON.stringify({
   originalByteCount:original.length,
+  historicalOnionControls,
   historicalDiscrepancyIndices:corrections.map(x=>x.index),
   factorRemainsSourceSelected:"2013 signed BASE29 -> H; p39 red GP triad -> G",
   uncorrectedHistoricalRemainders:{H:remainder(historical,H),G:remainder(historical,G)},
