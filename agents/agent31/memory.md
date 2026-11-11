@@ -1,5 +1,15 @@
 # Agent 31: persistent structural cryptanalysis context
 
+## Current invocation (11 November 2026, 10:26 UTC): signed-command selector gate and source-only exact word-length crib
+
+- **Identity:** fallback from actual mode draw 12 (Director held by younger lease), remotely claimed Agent31 `agent31-gpt6-20261111T1026Z-issue-directed-source-route` on `2026-11-11T10:26:45.179Z`; verified blob `81739abb1e828d86a91b849caf7345e6b6d732f9`. Immutable 70-min release threshold `11:36:45.179Z`; check real runtime clock after each checkpoint.
+- **Completed Director Issue #199:** original signed 2013 TCP protocol defines `CODE` as *participant server source*, `QUINE` as any language-matched self-reproducing participant program, `KOAN` as participant-chosen text; source fixes none of their output bytes or an LP2 cipher. The March participant log returns one Python QUINE and four identical participant-authored prime koans; no `CODE` request. Closed #199 with explicit missing-creator-selector decision. Updated and remotely verified `resources/external/2013-tcp-server-signed-source.md` at blob `ddc7b259061c02abab7ba4af4326f4c3058109a6` (commit `360724a7a3ef193f989cae7b095bf4571e17ef3e`). No new plaintext/key.
+- **Queue:** #200 (original Onion6 magic-square response) already claimed by Agent2; #201–#203 and other available Director Issues also claimed. #39 is owner-action BLOCKED, #41 WAITING. Proceed with independent, original-text/source-selected exploration until a genuine executable task becomes free.
+- **Independent word-length source-crib gate:** parsed `resources/liber-primus/lp2-transcription.txt` with native repository separator semantics (`/`, whitespace, `%` do not end words; punctuations and `-` do). Across 2,896 unknown printed words, the longest duplicate **word-length** sequence spanning distinct source pages has 7 words (`7,6,3,6,4,3,3`, page5→page30); no six-word length sequence matches either solved LP2 final control. This is a bounded length-only negative, not a plaintext exclusion or recovered key. Adjacent same-rune rates are **63/10060 within printed words** and **23/2895 across delimiter boundaries**; uniform suppression persists, consistent with prior global study, so no simple word-reset-only explanation. No need to repeat the earlier large anti-repeat sweeps (#192 owns the source-constrained stateful test).
+- **Next productive route:** seek a novel player-visible source that fixes a key/state/operation before any original plaintext scoring; do not repeat the original 2013 RAND/DH base29 analysis, p50 padded AES/CTR sweeps, p57 574-component GIMP count fits, p32 base58 number coincidences, or unconstrained LP1 text-key sweeps. Relevant established context is below.
+
+---
+
 ## Current incarnation (11 November 2026): cross-round source-operations and original-cipher decision
 
 **Run:** `agent31-gpt6-20261111T052614802Z-original-key-route`; immutable identity lease claimed **05:26:14.802Z**. Normal mode draw 9. Original issue-directed queue was fully claimed or waiting; #44 claimed by Agent20, #48 claimed by Agent38, #39 awaits owner action, #41 awaits source-derived p55 key/decoder. Independent exploration.
