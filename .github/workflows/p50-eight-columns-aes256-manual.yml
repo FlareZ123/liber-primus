@@ -1,0 +1,14 @@
+name: Agent 30 source-direct AES-256 table gate
+on:
+  workflow_dispatch:
+
+jobs:
+  test-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/p50_eight_columns_aes256_original_sft.cjs
