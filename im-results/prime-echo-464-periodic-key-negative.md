@@ -1,4 +1,4 @@
-# 2013 `prime_echo` as a repeating 464-symbol GP29 key: bounded negative
+# 2013 `prime_echo`: direct key and forest-edge prime-position tests (bounded negatives)
 
 **Classification:** a finite, source-motivated original-cipher negative. No unknown plaintext, authentic key, complete cipher mechanism, or destination was recovered.
 
@@ -58,11 +58,33 @@ The prime/totient cases are not four independent keys: because φ(p)=p−1, the 
 
 The reproducer also checks exact forward re-encryption of each original output and exact recovery of a repeated-p57 source-native plant under every fixed model. These are implementation controls, not evidence for the historical key.
 
+## Forest-edge / prime-position test
+
+A second, source-motivated use of the 2013 prime inventory was tested without tuning parameters. The 2013 TCP source's “You can't see the forest when you're looking at the trees” clue is recorded in `resources/external/2013-tcp-server-signed-source.md`; the prime_echo endpoint 3301 is recorded in `resources/external/1033-3301-historical-operator-chain.json`. Together they motivate (but do not prove) examining the botanical-border block LP2 pp40–55. Excluding table-only p50 leaves 15 text pages (pp40–49, 51–55), containing **3316** runes. Treating each page's final rune as a provisional “root” and deleting one terminal rune per page leaves **3301** runes. The 2013 prime sequence through 3301 contains **464** primes; one-based sampling at those prime positions therefore yields 464 runes.
+
+The 15 terminal roots are GP29 values `[27,11,25,16,15,21,25,25,0,23,0,8,9,26,10]`, transliterated `IAJAETSNGAEAEFDFHNYI`. The prime-position sample has IoC **0.0341196842** and no GP-English plaintext. Its first 120 transliterated symbols are:
+
+```text
+NMGAEXHENGTECNEUGXYUJAESDXPSNGNTJBYDLXNHAEHDEOMAEOEIAOGXTIAASDRFMPPIHEOYOCAOEFFAOCTWEEEABWUIAEUREOYCEAFGSJWTHOEDJAEUAEWLICACNHNETHRYTHAEEOBHG
+```
+
+A first-edge deletion control (remove the first rune of each of the same 15 pages) also leaves 3301 runes and produces a 464-symbol prime-position sample with IoC **0.0342034706**. Thus the length match alone does not uniquely select terminal roots.
+
+The terminal-root sequence was also tested as a repeating GP29 key over the 3301-rune body, with phase zero at the first body rune. The prime-position sample preserves the original body phase `(p−1) mod 15`, rather than resetting the key at the sampled stream's start:
+
+| Direction | Body IoC | Inherited-phase prime-sample IoC |
+|---|---:|---:|
+| C−K | 0.0343653438 | 0.0333842258 |
+| C+K | 0.0343893953 | 0.0344734490 |
+| K−C | 0.0343653438 | 0.0333842258 |
+
+All remain near-uniform; none recovers English. The first-edge control and terminal-root key results are reproduced by `sims/prime_echo_forest_edge_index_gate.cjs`, pinned to the canonical corpus Git blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`.
+
 ## Decision
 
-The direct, repeating, period-464 prime/totient additive stream is **rejected** as an English-like GP29 decoder for the original 12,956 unknown runes. This closes one natural serialization of the 2013 prime inventory; it does not invalidate the prime-list source observations or exclude a different stateful, nonlinear, table-indexed, or key-derivation role.
+The direct repeating period-464 prime/totient additive stream is **rejected** as an English-like GP29 decoder for the original 12,956 unknown runes. The forest-edge / prime-position composition is also a **bounded negative**: the 464-symbol prime sample and all three inherited-phase terminal-root key variants remain near-uniform and nonlinguistic. The first-edge deletion control also produces the 3301 length, so that length match is not independent evidence for terminal-root selection.
 
-Do not expand this branch with arbitrary phases, resets, reversals, or KDF menus. A successor requires an independent Cicada clue that selects a different reversible operation or key/state and predicts previously unexplained original ciphertext.
+These tests close two direct serializations only. They do not invalidate the 2013 prime-list source observations or exclude a different stateful, nonlinear, table-indexed, or key-derivation role. Do not expand these branches with arbitrary phases, resets, reversals, permutations, or KDF menus. A successor requires an independent Cicada clue that selects a different reversible operation or key/state and predicts previously unexplained original ciphertext.
 
 ## Reproduction
 
@@ -70,6 +92,7 @@ Run from the repository root with Node.js 22:
 
 ```sh
 node sims/prime_echo_464_periodic_key_sft.cjs
+node sims/prime_echo_forest_edge_index_gate.cjs
 ```
 
-The standalone script reads the canonical original GP29 corpus, regenerates the 464 primes, asserts the source marker ordinals and 12,956-rune input, tests the four frozen models, verifies exact original re-encryption, checks a source-native positive plant, and asserts the prime/totient alphabet-shift equivalence. No external dependencies or CI workflow are required.
+The first script reads the canonical original GP29 corpus, regenerates the 464 primes, asserts the source marker ordinals and 12,956-rune input, tests the four frozen models, verifies exact original re-encryption, checks a source-native positive plant, and asserts the prime/totient alphabet-shift equivalence. The second script reproduces the 15-page forest-edge selection, 3301-rune body, 464 prime-position sample, first-edge control, and inherited-phase terminal-root key tests. Both require only Node.js 22 and no external dependencies.
