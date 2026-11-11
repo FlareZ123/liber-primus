@@ -43,6 +43,44 @@ An additional **post-hoc checksum** is exact for this selected pair: fragment le
 - The M7 structural derivation is documented in [tree-prime-canvas-partition](tree-prime-canvas-partition.md). This fragment-rank construction does not rely on the retired p32 26-word/page-local word walk; that word-address premise was independently rejected in [the corrected p32 boundary analysis](p32-m7-2016-word-fragment-alignment.md).
 - Sorting by the unique column is a plausible operation, not an explicit instruction found on p50. Natural chronological row alignment is the least elaborate correspondence, but still needs an independently motivated use.
 
+## M7 orbit partition and the 256-byte remainder
+
+The same rank assignment partitions the 30 fragments into four 7-cycles and two fixed points. The cycle containing the pole rank 7, followed from that pole, is:
+
+`rank 7 → 29 → 11 → 16 → 10 → 8 → 2 → 7`
+
+It visits fragments `#6, #2, #23, #24, #18, #5, #29`, with lengths `690, 716, 1460, 3, 19, 3, 5`, totaling **2,896 runes**. Fragments #23/#24 are in the p33–p39 cuneiform region; fragment #29 is the five-rune p56 red heading. The other three cycles and two fixed points total **10,240 runes**, exactly (40\times256).
+
+| M7 orbit | Ranks (M7 order) | Fragment IDs | Fragment lengths | Total |
+|---|---|---|---|---:|
+| C1 | 0, 4, 14, 18, 26, 9, 21 | 7, 14, 13, 27, 1, 8, 3 | 11, 11, 9, 9, 13, 308, 16 | 377 |
+| C2 | 1, 27, 12, 15, 28, 23, 5 | 20, 30, 31, 25, 16, 21, 26 | 10, 80, 7, 118, 16, 81, 3008 | 3320 |
+| C3 (pole) | 2, 7, 29, 11, 16, 10, 8 | 29, 6, 2, 23, 24, 18, 5 | 5, 690, 716, 1460, 3, 19, 3 | 2896 |
+| C4 | 3, 6, 20, 17, 13, 24, 19 | 11, 10, 4, 32, 15, 28, 17 | 1729, 14, 103, 88, 1883, 299, 1005 | 5121 |
+| Fixed | 22 | 19 | 1414 | 1414 |
+| Fixed | 25 | 22 | 8 | 8 |
+
+The C3 total happens to equal the manuscript's documented **2,896-word** count, but these are not the same units and C3 includes five solved p56 runes. Treat this as a notable partition, not an identity. C1 also totals (377=13\times29). The full fragment corpus is 13,136 runes; removing C3 leaves (10,240=40\times256), matching 40 repeats of the 256-byte p50 table. These exact dimensions motivated a bounded test, not an assumption that the table is a key.
+
+### Direct 256-byte additive-pad test — negative
+
+The 10,240-rune remainder was assembled in two source-motivated orders: ascending projective rank, and the other M7 cycles in their canonical orbit order (with fixed points last). The full p50 256-byte table was used as a period-256 key, with byte-to-GP29 conversion (b\bmod29). Both original table row order and rows sorted by the unique second column were tested, with both additive signs. This is eight finite variants; all remain ciphertext-like and score worse than their corresponding raw target under the same Gibran trigram control.
+
+| Target order | Key row order | Sign | IoC | Mean trigram log-score |
+|---|---|---:|---:|---:|
+| Rank | Original | − | 0.034473 | −12.30854 |
+| Rank | Original | + | 0.034459 | −12.27473 |
+| Rank | Sorted | − | 0.034503 | −12.29129 |
+| Rank | Sorted | + | 0.034525 | −12.28138 |
+| Orbit | Original | − | 0.034536 | −12.31135 |
+| Orbit | Original | + | 0.034434 | −12.31411 |
+| Orbit | Sorted | − | 0.034540 | −12.32152 |
+| Orbit | Sorted | + | 0.034449 | −12.28706 |
+
+Raw rank-order and orbit-order trigram scores are −12.22752 and −12.22637 respectively. The best decoded rank-order score (−12.27473) and best decoded orbit-order score (−12.28706) are both worse. The simplest period-256 additive interpretation is therefore rejected; do not repeat it with arbitrary offsets or equivalent byte projections.
+
+The orbit partition and this finite test are reproducible with [`sims/p50_m7_orbit_partition_sft.cjs`](../sims/p50_m7_orbit_partition_sft.cjs).
+
 ## Reproduction
 
 Run the following from the repository root with Node.js. It asserts the counts and emits the fixed-point mapping and omitted-row sensitivity result.
@@ -159,4 +197,4 @@ console.log(JSON.stringify({
 }, null, 2));
 ```
 
-**Next useful decision:** find a source-selected reversible operation that uses this 30-point assignment and the seven-step M7 action. Do not promote the correspondence to a cipher or continue unconstrained table-pad variants without such an operation.
+**Next useful decision:** determine whether the pole-cycle partition has an independently source-selected reading operation. The direct 256-byte additive pad is rejected. Do not promote the count matches to a cipher or continue unconstrained table transformations without a new clue that selects a reversible operation.
