@@ -34,7 +34,7 @@ Under the rank map above:
 
 Indeed, (210=7\cdot29+7) and (228=7\cdot29+25). The two remainders are exactly the M7 eigenvalue-ratio pair, and both quotients equal its order, 7. The selected fragments also anchor the p32/p33 transition: fragment 19 contains p32; fragment 22 is the eight-rune p33 heading.
 
-An additional **post-hoc checksum** is exact for this selected pair: fragment lengths sum to (1414+8=1422); the p50 bytes differ by (228-210=18); the first rune of fragment 22 has Gematria Primus prime value 79; and (18\cdot79=1422). Enumerating all 870 ordered pairs of nonempty fragments, only four have an integer quotient ((L_i+L_j)/(B_j-B_i)) that occurs among the 30 first-rune prime values, and only pair (19\rightarrow22) has that quotient equal to the later fragment's actual first-rune prime. This was noticed after selecting the M7 fixed points; the equation is not independently prescribed by a source clue, so treat it as a possible checksum rather than proof of intended design.\n\nThis is a cross-artifact correspondence between the thirteen-dot segmentation, the p50 numeric table, and the p32 projectivity. It does **not** recover plaintext or specify how to transform ciphertext.
+An additional **post-hoc checksum** is exact for this selected pair: fragment lengths sum to (1414+8=1422); the p50 bytes differ by (228-210=18); the first rune of fragment 22 has Gematria Primus prime value 79; and (18\cdot79=1422). Enumerating all 870 ordered pairs of nonempty fragments, only four have an integer quotient ((L_i+L_j)/(B_j-B_i)) that occurs among the 30 first-rune prime values, and only pair (19\rightarrow22) has that quotient equal to the later fragment's actual first-rune prime. This was noticed after selecting the M7 fixed points; the equation is not independently prescribed by a source clue, so treat it as a possible checksum rather than proof of intended design.\n\nThe resulting zero-based offset **1422** is a second post-hoc navigation hit: global offset 1422 (the 1,423rd rune) is p5 local 215, inside fragment **#6**, whose projective rank is **7**. The M7 denominator vanishes at 7, so (M_7(7)=\infty). The rune at that offset is **NG**, prime 79—the same rune and prime that begin fragment 22. This is suggestive but depends on zero-based indexing and was noticed after the checksum; it is not proof of an intended route.\n\nThis is a cross-artifact correspondence between the thirteen-dot segmentation, the p50 numeric table, and the p32 projectivity. It does **not** recover plaintext or specify how to transform ciphertext.
 
 ## Sensitivity and boundaries
 
@@ -95,6 +95,22 @@ const selected = fixed.map(rank => {
     quotient: Math.floor(f.byte / 29), remainder: mod(f.byte)
   };
 });
+const fragment19 = fragments.find(f => f.id === 19);
+const fragment22 = fragments.find(f => f.id === 22);
+const checksum = (selected[1].byte - selected[0].byte) * fragment22.firstRunePrime;
+const fixedLengthSum = fragment19.length + fragment22.length;
+const pointerOffset = checksum;
+const pointerFragment = fragments.find(f => pointerOffset >= f.start && pointerOffset < f.end);
+const pointerRank = ranked.findIndex(f => f.id === pointerFragment.id);
+const pointerPage = pages.find(p => pointerOffset >= p.start && pointerOffset < p.end);
+const pointerRuneIndex = all[pointerOffset];
+const pointer = {
+  offset: pointerOffset, position1: pointerOffset + 1,
+  page: pointerPage.page, local: pointerOffset - pointerPage.start,
+  fragment: pointerFragment.id, rank: pointerRank,
+  rune: corpus.translit[pointerRuneIndex], prime: corpus.prime[pointerRuneIndex],
+  m7: m7(pointerRank)
+};
 const distinctByColumn = Array.from({ length: 8 }, (_, c) =>
   new Set(Array.from({ length: 32 }, (_, r) => grid.bytes[r * 8 + c])).size
 );
@@ -130,6 +146,8 @@ if (marks.length !== 31 || fragments.length !== 32 ||
     JSON.stringify(fixed) !== JSON.stringify([22, 25]) ||
     selected[0].fragment !== 19 || selected[0].byte !== 210 ||
     selected[1].fragment !== 22 || selected[1].byte !== 228 ||
+    fixedLengthSum !== 1422 || checksum !== 1422 || pointer.fragment !== 6 ||
+    pointer.rank !== 7 || pointer.rune !== "NG" || pointer.prime !== 79 || pointer.m7 !== 29 ||
     p33to39 !== 1680 || fromHeading !== 1589 || omittedPairs !== 15) {
   throw new Error("source correspondence changed; inspect inputs");
 }
@@ -137,7 +155,7 @@ console.log(JSON.stringify({
   marks: marks.length, fragments: fragments.length, empty,
   distinctByColumn, fixed, selected, omittedPairs,
   p33to39, fromHeading, arithmeticCandidateCount: arithmeticCandidates.length,
-  arithmeticMatches
+  arithmeticMatches, checksum, fixedLengthSum, pointer
 }, null, 2));
 ```
 
