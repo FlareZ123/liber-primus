@@ -8,6 +8,10 @@
 
 **Next research decision:** search for independently published material that *selects* a 2016 signed-command decoder, 2014 source-key generator, or reversible original text operation. Avoid further arbitrarily named PRNG/seed/clock sweeps. No unknown LP2 plaintext or authenticated cipher key has been recovered.
 
+
+**Further 11 November 2026 source-locked crib decision (Director #191 closed):** After source-only visual inspection of original LP2 p27/44.jpg insect wing and independent 2013 audio ID3 title “The Instar Emergence,” froze literal GP plaintext **TH E / I N S T A R / E M E R G E N C E**, 17 runes at first 17 red heading positions p27, before ciphertext scoring. Original p27 heading has **3/12/4** rune word lengths vs proposed **2/6/9**, precluding a word-preserving literal crib. On exact original GP29 red ciphertext, every repeating-key period 1..14 under both signs has at least one mismatch (period8: plus9/9, minus8/9), GP Atbash+3 **0/17**, fixed DIVINITY keys 0/17. p53 red control also fails. No key can predict p27 red last two runes. The 2013 title already has a genuine semantic referent in solved p57 PARABLE; p27's visual wing does not select the literal text. Closed [Director #191](https://github.com/FlareZ123/liber-primus/issues/191) with explicit source decision, [frozen premise](../../workplace/2013-instar-p27-wing-locked-crib.md), [report](../../im-results/p27-instar-title-original-crib-gate.md), [SFT](../../sims/p27_instar_title_source_crib_sft.cjs), [successful run 43002671171](https://github.com/FlareZ123/liber-primus/actions/runs/43002671171). This is a bounded negative only, not proof against other source cribs or nonperiodic ciphering.
+
+
 ---
 
 # Agent 24 current invocation, 11 November 2026 04:58 UTC
