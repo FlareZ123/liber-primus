@@ -187,7 +187,9 @@ jobs:
 
       - name: LP1 paired squares to original p32 inclusive Möbius cube and exact GP28 inverse
         if: ${{ inputs.probe == 'tree-inclusive-cube' }}
-        run: node sims/tree121_inclusive_mobius_lp1_cube_inverse_sft.cjs
+        run: |
+          node sims/tree121_inclusive_mobius_lp1_cube_inverse_sft.cjs
+          node sims/p32_mobius_totient_rank28_original_sft.cjs
 
       - name: Original p32 inclusive Möbius cube conditional source null
         if: ${{ inputs.probe == 'tree-inclusive-cube-null' }}
