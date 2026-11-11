@@ -177,6 +177,56 @@ for (const [name, file] of corpusFiles) {
   assert(Math.min(...wordWindows) > observed.word.same);
   assert(Math.min(...matchedWordTrials) > observed.word.same);
 }
+// Cross-check the exact word-length result against source-author prose, not
+// only independent literary controls. The LP1 editor-normalized reference has
+// annotations and duplicate page summaries: use selected textual sections,
+// drop bracketed/editorial lines, and add the authentic solved LP2 p57 runes.
+const lp1 = read("resources/liber-primus/lp1-plaintext-reference.txt");
+const parts = lp1.split(/^###\s+(\d+)/m);
+const sections = new Set([1, 3, 5, 6, 9, 10, 11, 12, 13, 14, 15, 16]);
+/** @type {number[][]} */
+const authorWords = [];
+for (let i = 1; i + 1 < parts.length; i += 2) {
+  if (!sections.has(Number(parts[i]))) continue;
+  const originalText = parts[i + 1].split("\n")
+    .filter(line => !line.trim().startsWith("[") &&
+      !line.trim().startsWith("#")).join(" ");
+  authorWords.push(...nativeWords(originalText));
+}
+const solvedP57 = read("resources/liber-primus/lp2-transcription.txt")
+  .split("%").at(-1);
+let sourceTerm = [];
+for (const ch of solvedP57) {
+  if (indices.has(ch)) sourceTerm.push(indices.get(ch));
+  else if (ch === "/" || /\s/u.test(ch)) {
+    // Layout break inside a printed word.
+  } else if (sourceTerm.length) {
+    authorWords.push(sourceTerm);
+    sourceTerm = [];
+  }
+}
+if (sourceTerm.length) authorWords.push(sourceTerm);
+assert.equal(authorWords.filter(w => w.length).length, authorWords.length);
+const authorPool = new Map();
+for (const term of authorWords) {
+  if (!authorPool.has(term.length)) authorPool.set(term.length, []);
+  authorPool.get(term.length).push(term);
+}
+const authorMatched = [];
+for (let trial = 0; trial < 1200; trial++) {
+  const sample = words.map(sourceWord => {
+    const list = authorPool.get(sourceWord.length);
+    assert(list && list.length, "source-author register missing length " +
+      sourceWord.length);
+    return list[random32() % list.length];
+  });
+  authorMatched.push(collisions(sample).same);
+}
+assert(Math.min(...authorMatched) > observed.word.same);
+reference["Cicada LP1 solved + LP2 p57 solved"] = {
+  authenticSourceWords: authorWords.length,
+  exactWordLength: describe(authorMatched)
+};
 const planted = {
   independentLineAlphabets: encryptedPlant(repartition(controlPlant, lines)),
   independentWordAlphabets: encryptedPlant(repartition(controlPlant, words))
