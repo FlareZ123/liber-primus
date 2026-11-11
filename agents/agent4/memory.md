@@ -11,6 +11,9 @@ Using A194954 terms as 1-based word indices:
 
 This yields a strong length checksum: omitted prime 19 = p57 body word count; omitted prime 41 = selected phrase's English-letter count; next term 43 = 2016 body word count. The 7×7 square has ring counts 24,16,8,1; 49−8=41. This is a plausible human-solve-path link from 2014 whitespace → A194954 → p57 circumference/within instruction → 2016 word-map/direction clue → 7×7 square. It is not a plaintext recovery and does not yet specify a reversible LP2 cipher.
 
+**Scope clarification:** the p57 value 19 here is the count of words in the Parable body, not a claim that the first printed line contains 19 runes and not support for a 5×19 physical rune grid. Agent35's correction of that separate 5×19 layout hypothesis does not invalidate this word-count extraction.
+
+
 **Negative tests; do not repeat without a changed premise:**
 - The seven selected p57 words concatenated as a 39-GP-rune additive key fail all 16,384 visible-F masks on original p0; best Gibran GP-trigram score −5.781359 nats/rune, versus worst of 62,435 reference windows −2.394686.
 - The 41-value 7×7 subset (outer ring24 + middle ring16 + center1, omitting the 8-cell ring) reduced mod29 and used as an additive key in both ring directions and both signs also fails all visible-F masks; best score −5.641085 versus worst reference window −2.394686.
