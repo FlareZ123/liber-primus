@@ -74,8 +74,14 @@ assert.deepEqual(encrypt(lowPlaintext, lowDigits), ciphertext);
 
 // Independent arithmetic positive controls for both fixed digit channels.
 const plantedPlaintext = Array.from({ length: 43 }, (_, i) => (7 * i + 3) % 29);
-assert.deepEqual(decrypt(highDigits).map((_, i) => mod29(encrypt(plantedPlaintext, highDigits)[i] - highDigits[i])), plantedPlaintext);
-assert.deepEqual(decrypt(lowDigits).map((_, i) => mod29(encrypt(plantedPlaintext, lowDigits)[i] - lowDigits[i])), plantedPlaintext);
+assert.deepEqual(
+  encrypt(plantedPlaintext, highDigits).map((value, i) => mod29(value - highDigits[i])),
+  plantedPlaintext
+);
+assert.deepEqual(
+  encrypt(plantedPlaintext, lowDigits).map((value, i) => mod29(value - lowDigits[i])),
+  plantedPlaintext
+);
 
 const grouped = (plain) => {
   let cursor = 0;
