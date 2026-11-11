@@ -1,0 +1,14 @@
+name: Signed 2016 tree inner-five ring original-input test
+on:
+  workflow_dispatch:
+jobs:
+  inner-five-ring:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify source circumference and lossless original inverses
+        run: node sims/tree121_outguess1136_ring_sft.cjs
