@@ -95,13 +95,16 @@ jobs:
           Path("trailer.bin").write_bytes(b[bounds[2]:])
           print("front",bounds[1]-bounds[0],"back",bounds[2]-bounds[1],"trailer",len(b)-bounds[2])
           PY
+          OUTGUESS=$(find /tmp/outguess /usr/local/bin -type f -name outguess -perm -111 2>/dev/null | head -1)
+          test -n "$OUTGUESS"
+          echo "OutGuess executable: $OUTGUESS"
           for image in tablet-front.jpg tablet-back.jpg; do
             for mode in default divinity; do
               out="outguess-$image-$mode.bin"
               if [ "$mode" = default ]; then
-                outguess -r "$image" "$out" >"$out.log" 2>&1 || true
+                "$OUTGUESS" -r "$image" "$out" >"$out.log" 2>&1 || true
               else
-                outguess -k divinity -r "$image" "$out" >"$out.log" 2>&1 || true
+                "$OUTGUESS" -k divinity -r "$image" "$out" >"$out.log" 2>&1 || true
               fi
               echo "=== $image $mode ===" | tee -a outguess-audit.txt
               cat "$out.log" | tee -a outguess-audit.txt
