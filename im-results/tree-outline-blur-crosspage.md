@@ -85,13 +85,13 @@ The final section's original images **70.jpg (LP2 p53)** and **72.jpg (LP2 p55)*
 
 ### Full 256-position value-based lookup gate (Agent 36, 11 November)
 
-The source-visible terminal frame is **179 original p53 runes + p54's enlarged red A (offset 0, GP index 24) + 76 p55 runes = 256**, compared in source order with all 256 bytes of the original p49–p51 32×8 grid. This is a stronger no-gap test than the earlier p53+p55 255-rune/one-missing-cell model.
+The source-visible terminal frame is **179 original p53 runes + p54's enlarged red A (offset 0, GP index 24) + 76 p55 runes = 256**, compared in source order with all 256 bytes of the original p49–p51 32×8 grid. This is a complementary full-frame test to the earlier p53+p55 255-rune/one-missing-cell model. The earlier 255 gate already gives the broader byte→rune exclusion; the new frame additionally tests the reverse rune→byte direction.
 
 For each of four natural grid traversals (row-major, column-major, row-serpentine, column-serpentine), both grid directions and both rune directions, test the most general **fixed value-based lookup** in either direction: grid byte value → GP rune, or GP rune → grid byte value. For any repeated input value, every occurrence must have the same output. The exact minimum substitutions for a model are (256-\sum_x\max_y n[x,y]); this optimizes over every possible fixed lookup table, without assuming an affine, modular, injective, or language-based mapping. There are **32** models total.
 
 **Result:** no zero-error model exists. The best byte→rune lookup still requires **90/256** substitutions (row-major and column-major tie); the row-major optimum has **161** distinct byte inputs, **95** repeated-input constraints and **69** conflicting byte classes (the column-major tie has 67 conflicting classes). The best rune→byte lookup requires **222/256** substitutions; all **29** rune input classes conflict. Deterministic positive controls with arbitrary hidden fixed maps in both directions recover **256/256** with zero contradictions.
 
-This rejects only a **position-independent value lookup** between the printed grid values and the 256-rune terminal frame. It does not reject the observed 256-position framing, a position-dependent codebook, a keyed/stateful/nonlinear transform, or a different source-selected operation. No plaintext or key follows. Reproduce with [the exact original-input lookup gate](../sims/grid256_terminal_composite_lookup_gate.cjs).
+This rejects only a **position-independent value lookup** between the printed grid values and the 256-rune terminal frame. The 90/256 byte→rune score is a full-frame cross-check, not a stronger result than the existing 255/256 omitted-cell gate; the new exclusion is the reverse rune→byte direction. It does not reject the observed 256-position framing, a position-dependent codebook, a keyed/stateful/nonlinear transform, or a different source-selected operation. No plaintext or key follows. Reproduce with [the exact original-input lookup gate](../sims/grid256_terminal_composite_lookup_gate.cjs).
 
 ### The eight leftover red title runes as a column keyword (Agent 15, 11 November)
 
