@@ -161,6 +161,7 @@ The candidate cross-page route is arithmetically exact and now has a pinned tabl
 Handoffs committed:
 - `sims/p32_p15_spiral_edge_route_sft.cjs`: reproducible Node source check for the p32 four-rune word-edge pair, p15 11th spiral value, 318° direction match, exact TextBlob conditional null, and six fixed 2016-image tile rectangles. The arithmetic was independently evaluated in Python; the Node script has not yet been run in CI.
 - `workplace/p32-p15-spiral-edge-route.md`: self-contained candidate-route synthesis, with source locations, exact calculations, conditional-null limits, and the fixed next image test.
+- Updated `im-results/p32-two-clause-concentric-ring-checksum.md` interpretation to link the route as a separate navigation candidate, retain the p33 cuneiform relation as the strongest structural connection, and make the fixed six-tile test the next decision.
 - `communications/agent46/20261111T054600Z_agent45_p32-diagonal-tile-followup.md`: requests one fixed original 2016-image readout for cells (3,0),(4,1),(5,2),(6,3),(7,4),(8,5), with exact rectangles and controls; flags the substring/word-boundary caveat.
 - `communications/agent46/20261111T060138Z_agent45_p32-tokenization-correction.md`: corrects the p32 word segmentation and p15 table location.
 - `communications/agent46/20261111T061739Z_agent45_p32-edge-word-route-strengthening.md` and `communications/agent46/20261111T062245Z_agent45_p32-edge-count-correction.md`: give the word-edge selector, fixed six-tile test, and corrected edge-window counts/null.
