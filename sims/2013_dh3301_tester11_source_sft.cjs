@@ -246,6 +246,33 @@ assert.equal(oneBasedPrimeOrdinal(151), 36);
 assert.equal(151 % 29, 6);
 assert.equal(sourceSelectedExponent % 29, 8);
 
+/** @param {number} n */
+function phi(n) {
+  let result = n;
+  let x = n;
+  for (let p = 2; p * p <= x; p++) {
+    if (x % p !== 0) continue;
+    while (x % p === 0) x /= p;
+    result -= result / p;
+  }
+  if (x > 1) result -= result / x;
+  return result;
+}
+
+const wisdomSquare = [
+  272, 138, 341, 131, 151,
+  366, 199, 130, 320, 18,
+  226, 245, 91, 245, 226,
+  18, 320, 130, 199, 366,
+  151, 131, 341, 138, 272,
+];
+const positions151 = wisdomSquare
+  .map((value, index) => value === 151 ? index + 1 : null)
+  .filter((x) => x !== null);
+assert.deepEqual(positions151, [5, 21]);
+assert.deepEqual([phi(151) % 29, phi(sourceSelectedExponent) % 29], positions151);
+
+
 // Separate inbound-only log value. The base for that exchange is not preserved here.
 // These are arithmetic observations only, not a claim that its server selected base 5.
 assert.equal(modPow(5, testerExponentResidue, 3301), 3034);
@@ -461,6 +488,8 @@ console.log(JSON.stringify({
     uniqueMatch: numberMatches[0],
     primeOrdinal151: oneBasedPrimeOrdinal(151),
     gpResidues: { cell151: 151 % 29, exponent1661: sourceSelectedExponent % 29 },
+    wisdomPositions151: positions151,
+    totientPositionLock: [phi(151) % 29, phi(sourceSelectedExponent) % 29],
   },
   invariantRows,
   selectedExponent: {
