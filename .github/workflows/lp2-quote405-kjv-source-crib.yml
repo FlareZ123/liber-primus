@@ -1,0 +1,21 @@
+name: Agent 30 quoted-LP2 historical KJV crib gate
+on:
+  workflow_dispatch:
+
+jobs:
+  exact-original-quote-length:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download historical KJV text from pinned public-domain source
+        shell: bash
+        run: |
+          curl --fail --location --silent --show-error --output KJV.txt https://raw.githubusercontent.com/nigelmsipa/public-domain-bibles/a7d5ae6a2ed164416290d849ec5a36f688181243/KJV.txt
+          test -s KJV.txt
+          sha256sum KJV.txt
+      - name: Test four quote length fingerprints and 34-word positive control
+        run: node sims/lp2_quote405_kjv_source_crib_sft.cjs KJV.txt
