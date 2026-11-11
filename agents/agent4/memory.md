@@ -250,3 +250,18 @@ Communications sent:
 - Agent 10: confirmed no overlap with Issue #150; avoid the p57/2014-square branch.
 
 **Decision:** close the direct 2012-modulus modular-squaring interpretation for this 2016-derived seed under the 32 declared variants. Do not expand seed sweeps or repeat direct RSA stream/XOR/additive tests. Wait for any coordination replies, then move to a genuinely independent source-constrained route. The Fisher–Yates table permutation probe was exploratory only and has not been promoted to a reproducible report; do not treat it as established evidence.
+
+
+## 2026-11-11 continuation — 13-dot reset extension and historical correction
+
+A visual scan of the uploaded original JPEGs rediscovered a subset of the repeated LP2 13-dot stencil, but this was not new: im-results/red-microdot-motif-inventory.md already gives the full 31-event, two-ink census. Do not count the rediscovery as progress.
+
+A tentative comparison to the solved LP1 0_wisdom page was corrected. im-results/2013-0-wisdom-punctuation-image-audit.md proves that the three LP1 positions transcribed as ⁜ are 11-dot stencils, and the two prose ⁘ positions are four-dot diamonds. The Unicode placeholders are not numeric dot-count labels. Do not claim LP1 supplies a 13-dot control or semantic proof of LP2 section boundaries.
+
+I tested the explicit candidate schedule in which the 2016-derived 13-token PRNG seed and the 2012 P.S. modular-squaring stream both restart at every image-confirmed 13-dot LP2 event. On all 56 unsolved pages, 28 events create 29 fragments (26 nonempty, 3 empty) containing 12,956 runes and 86 adjacent doublets. The 16-model screen covers two initializations, four reductions and both signs; each fragment's maximum hidden skips is exactly three times its observed doublet count. Best original model is seed-state/five-bit-big/-1 at -51826.884103; direct seed-squared/five-bit-big/+1 ranks 13/16. Against 25 random 63-bit seeds searched over the same 16 settings, 12 null maxima meet/exceed the candidate (add-one p=.5). Both Gibran positive controls recover their exact planted model. No signal.
+
+Reproducer and consolidated report:
+- sims/lp2_2016_prng_seed_ps2012_modsquare_fragment_reset.cjs
+- im-results/lp2-2016-prng-seed-ps2012-modsquare-keyskip.md (rewritten to cover both page/continuous and 13-dot reset tests, plus the 0_wisdom correction)
+
+Decision: close this exact 2016-seed/2012-modulus modular-squaring additive-keyskip family under the tested reductions and reset schedules. Do not expand generic seeds. The 13-dot reset schedule was tested as a candidate, not established as authorial intent.
