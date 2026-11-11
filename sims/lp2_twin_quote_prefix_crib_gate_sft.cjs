@@ -87,6 +87,32 @@ assert.equal(offsets[1].a,171);
 assert.equal(offsets[1].b,53);
 assert.equal(p40.indices.length,231);
 assert.equal(p53.indices.length,179);
+
+/**
+ * A more conservative descriptive null fixes each quote's physical page,
+ * 14-word span and total number of runes before comparing starts.
+ * @param {number} page
+ * @param {number} totalRunes
+ * @returns {{start:number,fiveWords:string}[]}
+ */
+function sourceCompatibleWindows(page,totalRunes) {
+  const lower=startsPages[page];
+  const upper=lower+corpus.pages.find(p=>p.page===page).indices.length;
+  const selected=[];
+  for(let i=0;i+14<=words.length;i++){
+    if(words[i].start<lower||words[i+13].start>=upper)continue;
+    if(pattern(i,14).reduce((n,k)=>n+k,0)!==totalRunes)continue;
+    selected.push({start:words[i].start,fiveWords:pattern(i,5).join(',')});
+  }
+  return selected;
+}
+const eligibleP40=sourceCompatibleWindows(40,58);
+const eligibleP53=sourceCompatibleWindows(53,70);
+const matchedEligible=eligibleP40.flatMap(a=>eligibleP53
+  .filter(b=>b.fiveWords===a.fiveWords).map(b=>[a.start,b.start]));
+assert.equal(eligibleP40.length,5);
+assert.equal(eligibleP53.length,4);
+assert.deepEqual(matchedEligible,[[9811,12522]]);
 const a=allCipher.slice(aStart,aStart+21),b=allCipher.slice(bStart,bStart+21);
 assert.equal(a.length,21);assert.equal(b.length,21);
 const diff=a.map((v,i)=>(b[i]-v+29)%29);
@@ -141,7 +167,9 @@ console.log(JSON.stringify({
     firstFiveRuneWordLengths:firstPattern,firstFiveRunes:21,
     firstQuoteWordCount:14,secondQuoteWordCount:14,
     quotePrefixPairs:matches,bookwideMatchingPatternOffsets:samePatternPositions,
-    allFivegramDuplicatePairs:fivegramPairs},
+    allFivegramDuplicatePairs:fivegramPairs,
+    conditionalSamePageWindowCounts:[eligibleP40.length,eligibleP53.length],
+    conditionalMatchedPairs:matchedEligible},
   hypothesizedPlaintextEquality:'Unestablished; quotation punctuation and word lengths alone do not authenticate a shared phrase.',
   originalCipherSameRunePositions:a.reduce((n,v,i)=>n+Number(v===b[i]),0),
   testedSourceFixedKeyFamilies:tests.length,bestKeyTests:tests.slice(0,6),
