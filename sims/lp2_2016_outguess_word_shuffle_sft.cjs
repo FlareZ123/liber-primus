@@ -3,9 +3,11 @@
  * Test the conditional 2016 signed-word PRNG readout as a reversible
  * OutGuess ARC4 Fisher-Yates permutation of complete LP2 rune words.
  *
- * Source-selected inputs: authentic 2016 signed sentence, its published
- * 13-rune conditional line:character remainder, historical OutGuess
- * ARC4 MD5 domain separation, and original 2,896 whole rune words.
+ * Conditional candidate inputs: the authentic 2016 signed sentence and
+ * the 13-rune remainder from an unconfirmed line:character mapping.
+ * The OutGuess ARC4 implementation is historical, but its use as a
+ * Fisher-Yates word-shuffle generator, seed derivation and parameters are
+ * candidate conventions, not source-selected LP2 instructions.
  *
  * This is a bounded proposal, not an authenticated LP2 cipher instruction.
  * Run: node sims/lp2_2016_outguess_word_shuffle_sft.cjs
@@ -205,7 +207,7 @@ assert.ok(sourceAssociation>15);
 assert.ok(association(planted)<sourceAssociation);
 
 const output={
-  source:"2016 signed-word candidate PRNG; original 2,896 whole rune words",
+  source:"conditional 2016 line:character candidate seed; original 2,896 whole rune words",
   decodedLineCharacterTokens:directed.map(x=>corpus.translit[x]).join(""),
   conditionalSeed:{literal:wordSeed,decimal:numberSeed},
   originalWordCount:wordLengths.length,originalRuneCount:parsed.runeCount,
@@ -214,6 +216,6 @@ const output={
   strongestOriginalChi:original[0].chi,
   planted:{sourceChi:sourceAssociation,cipherChi:association(planted),
     recoveredChi:association(restored),exactLengths:restored.length},
-  conclusion:"No source-seed OutGuess ARC4 whole-word permutation restores native-GP prose adjacency; this finite scope contains no unknown plaintext."
+  conclusion:"Under the unconfirmed 13-rune candidate seed, none of 48 tested OutGuess ARC4 word-permutation configurations improves the measured 3x3 adjacent short/medium/long word-length association. This is not a rune-level plaintext test and does not exclude other OutGuess permutations."
 };
 console.log(JSON.stringify(output,null,2));
