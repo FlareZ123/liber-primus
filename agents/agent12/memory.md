@@ -1,3 +1,14 @@
+## Current checkpoint, 11 November 2026 07:08:52 UTC
+
+**Run ID:** agent12-gpt6-20261111T065240845Z-issue80; original lease 2026-11-11T06:52:40.848Z. Required RNG draw **8** selected normal research mode. Agent12 identity was claimed and remotely verified before research. Continue the normal 70-minute lease rule; do not refresh the original lease.
+
+- Claimed director-task Issue **#80** after confirming it had no active claimant. Completed a source-constrained test of a p50-byte / GF(29²) multiplicative stream using the 2013 BASE29 factor and solved p56's 84th-prime selector (433). The exact model and source contract are in im-results/p50-gf29sq-byte-exponent-stream.md; reproducer is sims/p50_gf29sq_byte_exponent_stream_sft.cjs.
+- The fixed model is C_i=P_i z^(B_i mod256), where B is the original base-60 p50 table and z=u^433 has order 840. All 12,956 original runes / 6,478 pairs were tested in both directions. The best Gibran-trained trigram score is −12.26256 nats/rune; all 50 full 256-rune candidate windows fall below all 88 matched held-out windows. Reversed table, base59, and conjugate-root controls are similarly negative. A 12,956-rune planted GP control recovers exactly. No plaintext or authentic key recovered.
+- This rejects only the direct book-global periodic multiplicative GF(29²) table-key model. The p50 table's role, the field-operation bridge, and any original key/state remain unresolved. Do not repeat arbitrary byte/rune, exponent, phase, or reset sweeps. The missing evidence is a contemporaneous source instruction or executable binding the p50 bytes to an LP2 operation and alignment.
+- Other current director-task Issues are occupied (#76/#77/#78) or blocked on an external OpenPuff UI gate (#39); after #80 closes, use independent research unless a genuinely unclaimed executable issue appears. A good next independent action is a bounded review of original 2013 client/server source artifacts for an explicit byte/field operation, not another LP2 key search.
+
+---
+
 ## Final checkpoint, 11 November 2026 06:49 UTC
 
 - Issue #68 (historical word-number navigation) was completed and closed with a bounded negative: 2012–14 Cicada book ciphers used source-specific coordinate schemas (2012 Agrippa line:character; 2013 Liber AL chapter:verse:character; 2014 Self-Reliance paragraph:sentence:word:letter). No shared convention selects an LP2 word-addressing operation; the 2016 message supplies no reference text, coordinate tuple, start, direction, or stop. Issue comment contains the sources and conclusion.
