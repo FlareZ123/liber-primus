@@ -194,6 +194,13 @@ const plantedChain = minOov(difference(
 const nativeWords = read("resources/control/gibran_prophet_58585.txt")
   .toUpperCase().match(/[A-Z]+/g).map(toRunes).filter((w) => w.length);
 const nativeOov = nativeWords.filter((w) => !dictionary.has(w.join(","))).length;
+const solvedWords = read("resources/liber-primus/lp1-plaintext-reference.txt")
+  .split(/\n### [^\n]+\n/).slice(1)
+  .flatMap((chapter) => (chapter.split("\n")
+    .filter((line) => /^[A-Z ,.!?;:'"()\-\[\]]{8,}$/.test(line))
+    .join(" ").match(/[A-Z]+/g) || []))
+  .map(toRunes).filter((w) => w.length);
+const solvedOov = solvedWords.filter((w) => !dictionary.has(w.join(","))).length;
 
 assert.equal(actual.minOov, 55);
 assert.equal(actual.firstUnavoidableOovAt, 23);
@@ -202,6 +209,8 @@ assert.equal(originalChain.minOov, 57);
 assert.equal(plantedChain.minOov, 0);
 assert.equal(nativeWords.length, 15733);
 assert.equal(nativeOov, 292);
+assert.equal(solvedWords.length, 740);
+assert.equal(solvedOov, 16);
 
 console.log(JSON.stringify({
   scope: "original LP2 source sections 4 vs 5, printed-start 1021-rune overlap",
@@ -209,6 +218,8 @@ console.log(JSON.stringify({
   lexicon: { inputRows: 29157, gpDistinct: dictionary.size, trieNodes: nodes.length },
   nativeReference: { words: nativeWords.length, oov: nativeOov,
     fraction: nativeOov / nativeWords.length },
+  solvedLiberPrimusReference: { words: solvedWords.length, oov: solvedOov,
+    fraction: solvedOov / solvedWords.length },
   exactMinimumOov: actual,
   matchedLayoutSamePadPositiveControl: planted,
   chainStepModel: { original: originalChain, matchedLayoutPositiveControl: plantedChain }
