@@ -150,4 +150,4 @@ Retire the two direct paired-coordinate readings, their immediate recursive sign
 
 The strongest remaining use of the p15 square is its established Fibonacci-indexed prime generator. The original infinity mark and red arrow are genuine source cues, but the obvious additive continuation to the arrow-targeted body fails. A successor should proceed only if an independent artifact specifies a different reversible operation or how the generator acts on original ciphertext/the 32×8 table.
 
-**Reproducer:** [sims/p15_fibonacci_page_word_address_gate.cjs](../sims/p15_fibonacci_page_word_address_gate.cjs). The script asserts the original 16 values, generated prime ordinals, all 32 direct addresses, physical printed-word count, exact END basin, and positive source-navigation anchor.
+**Reproducer:** [sims/p15_fibonacci_page_word_address_gate.cjs](../sims/p15_fibonacci_page_word_address_gate.cjs). The script asserts the original 16 values, generated prime ordinals, both direct address sets, physical printed-word count, all four arrow-targeted Fibonacci-mod-29 body transforms, exact END basin, and the only END-reaching path.
