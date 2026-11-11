@@ -1,0 +1,27 @@
+name: LP2 p27 original JPEG 2013 MP3 XOR source gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frozen-original-xor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Retrieve exact archived 2013 MP3
+        run: |
+          curl --fail --location --retry 3 --retry-delay 2 \
+            --output /tmp/761.MP3 \
+            https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3
+          echo '83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460  /tmp/761.MP3' | sha256sum -c -
+      - name: Check historical positive and test original p27 versus two controls
+        run: |
+          node --check sims/lp2_p27_761mp3_originaljpeg_xor_sft.cjs
+          node sims/lp2_p27_761mp3_originaljpeg_xor_sft.cjs /tmp/761.MP3
