@@ -15,7 +15,7 @@ Reproduction: `node sims/p49_p51_table_prime_index_key_gate.cjs`.
 - Table: the 256 `byte_rows` values in `resources/liber-primus/base60-grid.json`, row-major.
 - Ciphertext: the 158 GP29 runes on pages 49 and 51, with original word boundaries restored from `lp2-transcription.txt`.
 - Exact p56 operation and canonical `corpus.translit` encoding; the independent p56 regression must recover its known plaintext before any test runs.
-- Direct variants: offsets 0 and 10 (the ten-dot cue), continuous key clock or reset at p51, and no F-null / global fourth-F null / p51 fourth-F null.
+- Direct variants: offsets 0 and 10 (the ten-dot cue), continuous key clock or reset at p51, and no F-null / global fourth-F null. The collision-aware extension additionally tests the p51-local fourth-F null.
 - Matched null: 100 permutations of the 256 table bytes, preserving the byte histogram, with the same eight direct configurations.
 - Collision-aware extension: the repository keyskip model (`rejectRepeat=0.83`, max 4 local rejects, max 40 total skips), the same offsets and page-reset choices, and the same three fixed F-null masks.
 
