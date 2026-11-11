@@ -1,0 +1,59 @@
+# PARABLE page: 95 runes, a 5×19 rectangle, and a 51-cell inner region
+
+**Classification:** source-grounded structural hypothesis plus bounded negative tests. This is not a decryption, a recovered key, or proof that the creator intended this layout.
+
+## Source observations
+
+The final solved LP2 page (physical p57; combined JPEG archive scan 74) contains **95 runes** including the red seven-rune heading `PARABLE`, and **19 body words**. Its first printed line is exactly **19 runes**:
+
+```text
+PARABLE LIKE THE INSTAR
+```
+
+The remaining 76 runes are exactly four more groups of 19. The source transcription is [`resources/lp2-transcription.txt`](../resources/lp2-transcription.txt), page segment 56; rune indices and prime weights are in [`resources/liber-primus/lp2-corpus.json`](../resources/liber-primus/lp2-corpus.json). The supplied original combined scan is `liber-primus-jpegs/74.jpg`.
+
+A natural 5×19 row-major rendering of those 95 runes is:
+
+| Row | 19 rune transliterations |
+|---:|---|
+| 1 | `PARABLELICETHEINSTAR` |
+| 2 | `TUNNELNGTOTHESURFACEW` |
+| 3 | `EMUSTSHEDOUROWNCIRC` |
+| 4 | `UMFERENCESFINDTHEDIU` |
+| 5 | `INITYWITHINANDEMERGE` |
+
+The first row agrees with the first printed line. The later row boundaries split `WE`, `CIRCUMFERENCES`, and `DIVINITY`; this is an observed consequence of the 19-rune width, not yet an explanation.
+
+The 5×19 rectangle has nested cell counts **44 / 36 / 15**: its outer border contains 44 cells; removing that border leaves a 3×17 interior of **51** cells; removing the next border leaves a 1×15 core. The innermost 15 row-major runes are `YWITHINANDEMERGE`.
+
+A separate source-visible LP2 feature is the **51-rune red span on p53**, at zero-based page-local rune offset 128. Its exact annotation is in [`resources/liber-primus/lp2-ink-annotations.json`](../resources/liber-primus/lp2-ink-annotations.json), page 53. Its transliteration is:
+
+```text
+TPWEOSWBEOTHNHGJRIADIATHAIEOAEXLEOEAIAAJHRTHPDJNGOGFEOMCHDOTCURPN
+```
+
+Thus the p57 rectangle's inner area and the p53 red span have the same length, 51. The inner 3×17 p57 text is:
+
+```text
+UNNELNGTOTHESURFACEMUSTSHEDOUROWNCIRMFERENCESFINDTHEDI
+```
+
+## Why this is a plausible solve-path hypothesis
+
+The p57 instruction says “like the instar tunneling to the surface” and “we must shed our own circumferences” before “find the divinity within and emerge.” A 5×19 rectangle is a compact way to make “circumferences” literal: peel the 44-cell outer border, then the 36-cell border, leaving a 15-cell core. The exact 51-cell interior also gives a specific place to compare the p53 red span.
+
+There is a possible historical selector, but it must be kept conditional. Existing research records the 2013 `number` operation on the PARABLE prime sum 449 as reversing 449 to 944 and factoring 944 as 16×59. **If** the same reverse-and-factor operation is applied to 59, it predicts 95=5×19. I found no preserved historical server response for a literal `number 59` query; this 95=5×19 step is a derived prediction, not an authenticated instruction. The 95-rune page length and 19-rune first line stand independently of that inference.
+
+The 2016 signed message's “words are the map” / “numbers are the direction” wording is compatible with a map interpretation, but does not specify the 5×19 layout or the p53-to-p57 relation. These clues motivate one bounded test; they do not establish the model.
+
+## Bounded tests and result
+
+1. **Direct 51-symbol correspondence:** the row-major 3×17 interior and p53 red span have only 1 same-position match out of 51, different rune histograms, and no consistent one-to-one monoalphabetic substitution. They are not the same string or a simple transposition/substitution of one another.
+2. **Direction-walk test:** interpreting each p53 red rune's GP prime weight modulo 4 as a left / straight / right instruction on the 3×17 interior, starting at its centre, was tested over all four initial headings and both turn polarities. The path exits after only 4–7 visited cells; it does not traverse the 51-cell interior. Absolute direction interpretations using rune ordinal modulo 4 or prime ordinal modulo 4 cycle after three cells. These reject only the stated natural mappings, not every possible use of the red span.
+3. **No plaintext recovered:** the 5×19 layout is a structural observation. It does not by itself decrypt the unsolved pages or identify a key.
+
+## Decision
+
+Retain this as a **candidate human solve path**, not an established mechanism. The strongest reason to keep it is the conjunction of (a) 95 total p57 runes, (b) a 19-rune first printed line, (c) a 5×19 factorization that would follow from the documented reverse-and-factor operation on 59, and (d) a 51-cell inner region matching a source-annotated 51-rune red span on p53.
+
+Do not expand this into arbitrary grid orientations, modular direction alphabets, or cipher menus. A useful successor must supply an independent source clue fixing how the p53 red values act on the 51 interior cells (or another specific reversible operation on the 5×19 map). Until then, the 51-length match remains a potentially meaningful correspondence, not evidence of a key.
