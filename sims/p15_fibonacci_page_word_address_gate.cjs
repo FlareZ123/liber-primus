@@ -34,7 +34,40 @@ const primeList=firstPrimes(988);
 const ordinals=primeValues.map(p=>primeList.indexOf(p)+1);
 assert.deepEqual(primeValues,[2,3,5,7,13,23,43,79,149,263,463,829,1481,2593,4507,7817]);
 assert.deepEqual(ordinals,[1,2,3,4,6,9,14,22,35,56,90,145,234,378,611,988]);
+
 assert.deepEqual(ordinals,fibonacci.map(f=>f+1));
+
+// The original p15 JPEG shows an infinity mark and a red arrow at the first
+// body line below the grid. The page's nine-rune heading precedes 150 body
+// runes. Continue the distinct-Fibonacci sequence encoded by the grid,
+// reduce it in the native 29-symbol alphabet, and apply the p56 additive
+// shift operation in both directions. n=F+1 is the displayed prime ordinal.
+const page15Indices=corpus.pages[15].indices;
+assert.equal(page15Indices.length,159);
+const page15Body=page15Indices.slice(9);
+assert.equal(page15Body.length,150);
+const fibStream=[0,1,2];
+while(fibStream.length<page15Body.length)
+  fibStream.push(fibStream[fibStream.length-1]+fibStream[fibStream.length-2]);
+assert.deepEqual(fibStream.slice(0,16),fibonacci);
+const ordinalStream=fibStream.map(f=>f+1);
+const decodeIndices=(indices)=>indices.map(i=>corpus.translit[i]).join("");
+const transformBody=(stream,sign)=>decodeIndices(page15Body.map((v,i)=>mod(v+sign*mod(stream[i],29),29)));
+const page15InfinityArrow={
+  pageRuneCount:page15Indices.length,headingRunes:9,bodyRunes:page15Body.length,
+  first16DistinctFibonacci:fibStream.slice(0,16),
+  first40FibonacciMod29:fibStream.slice(0,40).map(x=>x%29),
+  first40OrdinalMod29:ordinalStream.slice(0,40).map(x=>x%29),
+  subtractF:transformBody(fibStream,-1),
+  addF:transformBody(fibStream,1),
+  subtractOrdinal:transformBody(ordinalStream,-1),
+  addOrdinal:transformBody(ordinalStream,1)
+};
+assert.equal(page15InfinityArrow.subtractF,"LFMGFOERBJOMJFIFNGDHABBXNSJSAEEAMDEOMNMETDEOOEGFGHEOTGYABEOEWXJTEOREARFYTYNGOUSHEOHOOEEOPAEERHJEUIAEXEAFRJEABTNGMLNDTIEOACTSHTHNGSTHDHCIAULXEARSAEJDSEOWLOHTLAEUOENGEAFFJXIFELXEMNGUAW");
+assert.equal(page15InfinityArrow.addF,"LTHDEOINUUNGYDNTHITHDIAXCRXIAMNSPIAEANGAETAEMGSFRGYRTHGIXLEOWJXTHOUENEEOGUHGWODCPAMGXHCATMGCUNGMIUJTHJNPIAECAEIDSAEOOENUDOEXDEESNIXUOYCFYMOPIASBMBDREAHSEACOOETHIAFDAELYMUFNIAEAIMPCOM");
+assert.equal(page15InfinityArrow.subtractOrdinal,"MEAECEANGOTITHEIEANEALOEWDTTPHXIXAIAEOEJEHEBSOEJNGCEACWJSCAEDTBNGGPISJOIAOEAAESAELTHFXWJWTHNGJEOABOWJEUIAEXEAFRJEABTNGMLNDTIEOACTSHTHNGSTHDHCIAULXEARSAEJDSEOWLOHTLAEUOENGEAFFJXIFELXEMNGUAW");
+assert.equal(page15InfinityArrow.addOrdinal,"NGOAPJITHTHOEIAAIOJOAEASGCSEALITXEAFOEYBYLWTUCWIACOWJSNGPHEOSORTHMIMPWTHNWHRAGXAELWSNGAEBLWGTHOEMIUJTHJNPIAECAEIDSAEOOENUDOEXDEESNIXUOYCFYMOPIASBMBDREAHSEACOOETHIAFDAELYMUFNIAEAIMPCOM");
+
 function decode(word) {
   return [...word].map(r=>corpus.translit[corpus.runes.indexOf(r)]).join("");
 }
@@ -97,11 +130,12 @@ const endPath=hitPath.slice(0,hitPath.findIndex(x=>x.page===56&&x.wordNumber===2
 assert.deepEqual(endPath.map(x=>[x.page,x.wordNumber,x.transliteration]),[[33,36,"TJ"],[38,2,"IAAETECF"],[1,7,"OEI"],[56,2,"OESR"]]);
 const result={
   source:{gridSpiral:grid,fibonacci,primeValues,primeOrdinals},
+  page15InfinityArrow,
   printedWordModel:{pages:58,printedWords:all.length,page50Words:0},
   readingA:{rule:"page=p mod56; word=((ordinal-1) mod56)+1",valid:validA.length,addresses:A.map(x=>({spiral:x.spiral,page:x.page,word:x.wordNumber,token:x.transliteration})),recursiveEndHits:endHitsA,stops:{cycles:13,missing:2}},
   readingB:{rule:"page=F mod56; word=((p-1) mod56)+1",valid:validB.length,addresses:B.map(x=>({spiral:x.spiral,page:x.page,word:x.wordNumber,token:x.transliteration})),recursiveEndHits:endHitsB,stops:{cycles:13,missing:0}},
   recursivePointer:{rule:"word prime-sum S -> page S mod58, zero-based word index floor(S/58)",endNode:{page:56,zeroBasedWordIndex:1,token:"OESR",knownPlaintext:"END"},basin:{nodes:endBasin,total:all.length,fraction:endBasin/all.length},readingA:{expectedHits:validA.length*endBasin/all.length,pAtLeastOne:1-p0(validA.length),endPath},readingB:{expectedHits:validB.length*endBasin/all.length,pZero:p0(validB.length)}},
-  decision:"Both direct paired page/word readings and their fixed recursive continuation are bounded negatives; no unknown plaintext or key recovered."
+  decision:"Both direct paired page/word readings, their fixed recursive continuation, and the source-motivated infinite Fibonacci-mod29 additive reading of the p15 arrow-targeted body are bounded negatives; no unknown plaintext or key recovered."
 };
 assert.ok(Math.abs(result.recursivePointer.readingA.expectedHits-0.9687184661957619)<1e-12);
 assert.ok(Math.abs(result.recursivePointer.readingA.pAtLeastOne-0.6335382418834523)<1e-12);
