@@ -38,14 +38,13 @@ Following the red-3299 clockwise inward spiral gives:
 
 The **11th** spiral value is **2838**. The p32 map's side length 11 could select that entry; this is a plausible selector, not a written instruction.
 
-The p15 Fibonacci-prime spiral itself is **established prior work**, not a new discovery; see `results/lp2-p15-fibonacci-prime-spiral.md` and `im-results/p15-fibonacci-page-word-address-gate.md`. The latter rejects generic pairings of the spiral's prime/Fibonacci coordinates as page/word addresses. The present hypothesis is different: p32's side length 11 selects the 11th spiral entry, then that entry's established zero-based prime order is tested as an offset into p32.
+The p15 Fibonacci-prime spiral itself is **established prior work**, not a new discovery; see `results/lp2-p15-fibonacci-prime-spiral.md` and `im-results/p15-fibonacci-page-word-address-gate.md`. Its construction is explicit: for a table value (v), (3301-v=p_{F+1}), where (F) is a zero-based distinct Fibonacci value and (p_j) is the one-based (j)-th prime. The generic page/word address gate tested and rejected using the spiral's prime/Fibonacci coordinates as physical page/printed-word addresses. The present hypothesis is different: p32's side length 11 selects the 11th spiral entry, then its (F) value is tested as a rune offset inside p32.
 
-- (3301-2838=463).
-- 463 is the **90th prime** in conventional one-based ranking, hence **P89** when the p15 prime-order convention starts with (P0=2).
-- The p15 11th spiral entry is associated with Fibonacci index 89; the zero-based prime order **89** therefore directly matches p32 zero-based rune offset **89**.
+- (3301-2838=463=p_{90}), so the 11th spiral entry has **(F=89)**.
+- The same zero-based Fibonacci index **89** directly matches p32 zero-based rune offset **89**.
 - Offset 89 begins the printed word `OENGOMBUDS`; the 4×4 table's edge length selects its four-rune suffix `BUDS` at offset 93.
 
-The cross-artifact hypothesis is: p32 side 11 → p15 spiral entry 11 → established Fibonacci/prime order P89 → p32 offset 89 → BUDS suffix. The p15 prime-order mapping is prior art; the proposed p32 address is the new application. The 4×4 table dimension supplies the four-rune edge length. This does not yet specify what operation to perform after reaching BUDS.
+The cross-artifact hypothesis is: p32 side 11 → p15 spiral entry 11 → (F=89) → p32 rune offset 89 → BUDS suffix. The p15 Fibonacci-prime construction is prior art; the proposed p32 rune-offset application is the new hypothesis. The 4×4 table dimension supplies the four-rune edge length. This does not yet specify what operation to perform after reaching BUDS.
 
 The exact checksum is also notable: **2838 mod 360 = 318**, equal to the four interior rune-prime sum. Under the project's *inferred* mathematical-angle convention (0° east, counter-clockwise; see `im-results/2014-magic-square-direction-map.md`), 318° quantizes to 315° southeast, matching the (3,0)→(8,5) grid diagonal. The 2014 report itself treats the angle convention as an inference, not an explicit primary-source instruction. The endpoint sum is 374 mod 360 = 14° east; its agreement with 2014 stage04 cell 6's 366 mod 360 = 6° east is weaker secondary support. The Ing stanza's east-over-water language is a possible semantic corroboration for an eastward continuation after the BUDS endpoint, not a location selector.
 
@@ -87,13 +86,13 @@ The existing exact conditional null preserves the 21 top/left p32 axis runes and
 - 7 endpoint-word pairs fall in the east sector;
 - the four interior diagonal cells sum exactly 318 in 18 of 2,240 within-word placements.
 
-The joint conditional probability is **1/21,504,000 ≈ 4.65×10⁻⁸**. A broader CMUdict 1.1.3 sensitivity gives **13/30,105,600 ≈ 4.32×10⁻⁷**. These are conditional diagnostics, not discovery-wide p-values. They do not correct for trying alternative pages, fragment lengths, spirals, edge operations, moduli, or direction conventions. The P89 cross-artifact address was added after the original conditional-null design and is not included in those null calculations; do not multiply the probabilities or present a combined significance.
+The joint conditional probability is **1/21,504,000 ≈ 4.65×10⁻⁸**. A broader CMUdict 1.1.3 sensitivity gives **13/30,105,600 ≈ 4.32×10⁻⁷**. These are conditional diagnostics, not discovery-wide p-values. They do not correct for trying alternative pages, fragment lengths, spirals, edge operations, moduli, or direction conventions. The F=89 cross-artifact address was added after the original conditional-null design and is not included in those null calculations; do not multiply the probabilities or present a combined significance.
 
 ## Fixed next test and stopping rule
 
 Agent46 has been asked for a fixed readout of the six original 2016-image tiles selected by the p32 diagonal. The rectangles are fixed by the original 563×569 image and the p32 prime-sum axes; do not rotate, shift, resize, choose a best tile, or infer plaintext from visual resemblance. If the six fixed tiles have no independently measured structure, retire the image-readout branch.
 
-The strongest unresolved question is now **what source-prescribed operation follows the P89 address at p32 offset 89**. The rune meanings Beorc, Mann, Ior, Ing and the word `BUDS` may provide a semantic clue, but do not turn them into a free word-association search. A next step must predict a reversible operation, a key, or an independently observable feature on the original artifact. Otherwise retain this as a navigation hypothesis, not a decryption.
+The strongest unresolved question is now **what source-prescribed operation follows the F=89 address at p32 offset 89**. The rune meanings Beorc, Mann, Ior, Ing and the word `BUDS` may provide a semantic clue, but do not turn them into a free word-association search. A next step must predict a reversible operation, a key, or an independently observable feature on the original artifact. Otherwise retain this as a navigation hypothesis, not a decryption.
 
 ## Reproduction and source files
 
