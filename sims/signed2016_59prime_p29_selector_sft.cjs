@@ -83,8 +83,17 @@ const sections = [
   middleSentences[1],
   paragraphs.slice(3).join(" "),
 ];
-const standard = {ing: true, io: true};
-const summary = sections.map((s) => gp(s, standard));
+// Canonical English-to-GP spelling keeps the ING and IO letter groups.
+const canonical = {ing: false, io: false};
+const canonicalGroups = sections.map((s) => gp(s, canonical));
+assert.deepEqual(canonicalGroups, [
+  {count: 59, sum: 2999},
+  {count: 61, sum: 2781},
+  {count: 59, sum: 2581},
+]);
+// Collapsing both groups is an additional, unselected historical hypothesis.
+const conditionalSpelling = {ing: true, io: true};
+const summary = sections.map((s) => gp(s, conditionalSpelling));
 assert.deepEqual(summary, [
   {count: 59, sum: 2999},
   {count: 59, sum: 2819},
@@ -114,7 +123,7 @@ const nested = [
   sections[1],
   "their meaning is the road, and their numbers are the direction.",
   "and their numbers are the direction.",
-].map((s) => gp(s, standard));
+].map((s) => gp(s, conditionalSpelling));
 assert.deepEqual(nested.map((s) => s.count), [59, 43, 27]);
 const nestedControls = nested.map((x) => ({
   count: x.count,
@@ -124,7 +133,7 @@ const nestedControls = nested.map((x) => ({
 }));
 assert.deepEqual(nestedControls.map((x) => x.pageMatches), [[29], [], []]);
 
-const warning2017 = gp(signedParagraphs(signed2017).join(" "), standard);
+const warning2017 = gp(signedParagraphs(signed2017).join(" "), canonical);
 assert.deepEqual(warning2017, {count: 45, sum: 2131});
 assert.deepEqual(unknown.filter((p) => p.indices.length === nthPrime(45))
   .map((p) => p.page), []);
@@ -184,7 +193,8 @@ const sha = (s) => crypto.createHash("sha256").update(s).digest("hex");
 console.log(JSON.stringify({
   source2016Sha256: sha(signed2016),
   source2017Sha256: sha(signed2017),
-  proposedSectionGroups: summary,
+  canonicalSectionGroups: canonicalGroups,
+  conditionalSectionGroups: summary,
   spellingControls: variants,
   p29Selector: {sectionSymbols: 59, nthPrime: target, uniquePage: matches[0],
     exactLength: 277, uniqueMaximum: true},
@@ -192,5 +202,5 @@ console.log(JSON.stringify({
   warning2017,
   tea64bitDirectBase29BlockGate: {bookBig, bookLittle, pageResetBig: reset,
     syntheticPositiveBlocks: sampleWords.length},
-  interpretation: "provisional p29 selector; direct fixed-width GP29/TEA transport excluded",
+  interpretation: "retired p29 prime selector: canonical middle section length is 61; direct fixed-width GP29/TEA transport excluded",
 }, null, 2));
