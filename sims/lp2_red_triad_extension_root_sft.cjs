@@ -202,6 +202,18 @@ function main() {
 
   const z=[a[1],b[0]];
   assert.deepEqual(z,[23,27]);
+  // Source-only closed chain: first triad A -> u -> u^(A_middle²) ->
+  // second triad B -> grid root. Conjugation supplies an independent
+  // prime-weight exponent with no ciphertext or plaintext inputs.
+  assert.deepEqual(z,[a[1],derivedP39[0]]);
+  const conjugateZ=pow2(z,29);
+  assert.deepEqual(pow2(alternativeGenerator,840-a[1]),z);
+  assert.deepEqual(conjugateZ,[17,2]);
+  assert.equal(p39PrimeSum,173);
+  assert.equal((( -a[1]*29 )%840+840)%840,p39PrimeSum);
+  assert.deepEqual(pow2(alternativeGenerator,p39PrimeSum),conjugateZ);
+  assert.deepEqual(eval2(P,[a[1],derivedP39[0]]),[0,0]);
+
   assert.deepEqual(eval2(P,z),[0,0]);
   assert.notDeepEqual(derivativeAt(P,z),[0,0]); // Simple extension root.
   const wrongP=P.slice();
@@ -262,6 +274,8 @@ function main() {
     sourceJpegHop:"20.jpg + 13 + 23 = 56.jpg; 56.jpg + 15 = 71.jpg",
     editorialIndexOnlyEcho:"p3 trailing 2 * p39 opening 27 = p54",
     extensionRelation:"u²=3u+8",
+    derivedSecondRedTriad:"u^(23²)=9+4u; minpoly X²-X+3 coefficients [3,28,1] / p3 [13,23,2] = p39 [27,5,15]",
+    gridRootsInDerivedGenerator:"v^(-23)=23+27u; v^173=(23+27u)^29=17+2u, with p39 red GP-prime sum 173",
     redLengthPositionExponent:"3 × (119+1) = 360; u^120 = 7; u^360 = 24 = oversized p54 Ac and p39 root",
     inversePositionPrediction:"log_u(24)=360; 3*k=360 mod840 implies k=120 mod280, uniquely local on both source pages",
     crossSourcePoint:"p3 middle + p39 first * u = 23+27u",
