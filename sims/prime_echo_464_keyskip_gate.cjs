@@ -94,6 +94,58 @@ const model = key => ({
   maxSkippedPerOutput: MAX_SKIPPED_PER_OUTPUT
 });
 const score = key => logLikelihood(cipher, model(key));
+function posteriorDiagnostics(key, maxTotalSkips) {
+  const size = cipher.length + maxTotalSkips + 2;
+  const reject = REJECT_REPEAT;
+  const maxLocal = MAX_SKIPPED_PER_OUTPUT;
+  let state = new Float64Array(size);
+  state[0] = 1;
+  let logProbability = 0;
+  for (let t = 0; t < cipher.length; t++) {
+    const observed = cipher[t];
+    const previous = t ? cipher[t - 1] : -1;
+    const next = new Float64Array(size);
+    const upper = Math.min(t + maxTotalSkips, size - 2);
+    for (let emitAt = t; emitAt <= upper; emitAt++) {
+      const plaintext = mod(observed - key[emitAt % key.length]);
+      const accept = previous === observed ? 1 - reject : 1;
+      let paths = state[emitAt];
+      if (t > 0) {
+        let product = reject;
+        for (let skipped = 1;
+          skipped <= maxLocal && emitAt - skipped >= t;
+          skipped++) {
+          const pos = emitAt - skipped;
+          if (mod(plaintext + key[pos % key.length]) !== previous) break;
+          paths += state[pos] * product;
+          product *= reject;
+        }
+      }
+      next[emitAt + 1] += q[plaintext] * accept * paths;
+    }
+    let norm = 0;
+    for (let j = t + 1; j <= Math.min(t + maxTotalSkips + 1, size - 1); j++) {
+      norm += next[j];
+    }
+    if (!norm) return { logProbability: -Infinity, expectedSkips: Infinity, boundaryMass: 1 };
+    const inverse = 1 / norm;
+    for (let j = t + 1; j <= Math.min(t + maxTotalSkips + 1, size - 1); j++) {
+      next[j] *= inverse;
+    }
+    logProbability += Math.log(norm);
+    state = next;
+  }
+  let expectedSkips = 0;
+  for (let k = 0; k <= maxTotalSkips; k++) {
+    expectedSkips += k * state[cipher.length + k];
+  }
+  return {
+    logProbability,
+    expectedSkips,
+    boundaryMass: state[cipher.length + maxTotalSkips]
+  };
+}
+
 
 const primes = firstPrimes(464);
 const bases = [
@@ -122,6 +174,8 @@ const bestControls = Array.from({ length: 32 }, (_, j) =>
   score(shuffle(bestKey, 0x47a100 + j))
 );
 
+const skipPosterior512 = posteriorDiagnostics(bestKey, 512);
+const skipPosterior1024 = posteriorDiagnostics(bestKey, 1024);
 const doublets = cipher.slice(1).filter((x, i) => x === cipher[i]).length;
 console.log(JSON.stringify({
   test: "source-derived prime_echo key under soft ciphertext-repeat rejection",
@@ -151,5 +205,10 @@ console.log(JSON.stringify({
     mapping: "phi(prime) mod 29, positive sign",
     ...stats(bestActual, bestControls),
     randomControls: bestControls
+  },
+  skipPosteriorDiagnostics: {
+    maxTotalSkips512: skipPosterior512,
+    maxTotalSkips1024: skipPosterior1024,
+    logLikelihoodDifference: skipPosterior1024.logProbability - skipPosterior512.logProbability
   }
 }, null, 2));
