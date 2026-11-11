@@ -221,6 +221,70 @@ function evaluate(name, source, fraction, seed, samples, original, rightAligned)
   };
 }
 
+/**
+ * Divide descending-order GF29 polynomials. The candidate audio-page lengths
+ * would demand exactly a 16-symbol K under a length-preserving convolution.
+ * @param {number[]} numerator
+ * @param {number[]} denominator
+ * @returns {{quotient:number[],remainder:number[],nonzeroResidual:number}}
+ */
+function polynomialDivide(numerator, denominator) {
+  assert.ok(denominator.length > 0 && denominator[0] !== 0);
+  const inverse = Array.from({length: MOD - 1}, (_, i) => i + 1)
+    .find(value => mod29(value * denominator[0]) === 1);
+  assert.ok(inverse !== undefined);
+  const quotient = Array(Math.max(0, numerator.length - denominator.length + 1)).fill(0);
+  const scratch = numerator.slice();
+  for (let i = 0; i < quotient.length; i++) {
+    const factor = mod29(scratch[i] * inverse);
+    quotient[i] = factor;
+    for (let j = 0; j < denominator.length; j++) {
+      scratch[i + j] = mod29(scratch[i + j] - factor * denominator[j]);
+    }
+  }
+  const remainder = scratch.slice(quotient.length);
+  return {quotient, remainder,
+    nonzeroResidual: remainder.filter(value => value !== 0).length};
+}
+
+/**
+ * Direct schoolbook GF29 convolution (positive plant).
+ * @param {number[]} a
+ * @param {number[]} b
+ * @returns {number[]}
+ */
+function polynomialMultiply(a, b) {
+  const output = Array(a.length + b.length - 1).fill(0);
+  for (let i = 0; i < a.length; i++) {
+    for (let j = 0; j < b.length; j++) {
+      output[i + j] = mod29(output[i + j] + a[i] * b[j]);
+    }
+  }
+  return output;
+}
+
+/** @param {number[]} values @returns {number[]} */
+function trimLeadingZeros(values) {
+  const first = values.findIndex(value => value !== 0);
+  return first < 0 ? [] : values.slice(first);
+}
+
+/**
+ * Exact Euclidean GCD degree: an additional no-common-factor witness.
+ * @param {number[]} a
+ * @param {number[]} b
+ * @returns {number}
+ */
+function polynomialGcdDegree(a, b) {
+  let x = trimLeadingZeros(a), y = trimLeadingZeros(b);
+  while (y.length > 0) {
+    const result = polynomialDivide(x, y);
+    x = y;
+    y = trimLeadingZeros(result.remainder);
+  }
+  return x.length - 1;
+}
+
 /** @returns {object} */
 function run() {
   const corpus = JSON.parse(fs.readFileSync(
@@ -246,6 +310,24 @@ function run() {
     path.join(ROOT, 'resources/control/latin-vulgate-gp-wholewords.txt'), 'utf8'));
   assert.equal(english.length, 217644);
   assert.equal(latin.length, 204802);
+
+  // The lengths 277 and 262 also nominate exactly a degree-15 / length-16
+  // convolution key. Test its necessary zero-remainder condition directly.
+  const divideForward = polynomialDivide(p29.indices, p0.indices);
+  const divideReverse = polynomialDivide(
+    p29.indices.slice().reverse(), p0.indices.slice().reverse());
+  assert.equal(divideForward.quotient.length, 16);
+  assert.equal(divideForward.nonzeroResidual, 252);
+  assert.equal(divideReverse.nonzeroResidual, 253);
+  const gcdDegree = polynomialGcdDegree(p0.indices, p29.indices);
+  assert.equal(gcdDegree, 0);
+
+  const plantKey = Array.from({length: 16}, (_, index) => (index * 11 + 1) % MOD);
+  const plantedCipher = polynomialMultiply(p0.indices, plantKey);
+  const recovered = polynomialDivide(plantedCipher, p0.indices);
+  assert.equal(recovered.nonzeroResidual, 0);
+  assert.deepEqual(recovered.quotient, plantKey);
+
   return {
     status: 'conditional negative, no unknown original plaintext recovered',
     premise: 'same arbitrary GP29 additive key at p0/p29 offsets 0..261',
@@ -253,6 +335,12 @@ function run() {
     original: {p0Runes: 262, p29Runes: 277, alignedPageOffsets: [0, 15],
       differences: 262, equalAtSameOffset: histogram[0], histogram,
       rightAlignedEqualAtSameOffset: rightAligned.filter(x => x === 0).length},
+    sourceLengthConvolution: {
+      keyRunes: 16, forwardResidualNonzeros: divideForward.nonzeroResidual,
+      reverseResidualNonzeros: divideReverse.nonzeroResidual,
+      remainderPositions: 261, gcdDegree,
+      plantedKeyRecovered: recovered.quotient.length
+    },
     controls: [
       evaluate('Shakespeare GP', english, 0.52, 0xa213c14a, 12000, original, rightAligned),
       evaluate('Latin Vulgate GP', latin, 0.54, 0x1a71a277, 10000, original, rightAligned)
