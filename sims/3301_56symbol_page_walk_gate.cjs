@@ -1,27 +1,79 @@
 #!/usr/bin/env node
 "use strict";
 
-// Bounded test of the conditional 56-symbol stream derived from the
-// 2013 5x5/3301 square. Map each GP rune to its canonical prime weight,
-// reduce each step mod56, and cumulatively walk LP2 pages from page 0.
-const sequence = "OIUWHUCRDUOHUGONTOTHOUOGIDTHIWATHIIDUOGTHOTOONUGUOHRDUCUWHOI";
-const translit = ["F","U","TH","O","R","C","G","W","H","N","I","J","EO","P","X","S","T","B","E","M","L","NG","OE","D","A","AE","Y","IA","EA"];
-const primes = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109];
-const tokens = [...translit].sort((a,b) => b.length-a.length);
-const parsed = [];
-for (let pos=0; pos<sequence.length;) {
-  const token = tokens.find(t => sequence.startsWith(t,pos));
-  if (!token) throw new Error(`unparsed sequence at ${pos}`);
-  parsed.push(token);
-  pos += token.length;
+// Reconstruct the conditional 56-symbol stream from the first 5x5 square,
+// then test one natural reading of the 2016 'numbers are the direction':
+// GP prime weights become cumulative steps around the 56 LP2 pages.
+const fs = require("node:fs");
+const path = require("node:path");
+const root = path.resolve(__dirname, "..");
+const read = p => fs.readFileSync(path.join(root, p), "utf8");
+const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const blocks = read("resources/cicada2014-openpuff-magic-squares.txt").trim().split(/\r?\n\s*\r?\n/);
+const square = blocks[0].trim().split(/\r?\n/).map(line => line.trim().split(/\s+/).map(Number));
+if (square.length !== 5 || square.some(row => row.length !== 5)) throw new Error("expected original 5x5 square");
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let d = 2; d * d <= n; d++) if (n % d === 0) return false;
+  return true;
 }
-if (parsed.length !== 56) throw new Error(`expected 56 tokens, got ${parsed.length}`);
-const indices = parsed.map(t => translit.indexOf(t));
-const steps = indices.map(i => primes[i] % 56);
+function factorKeys(n) {
+  const out = [];
+  for (let p = 2; p * p <= n; p++) if (n % p === 0) {
+    out.push(p);
+    while (n % p === 0) n /= p;
+  }
+  if (n > 1) out.push(n);
+  return out;
+}
+function numberCommand(n) {
+  if (isPrime(n)) {
+    const reversed = Number(String(n).split("").reverse().join(""));
+    if (isPrime(reversed)) return { plus: true, factors: [] };
+    return { plus: false, factors: factorKeys(reversed) };
+  }
+  return { plus: false, factors: factorKeys(n) };
+}
+function base29Digits(n) {
+  const out = [];
+  for (; n > 0; n = Math.floor(n / 29)) out.unshift(n % 29);
+  return out.length ? out : [0];
+}
+const gpPrimeIndex = new Map(corpus.prime.map((p, i) => [p, i]));
+const stream = [];
+let factorOccurrences = 0, omittedF = 0, externalOccurrences = 0;
+for (const row of square) for (const value of row) {
+  const result = numberCommand(value);
+  if (result.plus) continue;
+  for (const factor of result.factors) {
+    factorOccurrences++;
+    const index = gpPrimeIndex.get(factor);
+    const digits = index === undefined ? base29Digits(factor) : [index];
+    if (index === undefined) externalOccurrences++;
+    for (const digit of digits) {
+      if (digit === 0) omittedF++; // conditional transfer of p56's F-skip
+      else stream.push(digit);
+    }
+  }
+}
+if (factorOccurrences !== 70 || omittedF !== 21 || stream.length !== 56) throw new Error("source-derived stream counts changed");
+const transliteration = stream.map(i => corpus.translit[i]).join("");
+const expected = "OIUWHUCRDUOHUGONTOTHOUOGIDTHIWATHIIDUOGTHOTOONUGUOHRDUCUWHOI";
+if (transliteration !== expected) throw new Error("56-symbol stream differs from the pinned derivation");
+const steps = stream.map(i => corpus.prime[i] % 56);
 let page = 0;
 const route = [page];
 for (const step of steps) { page = (page + step) % 56; route.push(page); }
-const first56 = route.slice(0,56);
-const unique = [...new Set(first56)];
-const missing = Array.from({length:56},(_,i)=>i).filter(i=>!unique.includes(i));
-console.log(JSON.stringify({parsed,indices,steps,route:first56,uniquePages:unique.length,missing},null,2));
+const withStart = route.slice(0, 56);
+const afterSteps = route.slice(1);
+function coverage(values) {
+  const unique = [...new Set(values)];
+  return { positions: values.length, uniquePages: unique.length, missing: Array.from({length:56}, (_,i) => i).filter(i => !unique.includes(i)) };
+}
+console.log(JSON.stringify({
+  factorOccurrences, externalOccurrences, omittedF, streamLength: stream.length,
+  streamIndices: stream, transliteration, steps,
+  routeWithStart: withStart, coverageWithStart: coverage(withStart),
+  routeAfterSteps: afterSteps, coverageAfterSteps: coverage(afterSteps),
+  finalPageAfter56Steps: route.at(-1), returnsToStart: route.at(-1) === 0
+}, null, 2));
