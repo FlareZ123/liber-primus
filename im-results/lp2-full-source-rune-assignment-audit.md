@@ -44,6 +44,8 @@ Among the 11,891 held-out positions on lines with exact observed component count
 
 ## Solved-page controls and the red-ink limitation
 
+**Original-source control correction (11 November 2026):** The 0/12 raw red-control figure below is a detector-registration artifact. Original p56 and p57 start with oversized red initials omitted by the detector, while a 13-dot punctuation fragment becomes a final I; the ten real ordinary glyph predictions align with the source at offset +1 (**10/10**). The earlier red-only 12-sample classifier trained on incorrect labels, invalidating its 1/4 duplicate-class and 3/59 covered-unknown figures as evidence of a distinct red alphabet. Re-training from the ten correctly labeled solved samples gives eight GP classes and **40/41** correct original unknown red glyph classifications from eleven pages, p53 **11/11**. Only p15:14 B is nearest R because of native image proportions; the source glyph is visually B and black-template prediction agrees. [Reproducer](../sims/lp2_red_solved_control_alignment_sft.py) and [reconciled source analysis](lp2-red-rune-image-adjudication.md). The raw counters are historical outputs retained verbatim below.
+
 The solved p56/p57 controls contain 168 black positions and 12 red positions:
 
 - p43 nearest templates: **168/168 black**, **0/12 red**.
