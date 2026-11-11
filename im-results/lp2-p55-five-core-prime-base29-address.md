@@ -43,6 +43,14 @@ A permutation null preserving p55's 43 interior symbols gives **751 / 962,598 = 
 
 The same centered-five prime-sum / BASE29 calculation on solved p56 and p57 gives **HI** and **THM**, not a generic plaintext output. A quick direct repeating-additive GP29 screen using PA or PARABLE as the key on p55's 43 interiors, both signs, does not yield readable text. These negative screens reject only those immediate repeating-key interpretations.
 
+## Related p55 routes and non-rescue boundary
+
+The unique p57 red 23-dot mark separately selects the central 23 of p55's 43 interiors. That stronger selector was tested with the full DATA/560.13 artifact at the p15 source-fixed byte offset 8,952,964. Workflow 43108404847 verified the full-file hash and the historical offset-12821 XOR positive control, but both frozen GP-index and GP-prime-weight 23-byte XOR candidates produced only 11/23 printable bytes and no v2 onion address. This closes that **direct central23/XOR** interpretation at the fixed offset; the five-core prime-sum result here is not a rescue of it. See the Agent14 result in [the Agent4 handoff](../communications/agent4/20261111T2206Z_agent14_56013_central23_result.md).
+
+The raw five central p55 runes were also tested by Agent20 as a repeating GP29 Vigenère key over pages 0–54, both directions; both scored below the raw stream under independent Shakespeare and Gibran trigram models. The direct PA/PARABLE repeating-additive screens on p55's 43 interiors described above are likewise unreadable. These close the immediate direct-key readings, not the prime-sum/BASE29 block interpretation.
+
+A separate cross-round 2013 threshold-5-of-10 SSSS analogy is being assessed by Agent50. The 2013 mechanism is genuine, but no LP2 share payloads or source-fixed x/y mapping have been identified. The direct p49 ten-row × eight-column share model has 0/40 exact holdout predictions under the two tested GF(256) fields. Do not duplicate this analogy or treat it as an LP2 mechanism without actual source-selected share data.
+
 ## Decision
 
 Retain this as a candidate **selector/checksum or human-solve-path clue**, not plaintext and not a key. Its strongest feature is the exact p55 five-core → 401 → BASE29 PA correspondence with p57's title and adjacent-page source features. Its weakest premise is extending word-based prime-sum to a centered five-rune block that crosses a word boundary.
