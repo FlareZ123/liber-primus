@@ -45,6 +45,10 @@ The two possible black-anchored starts yield zero H/G/F codeword matches across 
 
 Combining the original chronology and the two source-anchored rotations gives **21,924** independently checked event-recoding/black-anchor configurations with no direct F codeword. This new gate resolves a particular original visual selector, rather than selecting the event offset after seeing the table. The black marker could still be a start for a genuinely different, source-specified stateful operation; this finite negative does not establish that any such operation exists.
 
+### Independent 2014 256-byte candidate: no common H/G codeword
+
+The surviving 2014 Stage04 `<!--1033-->` 256-byte object (canonical bytes pinned in [the prior source-identity SFT](../sims/lp2_stage04_256_direct_identity_sft.cjs), SHA-256 `d8c0f83cf91d0deda658035e3eb07712b12e72b36ed0e471a71a2fe07dd14ba6`) is the same size as the LP2 p49–51 printed table, an independent historical candidate for reuse of a 256-byte register. Applying the **unchanged** printed-order H, G and F code checks to those actual bytes gives H syndrome **[1,22]**, G **[15,4]**, F **[7,18,17,16]**. All are nonzero, in contrast to the LP2 table's four zero coefficients. Reversing the 2014 bytes gives F **[3,11,17,11]**, also nonzero. This rejects literal shared H/G-codeword formatting of the two original 256-byte objects under either of their two simple recorded byte orders. It does not refute another, unspecified relation. The checked-in reproducer now asserts the 2014 original-order residues against the existing source fixture.
+
 ## What this settles
 
 The known p50 H/G four-check format cannot be copied **literally** onto the 256 red-plus-thirteen-dot event register under these nine source-grounded encodings or any of their 812 affine recodings. A second, independent stationary red-segment→eight-byte-row interpretation also has an exact duplicate-input contradiction. Both observations are constraints on *literal reuse*, not a rejection of nonlinear encryption, a positional map, an external key, or a rule selecting a different set of 256 coefficients.
