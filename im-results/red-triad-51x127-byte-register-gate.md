@@ -60,7 +60,36 @@ The primitive element \(u\) from p3 provides a further **source-selected noncano
 
 Each of the two feedback laws passes a complete planted 51-row byte-register test for both the canonical base29 and the cyclic-log transport when the original quotient multipliers and correct secret row states are supplied. In the frozen first-row byte and logarithmic plants, rotating the source multiplier schedule by one pair yields no compatible secret initial seed. These controls show the capacity obstruction would not reject a true key under the declared model. They do **not** provide a private key for the authentic manuscript.
 
-**Reproduce:** [all-841-seed variable-multiplier 51×127 byte gate](../sims/red_triad_qmult_allstate_byte_sft.cjs). This adds a dynamic, fully hidden row-state architecture and an unknown-phase primitive-logarithm codebook, neither of which was included in the earlier constant row-offset capacity gate. It remains conditional on the source's particular quotient order, pair boundaries, field addition, two feedback laws and the byte alphabet. A completely arbitrary 256-symbol codebook, additional secret nonlinear transformations, or other state updates are untested.
+**Reproduce:** [all-841-seed variable-multiplier 51×127 byte gate](../sims/red_triad_qmult_allstate_byte_sft.cjs). This adds a dynamic, fully hidden row-state architecture and an unknown-phase primitive-logarithm codebook, neither of which was included in the earlier constant row-offset capacity gate. It remains conditional on the source's particular quotient order, pair boundaries, field addition, two feedback laws and the byte alphabet. The general **stationary arbitrary-256-codebook case** is fully tested and excluded below for these same two feedback laws; row-changing or state-dependent codebooks, additional nonlinear transformations, and different state updates remain untested.
+
+## All-secret arbitrary 256-element codebook obstruction from three rows (Agent 48)
+
+The preceding capacity tests assumed a specific field-to-byte mapping. A **strictly stronger key-independent result** eliminates even an *unknown, completely arbitrary*, but **stationary**, 256-element field alphabet under either of the two evolving quotient-multiplier feedback laws above.
+
+Use the first **three** complete rows of the proposed 51×127 field array, i.e. **762 original ciphertext runes** at unsolved-book offsets **2–763**, interpreted as 381 field elements. For each of the 3 rows, independently enumerate **all 841 hidden GF(29²) initial states**. Invert \(C_j=P_j+S_j\) with \(S_{j+1}=Q_jS_j+C_j\) (ciphertext feedback) or \(S_{j+1}=Q_jS_j+P_j\) (plaintext feedback), using exactly the 127 source polynomial-quotient multipliers. Let \(A_r(h)\) be the **set of distinct output field elements** of row \(r\), given arbitrary secret seed \(h\). If the first three rows were one byte per field pair in **any fixed 256-codepoint alphabet** \(K\subset \mathrm{GF}(29^2)\), there would have to exist seeds \(h_0,h_1,h_2\) with \(A_0(h_0)\cup A_1(h_1)\cup A_2(h_2)\subseteq K\), hence union size \(\le256\).
+
+The exact, elementary three-set inequality supplies a certificate without choosing any codebook:
+
+\[
+|A\cup B\cup C| =
+|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|
+\ge L(A,B,C),
+\]
+
+where \(L=|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|\). The reproducible SFT precomputes **all 841² pairwise intersection counts** for each row pair and then enumerates **every 841³ = 594,823,321 seed triple per feedback law**. Its exact minima, attained in the original input, are:
+
+| Original, any of all 594,823,321 independent row-seed triples | Ciphertext feedback | Plaintext feedback |
+| --- | ---: | ---: |
+| Minimum lower bound \(L\) for alphabet size | **260** | **261** |
+| Seed triple attaining that minimum (field seeds as integers \(a+29b\)) | **[476,384,589]** | **[163,39,107]** |
+| Actual distinct plaintext field elements at that witness | 273 | 270 |
+| Seed triples not excluded by \(L>256\) | **0** | **0** |
+
+For the ciphertext-feedback witness, the three set sizes are [115,112,111], pair intersections [34,24,20] and triple intersection 13, so \(L=260\) and actual union 273. The plaintext-feedback witness has sizes [114,113,112], pair intersections [27,25,26], triple intersection 9, giving \(L=261\), union 270. The minima are **global**, not maxima selected among sampled seeds: all 594,823,321 combinations were checked per model. Therefore the actual union is **at least 260** under ciphertext feedback and **at least 261** under plaintext feedback for *every* possible set of secret row seeds. **No stationary 256-symbol field codebook exists for either stated model, regardless of codepoint assignment, byte spelling, source text language, or arbitrary secret row states.**
+
+**Positive control:** separately invent a noncanonical 256-element field codebook \(x_b=(37b+17)\bmod841\), choose 381 codepoints from it, and encode all three 127-element rows under the *same original quotient multipliers* with three hidden initial states, separately under each feedback law. The detector enumerates all 841 states per row, without being given the encoder seeds, and finds a compatible secret state for every row. The actual planted plaintext uses at most 256 distinct field elements and each of the 381 encrypted field elements re-decrypts exactly with the correct state. This tests a genuine arbitrary field codebook beyond the canonical-base29 and primitive-log plants.
+
+**Reproduce:** [standalone three-row arbitrary-codebook original-source SFT](../sims/red_triad_qmult_three_row_codebook_sft.cjs). The proof is stronger than the earlier 51-row canonical-byte tests in its unknown-codebook scope, yet deliberately conditional on **the precise source polynomial quotient ordering, two-rune header, fixed pair clock, field addition, two feedback recurrences and one global stationary alphabet**. It does **not** exclude a row-changing 256-element alphabet, different field/output arithmetic, state-dependent codebooks, hidden alternate alphabet segmentation, more complex state updates or missing external key instructions. No original LP2 plaintext or authentic cipher is recovered.
 
 ## Distinct fully reversible GP original-input experiment
 
