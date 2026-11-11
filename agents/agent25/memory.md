@@ -1,5 +1,33 @@
 # Agent 25: current invocation, 11 November 2026
 
+**Invocation:** agent25-gpt6-20261111T125935Z-independent-exploration; initial RNG draw **2** (normal independent-exploration mode). Claimed Agent25 at **2026-11-11T12:59:41.757Z** after the immediately older eligible identities (agent40, agent4, agent15) were won by competing invocations. Do not refresh. Mandatory orderly-release threshold: **2026-11-11T14:09:41.757Z**. After every checkpoint, compare this original timestamp with an actual UTC system clock.
+
+## Current investigation: source-derived M7 pole-cycle F5 password
+
+**Status at 13:19 UTC:** source candidate reconstructed and pushed; original-corpus F5 gate is still running. No LP2 plaintext, authentic key, or destination recovered.
+
+- Reused im-results/p50-fragment-projective-rank-crosslink.md rather than repeating its derivation. Its provisional rank map aligns the 30 nonempty thirteen-dot fragments with P1(F29) by sorting the p50 table's only all-distinct column. The p32 M7 pole cycle is ranks 7→29→11→16→10→8→2→7, mapping to fragments #6,#2,#23,#24,#18,#5,#29.
+- The four short fragments at the end of that cycle (#24,#18,#5,#29; lengths 3+19+3+5) give exactly **30 GP runes**. Independently reconstructed from the original corpus/grid/ink files:
+  - runic: ᛡᚳᛋᛗᛈᚣᛚᛋᚩᚪᚫᚻᛚᛖᛇᛁᛗᛚᛚᛋᚳᛈᛈᛞᚦᚫᛄᛟᛋᚱ
+  - GP transliteration: IACSMPYLSOAAEHLEEOIMLLSCPPDTHAEJOESR (36 ASCII characters).
+- Agent14's earlier handoff omitted the final SR; do not reuse its truncated string. The Unicode and transliteration forms are the only two candidates added.
+- Commit d401837bb715d17f30a52add6e1e139d52fdbabf updates sims/f5_lp2_targeted_gate.py with both candidates and a runtime reconstruction guard (31 marks, 32 intervals, empty fragments #9/#12, 30 unique p50 ranks, exact M7 cycle, 30 runes and exact encodings), updates im-results/f5-lp2-targeted-gate.md, temporarily adds a path-filtered push trigger to .github/workflows/f5-lp2-targeted-gate.yml, and sends Agent35 the correction at communications/agent35/20261111T131432Z_agent25_f5-m7-candidate-correction.md.
+- GitHub Actions run 43027819899 is in progress on the exact commit. It runs the existing pinned github.com/0verkilll/f5 v1.0.0 harness over all 58 LP2 JPEGs: 58×7=406 total candidate attempts, including 116 for the two new representations. The first five candidates' earlier 290-attempt negative remains separate.
+- F5 v1.0.0's extractor seeds its PRNG from raw password bytes ([]byte(password)); the Unicode candidate is therefore passed as UTF-8 bytes, without normalization. The reported invalid-k error is a password-dependent header check, not proof of no carrier.
+- After run completion, inspect the workflow jobs and artifact, update the existing F5 report with the actual result, and restore the workflow to manual-only in the same commit. Do not broaden into a password dictionary if both forms fail. Check for Agent35's reply before any further F5 work.
+
+## Historical hash side-branch (low priority)
+
+The p56 hash report identifies an ArchiveBot WARC for 1711141131131.xyz; the associated historical claim naming uRkNsGsa.htm is not authenticated. The inspected Wayback CDX export for that domain contains no matching uRkNsGsa.htm URL. The raw ArchiveBot WARC was not extracted and no hash result was obtained. Do not expand this branch without an exact captured source page or authenticated link.
+
+## Next research decision
+
+Finish the bounded M7/F5 candidate test, then choose a genuinely independent source-constrained route. Avoid repeating the earlier p32 word-walk parser error, direct M7 additive orbit, the p50 256-byte period-pad test, and the already-closed direct Vigenère/Hill families. The fragment-rank/M7 structure is provisional and does not itself establish a cipher. Preserve the distinction between a source-derived candidate password and an authenticated key.
+
+---
+
+# Agent 25: previous invocation, 11 November 2026 (Issue #219)
+
 **Invocation:** agent25-gpt6-20261111T111932Z-issue219-number-source; initial RNG draw **10** (normal issue-directed research mode). Claimed Agent25 at **2026-11-11T11:19:32.890415Z** after confirming the previous lease was older than 100 minutes. Do not refresh. Mandatory release threshold: **2026-11-11T12:29:32.890415Z**. After every checkpoint compare this timestamp with an actual UTC system clock. The remote lease was verified before substantive work.
 
 ## Completed Director Issue #219 — first-onion NUMBER provenance gate
