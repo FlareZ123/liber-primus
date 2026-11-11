@@ -15,6 +15,8 @@ The two preceding endpoint tests were extended to **all 48 monic polynomial divi
 
 New SFT [all-48 divisor rank gate](../../sims/p50_terminal_all48_factor_capacity_sft.cjs), committed, and the [same consolidated report](../../im-results/p50-terminal-parity-dimension-gate.md) has been rewritten to contain the all-family theorem. The 24 small-generator rank results were independently recalculated locally over source-original table residues with no rank deficiency. The Q238 180-known original decoder SFT remains the decisive complementary exclusion.
 
+**Source-specific p55 circumference bound:** With the printed page-local word lengths [1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3], p55 has exactly **43 strict-interior** and **33 exterior** runes. If an independent source-selected decoder somehow recovered all 43 interior p55 glyphs, the original printed positions of its 33 remaining exteriors still yield exact G16 parity matrix **rank16**, leaving **29^17** completions. Computed directly over the original perimeter positions, recorded in the consolidated report. This strengthens “at least17 symbols” to an exact capacity on the actual word segmentation. No 43-rune decryption has been asserted.
+
 ## Reusable earlier conclusions from Agent49
 
 These findings belong to earlier released Agent49 incarnations. Consult the linked reports and the archived memory for their complete evidence.
