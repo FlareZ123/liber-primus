@@ -1,6 +1,6 @@
 # 2014 Interconnectedness time scales as selectors for LP2 pages 0 and 29
 
-**Status (Agent 1, 11 November 2026): historical source-to-page selection hypothesis with its simplest shared-clock original-ciphertext inverse now conditionally excluded; no plaintext, key, or authenticated author intent recovered.** This is a proposed *human solve path* from archived music to specific physical pages. Treat any statistical confidence in the link cautiously: the page lengths and published audio timings were noticed retrospectively in a large research search.
+**Status (Agent 1/7, 11 November 2026): historical source-to-page selection hypothesis; the shared-clock inverse and direct p29/grid polynomial inversions are negative. No plaintext, key, or authenticated author intent recovered.** This is a proposed *human solve path* from archived music to specific physical pages. Treat any statistical confidence in the link cautiously: the page lengths and published audio timings were noticed retrospectively in a large research search.
 
 ## Exact original printed page data
 
@@ -19,13 +19,13 @@ These audio measurements and the 772 ↔ 277 observation were published in [SECR
 
 ## How the route could advance an original-cipher solution
 
-Under a **specific, source-preferred interpretation**, the full recording's whole-second duration chooses **p29** and the start/end audio-echo displacement chooses the book's initial **p0**. The latter is the first ciphertext page, not a fitted p0 location. The former is already singled out by an independent original-source arithmetic observation in [the p29 marked-quadratic report](../im-results/lp2-page29-marked-quadratic-crosslink.md): p29's entire 277-symbol polynomial and the printed 256-byte grid share exactly the double-root `(X−24)^2` extracted from red p39 indices [27,5,15]. That fact was discovered without using the 2014 MP3 and is not an audio-derived cipher.
+Under a **specific, source-preferred interpretation**, the full recording's whole-second duration chooses **p29** and the start/end audio-echo displacement chooses the book's initial **p0**. The latter is the first ciphertext page, not a fitted p0 location. The former is independently linked to the printed 256-byte grid: p29's complete 277-rune polynomial shares the p39-marked double-root `(X−24)^2`. This exact relation has now been tested as a direct Euclidean remainder, a factor-cancelled remainder, a 23-symbol additive key on the other pages, and a fixed-width 23×23 Hill matrix. All remain ciphertext-like despite exact native-language controls; see the [consolidated p29/grid report](../im-results/lp2-page29-marked-quadratic-crosslink.md) and [reproducer](../sims/lp2_page29_grid_quotient_inverse_sft.cjs). The audio-to-page selection remains a historical hypothesis, not a cipher.
 
 This gives a finite intended-route hypothesis:
 
 1. Notice the original audio's 2014-title/whole-second **277** reversal and its **262**-second repeated-noise displacement.
 2. Match both source numbers to **unique** LP2 page rune counts, yielding **p29 and p0** with no arbitrary page parameter.
-3. Seek an independently motivated **lossless** relation between their rune sequences, the marked p39 quadratic and/or the page-50 table. A candidate must yield real original ciphertext plaintext or an unambiguous next key, not just an attractive numerical equality.
+3. Treat the direct p29/grid polynomial quotient, remainder, 23-symbol pad, and 23×23 Hill family as bounded negatives. A useful next step must be a different, independently motivated operation connecting p0/p29 or the historical audio to original plaintext or an unambiguous next key; do not repeat polynomial rearrangements.
 
 An alternative hypothesis is one *audio second per GP rune*, on 277-rune p29 and 262-rune p0. This remains only a **test-design proposal**, because no known original instruction chooses PCM versus compressed bits, amplitude versus spectrum, an extractor/quantizer, sign, offset or clock. Do not manufacture a successful cipher by optimizing those freedoms. The repeated waveform is reportedly equal only after gain adjustment; this does **not** prove an exactly repeating rune-key sequence under arbitrary extraction.
 

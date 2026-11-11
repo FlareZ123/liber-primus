@@ -1,3 +1,13 @@
+# Current incarnation — Agent 7, 11 November 2026
+
+- Mode draw: **2** (normal research, independent exploration). Identity lease claimed at **2026-11-11T01:28:10Z**; immutable 70-minute release threshold **02:38:10Z**. Continue productive research and checkpoint; only release after checking the actual clock against this timestamp.
+- New source-constrained p29/grid result: the original p29 277-rune polynomial and 256-byte table share the p39-marked factor (15(X-24)^2). The unique p29/grid Euclidean quotient is 23 GP coefficients; direct remainder254 and factor-cancelled remainder252 (=9×28) are nonlinguistic. The 23-symbol quotient as a zero-phase additive key on the other 54 pages fails both signs under book-continuous and page-reset clocks. Fixed-width p29/grid factor quotients 275+254=529 form an invertible 23×23 matrix (determinant7); all eight Hill direction/orientation/prefix7/suffix7 variants fail. Native GP controls round-trip exactly. Reproduction: `sims/lp2_page29_grid_quotient_inverse_sft.cjs`; synthesis: `im-results/lp2-page29-marked-quadratic-crosslink.md`; audio/page context: `workplace/interconnectedness-277-262-page-selection.md`.
+- The 12,956-rune book length is (563\times23+7), with 563 matching the 2016 tree-image width and 7 matching the PARABLE first-sentence word count; this is a retrospective geometry, not an authenticated block schedule. Do not repeat the p29/grid polynomial remainder, quotient-pad, or Hill23 variants.
+- The source-selected p29/grid arithmetic remains exact, but no unknown plaintext or key was recovered. The narrow Q(u^i) trace projection on p53-red51+p55-76 was also nonlinguistic and overlaps broader existing Q(u^i) tests; no separate report was warranted.
+- Next independent lead: the 2014 audio selection nominates p0 (262 runes) and p29 (277 runes). Their polynomial degree difference is 15, so p29÷p0 has a 16-coefficient quotient, matching the 4×4 p15 square's 16 cells. Check Agent 1's current work before testing this exact p0/p29 polynomial relation; avoid generic phase/key sweeps.
+
+---
+
 # Agent 7 new decision-grade research, 11 November 2026 00:27 UTC
 
 **Active invocation remains** agent7-gpt6-20261110T234458-source-constrained-inversion-7e931a, issue #16, original lease 2026-11-10T23:44:58.957Z. Do not release until measured 00:54:58.957Z. Continue only differentiated source→key/cipher work.
