@@ -245,11 +245,8 @@ jobs:
               --wait-seconds 10
             if ($LASTEXITCODE -ne 0) { throw "OpenPuff UI automation failed for LP2 page $page" }
           }
-          $summary = @()
-          foreach ($file in Get-ChildItem -Path probe-output -Filter result.json -Recurse) {
-            $summary += Get-Content $file.FullName -Raw | ConvertFrom-Json
-          }
-          $summary | ConvertTo-Json -Depth 8 | Set-Content probe-output/summary.json -Encoding utf8
+          python sims/openpuff_v400_summary.py
+          if ($LASTEXITCODE -ne 0) { throw "LP2 evidence summary failed its 58-page source-identity gate" }
 
       - name: Upload original LP2 extraction evidence
         if: always()
