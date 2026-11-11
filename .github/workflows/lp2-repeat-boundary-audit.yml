@@ -9,7 +9,7 @@ permissions:
 jobs:
   proof:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,3 +19,7 @@ jobs:
         run: node sims/lp2_repeat_boundary_audit.cjs
       - name: Check original five-rune block repeat-phase exclusion
         run: node sims/lp2_repeat_phase5_original_gate.cjs
+      - name: Original bookend 81-to-80 source-labeled square inverse
+        run: node sims/lp2_bookend_80grid_five_ordinals_sft.cjs
+      - name: ECC200 source-labeled four-secret-binary-alphabet Reed-Solomon obstruction
+        run: node sims/lp2_datamatrix_five_ordinal_rs_allsecret_sft.cjs
