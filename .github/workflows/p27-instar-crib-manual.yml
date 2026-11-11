@@ -1,0 +1,18 @@
+name: 2013 Instar p27 original source-locked crib
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-crib:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original p27 and wrong-image p53 against 2013 title
+        run: node sims/p27_instar_title_source_crib_sft.cjs
