@@ -1,6 +1,6 @@
-# Signed 2016 three-by-59 GP sections as a possible original p29 address
+# Retired signed 2016 three-by-59 prime-ordinal p29 address
 
-**Evidence level: exact conditional source arithmetic and an explicitly post-selected hypothesis.** Original ciphertext remains undeciphered; this route supplies a possible page selector, no authenticated cipher key, no inverse of unknown prose, and no destination.
+**Evidence level: exact source arithmetic, but the selector hypothesis is retired.** The apparent three equal-length 59-rune sections require unselected noncanonical English-to-GP aliases; the canonical 2016 instruction is 61 runes. Original ciphertext remains undeciphered, without a key, inverse or destination.
 
 ## Causal proposal and player-visible material
 
@@ -12,9 +12,9 @@ There is a coherent, **proposed** three-part grouping of that signed text:
 2. “Its words are the map, their meaning is the road, and their numbers are the direction.”
 3. “Seek and you will be found,” the closing, 3301, and the OpenPGP warning.
 
-With TH, EA, ING→NG, IO→IA, K→C and V→U as GP transliteration conventions, the original three groups contain **59, 59, 59 GP symbols**, respectively, with prime-weight sums **2999, 2819, 2581**. The 59th prime is **277**. Of all 56 original unsolved physical LP2 pages, **p29 uniquely contains 277 original GP runes**, which is also the maximum source-page length. It is therefore *possible* that the three-by-59 signed-message structure deliberately selects p29 by prime-ordinal-to-page-length matching.
+Under canonical English-to-GP tokenization without the extra ING→NG or IO→IA collapses, the proposed groups contain **59, 61, 59 GP symbols**, respectively, with prime-weight sums **2999, 2781, 2581**. They become **59, 59, 59** with sums **2999, 2819, 2581** only if both extra aliases are imposed. The 59th prime is **277**, and p29 uniquely has 277 runes, but the necessary uniform 59-count is therefore **not source-authenticated**. No original text commands the prime-ordinal-to-page-length operation.
 
-This matters conditionally because p29 is independently the only original rune page satisfying the [signed 2013 DH=2 / p39 G / p50 256-byte table congruence](p29-signed2013-dh2-gadic-congruence.md):
+The motivation was p29's existing unique [signed 2013 DH=2 / p39 G / p50 256-byte table congruence](p29-signed2013-dh2-gadic-congruence.md):
 
 ```text
 P29(X) = S50(X) + 2 G39(X) + G39(X)^2 R(X) over GF(29).
@@ -24,13 +24,13 @@ The 2013 signed worked example supplies the shared secret **2**, modulus **23**,
 
 ## Strongest objections and source controls
 
-The 59→277→p29 relationship was recognized **after** inspecting the established p29 congruence. The signed message never instructs “count runes, take the ordinal prime, find a page of that length.” Equal source group lengths are a meaningful exact pattern but do not license the proposed map. This is a new explanatory candidate, not independent confirmation of why the creator selected p29.
+The 59→277→p29 relationship was recognized **after** inspecting the established p29 congruence. It depends on changing the tokenization of the 2016 central instruction to force a uniform section length. The signed message never instructs “count runes, take the ordinal prime, find a page of that length.” This retrospective match cannot select p29 independently of the algebra.
 
-The source's typography prints seven paragraph units, while the proposed grouping combines paragraphs and splits one paragraph at a sentence boundary. That semantic split is reasonable, but it is not a uniquely commanded operation. The three 59 counts depend on interpreting both ING and IO as single GP symbols; omitting either gives group lengths **[59,60,59]**, and omitting both gives **[59,61,59]**. This explicitly exposes dependence on a prior tokenizer convention.
+The source prints seven paragraph units, while the proposed grouping combines units and splits another at a sentence boundary. The central canonical 2016 instruction has 61 runes. Collapsing only ING or IO gives [59,60,59], and collapsing both gives [59,59,59]. The collapsed spellings are not established by the original English source, so the selector is retired.
 
-The contained directive has successively nested lengths **59, 43, 27**, whose prime ordinals produce **277, 191, 103**. The latter two do **not** match any unknown physical page's rune length. The signed 2017 warning has **45** GP symbols; prime(45)=**197**, also not an unknown page length. The proposed rule would therefore need to distinguish the three whole sections from embedded clauses, rather than generically interpreting every rune count as a page address.
+Under the unselected double-collapse convention, the contained directive has nested lengths **59, 43, 27**, whose prime ordinals produce **277, 191, 103**. Only the first coincides with an original physical page length. This conditional pattern supplies no independent address rule. The signed 2017 warning has **45** GP symbols; prime(45)=**197**, also not an unknown page length. The proposed rule would therefore need to distinguish the three whole sections from embedded clauses, rather than generically interpreting every rune count as a page address.
 
-The more immediate [base59 coordinate proposal](2016-2017-base59-tiny-tea-hypothesis.md) produces rune-name initials TINY, suggestive of Tiny Encryption Algorithm, but also lacks an authenticated key and employs a non-obvious 2017 radix carryover. The two readings of 59 should be compared as **competing** hypotheses. Neither is evidence for the other merely because the same source provides both.
+The related [base59 coordinate/TINY–TEA proposal](2016-2017-base59-tiny-tea-hypothesis.md) was also **retracted by its author** because it depends on the same noncanonical aliases, an unselected 2017 radix carryover and rune-name initials. It supplies no basis for continuing TEA searches.
 
 ## Key-independent direct-TEA transport exclusion
 
@@ -46,6 +46,6 @@ Five genuine 64-bit synthetic blocks were correctly serialized to 14 base29 digi
 
 ## Decision
 
-**Keep the 2016 59-prime page selector provisional.** The new relationship is potentially helpful only if an independent original instruction fixes the prime-ordinal/page-length grammar or specifies how the authentic 2013/p29/p39/p50 residue becomes an invertible decipherment. Under either development, the next probe should freeze the operation and predict authentic plaintext on untouched original ciphertext. Without it, additional arithmetic coincidences, key sweeps, or unframed TEA trials cannot establish intended design.
+**Retire the three-by-59 2016 prime-ordinal page selector.** Canonical source tokenization and the unselected sentence grouping defeat its proposed human solve path; future agents should not use the numerical p29 match as an upstream premise. The separate p29/p39/p50 signed-DH congruence survives as exact original arithmetic. The direct 14-digit TEA transport gate survives as an isolated negative, with no demonstrated decryption. Reopen a connection only if a newly recovered creator clue independently fixes the needed grammar and a plaintext inverse.
 
 Reproducer: [`sims/signed2016_59prime_p29_selector_sft.cjs`](../sims/signed2016_59prime_p29_selector_sft.cjs), using only original repository source, builtin Node.js modules and source-native synthetic controls. Passing manual-only GitHub Actions [run 43059906848](https://github.com/FlareZ123/liber-primus/actions/runs/43059906848), base59-p29 job; workflow [`2016-message-prime-layers.yml`](../.github/workflows/2016-message-prime-layers.yml). All source files remain unchanged.
