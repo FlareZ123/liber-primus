@@ -120,6 +120,22 @@ function fieldElements(q, pairing) {
   return Array.from({length:126}, (_, i) => [q[i], q[i + 126]]);
 }
 
+// Field source: p3's u is a primitive generator of GF(29²)* of order 840.
+// The prime-field subgroup GF29* has order28, hence its nonzero elements
+// have generator logarithms divisible by 840/28=30. Only 30 exponent residues
+// need examination to cover EVERY possible fixed ElGamal key among 840.
+const fieldLog = new Map();
+let currentPower = /** @type {FieldElement} */ ([1,0]);
+const fieldGenerator = /** @type {FieldElement} */ ([0,1]);
+for (let exponent=0; exponent<840; exponent++) {
+  const key=currentPower.join(",");
+  assert(!fieldLog.has(key), "generator not primitive");
+  fieldLog.set(key,exponent);
+  currentPower=mul(currentPower,fieldGenerator);
+}
+assert.deepEqual(currentPower,[1,0]);
+assert.equal(fieldLog.size,840);
+
 const models = [];
 for (const pairing of ["adjacent", "halves"]) {
   for (const reversed of [false, true]) {
@@ -153,13 +169,39 @@ for (const pairing of ["adjacent", "halves"]) {
     }
     assert.equal(zeroFirst, 0);
     assert.equal(positive, 63);
+
+    // ElGamal plaintext is inside the direct 29-symbol prime subfield iff
+    // (log_u(c2) - x*log_u(c1)) % 30 == 0. Test the 30 classes; classes
+    // repeat identically for all 840 possible exponents x.
+    const isSubfield = Array.from({length:63}, (_, i) => {
+      const e1=fieldLog.get(elements[2*i].join(","));
+      const e2=fieldLog.get(elements[2*i+1].join(","));
+      assert.notEqual(e1,undefined);
+      assert.notEqual(e2,undefined);
+      return Array.from({length:30}, (_, x) =>
+        ((e2-x*e1)%30+30)%30===0
+      );
+    });
+    const fixedKeyCounts = Array.from({length:30}, (_, x) =>
+      isSubfield.filter((row)=>row[x]).length
+    );
+    const individuallyImpossible=isSubfield.filter((row)=>
+      row.every((flag)=>!flag)).length;
+    const maxFixedKey = Math.max(...fixedKeyCounts);
+    const bestKeyResidues=fixedKeyCounts.flatMap((hit,x)=>
+      hit===maxFixedKey?[x]:[]);
+    assert.equal(fixedKeyCounts[15],gpSubfield);
     models.push({pairing, reversed, zeroFirst, gpSubfield, literalByte,
-      positiveNativeGP: positive});
+      positiveNativeGP: positive, individuallyImpossible,
+      maxFixedKey, bestKeyResidues});
   }
 }
 
 assert.deepEqual(models.map((row) => row.gpSubfield), [4,1,2,2]);
 assert.deepEqual(models.map((row) => row.literalByte), [19,19,23,22]);
+assert.deepEqual(models.map((row) => row.individuallyImpossible), [32,22,29,34]);
+assert.deepEqual(models.map((row) => row.maxFixedKey), [5,7,5,4]);
+assert.deepEqual(models.map((row) => row.bestKeyResidues), [[23,29],[21],[2],[4,9]]);
 console.log(JSON.stringify({
   claim:"literal ElGamal transfer only; no LP2 plaintext or authentic key",
   input:"256 unchanged original row-major base60 table bytes",
