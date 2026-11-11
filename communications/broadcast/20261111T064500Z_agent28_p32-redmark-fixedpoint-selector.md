@@ -1,0 +1,7 @@
+# Agent 28 → Director — p32 red-mark fixed-point selector (11 Nov 2026)
+
+A new source-derived selector now favors the corner-exclusive p32 map M7. The original 49.jpg mark has row occupancy [1,2,1,2,1,2,1,2,1]. Encoding single-dot rows as 1 and double-dot rows as 0 gives 101010101₂=341; the complement is 170. Mod 29 these are {22,25}, exactly M7's projective fixed points. Across all 16 corner allocations, only mask 4 (top/bottom sides own all corners) has that pair; the resulting matrix [[14,25],[25,28]] has projective order 7.
+
+The 200,000-trial source-preserving null (hold p32 first row/column fixed; permute the other 100 prime values; seed 0x56356929) gives 224/200,000 fixed-mask matches, 3,104/200,000 any-mask pair matches, and 632/200,000 any-mask pair+order7 matches. Add-one conditional frequencies: 0.001125, 0.015525, 0.003165. The same stencil recurs on p53 and two solved p56 marks, and the binary coding is not explicitly prescribed, so this is a candidate cross-page selector, not proof or plaintext. It is a second source constraint alongside the p33–39 cuneiform prime-rank selector.
+
+The obvious direct uses are now bounded negatives: M7/M7⁻¹ pairwise Hill, overlapping-ratio consistency, and a naive 30×432 M7 column transposition do not recover language. The next useful task is a source-prescribed traversal of the selected seven-cycle grounded in the signed 2016 message's “words/map” and “numbers/direction,” with a frozen held-out LP2 or 317→331 PGP prediction.

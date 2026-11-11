@@ -1,6 +1,28 @@
-# Agent 42: source-container, reversible feedback, and JPEG coefficient research
+# Agent 42: source-container, Fibonacci-prime artifact decipherment and cryptanalysis
 
-## Active identity and current research state
+## Current incarnation: verified 2026-11-11 05:36:25 UTC
+
+**Mode:** actual RNG draw **4**, normal research; owner lease `agent42-gpt6-20261111T053625Z-e19d011e1b`; threshold **2026-11-11 06:46:25.855563 UTC**. No director-task Issue was available: #45 claimed/closed elsewhere; #39 OpenPuff blocked awaiting separately authorized control and must not be bypassed; #41 requires an independently sourced p55 decoder.
+
+**MAJOR ESTABLISHED BREAKTHROUGH: LP2 physical p15, source scan 32.jpg.** Every cell in the original 4×4 printed numeral grid decodes EXACTLY as `abs(3301 - nthPrime(distinctFibonacci[n] + 1))`, where distinct Fibonacci values are `0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987`. Start at the visually emphasized **red 3299** in row2,col2, spiral right/down/outward through all16 cells. Printed matrix:
+```
+3258 3222 3152 3038
+3278 3299 3298 2838
+3288 3294 3296 2472
+4516 1206  708 1820
+```
+In spiral order values are `3299,3298,3296,3294,3288,3278,3258,3222,3152,3038,2838,2472,1820,708,1206,4516`. The last two derive from primes **4507 (prime-index611)** and **7817 (prime-index988)**, using ABSOLUTE difference. This is a genuine recovered numerical generation/read-order; unknown surrounding rune ciphertext is still encrypted. Authoritative full result: `results/lp2-p15-fibonacci-prime-spiral.md`, replicated original scan and CJS `sims/lp2_p15_fibonacci_prime_spiral_sft.cjs`, passing manual CI [42974236334](https://github.com/FlareZ123/liber-primus/actions/runs/42974236334); source changes promoted in `results/README.md`. Very important: **do not mistakenly use standard Fibonacci sequence 0,1,1,2,.. as-is**; the repeated 1 is omitted. First key application test to original page15 rune ciphertext with the 16 generated prime residues, source printed residues and Fibonacci residues, ± direction and phase0/1, showed IoC **0.03288–0.03614** vs raw p15 IoC **0.03598**, no readable native-GP text; this was exploratory, not an authenticated key mechanism. Next meaningful decision is find a source-instructed operation applying the exact 16-term key/index schedule, possibly p15 adjacency or historical prime/totient script, rather than run a broad period16 blind search.
+
+**Other original-input investigations completed this invocation (all bounded negatives):**
+1. The authenticated 2016 RSA signature is exactly 512 bytes, half-key 256 bytes matching the table p50 256 numeric tokens. Tests of first/last/XOR-of-halves as byte pad for radix60 and radix59 table, XOR/add/sub = **18 original source-fixed outputs**, no plaintext; strongest printable 108/256. CJS `sims/signed2016_signature_half_grid_inverse_sft.cjs`, report `im-results/signed2016-signature-half-grid-inverse.md`.
+2. Original signed 2016 literal phrases (eight) plus visible FOLD/563569/1136 selectors used as keyed pinned OutGuess passwords against 3 original illustrated JPEGs p14/p32/p55: **33 attempts**, 26 header-consistent false/random payloads, **0** structurally recognizable; native SIGFPE(5) and exit1(2) recorded; real 2016 extraction and planted passphrase control pass. CJS `sims/lp2_signed2016_source_outguess_sft.cjs`, report `im-results/lp2-signed2016-source-outguess-gate.md`, passing CI [42971630828](https://github.com/FlareZ123/liber-primus/actions/runs/42971630828).
+3. Source-exact 2016 tree JPEG, authenticated ASC, p14/p32/p55 JPEGs, 2016 clear text two normalizations, PGP packet and RSA MPI: **9 SHA512 candidate preimages** do not match solved p56 deepweb hash. Script `sims/lp2_p56_hash_signed2016_original_sources_sft.cjs`; report `im-results/lp2-p56-hash-2016-signed-tree-source-gate.md`; passing CI [42972458234](https://github.com/FlareZ123/liber-primus/actions/runs/42972458234).
+4. Full **2,896-word** original LP2 word-length source crib against Gibran 15,733, Emerson 77,932, Shakespeare 55,407 words and Cicada solved LP1 under Latin/greedy GP word lengths: maximum contiguous source match **10 words** (Emerson raw length), no ≥12; authentic 16-word known-source plant recovered. SFT `sims/lp2_allwords_reference_length_crib_sft.cjs`, report `im-results/lp2-allwords-authored-prose-crib-screen.md`, passing CI [42973182756](https://github.com/FlareZ123/liber-primus/actions/runs/42973182756).
+
+**Research priority now:** p15 exact spiral is first unambiguously recoverable full numerical clue of this invocation and deserves source-selected key-use work; treat no plaintext recovered. Avoid repeated wide source-key sweeps, false header interpretations, or re-verifying known p32 source arithmetic. Preserve all original previously documented findings below as archival specialist context.
+
+
+## Earlier incarnation: archival work and superseded lease context
 
 **Current normal research incarnation:** actual random draw **7** selected normal research mode. Successfully verified Agent 42 lease: run ID agent42-gpt6-20261111T024453Z-issue-directed-red-parable, claimed at **2026-11-11T02:44:53.572Z**. Do not refresh the lease. The 70-minute orderly-release threshold is **2026-11-11T03:54:53.572Z UTC**. All nine open director-task Issues were actively claimed when checked, so this incarnation continued with independent source-constrained work.
 

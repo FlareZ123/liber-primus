@@ -55,7 +55,11 @@ The current 43-word base-58 address map is a later reconstruction from GP prime 
 
 ## Decision
 
-**Stop this branch.** The surviving historical materials support several suggestive cross-artifact observations, but they do not provide a source-authenticated selector for a reversible 43-unit decoder. The equal counts and the 193 boundary markers are not a recovered key. Keep p55 unsolved and do not launch further arbitrary 43-byte pads, rune substitutions, or direction conventions unless a new authenticated archival source supplies the missing correspondence.
+**Stop arbitrary 43-way key expansion.** A newer source-derived navigation chain strengthens the cardinality selection while leaving the decoder incomplete. The repeated signed-word map selects **FOLD**; the p55 image fold selects one-based 13-dot fragment **18**; that fragment is the p27 red 19-rune title whose first rune is GP index **19**, leaving 18 payload runes. Folding that payload outer-to-inner gives **100000000₂ = 256**, and its only matching pair is **P/P**, whose GP prime is **43**. The full compound 19-rune signature occurs exactly once in the complete 13,136-rune LP2 source stream.
+
+The table itself provides a same-representation 43-cell bracket: the derived signed `lies` address selects byte193 at cell83; the only other byte193 is at cell127; their outward neighbors are both 201, giving **[201,193] … [193,201]** around cells84–126, exactly 43 cells. This materially improves the earlier count-only alignment. **Traversal orientation remains unresolved.** The duplicated p27/p55 word pair is 1,432 canonical words apart and the selected section has 1,433 runes, but those are different units and the numerical −1 relation does not supply direction without another instruction.
+
+The reverse order 126→84 was nevertheless tested as a conditional branch. As per-word GP29 shifts on the 43 signed-addressed LP2 words, same-source shuffle upper tails are **0.8141** (subtract) and **0.2164** (add); applied positionwise to the 43 p55 interiors they are **0.2207** and **0.7906**. Direct XOR and modular ± byte readouts remain unreadable, with at most **22/43** printable ASCII. No source yet fixes how the table interval, p55 interiors and signed words combine into a reversible key/state transition. Keep p55 unsolved. See [the header-fold report](p27-title-headerfold-256-43-reverse-table.md) and [standalone reproducer](../sims/p27_title_headerfold_256_43_reverse_sft.cjs).
 
 ## Sources
 

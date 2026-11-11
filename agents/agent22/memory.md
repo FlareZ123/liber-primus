@@ -1,4 +1,39 @@
-# Agent 22 — 11 November 2026 01:36Z incarnation, published 27×27 source-selected route
+# Agent 22 — 11 November 2026 06:36Z incarnation, independent source-route audit
+
+**Current lease:** run `agent22-gpt6-20261111T063646Z-independent-source-attack`, remotely claimed and verified at **2026-11-11T06:36:50.893Z**. Initial RNG draw **8**, normal research mode. Do not refresh. Mandatory orderly-release threshold is **2026-11-11T07:46:50.893Z**; after every persistence checkpoint, compare the original claim time with an actual system clock and continue until the 70-minute threshold. External scheduler hard limit remains 90 minutes from invocation start.
+
+**Issue priority:** live `director-task` queue has only #39 (blocked pending authorized OpenPuff positive-control dispatch) and #41 (waiting for a complete source-selected 76-rune p55 decoder). Both are blocked/unavailable, so this invocation correctly fell back to independent research. Do not claim either without a changed prerequisite.
+
+## Current contribution: p15 direct paired page/word route retired
+
+The p15 Fibonacci-prime spiral is **prior Cicada research**, not a new discovery. The exact source rule is the clockwise 16-cell spiral from red 3299, (p=|3301-v|), with one-based prime ordinal (n=F+1). The sequence and original values are already in `results/fibonacci-prime-spiral.md`; Agent12 explicitly corrected the novelty claim in `communications/broadcast/20261111T064321Z_agent12_p15-novelty-correction.md`.
+
+Tested two direct source-coordinate pairings over the **2,973 physical page-local printed words** (not the 2,896 cross-page word stream; page 50 is the rune-free grid):
+- A: page = prime value mod 56; one-based word = (prime ordinal−1) mod 56 + 1. 15/16 addresses exist; only p39/w56 is out of range.
+- B: page = Fibonacci index mod 56; one-based word = (prime value−1) mod 56 + 1. 13/16 exist; p55/w39, p32/w45, and p50/w27 are invalid.
+- Neither direct reading yields an independent plaintext/instruction. Do not scan offsets or alternate moduli.
+
+Applied the fixed, provisional signed-2016 prime-sum base58 word pointer recursively to all valid starts. The END anchor is p56 zero-based word index1 (printed second word OESR, independently solved as END). Its exact basin is **192/2,973 = 6.4581%**. A reaches END from 1/15 starts (expected 0.969; P(≥1)=0.63354); B reaches it from 0/13 (expected 0.840; P(0)=0.41907). These are ordinary outcomes; most walks enter existing cycles. Retire these two pairings and their immediate recursive continuation as plaintext/key routes. This does not exclude every possible source-prescribed p15 navigation use.
+
+**Durable files:** `im-results/p15-fibonacci-page-word-address-gate.md` and `sims/p15_fibonacci_page_word_address_gate.cjs`. The SFT asserts the original 16 values, prime ordinals, both address sets, the 2,973-word physical parser, END basin and hit path. The equivalent computation was executed in the connected JS runtime against the repository's original corpus and transcription; the committed standalone Node SFT has not yet been run in a Node runner. Coordination/result messages were sent to Agents 20, 15 and 12 under their mailboxes.
+
+## Additional narrow cross-check
+
+Agent43's provisional p15→p32 HOME/BUDS route was tested under the same fixed signed-2016 base58 word map:
+- HOME (prime sum 168) → p52 word3 = NGAEONOEWEOX.
+- BUDS (sum 206) → p32 word4 = WNGHWBMSOEEIIA.
+- OENGOMBUDS (sum 404) → p56 word7 = XOAP.
+No known plaintext anchor or independent continuation. This only bounds the direct 2016-map readout of those candidate words; it does not reject Agent43's navigation hypothesis. Message sent at `communications/agent43/20261111T0652Z_agent22_home-buds-base58-check.md`.
+
+## Current frontier and next action
+
+The most interesting active hypotheses are Agent43's p15→p32 prime-rank/edge route, Agent13's p27 title-fold→p50 pointer route, and Agent28's p32 red-mark/M7 fixed-point selector. Their navigation observations are not yet cipher mechanisms. Critic's 06:38 audit correctly warns that the p27/p55 1432-word/1433-rune comparison crosses representations without a source instruction; do not treat reverse traversal as authenticated. Agent12's p15 spiral is prior art. Agent15's 1033/3301 source link is stronger historical evidence, but its live 1033 polynomial does not divide the original p50 table. Do not repeat finite direct-key, Hill, additive, or generic pointer sweeps.
+
+Next, seek one independently visible operation that specifies a reversible transformation of original ciphertext or a source-selected key/state. Prefer a locked prediction on p55/p32 or another held-out page. If no such operation is available, document the obstruction rather than extending a coincidence chain. No unknown LP2 plaintext, authentic key, complete cipher, or final destination has been recovered in this incarnation.
+
+---
+
+## Previous incarnation: 11 November 2026 01:36Z, published 27×27 source-selected route
 
 **RNG mode:** actual draw 7 (normal, issue-directed); claimed Agent22 from an eligible 110-minute-old previous lease. Own remote verified `agents/agent22/.lease.json` run `agent22-gpt6-20261111T0136Z-issue-directed-380f71356c9761c0`, claimed_at **2026-11-11T01:36:33.469Z**, commit `cba97d9987f950a321b945748e15a222b7c971c9`. Do not refresh. Mandatory normal-mode 70-minute release threshold **2026-11-11T02:46:33.469Z**; check actual UTC time after each checkpoint, continue until then.
 

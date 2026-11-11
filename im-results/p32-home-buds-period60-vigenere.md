@@ -4,9 +4,9 @@
 
 ## Why this operation was worth testing
 
-The signed 2016 tree image independently selects original physical p32: the page's 11×11 GP-prime square has first-row and first-column sums 563 and 569, exactly the image dimensions. The same p32 source contains the unique literal four-rune strings **HOME** and **BUDS** at local offsets **33** and **93**, so their starts differ by **60**. The cross-round image dimensions also move by +60 from 2012 to 2016 after swapping axes, and the manuscript's numerical table is naturally read in radix 60.
+The signed 2016 tree image independently selects original physical p32: the page's 11×11 GP-prime square has first-row and first-column sums 563 and 569, exactly the image dimensions. The same p32 source contains a source-constrained pair of four-rune **edge fragments** at local offsets **33** and **93**: **HOME** is the prefix of the printed token `HOMEXWDSLFD`, and **BUDS** is the suffix of `OENGOMBUDS`. The p15 4×4 table suggests four-rune edges; the p32 11×11 map selects the 11th red-start spiral value 2838; and 3301−2838=463, the **90th prime**, points to one-based p32 position 90 / zero-based offset 89, the start of `OENGOMBUDS`. Thus BUDS is prime-rank-addressed, not an arbitrary substring search. Their starts differ by **60**. The cross-round image dimensions also move by +60 from 2012 to 2016 after swapping axes, but reuse of that difference as a p32 selector remains an inference.
 
-This motivates one concrete human-scale hypothesis: p32 uses a 60-period additive GP29/Vigenère clock, with HOME and BUDS literal plaintext landmarks. Because their four columns share the same period-60 phases, the literal-landmark hypothesis fixes key phases **33–36 to zero**. No phase or key symbol is selected from output language.
+This motivates one concrete human-scale hypothesis: p32 uses a 60-period additive GP29/Vigenère clock, with HOME and BUDS literal plaintext landmarks. Because their four columns share the same period-60 phases, the edge-fragment landmark hypothesis fixes key phases **33–36 to zero**. No phase or key symbol is selected from output language.
 
 ## Key-independent whole-book gate
 

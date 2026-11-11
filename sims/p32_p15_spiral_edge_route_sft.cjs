@@ -132,6 +132,42 @@ assert.equal(spiral[10], 2838);
 assert.equal(2838 % 360, 318);
 assert.equal(sector(2838), 7);
 
+// The 11th spiral entry's established Fibonacci index / zero-based prime order is also an address into p32.
+// Prime rank is one-based; convert it to the canonical zero-based rune offset.
+function primeRank(n) {
+  let count = 0;
+  for (let candidate = 2; candidate <= n; candidate++) {
+    let isPrime = true;
+    for (let d = 2; d * d <= candidate; d++) {
+      if (candidate % d === 0) {
+        isPrime = false;
+        break;
+      }
+    }
+    if (isPrime) count++;
+  }
+  return count;
+}
+const spiralComplement = 3301 - spiral[10];
+const oneBasedPrimeOrdinal = primeRank(spiralComplement);
+const zeroBasedPrimeOrder = oneBasedPrimeOrdinal - 1; // p15's order table uses P0=2
+const addressedOffset = zeroBasedPrimeOrder;
+const addressedWord = wordMeta.find((w) => w.start === addressedOffset);
+assert.equal(spiralComplement, 463);
+assert.equal(oneBasedPrimeOrdinal, 90);
+assert.equal(zeroBasedPrimeOrder, 89);
+assert.equal(addressedOffset, 89);
+assert.equal(addressedWord?.transliteration, 'OENGOMBUDS');
+const addressedSuffixStart = addressedWord.end - 3;
+const addressedSuffix = addressedWord.indices.slice(-4).map((i) => translit[i]).join('');
+assert.equal(addressedSuffixStart, 93);
+assert.equal(addressedSuffix, 'BUDS');
+
+// The modulo-121 reading is only a possible page pointer, not a cipher.
+const p55 = corpus.pages.find((p) => p.page === 55);
+assert.equal(spiral[10] % 121, 55);
+assert.equal(p55.indices.length, 76);
+
 const xAxes = page.indices.slice(0, 11).map((i) => prime[i]);
 const yAxes = Array.from({ length: 11 }, (_, r) => prime[page.indices[11 * r]]);
 const bounds = (steps) => [0, ...steps.reduce((acc, n) => (acc.push(acc[acc.length - 1] + n), acc), [0]).slice(1)];
@@ -226,7 +262,7 @@ const result = {
   validSouthEastWordEdgePairs: validEdgePairs,
   route: { pathOffsets, runeLabels: pathIndices.map((i) => translit[i]), endpointSum, endpointDirection: 'E', innerWeights, innerSum, innerDirection: 'SE' },
   otherExact318Diagonals: exact318Diagonals,
-  p15Spiral: { values: spiral, eleventh: spiral[10], modulo360: spiral[10] % 360 },
+  p15Spiral: { values: spiral, eleventh: spiral[10], modulo360: spiral[10] % 360, complement: spiralComplement, oneBasedPrimeOrdinal, zeroBasedPrimeOrder, addressedOffset, addressedWord: addressedWord.transliteration, addressedSuffix, modulo121: spiral[10] % 121, possibleTargetPage: 55, targetPageRuneCount: p55.indices.length },
   tileRectangles,
   conditionalNull: {
     lexicon: 'resources/control/english_wordfreq_textblob.txt',
@@ -236,6 +272,6 @@ const result = {
     joint: [jointNumerator, jointDenominator],
     probability: '1/21504000'
   },
-  caveat: 'The 4-rune edge extraction and 11th-spiral selector are plausible source-guided choices, not explicit instructions. The conditional null is not familywise over alternative pages, fragment lengths, spirals, or operations.'
+  caveat: 'The 4-rune edge extraction and 11th-spiral selector are plausible source-guided choices, not explicit instructions. The exact 3301-complement→90th-prime→p32-position-90 address is a stronger selector, but no reversible downstream readout is established; 2838 mod 121 = 55 is only a possible p55 page pointer. The conditional null is not familywise over alternative pages, fragment lengths, spirals, or operations.'
 };
 process.stdout.write(JSON.stringify(result, null, 2) + '\n');

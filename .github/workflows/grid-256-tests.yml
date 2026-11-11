@@ -27,6 +27,8 @@ on:
           - tree-direction
           - tree-continuous-degrees
           - tree-corner-ownership
+          - tree-cuneiform-selector
+          - tree-cuneiform-projective
           - tree-inclusive-cube
           - tree-inclusive-cube-null
           - tree-wordmap
@@ -194,6 +196,14 @@ jobs:
       - name: Original p32 ring projective corner-ownership finite gate
         if: ${{ inputs.probe == 'tree-corner-ownership' }}
         run: node sims/tree121_mobius_corner_conventions_sft.cjs
+
+      - name: Adjacent cuneiform prime-rank selector for nested p32 Möbius maps
+        if: ${{ inputs.probe == 'tree-cuneiform-selector' }}
+        run: node sims/tree121_mobius_nested_crossround_sft.cjs
+
+      - name: Cuneiform red-triad projective-safe readout gates
+        if: ${{ inputs.probe == 'tree-cuneiform-projective' }}
+        run: node sims/p32_cuneiform_projective_readout_gate.cjs
 
       - name: LP1 paired squares to original p32 inclusive Möbius cube and exact GP28 inverse
         if: ${{ inputs.probe == 'tree-inclusive-cube' }}

@@ -1,0 +1,14 @@
+name: 2014 magic-square direction source gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node sims/2014_magic_square_direction_map.cjs

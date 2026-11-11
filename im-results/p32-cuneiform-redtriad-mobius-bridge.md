@@ -4,7 +4,9 @@
 
 ## Source chain
 
-The repeated cuneiform header on physical pp33-39 gives sexagesimal **1033** and **3301**. Both are prime. Their one-based prime ranks are **174** and **464**, hence:
+The repeated cuneiform header on physical pp33-39 gives sexagesimal **1033** and **3301**. Both are prime. The pair has a substantially older operator history. In the early-2013 boot image, `prime_echo` emits the primes in increasing order through 3301 and deliberately pauses four times longer on **1033** and **3301**. The subsequent first-onion `NUMBER` service explicitly tests decimal reversal of primes and shows `3301 -> +`, meaning its reversal 1033 is also prime. Later March 2013 server-test records show Cicada issuing `BASE29 1033` and `DH 3301`; a full participant transcript records `BASE29 1033` → `16I` before a completed `DH 3301` exchange. In 2014 the ordered concatenation `33011033` is the documented OpenPuff password that extracts `magicsquares.txt`. The pinned [historical operator manifest](../resources/external/1033-3301-historical-operator-chain.json) and [TCP transcript manifest](../resources/external/2013-tcp-live-test-vectors.json) preserve the chain. These sources make decimal reversal and an ordered-prime interpretation part of the historical solve vocabulary. Counting the highlighted primes' positions remains a solver inference, though it now follows directly from a source-visible ordered prime stream.
+
+Their one-based prime ranks are **174** and **464**, hence:
 
 ```text
 174 = 6 x 29 = 3 x 58
@@ -73,13 +75,17 @@ and **8** is exactly `464/58`. Among every contiguous seven-page window in physi
 
 ## Direct projective readout gates
 
-The first two natural symbol-readout families are now closed on the unchanged pp33–39 ciphertext. The three evolving projective coordinates collide with each other at **15 of the 210 states**, so a single projectivity carrying the distinct initial triad to every later triad does not exist. That rules out the most direct moving three-point frame before language scoring.
+The first three natural symbol-readout families are now closed on the unchanged pp33–39 ciphertext. The three evolving projective coordinates collide with each other at **15 of the 210 states**, so a single projectivity carrying the distinct initial triad to every later triad does not exist. That rules out the most direct moving three-point frame before language scoring.
 
 A homogeneous 2×2×2 tensor readout remains defined through infinity and gives exactly eight field coordinates per state, matching 210×8 = 1,680. Using the canonical binary coordinate order and the pre-existing PATIENCE column order, with direct add/subtract/Beaufort-style GP29 combination, gives six original-cipher candidates with IoC only **0.034270683–0.034759919**. No candidate approaches native-GP prose.
 
+**Scale-invariant Segre normalization is also closed.** Treating each 8-coordinate tensor row as its actual projective point in \(P^7(F_{29})\), divide the whole row by its first nonzero coordinate before any cipher action. This removes homogeneous scale ambiguity and remains defined when any of the three source coordinates is projective infinity. The canonical binary order, canonical normalization followed by the existing PATIENCE order, and PATIENCE-before-normalization give nine direct C−K/C+K/K−C candidates. Every output remains ciphertext-like: IoC **0.034407–0.034632** and held-out Latin-GP trigram score **−10.6894 to −10.6520**, versus native-control IoC **0.07203** and trigram **−7.2895**. Reproducer: [scale-invariant Segre SFT](../sims/p32_cuneiform_segre_normalization_sft.cjs). This closes the canonical projective normalization route without choosing an arbitrary infinity symbol or fitted scale.
+
 A second lossless construction composes the actual coordinate-map powers into one PGL2 keystream, using the two natural component orders F0^n F1^n F2^n and F2^n F1^n F0^n and testing forward/inverse action. The four candidates produce **48, 59, 51 and 48 projective-infinity outputs**; their remaining finite symbols have IoC **0.034086811–0.034513827**. Treating infinity as a possible source-visible delimiter does not rescue the model: the strongest of the four has **17/51** poles exactly at the 378 canonical word ends, versus **11.475** expected; the one-sided hypergeometric tail is **0.0477966 before accounting for the four tested variants**. This is not a discriminating boundary selector.
 
-These results reject only these direct readouts. They do not refute the 210-state source relation itself, and they do not authorize an arbitrary infinity-to-rune patch, phase search, or fitted nonlinear map. A successor needs an independently source-specified symbol action. Reproducer: [projective-readout SFT](../sims/p32_cuneiform_projective_readout_gate.cjs).
+A third readout now closes the most direct use of the cuneiform-derived 3/8 pair itself. The value **3 = 174/58** is absent from every coordinate in all 210 source states, so the projective chart `h(x)=1/(x-3)` is finite on the entire recurrence, with projective infinity mapping naturally to zero and no patched pole. The three chart coordinates give exactly **2^3=8** binary subset-sum vertices per state, matching **8 = 464/58** and the required 1,680 = 210×8 rune count. Canonical binary order and the pre-existing PATIENCE order, under C−K, C+K and K−C, give six exactly reversible original-cipher candidates with IoC only **0.034377038–0.034651437**. The cube key itself has IoC **0.051007544**, so the negative is not caused by a uniform key stream. This finite projective-safe construction does not recover native-GP prose.
+
+These results reject only these direct readouts, including the source-selected affine-chart cube. They do not refute the 210-state source relation itself, and they do not authorize an arbitrary infinity-to-rune patch, phase search, or fitted nonlinear map. A successor needs an independently source-specified symbol action. Reproducer: [projective-readout SFT](../sims/p32_cuneiform_projective_readout_gate.cjs).
 
 ## What this changes
 

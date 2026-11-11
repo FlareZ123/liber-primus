@@ -1,0 +1,18 @@
+name: LP2 p15 Fibonacci prime-index spiral exact source proof
+
+on:
+  workflow_dispatch:
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reconstruct all 16 original print cells and source spiral
+        run: |
+          node --check sims/lp2_p15_fibonacci_prime_spiral_sft.cjs
+          node sims/lp2_p15_fibonacci_prime_spiral_sft.cjs

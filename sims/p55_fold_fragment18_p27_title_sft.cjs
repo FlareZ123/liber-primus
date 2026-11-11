@@ -89,6 +89,16 @@ assert.equal(selected.indices[0], 19);
 assert.equal(selected.indices.length, selected.indices[0]);
 assert.equal(selected.indices.length - 1, selected.oneBased);
 
+// Fragment 18 is also uniquely self-addressing at page scale: the 13-dot
+// punctuation supplies width 13 and its start page contains 18*13 runes.
+assert.equal(pageByNumber.get(27).indices.length, 18 * 13);
+const startPageForFragment = (item) => item.startLocation?.page;
+const fragmentPageProducts = Array.from({ length: 32 }, (_, i) => fragment(i + 1))
+  .filter((item) => item.startLocation)
+  .filter((item) => (pageByNumber.get(startPageForFragment(item))?.indices.length ?? -1) === item.oneBased * 13)
+  .map((item) => item.oneBased);
+assert.deepEqual(fragmentPageProducts, [18]);
+
 const allFragments = Array.from({ length: 32 }, (_, i) => fragment(i + 1));
 assert.deepEqual(
   allFragments.filter((x) => x.indices.length > 0 && x.indices.length === x.indices[0]).map((x) => x.oneBased),
@@ -128,6 +138,111 @@ const p55 = pageByNumber.get(55).indices;
 const bookend = [23, 11, 1, 17, 18, 10];
 assert.deepEqual(p27.slice(28, 34), bookend);
 assert.deepEqual(p55.slice(70, 76), bookend);
+
+// The selected fragment begins with enlarged M (GP index 19, prime 71).
+// The first rune after its 13-dot boundary is N (index 9, prime 29).
+// The two copies of the unique ciphertext bookend start exactly at the
+// corresponding Euler-totient offsets phi(71)=70 and phi(29)=28.
+const M = selected.indices[0];
+const N = p27[selected.indices.length];
+assert.equal(M, 19);
+assert.equal(N, 9);
+assert.equal(corpus.prime[M], 71);
+assert.equal(corpus.prime[N], 29);
+assert.equal(corpus.prime[M] - 1, 70);
+assert.equal(corpus.prime[N] - 1, 28);
+assert.equal((70 - 28) % 29, 13);
+assert.deepEqual([Math.floor(28 / 13), 28 % 13], [2, 2]);
+assert.deepEqual([Math.floor(70 / 13), 70 % 13], [5, 5]);
+
+// Exact solved-p56 prime-totient semantics: plaintext F is emitted as
+// literal ciphertext F and consumes no prime; all other plaintext symbols
+// consume one consecutive prime-totient step. Test only the source-selected
+// starts N=9 and M=19 under the authentic solved-page sign.
+const primes = [];
+for (let candidate = 2; primes.length < 1000; candidate += 1) {
+  let prime = true;
+  for (let divisor = 2; divisor * divisor <= candidate; divisor += 1) {
+    if (candidate % divisor === 0) { prime = false; break; }
+  }
+  if (prime) primes.push(candidate);
+}
+const mod29 = (value) => ((value % 29) + 29) % 29;
+const ioc = (values) => {
+  const counts = new Array(29).fill(0);
+  for (const value of values) counts[value] += 1;
+  return counts.reduce((sum, count) => sum + count * (count - 1), 0) /
+    (values.length * (values.length - 1));
+};
+/** @param {number[]} cipher @param {number} start */
+function enumerateSolvedP56Paths(cipher, start) {
+  let paths = [{ plain: [], clock: 0, mask: [] }];
+  for (let offset = 0; offset < cipher.length; offset += 1) {
+    const next = [];
+    for (const path of paths) {
+      const cipherRune = cipher[offset];
+      const normalPlain = mod29(cipherRune - (primes[start + path.clock] - 1));
+      if (normalPlain !== 0) {
+        next.push({
+          plain: [...path.plain, normalPlain],
+          clock: path.clock + 1,
+          mask: [...path.mask, false]
+        });
+      }
+      if (cipherRune === 0) {
+        next.push({
+          plain: [...path.plain, 0],
+          clock: path.clock,
+          mask: [...path.mask, true]
+        });
+      }
+    }
+    paths = next;
+  }
+  return paths;
+}
+const p27P56Paths = enumerateSolvedP56Paths(p27, N);
+const p55P56Paths = enumerateSolvedP56Paths(p55, M);
+assert.equal(p27P56Paths.length, 2);
+assert.equal(p55P56Paths.length, 0);
+const p27P56Iocs = p27P56Paths.map((path) => ioc(path.plain)).sort((a, b) => b - a);
+assert.ok(Math.abs(p27P56Iocs[0] - 0.03396793954733869) < 1e-15);
+assert.ok(Math.abs(p27P56Iocs[1] - 0.03389457466710685) < 1e-15);
+
+// A literal reversible fold of the unique 18x13 page is also finite.
+// Symmetric row/column pairs map through (a,b)->(a+b,a-b) over F29.
+const p27Grid = Array.from({ length: 18 }, (_, row) => p27.slice(row * 13, (row + 1) * 13));
+function rowFold(grid, reversedDifference) {
+  const out = Array.from({ length: 18 }, () => new Array(13));
+  for (let row = 0; row < 9; row += 1) for (let column = 0; column < 13; column += 1) {
+    const a = grid[row][column];
+    const b = grid[17 - row][column];
+    out[row][column] = mod29(a + b);
+    out[17 - row][column] = mod29(reversedDifference ? b - a : a - b);
+  }
+  return out;
+}
+function columnFold(grid, reversedDifference) {
+  const out = Array.from({ length: 18 }, () => new Array(13));
+  for (let row = 0; row < 18; row += 1) {
+    for (let column = 0; column < 6; column += 1) {
+      const a = grid[row][column];
+      const b = grid[row][12 - column];
+      out[row][column] = mod29(a + b);
+      out[row][12 - column] = mod29(reversedDifference ? b - a : a - b);
+    }
+    out[row][6] = grid[row][6];
+  }
+  return out;
+}
+const foldIocs = [];
+for (const rowReverse of [false, true]) for (const columnReverse of [false, true]) {
+  const rowOnly = rowFold(p27Grid, rowReverse);
+  const columnOnly = columnFold(p27Grid, columnReverse);
+  const both = columnFold(rowOnly, columnReverse);
+  foldIocs.push(ioc(rowOnly.flat()), ioc(columnOnly.flat()), ioc(both.flat()));
+}
+assert.ok(Math.abs(Math.max(...foldIocs) - 0.03492168299035252) < 1e-15);
 
 // Canonical 2,896-word parser: page markers and line wraps do not split a
 // printed word. The unique repeated p27/p55 pair supplies a word-number gap.
@@ -170,6 +285,174 @@ assert.equal(wordNumberGap, 1432);
 assert.equal(wordNumberGap, sectionRunes.length - 1);
 assert.equal(wordNumberGap % sectionRunes.length, sectionRunes.length - 1);
 
+/** @param {number} n */
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false;
+  return true;
+}
+/** @param {number} n */
+function phi(n) {
+  let x = n;
+  let result = n;
+  for (let p = 2; p * p <= x; p += 1) {
+    if (x % p === 0) {
+      while (x % p === 0) x /= p;
+      result -= result / p;
+    }
+  }
+  if (x > 1) result -= result / x;
+  return result;
+}
+/** @param {number} a @param {number} modulus */
+function multiplicativeOrder(a, modulus) {
+  let value = 1;
+  for (let exponent = 1; exponent <= phi(modulus); exponent += 1) {
+    value = (value * a) % modulus;
+    if (value === 1) return exponent;
+  }
+  return null;
+}
+
+assert.equal(isPrime(sectionRunes.length), true);
+assert.equal(phi(sectionRunes.length), wordNumberGap);
+assert.equal(multiplicativeOrder(selected.indices[0], sectionRunes.length), wordNumberGap);
+assert.equal(1432, 8 * 179);
+assert.equal(multiplicativeOrder(31, sectionRunes.length), 179);
+
+// Cross-section controls: p27's section is uniquely both totient-matched to
+// the repeated-pair gap and seeded by a full-order first rune.
+const sectionControls = transcription.split('$').map((part, section0) => {
+  const runes = [...part].filter((ch) => RUNIC.test(ch)).map((rune) => runeToIndex.get(rune));
+  const length = runes.length;
+  const first = runes[0] ?? null;
+  const totient = phi(length);
+  return {
+    section0,
+    length,
+    prime: isPrime(length),
+    totient,
+    first,
+    firstOrder: first === null ? null : multiplicativeOrder(first, length),
+    gapMatchesTotient: totient === wordNumberGap,
+    firstHasFullOrder: first !== null && multiplicativeOrder(first, length) === totient
+  };
+});
+assert.deepEqual(sectionControls.filter((x) => x.gapMatchesTotient).map((x) => x.section0), [5]);
+assert.deepEqual(sectionControls.filter((x) => x.firstHasFullOrder).map((x) => x.section0), [5]);
+
+
+
+// Direct p55 consequence of the fold-selected 19-rune p27 title.
+// p55 is exactly four periods; keep the key, phase, and operation family frozen.
+const p55Title = p27.slice(0, 19);
+assert.deepEqual(p55Title, expectedTitle);
+assert.equal(p55.length, 76);
+assert.equal(p55Title.length, 19);
+assert.equal(p55.length / p55Title.length, 4);
+
+const titleQuadgramCounts = new Map();
+let titleQuadgramTotal = 0;
+for (const line of fs.readFileSync('resources/control/duko_round27_english_quadgrams.txt', 'utf8').trim().split(/\r?\n/u)) {
+  const match = line.match(/^([A-Z]{4})\s+(\d+)$/u);
+  if (match) {
+    const count = Number(match[2]);
+    titleQuadgramCounts.set(match[1], count);
+    titleQuadgramTotal += count;
+  }
+}
+function titleExpandGp(indices) {
+  return indices.map((index) => corpus.translit[index]).join('').replace(/[^A-Z]/gu, '');
+}
+function titleScoreEnglishQuadgrams(text) {
+  let sum = 0;
+  let windows = 0;
+  let known = 0;
+  for (let i = 0; i + 4 <= text.length; i += 1) {
+    const count = titleQuadgramCounts.get(text.slice(i, i + 4)) ?? 0;
+    sum += Math.log10((count + 0.1) / (titleQuadgramTotal + 0.1 * 26 ** 4));
+    windows += 1;
+    if (count > 0) known += 1;
+  }
+  return { mean: sum / windows, known, windows };
+}
+
+const titleGibranText = fs.readFileSync('resources/control/gibran_prophet_58585.txt', 'utf8').replace(/^\uFEFF/u, '');
+const titleGibranStartMarker = '*** START OF THIS PROJECT GUTENBERG EBOOK THE PROPHET ***';
+const titleGibranEndMarker = '*** END OF THIS PROJECT GUTENBERG EBOOK THE PROPHET ***';
+const titleGibranStart = titleGibranText.indexOf(titleGibranStartMarker);
+const titleGibranEnd = titleGibranText.indexOf(titleGibranEndMarker);
+assert.ok(titleGibranStart >= 0 && titleGibranEnd > titleGibranStart);
+const titleGibranBody = titleGibranText.slice(titleGibranStart + titleGibranStartMarker.length, titleGibranEnd);
+const titleTranslitMap = new Map(corpus.translit.map((token, index) => [token, index]));
+function titleEncodeEnglishWord(word) {
+  const normalized = word.toUpperCase().replace(/QU/gu, 'CW').replace(/V/gu, 'U').replace(/K/gu, 'C').replace(/Z/gu, 'S');
+  const encoded = [];
+  for (let i = 0; i < normalized.length;) {
+    const digraph = normalized.slice(i, i + 2);
+    if (titleTranslitMap.has(digraph)) {
+      encoded.push(titleTranslitMap.get(digraph));
+      i += 2;
+    } else if (titleTranslitMap.has(normalized[i])) {
+      encoded.push(titleTranslitMap.get(normalized[i]));
+      i += 1;
+    } else {
+      i += 1;
+    }
+  }
+  return encoded;
+}
+const titleGibranWords = titleGibranBody.toUpperCase().match(/[A-Z]+/gu) ?? [];
+const titleGibranRunes = titleGibranWords.flatMap(titleEncodeEnglishWord);
+const titleNativeWindowScores = [];
+for (let i = 0; i + 76 <= titleGibranRunes.length; i += 1) {
+  titleNativeWindowScores.push(titleScoreEnglishQuadgrams(titleExpandGp(titleGibranRunes.slice(i, i + 76))).mean);
+}
+titleNativeWindowScores.sort((a, b) => a - b);
+assert.equal(titleNativeWindowScores.length, 47959);
+const titleNativeMinimum = titleNativeWindowScores[0];
+const titleNativeMedian = titleNativeWindowScores[Math.floor(titleNativeWindowScores.length / 2)];
+const titleRawP55Score = titleScoreEnglishQuadgrams(titleExpandGp(p55));
+
+const p55TitleKeyVariants = [];
+for (const [orientation, key] of [
+  ['forward', p55Title],
+  ['reversed', p55Title.slice().reverse()]
+]) {
+  for (const [operation, apply] of [
+    ['C-K', (cipher, keyValue) => mod29(cipher - keyValue)],
+    ['C+K', (cipher, keyValue) => mod29(cipher + keyValue)],
+    ['K-C', (cipher, keyValue) => mod29(keyValue - cipher)]
+  ]) {
+    const outputIndices = p55.map((cipher, i) => apply(cipher, key[i % key.length]));
+    const output = titleExpandGp(outputIndices);
+    p55TitleKeyVariants.push({
+      orientation,
+      operation,
+      score: titleScoreEnglishQuadgrams(output),
+      output
+    });
+  }
+}
+assert.equal(p55TitleKeyVariants.length, 6);
+assert.ok(p55TitleKeyVariants.every((candidate) => candidate.score.mean < titleRawP55Score.mean));
+assert.ok(p55TitleKeyVariants.every((candidate) => candidate.score.mean < titleNativeMinimum));
+
+const p55TitleKeyGate = {
+  p55Runes: p55.length,
+  titleRunes: p55Title.length,
+  periods: p55.length / p55Title.length,
+  phaseSearch: false,
+  rawP55: titleRawP55Score,
+  nativeGibranBody: {
+    gpRunes: titleGibranRunes.length,
+    windows: titleNativeWindowScores.length,
+    minimum: titleNativeMinimum,
+    median: titleNativeMedian
+  },
+  variants: p55TitleKeyVariants
+};
+
 console.log(JSON.stringify({
   classification: 'source-image navigation candidate; no plaintext recovered',
   foldMismatch: readings,
@@ -192,12 +475,27 @@ console.log(JSON.stringify({
     zeroBased18AlternativeLength: fragment(19).indices.length
   },
   p27p55Bookend: bookend,
+  primeTotientAnchor: {
+    fragmentFirstRune: { index: M, prime: corpus.prime[M], totient: corpus.prime[M] - 1, p55BookendOffset: 70 },
+    postBoundaryRune: { index: N, prime: corpus.prime[N], totient: corpus.prime[N] - 1, p27BookendOffset: 28 },
+    offsetDifferenceMod29: (70 - 28) % 29,
+    uniqueFragmentPageProduct: fragmentPageProducts,
+    solvedP56Transfer: { p27ValidPaths: p27P56Paths.length, p27Iocs: p27P56Iocs, p55ValidPaths: p55P56Paths.length },
+    reversibleFoldMaxIoc: Math.max(...foldIocs)
+  },
   wordNumberDirection: {
     canonicalWordCount: canonicalWords.length,
     pairStartOffsetsZeroBased: bookendStarts,
     gap: wordNumberGap,
     selectedSectionRunes: sectionRunes.length,
     modularStep: wordNumberGap % sectionRunes.length,
-    interpretation: '1432 mod 1433 = -1: reverse traversal'
-  }
+    sectionPrime: isPrime(sectionRunes.length),
+    sectionTotient: phi(sectionRunes.length),
+    firstRuneOrder: multiplicativeOrder(selected.indices[0], sectionRunes.length),
+    order31: multiplicativeOrder(31, sectionRunes.length),
+    factorization: '1432 = 8 * 179',
+    interpretation: 'word gap equals phi(1433); M=19 is full-order; backward traversal remains conditional'
+  },
+  sectionControls,
+  p55TitleKeyGate
 }, null, 2));

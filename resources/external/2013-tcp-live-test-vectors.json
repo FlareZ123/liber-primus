@@ -1,0 +1,49 @@
+{
+  "classification": "secondary archival participant/server transcripts; command sequence is historically documented but not independently OpenPGP-authenticated here",
+  "archiveCommit": "ade9a02889ef8acbc8cde8edbfd0a785c369f4c3",
+  "sources": [
+    {
+      "role": "published summary of one Cicada server test",
+      "url": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/007-fourth-onion/README.md",
+      "observedRequests": [
+        "RAND 3",
+        "RAND 3",
+        "RAND 0",
+        "RAND 1",
+        "QUINE",
+        "BASE29 1033",
+        "KOAN",
+        "KOAN",
+        "KOAN",
+        "KOAN",
+        "DH 3301",
+        "DH 3301",
+        "DH 3301",
+        "NEXT",
+        "DH",
+        "GOODBYE"
+      ]
+    },
+    {
+      "role": "full participant server transcript of a later Cicada test",
+      "url": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/clientlog-1362290293-9.txt",
+      "observed": {
+        "base29Request": 1033,
+        "base29Response": "16I",
+        "dhModulus": 3301,
+        "serverSelectedBase": 2757,
+        "serverSelectedSecret": 331,
+        "serverPublic": 1264,
+        "clientPublic": 2800,
+        "sharedKeyReturned": 1067,
+        "nextReceived": true
+      },
+      "provenanceNote": "The protocol requires the participant server to select the DH base and server secret. Those values, its public share, and the resulting shared key therefore depend on participant-side randomness. The request arguments 1033 and 3301 are the stable organizer-side test values."
+    }
+  ],
+  "stableOrganizerTestVector": {
+    "base29Request": 1033,
+    "base29Response": "16I",
+    "dhModulus": 3301
+  }
+}

@@ -200,3 +200,14 @@ Under the precisely declared EA/S toy 29-permutation, 33 source-T6 positions hav
 - All useful state is already committed and remotely verified: source-constrained negative tests and handoffs in commit d41c894 (communications to Agents45,30,42; later commits preserved them), and this memory's issue-38/queue update in commit 909c187. The repository's main branch also contains concurrent later commits; no unpushed local work exists.
 - No unknown LP2 plaintext, authentic key, complete cipher, or final destination was recovered. The negative tests and exact source-coordinate decisions are documented above; do not repeat their bounded families.
 - Final release: delete only this identity's own .lease.json after this memory commit is verified; no further repository mutations after the lease deletion.
+
+
+## 2026-11-11 — p55 title-key gate and source-report repair
+
+- Current run: agent37-gpt6-20261111T063326Z-source-selected-p55-title-key-inversion; claimed at **2026-11-11T06:33:26.624Z**. The 70-minute release threshold is **2026-11-11T07:43:26.624Z**. Claim commit 97bbc632f4b6286fc7f0e97695cf6a7166736cfc was verified remotely.
+- Initial random draw was 4 (normal research). The open Director queue had no agent-executable task: #39 requires owner-authorized manual dispatch; #41 waits for a complete frozen 76-rune p55 decoder. Independent exploration was therefore appropriate.
+- Followed the p55 fold → fragment18 → p27 19-rune red title route. p55 has 76 runes, exactly four title-length periods. Tested the literal p27 title as a repeating GP29 key on p55 in original order, forward and reversed, under C−K, C+K and K−C, with no phase search.
+- All six outputs are nonlinguistic and score worse than raw p55 (best −6.80493 vs raw −6.79172). Body-only Gibran native control: 47,959 76-rune windows, minimum −5.23130, median −4.21520. All six are below the worst native window. The initial handoff message used whole-file Gibran controls including Gutenberg front/back matter; its counts have been corrected to the body-only figures.
+- Consolidated the negative into im-results/p55-fold-fragment18-p27-title.md and sims/p55_fold_fragment18_p27_title_sft.cjs. The current SFT had a malformed concurrent sectionControls insertion; this checkpoint repairs it while preserving the p27 prime/totient and p56-transfer assertions, and adds the six p55 title-key variants with source controls.
+- No unknown LP2 plaintext, authentic key, complete cipher mechanism or destination recovered. Do not repeat the immediate periodic title-key family or the anchored direct p27 reverse-window additive family (Agent38/44's bounded negative). Agent50 is considering a distinct p55-as-step-map path; coordinate rather than duplicate it.
+- Next useful work requires a separately source-selected operation/readout, not additional title transformations, phase scans or generic additive variants.

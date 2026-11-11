@@ -30,6 +30,31 @@ Exactly **1,259 × 1,031 × 1,229 = 1,595,277,641**. Consequently, a solver poss
 
 **Decision:** This overlap is a more causal clue to examine than an arbitrary 180-number list. A useful successor would establish whether contemporary puzzle participants noticed an explicitly player-visible instruction to use the missing prime interval with the already supplied 2013 Parable number. Absent that, do not turn the 1,229 boundary coincidence into new additive-state parameter scans.
 
+## 2013 telnet double spaces select an original red-rune motif
+
+Both surviving secondary 2013 telnet witnesses show exactly **two doubled spaces**, immediately before **31** and **3259**: `29  31` and `3257  3259`. Apply the documented 2013 `NUMBER` operation (reverse decimal digits, then factor composite reversals) to the *following* marked primes. **31 → 13** (GP rune **C**); **3259 → 9523 = 89 × 107** (GP runes **D · IA**). Both 89 and 107 are in the independently omitted 73–1223 prime interval and among the final nine GP-prime weights hidden by the telnet's stop at 71.
+
+The exact GP pair **ᛞᛡ** (D · IA) occurs at just **two red locations among all 225 red LP2 runes**: p53 at local rune offset143 (inside its 51-rune red span) and p54 at offset3 (inside its nine-rune red title). At both source places the following rune is **ᚦ / TH**. The complete original unsolved LP2 has **D · IA · TH** at these same two positions and nowhere else. The [SFT](../sims/lp2_telnet_prime_gap_terminal_sft.cjs) asserts the historical-number arithmetic, GP mapping and complete red/original occurrences.
+
+This is a historically motivated **possible red-ink locator** with a specific source-input marker and creator-used operator. Its weaknesses remain substantial: the two transcripts are secondary, taking the *following* rather than preceding numbers is unproven, and the third TH rune/red-only selection were noticed after the mapping. No original plaintext or p55 decoding operation follows, and no discovery-wide statistical significance is claimed. A productive successor needs an independent source instruction selecting how to act reversibly on those two frozen red positions, with an original held-out prediction. Arbitrary key/phase sweeps are not justified.
+
+### A bounded original-rune follow-up: two selected black continuations spell LP
+
+The source-selected **D · IA** pair also occurs in black ciphertext on the same two terminal pages already implicated by the 180/76 composition and repeated artwork. Enumerating **every** pair occurrence within physical pp53–55 gives a finite four-row source table:
+
+| Physical page | Zero-based rune offset | Ink | Following original GP rune | GP prime |
+| --- | ---: | --- | --- | ---: |
+| p53 | 143 | red | TH | 5 |
+| p54 | 3 | red | TH | 5 |
+| p54 | **90** | black | **L** | **73** |
+| p55 | **38** | black | **P** | **43** |
+
+The p55 black occurrence begins at zero-based **offset 38**, exactly halfway through its **76-rune** ciphertext (38 + 38). The historically selected D · IA pair therefore identifies the **precise native-rune midpoint** of the terminal unknown page, without fitting an offset. This makes the center a concrete next input for a historically specified operation if one can be found; it is not a decryption.
+
+Thus, **reading the continuations of the two black occurrences in page order produces the exact rune string LP**, the book's initials. The already documented 2014 OpenPuff magic-square centers **809, 331, 91** give the same two GP prime weights under prime counting: `π(809)−π(331)=140−67=73 (L)` and `π(331)−π(91)=67−24=43 (P)`. This is an independently known source-derived LP signpost, and its alignment with the two terminal black continuations offers a concrete, reproducible cross-source interpretation.
+
+**Selection caveat:** The entire 12,956-rune unsolved ciphertext contains **15** D · IA occurrences, not just these four. Focusing on three visually related terminal pages is motivated by prior independent artwork and length evidence, but the red/black division, following-rune readout and desired LP were identified retrospectively. The two black letters are **already visible ciphertext runes**, so the result is a candidate **ciphertext marker/extraction**, not recovered unknown plaintext. A decryption proposal must still supply a complete fixed source operation on the remaining original symbols and survive an independent holdout. The reproducer enumerates the exact terminal occurrences and original rune indices.
+
 ## Exact limited decryption test
 
 The reproducible [SFT](../sims/lp2_telnet_prime_gap_terminal_sft.cjs) constructs the 464 primes through 3301 and enforces the original boundaries. It extracts unchanged GP indices from [the canonical corpus](../resources/liber-primus/lp2-corpus.json):

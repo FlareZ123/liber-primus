@@ -21,6 +21,52 @@ function primes(count){
 }
 /** @param {number} a @param {number} b @returns {number} */
 function gcd(a,b){while(b){[a,b]=[b,a%b];}return a;}
+function isPrime(n){
+  if(n<2)return false;
+  for(let d=2;d*d<=n;d++)if(n%d===0)return false;
+  return true;
+}
+function factorKeys(n){
+  const out=[];
+  for(let p=2;p*p<=n;p++)if(n%p===0){
+    out.push(p);
+    while(n%p===0)n/=p;
+  }
+  if(n>1)out.push(n);
+  return out;
+}
+function numberCommand(n){
+  if(isPrime(n)){
+    const reversed=Number(String(n).split("").reverse().join(""));
+    if(isPrime(reversed))return {plus:true,factors:[]};
+    return {plus:false,factors:factorKeys(reversed),input:n,reversed};
+  }
+  return {plus:false,factors:factorKeys(n),input:n,reversed:null};
+}
+function centerOutCoords(n){
+  const out=[];
+  let row=Math.floor(n/2),col=Math.floor(n/2);
+  out.push([row,col]);
+  const directions=[[0,1],[1,0],[0,-1],[-1,0]];
+  let stepLength=1;
+  while(out.length<n*n){
+    for(let direction=0;direction<4&&out.length<n*n;direction++){
+      const [dr,dc]=directions[direction];
+      for(let step=0;step<stepLength&&out.length<n*n;step++){
+        row+=dr;col+=dc;
+        if(row>=0&&row<n&&col>=0&&col<n)out.push([row,col]);
+      }
+      if(direction%2===1)stepLength++;
+    }
+  }
+  return out;
+}
+function indexOfCoincidence(values,alphabetSize=29){
+  const counts=Array(alphabetSize).fill(0);
+  for(const v of values)counts[v]++;
+  return counts.reduce((sum,n)=>sum+n*(n-1),0)/(values.length*(values.length-1));
+}
+
 function main(){
   const c=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
   const html=read("resources/cicada2014-onion7-index.html");
@@ -130,6 +176,87 @@ function main(){
   assert.equal(red57PrimeSum,sums[0]);
 
   assert.equal(c.translit[c.prime.indexOf(19)],"W");
+
+  // Historical 2013 first-onion server.py NUMBER command, applied cellwise
+  // to the three 2014 OpenPuff squares. The command returns "+" for emirps;
+  // otherwise it returns the distinct prime factors of n (or reverse(n)).
+  const numberResults=squares.map(square=>square.flat().map(numberCommand));
+  const numberSummaries=numberResults.map((results,index)=>{
+    const factors=results.flatMap(x=>x.factors);
+    return {
+      order:squares[index].length,
+      plusCells:results.filter(x=>x.plus).length,
+      activeCells:results.filter(x=>!x.plus).length,
+      factorTokens:factors.length,
+      unknownFactors:[...new Set(factors.filter(p=>!c.prime.includes(p)))].sort((a,b)=>a-b)
+    };
+  });
+  assert.deepEqual(numberSummaries.map(x=>x.plusCells),[0,8,6]);
+  assert.deepEqual(numberSummaries.map(x=>x.activeCells),[25,41,19]);
+  assert.deepEqual(numberSummaries.map(x=>x.unknownFactors),
+    [[139,227,313,467],[],[113]]);
+
+  const factorIndexMatrix=Array.from({length:7},(_,r)=>
+    Array.from({length:7},(_,col)=>{
+      const result=numberResults[1][r*7+col];
+      if(result.plus)return null;
+      const indices=result.factors.map(p=>{
+        const i=c.prime.indexOf(p);
+        assert.ok(i>=0, `NUMBER factor ${p} is not a GP prime weight`);
+        return i;
+      });
+      return indices.reduce((a,b)=>a+b,0)%29;
+    }));
+  const factorIndexRuneMatrix=factorIndexMatrix.map(row=>
+    row.map(i=>i===null?"+":c.translit[i]).join(" "));
+  assert.deepEqual(factorIndexRuneMatrix,[
+    "+ O T N U + +",
+    "G J O J O O +",
+    "H N R H U F O",
+    "F W O I O W F",
+    "O F U H R N H",
+    "+ O O J O J G",
+    "+ + U N T O +"
+  ]);
+  assert.equal(factorIndexMatrix[3][3],10);
+  assert.equal(c.translit[10],"I");
+
+  // The p57 "tunneling to the surface" wording motivates this one
+  // center-outward spiral order. Skip the eight NUMBER "+" cells.
+  const centerOutActive= centerOutCoords(7)
+    .map(([r,col])=>factorIndexMatrix[r][col])
+    .filter(x=>x!==null);
+  assert.equal(centerOutActive.length,41);
+  const centerOutKeyText=centerOutActive.map(i=>c.translit[i]).join("");
+  assert.equal(centerOutKeyText,"IORHUORHUFWNJOJOOFWNJOJOOOFHGOTNUOFHGOTNU");
+  const factorTokenCount=numberResults[1].flatMap(x=>x.factors).length;
+  assert.equal(factorTokenCount,84);
+  const ringFactorTokenCounts=Array.from({length:4},(_,level)=>{
+    const cells=[];
+    for(let r=0;r<7;r++)for(let col=0;col<7;col++)
+      if(Math.min(r,col,6-r,6-col)===level)cells.push(numberResults[1][r*7+col]);
+    return cells.reduce((sum,x)=>sum+x.factors.length,0);
+  });
+  assert.deepEqual(ringFactorTokenCounts,[32,32,18,2]);
+
+  const unknownCipher=c.pages.filter(page=>page.page<=55).flatMap(page=>page.indices);
+  assert.equal(unknownCipher.length,12956);
+  assert.equal(unknownCipher.length,41*316);
+  const signed2016=read("resources/historical/cicada2016-4gq25-outguess.asc");
+  const signatureMarkerOffset=signed2016.indexOf("-----BEGIN PGP SIGNATURE-----");
+  assert.equal(signatureMarkerOffset,317);
+
+  const directAdditiveTests=[-1,1].map(sign=>{
+    const decoded=unknownCipher.map((value,i)=>
+      (value+sign*centerOutActive[i%centerOutActive.length]+29)%29);
+    return {
+      sign,
+      ioc:indexOfCoincidence(decoded),
+      preview:decoded.slice(0,80).map(i=>c.translit[i]).join(" ")
+    };
+  });
+  assert.ok(directAdditiveTests.every(x=>Math.abs(x.ioc-0.03448)<0.0001));
+
   console.log(JSON.stringify({
     sources:["2014 seventh-onion delivery HTML", "three OpenPuff magic squares",
       "solved original LP2 p57 PARABLE", "original LP2 p0 red-ink span"],
@@ -151,8 +278,20 @@ function main(){
       p57RedWord:red57Indices.map(i=>c.translit[i]).join(""),
       p57RedPrimeWeights:red57Primes,p57RedPrimeSum:red57PrimeSum,
       p57RedSumEqualsParableHeadingModulus:red57PrimeSum===sums[0]},
-    independentPredictionsAfterSelection:"Conditional algebraic fit; " +
-      "no authored operation, unknown plaintext, or cryptographic key established."
+    cellwise2013NumberProbe:{
+      source:"2013/004-first-onion/server.py NUMBER command",
+      squares:numberSummaries,
+      factorIndexRuneMatrix,
+      center331:{reverse:133,factors:[7,19],factorIndices:[3,7],sumMod29:10,rune:"I"},
+      plusCells:8,activeCells:41,
+      factorTokenCount, factorTokensPerShell:ringFactorTokenCounts,
+      centerOutKey:centerOutKeyText,
+      unknownCipherLength:unknownCipher.length,
+      candidateGrid:{rows:316,columns:41},
+      signatureMarkerOffset2016:signatureMarkerOffset,
+      directAdditiveTests
+    },
+    independentPredictionsAfterSelection:"Candidate structural map only: the per-cell GP-index sum and center-out path are interpretive; direct period-41 additive use fails, and no unknown plaintext or key is established."
   },null,2));
 }
 if(require.main===module)main();

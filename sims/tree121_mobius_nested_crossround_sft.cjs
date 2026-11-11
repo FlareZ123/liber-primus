@@ -80,6 +80,47 @@ function cycleFrom(m, start) {
   return out;
 }
 
+/** Test primality for the small source integers used here. */
+function isPrime(value) {
+  if (value < 2) return false;
+  for (let d = 2; d * d <= value; d++) if (value % d === 0) return false;
+  return true;
+}
+
+/** Return the one-based rank of a prime. */
+function primeRank(value) {
+  assert.ok(Number.isInteger(value) && isPrime(value), String(value) + ' must be prime');
+  let rank = 0;
+  for (let candidate = 2; candidate <= value; candidate++) if (isPrime(candidate)) rank++;
+  return rank;
+}
+
+/** Euler's totient for a positive integer. */
+function eulerTotient(value) {
+  let n = value;
+  let result = value;
+  for (let p = 2; p * p <= n; p++) {
+    if (n % p !== 0) continue;
+    while (n % p === 0) n /= p;
+    result -= result / p;
+  }
+  if (n > 1) result -= result / n;
+  return result;
+}
+
+/** Decompose the complete projective line P1(F29) into cycles. */
+function projectiveCycles(m) {
+  const remaining = new Set(Array.from({ length: 30 }, (_, i) => i));
+  const cycles = [];
+  while (remaining.size) {
+    const start = Math.min(...remaining);
+    const cycle = cycleFrom(m, start);
+    for (const state of cycle) remaining.delete(state);
+    cycles.push(cycle);
+  }
+  return cycles;
+}
+
 const p32Page = corpus.pages.find((p) => p.page === 32);
 assert.equal(p32Page.indices.length, 121);
 const p32 = p32Page.indices.map((i) => corpus.prime[i]);
@@ -207,6 +248,104 @@ const infinityPrimeSum = infinityFinite.reduce((s, x) => s + corpus.prime[x], 0)
 assert.equal(infinityPrimeSum, 174);
 assert.equal(fixed28.reduce((s, x) => s + corpus.prime[x], 0), 174);
 
+// The repeated cuneiform immediately following p32 encodes (17,13) and
+// (55,1) in base 60: 1033 and 3301. These are also the two LP1 magic-square
+// constants. The LP1 instruction explicitly calls both primes and the totient
+// function sacred, so prime rank is a source-motivated finite selector.
+const cuneiformValues = [17 * 60 + 13, 55 * 60 + 1];
+const p05MagicSum = p05Square[0].reduce((a, b) => a + b, 0);
+const p16MagicSum = p16Square[0].reduce((a, b) => a + b, 0);
+assert.deepEqual(cuneiformValues, [1033, 3301]);
+assert.deepEqual([p05MagicSum, p16MagicSum], cuneiformValues);
+
+const cuneiformPrimeRanks = cuneiformValues.map(primeRank);
+assert.deepEqual(cuneiformPrimeRanks, [174, 464]);
+const rankOverAlphabet = cuneiformPrimeRanks.map((rank) => rank / MOD);
+const rankOverPages = cuneiformPrimeRanks.map((rank) => rank / 58);
+assert.deepEqual(rankOverAlphabet, [6, 16]);
+assert.deepEqual(rankOverPages, [3, 8]);
+
+const concentricLayerCount = (outerSide + 1) / 2;
+assert.equal(rankOverAlphabet[0], concentricLayerCount);
+assert.equal(rankOverAlphabet[1], ring.length);
+assert.equal(rankOverPages[0], peeledLayers);
+assert.equal(rankOverPages[1], ring.length / 2);
+
+// All four quotients are already parameters of the independently derived
+// nested Mobius chain: 6 in B~A^6, 3 in M28~Q28*A^3*Q28^-1,
+// 16 in Q2 and A^16, and 8 in Q28/S.
+assert.ok(projectivelyEqual(B, power(A, rankOverAlphabet[0])));
+assert.ok(projectivelyEqual(
+  M28,
+  multiply(multiply(Q28, power(A, rankOverPages[0])), inverseMatrix(Q28))
+));
+assert.equal(Q2[0], rankOverAlphabet[1]);
+assert.ok(projectivelyEqual(
+  M7,
+  multiply(multiply(Q2, power(A, rankOverAlphabet[1])), inverseMatrix(Q2))
+));
+assert.equal(Q28[1], rankOverPages[1]);
+assert.equal(S[1], rankOverPages[1]);
+
+// Rank 174 supplies a finite discriminator for the formerly ambiguous
+// single-count corner convention.
+const cornerRankHits = [];
+for (let mask = 0; mask < 16; mask++) {
+  const candidate = sideSumsForAssignment(ring, mask).map(mod);
+  for (const cycle of projectiveCycles(candidate)) {
+    const finitePrimeSum = cycle
+      .filter((state) => state !== 29)
+      .reduce((sum, state) => sum + corpus.prime[state], 0);
+    if (finitePrimeSum === cuneiformPrimeRanks[0]) {
+      cornerRankHits.push({ mask, cycle, finitePrimeSum });
+    }
+  }
+}
+assert.equal(cornerRankHits.length, 1);
+assert.equal(cornerRankHits[0].mask, HORIZONTAL_MASK);
+assert.deepEqual(cornerRankHits[0].cycle, [2, 7, 29, 11, 16, 10, 8]);
+
+function rotateSides(values) {
+  const [north, east, south, west] = values;
+  return [west, north, east, south];
+}
+function reflectSides(values) {
+  const [north, east, south, west] = values;
+  return [north, west, south, east];
+}
+const inclusiveOrientationHits = [];
+let rotatedSides = inclusiveSides.slice();
+for (let rotation = 0; rotation < 4; rotation++) {
+  for (const reflected of [false, true]) {
+    const oriented = reflected ? reflectSides(rotatedSides) : rotatedSides;
+    const candidate = oriented.map(mod);
+    const determinant = mod(candidate[0] * candidate[3] - candidate[1] * candidate[2]);
+    if (determinant !== 0) {
+      const points = fixedPoints(candidate);
+      const finitePrimeSum = points
+        .filter((state) => state !== 29)
+        .reduce((sum, state) => sum + corpus.prime[state], 0);
+      if (finitePrimeSum === cuneiformPrimeRanks[0]) {
+        inclusiveOrientationHits.push({ rotation, reflected, oriented, points, finitePrimeSum });
+      }
+    }
+  }
+  rotatedSides = rotateSides(rotatedSides);
+}
+assert.deepEqual(inclusiveOrientationHits, [{
+  rotation: 0,
+  reflected: false,
+  oriented: inclusiveSides,
+  points: [20, 25],
+  finitePrimeSum: 174
+}]);
+
+const rankTotients = cuneiformPrimeRanks.map(eulerTotient);
+assert.deepEqual(rankTotients, [56, 224]);
+assert.equal(rankTotients[0], (ring.length / 2) * projectiveOrder(M7));
+assert.equal(rankTotients[1], (ring.length / 2) * projectiveOrder(M28));
+assert.equal(rankTotients[1], 32 * projectiveOrder(M7));
+
 // Search only a declared, source-derived vocabulary of affine coordinates;
 // this is a finite sensitivity check, not an exhaustive search over PGL2.
 const slopeCandidates = [
@@ -298,7 +437,7 @@ for (let trial = 0; trial < TRIALS; trial++) {
 }
 assert.deepEqual(
   [fixedHorizontalMatches, permutationsWithAnyCornerMatch, totalMatchingAssignments],
-  [13, 126, 135]
+  [29, 144, 153]
 );
 
 console.log(JSON.stringify({
@@ -319,6 +458,15 @@ console.log(JSON.stringify({
     Q7: { matrix: Q7, action: 'x -> 13x + 9', relation: 'M7 ~ Q7 * A^12 * Q7^-1' },
     Q2: { matrix: Q2, action: 'x -> 16x + 9', relation: 'M7 ~ Q2 * A^16 * Q2^-1; coordinate-reflection equivalent to Q7' },
     composition: 'Q7 = S * Q28; 12 = 3 peeled layers * 4 sides = 563 mod29'
+  },
+  cuneiformPrimeRankSelector: {
+    values: cuneiformValues,
+    oneBasedPrimeRanks: cuneiformPrimeRanks,
+    rankOverAlphabet,
+    rankOverPages,
+    rankTotients,
+    cornerRankHits,
+    inclusiveOrientationHits
   },
   crossRoundChecks: {
     p32M7Maps13To: apply(M7, 13),

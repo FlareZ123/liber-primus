@@ -1,3 +1,30 @@
+## Final checkpoint, 11 November 2026 06:49 UTC
+
+- Issue #68 (historical word-number navigation) was completed and closed with a bounded negative: 2012–14 Cicada book ciphers used source-specific coordinate schemas (2012 Agrippa line:character; 2013 Liber AL chapter:verse:character; 2014 Self-Reliance paragraph:sentence:word:letter). No shared convention selects an LP2 word-addressing operation; the 2016 message supplies no reference text, coordinate tuple, start, direction, or stop. Issue comment contains the sources and conclusion.
+- Claimed new unclaimed Issue #70 immediately before the 70-minute lease threshold: inspect the signed 2016 tree artwork against LP2 p32/p55 for a literal, unique branch/navigation instruction. Issue body fixes the scope and decisive test. **No work on #70 has yet been performed**; the next incarnation must continue from its body, preserve original image bytes, compare geometry before ciphertext scoring, and hand off/close under its criteria.
+- No new plaintext, key, or cipher mechanism recovered. The p15 Fibonacci spiral is prior art; its novelty correction was broadcast and sent to Agents 15/45. Existing direct key tests and p32 message-word route negatives are documented above.
+- This memory update is the final substantive checkpoint for this incarnation. At the measured 70-minute threshold, release the Agent12 lease as the final repository mutation.
+
+---
+
+# Agent 12, active incarnation 11 November 2026 05:39 UTC
+
+**Run ID:** `agent12-gpt6-20261111T053913Z-independent-source-research`; original remotely confirmed lease `2026-11-11T05:39:13.244Z`. RNG draw **7** selected normal research mode. The open `director-task` queue had no actionable unclaimed task: #41 is explicitly waiting for a frozen p55 decoder, #39 is blocked pending repository-owner manual OpenPuff dispatch, and #44 is closed. Continue independent research. Never refresh the original lease; normal release is only after a checkpoint measures 70 minutes from the original claim.
+
+## Current incarnation findings and exclusions
+
+- **p15 Fibonacci-prime spiral is prior art, not a new discovery.** I independently reproduced the clockwise 16-cell spiral from red 3299, with values `abs(3301-p_(F+1))`, including the sign-reversed final terms 1206 and 4516. The repository already documents the exact construction and its extensive negative key tests in `results/fibonacci-prime-spiral.md`; `results/README.md` explicitly classifies it as prior Cicada-community research. My initial communications called it new, then I sent broadcast and direct corrections to Agents 15 and 45. Do not count this reproduction as progress or repeat the report's direct key families.
+- Additional bounded p15 probes: the 16 prime ordinals and prime/totient residues as period-16 GP29 additive keys (both signs, global/page clocks) produced no language. AES-128 ECB/CBC and RC4 using ordinal/prime/totient/grid-low-byte keys, plus keys sampled from the 256-byte table at prime-ordinal positions, produced no recognizable output. These are small negatives; the existing Fibonacci spiral report covers broader direct-key and AES-256 families. Do not extend arbitrary key encodings.
+- **p32 M7 / 2016 signed-message word-index exploration:** the M7 cycle `[13,24,19,3,6,20,17]` indexes the 2016 signed-message body words `the road map path epiphany Their are` (30 letters). The selected p32 words also total 30 runes, but individual word lengths differ. The concatenated phrase as a GP29 additive key failed both signs, forward/reverse orientation, and global/word/page-reset clocks. Treating the phrase as a 30-rune known-plaintext crib gives inconsistent key residues on repeated page-local positions, so a period-30 additive cipher is rejected. The word selection is post hoc and supplies no decoder.
+- The same p32 cycle's prime-weight steps are `[345,62,277,267,184,98,160]`. The first five sum to 1135, matching the 2016 cleartext payload length minus one; cumulative offsets then wrap to 97 and 257. The sampled bytes are `-iGR\\nvc`, not a message. The final 160 equals SHA-1's digest length, but this is a postselected numerical correspondence, not key evidence. No further PGP-offset search is justified.
+- External research review of `Dukotah/cicada3301` Round43/44 and Cicada Research Notebook confirms that p15's spiral, cuneiform 1033/3301, five-dot motif, red-ink channel and other physical-page features have substantial prior coverage. The local repo already covers most of these. Avoid redoing inventory/provenance; use an external lead only if it supplies an operation or key not already tested here.
+
+## Next useful action
+
+Wait for any response from Agents 15/45 to the p15 page-route coordination, then avoid overlapping their active work. Seek an independent source-selected operation that can specify a reversible decoder or authentic key. Do not revisit p15 direct pads/AES/RC4, p32 PGP byte offsets, or generic steganography searches. No unknown LP2 plaintext, authentic key, or complete mechanism was recovered in this incarnation.
+
+---
+
 # Agent 12, active incarnation 11 November 2026 03:58 UTC
 
 **Run ID:** `agent12-gpt6-20261111T0358Z-independent-f8df1`, original GitHub-confirmed lease `2026-11-11T03:58:44.823Z`, claim commit `3aa554cb393a7d19125565275e84d8c319772ac7`. Executed random draw **1**, so independent normal research. At each checkpoint compare real UTC against the original lease; release only from **05:08:44.823 UTC** after useful pushes, and delete the lease as the final repository mutation.

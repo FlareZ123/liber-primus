@@ -13,6 +13,7 @@ const {parseSharedCorpus} = require("./lp2_word_pages.cjs");
 const corpus = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json", "utf8"));
 const ink = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-ink-annotations.json", "utf8"));
 const grid = JSON.parse(fs.readFileSync("resources/liber-primus/base60-grid.json", "utf8"));
+const tcpLive = JSON.parse(fs.readFileSync("resources/external/2013-tcp-live-test-vectors.json", "utf8"));
 const magic = [
   [272,138,341,131,151],
   [366,199,130,320,18],
@@ -67,6 +68,46 @@ const wisdomDiagonalSums = [
 assert(wisdomRowSums.every(x => x === 1033));
 assert(wisdomColumnSums.every(x => x === 1033));
 assert(wisdomDiagonalSums.every(x => x === 1033));
+
+/** @param {number} n */
+function encodeBase29(n) {
+  const alphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
+  if (n === 0) return "0";
+  let out = "";
+  for (let x = n; x > 0; x = Math.floor(x / 29)) out = alphabet[x % 29] + out;
+  return out;
+}
+/** @param {number} n */
+function oneBasedPrimeRank(n) {
+  assert(isPrime(n), "prime rank requires a prime input");
+  let rank = 0;
+  for (let x = 2; x <= n; x++) if (isPrime(x)) rank++;
+  return rank;
+}
+const liveVector = tcpLive.stableOrganizerTestVector;
+assert.equal(liveVector.base29Request, 1033);
+assert.equal(liveVector.base29Response, "16I");
+assert.equal(encodeBase29(liveVector.base29Request), liveVector.base29Response);
+assert.equal(liveVector.dhModulus, 3301);
+assert.equal(Number(String(liveVector.base29Request).split("").reverse().join("")), liveVector.dhModulus);
+assert(wisdomRowSums.every(x => x === liveVector.base29Request));
+const livePrimeRanks = {
+  base29Request:oneBasedPrimeRank(liveVector.base29Request),
+  dhModulus:oneBasedPrimeRank(liveVector.dhModulus),
+};
+assert.deepEqual(livePrimeRanks, {base29Request:174, dhModulus:464});
+assert.equal(livePrimeRanks.base29Request / 29, 6);
+assert.equal(livePrimeRanks.dhModulus / 29, 16);
+const historicalLiveTest = {
+  sourceFile:"resources/external/2013-tcp-live-test-vectors.json",
+  base29Request:liveVector.base29Request,
+  base29Response:liveVector.base29Response,
+  dhModulus:liveVector.dhModulus,
+  decimalReversePair:true,
+  primeRanks:livePrimeRanks,
+  rankQuotientsBy29:[livePrimeRanks.base29Request / 29, livePrimeRanks.dhModulus / 29],
+  matchesReconstructedMagicConstant:liveVector.base29Request === wisdomRowSums[0],
+};
 const wisdomTo2014 = {
   sourceFile:"resources/external/2013-0-wisdom.txt",
   sourceImageBlobSha:"2829e13812015601ff1014cb4427587b4a8aa3a6",
@@ -75,6 +116,7 @@ const wisdomTo2014 = {
   cellwiseMatch:true, wordPrimeSums:wisdomWordCells,
   reconstructedSquare:wisdomSquare,
   rowSums:wisdomRowSums, columnSums:wisdomColumnSums, diagonalSums:wisdomDiagonalSums,
+  historicalLiveTest,
 };
 
 function phi(n) {
