@@ -169,7 +169,7 @@ function ciphertextCandidates(rule) {
       continue;
     for(const slope of [-1,1]){
       const path=[B];
-      for(let offset=1;offset<=14;offset++) {
+      for(let offset=1;offset<=26;offset++) {
         const rr=r+slope*offset,cc=col+offset;
         if(rr<1||rr>27||cc>27)break;
         path.push([rr,cc]);
@@ -250,8 +250,8 @@ function run() {
       alignedKey:node.aligned});
   }
   assert.equal(nodes.length,172);
-  assert.equal(paths.length,121);
-  assert.equal(afterGcd,19948);
+  assert.equal(paths.length,132);
+  assert.equal(afterGcd,21818);
   assert.equal(allHits,60);
   assert.equal(words.size,52);
   for(const item of ["OUR","HOW","DIE","EARTH","HAD"])
