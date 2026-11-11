@@ -279,6 +279,117 @@ const candidateResults = testerCandidates.map((exponent) => {
   };
 });
 
+
+/** @param {F841} x */
+function fieldTrace(x) {
+  return mod29(2 * x[0] + 3 * x[1]);
+}
+
+/** @param {F841} x */
+function fieldNorm(x) {
+  return mod29(x[0] * x[0] + 3 * x[0] * x[1] - 8 * x[1] * x[1]);
+}
+
+/** @param {number} n */
+function base29Digits(n) {
+  const out = [];
+  do {
+    out.push(n % 29);
+    n = Math.floor(n / 29);
+  } while (n > 0);
+  return out.reverse();
+}
+
+// The BASE29 factor root z = 23 - 2u is primitive in the p3 field.
+const z = [23, 27];
+const toyDh = { modulus: 23, generator: 5, serverPrivate: 6, serverPublic: 8, clientPrivate: 15, clientPublic: 19, shared: 2 };
+assert.equal(modPow(toyDh.generator, toyDh.serverPrivate, toyDh.modulus), toyDh.serverPublic);
+assert.equal(modPow(toyDh.generator, toyDh.clientPrivate, toyDh.modulus), toyDh.clientPublic);
+assert.equal(modPow(toyDh.clientPublic, toyDh.serverPrivate, toyDh.modulus), toyDh.shared);
+assert.equal(modPow(toyDh.serverPublic, toyDh.clientPrivate, toyDh.modulus), toyDh.shared);
+
+const invariantRows = testerCandidates.map((exponent) => {
+  const w = fieldPow(z, exponent % 840);
+  return {
+    exponent,
+    exponentMod840: exponent % 840,
+    w,
+    coordinateSum: mod29(w[0] + w[1]),
+    coordinateProduct: mod29(w[0] * w[1]),
+    trace: fieldTrace(w),
+    norm: fieldNorm(w),
+  };
+});
+const invariantMatches = invariantRows.filter((r) =>
+  r.coordinateSum === toyDh.modulus &&
+  r.coordinateProduct === toyDh.clientPrivate &&
+  r.trace === toyDh.generator &&
+  r.norm === toyDh.shared
+);
+assert.deepEqual(invariantMatches, [{
+  exponent: 1661,
+  exponentMod840: 821,
+  w: [6, 17],
+  coordinateSum: 23,
+  coordinateProduct: 15,
+  trace: 5,
+  norm: 2,
+}]);
+
+const selectedExponent = invariantMatches[0].exponent;
+const selectedFieldExponent = invariantMatches[0].exponentMod840;
+const selectedInverseExponent = inverseModSmall(selectedFieldExponent, 840);
+assert.equal(selectedInverseExponent, 221);
+assert.deepEqual(base29Digits(selectedExponent), [1, 28, 8]);
+
+/** @param {number[]} sequence @param {number} x */
+function elgamalDecrypt(sequence, x) {
+  const out = [];
+  let zeroFirstComponents = 0;
+  let blocks = 0;
+  for (let i = 0; i + 3 < sequence.length; i += 4) {
+    const c1 = [sequence[i], sequence[i + 1]];
+    const c2 = [sequence[i + 2], sequence[i + 3]];
+    blocks++;
+    if (c1[0] === 0 && c1[1] === 0) {
+      zeroFirstComponents++;
+      continue;
+    }
+    out.push(...fieldMul(c2, fieldPow(c1, (840 - selectedFieldExponent) % 840)));
+  }
+  return { out, blocks, zeroFirstComponents, leftoverRunes: sequence.length % 4 };
+}
+
+const selectedQuotientElgamal = elgamalDecrypt(fixedWidthQuotient, selectedFieldExponent);
+assert.equal(selectedQuotientElgamal.zeroFirstComponents, 0);
+assert.equal(selectedQuotientElgamal.blocks, 63);
+const selectedQuotientElgamalBytes = Array.from(
+  { length: selectedQuotientElgamal.out.length / 2 },
+  (_, i) => selectedQuotientElgamal.out[2 * i] * 29 + selectedQuotientElgamal.out[2 * i + 1],
+);
+const selectedOriginalElgamal = elgamalDecrypt(original, selectedFieldExponent);
+assert.equal(selectedOriginalElgamal.zeroFirstComponents, 1);
+
+function additive1661(sign, clock) {
+  const key = base29Digits(selectedExponent);
+  const out = [];
+  let bookOffset = 0;
+  for (const page of pages) {
+    let pageOffset = 0;
+    for (const c of page.indices) {
+      const offset = clock === 'book' ? bookOffset++ : pageOffset++;
+      out.push(mod29(c + sign * key[offset % key.length]));
+    }
+  }
+  return out;
+}
+const selectedBase29Additive = [];
+for (const sign of [-1, 1]) {
+  for (const clock of ['book', 'page']) {
+    selectedBase29Additive.push({ sign, clock, score: score(additive1661(sign, clock)) });
+  }
+}
+
 console.log(JSON.stringify({
   historicalDh: {
     ...dh,
@@ -293,5 +404,24 @@ console.log(JSON.stringify({
   },
   reference: { symbols: reference.length, holdout: score(holdout) },
   rawOriginal: score(original),
+  invariantRows,
+  selectedExponent: {
+    privateExponent: selectedExponent,
+    fieldExponent: selectedFieldExponent,
+    inverseFieldExponent: selectedInverseExponent,
+    base29Digits: base29Digits(selectedExponent),
+    fieldElement: invariantMatches[0].w,
+    toyDhReconstruction: invariantMatches[0],
+  },
   candidateResults,
+  selectedBase29Additive,
+  selectedElgamal: {
+    originalBook: selectedOriginalElgamal,
+    quotient252: {
+      score: score(selectedQuotientElgamal.out),
+      byteRange0to255: selectedQuotientElgamalBytes.filter((x) => x < 256).length,
+      printableAscii: selectedQuotientElgamalBytes.filter((x) => x >= 32 && x <= 126).length,
+      byteHead: selectedQuotientElgamalBytes.slice(0, 16),
+    },
+  },
 }, null, 2));
