@@ -104,6 +104,23 @@ assert.equal(payload.at(-1), 13);
 assert.equal(corpus.translit[13], "P");
 assert.equal(corpus.prime[13], 43);
 
+// The eight unequal folded pairs also carry an ordered comparison mask.
+const directionBits = [];
+for (let i = 1; i < 9; i++) {
+  const left = payload[i];
+  const right = payload[payload.length - 1 - i];
+  assert.notEqual(left, right);
+  directionBits.push(left < right ? 1 : 0);
+}
+const directionString = directionBits.join("");
+const directionValue = Number.parseInt(directionString, 2);
+const reversedDirectionString = directionBits.slice().reverse().join("");
+const reversedDirectionValue = Number.parseInt(reversedDirectionString, 2);
+assert.equal(directionString, "00110010");
+assert.equal(directionValue, 50);
+assert.equal(reversedDirectionString, "01001100");
+assert.equal(reversedDirectionValue, 76);
+
 // The complete title-fold signature is source-rare: one hit among every
 // possible contiguous 19-rune window in the full LP2 stream.
 function compoundSignature(a) {
@@ -259,6 +276,36 @@ for (let i = 0; i < 255; i++) {
   }
 }
 assert.deepEqual(reversedPairs, [[82, 127]]);
+
+// Follow each table byte as the next 0-based cell address.
+function pointerSignature(start) {
+  const seen = new Map();
+  const sequence = [];
+  let cell = start;
+  while (!seen.has(cell)) {
+    seen.set(cell, sequence.length);
+    sequence.push(cell);
+    cell = grid.bytes[cell];
+  }
+  return {sequence, repeat: cell, preperiod: seen.get(cell),
+    cycle: sequence.length - seen.get(cell)};
+}
+const pointer43 = pointerSignature(43);
+assert.deepEqual(pointer43.sequence,
+  [43,73,79,82,201,74,205,76,114,197,115,247,192,0,203,68,199,47]);
+assert.equal(pointer43.sequence.length, 18);
+assert.equal(pointer43.repeat, 76);
+assert.equal(pointer43.preperiod, 7);
+assert.equal(pointer43.cycle, 11);
+assert.equal(pointer43.sequence[3], 82);
+assert.equal(grid.bytes[205], 76);
+const matchingGpPrimeStarts = corpus.prime
+  .map((prime, rune) => ({prime, rune, signature: pointerSignature(prime)}))
+  .filter((item) => item.signature.sequence.length === 18 &&
+    item.signature.repeat === 76 && item.signature.sequence[3] === 82)
+  .map((item) => [item.rune, item.prime]);
+assert.deepEqual(matchingGpPrimeStarts, [[13, 43]]);
+
 const forward43 = grid.bytes.slice(84, 127);
 const reverse43 = forward43.slice().reverse();
 assert.equal(forward43.length, 43);
@@ -371,6 +418,26 @@ for (const sign of [-1, 1]) {
 }
 assert.deepEqual(p55Null.map((x) => x.ge), [882, 3162]);
 
+// The P=43 pointer orbit lands on the left bracket cell82, so 84->126 is
+// the source-oriented interval branch. Test it against the same shuffle null.
+const p55ForwardNull = [];
+random = xorshift(0x13504376);
+for (const sign of [-1, 1]) {
+  const actualFlat = inner55.map((x, i) => mod(x + sign * forward43[i], MOD));
+  const actual = score(splitInner(actualFlat));
+  let ge = 0;
+  for (let trial = 0; trial < 4000; trial++) {
+    const key = shuffled(forward43, random);
+    const control = inner55.map((x, i) => mod(x + sign * key[i], MOD));
+    if (score(splitInner(control)) >= actual) ge++;
+  }
+  p55ForwardNull.push({
+    sign, actual, transliteration: splitInner(actualFlat).map(translit).join(" "),
+    ge, upperTail: (ge + 1) / 4001
+  });
+}
+assert.deepEqual(p55ForwardNull.map((x) => x.ge), [669, 1333]);
+
 // Finite direct byte readouts under the same conditional reverse order.
 const printableCounts = {};
 for (const field of ["sourcePrimeSum", "selectedPrimeSum", "selectedOrdinalSum"]) {
@@ -400,6 +467,10 @@ console.log(JSON.stringify({
     onlyMatchedRune: "P",
     matchedRuneIndex: 13,
     matchedRunePrime: corpus.prime[13],
+    directionBits: directionString,
+    directionValue,
+    reversedDirectionBits: reversedDirectionString,
+    reversedDirectionValue,
     compoundSignatureHits: signatureHits
   },
   crossUnitCoincidence: {
@@ -417,12 +488,21 @@ console.log(JSON.stringify({
     mirroredOuterBytes: [grid.bytes[82], grid.bytes[128]],
     reversedPairLocations: reversedPairs,
     enclosedCells: forward43.length,
-    orientation: "unresolved",
+    orientation: "P=43 three-step pointer orbit selects left bracket; forward 84->126 is source-oriented",
+    pointer43: {
+      sequence: pointer43.sequence,
+      distinctBeforeRepeat: pointer43.sequence.length,
+      repeat: pointer43.repeat,
+      preperiod: pointer43.preperiod,
+      cycle: pointer43.cycle,
+      matchingGpPrimeStarts
+    },
     conditionalReverseModulo43Distinct: new Set(reverse43.map((x) => x % 43)).size
   },
   conditionalReverse43DirectTests: {
     addressedWordGp29: addressedNull,
     p55InteriorGp29: p55Null,
+    sourceOrientedForwardP55InteriorGp29: p55ForwardNull,
     printableCounts
   }
 }, null, 2));
