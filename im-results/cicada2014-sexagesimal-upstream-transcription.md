@@ -1,8 +1,8 @@
-# The actual upstream source of the 2014 `sexagesimal.bin`: three transcription files
+# The actual upstream source of the 2014 `sexagesimal.bin`: three transcription files, not a creator generator
 
-**Finding, 11 November 2026.** The May 2014 `sexagesimal.bin` is a byte-for-byte conversion of three earlier, manually transcribed page-text files. The upstream input is **256 explicitly copied two-character numerals**, not a demonstrated Cicada-specified PRNG or compact generator. An earlier source note corrects three transcription errors, but the later byte file retains the uncorrected values. **No new LP2 plaintext or authentic key** follows.
+**Finding, 11 November 2026.** The 256-byte May 2014 `sexagesimal.bin` is a byte-for-byte conversion of three earlier, manually transcribed page-text files. The upstream input is **256 explicitly copied two-character numerals**, not a demonstrated Cicada-specified PRNG or compact generator. The original author-published object is the printed 32×8 table on LP2 pp49–51. Its creator-side construction source and intended cryptographic operation remain unknown. No new LP2 plaintext or authentic key follows.
 
-## Pinned original source and exact conversion
+## 1. Pinned 2014 participant conversion chain
 
 The [original May 11 2014 20:41 commit `19d68fbb`](https://github.com/micheloosterhof/cicada-2014/commit/19d68fbb9cff1c06d52cc0add30285199c936282) added three text transcriptions alongside the already archived 58 LP2 JPEGs:
 
@@ -12,13 +12,15 @@ The [original May 11 2014 20:41 commit `19d68fbb`](https://github.com/micheloost
 | [`50.txt`](https://github.com/micheloosterhof/cicada-2014/blob/19d68fbb9cff1c06d52cc0add30285199c936282/stage11/ky2khlqdf7qdznac.onion/50.txt) | 104 | `34cbb77d43a67679e989a466904de49622d7f480` |
 | [`51.txt`](https://github.com/micheloosterhof/cicada-2014/blob/19d68fbb9cff1c06d52cc0add30285199c936282/stage11/ky2khlqdf7qdznac.onion/51.txt) | 72 | `6e9fa506375442c9126a275ef845a909449102a3` |
 
-For each file, split at the blank line and read **only its upper two-character token block**. Concatenate the token blocks in page/row order. For each token `ab`, use the conventional 60-digit order `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx` and decode `value=60*index(a)+index(b)`. All **256 values** match, individually, the archived `decimal.txt`. Encoding each integer with a single unsigned byte reproduces the 256-byte `sexagesimal.bin`, Git blob SHA-1 `ad3dd7a3d37879d04bd506d2eecea86f27543928`; SHA-256 `8db2a93497bc02bbf0ab07ac3cf96edd227fec630232c04ea35493d3a7d7b65e`. The [later May 11 21:39 commit `a9201dd`](https://github.com/micheloosterhof/cicada-2014/commit/a9201dd469a1a514eb0d8ff8f3449dbe2e7f7462) indeed adds those decimal, Perl converter `pack 'C'`, and binary files together. Its parent already contained the three transcriptions. Git dates are self-reported; **the Git parent chain fixes the sequence**.
+For each file, split at the blank line and read **only its upper two-character token block**. Concatenate the token blocks in page/row order. For token `ab`, use the conventional 60-digit order `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx` and decode `value=60*index(a)+index(b)`. All **256 values** match the archived `decimal.txt`. Encoding each integer as one unsigned byte reproduces the 256-byte `sexagesimal.bin`, Git blob SHA-1 `ad3dd7a3d37879d04bd506d2eecea86f27543928`; SHA-256 `8db2a93497bc02bbf0ab07ac3cf96edd227fec630232c04ea35493d3a7d7b65e`.
 
-## A previously unnoticed historical correction
+The [later May 11 21:39 commit `a9201dd`](https://github.com/micheloosterhof/cicada-2014/commit/a9201dd469a1a514eb0d8ff8f3449dbe2e7f7462) adds `decimal.txt`, the Perl converter `pack 'C'`, and the binary together. Its parent already contained the three transcriptions. Git author dates are self-reported; **the Git parent chain fixes the sequence**.
 
-The earliest `50.txt` has **two annotations** reading `<-------CORRECTED. Previously ...` in its *lower numeric table*:
+## 2. Historical transcription corrections
 
-```text
+The earliest `50.txt` has **two annotations** reading `<-------CORRECTED. Previously ...` in its lower numeric table:
+
+```
 233 217 192 82 105 18 250 248     <-------CORRECTED. Previously 233 217 192 82 105 47 250 248
 240 228 254 54 148 117 209 44     <-------CORRECTED. Previously 240 228 194 54 174 117 209 44
 ```
@@ -31,14 +33,42 @@ Their three zero-based whole-table positions are:
 | 170 | `3E` → 194 | 254 | `4E` |
 | 172 | `2s` → 174 | 148 | `2S` |
 
-The **original upper token lines stayed stale**, even though the lower table already corrected these values. Thus the 2014 decimal and binary files retained all three obsolete entries. In particular, **both noncase numerical discrepancies**, formerly unexplained `47→18` (−29) and `194→254` (+60), had already been recognized and corrected inside the earliest 2014 transcription. They should not be treated as independent evidence of a hidden arithmetic key transformation. The third documented correction is one of the eight ±26 case changes.
+The **original upper token lines stayed stale**, even though the lower table already corrected these values. The 2014 decimal and binary files therefore retained all three obsolete entries. In particular, the noncase numerical discrepancies `47→18` (−29) and `194→254` (+60) were already recognized and corrected inside the earliest 2014 transcription. They are not independent evidence of a hidden arithmetic key transformation.
 
-The archived upper tokens disagree with the source-image-adjudicated LP2 table at exactly `[25,45,50,165,170,172,175,182,199,246]`. Removing those three annotated corrections leaves **seven case-only transcription discrepancies** `[25,45,50,175,182,199,246]`. More specifically, **all seven involve only the visually confusable letterforms I/i and L/l**: `3i→3I`, `1L→1l`, `0L→0l`, `0i→0I`, `2L→2l`, `0L→0l`, `3i→3I` in that order. This tightly bounded character set strengthens the ordinary optical transcription explanation without mathematically proving intent. The reported eight-direction-bit ASCII `f` candidate includes the already annotated ordinary correction at index172 and is therefore **not independent evidence of intentionally encoded eight-bit case data**.
+The archived upper tokens disagree with the source-image-adjudicated LP2 table at exactly `[25,45,50,165,170,172,175,182,199,246]`. Removing the three annotated corrections leaves **seven case-only transcription discrepancies** `[25,45,50,175,182,199,246]`, all involving visually confusable I/i and L/l letterforms. This supports ordinary optical transcription error without mathematically proving intent. The reported eight-direction-bit ASCII-`f` candidate includes the already annotated correction at index 172 and is not independent evidence of intentionally encoded case data.
 
-The later Git commit `d72e8e0` (May 11 22:06) stripped the numeric blocks from the `49/50/51.txt` files, so the crucial comments are invisible in modern versions. Pin the earlier original source commit above.
+The later Git commit `d72e8e0` (May 11 22:06) stripped the numeric blocks from the `49/50/51.txt` files, so the crucial comments are invisible in modern versions. Use the earlier pinned source commit above.
 
-## Cryptanalytic consequence
+## 3. Creator-side release surface and exact missing source
 
-The historical binary is **fully explained as a derivative of an earlier solver-produced transcription**. The independently published original artifact is the 32×8 table itself. Its true generating mechanism remains open; no historically documented independent PRNG state, seeded algorithm, byte codebook or LP2 cipher instruction was recovered. The exact next missing material is an original creator/player-visible instruction about how the **printed table** should transform ciphertext or generate a key. Restrict downstream analyses to the original LP2 JPEG glyphs; use the archived bytes only when intentionally testing the historical **stale** variant. Do not expand generic seed searches on the archived `sexagesimal.bin`.
+The original [2014-05 signed release message](https://github.com/krisyotam/cicada3301/blob/76d3ee8c762f60025822c8c05edbf31351636469/pgp/messages/2014-05-liber-primus-release.asc) and the stage11 `message.txt.asc` body are identical. The signed text says “Your enlightenment awaits you,” gives `ky2khlqdf7qdznac.onion`, and says “We look forward to hearing from you.” It contains no numerical table attachment, generator, seed, or table-use instruction.
 
-The data contract is preserved in [`resources/cicada2014-sexagesimal-source.json`](../resources/cicada2014-sexagesimal-source.json), the earlier original source links above, and [the manuscript glyph audit](lp2-grid-11-original-glyph-adjudication.md).
+At the contemporaneous 2014-05-11 archive commit [`6c3421a`](https://github.com/micheloosterhof/cicada-2014/commit/6c3421a4d245596e403c88e037509d162a2afd17), the 1,640-byte stage11 `index.html` consists of `<title>133</title>`, `<div id="331">`, and sequential image elements `0.jpg`–`57.jpg`. It has no script, form, other link, table-specific text, or separate data file. The two unexplained literals 133 and 331 are reversals, but no independent source semantics connect them to the table's generation or use; assigning them a PRNG role would be an unconstrained guess.
+
+The full public [`micheloosterhof/cicada-2014` tree](https://github.com/micheloosterhof/cicada-2014/tree/master/stage11) is a participant archive. Its stage11 contents are the 58 page JPEGs, `index.html`, the signed locator, participant `49/50/51.txt` and `.dec` transcriptions, the decimal list, the 45-byte pack converter, the derived binary, and page-56/57 decoder material. It contains no table-generation program, deployment bundle, or source-side seed. The `decimaltobyte.pm` file is only the participant conversion described above.
+
+The [pinned `krisyotam/cicada3301` archive](https://github.com/krisyotam/cicada3301/tree/76d3ee8c762f60025822c8c05edbf31351636469/puzzles/2014/assets/stage11) and the [iBotPeaches Onion-7 archive](https://github.com/iBotPeaches/cicada_3301/tree/master/onions/ky2khlqdf7qdznac.onion) preserve page mirrors, locators, and/or participant material, not a creator-controlled generator. The local archive manifest itself labels the krisyotam material as repository copies, not independently proven original HTTP byte sequences.
+
+## 4. Wider public-source survey (11 November 2026)
+
+A bounded global GitHub code search for `sexagesimal.bin` returned 12 indexed matches. The identifiable matches were participant copies, later research logs, or analyses—not a creator-owned pre-release source. The relevant external work was classified rather than treated as new primary evidence:
+
+- [Dukotah, Campaign VII](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/pp49_51/CAMPAIGN-VII-FINDINGS.md) (2026-07-06) canonicalizes the table from relikd transcription, scream314 tokens, and scream314 decimal readings, then characterizes the resulting high-entropy payload. These are research/transcription witnesses; the report supplies no creator generator or signed operation.
+- [pnotisdev, phase 39](https://github.com/pnotisdev/cicada3301/blob/master/work/log/phase39_online_sources.md) compares the same scream314 archive files with iddqd's later byte-string and signed messages. It explicitly treats the binary as a derived transcription, not a Cicada file.
+- [Pitchfork-and-Torch, running-key pass](https://github.com/Pitchfork-and-Torch/liber-research/blob/master/notes/sexagesimal-block-key-pass1.md) and [transposition pass](https://github.com/Pitchfork-and-Torch/liber-research/blob/master/notes/sexagesimal-block-transposition-pass1.md) use the same public copies and report cryptanalytic nulls; neither introduces an author-side source.
+- [Cicada Notebook, session 2](https://cicadanotebook.com/sessions/2.html) documents another modern base-60/key test, not a contemporaneous creator artifact.
+- A 2025 explanatory PDF claims the numbers “tell you how to rearrange the grid,” but supplies no authenticated Cicada instruction or pre-release source. Treat this as community conjecture, not a recovered operation.
+
+The 2016 signed message—“Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction”—is an authentic general statement about LP's numbers, but does not specify the 32×8 table's generation, ordering, arithmetic, or key role. No frozen operation or withheld-cell prediction follows from it.
+
+**Do not conflate this printed 32×8 table with the separate 2014 Onion2 256-byte growing string.** They are different artifacts that happen to have the same length. The latter's server-output and timing-source audit is separately recorded in [workplace/onion2-original-server-source-gate.md](../workplace/onion2-original-server-source-gate.md) and Issue #208; it is not evidence for this table's generator.
+
+## 5. Cryptanalytic consequence and decision
+
+The historical binary is **fully explained as a derivative of an earlier solver-produced transcription**. The independently published original artifact is the 32×8 table printed on LP2 pp49–51. No creator-authenticated pre-release copy of the 256 values, source generator, seed/state, spreadsheet/build file, server-side table code, or table-specific signed instruction was found in the examined public archives.
+
+The exact missing dependency is a creator-controlled artifact that existed before or during publication and determines the table's values (offline source/generator or authenticated pre-release copy), or a creator-authenticated instruction selecting how those values transform ciphertext or generate key/state. If generated at runtime, the missing item is the original server implementation/deployment record; if generated offline, it is the source script/data or signed build artifact. The surviving static release page cannot distinguish those possibilities. The public search does not prove that private or lost material never existed.
+
+No change to `results/README.md` is warranted: this is a source-boundary negative, not an LP2 plaintext, key, or decipherment. Do not expand generic PRNG/seed searches on `sexagesimal.bin`. Reopen only on a dated creator-side source/backup, an independently authenticated pre-release table, or a signed instruction that fixes a reproducible operation and predicts original LP2 data.
+
+The data contract remains in [`resources/cicada2014-sexagesimal-source.json`](../resources/cicada2014-sexagesimal-source.json), the original transcription copy in [`resources/external/cicada2014-stage11-original-transcriptions.json`](../resources/external/cicada2014-stage11-original-transcriptions.json), and the [manuscript glyph audit](lp2-grid-11-original-glyph-adjudication.md).
