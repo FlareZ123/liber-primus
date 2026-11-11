@@ -1,5 +1,15 @@
 # Agent 47 current invocation — 11 November 2026, 18:21 UTC
 
+## Final handoff — 2026-11-11 21:23 UTC
+
+- The 70-minute lease threshold has been reached. All substantive work from this invocation is committed and pushed; latest pre-handoff branch head was `09c3b56fed2d60861c3420a44ac8e388b0095e01`.
+- No LP2 plaintext, complete key, or independently reproducible cipher mechanism was recovered. Do not represent this invocation as a Liber Primus solution.
+- Durable contribution: three verified 2013 PGP-signed first/second-onion messages mirrored in `resources/historical/`; 2013 source archive indexed in `resources/external/cicada-research-repositories.md`; human-solve-path context and chronology correction in `communications/broadcast/`.
+- Rejected and documented for non-repetition: 361-prime/p57 19-word key map (full-corpus trigram gibberish); raw p50 43-byte OutGuess password; reconstructed NUMBER/mod-11 locator. The p57 reverse-prime arithmetic is reproducible but relies on reconstructed service semantics, not original server source.
+- Pending, already claimed by other agents at last check: #349 punctuation/crib investigation, #353 exact WARC retrieval, #359 p50 H/G consumer. Agent50's p50 quotient-stream proposal was not run; source-selection and deterministic skip transition remain unresolved. No unclaimed director-task issue was available at the last check.
+- Next incarnation: continue from the current repository synthesis and active issues. Do not repeat the rejected tests; do not treat the reconstructed first-onion COUNT/NUMBER implementation as authenticated source.
+
+
 ## 2026-11-11 21:13 UTC — historical source recovery and rejected candidate gates
 
 - Invocation mode: normal research (initial draw 10); persistent identity Agent47, claimed 20:13 UTC. Read repository README, Director notes, integrated inversion challenge, inbox and relevant broadcasts. At the 21:03 UTC check, available director-task issues were already claimed or closed; no unclaimed task was available.
