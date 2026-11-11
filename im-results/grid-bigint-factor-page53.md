@@ -13,6 +13,25 @@ P(X)=28(X+5)^2(X^2+18X+11)(X^3+14X^2+16X+24)
 
 where \(R_{238}\) is the **unique monic irreducible factor of degree 238**, specified uniquely by division of the original polynomial by the four displayed factors. The five distinct irreducible degrees are **1, 2, 3, 9, 238**, with multiplicities **2, 1, 1, 1, 1**. The original-source [self-contained Node.js 22 reproducer](../sims/grid_full_gf29_factor_sft.cjs) checks every division, deterministic Rabin irreducibility for all factors, and coefficient-for-coefficient reconstruction. The complete irreducible degree inventory was already established by Agent 32 in [the independent SymPy source certificate](../sims/lp2_grid_gf29_factorization_sft.py) (successful [earlier source CI](https://github.com/FlareZ123/liber-primus/actions/runs/42913117385)). This Node implementation independently reproduces it. This invocation's additional finding is the p36 all-secret monoalphabetic exclusion, followed by the marked-seed and exhaustive cubic original-cipher tests. The three new Node gates all passed [manual original-source CI 42919559141](https://github.com/FlareZ123/liber-primus/actions/runs/42919559141). This factorizaton does **not identify** any historically intended cipher, key or plaintext.
 
+### Source-locked degree-238 recurrence on the original ciphertext (Agent 18, 11 November 2026)
+
+The unique irreducible **degree-238 factor** of the original printed 256-byte polynomial matches the **238 GP runes on physical p36**. A finite, keyless continuation hypothesis is that p36 is the complete initial state of a length-238 GF(29) linear recurrence with the monic factor's coefficients, and the following original ciphertext is its output. This uses the existing source factorization, unique source-page length and published order with no fitted state or hidden key. It is a *direct generator* hypothesis; in an LFSR-based stream **cipher with an additional unknown plaintext**, the raw ciphertext need not obey the recurrence.
+
+Let the degree-238 monic factor have ascending coefficients r0..r238 with r238=1. The source-prescribed forward recurrence is x[t+238] = −sum(j=0..237) r[j]×x[t+j] modulo29. Compute it on the complete original 12,956-rune unknown stream and, separately, resetting at each physical page; also test reversed reading directions.
+
+| Source-fixed recurrence test | Exact matching next runes | Eligible |
+| --- | ---: | ---: |
+| Complete unknown stream, forward | **436** | **12,718** |
+| Complete unknown stream, reversed | **459** | **12,718** |
+| Same physical page only, forward | **42** | **1,025** |
+| Same physical page only, reversed | **39** | **1,025** |
+
+Random GP29 output gives **12,718/29 ≈ 438.55** and **1,025/29 ≈ 35.34** expected matches under a simple uniform null; neither orientation remotely approaches the **100% exact continuation required** by this deterministic generator hypothesis. The sole p36 238-rune source seed predicts **14/228** p37 published ciphertext runes, including **10/100** in its first hundred. Those local coincidences vanish as a usable continuation when the full p37 and subsequent pages are read; the same recurrence from a source-length seed on other pages can achieve even more incidental matches. An exact planted 12,956-rune generator stream, seeded with the original p36 sequence, passes **12,718/12,718** recurrence equations, so the finite rejection is capable of distinguishing a genuine exact generator.
+
+**Decision:** retire p36 as a raw, unmasked, fixed-order GF(29) degree-238 LFSR seed for the original ciphertext stream. The source's irreducible factor and length-238 coincidence remain intact. This experiment does not reject the factor as hidden keystream generator combined with a separately specified plaintext register, different source ordering, or stateful nonlinear cipher. It supplies no key or new plaintext.
+
+Reproduce with the [standalone source-factor LFSR gate](../sims/grid238_p36_seed_allpage_gate.cjs); it reconstructs the original degree-238 factor from its existing exact divisors, checks the untouched source, evaluates every eligible rune and verifies a full synthetic planted continuation.
+
 ### Two source-marked GF(29) critical points: 13 and Ac=24 (Agent 37, 10 November 2026)
 
 The source-visible **31 thirteen-dot punctuation marks** and the oversized p54 **Ac** (GP index **24**) independently identify the two GF(29) evaluation arguments **13** and **24**. For the exact, unchanged 256 source bytes taken as *descending* polynomial coefficients in the original forward row-major base-60 order, the formal derivative has **exactly two roots among all 29 field elements**:
