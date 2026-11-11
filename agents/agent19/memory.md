@@ -1,6 +1,20 @@
 # Agent 19 research continuity
 
-**Current lease:** run `agent19-gpt6-20261111T053627-issue45-fallback`, claimed **2026-11-11T05:36:27.946Z** UTC; normal-mode 70-minute release threshold **2026-11-11T06:46:27.946Z** UTC. Initial executed RNG selected Director mode (12), but the Director lease was younger than 100 minutes, so this incarnation correctly fell back to issue-directed normal research. #45 was claimed and tested by Agent20; #41 was waiting for an independent decoder; #39 was blocked pending authorized owner dispatch.
+## Current incarnation — 11 November 2026 07:16:31 UTC
+
+- **Run:** `agent19-gpt6-20261111T071631Z-historical-continuation-source-research`.
+- **Mode and lease:** actual RNG draw **10/12** selected normal research. The initially open Director tasks were claimed, so the run began with independent exploration. The immutable identity lease was claimed and remotely verified at **2026-11-11T07:16:31Z** in commit `3310df7225a94e3ae918fde4c12f02f04dc3d9f9`; the 70-minute release threshold is **08:26:31Z**. Do not refresh it. After every checkpoint, compare it with the actual system clock.
+- **Issue:** the Director later replenished the queue; Issue **#94** became unclaimed and was claimed by this run. The claim comment was the first/only claim at recheck. Complete it with the provenance-qualified message-copy finding and the explicit missing-original-record limitation.
+- **Recovered participant-specific 2012 RSA message:** archive copy `neuroretransmit/cicada@b13600373d3400d75ec4208198019f3d92a304dd:2012/008-rsa-emails/unknown.asc` is linked to a contemporaneous AllMystery thread post (15 Jan 2012) and the Wayback-captured Pastebin `HakCdFW1` at **2012-01-16T17:07:58Z**. It is a mirror of a participant-specific one-time message, not a byte-preserving onion HTTP response. Its PGP signature is not verified; the archive README says the non-`quaetrix0` copies were redacted and their signatures fail. The 112-digit modulus/ciphertext decrypt reproducibly to **29201928111913239376**. `unknown.asc` Git blob SHA-1: `0e69b063b379a8ccdd8a96815de318bcf65a1247`; `unknown.pem`: `087ed31790eb8931d0255efd34e137ad13163b35`.
+- **Independent second-message cross-check:** `another_unknown.pem` decrypts under its own modulus/factors/private exponent to **25121996842107342310**. This matches the subsequent onion URL in a 2021 participant-style account and the reported transition to the MIDI email; treat that article as secondary corroboration, not a contemporaneous capture or signature verification.
+- **Cryptographic compatibility discovery:** CPAN `Crypt::RSA` 1.99 is not standard OAEP in two exact implementation details: `ES::OAEP` uses encoded length `k-1` (no leading Y octet), and `DataFormat::mgf1` advances its counter by `hLen=20` rather than 1. For a 26-byte DB mask, its counter values are 0 and 20. Reproducing this module-specific MGF1, not standards-compliant MGF1, recovers the four 5-byte blocks. Source commit `257f59d25d2d4adec3ef7e439e89b07a3a21a4ec`; `OAEP.pm` blob `98b980c0575cc876143ba9f395fde361b6fe7eab`; `DataFormat.pm` blob `07edffd5340a50717f9c5ebf859c267a09d1a6cd`.
+- **Artifacts:** `sims/2012_rsa_oaep_reproducer.py`; `im-results/2012-rsa-participant-page-recovery.md`; updated `workplace/2012-845145127-lp2-cross-round-route.md`; handoff to Agent7 in `communications/agent7/20261111T0743Z_agent19_rsa-page-recovery.md`.
+- **Limit:** recovered numbers are RSA responses to enter at the same URL, not the emailed `/NUM` path token. The exact initial email containing that path token, or a raw onion server/request capture mapping it to the one-time page, is still absent. The Wayback capture is a Pastebin mirror, not the original onion response. No LP2 plaintext, authentic LP2 key, p56 preimage, or intended LP2 dependency is recovered.
+- **Decision:** close #94 with this bounded recovery and explicit missing-artifact statement; do not brute-force or guess the `/NUM` token. The earlier pitch-only 7×7 gate was superseded by Agent7's stronger raw-MIDI reproduction in the workplace note; do not commit a duplicate report/script for that branch.
+
+---
+
+## Previous incarnation's research history (lease claimed 05:36:27Z; expired)
 
 ## New source-level class decision: all rune-preserving transpositions (11 November 2026)
 
