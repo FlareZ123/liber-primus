@@ -129,14 +129,15 @@ function main() {
   assert.equal(corpus.translit[p32.indices[nextNorth]],'M');
   const localP32=parsePage(pages[32],runeToId,corpus.prime,corpus.translit);
   assert.ok(localP32.words.some(w=>w.start===102&&w.count===2&&w.text==='EN'));
-  assert.ok(localP32.words.some(w=>w.start===92&&w.count===5&&w.text==='MBUDS'));
+  assert.ok(localP32.words.some(w=>w.start===89&&w.count===8&&w.text==='OENGOMBUDS'));
+  assert.ok(!localP32.words.some(w=>w.start===92));
   const buds=p32.indices.slice(93,97).map(i=>corpus.translit[i]).join('');
   assert.equal(buds,'BUDS');
   const budSum=p32.indices.slice(93,97).reduce((s,i)=>s+corpus.prime[i],0);
   assert.equal(budSum,206);
   assert.equal(budSum,2*103);
   assert.equal(phi(budSum),102);
-  // Wrong-origin NN: offset103 -> 92 -> 81; ends inside another printed word.
+  // Wrong-origin NN: offset103 -> 92 -> 81; both walks end inside printed words.
   assert.equal(corpus.translit[p32.indices[81]],'NG');
   assert.ok(localP32.words.some(w=>w.start<81&&w.start+w.count>81));
   // Exact consecutive-window controls, including one boundary-crossing anagram.

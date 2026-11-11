@@ -1,9 +1,9 @@
-## Current source-lock extension: EN→MBUDS→φ(206)=102 (11 November 2026)
+## Current source-lock correction: EN→OENGOMBUDS suffix and φ(206)=102 (11 November 2026)
 
-- On the original p32 11×11 row-major array, one-based 103rd rune E is at zero-based offset102=(r9,c3). Move E to offset103=(r9,c4), rune N, then N to offset92=(r8,c4), rune M, **start of complete printed word MBUDS**. Zero-based NN wrong-index two-step ends at offset81 rune NG, an internal word cell.
-- BUDS is the p32 word's four-rune suffix at offsets93..96. Its GP-prime sum B61+U3+D89+S53=**206=2×103**; **φ(206)=102**, returning to EN's start offset. Prime(103)=563 is the signed 2016 image width. The independent earlier p15 318° map candidate also selects BUDS (different inferred operation); do not count both as authenticated selectors.
-- This is a precisely reproducible **circular original-rune navigation hypothesis**, not a recovered cryptographic key or plaintext. Unprescribed operations: use EN's own first cell as origin, take cardinals as motions, trim MBUDS to BUDS, apply φ to a suffix as a zero-based address. Competing windows UDSB at offset94 and BUDS at93 share the φ102 arithmetic.
-- New source controls and caveats consolidated in the existing p32 source note and authoritative results README. The Director's #178 was already closed when this extension was found; post-completion comment flagged the result for future triage.
+- Important corrected source parse: p32 original printed **eight-rune word OENGOMBUDS** starts at zero-based offset89 and runs through96. It crosses the visual line break `ᛟᛝᚩ/\nᛗᛒᚢᛞᛋ`. The five-rune `MBUDS` is just the second-line fragment; previous claims that it is a complete word beginning at92 were **incorrect and explicitly withdrawn** in Issue #178.
+- Source-bound p32 EN runes at offsets102,103 can be interpreted as E east then N north from offset102 on the 11×11 grid, visiting offsets103 and92. This ends on **M at the fourth/internal rune** of OENGOMBUDS, immediately before its BUDS suffix; it **does not land on a word start**. Wrong-origin NN two-step ends offset81, also internal to a word.
+- Four-rune BUDS suffix offsets93–96 gives exact GP-prime sum206=2×103 and φ206=102, returning to source EN's starting *zero-based offset*. This closed arithmetic requires inferred movement origin, suffix extraction, and a zero-based φ index; no real LP2 plaintext/key recovered. P15 prior independent source candidate had already selected source word start89 and suffix BUDS through a different inferred construction.
+- Corrected same-commit p32 report, results synthesis, memory, and executable SFT; notify Issue #178 comments. Original lease unchanged, release at 10:54:23.614Z threshold after checkpoint.
 
 ---
 
