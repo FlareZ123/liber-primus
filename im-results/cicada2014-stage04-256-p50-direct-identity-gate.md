@@ -1,6 +1,6 @@
 # 2014 Stage04 1033/3301 source gate: LP1 artifact boundary
 
-**Decision:** the updated Stage04 `<!--3301-->` material continues the earlier LP1/2014 chain. The exact 7,524-byte page-04 OutGuess output occurs in two archived participant copies but has no surviving source-selected decoder. A controlled extraction of the two natural historical text keys yielded no readable message or recognized file. The object remains unclassified and supplies no LP2 key or operation.
+**Decision:** the updated Stage04 `<!--3301-->` material continues the earlier LP1/2014 chain. The exact 7,524-byte page-04 OutGuess output occurs in two archived participant copies but has no surviving source-selected decoder. Two natural historical text-key extractions and the fixed bytewise BASE29 continuous-book GP29 pad (both signs) yield no readable payload or original LP2 plaintext. The object remains unclassified; no source supplies its content type, decoder, or LP2 transfer.
 
 ## Pinned source and extraction contract
 
@@ -44,6 +44,103 @@ A new cross-round, source-length observation deserves a finite test: the exact a
 The [fixed original-object SFT](../sims/2014_stage04_liber_al_7524_key_sft.cjs) applies the entire chapter-III GP-symbol tape, byte-for-byte with **no offset or truncation**, as four literal byte keys: 0–28 GP index, GP prime value, low byte of Unicode rune, and ASCII first character of GP transliteration. Each is combined with the actual 7,524-byte OutGuess output by XOR, byte addition and byte subtraction (twelve cases). Every decoded candidate retains **7.974–7.980 bits/byte entropy**, **at most nine consecutive printable ASCII bytes**, and no recognizable text or file header. Each exact original bytewise inverse and source-native planted-message control succeeds. The original OutGuess object SHA-1 used is `18b50380fcd1ac5133fbc418b5d17f869da93aa0`; the byte count and key count are asserted.
 
 **Decision:** the chapter-III length match supplies no recovered plaintext or cipher. Retire those twelve direct bytewise interpretations; do not extend into arbitrary offsets, text editions, nonlinear transforms, passwords or crypto modes absent a historical instruction fixing one of them.
+
+## LP2 direct continuous-book BASE29 pad gate (Issue #380; 11 November 2026)
+
+**Decision: reject this exact fixed direct-pad interpretation.** The original page-04 default OutGuess object was converted to two BASE29 digits per byte and applied continuously from key offset zero to all 12,956 unknown LP2 runes. Neither additive sign yields English-like plaintext. This closes only this fixed serialization and operation; it does not establish what the opaque Stage04 object contains or exclude a different, source-selected use.
+
+### Source and frozen operation
+
+The exact input is resources/external/derived/2014-stage04/04-outguess.bin: 7,524 bytes, Git blob SHA-1 d738b052bf0548e2f431e231af7ef1514becb4ad, SHA-256 35d31e61275c6b0420e7729161d5f6272122ea7edb87076fe84f3fe3c70af6db, measured byte entropy 7.978326 bits/byte, all 256 byte values present. The serialization is fixed as b -> (floor(b/29), b mod 29), in original byte order, exactly two big-endian GP29 digits per byte with leading zeroes retained. This gives 15,048 key digits; the first 12,956 are consumed once, leaving a 2,092-digit (1,046-byte) suffix unused. There is no cycling, offset search, page reset, byte reorder, XOR, skip rule or fitted parameter.
+
+The 2013 signed TCP challenge authenticates ordinary integer BASE29 (including 3301 -> 3QO), but it does not prescribe this byte serialization, identify the Stage04 page-04 object as key material, or connect it to LP2. Those are the tested hypothesis's weakest assumptions.
+
+The original ciphertext input is the canonical 12,956-rune stream in 2,896 words across 55 rune-bearing physical pages. The numeric-only p50 is omitted. Page and word boundaries below are zero-based global rune offsets; ranges are half-open. The continuous key clock does not reset at page turns.
+
+### Original-input results and language controls
+
+Both candidate streams use every original rune and all 29 GP symbols. Exact forward reconstruction succeeds for both signs, as required for a bijective additive pad; this is not key evidence. The complete candidates, page text, all 2,896 word boundaries, 55 page boundaries and GP index sequences are preserved in [the machine-readable candidate output](stage04_7524_base29_direct_pad_candidates.json). The [reproducer](../sims/stage04_7524_base29_direct_pad_gate.cjs) rebuilds the inputs and emits the same output.
+
+The language model uses GP tokenization from the repository alphabet (longest transliteration match; K/Q -> C, V -> U, Z -> S), with smoothed unigram, within-word bigram and within-word trigram likelihoods. Three independently held-out native GP-English corpora (Gibran, Shakespeare and Emerson) train separate models. For the empirical comparison, 200 deterministic native controls are sampled from the held-out portions while preserving the complete original 2,896-word length profile exactly; all 12,956 rune positions and all word-internal transition counts are matched. In every model/operation/metric combination, the candidate scores below all 200 controls (empirical lower-tail resolution 1/201 = 0.004975).
+
+| Native GP-English model | Operation | Unigram mean log score | Bigram mean log score | Trigram mean log score | Empirical lower-tail p (U/B/T) |
+|---|---|---:|---:|---:|---:|
+| Gibran | P=C-K | -4.4527 | -5.1356 | -3.6989 | 0.00498 / 0.00498 / 0.00498 |
+| Shakespeare | P=C-K | -4.2919 | -5.6403 | -3.9468 | 0.00498 / 0.00498 / 0.00498 |
+| Emerson | P=C-K | -4.2655 | -5.6520 | -4.0431 | 0.00498 / 0.00498 / 0.00498 |
+| Gibran | P=C+K | -4.3964 | -5.0783 | -3.7070 | 0.00498 / 0.00498 / 0.00498 |
+| Shakespeare | P=C+K | -4.2502 | -5.5745 | -3.9585 | 0.00498 / 0.00498 / 0.00498 |
+| Emerson | P=C+K | -4.2276 | -5.5780 | -4.0539 | 0.00498 / 0.00498 / 0.00498 |
+
+The candidate's first words are visibly nonlinguistic; the full outputs are not promoted as plaintext. Both wrong-source controls also remain nonlinguistic: (1) the separate 31,809-byte Stage04 page-03 signed OutGuess object, under the same byte -> two-digit BASE29 mapping; and (2) the correct page-04 bytes shuffled at byte level with fixed xorshift32 seed 0x33012014, then serialized identically. Both signs of both controls also reconstruct exactly, illustrating again that inverse/forward consistency does not distinguish the correct pad.
+
+### Positive control and scope
+
+A 12,956-rune native GP passage taken from the source-derived Gibran text was encrypted under the same fixed key and recovered exactly for both signs. The source bytes, original ciphertext, two candidate signs, wrong-source key, shuffled key and planted native passage therefore exercise the same implementation path.
+
+**Human-solve-path assessment:** a player could see the signed 2013 BASE29 example and the Stage04 page-03 “Let the text guide you” clue. Nothing in the surviving source, however, tells the player that page-04's default OutGuess bytes are an LP2 key, that every byte should be expanded into quotient/remainder digits, or that those digits should be added/subtracted continuously over the book. The finite test was worth running because it fixed a plausible simple serialization before examining plaintext; its failure now retires that precise branch.
+
+**Next decision:** do not add offsets, KDFs, resets, reordering, chained transforms or alternative text encodings to rescue this key. Reopen only if a new original-source instruction independently selects the object and a different reversible consumer. The object's status as intentional payload versus OutGuess extraction noise remains a separate question (Director Issue #385).
+
+### All 55 rune-bearing physical page boundaries
+
+| Physical page | Global rune offsets [start,end) | Runes |
+|---:|---:|---:|
+| 0 | 0–262 | 262 |
+| 1 | 262–528 | 266 |
+| 2 | 528–729 | 201 |
+| 3 | 729–946 | 217 |
+| 4 | 946–1207 | 261 |
+| 5 | 1207–1470 | 263 |
+| 6 | 1470–1666 | 196 |
+| 7 | 1666–1874 | 208 |
+| 8 | 1874–2129 | 255 |
+| 9 | 2129–2397 | 268 |
+| 10 | 2397–2660 | 263 |
+| 11 | 2660–2933 | 273 |
+| 12 | 2933–3194 | 261 |
+| 13 | 3194–3466 | 272 |
+| 14 | 3466–3603 | 137 |
+| 15 | 3603–3762 | 159 |
+| 16 | 3762–4029 | 267 |
+| 17 | 4029–4302 | 273 |
+| 18 | 4302–4562 | 260 |
+| 19 | 4562–4833 | 271 |
+| 20 | 4833–5102 | 269 |
+| 21 | 5102–5375 | 273 |
+| 22 | 5375–5506 | 131 |
+| 23 | 5506–5719 | 213 |
+| 24 | 5719–5989 | 270 |
+| 25 | 5989–6262 | 273 |
+| 26 | 6262–6527 | 265 |
+| 27 | 6527–6761 | 234 |
+| 28 | 6761–7030 | 269 |
+| 29 | 7030–7307 | 277 |
+| 30 | 7307–7570 | 263 |
+| 31 | 7570–7839 | 269 |
+| 32 | 7839–7960 | 121 |
+| 33 | 7960–8174 | 214 |
+| 34 | 8174–8435 | 261 |
+| 35 | 8435–8706 | 271 |
+| 36 | 8706–8944 | 238 |
+| 37 | 8944–9172 | 228 |
+| 38 | 9172–9400 | 228 |
+| 39 | 9400–9640 | 240 |
+| 40 | 9640–9871 | 231 |
+| 41 | 9871–10144 | 273 |
+| 42 | 10144–10416 | 272 |
+| 43 | 10416–10690 | 274 |
+| 44 | 10690–10963 | 273 |
+| 45 | 10963–11233 | 270 |
+| 46 | 11233–11503 | 270 |
+| 47 | 11503–11777 | 274 |
+| 48 | 11777–12048 | 271 |
+| 49 | 12048–12114 | 66 |
+| 51 | 12114–12206 | 92 |
+| 52 | 12206–12469 | 263 |
+| 53 | 12469–12648 | 179 |
+| 54 | 12648–12880 | 232 |
+| 55 | 12880–12956 | 76 |
 
 ## Relationship to the earlier 256-byte object
 
