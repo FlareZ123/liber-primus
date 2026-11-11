@@ -178,6 +178,82 @@ for (const page of pages) {
 }
 const recovered = inverse(plantGroups, winner, best.sign, best.reset);
 assert.deepEqual(recovered, plant);
+/** GP28 repeat-transparent output: D_i=C_i-C_(i-1), with D=0<->EA=28. */
+const mod28 = (x) => ((x % 28) + 28) % 28;
+const exp15 = [], log15 = new Array(29).fill(-1);
+for (let i = 0, v = 1; i < 28; i++, v = v * 15 % 29) {
+  assert.equal(log15[v], -1);
+  exp15.push(v);
+  log15[v] = i;
+}
+assert.equal(new Set(exp15).size, 28);
+/**
+ * @param {number[][]} groups @param {number[]} key @param {-1|1} sign
+ * @param {boolean} reset @returns {number[]}
+ */
+function stepDecode(groups, key, sign, reset) {
+  const out = [];
+  let previous = 0, index = 0;
+  for (const group of groups) {
+    if (reset) index = 0;
+    for (const c of group) {
+      const delta = mod(c - previous);
+      out.push(delta === 0 ? 28 : mod28(log15[delta] + sign * key[index % 256]));
+      previous = c;
+      index++;
+    }
+  }
+  return out;
+}
+/**
+ * @param {number[]} plain @param {number[]} key @param {-1|1} sign
+ * @param {boolean} reset @returns {number[]}
+ */
+function stepEncode(plain, key, sign, reset) {
+  const out = [];
+  let previous = 0, index = 0, at = 0;
+  for (const group of pages) {
+    if (reset) index = 0;
+    for (const unused of group.indices) {
+      const p = plain[at++];
+      const delta = p === 28 ? 0 : exp15[mod28(p - sign * key[index % 256])];
+      previous = mod(previous + delta);
+      out.push(previous);
+      index++;
+    }
+  }
+  return out;
+}
+const stepCandidates = [];
+for (const [projection, sourceValues] of Object.entries(projections))
+  for (const phase of [0, 1])
+    for (const reset of [false, true])
+      for (const keyMap of ['ordinal', 'log15'])
+        for (const sign of [-1, 1]) {
+          const rawKey = sourceValues.slice(phase, phase + 256);
+          const key = rawKey.map((v) =>
+            keyMap === 'ordinal' ? v % 28 : (v === 0 ? 0 : log15[v]));
+          const plain = stepDecode(pages.map((p) => p.indices), key, sign, reset);
+          assert.equal(plain.filter((v) => v === 28).length, 86);
+          assert.deepEqual(stepEncode(plain, key, sign, reset), ciphertext);
+          stepCandidates.push({projection, phase, reset, keyMap, sign,
+            train: ioc(plain.slice(0, 6761)),
+            hold: ioc(plain.slice(6761)),
+            full: ioc(plain),
+            prefix: plain.slice(0, 70).map((v) => corpus.translit[v]).join('')});
+        }
+assert.equal(stepCandidates.length, 64);
+stepCandidates.sort((a, b) => b.train - a.train);
+const stepBest = stepCandidates[0];
+const stepRawKey = projections[stepBest.projection].slice(stepBest.phase, stepBest.phase + 256);
+const stepKey = stepRawKey.map((v) =>
+  stepBest.keyMap === 'ordinal' ? v % 28 : (v === 0 ? 0 : log15[v]));
+const stepPlanted = stepEncode(plant, stepKey, stepBest.sign, stepBest.reset);
+assert.deepEqual(stepDecode(pages.map((p, i) => {
+  const start = pages.slice(0, i).reduce((sum, v) => sum + v.indices.length, 0);
+  return stepPlanted.slice(start, start + p.indices.length);
+}), stepKey, stepBest.sign, stepBest.reset), plant);
+
 console.log(JSON.stringify({
   status: 'Scoped negative: no original unknown GP29 plaintext identified',
   input: { runes: ciphertext.length, inkEvents: 256, redRunes: 225,
@@ -190,5 +266,9 @@ console.log(JSON.stringify({
   original: { ioc: ioc(ciphertext), best,
     nativeControlIoc: ioc(plant), plantRecovered: recovered.length,
     examples: candidates.slice(0, 6) },
+  stepTransport: { kind: 'GP28 repeat-transparent; 86 observed doublets preserved',
+    variants: stepCandidates.length, originalBest: stepBest,
+    bestHold: stepBest.hold, exactNativeRecovered: plant.length,
+    nativeIoc: ioc(plant), examples: stepCandidates.slice(0, 4) },
   interpretation: 'The exact source-state recurrence and polynomial output hypotheses are conjectural. Additive inverses reencrypt trivially for any key; this test finds no supported plaintext.'
 }, null, 2));
