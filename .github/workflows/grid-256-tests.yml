@@ -68,6 +68,7 @@ on:
           - ssss64-row
           - p50-q55
           - signed-wordends-p55
+          - historical-rsa-4096
         default: full
 
 
@@ -365,3 +366,7 @@ jobs:
       - name: Archived 2014 onion-2 and original LP2 grid direct bridge
         if: ${{ inputs.probe == 'crossround' }}
         run: node sims/onion2_grid256_crossround_sft.cjs
+
+      - name: Historical 256-byte object pairs original Cicada RSA4096 signature gate
+        if: ${{ inputs.probe == 'historical-rsa-4096' }}
+        run: node sims/lp2_256byte_historical_rsa4096_signature_sft.cjs
