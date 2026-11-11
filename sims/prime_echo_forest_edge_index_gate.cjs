@@ -6,7 +6,7 @@ const path = require("node:path");
 const { createHash } = require("node:crypto");
 const file = path.join(__dirname, "../resources/liber-primus/lp2-corpus.json");
 const raw = fs.readFileSync(file);
-const blobSha = createHash("sha1").update(Buffer.from(`blob ${raw.length}\\0`)).update(raw).digest("hex");
+const blobSha = createHash("sha1").update(Buffer.from(`blob ${raw.length}\0`)).update(raw).digest("hex");
 const expectedBlobSha = "054f2a0f780b7d46901acbe3d9bf4f0ac1801165";
 assert.equal(blobSha, expectedBlobSha, "canonical corpus blob changed");
 const corpus = JSON.parse(raw.toString("utf8"));
