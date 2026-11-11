@@ -142,7 +142,7 @@ function randomGenerator(seed) {
  * @param {string} name
  * @returns {object[]}
  */
-function testRegister(original, referenceWords, name) {
+function testRegister(original, referenceWords, name, cohort = "all-words", expectedWords = 1132, expectedWindows = 3237) {
   const training = referenceWords.filter((_, i) => i % 2 === 0);
   const heldout = referenceWords.filter((_, i) => i % 2 !== 0);
   const buckets = Array.from({length: 128}, () => []);
@@ -151,11 +151,11 @@ function testRegister(original, referenceWords, name) {
   const source = original.filter((word) =>
     word.length >= 5 && word.length < buckets.length &&
       buckets[word.length].length > 0);
-  assert.equal(source.length, 1132);
+  assert.equal(source.length, expectedWords);
   return ORIENTATIONS.map(({name: direction, coefficients: g}) => {
     const reference = histogram(training, g);
     const observed = histogram(source, g);
-    assert.equal(observed.n, 3237);
+    assert.equal(observed.n, expectedWindows);
     const rng = randomGenerator(142857);
     const controls = [];
     for (let sample = 0; sample < SAMPLES; sample++) {
@@ -180,7 +180,7 @@ function testRegister(original, referenceWords, name) {
     }
     assert.ok(modified >= Math.floor(tested / 2));
     return {
-      register: name, direction, words: source.length,
+      register: name, cohort, direction, words: source.length,
       annihilatedSymbols: observed.n, nativeTrainingSymbols: reference.n,
       originalChiSquare: chi2, controlMin: controls[0],
       controlMedian: controls[250], controlMax: controls[499],
@@ -217,8 +217,20 @@ function main() {
     ...testRegister(words, latin, "GP Vulgate Latin"),
   ];
   assert.deepEqual(results.map((r) => r.nullExceed), [0, 0, 0, 2]);
+  // A page-reset cannot break recurrence windows in complete words contained
+  // within one physical page. The original parser finds 32 cross-page words.
+  const pageWords = original.words.filter((word) =>
+    word.startPage === word.endPage).map((word) =>
+    [...word.runes].map((symbol) => RUNE_INDEX.get(symbol)));
+  assert.equal(pageWords.length, 2864);
+  const pageSafe = [
+    ...testRegister(pageWords, english, "GP Shakespeare English",
+      "page-contained", 1108, 3152),
+    ...testRegister(pageWords, latin, "GP Vulgate Latin",
+      "page-contained", 1108, 3152),
+  ];
   console.log("QUARTIC ANNIHILATOR ORIGINAL-INPUT TEST PASSED");
-  console.log(JSON.stringify(results, null, 2));
+  console.log(JSON.stringify({allWords: results, pageContained: pageSafe}, null, 2));
 }
 
 if (require.main === module) main();
