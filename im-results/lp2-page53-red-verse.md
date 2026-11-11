@@ -40,8 +40,29 @@ The [original-source manual CI run 42829670577](https://github.com/FlareZ123/lib
 
 This tests a **verbatim, word-order-preserving, length-preserving plaintext quotation** from those specific accessible editions. The result excludes that restricted crib-source hypothesis under the declared spelling conventions. It cannot exclude independently authored Cicada prose, different source editions or languages, word insertion/deletion, enciphered spaces, alternative GP digraph spelling, or text that has been significantly edited. No approximate nine-length match is promoted to a plaintext hypothesis because no rune-level key or reciphering evidence accompanies it.
 
+## Source-selected upward-channel audit (Issue #77)
+
+The only independent directional cue is the Tiwaz-shaped first red rune at the far right of the final black line. It is nevertheless part of the red span's first five-rune word, which crosses the line break; it is not a separate arrow token. The source line allocation is **[1, 24, 22, 4]** red runes, while the twelve printed word lengths are **[5,4,4,11,2,3,2,6,5,5,2,2]**. The layout does not specify a rectangular column grid.
+
+The arrow's least-assumptive reading-order prediction is to read the red lines upward: reverse the four physical line groups, preserving left-to-right order within each group. With \`R = page53.indices[128:179]\`, split as [1,24,22,4], this produces:
+
+\`URPNEAIAAJHRTHPDJNGOGFEOMCHDOTCPWEOSWBEOTHNHGJRIADIATHAIEOAEXLEOT\`
+
+This is not a direct GP plaintext or readable terminal instruction. A columnar read would require inventing column alignment not present in the ragged source layout.
+
+The arrow also makes the immediately adjacent black tail the only source-local 51-rune target with an exact length match. Let \`B = page53.indices[77:128]\` (the final 51 black runes) and \`R = page53.indices[128:179]\` (the 51 red runes). Align \`R[0]\` with \`B[50]\` at the boundary and move upward, so the key in black printed order is \`reverse(R)\`. The direct one-to-one GP29 additive pairing gives:
+
+- \`P[i] = (B[i] - R[50-i]) mod 29\`: \`OOEAELEADEABOELWOFEOIADXOSHEOXOENGARDEDIAWOEINGLOENIEOXATNFPIRRTGTH\`
+- \`P[i] = (B[i] + R[50-i]) mod 29\`: \`NGMROENYCCNUTIAFARWWLEOEOLUSJLTHEFOEMTHPFAETICECYJCPAEACEAUOC\`
+
+Neither sign produces readable plaintext. This is a fixed 51:51 boundary test, not a cyclic-key or phase search.
+
+As a separate fixed transfer control, apply the already recovered p56 consecutive-prime-totient stream from index zero to the same black tail read upward, with no additional F skip. The two signs produce \`BBMINCXDEYTHPEOUMOEENGYLCOPHYMWYEOYGAEHROEIMUHBOEMXOENSYTHGIEO\` and \`MNGIAOEFFBURARIACIAAIEAEPSRXOISTHGAEEYAMMEALEOGNGPUTHBFACJJDTHEO\`; neither is plaintext. This does not establish that p53 uses the p56 cipher, but it rules out this simplest frozen transfer.
+
+The following p53 13-dot event terminates the red span. Page 54 begins a separate nine-rune red heading whose first rune Ac is enlarged; its own 13-dot event terminates that heading. Neither annotation nor layout instructs the solver to concatenate the two red spans or treat Ac as an arithmetic operator. The existing 51+9 red-stream test is already recorded in \`im-results/terminal-red60-signed2016-crib-gate.md\` and is negative.
+
 ## Decision-relevant conclusion
 
-The red passage is a genuine *independently visible interval* worth retaining as a future key-reset or clue anchor. Two straightforward inversion mechanisms, including the arbitrary page-local output-label permutation model, have failed to read it as continuous ordinary-English GP text. The independently bounded quotation search additionally found no full or near-full (10/12) twelve-word-length source alignment in the 87 accessible historical editions. A viable proposed decryption must supply **new source-constrained key material or a concrete reversible transform** that predicts unfitted runes; merely finding words after trying a flexible key or insertion policy does not count.
+The red passage is a genuine, independently visible interval and remains a possible future clue or key-reset anchor. The source does **not** select a unique terminal operation: the Tiwaz-shaped rune is embedded in the first red word; the only unambiguous upward row-order read is not plaintext; the exact adjacent 51:51 additive pairing fails in both signs; and the simplest fixed p56 prime-totient transfer also fails. The p54 Ac is a heading initial, not an independently specified operator, and the 13-dot event separates rather than instructs concatenation.
 
-The GP spellings, colour boundaries, lexicon source, source text and readout order are fully specified in the linked scripts and resource annotations. Do not repeat the earlier 50-rune scan or promote short word hits from this passage as recovered plaintext.
+Do not infer a 5×10, 3×17 or other reshape, add a new cipher family, or expand into shifts/anagrams without a further original-source instruction. The current evidence supports **no executable red-channel terminal decoder**. Preserve the source interval and these bounded negatives; do not promote short word hits or speculative parameterizations as plaintext.
