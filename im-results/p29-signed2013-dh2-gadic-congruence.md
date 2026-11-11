@@ -50,6 +50,33 @@ Thus the original printed p29/table material and the **2013 signed DH worked-exa
 
 **The numerical agreement is exact. Its explanation as a deliberate 2013-to-LP2 pointer is provisional.** There is no surviving instruction telling a solver to use p29, subtract the numerical table from its rune polynomial or lift their shared factor modulo G². P29 was originally selected only *after* scanning all pages for G divisibility. The signed DH values became potential explanations after this algebraic relationship was discovered. The combined discovery process prevents treating a small fixed-model null probability as proof of authorial design.
 
+## Additional signed-DH fingerprint at the source-selected Ac24 root
+
+The exact polynomial relationship supports a more specific, still **exploratory** fingerprint of the entire signed 2013 worked example. Its parameters are modulus **23**, generator/base **5**, server public share **8**, client public share **19**, and shared secret **2**. The enlarged LP2 p54 **Ac=24** and G's double root independently fix the evaluation point before viewing numerical outputs. Ordinary formal polynomial derivatives, evaluated at X=24 in GP29, give:
+
+| Source and operation | Exact value mod29 | Possible link to signed 2013 DH |
+| --- | ---: | --- |
+| p39 G's linear coefficient | **5** | DH base 5 |
+| H·G's constant coefficient | **23** | DH modulus 23 |
+| Grid S(24), S'(24) | **0, 0** | The marked G double root |
+| Original grid S''(24) | **23** | DH modulus 23 |
+| Original p29 P''(24) | **25** | Grid second derivative + shared secret 2 |
+| Both P'''(24) and S'''(24) | **7** | 8×19 ≡ 7 (mod29), product of both DH public shares |
+| Fourth derivatives P''''(24), S''''(24) | **20, 23** | No obvious natural continuation of the DH example |
+
+Therefore the entire first four derivative vectors are
+
+```text
+order k               0    1    2    3
+P29^(k)(24)            0    0   25    7
+S^(k)(24)              0    0   23    7
+P29^(k)(24)-S^(k)(24)  0    0    2    0
+```
+
+The second-derivative difference2 and third-derivative equality are **already mathematically implied by the earlier G² congruence**: they must never be counted as independent confirmations. The p39 linear coefficient5 is a direct source value, and the constant23 of H·G is forced by the selected H and G. Of the additional derivatives, S''(24)=23 and P'''(24)=7 are genuine original-source measurements not forced by those first-order roots alone. However identifying **7 as 8×19 mod29** is a post-selected interpretation; the historical DH multiplication is performed under **modulus23**, not modulo29. The original manuscript has no authenticated command to multiply the two public shares in its GP29 field.
+
+This fingerprint gives a concrete candidate for a historical human solve-path test: the 2013 worked-example parameters could guide an operation on the source-marked GP29 polynomials. The current experiment determines no new secret from the public DH example. Testing derivative orders4–6 reveals no continuing signed-example sequence. Future work should require a source-visible reason to apply the second- and third-derivative readings, or a correct **withheld original plaintext prediction**, before inferring design.
+
 ## Independent original checks and necessary controls
 
 The [CommonJS source-native test](../sims/p29_grid_2013_dh_gadic_bridge_sft.cjs) verifies the entire polynomial identity from canonical source input, recreates each quotient, and re-encodes every one of the **277** original p29 source symbols without alteration. Among the **55 rune-bearing unknown pages**, physical p29 is the **only one** satisfying the fixed `(P_page−S) mod G² = 2G` equation. The source-visible byte ordering matters: under the competing omitted-lowercase-f radix59 reading, the four-coefficient remainder is **[17,13,3,26]** instead of **[0,1,10,25]**; reversing the base60 table gives **[5,7,10,20]**.
@@ -78,6 +105,6 @@ The signed 2013 example establishes values **2** and **23** as public worked-exa
 
 ## Decision and next gate
 
-Preserve this new **signed-2013 H/DH2 + p39 G + p29/table** relationship as a single testable cryptanalytic lead. It strengthens the case for a linked polynomial construction across those source artifacts, but it has not specified the remaining inverse that would turn R into readable text. The best next experiment would obtain an independent source instruction or an authentic known-plaintext crib that selects how R is to be interpreted. Another postselected polynomial transform, source-number coincidence or affine sweep would weaken this lead.
+Preserve this new **signed-2013 H/DH2 + p39 G + p29/table** relationship as a single testable cryptanalytic lead. The derivative fingerprint also suggests a possible signed-DH mathematical clue, with serious post-selection ambiguity. Neither the congruence nor the derivatives specify the remaining inverse that would turn R into readable text. The best next experiment would obtain an independent source instruction or an authentic known-plaintext crib that selects how R is to be interpreted. Another postselected polynomial transform, source-number coincidence or affine sweep would weaken this lead.
 
-**Reproduce:** `node sims/p29_grid_2013_dh_gadic_bridge_sft.cjs` at repository root, Node.js 22, built-in modules only. The script contains exact source/plant assertions, 55-page uniqueness, radix controls, a literal BASE29 binary readout and the conditional 50,000-shuffle null. The complete revised original-input test, independent native-GP positive, radix counterchecks and literal Base29 binary check all **passed** in [manual GitHub Actions run 43053884217](https://github.com/FlareZ123/liber-primus/actions/runs/43053884217). No GitHub Actions schedule is added.
+**Reproduce:** `node sims/p29_grid_2013_dh_gadic_bridge_sft.cjs` at repository root, Node.js 22, built-in modules only. The script contains exact source/plant assertions, 55-page uniqueness, radix controls, a literal BASE29 binary readout and the conditional 50,000-shuffle null. The original-input test, native-GP positive, radix counterchecks and literal Base29 binary check all **passed** in [manual GitHub Actions run 43053884217](https://github.com/FlareZ123/liber-primus/actions/runs/43053884217). The expanded signed-DH derivative assertions were added afterward and require the next manual regression to independently confirm their values. No GitHub Actions schedule is added.
