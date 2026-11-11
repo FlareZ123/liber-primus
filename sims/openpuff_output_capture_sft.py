@@ -139,6 +139,22 @@ def main():
         assert facts["crc32"] == f"{zlib.crc32(payload) & 0xffffffff:08X}"
         print(f"PASS: arbitrary embedded name retained, size={facts['size']}, crc32={facts['crc32']}")
 
+        unverified = driver["classify_outputs"]([unknown])
+        assert unverified["output_present"] is True
+        assert unverified["expected_match"] is None
+        assert unverified["output"]["path"] == str(unknown)
+        print("PASS: unknown LP2 output remains an unauthenticated candidate")
+
+        known = driver["classify_outputs"](
+            [unknown], expected_crc32=facts["crc32"], expected_size=len(payload)
+        )
+        assert known["expected_match"] is True
+        mismatched = driver["classify_outputs"](
+            [unknown], expected_crc32=facts["crc32"], expected_size=len(payload) + 1
+        )
+        assert mismatched["expected_match"] is False
+        print("PASS: CRC32 and byte length must both match a supplied control")
+
         assert not driver["wait_for_extraction"](FakeApp(), target, output_dir, 5)
         assert driver["extracted_files"](output_dir) == [unknown]
         print("PASS: extraction wait accepts stable file despite unknown embedded name")
