@@ -165,6 +165,18 @@ The free-coordinate stream begins 15 and ends 20; the latter matches the precedi
 
 All models re-encrypt the original bracketed body exactly and recover a native-GP positive plant. The raw body score is **−10.66230334**. The exact 7×210−2 length fit is worth preserving, but these fixed raw/prime/totient readouts do not recover plaintext. Do not expand this family with arbitrary coordinate permutations, dropped positions, or phases. Reproducer: [p32_m7_segre_free7_readout_sft.cjs](../sims/p32_m7_segre_free7_readout_sft.cjs).
 
+
+## Outer-frame projective-chart selector gate
+
+The two units outside the source-bracketed body total **91+121=212** runes. Removing their first and last boundary runes leaves **210** selectors, one per M7 state. Interpret each selector's GP index modulo 8 as the preferred homogeneous coordinate chart in the eight-coordinate Segre point; if that coordinate is zero, advance cyclically to the next nonzero coordinate. This is a standard deterministic chart fallback, and it gives seven free coordinates per state. The 210 selected pivots span all eight coordinates; 8/210 initial chart choices are zero, and all eight require exactly one forward step. Their state indices are **18, 33, 48, 78, 93, 123, 138, 153** (all congruent to 3 modulo 15). Removing the first and last free values gives **1,468** key values, exactly the cuneiform bracket length.
+
+This is a source-motivated but unproven use of the outer frame as chart selectors. On the 1,468-rune body:
+- **Chain family:** raw/prime/totient-prime key maps × identity/DH2 symbol orders × reset/carry IV × both signs = **36 models**; best trigram **−10.61473398**.
+- **Direct additive:** raw/prime/totient-prime maps into Z29 × both signs = **6 models**; best **−10.60547266**.
+- **Direct readout:** raw/prime/totient-prime maps × identity/DH2-power/DH2-log (EA fixed) = **9 models**; best **−10.51652735**.
+
+All 51 candidates remain below the weakest of 933 native 1,468-rune Latin-Vulgate windows (**−7.32535910**); **0/51** enter the native range. Chain and additive models re-encrypt the original bracket exactly and recover native-GP plants. The raw body is **−10.66230334**. Retire this exact outer-frame chart-selector readout; do not tune selector modulus, fallback direction, or endpoints without a new source instruction. Reproducer: [p32_m7_outer_chart_selector_readout_sft.cjs](../sims/p32_m7_outer_chart_selector_readout_sft.cjs).
+
 ## What this changes
 
 The p32 row-major projective map can now be selected from the complete 16-member physical corner family using the adjacent cuneiform numbers. Those same values select its infinity cycle, prescribe the p3-to-p39 triad correction, and produce an 8×210 geometry across the full pp33–39 page span, not the 1,468-rune bracketed cuneiform body.

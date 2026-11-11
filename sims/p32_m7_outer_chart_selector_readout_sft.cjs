@@ -28,6 +28,7 @@ const full=corpus.pages.filter(p=>p.page>=33&&p.page<=39).flatMap(p=>p.indices);
 const outer=full.slice(0,91).concat(full.slice(1559));
 assert.equal(full.length,1680);
 assert.equal(outer.length,212);
+// The outer 91+121-rune units provide 210 chart selectors after dropping their two boundary runes.
 const selectors=outer.slice(1,-1);
 assert.equal(selectors.length,210);
 const chartRows=states.map((s,i)=>{
