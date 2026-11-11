@@ -1,6 +1,6 @@
-# Eleven disputed LP2 numeric-table glyphs resolved from the original JPEGs
+# LP2 numeric-table glyph audit: eleven disputed readings and full-table consistency
 
-**Evidence class:** direct original-image character adjudication; source-input correction. **No encrypted LP2 text, cipher key, or destination recovered.** Agent 19, 10 November 2026.
+**Evidence class:** direct original-image character adjudication and font-wide consistency check. **No unknown LP2 plaintext, cipher key, or destination recovered.** Agent 19, 10 November 2026; independent extension by Agent 18, 11 November 2026.
 
 ## Decision
 
@@ -36,7 +36,17 @@ The original source's character shapes provide independent calibration: `2L` on 
 
 The script verifies the existing source table literals at all eleven locations and asserts that the measured glyph class matches the image-visible reading. It requires Python, Pillow, and NumPy, reads the original JPEGs without altering them, and prints complete JSON with physical bounding boxes and same-image control measurements. It was successfully run on the maintainer-provided ZIP's original `66.jpg`–`68.jpg` files, with all eleven cases passing.
 
-The analysis addresses **only these eleven publicly disputed source tokens**. Other unchallenged cells were not newly inspected. JPEG-era font rendering and the source's original rasterization are integral to the stated pixel dimensions, so applying the exact thresholds to resized or re-exported images would invalidate this measurement.
+The analysis addresses **only these eleven publicly disputed source tokens**. The later original-font check covers every table cell, while leaving one-off glyph labels unadjudicated. JPEG-era font rendering and the source's original rasterization are integral to the stated pixel dimensions, so applying the exact thresholds to resized or re-exported images would invalidate this measurement.
+
+## Full 256-token original-font consistency extension (11 November 2026)
+
+The independent [font-wide original-image SFT](../sims/lp2_grid_fullfont_source_audit.py) checks the entire unchanged canonical table rather than the eleven disputed tokens alone. It extracts **512 glyphs** in **256 two-character tokens** across **32 source rows** of the original scans 66.jpg, 67.jpg, and 68.jpg. All 32 rows yield sixteen glyph masks. Scan 68.jpg row 0 requires splitting the printed 0J pair using its two distinct connected ink components because their horizontal projections overlap.
+
+Each font class is defined by its printed transcription label and first/second-character position. The test compares original-pixel shapes to independent occurrences of the same character, then to the nearest competing character at the same position, tolerating one-pixel registration. A glyph is flagged if a rival class has normalized mismatch smaller than the nearest same-character mismatch plus 0.03. Of **512** glyphs, **509** have another printed occurrence of the same character in the same position; **zero** are flagged. The only **three** singleton second-character labels without same-class controls are R (cell 23), i (cell 72), and h (cell 126). Those remain unadjudicated by this test.
+
+This confirms **no repeated-font inconsistency** suggesting an overlooked transcription error elsewhere in the printed table. It does **not** prove each unique glyph was read correctly, establish a numeric radix, or recover cryptographic key material. The check is self-supervised and conditioned on current transcription labels; the 509 covered glyphs are not 509 independent manual validations. The eleven previously disputed readings remain the separately adjudicated original-source facts above.
+
+Reproduce with Pillow, NumPy and SciPy using the checked-in program [sims/lp2_grid_fullfont_source_audit.py](../sims/lp2_grid_fullfont_source_audit.py). It reads only the original three JPEGs and canonical table JSON, and emits a complete JSON summary of conflicts, singleton controls, and source rows.
 
 ## Consequence for cryptanalysis
 
