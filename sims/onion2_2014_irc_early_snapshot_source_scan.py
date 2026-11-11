@@ -23,7 +23,7 @@ FINAL = SOURCE["final_hex"].lower()
 assert len(FINAL) == 512
 
 def blob_hash(data: bytes) -> str:
-    return hashlib.sha1(b"blob " + str(len(data)).encode("ascii") + b"\\x00" + data).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(data)).encode("ascii") + bytes((0,)) + data).hexdigest()
 
 def normalized(line: bytes) -> str:
     return line.decode("utf-8", errors="replace").rstrip()[:560]
