@@ -91,6 +91,31 @@ For the ciphertext-feedback witness, the three set sizes are [115,112,111], pair
 
 **Reproduce:** [standalone three-row arbitrary-codebook original-source SFT](../sims/red_triad_qmult_three_row_codebook_sft.cjs). The proof is stronger than the earlier 51-row canonical-byte tests in its unknown-codebook scope, yet deliberately conditional on **the precise source polynomial quotient ordering, two-rune header, fixed pair clock, field addition, two feedback recurrences and one global stationary alphabet**. It does **not** exclude a row-changing 256-element alphabet, different field/output arithmetic, state-dependent codebooks, hidden alternate alphabet segmentation, more complex state updates or missing external key instructions. No original LP2 plaintext or authentic cipher is recovered.
 
+### Independent p53-red-scaled output law (Agent 48)
+
+The first three of p53's **51 red source runes**, with original GP values **[16,13,7]**, give a more complete source-dependent family: set \(\alpha_r=u^{R_r}\) in the same GF841 field and emit
+
+\[
+C_{r,j}=\alpha_rP_{r,j}+S_{r,j},\qquad
+S_{r,j+1}=Q_jS_{r,j}+
+\begin{cases}
+ C_{r,j}, & \text{ciphertext feedback};\\
+ P_{r,j}, & \text{plaintext feedback}.
+\end{cases}
+\]
+
+Every row's \(\alpha_r\) is public and nonzero, and the candidate plaintext is \(P_{r,j}=\alpha_r^{-1}(C_{r,j}-S_{r,j})\). **Each row still has its own arbitrary secret initial field state**, with all 841 possibilities tested. The same exhaustive **841³** triple-set certificate is now independently computed for this red-scaled output model, without assuming any particular byte spelling or codepoint assignment:
+
+| Original first-three-row field codebook constraint | Source-unscaled \(\alpha=1\) | **Red-scaled** \(\alpha_r=u^{[16,13,7]_r}\) |
+| --- | ---: | ---: |
+| Minimum possible alphabet, ciphertext feedback (Bonferroni lower bound) | **260** | **260** |
+| Minimum possible alphabet, plaintext feedback | **261** | **261** |
+| Hidden seed triples escaping the 256-alphabet obstruction, *per feedback law* | **0/594,823,321** | **0/594,823,321** |
+
+For the red-scaled ciphertext-feedback certificate the tight lower-bound witness is the source-seed triple **[19,480,235]** (sets [114,116,113], pair intersections [22,27,34], triple intersection 10, actual union **270**). Under plaintext feedback the witness is **[79,646,534]** (sets [111,116,111], pair intersections [27,25,25], triple intersection 9, actual union **270**). Their inclusion-exclusion lower bounds are exactly 260 and 261, respectively. A source-compatible plant uses a deliberately **noncanonical arbitrary 256-element codebook** \(x_b=(37b+17)\bmod841\) and three independently secret row states, exactly roundtrips every **381** field plaintext/ciphertext pair and is recognized by exhaustive state enumeration under both feedback laws.
+
+**Reproducer:** [p53-red-scaled all-secret GF841 codebook SFT](../sims/red_triad_qmult_red_scaled_codebook_sft.cjs). This directly incorporates the 51 visible red runes absent from the earlier unscaled model. The result establishes a conditional obstruction for these **four** public-feedback-and-row-scale combinations, with independent arbitrary row secrets and unknown fixed codebook. It does not prove that the author's cipher used the proposed field multiplication, or exclude other state laws, source pairings, per-row changing codebooks, nonbyte alphabets or independent hidden material.
+
 ## Distinct fully reversible GP original-input experiment
 
 The adjacent [field-state program](../sims/red_triad_gf841_127cycle_inverse.cjs) tests a separate 51-cycle, source-forced field recurrence with \`S_0\` equal to the first two original ciphertext GP indices \`[15,8]\`, \`P_t=C_t-S_t\`, and \`S_(t+1)=u S_t+Q_(t mod127)\`. It exactly re-encrypts all 12,954 payload glyphs; the original decoded GP-index IoC is **0.0344807853**, while the original payload IoC is **0.0344789617**. The first decoded passage is nonlinguistic. An independent 12,954-GP-rune Shakespeare-based plant decrypts **12,954/12,954** and has IoC **0.06632997**; rotating the 127 source quotient pairs for that plant produces only **425/12,954** correct runes, with IoC **0.03447976**. Thus the particular source-fixed direct-GP evolving-field inverse yields no readable original plaintext despite a working true-source control.
