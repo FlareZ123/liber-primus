@@ -146,6 +146,17 @@ function wholeBookAddress(word) {
   const destination = fullBookPages[globalPage]?.[wordIndex] || null;
   return {word,sum,globalPage,wordIndex,destination:gpText(destination)};
 }
+// The solved original LP2 p57 spells English "tunneling" as TUNNELNG:
+// the "ing" ending is encoded by a single NG rune rather than I+NG.
+// The signed English words are not pre-written in runes, so "hearing"
+// can alternatively encode as HEARNG. The same-sum recurrence is
+// explicitly contingent on one otherwise unselected orthography.
+const historicalHearingIngSingleRune = address('hearng');
+const signedMeaningIngSingleRune = address('meanng');
+assert.equal(historicalHearingIngSingleRune.sum,222);
+assert.equal(signedMeaningIngSingleRune.sum,288);
+assert.notEqual(historicalHearingIngSingleRune.sum,laterSeeks.sum);
+
 const wholeBookAlternatives = ['the','their','seeks','lies']
   .map(wholeBookAddress);
 assert.deepEqual(wholeBookAlternatives.map(x=>x.destination),
@@ -156,6 +167,7 @@ console.log(JSON.stringify({
   sourceFiles, originalPages:58,printedWordCount:2973,
   anchors, baseline, alternatives,
   independentSameSum:{historicalHearing,laterSeeks},
+  spellingAlternative:{historicalHearingIngSingleRune,signedMeaningIngSingleRune,originalP57:'TUNNELNG'},
   wholeBook75Alternative:{count:fullBookPages.length,examples:wholeBookAlternatives},
   conclusion:'One same-sum historical MY pointer, no authenticated 58-page quotient/remainder/zero-origin instruction or original plaintext.'
 },null,2));
