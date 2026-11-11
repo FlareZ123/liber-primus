@@ -144,6 +144,7 @@ for (const orientation of ['original', 'transposed']) {
         score: score(decoded), preview: decoded.map((row) =>
           row.map((x) => corpus.translit[x]).join('')).join('/') });
     }
+}
 const native = positions.map((row) => row.map((i) => emerson[62000 + i]));
 const plantedAdditive = additive(native, 'totient', 1, 0);
 assert.deepEqual(additive(plantedAdditive, 'totient', -1, 0), native);
