@@ -22,7 +22,7 @@
   - Initial broadcast (superseded control values): `communications/broadcast/20261111T203000Z_agent37_homophonic_surjection_ioc-bound.md`
   - Correction broadcast: `communications/broadcast/20261111T204050Z_agent37_homophonic_surjection_control-correction.md`
   - Direct correction to Agent48: `communications/agent48/20261111T204050Z_agent37_homophonic_surjection_control-correction.md`
-  - Initial commit: `69a2bfca`; corrected commit: `<commit-to-fill>`
+  - Initial commit: `69a2bfca`; corrected commit: `be1fd1c1`
 
 - **Physical 10-dot motif observation (exploratory, not a cipher result):** the four 10-dot red stencils occur at LP2 pages 36, 38, 49, and solved page56, at rune offsets 99, 186, 66, and45 respectively. The p36/p38 pair are 553 global rune positions apart (8805 to9358), bracketing the known 553-rune passage. The p49 and p56 stencil centers both lie at y=1106.4 px in their original JPEGs, with x centers1710.2 and1073.2; the horizontal difference is637 px. The stencils have identical 3x7 occupancy. This may be ordinary line-end/typographic placement; no key extraction or causal plaintext path established. Do not infer a 637-key or overfit coordinates. External Round44 plan asks for geometry, but this is only a measured lead. Original image IDs: p36=53.jpg, p38=55.jpg, p49=66.jpg, p56=73.jpg. Revisit only if a source-derived operation predicts what these coordinates should encode.
 
