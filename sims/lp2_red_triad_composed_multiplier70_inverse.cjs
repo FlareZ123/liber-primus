@@ -26,7 +26,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const {
-  source, multiply, power, trace, norm, ioc
+  source, multiply, power, trace, norm
 } = require('./lp2_red_triad_primitive_field_inverse.cjs');
 const { nativeGP } = require('./red_triad_gf841_127cycle_inverse.cjs');
 
@@ -36,6 +36,13 @@ const RUNES = 12956;
 const PERIOD = 70;
 const mod = x => ((x % P) + P) % P;
 const keyOf = x => x.join(',');
+
+function ioc(arr) {
+  const hist = new Uint32Array(P);
+  for (const value of arr) hist[value]++;
+  return hist.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (arr.length * (arr.length - 1));
+}
 
 function inverse29(x) {
   for (let i = 1; i < P; i++) if (mod(x * i) === 1) return i;
