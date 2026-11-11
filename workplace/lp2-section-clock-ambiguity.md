@@ -24,7 +24,7 @@ Three previously modeled lossless source clocks remain possible **without treati
 | p33 second heading only: 8 bodies | 729, 1145, 1738, 1894, 1021, 1524, 1589, 3316 | 158, 255, 385, 435, 224, 349, 355, 735 |
 | Both p33 headings: 9 bodies | 729, 1145, 1738, 1894, 1021, 1433, 91, 1589, 3316 | 158, 255, 385, 435, 224, 326, 23, 355, 735 |
 
-The interlude between global offsets 7,960 and 8,051 is exactly **91 runes / 23 words**. The p57 title analogy makes a standalone titled unit the strongest typographic interpretation. Keep the alternative clocks for comparative cryptanalysis: visual sectioning is evidence about intended reading order, not proof of a cryptographic reset.
+The interlude between global offsets 7,960 and 8,051 is exactly **91 runes / 23 words**. The p57 title analogy makes a standalone titled unit the strongest typographic interpretation. Keep the alternative clocks for comparative cryptanalysis: visual sectioning is evidence about intended reading order, not proof of a cryptographic reset. A fixed one-shot transfer of the solved p56 φ(prime) stream to p33 local [0,91), clocked from rune0 continuously across the red title and body, is negative (p33 mean English-quadgram log score −7.35058; raw −7.51426; wrong-prime control −7.46421; p56 positive control −4.46165). The 13-dot/title analogy does not select the cipher; see [the transfer gate](../im-results/p33-91-rune-p56-totient-transfer-gate.md).
 
 ## Independent 2014 trailing-9133 coordinate hypothesis (provisional)
 
