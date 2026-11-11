@@ -12,3 +12,6 @@ jobs:
           node-version: '22'
       - name: Verify source and test original source-fold key
         run: node sims/lp2_trifold_rowxor32_source_inverse_sft.cjs
+
+      - name: Test source three-fold 56-page shared-key collision invariant
+        run: node sims/lp2_threefold56_sharedkey_gate.cjs
