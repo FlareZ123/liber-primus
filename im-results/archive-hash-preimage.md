@@ -142,6 +142,18 @@ The updated [terminal-grid report](../im-results/terminal-grid-xor-anend-digest.
 
 **Page-15 square as a 64-byte preimage candidate (Agent 23, 11 November 2026).** The source-fixed 4×4 Fibonacci-prime square contains 16 integers; representing them as sixteen 32-bit values gives a natural 64-byte candidate input. Tested five exact source-derived sequences—clockwise displayed values, printed row-major values, underlying primes, prime ordinals and Fibonacci indices—each in 32-bit big-endian and little-endian form, under SHA-512, SHA3-512, BLAKE2b-512 and SHAKE256-512: **40 comparisons, zero exact matches** against the p56 target. This is a finite raw-integer serialization screen; it does not establish a target serialization or digest algorithm and does not motivate arbitrary further formats.
 
+### 2017 ArchiveBot root HTML: exact Wayback id_ replay recovered (Agent3, 11 November 2026)
+
+The raw host WARC `1711141131131.xyz-inf-20170629-043925-ewtko-00000.warc.gz` (22,508,403 bytes) at Archive.org returns HTTP 403/401. The exact capture is retrievable through the Wayback `id_` endpoint:
+
+`https://web.archive.org/web/20170629043935id_/http://1711141131131.xyz/`
+
+The replay is accepted as the same entity because HTTP 200; `Memento-Datetime: Thu, 29 Jun 2017 04:39:35 GMT`; `X-Archive-Src` names the exact host WARC; `X-Archive-Orig-Date` is the same timestamp; `X-Archive-Orig-Content-Length` and actual body length are **7,063 bytes**; and SHA-1 base32 exactly matches the CDX digest `GPMGLFNUMSJSUJVXPZSRAZPQJBVLRDPV`. The CDX index's separate `length` field is 4,521; it is not the HTTP entity-body length. Body SHA-256 is `2bcfba6bbd27738ba3bab0033713d4fc533be8f1a26b5b55de3d7274c79c590b`.
+
+The HTML title is `Elsa ~ 628`. It contains a poem naming Alice, Bob, Eve, Ana and Graham, a large decimal block, and references to `MasterCicada1.mp3`, `July5th.mp3`, `Kees.mp3`, `QII.jpg`, and `30.png`. **No media was fetched.** No PGP armour marker occurs. Direct body hashes under SHA-512, SHA3-512, BLAKE2b-512, SHAKE256(64), and Whirlpool do not match the p56 target; the Whirlpool `abc` known-answer test passes.
+
+This is a verified replay-derived HTTP entity, **not a raw WARC extraction** and not evidence that the third-party page is Cicada-authenticated. The page's self-description and media filenames do not establish provenance. Files: [root HTML](../resources/external/warc/1711141131131.xyz/20170629-root/root.html), [headers](../resources/external/warc/1711141131131.xyz/20170629-root/headers.json), [verification metadata](../resources/external/warc/1711141131131.xyz/20170629-root/metadata.json), [capture README](../resources/external/warc/1711141131131.xyz/20170629-root/README.md). Reproducer: `sims/extract_wayback_id_replay.py`.
+
 ### Source-derived p50 dual-factor quotient as p56 preimage candidates (Agent3, 11 November 2026)
 
 A distinct source-motivated candidate follows from the p50 polynomial relation. Reduce the original p50 base-60 row-major bytes modulo 29, divide the high-to-low coefficient polynomial by the monic product of the 2013 BASE29 factor `H=3+26X+24X²` and the p39/DH23 factor `G=27+5X+15X²`. The division is exact and yields a 252-digit quotient. The authenticated 2013 TCP-server challenge supplies the numeral alphabet `0123456789ABCDEFGHIJKLMNOPQRS` through its worked example `3QO → [3,26,24]`.
