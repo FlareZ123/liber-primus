@@ -288,7 +288,7 @@ Reproducer: [\`sims/gf841_51x127_outer_product_mask.cjs\`](../sims/gf841_51x127_
 
 ## p57 cicada stipple 241/331 selector gate
 
-A source-constrained two-dimensional mask was tested from the p57 cicada illustration and p32's 11×11 prime grid. The original image analysis gives **241** small stipple components on the left and **331** on the right. These are the 53rd and 67th primes; the proposed selector maps those ordinal positions to p32 rune offsets **53** and **67**, whose GP-prime weights are **101** and **11**. Since 53 and 67 are also GP prime weights for **S** and **E**, the same counts admit a secondary literal **SE** reading. That compass interpretation is not used by the mask below and has not been tied to a unique route. The p32 offset selection is a candidate cross-page relation, not an established author instruction (see [Agent 46's source proposal](../communications/agent42/20261111T0247Z_agent46_p57-stipple-gf841-period-pair.md)).
+An exploratory two-dimensional mask was tested using the measured p57 component split **241/331** and p32's 11×11 prime grid. **Selector confidence downgraded 11 November 2026:** SECRA reports that p57's dotted-insect positions strongly match the deterministic legacy GIMP Dissolve field (96.0% whole-image F1, 93.9% held-out F1, 166 residual cells; [report](https://secra.tech/research/liber-primus-strongest-findings/), [evidence](https://secra.tech/research/liber-primus-strongest-findings/evidence/index.html)). The exact 241/331 component split has not been compared with that reconstructed field, so these values may be rendering-derived; the prime-ordinal/p32-offset selection is not source-authenticated. The finite inverse below remains a valid negative for the stated arithmetic rule, but it does not validate the selector. If treated conditionally, 241/331 are the 53rd/67th primes and select p32 offsets **53** and **67**, whose GP-prime weights are **101** and **11**; 53 and67 also have the literal GP reading **SE**. This is a retrospective candidate relation, not an instruction (see [Agent 46's source proposal](../communications/agent42/20261111T0247Z_agent46_p57-stipple-gf841-period-pair.md)).
 
 In GF(29²), with u² = 8 + 3u, the two selected coefficient pairs are:
 - zL = (101 mod 29, 11 mod 29) = (14, 11) = u^50; multiplicative order 84.
@@ -310,7 +310,7 @@ No phases, rotations, row keys, or fitted parameters are used. The four natural 
 
 The random expectation for either canonical 256-of-841 strip is **1,971.60/6,477**. All four results are near this baseline, and no row yields a complete 127-byte sequence. The original payload's Shakespeare-GP trigram score is **−13.28405598** nats/rune; the four decoded scores are **−13.27240204**, **−13.23542527**, **−13.29513756**, and **−13.26385430**. The best remains **4.8350 nats/rune below** the weakest minimum among 300 same-length native-GP windows (Shakespeare **−7.94651145**, Gibran **−8.39553970**, Emerson **−8.40039103**). No GP-English structure appears.
 
-**Additional source reading and row-clock tests (Agent 42).** The same 241/331 split has a second compact reading through the visible thirteen-dot mark: 241 = 13·18 + 7 and 331 = 13·25 + 6. This gives M=[[18,7],[25,6]] over F29, an invertible matrix of exact order 105=3·5·7. The remainders match p57 body sentence word counts 7/6/6; quotient 18 is GP rune E, the final rune of red PARABLE, and 25 is AE. The total stipple count 574 is also 7×(51+31), where 51 is the p53 red-run length and 31 the count of thirteen-dot marks. This is a second candidate interpretation, not an authenticated operation.
+**Additional source reading and row-clock tests (Agent 42).** If the component values are treated as intentional, a second retrospective reading through the thirteen-dot mark is 241 = 13·18 + 7 and 331 = 13·25 + 6. This gives M=[[18,7],[25,6]] over F29, order 105=3·5·7; the remainders match p57 body sentence word counts 7/6/6. The quotient values 18/25 have GP readings E/AE. The total 574 is also 7×(51+31), with 51 the p53 red span and31 the thirteen-dot mark count. All of these interpretations share the GIMP-rendering confound and are not authenticated selectors.
 
 Agent42's original-input SFT additionally tested M as a row-reset state transition, S[r,0]=(24,R[r]) or (R[r],24), P=C−S and S[r,j+1]=M·S[r,j]+Q[j]. It also tested the two-cycle mask with the p53 red-rune value as the row exponent, K[r,j]=zL^R[r]·zR^j·Q[j], under all four additive/multiplicative operations. Results:
 
@@ -333,33 +333,8 @@ All four original-input transformations re-encrypt exactly. A deterministic **6,
 
 Reproducers: [Agent 24's canonical-byte two-cycle gate](../sims/gf841_51x127_two_cycle_mask_sft.cjs) and [Agent 42's full source-fixed field-clock gate](../sims/lp2_stipple_241_331_field_clock_gate.cjs).
 
-## p57-derived SE diagonal as a row seed — bounded negative
-
-The secondary reading of the p57 left/right prime ordinals as GP runes S/E gives a candidate southeast direction. Applied to the row-major 51×127 field register, the simplest direct use is the main SE diagonal D[r] = C[r,r], one field element per row. Treat each D[r] as the row's fixed initial state and use the existing p3/p39 recurrence:
-- S[0] = D[r]
-- P[r,j] = C[r,j] - S[j] or C[r,j] + S[j]
-- S[j+1] = u*S[j] - Q[j] or u*S[j] + Q[j]
-
-Only the four sign combinations were tested; no phase, diagonal shift, alternate orientation, or seed fitting was used. All four transformations re-encrypt exactly when the extracted diagonal is held fixed, and a deterministic 6,477-byte plant is recovered exactly under all four inverse operations.
-
-| Output sign | State sign | Canonical bytes (29*a+b < 256) | Reversed bytes (a+29*b < 256) | Shakespeare-GP trigram |
-|---:|---:|---:|---:|---:|
-| − | − | 2,000 / 6,477 | 2,014 / 6,477 | −13.25185388 |
-| − | + | 1,955 / 6,477 | 1,971 / 6,477 | −13.24852301 |
-| + | − | 1,951 / 6,477 | 2,025 / 6,477 | −13.27281310 |
-| + | + | 1,959 / 6,477 | 1,969 / 6,477 | −13.29562028 |
-
-No variant yields a complete 127-byte row. Counts remain near the random expectation **1,971.60/6,477** and near the unmasked baseline (1,917 canonical; 1,920 reversed). The best trigram score, **−13.24852301**, remains **4.8481 nats/rune below** the weakest minimum among the native-GP controls (−8.40039103). No plaintext structure appears.
-
-**Decision:** reject the direct SE-diagonal-as-row-seed recurrence as a canonical-byte or GP-English decoder. This does not rule out a different use of the diagonal or a non-byte state machine.
-
-Reproducer:
-```sh
-node sims/gf841_51x127_se_diagonal_seed_sft.cjs
-```
-
 ## Interpretation and open mechanism
 
-The byte gate, separate all-secret terminal-register test, and p57-stipple-selected two-cycle mask are finite exclusions under different source interpretations. The static-offset byte gate excludes canonical one-byte-per-two-runes encoding under the two tested row multiplier rules. The independent evolving-state gate excludes the same canonical transport and every row-rotated consecutive 256-exponent codebook under each of two quotient-multiplier feedback laws, **even allowing all 841 unknown states per row**. It **cannot** exclude reduction modulo 256, arbitrary alternative 256-codepoint subsets, homophonic/noncanonical byte encodings, hidden within-row state, variable-rate coding, different grid orientations, or another selection of start/boundary. The public-state test is likewise a negative for one recurrence, not for GF841 altogether.
+The byte gate, separate all-secret terminal-register test, and conditional p57-stipple-derived two-cycle mask are finite exclusions under different source interpretations. The p57 selector itself is not established because its measured components may be generated by the GIMP Dissolve field. The static-offset byte gate excludes canonical one-byte-per-two-runes encoding under the two tested row multiplier rules. The independent evolving-state gate excludes the same canonical transport and every row-rotated consecutive 256-exponent codebook under each of two quotient-multiplier feedback laws, **even allowing all 841 unknown states per row**. It **cannot** exclude reduction modulo 256, arbitrary alternative 256-codepoint subsets, homophonic/noncanonical byte encodings, hidden within-row state, variable-rate coding, different grid orientations, or another selection of start/boundary. The public-state test is likewise a negative for one recurrence, not for GF841 altogether.
 
 The essential missing step remains a historically discoverable **source-specified, lossless original-input decoding operation** capable of making all original glyphs and boundaries and yielding independently recognizable recovered plaintext. Extending the row key space to arbitrary alphabet permutations, or searching red-derived phase knobs without a source instruction, would erase the discriminating capacity gate.

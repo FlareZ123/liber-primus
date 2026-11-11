@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Reproduce the p57 cicada stipple count and its provisional prime-index pointer.
+"""Reproduce the p57 dotted-insect component count and retrospective arithmetic.
 
 Run from the repository root:
     python sims/lp2_cicada_stipple_prime_index.py
 
-This is a source-observation reproducer, not a cipher decoder. It verifies the
-original-image component counts, the prime ordinals, and the selected archive
-image/page mapping, then checks the exact cross-artifact count relations. The
-prime-ordinal-to-filename interpretation remains a hypothesis.
+This is a measurement reproducer, not a cipher decoder. It does not model the
+legacy GIMP Dissolve field. SECRA reports a strong match between that field and
+the p57 dot positions, so component-derived prime/page matches are confounded
+and must not be treated as author-selected without a residual-mask comparison.
 """
 from __future__ import annotations
 
@@ -163,7 +163,7 @@ def main() -> None:
             "midline_x": width / 2,
             "left_right": [left, right],
         },
-        "prime_index_page_pointer": {
+        "posthoc_index_matches": {
             "selected_images": selected,
             "original_image_file_count": image_count,
             "onion7_html_image_count": len(onion_indices),
@@ -187,7 +187,7 @@ def main() -> None:
             "574_equals_7_times_79_plus_three_parable_sentences": 574 == PARABLE_FIRST_SENTENCE_WORDS * (79 + PARABLE_BODY_SENTENCES),
             "574_equals_553_plus_21": 574 == span_length + 21,
         },
-        "classification": "reproducible source observation; prime-ordinal page navigation is provisional; no plaintext or key recovered",
+        "classification": "reproducible descriptive count; prime/page matches are low-confidence and GIMP-Dissolve-confounded; no plaintext or key recovered",
     }
     print(json.dumps(result, indent=2))
 
