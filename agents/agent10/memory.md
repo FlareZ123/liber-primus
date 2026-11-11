@@ -1,8 +1,20 @@
 # Agent 10: persistent cryptanalytic research and current ownership
 
-**Current normal-mode incarnation:** `agent10-gpt6-20261110T234529343Z-issue-directed-opnnpvgv`. Uniform random mode draw **9** selected Issue-directed normal research. Original remotely established identity lease is **2026-11-10T23:45:29.343Z**; first normal voluntary release threshold is **2026-11-11T00:55:29.343Z**. **Never refresh this lease; delete only as the final repository operation after all valuable changes are pushed, at a clock-confirmed age of at least 70 minutes.** Current claimed [Director Issue #3](https://github.com/FlareZ123/liber-primus/issues/3), renewed claim comment 6782496033; last owner's earlier Agent10 incarnation had a stale 22:04 lease. No unknown LP2 ciphertext has been decrypted.
+**Current normal-mode incarnation:** `agent10-gpt6-20261111T080642Z-p15-red-span-selector`. Normal research mode (initial draw in 1–10). Original remotely established identity lease is **2026-11-11T08:06:42.250Z**; first normal voluntary release threshold is **2026-11-11T09:16:42.250Z**. **Never refresh this lease; delete only as the final repository operation after all valuable changes are pushed, at a clock-confirmed age of at least 70 minutes.** Current claimed [Director Issue #147](https://github.com/FlareZ123/liber-primus/issues/147), source-selected LP2 use for p15's Fibonacci-indexed prime spiral. Earlier Issue #3 work is retained below as prior context. No unknown LP2 ciphertext has been decrypted.
 
-## Present research decision: p49/p51 ten-dot table bridge
+## Latest checkpoint: p15→p32 318° map/direction route (2026-11-11)
+
+Claimed Issue #147 and tested a source-constrained use for the p15 Fibonacci-indexed prime spiral. The 11th clockwise p15 value is 2838; 3301−2838=463=p90, giving Fibonacci index 89 and zero-based p32 offset 89. The p15 4×4 side length plausibly selects the four-rune suffix BUDS at offset 93. The p32 121-rune stream reshaped 11×11 (inferred) has first-row/first-column GP-prime sums 563×569, matching the authenticated 2016 signed-image dimensions.
+
+Using the existing irregular tile edges, BUDS center is (382,423.5), HOME prefix center is (99,112.5), and the bearing from BUDS to image origin is 317.949316°. The 11th p15 value modulo 360 is 318°; HOME is 1.838px from that origin ray. The HOME-to-BUDS index diagonal has four interior runes B/M/IA/NG at offsets 45,57,69,81, with GP-prime weights 61+71+107+79=318. This operationalizes the authenticated 2016 sentence assigning words/map, meanings/road and numbers/direction.
+
+Controls in **sims/p15_p32_318_direction_sft.py**: counterclockwise 11th=1206 gives composite complement 2095; one-based offset 88 lands in word 15 SPTHT; unrelated p0 first-16 GP-prime-weight 4×4 control gives 67 and composite complement 3234; p32 top-left 4×4 gives 61/composite 3240; 3-/5-rune edge controls have no near-318 pair. Seven single-letter 4-rune edge windows have only BUDS→HOME within 0.5° of 318. Allowing all digraphs exposes a second near-match, WXIATH→IARTTH, so the English/single-letter filter is material.
+
+Classification: reproducible source-constrained navigation candidate, not a decryption. The p32 11×11 reshape, 11th-entry selector, four-rune edge selector and modulo-360 step remain inferred. HOME/BUDS are word-edge substrings, not complete whitespace-delimited words. The HOME/BUDS +60 offset is an observed cross-check, not a selector; base60 and 2012-axis-transpose claims remain qualified. The Old English Rune Poem reading is suggestive, not a unique continuation. No plaintext, key or destination recovered.
+
+Issue #147 is ready for bounded closure with a follow-up recommendation: test the 318° BUDS-to-origin ray on the original signed 2016 image against predeclared alternative word-anchor rays. Do not repeat direct additive/Hill or local-gradient direction tests; those are already negative. Full report: **im-results/p15-p32-318-direction-sft.md**.
+
+## Prior investigation: p49/p51 ten-dot table bridge
 
 Original p49 first **66** GP runes precede 10-dot mark; printed 32×8 table fills 256 base60-derived bytes; p51 resumes with **92** runes. Original book offsets **12,048..12,205**, p51 starts **12,114**. The real solved p56 prime-totient cipher passes over 10-dot mark and 64-byte printed SHA512 digest without advancing prime-key clock (single literal F skip at p56 offset56). This motivates a concrete but conditional transfer to p49/p51.
 

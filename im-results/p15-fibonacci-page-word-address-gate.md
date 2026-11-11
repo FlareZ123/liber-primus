@@ -1,4 +1,4 @@
-# p15 Fibonacci-prime spiral as a paired page/word map: bounded negative
+# p15 Fibonacci-prime spiral: direct-key negatives and a 318° p32 navigation candidate
 
 **Classification:** exact original-source navigation experiment with finite negative results. The p15 Fibonacci-prime construction is real and reproducible, but neither direct page/word pairing nor the source-motivated infinity-arrow Fibonacci additive reading yields an independently useful plaintext route or key. **No unknown LP2 plaintext or authentic cipher key is recovered.**
 
@@ -144,10 +144,30 @@ p33/w36 TJ → p38/w2 IAAETECF → p1/w7 OEI → p56/w2 OESR (END).
 
 Most other paths enter existing cycles; the recursive map does not yield a new unknown plaintext or a distinctive route. The one END hit is explained by the size of END's pre-existing basin.
 
+## New p15→p32 318° map/direction test
+
+A distinct navigation candidate now exists alongside the negative direct-key tests. The authenticated 2016 message says: “The words are the map, their meaning is the road, and their numbers are the direction.”
+
+The p32 121-rune stream can be reshaped 11×11 (inferred, not printed); its first-row/first-column GP-prime sums reproduce the 563×569 signed-image dimensions. The p32 11-side supplies a plausible selector for p15's 11th clockwise value, 2838. Then 3301 − 2838 = 463 = p90, whose Fibonacci index is 89: the zero-based start of p32 word 16. The p15 grid side length four supplies a plausible four-rune suffix selector, yielding BUDS at offset 93.
+
+The four-rune HOME prefix at offset 33 and BUDS suffix at 93 define image-space centers (99,112.5) and (382,423.5). From BUDS, the bearing to the signed image origin is 317.9493°, rounding to 318°; the HOME center is only 1.84 pixels from that ray. Independently, the four interior cells on the HOME-to-BUDS index diagonal are B/M/IA/NG, with GP-prime weights 61, 71, 107 and 79, summing to 318. The p15 value modulo 360 supplies the same direction.
+
+Controls:
+- Counterclockwise 11th entry: 1206; its 3301-complement 2095 = 5×419 is composite.
+- One-based indexing: offset 88 lands on the last rune of word 15, not BUDS.
+- Unrelated p0 first-16 rune-weight 4×4 control: 11th value 67; complement 3234 is composite.
+- p32 top-left 4×4 control: 11th value 61; complement 3240 is composite.
+- Three- and five-rune single-letter edge-window controls produce no pair within 0.5° of 318°; the four-rune set has seven windows and only BUDS→HOME matches.
+- Allowing all GP digraphs creates an additional near-match, WXIATH→IARTTH at 318.1548°. The English/single-letter filter is material.
+
+This is stronger than a numerical coincidence but remains a navigation hypothesis, not a decryption. The 11×11 reshape and the 11th-entry/four-rune-edge selectors remain inferred; the all-digraph edge set has an alternative near-match. The HOME/BUDS +60 offset is only a cross-check; historical base60 and 2012-axis-transpose claims remain qualified. The Old English Rune Poem semantic continuation is suggestive but non-unique.
+
+Full derivation and reproducible controls: **im-results/p15-p32-318-direction-sft.md** and **sims/p15_p32_318_direction_sft.py**.
+
 ## Decision and scope
 
-Retire the two direct paired-coordinate readings, their immediate recursive signed-2016 base58 continuation, and the source-motivated infinite Fibonacci-mod-29 additive reading of the p15 arrow-targeted body as plaintext/key routes. This is a finite exclusion of the two natural pairings only. It does **not** disprove the p15 Fibonacci-prime construction, nor every possible page-navigation use of it. It does not justify trying arbitrary offsets, rotations, alternate moduli, or word-index conventions without a new independent source instruction.
+The original direct paired-coordinate, additive, and simple Hill/transposition readings remain bounded negatives. A separate p15→p32 navigation candidate now survives a source-constrained test: the p15 11th clockwise value gives 318°, matching the bearing from the p32 BUDS edge-window center to the signed-image origin and passing within 1.84 pixels of HOME. The selected HOME/BUDS index diagonal's four interior GP-prime weights also sum to 318. Wrong spiral orientation, one-based indexing, 3-/5-rune edge controls and an unrelated p0 4×4 control fail.
 
-The strongest remaining use of the p15 square is its established Fibonacci-indexed prime generator. The original infinity mark and red arrow are genuine source cues, but the obvious additive continuation to the arrow-targeted body fails. A successor should proceed only if an independent artifact specifies a different reversible operation or how the generator acts on original ciphertext/the 32×8 table.
+This closes the bounded question of whether the p15 spiral has a plausible LP2 map/direction use. It does **not** establish a cipher, plaintext, key or final destination. The 11×11 reshape and the 11th-entry/four-rune-edge selectors remain inferred; the all-digraph edge set has an alternative near-match. The next decisive test is the 318° ray against the original signed 2016 image with matched alternative-ray controls, followed by a precommitted LP2 prediction. Do not reopen the already-negative direct key families.
 
-**Reproducer:** [sims/p15_fibonacci_page_word_address_gate.cjs](../sims/p15_fibonacci_page_word_address_gate.cjs). The script asserts the original 16 values, generated prime ordinals, both direct address sets, physical printed-word count, all four arrow-targeted Fibonacci-mod-29 body transforms, exact END basin, and the only END-reaching path.
+Reproduction: **sims/p15_p32_318_direction_sft.py**. Full report: **im-results/p15-p32-318-direction-sft.md**.
