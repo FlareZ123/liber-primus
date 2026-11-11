@@ -78,7 +78,7 @@ function main() {
   const score = trigramScore(keys.full_prior_lp1);
   const solvedP57 = corpus.pages[57].indices;
   assert.equal(solvedP57.length, 95);
-  assert.equal(transliterate(solvedP57).slice(0, 19), "PARABLELICETHEINSTAR");
+  assert.ok(transliterate(solvedP57).startsWith("PARABLELICETHEINSTAR"));
 
   const models = [];
   for (const [name, key] of Object.entries(keys)) {
