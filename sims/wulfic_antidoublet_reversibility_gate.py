@@ -374,6 +374,14 @@ def model_identifiability_gate() -> dict:
             "annotation_records": mark_records,
             "unique_transitions_bracketed": len(marked_global_edges),
             "equal_pairs_at_marked_transitions": 0,
+            "marked_transition_edges": [
+                {
+                    "from": positions[g - 1],
+                    "to": positions[g],
+                    "equal": transition_by_global[g]["a"] == transition_by_global[g]["b"],
+                }
+                for g in sorted(marked_global_edges)
+            ],
             "master_segment_boundaries": [
                 {
                     "global_offset": g,
@@ -393,7 +401,7 @@ def model_identifiability_gate() -> dict:
             "fitted_suppression_probability": suppression,
             "status": "retrospective fixed-split check; not a blind pre-registration",
         },
-        "predeclared_kernel_predictions": {
+        "kernel_predictions": {
             "repeat_probability": r,
             "each_nonrepeat_probability": (1.0 - r) / (N - 1),
             "lag2_equal_probability": p_lag2,

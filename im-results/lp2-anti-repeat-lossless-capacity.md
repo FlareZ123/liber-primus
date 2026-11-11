@@ -1,6 +1,6 @@
 # Lossless coding capacity of LP2's original adjacent-repeat deficit
 
-**Scope and status (11 November 2026).** This report contains (i) an exact, source-original information-accounting theorem for proposed **universal fixed-length runic encoders** that force ciphertext into a rare-repeat subset, and (ii) a source-pinned injectivity gate for Wulfic's 2026 anti-doublet generators. Neither is a proposed historical Cicada cipher or plaintext recovery. The source inputs are the unchanged [canonical LP2 corpus](../resources/liber-primus/lp2-corpus.json) and [canonical master transcription](../resources/transcriptions/liber_primus_master.txt). Reproduction: [Node capacity proof](../sims/lp2_anti_repeat_lossless_capacity.cjs) and [Wulfic model gate](../sims/wulfic_antidoublet_reversibility_gate.py).
+**Scope and status (11 November 2026).** This report contains (i) an exact, source-original information-accounting theorem for proposed **universal fixed-length runic encoders** that force ciphertext into a rare-repeat subset, (ii) a source-pinned injectivity gate for Wulfic's 2026 anti-doublet generators, and (iii) a full-boundary and key-skip/output-rewrite identifiability gate. None is a proposed historical Cicada cipher or plaintext recovery. The source inputs are the unchanged [canonical LP2 corpus](../resources/liber-primus/lp2-corpus.json), [canonical master transcription](../resources/transcriptions/liber_primus_master.txt), and [original-image punctuation annotations](../resources/liber-primus/lp2-ink-annotations.json). Reproduction: [Node capacity proof](../sims/lp2_anti_repeat_lossless_capacity.cjs) and [extended Wulfic/model-identifiability gate](../sims/wulfic_antidoublet_reversibility_gate.py).
 
 ## Why it matters for a full inverse
 
@@ -99,7 +99,70 @@ The independent [cross-word study](cross-word-anti-repeat-constraint.md) finds *
 
 The [direct ciphertext linear-complexity gate](lp2-ciphertext-linear-complexity-gate.md) gives GF(29) Berlekamp–Massey complexity **6,478** on the 12,956 unknown runes, excluding direct output from an order-≤256 LFSR. That result is orthogonal: it does not exclude a nonlinear or plaintext-dependent stateful filter. The **326-bit** side-information lower bound above applies only to a universal fixed-length encoder over all GP29 source strings with at most 86 repeats; it is not proof that Cicada used such an encoder.
 
-**Decision:** Wulfic's published 19% figure is a statistical interpretation, not an identified reversible cipher. The specified encrypt_dodging generators are non-injective; the tested skip-next and two-key variants also fail their own discriminating tests. This closes those concrete models only. A different reversible global-state mechanism remains possible, but it needs a source-selected replacement rule and a recoverable branch/state channel before an inverse can be attempted.
+**Decision:** Wulfic's published 19% figure is a statistical interpretation, not an identified reversible cipher. The specified encrypt_dodging generators are non-injective; the tested skip-next and two-key variants also fail their own discriminating tests. This closes those concrete models only. A different reversible global-state mechanism remains possible, but it needs a source-selected replacement rule and a recoverable branch/state channel before an inverse can be attempted. The separate key-skip/output-rewrite comparison below shows that the original ciphertext cannot choose between the two simple geometric retry architectures.
+
+## Key-skip and output-rewrite are not identifiable from ciphertext
+
+**Frozen independent model definitions.** The pinned [Dukotah/cicada3301 Round 18 L2 implementation](https://github.com/Dukotah/cicada3301/tree/f63501d8f2d835b80c30230eb89a1110fb9197d2/liber-primus/analysis/round18/L2-filter-leak) defines two ciphertext-side geometric rejection machines:
+
+- **M1, ciphertext key-skip:** propose \(C_i=P_i+K_j\pmod{29}\); if it repeats \(C_{i-1}\), reject with probability \(s\), consume another independent uniform key symbol, and retry. The key pointer drifts.
+- **M2, ciphertext output-rewrite:** make the same first proposal; on a rejected collision, draw a fresh uniform output symbol and retry if that too collides. The key pointer remains aligned.
+
+These are distinct latent architectures, but they have the **same emitted-symbol law** when the key candidates and replacement draws are independent uniform GP29 symbols. Put \(q=1/29\). For either machine the geometric retry gives
+
+\[
+r(s)=\Pr(C_i=C_{i-1})=\frac{q(1-s)}{1-qs},
+\qquad
+\Pr(C_i=x\ne C_{i-1})=\frac{1-r(s)}{28}.
+\]
+
+Consequently, for every possible ciphertext sequence \(C\),
+
+\[
+\Pr_{M1}(C\mid s)=\Pr_{M2}(C\mid s),
+\qquad
+\log\frac{\Pr_{M1}(C\mid s)}{\Pr_{M2}(C\mid s)}=0.
+\]
+
+This is exact observational equivalence, not merely a low-powered statistic. Doublet spacing, lag-2/lag-3 counts, symbol-conditioned transitions, delta spectra, page/line/section boundary counts, and every other ciphertext-only statistic have identical distributions under the two implemented models. Only the hidden key pointer and the information discarded/replaced differ.
+
+**External implementation audit.** The external [pre-registration](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/liber-primus/analysis/round18/L2-filter-leak/PREREG.md) writes M2's residual-rate formula as \(q(1-s)+q^2s\), which is the one-redraw expression. Its pinned **filter_models.py** actually implements a **while** retry loop; that implementation has the geometric formula above and is output-equivalent to M1. The external [results](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/liber-primus/analysis/round18/L2-filter-leak/RESULTS.md) report **0.175** pairwise classifier power for M1 versus M2 and correctly call them not separable by ciphertext. The formula/code discrepancy should be preserved as a documentation caveat: the results' equivalence verdict matches the executable loops, not the printed one-redraw formula. The same external battery uses 200 KJV/GP29 replicates per model, a no-filter control, and a full-book planted-key positive control; those validate the synthetic machinery, not an authentic LP2 key.
+
+### Full original transition inventory
+
+The extended [reproducer](../sims/wulfic_antidoublet_reversibility_gate.py) reads the nine master-transcription segments, the canonical GP29 corpus and the original-image punctuation annotations. Across all **12,956** rune positions there are **12,955** adjacent transitions:
+
+| Transition class | Pairs | Equal |
+| --- | ---: | ---: |
+| Within words | 10,060 | 63 |
+| Between words | 2,895 | 23 |
+| Within printed lines | 12,362 | 82 |
+| Across line breaks | 593 | 4 |
+| Within physical pages | 12,901 | 86 |
+| Across physical-page joins | 54 | 0 |
+| Within the master nine-segment clock | 12,947 | 86 |
+| Across its eight segment joins | 8 | 0 |
+
+The original-image annotation file contains **28** 13-dot records on pages 0–55; after merging the duplicate black/red mark at p7 and multiple marks bracketing the same page join, these bracket **25 unique rune transitions**, with **zero** equal pairs. All eight dollar-sign joins in the master nine-segment convention are among these 25. Their exact global successor offsets are **729, 1874, 3603, 3612, 5506, 6527, 8051, 9640**; six are page joins and two are within-page joins (p15:8→9 and p33:90→91). The raw lp2-transcription.txt clock also records the alternative p32-end transition at global **7960**; this is a distinct original 13-dot edge, not interchangeable with the master clock's p33-heading boundary at **8051**. This preserves the already documented source-clock ambiguity rather than silently choosing a reset convention.
+
+### Fixed page-heldout replication
+
+For a transparent one-parameter check, fit only the within-page transitions on physical pages **0–26** and score pages **27–55** (physical p50 has no runes). This is a **retrospective fixed-split replication**, not a blind pre-registration; the external L2 pre-registration above is the independent pre-registered battery.
+
+- Training: **40/6,500** doublets, \(\hat r=0.0061538462\), equivalent geometric suppression \(\hat s=0.8266254\).
+- Held out: **46/6,401** doublets; the fitted model expects **39.39** (z = **1.056**).
+- From the training rate, the shared kernel predicts \(P(C_i=C_{i-2})=0.03531395\) and \(P(C_i=C_{i-3})=0.03445837\). Held-out observations are **223/6,373 = 0.0349914** (z = −0.140) and **211/6,345 = 0.0332545** (z = −0.526), respectively.
+- Adjacent repeat-indicator pairs: **0** observed versus **0.242** expected. The symbol-conditioned transition matrix gives \(\chi^2=847.19\) on 812 df (\(p=0.190\)).
+- The nonzero-delta spectrum gives \(\chi^2=46.972\) on 27 df (\(p=0.00998\)), but its maximum cell deviation is only **3.117 SD**, below the pre-registered 3.57-SD single-cell bar. Correcting the omnibus result for two model families and five feature groups gives \(p_{\rm adj}\approx0.0998\).
+- Held-out boundary counts are **4/294** line joins, **0/27** page joins, **0/2** segment joins and **15/1,438** interword joins. These categories overlap; page/segment counts are too small to distinguish reset policies.
+
+Every listed held-out prediction is shared by M1 and M2, and their held-out likelihood ratio is **exactly 1**. The fixed-split data are compatible with the common geometric kernel; they do not select which hidden state was consumed.
+
+### Inverse requirement and decision
+
+M1 could be inverted only with an independently sourced authentic key stream and a uniquely recoverable skip schedule (or an explicitly source-defined deterministic rejection rule from which that schedule follows). Neither has been recovered. M2 keeps the key pointer aligned, but its output rewrite discards the colliding candidate; inversion requires the discarded candidate/branch state or equivalent source-side information. The Wulfic fixed-key/fixed-seed collisions above demonstrate non-injectivity for its specified next and fresh rewrite implementations. The external planted-key positive control is not an LP2 key.
+
+**Decision:** the original data do not distinguish key-skip from output-rewrite, and neither supplies the independently sourced key/state required for a genuine inverse. Retire the doublet deficit as a selector between these two architectures; do not launch key searches on that basis. This does **not** exclude all stateful ciphers, other source-selected filters, non-English intermediates, or a mechanism that is not an iid-uniform geometric retry.
 
 ## Positive controls, limitations and next decision
 
