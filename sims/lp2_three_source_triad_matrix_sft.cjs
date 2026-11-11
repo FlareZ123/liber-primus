@@ -161,11 +161,60 @@ function main(){
   const solved=page(57).slice(7,82);
   assert.equal(solved.length,75);
   assert.deepEqual(transform(transform(solved,M),inverse),solved);
+
+  // One predeclared source-shape continuation: the authenticated signed message
+  // has 43 ordinary words, of which exactly one ("lies") maps to the table.
+  // Assign the 42 remaining GP-prime sums to the 17+25 marked terminal triples.
+  // The independently selected table offset 83 is the initial field clock.
+  // This is a candidate and a negative original-cipher test, not a decoder.
+  const signed=fs.readFileSync(path.join(root,"resources/historical/cicada2016-4gq25-outguess.asc"),"utf8");
+  const clear=signed.slice(signed.indexOf("Hello."),signed.indexOf("-----BEGIN PGP SIGNATURE-----"));
+  const signedWords=clear.match(/(?<![A-Za-z0-9])[A-Za-z]+(?![A-Za-z0-9])/g)||[];
+  assert.equal(signedWords.length,43);
+  const keyedWords=signedWords.filter(w=>w.toLowerCase()!=="lies");
+  assert.equal(keyedWords.length,42);
+  const gpTokens=corpus.translit.map((token,index)=>({token:token.toLowerCase(),index}))
+    .sort((a,b)=>b.token.length-a.token.length);
+  function signedSum(word){
+    const s=word.toLowerCase().replace(/v/g,"u").replace(/k/g,"c").replace(/z/g,"s");
+    let n=0;
+    for(let i=0;i<s.length;){
+      const match=gpTokens.find(g=>s.startsWith(g.token,i));
+      assert.ok(match);
+      n+=corpus.prime[match.index];
+      i+=match.token.length;
+    }
+    return n;
+  }
+  function matrixPower(m,n){
+    let r=identity;
+    while(n>0){
+      if(n%2)r=mul3(r,m);
+      m=mul3(m,m);
+      n=Math.floor(n/2);
+    }
+    return r;
+  }
+  const joined=inputs.p53_red51.concat(inputs.p55_tail75);
+  assert.equal(joined.length,126);
+  let sourceState=83;
+  const sourceKeyed=[];
+  for(let i=0;i<keyedWords.length;i++){
+    sourceState=(sourceState+signedSum(keyedWords[i]))%840;
+    const block=joined.slice(i*3,i*3+3);
+    const key=matrixPower(inverse,sourceState);
+    sourceKeyed.push(...key.map(row=>mod(row.reduce((s,n,j)=>s+n*block[j],0))));
+  }
+  assert.equal(sourceKeyed.length,126);
+  assert.equal(Math.round(ioc(sourceKeyed)*100000),3505);
+  const keyedOriginal={length:126,ioc:ioc(sourceKeyed),decoded:text(sourceKeyed),
+    operation:"M^(-(83+cumulative signed-word prime sum)) on each triple"};
+
   console.log(JSON.stringify({red_rows:[a,b],fold_totals:totals,
     radix60:{row:row60,charpoly:char3(M),det:det3(M),order:order3(M)},
     radix59:{row:row59,charpoly:char3(N),det:det3(N),order:order3(N)},
     field:{u83,u727,trace_norm:traceNorm(u83)},
-    original_direct_Hill3:actual,known_plaintext_plant:"75/75 restored",
+    original_direct_Hill3:actual,original_42signed_state: keyedOriginal,known_plaintext_plant:"75/75 restored",
     status:"Exact source-algebraic bridge, no recovered unknown LP2 plaintext"},null,2));
 }
 main();
