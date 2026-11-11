@@ -7,10 +7,12 @@
  *   ATXBMGIASBXEO — exact GP transliteration of fragment 7
  *   OAK            — English meaning of the Ac rune that begins fragment 7
  *
- * Fixed carriers are original LP2 p6 / 23.jpg (where the fragment occurs)
+ * Fixed target carriers: original LP2 p6 / 23.jpg (the fragment source)
  * and the authenticated 2016 signed tree image (the historical OutGuess
- * carrier whose oak imagery independently supports the Ac reading). This is
- * a two-reading, two-carrier test, not a password sweep.
+ * carrier whose oak imagery independently supports the Ac reading).
+ * Original neighboring p5 / 22.jpg and p7 / 24.jpg are specificity controls:
+ * they have no independent Ac-fragment passphrase selector. Two fixed
+ * readings, four carriers; no arbitrary password search.
  *
  * Run after building the pinned OutGuess version:
  *   node sims/lp2_fragment7_outguess_sft.cjs
@@ -26,8 +28,10 @@ const SOURCE = path.join(ROOT, "resources/liber-primus");
 const HISTORICAL = path.join(ROOT, "resources/historical");
 const OUTPUT = path.join(ROOT, "outguess-fragment7-results");
 const CARRIERS = [
-  { id: "lp2-p6", path: path.join(SOURCE, "23.jpg"), reason: "LP2 p6, the physical page containing fragment 7" },
-  { id: "signed-2016-tree", path: path.join(HISTORICAL, "cicada2016-4gq25.jpg"), reason: "authenticated 2016 OutGuess carrier and oak/tree image" }
+  { id: "lp2-p6", path: path.join(SOURCE, "23.jpg"), reason: "original candidate page containing fragment 7", target: true },
+  { id: "signed-2016-tree", path: path.join(HISTORICAL, "cicada2016-4gq25.jpg"), reason: "authenticated 2016 OutGuess oak/tree carrier", target: true },
+  { id: "lp2-p5-control", path: path.join(SOURCE, "22.jpg"), reason: "immediately preceding LP2 physical page; no independent Ac passphrase selector", target: false },
+  { id: "lp2-p7-control", path: path.join(SOURCE, "24.jpg"), reason: "immediately following LP2 physical page; no independent Ac passphrase selector", target: false }
 ];
 const VARIANTS = [
   { key: "ATXBMGIASBXEO", reading: "exact GP transliteration of fragment 7" },
@@ -150,7 +154,7 @@ function main() {
     hypothesis: "the source-selected 11-rune Ac fragment is an OutGuess passphrase for its own physical carrier",
     source: {
       bridge: "2014 stage04 cell 6 Rad -> cell 7 Ac (199); phi(199) mod 32 = empty fragment 6; 199 mod 32 = fragment 7",
-      carriers: CARRIERS.map(c => ({ id: c.id, reason: c.reason })),
+      carriers: CARRIERS.map(c => ({ id: c.id, reason: c.reason, target: c.target })),
       boundaries: [71, 82],
       fragment7RuneIndices: fragment7,
       fragment7Transliteration: translit
@@ -197,7 +201,7 @@ function main() {
       const bytes = fs.existsSync(scratch) ? fs.readFileSync(scratch) : Buffer.alloc(0);
       const consistent = Boolean(match && bytes.length > 0 && bytes.length === Number(match[2]));
       const item = {
-        key: variant.key, reading: variant.reading, carrier: carrier.id,
+        key: variant.key, reading: variant.reading, carrier: carrier.id, target: carrier.target,
         status: run.status, signal: run.signal || null,
         error: run.error ? String(run.error) : null,
         header: match ? { seed: Number(match[1]), length: Number(match[2]) } : null,
@@ -221,6 +225,8 @@ function main() {
     result.summary = {
       attempts: result.attempts.length,
       headerConsistent: result.attempts.filter(x => x.headerConsistent).length,
+      targetHeaderConsistent: result.attempts.filter(x => x.target && x.headerConsistent).length,
+      neighboringControlsHeaderConsistent: result.attempts.filter(x => !x.target && x.headerConsistent).length,
       recognizable: result.attempts.filter(x => x.flags.length > 0 ||
         x.diagnostics?.gpg.status === 0).length,
       exactPositiveControls: Object.values(result.controls).every(x => x.exact)
