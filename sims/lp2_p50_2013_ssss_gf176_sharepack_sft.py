@@ -18,6 +18,7 @@ from __future__ import annotations
 import hashlib
 import json
 import runpy
+from functools import reduce
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -43,7 +44,7 @@ MASK = (1 << 176) - 1
 denominators = tuple(
     inverse(_denominator)
     for _denominator in (
-        __import__('functools').reduce(
+        reduce(
             mul, (xi ^ xj for xj in XS if xj != xi), 1)
         for xi in XS)
 )
