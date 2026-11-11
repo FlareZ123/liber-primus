@@ -50,12 +50,14 @@ The best training fit does not generalize. Neither the exact source clock nor an
 
 The solved p57 instruction says to **shed our own circumferences** and **find the divinity within**. This singles out a different original-cipher target from the earlier whole-book key transfer: strip the first and last rune of each original *complete* printed word on p55, then use the historical GP29 Vigenère key `DIVINITY` on the remaining interior stream in order. There is a second historical cue for the key: the actual LP1 stage 03/04 inverse uses `DIVINITY`, mapped by original GP spelling to indices **[23,10,1,10,9,10,16,26]**. The all-numeric p50 and image artwork are not used.
 
-The p55 beginning rune is a **carry from p54**, so p55 has one 1-rune incoming fragment and **16 complete new words** with 75 runes, of which **43 are strict interiors**. The exact source p55 word-length sequence is **[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]**. The sole F cipher rune in the selected interior stream occurs at zero-based position **11**. The direct GP29 inverse is `P[i]=(C[i]-K[j mod 8]) mod29`, with phase0 and no guessed offsets. Two historically motivated clocks are distinguished: all 43 cipher runes consume a key symbol, or the ciphertext-F at position11 remains literal and does not consume a key symbol, mimicking the solved earlier LP1 F-bypass convention.
+The p55 beginning rune is a **carry from p54**, so p55 has one 1-rune incoming fragment and **16 complete new words** with 75 runes, of which **43 are strict interiors**. The exact source p55 word-length sequence is **[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]**. The sole F cipher rune in the selected interior stream occurs at zero-based position **11**. The direct GP29 inverse is `P[i]=(C[i]-K[j mod 8]) mod29`, with phase0 and no guessed offsets. Two source-motivated key-consumption conventions are distinguished: all runes consume a key symbol, or the ciphertext-F at position11 remains literal and does not consume a key symbol, mimicking the solved earlier LP1 F-bypass convention. Two source-clock interpretations are predeclared: the historical continuous key through all strict interiors or resetting phase0 at each printed word's strict interior. These four combinations are fixed without searching word-specific phases.
 
 | Fixed original p55 interior treatment | Key consumed | IoC of decoded 43 runes | Rune J count | Recoverable GP29 prose? |
 | --- | ---: | ---: | ---: | --- |
-| Direct DIVINITY, all runes consume key | 43 | **0.05094131** | **7/43** | No |
-| Direct DIVINITY, ciphertext F literal/non-consuming | 42 | **0.03322259** | **3/43** | No |
+| Continuous interiors, all runes consume key | 43 | **0.05094131** | **7/43** | No |
+| Continuous interiors, ciphertext F literal/non-consuming | 42 | **0.03322259** | **3/43** | No |
+| Reset key phase0 at each whole-word interior, all-consuming | 43 | **0.03765227** | **1/43** | No |
+| Reset key phase0 at each whole-word interior, literal-F skip | 42 | **0.04651163** | **1/43** | No |
 
 For comparison, the untouched original p55 interior stream has IoC **0.03433001**, and a frozen 43-rune substring of the truly solved p57 has IoC **0.05647841**. The no-skip output's relatively elevated IoC arises alongside **seven GP J symbols** in just 43 positions; it is not readable source-GP English. Its exact output is:
 
@@ -65,9 +67,9 @@ The literal-F treatment is still cipher-like:
 
 `AE F J AE X NG J IA D A IA F R U N X H M IA L I G P J T X TH B F Y R M E E NG U H M F O H B H`
 
-The [new independent 43-rune SFT](../sims/p55_divinity_within_43_sft.cjs) asserts every original p55 word offset and key index, both frozen forward round-trips, and an exact forward/inverse on 43 original **solved p57 plaintext runes** as a positive source-language plant. The literal-F variant's inverse is replayed with its fixed original bypass mask; it does not assert that all arbitrary plaintexts can be encoded losslessly under an unspecified F-detection rule.
+The [new independent 43-rune SFT](../sims/p55_divinity_within_43_sft.cjs) asserts every original p55 word offset and key index, all **four** fixed forward round-trips, and an exact forward/inverse on 43 original **solved p57 plaintext runes** as a positive source-language plant. The literal-F variant's inverse is replayed with its fixed original bypass mask; it does not assert that all arbitrary plaintexts can be encoded losslessly under an unspecified F-detection rule.
 
-**Decision:** the p57 phrase provides a compelling human-facing proposal for both *target* and *historical key*. The direct authentic GP29 Vigenère consumer does not recover plaintext under either originally motivated F convention. This is a bounded failure of the proposed direct 43-rune operation, not a verdict on p57's instructions, p55's possible underlying language or another uniquely sourced reversible mechanism.
+**Decision:** the p57 phrase provides a compelling human-facing proposal for both *target* and *historical key*. The direct authentic GP29 Vigenère consumer does not recover plaintext under either originally motivated F convention and both natural continuous/word-reset source clocks. This is a bounded failure of the proposed direct 43-rune operation, not a verdict on p57's instructions, p55's possible underlying language or another uniquely sourced reversible mechanism.
 
 ## Conclusion
 
