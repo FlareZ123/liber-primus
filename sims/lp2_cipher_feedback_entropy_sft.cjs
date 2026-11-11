@@ -194,6 +194,36 @@ const plantUnconditionalH = destinationEntropy(plantPlaintext);
 assert.ok(Math.abs(plantEncryptedH - plantPlainConditionedH) < 1e-12);
 assert.ok(plantEncryptedH <= plantUnconditionalH + 1e-12);
 
+// Grant the adversary *arbitrary* 29x29 row permutations at every
+// phase of a publicly known periodic clock. No hidden-key search is needed:
+// the entropy identity applies separately in each (phase, previous-C) state.
+function phaseRows(period, pageReset) {
+  const rows = Array.from({length: period}, () =>
+    Array.from({length: 29}, () => Array(29).fill(0)));
+  let start = 0;
+  for (const len of PAGE_LENGTHS) {
+    for (let j = 1; j < len; j++) {
+      const i = start + j;
+      const phase = (pageReset ? j : i) % period;
+      rows[phase][ciphertext[i - 1]][ciphertext[i]]++;
+    }
+    start += len;
+  }
+  assert.equal(start, N);
+  return conditionalEntropy(rows);
+}
+const phaseClock = [1, 5, 7, 8, 10, 11].map((period) => ({
+  period,
+  global: phaseRows(period, false),
+  pageReset: phaseRows(period, true)
+}));
+assert.ok(Math.abs(phaseClock[1].global - 4.5835245426157085) < 1e-10);
+assert.ok(Math.abs(phaseClock[2].pageReset - 4.466437907747491) < 1e-10);
+for (const row of phaseClock.slice(0, 5)) {
+  assert.ok(row.global > 4.28910 && row.pageReset > 4.28910);
+}
+assert.ok(phaseClock[5].global < 4.28910);
+
 console.log(JSON.stringify({
   source: {
     runes: N, pages: PAGE_LENGTHS.length, sections: SECTION_LENGTHS.length,
@@ -201,6 +231,7 @@ console.log(JSON.stringify({
     globalBits: globalH, sectionBits: sectionH
   },
   controls: out,
+  phaseClock,
   secretBijectionPlant: {
     recovered: recovered.length, conditionalBits: plantEncryptedH,
     plaintextMarginalBits: plantUnconditionalH

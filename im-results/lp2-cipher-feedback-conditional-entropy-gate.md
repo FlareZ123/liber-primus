@@ -47,10 +47,25 @@ To calibrate the register of ordinary GP29-encoded prose, the SFT uses the repos
 
 All **89** measured windows fall below even the nine-section source lower bound. The narrowest gap is \(4.42957231-4.28909395=0.14047836\) bits/rune. Any stationary predecessor-feedback permutation with these resets would necessarily decode the original into a GP29 sequence whose empirical marginal entropy is higher than every sampled native-English control. Merely choosing a cleverer secret 29×29 table, nonlinear row entries, or nine unrelated secret tables cannot repair this invariant.
 
+## Arbitrary hidden alphabet per repeating clock phase
+
+The same exact invariant applies when the key depends on the preceding ciphertext rune **and** a known public phase \(t\bmod k\): \(S_i=(C_{i-1},t\bmod k)\). Each of the \(29k\) states is allowed a completely unrelated secret GP29 permutation. The repeated clock can advance continuously over the 12,956-rune book or restart at the original page boundary. Source-suggested five and seven phases match the sizes of the earlier round's original 5×5 and 7×7 magic-square clues; they are candidates, not verified LP2 clock instructions.
+
+| Phase period \(k\) | Global absolute-rune clock, bits | Page-local clock, bits |
+| ---: | ---: | ---: |
+| 1 | 4.785307 | 4.785307 |
+| 5 | **4.583525** | **4.578481** |
+| 7 | **4.469229** | **4.466438** |
+| 8 | 4.421768 | 4.414309 |
+| 10 | 4.307543 | 4.309558 |
+| 11 | 4.258999 | 4.241224 |
+
+For every period **1 through 10** under both clocks, the original source's conditional entropy exceeds the **4.289094** maximum measured in any of the 89 English-GP reference windows. Period 11 no longer clears that benchmark. This is a finite English-register exclusion of all unknown 29×29 phase-row substitution families in this clock range, including source-suggested 5 and 7; it does not depend on selecting or guessing the \(29k\) secret permutations. Phases keyed by a hidden or evolving state, section plus phase, or varying word positions are outside this table. As phase buckets become smaller, empirical conditional entropy falls from finite-sample grouping even under uniform ciphertext, so a low bound is not positive evidence for a cipher.
+
 ## Positive control and interpretation
 
 The [single-file CommonJS reproducer](../sims/lp2_cipher_feedback_entropy_sft.cjs) builds nine deterministic secret families of 29 independently shuffled 29-symbol permutations, encrypts a length-matched native-English rune stream using the previous *ciphertext* symbol, inverts all 12,956 positions exactly, and verifies the entropy identity to \(10^{-12}\) bits. It also asserts the two original counts, measured entropies and native-reference bounds.
 
-**Decision:** deprioritize stationary, length-preserving GP29 ciphertext-feedback ciphers in which only the immediately preceding ciphertext rune, optionally plus one of nine source sections, selects an arbitrary hidden permutation. This is much stronger than a null search of a few additive or multiplicative keys. It remains conditional on plaintext in a native English-like GP29 register.
+**Decision:** deprioritize stationary, length-preserving GP29 ciphertext-feedback ciphers in which the immediately preceding ciphertext rune, optionally plus one of nine source sections or a public global/page-local phase of period at most ten, selects an arbitrary hidden permutation. This is much stronger than a null search of a few additive or multiplicative keys. It remains conditional on plaintext in a native English-like GP29 register.
 
 **Live alternatives:** per-page or per-word-position codebooks, multirune state, source-selected evolving keys, altered alphabets, word/section coding, auxiliary side information, compression and sufficiently different plaintext distributions are outside this scope. The short nine-rune segment does not by itself identify an encryption mechanism. No cipher key, unknown plaintext or destination is recovered by this exclusion.
