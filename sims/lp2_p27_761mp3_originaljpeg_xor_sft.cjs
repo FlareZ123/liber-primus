@@ -40,7 +40,7 @@ const historical=[0,tag].map(start=>({start,decoded:xor(twitter,start)}));
 const historicalMatches=historical.filter(t=>isJpeg(t.decoded));
 assert.equal(historicalMatches.length,1,"Historical 2013 raw Twitter->JPEG XOR must uniquely select pad phase");
 const selected=historicalMatches[0].start;
-assert.equal(selected,tag, "Historical source chooses MP3 audio after ID3");
+assert.equal(selected,0, "Historical source chooses whole MP3 file including ID3 header");
 const magic=[
  ["JPEG","ffd8ff"],["PNG","89504e470d0a1a0a"],["ZIP","504b0304"],
  ["GZIP","1f8b08"],["PDF","25504446"],["GIF","47494638"],
