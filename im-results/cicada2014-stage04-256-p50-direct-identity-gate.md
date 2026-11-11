@@ -39,7 +39,7 @@ The recovered 5×5 square has every row, column and both main diagonals summing 
 
 ## Relationship to the earlier 256-byte object
 
-The separate Stage04 `<!--1033-->` 256-byte object remains nonidentical to the LP2 p50 table under the two source-selected direct traversals already tested in [the 256-byte SFT](../../sims/lp2_stage04_256_direct_identity_sft.cjs). The updated `<!--3301-->` page does not repair that failed identity: it recovers LP1 pages 03–05 and their 2014 continuation.
+The separate Stage04 `<!--1033-->` 256-byte object is not the LP2 p50 table under direct source order, reverse order, or bytewise XOR. A further byte-histogram gate finds only 115/256 occurrences pairable by value (157 distinct bytes in the Stage04 object versus 161 in the p50 grid); the per-byte histograms differ, so **no pure position permutation/transposition can make the two arrays identical**. The updated `<!--3301-->` page does not repair that failed identity: it recovers LP1 pages 03–05 and their 2014 continuation. This excludes only direct equality, XOR, and pure reordering—not arbitrary nonlinear transforms, which have no source-selected justification.
 
 ## Reproduction
 

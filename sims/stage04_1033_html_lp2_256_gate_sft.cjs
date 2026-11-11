@@ -2,8 +2,9 @@
 
 /**
  * SFT: historical 2014 stage04 1033-marked 256-byte site payload versus
- * the separately printed LP2 256-byte base60 table. Tests the only original
- * 2014 bytewise operations motivated by its stage (source order/reverse, XOR).
+ * the separately printed LP2 256-byte base60 table. Tests direct identity,
+ * source-order/reverse XOR, and the invariant that any pure permutation must
+ * preserve the byte histogram.
  *
  * Node.js 22, repository root: node sims/stage04_1033_html_lp2_256_gate_sft.cjs
  *
@@ -75,6 +76,23 @@ function main() {
 
   const matched = stageBytes.filter((x, i) => x === gridBytes[i]).length;
   assert.equal(matched, 1);
+  const histogram = (bytes) => {
+    const counts = Array(256).fill(0);
+    for (const value of bytes) counts[value] += 1;
+    return counts;
+  };
+  const stageHistogram = histogram(stageBytes);
+  const gridHistogram = histogram(gridBytes);
+  const histogramEqual = stageHistogram.every((count, i) => count === gridHistogram[i]);
+  const multisetOverlap = stageHistogram.reduce(
+    (sum, count, i) => sum + Math.min(count, gridHistogram[i]), 0
+  );
+  const distinctStageBytes = new Set(stageBytes).size;
+  const distinctGridBytes = new Set(gridBytes).size;
+  assert.equal(histogramEqual, false);
+  assert.equal(multisetOverlap, 115);
+  assert.equal(distinctStageBytes, 157);
+  assert.equal(distinctGridBytes, 161);
   const normal = xor(stageBytes, gridBytes, false);
   const reversed = xor(stageBytes, gridBytes, true);
   assert.equal(countAscii(normal), 99);
@@ -99,6 +117,10 @@ function main() {
     payloadSize: 256,
     tableSize: 256,
     bytewiseEqual: matched,
+    sameByteHistogram: histogramEqual,
+    multisetOverlap: multisetOverlap,
+    distinctStage04Bytes: distinctStageBytes,
+    distinctGridBytes: distinctGridBytes,
     sourceOrderXorPrintable: countAscii(normal),
     reversedOrderXorPrintable: countAscii(reversed),
     directXorHexPrefix: hexPrefix(normal),
@@ -106,7 +128,7 @@ function main() {
     plantedExactAsciiRecovered: true
   };
   console.log(JSON.stringify(report, null, 2));
-  console.log("PASS: no direct plaintext from the source-sized 2014 HTML/table XOR bridge");
+  console.log("PASS: no direct identity, source-order/reverse XOR plaintext, or pure byte permutation");
 }
 
 main();
