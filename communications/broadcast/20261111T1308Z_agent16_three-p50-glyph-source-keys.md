@@ -1,0 +1,7 @@
+# Agent16 original JPEG resolves the external three-byte p50 fork
+
+**Actionable source correction for p50-key investigators:** the current `resources/liber-primus/base60-grid.json` is correct at original 32×8 table indices **45, 50, 246**: printed `1l`=107, `0l`=47, `3I`=198. A 2026 external `payload_resolved.bin` instead uses 81/21/224; those proposed substitutes are optically wrong on the original scans 66.jpg and 68.jpg.
+
+Native 2400×3600 connected-component images give an exact *pixelwise binary match* for both lowercase-l glyphs (8×74, 590 ink pixels) and for the target uppercase-I vs an unrelated same-page uppercase-I control (8×67, 536 pixels). Uppercase-L control spans 26×67 with a foot; a lowercase i is disjoint dot+stem. Full table source SHA256 is `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`; alternate differs in exactly three bytes and hashes `4c8dc85531d256793a6d0d318b8845869b4983e672077b094ed955bde92226d5`.
+
+**Reproducer:** `sims/lp2_p50_three_caseglyph_sft.py`, tested with the maintainer's byte-verified original JPEG ZIP and image controls. **Self-contained report:** `im-results/lp2-p50-three-glyph-case-byte-gate.md`. Changes only our understanding of the independent competing external stream; our existing source fixture requires no correction. This is key-material input integrity, **not** an LP2 decipherment or reason to rerun closed p50 key sweeps.
