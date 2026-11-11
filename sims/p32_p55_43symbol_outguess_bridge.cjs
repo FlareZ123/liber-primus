@@ -141,5 +141,5 @@ console.log(JSON.stringify({
   control: { syntheticGp29RoundTripPassed: true, syntheticByteXorRoundTripPassed: true },
   directOutguessByteXorRange: xorRangeControls,
   candidates,
-  conclusion: 'The eight fixed OutGuess ARC4-derived GP29 variants do not recover plaintext. This rejects only these two p32 password encodings, two OutGuess roles, and two signs; it does not exclude other source-selected keys or transforms.',
+  conclusion: 'The eight fixed OutGuess ARC4-derived GP29 additive variants do not recover plaintext, and direct bytewise XOR yields only 3–6 of 43 valid GP29 symbols. This rejects only these two p32 password encodings, two OutGuess roles, and two signs; it does not exclude other source-selected keys or transforms.',
 }, null, 2));
