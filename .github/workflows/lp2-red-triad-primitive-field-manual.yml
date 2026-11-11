@@ -1,5 +1,9 @@
 name: LP2 primitive red-triad field inverse (manual)
 on:
+  push:
+    paths:
+      - 'sims/lp2_red_triad_composed_multiplier70_inverse.cjs'
+      - '.github/workflows/lp2-red-triad-primitive-field-manual.yml'
   workflow_dispatch:
     inputs:
       qmult_gates:
@@ -16,7 +20,7 @@ permissions:
   contents: read
 jobs:
   field:
-    if: ${{ !inputs.primitive_rs }}
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.primitive_rs }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -69,7 +73,7 @@ jobs:
         run: node sims/red_triad_qmult_red_scaled_codebook_sft.cjs
 
   rs-codeword:
-    if: ${{ inputs.primitive_rs }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.primitive_rs }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -79,3 +83,15 @@ jobs:
           node-version: '22'
       - name: Frozen source-primitive GF841 RS original-codeword gate
         run: node sims/gf841_51x127_primitive_rs_original_sft.cjs
+
+  composed-multiplier70:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaust composed p39(p3) order-70 field transition on original LP2
+        run: node sims/lp2_red_triad_composed_multiplier70_inverse.cjs
