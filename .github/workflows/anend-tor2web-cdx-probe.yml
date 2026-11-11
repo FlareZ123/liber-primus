@@ -9,14 +9,14 @@ permissions:
 jobs:
   cdx:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Query documented historical proxy hostnames
-        run: node sims/anend_tor2web_cdx_probe.cjs > anend-tor2web-cdx.json
+      - name: Query exact onion-subdomain wildcard across archived proxy hostnames
+        run: node sims/anend_tor2web_cdx_probe.cjs --wildcard-only > anend-tor2web-cdx.json
       - name: Preserve exact CDX responses
         if: always()
         uses: actions/upload-artifact@v4
