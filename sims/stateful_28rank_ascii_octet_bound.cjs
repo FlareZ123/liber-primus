@@ -348,6 +348,12 @@ function positiveControl(width, visibleOnly = false) {
   assert.equal(bound.cleanPackets, packets);
   assert.equal(bound.forcedNonText, 0);
   assert.equal(bound.violatingRows, 0);
+  if (visibleOnly) {
+    const lfText = examine([glyphs], width, 'page', 'drop', false, 0,
+      'unix-text');
+    assert.equal(lfText.cleanPackets, packets);
+    assert.equal(lfText.forcedNonText, 0);
+  }
   return {width, visibleOnly, packets, octets: bytes.length,
     glyphs: glyphs.length, roundtripped: recovered.length,
     forcedNonText: bound.forcedNonText};

@@ -1,6 +1,6 @@
 # A key-free printable-ASCII obstruction to stationary stateful radix-28 decoding
 
-**Agent 44, 11 November 2026. Status:** the original-ciphertext necessary-condition theorem and its exact executable are complete. The all-18-octet CP-SAT follow-up on the single 30-digit ASCII framing has now run on original LP2: the solver returned **UNKNOWN after 780.128 seconds** ([manual CI 42947460466](https://github.com/FlareZ123/liber-primus/actions/runs/42947460466)), with **3,035,194 branches, 92,175 conflicts and no key or impossibility proof**. The arithmetic and packet-order self-tests passed; previously 10,000 planted packets also passed. The original LP2 plaintext, cipher and key remain unknown. This work concerns **direct readable ASCII byte output** under the finite framing and stationary-row assumptions below, rather than an actual successful decryption.
+**Agent 44, 11 November 2026. Status:** the original-ciphertext necessary-condition theorem and its exact executable are complete. The all-18-octet CP-SAT follow-up on the single 30-digit **CR-permitting** ASCII framing has now run on original LP2: the solver returned **UNKNOWN after 780.128 seconds** ([manual CI 42947460466](https://github.com/FlareZ123/liber-primus/actions/runs/42947460466)), with **3,035,194 branches, 92,175 conflicts and no key or impossibility proof**. The arithmetic and packet-order self-tests passed; previously 10,000 planted packets also passed. The original LP2 plaintext, cipher and key remain unknown. This work concerns **direct readable ASCII byte output** under the finite framing and stationary-row assumptions below, rather than an actual successful decryption.
 
 ## Mechanism and relevance
 
@@ -74,7 +74,28 @@ The exact same first-digit theorem, original ciphertext and full 840-framing sea
 
 Even the former 98-byte-register survivor (width30, phase29, page reset, reverse, marker-skip) requires at least **10** packet-leading bytes outside visible ASCII for every possible stationary secret row permutation. This follows from the frequency-sorted top-nine outgoing-edge bound; it does not require finding a key or scoring guessed words. A separate 1,000-packet source-disjoint strictly visible-ASCII positive control for each width 5/15/30 exactly re-encrypts and decodes its planted bytes and has zero forced non-visible first octets.
 
-**Scope:** Direct text containing actual LF/CR/TAB is covered by the original 839/840 result, leaving the documented single necessary-condition survivor; arbitrary seven-bit controls remain under the separate 814/840 result. The new 840/840 theorem cannot exclude those broader byte registers or other binary/text encodings. It does close the original stationary 29-row, fixed 5n:3n framing family **for strictly visible ASCII output**.
+**Scope:** Direct LF/TAB text without CR is now excluded in all 840 framings by the two-leading-byte strengthening below. Permitting CR restores the 839/840 first-byte result and the single necessary-condition survivor; arbitrary seven-bit controls remain under the separate 814/840 result. The new 840/840 theorem cannot exclude those broader byte registers or other binary/text encodings. It does close the original stationary 29-row, fixed 5n:3n framing family **for strictly visible ASCII output**.
+
+### Source-exact two-byte exclusion for LF/TAB text without CR
+
+An ordinary text-file register can permit visible ASCII (0x20–0x7E), TAB (0x09), and LF (0x0A), while omitting carriage return (CR, 0x0D). The preceding one-byte gate is insufficient to distinguish LF alone from LF+CR on a 30-digit packet. Requiring **both** initial decoded octets to belong to this declared 97-value set gives a stronger exact necessary leading-rank alphabet. For a width \(D=5n\), a specified first-two-byte value \(u=256b_0+b_1\) occupies the integer interval
+
+\[u\,256^{3n-2}\le V <(u+1)\,256^{3n-2}.\]
+
+Dividing the interval endpoints by \(28^{D-1}\), and taking their floor, enumerates all first radix-28 digits that **could** appear with those two ASCII bytes. This deliberately ignores later bytes. Across all 840 original frames, the same stationary-row rank-capacity proof gives:
+
+| Width | Allowed first ranks with two LF/TAB/visible bytes | Excluded frames | Smallest forced forbidden-first-octet count |
+| ---: | --- | ---: | ---: |
+| 5 | 0, 1, 3–13 | **40/40** | 755 |
+| 10 | 0, 1, 3–13 | **80/80** | 239 |
+| 15 | 0, 1, 3–12 | **120/120** | 107 |
+| 20 | 0, 1, 3–12 | **160/160** | 31 |
+| 25 | 0, 1, 3–12 | **200/200** | 6 |
+| 30 | 0, 3–11 | **240/240** | 1 |
+
+**The previous width-30 survivor is now excluded for direct LF-oriented ASCII, without solving for any key.** In its exact 282 clean source packets (physical-page reset, marker-affected packets ignored, reversed digit order, phase 29), predecessor rune index **13** has **11 different packet-leading successors**. With the first **two** output bytes constrained to LF/TAB/visible ASCII, only **10** distinct leading ranks are possible. At least one packet must therefore violate that register under every stationary predecessor-row permutation. In the broader 98-value TAB/LF/CR/visible register, the missing rank **1** is achievable for two ASCII initial bytes **only when the first byte is CR (0x0D)**; hence every key realizing the sole survivor must put a CR as the first output byte of at least one clean packet. The exact full-18-byte CP-SAT test remains UNKNOWN for the wider CR-permitting case.
+
+This excludes **840/840 specified stationary framings for ordinary LF/TAB/visible ASCII text**. The condition is source-exact and tests every published original rune, but is deliberately limited to the 5n radix-28 → 3n byte transport, fixed 29-row predecessor tables, and tested marker/phase conventions. The prior visible-only synthetic plaintext controls also satisfy the new two-byte gate, since visible bytes form a subset of the permitted LF/TAB register. Other control bytes, binary formats, changing tables, and unscreened packet grammars remain unexcluded.
 
 **Robustness to every 7-bit ASCII character, including all C0 control codes and DEL:** The same source-only row-degree proof also works without any printable-text assumption. Allowing arbitrary decoded octets in \(0,\ldots,127\) expands the permissible high-rank budgets to **14** for widths 5/10 and **13** for widths 15/20/25/30, but still excludes **40/40, 80/80, 120/120, 160/160, 200/200, and 214/240** framings respectively, **814/840** overall. The only 26 unexcluded cases are width 30. This is a strict, stronger-alphabet source-register generalization of the 839/840 printable-ASCII result, with separately enumerated cases in the same CJS implementation. In particular, **every tested direct 7-bit ASCII codec with packets no longer than 25 digits is impossible**, even when decoded bytes contain arbitrary controls and punctuation. Both statements remain conditional on the fixed 29-row stationary decoding family.
 
