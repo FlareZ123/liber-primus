@@ -4,7 +4,9 @@
 
 ## Source and falsifiable hypothesis
 
-The 2 May 2014 Cicada handoff is an OpenPGP clear-signed message. The eleven-value trailing-whitespace sequence previously considered as a key,
+The 2 May 2014 Cicada handoff is an OpenPGP clear-signed message. **Packet-level signature check:** the armored signature is OpenPGP v4, signature type 1 (canonical text document), RSA, SHA-1, with a 4,096-bit signature MPI. Its only hashed subpacket is the signed creation time (`2014-04-02T08:49:51Z)); its only unhashed subpacket is issuer key ID `181F01E57A35090F`. There is no notation data, issuer fingerprint, policy URL, or other custom subpacket. The 2013 `clue.txt.asc` and `hello.txt.asc` signatures and the 2016 `4gq25` signed payload have the same minimal v4/RSA/SHA-1 profile (creation time plus issuer ID only). Thus the signature packet supplies no hidden whitespace witness or auxiliary key. The packet's signed date is 2 April 2014; the later “May 2” archive label is not the signature creation date.
+
+The eleven-value trailing-whitespace sequence previously considered as a key,
 
     2, 3, 5, 7, 11, 13, 17, 23, 29, 31, 37,
 
