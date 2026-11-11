@@ -84,6 +84,52 @@ const matrix = Array.from({ length: 11 }, (_, r) =>
   p32Indices.slice(r * 11, (r + 1) * 11).map((i) => corpus.prime[i])
 );
 const row3 = matrix[3];
+// Original printed word and matrix coordinates are independent source witnesses:
+// preserve the actual word segmentation and look for exactly 11-rune full rows.
+const wordRanges = [];
+let cursor = 0;
+for (let wi = 0; wi < p32Words.length; wi++) {
+  const len = [...p32Words[wi]].length;
+  wordRanges.push({ wordNumber: wi + 1, first: cursor,
+    lastExclusive: cursor + len, length: len });
+  cursor += len;
+}
+assert.equal(cursor, 121);
+const wholeGridRows = wordRanges.filter(({ first, length }) =>
+  first % 11 === 0 && length === 11);
+assert.deepEqual(wholeGridRows,
+  [{ wordNumber: 8, first: 33, lastExclusive: 44, length: 11 }]);
+const genuineGridCentre = matrix[5][5];
+assert.equal(genuineGridCentre, 19);
+const rowCentresMatchingGridCentre = matrix.flatMap((row, r) =>
+  row[5] === genuineGridCentre ? [r] : []);
+assert.deepEqual(rowCentresMatchingGridCentre, [3, 5]);
+const selectedWholeRow = corpus.pages[32].indices.slice(33, 44)
+  .map((i) => corpus.translit[i]).join('');
+assert.equal(selectedWholeRow, 'HOMEXWDSLFD');
+assert.equal(matrix[3][4], 47); // X immediately after the literal HOME.
+assert.equal(matrix[3][9], 2);  // F immediately after the 4-word readout.
+const sourceMarkerSpan = row3SourceMarker();
+function row3SourceMarker() {
+  const p = matrix[3];
+  return {
+    sourceWholeWord: selectedWholeRow,
+    firstRuneOffset: 33,
+    firstWordIndexOneBased: 8,
+    mapCentrePrime: genuineGridCentre,
+    fullWordRowCentrePrime: p[5],
+    centreMatchRows: rowCentresMatchingGridCentre,
+    homeX: p.slice(0, 5).map((v) =>
+      corpus.translit[corpus.prime.indexOf(v)]).join(''),
+    afterXPrimeValues: p.slice(5, 9),
+    afterXResidues: p.slice(5, 9).map((v) => v % genuineGridCentre),
+    nextGlyph: corpus.translit[corpus.prime.indexOf(p[9])]
+  };
+}
+assert.equal(sourceMarkerSpan.homeX, 'HOMEX');
+assert.deepEqual(sourceMarkerSpan.afterXPrimeValues, [19, 89, 53, 73]);
+assert.deepEqual(sourceMarkerSpan.afterXResidues, [0, 13, 15, 16]);
+assert.equal(sourceMarkerSpan.nextGlyph, 'F');
 assert.deepEqual([...selectedWord].map((r) => runeIndex.get(r)), p32Indices.slice(33, 44));
 const row3Residues = row3.map((v) => v % 19);
 const row3Labels = row3Residues.map((i) => labels[i]);
@@ -361,6 +407,7 @@ const output = {
   },
   p32: {
     wordIndex: 7,
+    sourceMarkerSpan,
     wordTransliteration: [...selectedWord].map((r) => corpus.translit[runeIndex.get(r)]).join(''),
     runePrimeValues: row3,
     residuesModulo19: row3Residues,
