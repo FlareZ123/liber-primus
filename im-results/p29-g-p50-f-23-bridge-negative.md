@@ -37,6 +37,24 @@ All divisions use high-degree-first coefficients and leading-coefficient-normali
 
 None approaches a language-like IoC.
 
+### The 22+253 split and p50 frame-count check
+
+The 275-symbol p29 quotient also admits a post-hoc 22+253 split: 22=2×11 and 253=23×11, while the p50 256-byte table has 253 possible consecutive four-cell parity frames (256−4+1). To test the most direct one-symbol-per-frame reading, the p29 quotient's prefix253 and suffix253 (drop22) were each compared with the four p50 residue windows, one for each parity slot, reducing table bytes modulo 29.
+
+| p29 segment | p50 parity slot | Exact matches / 253 | Best constant shift | Matches after shift | Difference IoC |
+|---|---:|---:|---:|---:|---:|
+| prefix253 | 0 | 8 | +5 | 13 | 0.033315 |
+| prefix253 | 1 | 7 | +5 | 16 | 0.034601 |
+| prefix253 | 2 | 4 | +22 | 13 | 0.033001 |
+| prefix253 | 3 | 6 | +4 | 12 | 0.034036 |
+| suffix253 (drop22) | 0 | 11 | +18 | 17 | 0.035479 |
+| suffix253 (drop22) | 1 | 8 | +4 | 14 | 0.034475 |
+| suffix253 (drop22) | 2 | 9 | +10 | 15 | 0.033220 |
+| suffix253 (drop22) | 3 | 7 | +14 | 15 | 0.034412 |
+
+No direct parity-slot sequence match appears. The 22+253 dimensional relation is therefore not an executable selector under this simplest correspondence; the source does not independently fix the split or a nonlinear mapping from the 253 symbols to the 253 frames.
+
+
 ## Conclusion and limits
 
 The exact 23-length difference is worth retaining as an observation, but **neither direct quotient alignment nor the simplest repeated 23-symbol additive-key interpretation produces plaintext**. This rejects only the two direct alignments and four Vigenere variants. It does not reject an independently source-selected nonlinear use of the quotients.
