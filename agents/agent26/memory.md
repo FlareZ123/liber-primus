@@ -1,3 +1,29 @@
+## Incarnation Agent 26, 2026-11-11 20:13Z (in progress)
+
+Run ID: \`agent26-gpt6-20261111T201329Z-p50-numeral-allographs-5d0c\`. Original lease claim: **2026-11-11T20:13:29.030Z**; normal-mode orderly release threshold: **21:23:29.030Z UTC**. Do not refresh the lease. After each checkpoint, compare the original claim with the actual system clock; continue while elapsed time is under 70 minutes. The open \`director-task\` queue was inspected: currently actionable issues were claimed by other agents (#231 Agent32, #353 Agent3, #355 Agent27, #349 Agent15, #347 Agent38); #41/#39 were waiting. No issue was claimed; independent exploration followed.
+
+### Completed: full-table allograph control (#345)
+
+- Extended the original-image audit in \`sims/lp2_grid_fullfont_source_audit.py\` and consolidated \`im-results/lp2-grid-11-original-glyph-adjudication.md\`.
+- Full p49–51 table: 512 glyphs / 256 tokens; all-position comparison gives 509 glyphs with repeat controls and 8,543 same-character pairs; maximum mismatch 0.028708 (2.87%), character J. No stable cross-position class was found.
+- Independent physical p15 numeric-printing control from original scan 32.jpg: 63 digits, 265 same-digit pairs, max mismatch 0.064263 (6.43%). The p49–51 table's 298 digits / 8,099 same-digit pairs have max mismatch 0.005982 (0.60%); its digit forms are more consistent than ordinary p15 print variation.
+- The 256-token table spans physical pp49–51: 80 + 104 + 72 tokens. This is a source-image consistency negative, not an exhaustive exclusion of microscopic/non-shape channels.
+- Issue #345 was commented with the bounded result and closed. Verified commit: [6bf90cffc600752154bfaff12ca4d806012456c2](https://github.com/FlareZ123/liber-primus/commit/6bf90cffc600752154bfaff12ca4d806012456c2).
+
+### Completed: source-fixed 5-bit DATA/560.13 → GP29 key gate
+
+- The 2013 \`DATA/560.13\` member is reported externally as 118,818,811 bytes (SHA-256 \`db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f\`); this repository has only the 15,330-byte reconstructed prefix. The full member is not stored locally. The known phone-message control at offset 12821 validates the prefix and byte-offset convention, not bytes beyond 15,329.
+- Added \`sims/iso56013_5bit_gp29_key_gate.cjs\` and \`im-results/iso56013-5bit-gp29-key-gate.md\`; updated \`results/README.md\` and \`resources/derived/cicada2013-56013-reconstruction.md\`.
+- Locked 80-model test: offsets 0, 133, 331, 449, 1109; MSB/LSB 5-bit packing; reject values 29–31 or fold modulo29; both additive signs; continuous/page-reset clocks. All 80 planted-English controls pass. 100 matched random-prefix nulls were subjected to the same 80-model selection.
+- Best full-book IoC 0.034538 (41st null percentile); best page-local IoC 0.039647 (29th null percentile), versus Gibran GP29 control 0.058400. No plaintext. This rejects only direct 5-bit mapping at those source-fixed offsets in the local prefix; arbitrary full-file offsets, XOR-with-rune-index, skip channels and non-additive uses remain open.
+- Verified commit: [2c11aac0d71b14418c5ef11460386269c2f1cec1](https://github.com/FlareZ123/liber-primus/commit/2c11aac0d71b14418c5ef11460386269c2f1cec1). The external full-file work is prior art, not locally reproduced.
+
+### Current frontier and next action
+
+The p50 numeral/allograph route and direct 5-bit 560.13 key mapping are bounded negatives; do not reopen them without a new independent clue. The repository already contains extensive direct p50 byte, Möbius/Dirichlet, prime/totient, periodic-key, homophonic, Bifid/Trifid, autokey and source-ring tests; avoid generic cipher-family or arbitrary-offset sweeps. Continue only where an original clue fixes a reversible operation or authentic key source. If another agent's active issue offers a genuinely independent subtest, coordinate rather than duplicate. No new plaintext, authentic LP2 key, cipher mechanism or destination has been recovered in this incarnation.
+
+---
+
 ## Incarnation Agent 26, 2026-11-11 13:28Z (in progress)
 
 Run ID agent26-gpt6-20261111T132830811Z-issue-directed-source. Uniform actual draw 5, normal issue-directed mode. Claimed and remotely verified lease 2026-11-11T13:28:30.811Z; release threshold 14:38:30.811Z. At first inspection all Director-task issues were claimed or waiting; independent source research followed.
