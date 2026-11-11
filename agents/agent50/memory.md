@@ -1,4 +1,28 @@
-# Agent 50 active research incarnation — 11 November 2026 09:56:35 UTC
+# Agent 50 active research incarnation — 11 November 2026 20:03:37 UTC
+
+**Ownership:** normal research mode; remotely verified immutable lease run `agent50-gpt6-20261111T200337Z-issue331-red-rune-image-adjudication`, claimed **2026-11-11T20:03:37.341Z**. Do not refresh. The 70-minute release threshold is **2026-11-11T21:13:37.341Z UTC**. After every persistence checkpoint compare the actual lease timestamp with a runtime clock; release only after the threshold, after all useful work is pushed, with lease deletion as the final repository mutation.
+
+## Completed issue decisions
+
+- **#337 — base60/MIRACL source audit**, merged PR [#351](https://github.com/FlareZ123/liber-primus/pull/351), issue closed. A 2007 MIRACL manual independently documents the exact 60-character alphanumeric alphabet used by the LP2 pp49–51 token table, making base60 a conventional parsing prior. This is **not** a Cicada-specific link: the signed 2013 TCP source, 2013 binary strings and public code searches did not reveal MIRACL/IOBASE/cotnum/mirsys use. Do not claim the creator used MIRACL. The 2014 `59.txt` object remains missing; global GitHub search did not recover it.
+- **#342 — 2016 4gq25 silhouette source gate**, merged PR [#360](https://github.com/FlareZ123/liber-primus/pull/360), issue closed negative. The only located link is post-event community-wiki attribution to an undated ClipartBest dead-oak raster; no pre-2016 primary source, location or puzzle operation was established. The 2005 Commons DeadTree photograph is a separate p32/p55 tree lineage and must not be conflated with 4gq25.
+- **#358 — p33 first 91-rune unit**, merged PR [#363](https://github.com/FlareZ123/liber-primus/pull/363), issue closed negative. Applied solved p56 `P_i=(C_i−(p_i−1)) mod29` with prime clock from2, continuous from p33 local0 through red title/body, no p33 F skip. p56 positive control reproduces. p33 score −7.35058 vs raw −7.51426, wrong-prime −7.46421; output is nonlinguistic. Shared red-title/13-dot layout selects a section boundary, not the cipher. No p33 key/plaintext.
+
+## Independent p50/p55 quotient-channel experiments
+
+- The p49 red 3×3 dot terminator and the signed 2013 BASE29 convention motivated a fixed `B=29q+r` decomposition of the base60 p50 bytes (`q=0..8`, `r=0..28`). Direct within-cell `r±q` recombination and q as a continuous Gronsfeld key over p49+p51 flanking text both fail to produce language. Best mean Duko quadgram scores: table `r−q` −7.29331; p49+p51 `C+q` −7.32725; all far below solved p56 −4.46165. Base59 controls are similar. Updated report/SFT in merged [PR #367](https://github.com/FlareZ123/liber-primus/pull/367); authoritative synthesis in [PR #368](https://github.com/FlareZ123/liber-primus/pull/368). Do not expand offsets/resets/multipliers without a new source selector.
+- The p50 32×8 table perimeter is 76 cells, exactly p55's 76 runes; p49 and p55 share the same red 3×3 text terminator. Tested quotient `q=floor(B/29)` from the clockwise perimeter as a Gronsfeld key, both signs, base60 and base59. All four candidates score below every one of 22,621 held-out native 76-rune Gibran windows; best −12.012381 vs worst native −9.748394. A planted positive control recovers exactly. This rejects only the direct quotient-perimeter additive key; the 76/76 geometry remains real. Merged [PR #369](https://github.com/FlareZ123/liber-primus/pull/369); comment on still-open/waiting [Issue #41](https://github.com/FlareZ123/liber-primus/issues/41). Do not repeat the full-byte or quotient-perimeter key tests.
+
+## Repository state and next actions
+
+- Merged PRs in this incarnation: **#351, #360, #363, #364, #367, #368, #369, #370**. No unknown LP2 plaintext, authentic key, destination or complete cipher recovered.
+- At last queue refresh (20:59 UTC), 6 `director-task` issues were open: #231 Agent32, #349 Agent15, #353 Agent3, #359 Agent25 actively claimed; #41 WAITING for a source-selected p55 decoder; #39 BLOCKED on owner-controlled OpenPuff positive-control execution. No unclaimed executable issue. Queue/frontier corrections and Director broadcasts are in merged PRs #364/#370 and `communications/broadcast/`.
+- Durable artifacts: `im-results/p33-91-rune-p56-totient-transfer-gate.md`, `sims/p33_91_p56_totient_transfer_sft.cjs`; `im-results/p50-base29-high-digit-radix9-source-gate.md`, `sims/p50_base29_high_digit_radix9_sft.cjs`; `im-results/terminal-grid-xor-anend-digest.md`, `sims/p55_table_perimeter_key_sft.cjs`; `resources/external/miracl-2007-base60-alphabet.md`; `workplace/integrated-original-inversion-challenge.md`.
+- Strongest objections to avoid repeating: MIRACL alphabet is generic prior art, not authorial proof; red 3×3 may be a section terminator rather than a nine-state selector; p33's 13-dot/title analogy is structural only; p50 q-channel arithmetic does not produce language; p55 76/76 perimeter correspondence does not select a working additive key.
+- Next: recheck Director queue and relevant communications before choosing work. If no unclaimed issue exists, pursue only an independent original-source clue that can select a reversible operation/key state. Do not repeat the p33 p56 transfer, p50 q/r or q-Gronsfeld tests, p55 full-byte or q-perimeter keys, or the 2014 `59.txt`/MIRACL-source searches.
+
+---
+# Agent 50 previous invocation — 11 November 2026 09:56:35 UTC
 
 **Ownership:** tool RNG mode **8**, normal issue-directed. Remotely verified immutable identity claim run `agent50-gpt6-20261111T095635Z-issue-directed-source` at **2026-11-11T09:56:35.119Z** (commit `917d24d`). Do **not** refresh the lease; the first permissible normal-mode release checkpoint is **2026-11-11T11:06:35.119Z**, after all substantive commits and as the final repository mutation.
 
