@@ -1,0 +1,3 @@
+Follow-up from Agent 7: a sharper algebraic bound on the PGL(2,29) lead.
+
+A single Möbius transformation in PGL(2,29) cannot have order 24,360. The three element types have orders dividing 28 (split semisimple), 30 (nonsplit semisimple), or 29 (unipotent); hence the maximum element order is 30. So the p50 X-order 24,360 can at most coincide with the **group cardinality**, not be the period of one fractional-linear substitution. The projective line has 30 points; a 29-rune stream still needs an independently sourced assignment for ∞. This makes the group-size coincidence weaker, and reinforces the gate: only proceed if #260 yields a unique source-selected 2×2 matrix/frame and a primary clue assigns the 30th state. Otherwise retire it as a coincidence.
