@@ -23,6 +23,7 @@ on:
           - redspan-zero
           - tree-tiling
           - terminal-circumference
+          - collision-quote
         default: full
 
 jobs:
@@ -34,6 +35,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Test red-event collision/quote cross-track inversion
+        if: ${{ inputs.probe == 'collision-quote' }}
+        run: node sims/ink256_lcg_collision_quote_bridge_sft.cjs
+
       - name: Verify 256-token payload, token cases and SHA-256
         if: ${{ inputs.probe == 'full' || inputs.probe == '' }}
         run: |
