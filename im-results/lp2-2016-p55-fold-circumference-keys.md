@@ -86,6 +86,7 @@ Two immediate continuations were tested and rejected:
 
 1. The known first A-KOAN reversed-GP ±3 operation, suggested by `MY-FOLD=3` and the independent `A KOAN=243` sum, does not decrypt the p30–33 pages selected by the surrounding source words `epiphany` and `devoted`.
 2. Direct Vigenere-style application of **DIVINITY** or **FIRFUMFERENFE** to p32 and its natural concentric square interiors does not recover readable plaintext under the straightforward historical variants.
+3. The distinct literal p55 **33 exterior → 43 interior** source-key proposal has now been checked with eight word-endpoint additive masks and six exterior-key cyclic/feedback rules. All 14 GP29 original inverses fail source-native solved-LP1 trigram controls; forward re-encryption and solved-p57 plants pass. This is an explicitly bounded negative, documented with [original SFT, full outputs and successful CI](p55-exterior-interior-direct-selfkey-gate.md). It does not alter the fold geometry or independently select a historical cipher.
 
 These failures narrow the problem to **where and how the recovered key material is meant to act**. They do not weaken the exact p55 fold equalities.
 
