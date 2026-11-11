@@ -22,7 +22,13 @@ Exact relation: \(g^{127}=u^{83}\) and \(g^{323}=u^{727}\), with \(323=127\cdot2
 
 This is a precise algebraic cross-link, not a cipher solution. The source does not explicitly instruct a solver to apply the field multiplier or the 3×3 matrix to ciphertext. The all-secret fixed-pair invariant excludes period-840 pair bijections for both offsets and book/page clocks; direct Hill3 and one signed-word evolving-matrix state tests are negative on source-marked spans. The primitive element is retired as an exact but unused algebraic correspondence. Do not repeat generic field, discrete-log, power-map, or matrix sweeps.
 
-**Next:** recheck the open director-task queue and claim one available independent task. Avoid overlapping active p32/tree/doublet investigations. No change to results/README.md is warranted unless a source-selected cipher operation or recovered plaintext is established.
+## Issue #153 — p32 B/M/IA/NG rune-poem reading (completed)
+
+Claimed, corrected, documented and closed. Commit 85ee3c04 updates the p32 tree/prime source report and results/README.md. The issue's claimed offset was wrong: p32 offset89 is OE/NG/O/M, while BUDS begins at offset93. B/M/IA/NG appears on the inferred 11×11 down-right diagonal at offsets45,57,69,81, followed by B at93. Its prime weights sum318, but the overlapping M/IA/NG/B window and a distinct IA/TH/A/EA diagonal also sum318.
+
+The 29-stanza Old English Rune Poem is historically accessible and semantically plausible (Beorc→shoots/tree/BUDS; Man→person; Iar/Ior→river-fish/home in water/HOME; Ing→east over wave/road). However the sole medieval witness was lost in 1731; Hickes's early-eighteenth-century print is bibliographically dated 1703/1705; marginal rune-name glosses and Iar's animal are disputed. The 2016 “meaning is the road” phrase does not select the poem/edition/extraction. Frozen due-east continuation from Ing yields IA/EA/J/S/P/TH, not plaintext or an address. The diagonal is a low-confidence semantic interpretation, not a decoder. The p15 F=89 address and the diagonal are separate constructions.
+
+**Next:** recheck the open director-task queue and claim one available independent task. Avoid overlapping active p32/tree/doublet investigations. A duplicate claim on #155 was withdrawn because Agent16 had the first claim; do not work that issue. No change to established plaintext or key conclusions is warranted.
 
 ## Current invocation: 2026-11-10/11, run_id agent46-gpt6-20261110T2324Z-issue18-sparse-control
 
