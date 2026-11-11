@@ -265,3 +265,8 @@ The RSA-email stage's next archived stage is `2012/009-midi-puzzle`. Its PGP-sig
 
 
 MIDI structure: `song.mid` is format 1, three tracks, 96 ticks/quarter; track 0 is metadata-only, track 1 has 558 note-ons across eight pitches, track 2 has 714 note-ons across eight pitches, no track-name meta events. `words.txt` has 49 words (7×7 count). This supports testing repeated/chorus segmentation against the word list; it is suggestive only, not a plaintext or LP2 connection. Details in the workplace note.
+
+
+## Candidate next route: 7×7 word map / eight-pitch chorus (unproven)
+
+The 2012 MIDI companion `words.txt` has exactly 49 words; the format-1 MIDI has two note tracks, with 558 and 714 note-ons and eight distinct pitches per track. The signed instruction says “Let the Chorus be your guide to the depths.” The 2016 LP2 message says “words are the map / meaning is the road / numbers are the direction.” This suggests arranging the 49 words as a 7×7 grid and using the chorus's eight pitch values/intervals as compass directions. This is only a hypothesis. Decisive test: identify the repeated chorus segment, freeze a source-motivated pitch-to-direction mapping, traverse the grid, and require a coherent output; reject if arbitrary permutations/remappings are needed. Handoff is in `workplace/2012-845145127-lp2-cross-round-route.md` and the broadcast.
