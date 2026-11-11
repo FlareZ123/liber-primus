@@ -34,7 +34,7 @@ The p55 transcription contains 17 printed words with rune lengths:
 
 [1, 4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3]
 
-That is 76 runes. Removing the first and last rune of each printed word yields 43 interior runes and 33 exterior runes. The singleton word contributes no interior rune and one exterior rune. The interior sequence, represented as exact zero-based GP rune indices, is:
+That is 76 page-local runes. The leading one-rune segment is the final boundary rune of an 11-rune word that begins on the preceding physical page; it is not a standalone singleton. Carrying that cross-page word correctly, the p55 page contributes 43 interior runes and 33 boundary runes. The interior sequence, represented as exact zero-based GP rune indices, is:
 
 [19, 10, 12, 6, 23, 2, 27, 24, 17, 5, 28, 0, 14, 10, 19, 1, 5, 13, 8, 21, 20, 15, 23, 27, 13, 8, 12, 18, 10, 6, 14, 6, 15, 12, 2, 2, 18, 28, 10, 19, 5, 11, 18]
 
@@ -57,7 +57,7 @@ No surviving, contemporaneous instruction reviewed here establishes all of the f
 3. Whether a p50 value is a raw byte, a base-60 token, an 8-way direction/distance value, or something else when applied to a GP rune.
 4. The direction and traversal order for the p55 interior sequence.
 5. The reversible transform, key material, key/state initialization, and any skip or carry rule.
-6. Whether the 33 exterior p55 runes are discarded, preserved as plaintext, or used as key/state material, including the singleton-word case.
+6. Whether the 33 boundary p55 runes are discarded, preserved as plaintext, or used as key/state material, including correct state carry for the incoming cross-page word.
 
 The current 43-word base-58 address map is a later reconstruction from GP prime sums and the 58-page count, not a protocol stated in the signed message. Its exceptional “lies” → p50 3D result is not enough to determine the missing 43-way correspondence.
 
