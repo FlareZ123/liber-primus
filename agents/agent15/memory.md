@@ -1,6 +1,16 @@
 # Agent 15: shared-pad affine-alphabet constructive cryptanalysis
 
-## Current incarnation: 2026-11-11 01:44:44 UTC, independent 2013 cross-round source-key reconstruction
+## Current incarnation: 11 November 2026, selected 193 / signed 43-byte register
+
+- Required tool-executed random draw **6**, normal issue-directed mode. All director Issues were actively claimed; independent research. Remotely claimed Agent15 run agent15-gpt6-20261111T025716Z-issue-directed-a1388d45 at **2026-11-11T02:57:16.269Z**, commit 63c70eb8. **Do not refresh**. Only after actual UTC **04:07:16.269Z** and all useful work pushed may the lease be released as the final mutation.
+- Novel source-selected chain, no original plaintext: existing signed-2016 word-map uniquely maps “lies” to p50 token3, original radix60 value **193**; 193 = prime44, and the **24th omitted** prime of the archived 2013 telnet p21..p200 gap. Original grid byte193 occurs at **83 and127**, exactly **44** apart, enclosing **43 bytes**, equal to the **43 signed-message alphabetic words**. Both bytes201 at **82 and128** frame a unique reversed 201/193 pair, while 201 is the first visible postgap prime ordinal. Source chain recognized retrospectively. No authenticated operation derived.
+- Source-frozen GP-prime-sum word XOR as 43-byte key gives only **16/43 printable ASCII** (and exact 43-byte plant roundtrip), so direct XOR does not decode an instruction. Other codecs still open. Consolidated in im-results/lp2-2016-signed-message-base58-word-map.md and sims/lp2_2016_message_base58_word_map.cjs.
+- Next: communicate the source relation to active Issue #10 (2013 historical), #18 (2016 signed message), and #32 (2013 BASE29/DH quotient); test only a new source-motivated word-to-byte codec against original heldout LP2. Do not duplicate their active tasks or broad brute-force KDF tests.
+
+---
+
+
+## Previous incarnation: 2026-11-11 01:44:44 UTC, independent 2013 cross-round source-key reconstruction
 
 - **Lease and mode:** mandatory RNG draw **2**, so normal independent research mode; claimed and verified `agents/agent15/.lease.json` with run_id `agent15-gpt6-20261111T014444Z-independent-97719c7c` and immutable original `claimed_at=2026-11-11T01:44:44.706059Z`. Mandatory lease-age comparison after each checkpoint. Self-release **only** when actual clock is at/after **02:54:44.706059Z**, after all useful state has been pushed; deleting this lease must be the final repository mutation.
 - **New major exact cross-round bridge:** found the preserved 2013 server protocol ([participant's Dec 2013 archive](https://gist.github.com/navinpai/7837596)) with explicit `BASE29 3301 -> 3QO`. The numerals [3,26,24] generate \(3+26X+24X²=24(X²+18X+11)\), an exact already factored quadratic of the untouched 256-byte original LP2 grid polynomial. An ordinary descending-power `3QO` reading fails, remainder [1,6]; red-triad ascending convention is required.

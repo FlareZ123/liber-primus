@@ -105,6 +105,17 @@ The **entire** physical word corpus contains **2,973 printed rune words**, versu
 
 The pointer walk must *stop or change rule* when it encounters an absent word on the rune-free p50. Directly iterating it elsewhere creates ordinary convergent cycles and does not automatically yield an unknown-language plaintext. A successful solve must still supply a distinct source-prescribed stop, selection, folding or decryption instruction.
 
+## Prime 193, the missing-prime index, and the 43-byte signed-message interval
+
+**Exact original-source observation, 11 November 2026; intended route remains provisional.** The previously frozen signed-2016 base-58 book-address operation above uniquely maps the word “lies” (GP-prime sum 224) to original LP2 physical p50, table token index 3. The literal token 3D has radix-60 byte value **193**. The archived 2013 telnet prime list skips from 71 = prime(20) to 1229 = prime(201). Among those **180 omitted primes**, 193 is **prime(44)** and its omission-index is **24** (44 minus the 20 preceding visible primes). The number 24 is independently the p54 oversized Ac GP index and p39 quadratic double root, as already established in earlier source reports.
+
+The 256-byte table contains byte 193 *exactly twice*, at original global row-major offsets **83 and 127** (p50-local offsets 3 and 47). The distance **44** equals the 1-based prime ordinal of 193. The enclosed offsets **84–126** provide exactly **43 source bytes**, matching the 43 alphabetic words of the preserved signed 2016 message under the already fixed tokenization excluding 3301 and the hexadecimal fingerprint. Original byte **201** occurs exactly twice at offsets **82 and 128**, flanking the two 193 occurrences in reverse order: **201, 193, [43 bytes], 193, 201**. The value 201 is the 1-based ordinal of the first prime displayed after the 2013 gap. This is the only reversed ordered adjacent-byte-pair match anywhere in the original table. Under the alternative radix-59 reading, token 3D would equal 190 and the prime-rank route fails.
+
+**One frozen original-data decoder was tested:** take the 43 interior bytes in forward row-major order and XOR each with its corresponding signed-word GP-prime sum modulo 256, as suggested by the historical 2013 bytewise XOR puzzles. This yields only **16/43 printable ASCII** bytes and no readable instruction. The same model roundtrips a separately supplied known 43-byte ASCII plant exactly, which is an implementation check only. This closes the literal direct XOR interpretation, without claiming an actual LP2 text decryption.
+
+The source matching, 43-byte alignment, prime-gap index and bracketing bytes were recognized retrospectively, so there is no discovery-adjusted significance claim or proven creator instruction. Under a fixed-source shuffle conditioned on 193 being present at selected offset 83, the other copy occupies the expected +44 offset with probability 1/255; this is a narrow conditional arrangement probability rather than evidence of a cryptographic key. The next decisive step is an independent historical instruction turning these 43 signed-word/byte pairs into a recoverable key or original plaintext, then testing a frozen inverse against unsolved LP2. The existing [book-map source SFT](../sims/lp2_2016_message_base58_word_map.cjs) asserts the full chain and bounded XOR result.
+
+
 ## Independent numerical bridge to the 2016 image
 
 The first four words, “Its words are the”, have GP prime sum:

@@ -169,8 +169,8 @@ const exceptions = fullMap.filter(row => row.runeWord === null);
 assert.deepEqual(exceptions.map(({word, sum, page, wordIndex}) =>
   [word, sum, page, wordIndex]), [["lies", 224, 50, 3]]);
 assert.equal(lp2Pages[50].length, 0);
-const page50Table = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"))
-  .pages.find(p => p.page === 50);
+const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+const page50Table = grid.pages.find(p => p.page === 50);
 assert(page50Table && page50Table.tokens.length === 104);
 assert.deepEqual([page50Table.tokens[3], page50Table.bytes[3]], ["3D", 193]);
 const locate = word => fullMap.filter(row => row.word.toLowerCase() === word);
@@ -206,6 +206,43 @@ const p32LeftColumn = p32.filter((_, index) => index % 11 === 0).reduce((a, b) =
 const firstFourWordSum = rows.slice(0, 4).reduce((sum, row) => sum + row.primeSum, 0);
 assert.deepEqual([p32TopRow, p32LeftColumn, firstFourWordSum], [563, 569, 569]);
 
+
+const first201 = firstPrimes(201);
+assert.equal(first201[19], 71);
+assert.equal(first201[200], 1229);
+const skipped2013 = first201.slice(20,200);
+assert.equal(skipped2013.length, 180);
+assert.equal(skipped2013[23], 193);
+assert.equal(first201.indexOf(193)+1, 44);
+assert.equal(3301%29,24);
+assert.equal(3*59+13,190);
+const selectorGlobalIndex = grid.pages.filter(p=>p.page<50).reduce((n,p)=>n+p.bytes.length,0)+3;
+assert.equal(selectorGlobalIndex,83);
+assert.equal(grid.bytes.length,256);
+const hits = value => grid.bytes.flatMap((byte,i)=>byte===value?[i]:[]);
+assert.deepEqual(hits(193),[83,127]);
+assert.deepEqual(hits(201),[82,128]);
+assert.equal(127-83,first201.indexOf(193)+1);
+assert.equal(page50Table.bytes[47],193);
+const signedInterior = grid.bytes.slice(84,127);
+assert.equal(signedInterior.length,signedAllWords.length);
+assert.equal(signedInterior.length,43);
+const reverseDigramMatches=[];
+for(let i=0;i<grid.bytes.length-1;i++){
+ for(let k=i+2;k<grid.bytes.length-1;k++){
+  if(grid.bytes[i]===grid.bytes[k+1]&&grid.bytes[i+1]===grid.bytes[k])reverseDigramMatches.push([i,k]);
+ }
+}
+assert.deepEqual(reverseDigramMatches,[[82,127]]);
+const sourceWordBytes=fullMap.map(r=>r.sum&255);
+const decodedSignedBytes=signedInterior.map((b,i)=>b^sourceWordBytes[i]);
+const asciiPrintable=decodedSignedBytes.filter(n=>n>=32&&n<=126).length;
+assert.equal(asciiPrintable,16);
+const clearControl=Array.from(Buffer.from("SOURCE INDEX HELDOUT PLAINTEXT ASSERTION OK","ascii"));
+assert.equal(clearControl.length,43);
+const encryptedControl=clearControl.map((b,i)=>b^sourceWordBytes[i]);
+assert.deepEqual(encryptedControl.map((b,i)=>b^sourceWordBytes[i]),clearControl);
+
 console.log(JSON.stringify({
   status: "provisional source-constrained book-map hypothesis; not a decryption",
   modulus: 58,
@@ -216,6 +253,12 @@ console.log(JSON.stringify({
   p32TopRow,
   p32LeftColumn,
   foldHits,
+  signedPrime193: {
+    signedWords:signedAllWords.length,selector:193,primeOrdinal:44,omittedOrdinal:24,
+    bytePositions:hits(193),bracketPositions:hits(201),
+    interiorBytes:signedInterior.length,printableXor:asciiPrintable,
+    xorHex:Buffer.from(decodedSignedBytes).toString("hex")
+  },
   p56Word1Cipher: p56Word,
   p56Word1Plain: "END",
   rows,
