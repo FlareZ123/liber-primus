@@ -175,6 +175,128 @@ function decrypt2(input, mask) {
   assert.ok(out.every((v) => v >= 0 && v < 29));
   return out;
 }
+/**
+ * General standard Bifid fractionation on one reset-segment length.
+ * The source pair used for each output is determined exactly by
+ * interleaving ciphertext coordinates, for any block period >=2.
+ * Each of the four row/column input-parity classes has one unknown
+ * 5x5 rectangle; sum its 25 largest ordered-pair counts as a bound.
+ * @param {number[][]} segments
+ * @param {number} removedMask
+ * @param {number} period
+ */
+function generalCapacity(segments, removedMask, period) {
+  const h = new Int32Array(4 * 841);
+  const tails = new Int32Array(29);
+  const block = new Int8Array(period);
+  function finish(size) {
+    if (size === 1) {
+      tails[block[0]]++;
+      return;
+    }
+    for (let i = 0; i < size; i++) {
+      const left = i;
+      const right = size + i;
+      const kind = ((left & 1) << 1) | (right & 1);
+      const x = block[left >>> 1];
+      const y = block[right >>> 1];
+      h[kind * 841 + x * 29 + y]++;
+    }
+  }
+  for (const source of segments) {
+    let n = 0;
+    for (const v of source) {
+      if (removedMask & (1 << v)) continue;
+      block[n++] = v;
+      if (n === period) {
+        finish(n);
+        n = 0;
+      }
+    }
+    if (n) finish(n);
+  }
+  let bound = Math.max(...tails);
+  for (let kind = 0; kind < 4; kind++) {
+    const base = kind * 841;
+    let maxCell = 0;
+    for (let j = 0; j < 841; j++) maxCell = Math.max(maxCell, h[base + j]);
+    const freq = new Int32Array(maxCell + 1);
+    for (let j = 0; j < 841; j++) freq[h[base + j]]++;
+    let take = 25;
+    for (let cell = maxCell; cell >= 0 && take; cell--) {
+      const n = Math.min(take, freq[cell]);
+      bound += cell * n;
+      take -= n;
+    }
+    assert.equal(take, 0);
+  }
+  return bound;
+}
+/** @param {number[][]} segments @param {number} period */
+function generalExhaustive(segments, period) {
+  let maximum = -1;
+  let minimum = Infinity;
+  let maximizingMask = null;
+  let choices = 0;
+  for (let a = 0; a < 26; a++)
+    for (let b = a + 1; b < 27; b++)
+      for (let d = b + 1; d < 28; d++)
+        for (let e = d + 1; e < 29; e++) {
+          const bound = generalCapacity(segments, bitmask([a, b, d, e]), period);
+          if (bound > maximum) {
+            maximum = bound;
+            maximizingMask = [a, b, d, e];
+          }
+          minimum = Math.min(minimum, bound);
+          choices++;
+        }
+  assert.equal(choices, 23751);
+  return {period, segments: segments.length, choices,
+    maximum, minimum, maximizingMask};
+}
+/**
+ * Source-positive generic Bifid with the identity 5x5 row-major secret key.
+ * Preserves bypass positions and restarts its core clock for each segment.
+ * @param {number[]} input
+ * @param {number} mask
+ * @param {number} period
+ * @param {boolean} inverse
+ */
+function bifidPeriod(input, mask, period, inverse) {
+  const out = [];
+  let block = [];
+  let positions = [];
+  function emit() {
+    const n = block.length;
+    if (!n) return;
+    const coords = [];
+    if (inverse) {
+      for (const v of block) coords.push(Math.floor(v / 5), v % 5);
+      for (let i = 0; i < n; i++)
+        out[positions[i]] = 5 * coords[i] + coords[n + i];
+    } else {
+      for (const v of block) coords.push(Math.floor(v / 5));
+      for (const v of block) coords.push(v % 5);
+      for (let i = 0; i < n; i++)
+        out[positions[i]] = 5 * coords[2 * i] + coords[2 * i + 1];
+    }
+    block = [];
+    positions = [];
+  }
+  for (const v of input) {
+    if (mask & (1 << v)) out.push(v);
+    else {
+      positions.push(out.length);
+      block.push(v);
+      out.push(-1);
+      if (block.length === period) emit();
+    }
+  }
+  emit();
+  assert.ok(out.every((v) => Number.isInteger(v) && v >= 0 && v < 29));
+  return out;
+}
+
 const controls = fs.readFileSync(path.join(
   root, "resources/control/shakespeare_first300k.txt"), "utf8");
 const english = gpEnglish(controls);
@@ -202,6 +324,14 @@ for (const [label, segments] of Object.entries(clocks)) {
 }
 assert.deepEqual(Object.values(original).map((v) => v.maximum),
   [891, 885, 889, 865]);
+const periodFive = generalExhaustive([all], 5);
+assert.equal(periodFive.maximum, 848);
+assert.equal(periodFive.minimum, 744);
+assert.deepEqual(periodFive.maximizingMask, [3, 15, 19, 23]);
+const plant5 = bifidPeriod(source, plantMask, 5, false);
+assert.deepEqual(bifidPeriod(plant5, plantMask, 5, true), source);
+const plant5Bound = generalCapacity([plant5], plantMask, 5);
+assert.ok(plant5Bound >= 1517);
 console.log(JSON.stringify({
   source: "LP2 original 55 rune pages; 29 GP glyphs",
   originalRunes: N,
@@ -213,7 +343,9 @@ console.log(JSON.stringify({
     plantedBareE: 1517,
     plantExactRoundtrip: true,
     plantedKeyCapacity: plantCapacity.bound,
+    periodFivePlantCapacity: plant5Bound,
   },
   original,
+  periodFive,
   decision: "All 25! secret squares and all four-transparent selections, for the listed period-2 reset clocks, have GP-E frequency capacity below source English.",
 }, null, 2));
