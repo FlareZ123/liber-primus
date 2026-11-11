@@ -4,7 +4,7 @@
 
 ## Human-solve hypothesis
 
-LP2 p56 supplies a 128-hex-character (512-bit) digest. The signed 2013 TCP-server challenge separately authenticates a BASE29 numeral-conversion operation, with the worked example 3301 -> 3QO -> [3,26,24]. A solver could therefore treat the p56 digest as one large hexadecimal integer, convert that integer to canonical BASE29, interpret the resulting digits as Gematria Primus values, and use them as a repeating key. This uses the supplied digest and a historically attested operation without searching for an arbitrary key.
+LP2 p56 supplies a 128-hex-character (512-bit) digest, recorded in the [consolidated p56 hash assessment](archive-hash-preimage.md). The [signed 2013 TCP-server challenge](../resources/external/2013-tcp-server-signed-source.md) separately authenticates a BASE29 numeral-conversion operation, with the worked example 3301 -> 3QO -> [3,26,24]. A solver could therefore treat the p56 digest as one large hexadecimal integer, convert that integer to canonical BASE29, interpret the resulting digits as Gematria Primus values, and use them as a repeating key. This uses the supplied digest and a historically attested operation without searching for an arbitrary key.
 
 The tested key is the standard most-significant-digit-first BASE29 expansion of the entire 512-bit digest. It has 105 digits. It is used continuously across the 12,956 unknown runes as a direct additive Vigenere key; both inverse signs are tested. No page resets, reversed digits, offsets, or alphabet permutations are introduced.
 
