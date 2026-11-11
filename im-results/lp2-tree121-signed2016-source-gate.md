@@ -81,6 +81,22 @@ The standard cleartext-signature SHA-1 calculation (canonical CRLF source lines 
 
 **Complete executable source gate:** [`sims/lp2_p32_signed2016_pgphash_source_sft.cjs`](../sims/lp2_p32_signed2016_pgphash_source_sft.cjs), exercised successfully by [manual Node 22 CI 42955549602](https://github.com/FlareZ123/liber-primus/actions/runs/42955549602). The SFT checks all 121 original p32 runes against the canonical corpus, all 22 printed word sums, the entire binary packet structure, the signed hash, the **full 4096-bit RSA signature and exact standard-only decrypted padding**, the fixed 33-digit base-29 representation, and all eight original-input reversible direct-key models. Further use of the hash must derive an actual algorithm from source instructions and predict a separate unknown interval, rather than proliferate arbitrary hash-KDF/pad sweeps.
 
+
+### Issuer-ID address-role gate (Director Issue #127)
+
+The signed text's exact instruction is **“Beware false paths. Verify OpenPGP 7A35090F.”** The imperative selects signature verification. It does not instruct the solver to decode, reinterpret, append, or use the issuer ID as an address.
+
+The key metadata and historical control make the authentication reading concrete:
+
+- GnuPG lists the Cicada primary key as 4096-bit RSA, created **2012-01-05T03:39:43Z**, with full fingerprint `6D854CD7933322A601C3286D181F01E57A35090F`, 64-bit key ID `181F01E57A35090F`, and UID `Cicada 3301 (845145127)`.
+- The 2016 signature's issuer subpacket contains the standard 64-bit issuer ID `181F01E57A35090F`; the visible signed text names its 32-bit short-ID suffix `7A35090F`.
+- GnuPG verifies the 2016 signed message under that key. It also verifies the 2012 `quaetrix0` RSA-email sample under the same key. That 2012 message explicitly states: **“Only messages signed with public key ID 7A35090F are valid.”** The 2012 archive README identifies this as its only validly signed sample; the `unknown` and `another_unknown` copies are redacted and their signatures do not verify.
+- The key UID's `845145127` is a separate user-ID comment, not the issuer ID. Do not conflate it with the 32-bit or 64-bit key identifier. The 540-byte RSA signature-body observation and its 2017 control are already covered above; they do not create an address instruction.
+
+No original source selects an address representation or domain for the issuer ID: the 32-bit short ID, 64-bit issuer ID and 160-bit fingerprint are distinct candidates, and no source specifies radix, byte order, page/word origin, or indexing. No numeric/radix sweep was run because the source gate fails before an address operation can be frozen.
+
+**Decision:** retain `7A35090F` as the authentication key ID and retire the issuer-ID-as-address hypothesis. The exact missing evidence that could reopen it is a primary instruction explicitly mapping the issuer ID to an address space and specifying which identifier representation and indexing convention to use. See [the self-contained Issue #127 decision](lp2-openpgp-issuer-id-address-gate.md).
+
 ## Original p32 sentence geometry and row-start HOME (Agent 43, 11 November 2026)
 
 **Evidence class:** literal original ciphertext with independently visible word/sentence/row geometry. Whether the English prefix is an intentional plaintext landmark or key remains unresolved.
