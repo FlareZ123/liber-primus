@@ -76,6 +76,35 @@ const SHA=b=>crypto.createHash("sha256").update(b).digest("hex");
 const dir=fs.mkdtempSync(path.join(os.tmpdir(),"lp2-shed43-"));
 const output=path.join(dir,"candidate");
 try{
+  // The original signed2016 JPEG is an independent genuine default-password
+  // OutGuess positive control, with a byte-exact archived plaintext.
+  const signedOriginal=fs.readFileSync(path.join(
+    ROOT,"resources/historical/cicada2016-4gq25-outguess.asc"));
+  const defaultResult=command([
+    "-r",path.join(ROOT,"resources/historical/cicada2016-4gq25.jpg"),output]);
+  assert.equal(defaultResult.status,0);
+  assert.ok(fs.readFileSync(output).equals(signedOriginal));
+  fs.rmSync(output,{force:true});
+
+  // Native keyed synthetic control checks the 43-rune-derived GP passphrase.
+  const msg=path.join(dir,"control-message"),stego=path.join(dir,"control.jpg");
+  const planted=Buffer.from("SOURCE GP43 KEYED OUTGUESS POSITIVE CONTROL\n");
+  fs.writeFileSync(msg,planted);
+  const embed=command([
+    "-k",passwords[1].value,"-d",msg,
+    path.join(ROOT,"resources/liber-primus/17.jpg"),stego]);
+  assert.equal(embed.status,0,"native keyed embedding failed");
+  const recovered=command(["-k",passwords[1].value,"-r",stego,output]);
+  assert.equal(recovered.status,0,"native keyed recovery failed");
+  assert.ok(fs.readFileSync(output).equals(planted));
+  fs.rmSync(output,{force:true});
+  console.log("LP2_SHED43_OUTGUESS_CONTROLS "+JSON.stringify({
+    authenticSigned2016Bytes:signedOriginal.length,
+    exactAuthenticExtraction:true,
+    exactGpKeyPlantedRecovery:true,
+    plantedBytes:planted.length
+  }));
+
   const results=[];
   for(const pwd of passwords)for(const image of images){
     fs.rmSync(output,{force:true});
