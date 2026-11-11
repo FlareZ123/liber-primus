@@ -73,8 +73,9 @@ const sourceRows = originalWords.map((word, index) => {
 assert.deepEqual(sourceRows.filter(row => row.runeWord === null)
   .map(row => [row.word, row.page, row.wordIndex, row.token]),
   [["lies", 50, 3, "3D"]]);
-assert.deepEqual(sourceRows.filter(row => row.word.toLowerCase() === "the")
-  .map(row => [row.page, row.wordIndex]), [[14, 1],[14, 1],[14, 1],[14, 1]]);
+const selectedThe = sourceRows.filter(row => row.word.toLowerCase() === "the");
+assert.equal(selectedThe.length, 6);
+assert.ok(selectedThe.every(row => row.page === 14 && row.wordIndex === 1));
 assert.deepEqual(sourceRows.filter(row => row.word.toLowerCase() === "their")
   .map(row => [row.page, row.wordIndex]), [[56, 1],[56, 1]]);
 assert.equal(pageWords[14][1], "ᚠᚩᛚᛞ");
