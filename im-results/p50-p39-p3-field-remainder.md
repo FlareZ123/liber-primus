@@ -106,31 +106,29 @@ The simplest direct use—multiplication of fixed adjacent two-rune GP29 pairs b
 
 ## Direct polynomial quotient as message/key — bounded negative (Agent3, 11 November 2026)
 
-The exact dual-factor relation makes one further, finite interpretation worth testing. Let (H=3+26X+24X^2) be the factor selected by the preserved 2013 `BASE29 3301 → 3QO` example, and (G=27+5X+15X^2) the p39 red/DH23 factor. Their monic product is
-[
-F=H G=X^4+28X^3+13X^2+9X+14
-]
-over GF(29). Reading the original p50 base-60 row-major bytes as high-to-low coefficients, reducing mod 29, and dividing by (F) gives **zero remainder** and a degree-251 quotient (Q) of exactly **252 GF(29) symbols**. This is distinct from the already-reported (P_{50}/G mod F_3=19+13u) primitive-field remainder.
+This tests one direct interpretation of the source-linked dual-factor relation. The 2013 `BASE29 3301 → 3QO` example supplies `H=3+26X+24X²`; the p39 red/DH23 factor is `G=27+5X+15X²`. Their product has leading coefficient 12; its monic normalization is `F(X)=X⁴+28X³+13X²+9X+14` over GF(29).
 
-The natural direct readouts were frozen to the source order, with no phase, reversal, permutation, padding or extra cipher layer:
+Read the original p50 base-60 row-major bytes as high-to-low coefficients, reduce mod 29, and divide by `F` in GF(29)[X]. The remainder is exactly `[0,0,0,0]`; the degree-251 quotient `Q) has **252 GF(29) symbols**. This is distinct from the previously reported `P50/G mod F3 = 19+13u` primitive-field remainder and from the earlier 127-pair quotient forcing/multiplier recurrences.
 
-1. **(Q) as a GP29 plaintext stream.** The 252-symbol transliteration begins `FEANGBAISLPBLUUNGLYLPYAGRPEAAHEOUAELEANGAAEE...`; it has IoC **0.03633087** and Gibran-trained GP trigram score **−12.23942** nats/rune. It contains no word boundaries and is not readable plaintext.
-2. **(Q) as one BASE29 big-endian integer.** The 252 digits form a **1,220-bit / 153-byte** integer. Its first bytes are `0a 21 2d 90 ff 3f 0e 10`; only **45/153 (29.4%)** bytes are printable ASCII and byte entropy is **6.68863 bits**. No recognized file header or clear payload appears. This is the one direct numeric serialization suggested by the historical BASE29 example; alternate endian/packing searches were not performed.
-3. **(Q) as a repeating additive key.** Repeating the 252 symbols continuously over all **12,956** original unknown runes gives:
+The direct readouts were fixed to source order, without phase, reversal, permutation, padding or extra cipher layers:
+
+1. **`Q` as GP29 plaintext.** The 252-symbol transliteration begins `FEANGBAISLPBLUUNGLYLPYAGRPEAAHEOUAELEANGAAEE...`; IoC **0.03633087**, Gibran-trained GP trigram score **−12.23942** nats/rune. It has no word boundaries and is not readable plaintext.
+2. **`Q` as one BASE29 big-endian integer.** The 252 digits form a **1,220-bit / 153-byte** integer. Its first bytes are `0a 21 2d 90 ff 3f 0e 10`; only **45/153 (29.4%)** bytes are printable ASCII and byte entropy is **6.68863 bits**. No recognized file signature or clear payload appears. This is the direct numeric serialization suggested by the historical BASE29 example; alternate endian/packing searches were not performed.
+3. **`Q` as a repeating additive key.** Repeating the 252 symbols continuously over all **12,956** original unknown runes gives:
    - raw ciphertext: IoC **0.03447840**, trigram **−12.27633**;
-   - (C-Q): IoC **0.03449675**, trigram **−12.28142**;
-   - (C+Q): IoC **0.03448428**, trigram **−12.27338**;
-   - (Q-C): IoC **0.03449675**, trigram **−12.28945**.
-   
+   - `C−Q`: IoC **0.03449675**, trigram **−12.28142**;
+   - `C+Q`: IoC **0.03448428**, trigram **−12.27338**;
+   - `Q−C`: IoC **0.03449675**, trigram **−12.28945**.
+
    All **50** complete 256-rune output windows for each direction fall below the worst of **88** held-out native-GP Gibran windows (worst native score **−9.13104**). Exact inverse/re-encryption checks pass on all 12,956 original runes.
 
-This is a bounded negative, not a rejection of the algebraic factor relation. The experiment is **conditional on the conventional base-60 byte interpretation**; Issue #337 separately evaluates the base-59/base-60 source convention, so the quotient must be recomputed if that decision changes. Retire only the direct (Q)-as-GP plaintext, single BASE29 integer serialization, and period-252 additive-key readings. No authentic key, plaintext or source-selected parity frame follows.
+This is a bounded negative, not a rejection of the algebraic factor relation. The experiment is conditional on the conventional base-60 table interpretation. A pre-2014 MIRACL manual (2007) and Sendmail V8.10–V8.12 (2002) document the exact base-60 alphabet, but no Cicada artifact links p50 to either implementation; base60 is the stronger conventional working interpretation, not authenticated authorial intent. Issue #337's source-use question remains distinct. Retire only the direct `Q)-as-GP plaintext, single BASE29 integer serialization, and period-252 additive-key readings. No authentic key, plaintext or source-selected parity frame follows.
 
 Reproducer: [`sims/p50_dualfactor_quotient_direct_gate.cjs`](../sims/p50_dualfactor_quotient_direct_gate.cjs).
 
 ## Current assessment
 
-The exact quotient \(P_{50}/F_{39}\bmod F_3=19+13u\) is reproducible and has an exact p55-matrix eigenvalue correspondence. Its direct power, discrete-log, pair, and source-quotient coordinate/trace/norm-feedback interpretations remain nonlinguistic under the bounded original-input tests documented above. The p53/2013 NUMBER selector remains a hypothesis, and no source instruction selects the tested trace-feedback architecture. Retain the algebraic relation as intermediate evidence; no plaintext, authentic key, or intended operation is established.
+The exact quotient `P50/F39 mod F3 = 19+13u` is reproducible and has an exact p55-matrix eigenvalue correspondence. Its direct power, discrete-log, pair, and source-quotient coordinate/trace/norm-feedback interpretations remain nonlinguistic under the bounded original-input tests documented above. The separate dual-factor polynomial quotient `P50/(H·G)` gives 252 GF29 symbols, but its direct GP plaintext, single BASE29 integer, and period-252 additive-key readouts are also negative. The pre-2014 MIRACL and Sendmail sources strengthen base60 as the conventional alphabet, but do not authenticate Cicada's use of it on p50. The p53/2013 NUMBER selector remains a hypothesis; no source instruction selects a parity frame, transfer or tested trace-feedback architecture. Retain the algebraic relations as intermediate evidence; no plaintext, authentic key or intended operation is established.
 
 Related work:
 - results/README.md — authoritative p3/p39 polynomial and current synthesis

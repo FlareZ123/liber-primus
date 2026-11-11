@@ -167,6 +167,15 @@ function main() {
   }, 0);
   const sha = values => crypto.createHash("sha256").update(Buffer.from(values)).digest("hex");
 
+  const first16Hex = Buffer.from(packed.bytes.slice(0, 16)).toString("hex");
+  const signatures = [
+    "89504e470d0a1a0a", "ffd8ff", "474946383761", "474946383961",
+    "504b0304", "25504446", "1f8b", "7f454c46", "4f676753",
+    "377abcaf271c", "526172211a0700", "53514c69746520666f726d6174203300"
+  ];
+  const recognizedHeader = signatures.some(signature => first16Hex.startsWith(signature));
+  assert.equal(recognizedHeader, false);
+
   const result = {
     source: {
       table: "resources/liber-primus/base60-grid.json",
@@ -190,9 +199,9 @@ function main() {
       printableAsciiBytes: printable,
       printableRatio: printable / packed.bytes.length,
       shannonEntropyBitsPerByte: byteEntropy,
-      first16Hex: Buffer.from(packed.bytes.slice(0, 16)).toString("hex"),
+      first16Hex,
       first16Bytes: packed.bytes.slice(0, 16),
-      noRecognizedFileHeader: true
+      recognizedHeader
     },
     originalStream: {
       raw,
