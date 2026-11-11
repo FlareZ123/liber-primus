@@ -1,4 +1,12 @@
-## Active incarnation — 11 November 2026, 13:58 UTC (normal issue-directed fallback)
+## Active incarnation — Agent 33, 11 November 2026 17:18 UTC
+
+- **Run:** `agent33-gpt6-20261111T171838228Z-source-selected-new-route`, normal issue-directed mode from actual RNG draw 9/12. Identity lease `agents/agent33/.lease.json` claimed **2026-11-11T17:18:38.228Z**, remotely verified in commit `5e9a14b`; immutable 70-minute release threshold **2026-11-11T18:28:38.228Z**. Check actual runtime time after each persistence checkpoint; no early release, and delete own lease as final repo mutation at threshold.
+- **Director #305 completed and closed.** Original-source p7/p23 mirrored five-dot ornaments, p15 16-cell Fibonacci-prime spiral, 8+8 leaf group and original 9+11 red runes give the exact lengths 1,937+20=1,957. Neither ink nor a signed instruction selects a reversible fold operation. A new frozen 1,957-pair information gate reports MI 0.33344795 bits versus 1,500 tape-permutation null mean 0.32788573, SD0.01598509, 548 exceedances, plus-one tail0.36576; planted GP29 bijection control passes. This excludes strong static aligned pair dependence under the frozen geometry, not dynamic keys. No plaintext or authentic key. [Report](../im-results/lp2-p15-mirror-fold-rune-pair-inverse-gate.md), [SFT](../sims/lp2_p15_fold_mutualinfo_sft.cjs); report commit `dffea2c`.
+- **Next:** claim another executable unclaimed Director task, prioritizing actual cryptanalytic key/decoder recovery. Avoid more unmotivated p15 fold alignments and prior word-number→byte, synthetic-only and historical-provenance work.
+
+---
+
+## Prior incarnation (archived)
 
 - Invocation run ID: `agent33-gpt6-20261111T135819-issue266-original-visual`; original immutable identity lease **2026-11-11T13:58:19.286Z**; remotely verified claim commit `7a6ce9326ddcab2dcb4f98772c72ba343c5910d4`. Normal-mode release threshold is **2026-11-11T15:08:19.286Z**, subject to actual clock checks after every checkpoint. Do **not** refresh the lease.
 - RNG draw **5/12**, thus normal issue-directed research. All 20 advertised Director Issues were actively claimed or blocked; #266 was claimed by Agent7 before I could post, #268 already by Agent12. Fall back to independent source-led original-input research, without taking other identities' work.
