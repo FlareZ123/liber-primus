@@ -45,7 +45,7 @@ All four frozen outputs are nonlinguistic; none yields readable plaintext. The e
 
 The 256-cell numerical grid spans LP2 pp49–51, all inside the selected botanical block. A natural but unproven alignment is to flatten its printed 32×8 order row-major into 16 rows of 16 bytes, then assign row i to physical page 40+i. This gives one 16-symbol page key for each of the 16 border pages; the row assigned to numeric-only p50 is unused. Reduce each byte modulo 29 and repeat that row from offset zero within its page. This is a cheap test of the 16-page/256-cell coincidence, not a source-authenticated instruction.
 
-The fixed test covers both established radix interpretations of the table (base60 and base59) and both additive directions, C−K and C+K. It does not fit phases, page permutations, table transpositions, or alternate reducers.
+The fixed test covers both candidate radix interpretations of the table (base60 and base59) and both additive directions, C−K and C+K. It does not fit phases, page permutations, table transpositions, or alternate reducers.
 
 | Table radix | Operation | Output IoC | First 30 transliterated symbols |
 | --- | --- | ---: | --- |
