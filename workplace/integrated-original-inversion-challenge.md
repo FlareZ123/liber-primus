@@ -8,6 +8,8 @@
 
 A large body of work can reproduce selected ciphertext anomalies or invert independently generated plaintext using a known artificial key. That establishes useful tooling and finite negative constraints, but none of those experiments presently selects the actual LP2 key or decodes original unknown text. Research value now lies principally in **fixing recoverable key/state information from independently authenticated source material**, then making a joint original-cipher prediction with the encoder and decoder frozen.
 
+**New family-wide exclusion (2026-11-11 20:37 UTC).** A fixed bijection on GP29 rune pairs permutes the 841 digraph classes and must preserve their complete frequency multiset. Original LP2 uses 828–838 distinct pairs (maximum multiplicity 13–20) under continuous, page-, line- and word-reset alignments; sampled native-English controls use at most 477 distinct pairs (minimum maximum multiplicity 86). This retires fixed two-rune block substitutions, including every invertible 2×2 Hill key, under the tested clocks and GP29-English assumption. It is distinct from the earlier single p32 M7 pair inverse and does not test changing-key/stateful or cross-block ciphers. [Report](../im-results/lp2-fixed-digraph-bijection-gate.md) · [reproducer](../sims/lp2_fixed_digraph_bijection_gate.cjs).
+
 **Current source-led frontier (not established decryptions):**
 
 | Route | Current evidence | Next decision |
