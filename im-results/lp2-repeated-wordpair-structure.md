@@ -1,6 +1,6 @@
 # A genuine repeated LP2 two-word ciphertext phrase: section-constrained evidence
 
-**Measured 2026-11-10. Evidence type: exploratory structural anomaly, not a decoded plaintext or key.**
+**Measured 2026-11-10, source-crib extension 2026-11-11. Evidence type: exploratory structural anomaly and bounded negative direct-crib test, not decoded plaintext or an authentic key.**
 
 The false seven-rune repeat [has been corrected](lp2-sevengram-boundary-correction.md): its final rune was borrowed from the solved AN END page. However, the true **six-rune** duplication has a stronger *word-boundary property* worth preserving: two exact 3-rune words repeat as one intact **ordered pair**, and the pair occurs twice across widely separated cipher sections.
 
@@ -14,6 +14,19 @@ The two words `ᛞᛄᚢ` and `ᛒᛖᛁ` occur **exactly twice each**, together
 - Section 7, word index 733, in physical LP2 page **55** (original scan **72.jpg**), the final two words of unresolved ciphertext. This is zero-based rune-bearing transcription **segment 54**; the printed number-only page 50 has no rune segment.
 
 Over all 2,896 actual words and all eligible adjacent within-section two-word positions, **this is the sole repeated ordered two-word type of *any* length**. In particular, the six matching runes are authentic and the lexical boundaries are both `3|3`. The preceding assertion about the seventh rune remains false.
+
+## Source-adjacent GP29 crib attempt: solved p57 “OUR OWN”
+
+A new, tightly bounded **candidate** is available independently of the ciphertext's numerical square patterns. The only repeated complete two-word ciphertext pair is two printed three-rune words at physical p27 offset28 and the end of physical p55 offset70. The immediately following solved p57 contains the literal adjacent phrase **OUR OWN**, encoded as six genuine GP29 runes `[O,U,R,O,W,N]=[3,1,4,3,7,9]` at p57 local offsets47–52. Unlike “THE END,” which is only five native GP runes because TH is a single rune, this phrase matches the original **3+3 rune** shape exactly. There is no source instruction equating the repeated unknown words with OUR OWN, so this remains a hypothesis.
+
+As one direct crypto-consumer test, fix the repeated original ciphertext `[D,J,U,B,E,I]=[23,11,1,17,18,10]` to that specific solved phrase, derive one six-rune key under either `C=P+K mod29` or `C=K-P mod29`, then repeat that exact key through both physical pages. Its phase is fixed by the respective 6-rune anchor, **not** adjusted to the English score. The first orientation gives key `LIYXJU`; the second gives `YEOCLAEM` in GP transliteration. The original 76-rune p55 receives an exact reversible decoder with its 33 exterior runes retained; the 234-rune p27 provides a separate untouched continuation. Both anchors decrypt to OUR OWN by construction and every original rune forward-reencodes exactly. An 76-rune solved-native GP p57 plant also round-trips.
+
+| Frozen source-crib test | p55 76-rune decoded IoC | p27 234-rune decoded IoC | Readout |
+| --- | ---: | ---: | --- |
+| `C=P+K`, inferred K=C−OUR OWN | **0.03263158** | **0.03609552** | Unreadable, despite anchored OUR OWN |
+| `C=K-P`, inferred K=C+OUR OWN | **0.03087719** | **0.03466491** | Unreadable, despite anchored OUR OWN |
+
+The solved p57 first 76 runes have IoC **0.05964912**. Neither original readout has recognizable contiguous prose; the first p55 plaintext begins `LCNPOERTDNEIAAONGEAST...` and the second `IAUOEAPITHEOOEMHMOIN...`. These facts reject this **exact six-period direct additive extension** of the proposed source-neighbor crib. The crib itself is unverified and could still represent a repeated literal marker, a different native GP phrase, or a different crypto mechanism. Do not treat successful anchor fitting or round-trip as plaintext recovery. Reproducer: [source-crib SFT](../sims/lp2_repeated_pair_our_own_crib_sft.cjs).
 
 ## Source-exact 3⁸/81-square alignment and its cryptanalytic test
 

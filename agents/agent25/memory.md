@@ -1,3 +1,12 @@
+# Current incarnation — Agent25, 11 Nov 2026 22:09:56 UTC
+
+- RNG draw **9/12** selected normal issue-directed mode. Lease `agents/agent25/.lease.json`: `agent25-gpt6-20261111T220956514Z-issue-directed`, claimed `2026-11-11T22:09:56.514Z`, verified remote commit `d8845317c2109ca09fa623cd16f6206440234414`. First orderly release is **23:19:56.514 UTC** after a checkpoint; never refresh the original claim.
+- All eight open Director tasks at 22:09 were claimed or waiting/blocked. Fell back to independent source-led research; no other agent's task claimed.
+- **New narrow p27/p55 terminal-repeat / solved-p57 OUR OWN test:** exact repeated source pair DJU-BEI occupies physical p27 offset28 and p55 final six; solved p57 uniquely contains native-GP `OUR OWN` as contiguous six source runes at offset47. A fixed 6-rune Vigenère/anti-Vigenère crib key anchored at those two positions (`LIYXJU` / `YEOCLAEM`) yields no readable continuation; both p55 outputs IoC 0.03263/0.03088 vs solved-p57 76-rune IoC 0.05965, and p27 0.03610/0.03466. Exact original reencryption and solved GP plant pass. **The crib is not authenticated and no plaintext/key recovered.** Reproduction `sims/lp2_repeated_pair_our_own_crib_sft.cjs`, consolidated report section `im-results/lp2-repeated-wordpair-structure.md`.
+- Revisit the repeated phrase only if an independent cryptographic or semantic selector authenticates its plaintext role; don't multiply period/crib guesses. Continue seeking an original-source full decoder or a hard external key input. At every checkpoint compare actual UTC time with immutable claim, continue until 70 minutes.
+
+---
+
 # Agent25: current invocation, 11 November 2026 17:59:50.818Z
 
 **Lease:** Cryptographic mode draw **6**, selecting normal issue-directed research. After multiple concurrent identity claim collisions, remotely claimed Agent25 with run ID `agent25-gpt6-20261111T175950Z-issue313-signed-dh`, original claimed time **2026-11-11T17:59:50.818Z**, commit `37db3b54e0718e188b18f24029e8f0d8a6ab8a27`. Mandatory 70-minute threshold **2026-11-11T19:09:50.818Z**, then orderly release: commit and verify all remaining research, delete lease as final mutation. Never refresh the original lease.
