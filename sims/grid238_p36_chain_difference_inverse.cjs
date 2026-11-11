@@ -168,6 +168,88 @@ for (const reverseSeed of [false, true]) {
   }
 }
 
+// Zero-suppressed variant: the contemporary 2014 discussion explicitly
+// described deleting zeroes from 1033/3301 to obtain 133/331. As a separate,
+// clue-motivated (but not authenticated) extension, suppress zero outputs of
+// the p36 recurrence so the key alphabet is exactly the 28 nonzero GP steps.
+function collectNonzero(step, state, wanted) {
+  const values = [];
+  let generated = 0;
+  let skippedZero = 0;
+  while (values.length < wanted) {
+    const value = step(state);
+    generated++;
+    if (value === 0) skippedZero++;
+    else values.push(value);
+    assert(generated < wanted * 2, "unexpected zero-suppression rate");
+  }
+  return { values, generated, skippedZero };
+}
+const zeroSuppressedVariants = [];
+const zeroSuppressedControls = [];
+for (const reverseSeed of [false, true]) {
+  const orientedSeed = reverseSeed ? p36.slice().reverse() : p36.slice();
+
+  const beforeState = orientedSeed.slice();
+  const beforeRaw = collectNonzero(previous, beforeState, p36Start - 1);
+  const keyBefore = beforeRaw.values.reverse();
+
+  const afterState = orientedSeed.slice();
+  const afterRaw = collectNonzero(next, afterState, after.length);
+  const keyAfter = afterRaw.values.slice();
+
+  const key = [...keyBefore, ...keyAfter];
+  const outsideDifferences = [
+    ...differences.slice(0, p36Start - 1),
+    ...differences.slice(p36Start + p36.length - 1)
+  ];
+  assert.equal(key.length, 12717);
+  assert.equal(outsideDifferences.length, key.length);
+  assert(key.every(x => x !== 0));
+
+  for (const sign of [-1, 1]) {
+    const plain = outsideDifferences.map((d, i) => mod(d + sign * key[i]));
+    zeroSuppressedVariants.push({
+      seedOrder: reverseSeed ? "reversed" : "printed",
+      sign,
+      symbols: plain.length,
+      ioc: ioc(plain),
+      top: top(plain),
+      prefix: prefix(plain),
+      beforeGenerated: beforeRaw.generated,
+      beforeSkippedZero: beforeRaw.skippedZero,
+      afterGenerated: afterRaw.generated,
+      afterSkippedZero: afterRaw.skippedZero
+    });
+  }
+
+  // Positive control for the same disjoint outside-p36 clock.
+  const plantedOutside = [
+    ...planted.slice(1, p36Start),
+    ...planted.slice(p36Start + p36.length)
+  ];
+  const syntheticCipher = [planted[0]];
+  let keyIndex = 0;
+  for (let i = 1; i < planted.length; i++) {
+    const outside = i < p36Start || i >= p36Start + p36.length;
+    const k = outside ? key[keyIndex++] : 0; // arbitrary key inside excluded p36
+    syntheticCipher.push(mod(syntheticCipher[i - 1] + planted[i] + k));
+  }
+  assert.equal(keyIndex, key.length);
+  const syntheticDifferences = syntheticCipher.slice(1).map((x, i) => mod(x - syntheticCipher[i]));
+  const syntheticOutside = [
+    ...syntheticDifferences.slice(0, p36Start - 1),
+    ...syntheticDifferences.slice(p36Start + p36.length - 1)
+  ];
+  const recovered = syntheticOutside.map((d, i) => mod(d - key[i]));
+  assert(recovered.every((x, i) => x === plantedOutside[i]));
+  zeroSuppressedControls.push({
+    seedOrder: reverseSeed ? "reversed" : "printed",
+    recoveredSymbols: recovered.length,
+    exactRoundTrip: true
+  });
+}
+
 // Positive control: encrypt a known p57-derived stream under the exact
 // chain-additive model and recover every difference-domain plaintext rune.
 const known = corpus.pages.find(p => p.page === 57).indices;
@@ -208,6 +290,8 @@ const output = {
   },
   completeVariants,
   stateOnlyVariants,
+  zeroSuppressedVariants,
+  zeroSuppressedPositiveControls: zeroSuppressedControls,
   positiveControl: {
     recoveredSymbols: syntheticRecovered.length,
     exactRoundTrip: true

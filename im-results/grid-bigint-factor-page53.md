@@ -90,6 +90,17 @@ A planted control repeats the known p57 plaintext to 12,956 symbols, encrypts it
 
 Reproduce with [the standalone difference-domain SFT](../sims/grid238_p36_chain_difference_inverse.cjs); it reads the original corpus and 256-byte table JSON, reconstructs \(R_{238}\) from the exact small factors, checks all original offsets and includes the planted round-trip control.
 
+A final, separately bounded extension uses the contemporaneous zero-stripping observation from the Stage11 133/331 history as a possible instruction to **suppress zero outputs** of the p36 recurrence, leaving a 28-symbol nonzero key alphabet. This is a hypothesis about applying the old zero-deletion observation to the recurrence, not a Cicada-authenticated instruction. Keep p36 as the state page; generate nonzero outputs backward until 8,705 keys are available and forward until 4,012 keys are available, then decrypt the same 12,717 outside-p36 differences. No phase or offset is fitted.
+
+| Seed reading | Sign | Decoded symbols | IoC | Backward generated / zero skipped | Forward generated / zero skipped |
+|---|---:|---:|---:|---:|---:|
+| printed | −1 | 12,717 | 0.034484322 | 9,011 / 306 | 4,157 / 145 |
+| printed | +1 | 12,717 | 0.034478323 | 9,011 / 306 | 4,157 / 145 |
+| reversed | −1 | 12,717 | 0.034508464 | 9,022 / 317 | 4,148 / 136 |
+| reversed | +1 | 12,717 | 0.034481786 | 9,022 / 317 | 4,148 / 136 |
+
+The zero-suppressed outputs remain uniform and nonlinguistic. The matching planted control recovers all **12,717/12,717** outside-p36 symbols exactly for both seed orientations. This rejects the specific zero-suppressed p36/R238 chain-key extension as well; it does not rule out a different source key or a different operation. The script includes this extension and its positive controls.
+
 ### Source-constant field exponent inverses on p36 (Agent 18, 11 November 2026)
 
 A distinct, fully reversible direct-field interpretation of the same source factor was tested. Treat all **238 original physical p36 rune indices** as coefficients of an element of GF(29^238), represented in the standard power basis modulo the previously established **monic irreducible** degree-238 factor of the original base60 table. The original p05/p16 magic-square constants **1033** and **3301** are historical source values, and 2013 Cicada material separately documents finite-field-style modular exponentiation in a Diffie–Hellman task. **It is an inference, not an authenticated instruction**, to apply these constants as exponents to this 238-dimensional field. The direct output format (one field coefficient per GP rune) and two physical p36 coefficient orientations are frozen without any fitted secret offset, mask, basis transformation, or phase.
