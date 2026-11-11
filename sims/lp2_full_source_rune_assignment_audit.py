@@ -207,7 +207,8 @@ class NearestTemplates:
     def distances(self, crop):
         x = feature(crop)
         d = np.sum((self.features - x) ** 2, axis=1)
-        return np.asarray([d[self.labels == c].min() for c in range(29)])
+        return np.asarray([d[self.labels == c].min() if np.any(self.labels == c) else np.inf
+                           for c in range(29)])
 
     def classify(self, crop):
         x = feature(crop)
@@ -414,6 +415,7 @@ def main():
     # visual lines alongside black glyphs; classify each position by ink annotation.
     solved = parse_solved_lines(args.root / "resources" / "external" / "Liber Primus 57.txt")
     control_crops, control_labels, control_ink_flags = [], [], []
+    red_control_crops, red_control_labels = [], []
     control_results = []
     for page, lines in solved.items():
         solved_line_offsets, cursor = [], 0
@@ -432,7 +434,7 @@ def main():
             predicted = [g["pred"] for g in groups]
             line_red_correct = line_red_total = line_black_correct = line_black_total = 0
             line_red_flags = []
-            for pos, (want, got) in enumerate(zip(line, predicted)):
+            for pos, (want, got, group) in enumerate(zip(line, predicted, groups)):
                 page_local_offset = solved_line_offsets[li] + pos
                 is_red = any(span["start"] <= page_local_offset < span["start"] + span["length"]
                              for span in red_spans_by_page.get(page, []))
@@ -441,6 +443,8 @@ def main():
                 if is_red:
                     line_red_total += 1
                     line_red_correct += int(want == got)
+                    red_control_crops.append(group["crop"])
+                    red_control_labels.append(want)
                 else:
                     line_black_total += 1
                     line_black_correct += int(want == got)
@@ -459,8 +463,19 @@ def main():
     red_control_total = sum(r["red_total"] for r in control_results)
     black_control_correct = sum(r["black_correct"] for r in control_results)
     black_control_total = sum(r["black_total"] for r in control_results)
-    red_control_class_indices = {label for label, is_red in zip(control_labels, control_ink_flags) if is_red}
+    red_control_class_indices = set(red_control_labels)
     control_class_indices = set(control_labels)
+    red_class_counts = Counter(red_control_labels)
+    red_loo_correct = red_loo_total = 0
+    for i, label in enumerate(red_control_labels):
+        if red_class_counts[label] < 2:
+            continue
+        remaining_crops = red_control_crops[:i] + red_control_crops[i + 1:]
+        remaining_labels = red_control_labels[:i] + red_control_labels[i + 1:]
+        red_loo_model = NearestTemplates(remaining_crops, remaining_labels)
+        red_loo_correct += int(red_loo_model.classify(red_control_crops[i])[0] == label)
+        red_loo_total += 1
+    red_templates = NearestTemplates(red_control_crops, red_control_labels)
     missing_control_classes = [TRANSLIT[i] for i in range(29) if i not in control_class_indices]
 
     # Optional second feature family (HOG/SVM), independently trained on p43.
@@ -477,6 +492,8 @@ def main():
 
     page_results = []
     mismatch_records = []
+    red_template_mismatches = []
+    red_model_total = red_model_covered = red_model_correct = 0
     unresolved = []
     exact_nodrop_positions = exact_nodrop_correct = exact_nodrop_mismatch = 0
     classified_positions = 0
@@ -516,14 +533,31 @@ def main():
             classified_positions += len(groups)
             line_mismatches = []
             for pos, (want, got, group) in enumerate(zip(expected, predicted, groups)):
+                page_local_offset = line_offsets[page][li] + pos
+                red_spans = red_spans_by_page.get(page, [])
+                red_span_index = next((j for j, span in enumerate(red_spans)
+                                       if span["start"] <= page_local_offset < span["start"] + span["length"]), None)
+                red_span = red_spans[red_span_index] if red_span_index is not None else None
+                red_template_pred = red_template_distance = None
+                red_template_covered = False
+                if red_span is not None:
+                    red_model_total += 1
+                    red_template_pred, red_template_distance, _, _ = red_templates.classify(group["crop"])
+                    red_template_covered = want in red_control_class_indices
+                    if red_template_covered:
+                        red_model_covered += 1
+                        if red_template_pred == want:
+                            red_model_correct += 1
+                        else:
+                            red_template_mismatches.append({
+                                "page": page, "line": li, "position": pos,
+                                "page_local_offset": page_local_offset,
+                                "expected": TRANSLIT[want], "red_template_nearest": TRANSLIT[red_template_pred],
+                                "distance": red_template_distance, "box": group["box"]
+                            })
                 hog_pred = int(hog_model.predict(np.asarray([hog_feature(group["crop"])]))[0]) if hog_model else None
                 if want != got:
                     d = templates.distances(group["crop"])
-                    page_local_offset = line_offsets[page][li] + pos
-                    red_spans = red_spans_by_page.get(page, [])
-                    red_span_index = next((j for j, span in enumerate(red_spans)
-                                           if span["start"] <= page_local_offset < span["start"] + span["length"]), None)
-                    red_span = red_spans[red_span_index] if red_span_index is not None else None
                     special_note = SPECIAL_ARTISTIC_LINES.get((page, li))
                     item = {"page": page, "line": li, "position": pos,
                             "page_local_offset": page_local_offset,
@@ -535,6 +569,9 @@ def main():
                             "red_span_start": red_span["start"] if red_span is not None else None,
                             "red_span_offset": page_local_offset - red_span["start"] if red_span is not None else None,
                             "red_span_length": red_span["length"] if red_span is not None else None,
+                            "red_template_nearest": TRANSLIT[red_template_pred] if red_template_pred is not None else None,
+                            "red_template_distance": red_template_distance,
+                            "red_template_expected_class_covered": red_template_covered,
                             "box": group["box"],
                             "expected_index": want, "expected": TRANSLIT[want],
                             "nearest_index": got, "nearest": TRANSLIT[got],
@@ -617,6 +654,16 @@ def main():
                                     "black_controls": {"correct": black_control_correct, "total": black_control_total},
                                     "lines": control_results},
             "hog_svm": hog_result,
+            "red_template_model": {
+                "control_samples": len(red_control_labels),
+                "control_classes": [TRANSLIT[i] for i in sorted(red_control_class_indices)],
+                "duplicate_class_leave_one_out": {"correct": red_loo_correct, "total": red_loo_total},
+                "unknown_red_positions": red_model_total,
+                "covered_expected_classes": red_model_covered,
+                "covered_expected_class_matches": red_model_correct,
+                "covered_expected_class_disagreements": len(red_template_mismatches),
+                "disagreements": red_template_mismatches
+            },
         },
         "ambiguous_line_mappings": [{"page": p["page"], "ways": p["mapping_ways"]}
                                     for p in page_results if p["mapping_ways"] > 1],
