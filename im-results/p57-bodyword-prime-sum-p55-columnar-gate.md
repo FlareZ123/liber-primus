@@ -83,8 +83,30 @@ None is readable English. Using the same GP encoder and English quadgram control
 
 The best candidate (descending row-write/column-read) improves on raw p55 by only 0.0176 and remains well below even the worst of 47,959 native Gibran windows. The slight score change is not evidence of plaintext.
 
+### Per-column rotation control
+
+Because the target has four rows and the same 19 body words supply 19 column values, a second simple “numbers are direction” reading is to rotate each p55 column vertically by its corresponding body-word prime sum modulo 4. The 19 offsets are:
+
+\`\`\`
+[0,0,0,3,2,0,2,2,2,0,1,3,3,3,0,0,3,3,0]
+\`\`\`
+
+Both rotation signs were tested, with no phase or alternate modulus:
+
+**Rotate by +sum mod 4**
+\`\`\`
+NGAEMEBSEOCEOSUCXDAEFBEBCUWISEAOECEAMEAGDTHNGLIAASDIAPRWHBXMEMCPHXGEOMSEOTHTHFBTHFXIIEOEIGJUSEI
+\`\`\`
+
+**Rotate by −sum mod 4**
+\`\`\`
+NGAEMRBSEOCEOSMCPHAEFEOMBCUWFSEAOECEAMEOEIGNGLSESDIAPEWHBXMEUCXDXGBESEOTHTHIBTHFXIIEAGDTHJUIAAI
+\`\`\`
+
+Their matched native-Gibran quadgram scores are −6.887693 and −6.874852, both below raw p55 (−6.791722) and far below the worst native 76-rune Gibran window (−5.231302). This direct column-rotation reading is also negative.
+
 ## Decision and scope
 
 Retire the direct p57-body-prime-sum → p55 19-column transposition in both standard directions and both key orders. Preserve the exact 19-body-word / 76-rune dimensional fit and the 2016 “words/numbers” clue as observations, but do not extend this into alternate key encodings, phases, widths, or transposition families without an independent source instruction.
 
-**Reproducer:** [sims/p57_bodyword_prime_sum_p55_columnar_gate.cjs](../sims/p57_bodyword_prime_sum_p55_columnar_gate.cjs). It asserts the 20-word source parse, the 19 body-word sums, all four outputs, and the matched 47,959-window Gibran control.
+**Reproducer:** [sims/p57_bodyword_prime_sum_p55_columnar_gate.cjs](../sims/p57_bodyword_prime_sum_p55_columnar_gate.cjs). It asserts the 20-word source parse, the 19 body-word sums, four columnar outputs, both per-column rotation controls, and the matched 47,959-window Gibran control.
