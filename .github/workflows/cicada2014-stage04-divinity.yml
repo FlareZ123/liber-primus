@@ -19,19 +19,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Build pinned OutGuess 0.4
-        shell: bash
+      - name: Build the pinned OutGuess 0.4 extractor
         run: |
-          set -euxo pipefail
-          git clone --filter=blob:none https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          sudo apt-get update
+          sudo apt-get install -y autoconf automake libtool build-essential libjpeg-dev file
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
           git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
           git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
           cd /tmp/outguess
           ./autogen.sh
-          ./configure --with-generic-jconfig
-          make -j2
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
+          make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
           sudo make install
-          outguess -h || true
+
       - name: Run page03 positive control and page04 divinity test
         shell: bash
         run: |
