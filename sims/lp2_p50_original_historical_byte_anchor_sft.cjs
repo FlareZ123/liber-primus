@@ -86,6 +86,20 @@ for (const [i, src] of outguess.sources.entries()) {
   assert.equal(value.length, 991);
   files.set('2014-OutGuess-original-0' + i, value);
 }
+const stage04Sft = read('sims/lp2_stage04_256_direct_identity_sft.cjs').toString('utf8');
+const stage04Match = /const stage04Hex = '([0-9a-f]{512})';/.exec(stage04Sft);
+assert.ok(stage04Match, 'literal pinned historical Stage04 256-byte source');
+const historicalStage04 = Buffer.from(stage04Match[1], 'hex');
+assert.equal(hash(historicalStage04),
+  'd8c0f83cf91d0deda658035e3eb07712b12e72b36ed0e471a71a2fe07dd14ba6');
+files.set('2014-authentic-Stage04-256byte-pre-object', historicalStage04);
+for (const file of [
+  'resources/external/derived/2014-stage04/03-outguess.asc',
+  'resources/external/derived/2014-stage04/03-small-rune-image.jpg',
+  'resources/external/derived/2014-stage04/04-outguess.bin',
+  'resources/external/derived/2014-stage04/05-square.txt',
+  'resources/external/2014-stage04-index.html',
+]) files.set(file, read(file));
 const signatures = [
   'resources/historical/cicada2012-countdown-message.asc',
   'resources/historical/cicada2013-first-onion-hello.asc',
