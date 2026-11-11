@@ -132,7 +132,7 @@ assert.equal(spiral[10], 2838);
 assert.equal(2838 % 360, 318);
 assert.equal(sector(2838), 7);
 
-// The 11th spiral entry is also an exact prime-rank address into p32.
+// The 11th spiral entry's established Fibonacci index / zero-based prime order is also an address into p32.
 // Prime rank is one-based; convert it to the canonical zero-based rune offset.
 function primeRank(n) {
   let count = 0;
@@ -149,11 +149,13 @@ function primeRank(n) {
   return count;
 }
 const spiralComplement = 3301 - spiral[10];
-const addressedPrimeRank = primeRank(spiralComplement);
-const addressedOffset = addressedPrimeRank - 1;
+const oneBasedPrimeOrdinal = primeRank(spiralComplement);
+const zeroBasedPrimeOrder = oneBasedPrimeOrdinal - 1; // p15's order table uses P0=2
+const addressedOffset = zeroBasedPrimeOrder;
 const addressedWord = wordMeta.find((w) => w.start === addressedOffset);
 assert.equal(spiralComplement, 463);
-assert.equal(addressedPrimeRank, 90);
+assert.equal(oneBasedPrimeOrdinal, 90);
+assert.equal(zeroBasedPrimeOrder, 89);
 assert.equal(addressedOffset, 89);
 assert.equal(addressedWord?.transliteration, 'OENGOMBUDS');
 const addressedSuffixStart = addressedWord.end - 3;
@@ -260,7 +262,7 @@ const result = {
   validSouthEastWordEdgePairs: validEdgePairs,
   route: { pathOffsets, runeLabels: pathIndices.map((i) => translit[i]), endpointSum, endpointDirection: 'E', innerWeights, innerSum, innerDirection: 'SE' },
   otherExact318Diagonals: exact318Diagonals,
-  p15Spiral: { values: spiral, eleventh: spiral[10], modulo360: spiral[10] % 360, complement: spiralComplement, primeRank: addressedPrimeRank, oneBasedPosition: addressedPrimeRank, addressedOffset, addressedWord: addressedWord.transliteration, addressedSuffix, modulo121: spiral[10] % 121, possibleTargetPage: 55, targetPageRuneCount: p55.indices.length },
+  p15Spiral: { values: spiral, eleventh: spiral[10], modulo360: spiral[10] % 360, complement: spiralComplement, oneBasedPrimeOrdinal, zeroBasedPrimeOrder, addressedOffset, addressedWord: addressedWord.transliteration, addressedSuffix, modulo121: spiral[10] % 121, possibleTargetPage: 55, targetPageRuneCount: p55.indices.length },
   tileRectangles,
   conditionalNull: {
     lexicon: 'resources/control/english_wordfreq_textblob.txt',
