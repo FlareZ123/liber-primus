@@ -32,7 +32,7 @@ Under 20,000 deterministically seeded random permutations of **the exact same 81
 
 ## Exact signed-2016 MAP=211 prime-weight checksum
 
-**Independent cross-artifact observation after the initial additive test:** The original source-selected p32 tree matrix's 9×9 center has total GP-prime weight **4,128**. The immediately adjacent, red-heading/13-dot-delimited p33 81-rune body has total GP-prime weight **4,339**. Their exact difference is **211**, matching the authentic GP prime-weight sum of **MAP** (M=67, A=97, P=47). The independently PGP-signed January 2016 instruction explicitly says “Its words are the **map**, their meaning is the road, and their numbers are the direction.” Therefore the unchanged source satisfies
+**Independent cross-artifact observation after the initial additive test:** The original source-selected p32 tree matrix's 9×9 center has total GP-prime weight **4,128**. The immediately adjacent, red-heading/13-dot-delimited p33 81-rune body has total GP-prime weight **4,339**. Their exact difference is **211**, matching the authentic GP prime-weight sum of **MAP** (M=71, A=97, P=43). The independently PGP-signed January 2016 instruction explicitly says “Its words are the **map**, their meaning is the road, and their numbers are the direction.” Therefore the unchanged source satisfies
 
     Σ_GP(p33 first black 81) − Σ_GP(p32 9×9 interior) = 4339 − 4128 = 211 = Σ_GP(MAP).
 
