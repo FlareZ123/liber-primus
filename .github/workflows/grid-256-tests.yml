@@ -60,6 +60,7 @@ on:
           - p0-block03-source
           - hg256-secret-alphabet
           - p50-base9
+          - signed-wordends-p55
         default: full
 
 
@@ -139,6 +140,10 @@ jobs:
       - name: Original p57 cicada-stipple 241/331 selector and 51x127 field-clock gate
         if: ${{ inputs.probe == 'stipple-241-331' }}
         run: node sims/lp2_stipple_241_331_field_clock_gate.cjs
+
+      - name: Original signed-2016 word-end FOLD / terminal p55 inverse
+        if: ${{ inputs.probe == 'signed-wordends-p55' }}
+        run: node sims/signed2016_folded_wordends_p55_sft.cjs
 
       - name: Full authenticated 2016 signed-message base-58 word map
         if: ${{ inputs.probe == 'signed-message-map' }}
