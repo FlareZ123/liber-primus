@@ -57,7 +57,7 @@ function summarize(groups) {
 function flattenWordGroups(words) {
   return words.map(word => [...word.runes].map(rune => {
     const value = runeIndex.get(rune);
-    assert.notEqual(value, undefined, `unknown GP rune ${rune}`);
+    assert.notEqual(value, undefined, \`unknown GP rune \${rune}\`);
     return value;
   }));
 }
@@ -77,8 +77,8 @@ function loadUnknown() {
 
 function loadLP1Control() {
   const text = read("resources/liber-primus/lp1-plaintext-reference.txt")
-    .replace(/\\[[^\\]]*\\]/g, " ")
-    .replace(/(?:^|\\n)### [^\\n]*\\n/g, " ")
+    .replace(/\[[^\]]*\]/g, " ")
+    .replace(/(?:^|\n)### [^\n]*\n/g, " ")
     .toUpperCase();
   const words = (text.match(/[A-Z]+/g) || []).map(encode);
   assert.equal(words.length, 850);
@@ -105,7 +105,7 @@ function affinePositiveControl(lanes) {
     const b = (3 * lane + 7) % 29;
     const planted = source.map(value => (a * value + b) % 29);
     assert.equal(ioc(source), ioc(planted),
-      `lane ${lane}: affine GP29 bijection changed IoC`);
+      \`lane \${lane}: affine GP29 bijection changed IoC\`);
   }
   return { laneSpecificAffineBijections: LANES, allIoCsExactlyPreserved: true };
 }
