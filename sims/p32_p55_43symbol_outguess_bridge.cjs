@@ -128,6 +128,35 @@ for (const [representation, password] of [
   }
 }
 
+const reverseLiteralPassword = translit(inner55);
+const reverseIntegerPassword = inner55.reduce((v, x) => v * 29n + BigInt(x), 0n).toString();
+const reverseKeyCandidates = [];
+const reverseXorRangeControls = [];
+for (const [representation, password] of [
+  ['literal-GP-Latin', reverseLiteralPassword],
+  ['base29-integer', reverseIntegerPassword],
+]) {
+  for (const role of ['Encryption', 'Seeding']) {
+    const stream = outguessArc4(password, role, 43);
+    const directXor = visited.map((x, i) => x ^ stream[i]);
+    reverseXorRangeControls.push({
+      representation, role,
+      validGp29Runes: directXor.filter(x => x < 29).length,
+      total: directXor.length,
+    });
+    for (const sign of [-1, 1]) {
+      const decoded = visited.map((x, i) => mod(x + sign * (stream[i] % 29)));
+      reverseKeyCandidates.push({
+        representation, role,
+        operation: sign === -1 ? 'C-K' : 'C+K',
+        ioc: ioc(decoded),
+        emersonGpLanguageScore: languageScore(decoded, model),
+        output: translit(decoded),
+      });
+    }
+  }
+}
+
 const candidates = [];
 const xorRangeControls = [];
 for (const [representation, password] of [
@@ -181,6 +210,8 @@ console.log(JSON.stringify({
     compassLiteralGpLatin: literalPassword,
     compassBase29Integer: integerPassword,
     wordcenterRunes: wordcenterRunes.map(x => corpus.translit[x]),
+    reverseP55LiteralGpLatin: reverseLiteralPassword,
+    reverseP55Base29Integer: reverseIntegerPassword,
     wordcenterLiteralGpLatin: wordcenterLiteral,
     wordcenterBase29Integer: wordcenterInteger,
   },
@@ -188,6 +219,8 @@ console.log(JSON.stringify({
   directOutguessByteXorRange: xorRangeControls,
   wordcenterKeyCandidates,
   wordcenterByteXorRange: wordcenterXorRangeControls,
+  reverseKeyCandidates,
+  reverseByteXorRange: reverseXorRangeControls,
   candidates,
-  conclusion: 'The eight compass-key and eight wordcenter-key OutGuess ARC4-derived GP29 additive variants do not recover plaintext; direct bytewise XOR yields only 3–8 of 43 valid GP29 symbols. This rejects only these two p32 password encodings, two OutGuess roles, and two signs; it does not exclude other source-selected keys or transforms.',
+  conclusion: 'The 24 fixed OutGuess ARC4-derived GP29 additive variants (compass key, wordcenter key, and reversed p55 key) do not recover plaintext; direct bytewise XOR yields at most 8 of 43 valid GP29 symbols. This rejects only these two p32 password encodings, two OutGuess roles, and two signs; it does not exclude other source-selected keys or transforms.',
 }, null, 2));
