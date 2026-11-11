@@ -146,7 +146,7 @@ for (const page of corpus.pages) {
 assert.equal(eventIndex, events.length);
 assert.equal(bounds.length, 32);
 assert.equal(bounds[28], C.length);
-assert.equal(redCount + lengthsFromEvents(events), 225); // source-event accounting
+assert.equal(lengthsFromEvents(events), 225); // source-event accounting
 
 function lengthsFromEvents(sourceEvents) {
   let run = 0;
