@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "decision": "Source-edition line widths and historical input coordinates for testing whether LP2 32x8 base60 bytes can be read as four line:character pairs per row under the original 2012 book-code operation. No third-party book text copied.",
+  "decision": "Source-edition line widths and historical input coordinates for testing whether LP2 32x8 base60 bytes can be read as four line:character pairs per row under the original 2012 book-code operation. No third-party book text copied. The first five lines after the Britannica CICADA heading are public domain (1911) and included verbatim for reproducing the original token-as-two-digit coordinate variant; the copyrighted Agrippa poem remains absent.",
   "sources": [
     {
       "id": "agrippa-2012",
@@ -782,7 +782,14 @@
           47
         ]
       ],
-      "original_book_code": "eq6emgv2ehsrix6t.onion"
+      "original_book_code": "eq6emgv2ehsrix6t.onion",
+      "five_lines_after_heading": [
+        "Hemiptera, generally of large size, with the femora of the anterior legs\r",
+        "toothed below, two pairs of large clear wings, and prominent compound\r",
+        "eyes. Cicadas are chiefly remarkable for the shrill song of the males,\r",
+        "which in some cases may be heard in concert at a distance of a quarter\r",
+        "of a mile or more. The vocal organs, of which there is a pair in the\r"
+      ]
     }
   ]
 }
