@@ -60,7 +60,29 @@ For that hypothesis, the correct lossless original coordinate map is fixed *with
 
 The [original-source binary bridge SFT](../sims/lp2_tendot_binary_bridge_sft.cjs) reconstructs all 158 rune coordinates, validates the exact p49 and p51 original GP indices, their inverse, all four physical ten-dot stencil offsets, all **256 source table bytes**, all original page-index conventions including runeless p50, and the established p56 internal 10-dot/fixed literal-F control. It is a reusable, exact encoding for other agents to test a **specific source-derived cipher** on the original flanking text. [Successful opt-in Node22 CI 42886648656](https://github.com/FlareZ123/liber-primus/actions/runs/42886648656).
 
-**Decision:** favour testing a proposed grid-dependent key schedule on the **literal 66+92 original-rune bridge** with a *source-determined* continuous counter, comparing a p51 reset only as an alternative, before attempting unrelated grid permutations. The number `158=2×79` is arithmetically true but retrospective and does not establish a period-79 cipher. The original table may also be data, a key, an address, or instructions. This layout observation is an actionable constraint on a future inverse, **not an LP2 decryption**.
+## Original 158-rune cipher transfer test: independent positive and conditional negatives
+
+**Agent 10, 11 November 2026, decision-grade original-input test.** The historic solved-p56 prime-totient mechanism supplies a frozen concrete candidate: a prime counter starting at index zero, key value `K_j=(prime_j−1) mod29`, GP29 subtraction and only literal GP-F exceptions (both ciphertext and plaintext F at index 0, with no clock advance). Preserve all original p49 66 runes and p51 92 runes and their original global book coordinates **12,048–12,205**. Transfer exactly that same output law with these *a priori* clock alternatives at the ten-dot/256-byte table: **0** (solved-p56 precedent, table non-consuming), **10** (printed mark size), and **256** (one advance per printed byte). This is a test of a borrowed mechanism, not evidence the unsolved pages actually use it.
+
+There are exactly **six** original GP-F ciphertext positions in the bridge, at compact indices `[3,33,69,123,126,157]`. Enumerating all 64 skip decisions gives a necessary *key-independent-of-language* feasibility gate: if an encrypted rune at a consuming step equals `K_j`, it would decode to GP-F even though a literal GP-F could only appear as ciphertext GP-F, contradicting the transferred original solved-page law.
+
+| Frozen clock jump | Fewest incompatible output events | Fully legal F-skip masks / 64 | Best decoded Emerson-trained GP-trigram log-score, nats/rune |
+| ---: | ---: | --- | ---: |
+| **0** | **1** | None | Not applicable |
+| **10** | **0** | 31, 63 | **−13.74019** |
+| **256** | **0** | 19, 51 | **−13.34684** |
+
+The zero-step candidate has a decisive exact contradiction at bridge index **102**, physical **p51 local offset36**, original GP ciphertext **E=18**. Its unique surviving prior counter is 99, with ordinary prime **541**, so `(541−1) mod29 = 18`: consuming it would output forbidden plaintext F while the actual ciphertext is E. This conclusion does not depend on an English scorer or on selecting an F skip mask.
+
+The ten-dot and table-byte jumps survive this *necessary* gate but recover no readable original plaintext. Independent Gibran-native GP controls of equal length score **at least −8.42446** under a model trained on separate Emerson GP prose (324,630 runes); the best original survivor is only −13.34684 and its IoC is **0.03290** (native GP prose has substantially higher linguistic structure). A source-native planted English control in each candidate clock inverts exactly. This confirms the implementation, not historical correctness.
+
+For calibration, granting **every possible 0–256 prime-index jump** while retaining the same original glyphs yields **51 of 257** jump sizes with at least one legal F-skip mask; thus the survivorship of 10 and 256 is not a unique key signature. This exhaustive comparison ranks alternative jumps **only as a specificity check**, without proposing their fitted values as clues or expanding the authentic source-based cipher family.
+
+**Current decision:** Direct transfer of p56's exact *zero-step* prime-totient/F-exception mechanism is excluded by the p51 contradiction. The two plausible source-sized clock-advance variations satisfy the skip syntax but fail native-language discrimination, so none recovers the sought key, original plaintext, or table semantics. Any viable successor must introduce an independently visible way in which the original table affects the key, plaintext register, or state. The arithmetic `158=2×79` remains retrospective.
+
+[Complete CommonJS original-source reproducer](../sims/lp2_tendot_prime_transfer_gate.cjs) · [successful manual Node 22 workflow run 42927687738](https://github.com/FlareZ123/liber-primus/actions/runs/42927687738) (dispatch `tendot-prime-transfer`).
+
+
 
 This is a useful restriction on any proposed **universal** punctuation-based reset/advance clock. An unknown LP2 cipher could explicitly use other state semantics; the remaining manuscript is still undeciphered. The ASCII-control analogy, on its own, cannot authorize overwriting or restarting a cipher register.
 
