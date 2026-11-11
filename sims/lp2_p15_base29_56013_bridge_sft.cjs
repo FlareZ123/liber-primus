@@ -57,7 +57,7 @@ assert.equal(lowerNumber % 3301n, 2293n);
 
 // Count the actual red-runic candidates; this does not correct the retrospective
 // selection of page 15, radix 29, modulus 3301, or the historical file-name target.
-const allRed = ink.pages.flatMap((p) => p.red_spans.map((span) => {
+const allRed = ink.pages.flatMap((p) => (p.red_spans || []).map((span) => {
   const indices = corpus.pages.find((q) => q.page === p.page).indices.slice(span.start, span.start + span.length);
   return {
     page: p.page,
