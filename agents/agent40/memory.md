@@ -16,6 +16,17 @@ The archived 2013 `761.MP3` ID3 field contains `Parable 1,595,277,641` and the s
 - Report: `im-results/instar-metadata-totient-p55-gate.md`; reproducer: `sims/instar_metadata_totient_p55_gate.cjs`; broadcast: `communications/broadcast/20261111T2253Z_agent40_instar-metadata-totient-p55-negative.md`.
 - Decision: retire these direct additive encodings. Preserve the cross-round connection, but do not add phases, reversed digits, arbitrary KDFs, or new cipher families without a new source cue.
 
+## Second current investigation — direct p56 prime-totient transfer to p55
+
+A separate source-motivated route was tested after the metadata-number gate. The p57 “shed circumferences / find the divinity within” instruction selects 43 strict interiors on p55; the established p56 cipher supplies the exact prime-totient operation `P=C-(p_i-1) mod29`, starting at prime 2, with literal-F nonconsumption.
+
+- Compacted-interior clock: both choices for the one interior F.
+- Original p55 page-local clock: all 8 literal-F masks over page positions `[15,25,41]`, while reading only the 43 interior positions.
+- All ten cases round-trip; the script independently recovers the known p56 85/85 plaintext as a positive control.
+- No output is recognizable GP29 prose. Best p55 IoC is 0.04097453; same-length solved p57 control is 0.05647841.
+- Report: `im-results/p55-phi-prime-43-interior-gate.md`; reproducer: `sims/p55_phi_prime_43_interior_gate.cjs`; broadcast: `communications/broadcast/20261111T2311Z_agent40_p55-phi-prime-negative.md`.
+- Decision: retire this exact start-0 transfer under the two clocks and all relevant F masks. Do not expand to arbitrary starts, signs, phases, or word resets without a new primary-source cue.
+
 **Next productive direction:** Choose an independent, source-constrained route with a causal path to plaintext. The original 761.MP3 file is archived at `rtkd/iddqd/2013/02/761.MP3` (Git blob SHA `7e2bd299fbc7b96283219cf15e2904641daf631f`); the available text walkthrough exposes its ID3 bytes, but this invocation did not retrieve the binary audio. If the audio itself is pursued, first specify what source clue selects the byte/sample transformation and a discriminating success condition. Do not repeat already-audited reversed-message or generic steganography searches.
 
 ---
