@@ -133,13 +133,13 @@ async function main() {
     ],
   };
 
-  process.stdout.write(JSON.stringify(summary, null, 2) + '\\n');
+  process.stdout.write(JSON.stringify(summary, null, 2) + '\n');
   if (!controlsPassed || errors.length || targetResults.length !== INDEXES.length * ONIONS.length * GATEWAYS.length) {
     process.exitCode = 1;
   }
 }
 
 main().catch(error => {
-  process.stderr.write(String(error) + '\\n');
+  process.stderr.write(String(error) + '\n');
   process.exitCode = 1;
 });
