@@ -189,8 +189,14 @@ const originalGroups={book:allOriginal,illustrated:framedIllustrated};
 const ringVariants=[];
 for(const [scope,pages] of Object.entries(originalGroups)){
   const sizes=pages.map(p=>p.length);
-  const nativeControl=latin.runes.slice(-pages.flat().length);
+  const wholeWordAlphabet="0123456789ABCDEFGHIJKLMNOPQRS";
+  const wholeWordSource=read("control/latin-vulgate-gp-wholewords.txt")
+    .split(/\r?\n/).map(row=>row.trim())
+    .filter(row=>row&&!row.startsWith("#")).join("");
+  const nativeControl=Array.from(wholeWordSource.slice(-pages.flat().length),
+    ch=>wholeWordAlphabet.indexOf(ch));
   assert.equal(nativeControl.length,pages.flat().length);
+  assert.ok(nativeControl.every(i=>i>=0&&i<29));
   let pos=0;
   const plantPages=sizes.map(size=>{
     const piece=nativeControl.slice(pos,pos+size);
