@@ -1,11 +1,11 @@
 'use strict';
 
 /**
- * SFT: test whether the p27 19-rune red title can be a single fixed affine
- * combination of four 19-rune p55 layers. All arithmetic is in F29.
+ * SFT: test whether the p27 19-rune red title can be a fixed low-degree
+ * polynomial of four consecutive 19-rune p55 rows over F29.
  *
- * An exact rank obstruction covers every possible coefficient vector
- * (29^5 choices, including the constant); no coefficient sweep is needed.
+ * Exact rank obstructions cover every 29^5 affine coefficient vector and
+ * every 29^15 quadratic coefficient vector without enumerating keys.
  * Original source: resources/liber-primus/lp2-corpus.json.
  */
 const assert = require('node:assert/strict');
@@ -59,10 +59,31 @@ function rank(vectors) {
   return pivotRow;
 }
 
-/** @param {number[][]} layers @param {number[]} expected @returns {boolean} */
-function affineCanProduce(layers, expected) {
-  const constant = Array(19).fill(1);
-  const basis = [...layers, constant];
+/**
+ * @param {number[][]} layers
+ * @param {1 | 2} degree
+ * @returns {number[][]}
+ */
+function polynomialBasis(layers, degree) {
+  const basis = [Array(19).fill(1), ...layers];
+  if (degree === 2) {
+    for (let i = 0; i < 4; i++) {
+      for (let j = i; j < 4; j++) {
+        basis.push(layers[i].map((value, k) => mod(value * layers[j][k])));
+      }
+    }
+  }
+  return basis;
+}
+
+/**
+ * @param {number[][]} layers
+ * @param {number[]} expected
+ * @param {1 | 2} degree
+ * @returns {boolean}
+ */
+function polynomialCanProduce(layers, expected, degree) {
+  const basis = polynomialBasis(layers, degree);
   return rank(basis) === rank([...basis, expected]);
 }
 
@@ -88,20 +109,34 @@ const projections = {
 
 const summary = {};
 for (const [name, projection] of Object.entries(projections)) {
-  let fits = 0;
+  let affineFits = 0;
+  let quadraticFits = 0;
   let checked = 0;
   for (let mask = 0; mask < 16; mask++) {
     const layers = rows(mask, projection);
-    assert.equal(rank([...layers, Array(19).fill(1)]), 5);
+    assert.equal(rank(polynomialBasis(layers, 1)), 5);
+    assert.equal(rank(polynomialBasis(layers, 2)), 15);
     for (let targetReversed = 0; targetReversed < 2; targetReversed++) {
       const t = (targetReversed ? title.slice().reverse() : title).map(projection);
-      if (affineCanProduce(layers, t)) fits++;
+      assert.equal(rank([...polynomialBasis(layers, 1), t]), 6);
+      assert.equal(rank([...polynomialBasis(layers, 2), t]), 16);
+      if (polynomialCanProduce(layers, t, 1)) affineFits++;
+      if (polynomialCanProduce(layers, t, 2)) quadraticFits++;
       checked++;
     }
   }
   assert.equal(checked, 32);
-  assert.equal(fits, 0);
-  summary[name] = { sourceCases: checked, exactAffineMatches: fits };
+  assert.equal(affineFits, 0);
+  assert.equal(quadraticFits, 0);
+  summary[name] = {
+    sourceCases: checked,
+    affineBasisRank: 5,
+    quadraticBasisRank: 15,
+    affineWithTitleRank: 6,
+    quadraticWithTitleRank: 16,
+    exactAffineMatches: affineFits,
+    exactQuadraticMatches: quadraticFits,
+  };
 }
 
 // Positive control: deliberately construct an output from the same four rows,
@@ -113,16 +148,23 @@ for (const [name, projection] of Object.entries(projections)) {
     mod(3 * plantedRows[0][j] + 5 * plantedRows[1][j]
       + 7 * plantedRows[2][j] + 11 * plantedRows[3][j] + 13),
   );
-  assert(affineCanProduce(plantedRows, planted));
-  assert(affineCanProduce(plantedRows, planted.slice().reverse().reverse()));
-  summary[name].syntheticPositivePassed = true;
+  assert(polynomialCanProduce(plantedRows, planted, 1));
+  assert(polynomialCanProduce(plantedRows, planted, 2));
+  const plantedQuadratic = Array.from({ length: 19 }, (_, j) =>
+    mod(3 * plantedRows[0][j] * plantedRows[1][j]
+      + 5 * plantedRows[2][j] * plantedRows[2][j]
+      + 7 * plantedRows[3][j] + 11),
+  );
+  assert(polynomialCanProduce(plantedRows, plantedQuadratic, 2));
+  summary[name].syntheticAffineAndQuadraticPositivesPassed = true;
 }
 
 console.log(JSON.stringify({
-  test: 'p55-fold-to-p27-title-four-layer-affine-F29',
+  test: 'p55-fold-to-p27-title-four-layer-degree-1-or-2-F29',
   p55Runes: p55.length,
   p27TitleRunes: title.length,
-  coefficientsPerModel: 29 ** 5,
+  affineCoefficientChoicesPerModel: 29 ** 5,
+  quadraticCoefficientChoicesPerModel: 29 ** 15,
   sourceHypotheses: 16 * 2 * 2,
   summary,
 }, null, 2));
