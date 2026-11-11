@@ -16,6 +16,7 @@ const path = require("node:path");
 const ROOT = path.resolve(__dirname, "..");
 const read = (p) => fs.readFileSync(path.join(ROOT, p), "utf8");
 const source = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const historicalKey = read("resources/historical/cicada-3301-2012-public-key.asc");
 const transcript = read("resources/liber-primus/lp2-transcription.txt");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const alphabet = new Map(corpus.runes.map((r, i) => [r, i]));
@@ -51,7 +52,34 @@ function parseSignature() {
   assert.equal(mpiBits, 4094);
   assert.equal(body.subarray(hashPrefixOffset + 4).length, 512,
     "RSA signature MPI occupies the remaining bytes");
-  return {body, hashedLength, hashPrefix};
+  return {body, hashedLength, hashPrefix, signatureValue: body.subarray(hashPrefixOffset + 4)};
+}
+
+function verified2012PublicKey() {
+  const match = historicalKey.match(/-----BEGIN PGP PUBLIC KEY BLOCK-----\r?\n([\s\S]*?)\r?\n-----END PGP PUBLIC KEY BLOCK-----/u);
+  assert.ok(match, "historical public key source");
+  const base64 = match[1].split(/\r?\n/u)
+    .filter((line) => line && !line.startsWith("=") && !line.includes(":")).join("");
+  const blob = Buffer.from(base64, "base64");
+  assert.equal((blob[0] >> 2) & 15, 6, "public-key primary packet tag");
+  assert.equal(blob[0] & 3, 1, "two-byte primary packet length");
+  const nbytes = blob.readUInt16BE(1);
+  assert.equal(nbytes, 525);
+  const packet = blob.subarray(3, 3 + nbytes);
+  assert.equal(packet[0], 4, "v4 primary PGP public key");
+  assert.equal(packet[5], 1, "RSA primary algorithm");
+  const modulusBits = packet.readUInt16BE(6);
+  assert.equal(modulusBits, 4096);
+  const modulus = packet.subarray(8, 8 + modulusBits / 8);
+  const exponentStart = 8 + modulus.length;
+  const exponentBits = packet.readUInt16BE(exponentStart);
+  assert.equal(exponentBits, 17);
+  const exponent = packet.subarray(exponentStart + 2, exponentStart + 5);
+  assert.equal(exponent.toString("hex"), "010001");
+  return crypto.createPublicKey({
+    key: { kty: "RSA", n: modulus.toString("base64url"), e: exponent.toString("base64url") },
+    format: "jwk",
+  });
 }
 
 function canonicalSignedBytes() {
@@ -73,6 +101,21 @@ function signatureHash(parsed) {
   assert.equal(digest.toString("hex"), "f065d7bfaa3963c313eec67bfe5496c491d0c26d");
   assert.deepEqual(digest.subarray(0, 2), parsed.hashPrefix,
     "computed signed SHA-1 prefix matches OpenPGP packet");
+  // Historical 2012 primary public key fully verifies the 2016 source's RSA
+  // signature, making the entire digest authentication meaningful.
+  const publicKey = verified2012PublicKey();
+  const signedBytes = Buffer.concat([canonicalSignedBytes(), hashedHeader, trailer]);
+  assert.equal(crypto.verify("RSA-SHA1", signedBytes, publicKey, parsed.signatureValue), true,
+    "complete 2016 RSA/SHA1 signature verification under original 2012 primary public key");
+  const recoveredBlock = crypto.publicDecrypt(
+    {key: publicKey, padding: crypto.constants.RSA_NO_PADDING}, parsed.signatureValue);
+  const derDigestInfo = Buffer.from("3021300906052b0e03021a05000414", "hex");
+  const tail = Buffer.concat([Buffer.from([0]), derDigestInfo, digest]);
+  const expected = Buffer.concat([
+    Buffer.from([0, 1]), Buffer.alloc(recoveredBlock.length - 2 - tail.length, 0xff), tail,
+  ]);
+  assert.deepEqual(recoveredBlock, expected,
+    "RSA signature encodes only standard 0xFF PKCS#1 v1.5 padding and canonical SHA1");
   return digest;
 }
 
