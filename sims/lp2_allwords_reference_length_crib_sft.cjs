@@ -11,6 +11,7 @@ const read=name=>fs.readFileSync(path.join(root,name),"utf8");
 const GP=new Set(["TH","NG","EO","OE","AE","IA","EA"]);
 /** @param {string} word @returns {number} */
 function gp(word){let n=0;for(let i=0;i<word.length;i++){
+  if(word.slice(i,i+3)==="ING"){i+=2;n++;continue;}
   if(i+1<word.length&&GP.has(word.slice(i,i+2)))i++;n++;
 }return n;}
 const orig=parseSharedCorpus();
