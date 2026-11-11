@@ -34,6 +34,7 @@ const keyRaw=free.slice(1,-1);
 assert.equal(keyRaw.length,1468);
 const primes=[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109];
 const keyMaps=[
+  {name:"raw field mod28",values:keyRaw.map(v=>v%28)},
   {name:"GP-prime mod28",values:keyRaw.map(v=>primes[v]%28)},
   {name:"Euler-totient(GP-prime) mod28",values:keyRaw.map(v=>(primes[v]-1)%28)}
 ];
@@ -82,6 +83,7 @@ for(const km of keyMaps)for(const sigma of sigmas)for(const iv of [23,full[start
   chainModels.push({keyMap:km.name,sigma:sigma.name,iv,ivRune:trans[iv],sign,zeroSteps:d.zero,trigram:score(d.plain),prefix:d.plain.slice(0,48).map(x=>trans[x]).join("")});
 }
 const directMaps=[
+  {name:"raw field mod29",values:keyRaw},
   {name:"GP-prime mod29",values:keyRaw.map(v=>primes[v]%29)},
   {name:"Euler-totient(GP-prime) mod29",values:keyRaw.map(v=>(primes[v]-1)%29)}
 ];
@@ -115,5 +117,5 @@ console.log(JSON.stringify({
   directAdditive:{models:directModels.length,best:directModels[0],all:directModels},
   nativeHoldout:{windows:holdout.length,worst:holdout[0],q10:holdout[Math.floor(holdout.length*.1)],median:holdout[Math.floor(holdout.length/2)],q90:holdout[Math.floor(holdout.length*.9)]},
   positiveControl:"Every chain model exactly re-encrypts the original target and recovers a native-GP plant; direct additive models also round-trip exactly.",
-  conclusion:"The projective 7-free-coordinate stream with endpoint trimming has the exact 1,468-rune bracket length, but neither prime/totient chain decoding nor direct additive decoding produces native-GP plaintext. Retire this exact readout family."
+  conclusion:"The projective 7-free-coordinate stream with endpoint trimming has the exact 1,468-rune bracket length, but raw, prime, and totient-prime chain or direct-additive readouts produce no native-GP plaintext. Retire this exact readout family."
 },null,2));
