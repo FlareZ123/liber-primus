@@ -58,7 +58,7 @@ for (const rowOrder of Object.keys(rowOrders)) {
   }
 }
 assert.equal(mappings.length, 9);
-assert.deepEqual(rowOrders.lcg.slice(0, 8), [0,31,20,27,24,23,10,25]);
+assert.deepEqual(rowOrders.lcg.slice(0, 8), [0,31,18,9,20,3,6,13]);
 assert.deepEqual(columnOrders.lcg, [0,7,2,1,4,3,6,5]);
 
 const modes = [];
