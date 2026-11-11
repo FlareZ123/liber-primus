@@ -1,0 +1,30 @@
+name: LP2 historic JPEG content differential (manual)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  historic-jpeg-content:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out canonical Liber Primus source
+        uses: actions/checkout@v4
+      - name: Check out archived 2014 stage 11 JPEG witness
+        uses: actions/checkout@v4
+        with:
+          repository: neuroretransmit/cicada
+          ref: ade9a02889ef8acbc8cde8edbfd0a785c369f4c3
+          path: _external_neuro
+          sparse-checkout: |
+            2014/011-seventh-onion
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install JPEG raster comparison dependency
+        run: python -m pip install Pillow
+      - name: Exact image-byte and decoded-RGB comparison
+        run: python sims/lp2_2014_archive_jpeg_diff_sft.py
