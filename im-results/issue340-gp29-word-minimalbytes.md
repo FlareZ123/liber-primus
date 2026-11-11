@@ -8,7 +8,7 @@
 
 - Rune transcript: [resources/lp2-transcription.txt](../resources/lp2-transcription.txt); canonical alphabet: [resources/liber-primus/lp2-corpus.json](../resources/liber-primus/lp2-corpus.json) field \`runes\`, indices 0–28.
 - Continuous printed-word parser: [sims/lp2_word_pages.cjs](../sims/lp2_word_pages.cjs), preserving rune words across printed lines and page transitions; the only page without runes is physical page 50.
-- Exactly **2,896** complete source words, **12,956** unknown-page runes, **34** cross-page words. No page resets, word splitting at line breaks, leading-zero rune rewriting, phase tuning, or digit-order search.
+- Exactly **2,896** complete source words, **12,956** unknown-page runes, **32** cross-page words. No page resets, word splitting at line breaks, leading-zero rune rewriting, phase tuning, or digit-order search. The source parser counts **32** words with actual rune symbols on both sides of a physical page break; an earlier ad hoc page-counter reported 34 by also counting two words whose final separator, but no additional rune, lay on the next page.
 - For word runes \(r_0,\ldots,r_{m-1}\), integer \(N=\sum_i \mathrm{index}(r_i)29^{m-1-i}\). Emit the shortest nonempty byte vector for \(N\) in big-endian order. Retain the *original rune width* in the record index because an initial index-zero rune contributes no magnitude.
 
 ### Original-byte output
