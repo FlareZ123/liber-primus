@@ -71,6 +71,31 @@ Nine of these ten differences overlap the eleven LP2 cells adjudicated above; th
 
 The exact source transcription and byte reconstruction are preserved in [`resources/cicada2014-sexagesimal-source.json`](../resources/cicada2014-sexagesimal-source.json). Its raw bytes and the associated decimal text/converter do not directly match the p56 digest under the four tested 64-byte digest families. The source's possible role as a key or transformed input remains open.
 
+## Independent GF(29) checksum over all ten historical witness disagreements
+
+The 2014 `sexagesimal.bin` witness supplies a second, imperfect historical reading of ten exact LP2 table glyph positions. A separately observed original-source mathematical relation supplies a **fixed, reproducible conditional checksum** of those readings: taking the full 256 printed bytes as **descending GF(29) polynomial coefficients**, the manuscript-marked p39 red trinomial has the double root **Ac = 24**, and the independent 13-dot stencil corresponds to the other stationary point **13**. The original table yields **P(24)=P′(24)=0** and **P(13)=8, P′(13)=0**. The 8 also equals the table's printed column count, although interpreting that equality as deliberately intended is speculative. These polynomial conditions are established numerical relationships, **not an authenticated historical instruction to use polynomial factorization as a checksum or cipher**.
+
+To test their discriminating power without fitting any free 256-byte key, treat the **ten historical disputed bytes** as binary choices: retain each old 2014 value or substitute the visually established LP2 glyph reading, leaving all other 246 coefficients fixed. There are exactly **2¹⁰ = 1,024** possible witness-mixed tables. The complete exhaustive source-input result is:
+
+| Source-shaped equality imposed on each 256-byte candidate | Remaining mixed tables |
+| --- | ---: |
+| `P(24)=0` | **34 / 1,024** |
+| `P(24)=P′(24)=0` | **4 / 1,024** |
+| Plus `P′(13)=0` | **2 / 1,024** |
+| Plus `P(13)=8` | **2 / 1,024** |
+
+The four double-root combinations choose the new LP2 readings at positions **[25,45,182]**, **[25,45,165,182]**, **[25,45,50,170,172,175,182,199,246]**, or **all ten**. The full four-value checksum leaves only the last two choices, differing **solely at byte index165**. The original 2014 reading there is `0l = 47` and the LP2 scan prints `0I = 18`: **47 − 18 = 29**, so they represent the *identical* coefficient in GF(29). **No calculation solely over GF(29), including any derivative or polynomial factorization, can distinguish these two interpretations.** That remaining glyph must be resolved by original-image letterform, as independently done above.
+
+| Source byte family | `[P(24),P′(24)]` | `[P(13),P′(13)]` |
+| --- | --- | --- |
+| 2014 `sexagesimal.bin` interpretation | [23,26] | [4,24] |
+| LP2 original printed 32×8 bytes | **[0,0]** | **[8,0]** |
+| Independent 2014 stage04 `<!--1033-->` site-hex witness, 256 bytes | [24,4] | [28,7] |
+
+The site-hex comparison is a **separate source control**, preserved in [the original 2014 HTML](../resources/external/2014-stage04-index.html); it cannot be substituted silently for the LP2 numeral table. The readout confirms that the source-marked GF(29) constraints sharply discriminate among historically plausible glyph variants and identify **nine of ten** actual printed readings, while rigorously leaving one known modular ambiguity. It does **not** prove the puzzle creator intended those checksums, derive the unknown manuscript's cipher, or establish an LP2 key.
+
+**Reproduction:** [single runnable source-input test](../sims/lp2_grid_2014_ten_glyph_critical_checksum_sft.cjs) reads the historical archived decimals and printed table, enumerates all 1,024 combinations using the exact original rune-indexed positions, checks every four-value equality, and positively asserts the GF(29) blind spot at byte165. This complements the visual source checks, which alone determine the actual printed characters.
+
 ## Consequence for cryptanalysis
 
 Five hypothetical grid-byte changes repeatedly described in earlier studies as *source-corrected* actually change correct printed glyphs into incorrect ones. Any reported plaintext candidate depending on one of those five changes needs independent source evidence, and the natural default for future key schedules is the unchanged printed-token table. Earlier negative experiments using both versions remain valid experiments on their stated inputs; their alternate-key results do not establish an alternate original byte stream.
