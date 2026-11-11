@@ -67,19 +67,48 @@ function gpEncode(text) {
 }
 
 /**
- * @param {number[]} values
- * @param {number} length
- * @returns {{n: number, min: number, max: number, belowOrEqual: number}}
+ * Minimal number of rune substitutions required after granting an arbitrary
+ * global bijection of the 29 symbols and an arbitrary position permutation.
+ * For two frequency multisets this is half their sorted L1 distance.
+ * @param {number[]} left
+ * @param {number[]} right
+ * @returns {number}
  */
-function windows(values, length, threshold) {
-  const scores = [];
-  for (let at = 0; at + length <= values.length; at += length)
-    scores.push(ioc(values.slice(at, at + length)));
+function minEditsAfterRelabelAndTranspose(left, right) {
+  assert.equal(left.length, right.length);
+  /** @param {number[]} values */
+  const counts = values => {
+    const freq = Array(29).fill(0);
+    for (const rune of values) freq[rune]++;
+    return freq.sort((a, b) => a - b);
+  };
+  const first = counts(left), second = counts(right);
+  return first.reduce((sum, n, i) => sum + Math.abs(n - second[i]), 0) / 2;
+}
+
+/**
+ * @param {number[]} values
+ * @param {number[]} original
+ * @param {number} threshold
+ * @returns {{n: number, min: number, max: number, belowOrEqual: number, minEdits: number, medianEdits: number, maxEdits: number}}
+ */
+function windows(values, original, threshold) {
+  const scores = [], editCounts = [];
+  const length = original.length;
+  for (let at = 0; at + length <= values.length; at += length) {
+    const target = values.slice(at, at + length);
+    scores.push(ioc(target));
+    editCounts.push(minEditsAfterRelabelAndTranspose(original, target));
+  }
+  editCounts.sort((a, b) => a - b);
   return {
     n: scores.length,
     min: Math.min(...scores),
     max: Math.max(...scores),
-    belowOrEqual: scores.filter(score => score <= threshold).length
+    belowOrEqual: scores.filter(score => score <= threshold).length,
+    minEdits: editCounts[0],
+    medianEdits: editCounts[Math.floor(editCounts.length / 2)],
+    maxEdits: editCounts[editCounts.length - 1]
   };
 }
 
@@ -94,6 +123,8 @@ for (const original of [terminal, book]) {
 }
 const permuted = Array.from({length: 256}, (_, i) => terminal[(73 * i) % 256]);
 assert.equal(ioc(permuted), terminalIoc);
+assert.equal(minEditsAfterRelabelAndTranspose(terminal, permuted), 0);
+assert.equal(minEditsAfterRelabelAndTranspose(terminal, terminal.map(v => (v + 7) % 29)), 0);
 
 const sources = [
   "resources/control/emerson_essays_2944.txt",
@@ -105,18 +136,20 @@ const reference = sources.map(source => {
   return {
     source,
     symbols: gp.length,
-    terminal: windows(gp, terminal.length, terminalIoc),
-    full: windows(gp, book.length, bookIoc)
+    terminal: windows(gp, terminal, terminalIoc),
+    full: windows(gp, book, bookIoc)
   };
 });
 assert.deepEqual(reference.map(x => x.symbols), [323083, 62696, 217644]);
 assert.deepEqual(reference.map(x => x.terminal.n), [1262, 244, 850]);
 assert.deepEqual(reference.map(x => x.full.n), [24, 4, 16]);
 assert.ok(reference.every(x => x.terminal.belowOrEqual === 0 && x.full.belowOrEqual === 0));
+assert.deepEqual(reference.map(x => x.terminal.minEdits), [48, 51, 45]);
+assert.deepEqual(reference.map(x => x.full.minEdits), [4467, 4378, 4219]);
 
 console.log(JSON.stringify({
-  classification: "key-independent conditional exclusion of pure rune-position permutations",
+  classification: "all-secret global alphabet relabeling and positional permutation bound",
   original: {terminalLength: terminal.length, terminalIoc, bookLength: book.length, bookIoc},
   references: reference,
-  logicalLimit: "Same 29-symbol alphabet and symbol-preserving permutation only; language/register change, additions/deletions, and another layer are not excluded."
+  logicalLimit: "Any global GP29 alphabet bijection plus arbitrary positional permutation; additional rune substitutions are bounded against finite GP-English controls. Page-changing keys, other registers, variable-rate transformations or additional cipher layers are not excluded."
 }, null, 2));

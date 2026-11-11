@@ -1,39 +1,53 @@
-# Original LP2 pure-transposition invariant: source-class decision
+# Original LP2 all-key frequency and minimum-edit obstruction
 
-**Classification:** exact symbol-multiset theorem, supported by a finite comparison against three native-Gematria-Primus prose registers. **No unknown plaintext or key recovered.** This is a class-level stop for any proposed **single-layer, rune-preserving transposition**, including unknown column order or arbitrary position permutations. A transposition followed by a separate cipher, changed alphabet, or variable-rate conversion is outside this exclusion.
+**Classification:** exact symbol-multiset invariant and optimal fixed-length edit-distance theorem, with finite native-Gematria-Primus English controls. **No unknown plaintext or authentic key recovered.** This class-level constraint covers any **one global bijective 29-rune alphabet relabeling plus any positional permutation**, including simple substitution, arbitrary transpositions, columnar routes, and their composition in either order. It imposes a quantitative minimum on an additional rune-replacing operation if a candidate intends to recover source-like native GP-English.
 
-## Source and human solve-path relevance
+## Original source and human solve-path motivation
 
-Original LP2 pages 0–55 contain 12,956 runes on 55 rune-bearing pages and a rune-free numerical page. Physical p53 has 179 runes, the enlarged first glyph on p54 is GP index 24, and p55 has 76. A proposed terminal extraction of p53 + only that first p54 rune + p55 gives exactly 256 runes, the printed table's 32×8 capacity. The eight subsequent red p54 runes provide a possible columnar key. Separately, the 2014 Cicada path demonstrably used columnar transposition. These facts motivate testing the simplest operation, but they do not establish that the 256-rune extraction is an intended payload. The single-key test in [the consolidated terminal study](tree-outline-blur-crosspage.md) has already failed to recover text.
+LP2 physical pages 0–55 contain 12,956 unresolved runes. The terminal p53 has 179, p54's first enlarged rune has GP index 24, and p55 has 76. A proposed composite of p53 + only that first p54 rune + p55 has exactly 256 runes, matching the printed base60 table's 32×8 capacity. The subsequent eight red p54 heading runes resemble an eight-column key. The earlier direct source-selected columnar test in [the consolidated terminal study](tree-outline-blur-crosspage.md) failed on original text. The 256-rune composite remains an interpretive hypothesis about framing; the full 12,956-rune source count is independent of it.
 
-An **independently decisive obstacle applies before choosing a key**: a pure transposition is only a permutation of positions. Let the count of GP rune \(r\) in a sequence of length \(n\) be \(f_r\). Under any positional permutation all \(f_r\) remain unchanged, hence the index of coincidence
+An **all-secret key-independent invariant** is available before selecting any transposition key. For length \(n\), let \(f_r\) count each GP symbol \(r\in\{0,\dots,28\}\). Arbitrary position permutations leave every \(f_r\) invariant. A further single **global secret rune-alphabet permutation** merely rearranges the 29 frequency counts, leaving their unordered multiset unchanged. Thus the index of coincidence
 
 \[
-I=\frac{\sum_{r=0}^{28} f_r(f_r-1)}{n(n-1)}
+I = \frac{\sum_{r=0}^{28} f_r(f_r-1)}{n(n-1)}
 \]
 
-is exactly invariant. Reversing, folding, columnar keying, crossing pages, and unrestricted column order cannot raise or lower it if the operation preserves the same rune multiset. Every possible key therefore inherits the observed frequency profile.
+is **exactly unchanged** by any combination of such operations. The secret key, column order, folded geometry, word positions, and even full unrestricted permutation do not matter. Independent page-varying substitutions, genuine homophonic expansion, non-GP registers, and further cipher layers are outside the theorem.
 
-## Original-input measurements and native language comparisons
+## Exact optimal substitutions needed after granting the strongest possible reordering
 
-The [single-file CommonJS SFT](../sims/pure_transposition_ioc_source_sft.cjs) uses only the repository's original normalized [LP2 corpus](../resources/liber-primus/lp2-corpus.json) and previously retained Emerson, Gibran, and Shakespeare reference texts. It tokenizes the latter using the existing GP convention with TH/ING digraphs and source normalizations QU→CW, V→U, K→C, Z→S. It evaluates **disjoint**, fixed-width reference windows, without choosing any candidate key or fitting plaintext.
+An IoC mismatch diagnoses the class, but a sharper bound quantifies the necessary extra operation. Let \(f^\uparrow\) and \(g^\uparrow\) be the sorted frequency-count vectors for original source and any given same-length GP plaintext candidate. Grant an adversary **any** of the \(29!\) global symbol renamings and **any** of the \(n!\) position permutations, both chosen after seeing the target. Then the exact minimum number of rune replacements needed to reach it is
 
-| Stream | GP runes | Exact IoC |
+\[
+E_{\min}(f,g)
+=\frac12\sum_{r=0}^{28}|f^\uparrow_r-g^\uparrow_r|
+=n-\sum_{r=0}^{28}\min(f^\uparrow_r,g^\uparrow_r).
+\]
+
+This follows by matching largest frequency bins to largest bins; any less-ordered matching cannot increase the total shared matching mass, and arbitrary position permutations realize the optimum. The bound is intentionally generous to the attacker: **all** printed spaces, punctuation, page order, and historical key restrictions are discarded for the purpose of this lower bound. A pure substitution-transposition has \(E_{\min}=0\); an extra mechanism must account for every required changed rune.
+
+## Measurements on original ciphertext and independent native-GP prose
+
+[CommonJS original-input single-file reproducer](../sims/pure_transposition_ioc_source_sft.cjs) reads the canonical [LP2 corpus](../resources/liber-primus/lp2-corpus.json) and existing Emerson, Gibran and Shakespeare controls. It uses the repository's established GP-English normalization, including TH/ING rune tokens and QU→CW, V→U, K→C, Z→S. Reference texts are divided into **nonoverlapping** length-matched windows; no original ciphertext is used to fit a key or reference vocabulary.
+
+| Original stream | GP rune count | IoC |
 | --- | ---: | ---: |
-| Original terminal p53 + oversized p54 A + p55 composite | 256 | **0.03431372549019608** |
-| All original unsolved LP2 pages 0–55 | 12,956 | **0.03447839786450569** |
+| Terminal proposed p53 + p54 first rune + p55 composite | 256 | **0.03431372549019608** |
+| All unsolved LP2 pages 0–55 | 12,956 | **0.03447839786450569** |
 
-| Reference source | Disjoint 256-rune windows | Minimum IoC | 256-rune windows with IoC at or below original terminal | Disjoint 12,956-rune windows | Minimum 12,956-rune IoC | Full-length windows at or below original book |
+| GP-English source | 256-rune windows | Smallest 256 IoC | Smallest **necessary edits / 256** | 12,956-rune windows | Smallest full IoC | Smallest **necessary edits / 12,956** |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Emerson, *Essays* | 1,262 | 0.05073529411764706 | 0 | 24 | 0.06154090518524891 | 0 |
-| Gibran, *The Prophet* | 244 | 0.054044117647058826 | 0 | 4 | 0.05993730643597443 | 0 |
-| Shakespeare | 850 | 0.048161764705882355 | 0 | 16 | 0.058495904971361076 | 0 |
-| **Combined** | **2,356** | **0.048161764705882355** | **0** | **44** | **0.058495904971361076** | **0** |
+| Emerson, *Essays* | 1,262 | 0.0507352941 | **48** | 24 | 0.0615409052 | **4,467** |
+| Gibran, *The Prophet* | 244 | 0.0540441176 | **51** | 4 | 0.0599373064 | **4,378** |
+| Shakespeare | 850 | 0.0481617647 | **45** | 16 | 0.0584959050 | **4,219** |
+| **Total / best-case bound** | **2,356** | **0.0481617647** | **45 (17.58%)** | **44** | **0.0584959050** | **4,219 (32.56%)** |
 
-All original rune indices, table widths, and reference sizes are asserted by the reproducer; reversing the original stream and applying a full 256-position multiplicative permutation preserve IoC exactly. The 2,356 prose windows are a finite language comparison rather than a universal distribution of possible English, and neighbouring windows within a reference book need not be statistically independent. No arbitrary sample-based p-value is promoted to a cipher theorem.
+**Every one of the 2,356 short and 44 full-length original-control comparisons has higher IoC than the original ciphertext.** In the most permissive globally relabeled and arbitrarily transposed matching, the closest 256-symbol GP-English control still needs **45 symbol substitutions**, and the closest full-length GP-English control needs **4,219 changed rune positions**. These are exact minima against the *specific control windows*, not a universal minimum over every possible English or other-language message. Finite source windows share authorship/style and are not claimed to be statistically independent observations; empirical tails are not promoted into universal theorem p-values.
 
-## Cryptanalytic decision
+The reproducer asserts both actual original inputs and all reference lengths. It also confirms zero minimum edits after an arbitrary original position permutation or a bijective global alphabet rotation, and the per-source frequency-optimal minima above.
 
-**Single-layer, rune-preserving position permutations of the original unknown book cannot repair its near-uniform GP29 rune frequencies.** For the tested native-GP English controls, every original candidate transposition would retain an IoC below the lowest observed reference window. This applies to *every secret transposition key and every positional permutation*, not only the previously tested p54 heading order. The class is thus strongly disfavoured as a direct native-GP prose decipherment and should not receive further free column-order/route searches.
+## Research decision and remaining problem
 
-This says nothing about transposing a *different* intermediate plaintext register, a transposition combined with substitution or keystream recovery, another language, or non-rune payload. Any proposed additional operation must be selected from independent original clues and supply exact information required to invert it. Synthetic invert-and-reencrypt success alone is insufficient to identify that missing operation. The primary objective remains an authentic original-source key or reversible decoder producing independently readable unknown plaintext.
+The full original manuscript requires **at least 4,219 substitutions relative to every tested complete source-length native-GP English register**, even after giving a hypothetical solver a fully arbitrary global alphabet permutation **and** arbitrary positional transposition. Therefore pursuing any single fixed global substitution-transposition, including arbitrary 8-column keys or full page-order searches, cannot lead directly to prose with the observed GP-English frequency profile. This class is **rejected conditional on the tested prose registers**; historical authors may have encoded a genuinely different register.
+
+The next useful clue must identify an operation that changes rune counts substantially, such as a **changing key/state**, **non-GP or compressed payload**, **variable-rate mapping**, or independently prescribed additional substitution, and must predict previously withheld original ciphertext in a reversible way. The present theorem does **not** identify which such operation was used. It supplies a quantitative gate against superficial transposition-based rescues without requiring any speculative key search.
