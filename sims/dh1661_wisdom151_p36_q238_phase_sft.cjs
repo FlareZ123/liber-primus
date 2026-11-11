@@ -197,16 +197,20 @@ const p36WithHeading = [...p36.slice(0, runesBeforeHeading), 1, ...p36.slice(run
 assert.equal(p36WithHeading.length, 239);
 
 const keyBase = q238.slice(0, 238);
+const phases = [151, 1661 % 238];
+assert.deepEqual(phases, [151, 233]);
 const results = [];
 for (const orientation of ['forward', 'reverse']) {
   const oriented = orientation === 'forward' ? keyBase : keyBase.slice().reverse();
-  const key = rotate(oriented, 151);
-  for (const sign of [-1, 1]) {
-    const decoded = p36.map((c, i) => mod29(c + sign * key[i]));
-    const plant = reference.slice(0, 238);
-    const plantedCipher = plant.map((c, i) => mod29(c - sign * key[i]));
-    assert.deepEqual(plantedCipher.map((c, i) => mod29(c + sign * key[i])), plant);
-    results.push({ orientation, phase: 151, sign, ...score(decoded) });
+  for (const phase of phases) {
+    const key = rotate(oriented, phase);
+    for (const sign of [-1, 1]) {
+      const decoded = p36.map((c, i) => mod29(c + sign * key[i]));
+      const plant = reference.slice(0, 238);
+      const plantedCipher = plant.map((c, i) => mod29(c - sign * key[i]));
+      assert.deepEqual(plantedCipher.map((c, i) => mod29(c + sign * key[i])), plant);
+      results.push({ orientation, phase, sign, ...score(decoded) });
+    }
   }
 }
 
@@ -301,7 +305,7 @@ console.log(JSON.stringify({
     page: 36,
     runes: p36.length,
     q238Degree: q238.length - 1,
-    phase: 151,
+    phases,
   },
   rawP36: score(p36),
   results,
@@ -322,5 +326,5 @@ console.log(JSON.stringify({
     median: nativeWindows[Math.floor(nativeWindows.length / 2)],
     maximum: nativeWindows.at(-1),
   },
-  decision: 'The phase-151, 151-selected anti-diagonal, and visible-heading-1 anchored Q238 additive models all fail; the heading-anchored 239-token alignment is also impossible under any fixed secret 29-symbol permutation.'
+  decision: 'The Q238 additive-key model fails at both source-derived phases 151 and 1661 mod 238 = 233, in both orientations and signs; the 151-selected anti-diagonal and visible-heading-1 anchored models also fail.'
 }, null, 2));
