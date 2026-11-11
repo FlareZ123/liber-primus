@@ -41,11 +41,28 @@ A minimal direct interpretation is to arrange the 810 fragments as 45 groups of 
 
 All four frozen outputs are nonlinguistic; none yields readable plaintext. The exact selected fragments and transliterations are emitted by the reproducer. This rejects only the direct GP-prime-sum/decimal/hex mod-18 selector under these two layouts and index bases. It does not exclude a different source-selected use of the 45×18 structure.
 
+## Frozen 16×16 p49–p51 table → page-key schedule: negative
+
+The 256-cell numerical grid spans LP2 pp49–51, all inside the selected botanical block. A natural but unproven alignment is to flatten its printed 32×8 order row-major into 16 rows of 16 bytes, then assign row i to physical page 40+i. This gives one 16-symbol page key for each of the 16 border pages; the row assigned to numeric-only p50 is unused. Reduce each byte modulo 29 and repeat that row from offset zero within its page. This is a cheap test of the 16-page/256-cell coincidence, not a source-authenticated instruction.
+
+The fixed test covers both established radix interpretations of the table (base60 and base59) and both additive directions, C−K and C+K. It does not fit phases, page permutations, table transpositions, or alternate reducers.
+
+| Table radix | Operation | Output IoC | First 30 transliterated symbols |
+| --- | --- | ---: | --- |
+| Base60 | C−K | 0.03446938 | FIYXAEESEAMAEOWOEHMDEBEATICGO |
+| Base60 | C+K | 0.03437568 | FHEONTEAGBFUAETDTHEOESXJUSYJCW |
+| Base59 | C−K | 0.03443808 | OXFBYOEBTHLFCJYHOEYNGNGTHMJNHA |
+| Base59 | C+K | 0.03446792 | YRNGSARXEAYDEOMTCNSJJHFJAHRORL |
+
+The raw 3,316-rune block has IoC **0.03446283**, essentially unchanged. The solved p57 first-43-body-rune control has IoC **0.056478**. None of the four page-key outputs has a readable prefix or language-like distribution. The SFT includes a synthetic per-page encrypt/decrypt round-trip for both radix schedules; those controls validate the arithmetic only, not the proposed key assignment.
+
+Reject this specific row-major 16×16, one-row-per-page, repeated additive GP29 schedule. The 16×16 reshape and page assignment are not prescribed by the source; do not rescue the result with free phases, row/column permutations, or alternative byte reductions. This does not exclude a different, independently source-selected use of the numerical grid.
+
 ## Decision
 
-The 2013 forest clue now motivates a **separate aggregate-block hypothesis**: the botanical span pp40–55, containing 15 rune-bearing pages plus the numeric p50 table. The 3,316 = 3,301 + 15 relation is exact and source-constrained enough to preserve. The 810 = 45×18 relation is weaker because it uses raw line/whitespace fragments rather than canonical words. No reversible operation or authentic key follows.
+The 2013 forest clue motivates a **separate aggregate-block hypothesis**: the botanical span pp40–55, containing 15 rune-bearing pages plus the numeric p50 table. The 3,316 = 3,301 + 15 relation is exact and source-constrained enough to preserve. The 810 = 45×18 relation is weaker because it uses raw line/whitespace fragments rather than canonical words. Two obvious direct readouts—the 45×18 token-index selector and the 16×16 p50-table page-key schedule—do not recover text.
 
-This does **not** overturn the existing negative result for a unique path through the p32 tree illustration. The forest clue does not identify a p32 root, start, order, direction, or endpoint. Do not expand this branch into arbitrary permutations, semantic dictionaries, or unconstrained matrix searches. Continue only if an independent original clue selects a precise mapping from the 45 signed-message tokens to the 18-unit structure.
+This does **not** overturn the existing negative result for a unique path through the p32 tree illustration. The forest clue does not identify a p32 root, start, order, direction, or endpoint. Do not expand this branch into arbitrary permutations, semantic dictionaries, or unconstrained matrix searches. Continue only if an independent original clue selects a precise mapping or reversible operation.
 
 ## Reproduction
 

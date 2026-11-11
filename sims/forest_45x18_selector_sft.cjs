@@ -194,6 +194,101 @@ for (const layout of layouts) {
   }
 }
 
+// Exploratory page schedule: 256 p49-p51 bytes -> row-major 16x16;
+// row i is assigned to physical p40+i. The p50 row is unused.
+const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+const tableTokens = grid.pages.flatMap((page) => page.tokens);
+assert.equal(grid.byte_count, 256);
+assert.equal(tableTokens.length, 256);
+assert.equal(grid.shape, "32 rows by 8 columns across LP2 pages 49, 50, 51");
+const alphabet60 = grid.alphabet;
+const alphabet59 = alphabet60.replace("f", "");
+function parseTable(alphabetText) {
+  return tableTokens.map((token) =>
+    alphabetText.indexOf(token[0]) * alphabetText.length + alphabetText.indexOf(token[1])
+  );
+}
+const bytes60 = parseTable(alphabet60);
+const bytes59 = parseTable(alphabet59);
+assert.deepEqual(bytes60, grid.bytes);
+assert.ok(bytes60.every((value) => Number.isInteger(value) && value >= 0 && value < 256));
+assert.ok(bytes59.every((value) => Number.isInteger(value) && value >= 0 && value < 256));
+
+function ioc(values) {
+  const n = values.length;
+  if (n < 2) return null;
+  const counts = Array(29).fill(0);
+  for (const value of values) counts[value]++;
+  return counts.reduce((sum, count) => sum + count * (count - 1), 0) / (n * (n - 1));
+}
+const blockPages = corpus.pages.filter((page) => page.page >= 40 && page.page <= 55);
+assert.equal(blockPages.length, 16);
+assert.equal(blockPages.reduce((n, page) => n + page.indices.length, 0), 3316);
+
+function pageKeyReadout(bytes, sign) {
+  const output = [];
+  const perPage = [];
+  for (const page of blockPages) {
+    const row = bytes.slice((page.page - 40) * 16, (page.page - 39) * 16).map((value) => mod(value, 29));
+    assert.equal(row.length, 16);
+    const decoded = page.indices.map((cipher, index) =>
+      mod(sign === "minus" ? cipher - row[index % 16] : cipher + row[index % 16], 29)
+    );
+    output.push(...decoded);
+    perPage.push({
+      page: page.page,
+      runeCount: decoded.length,
+      ioc: ioc(decoded),
+      preview: decoded.slice(0, 40).map((index) => corpus.translit[index]).join("")
+    });
+  }
+  return {
+    runeCount: output.length,
+    ioc: ioc(output),
+    preview: output.slice(0, 180).map((index) => corpus.translit[index]).join(""),
+    perPage
+  };
+}
+
+function syntheticRoundTrip(bytes) {
+  const synthetic = blockPages.map((page) =>
+    Array.from({length: page.indices.length}, (_, i) => mod(i * 7 + page.page * 3, 29))
+  );
+  const encrypted = synthetic.map((plain, pageIndex) => {
+    const row = bytes.slice(pageIndex * 16, pageIndex * 16 + 16).map((value) => mod(value, 29));
+    return plain.map((value, i) => mod(value + row[i % 16], 29));
+  });
+  const recovered = encrypted.map((cipher, pageIndex) => {
+    const row = bytes.slice(pageIndex * 16, pageIndex * 16 + 16).map((value) => mod(value, 29));
+    return cipher.map((value, i) => mod(value - row[i % 16], 29));
+  });
+  assert.deepEqual(recovered, synthetic);
+  return true;
+}
+const solved57 = corpus.pages.find((page) => page.page === 57);
+const solvedControl = solved57 ? solved57.indices.slice(7, 50) : [];
+const pageKeySchedule = {
+  sourceGridShape: grid.shape,
+  sourceByteCount: grid.byte_count,
+  reshape: "row-major 32x8 -> 16x16",
+  pageAssignment: "row i -> physical LP2 page 40+i; p50 row unused",
+  keyRule: "each 16-byte row reduced mod29 and repeated from page offset 0",
+  rawCiphertextIoc: ioc(blockPages.flatMap((page) => page.indices)),
+  solvedP57BodyControlIoc: solvedControl.length === 43 ? ioc(solvedControl) : null,
+  tests: []
+};
+for (const [radix, bytes] of [["base60", bytes60], ["base59", bytes59]]) {
+  const syntheticRoundTripOK = syntheticRoundTrip(bytes);
+  for (const sign of ["minus", "plus"]) {
+    pageKeySchedule.tests.push({
+      radix,
+      operation: sign === "minus" ? "C-K" : "C+K",
+      syntheticRoundTrip: syntheticRoundTripOK,
+      ...pageKeyReadout(bytes, sign)
+    });
+  }
+}
+
 console.log(JSON.stringify({
   historical: {
     forestCluePresent: true,
@@ -219,5 +314,6 @@ console.log(JSON.stringify({
     fragmentEquation: "810 = 45 * 18"
   },
   unique15PageWindows: matchingWindows,
-  directMod18Selectors: selectorTests
+  directMod18Selectors: selectorTests,
+  pageKeySchedule
 }, null, 2));
