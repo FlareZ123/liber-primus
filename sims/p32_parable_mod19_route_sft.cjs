@@ -104,11 +104,28 @@ const directions = [
 ];
 const hits = [];
 let directedWindows = 0;
+const sourceConsecutivePaths = [];
+const directedPathIndices = [];
 for (let r = 0; r < 11; r++) for (let c = 0; c < 11; c++) {
   for (const [dr, dc, direction] of directions) {
     const coords = target.map((_, k) => [r + dr * k, c + dc * k]);
     if (coords.some(([rr, cc]) => rr < 0 || rr >= 11 || cc < 0 || cc >= 11)) continue;
     directedWindows++;
+    // The source p57 body order, not the semantic interpretation, fixes this test.
+    // Test every four consecutive body-word indices, not just one selected phrase.
+    const ix = coords.map(([rr, cc]) => rr * 11 + cc);
+    const residues = coords.map(([rr, cc]) => residueMatrix[rr][cc]);
+    const nextStepLeavesSquare = r + 4 * dr < 0 || r + 4 * dr >= 11 ||
+      c + 4 * dc < 0 || c + 4 * dc >= 11;
+    directedPathIndices.push({ ix, nextStepLeavesSquare });
+    if (residues[0] <= 15 &&
+        residues.every((value, k) => k === 0 || value === residues[k - 1] + 1)) {
+      sourceConsecutivePaths.push({
+        start: [r, c], direction, sourceWordIndices: residues,
+        nextStepLeavesSquare
+      });
+    }
+
     if (coords.every(([rr, cc], k) => residueMatrix[rr][cc] === target[k])) {
       hits.push({ start: [r, c], direction, coords });
     }
@@ -121,6 +138,118 @@ residueMatrix.flat().forEach((v) => counts[v]++);
 const permutationNullExpected = directedWindows *
   (counts[0] / 121) * (counts[13] / 120) *
   (counts[15] / 119) * (counts[16] / 118);
+
+
+/**
+ * Detect repeated consecutive p57 word-index runs in all 608 source-shaped
+ * straight four-cell windows. A suffix at the edge "reaches the surface"
+ * only when its fifth movement would exit the matrix.
+ * @param {number[]} cells
+ * @returns {{ repeated: boolean, repeatedAndExiting: boolean, targetRepeated: boolean }}
+ */
+function evaluateSourceRuns(cells) {
+  const counts = Array(16).fill(0);
+  const exits = Array(16).fill(0);
+  for (const { ix, nextStepLeavesSquare } of directedPathIndices) {
+    const [i, j, k, l] = ix;
+    const x = cells[i];
+    if (x <= 15 && cells[j] === x + 1 && cells[k] === x + 2 &&
+        cells[l] === x + 3) {
+      counts[x]++;
+      if (nextStepLeavesSquare) exits[x]++;
+    }
+  }
+  return {
+    repeated: counts.some((n) => n >= 2),
+    repeatedAndExiting: counts.some((n, index) => n >= 2 && exits[index] > 0),
+    targetRepeated: counts[2] >= 2
+  };
+}
+const observedSourceRuns = evaluateSourceRuns(residueMatrix.flat());
+assert.deepEqual(observedSourceRuns,
+  { repeated: true, repeatedAndExiting: true, targetRepeated: true });
+assert.deepEqual(sourceConsecutivePaths, [
+  { start: [5, 0], direction: 'N', sourceWordIndices: [2, 3, 4, 5],
+    nextStepLeavesSquare: false },
+  { start: [10, 7], direction: 'NE', sourceWordIndices: [2, 3, 4, 5],
+    nextStepLeavesSquare: true }
+]);
+assert.equal(matrix[0].reduce((s, v) => s + v, 0), 563);
+assert.equal(matrix.reduce((s, row) => s + row[0], 0), 569);
+assert.equal(matrix[5][5], 19); // The actual 11x11 center, not row3's center.
+assert.ok(!corpus.prime.some((p) => p % 19 === 1));
+
+/**
+ * Uniformly permute the nominated cell indices in place.
+ * @param {number[]} values
+ * @param {number[]} cells
+ * @param {() => number} rng
+ */
+function permuteCells(values, cells, rng) {
+  for (let i = cells.length - 1; i > 0; i--) {
+    const j = rng() % (i + 1);
+    const x = cells[i], y = cells[j];
+    [values[x], values[y]] = [values[y], values[x]];
+  }
+}
+const wholeCells = Array.from({ length: 121 }, (_, i) => i);
+const innerCells = wholeCells.filter((i) => i >= 11 && i % 11 !== 0);
+const eachRowCells = Array.from({ length: 11 }, (_, row) =>
+  Array.from({ length: 11 }, (_, column) => 11 * row + column));
+let shuffleState = 0x8baca28c;
+/** @returns {number} */
+function randomUInt32() {
+  shuffleState ^= shuffleState << 13;
+  shuffleState ^= shuffleState >>> 17;
+  shuffleState ^= shuffleState << 5;
+  return shuffleState >>> 0;
+}
+const originalResidues = residueMatrix.flat();
+const nPermutationTrials = 120000;
+const permutationModes = [
+  { name: 'fixed complete symbol inventory',
+    shuffle: (v) => permuteCells(v, wholeCells, randomUInt32) },
+  { name: 'fixed original top row and left column',
+    shuffle: (v) => permuteCells(v, innerCells, randomUInt32) },
+  { name: 'fixed all eleven row-value inventories',
+    shuffle: (v) => {
+      for (const row of eachRowCells) permuteCells(v, row, randomUInt32);
+    } }
+];
+const sourcePathNulls = permutationModes.map(({ name, shuffle }) => {
+  const cells = originalResidues.slice();
+  let repeated = 0, repeatedAndExiting = 0, targetRepeated = 0;
+  for (let trial = 0; trial < nPermutationTrials; trial++) {
+    shuffle(cells);
+    const probe = evaluateSourceRuns(cells);
+    if (probe.repeated) repeated++;
+    if (probe.repeatedAndExiting) repeatedAndExiting++;
+    if (probe.targetRepeated) targetRepeated++;
+  }
+  return {
+    name, trials: nPermutationTrials, repeated, repeatedAndExiting,
+    targetRepeated,
+    pRepeated: (repeated + 1) / (nPermutationTrials + 1),
+    pRepeatedAndExiting: (repeatedAndExiting + 1) / (nPermutationTrials + 1)
+  };
+});
+assert.deepEqual(sourcePathNulls.map((v) => [
+  v.repeated, v.repeatedAndExiting, v.targetRepeated
+]), [[257, 73, 240], [5637, 1449, 5630], [209, 24, 198]]);
+
+const allUnknown = corpus.pages.filter((p) => p.page < 56)
+  .flatMap((p) => p.indices || []);
+assert.equal(allUnknown.length, 12956);
+let matchedOriginalWindows = 0;
+let matchedOriginalWindowRepeats = 0;
+for (let start = 0; start + 121 <= allUnknown.length; start += 121) {
+  matchedOriginalWindows++;
+  const probe = evaluateSourceRuns(allUnknown.slice(start, start + 121)
+    .map((r) => corpus.prime[r] % 19));
+  if (probe.repeated) matchedOriginalWindowRepeats++;
+}
+assert.equal(matchedOriginalWindows, 107);
+assert.equal(matchedOriginalWindowRepeats, 0);
 
 const pgpText = fs.readFileSync('resources/historical/cicada2016-4gq25-outguess.asc', 'utf8');
 const begin = pgpText.indexOf('-----BEGIN PGP SIGNATURE-----');
@@ -164,7 +293,9 @@ const output = {
     row3Prefix9Sum: row3Prefix9,
     row6Sum,
     row6Prefix9Sum: row6Prefix9,
-    uniqueFourCellHits: hits
+    uniqueFourCellHits: hits,
+    sourceConsecutivePaths,
+    trueCenterPrime: matrix[5][5]
   },
   2016: {
     asciiArmoredFileBytes: Buffer.byteLength(pgpText, 'utf8'),
@@ -174,7 +305,10 @@ const output = {
   permutationControl: {
     directedLength4Windows: directedWindows,
     residueCounts: counts,
-    expectedOccurrencesUnderRandomPermutationOfFixedResidueMultiset: permutationNullExpected
+    expectedOccurrencesUnderRandomPermutationOfFixedResidueMultiset: permutationNullExpected,
+    sourcePathNulls,
+    matchedOriginalWindows,
+    matchedOriginalWindowRepeats
   }
 };
 
