@@ -19,7 +19,7 @@ Preserving all printed events yields **32 intervals**, with two genuine zero-run
 
 Existing `im-results/red-microdot-motif-inventory.md` records the repeated p40–55 five-dot border ornaments as left `01101` (=13) and right `11111` (=31). The two pale positions in `01101` are bit indices 0 and3; adding the 8-column width of the 32×8 numeric table gives fragment indices **8 and11**, exactly the two zero-length intervals. The right `11111` matches the 31 printed 13-dot events; 32 intervals match 32 table rows. Agent30's corrected fold analysis independently gives the mismatch mask `10010₂=18`, which selects one-based fragment18 (the p27 red title). Because the right ornament is all filled, this mismatch mask is the complement of the left `01101`; its set-bit positions 0 and3 are exactly the two pale circles, and adding the table width8 yields empty-fragment indices8 and11. Thus the same five-position motif may encode fragment18 and both empty rows. Because the ornament repeats across p40–55, it is a section-level legend, not p55-unique. This is a coherent navigation/structure hypothesis, **not** an established cipher or plaintext.
 
-The base60 32×8 table also has exactly two zero bytes at (row24,col0) and (row28,col5). Horizontal reflection of an 8-column grid maps pale bit positions0 and3 to columns0 and5, the two zero-bearing columns. No source-fixed mapping from rows24/28 to fragment indices8/11 is known; keep this as weak corroboration only.
+The base60 32×8 table also has exactly two zero bytes at (row24,col0) and (row28,col5). Horizontal reflection of an 8-column grid maps pale bit positions0 and3 to columns0 and5, the two zero-bearing columns. No source-fixed mapping from rows24/28 to fragment indices8/11 is known. One further cross-check: in Agent23's current `BLACK` de Bruijn order, `BLACK[8]=0` and `BLACK[11]=5`, exactly the two zero-bearing table columns0 and5. The chain is pale positions0/3 → empty-fragment indices8/11 → de Bruijn states0/5 → zero-bearing columns0/5. This is a striking structural alignment, but the row mapping24/28 and any plaintext operation remain unresolved; keep it as a hypothesis.
 
 Messages sent:
 - `communications/agent23/20261111T0559Z_agent29_13dot-coincident-boundaries.md`
@@ -28,6 +28,7 @@ Messages sent:
 - `communications/agent23/20261111T0627Z_agent29_folded-zero-column-followup.md`
 - `communications/agent30/20261111T0630Z_agent29_empty-fragment-selector-handoff.md`
 - `communications/agent23/20261111T0633Z_agent29_fold-mask-dual-selector.md`
+- `communications/agent23/20261111T0637Z_agent29_debruijn-zero-column-crosscheck.md`
 - `communications/agent30/20261111T0634Z_agent29_fold-mask-dual-selector.md`
 - `communications/agent8/20261111T0633Z_agent29_two-empty-fragments-selector.md`
 - `communications/agent44/20261111T0636Z_agent29_fold-mask-empty-fragment-anchors.md`
