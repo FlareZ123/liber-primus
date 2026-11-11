@@ -8,10 +8,10 @@
  * - header-aware fold: equality bits 100000000 = 256;
  * - the only matching pair is P/P, whose GP prime is 43;
  * - uniqueness of that compound signature across every 19-rune LP2 window;
- * - canonical p27/p55 repeated-word gap 1432 = -1 mod the 1433-rune section;
- * - signed "lies" -> table cell83 and the -1 move to cell82 = [201,193];
- * - the unique reversed bracket [193,201] at cells127-128 enclosing 43 cells;
- * - bounded direct-key negatives for the newly source-fixed reverse 43-byte order.
+ * - the exact 1432-word / 1433-rune cross-unit coincidence, without treating it as a direction;
+ * - signed "lies" -> table cell83, the two 193 cells, and their mirrored 201 outer neighbors;
+ * - the resulting 43-cell interval between the two 193 boundaries, with orientation unresolved;
+ * - bounded direct-key negatives for the conditional reverse ordering of that interval.
  *
  * Run:
  *   node sims/p27_title_headerfold_256_43_reverse_sft.cjs
@@ -142,7 +142,10 @@ for (let n = 1; n <= 32; n++) {
 }
 assert.deepEqual(fragmentSpecial, [18]);
 
-// Canonical 2,896-word repeated p27/p55 bookend gives a direction.
+// Canonical 2,896-word repeated p27/p55 bookend. The 1,432 value is a
+// word-offset difference while the 1,433 value below is a rune count.
+// Their modular relationship is recorded as an exact cross-unit coincidence;
+// it is not used as a direction or cipher state.
 const runePages = transcription.split("%");
 const runeToIndex = new Map(corpus.runes.map((r, i) => [r, i]));
 const RUNIC = /[\u16A0-\u16FF]/u;
@@ -238,9 +241,14 @@ assert.equal(page50Start, 80);
 const selectedCell = page50Start + lies.wordIndex;
 assert.equal(selectedCell, 83);
 
-// The independently derived -1 direction moves to the left bracket.
+// The signed selector lands on one of exactly two byte-193 cells. Their
+// outward neighbors are both 201, producing a mirrored bracket around the
+// 43 cells strictly between the 193 boundaries. This selects the interval,
+// while neither the source nor this gate fixes forward versus reverse order.
+const locations193 = grid.bytes.flatMap((value, index) => value === 193 ? [index] : []);
+assert.deepEqual(locations193, [83, 127]);
 assert.deepEqual(grid.bytes.slice(82, 84), [201, 193]);
-assert.equal(selectedCell - 1, 82);
+assert.deepEqual(grid.bytes.slice(127, 129), [193, 201]);
 const reversedPairs = [];
 for (let i = 0; i < 255; i++) {
   for (let j = i + 2; j < 255; j++) {
@@ -251,8 +259,9 @@ for (let i = 0; i < 255; i++) {
   }
 }
 assert.deepEqual(reversedPairs, [[82, 127]]);
-assert.deepEqual(grid.bytes.slice(127, 129), [193, 201]);
-const reverse43 = grid.bytes.slice(84, 127).reverse();
+const forward43 = grid.bytes.slice(84, 127);
+const reverse43 = forward43.slice().reverse();
+assert.equal(forward43.length, 43);
 assert.equal(reverse43.length, 43);
 
 // The 43 bytes are not themselves a modulo-43 permutation.
@@ -325,8 +334,8 @@ for (const sign of [-1, 1]) {
 }
 assert.deepEqual(addressedNull.map((x) => x.ge), [1628, 432]);
 
-// p55 "shed circumference" gives 43 interior runes. Apply the same reverse
-// table order positionwise and keep the surviving word boundaries.
+// p55 "shed circumference" gives 43 interior runes. Apply the conditional
+// reverse table order positionwise and keep the surviving word boundaries.
 const p55Words = printedWords(runePages[54]);
 const innerWords = p55Words.map((word) =>
   [...word].slice(1, -1).map((r) => runeToIndex.get(r))).filter((w) => w.length);
@@ -362,7 +371,7 @@ for (const sign of [-1, 1]) {
 }
 assert.deepEqual(p55Null.map((x) => x.ge), [882, 3162]);
 
-// Finite direct byte readouts with the new reverse order.
+// Finite direct byte readouts under the same conditional reverse order.
 const printableCounts = {};
 for (const field of ["sourcePrimeSum", "selectedPrimeSum", "selectedOrdinalSum"]) {
   for (const op of ["xor", "sub", "add"]) {
@@ -380,7 +389,7 @@ assert.equal(Math.max(...Object.values(printableCounts)), 22);
 
 console.log(JSON.stringify({
   classification:
-    "source-rare navigation structure with bounded reverse-table direct-key negatives; no plaintext recovered",
+    "source-rare 256/43 interval selector with unresolved orientation and bounded conditional reverse-order negatives; no plaintext recovered",
   title: {
     fragment: 18,
     length: title.length,
@@ -393,23 +402,25 @@ console.log(JSON.stringify({
     matchedRunePrime: corpus.prime[13],
     compoundSignatureHits: signatureHits
   },
-  direction: {
+  crossUnitCoincidence: {
     repeatedWordStarts: starts,
-    gap,
+    wordGap: gap,
     sectionRunes: section.length,
-    modularStep: gap % section.length
+    numericRelation: gap % section.length,
+    interpretation: "word and rune units differ; no direction inferred"
   },
   table: {
     signedWord: "lies",
     selectedCell,
     selectedByte: grid.bytes[selectedCell],
-    reverseStepCell: selectedCell - 1,
-    reverseStepByte: grid.bytes[selectedCell - 1],
+    locations193,
+    mirroredOuterBytes: [grid.bytes[82], grid.bytes[128]],
     reversedPairLocations: reversedPairs,
-    enclosedCells: reverse43.length,
-    reverseModulo43Distinct: new Set(reverse43.map((x) => x % 43)).size
+    enclosedCells: forward43.length,
+    orientation: "unresolved",
+    conditionalReverseModulo43Distinct: new Set(reverse43.map((x) => x % 43)).size
   },
-  reverse43DirectTests: {
+  conditionalReverse43DirectTests: {
     addressedWordGp29: addressedNull,
     p55InteriorGp29: p55Null,
     printableCounts
