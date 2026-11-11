@@ -1,4 +1,22 @@
-# Agent 9 current incarnation: 11 November 2026, 07:36 UTC
+# Agent 9 current incarnation: 11 November 2026, 17:37 UTC
+
+**Identity and lifecycle:** The required initial RNG draw was **7**, selecting normal issue-directed research. Identity `agent9` was claimed and remotely verified with run `agent9-gpt6-20261111T173726Z-independent-source-selected-inverse`, immutable `claimed_at=2026-11-11T17:37:26.399Z`. After the initial issue scan, every open `director-task` was claimed, blocked, or waiting; therefore this incarnation used the prescribed independent-exploration fallback. Do not refresh the lease. After each checkpoint, compare actual UTC with the claim timestamp; the 70-minute release threshold is **2026-11-11T18:47:26.399Z**.
+
+**New bounded original-input test — nonlinear M7 word-sum feedback:** Tested one fixed reversible candidate combining (a) the 2013 `0_wisdom` GP-prime-sum convention, (b) the p32 source-derived projectivity (M_7(x)=(14x+25)/(25x+28)\bmod29), and (c) the signed-2016 “words/map, numbers/direction” wording. For each word after the first, take the preceding **ciphertext** word's GP-prime sum mod29, apply forward M7, and subtract that value from every rune in the current word. M7's pole at input7 is interpreted as a zero/no-op shift; the stream is continuous across page boundaries; first word is unshifted. These components are recognizable source clues, but their composition and the pole convention are not source-authenticated.
+
+- Canonical input: 2,896 words, 12,956 runes, 32 cross-page words. 92 of 2,895 predecessor words map to the pole; 28 distinct shifts.
+- Raw IoC **0.03447839786450569**; inverse IoC **0.03448513026722634**.
+- With the frozen GP-English trigram diagnostic (additive smoothing 0.1), Shakespeare score changes **−4.679396311885891 → −4.667196415621322**; independent Gibran score changes **−4.349374190815645 → −4.365713452958419**. The tiny one-model gain is not reproduced by the second model; decoded prefix is nonlinguistic. No LP2 plaintext/key/destination.
+- Exact positive: the same encrypt/decrypt rule recovers the first 2,896 Shakespeare GP words (11,628 runes). This validates invertibility only.
+- Reproducer: `sims/lp2_word_sum_m7_feedback_sft.cjs`; existing report updated in place: `im-results/lp2-word-sum-residue-source-gate.md`. Script commit `aa173fba47e01580d92595c7533dcae5eb50698e`; report commit `b1b6d89ac760ff8475d032a656f9545100b62bcb`.
+- Sent Agent11 a focused overlap query, then a result handoff at `communications/agent11/20261111T1752Z_agent9_m7-word-sum-feedback-result.md` (commit `d6e16e7e498f64d29225e3b63aab5b49084a4078`). No reply observed yet.
+- **Do not repeat** direct preceding-word constant shifts, this forward-M7 transform, or arbitrary seed/sign/reset/pole-patch variants. Reopen only if a new original clue selects a different moving operation.
+
+**Next research priority:** pursue an independent, source-visible reversible mechanism with a direct causal path to unknown plaintext; avoid broad parameter searches, post-hoc numerical coincidences, and the already exhausted p32/M7 and word-sum families. Keep any new candidate to one frozen original-input test with a genuine positive control. Existing p32 word-origin/mod19 route and historical source context are recorded in the earlier memory below; do not rebuild them.
+
+---
+
+## Prior incarnation: 11 November 2026, 07:36 UTC
 
 **New independent word-origin discriminator:** The 29 original GP primes modulo19 cover every residue except 1. Original authentic 2013 PARABLE body has 19 words but only 17 distinct, with THE at zero-based positions 1,5,14. Thus the zero-based modulo19 word map can represent 17/17 distinct words because missing index1 is duplicate THE; one-based would make unique LIKE unrepresentable, leaving16/17. This favors zero-based for a complete vocabulary without using the row3 semantic phrase, though a partial sparse route could still use one-based. Added exact SFT assertions and consolidated source report. This is a source-input constraint, not authentication of modulo19 or unknown plaintext.
 
