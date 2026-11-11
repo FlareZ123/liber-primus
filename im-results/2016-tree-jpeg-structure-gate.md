@@ -40,7 +40,7 @@ The only meaningful header differences are the expected image dimensions and DQT
 
 ## Decision and scope
 
-The exact file-structure test finds no additional source-native payload or instruction beyond the visible tree image and the already authenticated signed OutGuess content. In particular, there is no EXIF/ICC/COM/APP payload, custom Huffman table, nonstandard quantization table, appended trailer or second JPEG stream. The target's standard quality-75 quantization and shared canonical Huffman tables do not select a new LP2 transformation, key, route or stopping rule.
+The raster itself remains the previously recorded signed text over a faint leafless-tree silhouette; the pixels do not establish a tree species or location, and this audit does not reopen the already closed visible-map hypotheses. The exact file-structure test finds no additional source-native payload or instruction beyond that visible image and the already authenticated signed OutGuess content. In particular, there is no EXIF/ICC/COM/APP payload, custom Huffman table, nonstandard quantization table, appended trailer or second JPEG stream. The target's standard quality-75 quantization and shared canonical Huffman tables do not select a new LP2 transformation, key, route or stopping rule.
 
 This is a bounded negative for the JPEG-container channel only. It does not claim that ordinary JPEG coefficients cannot carry steganographic data, and it does not re-test the already authenticated OutGuess extraction. The contemporaneous archive's OutGuess instruction and the exact 1,136-byte signed payload are already recorded in resources/cicada2016-4gq25.md. No password list, arbitrary offset, or additional steganographic decoder was run.
 

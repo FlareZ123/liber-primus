@@ -136,6 +136,9 @@ assert.equal(target.trailing, 0);
 assert.equal(target.sosOffset, 609);
 assert.equal(target.dqt.length, 2);
 assert.equal(target.dht.length, 4);
+assert.equal(target.dqt.every(t => t.precision === 0), true);
+assert.equal(target.segments.filter(s => s.marker === "FFC0").length, 1);
+assert.equal(target.segments.filter(s => s.marker === "FFDA").length, 1);
 const frame = target.segments.find(s => s.marker === "FFC0");
 assert.equal(frame.width, 563);
 assert.equal(frame.height, 569);
@@ -144,6 +147,10 @@ assert.deepEqual(frame.componentSpecs, [
   { id: 2, sampling: "11", quantTable: 1 },
   { id: 3, sampling: "11", quantTable: 1 }
 ]);
+assert.equal(frame.precision, 8);
+assert.equal(frame.components, 3);
+const app0 = target.segments.find(s => s.marker === "FFE0").app0;
+assert.deepEqual(app0, [74,70,73,70,0,1,1,0,0,1,0,1,0,0]);
 assert.ok(target.segments.every(s =>
   !(s.marker >= "FFE1" && s.marker <= "FFEF") && s.marker !== "FFFE"));
 assert.ok(equal(target.dqt[0].values, ijgQuant(LUMA, 75)));
@@ -159,6 +166,9 @@ assert.ok(equal(headerSignature(target), headerSignature(control)));
 assert.ok(equal(target.segments.find(s => s.marker === "FFE0").app0,
                   control.segments.find(s => s.marker === "FFE0").app0));
 assert.equal(control.trailing, 0);
+assert.equal(control.bytes, 168876);
+assert.equal(control.segments.find(s => s.marker === "FFC0").width, 2400);
+assert.equal(control.segments.find(s => s.marker === "FFC0").height, 3600);
 assert.ok(control.dqt.every(t => t.values.every(v => v === 1)));
 
 console.log(JSON.stringify({
