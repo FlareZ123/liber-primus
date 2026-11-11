@@ -2,6 +2,16 @@
 
 **Classification:** exact source concordance with bounded original-input negative tests. No unknown LP2 plaintext, authentic decryption key, or historical instruction to apply these numbers has been recovered.
 
+## Source-selected function of the 2014 squares and limits of the PARABLE 19/7 route (Issue #150; 11 November 2026)
+
+A preserved **January 2014 sixth-onion signed instruction** explicitly asks participants to *paste the magic squares into the appropriate textareas* and submit a Tor hidden-service URL, upload endpoint and public key. Thus there is a documented historical **submission/verification use** for these squares independently of their later placement in Liber Primus. The instruction does **not** specify a rune cipher, modulo-449 clause reduction, nested-prime evaluation, or any shell/readout traversal. Witnesses preserve the full signed text and signature: [2014 historical transcript](https://uncovering-cicada.fandom.com/wiki/CICADA_3301_2014_PUZZLE_FACTS_PART_8) and [independent long-form reproduction](https://www.scribd.com/document/517504837/Openpuff-for-Experts-Cicada-3301-Recruitment-Puzzle-2014). This establishes what the source **did** select; it does not exclude a second, undocumented use of the same numbers in LP2.
+
+The original p57 body has **19** words in clauses **7/6/6**, while the older seventh-onion HTML has `133` and `331`, and the archived middle **7×7** square has magic sum `1033` and center `331`. The correspondence `133=7×19`, `361=19²`, and `331=p_(p_19)` is exact. So is `p_(6×29)=1033` for the six-word clauses. These facts identify a plausible numerical *association* between the poem and the square. They do not specify whether to take prime ordinals, modulo the seven-rune heading sum 449, read shell rings, or start at a selected cell. Those functions were selected in response to already-known outputs.
+
+**Original-square wrong-reading control:** the archived 7×7 has **four distinct arrays under the eight dihedral orientations**. All four retain magic total `1033` and center `331`, but their first printed rows begin respectively `7 375 236`, `181 17 27`, `181 7 15`, and `7 351 456`. The counts, prime identities and centered-cell matching therefore fail to discriminate orientation, reading direction, perimeter entry or cipher key. The earlier report's exact source arithmetic, NUMBER-control and original-cipher negative tests remain unchanged.
+
+**Decision for #150:** retire the 19/7 and prime-index formulas as a presently **unselected LP2 decoding operator**. Retain the historical concordance as a clue only. Reopen this route if an independently player-visible instruction fixes a specific square orientation/traversal and reversible operation that predicts unseen original LP2 material. No additional numerical permutations or direct GP29 pads are warranted.
+
 ## Direct historical-source link
 
 The seventh 2014 onion delivery page preserved in `resources/cicada2014-onion7-index.html` begins with `<head><title>133</title></head><body><div id="331">`, followed by the 58 original book-page images. Its contemporaneous 2014 archive is a surviving witness, without a raw HTTP packet capture or independent signature over the HTML.
