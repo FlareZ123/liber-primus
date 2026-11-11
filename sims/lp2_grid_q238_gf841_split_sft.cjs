@@ -207,6 +207,68 @@ assert.deepEqual(conjugateSpectrum,factorSpectrum);
 // by ANY stationary one-to-one GP29² substitution, regardless of pair order.
 assert.notDeepEqual(prefixSpectrum,factorSpectrum);
 
+
+/**
+ * Test the source-locked additive/multiplicative field-key hypothesis:
+ * either factor lane is a p3/p39-prefix pair stream with a short GF841
+ * linear-recursive pad or multiplicative mask. A length-119 random field
+ * sequence has typical linear complexity 60. Test eight source-natural
+ * conjugation, direction and prefix-channel orientations, with no fitted
+ * cipher-state or language model.
+ */
+/** @param {number} x @param {number} y @returns {number} */
+function addK(x,y) {
+  return mod(x%29+y%29)+29*mod(Math.floor(x/29)+Math.floor(y/29));
+}
+/** @param {number} x @param {number} y @returns {number} */
+function subK(x,y) {
+  return mod(x%29-y%29)+29*mod(Math.floor(x/29)-Math.floor(y/29));
+}
+/** @param {number[]} terms @returns {number} */
+function linearComplexityK(terms) {
+  let connection=[1],basis=[1],order=0,gap=1,previous=1;
+  for(let n=0;n<terms.length;n++) {
+    let d=terms[n];
+    for(let i=1;i<=order;i++) d=addK(d,mulK(connection[i],terms[n-i]));
+    if(d===0) { gap++;continue; }
+    const old=connection.slice(),scale=mulK(d,invK(previous));
+    while(connection.length<basis.length+gap) connection.push(0);
+    for(let i=0;i<basis.length;i++) connection[i+gap]=subK(connection[i+gap],mulK(scale,basis[i]));
+    if(2*order<=n) {
+      order=n+1-order;
+      basis=old;
+      previous=d;
+      gap=1;
+    } else gap++;
+  }
+  return order;
+}
+// Independently planted two-tap recurrence is recovered, making the
+// original-input negative auditable rather than a dead detector.
+const plant=[11+29*3,17+29*5];
+for(let i=2;i<119;i++) {
+  plant.push(addK(mulK(2+29,plant[i-1]),mulK(5+29,plant[i-2])));
+}
+assert.equal(linearComplexityK(plant),2);
+const fieldPadComplexities=[];
+for(const [factorName, factor] of [["F",f],["conjugate",conjugate]]) {
+  for(const reverse of [false,true]) {
+    const lane=factor.slice(0,-1);
+    if(reverse) lane.reverse();
+    for(const swap of [false,true]) {
+      const prefix=prefixPairs.map(pair=>swap?pair[1]+29*pair[0]:pair[0]+29*pair[1]);
+      const additive=lane.map((value,i)=>subK(value,prefix[i]));
+      const multiplicative=lane.map((value,i)=>mulK(value,invK(prefix[i])));
+      const additiveOrder=linearComplexityK(additive);
+      const multiplicativeOrder=linearComplexityK(multiplicative);
+      assert.equal(additiveOrder,60);
+      assert.equal(multiplicativeOrder,60);
+      fieldPadComplexities.push({factorName,reverse,swap,additiveOrder,multiplicativeOrder});
+    }
+  }
+}
+assert.equal(fieldPadComplexities.length,8);
+
 console.log(JSON.stringify({
   originalGridBytes:bytes.length, sourcePolynomialDegree:254,
   irreducibleSourceResidualDegree:q.length-1,
@@ -216,6 +278,7 @@ console.log(JSON.stringify({
   exactFrobeniusNorm:true,
   marked119PrefixDuplicateSpectra:{p3p39:prefixSpectrum,factor:factorSpectrum},
   fixedBijectionToBothMarkedPrefixes:false,
+  fieldPadComplexities,
   sourceBasisScreens:screens,
   interpretation:"Exact source-factor split, no unknown LP2 plaintext or key."
 },null,2));
