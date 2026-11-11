@@ -1,7 +1,15 @@
-name: LP1 p05 full 28-cycle word-local Möbius rotor (manual)
+name: LP1 and p32 full 28-cycle word-local Möbius rotors
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - sims/lp1_mobius_full28_word_rotor_sft.cjs
+      - sims/lp2_word_pages.cjs
+      - resources/liber-primus/lp2-corpus.json
+      - resources/lp2-transcription.txt
+      - resources/control/emerson_essays_2944.txt
+      - .github/workflows/lp1-mobius-full28-word-rotor-manual.yml
 
 jobs:
   full28-word-rotor:
@@ -12,5 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Test full p05 28-cycle and p16 six-step word-local directions
+      - name: Syntax check source test
+        run: node --check sims/lp1_mobius_full28_word_rotor_sft.cjs
+      - name: Test p05, p16, and p32 M28 word-local directions
         run: node sims/lp1_mobius_full28_word_rotor_sft.cjs
