@@ -6,6 +6,7 @@
 
 const ENDPOINT = 'https://web.archive.org/cdx/search/cdx';
 const TARGET_HASH = '36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4';
+const SOURCE_MANIFEST_BLOB_SHA = '5ef51941b5db50b44512be25d782c3c5cd0bdab4';
 const ONIONS = [
   'auqgnxjtvdbll3pv.onion',
   'cu343l33nqaekrnw.onion',
@@ -66,6 +67,7 @@ async function queryHost(host, retry = true) {
 }
 
 async function main() {
+  const queryStartedAt = new Date().toISOString();
   const targets = ONIONS.flatMap(onion => GATEWAYS.map(gateway => ({
     onion,
     gateway,
@@ -100,6 +102,9 @@ async function main() {
     purpose: 'Find archived AN END candidates among the source-manifested Cicada 2014 onion services via the two explicitly tested Tor2web gateways.',
     target_hash: TARGET_HASH,
     source_manifest: 'resources/cicada2014-archive-hash-manifest.json',
+    source_manifest_blob_sha: SOURCE_MANIFEST_BLOB_SHA,
+    query_started_at: queryStartedAt,
+    query_finished_at: new Date().toISOString(),
     source_onion_hosts: ONIONS,
     gateways: GATEWAYS,
     query_endpoint: ENDPOINT,
