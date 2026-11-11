@@ -225,7 +225,7 @@ function oneBasedPrimeOrdinal(n) {
   return rank;
 }
 
-// Numeric cells visibly printed in the 2013 0_wisdom 5x5 square.
+// Numeric cells visibly printed in the 2014 Liber Primus Wisdom/05.jpg 5x5 square.
 // NUMBER factors composite input directly. Among the six DH representatives,
 // only 1661 exposes one of these source cells as a proper divisor.
 const wisdomNumericCells = [272, 138, 131, 151, 18, 226, 245];
