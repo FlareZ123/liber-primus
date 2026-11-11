@@ -68,14 +68,12 @@ function capacity(segments, removedMask) {
     }
     if (previous >= 0) tails[previous]++;
   }
-  const cellFrequencies = new Int32Array(100);
-  for (const count of histogram) {
-    assert.ok(count < cellFrequencies.length);
-    cellFrequencies[count]++;
-  }
+  const maxCell = Math.max(...histogram);
+  const cellFrequencies = new Int32Array(maxCell + 1);
+  for (const count of histogram) cellFrequencies[count]++;
   let toSelect = 25;
   let pairTop25 = 0;
-  for (let x = 99; x >= 0 && toSelect; x--) {
+  for (let x = maxCell; x >= 0 && toSelect; x--) {
     const n = Math.min(toSelect, cellFrequencies[x]);
     toSelect -= n;
     pairTop25 += n * x;
