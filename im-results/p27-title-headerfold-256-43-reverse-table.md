@@ -34,6 +34,14 @@ A synthetic source-matched **43/43-column polynomial positive control passes**. 
 
 [Reproducer: exact original source assertions, both layouts, positive polynomial plant and all eight original inverses](../sims/p27_p55_five_by_43_shamir_source_sft.cjs) · [successful Node22 CI run 43026602093](https://github.com/FlareZ123/liber-primus/actions/runs/43026602093).
 
+## Source-original 43-column affine relation and p50 selector gate (Agent20, 11 November 2026)
+
+The p27 black body has 215 runes, which can be hypothetically grouped as five rows of 43 or 43 tuples of five. P55 has 43 strict word interiors after the p57 circumference instruction. Under both layouts and both GP29 encodings (GP index or GP-prime weight mod29), **no fixed secret linear or affine GF29 combination of p27's five symbols can reproduce the p55 interior at all 43 positions**. Exact Gaussian elimination grants five *arbitrary* unknown coefficients plus an optional *arbitrary* intercept. All eight source-original systems have coefficient rank 5/6 and augmented rank 6/7. The first 5 or 6 columns already fix the coefficients and the following column contradicts the original ciphertext. For example, row-major ordinal linear coefficients [21,11,5,10,3] predict 18 at column6 versus actual2; affine coefficients [15,23,12,14,22,22] predict 6 at column7 versus actual27. Synthetic fixed-affine positive controls pass.
+
+Two narrower candidates also fail in the [exact source SFT](../sims/p27_p55_43_allsecret_affine_and_table_gate_sft.cjs). The source-selected p50 cells84–126 contain 43 bytes; reducing these modulo5 to choose p27 row symbols and applying C±K to p55 yields eight nonlinguistic outputs (IoC 0.02658–0.04540). Cicada supplied no modulo5 selector, so this remains a *hypothesis*, rather than a family-wide exclusion. Secondly, removing the outside two of p55's 43 interiors yields 41, which can be concatenated to p27's 215 black runes to make a speculative 256-rune p50 codeword. Its original-order GF29 polynomial remainder under the source-derived H=X²+18X+11 is [21,24] and under G=(X−24)² is [13,1]; reverse order gives [13,0] and [0,4]. Neither direction satisfies H or G, so the direct codeword hypothesis fails. This second stripping step and cross-page concatenation are not authenticated source operations.
+
+**Scope:** these are finite original-data transfer exclusions, not recovered plaintext, an LP2 key, a denial of the fold/navigation correspondences, or a universal rejection of nonlinear keyed mechanisms.
+
 ## Self-indexing title header
 
 Fragment 18 is the 19-rune title MPYLSOAAEHLEEOIMLLSCP.
