@@ -1,0 +1,29 @@
+name: AN-END known Cicada onion proxy CDX inventory
+
+on:
+  push:
+    paths:
+      - 'sims/anend_cicada_onion_proxy_cdx.cjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cdx:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Query exact onion.to and tor2web.org hosts for all seven Cicada services
+        run: node sims/anend_cicada_onion_proxy_cdx.cjs > anend-cicada-onion-proxy-cdx.json
+      - name: Preserve exact CDX responses
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: an-end-cicada-onion-proxy-cdx
+          path: anend-cicada-onion-proxy-cdx.json
+          if-no-files-found: error
