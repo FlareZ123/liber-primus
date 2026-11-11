@@ -196,7 +196,7 @@ The T6 relation itself remains elevated against this conditional null (80 observ
 
 ## 5×5 compass field selector over the 225 red runes — bounded negative
 
-A separate, human-motivated transfer was tested: treat the 2014 5×5 square values as compass bearings (0° north, clockwise), partition the original **225 red runes** into a row-major **15×15** grid, then use each bearing to select one perimeter rune from the corresponding row-major **3×3** block. Compare the 25 selected runes with the same cell's \\(\\phi(n)\\bmod29\\) target label. The compass direction order is fixed as N, NE, E, SE, S, SW, W, NW; no rotation, phase, block reordering, or fitted choice is used.
+A separate, human-motivated transfer was tested: treat the 2014 5×5 square values as compass bearings (0° north, clockwise), partition the original **225 red runes** into a row-major **15×15** grid, then use each bearing to select one perimeter rune from the corresponding row-major **3×3** block. Compare the 25 selected runes with the same cell's phi(n) mod 29 target label. The compass direction order is fixed as N, NE, E, SE, S, SW, W, NW; no rotation, phase, block reordering, or fitted choice is used.
 
 The authentic origin selects:
 ```
@@ -232,9 +232,9 @@ Only **2/25** selected runes equal their corresponding target labels (cells 1 an
 | 24 | (14,11) | 221 | 57:3 | A | S |
 | 25 | (13,12) | 207 | 54:3 | D | EO |
 
-The source-preserving null retains the complete red-rune order and the 15×15 layout, cycling only the starting red-stream offset through all 225 positions while keeping the direction and target matrices fixed. Its match-count distribution is **0:71, 1:86, 2:52, 3:13, 4:3**. The authentic offset 0 has two matches; **68/225** offsets have at least two (empirical (p=0.3022)), placing it 17th from the bottom. The uniform-alphabet expectation is only **25/29 = 0.862** matches, but the authentic result is not exceptional relative to the order-preserving null.
+The source-preserving null retains the complete red-rune order and the 15×15 layout, cycling only the starting red-stream offset through all 225 positions while keeping the direction and target matrices fixed. Its match-count distribution is **0:71, 1:86, 2:52, 3:13, 4:3**. The authentic offset 0 has two matches; **68/225** offsets have at least two (empirical p=0.3022), placing it 17th from the bottom. The uniform-alphabet expectation is only **25/29 = 0.862** matches, but the authentic result is not exceptional relative to the order-preserving null.
 
-**Decision:** the 25-block compass selector does not recover the \\(\\phi(n)\\bmod29\\) label matrix and does not yield a readable 25-rune plaintext. Retire this exact red225/3×3 transfer; do not expand it into free grid rotations, block phases, or alternative direction conventions. This does not test other ways the red channel might carry key material.
+**Decision:** the 25-block compass selector does not recover the phi(n) mod 29 label matrix and does not yield a readable 25-rune plaintext. Retire this exact red225/3×3 transfer; do not expand it into free grid rotations, block phases, or alternative direction conventions. This does not test other ways the red channel might carry key material.
 
 Reproducer:
 ```sh
