@@ -97,7 +97,7 @@ This five-page set has unusually suggestive source features:
 
 The p57 Parable page itself has one 23-dot punctuation mark. The three ordinal-selected pages p15, p22, and p23 contain respectively 3, 1, and 1 thirteen-dot marks: **five in total**, matching the five-dot motif on p23. This is suggestive cross-page structure, not proof that the marks encode the map. The counts 3 selected pages, 5 marks, and 8 quotient rows also form the Fibonacci triple 3–5–8, while p15 carries the Fibonacci prime spiral. Because the pages and marks are inspected after selecting the anchors, treat this as a suggestive consistency check rather than independent statistical evidence.
 
-The 2013 third clause independently selects the **p53 → p15** pair. This is notable because the existing red-span triangle analysis independently uses the original p53 51-rune red span and p15 Fibonacci-spiral material to establish its F79 primitive-root relation. The Parable mapping therefore points to a page pair already singled out by a separate source-derived arithmetic construction; this is cross-source corroboration, not a new proof of the F79 mechanism.
+The 2013 third clause yields the candidate directed edge **p53 → p15** under this page-map construction. The original ink makes a more specific ordered pair available: p53's 51-rune red span followed by p15's first 9-rune red word. In that edge order the two spans form a **60-rune sequence**. Their GP-prime sums are respectively `2262 = 29×78` and `638 = 29×22`, so the combined sum is `2900 = 100×29`; the 60 prime residues modulo29 sum to `696 ≡ 0`, and their cumulative additive walk has exact period 60. This is a newly source-constrained candidate key/state, not an established cipher. The same p53/p15 arithmetic already appears in the red-span/F79 triangle, so this overlap is structural corroboration conditional on both post-selected constructions, not independent statistical significance.
 
 Page 27 and page 55 share the already documented two-word sequence. They are exactly 28 pages apart; in the 8×7 map they occupy the same column, in rows 3 and 7 (opposite rows). The value 28 is also the number of nonzero GP symbols.
 
@@ -131,6 +131,7 @@ The following small, source-constrained decryptions were tested against an indep
 - The 55-rune subset and the complete 106-rune red sequence as repeating Vigenère keys, both signs and clocks, on physical and square-spiral page order. No English recovery.
 - The 55-rune subset as one Caesar shift per nonempty page. No English recovery. A stable ascending/descending sort of the 55 nonempty pages by those subset values, read raw or followed by the p56 totient transform, also remained near random (best score about −6.50).
 - Pairwise source-red-span Vigenère tests along the three 2013 links (p27→p23, p23→p22, p53→p15), both signs. The best was p27→p23 with addition, score −6.2568 versus raw p23 −6.3190; however, 9.6% of 2,000 random permutations of the same key and 12.2% of 2,000 uniform random keys scored at least as well. This is not significant evidence for the pairing.
+- **p53→p15 60-symbol key/state gate:** concatenate p53 red51 then p15's first red9, as selected by the candidate edge. Tested direct 60-period GP-index and prime-residue keys, pre/post cumulative prime-residue walks (period 60), and an F79 Fibonacci recurrence seeded by `(78,22)` with phases 0 and `201 mod78 = 45`; both signs and book-global/page-reset clocks give 24 source-fixed models. The 60 source runes were excluded from scoring, leaving 12,896 original runes. All outputs remain ciphertext-like: raw IoC **0.03448083**; candidate IoC **0.03445706–0.03453495** and GP trigram score **−6.44983 to −6.31407**, versus held-out native Shakespeare-GP controls with IoC **0.05834–0.05914** and score **−2.31 to −2.41**. All 24 source-native positive controls recover **12,956/12,956** runes. The 60-symbol packet and its direct/cumulative/F79 uses are therefore bounded negatives, not a recovered key. Reproducer: [`sims/parable_p53_p15_60_state_key_sft.cjs`](../sims/parable_p53_p15_60_state_key_sft.cjs).
 - Base-29 big-endian conversion of the physical and diagonal page-concatenated streams. The outputs were binary-looking and did not expose readable text or a recognizable file header.
 
 The 2016 section prime sums modulo 56 give **[33,19,3]**, and pairing them with the 2016 ordinal-map destinations adds links **p33→p23, p19→p46, p3→p45**. The combined 2013/2016 page graph has ten unique pages: **{3,15,19,22,23,27,33,45,46,53}**. This graph has two especially notable cross-checks: p23 is a shared destination from both messages, and p45/p46 sit beside the existing p45/p48 GCD bridge.
@@ -139,17 +140,17 @@ These failures reject those **specific combinations**, not the page-map structur
 
 ## 6. Research interpretation and next decision
 
-The strongest current interpretation is that the 2013 Parable and 2016 signed message may both feed a **four-coset 8×7 page map**. Their six prime ordinals populate all four residue classes of the 32×28 torus and converge on p23; their prime sums modulo 56 supply candidate source pages for six directed links. The 2013 p53→p15 link independently meets the p53/p15 pair in the F79 red-span triangle, while the 2016 p45/p46 anchors meet the existing p45/p48 GCD line. This is a plausible intended navigation structure, not a plaintext solution.
+The strongest current interpretation remains a **conditional four-coset 8×7 page-map hypothesis** linking the 2013 Parable and 2016 signed message. Their six prime ordinals populate all four residue classes of the 32×28 torus and converge on p23; their prime sums modulo 56 supply six candidate directed links. The 2013 p53→p15 edge selects a 60-rune red composite whose prime sum closes modulo29, and whose quotients `(78,22)` also seed a 78-period Fibonacci recurrence over F79. The direct periodic, cumulative-state and F79 additive uses all fail on original ciphertext. The p45/p46 anchors still meet the existing p45/p48 GCD line, but no unique operation follows. This remains a plausible navigation clue, not a plaintext solution or proof of authorial intent.
 
 What is *not* established:
 
 - that the 8×7 quotient is intended as a page map rather than a numerical coincidence;
 - that factor residues modulo 56 should be paired with ordinal-derived destinations as directed edges;
 - that the square spiral is the intended continuation;
-- that the 55- or 106-rune red sequences are keys;
+- that the 55-, 60- or 106-rune red sequences are keys, or that the 60-rune cumulative walk is an authentic state;
 - any LP2 plaintext or encryption mechanism recovered from these constructions.
 
-Do not repeat the tested prime-totient, period-three Vigenère, 55-/106-rune Vigenère, pairwise edge Vigenère, pagewise Caesar, stable page-sort, or raw base-29 variants. The next worthwhile experiment should derive a **unique operation** from the four-coset map and its cross-round anchors, especially the p53/p15 F79 connection and p45/p46 GCD connection, then test it on independent ciphertext. If no such operation is source-constrained, retain this as a structural lead rather than starting an unconstrained search.
+Do not repeat the tested prime-totient, period-three Vigenère, 55-/60-/106-rune Vigenère, pairwise edge Vigenère, direct/cumulative 60-state key, `(78,22)` F79 additive schedule, pagewise Caesar, stable page-sort, or raw base-29 variants. The p53/p15 edge has now been tested as a source-ordered key and a source-seeded F79 additive state without plaintext. Continue only if another original clue fixes a materially different, reversible operation for the page graph or its connection to the p45/p48 GCD bridge; otherwise retain the map as a structural lead rather than starting an unconstrained search.
 
 ## Reproduction and source files
 
@@ -165,4 +166,4 @@ Do not repeat the tested prime-totient, period-three Vigenère, 55-/106-rune Vig
 - [p45/p48 cross-page GCD bridge](../im-results/lp2-crosspage-gcd2016-source-bridge.md)
 - [Reproduction probe](../sims/parable_prime_8x7_page_map_probe.cjs)
 
-The probe derives the three clause sums from p57, checks the factorization and page mappings, extracts the red sequence, constructs both page routes, and records the bounded cipher tests. The source files remain the authority for the manuscript data.
+The original probe derives the clause sums, factorization, page mappings and page routes. The companion p53/p15 SFT extracts the 60-rune source packet, tests the direct/cumulative/F79 schedules with held-out language scoring and planted controls, and reproduces the bounded negative. The source files remain the authority for manuscript data.
