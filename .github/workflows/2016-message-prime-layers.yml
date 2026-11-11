@@ -15,6 +15,7 @@ on:
           - fibonacci-page-route
           - fibonacci-p55-prefix
           - fibonacci-p55-terminal
+          - base59-p29
         default: original
 
 jobs:
@@ -107,3 +108,15 @@ jobs:
           node-version: '22'
       - name: Test marked-end Fibonacci suffix key on p55
         run: node sims/signed2016_fibonacci_p55_terminal_key_sft.cjs
+
+  base59-p29:
+    if: ${{ inputs.probe == 'base59-p29' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test signed 2016 59-prime p29 selector and 14-rune TEA transport gate
+        run: node sims/signed2016_59prime_p29_selector_sft.cjs
