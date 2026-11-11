@@ -133,11 +133,11 @@ async function main() {
           : 'The known control works; no additional captures were returned for the other source-manifested Cicada hosts under onion.to or tor2web.org.',
   };
 
-  process.stdout.write(JSON.stringify(summary, null, 2) + '\\n');
+  process.stdout.write(JSON.stringify(summary, null, 2) + '\n');
   if (!controlPassed || failures.length || results.length !== targets.length) process.exitCode = 1;
 }
 
 main().catch(error => {
-  process.stderr.write(String(error) + '\\n');
+  process.stderr.write(String(error) + '\n');
   process.exitCode = 1;
 });
