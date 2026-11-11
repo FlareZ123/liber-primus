@@ -438,6 +438,61 @@ for (const sign of [-1, 1]) {
 }
 assert.deepEqual(p55ForwardNull.map((x) => x.ge), [669, 1333]);
 
+// The most literal complete p55 use repeats the 43 source-oriented bytes
+// across all 76 original glyphs. Preserve the printed p55 word boundaries.
+const full55 = corpus.pages.find((p) => p.page === 55).indices;
+assert.equal(full55.length, 76);
+const full55Lengths = p55Words.map((word) => [...word].length);
+assert.equal(full55Lengths.reduce((a, b) => a + b, 0), full55.length);
+function splitFull55(flat) {
+  const out = [];
+  let offset = 0;
+  for (const length of full55Lengths) {
+    out.push(flat.slice(offset, offset + length));
+    offset += length;
+  }
+  return out;
+}
+const p55PeriodicForward = [];
+random = xorshift(0x50437655);
+for (const sign of [-1, 1]) {
+  const actualFlat = full55.map((x, i) =>
+    mod(x + sign * forward43[i % forward43.length], MOD));
+  const actual = score(splitFull55(actualFlat));
+  let ge = 0;
+  for (let trial = 0; trial < 10000; trial++) {
+    const key = shuffled(forward43, random);
+    const control = full55.map((x, i) =>
+      mod(x + sign * key[i % key.length], MOD));
+    if (score(splitFull55(control)) >= actual) ge++;
+  }
+  p55PeriodicForward.push({
+    sign, actual, ge, upperTail: (ge + 1) / 10001,
+    transliteration: splitFull55(actualFlat).map(translit).join(" ")
+  });
+}
+assert.deepEqual(p55PeriodicForward.map((x) => x.ge), [8901, 8092]);
+
+// A table-pointer first-return map on the 43 selected cells is finite but
+// collapses many starts, so it cannot define a reversible 43-item ordering.
+const intervalReturns = [];
+for (let start = 84; start <= 126; start++) {
+  const seen = new Set([start]);
+  let cell = grid.bytes[start];
+  let steps = 1;
+  while (!seen.has(cell) && steps <= 256) {
+    if (cell >= 84 && cell <= 126) {
+      intervalReturns.push({start, target: cell, steps});
+      break;
+    }
+    seen.add(cell);
+    cell = grid.bytes[cell];
+    steps++;
+  }
+}
+assert.equal(intervalReturns.length, 43);
+assert.equal(new Set(intervalReturns.map((x) => x.target)).size, 14);
+
 // Finite direct byte readouts under the same conditional reverse order.
 const printableCounts = {};
 for (const field of ["sourcePrimeSum", "selectedPrimeSum", "selectedOrdinalSum"]) {
@@ -503,6 +558,9 @@ console.log(JSON.stringify({
     addressedWordGp29: addressedNull,
     p55InteriorGp29: p55Null,
     sourceOrientedForwardP55InteriorGp29: p55ForwardNull,
+    sourceOrientedForwardPeriodicAll76Gp29: p55PeriodicForward,
+    intervalFirstReturnDistinctTargets:
+      new Set(intervalReturns.map((x) => x.target)).size,
     printableCounts
   }
 }, null, 2));
