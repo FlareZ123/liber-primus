@@ -221,3 +221,163 @@ const freq = Array(29).fill(0);
 for (const glyph of p57) freq[glyph]++;
 const p57DirectCollision = freq.reduce((sum, n) => sum + n * (n - 1), 0) / (p57.length * (p57.length - 1));
 console.log(JSON.stringify({ nativeSolvedP57Runes: p57.length, p57DirectCollision, verdict: "No 28-page shared page-local keystream signal under the specified direct-GP29 and predecessor-exclusion GP28 models; no unknown plaintext." }));
+
+
+/**
+ * Expanded invariant: if the same page-local pad is reused 28 pages later,
+ * but either page also has an arbitrary secret Caesar offset, all possible
+ * offset hypotheses merely ROTATE the residue-difference histogram.
+ * The maximum bin is therefore a key-independent upper bound on any
+ * correctly offset-aligned plaintext equality count.
+ * Each physical page pair gets an independent, unrestricted offset (29 or 28
+ * candidates); the selected p27/p55 pair is still withheld.
+ *
+ * @param {number[]} first @param {number[]} second
+ * @param {number} modulus @param {number} start
+ * @returns {{m:number,n:number}}
+ */
+function bestUnknownOffset(first, second, modulus, start) {
+  const frequencies = Array(modulus).fill(0);
+  let n = 0;
+  for (let i = start; i < Math.min(first.length, second.length); i++) {
+    if (first[i] < 0 || second[i] < 0) continue;
+    frequencies[(first[i] - second[i] + modulus) % modulus]++;
+    n++;
+  }
+  return { m: Math.max(...frequencies), n };
+}
+
+/**
+ * @param {number[][]} sourcePages @param {number} modulus
+ * @param {number} start @returns {{m:number,n:number,rate:number}}
+ */
+function wholeUnknownOffset(sourcePages, modulus, start) {
+  let m = 0;
+  let n = 0;
+  for (let p = 0; p < 27; p++) {
+    const count = bestUnknownOffset(sourcePages[p], sourcePages[p + 28], modulus, start);
+    m += count.m;
+    n += count.n;
+  }
+  return { m, n, rate: m / n };
+}
+const unknownOffsetObserved = [
+  wholeUnknownOffset(pages, 29, 0),
+  wholeUnknownOffset(ranks, 28, 1),
+];
+assert.deepEqual(
+  unknownOffsetObserved.map((v) => [v.m, v.n]),
+  [[338, 5587], [343, 5489]],
+);
+
+// Matched page reassignment null, with the 29/28-way secret offset refitted
+// independently for every page pair in every shuffle.
+const offsetMatrices = [
+  pages,
+  ranks,
+].map((sourcePages, mode) => Array.from({ length: 27 }, (_, p) =>
+  Array.from({ length: 28 }, (_, q) =>
+    bestUnknownOffset(sourcePages[p], sourcePages[q + 28], mode ? 28 : 29, mode ? 1 : 0))));
+const offsetControls = [[], []];
+for (let t = 0; t < 10000; t++) {
+  const assignment = Array.from({ length: 28 }, (_, i) => i);
+  for (let i = 27; i > 0; i--) {
+    const j = randomBelow(i + 1);
+    [assignment[i], assignment[j]] = [assignment[j], assignment[i]];
+  }
+  for (let channel = 0; channel < 2; channel++) {
+    let m = 0;
+    let n = 0;
+    for (let p = 0; p < 27; p++) {
+      const count = offsetMatrices[channel][p][assignment[p]];
+      m += count.m;
+      n += count.n;
+    }
+    offsetControls[channel].push(m / n);
+  }
+}
+for (let channel = 0; channel < 2; channel++) {
+  const observed = unknownOffsetObserved[channel];
+  console.log(JSON.stringify({
+    family: channel ? "all-offset GP28 rank" : "all-offset GP29",
+    original: observed,
+    assignmentNullRange: range(offsetControls[channel]),
+    pagePermutationLowerPercentile:
+      offsetControls[channel].filter((rate) => rate <= observed.rate).length / 10000,
+  }));
+}
+
+// Native GP controls are aligned to the EXACT same 26 available page-pair
+// lengths, but each original control draws independent text windows for each
+// pair. Maximize the residue histogram anew for every individual pair.
+for (const src of sourcePaths) {
+  const native = toGp(fs.readFileSync(path.join(root, src), "utf8"));
+  for (const reduced of [false, true]) {
+    const modulus = reduced ? 28 : 29;
+    const source = reduced ? native.filter((x) => x !== 0).map((x) => x - 1) : native;
+    const ratios = [];
+    for (let t = 0; t < 300; t++) {
+      let m = 0;
+      let n = 0;
+      for (let p = 0; p < 27; p++) {
+        const length = Math.min(pages[p].length, pages[p + 28].length);
+        if (!length) continue;
+        const a = randomBelow(source.length - length);
+        const b = randomBelow(source.length - length);
+        const result = bestUnknownOffset(
+          source.slice(a, a + length),
+          source.slice(b, b + length),
+          modulus,
+          reduced ? 1 : 0,
+        );
+        m += result.m;
+        n += result.n;
+      }
+      ratios.push(m / n);
+    }
+    const observed = unknownOffsetObserved[Number(reduced)];
+    console.log(JSON.stringify({
+      source: path.basename(src),
+      family: reduced ? "all-offset GP28 rank" : "all-offset GP29",
+      nativeRange: range(ratios),
+      nativeAtOrBelowOriginal: ratios.filter((v) => v <= observed.rate).length,
+      repetitions: 300,
+    }));
+    assert(ratios.every((v) => v > observed.rate),
+      "Native all-offset control unexpectedly overlaps original; inspect frozen analysis");
+  }
+}
+
+// Positive mathematical invariant for completely hidden per-page offsets.
+// Equality of differences is unaffected by an unknown additive constant.
+for (const reduced of [false, true]) {
+  const modulus = reduced ? 28 : 29;
+  const source = reduced ? native.filter((x) => x !== 0).map((x) => x - 1) : native;
+  const a = source.slice(500, 750);
+  const b = source.slice(1000, 1250);
+  const pad = Array.from({ length: 250 }, () => randomBelow(modulus));
+  const offsetA = randomBelow(modulus);
+  const offsetB = randomBelow(modulus);
+  const rankA = a.map((v, i) => (v + pad[i] + offsetA) % modulus);
+  const rankB = b.map((v, i) => (v + pad[i] + offsetB) % modulus);
+  const actualA = reduced
+    ? rankA.map((v, i) => i === 0 ? 13 : v + Number(v >= (i === 1 ? 13 : 0)))
+    : rankA;
+  if (reduced) {
+    // Correctly construct each predecessor-exclusion ciphertext recursively.
+    actualA[0] = 13;
+    for (let i = 1; i < rankA.length; i++) {
+      actualA[i] = rankA[i] + Number(rankA[i] >= actualA[i - 1]);
+    }
+  }
+  const recoveredA = reduced ? rank28(actualA) : actualA;
+  if (reduced) {
+    for (let i = 1; i < 250; i++) assert.equal(recoveredA[i], rankA[i]);
+  }
+  for (let i = reduced ? 1 : 0; i < 250; i++) {
+    assert.equal(
+      (rankA[i] - rankB[i] + modulus) % modulus,
+      (a[i] - b[i] + offsetA - offsetB + 2 * modulus) % modulus,
+    );
+  }
+}
