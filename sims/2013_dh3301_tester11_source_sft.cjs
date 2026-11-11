@@ -172,33 +172,41 @@ function score(sequence) {
   };
 }
 
+
 const dh = { modulus: 3301, base: 2757, serverSecret: 331, serverPublic: 1264, clientPublic: 2800, shared: 1067 };
-const testerSecret = 11;
 assert.equal(modPow(dh.base, dh.serverSecret, dh.modulus), dh.serverPublic);
-assert.equal(modPow(dh.base, testerSecret, dh.modulus), dh.clientPublic);
-assert.equal(modPow(dh.serverPublic, testerSecret, dh.modulus), dh.shared);
 assert.equal(modPow(dh.clientPublic, dh.serverSecret, dh.modulus), dh.shared);
 
-assert.equal(modPow(5, testerSecret, 3301), 3034);
+const baseOrder = multiplicativeOrder(dh.base, dh.modulus);
+assert.equal(baseOrder, 550);
+let testerExponentResidue = null;
+for (let e = 0; e < baseOrder; e++) {
+  if (modPow(dh.base, e, dh.modulus) === dh.clientPublic) {
+    testerExponentResidue = e;
+    break;
+  }
+}
+assert.equal(testerExponentResidue, 11);
+
+const testerCandidates = [];
+for (let e = testerExponentResidue; e < dh.modulus; e += baseOrder) {
+  if (e >= 2) testerCandidates.push(e);
+}
+assert.deepEqual(testerCandidates, [11, 561, 1111, 1661, 2211, 2761]);
+for (const e of testerCandidates) {
+  assert.equal(modPow(dh.base, e, dh.modulus), dh.clientPublic);
+  assert.equal(modPow(dh.serverPublic, e, dh.modulus), dh.shared);
+}
+
+// Separate inbound-only log value. The base for that exchange is not preserved here.
+// These are arithmetic observations only, not a claim that its server selected base 5.
+assert.equal(modPow(5, testerExponentResidue, 3301), 3034);
 assert.equal(multiplicativeOrder(5, 3301), 75);
 assert.equal(multiplicativeOrder(3034, 3301), 75);
-
-const inverseExponent = 611;
-assert.equal((testerSecret * inverseExponent) % 840, 1);
-for (const sample of [[0, 0], [1, 0], [0, 1], [3, 7], [28, 28]]) {
-  assert.deepEqual(fieldPow(fieldPow(sample, testerSecret), inverseExponent), sample);
-}
 
 const pages = corpus.pages.filter((p) => p.status === 'unsolved' && p.indices?.length && p.page <= 55);
 const original = pages.flatMap((p) => p.indices);
 assert.equal(original.length, 12956);
-const decodedBook = transformPairs(original, inverseExponent);
-const decodedPage = pages.flatMap((p) => transformPairs(p.indices, inverseExponent));
-
-const plantPlain = Array.from({ length: 2400 }, (_, i) => reference[i % reference.length]);
-const plantCipher = transformPairs(plantPlain, testerSecret);
-const plantRecovered = transformPairs(plantCipher, inverseExponent);
-assert.deepEqual(plantRecovered, plantPlain);
 
 const gridCoefficients = grid.pages.flatMap((p) => p.bytes).map((x) => x % 29);
 const base29Factor = [1, 18, 11];
@@ -209,28 +217,81 @@ assert.deepEqual(division.remainder, [0]);
 assert.equal(division.quotient.length, 251);
 const fixedWidthQuotient = [0, ...division.quotient];
 assert.equal(fixedWidthQuotient.length, 252);
-const quotientDecoded = transformPairs(fixedWidthQuotient, inverseExponent);
-const quotientBytes = Array.from({ length: 126 }, (_, i) => quotientDecoded[2 * i] * 29 + quotientDecoded[2 * i + 1]);
+
+const plantPlain = Array.from({ length: 2400 }, (_, i) => reference[i % reference.length]);
+
+/** @param {number} a @param {number} m */
+function inverseModSmall(a, m) {
+  for (let x = 1; x < m; x++) if ((a * x) % m === 1) return x;
+  return null;
+}
+
+const candidateResults = testerCandidates.map((exponent) => {
+  const exponentMod840 = exponent % 840;
+  const g = gcd(exponentMod840, 840);
+  if (g !== 1) {
+    return {
+      exponent,
+      exponentMod840,
+      gcdWith840: g,
+      reversibleOnF841Nonzero: false,
+    };
+  }
+
+  const inverseExponent = inverseModSmall(exponentMod840, 840);
+  assert.notEqual(inverseExponent, null);
+  for (const sample of [[0, 0], [1, 0], [0, 1], [3, 7], [28, 28]]) {
+    assert.deepEqual(fieldPow(fieldPow(sample, exponentMod840), inverseExponent), sample);
+  }
+
+  const decodedBook = transformPairs(original, inverseExponent);
+  const decodedPage = pages.flatMap((p) => transformPairs(p.indices, inverseExponent));
+  const quotientDecoded = transformPairs(fixedWidthQuotient, inverseExponent);
+  const quotientBytes = Array.from(
+    { length: 126 },
+    (_, i) => quotientDecoded[2 * i] * 29 + quotientDecoded[2 * i + 1],
+  );
+
+  const plantCipher = transformPairs(plantPlain, exponentMod840);
+  const plantRecovered = transformPairs(plantCipher, inverseExponent);
+  assert.deepEqual(plantRecovered, plantPlain);
+
+  return {
+    exponent,
+    exponentMod840,
+    gcdWith840: g,
+    reversibleOnF841Nonzero: true,
+    inverseExponent,
+    original: {
+      inverseBookPairs: score(decodedBook),
+      inversePagePairs: score(decodedPage),
+    },
+    quotient252: {
+      score: score(quotientDecoded),
+      byteRange0to255: quotientBytes.filter((x) => x < 256).length,
+      printableAscii: quotientBytes.filter((x) => x >= 32 && x <= 126).length,
+      byteHead: quotientBytes.slice(0, 16),
+    },
+    positiveControl: {
+      exactRecovery: plantRecovered.every((x, i) => x === plantPlain[i]),
+      recoveredScore: score(plantRecovered),
+    },
+  };
+});
 
 console.log(JSON.stringify({
-  historicalDh: { ...dh, recoveredTesterSecret: testerSecret },
-  order75: { base5: multiplicativeOrder(5, 3301), client3034: multiplicativeOrder(3034, 3301) },
-  inverseExponent,
+  historicalDh: {
+    ...dh,
+    baseOrder,
+    testerExponentResidueModuloBaseOrder: testerExponentResidue,
+    candidatePrivateExponentsIn2To3300: testerCandidates,
+  },
+  conditionalOrder75Observation: {
+    base5: multiplicativeOrder(5, 3301),
+    client3034: multiplicativeOrder(3034, 3301),
+    pow5ToResidue11: modPow(5, testerExponentResidue, 3301),
+  },
   reference: { symbols: reference.length, holdout: score(holdout) },
-  original: {
-    raw: score(original),
-    inverseBookPairs: score(decodedBook),
-    inversePagePairs: score(decodedPage),
-  },
-  positiveControl: {
-    symbols: plantPlain.length,
-    exactRecovery: plantRecovered.every((x, i) => x === plantPlain[i]),
-    recoveredScore: score(plantRecovered),
-  },
-  quotient252: {
-    score: score(quotientDecoded),
-    byteRange0to255: quotientBytes.filter((x) => x < 256).length,
-    printableAscii: quotientBytes.filter((x) => x >= 32 && x <= 126).length,
-    byteHead: quotientBytes.slice(0, 32),
-  },
+  rawOriginal: score(original),
+  candidateResults,
 }, null, 2));
