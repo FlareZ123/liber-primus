@@ -8,6 +8,14 @@ Use [the complete two-ink annotation](../resources/liber-primus/lp2-ink-annotati
 
 The one black 13-dot mark, absent from red-only inventories, appears on original scan `24.jpg` (physical LP2 page 7), before the red passage. It is a real punctuation/layout event and must be retained if a theory depends on mark colour or cipher segmentation. A uniform 13-bit payload read from different dot arrangements is ruled out by their fixed template occupancy; punctuation classes and positions remain possible clues.
 
+## Solved-page red-title status: no transferable mode selector
+
+Original physical p56 (scan `73.jpg`) begins with five red runes `ᚫᛄᛟᛋᚱ` and a red 13-dot mark at local rune offset 5. Its known, **ciphered** heading decrypts as **AN END** by the documented prime-totient inverse; the page has a red 10-dot mark at offset 45 and an ordinary terminal red 13-dot mark at offset 85. The source-exact decoder is [the p56 regression](../sims/authentic_lp2_p56_totient_regression.cjs), including the whole-page literal-F exception. Physical p57 (scan `74.jpg`) begins with seven literal red runes `ᛈᚪᚱᚪᛒᛚᛖ` = **PARABLE**, also followed by a red 13-dot mark, and ends at local offset 95 with the **only** original red 23-dot terminator. Both headings use the same decorative red-drop-cap presentation in the original JPEGs.
+
+A frozen visible-only discriminator, “the unique page terminating in red 23-dot punctuation has a literal heading; an ordinary 13-dot terminator belongs to a ciphered heading,” agrees with **both** solved pages, but it has only one positive cleartext example and no known independent unknown-page result. The 23-dot mark occurs at the **end** of the final page; it supplies no cipher operator, secret key, literal-F handling rule or generalizable shift/reset state. The 13-dot heading punctuation also appears on many unknown pages (including p54) and already on both solved pages, so it cannot on its own select a title cipher mode. A reader might recognize the last PARABLE as a plaintext epilogue, but this interpretation is not an independent decoder for earlier red headings.
+
+**Decision for Director #180:** the original art and complete 18-span ink map do **not** select a prospective, reversible p56→unknown red-title rule. Do not classify all unsolved headings as decryptable under the p56 key, guess their words by likelihood, or use the 23-dot exception as an inferred decryption switch. This is a bounded missing-selector result, not a discovery of unknown LP2 plaintext. A new attempt requires an independent original-source instruction that fixes the title operation and state before reading an unknown span.
+
 ## Two visually selected ciphertext targets
 
 **Original `24.jpg`, physical LP2 page 7:** the final red line is a **14-rune** passage, separated into five ciphertext words:
