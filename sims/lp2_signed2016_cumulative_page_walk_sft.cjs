@@ -52,7 +52,7 @@ assert.deepEqual(corpus.pages[27].indices.slice(28,34),corpus.pages[55].indices.
 assert.equal(corpus.pages[32].indices.length,121);
 assert.deepEqual(JSON.parse(read("resources/liber-primus/lp2-grid-256.json")).pages.map(x=>x.page),[49,50,51]);
 const key=route.flatMap(x=>toIndices(x.selected));
-assert.equal(key.length,84);
+assert.equal(key.length,76); // original master word segmentation; matches p55 runes
 const cipherPages=corpus.pages.filter(x=>x.status==="unsolved"&&x.indices.length).map(x=>x.indices);
 assert.equal(cipherPages.length,55);
 assert.equal(cipherPages.flat().length,12956);
@@ -65,7 +65,7 @@ function inverse(input,pageReset,sign){
  let j=0,out=[];
  for(const page of input){
   if(pageReset)j=0;
-  for(const c of page){out.push((c+sign*key[j%84]+29)%29);j++;}
+  for(const c of page){out.push((c+sign*key[j%key.length]+29)%29);j++;}
  }
  return out;
 }
@@ -76,14 +76,32 @@ for(const reset of [true,false])for(const sign of [-1,1]){
  controls.push({pageReset:reset,sign,ioc:score});
 }
 const known=corpus.pages[57].indices;
-assert.deepEqual(inverse([known.map((c,i)=>(c+key[i%84])%29)],true,-1),known);
+assert.deepEqual(inverse([known.map((c,i)=>(c+key[i%key.length])%29)],true,-1),known);
+const p55 = corpus.pages.find((x) => x.page === 55);
+assert.equal(p55.indices.length, 76);
+assert.equal(key.length, p55.indices.length);
+const directTerminal = [-1, 1].map((sign) => {
+ const indices = p55.indices.map((c, i) =>
+   (c + sign * key[i] + 29) % 29);
+ let offset = 0;
+ const segmented = pages[55].map((runeWord) => {
+   const word = indices.slice(offset, offset + runeWord.length);
+   offset += runeWord.length;
+   return word.map((n) => corpus.translit[n]).join("");
+ });
+ assert.equal(offset, 76);
+ return {
+   sign, transliteration: indices.map((n) => corpus.translit[n]).join(""),
+   segmentedGP: segmented.join(" "), outputIoC: ioc(indices)
+ };
+});
 const result={
  status:"provisional route, no plaintext or key recovered",
  source:"signed 2016 16-word sentence; GP-prime sums; cumulative modulo 58",
  sourceSum:route.reduce((n,x)=>n+x.primeSum,0),
  sourcePageCount:58,
  anchors:{firstPage:27,lastPage:55,bookendPair:pair,treePage:route[1].page,numericTablePage:route[12].page,uniqueVisited:16},
- selectedRunes:key.length,
+ selectedRunes:key.length, originalP55Runes:p55.indices.length, directP55PadInverse:directTerminal,
  originalCipherIoC:ioc(cipherPages.flat()),
  directKeyInversions:controls,
  route:route.map(x=>({...x,selectedGP:toIndices(x.selected).map(n=>corpus.translit[n]).join("")}))
