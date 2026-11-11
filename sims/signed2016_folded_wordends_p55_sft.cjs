@@ -174,6 +174,29 @@ const expectedRawMinus = "EOTLEOMBUUIAIAYYLWGIAWMDBAEEOFUOERBLTAEGSHUSYRTHIWIAPE
 const expectedFoldMinus = "OEEPFMLTAEJTMGEOYEOFEOSOLTHEOCYHIMBOOEEOEOGDAEOWBGPGMNG";
 assert.equal(originalInput.rawEnd.subtract.gp, expectedRawMinus);
 assert.equal(originalInput.symmetricFold.subtract.gp, expectedFoldMinus);
+// The same 43 signed source words align with the 43 raw p50 bytes strictly
+// between repeated 3D=193 marker cells 83 and 127. The historically present
+// 2014 XOR operation is the single fixed bytewise transport tested here.
+assert.equal(grid.bytes[83], 193);
+assert.equal(grid.bytes[127], 193);
+const tableInterior = grid.bytes.slice(84, 127);
+assert.equal(tableInterior.length, 43);
+const byteXor = {};
+for (const [name, key] of [["rawIndex", terminal],
+  ["rawPrime", terminal.map(v => corpus.prime[v])],
+  ["foldIndex", folded],
+  ["foldPrime", folded.map(v => corpus.prime[v])]]) {
+  const output = tableInterior.map((byte, i) => byte ^ key[i]);
+  assert.deepEqual(output.map((v, i) => v ^ key[i]), tableInterior);
+  byteXor[name] = {
+    printableASCII: output.filter(v => v >= 32 && v <= 126).length,
+    asciiPreview: output.map(v => v >= 32 && v <= 126 ?
+      String.fromCharCode(v) : ".").join("")
+  };
+}
+assert.deepEqual(Object.values(byteXor).map(v => v.printableASCII),
+  [20, 15, 20, 20]);
+
 console.log(JSON.stringify({
   status: "provisional centered-END source correspondence; negative direct p55 key trial",
   corpus: "56 unknown LP2 pages; 12956 GP29 runes",
@@ -185,6 +208,7 @@ console.log(JSON.stringify({
   permutationNull: matchedNull,
   original43RuneP55Interior: gp(interior),
   originalInput,
+  p50Interval43Xor: byteXor,
   interpretation: "The centered END is exploratory and not a recovered unknown plaintext. " +
     "The exact multiset null does not correct for choosing reading rules or targets after inspection. " +
     "Both directly motivated reversible keys fail to recover readable p55 text."
