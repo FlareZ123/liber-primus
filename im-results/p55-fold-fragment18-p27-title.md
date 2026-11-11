@@ -2,6 +2,8 @@
 
 **Evidence class:** provisional source-image navigation hypothesis with exact original-corpus reproduction. **No unknown LP2 plaintext, cryptographic key, cipher mechanism, or destination is claimed.**
 
+**Visual-selector boundary (Issue #189):** the separate native-scale insect-art test found that p53/p55 reuse one insect template, p27 is a single horizontal wing without a bilateral partner, and p55's final text line lies wholly left of the moth axis. The artwork therefore does not supply a literal FOLD axis or a complete text-pairing rule. The ornament/fragment fold below remains a separate conditional text-navigation hypothesis, not an image-selected bilateral fold, and is not a decryption.
+
 ## Source-visible path
 
 The existing signed-2016 word-address candidate reaches the literal word **FOLD**, then physical LP2 p55. That numerical address rule remains provisional. Independently, p55's two outer botanical ornaments are nearly exact left/right reflections at the printed page midpoint, and an exact-center binary fold comparison leaves two dominant residual components at the two intentionally pale circles in the left five-circle ornament. The image result is already reproduced by [`p55_fold_mirror_original_image_sft.py`](../sims/p55_fold_mirror_original_image_sft.py).
