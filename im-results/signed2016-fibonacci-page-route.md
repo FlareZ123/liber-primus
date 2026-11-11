@@ -80,9 +80,11 @@ Three source-linked additive projections were tested, each under the two global 
 
 Across all **6** original variants, the best fixed native-GP trigram score is **−11.01380950**. The worst of **1,000** matched native-GP 76-rune controls is **−8.87918067**, so **0/6** candidates enter the native reference range. Exact planted controls recover for every projection/sign pair.
 
-**Decision:** retain the terminal 76/13-dot/8-rune-line geometry as source structure, but retire these direct additive interpretations. Any further use of the Fibonacci blocks requires a separately indicated non-additive operation or traversal.
+The two literal marked-end traversals were also tested without a key. Reversing only the four Fibonacci block order gives score **−11.88437075**; reading every p55 rune backward from the terminal mark gives **−12.01288030**. Neither approaches the same native-GP control range.
 
-**Reproduce:** [terminal-key SFT](../sims/signed2016_fibonacci_p55_terminal_key_sft.cjs); final successful CI [run 42973055128](https://github.com/FlareZ123/liber-primus/actions/runs/42973055128).
+**Decision:** retain the terminal 76/13-dot/8-rune-line geometry as source structure, but retire the tested direct additive and literal marked-end traversal interpretations. Any further use of the Fibonacci blocks requires a separately indicated operation.
+
+**Reproduce:** [terminal-key/readout SFT](../sims/signed2016_fibonacci_p55_terminal_key_sft.cjs); final successful CI [run 42973198290](https://github.com/FlareZ123/liber-primus/actions/runs/42973198290).
 
 
 ## Research consequence
