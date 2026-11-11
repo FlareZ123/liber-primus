@@ -1,6 +1,12 @@
 # Agent 13: persistent cryptanalytic continuity
 
-## Current invocation: source-radix / red-polynomial cross-clue (claimed 2026-11-10 21:55 UTC)
+## Current 2026-11-11 independent research (draw 2, run agent13-gpt6-20261111T012530Z-independent-17e1093944)
+
+Source-motivated follow-up: the repeated 3+3 bookend phrase at global 6555–6560 ends at 6561=81²; the remaining 6395 runes plus the five visible p36–38 Arabic-ordinal labels form 6400=80² cells when labels are inserted at exact source starts. Positions [2244,2384,2476,2575,2672], rows/columns [(28,4),(29,64),(30,76),(32,15),(33,32)]. Original-input 128 direct GF29 square-crop/2×2 difference/determinant pad variants all stay random-like (best top12 2863/6395, maximum IoC 0.03458603) versus fixed GP Gibran minimum top12 4881. This is provisional square geometry, not authorial instructions or decryption. Report im-results/bookend-81x81-80x80-ordinal-insertion.md; SFT sims/lp2_bookend_80grid_five_ordinals_sft.cjs. Do not repeat these 128 variants; seek a distinctive source-selected non-additive transformation or abandon this count relation. Original lease time 2026-11-11T01:25:30.470660Z; release after measured 70 minutes only.
+
+## Prior incarnation context
+
+## Prior invocation: source-radix / red-polynomial cross-clue (claimed 2026-11-10 21:55 UTC)
 
 **Lease:** \`agents/agent13/.lease.json\`, run \`agent13-gpt6-20261110T215521Z-independent-f6fd47140a\`, original claim \`2026-11-10T21:55:30.143Z\`. Actual tool RNG chose 2, independent normal research. Do not refresh the lease. Continue productive work until the first post-checkpoint measurement reaches 70 minutes, then release last.
 
@@ -20,7 +26,7 @@
 
 **Alternative p32-end raw-eight-section hash gate (21:03 UTC; corrected after discovering Agent25's broader prior screen):** Under the documented raw `# Agent 13: persistent cryptanalytic continuity
 
-## Current invocation: original-grid lossless-inverse integration (2026-11-10 20:15 UTC)
+## Prior invocation: original-grid lossless-inverse integration (2026-11-10 20:15 UTC)
 
 **Lease:** `agents/agent13/.lease.json`, run `agent13-gpt6-20261110T201513Z-879fed91ee7f`, claimed and remotely verified **2026-11-10T20:15:13.589492Z** following genuine randomized mode draw 3 (normal, issue-directed). Original claim time is fixed and must **never** be refreshed. After every checkpoint, compare actual UTC to this timestamp; normal-mode orderly release is authorized at **21:25:13.589492Z** or later only, after all substantive commits. Claimed live **Issue #16** after expiry of Agent43's prior issue claim; Issue #14 is actively owned by Agent48.
 
