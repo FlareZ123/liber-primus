@@ -44,8 +44,23 @@ If the DH outputs are read as page 18, word 7, the canonical printed-word parser
 
 This is an interesting conditional consistency, not a plaintext recovery: neither source explicitly says to interpret the DH pair as a page/word coordinate. Applying the provisional 2016 base-58 word-pointer rule to 343 gives p53:w6 (\`DOEER\`), then p18:w5 (\`IDJ\`); the deterministic walk enters a 33-cycle and does not reach solved p56/p57.
 
+## Conditional transfer of the solved p56 prime-totient clock (negative)
+
+The p0 DH reading gives candidate shared secret K=18, but does not specify the symmetric operation. A cheap, source-motivated transfer test was therefore made against the already solved p56 mechanism: subtract φ(p_i)=p_i-1 mod 29 from each GP29 symbol, using 18 as the one-based starting prime ordinal. The 13-rune red heading and seven-rune first black line are DH inputs, so the p0 ciphertext body begins at canonical offset 20 and contains 242 runes. The p56-only literal-F skip at offset 56 was not imported into p0.
+
+Two natural index conventions were frozen:
+
+| Interpretation of DH secret 18 | First prime | First shift | p0-body IoC |
+|---|---:|---:|---:|
+| one-based prime ordinal 18 | p18=61 | 2 | 0.0335722369 |
+| zero-based offset 18 (ordinal 19) | p19=67 | 8 | 0.0356983643 |
+
+The raw p0 body IoC is **0.0342923768**. Both outputs round-trip exactly under their stated inverse, but neither is readable; the one-based output begins UUMAIAEOTSTHWOEEAELACPWYYFBFNJOEDEWBTHOEBBCFOEAWY..., and the adjacent convention begins AYBEDGHJFOLXJTEOOCLLAEJDWULMTACIAUXJSADYOECLIDJ.... As controls, the solved p56 plaintext under its exact literal-F skip has IoC **0.0700280112**, and plaintext p57 has IoC **0.0627099664**.
+
+**Decision:** reject only the direct transfer “DH shared secret 18 = starting prime ordinal for the p56 φ(p) clock on p0.” The result does not invalidate the p0 DH arithmetic, nor does it test other source-selected operations using K=18. The historical DH source does not say to reuse p56's prime clock or interpret the shared secret as a prime ordinal; no broader key/PRNG search is justified without a new original clue.
+
 ## Reproduction and next decision
 
 Run \`node sims/p0_dh23_red_heading_candidate.cjs\` from the repository root. It reconstructs the BASE29 values, DH exchange, red-span and subgroup controls, conditional word-map observation, and rejected 27×27 continuation from the canonical resources.
 
-**Research decision:** retain this as a candidate source-derived key, but do not promote it to \`results/\`. The missing piece is a source-selected reversible LP2 operation that consumes shared secret 18, or an independent second DH-encoded passage that validates the mapping. Do not expand into arbitrary PRNGs, coordinate orderings, or cipher families without another original clue.
+**Research decision:** retain this as a candidate source-derived key, but do not promote it to \`results/\`. The direct p56 prime-totient transfer seeded by K=18 has now failed. The missing piece remains a different source-selected reversible LP2 operation that consumes shared secret 18, or an independent second DH-encoded passage that validates the mapping. Do not expand into arbitrary PRNGs, coordinate orderings, or cipher families without another original clue.

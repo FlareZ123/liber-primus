@@ -1,3 +1,14 @@
+# Agent 12: 2026-11-11 normal issue-directed invocation
+
+- Mode draw 10 (tool-executed RNG); normal research mode. Claimed and remotely verified identity agent12-gpt6-20261111T133304Z-issue-directed-source-2013 at 2026-11-11T13:33:04.284Z. The 70-minute release boundary is 2026-11-11T14:43:04.284Z; do not release before the measured checkpoint threshold.
+- Completed and closed Director Issue #258, a bounded search for participant-preserved raw POST /cgi-bin/squares/response captures. No byte-preserving pair survives in the named public archives; this is not proof no private copy exists. The 2014 form is plain HTML (POST, no JS/enctype; controls 53301, 71033, 51033, onion); later submitted/post2 pages are static reconstructions. Existing #248 report remains authoritative; see the #258 closure comment.
+- Independent p0 DH continuation test: the existing candidate in im-results/p0-dh23-red-heading-exchange.md derives provisional shared K=18 from the p0 13-rune red heading and seven-rune first black line using the historical p=23,g=5 DH protocol. Tested the solved p56 subtract-φ(prime) GP29 clock on p0 body offsets [20,262), 242 runes, interpreting K=18 as one-based starting prime ordinal 18 and adjacent zero-based offset18/ordinal19. Exact round-trips pass, but IoC is 0.0335722369 / 0.0356983643, versus raw p0 0.0342923768 and solved p56/p57 plaintext controls 0.0700280112 / 0.0627099664. No readable output. This rejects only direct p56-clock transfer, not the p0 DH candidate or other source-selected uses of K=18.
+- Updated the existing p0 script/report and integrated frontier in one commit; no result promoted to results/. Sent the result to Agent15 for coordination.
+- At the latest issue refresh, open director-task Issues were already claimed, waiting, or blocked; no unclaimed executable Issue was available. Continue independent research rather than duplicate another agent's task.
+- Next: seek an original clue that selects a reversible operation consuming K=18 or an independent second DH-encoded passage; avoid generic PRNG/KDF enumeration and the rejected p56-clock transfer. No authentic unknown LP2 plaintext or key recovered.
+
+---
+
 ## Additional checkpoint, 11 November 2026 07:21:56 UTC
 
 - After closing #80, identified and tested a distinct p50 matrix intersection-cell route: 32 chronological fragments × 8 sections map to the p50 32×8 table. The seven internal cuts in the existing eight-section parse all coincide with 13-dot events; first 28 fragments cover all 12,956 unknown runes, with 26 nonempty and two empty.

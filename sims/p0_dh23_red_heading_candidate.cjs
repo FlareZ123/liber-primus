@@ -218,6 +218,84 @@ assert.equal(predictedStart, 478);
 assert.equal(translit(ciphertextBlock), "N-P-A-Y-P-C-Y");
 assert.equal(translit(decryptedBlock), "EO-W-U-F-W-J-F");
 
+
+// Conditional transfer gate: reuse the solved p56 prime-totient subtractor,
+// with the p0 DH shared secret 18 interpreted as a prime-sequence start.
+// This is a hypothesis test, not an assertion that p56's cipher applies to p0.
+function firstPrimes(count) {
+  const out = [];
+  for (let candidate = 2; out.length < count; candidate++) {
+    let isPrime = true;
+    for (const p of out) {
+      if (p * p > candidate) break;
+      if (candidate % p === 0) { isPrime = false; break; }
+    }
+    if (isPrime) out.push(candidate);
+  }
+  return out;
+}
+function indexOfCoincidence(indices) {
+  const counts = Array(29).fill(0);
+  for (const value of indices) counts[value]++;
+  return counts.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (indices.length * (indices.length - 1));
+}
+const primeSequence = firstPrimes(400);
+const p0BodyStart = p0Red.start + p0Red.length + firstBlackLine.length;
+const p0Body = corpus.pages[0].indices.slice(p0BodyStart);
+assert.equal(p0BodyStart, 20);
+assert.equal(p0Body.length, 242);
+assert.equal(primeSequence[17], 61);
+assert.equal(primeSequence[18], 67);
+function decodeP0WithTotientStart(startOrdinal) {
+  return p0Body.map((cipher, i) => {
+    const shift = (primeSequence[startOrdinal - 1 + i] - 1) % 29;
+    return (cipher - shift + 29) % 29;
+  });
+}
+function encodeP0WithTotientStart(plain, startOrdinal) {
+  return plain.map((value, i) => {
+    const shift = (primeSequence[startOrdinal - 1 + i] - 1) % 29;
+    return (value + shift) % 29;
+  });
+}
+const p0TotientVariants = [18, 19].map((startOrdinal) => {
+  const decoded = decodeP0WithTotientStart(startOrdinal);
+  assert.deepEqual(encodeP0WithTotientStart(decoded, startOrdinal), p0Body);
+  return {
+    startPrimeOrdinal: startOrdinal,
+    firstPrime: primeSequence[startOrdinal - 1],
+    firstShift: (primeSequence[startOrdinal - 1] - 1) % 29,
+    ioc: indexOfCoincidence(decoded),
+    output: translit(decoded)
+  };
+});
+const p56CipherForControl = corpus.pages.find((page) => page.page === 56).indices;
+let p56ClockForControl = 0;
+const p56PlainForControl = p56CipherForControl.map((cipher, i) => {
+  if (i === 56) return cipher;
+  const shift = (primeSequence[p56ClockForControl++] - 1) % 29;
+  return (cipher - shift + 29) % 29;
+});
+assert.equal(p56ClockForControl, 84);
+const p57PlainForControl = corpus.pages.find((page) => page.page === 57).indices;
+const p0TotientTransfer = {
+  operation: "plain[i] = cipher[i] - (prime[startOrdinal+i]-1) mod 29",
+  keyInterpretation: "DH shared secret 18 as one-based prime ordinal; adjacent zero-based offset convention tested",
+  p0BodyStart,
+  p0BodyLength: p0Body.length,
+  rawIoc: indexOfCoincidence(p0Body),
+  variants: p0TotientVariants,
+  solvedControls: {
+    p56PlainLength: p56PlainForControl.length,
+    p56PlainIoc: indexOfCoincidence(p56PlainForControl),
+    p57PlainLength: p57PlainForControl.length,
+    p57PlainIoc: indexOfCoincidence(p57PlainForControl)
+  },
+  roundTripsExact: true,
+  conclusion: "No readable p0 plaintext; this rejects only direct p56-clock transfer, not the provisional DH key derivation."
+};
+
 console.log(JSON.stringify({
   heading: { indices: heading, transliteration: translit(heading), base29: N.toString(),
     mod23: Number(N % 23n), mod22: exponent, finalDigit: heading.at(-1) },
@@ -239,5 +317,6 @@ console.log(JSON.stringify({
     p53w6, next: p18w5 },
   dhTo27x27: { center, node: translit(node), key: translit(key), predictedStart,
     ciphertext: translit(ciphertextBlock), decrypted: translit(decryptedBlock) },
+  p0TotientTransfer,
   conclusion: "candidate DH key derivation only; no symmetric LP2 cipher or plaintext recovered"
 }, null, 2));
