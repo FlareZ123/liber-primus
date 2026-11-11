@@ -82,6 +82,58 @@ assert.deepEqual([p32First.length,p32Tail.length,p57Body.length],[33,88,88]);
 assert.equal(p32First.filter((v,i)=>v===outside55[i]).length,1);
 assert.equal(p32Tail.filter((v,i)=>v===p57Body[i]).length,2);
 
+// A different, complete all-hidden-key inverse of the same 88-rune
+// source-selected known-plaintext suggestion: the printed numeric table has
+// eight columns. Its natural 8-rune grouping gives 11 plaintext blocks of
+// length 8 and 11 p32 cipher blocks. Any Hill8 key M over GF29 requires
+// rank([P|C]) == rank(P), and any affine Hill8 key M,b requires
+// rank([P|1|C]) == rank([P|1]), even with ALL secret coefficients.
+const mod29=n=>((n%29)+29)%29;
+const inverses=Array(29).fill(0);
+for(let x=1;x<29;x++)for(let y=1;y<29;y++)
+  if((x*y)%29===1)inverses[x]=y;
+/** @param {number[][]} source @returns {number} */
+function finiteRank(source){
+  const a=source.map(v=>v.slice());
+  let rank=0;
+  for(let col=0;col<a[0].length&&rank<a.length;col++){
+    let pivot=rank;
+    while(pivot<a.length&&!a[pivot][col])pivot++;
+    if(pivot===a.length)continue;
+    [a[pivot],a[rank]]=[a[rank],a[pivot]];
+    const scale=inverses[a[rank][col]];
+    for(let j=col;j<a[0].length;j++)a[rank][j]=a[rank][j]*scale%29;
+    for(let i=rank+1;i<a.length;i++){
+      const factor=a[i][col];
+      if(factor)for(let j=col;j<a[0].length;j++)
+        a[i][j]=mod29(a[i][j]-factor*a[rank][j]);
+    }
+    rank++;
+  }
+  return rank;
+}
+const blocks=(arr)=>Array.from({length:11},(_,i)=>arr.slice(8*i,8*i+8));
+const plain88=blocks(p57Body),cipher88=blocks(p32Tail);
+const hillPlainRank=finiteRank(plain88);
+const hillCombinedRank=finiteRank(plain88.map((p,i)=>p.concat(cipher88[i])));
+const affinePlain=plain88.map(p=>p.concat([1]));
+const affinePlainRank=finiteRank(affinePlain);
+const affineCombinedRank=finiteRank(affinePlain.map((p,i)=>p.concat(cipher88[i])));
+assert.deepEqual([hillPlainRank,hillCombinedRank],[8,11]);
+assert.deepEqual([affinePlainRank,affineCombinedRank],[9,11]);
+assert.ok(hillCombinedRank>hillPlainRank);
+assert.ok(affineCombinedRank>affinePlainRank);
+
+// Deterministic native positive: plant one unknown affine Hill8 transform
+// without consulting the ciphertext, proving that the rank criterion allows
+// all model-generated source-controlled cases.
+const seeded=plain88.map(p=>p.map((v,j)=>
+  mod29(v + 2*p[(j+1)%8] + 7)));
+assert.equal(finiteRank(plain88.map((p,i)=>p.concat(seeded[i]))),
+  hillPlainRank);
+assert.equal(finiteRank(affinePlain.map((p,i)=>p.concat(seeded[i]))),
+  affinePlainRank);
+
 // Use exact 2016 PGP-signed message grammar as source counts.
 const signed = asc.slice(asc.indexOf("Hello."),
   asc.indexOf("-----BEGIN PGP SIGNATURE-----"));
@@ -196,7 +248,7 @@ console.log(JSON.stringify({
   source:"p57 PARABLE circumference instruction, printed p55, signed-2016 words, source 43-byte table bracket",
   p55:{words:p55Words.length,runes:p55.length,singletons:1,interior:inner55.length,interiorGpPrimeSum:2060},
   p57:{bodyWords:19,bodyInteriorRunes:50,runelessPage:50},
-  treeBridge:{p32Clauses:[33,88],p55Outside:33,p57Body:88,firstClauseLiteralMatches:1,bodyLiteralMatches:2,allSecretMonoalphabeticChanges:known88Changes,shuffleAsGoodOrBetter:null88AsGood,shuffleDraws:2000},
+  treeBridge:{p32Clauses:[33,88],p55Outside:33,p57Body:88,firstClauseLiteralMatches:1,bodyLiteralMatches:2,allSecretMonoalphabeticChanges:known88Changes,shuffleAsGoodOrBetter:null88AsGood,shuffleDraws:2000,hill8Ranks:[hillPlainRank,hillCombinedRank],affineHill8Ranks:[affinePlainRank,affineCombinedRank]},
   signed2016Words:signedWords.length,
   tableWindow:[84,127],delimiters:[201,193,193,201],
   p32Compass:{visitedDistinct:new Set(visited).size,literalMatches:1,arbitraryStationaryLookupMinimumChanges:actual},
