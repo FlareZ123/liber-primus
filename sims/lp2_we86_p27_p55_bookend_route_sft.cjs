@@ -239,6 +239,7 @@ assert.equal(source55[74], corpus.translit.indexOf("E"));
 // then state the explicit iid GP29 and hard no-repeat baselines. These are
 // narrow shape-conditioned model probabilities, not discovery-adjusted p's.
 const wordPairTypes = new Map();
+const sourcePairShapes = new Map();
 let pageLocalPairs = 0;
 let shape33Count = 0;
 for (let page = 0; page <= 55; page++) {
@@ -246,6 +247,8 @@ for (let page = 0; page <= 55; page++) {
     const left = words[page][w];
     const right = words[page][w + 1];
     pageLocalPairs++;
+    const shape = `${left.length}:${right.length}`;
+    sourcePairShapes.set(shape, (sourcePairShapes.get(shape) || 0) + 1);
     if (left.length !== 3 || right.length !== 3) continue;
     shape33Count++;
     const key = left + "|" + right;
@@ -263,6 +266,19 @@ const sameShapePairs = shape33Count * (shape33Count - 1) / 2;
 const iid29ExpectedDuplicatePairs = sameShapePairs / (29 ** 6);
 const hardNoRepeatExpectedPairs = sameShapePairs / (29 * 28 ** 5);
 const terminalTargetExpectedMatches = (shape33Count - 1) / (29 ** 6);
+let totalLengthAtLeast6IidExpected = 0;
+let totalLengthAtLeast6HardExpected = 0;
+for (const [shape, n] of sourcePairShapes) {
+  const [first, second] = shape.split(":").map(Number);
+  const combinedLength = first + second;
+  if (combinedLength < 6) continue;
+  const possibilities = n * (n - 1) / 2;
+  totalLengthAtLeast6IidExpected += possibilities / (29 ** combinedLength);
+  totalLengthAtLeast6HardExpected +=
+    possibilities / (29 * 28 ** (combinedLength - 1));
+}
+assert(Math.abs(totalLengthAtLeast6IidExpected - 0.00003699580715551074) < 1e-13);
+assert(Math.abs(totalLengthAtLeast6HardExpected - 0.00004413354083654962) < 1e-13);
 assert(Math.abs(iid29ExpectedDuplicatePairs - 0.000027690575366664212) < 1e-16);
 assert(hardNoRepeatExpectedPairs < 0.000034);
 
@@ -276,6 +292,8 @@ console.log(JSON.stringify({
     pageLocalPairs, shape33Count, duplicate33Types,
     iid29ExpectedDuplicatePairs, hardNoRepeatExpectedPairs,
     terminalTargetExpectedMatches,
+    totalLengthAtLeast6IidExpected,
+    totalLengthAtLeast6HardExpected,
     caveat: 'shape-conditioned idealized null, not discovery-adjusted significance'
   },
   anySecretStationaryBijectiveTransport: {
