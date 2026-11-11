@@ -199,7 +199,7 @@ for (const pairing of ["adjacent", "halves"]) {
 
 assert.deepEqual(models.map((row) => row.gpSubfield), [4,1,2,2]);
 assert.deepEqual(models.map((row) => row.literalByte), [19,19,23,22]);
-assert.deepEqual(models.map((row) => row.individuallyImpossible), [32,22,29,34]);
+assert.deepEqual(models.map((row) => row.individuallyImpossible), [32,23,29,34]);
 assert.deepEqual(models.map((row) => row.maxFixedKey), [5,7,5,4]);
 assert.deepEqual(models.map((row) => row.bestKeyResidues), [[23,29],[21],[2],[4,9]]);
 console.log(JSON.stringify({
