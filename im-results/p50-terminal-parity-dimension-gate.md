@@ -1,72 +1,103 @@
-# The terminal 256-symbol factor-code route leaves exactly 60 free runes
+# Terminal polynomial-code inversions: low-factor ambiguity and high-factor rejection
 
-**Agent 49, 11 November 2026. Classification: exact original-source capacity obstruction and constructive codeword completion.** This result determines what the printed grid's established degree-16 polynomial factor *can* recover from the independently solved closing pages. It yields no unknown LP2 plaintext, authenticated key, full cipher, or destination.
+**Agent 49, 11 November 2026. Classification: exact original-input finite-field capacity result and a complete original-source decoder test.** Both are conditional on one visible 256-cell geometry. Neither yields decrypted unknown LP2 plaintext, an authenticated key or an intended continuation.
 
-## Why the original artifacts motivate this question
+## Original source and the recovery opportunity
 
-The p49–51 numeral table is a printed **32×8 array of 256 two-character numbers**. Under the conventional source base-60 reading, its 256 bytes, as descending GF(29) polynomial coefficients, are exactly divisible by the established monic degree-16 factor
+The p49–51 numerical grid has **32 rows and 8 columns** (256 two-character tokens). The conventional base-60 source reading supplies 256 bytes whose SHA-256 is
+
+\`3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290\`.
+
+Writing their residues modulo29 as descending coefficients of one polynomial \(P(X)\), the [established exact factorization](lp2-grid-complete-gf29-factorization.md) gives
 
 \[
-G(X)=(X+5)^2(X^2+18X+11)
- (X^3+14X^2+16X+24)
- (X^9+12X^8+20X^7+10X^6+5X^5+X^4+9X^3+15X+11).
+P(X) = c\,G_{16}(X)Q_{238}(X)
+\quad \text{in }\mathbb F_{29}[X],
 \]
 
-The lower degree factors come from prior exact factorization of the unmodified grid. The original p3 and p39 red triads motivated some of that earlier work. Its construction and source caveats are documented in [the complete GF29 factorization](lp2-grid-complete-gf29-factorization.md). The factor has **degree 16** and coefficient list, ascending in powers of X,
+with \(c\in\mathbb F_{29}^{\times}\), the degree-16 monic small-factor product
+
+\[
+G_{16}(X)=(X+5)^2(X^2+18X+11)
+ (X^3+14X^2+16X+24)
+ (X^9+12X^8+20X^7+10X^6+5X^5+X^4+9X^3+15X+11),
+\]
+
+and a monic irreducible factor \(Q_{238}\) of degree 238. The verified ascending coefficient vector of \(G_{16}\) is
 
 \`[13,20,26,12,6,2,13,26,6,26,11,7,15,11,17,25,1]\`.
 
-Separately, the already deciphered p57 *PARABLE* mentions shedding circumferences. Removing the perimeter of a 32×8 grid leaves **180 interior cells** and **76 perimeter cells**. The final three physical pages contain **76 original still-encrypted p55 runes, 85 deciphered p56 runes, and 95 already-clear p57 runes**. Thus a tempting candidate representation maps the p55 unknowns to the table's 76-cell perimeter and the 180 known p56+p57 plaintext runes to the 30×6 interior. The documents do **not** specify such a transfer; it is a plausible finite test of what the code could achieve.
+The printed grid's circumference contains **76 cells**, its 30×6 interior **180 cells**. The solved p57 *PARABLE* explicitly mentions “circumferences” and “divinity within.” Independently the last physical pages have exactly **76 still-encrypted p55 runes**, **85 deciphered p56 runes**, and **95 directly clear p57 runes**. A plausible source-motivated recovery experiment places the 76 unknown p55 symbols onto the grid perimeter and the **180 known p56+p57 plaintext symbols** onto the interior, keeping source order within each region. These mappings and the polynomial-code interpretation are hypotheses; neither was authenticated by Cicada.
 
-This extends the earlier [terminal code and circumference gate](terminal-grid-circumference-knownplain-gate.md), which examined literal lookup, Reed–Solomon and other direct operations. The question here is **uniqueness under any values of the unknown 76-runic perimeter**, granting this factor-code assumption its full freedom.
+The earlier [terminal code/circumference study](terminal-grid-circumference-knownplain-gate.md) examined literal byte/rune lookups and a source-selected GF841 interpolation, among other variants. The present analysis tests two **distinct polynomial-code inverses** arising from the exact factorization. Each provides a strong, key-independent decision about whether it can recover the 76 unknown original positions.
 
-## Exact parity-check rank of the 76 unknown positions
+## Route A: the degree-16 factor cannot uniquely recover p55
 
-Let \(\mathbb F_{29}\) be the 29-element field. Read the 256 cells in their original printed row-major order. For any hypothetical 256 GP29 codeword \(A=(a_0,\ldots,a_{255})\), define
-
-\[
-P_A(X)=\sum_{i=0}^{255} a_i X^{255-i}, \qquad
-\operatorname{syndrome}(A)=P_A(X)\bmod G(X).
-\]
-
-A valid member of the candidate polynomial code has all 16 syndrome coefficients zero. With all 180 interior symbols fixed, the syndrome is an affine linear function of the 76 perimeter symbols. Its exact **16×76** GF29 coefficient matrix has column \(j\) equal to the 16 coefficients of \(X^{255-b_j}\bmod G\), where \(b_j\) is the j-th perimeter position in printed row-major order.
-
-Exact finite-field elimination gives
+For a candidate 256-symbol GF29 codeword \(A=(a_0,\ldots,a_{255})\), use the printed order
 
 \[
-\boxed{\operatorname{rank}(H_{\mathrm{perimeter}})=16.}
+P_A(X)=\sum_{j=0}^{255} a_jX^{255-j}.
 \]
 
-An explicit set of independent **zero-based original table positions** is
+A codeword divisible by \(G_{16}\) has an all-zero 16-coordinate remainder. With the 180 interior symbols fixed, its syndrome is affine linear in the 76 unknown perimeter values. The **16×76** syndrome coefficient matrix has columns equal to the remainders \(X^{255-j}\bmod G_{16}(X)\) for perimeter positions \(j\).
+
+Exact GF29 elimination gives **rank 16**, with these 16 independent zero-based row-major table positions:
 
 \`[0,1,2,3,4,5,6,7,8,15,16,23,24,31,32,39]\`.
 
-Because this rank is the full 16-syndrome dimension, **every possible 180-symbol interior**, including the actual solved pages, admits **exactly \(29^{76-16}=29^{60}\)** distinct perimeter completions. Numerically this is approximately \(5.54\times10^{87}\) different GP29 strings. Each choice of the other 60 perimeter symbols forces one unique setting of the 16 pivot cells. No plaintext statistics, source interpretation, hidden key, or interpolation method can make the factor alone select one of them.
+Therefore *every* possible 180-symbol interior permits exactly
 
-A corresponding *general lower bound* follows immediately: even if all **43 strict-interior p55 runes** were independently recovered through another clue, 33 p55 positions would remain, and these 16 checks could still leave **at least 17 unconstrained GP symbols**. At least **60 further independent GP29-symbol constraints** on p55 are necessary for uniqueness under this model. They need not literally take the form of known plaintext if another mechanism supplies equivalent information.
+\[
+29^{76-16}=\boxed{29^{60}\approx5.54\times10^{87}}
+\]
 
-## Fully original-input constructive witness
+different perimeter strings satisfying this factor. Sixty free GP29-symbol constraints would have to come from elsewhere before this parity mechanism could specify a unique 76-rune page. Even **43 recovered p55 strict-interior runes** from an independent clue could leave at least 17 further degrees of freedom.
 
-The [single-file exact test](../sims/p50_terminal_parity_dimension_sft.cjs) first asserts the unmodified table's byte SHA-256
-
-\`3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290\`
-
-and reconstructs the full degree-16 product; all sixteen original table syndromes vanish. It then loads the authentic p55 ciphertext, p56 independently established 85-rune plaintext, and p57 authentic 95-rune cleartext. Spaces in p56 are preserved as GP word boundaries for digraph parsing. The candidate arrangement places p55 at perimeter positions in row-major order, and the concatenated p56+p57 at interior positions in row-major order. This ordering is a stated hypothesis, not author-verified metadata.
-
-The original p55 plus these known 180 runes yields syndrome, ascending in degree:
+The [exact source-run reproducer](../sims/p50_terminal_parity_dimension_sft.cjs) computes the full generator, verifies zero syndrome for the genuine p50 bytes and constructs an explicit witness from the actual closing pages. Assign original p55 glyphs to perimeter and independently solved p56+p57 plaintext to interior. The unchanged aggregate has nonzero syndrome
 
 \`[5,7,27,12,4,24,25,13,17,28,19,22,26,8,14,13]\`.
 
-This is nonzero, so the **unchanged** candidate 256-rune arrangement is not an exact codeword for G. The test holds **60 original p55 glyph values** and **all 180 known closing glyph values** completely fixed, then solves exactly for the sixteen pivot cells. The recovered pivot-symbol indices are
+Hold **60 of the original 76 p55 ciphertext values** and all **180 known p56+p57 values** fixed. Solving for the 16 independent perimeter pivots yields
 
 \`[10,20,2,18,10,9,15,19,20,28,1,6,18,13,26,8]\`.
 
-The resulting constructed codeword has syndrome zero in all 16 coordinates. Fifteen of its 16 adjusted pivot symbols differ from the original p55 ciphertext, while one already agrees. A *second* constructed codeword changes one free perimeter symbol, solves the same pivots and also has an all-zero syndrome with the **identical known 180-rune interior**. Thus the ambiguity is exhibited on the actual manuscript, alongside the full-rank proof.
+The resulting candidate codeword has all sixteen syndrome coordinates zero; 15 of the 16 altered pivot glyphs differ from original p55. The SFT constructs a **second, different fully valid codeword** by altering one free symbol and resolving the same pivots, with the identical known interior. This proves the ambiguity on actual source data and prevents an attractive fitted zero syndrome from masquerading as a decryption.
 
-The program uses exact integer GF29 arithmetic and prints the source hash, polynomial, pivot basis, observed syndrome, completion result and duplicate-completion assertion. It is dependency-free CommonJS, reading only committed repository resources.
+**Route A decision:** source-selected degree-16 parity alone is insufficient to reveal the unknown page. Fitting a candidate to these 16 checks is guaranteed possible without discovering plaintext or a secret.
 
-## Decision for solving Liber Primus
+## Route B: the degree-238 factor supplies a full decoder, but fails on the actual closing pages
 
-**Retire the claim that the table's known degree-16 factor alone reconstructs the last 76 unknown runes from the 180 already-known final runes.** A zero-syndrome fitted perimeter is guaranteed to exist and carries no evidence of a genuine original decryption by itself. The original unsolved p55 ciphertext also fails this direct parity-check condition under the declared fixed placement.
+The irreducible \(Q_{238}\) suggests a very different finite-field code. If the terminal 256-rune vector were the coefficient sequence of a polynomial **divisible by \(Q_{238}\)**, its generating polynomial would necessarily be
 
-This is an information-capacity decision for the specific GF29 factor code, valid with *arbitrary secret values* in all 76 unknown positions. It neither excludes a different higher-redundancy code nor establishes that the factor itself was intended as a parity check. The full table's large irreducible degree-238 factor, nonlinear/cross-page operations and external source keys remain separate routes. A useful positive successor needs a source-selected additional operation yielding at least 60 independent constraints, or an independently authenticated key that directly deciphers p55. Further parameter-fitting to a zero polynomial syndrome cannot supply that missing information.
+\[
+P_A(X)=Q_{238}(X)R(X),\qquad\deg R\le17.
+\]
+
+There are only **18 unknown GF29 coefficient values** in \(R\). Unlike Route A, the 180 known interior values make this system highly overdetermined and, if consistent, would **recover the entire 76-rune perimeter exactly**. This is a genuine original-plaintext recovery proposal, with no fitted key beyond the 18 coefficients uniquely forced by independently solved source text.
+
+The [single-file original-source inversion](../sims/p50_terminal_q238_known_interior_sft.cjs) derives \(Q_{238}\) by dividing the actual 256-byte polynomial by \(G_{16}\). It builds the 180×18 linear map from unknown multiplier coefficients to printed interior coordinates. Exact Gaussian elimination finds rank **18**; the known interior determines one candidate multiplier and a full 256-symbol prediction.
+
+Two positive controls establish the inversion works for genuine members of this code:
+
+- From only the actual p50 table's **180 interior residue symbols**, it recovers its unique 18-coordinate multiplier and reconstructs **256/256 original p50 residue symbols** exactly.
+- From 180 interior symbols of an independently planted Q238 codeword with 18 seed symbols drawn from authentic GP text, it recovers the entire seed and **256/256 planted symbols** exactly.
+
+The original closing pages decisively fail the same frozen operation:
+
+| Source-known 180-cell interior | Exact predictions correct | Contradictions among 180 | Predictions on original 76 p55 ciphertext glyphs |
+| --- | ---: | ---: | ---: |
+| **85 deciphered p56 runes + 95 clear p57 runes** | **21** | **159** | 2 / 76 |
+| **85 visible p56 ciphertext runes + 95 clear p57 runes** | **20** | **160** | 4 / 76 |
+| **Actual p50 table residues, positive control** | **180** | **0** | 76 / 76 |
+
+The 18 free coefficients are already determined by the source-selected first 18 independent interior equations. The other 162 interior positions are predictions from that fixed result; none is optimized for language. For the two original terminal variants, these 162 positions yield only **3** and **2** further exact predictions respectively. The full 180-known data are irreconcilable with this precise code.
+
+The p55 predicted glyphs in the table are comparisons to the **original ciphertext** rather than decrypted plaintext. Their poor match is supplementary, since p55 is expected to have an unknown cipher. The 159/160 **contradictions against known original closing-page symbols** are the decisive exclusion.
+
+**Route B decision:** retire the simple GF29 Q238 polynomial multiple as the direct terminal plaintext or visible-rune encoder under the original row-major perimeter/interior mapping. Its original-table and independent-planted controls demonstrate full recovery when the hypothesized mechanism actually holds.
+
+## What this changes for the Liber Primus solve
+
+The exact G16 and Q238 factors offer opposite kinds of information. **G16 has too little parity to determine p55**, while **Q238 has enough redundancy to determine it but demonstrably does not fit the known closing pages** under the stated source ordering and alphabet. These are complementary cryptanalytic decisions with directly reproducible original-input evidence.
+
+No further per-symbol tuning, arbitrary row/column rotations, secret basis changes or byte/rune codec searches follow from this source alone. Such changes need an original clue specifying them. The numerical grid can still carry a different state, secret key or instruction, and the terminal codewords might be encrypted under an independently selected operation. Neither present code test disproves those possibilities or claims recovery of new plaintext.
