@@ -97,12 +97,8 @@ const inverseBoxes=boxes.map(box=>{
   return back;
 });
 const controls=[];
-for(const [label,file] of [
-  ["Gibran","resources/control/gibran_prophet_58585.txt"],
-  ["Shakespeare","resources/control/shakespeare_first300k.txt"],
-  ["Emerson","resources/control/emerson_essays_2944.txt"]
-]) {
-  const native=encode(read(file));
+/** @param {string} label @param {number[]} native Source GP rune indices. */
+function checkNative(label,native) {
   assert(native.length>=C.length);
   let lowest=Infinity,highest=-Infinity,count=0,atOrBelow=0;
   for(let start=0;start+C.length<=native.length;start+=323) {
@@ -124,6 +120,29 @@ for(const [label,file] of [
     minimum:lowest,maximum:highest,atOrBelowOriginal:atOrBelow,
     plantedExactRecovery:C.length});
 }
+for(const [label,file] of [
+  ["Gibran","resources/control/gibran_prophet_58585.txt"],
+  ["Shakespeare","resources/control/shakespeare_first300k.txt"],
+  ["Emerson","resources/control/emerson_essays_2944.txt"]
+]) checkNative(label,encode(read(file)));
+// Latin source is a pre-encoded, word-preserving GP29 transcript.
+// The first three non-data comment lines document its historical source.
+const latinAlphabet="0123456789ABCDEFGHIJKLMNOPQRS";
+const latinSource=read("resources/control/latin-vulgate-gp-wholewords.txt");
+const latinRunes=Array.from(latinSource.split(/\r?\n/u)
+  .filter(line=>line&&!line.trimStart().startsWith("#")).join(""),
+  c=>latinAlphabet.indexOf(c));
+assert(latinRunes.every(x=>x>=0&&x<29));
+assert.equal(latinRunes.length,204802);
+checkNative("Latin Vulgate",latinRunes);
+// Beowulf fixture is a source-preserved 12,956-rune GP29 window.
+const beowulf=JSON.parse(read("resources/control/beowulf_oe_gp_profile.json"));
+const oldEnglish=Array.from(beowulf.positiveControlGpBase29,
+  c=>beowulf.positiveControlAlphabet.indexOf(c));
+assert(oldEnglish.every(x=>x>=0&&x<29));
+assert.equal(oldEnglish.length,C.length);
+checkNative("Old English Beowulf",oldEnglish);
+assert.equal(controls.reduce((total,item)=>total+item.overlappingWindows,0),2335);
 console.log(JSON.stringify({
   hypothesis:"Any arbitrary fixed secret GP29 bijection per original 32-fragment x 8-column state",
   original,publicStateCount:256,unsolvedRunes:C.length,sourceMapVariants:8,
