@@ -1,0 +1,13 @@
+name: LP2 literal word circumference source test
+on:
+  workflow_dispatch:
+jobs:
+  original-source-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test exact word interiors, exteriors, reconstruction, and controls
+        run: node sims/lp2_p57_literal_word_circumference_sft.cjs
