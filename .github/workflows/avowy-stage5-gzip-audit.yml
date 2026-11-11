@@ -88,8 +88,8 @@ jobs:
           b=Path("data.out").read_bytes()
           # The two adjacent 2400x3600 JPEGs are independently decoded and verified.
           bounds=[0,823807,1647321]
-          assert b[:2]==b"\\xff\\xd8" and b[bounds[1]-2:bounds[1]]==b"\\xff\\xd9"
-          assert b[bounds[1]:bounds[1]+2]==b"\\xff\\xd8" and b[bounds[2]-2:bounds[2]]==b"\\xff\\xd9"
+          assert b[:2]==bytes.fromhex("ffd8") and b[bounds[1]-2:bounds[1]]==bytes.fromhex("ffd9")
+          assert b[bounds[1]:bounds[1]+2]==bytes.fromhex("ffd8") and b[bounds[2]-2:bounds[2]]==bytes.fromhex("ffd9")
           Path("tablet-front.jpg").write_bytes(b[bounds[0]:bounds[1]])
           Path("tablet-back.jpg").write_bytes(b[bounds[1]:bounds[2]])
           Path("trailer.bin").write_bytes(b[bounds[2]:])
