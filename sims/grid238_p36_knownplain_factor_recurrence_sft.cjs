@@ -128,10 +128,40 @@ assert.equal(results.length,12);
 assert.deepEqual(results.map(r=>r.matches),
   [12,4,10,9,8,9,9,5,8,7,8,2]);
 assert(results.every(r=>r.matches<=12));
+
+/** Direct factor-as-pad test, independent of the above factor-as-plaintext crib.
+ * Both source scaling choices and +/- GP29 addition are equivalent up to
+ * choosing the additive sign. Original source also fixes two coefficient
+ * directions. These four unique decoded original sequences are audited.
+ * @param {number[]} values
+ */
+function ioc(values){
+  const hist=Array(29).fill(0);
+  for(const x of values)hist[x]++;
+  return hist.reduce((n,c)=>n+c*(c-1),0)/(values.length*(values.length-1));
+}
+const directPads=[];
+for(const orientation of ["ascending","descending"]){
+  const key=canon.slice(0,238);
+  if(orientation==="descending")key.reverse();
+  for(const sign of [-1,1]){
+    const restored=target.map((c,i)=>mod(c+sign*key[i]));
+    assert.deepEqual(restored.map((x,i)=>mod(x-sign*key[i])),target);
+    const knownPlain=Array.from({length:238},(_,i)=>[24,3,1,4,19,20,2,26,10,8,16,18,19,7,3,11,14][i%17]);
+    const plantCipher=knownPlain.map((x,i)=>mod(x-sign*key[i]));
+    assert.deepEqual(plantCipher.map((x,i)=>mod(x+sign*key[i])),knownPlain);
+    directPads.push({orientation,sign,decodedIoC:ioc(restored),
+      first30RuneIndices:restored.slice(0,30),
+      allOriginalReencrypted:true,positive238Recovered:true});
+  }
+}
+assert.deepEqual(directPads.map(x=>Number(x.decodedIoC.toFixed(10))),
+  [0.0362727369,0.0348544481,0.0343580470,0.0348189909]);
+
 console.log(JSON.stringify({
   source:'original table factorization and 238-rune physical p36',
   independentlyMarkedPolynomials:{p3:[13,23,2],p39:[27,5,15]},
   p36Length:target.length,largeFactorDegree:canon.length-1,
   candidate:'238 nonleading source coefficients as known plaintext; unknown additive keystream must obey each source-selected linear factor',
-  results,interpretation:'all 12 natural source-factor additive-key continuations rejected; all 12 source-native plants recovered; no unknown LP2 plaintext'
+  results,directFactorPad:{originalIoC:ioc(target),cases:directPads},interpretation:'all 12 natural source-factor additive-key continuations rejected; all 12 source-native plants recovered; no unknown LP2 plaintext'
 },null,2));
