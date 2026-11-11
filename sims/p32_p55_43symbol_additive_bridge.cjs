@@ -100,6 +100,53 @@ const signedWordPrimeSums = signedWords.map(word =>
   encodeGP(word).reduce((sum, rune) => sum + corpus.prime[rune], 0));
 const signedWordPrimeKey = signedWordPrimeSums.map(sum => mod(sum));
 
+// Keyless gate for the source-order 43 signed-word initials versus the
+// source-visible 43 p55 interior runes. A fixed cipher-to-plaintext
+// substitution must map every occurrence of one cipher rune consistently.
+const signedInitials = signedWords.map(word => LETTERS[word[0].toUpperCase()]);
+const initialsByCipher = new Map();
+for (let i = 0; i < inner55.length; i++) {
+  const cipher = inner55[i];
+  const initial = signedInitials[i];
+  if (!initialsByCipher.has(cipher)) initialsByCipher.set(cipher, new Map());
+  const occurrences = initialsByCipher.get(cipher);
+  occurrences.set(initial, (occurrences.get(initial) || 0) + 1);
+}
+let minimumInitialErrors = 0;
+for (const occurrences of initialsByCipher.values()) {
+  const counts = [...occurrences.values()];
+  minimumInitialErrors += counts.reduce((sum, n) => sum + n, 0) - Math.max(...counts);
+}
+let equalCipherPairs = 0;
+let conflictingInitialPairs = 0;
+for (let i = 0; i < inner55.length; i++) {
+  for (let j = i + 1; j < inner55.length; j++) {
+    if (inner55[i] === inner55[j]) {
+      equalCipherPairs++;
+      if (signedInitials[i] !== signedInitials[j]) conflictingInitialPairs++;
+    }
+  }
+}
+assert.strictEqual(inner55[0], inner55[14]); // source p55 positions 1 and 15 both M
+assert.notStrictEqual(signedInitials[0], signedInitials[14]); // Hello H, Its I
+assert.strictEqual(minimumInitialErrors, 21);
+assert.strictEqual(equalCipherPairs, 31);
+assert.strictEqual(conflictingInitialPairs, 30);
+const signedWordInitialGate = {
+  initialStream: tokens(signedInitials),
+  cipherUniqueRunes: initialsByCipher.size,
+  minStationaryCipherToInitialErrors: minimumInitialErrors,
+  sameCipherPairs: equalCipherPairs,
+  incompatiblePairs: conflictingInitialPairs,
+  sourceWitness: {
+    positionsOneBased: [1, 15],
+    cipherRune: token(inner55[0]),
+    words: [signedWords[0], signedWords[14]],
+    initials: [token(signedInitials[0]), token(signedInitials[14])]
+  }
+};
+
+
 const training = encodeGP(shakespeare.slice(0, 240000));
 const unigramCounts = new Uint32Array(MOD);
 const bigramCounts = new Uint32Array(MOD * MOD);
@@ -255,6 +302,7 @@ const report = {
   },
   outputs,
   signedMessagePrimeSumKey: signedPrimeSumKeyResult,
+  signedWordInitialStationaryMapGate: signedWordInitialGate,
   conclusion: 'The six fixed p32-compass additive/Beaufort alignments and the direct source-order 43-word GP-prime-sum key do not recover p55 plaintext. This rejects only these stationary additive readings; it does not test or exclude nonlinear, stateful, or differently keyed mechanisms.',
 };
 console.log(JSON.stringify(report, null, 2));
