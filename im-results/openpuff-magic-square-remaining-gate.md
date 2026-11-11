@@ -13,11 +13,53 @@ The two remaining squares were tested in two source-constrained roles:
 1. **Direct additive GP29 key:** row-major cell values reduced modulo 29; both the full cell count and the count minus the repeated closing cell; both signs; global stream and page-local reset. This is 16 models.
 2. **Hill matrix over F29:** the matrix, transpose, inverse, and inverse-transpose; every block phase; global stream and page-local reset. This is 96 models.
 
-The best Hill score was **−5.13033** (7×7, inverse-transpose, page reset, phase 4). The best additive score was **−5.13166** (7×7, period 48, negative sign, page reset). The uniform-random bigram baseline was **−5.17313**; held-out Shakespeare English scored **−2.66335**. These outputs remain essentially random, not partial plaintext.
+The best Hill score is now **−5.11484** (the p57-selected inner 5×5 φ matrix, inverse, global clock, phase 3). The best additive score is **−5.12991** (the inner 5×5 raw matrix, period 25, positive sign, global clock). The uniform-random bigram baseline is **−5.17313**; held-out Shakespeare English scores **−2.66335**. The new inner-core variants remain essentially random, not partial plaintext.
 
 The matrices are invertible modulo 29 (determinants 10 and 2), so the negative result is not caused by singular matrices. Reproduce with:
 
 \`node sims/openpuff_magic_square_remaining_gate.cjs\`
+
+## p57 parable: peel the 7x7 square's circumferences and test its inner cores
+
+**Source-constrained hypothesis (Agent 5, 11 November 2026).** The p57 heading **PARABLE** has seven letters, and its text says to "shed our own circumferences" and find what is within. A human solver could therefore take the historical 7x7 / 1033 OpenPuff square, remove its one-cell outer border, and examine the resulting 5x5 core. The plural "circumferences" also licenses one further peel, leaving the central 3x3. The independent 2013 WISDOM instruction that the totient function is sacred motivates testing both raw cores and their cellwise Euler-φ transforms. This is a hypothesis about an intended operation, not evidence that the authors intended a Hill cipher.
+
+Removing one outer ring gives the following 5x5 core, in original row-major order:
+
+```text
+223  14  47 293  98
+232 121 114  72  23
+ 65 270 331 270  65
+ 23  72 114 121 232
+ 98 293  47  14 223
+```
+
+The raw and cellwise-φ determinants are **8** and **27 mod 29**. Both are invertible. Its Hill family comprises raw and φ matrices; (M,M^T,M^{-1},(M^{-1})^T); all five block phases; global and page-reset clocks (**80 models**). The additive family uses raw and φ row-major cells, periods 25 and 24 (treating the repeated first/last cell as a closing duplicate or a full period), both signs, and both clocks (**16 models**).
+
+Removing the 5x5 core's outer ring gives the central 3x3:
+
+```text
+121 114  72
+270 331 270
+ 72 114 121
+```
+
+Its cellwise-φ core is:
+
+```text
+110  36  24
+ 72 330  72
+ 24  36 110
+```
+
+The raw and φ 3x3 determinants are **2** and **27 mod 29**. Its 48 Hill variants (four orientations, three phases, two clocks, two matrices) and 16 additive variants (periods 9/8, both signs, two clocks) also remain nonlinguistic. Best inner-3 Hill score is **−5.12902** (raw matrix inverse, global clock, phase 0); best inner-3 additive score is **−5.13390** (φ core, period 9, negative sign, global clock). The center **331** is the 67th prime; its direct p67 prime-totient start is already covered by the 2-million-start search in [the prime/totient audit](prime-totient-unknown-index-literalF-recovery.md), so it is not repeated here.
+
+Across both peeled cores, the new suite adds **128 Hill models and 32 additive models**. The same frozen Shakespeare bigram model gives raw-cipher score **−5.19290**, held-out English **−2.66335**, and uniform-random baseline **−5.17313**. Best inner-core Hill score is **−5.11484** (the φ inner-5 matrix, inverse, global clock, phase 3); best additive score is **−5.12991** (the raw inner-5 matrix, period 25, positive sign, global clock). These small shifts around the random baseline are not plaintext; all previews remain nonlinguistic. The best Hill candidate remains about **2.45 nats/rune** below held-out English.
+
+The executable checks exact synthetic Hill and additive round trips for every new matrix and phase. Reproduce all original and derived-square tests with:
+
+`node sims/openpuff_magic_square_remaining_gate.cjs`
+
+**Decision:** the p57 border-stripping interpretation is now a bounded negative for both the once-peeled inner 5x5 and twice-peeled inner 3x3, under direct GP29 Hill and additive uses, including cellwise φ transforms. Do not continue by trying arbitrary inner-ring transpositions, offsets, or custom mappings; a further test needs an independent source clue selecting a different operation.
 
 ## Seven cuneiform pages: shared-column key-free obstruction
 
@@ -197,12 +239,12 @@ the only fitted quantity is the layout proposed before examining matches.
 
 The archived OpenPuff procedure specifies OpenPuff 4.0.0, the carrier \`interconnected.mp3\`, 50% MP3 bit selection, and password **33011103**. The often-copied **33011033** is an alternate transcription, not the password in that procedure. The sixth-onion page then explicitly asks participants to submit the three magic squares and a Tor hidden-service upload endpoint. That is direct evidence for a submission/credential role; it is not an instruction to reuse the squares as an LP2 cipher key.
 
-The first two squares have now failed the simplest reversible GP29 interpretations tested here. The third square is the 5×5 / 1033 square already tested in the linked report. This makes a direct additive or Hill-key role for the three-square set less plausible, while preserving the historically established submission role.
+The first two squares and both p57-selected border-stripped inner cores have now failed the tested direct reversible GP29 additive/Hill interpretations. The third square is the 5×5 / 1033 square already tested in the linked report. This makes a direct additive or Hill-key role for the three-square set less plausible, while preserving the historically established submission role.
 
 ## Scope and limits
 
 - The key sequence uses the published row-major order and the natural top-left start; no arbitrary key search was performed.
-- The Hill test covers the four natural matrix orientations and every block phase.
+- The Hill test covers the four natural matrix orientations and every block phase for both original squares and the derived raw/φ inner 5×5 and inner 3×3 matrices.
 - This does **not** test every possible use of the squares, such as a different transposition or a separately specified nonlinear schedule.
 - This does **not** test OpenPuff steganographic extraction from LP2 JPEGs. The historical OpenPuff stage used an MP3. The available [LibrePuff carrier dispatcher](https://github.com/tweqx/LibrePuff/blob/master/librepuff/src/carrier.rs) currently implements the WAV parser and leaves other carrier types unimplemented; its [WAV parser](https://github.com/tweqx/LibrePuff/blob/master/librepuff/src/parser/wav.rs) is not a JPEG implementation. Do not treat this key test as a negative JPEG-steganography test.
 

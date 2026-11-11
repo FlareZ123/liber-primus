@@ -147,15 +147,36 @@ function matrixVector(matrix, vector) {
   );
 }
 
-function decodeHill(sequence, encryptionMatrix, phase) {
+function encodeHill(sequence, encryptionMatrix, phase) {
   const blockSize = encryptionMatrix.length;
-  const decryptionMatrix = matrixInverse(encryptionMatrix);
   const output = sequence.slice();
   for (let start = phase; start + blockSize <= sequence.length; start += blockSize) {
-    const plain = matrixVector(decryptionMatrix, sequence.slice(start, start + blockSize));
-    for (let j = 0; j < blockSize; j++) output[start + j] = plain[j];
+    const cipher = matrixVector(encryptionMatrix, sequence.slice(start, start + blockSize));
+    for (let j = 0; j < blockSize; j++) output[start + j] = cipher[j];
   }
   return output;
+}
+
+function decodeHill(sequence, encryptionMatrix, phase) {
+  return encodeHill(sequence, matrixInverse(encryptionMatrix), phase);
+}
+
+function eulerPhi(n) {
+  let x = n;
+  let result = n;
+  for (let p = 2; p * p <= x; p++) {
+    if (x % p !== 0) continue;
+    while (x % p === 0) x /= p;
+    result -= result / p;
+  }
+  if (x > 1) result -= result / x;
+  return Math.round(result);
+}
+
+function assertSame(a, b, label) {
+  if (a.length !== b.length || a.some((value, i) => value !== b[i])) {
+    throw new Error("Round-trip failed: " + label);
+  }
 }
 
 function round(value) {
@@ -164,9 +185,17 @@ function round(value) {
 
 const hillResults = [];
 const padResults = [];
+const inner5Raw = squares[1].slice(1, 6).map((row) => row.slice(1, 6));
+const inner5Phi = inner5Raw.map((row) => row.map(eulerPhi));
+const inner3Raw = squares[1].slice(2, 5).map((row) => row.slice(2, 5));
+const inner3Phi = inner3Raw.map((row) => row.map(eulerPhi));
 const testedSquares = [
   { name: "OpenPuff 5x5 / magic sum 3301", matrix: squares[0] },
-  { name: "OpenPuff 7x7 / magic sum 1033", matrix: squares[1] }
+  { name: "OpenPuff 7x7 / magic sum 1033", matrix: squares[1] },
+  { name: "OpenPuff 7x7 border-stripped inner 5x5 / raw", matrix: inner5Raw },
+  { name: "OpenPuff 7x7 border-stripped inner 5x5 / Euler phi", matrix: inner5Phi },
+  { name: "OpenPuff 7x7 twice-border-stripped inner 3x3 / raw", matrix: inner3Raw },
+  { name: "OpenPuff 7x7 twice-border-stripped inner 3x3 / Euler phi", matrix: inner3Phi }
 ];
 
 for (const { name, matrix } of testedSquares) {
@@ -189,6 +218,13 @@ for (const { name, matrix } of testedSquares) {
           ? scoreSequence(decoded)
           : scorePages(decoded);
         hillResults.push({ name, variant, mode, phase, score: round(score) });
+        const plantLength = Math.floor(1000 / n) * n;
+        const plant = control.slice(0, plantLength);
+        assertSame(
+          decodeHill(encodeHill(plant, transform, phase), transform, phase),
+          plant,
+          name + "/" + variant + "/" + mode + "/" + phase
+        );
       }
     }
   }
@@ -207,6 +243,10 @@ for (const { name, matrix } of testedSquares) {
           ? scoreSequence(decoded)
           : scorePages(decoded);
         padResults.push({ name, period, sign, mode, score: round(score) });
+        const plant = control.slice(0, 1000);
+        const encrypted = plant.map((plain, i) => mod(plain + sign * key[i % period]));
+        const recovered = encrypted.map((cipher, i) => mod(cipher - sign * key[i % period]));
+        assertSame(recovered, plant, name + "/pad/" + period + "/" + sign + "/" + mode);
       }
     }
   }
@@ -227,12 +267,19 @@ const output = {
       logP.flat().reduce((sum, value) => sum + value, 0) / (29 * 29)
     )
   },
-  squares: testedSquares.map(({ name, matrix }) => ({
-    name,
-    size: matrix.length,
-    magicConstant: matrix[0].reduce((sum, value) => sum + value, 0),
-    determinantMod29: determinantMod(matrix)
-  })),
+  squares: testedSquares.map(({ name, matrix }) => {
+    const rowSums = matrix.map((row) => row.reduce((sum, value) => sum + value, 0));
+    const columnSums = matrix[0].map((_, col) =>
+      matrix.reduce((sum, row) => sum + row[col], 0)
+    );
+    const magicConstant = rowSums.every((x) => x === rowSums[0]) &&
+      columnSums.every((x) => x === columnSums[0]) &&
+      rowSums[0] === columnSums[0] ? rowSums[0] : null;
+    return {
+      name, size: matrix.length, magicConstant, rowSums, columnSums,
+      determinantMod29: determinantMod(matrix)
+    };
+  }),
   hillModels: hillResults.length,
   additiveModels: padResults.length,
   bestHill,
@@ -245,6 +292,6 @@ const output = {
     name,
     best: byScore(padResults.filter((x) => x.name === name))[0]
   })),
-  conclusion: "No English plaintext recovered; both source-locked interpretations score near the uniform-random baseline."
+  conclusion: "No English plaintext recovered; the original squares and the parable-selected border-stripped inner 5x5 and 3x3 variants score near the uniform-random baseline."
 };
 console.log(JSON.stringify(output, null, 2));

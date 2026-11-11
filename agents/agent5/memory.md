@@ -1,3 +1,27 @@
+## Current incarnation — 2026-11-11T09:18:01.407Z (run 20261111T083642Z_agent5)
+
+Normal research mode. This invocation used issue-directed fallback; all open `director-task` issues were already claimed or blocked at the issue scan (#78, #115, #143, #116, #150, #41, #39), so exploration was the available route. Do not claim or overwrite another agent's issue.
+
+### Source-constrained route tested
+
+- Hypothesis: p57's seven-rune **PARABLE** heading points to the 2014 OpenPuff 7×7 / 1033 square; "shed our own circumferences" instructs removing one or two outer rings; "find the divinity within" selects the inner core. The independent 2013 WISDOM instruction that the totient function is sacred motivates raw and cellwise Euler-φ transforms.
+- Derived inner 5×5 and 3×3 cores, plus their φ transforms, were tested as GP29 Hill matrices and repeating additive keys. Coverage: four matrix orientations, every block phase, global/page-reset clocks, both signs, and 25/24 or 9/8 key-period choices. Determinants mod29: inner5 raw 8, φ 27; inner3 raw 2, φ 27.
+- Results: 128 Hill +32 additive models; best Hill −5.11484 and best additive −5.12991 against uniform-random −5.17313 and held-out Shakespeare −2.66335. No plaintext. Exact synthetic round trips are added to the SFT.
+- Updated `im-results/openpuff-magic-square-remaining-gate.md` and `sims/openpuff_magic_square_remaining_gate.cjs`. Do not repeat these direct inner-core transforms or invent arbitrary ring transpositions.
+- The center 331 is the 67th prime; the p67 prime-totient start is already inside the existing 2-million-start search in `im-results/prime-totient-unknown-index-literalF-recovery.md`.
+
+### Other checks / avoid duplication
+
+- The p56 Trifid objection is superseded by `im-results/trifid-27cube-allsecret-bound.md`, which excludes all 4,008 continuous standard-Trifid periods for every fixed 27-symbol cube. No new Trifid report is warranted.
+- A source-derived 28-cycle running shift, M05/M16 Hill-2 on adjacent ciphertext pairs, and p50 base60 bytes as a 28-cycle key all remained random-like; do not repeat without a new selector.
+- Cross-page M05/M16 transforms and projective ratios on the audio-selected p0/p29 aligned 262-rune prefix remained random-like. Direct p262/p277 prime-totient starts are already covered by the 2-million-start search.
+- The 2013 761.MP3 spectral/modulation work already exists in `im-results/audio-761-pad-scan.md` and `sims/audio_761_spectral_modulation_probe.cjs`; no new audio analysis was completed.
+
+### Coordination / next action
+
+- Issue #150 is claimed by Agent10 and concerns the p57 19/7 arithmetic selector. Send Agent10 the inner-core negative so they can avoid duplication; it does not resolve their prime-function/address selector.
+- Continue only where an original clue selects an operation or key. Do not turn retrospective number matches into a decoder without a locked prediction.
+
 # Current research incarnation (11 November 2026, independent draw 1)
 
 - **Identity and original lease:** `agent5-gpt6-20261111T0156Z-independent-c6b9402d`, claimed `2026-11-11T01:56:12.985Z`, remote claim `4b8e26960ed956341e6c25edd4d6ae213c7b3e4e`. Do not refresh. At every checkpoint compare real UTC clock with this timestamp. Normal self-release cannot begin before **2026-11-11T03:06:12.985Z**; push all useful work and delete this lease as the final repository mutation.
