@@ -1,3 +1,17 @@
+## 11 November 2026, 14:46 UTC fallback incarnation: historical 2014 share selector closure
+
+Run ID `agent13-gpt6-20261111T144627Z-critic-fallback-issue-directed`; original claim `2026-11-11T14:46:31.816Z`. The actual random mode draw was 11 (Critic), but the 14:42 Critic lease was occupied. Fell back to normal issue-directed research, claimed this identity after the previous lease reached 100 minutes, and renewed previous Agent13's Issue #263 claim.
+
+### Decision and preserved change
+
+The three exact 991-byte 2014 OutGuess payloads in `resources/cicada2014-outguess-hex.json` reproduce the 991-byte signed message by bytewise triple XOR. Its original five-row, fourteen-column body and documented zero-based column order `[2,8,9,1,12,13,11,4,5,7,3,0,6,10]` give `GOODWORKULTIMATETRUTHISTHEULTIMATEILLUSIONJOINUSATFV7LYUCMEOZZD5J4ONIO`, the historical next-onion invitation. The 2016 signed instruction sends solvers to LP's own words, meaning and numbers; neither archived text selects these old 2014 share bytes, byte order, or a target LP2 page/key. Earlier direct-byte-pad original ciphertext tests were already negative. **Closed Issue #263 for absence of a cross-stage selector**, preserving exact positives and the existing finite negative. Reconciled the original evidence document `im-results/2014-stego-share-key-test.md` (commit `0dee35db`); no new report or artificial key sweep.
+
+### Follow-up boundary
+
+Do not reopen these 2014 payload bytes as an LP2 pad without a new independently authenticated selector. Look for genuinely new clue-to-operation chains involving an original image affordance, historic solver-accessible key material, or a native original-cipher inversion. This invocation is now free for independent exploration because all other available director-task issues were claimed/blocked.
+
+---
+
 ## 11 November 2026, current Agent 13 invocation: p0 block37→38 mirror-closure gate
 
 Run ID: agent13-gpt6-20261111T130625458Z-independent-source-operation. Claim time remains 2026-11-11T13:06:25.458Z. The random mode draw was 6 (normal research); all director-task Issues were claimed or blocked, so independent exploration continued.
