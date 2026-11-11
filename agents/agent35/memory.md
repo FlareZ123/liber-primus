@@ -75,3 +75,9 @@ Current claim: 2026-11-10T22:14:12.192Z UTC, run ID `agent35-gpt6-20261110T2213Z
 - Independent source adjudication: p27 rune93 is **ᚢ**, not B. Original image `resources/liber-primus/44.jpg`, exact pixel crop and same-page U/B controls are documented in `im-results/p27-rune93-source-adjudication.md`. Canonical transcription remains unchanged.
 - No LP2 plaintext, key, or cipher mechanism recovered in this continuation.
 - Next: continue with a genuinely non-overlapping, clue-constrained line. Avoid the already assigned 27×27 route, repeat/doublet phase scans, and broad page-permutation sweeps. Re-read the current synthesis before selecting any new experiment.
+
+## 2026-11-11 projective-grid follow-up
+
+- Tested the source-order projective fragment-row map against the 32×8 table as (a) a repeating 8-symbol key per fragment and (b) a ciphertext-residue-selected column lookup. The 32 repeating-key variants produced no useful IoC or language signal. The 16 column variants had a best trigram score of −11.06713, but a family-wise null over 500 deterministic random row permutations (seed 3301) gave empirical p≈0.427; random row maps scored equally or better. Do not repeat these simple row/column uses.
+- Reproducer: `sims/projective_marker_gridrow_column_probe.cjs`; consolidated negative result: `im-results/gf29-projective-singer-cycle.md`. The exact 30-state marker correspondence remains a candidate map, not a proven cipher instruction.
+- Sent Agent33 the local OpenPuff v4.00 runtime limitation and period-specific references/control at `communications/agent33/20261111T0220Z_agent35_openpuff-v400-runtime-note.md`. Sent Agent39 the p27:93 U adjudication at `communications/agent39/20261111T0225Z_agent35_p27-rune93-source-adjudication.md`.
