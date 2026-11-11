@@ -10,23 +10,21 @@
  * (29-k+1) input counts into one output class and leaving the rest singleton.
  * This gives an exact key-independent upper bound on plaintext IoC.
  *
- * Also checks natural alias-class shapes (e.g. three pairs for 29 -> 26),
- * and the source-defined nine-body partition as a more permissive per-body
- * mapping control. No key search or language-model optimization is used.
+ * Controls are raw alphabetic English letters (26 symbols), not GP29
+ * transliterations. The solved LP1 control uses only LP1 pages 1-16, excluding
+ * the solved LP2 pages and their hexadecimal hash.
  *
  * Run: node sims/homophonic_downward_surjection_ioc_bound.cjs
  */
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { encode } = require("./word_partition_invariant.cjs");
 
 const ROOT = path.resolve(__dirname, "..");
 const read = p => fs.readFileSync(path.join(ROOT, p), "utf8");
 const GP_SIZE = 29;
 const TOTAL = 12956;
 const BODY_LENGTHS = [729, 1145, 1738, 1894, 1021, 1433, 91, 1589, 3316];
-const LATIN_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRS";
 
 function ioc(values) {
   const counts = new Map();
@@ -109,41 +107,27 @@ function splitBodies(values) {
 }
 
 function loadControls() {
-  const shakespeareWords = (read("resources/control/shakespeare_first300k.txt")
-    .toUpperCase().match(/[A-Z]+/g) || []).map(encode);
-  const shakespeare = shakespeareWords.flat().slice(0, TOTAL);
+  const shakespeareText = read("resources/control/shakespeare_first300k.txt")
+    .toUpperCase();
+  const shakespeare = (shakespeareText.match(/[A-Z]/g) || [])
+    .slice(0, TOTAL)
+    .map(letter => letter.charCodeAt(0) - 65);
   assert.equal(shakespeare.length, TOTAL);
-
-  const latinText = read("resources/control/latin-vulgate-gp-wholewords.txt")
-    .split(/\r?\n/)
-    .filter(line => line && !line.startsWith("#"))
-    .join("");
-  const latin = [...latinText]
-    .filter(symbol => LATIN_ALPHABET.includes(symbol))
-    .map(symbol => LATIN_ALPHABET.indexOf(symbol))
-    .slice(0, TOTAL);
-  assert.equal(latin.length, TOTAL);
-
-  const oldEnglishProfile = JSON.parse(
-    read("resources/control/beowulf_oe_gp_profile_corrected.json")
-  );
-  const oldEnglishAlphabet = oldEnglishProfile.positiveControlAlphabet;
-  const oldEnglish = [...oldEnglishProfile.positiveControlGpBase29]
-    .map(symbol => oldEnglishAlphabet.indexOf(symbol));
-  assert.equal(oldEnglish.length, TOTAL);
-  assert.ok(oldEnglish.every(symbol => symbol >= 0 && symbol < GP_SIZE));
+  assert.ok(shakespeare.every(letter => letter >= 0 && letter < 26));
 
   const lp1Text = read("resources/liber-primus/lp1-plaintext-reference.txt")
+    .split("### 56")[0]
+    .replace(/^#.*$/gm, " ")
     .replace(/\[[^\]]*\]/g, " ")
-    .replace(/(?:^|\n)### [^\n]*\n/g, " ")
     .toUpperCase();
-  const lp1 = (lp1Text.match(/[A-Z]+/g) || []).map(encode).flat();
+  const lp1 = (lp1Text.match(/[A-Z]/g) || [])
+    .map(letter => letter.charCodeAt(0) - 65);
+  assert.equal(lp1.length, 3229);
+  assert.ok(lp1.every(letter => letter >= 0 && letter < 26));
 
   return [
-    { name: "English / Shakespeare", values: shakespeare },
-    { name: "Latin / Vulgate", values: latin },
-    { name: "Old English / Beowulf", values: oldEnglish },
-    { name: "Solved LP1 English", values: lp1 }
+    { name: "English / Shakespeare raw A-Z", values: shakespeare },
+    { name: "Solved LP1 plaintext raw A-Z (pages 1-16)", values: lp1 }
   ];
 }
 
@@ -163,9 +147,8 @@ function run() {
   const controls = loadControls();
   const globalControls = controls.map(control => ({
     name: control.name,
-    symbols: control.values.length,
-    ioc: Number(ioc(control.values).toFixed(9)),
-    max26: Number(maxSurjectionIoC(control.values, 26).toFixed(9))
+    letters: control.values.length,
+    ioc: Number(ioc(control.values).toFixed(9))
   }));
 
   const maxByK = {};
@@ -192,44 +175,31 @@ function run() {
   );
 
   const unknownBodies = splitBodies(unknown);
-  const controlBodies = controls.slice(0, 3).map(control => ({
-    name: control.name,
-    bodies: splitBodies(control.values)
-  }));
+  const englishBodies = splitBodies(controls[0].values);
   const perBody = unknownBodies.map((body, index) => {
-    const controlsForBody = controlBodies.map(control => ({
-      name: control.name,
-      ioc: Number(ioc(control.bodies[index]).toFixed(9))
-    }));
+    const englishIoC = ioc(englishBodies[index]);
     const max26 = maxSurjectionIoC(body, 26);
     return {
       body: index + 1,
       runes: body.length,
       originalIoC: Number(ioc(body).toFixed(9)),
       maximum29to26IoC: Number(max26.toFixed(9)),
-      controls: controlsForBody,
-      allThreeControlsAboveBound: controlsForBody.every(control => control.ioc > max26)
+      rawEnglishIoC: Number(englishIoC.toFixed(9)),
+      englishAboveBound: englishIoC > max26
     };
   });
   const substantialBodies = perBody.filter(body => body.runes >= 700);
-  assert.ok(substantialBodies.every(body => body.allThreeControlsAboveBound));
+  assert.ok(substantialBodies.every(body => body.englishAboveBound));
 
   const globalMax26 = maxSurjectionIoC(unknown, 26);
+  const globalMax25 = maxSurjectionIoC(unknown, 25);
   assert.ok(controls.every(control => ioc(control.values) > globalMax26));
-
-  const positiveControls = controls.map(control => ({
-    name: control.name,
-    k26: maximizingSurjection(control.values, 26),
-    k25: maximizingSurjection(control.values, 25)
-  }));
-  const unknownPositiveControl = {
-    k26: maximizingSurjection(unknown, 26),
-    k25: maximizingSurjection(unknown, 25)
-  };
+  assert.ok(controls.every(control => ioc(control.values) > globalMax25));
+  assert.ok(maxSurjectionIoC(unknown, 24) > ioc(controls[0].values));
 
   return {
     classification: "key-independent upper bound; no plaintext or key recovered",
-    model: "static surjective many-to-one map from the 29 GP ciphertext symbols onto k plaintext symbols",
+    model: "static surjective many-to-one map from the 29 GP ciphertext symbols onto k plaintext letters",
     input: {
       runeCount: unknown.length,
       alphabetSize: GP_SIZE,
@@ -238,35 +208,33 @@ function run() {
       corpusBlobSha: "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
     },
     exactMaximumByPlaintextAlphabetSize: maxByK,
-    nativeLanguageControls: globalControls,
+    rawAlphabeticControls: globalControls,
     aliasClassShapeBounds: {
       k26: shapeBounds(shapes26),
       k25: shapeBounds(shapes25)
     },
     maximizingSurjectionPositiveControls: {
-      originalLP2: unknownPositiveControl,
-      nativeControls: positiveControls
+      k26: maximizingSurjection(unknown, 26),
+      k25: maximizingSurjection(unknown, 25)
     },
     nineSourceBodyPerBodyK26Bounds: {
       bodyLengths: BODY_LENGTHS,
       rows: perBody,
       substantialBodies: substantialBodies.length,
-      allSubstantialBodiesBelowAllThreeControls:
-        substantialBodies.every(body => body.allThreeControlsAboveBound)
+      allSubstantialBodiesBelowRawEnglishControl:
+        substantialBodies.every(body => body.englishAboveBound)
     },
     decision: {
       k26GlobalMaximum: Number(globalMax26.toFixed(9)),
-      minimumNativeControlIoC: Math.min(...controls.map(control => ioc(control.values))),
-      k26: "excluded for a fixed global 29->26 surjection against all four controls; a per-body 29->26 map also fails in each of the eight bodies >=700 runes",
-      k25: "not excluded by the most permissive bound only when one plaintext class has five ciphertext homophones; all other tested k25 class shapes remain below controls",
-      remaining: "k<=25 with nontrivial class structure, evolving mappings, variable-length outputs, and non-GP registers are not solved or excluded"
+      k25GlobalMaximum: Number(globalMax25.toFixed(9)),
+      minimumRawEnglishControlIoC: Math.min(...controls.map(control => ioc(control.values))),
+      k25: "excluded for a fixed global 29->25 map against both raw English controls, even under the one-five-way-class maximum",
+      k26: "excluded for a fixed global 29->26 map; per-body 29->26 also fails in each of the eight bodies >=700 runes",
+      remaining: "k<=24, per-body k<=25, evolving mappings, variable-length outputs, and non-English registers are not solved or excluded"
     },
     sourceHashes: {
       shakespeare: "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
-      latinVulgate: "fd15f9c814291e551c4b8b93337b4245a095ea85",
-      oldEnglishProfile: "445eb016711fc9f36d17bd10de544c3ff378fcbe",
-      lp1Plaintext: "beb43aac08b8482590c4430aadd1ee91da3876a0",
-      encoder: "07c0c5e1f445c071277160d276ad947dd7130452"
+      lp1Plaintext: "beb43aac08b8482590c4430aadd1ee91da3876a0"
     }
   };
 }
