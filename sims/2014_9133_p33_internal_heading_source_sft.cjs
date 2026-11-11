@@ -90,6 +90,62 @@ assert.deepEqual(words.filter(w => w.start >= 91 && w.start < 99),
   [{start:91, length:3}, {start:94, length:5}]);
 const next = words.find(w => w.start === 99);
 assert.deepEqual(next, {start:99, length:6});
+// The four-digit historical suffix is itself prime. Test the two unfitted
+// direct applications of the *known solved-p56 running phi(prime)* cipher,
+// starting at that literal prime at the proposed p33:91 entry. This is only
+// the narrow direct transfer; unknown interrupters or additional layers
+// are not inferred or tuned from the ciphertext.
+const segments = [
+  corpus.pages.find(page => page.page === 33).indices.slice(91),
+  ...corpus.pages.filter(page => page.page >= 34 && page.page <= 38).map(page => page.indices),
+  corpus.pages.find(page => page.page === 39).indices.slice(0, 119)
+];
+const illustratedCipher = segments.flat();
+assert.equal(illustratedCipher.length, 1468);
+const endOfPage39 = corpus.pages.find(page => page.page === 39).indices;
+const fullToEnd = [
+  ...illustratedCipher,
+  ...endOfPage39.slice(119)
+];
+assert.equal(fullToEnd.length, 1589);
+/** @param {number} candidate */
+function prime(candidate) {
+  for (let factor = 2; factor * factor <= candidate; factor++) {
+    if (candidate % factor === 0) return false;
+  }
+  return candidate >= 2;
+}
+assert(prime(9133));
+/** @type {number[]} */
+const runningPrimes = [];
+for (let p = 9133; runningPrimes.length < fullToEnd.length; p++) {
+  if (prime(p)) runningPrimes.push(p);
+}
+/** @param {number[]} data */
+function coincidence(data) {
+  const counts = Array(29).fill(0);
+  for (const value of data) counts[value]++;
+  return counts.reduce((total, n) => total + n * (n - 1), 0) /
+    (data.length * (data.length - 1));
+}
+/** @param {number[]} data @param {-1|1} sign */
+function directPhi(data, sign) {
+  return data.map((value, i) => (
+    (value + sign * ((runningPrimes[i] - 1) % 29) + 29) % 29
+  ));
+}
+const originalIllustratedIoC = coincidence(illustratedCipher);
+const directPhiMinusIoC = coincidence(directPhi(illustratedCipher, -1));
+const directPhiPlusIoC = coincidence(directPhi(illustratedCipher, 1));
+assert(Math.abs(originalIllustratedIoC - 0.03431255096222248) < 1e-12);
+assert(Math.abs(directPhiMinusIoC - 0.0344174936709331) < 1e-12);
+assert(Math.abs(directPhiPlusIoC - 0.03433762576872856) < 1e-12);
+assert(directPhiMinusIoC < 0.04 && directPhiPlusIoC < 0.04);
+const directPhiFullMinusIoC = coincidence(directPhi(fullToEnd, -1));
+const directPhiFullPlusIoC = coincidence(directPhi(fullToEnd, 1));
+assert(Math.abs(directPhiFullMinusIoC - 0.03445285836346545) < 1e-12);
+assert(Math.abs(directPhiFullPlusIoC - 0.034407680004058125) < 1e-12);
+
 const out = {
   historical: {originalLength:56, phraseLength:36, onionLength:16,
     unexplainedSuffix:'9133'},
@@ -98,6 +154,17 @@ const out = {
   markedRedTitleWordLengths:[3, 5],
   nextBodyWordLength:next.length,
   literal2014PhraseFirstWordLengths:[2, 7],
+  source9133IsPrime:true,
+  directPrimeTotientOnOriginal: {
+    illustratedRuneCount:illustratedCipher.length,
+    illustratedOriginalIoC:originalIllustratedIoC,
+    seed9133MinusIoC:directPhiMinusIoC,
+    seed9133PlusIoC:directPhiPlusIoC,
+    fullThroughPage39RuneCount:fullToEnd.length,
+    fullSeed9133MinusIoC:directPhiFullMinusIoC,
+    fullSeed9133PlusIoC:directPhiFullPlusIoC,
+    note:'no cipher-F passthrough; no original plaintext recovered'
+  },
   directWordAlignedHistoricalCrib:false,
   interpretation:'unselected coordinate hypothesis; 4-character transposition padding is a competing explanation'
 };
