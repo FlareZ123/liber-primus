@@ -22,6 +22,8 @@ The p57 ink annotation marks the seven-rune word **PARABLE** in red at offset 0.
 
 This turns the earlier numerical correspondence into a much more plausible human solve path: a solver sees the red word “PARABLE”, converts its runes using the manuscript's prime-weight convention, obtains 449, and is thereby directed to the historical Parable's 19-word structure and the 449-modular clause sums. The resulting 331 is the center of the seven-by-seven magic square and the Onion7 HTML div id; 133 is the HTML title and the 7×19 term. This is source-derived clue evidence, not a decryption of LP2.
 
+The historical continuation also exposes the two square constants **3301** (5×5) and **1033** (7×7). Their natural source-order concatenation is **33011033**, a candidate OpenPuff password now being tested by the JPEG-steganography investigation against its historical MP3 positive control and the LP2 carriers. This is a solve-path hypothesis, not a verified password or extracted payload.
+
 The updated reproducer asserts the red word, exact prime-weight vector, and equality with the 449 heading/modulus: [\`sims/onion7_parable19_nestedprime_sft.cjs\`](../sims/onion7_parable19_nestedprime_sft.cjs).
 
 ## Original text independently specifies 19 and 7
