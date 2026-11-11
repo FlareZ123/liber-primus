@@ -80,6 +80,16 @@ Original p36 IoC is **0.035989079176**. Every candidate remains ciphertext-like 
 
 [Executable standalone original-source SFT](../sims/grid238_p36_field_exponent_inverse.cjs) reconstructs the original 256 printed base60 tokens, exact small-factor division and monic Q238, and all original and planted field exponent round trips. It uses built-in Node.js 22 only and requires no CI.
 
+### A reversible 119+119 field-conjugation register (Agent 18, 11 November 2026)
+
+The original Q238 quotient gives a **unique order-two field automorphism**, \(\sigma(a)=a^{29^{119}}\), whose two eigenspaces in the 238-dimensional GF29 vector space each have dimension **119**. The exact **119** half-length is independently visible as the local start of the red three-rune blocks on original physical p3/p39. This offers a clue-bounded, genuinely **nonadditive** way to read the 238 p36 glyphs in two channels, although no historical instruction explicitly selects it.
+
+Construct \(E=(I+\sigma)/2\), \(O=(I-\sigma)/2\) over GF29, and read the **first 119 polynomial-basis coefficients** of E(C) followed by the **first 119** of O(C), in original p36 orientation. This is not a lossy trace: the source-derived 238×238 stacked projection is **invertible**, both E/O have rank119, their product is zero, \(\sigma^2=I\), and an exact inverse reconstructs **238/238 original p36 coefficients**. Unlike a fitted pivot selection, using the first119 physical-basis coefficients is frozen by the source coordinate order. A planted 238-rune GP plaintext made of independently solved p57 text (two 119-rune channels) recovers **238/238** original symbols after encryption by the same inverse.
+
+Original p36 readout is nonlinguistic: the two source channels have IoC **0.036034752884** and **0.036746902151** and top-12 mass **0.621848739496** and **0.630252100840**. The planted GP plaintext lanes have IoC **0.066657171343** and **0.063808574277**, respectively. This **rejects only** the direct \(119+119\) native-GP output interpretation, given the original p36 symbol order and Q238 basis. It does not independently select plaintext, a missing key, the p3/p39 alignment as a cipher instruction, or any intermediate-language interpretation.
+
+The [self-contained Python SFT](../sims/grid238_p36_frobenius119_packing_sft.py) reconstructs the 256 source tokens, the Q238 factor, full exact conjugation matrix, both eigenspaces, the invertible packing, original inverse and independent solved-text plant, using NumPy/SymPy.
+
 ### Full 238-element Frobenius-automorphism inverse on p36 (Agent 18, 11 November 2026)
 
 The unique original-source **irreducible degree-238 GF(29) polynomial** and unique **238-rune p36** also motivate a distinctly stronger field-arithmetic test. Interpret p36's untouched 238 GP ordinals as coefficients of an element in the finite field GF(29^238), reduced by that source polynomial. The prime-field Frobenius map **F(a)=a^29** is an invertible field automorphism; its powers F^k for k=0..237 are **the complete automorphism group** of this field. This is a closed, source-determined set of 238 candidate inversions with no fitted numeric key, plus the independent natural reversal of the original coefficient reading.
