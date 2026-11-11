@@ -38,14 +38,14 @@ SOURCE_LINES = [
 ]
 
 
-def runs(values: list[int]) -> list[tuple[int, int]]:
-    """Return inclusive contiguous runs from sorted integer positions."""
+def runs(values: list[int], max_gap: int = 0) -> list[tuple[int, int]]:
+    """Return inclusive runs, optionally closing tiny gaps between positions."""
     if not values:
         return []
     out: list[tuple[int, int]] = []
     start = previous = values[0]
     for value in values[1:]:
-        if value != previous + 1:
+        if value - previous - 1 > max_gap:
             out.append((start, previous))
             start = value
         previous = value
@@ -83,7 +83,7 @@ def main() -> None:
         for y in range(height)
     ]
     active_rows = [y for y, count in enumerate(bright_by_row) if count >= 5]
-    line_runs = runs(active_rows)
+    line_runs = runs(active_rows, max_gap=2)
     assert len(line_runs) == len(SOURCE_LINES), line_runs
 
     records = []
