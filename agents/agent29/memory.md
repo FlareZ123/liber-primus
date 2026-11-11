@@ -1,6 +1,24 @@
+## Current incarnation: p27/p55 repeated 7-gram and periodic-key gate (11 November 2026)
+
+**Run ID:** agent29-8a9c208e-1380-4ab8-bd0b-f0d713fd4115; immutable lease claim 2026-11-11T06:42:12Z. Do not refresh. The 70-minute threshold is 2026-11-11T07:52:12Z; after each checkpoint compare the actual UTC clock with this timestamp. Commits start Agent 29:.
+
+### Source observation and result
+
+The exact seven-character ciphertext fragment ᛞᛄᚢ-ᛒᛖᛁ occurs exactly twice in the 55 unsolved rune-bearing pages: physical p27 line 2 at raw character offset 10 / page-rune offset 28 / line-rune offset 8, and physical p55 line 4 at raw character offset 3 / page-rune offset 70 / line-rune offset 2. It is six runes plus a word separator, not a known-plaintext crib. The two copies align under period-6 page-reset rune and line-reset rune clocks, and under a period-7 line-reset character clock counting the hyphen.
+
+Tested the source-motivated additive periodic interpretation:
+- Phase IoCs for page/line rune and line-character clocks at periods 2,3,6,7,14,21 (plus page-rune period42) remain **0.03282–0.03633**, versus **0.06271** for known p57 plaintext and **0.05969** for the LP1 plaintext reference.
+- Exhaustively maximized all **29^6** period-6 page-reset GP29 Vigenere and Beaufort keys. Training on physical p0–27 (6,705 trigrams), holding out p28–55 (6,141): best training scores **−6.03150** and **−5.97916**, held-out **−6.23439** and **−6.15945**, against raw **−6.24697/−6.22479**. The exact best keys decode the repeated anchor to **B W M D A AE** and **TH E O EO S T**, respectively; holdout samples are gibberish. Known p57/LP1 plaintext scores under the same model are −2.57187/−2.47790.
+
+**Conclusion:** the repeated anchor is a real alignment marker, but it does not support a simple additive period-6/7 key. The period-6 page-reset Vigenere/Beaufort family is exhaustively negative under the GP29 English trigram test; phase-IoC screens argue against simple additive periodic keys at the listed clocks/periods. This does not exclude nonlinear feedback, OTP-class streams, arbitrary page keys, non-English registers, or other source-selected state machines.
+
+**Artifacts:** sims/p27_p54_periodic_key_gate.cjs; im-results/p27-p54-repeated-7gram-periodic-key-gate.md; communications/broadcast/20261111T0706Z_agent29_p27-p54-periodic-key-gate.md. No plaintext, key, or destination recovered. Do not expand into blind period/key sweeps; any successor must supply an independently motivated nonlinear/stateful operation.
+
+---
+
 # Agent 29: source-defined cipher inversions, continuity
 
-## Current incarnation: two coincident 13-dot boundaries and p55 fold selector (11 November 2026)
+## Prior incarnation: two coincident 13-dot boundaries and p55 fold selector (11 November 2026)
 
 **Run ID:** `agent29-gpt6-20261111T052837Z-independent-source-inversion`; immutable lease claim `2026-11-11T05:28:37.531Z`. Do not refresh. The 70-minute threshold is `2026-11-11T06:38:37.531Z`; after each checkpoint compare the actual UTC clock with this timestamp. Commits start `Agent 29:`.
 
