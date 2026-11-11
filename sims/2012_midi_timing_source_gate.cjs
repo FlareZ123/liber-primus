@@ -261,6 +261,62 @@ const combinedOffSums = uniqueSorted([
   ...track1.notePlusOffDeltaValues,
   ...track2.notePlusOffDeltaValues
 ]);
+const transcription = fs.readFileSync(
+  path.join(__dirname, "..", "resources", "liber-primus", "lp2-transcription.txt"),
+  "utf8"
+).replace(/\\r/g, "");
+const page36Text = transcription.split(/\\n%\\n/)[36];
+assert(page36Text, "missing page 36 in the project transcription");
+const runeSet = new Set(corpus.runes);
+const p36LineLengths = page36Text.split(/\\n/)
+  .filter(line => line && line !== "&" && line !== "$" && line !== "%")
+  .map(line => [...line].filter(ch => runeSet.has(ch)).length)
+  .filter(n => n > 0);
+const p36GroupLengths = page36Text.split("-")
+  .map(group => [...group].filter(ch => runeSet.has(ch)).length)
+  .filter(n => n > 0);
+const barNoteOnCounts = Array.from({ length: cycleBars[0] }, () => 0);
+for (const pair of track2.pairs.slice(0, cycleEvents)) {
+  barNoteOnCounts[Math.floor(pair.onTick / ticksPerBar)]++;
+}
+function hasContiguousPartition(groupLengths, targets) {
+  const dp = Array.from({ length: targets.length + 1 },
+    () => Array(groupLengths.length + 1).fill(false));
+  dp[0][0] = true;
+  for (let j = 1; j <= targets.length; j++) {
+    for (let i = 1; i <= groupLengths.length; i++) {
+      let sum = 0;
+      for (let k = i; k >= 1; k--) {
+        sum += groupLengths[k - 1];
+        if (sum > targets[j - 1]) break;
+        if (sum === targets[j - 1] && dp[j - 1][k - 1]) {
+          dp[j][i] = true;
+          break;
+        }
+      }
+    }
+  }
+  return dp[targets.length][groupLengths.length];
+}
+const p36BarAlignment = {
+  transcription: "resources/liber-primus/lp2-transcription.txt",
+  page: 36,
+  runes: p36LineLengths.reduce((a, b) => a + b, 0),
+  printedLines: p36LineLengths.length,
+  lineRuneCounts: p36LineLengths,
+  hyphenDelimitedGroups: p36GroupLengths.length,
+  groupRuneCounts: p36GroupLengths,
+  midiChorusBarNoteOnCounts: barNoteOnCounts,
+  barCountsSum: barNoteOnCounts.reduce((a, b) => a + b, 0),
+  directBarToLineMatch: JSON.stringify(barNoteOnCounts) === JSON.stringify(p36LineLengths),
+  contiguousGroupPartitionMatchesBars: hasContiguousPartition(p36GroupLengths, barNoteOnCounts)
+};
+assert.equal(p36BarAlignment.runes, 238);
+assert.equal(p36BarAlignment.printedLines, 11);
+assert.equal(p36BarAlignment.hyphenDelimitedGroups, 50);
+assert.equal(p36BarAlignment.barCountsSum, 238);
+assert.equal(p36BarAlignment.directBarToLineMatch, false);
+assert.equal(p36BarAlignment.contiguousGroupPartitionMatchesBars, false);
 
 const keySignature = keySigEvent
   ? { signedSharpsFlats: keySigEvent.data[0] > 127 ? keySigEvent.data[0] - 256 : keySigEvent.data[0], minor: !!keySigEvent.data[1] }
@@ -305,6 +361,7 @@ const output = {
     readablePlaintext: false,
     classification: "exploratory only; note-on timing is not selected by the historical decoder"
   },
-  decision: "No source-selected 29-symbol LP2 key or reusable key stream. The historical note-off mapping remains a 25/23-symbol 2012 substitution; the 23-bar/23-pair equality is internal to the chorus. The 30-state note-on alternative does not decode to readable text and has no independent selector."
+  decision: "No source-selected 29-symbol LP2 key or reusable key stream. The historical note-off mapping remains a 25/23-symbol 2012 substitution; the 23-bar/23-pair equality is internal to the chorus. The 30-state note-on alternative does not decode to readable text and has no independent selector.",
+  p36BarAlignment
 };
 console.log(JSON.stringify(output, null, 2));
