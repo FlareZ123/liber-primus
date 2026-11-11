@@ -19,6 +19,10 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 SCAN = ROOT / "resources/liber-primus/17.jpg"
+FOLLOWING_SCANS = {
+    18: "f804fae06a68315eb6206158a2b34f55fe157c7d663fa961639fbe8dfc52a39f",
+    19: "74e955ebe248e6d7442e2d2cd3029951f258017987d5762f48e7897cf6611e34",
+}
 CORPUS = ROOT / "resources/liber-primus/lp2-corpus.json"
 CONTROL = ROOT / "resources/control/shakespeare_first300k.txt"
 TRANSCRIPT = ROOT / "resources/lp2-transcription.txt"
@@ -55,6 +59,28 @@ def source_crosses() -> dict:
     assert values["rotate_180"] > 0.9874
     assert values["untransformed"] < 0.114
     assert mean_error < 0.947
+    # The two crosses repeat at the exact same source coordinates on pp1–2.
+    # This fixed-layout control materially weakens an opening-page reversal clue.
+    repeated = {}
+    for scan, checksum in FOLLOWING_SCANS.items():
+        filepath = ROOT / f"resources/liber-primus/{scan}.jpg"
+        assert sha256(filepath.read_bytes()).hexdigest() == checksum
+        later = np.asarray(Image.open(filepath).convert("L"), dtype=np.uint8)
+        source_crops = {
+            "left": (left, later[1679:2965, 52:552]),
+            "right": (right, later[635:1921, 1848:2348]),
+        }
+        repeated[str(scan)] = {
+            name: {
+                "original_pixel_ink_iou": iou(a < threshold, b < threshold),
+                "original_grayscale_mae": float(np.abs(
+                    a.astype(np.int16) - b.astype(np.int16)).mean()),
+            }
+            for name, (a, b) in source_crops.items()
+        }
+        assert all(pair["original_pixel_ink_iou"] > 0.9704
+                   for pair in repeated[str(scan)].values())
+    assert repeated["18"] == repeated["19"]
     return {
         "image": "resources/liber-primus/17.jpg",
         "image_sha256": SOURCE_SHA256,
@@ -66,6 +92,7 @@ def source_crosses() -> dict:
         "threshold": threshold,
         "binary_ink_iou": values,
         "rotated_grayscale_mae": mean_error,
+        "fixed_location_repeats_pp1_and_pp2": repeated,
     }
 
 
