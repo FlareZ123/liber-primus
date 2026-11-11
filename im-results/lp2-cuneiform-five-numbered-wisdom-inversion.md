@@ -1,6 +1,6 @@
 # Five numbered cuneiform passages: a bounded 2014 Wisdom-row inverse
 
-**Status:** new source-exact segmentation and one clue-motivated direct inverse tested on original ciphertext; **no plaintext, key or reversible historical operation identified**. This is a supporting scoped negative, not an established decipherment. SFT: [`sims/lp2_cuneiform_five_wisdom_rows_sft.cjs`](../sims/lp2_cuneiform_five_wisdom_rows_sft.cjs). The outputs were also evaluated independently against the original corpus using the GitHub repository connector's parsed `lp2-corpus.json`.
+**Status:** independent confirmation and **a new, narrowly clue-motivated direct inverse** on a previously documented source-exact segmentation; **no plaintext, key or reversible historical operation identified**. This is a supporting scoped negative, not an established decipherment. SFT: [`sims/lp2_cuneiform_five_wisdom_rows_sft.cjs`](../sims/lp2_cuneiform_five_wisdom_rows_sft.cjs). The outputs were also evaluated independently against the original corpus using the GitHub repository connector's parsed `lp2-corpus.json`.
 
 ## Human-visible selection and scope
 
@@ -15,7 +15,7 @@ The repeated 1033/3301 cuneiform headers span seven physical LP2 pages (p33–p3
 | 5 | p38 [57,186) | **129** |
 | **Total** | Physical p36–p38 numbered enclosure | **553** |
 
-A five-passage structure with explicit order 1–5 offers a different, more source-faithful framing than reflowing the aggregate 1,589 runes of seven unequal printed pages into seven imagined 227-rune lanes. The genuine 2013 mixed Wisdom square reconstructs the historical 2014 **5×5** square exactly, whose five rows each total 1033, one of the original cuneiform values. This suggests a cheap *specific* historical transfer: use square row number k for printed passage number k. The other cuneiform number 3301 also belongs to the original 2013/2014 source history, but it does not select a byte decoder here.
+A five-passage structure with explicit order 1–5 offers a different, more source-faithful framing than reflowing the aggregate 1,589 runes of seven unequal printed pages into seven imagined 227-rune lanes. The five-boundary **553-rune enclosure had already been documented and used in the 79/78 packet study** (see `results/README.md`); this analysis does not claim discovery of that interval. The genuine 2013 mixed Wisdom square reconstructs the historical 2014 **5×5** square exactly, whose five rows each total 1033, one of the original cuneiform values. This suggests a cheap *specific* historical transfer: use square row number k for printed passage number k. The other cuneiform number 3301 also belongs to the original 2013/2014 source history, but it does not select a byte decoder here.
 
 **Weakest premise:** neither the cuneiform artwork nor the numbered passages explicitly says to transfer the 2014 Wisdom square rows, choose `φ(cell) mod29`, or apply those numbers as cyclic additive keys. The 2013 Wisdom prose praises primes and totient; solved p56 uses a prime-totient GP29 shift, which motivates a single narrow test of this operation. These clues do not authenticate it.
 
@@ -53,6 +53,6 @@ Decoded per-passage IoCs stay near 1/29: subtraction [0.03159,0.03150,0.03598,0.
 
 ## Research decision
 
-The original glyphs supply **five numbered passages and a precise natural 553-rune test interval**. The historical 5×5 Wisdom square supplies a plausible five-row numerical object. The simplest row-by-row totient-shift cipher **fails**, and no original clue chooses an alternative bit register, key clock or row traversal. Retain the segmentation as a source-native target for independently sourced five-state operations. Do not turn the 553 length, individual fragment sizes, or 1033/3301 numerology into a family of free key sweeps. The earlier seven-page cuneiform issue's conclusion remains: no original-cipher inverse is source-selected by the repeated header alone.
+The original glyphs supply **five numbered passages and a precise 553-rune test interval**, already documented in existing packet work. The historical 5×5 Wisdom square supplies a plausible five-row numerical object. The simplest row-by-row totient-shift cipher **fails**, and no original clue chooses an alternative bit register, key clock or row traversal. Retain the segmentation as a source-native target for independently sourced five-state operations. Do not turn the 553 length, individual fragment sizes, or 1033/3301 numerology into a family of free key sweeps. The earlier seven-page cuneiform issue's conclusion remains: no original-cipher inverse is source-selected by the repeated header alone.
 
 **Inputs:** `resources/liber-primus/lp2-corpus.json`, `resources/lp2-transcription.txt`, `resources/liber-primus/lp2-ink-annotations.json`, `resources/cicada2014-openpuff-magic-squares.txt`, and the original JPEGs named above. Every arithmetic assertion and ciphertext roundtrip is in the single runnable test file.
