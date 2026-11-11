@@ -68,6 +68,36 @@ The simplest direct use of the 41-symbol sequence as a repeating additive key fa
 
 **Reproducer:** [cellwise NUMBER / 41×316 extension](../sims/onion7_parable19_nestedprime_sft.cjs). The 2016 signed source is [here](../resources/historical/cicada2016-4gq25-outguess.asc).
 
+
+### 5×5 / 3301 external `NUMBER` factors: a constrained GP-index BASE29 phrase
+
+The same cellwise `NUMBER` experiment contains a previously unused contrast. The first historical **5×5 / 3301** square is the control that produced exactly four prime factors outside the 29 Gematria Primus prime weights: **139, 227, 313, 467**. Applying the literal base-29 positional decomposition to each factor gives two digit values in every case. Reading those **digit values as GP alphabet indices** gives:
+
+| Factor | Base29 digit values | Historical protocol rendering | GP-index rendering |
+| ---: | --- | --- | --- |
+| 139 | [4, 23] | `4N` | **RD** |
+| 227 | [7, 24] | `7O` | **WA** |
+| 313 | [10, 23] | `AN` | **ID** |
+| 467 | [16, 3] | `G3` | **TO** |
+
+The historical `BASE29` command itself rendered digit values with `0123456789ABCDEFGHIJKLMNOPQRS`; it did **not** print GP runes. The GP-index rendering above is therefore a new cross-operation hypothesis, not a recovered historical command output.
+
+The four two-rune chunks have an unusually constrained lexical property. Across every permutation of two through four distinct chunks in the pinned TextBlob frequency lexicon, the only multi-chunk English words are **WARD = WA+RD** and **TOWARD = TO+WA+RD**. The remaining chunk is **ID**. Thus the semantic permutation **467,227,139,313** reads **TOWARD ID**. This is a bounded lexicon observation rather than a global significance test, and the square does not currently supply that factor order.
+
+The residual **ID** has a precise historical referent already selected by the PARABLE route: the archived seventh-onion HTML contains literal `<div id="331">`, and **331** is the center of the unique 7×7 / 1033 square. The third OpenPuff 5×5 control has only one outside-GP factor, **113 → [3,26] → OY**, while the middle 7×7 control has no outside-GP factors at all. This makes `TOWARD ID` a compact route hypothesis from the first square toward the center identifier of the middle square, while leaving its ordering step unresolved.
+
+PARABLE separately says to shed circumferences and find what lies within. Reading the 7×7 `NUMBER` GP-index-sum matrix by concentric circumferences from outside to center over the eight physical square symmetries yields four distinct active sequences. One mirrored orientation begins:
+
+```
+UNTOGHFOUNTOGHFOOOJOJNWFOOJOJNWFUHROUHROI
+```
+
+Its outer active half-ring begins literal **UNTO**, directionally compatible with the `TOWARD` hypothesis, and its final symbol is the central **I** already derived from 331→133=7×19. This orientation is selected retrospectively by the lexical prefix, so it is evidence for a possible reading direction rather than an authenticated key.
+
+A direct period-41 additive use of this outside-to-center sequence is negative on all **12,956 = 41×316** unknown runes. Phase zero gives IoC **0.03448463** for C−K, **0.03447903** for C+K and **0.03448463** for K−C, all at the GP29 ciphertext baseline; previews are nonlinguistic. The earlier center-out period-41 additive result is also negative. Do not repeat these direct key uses.
+
+**Decision:** preserve the exact factor-to-chunk computation and the `TOWARD ID` parse as an intermediate route hypothesis. The decisive missing input is a source-fixed ordering or traversal that derives **TO→WA→RD→ID** without semantic rearrangement. If such an ordering is found, `ID=331` gives a historical destination and PARABLE supplies an inward-motion clue. Without that ordering, the phrase must not be promoted to an established instruction or used to justify free cipher searches.
+
 ## p57 red “PARABLE” explicitly selects the 449 modulus (Agent 42, 11 November 2026)
 
 The p57 ink annotation marks the seven-rune word **PARABLE** in red at offset 0. Its GP-prime weights are **[43, 97, 11, 97, 61, 73, 67]**, summing to **449** exactly. This is the same 449 heading sum used as the modulus in the 19-word Parable body-clause reduction that yields **[361, 133, 331]**. The red word has seven runes, matching the seven words in the first body clause.
@@ -218,6 +248,6 @@ A slightly better score relative to raw ciphertext is insufficient to indicate a
 
 ## Next useful question
 
-The strongest new cross-round structural candidate is the cellwise 2013 `NUMBER` map: 41 active GP-factor cells and a 12,956 = 41×316 unknown stream. The direct period-41 additive use is negative. Seek a **source-fixed** instruction that explains how the 41 active cells route or partition the 316 dimension; do not run generic transposition, rotation, or key sweeps. The 2016 phrase “the path lies empty” and its PGP marker offset317 are candidate selectors, not proof.
+The strongest current `NUMBER` continuation is now the **5×5 / 3301 external-factor GP-index BASE29 set {RD, WA, ID, TO}**, whose only substantial multi-chunk English parse in the pinned lexicon is **TOWARD = TO+WA+RD**, leaving **ID**. The literal historical `id=331` and 7×7 center331 make that a promising route hypothesis, but the required chunk ordering remains unsupplied. Seek a **source-fixed** factor order, path or traversal that independently yields TO→WA→RD→ID. The 41-active-cell / 316-dimension map remains structural evidence; both center-out and the lexically selected outside-in period-41 additive keys are negative. Do not launch generic transposition, rotation, phase or key sweeps.
 
 Separately, can the published GIMP Dissolve reconstruction predict the exact p57 crop's 574 connected components and 241/331 split? Obtain or reproduce the predicted threshold mask, run the same component extraction, and isolate the 166-cell residual. If the count and split are predicted by the software field, retire the prime/index and 7×82 interpretations; if not, inspect only the residual for source-authored structure. The existing 2D GIMP field and direct-pad work in im-results/gimp-dissolve-source-pad-gate.md and im-results/gimp-dissolve-directpad.md should be reused, not repeated. No unknown LP2 plaintext or key has been recovered.
