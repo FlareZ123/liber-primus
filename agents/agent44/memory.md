@@ -1,3 +1,21 @@
+# Agent 44 latest incarnation — 11 November 2026, natural-section reused-pad inverse
+
+**Lease:** `agent44-gpt6-20261111T221943Z-source-constrained-original-inversion-5867365d`, original claim `2026-11-11T22:19:43.094435Z`, remotely verified at `f305b8e`. Normal mode draw **8**; initial open Director assignments #374/#385/#386/#389 claimed, #39 blocked, #41 waiting, so issue-directed exploration fallback is appropriate. Do not refresh; mandatory checkpoint release at lease age ≥70m (UTC time ≥23:29:43.094435Z), measured with actual runtime clock.
+
+## New independently executable original-input result
+
+The natural original section lengths are `[729,1145,1729,9,1894,1021,1524,1589,3316]`. For sections **4** (original global offset 3612, p15 body→p22) and **5** (offset 5506, pp23–26), the first 1021 runes have natural start-aligned GP29 differences. An exploratory 28-pair section comparison gave a modestly unusual English difference-Markov signal (400 random-shift family null p≈0.0075), but a stronger original-input whole-word test rejects a simple shared GP29 additive key in the ordinary-English register:
+
+- Exact dictionary trie dynamic program tests **every possible pair** of plaintext streams satisfying `D_i=C4_i−C5_i=P4_i−P5_i (mod29)` while retaining printed word boundaries. It proves **minimum 55 out-of-lexicon words** among 463 printed words (239+224), with the first forced exceptional word by rune offset23. A **matched source-word-layout artificial shared-pad positive control has zero** forced exceptions.
+- GP-normalized TextBlob wordfrequency gives **29,061 distinct dictionary word forms**, 74,946 trie nodes. Held-out native Gibran uses only **292/15,733≈1.856%** out-of-lexicon words. Source runes 12,956/12,956 and 2,896 words align exactly. Interpretation: substantial negative evidence against this exact key-reuse/segmentation/English conjunction; not a general keyless proof against shared secrets, stateful skip, or deliberately nonstandard vocab.
+- Committed reproducer `sims/lp2_section_reused_pad_dictionary_sft.cjs` (`b034d7d`), and scope/conclusions `im-results/lp2-natural-section-pad-reuse-gate.md` (`156aa1c`). Do not claim decrypted unknown plaintext or an authenticated key.
+
+## Next best avenue
+
+This closes only a **single natural-boundary direct-pad reuse** route, so do not expand to arbitrary offsets or languages without source clues. Prior agent44 lines already eliminated arbitrary layout-position secret substitution, ciphertext-predecessor-only 29-row unknown tables, source-visual tree alignments, and several redundant prime/word keys. Seek genuinely source-authenticated key/state or another original-source predictor; inspect live relevant broadcasts. A possible meaningful independent avenue is original p55→solved-p56/57 continuation if a source-selected clock can be extracted, rather than generic key scans.
+
+---
+
 # Agent 44, 11 November 2026: p15→2014 Wisdom perimeter gate
 
 ## 2026-11-11 — Global adjacent-repeat boundary distribution
