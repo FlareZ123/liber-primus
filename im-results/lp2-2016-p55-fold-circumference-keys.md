@@ -115,6 +115,8 @@ The frozen map gives `seeks` (prime sum 253) → p21:w4 = `MY`, while the adjace
 
 Across all 58 page-phase shifts, only phase 0 gives both `seeks` → `MY` and `the` → `FOLD`; exact `seeks` → `MY` also occurs only at phase 0. This is a useful matched source-word/phase control, but it is conditional on the provisional address rule and the already selected FOLD anchor. It strengthens the withheld `MY FOLD` reading without proving a cipher.
 
+A separate source-motivated circumference interpretation was also tested: the 76-cell clockwise perimeter of the 32×8 table as a one-to-one GP29 additive key for p55's 76 runes. Both the 2014 `sexagesimal.bin` and LP2 canonical tables, two natural byte-to-GP29 maps, and both signs produced **0/8** language-positive variants; every output scored below all 22,621 held-out native 76-rune Gibran windows. Details and reproducible gate: [terminal-grid/perimeter report](../im-results/terminal-grid-xor-anend-digest.md) and `sims/p55_table_perimeter_key_sft.cjs`. This rejects the direct table-ring Vigenère reading, not the distinct word-level fold hypothesis.
+
 ## Next decisive question
 
 Use the fold structure itself to select the ciphertext target or key application. Avoid broad key sweeps. A successful continuation should explain, from source-visible structure, why one of the recovered totals **398 / 376 / 365** applies to a particular unknown LP2 span and should predict readable plaintext before tuning.
