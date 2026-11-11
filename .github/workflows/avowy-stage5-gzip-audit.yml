@@ -19,10 +19,25 @@ jobs:
           curl -fL --retry 3 --retry-delay 2 \
             https://raw.githubusercontent.com/iBotPeaches/cicada_3301/master/onions/avowyfgl5lkzfj3n.onion/post/index.html \
             -o stage5-object.hex
+          curl -fL --retry 3 --retry-delay 2 \
+            https://raw.githubusercontent.com/iBotPeaches/cicada_3301/master/onions/avowyfgl5lkzfj3n.onion/pre/index.html \
+            -o stage5-pre.html
           sha256sum stage5-object.hex
           wc -c stage5-object.hex
           file stage5-object.hex
           grep -vE '^[[:xdigit:]]*$' stage5-object.hex | head -5 || true
+      - name: Extract the 3301-marked 256-byte pre-object
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path("stage5-pre.html").read_text()
+          m=re.search(r"<!--3301-->\\s*([0-9a-fA-F]{512})",s)
+          assert m, "expected exactly one 512-hex pre-object"
+          Path("pre-key.txt").write_text(m.group(1))
+          print("pre-object hex chars",len(m.group(1)),"bytes",len(m.group(1))//2)
+          PY
       - name: Decode hex and decompress gzip object
         run: |
           set -euo pipefail
@@ -99,12 +114,15 @@ jobs:
           test -n "$OUTGUESS"
           echo "OutGuess executable: $OUTGUESS"
           for image in tablet-front.jpg tablet-back.jpg; do
-            for mode in default divinity; do
+            for mode in default divinity prehex; do
               out="outguess-$image-$mode.bin"
               if [ "$mode" = default ]; then
                 "$OUTGUESS" -r "$image" "$out" >"$out.log" 2>&1 || true
-              else
+              elif [ "$mode" = divinity ]; then
                 "$OUTGUESS" -k divinity -r "$image" "$out" >"$out.log" 2>&1 || true
+              else
+                PREKEY=$(cat pre-key.txt)
+                "$OUTGUESS" -k "$PREKEY" -r "$image" "$out" >"$out.log" 2>&1 || true
               fi
               echo "=== $image $mode ===" | tee -a outguess-audit.txt
               cat "$out.log" | tee -a outguess-audit.txt
@@ -122,6 +140,8 @@ jobs:
           name: avowy-stage5-object-audit
           path: |
             stage5-object.hex
+            stage5-pre.html
+            pre-key.txt
             stage5-object.hex.clean
             stage5-object.gz
             data.out
