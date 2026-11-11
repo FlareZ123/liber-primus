@@ -16,6 +16,21 @@ Relevant material:
 - [Phase 61 unrepair test](https://github.com/pnotisdev/cicada3301/blob/main/work/log/phase61_unrepair.md): naive replacement of detected lag-six sites loses information; a repair-aware likelihood improves planted-key simulations but does not recover a real key.
 - The lag-six observation overlaps this repository's existing held-out analysis in `im-results/lag5-lag6-heldout-conditional-prediction.md`; use the external result as independent corroboration, not as a new discovery.
 
+## neuroretransmit/cicada (2013 onion archive)
+
+Repository: https://github.com/neuroretransmit/cicada
+
+A stage-by-stage community archive of the 2013 round. Three first/second-onion cleartext-signed messages are mirrored under `resources/historical/` and verify against the repository's Cicada public key (fingerprint `6D85 4CD7 9333 22A6 01C3 286D 181F 01E5 7A35 090F`):
+
+- [First-onion hello](https://github.com/neuroretransmit/cicada/blob/main/2013/004-first-onion/hello.txt.asc): signature dated 6 January 2013 07:51:35 UTC; names `xsxnaksict6egxkq.onion`.
+- [Second-onion ICMP reply](https://github.com/neuroretransmit/cicada/blob/main/2013/005-second-onion/icmp-echo.asc): signature dated 10 January 2013 17:07:15 UTC; names `pklmx2eeh6fjt7zf.onion`.
+- [Second-onion instruction](https://github.com/neuroretransmit/cicada/blob/main/2013/005-second-onion/everything-you-need.txt.asc): signature dated 14 January 2013 05:31:07 UTC; says solvers already have what they need and to "knock on the sky and listen to the sound."
+- The companion first-onion [forest clue](https://github.com/neuroretransmit/cicada/blob/main/2013/004-first-onion/clue.txt.asc) is already mirrored as `resources/historical/cicada2013-forest-clue.asc`.
+
+The archive's first-onion `server.py` and `gematria.py` explicitly describe themselves as recreations from publicly known behavior, not recovered original server source. Treat its COUNT/NUMBER implementation details as reconstructed, not as an authenticated Cicada implementation. The whitespace visible in the first-onion cleartext-signed hello file is not protected by OpenPGP cleartext-signature trailing-whitespace canonicalization; do not promote whitespace counts as signed evidence.
+
+The [third-onion archive](https://github.com/neuroretransmit/cicada/tree/main/2013/006-third-onion) preserves the coordinate, poster, phone, XOR-offset and Shamir-share stages. The [fourth-onion archive](https://github.com/neuroretransmit/cicada/tree/main/2013/007-fourth-onion) is explicitly leak-based and largely undocumented; its 19-question images are not, by themselves, evidence of an LP2 key or selector.
+
 ## cicada-solvers/neuroretransmit-cicada
 
 Repository: https://github.com/cicada-solvers/neuroretransmit-cicada
