@@ -35,18 +35,46 @@ assert.equal(p55.length, 76);
 const target = [...p53, p54[0]];
 assert.equal(target.length, 180);
 
-// Interior: rows 1..30 and columns 1..6, zero-based, read row-major.
-// The complementary perimeter has 76 cells and is tested separately.
-const interior = [];
+// Interior: rows 1..30 and columns 1..6, zero-based.
+const interiorRowMajor = [];
 for (let row = 1; row <= 30; row++) {
   for (let column = 1; column <= 6; column++) {
-    interior.push(table.byte_rows[row][column]);
+    interiorRowMajor.push(table.byte_rows[row][column]);
   }
 }
-assert.equal(interior.length, 180);
-const perimeterCount = 256 - interior.length;
+assert.equal(interiorRowMajor.length, 180);
+const perimeterCount = 256 - interiorRowMajor.length;
 assert.equal(perimeterCount, 76);
-const key = interior.map(byte => byte % 29);
+
+// The 2013 180/76 split also motivates the standard outer-to-inner clockwise
+// spiral: the first 76 cells are the perimeter; the remaining 180 are inner.
+const spiralCoordinates = [];
+let top = 0, bottom = 31, left = 0, right = 7;
+while (top <= bottom && left <= right) {
+  for (let column = left; column <= right; column++) spiralCoordinates.push([top, column]);
+  top++;
+  for (let row = top; row <= bottom; row++) spiralCoordinates.push([row, right]);
+  right--;
+  if (top <= bottom) {
+    for (let column = right; column >= left; column--) spiralCoordinates.push([bottom, column]);
+    bottom--;
+  }
+  if (left <= right) {
+    for (let row = bottom; row >= top; row--) spiralCoordinates.push([row, left]);
+    left++;
+  }
+}
+assert.equal(spiralCoordinates.length, 256);
+const perimeterCoordinates = spiralCoordinates.slice(0, 76);
+const interiorSpiral = spiralCoordinates.slice(76)
+  .map(([row, column]) => table.byte_rows[row][column]);
+assert.equal(perimeterCoordinates.length, 76);
+assert.equal(interiorSpiral.length, 180);
+
+const keys = [
+  { order: 'interior-row-major', values: interiorRowMajor.map(byte => byte % 29) },
+  { order: 'interior-clockwise-spiral', values: interiorSpiral.map(byte => byte % 29) }
+];
 
 // Reuse the repository's established native-GP control normalization.
 const tokens = corpus.translit
@@ -107,30 +135,38 @@ const medianNative = heldOut[Math.floor(heldOut.length / 2)];
 const bestNative = heldOut[heldOut.length - 1];
 
 const candidates = [];
-for (const sign of [-1, 1]) {
-  const decoded = target.map((value, i) => ((value + sign * key[i]) % 29 + 29) % 29);
-  const planted = native.slice(1000, 1000 + target.length);
-  const encryptedPlant = planted.map((value, i) => (value + key[i]) % 29);
-  const recoveredPlant = encryptedPlant.map((value, i) => ((value - key[i]) % 29 + 29) % 29);
-  assert.deepEqual(recoveredPlant, planted);
-  const originalRoundTrip = decoded.map((value, i) => ((value - sign * key[i]) % 29 + 29) % 29);
-  assert.deepEqual(originalRoundTrip, target);
-  const candidateScore = score(decoded);
-  const result = {
-    direction: sign < 0 ? 'C-K' : 'C+K',
-    score: candidateScore,
-    ioc: ioc(decoded),
-    nativeWindowsAtOrBelowCandidate: heldOut.filter(value => value <= candidateScore).length,
-    preview: decoded.slice(0, 60).map(index => corpus.translit[index]).join(''),
-    exactOriginalRoundTrip: true,
-    exactPlanted180Recovery: true
-  };
-  assert.ok(candidateScore < worstNative);
-  candidates.push(result);
+for (const { order, values: key } of keys) {
+  for (const sign of [-1, 1]) {
+    const decoded = target.map((value, i) => ((value + sign * key[i]) % 29 + 29) % 29);
+    const planted = native.slice(1000, 1000 + target.length);
+    const encryptedPlant = planted.map((value, i) => (value + key[i]) % 29);
+    const recoveredPlant = encryptedPlant.map((value, i) => ((value - key[i]) % 29 + 29) % 29);
+    assert.deepEqual(recoveredPlant, planted);
+    const originalRoundTrip = decoded.map((value, i) => ((value - sign * key[i]) % 29 + 29) % 29);
+    assert.deepEqual(originalRoundTrip, target);
+    const candidateScore = score(decoded);
+    const result = {
+      order,
+      direction: sign < 0 ? 'C-K' : 'C+K',
+      score: candidateScore,
+      ioc: ioc(decoded),
+      nativeWindowsAtOrBelowCandidate: heldOut.filter(value => value <= candidateScore).length,
+      preview: decoded.slice(0, 60).map(index => corpus.translit[index]).join(''),
+      exactOriginalRoundTrip: true,
+      exactPlanted180Recovery: true
+    };
+    assert.ok(candidateScore < worstNative);
+    candidates.push(result);
+  }
 }
 
-assert.ok(Math.abs(candidates[0].score - (-12.500389482766725)) < 1e-10);
-assert.ok(Math.abs(candidates[1].score - (-12.260663098125832)) < 1e-10);
+const expectedScores = [
+  -12.500389482766725, -12.260663098125832,
+  -12.54436530314436, -12.27839340448106
+];
+for (let i = 0; i < expectedScores.length; i++) {
+  assert.ok(Math.abs(candidates[i].score - expectedScores[i]) < 1e-10);
+}
 assert.ok(Math.abs(worstNative - (-9.353988528918798)) < 1e-10);
 
 console.log(JSON.stringify({
@@ -138,15 +174,16 @@ console.log(JSON.stringify({
   sourceStructure: {
     table: '32x8 base60-decoded original bytes',
     tableSha256: '3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290',
-    interior: 'rows 1..30, columns 1..6, row-major',
-    interiorBytes: interior.length,
+    interior: 'rows 1..30, columns 1..6, tested row-major and inner clockwise spiral',
+    interiorBytes: interiorRowMajor.length,
+    interiorSpiralFirst8: spiralCoordinates.slice(76, 84),
     perimeterBytes: perimeterCount,
     target: 'all p53 runes followed by p54 initial enlarged Ac24',
     targetRunes: target.length,
     p55ComplementRunes: p55.length,
     historicalSelector: '2013 prime list has 180 omitted and 76 visible values; selector is historical/participant-reconstructed, not signed LP2 instruction'
   },
-  keyProjection: 'interior byte mod 29',
+  keyProjection: 'interior byte mod 29; row-major and inner clockwise spiral orders',
   controls: {
     gibranRunes: native.length,
     trainingRunes: trainingLength,
@@ -157,5 +194,5 @@ console.log(JSON.stringify({
     plantedAndOriginalRoundTrips: 'exact'
   },
   candidates,
-  decision: 'Both fixed additive directions are far below every held-out native-GP 180-rune window. Reject this direct interior-byte-mod29 key; the 180/76 structural correspondence is not itself a decipherment.'
+  decision: 'Both additive directions fail in both natural interior orders, below every held-out native-GP 180-rune window. Reject this direct interior-byte-mod29 key; the 180/76 structural correspondence is not itself a decipherment.'
 }, null, 2));
