@@ -156,5 +156,37 @@ assert.ok(firstCandidates.some(x=>x.center[0]===12&&x.center[1]===13
   &&x.axis==="V"&&!x.transform&&x.key.join(",")==="16,19,28"));
 console.log("Source-constrained first-key ambiguity:",firstCandidates);
 
+
+// Report 03 SOON source-state fork, using the three *original* marked key
+// nodes published for block 16, all with the same EA-L-R derived key.
+// Its outgoing axis formula depends on the original CENTER position, which
+// need not be determined by the decrypted plaintext or aligned key.
+function gcd(a,b){while(b)[a,b]=[b,a%b];return a;}
+const soonNodes=candidateNodes(parse(sources[15]),
+  keys[15].split(" ").map(x=>data.translit.indexOf(x)));
+const soonTriples=[...new Map(soonNodes.map(x=>[x.a.join(","),x.a])).values()];
+assert.equal(soonTriples.length,3);
+const soonB=parse(paths[15])[0],soonE=parse(paths[15]).at(-1);
+const n0=i=>i+1;
+const n90=i=>27*(i%27)+27-Math.floor(i/27);
+const n180=i=>729-i;
+const gcdG=gcd(n90(soonE),n180(soonE));
+assert.equal(gcdG,3);
+const nextAxes=soonTriples.map(triple=>{
+  const m=triple[1];
+  const A=n180(soonB)+n0(m);
+  const q=mu(A)+mu(gcdG);
+  return {center:[1+Math.floor(m/27),1+m%27],A,q,
+    axis:q===0?"horizontal":q>0?"vertical":"diagonal"};
+});
+assert.equal(nextAxes.filter(x=>x.axis==="horizontal").length,1);
+assert.equal(nextAxes.filter(x=>x.axis==="diagonal").length,2);
+assert.ok(nextAxes.some(x=>x.center.join(",")==="25,7"&&x.A===721&&x.q===0));
+assert.ok(nextAxes.some(x=>x.center.join(",")==="20,15"&&x.A===594&&x.q===-1));
+assert.ok(nextAxes.some(x=>x.center.join(",")==="25,14"&&x.A===728&&x.q===-1));
+const nextThen=parse(paths[16]);
+assert.ok(nextThen.every(x=>Math.floor(x/27)===Math.floor(nextThen[0]/27)));
+console.log("Report 03 SOON source-state fork, same plaintext/key:",nextAxes);
+
 console.log("PASS: conditional inverse, positive source-triple check and exact forward re-encryption.");
 console.log("No source-prospective selector or authentic plaintext established.");
