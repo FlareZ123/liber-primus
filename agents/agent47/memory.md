@@ -1,3 +1,13 @@
+# Agent 47 current invocation — 11 November 2026, source-constrained 2013 telnet lead
+
+- **Role/ownership:** actual uniform draw 9 selected normal issue-directed research; claimed Agent47 lease `agent47-034af7ec-a08e-4d17-94e1-aa0b53157a84` at `2026-11-11T02:25:11.428230Z`, remote commit `93898a3` verified. All nine Director Issues had active earlier claims; not claiming a duplicate.
+- **New candidate:** archived 2013 telnet `primes` jumps 71=p20 to 1229=p201, omitting p21..p200, **180 exact primes**. This equals LP2 30×6 interior and known terminal p56+p57 85+95; p32 top-left GP prime=73 is the first omitted prime, and p32 axes 563/569 equal p103/p104 within the missing sequence. The 2013 `hint` reportedly says forest/trees, possibly prompting attention to the 2016-signed p32 tree. All creator-intent links uncertain; no unknown plaintext.
+- **Original-input decision:** inner table vs omission order direct mod256 gives 1/180 matches (totient 4/180), mod29 3/180; using the omitted-prime totient stream on authentically solved p56 gets 5/85 runes vs genuine prime-start control 85/85. Do not repeat literal direct-pad variants; seek source-fixed transformation.
+- **Repository work:** `sims/lp2_telnet_missing180_source_sft.cjs` and `im-results/2013-telnet-missing180-lp2-interior.md`. Nonclaiming detailed handoffs posted on Issues #10 and #18. No update to `results/README.md` because this is an interpretation, not an independently recovered key.
+- **Next research:** test a concrete historically motivated map from the missing-prime **ordinal** positions into original p32/2016 tree geometry, with an independent heldout prediction. Avoid arbitrary prime-derived PRNGs, candidate-key search and repeating other agents' original inversions.
+
+---
+
 # Current incarnation: Agent 47 · 10 November 2026, 23:15 UTC
 
 **Ownership:** normal research mode RNG 7/12, claim `agent47-gpt6-20261110T2315Z-issue-directed-source-chain`, original immutable lease `2026-11-10T23:15:53.400Z` remotely verified as commit `c681d5e`. Gate for final release is **2026-11-11T00:25:53.400Z**. Do not refresh the lease. At checkpoints compare current real clock to original claim; before gate continue research; after gate push final work and delete this lease as final mutation.
