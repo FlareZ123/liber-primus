@@ -1,6 +1,6 @@
 # Director memory: independently executable paths to LP2 plaintext
 
-**Reviewed through 2026-11-11T20:00:24Z. Last director-task closure reviewed: #303 at 2026-11-11T19:18:35Z.** This is a replaceable decision frontier, not a progress log. Current temporary Director lease: `director-20261111T194129Z-f9fc81f86f04`. Release it after verifying the work below.
+**Reviewed through 2026-11-11T20:04:37Z. Last director-task closure reviewed: #303 at 2026-11-11T19:18:35Z.** This is a replaceable decision frontier, not a progress log. Current temporary Director lease: `director-20261111T194129Z-f9fc81f86f04`. Release it after verifying the work below.
 
 ## Established and still missing
 
@@ -24,7 +24,7 @@ There is **no independently verified unknown LP2 plaintext, unknown-page key, co
 
 ## Open, executable Director assignments
 
-Eight **unclaimed** distinct tasks were published after review, all with upstream premise, source-only starting evidence, finite discriminating test, stop condition and Director action:
+Nine distinct tasks were published after review; **#333 was claimed by Agent4**, leaving eight unclaimed executable tasks, all with upstream premise, source-only starting evidence, finite discriminating test, stop condition and Director action:
 
 1. **#331 P0:** image-first readback of red-rubric glyphs, beginning with p53's 51-rune passage and explicit unresolved alternatives. A key source-correction gateway; does not duplicate #231 ordinary allograph census.
 2. **#332 P1:** resolve eight tied original line registrations from visual geometry before scoring; act only on actual parser changes.
@@ -34,9 +34,10 @@ Eight **unclaimed** distinct tasks were published after review, all with upstrea
 6. **#336 P2:** direct first/last original printed-line rune extraction for literal human-readable instructions, with source line boxes and limited frozen readouts.
 7. **#337 P2:** independently documented pre-2014 notation to choose p50 base59/base60 alphabet, not renewed numerical fitting.
 8. **#338 P2:** original repeated ornament difference channel with geometry-only readout, heldout member and wrong-family controls; not generic JPEG stego.
+9. **#339 P2:** newly source-verified p33 91-rune titled unit under exactly the historically attested 2014 seven-column transposition and a frozen 13×7 layout. It is cheap, expressly postselected-risk, and must close without a successor if no authentic text appears.
 
-The **other open three** are **#231 P1 claimed by Agent5** (ten ordinary allograph classes); **#41 P0 WAITING** (no complete p55 76-rune source-chosen inverse); **#39 P1 BLOCKED** (OpenPuff post-fix original positive-control dispatch needs repository owner authorization and has not been run). **Total open 11; unclaimed executable 8; below ceiling 30.**
+The **other open four** are **#333 P1 claimed by Agent4** (historical word-length crib), **#231 P1 claimed by Agent5** (ten ordinary allograph classes); **#41 P0 WAITING** (no complete p55 76-rune source-chosen inverse); **#39 P1 BLOCKED** (OpenPuff post-fix original positive-control dispatch needs repository owner authorization and has not been run). **Total open 12; unclaimed executable 8; below ceiling 30.**
 
 ## Decisions for next Director
 
-Review substantive closures of #331–#338 and any new independent source artifact. A red-rune source correction, long genuinely matched word-length crib, usable binary payload, or original additive keystream cancellation can justify one targeted inverse. A generic null, similarity, or number match cannot. First reconsider the weakest source-selection premise, compare with independent routes, and do not create dependent queues merely because an issue closed. Existing `results/README.md` already records the established historical constraints and bounded negative results. Never add automatic per-commit GitHub Actions workflows.
+Review substantive closures of #331–#339 and any new independent source artifact. A red-rune source correction, long genuinely matched word-length crib, usable binary payload, or original additive keystream cancellation can justify one targeted inverse. A generic null, similarity, or number match cannot. First reconsider the weakest source-selection premise, compare with independent routes, and do not create dependent queues merely because an issue closed. Existing `results/README.md` already records the established historical constraints and bounded negative results. Never add automatic per-commit GitHub Actions workflows.
