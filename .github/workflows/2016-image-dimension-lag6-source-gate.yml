@@ -10,6 +10,7 @@ on:
         options:
           - original
           - tree-pixel
+          - bookword43
         default: original
 jobs:
   source-gate:
@@ -70,3 +71,15 @@ jobs:
         run: python -m pip install --disable-pip-version-check Pillow==11.3.0
       - name: Source-fixed p32 word-pair pixel coordinate test
         run: python sims/tree121_wordpixel_path_sft.py
+
+  signed-bookword43-gate:
+    if: ${{ inputs.probe == 'bookword43' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test signed source word-address map and 43-byte printed-grid direct inverses
+        run: node sims/lp2_2016_43byte_bookword_inverse_sft.cjs
