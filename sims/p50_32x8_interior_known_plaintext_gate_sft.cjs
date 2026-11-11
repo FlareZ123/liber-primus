@@ -218,6 +218,55 @@ const terminalRegisters = {
   matrixPrinted: geometry(printed),
   matrixSolved: geometry(known)
 };
+/**
+ * Rank of the exact four parity-check equations restricted to any proposed
+ * 76-rune unknown placement. Coefficient column i is the 4-term remainder
+ * of the corresponding unit impulse polynomial; all arithmetic is GF29.
+ * @param {number[]} positions
+ * @returns {number}
+ */
+function checksumRank(positions) {
+  const matrix = Array.from({ length: 4 }, () => []);
+  for (const at of positions) {
+    const impulse = Array(256).fill(0);
+    impulse[at] = 1;
+    const col = syndrome(impulse);
+    for (let i = 0; i < 4; i++) matrix[i].push(col[i]);
+  }
+  let rank = 0;
+  for (let col = 0; col < positions.length && rank < 4; col++) {
+    let pivot = rank;
+    while (pivot < 4 && matrix[pivot][col] === 0) pivot++;
+    if (pivot === 4) continue;
+    [matrix[pivot], matrix[rank]] = [matrix[rank], matrix[pivot]];
+    let inverse = 1;
+    while (mod(matrix[rank][col] * inverse) !== 1) inverse++;
+    for (let k = col; k < positions.length; k++) {
+      matrix[rank][k] = mod(matrix[rank][k] * inverse);
+    }
+    for (let row = 0; row < 4; row++) {
+      if (row === rank) continue;
+      const factor = matrix[row][col];
+      for (let k = col; k < positions.length; k++) {
+        matrix[row][k] = mod(matrix[row][k] - factor * matrix[rank][k]);
+      }
+    }
+    rank++;
+  }
+  return rank;
+}
+const directBookUnknownPositions = Array.from({ length: 76 }, (_, i) => i);
+const parityRank = {
+  clockwiseBorder: checksumRank(border),
+  bookFirst76: checksumRank(directBookUnknownPositions)
+};
+assert.deepEqual(parityRank, { clockwiseBorder: 4, bookFirst76: 4 });
+// Even if either proposed final 256-rune codeword had ZERO syndrome, the known
+// 180 inner runes and four independent parity equations leave 76-4=72 freely
+// choosable GP29 symbols. The source H/G checks alone cannot recover page55.
+assert.equal(border.length - parityRank.clockwiseBorder, 72);
+assert.equal(directBookUnknownPositions.length - parityRank.bookFirst76, 72);
+
 const constantRemainder = syndrome(Array(256).fill(1));
 assert.deepEqual(constantRemainder, [14, 3, 19, 3]);
 const parityResults = {};
@@ -250,6 +299,7 @@ console.log(JSON.stringify({
   })),
   base60Solved: r60, base59Solved:r59, base60Printed:raw60,
   hGeneratorParity: parityResults,
+  terminalUnknownParityRank: parityRank, terminalUnknownNullity: 72,
   positiveControls: {lookup:lookupFit.minInconsistentPositions,
     rowAffine:rowFit.validAffineRows, separable2x2:sepFit.positive2x2},
   decision: 'No stationary byte-token lookup, no any-key per-row/per-column affine map, no separable row+column additive pad under this fixed 30x6 alignment',
