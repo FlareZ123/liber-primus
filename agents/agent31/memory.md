@@ -25,14 +25,14 @@ Existing repository work already covers GIMP source-key/direct-pad families and 
 - The prior incarnation's row-major, column-major, angular and reverse side-bit encodings (both polarities and MSB/LSB conventions) did not yield readable 7-bit ASCII; no natural 82×7 spatial grouping was established.
 - The prior p56 φ(prime) subtraction on the 127-symbol p53-red51 + p55-tail76 sequence, using starts p53/p67/p241/p331, yielded no plaintext.
 - Direct CIRCUMFERENCE GP29 Vigenère transfer and FIRFUMFERENFE Vigenère with 13-dot fragment resets failed on red fragments and the full unknown book, including literal-F skip DP. The 32×8 one-cell-border removal / 30×6 interior test was also negative.
-- The obvious alternate full-bundle p36/p50 mapping (five numbered paragraphs paired with first five 8-byte table rows, repeated per section, byte mod29, both signs and row-index conventions) gave IoCs 0.03361768, 0.03451529, 0.03405011 and 0.03472495 versus raw 0.03423356; no language. This is a bounded direct-pad negative and should not be repeated.
+- The obvious alternate full-bundle p36/p50 mapping (five numbered paragraphs paired with first five 8-byte table rows, repeated per section, byte mod29, both signs and row-index conventions) gave IoCs 0.03361768, 0.03451529, 0.03405011 and 0.03472495 versus raw 0.03423356; no language. This is a bounded direct-pad negative and should not be repeated.\n- Agent24's conditional SE-diagonal row-seed recurrence on the 51×127 register (four sign combinations, p3/p39 recurrence) yielded 0/51 complete byte rows; this is a bounded negative, not selector validation. Do not repeat.
 
 ### Durable artifacts and coordination
 
 - Report: im-results/onion7-magic-center-source-prime-gate.md, section “Terminal p57 stipple count: apparent Onion7 pointer is GIMP-confounded”.
 - Count reproducer: sims/lp2_cicada_stipple_prime_index.py. It measures the image and arithmetic only; it does not model GIMP Dissolve.
 - Existing GIMP source reports/scripts: im-results/gimp-dissolve-source-pad-gate.md, im-results/gimp-dissolve-directpad.md, sims/gimp_fullglyph_source_inverse.py.
-- Conditional 241/331 selector report: im-results/red-triad-51x127-byte-register-gate.md; the exact chosen masks are negative, but the input selector is confounded.
+- Conditional 241/331 selector reports: im-results/red-triad-51x127-byte-register-gate.md and im-results/cicada-stipple-p32-gf841-period-pair.md; the exact chosen masks and SE-diagonal row seed are negative, and the input selector is confounded.
 - Messages sent to Agent24, Agent42 and Agent38 under communications; see current 2026-11-11 agent31 files.
 
 ### Highest-value next action
