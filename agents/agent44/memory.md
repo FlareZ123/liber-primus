@@ -1,3 +1,9 @@
+# Agent 44, 11 November 2026: historically resolved Onion2 clock bridge
+
+Active lease `agent44-gpt6-20261111T105808076Z-issue208-onion-generator`, claimed `2026-11-11T10:58:08.076Z`; 70-minute threshold `2026-11-11T12:08:08.076Z`. Director Issue #208 author-side source recovery yielded a bounded negative, preserved in `workplace/onion2-original-server-source-gate.md`, commit 972fc12, issue closed. Director Issue #209 positive: discovered independent contemporaneous `#cicadaops` watcher MassoBot at 2014-01-07 18:30/18:40/19:00/19:10, combined with BotSottile byte counts to resolve positions 190–191 to **[2,4] five-minute units**. Source-backed reconstruction is preserved in `im-results/onion2-massobot-timing-bridge.md`, accompanying original resource JSON, and CJS standalone SFT; earlier 112 direct measured cells and prior experiment scopes are unaltered. No original LP2 plaintext/key or generator identified. Source line offsets and caveats in report. Remaining first 142 intervals lack this witness's coverage.
+
+---
+
 # Agent 44: direct-ASCII stateful radix-28 obstruction
 
 ## Current incarnation and lease

@@ -9,7 +9,8 @@
     "witnesses": [
       "BotSottile absolute timestamps",
       "Cripion101 elapsed intervals",
-      "Uncovering Cicada wiki exports 00120 and 00140"
+      "Uncovering Cicada wiki exports 00120 and 00140",
+      "MassoBot original IRC page-change monitor, 2014-01-07 18:30-19:10, cross-referenced with BotSottile byte-length snapshots"
     ],
     "anomalous_clock_transcription": "pos168 source clock 25 versus wiki clock 15; both agree 5-minute interval"
   },
@@ -718,7 +719,81 @@
         5,
         1
       ]
-    ]
+    ],
+    "source_resolved_k": [
+      2,
+      4
+    ],
+    "source_resolution": "Independent Jan 7 #cicadaops MassoBot site-change reports at 18:40 and 19:00, cross-referenced with BotSottile original byte-length reports at 18:30 (189), 18:56 (190), 19:00 (191), 19:10 (192). Cross-witness inference, not operator code."
   },
-  "limitations": "Only positions 143-189 and 192-256 attested. Positions 190-191 have one 30-minute sum and five allowed pairs. Positions 1-142 have no interval evidence. No direct LP2 key role is established."
+  "limitations": "The 112 original individually attested interval cells and five originally possible (190,191) bridge hypotheses are preserved for historical experiment reproduction. Separate independent 2014 MassoBot and BotSottile logs now favor one source-reconstructed split (10,20 minutes). Positions 1-142 still lack sourced intervals. No original server-side generator, LP2 key or decryption is established.",
+  "bridge_resolution": {
+    "evidence_class": "independent contemporaneous participant observation cross-witness inferred; author-side generator not observed",
+    "date": "2014-01-07",
+    "date_timezone": "IRC timestamps as archived; UTC assumption not essential to interarrival differences",
+    "five_minute_units": [
+      2,
+      4
+    ],
+    "byte_positions": [
+      190,
+      191
+    ],
+    "original_hex_bytes": [
+      "b5",
+      "bc"
+    ],
+    "watcher_source_url": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%23cicadaops.freenode.log",
+    "byte_snapshot_source_url": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/003-second-onion/interval-irc-logs.txt",
+    "watcher_events": [
+      {
+        "site_change": "18:30",
+        "source_line": 1857,
+        "byte_length_inferred": 189
+      },
+      {
+        "site_change": "18:40",
+        "source_line": 1864,
+        "byte_length_inferred": 190
+      },
+      {
+        "site_change": "19:00",
+        "source_line": 1876,
+        "byte_length_inferred": 191
+      },
+      {
+        "site_change": "19:10",
+        "source_line": 1891,
+        "byte_length_inferred": 192
+      }
+    ],
+    "bot_sottile_snapshots": [
+      {
+        "time": "18:30",
+        "byte_count": 189,
+        "final_hex_byte": "d6",
+        "original_archived_line": 2010
+      },
+      {
+        "time": "18:56",
+        "byte_count": 190,
+        "final_hex_byte": "b5",
+        "original_archived_line": 2038,
+        "remark": "rejoined after 18:40; printed full prefix, not an 18:56 author release"
+      },
+      {
+        "time": "19:00",
+        "byte_count": 191,
+        "final_hex_byte": "bc",
+        "original_archived_line": 2044
+      },
+      {
+        "time": "19:10",
+        "byte_count": 192,
+        "final_hex_byte": "a9",
+        "original_archived_line": 2056
+      }
+    ],
+    "limitation": "The watcher timestamps are site-change observations without byte values, anchored to specific bytes using the separate BotSottile lengths; the operator clock remains unknown."
+  }
 }
