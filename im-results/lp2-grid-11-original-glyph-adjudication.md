@@ -48,6 +48,29 @@ This confirms **no repeated-font inconsistency** suggesting an overlooked transc
 
 Reproduce with Pillow, NumPy and SciPy using the checked-in program [sims/lp2_grid_fullfont_source_audit.py](../sims/lp2_grid_fullfont_source_audit.py). It reads only the original three JPEGs and canonical table JSON, and emits a complete JSON summary of conflicts, singleton controls, and source rows.
 
+## Historical 2014 `sexagesimal.bin` witness
+
+The original solver archive `micheloosterhof/cicada-2014` records commit [`a9201dd`](https://github.com/micheloosterhof/cicada-2014/commit/a9201dd469a1a514eb0d8ff8f3449dbe2e7f7462), dated 2014-05-11 21:39:09Z, adding `decimal.txt`, `decimaltobyte.pm`, and `sexagesimal.bin` under the stage11 hidden-service directory. The Perl script packs each decimal line as one byte; the reconstructed 256-byte stream reproduces the archived Git blob SHA-1 exactly.
+
+That historical 256-byte sequence is **not identical** to the later LP2 printed-token table. It differs at ten indices:
+
+| Index | 2014 `sexagesimal.bin` | LP2 canonical | Difference |
+|---:|---:|---:|---:|
+| 25 | 224 | 198 | −26 |
+| 45 | 81 | 107 | +26 |
+| 50 | 21 | 47 | +26 |
+| 165 | 47 | 18 | −29 |
+| 170 | 194 | 254 | +60 |
+| 172 | 174 | 148 | −26 |
+| 175 | 44 | 18 | −26 |
+| 182 | 141 | 167 | +26 |
+| 199 | 21 | 47 | +26 |
+| 246 | 224 | 198 | −26 |
+
+Nine of these ten differences overlap the eleven LP2 cells adjudicated above; the 2014 file agrees with LP2 at disputed indices 215 and 237, and adds index 170 as another difference. This is a historical variant, not an authority for changing LP2 readings. The original LP2 JPEGs remain the primary evidence for the manuscript's printed tokens; the 2014 archive is a secondary solver-archive witness whose Git author dates are not independently authenticated.
+
+The exact source transcription and byte reconstruction are preserved in [`resources/cicada2014-sexagesimal-source.json`](../resources/cicada2014-sexagesimal-source.json). Its raw bytes and the associated decimal text/converter do not directly match the p56 digest under the four tested 64-byte digest families. The source's possible role as a key or transformed input remains open.
+
 ## Consequence for cryptanalysis
 
 Five hypothetical grid-byte changes repeatedly described in earlier studies as *source-corrected* actually change correct printed glyphs into incorrect ones. Any reported plaintext candidate depending on one of those five changes needs independent source evidence, and the natural default for future key schedules is the unchanged printed-token table. Earlier negative experiments using both versions remain valid experiments on their stated inputs; their alternate-key results do not establish an alternate original byte stream.
