@@ -96,7 +96,7 @@ function transform(plaintext, pad, reducer, sign) {
  * @returns {number[]}
  */
 function nativePlant(n) {
-  const phrase = 'THE WORDS ARE THE MAP AND THEIR MEANING IS THE DIRECTION THE NUMBERS GIVE THE PATH THE SECRET IS WITHIN THE BOOK ';
+  const phrase = 'THE WORDS ARE THE MAP AND THEIR MEANING IS THE DIRECTION THE NUMBERS SHOW THE PATH THE SECRET IS WITHIN THE TEXT ';
   const letters = phrase.replace(/[^A-Z]/g, '');
   const sorted = corpus.translit.map((symbol, index) => ({symbol, index})).sort((a, b) => b.symbol.length - a.symbol.length);
   const values = [];
