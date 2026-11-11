@@ -54,6 +54,21 @@ A second, independent source-motivated decoder uses the **actual solved LP2 p56 
 
 Both source inverses ran successfully under [manual CI 42839883665](https://github.com/FlareZ123/liber-primus/actions/runs/42839883665), and neither establishes an unknown LP2 plaintext or destination.
 
+
+## Direct p53 red51-to-black128 additive-key gate (bounded negative)
+
+The original p53 page has a visually marked red suffix at local \([128,179)\) and a preceding black prefix of exactly 128 runes. The transcription also places a word boundary at the split: black rune127 ends a word and red rune128 begins one. This is a natural color-key hypothesis: use the 51 red runes as a key for the 128 black runes.
+
+The exact original input was tested with the forward-reading red key under:
+- a repeated 51-rune key;
+- standard 51-rune plaintext-autokey extension;
+- standard 51-rune ciphertext-autokey extension;
+- all three additive orientations \(P=C-K\), \(P=K-C\), and \(P=C+K\).
+
+All **9** models are nonlinguistic. Repeated-key scores are **−9.11176**, **−8.82025**, and **−9.57329** nats/rune. Autokey scores range from **−8.11363** to **−10.00694**; the best is \(P=K-C\) with ciphertext feedback at **−8.11363**. The **835** native 128-rune Shakespeare-heldout/Gibran control windows range from **−3.59400** to **−2.06769** (median **−2.46442**). Every original candidate is far below the native range. All nine synthetic 128-rune plants recover exactly.
+
+This rejects the direct forward red51-to-black128 repeating-key and standard autokey readings. It does not reject the red span as a key for a different independently motivated cipher, an external key schedule, or a non-GP intermediate. The exact reproducer is [sims/red51_black128_additive_gate.cjs](../sims/red51_black128_additive_gate.cjs).
+
 ## Source-red authenticated-decryption gate for the complete numeric grid
 
 A distinct binary cryptographic interpretation allows the LP2 **256-byte original printed grid** to contain **240 ciphertext bytes and one 16-byte authentication tag**. Unlike readable-text heuristics, genuine tag validation would identify a plaintext source independently of its language or compression. The same original p53 **51 red GP runes** give four zero-padded base-29 key orientations and 32 conventional five-bit-field-packed 256-bit keys, while the preceding **128 black rune parities** supply literal 12- or 16-byte nonce readings. This yields **36 explicit source-derived keys**, 14 nonce presentations including zero, and **24** source-byte variants (radix59/60 with/without the five audited printed-token replacements, row/column/per-physical-page-column orders and reversals).
@@ -66,6 +81,6 @@ This is a bounded, decisive negative for the exact 240+16 AEAD representation, t
 
 **No usable original plaintext or independently predictive key occurs in this bounded source-radix29/AES family.** The best grid result is typical under the matching complete-family null, and the best rune result remains near uniform. Repeating the same orientations and AES modes does not add evidence.
 
-The result does not exclude the marked red span as a key for a different cipher, a binary payload with another formatting layer, a different IV or KDF, an unknown alphabet, or a separate clue. Any such alternative needs its own independent source motivation, original-input plaintext recovery and exact forward re-encryption.
+The direct additive/autokey p53 red51-to-black128 reading is now separately tested and negative. The report still does not exclude the marked red span as a key for a different independently motivated cipher, a binary payload with another formatting layer, a different IV or KDF, an unknown alphabet, or a separate clue. Any such alternative needs its own independent source motivation, original-input plaintext recovery and exact forward re-encryption.
 
 **Reproduce:** [source](../sims/red51_radix29_aes.cjs) through Node.js 22; or dispatch the existing [red51 workflow](../.github/workflows/red51-fivebit-key-iv-manual.yml) with input **probe = radix29**. [Successful complete original-corpus CI: 42781627839](https://github.com/FlareZ123/liber-primus/actions/runs/42781627839).

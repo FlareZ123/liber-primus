@@ -199,4 +199,4 @@ console.log(JSON.stringify({
   positiveControls,
   note: "Forward-reading red key only; no fitted alphabet, offset, or key."
 }, null, 2));
-if (require.main === module) main();
+
