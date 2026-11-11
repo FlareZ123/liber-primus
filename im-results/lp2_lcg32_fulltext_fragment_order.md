@@ -137,15 +137,17 @@ original LP2, all 12,956 unsolved runes:
 = 0.034692055412286114
 ```
 
-The [standalone original-input and all-secret positive-control reproducer](../sims/lp2_lcg32_allsecret_phase_invariant_sft.cjs) uses the exact source-annotated 32-fragment boundaries, tests all eight phase maps, and compares **1,740** overlapping 12,956-rune native-GP English windows from three independently stored controls, sampled every 323 runes. Every window exceeds the original source's within-phase equality rate:
+The [standalone original-input and all-secret positive-control reproducer](../sims/lp2_lcg32_allsecret_phase_invariant_sft.cjs) uses the exact source-annotated 32-fragment boundaries and tests all eight phase maps. It compares **2,335** native-GP windows (many overlapping) across modern English, Latin Vulgate and Old English Beowulf. Multiple-window corpora are sampled every 323 runes, and Beowulf supplies one full original-length source window. Every window exceeds the original source's within-phase equality rate:
 
 | Independent native corpus | GP rune length | Windows | Native within-phase collision rate | Windows at or below original |
 | --- | ---: | ---: | ---: | ---: |
 | Gibran | 62,550 | 154 | 0.057778–0.062229 | 0 |
 | Shakespeare | 216,874 | 632 | 0.056752–0.061851 | 0 |
 | Emerson | 320,945 | 954 | 0.058376–0.062322 | 0 |
+| Latin Vulgate (word-preserving GP29 source encoding) | 204,802 | 594 | 0.073046–0.078067 | 0 |
+| Old English Beowulf (original-length source GP29 fixture) | 12,956 | 1 | 0.059972 | 0 |
 
-For every corpus the SFT encrypts 12,956 native-GP runes using **independently permuted secret 29-symbol substitution tables at each of the 256 public phases**, asserts complete 12,956/12,956 secret-inverse recovery, and confirms the invariant survives genuine encryption exactly. This is a **key-independent rejection of directly native-English GP29 plaintext behind any fixed secret substitution at these public 32×8 phases**. It is stronger than testing the earlier 40 concrete grid-byte additive inverses because no key or S-box is guessed. Native corpora are not a formal exhaustive model of all possible natural or artificial plaintext. The windows overlap heavily and the 13/31 phase interpretation was retrospectively motivated, so neither a binomial p-value nor historical authorship should be inferred.
+For every corpus the SFT encrypts 12,956 native-GP runes using **independently permuted secret 29-symbol substitution tables at each of the 256 public phases**, asserts complete 12,956/12,956 secret-inverse recovery, and confirms the invariant survives genuine encryption exactly. Latin and Old English mitigate a modern-English-only assumption; the sampled controls cannot exhaust all languages, encodings or artificial plaintext. This is a **key-independent rejection of directly native-English GP29 plaintext behind any fixed secret substitution at these public 32×8 phases**. It is stronger than testing the earlier 40 concrete grid-byte additive inverses because no key or S-box is guessed. Native corpora are not a formal exhaustive model of all possible natural or artificial plaintext. The windows overlap heavily and the 13/31 phase interpretation was retrospectively motivated, so neither a binomial p-value nor historical authorship should be inferred.
 
 **Important boundary of this exclusion:** an evolving/secret-state substitution, feedback across runes, source-dependent resegmentation, variable-rate text, a non-GP intermediate, or an encryption layer preceding this substitution can break the native-GP phase collision expectation. The source does not yet select any of these options. No original plaintext was recovered. The useful decision is to retire fixed 32×8 phase GP29 S-box/key searches and demand a truly different independently specified transform.
 
