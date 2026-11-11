@@ -46,6 +46,7 @@ on:
           - signed-trifold
           - tree-inner7
           - tree-2d-prefix
+          - 28-page-samepad
           - tree-fold7
         default: full
 
@@ -58,6 +59,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Original 28-page shared pad and all-secret page-Caesar holdout
+        if: ${{ inputs.probe == '28-page-samepad' }}
+        run: node sims/lp2_28page_samepad_holdout_sft.cjs
+
       - name: Source FOLD 11x11 p32 two-ring overlay and 2014 historical magic-seven inverse
         if: ${{ inputs.probe == 'tree-fold7' }}
         run: node sims/p32_tree_two_ring_fold_magic_sft.cjs
