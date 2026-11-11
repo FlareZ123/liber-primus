@@ -1,6 +1,6 @@
 # Source factor GF(29^238): p36 field operations and DH3301 exponent-11 stream tests
 
-**Status:** original p36/R238 multiplication, exponent-11 inversion, power-11/relative-trace streaming, direct trace-of-powers additive streaming, and frozen DH-share relations all give bounded negatives. A newly derived canonical norm of the p36 field element equals the signed DH23 shared secret `2`, and its GF(29²) norm has a precise relation to the p3 red-field generator. The natural pairwise, scalar and EA-key interpretations were tested on untouched original LP2 ciphertext with native-GP positive controls; all are negative. **No unknown plaintext, authentic key or destination recovered.** The norm correspondence is intermediate evidence, not an established cipher instruction.
+**Status:** original p36/R238 multiplication, exponent-11 inversion, power-11/relative-trace streaming, direct trace-of-powers additive streaming, and frozen DH-share power equalities all give bounded negatives. New source-fixed norms 23/6 for the two marked 119-prefix orders match signed DH23 scalar values, but establish no decoding operation. A newly derived canonical norm of the p36 field element equals the signed DH23 shared secret `2`, and its GF(29²) norm has a precise relation to the p3 red-field generator. The natural pairwise, scalar and EA-key interpretations were tested on untouched original LP2 ciphertext with native-GP positive controls; all are negative. **No unknown plaintext, authentic key or destination recovered.** The norm correspondence is intermediate evidence, not an established cipher instruction.
 
 ## Why these are plausible finite operations
 
@@ -33,6 +33,22 @@ All post-p36 blocks are likewise below IoC **0.045**; the mean is approximately 
 | Reversed | **0.0338262** | F F N F AE A C IA H R U X A I I G G M L P TH L R N P |
 
 Both outputs are nonlinguistic by the same predeclared GP coincidence threshold. For all transformations the original input is reproduced exactly when reencryption is applied. A 238-rune plaintext plant made by repeating the source-solved p57 text is encrypted then recovered **238/238** under every tested inverse. This validates implementation and detection capacity; it does not constitute evidence of an unknown-page decryption.
+
+## Source-anchored three-element norm correspondence (Agent 7, 11 November 2026)
+
+A new exact field calculation strengthens the **source-selected numerical link** between the same three geometrically constrained rune sequences. This is a possible clue, without an LP2 decryption. Let \(Q_{238}\) be the original p50 table's published irreducible factor and interpret each printed GP29 source vector as an *ascending-coefficient* element of \(F=\mathrm{GF}(29^{238})\). The degree-238 field norm is \(N_{F/\mathbb F_{29}}(S)=S^{(29^{238}-1)/28}\). The pair of **119-rune** prefixes is selected from the two uniquely red marked inscriptions at physical **p3:119** and **p39:119**; p36 is an entire **238-rune** source page. No ciphertext plaintext, guessed seed, or secret alphabet is fitted:
+
+| Frozen source vector | Original-length field norm | 2013 DH23 example relation |
+| --- | ---: | --- |
+| p3 first 119 followed by p39 first 119 | **23** | Signed challenge's modulus 23 |
+| p39 first 119 followed by p3 first 119 | **6** | Server exponent 6, uniquely derived from signed \(5^6\bmod23=8\) |
+| All p36, printed order | **2** | Signed challenge's computed shared secret 2 |
+
+The third equality \(N(p36)=2\) was independently established earlier in this report by Agent 13; the two prefix-order norms **23** and **6** are the new calculations. Both were independently checked by Euclidean polynomial resultants and modular exponentiation over the full original Q238 field. The self-consistency is exact at every coefficient, not a text-likelihood comparison.
+
+A fixed **1,500-trial source-prefix permutation null** shuffles each original 119-rune prefix separately, preserving each prefix's exact GP29 multiset, then recalculates both order-specific norms with the same field and fixed target values 23/6. Seed 0x7f330123: 56/1,500 shuffled pairs match the first norm, 50/1,500 match the second, and **2/1,500** match both. The conditional add-one tail is **3/1,501 ≈ 0.002**. This is conditional on the chosen construction, numeric targets, and controls; the broader project's historical model search is not included. The three value alignments could therefore still be post-selected numerical coincidences. No printed instruction directly selects the norm, and the 2013 signed source does not mention LP2 or GF(29^238).
+
+**Decisive cipher gate:** the full field elements do **not** obey DH public-share equalities \(A^{15}=B^6\), \(A^6=B^{15}\), or the secondary participant-example \(A^{11}=B^{331}\) in either coefficient orientation or prefix order. Their coordinate mismatches, documented immediately below, prevent a direct shared secret/key from this reading. The norms may encode scalar annotations, but they do not by themselves determine the reversible LP2 cipher or recover unknown plaintext. Do not launch unrelated norm/trace searches without a separate clue that fixes their values in advance. [Single-file original-source verification](../sims/p36_q238_trace_x_and_dh_shares_sft.cjs).
 
 ## Original-source DH-share equality and trace-of-X-power stream (Agent 7, 11 November 2026)
 
