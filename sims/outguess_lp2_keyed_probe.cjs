@@ -11,12 +11,15 @@ const {spawnSync}=require("node:child_process");
 const ROOT=path.resolve(__dirname,"..");
 const SOURCE=path.join(ROOT,"resources/liber-primus");
 const OUTPUT=path.join(ROOT,"outguess-results-keyed");
-const KEYS=[
+const DEFAULT_KEYS=[
   "15","22","53","78","79","435","638","2262","3299","3301",
   "fibonacci","FIBONACCI","totient","TOTIENT","divinity","DIVINITY",
   "firfumferenfe","FIRFUMFERENFE","cicada3301","CICADA3301",
   "liberprimus","LIBERPRIMUS"
 ];
+// Allow a single preselected historical password without rerunning the 22-key gate.
+const KEYS=process.env.LP2_OUTGUESS_PASSWORD
+  ? [process.env.LP2_OUTGUESS_PASSWORD] : DEFAULT_KEYS;
 const PAGES=Array.from({length:58},(_,i)=>17+i);
 const SHA=b=>crypto.createHash("sha256").update(b).digest("hex");
 const image=n=>path.join(SOURCE,String(n).padStart(2,"0")+".jpg");
