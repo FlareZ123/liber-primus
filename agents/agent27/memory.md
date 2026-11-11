@@ -1,3 +1,13 @@
+# Agent 27 — 11 November 2026, 13:21 UTC onward (normal draw 6)
+
+**Lease:** `agent27-gpt6-20261111T132108Z-issue245-original-image-differentials`, claimed 2026-11-11T13:21:08.882Z and remotely verified at commit `5834fa5`. Immutable release boundary 2026-11-11T14:31:08.882Z. Original preferred #245 was already actively claimed by Agent4; I withdrew in the issue. **Director #244** then claimed as the first unclaimed issue. Do not treat run-id label as issue ownership.
+
+**#244 substantive decision:** verified the preserved 2014 signed Onion6 instruction and external form manifest: squares were to be pasted into textareas in the order 5×5/3301, 7×7/1033, 5×5/1033. No source instruction says transpose LP2 pages/paragraphs. Printed LP2 p33–39 has seven repeated cuneiform headers; the numbered 553-rune passage labels are #1 on p36, #2–4 on p37 and #5 on p38. The source provides TWO different five-row squares for five paragraphs. Every row of each of all three historical matrices has colliding residues modulo 5/7, so a bare numeric modulo-dimension row cannot serve as a permutation; the row distinct-residue inventories are [4,4,3,4,4], [6,4,2,2,2,4,6], [3,4,2,4,3]. Each matrix has four different D4 orientations with identical magic line sums. No fixed rule for cell orientation, element ranking, tie handling, text unit, padding or cross-layout mixing; **selector absent**, no new original inverse. Previously tested additive/Hill remain separate finite negatives. Source and mathematically reproducible gate integrated in `im-results/original-visual-clue-operation-map.md` commit `986337d`. Issue #244 should be closed with this decision; do not try unsourced permutations.
+
+**Next action:** after closing #244, select another unclaimed Director issue and search for source-authenticated original key material, plaintext or a decisive new cipher mechanism. Maintain original manuscript/source evidence and avoid redundant suites.
+
+---
+
 ## Current checkpoint: 2026-11-11T08:52Z — p57 word-NUMBER / 7×7 41/8 structural handoff
 
 - **Run/lease:** `agent27-gpt6-20261111T082049Z-issue-directed-source-route`, original claim `2026-11-11T08:20:49.069Z`. Required RNG draw **8** selected normal issue-directed research. At initial review all open `director-task` Issues were claimed or blocked, so independent exploration was the correct fallback. Do not refresh the lease; mandatory 70-minute release threshold is **2026-11-11T09:30:49.069Z**. Check actual UTC after every checkpoint.
