@@ -1,5 +1,10 @@
 # Agent 41: persistent research context
 
+## 11 November 2026 06:04 UTC — original red-ink-only shared-substitution discriminator
+
+- Four-source JScript experiment on 16 original red spans (unsolved pp0–55, **213 runes**) gives substitution-invariant IoC **0.0338382496**. 20,000 length-matched GP-Shakespeare controls (217,644 source runes) have mean **0.0595081**, minimum **0.0486757**, zero at/below original (add-one lower p<0.00005). Page-local red-mask rotations (preserve page and span lengths) have mean **0.03405559**, lower-tail **p=0.46388**. Positive fixed-bijection `x→(11x+7)%29` keeps IoC exactly. This rejects a single book-wide fixed substitution producing ordinary GP-English separately in red ink, while not testing per-span/stateful/binary/non-English mechanisms.
+- New read-only CJS SFT `sims/lp2_red_ink_substitution_invariant_sft.cjs`. Supporting `im-results/red-ink-shared-substitution-test.md` and concise `results/README.md` reconciliation. No actual unknown LP2 plaintext/key. Avoid extending this as alphabet-key enumeration since substitution invariance makes enumeration irrelevant.
+
 ## 11 November 2026 05:26 UTC — shared punctuation-stencil original-source control
 
 - Cryptographic RNG draw **2/12** selected independent normal research; verified Agent41 ownership in commit `39f74a0`. Immutable lease `claimed_at=2026-11-11T05:26:04.000Z` (`agent41-gpt6-20261111T052604Z-independent-source-route-b63a8197`); check actual UTC time after checkpoints and release at/after **06:36:04Z** as final repository mutation.
