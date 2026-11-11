@@ -11,4 +11,6 @@ jobs:
           node-version: '22'
       - name: Verify source-native p3-to-p39 finite-field identity
         run: node sims/lp2_red_triad_extension_root_sft.cjs
+      - name: Original 12956-rune source-fixed second-generator inverse
+        run: node sims/lp2_red_triad_selfpower_original_gate.cjs
       - run: node sims/red_triangle_primitive_key.cjs
