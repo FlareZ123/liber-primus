@@ -94,11 +94,13 @@ const nextPrimes = count => {
   return primes;
 };
 const phiPrimes = nextPrimes(1800).map(prime => (prime - 1) % 29);
-/** Conservative reachability: allows both literal F skip and normal
- * consumption when cipher F occurs, so rejection is still valid.
+/** Restricted plaintext-content test: key-consuming runes must not decode
+ * to F (GP index 0). A cipher-F rune may instead pass through literally.
+ * This restriction is NOT required by additive prime-totient decryption:
+ * an unrestricted inverse is defined for every GP29 ciphertext rune.
  * @param {number[]} ciphertext
  */
-function totientFeasible(ciphertext) {
+function nonFPlaintextTotientFeasible(ciphertext) {
   let states = new Set([0]);
   for (let i = 0; i < ciphertext.length; i++) {
     const next = new Set();
@@ -113,9 +115,9 @@ function totientFeasible(ciphertext) {
 }
 const solvedP56 = corpus.pages.find(page => page.page === 56).indices;
 assert.equal(solvedP56.length, 85);
-assert.deepEqual(totientFeasible(solvedP56), { possible: true, firstFailure: null });
-assert.deepEqual(totientFeasible(original), { possible: false, firstFailure: 30 });
-assert.deepEqual(totientFeasible(transformed), { possible: false, firstFailure: 4 });
+assert.deepEqual(nonFPlaintextTotientFeasible(solvedP56), { possible: true, firstFailure: null });
+assert.deepEqual(nonFPlaintextTotientFeasible(original), { possible: false, firstFailure: 30 });
+assert.deepEqual(nonFPlaintextTotientFeasible(transformed), { possible: false, firstFailure: 4 });
 
 
 /** Independent seven-page original-cipher test, source-started at the second
@@ -187,6 +189,14 @@ const illustratedBody = illustratedPages[0].indices.slice(91)
   .concat(illustratedPages.slice(1).flatMap(page => page.indices));
 assert.equal(illustratedFull.length, 1680);
 assert.equal(illustratedBody.length, 1589);
+
+// Without an independently mandated no-F plaintext restriction, direct
+// totient subtraction has a valid 29-rune inverse at every position.
+for (const ciphertext of [solvedP56, original, transformed, illustratedFull, illustratedBody]) {
+  const decoded = ciphertext.map((c, i) => (c - phiPrimes[i] + 29) % 29);
+  assert.equal(decoded.length, ciphertext.length);
+  assert(decoded.every(value => Number.isInteger(value) && value >= 0 && value < 29));
+}
 const sevenPageWindows = Array.from({ length: 50 }, (_, start) => ({
   start, length: corpus.pages.slice(start, start + 7)
     .reduce((total, page) => total + page.indices.length, 0)
@@ -201,7 +211,7 @@ function measuredSourceInverse(source, expectedAfter, expectedFailure) {
   assert.deepEqual(restoreHistoricalColumns(altered), source);
   assert.equal(adjacent(altered), expectedAfter);
   assert.equal(ioc(altered), ioc(source));
-  assert.deepEqual(totientFeasible(altered),
+  assert.deepEqual(nonFPlaintextTotientFeasible(altered),
     { possible: false, firstFailure: expectedFailure });
   const digitKey = [source, altered].flatMap((stream, i) =>
     /** @type {const} */ ([1, -1]).map(direction => ({
@@ -212,8 +222,8 @@ function measuredSourceInverse(source, expectedAfter, expectedFailure) {
   assert(digitKey.every(result => result.ioc < .04));
   return { originalRunes: source.length, rows: 7, columns: source.length / 7,
     originalRepeats: adjacent(source), transformedRepeats: adjacent(altered),
-    fixedIoC: ioc(altered), originalTotient: totientFeasible(source),
-    transformedTotient: totientFeasible(altered), digitKey };
+    fixedIoC: ioc(altered), originalNonFPlaintextTotient: nonFPlaintextTotientFeasible(source),
+    transformedNonFPlaintextTotient: nonFPlaintextTotientFeasible(altered), digitKey };
 }
 assert.equal(adjacent(illustratedFull), 12);
 assert.equal(adjacent(illustratedBody), 12);
@@ -250,7 +260,7 @@ console.log(JSON.stringify({
       historicalSourceInverseRepeats: 50, rankLessOrEqual: 2607},
     note: 'Source inverse does not retain original near-absence of adjacent duplicate runes' },
   directVigenereDigitKey: directKeyScreen,
-  directP56PrimeTotientGate: { solvedP56PositiveControl: totientFeasible(solvedP56), raw: totientFeasible(original),
-    transposed: totientFeasible(transformed) },
+  conditionalNoFPlaintextTotientGate: { solvedP56PositiveControl: nonFPlaintextTotientFeasible(solvedP56), raw: nonFPlaintextTotientFeasible(original),
+    transposed: nonFPlaintextTotientFeasible(transformed) },
   result: 'Source-period7 inverse is real, exactly reproducible; no LP2 plaintext or direct known-key inversion'
 }, null, 2));
