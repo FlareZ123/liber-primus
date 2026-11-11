@@ -1,13 +1,14 @@
 "use strict";
 /**
- * One-key, three-carrier OutGuess test for the source-derived CABALUOIDFORM
- * string. The key is the 13-GP-symbol inward central-column path
- * CABAL -> UOID -> FORM from the 2013 Wisdom square, reconstructed from
- * p55/p36 word-number directions. The 2016 signed image establishes OutGuess
- * as a historically relevant steganography tool; p14/p32/p55 are fixed
- * source-selected carriers (FOLD/tree/shared-tree).
+ * Two fixed representations of the source-derived central-column path are
+ * tested: CABALUOIDFORM (exact GP transliteration) and CABALVOIDFORM (English
+ * semantic reading of UOID). The 13-GP-symbol inward path CABAL -> UOID -> FORM
+ * comes from the 2013 Wisdom square and p55/p36 word-number directions. The
+ * 2016 signed image establishes OutGuess as a historically relevant tool;
+ * p14/p32/p55 are fixed source-selected carriers (FOLD/tree/shared-tree).
  *
- * This is one fixed hypothesis, not a password search.
+ * This is a two-reading fixed hypothesis, not a password search. Preserve every
+ * header-consistent raw extraction for independent ciphertext analysis.
  * Run: node sims/lp2_cabal_derived_outguess_sft.cjs
  */
 const fs = require("node:fs");
@@ -20,7 +21,10 @@ const root = path.resolve(__dirname, "..");
 const src = path.join(root, "resources/liber-primus");
 const historical = path.join(root, "resources/historical");
 const output = path.join(root, "outguess-cabal-derived-results");
-const key = "CABALVOIDFORM"; // semantic English reading of GP-transliterated UOID
+const keyVariants = [
+  { key: "CABALUOIDFORM", representation: "exact GP transliteration" },
+  { key: "CABALVOIDFORM", representation: "English semantic reading" }
+];
 const carriers = [
   { file: "31.jpg", page: 14, reason: "original FOLD/tree page" },
   { file: "49.jpg", page: 32, reason: "original blurred-tree / 11x11 page" },
@@ -56,7 +60,8 @@ function atomicJSON(destination, value) {
   fs.renameSync(staged, destination);
 }
 function main() {
-  assert.equal(key.length, 13);
+  assert.equal(keyVariants.length, 2);
+  for (const variant of keyVariants) assert.equal(variant.key.length, 13);
   const wisdom = fs.readFileSync(path.join(root, "resources/external/2013-0-wisdom.txt"), "utf8");
   for (const runeWord of ["ᚳᚪᛒᚪᛚ", "ᚢᚩᛁᛞ", "ᚠᚩᚱᛗ"]) {
     assert(wisdom.includes(runeWord), "missing source-derived key word " + runeWord);
@@ -70,13 +75,12 @@ function main() {
   const lockHandle = fs.openSync(lock, "wx");
   const scratch = path.join(output, "extract.incomplete");
   const result = {
-    classification: "single source-derived semantic passphrase, three original carriers; no password tuning",
-    key,
-    keyLength: key.length,
+    classification: "two fixed source-derived passphrase readings, three original carriers; no password tuning",
+    keyVariants,
     keyDerivation: {
       source: "2013 0_wisdom / p55-p36 central-column navigation",
-      orderedWords: ["CABAL", "VOID", "FORM"],
-      note: "VOID is the English meaning of the GP-transliterated UOID; selected by the signed 2016 instruction that word meanings are the road"
+      orderedWords: ["CABAL", "UOID", "FORM"],
+      note: "Test both exact GP transliteration and the English semantic reading VOID, motivated by the signed 2016 instruction that word meanings are the road"
     },
     carriers,
     attempts: [],
@@ -111,38 +115,41 @@ function main() {
     result.controls.planted = { exact: true, key: controlKey, bytes: plantedText.length };
     for (const file of [plantedPath, plantedImage, scratch]) fs.rmSync(file, { force: true });
 
-    for (const carrier of carriers) {
-      fs.rmSync(scratch, { force: true });
-      const image = path.join(src, carrier.file);
-      const run = outguess(["-k", key, "-r", image, scratch]);
-      const combined = (run.stdout || "") + "\n" + (run.stderr || "");
-      const match = /Steg retrieve:\s*seed:\s*(\d+),\s*len:\s*(\d+)/iu.exec(combined);
-      const bytes = fs.existsSync(scratch) ? fs.readFileSync(scratch) : Buffer.alloc(0);
-      const item = {
-        carrier,
-        status: run.status,
-        signal: run.signal || null,
-        error: run.error ? String(run.error) : null,
-        header: match ? { seed: Number(match[1]), length: Number(match[2]) } : null,
-        fileBytes: bytes.length,
-        headerConsistent: Boolean(match && bytes.length > 0 && bytes.length === Number(match[2])),
-        flags: [],
-        sha256: bytes.length ? hash(bytes) : null,
-        opening: bytes.length
-          ? bytes.subarray(0, 80).toString("latin1").replace(/[^\x20-\x7e]/g, ".")
-          : ""
-      };
-      if (item.headerConsistent) {
-        item.flags = indicators(bytes);
-        if (item.flags.length) {
-          const final = path.join(output, "candidate_p" + carrier.page + ".bin");
+    for (const variant of keyVariants) {
+      for (const carrier of carriers) {
+        fs.rmSync(scratch, { force: true });
+        const image = path.join(src, carrier.file);
+        const run = outguess(["-k", variant.key, "-r", image, scratch]);
+        const combined = (run.stdout || "") + "\n" + (run.stderr || "");
+        const match = /Steg retrieve:\s*seed:\s*(\d+),\s*len:\s*(\d+)/iu.exec(combined);
+        const bytes = fs.existsSync(scratch) ? fs.readFileSync(scratch) : Buffer.alloc(0);
+        const item = {
+          key: variant.key,
+          representation: variant.representation,
+          carrier,
+          status: run.status,
+          signal: run.signal || null,
+          error: run.error ? String(run.error) : null,
+          header: match ? { seed: Number(match[1]), length: Number(match[2]) } : null,
+          fileBytes: bytes.length,
+          headerConsistent: Boolean(match && bytes.length > 0 && bytes.length === Number(match[2])),
+          flags: [],
+          sha256: bytes.length ? hash(bytes) : null,
+          opening: bytes.length
+            ? bytes.subarray(0, 80).toString("latin1").replace(/[^\x20-\x7e]/g, ".")
+            : ""
+        };
+        if (item.headerConsistent) {
+          item.flags = indicators(bytes);
+          const final = path.join(output, "candidate_" + variant.key + "_p" + carrier.page + ".bin");
           const staged = final + "." + process.pid + ".incomplete";
           fs.writeFileSync(staged, bytes, { flag: "wx" });
           fs.renameSync(staged, final);
+          item.rawArtifact = path.basename(final);
         }
+        result.attempts.push(item);
+        fs.rmSync(scratch, { force: true });
       }
-      result.attempts.push(item);
-      fs.rmSync(scratch, { force: true });
     }
     result.summary = {
       attempts: result.attempts.length,
@@ -163,4 +170,4 @@ function main() {
   }
 }
 if (require.main === module) main();
-module.exports = { main, key, carriers, indicators };
+module.exports = { main, keyVariants, carriers, indicators };

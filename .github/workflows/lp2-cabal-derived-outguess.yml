@@ -33,7 +33,7 @@ jobs:
           CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
           make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
           sudo make install
-      - name: Execute fixed CABALUOIDFORM source-key test
+      - name: Execute both fixed CABAL/VOID/FORM source-key readings
         run: |
           node --check sims/lp2_cabal_derived_outguess_sft.cjs
           node sims/lp2_cabal_derived_outguess_sft.cjs
