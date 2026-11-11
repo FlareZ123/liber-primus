@@ -33,7 +33,7 @@ jobs:
           from pathlib import Path
           import re
           s=Path("stage5-pre.html").read_text()
-          m=re.search(r"<!--3301-->\\s*([0-9a-fA-F]{512})",s)
+          m=re.search(r"<!--3301-->\s*([0-9a-fA-F]{512})",s)
           assert m, "expected exactly one 512-hex pre-object"
           Path("pre-key.txt").write_text(m.group(1))
           print("pre-object hex chars",len(m.group(1)),"bytes",len(m.group(1))//2)
