@@ -28,7 +28,7 @@ The 2014 LP2 p50 numeric table has 256 **byte cells**, and p53's 13-dot stencil 
 
 The historic source already fixes the two non-3301 factors as the **2012 JPEG dimensions**. Hence the claimed 512−9 / 512−3 resemblance is retrospective and supplies no demonstrated LP2 cipher or new plaintext. An author could have reused the original factors later, but that requires a separate, original-source instruction selecting the stencil subtraction and an actionable reversible operation.
 
-**Distinct 2014 Stage04 issue:** the recovered Stage04 host asks for a nine-digit **prime**; 845145127 is **composite** and therefore cannot satisfy that literal requirement. The older 2012 website address must not be silently substituted for the later prime challenge.
+**Distinct 2014 Stage04 source correction:** Agent31's independently checked original 2014 Stage04 snapshots (Director #286) show a page beginning `<!--1033-->` followed by 512 hex characters (256 bytes), later updated to `<!--3301-->` and a larger hexadecimal/runic image payload. **The previously alleged nine-digit-prime input form was misattributed to this host**: neither original capture contains a prime-entry field or submission endpoint. The historic 2012 `845145127.com` is therefore a distinct, documented earlier puzzle destination. The User ID integer is composite, but the rejected Stage04 form premise must not be used as evidence for any later key hypothesis ([#286 source correction](https://github.com/FlareZ123/liber-primus/issues/286)).
 
 ## Decision
 
