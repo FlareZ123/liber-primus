@@ -221,11 +221,132 @@ function study(trials = 100000) {
         pageRotationHits: familyPage, pageRotationP: plusOne(familyPage)
       }
     },
+    originalCipherInverse: originalCipherInverse(),
     decision: "EXPLORATORY CHECKSUM MATCH; independently fixed decoder/key and further out-of-sample prediction missing"
+  };
+}
+
+
+/**
+ * The checksum-matching state stream also supplies 256 original-source grid
+ * byte addresses. Test its direct reversible use as a fixed repeated pad
+ * on ALL original unknown runes. The GP28 register emits a distinguished
+ * index-28 transparent plaintext symbol at exact ciphertext doublets, with
+ * the first rune on each physical page acting as its page IV.
+ *
+ * This is a bounded original-cipher diagnostic, NOT proof of checksum intent.
+ */
+function originalCipherInverse() {
+  const ciphertext = corpus.pages.filter(page => page.page < 56)
+    .flatMap(page => page.indices);
+  assert.equal(ciphertext.length, 12956);
+  const pageStarts = new Set();
+  let offset = 0;
+  for (const page of corpus.pages.filter(page => page.page < 56)) {
+    if (page.indices.length > 0) pageStarts.add(offset);
+    offset += page.indices.length;
+  }
+  const gridBytes = table.flat();
+  assert.equal(gridBytes.length, 256);
+  const states = [0];
+  for (const e of events) states.push((13 * states.at(-1) +
+    (e.kind ? e.value : 31)) & 255);
+  assert.equal(states.length, 257);
+  assert.equal(states.at(-1), 133);
+  const seen = new Set(states.slice(0, -1));
+  assert.equal(seen.size, 170);
+  const mod = (x, m) => ((x % m) + m) % m;
+  const native = corpus.pages.find(p => p.page === 57).indices;
+  assert.equal(native.length, 95);
+  const plant = Array.from({length: ciphertext.length},
+    (_, i) => native[i % native.length]);
+
+  /**
+   * @param {number[]} input
+   * @param {"gp29"|"gp28"} family
+   * @param {"pre"|"post"} sample
+   * @param {-1|1} sign
+   * @param {"mod"|"scaled"} projection
+   * @param {boolean} decode
+   * @returns {number[]}
+   */
+  function transform(input, family, sample, sign, projection, decode) {
+    const out = new Array(input.length);
+    let previousCipher = -1;
+    for (let i = 0; i < input.length; i++) {
+      const radix = family === "gp29" ? 29 : 28;
+      const position = states[(i % 256) + (sample === "post" ? 1 : 0)];
+      const byte = gridBytes[position];
+      const key = projection === "mod" ? byte % radix :
+        Math.floor(byte * radix / 256);
+      const v = input[i];
+      let next;
+      if (family === "gp29") {
+        next = mod(v + (decode ? 1 : -1) * sign * key, 29);
+      } else if (pageStarts.has(i)) {
+        next = v;  // Fixed physical-page IV.
+      } else if (decode) {
+        next = v === previousCipher ? 28 :
+          mod(mod(v - previousCipher - 1, 29) + sign * key, 28);
+      } else {
+        next = v === 28 ? previousCipher :
+          mod(previousCipher + 1 + mod(v - sign * key, 28), 29);
+      }
+      out[i] = next;
+      if (family === "gp28") previousCipher = decode ? v : next;
+    }
+    return out;
+  }
+
+  function ioc(input) {
+    const counts = new Uint32Array(29);
+    for (const item of input) {
+      assert(Number.isInteger(item) && item >= 0 && item < 29);
+      counts[item]++;
+    }
+    const n = input.length;
+    return counts.reduce((sum, count) =>
+      sum + count * (count - 1), 0) / (n * (n - 1));
+  }
+
+  const variants = [];
+  for (const sample of ["pre", "post"]) {
+    for (const family of ["gp29", "gp28"]) {
+      for (const sign of [-1, 1]) {
+        for (const projection of ["mod", "scaled"]) {
+          const decoded = transform(ciphertext, family, sample, sign,
+            projection, true);
+          assert.deepEqual(transform(decoded, family, sample, sign,
+            projection, false), ciphertext);
+          const planted = transform(plant, family, sample, sign,
+            projection, false);
+          assert.deepEqual(transform(planted, family, sample, sign,
+            projection, true), plant);
+          variants.push({
+            sample, family, sign, projection, ioc: ioc(decoded),
+            prefix: decoded.slice(0, 80).map(x => corpus.translit[x]).join("")
+          });
+        }
+      }
+    }
+  }
+  assert.equal(variants.length, 16);
+  const gp29 = variants.filter(v => v.family === "gp29").map(v => v.ioc);
+  const gp28 = variants.filter(v => v.family === "gp28").map(v => v.ioc);
+  return {
+    models: variants.length, ciphertextRunes: ciphertext.length,
+    sourceKeyDistinctAddresses: seen.size, sourceKeyPeriod: 256,
+    truePlantedRecoveries: variants.length * ciphertext.length,
+    exactOriginalReencipherments: variants.length * ciphertext.length,
+    rawCiphertextIoC: ioc(ciphertext),
+    gp29IoCRange: [Math.min(...gp29), Math.max(...gp29)],
+    gp28IoCRange: [Math.min(...gp28), Math.max(...gp28)],
+    variants,
+    decision: "16 direct GP29/transparent GP28 event-state table inverses yield no readable original plaintext"
   };
 }
 
 if (require.main === module) {
   process.stdout.write(JSON.stringify(study(), null, 2) + "\n");
 }
-module.exports = {getEvents, terminal, study};
+module.exports = {getEvents, terminal, study, originalCipherInverse};
