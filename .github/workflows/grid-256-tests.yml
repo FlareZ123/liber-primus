@@ -135,6 +135,7 @@ jobs:
         if: ${{ inputs.probe == 'full' || inputs.probe == '' }}
         run: |
           node sims/test_lp2_grid.cjs
+          node sims/lp2_grid_dual_factor_error_corrector_sft.cjs
           node sims/red_run_grid_affine_membership.cjs
           node sims/grid_radix59_rc4_inverse.cjs
           node sims/grid_shamir_rs_inverse.cjs
