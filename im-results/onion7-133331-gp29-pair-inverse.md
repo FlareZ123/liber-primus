@@ -134,10 +134,29 @@ This is an exact full finite-family original-input negative for **one book-conti
 
 The executable original data analysis and both controls passed [manually dispatched GitHub Actions run 42854934864](https://github.com/FlareZ123/liber-primus/actions/runs/42854934864) on Node.js 22.
 
+## Complementary 58-page address and same-pad word gate (Agent 33, 11 November 2026)
+
+The archived seventh-onion HTML lists images \`0.jpg\` through \`57.jpg\`. Reducing its title **133** and div ID **331** modulo the 58 image slots gives **physical pages 17 and 41**; they sum to 58. This *particular addressing operation is a hypothesis*: the HTML has neither a modulo instruction nor a page navigation link. Among the **26** nonempty, unknown-page complementary pairs \`p+q=58\` with \`p<q\`, **p17/p41 alone have exactly the same number of ciphertext runes, 273 each**. The exact-match count is a source observation, without a discovery-wide significance assessment.
+
+One reversible interpretation can be decided *without guessing its key*: if these pages were encrypted using the **same positional GP29 additive pad**, then \`C41-C17=P41-P17 mod29\` at every aligned rune. An opposite pad sign replaces the difference by a sum; reading the second page backward supplies a distinct original-image orientation. These give four finite, fully specified tests. If plaintext retained both original printed word segmentations and belonged to a fixed dictionary of GP-English words, every word crossing between two aligned boundaries must satisfy the key-cancelled rune constraints exactly.
+
+The [source-original word feasibility SFT](../sims/p17_p41_sharedpad_dictionary_gate.cjs) uses **29,157** original TextBlob lexicon words, **29,154** GP-encodable after the historically validated \`ING\`, \`QU→CW\`, \`V→U\`, \`K→C\`, and \`Z→S\` conventions, with every pair of words checked by exact arc consistency. The original p17/p41 source parses yield **69/62** page-local segments. Independent common word-boundary cuts yield **22** forward blocks or **10** reverse blocks. The number of lexicon-incompatible blocks is:
+
+| Read orientation of p41 | Same additive pad sign | Opposite pad signs |
+| --- | ---: | ---: |
+| Forward | **12 / 22** | **13 / 22** |
+| Backward | **8 / 10** | **8 / 10** |
+
+All **12** forward same-sign failures occur in interior blocks unaffected by the page-edge word continuations. Since the blocks are disjoint, the strict source-native dictionary model requires **at least 12 distinct out-of-vocabulary words, local cipher exceptions or segmentation changes** to explain p17/p41, before assigning any sentence-level grammar. The other four variants similarly fail, with at least seven reverse-orientation *interior* blocks incompatible. Four fully synthetic shared-pad GP29 plants respecting the actual, distinct 69/62 printed-word length templates pass all their block tests, independently validating the algebra and the parser. As a real-language coverage caveat, the very broad finite lexicon omits **HASHES** from the **25-word** authentic solved p56 plaintext; the word model is demonstrably imperfect. It does not exclude hidden dictionaries, proper nouns, unrelated page keys or explicit anti-repeat state.
+
+The **basic 273-rune difference histogram** happens to receive a favorable but unexceptional GP-English marginal likelihood under an independent Emerson language control, so marginal resemblance alone does not rescue the exact same-pad word model. Similar all-page shared-key and dictionary probes were previously conducted on the retrospectively selected p28/p42 anomaly; the new result is confined to the **independently HTML-numbered p17/p41 complementary pair** and its four exact orientations/signs. No ciphertext word is decoded. [Successful manual Node 22 Actions run 42996696913](https://github.com/FlareZ123/liber-primus/actions/runs/42996696913).
+
+**Decision:** retain p17/p41 equal lengths as a prospective address clue, but do not use the raw 133/331 residues to infer a reused ordinary additive key. The source must first select its page-address interpretation and a distinct reversible operation; further keyless unigram/trigram or arbitrary-offset sweeps on this pair are low priority.
+
 ## Decision
 
 The historical source numbers provide an exact, constrained **candidate** for a GP29 quarter-turn, two-rune mixing and a two-register ciphertext-feedback mechanism. All tested inverse families, including 707,281 book-continuous and 5,658,248 eight-section order-four linear feedback keys, fail to recover native GP-English from original LP2. Crucially, an unconstrained secret permutation of each whole-book or page-wide output channel cannot rescue normal English-like letter frequencies without a substantial, otherwise unexplained edit or evolving-state layer.
 
-**Prioritize a different mechanism if pursuing 133/331:** a key schedule or state rule beyond the now-exhausted whole-book order-four linear public-feedback family, with a key independently recovered and a held-out original plaintext interval. The arithmetical coincidences alone cannot authenticate a key.
+**Prioritize a different mechanism if pursuing 133/331:** the static two-rune GP29 mixer, exhaustive book/section order-four public-feedback family, and finite word-preserving source-addressed p17/p41 same-pad reading do not produce an unknown-page solution. A separate source-selected key schedule or state rule, followed by a held-out original plaintext interval, is still required. The arithmetical coincidences alone cannot authenticate a key.
 
 The complete self-contained Node.js 22/CommonJS runner reads the archived HTML, original rune corpus and independent English control, enforces the 58/29 arithmetic, performs 24 original inversions, calculates all source-symbol capacity bounds and executes both true-key positives. It passed [manual GitHub Actions run 42850152363](https://github.com/FlareZ123/liber-primus/actions/runs/42850152363) with all assertions.
