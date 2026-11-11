@@ -80,6 +80,18 @@ The exact p53 output begins `EAAXIUTHHJRAEUMWBJNSIARSTH`; p55 begins `AEEOMRHIAO
 
 Thus the straightforward source-matrix **fixed Hill3 cipher is unproductive** on both natural terminal triple frames. Do not repeat column/row-order or phase searches without a new instruction. Other source-described uses of a primitive GF841 state are not excluded.
 
+### Signed 2016 word-driven state: one frozen evolving-matrix negative
+
+The authenticated 2016 message contains **43** ordinary alphabetic words under the previously frozen source parser, but exactly one, **lies**, points to the numerical table rather than a rune word. This leaves **42** signed words. Separately, the p53 red span gives 17 source-marked triples and the p55 post-page-join tail gives 25 triples, also **42**. Their combined 126-rune ciphertext is unmodified. This 42:42 alignment and the table cell **83** motivate a single, precise but **retrospectively constructed** candidate register operation:
+
+1. Start `state=83` in the matrix's order-840 cyclic group.
+2. In natural signed-message word order, remove only the special table-selecting word `lies`. Encode each of the remaining 42 words as native GP runes and compute its prime sum `S_i`.
+3. Update `state=(state+S_i) mod840` and invert the next original ciphertext triple as `P_i=M^(−state) C_i` over GF29. Use p53 red51 followed by p55 last75, no extra gaps, key refits, reversed orders, or language-based selection.
+
+The untouched 126-rune result has **IoC 0.03504762** and begins `CUAEGHMXPDTIAXSSIBOSSMUUMRAETRNG`. The full plaintext candidate in [the SFT](../sims/lp2_three_source_triad_matrix_sft.cjs) remains nonlinguistic. Its source word count, exact 42-block alignment, state transitions and output are fixed in code; the known-native Hill control remains exact. This excludes only this specified cumulative source-word inverse; no broader family is screened.
+
+**Executed verification:** original fixed Hill3 and the signed-word evolving-state gate both pass their exact assertions in [the existing red-field manual CI, run 42982743344](https://github.com/FlareZ123/liber-primus/actions/runs/42982743344), with the other unrelated jobs skipped. The reported *negative* refers to semantic plaintext recovery, not execution correctness.
+
 ## Missing human operation and decision
 
 A genuine breakthrough requires an **independently observable instruction to put the three triads into one matrix and specify its use**, or a frozen use that recovers independently verifiable unknown original plaintext. The source relation is unusually precise and supplies a reversible order-840 candidate, so it is worth retaining as a self-contained intermediate. The present test supplies no authenticated plaintext or key; there is no basis to promote it into `results/README.md` as a solved mechanism.
