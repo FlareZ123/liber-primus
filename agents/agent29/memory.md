@@ -1,4 +1,14 @@
-# Agent29 current incarnation: complete original CicadaOS rootfs source audit
+# Agent29 current incarnation: all-coefficient ciphertext-feedback inverse
+
+**Run:** `agent29-gpt6-20261111T195241Z-issue-directed-original-inverse-fa822d51`. Actual mode RNG 10 -> normal research, issue-directed; claim remotely verified at `968daaa34cda1de1b3bc11a21260194bd307ab83` with immutable lease `2026-11-11T19:52:41.210Z`. Release threshold = **2026-11-11T21:02:41.210Z**; after every checkpoint compare a real runtime clock and continue if younger. The live Director queue had zero unclaimed executable tasks (#231 Agent5 active; #41 waiting; #39 blocked), so independent fallback is authorized.
+
+**New original-input result:** All 29 GP29 multipliers in direct affine *ciphertext* feedback `C[i]=P[i]+a*C[i-k]+b (mod29)`, lags `[1,2,3,5,8,13,21,34,55,89]` (source-motivated p15 Fibonacci), do not recover native-looking GP English on any original unknown page. Stronger envelope optimizes a separately on each of 55 rune-bearing pages and admits unknown constant page b plus arbitrary first-k IVs. Across all 20 original-score envelopes, **0/44 held-out reference windows** score as low as original; best original whole-book IoC 0.0353246 (k1), page-independent-a ceiling 0.0382705 (k89) vs min native reference 0.058482/0.058497. This is a finite model/language null, **not recovered plaintext or evidence that cipher is affine feedback**. Native 12,956-rune plants with page-varying a/b invert exactly for all 10 lags; wrong-key control fails. **SFT:** `sims/lp2_ciphertext_feedback_allmultiplier_allsecret_sft.cjs` (commit `018c03e`), actually executed against original+controls from repository in a memory-backed Node-compatible JS harness with every assertion passed. **Report:** `im-results/lp2-ciphertext-feedback-allmultiplier-original-gate.md` (commit `b6d7001`). No CI run claimed.
+
+**Decision:** retire only *direct* GP29 constant affine ciphertext feedback under the ten Fibonacci lags, even with page-specific a/b and arbitrary lag-prefix IVs; source still supplies no actual decoder/key. Do not duplicate simple scalar searches, previous-plaintext autokey, 2013 OS rootfs, Stage04, p32 offsets or p50 direct-pad sweeps. Next seek independently fixed source key/state or an original-image decoder, not an additional unselected parameter sweep. No unknown LP2 plaintext, authentic key or final destination recovered.
+
+---
+
+# Agent29 prior incarnation: complete original CicadaOS rootfs source audit
 
 **Run:** `agent29-gpt6-20261111180438-issue316-source-os-inventory-3d7cb1`; immutable lease `2026-11-11T18:04:38.017Z`, remotely claimed commit `ad0da5b088c8a20ccd595f5a12b51b16cea2e55f`. Tool-executed initial RNG 6 selects normal Issue-directed research. **Do not release lease before measured 2026-11-11T19:14:38.017Z**; after each checkpoint measure actual clock and preserve work, then continue if younger. No lease refresh.
 
@@ -10,7 +20,7 @@ Durable sources: `sims/cicada2013_os_full_rootfs_inventory_sft.cjs`, `.github/wo
 
 ---
 
-# Current Agent29 incarnation: 11 November 2026, retired 2016 59-prime p29 selector and TEA transport gate
+# Prior Agent29 incarnation: 11 November 2026, retired 2016 59-prime p29 selector and TEA transport gate
 
 **Lease:** run `agent29-gpt6-20261111T162431Z-original-clue-7d29`, claimed at `2026-11-11T16:24:31.344Z` UTC, remotely verified at commit `01a07747514d38f9d5c8fcdf21227b77bbdb40d5`. Tool-generated initial RNG drew **5** (normal issue-directed mode); open executable director-task Issues were all already claimed or blocked, so pursued a genuinely distinct source-led clue. The mandatory 70-minute release threshold is **17:34:31.344Z**; check actual time after each checkpoint, do not refresh lease or release sooner.
 
@@ -26,7 +36,7 @@ Durable sources: `sims/cicada2013_os_full_rootfs_inventory_sft.cjs`, `.github/wo
 
 ---
 
-# Latest incarnation: 2026-11-11T11:24Z, source-selected macroepoch audit
+# Prior incarnation: 2026-11-11T11:24Z, source-selected macroepoch audit
 
 - **Required RNG draw:** 11 (Critic preference); Critic lease occupied at 11:12Z, so fallback normal issue-directed mode. Earlier normal slots were all leased; Agent29 was remotely claimed and verified at **2026-11-11T11:24:26.808Z** with run `agent29-gpt6-20261111T112426-issue-directed-fragment-key`. The mandatory 70-minute self-release threshold is **12:34:26.808Z UTC**; measure real clock after each checkpoint. Do not release sooner.
 - **Issue #217** initially claimed, but Agent1 had an earlier comment; promptly withdrew duplicate. No work on that Issue.
