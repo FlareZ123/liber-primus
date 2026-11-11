@@ -129,7 +129,8 @@ assert.deepEqual(signedPrimeSums, [11,14,0,21,24,1,21,14,4,11,9,26,14,
 const tests = [];
 const quadratics = [];
 const quadraticsWithSources = [];
-const authenticFiveShareAnalogy = [];
+const conventionalFiveShareAnalogy = [];
+const historicalMonic176Analogy = [];
 const selectors = [];
 for (const layout of ["rows-of-43", "five-tuples"]) {
   for (const encoding of ["ordinal", "prime-residue"]) {
@@ -168,10 +169,10 @@ for (const layout of ["rows-of-43", "five-tuples"]) {
         firstMismatch: {columnOneBased: firstMismatch + 1,
           predicted: predictions[firstMismatch], observed: Y[firstMismatch]}});
     }
-    // Historical 2013 five-of-ten SSSS analogue: exactly five observed
-    // source shares at x=1..5 would reconstruct the GP29 secret at x=0
-    // with a degree-four Lagrange polynomial. The LP2 source does not
-    // authenticate these row coordinates or the GF29 register.
+    // Conventional degree-four five-share Shamir extrapolation over GF29
+    // with hypothetical x=1..5 (NOT the historical 2013 SSSS field or IDs).
+    // Original Cicada used a monic quintic over GF(2^176) at [2,3,5,7,8],
+    // tested separately below in a characteristic-29 analogy.
     const weights5 = [5, 19, 10, 24, 1];
     const secret5 = X.map(row => mod(row.reduce((sum, x, i) =>
       sum + weights5[i] * x, 0)));
@@ -194,10 +195,48 @@ for (const layout of ["rows-of-43", "five-tuples"]) {
         indexOfCoincidence: counts.reduce((sum, n) =>
           sum + n * (n - 1), 0) / (43 * 42)};
     });
-    authenticFiveShareAnalogy.push({layout, encoding,
+    conventionalFiveShareAnalogy.push({layout, encoding,
       originalShareTargetMatches: secret5.filter((n, i) => n === Y[i]).length,
       reconstructedSecret: translit(secret5), plantedColumns: positive5,
       originalDirectDecode: directCandidates5});
+    // Exact historical five SHARE IDS, actual monic quintic x^5 plus
+    // an interpolated degree-four residual, adapted to GF29 symbols.
+    // This is explicitly an analogy: Cicada's actual 2013 SSSS field was
+    // GF(2^176), not GF29, with binary polynomial x^176+x^11+x^3+x^2+1.
+    const historicalIds = [2, 3, 5, 7, 8];
+    const historicalWeights = [19, 15, 19, 23, 12];
+    assert.equal(mod(historicalWeights.reduce((sum, value) => sum + value, 0)), 1);
+    const monicCorrection = mod(historicalWeights.reduce((sum, weight, i) =>
+      sum + weight * historicalIds[i] ** 5, 0));
+    assert.equal(monicCorrection, 27);
+    const secretMonic = X.map(row => mod(row.reduce((sum, value, i) =>
+      sum + historicalWeights[i] * value, 0) - monicCorrection));
+    let plantedMonic = 0;
+    for (let column = 0; column < 43; column++) {
+      const coefficients = Array.from({length: 5}, (_, i) =>
+        mod(column * (i + 3) + 7 * (i + 1)));
+      const evalAt = x => mod(x ** 5 + coefficients.reduce((sum, value, i) =>
+        sum + value * x ** i, 0));
+      const sampled = historicalIds.map(evalAt);
+      const reconstructed = mod(sampled.reduce((sum, value, i) =>
+        sum + historicalWeights[i] * value, 0) - monicCorrection);
+      if (reconstructed === evalAt(0)) plantedMonic++;
+    }
+    assert.equal(plantedMonic, 43);
+    const monicCandidates = [-1, 1].map(sign => {
+      const candidate = target.map((symbol, i) => mod(symbol + sign * secretMonic[i]));
+      const counts = Array(29).fill(0);
+      candidate.forEach(value => { counts[value]++; });
+      return {sign, transliteration: translit(candidate),
+        indexOfCoincidence: counts.reduce((sum, n) =>
+          sum + n * (n - 1), 0) / (43 * 42)};
+    });
+    historicalMonic176Analogy.push({layout, encoding, shareIds: historicalIds,
+      shareWeightsGF29: historicalWeights, monicCorrectionGF29: monicCorrection,
+      exactTargetMatches: secretMonic.filter((v, i) => v === Y[i]).length,
+      reconstructedSecret: translit(secretMonic),
+      plantedMonicQuinticColumns: plantedMonic,
+      originalDirectDecode: monicCandidates});
     // Every possible secret degree<=2 polynomial, including cross-products.
     const Q = X.map(quadraticFeatures);
     const nQuadratic = Q[0].length;
@@ -285,14 +324,16 @@ assert.deepEqual(polynomialChecks, {
 assert.equal(tests.length, 8);
 assert.equal(quadratics.length, 4);
 assert.equal(quadraticsWithSources.length, 4);
-assert.equal(authenticFiveShareAnalogy.length, 4);
+assert.equal(conventionalFiveShareAnalogy.length, 4);
+assert.equal(historicalMonic176Analogy.length, 4);
 assert.equal(selectors.length, 4);
 process.stdout.write(JSON.stringify({source: {
   p27RedTitle: 19, p27BlackBody: 215, p55WordInteriors: 43,
   p50TableBracket: [84, 126], p55DoubleShavedPlusP27Length: 256
 }, allSecretAffineRelation: tests, allSecretQuadraticRelation: quadratics,
   sevenSourceQuadraticRelation: quadraticsWithSources,
-  historicalFiveOfTenAnalogy: authenticFiveShareAnalogy,
+  conventionalDegreeFourFiveShare: conventionalFiveShareAnalogy,
+  historicalMonicGF176AdaptedTo29: historicalMonic176Analogy,
   tableMod5Selector: selectors,
   speculative256HGCheck: polynomialChecks,
   conclusion: "No exact fixed degree<=2 GF29 polynomial transfer, even using all seven source-aligned inputs, no intelligible table-selected 43-rune candidate, and no H/G codeword under the frozen 256 concatenation; no LP2 plaintext recovered."}, null, 2) + "\n");
