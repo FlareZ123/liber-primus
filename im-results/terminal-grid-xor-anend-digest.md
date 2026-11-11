@@ -1,6 +1,6 @@
 # Terminal grid/rune 256-byte digest gate
 
-**Status, 11 November 2026:** The source-motivated 76/180 terminal partition has two finite original-input negatives: the 36 tested direct byte-compositions produce no AN END digest match, and even a completely unknown stationary byte-to-rune lookup cannot map the 180 interior table cells to the two solved terminal pages under the eight natural rectangle orientations. The original source geometry remains exact, but a decoder, key, or unknown plaintext has not been recovered.
+**Status, 11 November 2026:** The source-motivated 76/180 terminal partition has now been tested against both the later LP2 printed-token table and the earlier 2014 stage11 `sexagesimal.bin` table. Neither table produces an AN END digest match under the frozen direct byte-composition family; the 2014 raw source files also fail direct 64-byte digest tests. Separately, a completely unknown stationary byte-to-rune lookup cannot map the 180 interior cells to the two solved terminal pages under the eight natural rectangle orientations. The original source geometry remains exact, but a decoder, key, or unknown plaintext has not been recovered.
 
 ## Human-solve-path hypothesis
 
@@ -34,16 +34,28 @@ Inputs are the canonical resources/liber-primus/lp2-grid-256.json, resources/lib
 
 - The perimeter and interior contain exactly **76 + 180 = 256** distinct table cells.
 - The terminal pages contain exactly **76 + 85 + 95 = 256** published runes.
-- All **36** frozen combinations (3 rune encodings × 3 byte operations × 4 digest families) were evaluated.
-- **0/36** candidate digests match the printed AN END target.
+- LP2 canonical table: all **36** frozen combinations (3 rune encodings × 3 byte operations × 4 digest families) were evaluated; **0/36** match.
+- Original 2014 `sexagesimal.bin` table: the same **36** combinations were independently evaluated; **0/36** match.
+- Raw `sexagesimal.bin`, `decimal.txt`, and `decimaltobyte.pm`: **0/12** matches across SHA-512, SHA3-512, BLAKE2b-512, and SHAKE256(64).
+- Combined direct tests: **0/84** candidate digests match the printed AN END target.
 
-The deterministic reproducer is sims/terminal_grid_xor_anend_digest_sft.cjs. Run from the repository root with Node.js 22:
+The deterministic reproducer is `sims/terminal_grid_xor_anend_digest_sft.cjs`. Run from the repository root with Node.js 22:
 
 ~~~sh
 node sims/terminal_grid_xor_anend_digest_sft.cjs
 ~~~
 
-It reconstructs the partition from the source JSON files, asserts the 76/180 and 256/256 dimensions, prints every candidate digest, and asserts that no candidate equals the target.
+It reconstructs the canonical and historical partitions, verifies the 2014 Git blob identities and ten-cell difference list, prints all 72 table/rune compositions and 12 raw-file hashes, and asserts that none equals the target. The original 36-case canonical run is preserved in the earlier manual workflow; the new historical-input extension is committed but awaits a manual rerun.
+
+## Historical 2014 stage11 `sexagesimal.bin` source
+
+The original solver archive `micheloosterhof/cicada-2014` records commit [`a9201dd`](https://github.com/micheloosterhof/cicada-2014/commit/a9201dd469a1a514eb0d8ff8f3449dbe2e7f7462), dated 2014-05-11 21:39:09Z with message `bytestring`, adding `decimal.txt`, `decimaltobyte.pm`, and `sexagesimal.bin` under `stage11/ky2khlqdf7qdznac.onion/`. The Perl script converts each decimal line to one byte with `pack 'C'`. Reconstructing the 256-byte file from the decimal values reproduces its Git blob SHA-1 exactly (`ad3dd7a3d37879d04bd506d2eecea86f27543928`).
+
+This is a **historical source variant**, not the exact later LP2 table: it differs from the LP2 canonical 256-byte sequence at ten positions: **25, 45, 50, 165, 170, 172, 175, 182, 199, 246**. Nine of these overlap the eleven LP2 cells previously disputed in the glyph-adjudication report; index 170 is an additional difference. The source file is therefore a useful historical witness, but it must not override the original LP2 JPEG readings.
+
+The `sexagesimal.bin` commit is recorded 17 minutes 3 seconds before the repository's later [p56 digest commit](https://github.com/micheloosterhof/cicada-2014/commit/06f57643821f1cadf597471c2b9c813bd08d2e37). These are Git author timestamps, not independently authenticated chronology. Direct hashes of the three raw source files fail all four tested 64-byte digest families. The 2014 table's 36 ring/interior-to-terminal-rune compositions also produce no target match. This excludes only those direct forms; the table may still be a key or transformed input.
+
+Stable source transcription and provenance: [`resources/cicada2014-sexagesimal-source.json`](../resources/cicada2014-sexagesimal-source.json).
 
 ## Known-plaintext obstruction for the 180-cell interior
 
