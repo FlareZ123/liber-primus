@@ -83,6 +83,40 @@ The corresponding no-free-key coordinate-change test is fully reversible: writin
 
 This gives one precise way to perform the 2013 challenge's historically mentioned **Diffie–Hellman operation** in the same 29²-element field that p3's mark independently suggests. It does **not** identify an actual exchanged exponent, a key, a mapping from quotient symbols to text, or a reason to prefer the specific affine root change \(z=23-2u\) over other field-coordinate changes. All irreducible quadratics over the same field extension admit affine root correspondences. The field isomorphism and exponent 433 alone cannot be advertised as independent statistical confirmation.
 
+## Preserved DH 3301 tester exchange fixes an exponent residue class
+
+A richer 2013 participant log supplies a real `DH 3301` exchange that was absent from the earlier protocol analysis. In `neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`, file `irc-logs/clientlog-1362290293-9.txt`, the participant server records:
+
+```text
+Received line: 'DH 3301'
+Selected base 2757 and secret 331
+Sending line: '01 OK 2757 1264'
+Received line: '2800'
+Sending line: '03 DATA 1067'
+```
+
+The participant implementation shown in the same archive chooses its server base and private integer with `random.randint(2, p)`. Therefore the server-side value **331 is participant randomness**, not a Cicada-selected key. The client response is the source-controlled part of the exchange.
+
+The multiplicative order of 2757 modulo 3301 is **550**. Solving the exact logged relation gives
+
+[
+2757^e \equiv 2800 \pmod{3301}
+]
+
+with canonical residue **e = 11 mod 550**. The logged shared key independently checks that residue: `1264^11 mod 3301 = 1067`. If the client private integer is only assumed to lie in the ordinary range 2 through 3300, the transcript permits six representatives: **[11, 561, 1111, 1661, 2211, 2761]**. The transcript therefore fixes an exponent residue class rather than a unique private integer.
+
+This gives a bounded source-native test in the p3 field (mathbb F_{29^2}). A literal DH power operation on a two-rune field element is (x\mapsto x^e). Modulo the field's nonzero order 840, the six representatives become **[11, 561, 271, 821, 531, 241]**. The 561 and 531 cases have gcd 3 with 840 and cannot be lossless permutations of all nonzero field elements. The other four are invertible with inverse exponents **[611, 31, 221, 481]**.
+
+Applying those four exact inverses to every original unknown LP2 rune pair, under the only two natural pair boundaries tested here, remains ciphertext-like. Whole-book pairing gives IoC **0.03446384 to 0.03448013** and LP1-reference trigram scores **-11.07558 to -11.06994 nats/rune**. Physical-page pairing gives IoC **0.03446318 to 0.03450404** and trigram scores **-11.07766 to -11.06752**. The unchanged ciphertext is **0.03447840 / -11.07314**; held-out native GP reference is **0.06512502 / -8.41667**.
+
+The same four inverse powers were applied after the already source-linked double division of the 256-cell table, on its fixed-width **252 GF29 slots** paired as 126 p3-field elements. The results remain nonlinguistic: trigram scores **-11.11017 to -11.09286**, IoC **0.03358 to 0.03715**, only **28 to 46 of 126** direct coordinate integers fall in byte range 0 to 255, and only **8 to 13** are printable ASCII. Native-GP field-power plants recover exactly.
+
+A separate inbound-only log contains the client value **3034** after `DH 3301`. Arithmetic gives (5^{11}=3034\pmod{3301}), and both 5 and 3034 have multiplicative order **75** modulo 3301. The missing server response means base 5 is not established for that exchange, so the order-75 equality is retained only as a conditional observation. It is not used to select a decoder.
+
+**Decision:** the preserved tester exchange upgrades the 2013 bridge by supplying a source-controlled DH exponent residue. Its literal lossless field-power interpretation fails on both original LP2 ciphertext and the source-derived table quotient. A different private-exponent representative, state register, or output codec needs an independent source selector before more DH-field searches are justified.
+
+Reproducer: [`sims/2013_dh3301_tester11_source_sft.cjs`](../sims/2013_dh3301_tester11_source_sft.cjs).
+
 ### Worked-DH ElGamal quotient transport: an exact original-input negative
 
 The participant-preserved 2013 `DH 23` example supplies client private exponent **15**. The historical `BASE29 3301` quadratic and marked p39 quadratic divide the unchanged 256-byte printed table, leaving **252 GF29 quotient positions**. A literal standard cryptographic transfer pairs these positions into 126 elements of the marked field GF(29²), takes 63 consecutive `(c1,c2)` ElGamal ciphertext pairs, and computes `m=c2×c1^825`, since the field's nonzero multiplicative order is 840 and **825=−15 mod840**. The quotient is paired using adjacent coefficients or two equal half-lanes, each in forward/reverse order, giving four fixed cases.
@@ -128,7 +162,7 @@ An actual organizer test vector from the [preserved March 2013 server logs](http
 
 **Directly executing the only published reversible numerical codec on the existing double-divided quotient:** treat its 251 canonical GF29 digits as one big-endian base-29 numeral; serialize that numeral in the shortest unsigned big-endian base-256 representation. The result contains **153 bytes**, with first 25 bytes `04598e588f3e70d4100f40d7489f9855a468a0d950156d2acb` and last 24 `b60750b93b10d2e3df8a1aad45ad4a4ef84cfc72fc3994ec`. Exactly **57/153** bytes are printable ASCII; empirical byte entropy is approximately **6.7491 bits per byte**. The beginning has no plain English or familiar common-file header. This is an exact **conditional** serialization test. It cannot rule out encrypted or compressed bytes, and the original protocol does not prescribe this serialization, an endian convention, or a text codec.
 
-**Decision on the 2013 protocol → LP2 quotient branch:** the missing element is an authenticated instruction to apply the 2013 examples as polynomial divisors **and** to select a lossless output alphabet, state, clock and register for the 251-digit quotient or the original ciphertext. The surviving public commands do not supply it. The two exact zero remainders remain legitimate source-level coincidences or clues. Without a separate player-visible selector, further searches over field bases, arbitrary key schedules or GP mappings are underdetermined. The next worthwhile step would require an **additional independent source artifact** that names an output operation; otherwise this branch is complete as a bounded nondecoding result.
+**Decision on the 2013 protocol → LP2 quotient branch:** the preserved tester exchange now supplies one additional source-controlled fact, the client exponent class **e ≡ 11 mod 550** for a real `DH 3301` session. Its natural lossless GF(29²) power inverses have been tested above and remain negative. The missing element is still an authenticated instruction that selects the exact private-exponent representative or another state, plus a lossless output alphabet, clock and register for the 251-digit quotient or original ciphertext. The two exact zero remainders remain legitimate source-level correspondences. Further field bases, arbitrary key schedules or GP mappings remain underdetermined without another player-visible selector.
 
 **Reproduce:** `node sims/base29_2013_grid_factor_sft.cjs` from repository root (Node 22, standard libraries) asserts the 2013 digits, both exact zero remainders, the opposite-orientation failure, full 256-slot polynomial reconstruction, source red triads, 252-slot quotient, and GF29² field change.
 
