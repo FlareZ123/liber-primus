@@ -84,6 +84,41 @@ For calibration, granting **every possible 0–256 prime-index jump** while reta
 
 
 
-This is a useful restriction on any proposed **universal** punctuation-based reset/advance clock. An unknown LP2 cipher could explicitly use other state semantics; the remaining manuscript is still undeciphered. The ASCII-control analogy, on its own, cannot authorize overwriting or restarting a cipher register.
+## Two 10-dot intervals and a complementary 24-hour arithmetic (provisional)
+
+The four standalone 10-dot marks occur in source order at physical p36:99, p38:186, p49:66 and p56:45. Their global post-rune offsets are **8,805, 9,358, 12,114 and 13,001**. Pairing them in source order gives two enclosed rune intervals:
+
+| Mark pair | Rune interval | Base-60 decomposition |
+| --- | ---: | ---: |
+| p36 → p38 | **553** | **9×60 + 13 = 09:13** |
+| p49 → p56 | **887** | **14×60 + 47 = 14:47** |
+
+The two lengths sum exactly to **1,440 = 24×60**. Their hour parts sum to 23 and their minute parts to 60, so the pair reads as **09:13 + 14:47 = 24:00**. This is an exact source-coordinate arithmetic relation; reading rune counts as minute durations is a **hypothesis**, not an established cipher rule. It is notable that the p49/p56 pair brackets the route from the 256-byte base-60 table's preceding marker to the solved p56 hash-introduction marker, while the p36/p38 pair brackets the five numbered paragraphs.
+
+The terminal p57 23-dot stencil is also structurally composite in the normalized source templates: its 5×5 pattern `.###. / ##### / ##### / ##### / #####` contains the 13-dot pattern `.#. / ### / ### / ### / ###` as a subset, with **ten additional cells** (the two top-row flanks and the two outer columns in the lower four rows). Consequently the complete punctuation census can be rewritten exactly as:
+
+`31×13 + 4×10 + 23 = 32×13 + 5×10 = 466`.
+
+This is consistent with the 31 internal 13-dot separators delimiting **32 fragments**, and the four internal 10-dot boundaries plus the terminal 10-cell extension closing **five macro-sections**. The resulting five source intervals are **[8,805, 553, 2,756, 887, 135]** runes. The 23-dot mark is at the end of p57 (global 13,136), so its 13-dot core is a terminal closure, not a new interior fragment. This dual-framing interpretation is source-supported geometry plus a structural hypothesis; it does not establish that the five macro-sections are cipher reset points.
+
+### One fixed affine table-pad consequence tested
+
+A minimal way to turn the two marked interval lengths into a direction over the 256-byte table is the affine traversal
+
+`K[i] = grid[(553 + 887·i) mod 256]`.
+
+Here `887 mod 256 = 119` and `gcd(119,256)=1`, so the rule visits every table byte exactly once before repeating. I tested this single source-fixed order as a period-256 additive GP29 pad under both natural byte mappings (`byte mod 29`, `floor(29·byte/256)`), both signs, and global-continuous or per-page key reset: **eight cases, no fitted key or parameter search**.
+
+| Measurement | Original ciphertext | Best affine-pad candidate |
+| --- | ---: | ---: |
+| Rune IoC | **0.03447840** | **0.03452555** |
+| English quadgram score (nats/quadgram) | **−17.13158** | **−17.20931** |
+
+Across all eight candidates, IoC stays in **0.03445396–0.03452555**, effectively the random 29-symbol baseline **1/29 = 0.03448276**; quadgram scores range **−17.29012 to −17.20931**, all worse than the unmodified ciphertext. The most IoC-favourable case is still nonlinguistic, and the best quadgram case is worse than raw. Thus the obvious affine use of the two interval lengths as a 256-byte offset/stride pad is **negative**. This does not test a clock-driven fragment traversal, a nonlinear state, or any other use of the 24-hour relation.
+
+**Reproducer:** [`sims/lp2_dual_10dot_24h_affine_pad_sft.cjs`](../sims/lp2_dual_10dot_24h_affine_pad_sft.cjs). The existing [base-60 stream study](./base60-seeded-stream.md) supplies independent planted-recovery controls for the underlying reversible byte-to-GP stream family.
+
+
+This is a useful restriction on any proposed **universal** punctuation-based reset/advance clock. An unknown LP2 cipher could explicitly use other state semantics; the remaining manuscript is still undeciphered. The ASCII-control analogy, on its own, cannot authorize overwriting or restarting a cipher register. Likewise, the 09:13/14:47 complement is not an authenticated time-key: no traversal or state rule derived from it has yet recovered plaintext. The affine-pad negative excludes only the one direct 256-byte use tested above.
 
 **Reproduction:** [`sims/lp2_punctuation_solved_clock_sft.cjs`](../sims/lp2_punctuation_solved_clock_sft.cjs) with Node.js 22; [successful manual-only GitHub Actions run 42885417113](https://github.com/FlareZ123/liber-primus/actions/runs/42885417113) via the existing [physical-line and page-turn workflow](../.github/workflows/physical-line-initial-crosspage-manual.yml), dispatch input `punctuation-clock`.
