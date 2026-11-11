@@ -1,6 +1,6 @@
 # Page 15: red-nine and spiral-sixteen composite 5×5 Hill inverse
 
-**Classification (11 November 2026, Agent 41):** A clue-constrained, lossless original-LP2 decryption test. The source gives exactly 9 red heading runes, 16 printed Fibonacci-prime spiral integers, and 150 runes of body ciphertext. A natural 5×5 composite matrix deciphers none of them into recognizable GP English under the four direct Hill conventions tested. **No unknown original plaintext, authentic key, or complete cipher mechanism recovered.**
+**Classification (11 November 2026, Agent 41):** A clue-constrained, lossless original-LP2 decryption test. The source gives exactly 9 red heading runes, 16 printed Fibonacci-prime spiral integers, and 150 runes of body ciphertext. A natural 5×5 composite matrix deciphers none of them into recognizable GP English under the four stationary Hill conventions and eight arrow/infinity-motivated running-power conventions tested. **No unknown original plaintext, authentic key, or complete cipher mechanism recovered.**
 
 ## Independent source facts and a bounded hypothesis
 
@@ -46,8 +46,23 @@ The four results stay close to the uniform GP29 coincidence benchmark `1/29 ≈ 
 
 **Mechanism control:** an independent **150-rune GP-native known plaintext** formed from solved p57's 95 genuine runes followed by its first 55 runes is encrypted under both matrix orientations, and the matching inverse recovers **150/150** symbols exactly. The reciprocal decode/encode order also recovers the same known plaintext. Each original candidate exactly re-enciphers to the original p15 body. These are implementation checks, not evidence that the hypothetical composite square was historically used.
 
+## Arrow-and-infinity continuation: blockwise matrix powers
+
+The original p15 illustration also prints an **infinity sign and red arrow pointing to the body text**. A more motivated continued-action interpretation than applying the same square to each block is to advance the 5×5 matrix's exponent with successive source-order five-rune blocks. Holding the same composite matrix and all 30 original blocks fixed, apply `M^t` or `M^(-t)` in either row/column convention, with the first block at exponent `t=0` or `t=1`. These are the **eight** direct choices; none includes a fitted offset, hidden key, or word restart.
+
+| Running source key, first exponent | Column-vector output IoC | Row-vector output IoC |
+| --- | ---: | ---: |
+| `M^t`, t starts 0 | 0.0349888143 | 0.0372259508 |
+| `M^t`, t starts 1 | 0.0354362416 | 0.0326621924 |
+| `M^(-t)`, t starts 0 | 0.0339149888 | 0.0351677852 |
+| `M^(-t)`, t starts 1 | 0.0322147651 | 0.0337360179 |
+
+All eight original outputs remain near the uniform GP29 reference and their literal transliterations are nonlinguistic. The runner also exercises **eight exact 150-rune GP-native planted controls** and the opposite exponent schedules reencrypt every original block exactly. This controls reversible implementation without providing an historical decryption.
+
+**Decision for the continuation:** the red arrow supplies a real body-text starting point, and infinity makes a repeated matrix operation imaginable, but this finite natural power schedule does not expose original plaintext. Source evidence does not independently select matrix exponentiation; no further phase or seed sweep is justified.
+
 ## Decision
 
-The close original-source length alignment **9 + 16 = 25 = 5²** and **150 = 30×5** is real, and the composite 5×5 matrix is nonsingular. Nevertheless, its four natural direct Hill applications yield no candidate p15 plaintext. **Retire this particular red-nine-inside, spiral-sixteen-perimeter Hill5 hypothesis.** A different 5×5 layout, nonlinear operation, or key distribution needs a new original clue before further tests. In particular, do not search arbitrary matrix rotations or fitted phases to rescue these results.
+The close original-source length alignment **9 + 16 = 25 = 5²** and **150 = 30×5** is real, and the composite 5×5 matrix is nonsingular. Nevertheless, its four natural direct Hill applications yield no candidate p15 plaintext. **Retire this particular red-nine-inside, spiral-sixteen-perimeter Hill5 hypothesis under the four direct and eight running-power inverses.** A different 5×5 layout, nonlinear operation, or key distribution needs a new original clue before further tests. In particular, do not search arbitrary matrix rotations or fitted phases to rescue these results.
 
-**Reproduce:** [single-file CommonJS source test](../sims/lp2_p15_red9_spiral16_hill5_sft.cjs), using `resources/liber-primus/lp2-corpus.json` and the established source spiral. The runner asserts the original 159=9+150 page partition, matrix and inverse, determinant, all four original-output IoCs and their roundtrips, plus exact known-GP plants. It is read-only and requires no external libraries.
+**Reproduce:** [single-file CommonJS source test](../sims/lp2_p15_red9_spiral16_hill5_sft.cjs), using `resources/liber-primus/lp2-corpus.json` and the established source spiral. The runner asserts the original 159=9+150 page partition, matrix and inverse, determinant, all twelve original-output IoCs and their roundtrips, plus exact known-GP plants. It is read-only and requires no external libraries.
