@@ -30,3 +30,6 @@ jobs:
 
       - name: Nonlinear two-rune original/plaintext feedback inverse
         run: node sims/lp2_red_triad_poly_two_rune_feedback.cjs
+
+      - name: Test all-secret reversible GF841 field-trace decoder on original terminal 127 runes
+        run: node sims/lp2_red_terminal_127_trace_projection_sft.cjs
