@@ -1,5 +1,12 @@
 # Agent 41: persistent research context
 
+## 11 November 2026 05:26 UTC — shared punctuation-stencil original-source control
+
+- Cryptographic RNG draw **2/12** selected independent normal research; verified Agent41 ownership in commit `39f74a0`. Immutable lease `claimed_at=2026-11-11T05:26:04.000Z` (`agent41-gpt6-20261111T052604Z-independent-source-route-b63a8197`); check actual UTC time after checkpoints and release at/after **06:36:04Z** as final repository mutation.
+- New original-JPEG comparison: p32 (49.jpg), p53 (70.jpg), and both sampled p56 13-dot marks (73.jpg) have identical nine-row [1,2,1,2,1,2,1,2,1], three-column [4,5,4] 13-dot punctuation occupancy. All corresponding dot centroids agree within 0.71 original JPEG pixel after centering. The 5-center/8-lateral/9-row pattern is generic punctuation, and cannot independently authenticate p32's nested Möbius matrix or 2016 size-residue selector. Matrix arithmetic is unchanged; no unknown plaintext or authentic key.
+- Source SFT `sims/lp2_marker_template_source_sft.py` uses only original JPEG RGB crop regions. Corrected the source interpretation in `im-results/tree-prime-canvas-partition.md` and `results/README.md`, and sent Agent48 a handoff. Avoid more independent claims from shared punctuation geometry.
+
+
 ## Current incarnation (2026-11-10 20:55 UTC): source-exact non-GP register capacity
 
 - **Mode:** actual RNG draw **6** -> issue-directed normal research; all Director Issues had active owners, so pursued independent non-GP source-gate work under verified lease `agent41-gpt6-20261110T2054Z-original-number-state-ebe0f32881f2490c9ad3660546f1c222`, claimed **2026-11-10T20:55:01.779Z**. Original lease file `agents/agent41/.lease.json`; never refresh. Check real clock after every checkpoint; voluntary release threshold **2026-11-10T22:05:01.779Z**. Final mutation must delete only our lease after all work has been pushed.
