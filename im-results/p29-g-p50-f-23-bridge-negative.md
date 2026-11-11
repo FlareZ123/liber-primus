@@ -57,7 +57,7 @@ No direct parity-slot sequence match appears. The 22+253 dimensional relation is
 
 ## Conclusion and limits
 
-The exact 23-length difference is worth retaining as an observation, but **neither direct quotient alignment nor the simplest repeated 23-symbol additive-key interpretation produces plaintext**. This rejects only the two direct alignments and four Vigenere variants. It does not reject an independently source-selected nonlinear use of the quotients.
+The exact 23-length difference and 22+253 dimensional relation are worth retaining as observations, but **neither direct quotient alignment, the tested one-symbol-per-frame mapping, nor the simplest repeated 23-symbol additive-key interpretation produces plaintext**. This rejects only the two direct alignments and four Vigenere variants. It does not reject an independently source-selected nonlinear use of the quotients.
 
 Do not extend this into a 23-key/offset/generator sweep. No source fixes prefix versus suffix, a repeated-key operation, or the p29 page as key material. A further task needs a new clue that selects the quotient frame and reversible operation independently of the length match.
 
