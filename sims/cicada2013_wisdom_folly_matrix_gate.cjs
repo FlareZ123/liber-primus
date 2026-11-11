@@ -151,7 +151,7 @@ function gf29SqPow(x, exponent) {
   }
   return result;
 }
-const gfPrimitive = [19, 13]; // p50 quotient representative 19 + 13u, u^2 = 3u + 8
+const gfPrimitive = [19, 13]; // candidate radix60 p50 quotient representative; g-dependent tests are conditional
 const gfLogs = new Map();
 let gfPower = [1, 0];
 for (let exponent = 0; exponent < 840; exponent++) {
@@ -250,7 +250,7 @@ function summarizeFieldFamily(name) {
   };
 }
 const fieldPairSbox = {
-  field: {polynomial: 'u^2 = 3u + 8', primitive: '19 + 13u', primitiveOrder: gfLogs.size},
+  field: {polynomial: 'u^2 = 3u + 8', primitive: '19 + 13u', primitiveOrder: gfLogs.size, radixAssumption: 'candidate radix60 p50 quotient; conditional H/G preference'},
   configurations: fieldPairResults.map(result => ({
     frame: result.frame,
     layout: result.layout,

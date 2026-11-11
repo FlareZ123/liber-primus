@@ -54,7 +54,7 @@ The best IoC over 12,934 complete 29-rune blocks is **0.0345183407**; the 22-run
 
 ### GF(29²) paired-byte per-page substitution reading (Agent 33, 11 November 2026)
 
-A distinct use of the same 58×58 binary is suggested by the shared dimensions: 58 physical LP2 pages, 29 alphabet symbols, and 58 bytes per matrix row/column. Pairing each 58-byte page vector gives 29 byte pairs. The p3 relation defines the field \(GF(29^2)\) with \(u^2=3u+8\); the p50 quotient supplies the primitive element \(g=19+13u\) of order 840. This makes a 29-entry field-valued table per page a plausible, source-constrained hypothesis, distinct from the additive page-key and Hill readings above.
+A distinct use of the same 58×58 binary is suggested by the shared dimensions: 58 physical LP2 pages, 29 alphabet symbols, and 58 bytes per matrix row/column. Pairing each 58-byte page vector gives 29 byte pairs. The p3 relation defines the field \(GF(29^2)\) with \(u^2=3u+8\); **under the candidate radix60 reading of p50**, conditionally preferred by the independent H/G dual-factor check, its quotient supplies the primitive element \(g=19+13u\) of order 840. The \(g\)-dependent log/exponent tests below are conditional on that radix; the linear, coordinate, trace, and norm tests do not require it. This makes a 29-entry field-valued table per page a plausible, source-constrained hypothesis, distinct from the additive page-key and Hill readings above.
 
 The SFT tests both four-byte framings, row/column page vectors, both byte-to-GF(29) reductions, and both pair orders: **16** layouts. For each layout it tests:
 
