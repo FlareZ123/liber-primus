@@ -128,9 +128,26 @@ Evidence is a later community reconstruction, not a primary Cicada instruction: 
 I tested the exact historical mechanism on the source-selected p55 page, not a guessed variant. The original p55 page has76 runes and literal F occurrences at one-based rune positions16,26,42. I enumerated all eight possible null/keep subsets of those three F occurrences, using the 13-rune key and normal `C−K mod29` direction. The same 79,495-entry English quadgram scorer used by the independent reproduction ranked the best case (only F at42 dropped) at **−7.2726 per quadgram**; its output begins `NGSSIGAEBAESYOGCTHSAEIADIACEOOS...` and remains nonlinguistic. The other seven subsets score worse. The old fixed offsets65,76 also fail as a transfer: on p55's normalized single-line text they point to G and TH, not F. No skip-position or key-phase sweep was performed.
 
 **Decision:** the p55 fold independently selects the historical key spelling, but it does not select the A-KOAN Vigenère/interrupter operation or its page-specific null pattern. Exhausting the source-bounded three-F choices yields no p55 plaintext. Treat `FIRFUMFERENFE` here as a recovered historical key/semantic echo of CIRCUMFERENCE, not as an LP2 decryption key; do not continue Vigenère variants on p55.
+## Historical NUMBER applied once to the three fold totals (Agent 8, 2026-11-11)
+
+The source-derived inputs are reproducible: p55 mirror words `w2+w14` have GP-prime sum398 (114+284); the p32 word count22 gives `398−22=376`, the GP-prime sum of DIVINITY; the p32 first-clause rune count33 gives `398−33=365`, the GP-prime sum of FIRFUMFERENFE.
+
+Applying the historical 2013 NUMBER operation exactly once (reverse decimal digits, then factor) gives:
+
+| Input | Reversed | Factorization | Direct GP interpretation |
+|---:|---:|---:|---|
+| 398 | 893 | 19×47 | both are GP prime weights, mapping to `WX` |
+| 376 | 673 | prime | outside the 29 GP prime weights |
+| 365 | 563 | prime | outside the 29 GP prime weights |
+
+Wrong-fold-pair and adjacent-word controls do not make this signature distinctive. Neighboring mirror pairs include `w1+w15=351 → 153=3²×17`, `w3+w13=206 → 602=2×7×43`, and `w7+w9=734 → 437=19×23` (also two GP prime weights, mapping to `WH`). Other mirror controls yield prime/semiprime factorizations as well. Adjacent controls include `w0+w1=301 → 103` (a GP prime weight), `w5+w6=313` (prime), and `w7+w8=961 → 169=13²`. Thus “prime or semiprime after NUMBER” is not a unique property of the selected totals.
+
+No source fixes a page/word/address interpretation for `WX`, 673, or563. Mapping 673/563 through prime indices, decimal splits, modulo58, or page scans would add an unselected transformation. The signed message's “numbers are the direction” does not by itself instruct a solver to invoke the 2013 NUMBER command on these three sums.
+
+**Decision:** the arithmetic is exact and reproducible, but this one-step NUMBER continuation has no source-selected output address or discriminating control. It is not plaintext or a route; retire this branch without extra reductions.
 ## Next decisive question
 
-The historical A-KOAN Vigenère/interrupter mechanism is now reconstructed and its source-bounded transfer to p55 is negative. Any continuation must derive a *different* source-visible operation or a distinct target for one of the fold totals **398 / 376 / 365**; do not repeat the A-KOAN key on p55 or broaden into skip/phase sweeps.
+The historical A-KOAN Vigenère/interrupter transfer to p55 and the one-step historical NUMBER application to totals398/376/365 are both bounded negatives. Any continuation must derive a *different* source-visible operation or a distinct target for the fold structure; do not repeat these operations or add arbitrary reductions.
 
 ## Reproduction
 
