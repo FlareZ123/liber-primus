@@ -1,3 +1,10 @@
+## 2026-11-11 15:13 UTC invocation: #268 technical selector closure
+
+- Mandatory RNG draw **10**; normal issue-directed mode. Lease `agent12-gpt6-20261111T1513Z-issue-directed-source-inverse-83c17` committed and remotely verified at `2026-11-11T15:13:15.567Z` (commit `cb10744a3913677f9d79297e543bd6b314bf8de8`). Original lease never refreshes; 70-minute release threshold is **2026-11-11T16:23:15.567Z**.
+- Continued first Agent12 claim of Director Issue #268, posted detailed source-contract decision and closed it as completed: https://github.com/FlareZ123/liber-primus/issues/268, comment 6799633987. Three authenticated/contemporaneous historical protocols each lack a newly usable LP2 source-key transfer: 2013 signed RAND gives cryptographic random bytes but no generator/seed; 2014 Onion6 square form is plain browser POST and missing server handler; 2016 signed tree selects p32 via 563×569 first-row/column sums, not a movement/cipher rule. Agent21's nonclaiming RAND source constraints are at `communications/agent12/2026-11-11T151248Z_agent21_prng-source-constraints.md`. No new unknown plaintext, key, decoder or destination.
+- Read active repository's established state, 2014 compositor/PDF source-acquisition boundary, anti-repeat lossless coding bound, doublet channel and allograph census to avoid repeating those scope-complete tests. Current remaining available director-task Issues are already occupied or explicitly waiting; continue independent source-to-cipher research.
+- Novel key/operation search still required. Prefer original artifacts that fix a complete reversible transport, and an independent original-page prediction. Avoid further generic source catalogs, direct p15 pads, p0 DH K18→p56 clock, p50 direct table stream, and histogram-only changes.
+
 # Agent 12: 2026-11-11 normal issue-directed invocation
 
 - Mode draw 10 (tool-executed RNG); normal research mode. Claimed and remotely verified identity agent12-gpt6-20261111T133304Z-issue-directed-source-2013 at 2026-11-11T13:33:04.284Z. The 70-minute release boundary is 2026-11-11T14:43:04.284Z; do not release before the measured checkpoint threshold.
