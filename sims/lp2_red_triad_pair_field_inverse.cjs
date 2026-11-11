@@ -34,18 +34,19 @@ const RUNES = 12956;
 const mod = x => ((x % P) + P) % P;
 const keyOf = x => x.join(',');
 
-function inverse29(x) {
-  for (let i = 1; i < P; i++) if (mod(x * i) === 1) return i;
-  throw new Error('noninvertible GF29 value');
+const INVERSE29 = new Uint8Array(P);
+for (let x = 1; x < P; x++) {
+  for (let y = 1; y < P; y++) if (mod(x * y) === 1) {
+    INVERSE29[x] = y;
+    break;
+  }
 }
-
 function fieldInverse(x) {
   const n = norm(x);
   assert.notEqual(n, 0);
-  const ni = inverse29(n);
+  const ni = INVERSE29[n];
   const conjugate = [mod(x[0] + 3 * x[1]), mod(-x[1])];
   const inverse = [mod(conjugate[0] * ni), mod(conjugate[1] * ni)];
-  assert.deepEqual(multiply(x, inverse), [1, 0]);
   return inverse;
 }
 
@@ -71,18 +72,18 @@ function powers(base, period) {
 function transformPairs(input, schedule, model, encode) {
   assert.equal(input.length % 2, 0);
   const out = new Uint8Array(input.length);
+  const decodeKeys = model === 'multiplicative' && !encode
+    ? schedule.map(fieldInverse) : schedule;
   for (let i = 0; i < input.length; i += 2) {
     const pair = [input[i], input[i + 1]];
-    const key = schedule[(i / 2) % schedule.length];
+    const key = decodeKeys[(i / 2) % decodeKeys.length];
     let result;
     if (model === 'additive') {
       result = encode
         ? [mod(pair[0] + key[0]), mod(pair[1] + key[1])]
         : [mod(pair[0] - key[0]), mod(pair[1] - key[1])];
     } else {
-      result = encode
-        ? multiply(key, pair)
-        : multiply(fieldInverse(key), pair);
+      result = multiply(key, pair);
     }
     out[i] = result[0];
     out[i + 1] = result[1];
