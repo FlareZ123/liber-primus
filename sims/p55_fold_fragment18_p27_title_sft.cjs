@@ -128,6 +128,47 @@ const bookend = [23, 11, 1, 17, 18, 10];
 assert.deepEqual(p27.slice(28, 34), bookend);
 assert.deepEqual(p55.slice(70, 76), bookend);
 
+// Canonical 2,896-word parser: page markers and line wraps do not split a
+// printed word. The unique repeated p27/p55 pair supplies a word-number gap.
+const unknownStream = transcription.split('%').slice(0, 55).join('%');
+const canonicalWords = [];
+let currentWord = [];
+const finishWord = () => {
+  if (currentWord.length > 0) {
+    canonicalWords.push(currentWord);
+    currentWord = [];
+  }
+};
+for (const ch of unknownStream) {
+  if (RUNIC.test(ch)) {
+    currentWord.push(runeToIndex.get(ch));
+  } else if (ch === '%' || ch === '/' || /\s/u.test(ch)) {
+    // Physical page/line boundaries are transparent to printed words.
+  } else {
+    finishWord();
+  }
+}
+finishWord();
+assert.equal(canonicalWords.length, 2896);
+
+const bookendWordPair = [[23, 11, 1], [17, 18, 10]];
+const bookendStarts = [];
+for (let i = 0; i + 1 < canonicalWords.length; i += 1) {
+  if (
+    canonicalWords[i].length === 3 &&
+    canonicalWords[i + 1].length === 3 &&
+    canonicalWords[i].every((value, j) => value === bookendWordPair[0][j]) &&
+    canonicalWords[i + 1].every((value, j) => value === bookendWordPair[1][j])
+  ) {
+    bookendStarts.push(i);
+  }
+}
+assert.deepEqual(bookendStarts, [1462, 2894]);
+const wordNumberGap = bookendStarts[1] - bookendStarts[0];
+assert.equal(wordNumberGap, 1432);
+assert.equal(wordNumberGap, sectionRunes.length - 1);
+assert.equal(wordNumberGap % sectionRunes.length, sectionRunes.length - 1);
+
 console.log(JSON.stringify({
   classification: 'source-image navigation candidate; no plaintext recovered',
   foldMismatch: readings,
@@ -148,5 +189,13 @@ console.log(JSON.stringify({
     fragment9Length: fragment(9).indices.length,
     zeroBased18AlternativeLength: fragment(19).indices.length
   },
-  p27p55Bookend: bookend
+  p27p55Bookend: bookend,
+  wordNumberDirection: {
+    canonicalWordCount: canonicalWords.length,
+    pairStartOffsetsZeroBased: bookendStarts,
+    gap: wordNumberGap,
+    selectedSectionRunes: sectionRunes.length,
+    modularStep: wordNumberGap % sectionRunes.length,
+    interpretation: '1432 mod 1433 = -1: reverse traversal'
+  }
 }, null, 2));
