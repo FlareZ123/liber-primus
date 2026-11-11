@@ -18,64 +18,19 @@ jobs:
           set -euo pipefail
           curl -fL --retry 3 --retry-delay 2 \
             https://raw.githubusercontent.com/iBotPeaches/cicada_3301/master/onions/avowyfgl5lkzfj3n.onion/post/index.html \
-            -o stage5-object.bin
-          sha256sum stage5-object.bin
-          wc -c stage5-object.bin
-          file stage5-object.bin
-          grep -vE '^[[:xdigit:]]*
-          sha256sum data.out
-          wc -c data.out
-          file data.out
-          xxd -l 128 data.out
-      - name: Inspect signatures and printable strings
-        run: |
-          set -euo pipefail
-          python3 - <<'PY' | tee audit.txt
-          from pathlib import Path
-          import hashlib, math, re, collections
-          b=Path("data.out").read_bytes()
-          print("bytes",len(b),"sha256",hashlib.sha256(b).hexdigest())
-          print("magic",b[:32].hex())
-          sigs={
-            "JPEG":b"\xff\xd8\xff","PNG":b"\x89PNG\r\n\x1a\n",
-            "PDF":b"%PDF-","ZIP":b"PK\x03\x04","GZIP":b"\x1f\x8b",
-            "7z":b"7z\xbc\xaf\x27\x1c","RAR":b"Rar!\x1a\x07",
-            "MP3-ID3":b"ID3","Ogg":b"OggS","SQLite":b"SQLite format 3\x00",
-            "ELF":b"\x7fELF","BMP":b"BM","GIF":b"GIF8"
-          }
-          for name,sig in sigs.items():
-            hits=[m.start() for m in re.finditer(re.escape(sig),b)]
-            if hits: print("signature",name,"count",len(hits),"offsets",hits[:30])
-          printable=re.findall(rb"[\x20-\x7e]{8,}",b)
-          print("printable_runs",len(printable))
-          for x in printable[:150]:
-            print("STR",x[:300].decode("ascii","replace"))
-          counts=collections.Counter(b)
-          H=-sum((n/len(b))*math.log2(n/len(b)) for n in counts.values())
-          print("byte_entropy",H,"distinct_bytes",len(counts))
-          PY
-          strings -a -n 8 data.out | head -150 >> audit.txt
-      - name: Upload original and decompressed object with audit
-        uses: actions/upload-artifact@v4
-        with:
-          name: avowy-stage5-object-audit
-          path: |
-            stage5-object.bin
-            stage5-object.hex
-            stage5-object.gz
-            data.out
-            audit.txt
-          retention-days: 14
- stage5-object.bin | head -5 || true
-          xxd -l 96 stage5-object.bin
+            -o stage5-object.hex
+          sha256sum stage5-object.hex
+          wc -c stage5-object.hex
+          file stage5-object.hex
+          grep -vE '^[[:xdigit:]]*$' stage5-object.hex | head -5 || true
       - name: Decode hex and decompress gzip object
         run: |
           set -euo pipefail
-          tr -d '[:space:]' < stage5-object.bin > stage5-object.hex
-          hex_chars=$(wc -c < stage5-object.hex)
+          tr -d '[:space:]' < stage5-object.hex > stage5-object.hex.clean
+          hex_chars=$(wc -c < stage5-object.hex.clean)
           echo "hex characters: $hex_chars"
           test $((hex_chars % 2)) -eq 0
-          xxd -r -p stage5-object.hex > stage5-object.gz
+          xxd -r -p stage5-object.hex.clean > stage5-object.gz
           file stage5-object.gz
           gzip -t stage5-object.gz
           gzip -lv stage5-object.gz
@@ -94,16 +49,16 @@ jobs:
           print("bytes",len(b),"sha256",hashlib.sha256(b).hexdigest())
           print("magic",b[:32].hex())
           sigs={
-            "JPEG":b"\xff\xd8\xff","PNG":b"\x89PNG\r\n\x1a\n",
-            "PDF":b"%PDF-","ZIP":b"PK\x03\x04","GZIP":b"\x1f\x8b",
-            "7z":b"7z\xbc\xaf\x27\x1c","RAR":b"Rar!\x1a\x07",
-            "MP3-ID3":b"ID3","Ogg":b"OggS","SQLite":b"SQLite format 3\x00",
-            "ELF":b"\x7fELF","BMP":b"BM","GIF":b"GIF8"
+            "JPEG":b"\\xff\\xd8\\xff","PNG":b"\\x89PNG\\r\\n\\x1a\\n",
+            "PDF":b"%PDF-","ZIP":b"PK\\x03\\x04","GZIP":b"\\x1f\\x8b",
+            "7z":b"7z\\xbc\\xaf\\x27\\x1c","RAR":b"Rar!\\x1a\\x07",
+            "MP3-ID3":b"ID3","Ogg":b"OggS","SQLite":b"SQLite format 3\\x00",
+            "ELF":b"\\x7fELF","BMP":b"BM","GIF":b"GIF8"
           }
           for name,sig in sigs.items():
             hits=[m.start() for m in re.finditer(re.escape(sig),b)]
             if hits: print("signature",name,"count",len(hits),"offsets",hits[:30])
-          printable=re.findall(rb"[\x20-\x7e]{8,}",b)
+          printable=re.findall(rb"[\\x20-\\x7e]{8,}",b)
           print("printable_runs",len(printable))
           for x in printable[:150]:
             print("STR",x[:300].decode("ascii","replace"))
@@ -112,12 +67,14 @@ jobs:
           print("byte_entropy",H,"distinct_bytes",len(counts))
           PY
           strings -a -n 8 data.out | head -150 >> audit.txt
-      - name: Upload original and decompressed object with audit
+      - name: Upload source and decoded object with audit
         uses: actions/upload-artifact@v4
         with:
           name: avowy-stage5-object-audit
           path: |
-            stage5-object.bin
+            stage5-object.hex
+            stage5-object.hex.clean
+            stage5-object.gz
             data.out
             audit.txt
           retention-days: 14
