@@ -119,6 +119,26 @@ These tests retire the simplest read-order, direct state-pad, and linear eight-w
 The selected title was also tested as a periodic self-key on the 1,414 following runes of its canonical section under the established mod-29 additive families. Keys were the 19 title indices, the 18 runes after the enlarged initial, title GP-prime residues, and title totient residues; each was tested under subtract, add, and Beaufort orientations. The best candidate remains ciphertext-like (IoC about **0.03493**, held source trigram score **-13.8565** versus body **-13.9104**) and has no readable output. This rejects the immediate periodic-title-key interpretation and should not be expanded by free phase/key searches.
 
 
+### P55 76-rune periodic title-key gate
+
+The fold-selected p27 title has **19 GP runes**, while p55 contains **76 runes = 4 × 19**. This makes the literal title as a repeating p55 key the simplest immediate cryptographic consequence of the navigation candidate. I tested the original p55 sequence in printed order, with no phase search, using the title's GP indices in forward and reversed order under the three standard mod-29 additive orientations.
+
+| Title orientation | Operation | Mean English quadgram score |
+|---|---|---:|
+| Forward | P=C−K | −6.91295 |
+| Forward | P=C+K | −6.99716 |
+| Forward | P=K−C | −7.03436 |
+| Reversed | P=C−K | −6.80493 |
+| Reversed | P=C+K | −6.96991 |
+| Reversed | P=K−C | −7.22933 |
+
+Raw p55 scores **−6.79172**, so all six candidate outputs score worse than the unchanged ciphertext. For a matched native reference, the same GP encoder and English quadgram model were applied to every 76-rune window of the **body only** of the repository's Gibran Prophet control: **47,959** windows, minimum **−5.23130**, median **−4.21520**. All six candidates fall below even the worst native window. The score is mean base-10 log quadgram probability with a 0.1 pseudocount, using the existing duko_round27_english_quadgrams.txt; no fitted key, phase, or language-selected orientation is involved.
+
+**Decision:** reject the immediate repeating 19-rune GP29 additive title-key interpretation of p55. This does not reject every possible use of the title or a separately sourced nonlinear/readout operation. Do not expand this into free title transformations or phase searches.
+
+**Reproduce:** the existing fold/fragment SFT (../sims/p55_fold_fragment18_p27_title_sft.cjs) includes the six frozen variants and native-window control.
+
+
 ## Anchored p27 reverse-window → p55 direct-key gate
 
 Conditional on interpreting the 1432 equality as a backward step, the fold-selected p27 section and duplicated `DJU-BEI` bookend fix a stronger p55 experiment with **no phase search inside that hypothesis**. Align p55 local 75 with the matching p27-section local 33 and apply `−1 mod 1433`. Walking 75 positions backward from the anchor fixes one cyclic 76-rune source window. In forward p55 order it is exactly section positions **1391–1432 followed by 0–33**, and its final six runes reproduce `DJU-BEI`.
@@ -134,6 +154,6 @@ That single window was tested as a same-alphabet p55 key under the two source-na
 
 The new result is a **navigation candidate**, not a decryption. Its weakest upstream premise is still the provisional signed-2016 word-address route that selected FOLD/p55. The five-bit interpretation is much less free once the physical fold has been chosen, because it uses only match/mismatch, the source has exactly 32 thirteen-dot fragments, and the selected address passes two unique structural checks plus the pre-existing p27/p55 ciphertext bookend.
 
-The next useful experiment should preserve the reproduced **p27 target and p27/p55 bookend** while seeking an independently authenticated rule for direction and operation/readout. The exact 1432 equality may motivate that search, but it does not by itself authorize reverse-path key searches, p50 table moves, phase choices, or compound arithmetic. Avoid generic title-key enumeration and post hoc arithmetic.
+The direct 19-rune periodic title-key test on all 76 p55 runes is now negative under the six frozen forward/reversed standard additive variants; do not repeat that family. The next useful experiment should preserve the reproduced **p27 target and p27/p55 bookend** while seeking an independently authenticated, genuinely different rule for direction and operation/readout. The exact 1432 equality may motivate that search, but it does not by itself authorize reverse-path key searches, p50 table moves, phase choices, or compound arithmetic. Avoid generic title-key enumeration and post hoc arithmetic.
 
 **Reproducer:** [`p55_fold_fragment18_p27_title_sft.cjs`](../sims/p55_fold_fragment18_p27_title_sft.cjs).
