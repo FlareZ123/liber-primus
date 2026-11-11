@@ -115,6 +115,15 @@ const testStats = statistics(transformed);
 assert.equal(testStats.shortOdd, actual.shortOdd);
 assert.equal(testStats.longOdd, actual.longOdd);
 assert.ok(transformed.some((unit, i) => unit.some((x, j) => x !== input[i][j])));
+// Adding or deleting ONLY F runes also leaves every per-clause GP-prime
+// parity unchanged: those runes have even GP prime weight 2. In particular
+// treating source F as null/escape without changing non-F count cannot by
+// itself rescue a clause whose original sum parity is even.
+const fEdited = input.map(unit => [0, ...unit.filter((symbol, j) =>
+  symbol !== 0 || j % 2 === 0), 0, 0]);
+const clauseParity = unit => unit.filter(symbol => symbol !== 0).length % 2;
+assert.deepEqual(fEdited.map(clauseParity), input.map(clauseParity));
+assert.ok(fEdited.some((unit, i) => unit.length !== input[i].length));
 
 // Parity alone fixes an upper bound on how many printed GP-prime-summed
 // short clauses can be prime under the F-preserving model.
@@ -138,6 +147,6 @@ console.log(JSON.stringify({
     minimumFParityFlipsToMatchNativePrimeShare: necessaryFlipForPrimeShare,
     minimumFParityFlipsToMatchNativeOddShare: necessaryFlipForOddShare,
   },
-  positive: "every non-F rune independently randomized without changing F positions; clause sum parities exactly preserved",
+  positive: "every non-F rune independently randomized with source F fixed, and separately arbitrary source F-only insertion/removal; per-clause prime-sum parities exactly preserved",
   caveat: "Conditional on unknown LP2 plaintext sharing the short-clause prime-design habit of the sampled original Cicada plaintext; labels and very short texts retained uniformly; no original key or plaintext found.",
 }, null, 2));
