@@ -1,10 +1,5 @@
 name: De Bruijn row x 13-31 LCG8 column DES inverse
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'sims/fragment_grid_des_debruijn_lcg8_inverse.cjs'
-      - '.github/workflows/fragment-grid-des-debruijn-lcg8-inverse.yml'
   workflow_dispatch:
 permissions:
   contents: write
