@@ -266,6 +266,24 @@ def file_facts(path):
     }
 
 
+def classify_outputs(files, expected_crc32=None, expected_size=None):
+    """Keep unauthenticated LP2 candidates distinct from a known-output match."""
+    outputs = [file_facts(path) for path in files]
+    expectation_supplied = expected_crc32 is not None or expected_size is not None
+    matches = [
+        item for item in outputs
+        if (expected_crc32 is None
+            or item["crc32"].upper() == expected_crc32.upper())
+        and (expected_size is None or item["size"] == expected_size)
+    ] if expectation_supplied else []
+    return {
+        "outputs": outputs,
+        "output": matches[0] if matches else outputs[0] if outputs else None,
+        "output_present": bool(outputs),
+        "expected_match": bool(matches) if expectation_supplied else None,
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Run a source-native OpenPuff v4.00 extraction with verified UI settings."
@@ -328,9 +346,10 @@ def main():
         "completion_dialogs": [],
         "output": None,
         "outputs": [],
+        "output_present": False,
         "expected_crc32": args.expected_crc32,
         "expected_size": args.expected_size,
-        "expected_match": False,
+        "expected_match": None,
     }
     try:
         app = Application(backend="win32").start(str(exe), work_dir=str(out_dir))
@@ -381,19 +400,9 @@ def main():
             app, output_path, output_dir, args.wait_seconds,
             result["completion_dialogs"]
         )
-        result["outputs"] = [file_facts(p) for p in extracted_files(output_dir)]
-        matches = [
-            item for item in result["outputs"]
-            if (args.expected_crc32 is None
-                or item["crc32"].upper() == args.expected_crc32.upper())
-            and (args.expected_size is None
-                 or item["size"] == args.expected_size)
-        ]
-        result["output"] = (
-            matches[0] if matches else
-            result["outputs"][0] if result["outputs"] else None
-        )
-        result["expected_match"] = bool(matches)
+        result.update(classify_outputs(
+            extracted_files(output_dir), args.expected_crc32, args.expected_size
+        ))
         result["windows_after_unhide"] = snapshot(app, out_dir, "after-unhide")
     finally:
         if app is not None:
