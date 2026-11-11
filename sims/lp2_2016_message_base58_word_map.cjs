@@ -137,8 +137,8 @@ const signedMessage = signedPayload.slice(
   signedPayload.indexOf("Hello."),
   signedPayload.indexOf("-----BEGIN PGP SIGNATURE-----")
 );
-const messageWords = signedMessage.match(/(?<![A-Za-z0-9])[A-Za-z]+(?![A-Za-z0-9])/g) || [];
-assert.equal(messageWords.length, 43); // excludes A,F inside the PGP hex fingerprint
+const signedAllWords = signedMessage.match(/(?<![A-Za-z0-9])[A-Za-z]+(?![A-Za-z0-9])/g) || [];
+assert.equal(signedAllWords.length, 43); // excludes A,F inside the PGP hex fingerprint
 
 /** @param {string} word @param {number} index */
 function mapMessageWord(word, index) {
@@ -148,7 +148,7 @@ function mapMessageWord(word, index) {
   return {word, index, sum, page, wordIndex,
     runeWord: lp2Pages[page]?.[wordIndex] ?? null};
 }
-const fullMap = messageWords.map(mapMessageWord);
+const fullMap = signedAllWords.map(mapMessageWord);
 const exceptions = fullMap.filter(row => row.runeWord === null);
 assert.deepEqual(exceptions.map(({word, sum, page, wordIndex}) =>
   [word, sum, page, wordIndex]), [["lies", 224, 50, 3]]);
@@ -186,7 +186,7 @@ console.log(JSON.stringify({
   p56Word1Cipher: p56Word,
   p56Word1Plain: "END",
   rows,
-  fullMessage: {words: messageWords.length, runeWordAddresses: fullMap.length - exceptions.length,
+  fullMessage: {words: signedAllWords.length, runeWordAddresses: fullMap.length - exceptions.length,
     exception: {word: "lies", sum: 224, page: 50, index: 3,
       tableToken: page50Table.tokens[3], tableByte: page50Table.bytes[3]},
     unfittedAddresses: {found: [14, 2], beware: [32, 5]}}
