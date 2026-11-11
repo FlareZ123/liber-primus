@@ -34,7 +34,7 @@ Original inputs: [canonical GP29 physical-page corpus](../resources/liber-primus
 
 The native controls are Shakespeare, Gibran and Emerson in the repository's pinned reference files. Each control word is normalized into the **original 29 GP runes** with the documented QU→CW, V→U, K→C, Z→S, ING→NG conventions. For each corpus, **32 seeded samples** independently replace all 2,896 original cipher words with native GP-English words of the **exact corresponding rune length**, with replacement. Every original length from one through fourteen runes exists in all three reference corpora. Thus every sample has exactly the original printed word-boundary pattern and the same page/section assignment at every rune position; it is a deliberately permissive language *shape* control rather than a continuous quotation.
 
-| Secret alphabet state | Number of states | Original LP2 H(C\\|S), bits/rune | Highest of 96 native controls H(P\\|S) |
+| Secret alphabet state | Number of states | Original LP2 H(C\|S), bits/rune | Highest of 96 native controls H(P\|S) |
 | --- | ---: | ---: | ---: |
 | Word length + letter position | 105 | **4.709187883** | **3.577683154** |
 | Above + text section | 679 | **4.016715515** | **3.144884448** |
