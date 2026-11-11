@@ -121,7 +121,7 @@ The [reproducer](../sims/p32_p55_43symbol_outguess_bridge.cjs) freezes only two 
 | Base29 integer | Seeding | \(C-K\) | 0.029900 | −7.401898 |
 | Base29 integer | Seeding | \(C+K\) | 0.032115 | −6.198025 |
 
-None of the outputs is plaintext. Even the best language score (the wrong **Seeding** role with literal GP-Latin and \(C+K\)) remains strongly non-linguistic. The source-authenticated OutGuess generator therefore does not rescue this particular 43↔43 key/target pairing.
+None of the outputs is plaintext. Even the best language score (the wrong **Seeding** role with literal GP-Latin and \(C+K\)) remains strongly non-linguistic. More literally, OutGuess encrypts carrier bytes by XOR: direct XOR of the p55 rune ordinals with the same ARC4 bytes leaves only **3–6 of 43** outputs inside the valid GP29 range across the four password/role combinations. A direct byte-XOR plaintext must produce 43/43 valid rune ordinals, so the literal OutGuess byte operation also fails without an additional, unsourced transform. The source-authenticated OutGuess generator therefore does not rescue this particular 43↔43 key/target pairing.
 
 **Decision:** retire these eight direct OutGuess ARC4-derived GP29 variants. This does not falsify the p32 route as a selector, the p55 interior extraction, or other source-selected key representations/operations. Do not expand into arbitrary password encodings or phases. The direct additive and OutGuess results together leave no supported reversible operation between these two 43-rune streams.
 
