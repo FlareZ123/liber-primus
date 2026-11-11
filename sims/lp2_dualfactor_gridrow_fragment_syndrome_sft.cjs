@@ -107,6 +107,19 @@ for (const factor of [H,G,F]) {
     remainder(row,factor).every((v,j)=>v===remainder(rows[(i+1)%32],factor)[j]));
   assert.equal(wrong.length,0,"cyclic row mispairing should fail exact syndrome identity");
 }
+// The terminal unsolved-plus-solved three-page bookend is also exactly
+// 256 GP29 runes: p55 (76), p56 (85), p57 (95), independently source-sized
+// like the numeric 256-byte table. It does not carry the table checks.
+const terminal = corpus.pages.filter(page => page.page >= 55)
+  .flatMap(page => page.indices);
+assert.equal(terminal.length, 256);
+const terminalSyndromes = Object.fromEntries(
+  Object.entries(factors).map(([name, factor]) =>
+    [name, remainder(terminal, factor)]));
+assert.deepEqual(terminalSyndromes,{
+  H:[8,6], G:[21,28], F:[3,22,16,2]
+});
+
 console.log(JSON.stringify({
   sourceChecks: {H,G,F},
   runeCount: ciphertext.length,
@@ -115,6 +128,7 @@ console.log(JSON.stringify({
   emptyFragmentIndices: [8,11],
   fragmentLengths: fragments.map(f=>f.length),
   directOriginalMatches: matches,
+  terminalThreePageSyndromes:terminalSyndromes,
   plantMatchesPerFactor: 32,
   wrongCyclicRowMatchesPerFactor: 0,
   plaintextOrKeyRecovered:false
