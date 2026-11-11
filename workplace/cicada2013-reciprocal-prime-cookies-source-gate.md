@@ -21,6 +21,16 @@ With the independently printed p56 target fixed, check the two source-natural or
 
 [Self-contained Node.js 22 SFT](../sims/cicada2013_reverse_prime_cookies_p56_sft.cjs) reads the committed original 64-byte digest, asserts the cookie lengths and prime reversals, and performs all 16 byte-exact comparisons. The same direct identity, SHA-512 and HMAC candidate gate was independently checked with Python's `hashlib` and `hmac`; there were no matches.
 
+## Five fixed, reversible original-table byte inverses
+
+There is a second, distinctive arithmetic pairing: **167 + 761 = 928 = 32×29**. The actual LP2 printed numeral table has **32 rows × 8 byte cells**, and the GP alphabet has 29 runes. Each historical hex cookie holds exactly **32 bytes**, so these two source objects supply a *potentially human-observable one-key-byte-per-table-row alignment*. The sum and key-length coincidences were identified retrospectively, and the cookie names themselves might be arbitrary server/session identifiers. They do not prove the artists selected this bridge.
+
+Test five declared, fully reversible bytewise **XOR** registrations on all **256 original printed table bytes**: (i) cookie 167 on even columns and cookie 761 on odd columns; (ii) reverse those assignments; (iii) cookie 167 on the first four columns and cookie 761 on the last four; (iv) swap their halves; (v) XOR both 32-byte cookie values into each of the eight cells of their corresponding row. These layouts use the printed 32×8 form, retain every original byte, and do not optimize keys, rotations or row shifts.
+
+The raw original table contains **103/256 printable ASCII bytes**. The five source-aligned original-table outputs contain **[90, 104, 84, 110, 89]** printable ASCII bytes in the declared order. **None** contains even a run of five consecutive ASCII alphabetic bytes. Each model exactly reverses to the complete **256/256** printed original bytes when the identical XOR is applied twice. Thus none of these precise, inexpensive cookie-to-table interpretations exposes a directly encoded ASCII table plaintext. This does not reject deeper encryption, non-ASCII encodings, different key uses, or the putative historical meaning of the cookies.
+
+The same [standalone SFT](../sims/cicada2013_reverse_prime_cookies_p56_sft.cjs) reproduces all five layouts and their exact round trips against the committed original table. No unknown GP-rune plaintext or independently authenticated key results.
+
 ## Research decision
 
 The two cookies should be preserved as **historically reported, unauthenticated candidate external material**, because their labels independently instantiate a real Cicada-era decimal-reversal operation and their values have key-sized lengths. The currently available sources do **not** tell us to transfer them into Liber Primus, specify whether the bytes were participant-specific, or identify a reversible transformation of the 29-rune ciphertext. A useful next step would recover a contemporaneous HTTP header capture or a signed message explicitly connecting this onion session and the later book; absent that, treating either value as an arbitrary stream-cipher key would reproduce the unmotivated-key-search problem.
