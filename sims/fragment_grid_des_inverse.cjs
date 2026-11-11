@@ -182,4 +182,4 @@ function main(){
   console.log(JSON.stringify(output,null,2));
 }
 if(require.main===module)main();
-module.exports={desStream,decode,encodeCipher,sliceSplit,search,plant,main};
+module.exports={desStream,decode,encodeCipher,sliceSplit,search,plant,main,segments,original,sourceKeys,english,nativeRef,plainScore,corpus,mod};
