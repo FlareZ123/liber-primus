@@ -10,6 +10,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Validate original May 2014 Stage11 HTML and 58 JPEG hashes
+        run: node sims/lp2_stage11_2014_release_index_sft.cjs
       - name: Check source labels, 58-page cycles, and exact original punctuation boundaries
         run: node sims/onion7_133331_page_cycle_sft.cjs
       - name: Test prime49 / seven-by-227 source-clock original inverse
