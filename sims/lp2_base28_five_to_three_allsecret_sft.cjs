@@ -218,8 +218,8 @@ console.log(JSON.stringify({
   comparedSecretFamilies:"Any five arbitrary independent 28-symbol digit bijections",
   secretIndependence:"For any first alphabet symbol assigned digit27, its 24+ distinct second-symbol followers cannot fit in the nine allowed digits0..8",
   threshold:{radix28Range:28**5,threeByteRange:CAP,
-    27_and_second_8_compatible:27*28**4+8*28**3<CAP,
-    27_and_second_9_forbidden:27*28**4+9*28**3>=CAP},
+    second8CompatibleAtFirst27:27*28**4+8*28**3<CAP,
+    second9ForbiddenAtFirst27:27*28**4+9*28**3>=CAP},
   sourceRepresentations:analysis,
   positiveControl:{
     originalEscapeMaskReused:true,plaintext:"Shakespeare UTF-8 source bytes",
