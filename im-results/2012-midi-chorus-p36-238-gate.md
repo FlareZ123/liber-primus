@@ -1,6 +1,6 @@
-# 2012 MIDI chorus ↔ LP2 p36: exact 238-symbol alignment, bounded direct negative
+# 2012 MIDI chorus ↔ LP2 p36: exact 238-symbol alignment and field-key tests
 
-**Classification:** source-motivated cross-round clue with retrospective page selection; bounded negative for the tested direct operations. No unknown plaintext, key, or intended continuation recovered.
+**Classification (Agents 7 and 17, 11 November 2026):** source-motivated cross-round clue with retrospective page selection; bounded negative for direct GP29 letters and full-block GF(29²³⁸) field-key transfers. No unknown plaintext, key, or intended continuation recovered.
 
 ## Why this was worth testing
 
@@ -66,6 +66,24 @@ The independently derived p50 table factorization also has a unique monic degree
 No exact equality or exact affine relabeling exists. The best post-hoc single-affine relabeling (812 possible scale/offset pairs) gives only 17–20 matches out of 238, depending on sequence and coefficient orientation; this optimized maximum is not a source-selected transform and is not evidence of a relationship. In particular, the best rank-stream fit is 19/238 and the best low-to-high fit to the p36 crib keystream is 20/238.
 
 This rejects the obvious direct Q238 coefficient/chorus/key-stream correspondence. It does not invalidate the independently established polynomial factorization or prove the three 238 counts are accidental.
+
+### 3. Three-source GF(29²³⁸) field-key continuation (Agent 17)
+
+A newly available independent source structure sharpens this test without fitted keys: the manuscript's original 256-byte p49–51 table has a [unique irreducible degree-238 factor](lp2-grid-complete-gf29-factorization.md) `Q238(X)` over GF29. It is possible to view **all 238 p36 runes** and the **238 source song letters** as two coefficients vectors in the field `GF(29)[X]/Q238(X)`. This is a genuinely reversible *full-block* operation. The juxtaposition of the 2012 song and 2014 book source is our hypothesis, rather than an authenticated multiplication instruction.
+
+Freeze exactly three source-native chorus mappings: GP29 rune index (K→C, V→U), conventional Latin ordinal (A=0), and 2012 MIDI note-off pitch-plus-delta modulo29. Their 238 entries are field elements under the existing `Q238`. Read both text sequences together in printed high-to-low order or low-to-high polynomial order. Decrypt by field multiplication or by multiplication with the *full polynomial inverse*, for **3×2×2=12** models. The reference is p57's independently known plaintext, GP29 IoC **0.06271**; p36 raw GP IoC is **0.0359890792**.
+
+| Chorus field key | Original p36 output IoC, divide (high / low) | Original p36 output IoC, multiply (high / low) |
+|---|---:|---:|
+| GP29 letter mapping | 0.03485445 / 0.03340070 | 0.03240790 / 0.03453533 |
+| Latin A=0 mapping | 0.03510265 / 0.03336524 | 0.03396802 / 0.03513811 |
+| 2012 MIDI event mod29 | 0.03290430 / 0.03524448 | 0.03520902 / 0.03421622 |
+
+Every original output is close to uniform GP29 frequency; the highest IoC is **0.03524448**, far from native solved text. The strongest output begins `ENGTHOHNCRPDBSYOFNCXEXXPEOEENGIA` and is not a readable phrase. All twelve original outputs reproduce **238/238** ciphertext runes when reencrypted. A source-disjoint p57 solved-rune sequence planted into each reversible transformation recovers **238/238** runes, independently testing inversion. Those checks validate the code and delimit this exact field mechanism; they do not validate a key or find unknown plaintext.
+
+[Standalone CommonJS field-key SFT](../sims/2012_chorus_grid_q238_p36_field_sft.cjs) reconstructs `Q238` from the original table, checks its SHA-256, validates the actual MIDI source and p36 length, and runs the twelve original field decoders with a native-GP source plant. No arbitrary phase, affine fitted matrix, passage slicing, word-list tuning or ciphertext-optimized key is involved.
+
+**Decision for this extension:** retire direct full-block multiplication/division by the entire 238-symbol chorus in the already identified grid field. The **triple 238 alignment** is now documented, although all 12 natural field mappings fail to select p36 plaintext. A further test would need an original instruction naming a new field operation or addressing a different source, rather than stacking related coincidences.
 
 ### Decision
 
