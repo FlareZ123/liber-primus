@@ -142,12 +142,12 @@ Applying the historical 2013 NUMBER operation exactly once (reverse decimal digi
 
 Wrong-fold-pair and adjacent-word controls do not make this signature distinctive. Neighboring mirror pairs include `w1+w15=351 → 153=3²×17`, `w3+w13=206 → 602=2×7×43`, and `w7+w9=734 → 437=19×23` (also two GP prime weights, mapping to `WH`). Other mirror controls yield prime/semiprime factorizations as well. Adjacent controls include `w0+w1=301 → 103` (a GP prime weight), `w5+w6=313` (prime), and `w7+w8=961 → 169=13²`. Thus “prime or semiprime after NUMBER” is not a unique property of the selected totals.
 
-No source fixes a page/word/address interpretation for `WX`, 673, or563. Mapping 673/563 through prime indices, decimal splits, modulo58, or page scans would add an unselected transformation. The signed message's “numbers are the direction” does not by itself instruct a solver to invoke the 2013 NUMBER command on these three sums.
+The 365→563 output has an independent source match: the authenticated 2016 tree JPEG is **563 pixels wide**, and the p32 tree page's first eleven runes sum **563** under GP-prime weights (the same exact relationship documented in [the p32 tree source-gate report](lp2-tree121-signed2016-source-gate.md)). This is a unique match among the tested p55 mirror-pair and adjacent-word controls; none yields563. It therefore supplies a plausible cross-page address to the p32 tree / first row. The other outputs remain unresolved: 398→`WX`, while 673 is prime but outside GP29. No further operation is fixed; do not map 673 or893 through extra reductions.
 
-**Decision:** the arithmetic is exact and reproducible, but this one-step NUMBER continuation has no source-selected output address or discriminating control. It is not plaintext or a route; retire this branch without extra reductions.
+**Decision:** retain `365 → NUMBER → 563 → p32 tree/first-row` as a source-linked navigation candidate, not plaintext. The 2016 message's “numbers are the direction” plus the historical NUMBER command make the attempt human-plausible, but do not yet prescribe what to do with the selected row. Director review / a bounded successor is warranted; do not extend into arbitrary reductions.
 ## Next decisive question
 
-The historical A-KOAN Vigenère/interrupter transfer to p55 and the one-step historical NUMBER application to totals398/376/365 are both bounded negatives. Any continuation must derive a *different* source-visible operation or a distinct target for the fold structure; do not repeat these operations or add arbitrary reductions.
+The historical A-KOAN Vigenère/interrupter transfer to p55 is negative. The one-step NUMBER branch now has a source-linked 563→p32-tree/first-row target; any successor must find one source-selected operation on that row and a held-out prediction, without extending to arbitrary mappings of673/893.
 
 ## Reproduction
 
