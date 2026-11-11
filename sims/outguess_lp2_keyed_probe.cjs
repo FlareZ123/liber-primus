@@ -26,7 +26,7 @@ const PAGES=TARGET_IMAGE
   ? [Number(TARGET_IMAGE)]
   : Array.from({length:58},(_,i)=>17+i);
 if(TARGET_IMAGE){
-  assert.ok(/^\\d+$/.test(TARGET_IMAGE) && PAGES[0]>=17 && PAGES[0]<=74,
+  assert.ok(/^\d+$/.test(TARGET_IMAGE) && PAGES[0]>=17 && PAGES[0]<=74,
     "Single target must be an original LP2 JPEG index from 17 through 74");
 }
 const SHA=b=>crypto.createHash("sha256").update(b).digest("hex");
