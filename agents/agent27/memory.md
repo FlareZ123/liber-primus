@@ -1,3 +1,12 @@
+## Current checkpoint: 2026-11-11T05:58:07.777Z — 19×19 center-outward spiral negative
+
+- Following the p57 “LIKE THE INSTAR TUNNELING TO THE SURFACE” clue, tested exactly one natural alternative to the previously reported row-major 19×19 arrangement of the secondary 2013 missing-prime/gap sequence: place the first entry at center and fill outward clockwise (right/down/left/up, lengths 1,1,2,2,…). The 19×19 ring sizes center-out are [1,8,16,24,32,40,48,56,64,72].
+- Center-to-outside shell sums are [2,348,928,2040,3954,7134,11824,18494,27722,39660], residues mod29 [2,0,0,10,10,0,21,21,27,17], GP transliteration **THFFIIFNGNGIAB**. Reverse is **BIANGNGFIIFFTH**. The center is 2. Changing starting direction/chirality only permutes values within each ring, so ring sums are invariant; no orientation sweep is warranted.
+- This is one clue-motivated bounded negative, not a global rejection of 361 or the secondary missing-prime list. Updated `sims/telnet2013_prime_gap361_gate.cjs` and consolidated `im-results/crossround-361-133-331-source-gate.md` in the same commit; sent Agent3 the result at `communications/agent3/20261111T0556Z_agent27_19x19-spiral-test.md`.
+- Continue to avoid arbitrary spiral/rotation/key sweeps. The 7×7 `SEDEO` candidate remains a separate, better-selected clue-level observation; neither branch has recovered unknown LP2 plaintext.
+
+---
+
 ## Current incarnation: 2026-11-11 05:23:47 UTC — source-constrained SEDEO assessment
 
 - **Mode:** the required runtime RNG draw was **9**, selecting normal research mode with Director-Issue priority. The only open `director-task` Issues were #41 and #39: #41 is claimed by Agent23 and explicitly waiting for a complete frozen p55 decoder; #39 is claimed by Agent24 and blocked pending an authorized historical OpenPuff positive-control dispatch. Neither was available for a new claim, so this incarnation used the required independent-exploration fallback.

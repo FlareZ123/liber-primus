@@ -157,6 +157,32 @@ function concentricShellSums(square) {
   return shells;
 }
 
+function centerOutSpiralSquare(values, order) {
+  assert.equal(values.length, order * order);
+  const grid = Array.from({length:order}, () => Array(order).fill(null));
+  let row = Math.floor(order / 2);
+  let col = Math.floor(order / 2);
+  let index = 0;
+  grid[row][col] = values[index++];
+  const directions = [[0,1],[1,0],[0,-1],[-1,0]];
+  let stepLength = 1;
+  while (index < values.length) {
+    for (let direction = 0; direction < 4 && index < values.length; direction++) {
+      const [dr,dc] = directions[direction];
+      for (let step = 0; step < stepLength && index < values.length; step++) {
+        row += dr;
+        col += dc;
+        if (row >= 0 && row < order && col >= 0 && col < order) {
+          grid[row][col] = values[index++];
+        }
+      }
+      if (direction % 2 === 1) stepLength++;
+    }
+  }
+  assert.equal(grid.flat().filter(Number.isInteger).length, values.length);
+  return grid;
+}
+
 function run() {
   assert.equal(pages.length, 55);
   const total = pages.reduce((sum, page) => sum + page.length, 0);
@@ -205,6 +231,20 @@ function run() {
     ['T', 'D', 'M', 'P', 'Y', 'EO', 'OE', 'IA', 'TH', 'G']);
   assert.equal(square19[9][9], 6);
 
+  // "Like the instar tunneling to the surface" motivates one natural
+  // center-outward spiral fill. Shell sums are read center to outside.
+  const spiral19 = centerOutSpiralSquare(sequence, 19);
+  const spiralShellCheck = concentricShellSums(spiral19).reverse();
+  assert.deepEqual(spiralShellCheck.map(x => x.size),
+    [1, 8, 16, 24, 32, 40, 48, 56, 64, 72]);
+  assert.deepEqual(spiralShellCheck.map(x => x.sum),
+    [2, 348, 928, 2040, 3954, 7134, 11824, 18494, 27722, 39660]);
+  assert.deepEqual(spiralShellCheck.map(x => x.residue),
+    [2, 0, 0, 10, 10, 0, 21, 21, 27, 17]);
+  assert.deepEqual(spiralShellCheck.map(x => x.translit),
+    ['TH', 'F', 'F', 'I', 'I', 'F', 'NG', 'NG', 'IA', 'B']);
+  assert.equal(spiral19[9][9], 2);
+
   const expected = [
     {clock: 'page', sign: -1, ioc: 0.034491326460880746},
     {clock: 'page', sign: 1, ioc: 0.03447049771759632},
@@ -250,7 +290,15 @@ function run() {
       center: square19[9][9],
       result: shellCheck.map(x => x.translit).join('')
     },
-    decision: 'No original LP2 plaintext from the fixed phase-zero direct-GP29 use of this 361-value sequence.'
+    clueMotivatedCenterOutSpiral19x19ShellCheck: {
+      fill: 'center-outward clockwise spiral; start at center; move right/down/left/up with lengths 1,1,2,2,...',
+      operation: 'center-to-outside perimeter sum modulo 29',
+      shells: spiralShellCheck,
+      center: spiral19[9][9],
+      result: spiralShellCheck.map(x => x.translit).join(''),
+      reverse: spiralShellCheck.slice().reverse().map(x => x.translit).join('')
+    },
+    decision: 'No original LP2 plaintext from the fixed phase-zero direct-GP29 use or either tested 19x19 shell-sum reading of this 361-value sequence.'
   };
 }
 
@@ -258,4 +306,4 @@ if (require.main === module) {
   process.stdout.write(JSON.stringify(run(), null, 2) + '\n');
 }
 
-module.exports = {primesInRange, sequence, key, ioc, decodeOriginal, concentricShellSums, run};
+module.exports = {primesInRange, sequence, key, ioc, decodeOriginal, concentricShellSums, centerOutSpiralSquare, run};

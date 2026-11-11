@@ -103,8 +103,29 @@ The resulting sequence is **`TDMPYEOOEIATHG`**, with center value **6**. It does
 
 The exact shell values, canonical transliterations, and center are asserted by `sims/telnet2013_prime_gap361_gate.cjs`. No original LP2 plaintext or key is recovered.
 
+### One clue-motivated center-outward spiral control
+
+The row-major fill is not the only natural way to make a 19×19 square from the 361 entries. The wording **“LIKE THE INSTAR TUNNELING TO THE SURFACE”** suggests one specific alternative: put the first sequence value at the center, then fill outward in the canonical expanding spiral (right, down, left, up; step lengths 1, 1, 2, 2, …). This is one motivated convention, not a search over arbitrary rotations or traversals. Summing the resulting concentric rings from center to outside and reducing modulo 29 gives:
+
+| Ring, center outward | Cells | Sum | Mod 29 | GP transliteration |
+|---:|---:|---:|---:|---|
+| 1 | 1 | 2 | 2 | TH |
+| 2 | 8 | 348 | 0 | F |
+| 3 | 16 | 928 | 0 | F |
+| 4 | 24 | 2,040 | 10 | I |
+| 5 | 32 | 3,954 | 10 | I |
+| 6 | 40 | 7,134 | 0 | F |
+| 7 | 48 | 11,824 | 21 | NG |
+| 8 | 56 | 18,494 | 21 | NG |
+| 9 | 64 | 27,722 | 27 | IA |
+| 10 | 72 | 39,660 | 17 | B |
+
+The result is **`THFFIIFNGNGIAB`**; outside-to-center is its reverse, **`BIANGNGFIIFFTH`**. The center is the first sequence value, **2**. Changing the spiral's starting direction or chirality only permutes values within each ring, leaving each ring sum unchanged; reversing the ring order gives only the displayed reverse string. Neither direction yields a recognizable English or Latin instruction.
+
+This is a bounded negative for the **center-outward canonical spiral + ring-sum mod 29** interpretation. It does not exclude a different source-specified operation, and it does not authenticate the secondary remote-prime transcription. It also does not refute the distinct 7×7 `SEDEO` clue.
+
 ## Decision and next useful action
 
-The corrected 361-entry count and zero-based selectors are reproducible. The fixed direct-GP29 key and source-motivated 19×19 shell-sum reading both fail to produce plaintext. Do **not** repeat direct additive, 35-stride DES, primitive-root exponent, 3301-LCG, or the fixed phase-zero 361-period direct-GP29 family.
+The corrected 361-entry count and zero-based selectors are reproducible. The fixed direct-GP29 key, row-major 19×19 shell-sum reading, and single clue-motivated center-outward spiral shell-sum reading all fail to produce plaintext. Do **not** repeat direct additive, 35-stride DES, primitive-root exponent, 3301-LCG, or the fixed phase-zero 361-period direct-GP29 family.
 
-The 180-prime / 180-cell interior correspondence now also lacks a stationary direct-lookup interpretation under the eight literal table orientations. The remaining useful question is whether an **independent contemporaneous instruction** assigns a *different operation* to the 180 missing primes, 361-entry sequence, or ordered triple 361/133/331. The PARABLE's “instar / tunneling / shed circumferences” wording makes an inward square/ring reading plausible, but does not fix how to fill a 19×19 array, where to start, or which direction to traverse. The 2013 remote prime list remains a secondary transcription, and the straightforward direct-key use is now negative. Do not expand into arbitrary rotations, spirals, moduli, or key offsets without a source-fixed selector. If no such instruction or original server artifact can be recovered, retain the relationship as clue-level evidence and redirect effort to another independently sourced key family.
+The 180-prime / 180-cell interior correspondence now also lacks a stationary direct-lookup interpretation under the eight literal table orientations. The remaining useful question is whether an **independent contemporaneous instruction** assigns a *different operation* to the 180 missing primes, 361-entry sequence, or ordered triple 361/133/331. The PARABLE's “instar / tunneling / shed circumferences” wording motivated the one canonical center-outward spiral now tested; it still does not authenticate the secondary 2013 remote prime list or select a further operation. Do not expand into arbitrary rotations, other spirals, moduli, or key offsets without a stronger source-fixed selector. If no such instruction or original server artifact can be recovered, retain the relationship as clue-level evidence and redirect effort to another independently sourced key family.
