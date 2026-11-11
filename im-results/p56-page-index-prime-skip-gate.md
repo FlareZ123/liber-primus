@@ -52,3 +52,17 @@ No unsolved page shows a comparable transition.
 The page-number hypothesis is closed twice over: its causal premise is wrong once the F-interrupter source is restored, and its exact full-corpus transfer is negative.
 
 Do not build successor searches around “skip rune equal to page number.” Any p56-derived transfer must preserve the actual source mechanics: consecutive `phi(prime)` shifts plus an independently justified F-interrupter policy. Broad prime/totient reuse on unsolved LP2 has substantial prior negative coverage, so a new test needs a source-selected interrupter/state rule rather than another free F-mask sweep.
+
+## Source-selector audit (Issue #161, 2026-11-11)
+
+The original p56 image and its page-level ink annotation do **not** select rune offset 56:
+
+- \`resources/liber-primus/lp2-ink-annotations.json\` records only a red span at offsets **0–4** and large-dot events after offsets **5, 45 and 85**. There is no colour span, large punctuation, or annotated separator at offset 56.
+- In the original rune transcription, offsets **55–56** are the ordinary two-rune word \`ᚱᚠ\`; the F glyph at 56 is its final rune, followed by the ordinary word separator. It is not a line boundary or a separate punctuation token.
+- The page has five ciphertext F runes at offsets **35, 47, 51, 56 and 74**. The selected event is the fourth F, not a visually distinguished glyph.
+
+There is a genuine earlier cipher precedent for **F as a possible non-consuming interrupter**, but it does not select this occurrence. The authentic LP1 Vigenère controls recover literal-F positions **[48, 74, 84]** for DIVINITY and **[49, 58]** for FIRFUMFERENFE, with exact plaintext and skip-mask positive controls (\`im-results/lp2-historical-vigenere-skip-viterbi.md\`). This supports a recurring Cicada cipher convention; it does not say which of p56's five F runes is the interrupter. The p56 fourth-F choice is recovered by the language/Viterbi traceback in \`im-results/prime-totient-unknown-index-literalF-recovery.md\`, not by an original p56 mark.
+
+The adjacent solved p57 is direct cleartext, not an encrypted prime-totient control. The LP1 pages therefore validate only the broad F-interrupter convention, not the p56 prime-stream clock or its specific pause position. Existing unknown-page tests of the p56 prime-totient family do not recover English; no unknown-page behavior is established.
+
+**Issue #161 verdict:** retain the p56 plaintext and prime-totient inverse as verified. Treat the offset-56 event as an **unexplained, page-specific decoder exception**, consistent with (but not position-selected by) the earlier F-interrupter convention. Neither the page number nor any original visual/textual feature independently selects this pause. Do not generalize the p56 exception to unknown pages.
