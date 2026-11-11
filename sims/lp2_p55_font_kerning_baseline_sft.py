@@ -26,7 +26,7 @@ def source_register(page: int) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     lines = source_lines(text, page - int(page >= 50))
     observed = glyph_positions(IMG / f"{page + 17:02d}.jpg")
     if page == 55:
-        # The original page has an 86px-high red terminal 10-dot mark
+        # The original page has an 86px-high red terminal 13-dot mark
         # and a separate tree illustration: neither is a GP rune.
         assert [len(line) for line in observed] == [24, 22, 22, 9, 1]
         assert len(lines) == 4
