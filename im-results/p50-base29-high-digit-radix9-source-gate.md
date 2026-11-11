@@ -28,7 +28,7 @@ First 16 bytes (hex): `09 df 17 9a 31 59 d6 a1 aa c6 14 0c 89 73 6e 8b`.
 
 Only **35/102** bytes are printable ASCII, consistent with unscripted binary data at this length. Empirical byte entropy is **6.24585892036 bits/byte**; this estimate is sample-size-limited. The result begins with none of the tested PDF, armored PGP, ZIP, gzip, PNG, JPEG, BMP or SQLite headers. It is neither readable text nor an immediately recognizable container.
 
-The original ordered 256-byte table continues to satisfy the exact H and G zero-remainder assertions. A planted, 256-digit base-9 serialization of independent ASCII text round-trips exactly. The [single-file CJS](../sims/p50_base29_high_digit_radix9_sft.cjs) was run successfully in [GitHub Actions 43038348425](https://github.com/FlareZ123/liber-primus/actions/runs/43038348425), using the `p50-base9` source-only probe.
+The original ordered 256-byte table continues to satisfy the exact H and G zero-remainder assertions. A planted, 256-digit base-9 serialization of independent ASCII text round-trips exactly. The same table was also tested as a direct linear-recurrence output, which is a distinct claim from polynomial divisibility. The [single-file CJS](../sims/p50_base29_high_digit_radix9_sft.cjs) was run successfully in [GitHub Actions 43038348425](https://github.com/FlareZ123/liber-primus/actions/runs/43038348425), using the `p50-base9` source-only probe.
 
 ## 3×3-dot quotient-channel tests
 
@@ -41,6 +41,22 @@ The score model is the same Duko Round27 English quadgram table used by the repr
 
 ## Impact on the solve path
 
-This retires three literal higher-channel interpretations: (a) `q` as one big-endian base-9 integer yielding a standalone binary payload; (b) direct within-cell `r±q` recombination into a GP29 stream; and (c) the first 158 q digits as a continuous Gronsfeld key for the adjacent p49/p51 text. The 3×3 dots make the nine-valued quotient channel a reasonable thing to notice, but they do not select addition, subtraction, or a key-to-flanking-text relationship. No unknown LP2 plaintext, key, URL or destination is recovered.
+This retires three literal higher-channel interpretations: (a) `q` as one big-endian base-9 integer yielding a standalone binary payload; (b) direct within-cell `r±q` recombination into a GP29 stream; and (c) the first 158 q digits as a continuous Gronsfeld key for the adjacent p49/p51 text. The 3×3 dots make the nine-valued quotient channel a reasonable thing to notice, but they do not select addition, subtraction, or a key-to-flanking-text relationship. No unknown LP2 plaintext, key, URL or destination is recovered. The direct H/G recurrence interpretation of the table itself is also retired; other stateful H/G consumers remain open.
 
 The higher digits are not thereby proved meaningless. Further uses require a new source-native instruction that selects an operation, alignment and target; do not expand this into offsets, resets, multipliers, or alternate packing searches. The separate 252 GF(29) polynomial-division quotient remains a different register and must not be confused with the per-byte `floor(B/29)` channel. The authoritative overall LP2 solution status remains unchanged.
+
+
+## Direct H/G recurrence test of the 256 table (bounded negative)
+
+A natural interpretation of the source-linked quadratics is that the 256 table residues themselves are a short LFSR sequence. This is not implied by the global polynomial divisibility, so it was tested directly. Reduce the original historical and LP2-canonical table values modulo 29; evaluate every complete window using
+`r_i = Σ_j f_j s_(i+j) mod 29`
+for H=[3,26,24], G=[27,5,15], and H·G=[23,21,11,17,12], in both coefficient orientations. The four source-natural layouts are historical row-major, historical column-major, canonical row-major, and canonical column-major.
+
+| Layout | H zero residuals (forward/reverse) | G (forward/reverse) | H·G (forward/reverse) |
+| --- | ---: | ---: | ---: |
+| Historical row-major | 7/254 · 13/254 | 10/254 · 7/254 | 13/252 · 8/252 |
+| Historical column-major | 5/254 · 7/254 | 7/254 · 8/254 | 9/252 · 8/252 |
+| Canonical row-major | 8/254 · 14/254 | 11/254 · 9/254 | 12/252 · 9/252 |
+| Canonical column-major | 6/254 · 9/254 | 7/254 · 6/254 | 7/252 · 4/252 |
+
+Every residual stream contains **all 29 residues**. No layout or orientation satisfies a sustained H, G, or H·G recurrence; the observed zero counts are small and fluctuate around the 1/29 random-residual baseline. The 256-entry p50 table is therefore **not itself a direct H/G LFSR output** in the source-natural orders. This does not reject the established global H/G polynomial divisibility, the high-digit channel, or separate feedback-state/quotient consumers. The fixed test is reproducible with [the recurrence gate](../sims/p50_hg_direct_recurrence_gate.cjs).
