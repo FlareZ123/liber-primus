@@ -45,7 +45,7 @@ G_{p39}(X)=27+5X+15X^2
 
 This is also an exact factor of \(P(X)\), and its root **24 = 3301 mod 29** is independently supplied by the oversized Ac GP rune on p54. The two distinct factors are coprime. Their product divides the unchanged original table exactly, as checked by multiplication back to all 256 original mod29 coefficients.
 
-Dividing out both source-linked quadratic factors removes four formal polynomial degrees. The fixed-width 256 original slots become **252 quotient slots**; the first remains the original leading-zero slot, leaving a degree-250 polynomial with **251 canonical coefficients**. The 252-slot quotient has GP29 index of coincidence **0.0363308670**, much closer to uniform \(1/29\) than an ordinary GP-English text. Its rune transliteration is not readable plaintext. The exact quotient is therefore an actionable, source-restricted candidate **intermediate register**, not a recovered message.
+The 252-slot quotient has GP29 index of coincidence **0.0363308670** and is not readable plaintext. Its natural direct-additive use as a one-use GP29 key for source-selected p36 (238 runes) was tested with both signs, ascending/reversed coefficient order, and the printed-order phase 0 plus source-derived phase 151. The best held-out LP1 trigram score was **−10.9902**, worse than the worst native 238-rune window (**−8.6026**); all eight trials were ciphertext-like. The source-derived quotient therefore remains an intermediate register, not a direct additive key for p36. Reproduce with [the Q252-to-p36 SFT](../sims/p50_q252_additive_key_p36_sft.cjs); this is distinct from the GF29² ElGamal quotient-transport experiment below.
 
 ## The other 2013 worked example generates the p39 factor
 
