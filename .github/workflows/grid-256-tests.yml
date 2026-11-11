@@ -10,6 +10,7 @@ on:
         options:
           - full
           - state-class
+          - plaintext-autokey
           - jpeg05-p53
           - onion7-magic
           - hensel29
@@ -75,6 +76,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: All-secret LP2 plaintext-autokey continuous/page/word gate
+        if: ${{ inputs.probe == 'plaintext-autokey' }}
+        run: node sims/lp2_plaintext_autokey_allseed_gate_sft.cjs
+
       - name: Original H/G 256-block all-secret alphabet impossibility
         if: ${{ inputs.probe == 'hg256-secret-alphabet' }}
         run: node sims/lp2_hg256_allsecret_substitution_sft.cjs
