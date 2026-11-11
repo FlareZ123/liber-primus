@@ -1,6 +1,6 @@
-# Source-derived Hill inverses: two printed clue squares and the 256-byte grid
+# Source-derived Hill inverses: printed clue matrices and the 256-byte grid
 
-**Classification:** source-constrained, fully reversible finite-field matrix inversions with original-input negatives and positive plants. Agents 22 and 41, 10 November 2026. No unknown LP2 plaintext, authentic key or encryption method recovered.
+**Classification:** source-constrained, fully reversible finite-field matrix inversions with original-input negatives and positive plants. Agents 22, 41 and 23, 10–11 November 2026. No unknown LP2 plaintext, authentic key or encryption method recovered.
 
 ## Why these are constrained candidate keys
 
@@ -95,6 +95,38 @@ Both original heldout scores are at chance, and the best 8×8 training configura
 
 **Reproducer:** [self-contained source-grid tiled Hill inverse and both original-shaped native-source controls](../sims/grid_tiled_hill_inverse.cjs), Node.js22 CJS. The original IoC figures and both plant key ranks were independently computed from repository inputs in the connected research runtime. The SFT is registered together with the 16×16 test in the existing *manual-only* [Hill workflow](../.github/workflows/hill-row-screen.yml), option `source-grid-matrices`. Its standalone GitHub Actions run has not yet been recorded.
 
-These results narrow the specific original-clue fixed-matrix Hill interpretations, including both literally printed squares, the 16×16 grid reshaping, and source-preserving 4×4/8×8 tiling. It does not test matrices formed from transformed prime-index values, ciphertext-dependent block reordering, nonlinear transformations, hidden pre/post substitution, symbol insertion/deletion, independently varied keys or unspecified codebooks. The LP2 4×4 matrix has also been subject to a broader independently written [generic short-block Hill-row screen](../sims/hill_row_screen.cjs); the distinct 5×5 source key tests a block width not covered there. No discovery-wide p-value is claimed; large observed distance from the independently specified solved-reference IoC is the direct diagnostic.
+These results narrow the specific original-clue fixed-matrix Hill interpretations, including the LP1 5×5 and LP2 p15 4×4 squares, both 2014 OpenPuff 5×5 squares (above), the separate 2014 7×7 square test, the 16×16 grid reshaping, and source-preserving 4×4/8×8 tiling. It does not test matrices formed from transformed prime-index values, ciphertext-dependent block reordering, nonlinear transformations, hidden pre/post substitution, symbol insertion/deletion, independently varied keys or unspecified codebooks. The LP2 4×4 matrix has also been subject to a broader independently written [generic short-block Hill-row screen](../sims/hill_row_screen.cjs); the distinct 5×5 source key tests a block width not covered there. No discovery-wide p-value is claimed; large observed distance from the independently specified solved-reference IoC is the direct diagnostic.
+
+
+## 2014 OpenPuff 5×5 squares as direct GP29 Hill keys (Agent 23, 11 November 2026)
+
+The original three-square 2014 OpenPuff artifact contains two 5×5 matrices in addition to the separately tested middle 7×7 square:
+
+- the first 5×5 square, magic sum **3301**;
+- the third 5×5 square, magic sum **1033**.
+
+Both are invertible over GP29: their determinants are respectively **10** and **3** modulo 29. The middle 7×7/1033 square has a separate original-input Hill test on the seven-page cuneiform section in `sims/onion7_reverse_square_hill7_sft.cjs`.
+
+A solver already familiar with the 29-symbol GP alphabet and the signed 2013 BASE29/DH protocol could reasonably ask whether one of the literal 2014 square matrices is a 5×5 Hill key. This is a deliberately narrow test of that simple interpretation; the surviving 2014 instruction documents the squares' submission/verification role, not a Hill-cipher instruction.
+
+### Whole unknown manuscript
+
+The original p0–55 stream contains **12,956 runes** across 56 physical page slots (p50 is runeless). The finite screen uses both 2014 5×5 matrices, their **four distinct** dihedral orientations (the printed arrays are centrally symmetric), the matrix/inverse/transpose/inverse-transpose, continuous-book or physical-page-reset clocks, and all five block phases:
+
+`2 matrices × 4 orientations × 4 matrix forms × 2 clocks × 5 phases = 320` reversible configurations.
+
+The raw ciphertext IoC is **0.0344783979**, against the uniform GP29 value **1/29 = 0.0344827586**. The highest candidate IoC is only **0.0345274944**: the 5×5/1033 matrix, inverse-transpose form, physical-page reset, phase 4, scoring 12,610 runes. The best 5×5/3301 candidate is **0.0345196809** (inverse form, physical-page reset, phase 2, 12,735 runes). Both remain at the uniform-rune baseline; neither yields a language-bearing register.
+
+### Seven-page cuneiform section
+
+The source-selected cuneiform passage begins at p33 rune offset 91 and continues through p39: **1,589 runes**. Four trailing runes are omitted only to form complete five-rune blocks, leaving **1,585** scored runes. The two matrices, four distinct orientations, four matrix forms, and adjacent or five-lane block layouts give **64** reversible configurations. Every inverse exactly re-encrypts the original input; the reproducer also includes a 1,585-rune GP-encoded Shakespeare positive control for each matrix/layout.
+
+The raw cuneiform block has IoC **0.0343593665** and Emerson-trained GP trigram score **−4.2323594**. The best of the 64 candidates is the 5×5/1033 matrix in the original form, orientation `transpose=false, rows=false, cols=true`, adjacent blocks: IoC **0.0344868241**, trigram score **−4.2296089**. The best 5×5/3301 candidate scores **−4.2500367**. The tiny best-score change does not produce sustained readable text; decoded previews remain ciphertext-like.
+
+### Decision
+
+**The two literal 2014 5×5 matrices do not act as direct GP29 Hill keys** under the tested natural orientations, matrix directions, block layouts, phases, and book/page clocks. This is a bounded negative for direct block-Hill use, not evidence that the 2014 squares are irrelevant and not an exclusion of a different stateful, nonlinear, non-GP, or source-selected operation.
+
+Reproduce with `node sims/onion7_5x5_square_hill_sft.cjs`. The script reads the original 2014 square transcription, canonical GP corpus, and pinned language controls; it performs no downloads or file writes.
 
 **Reproduce:** [`sims/clue_matrix_hill.cjs`](../sims/clue_matrix_hill.cjs) (CommonJS SFT, two actual matrices, all 140 variants, full result JSON). Inputs: canonical numeric corpus, original rune-word transcription, independent solved-LP1 reference. It performs no downloads or file writes.
