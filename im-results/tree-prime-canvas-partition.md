@@ -19,6 +19,28 @@ The decomposition is an *interpretation of an exact original relation*, rather t
 
 The same unaltered 121-rune 11×11 source square is invertible over GF29 in either GP ordinal or GP-prime-residue form (determinants 8 and 21). A separate [176-case, heldout original-input Hill test](p32-tree-11x11-hill-original-gate.md) tried both matrices, their inverses/transposes, all eleven phases, and book/page resets with exact solved-English cryptographic controls. No unknown LP2 plaintext emerged; all original IoCs remained near 1/29. The ordinal square has eigenvalues 24 and 25, with the 24 coincidence being conditional and nondecisive under 5,000 border-fixed null permutations.
 
+
+## Original three-dot-bracket M7 pair inverse and the GF(29²) scalar distinction
+
+**Bounded original-cipher decision for [Director #273](https://github.com/FlareZ123/liber-primus/issues/273).** The printed three-dot dividers at p33 local rune 91 and p39 local rune 119 delimit exactly **1,468 rune symbols**, or **734 consecutive ordered two-rune blocks**. This is a more defensible source-selected pair origin and terminal point than the unmarked 1,680-rune whole-page alternative. The independently reconstructed p32 ring yields the concrete, integer-lifted matrix `M7 = [[14,25],[25,28]]` and its unique inverse `[[1,25],[25,15]]` modulo 29. A human solver might take successive rune pairs in this physical bracket as a GF(29)² register and decrypt by this inverse. That suggested action is **hypothetical**: the manuscript does not explicitly identify consecutive GP runes as vectors or prescribe matrix multiplication.
+
+The same source provides a useful algebraic caution. The p50/p39/p3 quotient gives `g=19+13u` in GF(29²), with `u²=3u+8` and `g^120=25` **in the ground field GF29**. The p32 M7 characteristic roots are 27 and 15 and their ratio is 25; the authenticated 2013 DH example has shared secret 2, and the p15 figure has 16 cells, so `2^16 mod29=25`. The exact equalities do **not** identify the GF(29²) multiplication map with M7: multiplication by the scalar 25 maps every projective ratio to itself, whereas **M7 maps 0 to 4** and has projective order 7. A lift from the scalar to the p32 projectivity requires a choice of unequal eigen-lane action, an eigenbasis and a rule selecting direction. The p32 ring numerically fixes one candidate matrix representative but the 2013/2014 sources do not state that it enciphers these adjacent rune pairs.
+
+A finite, no-fitted-key direct experiment used exactly the marked p33:91 through p39:119 source sequence. Each successive pair `(C_{2i},C_{2i+1})` was multiplied by `M7^{-1}`, without adjusting phase, basis, signs, punctuation or symbol assignments. The conventional inclusive-five-cells-per-side ring matrix `[[14,28],[25,20]]` supplies an independently visible wrong-source control, and M7 forward multiplication a wrong-direction control. All runic sequences retain the original GP29 alphabet.
+
+| Readout on 1,468 original symbols | GP29 index of coincidence | Top-12-symbol share |
+| --- | ---: | ---: |
+| Unmodified marked ciphertext | **0.03431255** | **0.459809** |
+| Source M7 inverse | **0.03473975** | **0.478202** |
+| Inclusive-side wrong-source inverse | **0.03422897** | **0.457766** |
+| Forward M7 wrong direction | **0.03438499** | **0.457766** |
+| Native solved p57 plaintext repeated to same length | **0.07180310** | Control only |
+
+The candidate source inverse starts `PRUSNBOCPECJOEIAMTHSDFILAWYNHXDMFELIJLBIGLAEOWCNGTWB...`, which is not coherent native-GP prose. In contrast, plant a complete **1,468-rune** stream from genuine solved-p57 GP text, encrypt each pair under the same M7, and decrypt: **all 1,468 of 1,468** runes recover, and exact reencryption reproduces the original marked ciphertext. The inclusive-side control does not recover that plant. These checks validate the reversible implementation and reject only this exact native-GP ordered-pair inverse, rather than all stateful ciphers or non-GP intermediate representations.
+
+**Decision:** Keep the p32 projectivity and the field exponent equality as separate exact source structures. Their common scalar 25 does not supply a canonical, reversible original-cipher map. Even granting the natural matrix lift and unusually well-defined original 3-dot pair boundaries, the direct M7 inverse produces no plaintext. Another branch requires an independently indicated eigen-lane/basis action or keyed state transformation with an original-message prediction; do not rescan GL₂(29), offset choices, or phase families. Standalone original-corpus [CommonJS reproducer](../sims/p32_m7_marked_pair_inverse_sft.cjs) checks source identities, planted controls and all original readouts.
+
+
 ## Two simple original-input predictions rejected
 
 Each exact rectangle is read as (1) mean RGB luminance 0.299R+0.587G+0.114B, and (2) fraction of pixels with luminance at least 180. Testing the corresponding source rune's GP **ordinal** or **prime value** against either image statistic yields the following 100-cell **interior** Pearson correlations, excluding the row/column that specify the partition:
