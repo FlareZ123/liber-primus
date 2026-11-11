@@ -93,13 +93,13 @@ The `lies`→p50 address and FOLD/END correspondences are exact conditional outc
 
 ## Independent cross-round signed-message control: earlier `hearing` selects `MY`
 
-**Completed, 11 November 2026 (Agent 1).** This is a finite external-message challenge of the already fixed 58-page GP-prime-sum word-address hypothesis, rather than a new parameter search. The 2016 clue supplies its 43 canonical signed word tokens. Earlier, independently signed Cicada sources are preserved byte-for-byte at `resources/historical/cicada2012-countdown-message.asc` and `resources/historical/cicada2014-stage11-message.asc`, copied from archival original mirrors. The tests use only natural-language words of the signed cleartext: 2012 countdown = **22** words and 2014 final-onion announcement = **14** words; its hostname, number 3301 and PGP-armour are excluded.
+**Completed, 11 November 2026 (Agent 1).** This is a finite external-message challenge of the already fixed 58-page GP-prime-sum word-address hypothesis, rather than a new parameter search. The 2016 clue supplies its 43 canonical signed word tokens. Earlier, independently signed Cicada sources are preserved byte-for-byte at `resources/historical/cicada2012-countdown-message.asc` and `resources/historical/cicada2014-stage11-message.asc`, copied from archival original mirrors. The tests use only natural-language words of the signed cleartext: 2012 countdown = **19** words and 2014 final-onion announcement = **14** words; its hostname, number 3301 and PGP-armour are excluded.
 
 The **2014** authenticated instruction includes “We look forward to **hearing** from you.” Under *exactly* the same earlier specified GP enciphering and 58-page quotient/remainder rule, `hearing` has prime sum **253**, hence p21 word index4, whose original unchanged two-rune ciphertext is **MY**. The **2016** held-out `seeks` also sums to **253** and therefore reaches that same MY. This is a real **pre-2016 textual same-sum recurrence**, but it is **not an independent test of the page/address formula**: identical inputs to the proposed numerical addressing function must have identical destinations, regardless of whether the function was intended. The 2012 signed countdown contains no words mapping to the three already selected anchors (p14:w1 **FOLD**, p21:w4 **MY**, p56:w1 cipher for solved **END**).
 
 | Source signed text | Tokens | Hits to the three previously privileged original addresses under fixed mod58, origin0 |
 | --- | ---: | --- |
-| 2012 countdown, original January 2012 | 22 | 0 |
+| 2012 countdown, original January 2012 | 19 | 0 |
 | 2014 final-onion announcement | 14 | 1: `hearing`→MY |
 | 2016 complete signed message | 43 | 9: six instances of `the`→FOLD, two of `their`→END, one `seeks`→MY |
 
