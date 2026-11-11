@@ -58,6 +58,30 @@ assert.equal(p57.length,95);
 assert.equal(insides(p57Words.slice(1)).length,50);
 assert.equal(corpus.pages.find(p=>p.page===50).indices.length,0);
 
+// Independent image-selected 2016 tree page p32 has 7/15 printed words
+// and precisely 33/88 ciphertext runes in its two original sentences.
+// The same original tree's sharp counterpart appears on p55. Deleting
+// the outside of each p55 word leaves an OUTSIDE sequence of 33 runes,
+// while the solved p57 PARABLE body independently has 88 runes.
+// The 33+88=121 and 33+43=76 correspondences do not yet specify a cipher.
+const p32Words=words(32);
+assert.equal(p32Words.length,22);
+const first32=p32Words.slice(0,7).reduce((n,w)=>n+[...w].length,0);
+const second32=p32Words.slice(7).reduce((n,w)=>n+[...w].length,0);
+assert.deepEqual([first32,second32],[33,88]);
+const outside55=p55Words.flatMap(w=>{
+  const a=[...w];
+  return a.length===1?a:[a[0],a[a.length-1]];
+}).map(r=>corpus.runes.indexOf(r));
+assert.equal(outside55.length,33);
+const all32=corpus.pages.find(p=>p.page===32).indices;
+const p32First=all32.slice(0,33);
+const p32Tail=all32.slice(33);
+const p57Body=p57.slice(7);
+assert.deepEqual([p32First.length,p32Tail.length,p57Body.length],[33,88,88]);
+assert.equal(p32First.filter((v,i)=>v===outside55[i]).length,1);
+assert.equal(p32Tail.filter((v,i)=>v===p57Body[i]).length,2);
+
 // Use exact 2016 PGP-signed message grammar as source counts.
 const signed = asc.slice(asc.indexOf("Hello."),
   asc.indexOf("-----BEGIN PGP SIGNATURE-----"));
@@ -112,6 +136,29 @@ function minChanges(inputs,outputs) {
   for(const count of m.values()) fits+=Math.max(...count.values());
   return outputs.length-fits;
 }
+// Complete all-secret monoalphabetic key check on the independently
+// solved 88-rune PARABLE body against image-selected p32's second clause.
+// Zero errors are necessary for a stationary substitution on identical text.
+const known88Changes=minChanges(p57Body,p32Tail);
+assert.equal(known88Changes,63);
+let seed88=0x33018876;
+function random88(){
+  seed88^=seed88<<13;
+  seed88^=seed88>>>17;
+  seed88^=seed88<<5;
+  return (seed88>>>0)/0x100000000;
+}
+let null88AsGood=0;
+for(let n=0;n<2000;n++){
+  const perm=p32Tail.slice();
+  for(let j=perm.length-1;j>0;j--){
+    const k=Math.floor(random88()*(j+1));
+    [perm[j],perm[k]]=[perm[k],perm[j]];
+  }
+  if(minChanges(p57Body,perm)<=known88Changes)null88AsGood++;
+}
+assert.equal(null88AsGood,1402);
+
 const actual=minChanges(visited,inner55);
 assert.equal(actual,20);
 
@@ -149,6 +196,7 @@ console.log(JSON.stringify({
   source:"p57 PARABLE circumference instruction, printed p55, signed-2016 words, source 43-byte table bracket",
   p55:{words:p55Words.length,runes:p55.length,singletons:1,interior:inner55.length,interiorGpPrimeSum:2060},
   p57:{bodyWords:19,bodyInteriorRunes:50,runelessPage:50},
+  treeBridge:{p32Clauses:[33,88],p55Outside:33,p57Body:88,firstClauseLiteralMatches:1,bodyLiteralMatches:2,allSecretMonoalphabeticChanges:known88Changes,shuffleAsGoodOrBetter:null88AsGood,shuffleDraws:2000},
   signed2016Words:signedWords.length,
   tableWindow:[84,127],delimiters:[201,193,193,201],
   p32Compass:{visitedDistinct:new Set(visited).size,literalMatches:1,arbitraryStationaryLookupMinimumChanges:actual},
