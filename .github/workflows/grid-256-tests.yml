@@ -22,6 +22,7 @@ on:
           - nine-section
           - redspan-zero
           - tree-tiling
+          - signed2016-derivative
           - terminal-circumference
           - byte-pointer
           - collision-quote
@@ -76,6 +77,10 @@ jobs:
         run: |
           python3 -m pip install --quiet Pillow
           python3 sims/tree121_image_tiling_gate.py
+
+      - name: Original 2016 prime image and GF29 grid derivative source bridge
+        if: ${{ inputs.probe == 'signed2016-derivative' }}
+        run: node sims/2016_prime_area_gf29_derivative_gate.cjs
 
       - name: Red GP prime-sum page-conditioned circular-control audit
         if: ${{ inputs.probe == 'redspan-zero' }}
