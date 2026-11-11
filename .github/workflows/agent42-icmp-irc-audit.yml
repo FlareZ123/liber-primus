@@ -215,3 +215,18 @@ jobs:
               except Exception as e:
                   print("ERROR",type(e).__name__,str(e)[:400])
           PY
+      - name: Test predicted prime identifiers against original IRC archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import re, urllib.request
+          url="https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%2333012013.freenode.log"
+          lines=urllib.request.urlopen(url,timeout=60).read().decode("utf-8",errors="replace").splitlines()
+          primes=[3307,3313,3319,3323,3329,3331,3343,3347,3359,3361,3371,3373,3389,3391,3407,3413,3433,3449,3457,3461,3463,3467,3469,3491,3499,3511,3517,3527]
+          for p in primes:
+              hits=[(i+1,line) for i,line in enumerate(lines) if re.search(r"(?<!\\d)"+str(p)+r"(?!\\d)",line)]
+              if hits:
+                  print(f"ID {p}: {len(hits)} hit(s)")
+                  for n,line in hits[:5]: print(f"{n}: {line}")
+          PY
