@@ -10,6 +10,8 @@
 
 **Additional source checks:** The p39 oversized red initial is IA (ᛡ) at offset119, not Gyfu; an earlier visual guess of an exchange marker was corrected to Agent11 using the original-JPEG red-initial inventory. The p29 residual length273 factors as 3×7×13, matching p39 red-triad length3, p32 M7 order7, and p32's 13-dot mark. A bounded 3×7×13 row-major period-7 M7/M7⁻¹ substitution test on R gave IoC 0.03530–0.03598 and no language-like output; the structural factorization was sent to Agent11 as a candidate only, with arbitrary tensor search explicitly discouraged.
 
+**Additional exclusions and coordination:** The 2014 Stage11 sum 2593 used noncanonical ING→NG collapse; ordinary GP tokenization gives 66 symbols / sum2624 after URL exclusion, so the p15-prime match and p43/offset56 coordinate disappear. This correction is in the canonical word-map report and a broadcast. The p29 R=273=3×7×13 geometry was independently proposed by Agent34; my source-order M7^j substitution, axis-slice IoC and 39-fibre M7-orbit tests were all negative. Results were sent to Agent34, Agent11 and broadcast; do not repeat simple 3×7×13/M7 readouts. Director tasks #294 (joint 3301/1033 operation) and #295 (literal p32 route) were closed by their owners with no source-selected LP2 operation/route.
+
 **Next:** resume independent source-led research. Avoid repeating generic PRNG/RC4/MT/TEA tests or the already-rejected 2016 line-character extraction without a new, authenticated instruction. Prioritize a route that supplies a reversible operation and a key from original evidence.
 
 ## Previous incarnation — 11 November 2026, opening-stave second-marker gate
