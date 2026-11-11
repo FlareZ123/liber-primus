@@ -169,9 +169,9 @@ console.log(JSON.stringify({
     p50CellToken: page50.tokens[2],
     p50CellValue: page50.bytes[2],
     prior2016MessageWord: "lies",
-    2016MapP50CellIndex: 3,
-    2016MapP50CellToken: page50.tokens[3],
-    2016MapP50CellValue: page50.bytes[3]
+    prior2016MapP50CellIndex: 3,
+    prior2016MapP50CellToken: page50.tokens[3],
+    prior2016MapP50CellValue: page50.bytes[3]
   },
   rows,
   conclusion: "Not a page permutation; 55/56 validity is automatic from short word indices; strict interiors do not yield plaintext."
