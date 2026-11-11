@@ -18,7 +18,7 @@ maps **(p27,28) exactly to (p55,70)**, with the complete six-rune original ciphe
 
 The p27 title begins with M, GP prime71, and its first black rune after the title is N, GP prime29. Their prime totients are **70** and **28**, the exact two bookend offsets. The recovered p56 prime-totient cipher gives a genuine Cicada precedent for the mathematical operation, although no authenticated original clue states that its use should be transferred to page/offset navigation.
 
-**Selection caveat:** the coordinate update was recognized after the repeated phrase was known. The signed 2016 words/map/numbers/direction message does not specify either modulo58 page addition or totient offset movement. Moreover p57 DIVINITY has GP sum376, which is also 28 modulo58; a p57→p27 modular destination alone does not uniquely select WE. The p27 P/P selection and the p55 TWO/P fold remain conditional.
+**Solved-page source discriminator and selection caveat:** the exact 20 printed words on solved p57 contain precisely **two** words whose prime sums carry physical p57 to p27 under modulo58: **WE=86** and **DIVINITY=376** (spelled `DIUINITY` in the original native runes). Their source-native totients are **42 and184**. The resulting p27→p55 two-coordinate predictions from the first original bookend (27,28) are respectively **(55,70)**, the exact second six-rune bookend, and **(55,212)**, outside the 76-rune page. Thus WE is unique within the complete solved p57 word list under the *joint proposed rule*, rather than being selected solely by destination-page arithmetic. This finite specificity check does not authenticate the formula: the coordinate update was recognized after the repeated phrase was known, and the signed 2016 clue does not specify modulo58 page addition or totient offset movement. The p27 P/P and the p55 TWO/P selection remain conditional.
 
 ## The terminal words meet at the numeric table
 
@@ -32,6 +32,8 @@ Without changing that earlier address grammar, p55's two terminal original words
 The printed 32×8 grid occupies 10 rows on p49, 13 on p50, 9 on p51. Local p50 cell2 is consequently **global zero-based cell82**, token **3L**, base60 byte **201**. The p27 title P/P=43 gives a separate provisional pointer-table route beginning **43 → 73 → 79 → 82**: three pointer steps also land at cell82.
 
 The authentic signed 2016 word **lies**, GP sum224, under the same proposed word-address grammar points to **p50 local cell3**, global grid **cell83**, token **3D**, base60 byte **193**. The two selected cells are immediately adjacent in the original source grid, with their byte values differing by8, the grid width. This adjacency offers a new specific candidate input to a cipher, while the word-address formula remains unauthenticated.
+
+**Holdout under the exact same transport:** p27 offsets0–33 map to p55 offsets42–75 under the proposed +42 shift. The six final aligned runes match, while **none of the 28 preceding rune pairs matches**. This is a precise localized six-rune bookend signature, **not** evidence of a full-page shift/copy or a direct source-key stream. The absent earlier matches also prevent extrapolating the duplicate to decrypt surrounding text.
 
 Graph reachability is a substantial objection: out of **2,928** p0–55 page-local printed words, **569** paths terminate at p50 cell2 and **294** visit p27 word5 DJU. Thus arriving at that table cell is not independently rare. Of the 17 p55 page-local words, three terminate at cell2; only final BEI passes through the p27 DJU node.
 
