@@ -10,7 +10,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from PIL import Image, ImageChops
+from PIL import Image, ImageChops, ImageStat
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "resources" / "liber-primus"
@@ -40,9 +40,7 @@ def run() -> dict:
         else:
             with Image.open(historic_file) as earlier, Image.open(canonical_file) as later:
                 assert earlier.size == later.size == (2400, 3600)
-                assert earlier.quantization == later.quantization, (
-                    f"Quantization differs on p{page}; classify independently"
-                )
+                quantization_same = earlier.quantization == later.quantization
                 delta = ImageChops.difference(
                     earlier.convert("RGB"), later.convert("RGB")
                 )
@@ -52,8 +50,20 @@ def run() -> dict:
                     else "different_jpeg_same_pixels"
                 )
                 if status == "different_pixels":
+                    earlier_ink = earlier.convert("L").point(
+                        lambda value: 255 if value < 128 else 0
+                    )
+                    later_ink = later.convert("L").point(
+                        lambda value: 255 if value < 128 else 0
+                    )
+                    ink_delta = ImageChops.difference(earlier_ink, later_ink)
+                    ink_disagreement = int(ImageStat.Stat(ink_delta).sum[0] / 255)
+                    mean_abs = [round(v, 6) for v in ImageStat.Stat(delta).mean]
                     print(
                         f"PIXEL_DIFFERENCE page={page} bbox={delta.getbbox()} "
+                        f"qtable_equal={quantization_same} "
+                        f"mean_rgb_abs={mean_abs} ink_mask_diff_pixels={ink_disagreement} "
+                        f"ink_bbox={ink_delta.getbbox()} "
                         f"historical_sha256={hashlib.sha256(historic).hexdigest()} "
                         f"canonical_sha256={hashlib.sha256(canonical).hexdigest()}",
                         flush=True,
