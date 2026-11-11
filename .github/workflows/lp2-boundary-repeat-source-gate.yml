@@ -1,0 +1,21 @@
+name: LP2 original cross-word repeat boundary gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-input:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository corpus
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fixed word, section, and page-null tests
+        run: node sims/lp2_word_boundary_antirepeat_sft.cjs
