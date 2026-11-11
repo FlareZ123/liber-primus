@@ -152,6 +152,27 @@ const columnDistinct = Array.from({ length: 8 }, (_, c) =>
   new Set(Array.from({ length: 32 }, (_, r) => grid.bytes[r * 8 + c])).size);
 const poleLength = poleCycle.reduce((n, rank) => n + ranked[rank].length, 0);
 const remainderLength = rankRest.reduce((n, f) => n + f.length, 0);
+const tableUniqueCount = new Set(grid.bytes).size;
+
+// Conditional random-labeling null: the pole cycle occupies a fixed 7-subset
+// of the 30 fragment lengths if fragment-to-rank assignment is random.
+const subsetDp = Array.from({ length: 8 }, () => new Map());
+subsetDp[0].set(0, 1);
+for (const f of ranked) {
+  for (let k = 6; k >= 0; k--) {
+    for (const [sum, count] of subsetDp[k]) {
+      subsetDp[k + 1].set(sum + f.length,
+        (subsetDp[k + 1].get(sum + f.length) || 0) + count);
+    }
+  }
+}
+const choose = (n, k) => {
+  let value = 1;
+  for (let i = 1; i <= k; i++) value = value * (n - i + 1) / i;
+  return value;
+};
+const total7Subsets = choose(30, 7);
+const subsetsSumming2896 = subsetDp[7].get(2896) || 0;
 const raw = targets[0][1];
 
 if (marks.length !== 31 || fragments.length !== 32 ||
@@ -161,7 +182,8 @@ if (marks.length !== 31 || fragments.length !== 32 ||
     JSON.stringify(fixed) !== JSON.stringify([22, 25]) ||
     poleCycle.length !== 7 || poleLength !== 2896 ||
     remainderLength !== 10240 || grid.bytes.length !== 256 ||
-    results.length !== 8) {
+    tableUniqueCount !== 161 || total7Subsets !== 2035800 ||
+    subsetsSumming2896 !== 310 || results.length !== 8) {
   throw new Error("source structure changed; inspect inputs");
 }
 
@@ -184,6 +206,9 @@ console.log(JSON.stringify({
   poleLength,
   remainderLength,
   remainderRepeats: remainderLength / grid.bytes.length,
+  tableUniqueCount,
+  subsetNull: { targetSum: 2896, matching7Subsets: subsetsSumming2896,
+    total7Subsets, probability: subsetsSumming2896 / total7Subsets },
   raw: { ioc: ioc(raw), trigram: trigramScore(raw) },
   results
 }, null, 2));
