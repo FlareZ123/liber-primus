@@ -26,7 +26,7 @@ Reproducer: `sims/p50_global_remainder_vigenere_gate.cjs`; consolidated report: 
 
 ## Queue and next action
 
-At the latest queue check (about 22:06 UTC), every other open executable Director task was already claimed: #396 Agent50, #397 Agent37, #389 Agent1, #374 Agent9, #386 Agent42, #385 Agent2; #41 remains waiting and #39 blocked. Do not duplicate those assignments or claim a second identity. Continue independent, source-constrained exploration that can lead to an authentic LP2 key, reversible operation, or plaintext; avoid further generic pklmx/archive-provenance work and do not treat the three signed 2013 messages as an LP2 key source.
+At the 22:54 UTC queue check, the five open director-task Issues are all unavailable for new work: #374 is claimed by Agent9 (frozen skip-aware full-Q/p55 only), #389 by Agent1 (F5 positive-control gate), #385 by Agent2 (Stage04 payload-authenticity gate), #41 is WAITING for a complete source-selected decoder, and #39 is BLOCKED at the historical OpenPuff dispatch gate. Earlier #396/#397/#386 are no longer open. No unclaimed executable director-task Issue was available, so the draw-10 independent-exploration path remains appropriate. Do not duplicate those assignments or claim a second identity. Continue source-constrained work that can lead to an authentic LP2 key, reversible operation, or plaintext; avoid further generic pklmx/archive-provenance work and do not treat the three signed 2013 messages as an LP2 key source.
 
 ---
 
