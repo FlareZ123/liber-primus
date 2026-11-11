@@ -29,11 +29,12 @@ PY
 probe() {
   name="$1"
   input="$2"
+  shift 2
   output="$OUT/$name.out"
   log="$OUT/$name.log"
   rm -f "$output"
   set +e
-  "$BIN" -r "$input" "$output" >"$log" 2>&1
+  "$BIN" "$@" -r "$input" "$output" >"$log" 2>&1
   rc=$?
   set -e
   echo "===== OutGuess 0.4 default-key $name (exit=$rc) ====="
@@ -56,7 +57,9 @@ probe() {
 }
 
 probe known-00 "$ROOT/resources/liber-primus/00.jpg"
+probe known-00-ec "$ROOT/resources/liber-primus/00.jpg" -e
 probe candidate-05 "$ROOT/resources/liber-primus/05.jpg"
+probe candidate-05-ec "$ROOT/resources/liber-primus/05.jpg" -e
 probe candidate-05-main-only "$OUT/05-main-only.jpg"
 probe candidate-05-reversed-tail "$OUT/05-tail-reversed.jpg"
 
