@@ -27,6 +27,7 @@ on:
           - tree-direction
           - tree-continuous-degrees
           - tree-corner-ownership
+          - tree-redmark-self-description
           - tree-cuneiform-selector
           - tree-cuneiform-projective
           - tree-inclusive-cube
@@ -196,6 +197,12 @@ jobs:
       - name: Original p32 ring projective corner-ownership finite gate
         if: ${{ inputs.probe == 'tree-corner-ownership' }}
         run: node sims/tree121_mobius_corner_conventions_sft.cjs
+
+      - name: P32 red-mark and source-count self-describing M7 gate
+        if: ${{ inputs.probe == 'tree-redmark-self-description' }}
+        run: |
+          python3 -m pip install --quiet Pillow
+          node sims/p32_redmark_fixedpoint_selector_sft.cjs
 
       - name: Adjacent cuneiform prime-rank selector for nested p32 Möbius maps
         if: ${{ inputs.probe == 'tree-cuneiform-selector' }}
