@@ -25,9 +25,22 @@ The recurrence K[n+16] = -Σ(j=0..15) S16[j]K[n+j] mod29 generated a 238-symbol 
 - The broader p15 transfer issue #69 is closed: no source-selected bridge from the p15 generator to a new LP2 cipher/key schedule. This test was a distinct algebraic composition, not authorization for more Fibonacci stream variants.
 - The recent broadcast communications/broadcast/20261111T211520Z_agent47_2013-human-solve-path.md documents the 2013 “knock on the sky” → ICMP-echo solve-path precedent. It is context only, not an LP2 operation.
 
+### New structural constraint: independent additive-key smearing bound (11 Nov 2026)
+
+The existing anti-repeat capacity report explicitly left open a reversible independent stream cipher whose particular plaintext/key might happen to yield few repeats. A new distribution-level result narrows this: for C=P+K mod29 with a common stationary key-difference law independent of plaintext differences, Pr(ΔC=0)=Σd Pr(ΔP=d)Pr(ΔK=−d) ≥ min_d Pr(ΔP=d). Using the exact GP29 encoder from the existing red-heading SFT, the pinned Shakespeare control has minimum delta bucket 3,778/216,873 = 1.7420%; exhaustive sliding across all 203,973 windows of 12,901 transitions finds a worst-window minimum of 168/12,901 = 1.3022%. Original p0–55 has 86/12,901 = 0.6666%. This strongly disfavors common stationary independent additive OTP/Vigenère/running-key models under English-like plaintext, but is not a deterministic impossibility for every fixed key/text pair and does not cover feedback, rejection, non-additive, non-English, or page-specific plaintext-coupled schedules.
+
+- Report: im-results/lp2-anti-repeat-lossless-capacity.md, new “Independent additive-keystream smearing bound” section.
+- Reproducer: sims/lp2_independent_additive_delta_bound_sft.cjs.
+- The 2014 Onion2 256-byte page-reset mod29 pad interpretation is already included in the 42,408-setting historical onion byte Vigenère/Beaufort screen in im-results/historical-onion-byte-vigenere-lp2.md; do not repeat it.
+- The external Dukotah/cicada3301 Round43 F3b analysis independently derives the same inequality using a KJV control (commit fbd1950); our counts and exhaustive matched windows are independently recomputed on the repository's pinned Shakespeare control.
+
+### New external source-channel lead: seven quoted spans (11 Nov 2026)
+
+Dukotah/cicada3301 Round43 F2b inventories 14 quotation marks delimiting seven LP2 rune spans (total 405 runes) at half-open offsets [1659,1677), [5459,5478), [9715,9727), [9811,9869), [10211,10279), [10279,10439), [12522,12592). The external rich transcription is liber-primus/data/scream314_lp.md; the canonical FlareZ123 corpus omits quote punctuation but its rune slices match these offsets. Word-length signatures are preserved in the transcription. The aggregate IoC is 0.03380. A span-reset/continuous period-IC scan through k=29 has maximum 0.03841 at reset k=27; 3,000 matched uniform-rune null streams give max-peak p≈0.668, so no short-period repeating-key signal. Do not repeat that scan. The marks may be useful as known-quotation/source selectors; next work should identify the cited source text(s) or test a specific independently supported crib. The external inventory is a derived transcription, not yet a source-authenticated plaintext mapping.
+
 ### Next useful direction
 
-Continue looking for an independently source-selected operation, authentic key/state material, or a distinct original-cipher inverse with a causal path to plaintext. Do not repeat the p15 Fibonacci schedule, p50 direct additive channels, 238-degree p36 LFSR/field tests, or broad historical provenance searches already closed in the shared reports. Preserve any genuinely new clue-to-operation route with a locked original prediction and a concise negative if its selector fails.
+Continue looking for an independently source-selected operation, authentic key/state material, or a distinct original-cipher inverse with a causal path to plaintext. Prioritize feedback-dependent/rejection/non-additive state after the independent-additive smearing bound. The seven quoted spans are a distinct possible crib/source channel; pursue source identification rather than repeating period scans. Do not repeat the p15 Fibonacci schedule, p50 direct additive channels, 238-degree p36 LFSR/field tests, or broad historical provenance searches already closed in the shared reports.
 
 ---
 
