@@ -194,11 +194,59 @@ The T6 relation itself remains elevated against this conditional null (80 observ
 
 **Decision:** retire the 2014 direction graph as an explanation for the sparse T6 event placement. This does not invalidate the separate 199 → empty fragment 6 / Ac fragment 7 human-path hypothesis, the 2014 onion timing clue, or the retrospective LP1 MOBIUS/p40 Cayley identity. None of those currently specifies an independent mask for the 80 positions. Do not broaden this result into free rotations, alternative graph orientations, or language-score searches.
 
+## 5×5 compass field selector over the 225 red runes — bounded negative
+
+A separate, human-motivated transfer was tested: treat the 2014 5×5 square values as compass bearings (0° north, clockwise), partition the original **225 red runes** into a row-major **15×15** grid, then use each bearing to select one perimeter rune from the corresponding row-major **3×3** block. Compare the 25 selected runes with the same cell's \\(\\phi(n)\\bmod29\\) target label. The compass direction order is fixed as N, NE, E, SE, S, SW, W, NW; no rotation, phase, block reordering, or fitted choice is used.
+
+The authentic origin selects:
+```
+EO B F X O T U U G I L P H I H EO F EO X Y M OE J A D
+```
+Only **2/25** selected runes equal their corresponding target labels (cells 1 and 4).
+
+| Cell | 15×15 coordinate | Red index | Source page:offset | Selected | Target |
+|---:|---:|---:|---:|---|---|
+| 1 | (1,0) | 15 | 3:2 | EO | EO |
+| 2 | (2,5) | 35 | 6:74 | B | S |
+| 3 | (0,7) | 7 | 0:7 | F | I |
+| 4 | (2,11) | 41 | 6:80 | X | X |
+| 5 | (2,14) | 44 | 7:195 | O | C |
+| 6 | (3,1) | 46 | 7:197 | T | R |
+| 7 | (5,4) | 79 | 15:10 | U | A |
+| 8 | (5,8) | 83 | 15:14 | U | M |
+| 9 | (3,9) | 54 | 7:205 | G | EO |
+| 10 | (3,13) | 58 | 8:1 | I | G |
+| 11 | (8,0) | 120 | 27:15 | L | AE |
+| 12 | (8,3) | 123 | 27:18 | P | D |
+| 13 | (7,8) | 113 | 27:8 | H | X |
+| 14 | (8,9) | 129 | 33:5 | I | D |
+| 15 | (8,12) | 132 | 33:8 | H | AE |
+| 16 | (9,1) | 136 | 33:93 | EO | G |
+| 17 | (9,3) | 138 | 33:95 | F | EO |
+| 18 | (11,8) | 173 | 53:148 | EO | M |
+| 19 | (11,10) | 175 | 53:150 | X | A |
+| 20 | (9,13) | 148 | 40:3 | Y | R |
+| 21 | (14,2) | 212 | 54:8 | M | C |
+| 22 | (14,5) | 215 | 56:2 | OE | X |
+| 23 | (12,7) | 187 | 53:162 | J | I |
+| 24 | (14,11) | 221 | 57:3 | A | S |
+| 25 | (13,12) | 207 | 54:3 | D | EO |
+
+The source-preserving null retains the complete red-rune order and the 15×15 layout, cycling only the starting red-stream offset through all 225 positions while keeping the direction and target matrices fixed. Its match-count distribution is **0:71, 1:86, 2:52, 3:13, 4:3**. The authentic offset 0 has two matches; **68/225** offsets have at least two (empirical (p=0.3022)), placing it 17th from the bottom. The uniform-alphabet expectation is only **25/29 = 0.862** matches, but the authentic result is not exceptional relative to the order-preserving null.
+
+**Decision:** the 25-block compass selector does not recover the \\(\\phi(n)\\bmod29\\) label matrix and does not yield a readable 25-rune plaintext. Retire this exact red225/3×3 transfer; do not expand it into free grid rotations, block phases, or alternative direction conventions. This does not test other ways the red channel might carry key material.
+
+Reproducer:
+```sh
+node sims/2014_red225_compass_selector_sft.cjs
+```
+The script prints every selected original page/offset, target label, match, and the complete 225-offset null distribution.
+
 ## Historical interpretation and limits
 
 The 2016 image is a dead-oak illustration, not a verified geographic photograph. The Uncovering Cicada Wiki attributes it to [this ClipartBest oak image](https://www.clipartbest.com/cliparts/abc/y97/abcy97qTL.jpeg). Treat the oak as a symbolic Ac pointer: Ac is also the first red rune in the 199-selected seventh fragment. Do not infer a physical starting location from the image.
 
-The 2016 message's instruction that words are a map, meanings a road, and numbers directions is compatible with the 2014 matrix interpretation. However, the angle convention is an inference, not a proven instruction. Using compass bearings (0° north, clockwise) does not produce the cell-6 → cell-7 oak connection. The archived 2016 message also ends “Beware false paths,” so semantic and geographic matches require a source-fixed stopping rule.
+The 2016 message's instruction that words are a map, meanings a road, and numbers directions is compatible with the 2014 matrix interpretation. However, the angle convention is an inference, not a proven instruction. The separate 15×15 red225 compass selector also fails its exact \\(\\phi(n)\\bmod29\\) target check (2/25; 225-phase empirical p=0.3022), so it is not a recovered route. Using compass bearings (0° north, clockwise) does not produce the cell-6 → cell-7 oak connection. The archived 2016 message also ends “Beware false paths,” so semantic and geographic matches require a source-fixed stopping rule.
 
 The direct byte-as-bearing transfer to the LP2 numeric table remains rejected, and the full 2014 direction graph does not select the sparse T6 event positions. The 199/Ac fragment bridge remains a source-constrained human solve-path hypothesis, but it does not specify a reversible cipher, recover plaintext, or establish the destination. The separate use of columns 7–8 as key/state material remains untested and must not be conflated with the fragment-index result.
 
@@ -210,7 +258,7 @@ Run from the repository root:
 node sims/2014_magic_square_direction_map.cjs
 ```
 
-The script checks the 1033 magic square, recomputes the `φ(n) mod29` rune labels and eight-direction graph, derives both natural table-column interpretations, reconstructs the 32 red-rune fragments from the original ink annotations, tests the three prime-entry residue pairs, and reproduces the exact conditional and seeded permutation nulls. It now also tests the full 17-edge graph and six-cycle against all original word-local lag-six positions with 2,000 endpoint/multiset/doublet-preserving word shuffles.
+The first script checks the 1033 magic square, recomputes the `φ(n) mod29` rune labels and eight-direction graph, derives both natural table-column interpretations, reconstructs the 32 red-rune fragments from the original ink annotations, tests the three prime-entry residue pairs, and reproduces the exact conditional and seeded permutation nulls. It also tests the full 17-edge graph and six-cycle against all original word-local lag-six positions with 2,000 endpoint/multiset/doublet-preserving word shuffles. The second script freezes the 15×15 red-rune/3×3-block compass selector and its order-preserving 225-offset null.
 
 ## Source links
 
