@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 
-const ROOT = __dirname;
+const ROOT = path.join(__dirname, '..');
 const corpus = JSON.parse(fs.readFileSync(path.join(ROOT, 'resources/liber-primus/lp2-corpus.json'), 'utf8'));
 const grid = JSON.parse(fs.readFileSync(path.join(ROOT, 'resources/liber-primus/lp2-grid-256.json'), 'utf8'));
 const Q = 29;
