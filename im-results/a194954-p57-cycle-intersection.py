@@ -114,4 +114,7 @@ def run(trials=1_000_000, seed=20261112):
 
 if __name__ == "__main__":
     import json
-    print(json.dumps(run(), indent=2))
+    print(json.dumps([
+        run(seed=20261112),
+        run(seed=20261113),
+    ], indent=2))
