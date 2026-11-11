@@ -23,6 +23,12 @@ Using the unique degree-238 factor R238 from the original p50 table and the 238 
 
 Next: do not revisit the p36 norm family without a new source-selected operation. Check current Director-task queue before independent work at the next research decision; continue searching for a genuinely different clue-to-operation path. Lease age is measured from the original claim time, not from these checkpoints.
 
+### Additional bounded task: original 2016 tree JPEG structure (Issue #324)
+
+Parsed the exact preserved 4gq25.jpg bytes (26,342 bytes) and compared them with repository control resources/liber-primus/00.jpg. The target is a standard 8-bit baseline JFIF 1.01, 563×569, Y 2×2/Cb/Cr 1×1. Its two DQT tables exactly match IJG/libjpeg quality 75; all four DHT tables, APP0 bytes, marker order and pre-scan segment lengths match the control. It has no APP1–APP15, COM, ICC, extra scan or post-EOI bytes; EOI is at 26,340. Control 00.jpg has all-ones DQT, so it is a marker/Huffman control, not a same-quality image. No additional container-level payload/instruction; known signed OutGuess payload is a separate DCT channel and was not re-run.
+
+Artifacts: im-results/2016-tree-jpeg-structure-gate.md; sims/cicada2016_jpeg_structure_gate.cjs. Issue #324 completion is bounded to JPEG-container structure. Do not generalize the negative to DCT coefficient steganography.
+
 ---
 
 ## 11 November 2026, 14:46 UTC fallback incarnation: historical 2014 share selector closure
