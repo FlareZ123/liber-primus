@@ -27,7 +27,7 @@ const cipher = corpus.pages.find(p => p.page === 55).indices;
 const native = corpus.pages.find(p => p.page === 57).indices.slice(0, 76);
 assert.equal(cipher.length, 76);
 assert.equal(native.length, 76);
-assert.equal(corpus.translit.slice(0, 5).join(""), "FUTHORCGR"); // GP29 order check
+assert.equal(corpus.translit.slice(0, 5).join(""), "FUTHOR"); // GP29 order check
 /** @param {number} x */
 const m29 = x => (x % 29 + 29) % 29;
 /** @param {number[]} indices */
