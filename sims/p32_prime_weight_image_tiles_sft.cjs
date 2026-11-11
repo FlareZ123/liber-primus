@@ -100,9 +100,21 @@ assert.deepEqual(heights, [73, 23, 5, 23, 79, 59, 53, 79, 59, 109, 7]);
 const interiorWeights = [];
 const features = [[], [], []]; // tile average RGB; bright pixels; midtones
 const tileMeans = [];
+const centerMask = [];
+const centerSelected = [];
 for (let row = 0; row < 11; row++) {
   const rowMeans = [];
+  let centerRow = '';
   for (let col = 0; col < 11; col++) {
+    const cx = Math.floor((xEdges[col] + xEdges[col + 1] - 1) / 2);
+    const cy = Math.floor((yEdges[row] + yEdges[row + 1] - 1) / 2);
+    const centerOffset = (cy * image.width + cx) * 3;
+    const centerRGB = (image.data[centerOffset] + image.data[centerOffset + 1]
+      + image.data[centerOffset + 2]) / 3;
+    if (centerRGB >= 128) {
+      centerRow += '#';
+      centerSelected.push(corpus.translit[page.indices[row * 11 + col]]);
+    } else centerRow += '.';
     let total = 0;
     let count = 0;
     let brightCount = 0;
@@ -128,6 +140,7 @@ for (let row = 0; row < 11; row++) {
     }
   }
   tileMeans.push(rowMeans);
+  centerMask.push(centerRow);
 }
 assert.equal(interiorWeights.length, 100);
 
@@ -176,6 +189,8 @@ const result = {
   tileXEdges: xEdges,
   tileYEdges: yEdges,
   meanRGBByTile: tileMeans,
+  centerPixel128Mask: centerMask,
+  centerPixel128RuneTransliteration: centerSelected.join(''),
   tested: '100 interior p32 GP prime weights, fixed 21 edge weights',
   featureNames: ['mean_RGB', 'fraction_RGB_at_least_160', 'fraction_RGB_16_to_159'],
   observedPearson,
