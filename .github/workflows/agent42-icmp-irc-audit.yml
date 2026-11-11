@@ -187,3 +187,31 @@ jobs:
               s="".join(t.text or "" for t in p.findall(".//w:t",ns))
               if s.strip(): print(f"{i}: {s}")
           PY
+      - name: Check remaining historical packet links
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import urllib.request
+          urls = [
+              "https://pastebin.com/raw/CLZTB1KF",
+              "http://pastebin.com/raw.php?i=CLZTB1KF",
+              "https://pastie.org/5686025",
+              "http://pastie.org/5686025",
+              "https://4chansearch.org/search/?q=5414358",
+              "https://4chansearch.org/board/sci/",
+              "https://eientei.xyz/sci/thread/5414358",
+              "https://eientei.xyz/sci/thread/5414358.json",
+              "https://archived.moe/sci/thread/5414358.json"
+          ]
+          for url in urls:
+              print("\\nURL",url)
+              try:
+                  req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
+                  with urllib.request.urlopen(req,timeout=12) as r:
+                      body=r.read(6000)
+                      print("STATUS",r.status,"FINAL",r.geturl(),"TYPE",r.headers.get("Content-Type"),"BYTES",len(body))
+                      print(body.decode("utf-8",errors="replace")[:3500])
+              except Exception as e:
+                  print("ERROR",type(e).__name__,str(e)[:400])
+          PY
