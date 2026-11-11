@@ -39,6 +39,17 @@ A stronger table-independent control preserves the fixed missing slot and permut
 
 This is **not a discovery-wide significance level**. The base58 rule, word-end extraction, fold sign, centered position and target emerged over multiple exploratory steps. The 43-word source and two older FOLD/END pointer anchors motivated the test, but an independent historical instruction does not fix every choice. The match could be an intentionally recognizable waypoint or a postselected accident.
 
+## Native 58-page wrong-origin controls
+
+A stronger finite control retains the same 43 authenticated source words, the same GP prime-sum word-index derivation, the original 58 physical pages and their printed word boundaries. Change **only the page origin** by a cyclic shift 0..57; leave the end-rune selector and centered symmetric sum fixed. Two definitions are checked:
+
+1. Add shift to the full prime sum before quotient/remainder (so the word quotient increases on wrap).
+2. Add shift only to the physical page residue, leaving the source word quotient unchanged.
+
+Of 58 source-preserving phases in each model, **52** permit all six centered positions to map to genuine rune words. Under both phase conventions **only shift0** predicts END at the three central symmetric pair positions. These are exhaustive exact in-domain comparisons, not Monte Carlo. The unique source-native alignment strengthens the conditional clue relative to a random page-origin alternative. Selection of END as the observed target and of the last-rune/addition/fold conventions was exploratory, so the 1/58 rank is **not** an independently calibrated discovery p-value.
+
+The [successful manual Node 22 CI run 43052840583](https://github.com/FlareZ123/liber-primus/actions/runs/43052840583) asserts both 58-phase controls, the table-free centered END test, both exact conditional combinatorial counts, and the original 43-unit decryption negatives.
+
 ## Direct original-cipher inverse against 43 p55 interior runes
 
 The independently documented [p55 circumference strip](lp2-2016-p50-p55-43unit-source-selector-gate.md) yields 43 exact original ciphertext runes after word-end removal, matching the signed text's 43 terminal values. Two source keys are frozen: (1) the full 43 raw end runes; (2) a 43-symbol mirrored sum of each symmetric pair, leaving the pivot alone. These are separately tried as an additive GP29 key on the 43 original p55 interior runes, with arithmetic C−K, C+K, K−C. Each of these finite variants exactly round-trips the source ciphertext.
