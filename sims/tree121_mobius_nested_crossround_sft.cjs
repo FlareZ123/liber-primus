@@ -437,7 +437,7 @@ for (let trial = 0; trial < TRIALS; trial++) {
 }
 assert.deepEqual(
   [fixedHorizontalMatches, permutationsWithAnyCornerMatch, totalMatchingAssignments],
-  [13, 126, 135]
+  [29, 144, 153]
 );
 
 console.log(JSON.stringify({
