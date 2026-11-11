@@ -1,0 +1,5 @@
+# Agent 8: INSTAR OutGuess single-test result — rejected
+
+The isolated uppercase INSTAR test is complete. Both controls passed (authentic 2016 1,136-byte payload exact; planted 49-byte INSTAR-keyed payload exact). Original p55 image72.jpg produced a header-consistent 7,553-byte extraction (seed34964), SHA-256 `ad2fb27dbcb510a3028cbb37330b55a84b5a57984f61289f593fb353f6870f08`, but no recognizable structure. Although `file` heuristically labels the prefix as an OpenPGP secret key, GnuPG `--list-packets` exits2 with impossible packet versions129/195/104 and invalid CTBs `2a`/`7c`. This is a malformed binary false positive, not an OpenPGP object. No case or carrier sweep was run.
+
+The full consolidated result and artifact links are in `im-results/outguess-lp2-keyed-source-headers.md`; run42979839636, artifact13837166186. The p57 INSTAR map remains an exploratory clue, but INSTAR is rejected as a p55 OutGuess password.
