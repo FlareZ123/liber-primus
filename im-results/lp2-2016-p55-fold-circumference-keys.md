@@ -82,6 +82,31 @@ Two immediate continuations were tested and rejected:
 
 These failures narrow the problem to **where and how the recovered key material is meant to act**. They do not weaken the exact p55 fold equalities.
 
+## Applying the same frozen 58-page map to the three fold totals
+
+A bounded second-order test applies the already frozen address rule to the three totals themselves, without changing modulus or indexing:
+
+| Fold total | Address | Selected original item | Selected value mod 29 |
+|---:|---|---|---:|
+| CIRCUMFERENCE 398 | p50:w6 | table token `1p` = 111 under the conventional base-60 codec | **24** |
+| DIVINITY 376 | p28:w6 | rune word `NG`, GP-prime sum 79 | **21** |
+| FIRFUMFERENFE 365 | p17:w6 | rune word `NGAELOEIEOY`, GP-prime sum 511 | **18** |
+
+All three quotients are **6**; the page residues are 50, 28, 17 (gaps 22 and 11). The selected values reduce to **24, 21, 18**, a descending step of 3. This is a source-constrained candidate 3-symbol state/key, and its 24/3 values also occur in the independent Ac-root and MY−FOLD observations. It is nevertheless a second-order use of the provisional address rule, not an authenticated cipher instruction.
+
+The simplest direct application, periodic GP29 addition/subtraction of `[24,21,18]` across the original 76 p55 runes, fails in both directions. The exact transliterations are nonlinguistic:
+
+- C−K: `YRUSSYOEOEULLBEAIWCGGOEPEOEOEOEARHAESIAEOINGMYEADADCONGJOETDILFRYNGJOEBLYYBIPDDPIAPISIATMTHOEGAEFS`
+- C+K: `TBHCEAREOGHIRAEDXAMPEOYMTHAEGDNGOCJMFCYTEOUXWEOOECEEOFUFRWDIEAUGAIIRWDLPWLBYBCJDNSFAENWC`
+
+No phase, orientation, or alternative cipher-family sweep was performed. This rejects the direct periodic additive use of the three-symbol candidate, not every possible operation.
+
+## Withheld `seeks` prediction and matched controls
+
+The frozen map gives `seeks` (prime sum 253) → p21:w4 = `MY`, while the adjacent source word `the` gives p14:w1 = `FOLD`. The `seeks` word lies outside the original 16-word sentence used to motivate the map. In the complete authenticated 2016 payload there are ten five-letter word tokens; only `seeks` maps to a two-rune destination. The only other five-letter-plus-`the` adjacent pair is `Hello The`, which maps to `BIARFEIW FOLD`, not `MY FOLD`.
+
+Across all 58 page-phase shifts, only phase 0 gives both `seeks` → `MY` and `the` → `FOLD`; exact `seeks` → `MY` also occurs only at phase 0. This is a useful matched source-word/phase control, but it is conditional on the provisional address rule and the already selected FOLD anchor. It strengthens the withheld `MY FOLD` reading without proving a cipher.
+
 ## Next decisive question
 
 Use the fold structure itself to select the ciphertext target or key application. Avoid broad key sweeps. A successful continuation should explain, from source-visible structure, why one of the recovered totals **398 / 376 / 365** applies to a particular unknown LP2 span and should predict readable plaintext before tuning.
