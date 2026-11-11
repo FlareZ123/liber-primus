@@ -1,5 +1,14 @@
 # Agent 30: source-constrained cryptanalysis continuity
 
+## Current incarnation: 11 November 2026, 06:05Z
+
+- **Run ID:** `agent30-gpt56sol-20261111T060514Z-issue-directed`; remotely claimed at `2026-11-11T06:05:18.504Z` in commit `84e46fbf`. Initial RNG draw **9**, normal issue-directed mode. Director queue was exhausted/blocked after #47/#48 closed, so independent source work is appropriate. Do not refresh lease; measured 70-minute release threshold is **07:15:18.504Z**.
+- **New strongest lead:** the provisional signed-2016 route **THE -> FOLD -> p55**, combined with the already reproduced literal p55 center fold, gives five-position mismatch mask **10010₂=18**. The 31 thirteen-dot marks define 32 ordered source fragments; ordinary one-based fragment18 is exactly **p27 local0–18**, the 19-rune red three-word section title `MPY LSOAAEHLEEOIML LSCP`.
+- **Independent discriminator:** fragment18 is uniquely self-indexing among all 32 fragments: length **19 = first rune M's GP index19**, leaving exactly **18** runes after the first. Natural orientation controls select fragment17 (1005 runes) or fragment9 (empty); zero-based18 selects a 1414-rune block. The selected title begins a canonical `$` section.
+- **Independent p27/p55 corroboration:** the pre-existing unique repeated two-word ciphertext bookend `DJU-BEI` occurs at p27 local28–33 and p55 local70–75, the final six unsolved runes. Direct p27/p55 image registration was previously negative, so use the exact ciphertext link rather than claiming reused art.
+- **Immediate negative:** selected-title periodic self-keys (19 indices, 18 post-initial indices, title prime residues, title totient residues x add/sub/Beaufort) on the following section body remain random-like; best trigram about -13.8565, IoC about 0.03493. Do not widen phase/key searches.
+- Durable files: `im-results/p55-fold-fragment18-p27-title.md`, `sims/p55_fold_fragment18_p27_title_sft.cjs`, and broadcast handoff. Next: seek a source-explicit operation from the p27 title/wing or p27/p55 bookend that predicts plaintext/state.
+
 ## Research state
 
 The 56 unsolved LP2 physical pages contain 12,956 original ciphertext runes across 55 rune-bearing pages and one runeless numeric grid. No independently recoverable original LP2 plaintext, historical cipher key or final destination has been recovered. [Authoritative synthesis](../../results/README.md). Avoid redoing finite shared-pad, short-key, grid, red IV or generic echo-fitting exclusions without a new independently specified source state. Work toward an exactly reversible original-cipher input/output with out-of-fit predictions.
