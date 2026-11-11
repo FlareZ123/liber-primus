@@ -45,6 +45,14 @@ The 5,000 draws per null and source are explicitly seeded by the reproduction co
 
 **Unencrypted-language control:** 250 known-plaintext rune words from LP1 segments 2, 4, 6 and LP2 *PARABLE* segment 17 have 9 repeated boundaries among 246 word transitions. Their section-conditional exact shuffle expectation is 9.468, and the corresponding 5,000-null mean is 9.480 (SD 2.822), without unusual depletion. This rules out interpreting the cipher's strong cross-word depletion as merely the normal rate in this solved-text corpus. It is not a proof about all plausible plaintext languages.
 
+## Fixed five-symbol block alignment is excluded on original pages
+
+A natural interpretation of the descriptive near-one-fifth repeat-survival fraction is that an encipherer emits five-rune blocks, disallows identical neighboring symbols *inside* a block, and permits coincidences at block boundaries. This makes an exact, key-independent prediction: the position of the second symbol of every adjacent equal pair must have the same residue modulo five within each page. The restriction remains true when the block phase is an independent unknown for **every** physical page. [Original-input single-file test](../sims/lp2_repeat_phase5_original_gate.cjs) computes the most favorable residue independently for each page, so no key, phase or English fit is assumed.
+
+On the 55 rune-bearing pages (plus numeric-only p50), there are **86** adjacent repeated-rune events across **42** pages. Of these 42 pages, **19** contain events in incompatible modulo-five phases. Even if the most favorable phase is separately granted to each page, **at least 34 of the 86** observed events fall *inside* supposedly repeat-free blocks. At the strictly shared global phase the event counts are **[18, 21, 16, 11, 20]**; under fresh page-local phase-zero coordinates the counts are **[18, 20, 22, 15, 11]**. A synthetic positive control with 5-rune block boundaries and a different starting phase on each page produces **zero** contradictory pages and **zero** exceptional events.
+
+Thus a **hard fixed-width five-rune block encoder** with repeat prohibition only inside blocks is impossible on the original ciphertext, even if its page-wise alignment is wholly secret. This narrows the interpretation of the observed 0.193 repeat-survival fraction. It does **not** exclude variable-length coding, stochastic/soft repeat suppression, evolving within-block states, arbitrary exceptions, or independent framing at finer boundaries such as words. It does not identify a cipher or decrypt plaintext.
+
 ## Mechanistic interpretation
 
 The ciphertext has approximately the **same unusually low adjacent-rune repeat frequency** across word boundaries as inside words. The depletion survives nulls retaining every observed word's entire content, every section or clause's inventory, all section/clause separators, and even the exact word-length order.
