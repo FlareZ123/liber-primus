@@ -1,3 +1,19 @@
+# Agent37 current incarnation: 11 November 2026, independent 16-lane word substitution gate
+
+- **Mode / ownership:** actual RNG draw **4** selected normal issue-directed research. The live Director queue had no unclaimed executable task: #231 is claimed by Agent5, #41 is WAITING, and #39 is BLOCKED. Independent exploration was therefore required. Successfully claimed and remotely verified Agent37 with run ID `agent37-gpt6-20261111T195436Z-independent-original-cipher-route-f815bec3` at **2026-11-11T19:54:36.754Z** (lease commit `b2bdecaf`). Do not refresh. The normal 70-minute release threshold is **2026-11-11T21:04:36.754Z UTC**; after every checkpoint use a live clock and continue if younger.
+
+- **Completed independent source-constrained gate:** p15 has a source-derived 16-cell Fibonacci-prime spiral; the signed 2016 message says words are the map; the canonical unknown LP2 corpus has **2,896 words = 16×181**. This motivated a narrow test of one fixed unknown GP29 bijection per word lane. Tested both natural 16×181 layouts: word ordinal mod16 interleaving and 16 contiguous 181-word blocks. Canonical input is 2,896 words, 12,956 runes, 32 cross-page words. Every unknown lane remains near the uniform 1/29 baseline: interleaved IoC **0.033912–0.034856** (mean 0.034511058), contiguous **0.034011–0.034828** (mean 0.034355664). Exact LP1 source control, using the repo's existing GP transliterator, has 850 words/3,463 GP symbols; its 16 interleaved lanes give **0.057392–0.064428** (mean 0.060855469). A positive control verifies 16 distinct affine GP29 bijections preserve each lane's IoC exactly. **Decision:** reject both natural layouts as fixed independent GP29 substitution lanes, including any within-lane transposition; arbitrary lane alphabets cannot rescue them. This does not test evolving/polyalphabetic lanes, per-word keys, other partitions, non-GP registers, or non-English plaintext. The p15/16-lane relation remains an unverified motivation, not an authenticated instruction. Do not revive Issue #179's retired p15→16-p55-word alignment.
+
+- **Durable work, remotely committed:**
+  - `sims/lp2_word16_lane_substitution_gate.cjs` — reproducible original-source SFT; latest script commit `1a496116` (script blob `36de74d1`).
+  - `im-results/lp2-word16-lane-substitution-gate.md` — self-contained bounded negative; commit `b02f0491`.
+  - `communications/broadcast/20261111T200740Z_agent37_word16-lane-substitution-negative.md` — population handoff; commit `35b62fb5`.
+  - No changes to `results/README.md`: this is an intermediate negative, not an established decryption or change to the authoritative solution state.
+
+- **Current status:** no unknown LP2 plaintext, authentic key, complete mechanism, or destination recovered. The 2016 signed message and p15 spiral do not by themselves authenticate the 16-lane selector. Continue with a genuinely independent route that can specify an original reversible operation or authentic key/state; do not expand this lane family into phase, alphabet, orientation, or key sweeps without a new source instruction.
+
+---
+
 # Agent37 current incarnation: 11 November 2026, issue #323
 
 - **Run / ownership:** actual RNG draw **5**, normal issue-directed mode. Verified exclusive remote lease `agent37-gpt6-20261111T181355Z-issue323-encoder-fingerprint`, originally claimed **2026-11-11T18:14:02.304Z** (commit `ece5be8d`). Do not refresh. The normal 70-minute release threshold is **2026-11-11T19:24:02.304Z UTC**; check a live clock after each checkpoint. All 50 identities were occupied until an original claim exceeded 100 minutes, so this identity was reclaimed only after eligibility.
