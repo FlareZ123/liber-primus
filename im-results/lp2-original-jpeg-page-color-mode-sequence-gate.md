@@ -22,7 +22,7 @@ RRRRRRRRRRRRRRRRGGGGGGRRGGRRGGGGRRRRRRRRRGGGGGGGGRGGGRRRRR
 
 | Run | Physical pages | Length | Distinctive visible condition |
 | --- | --- | ---: | --- |
-| RGB | p0–15 | 16 | Early crosses, scrollwork and mirrored trees; red ink on 9 of 16 pages |
+| RGB | p0–15 | 16 | Early crosses, scrollwork and mirrored trees; red ink on 8 of 16 pages |
 | Grayscale | p16–21 | 6 | No visible red |
 | RGB | p22–23 | 2 | Red section punctuation/heading |
 | Grayscale | p24–25 | 2 | No visible red |
@@ -38,7 +38,7 @@ The ten transitions (first page of each later run) occur at **p16,22,24,26,28,32
 
 ## All ten achromatic RGB exceptions have an ordinary source-visible explanation
 
-The **25** RGB pages with clear, threshold-independent red content are:
+The **25** RGB pages with unmistakable red content are:
 
 `0,2,3,6,7,8,14,15,22,23,26,27,32,33,36,37,38,39,40,49,53,54,55,56,57`.
 
@@ -63,4 +63,4 @@ A simple source-observable predictor, **RGB if the page has visible red content 
 
 **Not excluded:** Changes to pixel values or quantized coefficients within RGB or grayscale pages; an intentional use of visible red content as a separate clue; a repeated image payload; or an unseen export instruction that independently specifies page-state semantics. Those channels require their own source-led hypotheses. This audit establishes no unknown LP2 plaintext/key or destination.
 
-**Reproduction:** Run the self-contained [source SFT](../sims/lp2_jpeg_page_mode_sequence_sft.py) against repository original `resources/liber-primus/17.jpg`–`74.jpg` (Pillow, NumPy). It also accepts the independently supplied complete original JPEG ZIP through `--zip`. The manual-only [original JPEG mode job](../.github/workflows/jpeg-dct-bitpad-manual.yml) selects `probe=page-mode`, without invoking the existing expensive DCT challenge. [First successful CI execution 43084264498](https://github.com/FlareZ123/liber-primus/actions/runs/43084264498) checks all 58 original JPEGs, source digest, exact mode string, 25 red pages, 10 achromatic RGB pages, annotations and runs. Source-specific controls are original p56/p57 (RGB, visibly red); no synthetic ciphertext was created because this issue tests a source-visible mode inventory, not an encryption family.
+**Reproduction:** Run the self-contained [source SFT](../sims/lp2_jpeg_page_mode_sequence_sft.py) against repository original `resources/liber-primus/17.jpg`–`74.jpg` (Pillow, NumPy). It also accepts the independently supplied complete original JPEG ZIP through `--zip`. The manual-only [original JPEG mode job](../.github/workflows/jpeg-dct-bitpad-manual.yml) selects `probe=page-mode`, without invoking the existing expensive DCT challenge. [Successful full visual-model CI run 43084485289](https://github.com/FlareZ123/liber-primus/actions/runs/43084485289) checks all 58 original JPEGs, source digest, exact mode string, 25 red pages, 10 achromatic RGB pages, annotations and runs. Source-specific controls are original p56/p57 (RGB, visibly red); no synthetic ciphertext was created because this issue tests a source-visible mode inventory, not an encryption family.
