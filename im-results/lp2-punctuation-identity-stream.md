@@ -1,19 +1,31 @@
 # LP2 punctuation identity stream
 
-**Status: intermediate source finding; not a decryption.**
+**Status: corrected derived-transcription inventory, not a decryption or a verified count of printed marks.** At least four of the 180 counted separators are editorial numeric-row terminators with no corresponding original-image glyph.
 
-## Result
+## Result and original-image correction
 
-The richer LP2 transcription preserves **180 punctuation events** across the 12,956-rune unsolved stream:
+The richer LP2 transcription preserves **180 separator tokens** across the 12,956-rune unsolved stream:
 
 | Mark | Transcribed role | Count |
 |---|---|---:|
-| ⁘ | Sentence/full-stop mark | 145 |
+| ⁘ | Transcribed full stop / numerical-row ending (≥4 editorial) | 145 |
 | ⁚ | Comma mark | 4 |
 | ⁜ | Chapter/section mark | 31 |
 | **Total** | | **180** |
 
 The four comma events occur at p5:110 (global 1317), p11:250 (global 2910), p20:134 (global 4967), p46:96 (global 11329).
+
+**Four transcription-only source artifacts.** The derived [relikd p15–22 text](https://github.com/relikd/LiberPrayground/blob/main/pages/p15-22.txt) puts `⁘` after each row of p15's four-row 4×4 number square:
+
+```text
+3258 3222 3152 3038⁘
+3278 3299 3298 2838⁘
+3288 3294 3296 2472⁘
+4516 1206  708 1820⁘
+```
+
+The **original `resources/liber-primus/32.jpg` (physical p15)** prints these four numeric rows *without* any dot or punctuation after the final numerals 3038, 2838, 2472 and 1820. The actual image has an infinity symbol below the square. The four transcription events are index **57–60**, all at rune offset **3612**, physical **p15:9**, and represent editorial *row boundaries*, not four original stop glyphs. The source-concordant JSON remains 180 entries, but now labels these four events explicitly. Therefore **at most 176 of its 180 entries can represent original printed punctuation**, before further source validation; 176 is not yet a verified physical-image census. The coincidental 180-to-180 equalities below hold for the **edited transcript length only** and cannot independently select a physical 180-event key stream. This correction changes the interpretation of the 180-way claim; the four affected symbols never changed the 12,956 original rune ciphertext or the 31 photographically annotated large marks.
+
 
 ## Cross-match to original-image annotations
 
@@ -23,7 +35,7 @@ The 31 unsolved-page large marks comprise **28 13-dot marks and 3 10-dot marks**
 
 ## The 180-way structural alignment
 
-The event count also equals three independently motivated quantities:
+The **unfiltered transcription-token count** also equals three independently motivated quantities (these are no longer supported as the count of original-image punctuation):
 
 1. The interior of the 32×8 numerical table after removing its 76-cell perimeter: `(32−2)×(8−2)=180`.
 2. The standard prime sequence p21 through p200: 180 primes. The claim that these are omitted by the historical remote service remains dependent on the historical report, not a locally recovered server capture.

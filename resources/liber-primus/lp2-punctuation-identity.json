@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "title": "LP2 punctuation identity stream",
-  "status": "derived transcription inventory; not a decryption",
+  "status": "source-faithful transcription inventory with four nonprinting p15 numeric-row terminators identified; not physical punctuation census or decryption",
   "source": {
     "repository": "relikd/LiberPrayground",
     "url": "https://github.com/relikd/LiberPrayground/tree/main/pages",
@@ -17,7 +17,7 @@
       "p54-55.txt"
     ],
     "retrieved_utc": "2026-11-11",
-    "note": "Derivative transcription; original LP2 JPEGs remain the primary artifacts."
+    "note": "Derivative transcription; original LP2 JPEGs remain primary. The four relikd p15 numeric-row full stops are absent in original 32.jpg."
   },
   "coordinate_rule": "rune_offset is the zero-based count of GP rune symbols preceding the punctuation event in the 12,956-rune unsolved LP2 stream. The final event at offset 12956 follows the last rune. Page/local coordinates are mapped against lp2-corpus.json; chapter marks are cross-matched to lp2-ink-annotations.json.",
   "rune_count": 12956,
@@ -27,7 +27,7 @@
     "⁚": 4
   },
   "symbol_legend": {
-    "⁘": "sentence/full-stop mark",
+    "⁘": "transcription full-stop or editorial numeric-row terminator; at least four unprinted",
     "⁚": "comma mark",
     "⁜": "chapter/section mark"
   },
@@ -76,7 +76,7 @@
     "table_interior_32x8_after_76_cell_perimeter": 180,
     "standard_primes_p21_through_p200": 180,
     "solved_terminal_pages_56_plus_57": 180,
-    "note": "Equal cardinalities are structural observations only; no mapping or cipher operation has been established."
+    "note": "These three values equal the DERIVATIVE transcription token count only. At least four of its 180 tokens are editorial numeric-row endings absent from original p15, so no 180 original-ink-event mapping is supported."
   },
   "events": [
     {
@@ -535,28 +535,36 @@
       "rune_offset": 3612,
       "symbol": "⁘",
       "page": 15,
-      "local_rune_offset": 9
+      "local_rune_offset": 9,
+      "derived_role": "editorial-numeric-row-terminator",
+      "original_ink_event": false
     },
     {
       "index": 58,
       "rune_offset": 3612,
       "symbol": "⁘",
       "page": 15,
-      "local_rune_offset": 9
+      "local_rune_offset": 9,
+      "derived_role": "editorial-numeric-row-terminator",
+      "original_ink_event": false
     },
     {
       "index": 59,
       "rune_offset": 3612,
       "symbol": "⁘",
       "page": 15,
-      "local_rune_offset": 9
+      "local_rune_offset": 9,
+      "derived_role": "editorial-numeric-row-terminator",
+      "original_ink_event": false
     },
     {
       "index": 60,
       "rune_offset": 3612,
       "symbol": "⁘",
       "page": 15,
-      "local_rune_offset": 9
+      "local_rune_offset": 9,
+      "derived_role": "editorial-numeric-row-terminator",
+      "original_ink_event": false
     },
     {
       "index": 61,
@@ -1463,5 +1471,26 @@
         "color": "red"
       }
     }
-  ]
+  ],
+  "image_audit": {
+    "original_jpeg": "resources/liber-primus/32.jpg",
+    "physical_page": 15,
+    "editorial_event_indices": [
+      57,
+      58,
+      59,
+      60
+    ],
+    "all_same_global_rune_offset": 3612,
+    "all_same_local_rune_offset": 9,
+    "numeric_row_final_values": [
+      3038,
+      2838,
+      2472,
+      1820
+    ],
+    "result": "No full-stop or separator glyph follows the final numeral of any of four printed rows; four derived marks are editorial row terminators",
+    "candidate_remaining_event_count_upper_bound": 176,
+    "limitations": "Other derived punctuation tokens have not all been independently validated against original JPEGs"
+  }
 }
