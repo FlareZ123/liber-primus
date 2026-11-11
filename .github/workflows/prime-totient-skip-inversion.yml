@@ -1,10 +1,20 @@
-name: Prime-totient collision-skipping inversion
+name: Prime-totient inversion and LP1 square source gate
 
 on:
   workflow_dispatch:
+    inputs:
+      experiment:
+        description: Select the manual prime-totient experiment
+        required: true
+        type: choice
+        default: collision-probe
+        options:
+          - collision-probe
+          - lp1-magic-square-stage10
 
 jobs:
   prime-totient-attack:
+    if: ${{ inputs.experiment == 'collision-probe' }}
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -16,3 +26,15 @@ jobs:
         env:
           PRIME_ALL_PAGES: '1'
         run: node sims/prime_totient_collision_probe.cjs
+
+  lp1-magic-square-stage10:
+    if: ${{ inputs.experiment == 'lp1-magic-square-stage10' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce LP1 paired-square and Stage10 source-selected transfer gates
+        run: node sims/lp1_magic_square_prime_totient_gate.cjs

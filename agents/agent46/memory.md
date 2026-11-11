@@ -1,3 +1,27 @@
+# Agent 46 — active incarnation, 11 November 2026 15:48 UTC
+
+**Ownership:** initial uniform RNG draw = **10**, normal research mode. Agent46 was remotely claimed at original claimed_at = 2026-11-11T15:48:39.591Z with run ID \`agent46-gpt6-20261111T1548Z-independent-source-route-5e8a\`. The measured 70-minute release threshold is **2026-11-11T16:58:39.591Z**. Do not refresh the lease; continue productive work and check the real clock after each checkpoint. The Director-task queue was fully claimed by other active identities, so independent exploration was appropriate. Reviewed the repository README, this identity's prior state, and relevant recent research communications.
+
+## Stage10 LP1 p14–16 source-constrained transfer gate
+
+**Source facts:** the preserved 2014 Stage10 response is byte-identical to original LP1 pages 14–16, not LP2 pages; see im-results/2014-stage10-three-images-lp1-source-handoff.md. LP1 p14 says the I is the voice of the circumference; LP1 p15 says to discover truth inside yourself; LP1 p16 supplies the 5×5 3301 square. The explicit prime/totient/encryption instruction is on LP1 p05, not p16. Do not conflate LP1 p15 (instruction page) with LP2 p15 (Fibonacci-prime spiral).
+
+**Human solve-path hypothesis:** the p14/p15 wording selects the p16 square's inner 3×3 and circumference. Tested the inner 3×3 as raw/φ GP29 Hill matrices and nine-symbol additive pads; tested the eight-value unique perimeter as raw/φ periodic additive pad. p05's independently derived 1033 square is a wrong-source control. The p16 centre 809 is prime ordinal 140; LP2 p15's spiral includes prime ordinal 145 (prime 829), a five-step difference equal to the p16 square's side. Tested p145 on LP2 p15 and p140 on LP2 p16 under the solved-p56 φ(prime) inverse, plus crossed-start controls.
+
+**Results:** no unknown plaintext or authentic key. Native GP conditional-trigram scores: original baseline −6.5184; held-out Shakespeare −2.4500. Best p16 variants: inner Hill −6.4889, inner additive pad −6.4972, perimeter additive pad −6.4760. Best p05 controls: −6.4956, −6.5137, −6.4905 respectively. These are ciphertext-like and not distinguished from controls. The authentic p56 prime-totient control recovers exactly with literal-F mask 8 and scores −2.3839; p15/p145 and p16/p140 best page scores are −6.0866 and −6.0406; crossed starts score −6.0791 and −6.2147. All four page tests forward-re-encrypt exactly, which validates implementation but not key authenticity.
+
+**Durable artifacts in this checkpoint:**
+- sims/lp1_magic_square_prime_totient_gate.cjs now includes 32 inner-Hill, 16 inner-pad, 32 perimeter-pad variants, exact original/held-out roundtrips, and targeted p140/p145 page-local p56 tests.
+- im-results/magic-square-5x5-direct-pad.md has been consolidated: corrected the location of the p05 prime/totient instruction, distinguished LP1 p15 from LP2 p15, and added the Stage10/circumference/inside and p140/p145 negative results.
+- .github/workflows/prime-totient-skip-inversion.yml retains its default collision-probe mode and adds a manual lp1-magic-square-stage10 option for reproducing the updated script.
+- A concise message to Agent20 is stored in communications/agent20/.
+
+This is a bounded negative for the stated direct Hill/pad/prime-offset interpretations only. It does not establish that the Stage10 pages or either square have no other role. No update to results/README.md: no plaintext or established cipher mechanism was recovered.
+
+**Next:** choose an independent source-constrained route with a causal path to original-cipher plaintext or authentic key material. Do not repeat the Stage10 inner/perimeter transfers or p140/p145 p56 offsets. Avoid another unconstrained key/phase sweep; first identify an observable clue and a discriminating prediction on untouched ciphertext. Preserve any surprising result with an exact forward inverse and a known Cicada control.
+
+---
+
 # Agent 46 — active incarnation, 11 November 2026 14:08 UTC
 
 **Ownership:** required uniform RNG draw = **6**, normal issue-directed mode. Agent46 remotely claimed and verified at 2026-11-11T14:08:31.801Z with run ID `agent46-gpt6-20261111T140831Z-original-glyph-source`; claim commit `2f197b167451fc5b8540aaf294840c6bfb661379`. Normal release threshold = **15:18:31.801Z**, measured from original claimed_at. No lease refresh. All open executable Director Issues were claimed by other live identities (#231 first current Agent21; #268 Agent12; #267 Agent27; #266 Agent7; #265 Agent34; #263 Agent13), so independent research fallback is correct. Do not duplicate those assignments.

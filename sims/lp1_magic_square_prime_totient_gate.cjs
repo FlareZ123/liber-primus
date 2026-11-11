@@ -1,28 +1,21 @@
 "use strict";
 /**
- * Source-locked LP1 p05/p16 paired-grid and prime/totient transfer test.
+ * Source-locked LP1 p05/p16 paired-square and Stage10 handoff transfer tests.
  *
- * This is a bounded negative, not an LP2 decipherment. It:
- *   1. verifies original JPEG 05.jpg and 16.jpg against SHA256SUMS;
- *   2. parses the p05 5x5 mixed word/number grid and p16 5x5 numeric grid
- *      from the canonical LP1 transcription;
- *   3. maps p05 rune-words through the manuscript GP prime weights;
- *   4. verifies two exact magic squares: the p05 1033 prime-sum matrix and p16's 3301 numeric
- *      square without repairing the two literal 18 cells;
- *   5. tests 48 predeclared 25-symbol periodic additive transfers on all
- *      12,956 original unknown LP2 runes:
- *        {p05 word-grid, p16 numeric-square}
- *        x {raw value, Euler phi(value), phi(prime_at_1_based_index)}
- *        x {row-major, column-major}
- *        x {subtract, add}
- *        x {book-global, reset each physical page};
- *   6. tests prime-ordinal starts 174 and 464 under the exact solved-p56
- *      prime-totient inverse, exhaustively selecting per-page literal-F masks.
+ * This remains a bounded negative, not an LP2 decipherment. It verifies both
+ * original LP1 source images and the paired 1033/3301 squares, then tests:
+ *   - the existing 48 direct 25-cell additive transfers;
+ *   - p16's Stage10-returned circumference/inside cues as 3x3 Hill,
+ *     9-symbol interior-pad, and 8-symbol perimeter-pad candidates;
+ *   - p16-centre p140 and LP2-p15-spiral p145 starts under the solved-p56
+ *     phi(prime) inverse, targeted to pages 15/16 with exhaustive literal-F
+ *     masks and crossed-start controls;
+ *   - the existing manuscript-wide p174/p464/p493 prime-ordinal sweeps.
  *
- * The prime-index transform is phi(p_n)=p_n-1, motivated by the p16
- * "primes/totient" instruction and the independently solved p56 cipher.
- * The 174/464 starts are the prime ordinals of the two magic constants.
- * This does NOT establish that either square is an LP2 key.
+ * The explicit prime/totient/encryption instruction is on LP1 p05. LP1 p16
+ * supplies the 3301 square. The exact 2014 Stage10 response returns LP1 pages
+ * 14-16; p14/p15's circumference/inside wording motivates the new extraction
+ * tests but does not itself establish an authorial cipher instruction.
  *
  * Run from repository root:
  *   node sims/lp1_magic_square_prime_totient_gate.cjs
@@ -31,7 +24,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
 const assert = require("node:assert/strict");
-const { primeTotients, trainNativeGP, exhaustLiteralF } =
+const { primeTotients, trainNativeGP, exhaustLiteralF, languageScore } =
   require("./historical_solve_path_transfer.cjs");
 const { plaintextWords } = require("./authentic_decryption_regression.cjs");
 
@@ -39,7 +32,11 @@ const ROOT = path.resolve(__dirname, "..");
 const read = (p) => fs.readFileSync(path.join(ROOT, p), "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const lp1 = read("resources/transcriptions/lp1_wulfic_canonical.txt");
+const lp1English = read("resources/liber-primus/lp1-plaintext-reference.txt");
+const stage10Handoff = read("im-results/2014-stage10-three-images-lp1-source-handoff.md");
+const p15SpiralSource = read("results/lp2-p15-fibonacci-prime-spiral.md");
 const emerson = read("resources/control/emerson_essays_2944.txt");
+const shakespeare = read("resources/control/shakespeare_first300k.txt");
 const shaSums = read("resources/liber-primus/SHA256SUMS.txt");
 
 const expectedImageSha = {
@@ -57,6 +54,11 @@ for (const [name, expected] of Object.entries(expectedImageSha)) {
 
 assert.ok(lp1.includes("ᚦᛖ-ᛈᚱᛁᛗᛖᛋ-ᚪᚱᛖ-ᛋᚪᚳ/"));
 assert.ok(lp1.includes("ᚱᛖᛞ.ᚦᛖ-ᛏᚩᛏᛁᛖᚾᛏ-ᚠᚢᚾᚳᛏᛡᚾ-ᛁᛋ-ᛋᚪ/"));
+assert.ok(stage10Handoff.includes("final three physical pages (14, 15, 16)"));
+assert.ok(stage10Handoff.includes("byte-identical"));
+assert.ok(lp1English.includes("THE I IS THE VOICE OF THE CIRCUMFERENCE"));
+assert.ok(lp1English.includes("DISCOVER TRUTH INSIDE YOURSELF"));
+assert.ok(p15SpiralSource.includes("| 11 | 144 | 145 | 829 | 2472 |"));
 
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
 const gpPrime = corpus.prime;
@@ -148,6 +150,20 @@ assert.deepEqual(magicPrimeOrdinals.p05, { constant: 1033, primeOrdinal: 174 });
 assert.deepEqual(magicPrimeOrdinals.p16, { constant: 3301, primeOrdinal: 464 });
 assert.equal(magicPrimeOrdinals.ordinalGap, 290);
 assert.equal(magicPrimeOrdinals.ordinalGap, 29 * magicPrimeOrdinals.interveningLP1Images);
+const stage10CrossReleaseOrdinals = {
+  stage10LP1Pages: [14, 15, 16],
+  p16SquareCentre: B[2][2],
+  p16CentrePrimeOrdinal: primeOrdinal(B[2][2]),
+  p15SpiralPrimeOrdinals: [1, 2, 3, 4, 6, 9, 14, 22, 35, 56, 90, 145, 234, 378, 611, 988],
+  p15IncludesPrimeOrdinal145: true,
+  p15Prime145: primeOrdinal(829),
+  difference: primeOrdinal(829) - primeOrdinal(B[2][2])
+};
+assert.equal(stage10CrossReleaseOrdinals.p16SquareCentre, 809);
+assert.equal(stage10CrossReleaseOrdinals.p16CentrePrimeOrdinal, 140);
+assert.ok(stage10CrossReleaseOrdinals.p15SpiralPrimeOrdinals.includes(145));
+assert.equal(stage10CrossReleaseOrdinals.p15Prime145, 145);
+assert.equal(stage10CrossReleaseOrdinals.difference, 5);
 assert.equal(A[1][0], 366, "source rune ᛠ is GP EA (prime 109), not IA (prime 107)");
 assert.equal(A[3][4], 366);
 function colMajor(M) {
@@ -213,7 +229,14 @@ function metrics(indices) {
     const k = indices[i] * 841 + indices[i + 1] * 29 + indices[i + 2];
     logScore += Math.log(((trigrams.get(k) || 0) + alpha) / denominator);
   }
-  return { ioc, top12, trigram: logScore / (indices.length - 2) };
+  let adjacentEquals = 0;
+  for (let i = 1; i < indices.length; i++)
+    if (indices[i] === indices[i - 1]) adjacentEquals++;
+  return { ioc, top12, adjacentEquals, trigram: logScore / (indices.length - 2) };
+}
+function nativeMetrics(indices) {
+  const base = metrics(indices);
+  return { ...base, nativeTrigram: languageScore(indices, nativeModel) };
 }
 function decrypt(key, sign, pageReset) {
   const out = [];
@@ -303,6 +326,53 @@ const offsetCandidates = [
   { startIndex: 464, rationale: "p16 magic constant 3301 is p464" },
   { startIndex: 493, rationale: "one additional 29-prime block after p16; extrapolation only" }
 ];
+
+function forwardLiteralF(plaintext, positions, mask, key) {
+  const positionBit = new Int16Array(plaintext.length).fill(-1);
+  positions.forEach((position, i) => { positionBit[position] = i; });
+  const output = [];
+  let consumed = 0;
+  for (let i = 0; i < plaintext.length; i++) {
+    if (positionBit[i] >= 0 && ((mask >>> positionBit[i]) & 1)) {
+      assert.equal(plaintext[i], 0);
+      output.push(0);
+    } else output.push(((plaintext[i] + key[consumed++]) % 29 + 29) % 29);
+  }
+  return { output, consumed };
+}
+const p56Forward = forwardLiteralF(
+  p56Plain, p56Control.positions, p56Control.correctMask,
+  primeTotients(p56Cipher.length, 1)
+);
+assert.deepEqual(p56Forward.output, p56Cipher);
+const targetedPrimeOffsetTests = [
+  { page: 15, startIndex: 145, source: "LP2 p15 Fibonacci spiral includes p145" },
+  { page: 16, startIndex: 140, source: "LP1 p16 square centre 809 is p140" },
+  { page: 15, startIndex: 140, source: "cross-assignment control" },
+  { page: 16, startIndex: 145, source: "cross-assignment control" }
+].map((spec) => {
+  const cipher = corpus.pages.find((p) => p.page === spec.page).indices;
+  const key = primeTotients(cipher.length, spec.startIndex);
+  const decoded = exhaustLiteralF(cipher, key, nativeModel);
+  const encoded = forwardLiteralF(
+    decoded.best.plaintext, decoded.positions, decoded.best.mask, key
+  );
+  assert.deepEqual(encoded.output, cipher);
+  return {
+    ...spec,
+    ciphertextRunes: cipher.length,
+    visibleFPositions: decoded.positions,
+    exhaustiveMasks: decoded.totalMasks,
+    bestMask: decoded.best.mask,
+    bestScorePerRune: decoded.best.score,
+    bestPreview32: decoded.best.plaintext.slice(0, 32)
+      .map((i) => corpus.translit[i]).join(""),
+    forwardReencryptsExactly: true,
+    p56TrueScorePerRune: p56Control.correctScore,
+    reachesP56TrueScore: decoded.best.score >= p56Control.correctScore
+  };
+});
+
 const primeOrdinalOffsetTransfer = offsetCandidates.map(({ startIndex, rationale }) => {
   const keys = primeTotients(maxPageLength, startIndex);
   const perPage = offsetPages.map((page) => {
@@ -347,6 +417,227 @@ const primeOrdinalOffsetTransfer = offsetCandidates.map(({ startIndex, rationale
   };
 });
 
+
+// Stage10-returned LP1 p14-16: p14/p15 circumference/inside wording and
+// p16's 3301 square motivate testing the 3x3 interior and 8-value perimeter.
+// p05 is retained as an independently sourced square control.
+const mod29 = (x) => ((x % 29) + 29) % 29;
+function inner3(M) { return M.slice(1, 4).map((row) => row.slice(1, 4)); }
+function fullPerimeter(M) {
+  const out = [];
+  for (let j = 0; j < 5; j++) out.push(M[0][j]);
+  for (let i = 1; i < 5; i++) out.push(M[i][4]);
+  for (let j = 3; j >= 0; j--) out.push(M[4][j]);
+  for (let i = 3; i >= 1; i--) out.push(M[i][0]);
+  return out;
+}
+function transpose3(M) { return M[0].map((_, j) => M.map((row) => row[j])); }
+function determinant3(M) {
+  return mod29(
+    M[0][0] * (M[1][1] * M[2][2] - M[1][2] * M[2][1]) -
+    M[0][1] * (M[1][0] * M[2][2] - M[1][2] * M[2][0]) +
+    M[0][2] * (M[1][0] * M[2][1] - M[1][1] * M[2][0])
+  );
+}
+function inverse3(M) {
+  const a = M.map((row, i) => [
+    ...row.map(mod29), ...[0, 1, 2].map((j) => +(i === j))
+  ]);
+  for (let col = 0; col < 3; col++) {
+    let pivot = col;
+    while (pivot < 3 && a[pivot][col] === 0) pivot++;
+    if (pivot === 3) throw new Error("singular GP29 3x3 matrix");
+    [a[pivot], a[col]] = [a[col], a[pivot]];
+    let inv = 1;
+    while (mod29(a[col][col] * inv) !== 1) inv++;
+    a[col] = a[col].map((x) => mod29(x * inv));
+    for (let row = 0; row < 3; row++) if (row !== col) {
+      const factor = a[row][col];
+      a[row] = a[row].map((x, j) => mod29(x - factor * a[col][j]));
+    }
+  }
+  return a.map((row) => row.slice(3));
+}
+function hillApply(values, M) {
+  const out = values.slice();
+  for (let i = 0; i + 2 < values.length; i += 3) {
+    const block = values.slice(i, i + 3);
+    for (let row = 0; row < 3; row++)
+      out[i + row] = mod29(M[row][0] * block[0] +
+        M[row][1] * block[1] + M[row][2] * block[2]);
+  }
+  return out;
+}
+const nonemptyPages = pages.filter((p) => p.indices.length > 0);
+function hillClock(M, pageReset) {
+  return pageReset
+    ? nonemptyPages.flatMap((p) => hillApply(p.indices, M))
+    : hillApply(original, M);
+}
+function additiveClock(key, sign, pageReset) {
+  const out = [];
+  let globalOffset = 0;
+  for (const page of nonemptyPages) {
+    let localOffset = 0;
+    for (const c of page.indices) {
+      const offset = pageReset ? localOffset : globalOffset;
+      out.push(mod29(c + sign * key[offset % key.length]));
+      localOffset++;
+      globalOffset++;
+    }
+  }
+  return out;
+}
+function bestVariant(items, source) {
+  return items.filter((item) => item.source === source)
+    .sort((a, b) => b.nativeTrigram - a.nativeTrigram)[0];
+}
+function familySummary(items) {
+  return {
+    tested: items.length,
+    nativeTrigramRange: [
+      Math.min(...items.map((x) => x.nativeTrigram)),
+      Math.max(...items.map((x) => x.nativeTrigram))
+    ],
+    bestP16: bestVariant(items, "p16"),
+    bestP05Control: bestVariant(items, "p05-control")
+  };
+}
+const innerKeyFamilies = [
+  { name: "p16-inner-raw", source: "p16", M: inner3(B).map((r) => r.map(mod29)) },
+  { name: "p16-inner-phi", source: "p16", M: inner3(B).map((r) => r.map((x) => phi(x) % 29)) },
+  { name: "p05-inner-raw-control", source: "p05-control", M: inner3(A).map((r) => r.map(mod29)) },
+  { name: "p05-inner-phi-control", source: "p05-control", M: inner3(A).map((r) => r.map((x) => phi(x) % 29)) }
+];
+const innerHillVariants = [];
+for (const item of innerKeyFamilies) {
+  for (const [orientation, M] of [
+    ["row-major", item.M], ["column-major", transpose3(item.M)]
+  ]) {
+    const inverse = inverse3(M);
+    for (const [direction, operation] of [
+      ["forward", M], ["inverse", inverse]
+    ]) {
+      for (const pageReset of [false, true]) {
+        innerHillVariants.push({
+          name: item.name, source: item.source, orientation, direction,
+          clock: pageReset ? "physical-page-reset" : "book-global",
+          determinant: determinant3(M),
+          ...nativeMetrics(hillClock(operation, pageReset))
+        });
+      }
+    }
+  }
+}
+const innerPadVariants = [];
+for (const item of innerKeyFamilies) {
+  const key = item.M.flat();
+  for (const sign of [-1, 1]) for (const pageReset of [false, true]) {
+    innerPadVariants.push({
+      name: item.name, source: item.source, key, sign,
+      clock: pageReset ? "physical-page-reset" : "book-global",
+      ...nativeMetrics(additiveClock(key, sign, pageReset))
+    });
+  }
+}
+function perimeter8(M) {
+  const full = fullPerimeter(M);
+  assert.equal(full.length, 16);
+  assert.deepEqual(full.slice(0, 8), full.slice(8));
+  return full.slice(0, 8).map(mod29);
+}
+const perimeterKeyFamilies = [
+  { name: "p16-perimeter-raw", source: "p16", key: perimeter8(B) },
+  { name: "p16-perimeter-phi", source: "p16", key: perimeter8(B.map((r) => r.map(phi))) },
+  { name: "p05-perimeter-raw-control", source: "p05-control", key: perimeter8(A) },
+  { name: "p05-perimeter-phi-control", source: "p05-control", key: perimeter8(A.map((r) => r.map(phi))) }
+];
+const perimeterPadVariants = [];
+for (const item of perimeterKeyFamilies) {
+  for (const [orientation, key] of [
+    ["clockwise", item.key], ["counterclockwise", item.key.slice().reverse()]
+  ]) {
+    for (const sign of [-1, 1]) for (const pageReset of [false, true]) {
+      perimeterPadVariants.push({
+        name: item.name, source: item.source, key, orientation, sign,
+        clock: pageReset ? "physical-page-reset" : "book-global",
+        ...nativeMetrics(additiveClock(key, sign, pageReset))
+      });
+    }
+  }
+}
+assert.equal(innerHillVariants.length, 32);
+assert.equal(innerPadVariants.length, 16);
+assert.equal(perimeterPadVariants.length, 32);
+
+// Exact positive controls: fixed inverse pairs recover a held-out GP English
+// plant exactly. This validates implementation, not historical key provenance.
+function applyPadForControl(values, key, sign) {
+  return values.map((x, i) => mod29(x + sign * key[i % key.length]));
+}
+const heldoutPlant = englishToGP(shakespeare.slice(240000)).slice(0, original.length);
+assert.equal(heldoutPlant.length, original.length);
+const p16InnerRaw = innerKeyFamilies.find((x) => x.name === "p16-inner-raw").M;
+const p16PerimeterRaw = perimeterKeyFamilies.find((x) => x.name === "p16-perimeter-raw").key;
+const hillRecovered = hillApply(hillApply(heldoutPlant, p16InnerRaw), inverse3(p16InnerRaw));
+const innerPadPlant = applyPadForControl(heldoutPlant, p16InnerRaw.flat(), 1);
+const innerPadBack = applyPadForControl(innerPadPlant, p16InnerRaw.flat(), -1);
+const perimeterPadPlant = applyPadForControl(heldoutPlant, p16PerimeterRaw, 1);
+const perimeterPadBack = applyPadForControl(perimeterPadPlant, p16PerimeterRaw, -1);
+assert.deepEqual(hillRecovered, heldoutPlant);
+assert.deepEqual(innerPadBack, heldoutPlant);
+assert.deepEqual(perimeterPadBack, heldoutPlant);
+for (const item of innerKeyFamilies) {
+  assert.deepEqual(hillApply(hillApply(original, item.M), inverse3(item.M)), original);
+  assert.deepEqual(applyPadForControl(
+    applyPadForControl(original, item.M.flat(), 1), item.M.flat(), -1
+  ), original);
+}
+for (const item of perimeterKeyFamilies) {
+  assert.deepEqual(applyPadForControl(
+    applyPadForControl(original, item.key, 1), item.key, -1
+  ), original);
+}
+const stage10CircumferenceInside = {
+  source: {
+    exactStage10OutputPages: [14, 15, 16],
+    p14Cue: "The I is the voice of the circumference",
+    p15Cue: "Discover truth inside yourself",
+    p16SquareCentre: B[2][2],
+    p16SquareCentrePrimeOrdinal: primeOrdinal(B[2][2]),
+    p15SpiralPrimeOrdinals: stage10CrossReleaseOrdinals.p15SpiralPrimeOrdinals,
+    p15SpiralIncludesPrimeOrdinal145: true,
+    p15Prime145: primeOrdinal(829),
+    crossReleaseOrdinalGap: 5
+  },
+  keys: {
+    p16InnerRawMod29: innerKeyFamilies[0].M,
+    p16InnerPhiMod29: innerKeyFamilies[1].M,
+    p16InnerRawDeterminant: determinant3(innerKeyFamilies[0].M),
+    p16InnerPhiDeterminant: determinant3(innerKeyFamilies[1].M),
+    p16PerimeterRaw8: perimeterKeyFamilies[0].key,
+    p16PerimeterPhi8: perimeterKeyFamilies[1].key,
+    p05InnerRawControl: innerKeyFamilies[2].M,
+    p05PerimeterRawControl: perimeterKeyFamilies[2].key
+  },
+  innerHill: familySummary(innerHillVariants),
+  innerAdditivePad: familySummary(innerPadVariants),
+  perimeterAdditivePad: familySummary(perimeterPadVariants),
+  heldoutEnglishPositiveControl: {
+    runes: heldoutPlant.length,
+    nativeTrigram: nativeMetrics(heldoutPlant).nativeTrigram,
+    innerHillExactRoundTrip: hillRecovered.every((x, i) => x === heldoutPlant[i]),
+    innerPadExactRoundTrip: innerPadBack.every((x, i) => x === heldoutPlant[i]),
+    perimeterPadExactRoundTrip: perimeterPadBack.every((x, i) => x === heldoutPlant[i])
+  },
+  variantCounts: {
+    innerHill: innerHillVariants.length,
+    innerAdditivePad: innerPadVariants.length,
+    perimeterAdditivePad: perimeterPadVariants.length
+  },
+  variants: { innerHillVariants, innerPadVariants, perimeterPadVariants }
+};
+
 const result = {
   status: "PASS: bounded negative; no LP2 plaintext recovered",
   originalImageSha256: expectedImageSha,
@@ -355,6 +646,8 @@ const result = {
   p16MagicSquare: B,
   p16LineSums: BStats,
   magicConstantPrimeOrdinals: magicPrimeOrdinals,
+  stage10CrossReleaseOrdinals,
+  stage10CircumferenceInside,
   p05AndP16Both180DegreeSymmetric: true,
   p05Literal18CellsPreserved: true,
   originalUnknownRunes: original.length,
@@ -378,10 +671,12 @@ const result = {
       exactKnownPlaintextMatches: p56Control.exactMatches,
       trueLiteralFMask: p56Control.correctMask,
       rankOfKnownPlaintext: p56Control.rankOfKnownPlain,
-      trueScorePerRune: p56Control.correctScore
+      trueScorePerRune: p56Control.correctScore,
+      forwardReencryptsExactly: p56Forward.output.every((x, i) => x === p56Cipher[i])
     },
     starts: primeOrdinalOffsetTransfer
   },
+  targetedPrimeOrdinalTransfer: targetedPrimeOffsetTests,
   variants
 };
 console.log(JSON.stringify(result, null, 2));
