@@ -288,7 +288,7 @@ function main(){
       centerOutKey:centerOutKeyText,
       unknownCipherLength:unknownCipher.length,
       candidateGrid:{rows:316,columns:41},
-      2016SignatureMarkerOffset:signatureMarkerOffset,
+      signatureMarkerOffset2016:signatureMarkerOffset,
       directAdditiveTests
     },
     independentPredictionsAfterSelection:"Candidate structural map only: the per-cell GP-index sum and center-out path are interpretive; direct period-41 additive use fails, and no unknown plaintext or key is established."
