@@ -240,23 +240,88 @@ def reproduce_xor(iso_dir: Path | None) -> list[tuple[str, str]]:
     return outputs
 
 
-def reproduce_shamir() -> tuple[list[tuple[str, ...]], list[tuple[str, ...]]]:
+def poly_mul(a: list[int], b: list[int]) -> list[int]:
+    """Multiply coefficient vectors in GF(2^176), low degree first."""
+    out = [0] * (len(a) + len(b) - 1)
+    for i, ai in enumerate(a):
+        for j, bj in enumerate(b):
+            out[i + j] ^= gf_mul(ai, bj)
+    return out
+
+
+def poly_eval(coefficients: list[int], x: int) -> int:
+    """Evaluate a low-degree-first polynomial in GF(2^176)."""
+    acc = 0
+    for coefficient in reversed(coefficients):
+        acc = gf_mul(acc, x) ^ coefficient
+    return acc
+
+
+def interpolate_monic_share_polynomial(
+    points: Iterable[tuple[str, str]],
+) -> list[int]:
+    """Recover the degree-5 monic SSSS polynomial from five decimal-ID shares.
+
+    ssss 0.5 uses a monic degree-t polynomial. Remove x**t from each share,
+    interpolate the remaining degree-(t-1) polynomial, then restore its
+    leading coefficient 1.
+    """
+    points = [(int(share_id, 10), int(share_hex, 16))
+              for share_id, share_hex in points]
+    if len(points) != SHARE_THRESHOLD:
+        raise ValueError(f"expected exactly {SHARE_THRESHOLD} shares")
+
+    adjusted = [
+        (x, y ^ gf_pow(x, SHARE_THRESHOLD))
+        for x, y in points
+    ]
+    coefficients = [0] * SHARE_THRESHOLD
+    for i, (xi, yi) in enumerate(adjusted):
+        basis = [1]
+        denominator = 1
+        for j, (xj, _) in enumerate(adjusted):
+            if i == j:
+                continue
+            # In characteristic 2, X - xj == X + xj.
+            basis = poly_mul(basis, [xj, 1])
+            denominator = gf_mul(denominator, xi ^ xj)
+        scale = gf_mul(yi, gf_inv(denominator))
+        for degree, value in enumerate(basis):
+            coefficients[degree] ^= gf_mul(scale, value)
+    return coefficients + [1]
+
+
+def reproduce_shamir() -> tuple[
+    list[tuple[str, ...]], list[tuple[str, ...]], list[int], dict[str, str]
+]:
     by_id = dict(SHARES)
     observed_ids = [sid for sid, _ in SHARES]
     valid_subsets = []
     invalid_subsets = []
+    reference_polynomial = None
+
     for subset in combinations(observed_ids, SHARE_THRESHOLD):
         points = [(sid, by_id[sid]) for sid in subset]
-        if combine_ssss(points) == SECRET:
+        polynomial = interpolate_monic_share_polynomial(points)
+        if reference_polynomial is None:
+            reference_polynomial = polynomial
+        if polynomial == reference_polynomial and decode_diffusion(polynomial[0]).to_bytes(
+            FIELD_BITS // 8, "big"
+        ) == SECRET:
             valid_subsets.append(subset)
         else:
             invalid_subsets.append(subset)
 
-    if len(valid_subsets) != 21 or invalid_subsets:
+    if len(valid_subsets) != 21 or invalid_subsets or reference_polynomial is None:
         raise AssertionError(
-            f"expected all 21 observed five-share subsets to match; "
+            f"expected all 21 observed five-share subsets to recover one polynomial; "
             f"valid={len(valid_subsets)}, invalid={invalid_subsets}"
         )
+
+    # Verify the recovered polynomial against every observed share, including ID 10.
+    for sid, share_hex in SHARES:
+        if poly_eval(reference_polynomial, int(sid, 10)) != int(share_hex, 16):
+            raise AssertionError(f"recovered polynomial does not match observed share {sid}")
 
     # The five shares used by Connor Tumbleson's independent walkthrough.
     published_example = ["05", "07", "09", "03", "02"]
@@ -269,10 +334,12 @@ def reproduce_shamir() -> tuple[list[tuple[str, ...]], list[tuple[str, ...]]]:
     if combine_ssss([(sid, by_id[sid]) for sid in first_five]) != SECRET:
         raise AssertionError("shares.txt first five lines did not reconstruct")
 
-    if combine_ssss([(sid, by_id[sid]) for sid in ["02", "03", "05", "07", "10"]]) != SECRET:
-        raise AssertionError("decimal share 10 did not reconstruct")
-
-    return valid_subsets, invalid_subsets
+    # Predict the three decimal IDs not represented in the archived share table.
+    missing = {
+        sid: f"{poly_eval(reference_polynomial, int(sid, 10)):0{FIELD_BITS // 4}x}"
+        for sid in ["01", "04", "06"]
+    }
+    return valid_subsets, invalid_subsets, reference_polynomial, missing
 
 
 def main() -> None:
@@ -306,12 +373,17 @@ def main() -> None:
     wrong_output = bytes(a ^ b for a, b in zip(wrong, extracted)).strip()
     print(f"Annapolis all.txt transcription XORs to non-onion bytes: {wrong_output!r}")
 
-    valid_subsets, _ = reproduce_shamir()
+    valid_subsets, _, polynomial, missing_shares = reproduce_shamir()
     print(f"SSSS threshold: {SHARE_THRESHOLD}; field: GF(2^{FIELD_BITS})")
     print(f"SSSS result: {SECRET.decode('ascii')}")
     print(f"Five-share subsets from all seven observed decimal IDs: {len(valid_subsets)}/21 match.")
     print("All seven observed shares, including signed share 10, are mutually consistent.")
-    print("Three of the ten shares described by the historical walkthrough are absent from this archive.")
+    print("Recovered monic polynomial coefficients (ascending, encoded field domain):")
+    for degree, coefficient in enumerate(polynomial):
+        print(f"  x^{degree}: {coefficient:0{FIELD_BITS // 4}x}")
+    print("Derived, not archival, values for missing decimal share IDs:")
+    for share_id, share_hex in missing_shares.items():
+        print(f"  {share_id}-{share_hex}")
     print("All checks passed.")
 
 
