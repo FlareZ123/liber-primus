@@ -192,3 +192,65 @@ assert.deepEqual(lexical.map(r=>[r.eligible,r.matches]),[
 console.log(JSON.stringify({runes:original.length,words:words.length,
   sources:reference.length,controls:windows.length,structural,lexical,
   positiveControls:"PASS for all 20 seed-independent planted decoders"},null,2));
+
+
+// New independent source-register test. The initial m ciphertext/plaintext runes
+// of every printed word remain wholly unconstrained.
+const latinAlphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
+const latinWords = read("resources/control/latin-vulgate-gp-wholewords.txt")
+  .split(/\r?\n/).map(s=>s.trim())
+  .filter(s=>s.length>0&&!s.startsWith("#")).map(s=>[...s].map(ch=>{
+    const value=latinAlphabet.indexOf(ch);
+    assert.ok(value>=0,"Invalid Vulgate GP rune");
+    return value;
+  }));
+assert.equal(latinWords.length,39835);
+assert.equal(latinWords.reduce((n,w)=>n+w.length,0),204802);
+const beowulf=JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+assert.equal(beowulf.schema,2);
+assert.equal(beowulf.positiveControlAlphabet,"ABCDEFGHIJKLMNOPQRSTUVWXYZabc");
+let oeOffset=0;
+const oeWords=beowulf.allSourceGpWordLengths.map(n=>{
+  const s=beowulf.sourceGpBase29.slice(oeOffset,oeOffset+n);
+  oeOffset+=n;
+  return [...s].map(ch=>{
+    const value=beowulf.positiveControlAlphabet.indexOf(ch);
+    assert.ok(value>=0,"Invalid Old English GP rune");
+    return value;
+  });
+});
+assert.equal(oeOffset,48012);
+assert.equal(oeWords.length,10885);
+const alternative = [];
+for(const [name,source] of [["Vulgate Latin",latinWords],["corrected Beowulf Old English",oeWords]]) {
+  const split=Math.floor(source.length/2);
+  const train=source.slice(0,split),test=source.slice(split);
+  for(const lag of [1,2,3,5]) for(const sign of [1,-1]) {
+    const min=lag+4;
+    const fullDict=dictionary(source,lag,sign,min);
+    const eligible=words.filter(w=>w.length>=min);
+    const matches=eligible.filter(w=>compatible(fullDict,w,lag)).length;
+    const heldoutDict=dictionary(train,lag,sign,min);
+    const eligibleControls=test.filter(w=>w.length>=min);
+    const controls=eligibleControls.filter(p=>{
+      const c=p.map((v,i)=>i<lag?mod(5+i):mod(v+sign*p[i-lag]));
+      return compatible(heldoutDict,c,lag);
+    }).length;
+    alternative.push({name,lag,sign,min,originalWords:eligible.length,
+      originalMatches:matches,controlWords:eligibleControls.length,
+      matchedPlantedControlWords:controls});
+  }
+}
+assert.deepEqual(alternative.map(x=>[
+  x.originalWords,x.originalMatches,x.controlWords,x.matchedPlantedControlWords
+]),[
+  [1132,1,11064,6837],[1132,0,11064,6837],
+  [815,0,8087,4242],[815,0,8087,4243],
+  [559,1,6088,2758],[559,0,6088,2759],
+  [187,0,2739,827],[187,0,2739,825],
+  [1132,0,2442,1203],[1132,0,2442,1203],
+  [815,0,1349,508],[815,0,1349,510],
+  [559,0,644,232],[559,0,644,230],
+  [187,0,90,28],[187,0,90,28]
+]);
+console.log(JSON.stringify({title:"Latin and corrected Old English independently keyed GP29 autokey word-register exclusion",alternative},null,2));
