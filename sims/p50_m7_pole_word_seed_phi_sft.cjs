@@ -171,3 +171,38 @@ console.log(JSON.stringify({
   plantedExactRecovery:true,plantedNativeTrigram:positiveScore,
   conclusion:"Four source-anchored reversible sidecar/word-totient candidates fail to recover source-native prose"
 },null,2));
+
+
+// Stronger terminal holdout: the final 5 pole key symbols are exactly
+// physical p56's five-rune AN END ciphertext heading. The *known solved*
+// plaintext AN END supplies a second fixed five-key candidate for the
+// final five unknown words, without searching key guesses or offsets.
+const p56Heading=corpus.pages.find(p=>p.page===56).indices.slice(0,5);
+const anEndPlain=["A","N","E","N","D"].map(t=>corpus.translit.indexOf(t));
+assert.deepEqual(orders[0].keys.slice(-5),p56Heading);
+assert.deepEqual(p56Heading.map(i=>corpus.translit[i]),["AE","J","OE","S","R"]);
+const tailWords=wordArrays.slice(-5);
+assert.deepEqual(tailWords.map(w=>w.map(i=>corpus.translit[i]).join("")),
+  ["ESEOTHTHES","THOE","CEAIMCX","DJU","BEI"]);
+const tail=[];
+for(const [label,seed] of [["printed-p56-header",p56Heading],
+  ["solved-AN-END-header",anEndPlain]]){
+  for(const mode of ["prime-index","phi-plus-seed"]){
+    const decoded=tailWords.map((word,i)=>word.map((c,j)=>
+      corpus.translit[mod(c-shift(seed[i],j,mode))]).join(""));
+    tail.push({label,mode,decoded});
+  }
+}
+assert.deepEqual(tail.map(v=>v.decoded),[
+  ["CFOEIGHU","AJ","IIAUGMA","FJEA","WGD"],
+  ["NGBEOFAEIO","MN","JRPLTHN","WDJ","EOEOTH"],
+  ["NTHYEOIOEC","ONG","YTAEEAIP","AID","TNY"],
+  ["OEEPUYJR","NGJ","SHBAGP","PFB","OEOEEO"],
+]);
+console.log(JSON.stringify({terminalFiveUnknownWords:
+  tailWords.map(w=>w.map(i=>corpus.translit[i]).join("")),
+  matchedSourceEndHeading:p56Heading.map(i=>corpus.translit[i]),
+  independentlySolvedHeading:anEndPlain.map(i=>corpus.translit[i]),
+  terminalHoldout:tail,
+  conclusion:"No coherent five-word plaintext from either source-fixed p56 heading key under either totient operation"
+},null,2));
