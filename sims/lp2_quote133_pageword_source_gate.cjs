@@ -51,6 +51,11 @@ assert.equal(source58[0].i, 3);
 const otherPrimeSum = quoted.filter(q => q.i !== source58[0].i)
   .reduce((acc, q) => acc + q.weight, 0);
 assert.equal(otherPrimeSum, 133 * (133 - 1));
+const leftPrimeSum = quoted.slice(0, source58[0].i).reduce((acc, q) => acc + q.weight, 0);
+const rightPrimeSum = quoted.slice(source58[0].i + 1).reduce((acc, q) => acc + q.weight, 0);
+assert.equal(leftPrimeSum, 21 * 133 - 2);
+assert.equal(rightPrimeSum, 111 * 133 + 2);
+
 
 assert(quoted.every(q => valid(q.weight, 133)));
 
@@ -159,6 +164,29 @@ for (let t = 0; t < checksumTrials; t++) {
   if (total % 133 === 0) moduloChecksum++;
 }
 
+// A separate conditional null for the source-ordered triad balance around the
+// unique 58-rune pivot: left congruent to -2 (133), right congruent to +2.
+let triadState = 0x133581;
+function triadDraw() {
+  triadState ^= triadState << 13;
+  triadState ^= triadState >>> 17;
+  triadState ^= triadState << 5;
+  return triadState >>> 0;
+}
+const triadTrials = 2000000;
+let balancedTriads = 0, exactAndBalanced = 0;
+for (let k = 0; k < triadTrials; k++) {
+  let left = 0, right = 0;
+  for (const pool of samples.slice(0, 3)) left += pool[triadDraw() % pool.length].sum;
+  for (const pool of samples.slice(source58[0].i + 1)) {
+    right += pool[triadDraw() % pool.length].sum;
+  }
+  if (left % 133 === 131 && right % 133 === 2) {
+    balancedTriads++;
+    if (left + right === 133 * 132) exactAndBalanced++;
+  }
+}
+
 console.log(JSON.stringify({
   source: "Original quoted LP2 ciphertext; 2014 HTML title 133; later combined 75-scan order",
   caution: "The 2014 original LP2 onion index used 0.jpg..57.jpg; these addresses use a later combined-archive numbering. This is a numeric coincidence candidate, not a historical key or decryption.",
@@ -167,7 +195,7 @@ console.log(JSON.stringify({
     sourceRunes: scannedWords[q.scan - 1][q.ordinal].map(i => corpus.runes[i]).join("")
   })),
   validRadices,
-  source58Checksum: {omittedQuoteIndex: source58[0].i, otherPrimeSum, expected: 133 * 132, sixRunes: 347, sixWords: 72, checksumTrials, exactChecksum, moduloChecksum, seed: '0x13358'},
+  source58Checksum: {omittedQuoteIndex: source58[0].i, otherPrimeSum, expected: 133 * 132, sixRunes: 347, sixWords: 72, leftPrimeSum, rightPrimeSum, leftTarget: 133 * 21 - 2, rightTarget: 133 * 111 + 2, checksumTrials, exactChecksum, moduloChecksum, seed: '0x13358', triadTrials, balancedTriads, exactAndBalanced, triadSeed: '0x133581'},
   matchedPools: samples.map((pool, i) => ({
     ...shapes[i], candidateSpans: pool.length,
     valid133: pool.filter(x => hasRadix(x, 133)).length,
