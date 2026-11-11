@@ -68,6 +68,14 @@ The same **1,200 length-matched GP-English control samples** were scored, with e
 
 Every original page-specific alphabet is free. Even with this enormous freedom, none of the sampled native-language texts has a collision fraction close to the original. **The original value is invariant under all possible per-page secret permutations**, conditional on the fixed word boundaries and direct GP register.
 
+**Robustness to the outstanding image-reading issue.** The largest (page, length, position) bucket has **21** original runes. Changing any single rune identity in such a bucket can increase its equal-ordered-pair numerator by at most `2×(21−1)=40`, even if the new glyph is chosen adversarially. The authoritative corpus notes **79 source-annotation/red-template disagreements** still pending image-first adjudication. If *all 79* proved to be wrong rune labels and could be corrected arbitrarily without changing word boundaries, an intentionally loose universal upper bound on the original page-conditioned collision fraction is
+
+```
+(2840 + 79*40) / 82188 = 6000/82188 = 0.0730033582
+```
+
+This remains below **every** length-matched native control (`minimum = 0.10405412`). Therefore ordinary transcription-label corrections in the entire disputed 79-position set cannot overturn this page-keyed exclusion. The bound does not cover changed word boundaries, deleted or inserted runes, or a different underlying plaintext register.
+
 A second independent positive-control plant assigns a secret 29-way permutation to *each page × word-length × position bucket*, then fully encrypts and decrypts a **12,956-rune** native-GP sequence. The page-specific collision numerator and denominator are preserved exactly by construction, and the complete plaintext round-trip is checked by the SFT.
 
 ## Decision
