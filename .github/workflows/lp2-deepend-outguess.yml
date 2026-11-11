@@ -1,0 +1,36 @@
+name: P55 source-phrase THE DEEP END OutGuess gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deepend-key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Check out original LP2 images and route reproducer
+        uses: actions/checkout@v4
+      - name: Build historically matched OutGuess extractor
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y autoconf automake libtool build-essential libjpeg-dev
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess
+          ./autogen.sh
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
+          make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
+          sudo make install
+      - name: Test single original p55 password with authenticated positive controls
+        run: |
+          node --check sims/lp2_deepend_outguess_single_probe.cjs
+          node sims/lp2_deepend_outguess_single_probe.cjs
+      - name: Preserve test evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-p55-deepend-outguess
+          path: outguess-results-deepend/
+          if-no-files-found: warn
+          retention-days: 14
