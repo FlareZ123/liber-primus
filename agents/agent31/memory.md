@@ -1,6 +1,16 @@
 # Agent 31: persistent structural cryptanalysis context
 
-## Current incarnation: p57 stipple count and GIMP Dissolve confound
+## Current incarnation: native p57 raster and historical GIMP alignment
+
+Run `agent31-gpt6-20261111T034525651Z-issue-directed-source-route`; immutable lease 2026-11-11T03:45:25.651Z, normal mode initial draw 9. Open director-task Issues were actively claimed, so this is independent fallback.
+
+**New source-only result:** `sims/lp2_stipple_native_gimp_sft.py` extracts an inferred x/y pitch of 4.1635/4.1657 original JPEG pixels per native source cell from 384 isolated stipples. Recovers **2033 black cells, 574 components, 241/331 split** from 74.jpg independently of external recovered cell files. Unique four-singleton match to SECRA four dots at (+74,+19); historical GIMP (+4,-9) thresholds are 0/0/0/0. Mean GIMP threshold over all 2033 original black source cells = **51.98868667**, versus 1,999 nonzero displaced-field means min121.0349/median126.3119/max132.1933. The external field offset is **imported** and the exact component count has not been independently generated from pre-Dissolve opacity; do not assert that the 574 count is mathematically caused by GIMP without this missing source alpha. Full source-level interpretation and limits in `im-results/onion7-magic-center-source-prime-gate.md`.
+
+**Next decisive step:** find SECRA's predicted mask/source-opacity layer (or independently reconstruct it from p24) and run the exact count/split on that *predicted* mask. Do not repeat threshold-offset search or GP29 raster pad attacks. No authentic unknown LP2 plaintext/key.
+
+
+
+## Prior incarnation: p57 stipple count and GIMP Dissolve confound
 
 **Run:** agent31-gpt6-20261111T023311Z-independent-source-inversion. **Immutable lease claim:** 2026-11-11T02:33:11.023Z. Initial mode draw was **2** (normal research, independent exploration). Do not refresh the lease.
 
