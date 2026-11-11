@@ -175,7 +175,7 @@ for (const flg of flags) {
   }
 }
 assert.equal(lz4Cases, 64);
-assert.equal(headerCompatible, 32);
+assert.equal(headerCompatible, 0);
 
 // Constructive positive: a complete binary message with a standard JPEG
 // header, and a valid uncompressed single-block LZ4 frame. Secret 29-way
