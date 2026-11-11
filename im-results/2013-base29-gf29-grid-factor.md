@@ -206,6 +206,19 @@ Reproducers:
 - [sims/quotient252_q238_p36_and_p55_border_sft.cjs](../sims/quotient252_q238_p36_and_p55_border_sft.cjs) — quotient rows, Q238 key and p36 LFSR seed.
 - [sims/2013_dh3301_original_elgamal_block_sft.cjs](../sims/2013_dh3301_original_elgamal_block_sft.cjs) — source-derived DH exponent classes and original-text ElGamal block layouts.
 
+
+## F59 derivation of the known p56 prime-2 start: source gate (Issue #151)
+
+The equation `24^23 mod 59 = 2` is exact. It is not, however, selected as a complete operation by the contemporaneous source. The chain needs a retrospective `NUMBER` digit-reversal of p57's title sum (449→944), a factor choice (16×59), a decision to use the p15 16-cell ring as the 16 factor and the quotient 59 as modulus, the last BASE29 digit 24 as base, and the p3 root coefficient 23 as exponent. The p56 inverse's already-known prime-2 start is the target output, so the match is not a held-out prediction.
+
+The provenance boundary is decisive: the contemporaneous 2013 Twisted witness contains the participant-built `BASE29`, `DH` and `NEXT` protocol. It does **not** contain the first-onion `NUMBER` reversal/factor grammar. That later-preserved transcript is not authenticated by the 2013 witness. The 2013 DH worked exchange is also different from the F59 expression: it uses `p=23`, `g=5`, server exponent 6/public value 8, client exponent 15/public value 19, and shared secret 2. The source therefore shows a real DH operation and an example whose shared value is 2; it does not specify a DH group with `p=59,g=24,x=23`. A single power `24^23 mod 59` is modular exponentiation, not a two-party DH exchange.
+
+The p3/p39 red-triad correspondence with the 2013 DH example remains a distinct candidate: the existing analysis relates p3's 23/2 and p39's 5/15 values to the documented `p=23,g=5,b=15,K=2` exchange. That correspondence does not by itself instruct the solver to feed the DH shared value into the p56 prime-totient schedule, and it does not validate the F59 construction. Keep these two hypotheses separate.
+
+Only the source-fixed alternatives were checked, not a broad search: the p3 conjugate root changes the exponent candidate to 17 (`24^17 mod 59 = 55)); the other BASE29 digits 3 and 26 give 45 and 41; using the other factor 16 as modulus gives 0, while using the ring count 16 as exponent gives 49. The documented DH example independently gives `5^6 mod23=8`, `5^15 mod23=19`, and shared key `19^6=8^15=2`. These comparisons show why the target match is exact but not uniquely selected.
+
+**Decision:** retire `24^23 mod59=2` as an intended p56 key derivation on current evidence. The exact missing instruction is a primary-source rule that authenticates the `NUMBER` reversal/factor selection, assigns 59 as modulus, 24 as base, 23 as exponent, and maps the result 2 to the p56 prime-totient start. No such rule appears in the contemporaneous BASE29/DH/NEXT witness. Do not extend this chain to unknown pages without that selector. See [the bounded source-gate report](f59-dh-p56-key-start-source-gate.md).
+
 ## Protocol semantics, real continuation and finite literal inverse
 
 **The historical server exercise by itself does not specify a decoder.** Each worked `BASE29 3301` and `DH 23` sequence is a public example in a server-implementation assignment. `BASE29` produces digit strings, with no instruction to turn those digit strings into polynomial coefficients, divide an original 256-cell manuscript table, or serialize a quotient as a cipher key. `DH 23` demonstrates a key-exchange session; the private client exponent **15** can be computed from this toy example, while the real server is required to choose fresh parameters and state. The post hoc quadratic bridge remains an exact cross-source correspondence with an **unidentified operation**, rather than an executable historical LP2 decipherment.
