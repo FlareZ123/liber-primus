@@ -19,6 +19,7 @@ function parseWords(page) {
   let current = '';
   for (const ch of page) {
     if (runeIndex.has(ch)) current += ch;
+    else if (ch === '/' || /\s/u.test(ch)) continue; // printed line-wrap, not a word boundary
     else if (current) { words.push(current); current = ''; }
   }
   if (current) words.push(current);
