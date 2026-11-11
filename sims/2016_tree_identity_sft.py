@@ -16,6 +16,8 @@ HIST = ROOT / "resources" / "historical" / "cicada2016-4gq25.jpg"
 CASES = (
     ("p32", SOURCE / "49.jpg", (650, 2060, 1760, 3130), 252, 100),
     ("p55", SOURCE / "72.jpg", (650, 1410, 1760, 2480), 250, 70),
+    ("p53_moth_control", SOURCE / "70.jpg", (650, 2060, 1760, 3130), 250, 100),
+    ("p57_cicada_control", SOURCE / "74.jpg", (650, 2060, 1760, 3130), 250, 100),
 )
 TARGET = (130, 225, 525, 455)
 SCALES = np.arange(0.125, 0.2651, 0.005)
