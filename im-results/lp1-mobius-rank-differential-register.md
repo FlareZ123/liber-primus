@@ -39,6 +39,12 @@ The best candidate is the **M05-inverse, global, full29** variant. It is slightl
 
 The full29 within-page differential contains exactly **86 zero transitions**, matching the 86 adjacent equal ciphertext pairs. This is expected algebraically: any bijective rank map sends adjacent equal symbols to equal ranks, whose difference is zero. It therefore does **not** explain why the source has only 86 doublets. The page-reset variants add four page-start zero transitions; the transparent28 variants produce 96 global / 100 page-clock zero transitions because equal non-EA symbols separated by EA also collapse to zero.
 
+## Cross-round 79/78 cyclic-order test
+
+The p05 MOBIUS cell's prime sum 226 gives seed 23, and the p05 corner matrix yields a 28-cycle over GP indices 0–27 with EA/index28 fixed. This suggests a natural cross-round use: append fixed EA to the cycle to form the 29-symbol cyclic rune order required by the phase35 78-base29-to-79-base28 packet model. Both orientations were tested on the 95 repeat-free phase35 packets. The forward order is capacity-valid on **48/95** packets; the reverse on **55/95**. Their decoded streams score **−5.30233** and **−5.41627** under the frozen Shakespeare GP bigram model, worse than raw ciphertext (**−5.19290**) and far below held-out English (**−2.66335**). Exact 12-packet synthetic controls recover for both orientations.
+
+M16 is the six-step action on M05's 28-cycle; since gcd(6,28)=2, M16's orbit from seed23 has length14, not28, and it supplies no independent 28-symbol order. The 28-cycle-plus-EA hypothesis is therefore a bounded negative for the strict phase35 packet model, not a recovered key. Reproducer: `sims/mobius28_order_prime79_packet_gate.cjs`; full packet synthesis: `im-results/prime79-radix29-packet-gate.md`.
+
 ## Reproducibility and interpretation
 
 Run from the repository root:
@@ -49,4 +55,4 @@ node sims/lp1_mobius_rank_differential_sft.cjs
 
 The script checks the source-derived 28-cycle, tests all eight frozen variants, verifies exact forward re-encryption of the original, and plants known Emerson-GP text under the same EA-position mask and page lengths. All eight planted controls recover exactly; the opposite-orientation decoder fails to recover the corresponding plants. These are implementation controls, not evidence of authorial intent.
 
-**Decision:** The p05 Möbius orbit supplies a legitimate alphabet ranking, but its simplest adjacent rank-differential register is not the LP2 plaintext. Do not expand this family with arbitrary offsets, custom output substitutions, masks, or extra reset rules. The remaining #14 work should concentrate on independent source-fixed GF(29²) state constructions and the separately assigned (Q(u^i)) evaluation test. No key or plaintext is handed to #5/#16.
+**Decision:** The p05 Möbius orbit supplies a legitimate alphabet ranking, but both its simplest adjacent rank-differential register and its natural 29-symbol cyclic-order extension for the phase35 79/78 packet model fail on original LP2. Do not expand this family with arbitrary offsets, custom output substitutions, masks, or extra reset rules. Any future use needs a different source-fixed state or a reversible explanation of the original 86 adjacent doublets. No key or plaintext is handed to #5/#16.

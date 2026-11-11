@@ -44,6 +44,17 @@ The same script explicitly GP-encodes and round-trip packs an independently sour
 
 **These four red-ink-derived alphabets are mathematically excluded as the complete single static cyclic key for the strict 79/78 packet code at phase35.** The source-red boundary arithmetic itself remains unchanged. A more complex source-driven key derivation, section-changing cyclic order or escape handling is outside this screen.
 
+## Cross-round p05 Möbius order on the surviving phase35 clock
+
+A separate candidate order comes from LP1 rather than red ink: p05's MOBIUS cell has GP-prime sum 226, and the p05 corner matrix produces a 28-cycle over GP indices 0–27 with EA/index28 fixed. Appending EA to that cycle yields a natural 29-symbol cyclic order for the 79/78 predecessor-excluding encoder. The forward and reverse orders were tested on the 95 clean phase35 packets.
+
+- M05 forward + EA: **48/95** capacity-valid, 47 invalid; 3,744 decoded runes; bigram score **−5.30233**.
+- M05 reverse + EA: **55/95** capacity-valid, 40 invalid; 4,290 decoded runes; bigram score **−5.41627**.
+
+Both outputs are nonlinguistic and score below raw ciphertext (−5.19290), versus held-out English (−2.66335) and uniform baseline (−5.17313). Twelve planted 78→79 packets round-trip exactly for each orientation. M16 is the six-step action on M05's 28-cycle; its own orbit has length14, so it does not define a second 28-symbol order. Reproducer: [M05/79 packet gate](../sims/mobius28_order_prime79_packet_gate.cjs); full packet model: [prime79 report](../im-results/prime79-radix29-packet-gate.md).
+
+This is a separate non-red source-order test; it does not change the four red-ink-derived order counts above. The natural M05-cycle-plus-EA order is also excluded under the strict phase35 model. A changing alphabet or a stateful/escape model remains outside this test.
+
 ## Productive follow-on
 
 Test independently constrained packet-clock hypotheses in which the single black rune preceding the exceptional red51 passage is a header, synchronizer or separate state event. A credible forward generator must explain why packet [12,596,12,675) contains a doublet at 12,668 without deleting or changing unknown plaintext, and must hold across other source red spans and page boundaries. Pair this test with source-derived key/permutation proposals rather than language-only fitting to candidate plaintext. Do not promote a 51-rune red passage or phase alignment to a key before full original-cipher re-encryption.

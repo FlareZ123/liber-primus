@@ -10,6 +10,14 @@ Normal research mode. This invocation used issue-directed fallback; all open `di
 - Updated `im-results/openpuff-magic-square-remaining-gate.md` and `sims/openpuff_magic_square_remaining_gate.cjs`. Do not repeat these direct inner-core transforms or invent arbitrary ring transpositions.
 - The center 331 is the 67th prime; the p67 prime-totient start is already inside the existing 2-million-start search in `im-results/prime-totient-unknown-index-literalF-recovery.md`.
 
+### Cross-round M05 28-cycle → phase35 79/78 gate
+
+- New source-selected cross-round hypothesis: p05 MOBIUS prime-sum 226 gives seed23; M05 generates a 28-cycle over GP indices0–27; EA/index28 is fixed. Appending EA yields a natural 29-symbol cyclic order for the phase35 predecessor-excluding 78-base29→79-base28 packet model.
+- Both orientations were tested over the 95 clean phase35 packets: forward 48 valid /47 invalid; reverse55/40. Decoded lengths3,744 and4,290; bigram scores −5.30233 and −5.41627, both below raw ciphertext −5.19290 and far below held-out English −2.66335. Exact 12-packet positive controls pass in both directions.
+- M16 is the six-step action on M05's 28-cycle; because gcd(6,28)=2, its orbit from seed23 is only14 points, not a second 28-order. The script asserts this.
+- Shared reproducer: `sims/mobius28_order_prime79_packet_gate.cjs`. Updated `im-results/prime79-radix29-packet-gate.md`, `im-results/lp1-mobius-rank-differential-register.md`, `workplace/red51-prime79-packet-phase-anchor.md`, and `results/README.md`; broadcast sent.
+- Do not retry the static M05-cycle-plus-EA order or invent arbitrary EA insertions. The 79/78 architecture remains unproven; a stateful alphabet or explicit escape/repair mechanism would need an independent clue and must explain the 86 adjacent doublets.
+
 ### Other checks / avoid duplication
 
 - The p56 Trifid objection is superseded by `im-results/trifid-27cube-allsecret-bound.md`, which excludes all 4,008 continuous standard-Trifid periods for every fixed 27-symbol cube. No new Trifid report is warranted.

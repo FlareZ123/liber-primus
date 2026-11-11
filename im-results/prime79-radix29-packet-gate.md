@@ -190,6 +190,23 @@ The red-pointer arithmetic already identifies Gematria prime **53** as a primiti
 **Result on the original 95 fully repeat-free 79-rune packets:** **0/58** source-derived orders satisfy the required complete numeric capacity \(V<29^{78}\). The most favorable orders still invalidate **39/95 packets**; the literal standard GP order invalidates **47/95**. More strongly, an exact minimum-hitting-set calculation on the violated first-two-digit clauses proves that **at least 13 of the 29 rune-position assignments** must differ from *every one of the 58 source orders* for any globally valid secret order. Across the 58 cases the necessary minima are 13 (29 cases), 14 (16 cases), or 15 (13 cases). This is a lower bound on changed labels, not a claim that 13 changes suffice or recover the historical order. Thus the surviving unconstrained cyclic-order witness cannot simply be identified with this precise F79 primitive-root ordering. A positive control using one fixed source-derived order encodes, decodes, and exactly re-encrypts **95/95** independent random 78-symbol packets (**7,410 plaintext / 7,505 ciphertext runes**). The test does not constrain more elaborate source KDFs, arbitrary alphabet relabelings, state-dependent orderings, or repeated-output repairs. It establishes a finite source-key failure rather than a complete codec exclusion. [Original-input CommonJS reproducer](../sims/prime79_source_order_packet_gate.cjs).
 
 
+### Cross-round p05 Möbius 28-cycle as the phase35 79/78 cyclic order (Agent5, 11 November)
+
+A distinct source-derived alphabet candidate was tested against the sole surviving phase35 79/78 packet model. The p05 **MOBIUS** cell has GP-prime sum **226**, hence seed (226\bmod29=23). The p05 corner matrix (M_{05}=\begin{pmatrix}11&6\\6&11\end{pmatrix}\) generates a 28-cycle over exactly GP indices **0–27**; EA (index 28) is its remaining fixed symbol. Appending that fixed EA to the 28-cycle gives a natural 29-symbol cyclic order for the predecessor-excluding base28 digit map. The order is defined up to rotation, so only forward and reverse orientations are distinct.
+
+The p16 matrix is the six-step action on the same 28-cycle. Because \(\gcd(6,28)=2\), its own orbit from seed 23 has length **14**, not 28; it does not supply a second 28-symbol order. The test therefore uses the p05 cycle plus EA in both directions, without arbitrary insertions or alphabet searches.
+
+At the independent p53 red51 anchor, the packet clock is phase **35** and there are **95** repeat-free packets. Results:
+
+| Source-derived order | Capacity-valid packets | Invalid packets | Decoded runes | GP bigram score |
+| --- | ---: | ---: | ---: | ---: |
+| M05 forward + EA | **48/95** | 47 | 3,744 | **−5.30233** |
+| M05 reverse + EA | **55/95** | 40 | 4,290 | **−5.41627** |
+
+The raw ciphertext scores **−5.19290**, held-out Shakespeare **−2.66335**, and the uniform-random baseline **−5.17313** under the same frozen bigram model. Both decoded streams score below raw ciphertext and remain nonlinguistic. Exact 12-packet Shakespeare positive controls recover **936/936** planted plaintext runes and re-encode **948/948** ciphertext runes for each orientation.
+
+Reproduce with `node sims/mobius28_order_prime79_packet_gate.cjs`. This rejects only the natural static M05-cycle-plus-EA order in the strict phase35 79/78 model; it does not exclude a changing alphabet, a source-derived stateful order, escape/repair handling, or a different cipher. The 79/78 architecture itself remains a hypothesis.
+
 ### Exact key-independent terminal-rune impossibility at phase35
 
 A stronger *source-original structural exclusion*, distinct from language-score key fitting, follows directly from the 78→79 integer representation. Given any complete repeat-free 79-rune ciphertext packet, write its published predecessor rune as `C[-1]`, the packet as `C[0..78]`, and the unknown common cyclic order as `π(glyph)∈F29`. Its radix-28 digits are `d[j]=(π(C[j])−π(C[j−1])−1) mod29`. Because **28 ≡ −1 (mod29)**, the last of the 78 putative base29 plaintext digits satisfies the *exact linear identity*
