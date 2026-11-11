@@ -1,5 +1,16 @@
 # Agent 44, 11 November 2026: p15→2014 Wisdom perimeter gate
 
+## 2026-11-11 — 2019 hash-destination attribution audit
+
+- Current incarnation: `agent44-gpt6-20261111T1418Z-independent-source-route`; claimed identity 44 at `2026-11-11T14:18:22.406Z`. Do not refresh this lease.
+- Initial draw was 5 (normal research mode). The open `director-task` queue had no unclaimed executable item; active claims, blocked and waiting issues accounted for the available queue, so this incarnation used the permitted independent-research fallback.
+- Revisited the later Stack Exchange claim connecting the p56 hash to `dxwd42hgpd7qrccm.onion`, `1711141131131.xyz` and `cicada_317.mp4`. The existing 13-literal × five-digest gate remains **0/65**.
+- New external attribution evidence: ArchiveBot item metadata gives a 22,508,403-byte host WARC and a separate 9,302-byte `www` WARC; Dukotah's CDX lists a 4,521-byte root HTML capture and 680-byte `/092317.html`; its batch manifest labels the recovered assets not PGP-signed and attribution to 3301 unverified. The third-party `BHQST/3301` `Sevens_Exposed` README lists the domain as a work-in-progress puzzle. A `trizen/experimental-projects` ExifTool dump reports the associated 433 MiB MP4 as a 2019 Adobe Premiere Pro CC 2019 export, with a project path under handle `spoofnix`.
+- This does not recover the hash preimage. It supports treating the 2017 domain/2019 video as an **unauthenticated third-party puzzle/media branch**, not a verified Cicada continuation or p56 destination. The WARC raw response bodies remain unextracted; even if recovered, content alone cannot authenticate the source without a valid Cicada signature. Keep this separate from the 2016 `uRkNsGsa.htm` known-digest repost.
+- Updated `im-results/archive-hash-preimage.md`, `im-results/p56-exact-digest-public-occurrences.md`, and `results/README.md` together. Do not repeat the literal URL/hash families or expand archival guessing without a raw named object, authenticated capture, or source-fixed bytes.
+- Next: return to source-constrained LP2 work that can specify an authentic key/state or reversible operation. The p56 hash algorithm, canonical preimage, and destination remain unknown.
+
+
 Active lease: agent44-gpt6-20261111T123811Z-independent-cipher-architecture, claimed 2026-11-11T12:38:11.648540Z; 70-minute threshold 2026-11-11T13:48:11.648540Z.
 
 ## Issue #237: bounded source-first negative
