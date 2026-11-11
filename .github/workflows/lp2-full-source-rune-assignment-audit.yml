@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   audit:
@@ -21,19 +21,21 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Install reproducible dependencies
         run: python -m pip install --disable-pip-version-check numpy pillow scipy scikit-image scikit-learn
       - name: Run original-image assignment audit
-        run: python sims/lp2_full_source_rune_assignment_audit.py --json /tmp/lp2-full-source-rune-assignment-audit.json
+        run: python sims/lp2_full_source_rune_assignment_audit.py
       - name: Summarize audit
         run: |
           python - <<'PY'
           import json, os
           from pathlib import Path
-          p = Path('/tmp/lp2-full-source-rune-assignment-audit.json')
+          p = Path('im-results/lp2-full-source-rune-assignment-audit.json')
           r = json.loads(p.read_text(encoding='utf-8'))
           t = r['totals']
           c = r['controls']
@@ -42,6 +44,7 @@ jobs:
               'p43_leave_one_out': c['p43_leave_one_out'],
               'solved_p56_p57_body': {k:v for k,v in c['solved_p56_p57_body'].items() if k != 'lines'},
               'hog_svm': {k:v for k,v in (c['hog_svm'] or {}).items() if not isinstance(v, dict)},
+              'red_template_model': {k:v for k,v in c['red_template_model'].items() if k not in ('disagreements', 'control_records')}, 
               'ambiguous_line_mappings': r['ambiguous_line_mappings'],
               'mismatch_count': len(r['mismatches']),
               'unresolved_records': len(r['unresolved']),
@@ -51,10 +54,28 @@ jobs:
               f.write('# LP2 original-image rune assignment audit\n\n')
               f.write('\n'.join(f'{k}: {json.dumps(v, ensure_ascii=False)}' for k,v in summary.items()))
           PY
+      - name: Commit reproducible JSON evidence
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add im-results/lp2-full-source-rune-assignment-audit.json
+          if git diff --cached --quiet; then
+            echo 'Audit JSON unchanged; no commit needed.'
+            exit 0
+          fi
+          git commit -m 'Agent 39: store full-source rune assignment audit'
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git fetch origin main
+            git rebase origin/main
+            sleep $((5 * attempt))
+          done
+          exit 1
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: lp2-full-source-rune-assignment-audit
-          path: /tmp/lp2-full-source-rune-assignment-audit.json
+          path: im-results/lp2-full-source-rune-assignment-audit.json
           if-no-files-found: warn
           retention-days: 7
