@@ -70,10 +70,19 @@ const nineSum = primeSum(route9);
 const thirteenSum = primeSum(route13);
 assert.equal(nineSum, 547);
 assert.equal(thirteenSum, 703);
+// Original printed word HOMEX includes the X one cell after HOME E.
+const xCell = pos(3, 4);
+assert.equal(p32[xCell], 14);
+const tenSum = nineSum + prime[p32[xCell]];
+const fourteenSum = thirteenSum + prime[p32[xCell]];
+assert.equal(tenSum, 594);
+assert.equal(fourteenSum, 750);
 assert.equal(mod29(nineSum), 25);
 assert.equal(mod29(thirteenSum), 7);
 assert.equal(m7(25), 25);
 assert.equal(m7(7), null);
+assert.equal(m7(mod29(tenSum)), 18); // Adjacent p33 cuneiform 1033 mod 29.
+assert.equal(m7(mod29(fourteenSum)), 25);
 assert.deepEqual([7, null, 11, 16, 10, 8, 2, 7], (() => {
   const orbit = [7];
   for (let i = 0; i < 7; i++) orbit.push(m7(orbit[orbit.length - 1]));
@@ -154,6 +163,12 @@ console.log(JSON.stringify({
   secondaryBud: secondaryBud.map((i) => [Math.floor(i / 11), i % 11]),
   nine: { runeIndices: route9.map((i) => p32[i]), sum: nineSum, residue: mod29(nineSum), M7: m7(mod29(nineSum)) },
   thirteen: { runeIndices: route13.map((i) => p32[i]), sum: thirteenSum, residue: mod29(thirteenSum), M7: m7(mod29(thirteenSum)) },
+  xEndpointAlternative: {
+    terminalGlyph: 'X', extraPrime: prime[p32[xCell]],
+    shorter: { vertices: 10, steps: 9, sum: tenSum, residue: mod29(tenSum), M7: m7(mod29(tenSum)) },
+    longer: { vertices: 14, steps: 13, sum: fourteenSum, residue: mod29(fourteenSum), M7: m7(mod29(fourteenSum)) },
+    nullEventsIdentical: true,
+  },
   sourceFixedCells: fixed.size,
   shuffledCells: mutable.length,
   samples,
