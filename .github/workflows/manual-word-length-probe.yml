@@ -13,6 +13,7 @@ on:
           - block-inverse
           - source-inversion
           - word-number-byte
+          - prior-word-prime
 permissions:
   contents: read
 jobs:
@@ -38,6 +39,9 @@ jobs:
       - name: Frozen original source-word numbers as bytes and p50 addresses
         if: ${{ inputs.scan_mode == 'word-number-byte' }}
         run: node sims/lp2_wordwise_base29_p50_byte_gate_sft.cjs
+      - name: Causal previous-ciphertext-word prime-sum GP29 inverse
+        if: ${{ inputs.scan_mode == 'prior-word-prime' }}
+        run: node sims/lp2_previous_cipher_wordprime_sft.cjs
       - name: Reproduce page-local word-length structural tests
         if: ${{ inputs.scan_mode == 'standard' }}
         run: |
