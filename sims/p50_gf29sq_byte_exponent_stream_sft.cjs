@@ -76,20 +76,6 @@ function main(){
  const minus=transform(cipher,grid.bytes,z,-1),plus=transform(cipher,grid.bytes,z,+1);
  assert.deepEqual(transform(minus,grid.bytes,z,+1),cipher);
  assert.deepEqual(transform(plus,grid.bytes,z,-1),cipher);
- // p57's modulo-449 residues [361,133,331] include the original onion7
- // HTML title=133 and id=331. Test these fixed exponents as alternate
- // generators for the same p50-byte exponent stream; do not search other powers.
- const p57HtmlExponents=[133,331,361];
- const gcd=(a,b)=>b?gcd(b,a%b):a;
- const p57HtmlCandidates=p57HtmlExponents.map(exponent=>{
-  const generator=power(z,exponent),order=840/gcd(840,exponent);
-  const minusOut=transform(cipher,grid.bytes,generator,-1);
-  const plusOut=transform(cipher,grid.bytes,generator,+1);
-  const plant=nativeGp(fs.readFileSync(path.join(root,"resources/control/gibran_prophet_58585.txt"),"utf8")).slice(1000,1000+cipher.length);
-  assert.deepEqual(transform(transform(plant,grid.bytes,generator,+1),grid.bytes,generator,-1),plant);
-  assert.deepEqual(transform(transform(plant,grid.bytes,generator,-1),grid.bytes,generator,+1),plant);
-  return {exponent,generator,order,minus:summary(minusOut,model),plus:summary(plusOut,model)};
- });
  const alpha59=alpha60.replace("f","");
  const base59=grid.pages.flatMap(p=>p.tokens.map(t=>59*alpha59.indexOf(t[0])+alpha59.indexOf(t[1])));
  const alternatives=[
@@ -99,6 +85,20 @@ function main(){
  ];
  const native=nativeGp(fs.readFileSync(path.join(root,"resources/control/gibran_prophet_58585.txt"),"utf8"));
  const model=makeModel(native),raw=summary(cipher,model),m=summary(minus,model),p=summary(plus,model);
+ // p57's modulo-449 residues [361,133,331] include the original onion7
+ // HTML title=133 and id=331. Test these fixed exponents as alternate
+ // generators for the same p50-byte exponent stream; do not search other powers.
+ const p57HtmlExponents=[133,331,361];
+ const gcd=(a,b)=>b?gcd(b,a%b):a;
+ const p57HtmlCandidates=p57HtmlExponents.map(exponent=>{
+  const generator=power(z,exponent),order=840/gcd(840,exponent);
+  const minusOut=transform(cipher,grid.bytes,generator,-1);
+  const plusOut=transform(cipher,grid.bytes,generator,+1);
+  const plant=native.slice(1000,1000+cipher.length);
+  assert.deepEqual(transform(transform(plant,grid.bytes,generator,+1),grid.bytes,generator,-1),plant);
+  assert.deepEqual(transform(transform(plant,grid.bytes,generator,-1),grid.bytes,generator,+1),plant);
+  return {exponent,generator,order,minus:summary(minusOut,model),plus:summary(plusOut,model)};
+ });
  const wrong=alternatives.map(([name,bytes,generator])=>({name,minus:summary(transform(cipher,bytes,generator,-1),model).meanTrigramNatsPerRune,plus:summary(transform(cipher,bytes,generator,+1),model).meanTrigramNatsPerRune}));
  const plant=native.slice(1000,1000+cipher.length),planted=transform(plant,grid.bytes,z,+1),recovered=transform(planted,grid.bytes,z,-1);
  assert.deepEqual(recovered,plant);
