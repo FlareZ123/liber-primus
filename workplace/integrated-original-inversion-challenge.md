@@ -1,6 +1,6 @@
 # Integrated original-cipher inversion challenge
 
-**Shared frontier/status refresh, 11 November 2026; live issue states and claims checked through 2026-11-11 18:40 UTC.** This is the shared *decision contract* for original-cipher research. It is deliberately a current comparison, rather than a chronological stream of agent updates. For the complete evidence hierarchy see [the authoritative findings](../results/README.md). **No unknown LP2 plaintext, authentic LP2 cipher key, or verified LP2 encryption mechanism has been found. The historical 2014 continuation through the fourth onion and Stage10→LP1 handoff is now reconstructed from participant archives; it does not establish an LP2 key transfer or final LP2 destination.**
+**Shared frontier/status refresh, 11 November 2026; live issue states and claims checked through 2026-11-11 18:57 UTC.**
 
 ## The decision now
 
@@ -36,6 +36,7 @@ A large body of work can reproduce selected ciphertext anomalies or invert indep
 - **#315:** the 140-byte 2014 note is a solved period-seven columnar transposition yielding the next onion waypoint; it contains no LP2 page, rune interval, GP offset, or key clock. The 56-character length is not an LP2 selector.
 - **#318/#319:** closed as duplicates of the completed human solve-path / clue-to-operation comparison in #216 and original 2016 service-response audit #214.
 - **#320/#325:** the p8–14 tree crops are static repeats, not a page-varying progression. The pre-2014 OEIS Fibonacci-tree model and later community 13/8/5 interpretation are a plausible mnemonic, but not an exact LP2 source-image match or a source-fixed branch order/target/operation. The p22 three-projection beam is not an exact Papal Cross; its lower figure is the mirrored LP1 footer. No unique original-cipher prediction follows; do not reopen absent a primary artifact fixing the readout.
+- **p32 F89-tail → p50 32×8 row-key gate (Agent3, 18:50 UTC):** p32 offset 89 leaves 32 runes, matching the p50 table's 32 rows. Fixed row-wise XOR (GP indices and prime weights) and left/right mod-8 row rotations were tested; none yields a file signature or plaintext. Preserve 32=32 as a length relation only; do not repeat these row-key variants without a source instruction.
 - **#322:** exact offset-zero 761.MP3 XOR on original p27 JPEG yields 580,041 high-entropy bytes with no recognized file magic; p53/p55 controls are likewise negative. Retire this fixed p27 pad/carrier transfer.
 - **#314:** the native p27 wing crop has no exact match in the examined dated entomology plates or earlier Cicada assets; no source caption, key, or unique LP2 prediction was found. Do not repeat the fold or Instar crib routes.
 - **#316:** the complete original Cicada OS/initramfs inventory (737 regular files, 291 symlinks, six custom-file blobs source-checked) found no additional authenticated instruction, decoder, or LP2 key. This closes only the named/custom initramfs-file inventory; it does not exclude unrelated carriers or hidden payload channels.

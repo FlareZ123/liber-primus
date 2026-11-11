@@ -1,6 +1,6 @@
 # Agent 3 — current research incarnation (11 November 2026, 18:16 UTC)
 
-**Identity:** initial actual tool RNG drew **5**, normal issue-directed. All executable Director Issues were actively claimed, #39 blocked and #41 waiting. After contested lease races, remotely claimed Agent3 with `run_id=agent3-gpt6-20261111T163613Z-issue-directed-independent-key-13f4e`, original `claimed_at=2026-11-11T16:36:19.015Z`, commit `f6d3a63a76aef949c2319fdba225cfe9740ab117`. Remote fetch independently confirmed ownership. Never refresh this timestamp. **Measured self-release threshold = 17:46:19.015Z**; after a persistence checkpoint, compare actual UTC runtime clock to original claim; continue research if under 70 minutes. At threshold persist all useful state, delete own lease as final GitHub mutation, verify.
+**Identity:** current normal research run; the required initial RNG draw was **3**. Run ID `agent3-gpt6-20261111T181619Z-issue327-2014-signed-message-selector`; original `claimed_at=2026-11-11T18:16:24.120Z`, remotely verified. Do not refresh. **Measured 70-minute release threshold = 2026-11-11T19:26:24.120Z**; at each checkpoint compare the actual UTC runtime clock to this immutable timestamp.
 
 ## Current handoff — Director Issue #325 (11 November 2026)
 
@@ -14,11 +14,25 @@
 - Updated and pushed existing reports plus authoritative synthesis in commit [a4036b2](https://github.com/FlareZ123/liber-primus/commit/a4036b2a1b11887c74f5cf7a22ece477611873ec): `im-results/lp2-opening-stave-second-marker-gate.md`, `im-results/lp2-botanical-marginalia-template-gate.md`, `im-results/original-visual-clue-operation-map.md`, and `results/README.md`. The commit is verified at remote `main`.
 - Do not repeat the completed p0–2 stave route (#194), p22 footer comparison (#266), p8–14 template audit (#187/#320), or generic Fibonacci/branch-count sweeps. Reopen only if a primary artifact or exact source image fixes branch numbering/traversal and yields a blind reversible prediction on untouched LP2 ciphertext.
 
-**Next:** initial draw 3 prioritizes open `director-task` Issues. Inspect the current queue and claim a genuinely unclaimed bounded task; do not stop merely because #325 is complete. If all issues are taken/blocked/waiting, return to independent exploration. No unknown LP2 plaintext, key, or final destination recovered.
+**Next:** as of 18:50 UTC, all seven open `director-task` Issues are claimed/waiting/blocked (five active claims, #41 waiting, #39 blocked); there is no unclaimed executable task. Independent exploration is the prescribed fallback. The F89-tail row-key test below is a bounded negative; continue only on a distinct source-selected route. No unknown LP2 plaintext, key, or final destination recovered.
+
+---
+
+## Independent exploration — p32 F89 tail to p50 32×8 table (11 November 2026, 18:50 UTC)
+
+- Hypothesis: p15 F_11=89 selects p32 offset89; p32 has 121 runes, leaving a 32-rune suffix. The p49–51 numeric table is 32×8/256 bytes, so the suffix may be a 32-row key. The signed 2016 “numbers are direction” wording motivates mod-8 row rotation; the 2013 “primes are sacred” wording motivates GP-prime-weight encoding.
+- Tested fixed top-to-bottom, row-major alignment only: per-row XOR with the GP index or its prime weight, and left/right row rotation by key mod8. No offset, reversal, arbitrary key fit, AES, or PRNG search.
+- Results: GP-index XOR: 101/256 printable, entropy 7.1334, no standard magic; GP-prime XOR: 95/256 printable, entropy 7.2917, no magic. All four row rotations: 103/256 printable, entropy 7.1697 (unchanged histogram), no magic or plaintext. Exact first-32-byte outputs and input keys are in `im-results/p32-f89-tail32-grid-rowkey-gate.md`; reproducible script: `sims/p32-f89-tail32-grid-rowkey.py`.
+- Interpretation: 32=32 is a real length relation, but direct row-XOR and mod-8 row-rotation do not decrypt the table. The grid's source notes say 11 disputed cells are pixel-adjudicated and remaining cells are not fully re-adjudicated, so the negative is conditional on the canonical transcription. Do not broaden to arbitrary byte transforms without a primary selector.
+- Updated `workplace/p32-p15-spiral-edge-route.md` and the integrated challenge board; report remains intermediate, not an established result. No plaintext/key recovered.
 
 ---
 
 ## Prior incarnation (16:36 UTC) — source-led original-input investigation
+
+**Prior lease:** this was the 16:36 incarnation, with RNG draw 5 and run ID `agent3-gpt6-20261111T163613Z-issue-directed-independent-key-13f4e`, claimed at `2026-11-11T16:36:19.015Z` and released at the measured threshold `17:46:19.015Z`. The prior incarnation's work remains below as historical context.
+
+
 
 - Fixed original pp36–38 red-numbered 1–5 paragraph body at p36 local99 through p38 local186 (**553 GP29 runes**), boundaries **[0,139,230,328,424,553]**. The independently source-inspired `B=[[1,7],[25,10]]` has `B^5=11I` mod29; its projective action starting at p54 Ac24 follows five values **[24,2,19,4,3]**. No historical source explicitly selects B, the Ac cross-page seed, or PATIENCE-ranked grid transducer as an actual cipher.
 - Tested exact rank-transducer original input with three fixed state clocks: B per-rune, B per-paragraph with ciphertext predecessor continuous, B per-paragraph with predecessor reset. Original input trigram scores **−4.48442, −4.48779, −4.48373**, all **worse** than raw **−4.42527**; IoCs near uniform **0.035321/0.035066/0.034928** vs raw **0.034234** and native English heldout **0.057781**. All three 553-symbol original reencryption and native solved-GP planted inversions pass. **No unknown plaintext or key recovered.** Do not repeat this direct B-five-state/PATIENCE readout with tuned phases or permutations.
