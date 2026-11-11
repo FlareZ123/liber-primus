@@ -15,5 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Hash exact archived Onion5 page snapshots
+      - name: Hash exact archived Onion5 page snapshots and embedded assets
         run: python3 sims/p56_onion5_post_hash_gate.py
+      - name: Preserve source-derived hex assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: p56-onion5-embedded-assets
+          path: onion5-assets/
+          if-no-files-found: ignore
+          retention-days: 30
