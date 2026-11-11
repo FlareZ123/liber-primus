@@ -18,3 +18,4 @@ jobs:
           node sims/onion7_133331_feedback_inverse.cjs
           node sims/onion7_133331_general_oscillator.cjs
           node sims/onion7_133x97_pageiv_biaffine.cjs
+          node sims/p17_p41_sharedpad_dictionary_gate.cjs
