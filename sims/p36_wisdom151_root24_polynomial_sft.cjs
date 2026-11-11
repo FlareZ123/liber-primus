@@ -155,7 +155,11 @@ const physicalLo = p36WithHeading.slice().reverse();
 const oppositeLo = p36WithHeading.slice();
 
 assert.equal(evalPhysicalHighToLow(p36, 24), 0);
+assert.equal(evalPhysicalHighToLow(p36, 16), 0);
 assert.notEqual(derivativePhysicalHighToLow(p36, 24), 0);
+assert.notEqual(derivativePhysicalHighToLow(p36, 16), 0);
+const p36Order7Factor = [7, 18, 1]; // (X-24)(X-16)
+assert.deepEqual(divmodLo(p36.slice().reverse(), p36Order7Factor).r, [0]);
 assert.equal(evalPhysicalHighToLow(p36WithHeading, 24), 0);
 assert.notEqual(derivativePhysicalHighToLow(p36WithHeading, 24), 0);
 
@@ -168,30 +172,56 @@ const tableTwice = divmodLo(tableOnce.q, rootFactor);
 assert.deepEqual(tableTwice.r, [0]);
 assert.notDeepEqual(divmodLo(tableTwice.q, rootFactor).r, [0]);
 
-const headingValues = [];
+const headingValues24 = [];
+const headingValues16 = [];
 for (let value = 0; value < 29; value++) {
   const candidate = [...p36.slice(0, headingPosition), value, ...p36.slice(headingPosition)];
-  if (evalPhysicalHighToLow(candidate, 24) === 0) headingValues.push(value);
+  if (evalPhysicalHighToLow(candidate, 24) === 0) headingValues24.push(value);
+  if (evalPhysicalHighToLow(candidate, 16) === 0) headingValues16.push(value);
 }
-assert.deepEqual(headingValues, [1]);
+assert.deepEqual(headingValues24, [1]);
+assert.deepEqual(headingValues16, [17]);
 
-const headingPositions = [];
+const headingPositions24 = [];
+const selectorPairs = [];
 for (let position = 0; position <= p36.length; position++) {
-  const candidate = [...p36.slice(0, position), 1, ...p36.slice(position)];
-  if (evalPhysicalHighToLow(candidate, 24) === 0) headingPositions.push(position);
+  let value24 = null;
+  let value16 = null;
+  for (let value = 0; value < 29; value++) {
+    const candidate = [...p36.slice(0, position), value, ...p36.slice(position)];
+    if (evalPhysicalHighToLow(candidate, 24) === 0) value24 = value;
+    if (evalPhysicalHighToLow(candidate, 16) === 0) value16 = value;
+  }
+  assert.notEqual(value24, null);
+  assert.notEqual(value16, null);
+  selectorPairs.push({ position, value24, value16, sum: mod29(value24 + value16) });
+  if (value24 === 1) headingPositions24.push(position);
 }
-assert.deepEqual(headingPositions, [18, 65, 99, 204]);
+assert.deepEqual(headingPositions24, [18, 65, 99, 204]);
+assert.deepEqual(selectorPairs.filter((r) => r.value24 === 1 && r.value16 === 17), [{
+  position: 99,
+  value24: 1,
+  value16: 17,
+  sum: 18,
+}]);
 
-const pageRoots24 = corpus.pages
+const pageRootRows = corpus.pages
   .filter((p) => p.page <= 55 && p.indices?.length)
-  .filter((p) => evalPhysicalHighToLow(p.indices, 24) === 0)
-  .map((p) => ({ page: p.page, runes: p.indices.length }));
+  .map((p) => ({
+    page: p.page,
+    runes: p.indices.length,
+    at24: evalPhysicalHighToLow(p.indices, 24),
+    at16: evalPhysicalHighToLow(p.indices, 16),
+  }));
+const pageRoots24 = pageRootRows.filter((r) => r.at24 === 0).map(({ page, runes }) => ({ page, runes }));
+const pageRoots16 = pageRootRows.filter((r) => r.at16 === 0).map(({ page, runes }) => ({ page, runes }));
 assert.deepEqual(pageRoots24, [
   { page: 10, runes: 263 },
   { page: 11, runes: 273 },
   { page: 29, runes: 277 },
   { page: 36, runes: 238 },
 ]);
+assert.deepEqual(pageRoots16, [{ page: 36, runes: 238 }]);
 
 const quotient = divmodLo(physicalLo, rootFactor);
 assert.deepEqual(quotient.r, [0]);
@@ -199,11 +229,19 @@ assert.equal(quotient.q.length, 238);
 assert.deepEqual(mulLo(quotient.q, rootFactor), physicalLo);
 const quotientPhysical = quotient.q.slice().reverse();
 
+const counterfactual17 = [...p36.slice(0, headingPosition), 17, ...p36.slice(headingPosition)].slice().reverse();
+const quotient16 = divmodLo(counterfactual17, [13, 1]); // X-16
+assert.deepEqual(quotient16.r, [0]);
+assert.equal(quotient16.q.length, 238);
+const quotient16Physical = quotient16.q.slice().reverse();
+
 const native238 = [];
 for (let i = 0; i + 238 <= reference.length; i++) native238.push(score(reference.slice(i, i + 238)).trigramNatsPerRune);
 native238.sort((a, b) => a - b);
 const quotientScore = score(quotientPhysical);
+const quotient16Score = score(quotient16Physical);
 assert(quotientScore.trigramNatsPerRune < native238[0]);
+assert(quotient16Score.trigramNatsPerRune < native238[0]);
 
 console.log(JSON.stringify({
   p36: {
@@ -218,19 +256,24 @@ console.log(JSON.stringify({
     root: 24,
     tableMultiplicity: 2,
     p36Multiplicity: 1,
+    p36RuneOnlySecondRoot: 16,
+    p36RuneOnlyQuadraticFactor: p36Order7Factor,
     oppositeCoefficientDirectionGcd: gcdLo(tableLo, oppositeLo),
     pagesWithRuneOnlyRoot24: pageRoots24,
+    pagesWithRuneOnlyRoot16: pageRoots16,
   },
   headingLock: {
-    rootPreservingValuesAtSourcePosition: headingValues,
-    positionsWhereVisibleOnePreservesRoot: headingPositions,
+    sourcePositionSelectors: { root24: headingValues24, root16: headingValues16 },
+    positionsWhereVisibleOnePreservesRoot24: headingPositions24,
+    uniqueSelectorPairPosition: selectorPairs.filter((r) => r.value24 === 1 && r.value16 === 17)[0],
   },
   quotient238: {
     exactRoundTrip: true,
     score: quotientScore,
+    counterfactual17Root16Score: quotient16Score,
     nativeSolved238Worst: native238[0],
     nativeSolved238Median: native238[Math.floor(native238.length / 2)],
     nativeSolved238Best: native238.at(-1),
   },
-  decision: 'The independently routed p36 has a source-orientation X-24 factor shared with the table, and its printed heading value 1 uniquely preserves that root at the source position. Division is exact but its 238-symbol quotient is not native GP plaintext.',
+  decision: 'The routed p36 uniquely carries seventh-order roots 24 and 16. At the printed heading position, value 1 uniquely selects root24 and value17 uniquely selects root16; the pair (1,17) occurs at no other insertion position. The actual heading therefore selects the table-shared root24. Both exact 238-symbol division outputs remain nonlinguistic.'
 }, null, 2));
