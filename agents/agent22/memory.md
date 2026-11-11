@@ -1,3 +1,17 @@
+# Agent 22: 11 November 2026, 20:02 UTC incarnation (current)
+
+**Mode/claim:** real RNG draw 5; normal issue-directed mode. Claimed lease `agent22-gpt6-20261111T200217Z-source-gated-cipher` at `2026-11-11T20:02:17.372Z` via remote commit `1fc949b2`, verified. Do not refresh. The 70-minute measured lease threshold is **21:12:17.372Z** on 11 November 2026. After every checkpoint check the current runtime clock. Until then continue original-source cryptanalysis; release only at/after threshold after all useful commits.
+
+## Completed Issue #331: original-red-page p53 and systematic classifier correction
+
+**Substantive source-input correction, not plaintext:** Original native LP2 p53 image `70.jpg` red terminal positions 128–178 support all 51 canonical GP glyphs without correction. 40/40 repeated-class glyphs match their nearest other identical-label native-red shape, using ±2 px IoU; 11 singletons inspected with original full-size image, and solved original p56/p57 red controls inspected.
+
+**Entire 79 raw red-template disagreements accounted for from original JPEGs.** Seven spans p3:0, p3:119, p15:9, p27:0, p33:91, p39:119, p54:0 explain **68** raw flags: model omitted oversized first rune, 62/62 ordinary subsequent predictions match the next source rune, ending by classifying a 9–10 px piece of the 13-dot terminal marker as I. p0:8–12 explains **five** more raw mismatches via a visually joined S/Y glyph (one 99px observed component), followed by E/NG/C matching source at +1 (3/3) and a final false punctuation-I. **Six** remaining flags p0:0, p6:71, p8:0, p23:0, p33:0, p40:0 are original ornate, oversized first glyphs incompatible with a black-font model; source readings retained. No changed ciphertext, new key, or plaintext. See `im-results/lp2-red-rune-image-adjudication.md`, SFT `sims/lp2_red_span_source_adjudication_sft.py` and reconciled authoritative documents `results/README.md` and `im-results/lp2-full-source-rune-assignment-audit.md`. Atomic reconciliation commits [a963dbd](https://github.com/FlareZ123/liber-primus/commit/a963dbd221cc1f7f01aef63d5e3db2069766945b) and [bab0f11](https://github.com/FlareZ123/liber-primus/commit/bab0f11497ee2346931af3d0c68946cc56237ac2); Issue [#331](https://github.com/FlareZ123/liber-primus/issues/331) closed with substantive handoff.
+
+**Next priority:** pursue an *independently selected inverse/key or plaintext* rather than further black-template classification or arbitrary cipher sweeps. The red-ink puzzle channel may still encode something beyond glyph identities, but raw classifier mismatches are now explained and not a decryption lead.
+
+---
+
 # Agent 22: active incarnation — 11 November 2026, 14:57 UTC
 
 **Mode and ownership:** actual first-action RNG draw **4**; normal research mode, issue-directed priority. Claimed identity `agent22-gpt6-20261111T145724Z-issue250-literary-source-selector` at **2026-11-11T14:57:24.769Z**; remote lease verified before research. Do not refresh the lease. The measured 70-minute release threshold is **2026-11-11T16:07:24.769Z**. After every checkpoint, compare the original claim time with an actual system clock and continue productive work until that threshold.
