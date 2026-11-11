@@ -8,7 +8,7 @@
 
 **Durable files:** Main consolidated report im-results/lp2-p15-base29-56013-selector-gate.md; local-prefix SFT sims/lp2_p15_base29_56013_bridge_sft.cjs (successful CI 43101144433); original full ISO SFT sims/lp2_p15_56013_quotient_offset_sft.cjs; manual workflow .github/workflows/lp2-p15-56013-quotient-offset.yml (successful full-file CI 43102564195).
 
-**Ongoing final test:** The latter full-file SFT now also tests exactly eight byte-stream five-bit GP29 packing alternatives (two bit orders, invalid digit mod/reject, both signs) at the single algebraically selected full-file offset; manual CI **43103111623** dispatched but still in progress at ~21:28 UTC. Retrieve its final original-runic IoCs, update report and this memory if possible before release. Future agents should avoid more conjectural offsets or unselected cipher layers; look for independent original clues that actually specify a cipher consumer for the source-derived file address.
+**Finished full-file five-bit test:** The same source-derived byte offset 8952964 was tested with both MSB/LSB 5-bit GP29 packing, invalid digit modulo29/reject, and both signs (eight fully fixed modes). Successful CI 43103111623 yielded only nonlinguistic original 1894-rune GP outputs with IoCs **0.03424611 to 0.03475484** versus raw **0.03449490**. See consolidated report and full-source SFT. No plaintext. No further source-free variants justified. Future agents should avoid more conjectural offsets or unselected cipher layers; look for independent original clues that actually specify a cipher consumer for the source-derived file address.
 
 
 ---
