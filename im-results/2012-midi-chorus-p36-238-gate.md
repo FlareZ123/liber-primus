@@ -1,6 +1,6 @@
 # 2012 MIDI chorus ↔ LP2 p36: exact 238-symbol alignment and field-key tests
 
-**Classification (Agents 7, 17, 31 and 34, 11 November 2026):** source-motivated cross-round clue with retrospective page selection; bounded negative for direct GP29 letters, the exact historical 7-/14-column running-key permutations, full-block GF(29²³⁸) field-key transfers, and direct MIDI-timing→GP29 key reuse. The MIDI's 23-bar/23-pair chorus structure is exact but internal to the 2012 decode. No unknown LP2 plaintext, key, or intended continuation recovered.
+**Classification (Agents 7, 17, 31 and 34, 11 November 2026):** source-motivated cross-round clue with retrospective page selection; bounded negative for direct GP29 letters, the exact historical 7-/14-column running-key permutations, full-block GF(29²³⁸) field-key transfers, direct MIDI-timing→GP29 key reuse, and the full arbitrary-seed 16-tap additive key implied by the Blake crib. The MIDI's 23-bar/23-pair chorus structure is exact but internal to the 2012 decode. No unknown LP2 plaintext, key, or intended continuation recovered.
 
 ## Why this was worth testing
 
@@ -101,6 +101,25 @@ Every original output is close to uniform GP29 frequency; the highest IoC is **0
 [Standalone CommonJS field-key SFT](../sims/2012_chorus_grid_q238_p36_field_sft.cjs) reconstructs `Q238` from the original table, checks its SHA-256, validates the actual MIDI source and p36 length, and runs the twelve original field decoders with a native-GP source plant. No arbitrary phase, affine fitted matrix, passage slicing, word-list tuning or ciphertext-optimized key is involved.
 
 **Decision for this extension:** retire direct full-block multiplication/division by the entire 238-symbol chorus in the already identified grid field. The **triple 238 alignment** is now documented, although all 12 natural field mappings fail to select p36 plaintext. A further test would need an original instruction naming a new field operation or addressing a different source, rather than stacking related coincidences.
+
+### 3b. Full 16-tap secret-key continuation of the MIDI known-plaintext crib (Agent32)
+
+The existing source-linked three-way relation provides a narrower question that does not require guessing any of the first **16** key digits. The 2012 MIDI gives exactly **238** Blake-chorus letter events, physical LP2 p36 has **238** runes, and the original p50 polynomial has a canonical degree-**16** low-factor product `H16` (the repeated linear, quadratic, cubic and nonic factors). The last observation is a retrospective alignment, and no original instruction names an LFSR. Nevertheless a genuine 238-letter known-plaintext mapping under a 16-tap homogeneous linear key would have a decisive source-determined property.
+
+For each of four historic or mechanically direct 238-symbol chorus encodings (Latin A=0, one Latin letter to one GP29 symbol with conventional aliases, the actual 2012 23-letter MIDI rank alphabet, and the original MIDI pitch-plus-note-off-delta reduced modulo29), derive the **entire necessary additive key** `K[i]=C_p36[i] ± chorus[i]` in GP29. Test both choices of sign and both coefficient orientations of the exact `H16` polynomial from the printed grid. Every initial 16-symbol key is automatically allowed: its recurrence would have to predict **all remaining 222 symbols**. The source polynomial, coefficient orientation, full 238-character crib and key equation are frozen before checking any later positions.
+
+| Chorus register | Matches, sign − forward/reverse | Matches, sign + forward/reverse |
+| --- | --- | --- |
+| Latin A=0 | 6 / 4 of 222 | 9 / 6 of 222 |
+| Single-letter GP29 | 10 / 6 of 222 | 10 / 8 of 222 |
+| Historical MIDI 23-letter ranks | 2 / 7 of 222 | 7 / 7 of 222 |
+| Raw MIDI note-plus-delta mod29 | 6 / 8 of 222 | 13 / 16 of 222 |
+
+The highest of the 16 tests predicts only **16/222**, near the 7.66 matches expected from a uniformly wrong 29-symbol prediction. The first mismatch arises at position 16 or 17 in each tested key stream. For all 16 settings, a native positive constructs a secret key from 16 arbitrary initial symbols using the exact same recurrence, encrypts the 238 source symbols, and passes **222/222** predictions when the resulting key is recovered. The source table's polynomial division by `H16` is also verified exactly in the reproducer.
+
+This is a key-independent exclusion of this **additive 16-tap recurrence** for the exact historic chorus-to-p36 alignment, irrespective of the secret first 16 key symbols. It does not rule out other chorus positions, nonadditive group operations, nonlinear state, unknown source normalization, or a different purpose for the 238 match. No original plaintext recovered.
+
+[Source-asserting single-file gate](../sims/2012_chorus_p36_h16_derived_key_gate.cjs).
 
 ### 4. Raw MIDI timing and GP29-key source gate (Agent34)
 
