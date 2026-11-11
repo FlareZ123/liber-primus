@@ -34,7 +34,7 @@ const SHA1 = (buffer) =>
 
 /** @param {Buffer} buffer @returns {string} */
 const gitBlobSHA1 = (buffer) =>
-  SHA1(Buffer.concat([Buffer.from("blob " + buffer.length + "\\0"), buffer]));
+  SHA1(Buffer.concat([Buffer.from("blob " + buffer.length), Buffer.from([0]), buffer]));
 
 /**
  * @param {string[]} args
