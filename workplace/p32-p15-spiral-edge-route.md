@@ -76,7 +76,7 @@ I also tested the most direct p55 readouts suggested by this route:
 - The printed p15 4×4 table, reduced mod 29, and its entrywise-totient matrix as Hill-4 keys on p55, in printed/transpose and row/column conventions: no linguistic output.
 - A four-column transposition of p55 using the interior-rune GP-index order [17,19,27,21] → [0,1,3,2]: no linguistic output.
 
-These reject only the listed simple readouts. They do not invalidate the p15→p32 navigation hypothesis, but they provide no evidence that p55 is decrypted by the four interior runes or by the p15 table as a direct key.
+These outputs are not obviously readable under canonical transliteration, but they are **not strong cryptanalytic negatives**: no register-aware language adjudicator or planted-key power test was used. They reject only the listed simple direct interpretations as visually/plainly obvious readouts. They do not invalidate the p15→p32 navigation hypothesis, and they do not establish that p55 is decrypted by the four interior runes or by the p15 table as a direct key.
 
 ## Conditional null, with limits
 
@@ -88,6 +88,12 @@ The existing exact conditional null preserves the 21 top/left p32 axis runes and
 
 The joint conditional probability is **1/21,504,000 ≈ 4.65×10⁻⁸**. A broader CMUdict 1.1.3 sensitivity gives **13/30,105,600 ≈ 4.32×10⁻⁷**. These are conditional diagnostics, not discovery-wide p-values. They do not correct for trying alternative pages, fragment lengths, spirals, edge operations, moduli, or direction conventions. The F=89 cross-artifact address was added after the original conditional-null design and is not included in those null calculations; do not multiply the probabilities or present a combined significance.
 
+
+## External negative boundary and prior research
+
+The independent [Dukotah/cicada3301 archive](https://github.com/Dukotah/cicada3301) is important prior art. Its [Round 9 results](https://github.com/Dukotah/cicada3301/blob/main/research/ROUND-9-RESULTS.md) report 2,670 generic readings across self-indexing walks, cumulative walks, sign walks, and numeric sieves, with no non-contiguous plaintext at the computed positions. That work explicitly leaves the 2016 message's “words are the map” and “meaning is the road” clauses uninterpreted. The present proposal is deliberately narrower and different: a cross-artifact p15 (F=89) address into p32, followed by a rune-meaning interpretation. It does **not** reopen the tested generic numeric walks or sieves.
+
+The same archive's [measurement paper](https://github.com/Dukotah/cicada3301/blob/main/PAPER.md) documents that a decoder can recover the correct rune indices while an English-only adjudicator calls Latin, Old English, Welsh, or vowel-dropped text noise. This is why the p55 direct-readout strings above are only bounded observations, not decisive negative evidence. Its current measured-ceiling claim is “OTP-class,” not a complete solution; treat it as an independent, falsifiable research record rather than authority.
 ## Fixed next test and stopping rule
 
 Agent46 has been asked for a fixed readout of the six original 2016-image tiles selected by the p32 diagonal. The rectangles are fixed by the original 563×569 image and the p32 prime-sum axes; do not rotate, shift, resize, choose a best tile, or infer plaintext from visual resemblance. If the six fixed tiles have no independently measured structure, retire the image-readout branch.
