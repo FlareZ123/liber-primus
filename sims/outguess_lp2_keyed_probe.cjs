@@ -56,7 +56,7 @@ function main(){
   const lock=path.join(OUTPUT,".keyscan.lock"),fd=fs.openSync(lock,"wx");
   const temp=path.join(OUTPUT,"extract.incomplete");
   const report={keys:KEYS,pages:PAGES,attempts:0,headerMatches:0,
-    plausible:[],unknownBinaryCounts:{},errors:[],rejectedSignals:{},rejectedExitCodes:{},controls:{}};
+    plausible:[],rawCandidates:[],unknownBinaryCounts:{},errors:[],rejectedSignals:{},rejectedExitCodes:{},controls:{}};
   try{
     const message=Buffer.from("AGENT40 OUTGUESS KEYED RED TRIANGLE CONTROL 79\n");
     const msg=path.join(OUTPUT,"message.incomplete");
@@ -93,16 +93,32 @@ function main(){
         const output=(proc.stdout||"")+"\n"+(proc.stderr||"");
         const header=/Steg retrieve:\s*seed:\s*(\d+),\s*len:\s*(\d+)/i.exec(output);
         const n=fs.existsSync(temp)?fs.statSync(temp).size:0;
-        if(proc.status===0&&header&&n>0&&n===Number(header[2])){
+        const bytes=n>0?fs.readFileSync(temp):Buffer.alloc(0);
+        const headerConsistent=proc.status===0&&Boolean(header)&&n>0&&n===Number(header[2]);
+        const rawName="candidate_"+KEYS.indexOf(key)+"_"+page+".bin";
+        if(process.env.LP2_OUTGUESS_PASSWORD&&n>0){
+          // For one exact externally derived key, preserve every nonempty
+          // output, even when the old extractor's header is absent or false.
+          fs.writeFileSync(path.join(OUTPUT,rawName),bytes);
+          report.rawCandidates.push({
+            key,page,status:proc.status,signal:proc.signal||null,
+            seed:header?Number(header[1]):null,
+            headerLength:header?Number(header[2]):null,
+            bytes:n,headerConsistent,sha256:SHA(bytes),rawFile:rawName
+          });
+        }
+        if(headerConsistent){
           matched++;
-          const bytes=fs.readFileSync(temp),flags=recognisable(bytes);
+          const flags=recognisable(bytes);
           const item={page,seed:Number(header[1]),bytes:n,sha256:SHA(bytes)};
+          if(process.env.LP2_OUTGUESS_PASSWORD)item.rawFile=rawName;
           if(flags.length){
             recognised++;
             const found={key,...item,flags,
               opening:bytes.subarray(0,100).toString("latin1").replace(/[^\x20-\x7e]/g,".")};
             report.plausible.push(found);
-            fs.writeFileSync(path.join(OUTPUT,"candidate_"+KEYS.indexOf(key)+"_"+page+".bin"),bytes);
+            if(!process.env.LP2_OUTGUESS_PASSWORD)
+              fs.writeFileSync(path.join(OUTPUT,rawName),bytes);
           }else unknown.push(item);
         }else if(proc.error){
           report.errors.push({key,page,message:String(proc.error)});
@@ -126,7 +142,8 @@ function main(){
     fs.renameSync(staging,target);
     console.log("OUTGUESS_KEYED_COMPLETE "+JSON.stringify({
       attempts:report.attempts,matchedHeaders:report.headerMatches,
-      recognisable:report.plausible.length,errors:report.errors.length,
+      recognisable:report.plausible.length,rawCandidates:report.rawCandidates.length,
+      errors:report.errors.length,
       rejectedSignals:report.rejectedSignals,rejectedExitCodes:report.rejectedExitCodes,
       controls:report.controls
     }));
