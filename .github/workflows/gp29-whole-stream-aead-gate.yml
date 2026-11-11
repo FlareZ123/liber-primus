@@ -17,6 +17,8 @@ jobs:
           node-version: 22
       - name: Run exact-envelope authentication gate
         run: node sims/gp29_whole_stream_aead_gate.cjs
+      - name: Run unknown-alphabet GP29 JPEG and LZ4 source gate
+        run: node sims/lp2_gp29_whole_stream_header_sft.cjs
       - uses: actions/upload-artifact@v4
         with:
           name: gp29-whole-stream-aead-gate
