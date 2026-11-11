@@ -52,7 +52,7 @@ The page-50 value is from `resources/liber-primus/base60-grid.json` at flattened
 
 1. **The 2017 base is not independently determined.** The warning contains 45 GP symbols. Dividing its sum by its own length gives `2131 = 47*45 + 16`, which points to page 47 offset 16 (Is), not page 36 offset 7 (Yr). The TINY reading specifically reuses the 2016 section length 59 as a shared radix.
 2. **The rune-name initials are an interpretation.** The raw transliteration output is T-IA-N-Y, not an unambiguous English word. “Meaning is the road” could motivate rune names/meanings, but it does not explicitly say to take their initials.
-3. **The 2014 signed stage-11 message is a mixed control.** Removing its onion URL (which contains Q, outside the GP alphabet) gives a GP sum of 2593; base 59 maps this to page 43 offset 56 (Ethel). The sum 2593 is also one of the p15 Fibonacci-prime values. This is a cross-round convergence, but the URL exclusion makes it unsuitable as a clean validation.
+3. **The 2014 signed stage-11 comparison is invalid as cross-round support.** The earlier 2593 sum required both removing its onion URL (which contains Q, outside GP) and collapsing `ING` to `NG`. Under ordinary GP tokenization (`I` + `NG`, with K→C as needed), the URL-excluded body has 66 symbols and sum 2624, not 65 / 2593. Thus the apparent p15 Fibonacci-prime match and base-59 page43/offset56 result disappear; do not use this message as validation.
 4. **A meaningful four-letter output is not itself a decryption.** The 2016 message warns against false paths; numerical coincidences and post-selected interpretations remain a serious risk.
 
 ## TEA test prompted by TINY
