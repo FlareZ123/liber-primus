@@ -41,6 +41,10 @@ The four byte orders were checked for common PNG, PDF, ZIP, gzip, bzip2, RAR, 7z
 
 The conversion code also passes an independent synthetic byte-string round trip, including two leading zero bytes; this validates the integer/byte implementation and explicit width handling, not the LP2 hypothesis.
 
+## Prior-work overlap
+
+The canonical forward-digit/big-endian 7,868-byte representation is **not new**: [the trifold row-XOR/source-key gate](lp2-trifold-rowxor32-source-key.md) already reads the complete GP29 stream as one big-endian base-29 integer and tests that byte string as a 12-byte nonce, ciphertext and 16-byte tag under AES-256-GCM and ChaCha20-Poly1305. This report is a supplement, not an independent cipher route. Its incremental contribution is the explicit file-signature/UTF-8/entropy scan, the three alternate digit/byte orientations, and the diagnosis that the reversed-digit 78 01 prefix is followed by reserved DEFLATE BTYPE=3. Do not count the canonical conversion again or extend the alternatives without a new source instruction.
+
 ## Decision and scope
 
 **Retire transparent whole-stream BASE29 integer-to-byte serialization in these four natural orientations.** It produces high-entropy bytes with no valid file structure or readable plaintext; the sole apparent zlib header is mathematically invalid at the first DEFLATE block. Do not expand this into arbitrary offsets, page resets, alternate digit permutations, or file-magic fishing without a new source instruction.
