@@ -61,6 +61,31 @@ def main() -> None:
     assert sampled["left"]["binary_value"] == 13
     assert sampled["right"]["binary_value"] == 31
 
+    left_bits = [int(bit) for bit in sampled["left"]["bits"]]
+    filled_positions = [i + 1 for i, bit in enumerate(left_bits) if bit]
+    hollow_positions = [i + 1 for i, bit in enumerate(left_bits) if not bit]
+    assert filled_positions == [2, 3, 5]
+    assert hollow_positions == [1, 4]
+
+    mismatch_bits = "".join(str(1 - bit) for bit in left_bits)
+    assert mismatch_bits == "10010"
+    assert int(mismatch_bits, 2) == 18
+
+    orientation_orders = {
+        "top_to_bottom_left_to_right": [0, 1, 2, 3, 4],
+        "top_to_bottom_right_to_left": [0, 2, 1, 4, 3],
+        "bottom_to_top_left_to_right": [3, 4, 1, 2, 0],
+        "bottom_to_top_right_to_left": [4, 3, 2, 1, 0],
+    }
+    orientation_bits = {
+        name: "".join(str(left_bits[i]) for i in order)
+        for name, order in orientation_orders.items()
+    }
+    assert [
+        name for name, bits in orientation_bits.items()
+        if bits == "01101"
+    ] == ["top_to_bottom_left_to_right"]
+
     ink_file = ROOT / "resources" / "liber-primus" / "lp2-ink-annotations.json"
     ink = json.loads(ink_file.read_text("utf8"))
     stencil_count = sum(
@@ -76,6 +101,15 @@ def main() -> None:
         "ornaments": sampled,
         "thirteen_dot_stencil_count": stencil_count,
         "candidate_pair_matches_stencil_size_and_frequency": [13, 31],
+        "filled_positions_1_to_5": filled_positions,
+        "hollow_circumference_positions_1_to_5": hollow_positions,
+        "prime_indicator_1_to_5": sampled["left"]["bits"],
+        "fold_mismatch_nonprime_mask": mismatch_bits,
+        "fold_mismatch_value": int(mismatch_bits, 2),
+        "orientation_bits": orientation_bits,
+        "hollow_position_decimal_concatenation": int(
+            "".join(str(position) for position in hollow_positions)
+        ),
         "caveat": "Hypothesis-generating visual bit reading. It may be decorative; "
                   "other source mechanisms and historical intention remain unproved."
     }, indent=2))
