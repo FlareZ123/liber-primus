@@ -286,8 +286,41 @@ This rejects only the direct source-fixed rank-one mask \(R_rQ_j\), not arbitrar
 
 Reproducer: [\`sims/gf841_51x127_outer_product_mask.cjs\`](../sims/gf841_51x127_outer_product_mask.cjs).
 
+## p57-stipple-selected two-cycle mask on the 51×127 register (Agent 24, 11 November 2026)
+
+A source-constrained two-dimensional mask was tested from the p57 cicada illustration and p32's 11×11 prime grid. The original image analysis gives **241** small stipple components on the left and **331** on the right. These are the 53rd and 67th primes; the proposed selector maps those ordinal positions to p32 rune offsets **53** and **67**, whose GP-prime weights are **101** and **11**. This is a candidate cross-page selection, not an established author instruction (see [Agent 46's source proposal](../communications/agent42/20261111T0247Z_agent46_p57-stipple-gf841-period-pair.md)).
+
+In the p3 field (u^2=8+3u), the two selected coefficient pairs are
+[
+z_L=(101,11)mod29=(14,11)=u^{50},quad |z_L|=84,
+]
+[
+z_R=(11,101)mod29=(11,14)=u^{588},quad |z_R|=10.
+]
+Their orders multiply to **840**, the full nonzero multiplicative-group order. With the original 51×127 field-pair register (C_{r,j}) after the two-rune header, and the 127 original p39 quotient pairs (Q_j), the frozen mask is
+[
+K_{r,j}=z_L^r z_R^j Q_j.
+]
+No phases, rotations, row keys, or fitted parameters are used. The four natural field-group operations were tested: (P=C-K), (P=C+K), (P=C/K), and (P=CK).
+
+| Original decode | Canonical bytes (29a+b<256) | Reversed-coordinate bytes (a+29b<256) | Rows with 127/127 canonical bytes |
+|---|---:|---:|---:|
+| Unmasked register | 1,917 / 6,477 | 1,920 / 6,477 | 0/51 |
+| (C-K) | 1,965 / 6,477 | 1,997 / 6,477 | 0/51 |
+| (C+K) | 1,988 / 6,477 | 1,990 / 6,477 | 0/51 |
+| (C/K) | 2,014 / 6,477 | 1,940 / 6,477 | 0/51 |
+| (CK) | 1,880 / 6,477 | 1,919 / 6,477 | 0/51 |
+
+The random expectation for either canonical 256-of-841 strip is **1,971.60/6,477**. All four results are near this baseline, and no row yields a complete 127-byte sequence. The original payload's Shakespeare-GP trigram score is **−13.28405598** nats/rune; the four decoded scores are **−13.27240204**, **−13.23542527**, **−13.29513756**, and **−13.26385430**. The best remains **4.8350 nats/rune below** the weakest minimum among 300 same-length native-GP windows (Shakespeare **−7.94651145**, Gibran **−8.39553970**, Emerson **−8.40039103**). No GP-English structure appears.
+
+All four original-input transformations re-encrypt exactly. A deterministic **6,477-byte** canonical plant, (b_i=(73i+41)mod256), is also recovered exactly under all four inverse operations. The 127 quotient pairs are nonzero, so the multiplicative cases are well-defined.
+
+**Decision:** this rejects the exact (z_L^r z_R^jQ_j) mask as a direct canonical-byte transport or recognizable GP-English decode. It does not reject other uses of the p57 counts, the p32 antipodal pair, or nonlinear/non-byte state. The p57-to-p32 selector itself remains a hypothesis, not a recovered key.
+
+Reproducer: [`sims/gf841_51x127_two_cycle_mask_sft.cjs`](../sims/gf841_51x127_two_cycle_mask_sft.cjs).
+
 ## Interpretation and open mechanism
 
-The byte gate and separate all-secret terminal-register test are finite exclusions under different source interpretations. The static-offset byte gate excludes canonical one-byte-per-two-runes encoding under the two tested row multiplier rules. The independent evolving-state gate excludes the same canonical transport and every row-rotated consecutive 256-exponent codebook under each of two quotient-multiplier feedback laws, **even allowing all 841 unknown states per row**. It **cannot** exclude reduction modulo 256, arbitrary alternative 256-codepoint subsets, homophonic/noncanonical byte encodings, hidden within-row state, variable-rate coding, different grid orientations, or another selection of start/boundary. The public-state test is likewise a negative for one recurrence, not for GF841 altogether.
+The byte gate, separate all-secret terminal-register test, and p57-stipple-selected two-cycle mask are finite exclusions under different source interpretations. The static-offset byte gate excludes canonical one-byte-per-two-runes encoding under the two tested row multiplier rules. The independent evolving-state gate excludes the same canonical transport and every row-rotated consecutive 256-exponent codebook under each of two quotient-multiplier feedback laws, **even allowing all 841 unknown states per row**. It **cannot** exclude reduction modulo 256, arbitrary alternative 256-codepoint subsets, homophonic/noncanonical byte encodings, hidden within-row state, variable-rate coding, different grid orientations, or another selection of start/boundary. The public-state test is likewise a negative for one recurrence, not for GF841 altogether.
 
 The essential missing step remains a historically discoverable **source-specified, lossless original-input decoding operation** capable of making all original glyphs and boundaries and yielding independently recognizable recovered plaintext. Extending the row key space to arbitrary alphabet permutations, or searching red-derived phase knobs without a source instruction, would erase the discriminating capacity gate.
