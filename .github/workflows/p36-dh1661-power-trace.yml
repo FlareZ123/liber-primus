@@ -1,0 +1,29 @@
+name: p36 DH1661 relative-trace stream gate
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sims/p36_dh1661_power_trace_stream_sft.cpp'
+      - 'sims/p36_dh1661_power_trace_score_sft.cjs'
+      - '.github/workflows/p36-dh1661-power-trace.yml'
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile the source-selected exponent-1661 recurrence
+        run: g++ -O3 -std=c++17 -march=native sims/p36_dh1661_power_trace_stream_sft.cpp -o /tmp/p36_dh1661
+      - name: Generate the 12,718-symbol relative-trace key
+        run: /tmp/p36_dh1661 p36_dh1661_power_trace_keys.bin | tee p36_dh1661_generation.json
+      - name: Score both additive signs against the original unknown stream
+        run: node sims/p36_dh1661_power_trace_score_sft.cjs p36_dh1661_power_trace_keys.bin | tee p36_dh1661_score.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p36-dh1661-power-trace
+          path: |
+            p36_dh1661_power_trace_keys.bin
+            p36_dh1661_generation.json
+            p36_dh1661_score.json
