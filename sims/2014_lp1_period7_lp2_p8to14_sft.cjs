@@ -229,9 +229,9 @@ assert.equal(adjacent(illustratedFull), 12);
 assert.equal(adjacent(illustratedBody), 12);
 const illustratedFullResult = measuredSourceInverse(illustratedFull, 52, 69);
 const illustratedBodyResult = measuredSourceInverse(illustratedBody, 50, 128);
-assert.deepEqual(illustratedFullResult.originalTotient,
+assert.deepEqual(illustratedFullResult.originalNonFPlaintextTotient,
   { possible: false, firstFailure: 58 });
-assert.deepEqual(illustratedBodyResult.originalTotient,
+assert.deepEqual(illustratedBodyResult.originalNonFPlaintextTotient,
   { possible: false, firstFailure: 1 });
 
 console.log(JSON.stringify({
