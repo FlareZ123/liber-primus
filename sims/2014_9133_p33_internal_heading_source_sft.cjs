@@ -198,6 +198,44 @@ assert.deepEqual(twoLayerResults, {
   'historicalFirstPhi-1': {ioc:0.03441656497439584, doublets:58},
   'phiFirstHistorical-1': {ioc:0.0344174936709331, doublets:51}
 });
+// The creator's preserved 2014 5x5 1033-square has central cell 91.
+// In the solved historical GP word table, the center word FORM has prime
+// weights 2+7+11+71=91. The simplest historical 2014 Vigenere transfer
+// is to start FORM at the selected p33:91 red heading, with no fitted phase.
+const squares = fs.readFileSync(
+  path.join(root, 'resources/cicada2014-openpuff-magic-squares.txt'), 'utf8'
+).trim().split(/\r?\n\s*\r?\n/u);
+assert.equal(squares.length, 3);
+const square5 = squares[2].trim().split(/\r?\n/u)
+  .map(line => line.trim().split(/\s+/u).map(Number));
+assert.equal(square5.length, 5);
+assert(square5.every(row => row.length === 5));
+assert.equal(square5[2][2], 91);
+const formIndices = [...'FORM'].map(letter => corpus.translit.indexOf(letter));
+assert.deepEqual(formIndices, [0, 3, 4, 19]);
+const formPrime = formIndices.map(index => corpus.prime[index]);
+assert.deepEqual(formPrime, [2, 7, 11, 71]);
+assert.equal(formPrime.reduce((sum, value) => sum + value, 0), 91);
+/** @param {number[]} key @param {-1|1} sign */
+function directFormVigenere(key, sign) {
+  return illustratedCipher.map((value, i) =>
+    (value + sign * (key[i % key.length] % 29) + 29) % 29);
+}
+const wordKeyChecks = {
+  indexMinus: coincidence(directFormVigenere(formIndices, -1)),
+  indexPlus: coincidence(directFormVigenere(formIndices, 1)),
+  primeMinus: coincidence(directFormVigenere(formPrime, -1)),
+  primePlus: coincidence(directFormVigenere(formPrime, 1))
+};
+const expectedWordKeys = {
+  indexMinus:0.03459487470955016,
+  indexPlus:0.03448714591122776,
+  primeMinus:0.034318123141446055,
+  primePlus:0.03436920145099547
+};
+for (const name of Object.keys(expectedWordKeys)) {
+  assert(Math.abs(wordKeyChecks[name] - expectedWordKeys[name]) < 1e-12);
+}
 const out = {
   historical: {originalLength:56, phraseLength:36, onionLength:16,
     unexplainedSuffix:'9133'},
@@ -207,6 +245,9 @@ const out = {
   nextBodyWordLength:next.length,
   literal2014PhraseFirstWordLengths:[2, 7],
   source9133IsPrime:true,
+  historicalMagicSquareCenter:91,
+  centerWordFORMprimeSum:91,
+  directVigenereFORMonOriginal:wordKeyChecks,
   historicalTwoBoundaryMarkerLayer: {
     originalLength:illustratedCipher.length,
     sevenColumnLength:withDividers.length,
