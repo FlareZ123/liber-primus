@@ -99,6 +99,16 @@ function main(){
  for(let rep=0;rep<100;rep++)nulls.push(directVariants(shuffle(bytes,xorshift(0x151079+rep*1009)))[0].score);
  const exceeded=nulls.filter(x=>x>=direct[0].score).length;
 
+ const packet79Direct=[];
+ for(const offset of [0,10])for(const mask of masks.slice(0,2)){
+  const plain=directDecode(stream,key,offset,79,mask.set);
+  packet79Direct.push({offset,nullMask:mask.name,score:trigramScore(plain,model),plaintext:render(plain)});
+ }
+ const packet79Skip=[];
+ for(const offset of [0,10])for(const mask of masks.slice(0,2)){
+  const a=new Set([...mask.set].filter(x=>x<79)),b=new Set([...mask.set].filter(x=>x>=79).map(x=>x-79));
+  packet79Skip.push({offset,nullMask:mask.name,llr:skipLLR(stream.slice(0,79),key,offset,model.q,a)+skipLLR(stream.slice(79),key,offset,model.q,b)});
+ }
  const skipVariants=[];
  for(const offset of [0,10])for(const reset of [false,true])for(const mask of masks){
   let value;
@@ -126,6 +136,7 @@ function main(){
   source:{tableBytes:bytes.length,uniqueBytes:new Set(bytes).size,page49:p49.length,page51:p51.length,totalRunes:stream.length,wordCount:words.length,FPositions:f},
   p56Regression:p56,
   direct:{rawCipherScore:rawScore,best:direct[0],permutationNulls:100,exceeded,empiricalP:(1+exceeded)/101},
+  packet79Reset:{direct:packet79Direct,skip:packet79Skip},
   skip:{best:skipVariants[0],variants:skipVariants,positiveControl:{length:sample.length,nullPosition:nullAt,skips,endCursor:cursor,trueKeyLLR:skipLLR(planted,key,7,model.q,new Set([nullAt])),reversedKeyLLR:skipLLR(planted,key.slice().reverse(),7,model.q,new Set([nullAt]))}}
  },null,2));
 }
