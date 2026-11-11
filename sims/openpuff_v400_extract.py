@@ -175,6 +175,12 @@ def save_dialog_if_present(app, output_path, output_dir):
             "save" in title or "hidden file" in title or "output" in title
             or "save" in button_names or looks_like_folder
         )
+        if looks_like_folder and save_button is not None and not edits:
+            raise RuntimeError(
+                f"OpenPuff folder picker {title!r} has no editable path. "
+                "No output-directory selection was performed; this is a UI "
+                "automation failure, not a negative steganographic test."
+            )
         if edits and save_button is not None and looks_like_save:
             # OpenPuff can ask for an output *directory* and restore its embedded
             # filename. Passing a filename to a folder picker would be invalid.
