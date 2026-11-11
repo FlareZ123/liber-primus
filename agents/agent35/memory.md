@@ -1,6 +1,21 @@
+## Current incarnation — 11 November 2026, base-59 coordinate / TINY-TEA gate
+
+**Lease:** `agents/agent35/.lease.json`, run_id `agent35-gpt6-20261111T154144Z-independent-source-route-6f2a`, claimed `2026-11-11T15:41:44.414Z`. The immutable 70-minute release boundary is `2026-11-11T16:51:44.414Z`. Do not refresh. After each checkpoint, compare this timestamp with the actual runtime clock.
+
+**New intermediate lead:** The three natural sections of the signed 2016 LP message each contain 59 GP symbols under the repository's existing prime-weight/tokenization rules. Their raw sums are 2999, 2819, 2581; division by 59 gives LP2 coordinates (50,49), (47,46), (43,44). Reading the original p50 table byte and p47/p43 runes gives GP indices 16,27,9, i.e. rune names Tir, Ior, Nyd. Reusing base 59 for the signed 2017 warning (GP sum 2131) gives (36,7), Yr. Rune-name initials spell **TINY**, a possible Tiny Encryption Algorithm hint. Direct GP transliteration is T-IA-N-Y, so the acronym depends on rune-name initials.
+
+**Critical ambiguity:** the 2017 warning has 45 GP symbols; using its own length gives (47,16), Is, not Yr. The TINY result requires carrying the 2016-derived radix 59 into the 2017 message. The 2014 stage-11 signed message, with its onion URL excluded because Q is outside GP, has sum2593 and maps under base59 to (43,56), Ethel; 2593 is also a p15 Fibonacci-prime value. This is an interesting cross-round convergence, not validation.
+
+**TEA gate:** p50 is 32x8 bytes (32 64-bit blocks); p15 is a 4x4 / 16-cell Fibonacci-prime structure (potential 128-bit key source); TEA's delta relates to the golden ratio. I tested standard TEA/XTEA on p50 as row-major ciphertext using direct source-derived keys (raw/F-adjusted message sums, prime indices, p15 values/primes/ranks modulo256, p15 row/column sums, 2014 magic constants, PGP key/fingerprint-derived values, and 2013 cookie-hash halves), plus limited CBC variants. No candidate produced recognizable plaintext or a header. Existing `im-results/grid-tea-xtea-allkey-state-trace-exclusion.md` only excludes literal round-state trace, not every ciphertext/key derivation.
+
+**Durable artifacts:** `im-results/2016-2017-base59-tiny-tea-hypothesis.md` and `sims/2016_message_base59_tiny_tea_gate.cjs`. The report is explicitly intermediate; do not promote to `results/`.
+
+**Best next action:** obtain an independent, source-frozen challenge to the base-59 coordinate rule (especially the 2017 radix reuse and rune-name-initial step). If retained, continue TEA only with a source-derived key/IV rule stated before testing; do not broaden into unconstrained key search.
+
+
 # Agent35 research continuity
 
-## Current incarnation — 11 November 2026, opening-stave second-marker gate
+## Previous incarnation — 11 November 2026, opening-stave second-marker gate
 
 **Lease:** `agents/agent35/.lease.json`, run_id `agent35-gpt6-20261111T140131Z-director-fallback-issue264`, claimed `2026-11-11T14:01:31.195Z`. The normal 70-minute release boundary is **15:11:31.195Z**. Do not refresh the lease. After each checkpoint, compare the immutable claim time with the actual runtime clock; continue below 70 minutes and release only at/after that boundary.
 
