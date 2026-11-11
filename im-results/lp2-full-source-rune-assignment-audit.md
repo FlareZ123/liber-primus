@@ -52,15 +52,32 @@ The first visual lines of p56/p57 are mixed lines containing known red GP rune s
 
 A red-only nearest-template experiment trained on those 12 solved red glyphs has duplicate-class leave-one-out accuracy **1/4**. On unknown red positions whose expected class is represented among those controls, it agrees at only **3/59** positions. This is too weak to validate or correct the red transcription. The red glyphs are a distinct visual domain for these simple classifiers; the 79 red mismatches must not be interpreted as 79 transcription errors. All 213 red positions, their source boxes, expected runes, and model predictions are retained in the JSON for an image-first follow-up.
 
-## Registration ambiguity
+## Eight apparent registration ties resolved by original images
 
-The monotone row-to-line dynamic program has tied optimal mappings on pages **2, 7, 14, 22, 32, 49, 53, and 55** (respectively 2, 3, 2, 3, 3, 11, 2, and 2 optimal paths). The selected mappings are recorded in the JSON. Thus the 12,956 classifications are complete under the selected count-based registration, but these eight pages still need independent visual line-registration adjudication before making fine-grained line-local claims. Page 53 is especially relevant because its red span contains 51 runes.
+**Agent32, 11 November 2026; Director #332.** The eight previously reported "tied optimal mappings" are **multiple skip-operation histories for one uniquely determined physical image-row registration**. The original pixel audit's dynamic program counts the same row assignment more than once because surplus illustration/table rows occur *after* the final original rune line. Each can be charged either to a `skip` transition or to the terminal remaining-row penalty. The number of reported ties is therefore `detected rows − original text lines + 1` on every implicated page.
+
+An independent exhaustive reconstruction of all minimum-cost monotone image-row assignments, retaining only distinct complete mappings, gives **exactly one unique mapping for every page**. In every case zero-based printed text line `j` maps to zero-based detected image row `j`; all extras are original image features below the last text row.
+
+| LP2 page / original JPEG | Original rune lines | Detected peaks | Earlier skip-path count | Distinct optimum mappings | Trailing peak row indices, original visual cause |
+| --- | ---: | ---: | ---: | ---: | --- |
+| p2 / 19.jpg | 9 | 10 | 2 | **1** | 9, insect |
+| p7 / 24.jpg | 10 | 12 | 3 | **1** | 10–11, black dots |
+| p14 / 31.jpg | 7 | 8 | 2 | **1** | 7, flying insect |
+| p22 / 39.jpg | 6 | 8 | 3 | **1** | 6–7, illustrated staff |
+| p32 / 49.jpg | 6 | 8 | 3 | **1** | 6–7, blurred tree |
+| p49 / 66.jpg | 3 | 13 | 11 | **1** | 3–12, ten numerical-table lines |
+| p53 / 70.jpg | 9 | 10 | 2 | **1** | 9, butterfly |
+| p55 / 72.jpg | 4 | 5 | 2 | **1** | 4, butterfly |
+
+The proof reads the native original JPEGs, measures their printed row centers and glyph-component counts under the *previously frozen* image thresholds, parses the unchanged 594-line canonical physical transcription, and independently enumerates every minimum-cost skip/match registration, deduplicating by its complete matched-row sequence. No language score, rune template classifier, cipher hypothesis or ciphertext-derived phase selects a row. The source-only [standalone verifier](../sims/lp2_eight_page_line_registration_uniqueness_sft.py) gives original image Y coordinates and the exact extra-peak component counts for all eight, and asserts all eight unique matchings.
+
+**Interpretation of existing machine-readable JSON:** `mapping_ways` was a count of equivalent dynamic-program paths, not genuinely distinct image-to-transcript mappings. Its chosen `skipped_rows` arrays are correct and entirely terminal. The image-original line map, all 12,956 GP rune positions, word separators, page carries and original red-span offsets remain unchanged.
 
 ## Conclusion and next decision
 
-The canonical ordinary black-text rune assignments survive this full-position pixel audit: **no ordinary black-text correction is indicated**. The audit does not establish that all red glyphs are correctly transcribed, nor does it validate the eight tied line mappings. The p39 enlarged line is separately flagged. No plaintext, key, cipher operation, or destination is recovered.
+The canonical ordinary black-text rune assignments survive the complete image audit: **no ordinary black-text correction is indicated**. All eight previously described line-registration "ambiguities" are now settled as unique source mappings; this removes a transcription-clock uncertainty without claiming a decryption. The 213 red rune identities, including the terminal p53 51-rune passage, remain subject to separate image-first review in Director #331. The p39 enlarged line is also separately flagged.
 
-A useful successor is an image-first adjudication of the 213 red positions, together with resolution of the eight tied row mappings—prioritizing p53's 51-rune red span. Repeating the same black-template or red-template screens would add little.
+No original LP2 unknown plaintext, key, decoding operation or destination was recovered. Future source-image work should target unresolved red forms rather than rescan these eight now-unambiguous row registrations.
 
 ## Reproduction
 
