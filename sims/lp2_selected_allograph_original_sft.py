@@ -30,7 +30,8 @@ TEMPLATES={
 }
 # Both are first runes of annotated red spans.
 EXCEPTIONS={"NG":{33:91},"AE":{56:0}}
-P33_NG_BOX=(841,1914,875,2028)
+LARGE_P33_NG_BOX=(601,1908,820,2406)
+P33_FOLLOWING_TH_BOX=(841,1914,875,2028)
 TH_CONTROL_BOX=(908,1050,942,1164)
 LARGE_AE_BOX=(601,670,750,1166)
 REJECTED={
@@ -167,12 +168,17 @@ def main():
    rejected[name]={"template_hits":observed,"transcription_occurrences":expected}
 
   p33=load_image(33,archive)
-  x1,y1,x2,y2=P33_NG_BOX
-  anomaly=(p33[y1:y2,x1:x2]<THRESHOLD).astype(np.uint8)*255
+  x1,y1,x2,y2=LARGE_P33_NG_BOX
+  large_ng=(p33[y1:y2,x1:x2]<THRESHOLD).astype(np.uint8)
+  normalized_ng=cv2.resize(large_ng,(templates["NG"].shape[1],templates["NG"].shape[0]),interpolation=cv2.INTER_NEAREST)
+  ng_union=np.logical_or(normalized_ng>0,templates["NG"]>0).sum()
+  large_ng_iou=float(np.logical_and(normalized_ng>0,templates["NG"]>0).sum()/ng_union)
+  x1,y1,x2,y2=P33_FOLLOWING_TH_BOX
+  following_th=(p33[y1:y2,x1:x2]<THRESHOLD).astype(np.uint8)
   th=make_template(p56,TH_CONTROL_BOX)
-  th_corr=float(cv2.matchTemplate(anomaly,th,cv2.TM_CCOEFF_NORMED)[0,0])
-  ng_iou=best_iou(anomaly>0,templates["NG"][:114,:]>0,shift=3)
-  th_iou=best_iou(anomaly>0,th>0,shift=3)
+  th_union=np.logical_or(following_th>0,th>0).sum()
+  following_th_iou=float(np.logical_and(following_th>0,th>0).sum()/th_union)
+  if large_ng_iou<0.80 or following_th_iou<0.90: raise AssertionError("p33 first/second rune attribution changed")
 
   x1,y1,x2,y2=LARGE_AE_BOX
   large_ae=(p56[y1:y2,x1:x2]<THRESHOLD).astype(np.uint8)
@@ -190,9 +196,11 @@ def main():
        "min_best_shift_iou":float(min(ious[n])),"median_best_shift_iou":float(np.median(ious[n])),
        "exact_iou_1":int(sum(v>=.999999 for v in ious[n]))} for n in TEMPLATES},
    "exceptions":{
-    "NG":{"page":33,"offset":91,"reason":"normal-height red-span first-rune outlier",
-          "p33_red_crop_box_xyxy":P33_NG_BOX,"correlation_to_TH_control":th_corr,
-          "iou_to_NG_template":ng_iou,"iou_to_TH_control":th_iou},
+    "NG":{"page":33,"offset":91,"reason":"oversized red NG initial",
+          "large_initial_box_xyxy":LARGE_P33_NG_BOX,
+          "scale_normalized_unshifted_iou_to_ordinary_NG":large_ng_iou,
+          "following_TH":{"page":33,"offset":92,"crop_box_xyxy":P33_FOLLOWING_TH_BOX,
+                          "unshifted_iou_to_solved_TH":following_th_iou}},
     "AE":{"page":56,"offset":0,"reason":"oversized red initial","large_initial_box_xyxy":LARGE_AE_BOX,
           "scale_normalized_iou_to_ordinary_AE":large_ae_iou}},
    "rejected_non_discriminating_controls":rejected,
