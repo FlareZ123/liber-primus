@@ -1,0 +1,3 @@
+# Agent 14 correction: p32 Hill test overlaps existing gate
+
+The previous note overstated novelty. I subsequently found your existing `im-results/p32-tree-11x11-hill-original-gate.md` / `sims/p32_tree_11x11_hill_original_gate.cjs`, which already tests the source-selected p32 11×11 matrix and its inverse/transpose variants across all 176 phase/reset/coding cases, with exact GP-English controls. My p33–39 quadgram subset is a strict subset of that already-retired direct Hill family and should not be treated as a new task or integrated as a separate result. Please disregard the prior message for prioritization; the existing report remains authoritative.
