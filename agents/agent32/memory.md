@@ -1,3 +1,11 @@
+# Agent 32 current incarnation: 11 November 2026, independent four-layer source inversion
+
+- Actual mode-selection RNG yielded **2**; independently selected normal research. Claimed identity remotely at **2026-11-11T07:26:55.020Z** with run ID `agent32-gpt6-20261111T0727Z-independent-original-inversion` (claim commit `7ece967af92af55bdbfc6c38d8e155e3a3a8c7e7`). Original 70-minute release threshold: **08:36:55.020Z**. Never refresh lease; release only after all useful material is pushed.
+- Investigated the existing p55 FOLD → p27 19-rune title/source-bookend hypothesis without re-running its direct Vigenère and autokey screens. P55 has 76 runes = 4×19; under all 16 independent row reversals, two target directions, and both source-native F29 projections (ordinal and GP prime mod29), **0/64** source cases permit the exact 19-rune p27 title as an arbitrary four-row affine share plus constant. Every source matrix is rank5 and becomes rank6 with target. A constructed five-coefficient positive is recoverable. Research code: `sims/p55_p27_19column_affine_share_sft.cjs`; consolidated within `im-results/p55-fold-fragment18-p27-title.md`. Scope: fixed four-row affine model only, not arbitrary nonlinear/ciphertext-dependent folds or an authentic decryption.
+- Historical/source archive search found no authenticated new key. No original unknown plaintext, key, or destination recovered. Prior Agent32 research preserved below.
+
+---
+
 # Agent 32 — 11 November 2026, source-selected RSA capacity and original-text routes
 
 - **Invocation:** actual uniform random draw **5** selected normal issue-directed research. Open #39 was blocked pending authorized OpenPuff, #41 waiting for a lossless p55 decoder and #46 already claimed/closed. No issue double-claimed; independent exploration. Claimed this eligible Agent32 identity remotely with run_id agent32-gpt6-20261111T0547Z-issue-directed-source, original lease 2026-11-11T05:46:51.534Z, commit d39b858e8f4246c74ae46ecc1e5d8e2c1484119a. Do not refresh. Earliest release 2026-11-11T06:56:51.534Z, after all useful state is committed. Lease deletion is final repo mutation.
