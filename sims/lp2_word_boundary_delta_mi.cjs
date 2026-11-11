@@ -15,6 +15,7 @@ const SEEDS = {
   wordResetPlant: 0x21f00d17,
   perSymbolPlant: 0x21f00d18,
   wordResetNull: 0x21f00d19,
+  perSymbolWordNull: 0x21f00d20,
   lineResetPlant: 0x21f00d21,
   lineResetNull: 0x21f00d22,
   pageResetPlant: 0x21f00d23,
@@ -356,7 +357,7 @@ function main() {
   const perSymbol = plantPerSymbolPad(englishGP, pages, SEEDS.perSymbolPlant);
   const perSymbolWordObserved = mutualInformationByPage(perSymbol, wordFlags).mi;
   const perSymbolWordNull = oneBoundaryNulls(
-    perSymbol, wordFlags, CONTROL_NULLS, SEEDS.wordResetNull + 1);
+    perSymbol, wordFlags, CONTROL_NULLS, SEEDS.perSymbolWordNull);
   const perSymbolWordUpper = perSymbolWordNull.filter(
     value => value >= perSymbolWordObserved).length;
 
