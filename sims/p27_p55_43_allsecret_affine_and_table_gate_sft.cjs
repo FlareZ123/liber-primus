@@ -64,6 +64,15 @@ function polynomialRemainder(values, divisor) {
   }
   return a.slice(0, divisor.length - 1);
 }
+/** All 21 GF(29) monomials in five input symbols, total degree at most two. */
+function quadraticFeatures(values) {
+  const result = [1, ...values];
+  for (let i = 0; i < 5; i++) {
+    for (let j = i; j < 5; j++) result.push(mod(values[i] * values[j]));
+  }
+  assert.equal(result.length, 21);
+  return result;
+}
 const translit = indices => indices.map(i => corpus.translit[i]).join("");
 const p27 = corpus.pages[27].indices;
 const p55 = corpus.pages[55].indices;
@@ -87,6 +96,7 @@ const byte43 = table.byte_rows.flat().slice(84, 127);
 assert.equal(byte43.length, 43);
 
 const tests = [];
+const quadratics = [];
 const selectors = [];
 for (const layout of ["rows-of-43", "five-tuples"]) {
   for (const encoding of ["ordinal", "prime-residue"]) {
@@ -125,6 +135,31 @@ for (const layout of ["rows-of-43", "five-tuples"]) {
         firstMismatch: {columnOneBased: firstMismatch + 1,
           predicted: predictions[firstMismatch], observed: Y[firstMismatch]}});
     }
+    // Every possible secret degree<=2 polynomial, including cross-products.
+    const Q = X.map(quadraticFeatures);
+    const nQuadratic = Q[0].length;
+    const plainRank = rref(Q, nQuadratic);
+    const complete = rref(Q.map((row, i) => [...row, Y[i]]), nQuadratic + 1);
+    assert.equal(plainRank.rank, 21);
+    assert.equal(complete.rank, 22);
+    // A full-rank initial 21-column fit must already fail at column 22.
+    const fitQ = rref(Q.slice(0, 21).map((row, i) => [...row, Y[i]]), 22);
+    assert.equal(fitQ.rank, 21);
+    const coefficientsQ = Array(21).fill(0);
+    fitQ.pivots.forEach((col, i) => { coefficientsQ[col] = fitQ.matrix[i][21]; });
+    const predictionsQ = Q.map(row => mod(row.reduce((sum, x, i) =>
+      sum + x * coefficientsQ[i], 0)));
+    const firstQuadraticMismatch = predictionsQ.findIndex((value, i) => value !== Y[i]);
+    assert.equal(firstQuadraticMismatch, 21);
+    const plantedCoefficientsQ = Array.from({length: 21}, (_, i) => mod(7 * i + 3));
+    const plantedQ = Q.map(row => mod(row.reduce((sum, x, i) =>
+      sum + x * plantedCoefficientsQ[i], 0)));
+    assert.equal(rref(Q.map((row, i) => [...row, plantedQ[i]]), 22).rank, 21);
+    quadratics.push({layout, encoding, numberOfSecretCoefficients: 21,
+      dataRank: plainRank.rank, augmentedRank: complete.rank,
+      firstMismatch: {columnOneBased: 22, predicted: predictionsQ[21],
+        observed: Y[21]},
+      matchesOf43: predictionsQ.filter((value, i) => value === Y[i]).length});
     const key = byte43.map((value, col) => sample(col, value % 5));
     const candidates = [-1, 1].map(sign => {
       const candidate = target.map((symbol, i) => mod(symbol + sign * key[i]));
@@ -152,10 +187,12 @@ assert.deepEqual(polynomialChecks, {
   reversedH: [13, 0], reversedG: [0, 4]
 });
 assert.equal(tests.length, 8);
+assert.equal(quadratics.length, 4);
 assert.equal(selectors.length, 4);
 process.stdout.write(JSON.stringify({source: {
   p27RedTitle: 19, p27BlackBody: 215, p55WordInteriors: 43,
   p50TableBracket: [84, 126], p55DoubleShavedPlusP27Length: 256
-}, allSecretAffineRelation: tests, tableMod5Selector: selectors,
+}, allSecretAffineRelation: tests, allSecretQuadraticRelation: quadratics,
+  tableMod5Selector: selectors,
   speculative256HGCheck: polynomialChecks,
-  conclusion: "No exact fixed linear/affine source relation, no intelligible table-selected 43-rune candidate, and no H/G codeword under the frozen 256 concatenation; no LP2 plaintext recovered."}, null, 2) + "\n");
+  conclusion: "No exact fixed degree<=2 GF29 polynomial source relation, no intelligible table-selected 43-rune candidate, and no H/G codeword under the frozen 256 concatenation; no LP2 plaintext recovered."}, null, 2) + "\n");
