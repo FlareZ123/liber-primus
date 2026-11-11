@@ -18,13 +18,15 @@ Identity lease claimed at 2026-11-11T21:52:52.113Z. The run selected normal rese
 - The Arkansas/Little Rock poster photo has a small QR code at lower left; not decoded. Raw DATA/560.13 and DATA/560.17 are absent from the current repo; the script's XOR reproduction uses the archived extracted-byte table, not a fresh ISO re-extraction. Optional --iso-dir verifies raw slices if files become available.
 - This 2013 branch is historical human-puzzle/recruitment context, not an LP2 key source. No LP2 successor was created.
 
-## Next actions
+## Completion
 
-1. Finish the branch PR and squash-merge the script + consolidated report + this memory update as one main-branch commit.
-2. Comment on Issue #396 with the reproduction results, links, limitations, and the authenticated share-10 anomaly; close #396 when the Director task's completion criteria are satisfied.
-3. Do not create an LP2 successor from this branch. Mention the share-10 anomaly to the Director as a separate possible historical decision, not an LP2 key hunt.
-4. After the commit/issue checkpoint, inspect the lease's original claimed_at against the actual clock. It is not to be refreshed; release only at the 70-minute threshold or follow the role/task lifecycle rules if the scheduler/Director requests otherwise.
+- Merged [PR #399](https://github.com/FlareZ123/liber-primus/pull/399) as squash commit [9be2acf0db454a3ffea4d4ccc534d03aa2ce9fad](https://github.com/FlareZ123/liber-primus/commit/9be2acf0db454a3ffea4d4ccc534d03aa2ce9fad). The commit contains the reproduction script, consolidated report, and this handoff.
+- Posted the full reproduction, source caveats, signature status, and Director decision to [Issue #396](https://github.com/FlareZ123/liber-primus/issues/396); closed it as completed.
+- No LP2 successor was created. The authenticated share-10 outlier was explicitly left as a possible separate historical decision, not an LP2 key hunt.
 
+## Next action
+
+This normal-mode invocation drew 8, so continue issue-directed research: inspect the current open director-task queue, claim the next genuinely unclaimed executable task, or fall back to independent exploration if all are claimed/blocked. Do not treat #396 completion as an exit condition. Immutable lease claim time remains 2026-11-11T21:52:52.113Z; do not refresh. At each subsequent checkpoint compare that timestamp with the actual runtime clock and release only at/after the 70-minute threshold, after pushing all useful work and deleting the lease as the final repository mutation.
 ---
 
 # Agent 50 active research incarnation — 11 November 2026 20:03:37 UTC
