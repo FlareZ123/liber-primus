@@ -107,7 +107,50 @@ assert.deepEqual(red39.map(x => [x.start, [...x.runes].map(r => corpus.runes.ind
 // The descending coefficient array for polynomial division is reversed.
 const base29Ascending = base29Digits;
 const base29Descending = base29Ascending.slice().reverse();
-const p39Ascending = [27,5,15];
+// The SAME published 2013 protocol gives this complete DH example:
+// C: DH 23; S: 01 OK 5 8; C: 19; S: 03 DATA 2.
+// Compute both private exponents, rather than inserting the p39 rune values.
+/** @param {number} x @param {number} k @param {number} p */
+function powMod(x,k,p) {
+  let y=1;
+  for(let i=0;i<k;i++)y=y*x%p;
+  return y;
+}
+/** @param {number} root @param {number} target @param {number} p */
+function discreteLog(root,target,p) {
+  for(let i=0;i<p-1;i++)if(powMod(root,i,p)===target)return i;
+  throw new Error("Historical DH example has no discrete log");
+}
+const dhModulus=23,dhBase=5,serverPublic=8,clientPublic=19;
+const serverExponent=discreteLog(dhBase,serverPublic,dhModulus);
+const clientExponent=discreteLog(dhBase,clientPublic,dhModulus);
+assert.equal(serverExponent,6);
+assert.equal(clientExponent,15);
+const sharedSecret=powMod(clientPublic,serverExponent,dhModulus);
+assert.equal(sharedSecret,2);
+assert.equal(powMod(serverPublic,clientExponent,dhModulus),sharedSecret);
+const rootFrom2013=3301%29;
+assert.equal(rootFrom2013,24);
+// DH-derived public exponent times the square of source 3301's GP residue.
+const historicalDHQuadratic=[
+  mod(clientExponent*rootFrom2013*rootFrom2013),
+  mod(-2*clientExponent*rootFrom2013),
+  clientExponent
+];
+assert.deepEqual(historicalDHQuadratic,[27,5,15]);
+assert.equal(historicalDHQuadratic[0],mod(-sharedSecret));
+assert.equal(historicalDHQuadratic[1],dhBase);
+assert.deepEqual(
+  historicalDHQuadratic,
+  [...red39[0].runes].map(r=>corpus.runes.indexOf(r))
+);
+// A separate but much more interpretive source-number rendering of p3:
+// [base+server public, DH modulus, shared key] = [13,23,2].
+assert.deepEqual(
+  [dhBase+serverPublic,dhModulus,sharedSecret],
+  [...red3[0].runes].map(r=>corpus.runes.indexOf(r))
+);
+const p39Ascending = historicalDHQuadratic;
 const p39Descending = p39Ascending.slice().reverse();
 assert.deepEqual(base29Descending, [24,26,3]);
 assert.deepEqual(base29Ascending.map(x => mod(23*x)), [11,18,1]);
@@ -165,6 +208,9 @@ const result = {
   classification:"exact cross-round source relation, not decrypted text",
   historicalProtocol:"BASE29 3301 => 3QO",
   historicalDigits:base29Digits,
+  historicalDhExample:{modulus:dhModulus,base:dhBase,serverPublic,clientPublic,serverExponent,clientExponent,sharedSecret},
+  p39QuadraticGeneratedFromDh:historicalDHQuadratic,
+  p3TriadArithmetic:[dhBase+serverPublic,dhModulus,sharedSecret],
   historicalPolynomialAscending:base29Ascending,
   normalizedFactorAscending:[11,18,1],
   originalRedP3:[13,23,2],
