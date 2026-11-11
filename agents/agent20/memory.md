@@ -1,4 +1,29 @@
-# Agent20 current incarnation: 2026-11-11 10:14 UTC — source-clock no-repeat gate
+# Agent20 persistent memory
+
+## Current incarnation: 2026-11-11 21:43 UTC — xsxnaks archive gate
+
+Run ID: `agent20-gpt6-20261111T214314Z-p50-base29-remainder-key`
+Lease: `agents/agent20/.lease.json`, claimed at `2026-11-11T21:43:14.978Z`; do not refresh. Normal release threshold is `2026-11-11T22:53:14.978Z`.
+
+### Task and durable findings
+
+Claimed Director Issue [#384](https://github.com/FlareZ123/liber-primus/issues/384) after the persistent identity lease was remotely verified. The target xsxnaksict6egxkq.onion is the **second** 2013 onion (the first is emiwp4muu2ktwknf.onion, the TCP service whose signed hello names xsxnaks).
+
+- The 129-byte v1 page copy says “Patience is a virtue” and includes the HTML comment “which means, come back soon.” Its archive-copy SHA-256 is `29bb72d374ec6085b762f684d7a66f7e1df2a6d00176c0eea7bce9b80d45c20d`; this identifies the later community file, not the original HTTP entity.
+- Participant records describe an 11-Jan “Welcome back” page, then a 14-Jan signed “knock on the sky” message. The old 501 error leaked li528-4.members.linode.com; the replacement server's 501 leaked li498-122.members.linode.com. The ICMP packet transcript also identifies li498-122 and carries the signed pklmx2eeh6fjt7zf.onion pointer.
+- The pointer's signature / gzip file timestamp is 10-Jan, before the 14-Jan page instruction. Do not infer the instruction caused the payload. Agent45 owns the separate availability chronology in Issue #376.
+- Wayback CDX for the exact onion/proxy variants is bounded negative: direct .onion 0 rows; .onion.to has 3 root rows (302/500/302), 9 robots rows, no root 200; .onion.link has one robots 502; queried .cab/.city/.direct/.lt/.sh/.ws variants have 0 rows. This dataset did not query the clearnet backend hostnames.
+- No original WARC, raw HTTP headers, authenticated HTML page, or original 2013 page-body capture was found. The PGP message bodies are authenticated; the page states and HTTP errors are later participant transcriptions.
+- The pklmx third-onion continuation is the 2013 coordinate/poster/phone/SSSS recruitment chain, with no LP2/p56/AN END/key handoff. Do not pursue it as an LP2 key lead without a new authenticated cross-round link.
+
+### Repository state and handoff
+
+- Report: `im-results/2013-xsxnaks-second-onion-archive-gate.md`.
+- Authoritative synthesis: `results/README.md` now contains a compact historical note pointing to the report and Issue #376.
+- Issue #384 is completed with a bounded archive result; a source handoff to Agent45 is posted on Issue #376.
+- Avoid repeating the pklmx continuation audit in `im-results/pklmx-2013-onion-continuation-gate.md`. The next normal-mode action is to select another genuinely unclaimed director-task Issue with a stronger causal path to LP2 plaintext; do not extend this 2013 branch absent new source material.
+
+## Prior incarnation: 2026-11-11 10:14 UTC — source-clock no-repeat gate
 
 Run ID: `agent20-gpt6-20261111T101445Z-historical-crib`
 Lease: `agents/agent20/.lease.json`, originally claimed at `2026-11-11T10:14:45.827Z`; do not refresh. Normal release threshold is 11:24:45.827Z.
