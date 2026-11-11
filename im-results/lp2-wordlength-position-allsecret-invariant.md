@@ -78,10 +78,37 @@ This remains below **every** length-matched native control (`minimum = 0.1040541
 
 A second independent positive-control plant assigns a secret 29-way permutation to *each page × word-length × position bucket*, then fully encrypts and decrypts a **12,956-rune** native-GP sequence. The page-specific collision numerator and denominator are preserved exactly by construction, and the complete plaintext round-trip is checked by the SFT.
 
+## Stronger independent p15 route: a 16-phase word clock on every page
+
+The original p15 **4×4 Fibonacci-prime spiral** contains sixteen source-selected positions. The complete unknown LP2 corpus contains exactly **2,896=16×181** source-printed logical words. A plausible human choice is therefore a *sixteen-phase word clock*, rotating or indexing the substitution table once per complete original word. This is a much more permissive hypothesis than one fixed alphabet per page, and stronger than the already-documented global sixteen-lane substitution gate ([Agent37's independent whole-book screen](lp2-word16-lane-substitution-gate.md)).
+
+Give **every (physical page, local complete-word ordinal modulo16, word rune length, within-word rune position)** a *different arbitrary unknown 29-way substitution permutation*. No relation between phases, pages, lengths or positions is assumed. The clock may restart at any page-dependent phase: this permutes each page's lane labels and leaves the key-free collision invariant unchanged. As above, discard all words spanning physical pages and all one-rune words. Include even low-sample buckets with only **two** original observations, maximally permitting independently secret per-lane tables.
+
+| Arbitrary per-page/16-phase/length/position alphabets | Original |
+| --- | ---: |
+| Eligible strata containing ≥2 rune instances | **1,577** |
+| Retained original rune instances | **3,327** |
+| Identical ordered ciphertext-rune pairs within strata | **154** |
+| Eligible ordered pairs | **3,866** |
+| Exact phase16 collision invariant | **0.0398344542** |
+| Largest single stratum | **4 runes** |
+
+The independently seeded (`0x16f1b`) native-GP control draws retain **each original complete word length, page and local word-clock phase**, sampling 400 length-matched words sets per author. They give:
+
+| Independent reference | Lowest Q across 400 draws | Average Q | At or below original |
+| --- | ---: | ---: | ---: |
+| Gibran | **0.09001552** | 0.12296301 | 0/400 |
+| Emerson | **0.08535954** | 0.11405846 | 0/400 |
+| Shakespeare | **0.08794620** | 0.11267589 | 0/400 |
+
+The nearest of all **1,200** controls is still over twice the original's collision fraction. This is an exact **key-independent necessary condition**: no choice whatsoever among the 29! secret permutations in each observed stratum can change that fraction. A second source-native positive-control plant uses independent random 29-way secret permutations in *every phase16 stratum* and recovers all 12,956/12,956 control runes; the same 154/3866-style invariant holds for its own plaintext and ciphertext pair counts.
+
+**Consequence:** the natural p15 sixteen-state *stationary word clock* cannot explain native GP-English plaintext, **even if each physical page, word length, and within-word position independently has its own secret alphabet in each of sixteen clock phases**. This does not disprove other clock lengths, message-dependent phase evolution, a freshly varying key on every word, different alphabet registers or changed original word boundaries. The 16-phase result has relatively few comparable original pairs and, unlike the per-page-only theorem above, is **not certified against arbitrary changes to all 79 disputed glyph identities**. It is conditional on the maintained original transcript.
+
 ## Decision
 
-**Retire direct static substitution alphabets indexed only by printed word length and within-word position, even with independent page-specific secret permutations**, including arbitrary per-page table entries, GP-prime offsets and any within-length permutation of the encrypted words, for plaintext statistically comparable to the three length-matched English registers. An unknown key within this entire static family cannot rescue the original observed histogram. Do not rerun direct word-length alphabet or fixed length-position Caesar sweeps.
+**Retire direct static substitution alphabets indexed only by printed word length and within-word position, even with independent page-specific secret permutations or a stationary sixteen-phase word clock**, including arbitrary per-page table entries, GP-prime offsets and any within-length permutation of the encrypted words, for plaintext statistically comparable to the three length-matched English registers. An unknown key within this entire static family cannot rescue the original observed histogram. Do not rerun direct word-length alphabet or fixed length-position Caesar sweeps.
 
-**Open route to actual plaintext:** a valid forward model must change key state *between words of the same length on the same page*, introduce a different intermediate register, alter the source word-boundary contract, or derive an independent key/codec selecting one of those alternatives. The original cannot fix any particular state from this invariant. This result is a research constraint and is not an unknown-page decryption.
+**Open route to actual plaintext:** a viable direct substitution decoder must change its key in a way **not fixed by the sixteen-phase word clock and page/length/position coordinates**, introduce a different intermediate register, alter the source word-boundary contract, or derive an independent key/codec selecting one of those alternatives. The original cannot fix any particular state from this invariant. This result is a research constraint and is not an unknown-page decryption.
 
 **Reproduce:** [standalone CommonJS SFT](../sims/lp2_wordlength_position_allsecret_sft.cjs), reading the already committed corpus, parser and three GP-English controls. Invoke with `node sims/lp2_wordlength_position_allsecret_sft.cjs` under Node 22.
