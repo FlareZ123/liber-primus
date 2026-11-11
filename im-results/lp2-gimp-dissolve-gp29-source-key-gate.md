@@ -19,6 +19,8 @@ Take the 55 unknown rune-bearing physical pages p0–p55 (p50 is the rune-free n
 | row0 seed 3721122731 | residue mod29 | 0.0344628835 | 0.0344657791 |
 | row0 seed 3721122731 | equal-width scaling | 0.0344832118 | 0.0344990836 |
 
+Because a single, fixed substitution or GP alphabet relabeling merely permutes frequency counts, **IoC is exactly invariant under every bijective 29-symbol post-substitution**. The eight failures therefore also exclude appending an arbitrary stationary one-to-one rune substitution, including Atbash, to these eight direct additive streams as a way to recover ordinary GP-English frequencies. A changing alphabet, nonlinear state, or non-English/non-GP intermediate does not obey that exclusion.
+
 The original stream's IoC is **0.0344783979**. Two 12,956-rune windows of the repository's GP29-encoded Shakespeare control have IoCs **0.0595007131** and **0.0590028251**; all eight original outputs remain random-like and have nonlinguistic initial strings. No recovered plaintext.
 
 The [reproducer](../sims/lp2_gimp_dissolve_gp29_original_sft.cjs) checks the first eight MT outputs from both historically pinned seeds, checks the full original source length and IoC, recovers an independently GP29-encoded Shakespeare positive plant under each of the eight candidate key conventions, verifies all original encryption/decryption round trips, and asserts each original output IoC. Wrong bijective keys also round-trip: their importance is implementation confidence, not historical identification.
