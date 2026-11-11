@@ -10,6 +10,7 @@ of an intended map.
 """
 from random import Random
 import json
+from pathlib import Path
 
 WORDS = [
     "LIKE", "THE", "INSTAR", "TUNNELING", "TO", "THE", "SURFACE",
@@ -25,6 +26,67 @@ MOD = 19
 LIKE = 0
 FIND = 13
 WE = 7
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def reverse_decimal(n):
+    return int(str(n)[::-1])
+
+
+def prime_factors(n):
+    factors = []
+    d = 2
+    while d * d <= n:
+        while n % d == 0:
+            factors.append(d)
+            n //= d
+        d += 1
+    if n > 1:
+        factors.append(n)
+    return factors
+
+
+def p55_independent_59_selector():
+    corpus = json.loads(
+        (ROOT / "resources" / "liber-primus" / "lp2-corpus.json").read_text("utf8")
+    )
+    grid = json.loads(
+        (ROOT / "resources" / "liber-primus" / "lp2-grid-256.json").read_text("utf8")
+    )
+    p55 = next(page["indices"] for page in corpus["pages"] if page["page"] == 55)
+    lengths = [1, 4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3]
+    assert sum(lengths) == len(p55) == 76
+    assert len(lengths) == 17
+
+    # Ornament-derived route selects base60 table value 193. Historical
+    # NUMBER reverses it to 391 and factors that as 17*23.
+    assert prime_factors(reverse_decimal(193)) == [17, 23]
+    assert [i for i, value in enumerate(grid["bytes"]) if value == 193] == [83, 127]
+    assert corpus["translit"][23] == "D"
+
+    # "Find the divinity within": among the 17 page-local segments, D occurs
+    # strictly inside only segments 5 and 9. The third D begins segment 16.
+    inside_d_segments = []
+    offset = 0
+    for segment, length in enumerate(lengths, start=1):
+        word = p55[offset:offset + length]
+        if 23 in word[1:-1]:
+            inside_d_segments.append(segment)
+        offset += length
+    assert inside_d_segments == [5, 9]
+    selected = int("".join(map(str, inside_d_segments)))
+    assert selected == 59
+    assert prime_factors(reverse_decimal(selected)) == [5, 19]
+    return {
+        "number193_reversed": reverse_decimal(193),
+        "number193_prime_factors": [17, 23],
+        "p55_page_local_segments": 17,
+        "gp_index23": "D",
+        "inside_D_segment_numbers": inside_d_segments,
+        "selected_number": selected,
+        "number59_reversed": reverse_decimal(selected),
+        "number59_prime_factors": [5, 19],
+    }
 
 
 def cycle(values, start, sign):
@@ -132,10 +194,12 @@ def all20_word_map(trials=100_000, seed=20261115):
             "null":"shuffle the 18 non-anchor word sums among the other 18 positions; keep LIKE/FIND sums and positions fixed"}}
 
 def main():
+    p55_selector = p55_independent_59_selector()
     minus_like = cycle(SUMS, LIKE, -1)
     plus_find = cycle(SUMS, FIND, 1)
     plus_from_like = (LIKE + SUMS[LIKE] % MOD) % MOD
     result = {
+        "p55_independent_59_selector": p55_selector,
         "words": WORDS,
         "sums": SUMS,
         "modulus": MOD,

@@ -73,6 +73,8 @@ converges on the same p50 interval from the artwork and GP prime system.
 
 This materially strengthens the human-solve-path hypothesis and conditionally resolves the base59/base60 fork in favor of base60. It does **not** authenticate the addition step: the historical service's `+` was a response marker, not an explicit instruction to add the later ornament values. The table interval still lacks a source-fixed reversible cipher operation.
 
+The selected value **193** has one further historically literal continuation: `NUMBER(193)` reverses to **391 = 17×23**. P55 has exactly **17 page-local word segments**, while GP index **23 is D**. Under the solved p57 instruction “find the divinity within,” D lies strictly inside only segments **5 and 9**; the third D is the first rune of segment16 and lies on its circumference. Reading 5,9 in source order gives **59**. The same NUMBER operation sends 59→95=**5×19**, independently selecting the previously underdetermined divisor59 in the p57 PARABLE/NUMBER route and matching p57's 19 body words plus two five-cycle structures. This supplies a cross-page navigation loop; it still does not provide the missing reversible LP2 ciphertext operation.
+
 ## Prime-totient address closure and the 18 by 13 page
 
 The fragment selection has a further source-exact self-check. Physical p27 contains **234 runes = 18 × 13**. Across all 32 thirteen-dot-delimited fragments, fragment 18 is the **only** fragment whose start page contains exactly `13 × fragment_number` runes. Thus the same source quantities that select the fragment also specify an exact 18 by 13 rectangle for its page.
