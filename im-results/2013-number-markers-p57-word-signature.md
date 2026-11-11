@@ -26,26 +26,26 @@ Using the existing GP prime weights, the 19 human-readable body-word sums on p57
 | Position | Word | Prime sum | NUMBER/factor-index signature |
 |---:|---|---:|---|
 | 1 | LIKE | 184 = 2³×23 | H |
-| 2 | THE | 72 | F |
-| 3 | INSTAR | 280 | O |
-| 4 | TUNNELING | 339 | U (with factor 113 outside GP29) |
-| 5 | TO | 66 | R |
-| 6 | THE | 72 | F |
-| 7 | SURFACE | 246 | J |
-| 8 | WE | 86 | P |
-| 9 | MUST | 186 | I |
-| 10 | SHED | 232 | N |
-| 11 | OUR | 21 | U |
-| 12 | OWN | 55 | R |
-| 13 | CIRCUMFERENCES | 451 | R |
-| 14 | FIND | 151 | `+` |
-| 15 | THE | 72 | F |
-| 16 | DIVINITY | 376 | X |
-| 17 | WITHIN | 115 | H |
-| 18 | AND | 215 | P |
-| 19 | EMERGE | 300 | U |
+| 2 | THE | 72 = 2³×3² | U |
+| 3 | INSTAR | 280 = 2³×5×7 | C |
+| 4 | TUNNELING | 339 = 3×113 | U* |
+| 5 | TO | 66 = 2×3×11 | C |
+| 6 | THE | 72 = 2³×3² | U |
+| 7 | SURFACE | 246 = 2×3×41 | P |
+| 8 | WE | 86 = 2×43 | P |
+| 9 | MUST | 186 = 2×3×31 | J |
+| 10 | SHED | 232 = 2³×29 | N |
+| 11 | OUR | 21 = 3×7 | R |
+| 12 | OWN | 55 = 5×11 | G |
+| 13 | CIRCUMFERENCES | 451 = 11×41 | T |
+| 14 | FIND | 151 (prime; reverse 151 is prime) | `+` |
+| 15 | THE | 72 = 2³×3² | U |
+| 16 | DIVINITY | 376 = 2³×47 | X |
+| 17 | WITHIN | 115 = 5×23 | I |
+| 18 | AND | 215 = 5×43 | S |
+| 19 | EMERGE | 300 = 2²×3×5² | O |
 
-The two 2013 marker signatures therefore occur **uniquely and in the same order** in the p57 word list:
+`U*` at TUNNELING is only a partial signature because factor 113 lies outside GP29; the factor-index code's zero fallback is not treated as evidence. The two 2013 marker signatures therefore occur **uniquely and in the same order** in the p57 word list:
 
 - `NUMBER(29)` → H, matching **LIKE** at body-word position 1. Its word sum 184 is exactly twice 92, and shares the same distinct prime factors {2, 23}.
 - `NUMBER(3257)` → `+`, matching **FIND** at body-word position 14. The word sum 151 is prime and reverses to itself, so it also returns `+`.
