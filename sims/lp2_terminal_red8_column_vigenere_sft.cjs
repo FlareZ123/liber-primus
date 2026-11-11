@@ -23,6 +23,29 @@ const corpus = load("resources/liber-primus/lp2-corpus.json");
 const ink = load("resources/liber-primus/lp2-ink-annotations.json");
 const grid = load("resources/liber-primus/lp2-grid-256.json");
 const mod = n => ((n % 29) + 29) % 29;
+const quadgramRaw = fs.readFileSync(path.join(ROOT,
+  "resources/control/duko_round27_english_quadgrams.txt"),"utf8");
+const quadgrams = new Map();
+let quadTotal = 0;
+for(const line of quadgramRaw.trim().split(/\\r?\\n/u)){
+  const m = /^([A-Z]{4})\\s+(\\d+)$/u.exec(line);
+  if(!m) continue;
+  quadgrams.set(m[1],Number(m[2]));
+  quadTotal += Number(m[2]);
+}
+assert.equal(quadgrams.size,79495);
+assert.equal(quadTotal,7266795);
+/** Canonical GP-to-Latin 4-gram score; higher is more English-like. */
+function quadScore(indices){
+  const s=indices.map(i=>corpus.translit[i]).join("");
+  let sum=0,missing=0;
+  for(let i=0;i+4<=s.length;i++){
+    const found=quadgrams.get(s.slice(i,i+4));
+    sum+=Math.log((found===undefined?0.01:found)/quadTotal);
+    if(found===undefined)missing++;
+  }
+  return {meanNats:sum/(s.length-3),missingFraction:missing/(s.length-3)};
+}
 /** @param {number} number */
 const page = number => corpus.pages.find(p => p.page === number).indices;
 /** @param {number} number */
@@ -104,7 +127,9 @@ const result={
   columnKeyGP29:columnKey,
   originalCipherIoC:ioc(mappedCipher),
   originalDecodedIoC:ioc(decoded),
-  solvedP56IoC:ioc(page(56)),
+  solvedCipherP56IoC:ioc(page(56)),
+  englishQuadgram:{raw:quadScore(mappedCipher),decoded:quadScore(decoded),
+    solvedP57Plain:quadScore(page(57)),solvedP56Cipher:quadScore(page(56))},
   first80GP:decoded.slice(0,80).map(i=>corpus.translit[i]).join(""),
   sourcePlantRoundTrip:256,
   wrongSourceKeyControlFailed:true,
