@@ -38,6 +38,41 @@ The two **internal** original dot events have a finite, source-fixed key-clock i
 
 These are exactly **nine** distinct state rules for the page's two internal dot events. The terminal mark at rune index 85 cannot affect this page's plaintext.
 
+
+
+### Mobius selector for the p56 literal-F interrupter
+
+*Provisional source interpretation, Agent 11, 11 November 2026.*
+
+The 2013 0_wisdom artifact provides a plausible reason to consider the arithmetic Möbius function alongside the totient: its 5×5 square contains the literal word **MOBIUS**, while its prose says that the primes and totient function are sacred. The pinned transcription and source note are resources/external/2013-0-wisdom.txt and resources/external/2013-0-wisdom-source.md; the transcription is derived evidence, not a substitute for the original image.
+
+On solved p56, the five ciphertext-F positions and their Möbius values are:
+
+| Zero-based offset \(i\) | \(\mu(i)\) | \(\mu(i+1)\) |
+| ---: | ---: | ---: |
+| 35 | +1 | 0 |
+| 47 | −1 | 0 |
+| 51 | +1 | 0 |
+| **56** | **0** | −1 |
+| 74 | +1 | 0 |
+
+The candidate selector is deliberately narrow:
+
+\[
+\text{ciphertext F at offset }i\text{ is literal/pass-through iff }\mu(i)=0.
+\]
+
+It selects only offset **56**, exactly the known literal-F interrupter. With the already established consecutive-prime totient stream beginning at prime 2, modulo 29, this gives the known 85-rune plaintext exactly and consumes 84 key symbols. The one-based alternative selects four different F positions (35, 47, 51, 74), consumes 81 key symbols and mismatches 50/85 runes; omitting the skip mismatches 29/85. The zero-based mask is 8, the same mask as the previously established p56 interrupter.
+
+**What this adds:** a plausible source-based arithmetic selector for the one known p56 exception, without choosing the skip from the plaintext. It is consistent with the 2013 MOBIUS/totient clue.
+
+**What it does not add:** this is not a new plaintext or cipher recovery. The simpler rule “pass through the rune at the physical page number” already selects offset 56 and is tested by sims/p56_page_index_prime_skip_sft.cjs; the Möbius rule coincides with that rule on p56. The existing sims/prime_totient_F_interrupt_viterbi.py independently recovers the same skip by language scoring. The source does not explicitly say to evaluate \(\mu\) on zero-based rune offsets, and the choice of arithmetic \(\mu\) is interpretive rather than a literal instruction.
+
+The scope is also limited: on the two known LP1 Vigenère controls, the same zero-based rule selects only positions 48 and 84 versus the WELCOME literal-F positions 48, 74, and 84, and only position 49 versus the KOAN positions 49 and 58. It is therefore **not** a universal Cicada literal-F convention; it may be specific to the p56 totient mechanism or coincidental. The existing exhaustive direct transfer of the p56 key family to unsolved pages remains negative. Do not use this observation to restart that search.
+
+**Reproducer:** sims/p56_mobius_interrupter_selector_sft.cjs. It derives the mask from original p56 ciphertext-F positions and \(\mu(i)\); the known plaintext is used only as the positive control. Treat this as a provisional cross-check, not an established global cipher rule.
+
+
 ## Complete original-input result
 
 The [single runnable source-input test](../sims/lp2_punctuation_solved_clock_sft.cjs) reads the original 85 ciphertext rune indices and all three physically annotated marks. It constructs the independent known GP-encoded plaintext, uses the historically established F interrupter, and scores *every original rune* under each candidate clock. A separate import of the existing [authentic solved-page regression](../sims/solved_cipher_regression.cjs) checks the true known inverse independently of the competing clock implementation.
