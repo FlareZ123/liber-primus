@@ -252,7 +252,11 @@ function main() {
     ["Encryption","LCBPNGPARRTHBPC"],
     ["Encryption","7144649572585460758"],
     ["Seeding","LCBPNGPARRTHBPC"],
-    ["Seeding","7144649572585460758"]])
+    ["Seeding","7144649572585460758"],
+    // The real 2016 4gq25.jpg was extracted with OutGuess -r and no -k.
+    // Empty password is an independently authenticated source control.
+    ["Encryption",""],
+    ["Seeding",""]])
     for (const reduction of ["mod","scaled"])
       for (const sign of [-1,1]) {
         const key = keys(role,password,reduction,sign,500);
@@ -263,7 +267,11 @@ function main() {
           firstWords:found.plains.slice(0,28).join(" ")});
       }
   models.sort((a,b)=>b.score-a.score);
-  assert.equal(models.length,16);
+  assert.equal(models.length,24);
+  const sourcePasswordModels=models.filter(m=>m.password);
+  const authenticEmptyModels=models.filter(m=>!m.password);
+  sourcePasswordModels.sort((a,b)=>b.score-a.score);
+  authenticEmptyModels.sort((a,b)=>b.score-a.score);
   const sourceControl = (english.slice(190000).match(/[A-Za-z]+/g) ||
     []).slice(0,58).map(encode);
   assert.ok(sourceControl.every((w) => w !== null));
@@ -278,7 +286,8 @@ function main() {
   // Freeze the p0-selected construction and carry the same key clock
   // forward through complete original words at physical pages 0 and 1.
   // The word crossing the page boundary is retained as a single word.
-  const selected = models[0];
+  const selected = sourcePasswordModels[0];
+  const emptySelected = authenticEmptyModels[0];
   const page01 = originalWords().filter((w) => w.end <= 1);
   const fullKey = keys(selected.role,selected.password,
     selected.reduction,selected.sign,1000);
@@ -286,9 +295,28 @@ function main() {
     frequencies,total,80,65);
   const page1WordCount = page01.filter((w) => w.page === 1).length;
   const page1Heldout = heldout.plains.slice(-page1WordCount);
+  const emptyKey=keys(emptySelected.role,emptySelected.password,
+    emptySelected.reduction,emptySelected.sign,1000);
+  const emptyHeldout=decode(page01.map(w=>w.indices),emptyKey,
+    frequencies,total,80,65);
+  const emptyPlant=plant(sourceControl,
+    keys("Encryption","","scaled",1,500));
+  const emptyRecovered=decode(emptyPlant.output,
+    keys("Encryption","","scaled",1,500),frequencies,total,40,40);
+  const emptyExact=sourceWords.reduce((n,word,i)=>
+    n+Number(word===emptyRecovered.plains[i]),0);
+  assert.ok(emptyExact>=45,"Empty historical password plant failed");
   console.log(JSON.stringify({
     models:models.length,originalP0CompleteWords:p0.length,
-    originalP0Runes:size,originalTop:models.slice(0,8),
+    originalP0Runes:size,originalTop:sourcePasswordModels.slice(0,8),
+    historicalEmptyPassword:{models:authenticEmptyModels.length,
+      best:emptySelected,heldoutScore:emptyHeldout.score,
+      heldoutFirstWords:emptyHeldout.plains.slice(-page1WordCount)
+        .slice(0,25).join(" "),
+      plant:{words:sourceControl.length,
+        actualInsertions:emptyPlant.insertions,
+        actualSkips:emptyPlant.skipped,
+        recoveredExactWords:emptyExact}},
     originalPage1Heldout:{completeWords:page1WordCount,
       selectedPage0Model:selected,
       originalFirstWords:page1Heldout.slice(0,32).join(" "),
