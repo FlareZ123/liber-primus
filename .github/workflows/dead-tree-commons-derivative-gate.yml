@@ -1,0 +1,27 @@
+name: LP2 DeadTree exact Commons derivative gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  derivative-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install image analysis dependencies
+        run: python -m pip install --disable-pip-version-check --quiet numpy opencv-python-headless
+      - name: Download exact Commons assets and run fixed-transform comparisons
+        run: |
+          python sims/dead_tree_commons_derivative_gate.py --output im-results/dead-tree-commons-derivative-gate.json | tee im-results/dead-tree-commons-derivative-gate.log
+      - name: Preserve machine-readable results
+        uses: actions/upload-artifact@v4
+        with:
+          name: dead-tree-commons-derivative-gate
+          path: |
+            im-results/dead-tree-commons-derivative-gate.json
+            im-results/dead-tree-commons-derivative-gate.log
+          if-no-files-found: error
