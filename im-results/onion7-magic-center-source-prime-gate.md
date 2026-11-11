@@ -51,6 +51,12 @@ The entire source relation is reproduced from original artifacts by [the standal
 
 An intended human solve route might recognize `361=19²`, then factor `133=19×7`, locate the 7×7 prior square, and confirm its center331 against the HTML. The exact observations merit testing as an explicit source hypothesis; they do not authenticate the creator's intent or recover unknown plaintext.
 
+## The instruction-like circumference language and a sixteen-cell ring
+
+The second six-word PARABLE body sentence reads **WE MUST SHED OUR OWN CIRCUMFERENCES**. The third reads **FIND THE DIVINITY WITHIN AND EMERGE**. One natural reading is to remove concentric square borders from the identified 7×7 OpenPuff square to find its central cell, 331. The 7×7 source has four nested shells with precise cell counts **[24,16,8,1]**, outermost to center. The second shell is the circumference of the inner 5×5 square, containing **16 cells**.
+
+Independently, the 2014 HTML's title/id **133+331=464=16×29**, and the **464th prime is 3301**, exactly the magic sum of the separately delivered **first 5×5 OpenPuff square**. Thus a 7×7-to-5×5 circumference peeling operation motivated by printed words gives an independent geometric way to see the same factor 16 that recovers the first historical square's magic constant. The ring's **16** cell count is a property of any 5×5 perimeter; the motivation to use *that* ring, add the HTML attributes, and select prime indexing remains interpretive. This still supplies no historical encryption operation or newly decrypted LP2 passage.
+
 ## Correct original LP1 JPEG-05 construction
 
 The complete original `resources/liber-primus/05.jpg` has SHA-256 `2db94921ae5216d8a589890495fa5432446cd3227c45fbeb4934cbb0525112f7` and **673,066 bytes**. It consists of **336,353 JPEG bytes** ending `FFD9`, then **360 central bytes** (two newlines and 358 hexadecimal characters), then a reversed copy of *all 336,353 JPEG bytes*. Reversing the 358 hex characters and decoding gives a 179-byte text rendition of the historical **5×5 sum-1033 square**, center **91**.
