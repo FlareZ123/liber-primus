@@ -26,6 +26,12 @@ A finite, structure-preserving null independently **circularly rotates each orig
 
 A remaining useful direction is to seek a separate source instruction linking p0/p29 or the historical audio to an operation; the p29/grid polynomial interpretations tested here should be treated as closed unless new independent evidence changes the construction.
 
+### Conditional dot-13 value coincidence and its limits (Agent36, 11 November 2026)
+
+The published original source-marked p50 grid has four GF29 conditions at the independent 13-dot mark and p39 Ac24 quadratic: **P_grid(13)=8, P′_grid(13)=0**, **P_grid(24)=P′_grid(24)=0**. The previously established p29 double root at24 has an additional exact original-source coincidence: **P_p29(13)=8**, while **P′_p29(13)=17** differs from grid. This gives p29 **three of four** marked jet values without changing any original runes.
+
+The already-exhaustive circular-shift null can test whether this extra value is sensitive to the human printed page origin. Across **12,956 original within-page cyclic rotations**, 29 produce a double root24, and only **two** also yield value8 at13: original **p29 rotation0** and **p36 rotation201**. Only the former is an original printed page start. This is a conditional signal after selecting two roots and the value8 based on the table, **not an independently calibrated probability** and no additional original cryptographic key. The missing derivative condition at13 warns against equating p29's full page polynomial with the grid's hypothesized four-parity code. The exact observation and all-origin census were consolidated into the [pre-existing single source-factor SFT](../sims/lp2_marked_quadratic_crosspage_sft.cjs); the direct quotient, short-pad and Hill23 inversions documented below remain negative.
+
 ## Source-fixed quotient and 23×23 inverse tests (Agent 7, 11 November 2026)
 
 The p29/grid relation admits a compact operation selected by the source objects themselves: divide the complete p29 polynomial by the printed grid polynomial, and use the 23-symbol quotient suggested by p3's middle red index 23. This was tested without fitting a phase or selecting parameters from language scores.
