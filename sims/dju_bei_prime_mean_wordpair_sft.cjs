@@ -109,9 +109,11 @@ assert.equal(full.length,13136);
 assert.deepEqual(duplicatedWindows(unsolved,7),[]);
 const crossPageSeven=duplicatedWindows(full,7);
 assert.deepEqual(crossPageSeven,[{first:6555,second:12950}]);
-const p27=corpus.pages[27].indices,p55=corpus.pages[55].indices,p56=corpus.pages[56].indices;
-assert.deepEqual(p27.slice(28,35),[23,11,1,17,18,10,25]);
-assert.deepEqual([...p55.slice(70),p56[0]],[23,11,1,17,18,10,25]);
+const p27Runes=corpus.pages[27].indices;
+const p55Runes=corpus.pages[55].indices;
+const p56Runes=corpus.pages[56].indices;
+assert.deepEqual(p27Runes.slice(28,35),[23,11,1,17,18,10,25]);
+assert.deepEqual([...p55Runes.slice(70),p56Runes[0]],[23,11,1,17,18,10,25]);
 assert.equal(55-27,28);
 
 console.log(JSON.stringify({
