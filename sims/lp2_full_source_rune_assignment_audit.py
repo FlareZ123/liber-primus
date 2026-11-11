@@ -483,6 +483,8 @@ def main():
     # Exact-count/no-drop metrics above exclude p43, which supplied the templates.
     heldout_exact_positions = exact_nodrop_positions
     heldout_exact_mismatches = exact_nodrop_mismatch
+    heldout_exact_correct = heldout_exact_positions - heldout_exact_mismatches
+    heldout_mismatch_records = [m for m in mismatch_records if m["page"] != 43]
     high_confidence = [m for m in mismatch_records
                        if m["page"] == 0 and m["line"] == 0 and m["position"] in (9, 10, 11, 12)]
     report = {
@@ -505,9 +507,10 @@ def main():
             "position_aligned_classifications_heldout": classified_positions - len(train_labels),
             "unmapped_observed_components": unmapped_observed_components,
             "unresolved_expected_positions": sum(x.get("missing", 0) for x in unresolved),
-            "nearest_neighbor_mismatches": len(mismatch_records),
+            "nearest_neighbor_mismatches_including_p43": len(mismatch_records),
             "nearest_neighbor_matches_including_p43": classified_positions - len(mismatch_records),
-            "nearest_neighbor_matches_heldout": classified_positions - len(train_labels) - len(mismatch_records),
+            "nearest_neighbor_mismatches_heldout": len(heldout_mismatch_records),
+            "nearest_neighbor_matches_heldout": classified_positions - len(train_labels) - len(heldout_mismatch_records),
             "exact_count_no_drop_positions_including_p43": exact_nodrop_positions + len(train_labels),
             "exact_count_no_drop_positions_heldout": heldout_exact_positions,
             "exact_count_no_drop_heldout_mismatches": heldout_exact_mismatches,
