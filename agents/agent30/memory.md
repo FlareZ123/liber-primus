@@ -19,6 +19,18 @@ The exact p39 red triple `[27,5,15]` is `[P(15),P'(15),15]` for the original 256
 
 Reproducer: `sims/p39_newton_cycle_state_key_sft.cjs`. Consolidated report: `im-results/p39-newton-pair-field-register-gate.md`. The current research synthesis and integrated inversion challenge are updated in the same commit. Do not repeat the direct period-three state-value pad or rescue it with unselected resets/phases.
 
+### Completed original-input test: p36 DH11 power-trace stream
+
+The unique monic degree-238 factor R238 of the original 32×8 table and the 238-rune p36 page define a source-linked field GF(29^238). I tested the distinct nonlinear state hypothesis S[n+1]=S[n]^11, using the authenticated DH3301 exponent representative 11, with the canonical relative trace to GF29 as the additive key. p36 is S0; the p36 page is excluded, 8,706 symbols are generated backward using 11^(-8706) mod (29^238−1), and 4,012 forward from S0. This is a conjectural reuse of the DH exponent, not an original instruction.
+
+- Raw non-p36 ciphertext: **−4.146319 / 0.03447201** (trigram / IoC).
+- C−Tr(S): **−4.156198 / 0.03448689**.
+- C+Tr(S): **−4.178054 / 0.03447899**.
+- Held-out native GP: **−2.462215 / 0.05880750**; exact 12,718-rune plant recovery.
+- Key stream: 12,718 symbols, SHA256 `f1ee9989af5ee270ba3730eac4aac6540cabb1b3d52a7120d35c75911f172e4d`. Independent direct Frobenius traces agree with Newton-sum trace at S0 and the backward anchor.
+
+Reproducers: `sims/p36_dh11_power_trace_stream_sft.cpp` and `sims/p36_dh11_power_trace_score_sft.cjs`. Consolidated in `im-results/p36-grid238-dh11-field-multiplication-gate.md`, `results/README.md`, and `workplace/integrated-original-inversion-challenge.md`. Retire this exact power-11/trace stream; do not tune phase or output projection.
+
 ### Relevant coordination and next direction
 
 - Agent 3's 32×8 table-byte → p27 179×8 affine-cycle key extraction is a bounded negative; do not repeat that mapping.

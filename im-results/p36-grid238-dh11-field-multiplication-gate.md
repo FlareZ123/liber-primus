@@ -1,6 +1,6 @@
-# Source factor GF(29^238): p36 multiplication and DH3301 exponent-11 inverse
+# Source factor GF(29^238): p36 field operations and DH3301 exponent-11 stream tests
 
-**Status:** two explicit, reversible, source-constrained GP29 field transformations tested on untouched original LP2 ciphertext with native solved-page plants. **No unknown plaintext, key or destination recovered.** These are proposed literal uses of genuine source arithmetic. The choice to treat p36 as a field key, or to lift the historical DH exponent into this field, is not an original instruction.
+**Status:** three explicit, reversible, source-constrained GP29 field transformations tested on untouched original LP2 ciphertext with native solved-page plants. **No unknown plaintext, key or destination recovered.** These are proposed uses of genuine source arithmetic. Treating p36 as a field key, lifting the historical DH exponent into this field, or reusing it as a state-update exponent is not an original instruction.
 
 ## Why these are plausible finite operations
 
@@ -34,6 +34,23 @@ All post-p36 blocks are likewise below IoC **0.045**; the mean is approximately 
 
 Both outputs are nonlinguistic by the same predeclared GP coincidence threshold. For all transformations the original input is reproduced exactly when reencryption is applied. A 238-rune plaintext plant made by repeating the source-solved p57 text is encrypted then recovered **238/238** under every tested inverse. This validates implementation and detection capacity; it does not constitute evidence of an unknown-page decryption.
 
+## Power-11 state recurrence and relative-trace output (Agent 30, 11 November 2026)
+
+**Human-solve-path hypothesis.** The p36 page has exactly 238 runes, matching the degree of the unique monic irreducible factor R238 of the original table polynomial. The authenticated 2013 DH3301 participant exponent has smallest positive representative 11. A compact nonlinear stream hypothesis is therefore to treat p36's printed rune indices as one element S0 of GF(29^238), update `S[n+1] = S[n]^11`, and emit the canonical relative trace `Tr_GF(29^238)/GF(29)(S[n])` as a GP29 key symbol. The 2013 source authenticates the exponent in a DH example, not its reuse as a PRNG; that link remains conjectural.
+
+The power map is reversible because 11 is coprime to `N = 29^238 − 1`. The source-fixed clock excludes p36 itself: use the inverse power map to extend **8,706** key symbols backward from the first post-p36 position, then emit **4,012** symbols forward from S0. No fitted phase, reset, coefficient orientation or output projection is used. The Newton-sum trace coefficients are independently checked against the direct Frobenius trace for both S0 and the backward-anchored state; the two implementations agree around the seed boundary.
+
+| Candidate | GP29 trigram score (nats/rune) | IoC |
+|---|---:|---:|
+| Raw non-p36 ciphertext (12,718 runes) | **−4.146319** | **0.03447201** |
+| `P_i = C_i − Tr(S_i)` | −4.156198 | 0.03448689 |
+| `P_i = C_i + Tr(S_i)` | −4.178054 | 0.03447899 |
+| Held-out native-GP Shakespeare reference | **−2.462215** | **0.05880750** |
+
+The 12,718-symbol key is nearly uniform (IoC **0.03450489**; bin counts 396–501). Both decryptions score below the raw stream and remain ciphertext-like. A 12,718-rune native-GP plant is recovered exactly. The raw key-stream SHA256 is `f1ee9989af5ee270ba3730eac4aac6540cabb1b3d52a7120d35c75911f172e4d`; the monic R238 lower-coefficient array SHA256 is `65cb6ea001c65a85b38d24bca37049c806e52efd24b334fb3ad0d0087213184c`, and the printed p36 seed array SHA256 is `a53ded5a907795ae4c57a2a75bd3fba5a5c7093ac092d40fb7f7f8a7eda91491`.
+
+**Decision:** retire this specific p36-seeded power-11 / relative-trace additive stream. It does not disprove every nonlinear state update or field output, but do not repeat this exponent/trace model or tune its phase. Reproduction: [C++ key generator](../sims/p36_dh11_power_trace_stream_sft.cpp) and [Node scorer](../sims/p36_dh11_power_trace_score_sft.cjs).
+
 ## Decision and next useful question
 
-Retire the direct reusable-p36 field multiplier and literal DH3301-exponent-11 interpretation. The naturally related direct additive LFSR and source-exponent 1033/3301 models were already bounded elsewhere; broadening the exponent or block-phase hunt without a new clue would be unjustified. The factor itself remains an exact, source-linked mathematical structure, while its intended role remains open. A next experiment is warranted only if an independent clue specifies **which** object in the table's extension field is a key, how it is initialized, and exactly which original runes it acts on.
+Retire the direct reusable-p36 field multiplier, literal DH3301-exponent-11 inverse, and p36-seeded power-11/relative-trace stream. The naturally related direct additive LFSR and source-exponent 1033/3301 models were already bounded elsewhere; broadening the exponent or block-phase hunt without a new clue would be unjustified. The factor itself remains an exact, source-linked mathematical structure, while its intended role remains open. A next experiment is warranted only if an independent clue specifies **which** object in the table's extension field is a key, how it is initialized, and exactly which original runes it acts on.
