@@ -131,6 +131,38 @@ assert.deepEqual(p56PlainIndices, encodeWord("END"));
 assert.equal(rows[5].selected, p56Word);
 assert.equal(rows[11].selected, p56Word);
 
+// Frozen base-58 addressing applied to all authentic 2016 signed-message words.
+const signedPayload = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const signedMessage = signedPayload.slice(
+  signedPayload.indexOf("Hello."),
+  signedPayload.indexOf("-----BEGIN PGP SIGNATURE-----")
+);
+const messageWords = signedMessage.match(/(?<![A-Za-z0-9])[A-Za-z]+(?![A-Za-z0-9])/g) || [];
+assert.equal(messageWords.length, 43); // excludes A,F inside the PGP hex fingerprint
+
+/** @param {string} word @param {number} index */
+function mapMessageWord(word, index) {
+  const sum = encodeWord(word).reduce((n, glyph) => n + corpus.prime[glyph], 0);
+  const page = sum % 58;
+  const wordIndex = Math.floor(sum / 58);
+  return {word, index, sum, page, wordIndex,
+    runeWord: lp2Pages[page]?.[wordIndex] ?? null};
+}
+const fullMap = messageWords.map(mapMessageWord);
+const exceptions = fullMap.filter(row => row.runeWord === null);
+assert.deepEqual(exceptions.map(({word, sum, page, wordIndex}) =>
+  [word, sum, page, wordIndex]), [["lies", 224, 50, 3]]);
+assert.equal(lp2Pages[50].length, 0);
+const page50Table = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"))
+  .pages.find(p => p.page === 50);
+assert(page50Table && page50Table.tokens.length === 104);
+assert.deepEqual([page50Table.tokens[3], page50Table.bytes[3]], ["3D", 193]);
+const locate = word => fullMap.filter(row => row.word.toLowerCase() === word);
+assert(locate("the").every(row => row.page === 14 && row.wordIndex === 1));
+assert(locate("their").every(row => row.page === 56 && row.wordIndex === 1));
+assert.deepEqual(locate("found").map(row => [row.page, row.wordIndex]), [[14, 2]]);
+assert.deepEqual(locate("beware").map(row => [row.page, row.wordIndex]), [[32, 5]]);
+
 // Cross-check the 2016 clue phrase against the p32 11x11 GP-prime square.
 const p32Page = corpus.pages.find((page) => page.page === 32);
 assert(p32Page);
@@ -153,5 +185,9 @@ console.log(JSON.stringify({
   foldHits,
   p56Word1Cipher: p56Word,
   p56Word1Plain: "END",
-  rows
+  rows,
+  fullMessage: {words: messageWords.length, runeWordAddresses: fullMap.length - exceptions.length,
+    exception: {word: "lies", sum: 224, page: 50, index: 3,
+      tableToken: page50Table.tokens[3], tableByte: page50Table.bytes[3]},
+    unfittedAddresses: {found: [14, 2], beware: [32, 5]}}
 }, null, 2));
