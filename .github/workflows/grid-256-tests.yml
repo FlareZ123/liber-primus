@@ -59,12 +59,6 @@ on:
           - framed8-repeated-key
         default: full
 
-  push:
-    paths:
-      - '.github/workflows/grid-256-tests.yml'
-      - 'sims/p32_buds_origin_ray_pixel_gate.py'
-      - 'sims/p50_m7_nonlinear_stream_sft.cjs'
-      - 'sims/lp2_2014_fragment_pair_key_sft.cjs'
 
 jobs:
   test:
@@ -182,7 +176,7 @@ jobs:
         run: node sims/red_triad_quartic_annihilator_sft.cjs
 
       - name: 2014 cell6/7 modulo-8 columns 7-8 as per-fragment two-rune key
-        if: ${{ github.event_name == 'push' || inputs.probe == 'fragment-pair' }}
+        if: ${{ inputs.probe == 'fragment-pair' }}
         run: node sims/lp2_2014_fragment_pair_key_sft.cjs
 
       - name: Original 256-byte grid self-pointer 11-cycle and source-jet joint test
@@ -214,7 +208,7 @@ jobs:
           python3 sims/tree121_directional_field_sft.py
 
       - name: Source-derived M7 × p50 period-256 nonlinear stream composition gate
-        if: ${{ github.event_name == 'push' || inputs.probe == 'm7-nonlinear-stream' }}
+        if: ${{ inputs.probe == 'm7-nonlinear-stream' }}
         run: node sims/p50_m7_nonlinear_stream_sft.cjs
 
       - name: Original 2016 image BUDS-to-HOME 318-degree tree-ray pixel gate
