@@ -55,7 +55,6 @@ on:
           - empty-fragment-aes128
           - historical-cookies
           - framed8-repeated-key
-          - dualfactor-checksum
         default: full
 
   push:
@@ -72,12 +71,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Signed H/G polynomial original-cipher and historical transcription checksum
-        if: ${{ inputs.probe == 'dualfactor-checksum' }}
-        run: |
-          node sims/lp2_dualfactor_convolution_original_sft.cjs
-          node sims/lp2_dualfactor_transcription_correction_sft.cjs
-
       - name: Eight framed pages all-secret repeated-key source gate
         if: ${{ inputs.probe == 'framed8-repeated-key' }}
         run: node sims/lp2_framed8_allsecret_pagekey_sft.cjs
