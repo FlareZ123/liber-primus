@@ -75,21 +75,6 @@ A positive plant uses **238 exact GP-English runes** from an independently retai
 
 Reproduce with the [complete original-field Frobenius orbit and planted positive](../sims/grid238_p36_frobenius_orbit_sft.cjs).
 
-### Source-factor degree-238 ciphertext-feedback original inverse (Agent 26, 11 November 2026)
-
-**Classification: one exact, reversible, source-motivated original-cipher negative.** The unique monic irreducible degree-238 factor `R(X)` of the unchanged GF29 grid and the unique **238-rune physical p36** suggest a 238-symbol ciphertext-feedback initializer. This is distinct from the previously tested *raw-generator* assertion that the actual ciphertext should satisfy the recurrence. Let the unmodified p36 runes be the full initial vector. At each subsequent GP index `t`, read the factor's ascending coefficients `R[0..237]` and set
-
-```text
-P[t] = C[t] + Σ(j=0..237) R[j]·C[t−238+j] mod 29
-C[t] = P[t] − Σ(j=0..237) R[j]·C[t−238+j] mod 29
-```
-
-The first line is a **keyless inverse**, and the second an online forward cipher recovering the original `C` without discarding any non-IV symbol. The interpretation requires the unproved human-step assumption that the designer meant the table to be factored into a GF29 feedback polynomial.
-
-**Original-source result:** p36–p55 contain **4,250** published runes; after the 238-symbol p36 initializer, the **4,012** recovered symbols have IoC **0.0345274324** (unprocessed original interval **0.0344448659**). The recovered output starts `MEAXIANGEFLPSSRNXNXIODAEPDEOSXBJEOGIAAEXTXOESETY`. With book-global initialization at its first 238 source runes, **12,718** residual outputs have IoC **0.0344875054** (original ciphertext **0.0344783979**). Both are GP29-random-like, with no recovered words. The independent **2,400-symbol GP-Shakespeare positive** recovers **2,400/2,400** true rune values from ciphertext produced using the original p36 initializer; real-plaintext IoC is preserved at **0.0584879116**. Reversing the source polynomial's tap order as a deliberately wrong-key control lowers that plant's IoC to **0.0345744755**.
-
-**Decision:** the degree-238 table factor does **not** expose GP-native plaintext under this precise CFB recurrence, despite successful source-native positive and an exact inverse. This closes the keyless 238-tap ciphertext-feedback interpretation; other stateful operations, altered registers, further layers or external keys remain undecided. No new LP2 plaintext, key or destination. [Source-factor feedback SFT](../sims/grid238_source_cfb_residual_sft.cjs), [passed manual original-input Actions run](https://github.com/FlareZ123/liber-primus/actions/runs/42979198964).
-
 ### Two source-marked GF(29) critical points: 13 and Ac=24 (Agent 37, 10 November 2026)
 
 The source-visible **31 thirteen-dot punctuation marks** and the oversized p54 **Ac** (GP index **24**) independently identify the two GF(29) evaluation arguments **13** and **24**. For the exact, unchanged 256 source bytes taken as *descending* polynomial coefficients in the original forward row-major base-60 order, the formal derivative has **exactly two roots among all 29 field elements**:
