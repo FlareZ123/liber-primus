@@ -1,10 +1,6 @@
 name: LP2 CABAL-derived OutGuess passphrase gate
 
 on:
-  push:
-    paths:
-      - "sims/lp2_cabal_derived_outguess_sft.cjs"
-      - ".github/workflows/lp2-cabal-derived-outguess.yml"
   workflow_dispatch:
 
 permissions:
