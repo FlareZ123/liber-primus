@@ -33,7 +33,7 @@ probe() {
   log="$OUT/$name.log"
   rm -f "$output"
   set +e
-  "$BIN" -i "$input" -o "$output" >"$log" 2>&1
+  "$BIN" -r "$input" "$output" >"$log" 2>&1
   rc=$?
   set -e
   echo "===== $name (exit=$rc) ====="
