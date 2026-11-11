@@ -10,6 +10,7 @@ on:
           - projective
           - 2013-cookie
           - 2013-wisdom
+          - anyoffset-reuse
         default: projective
 jobs:
   projective-marker-gridrow:
@@ -68,3 +69,20 @@ jobs:
         with:
           name: 2013-wisdom-source-inverse
           path: wisdom-original-inverse.json
+
+  ninebody-anyoffset-reuse:
+    if: ${{ inputs.probe == 'anyoffset-reuse' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test all relative phases on original ciphertext and planted shared key
+        run: node sims/lp2_ninebody_anyoffset_keystream_sft.cjs > ninebody-anyoffset-results.json
+      - name: Preserve original and planted held-out comparison
+        uses: actions/upload-artifact@v4
+        with:
+          name: ninebody-anyoffset-results
+          path: ninebody-anyoffset-results.json
