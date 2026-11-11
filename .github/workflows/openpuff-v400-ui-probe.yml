@@ -41,6 +41,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Validate OpenPuff output capture offline
+        shell: pwsh
+        run: python sims/openpuff_output_capture_sft.py
+
       - name: Prepare evidence directory
         shell: pwsh
         run: New-Item -ItemType Directory -Force -Path probe-output | Out-Null
@@ -133,6 +137,10 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+
+      - name: Validate OpenPuff output capture offline
+        shell: pwsh
+        run: python sims/openpuff_output_capture_sft.py
 
       - name: Prepare evidence directory
         shell: pwsh
