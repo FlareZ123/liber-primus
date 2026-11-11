@@ -33,6 +33,14 @@ Moslash A=[3/13,;28/23,;1/2]pmod{29}
 
 which exactly reproduces the *other* source-marked triad on p39. Conversely, (Aodot B=[3,28,1]) supplies the same polynomial. The field element (v) is primitive of order **840**. Exhaustively enumerating the 840 exponents of (u), the **only** exponents with this trace/norm pair are 221 and 529, the two Frobenius-conjugate roots. [Executable original-source assertions](../sims/lp2_red_triad_extension_root_sft.cjs) additionally check the original red offsets and rune indices.
 
+The relation extends to the original grid's **two extension-field roots**, without selecting plaintext or any ciphertext offset. The original first-red middle ordinal is 23. The source-reconstructed p39 first ordinal 27 makes (z=23+27u). This is an exact root of the original 256-byte grid polynomial, with the two conjugates
+
+[
+z=v^{-23}=[23,27]_{1,u},qquad z^{29}=v^{173}=[17,2]_{1,u}.
+]
+
+The latter exponent **173** independently equals the sum of the p39 red triad's Gematria Primus *prime weights*: (107+13+53=173). In the 840-element nonzero field, this exponent relation follows from the Frobenius rule (173equiv-23\cdot29\pmod{840}). The arithmetic thus gives a closed proposed source trail: **first marked triad → primitive field → squared-middle self-power → second marked triad → original grid's conjugate roots and prime sum**. The GP prime-weight identity is independent of ciphertext interpretation; the selection of the self-power and coefficientwise quotient remains retrospective. The pre-existing exact roots were independently known, so this is a new cross-clue relationship rather than a new root discovery.
+
 **Interpretive limit:** the square-of-middle-ordinal rule and componentwise polynomial division were selected after observing the p39 triad. Both algebraic equalities hold exactly; a discovery-wide chance estimate or a contemporaneous instruction that a 2014 solver would recognize is absent. The shared local offset 119 and the p39 factor of the grid remain separate source clues, and there is no evidence this self-power relation was used to encrypt LP2. A consequential test would freeze (v), a source-specified clock and original ciphertext positions, and recover independently meaningful plaintext across previously unseen material. Merely confirming this equality again would add nothing.
 
 A simple, economically testable proposed cipher would generate a single hidden state \(s_i=s_0u^i\) in this field and apply **any secret bijection of all 29 GP symbols chosen by that state**. The key may contain 840 unrelated 29! lookup rows, and their contents need never be recovered. Every state repeats by 840, therefore:
