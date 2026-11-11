@@ -147,6 +147,49 @@ assert.deepEqual(p56PlainIndices, encodeWord("END"));
 assert.equal(rows[5].selected, p56Word);
 assert.equal(rows[11].selected, p56Word);
 
+// Source-attested alternate ᛝ = ING (not merely NG): solved LP1 writes
+// THINGS as TH–ING–S, and solved p57 TUNNELING in seven runes.
+// Keep the frozen NG-only source map above unchanged for comparability.
+/** @param {string} word @returns {number[]} */
+function encodeWithIng(word) {
+  const source = word.toLowerCase().replace(/v/g, "u").replace(/k/g, "c").replace(/z/g, "s");
+  const ingIndex = corpus.translit.indexOf("NG");
+  const out = [];
+  for (let i = 0; i < source.length;) {
+    if (source.startsWith("ing", i)) {
+      out.push(ingIndex);
+      i += 3;
+      continue;
+    }
+    const hit = alphabet.find(({ token }) => source.startsWith(token, i));
+    if (!hit) throw new Error("No GP token for " + word + " at " + i);
+    out.push(hit.index);
+    i += hit.token.length;
+  }
+  return out;
+}
+const correctedMeaning = encodeWithIng("meaning");
+assert.deepEqual(correctedMeaning.map(i => corpus.translit[i]),
+  ["M", "EA", "N", "NG"]);
+const meaningPrimeSum = correctedMeaning.reduce((n, i) => n + corpus.prime[i], 0);
+assert.equal(meaningPrimeSum, 288);
+const meaningPage = meaningPrimeSum % 58;
+const meaningWordIndex = Math.floor(meaningPrimeSum / 58);
+assert.deepEqual([meaningPage, meaningWordIndex], [56, 4]);
+const meaningCipher = lp2Pages[meaningPage][meaningWordIndex];
+assert.equal(meaningCipher, "ᚳᚦᚷᚹ");
+const meaningRuneStart = lp2Pages[56].slice(0, meaningWordIndex)
+  .reduce((n, w) => n + [...w].length, 0);
+assert.equal(meaningRuneStart, 12);
+const meaningPrimes = firstPrimes(meaningRuneStart + meaningCipher.length);
+const meaningPlainIndices = [...meaningCipher].map((rune, i) => mod(
+  corpus.runes.indexOf(rune) - (meaningPrimes[meaningRuneStart + i] - 1), 29
+));
+assert.deepEqual(meaningPlainIndices, encodeWord("DEEP"),
+  "ING-aware MEANING must address independently decrypted p56 DEEP");
+console.log("ING-aware MEANING: GPsum=288 -> p56 word4 -> DEEP (solved positive anchor).");
+
+
 // Frozen base-58 addressing applied to all authentic 2016 signed-message words.
 const signedPayload = read("resources/historical/cicada2016-4gq25-outguess.asc");
 const signedMessage = signedPayload.slice(
