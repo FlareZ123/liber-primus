@@ -224,6 +224,8 @@ console.log(JSON.stringify({
 }));
 
 
+/** @param {number} n */
+const reversePrimeDigits = n => Number(String(n).split("").reverse().join(""));
 // The only two documented double spaces in the 2013 telnet prime output
 // immediately precede prime31 and prime3259. Applying the 2013 NUMBER
 // decimal-reversal-and-factor operation selects the GP primes13 and
@@ -280,8 +282,7 @@ console.log(JSON.stringify({
 // separate *single-rule* gate: decimal reversal of each source prime before
 // source-index-preserving GP29 subtraction or whole-table byte XOR. Freeze
 // forward order, minus for GP, direct native byte XOR, and no new offsets.
-/** @param {number} n */
-const reversePrimeDigits = n => Number(String(n).split("").reverse().join(""));
+
 for (const [region, ciphertext, historical] of [
   ["interior", interior, missing],
   ["perimeter", exterior, visible]
