@@ -128,7 +128,7 @@ def add_carrier(app, window, carrier):
     return app.top_window()
 
 
-def save_dialog_if_present(app, output_path):
+def save_dialog_if_present(app, output_path, output_dir):
     handled = False
     for window in app.windows():
         if not safe(window.is_visible):
@@ -146,25 +146,35 @@ def save_dialog_if_present(app, output_path):
              if (safe(c.window_text) or "").strip().lower() in {"save", "ok"}),
             None,
         )
+        looks_like_folder = "folder" in title or "browse" in title
         looks_like_save = (
             "save" in title or "hidden file" in title or "output" in title
-            or "save" in button_names
+            or "save" in button_names or looks_like_folder
         )
         if edits and save_button is not None and looks_like_save:
-            edits[-1].set_edit_text(str(output_path.resolve()))
+            # OpenPuff can ask for an output *directory* and restore its embedded
+            # filename. Passing a filename to a folder picker would be invalid.
+            choice = output_dir if looks_like_folder else output_path
+            edits[-1].set_edit_text(str(choice.resolve()))
             save_button.click_input()
             handled = True
             time.sleep(1.5)
     return handled
 
 
-def wait_for_extraction(app, output_path, timeout_seconds=30):
+def extracted_files(output_dir):
+    return sorted(p for p in output_dir.iterdir() if p.is_file())
+
+
+def wait_for_extraction(app, output_path, output_dir, timeout_seconds=30):
     deadline = time.time() + timeout_seconds
     save_dialog_seen = False
     while time.time() < deadline:
-        if save_dialog_if_present(app, output_path):
+        if save_dialog_if_present(app, output_path, output_dir):
             save_dialog_seen = True
-        if output_path.is_file():
+        # The payload filename is supplied by the embedded record, and is
+        # generally unknown for original LP2 carriers.
+        if extracted_files(output_dir):
             time.sleep(0.8)
             break
         time.sleep(0.5)
@@ -207,9 +217,13 @@ def main():
     output_name = Path(args.output_name).name
     if output_name in {"", ".", ".."}:
         raise ValueError("Invalid output filename")
-    output_path = out_dir / output_name
-    if output_path.exists():
-        output_path.unlink()
+    output_dir = out_dir / "extracted"
+    output_dir.mkdir(exist_ok=True)
+    output_path = output_dir / output_name
+    # Reusing an evidence directory must never turn a previous extracted file
+    # into a false positive for the current source carrier.
+    for previous in extracted_files(output_dir):
+        previous.unlink()
     if not exe.is_file():
         raise FileNotFoundError(exe)
     if not carrier.is_file():
@@ -240,6 +254,7 @@ def main():
         "bit_selection_verified": False,
         "save_dialog_seen": False,
         "output": None,
+        "outputs": [],
         "expected_crc32": args.expected_crc32,
         "expected_size": args.expected_size,
         "expected_match": False,
@@ -290,19 +305,21 @@ def main():
         window.child_window(control_id=1051, class_name="Button").click_input()
         result["attempted"] = True
         result["save_dialog_seen"] = wait_for_extraction(
-            app, output_path, args.wait_seconds
+            app, output_path, output_dir, args.wait_seconds
         )
-        result["output"] = file_facts(output_path)
-        if result["output"] is not None:
-            crc_ok = (
-                args.expected_crc32 is None
-                or result["output"]["crc32"].upper() == args.expected_crc32.upper()
-            )
-            size_ok = (
-                args.expected_size is None
-                or result["output"]["size"] == args.expected_size
-            )
-            result["expected_match"] = bool(crc_ok and size_ok)
+        result["outputs"] = [file_facts(p) for p in extracted_files(output_dir)]
+        matches = [
+            item for item in result["outputs"]
+            if (args.expected_crc32 is None
+                or item["crc32"].upper() == args.expected_crc32.upper())
+            and (args.expected_size is None
+                 or item["size"] == args.expected_size)
+        ]
+        result["output"] = (
+            matches[0] if matches else
+            result["outputs"][0] if result["outputs"] else None
+        )
+        result["expected_match"] = bool(matches)
         result["windows_after_unhide"] = snapshot(app, out_dir, "after-unhide")
     finally:
         if app is not None:
