@@ -18,6 +18,7 @@ on:
           - event-poly
           - terminal-crc
           - terminal-rs841
+          - dh-elgamal-allsecret
 
 jobs:
   original:
@@ -58,3 +59,6 @@ jobs:
       - name: Exact original 256-event Josephus AES eight-section inverse
         if: github.event.inputs.probe == 'josephus-aes'
         run: node sims/ink256_josephus_aes_sections_sft.cjs
+      - name: Source-derived 2013 DH quotient all-exponents finite-field gate
+        if: github.event.inputs.probe == 'dh-elgamal-allsecret'
+        run: node sims/2013_base29_dh_elgamal_source_sft.cjs
