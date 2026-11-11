@@ -1,0 +1,58 @@
+{
+  "classification": "secondary archival reconstruction of a repeated Cicada 1033/3301 operator chain; source paths are pinned to one archive commit",
+  "archiveCommit": "ade9a02889ef8acbc8cde8edbfd0a785c369f4c3",
+  "pair": [
+    1033,
+    3301
+  ],
+  "stages": [
+    {
+      "year": 2013,
+      "stage": "boot image prime_echo",
+      "source": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/002-3301/README.md",
+      "sourceCode": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/002-3301/rootfs-contents/usr/local/bin/prime_echo",
+      "operation": "emit primes in increasing order through 3301; pause 2 seconds rather than 0.5 seconds on 1033 and 3301",
+      "consequence": "the pair is explicitly highlighted inside an ordered prime stream, making their prime ordinals player-recoverable"
+    },
+    {
+      "year": 2013,
+      "stage": "first onion NUMBER service",
+      "source": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/004-first-onion/README.md",
+      "operation": "for prime n, test decimal reversal; return + when both n and reverse(n) are prime",
+      "observedExample": "3301 -> +",
+      "consequence": "1033 and 3301 form exactly the emirp relation explicitly taught by the service; get 1033 and get 3301 are also aliases for the same message"
+    },
+    {
+      "year": 2013,
+      "stage": "participant TCP server test",
+      "source": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/007-fourth-onion/README.md",
+      "transcript": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/clientlog-1362290293-9.txt",
+      "operation": "Cicada requests BASE29 1033, then later DH 3301; one published test repeats DH 3301 three times",
+      "observedBase29Response": "16I"
+    },
+    {
+      "year": 2014,
+      "stage": "Interconnectedness / OpenPuff",
+      "source": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/007-fifth-onion/README.md",
+      "operation": "use concatenated ordered pair 33011033 as the OpenPuff password that extracts magicsquares.txt"
+    }
+  ],
+  "arithmetic": {
+    "decimalReverse": true,
+    "bothPrime": true,
+    "oneBasedPrimeOrdinals": [
+      174,
+      464
+    ],
+    "divideBy29": [
+      6,
+      16
+    ],
+    "divideBy58": [
+      3,
+      8
+    ],
+    "base29Of1033": "16I"
+  },
+  "interpretationBoundary": "The archive shows deliberate repeated use of the pair and directly motivates decimal reversal and prime-order context. Counting prime ordinals remains a solver inference, though the boot image exposes the ordered prime stream. Division by 29 or 58 is a later LP-specific normalization and is not asserted by the historical sources."
+}
