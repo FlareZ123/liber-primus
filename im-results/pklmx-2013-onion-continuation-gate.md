@@ -143,7 +143,7 @@ Evaluating this polynomial at the missing *decimal* share indices gives:
 | 04 | `04-2d9336c7808cc461da52f2df7d1e78c32d0127e20684` |
 | 06 | `06-b574e7a760595bb8286043a917d0526cb23030f5a2c7` |
 
-The finite-field operation is `P(x)=x^5+Σ_i (y_i+x_i^5)·Π_{j≠i}(x+x_j)/(x_i+x_j)`, with all operations in characteristic two. It predicts the signed share 10 **exactly** at x=10 and the known share 09 exactly at x=9; evaluating at x=1,4,6 yields the three values above. These are **computed predictions only**, not recovered original signed share messages; they cannot authenticate missing signatures or supply an LP2 decryption key. Exact-string searches of the pinned participant/source repositories did not locate them.
+The finite-field operation is `P(x)=x^5+Σ_i (y_i+x_i^5)·Π_{j≠i}(x+x_j)/(x_i+x_j)`, with all operations in characteristic two. The independent dependency-free CommonJS [exact SFT](../sims/2013_shamir_missing_shares_sft.cjs) evaluates the original characteristic-two field, asserts all seven known share values, reconstructs the three missing values, confirms signed 09 and 10, and explicitly rejects the old hexadecimal-ID interpretation. It predicts the signed share 10 **exactly** at x=10 and the known share 09 exactly at x=9; evaluating at x=1,4,6 yields the three values above. These are **computed predictions only**, not recovered original signed share messages; they cannot authenticate missing signatures or supply an LP2 decryption key. Exact-string searches of the pinned participant/source repositories did not locate them.
 
 ### The 19-question stage and later continuation
 
