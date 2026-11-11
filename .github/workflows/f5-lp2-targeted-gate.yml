@@ -1,10 +1,6 @@
 name: F5 LP2 targeted JPEG carrier gate
 
 on:
-  push:
-    paths:
-      - ".github/workflows/f5-lp2-targeted-gate.yml"
-      - "sims/f5_lp2_targeted_gate.py"
   workflow_dispatch:
 
 permissions:
