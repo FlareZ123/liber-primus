@@ -76,6 +76,9 @@ const startWord = p32[5];
 assert.equal([...startWord.runes].map(r => corpus.translit[corpus.runes.indexOf(r)]).join(""), "IARTTHF");
 assert.equal(sumWord(startWord), 184);
 assert.equal(sumWord(p57[1]), 184);
+const unknownOnly = parseLP2Words(transcription, 55);
+const sum184UnknownWordCount = unknownOnly.words.filter(word => sumWord(word) === 184).length;
+assert.equal(sum184UnknownWordCount, 10);
 const p32Start = corpus.pages.filter(p => p.page < 32).reduce((n, p) => n + p.runic_count, 0);
 assert.equal(p32Start, 7839);
 const startOffset = startWord.globalStart - p32Start;
@@ -180,12 +183,12 @@ console.log(JSON.stringify({
   status:"provisional navigation hypothesis; not a decryption",
   beware:{sum:bewareSum,address:address(bewareSum)},
   p32:{wordCount:p32.length,word5:"IARTTHF",word5Sum:184,word5Offset:25,
-    p57LikeSum:sumWord(p57[1]),m7FixedPointPrimeSum:184,
+    p57LikeSum:sumWord(p57[1]),m7FixedPointPrimeSum:184,sum184OccurrencesAmongUnknownWords:sum184UnknownWordCount,
     redDotCount:13,window13:{sum:windowSum,residue:7,eligibleWordStarts:19,
       matchingWordStarts:wordStartHits,allOffsetMatches:allOffsetHits},
-    M7:{matrix:M,fixedPoints:fixed,pole:7,forward,inverse:reverse},
+    M7:{matrix:M,fixedPoints:fixed,pole:7,forward,inverse:reverse,literalWordTraversal:false,negativeGate:"sims/p32_m7_pole_wordmap_gate.cjs"},
     residueCounts:counts,
     endpoint:{word:"WBSRXIAXA",sum:442,offset:64,gap:39,address:endAddress,p36Word7Sum:386}},
   independentDirections:{p55Triple,phi108:36,directionW:"W",p36Triple,phi386:192,directionE:"E"},
-  conclusion:"The route does not recover plaintext, a key, or a reversible cipher operation."
+  conclusion:"Selector/pole correspondence only; the existing M7 gate rejects a total word-to-word traversal. No plaintext, key, or reversible cipher operation recovered."
 },null,2));
