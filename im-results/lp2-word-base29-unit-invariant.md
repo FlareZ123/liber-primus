@@ -1,6 +1,6 @@
 # Original LP2 printed-word BASE29 multiplication: key-independent terminal-digit obstruction
 
-**Agent 31, 11 November 2026. Bounded original-cipher negative, independently executed on GitHub Actions. No unknown LP2 plaintext, authentic key, complete cipher or final destination recovered.** This study retires a precisely defined reversible whole-word numeric architecture, including any unknown global or start-page-specific unit multiplier. It does not rule out position-dependent or word-specific keys, changes to the original word segmentation, transport layers or non-integer operations.
+**Agent 31, 11 November 2026. Bounded original-cipher negative, independently executed on GitHub Actions. No unknown LP2 plaintext, authentic key, complete cipher or final destination recovered.** This study retires a precisely defined reversible whole-word numeric architecture, including any unknown global, start-page, word-length, or start-page-by-length-specific unit multiplier. It does not rule out position-dependent or word-specific keys, changes to the original word segmentation, transport layers or non-integer operations.
 
 ## Human-visible premise and weakest link
 
@@ -17,7 +17,7 @@ For a word with GP29 symbols d0,...,d(L−1), use the repository's canonical run
 
 For an integer unit k with gcd(k,29)=1, encode a word by C = k×V mod29^L, unpacking exactly L digits; decode by V = k⁻¹×C mod29^L. The modulus retains leading zeroes and makes the operation a true bijection on every fixed-length word. No ciphertext rune is discarded. For the direct signed-number candidate, k=3301. Both multiply/divide directions and the two positional orientations were frozen before scoring.
 
-**Exact key-independent invariant:** for every such word, the output least-significant digit equals (k mod29)×the input least-significant digit mod29. Multiplication by a fixed unit is a permutation of GP29 identities, so *all equalities across least-significant word-edge symbols are preserved*, even if k is secret. If a different fixed unit is permitted for every start page, the same equality statistic is preserved **within each start page**. These facts require no key enumeration, language scoring or plaintext guess.
+**Exact key-independent invariant:** for every such word, the output least-significant digit equals (k mod29)×the input least-significant digit mod29. Multiplication by a fixed unit is a permutation of GP29 identities, so *all equalities across least-significant word-edge symbols are preserved*, even if k is secret. If a different fixed unit is permitted for every start page, word length or start-page-by-length group, the same equality statistic is preserved **within the corresponding group**. The arithmetic works for each length L because each invertible k modulo 29^L induces a permutation of the word-edge digit modulo29. More generally, the same obstruction applies to any *compatible bijective 29-adic word transform* whose reduction modulo29 is a fixed permutation within the indicated groups, even if its higher digits involve nonlinear carries. It does **not** apply to arbitrary whole-word permutations whose low digit depends on higher digits. These facts require no key enumeration, language scoring or plaintext guess.
 
 A full manuscript candidate must explain original plaintext word placement, so the contract uses the repository's canonical 2,896 printed rune words / 12,956 runes, including 32 words crossing pages. A cross-page word is assigned to its original start page for the page-key test; line and page wraps do not split a word.
 
@@ -33,6 +33,31 @@ The test measures an ordered-pair collision index over one endpoint from each pr
 | Rightmost rune (MSD-first) | Separate start-page keys | 5,266 | 158,938 | **0.033132416414** |
 
 Both endpoints are essentially uniform at the 29-rune level. Fixed bijections cannot change this property at the protected word edge.
+
+## Stronger secret-key allowance: independent keys by word length and page × length
+
+The most direct escape from the first gate is to change the multiplier when word length changes. For an arbitrary secret unit `k_L` for each distinct L, compare endpoint symbols only *between words of that length*; for an even stronger class, allow `k_{page,L}` to be chosen separately for each original start page and word length. These are **all-secret key-independent constraints**, with no enumeration of keys. Singleton words remain distinct cipher symbols under an invertible multiplier regardless of its value.
+
+| Protected endpoint | Secret key domain | Original equal ordered pairs | Original ordered pairs total | Original collision rate |
+| --- | --- | ---: | ---: | ---: |
+| Leftmost rune | One key per word length | 42,462 | 1,233,444 | **0.034425560** |
+| Rightmost rune | One key per word length | 42,606 | 1,233,444 | **0.034542306** |
+| Leftmost rune | One key per start page × word length | 788 | 23,216 | **0.033942109** |
+| Rightmost rune | One key per start page × word length | 750 | 23,216 | **0.032305307** |
+
+Length-matched native GP-English controls in the same four independent source sets show much larger collision indices even after allowing these fine key domains:
+
+| Native source | Mean leftmost, length keys | Mean rightmost, length keys | Mean leftmost, page × length | Mean rightmost, page × length |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare | 0.089874 | 0.126475 | 0.089791 | 0.126459 |
+| Gibran | 0.117586 | 0.133789 | 0.117674 | 0.133675 |
+| Emerson | 0.113185 | 0.135924 | 0.112992 | 0.135936 |
+| Solved LP1 | 0.111970 | 0.133622 | 0.112214 | 0.133587 |
+| **Actual LP2** | **0.034426** | **0.034542** | **0.033942** | **0.032305** |
+
+For **all sixteen** additional source/endpoint/domain comparisons, **0/200** finite matched controls reach the original rate. The least-separating empirical lower tail still has an add-one estimate 1/201 per comparison. The same native-language positive plant preserves each exact length-key and page × length-key collision count. Under the direct plaintext-word/English assumption, even per-(page,length) secret key selection cannot rescue this arithmetic model.
+
+**Concrete original-source witness:** the **83** printed one-rune words span **28 distinct rune symbols** book-wide. Physical page **17** alone contains five one-rune words with five different symbols `B, EA, I, T, R`; page19 and page28 each contain four distinct singleton glyphs. Even a unique multiplier for each page and word length must preserve that per-domain diversity. Standard native English has only a tiny one-letter-word inventory (usually A and I, with O in archaic usage). This supports the groupwise contradiction without depending on long-string language scores. It remains conditional on these being genuine plaintext single-letter words and on direct GP29 alphabet encoding.
 
 ## Independent native GP-English controls
 
@@ -61,11 +86,11 @@ Directly interpreting the source operand 3301 as the multiplier or its inverse f
 | LSD-first | Divide by 3301 | 0.034500 |
 | LSD-first | Multiply by 3301 | 0.034447 |
 
-Neither direct orientation yields coherent GP29 plaintext. The **key-independent protected-edge collision obstruction** is the more general result: changing the fixed multiplier, even allowing one independent multiplier per start page, cannot repair the strong native/plaintext discrepancy without violating the model.
+Neither direct orientation yields coherent GP29 plaintext. The **key-independent protected-edge collision obstruction** is the more general result: changing the fixed multiplier, even allowing one independent multiplier for each start-page/word-length group, cannot repair the strong native/plaintext discrepancy without violating the model.
 
 ## Decision and reproducibility
 
-The exact source-rooted wordwise unit-multiplication model is a **conditional negative** under direct GP-English, original plaintext word boundaries and a constant multiplier globally or within each start-page domain. The model's invertibility, positive plant and frozen original-input outputs are independently implemented and executed in [the standalone CJS SFT](../sims/lp2_word_base29_unit_invariant_sft.cjs), through the existing manual-only [word-length workflow](../.github/workflows/manual-word-length-probe.yml) (scan_mode=base29-unit), **[successful run 43065874794](https://github.com/FlareZ123/liber-primus/actions/runs/43065874794)**. No new auto-triggering workflow was created.
+The exact source-rooted wordwise unit-multiplication model is a **conditional negative** under direct GP-English, original plaintext word boundaries and an independently chosen constant multiplier globally, per start page, per word length, or per start-page/length group. The model's invertibility, positive plant and frozen original-input outputs are independently implemented and executed in [the standalone CJS SFT](../sims/lp2_word_base29_unit_invariant_sft.cjs), through the existing manual-only [word-length workflow](../.github/workflows/manual-word-length-probe.yml) (scan_mode=base29-unit), **[successful run 43065874794](https://github.com/FlareZ123/liber-primus/actions/runs/43065874794)**. No new auto-triggering workflow was created.
 
 This is distinct from the [noninjective original word-to-byte/p50 lookup](lp2-wordwise-base29-p50-byte-gate.md), the [word-as-address grammar test](lp2-base29-original-word-address-gate.md), and the [per-word substitution equality-pattern gate](lp2-wordwise-bijection-pattern-gate.md). Those do not test the arithmetic carries and protected least-significant digit of this reversible 29-adic multiplication.
 
