@@ -150,14 +150,17 @@ function random32(seed) {
  * @param {number} seed
  * @param {number} samples
  * @param {number[]} original
+ * @param {number[]} rightAligned
  */
-function evaluate(name, source, fraction, seed, samples, original) {
+function evaluate(name, source, fraction, seed, samples, original, rightAligned) {
   const cut = Math.floor(source.length * fraction);
   const model = buildDifferenceModel(source.slice(0, cut));
   const heldout = source.slice(cut);
   assert.ok(heldout.length > 6000);
   const random = random32(seed);
   const actual = score(model, original);
+  const rightActual = score(model, rightAligned);
+  const rightCounts = {unigram: 0, bigram: 0};
   const counts = {unigram: 0, bigram: 0};
   const totals = {unigram: 0, bigram: 0};
   const squares = {unigram: 0, bigram: 0};
@@ -176,6 +179,7 @@ function evaluate(name, source, fraction, seed, samples, original) {
     for (const register of ['unigram', 'bigram']) {
       const value = result[register];
       counts[register] += Number(value <= actual[register]);
+      rightCounts[register] += Number(value <= rightActual[register]);
       totals[register] += value;
       squares[register] += value * value;
       minima[register] = Math.min(minima[register], value);
@@ -208,6 +212,11 @@ function evaluate(name, source, fraction, seed, samples, original) {
       unigram: (counts.unigram + 1) / (samples + 1),
       bigram: (counts.bigram + 1) / (samples + 1)
     },
+    rightAligned: {original: rightActual, nativeAtOrBelowOriginal: rightCounts,
+      plusOneLowerTail: {
+        unigram: (rightCounts.unigram + 1) / (samples + 1),
+        bigram: (rightCounts.bigram + 1) / (samples + 1)
+      }},
     syntheticSharedPadRecovered: length
   };
 }
@@ -225,6 +234,7 @@ function run() {
   assert.equal(eligible.filter(p => p.indices.length === 262).length, 1);
   assert.equal(eligible.filter(p => p.indices.length === 277).length, 1);
   const original = difference(p0.indices, p29.indices.slice(0, 262));
+  const rightAligned = difference(p0.indices, p29.indices.slice(15, 277));
   const histogram = Array(MOD).fill(0);
   for (const v of original) histogram[v]++;
   assert.equal(histogram[0], 12);
@@ -240,11 +250,12 @@ function run() {
     status: 'conditional negative, no unknown original plaintext recovered',
     premise: 'same arbitrary GP29 additive key at p0/p29 offsets 0..261',
     clue: '2014 music 277.159s long, duplicated noise delayed 262.122608s',
-    original: {p0Runes: 262, p29Runes: 277,
-      differences: 262, equalAtSameOffset: histogram[0], histogram},
+    original: {p0Runes: 262, p29Runes: 277, alignedPageOffsets: [0, 15],
+      differences: 262, equalAtSameOffset: histogram[0], histogram,
+      rightAlignedEqualAtSameOffset: rightAligned.filter(x => x === 0).length},
     controls: [
-      evaluate('Shakespeare GP', english, 0.52, 0xa213c14a, 12000, original),
-      evaluate('Latin Vulgate GP', latin, 0.54, 0x1a71a277, 10000, original)
+      evaluate('Shakespeare GP', english, 0.52, 0xa213c14a, 12000, original, rightAligned),
+      evaluate('Latin Vulgate GP', latin, 0.54, 0x1a71a277, 10000, original, rightAligned)
     ]
   };
 }
