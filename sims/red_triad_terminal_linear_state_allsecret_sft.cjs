@@ -209,4 +209,71 @@ assert.deepEqual(result.nonlinearAllSecretGate.map(x=>x.possibleSeparateRedBlack
 assert.deepEqual(result.nonlinearAllSecretGate.map(x=>x.minimumContradictionsForSingleLookup),[2,1]);
 assert.deepEqual(result.nonlinearAllSecretGate.map(x=>x.ac24SeedContradictions.twoInk),[5,7]);
 
+
+/**
+ * Extend the arbitrary stationary table gate to an unknown SCALAR ciphertext
+ * feedback f in F29. The current original ciphertext feeds one selected field
+ * basis coordinate. Enumerate 29 feedback multipliers * 841 initial states
+ * per pair layout and input coordinate. Exact original lookup consistency is
+ * necessary, but long nonrepeating state traces may make it vacuous.
+ * @param {'adjacent'|'halves'} layout
+ * @param {0|1} coordinate
+ */
+function feedbackGate(layout,coordinate){
+  const qa=Array.from({length:127},(_,i)=>layout==='adjacent'?
+    d2.q[2*i]:d2.q[i]);
+  const qb=Array.from({length:127},(_,i)=>layout==='adjacent'?
+    d2.q[2*i+1]:d2.q[i+127]);
+  /** @param {[number,number]} seed @param {number} f @param {number[]} observed */
+  function check(seed,f,observed){
+    const lookup=new Int16Array(841);
+    lookup.fill(-1);
+    let a=seed[0],b=seed[1],contradictions=0,repeatVisits=0;
+    for(let i=0;i<127;i++){
+      const v=observed[i],k=29*a+b;
+      if(lookup[k]===-1)lookup[k]=v;
+      else{
+        repeatVisits++;
+        if(lookup[k]!==v)contradictions++;
+      }
+      const na=mod(8*b+qa[i]+(coordinate===0?f*v:0));
+      const nb=mod(a+3*b+qb[i]+(coordinate===1?f*v:0));
+      a=na;b=nb;
+    }
+    return {contradictions,repeatVisits};
+  }
+  const viable=[];
+  let globalBest=Infinity;
+  for(let f=0;f<29;f++)for(let a=0;a<29;a++)for(let b=0;b<29;b++){
+    const d=check([a,b],f,target);
+    if(d.contradictions<globalBest)globalBest=d.contradictions;
+    if(d.contradictions===0)viable.push({feedback:f,seed:[a,b],repeatVisits:d.repeatVisits});
+  }
+  // A private nonlinear lookup and fixed feedback law generate a consistent
+  // synthetic ciphertext, including any recurrent field states.
+  const secret=new Int16Array(841);
+  for(let a=0;a<29;a++)for(let b=0;b<29;b++)
+    secret[29*a+b]=mod(a*a+7*a*b+13*b*b+5);
+  const secretF=24,secretSeed=[13,5];
+  let [a,b]=secretSeed;
+  const planted=[];
+  for(let i=0;i<127;i++){
+    const v=secret[29*a+b];planted.push(v);
+    const na=mod(8*b+qa[i]+(coordinate===0?secretF*v:0));
+    const nb=mod(a+3*b+qb[i]+(coordinate===1?secretF*v:0));
+    a=na;b=nb;
+  }
+  assert.equal(check(secretSeed,secretF,planted).contradictions,0);
+  return {layout,feedbackCoordinate:coordinate,
+    testedKeys:29*841,minimumOriginalContradictions:globalBest,
+    compatibleKeys:viable.length,compatibleDetails:viable,
+    plantedOriginalLength:planted.length,plantConsistent:true};
+}
+result.allSecretScalarCiphertextFeedback=[];
+for(const layout of ['adjacent','halves'])for(const coordinate of [0,1])
+  result.allSecretScalarCiphertextFeedback.push(feedbackGate(layout,coordinate));
+assert.deepEqual(result.allSecretScalarCiphertextFeedback.map(x=>x.compatibleKeys),[1,3,1,1]);
+assert.deepEqual(result.allSecretScalarCiphertextFeedback.map(x=>
+  x.compatibleDetails.filter(k=>k.repeatVisits===0).length),[1,2,0,1]);
+
 console.log(JSON.stringify(result,null,2));
