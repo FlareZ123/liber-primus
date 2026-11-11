@@ -185,6 +185,68 @@ function scan(pages, betaPowers, allLambda, score, model, clock, targetLambda) {
 
 let corpusTranslit = [];
 
+function evaluateP39Map(x) {
+  const linear = multiply([5, 0], x);
+  const quadratic = multiply([15, 0], multiply(x, x));
+  return [
+    mod(27 + linear[0] + quadratic[0]),
+    mod(linear[1] + quadratic[1])
+  ];
+}
+
+function p39FunctionalGraphAudit() {
+  const basins = new Map();
+  const cycleLengths = new Map();
+  let maxTail = 0;
+  for (let a = 0; a < P; a++) {
+    for (let b = 0; b < P; b++) {
+      let x = [a, b];
+      const seen = new Map();
+      const sequence = [];
+      while (!seen.has(keyOf(x))) {
+        seen.set(keyOf(x), sequence.length);
+        sequence.push(x);
+        x = evaluateP39Map(x);
+      }
+      const tail = seen.get(keyOf(x));
+      maxTail = Math.max(maxTail, tail);
+      const cycle = sequence.slice(tail);
+      const rotations = cycle.map((_, i) =>
+        cycle.slice(i).concat(cycle.slice(0, i)).map(keyOf).join('|'));
+      const canonical = rotations.sort()[0];
+      basins.set(canonical, (basins.get(canonical) || 0) + 1);
+      cycleLengths.set(canonical, cycle.length);
+    }
+  }
+  const cycles = [...cycleLengths.entries()].map(([cycle, length]) => ({
+    cycle: cycle.split('|'),
+    length,
+    basin: basins.get(cycle)
+  })).sort((a, b) => a.cycle.join('|').localeCompare(b.cycle.join('|')));
+  const sequence = [];
+  let x = [0, 1];
+  const seen = new Map();
+  while (!seen.has(keyOf(x))) {
+    seen.set(keyOf(x), sequence.length);
+    sequence.push(keyOf(x));
+    x = evaluateP39Map(x);
+  }
+  const p3Orbit = {
+    stepsBeforeRepeat: sequence.length,
+    tail: seen.get(keyOf(x)),
+    cycleLength: sequence.length - seen.get(keyOf(x)),
+    sequence
+  };
+  assert.equal(cycles.length, 3);
+  assert.equal(maxTail, 36);
+  assert.deepEqual(cycles.map(x => [x.cycle.join('|'), x.basin]).sort(),
+    [['18,0', 608], ['19,0|27,0', 173], ['3,0', 60]].sort());
+  assert.equal(p3Orbit.tail, 11);
+  assert.equal(p3Orbit.cycleLength, 1);
+  assert.deepEqual(evaluateP39Map([18, 0]), [18, 0]);
+  return {states: P * P, cycles, maximumTransient: maxTail, p3Orbit};
+}
+
 function main() {
   const input = source();
   const corpus = JSON.parse(fs.readFileSync(
@@ -229,6 +291,7 @@ function main() {
   assert.equal(traceSchedules.size, 840,
     'all nonzero linear trace observations must be distinct');
 
+  const nonlinearMap = p39FunctionalGraphAudit();
   const rawScore = score(cipher);
   const raw = {
     ioc: ioc(cipher),
@@ -286,6 +349,7 @@ function main() {
       initialStatesTested: allLambda.length,
       distinctTraceSchedules: traceSchedules.size
     },
+    nonlinearP39StateMap: nonlinearMap,
     original: {
       runes: cipher.length,
       raw,
