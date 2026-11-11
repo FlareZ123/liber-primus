@@ -251,6 +251,84 @@ for (let start = 0; start + 121 <= allUnknown.length; start += 121) {
 assert.equal(matchedOriginalWindows, 107);
 assert.equal(matchedOriginalWindowRepeats, 0);
 
+
+/**
+ * A second source-native discriminator: all p32 11x11 axes already use sums
+ * of original GP prime weights, so compare exact four-prime sums for each
+ * repeated PARABLE-index path rather than only their mod-19 residues.
+ * @param {number[]} primeWeights
+ * @returns {{ identicalSumPair: boolean, identicalSumPairAndExiting: boolean,
+ *   targetSameSum: boolean }}
+ */
+function evaluateEqualPrimeSumPaths(primeWeights) {
+  const bySourceStart = Array.from({ length: 16 }, () => new Map());
+  for (const { ix, nextStepLeavesSquare } of directedPathIndices) {
+    const [i, j, k, l] = ix;
+    const a = primeWeights[i], b = primeWeights[j],
+      c = primeWeights[k], d = primeWeights[l];
+    const start = a % 19;
+    if (start > 15 || b % 19 !== start + 1 || c % 19 !== start + 2 ||
+        d % 19 !== start + 3) continue;
+    const sum = a + b + c + d;
+    const value = bySourceStart[start].get(sum) || { count: 0, exiting: false };
+    value.count++;
+    value.exiting ||= nextStepLeavesSquare;
+    bySourceStart[start].set(sum, value);
+  }
+  let identicalSumPair = false, identicalSumPairAndExiting = false;
+  let targetSameSum = false;
+  for (let start = 0; start < 16; start++) {
+    for (const item of bySourceStart[start].values()) {
+      if (item.count < 2) continue;
+      identicalSumPair = true;
+      if (item.exiting) identicalSumPairAndExiting = true;
+      if (start === 2) targetSameSum = true;
+    }
+  }
+  return { identicalSumPair, identicalSumPairAndExiting, targetSameSum };
+}
+const observedRawPrimePaths = [
+  [59, 79, 23, 5], [97, 3, 61, 5]
+];
+assert.ok(observedRawPrimePaths.every((v) => v.reduce((a, b) => a + b, 0) === 166));
+const observedPrimeSumPaths = evaluateEqualPrimeSumPaths(matrix.flat());
+assert.deepEqual(observedPrimeSumPaths,
+  { identicalSumPair: true, identicalSumPairAndExiting: true,
+    targetSameSum: true });
+let primeNullState = 0x9371022d;
+/** @returns {number} */
+function primeNullRandomUInt32() {
+  primeNullState ^= primeNullState << 13;
+  primeNullState ^= primeNullState >>> 17;
+  primeNullState ^= primeNullState << 5;
+  return primeNullState >>> 0;
+}
+const primeNullModels = [
+  { name: 'full fixed multiset of 121 original GP prime weights', cells: wholeCells },
+  { name: 'fixed top row and left column, shuffle other 100 primes',
+    cells: innerCells }
+];
+const sourcePrimeSumNulls = primeNullModels.map(({ name, cells }) => {
+  const primeWeights = matrix.flat();
+  const trials = 150000;
+  let identicalSumPair = 0, identicalSumPairAndExiting = 0,
+    targetSameSum = 0;
+  for (let j = 0; j < trials; j++) {
+    permuteCells(primeWeights, cells, primeNullRandomUInt32);
+    const m = evaluateEqualPrimeSumPaths(primeWeights);
+    if (m.identicalSumPair) identicalSumPair++;
+    if (m.identicalSumPairAndExiting) identicalSumPairAndExiting++;
+    if (m.targetSameSum) targetSameSum++;
+  }
+  return {
+    name, trials, identicalSumPair, identicalSumPairAndExiting, targetSameSum,
+    pEqualSumAndExiting: (identicalSumPairAndExiting + 1) / (trials + 1)
+  };
+});
+assert.deepEqual(sourcePrimeSumNulls.map((v) =>
+  [v.identicalSumPair, v.identicalSumPairAndExiting, v.targetSameSum]),
+[[52, 11, 46], [1611, 390, 1609]]);
+
 const pgpText = fs.readFileSync('resources/historical/cicada2016-4gq25-outguess.asc', 'utf8');
 const begin = pgpText.indexOf('-----BEGIN PGP SIGNATURE-----');
 const end = pgpText.indexOf('-----END PGP SIGNATURE-----');
@@ -307,6 +385,8 @@ const output = {
     residueCounts: counts,
     expectedOccurrencesUnderRandomPermutationOfFixedResidueMultiset: permutationNullExpected,
     sourcePathNulls,
+    observedRawPrimePaths,
+    sourcePrimeSumNulls,
     matchedOriginalWindows,
     matchedOriginalWindowRepeats
   }
