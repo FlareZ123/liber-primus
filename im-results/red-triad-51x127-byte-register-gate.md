@@ -199,7 +199,7 @@ So **none of the 841 unknown seeds** can directly generate this original 127-sym
 
 **Decision:** this exact trace-projection family is negative for original recognizable GP prose. It cannot exclude a terminal channel that encodes binary key material, another GP embedding/projection, a changing field offset, or a source-specified non-language register. It does not establish that the 127 positions are plaintext or that the creator intended a trace cipher.
 
-[Standalone reversible CommonJS source-original test](../sims/lp2_red_terminal_127_trace_projection_sft.cjs) · [successful manual Node22 CI 42930840224](https://github.com/FlareZ123/liber-primus/actions/runs/42930840224).
+[Standalone reversible CommonJS source-original test](../sims/lp2_red_terminal_127_trace_projection_sft.cjs) · [successful manual Node22 CI 42931271124](https://github.com/FlareZ123/liber-primus/actions/runs/42931271124).
 
 ## Interpretation and open mechanism
 
