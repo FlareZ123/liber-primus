@@ -177,6 +177,19 @@ for (const flg of flags) {
 assert.equal(lz4Cases, 64);
 assert.equal(headerCompatible, 0);
 
+// ASCII-armored OpenPGP begins with five literal minus signs. For the
+// B=7867, one-zero-leading-GP-digit regime, even THREE initial bytes '-'
+// force base29 digit 1 == digit 4, while original rune 1 != rune 4.
+// This rejects every armored PGP prefix regardless of the body and the
+// 29-symbol secret alphabet, including clearsigned and encrypted armor.
+const tripleHyphen = [45, 45, 45];
+const armorCases = survivingCases(tripleHyphen);
+assert.deepEqual(armorCases, []);
+const forcedArmor = forcedDigits(tripleHyphen, 7867, 1);
+assert.deepEqual(forcedArmor.slice(0, 5), [0, 9, 7, 19, 9]);
+assert.deepEqual(firstConflict(forcedArmor, source),
+  {first: 1, second: 4});
+
 // Historical PGP route: a v3 one-pass signature packet with Cicada's
 // source-documented signing key ID. The complete 13-byte one-pass packet
 // can appear at the start of a *multi-packet* signed message, so its size
@@ -224,10 +237,12 @@ assert.deepEqual(firstConflict(sourcePgpForced, source),
  * @param {number} byteLength
  * @param {number[]} prefix
  */
-function positiveRoundTrip(bytes, byteLength, prefix) {
+function positiveRoundTrip(bytes, byteLength, prefix, zeroPrefixes = 0) {
   assert.equal(bytes.length, byteLength);
   let value = BigInt("0x" + bytes.toString("hex"));
-  assert(value >= RADIX_N_MINUS_1 && value < RADIX_N);
+  const low = zeroPrefixes ? RADIX_N_MINUS_2 : RADIX_N_MINUS_1;
+  const high = zeroPrefixes ? RADIX_N_MINUS_1 : RADIX_N;
+  assert(value >= low && value < high);
   const original = value;
   const digits = Array(N);
   for (let i = N - 1; i >= 0; i--) {
@@ -240,7 +255,7 @@ function positiveRoundTrip(bytes, byteLength, prefix) {
   assert.equal(new Set(privateMap).size, 29);
   const hiddenCipher = digits.map(d => privateMap[d]);
   assert(survivingCases(prefix, hiddenCipher).some(x =>
-    x.byteLength === byteLength && x.zeroPrefixes === 0));
+    x.byteLength === byteLength && x.zeroPrefixes === zeroPrefixes));
   const inverse = Array(29);
   for (let i = 0; i < 29; i++) inverse[privateMap[i]] = i;
   let rebuilt = 0n;
@@ -267,6 +282,14 @@ for (let i = sourcePgpPrefix.length; i < pgpHeaderPositive.length; i++) {
 }
 positiveRoundTrip(pgpHeaderPositive, 7867, sourcePgpPrefix);
 
+const armorPositive = Buffer.alloc(7867);
+const armorHeader = Buffer.from("-----BEGIN PGP SIGNED MESSAGE-----\r\n");
+armorHeader.copy(armorPositive);
+for (let i = armorHeader.length; i < armorPositive.length; i++) {
+  armorPositive[i] = (i * 29 + 5) & 255;
+}
+positiveRoundTrip(armorPositive, 7867, [...armorHeader], 1);
+
 const lz4Head = lz4Header(0x60, 0x40);
 const lz4RawSize = 7868 - 15;
 const lz4Size = (lz4RawSize + 0x80000000) >>> 0;
@@ -290,11 +313,14 @@ console.log(JSON.stringify({
   lz4: {ordinaryOneBlockVariants: lz4Cases,
     rawHeaderCompatible: headerCompatible,
     completeOneBlockSurvivors: 0},
-  openPgp: {onePassWithKnownCicadaSigningKey: pgpOnePassCases,
+  openPgp: {asciiArmorSourcePrefix: "---", armorSurvivingCases: 0,
+    armorForcedDigitContradiction: [1, 4],
+    onePassWithKnownCicadaSigningKey: pgpOnePassCases,
     survivingSecretPermutations: 0,
     typicalRsaSha256Contradiction: [1, 7]},
   positive: {jpegHeader: "exact binary roundtrip",
     validUncompressedLZ4: "exact binary roundtrip",
-    openPgpOnePassHeader: "exact binary roundtrip"},
+    openPgpOnePassHeader: "exact binary roundtrip",
+    armoredOpenPgpHeader: "exact binary roundtrip"},
   recoveredUnknownPlaintext: false,
 }, null, 2));
