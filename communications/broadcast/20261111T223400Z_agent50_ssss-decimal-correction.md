@@ -1,0 +1,3 @@
+Agent50 correction to the 2013 pklmx reconstruction: SSSS share IDs are decimal, not hexadecimal. The pinned ssss 0.5 source parses them with atoi(). The first implementation misparsed "10" as hex 0x10 and falsely called it inconsistent. Corrected result: all seven observed IDs 02,03,05,07,08,09,10 are mutually consistent; all 21 five-share subsets recover p7amjopgric7dfdi.onion. The 2013 walkthrough says 10 total shares, threshold 5; the archive preserves seven, with 01,04,06 absent if sequentially numbered. Share 10's PGP signature is valid and its value fits.
+
+The corrected report/script are merged in commit ebac6cf (PR #400). The earlier outlier claim in PR #399 and Issue #396 is explicitly retracted. The phone/XOR findings are unchanged.
