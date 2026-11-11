@@ -34,6 +34,25 @@ Consequently any source-preserved same-length native-GP plaintext under a positi
 
 An arbitrary **injective, length-preserving synthetic word codebook** planted in each control corpus preserves the full collision partition exactly, providing an implementation-positive control.
 
+
+## Stronger page-local invariant, excluding even independent page-specific word codebooks
+
+This is the stronger key-independent result. Assign each complete original GP word to its source-visible **starting rune page**, carrying words through line/page boundaries and omitting numeric-only physical p50. Across the **55 original rune-bearing pages**, **only four pairs of identical words occur within any one page**: two one-rune pairs and two two-rune pairs. **51/55 pages have no repeated word at all**, and **0/55 pages repeat a word of length three or more**. No word of four or more runes repeats **anywhere** in the entire original manuscript, as established above.
+
+This is a page-local invariant with a stronger cipher consequence than the book-wide count. Even a separate, entirely arbitrary **injective secret dictionary or per-word static substitution for each page** necessarily preserves each original page's internal equal-word pairs. A non-injective deterministic map can create extra repeated words but cannot erase any. Therefore, under preserved printed word boundaries, the native plaintext on all 55 pages must have at most **four intra-page identical-word pairs in total**, regardless of whether the secret word dictionary changes at page turns.
+
+For each of the exact original 55 page-specific GP-length inventories, the same four independently fixed English sources were independently sampled **with replacement in the matching length bin**, for **2,000 trials per corpus** using XorShift32 seed \`0x503331\`. Each trial preserves every page's word count and all per-word rune lengths. Results:
+
+| Control source | Original-page-matched median intra-page equal-word pairs | Minimum of 2,000 | Maximum pages with zero repeats | Original |
+| --- | ---: | ---: | ---: | ---: |
+| Solved LP1 + p57 | **770** | **657** | 4 | |
+| Gibran, *The Prophet* | **707** | **561** | 5 | |
+| Shakespeare first 300k characters | **353** | **286** | 8 | |
+| Emerson, Essays | **551** | **449** | 6 | |
+| **Unknown LP2 original** | **4** | **4** | **51** | **4** |
+
+Every one of **8,000** length- and source-page-matched English control samples lies far above the actual **four** intra-page repetitions. The fixed-corpus per-author one-sided plus-one upper tail is at most **1/2,001**. Page-wise deterministic per-word mappings are therefore incompatible with the tested ordinary native-GP English models even when **55 wholly different secret word codebooks** are permitted. This does not prove all possible natural language or all page-reset ciphers impossible. Cipher state changing *within* pages, changes to word boundaries, and unknown non-native source registers remain viable. The SFT separately plants an injective page-local word map and verifies identical per-page collision counts for the control.
+
 ## Locked native-source comparison
 
 Before scoring originals, the source model retains the exact 14-bin original word-length inventory, GP-normalizes each English word using the repository's documented QU→CW, V→U, K→C, Z→S, TH/EO/OE/AE/IA/EA/NG digraph and ING contraction, then independently draws source tokens **with replacement within each original GP-length bin**. This changes source order while retaining each real author's source-word multiplicities and the original total/count per length. It is a literal length-matched source-word multiset bootstrap, rather than selecting advantageous English sentences.
@@ -58,4 +77,4 @@ The observed 230 total pairs and zero long pairs are ordinary under this indepen
 
 ## Next research decision
 
-This original-input invariant adds to the previously established singleton and within-word-equality restrictions. Under native-GP prose with source-preserved word separators, retire **all globally position-independent deterministic word-to-word mappings**, including keyed fixed bijective codebooks and fixed whole-word permutations, without searching their keys. Future decryptors must allow at least one independently motivated missing ingredient: a varying state/key by word occurrence, an altered word-boundary interpretation, or a different constructed source register. The invariant supplies **no direct plaintext** and should never be reinterpreted as proof that every form of English encryption is impossible.
+This original-input invariant adds to the previously established singleton and within-word-equality restrictions. Under ordinary native-GP prose with preserved word separators, retire **all position-independent deterministic word-to-word mappings that are static within any physical page**, including independently secret page-specific injective codebooks and fixed per-word permutations, without searching their keys. Future decryptors must allow at least one independently motivated missing ingredient: a varying state/key by word occurrence, an altered word-boundary interpretation, or a different constructed source register. The invariant supplies **no direct plaintext** and should never be reinterpreted as proof that every form of English encryption is impossible.

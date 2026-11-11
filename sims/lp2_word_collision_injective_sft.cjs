@@ -185,10 +185,100 @@ function quantiles(observations,original) {
   }
   return out;
 }
+
+/**
+ * Original source-printed rune-page groups, assigning a word crossing %
+ * to its original starting page. There are 55 nonempty unsolved rune pages;
+ * physical p50 is the excluded numerical-only source page.
+ * @param {string} raw
+ * @returns {string[][]}
+ */
+function originalPageWordGroups(raw) {
+  const groups=Array.from({length:55},()=>[]);
+  let page=0,start=0,word="";
+  const flush=()=>{
+    if(!word)return;
+    if(start<55)groups[start].push(word);
+    word="";
+  };
+  for(const ch of raw) {
+    if(RUNES_SET.has(ch)) {
+      if(!word)start=page;
+      word+=ch;
+    } else if(ch==="%") {
+      page++;
+    } else if("-.&$§".includes(ch)) {
+      flush();
+    }
+  }
+  flush();
+  assert.equal(groups.flat().length,2896);
+  assert.equal(groups.flat().join("").length,12956);
+  return groups;
+}
+/**
+ * Collision pairs for globally distinct per-page word vocabularies. Any
+ * injective map may change independently between pages while conserving
+ * this partition on each individual page.
+ * @param {string[][]} groups
+ */
+function perPageCollisionMetrics(groups) {
+  let pairs=0,longPairs=0,pagesWithoutRepeats=0;
+  const pairsByPage=[],pairsByLength={};
+  for(const words of groups) {
+    const freq=new Map();
+    for(const word of words)freq.set(word,(freq.get(word)||0)+1);
+    let local=0;
+    for(const [word,n] of freq) {
+      const collisions=n*(n-1)/2;
+      local+=collisions;
+      if(word.length>=4)longPairs+=collisions;
+      pairsByLength[word.length]=(pairsByLength[word.length]||0)+collisions;
+    }
+    pairs+=local;
+    pairsByPage.push(local);
+    if(!local)pagesWithoutRepeats++;
+  }
+  return {pairs,longPairs,pagesWithoutRepeats,pairsByPage,pairsByLength};
+}
+/**
+ * @param {string[][]} target
+ * @param {Map<number,string[]>} pools
+ * @param {()=>number} next
+ * @returns {string[][]}
+ */
+function matchedPageSample(target,pools,next) {
+  return target.map(words=>words.map(w=>{
+    const pool=pools.get(w.length);
+    assert.ok(pool?.length, "Missing source GP length "+w.length);
+    return pool[next()%pool.length];
+  }));
+}
+/** @param {object[]} obs @param {object} original */
+function pageQuantiles(obs,original) {
+  const out={};
+  for(const field of ["pairs","longPairs","pagesWithoutRepeats"]) {
+    const values=obs.map(o=>o[field]).sort((a,b)=>a-b);
+    out[field]={min:values[0],p05:values[99],median:values[999],
+      p95:values[1899],max:values.at(-1),
+      leOriginal:values.filter(v=>v<=original[field]).length,
+      geOriginal:values.filter(v=>v>=original[field]).length};
+  }
+  return out;
+}
+
 function run() {
   const originalWords=unknownRuneWords(
     read("resources/liber-primus/lp2-transcription.txt"));
   const original=metrics(originalWords);
+  const pageGroups=originalPageWordGroups(
+    read("resources/liber-primus/lp2-transcription.txt"));
+  assert.deepEqual(pageGroups.flat(),originalWords);
+  const pageObserved=perPageCollisionMetrics(pageGroups);
+  assert.equal(pageGroups.length,55);
+  assert.equal(pageObserved.pairs,4);
+  assert.equal(pageObserved.longPairs,0);
+  assert.equal(pageObserved.pagesWithoutRepeats,51);
   assert.equal(original.pairs,230);
   assert.equal(original.longPairs,0);
   assert.equal(original.distinct,2731);
@@ -222,10 +312,38 @@ function run() {
       "iid GP29 (unfiltered)",matchedTrials:N,
       quantiles:quantiles(obs,original)});
   }
+  // A second, stricter key-independent invariant even when the secret
+  // word codebook is allowed to change arbitrarily at each physical page.
+  const pageNext=rng(0x503331),pageSources=[];
+  for(const file of SOURCES) {
+    const pool=sourcePools(file),observations=[];
+    for(let i=0;i<2000;i++) {
+      const planted=matchedPageSample(pageGroups,pool,pageNext);
+      if(i===0) {
+        const code=plantedInjectiveWordCodebook(planted.flat());
+        let cursor=0;
+        const replanted=planted.map(g=>{
+          const words=code.slice(cursor,cursor+g.length);
+          cursor+=g.length;
+          return words;
+        });
+        assert.deepEqual(perPageCollisionMetrics(replanted),
+          perPageCollisionMetrics(planted),
+          "An injective source-native whole-word map retains page collision partitions");
+      }
+      observations.push(perPageCollisionMetrics(planted));
+    }
+    assert.ok(Math.min(...observations.map(x=>x.pairs))>pageObserved.pairs);
+    pageSources.push({source:file,trials:observations.length,
+      quantiles:pageQuantiles(observations,pageObserved)});
+  }
   console.log(JSON.stringify({unknownWords:originalWords.length,
     GP29AlphabetSize:29,original,seed:SEED,
-    controlTrialCount:N,sources:results},null,2));
+    controlTrialCount:N,sources:results,
+    pageLocal:{runePages:55,original:pageObserved,
+      sourceSeed:"0x503331",sources:pageSources}},null,2));
 }
 if(require.main===module)run();
 module.exports={unknownRuneWords,normalizeGP,metrics,matchedSample,
-  independentPad,plantedInjectiveWordCodebook,run};
+  independentPad,plantedInjectiveWordCodebook,
+  originalPageWordGroups,perPageCollisionMetrics,matchedPageSample,run};
