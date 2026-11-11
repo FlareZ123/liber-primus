@@ -135,6 +135,29 @@ nonadditive field operations, a different plaintext register, a
 different characteristic polynomial, source-independent state
 interruptions inside words, or arbitrary encrypted byte sequences.
 
+## All-secret eight-column cyclic map: the 180 native plaintext controls reject the whole family
+
+One further *source-geometry* model is operationally relevant to the 76/180 split. The table's **eight printed columns** and the solved p57 instruction to shed a **circumference** suggest using each complete eight-byte table row as a cyclic register. Hypothesize that one fixed unknown eight-tap key `w[0..7]` and one unknown offset `b` map each original table row to eight GP29 output symbols by
+
+```text
+output[row,col] = b + Σ(k=0..7) w[k] × (tableByte[row,(col+k) mod 8] mod 29)  (mod 29).
+```
+
+This is a *testable new model*, not a demonstrated original instruction. It uses all nine potential secret coefficients, so no source-unselected key is guessed. Align the 30×6 inner table cells in printed order to the **180 already established p56+p57 runes**, leaving the 76-cell border as a withheld target. Consider three independently specified output registers: authenticated solved plaintext (p56 recovered by its established totient inverse, p57 already clear), visible ciphertext (original p56, printed p57), and the required GP29 shift difference between them. Test both the canonical base60 table bytes and the exact f-omitting base59 alternative. For each of six source/input-register combinations, solve all 180 linear equations in the nine unknowns by exact Gaussian elimination over F29, with a 180/180 synthetic cyclic-encoder positive control.
+
+| Table interpretation | Solved output register | System rank | Inconsistent reduced rows / 180 | Best representative key matches / 180 |
+|---|---|---:|---:|---:|
+| radix60 | plaintext | 9 | **168** | 12 |
+| radix60 | visible ciphertext | 9 | **165** | 15 |
+| radix60 | known additive shift | 9 | **165** | 15 |
+| radix59 | plaintext | 9 | **163** | 17 |
+| radix59 | visible ciphertext | 9 | **164** | 16 |
+| radix59 | known additive shift | 9 | **166** | 14 |
+
+Every system has full possible coefficient rank nine and an inconsistent augmented system: *no eight-tap key or additive intercept exists* under any of these six source-locked scenarios. The representative-match counts are sanity diagnostics rather than optimizers. The exact proof is the inconsistent rank (equivalently nonzero row `[0,0,0,0,0,0,0,0,0|value]`). A planted full-length source-aligned cyclic encoder is recovered with **180/180** consistency. Reproducer: [single-file Node 22 test](../sims/terminal_grid8_circulant_knownplain_sft.cjs).
+
+**Decision:** The 2016 FOLD clue and terminal circumference counts do not rescue the specific 8-column *stationary linear cyclic table-to-GP29* model, even with arbitrary hidden coefficients and either numeral interpretation. This is distinct from the earlier fixed four-rune Hill-block exclusion and fixed byte lookup: it works on actual source rows of width eight and grants nine wholly unknown secret coefficients. It leaves unknown nonlinear/stateful registers, row-dependent transformations, non-GP intermediate symbols, and an independently source-selected cipher operation open. No p55 plaintext is inferred.
+
 ## Consequence for subsequent research
 
 The strongest contribution here is a **geometrically prescribed 76/180 source split that matches the last three pages exactly**, alongside early eliminations that prevent a futile search for a fixed table-byte substitution key. The theme of removing a circumference supplies a plausible human solve-path *hypothesis*, but the instructions were recognized after examining existing materials, so the count match is not independent confirmation of an authentic cipher.
