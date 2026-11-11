@@ -239,6 +239,21 @@ Exactly the two conventional regroupings (five consecutive 43-rune rows versus 4
 
 **Decision:** a literal 5-bit A–Z Bacon route using the p27/p55 original index comparisons cannot decode all 43 positions without extra unsourced rules. Preserve the dimensional relationship, retire this exact direct readout. [Deterministic SFT](../sims/p27_p55_fivebit_comparator_gate_sft.cjs).
 
+## Historically motivated three-share XOR transfer (bounded negative)
+
+**Why this was worth one fixed test.** The recovered original 2014 LP1 route independently establishes a creator-era operation: XOR three equal-length source shares to reconstruct a signed message ([historical source map](../resources/historical/lp1-outguess-2014-source-map.md)). Here, p27 supplies a hypothetical 215-rune = 5×43 black body, p55 supplies 43 shed-circumference interiors, and the original p55 left ornament has filled positions **2,3,5** in its five-position mask **01101**. This motivates one concrete transfer: encode each GP rune by its 5-bit zero-based GP ordinal, XOR the three selected p27 shares, then XOR that 43-symbol pad with the p55 interior. The 5×43 regrouping is not printed on p27; both natural contiguous packings were frozen before the test.
+
+**Exact test.** For each column, compute K = row₂ XOR row₃ XOR row₅ on the 5-bit GP indices, then P = p55_interior XOR K. The two layouts are (a) five consecutive 43-rune rows and (b) 43 consecutive five-rune tuples. No modulo-29 reduction, symbol remapping, bit reversal, row permutation, or phase search is allowed. A varied synthetic 43-column plant using only valid GP indices 0–28 recovers 43/43 secrets exactly.
+
+| Packing | XOR-pad values valid in GP29 | Decrypted values valid in GP29 | Exact p55 interior matches | Output |
+| --- | ---: | ---: | ---: | --- |
+| Five consecutive 43-rune rows | 40/43 | 40/43 | 4/43 | DFDTH[30]J[29]AEXEIFOEJMXFAEEOEOTHIAT[30]EOOELDYDOEXSGCPFHXSEORP |
+| 43 consecutive five-rune tuples | 39/43 | 41/43 | 3/43 | GPOEGCTHAXOJSXFPTF[31]TEORMGCWRIOEMDEOEF[29]IACNEOUEYOEBJ |
+
+The bracketed values are 5-bit outputs 29–31, which are not members of the 29-symbol GP alphabet. Neither candidate yields a complete GP29 stream or coherent plaintext; direct share-XOR equality with the p55 interior also fails. The original source's bytewise 2014 operation makes this a historically motivated analogy, not an authenticated LP2 instruction.
+
+**Decision:** retire the direct 5-bit GP-index three-share XOR transfer under both contiguous 5×43 packings. Do not rescue it by reducing 29–31 modulo29 or inventing an escape code. This does not exclude a different, independently specified byte encoding or share construction. Reproducer: [sims/p27_p55_three_share_xor_gate.cjs](../sims/p27_p55_three_share_xor_gate.cjs).
+
 ## Decision
 
 The durable route is:
