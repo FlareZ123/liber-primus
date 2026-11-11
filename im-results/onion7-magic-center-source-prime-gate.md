@@ -16,6 +16,21 @@ Further exact arithmetic is **retrospectively noticed**:
 
 None of these relationships supplies a documented operation or uniquely selects a key. Source-recognition is more plausible than an unrestricted numeric puzzle; the archive contains no signed instruction to add, reverse every cell, or apply a corresponding prime clock to LP2.
 
+## The formerly unused PARABLE residual selects square order 7
+
+A separate [original solved-p57 source check](../sims/parable_449_onion7_header_modulo_sft.cjs) establishes that the solved *PARABLE* heading's GP prime sum is **449** and the three printed body-clause prime sums are **1259, 1031, 1229**. Their remainders modulo the heading are exactly **[361,133,331]** in textual order. This explains why the **last two** results appear as the historical Onion7 HTML title/id, though author intent is still unproved.
+
+The previously unexplained **first** remainder 361 has a further simple, fully source-constrained role **when the third residual is interpreted as the 7×7 square center**:
+
+- **361 = 19 × 19**;
+- **133 = 7 × 19**;
+- the common factor **gcd(361,133)=19**, and **133/gcd(361,133)=7**;
+- the resulting **order 7** picks the *middle* OpenPuff magic square from the three archived orders **5,7,5**, and the final remainder **331** is exactly its central cell.
+
+Thus all three PARABLE residues jointly specify **19, square order 7, center 331** through an elementary common-factor operation, while two residues also reproduce the archived HTML labels. **This is a new algebraic interpretation of the same already selected modulo-449 residues**, rather than another independent statistical confirmation; computing gcd and factoring the residuals were selected after knowing the answer candidate. There is still no source-specified cipher inversion that uses the factor 19 or a verified role for it as GP prime W.
+
+An intended human solve route might recognize `361=19²`, then factor `133=19×7`, locate the 7×7 prior square, and confirm its center331 against the HTML. The exact observations merit testing as an explicit source hypothesis; they do not authenticate the creator's intent or recover unknown plaintext.
+
 ## Correct original LP1 JPEG-05 construction
 
 The complete original `resources/liber-primus/05.jpg` has SHA-256 `2db94921ae5216d8a589890495fa5432446cd3227c45fbeb4934cbb0525112f7` and **673,066 bytes**. It consists of **336,353 JPEG bytes** ending `FFD9`, then **360 central bytes** (two newlines and 358 hexadecimal characters), then a reversed copy of *all 336,353 JPEG bytes*. Reversing the 358 hex characters and decoding gives a 179-byte text rendition of the historical **5×5 sum-1033 square**, center **91**.
