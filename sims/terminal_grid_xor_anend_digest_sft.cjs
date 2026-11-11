@@ -115,6 +115,85 @@ for (const [encoding, values] of Object.entries(runeBytes)) {
 assert.equal(results.length, 36);
 const matches = results.filter(result => result.matchesTarget);
 assert.equal(matches.length, 0, 'a source-fixed candidate unexpectedly matches AN END');
+// Independent historical input: the original 2014 Onion7 stage11
+// sexagesimal.bin, reconstructed from its decimal.txt with decimaltobyte.pm.
+// It differs from the later LP2 printed-token table at ten byte positions.
+const sexagesimal = JSON.parse(read('resources/cicada2014-sexagesimal-source.json'));
+const historicalBytes = sexagesimal.decimal_values;
+assert.equal(historicalBytes.length, 256);
+assert.equal(sexagesimal.decimal_text.length, 920);
+assert.equal(sexagesimal.converter_source.length, 45);
+const gitBlobSha1 = bytes => crypto.createHash('sha1')
+  .update(Buffer.concat([Buffer.from(`blob ${bytes.length}\\0`), bytes]))
+  .digest('hex');
+const historicalBuffer = Buffer.from(historicalBytes);
+assert.equal(gitBlobSha1(historicalBuffer), sexagesimal.source_blob_sha1.binary);
+assert.equal(gitBlobSha1(Buffer.from(sexagesimal.decimal_text, 'utf8')), sexagesimal.source_blob_sha1.decimal_text);
+assert.equal(gitBlobSha1(Buffer.from(sexagesimal.converter_source, 'utf8')), sexagesimal.source_blob_sha1.converter);
+
+const historicalMatrix = Array.from({length: 32}, (_, row) => historicalBytes.slice(row * 8, row * 8 + 8));
+const historicalRing = [...historicalMatrix[0]];
+for (let row = 1; row < 31; row++) historicalRing.push(historicalMatrix[row][7]);
+historicalRing.push(...historicalMatrix[31].slice().reverse());
+for (let row = 30; row >= 1; row--) historicalRing.push(historicalMatrix[row][0]);
+const historicalInterior = [];
+for (let row = 1; row < 31; row++) {
+  for (let col = 1; col < 7; col++) historicalInterior.push(historicalMatrix[row][col]);
+}
+assert.equal(historicalRing.length, 76);
+assert.equal(historicalInterior.length, 180);
+const historicalSourceBytes = historicalRing.concat(historicalInterior);
+assert.equal(historicalSourceBytes.length, 256);
+
+const tableDifferences = historicalBytes
+  .map((value, index) => ({index, archive_value: value, lp2_value: flat[index], delta: flat[index] - value}))
+  .filter(item => item.archive_value !== item.lp2_value);
+assert.deepEqual(tableDifferences, sexagesimal.verification.differences_vs_lp2_canonical_grid);
+assert.equal(tableDifferences.length, 10);
+
+const historicalResults = [];
+for (const [encoding, values] of Object.entries(runeBytes)) {
+  for (const [operation, apply] of Object.entries(operations)) {
+    const candidate = Buffer.from(historicalSourceBytes.map((value, index) =>
+      apply(value, values[index])));
+    assert.equal(candidate.length, 256);
+    for (const [algorithm, hash] of Object.entries(hashers)) {
+      const digest = hash(candidate);
+      historicalResults.push({
+        table: '2014_sexagesimal',
+        encoding,
+        operation,
+        algorithm,
+        matchesTarget: digest.equals(target),
+        digestHex: digest.toString('hex')
+      });
+    }
+  }
+}
+assert.equal(historicalResults.length, 36);
+const historicalMatches = historicalResults.filter(result => result.matchesTarget);
+assert.equal(historicalMatches.length, 0);
+
+const rawHistoricalFiles = [
+  {name: 'sexagesimal.bin', bytes: historicalBuffer},
+  {name: 'decimal.txt', bytes: Buffer.from(sexagesimal.decimal_text, 'utf8')},
+  {name: 'decimaltobyte.pm', bytes: Buffer.from(sexagesimal.converter_source, 'utf8')}
+];
+const rawHistoricalHashes = [];
+for (const file of rawHistoricalFiles) {
+  for (const [algorithm, hash] of Object.entries(hashers)) {
+    const digest = hash(file.bytes);
+    rawHistoricalHashes.push({
+      file: file.name,
+      algorithm,
+      matchesTarget: digest.equals(target),
+      digestHex: digest.toString('hex')
+    });
+  }
+}
+assert.equal(rawHistoricalHashes.length, 12);
+assert.equal(rawHistoricalHashes.filter(result => result.matchesTarget).length, 0);
+
 console.log(JSON.stringify({
   input: {
     table: '32x8 canonical base60-derived bytes',
@@ -131,6 +210,20 @@ console.log(JSON.stringify({
     digestAlgorithms: Object.keys(hashers),
     candidateCount: results.length
   },
+  historicalInput: {
+    repository: sexagesimal.source_repository,
+    firstCommit: sexagesimal.first_observed_commit,
+    firstCommitRecordedAt: sexagesimal.first_observed_commit_recorded_at,
+    originalPaths: sexagesimal.original_paths,
+    gitBlobSha1: sexagesimal.source_blob_sha1,
+    tableDifferenceCount: tableDifferences.length,
+    tableDifferences,
+    directRawFileHashCount: rawHistoricalHashes.length,
+    directRawFileMatches: rawHistoricalHashes.filter(result => result.matchesTarget)
+  },
   matches,
-  results
+  historicalMatches,
+  rawHistoricalHashes,
+  results,
+  historicalResults
 }, null, 2));
