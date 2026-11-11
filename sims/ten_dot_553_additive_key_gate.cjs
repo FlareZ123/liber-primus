@@ -3,14 +3,15 @@
 
 /**
  * Test the source-motivated binary-row reading of the 10-dot 3x7 stencil
- * as a seven-symbol additive GP29 key on the 553-rune p36/p38 interval.
+ * as additive and multiplicative GP29 keys on the 553-rune p36/p38 interval.
  *
  * The 553 runes are 139 (p36 suffix) + 228 (p37) + 186 (p38 prefix)
  * = 553 = 79*7. The stencil rows .#. and #.# decode as 2 and 5 in binary,
  * giving [2,5,2,5,2,5,2]. Both natural matrix orientations are tested:
  * 79 rows x 7 columns (period-7 key) and 7 rows x 79 columns (79-rune
  * row blocks). Both additive directions and the complementary bit reading
- * are tested. No unconstrained phase or key search is performed.
+ * are tested; multiplicative factors and their inverses are tested too.
+ * No unconstrained phase or key search is performed.
  *
  * Run: node sims/ten_dot_553_additive_key_gate.cjs
  */
@@ -32,11 +33,28 @@ function ioc(values) {
   return values.length > 1 ? pairs / (values.length * (values.length - 1)) : 0;
 }
 
-function applyKey(values, key, layout, sign) {
+function inverseMod29(value) {
+  if (value === 2) return 15;
+  if (value === 5) return 6;
+  throw new Error("No source key inverse for value " + value);
+}
+
+function applyKey(values, key, layout, operation, direction) {
   return values.map((value, index) => {
     const keyIndex = layout === "period7" ? index % 7 : Math.floor(index / 79);
-    return (value + sign * key[keyIndex] + GP_SIZE) % GP_SIZE;
+    const k = key[keyIndex];
+    if (operation === "add") {
+      const sign = direction === "add" ? 1 : -1;
+      return (value + sign * k + GP_SIZE) % GP_SIZE;
+    }
+    const factor = direction === "multiply" ? k : inverseMod29(k);
+    return (value * factor) % GP_SIZE;
   });
+}
+
+function inverseDirection(operation, direction) {
+  if (operation === "add") return direction === "add" ? "subtract" : "add";
+  return direction === "multiply" ? "inverse" : "multiply";
 }
 
 function run() {
@@ -67,28 +85,46 @@ function run() {
   const variants = [];
   for (const layout of ["period7", "rowBlock79"]) {
     for (const keySpec of keys) {
-      for (const sign of [-1, 1]) {
-        const output = applyKey(passage, keySpec.values, layout, sign);
-        const encryptedControl = applyKey(shakespeare, keySpec.values, layout, -sign);
-        const recoveredControl = applyKey(encryptedControl, keySpec.values, layout, sign);
-        assert.deepEqual(recoveredControl, shakespeare);
-        variants.push({
-          layout,
-          keyReading: keySpec.name,
-          sign,
-          key: keySpec.values,
-          outputIoC: Number(ioc(output).toFixed(9)),
-          first120Runes: output.slice(0, 120)
-        });
+      for (const operation of ["add", "multiply"]) {
+        const directions = operation === "add" ? ["add", "subtract"] : ["multiply", "inverse"];
+        for (const direction of directions) {
+          const output = applyKey(passage, keySpec.values, layout, operation, direction);
+          const encryptedControl = applyKey(
+            shakespeare, keySpec.values, layout, operation,
+            inverseDirection(operation, direction)
+          );
+          const recoveredControl = applyKey(
+            encryptedControl, keySpec.values, layout, operation, direction
+          );
+          assert.deepEqual(recoveredControl, shakespeare);
+          variants.push({
+            layout,
+            keyReading: keySpec.name,
+            operation,
+            direction,
+            key: keySpec.values,
+            outputIoC: Number(ioc(output).toFixed(9)),
+            first120Runes: output.slice(0, 120)
+          });
+        }
       }
     }
   }
 
+  const byOperation = Object.fromEntries(["add", "multiply"].map(operation => {
+    const values = variants.filter(variant => variant.operation === operation)
+      .map(variant => variant.outputIoC);
+    return [operation, {
+      variants: values.length,
+      minIoC: Math.min(...values),
+      maxIoC: Math.max(...values)
+    }];
+  }));
   const maxOutputIoC = Math.max(...variants.map(variant => variant.outputIoC));
   assert.ok(controlIoC > maxOutputIoC + 0.02);
 
   return {
-    classification: "source-motivated direct additive-key test; no plaintext recovered",
+    classification: "source-motivated direct-key test; no plaintext recovered",
     delimiters: {
       p36LocalOffset: 99,
       p38LocalOffset: 186,
@@ -111,6 +147,7 @@ function run() {
       period7: "79 rows x 7 columns; key repeats every 7 runes",
       rowBlock79: "7 rows x 79 columns; one key symbol per 79-rune row"
     },
+    operationRanges: byOperation,
     variants,
     decision: {
       maximumCandidateIoC: Number(maxOutputIoC.toFixed(9)),
@@ -119,7 +156,8 @@ function run() {
     },
     exclusions: [
       "The 10-dot stencil's binary row values are not a direct additive GP29 key for the 553-rune interval under either natural 7x79 orientation.",
-      "The p36/p38 interval cannot be recovered by this fixed additive key interpretation."
+      "The 10-dot stencil's binary row values are not a direct multiplicative GP29 key for the 553-rune interval under either natural 7x79 orientation.",
+      "The p36/p38 interval cannot be recovered by these fixed direct-key interpretations."
     ],
     remaining: [
       "A different source-selected use of the stencil",
