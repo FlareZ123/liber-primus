@@ -1,9 +1,6 @@
 name: AN-END Tor2web Wayback CDX probe
 
 on:
-  push:
-    paths:
-      - 'sims/anend_tor2web_cdx_probe.cjs'
   workflow_dispatch:
 
 permissions:
