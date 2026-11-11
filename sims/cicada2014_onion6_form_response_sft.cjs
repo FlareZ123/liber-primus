@@ -25,7 +25,11 @@ const squareFields = [...form.matchAll(/<textarea\s+name="([^"]+)"><\/textarea>/
   .map(m=>m[1]);
 assert.deepEqual(squareFields,["53301","71033","51033"]);
 assert.match(form,/<input\s+type="text"\s+name="onion"\s*\/>/);
-const signedUploadReply = fs.readFileSync(path.join(root,\n  "resources/historical/cicada2014-stage11-message.asc"),"utf8");\nassert.match(signedUploadReply,/-----BEGIN PGP SIGNED MESSAGE-----/);\nassert.match(signedUploadReply,/ky2khlqdf7qdznac\\.onion/);\nconst images = [...response.matchAll(/<img\\s+src="([^"]+)"\\s*\\/>/g)]
+const signedUploadReply = fs.readFileSync(path.join(root,
+  "resources/historical/cicada2014-stage11-message.asc"),"utf8");
+assert.match(signedUploadReply,/-----BEGIN PGP SIGNED MESSAGE-----/);
+assert.match(signedUploadReply,/ky2khlqdf7qdznac\.onion/);
+const images = [...response.matchAll(/<img\s+src="([^"]+)"\s*\/>/g)]
   .map(m=>m[1]);
 assert.deepEqual(images,["/107.jpg","/167.jpg","/229.jpg"]);
 assert.match(response, /Thank you for you submission/);
