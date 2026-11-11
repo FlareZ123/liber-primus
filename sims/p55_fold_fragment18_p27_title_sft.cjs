@@ -170,6 +170,99 @@ assert.equal(wordNumberGap, 1432);
 assert.equal(wordNumberGap, sectionRunes.length - 1);
 assert.equal(wordNumberGap % sectionRunes.length, sectionRunes.length - 1);
 
+/** @param {number} n */
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false;
+  return true;
+}
+/** @param {number} n */
+function phi(n) {
+  let x = n;
+  let result = n;
+  for (let p = 2; p * p <= x; p += 1) {
+    if (x % p === 0) {
+      while (x % p === 0) x /= p;
+      result -= result / p;
+    }
+  }
+  if (x > 1) result -= result / x;
+  return result;
+}
+/** @param {number} a @param {number} modulus */
+function multiplicativeOrder(a, modulus) {
+  let value = 1;
+  for (let exponent = 1; exponent <= phi(modulus); exponent += 1) {
+    value = (value * a) % modulus;
+    if (value === 1) return exponent;
+  }
+  return null;
+}
+
+assert.equal(isPrime(sectionRunes.length), true);
+assert.equal(phi(sectionRunes.length), wordNumberGap);
+assert.equal(multiplicativeOrder(selected.indices[0], sectionRunes.length), wordNumberGap);
+assert.equal(1432, 8 * 179);
+assert.equal(multiplicativeOrder(31, sectionRunes.length), 179);
+
+// Cross-section controls: p27's section is uniquely both totient-matched to
+// the repeated-pair gap and seeded by a full-order first rune.
+const sectionControls = transcription.split('
+  classification: 'source-image navigation candidate; no plaintext recovered',
+  foldMismatch: readings,
+  thirteenDotMarks: thirteenDotGlobals.length,
+  fragments: boundaries.length - 1,
+  selected: {
+    oneBased: selected.oneBased,
+    length: selected.indices.length,
+    start: selected.startLocation,
+    end: selected.endLocation,
+    firstIndex: selected.indices[0],
+    remainingAfterFirst: selected.indices.length - 1,
+    transliteration: selected.indices.map((index) => corpus.translit[index]).join(''),
+    wordLengths: printedWords.map((word) => word.length)
+  },
+  orientationControls: {
+    fragment17Length: fragment(17).indices.length,
+    fragment9Length: fragment(9).indices.length,
+    fragment12Length: fragment(12).indices.length,
+    zeroBased18AlternativeLength: fragment(19).indices.length
+  },
+  p27p55Bookend: bookend,
+  wordNumberDirection: {
+    canonicalWordCount: canonicalWords.length,
+    pairStartOffsetsZeroBased: bookendStarts,
+    gap: wordNumberGap,
+    selectedSectionRunes: sectionRunes.length,
+    modularStep: wordNumberGap % sectionRunes.length,
+    sectionPrime: isPrime(sectionRunes.length),
+    sectionTotient: phi(sectionRunes.length),
+    firstRuneOrder: multiplicativeOrder(selected.indices[0], sectionRunes.length),
+    order31: multiplicativeOrder(31, sectionRunes.length),
+    factorization: '1432 = 8 * 179',
+    interpretation: 'word gap equals phi(1433); additively it is -1, multiplicatively M=19 is a full-cycle generator'
+  },
+  sectionControls
+}, null, 2));
+).map((part, section0) => {
+  const runes = [...part].filter((ch) => RUNIC.test(ch)).map((rune) => runeToIndex.get(rune));
+  const length = runes.length;
+  const first = runes[0] ?? null;
+  const totient = phi(length);
+  return {
+    section0,
+    length,
+    prime: isPrime(length),
+    totient,
+    first,
+    firstOrder: first === null ? null : multiplicativeOrder(first, length),
+    gapMatchesTotient: totient === wordNumberGap,
+    firstHasFullOrder: first !== null && multiplicativeOrder(first, length) === totient
+  };
+});
+assert.deepEqual(sectionControls.filter((x) => x.gapMatchesTotient).map((x) => x.section0), [5]);
+assert.deepEqual(sectionControls.filter((x) => x.firstHasFullOrder).map((x) => x.section0), [5]);
+
 console.log(JSON.stringify({
   classification: 'source-image navigation candidate; no plaintext recovered',
   foldMismatch: readings,
