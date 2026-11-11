@@ -1,0 +1,103 @@
+name: Agent42 2013 ICMP IRC source audit
+
+on:
+  push:
+    branches:
+      - agent42-icmp-irc-audit-20261111
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fetch and print bounded IRC contexts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, urllib.request
+          url = "https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%2333012013.freenode.log"
+          data = urllib.request.urlopen(url, timeout=60).read()
+          lines = data.decode("utf-8", errors="replace").splitlines()
+          print("bytes", len(data), "sha256", hashlib.sha256(data).hexdigest(), "lines", len(lines))
+          for lo, hi in [(15715,16130),(23165,23245),(23270,23510),(23800,23905),(26180,26230),(66820,66900),(71605,71625)]:
+              print(f"\n===== IRC lines {lo}-{hi} =====")
+              for n in range(lo, min(hi, len(lines))+1):
+                  print(f"{n}: {lines[n-1]}")
+          print("\n===== all Pastee references =====")
+          for n, line in enumerate(lines, 1):
+              if "pastee.org" in line.lower():
+                  print(f"{n}: {line}")
+          PY
+
+      - name: Retrieve participant-linked paste and archive URLs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import urllib.request, urllib.error
+          urls = [
+              "https://pastee.org/6bx6t",
+              "https://pastee.org/fg64f",
+              "https://pastee.org/psrss",
+              "https://pastee.org/raw/6bx6t",
+              "https://pastee.org/raw/fg64f",
+              "https://pastee.org/raw/psrss",
+              "https://web.archive.org/cdx/search/cdx?url=pastee.org%2F6bx6t&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cstatuscode%2Cdigest&collapse=digest",
+              "https://web.archive.org/cdx/search/cdx?url=pastee.org%2Ffg64f&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cstatuscode%2Cdigest&collapse=digest",
+              "https://web.archive.org/cdx/search/cdx?url=pastee.org%2Fpsrss&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cstatuscode%2Cdigest&collapse=digest",
+              "https://index.commoncrawl.org/CC-MAIN-2014-10-index?url=pastee.org%2F6bx6t&output=json",
+              "https://index.commoncrawl.org/CC-MAIN-2014-10-index?url=pastee.org%2Ffg64f&output=json",
+              "https://index.commoncrawl.org/CC-MAIN-2014-10-index?url=pastee.org%2Fpsrss&output=json"
+          ]
+          for url in urls:
+              print("\\nURL", url)
+              try:
+                  req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                  with urllib.request.urlopen(req, timeout=30) as r:
+                      body = r.read(4000)
+                      print("status", r.status, "final", r.geturl(), "type", r.headers.get("Content-Type"), "bytes_shown", len(body))
+                      print(body.decode("utf-8", errors="replace")[:2500])
+              except Exception as e:
+                  print("ERROR", type(e).__name__, str(e)[:500])
+          PY
+
+      - name: Locate original participant capture artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import re, urllib.request, urllib.error, hashlib
+          url = "https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%2333012013.freenode.log"
+          lines = urllib.request.urlopen(url, timeout=60).read().decode("utf-8", errors="replace").splitlines()
+          rx = re.compile(r"pcap|\\.pcap|wireshark|tcpdump|capture|hex dump|ping\\.txt|pastee\\.org/(?:6bx6t|fg64f|psrss)|codeseekah\\.com/cicada/tings\\.bin|tings\\.bin|icmp responder|two responses per ping|second icmp|106\\.187\\.103\\.122|li498-122", re.I)
+          matches = [i for i, line in enumerate(lines) if rx.search(line)]
+          print("MATCH_COUNT", len(matches))
+          shown = set()
+          for i in matches:
+              for j in range(max(0,i-2), min(len(lines),i+3)):
+                  if j not in shown:
+                      print(f"{j+1}: {lines[j]}")
+                      shown.add(j)
+          targets = [
+              "http://codeseekah.com/cicada/tings.bin",
+              "https://codeseekah.com/cicada/tings.bin",
+              "https://web.archive.org/cdx/search/cdx?url=codeseekah.com%2Fcicada%2Ftings.bin&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cstatuscode%2Cdigest&collapse=digest"
+          ]
+          for target in targets:
+              print("\\nURL", target)
+              try:
+                  req = urllib.request.Request(target, headers={"User-Agent":"Mozilla/5.0"})
+                  with urllib.request.urlopen(req, timeout=30) as r:
+                      body = r.read(20000)
+                      print("STATUS", r.status, "FINAL", r.geturl(), "TYPE", r.headers.get("Content-Type"), "SHOWN", len(body), "SHA256", hashlib.sha256(body).hexdigest())
+                      if "tings.bin" not in target:
+                          print(body.decode("utf-8",errors="replace")[:2000])
+                      else:
+                          print("FIRST_64_HEX", body[:64].hex())
+              except Exception as e:
+                  print("ERROR", type(e).__name__, str(e)[:500])
+          PY
