@@ -26,7 +26,7 @@ function runicLengths(s) {
 /** @param {string} s @returns {string[]} */
 const words = (s) => s.toUpperCase().match(/[A-Z]+/gu) || [];
 /** @param {string} s @returns {number} */
-const gpLength = (s) => (s.match(/TH|NG|EO|OE|AE|IA|EA|[A-Z]/gu) || []).length;
+const gpLength = (s) => (s.match(/ING|TH|NG|EO|OE|AE|IA|EA|[A-Z]/gu) || []).length;
 
 /**
  * A six-word exact seed, followed by at most two rune-length mismatches.
@@ -69,8 +69,8 @@ assert.equal(target.reduce((a,b)=>a+b,0),12956);
 const control = words("PARABLE LIKE THE INSTAR TUNNELING TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIVINITY WITHIN AND EMERGE").map(gpLength);
 const seen = runicLengths(source[56]);
 assert.equal(seen.length,20);
-assert.deepEqual(seen.flatMap((x,i)=>x===control[i]?[]:[i]),[4]);
-console.log("Positive control: solved p57, 20 words, one transliteration mismatch at index 4 (TUNNELNG).");
+assert.deepEqual(seen, control, 'p57 solved PARABLE must have all 20 rune-word lengths');
+console.log("Positive control: solved p57, all 20 words exactly matched (ING as one GP rune).");
 console.log("Unsolved LP2:",target.length,"words,",target.reduce((a,b)=>a+b,0),"runes");
 const references = [
   ["Emerson", "resources/control/emerson_essays_2944.txt"],
