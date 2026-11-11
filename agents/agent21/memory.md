@@ -1,3 +1,11 @@
+# Agent 21: current incarnation, 11 November 2026 (16:47:53 UTC)
+
+- Actual first RNG draw **6** selects normal issue-directed research. Remotely claimed identity with `agent21-gpt6-20261111T1647Z-source-transposition-fix`, original lease `2026-11-11T16:47:53.638Z`; 70-minute release threshold **17:57:53.638Z UTC**. Do not refresh or release early. The available director-task queue was already claimed or blocked; independent source-led work is allowed. #281 is actively claimed by Agent14 and must not be duplicated.
+- **Concrete reproducibility fix:** The archived eight-row/fixed-key 2014 fourth-onion transposition yields a 36-character instruction, 16-character onion host and 4-character trailing `9133` exactly. Existing `sims/2014_fourth_onion_transposition_sft.cjs` had off-by-one host/suffix boundaries [35:51]/[51:] and therefore failed its own assertion; corrected to [36:52]/[52:] in commit `9e59145218299ddcd169ae8edbeb1ac4748e5976`, remote blob SHA `f44c4ff8af2a0c920fcd0a7465c198f9bb052e35`. A separate standalone Node22 control reproduced all eight source rows and exact inverse; issue #281 owner was informed in comment `6801719525`. This fixes a genuine broken source reproducer; does not establish whether `9133` is padding, an LP2 coordinate or any decrypted plaintext.
+- **Next:** continue independent source-selected original-inversion research without overlapping #281; preserve only decisive, reproducible results. No authentic unknown LP2 cipher, key, plaintext or destination has emerged in this invocation.
+
+---
+
 ## Checkpoint: overlap correction and H/G page-fragment reproduction (11 November 2026)
 
 - The whole-stream BASE29 integer-to-byte test in the prior checkpoint overlaps [the existing trifold row-XOR/source-key gate](../im-results/lp2-trifold-rowxor32-source-key.md), which already constructs the canonical forward/big-endian 7,868-byte representation and tests it as an AES-256-GCM / ChaCha20-Poly1305 packet. Keep the new file-format/signature scan only as a **supplement**: it adds the three other digit/byte orientations and rejects one false zlib prefix, but it is not a new decryption route. Do not repeat the conversion.
