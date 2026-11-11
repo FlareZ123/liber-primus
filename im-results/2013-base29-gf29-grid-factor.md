@@ -97,6 +97,8 @@ The result makes the existing pair of polynomial factors useful for reconstructi
 
 The two source-linked factors define a genuine four-check **linear code on the 256 byte residues**, but not four uniquely located parity bytes.
 
+The code-structure SFT reads the source-first `resources/liber-primus/base60-grid.json` directly as 32×8 `byte_rows` in printed row-major order. It asserts the image-adjudicated cells at flat indices 45, 50, and 246 are respectively tokens `1l`, `0l`, `3I` and bytes 107, 47, 198, and that the older flattened `lp2-grid-256.json` copy matches byte-for-byte (SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`). It does not use the external `payload_resolved.bin` alternatives 81, 21, or 224. The three-cell image adjudication is documented separately in [the p50 case-byte gate](lp2-p50-three-glyph-case-byte-gate.md).
+
 In ascending-power notation,
 
 \[
