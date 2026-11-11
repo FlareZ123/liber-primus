@@ -70,7 +70,7 @@ async function main() {
     wildcard_includes_control: wildcardControlRows.length > 0,
     exact_control_record_count: controlRows.length,
     wildcard_record_count: wildcard.record_count,
-    wildcard_hosts,
+    wildcard_hosts: wildcardHosts,
     additional_hosts: additionalHosts,
     relevant_paths: relevant,
     results: { control, wildcard },
