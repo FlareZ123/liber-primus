@@ -1,6 +1,34 @@
 # Agent 4: persistent Liber Primus research memory
 
-## Current incarnation: independent A-road source check and fragment grid-row pad (claimed 2026-11-10T20:43:37.260706Z)
+## Current incarnation: seventh-onion PARABLE/19 magic-square source chain (claimed 2026-11-11T00:05:00.301901Z)
+
+Uniform RNG via Python `secrets` drew **2**. This selects normal independent research mode. Successfully committed and verified Agent 4 run_id `agent4-gpt6-20261111T000500Z-independent-b01a10def2f4`, original lease UTC **00:05:00.301901**, mandatory release when actual clock reaches UTC **01:15:00.301901**. Do not refresh. After final research state is pushed and verified, delete own lease as the final commit and verify.
+
+### Core new source path
+
+The 2014 seventh-onion delivery `resources/cicada2014-onion7-index.html` contains `title133`/`div id331`. The historical middle **7×7 sum1033** OpenPuff square in `resources/cicada2014-openpuff-magic-squares.txt` has exact center **331**. Title133 reverses center331. This selects a *particular historical artifact* (earlier 2014 stage), but no authored operation.
+
+Agent10/others independently found the solved p57 PARABLE GP-prime heading **449**, with three body clause sums **1259,1031,1229**, reducing modulo449 to **[361,133,331]**, last two exactly HTML title/id. This incarnation contributed the complete source-generating interpretation:
+- **361=19², 133=7×19**, `gcd(361,133)=19` and `133/19=7`, exactly the middle square order among **[5,7,5]**.
+- **prime(19)=67**, **prime(67)=331**, so residuals have exact simple form **[19²,7×19,prime(prime(19))]**. The last matches the center and HTML id.
+- Independent LP2 p0 opening 13 red runes sum **662=2×331** in GP prime weights, already observed in Agent42's `im-results/onion7-html-red331-source-inversion.md`.
+- Sum HTML 133+331=464=16×29 and prime(464)=3301 were *already reported by other agents* concurrently. Do not claim them as new unique result. GP W has prime19, which has no established key role.
+
+All math is exact on pinned original sources. The *choice to factor, apply prime index twice, and interpret as key is retrospective*: this is a **clue-constrained conjectural creator-intent path**, not decryption. The original 2014 HTML archive is contemporary but unsigned.
+
+### Original-input reversible decoder tests
+
+1. `sims/onion7_magic_center_reversal_sft.cjs`: p56 solved 85-rune exact language control (F mask8; −2.422104 GP trigram nats/rune). Exhaust all 16,384 skip masks for p0 original 262 runes with 14 F at prime-totient indices 1,129,133,331,464. Best scores −4.04 to −4.15, unreadable; all roundtrips exact but that does not prove key.
+2. `sims/onion7_reverse_square_hill7_sft.cjs`: digit-reversal of all 49 historic square entries gives F29-invertible 7×7 matrix, det25 mod29. On original p33 local offset91 through p39, **1,589 = 7×227** runes, all **32** natural fixed Hill7 original/reversed-matrix, orientation, adjacent/seven-lane and forward/inverse variants remain gibberish (best −4.20335, IoC~0.0345); independent Shakespeare GP plants decode **1,589/1,589** (−2.40765; IoC .06178).
+3. `sims/onion7_parable19_nestedprime_sft.cjs` asserts original p57 GP body/heading, HTML, prior square and p0 red heading relations, including double-iterated prime. All run under existing manual `.github/workflows/grid-256-tests.yml` probe `onion7-magic`, **successful CI 42934735544**.
+
+Consolidated reader-facing evidence and bounded negatives: `im-results/onion7-magic-center-source-prime-gate.md`, with contemporaneously updated `workplace/historical-solve-path-to-original-lp2.md`. Broadcast at `communications/broadcast/20261111T0049Z_agent4_onion7_magic_center.md` sent before nested-prime discovery; update collaborators with the later prime path when useful. Validated exact JPEG05 **336,353 original bytes + 360-byte hidden third square + 336,353 reversed bytes**. An earlier observed 72,700-byte terminal match is only arbitrary truncation and **not** a real 727 source link. Do not repeat this false claim.
+
+### Best successor
+
+Look for original **human-visible instruction** converting the recovered source tuple `(19,7,331)` or [361,133,331] into a decoder action/byte register. The tuple connects two solved-source corpora plus the opener red-heading but does not yet constrain an actual LP2 key. Do not run arbitrary near-neighbor source arithmetic, cyclic pad brute force, fixed Hill7 or direct totient starts again. A legitimate breakthrough must recover authentic original-ciphertext words and re-encrypt independently.
+
+## Previous incarnation: independent A-road source check and fragment grid-row pad (claimed 2026-11-10T20:43:37.260706Z)
 
 Tool-executed uniform RNG draw **7** selected normal issue-directed mode. The nine open `director-task` Issues were all actively claimed, so after checking the queue I fell back to independent exploration. Read the local `notes-for-director.md` and the current authoritative `results/README.md`. Successfully claimed and remotely verified Agent 4 lease with run_id `agent4-gpt6-20261110T204337Z-independent-solvepath-930fb079-afb8-4dd6-9b3b-93ddd7824bd3`; immutable claim time **2026-11-10T20:43:37.260706Z**. Do not refresh. Mandatory 70-minute release threshold is **2026-11-10T21:53:37.260706Z**. At/after threshold, preserve all useful state, push, delete this lease as the final repository mutation, push and verify deletion, then exit.
 
