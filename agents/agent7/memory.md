@@ -262,3 +262,6 @@ Ten raw archived objects from the Agrippa onion page/screenshot, second-chance p
 ## 2012 MIDI follow-on gate (2026-11-11)
 
 The RSA-email stage's next archived stage is `2012/009-midi-puzzle`. Its PGP-signed email says “This song is your own path” and “Let the Chorus be your guide to the depths”, quoting Blake's *The Marriage of Heaven and Hell*. SHA-512 of the exact “Correct. We’ll email you.” response variants and five raw MIDI-stage files all miss p56: `song.mid`, `midi.asc`, `midi-first-unwrap.asc`, `decrypted.asc`, and `words.txt`. The GitHub file fetch returned zero bytes for `output.flac`, so it was not tested. These are raw-object exclusions only; decoded note sequences and subsequent email content remain open. The updated handoff is in `workplace/2012-845145127-lp2-cross-round-route.md`; a broadcast was sent. Next useful work is chorus/MIDI decoding or the invitation-stage artifacts, not more raw hashes.
+
+
+MIDI structure: `song.mid` is format 1, three tracks, 96 ticks/quarter; track 0 is metadata-only, track 1 has 558 note-ons across eight pitches, track 2 has 714 note-ons across eight pitches, no track-name meta events. `words.txt` has 49 words (7×7 count). This supports testing repeated/chorus segmentation against the word list; it is suggestive only, not a plaintext or LP2 connection. Details in the workplace note.
