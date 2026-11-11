@@ -87,6 +87,35 @@ assert.equal(missing[0], 73);
 assert.equal(missing.at(-1), 1223);
 assert.equal(visible.at(-1), 1619);
 
+// Independent pre-LP2 historical anchor. The solved PARABLE p57 body
+// clause sums multiply to the 2013 MP3's archived "Parable" ID3 number.
+// Check how the three factors and the red heading align with the telnet
+// missing interval without fitting a ciphertext key.
+const runePrime = new Map(corpus.runes.map((r, i) => [r, corpus.prime[i]]));
+const p57Text = require("node:fs").readFileSync(
+  require("node:path").join(__dirname, "..", "resources", "lp2-transcription.txt"), "utf8"
+).split("%")[56];
+const primeClauses = p57Text.split(".")
+  .map(clause => [...clause].filter(r => runePrime.has(r)))
+  .filter(clause => clause.length)
+  .map(clause => clause.reduce((sum, r) => sum + runePrime.get(r), 0));
+assert.deepEqual(primeClauses, [449, 1259, 1031, 1229]);
+assert.equal(primeClauses[1] * primeClauses[2] * primeClauses[3], 1595277641);
+const primeOrdinal = value => primes.indexOf(value) + 1;
+assert.deepEqual(primeClauses.map(primeOrdinal), [87, 205, 173, 201]);
+assert.deepEqual(primeClauses.map(value => missing.includes(value)),
+  [true, false, true, false]);
+assert.equal(primes[200], primeClauses[3]); // first prime after missing interval
+console.log(JSON.stringify({
+  independentHistoricalSource: "2013 AUDIO/761.MP3 Parable metadata",
+  solvedP57ClausePrimeSums: primeClauses,
+  2013AudioParableTagNumber: 1595277641,
+  sourcePrimeOrdinals: primeClauses.map(primeOrdinal),
+  omittedInTelnetInterval: primeClauses.map(value => missing.includes(value)),
+  firstVisibleAfterTelnetGap: 1229,
+  causalStatus: "Source overlap only; no cipher key or decryption selected"
+}));
+
 console.log(JSON.stringify({
   check: "unaltered source and 2013 gap",
   primeOrdinals: "21–200", missingPrimeEndpoints: [73, 1223],
