@@ -38,17 +38,31 @@ Following the red-3299 clockwise inward spiral gives:
 
 The **11th** spiral value is **2838**. The p32 map's side length 11 could select that entry; this is a plausible selector, not a written instruction.
 
-A stronger address follows from the already source-visible 3301 complement:
+The p15 Fibonacci-prime spiral itself is **established prior work**, not a new discovery; see `results/lp2-p15-fibonacci-prime-spiral.md` and `im-results/p15-fibonacci-page-word-address-gate.md`. The latter rejects generic pairings of the spiral's prime/Fibonacci coordinates as page/word addresses. The present hypothesis is different: p32's side length 11 selects the 11th spiral entry, then that entry's established zero-based prime order is tested as an offset into p32.
+
 - (3301-2838=463).
-- 463 is the **90th prime**.
-- Prime rank is one-based, so position 90 is zero-based p32 rune offset **89**.
+- 463 is the **90th prime** in conventional one-based ranking, hence **P89** when the p15 prime-order convention starts with (P0=2).
+- The p15 11th spiral entry is associated with Fibonacci index 89; the zero-based prime order **89** therefore directly matches p32 zero-based rune offset **89**.
 - Offset 89 begins the printed word `OENGOMBUDS`; the 4×4 table's edge length selects its four-rune suffix `BUDS` at offset 93.
 
-This is a direct, reproducible cross-artifact pointer: p32 side 11 → p15 spiral entry 11 → 3301 complement 463 → prime position 90 → p32 rune position 90 / offset 89 → BUDS suffix. The 4×4 table dimension supplies the four-rune edge length. It does not yet specify what operation to perform after reaching BUDS.
+The cross-artifact hypothesis is: p32 side 11 → p15 spiral entry 11 → established Fibonacci/prime order P89 → p32 offset 89 → BUDS suffix. The p15 prime-order mapping is prior art; the proposed p32 address is the new application. The 4×4 table dimension supplies the four-rune edge length. This does not yet specify what operation to perform after reaching BUDS.
 
 The exact checksum is also notable: **2838 mod 360 = 318**, equal to the four interior rune-prime sum. Under the project's *inferred* mathematical-angle convention (0° east, counter-clockwise; see `im-results/2014-magic-square-direction-map.md`), 318° quantizes to 315° southeast, matching the (3,0)→(8,5) grid diagonal. The 2014 report itself treats the angle convention as an inference, not an explicit primary-source instruction. The endpoint sum is 374 mod 360 = 14° east; its agreement with 2014 stage04 cell 6's 366 mod 360 = 6° east is weaker secondary support.
 
 A separate exact residue is **2838 mod 121 = 55**, which could point to physical p55. The canonical p55 page has 76 runes (19 four-rune blocks). This modulo-121 interpretation is only a possible page pointer; no source instruction yet selects it.
+
+## Semantic road hypothesis from the four interior rune names
+
+The four interior path runes are **B, M, IA, NG**: Beorc, Mann, Iar, Ing. The 2016 message's “their meaning is the road” makes their names/stanza meanings a motivated lead, rather than free association. In the Old English Rune Poem:
+
+- **Beorc** is described through a tree that produces shoots and has branches and a high crown; this resonates with the selected endpoint fragment **BUDS**.
+- **Mann** concerns a person and kinship, with mortality as its turn.
+- **Iar** describes a river creature and a fair dwelling surrounded by water; this resonates with **HOME**.
+- **Ing** is associated with the East-Danes and a journey east over water, with a wagon following.
+
+Read in the p32 path order B→M→Iar→Ing, these meanings suggest a semantic road involving tree-growth, a person, a water-surrounded home, and eastward travel. The BUDS/Beorc and HOME/Iar resonances are notable because the runes were selected by the diagonal, not chosen after reading the poem. Ing supplies a possible east-over-water continuation. However, the path's direction/orientation and the geographic referent remain unresolved; this is not yet a coordinate or reversible operation.
+
+Source caution: the Old English Rune Poem's Cotton Otho B.x witness was destroyed in 1731; the text survives through George Hickes's 1705 printing of an earlier transcription. The rune-name labels and some readings have editorial-history caveats. Treat the poem as a historically motivated interpretive source, not an unquestionable key. See [the public-domain Old English text](https://en.wikisource.org/wiki/Rune_poems), [the Dobbie-edited text and manuscript note](https://people.umass.edu/~sharris/in/handouts/RunePoem.pdf), and [the translator's note on its transmission](https://www.poetryfoundation.org/poetrymagazine/articles/145835/translator39s-note-old-english-rune-poem-by-anonymous).
 
 ## Cross-round +60 relation: secondary, not an authenticated instruction
 
@@ -92,6 +106,7 @@ The strongest unresolved question is now **what source-prescribed operation foll
 - 2016 signed image: `resources/historical/cicada2016-4gq25.jpg`
 - word-frequency control: `resources/control/english_wordfreq_textblob.txt`
 - inferred direction convention: `im-results/2014-magic-square-direction-map.md`
+- prior p15 spiral synthesis and generic page/word address gate: `results/lp2-p15-fibonacci-prime-spiral.md`, `im-results/p15-fibonacci-page-word-address-gate.md`
 - 2014 Fibonacci-prime square reconstruction: https://cicadanotebook.com/sessions/3.html and https://github.com/scream314/cicada3301/blob/master/pages_and_ciphers.md
 
 No plaintext, authentic key, complete cipher mechanism, or final destination has been recovered.
