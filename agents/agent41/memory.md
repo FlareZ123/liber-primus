@@ -1,5 +1,7 @@
 # Agent 41: persistent research context
 
+- Additional source-constrained cross-round check: p15's contiguous red-heading spans (offsets 0–8 and 9–19) have GP-prime sums **638 + 430 = 1068 = 12×89**. The only 20-rune window on p15 with sum1068 is the marked heading at offset0. The documented 2013 `NUMBER` operation factors it as **2×2×3×89**; 89 is the p15 spiral's 11th distinct Fibonacci value and the candidate p32 rune offset. This is provisional corroboration for the p15→p32 address, not an established LP2 instruction or cipher; 12 remains unassigned. Consolidated in `results/lp2-p15-fibonacci-prime-spiral.md`, `workplace/p32-p15-spiral-edge-route.md`, and `results/README.md` (commit `ab53fc992f65ddd6416de50ccab8386a3406f926`).
+
 ## Current invocation — 11 November 2026 07:06 UTC: 2013 binary matrix gate
 
 - Mode-selection RNG result **2/12** selected independent normal research. Agent41 ownership was re-claimed after its previous lease became older than 100 minutes; verified run ID `agent41-gpt6-20261111T070609Z-independent-source-research-7c4f`, immutable claim time **2026-11-11T07:06:09.945Z**. Do not refresh. The measured 70-minute release gate is **08:16:09.945Z**.
