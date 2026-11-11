@@ -251,6 +251,38 @@ for (const [name, key] of [["rawIndex", terminal],
 assert.deepEqual(Object.values(byteXor).map(v => v.printableASCII),
   [20, 15, 20, 20]);
 
+// Fully source-locked three-way original-data bridge: 43 numeric p50
+// interval cells, 43 signed source terminal runes and 43 original p55
+// interiors. One-time, positionwise GP29 addition (the solved p56 operation)
+// and historical byte XOR, with no rotations, phase fitting or blind keys.
+const tripletKeys = {
+  tableOnly: tableInterior.map(byte => byte % 29),
+  tablePlusRaw: tableInterior.map((byte, i) =>
+    mod(byte + terminal[i])),
+  tableMinusRaw: tableInterior.map((byte, i) =>
+    mod(byte - terminal[i])),
+  tableXorRaw: tableInterior.map((byte, i) =>
+    (byte ^ terminal[i]) % 29),
+  tablePlusFold: tableInterior.map((byte, i) =>
+    mod(byte + folded[i])),
+  tableMinusFold: tableInterior.map((byte, i) =>
+    mod(byte - folded[i])),
+  tableXorFold: tableInterior.map((byte, i) =>
+    (byte ^ folded[i]) % 29)
+};
+const triadInverse = {};
+for (const [name, key] of Object.entries(tripletKeys)) {
+  triadInverse[name] = {};
+  for (const mode of ["subtract", "add", "beaufort"])
+    triadInverse[name][mode] = invert(key, mode);
+}
+const maximumTriadIoc = Math.max(...Object.values(triadInverse)
+  .flatMap(models => Object.values(models).map(model => model.ioc)));
+assert.equal(maximumTriadIoc, 0.044296788482835);
+assert.equal(triadInverse.tableMinusRaw.subtract.gp,
+  "IACNOEMEAFIAOSOYEHEEAWIMOENPSNMTHRBEEEAJYYEOYMLJGEAEM");
+
+
 console.log(JSON.stringify({
   status: "provisional centered-END source correspondence; negative direct p55 key trial",
   corpus: "56 unknown LP2 pages; 12956 GP29 runes",
@@ -272,6 +304,12 @@ console.log(JSON.stringify({
   original43RuneP55Interior: gp(interior),
   originalInput,
   p50Interval43Xor: byteXor,
+  combined43SourceGate: {
+    generatedKeys: Object.keys(tripletKeys),
+    inverses: triadInverse,
+    highestIoc: maximumTriadIoc,
+    status: "None of 21 frozen original data inverses yields recognizable plaintext"
+  },
   interpretation: "The centered END is exploratory and not a recovered unknown plaintext. " +
     "The exact multiset null does not correct for choosing reading rules or targets after inspection. " +
     "Both directly motivated reversible keys fail to recover readable p55 text."
