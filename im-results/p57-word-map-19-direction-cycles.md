@@ -1,6 +1,8 @@
-# p57 19-word modular direction graph: two 5-cycles sharing WE
+# p57 19-body-word modular direction graph: two 5-cycles sharing WE
 
 **Classification:** candidate human solve-path structure; exploratory, not a decryption. The result is independent of the rejected 5×19 rune-rectangle alignment.
+
+p57 contains **20 words overall**: the red heading `PARABLE` plus 19 body words. The graph below deliberately treats the heading as a separate selector/seed (its GP-prime sum is 449, used in the conditional NUMBER(449)→944→59→95=5×19 chain) and uses the 19 body words as nodes. This exclusion is a modeling choice, but it is source-motivated by the typographic heading/body distinction and the 19-body-word count; it is not a claim that the page has only 19 words.
 
 ## Source-selected anchors
 
@@ -56,6 +58,8 @@ The cycles are both length 5 and share exactly one node: **WE**, position 8. Thu
 The two cycles' word meanings are strikingly consonant with the parable's key phrases (“like ... to the surface”, “we ... find the divinity within”, “shed ... circumferences”), but this semantic reading is interpretive, not a recovered plaintext.
 
 ## Alternative numeric controls
+
+Including PARABLE as a 20th node and using modulus 20 is a useful control: both selected anchors (LIKE and FIND) flow to the fixed point INSTAR rather than producing the two 5-cycles. The body-only 19-node model is therefore the one aligned with the 5×19 selector, though this does not prove that the heading must be excluded.
 
 The two 5-cycles do not appear when the word values are replaced by the sum of rune ordinals or by rune count:
 - With ordinal sums, the negative walk from LIKE reaches the fixed point TO, and the positive walk from FIND reaches the fixed point WITHIN.
