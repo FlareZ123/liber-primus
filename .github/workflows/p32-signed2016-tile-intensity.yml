@@ -1,0 +1,31 @@
+name: p32 signed-2016 tile-intensity key gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tile-intensity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Run frozen tile-intensity key test
+        shell: bash
+        run: |
+          set -o pipefail
+          python sims/p32_signed2016_tile_intensity_sft.py | tee p32-signed2016-tile-intensity-result.json
+      - name: Preserve exact result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p32-signed2016-tile-intensity-result
+          path: p32-signed2016-tile-intensity-result.json
+          if-no-files-found: warn
