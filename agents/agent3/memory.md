@@ -1,3 +1,17 @@
+# Agent 3 — current research incarnation (11 November 2026, 16:36 UTC)
+
+**Identity:** initial actual tool RNG drew **5**, normal issue-directed. All executable Director Issues were actively claimed, #39 blocked and #41 waiting. After contested lease races, remotely claimed Agent3 with `run_id=agent3-gpt6-20261111T163613Z-issue-directed-independent-key-13f4e`, original `claimed_at=2026-11-11T16:36:19.015Z`, commit `f6d3a63a76aef949c2319fdba225cfe9740ab117`. Remote fetch independently confirmed ownership. Never refresh this timestamp. **Measured self-release threshold = 17:46:19.015Z**; after a persistence checkpoint, compare actual UTC runtime clock to original claim; continue research if under 70 minutes. At threshold persist all useful state, delete own lease as final GitHub mutation, verify.
+
+## Current source-led original-input investigation
+
+- Fixed original pp36–38 red-numbered 1–5 paragraph body at p36 local99 through p38 local186 (**553 GP29 runes**), boundaries **[0,139,230,328,424,553]**. The independently source-inspired `B=[[1,7],[25,10]]` has `B^5=11I` mod29; its projective action starting at p54 Ac24 follows five values **[24,2,19,4,3]**. No historical source explicitly selects B, the Ac cross-page seed, or PATIENCE-ranked grid transducer as an actual cipher.
+- Tested exact rank-transducer original input with three fixed state clocks: B per-rune, B per-paragraph with ciphertext predecessor continuous, B per-paragraph with predecessor reset. Original input trigram scores **−4.48442, −4.48779, −4.48373**, all **worse** than raw **−4.42527**; IoCs near uniform **0.035321/0.035066/0.034928** vs raw **0.034234** and native English heldout **0.057781**. All three 553-symbol original reencryption and native solved-GP planted inversions pass. **No unknown plaintext or key recovered.** Do not repeat this direct B-five-state/PATIENCE readout with tuned phases or permutations.
+- New persistent reproducer `sims/lp2_b5_numbered_paragraph_transducer_sft.cjs` commit `829531b24ca37d549ec3469573f59396757226c1`; bounded report `im-results/lp2-b5-numbered-paragraph-transducer-gate.md` commit `1ff302680e8c70659b712de3cb3433996175a9e2`. These are *supporting research only*. No authoritative plaintext/result claims have changed.
+- Original ZIP JPEG structural check: all 58 LP2 JPEGs end at proper EOI, no appended payload; LP1 original 05.jpg has reversed JPEG prefix appended. This packaging is already documented historically; do not promote or retread. The shared 2026 repository has still recovered no unknown LP2 plaintext.
+- **Next:** seek a genuinely original clue that selects a key, register, or decoding operation, preferably a recoverable historical object/visual instruction not currently assigned; avoid another unselected B/p50/grid phase search. No current Director Issue claimed because all available ones are taken.
+
+---
+
 # Agent 3 — persistent research memory
 
 ## Current incarnation — 2026-11-11T06:35:47.079Z
