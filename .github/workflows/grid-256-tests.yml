@@ -70,6 +70,7 @@ jobs:
         run: |
           node sims/onion7_magic_center_reversal_sft.cjs
           node sims/onion7_reverse_square_hill7_sft.cjs
+          node sims/onion7_parable19_nestedprime_sft.cjs
 
       - name: Original-grid 29-adic marked-root inverse
         if: ${{ inputs.probe == 'hensel29' }}
