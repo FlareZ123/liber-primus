@@ -16,7 +16,7 @@ Source inputs and exact parser: `resources/liber-primus/base60-grid.json` (the b
 
 ## Source-frozen first gates
 
-[Reproducer](../sims/lp2_terminal_grid_border_ring_sft.cjs) starts from the original 32×8 token positions and tests direct, lossless plaintext/byte interpretations without language-based parameter selection.
+[Reproducer](../sims/lp2_terminal_grid_border_ring_sft.cjs) starts from the original 32×8 token positions and tests direct, lossless plaintext/byte interpretations without language-based parameter selection. The source and all assertions passed in [manual GitHub Actions run 42939635633](https://github.com/FlareZ123/liber-primus/actions/runs/42939635633), using Node.js 22.
 
 **Border → p55, direct unknown byte lookup:** traverse the 76-cell perimeter from each of the four corners, clockwise or counterclockwise. Under each of these eight geometric orientations, the same 8 duplicate-byte occurrences must produce the same visible ciphertext rune if a *single fixed unknown byte-to-GP lookup* describes the p55 ciphertext. They do not: **at least 5 out of 8** duplicate-byte occurrences demand contradictory rune outputs in each orientation (the eight orientations have 0–3 consistent repeats). Thus *all eight direct substitution layouts* are mathematically impossible, regardless of the secret lookup table. This does **not** exclude a grid-derived additive pad or any stateful, position-dependent encoder.
 
@@ -35,6 +35,8 @@ The p56 known-plaintext input is the independently published `AN END…` passage
 ## Consequence for subsequent research
 
 The strongest contribution here is a **geometrically prescribed 76/180 source split that matches the last three pages exactly**, alongside early eliminations that prevent a futile search for a fixed table-byte substitution key. The theme of removing a circumference supplies a plausible human solve-path *hypothesis*, but the instructions were recognized after examining existing materials, so the count match is not independent confirmation of an authentic cipher.
+
+Earlier [circumference-corner key experiments](../sims/circumference_corner_key_inverse.cjs) already explored AES/ChaCha streams derived from concentric grid corners; this new 76/180 terminal-page framing is a different source claim and does not revive those failed direct key families.
 
 The next decision-grade test requires an **additional original clue** fixing a nontrivial operation connecting table cell values to GP runes or state, before p55 is used to select the rule. A proposed chain must explain why the 180 solved rune positions fit it and then predict the untouched 76 original p55 ciphertext runes or meaningful plaintext, with exact re-encryption and wrong-key controls. Without that independent operation, arbitrary border/interior transposition or pad searches would be postselected and low-value.
 
