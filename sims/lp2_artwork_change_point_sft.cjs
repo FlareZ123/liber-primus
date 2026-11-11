@@ -98,6 +98,43 @@ assert.deepEqual([training.js.highOrEqual,training.js.combinations],[413737,4750
 assert.deepEqual([heldoutText.js.highOrEqual,heldoutText.js.combinations],[68,136]);
 assert.deepEqual([heldoutText.h2.highOrEqual,heldoutText.h2.combinations],[76,136]);
 assert.deepEqual([withTable.h2.highOrEqual,withTable.h2.combinations],[189,5985]);
+
+// Length-matched source-null for apparent changes at the numerical-table pages.
+// Randomization preserves the local four-page combined GP29 symbol histogram
+// and the exact unequal sample sizes, with 4000 deterministic permutations.
+function permuteUnigramSeam(boundary,rng,iterations=4000){
+ const i=pages.findIndex(p=>p.page===boundary);
+ const left=pages.slice(i-2,i).flatMap(p=>p.indices);
+ const right=pages.slice(i,i+2).flatMap(p=>p.indices);
+ const pool=[...left,...right],l=Array(29).fill(0),r=Array(29).fill(0);
+ for(const x of left)l[x]++;for(const x of right)r[x]++;
+ const observed=unigramH2(l,r);
+ let high=0,average=0;
+ for(let t=0;t<iterations;t++){
+  const shuffled=pool.slice();
+  for(let j=shuffled.length-1;j>0;j--){
+   const k=rng()%(j+1);
+   [shuffled[j],shuffled[k]]=[shuffled[k],shuffled[j]];
+  }
+  const a=Array(29).fill(0),b=Array(29).fill(0);
+  for(let j=0;j<shuffled.length;j++)(j<left.length?a:b)[shuffled[j]]++;
+  const score=unigramH2(a,b);average+=score;
+  if(score>=observed)high++;
+ }
+ return {boundary,left:left.length,right:right.length,observed,
+  meanNull:average/iterations,highOrEqual:high,iterations,
+  plusOneUpperTail:(high+1)/(iterations+1)};
+}
+let randomState=0x5317cafe;
+function nextRandom(){
+ randomState^=randomState<<13;
+ randomState^=randomState>>>17;
+ randomState^=randomState<<5;
+ return randomState>>>0;
+}
+const tableLengthMatchedNull=[33,40,49,52].map(b=>permuteUnigramSeam(b,nextRandom));
+assert.deepEqual(tableLengthMatchedNull.map(x=>x.highOrEqual),[3960,408,3057,1785]);
+
 console.log(JSON.stringify({runes:seen,within:[same(within),within.length],
  crossWord:[same(cross),cross.length],crossPage:[same(edges),edges.length],
- training,heldoutText,withTable,groupRates},null,2));
+ training,heldoutText,withTable,tableLengthMatchedNull,groupRates},null,2));
