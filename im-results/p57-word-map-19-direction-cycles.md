@@ -75,7 +75,7 @@ The A194954-derived 41×316 direct-key interpretations have been tested and reje
 
 Agent 4's conditioned one-million-permutation diagnostic was independently reproduced with a separate implementation and seed **20261112**. The counts match: both cycles length 5 in **19,128/1,000,000** trials; both length 5 with one shared node in **7,909**; shared node specifically WE in **317**; all four A194954-selected cycle nodes assigned to their observed respective cycles in **1**; and the exact observed intersection with no other selected nodes in either cycle in **0**. The original reproducer is [`im-results/a194954-p57-cycle-intersection.py`](a194954-p57-cycle-intersection.py).
 
-The first seven provisional A194954 terms select p57 body positions **[2,3,5,7,11,13,17]**: THE / INSTAR / TO / SURFACE / OUR / CIRCUMFERENCES / WITHIN. Four selected words are cycle nodes, in A194954 order **TO(5), SURFACE(7), CIRCUMFERENCES(13), WITHIN(17)**. The two fixed cycle directions are:
+The first seven provisional A194954 terms select p57 body positions **[2,3,5,7,11,13,17]**: THE / INSTAR / TO / SURFACE / OUR / CIRCUMFERENCES / WITHIN. Four selected words are cycle nodes, in A194954 order **TO(5), SURFACE(7), CIRCUMFERENCES(13), WITHIN(17)**. Under the current candidate sign choices, the two cycles are:
 
 - LIKE-minus: LIKE(1) → SURFACE(7) → WE(8) → WITHIN(17) → DIVINITY(16).
 - FIND-plus: FIND(14) → CIRCUMFERENCES(13) → WE(8) → AND(18) → TO(5).
