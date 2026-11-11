@@ -103,6 +103,17 @@ assert.deepEqual(
   P
 );
 
+// The signed 2013 BASE29 convention supplies a separate fixed binary reading:
+// interpret the recovered 273 GF29 coefficients as one big-endian base-29 integer.
+const packedNumber = residual.q.reduce((acc, digit) => acc * 29n + BigInt(digit), 0n);
+let packedHex = packedNumber.toString(16);
+if (packedHex.length % 2) packedHex = "0" + packedHex;
+const packedBinary = Buffer.from(packedHex, "hex");
+assert.equal(packedBinary.length, 166);
+assert.equal(packedBinary.subarray(0, 16).toString("hex"), "166a370a936ebaf8dc6c0cdc798dee98");
+const printableBytes = [...packedBinary].filter((v) => v >= 32 && v < 127).length;
+assert.equal(printableBytes, 52);
+
 // Page-wide original-source uniqueness, holding the signed constants and table fixed.
 const matchingPages = corpus.pages.filter((x) => x.page <= 55 && x.indices.length >= 5)
   .filter((x) => {
@@ -160,7 +171,7 @@ console.log(JSON.stringify({
   signedParameters: {H, DH}, originalTriad: G, product: F,
   exactCongruence: "P29 - S - 2G = G^2 R over GF(29)",
   originalDifferenceModuloG2: [0, 1, 10, 25],
-  RLength: residual.q.length, RIoC: ioc(residual.q),
+  RLength: residual.q.length, RIoC: ioc(residual.q), base29Binary: {bytes: packedBinary.length, printableBytes},
   nativePlantRecovered: plant.length,
   matchingPages,
   conditionalShuffles: {trials, hits, pAddOne: (hits + 1) / (trials + 1)}
