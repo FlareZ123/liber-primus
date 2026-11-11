@@ -96,6 +96,41 @@ Across all six original-input variants, **not one of the eight columns is a vali
 
 [Independent source-only CommonJS reproducer](../sims/grid_31share13_threshold_gate.cjs) reads the original checked-in 256-byte table, asserts every held-out exact count, and tests independent true-share plants for all fields/coordinate maps.
 
+
+## Additional row-packed 64-bit 13-of-31 gate (Agent32, 11 November 2026)
+
+The preceding 13-of-31 test treats each of the eight printed bytes in a row as an independent GF(256)/GF(257) share lane. A distinct natural representation treats the **entire eight-byte row as one 64-bit share value**. The 32×8 source table then supplies 32 evaluations: 31 nonzero share coordinates plus one \(x=0\) secret/evaluation row. This tests whether the earlier negative depended on splitting each row into independent byte lanes.
+
+Pack each row's eight canonical bytes in printed left-to-right order as one big-endian 64-bit element. Use the single sparse irreducible polynomial
+
+\[
+f(x)=x^{64}+x^4+x^3+x+1
+\]
+
+for \(GF(2^{64})\). The implementation checks irreducibility with Rabin's criterion. The manuscript does **not** specify this field polynomial; it is one plausible fixed representation for an eight-byte share, not an authenticated key instruction.
+
+Freeze three coordinate layouts:
+1. \(x=0,1,\ldots,31\), with the first printed row as the secret row; interpolate from printed rows 2–14 (\(x=1,\ldots,13\)).
+2. \(x=1,\ldots,31,0\), with the last printed row as the secret row; interpolate from printed rows 1–13.
+3. The already documented five-bit de-Bruijn state sequence, with its single \(x=0\) row at printed row 15; interpolate from printed rows 1–13.
+
+For each layout, the 13 training rows uniquely determine a degree-at-most-12 polynomial. Predict all 19 remaining original 64-bit rows, including the \(x=0\) row where applicable.
+
+| Coordinate layout | Original exact predictions | Independent planted degree-12 control |
+| --- | ---: | ---: |
+| Monotonic, secret first | **0 / 19** | 19 / 19 |
+| Monotonic, secret last | **0 / 19** | 19 / 19 |
+| Five-bit de-Bruijn | **0 / 19** | 19 / 19 |
+
+The first held-out comparisons are already decisive counterexamples:
+- Secret-first: printed row 1 predicted 2c723604585073bb, actual cbe7a7ba61ed7eb7.
+- Secret-last: printed row 14 predicted 32cb55cd49bc2f96, actual 7a3f1fda0eb82073.
+- De-Bruijn: printed row 14 predicted 015983f1b45965e6, actual 7a3f1fda0eb82073.
+
+The 64-bit packed-row representation therefore does not rescue the source-suggested 13-of-31 grid-sharing model under this field and these three fixed row clocks. The planted controls recover all 19 held-out values in every layout, validating the arithmetic and interpolation. This is a **bounded negative**: it does not exclude every possible \(GF(2^{64})\) polynomial, byte order, x-coordinate assignment, or other encoded sharing scheme. No alternate field polynomial, row permutation, or byte packing was searched. Reopen only if an independent source selects a different representation.
+
+Reproducer: [sims/grid_31share13_gf64_packed_row_gate.cjs](../sims/grid_31share13_gf64_packed_row_gate.cjs), which asserts the canonical 256-byte table SHA-256, field irreducibility, all 57 original predictions, and all three 19/19 planted controls.
+
 ## Original ciphertext decryption test
 
 For completeness, derive six 32-byte candidate keys by degree-seven interpolation to \(x=0\): three fields in normal and reversed column order. All six candidates happen to be valid byte strings. Two additional natural eight-of-eight combinations are the bytewise XOR of the eight columns and their arithmetic sum modulo 256, each producing one 32-byte candidate key. Like degree-seven interpolation, neither reconstruction contains redundancy or proves the table intentionally encodes shares. Test all eight candidates against **all 55 rune-bearing unsolved pages and all 12,956 original rune positions** with two frozen stream generators, AES-256-CTR and ChaCha20, using zero IVs, keystream reset at each physical page, both mod-29 signs and \`byte % 29\` reduction. This defines **32 explicit original-cipher decryption settings**.
