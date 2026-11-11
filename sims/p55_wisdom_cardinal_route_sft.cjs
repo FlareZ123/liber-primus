@@ -230,7 +230,14 @@ function run() {
     destination:{bottom:"CABAL",topMirror:"SHADOWS"},
     fullOriginalBookCensus:globalSourceCensus(wisdom,other5,seven),
     oneSourceKeyInverse:{key:"CABAL",full76IoC:ioc(cabAll),
-      fullPrefix:native(cabAll.slice(0,35)),tail21IoC:ioc(cabTail),tail:native(cabTail)}
+      fullPrefix:native(cabAll.slice(0,35)),tail21IoC:ioc(cabTail),tail:native(cabTail)},
+    oneInwardColumnKeyInverse:{
+      speculativeKey:"CABALUOIDFORM",sourceRuneLength:13,
+      physicalP55IoC:ioc(decipher(page.indices,"CABALUOIDFORM")),
+      physicalP36IoC:ioc(decipher(corpus.pages.find(p=>p.page===36).indices,"CABALUOIDFORM")),
+      physicalP55Prefix:native(decipher(page.indices,"CABALUOIDFORM").slice(0,36)),
+      physicalP36Prefix:native(decipher(corpus.pages.find(p=>p.page===36).indices,"CABALUOIDFORM").slice(0,36))
+    }
   };
 }
 if(require.main===module) console.log(JSON.stringify(run(),null,2));
