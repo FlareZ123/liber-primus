@@ -6,15 +6,13 @@
 
 ## Ranked source-visible routes
 
-### 1. p7/p56 dot patterns → constellation geometry (low-confidence external lead; test pending)
+### 1. p7/p56 dot patterns → constellation geometry (closed: standard 13-dot punctuation)
 
-**Original locations:** the “Some Wisdom” scan identified in the interview as page 7 (the page-number convention is ambiguous; the corresponding source image is resources/liber-primus/05.jpg) and LP2 page 56 (resources/liber-primus/56.jpg / archive scan 73).
+A 2019 interview transcript reports that dots on LP2 p7 and p56 relate to constellations ([transcript, lines 426–443](https://therealsamizdat.com/2019/08/30/cicada-files-ghost3301-interview/)). The speaker's claimed insider status is unverified, so this was a testable external hint rather than established creator testimony.
 
-In a 2019 interview transcript, the interviewer asks whether page 56 is connected to constellations. gHOST answers yes, then explicitly associates the dots on page 7 and page 56 with constellations: “those dots that you see lined up on the 7th page in Liber Primus ... apply to the constellations, so does page 56” ([transcript, lines 426–443](https://therealsamizdat.com/2019/08/30/cicada-files-ghost3301-interview/)). The speaker's claimed insider status is unverified; this is a testable external hint, not established creator testimony.
+**Original-JPEG decision (Issue #9, closed).** The red marks on physical p7 and p56 are the same normalized 3-column × 5-row **13-dot punctuation stencil** used by all 31 LP2 13-dot marks: `.#./###/###/###/###`. A catalogue fit based only on normalized occupancy therefore scores identically for every mark; the matched page-label null has exact score-rank fraction **1**. The supposed page-distinctive red constellation geometry is not identifiable and does not select a key, cipher or LP2 destination. This bounded result does not disprove a hypothetical global star-name convention. The independent five-black-dot constellation screen is also negative; do not repeat either catalogue search.
 
-**What a solver could infer:** compare the original dot coordinates on the two pages with named constellation/asterism geometries. This is distinct from the existing five-dot reflection and prime-totient tests, which did not perform a catalogue match. The article's later Salvator Mundi orb / “two other unsolved pages” suggestion is the interviewer's commentary, not gHOST's explicit statement; do not treat it as corroboration.
-
-**Status and boundary:** the five-black-dot constellation hypothesis has already had a bounded negative test; do not repeat it. The only potentially new scope is the small red 3×3 dot-matrix punctuation on p7 and p56, which the existing five-dot screen explicitly excluded. Any coordinate extraction or testing of those red marks requires issue-#3 authorization first. Agent 2 has been told not to repeat the black-dot screen and to proceed with red motifs only if Agent 21 approves. A useful test must freeze dot coordinates, catalogue, permitted orientation/scale/translation, and a null comparison before searching; avoid unconstrained constellation fishing.
+The original cross-release census additionally finds that LP1's 11-dot stencil becomes LP2's 13-dot stencil by adding the two lower-corner dots, while the 10-dot stencil persists. This is a genuine source-design change but has no authenticated cipher operation; see [the cross-release report](lp1-lp2-red-stencil-cross-release.md). A successor must find an independent instruction selecting a use of that change before interpreting ciphertext.
 
 ### 2. Five-slot tree ornament → 13/31 stencil counts → 32×8 table (issue #3 owns this line)
 
@@ -66,7 +64,7 @@ An external image reconstruction reports a strong match between the dotted insec
 
 ## Other artwork and exhausted routes
 
-- The five-dot stencil and its reflections, including a 89-feature/879-candidate constellation catalogue screen, are already covered by [im-results/black-dot-template-reflections.md](black-dot-template-reflections.md) and [sims/black_dot_constellation_screen.cjs](../sims/black_dot_constellation_screen.cjs). The best Piscis Austrinus fit fails the matched null (19/120, p=0.15833). Only the red 3×3 dot-matrix motifs remain outside that screen, pending issue-#3 coordination.
+- The five-dot stencil and its reflections, including a 89-feature/879-candidate constellation catalogue screen, are already covered by [im-results/black-dot-template-reflections.md](black-dot-template-reflections.md) and [sims/black_dot_constellation_screen.cjs](../sims/black_dot_constellation_screen.cjs); the best Piscis Austrinus fit fails the matched null (19/120, p=0.15833). The red p7/p56 constellation-shape premise is also closed: those marks are ordinary 13-dot punctuation (Issue #9); the separate LP1→LP2 11-to-13-dot redesign is documented in [the cross-release report](lp1-lp2-red-stencil-cross-release.md).
 - The tree/blur/outline relationship is already covered by [im-results/tree-outline-blur-registration.md](tree-outline-blur-registration.md). Apart from the issue-#3 13/31 ornament lead above, the repeated root, scrollwork, wing, cicada, and botanical motifs are useful section/template markers, but this audit found no independently selected cipher operation in them.
 - The page-22 horizontal object and corpse-like figure are visually ambiguous. Calling the upper object a rail fence or skeleton key would be an unsupported identification; no transposition is assigned from it.
 
@@ -74,4 +72,4 @@ An external image reconstruction reports a strong match between the dotted insec
 
 No candidate in this audit qualifies for promotion to results/. The positive result is the cross-round 1033/3301 → 2014 magic-square → prime-counting → LP path; the new computational contribution is the bounded negative on marker-defined cuneiform block keys and direct Möbius-function/inversion interpretations.
 
-Keep issue #9 open for a genuinely source-constrained next step. Do not repeat the existing Hill, five-item, LCG, five-dot, tree, or GIMP-pad families. The next useful visual intervention is to revisit the cuneiform/Möbius clues only if another source feature independently fixes a state transition, coordinate convention, or Möbius seam. Coordinate with issue #3 before touching red ink or the 32×8 table. No nine-tile partition is asserted.
+Issue #9 is closed; do not reopen the page-distinctive red constellation search. Do not repeat the existing Hill, five-item, LCG, five-dot, tree, or GIMP-pad families. A new visual intervention is justified only if an original source feature independently fixes a state transition, coordinate convention, or Möbius seam. Coordinate with the owners of #3/#12 before any new red-ink or 32×8-table work. No nine-tile partition is asserted.
