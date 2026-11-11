@@ -18,8 +18,10 @@ The test's single executable reproducer is [`sims/signed2016_signature_half_grid
 
 Among all 18 candidates the maximum number of printable ASCII characters (including CR/LF) is only **108 of 256**, achieved by subtracting the final signature half from the radix60 grid and also from the radix59 grid. The leading forty-byte visualizations are:
 
-- Base60: `.2P....$l...+S..t...{...x.XO.\\KAt.V..`..`
-- Base59: `..M....!k...'S..r...y...v.UO.[I?r.S.._..`
+```text
+base60  .2P....$l...+S..t...{...x.XO.\KAt.V..`..
+base59  ..M....!k...'S..r...y...v.UO.[I?r.S.._..
+```
 
 Neither contains sustained text; no candidate begins with an obvious OpenPGP, ZIP, PNG, PDF, GIF or bzip2 header. Across the complete set, printable counts range **88–108**, and maximum printable runs are **4–8** bytes. The XOR positive control with a planted English sentence exactly recovers its source text. These observations reject the specified simple signatures-as-pad operations, without saying anything about arbitrary cryptographic KDFs or password-derived transformations.
 
