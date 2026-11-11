@@ -51,6 +51,10 @@ for (let i = 0; i < 75; i++) {
   const p = profile(original);
   if (i < 17) assert.equal(p, undefined);
   else {
+    assert.equal(original.subarray(6, 11).toString('ascii'), 'JFIF\0');
+    assert.equal(original[13], 1); // JFIF densities are dots per inch.
+    assert.equal(original.readUInt16BE(14), 400);
+    assert.equal(original.readUInt16BE(16), 400);
     assert.ok(p);
     assert.equal(p.length, 2576);
     assert.equal(sha(p), expectedSha);
