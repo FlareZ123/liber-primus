@@ -78,6 +78,45 @@ assert.deepEqual(gap19Runes, [
 
 const dFold = foldSpan(5, 23);
 const xFold = foldSpan(13, 31);
+
+// Explicit span features let the two p50 radix candidates be compared without
+// changing factor representation. D and X both have two markers, 17 interior
+// runes and inclusive width 19; their start/end coordinates distinguish them.
+function spanFeatures(positions) {
+  const [start, end] = positions;
+  return {
+    markerCount: positions.length,
+    start,
+    end,
+    interiorCount: end - start - 1,
+    inclusiveLength: end - start + 1
+  };
+}
+const dFeatures = spanFeatures(positionsOf(d));
+const xFeatures = spanFeatures(positionsOf(14));
+assert.deepEqual(dFeatures, {
+  markerCount: 2, start: 5, end: 23, interiorCount: 17, inclusiveLength: 19
+});
+assert.deepEqual(xFeatures, {
+  markerCount: 2, start: 13, end: 31, interiorCount: 17, inclusiveLength: 19
+});
+
+// Base60 NUMBER(193) -> {17,23} matches D's interior count and endpoint.
+// Base59 NUMBER(190) -> {2,5,19} matches D's marker count, start and width.
+// Both mappings distinguish D from X, but they select different span
+// attributes; no source instruction chooses between these mappings.
+const base60Factors = [17, 23];
+const base59Factors = [2, 5, 19];
+assert.deepEqual([dFeatures.interiorCount, dFeatures.end], base60Factors);
+assert.notDeepEqual([xFeatures.interiorCount, xFeatures.end], base60Factors);
+assert.deepEqual(
+  [dFeatures.markerCount, dFeatures.start, dFeatures.inclusiveLength],
+  base59Factors
+);
+assert.notDeepEqual(
+  [xFeatures.markerCount, xFeatures.start, xFeatures.inclusiveLength],
+  base59Factors
+);
 assert.equal(dFold.length, 19);
 assert.equal(dFold.value, 256);
 assert.equal(dFold.centerIndex, 10);
@@ -153,8 +192,12 @@ console.log('same-ordinal-position runes:', runesAtSameOrdinalPosition);
 console.log('19-rune equal-endpoint spans:', gap19Runes);
 console.log('D span fold:', dFold);
 console.log('X span fold:', xFold);
+console.log('D span features:', dFeatures);
+console.log('X span features:', xFeatures);
+console.log('base60 factor-to-span reading:', base60Factors, '-> D interior/end');
+console.log('base59 factor-to-span reading:', base59Factors, '-> D marker-count/start/width');
 console.log('NUMBER(193):', numberCommand(193));
 console.log('NUMBER(190):', numberCommand(190));
 console.log('17/23 as prime weights:', factorPrimeWeightRead.map((i) => corpus.translit[i]));
 console.log('17/23 as ordinals:', factorOrdinalRead.map((i) => corpus.translit[i]));
-console.log('PASS: D geometry is exact, but the representation and radix choices remain external selectors.');
+console.log('PASS: both radix factor sets match D span geometry under different feature mappings; no source selects the mapping or radix.');
