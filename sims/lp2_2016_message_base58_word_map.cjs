@@ -22,9 +22,25 @@ const masterScans = master.split("%").map((page) =>
 );
 assert.equal(masterScans.length, 75, "canonical master transcription scan count changed");
 
-// In the master transcription, the 58 LP2 image pages are scans 17..74 (1-based).
-const lp2Pages = masterScans.slice(16, 74);
+// A physical linebreak can split one printed word. The canonical master rune
+// scanner counts each line fragment separately, shifting later word addresses.
+// Rejoin explicitly marked line wraps and use printed word delimiters instead.
+const printedSource = read("resources/lp2-transcription.txt").split("%");
+assert.equal(printedSource.length, 57); // p50's table has no rune text.
+/** @param {string} page */
+function printedWords(page) {
+  const source = page.replaceAll("/", "").replaceAll("\n", "").replaceAll("\r", "");
+  return source.split(/[-.&$§,:!?]/u)
+    .map(piece => (piece.match(/[ᚠ-᛿]+/gu) || []).join(""))
+    .filter(Boolean);
+}
+const lp2Pages = Array.from({length: 58}, (_, p) =>
+  p === 50 ? [] : printedWords(printedSource[p > 50 ? p - 1 : p]));
 assert.equal(lp2Pages.length, 58);
+assert.equal(lp2Pages.reduce((n, page) => n + page.length, 0), 2973);
+const fragmentedPages = masterScans.slice(16, 74);
+assert.equal(fragmentedPages.reduce((n, page) => n + page.length, 0), 3367);
+
 
 const alphabet = corpus.translit
   .map((token, index) => ({ token: token.toLowerCase(), index }))
@@ -163,6 +179,23 @@ assert(locate("their").every(row => row.page === 56 && row.wordIndex === 1));
 assert.deepEqual(locate("found").map(row => [row.page, row.wordIndex]), [[14, 2]]);
 assert.deepEqual(locate("beware").map(row => [row.page, row.wordIndex]), [[32, 5]]);
 
+// Literal index-preserving book walk, independently fixed by the same 58-page
+// prime-sum pointer rule: FOLD -> the last unsolved page -> solved END.
+function nextWord(page, index) {
+  const word = lp2Pages[page]?.[index];
+  assert(word);
+  const sum = [...word].reduce((n, rune) =>
+    n + corpus.prime[corpus.runes.indexOf(rune)], 0);
+  return {sum, page: sum % 58, index: Math.floor(sum / 58)};
+}
+const firstHop = nextWord(14, 1);
+const secondHop = nextWord(firstHop.page, firstHop.index);
+assert.deepEqual(firstHop, {sum: 171, page: 55, index: 2});
+assert.equal(decodeRunes(lp2Pages[55][2]), "SB");
+assert.deepEqual(secondHop, {sum: 114, page: 56, index: 1});
+assert.equal(decodeRunes(lp2Pages[56][1]), "OESR");
+
+
 // Cross-check the 2016 clue phrase against the p32 11x11 GP-prime square.
 const p32Page = corpus.pages.find((page) => page.page === 32);
 assert(p32Page);
@@ -189,5 +222,7 @@ console.log(JSON.stringify({
   fullMessage: {words: signedAllWords.length, runeWordAddresses: fullMap.length - exceptions.length,
     exception: {word: "lies", sum: 224, page: 50, index: 3,
       tableToken: page50Table.tokens[3], tableByte: page50Table.bytes[3]},
-    unfittedAddresses: {found: [14, 2], beware: [32, 5]}}
+    unfittedAddresses: {found: [14, 2], beware: [32, 5]},
+    pointerRoute: {fold: [14, 1], lastUnsolved: [55, 2], solvedEnd: [56, 1]},
+    printedWordCount: 2973, lineFragmentCount: 3367}
 }, null, 2));
