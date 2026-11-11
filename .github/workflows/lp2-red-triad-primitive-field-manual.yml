@@ -17,11 +17,16 @@ on:
         required: false
         type: boolean
         default: false
+      triad_matrix:
+        description: "Run only the original source-red/fold GF29 matrix SFT"
+        required: false
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
   field:
-    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.primitive_rs && !inputs.composed_multiplier70 }}
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.primitive_rs && !inputs.composed_multiplier70 && !inputs.triad_matrix }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -98,3 +103,15 @@ jobs:
         run: node sims/lp2_red_triad_composed_multiplier70_inverse.cjs
       - name: Exhaust two-rune GF29-squared additive and multiplicative original inverses
         run: node sims/lp2_red_triad_pair_field_inverse.cjs
+
+  three-source-triad-matrix:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.triad_matrix }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original source matrix algebra and direct Hill3 inverse
+        run: node sims/lp2_three_source_triad_matrix_sft.cjs
