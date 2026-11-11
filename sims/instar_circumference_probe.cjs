@@ -132,8 +132,8 @@ const p57Control = [
 // Source-bounded p57 circumference / paired-ring gate.
 const fullTranscript = fs.readFileSync(path.join(ROOT, "resources/lp2-transcription.txt"), "utf8");
 const fullParsed = parseLP2Words(fullTranscript, 58);
-const p55PageWords = fullParsed.byContainedPage[54].map((word) => word.runeIndices);
-const p57PageWords = fullParsed.byContainedPage[56].map((word) => word.runeIndices);
+const p55PageWords = fullParsed.byContainedPage[54].map((word) => [...word.runes].map((rune) => runeIndex.get(rune)));
+const p57PageWords = fullParsed.byContainedPage[56].map((word) => [...word.runes].map((rune) => runeIndex.get(rune)));
 const p57BodyWords = p57PageWords.slice(1);
 const p57First7Words = p57BodyWords.slice(0, 7);
 const p55Flat = p55PageWords.flat();
