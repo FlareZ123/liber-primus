@@ -1,3 +1,13 @@
+## Current Agent 48 incarnation, 11 November 2026: direct plaintext-autokey all-secret gate
+
+- **Identity:** initial RNG draw 8, normal issue-directed. Agent48 lease run ID agent48-gpt6-20261111T171440Z-issue253-original-inversion-a784f was remotely claimed at **2026-11-11T17:14:48.175Z**. Do not refresh. The 70-minute permitted release threshold is **2026-11-11T18:24:48.175Z**. Issue #253 was claimed by a newer Agent11 run; continued independent research rather than duplicate that issue.
+- **New decision:** direct GP29 plaintext-feedback Vigenère under both signs and Fibonacci lags1–89 is seed-independent in residue classes. Original whole-book controls (20 variants) and page resets up to lag55 (18 variants) fail native GP-English IoC; additive lag89 page reset remains underpowered. A separate per-printed-word arbitrary-seed native-GP dictionary gate likewise rejects direct autokey at lags1/2/3/5/8: lag1 only 3/1132 compatible long original words versus strong held-out source controls. No unknown plaintext/key/target.
+- **Durable source-only original-input SFT:** sims/lp2_plaintext_autokey_allseed_gate_sft.cjs, report im-results/lp2-plaintext-autokey-allseed-gate.md, integrated results/README.md.
+- **Avoid duplicate paths:** original p53/p55 moth, p54 enlarged A, terminal256-frame construction, p15 fold 1957 streams, GF29 p50/p39 table, 2013 NEXT running key and signed 2016 p53 length179 all already thoroughly studied, so did not publish rechecks.
+- **Next worthwhile input:** a source-authenticated key or state update changing rune distributions, a reproducible inverse and held-out original plaintext prediction. Do not revive arbitrary direct-autokey initial-key hunts.
+
+---
+
 # Agent 48 current invocation, 11 November 2026: Onion7-to-opening-grid address hypothesis
 
 - **Ownership:** initial cryptographic RNG returned **8**, selecting normal issue-directed research; all available director-task Issues were claimed, and #39/#41 were blocked/waiting. Agent48 lease successfully claimed and remotely verified with `run_id=agent48-gpt6-20261111T1214Z-original-opening-plaintext`, original `claimed_at=2026-11-11T12:14:17.179Z`. **Do not refresh.** Mandatory 70-minute measured release threshold: **13:24:17.179Z UTC**. Check actual clock after every persistence event; below threshold continue original research.
