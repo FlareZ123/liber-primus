@@ -75,5 +75,51 @@ function main() {
       }));
     }
   }
+
+  // More direct source-visible pairing: 16 printed p15 numbers are a single
+  // Caesar shift per red span. The actual Fibonacci spiral gives one
+  // chronology; printed row-major gives a natural independent source order.
+  // Both are fixed before reading the unknown red text.
+  const spiralNumbers = [
+    3299, 3298, 3296, 3294, 3288, 3278, 3258, 3222,
+    3152, 3038, 2838, 2472, 1820, 708, 1206, 4516,
+  ];
+  const rowMajorNumbers = [
+    3258, 3222, 3152, 3038, 3278, 3299, 3298, 2838,
+    3288, 3294, 3296, 2472, 4516, 1206, 708, 1820,
+  ];
+  const fibonacciValues = [
+    0, 1, 2, 3, 5, 8, 13, 21,
+    34, 55, 89, 144, 233, 377, 610, 987,
+  ];
+  assert.equal(spiralNumbers[0], 3299);
+  assert.deepEqual(spiral.map((i) => rowMajorNumbers[i]), spiralNumbers);
+
+  const red = ink.pages.filter((p) => p.page < 56)
+    .flatMap((p) => (p.red_spans || []).map((span) =>
+      [...span.runes].map((r) => corpus.runes.indexOf(r))));
+  assert.equal(red.length, 16);
+  assert.equal(red.flat().length, 213);
+  const originalRed = red.flat();
+  console.log("Original unsolved red-span IoC:", ioc(originalRed).toFixed(9));
+
+  for (const [name, source] of Object.entries({
+    spiral_printed: spiralNumbers,
+    row_major_printed: rowMajorNumbers,
+    spiral_fibonacci: fibonacciValues,
+  })) {
+    for (const sign of [-1, 1]) {
+      const decoded = red.map((span, i) =>
+        span.map((v) => (v + 29 + sign * (source[i] % 29)) % 29));
+      const reciphered = decoded.map((span, i) =>
+        span.map((v) => (v + 29 - sign * (source[i] % 29)) % 29));
+      assert.deepEqual(reciphered, red);
+      console.log(JSON.stringify({
+        mode: "source_span_shift", key: name, sign,
+        total: decoded.flat().length, redIoC: ioc(decoded.flat()),
+        firstSix: decoded.slice(0, 6).map(translit),
+      }));
+    }
+  }
 }
 main();
