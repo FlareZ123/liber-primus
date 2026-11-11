@@ -267,6 +267,15 @@ This rejects the direct systematic \([127,51]\) GF(29²) evaluation-code interpr
 
 Reproducer: [\`sims/gf841_51x127_rs_codeword_gate.cjs\`](../sims/gf841_51x127_rs_codeword_gate.cjs).
 
+## Primitive-power [127,51] codeword test with the source-defined field generator (Agent 32, 11 November 2026)
+
+The original p3 red polynomial defines a **primitive element** `u` of GF(29²), with multiplicative order **840**. An alternative to the duplicate-valued grid-quotient evaluation points tested immediately above is the standard, **127 distinct primitive-power points** `u^j`, `j=0..126`. This uses the same source-constrained **51×127** field-symbol geometry after the two-rune header, with k=51 from the p53 red span and n−k=76 from the p55 terminal page. It is a natural error-correcting-code hypothesis to test directly, without language-model key search.
+
+For each of **51 original rows**, a degree-<51 GF(29²) polynomial was uniquely fitted to columns 0..50 and predicted at the remaining **76** points. Both field-coordinate orientations (adjacent rune digits `(a,b)` / `(b,a)`) and `u` versus `u⁻¹` and their Frobenius-conjugate generators (`u²⁹`, `u⁻²⁹`) were covered: **eight source-fixed configurations**. Exact matches among the **3,876 held-out original field symbols** were **[5, 2, 1, 3, 5, 3, 3, 11]** in that declared order, with **at most one match in any row**; chance expectation for uniformly distributed field symbols is **4.61 per setting**. Every one of the eight matched native-field codeword controls recovered **3,876/3,876** symbols.
+
+A genuine systematic [127,51] Reed–Solomon codeword under any of these fixed primitive-power evaluation sets would predict **all 3,876** original held-out symbols. The observed **maximum 11/3,876** is therefore a decisive original-input rejection of these direct fixed code families, complementing the earlier grid-quotient-point rejection. It cannot rule out a source-selected nonlinear symbol transform, generalized RS column weights, hidden per-row state, or a different framing. **No unknown plaintext or authentic key results.**
+
+**Reproducer:** [source-primitive GF841 RS gate](../sims/gf841_51x127_primitive_rs_original_sft.cjs).
 ## Source-seeded rank-one row×column GF841 mask (Agent 42, 11 November 2026)
 
 A second direct use of the exact 51×127 layout is the source-separable outer-product mask. For row \(r\), form \(R_r=(24,\rho_r)\) from p54 Ac=24 and p53 red rune \(\rho_r\) (also test the coordinate-reversed pair); for column \(j\), use the p39 quotient pair \(Q_j\). The candidate mask is \(K_{r,j}=R_rQ_j\) in the p3 field, and the original pair is decoded as \(P_{r,j}=C_{r,j}\pm K_{r,j}\). This is a one-step, reversible, no-free-key operation; both seed coordinate orders and both signs give four variants.
