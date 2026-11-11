@@ -4,7 +4,9 @@
 
 ## Source chain
 
-The repeated cuneiform header on physical pp33-39 gives sexagesimal **1033** and **3301**. Both are prime. Their one-based prime ranks are **174** and **464**, hence:
+The repeated cuneiform header on physical pp33-39 gives sexagesimal **1033** and **3301**. Both are prime. **The pair also has a pre-LP2 live-test provenance:** archived March 2013 server-test records show Cicada issuing `BASE29 1033` and `DH 3301`; one published test calls `DH 3301` three times, while a separate full participant transcript records `BASE29 1033` → `16I` followed by a completed `DH 3301` exchange. The stable organizer-selected values are 1033 and 3301 because the protocol makes the participant server choose its own DH base and secret. See [the pinned source manifest](../resources/external/2013-tcp-live-test-vectors.json) and [the reproducer/2013→2014 synthesis](2014-magic-square-direction-map.md#pre-2014-live-tcp-test-reuses-the-1033--3301-pair). This historical reuse strengthens source selection of the pair; it does not independently justify the later prime-rank operation.
+
+Their one-based prime ranks are **174** and **464**, hence:
 
 ```text
 174 = 6 x 29 = 3 x 58
