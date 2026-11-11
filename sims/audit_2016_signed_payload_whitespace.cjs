@@ -107,8 +107,8 @@ const checks = {
   forumBytes: result.byteLengths.forum === expected.forumBytes,
   originalSha256: result.rawSha256.original === expected.originalSha256,
   forumSha256: result.rawSha256.forum === expected.forumSha256,
-  canonicalBodySha256: result.canonicalSignedBodySha256 === expected.normalizedBodySha256,
-  normalizedBodiesEqual: result.canonicalSignedBodiesEqual,
+  normalizedBodySha256: result.normalizedBodySha256 === expected.normalizedBodySha256,
+  normalizedBodiesEqual: result.normalizedBodiesEqual,
   signaturePacketsEqual: result.signaturePacketsEqual,
   twoInternalDoubleSpaces: JSON.stringify(result.whitespace.original.internalDoubleSpaceLines) === '[5,16]'
     && JSON.stringify(result.whitespace.forum.internalDoubleSpaceLines) === '[5,16]',
