@@ -84,6 +84,16 @@ function main(){
   const center=matches[0][Math.floor(order/2)][Math.floor(order/2)];
   assert.equal(center,residual[2]);
   assert.equal(center,div);
+  // PARABLE says to shed circumferences and find the divinity within.
+  // Count cells in each concentric square shell from the 7x7 exterior inward.
+  const ringCounts=Array.from({length:4},(_,level)=>
+    squares[1].flatMap((row,r)=>row.map((_,c)=>({r,c})))
+      .filter(({r,c})=>Math.min(r,c,6-r,6-c)===level).length);
+  assert.deepEqual(ringCounts,[24,16,8,1]);
+  assert.equal(squares[0][0].reduce((s,v)=>s+v,0),3301);
+  assert.equal(title+div,ringCounts[1]*29);
+  assert.equal(primesForSentenceCounts[ringCounts[1]*29-1],3301);
+
   assert.equal(common*order,title);
 
   const p=primes(464);
@@ -118,7 +128,9 @@ function main(){
     generativeCandidate:{commonFactor:common,first:common**2,
       order:order,second:common*order,
       prime19:p[18],doublePrime19:p[p[18]-1],third:center,
-      sourceHtml:{title,div},squareIndex:1,squareCenter:center},
+      sourceHtml:{title,div},squareIndex:1,squareCenter:center,
+      ringCounts,firstHistoricalMagicSum:3301,
+      ringTwoOrdinal:ringCounts[1]*29},
     additionalOriginalCiphertextNumerology:{p0RedHeadingRunes:red0.length,
       gpPrimeSum:662,ratioToHtmlDiv:2},
     independentPredictionsAfterSelection:"Conditional algebraic fit; " +
