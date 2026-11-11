@@ -65,7 +65,7 @@ Source caution: the Old English Rune Poem's Cotton Otho B.x witness was destroye
 
 ## Cross-round +60 relation: secondary, not an authenticated instruction
 
-The 2012 original image dimensions (503×509) and 2016 signed-tree image dimensions (563×569) differ by +60 on both axes after swapping orientation. This matches the HOME/BUDS offset difference. The numerical table's radix 60 is another possible context. However, the Director's historical audit found no corroborated destination for the exact 2012-style domain derived from the 2016 dimensions. The dimension relation is exact, but reusing +60 as a p32 word-map selector is still an inference, not an authenticated continuation instruction.
+The 2012 original image is **509×503** and the 2016 signed-tree image is **563×569**. In native orientation the axis-aligned differences are **+54 width / +66 height**. A **+60/+60** relation appears only after transposing the 2012 image to 503×509; no source instruction selects that transpose. This is therefore a post hoc cross-round alignment, not independent evidence for the p32 +60 displacement or a period-60 cipher. The within-p32 HOME/BUDS start-offset difference of 60 remains exact. The numerical table's radix 60 is another possible context. The Director's historical audit found no corroborated destination for the transpose-derived 2012-style domain; do not treat the arithmetic alignment as an authenticated continuation instruction.
 
 ## Bounded readouts and exclusions
 
