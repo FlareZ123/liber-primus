@@ -72,6 +72,24 @@ This is a stronger, more constrained interpretation than choosing an arbitrary q
 
 A further arithmetic alignment, treated as less diagnostic, maps the 2013 DH example to the p3 red triad: \([g+A,p,K]=[5+8,23,2]=[13,23,2]\). Nothing in the 2013 instructions prescribes summing the base and public share, so this identity must not be counted as independent confirmation. Likewise, the discrete logarithm \(z=u^{433}\) in the p3 GP29² extension has \(433\bmod23=19\), matching the DH client share only after selecting a different modulus for a retrospective residue check.
 
+## Dual-factor source-transcription correction
+
+**New bounded consequence (Agent 21, 11 November 2026): the two factor equations repair historical numeral ambiguity exactly, up to a documented GF29-invisible byte.** This is an original-source reconstruction result with executable finite alternatives, not a decipherment of an unknown LP2 page. The 2014 archival `decimal.txt`/`sexagesimal.bin` byte list contains ten readings that disagree with the printed LP2 original. In the contemporaneous 2014 `50.txt`, three of these were already flagged by the transcriber as corrected: zero-based byte indices **165: 47→18**, **170: 194→254**, and **172: 174→148**. The other seven are precisely `I/i` and `L/l` case ambiguities at indices **25,45,50,175,182,199,246**. Each site's alternative can be fixed from the archival source notes or a case swap; no unknown-runic plaintext or English score is involved.
+
+Treat the printed 256 slots as descending-power GF29 coefficients, retaining the original leading-zero coefficient. Apply the two independently established source-linked polynomial divisibility tests `H(X)=3+26X+24X²` from the signed 2013 BASE29 example and `G(X)=27+5X+15X²` from the red p39 triad. Exact enumeration, not a fitted pad, gives:
+
+| Independently constrained ambiguous sites | Assignments tested | Divisible by H | Divisible by G | Divisible by both |
+| --- | ---: | ---: | ---: | ---: |
+| All **10** historical differences | 1,024 | 2 | 4 | **2** |
+| **9**, excluding byte165 | 512 | **1** | 2 | **1** |
+| **7** I/L readings after applying all three 2014 notes | 128 | **1** | **1** | **1** |
+
+For the nine-site set, the only dual-factor solution changes **every** recorded site to its authentic LP2-printed reading, restoring precisely the original byte stream except at index165. For the seven-site set, each factor separately selects mask127, again flipping all seven and matching the original. Reversing the 2013 numeral-coefficient orientation yields **zero** admissible nine-site assignments. The exact candidate streams and byte-for-byte source checks are frozen in [the executable error-correction SFT](../sims/lp2_grid_dual_factor_error_corrector_sft.cjs).
+
+The remaining ambiguity is mathematically unavoidable under these two factors. The 2014 historical **47** and explicitly corrected **18** at index165 differ by exactly29 and therefore have the **same GF29 coefficient**. All 1,024 alternatives produce two dual-factor solutions differing only at that site. The independently archived 2014 correction annotation decides it. This is a precise failure condition for a four-residue parity-check interpretation and explains why the historical stale byte stream fails exact polynomial division.
+
+The result makes the existing pair of polynomial factors useful for reconstructing the source table, and is consistent with the possibility of deliberately included algebraic parity constraints. **Neither original source instructs a solver to perform this cross-year polynomial division**; the factor/ambiguity correspondence was investigated after the printed LP2 table was known. It cannot independently establish creator intent or the cipher architecture. The recovered 256 bytes are already present in the original images; no new unknown-text key, plaintext, or downstream instruction follows.
+
 ## Source-linked field representation, with a scope warning
 
 The physical p3 red triad \([13,23,2]\), also beginning at local rune offset 119, defines \(\mathbb F_{29}[u]\) with \(u^2=3u+8\). The p3 root \(u\) is primitive of order 840. The concrete element \(z=23-2u\) satisfies the historical quadratic **\(H_{2013}(z)=0\)**; its canonical power relative to \(u\) is \(z=u^{433}\). The log is computed by direct enumeration of the complete 840-element multiplicative cycle, and \(\gcd(433,840)=1\), so \(z\) is also primitive. Its trace and norm are each 11, matching the monic 2013 polynomial \(X^2+18X+11\).
