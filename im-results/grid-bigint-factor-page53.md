@@ -12,6 +12,30 @@ P(X)=28(X+5)^2(X^2+18X+11)(X^3+14X^2+16X+24)
 \]
 
 where \(R_{238}\) is the **unique monic irreducible factor of degree 238**, specified uniquely by division of the original polynomial by the four displayed factors. The five distinct irreducible degrees are **1, 2, 3, 9, 238**, with multiplicities **2, 1, 1, 1, 1**. The original-source [self-contained Node.js 22 reproducer](../sims/grid_full_gf29_factor_sft.cjs) checks every division, deterministic Rabin irreducibility for all factors, and coefficient-for-coefficient reconstruction. The complete irreducible degree inventory was already established by Agent 32 in [the independent SymPy source certificate](../sims/lp2_grid_gf29_factorization_sft.py) (successful [earlier source CI](https://github.com/FlareZ123/liber-primus/actions/runs/42913117385)). This Node implementation independently reproduces it. This invocation's additional finding is the p36 all-secret monoalphabetic exclusion, followed by the marked-seed and exhaustive cubic original-cipher tests. The three new Node gates all passed [manual original-source CI 42919559141](https://github.com/FlareZ123/liber-primus/actions/runs/42919559141). This factorizaton does **not identify** any historically intended cipher, key or plaintext.
+ 
+### p15 16-cell seed for the complementary degree-16 factor, tested on p36 (Agent 34, 11 November 2026; bounded negative)
+
+The p50 polynomial has degree **254** after its leading byte reduces to zero modulo 29. Its established factorization separates into a monic **degree-16** product of the four smaller factors above and the unique irreducible **degree-238** factor. The complementary degrees match two source-visible LP2 objects: p15's red-3299-anchored Fibonacci-prime spiral has **16 printed cells**, and p36 has **238 runes**. This motivates one finite human-solve-path hypothesis: reduce the 16 displayed p15 values modulo the historically authenticated BASE29 alphabet, use them as the initial state of an LFSR with the degree-16 factor as characteristic polynomial, and use the resulting 238-symbol stream as a direct additive GP29 key for p36.
+
+The exact monic degree-16 factor, in ascending coefficient order, is:
+
+~~~
+[13,20,26,12,6,2,13,26,6,26,11,7,15,11,17,25,1]
+~~~
+
+The p15 seed is the 16 displayed values in source spiral order [3299,3298,3296,3294,3288,3278,3258,3222,3152,3038,2838,2472,1820,708,1206,4516], reduced modulo 29 to [22,21,19,17,11,1,10,3,20,22,25,7,22,12,17,21]. Generate K[n+16] = -Σ(j=0..15) s[j]K[n+j] mod 29, then test P[i] = C[i] ± K[i] mod 29 on all 238 original p36 runes. No phase, offset, coefficient, seed value, or plaintext score is fitted. The forward red-anchored spiral is the source-selected seed order; the reverse order is retained only as a control.
+
+| Seed order | Sign in P=C+σK | p36 plaintext IoC |
+|---|---:|---:|
+| Printed clockwise | −1 | **0.03591816** |
+| Printed clockwise | +1 | **0.03364890** |
+| Reversed control | −1 | **0.03400347** |
+| Reversed control | +1 | **0.03467716** |
+
+Raw p36 IoC is **0.03598908**. All four outputs remain near the 29-symbol uniform baseline (1/29 ≈ 0.03448276), with no language-like concentration; the strongest source-selected candidate is effectively unchanged from raw ciphertext and is far below the **0.06754601** IoC of the independent source-native GP plant reported above. The reproducer independently checks the p50 byte-table SHA-256, confirms that the degree-16 product divides the original GF(29) p50 polynomial with zero remainder and degree-238 quotient, and validates additive encryption/decryption with an exact planted roundtrip plus a wrong-seed control.
+
+**Decision:** retire this exact p15-seed / p50-degree-16-LFSR / p36-direct-additive-key composition. The 16+238 degree partition and page-length matches remain mathematical observations, not proof of creator intent. Do not rescue this branch by trying alternate seed encodings, offsets, phases, or cipher families without a new source that selects them. This test recovers no unknown plaintext or authentic key. [Standalone source SFT](../sims/lp2_p15_seed_p50_factor16_p36_gate.cjs).
+
 
 ### Source-locked degree-238 recurrence on the original ciphertext (Agent 18, 11 November 2026)
 
