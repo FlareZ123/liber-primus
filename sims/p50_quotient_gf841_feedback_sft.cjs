@@ -12,9 +12,9 @@
  * and N(a+bu)=a^2+3ab+21b^2.
  *
  * Test c_i = p_i + sign*projection(s_i), s_(i+1)=g^(+/-1)*s_i+24*f_i,
- * with projection = field trace or norm, and f_i = recovered plaintext or
+ * with projection = coordinate a, coordinate b, field trace or norm, and f_i = recovered plaintext or
  * ciphertext. Exhausts both signs, book/page clocks, both feedback rules,
- * both generator directions, both projections, and all 841 seeds: 26,912
+ * both generator directions, all four projections, and all 841 seeds: 53,824
  * exact original-input inversions.
  *
  * Shakespeare 240k-character training / 60k heldout GP trigram model;
@@ -213,7 +213,8 @@ function buildTables(generator, sign, feedback, beta, projection) {
   const plain = new Uint8Array(841 * ALPHA), next = new Uint16Array(841 * ALPHA);
   for (let a = 0; a < 29; a++) for (let b = 0; b < 29; b++) {
     const state = a * 29 + b;
-    const output = projection === "trace" ? mod(2 * a + 3 * b) : mod(a * a + 3 * a * b + 21 * b * b);
+    const output = projection === "a" ? a : projection === "b" ? b :
+      projection === "trace" ? mod(2 * a + 3 * b) : mod(a * a + 3 * a * b + 21 * b * b);
     for (let c = 0; c < 29; c++) {
       const ix = state * 29 + c;
       const p = mod(c - sign * output);
@@ -277,7 +278,7 @@ function main() {
   ];
   const modeResults = [], globalTop = [];
   let bestHeldout = null;
-  for (const projection of ["trace", "norm"]) for (const generator of generators) for (const sign of [1, -1])
+  for (const projection of ["a", "b", "trace", "norm"]) for (const generator of generators) for (const sign of [1, -1])
     for (const clock of ["book", "page"])
       for (const feedback of ["plaintext", "ciphertext"]) {
         const tables = buildTables(generator.value, sign, feedback, source.beta, projection);
@@ -313,7 +314,7 @@ function main() {
   assert.equal(plant.length, input.original.length);
   const plantSeed = 13 * 29 + 23;
   const positivePlants = [];
-  for (const projection of ["trace", "norm"]) {
+  for (const projection of ["a", "b", "trace", "norm"]) {
     const plantTables = buildTables(source.g, 1, "plaintext", source.beta, projection);
     const noPageResets = new Uint8Array(plant.length);
     const plantCipher = encrypt(plant, plantSeed, "book", "plaintext", source.g, 1,
@@ -324,12 +325,12 @@ function main() {
   }
   const originalScore = scoreSplit(input.original, input.starts, input.ends, input.train, lm);
   console.log(JSON.stringify({
-    classification: "Bounded negative for source-quotient GF(29^2) trace/norm-feedback native-GP decoder",
+    classification: "Bounded negative for source-quotient GF(29^2) field-projection feedback native-GP decoder",
     source: {
       F3: source.F3, F39: source.F39, beta: source.beta,
       quotientElement: source.g, inverse: source.gInverse,
       multiplicativeOrder: 840, quotientCoefficients: source.quotientLength,
-      field: "u^2 = 3u + 8", trace: "Tr(a+bu) = 2a+3b", norm: "N(a+bu) = a^2+3ab+21b^2"
+      field: "u^2 = 3u + 8", coordinates: "a and b", trace: "Tr(a+bu) = 2a+3b", norm: "N(a+bu) = a^2+3ab+21b^2"
     },
     original: {
       runes: input.original.length, words: input.starts.filter(Boolean).length,
@@ -344,8 +345,8 @@ function main() {
       nativeControlWindows: controls
     },
     search: {
-      models: 26912,
-      dimensions: "2 projections x 2 generator directions x 2 signs x 2 clocks x 2 feedback rules x 841 seeds",
+      models: 53824,
+      dimensions: "4 projections (a,b,trace,norm) x 2 generator directions x 2 signs x 2 clocks x 2 feedback rules x 841 seeds",
       bestTraining: best,
       bestHeldout: bestHeldout,
       topFiveTraining: globalTop.slice(0, 5),
