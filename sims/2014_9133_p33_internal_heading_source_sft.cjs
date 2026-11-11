@@ -146,6 +146,58 @@ const directPhiFullPlusIoC = coincidence(directPhi(fullToEnd, 1));
 assert(Math.abs(directPhiFullMinusIoC - 0.03445285836346545) < 1e-12);
 assert(Math.abs(directPhiFullPlusIoC - 0.034407680004058125) < 1e-12);
 
+// Both source-visible three-dot dividers are kept as distinct sentinels.
+// The actual illustrated passage has 1468 runes; the two dividers make
+// 1470=210*7 positions for the *unaltered* historical inverse column order.
+// No guessed column permutations, start rotations or key offsets are used.
+const sevenPositionOrder = [0, 6, 2, 5, 1, 4, 3];
+/** @param {number[]} input */
+function periodSevenInverse(input) {
+  assert.equal(input.length % 7, 0);
+  const out = [];
+  for (let base = 0; base < input.length; base += 7) {
+    for (const index of sevenPositionOrder) out.push(input[base + index]);
+  }
+  return out;
+}
+const withDividers = [-1, ...illustratedCipher, -2];
+assert.equal(withDividers.length, 1470);
+const reorderedWithDividers = periodSevenInverse(withDividers);
+assert.equal(reorderedWithDividers.indexOf(-1), 0);
+assert.equal(reorderedWithDividers.indexOf(-2), 1464);
+const withoutDividers = reorderedWithDividers.filter(value => value >= 0);
+assert.equal(withoutDividers.length, illustratedCipher.length);
+/** @param {number[]} arr */
+const countAdjacentDoublets = arr =>
+  arr.slice(1).filter((value, i) => value === arr[i]).length;
+assert.equal(countAdjacentDoublets(illustratedCipher), 11);
+assert.equal(countAdjacentDoublets(withoutDividers), 45);
+
+// Freeze the two plausible orders of the same pair of source-motivated
+// operators, retaining the natural two phi signs without plaintext fitting.
+const twoLayerOriginalIoC = coincidence(illustratedCipher);
+/** @type {Record<string,{ioc:number,doublets:number}>} */
+const twoLayerResults = {};
+for (const sign of /** @type {const} */ ([-1, 1])) {
+  const historicalFirst = directPhi(withoutDividers, sign);
+  const phiFirst = periodSevenInverse([
+    -1, ...directPhi(illustratedCipher, sign), -2
+  ]).filter(value => value >= 0);
+  twoLayerResults[`historicalFirstPhi${sign}`] = {
+    ioc: coincidence(historicalFirst),
+    doublets: countAdjacentDoublets(historicalFirst)
+  };
+  twoLayerResults[`phiFirstHistorical${sign}`] = {
+    ioc: coincidence(phiFirst),
+    doublets: countAdjacentDoublets(phiFirst)
+  };
+}
+assert.deepEqual(twoLayerResults, {
+  historicalFirstPhi1: {ioc:0.03446485719433347, doublets:51},
+  phiFirstHistorical1: {ioc:0.03433762576872856, doublets:47},
+  'historicalFirstPhi-1': {ioc:0.03441656497439584, doublets:58},
+  'phiFirstHistorical-1': {ioc:0.0344174936709331, doublets:51}
+});
 const out = {
   historical: {originalLength:56, phraseLength:36, onionLength:16,
     unexplainedSuffix:'9133'},
@@ -155,6 +207,16 @@ const out = {
   nextBodyWordLength:next.length,
   literal2014PhraseFirstWordLengths:[2, 7],
   source9133IsPrime:true,
+  historicalTwoBoundaryMarkerLayer: {
+    originalLength:illustratedCipher.length,
+    sevenColumnLength:withDividers.length,
+    startMarkerAfterInverse:0,
+    endMarkerAfterInverse:1464,
+    originalGP29IoC:twoLayerOriginalIoC,
+    afterColumnInverseAdjacentDoublets:countAdjacentDoublets(withoutDividers),
+    twoSourceOperatorOrdersAndSigns:twoLayerResults,
+    note:'all direct outputs remain nonlinguistic; both source markers are symbolic delimiters'
+  },
   directPrimeTotientOnOriginal: {
     illustratedRuneCount:illustratedCipher.length,
     illustratedOriginalIoC:originalIllustratedIoC,
