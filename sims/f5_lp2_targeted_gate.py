@@ -46,16 +46,21 @@ KEYS = [
      "explicit 2013 0_wisdom table word; weaker keyword candidate"),
 ]
 
-def run(args: list[str], timeout: int = 180) -> dict[str, Any]:
+def run(args: list[str], timeout: int = 180,
+        max_output_chars: int | None = 3000) -> dict[str, Any]:
+    def clipped(value: Any) -> str:
+        text = str(value or "")
+        return text if max_output_chars is None else text[-max_output_chars:]
+
     try:
         p = subprocess.run(args, capture_output=True, text=True, errors="replace",
                            timeout=timeout, check=False)
-        return {"returncode": p.returncode, "stdout": p.stdout[-3000:],
-                "stderr": p.stderr[-3000:]}
+        return {"returncode": p.returncode, "stdout": clipped(p.stdout),
+                "stderr": clipped(p.stderr)}
     except subprocess.TimeoutExpired as e:
         return {"returncode": 124,
-                "stdout": str(e.stdout or "")[-1000:],
-                "stderr": ("TIMEOUT after %ss; " % timeout) + str(e.stderr or "")[-1000:]}
+                "stdout": clipped(e.stdout),
+                "stderr": ("TIMEOUT after %ss; " % timeout) + clipped(e.stderr)}
 
 def image_meta(path: Path) -> dict[str, Any]:
     digest = hashlib.sha256(path.read_bytes()).hexdigest()
@@ -73,7 +78,9 @@ def image_meta(path: Path) -> dict[str, Any]:
     }
 
 def detect_one(path: Path) -> dict[str, Any]:
-    p = run([F5, "detect", str(path), "-tier", "none", "-json"], timeout=300)
+    # Detector output is structured JSON and may exceed the ordinary log cap.
+    p = run([F5, "detect", str(path), "-tier", "none", "-json"],
+            timeout=300, max_output_chars=None)
     data = None
     try:
         data = json.loads(p["stdout"])
@@ -112,8 +119,11 @@ def detector_brief(row: dict[str, Any]) -> dict[str, Any]:
                  or nested_ci(d, "beta")),
         "beta_confidence": (nested_ci(d, "statistical", "confidence")
                             or nested_ci(d, "confidence")),
-        "estimated_bytes": nested_ci(d, "statistical", "estimated_bytes"),
+        "estimated_bytes": nested_ci(d, "statistical", "estimated_message_bytes"),
         "double_compressed": nested_ci(d, "statistical", "double_compressed"),
+        "saturated": nested_ci(d, "statistical", "saturated"),
+        "reliability": nested_ci(d, "statistical", "reliability"),
+        "detected": nested_ci(d, "detected"),
         "carrier_viable": nested_ci(d, "fingerprint", "carrier_viable"),
         "fingerprint_score": nested_ci(d, "fingerprint", "score"),
     }
