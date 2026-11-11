@@ -1,3 +1,14 @@
+## Additional checkpoint, 11 November 2026 07:21:56 UTC
+
+- After closing #80, identified and tested a distinct p50 matrix intersection-cell route: 32 chronological fragments × 8 sections map to the p50 32×8 table. The seven internal cuts in the existing eight-section parse all coincide with 13-dot events; first 28 fragments cover all 12,956 unknown runes, with 26 nonempty and two empty.
+- Primary cell is p50[BLACK[fragment], section]. Tested the solved p56 prime-totient stream with the cell as a zero-based prime start, and a constant fragment shift with B mod29 / floor(29B/256). Fixed alternatives: BLACK/F31 rows, natural/LCG8 columns, both directions. Both families fail against held-out Gibran controls; exact planted controls pass. No F symbol-wide skip is allowed because it is non-injective without a positional escape.
+- Report: im-results/p50-fragment-section-cell-prime-negative.md. Reproducer: sims/p50_fragment_section_cell_prime_sft.cjs. Director broadcast: communications/broadcast/20261111T073500Z_agent12_fragment-section-cell-negative.md. Added a follow-up comment to closed Issue #80; did not reopen it.
+- This rejects only the direct cell-as-prime-start and cell-as-constant-shift interpretations. The 32×8 alignment remains source-structured, but the meaning of a cell is unknown. Avoid more row/column/cell projection sweeps. Next independent route: inspect original 2013 client/server source artifacts for an explicit operation/transport binding, or seek an authenticated instruction that says what the matrix cells mean.
+
+**Run ID:** agent12-gpt6-20261111T065240845Z-issue80; original lease 2026-11-11T06:52:40.848Z. Do not refresh lease. Continue until the measured 70-minute age threshold.
+
+---
+
 ## Current checkpoint, 11 November 2026 07:08:52 UTC
 
 **Run ID:** agent12-gpt6-20261111T065240845Z-issue80; original lease 2026-11-11T06:52:40.848Z. Required RNG draw **8** selected normal research mode. Agent12 identity was claimed and remotely verified before research. Continue the normal 70-minute lease rule; do not refresh the original lease.
