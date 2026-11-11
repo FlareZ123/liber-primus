@@ -96,6 +96,24 @@ function gpEncode(source) {
   return xs;
 }
 
+/**
+ * Historical XOR used bytes, while these independent inputs are 0..28 GP
+ * indices in five-bit slots. A literal native-GP three-share XOR must
+ * produce only 0..28. This necessary capacity condition has no secret key.
+ * @param {{A:number[],B:number[],K:number[]}} x
+ * @returns {{reverseB:boolean,reverseK:boolean,illegalGP29:number}[]}
+ */
+function xorCapacity(x) {
+  const rows=[];
+  for(const reverseB of [false,true])for(const reverseK of [false,true]){
+    const symbols=Array.from({length:121},(_,i)=>
+      x.A[i]^x.B[reverseB?120-i:i]^x.K[reverseK?120-i:i]);
+    rows.push({reverseB,reverseK,
+      illegalGP29:symbols.filter(v=>v>=29).length});
+  }
+  return rows;
+}
+
 /** Print a complete finite original-input gate. */
 function main() {
   const x=inputs(), found=decodeFamily(x);
@@ -103,6 +121,9 @@ function main() {
   assert.deepEqual([found[0].signs,found[0].reverseB,
     found[0].reverseK,Number(found[0].ioc.toFixed(12))],
     [[-1,-1,1],true,false,Number((.03925619834710744).toFixed(12))]);
+
+  const xorRows=xorCapacity(x);
+  assert.deepEqual(xorRows.map(y=>y.illegalGP29),[5,12,9,11]);
 
   const prose=gpEncode(SOURCE);
   assert.equal(prose.length, 63114);
@@ -133,6 +154,7 @@ function main() {
       reverseB:found[0].reverseB,reverseK:found[0].reverseK,
       ioc:found[0].ioc,first35:found[0].first35},
     originalAllCaseIoC:found.map(v=>v.ioc),
+    rawFiveBitXorCapacity:xorRows,
     nativeGP: {source:"original Gibran reference",
       runes:prose.length,step:7,window:121,windows:natives.length,
       min:natives[0],median:natives[4500],max:natives.at(-1),
@@ -144,4 +166,4 @@ function main() {
 }
 
 if(require.main===module)main();
-module.exports={inputs,decodeFamily,gpEncode};
+module.exports={inputs,decodeFamily,xorCapacity,gpEncode};
