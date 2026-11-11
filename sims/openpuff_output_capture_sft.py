@@ -41,6 +41,7 @@ class FakeDialog:
         self.title = title
         self.edit = FakeControl("Edit")
         self.button = FakeControl("Button", button)
+        self.static = None
 
     def is_visible(self):
         return True
@@ -49,7 +50,9 @@ class FakeDialog:
         return self.title
 
     def descendants(self):
-        return ([self.edit] if self.edit is not None else []) + [self.button]
+        return ([self.edit] if self.edit is not None else []) + (
+            [self.static] if self.static is not None else []
+        ) + [self.button]
 
 
 class FakeApp:
@@ -104,6 +107,26 @@ def main():
         except RuntimeError as error:
             assert "not a negative steganographic test" in str(error)
             print("PASS: unsupported legacy folder picker reports an automation blocker")
+
+        completed = FakeDialog("Task completed - Info", "OK")
+        completed.edit = None
+        completed.static = FakeControl("Static", "1/1 carrier processed")
+        events = []
+        driver["acknowledge_completed_task"](FakeApp(completed), events)
+        assert completed.button.clicked
+        assert events == [{
+            "title": "Task completed - Info",
+            "message": "1/1 carrier processed"
+        }]
+        print("PASS: historical task-completion modal acknowledged and recorded")
+
+        failed = FakeDialog("Task failed - Info", "OK")
+        failed.edit = None
+        failed.static = FakeControl("Static", "0/1 carrier processed")
+        driver["acknowledge_completed_task"](FakeApp(failed), events)
+        assert not failed.button.clicked
+        assert len(events) == 1
+        print("PASS: noncompletion modal is preserved without spurious clicks")
 
         unknown = output_dir / "historical-embedded-name.txt"
         payload = b"Source-native payload name must survive extraction.\n"
