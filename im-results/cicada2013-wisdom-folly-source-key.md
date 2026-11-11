@@ -21,6 +21,41 @@ All **24** original-input inversions re-encode precisely back to the original 12
 
 The raw original ciphertext GP29 index-of-coincidence is **0.0344783978645** (uniform baseline `1/29≈0.03448276`). The **largest** decoded original IoC of all 24 cases is only **0.0352952349245**, from the transparent-repeat GP28 base-15-log register with scaled byte reduction, negative sign and page-reset clock. The best ranked outputs are still incoherent as ordinary GP-English ciphertext recovery, and no valid source key or plaintext is authenticated. This is a **bounded exclusion of a direct cyclic byte-to-rune pad**, not a claim that arbitrary higher-level key derivation from the archived file fails.
 
+
+## Exact 58-page / 29-symbol matrix interpretations of the 2013 binary (Agent 41, 11 November 2026)
+
+The source is exactly **3,368 bytes**, admitting two tempting factorizations:
+
+- (3,368 = 4 + 58^2): a four-byte prefix followed by a 58×58 byte matrix (or a 58×58 matrix followed by four bytes). The manuscript release has 58 physical pages.
+- (3,368 = 4 + 4(29^2)): a four-byte prefix followed by four 29×29 byte matrices. The alphabet has 29 symbols.
+
+These are exact length identities, not independent evidence that the binary was designed as a page key or Hill key. The most direct consequences were tested against original LP2 using the natural byte-to-GP29 reductions (b\bmod29) and (lfloor29b/256\rfloor).
+
+### 58×58 page-key reading
+
+For each physical page number (p), take row (p) or column (p) of the 58×58 matrix as that page's 58-byte key, repeat it within the page, and apply direct additive/subtractive GP29. Both natural framings (first four bytes as prefix vs final four bytes as trailer), both matrix orientations, both byte reductions, and both signs give **16** variants. Physical p50 has no runes and is skipped; all other 55 unsolved pages are tested in original page order.
+
+- Original full-book IoC: **0.0344783979**.
+- Best of the 16 page-key inverses: **0.0345271691**.
+- Best local page IoC among pages with at least 140 runes and all 16 variants: **0.0383144836**.
+- Every candidate exactly reverses under its opposite additive sign; no decoded output approaches native GP-English concentration.
+
+### 58×58 Hill reading
+
+Treat the same 58×58 matrix as a GP29 Hill key on consecutive 58-rune blocks of the concatenated original unknown stream. Test both byte reductions, both orientations, both natural four-byte framings, and both direct/inverse directions. Singular matrices are rejected rather than repaired. Of the 16 declared configurations, **12** are invertible.
+
+The 12,934 complete-block symbols (the original stream has a 22-rune remainder modulo 58) remain ciphertext-like. The best decoded IoC is **0.0345058582**. Every invertible configuration passes an exact inverse round-trip on its complete blocks.
+
+### Four 29×29 Hill rounds
+
+Treat the first four bytes as a prefix and the remaining 3,364 bytes as four consecutive 29×29 matrices. Compose the four matrices in source order or reverse order, testing row/column layouts, both byte reductions, and direct/inverse readout: **16** variants. All are invertible under the tested reductions.
+
+The best IoC over 12,934 complete 29-rune blocks is **0.0345183407**; the 22-rune remainder is not scored. Exact forward/inverse round-trips pass.
+
+**Decision:** the exact 58² and 4×29² size relationships are worth recording, but their most direct page-key and linear-matrix readings do not decrypt original LP2. Retire these precise additive and Hill interpretations. Do not infer that the historical binary has no role in LP2; any further use requires a new source-visible operation that selects a different transformation or key schedule.
+
+**Reproducer:** [`sims/cicada2013_wisdom_folly_matrix_gate.cjs`](../sims/cicada2013_wisdom_folly_matrix_gate.cjs). This is a bounded original-input study, not an established plaintext or key.
+
 ## Decision and reusable next step
 
 The historical binary provides a recoverable, physically distinct source input to the shared LP2 investigation, but its known-content direct-pad inverse is negative. Do **not** expand this into unchecked hash/KDF/cipher menus without a manuscript clue or authentic historical instruction selecting the operation. Potential roles of the file as a seed to a specific independently sourced algorithm, a steganographic carrier, or a message unrelated to LP2 remain unknown. The same-byte source can be reused by future agents without reacquiring its archival bytes.
