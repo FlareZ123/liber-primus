@@ -27,6 +27,11 @@ EXPECTED_MODE = "RRRRRRRRRRRRRRRRGGGGGGRRGGRRGGGGRRRRRRRRRGGGGGGGGRGGGRRRRR"
 EXPECTED_RED = [0, 2, 3, 6, 7, 8, 14, 15, 22, 23, 26, 27, 32, 33,
                 36, 37, 38, 39, 40, 49, 53, 54, 55, 56, 57]
 EXPECTED_RGB_ACHROMATIC = [1, 4, 5, 9, 10, 11, 12, 13, 34, 35]
+# Visually repeated motifs, identified independently of JPEG file-mode flags.
+# Cross p0-2; scrollwork p3-7; mirrored tree pp8-14;
+# cuneiform header pp33-40. Each family also contains visibly red pages.
+MOTIF_FAMILIES = [(0, 2, "cross"), (3, 7, "scrollwork"),
+                  (8, 14, "mirrored trees"), (33, 40, "cuneiform header")]
 EXPECTED_RUNS = [
     ("R", 0, 15, 16), ("G", 16, 21, 6), ("R", 22, 23, 2),
     ("G", 24, 25, 2), ("R", 26, 27, 2), ("G", 28, 31, 4),
@@ -114,6 +119,12 @@ def scan(original_dir: Path, zip_path: Path | None) -> dict:
     assert actual_mode == EXPECTED_MODE
     assert Counter(actual_mode) == {"R": 35, "G": 23}
     assert red_pages == EXPECTED_RED
+    motif_pages = {i for start, stop, _ in MOTIF_FAMILIES
+                   for i in range(start, stop + 1)}
+    visible_ink_and_repeated_art_model = "".join(
+        "R" if i in red_pages or i in motif_pages else "G" for i in range(58))
+    assert visible_ink_and_repeated_art_model == actual_mode
+    assert sorted(motif_pages - set(red_pages)) == EXPECTED_RGB_ACHROMATIC
     assert achromatic == EXPECTED_RGB_ACHROMATIC
     assert runs == EXPECTED_RUNS
     assert all(p["red_pixels"] == 0 for p in pages if p["mode"] == "G")
@@ -135,6 +146,8 @@ def scan(original_dir: Path, zip_path: Path | None) -> dict:
     return dict(source_sha256=digest.hexdigest(), mode=actual_mode,
                 runs=runs, transitions=transitions, red_pages=red_pages,
                 rgb_achromatic_pages=achromatic, annotation_red_pages=annotation_red,
+                motif_families=MOTIF_FAMILIES,
+                source_visual_model_matches_58_of_58=True,
                 pages=pages, total_rgb=35, total_grayscale=23,
                 all_red_pages_are_rgb=True, solved_controls={56: "R", 57: "R"})
 
