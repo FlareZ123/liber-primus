@@ -27,3 +27,11 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Script syntax failed" }
           node sims/lp2_p15_56013_quotient_offset_sft.cjs $asset
           if ($LASTEXITCODE -ne 0) { throw "Source-inverse test failed" }
+      - name: Execute frozen p55 13th-term instar offset XOR gate
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          node --check sims/lp2_p55_instar_56013_offset1820_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "p55 script syntax failed" }
+          node sims/lp2_p55_instar_56013_offset1820_sft.cjs $asset
+          if ($LASTEXITCODE -ne 0) { throw "p55 13th-term XOR gate failed" }
