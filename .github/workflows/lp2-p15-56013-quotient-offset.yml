@@ -1,5 +1,8 @@
 name: LP2 p15 historical 56013 Euclidean-quotient offset (manual)
 on:
+  push:
+    branches:
+      - agent35/56013-central23-test
   workflow_dispatch:
 permissions:
   contents: read
