@@ -103,6 +103,9 @@ const zL = [mod(leftPrime), mod(rightPrime)];
 const zR = [mod(rightPrime), mod(leftPrime)];
 const orderL = multiplicativeOrder(zL);
 const orderR = multiplicativeOrder(zR);
+if (leftPrime !== 101 || rightPrime !== 11 || orderL !== 84 || orderR !== 10) {
+  throw new Error('p32 antipodal field selector changed');
+}
 
 const Q = quotientPairs(grid.bytes);
 if (Q.length !== 127 || Q.some(q => q[0] === 0 && q[1] === 0)) {
@@ -250,6 +253,7 @@ const result = {
       return counts.reduce((s, n) => s + n * (n - 1), 0) / (payload.length * (payload.length - 1));
     })(),
     rawTrigramScore: rawScore,
+    rawByteValidity: stats(rows),
     nativeControls: controls
   },
   operations,
