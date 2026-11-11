@@ -24,7 +24,7 @@ A natural 5×19 row-major rendering of those 95 runes is:
 
 The first row agrees with the first printed line. The later row boundaries split `WE`, `CIRCUMFERENCES`, and `DIVINITY`; this is an observed consequence of the 19-rune width, not yet an explanation.
 
-The 5×19 rectangle has nested cell counts **44 / 36 / 15**: its outer border contains 44 cells; removing that border leaves a 3×17 interior of **51** cells; removing the next border leaves a 1×15 core. The innermost 15 row-major runes are `YWITHINANDEMERGE`.
+The 5×19 rectangle has nested cell counts **44 / 36 / 15**: its outer border contains 44 cells; removing that border leaves a 3×17 interior of **51** cells; removing the next border leaves a 1×15 core. The 1×15 central core after removing the second border is `USTSHEDOUROWNCI`. Separately, the final 15 runes in source order are `YWITHINANDEMERGE`; they occupy the right end of the bottom row, not the geometric centre.
 
 A separate source-visible LP2 feature is the **51-rune red span on p53**, at zero-based page-local rune offset 128. Its exact annotation is in [`resources/liber-primus/lp2-ink-annotations.json`](../resources/liber-primus/lp2-ink-annotations.json), page 53. Its transliteration is:
 
