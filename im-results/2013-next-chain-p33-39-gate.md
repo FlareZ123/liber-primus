@@ -14,7 +14,7 @@ This is a hypothesis, not an established mechanism. The external report is index
 
 The p33–39 section has **1,680 runes**. Its 1033/3301 markers have been linked to the 2013 BASE29/DH protocol, making the independently signed March 2013 NEXT payload an obvious historical candidate to test—not an authenticated LP2 key selector. The signed message is preserved at `resources/external/2013-do-not-share-this-information-2.asc`; the existing source note `resources/external/2013-tcp-server-signed-source.md` records its PGP verification and the participant-log link to NEXT.
 
-## Exact 1 + 1,680 alignment
+## The tempting 1 + 1,680 alignment (not source-selected)
 
 Using the canonical GP transliteration (greedy TH, NG, EO, OE, AE, IA, EA; QU→CW, V→U, K→C, Z→S), the signed message body contains **1,710** GP symbols, not 1,681. It contains exactly **29 F symbols**. Applying the already-known LP1 F-interrupt convention to the *key source* as a hypothesis (remove F symbols) leaves **1,681** symbols:
 
@@ -24,7 +24,9 @@ Using the canonical GP transliteration (greedy TH, NG, EO, OE, AE, IA, EA; QU→
 - The first p33–39 ciphertext rune is also **D / 23**, exactly matching the proposed IV.
 - The target has **12 internal zero differences**. Including the initial equality between IV and the first ciphertext rune gives 13 zero steps.
 
-Thus the candidate has a clean source-shaped interpretation: the first non-F NEXT rune is the 29-state IV, and the next 1,680 non-F runes are one 28-state step-key symbol per target rune. The 1,681 length is **conditional on F deletion**; it is not the canonical GP length. Applying F-interruption to a key source and using the first remaining symbol as an IV are still hypotheses, not instructions stated by the signed artifact.
+Thus the arithmetic offers a tempting 1+1,680 split: the first non-F NEXT rune could be read as a 29-state IV, with the next 1,680 as one 28-state step-key symbol per target rune. The 1,681 length is **conditional on F deletion**; it is not the canonical GP length.
+
+**Critical source caveat:** the signed 2013 protocol defines NEXT as participant-supplied text for the server to store; the server does not select the text as an organizer instruction. The March message is independently PGP-signed, but its signature authenticates the participant-supplied message, not an LP2 key role. Its 29 F runes are ordinary letters inside words such as INFORMATION, FINALLY, FEW, FINAL, FIRST, OF, and IF; no original typography or instruction marks them as cipher interrupts. The LP1 F-interrupt convention is established for specific cipher contexts, not for this message as a key. Deleting every F and treating the first survivor as an IV is therefore an unsupported transformation. The 1+1,680 alignment is a post hoc numerical fit, not source-selected key material. The p33 1033/3301 link does not select the March NEXT payload.
 
 ## Frozen inverse family
 
