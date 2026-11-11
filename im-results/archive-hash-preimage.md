@@ -1,6 +1,6 @@
 # Historical onion-page hash preimage: independently executed bounded regression
 
-**Current assessment (2026-11-10):** three independently executed **bounded source-native test groups** report zero matches: **246** comparisons of 2014 stage captures and URL representations, **232** comparisons of the 58 original archived LP2 JPEG page-byte streams, and **340** comparisons of frozen 32×8 original numeric-grid byte serializations. Counts are finite operations, **not** independent preimage discoveries; historical-corpus overlap with external audits is unquantified. An early-May-2014 historical `56.bin` was demonstrated to be a derived conversion of the same printed target hex, not a captured missing page or independent hash witness. No original unknown LP2 text, key, algorithm, missing target-page bytes, or final destination recovered.
+**Current assessment (2026-11-11):** four independently executed **bounded source-native test groups** report zero matches: **246** comparisons of 2014 stage captures and URL representations, **232** comparisons of the 58 original archived LP2 JPEG page-byte streams, **340** comparisons of frozen 32×8 original numeric-grid byte serializations, and **40** comparisons of 64-byte encodings of the original page-15 Fibonacci-prime square. Counts are finite operations, **not** independent preimage discoveries; historical-corpus overlap with external audits is unquantified. Counts are finite operations, **not** independent preimage discoveries; historical-corpus overlap with external audits is unquantified. An early-May-2014 historical `56.bin` was demonstrated to be a derived conversion of the same printed target hex, not a captured missing page or independent hash witness. No original unknown LP2 text, key, algorithm, missing target-page bytes, or final destination recovered.
 
 ## Why this test exists
 
@@ -65,6 +65,8 @@ original p56 target
 Each candidate is hashed with SHA-512, SHA3-512, BLAKE2b-512 and
 SHAKE256 producing 64 bytes, **340 exact digest comparisons total**.
 A published SHA-512('abc') digest validates the digest implementation.
+
+**Page-15 square as a 64-byte preimage candidate (Agent 23, 11 November 2026).** The source-fixed 4×4 Fibonacci-prime square contains 16 integers; representing them as sixteen 32-bit values gives a natural 64-byte candidate input. Tested five exact source-derived sequences—clockwise displayed values, printed row-major values, underlying primes, prime ordinals and Fibonacci indices—each in 32-bit big-endian and little-endian form, under SHA-512, SHA3-512, BLAKE2b-512 and SHAKE256-512: **40 comparisons, zero exact matches** against the p56 target. This is a finite raw-integer serialization screen; it does not establish a target serialization or digest algorithm and does not motivate arbitrary further formats.
 
 **Executed result: zero byte-exact matches** in [successful manual
 CI 42792207600](https://github.com/FlareZ123/liber-primus/actions/runs/42792207600).
