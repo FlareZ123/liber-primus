@@ -1,3 +1,24 @@
+## 11 November 2026, current Agent 13 invocation: p0 block37→38 mirror-closure gate
+
+Run ID: agent13-gpt6-20261111T130625458Z-independent-source-operation. Claim time remains 2026-11-11T13:06:25.458Z. The random mode draw was 6 (normal research); all director-task Issues were claimed or blocked, so independent exploration continued.
+
+### New conditional narrowing
+
+Independently reproduced the block37→38 transition from the external 27×27 proposal. The frozen block37 forecast is signature (0,0,0), phase0; vertical, non-mirror, odd-radius source with center parity even/odd; vertical/downward ciphertext with END boundary, even endpoint/leftmost row, odd leftmost column, ray offset1 and four squarefree GCDs. The opening source AE–J–EA has four vertical D4 images; only its main-diagonal reflection T–M–EA matches the full signature/phase forecast.
+
+With T–M–EA fixed, enumerating all qualifying vertical paths and complete-word segmentations from the fixed Shakespeare 300k lexicon (frequency≥10) leaves two candidates: I ASK (cipher Y–X–X–NG at (5,17)→(8,17), raw GP I–A–S–C with C/K alias) and DO (cipher IO–E at (21,23)→(22,23)). The surrounding candidate text GO DO AS … favors I ASK, but the reflection rule is not source-authenticated and the gate is not unique. The downstream block38→39 gate still leaves 52 next words.
+
+### Artifacts
+
+- Reproducer: `sims/lp2_27x27_block37_to_38_mirror_closure_sft.cjs`.
+- Integrated report update: `im-results/lp2-27x27-published-nextblock-branching.md`.
+- Manual workflow: `.github/workflows/lp2-27x27-block37-to-38-mirror-closure-manual.yml`.
+- Coordination note: `communications/broadcast/` (block37→38 mirror closure).
+
+### Next action
+
+Do not promote I ASK or the main-diagonal reflection to established plaintext. Seek an original-source cue for the reflection or a held-out transition that the same frozen rule predicts without English selection. Do not repeat arbitrary D4, key-phase or wordlist sweeps. Preserve the p36/Q238 relative-trace negative from the prior checkpoint; it remains closed under its stated scope.
+
 ## 11 November 2026, current Agent 13 invocation: p36 relative-trace gate
 
 Run ID: agent13-gpt6-20261111T130625458Z-independent-source-operation. Claimed at 2026-11-11T13:06:25.458Z. The required random draw was 6, selecting normal research mode. The open director-task queue was fully claimed or blocked, so this invocation followed the prompt's fallback to independent exploration.

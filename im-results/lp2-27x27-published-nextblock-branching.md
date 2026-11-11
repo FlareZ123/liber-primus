@@ -25,6 +25,36 @@ A further constrained *retrospective* path fits the next three published blocks 
 **First transition consistency check:** from AE–I–EA, the external Report01 initial state (S=0,a=0) predicts next phase 2 and outer value 1 from block01 ciphertext positions 349–355, hence next key signature (+1,0,+1). The natural three-cell continuation at 354–356 is X–OE–X; applying φ(22)=10 gives unrotated X–I–X, with exactly that signature, phase 2, and aligned key X–X–I. External Report03 with B=(13,25), E=(14,4), M=(13,12), h=11 gives A=717, G=5, q=0 and τ=1, predicting a horizontal next block read leftmost-first. The published block02 cells 364–368 are row 14, columns 14–18, matching those features. The [p0 seed-selector SFT](../sims/lp2_27x27_p0_seed_selector_sft.py) reproduces this check. It predicts next-key signature, axis and boundary, **not** exact start or length; moreover these transition rules are from the same external proposal and this comparison is not blind. A further φ(22)=10 step / φ(22)/2=5 length formula matches block02 but is post-hoc and not accepted as a rule.
 
 This candidate narrows the earlier five-way opening-key ambiguity to one published first key **if** the 27×27 row-major layout, (row,column) convention, three-rune node and two-stave displacement interpretation are accepted. It is not yet an authenticated cipher. The 27×27 layout and coordinate convention remain assumptions; the three-projection clue is weak; and the block02 check is internal consistency, not independent validation. The 52-word block39 ambiguity remains. The proposed Latin **SECUENDI RATIO** is not an independent opening crib: the external walkthrough derives its RATIO key from the proposed block28 MAP source and ciphertext, and its opening word uses a different four-rune rectangle key. It is a conditional consistency check. The external block18 walkthrough also drops its initial coordinate selector and CENTER/OUTER heuristic after THEN. Therefore the 38-block plaintext remains a conditional candidate, not established decryption.
+## Upstream block37→38 mirror-closure gate (Agent 13, 11 November 2026)
+
+**Question.** Can the proposed block38 source be selected from the opening source by a simple square symmetry, before using the decoded block38 text?
+
+**Upstream premise:** accept the external block37 AS placement as a candidate, not as established plaintext. Its frozen Reports 01–15 forecast a next key signature `(0,0,0)` and phase 0; a vertical, non-mirror source of odd radius with center parity even-row/odd-column; and a vertical downward ciphertext path with END boundary, even endpoint/leftmost row, odd leftmost column and exact ray offset 1. The four squarefree-GCD tests are also fixed by the previous block.
+
+The provisional opening source is AE–J–EA at `(13,11),(13,12),(13,13)`. Its four vertical D4 images, normalized top-to-bottom, are:
+
+| Symmetry | Reflected coordinates | Rune key | μ(φ(index)) signature | Phase mod 3 |
+| --- | --- | --- | --- | ---: |
+| Main diagonal | `(11,13),(12,13),(13,13)` | **T–M–EA** | **(0,0,0)** | **0** |
+| Anti-diagonal | `(15,15),(16,15),(17,15)` | L–F–W | `(0,1,1)` | 2 |
+| 90° rotation | `(11,15),(12,15),(13,15)` | R–P–EA | `(−1,0,0)` | 2 |
+| 270° rotation | `(15,13),(16,13),(17,13)` | X–L–AE | `(0,0,1)` | 1 |
+
+All four vertical images meet the predicted center parity, odd radius and non-mirror type. **Only the main-diagonal image matches the full predicted signature and phase**, selecting T–M–EA at center `(12,13)`. It shares the fixed cell `(13,13)=EA` with the opening source. This is a plausible geometric closure, but the manuscript has not independently instructed the solver to reflect across the main diagonal.
+
+With T–M–EA fixed directly at phase 0, I enumerated every vertical downward ciphertext segment of length 2–27 satisfying the frozen END/parity/ray/local-mode and four squarefree-GCD conditions. Complete-word segmentation used the fixed GP-encoded Shakespeare 300k reference with word frequency at least 10. Exactly two paths survive:
+
+| Candidate | Ciphertext path | Cipher runes | Plain GP runes | GCDs / μ(GCD) |
+| --- | --- | --- | --- | --- |
+| **I ASK** | `(5,17)→(8,17)`, length 4 | Y–X–X–NG | I–A–S–C | `(5,2,2,2)` / `(−1,−1,−1,−1)` |
+| **DO** | `(21,23)→(22,23)`, length 2 | IO–E | D–O | `(1,10,10,10)` / `(+1,+1,+1,+1)` |
+
+The first raw GP output is `I-A-S-C`; reading the final C/K rune as K gives **I ASK**. It matches the external candidate in [block38](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/blob/main/plaintext-i-found/38-i-ask.md). The alternative **DO** is also a common complete word. The surrounding proposed blocks `GO DO AS …` favor `I ASK` contextually, but this is not an independent selector. `ASK` occurs 11 times in the fixed Shakespeare reference, just above the frequency threshold; `DO` occurs 218 times.
+
+**Decision:** this is a useful narrowing result, not a decryption. The locked block37 forecast selects one D4 image, but the main-diagonal-reflection rule itself remains a hypothesis, and two complete-word ciphertext paths remain. The downstream block38→39 gate below still leaves 52 next words. Do not promote `I ASK` to established plaintext or treat the reflection as an authenticated instruction. The decisive next evidence would be an original-source cue for the main-diagonal closure or a held-out transition predicted without English-based choice.
+
+Reproducer: [lp2_27x27_block37_to_38_mirror_closure_sft.cjs](../sims/lp2_27x27_block37_to_38_mirror_closure_sft.cjs). The equivalent enumeration was executed against the current original-source corpus; a manual Node 22 workflow is provided for repeat runs.
+
 ### First-successor enumeration: block02 remains underdetermined
 
 The p0 seed-selector SFT gives a provisional opening state: source node **AE–J–EA**, derived key **AE–I–EA**, phase 0 and outer state 0; original cells 348–354 decrypt to **ASIGOTHE**. Agent17's existing first-transition check shows that the frozen external Reports 01 and 03 predict block02's key signature, ciphertext axis and reading boundary. The following test asks a stricter question: do the published successor constraints select block02's exact source node and ciphertext path without using English?
@@ -137,7 +167,7 @@ Each of these words is a complete GP-encodable English token, meets the same fro
 
 ## Cryptanalytic decision
 
-The published formulas, including recent exact-axis and exact-radius-parity forecasts, **do not uniquely determine the next decoded block**. They select a limited but still broad space of original symbol paths and source-node keys. A coherent English continuation can be found under several incompatible choices without changing those rules. The p0 candidate above supplies a plausible source-visible selector for block01, but it does not authenticate the 27×27 architecture or the later transition rules. The 52-word block39 ambiguity remains; the first seed alone does not fix the next source position. Until a frozen rule predicts a held-out transition without English-based choice, the 38-block plaintext remains a conditional candidate, not an established decryption.
+The published formulas, including recent exact-axis and exact-radius-parity forecasts, **do not uniquely determine the next decoded block**. The new block37→38 mirror-closure gate narrows that transition to two complete-word candidates (I ASK and DO) under an unverified main-diagonal-reflection hypothesis; it does not uniquely select I ASK. The downstream block38→39 enumeration still leaves 52 distinct next words. These results select a limited but still broad space of original symbol paths and source-node keys. The p0 candidate above supplies a plausible source-visible selector for block01, but it does not authenticate the 27×27 architecture or the later transition rules. Until a frozen rule predicts a held-out transition without English-based choice, the 38-block plaintext remains a conditional candidate, not an established decryption.
 
 This does not mathematically refute a more constrained 27×27 cipher or the possibility that a correct path exists among the alternatives. It identifies the currently missing selection mechanism and makes the prospective original-cipher challenge concrete: publish a rule selecting **one** placement from the finite candidate space without looking at the resulting text, and then predict the next several blocks with the rule frozen.
 

@@ -1,0 +1,16 @@
+name: LP2 27x27 block37-to-38 mirror-closure gate (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce block37-to-38 D4 selector and complete-word candidates
+        run: node sims/lp2_27x27_block37_to_38_mirror_closure_sft.cjs
