@@ -168,6 +168,8 @@ Full derivation and reproducible controls: **im-results/p15-p32-318-direction-sf
 
 The original direct paired-coordinate, additive, and simple Hill/transposition readings remain bounded negatives. A separate p15→p32 navigation candidate now survives a source-constrained test: the p15 11th clockwise value gives 318°, matching the bearing from the p32 BUDS edge-window center to the signed-image origin and passing within 1.84 pixels of HOME. The selected HOME/BUDS index diagonal's four interior GP-prime weights also sum to 318. Wrong spiral orientation, one-based indexing, 3-/5-rune edge controls and an unrelated p0 4×4 control fail.
 
+A separate p15→2014 5×5 perimeter gate (#237) is a bounded negative: the plausible cell-6 start and clockwise orientation do not supply a source-selected mapping from p15's prime values to perimeter cells. The fixed φ(ring value) mod29 key is eight-periodic and leaves the p15 arrow-started body ciphertext-like in both orientations; see [the consolidated 2014 square report](2014-magic-square-direction-map.md).
+
 This closes the bounded question of whether the p15 spiral has a plausible LP2 map/direction use. It does **not** establish a cipher, plaintext, key or final destination. The 11×11 reshape and the 11th-entry/four-rune-edge selectors remain inferred; the all-digraph edge set has an alternative near-match. The next decisive test is the 318° ray against the original signed 2016 image with matched alternative-ray controls, followed by a precommitted LP2 prediction. Do not reopen the already-negative direct key families.
 
 Reproduction: **sims/p15_p32_318_direction_sft.py**. Full report: **im-results/p15-p32-318-direction-sft.md**.

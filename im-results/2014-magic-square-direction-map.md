@@ -1,6 +1,6 @@
 # 2014 stage04 magic-square direction map: cell 6 Rad ↔ cell 7 Ac
 
-**Status:** a verified 2013 `0_wisdom` → 2014 stage04 word-prime-sum reconstruction (**25/25 cells**), plus finite source-to-fragment correspondences. **Issue #165 retired the p36/p55 three-word φ→cardinal routing as an unsupported source-selected mechanism:** no primary text instructs a player to group three adjacent LP2 word sums as start/direction/end, apply φ to the middle composite sum, or navigate the square. Preserve the original exact correspondences as conditional observations only. A separate 2014→2016→LP2 fragment-structure hypothesis includes the exact 199 → empty fragment 6 / Ac fragment 7 bridge. Bounded negative tests reject direct table transfer, recursive prime-fragment continuation, the 2014 direction graph as a sparse lag-six event selector, and direct Vigenère readings of fragment 7 as a key. The source-motivated Ac-fragment OutGuess test now has decisive adjacent-page controls: both candidate keys generate identical claimed lengths and seeds plus hundreds of shared output bytes on three different manuscript pages, so the p6 apparent extraction is not selective, and the signed 2016 carrier yields no keyed payload. All authentic and planted positive controls pass. The full graph does not explain the observed T6 event positions under a word-structure-matched null. No LP2 plaintext or authentic key has been recovered.
+**Status:** the 2013 0_wisdom → 2014 stage04 word-prime-sum reconstruction is verified (25/25 cells), and the p15 Fibonacci-prime spiral is independently established prior art. Issue #237's source-first p15→2014 perimeter gate found a plausible cell-6 start and clockwise orientation, but no historical source links the p15 numeric values to the ring or specifies a reversible operation. The only economical totient-ring GP29 Vigenère extension is eight-periodic and leaves the p15 arrow-started body ciphertext-like in both orientations. Earlier p55 FOLD/circumference transfer and direct table-to-LP2 routes remain unselected. No LP2 plaintext or authentic key has been recovered.
 
 ## 2014 source and selector
 
@@ -31,6 +31,50 @@ The selector is independently constrained. The 2014 stage03 comment is “Patien
 ```
 
 The 2016 message was published on 5 January, immediately before Epiphany (6 January). Both the historical phrase and the date therefore select **cell 6**.
+
+
+## p15 Fibonacci spiral → 2014 Wisdom perimeter (Issue #237)
+
+**Decision (11 November 2026): no source-authenticated p15-value→perimeter operator.** This is distinct from #147's p15→p32 direction candidate and #156's p55 FOLD/perimeter test.
+
+### Historical selector audit
+
+The exact 16-cell p15 Fibonacci-indexed prime spiral is already established and independently reproduced; it is not a new discovery ([authoritative p15 numeric result](../results/lp2-p15-fibonacci-prime-spiral.md), [prior-art correction](../results/fibonacci-prime-spiral.md), [original-input SFT](../sims/lp2_p15_fibonacci_prime_spiral_sft.cjs)). Its red 3299 and clockwise outward walk fix the order **inside p15**.
+
+The 2014 stage04 walkthrough reconstructs the 5×5 matrix from the server-status image by reversing an extracted byte stream, and identifies it as a magic square with sum 1033. The contemporaneous stage04 README documents the reverse-hexdump and byte-reversal steps. Neither source gives a perimeter traversal, names Fibonacci/p15, or tells a solver to map p15's 16 prime values onto the square's border ([2014 walkthrough](https://github.com/scream314/cicada3301/blob/master/2014.md), [stage04 README at pinned archive commit](https://github.com/krisyotam/cicada3301/blob/76d3ee8c762f60025822c8c05edbf31351636469/puzzles/2014/assets/stage04/README.md)).
+
+The 2013 0_wisdom source says that primes and the totient function are sacred and that all things should be encrypted. Its 5×5 mixed table maps word cells to the 2014 matrix by GP-prime sums, cell-for-cell. That source-supported transformation does **not** select a perimeter start, direction, or transfer from p15. The original-source note distinguishes the primary image from the third-party transcription ([source note](../resources/external/2013-0-wisdom-source.md)).
+
+There is one plausible **start candidate**, but it does not complete the cross-round selector: the 2014 stage03 HTML comment “Patience is a virtue” has GP-prime sum 761, and φ(761)=760≡6 (mod 29), selecting row-major cell 6, at row 2, column 1 (value 366). That cell lies on the perimeter. The selector identifies a cell in the full square; no original instruction says it is the start of a perimeter walk. Combining it with p15's clockwise orientation is a reasonable test hypothesis, not an authenticated instruction. The p57 line about shedding circumferences and p55's FOLD heading do not name this 2014 square or define its mapping; #156 already found the p55-to-ring transfer unselected.
+
+### Exact ring structure and one frozen test
+
+Reading the 2014 square's perimeter clockwise from cell 6 (row 2, column 1) gives:
+
+**366, 272, 138, 341, 131, 151, 18, 226, 366, 272, 138, 341, 131, 151, 18, 226.**
+
+There are 16 positions but only **eight distinct values**: each value repeats at the antipodal position, so the ring sequence has period 8. The 16-position geometry therefore does not provide 16 distinct numeric key symbols.
+
+As the cheapest source-motivated check, I froze one key construction: take the cell-6 clockwise ring values, apply the named 2013 totient operation, reduce modulo the 29-symbol GP alphabet, and use the solved p56 GP29 additive subtraction. The key is:
+
+**[4, 12, 15, 10, 14, 5, 6, 25]** repeated twice.
+
+This is an eight-symbol period, not a 16-symbol key. It was applied once to the original p15 arrow-targeted body (rune offset 9, 150 runes). The opposing perimeter orientation was the control. Both original outputs re-encrypt exactly. The existing p15 numeric SFT and the source-native p56 totient-cipher regression pass as positive controls.
+
+| Input / output | IoC | Shakespeare-trained GP trigram log score per rune |
+|---|---:|---:|
+| Original p15 body | 0.035884 | -6.14841 |
+| Cell-6 clockwise, φ(cell) mod 29, subtract | 0.034541 | -5.96973 |
+| Cell-6 counterclockwise, φ(cell) mod 29, subtract | 0.037852 | -5.94890 |
+| Source-known LP1 English control | — | -2.35268 |
+
+Neither orientation produces readable plaintext; the slight score/IoC changes are not an English recovery. Crucially, this candidate uses the p15 spiral's **clockwise orientation only**: none of the p15 Fibonacci/prime values enters the key. It therefore does not establish the missing operation that maps a spiral value to a perimeter cell. No alternate moduli, ring origins, key arithmetic, or cipher families were scanned.
+
+### Disposition
+
+The start and direction are individually plausible, but the original sources do not join them into a p15-to-ring value mapping or select a reversible operator. The obvious totient-ring extension is a bounded negative. Close #237 as **selector absent**; reopen only if a primary source supplies the cross-round link and specifies how a p15 value determines a perimeter cell and a reversible operation. No unknown LP2 plaintext, key, or destination follows.
+
+Reproducer: [p15/2014 perimeter gate](../sims/p15_2014_wisdom_perimeter_gate.cjs).
 
 ## 2013 `0_wisdom` table → 2014 square: exact prime-sum reconstruction
 

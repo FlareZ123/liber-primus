@@ -1,3 +1,28 @@
+# Agent 44, 11 November 2026: p15→2014 Wisdom perimeter gate
+
+Active lease: agent44-gpt6-20261111T123811Z-independent-cipher-architecture, claimed 2026-11-11T12:38:11.648540Z; 70-minute threshold 2026-11-11T13:48:11.648540Z.
+
+## Issue #237: bounded source-first negative
+
+Claimed and investigated the p15 Fibonacci-prime spiral → 2014 Wisdom 5×5 perimeter proposal. The p15 16-step spiral is established prior art, not a new discovery. The 2014 stage04 walkthrough and README document extraction/reversal of the server-status matrix and its 1033 magic sum, but do not select a perimeter traversal or link p15/Fibonacci to the ring. The 2013 0_wisdom prose explicitly names primes and totient; its GP-prime-sum expansion to the 2014 square is source-supported, but it does not specify a p15-to-ring map.
+
+A plausible start candidate is 2014 row-major cell 6 (row 2, column 1, value 366): the stage03 comment “Patience is a virtue” has GP-prime sum 761, and φ(761)=760≡6 mod29. This selects a cell in the square, not explicitly a perimeter origin. p15 independently fixes a clockwise spiral within its own 4×4 grid. No primary source joins those facts into a p15-value→ring operator. The solved p57 circumference phrase and p55 FOLD do not identify this square; #156 already found the p55→ring transfer unselected.
+
+The 2014 ring clockwise from cell 6 is [366,272,138,341,131,151,18,226,366,272,138,341,131,151,18,226]: 16 positions, 8 distinct values, exact antipodal repetition. The cheapest fixed test applied φ(cell) mod29 as a repeating GP29 Vigenère-subtraction key to the p15 arrow-started body (offset 9, 150 runes). Key [4,12,15,10,14,5,6,25] repeated twice, hence period 8. The counterclockwise ring was the opposing-orientation control. Both outputs re-encrypt exactly but remain ciphertext-like:
+- raw p15 body IoC 0.035884, GP trigram -6.14841;
+- clockwise subtract IoC 0.034541, trigram -5.96973;
+- counterclockwise subtract IoC 0.037852, trigram -5.94890;
+- source-known LP1 English control trigram -2.35268.
+Existing p15 numeric SFT and authentic p56 totient regression pass. Important caveat: this test uses p15's clockwise orientation only; p15's Fibonacci/prime values do not enter the key. It is not a demonstrated p15-value→perimeter mapping. No further variants are justified.
+
+Reproduction: sims/p15_2014_wisdom_perimeter_gate.cjs. Consolidated findings: im-results/2014-magic-square-direction-map.md and im-results/p15-fibonacci-page-word-address-gate.md. No unknown plaintext/key/destination recovered.
+
+## Next action
+
+Close #237 as selector absent. At the last queue review, #233 and #236 were unclaimed; #234 also unclaimed but overlaps active p0 27×27 investigations. After closing #237, claim a genuinely available issue, preferring #233 or #236 after rechecking comments and claimant leases. Do not restart p15 ring or 16-shift searches.
+
+---
+
 # Agent 44, 11 November 2026: historically resolved Onion2 clock bridge
 
 Active lease `agent44-gpt6-20261111T105808076Z-issue208-onion-generator`, claimed `2026-11-11T10:58:08.076Z`; 70-minute threshold `2026-11-11T12:08:08.076Z`. Director Issue #208 author-side source recovery yielded a bounded negative, preserved in `workplace/onion2-original-server-source-gate.md`, commit 972fc12, issue closed. Director Issue #209 positive: discovered independent contemporaneous `#cicadaops` watcher MassoBot at 2014-01-07 18:30/18:40/19:00/19:10, combined with BotSottile byte counts to resolve positions 190–191 to **[2,4] five-minute units**. Source-backed reconstruction is preserved in `im-results/onion2-massobot-timing-bridge.md`, accompanying original resource JSON, and CJS standalone SFT; earlier 112 direct measured cells and prior experiment scopes are unaltered. No original LP2 plaintext/key or generator identified. Follow-on Director Issue #223 corrected the actor of the 2014 `/cgi-bin/upload` endpoint: it was a **participant-owned** server, with Cicada acting as HTTP client (`GET /key.asc`, `GET /`, `POST /cgi-bin/upload`), as required by signed original 2014 OutGuess/form. A preserved example `cgi.py` is a participant's mock. The actual missing author-side source is the outbound client/key-processing, and separate `/cgi-bin/squares` server. Director Issue #218: one exploratory source-composite 2013 signed BASE29 (two digits per byte), 2014 Onion2 32×8 bytes, 31 GP13-dot markers→32 fragments, and fixed GP29 Vigenère subtraction yields IoC 0.034468258 on 12,956 original unsolved runes, versus 0.034502253 wrong-row and 0.062709966 solved p57. Two empty fragments at indexes 8 and11 are real adjacent punctuation events. Source does not authenticate this composite. No plaintext, no reason to tune. `im-results/onion2-eightbyte-32fragment-base29-gate.md`, `sims/onion2_rows_32fragment_base29_sft.cjs`. Source report: `im-results/2014-stage11-upload-direction-correction.md`. Source line offsets and caveats in report. Remaining first 142 intervals lack this witness's coverage.
