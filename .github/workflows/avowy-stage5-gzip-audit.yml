@@ -87,6 +87,7 @@ jobs:
           /tmp/stage5-carve-venv/bin/pip install --quiet Pillow==11.3.0
           /tmp/stage5-carve-venv/bin/python sims/stage5_four_image_carve_sft.py --selftest
           /tmp/stage5-carve-venv/bin/python sims/stage5_four_image_carve_sft.py data.out | tee stage5-four-image-carve.txt
+          /tmp/stage5-carve-venv/bin/python sims/stage5_four_image_carve_sft.py --extract data.out stage5-images | tee stage5-four-image-extraction.txt
       - name: Build maintained OutGuess 0.4
         run: |
           set -euo pipefail
@@ -100,6 +101,24 @@ jobs:
           CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
           make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
           sudo make install
+      - name: Reproduce historically reported Stage5 OutGuess plaintext on recovered images 3 and 4
+        run: |
+          set -euo pipefail
+          OUTGUESS=$(find /tmp/outguess /usr/local/bin -type f -name outguess -perm -111 2>/dev/null | head -1)
+          test -n "$OUTGUESS"
+          for idx in 03 04; do
+            image="stage5-images/stage5-image-$idx.jpg"
+            output="stage5-image-$idx-outguess.txt"
+            "$OUTGUESS" -r "$image" "$output" > "$output.log" 2>&1 || true
+            echo "--- IMAGE $idx ---" | tee -a stage5-recovered-outguess-results.txt
+            cat "$output.log" | tee -a stage5-recovered-outguess-results.txt
+            if [ -f "$output" ]; then
+              file "$output" | tee -a stage5-recovered-outguess-results.txt
+              wc -c "$output" | tee -a stage5-recovered-outguess-results.txt
+              sha256sum "$output" | tee -a stage5-recovered-outguess-results.txt
+              head -c 4096 "$output" | strings -n 4 | head -60 | tee -a stage5-recovered-outguess-results.txt || true
+            fi
+          done
       - name: Split the two archived tablet images and test source-fixed OutGuess modes
         run: |
           set -euo pipefail
@@ -152,6 +171,10 @@ jobs:
             data.out
             audit.txt
             stage5-four-image-carve.txt
+            stage5-four-image-extraction.txt
+            stage5-recovered-outguess-results.txt
+            stage5-images/
+            stage5-image-*-outguess.txt*
             tablet-front.jpg
             tablet-back.jpg
             trailer.bin
