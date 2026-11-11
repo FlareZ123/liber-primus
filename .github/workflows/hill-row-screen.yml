@@ -17,6 +17,7 @@ on:
           - lag7triple
           - rankhill
           - source-grid-matrices
+          - terminal-circulant
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -62,6 +63,9 @@ jobs:
         run: |
           node sims/grid16_hill_source_inverse.cjs
           node sims/grid_tiled_hill_inverse.cjs
+      - name: Gate 8-column cyclic table map against authentic terminal plaintext
+        if: inputs.experiment == 'terminal-circulant'
+        run: node sims/terminal_grid8_circulant_knownplain_sft.cjs
       - name: Test exact reversible zero-step EA model and native source
         if: inputs.experiment == 'ea-anchor'
         run: node sims/ea_zero_step_reversible.cjs
