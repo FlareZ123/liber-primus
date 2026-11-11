@@ -4,13 +4,15 @@ on:
   workflow_dispatch:
     inputs:
       probe:
-        description: 'Legacy suite or red one-based ordinal source walk'
+        description: 'Legacy gate, red centered walk, 13/31 grid inverse or Onion7 checksum'
         type: choice
         required: true
         default: legacy
         options:
           - legacy
           - red13-256
+          - lcg13-31
+          - onion7-133
 
 jobs:
   original:
@@ -22,11 +24,17 @@ jobs:
         with:
           node-version: '22'
       - name: Reproduce source-locked 256-event recurrence original-inverse gate
-        if: github.event.inputs.probe != 'red13-256'
+        if: github.event.inputs.probe == 'legacy'
         run: node sims/ink256_grid256_lfsr_inversion.cjs
       - name: Reproduce full lossless polynomial diffusion original-inverse gate
-        if: github.event.inputs.probe != 'red13-256'
+        if: github.event.inputs.probe == 'legacy'
         run: node sims/grid_polynomial_diffusion_inverse.cjs
       - name: Source-original 13x256 centered Ac97 walk and bounded inverse
         if: github.event.inputs.probe == 'red13-256'
         run: node sims/red_13x256_centered_walk_sft.cjs
+      - name: LCG 13/31 original full-text 32x8 and 256-byte grid inverses
+        if: github.event.inputs.probe == 'lcg13-31'
+        run: node sims/lp2_lcg13_31_grid_original_gate.cjs
+      - name: Onion7 title 133 original 256-event checksum and original inverse
+        if: github.event.inputs.probe == 'onion7-133'
+        run: node sims/lp2_onion7_133_event_checksum_sft.cjs
