@@ -1,6 +1,6 @@
 # Historical 2014 stego-share key source tested against unsolved LP2
 
-**Status:** a source-derived pad hypothesis with negative preliminary ciphertext evidence. No LP2 plaintext, key, or actual encryption mechanism recovered.
+**Status:** closed for missing cross-stage key selector. The exact 2014 mechanism is historically positive, while the direct LP2 byte-pad sweep is negative and no source-authenticated instruction selects the old payloads as an LP2 key. No LP2 plaintext, key, or actual encryption mechanism recovered.
 
 ## Mechanism and source
 
@@ -12,6 +12,19 @@ UIMNI TELNJ 7TFYV OIUAU SNOCO 5JI4M EODZZ
 ```
 
 The three-way XOR and subsequent 14-column transposition are **historical 2014 puzzle steps**, rather than newly recovered LP2 text. This study uses the three independent hidden bytestrings as a bounded, clue-supported source of potential cryptographic key material. Their exact hex bytes, original source URLs and derived-message invariant are preserved in [the stable derived reference](../resources/cicada2014-outguess-hex.json).
+
+## Historical stage outcome and cross-stage selector decision (11 November 2026)
+
+The recovered 991-byte signed message has a 70-character five-gram body. Strip the spacing, write five rows of fourteen characters, then read columns in the **historically recorded order** `[2,8,9,1,12,13,11,4,5,7,3,0,6,10]` (zero-based). This exactly yields:
+
+```text
+GOODWORKULTIMATETRUTHISTHEULTIMATEILLUSION
+JOINUSATFV7LYUCMEOZZD5J4ONIO
+```
+
+This points to **fv7lyucmeozzd5j4.onion** (the historical source supplies the missing final `N` for the `.onion` suffix). The 2014 solver walkthrough documents that this decoded instruction led to the *next onion stage*. Its original purpose is therefore a concrete 2014 waypoint rather than a demonstrated LP2 key selector: [2014 reconstructed source and column order](https://uncovering-cicada.fandom.com/wiki/What_Happened_Part_1_(2014)#The_5_Gram_Message). The 2016 signed instruction instead says that the words, meaning and numbers of Liber Primus supply the map/road/direction, without specifying these old three shares or their byte-order as a cipher key: [contemporary transcription](https://github.com/scream314/cicada3301/blob/master/2016.md).
+
+**Decision:** the current authentic/historical clues explain the 2014 payloads and their combination *within their own stage*, but do not select an LP2 page, byte-to-rune operation, clock or reuse of these bytes. This is the independent selector required by Director Issue #263. As it is missing, stop before any newly tuned combination or offset attack. The already completed 2,329,824-setting LP2 pad test below has no recovered plaintext and is exploratory exclusion only. Reopen this source route if an independently authenticated, specific cross-stage instruction fixes a key derivation and original LP2 input. Distinguish absence of a documented selector in the checked sources from proof none was ever intended.
 
 ## LP2 experiment
 
