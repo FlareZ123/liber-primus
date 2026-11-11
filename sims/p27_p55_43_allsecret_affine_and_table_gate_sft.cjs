@@ -129,6 +129,7 @@ assert.deepEqual(signedPrimeSums, [11,14,0,21,24,1,21,14,4,11,9,26,14,
 const tests = [];
 const quadratics = [];
 const quadraticsWithSources = [];
+const authenticFiveShareAnalogy = [];
 const selectors = [];
 for (const layout of ["rows-of-43", "five-tuples"]) {
   for (const encoding of ["ordinal", "prime-residue"]) {
@@ -167,6 +168,36 @@ for (const layout of ["rows-of-43", "five-tuples"]) {
         firstMismatch: {columnOneBased: firstMismatch + 1,
           predicted: predictions[firstMismatch], observed: Y[firstMismatch]}});
     }
+    // Historical 2013 five-of-ten SSSS analogue: exactly five observed
+    // source shares at x=1..5 would reconstruct the GP29 secret at x=0
+    // with a degree-four Lagrange polynomial. The LP2 source does not
+    // authenticate these row coordinates or the GF29 register.
+    const weights5 = [5, 19, 10, 24, 1];
+    const secret5 = X.map(row => mod(row.reduce((sum, x, i) =>
+      sum + weights5[i] * x, 0)));
+    let positive5 = 0;
+    for (let column = 0; column < 43; column++) {
+      const coefficients = Array.from({length: 5}, (_, i) => mod(
+        column * (i + 3) + 7 * (i + 1)));
+      const evalAt = x => mod(coefficients.reduce((sum, coefficient, i) =>
+        sum + coefficient * x ** i, 0));
+      const shares = [1, 2, 3, 4, 5].map(evalAt);
+      if (mod(shares.reduce((sum, x, i) => sum + x * weights5[i], 0))
+          === evalAt(0)) positive5++;
+    }
+    assert.equal(positive5, 43);
+    const directCandidates5 = [-1, 1].map(sign => {
+      const candidate = target.map((symbol, i) => mod(symbol + sign * secret5[i]));
+      const counts = Array(29).fill(0);
+      candidate.forEach(n => { counts[n]++; });
+      return {sign, transliteration: translit(candidate),
+        indexOfCoincidence: counts.reduce((sum, n) =>
+          sum + n * (n - 1), 0) / (43 * 42)};
+    });
+    authenticFiveShareAnalogy.push({layout, encoding,
+      originalShareTargetMatches: secret5.filter((n, i) => n === Y[i]).length,
+      reconstructedSecret: translit(secret5), plantedColumns: positive5,
+      originalDirectDecode: directCandidates5});
     // Every possible secret degree<=2 polynomial, including cross-products.
     const Q = X.map(quadraticFeatures);
     const nQuadratic = Q[0].length;
@@ -254,12 +285,14 @@ assert.deepEqual(polynomialChecks, {
 assert.equal(tests.length, 8);
 assert.equal(quadratics.length, 4);
 assert.equal(quadraticsWithSources.length, 4);
+assert.equal(authenticFiveShareAnalogy.length, 4);
 assert.equal(selectors.length, 4);
 process.stdout.write(JSON.stringify({source: {
   p27RedTitle: 19, p27BlackBody: 215, p55WordInteriors: 43,
   p50TableBracket: [84, 126], p55DoubleShavedPlusP27Length: 256
 }, allSecretAffineRelation: tests, allSecretQuadraticRelation: quadratics,
   sevenSourceQuadraticRelation: quadraticsWithSources,
+  historicalFiveOfTenAnalogy: authenticFiveShareAnalogy,
   tableMod5Selector: selectors,
   speculative256HGCheck: polynomialChecks,
   conclusion: "No exact fixed degree<=2 GF29 polynomial transfer, even using all seven source-aligned inputs, no intelligible table-selected 43-rune candidate, and no H/G codeword under the frozen 256 concatenation; no LP2 plaintext recovered."}, null, 2) + "\n");
