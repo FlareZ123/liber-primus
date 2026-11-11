@@ -35,6 +35,21 @@ Original p55 IoC is **0.03789474**; independently solved p57 native-GP IoC is **
 
 The exact [self-contained CommonJS reproducer](../sims/p53_red51_p54_ac_solitaire_54card_sft.cjs) checks original p53/p54 red spans and punctuation, exact 54-card permutation, original 76-rune p55 forward reencryption for all six models, and an independently solved p57 76-rune planted positive under each model. Synthetic controls recover **76/76** true GP runes under the exact planted cipher, while the original p55 inverse remains near random-letter IoC.
 
+## Immediate continuation after p54's red heading
+
+The original **p54 red title is 9 runes**, ending at its red 13-dot boundary. This is a more directly player-visible start for the first ciphertext after the proposed card-deck clue than the start of p55. Without changing the key, signs, or register conventions, the same **six frozen inverses** were applied to **223 subsequent p54 runes followed by the 76 p55 runes**, for a 299-rune contiguous original interval.
+
+| Fixed model | Sign | 299-rune decoded IoC |
+|---|---|---:|
+| Direct GP29 | minus | 0.03654239 |
+| Direct GP29 | plus | 0.03333259 |
+| Sorted predecessor rank28 | minus | 0.03548742 |
+| Sorted predecessor rank28 | plus | **0.03737290** |
+| Cyclic predecessor rank28 | minus | 0.03524051 |
+| Cyclic predecessor rank28 | plus | 0.03445489 |
+
+Raw original interval IoC is **0.03348971**; the largest putative plaintext IoC is **0.03737290**, still much closer to a near-uniform cipher register than independently solved GP English. Each original 299-rune stream exactly reencrypts, and an independent 299-rune solved-p57 repeating native GP plant exactly recovers under each of the six fixed models. No candidate yields an intelligible opening. This tighter, visibly motivated continuation also fails; the p55-only result is not just an artifact of beginning one page too late.
+
 ## Decision
 
 The historically motivated **PATIENCE → Solitaire** operation is a plausible human clue, and the manuscript really provides 51 red runes, a prominent additional Ac, and two nearby 13-dot events. The specific simple source-event rank deck and direct GP29/GP28 decoders **fail on original p55**. Its extra rank and joker-placement conventions are not indicated by a contemporaneous clue. Further deck-order or phase brute force would tune the same missing information and is not justified.
