@@ -111,6 +111,19 @@ for(const w of controlWords){
 }
 const triDenom = allTrain.length + 0.1*29**3;
 function scoreText(seq, includeDetails=false) {
+  if (!includeDetails) {
+    let score=0, nTri=0, a=-1, b=-1;
+    for (const x of seq) {
+      if (x===29) { a=-1; b=-1; continue; }
+      if (a>=0 && b>=0) {
+        const k=a*841+b*29+x;
+        score+=Math.log(((wordTri.get(k)||0)+0.1)/triDenom);
+        nTri++;
+      }
+      a=b; b=x;
+    }
+    return nTri ? score/nTri : -Infinity;
+  }
   let score=0, nTri=0, run=[], words=[], freq=Array(29).fill(0), symbols=0;
   const finish=()=>{
     if(!run.length) return;
