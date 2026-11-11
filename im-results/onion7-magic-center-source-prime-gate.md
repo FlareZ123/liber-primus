@@ -16,6 +16,14 @@ Further exact arithmetic is **retrospectively noticed**:
 
 None of these relationships supplies a documented operation or uniquely selects a key. Source-recognition is more plausible than an unrestricted numeric puzzle; the archive contains no signed instruction to add, reverse every cell, or apply a corresponding prime clock to LP2.
 
+## p57 red “PARABLE” explicitly selects the 449 modulus (Agent 42, 11 November 2026)
+
+The p57 ink annotation marks the seven-rune word **PARABLE** in red at offset 0. Its GP-prime weights are **[43, 97, 11, 97, 61, 73, 67]**, summing to **449** exactly. This is the same 449 heading sum used as the modulus in the 19-word Parable body-clause reduction that yields **[361, 133, 331]**. The red word has seven runes, matching the seven words in the first body clause.
+
+This turns the earlier numerical correspondence into a much more plausible human solve path: a solver sees the red word “PARABLE”, converts its runes using the manuscript's prime-weight convention, obtains 449, and is thereby directed to the historical Parable's 19-word structure and the 449-modular clause sums. The resulting 331 is the center of the seven-by-seven magic square and the Onion7 HTML div id; 133 is the HTML title and the 7×19 term. This is source-derived clue evidence, not a decryption of LP2.
+
+The updated reproducer asserts the red word, exact prime-weight vector, and equality with the 449 heading/modulus: [\`sims/onion7_parable19_nestedprime_sft.cjs\`](../sims/onion7_parable19_nestedprime_sft.cjs).
+
 ## Original text independently specifies 19 and 7
 
 The solved PARABLE body has **exactly 19 printed words**: seven words in its first sentence, then six in each remaining sentence, yielding clause word counts **[heading: 1, body: 7, 6, 6]**. The opening sentence is **LIKE THE INSTAR TUNNELING TO THE SURFACE**. These are observable from original rune word separators with no cipher hypothesis or numeric factorization.
@@ -127,6 +135,6 @@ A slightly better score relative to raw ciphertext is insufficient to indicate a
 
 ## Next useful question
 
-Two source-level paths now deserve an instruction-based continuation rather than more numerical fitting: (1) the direct **HTML id331 → 7×7 square center 331** selection, with the HTML title supplying a reversal; and (2) the root-24 red-span selection, where three independently marked spans have prime sums \(24\bmod29\) and total 29 runes. The direct repeating-key use of that 29-rune sequence has failed. Search for an authenticated stage-six/stage-seven instruction that selects what operation to perform with either source-derived object. Any new decoder should be specified from that instruction and make a concrete original-cipher prediction before language-based model selection.
+The strongest human-solve-path evidence is now the explicit p57 red **PARABLE** marker: its seven GP-prime weights sum to 449, selecting the historical Parable's 19-word, 449-modular reduction and the [361,133,331] outputs. The key unresolved question is what the original Cicada solve path instructed the player to do with those three outputs and the related 7×7 square / Onion7 HTML values. Search for the exact stage-six/stage-seven operation in contemporaneous source material, then test only that operation on the original LP2 input.
 
-The direct source-prime, direct repeating-key, and reversed-square Hill interpretations above have already failed. More arbitrary digit permutations, suffix-length matches, or unconstrained direct keys offer little additional discriminatory power.
+A separate root-24 red-span selection yields a 29-rune sequence, but direct repeating-Vigenère and stable-tie columnar uses fail. The direct source-prime and reversed-square Hill interpretations also fail. Do not expand unconstrained transforms of these objects without an independently visible instruction.
