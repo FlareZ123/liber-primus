@@ -2,6 +2,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 import tempfile
 import time
@@ -192,18 +193,52 @@ def save_dialog_if_present(app, output_path, output_dir):
     return handled
 
 
+
+def acknowledge_completed_task(app, events):
+    """Acknowledge the documented OpenPuff completion modal only."""
+    for window in app.windows():
+        if not safe(window.is_visible):
+            continue
+        title = (safe(window.window_text) or "").strip()
+        controls = safe(window.descendants) or []
+        message = " ".join(
+            (safe(c.window_text) or "").strip()
+            for c in controls if safe(c.class_name) == "Static"
+        )
+        if "task completed" not in title.lower():
+            continue
+        if not re.search(r"\b\d+\s*/\s*\d+\s+carriers?\s+processed\b",
+                         message, flags=re.IGNORECASE):
+            continue
+        confirm = next(
+            (c for c in controls
+             if safe(c.class_name) == "Button"
+             and (safe(c.window_text) or "").strip().lower() == "ok"),
+            None,
+        )
+        if confirm is None:
+            raise RuntimeError("OpenPuff completion dialog lacks an OK button")
+        events.append({"title": title, "message": message})
+        confirm.click_input()
+        time.sleep(0.2)
+    return events
+
+
 def extracted_files(output_dir):
     return sorted(p for p in output_dir.iterdir() if p.is_file())
 
 
-def wait_for_extraction(app, output_path, output_dir, timeout_seconds=30):
+def wait_for_extraction(app, output_path, output_dir, timeout_seconds=30, completion_events=None):
     deadline = time.time() + timeout_seconds
     save_dialog_seen = False
     last_sizes = None
     stable_polls = 0
+    if completion_events is None:
+        completion_events = []
     while time.time() < deadline:
         if save_dialog_if_present(app, output_path, output_dir):
             save_dialog_seen = True
+        acknowledge_completed_task(app, completion_events)
         # The embedded record determines the filename. Only accept an output
         # after file sizes have stopped changing across several polls.
         sizes = tuple((p.name, p.stat().st_size) for p in extracted_files(output_dir))
@@ -290,6 +325,7 @@ def main():
         "bit_level": args.bit_level,
         "bit_selection_verified": False,
         "save_dialog_seen": False,
+        "completion_dialogs": [],
         "output": None,
         "outputs": [],
         "expected_crc32": args.expected_crc32,
@@ -342,7 +378,8 @@ def main():
         window.child_window(control_id=1051, class_name="Button").click_input()
         result["attempted"] = True
         result["save_dialog_seen"] = wait_for_extraction(
-            app, output_path, output_dir, args.wait_seconds
+            app, output_path, output_dir, args.wait_seconds,
+            result["completion_dialogs"]
         )
         result["outputs"] = [file_facts(p) for p in extracted_files(output_dir)]
         matches = [
