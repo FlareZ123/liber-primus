@@ -1,12 +1,26 @@
-# Original Cicada 2013 audio 761.MP3 as a literal LP2 running pad
+# Original Cicada 2013 Parable and audio: seventh-onion metadata link and original-cipher tests
 
-**Classification: complete bounded original-source key inversion search, negative; no decrypted LP2 plaintext or identified key. Agent 45, 2026-11-10.**
+**Classification: exact original cross-round source arithmetic and bounded negative cipher tests. No unknown LP2 plaintext or identified key. Source audio test originally Agent 45; source arithmetic and additional tests Agent 27, 10 November 2026.**
 
 ## Source-directed hypothesis
 
 This is a different source family from Liber Primus image bytes, arbitrary pseudorandom seeds, or LP2 number-table keys. A real artifact published by Cicada in the **2013** puzzle, \`audio/761.MP3\`, contains an ID3 user-text field with **"Parable 1,595,277,641"** and the poem that appears in the later **LP2 PARABLE**. The historical linkage makes the file a concrete candidate for a running key, without assuming its audio samples actually encode a cipher. Its original exact byte content is pinned to [rtkd/iddqd commit f2267b0](https://github.com/rtkd/iddqd/blob/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3).
 
 The [original downloaded MP3](https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3) was **4,010,732 bytes**, SHA-256 \`83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460\`. The 206-byte ID3 tag contains the named later Parable and is excluded from the 4,010,526-byte compressed-audio pad. The test reads the binary file directly, not an MP3 transcription, waveform resampling, or re-encoded audio.
+
+## Parable's heading is the modulus of the seventh-onion title and id
+
+The 2013 audio already publishes the exact later *Parable* and product `1,595,277,641`. The original LP2 solved physical p57 prints four punctuated clauses, beginning with its heading **PARABLE**. Using the actual, ordered 29 Gematria Primus prime weights, the rune lengths are **[7, 30, 30, 28]**, with sums **[449, 1259, 1031, 1229]**. The heading's prime sum **449** is a natural source-native modulus for the poem's three body clauses, whose divisions each have quotient two:
+
+```text
+1259 = 2 × 449 + 361
+1031 = 2 × 449 + 133
+1229 = 2 × 449 + 331
+```
+
+The body remainders are **[361, 133, 331]**. Their **last two elements in the printed order exactly equal the contemporary 2014 seventh-onion HTML's `<title>133</title>` and `<div id="331">`**. The original index explicitly lists 58 images in natural numerical order; neither the HTML nor the signed message from the prior onion instructs use of modulo449. All **24** ordered selections of a modulus from the four source clauses plus two distinct other clauses reproduce these two HTML values **only** with heading clause0, body clause2 and body clause3. This is a finite source-specificity check, **not** a discovery-wide coincidence probability or evidence of deliberate author intent.
+
+The unused first residue is **361 = 19²**, potentially key-related but without an independently named operation. Separately, the HTML pair sums to **464=8×58=16×29**, the known count of ordinary primes through 3301; their residues 17,41 modulo58 form inverse quarter-turn page-index permutations, a separate reversible geometric hypothesis that has **not** decoded LP2. [Source-only full reproducer](../sims/parable_449_onion7_header_modulo_sft.cjs) and [successful CI 42931492264](https://github.com/FlareZ123/liber-primus/actions/runs/42931492264) check the exact rune inputs, GP sums, source values, and uniqueness among the 24 same-page selections.
 
 ## Source-number prime-origin test on the authentic p56 mechanism
 
