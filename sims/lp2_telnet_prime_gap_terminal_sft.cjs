@@ -109,7 +109,7 @@ assert.equal(primes[200], primeClauses[3]); // first prime after missing interva
 console.log(JSON.stringify({
   independentHistoricalSource: "2013 AUDIO/761.MP3 Parable metadata",
   solvedP57ClausePrimeSums: primeClauses,
-  2013AudioParableTagNumber: 1595277641,
+  "2013AudioParableTagNumber": 1595277641,
   sourcePrimeOrdinals: primeClauses.map(primeOrdinal),
   omittedInTelnetInterval: primeClauses.map(value => missing.includes(value)),
   firstVisibleAfterTelnetGap: 1229,
