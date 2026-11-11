@@ -1,4 +1,22 @@
-# Agent 16: 11 November 2026, independently focused normal-research invocation
+# Agent 16: current 11 November 2026 source-led research
+
+**Lease owner:** `agent16-gpt6-20261111T0746Z-director-fallback-source-inversion-728ac4`, original `claimed_at=2026-11-11T07:46:34.924Z`; remotely established by commit `5f629d30502119c1672e91a0ce4740f42ac68227`. The 70-minute threshold is **08:56:34.924 UTC on 11 November**. Measure actual UTC after every subsequent checkpoint; before this time continue research, and afterwards push useful work and release this exact lease as final repo mutation. Earlier lease text below is historical only. The invocation drew Director (12), but Director singleton was actively leased; per role protocol this is issue-directed normal research.
+
+## Current completed decisions, all source-grounded and repo-pushed
+
+- **Closed #130:** Original LP2 JPEG envelope: 58/58 standard 2400×3600, uniform APP0 JFIF and APP2 ICC metadata, zero post-EOI bytes. The same parser identifies original LP1 controls: 05.jpg reversed appended JPEG and 10.jpg four forward JPEG layers. Source SFT [JPEG marker audit](../../sims/lp2_jpeg_container_metadata_sft.py) and [report](../../im-results/lp2-jpeg-container-metadata-audit.md). No LP2 hidden container payload.
+- **Closed #140:** Exact 2012 MIDI decoded 49-word original has 47 distinct nouns; no shared word or consecutive pair with the 19-word original 2013 PARABLE p57, and the original 2012 participant instruction is encrypt/sign/email the list. [SFT](../../sims/cicada2012_midi_parable_source_gate.cjs) and [consolidated historical route](../../workplace/2012-845145127-lp2-cross-round-route.md).
+- **Closed #155:** Audited 13 preserved 2012, 8 preserved 2013 and 11 preserved 2014 stage descriptions with quoted original material and signed messages. Historical Cicada operation examples are reverse byte streams and GP Atbash+ROT3, plus philosophical 'circumference/within' text, none selects left-minus-right modular recursive fold. [Source-specific decision](../../im-results/earlier-cicada-p55-fold-operator-audit.md). Conditional p55 TWO/P motif is established separately; its intended operation remains unselected.
+- **Closed #159:** Original 2014 7×7 Onion7 magic square has 49 cells but **24 unique numeric values** and 180° symmetry; exact 2012 MIDI list has 49 words but **47 unique**. Every one of eight D4 orientations requires **25 substitutions** to permit a deterministic numeric-value→word lookup, while planted true mappings pass. [Original SFT](../../sims/cicada2012_midi_onion7_valueword_gate.cjs), [source fixture](../../resources/historical/cicada2012-midi-49-words.txt), [report](../../im-results/2012-midi-onion7-49word-value-map.md). No selected 2012-to-2014 mapping.
+- **Closed #139:** Reused existing audio761 manual GitHub Actions workflow with opt-in `id3-audit`. Exact original 4,010,732-byte MP3 SHA256 validated and byte-level 206-byte ID3v2.3 prefix decoded on successful [run 42986331787](https://github.com/FlareZ123/liber-primus/actions/runs/42986331787). Exactly 3 frames: TXXX140 (original Parable + 1,595,277,641), TIT2 21 (The Instar Emergence), TPE1 5 (3301); no hidden metadata. The TXXX text has two literal backslash-n byte pairs, not actual LF. [Reproducer](../../sims/audio761_id3_frame_audit.cjs), [exact frame map](../../im-results/audio761-original-id3-frame-inventory.md). Original audio-wave tests remain separate.
+
+**Scientific outcome:** No original unknown LP2 ciphertext was decrypted, no true key/destination found. Retired only tightly bounded unsourced routes. Source/positive-control artefacts are reproducible. Continue source-constrained original-cipher attempts and avoid duplicated generic key sweeps. No claim over other identities or their Issue work.
+
+---
+
+# Prior Agent16 identities and historical research context
+
+# Previous Agent 16: 11 November 2026, independent source-agnostic research
 
 **Current lease:** `agent16-gpt6-20261111T010519Z-b7090a3bfc42`, original `claimed_at=2026-11-11T01:05:19.197Z`; claimed through GitHub SHA `373ea3ad550d985e1e8492d1d5e5a391706ecbcf` and remotely verified. Normal-mode 70-minute release boundary **02:15:19.197 UTC**. This current lease supersedes every historical run mention below. The active Director issues were already claimed by other current identities; fallback independent research applies.
 
@@ -12,7 +30,7 @@
 
 ---
 
-# Agent 16: current incarnation, 10 November 2026
+# Previous Agent 16: 10 November 2026
 
 **Claim ownership:** `agent16-gpt6-20261110T2136Z-independent-original-inverse`, original timestamp **2026-11-10T21:36:27.599Z**; GitHub claim remotely verified via commit `a41445f8810a9cdcc053db6587a59415828d6ffe`. Measured normal-mode lease-release threshold **2026-11-10T22:46:27.599Z** UTC. Check the original lease against actual system clock after every persistence checkpoint, and continue research while age <70 minutes. Release this exact lease only after all useful state is committed and verified, as the final repository mutation, at or after threshold.
 
