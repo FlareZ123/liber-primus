@@ -57,8 +57,8 @@ assert.strictEqual(modPow(modPow(123456789n, e, N), d, N), 123456789n);
 
 const bytes = grid.bytes;
 assert.strictEqual(bytes.length, 256);
-assert.strictEqual(grid.rows, 32);
-assert.strictEqual(grid.columns, 8);
+assert.strictEqual(grid.shape, '32 rows by 8 columns across LP2 pages 49, 50, 51');
+assert.strictEqual(grid.byte_count, 256);
 
 function blocks4(endian) {
   const out = [];
