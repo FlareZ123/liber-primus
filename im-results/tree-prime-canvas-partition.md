@@ -62,6 +62,67 @@ For a finite sensitivity test preserving the physical geometry, assign each of t
 
 The proposed 7-cycle and its external matches are thus **conditional on corner ownership**. To claim a historical key or operation, a surviving manuscript instruction must disambiguate the partition independently of those matches. The alternative order-28 map may merit attention because \(\varphi(29)=28\), but that equality alone has no plaintext consequence. [Source-asserting enumeration](../sims/tree121_mobius_corner_conventions_sft.cjs) and [successful original-input manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42949089685).
 
+### Inclusive-side map is the conjugate cube of the earlier two LP1 Möbius squares
+
+**Evidence class:** exact original-source algebra plus a finite original-rune inverse that fails to recover plaintext. This relation is *conditional on the inclusive-side convention* described above. It is more specific than the earlier order-seven corner-exclusive analogy, but it still lacks an independent authorial instruction selecting the matrix reading or the cipher.
+
+The previously reproduced LP1 scan-05/scan-16 corner matrices are
+
+\[
+A=M_{05}=\begin{pmatrix}11&6\\6&11\end{pmatrix},
+\qquad
+B=M_{16}=\begin{pmatrix}28&9\\9&28\end{pmatrix}
+=21A^6\pmod{29}.
+\]
+
+Their original integer corners are `[[272,151],[151,272]]` and `[[434,966],[966,434]]` (the latter belongs to the original p16 5×5 square). The source p32 **conventional inclusive-side** ring matrix is
+
+\[
+C=\begin{pmatrix}275&347\\373&339\end{pmatrix}
+\equiv\begin{pmatrix}14&28\\25&20\end{pmatrix}\pmod{29}.
+\]
+
+Set \(Q=\begin{pmatrix}17&8\\0&1\end{pmatrix}\); its projective action is \(Q(x)=8-12x\pmod{29}\), and **12=563 mod29** is the independently signed image's source width. The translation 8 is the average of \(C\)'s two fixed points, 20 and 25, so this portion of \(Q\) is **derived from the target matrix**, not an independent original-text instruction. Exact source matrix arithmetic gives
+
+\[
+C=3QA^3Q^{-1},\qquad C^2=17QBQ^{-1}\pmod{29}.
+\]
+
+This means the conventional p32 map is an affine conjugate of the **third power** of the previously documented 2014/LP1 `MOBIUS` square, and its square is conjugate to the other earlier square. The 11×11 p32 grid supplies **11**, the signed image's prime-dimension difference 569−563 supplies **6**, and these form \(A=[[11,6],[6,11]]\) numerically; the central 5×5 ring is reached by removing **three** outer layers from the 11×11 grid. These are exact source correspondences, but the choice of matrix convention and the use of a cube were recognized after the available inputs had been explored. Algebraic conjugacy by itself does not specify a cipher or a key.
+
+On the complete projective line \(\mathbb P^1(\mathbb F_{29})\), \(C\) has **one 28-cycle and two fixed points (20 and 25)**. Its natural coordinate
+
+\[
+h(x)=\frac{x-25}{x-20}\pmod{29}
+\]
+
+turns the matrix action into multiplication by **8=2³ modulo29**. This source-selected cycle enables a complete, explicit **29-symbol reversible feedback cipher hypothesis**: replace projective infinity in the 28-cycle by either excluded fixed point, reserve the other as the literal escape symbol, interpret a repeated state as GP EA, and label positive orbit steps either directly or through the original LP1 Cayley exponent (multiplication by 3 modulo28). With the original LP1 `MOBIUS` seed **226 mod29=23** transported through \(Q\) to source state **22**, test book-global or physical-page clock reset. All **eight** combinations are exactly reversible and can independently encode and recover an authentic 12,956-symbol GP English plant. Applied instead to the **original 12,956 ciphertext runes**, all fail to recover readable text:
+
+| Full original-input result | Recovered GP29 IoC | GP trigram average |
+|---|---:|---:|
+| Undecoded original LP2 | **0.034478** | **−11.8603** |
+| All eight source-cycle inverses | **0.035197–0.035262** | **−11.8852 to −11.8583** |
+| Independent Emerson GP holdout, 12,000 runes | **0.062545** | **−7.8751** |
+
+The inverse is therefore a **bounded negative** for the declared source-cycle transports, despite the exact matrix relations. [Original-source single-file inverse and 12,956-rune positive controls](../sims/tree121_inclusive_mobius_lp1_cube_inverse_sft.cjs) · [successful manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42951200200).
+
+### The HOME/BUDS cross-ratio word landmark and its limited +60 continuation
+
+The separately identified unique literal ciphertext substrings **HOME** (p32 offset33) and **BUDS** (p32 offset93) are five rows and five columns apart on the original 11×11 matrix, or exactly **60 row-major rune positions**. With the new conventional \(C\)'s fixed points, the source-native Cayley mapping \(h(x)=(x-25)/(x-20)\) gives
+
+- `HOME` GP indices **[8,3,19,18]** → field elements **[28,3,6,18]**, product **24 mod29**.
+- `BUDS` GP indices **[17,1,23,15]** → **[22,15,9,2]**, product **24 mod29**.
+- Continuing the independently noted **+60** offset once more to global rune **7,992**, p33 local rune32, selects original **MYDB** GP indices **[19,26,23,17]** → **[6,5,9,22]**, product again **24 mod29**.
+- The following +60 hop selects p33 local rune92, **THEOIF**, whose four-rune field product is **23**, terminating the three-hit sequence. The p33 MYDB interval straddles an original **word boundary** and thus does not independently verify the signed message's *words* instruction.
+
+The result `24` is both **3301 mod29** and GP rune-index24, traditionally Ac (“oak”); the independent historical image is a tree. These are *retrospective cross-source correspondences*. Exact equalities at three consecutive 60-spaced four-grams and their explicit fourth-hop failure make a testable structural clue, but cannot be treated as recovered plaintext, an established checksum rule, or a statistical proof of intentional embedding.
+
+### Fixed-axis conditional source test of the cubic relationship
+
+Freeze all **21 first-row/first-column p32 GP-prime values**, retaining the independent image-width/height checksums exactly, and deterministically shuffle the other **100 source GP-primes** without replacement. Over **200,000** draws (xorshift32 seed `0x56356929`), the original conventional map's characteristic data \(\operatorname{tr}=5,\det=15\), equivalent to scalar-conjugacy to \(3A^3\), occur **246** times. Only **16** of those also have finite-fixed-point half-separation **±12 modulo29** matching the source image width residue. The central-ring sum exactly **1,136** occurs separately **31** times, and **zero** satisfy both the cubic/image-width criteria and ring sum simultaneously. The conditional finite-sample plus-one fraction for the cubic-plus-width property is **17/200001≈0.000085**. These events and their selection depend on exploratory source choices: the inclusive corner convention, cube exponent, target trace/determinant, and field-width relationship were all recognized retrospectively. **They are not a discovery-wide significance test or a cryptographic success criterion.**
+
+[Original-input SFT with all 200,000 shuffles and the 60-step checksum continuation](../sims/tree121_inclusive_mobius_cube_null_sft.cjs) · [manual CI run](https://github.com/FlareZ123/liber-primus/actions/runs/42952122816).
+
 ### Cross-artifact constraints
 
 These are exact modular correspondences, not fitted parameters:
@@ -128,6 +189,6 @@ The exact source image dimensions, p32 prime checksums, and the proposed ring/wo
 
 ## Decision and next discriminator
 
-The strongest current source leads are the **corner-conditional ring-derived Möbius action** and the separately specified **p32 word-sum walk into the 2016 signed PGP marker**, both anchored by the exact central-ring sum = signed payload length = 1,136. Neither identifies the authentic unknown-LP2 cipher. The direct cipher interpretations are negative; do not repeat them. A high-value next discriminator is whether the walk's **317→331** signature-delimiter transition fixes an unambiguous source operation that predicts original LP2 plaintext. Independently, determine whether the matrix's four 7-cycles and two fixed points supply a source-defined rune map, and whether projective infinity corresponds to a 13-dot marker. Both original-image direction probes are negative: mod4/Sobel and literal continuous-degree/Sobel. A successor must fix a distinct source-visible extraction or a forward key mechanism before reading unknown LP2. Do not expand into arbitrary ring rotations, image thresholds, or unconstrained key families.
+The strongest current source leads are the **matrix-convention-dependent p32 ring map and its exact LP1 cube relation** and the separately specified **p32 word-sum walk into the 2016 signed PGP marker**, both anchored by the exact central-ring sum = signed payload length = 1,136. Neither identifies the authentic unknown-LP2 cipher. The direct cipher interpretations are negative; do not repeat them. A high-value next discriminator is whether the walk's **317→331** signature-delimiter transition fixes an unambiguous source operation that predicts original LP2 plaintext. Independently, determine whether the matrix's four 7-cycles and two fixed points supply a source-defined rune map, and whether projective infinity corresponds to a 13-dot marker. Both original-image direction probes are negative: mod4/Sobel and literal continuous-degree/Sobel. A successor must fix a distinct source-visible extraction or a forward key mechanism before reading unknown LP2. Do not expand into arbitrary ring rotations, image thresholds, or unconstrained key families.
 
 **Reproducers and sources:** [sims/tree_prime_canvas_partition_sft.py](../sims/tree_prime_canvas_partition_sft.py) for p32 geometry and prior image negatives; [sims/tree121_directional_field_sft.py](../sims/tree121_directional_field_sft.py) and [sims/tree121_continuous_direction_sft.py](../sims/tree121_continuous_direction_sft.py) for completed original-image direction negatives; [resources/historical/cicada2014-openpuff-magic-squares.txt](../resources/historical/cicada2014-openpuff-magic-squares.txt) for the 7×7 square; [workplace/2016-image-dimensions-lag6-source-derivation.md](../workplace/2016-image-dimensions-lag6-source-derivation.md) for the signed-image coordinate derivation. This remains intermediate research, not an established decryption.
