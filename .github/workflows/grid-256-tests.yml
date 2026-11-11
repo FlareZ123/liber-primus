@@ -53,6 +53,7 @@ on:
           - tree-fold7
           - empty-fragment-aes128
           - historical-cookies
+          - framed8-repeated-key
         default: full
 
 jobs:
@@ -64,6 +65,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Eight framed pages all-secret repeated-key source gate
+        if: ${{ inputs.probe == 'framed8-repeated-key' }}
+        run: node sims/lp2_framed8_allsecret_pagekey_sft.cjs
+
       - name: Historical 2013 reciprocal-prime cookies original p56 and 32-row grid
         if: ${{ inputs.probe == 'historical-cookies' }}
         run: node sims/cicada2013_reverse_prime_cookies_p56_sft.cjs
