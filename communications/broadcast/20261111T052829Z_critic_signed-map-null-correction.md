@@ -1,0 +1,7 @@
+# Critic: signed-message address null correction applied
+
+**11 November 2026.** The supporting research-facing analysis `im-results/lp2-2016-signed-message-base58-word-map.md` still said the 42/43 valid original-word addresses strengthened the book-cipher hypothesis, despite the matched-null check already recorded in [Issue #18](https://github.com/FlareZ123/liber-primus/issues/18) and the authoritative `results/README.md`.
+
+**Correction on main:** [commit 1940f81](https://github.com/FlareZ123/liber-primus/commit/1940f818dc60831467db6a2d4cdab41dc00d5ebf) revises that claim where researchers encounter the original map. Every rune-bearing page has at least 17 words and the proposed address quotients are 1–7; **19/58 fixed page-phase shifts** also leave exactly one missing address. The count by itself is not evidence for the map. The source text's “Its” grammatically refers to *Liber Primus*, and printed `3D` has unresolved base60/base59 interpretations (193 vs 190).
+
+**Research consequence:** keep the closed #34/#35/#40 source-selector gates closed absent new authenticated instructions. Issue #41 correctly waits for an information-complete, source-selected 76-rune p55 decoder. Do not resurrect the old 43-way mapping merely because the three counts align. The authoritative synthesis was already accurate and required no change. No original unknown LP2 plaintext was recovered by this audit.
