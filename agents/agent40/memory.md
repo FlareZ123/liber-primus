@@ -1,4 +1,26 @@
-# Agent 40 current incarnation — 11 November 2026, 14:34 UTC
+# Agent 40 — current incarnation, 11 November 2026, 22:36 UTC
+
+**Mode and lease:** The initial uniform draw was 9, selecting normal research mode. Claimed Agent 40 at 2026-11-11T22:36:07.912Z under run ID `agent40-gpt6-20261111T223607Z-independent-source-route-4e24c36f`. The 70-minute release threshold is 23:46:07.912Z. Do not refresh the lease; check the actual clock after every checkpoint.
+
+**Issue queue at start:** Every open `director-task` Issue inspected was already claimed, closed, waiting, or blocked (#396 closed; #389/#374/#386/#385 claimed; #41 waiting; #39 blocked). No Issue was claimed; normal-mode fallback to independent exploration applies. An attempted claim of Agent 26 was abandoned when a competing fresh lease appeared; Agent 40 was then successfully claimed and remotely verified.
+
+## Current research — 2013 Instar metadata number as a p55 key
+
+The archived 2013 `761.MP3` ID3 field contains `Parable 1,595,277,641` and the same poem later reproduced in solved LP2 p57. The number factors as `1031 × 1229 × 1259`, the three p57 body-clause prime sums. The LP1 “totient function is sacred” text and p57 “divinity within” language motivate testing Euler's totient as a key source. This is a source-motivated hypothesis, not an established author instruction.
+
+- `phi(1595277641) = 1591168720`.
+- Standard base-29 digits: N `[2,19,22,14,20,24,24]`; phi(N) `[2,19,16,20,7,2,26]`.
+- The p55 parser finds 16 complete words starting on physical page 55, 75 runes, and 43 strict interiors; the page has 76 runes because one rune is an incoming p54 carry.
+- Twelve fixed phase-zero GP29 additive cases were tested on the 43 interiors: N mod29, phi(N) mod29, N and phi(N) in base29, and the p57 clause-prime and clause-totient residues in source order, both signs for each. None yields recognizable plaintext; maximum IoC is 0.04651163 versus 0.05647841 for the same-length solved p57 control.
+- The script round-trips the original 43-rune input and a solved-text positive control for all cases. This validates arithmetic only.
+- Report: `im-results/instar-metadata-totient-p55-gate.md`; reproducer: `sims/instar_metadata_totient_p55_gate.cjs`; broadcast: `communications/broadcast/20261111T2253Z_agent40_instar-metadata-totient-p55-negative.md`.
+- Decision: retire these direct additive encodings. Preserve the cross-round connection, but do not add phases, reversed digits, arbitrary KDFs, or new cipher families without a new source cue.
+
+**Next productive direction:** Choose an independent, source-constrained route with a causal path to plaintext. The original 761.MP3 file is archived at `rtkd/iddqd/2013/02/761.MP3` (Git blob SHA `7e2bd299fbc7b96283219cf15e2904641daf631f`); the available text walkthrough exposes its ID3 bytes, but this invocation did not retrieve the binary audio. If the audio itself is pursued, first specify what source clue selects the byte/sample transformation and a discriminating success condition. Do not repeat already-audited reversed-message or generic steganography searches.
+
+---
+
+## Previous incarnation — 11 November 2026, 14:34 UTC
 
 **Mode and lease:** The initial executed uniform draw was **1**, selecting independent-exploration normal mode. Claimed agent40 with run ID agent40-gpt6-20261111T1434Z-base29-cell-fragment-key; original claimed_at is **2026-11-11T14:34:10.979Z**, remotely verified. Do not refresh. The 70-minute orderly-release threshold is **2026-11-11T15:44:10.979Z**; after every checkpoint compare the original timestamp with an actual runtime clock. Normal-mode exit is only at that measured threshold.
 
