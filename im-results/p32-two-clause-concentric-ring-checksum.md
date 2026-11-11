@@ -4,12 +4,14 @@
 
 ## Source-fixed p32 input
 
-Physical p32 is the original 121-rune 11×11 page. The canonical word parser treats printed punctuation as word boundaries but ignores typographical line wraps. The page has 22 words, with a printed full stop after word 7:
+Physical p32 is the original 121-rune 11×11 page. The original-image audit and continuous parser agree that p32 has **22 page-local segments** intersecting the page, but only **21 complete word starts**. Segment 0 is the incoming carry `ᛚ`, completing p31's final `ᛠᛗᚩ` as `ᛠᛗᚩᛚ`; it is not a complete word beginning on p32. The printed full stop follows page-local segment 7:
 
-- First clause: 7 words, 33 runes; lengths `[1,3,5,11,5,5,3]`.
-- Second clause: 15 words, 88 runes; lengths `[11,6,9,5,8,4,9,4,8,2,3,2,8,5,4]`.
-- The ordered GP-prime sums of all 22 words are `[73,125,267,613,191,184,14,540,458,535,183,442,196,497,160,446,98,203,96,348,160,216]`.
-- The first and second clause prime sums are **1,467** and **4,578**, respectively; the full page sum is **6,045**.
+- First clause: 7 segments (one incoming carry plus six complete word starts), 33 p32 runes; lengths `[1,3,5,11,5,5,3]`.
+- Second clause: 15 complete word starts, 88 runes; lengths `[11,6,9,5,8,4,9,4,8,2,3,2,8,5,4]`.
+- The ordered GP-prime sums of all 22 page-local segments are `[73,125,267,613,191,184,14,540,458,535,183,442,160,446,98,203,96,348,160,216]`. The first value 73 is the p32 carry fragment `ᛚ`; the full incoming word `ᛠᛗᚩᛚ` has sum 260.
+- The first and second clause page-local rune sums are **1,467** and **4,578**, respectively; the full page sum is **6,045**.
+
+The 22nd page-local segment `ᚪᚷᛒᛇ` is the 21st complete word start and retains prime sum 216. See the [original-image boundary audit](lp2-original-page-boundary-audit-p32-p54-p55.md) for the full offset table.
 
 Reshape the original p32 rune-prime values row-major into 11×11 and group cells by Chebyshev distance from the center. The concentric rings have counts `[40,32,24,16,8,1]` and prime sums, outside inward, **`[1,917,1,539,1,046,1,136,388,19]`**.
 

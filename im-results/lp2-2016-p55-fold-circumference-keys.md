@@ -13,21 +13,21 @@ So the adjacent source phrase **“seeks the”** maps to the adjacent readable 
 
 The already established next address from **FOLD=171** is p55:w2.
 
-## Fold the 17 printed words of p55
+## Fold the 17 page-local segments of p55
 
-Physical p55 contains exactly **17** printed words. Folding the word sequence about its unique middle word gives the involution
+Physical p55 contains **17 page-local segments**: zero-based index 0 is the incoming one-rune carry completing a word begun on p54; indices 1–16 are the 16 complete word starts on p55. Folding this 17-segment sequence about its unique middle segment gives the involution
 
 ```text
 i <-> 16-i
 ```
 
-The source-selected p55:w2 therefore pairs with p55:w14.
+Indices are zero-based page-local segment indices. Because index 0 is the carry, indices 2, 8 and 14 are also complete word-start ordinals 2, 8 and 14. The existing FOLD address therefore selects segment 2, which pairs with segment 14.
 
-| role | index | printed GP word | GP-prime sum |
+| role | zero-based segment index | complete GP word | GP-prime sum |
 |---|---:|---|---:|
-| FOLD-selected word | 2 | `SB` | 114 |
-| mirror partner | 14 | `CEAIMCX` | 284 |
-| natural fold pivot | 8 | `MSDIAPF` | 365 |
+| FOLD-selected word 2 | 2 | `SB` | 114 |
+| mirror partner word 14 | 14 | `CEAIMCX` | 284 |
+| center word 8 | 8 | `MSDIAPF` | 365 |
 
 The mirror pair gives
 
@@ -45,10 +45,7 @@ The unique fold pivot gives
 
 ## The p32 source counts recover DIVINITY and the same historical key total
 
-Two p32 counts were established independently before this fold result:
-
-- p32 contains exactly **22 printed words**.
-- its first punctuated clause contains exactly **33 runes**.
+The original-image audit finds **22 page-local segments intersecting p32**, but only **21 complete word starts**. Segment 0 is the one-rune carry `ᛚ`, completing p31's `ᛠᛗᚩ` as `ᛠᛗᚩᛚ`. The first punctuated clause contains **7 page-local segments** (one carry plus six complete word starts) and exactly **33 p32 runes**. See the [original-image boundary audit](lp2-original-page-boundary-audit-p32-p54-p55.md) and its offset table.
 
 Those counts give
 
@@ -57,13 +54,13 @@ Those counts give
 398 - 33 = 365 = GP-prime sum(FIRFUMFERENFE)
 ```
 
-This makes the solved p57 instruction “shed our own circumferences / find the divinity within” numerically concrete: subtract the p32 word count from **CIRCUMFERENCE** and the result is exactly **DIVINITY**. Subtract the p32 first-clause rune count and the result is exactly the historical CIRCUMFERENCE-key spelling.
+This makes the solved p57 instruction “shed our own circumferences / find the divinity within” numerically concrete under the page-local segment convention: subtract the p32 segment count from **CIRCUMFERENCE** and the result is exactly **DIVINITY**. The manuscript does not independently select this carry-inclusive address convention. Subtract the p32 first-clause rune count and the result is exactly the historical CIRCUMFERENCE-key spelling.
 
 The result does not yet specify which unknown ciphertext should be decrypted with either key.
 
 ## P55 literally realizes “divinity within”
 
-The cross-page-aware circumference strip on physical p55 leaves exactly **43 interior runes**. D is GP index23 and occurs in that interior stream exactly at positions **5 and23**. The two markers have **17** runes strictly between them, position difference **18**, and inclusive span **19**. The span folds outer-to-inner as **100000000₂=256** and has center rune **I**, whose GP prime is **31**.
+The cross-page-aware circumference strip on physical p55 leaves exactly **43 interior runes** and **33 boundary runes**. D is GP index23 and occurs in that interior stream exactly at positions **5 and23**. A third D occurs at p55 local offset 70 on a word boundary and is excluded from the strict interior. The two interior markers have **17** runes strictly between them, position difference **18**, and inclusive span **19**. The span folds outer-to-inner as **100000000₂=256** and has center rune **I**, whose GP prime is **31**.
 
 This geometry has a precise conditional link to the ornament/table route: under conventional base60, later-preserved transcript NUMBER(193) gives **391=17×23**, and the separate factor-index reduction yields **X**, uniquely matching p57 word **DIVINITY**. Independent controls show that this is not yet a source-selected navigation rule. NUMBER's factors 17/23 read as GP prime weights are G/H; selecting D requires reinterpreting raw 23 as zero-based GP ordinal23. The same interior also contains X at positions **13 and31**, with the same 17-between / 19-inclusive spacing and the same fold mask 256. Further, radix59 makes the printed `3D` token 190, and NUMBER(190) factors directly as **2×5×19**. Finally, deriving 95 from D's first position and span length, reversing it to 59, then applying NUMBER(59) to recover 5 and19 is circular and does not independently resolve the formerly free divisor59. Preserve the D positions and center-I fact as geometry, not as an authenticated selector.
 
@@ -73,15 +70,15 @@ The 17 runes strictly between the two D markers also admit one source-constraine
 
 ## Corpus discriminator
 
-The page and fold were selected before this check: FOLD points to p55:w2, and a 17-word sequence has one natural center.
+The page and fold were selected before this check: FOLD points to p55:w2, and a 17-segment sequence has one natural center.
 
-Across all **34** unsolved LP2 pages with an odd printed-word count of at least five:
+Across all **34** unsolved LP2 pages with an odd page-local segment count of at least five:
 
-- p55 is the **only** page whose center word has GP-prime sum **365**.
-- p55 is the **only** page whose fixed index-2 mirror pair has GP-prime sum **398**.
+- p55 is the **only** page whose center segment has GP-prime sum **365**.
+- p55 is the **only** page whose fixed segment-index-2 mirror pair has GP-prime sum **398**.
 - p55 is therefore the only page satisfying both conditions.
 
-This strongly favors an intentional word-fold interpretation of p55 over a generic page-number coincidence.
+This is a selective segment-fold pattern rather than a generic page-number coincidence. Its intended status remains conditional: the source does not independently instruct the solver to include the incoming carry as segment 0.
 
 ## Scoped negatives
 
