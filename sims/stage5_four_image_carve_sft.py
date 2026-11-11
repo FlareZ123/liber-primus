@@ -67,24 +67,45 @@ def run(raw: bytes) -> dict[str, list[tuple[int, int, int, int, str]]]:
         "trailer-xor-ff": inverted,
         "trailer-reversed-xor-ff": inverted[::-1],
     }
-    return {name: inspect(content, name) for name, content in views.items()}
+    results = {name: inspect(content, name) for name, content in views.items()}
+    expected_counts = {
+        "source-original": 2,
+        "trailer-as-is": 0,
+        "trailer-reversed": 2,
+        "trailer-xor-ff": 0,
+        "trailer-reversed-xor-ff": 0,
+    }
+    for name, expected in expected_counts.items():
+        assert len(results[name]) == expected, (
+            f"{name}: expected {expected} valid JPEGs, got {len(results[name])}"
+        )
+    return results
 
 
 def selftest() -> None:
     samples = []
-    for xy in [(16, 32), (32, 16)]:
+    for xy in [(16, 32), (32, 16), (24, 40), (40, 24)]:
         im = Image.new("RGB", xy, (38, 107, 211))
         buf = io.BytesIO()
         im.save(buf, format="JPEG")
         samples.append(buf.getvalue())
-    combined = b"".join(samples)
-    assert len(inspect(combined, "plant-forward")) == 2
-    assert len(inspect(combined[::-1][::-1], "plant-reversal-recovered")) == 2
-    flipped = bytes(x ^ 255 for x in combined)
-    assert len(inspect(bytes(x ^ 255 for x in flipped), "plant-xor-recovered")) == 2
-    assert len(inspect(bytes(x ^ 255 for x in flipped[::-1])[::-1], "plant-both-recovered")) == 2
+
+    forward = samples[0] + samples[1]
+    reversed_tail = (samples[2] + samples[3])[::-1]
+    container = forward + reversed_tail
+    assert len(inspect(container, "plant-container")) == 2
+
+    # The two trailer JPEGs are not parseable in their stored byte direction;
+    # reversing the entire concatenated tail, rather than each file separately,
+    # recovers both exact JPEG byte streams in their original order.
+    assert len(inspect(reversed_tail, "plant-tail-as-stored")) == 0
+    assert len(inspect(reversed_tail[::-1], "plant-tail-reversed")) == 2
+
+    xor_tail = bytes(value ^ 255 for value in reversed_tail)
+    assert len(inspect(xor_tail, "plant-tail-xor-ff")) == 0
+    assert len(inspect(xor_tail[::-1], "plant-tail-xor-ff-reversed")) == 0
     assert len(inspect(bytes(1000), "plant-zero-negative")) == 0
-    print("SELFTEST PASS: 4 positive transformations, zero-input negative")
+    print("SELFTEST PASS: forward pair; whole-tail reversal recovers two JPEGs; XOR controls negative")
 
 
 def recover(raw: bytes, destination: Path) -> None:
