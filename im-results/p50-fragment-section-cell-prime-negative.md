@@ -8,7 +8,7 @@ The original p50 numeric table is 32 rows × 8 columns. Independently, the origi
 
 `729, 1145, 1729, 1903, 1021, 1524, 1589, 3316`.
 
-Every one of the seven internal cuts in that eight-section parse coincides exactly with a thirteen-dot event. The first 28 fragment lengths are:
+Every one of the seven internal cuts in that eight-section parse coincides exactly with a thirteen-dot event. The section index for fragments 0–27 is [0,0,1,1,1,1,1,1,1,1,2,3,3,3,3,4,4,5,5,5,5,6,6,6,6,7,7,7]. With the primary BLACK row map and natural columns, the selected nonempty cell bytes are [122,57,217,79,210,114,255,179,249,15,193,54,49,38,54,32,52,40,229,105,160,141,124,193,80,192]; the two empty fragments select no rune key. The first 28 fragment lengths are:
 
 `13, 716, 16, 103, 3, 690, 11, 308, 0, 14, 1729, 0, 9, 11, 1883, 16, 1005, 19, 1414, 10, 81, 8, 1460, 3, 118, 3008, 9, 299`.
 
