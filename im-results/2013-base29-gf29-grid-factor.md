@@ -75,6 +75,23 @@ The physical p3 red triad \([13,23,2]\), also beginning at local rune offset 119
 
 This gives one precise way to perform the 2013 challenge's historically mentioned **Diffie–Hellman operation** in the same 29²-element field that p3's mark independently suggests. It does **not** identify an actual exchanged exponent, a key, a mapping from quotient symbols to text, or a reason to prefer the specific affine root change \(z=23-2u\) over other field-coordinate changes. All irreducible quadratics over the same field extension admit affine root correspondences. The field isomorphism and exponent 433 alone cannot be advertised as independent statistical confirmation.
 
+## Independent 256-byte companions do not share the two factors
+
+The archival [three 256-byte hidden-service candidates](../resources/cicada-hiddenservice-256-candidates.json) form an affordable cross-source discriminant. These sources have uncertain attribution, but their byte lengths match the manuscript's table exactly. Read each entire 256-byte array as the **same** row-major descending GF29 polynomial, then divide separately by the now source-fixed \(H_{2013}(X)=3+26X+24X²\) and \(G(X)=27+5X+15X²\). The exact ordered two-symbol high-to-low remainders are:
+
+| Byte source | H remainder | G remainder |
+| --- | --- | --- |
+| Archived onion2 | [1, 11] | [14, 7] |
+| Archived onion3 | [22, 1] | [4, 15] |
+| Archived onion4 | [26, 17] | [3, 18] |
+| Original printed LP2 grid | **[0, 0]** | **[0, 0]** |
+
+For each historical 256-byte companion, the reversed whole array, 32×8 per-row horizontal mirror, and column-major byte order were also checked: **none** of these 12 source/orientation combinations is divisible by either factor. The original table itself loses both divisibilities under all three alternate orientations. This establishes that the matched algebraic factors are **specific to the original grid among the four compared byte sources and four fixed layouts**, and limits any claim that all four are instances of the same Reed–Solomon-like code. The unverified archival attribution still precludes stronger historical conclusions.
+
+## Cheapest original-rune use of the quotient fails
+
+As an immediate no-unknown-key inversion, take the complete derived quotient itself as an additive GP29 repeating key on all 55 original unknown rune-bearing pages: both **251 canonical** coefficients and **252 fixed-width** positions, both source orientations, both signs and book-continuous versus per-page key clocks. All **16 source-fixed complete-corpus output** symbol-equality rates remain close to a uniform 29-rune alphabet. The highest IoC is **0.0345154201**, from 251? No: from **252 positions, reversed, subtraction, page-reset**; the original ciphertext IoC is **0.0344783979**. No page-independent plaintext emerges. An adjacent-page check on physical p49/p51 at the unshifted quotient origin likewise produces no readable rune passage in the eight per-page source modes. These results retire this short repeating additive interpretation. The quotient could still be binary material or a nonlinearly transformed key. This bounded negative is separate from the exact factor identities.
+
 ## Intended-path appraisal and next experiment
 
 A plausible contemporary solver could remember the 2013 `BASE29` operation, notice the previously established LP2 `29` rune field and `3301` magic-square constant, then use a red-triad ascending polynomial convention to test `3QO` against the 2014 grid. The two exact quadratic factors could be a designed checksum or quotient-construction cue. A genuinely predictive next operation would have to identify, from the historical protocol or physical artwork, how the **252 fixed quotient slots / 251 nonpadded field coefficients** are ordered, encoded, or keyed. The 2013 `DH` example may be worth examining only if it fixes the field generator, exponent and output rule without ciphertext fitting.
