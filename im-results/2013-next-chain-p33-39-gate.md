@@ -1,0 +1,58 @@
+# Authenticated 2013 NEXT chain key on p33–39: exact alignment, bounded negative
+
+**Classification:** reproducible original-cipher negative. The source alignment is unusually specific, but no plaintext, authentic key, or verified LP2 chain mechanism was recovered.
+
+## Why this was worth testing
+
+An independent September 2026 analysis proposes that LP2's 86 adjacent repeated-rune events may reflect a *chain cipher*: each ciphertext rune is the previous ciphertext state plus a step in a 28-symbol alphabet. A zero step is associated with a special plaintext symbol (EA); nonzero steps are modelled as
+
+\[
+\Delta C_i = 1 + ((\sigma(P_i)+K_i)\bmod 28).
+\]
+
+This is a hypothesis, not an established mechanism. The external report is indexed at `resources/external/leo-y-zhang-liberprimusanalysis.md`.
+
+The p33–39 section has **1,680 runes**. The authenticated March 2013 NEXT payload is a particularly motivated candidate key source because the p33–39 region is the manuscript's 1033/3301 historical-protocol section. Its signed message is preserved at `resources/external/2013-do-not-share-this-information-2.asc`; the existing source note `resources/external/2013-tcp-server-signed-source.md` records its PGP verification and the participant-log link to NEXT.
+
+## Exact 1 + 1,680 alignment
+
+Using the canonical GP transliteration (greedy TH, NG, EO, OE, AE, IA, EA; QU→CW, V→U, K→C, Z→S), the signed message body contains **1,710** GP symbols, not 1,681. It contains exactly **29 F symbols**. Applying the already-known LP1 F-interrupt convention to the *key source* as a hypothesis (remove F symbols) leaves **1,681** symbols:
+
+- First remaining rune: **D**, GP index **23**.
+- Remaining stream: **1,680** runes, each in GP indices 1–28; subtracting one maps them bijectively to \(\mathbb Z_{28}\).
+- Target p33–39: **1,680** ciphertext runes.
+- The first p33–39 ciphertext rune is also **D / 23**, exactly matching the proposed IV.
+- The target has **12 internal zero differences**. Including the initial equality between IV and the first ciphertext rune gives 13 zero steps.
+
+Thus the candidate has a clean source-shaped interpretation: the first non-F NEXT rune is the 29-state IV, and the next 1,680 non-F runes are one 28-state step-key symbol per target rune. The 1,681 length is **conditional on F deletion**; it is not the canonical GP length. Applying F-interruption to a key source and using the first remaining symbol as an IV are still hypotheses, not instructions stated by the signed artifact.
+
+## Frozen inverse family
+
+For each target rune, start with IV D and compute \(\Delta C_i=(C_i-C_{i-1})\bmod29\). A zero step emits EA. For nonzero steps, invert the chain equation above.
+
+The test fixes the key stream to the 1,680 post-IV symbols and evaluates:
+
+1. **Plain GP key map:** GP index minus one, giving \(K_i\in\mathbb Z_{28}\).
+2. **DH-selected symbol order:** the signed 2013 worked example's shared value 2 is a primitive root modulo 29. Test the two natural directions \(\sigma(P)=2^P-1\) and \(\sigma(P)=\log_2(P+1)\), as well as identity.
+3. Both arithmetic signs and both policies for consuming a key symbol on a zero step.
+4. As a separate explicit p5/p56-inspired check, \(K_i=\varphi(\operatorname{prime}(r_i))\bmod28\), with identity \(\sigma\), both signs and both zero-step consumption policies.
+
+This is **16 fixed models**, not an open key/phase search. Every model re-encrypts the original target exactly and recovers a 1,680-rune native-GP positive plant exactly.
+
+## Result
+
+The raw p33–39 stream has IoC **0.03436002** and GP-English trigram score **−11.81503883**. The best of 16 inverses is \(\sigma(P)=\log_2(P+1)\), positive key sign, and key consumption on zero steps; its score is **−11.74267241** and its opening is:
+
+`EA I W C E A D IA L X IA N Y N W C N AE L I T X TH B P I O IA N B B T P D TH D M EO I G G TH B AE W C J U`
+
+The weakest of **2,105** native-GP Gibran 1,680-rune holdout windows scores **−8.30584825** (median **−8.01037896**). No candidate enters the native range (**0/16**); the best candidate remains about **3.44 nats/rune** below even the weakest native window. The totient-of-GP-prime key map has only 12 distinct values and also fails.
+
+**Decision:** the exact F-interrupted NEXT / IV-plus-1,680-step alignment is a real, source-motivated coincidence worth preserving, but the tested chain-key inverses do not decrypt p33–39. Retire this exact direct NEXT-key family. Do not rescue it with arbitrary offsets, alphabet permutations, phases, or new key transformations absent an independent source instruction.
+
+This is a distinct test from the earlier direct Vigenère broadcast. That earlier note's ciphertext interval was not preserved and has been withdrawn in `communications/broadcast/20261111T1754Z_agent24_next-running-key-range-correction.md`; its scores are not evidence for this result.
+
+## Reproduction
+
+Run `node sims/2013_next_chain_p33_39_sft.cjs` from the repository root. It reads the original corpus, the preserved PGP-signed NEXT payload, and fixed Emerson/Gibran controls; asserts the 1,710 → 1,681 → 1+1,680 counts and D/23 IV match; tests all 16 frozen models; and checks exact original round trips, positive-plant recovery, and the native-language holdout gate.
+
+**No change to `results/README.md` is warranted:** this is a bounded intermediate negative, not an established mechanism or plaintext.
