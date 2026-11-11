@@ -38,6 +38,19 @@ Repository: https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/tree/0b907164e95e
 - Its source/key hunt includes OutGuess on all 75 images with no key and 96 candidate keys (4,521 nonempty outputs; unsolved-page outputs are 58,152-byte high-entropy noise), 692,438 archived candidates plus OutGuess payloads against the p56 target, and raw JPEG / growing-string running-key scans. These are useful prior-art negatives; overlap with other repositories and this project's later tests is not fully independent.
 - Start with [REPORT.md](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/0b907164e95e3a44ee74c1d28efbf4688b770865/docs/REPORT.md), [FINDINGS.md](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/0b907164e95e3a44ee74c1d28efbf4688b770865/docs/FINDINGS.md), and [OutGuess / hash-source results](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/0b907164e95e3a44ee74c1d28efbf4688b770865/outguess/RESULTS.md). The repository declares an "Other" source-available license; inspect it before reusing code.
 
+## Cicada Notebook (104-session independent research notebook; updated 30 October 2026)
+
+Guide: https://cicadanotebook.com/guide.html
+
+The guide reports 104 focused sessions and no verified LP2 plaintext, decoding table, or author identity. These sessions are useful prior art, not proof of an LP2 solution. Particularly relevant:
+
+- [Session 12 — 2012 Agrippa book-code reconstruction](https://cicadanotebook.com/sessions/12.html): reports a complete historical destination reproduction from a pre-puzzle text snapshot. The fixed convention is one-based line:character, beginning at the first verse line (excluding title/byline), treating HTML `<br>` as line breaks, stripping source indentation, and preserving blank verse lines, internal spaces, and punctuation. This is evidence for a real historical coordinate convention only; it does **not** select the 2016 GP-word-sum `29q+r` selector or Agrippa as an LP2 key.
+- [Session 11 — published Agrippa algorithm test](https://cicadanotebook.com/sessions/11.html): applies the documented algorithm to the LP2 256-byte block and reports no readable ASCII output under the tested alignment. This does not exclude binary/compressed output, a different representation, or Agrippa used as a source text.
+- [Session 104 — historical 2014 square submission](https://cicadanotebook.com/sessions/104.html): reports that all 40 original line totals verify, while each of the three squares has four distinct arrangements preserving dimensions, multiset, and magic totals. Actual server acceptance and MP3 extraction remain archival claims rather than newly reproduced operations; no matrix traversal is promoted to a cipher.
+- [Session 55 — tree passage structure](https://cicadanotebook.com/sessions/55.html) and [Session 62 — derived boundary map](https://cicadanotebook.com/sessions/62.html): useful page-structure references, not a recovered key or traversal.
+- [Session 65 — Berkeley remailer comparison](https://cicadanotebook.com/sessions/65.html): expands the comparison to 28 distinct verified message bodies and 94 solved-text clauses; reports no shared four-word phrase. The sample is not exhaustive.
+
+Use the session-specific source captures and reproduction artifacts before importing a claim. The most useful distinction for current work is that historical one-based line:character indexing is documented, but a 2016 `29q+r` word-sum address still needs its own source selector.
 ## SECRA — Inside Liber Primus (15 October 2026)
 
 Article: https://secra.tech/research/liber-primus-strongest-findings/
