@@ -124,7 +124,7 @@ assert.equal(historicalBytes.length, 256);
 assert.equal(sexagesimal.decimal_text.length, 920);
 assert.equal(sexagesimal.converter_source.length, 45);
 const gitBlobSha1 = bytes => crypto.createHash('sha1')
-  .update(Buffer.concat([Buffer.from(`blob ${bytes.length}\\0`), bytes]))
+  .update(Buffer.concat([Buffer.from(`blob ${bytes.length}\0`), bytes]))
   .digest('hex');
 const historicalBuffer = Buffer.from(historicalBytes);
 assert.equal(gitBlobSha1(historicalBuffer), sexagesimal.source_blob_sha1.binary);
