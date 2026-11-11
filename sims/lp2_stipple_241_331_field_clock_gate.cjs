@@ -174,7 +174,7 @@ function main() {
   const grid = readJSON("resources/liber-primus/lp2-grid-256.json");
   const transcript = readText("resources/lp2-transcription.txt").split("%");
 
-  // Counts are from Agent 31's original-image segmentation of physical p57:
+  // Counts are from Agent 31's original-image segmentation of physical p57. A published GIMP Dissolve reconstruction strongly confounds their interpretation; do not treat them as source-selected without a residual-mask comparison.
   // crop x=350..2049/y=1900..3449; 8-connected; thresholds 40..200.
   const stipple = { total: 574, large: 2, small: 572, left: 241, right: 331, radix: 13 };
   assert.equal(stipple.left + stipple.right, stipple.small);

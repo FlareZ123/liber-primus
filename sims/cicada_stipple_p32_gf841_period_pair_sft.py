@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Reproduce the p57 stipple -> p32 prime-index -> GF(29^2) period-pair lead.
+"""Reproduce the conditional p57 stipple -> p32 prime-index -> GF(29^2) period-pair experiment.
 
 Run: python sims/cicada_stipple_p32_gf841_period_pair_sft.py
-Requires numpy and opencv-python-headless. Inputs are local repository files.
+Requires numpy and opencv-python-headless. Inputs are local repository files. The p57 component selector is confounded by a published GIMP Dissolve field match; this script reproduces measurements, not authorial intent.
 """
 from __future__ import annotations
 import json, math, re

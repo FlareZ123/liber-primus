@@ -1,6 +1,6 @@
 # p57 cicada stipple -> p32 prime-index -> GF(29^2) period pair
 
-**Status:** exact cross-artifact arithmetic and field identities; an intermediate source-path hypothesis, not a decryption.
+**Status:** exact conditional arithmetic and field identities; the p57 count-derived selector is GIMP-confounded and not source-authenticated; no decryption.
 
 ## Original-image measurement
 
@@ -11,6 +11,14 @@ The split counts are both prime:
 - 331 is prime ordinal **67**.
 
 The exclusion of the two large structures is visually motivated but remains an interpretation: including them changes the split to 242/332, which is not prime.
+
+## Confidence downgrade: p57 stipple may be a GIMP rendering artifact
+
+SECRA's 15 October 2026 report, [Inside Liber Primus](https://secra.tech/research/liber-primus-strongest-findings/), reports that the p57 dotted-insect positions strongly match the deterministic legacy GIMP Dissolve field: 268,435,456 offset/orientation/polarity configurations, 96.0% whole-image F1, 93.9% held-out F1, and 166 residual cells. Its [evidence index](https://secra.tech/research/liber-primus-strongest-findings/evidence/index.html) reports 100,000 local-pattern-preserving randomizations without a comparable match. The fixed seed 314159265 is a GIMP default, not a π key.
+
+The exact 574 component count and 241/331 split in this report have not been compared against SECRA's reconstructed mask. Therefore the 53/67 prime ordinals, p32 antipodal positions, 101/11 GP-prime weights, 84/10 field periods, 7×82 arithmetic and all downstream GF(29²) selectors are **conditional on an unverified premise**: that the measured dot counts were intentionally selected rather than produced by the rendering field. The field-pair and matrix tests below remain valid negative results for their exact transforms, but they do not validate the input selector.
+
+The next discriminant is not another key or exponent sweep. Obtain the frozen GIMP-predicted mask/residual and recompute the exact crop x=350..2049, y=1900..3449, 8-connected component count, removal of the two largest components and x=1200 split. If the model predicts 574 and 241/331, retire the selector chain. If a structured residual survives, test only that residual. Existing GIMP source-field work is in [the source-pad gate](gimp-dissolve-source-pad-gate.md); do not repeat its direct-pad or 2D field searches.
 
 ## The selected p32 positions
 
@@ -29,7 +37,7 @@ The GP-prime-weight difference is 101-11=90, exactly the small-component split d
 
 **Indexing caveat:** the one-based alternative positions (52,66) have GP-prime weights (29,53), difference 24, not 90. The zero-based convention is natural for the canonical array and pixel coordinates, but is still a convention that must be justified in any proposed human solve path.
 
-## A source-selected GF(29^2) period pair
+## Conditional GF(29^2) period pair (if the stipple selector is real)
 
 The p3 red triad has GP-prime weights [13,23,2], giving
 
@@ -51,14 +59,14 @@ z_{RL}=11+14u=u^{588},\qquad \operatorname{ord}(z_{RL})=10.
 
 Exact checks include zLR^3=2, zLR^42=-1, and zRL^5=-1. The product of the two orders is 84x10=840, the order of u; however, their multiplicative product has order **420** (lcm(84,10)), not 840. A product mask built from the two clocks therefore does not traverse all 840 nonzero field elements.
 
-The period lengths have independent source-sized counterparts:
+The period lengths have retrospective source-sized correspondences (not independent evidence of intent):
 
 - 84 = 51 + 33: p53's original red span has 51 runes; p32's first printed clause has 33.
 - 10 is the marked ten-dot punctuation size.
 - 127 = 84 + 43, where 43 is the first GP-prime weight of the red p57 heading PARABLE.
 - Separately, 82 = 51 + 31, where 31 is the total number of thirteen-dot marks; and 574 = 7x82, where 7 is the word count of the opening Parable sentence.
 
-This yields a compact, source-derived candidate architecture: the p57 illustration selects a pair of opposite p32 cells; their GP-prime weights define two direction-ordered GF(29^2) elements with periods 84 and 10; those periods align with the p53 red span, p32 clause, ten-dot marks, and the existing 51x127 register shape. It is a plausible selector, not proof that the creator intended these operations.
+If the p57 counts were intentionally selected, they would yield a compact candidate architecture: opposite p32 cells, two direction-ordered GF(29^2) elements with periods 84 and 10, and size correspondences to the p53 red span, p32 clause, ten-dot marks and 51x127 register. The GIMP rendering confound means the selector premise is not established; treat the entire chain as conditional.
 
 ## Bounded original-cipher test
 
@@ -80,8 +88,8 @@ The best decode is only 0.0471 nats/rune above raw ciphertext. The worst minimum
 
 ## Interpretation and next discriminant
 
-The strongest result is the exact **241/331 -> 53/67 -> p32 weights 101/11 -> GF(29^2) periods 84/10** chain and its independent size relations. It does not recover plaintext, an authentic key, or a complete mechanism. Its main vulnerabilities are the exclusion of the two largest image components, the zero-based index choice, and the retrospective combination of otherwise separate source counts.
+The exact **241/331 -> 53/67 -> p32 weights 101/11 -> GF(29^2) periods 84/10** arithmetic chain is reproducible, but its initiating counts are confounded by the reported GIMP Dissolve field and have not been checked against the reconstructed mask. It does not recover plaintext, an authentic key, or a complete mechanism. Its vulnerabilities include the GIMP rendering explanation, exclusion of the two largest components, zero-based indexing, and retrospective combination of source counts.
 
-A productive next test must use the pair as a source-fixed selector in a materially different, historically motivated operation; do not repeat direct additive masks or the already-negative p53-red row-reset variants. The 84/10 pair may be useful to the ongoing p32 direction/address and 51x127 register investigations, but should remain a hypothesis until it predicts held-out original plaintext.
+A productive next test is to compare the exact component measurement with the GIMP-predicted field and residual. Do not use the pair as a source-fixed selector or run further exponent/diagonal/row-clock variants until that control is complete. The direct two-cycle masks, M-state recurrence and SE-diagonal row-seed recurrence are already negative; see the consolidated [51×127 gate](red-triad-51x127-byte-register-gate.md).
 
 **Reproducer:** sims/cicada_stipple_p32_gf841_period_pair_sft.py (original image component counts, prime-index mapping, field orders, source arithmetic, and the bounded 51x127 tests).
