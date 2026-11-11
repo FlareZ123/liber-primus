@@ -4,7 +4,7 @@
  * Original LP2 additive-periodic-key inverse, conditioned on an independently
  * encoded Old English GP29 source. No historical key or plaintext is assumed.
  *
- * Source: resources/control/beowulf_oe_gp_profile.json
+ * Source: resources/control/beowulf_oe_gp_profile_corrected.json
  * Original ciphertext: resources/liber-primus/lp2-corpus.json
  *
  * Exact model C_i = (P_i + K_{clock(i) mod period}) mod 29 with arbitrary
@@ -42,7 +42,7 @@ const root = path.resolve(__dirname, '..');
 function readJson(file) {
   return JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
 }
-const source = readJson('resources/control/beowulf_oe_gp_profile.json');
+const source = readJson('resources/control/beowulf_oe_gp_profile_corrected.json');
 const corpus = readJson('resources/liber-primus/lp2-corpus.json');
 const pages = corpus.pages.filter(p => p.page < 56 && p.indices.length)
   .map(p => p.indices);
@@ -59,7 +59,12 @@ const logp = counts.map(n => Math.log(M * (n + 0.5) / (total + 0.5 * M)));
 assert.equal(pages.length, 55);
 assert.equal(pages.flat().length, N);
 assert.equal(total, 16000);
-assert.equal(source.allSourceGpRunes, 45299);
+assert.equal(source.allSourceGpRunes, 48012);
+assert.equal(source.allGpCounts[2], 2078);
+assert.equal(source.allGpCounts[25], 560);
+assert.equal(source.correctedEAWordStarts, 140);
+assert.equal(source.sourceGpBase29.length, 48012);
+assert.equal(source.sourceGpBase29.slice(16000, 28956), source.positiveControlGpBase29);
 assert.equal(source.acceptedSourceWords, 10885);
 assert.equal(sample.length, N);
 assert.ok(sample.every(x => x >= 0 && x < M));
