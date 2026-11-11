@@ -50,6 +50,19 @@ The **actual red stencil**, inspected in the original p32 JPEG, has **four dots 
 
 Reading these three spatial segments from HOME toward the added BUD branch gives the residue vector **[23,2,11]**. The values **23** and **2** are the actual modulus and shared key in the earlier 2013 Cicada DH23 worked example, while **11** is the separately reconstructed minimal DH3301 client-exponent representative used in the project's p36 field tests. This is a possible human-recognizable cross-round numeric mnemonic, but **the source does not tell the solver to associate the dot columns with these path segments or to mix two different DH examples**. These three residues are simply the already reported 9/13 endpoint arithmetic decomposed into parts, so this does **not** constitute independent statistical evidence or provide an LP2 cipher key. In particular, the three values **cannot** be read together as the modulus 23, private exponent 11, and shared key 2 of one ordinary DH23 exchange: for every nonzero public share a modulo23, Fermat/Euler gives **a^11 ≡ ±1 (mod23)**, never 2. Any interpretation joining the two historically different DH examples needs a distinct, stated operation.
 
+## Competing source-visible endpoint: extend to the **X** of HOMEX
+
+The original printed word at p32 offsets 33–37 is **HOMEX**, with GP indices \`[8,3,19,18,14]\`. The route above stops on **E**, immediately before its final **X**, using only the HOME substring. Since X is a conventional map marker, **continuing one more horizontal step to X is at least as natural** as stopping at E. This alternative must be recorded rather than silently treated as a failed variant.
+
+| Same geometric branch, endpoint changed from E to X | Source runes visited | GP-prime sum | Residue | Existing M7 output |
+| --- | ---: | ---: | ---: | ---: |
+| Horizontal BUDS B → full HOMEX X | **10 cells / 9 edges** | **594** | 14 | **18 = 1033 mod29** |
+| Diagonal BUD B → shared D → full HOMEX X | **14 cells / 13 edges** | **750** | 25 | **25 (fixed point)** |
+
+The final X has GP prime value **47 ≡18 mod29**. Hence the X-inclusive residues are algebraically forced from the earlier E-stop residues: \`25+18 ≡14\` and \`7+18 ≡25\`. The first value14 agrees with a previously documented *different* p32 source selector, the first punctuated clause residue14 that the same M7 sends to the immediately following p33 cuneiform value \`1033 mod29 =18\`. The second value25 is an M7 fixed point. These matches are **not independent** of the original route sums, and they do **not** separately authenticate a next-page cipher rule. However, the original stencil's **nine occupied rows and thirteen dots** now correspond to **actual edge counts 9 and13** rather than vertex counts 9 and13. This is a defensible competing reading of what a solver would count.
+
+Because the original source provides no explicit instruction to stop at E rather than X, or to count visited cells rather than path steps, the two interpretations must remain parallel. The prior conditional permutation counts are **exactly unchanged** for the X-inclusive version, since X is among the same frozen source cells: the X-inclusive 10-cell residue14 event is equivalent to the earlier nine-cell residue25 event. **Do not report those identical counts as a second statistical replication.** An independently source-selected stopping rule is now a prerequisite for continuing either proposed route.
+
 ## Source-conditioned falsification calibration
 
 Freeze **43 distinct original cells**: the complete p32 top row/left column defining the 563×569 image axes, the 16-cell central-perimeter ring defining M7, and horizontal HOME and BUDS substrings. Shuffle the remaining **78** rune labels among their original cells, preserving their exact multiset. On every shuffle, count:
