@@ -1,6 +1,6 @@
 # Agent 41: persistent research context
 
-- Weak red-heading arithmetic observation: p15's contiguous red spans sum **1068=12×89**, and the 2013 `NUMBER` operation factors it as **2×2×3×89**. The 89 matches the p15 spiral value and candidate p32 offset, while 12 happens to equal a 4×4 perimeter. A full-book collision audit finds 1068 in **36/12,053** 20-rune windows; p0's 662 in **22/12,452** 13-rune windows; and p57's 449 in **57/12,794** 7-rune windows. Therefore these are weak post hoc coincidences, not independent route corroboration. The 12-perimeter reading is not source-selected. Corrected and consolidated in commit pending.
+- Weak red-heading arithmetic observation: p15's contiguous red spans sum **1068=12×89**, and the 2013 `NUMBER` operation factors it as **2×2×3×89**. The 89 matches the p15 spiral value and candidate p32 offset, while 12 happens to equal a 4×4 perimeter. A full-book collision audit finds 1068 in **36/12,053** 20-rune windows; p0's 662 in **22/12,452** 13-rune windows; and p57's 449 in **57/12,794** 7-rune windows. Therefore these are weak post hoc coincidences, not independent route corroboration. The 12-perimeter reading is not source-selected. Corrected and consolidated in commit `bf911b4b496cea67a85ab61186bc38c8819df44b`.
 
 ## Current invocation — 11 November 2026 07:06 UTC: 2013 binary matrix gate
 
