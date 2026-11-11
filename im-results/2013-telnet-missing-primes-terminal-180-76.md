@@ -30,6 +30,14 @@ Exactly **1,259 × 1,031 × 1,229 = 1,595,277,641**. Consequently, a solver poss
 
 **Decision:** This overlap is a more causal clue to examine than an arbitrary 180-number list. A useful successor would establish whether contemporary puzzle participants noticed an explicitly player-visible instruction to use the missing prime interval with the already supplied 2013 Parable number. Absent that, do not turn the 1,229 boundary coincidence into new additive-state parameter scans.
 
+## 2013 telnet double spaces select an original red-rune motif
+
+Both surviving secondary 2013 telnet witnesses show exactly **two doubled spaces**, immediately before **31** and **3259**: `29  31` and `3257  3259`. Apply the documented 2013 `NUMBER` operation (reverse decimal digits, then factor composite reversals) to the *following* marked primes. **31 → 13** (GP rune **C**); **3259 → 9523 = 89 × 107** (GP runes **D · IA**). Both 89 and 107 are in the independently omitted 73–1223 prime interval and among the final nine GP-prime weights hidden by the telnet's stop at 71.
+
+The exact GP pair **ᛞᛡ** (D · IA) occurs at just **two red locations among all 225 red LP2 runes**: p53 at local rune offset143 (inside its 51-rune red span) and p54 at offset3 (inside its nine-rune red title). At both source places the following rune is **ᚦ / TH**. The complete original unsolved LP2 has **D · IA · TH** at these same two positions and nowhere else. The [SFT](../sims/lp2_telnet_prime_gap_terminal_sft.cjs) asserts the historical-number arithmetic, GP mapping and complete red/original occurrences.
+
+This is a historically motivated **possible red-ink locator** with a specific source-input marker and creator-used operator. Its weaknesses remain substantial: the two transcripts are secondary, taking the *following* rather than preceding numbers is unproven, and the third TH rune/red-only selection were noticed after the mapping. No original plaintext or p55 decoding operation follows, and no discovery-wide statistical significance is claimed. A productive successor needs an independent source instruction selecting how to act reversibly on those two frozen red positions, with an original held-out prediction. Arbitrary key/phase sweeps are not justified.
+
 ## Exact limited decryption test
 
 The reproducible [SFT](../sims/lp2_telnet_prime_gap_terminal_sft.cjs) constructs the 464 primes through 3301 and enforces the original boundaries. It extracts unchanged GP indices from [the canonical corpus](../resources/liber-primus/lp2-corpus.json):
