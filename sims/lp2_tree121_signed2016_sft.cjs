@@ -43,6 +43,13 @@ const offsets = widths.map((n) => n % p32.length);
 assert.deepEqual(offsets, [79, 85]);
 assert.deepEqual(offsets.map((n) => [Math.floor(n / 11), n % 11]),
   [[7, 2], [7, 8]]);
+const primeMatrix = Array.from({length: 11}, (_, row) => p32.slice(11 * row, 11 * row + 11)
+  .map((r) => corpus.prime[r]));
+const firstRowSum = primeMatrix[0].reduce((s, x) => s + x, 0);
+const firstColumnSum = primeMatrix.reduce((s, row) => s + row[0], 0);
+// Exact source-independent 2016 image width/height check. No fitted phase.
+assert.deepEqual([firstRowSum, firstColumnSum], widths);
+
 const selected = offsets.map((n) => p32[n]);
 assert.deepEqual(selected, [8, 15]);
 const slope = powMod(selected[1], p32Ink.large_punctuation[0][1], 29);
@@ -111,6 +118,74 @@ function ioc(seq) {
   return counts.reduce((sum, n) => sum + n * (n - 1), 0)
     / (seq.length * (seq.length - 1));
 }
+/** @param {number[][]} matrix */
+function transpose(matrix) {
+  return matrix[0].map((_, j) => matrix.map((row) => row[j]));
+}
+
+/**
+ * All field arithmetic is in the 29-element prime field.
+ * @param {number[][]} matrix
+ * @returns {{inverse:number[][], determinant:number}}
+ */
+function invertMatrix(matrix) {
+  const n = matrix.length;
+  const augmented = Array.from({length: n}, (_, i) => [
+    ...matrix[i].map((x) => mod(x, 29)),
+    ...Array.from({length: n}, (_, j) => +(i === j))
+  ]);
+  let determinant = 1;
+  for (let j = 0; j < n; j++) {
+    let pivot = j;
+    while (pivot < n && augmented[pivot][j] === 0) pivot++;
+    assert.ok(pivot < n, 'A proposed Hill matrix must be invertible');
+    if (pivot !== j) {
+      [augmented[j], augmented[pivot]] = [augmented[pivot], augmented[j]];
+      determinant = mod(-determinant, 29);
+    }
+    const value = augmented[j][j];
+    determinant = mod(determinant * value, 29);
+    let inversePivot = 1;
+    while (mod(inversePivot * value, 29) !== 1) inversePivot++;
+    for (let k = 0; k < 2 * n; k++)
+      augmented[j][k] = mod(augmented[j][k] * inversePivot, 29);
+    for (let i = 0; i < n; i++) if (i !== j) {
+      const factor = augmented[i][j];
+      for (let k = 0; k < 2 * n; k++)
+        augmented[i][k] = mod(augmented[i][k] - factor * augmented[j][k], 29);
+    }
+  }
+  return {inverse: augmented.map((row) => row.slice(n)), determinant};
+}
+
+/**
+ * A complete 11-rune block uses the source matrix. A final incomplete
+ * block is transported literally: this makes the whole stream reversible.
+ * @param {number[]} data
+ * @param {number[][]} matrix
+ * @param {'book'|'page'} reset
+ */
+function hill(data, matrix, reset) {
+  const groups = reset === 'book' ? [data] : [];
+  if (reset === 'page') {
+    let offset = 0;
+    for (const page of pages) {
+      groups.push(data.slice(offset, offset + page.indices.length));
+      offset += page.indices.length;
+    }
+  }
+  const out = [];
+  for (const group of groups)
+    for (let start = 0; start < group.length; start += 11) {
+      const block = group.slice(start, start + 11);
+      if (block.length < 11) {out.push(...block);continue;}
+      for (const row of matrix)
+        out.push(mod(row.reduce((sum, x, j) => sum + x * block[j], 0), 29));
+    }
+  assert.equal(out.length, data.length);
+  return out;
+}
+
 function run() {
   const candidates = [];
   for (const type of ['gp29', 'ea28'])
@@ -128,10 +203,43 @@ function run() {
   assert.equal(candidates.length, 16);
   candidates.sort((a, b) => b.ioc - a.ioc);
   assert.ok(candidates[0].ioc < 0.045);
+  const hillCandidates = [];
+  const hillDeterminants = {};
+  const sourceMatrices = {
+    index: Array.from({length: 11}, (_, i) => p32.slice(11 * i, 11 * i + 11)),
+    prime: primeMatrix.map((row) => row.map((x) => mod(x, 29))),
+  };
+  for (const [source, base] of Object.entries(sourceMatrices)) {
+    const checked = invertMatrix(base);
+    hillDeterminants[source] = checked.determinant;
+    for (const orientation of ['row', 'transpose']) {
+      const matrix = orientation === 'row' ? base : transpose(base);
+      const inverse = invertMatrix(matrix).inverse;
+      for (const direction of ['inverse', 'forward'])
+        for (const clock of ['book', 'page']) {
+          const decryption = direction === 'inverse' ? inverse : matrix;
+          const encryption = direction === 'inverse' ? matrix : inverse;
+          const recovered = hill(original, decryption, clock);
+          assert.deepEqual(hill(recovered, encryption, clock), original);
+          const plant = hill(native, encryption, clock);
+          assert.deepEqual(hill(plant, decryption, clock), native);
+          hillCandidates.push({source, orientation, direction, clock,
+            ioc: ioc(recovered),
+            first48: recovered.slice(0, 48).map((n) => corpus.translit[n]).join(' ')});
+        }
+    }
+  }
+  assert.deepEqual(hillDeterminants, {index: 8, prime: 21});
+  assert.equal(hillCandidates.length, 16);
+  hillCandidates.sort((a, b) => b.ioc - a.ioc);
+  assert.ok(hillCandidates[0].ioc < 0.045);
   return {
     treePage: 32, image: '49.jpg', detailedTreePage: 55,
     sourceDimensions: widths,
     sourceRuneCount: p32.length, sourceGridShape: [11, 11],
+    firstRowPrimeValues: primeMatrix[0],
+    firstColumnPrimeValues: primeMatrix.map((row) => row[0]),
+    firstRowPrimeSum: firstRowSum, firstColumnPrimeSum: firstColumnSum,
     selectedOffsets: offsets, selectedGPIndices: selected,
     selectedGPPrimeWeights: selected.map((n) => corpus.prime[n]),
     redEndMarkDots: p32Ink.large_punctuation[0][1],
@@ -145,7 +253,13 @@ function run() {
     testedModels: candidates,
     originalExactRoundtrips: candidates.length * original.length,
     nativeExactRecoveries: candidates.length * original.length,
-    conclusion: 'Exact source geometry is new; affine link is retrospective and fixed-key inverse reveals no original GP language.',
+    hillDeterminants,
+    hillCandidates: hillCandidates.length,
+    hillIocRange: [hillCandidates.at(-1).ioc, hillCandidates[0].ioc],
+    hillBest: hillCandidates[0],
+    hillOriginalExactRoundtrips: hillCandidates.length * original.length,
+    hillNativeExactRecoveries: hillCandidates.length * original.length,
+    conclusion: 'The first-row/first-column source-prime sums exactly match the signed JPEG dimensions; affine link is retrospective and direct key/Hill inverses are negative.',
   };
 }
 if (require.main === module) console.log(JSON.stringify(run(), null, 2));
