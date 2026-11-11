@@ -26,8 +26,12 @@ The previously unexplained **first** remainder 361 has a further simple, fully s
 - **133 = 7 × 19**;
 - the common factor **gcd(361,133)=19**, and **133/gcd(361,133)=7**;
 - the resulting **order 7** picks the *middle* OpenPuff magic square from the three archived orders **5,7,5**, and the final remainder **331** is exactly its central cell.
+- **19→67→331** under the explicitly used Cicada ordinal-prime operation: `prime(19)=67` and `prime(67)=331`. Therefore the three body residues have the compact source-generating form **[19², 7×19, prime(prime(19))]**. The nested-prime equality links the **19** factor to the **331** center without using the intermediate archive value to select that map.
+- the original LP2 physical p0 first **13 red ciphertext runes** have GP-prime sum **662=2×331**, an additional exact header relation already reported in [Agent 42's source audit](../im-results/onion7-html-red331-source-inversion.md). This is independent original ciphertext, though numeric reuses of 331 cannot be counted as separate discoveries of an encryption key.
 
 Thus all three PARABLE residues jointly specify **19, square order 7, center 331** through an elementary common-factor operation, while two residues also reproduce the archived HTML labels. **This is a new algebraic interpretation of the same already selected modulo-449 residues**, rather than another independent statistical confirmation; computing gcd and factoring the residuals were selected after knowing the answer candidate. There is still no source-specified cipher inversion that uses the factor 19 or a verified role for it as GP prime W.
+
+The entire source relation is reproduced from original artifacts by [the standalone nested-prime/PARABLE SFT](../sims/onion7_parable19_nestedprime_sft.cjs) ([passed original-source CI](https://github.com/FlareZ123/liber-primus/actions/runs/42934735544)).
 
 An intended human solve route might recognize `361=19²`, then factor `133=19×7`, locate the 7×7 prior square, and confirm its center331 against the HTML. The exact observations merit testing as an explicit source hypothesis; they do not authenticate the creator's intent or recover unknown plaintext.
 
