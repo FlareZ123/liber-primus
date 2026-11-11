@@ -23,6 +23,7 @@ on:
           - redspan-zero
           - tree-tiling
           - terminal-circumference
+          - byte-pointer
           - collision-quote
         default: full
 
@@ -65,6 +66,10 @@ jobs:
       - name: Original source terminal table border and solved-page known-plaintext gate
         if: ${{ inputs.probe == 'terminal-circumference' }}
         run: node sims/lp2_terminal_grid_border_ring_sft.cjs
+
+      - name: Original 256-byte grid self-pointer 11-cycle and source-jet joint test
+        if: ${{ inputs.probe == 'byte-pointer' }}
+        run: node sims/lp2_grid_byte_pointer_11cycle_sft.cjs
 
       - name: Original signed-image source-prime 11x11 tiling test
         if: ${{ inputs.probe == 'tree-tiling' }}
