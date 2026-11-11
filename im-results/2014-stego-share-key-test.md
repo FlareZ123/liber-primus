@@ -1,6 +1,6 @@
 # Historical 2014 stego-share key source tested against unsolved LP2
 
-**Status:** closed for missing cross-stage key selector. The exact 2014 mechanism is historically positive, while the direct LP2 byte-pad sweep is negative and no source-authenticated instruction selects the old payloads as an LP2 key. No LP2 plaintext, key, or actual encryption mechanism recovered.
+**Status:** the 2014 mechanism is historically positive, but its recovered invitation token is a noncanonical Base32 rendering of the Stage04 Onion2 address plus a partial `.onion` suffix, not a binary key. The direct LP2 byte-pad sweep is negative and no source-authenticated instruction selects the old payloads as an LP2 key. No LP2 plaintext, key, or actual encryption mechanism recovered.
 
 ## Mechanism and source
 
@@ -23,6 +23,17 @@ JOINUSATFV7LYUCMEOZZD5J4ONIO
 ```
 
 This points to **fv7lyucmeozzd5j4.onion** (the historical source supplies the missing final `N` for the `.onion` suffix). The 2014 solver walkthrough documents that this decoded instruction led to the *next onion stage*. Its original purpose is therefore a concrete 2014 waypoint rather than a demonstrated LP2 key selector: [2014 reconstructed source and column order](https://uncovering-cicada.fandom.com/wiki/What_Happened_Part_1_(2014)#The_5_Gram_Message). The 2016 signed instruction instead says that the words, meaning and numbers of Liber Primus supply the map/road/direction, without specifying these old three shares or their byte-order as a cipher key: [contemporary transcription](https://github.com/scream314/cicada3301/blob/master/2016.md).
+
+### Canonical Base32 interpretation of the invitation token (Director Issue #285)
+
+The exact 20-character token `FV7LYUCMEOZZD5J4ONIO` is **not a canonical RFC 4648 Base32 encoding of 12 bytes**. A permissive decoder that ignores unused pad bits yields `2d7ebc504c23b391f53c7350` (12 bytes; SHA-256 `296e14f036490b4c2a61ba6fea9602c643640fd061bdc8deb0517968e1d0ca5b`). Re-encoding those bytes canonically gives `FV7LYUCMEOZZD5J4ONIA====`, not the original token: the final `O` has nonzero unused padding bits (`01110`, with pad bits `1110`; canonical pad bits must be zero).
+
+The source-selected 16-character prefix `FV7LYUCMEOZZD5J4` decodes to `2d7ebc504c23b391f53c`, exactly the 10-byte v2 identifier for the Stage04 address `fv7lyucmeozzd5j4.onion`. The remaining literal `ONIO` is the partial textual `.onion` suffix with the final `N` absent; its permissive two-byte decode is `7350`. This explains the 12-byte output without treating it as a separate identifier or key.
+
+The Stage11 address `ky2khlqdf7qdznac.onion` instead decodes to `5634a3ae032fe03cb402`; it is not this value. The archived Stage10 form's `onion` field is for the participant's own hidden-service address, not the invitation token. The Cicada signing key's full fingerprint is `6D854CD7933322A601C3286D181F01E57A35090F` (key ID `7A35090F`), which does not match the decoded bytes. The decoded-byte SHA-256 and token-ASCII SHA-256 (`5ec3779cefbe948ee9d0c40542b3cf27c7bb49d3fb0dd4a39265cfd4a763a7d8`) have no exact matches in the repository search or preserved archive manifest; the decoded 12-byte value also does not occur in the three stored OutGuess share hex streams.
+
+**Decision for #285:** close the canonical-binary-identifier hypothesis. The permissive decode merely concatenates the already-known 10-byte Stage04 onion identifier with bytes derived from the incomplete textual suffix. It supplies no new key, Stage10 field value, Stage11 identifier, or LP2 operation. Do not explore alternative Base32 alphabets, truncations, pad-bit extraction, KDFs, or arbitrary splits.
+
 
 **Decision:** the current authentic/historical clues explain the 2014 payloads and their combination *within their own stage*, but do not select an LP2 page, byte-to-rune operation, clock or reuse of these bytes. This is the independent selector required by Director Issue #263. As it is missing, stop before any newly tuned combination or offset attack. The already completed 2,329,824-setting LP2 pad test below has no recovered plaintext and is exploratory exclusion only. Reopen this source route if an independently authenticated, specific cross-stage instruction fixes a key derivation and original LP2 input. Distinguish absence of a documented selector in the checked sources from proof none was ever intended.
 
