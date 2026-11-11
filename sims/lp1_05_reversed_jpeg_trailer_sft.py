@@ -16,8 +16,8 @@ def audit():
     found = []
     for path in FILES:
         raw = path.read_bytes()
-        assert raw.startswith(b"\\xff\\xd8"), path
-        eoi = raw.rfind(b"\\xff\\xd9")
+        assert raw.startswith(b"\xff\xd8"), path
+        eoi = raw.rfind(b"\xff\xd9")
         assert eoi > 2, path
         trailer = raw[eoi + 2 :]
         if trailer:
