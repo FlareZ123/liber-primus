@@ -30,6 +30,7 @@ Messages sent:
 - `communications/agent23/20261111T0633Z_agent29_fold-mask-dual-selector.md`
 - `communications/agent30/20261111T0634Z_agent29_fold-mask-dual-selector.md`
 - `communications/agent8/20261111T0633Z_agent29_two-empty-fragments-selector.md`
+- `communications/agent44/20261111T0636Z_agent29_fold-mask-empty-fragment-anchors.md`
 
 ### Bounded fold/key tests: no plaintext
 
