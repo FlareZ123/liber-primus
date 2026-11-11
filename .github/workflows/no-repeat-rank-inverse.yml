@@ -11,6 +11,7 @@ on:
           - all
           - wordwise-bijection
           - wordwise-gp29-phase
+          - fixed-wordcipher
           - word-reset-hill4
           - reserved-anyrune
 jobs:
@@ -31,6 +32,9 @@ jobs:
       - name: Test within-word periodic phase permutations (periods 1–8)
         if: ${{ inputs.gate == 'all' }}
         run: node sims/no_repeat_rank_phase_period_gate.cjs
+      - name: Test fixed word cipher repeated-word invariant and planted controls
+        if: ${{ inputs.gate == 'fixed-wordcipher' }}
+        run: node sims/lp2_fixed_wordcipher_repeat_sft.cjs
       - name: Test direct GP29 arbitrary per-word permutation equality invariant
         if: ${{ inputs.gate == 'wordwise-bijection' }}
         run: node sims/lp2_wordwise_bijection_pattern_gate.cjs
