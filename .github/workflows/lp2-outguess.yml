@@ -19,6 +19,11 @@ on:
         type: boolean
         required: false
         default: false
+      historical2014_password:
+        description: Test one archived 2014 OpenPuff passphrase (33011033) with OutGuess
+        type: boolean
+        required: false
+        default: false
       lp1_history:
         description: Recheck all 17 historical LP1 source JPEGs with default OutGuess
         type: boolean
@@ -90,21 +95,21 @@ jobs:
           gpg --batch --verify outguess-2016-results/4gq25.jpg.outguess
           sha256sum outguess-2016-results/4gq25.jpg.outguess
       - name: Retrieve hidden messages from every LP2 page
-        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && ((!inputs.keyed_probe && !inputs.synthetic_only) || inputs.xor_shares) }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.historical2014_password && ((!inputs.keyed_probe && !inputs.synthetic_only) || inputs.xor_shares) }}
         env:
           OUTGUESS_SCAN_ALL_LP1: ${{ inputs.lp1_history && '1' || '0' }}
           OUTGUESS_PRINT_LP1_SIGNED: ${{ inputs.lp1_history && '1' || '0' }}
         run: node sims/outguess_lp2_scan.cjs
       - name: Install Python for direct binary-stream pad testing
-        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.historical2014_password }}
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - name: Install numeric dependencies
-        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.historical2014_password }}
         run: python -m pip install --disable-pip-version-check numpy numba
       - name: Scan original LP2 runes against all extracted pad-stream positions
-        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.historical2014_password }}
         env:
           OUTGUESS_NULL_REPLICATES: 64
         run: python sims/outguess_lp2_directpad.py
@@ -114,7 +119,9 @@ jobs:
           node --check sims/outguess_lp2_share_xor.cjs
           node sims/outguess_lp2_share_xor.cjs
       - name: Probe source-defined passwords for authentic hidden LP2 messages
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.keyed_probe && !inputs.synthetic_only && !inputs.cicada2016 && !inputs.fragment7 }}
+        env:
+          LP2_OUTGUESS_PASSWORD: ${{ inputs.historical2014_password && '33011033' || '' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && (inputs.keyed_probe || inputs.historical2014_password) && !inputs.synthetic_only && !inputs.cicada2016 && !inputs.fragment7 && !inputs.historical2014_password }}
         run: |
           node --check sims/outguess_lp2_keyed_probe.cjs
           node sims/outguess_lp2_keyed_probe.cjs
@@ -124,7 +131,7 @@ jobs:
           node --check sims/outguess_header_synthetic_probe.cjs
           node sims/outguess_header_synthetic_probe.cjs
       - name: Preserve exact recovered payloads and summary
-        if: ${{ always() && github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 }}
+        if: ${{ always() && github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.historical2014_password }}
         uses: actions/upload-artifact@v4
         with:
           name: outguess-lp2-default-key
@@ -133,7 +140,7 @@ jobs:
           retention-days: 30
 
       - name: Preserve source-key OutGuess extraction candidates
-        if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.keyed_probe && !inputs.synthetic_only && !inputs.cicada2016 }}
+        if: ${{ always() && github.event_name == 'workflow_dispatch' && (inputs.keyed_probe || inputs.historical2014_password) && !inputs.synthetic_only && !inputs.cicada2016 }}
         uses: actions/upload-artifact@v4
         with:
           name: outguess-lp2-keyed
