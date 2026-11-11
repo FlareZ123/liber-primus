@@ -114,9 +114,9 @@ field trace                = 5
 field norm                 = 2
 ```
 
-Those four values reconstruct the worked example without using unknown LP2 ciphertext: modulus **23**, recovered client private exponent **15**, generator **5**, and shared key **2**. The first coordinate **6** is also the recovered worked-example server private exponent. From these values, `5^6 mod 23 = 8` and `5^15 mod 23 = 19`, reproducing both public shares.
+Among the six representatives, **1661 is uniquely selected using only the two canonical field invariants**: trace **5** equals the worked-example generator and norm **2** equals its shared key. The coordinate relations were not needed for that selection. After selection, the resulting element `6+17u` additionally has first coordinate **6**, coordinate sum **23**, and coordinate product **15**, reproducing the worked-example server private exponent, modulus, and client private exponent. From those values, `5^6 mod 23 = 8` and `5^15 mod 23 = 19`, reproducing both public shares. These extra coordinate alignments are corroborative observations, with their operation choices still retrospective.
 
-Among the six representatives, **1661 is the only one** satisfying all four displayed invariant equalities. Equivalently, the real `DH 3301` transcript gives `e ≡ 11 mod 550`, while the field embedding gives `e ≡ 821 mod 840`; the compatible class is **e ≡ 1661 mod 46200**. In the ordinary DH range below 3301 this selects **1661** exactly.
+Equivalently, the real `DH 3301` transcript gives `e ≡ 11 mod 550`, while the trace/norm selector fixes `e ≡ 821 mod 840`; the compatible class is **e ≡ 1661 mod 46200**. In the ordinary DH range below 3301 this selects **1661** exactly.
 
 This is a strong cross-source key candidate because the selector uses only pre-existing source values and canonical field operations. It is still **conditional**: no surviving Cicada instruction says to compare coordinate sum/product and field trace/norm in this way. The match is therefore a locked structural hypothesis rather than an authenticated key instruction.
 
