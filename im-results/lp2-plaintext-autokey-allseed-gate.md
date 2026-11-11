@@ -39,6 +39,19 @@ The source contains **2,896 printed GP29 words**. To test independently reset au
 
 Thus a new unknown key **for every original word** cannot make the tested direct GP29 plaintext-autokey rule resemble the native reference vocabulary. Longer per-word lags have too few constraints and are excluded from this decision; rare words or another language remain possible. The dictionary does not prove all imaginable English vocabulary absent.
 
+## Alternative source-language plaintext tests
+
+The original GP29 alphabet and the book's Latin title also justify testing a different plaintext vocabulary before retiring the direct word-reset autokey. Independently sourced GP-word datasets are the [Latin Vulgate](../resources/control/latin-vulgate-gp-wholewords.txt) (39,835 original words, 7,305 unique GP forms) and the [correctly normalized Old English Beowulf](../resources/control/beowulf_oe_gp_profile_corrected.json) (10,885 original words, 3,372 unique). The corrected profile retains lowercase Old English thorn, eth, ash and wynn in its GP29 encoding.
+
+Use each entire native-language lexicon to check the 2,896 original LP2 ciphertext words; for a source-language positive control, train on that source's first half of words and autokey-encrypt its independent second half. As with the English test, the first m ciphertext and plaintext runes of **every word** are unconstrained, and at least four suffix runes must match.
+
+| Source | Lag1, 1,132 original words | Lag2, 815 | Lag3, 559 | Lag5, 187 | Held-out native-language positive control at lag1 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Latin Vulgate | **1/0** (+/−) | **0/0** | **1/0** | **0/0** | **6,837/11,064 (61.8%)** |
+| Corrected Old English Beowulf | **0/0** | **0/0** | **0/0** | **0/0** | **1,203/2,442 (49.3%)** |
+
+The lag2 controls still recover 52.5% of held-out Latin words and 37.7% of Old English words; both source corpora remain discriminating through lag5. Neither alternative language rescues the direct plaintext-autokey word-reset model. This is a finite source-vocabulary obstruction, not exhaustive coverage of every Latin or Old English word or every possible plaintext register. Original input and both positive controls are in the same SFT.
+
 ## Research decision
 
 Retire direct GP29 plaintext-autokey seed guessing for the declared continuous/page clocks and direct English word-reset models. Even unbounded trial of these particular initial runes cannot fix their key-independent obstruction. The live task is identifying a new source-selected symbol-changing operation or authentic key. Do not turn the exact Fibonacci arithmetic into a claim that the authors chose autokey.
