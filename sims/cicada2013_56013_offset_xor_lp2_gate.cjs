@@ -1,8 +1,9 @@
 'use strict';
 
 /**
- * Reconstruct/use the archived 2013 560.13 material in a bounded
- * source-derived 2014 -> LP2 transfer test.
+ * Use the recovered 15,330-byte prefix of the full 2013 CicadaOS
+ * DATA/560.13 file in a bounded source-derived 2014 -> LP2 transfer test.
+ * This is not the complete 118,818,811-byte ISO member.
  *
  * Inputs:
  * - resources/derived/cicada2013-56013-reconstructed.bin
@@ -29,7 +30,7 @@ const {sequence} = require('./telnet2013_prime_gap361_gate.cjs');
 
 const ROOT = path.join(__dirname, '..');
 const read = p => fs.readFileSync(path.join(ROOT, p));
-const source = read('resources/derived/cicada2013-56013-reconstructed.bin');
+const sourcePrefix = read('resources/derived/cicada2013-56013-reconstructed.bin');
 const timingJson = JSON.parse(fs.readFileSync(
   path.join(ROOT, 'resources/cicada2014-onion2-timing.json'), 'utf8'));
 const timing = Buffer.from(timingJson.final_hex, 'hex');
@@ -79,7 +80,7 @@ function scoreKey(bytes, offset, kind) {
   return results;
 }
 function main() {
-  assert.equal(source.length, 15330);
+  assert.equal(sourcePrefix.length, 15330);
   assert.equal(timing.length, 256);
   assert.equal(pages.length, 55);
   assert.equal(pages.reduce((s, p) => s + p.length, 0), 12956);
@@ -90,7 +91,7 @@ function main() {
   const phoneData = Buffer.from(PHONE_DATA_HEX, 'hex');
   const phoneOut = Buffer.alloc(phoneData.length);
   for (let i = 0; i < phoneData.length; i++) {
-    phoneOut[i] = phoneData[i] ^ source[PHONE_OFFSET + i];
+    phoneOut[i] = phoneData[i] ^ sourcePrefix[PHONE_OFFSET + i];
   }
   assert.equal(phoneOut.toString('latin1'), PHONE_EXPECTED);
 
@@ -98,7 +99,7 @@ function main() {
   const models = [];
   const extracted = [];
   for (const offset of OFFSETS) {
-    const slice = source.subarray(offset, offset + 256);
+    const slice = sourcePrefix.subarray(offset, offset + 256);
     assert.equal(slice.length, 256);
     const xorTiming = Buffer.alloc(256);
     for (let i = 0; i < 256; i++) xorTiming[i] = slice[i] ^ timing[i];
@@ -118,7 +119,9 @@ function main() {
   assert.ok(min > 0.0344 && max < 0.0346);
   return {
     source: {
-      derived56013Bytes: source.length,
+      derivedPrefixBytes: sourcePrefix.length,
+      fullIsoFileBytes: 118818811,
+      fullIsoSha256: 'db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f',
       timingBytes: timing.length,
       timingSha256: timingJson.final_bytes_sha256,
       historicalPhoneControl: {
@@ -143,7 +146,7 @@ function main() {
       lowestIoC: models.slice().sort((a, b) => a.ioc - b.ioc)[0]
     },
     models,
-    decision: 'No original LP2 plaintext from these four 560.13 offsets, the 2014 timing XOR, or the two fixed direct-GP29 byte projections.'
+    decision: 'No original LP2 plaintext from these four offsets within the first 15,330-byte prefix, the 2014 timing XOR, or the two fixed direct-GP29 byte projections. This local SFT does not scan the remaining full ISO file.'
   };
 }
 if (require.main === module) {
