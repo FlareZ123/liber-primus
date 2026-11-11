@@ -97,6 +97,24 @@ function decodeOriginal(layout,sign) {
   }
   return {plain:plaintext,recovered};
 }
+/**
+ * The simpler Diffie–Hellman operation treats each pair as an element
+ * F29² and multiplies it by z^(±(p_i-1)). Inverse is the opposite sign.
+ * This does not force BASE29/dlog and preserves the original two-rune count.
+ * @param {number[]} input @param {number} startPrime
+ * @param {-1|1} sign @returns {number[]}
+ */
+function multiplyOriginalField(input,startPrime,sign) {
+  const out=input.slice();
+  for(let k=0;k+1<input.length;k+=2) {
+    const p=primeKeys[startPrime+k/2];
+    assert.ok(p!==undefined);
+    const mask=power(z,mod(sign*(p-1),840));
+    const value=mul([input[k],input[k+1]],mask);
+    out[k]=value[0];out[k+1]=value[1];
+  }
+  return out;
+}
 function main() {
   // The declared all-841 bijection must work for every possible pair, not
   // merely the original inputs or a specially chosen artificial key.
@@ -120,14 +138,36 @@ function main() {
   assert.deepEqual(transform(cipher,0,-1,false),planted);
   assert.ok(ioc(planted)>0.055);
   assert.ok(models.every(x=>x.ioc<0.036));
+  const fieldMultiplicationModels=[];
+  for(const layout of /** @type {const} */([
+    "whole-book","page-pairs-book-primes","page-pairs-page-primes"]))
+    for(const sign of /** @type {const} */([-1,1])) {
+      const source=layout==="whole-book"?[original]:pages;
+      let clock=0,originalRoundtrip=true;
+      const decoded=[];
+      for(const input of source) {
+        const st=layout==="page-pairs-page-primes"?0:clock;
+        const p=multiplyOriginalField(input,st,sign);
+        originalRoundtrip &&= multiplyOriginalField(p,st,/** @type {-1|1} */(-sign)).join()===input.join();
+        decoded.push(...p);
+        clock+=Math.floor(input.length/2);
+      }
+      assert.ok(originalRoundtrip);
+      fieldMultiplicationModels.push({layout,sign,ioc:ioc(decoded),
+        prefix:decoded.slice(0,70).map(x=>corpus.translit[x]).join("")});
+    }
+  assert.ok(fieldMultiplicationModels.every(x=>x.ioc<0.036));
+  assert.deepEqual(multiplyOriginalField(
+    multiplyOriginalField(planted,0,-1),0,1),planted);
+
   console.log(JSON.stringify({
     source:"2013 DH / BASE29; p3 F29^2 generator; authentic p56 p84=433",
     originalRunes:original.length,originalPairs:6478,base:z,
     naturalPrimeExponentSchedule:"p_i-1 mod840",models,
-    rawIoC:ioc(original),nativePlantIoC:ioc(planted),
+    rawIoC:ioc(original),nativePlantIoC:ioc(planted),fieldMultiplicationModels,
     exhaustive841PairRoundtrip:true,originalRoundtrips:true,
-    result:"No original native-GP plaintext in the six source-motivated lossless logarithm/prime-clock models. Non-GP intermediates or other clocks are not excluded."
+    result:"No original native-GP plaintext in the 12 source-motivated lossless discrete-log/field-multiplication prime-clock models. Non-GP intermediates or other clocks are not excluded."
   },null,2));
 }
 if(require.main===module) main();
-module.exports={main,transform,decodeOriginal};
+module.exports={main,transform,decodeOriginal,multiplyOriginalField};
