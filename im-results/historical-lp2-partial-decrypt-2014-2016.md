@@ -34,9 +34,13 @@ The curated [scream314/cicada3301 LP transcript](https://github.com/scream314/ci
 - The preserved 2016 PGP-signed message in [scream314/cicada3301/2016.md](https://github.com/scream314/cicada3301/blob/master/2016.md) says “Liber Primus is the way” and that its words, meaning, and numbers are map/road/direction. It is a source-origin clue, but it discloses no unknown-page plaintext, key, or executable cipher operation.
 - The small IRC text files in [krisyotam/cicada3301](https://github.com/krisyotam/cicada3301/tree/main/archives/irc-logs) were searched for LP/page/decrypt/plaintext references; no qualifying unknown-page readout surfaced.
 
-### Explicit access limitation
+### Large original IRC archives: access restored and 2016 Pastebin clarified
 
-The neuroretransmit archive also contains multi-megabyte dumps including `irc-logs/#33012014.freenode.log`, `irc-logs/#cicadasolvers.freenode.log`, and `irc-logs/#cicadasolvers.freenode.2.log`. The available GitHub file interface returned no file content for these oversized blobs. **They are located but not searched and are not counted as negative evidence.** If those exact blobs become locally searchable through a permitted route, the only justified follow-up is a targeted scan for dated quoted plaintext, page/rune offsets, and the claimed key/operation. Do not broaden into undated forum folklore or modern English-scoring claims.
+The previously inaccessible multi-megabyte `neuroretransmit/cicada` IRC logs have now been downloaded **byte-exactly**, with all three Git blob SHA-1 hashes and byte lengths verified on a dedicated manual GitHub Actions runner. Together they cover **698,330 preserved log lines** across `#33012014.freenode.log`, `#cicadasolvers.freenode.log`, and `#cicadasolvers.freenode.2.log`. An exact-case-insensitive `uRkNsGsa` search finds **0, 0, and 2 matches**, respectively.
+
+The recovered **7 January 2016, 12:41** IRC context is decisive about this URL's role: a participant posts `http://pastebin.com/uRkNsGsa` with “Hash for everyone's convenience”; the immediate preview says `Liber Primus p.57 hash - Pastebin.com`, and the archive bot acknowledges `Archived file(s): uRkNsGsa`. Earlier chat concerns the already-printed manuscript hash. The 2016 downloadable-`uRkNsGsa.htm` anecdote therefore identifies an **existing hash repost**, with no source evidence for the missing deep-web page or a reverse-hash preimage. The original Pastebin bytes remain unavailable; the IRC record alone suffices to distinguish its documented function. [Full byte/source audit and runnable scanner](2016-pastebin-irc-original-source-audit.md) · [successful manual run 43034766665](https://github.com/FlareZ123/liber-primus/actions/runs/43034766665).
+
+This archive search authenticates the three archived Git objects as stored, **not** the origin of any participant statement or a Cicada-issued decryption instruction. It settles the former access limitation for these exact files. No unknown LP2 partial plaintext or creator-supplied key was identified in the targeted source material, and no source-selected inverse follows from the recovered URL.
 
 ## Decision
 
