@@ -203,8 +203,95 @@ assert(plantedEnglishLLR > 0);
 assert(Math.abs(originalEnglishLLR + 105.21608494355361) < 1e-6);
 assert(Math.abs(plantedEnglishLLR - 110.84445498653946) < 1e-6);
 
+
+// The literal full-release fold is 58 physical pages, paired p and (57-p).
+// Keep only original unknown/unknown pairs and exclude the p7/p50 numeric gap.
+// This is the stronger source-geometric interpretation. The 56-page fold above
+// is a separate exploratory alternate restricted to ciphertext-only pages.
+const left58 = Array.from({length:27}, (_, i) => i + 2).filter(i => i !== 7);
+const right58 = left58.map(i => 57 - i);
+assert.equal(left58.length, 26);
+const modes58 = [];
+for (const reverse of [false, true]) {
+  for (const suffix of [false, true]) modes58.push({reverse, suffix});
+}
+/** @param {{reverse:boolean,suffix:boolean}} mode
+ *  @param {number[]} second @returns {{hits:number,n:number,z:number}}
+ */
+function score58(mode, second) {
+  let hits = 0;
+  let n = 0;
+  for (let i = 0; i < left58.length; i++) {
+    const v = pairScore(physical[left58[i]], physical[second[i]],
+      mode.reverse, mode.suffix);
+    hits += v.hits;
+    n += v.n;
+  }
+  return {hits, n, z:(hits - n / 29) / Math.sqrt(n * 28 / 841)};
+}
+const fixed58 = modes58.map(m => score58(m, right58));
+assert.deepEqual(fixed58.map(x => x.hits), [168, 182, 198, 220]);
+assert(fixed58.every(x => x.n === 5402));
+const N58 = Number(process.env.LP2_FULL_FOLD_SHUFFLES || 5000);
+assert(Number.isSafeInteger(N58) && N58 > 0);
+let state58 = 0x330158;
+/** @returns {number} */
+function next58() {
+  state58 = (Math.imul(state58, 1664525) + 1013904223) >>> 0;
+  return state58;
+}
+const extreme58 = Array(4).fill(0);
+let familyExtreme58 = 0;
+const sourceBest58 = Math.max(...fixed58.map(x => x.z));
+for (let trial = 0; trial < N58; trial++) {
+  const shuffled = right58.slice();
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = next58() % (i + 1);
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  let best = -Infinity;
+  for (let i = 0; i < modes58.length; i++) {
+    const v = score58(modes58[i], shuffled).z;
+    extreme58[i] += Number(v >= fixed58[i].z);
+    best = Math.max(best, v);
+  }
+  familyExtreme58 += Number(best >= sourceBest58);
+}
+if (N58 === 5000) {
+  assert.equal(extreme58[3], 51);
+  assert.equal(familyExtreme58, 189);
+}
+const originalResidual58 = Array(29).fill(0);
+for (let i of left58) {
+  const A = physical[i];
+  const B = physical[57 - i];
+  const n = Math.min(A.length, B.length);
+  for (let k = 0; k < n; k++) {
+    const x = A[A.length - n + k];
+    const y = B[B.length - 1 - k];
+    originalResidual58[mod(14 * mod(y - T6(x)))]++;
+  }
+}
+assert.equal(originalResidual58.reduce((a, b) => a + b, 0), 5402);
+assert.equal(originalResidual58[0], 220);
+const fullFoldEnglishLLR = logLikelihood(originalResidual58);
+const plantedResidual58 = Array(29).fill(0);
+for (let i = 0; i < 5402; i++) {
+  plantedResidual58[mod(seq[180000 + i] - seq[160000 + i])]++;
+}
+const fullFoldPlantLLR = logLikelihood(plantedResidual58);
+assert(Math.abs(fullFoldEnglishLLR + 105.95935238959082) < 1e-6);
+assert(Math.abs(fullFoldPlantLLR - 109.22607286649037) < 1e-6);
+assert(fullFoldEnglishLLR < 0 && fullFoldPlantLLR > 0);
+
 console.log(JSON.stringify({
-  source: "signed 2016 THE→FOLD and established 563x569-derived T6",
+  source: "signed 2016 THE→FOLD and source-derived T6; physical 58-page fold with 56-page unknown-only alternative",
+  full58PageFold: {modes:modes58.map((mode,i)=>({mode,...fixed58[i]})), candidate:fixed58[3],
+    null:{seed:"0x330158",trials:N58,candidateAtLeast:extreme58[3],
+      familyAtLeast:familyExtreme58, candidateTail:(extreme58[3]+1)/(N58+1),
+      familyMaxTail:(familyExtreme58+1)/(N58+1)},
+    originalResidual:originalResidual58,originalEnglishLLR:fullFoldEnglishLLR,
+    plantedEnglishLLR:fullFoldPlantLLR,englishExpectedZero:5402*nativeDifference[0]},
   candidate: {mode: modes[5], ...candidate, rawRepeatRate: candidate.hits / candidate.n},
   originalEightAlignmentModes: modes.map((mode, i) => ({mode, ...sourceScores[i]})),
   permutationNull: {seed:"0x330128", trials:N,
