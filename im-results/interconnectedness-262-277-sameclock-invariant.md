@@ -1,6 +1,6 @@
 # 2014 audio 262/277 selectors: all-secret shared-key necessary-condition test
 
-**Status (Agent 1, 11 November 2026): intermediate original-ciphertext exclusion for one source-motivated same-key model. No LP2 plaintext, cipher, key, or continuation recovered.** The audio-to-page correspondence is retrospective, not an authenticated instruction.
+**Status (Agent 1/7, 11 November 2026): the audio-to-page selector remains retrospective; the shared-clock tape and source-selected p29/p0 polynomial quotient inversions are now bounded negatives. No LP2 plaintext, cipher, key, or continuation recovered.**
 
 ## Independent clue and exact original source
 
@@ -37,8 +37,18 @@ Finite plus-one conditional lower tails are **1/12,001** and **1/10,001**. The r
 
 **Positive planted inversion:** the identical script encrypts each of two fresh native GP reference windows under a single arbitrary random 262-symbol pad and verifies the resulting ciphertext differences recover all **262/262 true plaintext differences exactly**. The full committed script was executed with the original repository files under an equivalent Node CJS module runtime and its native controls passed as reported.
 
+## Source-selected p29/p0 polynomial quotient follow-up (Agent 7, 11 November 2026)
+
+The audio-selected pair also gives one compact polynomial operation: divide p29's complete 277-rune GP29 coefficient polynomial by p0's 262-rune polynomial, both in original forward order. This yields a 16-coefficient quotient and a 261-coefficient remainder. The sizes are source-interesting—16 matches the p15 4×4 square, while 261 is (9\times29)—but these equalities do not specify a cipher by themselves.
+
+- The exact quotient is `[4,11,11,15,7,24,19,28,26,24,20,13,22,8,22,17]`, GP transliteration `RJJSWAMEAYALPOEHOEB`. The 261-rune remainder has IoC **0.03468907** and GP trigram score **−13.72839**; it is not plaintext. Its nine 29-symbol rows have unique-value counts **18,19,15,21,21,15,18,16,16**, so it is not a nine-row permutation table.
+- The 16 quotient coefficients, read row-major as a 4×4 matrix, give a full-rank Hill key with determinant **21**. The complete 12,956-rune LP2 stream is exactly **3,239** four-rune blocks. Both direct (M) and (M^{-1}), with row- and column-vector conventions, were applied to the original full stream. All four outputs remain ciphertext-like: IoC **0.03445415–0.03447859**, trigram **−13.61750 to −13.58436**, against raw **0.03447840 / −13.57944**. A 12,956-rune native Gibran-GP control scores **0.06039404 / −7.85943** and round-trips exactly under all four planted transforms.
+- As an independent check of the 16-cell link, the quotient does **not** equal the p15 printed-distance square modulo 29 under any of its eight dihedral orientations; the best orientation matches only **2/16** positions. The quotient as a zero-phase additive key on the other 53 pages also fails both signs under global-fullbook and page-reset clocks: IoC **0.03447453–0.03450426**, trigram **−13.63894 to −13.54241**, against raw **0.03448120 / −13.57916**. The 12,417-rune native control scores **0.06055863 / −7.85394** and round-trips exactly under all four planted models.
+
+The exact quotient/remainder arithmetic is reproducible in [the p29/p0 polynomial SFT](../sims/interconnectedness_p29_p0_polynomial_quotient_sft.cjs). These tests close the direct remainder, 16-symbol additive-key, and quotient-derived Hill4 readings of this audio-selected pair. They do not rule out a different operation on the audio or separate source material.
+
 ## Cryptanalytic decision
 
-A direct **same-phase shared additive 262-symbol audio key** with two ordinary English/Latin GP29 prose plaintexts is unsupported and strongly separated from both native reference samples. This is an **all-secret, constrained architectural negative**, not proof that audio is irrelevant. An audio timing might select p0/p29 while a different operation, separate keys, or a non-GP register carries the message. Continue only with a further authentic clue specifying those missing choices, and insist on recoverable plaintext and exact re-encryption.
+A direct **same-phase shared additive 262-symbol audio key** and the simple p29/p0 polynomial quotient, remainder, additive-pad and Hill4 readings are unsupported. The latter tests also have exact native-language positive controls. These are bounded architectural negatives, not proof that audio is irrelevant: the recording may select p0/p29 while a different, independently specified operation or non-GP register carries the message. Continue only when an authentic clue constrains that operation, and insist on recoverable plaintext and exact re-encryption.
 
 **No original LP2 unknown runes decrypted.**
