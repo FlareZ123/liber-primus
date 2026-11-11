@@ -53,6 +53,9 @@ function main(){
  assert.equal(p56.indices.length,85);assert.equal(p56.indices[56],0);
  const p84=primes(84)[83];assert.equal(p84,433);
  const z=[0,1],u=[26,14];
+ const html=fs.readFileSync(path.join(root,"resources/cicada2014-onion7-index.html"),"utf8");
+ assert.match(html,/<title>133<\/title>/i);
+ assert.match(html,/id=["']331["']/i);
  assert.deepEqual(mul(u,u),add([8,0],scale(u,3)));
  assert.deepEqual(power(u,433),z);
  assert.deepEqual(mul(z,z),[18,11]);
@@ -73,6 +76,20 @@ function main(){
  const minus=transform(cipher,grid.bytes,z,-1),plus=transform(cipher,grid.bytes,z,+1);
  assert.deepEqual(transform(minus,grid.bytes,z,+1),cipher);
  assert.deepEqual(transform(plus,grid.bytes,z,-1),cipher);
+ // p57's modulo-449 residues [361,133,331] include the original onion7
+ // HTML title=133 and id=331. Test these fixed exponents as alternate
+ // generators for the same p50-byte exponent stream; do not search other powers.
+ const p57HtmlExponents=[133,331,361];
+ const gcd=(a,b)=>b?gcd(b,a%b):a;
+ const p57HtmlCandidates=p57HtmlExponents.map(exponent=>{
+  const generator=power(z,exponent),order=840/gcd(840,exponent);
+  const minusOut=transform(cipher,grid.bytes,generator,-1);
+  const plusOut=transform(cipher,grid.bytes,generator,+1);
+  const plant=nativeGp(fs.readFileSync(path.join(root,"resources/control/gibran_prophet_58585.txt"),"utf8")).slice(1000,1000+cipher.length);
+  assert.deepEqual(transform(transform(plant,grid.bytes,generator,+1),grid.bytes,generator,-1),plant);
+  assert.deepEqual(transform(transform(plant,grid.bytes,generator,-1),grid.bytes,generator,+1),plant);
+  return {exponent,generator,order,minus:summary(minusOut,model),plus:summary(plusOut,model)};
+ });
  const alpha59=alpha60.replace("f","");
  const base59=grid.pages.flatMap(p=>p.tokens.map(t=>59*alpha59.indexOf(t[0])+alpha59.indexOf(t[1])));
  const alternatives=[
@@ -91,8 +108,9 @@ function main(){
   source:{unknownPages:55,originalRunes:cipher.length,fieldPairs:cipher.length/2,p50Bytes:256,distinctP50Bytes:new Set(grid.bytes).size,zeroBytes:grid.bytes.filter(x=>x===0).length,tableHash,keyPeriodPairs:256,keyPeriodRunes:512},
   field:{polynomial:"z^2+18z+11",zOrder:840,zEqualsU433:true,p56ConsumedPrimes:84,p56FinalPrime:p84},
   scores:{raw:{ioc:raw.ioc,mean:raw.meanTrigramNatsPerRune},minus:m,plus:p,nativeReferenceWindows:{count:ref.length,min:ref[0],median:ref[Math.floor(ref.length/2)],max:ref.at(-1)},wrongSourceAlternatives:wrong},
+  p57HtmlExponentAlternatives:{remainders:[361,133,331],htmlTitle:133,htmlId:331,candidates:p57HtmlCandidates},
   positiveControl:{plantedRunes:plant.length,exactRecovery:recovered.every((x,i)=>x===plant[i]),exactForwardInverse:transform(recovered,grid.bytes,z,+1).every((x,i)=>x===planted[i])},
-  decision:"No GP plaintext: all 50 full 256-rune windows in either direction score below all 88 held-out Gibran windows."
+  decision:"No GP plaintext: the p56-selected exponent 433 and p57/HTML-selected exponents 133, 331, 361 all leave every full 256-rune window below the worst of 88 held-out Gibran windows."
  },null,2));
 }
 if(require.main===module)main();
