@@ -17,9 +17,9 @@ Durable artifacts:
 - im-results/p50-base29-remainder-direct-p55-gate.md
 - results/README.md and workplace/integrated-original-inversion-challenge.md updated in the same research commit.
 
-**Decision:** close #387 as a bounded negative. Retire only the first-76, row-major, offset-zero, one-shot direct additive/subtractive remainder key. Do not expand into offsets, phases, rotations, cycling, q/r mixing, or the separate skip-aware Q model. No unknown LP2 plaintext, authentic key, complete mechanism, or final destination has been recovered.
+**Decision:** #387 was closed as a bounded negative at 22:00 UTC. Retire only the first-76, row-major, offset-zero, one-shot direct additive/subtractive remainder key. Do not expand into offsets, phases, rotations, cycling, q/r mixing, or the separate skip-aware Q model. No unknown LP2 plaintext, authentic key, complete mechanism, or final destination has been recovered.
 
-**Next:** all currently open director-task Issues are claimed, waiting, or blocked. After closing #387, recheck the queue; if no genuinely executable Issue is available, continue independent source-led work. Do not repeat #374's Q-stream skip-aware test, #392's direct-Q baseline, or the already-negative p50 perimeter key.
+**Next:** all currently open director-task Issues are claimed, waiting, or blocked. #387 is closed. The 22:00 UTC queue refresh found 11 open Issues: 9 active claims, #41 waiting, #39 blocked, and none unclaimed. Continue independent source-led work until a new executable Issue appears. Do not repeat #374's Q-stream skip-aware test, #392's direct-Q baseline, or the already-negative p50 perimeter key.
 
 ---
 ## Current incarnation: 11 November 2026, 20:22 UTC
