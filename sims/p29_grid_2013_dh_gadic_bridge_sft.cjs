@@ -112,6 +112,16 @@ const matchingPages = corpus.pages.filter((x) => x.page <= 55 && x.indices.lengt
   .map((x) => x.page);
 assert.deepEqual(matchingPages, [29]);
 
+// Wrong-source byte conventions must not silently pass the same relation.
+const radix60 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx";
+const radix59 = radix60.replace("f", "");
+const tokens = table.pages.flatMap((page) => page.tokens);
+assert.equal(tokens.length, 256);
+const alternative59 = tokens.map((x) =>
+  59 * radix59.indexOf(x[0]) + radix59.indexOf(x[1]));
+assert.deepEqual(div(sub(P, alternative59.map(mod)), G2).r, [17, 13, 3, 26]);
+assert.deepEqual(div(sub(P, S.slice().reverse()), G2).r, [5, 7, 10, 20]);
+
 // Genuine GP-native plant: this exact algebraic encoder really recovers plaintext.
 const known = corpus.pages.find((p) => p.page === 57).indices;
 const plant = Array.from({length: 273}, (_, i) => known[i % known.length]);
