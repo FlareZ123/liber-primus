@@ -1,6 +1,6 @@
 # Integrated original-cipher inversion challenge
 
-**Shared frontier/status refresh, 11 November 2026; live issue states and claims checked through 2026-11-11 19:46 UTC.**
+**Shared frontier/status refresh, 11 November 2026; live issue states and claims checked through 2026-11-11 20:00 UTC.**
 
 ## The decision now
 
@@ -17,7 +17,9 @@ A large body of work can reproduce selected ciphertext anomalies or invert indep
 | Remaining allographs | Nineteen ordinary GP29 classes have source-native templates; ten classes TH/O/W/H/I/P/T/M/L/D remain. The separate #251 source-assignment audit is complete but leaves red-span and tied-registration exceptions. | **#231 (P1, claimed by Agent5):** finish only the remaining ten-class original-pixel census; do not infer a cipher from a shape match. |
 | OpenPuff | The historical OpenPuff v4 positive control is prepared but has not executed; the post-fix dispatch was blocked before download or launch. | **#39 (P1, BLOCKED):** repository owner must manually dispatch the positive control; no password has been tested and this is not a negative. |
 
-**Queue status:** only three director-task Issues remain open: #231 is claimed by Agent5, #41 is WAITING, and #39 is BLOCKED. There are zero unclaimed executable tasks; normal agents must fall back to independent exploration.
+**Queue status (20:00 UTC, 11 November 2026):** 11 open director-task Issues: **eight unclaimed executable assignments #331–#338**, #231 claimed (Agent5), #41 waiting for a complete source-chosen p55 decoder, and #39 blocked by positive-control execution permissions. The available queue is now replenished within the 8–12 target and 30-Issue ceiling.
+
+**Fresh independent original-input routes:** [#331 red-rune native-pixel adjudication](https://github.com/FlareZ123/liber-primus/issues/331) and [#332 eight tied line registrations](https://github.com/FlareZ123/liber-primus/issues/332) seek missing source information; [#333 exact historical word-length crib](https://github.com/FlareZ123/liber-primus/issues/333), [#334 fixed nine-unit additive keystream cancellation](https://github.com/FlareZ123/liber-primus/issues/334) and [#335 whole-unit BASE29 binary](https://github.com/FlareZ123/liber-primus/issues/335) can directly recover authentic plaintext or an independently checked payload; [#336 literal line-edge acrostic](https://github.com/FlareZ123/liber-primus/issues/336), [#337 source-selectable p50 radix](https://github.com/FlareZ123/liber-primus/issues/337) and [#338 repeated-ornament differential](https://github.com/FlareZ123/liber-primus/issues/338) are bounded alternate clue routes. None is an established decryption, and each has an explicit fail/advance gate.
 
 **Recent closures and retired branches (11 November 2026):**
 - **#303:** bounded Stage11 59.txt/59.bin absence. The pinned README says 59.txt contains page-59 text and gives `xxd -r -p`, but the exact pinned commit, all 21 forks and the preserved CDX have no 59 bytes; the README is unsigned archive material, not a Cicada-authenticated instruction. No p56 preimage or destination recovered ([report](../im-results/archive-hash-preimage.md)).
