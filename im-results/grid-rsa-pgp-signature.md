@@ -1,6 +1,6 @@
 # Cicada PGP RSA tests of the 256-byte base-60 grid
 
-**Classification:** two exact bounded negatives on distinct cryptographic interpretations; no LP2 plaintext or private key recovered. The direct signature-style and direct 2048-bit factor readings tested here are both rejected.
+**Classification:** three exact bounded negatives on distinct cryptographic interpretations; no LP2 plaintext or private key recovered. The direct signature-style, direct 2048-bit factor, and direct private-exponent readings tested here are all rejected.
 
 ## Source and signature-style hypothesis
 
@@ -38,11 +38,17 @@ All eight unique comparisons give GCD 1; none divides either modulus. The forwar
 
 **Decision:** the direct table-as-RSA-factor interpretation is excluded under these four natural traversals. This does not exclude a transformed table, a different key, or another role for the 256 bytes. It is not a reason to launch arbitrary byte permutations.
 
+## Direct RSA private-exponent interpretation
+
+The same four natural traversals were also tested as candidate private exponent d for each of the two 4096-bit public moduli. For each candidate, test the RSA round trip m → m^d mod n → (m^d)^e mod n for five small coprime bases (2, 3, 5, 17, 257). All 40 candidate/modulus/base checks fail. A synthetic 3233 = 61×53, e = 17, d = 2753 positive control passes the same round-trip test.
+
+This excludes the direct grid-as-d interpretation under the four natural traversals. It does not test CRT exponents, another recipient key, or a transformed table.
+
 ## Scope and reproducibility
 
 - Signature-style test: node sims/grid_rsa_pgp_signature.cjs.
-- Direct factor test: node sims/grid_rsa_factor_gcd.cjs.
+- Direct factor and private-exponent tests: node sims/grid_rsa_factor_gcd.cjs.
 - Inputs: resources/liber-primus/base60-grid.json and resources/control/cicada-3301-public-key.asc. The base60-grid bytes match the 256-byte canonical table in resources/liber-primus/lp2-grid-256.json.
-- The factor test reuses the exact OpenPGP parser and key fingerprint check from the signature SFT, verifies both 4096-bit moduli and exponent 65537, and asserts all eight GCDs are 1.
+- The direct-key script reuses the exact OpenPGP parser and key fingerprint check from the signature SFT, verifies both 4096-bit moduli and exponent 65537, asserts all eight GCDs are 1, and asserts all 40 private-exponent round trips fail.
 
 The table might still be ciphertext encrypted to an RSA public key, a KDF input, a partially transcribed cipher block, a modular transform, a nonlinear byte mapping, a split-field encoding or another recipient key. Those are different hypotheses and are not tested here. This report does not supersede established results in results/README.md.
