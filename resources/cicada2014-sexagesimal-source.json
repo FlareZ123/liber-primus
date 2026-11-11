@@ -1,6 +1,6 @@
 {
   "schema": "cicada2014-sexagesimal-source-v1",
-  "description": "Original 2014 stage11 sexagesimal byte-string and its decimal-to-byte conversion files. This is a historical source version of the 256-byte table, not the exact later LP2 printed-token transcription.",
+  "description": "Original 2014 solver-derived stage11 sexagesimal byte-string plus decimal conversion and identified earlier manually copied 49/50/51 numeral source. Historical byte version differs from the original LP2 printed table at ten positions, three explicitly corrected in the original 2014 transcription.",
   "source_repository": "micheloosterhof/cicada-2014",
   "first_observed_commit": "a9201dd469a1a514eb0d8ff8f3449dbe2e7f7462",
   "first_observed_commit_recorded_at": "2014-05-11T21:39:09Z",
@@ -375,5 +375,53 @@
     "converter_matches_target": false,
     "note": "All 12 raw-file hashes (three exact source files × four 64-byte digest families) differ from the p56 target."
   },
-  "limitations": "The 2014 sexagesimal binary differs from the later LP2 canonical table at ten byte positions. Raw-file hashes do not match the p56 target under the four tested digest families. This does not exclude a key role or a transformed use of the table. Git commit timestamps are self-reported metadata."
+  "limitations": "The 2014 binary is a solver-produced derivative of a three-page table transcription; it includes three already-documented 2014 correction failures and seven remaining case-only discrepancies. It does not establish an independent cipher key, PRNG or original LP2 byte production algorithm. Git author dates remain self-reported.",
+  "upstream_2014_source": {
+    "archived_commit": "19d68fbb9cff1c06d52cc0add30285199c936282",
+    "recorded_at": "2014-05-11T20:41:01Z",
+    "original_paths": [
+      "stage11/ky2khlqdf7qdznac.onion/49.txt",
+      "stage11/ky2khlqdf7qdznac.onion/50.txt",
+      "stage11/ky2khlqdf7qdznac.onion/51.txt"
+    ],
+    "git_blob_shas": [
+      "1ae432f17099e75a8a9f5ab84040a37645632517",
+      "34cbb77d43a67679e989a466904de49622d7f480",
+      "6e9fa506375442c9126a275ef845a909449102a3"
+    ],
+    "original_source_copy": "resources/external/cicada2014-stage11-original-transcriptions.json",
+    "token_counts": [
+      80,
+      104,
+      72
+    ],
+    "token_base60_conversion_matches_all_256_later_archive_bytes": true,
+    "earlier_explicit_numeric_corrections": [
+      {
+        "index": 165,
+        "stale_value": 47,
+        "corrected_value": 18
+      },
+      {
+        "index": 170,
+        "stale_value": 194,
+        "corrected_value": 254
+      },
+      {
+        "index": 172,
+        "stale_value": 174,
+        "corrected_value": 148
+      }
+    ],
+    "remaining_seven_uncorrected_case_changes": [
+      25,
+      45,
+      50,
+      175,
+      182,
+      199,
+      246
+    ],
+    "assessment": "Original binary derives wholly from earlier solver-copied printed tokens. No independently specified Cicada byte generator or key source is evidenced."
+  }
 }

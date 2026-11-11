@@ -50,7 +50,7 @@ Reproduce with Pillow, NumPy and SciPy using the checked-in program [sims/lp2_gr
 
 ## Historical 2014 `sexagesimal.bin` witness
 
-The original solver archive `micheloosterhof/cicada-2014` records commit [`a9201dd`](https://github.com/micheloosterhof/cicada-2014/commit/a9201dd469a1a514eb0d8ff8f3449dbe2e7f7462), dated 2014-05-11 21:39:09Z, adding `decimal.txt`, `decimaltobyte.pm`, and `sexagesimal.bin` under the stage11 hidden-service directory. The Perl script packs each decimal line as one byte; the reconstructed 256-byte stream reproduces the archived Git blob SHA-1 exactly.
+The original solver archive `micheloosterhof/cicada-2014` records commit [`a9201dd`](https://github.com/micheloosterhof/cicada-2014/commit/a9201dd469a1a514eb0d8ff8f3449dbe2e7f7462), dated 2014-05-11 21:39:09Z, adding `decimal.txt`, `decimaltobyte.pm`, and `sexagesimal.bin` under the stage11 hidden-service directory. The Perl script packs each decimal line as one byte; the reconstructed 256-byte stream reproduces the archived Git blob SHA-1 exactly. An earlier 2014 commit contains three original `49.txt`/`50.txt`/`51.txt` token transcriptions, whose **256 upper two-character base-60 tokens reconstruct every later decimal value**. The original `50.txt` **lower corrected numeric** table already marks three stale upper-token errors at whole-table indices **165,170,172**, including both apparently noncase differences. The archive binary preserved the upper token values instead of applying the corrections; [source timeline and original-SFT](cicada2014-sexagesimal-upstream-transcription.md).
 
 That historical 256-byte sequence is **not identical** to the later LP2 printed-token table. It differs at ten indices:
 
