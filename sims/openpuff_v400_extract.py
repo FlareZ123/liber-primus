@@ -168,7 +168,7 @@ def add_carrier(app, window, carrier, out_dir):
         if safe(candidate.class_name) != "#32770":
             continue
         title = safe(candidate.window_text) or ""
-        if title == previous_title or "Data Unhiding" in title or "OpenPuff" in title:
+        if title == previous_title or "Data Unhiding" in title:
             continue
         edits = [
             control for control in (safe(candidate.descendants) or [])
