@@ -27,6 +27,20 @@ The first row's H syndrome is `[19,8]`, while its first 13-rune fragment has `[1
 
 The deterministic [CommonJS reproducer](../sims/lp2_dualfactor_gridrow_fragment_syndrome_sft.cjs) loads the current canonical original byte table, complete 13,136-rune corpus and original marker inventory, includes **all** 31 events and both empty fragments, checks both global factors, computes every original syndrome and verifies the positive and wrong-row controls.
 
+## Independent terminal 256-rune codeword test
+
+The original manuscript also offers a conspicuous, source-fixed **256-to-256 size equality**: terminal p55 has 76 runes, solved p56 has 85, and solved p57 has 95. Thus the contiguous terminal three-page sequence is exactly **256 GP29 runes**, the same width as the numerical table's 256 bytes. The simplest cross-object algebraic prediction is that the terminal rune polynomial carries the same source H/G factors as the numeric table.
+
+Using the terminal original-rune order without a shift, reset, rewrite, or fitted key, exact GF29 division gives:
+
+| Source factor | 256-byte table remainder | 256-rune terminal remainder |
+| --- | --- | --- |
+| H | `[0,0]` | **`[8,6]`** |
+| G | `[0,0]` | **`[21,28]`** |
+| HG | `[0,0,0,0]` | **`[3,22,16,2]`** |
+
+The 256-rune terminal cannot be the same H/G codeword register without an additional, independently identified encoder. This is a distinct direct original-payload prediction and is asserted by the updated SFT. It does not preclude those 256 runes and 256 grid cells participating through some other keyed reversible operation.
+
 ## Cryptanalytic implication
 
 The fixed 32-row/32-fragment correspondence and source-derived H/G algebra **do not jointly define a direct per-fragment polynomial checksum**. This closes only the simplest syndrome-equality interpretation. A genuine encoding using a source-selected transformation, secret state, different framing or function of the row could remain; this result supplies no reason to search free orientations, row offsets or arbitrary syndromes. The original LP2 ciphertext remains unsolved.
