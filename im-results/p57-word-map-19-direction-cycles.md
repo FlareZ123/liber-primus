@@ -59,9 +59,21 @@ The two cycles' word meanings are strikingly consonant with the parable's key ph
 
 ## Alternative numeric controls
 
-Including PARABLE as a 20th node and using modulus 20 is a useful control: both selected anchors (LIKE and FIND) flow to the fixed point INSTAR rather than producing the two 5-cycles. The body-only 19-node model is therefore the one aligned with the 5×19 selector, though this does not prove that the heading must be excluded.
+### All-20-word map (heading included): a competing route
 
-The two 5-cycles do not appear when the word values are replaced by the sum of rune ordinals or by rune count:
+If the red heading PARABLE is included as a 20th node and the total-word count 20 is used as modulus, the selected anchors converge to **INSTAR** under both directions:
+
+- In the + map, LIKE (position 2, 184 mod 20 = 4) and FIND (position 15, 151 mod 20 = 11) both land on **TO** (position 6). The shared path is TO → OUR → OWN → SURFACE → CIRCUMFERENCES → TUNNELING → INSTAR.
+- In the − map, LIKE → WITHIN → THE → SHED → AND → INSTAR, while FIND → INSTAR directly.
+- INSTAR is a fixed point because 280 mod 20 = 0. EMERGE (300 mod 20 = 0) is another fixed point, but neither selected anchor reaches it.
+
+A separate 100,000-permutation null fixes LIKE/FIND positions and sums and shuffles the other 18 word sums. Both anchors reach INSTAR under both signs in 604/100,000 (0.604%); under the − map alone the frequency is 2.867%, and under the + map alone 2.344%. This is an exploratory null, not a formal p-value; word sums are not guaranteed exchangeable.
+
+The 20-node map is at least as interesting as the body-only 19-node cycles. The source-visible total word count supports modulus 20; the heading/body distinction plus conditional 95=5×19 chain supports a separate 19-body map. No independent clue yet selects which map is intended, or whether both are nested layers.
+
+### Alternative numeric controls
+
+The two 19-node 5-cycles do not appear when the body-word values are replaced by the sum of rune ordinals or by rune count:
 - With ordinal sums, the negative walk from LIKE reaches the fixed point TO, and the positive walk from FIND reaches the fixed point WITHIN.
 - With rune counts, the negative walk from LIKE has a different 4-cycle (DIVINITY → WE → THE → TUNNELING), while the positive walk from FIND has a different 5-cycle (FIND → AND → THE → TUNNELING → OUR). They do not form the observed pair of 5-cycles sharing WE.
 
