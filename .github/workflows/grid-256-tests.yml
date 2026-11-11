@@ -24,6 +24,7 @@ on:
           - tree-tiling
           - tree-home
           - tree-direction
+          - tree-continuous-degrees
           - tree-wordmap
           - signed2016-derivative
           - terminal-circumference
@@ -98,6 +99,12 @@ jobs:
         run: |
           python3 -m pip install --quiet Pillow
           python3 sims/tree121_directional_field_sft.py
+
+      - name: Original signed tree continuous GP-prime degree-bearing test
+        if: ${{ inputs.probe == 'tree-continuous-degrees' }}
+        run: |
+          python3 -m pip install --quiet Pillow
+          python3 sims/tree121_continuous_direction_sft.py
 
       - name: Red GP prime-sum page-conditioned circular-control audit
         if: ${{ inputs.probe == 'redspan-zero' }}
