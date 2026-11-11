@@ -4,7 +4,7 @@
 
 ## Original-source selector
 
-The original corpus records exactly **729 runes** on physical p0–p2, permitting a conditional 27×27 row-major layout. The layout itself is not yet authenticated.
+The original corpus records exactly **729 runes** on physical p0–p2, permitting a conditional 27×27 row-major layout. This is the **only perfect-square total among the 54 consecutive three-page windows** across all original unsolved LP2 pages p0–p55 (other page triples do not sum to any integer square). It is also the only consecutive triple sum that is an exact power of 3. These are source-derived finite observations, but their frequency conditional on considering this manuscript and three-page square windows does not establish puzzle-designer intent. The specific 27×27 row-major layout itself remains a hypothesis. [Original-source finite audit](../sims/lp2_27x27_opening_wordboundaries_sft.cjs).
 
 On p0:
 
