@@ -1,0 +1,34 @@
+name: OpenPGP key-ID to GP29 Vigenere source test
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sims/pgp_keyid_base29_vigenere_sft.cjs'
+      - '.github/workflows/pgp-keyid-base29-vigenere-sft.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  source-key-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run fixed source-key family
+        run: |
+          node sims/pgp_keyid_base29_vigenere_sft.cjs > /tmp/result.json
+          cat /tmp/result.json
+      - name: Persist compact original-input result
+        run: |
+          cp /tmp/result.json im-results/pgp-keyid-base29-vigenere-sft.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add im-results/pgp-keyid-base29-vigenere-sft.json
+          git commit -m "Agent 23: record OpenPGP key-ID GP29 test"
+          git pull --rebase origin main
+          git push
