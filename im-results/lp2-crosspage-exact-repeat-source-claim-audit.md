@@ -1,32 +1,17 @@
-# Exact cross-page ciphertext-reuse census and a false external duplicate claim
+# Archived p27/p44 duplicate claim: canonical regression
 
-**Decision, 11 November 2026:** the advertised complete ciphertext duplication of original LP2 p27 inside p44 does **not** occur in the canonical 58-page corpus. There is also no exact seven-rune substring repeated between any two of the 55 still-encrypted, rune-bearing physical pages. This removes the specific claimed 234-rune known-repeat opportunity. It does **not** establish a cipher or rule out plaintext repetition under different keys.
+**Status, 11 November 2026: redundant historical-claim regression. No new plaintext or independent cross-page finding.**
 
-## Why this was examined
+An archived version of the [Wulfic tracker](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/reference/archive/MASTER_TRACKER_pre-2026-09-29.md) claimed that LP2 “P27 ciphertext = P44 first 234 runes” and labelled that claim confirmed. **The current [Wulfic `MASTER_TRACKER.md`](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/MASTER_TRACKER.md), dated 12 October 2026, explicitly RETRACTS the assertion**: older `page_27` corresponded to the first physical page of the longer section stored as old `page_44`. Before 29 September 2026 those external page files did not correspond to individual original scans, as that maintainer documents. An outdated cached web version of the tracker carried the false assertion; the live GitHub source already corrected it.
 
-The publicly readable [Wulfic/Cicada3301-Liber_Primus `MASTER_TRACKER.md`](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/MASTER_TRACKER.md) (header: April 2026) asserts in §4 and the structural notes that “P27 ciphertext = P44 first 234 runes”, calling it a **100% confirmed** duplicate. If true on authentic ciphertext, 234 repeated runes on different manuscript pages would materially motivate investigating repeated key state, plaintext, and page-to-page copying before any new single-page cipher search. The source's stated 234-rune p27 count agrees exactly with canonical physical LP2 p27, making this a directly testable claim. The external tracker has several separately acknowledged stale-page and hill-climb issues; its assertion is treated as a lead, not an original-manuscript observation.
+This repository had independently **already rejected** the direct 234-rune repetition in [the external-claims audit](external-wulfic-claimed-plaintext-original-gate.md), and previously established the exact global six/seven-rune repeat constraints in [the terminal-repeat report](dju-bei-terminal-repeat.md) and [the seventh-rune boundary correction](lp2-seven-gram-boundary-correction.md). Do not treat this note or its SFT as a novel structural discovery, creator clue or additional independent confirmation. It exists only to preserve a reproducible adversarial regression against the archived false p27/p44 assertion.
 
-## Full original-input test
+## Exact finite check
 
-Take `resources/liber-primus/lp2-corpus.json` and its physical `page` fields, which correctly keep the numeric-only p50 empty; restrict to unknown pages **0–55**. Compare their original GP29-index arrays exactly, without joining words across distinct pages or applying transliteration, decipherment, normalization, or page shifts.
+Against original `resources/liber-primus/lp2-corpus.json` physical page numbers, p27 has 234 GP29 runes and p44 has 273. Their first glyphs are M(index19) and EA(index28), and their longest exact common substring is **three** runes (p27:90/p44:96 and p27:215/p44:248). A 234-rune identical prefix is impossible.
 
-| Check | Original result |
-| --- | --- |
-| Original p27 and p44 rune lengths | **234** and **273** |
-| First GP rune on p27 / p44 | **M** (index19) / **EA** (index28) |
-| Matching opening prefix | **0 runes** |
-| Longest exact contiguous substring shared by p27 and p44 | **3 runes**, at p27 offsets90/p44 offset96 and p27 offset215/p44 offset248 |
-| Longest exact contiguous substring shared by **any** two distinct unsolved pages | **6 runes** |
-| Unique longest cross-page match | p27 offset28 and p55 offset70, GP `D J U B E I` (indices `[23,11,1,17,18,10]`) |
-| Seven-rune substrings repeated across page boundaries | **0** |
-| Original pages/runes checked | **55 / 12,956** |
+The [standalone Node22 SFT](../sims/lp2_crosspage_exact_repeat_external_claim_sft.cjs) reproduces this direct comparison, checks the previously established global longest six-rune match at p27:28 ↔ p55:70, and **plants** an artificial 234-rune p27 prefix on p44 to ensure the detector catches exact duplication. The global 55-page result is **not new** and should be cited from the earlier canonical repeat reports instead.
 
-The six-rune match is short and unexceptional under a high-entropy alphabet; it is **not** an authenticated plaintext crib. The absence of length-seven collisions ensures that no longer exact cross-page ciphertext substring exists. Word-level or plaintext reuse under page-specific keystreams remains possible.
+## Decision
 
-The standalone [Node 22 CommonJS SFT](../sims/lp2_crosspage_exact_repeat_external_claim_sft.cjs) asserts the source lengths, the negative claim, the two specific p27/p44 three-rune locations, the global six/seven-rune census, and a planted **234-rune prefix copy** into p44. The same detector recovers that planted exact copy, guarding against a trivial empty-output implementation.
-
-## Cryptanalytic implication
-
-A route based on the external p27=p44 ciphertext identity is ruled out on the canonical original manuscript. Repeated text encrypted with a different key on each page would produce different ciphertext and is unaffected by this result. No cipher key, unknown plaintext, page-to-page keystream, or destination is recovered.
-
-**Next decision:** retire proposals contingent on that exact 234-rune overlap. For genuine page-reuse hypotheses, require an independently selected change of key, alignment, or reversible relation and a held-out original-text prediction. Avoid exhaustive plaintext matching with arbitrary shifts justified by this false external claim.
+The archived external duplicate claim is invalid under source numbering and already explicitly withdrawn by its author. Do not base any key-reuse or known-plaintext attack on it. This bounded repeat audit yields no unknown plaintext, cipher, key, or Cicada continuation.
