@@ -156,7 +156,7 @@ The best candidate is forward p55, reversed title seed, ciphertext autokey, (P=C
 
 **Decision:** reject the standard title-seeded plaintext- and ciphertext-autokey interpretations under these 16 source-fixed variants. This does not establish that the title is irrelevant; it closes the simplest stateful extension of the title-as-key hypothesis. Do not broaden this into free nonlinear title-key enumeration.
 
-**Reproduce:** `node sims/p55_fold_fragment18_p27_title_sft.cjs`; the SFT now includes the 16 autokey variants and the same 47,959-window native control. The updated SFT passed [GitHub Actions run 42976078750](https://github.com/FlareZ123/liber-primus/actions/runs/42976078750).
+**Reproduce:** `node sims/p55_fold_fragment18_p27_title_sft.cjs`; the SFT now includes the 16 autokey variants and the same 47,959-window native control. The updated SFT passed [GitHub Actions run 42976078750](https://github.com/FlareZ123/liber-primus/actions/runs/42976078750). That one-off run was triggered before re-reading the repository's dispatch-only CI rule; `.github/workflows/p55-fold-mirror-manual.yml` has since been restored to **manual `workflow_dispatch` only**, and future reruns must be manually dispatched.
 
 
 ## Anchored p27 reverse-window → p55 direct-key gate
