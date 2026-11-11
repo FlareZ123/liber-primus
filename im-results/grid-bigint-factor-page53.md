@@ -63,6 +63,23 @@ The original full stream has IoC **0.0344784** (excluding p36: **0.0344720**); t
 
 Reproduce with [the original-source keystream gate](../sims/grid238_p36_seeded_keystream_inverse.cjs).
 
+### Source-constant field exponent inverses on p36 (Agent 18, 11 November 2026)
+
+A distinct, fully reversible direct-field interpretation of the same source factor was tested. Treat all **238 original physical p36 rune indices** as coefficients of an element of GF(29^238), represented in the standard power basis modulo the previously established **monic irreducible** degree-238 factor of the original base60 table. The original p05/p16 magic-square constants **1033** and **3301** are historical source values, and 2013 Cicada material separately documents finite-field-style modular exponentiation in a Diffie–Hellman task. **It is an inference, not an authenticated instruction**, to apply these constants as exponents to this 238-dimensional field. The direct output format (one field coefficient per GP rune) and two physical p36 coefficient orientations are frozen without any fitted secret offset, mask, basis transformation, or phase.
+
+For each integer e in {1033,3301}, gcd(e,29^238−1)=1. The exact inverse of the candidate cipher C=P^e in this field is P=C^d with d=e^−1 mod (29^238−1). All four inversions and their source-constant *forward* readings were executed on the untouched page; every original C is exactly recovered by raising its decoded field element back to e. Exact reencryption is an implementation invariant, not key evidence. A separate planted 238-rune solved-p57 control (source plaintext cyclically repeated) likewise encrypts and decrypts **238/238** runes with the same field implementation; its native-GP IoC is **0.067546005744**.
+
+| Hypothesized exponent | p36 coefficient order | Direct inverse IoC | Top-12 GP mass |
+| ---: | --- | ---: | ---: |
+| 3301 | printed | 0.035102648654 | 0.546218487395 |
+| 3301 | reversed | 0.034428961458 | 0.546218487395 |
+| 1033 | printed | 0.033826188703 | 0.533613445378 |
+| 1033 | reversed | 0.033010672623 | 0.525210084034 |
+
+Original p36 IoC is **0.035989079176**. Every candidate remains ciphertext-like and visibly nonlinguistic; even the highest inverse IoC **0.035102648654** is far from the **0.067546005744** source-native planted control. None recovered unknown text. **Decision:** retire the literal p36 = (native-GP238 plaintext)^1033 or ^3301 direct-field encipherment in either printed coefficient orientation. This is a scoped negative for one source-motivated, nonadditive and reversible model; it does not rule out unprovided field exponents, nonlinear output registers, a different source-specified basis, or a separate key/state. No original Cicada instruction has been found selecting this operation.
+
+[Executable standalone original-source SFT](../sims/grid238_p36_field_exponent_inverse.cjs) reconstructs the original 256 printed base60 tokens, exact small-factor division and monic Q238, and all original and planted field exponent round trips. It uses built-in Node.js 22 only and requires no CI.
+
 ### Full 238-element Frobenius-automorphism inverse on p36 (Agent 18, 11 November 2026)
 
 The unique original-source **irreducible degree-238 GF(29) polynomial** and unique **238-rune p36** also motivate a distinctly stronger field-arithmetic test. Interpret p36's untouched 238 GP ordinals as coefficients of an element in the finite field GF(29^238), reduced by that source polynomial. The prime-field Frobenius map **F(a)=a^29** is an invertible field automorphism; its powers F^k for k=0..237 are **the complete automorphism group** of this field. This is a closed, source-determined set of 238 candidate inversions with no fitted numeric key, plus the independent natural reversal of the original coefficient reading.
