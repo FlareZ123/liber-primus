@@ -1,93 +1,28 @@
-# p32 M7 / 2016 signed-word extraction and 30/32 fragment alignment
+# Retired p32 M7 / signed-2016 word-address chain: four spurious line-wrap splits
 
-**Status: intermediate structural hypothesis. No plaintext, key, or complete cipher recovered.** This belongs in `im-results/`, not `results/`.
+**Status: source-input correction, 11 November 2026.** The previously reported seven-word M7 extraction and 30/32 fragment alignment have **no valid p32 word-address premise**. The original 32-fragment boundaries and the historical 2016 message remain real inputs; the claimed bridge between them was introduced by a transcription parser defect. No unknown LP2 plaintext or key was recovered.
 
-## Source-derived selector
+## Decisive source correction
 
-The p32 ring-derived Möbius map in [the p32 prime-canvas analysis](tree-prime-canvas-partition.md) is
-\[
-f(x)=\frac{14x+25}{25x+28}\pmod{29}.
-\]
-Its seven-cycle starting at the red 13-dot count is
-\[
-13\to24\to19\to3\to6\to20\to17\to13.
-\]
-This is the only seven-cycle whose values are all valid one-based word positions in p32's 26 printed rune-words.
+The original physical p32 JPEG (`resources/liber-primus/49.jpg`) has **121 runes arranged into 22 complete printed words**. The first sentence ends after **7 words / 33 runes**. The authoritative source parser `sims/lp2_word_pages.cjs` treats the slash-plus-newline layout marker as a wrap, preserving a word across a printed line ending.
 
-| p32 ordinal | GP transliteration | Runes | GP-prime sum |
-|---:|---|---:|---:|
-| 13 | WBSRXYX | 7 | 345 |
-| 24 | UT | 2 | 62 |
-| 19 | MBUDS | 5 | 277 |
-| 3 | AEUPIAC | 5 | 267 |
-| 6 | IARTHF | 5 | 184 |
-| 20 | BJ | 2 | 98 |
-| 17 | SPTHT | 4 | 160 |
-| **Total** | | **30** | **1,393** |
+The earlier `sims/p32_m7_2016_word_fragment_alignment.cjs` instead used `.replace(/\//g,'')` followed by `match(/[\u16A0-\u16FF]+/gu)`. The slash disappeared but the newline survived, so four words were falsely split into two. Both variants still total 121 runes, obscuring the defect in rune-count-only checks.
 
-The selected rune count is 30, the size of \(\mathbf P^1(\mathbb F_{29})\). The sum of floor-half word lengths is 13, matching the 13-dot marker count. The prime-sum total is \(1393=1136+257\), where 1,136 is the signed 2016 payload length and 257 is one p32 ring-side sum. These are correspondences, not proof.
+| Legacy line-split pieces | Correct complete p32 printed word | Correct one-based ordinal |
+| --- | --- | ---: |
+| `NGBEOIA` + `LA` | `NGBEOIALA` | 9 |
+| `WBSRXIAX` + `A` | `WBSRXIAXA` | 12 |
+| `OENGO` + `MBUDS` | `OENGOMBUDS` | 16 |
+| `UT` + `FJT` | `UTFJT` | 21 |
 
-## Two selections from the 2016 signed message
+Those four false splits made the earlier script report **26 words**. Under the corrected 22-word contract, the frozen M7 cycle `13,24,19,3,6,20,17` attempts to read **p32 word 24, which does not exist**. It cannot be repaired by silently taking a different phase, changing index bases, wrapping 24 modulo 22, or retuning the cycle after inspecting message outputs.
 
-The complete signed cleartext has **45 alphanumeric tokens** if its visible final key-ID token `7A35090F` is counted. It has 44 alphabetic-only words if that token is excluded.
+## Exact scope of the retired interpretation
 
-1. Use the M7 cycle values directly as one-based message-word positions:
-   - Positions: `13,24,19,3,6,20,17`
-   - Words: **the / road / map / path / epiphany / their / are**
-   - Word lengths: `3,4,3,4,8,5,3`, total **30**
-   - Concatenation: `THEROADMAPPATHEPIPHANYTHEIRARE`
+The old script picked seven words using the invalid 26-token sequence. Their prime sums `[345,62,277,267,184,98,160]` and signed-2016 message projections `THEROADMAPPATHEPIPHANYTHEIRARE` (30 letters) / `DIRECTIONARESEEKSPATHSLIESTHEAND` (32 letters) remain reproducible **only under that erroneous source tokenization**. Therefore the attractive match to 30 nonempty and 32 total thirteen-dot-delimited full-text fragments, including the `NE` letters at the two empty positions, is not a source-constrained LP2 operation. Treat it as a conditional artifact of invalid addresses.
 
-2. Use the seven p32 prime sums as one-based message-word addresses modulo 45, \(((s-1)\bmod45)+1\):
-   - Positions: `30,17,7,42,4,8,25`
-   - Words: **direction / are / seeks / paths / lies / the / and**
-   - Word lengths: `9,3,5,5,4,3,3`, total **32**
-   - Concatenation: `DIRECTIONARESEEKSPATHSLIESTHEAND`
+The algebraic overlap-matrix result itself remains correct **under the frozen legacy partition strings**: partitioning one chronological stream into two sets of contiguous intervals yields the same chronological fragment order in both row-major and column-major occupied-cell readings. It cannot produce a nontrivial permutation. The separate source facts of 31 thirteen-dot marks, 32 fragments and two empty fragments are unaffected by this p32 correction.
 
-   If the final numeric key ID is excluded and the modulus is 44, the second selection becomes `good / the / the / path / the / liber / are`, total length 25. Thus the 32-letter result depends on counting the visible key ID as the 45th token. That is plausible for the complete signed payload, but not authenticated as the intended word-count convention.
+## Reproduction and next research decision
 
-## Exact alignment with the 13-dot fragments
-
-The 31 annotated 13-dot marks split the complete 13,136-rune manuscript stream into **32 full-text fragments**. The first 28 fragments end at the 12,956-rune unknown LP2 stream; the final four are the solved p56/p57 tail. Exactly **30 fragments are nonempty**. The two empty fragments are zero-based indices **8 and 11**.
-
-Align the 32-letter B stream above with the 32 chronological fragments:
-- Empty fragment 8 carries **N**, the final letter of *DIRECTION*.
-- Empty fragment 11 carries **E**, the final letter of *ARE*.
-
-The empty slots therefore spell **NE**. The first two B-word lengths, 9 and 3, partition the 32 fragments into groups ending exactly after fragments 8 and 11—the two empty fragments. The full B group boundaries are after original fragment IDs `8,11,16,21,25,28,31`.
-
-Removing the N/E positions leaves the 30-letter stream `DIRECTIOARSEEKSPATHSLIESTHEAND`, aligned in length with the 30 nonempty fragments.
-
-Independently, the 30-letter A stream partitions the 30 nonempty fragments using its word lengths `3,4,3,4,8,5,3`. Its group boundaries are after original fragment IDs `2,6,10,15,23,28,31`. Both partitions share boundaries after original fragment IDs 28 and 31.
-
-## Paired partitions do not define a fragment permutation
-
-The previously open question was whether the A and B word partitions jointly prescribe a nontrivial permutation of the 30 nonempty fragments. I built the exact 7×7 overlap matrix, with A-word groups as rows and B-word groups as columns. Each cell contains the fragments that lie in both contiguous intervals:
-
-| A group \ B group | direction | are | seeks | paths | lies | the | and |
-|---:|---:|---:|---:|---:|---:|---:|---:|
-| the | 3 | 0 | 0 | 0 | 0 | 0 | 0 |
-| road | 4 | 0 | 0 | 0 | 0 | 0 | 0 |
-| map | 1 | 2 | 0 | 0 | 0 | 0 | 0 |
-| path | 0 | 0 | 4 | 0 | 0 | 0 | 0 |
-| epiphany | 0 | 0 | 1 | 5 | 2 | 0 | 0 |
-| their | 0 | 0 | 0 | 0 | 2 | 3 | 0 |
-| are | 0 | 0 | 0 | 0 | 0 | 0 | 3 |
-
-The nonzero cells form a monotone staircase. Reading the occupied cells row-major or column-major, preserving chronological order within each cell, yields exactly the original chronological fragment order:
-`[0,1,2,3,4,5,6,7,9,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]`.
-
-This is not a new permutation. It is the inevitable overlap structure of two interval partitions of the same ordered sequence. The A/B streams supply two synchronized segmentations, not a reordering. Consequently, no language-score change is possible from row-major versus column-major reading alone.
-
-**Decision:** close the paired-partition-as-permutation hypothesis. Do not search arbitrary within-cell permutations or additional transpositions without an independent source clue. The NE alignment and shared boundaries remain structural observations, not a cipher.
-
-## Earlier bounded tests and exclusions
-
-- A1Z26 Vigenère using A, both signs and global/page clocks: worse than raw GP29 ciphertext.
-- A1Z26 constant Caesar shift per full-text fragment using B, both signs and A=0/A=1 conventions: worse than raw.
-- Group-total mod-29 keys from the A/B partitions: worse than raw.
-- One 4×8 row-major NE-diagonal fragment traversal scored slightly worse than chronological raw (−7.440398 vs −7.439749). This rejects that exact layout, not every NE traversal.
-- Pairing A and B-without-NE as projective coordinates does not enumerate \(\mathbf P^1(\mathbb F_{29})\); the simplest A1Z26 ratio map has only 20 distinct outputs.
-
-The earlier 7×7 square route with a \(4\times30\) residual was withdrawn because it depended on an unsupported compass-index convention. Do not reuse that checksum. Agent 48's separate inverse-M7 first-clause centre route and its 47 residual are distinct.
-
-Reproducer: `sims/p32_m7_2016_word_fragment_alignment.cjs`.
+`node sims/p32_m7_2016_word_fragment_alignment.cjs` now asserts both the **correct 22-word / 121-rune** source parser and the **legacy 26-token / 121-rune** error, explicitly labels its old numerical output `RETIRED`, and identifies the out-of-range word ordinal. Future M7/2016 routes must start from an independent original clue selecting **valid physical p32 words or another non-word operation**, with frozen indices before any message-word extraction. Do not cite this 30/32 alignment as evidence of a plaintext key, intended solve path, or fragment permutation.
