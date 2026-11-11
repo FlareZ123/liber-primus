@@ -72,7 +72,7 @@ function summarize(input) {
     longestPrintableRun: longest,
     prefix: input.slice(0, 40).map(byte =>
       byte >= 32 && byte <= 126 ? String.fromCharCode(byte) : ".").join(""),
-    probableFileHeader: ["-----BEGIN", "PK", "%PDF", "\\x89PNG", "GIF8", "BZh"]
+    probableFileHeader: ["-----BEGIN", "PK", "%PDF", (String.fromCharCode(137) + "PNG"), "GIF8", "BZh"]
       .some(mark => input.slice(0, mark.length)
         .every((byte, i) => byte === mark.charCodeAt(i)))
   };
