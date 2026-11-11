@@ -44,11 +44,27 @@ The suppression is approximately uniform across rune identities: after fitting o
 
 The unigram distribution itself is close to uniform: Pearson \(\chi^2=26.36\) on 28 df, with rune counts from 399 to 492 (mean 446.76). A simple **one-fifth repeat-survival** model is also compatible with the data: it predicts 89.15 doublets, and the per-rune diagonal counts give \(\chi^2=26.91\) on 28 df (Poisson deviance 28.51). The fitted survival factor is 0.19293. The five-dot ornament is a possible prompt to notice a fifth, but there is no evidence tying it to this estimated probability; treat \(q=1/5\) as a compact statistical approximation, not a decipherment.
 
+### Five-state stationary GP29 substitution: exact key-free exclusion
+
+The five red ordinal clauses and five-dot ornament make a five-state schedule a reasonable *candidate* explanation for the approximate one-fifth repeat survival. A direct implementation would use one fixed secret GP29 permutation per state. For any such permutation, within-state equal-symbol pairs are invariant, regardless of the unknown key. I tested the invariant under three source-natural clocks: book-global position mod 5, physical-page-reset position mod 5, and 13-dot-fragment-reset position mod 5.
+
+| Clock | Original within-phase collision rate | Lowest native-GP control window | Native windows at or below original |
+|---|---:|---:|---:|
+| Book-global | 0.03450671 | 0.05665589 | 0 / 2,335 |
+| Page reset | 0.03448017 | 0.05662837 | 0 / 2,335 |
+| 13-dot-fragment reset | 0.03452619 | 0.05672463 | 0 / 2,335 |
+
+The same exact invariant rejects five independent stationary GP29 permutations over the **five actual red clauses** in the 553-rune source interval `[8805,9358)`, whose lengths are `[139,91,98,96,129]`: original rate **0.03490641**, versus a lowest native-GP control window of **0.05170373**, with **0/2,526** control windows at or below the original. Independent five-permutation positive controls recover every rune exactly and preserve the invariant for all four constructions.
+
+This rules out a fixed five-state substitution schedule on any of the three tested clocks, and a separate fixed alphabet per numbered clause, as an explanation for native-GP-like plaintext. It does **not** rule out a genuinely evolving state, nonlinear or non-bijective repeat filter, stochastic process, variable-rate code, or non-GP intermediate. In particular, it does not identify an implementation for the fitted `q≈1/5`; it only prevents treating five stationary alphabets as its solution.
+
+**Reproducer:** [five-phase all-secret SFT](../sims/lp2_five_phase_allsecret_sft.cjs) · [successful CI run 42945614443](https://github.com/FlareZ123/liber-primus/actions/runs/42945614443).
+
 Conditioning each off-diagonal row on its observed predecessor count and renormalizing the global unigram distribution over the 28 non-self symbols gives Pearson \(\chi^2=778.74\) across all 812 cells (minimum expected count 12.58). The unconditioned \(p_i p_j\) diagnostic gives \(\chi^2=816.57\); both are consistent with no extra off-diagonal transition structure.
 
 The anti-repeat deficit also spans **printed word boundaries** (23/2,873 original within-page cross-word pairs versus 97.746 under exact page-conditioned symbol shuffling). Its survival rate does not differ detectably from the within-word survival rate under that null (covariance-aware z=0.4555). This complements the stronger existing canonical-word permutation constraints; the [consolidated word-boundary analysis](cross-word-anti-repeat-constraint.md) contains both null models and the [exact page-multiset source SFT](../sims/lp2_word_boundary_doublet_sft.cjs).
 
-**Interpretation:** the 86 repeats behave like residual survivors of a global soft no-repeat filter much more naturally than like deliberate control markers or a state-dependent plaintext channel. This is a statistical model, not identification of the filter's implementation. It weakens the motivation for assigning the repeat class a special plaintext meaning in the 32×8 transducer. The script's `repeat_filter_statistics` block reproduces the overlap-corrected IID null, per-rune thinning diagnostics, and off-diagonal independence checks.
+**Interpretation:** the 86 repeats remain statistically compatible with a global soft no-repeat filter, but the fitted \(q≈1/5\) is not an implementation. The exact five-phase and five-clause collision invariants above exclude the simplest stationary GP29-permutation realization of a five-state selector. A genuinely evolving or non-bijective filter remains open. This weakens the motivation for assigning the repeat class a special plaintext meaning in the 32×8 transducer. The script's `repeat_filter_statistics` block reproduces the overlap-corrected IID null, per-rune thinning diagnostics, and off-diagonal independence checks.
 
 ## Candidate A — fragment-wise base-29 integer coding
 
@@ -117,4 +133,4 @@ The script reads only the canonical local grid, corpus, and ink-annotation resou
 
 ## Handoff
 
-Do not continue unconstrained bit-field, permutation-order, or packet-width sweeps on this same proposal. The direct lookup is lossy; the natural base-29 fragment conversion and the explicit five-bit completion do not yield plaintext. Keep issue #14 open for a *new source-selected* residual channel, register, or external key dependency. Otherwise, effort is better spent on recoverable external pad/seed material than on further repairs to this underdetermined transducer.
+Do not continue unconstrained bit-field, permutation-order, packet-width, or stationary five-state GP29-permutation sweeps on these same proposals. The direct lookup is lossy; the natural base-29 fragment conversion and explicit five-bit completion do not yield plaintext; the five-phase and five-clause stationary substitution families fail their key-free collision invariants. Keep issue #14 open for a *new source-selected* evolving/non-bijective residual channel, register, or external key dependency. Otherwise, effort is better spent on recoverable external pad/seed material than on further repairs to these underdetermined transducers.
