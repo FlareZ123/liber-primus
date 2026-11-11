@@ -28,6 +28,46 @@ The three body-clause sums [1259,1031,1229] and their reversals [9521,1301,9221]
 
 **Sources:** [2013 telnet commands and original responses](https://github.com/neuroretransmit/cicada/blob/main/2013/004-first-onion/README.md), original corpus and 2014 magic squares already cited above. **Reproducer:** [2013 reversal / inner-ring original inverse SFT](../sims/cicada2013_parable_reversal_ring_sft.cjs).
 
+## Cellwise 2013 NUMBER operation: a 41×316 candidate map
+
+The original [2013 first-onion server implementation](https://raw.githubusercontent.com/cicada-solvers/neuroretransmit-cicada/main/2013/004-first-onion/server.py) defines a `number` command: a prime input whose decimal reversal is also prime returns `+`; a prime with composite reversal is factorized after reversal; a composite input is factorized directly. The server returns distinct prime-factor keys, not multiplicities.
+
+Applying that exact historical operation to every entry of the three archived 2014 OpenPuff squares gives:
+
+| Square | Cells | `+` outputs | Active cells | Factors outside GP prime weights |
+|---|---:|---:|---:|---|
+| 5×5 / 3301 | 25 | 0 | 25 | 139, 227, 313, 467 |
+| 7×7 / 1033 | 49 | 8 | 41 | **none** |
+| 5×5 / 1033 | 25 | 6 | 19 | 113 |
+
+The 7×7 is uniquely selected by this control: **all 49 entries factor entirely into the 29 Gematria Primus prime weights**. The eight `+` cells lie on its outer circumference; skipping them leaves 41 active cells.
+
+A further aggregation is required to turn a cell's one-to-three factor outputs into one direction value: map each factor prime to its GP alphabet index, sum those indices modulo 29, and leave `+` cells empty. This aggregation is a hypothesis, not part of the historical server command. It yields:
+
+```text
++ O T N U + +
+G J O J O O +
+H N R H U F O
+F W O I O W F
+O F U H R N H
++ O O J O J G
++ + U N T O +
+```
+
+The center cell 331 is prime, so the historical command factorizes its reversal 133 = 7×19. The GP indices of those factors are 3 and 7; their sum is 10 modulo 29, giving central **I**. This is a clue-level match to the earlier LP1 koan's “I is the voice of the circumference,” alongside LP2 p57's instruction to shed circumferences and find what lies within. It does not independently prove the index-sum aggregation.
+
+Reading the 41 active cells from center outward in the canonical expanding spiral (right, down, left, up; lengths 1,1,2,2,…) gives the candidate 41-symbol sequence:
+
+```text
+IORHUORHUFWNJOJOOFWNJOJOOOFHGOTNUOFHGOTNU
+```
+
+The original unsolved LP2 stream has **12,956** runes, exactly **41×316**. The 2016 signed artifact's `-----BEGIN PGP SIGNATURE-----` marker begins at byte offset **317** (so 316 is the immediately preceding zero-based offset); its signed text includes the clue “the path lies empty” and says the words are a map and their numbers are direction. The eight empty `+` cells, 41 active cells, and 316 dimension therefore form a plausible cross-round map/rectangle hypothesis. This is not a demonstrated cipher layout.
+
+The simplest direct use of the 41-symbol sequence as a repeating additive key fails in both directions: IoC remains **0.03449632** (subtract) or **0.03447547** (add), essentially the 1/29 ciphertext baseline, and the decoded previews are nonlinguistic. The 84 factor tokens happen to equal 3×28, but their shell counts are **[32,32,18,2]**, not three natural 28-token rings; do not infer a three-key scheme from that count. No unknown LP2 plaintext or cryptographic key is recovered.
+
+**Reproducer:** [cellwise NUMBER / 41×316 extension](../sims/onion7_parable19_nestedprime_sft.cjs). The 2016 signed source is [here](../resources/historical/cicada2016-4gq25-outguess.asc).
+
 ## p57 red “PARABLE” explicitly selects the 449 modulus (Agent 42, 11 November 2026)
 
 The p57 ink annotation marks the seven-rune word **PARABLE** in red at offset 0. Its GP-prime weights are **[43, 97, 11, 97, 61, 73, 67]**, summing to **449** exactly. This is the same 449 heading sum used as the modulus in the 19-word Parable body-clause reduction that yields **[361, 133, 331]**. The red word has seven runes, matching the seven words in the first body clause.
@@ -178,4 +218,6 @@ A slightly better score relative to raw ciphertext is insufficient to indicate a
 
 ## Next useful question
 
-Can the published GIMP Dissolve reconstruction predict the exact p57 crop's 574 connected components and 241/331 split? Obtain or reproduce the predicted threshold mask, run the same component extraction, and isolate the 166-cell residual. If the count and split are predicted by the software field, retire the prime/index and 7×82 interpretations; if not, inspect only the residual for source-authored structure. The existing 2D GIMP field and direct-pad work in im-results/gimp-dissolve-source-pad-gate.md and im-results/gimp-dissolve-directpad.md should be reused, not repeated. No unknown LP2 plaintext or key has been recovered.
+The strongest new cross-round structural candidate is the cellwise 2013 `NUMBER` map: 41 active GP-factor cells and a 12,956 = 41×316 unknown stream. The direct period-41 additive use is negative. Seek a **source-fixed** instruction that explains how the 41 active cells route or partition the 316 dimension; do not run generic transposition, rotation, or key sweeps. The 2016 phrase “the path lies empty” and its PGP marker offset317 are candidate selectors, not proof.
+
+Separately, can the published GIMP Dissolve reconstruction predict the exact p57 crop's 574 connected components and 241/331 split? Obtain or reproduce the predicted threshold mask, run the same component extraction, and isolate the 166-cell residual. If the count and split are predicted by the software field, retire the prime/index and 7×82 interpretations; if not, inspect only the residual for source-authored structure. The existing 2D GIMP field and direct-pad work in im-results/gimp-dissolve-source-pad-gate.md and im-results/gimp-dissolve-directpad.md should be reused, not repeated. No unknown LP2 plaintext or key has been recovered.

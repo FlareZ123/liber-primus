@@ -12,3 +12,5 @@ jobs:
           node-version: "22"
       - name: Verify source-native GP prime sums and original HTML values
         run: node sims/parable_449_onion7_header_modulo_sft.cjs
+      - name: Verify cellwise 2013 NUMBER factor map and 41x316 candidate
+        run: node sims/onion7_parable19_nestedprime_sft.cjs

@@ -1,3 +1,13 @@
+## Current checkpoint: 2026-11-11T06:33:21.115Z — cellwise 2013 NUMBER / 41×316 structural lead
+
+- Applied the exact documented 2013 first-onion `number` command to all cells of the three archived 2014 OpenPuff squares. Only the 7×7 / 1033 square factors entirely into GP prime weights (all 49 cells); its command outputs are 8 `+` (emirps) and 41 factorized cells. The 5×5 controls have outside-GP factors [139,227,313,467] and [113].
+- Hypothesis: map each returned prime factor to its GP index and sum indices mod29 per cell; `+` remains empty. The resulting matrix is `+OTNU++ / GJOJOO+ / HNRHUFO / FWOIOWF / OFUHRNH / +OOJ OJG / ++UNTO+` (see report for exact layout). Center331 reverses to133=7×19; GP indices3+7=10 => central **I**, echoing the LP1 circumference koan. This index-sum aggregation is not specified by the server command.
+- Center-out spiral, skipping plus cells, gives a 41-symbol sequence `IORHUORHUFWNJOJOOFWNJOJOOOFHGOTNUOFHGOTNU`. Unknown LP2 stream length is 12,956 = 41×316. The 2016 signed artifact's PGP signature marker begins at offset317 (316 is the preceding zero-based offset); its message says “the path lies empty” and that numbers are direction. This is a plausible cross-round map/rectangle, not a proven cipher.
+- Direct period-41 additive use fails both signs (IoC 0.03449632 / 0.03447547, near the raw 0.03447840 baseline). The 84 factor tokens =3×28 is noted, but shell counts [32,32,18,2] do not give three natural 28-token rings. Do not overinterpret.
+- Updated `sims/onion7_parable19_nestedprime_sft.cjs`, its report, `results/README.md`, and the related manual workflow together; sent the structural lead to Agent45 and Agent3. Next action: seek an independent source-fixed route through the 41 active cells and 316 dimension; avoid generic key/transposition sweeps.
+
+---
+
 ## Current checkpoint: 2026-11-11T05:58:07.777Z — 19×19 center-outward spiral negative
 
 - Following the p57 “LIKE THE INSTAR TUNNELING TO THE SURFACE” clue, tested exactly one natural alternative to the previously reported row-major 19×19 arrangement of the secondary 2013 missing-prime/gap sequence: place the first entry at center and fill outward clockwise (right/down/left/up, lengths 1,1,2,2,…). The 19×19 ring sizes center-out are [1,8,16,24,32,40,48,56,64,72].
