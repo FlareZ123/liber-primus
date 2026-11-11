@@ -116,7 +116,7 @@ The quotient ring decomposes as
 \mathbb F_{29}[X]/(F)\cong\mathbb F_{29^2}\times
 \mathbb F_{29}[\epsilon]/(\epsilon^2).
 \]
-The class of X has order 840 in the first component and 203=7×29 in the repeated-root component, hence exact order **24,360** modulo F. Thus F divides \(X^{24360}-1\): it is a generator polynomial for a repeated-root cyclic code of length 24,360. This is a mathematical cyclic closure of the factor pair, **not** evidence that the 256-cell manuscript table is a 24,360-symbol stream or that a solver should append 24,104 zeros.
+The class of X has order 840 in the first component and 203=7×29 in the repeated-root component, hence exact order **24,360** modulo F. Thus F divides \\(X^{24360}-1\\): it is a generator polynomial for a repeated-root cyclic code of length 24,360. The [256,252,3] residue code above is exactly the shortening of that long cyclic code to the first 256 coordinates (the remaining 24,104 coordinates are fixed zero in this embedding). This is a mathematical cyclic closure of the factor pair, **not** evidence that the manuscript specifies a 24,360-symbol stream or that a solver should append 24,104 zeros.
 
 At length 256, \(X^{256}\bmod F=3+13X+3X^2+19X^3\), which is nonconstant. Therefore F cannot divide \(X^{256}-\lambda\) for any \(\lambda\in\mathbb F_{29}\); the code is not cyclic or constacyclic at the table's length. The repeated factor \((X-24)^2\) gives the same exclusion because 29 does not divide 256 and \(X^{256}-\lambda\) is squarefree.
 
