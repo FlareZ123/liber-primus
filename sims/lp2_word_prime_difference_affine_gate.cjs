@@ -165,7 +165,7 @@ assert.deepEqual(results.map((r) => r.originalHits["8"].matched), [0, 0, 0, 0]);
 assert.deepEqual(results.map((r) => r.originalHits["7"].matched), [2, 1, 2, 2]);
 assert.deepEqual(results.map((r) => r.originalHits["6"].matched), [42, 40, 44, 52]);
 assert.deepEqual(results.map((r) => r.nativeControlHitsAtLength8
-  .map((x) => x.matched),
+  .map((x) => x.matched)),
   [[1021,5955,2131],[1021,5955,2132],
    [1171,7150,2581],[1171,7150,2582]]);
 console.log(JSON.stringify({
