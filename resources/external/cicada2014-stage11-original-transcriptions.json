@@ -1,0 +1,24 @@
+{
+  "schema": "cicada-2014-early-stage11-3-page-source-v1",
+  "repository": "micheloosterhof/cicada-2014",
+  "first_committed_ref": "19d68fbb9cff1c06d52cc0add30285199c936282",
+  "source_github_commit_date": "2014-05-11T20:41:01Z",
+  "notes": "Verbatim 2014 solver source page 49/50/51 text; upper raw tokens reproduce all 256 later archived decimal values; 50.txt numeric lower block has unpropagated corrections.",
+  "files": [
+    {
+      "original_path": "stage11/ky2khlqdf7qdznac.onion/49.txt",
+      "git_blob_sha1": "1ae432f17099e75a8a9f5ab84040a37645632517",
+      "raw_text": "3N 3p 2l 36 1b 3v 26 33\n1W 49 2a 3g 47 04 33 3W\n21 3M 0F 0X 1g 2H 0x 1R\n1n 3i 2r 0P 2U 16 2L 2D\n1t 1s 3H 0d 0s 1K 2D 05\n1K 1O 0S 1D 3o 1L 3J 1G\n4D 0G 0L 0x 1Q 2p 2a 1K\n4E 1w 2Q 19 1k 3G 24 0p\n22 4F 0P 3C 3J 1D 2n 1m\n2i 1J 3P 2v 1s 2O 0k 1M\n\n203 231 167 186 97 237 126 183\n92 249 156 222 247 4 183 212\n121 202 15 33 102 137 59 87\n109 224 173 25 150 66 141 133\n115 114 197 39 54 80 133 5\n80 84 28 73 230 81 199 76\n253 16 21 59 86 171 156 80\n254 118 146 69 106 196 124 51\n122 255 25 192 199 73 169 108\n164 79 205 177 114 144 46 82\n\n"
+    },
+    {
+      "original_path": "stage11/ky2khlqdf7qdznac.onion/50.txt",
+      "git_blob_sha1": "34cbb77d43a67679e989a466904de49622d7f480",
+      "raw_text": "2M 0w 3L 3D 2r 0S 1p 15\n3V 3e 3I 0n 3u 1O 0u 0Z\n3g 2U 1C 0Y 1N 3n 0W 3Q\n22 13 0V 3c 0E 34 0W 1t\n1D 2N 3H 47 0s 2p 0Z 34\n0g 3v 1Q 0s 0D 0K 2h 3D\n3L 2x 1Q 20 2n 2L 1C 2p\n0A 29 3r 0D 45 0k 2e 2W\n25 3U 1W 2r 46 2s 2X 39\n3p 0X 0E 1q 0q 4B 49 48\n3r 3b 3C 1M 1j 0l 4A 48\n40 3m 3E 0s 2s 1v 3T 0i\n3t 2B 2k 2t 2O 0e 2L 1L\n\n142 58 201 193 173 28 111 65\n211 220 198 49 236 84 56 35\n222 150 72 34 83 229 32 206\n122 63 31 218 14 184 32 115\n73 143 197 247 54 171 35 184\n42 237 86 54 13 20 163 193\n201 179 86 120 169 141 72 171\n10 129 233 13 245 46 160 152\n125 210 92 173 246 174 153 189\n231 33 14 112 52 251 249 248\n233 217 192 82 105 18 250 248     <-------CORRECTED. Previously 233 217 192 82 105 47 250 248\n240 228 254 54 148 117 209 44     <-------CORRECTED. Previously 240 228 194 54 174 117 209 44\n235 131 166 175 144 40 141 81\n"
+    },
+    {
+      "original_path": "stage11/ky2khlqdf7qdznac.onion/51.txt",
+      "git_blob_sha1": "6e9fa506375442c9126a275ef845a909449102a3",
+      "raw_text": "28 2a 0J 1L 0c 3C 2o 0X\n00 2Z 2d 1T 2u 1t 1j 0L\n1o 1E 3T 18 3E 1G 27 0L\n0v 2t 06 11 1A 2U 4B 1O\n2M 3d 2S 0x 0w 0q 0p 2V\n18 0q 1D 49 2O 00 1v 2t\n1k 3s 3G 21 3w 0W 29 2r\n2O 2L 0g 3Y 0M 0u 3i 3C\n1r 2c 2q 3o 30 0a 39 1K\n\n128 156 19 81 38 192 170 33\n0 155 159 89 176 115 105 21\n110 74 209 68 194 76 127 21\n57 175 6 61 70 150 251 5\n142 219 148 59 58 52 51 151\n68 52 73 249 144 0 117 175\n106 234 196 121 238 58 129 173\n144 141 42 214 22 56 224 192\n113 158 172 230 180 36 189 80\n"
+    }
+  ]
+}
