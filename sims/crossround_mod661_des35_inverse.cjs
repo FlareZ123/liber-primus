@@ -18,7 +18,7 @@
  *     DES keys, one per source-delimited 13-dot fragment.
  *
  * This is a hypothesis, not an established Cicada instruction. The test
- * evaluates 32 finite DES/encoding/clock variants on original ciphertext,
+ * evaluates 64 finite DES/encoding/clock variants on original ciphertext,
  * with a planted source-native positive control.
  */
 const assert = require('node:assert/strict');
@@ -238,7 +238,7 @@ for (const stream of ['ctr', 'ofb'])
         for (const reducer of ['mod', 'scaled'])
           for (const sign of [-1, 1])
             modes.push({stream, salt, reverse, format, reducer, sign});
-assert.equal(modes.length, 32);
+assert.equal(modes.length, 64);
 
 const gpTrain = fs.readFileSync(path.join(root, 'resources/control/shakespeare_first300k.txt'), 'utf8');
 const english = train(gpTrain.slice(0, 190000));
