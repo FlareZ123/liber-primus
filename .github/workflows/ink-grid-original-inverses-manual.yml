@@ -16,6 +16,7 @@ on:
           - onion7-133
           - josephus-aes
           - event-poly
+          - ink-hg-black
           - terminal-crc
           - terminal-rs841
           - dh-elgamal-allsecret
@@ -50,6 +51,11 @@ jobs:
       - name: Original event-field P/P-prime trace/norm projection inverse
         if: github.event.inputs.probe == 'event-poly'
         run: node sims/gf29s2_event_poly_output_original_sft.cjs
+      - name: Black-anchored ink H/G source register and red32-length table inverse
+        if: github.event.inputs.probe == 'ink-hg-black'
+        run: |
+          node sims/ink256_hg_same_codeword_gate_sft.cjs
+          node sims/lp2_red32_length_aes_table_inverse_sft.cjs
       - name: Test triad quartic, 256-ink and terminal 19-word source gate
         if: github.event.inputs.probe == 'terminal-crc'
         run: node sims/terminal_quartic_word19_crc_sft.cjs
