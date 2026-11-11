@@ -96,6 +96,23 @@ const folded = terminal.map((v, i) =>
 const half = folded.slice(0, 21);
 assert.deepEqual(half.slice(9, 12), encodeWord("END"));
 
+// The original source addresses 42 rune words and one rune-free table cell.
+// Keep the 43 signed-message positions, leaving the table address blank.
+// Exactly one of the 21 mirrored pairs is undefined; the centered END is
+// fully determined by six independent rune-bearing source word addresses.
+const noTableTerminals = sourceRows.map(row =>
+  row.runeWord ? row.glyphIndex : null);
+assert.deepEqual(noTableTerminals.flatMap((v, i) => v === null ? [i] : []),
+  [3]);
+const sparseFold = Array.from({ length: 21 }, (_, i) => {
+  const lhs = noTableTerminals[i], rhs = noTableTerminals[42 - i];
+  return lhs === null || rhs === null ? null : mod(lhs + rhs);
+});
+assert.equal(sparseFold.filter(v => v === null).length, 1);
+assert.equal(sparseFold[3], null);
+assert.deepEqual(sparseFold.slice(9, 12), encodeWord("END"));
+
+
 /**
  * Count exact favourable ordered samples of six positions from a fixed
  * multiset, constraining three symmetric sums in GF29. No Monte Carlo noise.
@@ -134,6 +151,10 @@ function exactPairProbability(multiset, targets) {
 const matchedNull = exactPairProbability(terminal, encodeWord("END"));
 assert.deepEqual([matchedNull.numerator, matchedNull.denominator],
   ["148000", "4389446880"]);
+const noTableNull = exactPairProbability(
+  noTableTerminals.filter(v => v !== null), encodeWord("END"));
+assert.deepEqual([noTableNull.numerator, noTableNull.denominator],
+  ["135192", "3776965920"]);
 
 // The p55 one-rune incoming carry has no interior; strip first/last rune from
 // each complete printed segment, keeping page/word carries correctly.
@@ -206,6 +227,14 @@ console.log(JSON.stringify({
     [[9,33],[10,32],[11,31]].map(([i,j]) =>
       [sourceRows[i].word, sourceRows[j].word]) },
   permutationNull: matchedNull,
+  tableFreeCenteredEND: {
+    missingSourceWord: "lies", missingSourcePosition: 3,
+    knownRuneDestinations: 42,
+    knownFoldPairs: 20,
+    sparseFoldGP: sparseFold.map(v => v === null ? "[blank]" : corpus.translit[v]).join(""),
+    centeredEND: gp(sparseFold.slice(9, 12)),
+    exactPermutationProbability: noTableNull
+  },
   original43RuneP55Interior: gp(interior),
   originalInput,
   p50Interval43Xor: byteXor,
