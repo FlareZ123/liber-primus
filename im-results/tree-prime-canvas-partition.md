@@ -393,7 +393,7 @@ The 22-byte sequence was tested as a repeating GP29 Vigenère key under both sig
 
 **Decision:** retain the 22 offsets and byte sequence as a reproducible navigation observation, but do not promote them to a key or expand transformation searches. No held-out packet prediction or LP2 plaintext resulted; a new original instruction is still needed to turn the navigation chain into an executable decipherment.
 
-A separate use of this same p32-derived M28 as a zero-based word-local rotor, seeded by the p05 MOBIUS sum 226→23, has also been tested under both fixed-point/infinity assignments and both directions; all four variants are worse than raw ciphertext under the frozen GP-trigram model, while planted controls recover exactly. See the [consolidated Möbius rotor report](lp1-lp2-fibonacci-mobius-conjugacy.md#p32-derived-m28-word-local-rotor-source-constrained-negative) and [reproducer](../sims/lp1_mobius_full28_word_rotor_sft.cjs).
+A separate use of this same p32-derived M28 as a zero-based word-local rotor, seeded by the p05 MOBIUS sum 226→23, has also been tested under both fixed-point/infinity assignments, both directions, and both step sizes (1 and conjugacy-derived 9); all eight variants are worse than raw ciphertext under the frozen GP-trigram model, while planted controls recover exactly. See the [consolidated Möbius rotor report](lp1-lp2-fibonacci-mobius-conjugacy.md#p32-derived-m28-word-local-rotor-source-constrained-negative) and [reproducer](../sims/lp1_mobius_full28_word_rotor_sft.cjs).
 
 ## Original 2016 tree direction-field discriminators
 

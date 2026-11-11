@@ -62,12 +62,32 @@ const M16Inv = matInv(M16);
 // p32 inclusive inner-ring side sums [14,28,25,20] define this distinct PGL2 map.
 const M28 = [[14, 28], [25, 20]];
 const M28Inv = matInv(M28);
+const M28Pow9 = matPow(M28, 9);
+const M28Pow9Inv = matInv(M28Pow9);
 assert.equal(projectiveOrder(M05), 28);
 assert.equal(projectiveOrder(M16), 14);
 assert.equal(projectiveOrder(M28), 28);
 const m28FixedPoints = Array.from({ length: 29 }, (_, x) => x)
   .filter(x => applyPGL2(M28, x) === x);
 assert.deepEqual(m28FixedPoints, [20, 25]);
+
+function projectiveScaleTo(A, B) {
+  for (let k = 1; k < 29; k++) if (A.flat().every((v, i) => mod(v * k) === B.flat()[i])) return k;
+  return null;
+}
+const H20to20 = [[12, 8], [0, 1]];
+const H25to20 = [[0, 19], [16, 1]];
+assert.equal(applyPGL2(H20to20, 1), 20);
+assert.equal(applyPGL2(H20to20, 28), 25);
+assert.equal(applyPGL2(H20to20, 23), 23);
+assert.equal(applyPGL2(H25to20, 1), 25);
+assert.equal(applyPGL2(H25to20, 28), 20);
+assert.equal(applyPGL2(H25to20, 23), 23);
+const conjugacyScalars = {
+  M05_to_M28_9: projectiveScaleTo(matMul(matMul(H20to20, M05), matInv(H20to20)), M28Pow9),
+  M05_inverse_to_M28_9: projectiveScaleTo(matMul(matMul(H25to20, matInv(M05)), matInv(H25to20)), M28Pow9)
+};
+assert.deepEqual(conjugacyScalars, { M05_to_M28_9: 4, M05_inverse_to_M28_9: 21 });
 const M05Power6 = matPow(M05, 6);
 const scalar = mod(M16[0][0] * invMod(M05Power6[0][0]));
 assert.deepEqual(M16, M05Power6.map(row => row.map(x => mod(scalar * x))));
@@ -155,7 +175,9 @@ const rotorSpecs = [
 ];
 const m28RotorSpecs = m28MapChoices.flatMap(choice => [
   { name: `M28^j (${choice.label})`, matrix: M28, inverse: M28Inv, period: 28, map: choice },
-  { name: `M28^-j (${choice.label})`, matrix: M28Inv, inverse: M28, period: 28, map: choice }
+  { name: `M28^-j (${choice.label})`, matrix: M28Inv, inverse: M28, period: 28, map: choice },
+  { name: `M28^9j (${choice.label})`, matrix: M28Pow9, inverse: M28Pow9Inv, period: 28, map: choice },
+  { name: `M28^-9j (${choice.label})`, matrix: M28Pow9Inv, inverse: M28Pow9, period: 28, map: choice }
 ]);
 
 function applyWordRotor(words, matrix, period) {
@@ -283,7 +305,7 @@ const m28PlantChecks = m28RotorSpecs.map(spec => {
 
 console.log(JSON.stringify({
   source: {
-    M05, M16, M28, M28Inv, seed,
+    M05, M16, M28, M28Inv, M28Pow9, M28Pow9Inv, H20to20, H25to20, conjugacyScalars, seed,
     projectiveOrders: { M05: projectiveOrder(M05), M16: projectiveOrder(M16), M28: projectiveOrder(M28) },
     m28FixedPoints,
     m28CyclePoints: m28CyclePoints.map(x => x === null ? 'infinity' : x),
@@ -306,5 +328,5 @@ console.log(JSON.stringify({
   m28Models,
   positiveControls: plantChecks,
   m28PositiveControls: m28PlantChecks,
-  verdict: 'The source-seeded M05 and p32-derived M28 28-cycles, plus the M16 six-step controls, remain ciphertext-like as zero-based word-local rotors; all planted controls invert exactly, but no LP2 plaintext or authentic key is recovered.'
+  verdict: 'The source-seeded M05 and p32-derived M28^j/M28^9j 28-cycle rotors, plus the M16 six-step controls, remain ciphertext-like as zero-based word-local rotors; all planted controls invert exactly, but no LP2 plaintext or authentic key is recovered.'
 }, null, 2));

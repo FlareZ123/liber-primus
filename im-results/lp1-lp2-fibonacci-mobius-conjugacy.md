@@ -54,9 +54,16 @@ The decoder additionally yields **100 AE** plaintext indices, while the held-out
 
 **Executable source and passed run:** [`sims/lp1_lp2_fibonacci_mobius_bridge_sft.cjs`](../sims/lp1_lp2_fibonacci_mobius_bridge_sft.cjs) and [manual GitHub Actions run 42997114545](https://github.com/FlareZ123/liber-primus/actions/runs/42997114545), Node.js 22. The existing [manual LP1-P40 workflow](../.github/workflows/lp1-p40-cayley-source.yml) now also invokes this SFT. The project's no-per-commit-workflow restriction is preserved.
 
-## p32-derived M28 word-local rotor (source-constrained negative)
+## p32-derived M28 word-local rotor and seed-preserving conjugacy (source-constrained negative)
 
-The p32 inclusive inner-ring side sums give the projective matrix **M28 = [[14,28],[25,20]]**, of order **28** with fixed points **20 and 25**. The p05 **MOBIUS** cell supplies the source-visible seed **226 mod 29 = 23**. The resulting M28 orbit from 23 contains all 28 nonfixed projective points, including infinity. To map the 29 GP symbols onto that orbit plus one fixed symbol, both possible fixed-point assignments were tested: **20→infinity / 25 fixed** and **25→infinity / 20 fixed**. For each assignment, both M28^j and M28^−j were applied at the zero-based rune offset j within each canonical printed word, as motivated by the signed 2016 instruction that words are the map. No phase or key was fitted.
+The p32 inclusive inner-ring side sums give **M28 = [[14,28],[25,20]]**, of projective order **28** with fixed points **20 and 25**. The p05 **MOBIUS** cell supplies seed **226 mod 29 = 23**. The M28 orbit from 23 contains all 28 nonfixed projective points, including infinity. Both possible assignments of a fixed rune to projective infinity were tested: **20→infinity / 25 fixed** and **25→infinity / 20 fixed**.
+
+There is also a precise cross-round conjugacy, not just a shared order. The unique seed-preserving maps matching the p05 fixed points (1,28) to the p32 fixed points (20,25) are:
+
+- **H20→20 = [[12,8],[0,1]]**, mapping 1→20, 28→25, 23→23; projectively, H M05 H⁻¹ = **M28⁹** (matrix representatives differ by scalar 4).
+- **H25→20 = [[0,19],[16,1]]**, mapping 1→25, 28→20, 23→23; projectively, H M05⁻¹ H⁻¹ = **M28⁹** (representatives differ by scalar 21).
+
+Thus exponent **9** is fixed by the cross-round fixed-point/seed correspondence; it is not a fitted phase. Both the direct M28 step and the conjugacy-derived 9-step power were tested. For each fixed-point assignment, both directions were applied at the zero-based rune offset j within each canonical printed word, as motivated by the signed 2016 instruction that words are the map. No phase or key was fitted.
 
 | M28 word-local model | IoC | top-12 mass | GP trigram | within-word GP trigram |
 |---|---:|---:|---:|---:|
@@ -64,10 +71,14 @@ The p32 inclusive inner-ring side sums give the projective matrix **M28 = [[14,2
 | M28^−j, 20→∞ / 25 fixed | 0.03447231 | 0.43037975 | −14.05427 | −14.03782 |
 | M28^j, 25→∞ / 20 fixed | 0.03447071 | 0.42883606 | −14.03909 | −14.03314 |
 | M28^−j, 25→∞ / 20 fixed | 0.03447349 | 0.43107441 | −14.05428 | −14.02947 |
+| M28^9j, 20→∞ / 25 fixed | 0.03448554 | 0.43146033 | −14.07662 | −14.05633 |
+| M28^−9j, 20→∞ / 25 fixed | 0.03445453 | 0.42814140 | −14.03638 | −14.06186 |
+| M28^9j, 25→∞ / 20 fixed | 0.03448664 | 0.43184625 | −14.06118 | −14.04235 |
+| M28^−9j, 25→∞ / 20 fixed | 0.03446438 | 0.42953072 | −14.03020 | −14.04817 |
 | Raw LP2 ciphertext | 0.03447840 | 0.42976227 | −14.00447 | −13.99008 |
 | Native Emerson GP control | 0.06297942 | 0.77987033 | −7.71672 | −7.45708 |
 
-All four inverses re-encrypt the original **12,956/12,956** runes; all four independently planted 12,956-rune English controls recover exactly. Every M28 rotor score is worse than raw ciphertext, and the previews are not coherent language. The first rune of each word is necessarily unchanged because the rotor starts at power zero. **Decision:** retire this direct word-local M28 rotor under the source-fixed within-word clock. Do not extend it with fitted phases, arbitrary conjugacies or new fixed-point assignments.
+All eight inverses re-encrypt the original **12,956/12,956** runes; all eight independently planted 12,956-rune English controls recover exactly. Every M28 rotor score is worse than raw ciphertext, and the previews are not coherent language. The first rune of each word is necessarily unchanged because the rotor starts at power zero. **Decision:** retire the direct and conjugacy-derived word-local M28 rotors under the source-fixed within-word clock. Do not extend them with fitted phases, arbitrary conjugacies or new fixed-point assignments.
 
 Reproducer: [word-local Möbius rotor SFT](../sims/lp1_mobius_full28_word_rotor_sft.cjs); [manual/push workflow](../.github/workflows/lp1-mobius-full28-word-rotor-manual.yml).
 
@@ -96,6 +107,6 @@ The known solved p57 plaintext (95 GP runes; IoC **0.062709966**) provides a pla
 
 ## Causal next decision
 
-The p32-derived M28 28-cycle has now also been tested as a zero-based word-local rotor, using seed 23 from the MOBIUS prime sum, both fixed-point/infinity assignments, and both directions; all four variants score below raw ciphertext, with exact planted controls. Together with the p05 M05 and p16 M16 word-local tests, this closes the direct source-seeded projective word-rotor family tested here. An authentic continuation must add **an independently source-selected input/output representation or state/key operation** that makes the Fibonacci/Möbius conjugacy predict unknown LP2 plaintext. A proposal should identify the original artifact that chooses `S`, the PGL2 points, page reset, and direction before testing ciphertext. Do not escalate into an unrestricted matrix basis/phase search: the source mathematics alone admits infinitely many natural-looking but equally reversible encoders. The exact identity can be reused as a cheap gate if such a selector appears.
+The p32-derived M28^j and conjugacy-derived M28^9j 28-cycles have now been tested as zero-based word-local rotors, using seed 23 from the MOBIUS prime sum, both fixed-point/infinity assignments, and both directions; all eight variants score below raw ciphertext, with exact planted controls. Together with the p05 M05 and p16 M16 word-local tests, this closes the direct source-seeded projective word-rotor family tested here. An authentic continuation must add **an independently source-selected input/output representation or state/key operation** that makes the Fibonacci/Möbius conjugacy predict unknown LP2 plaintext. A proposal should identify the original artifact that chooses `S`, the PGL2 points, page reset, and direction before testing ciphertext. Do not escalate into an unrestricted matrix basis/phase search: the source mathematics alone admits infinitely many natural-looking but equally reversible encoders. The exact identity can be reused as a cheap gate if such a selector appears.
 
 **Outcome:** exact new source relation and a decisive negative original-input test; zero unknown plaintext, historic key or solved destination.
