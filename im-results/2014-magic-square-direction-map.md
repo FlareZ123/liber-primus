@@ -194,53 +194,60 @@ The T6 relation itself remains elevated against this conditional null (80 observ
 
 **Decision:** retire the 2014 direction graph as an explanation for the sparse T6 event placement. This does not invalidate the separate 199 → empty fragment 6 / Ac fragment 7 human-path hypothesis, the 2014 onion timing clue, or the retrospective LP1 MOBIUS/p40 Cayley identity. None of those currently specifies an independent mask for the 80 positions. Do not broaden this result into free rotations, alternative graph orientations, or language-score searches.
 
-## 5×5 compass field selector over the 225 red runes — bounded negative
+## 5×5 bearing selector over 25 consecutive red-rune blocks — bounded negative
 
-A separate, human-motivated transfer was tested: treat the 2014 5×5 square values as compass bearings (0° north, clockwise), partition the original **225 red runes** into a row-major **15×15** grid, then use each bearing to select one perimeter rune from the corresponding row-major **3×3** block. Compare the 25 selected runes with the same cell's phi(n) mod 29 target label. The compass direction order is fixed as N, NE, E, SE, S, SW, W, NW; no rotation, phase, block reordering, or fitted choice is used.
+The correct source framing is **25 consecutive chunks of nine red runes**, each chunk read as a row-major 3×3 block. The 2014 5×5 square supplies one direction for each block; that direction selects one of the eight perimeter positions. The target is the corresponding cell's phi(n) mod 29 label. The original 225 red runes are concatenated in physical/canonical page order, then red-span start order, with no omissions or reordering.
 
-The authentic origin selects:
+The fixed direction indices are:
 ```
-EO B F X O T U U G I L P H I H EO F EO X Y M OE J A D
+6 3 0 3 3
+0 4 3 7 0
+5 5 2 5 5
+0 7 3 4 0
+3 3 0 3 6
 ```
-Only **2/25** selected runes equal their corresponding target labels (cells 1 and 4).
+The target phi(n) mod 29 labels are:
+```
+12 15 10 14 5
+4 24 19 12 6
+25 23 14 23 25
+6 12 19 24 4
+5 14 10 15 12
+```
 
-| Cell | 15×15 coordinate | Red index | Source page:offset | Selected | Target |
-|---:|---:|---:|---:|---|---|
-| 1 | (1,0) | 15 | 3:2 | EO | EO |
-| 2 | (2,5) | 35 | 6:74 | B | S |
-| 3 | (0,7) | 7 | 0:7 | F | I |
-| 4 | (2,11) | 41 | 6:80 | X | X |
-| 5 | (2,14) | 44 | 7:195 | O | C |
-| 6 | (3,1) | 46 | 7:197 | T | R |
-| 7 | (5,4) | 79 | 15:10 | U | A |
-| 8 | (5,8) | 83 | 15:14 | U | M |
-| 9 | (3,9) | 54 | 7:205 | G | EO |
-| 10 | (3,13) | 58 | 8:1 | I | G |
-| 11 | (8,0) | 120 | 27:15 | L | AE |
-| 12 | (8,3) | 123 | 27:18 | P | D |
-| 13 | (7,8) | 113 | 27:8 | H | X |
-| 14 | (8,9) | 129 | 33:5 | I | D |
-| 15 | (8,12) | 132 | 33:8 | H | AE |
-| 16 | (9,1) | 136 | 33:93 | EO | G |
-| 17 | (9,3) | 138 | 33:95 | F | EO |
-| 18 | (11,8) | 173 | 53:148 | EO | M |
-| 19 | (11,10) | 175 | 53:150 | X | A |
-| 20 | (9,13) | 148 | 40:3 | Y | R |
-| 21 | (14,2) | 212 | 54:8 | M | C |
-| 22 | (14,5) | 215 | 56:2 | OE | X |
-| 23 | (12,7) | 187 | 53:162 | J | I |
-| 24 | (14,11) | 221 | 57:3 | A | S |
-| 25 | (13,12) | 207 | 54:3 | D | EO |
+Two angle conventions must not be conflated. The 2014 direction-map analysis uses the mathematical convention (0° east, counter-clockwise); a literal compass convention is 0° north, clockwise. Their 3×3 perimeter-position maps, in row-major cell indices, are:
+- Mathematical: [5, 2, 1, 0, 3, 6, 7, 8].
+- Compass: [1, 2, 5, 8, 7, 6, 3, 0].
 
-The source-preserving null retains the complete red-rune order and the 15×15 layout, cycling only the starting red-stream offset through all 225 positions while keeping the direction and target matrices fixed. Its match-count distribution is **0:71, 1:86, 2:52, 3:13, 4:3**. The authentic offset 0 has two matches; **68/225** offsets have at least two (empirical p=0.3022), placing it 17th from the bottom. The uniform-alphabet expectation is only **25/29 = 0.862** matches, but the authentic result is not exceptional relative to the order-preserving null.
+Under the mathematical convention, the selected sequence is:
+```
+F Y T U M W X M NG T G M S P H OE H T J L A O N D L
+```
+It matches the target only at **block 8**, where the NW perimeter cell is M. Under the literal compass convention, the selected sequence is:
+```
+O NG TH B O T U L M C G M H P H EO S TH IA I NG O C OE A
+```
+It has **0/25** matches.
 
-**Decision:** the 25-block compass selector does not recover the phi(n) mod 29 label matrix and does not yield a readable 25-rune plaintext. Retire this exact red225/3×3 transfer; do not expand it into free grid rotations, block phases, or alternative direction conventions. This does not test other ways the red channel might carry key material.
+The block-capacity check is decisive: only three blocks contain their corresponding target anywhere on the eight-cell perimeter, and each contains exactly one such occurrence.
+
+| Block | Target | Possible perimeter position (0-based) | Original source coordinate |
+|---:|---|---:|---|
+| 4 | X | 7 | p6:73 |
+| 8 | M | 0 | p8:6 |
+| 14 | D | 7 | p33:0 |
+
+Thus no direction assignment can exceed **3/25** exact matches. With equiprobable directions, the expected count is **0.375**, P(matches ≥ 2) = **0.04297**, and P(matches ≥ 3) = **0.00195**. The fixed mathematical selector obtains one match; the fixed compass selector obtains none.
+
+An order-preserving phase null cycles the starting offset of the original 225-rune stream through all 225 positions, keeping the 25 consecutive blocks, direction matrix, and target matrix fixed. For the mathematical convention the distribution is **0:70, 1:90, 2:47, 3:15, 4:3**. The authentic origin has one match; **155/225** offsets have at least one (empirical p = **0.6889**), so the single match is not exceptional. For the compass convention the distribution is **0:75, 1:84, 2:46, 3:15, 4:5**; the authentic origin has zero.
+
+**Decision:** this exact 25-block selector does not recover the phi(n) mod 29 target matrix or a readable 25-rune plaintext. The mathematical 1/25 result is the same NW hit identified in the source-capacity analysis; it is not evidence of a key. Retire this selector rather than expanding it into free phases, rotations, or alternative block layouts.
 
 Reproducer:
 ```sh
-node sims/2014_red225_compass_selector_sft.cjs
+node sims/2014_red225_bearing_block_selector_sft.cjs
 ```
-The script prints every selected original page/offset, target label, match, and the complete 225-offset null distribution.
+The script prints the full selected coordinates for both angle conventions, the three-block capacity bound, and both 225-offset null distributions.
 
 ## Historical interpretation and limits
 
@@ -258,7 +265,7 @@ Run from the repository root:
 node sims/2014_magic_square_direction_map.cjs
 ```
 
-The first script checks the 1033 magic square, recomputes the `φ(n) mod29` rune labels and eight-direction graph, derives both natural table-column interpretations, reconstructs the 32 red-rune fragments from the original ink annotations, tests the three prime-entry residue pairs, and reproduces the exact conditional and seeded permutation nulls. It also tests the full 17-edge graph and six-cycle against all original word-local lag-six positions with 2,000 endpoint/multiset/doublet-preserving word shuffles. The second script freezes the 15×15 red-rune/3×3-block compass selector and its order-preserving 225-offset null.
+The first script checks the 1033 magic square, recomputes the `φ(n) mod29` rune labels and eight-direction graph, derives both natural table-column interpretations, reconstructs the 32 red-rune fragments from the original ink annotations, tests the three prime-entry residue pairs, and reproduces the exact conditional and seeded permutation nulls. It also tests the full 17-edge graph and six-cycle against all original word-local lag-six positions with 2,000 endpoint/multiset/doublet-preserving word shuffles. The second script freezes the 25-consecutive-nine-rune bearing selector, reports both mathematical and compass conventions, and reproduces the 225-offset order-preserving nulls.
 
 ## Source links
 
