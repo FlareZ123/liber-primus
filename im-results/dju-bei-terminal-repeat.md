@@ -13,6 +13,28 @@ I independently checked the sequence against this repository's `resources/liber-
 
 The combined archive has 17 LP1 pages before the 58 LP2 pages, so combined-image index = LP2 page + 17. Do not confuse combined image 56 with LP2 page 56: LP2 page 56 is combined image 73.
 
+## New source-only prime-mean and solved-word address reading (Agent 15, 11 November 2026)
+
+The exact repeated pair is also the **only duplicated adjacent complete rune-word pair** among all **2,895 adjacent pairs** of the 2,896 canonical whole LP2 ciphertext words. The two words each have exactly three GP runes and occur exactly twice individually, together on p27 and again as the final two words on p55. This observation preserves printed boundaries; it is more constrained than a duplicate six-rune window chosen from the continuous ciphertext.
+
+The existing GP prime weights give the same values at both locations:
+
+| Original complete word | GP prime sum | Mean of its three rune primes | GP symbol for that mean |
+| --- | ---: | ---: | --- |
+| `DJU` | 129 | **43**, prime | **P** |
+| `BEI` | 159 | **53**, prime | **S** |
+| Both | **288** | — | — |
+
+Thus one simple *hypothesized* compression of each three-rune word, **mean of GP prime weights followed by its inverse GP prime-to-rune map**, yields **P S**. At the end of a book, the familiar reading “P.S.” is possible, but the manuscript does not authorize this compression or that expansion. An independent scan of **all 184** original adjacent **3+3-rune** pairs finds just **four occurrences** with both means in the 29-symbol GP prime alphabet: `S H` at canonical word 315, `P S` at word 1,462, `P P` at word 1,654 and `P S` again at final word 2,894. The second `P S` is a literal repeat of the first six glyphs, so the duplicate provides **one** candidate message rather than two independent demonstrations of a cipher.
+
+Separately, the combined prime sum **129+159=288** gives under the *existing*, independently formulated signed-2016 word-as-map rule `page = N mod 58`, `word = floor(N/58)`, exactly **physical p56, zero-based word4 = DEEP**, previously and independently solved. This is a new cross-link to the already established **THE DEEP END** solved-endpoint reading from p55. Neither the original signed message nor the pair itself says to *add* consecutive word sums before applying the otherwise single-word address rule. The arithmetic is deterministic and source-grounded, while the choice of grouping/averaging remains conjectural. It produces **no new unknown plaintext or decryption key**.
+
+**Conditioning matters.** The pair's placement is striking under a free whole-book word shuffle. But if we condition on the two special 3-rune words **already being present once each on p27 and p55**, and preserve every page's exact word-length slot sequence, p27 has **13 three-rune slots and four adjacent three-plus-three slots**, while p55 has **two three-rune slots, both terminal**. Randomly and independently assigning the two unique words to their available three-rune slots per page gives the *exact* matching-adjacency probability
+`[4/(13×12)] × [1/(2×1)] = 1/78 ≈ 0.0128205`.
+This is a **conditional placement reference**, not a discovery-wide significance level and not proof of authorial intent. The source selection, arithmetic letter reading, repeated-pair observation and terminal positioning were all recognized in exploratory work.
+
+[Deterministic CJS original-input reproducer](../sims/dju_bei_prime_mean_wordpair_sft.cjs) asserts the complete canonical word census, uniquely repeated pair, all four eligible prime-mean pairs, the exact p27/p55 page/length slots, and the source-fixed map to solved DEEP. The inference remains a candidate *author-selected cross-reference*, not a cipher recovery. Advance it only if an independent original source selects the prime-average letter reading or pair-sum-address operation and yields a frozen prediction on an unsolved target.
+
 ## Relation to the 13-dot fragments and candidate M7 map
 
 Under the existing chronological 13-dot segmentation (31 events, 32 fragments, two empty, 30 nonempty):
