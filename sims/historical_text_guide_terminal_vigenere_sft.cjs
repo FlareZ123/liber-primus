@@ -142,8 +142,8 @@ function main() {
   assert.equal(p55.length, 76);
   assert.deepEqual(p55.flatMap((c, i) => c === 0 ? [i] : []), [15, 25, 41]);
   const p56 = solvedP56(p56cipher);
-  assert.equal(printGP(p56).slice(0, 22), "ANENDWITHINTHEDEEPWEBTH");
-  assert.equal(printGP(p57).slice(0, 22), "PARABLELICETHEINSTART");
+  assert.ok(printGP(p56).startsWith("ANENDWITHINTHEDEEPWEBTH"));
+  assert.ok(printGP(p57).startsWith("PARABLELICETHEINSTART"));
   const keys = {
     p56_first76: p56.slice(0, 76),
     p56_last76: p56.slice(-76),
