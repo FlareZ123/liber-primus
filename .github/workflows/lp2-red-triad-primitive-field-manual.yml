@@ -7,10 +7,16 @@ on:
         required: false
         type: boolean
         default: false
+      primitive_rs:
+        description: "Run source-defined primitive-power [127,51] GF841 Reed-Solomon gate only"
+        required: false
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
   field:
+    if: ${{ !inputs.primitive_rs }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -61,3 +67,15 @@ jobs:
       - name: Original p53 red-scaled all-state 256-codebook obstruction
         if: ${{ inputs.qmult_gates }}
         run: node sims/red_triad_qmult_red_scaled_codebook_sft.cjs
+
+  rs-codeword:
+    if: ${{ inputs.primitive_rs }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Frozen source-primitive GF841 RS original-codeword gate
+        run: node sims/gf841_51x127_primitive_rs_original_sft.cjs
