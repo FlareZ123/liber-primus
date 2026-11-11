@@ -49,7 +49,7 @@ class FakeDialog:
         return self.title
 
     def descendants(self):
-        return [self.edit, self.button]
+        return ([self.edit] if self.edit is not None else []) + [self.button]
 
 
 class FakeApp:
@@ -95,6 +95,15 @@ def main():
         assert save.edit.value == str(target.resolve())
         assert save.button.clicked
         print("PASS: file-save dialog receives full destination filename")
+
+        legacy = FakeDialog("Browse for Folder", "OK")
+        legacy.edit = None
+        try:
+            driver["save_dialog_if_present"](FakeApp(legacy), target, output_dir)
+            raise AssertionError("A path-less native chooser must fail explicitly")
+        except RuntimeError as error:
+            assert "not a negative steganographic test" in str(error)
+            print("PASS: unsupported legacy folder picker reports an automation blocker")
 
         unknown = output_dir / "historical-embedded-name.txt"
         payload = b"Source-native payload name must survive extraction.\n"
