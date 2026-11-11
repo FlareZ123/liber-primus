@@ -1,0 +1,44 @@
+name: LP2 p56 live historical Hyphanet CHK gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  p56-chk-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - name: Check out fixed original p56 source and CJS probes
+        uses: actions/checkout@v4
+      - name: Set Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check exact source-only URI constructor and live probe
+        run: |
+          node --check sims/lp2_p56_freenet_chk_uri_sft.cjs
+          node sims/lp2_p56_freenet_chk_uri_sft.cjs
+          node --check sims/lp2_p56_hyphanet_live_fetch.cjs
+      - name: Start ephemeral historical Freenet 0.7 (Hyphanet) opennet node
+        run: |
+          docker pull ghcr.io/soren-work/freenet:latest
+          docker image inspect ghcr.io/soren-work/freenet:latest --format '{{.Id}}'
+          docker run -d --name lp2-hyphanet --network host --memory 1536m -e FREENET_MEM=512m -e FREENET_STORE_SIZE=256M -e FREENET_BANDWIDTH=512k -e FREENET_BANDWIDTH_DOWN=1024k ghcr.io/soren-work/freenet:latest
+      - name: Probe four source-locked candidate CHKs and a documented public control
+        run: node sims/lp2_p56_hyphanet_live_fetch.cjs
+      - name: Collect bounded node bootstrap diagnostics
+        if: always()
+        run: |
+          docker ps --filter name=lp2-hyphanet
+          docker logs --tail 120 lp2-hyphanet || true
+      - name: Upload immutable request summaries and any raw target content
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-p56-hyphanet-2026-live-gate
+          path: im-results-runtime/lp2-p56-chk-live/
+          if-no-files-found: warn
+          retention-days: 30
