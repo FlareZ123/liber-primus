@@ -119,6 +119,10 @@ jobs:
               head -c 4096 "$output" | strings -n 4 | head -60 | tee -a stage5-recovered-outguess-results.txt || true
             fi
           done
+      - name: Reproduce Stage5 original 140-byte clue to the next onion
+        run: |
+          set -euo pipefail
+          node sims/stage5_original_outguess_columnar_sft.cjs stage5-image-03-outguess.txt | tee stage5-onion-recovery.txt
       - name: Split the two archived tablet images and test source-fixed OutGuess modes
         run: |
           set -euo pipefail
@@ -173,6 +177,7 @@ jobs:
             stage5-four-image-carve.txt
             stage5-four-image-extraction.txt
             stage5-recovered-outguess-results.txt
+            stage5-onion-recovery.txt
             stage5-images/
             stage5-image-*-outguess.txt*
             tablet-front.jpg
