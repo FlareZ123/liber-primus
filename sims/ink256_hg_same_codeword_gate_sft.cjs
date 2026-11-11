@@ -106,7 +106,7 @@ for (const item of cases) {
 // source-visible possible beginning of the circular 256-event register.
 // The adjacent red mark has the same rune coordinate but remains its own event.
 const blackIndex = events.findIndex((e) => e.kind === 'mark' && e.color === 'black');
-assert.equal(blackIndex, 50, 'only source-visible black marker's event index');
+assert.equal(blackIndex, 50, 'only black marker event index');
 assert.equal(events.filter((e) => e.kind === 'mark' && e.color === 'black').length, 1);
 assert.equal(events[blackIndex].page, 7);
 assert.equal(events[blackIndex].position, 194);
