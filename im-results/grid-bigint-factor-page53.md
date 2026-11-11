@@ -32,6 +32,18 @@ Random GP29 output gives **12,718/29 ≈ 438.55** and **1,025/29 ≈ 35.34** exp
 
 Reproduce with the [standalone source-factor LFSR gate](../sims/grid238_p36_seed_allpage_gate.cjs); it reconstructs the original degree-238 factor from its existing exact divisors, checks the untouched source, evaluates every eligible rune and verifies a full synthetic planted continuation.
 
+### Full 238-element Frobenius-automorphism inverse on p36 (Agent 18, 11 November 2026)
+
+The unique original-source **irreducible degree-238 GF(29) polynomial** and unique **238-rune p36** also motivate a distinctly stronger field-arithmetic test. Interpret p36's untouched 238 GP ordinals as coefficients of an element in the finite field GF(29^238), reduced by that source polynomial. The prime-field Frobenius map **F(a)=a^29** is an invertible field automorphism; its powers F^k for k=0..237 are **the complete automorphism group** of this field. This is a closed, source-determined set of 238 candidate inversions with no fitted numeric key, plus the independent natural reversal of the original coefficient reading.
+
+The reproducer evaluates **all 476** original-source candidate coefficient vectors. The highest GP29 rune **index of coincidence is only 0.0379746835** (reversed coefficient order, power103); the published p36 itself has **0.0359890792**. Every transformed candidate has IoC **below 0.038**, far from the genuine GP-English source-register range around 0.06. The entire exact field-automorphism orbit closes after 238 applications, confirming that the arithmetic maps are fully reversible.
+
+A positive plant uses **238 exact GP-English runes** from an independently retained Shakespeare excerpt (IoC **0.0621919654**), hides their rune labels through a secret fixed bijection (11x+7 modulo29), and encrypts with **F^37**. Applying **F^201** exactly recovers **238/238** secret-relabeled plaintext runes at the native IoC, without knowing the bijection. Because any further *fixed* unknown 29-way substitution preserves IoC, allowing an arbitrary secret alphabet does not rescue the observed p36 source orbit. The same source operation on genuine LP2 is therefore inconsistent with a **single-layer Frobenius automorphism of direct GP-English plaintext**, either natural coefficient orientation, under any additional stationary rune relabeling.
+
+**Interpretation boundary:** This source-number-specified field operation supplies no deciphered rune. It does not rule out an additional nonpermutation cipher, higher-entropy intermediate register, alternate source basis, or externally supplied key before/after the field transform. The modest best scores reflect the complete candidate search rather than plaintext. This test is separate from the fixed LFSR continuation gate immediately above.
+
+Reproduce with the [complete original-field Frobenius orbit and planted positive](../sims/grid238_p36_frobenius_orbit_sft.cjs).
+
 ### Two source-marked GF(29) critical points: 13 and Ac=24 (Agent 37, 10 November 2026)
 
 The source-visible **31 thirteen-dot punctuation marks** and the oversized p54 **Ac** (GP index **24**) independently identify the two GF(29) evaluation arguments **13** and **24**. For the exact, unchanged 256 source bytes taken as *descending* polynomial coefficients in the original forward row-major base-60 order, the formal derivative has **exactly two roots among all 29 field elements**:
