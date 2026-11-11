@@ -225,99 +225,38 @@ console.log(JSON.stringify({
 
 
 /** @param {number} n */
-const reversePrimeDigits = n => Number(String(n).split("").reverse().join(""));
-// The only two documented double spaces in the 2013 telnet prime output
-// immediately precede prime31 and prime3259. Applying the 2013 NUMBER
-// decimal-reversal-and-factor operation selects the GP primes13 and
-// 89*107, with 89/107 giving adjacent D/IA runes in exactly two red
-// original LP2 spans. This is source-only pointer material, not plaintext.
-const markedNextPrimes = [31, 3259];
-assert.equal(reversePrimeDigits(markedNextPrimes[0]), 13);
-assert.equal(reversePrimeDigits(markedNextPrimes[1]), 9523);
-assert.equal(89 * 107, 9523);
-assert.equal(corpus.prime.indexOf(13), 5);
-assert.equal(corpus.prime.indexOf(89), 23);
-assert.equal(corpus.prime.indexOf(107), 27);
-const ink = require("../resources/liber-primus/lp2-ink-annotations.json");
-const selectedRunes = [corpus.runes[23], corpus.runes[27]];
-const redHits = [];
-for (const page of ink.pages) for (const span of page.red_spans || []) {
-  const spanRunes = [...span.runes];
-  for (let i = 0; i + 1 < spanRunes.length; i++) {
-    if (spanRunes[i] === selectedRunes[0] && spanRunes[i + 1] === selectedRunes[1]) {
-      redHits.push({
-        page: page.page, localRuneOffset: span.start + i,
-        followingRune: spanRunes[i + 2] || null
-      });
-    }
-  }
-}
-assert.deepEqual(redHits, [
-  {page: 53, localRuneOffset: 143, followingRune: corpus.runes[2]},
-  {page: 54, localRuneOffset: 3, followingRune: corpus.runes[2]}
-]);
-// Preserve every occurrence of the source-selected D/IA pair in the three
-// page-image-linked terminal members, including the black occurrences. The
-// two black continuation runes (p54 then p55) visibly spell L/P, which are
-// also the established GP-prime-difference center readout from 2014 squares.
-// This is an extraction from ciphertext glyphs, not a deciphered message.
-const terminalPairHits = [];
-for (const page of corpus.pages.filter(page => [53,54,55].includes(page.page))) {
-  for (let i = 0; i + 2 < page.indices.length; i++) {
-    if (page.indices[i] === 23 && page.indices[i+1] === 27) {
-      terminalPairHits.push({
-        page: page.page, offset: i,
-        followingIndex: page.indices[i+2],
-        followingPrime: corpus.prime[page.indices[i+2]]
-      });
-    }
-  }
-}
-assert.deepEqual(terminalPairHits, [
-  {page: 53, offset: 143, followingIndex: 2, followingPrime: 5},
-  {page: 54, offset: 3, followingIndex: 2, followingPrime: 5},
-  {page: 54, offset: 90, followingIndex: 20, followingPrime: 73},
-  {page: 55, offset: 38, followingIndex: 13, followingPrime: 43}
-]);
-// The unique p55 D/IA pair starts at the exact 76-rune midpoint.
-assert.equal(terminalPairHits[3].offset, exterior.length / 2);
-const selectedBlack = terminalPairHits.slice(2);
-assert.equal(selectedBlack.map(p => corpus.translit[p.followingIndex]).join(""), "LP");
-console.log(JSON.stringify({
-  sourceSelector: "2013 NUMBER(3259)=89*107 => GP red D/IA",
-  completeTerminalPairHits: terminalPairHits,
-  twoRedContinuations: "TH TH",
-  twoBlackContinuations: "LP",
-  comparison: "2014 square-center GP-prime differences 73,43 => LP",
-  status: "source-selected possible signpost, not a recovered plaintext/key"
-}));
+const reversePrimeDigits = n => Number(String(n).split('').reverse().join(''));
+const isPrimeNumber = n => { if(n<2)return false; for(let d=2;d*d<=n;d++)if(n%d===0)return false; return true; };
+const allDivisors = n => { const out=[]; for(let d=1;d<=n;d++)if(n%d===0)out.push(d); return out; };
+const numberResult = n => {
+  if(!isPrimeNumber(n))return {kind:'factors',input:n,factors:allDivisors(n)};
+  const reversed=reversePrimeDigits(n);
+  if(isPrimeNumber(reversed))return {kind:'plus',input:n,reversed};
+  return {kind:'factors',input:n,reversed,factors:allDivisors(reversed)};
+};
+assert.deepEqual(numberResult(29),{kind:'factors',input:29,reversed:92,factors:[1,2,4,23,46,92]});
+assert.deepEqual(numberResult(3257),{kind:'plus',input:3257,reversed:7523});
+assert.deepEqual(numberResult(31),{kind:'plus',input:31,reversed:13});
+assert.deepEqual(numberResult(3259),{kind:'factors',input:3259,reversed:9523,factors:[1,89,107,9523]});
+const ink=require('../resources/liber-primus/lp2-ink-annotations.json');
+const conditionalPairRunes=[corpus.runes[23],corpus.runes[27]],redHits=[];
+for(const page of ink.pages)for(const span of page.red_spans||[]){const r=[...span.runes];for(let i=0;i+1<r.length;i++)if(r[i]===conditionalPairRunes[0]&&r[i+1]===conditionalPairRunes[1])redHits.push({page:page.page,localRuneOffset:span.start+i,followingRune:r[i+2]||null});}
+assert.deepEqual(redHits,[{page:53,localRuneOffset:143,followingRune:corpus.runes[2]},{page:54,localRuneOffset:3,followingRune:corpus.runes[2]}]);
+const terminalPairHits=[];
+for(const page of corpus.pages.filter(p=>[53,54,55].includes(p.page)))for(let i=0;i+2<page.indices.length;i++)if(page.indices[i]===23&&page.indices[i+1]===27)terminalPairHits.push({page:page.page,offset:i,followingIndex:page.indices[i+2],followingPrime:corpus.prime[page.indices[i+2]]});
+assert.deepEqual(terminalPairHits,[{page:53,offset:143,followingIndex:2,followingPrime:5},{page:54,offset:3,followingIndex:2,followingPrime:5},{page:54,offset:90,followingIndex:20,followingPrime:73},{page:55,offset:38,followingIndex:13,followingPrime:43}]);
+assert.equal(terminalPairHits[3].offset,exterior.length/2);
+assert.equal(terminalPairHits.slice(2).map(p=>corpus.translit[p.followingIndex]).join(''),'LP');
+const originalTriadHits=[];
+for(const page of corpus.pages.filter(p=>p.page<=55))for(let i=0;i+2<page.indices.length;i++)if(page.indices[i]===23&&page.indices[i+1]===27&&page.indices[i+2]===2)originalTriadHits.push({page:page.page,offset:i});
+assert.deepEqual(originalTriadHits,[{page:53,offset:143},{page:54,offset:3}]);
+console.log(JSON.stringify({whitespacePairs:['29  31','3257  3259'],archiveLabel:'double spaces at 29 and 3257; reconstructed server appends after those values',numberResults:{29:numberResult(29),3257:numberResult(3257),31:numberResult(31),3259:numberResult(3259)},conditionalFollowingTokenPair:'D·IA only if right-hand neighbors 31/3259 are selected',redPairHits:redHits,terminalPairHits,originalDIA_THHits:originalTriadHits,blackContinuations:'LP',selectorStatus:'ambiguous delimiter; not source-selected; NUMBER(31) is +, not C'}));
 
-const originalTriadHits = [];
-for (const page of corpus.pages.filter(page => page.page <= 55)) {
-  for (let i = 0; i + 2 < page.indices.length; i++) {
-    if (page.indices[i] === 23 && page.indices[i+1] === 27 &&
-        page.indices[i+2] === 2) {
-      originalTriadHits.push({page: page.page, offset: i});
-    }
-  }
-}
-assert.deepEqual(originalTriadHits, [
-  {page: 53, offset: 143}, {page: 54, offset: 3}
-]);
-console.log(JSON.stringify({
-  historicalInput: "two 2013 telnet doubled spaces before 31 and 3259",
-  documentedNumberOperation: "reverse decimal, factor if composite",
-  number31: 13, number3259: {reversed: 9523, primeFactors: [89,107]},
-  GPselected: ["C", "D", "IA"], redRunePair: ["D", "IA"],
-  redPairHits: redHits, completeUnknownTriadHits: originalTriadHits,
-  interpretation: "Source-motivated red motif, not a plaintext/key"
-}));
 
-// A second historically documented 2013 operator, NUMBER, reverses decimal
-// digits of prime inputs before factorizing the reversed number. This is a
-// separate *single-rule* gate: decimal reversal of each source prime before
-// source-index-preserving GP29 subtraction or whole-table byte XOR. Freeze
-// forward order, minus for GP, direct native byte XOR, and no new offsets.
+// The following uniform reversal pad is a hypothetical extension, not the
+// actual conditional NUMBER command output. The service returns '+' for
+// emirps and factor lists for composite reversals; a uniform reversed-prime
+// key is not source-selected. Keep this only as a bounded negative test.
 
 for (const [region, ciphertext, historical] of [
   ["interior", interior, missing],
@@ -328,7 +267,7 @@ for (const [region, ciphertext, historical] of [
   const reenc = out.map((v, i) => mod29(v + reversedPrimeKey[i]));
   assert.deepEqual(reenc, ciphertext);
   console.log(JSON.stringify({
-    historicallySelectedNumberOperator: "reverse each missing/visible prime in decimal",
+    hypotheticalUniformDecimalReversalPad: "reverse each missing/visible prime in decimal",
     region, direction: "original prime order, GP29 subtraction",
     decodedIoC: ioc(out), recoveredTransliteration: runicTranslit(out),
     exactRoundtrip: true
@@ -339,7 +278,7 @@ const reversedPrimeOutput = xorBytes(gridBytes, reversedPrimeByteKey);
 assert.deepEqual(xorBytes(reversedPrimeOutput, reversedPrimeByteKey), gridBytes);
 assert.equal(printableCount(reversedPrimeOutput), 101);
 console.log(JSON.stringify({
-  historicallySelectedNumberOperator: "decimal reversal, original table XOR",
+  hypotheticalUniformDecimalReversalPad: "decimal reversal, original table XOR",
   decodedPrintable: printableCount(reversedPrimeOutput),
   decodedHex: Buffer.from(reversedPrimeOutput).toString("hex"),
   exactRoundtrip: true

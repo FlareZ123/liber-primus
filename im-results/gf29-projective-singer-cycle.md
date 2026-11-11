@@ -1,10 +1,10 @@
 # GF(29²) projective cycle and 13-dot marker alignment
 
-**Classification (11 November 2026):** the field construction and its 30-state projective orbit are exact. A source-order correspondence maps the 30 unique thirteen-dot marker sites onto that orbit, but its intended use remains unproved. Direct substitution, additive-key, grid-row IV, and source-ordered grid-row/column lookups do not recover LP2 plaintext.
+**Classification (11 November 2026):** p3's quadratic field and the order-30 projective action of its generator u are exact. The earlier z=23+27u orbit also has order30, but its claimed source selection via p3/p39 cross-mark offsets is not established after corrected offsets; treat z as a comparison, not a selected element. The 30-site marker correspondence is an arithmetic map, not a proven instruction. Direct substitution, additive-key, grid-row IV, and source-ordered grid-row/column lookups remain negative.
 
 ## Source-derived field construction
 
-The two three-rune red inscriptions are p3 `[13,23,2]` and p39 `[27,5,15]`, both at local offset119. The p3 polynomial gives `u² = 3u + 8` over GF(29), and the independently printed grid has the cross-triad root `z = 23 + 27u`. Multiplication by `z` is the exact linear map
+The two three-rune red inscriptions are p3 `[13,23,2]` and p39 `[27,5,15]`, both at local offset119. The p3 polynomial gives `u² = 3u + 8` over GF(29); u is primitive of order840. The p39 polynomial `27+5X+15X² = 15(X−24)²` has repeated root24. The earlier `z = 23 + 27u` is an exact primitive element / table-polynomial root, but its claimed selection by aligning p3 and p39 red-mark offsets was based on an offset arithmetic error. Corrected global offsets do not provide that source selector; z is a speculative comparison, not a source-selected element. Multiplication by z is the exact linear map
 
 ```text
 M0 = [[23,13],
@@ -22,7 +22,7 @@ The separately marked Ac coordinate24 on p54 fixes the start. In the established
 
 This is a source-linked 30-state interpretation of the 29-rune alphabet plus one distinguished state. It is not, by itself, evidence that Cicada intended this quotient.
 
-## New source-order correspondence: thirteen-dot markers
+## Speculative z-orbit correspondence: thirteen-dot markers
 
 The ink annotation corpus contains **31 thirteen-dot marker layers at 30 distinct (page, offset) sites**. The duplicated site is p7:194, where the black layer is listed before the red layer. In source order, the 30 unique sites receive the 30 orbit states above:
 
@@ -44,7 +44,7 @@ The ink annotation corpus contains **31 thirteen-dot marker layers at 30 distinc
 | p55:76 | 28 | p56:5 | 1 |
 | p56:85 | 14 | p57:7 | 17 |
 
-Several cross-anchors are exact:
+The z-derived map has these exact retrospective alignments (not independent selectors):
 
 - The orbit starts at Ac24 on p54.
 - The p7:194 black/red overprint is state25. p0's second red-word prime sum is315, and `315 mod 29 = 25`.
@@ -65,6 +65,17 @@ The 31 marker layers partition the 225 red-rune events into 32 fragments. Pair e
 
 The first 28 fragments cover the 12,956 unknown runes through p55:76 and use rows `[24,22,13,4,2,9,12,30,25,27,15,26,19,20,16,21,8,23,29,3,18,5,10,6,7,0,11,28]`. The remaining four fragments use rows `[1,14,17,31]`, corresponding to the p56/p57 markers and the trailing fragment. This is a compact way to align the marker sequence, the 32 fragments, and the 32×8 table without searching for a row permutation.
 
+## Source-selected p3-generator u orbit and PATIENCE fragment-state test
+
+The simpler p3-defined generator itself gives a source-selected projective map. Multiplication by `u` in basis `(1,u)` is `Mu=[[0,8],[1,3]]`; from Ac24 its projective orbit is:
+
+```text
+24,25,21,10,14,9,20,18,28,4,26,∞,0,22,27,8,6,17,12,16,5,1,2,19,3,11,13,15,23,7
+```
+
+Assigning these states to the 30 unique thirteen-dot sites in physical order, with row30 for the p7:194 black overprint and row31 for the trailing fragment, yields `[24,25,21,10,14,9,20,30,18,28,4,26,29,0,22,27,8,6,17,12,16,5,1,2,19,3,11,13,15,23,7,31]`. This differs from the speculative z-derived row schedule above.
+
+The fixed u schedule was composed with the existing PATIENCE-ranked 32-state GP29 transducer: reset the row state at each of the first 28 marker-delimited fragments, while carrying the predecessor ciphertext rune continuously. A second source-compatible boundary variant also resets the predecessor to zero. The speculative z schedule was tested with continuous predecessor context. All three models remain ciphertext-like; their original IoCs are 0.034587–0.034595 and their Shakespeare-trained GP trigram scores are −4.470 to −4.473, worse than raw ciphertext (−4.450) and far below the independent English holdout (−2.306). Original forward replay and 12,956-rune native-English plants recover exactly. This rejects these exact fragment-state compositions, not the field or marker correspondence as a map ([full report](lp2-projective-fragment-rank-state.md); [reproducer](../sims/lp2_projective_fragment_rank_state_sft.cjs)).
 ## Cipher tests and negative result
 
 The existing direct tests remain negative:

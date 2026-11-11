@@ -30,30 +30,23 @@ Exactly **1,259 × 1,031 × 1,229 = 1,595,277,641**. Consequently, a solver poss
 
 **Decision:** This overlap is a more causal clue to examine than an arbitrary 180-number list. A useful successor would establish whether contemporary puzzle participants noticed an explicitly player-visible instruction to use the missing prime interval with the already supplied 2013 Parable number. Absent that, do not turn the 1,229 boundary coincidence into new additive-state parameter scans.
 
-## 2013 telnet double spaces select an original red-rune motif
+## 2013 telnet double spaces: ambiguous neighbor selector, not a source-selected C/D·IA key
 
-Both surviving secondary 2013 telnet witnesses show exactly **two doubled spaces**, immediately before **31** and **3259**: `29  31` and `3257  3259`. Apply the documented 2013 `NUMBER` operation (reverse decimal digits, then factor composite reversals) to the *following* marked primes. **31 → 13** (GP rune **C**); **3259 → 9523 = 89 × 107** (GP runes **D · IA**). Both 89 and 107 are in the independently omitted 73–1223 prime interval and among the final nine GP-prime weights hidden by the telnet's stop at 71.
+The surviving secondary transcript renderings place two spaces between `29`/`31` and `3257`/`3259`. The archived first-onion README labels them “double spaces at 29 and 3257,” and its linked reconstructed server explicitly appends two spaces after the values 29 and 3257. The whitespace is therefore a delimiter between neighboring primes; the transcript does not, by itself, prove whether a solver should select the left or right token.
 
-The exact GP pair **ᛞᛡ** (D · IA) occurs at just **two red locations among all 225 red LP2 runes**: p53 at local rune offset143 (inside its 51-rune red span) and p54 at offset3 (inside its nine-rune red title). At both source places the following rune is **ᚦ / TH**. The complete original unsolved LP2 has **D · IA · TH** at these same two positions and nowhere else. The [SFT](../sims/lp2_telnet_prime_gap_terminal_sft.cjs) asserts the historical-number arithmetic, GP mapping and complete red/original occurrences.
+The documented `NUMBER` command is conditional. If both `n` and its decimal reversal are prime, it returns `+`; if `n` is prime and its reversal is composite, it returns the reversed value and its factors. Consequently:
 
-This is a historically motivated **possible red-ink locator** with a specific source-input marker and creator-used operator. Its weaknesses remain substantial: the two transcripts are secondary, taking the *following* rather than preceding numbers is unproven, and the third TH rune/red-only selection were noticed after the mapping. No original plaintext or p55 decoding operation follows, and no discovery-wide statistical significance is claimed. A productive successor needs an independent source instruction selecting how to act reversibly on those two frozen red positions, with an original held-out prediction. Arbitrary key/phase sweeps are not justified.
+- `NUMBER(31)` returns `+`, **not 13**.
+- `NUMBER(3259)` returns `9523` with divisors `[1,89,107,9523]`.
+- If the selector attaches to the values after which the server inserts the extra spaces, `NUMBER(29)` returns `92` with divisors `[1,2,4,23,46,92]`, and `NUMBER(3257)` returns `+` because 7523 is prime.
 
-### A bounded original-rune follow-up: two selected black continuations spell LP
+The earlier `31→13 (GP C)` is not a command output. The `D·IA` pair is obtained only if one chooses the *following-neighbor* interpretation of the 3257/3259 separator. The archived server is a reconstruction, not an authenticated original capture; the D·IA selector is therefore a conjecture, not a source-selected key.
 
-The source-selected **D · IA** pair also occurs in black ciphertext on the same two terminal pages already implicated by the 180/76 composition and repeated artwork. Enumerating **every** pair occurrence within physical pp53–55 gives a finite four-row source table:
+### Retrospective black continuation: LP (not a source-selected readout)
 
-| Physical page | Zero-based rune offset | Ink | Following original GP rune | GP prime |
-| --- | ---: | --- | --- | ---: |
-| p53 | 143 | red | TH | 5 |
-| p54 | 3 | red | TH | 5 |
-| p54 | **90** | black | **L** | **73** |
-| p55 | **38** | black | **P** | **43** |
+Under the conditional following-neighbor interpretation, the GP pair `D·IA` occurs in red spans at p53:143 and p54:3, each followed by `TH`. The same pair also occurs in black ciphertext at p54:90 and p55:38, followed by `L` and `P`. The p55 occurrence begins at the exact 76-rune midpoint. The two black continuations therefore spell `LP`, and the previously noted 2014 square-center prime differences also give `LP`.
 
-The p55 black occurrence begins at zero-based **offset 38**, exactly halfway through its **76-rune** ciphertext (38 + 38). The historically selected D · IA pair therefore identifies the **precise native-rune midpoint** of the terminal unknown page, without fitting an offset. This makes the center a concrete next input for a historically specified operation if one can be found; it is not a decryption.
-
-Thus, **reading the continuations of the two black occurrences in page order produces the exact rune string LP**, the book's initials. The already documented 2014 OpenPuff magic-square centers **809, 331, 91** give the same two GP prime weights under prime counting: `π(809)−π(331)=140−67=73 (L)` and `π(331)−π(91)=67−24=43 (P)`. This is an independently known source-derived LP signpost, and its alignment with the two terminal black continuations offers a concrete, reproducible cross-source interpretation.
-
-**Selection caveat:** The entire 12,956-rune unsolved ciphertext contains **15** D · IA occurrences, not just these four. Focusing on three visually related terminal pages is motivated by prior independent artwork and length evidence, but the red/black division, following-rune readout and desired LP were identified retrospectively. The two black letters are **already visible ciphertext runes**, so the result is a candidate **ciphertext marker/extraction**, not recovered unknown plaintext. A decryption proposal must still supply a complete fixed source operation on the remaining original symbols and survive an independent holdout. The reproducer enumerates the exact terminal occurrences and original rune indices.
+These are real ciphertext and arithmetic observations, but their connection is retrospective: the double-space delimiter does not force selection of 3259, `NUMBER(31)` does not emit `C`, and the `LP` continuation was noticed after choosing `D·IA`. Do not treat `C·D·IA`, `D·IA·TH`, or `LP` as an established 2013-to-LP2 instruction, key, or locator. Preserve the occurrences as a conditional motif only.
 
 ## Exact limited decryption test
 
@@ -113,10 +106,24 @@ Of the original **256** printed source bytes, **103** are printable ASCII (0x20�
 
 No English plaintext, file signature, or recognizable contiguous message appears in the full original output. The source program prints all 256 recovered bytes as hex for independent assessment, exactly re-XORs to the original bytes, and recovers a constructed 256-byte ASCII plant under the same frozen key and layout. This **rules out the single literal native-byte XOR** interpretation of this source mapping as ordinary uncompressed English, not compressed/encrypted/multilayer data and not an arbitrary other perimeter order. The source-linked prime list still lacks a creator-authenticated instruction selecting this mapping, so there is no reason to multiply variants.
 
-## A separate creator-used operator: decimal prime reversal
+## Uniform decimal-reversal pad is not the documented NUMBER output
 
-The same 2013 terminal supplied `NUMBER`, which **reverses decimal digits** of a prime before factoring the reversed integer (for example, `449` gives `944`). This independently documented historical primitive selects one additional literal test. The [SFT](../sims/lp2_telnet_prime_gap_terminal_sft.cjs) reverses each omitted/visible prime's decimal digits, preserves original source order, and subtracts its residue modulo29 from the exact 180- and 76-rune terminal ciphertext; it separately XORs its residue modulo256 with the byte table under the previously frozen layout. **180-rune IoC is 0.03513346**, **76-rune IoC is 0.03228070**, and both full GP rune sequences are nonlinguistic. The reversed-prime byte XOR yields **101 printable bytes out of 256** without a coherent ASCII instruction. All outputs round-trip exactly. The creator never instructed a 2014 solver to apply prime digit reversal to this omitted interval, so these finite tests establish a negative at their literal scope and warrant no extension into arbitrary number transforms.
+The 2013 `NUMBER` service is not a uniform digit-reversal transform: it returns `+` for emirps and returns the reversed composite plus its divisors otherwise. The existing uniform reversal of every omitted/visible prime is therefore a hypothetical extension, not the command's actual output. Its frozen forward-order GP29 subtraction and table-byte XOR remain bounded negative tests, but must not be described as creator-selected. The p32 dimension compass use of `NUMBER(563)` and `NUMBER(569)` is different: their reversals 365 and 965 are composite, so the documented command returns the factors `5×73` and `5×193`.
+
+## Adjacent prime gaps: 179/180 source-length test (negative)
+
+The 180 omitted primes p21…p200 (73…1223) yield **179 internal adjacent gaps**, matching p53's 179 runes. Including the boundary gap 1223→1229 (p201, the first visible prime after the omission) yields **180 gaps**, matching p53 plus p54's enlarged Ac24. This is distinct from the already-tested 361-entry concatenation of missing primes and gaps, and from direct use of the 180 prime values.
+
+A frozen direct GP29 test applied the 179 internal gaps to p53 and the 180 boundary-extended gaps to p53+p54[0]. It tested direct gap values and the natural half-gap values (`gap/2`), forward order, both addition/subtraction signs, with no reversal, phase, offset, or key fitting. The original outputs remain nonlinguistic: p53 raw trigram is **−4.23744**, while the best half-gap output is about **−4.447**; p53+p54 raw is about **−4.236**, while the best half-gap output is about **−4.441**. Shakespeare GP heldout controls score about **−2.33** and **−2.32** respectively. Every original re-encryption and every 179/180-rune native-English plant passes exactly.
+
+The literal 180/76 table interpretation placed gaps (or half-gaps) row-major in the 30×6 interior and the 76 visible first-256-prime complement clockwise on the perimeter, then XORed the original 32×8 bytes. The outputs contain **105/106 printable bytes**, versus **103** in the original table, but neither is readable ASCII or a recognized file signature; planted ASCII controls recover exactly.
+
+A cumulative walk using the 179 internal gaps as forward step lengths modulo179 visits only **136 of 179** positions. It is not a permutation; collision resolution would require an extra rule not selected by the source.
+
+These tests reject the specified direct gap/half-gap additive pads, the 180-interior/76-perimeter gap XOR, and the literal cumulative gap walk. They do not refute the 180-prime/180-cell structural correspondence, the separate 361-entry sequence, or the p32 prime-gap compass hypothesis. Full reproducer and detailed metrics: [prime-gap difference SFT](../sims/lp2_telnet_prime_gap_difference_sft.cjs) and [report](2013-telnet-prime-gap-differences.md).
 
 ## What would change the decision
 
-The historic prime-gap interval is a more specific cross-round starting point than another arbitrary 180-number list; its most direct additive uses fail. It should **not** be used to launch permutations, cyclic offsets, multi-layer transformations, or a general prime-pad sweep. The valuable next evidence would be either a truly original 2013 telnet transcript or source-code capture establishing intentional omission, or a historically visible instruction selecting a **specific reversible mapping** from the prime interval and table interior/perimeter to runes. Freeze such a map before looking at original plaintext; use a solved historical control and a distinct original holdout. Until then this remains a provisional source clue with no decrypted text.
+The 180-prime omission remains a plausible cross-round source observation, but it does not itself specify a decipherment. Direct prime/totient-prime pads, the isolated 179/180 adjacent-gap pads, the literal 180/76 gap-byte XOR, and the cumulative gap walk all fail their frozen tests. The double-space D·IA/LP interpretation is selector-dependent; `NUMBER(31)` returns `+`, not `C`, and the archive's reconstructed server appends extra spaces after 29/3257.
+
+Do not extend these branches with arbitrary moduli, offsets, reversals, collision rules, or language-fitted parameters. A useful continuation requires a genuinely source-selected operation or a new independent clue that predicts plaintext, not another serialization of the same prime list.
