@@ -111,12 +111,15 @@ assert.deepEqual(decode(p56,new Set([56])),p56Known);
 
 const language = encode(text);
 assert(language.length>60000);
+const cut=Math.floor(language.length*0.65);
+const training=language.slice(0,cut);
+const heldout=language.slice(cut);
 const tri = new Map();
-for(let i=2;i<language.length;i++) {
-  const k=language[i-2]*841+language[i-1]*29+language[i];
+for(let i=2;i<training.length;i++) {
+  const k=training[i-2]*841+training[i-1]*29+training[i];
   tri.set(k,(tri.get(k)||0)+1);
 }
-const denom=language.length+0.2*29**3;
+const denom=training.length+0.2*29**3;
 /** @param {number[]} data @returns {number} */
 function trigram(data) {
   let total=0;
@@ -134,11 +137,13 @@ const allFSkippedCandidate=decode(original,passAllFs);
 // Natural English controls, matched in runic length. No ranking, no page/freeze
 // change or retrospectively selected plaintext phrase.
 const reference=[];
-for(let i=0;i+original.length<=language.length;i+=7)
-  reference.push(trigram(language.slice(i,i+original.length)));
+for(let i=0;i+original.length<=heldout.length;i+=7)
+  reference.push(trigram(heldout.slice(i,i+original.length)));
 reference.sort((a,b)=>a-b);
 const controls={
   samples:reference.length,
+  trainingRunes:training.length,
+  heldoutRunes:heldout.length,
   minimum:reference[0],
   median:reference[Math.floor(reference.length/2)],
   maximum:reference.at(-1),
