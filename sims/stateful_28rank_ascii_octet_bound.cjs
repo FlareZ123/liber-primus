@@ -24,6 +24,7 @@ assert.equal(PAGES.reduce((sum, page) => sum + page.length, 0), 12956);
 const WIDTHS = [5, 10, 15, 20, 25, 30];
 const VISIBLE_OCTETS = Array.from({length: 95}, (_, i) => 32 + i);
 const TEXT_OCTETS = [9, 10, 13, ...VISIBLE_OCTETS];
+const UNIX_TEXT_OCTETS = [9, 10, ...VISIBLE_OCTETS];
 
 /**
  * Determine all possible most-significant radix-28 digits of a
@@ -48,6 +49,31 @@ function allowedLeadingDigits(width, octets = TEXT_OCTETS) {
     }
   }
   return [...allowed].sort((a, b) => a - b);
+}
+
+/**
+ * Key-independent necessary leading digits when BOTH first two decoded
+ * bytes are in an allowed ASCII register. Unlike the one-byte relaxation,
+ * this rules out rank 1 for 30-digit packets containing LF/TAB but no CR.
+ * The interval is exact; the remaining bytes are unrestricted.
+ * @param {number} width Multiple of five.
+ * @param {number[]} octets Allowed values for each of the first two bytes.
+ * @returns {number[]} Sorted leading ranks.
+ */
+function allowedTwoByteLeadingDigits(width, octets) {
+  assert.ok(WIDTHS.includes(width));
+  const place = 28n ** BigInt(width - 1);
+  const bytePlace = 256n ** BigInt(3 * width / 5 - 2);
+  const ranks = new Set();
+  for (const first of octets) for (const second of octets) {
+    const prefix = BigInt(256 * first + second);
+    const lo = prefix * bytePlace / place;
+    const hi = ((prefix + 1n) * bytePlace - 1n) / place;
+    for (let d = lo; d <= hi && d < 28n; d++) {
+      if (d >= 0n) ranks.add(Number(d));
+    }
+  }
+  return [...ranks].sort((a, b) => a - b);
 }
 
 /**
@@ -89,7 +115,10 @@ function examine(pages, width, reset, policy, reverse, phase, octetMode = 'print
   const allowed = octetMode === 'seven-bit'
     ? Array.from({length: Number((128n * (256n ** BigInt(3 * width / 5 - 1)) - 1n)
         / (28n ** BigInt(width - 1))) + 1}, (_, i) => i)
-    : allowedLeadingDigits(width, octetMode === 'visible' ? VISIBLE_OCTETS : TEXT_OCTETS);
+    : octetMode === 'unix-text'
+      ? allowedTwoByteLeadingDigits(width, UNIX_TEXT_OCTETS)
+      : allowedLeadingDigits(width,
+          octetMode === 'visible' ? VISIBLE_OCTETS : TEXT_OCTETS);
   const k = allowed.length;
   const counts = Array.from({length: 29}, () => new Uint16Array(29));
   let clean = 0, complete = 0, markerPackets = 0;
@@ -182,6 +211,34 @@ function study(pages = PAGES) {
     [40, 80, 120, 160, 200, 240]);
   assert.deepEqual(visible.map(x => x.minForcedNonVisibleFirstOctets),
     [934, 319, 167, 77, 25, 10]);
+  // Ordinary LF-oriented ASCII text (visible, TAB, LF, never CR).  The
+  // two-leading-byte rank gate closes the previous D30 full-ASCII
+  // survivor using the actual 11 distinct leaders from GP state 13.
+  const unixText = WIDTHS.map(width => {
+    const cases = [];
+    for (const reset of ['page', 'book'])
+      for (const policy of ['drop', 'skip'])
+        for (const reverse of [false, true])
+          for (let phase = 0; phase < width; phase++)
+            cases.push(examine(pages, width, reset, policy, reverse, phase,
+              'unix-text'));
+    return {
+      width, settings: cases.length,
+      allowedLeadingDigits: allowedTwoByteLeadingDigits(width,
+        UNIX_TEXT_OCTETS),
+      excluded: cases.filter(c => c.hardExcluded).length,
+      minForcedForbiddenFirstOctets: Math.min(...cases.map(c => c.forcedNonText))
+    };
+  });
+  assert.deepEqual(unixText.map(x => x.excluded),
+    [40, 80, 120, 160, 200, 240]);
+  assert.deepEqual(unixText.map(x => x.minForcedForbiddenFirstOctets),
+    [755, 239, 107, 31, 6, 1]);
+  const fullAsciiSurvivorWithoutCR = examine(pages, 30, 'page', 'skip',
+    true, 29, 'unix-text');
+  assert.equal(fullAsciiSurvivorWithoutCR.cleanPackets, 282);
+  assert.equal(fullAsciiSurvivorWithoutCR.forcedNonText, 1);
+  assert.equal(fullAsciiSurvivorWithoutCR.maxDistinctLeadersPerRow, 11);
   // Robustness: permit any 7-bit ASCII octet, including NUL/DEL/C0,
   // without assuming printable English. This yields at most 13/14
   // possible leading digits per stationary conditioning row.
@@ -220,7 +277,7 @@ function study(pages = PAGES) {
       unionOverFramingsAndRowsLog10UpperBound: log10NullFamilyUnionBound,
       caution: 'This is a family-union bound under the specified random-ciphertext null, not a probability that a designed Cicada cipher could not encode ASCII, nor a deterministic original-source exclusion.'
     },
-    visible, sevenBit, summaries, survivors};
+    visible, unixText, sevenBit, summaries, survivors};
 }
 
 /** @param {number} seed @returns {() => number} */
@@ -308,6 +365,7 @@ function main() {
       .map(k => real.survivors[0][k]),
     [30, 'page', 'skip', true, 29]);
   assert.equal(real.visible.reduce((n, x) => n + x.excluded, 0), 840);
+  assert.equal(real.unixText.reduce((n, x) => n + x.excluded, 0), 840);
   const positives = [5, 15, 30].flatMap(width => [
     positiveControl(width), positiveControl(width, true)]);
   process.stdout.write(JSON.stringify({
@@ -316,10 +374,12 @@ function main() {
     model: 'stationary 29 independent prev-rune rows, each a bijection of the other 28 rune values; 5n radix28 digits to 3n ASCII/whitespace bytes',
     textOctets: '0x09, 0x0A, 0x0D, and 0x20 through 0x7E',
     visibleOctets: '0x20 through 0x7E only; all 840 original framings excluded',
+    unixOctets: '0x09, 0x0A, and 0x20 through 0x7E only; both first bytes constrained; all 840 original framings excluded',
     proof: 'Any fixed predecessor row can map at most k distinct outgoing leader glyphs to k allowed leading ranks. Frequencies of all other leaders give a deterministic lower bound on forbidden high octets.',
     evidence: real, positives,
     limitation: 'Only fixed stationary predecessor rows, 5n:3n packet coding, tested shared phase policies. Non-ASCII/compressed bytes, keyed dynamic alphabets and per-page or changing phases remain open.'
   }, null, 2) + '\n');
 }
 if (require.main === module) main();
-module.exports = {allowedLeadingDigits, transitionStreams, examine, study, positiveControl, main};
+module.exports = {allowedLeadingDigits, allowedTwoByteLeadingDigits,
+  transitionStreams, examine, study, positiveControl, main};
