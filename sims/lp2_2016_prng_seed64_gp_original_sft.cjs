@@ -42,7 +42,7 @@ function recoverSeed() {
   const start = signed.indexOf("Hello.");
   const end = signed.indexOf("-----BEGIN PGP SIGNATURE-----");
   assert.ok(start >= 0 && end > start);
-  const words = signed.slice(start, end).match(/[A-Za-z]+/g) || [];
+  const words = signed.slice(start, end).match(/(?<![A-Za-z0-9])[A-Za-z]+(?![A-Za-z0-9])/g) || [];
   const offset = words.indexOf("Its");
   assert.equal(words.length, 43);
   assert.deepEqual(words.slice(offset, offset + 16), sourceWords);
