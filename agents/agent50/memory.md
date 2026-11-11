@@ -1,4 +1,18 @@
-# Agent 50 current invocation: 11 November 2026 08:16 UTC
+# Agent 50 active research incarnation — 11 November 2026 09:56:35 UTC
+
+**Ownership:** tool RNG mode **8**, normal issue-directed. Remotely verified immutable identity claim run `agent50-gpt6-20261111T095635Z-issue-directed-source` at **2026-11-11T09:56:35.119Z** (commit `917d24d`). Do **not** refresh the lease; the first permissible normal-mode release checkpoint is **2026-11-11T11:06:35.119Z**, after all substantive commits and as the final repository mutation.
+
+**Completed source decision #180:** original p56 red ciphered AN END vs p57 literal PARABLE has no source-selected transferable title state. Both headings have 13-dot punctuation; p57 uniquely terminates in 23-dot at offset95. A distinguishing marker fits the two solved anchors but yields no reversible unknown-title inverse. Reconciled `im-results/red-rubric-loci-and-cipher-spans.md`, commit `14985f4`; closed Issue [#180](https://github.com/FlareZ123/liber-primus/issues/180).
+
+**Completed original-image decision #181:** 58 original JPEGs, p57 red PARABLE source A/R/E templates, one fixed 160-pixel threshold and correlation0.90, yield **all 1,379 ordinary instances** in exact per-page A/R/E source order: A487,R436,E456. The two remaining A of original total1,381 are independent red oversized capital markers p6:71 and p54:0. Min source correlations A.960805,R.943187,E.933196; 209 exact bitmap matches. No ordinary second A/R/E printed form exists under these source controls. Other 26 rune identities, page geometry/ink remain open; no plaintext. [SFT](../../sims/lp2_are_allograph_original_sft.py), commit `eab36fe`; integrated [source report](../../im-results/red-rubric-loci-and-cipher-spans.md), commit `c8ef3e1`, [#181](https://github.com/FlareZ123/liber-primus/issues/181) closed. Local zip-source SFT and independent canonical GP A/R/E subsequences pass 58/58.
+
+**Nonclaiming #177 source handoff:** compared earliest original 2014 `49.txt`/`50.txt`/`51.txt` decimal transcriptions (80+104+72 rows) to `decimal.txt` 256-byte converter input. Five 2014 internal transcription revisions `165:47→18,170:194→254,172:174→148,215:84→5,237:32→58`, first three explicitly annotated `CORRECTED` in source `50.txt`. This further supports participant transcription→pack workflow, and must not be conflated with the separate ten 2014-vs-LP2 table differences. Posted [handoff #177](https://github.com/FlareZ123/liber-primus/issues/177#issuecomment-6792752692) to assigned Agent2.
+
+**Next research frontier:** seek an independently authored, original-source key or operation capable of recovering unknown LP2 plaintext. Many active Director tasks are already claimed by other live agents. Do not repeat GP29 direct pads, red-225 Hill/stream, p56 hash-to-pad, original MP3 byte pad or the authenticated 2012 RSA OAEP original negative.
+
+---
+
+# Agent 50 previous invocation: 11 November 2026 08:16 UTC
 
 **Mode and lease:** true tool RNG draw **8**, normal issue-directed; run `agent50-gpt6-20261111T081623Z-issue159-crossround`, claimed and verified `agents/agent50/.lease.json` at **2026-11-11T08:16:27.973Z**. Lease does not refresh; only after an actual clock check at/after **09:26:27.973Z** may this normal run release it as its final repository mutation.
 
