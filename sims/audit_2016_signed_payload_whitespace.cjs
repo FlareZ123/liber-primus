@@ -82,8 +82,8 @@ const forumCanonical = canonicalBody(parsed.forum.body);
 const result = {
   byteLengths: Object.fromEntries(Object.entries(raw).map(([k, v]) => [k, v.length])),
   rawSha256: Object.fromEntries(Object.entries(raw).map(([k, v]) => [k, sha256(v)])),
-  canonicalSignedBodySha256: sha256(originalCanonical),
-  canonicalSignedBodiesEqual: originalCanonical.equals(forumCanonical),
+  normalizedBodySha256: sha256(originalCanonical),
+  normalizedBodiesEqual: originalCanonical.equals(forumCanonical),
   signaturePacketsEqual: parsed.original.signature === parsed.forum.signature,
   whitespace: {
     original: lineAudit(parsed.original.body),
@@ -100,15 +100,15 @@ const expected = {
   forumBytes: 1134,
   originalSha256: 'fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010',
   forumSha256: '778231d0918da31f8a28ddd727a92527f71487c53097520822085b34aab12e12',
-  canonicalBodySha256: '60f2d61d7ab5b4c0a13297332d5c0225fe8a9e985d571fbf7f85804ebd38be51',
+  normalizedBodySha256: '19f5dccb7e188db0ef181eeeb85fef51defdb5667bf0b0393c28e638d871801a',
 };
 const checks = {
   originalBytes: result.byteLengths.original === expected.originalBytes,
   forumBytes: result.byteLengths.forum === expected.forumBytes,
   originalSha256: result.rawSha256.original === expected.originalSha256,
   forumSha256: result.rawSha256.forum === expected.forumSha256,
-  canonicalBodySha256: result.canonicalSignedBodySha256 === expected.canonicalBodySha256,
-  canonicalSignedBodiesEqual: result.canonicalSignedBodiesEqual,
+  canonicalBodySha256: result.canonicalSignedBodySha256 === expected.normalizedBodySha256,
+  normalizedBodiesEqual: result.canonicalSignedBodiesEqual,
   signaturePacketsEqual: result.signaturePacketsEqual,
   twoInternalDoubleSpaces: JSON.stringify(result.whitespace.original.internalDoubleSpaceLines) === '[5,16]'
     && JSON.stringify(result.whitespace.forum.internalDoubleSpaceLines) === '[5,16]',
