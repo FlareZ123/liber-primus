@@ -142,6 +142,27 @@ const nativeModel=choose(syntheticTrain);
 assert.equal(nativeModel,'forward-forward','source-true orientation must be recovered');
 assert(syntheticOut[nativeModel].rate>.045,'shared-row plant should exceed chance collision rate');
 assert(syntheticScore[nativeModel].rate>.045,'shared-row plant should detect source language');
+// Exact, pairwise local-phase and leave-one-pair-out robustness tests.
+const selectedPairDetails=heldout.map(pair=>{
+  const observed=test([pair],model);
+  const shuffledScores=[];
+  for(let phase=0;phase<pair.right.length;phase++){
+    const shiftedRight=pair.right.slice(phase).concat(pair.right.slice(0,phase));
+    shuffledScores.push(test([{...pair,right:shiftedRight}],model).eq);
+  }
+  const other=shuffledScores.slice(1);
+  const mean=shuffledScores.reduce((s,x)=>s+x,0)/shuffledScores.length;
+  return {p:pair.p,q:pair.q,observed,meanCircularEq:mean,
+    exactCircularUpperTailRank:
+      (1+other.filter(x=>x>=observed.eq).length)/shuffledScores.length,
+    signedExcessOverMean:observed.eq-mean};
+});
+const leaveOnePairOut=heldout.map(x=>{
+  const remaining=heldout.filter(pair=>pair.p!==x.p);
+  const value=test(remaining,model);
+  return {excludedPair:[x.p,x.q],rate:value.rate,
+    equalityMatches:value.eq,positions:value.n};
+}).sort((a,b)=>a.rate-b.rate);
 const result={
   hypothesis:'2016 signed-message THE->FOLD; literal p with 57-p pairs for 58 original page slots / 29 GP glyphs',
   structurallyUnavailablePairs:[[0,57],[1,56],[7,50]],
@@ -149,7 +170,7 @@ const result={
   includedRunePositions:tests.reduce((s,x)=>s+Math.min(x.left.length,x.right.length),0),
   sourceLanguage:'GP-encoded disjoint Shakespeare heldout segments',
   observable:'positionwise C_left==C_right, exactly invariant under every unknown shared 29-way output permutation row',
-  original:{trainByOrientation:allTrain,heldByOrientation:allHeld,selectedModel:model,null:nullStat},
+  original:{trainByOrientation:allTrain,heldByOrientation:allHeld,selectedModel:model,null:nullStat,selectedPairDetails,leaveOnePairOut},
   nativePlant:{randomSharedPerPositionAffineRows:true,softRepeatFilter:.81,
     modifications,selectedTrain:syntheticScore[nativeModel],
     selectedHeldout:syntheticOut[nativeModel],selectedModel:nativeModel,
