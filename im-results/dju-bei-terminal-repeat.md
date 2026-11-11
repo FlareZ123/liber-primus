@@ -38,10 +38,37 @@ The pair could be a repeated plaintext refrain under a reused or position-depend
 
 The authenticated 2016 message's phrases “the way” and “the map” are possible crib ideas, not plaintext evidence. In GP29, `TH` is a single rune, so either phrase has five GP symbols; a 3+3 ciphertext pair could accommodate it only with an additional symbol/null in the first word. That is compatible with one external forward-model hypothesis, but does not identify the null, key, or plaintext. A narrow test of a single affine map to these candidate phrases, deleting one symbol from the first ciphertext word, found no fit; this rejects only that simple model.
 
-## Next discriminating work
+## Source-locked affine word-pair constraint (Agent 38, 11 November 2026)
 
-1. Test whether a source-selected key/state schedule predicts the same six-rune pair at both positions; do not infer a key from the repetition alone.
-2. Evaluate the 2016 “way/map” wording only as a locked crib with a specified reversible operation and held-out prediction.
-3. Determine whether the terminal 13-dot mark is merely the next fragment delimiter or contributes an independent end-of-section instruction.
+This extension tests whether the repeated phrase is one of a family of otherwise invisible repeated plaintext phrases under *word-local Caesar or affine encipherment*. A human solver could recognize a recurring two-word phrase while allowing each word its own rotating rune alphabet. A necessary condition for this proposed decoder is that two-word equality **up to the hypothesized alphabet transformations** survives encryption.
 
-**Reproduction inputs:** `resources/liber-primus/lp2-corpus.json`, `lp2-transcription.txt`, `lp2-ink-annotations.json`, and `lp2-grid-256.json`; original image checks used the user-provided combined JPEG archive and can be cross-checked against [image 44](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2014/011-seventh-onion/44.jpg) and [image 72](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2014/011-seventh-onion/72.jpg) in the historical archive.
+For each original complete ciphertext word of GP indices `w`, its canonical Caesar-invariant fingerprint is `(w_i-w_0) mod 29`. For affine `a*w_i+b`, where `a != 0 mod 29`, further divide by the first nonzero difference. Concatenate two fingerprints and freeze their separately printed rune-word lengths. For a **shared affine mapping applied to both words**, normalize the combined pair under one affine multiplier and preserve the first-word boundary instead. The fingerprints are mathematically invariant under every secret key in these respective families; they do not fit ciphertext language or rely on a recovered plaintext.
+
+Across the **2,896 whole original unsolved words**, with printed page wraps rejoined and GP29 identity confirmed against original physical-page indices, the complete census is:
+
+| Key-independent class of printed two-word phrase, at least six runes | Eligible neighboring pairs | Additional occurrences beyond distinct classes | Repeated classes |
+| --- | ---: | ---: | ---: |
+| **One shared arbitrary affine multiplier/shift per phrase** | 2,495 | **1** | **1** |
+| **Separate arbitrary Caesar shift per word**, each word at least two runes | 2,422 | **1** | **1** |
+| Separate arbitrary affine multiplier/shift per word, each at least two runes | 2,422 | 30 | 26 |
+
+The **only** repeated class under either of the first two architectures is the *exact identical original* `DJU-BEI` at **global rune offsets 6,555 and 12,950**; its GP29 indices are `[23,11,1 | 17,18,10]`. The third, much less constrained architecture produces 26 short collision classes, so the marker is no longer unique there. The SFT additionally checks that independently shifted GP words and a jointly affine-transformed pair preserve the declared fingerprints.
+
+To judge the frequency of such class collisions in native prose, construct **100 whole-word resamples per reference author**, independently sampling a genuine GP-transliterated source word of the *same exact rune length as each of the 2,896 original printed words*, preserving every original word-length position, phrase boundary and eligible-pair count. All GP digraph choices are frozen to the existing `word_partition_invariant.cjs` mapping, with no ciphertext-fitted spelling. The finite reference controls give:
+
+| Native GP-English source | Shared-affine additional pairs, mean (min–max) | Independently shifted additional pairs, mean (min–max) | Independently affine additional pairs, mean (min–max) |
+| --- | --- | --- | --- |
+| Shakespeare, 55,407 source tokens | 34.61 (18–55) | 39.04 (23–62) | 146.80 (117–178) |
+| Emerson, 77,932 source tokens | 48.52 (30–67) | 51.78 (37–69) | 137.82 (112–168) |
+| Gibran, 15,733 source tokens | 94.49 (70–115) | 99.64 (76–122) | 216.19 (189–249) |
+| **Original unknown LP2** | **1** | **1** | **30** |
+
+Every one of these **300 finite word-length-matched native-English samples** has more repeat classes than the original for each declared architecture. This is a conditional language-register comparison, rather than a universal statistical proof: the reference draws use independent words sampled with replacement, and an author selecting unusually low-repetition phrasing could avoid these collisions. Sampling words out of original LP2's *own ciphertext word inventory* and shuffling their order 100 times gives only 0–1 independent-Caesar pair collisions (mean **0.04**). Thus the structural sparsity is rooted primarily in the individual ciphertext word fingerprints, while the exact terminal bookend pair is an additional, source-visible placement.
+
+**Decision:** ordinary native-GP English passed through independently keyed word-local Caesar or affine maps is severely mismatched on its otherwise unalterable two-word recurrence signature, even when every word has a different unknown key. This extends the previously documented [wordwise equality-partition necessary condition](wordwise-equality-invariant.md) into phrase structure; it does not identify the historical cipher or exclude low-repetition text, hidden transpositions, homophonic/variable-rate registers, or changing within-word cipher state. The exact six-rune echo remains a useful *fixed holdout landmark* for any independently selected genuine decoder; it supplies no authentic key, plaintext or destination on its own.
+
+**Reproducer:** [standalone canonical-source and seeded-three-author SFT](../sims/dju_bei_affine_wordpair_sft.cjs), which asserts every original GP index, both unique six-rune collision classes, and native synthetic transformation invariance.
+
+## Next source-to-plaintext decision
+
+The two occurrences delimit the existing bookend hypothesis but cannot select a shift, affine key or readout direction. An independently source-selected key/state law could use their unchanged equality as a strict terminal prediction, while also yielding coherent withheld plaintext. Absent such an operator, retire further unconstrained use of the six-rune repetition, synthetic 81²/80² geometry, or phrase guesses. The 2016 wording and 13-dot punctuation remain clues to inspect only when they specify an executable rule.
