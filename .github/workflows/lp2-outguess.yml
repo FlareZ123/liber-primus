@@ -1,9 +1,7 @@
 name: LP2 original-JPEG OutGuess message extraction
 
+# Repository policy: manual dispatch only; never add per-commit triggers.
 on:
-  push:
-    paths:
-      - sims/lp2_instar_outguess_single_probe.cjs
   workflow_dispatch:
     inputs:
       xor_shares:
@@ -66,7 +64,7 @@ jobs:
           node --check sims/lp2_p55_shed43_outguess_source_sft.cjs
           node sims/lp2_p55_shed43_outguess_source_sft.cjs
       - name: Test the single p57-derived INSTAR OutGuess password on original p55
-        if: ${{ inputs.instar || github.event_name == 'push' }}
+        if: ${{ inputs.instar }}
         run: |
           node --check sims/lp2_instar_outguess_single_probe.cjs
           node sims/lp2_instar_outguess_single_probe.cjs
@@ -143,7 +141,7 @@ jobs:
           retention-days: 30
 
       - name: Preserve single INSTAR probe
-        if: ${{ always() && (inputs.instar || github.event_name == 'push') }}
+        if: ${{ always() && inputs.instar }}
         uses: actions/upload-artifact@v4
         with:
           name: outguess-lp2-instar
