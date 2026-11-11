@@ -2,7 +2,7 @@
 /**
  * P53 black/red, p54 enlarged-A, p55 tree vs original LP2 numeric pages.
  * Exact, source-selected 128 two-byte table pairs and two 128-rune streams.
- * Tests a *bounded* 16-case additive GP29 2-byte/2-rune reading.
+ * Tests a *bounded* 32-case additive GP29 2-byte/2-rune reading.
  *
  * Run: node sims/terminal_p50_two_byte_page_frame_sft.cjs
  */
@@ -52,9 +52,27 @@ const translit = a => a.map(x => corpus.translit[mod29(x)]).join("");
 const middle = grid.pages.find(p => p.page === 50).bytes;
 const left = grid.pages.find(p => p.page === 49).bytes;
 const right = grid.pages.find(p => p.page === 51).bytes;
+// The printed numerals have one source-visible ambiguity: lowercase f never
+// occurs. Removing that digit permits radix59/F-skip as well as radix60.
+// Preserve the same original printed token cells and both natural orders.
+const alphabet59 = grid.alphabet.replace("f","");
+assert.equal(alphabet59.length,59);
+const decode59 = token => {
+  assert.equal(token.length,2);
+  const hi=alphabet59.indexOf(token[0]);
+  const lo=alphabet59.indexOf(token[1]);
+  assert(hi>=0 && lo>=0);
+  return 59*hi+lo;
+};
+const page59 = grid.pages.map(p=>p.tokens.map(decode59));
+const bytes59 = page59.flat();
+assert.equal(bytes59.length,256);
+assert(bytes59.every(v=>v>=0 && v<=255));
 const sources = {
-  "printed-p49-p50-p51":grid.bytes,
-  "middle-first-p50-p49-p51":[...middle,...left,...right]
+  "radix60-printed":grid.bytes,
+  "radix60-middle-first":[...middle,...left,...right],
+  "radix59-printed":bytes59,
+  "radix59-middle-first":[...page59[1],...page59[0],...page59[2]]
 };
 
 /**
@@ -141,9 +159,9 @@ for (const [name,source] of Object.entries(sources)) {
         });
       }
 }
-assert.equal(results.length,16);
+assert.equal(results.length,32);
 const originalBest = Math.max(...results.map(x=>x.originalIoC));
-assert(originalBest<0.04);
+assert(Math.abs(originalBest-0.039124015748031496)<1e-12);
 assert(originalBest<nativeLowest);
 
 console.log(JSON.stringify({
@@ -163,9 +181,9 @@ console.log(JSON.stringify({
   },
   positive:{
     nativeRunes:positive.length,nativeIoC:ioc(positive),
-    exactOriginalRoundtrips:16,exactNativePlantRecoveries:16,
+    exactOriginalRoundtrips:32,exactNativePlantRecoveries:32,
     GibranNonoverlapWindows:referenceIoCs.length,
     nativeLowestIoC:nativeLowest
   },
-  scope:"Two source-sized layouts and both signs per component. No evidence for this additive codec; nonlinear/external encoding remains open."
+  scope:"Two original numeral bases, two source-sized layouts and both signs per component. No evidence for this additive codec; nonlinear/external encoding remains open."
 },null,2));
