@@ -55,6 +55,14 @@ The cycles are both length 5 and share exactly one node: **WE**, position 8. Thu
 
 The two cycles' word meanings are strikingly consonant with the parable's key phrases (“like ... to the surface”, “we ... find the divinity within”, “shed ... circumferences”), but this semantic reading is interpretive, not a recovered plaintext.
 
+## Alternative numeric controls
+
+The two 5-cycles do not appear when the word values are replaced by the sum of rune ordinals or by rune count:
+- With ordinal sums, the negative walk from LIKE reaches the fixed point TO, and the positive walk from FIND reaches the fixed point WITHIN.
+- With rune counts, the negative walk from LIKE has a different 4-cycle (DIVINITY → WE → THE → TUNNELING), while the positive walk from FIND has a different 5-cycle (FIND → AND → THE → TUNNELING → OUR). They do not form the observed pair of 5-cycles sharing WE.
+
+This supports the specificity of GP-prime word sums as the tested numeric representation, but it does not independently prove that this is the intended representation.
+
 ## Permutation null
 
 The reproducible script [`sims/p57_word_map_19_direction_cycles.py`](../sims/p57_word_map_19_direction_cycles.py) fixes the two marker-selected anchor sums at LIKE position 1 and FIND position 14, shuffles the other 17 word sums, and tests all four sign assignments for 100,000 permutations (seed 20261112).
