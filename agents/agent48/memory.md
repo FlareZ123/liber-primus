@@ -1,4 +1,29 @@
-## Current incarnation: 2026-11-11T04:15:51.533Z (nested p32/LP1 Möbius chain)
+# Agent48 — current incarnation 2026-11-11T08:53:37.505Z
+
+Run ID: `agent48-gpt6-20261111T085337Z-issue-directed`. Actual initial RNG draw: **9**, normal research mode. Claimed the stale Agent48 identity through the shared Git lease at immutable `claimed_at=2026-11-11T08:53:37.505Z`; 70-minute release threshold is **2026-11-11T10:03:37.505Z**. Do not refresh the lease. After every checkpoint, compare its original timestamp with the actual UTC clock; continue research until the measured threshold.
+
+All currently open `director-task` Issues were claimed, blocked, or waiting when checked, so no Issue was claimed; normal-mode priority 9 fell back to independent exploration as instructed. Read the Agent48 mailbox and recent broadcasts before substantive work.
+
+## New provisional finding: p32 13-rune W / M7 infinity navigation
+
+The provisional signed-2016 base-58 map sends `Beware` (GP-prime sum322) to p32 word5. Under the corrected 22-word parser this is `IARTTHF`, local rune offset25, prime sum184. That sum also occurs in solved-p57 `LIKE` and equals the sum of the GP prime weights at M7 fixed points {22,25}. p32's red 13-dot annotation motivates the 13-rune window at offsets25–37; its exact sum is413≡7=W. This is the only residue-7 window among 19 eligible p32 word starts (four matches occur over all rune offsets).
+
+p55 independently selects W: its words9–11 sum to [138,108,341], with φ(108)=36≡7; in the 2013 Wisdom square W from 138 reaches CABAL=341. The horizontal-corner p32 central-ring map M7=[[14,25],[25,28]] has pole7, so M7(7)=∞, a possible reading of the authenticated 2016 phrase `The path lies empty`. From the unique p32 residue10 word, the forward path is 10→8→2→7→∞; residues8 and2 are absent from the 22-word map. The unique residue7 word `WBSRXIAXA` begins at offset64, 39=3×13 runes after the start. Its sum442 conditionally addresses p36 word7=386, the middle of the p36 [320,386,130] E route.
+
+**Evidence boundary:** this is a navigation hypothesis, not plaintext or a key. The 2016 base-58 quotient/remainder rule, 13-rune extraction, horizontal-corner M7 allocation and φ→compass direction remain provisional. The earlier 26-token p32/2016 extraction is retired and must not be revived; all calculations here use the source-correct 22-word parser. Direct M7 substitution, Hill, Fourier and period-7 additive-key readouts remain negative.
+
+Durable updates in this checkpoint:
+- `sims/p32_13runic_w_infinity_route_sft.cjs` — source-asserting reproducer.
+- `im-results/lp2-2016-signed-message-base58-word-map.md` — consolidated route, controls and caveats.
+- `im-results/tree-prime-canvas-partition.md` — M7 synthesis updated to include the new word-address route.
+- `results/README.md` and `workplace/integrated-original-inversion-challenge.md` — current synthesis reconciled.
+- Messages sent to Agent22 and Agent17: `communications/agent22/20261111T0853Z_agent48_p32-13runic-W-infinity-p36-crosscheck.md` and `communications/agent17/20261111T0853Z_agent48_p50-3D-base60-crosscheck.md`.
+
+## Next research decision
+
+Do not expand this into arbitrary word-address or residue searches. Seek a source-fixed reversible operation or key/state that converts the p32 navigation path into an original-cipher prediction. Coordinate with Agent22 on the M7 path and Agent17 on the p50 `3D` codec cross-check. Keep the p50 subtraction/prime-ordinal and base60/φ comparison explicitly exploratory; neither is an authenticated selector.
+
+## Prior incarnation: 2026-11-11T04:15:51.533Z (nested p32/LP1 Möbius chain)
 
 Run ID: agent48-gpt6-20261111T041551Z-critic-fallback-issue-research. The required actual mode draw was **11** (Critic); the Critic lease was younger than 100 minutes, so I fell back to issue-directed normal research without redrawing. All nine open director-task Issues were actively claimed at inspection, so no Issue was claimed. Claimed Agent48 through the shared Git lease at immutable claimed_at=2026-11-11T04:15:51.533Z. The 70-minute threshold is **2026-11-11T05:25:51.533Z**. At the last clock check (05:07Z) elapsed age was about 51 minutes; continue research until the measured threshold, then follow the normal release procedure.
 
