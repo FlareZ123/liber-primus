@@ -1,6 +1,6 @@
-# OutGuess keyed-image extraction: 22 corpus-wide source clues plus one isolated INSTAR candidate, with a source-independent false-header pattern
+# OutGuess keyed-image extraction: 22 corpus-wide source clues plus isolated INSTAR and p0 DH18 candidates, with a source-independent false-header pattern
 
-**Evidence class:** exact source-guided extraction experiments with authentic historical and newly embedded positive controls. Agent 40, 2026-11-10; Agent 8, 2026-11-11. **No new LP2 plaintext, authenticated hidden LP2 message, or cryptographic key recovered.**
+**Evidence class:** exact source-guided extraction experiments with authentic historical and newly embedded positive controls, plus a local extractor parity check against the pinned OutGuess workflow. Agent 40, 2026-11-10; Agent 8, 2026-11-11; Agent 38, 2026-11-11. **No new LP2 plaintext, authenticated hidden LP2 message, or cryptographic key recovered.**
 
 ## Purpose
 
@@ -75,16 +75,37 @@ The original p55 extraction exited successfully and reported seed **34964**, len
 
 Reproduction: [first path-triggered run 42979839636](https://github.com/FlareZ123/liber-primus/actions/runs/42979839636) and [rerun 42982773161 with automated `file` and GnuPG packet diagnostics](https://github.com/FlareZ123/liber-primus/actions/runs/42982773161); [latest exact result artifact](https://github.com/FlareZ123/liber-primus/actions/runs/42982773161/artifacts/13838505557), [single-probe script](../sims/lp2_instar_outguess_single_probe.cjs). The script verifies both controls before testing the one original carrier, preserves the exact candidate bytes and summary, and now records the `file` heuristic plus `gpg --batch --list-packets` exit/diagnostics. GnuPG's exit2 and malformed packet versions are therefore reproducible from the artifact, not only a local manual check. No case, phase, carrier, or dictionary sweep was performed.
 
+## Additional isolated p0 DH18 candidate (negative)
+
+The p0 red-heading DH hypothesis derives shared secret **18** and server public value **17**. The natural one-carrier continuation is therefore the exact OutGuess passphrase `18` on original `resources/liber-primus/17.jpg`; this tests the proposed public-value-17 → image-17 selection without a corpus sweep.
+
+A local extractor was implemented from the pinned OutGuess 0.4 retrieval path. Its JPEG coefficient bitmap and ARC4/iterator extraction reproduce the existing workflow artifact byte-for-byte on the independent LP2 p6 candidate: original `23.jpg`, password `ATXBMGIASBXEO`, seed 2437, length 29,681, SHA-256 `a2c894e1014e6b572cb60c27348a6be71841f093ea5e716242622423ba878f06`. This is an **implementation-parity control**, not a plaintext-positive payload; that p6 output is itself an unrecognized false-positive candidate. The comparison artifact is [workflow run 43022439918](https://github.com/FlareZ123/liber-primus/actions/runs/43022439918), [artifact 13855552680](https://github.com/FlareZ123/liber-primus/actions/runs/43022439918/artifacts/13855552680).
+
+On the frozen p0 candidate, original `17.jpg` with password `18` gives:
+- Bitmap: 714,405 eligible coefficients / 89,301 bytes.
+- OutGuess header: seed **22,352**, length **16,260**; exactly 16,260 bytes are emitted.
+- Payload SHA-256: `567d527ecfec0c5a8bce5b423b3b11a64adf35f4660c6ff2eecc67cff5ac70aa`.
+- No recognized ZIP, gzip, zlib, PDF, PNG, JPEG, SQLite, or ELF signature; `file` reports generic data.
+- `gpg --batch --list-packets` exits **2**: “no valid OpenPGP data found.”
+- After the duplicated four-byte OutGuess header, entropy is **7.989703 bits/byte** and printable fraction **0.382997**.
+
+The output is high-entropy, unrecognized binary, closely matching the known false-positive p6 artifact (tail entropy 7.993021; printable fraction 0.383361) and the payload-free synthetic-JPEG false-header controls above. A positive OutGuess header and exact output length are not authentication. **Reject the direct “DH secret 18 is the OutGuess password for image 17” continuation**; retain the DH arithmetic only as an intermediate hypothesis. This does not prove that p0 contains no other steganographic payload or exclude a separately source-selected second layer, but no such layer is specified by the current evidence.
+
+Reproduction:
+- `python3 sims/outguess_extract.py resources/liber-primus/23.jpg ATXBMGIASBXEO --expect-sha256 a2c894e1014e6b572cb60c27348a6be71841f093ea5e716242622423ba878f06`
+- `python3 sims/outguess_extract.py resources/liber-primus/17.jpg 18 --output /tmp/p0-dh18-outguess.bin`
+- The helper follows the pinned [OutGuess `jpg.c`](https://github.com/resurrecting-open-source-projects/outguess/blob/24810e14327c2bbeedeaadd3e24491f2a4425c02/src/jpg.c), [`iterator.c`](https://github.com/resurrecting-open-source-projects/outguess/blob/24810e14327c2bbeedeaadd3e24491f2a4425c02/src/iterator.c), and [`arc.c`](https://github.com/resurrecting-open-source-projects/outguess/blob/24810e14327c2bbeedeaadd3e24491f2a4425c02/src/arc.c); it requires a C compiler and libjpeg development headers.
+
 ## Scope and research consequence
 
-No original LP2 hidden PGP-signed message or readable nonempty content was recovered under the 22 corpus-wide source passwords or the separate INSTAR p55 test. Their consistent extraction headers are not cryptographic authentication. A hidden payload using other password derivation, key material, image encoding, nested encryption or unrelated DCT steganography remains untested. The source-derived finite password search therefore gives a **bounded negative with a useful detection discriminator**, rather than a proof of no source-image steganography.
+No original LP2 hidden PGP-signed message or readable nonempty content was recovered under the 22 corpus-wide source passwords, the separate INSTAR p55 test, or the isolated p0 DH18 / image17 OutGuess candidate. Their consistent extraction headers are not cryptographic authentication. A hidden payload using other password derivation, key material, image encoding, nested encryption or unrelated DCT steganography remains untested. The source-derived finite password search therefore gives a **bounded negative with a useful detection discriminator**, rather than a proof of no source-image steganography.
 
-Potential next source-image attack should demand exact recovered material and a distinguishing planted control, preferably a signed message or a demonstrated LP2 key with genuine decipherment. Further unrestricted passphrase guesses against these header artifacts have weak expected value without a new independent key clue.
+Potential next source-image attack should demand exact recovered material and a distinguishing planted control, preferably a signed message or a demonstrated LP2 key with genuine decipherment. Further unrestricted passphrase guesses against these header artifacts have weak expected value without a new independent key clue; the p0 DH18 → OutGuess password18 path is now closed.
 
 ## Reproduction
 
 - [Exact CommonJS source-key extractor and planted controls](../sims/outguess_lp2_keyed_probe.cjs). The 22-key corpus gate remains unchanged. For one exact externally derived candidate, set `LP2_OUTGUESS_PASSWORD` to that password; optionally set `LP2_OUTGUESS_SOURCE_IMAGE` to one original JPEG index17–74. In this single-key override mode the script preserves **every nonempty extraction output**, including unrecognized or header-inconsistent bytes, as `candidate_0_<page>.bin`, and records its status, header fields, size, hash and path in `rawCandidates`. The default 22-key run retains its prior artifact behavior.
 - [Isolated INSTAR probe and controls](../sims/lp2_instar_outguess_single_probe.cjs).
-- [Existing OutGuess workflow](../.github/workflows/lp2-outguess.yml), options `keyed_probe=true` or `instar=true`. It now also exposes `custom_password` and optional `custom_image` inputs for the exact one-key path; the workflow remains manual-dispatch-only. The p0 DH18 proposal is prepared as `custom_password=18`, `custom_image=17`, but **has not been dispatched or executed**. Uses pinned maintained OutGuess commit 24810e14327c2bbeedeaadd3e24491f2a4425c02 and authentic original JPEGs.
+- [Local source-faithful retrieval implementation](../sims/outguess_extract.py) and [JPEG coefficient bitmap helper](../sims/outguess_bitmap_dump.c). The p6 parity command above matches the workflow artifact exactly; the p0 DH18 candidate is now locally tested and closed. The existing OutGuess workflow remains manual-dispatch-only and exposes `custom_password` and optional `custom_image` for future independently selected candidates. It uses pinned maintained OutGuess commit 24810e14327c2bbeedeaadd3e24491f2a4425c02.
 - [Complete successful run](https://github.com/FlareZ123/liber-primus/actions/runs/42780745513) and [preserved exact machine output](https://github.com/FlareZ123/liber-primus/actions/runs/42780745513/artifacts/13746300544).
 - [Independent full-corpus direct-pad inversion of the 16 default-key binary arrays](outguess-lp2-original-directpad.md) tested a different possible use and also found no original plaintext.

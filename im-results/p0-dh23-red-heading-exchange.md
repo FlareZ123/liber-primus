@@ -59,8 +59,16 @@ The raw p0 body IoC is **0.0342923768**. Both outputs round-trip exactly under t
 
 **Decision:** reject only the direct transfer “DH shared secret 18 = starting prime ordinal for the p56 φ(p) clock on p0.” The result does not invalidate the p0 DH arithmetic, nor does it test other source-selected operations using K=18. The historical DH source does not say to reuse p56's prime clock or interpret the shared secret as a prime ordinal; no broader key/PRNG search is justified without a new original clue.
 
+## Direct OutGuess use of K=18 (negative)
+
+The DH arithmetic gives shared secret K=18 and server public value A=17. A plausible one-step human continuation is to use the decimal shared secret as the OutGuess passphrase and A=17 to select original carrier `resources/liber-primus/17.jpg`. This exact candidate was tested once, with no key, phase, or carrier sweep.
+
+The local retrieval implementation is checked against the pinned OutGuess workflow: on original p6 carrier `23.jpg` with password `ATXBMGIASBXEO`, it reproduces the workflow's 29,681-byte artifact exactly (SHA-256 `a2c894e1014e6b572cb60c27348a6be71841f093ea5e716242622423ba878f06`; [run 43022439918](https://github.com/FlareZ123/liber-primus/actions/runs/43022439918)). On p0 `17.jpg` with password `18`, it emits seed 22,352, length 16,260, payload SHA-256 `567d527ecfec0c5a8bce5b423b3b11a64adf35f4660c6ff2eecc67cff5ac70aa`. The payload has no recognized file signature; `file` reports generic data, and `gpg --batch --list-packets` exits 2 with “no valid OpenPGP data found.” Its post-header entropy is 7.989703 bits/byte and printable fraction 0.382997, matching the high-entropy false-positive profile already established by the synthetic-JPEG and original-image controls.
+
+**Decision:** reject the direct continuation “DH secret 18 is the OutGuess password for image 17.” This is a bounded negative, not proof that p0 contains no other steganographic content, and it does not invalidate the DH arithmetic. Do not search additional passwords, images, or second-layer ciphers without a new source instruction. Reproduce with `python3 sims/outguess_extract.py resources/liber-primus/17.jpg 18 --output /tmp/p0-dh18-outguess.bin`.
+
 ## Reproduction and next decision
 
 Run \`node sims/p0_dh23_red_heading_candidate.cjs\` from the repository root. It reconstructs the BASE29 values, DH exchange, red-span and subgroup controls, conditional word-map observation, and rejected 27×27 continuation from the canonical resources.
 
-**Research decision:** retain this as a candidate source-derived key, but do not promote it to \`results/\`. The direct p56 prime-totient transfer seeded by K=18 has now failed. The missing piece remains a different source-selected reversible LP2 operation that consumes shared secret 18, or an independent second DH-encoded passage that validates the mapping. Do not expand into arbitrary PRNGs, coordinate orderings, or cipher families without another original clue.
+**Research decision:** retain this as a candidate source-derived key, but do not promote it to \`results/\`. Both tested direct consumers of K=18—the p56 prime-totient clock on p0 and OutGuess passphrase18 on image17—have now failed to recover plaintext. The missing piece remains a different source-selected reversible LP2 operation that consumes shared secret 18, or an independent second DH-encoded passage that validates the mapping. Do not expand into arbitrary PRNGs, coordinate orderings, or cipher families without another original clue.
