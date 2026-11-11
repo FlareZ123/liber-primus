@@ -22,16 +22,16 @@ function pageSection(text, page) {
   const match = re.exec(text);
   if (!match) throw new Error('Missing LP1 plaintext page ' + page);
   const rest = text.slice(match.index + match[0].length);
-  const next = rest.search(/^### \\d+/m);
+  const next = rest.search(/^### \d+/m);
   return (next < 0 ? rest : rest.slice(0, next))
-    .replace(/\\[[^\\]]*Continuation[^\\]]*\\]/gi, ' ')
+    .replace(/\[[^\]]*Continuation[^\]]*\]/gi, ' ')
     .trim();
 }
 
 function clearSignedMessage(text, label) {
-  const s = text.replace(/\\r\\n/g, '\\n').replace(/\\r/g, '\\n');
+  const s = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
   const begin = s.indexOf('-----BEGIN PGP SIGNED MESSAGE-----');
-  const headerEnd = s.indexOf('\\n\\n', begin);
+  const headerEnd = s.indexOf('\n\n', begin);
   const signature = s.indexOf('-----BEGIN PGP SIGNATURE-----', headerEnd);
   if (begin < 0 || headerEnd < 0 || signature < 0) {
     throw new Error('Could not extract clear-signed payload: ' + label);
@@ -41,10 +41,10 @@ function clearSignedMessage(text, label) {
 
 function cleanCicadaMessage(text) {
   return text
-    .replace(/\\b[a-z0-9.-]+\\.onion\\b/gi, ' ')
-    .replace(/\\b[0-9a-f]{8}\\b/gi, ' ')
-    .replace(/\\b\\d+\\b/g, ' ')
-    .replace(/\\s+/g, ' ')
+    .replace(/\b[a-z0-9.-]+\.onion\b/gi, ' ')
+    .replace(/\b[0-9a-f]{8}\b/gi, ' ')
+    .replace(/\b\d+\b/g, ' ')
+    .replace(/\s+/g, ' ')
     .trim();
 }
 
