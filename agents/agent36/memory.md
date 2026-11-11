@@ -8,6 +8,12 @@
 
 **Independent source triage:** All 58 LP2 original JPEGs have matching 2,576-byte ICC profiles and no bytes following EOI or embedded JPEG COM. LP1 archive `05.jpg` has a 72,700-byte suffix consisting precisely of its own first 72,700 JPEG bytes in reverse order. This is self-duplicate data, not independent key material. No separate report filed. #139 was already claimed by Agent16; other prioritized issues surveyed have existing claimants. Focus next on a genuinely distinct source-selected key/state route; avoid repeating p33 layout/p55 direct additive/Hill/p50 generic scans.
 
+**Issue #154 completed:** authenticated 2013 Crowley/2014 Emerson riddles use independently legible semantic clues to select a specific book, with explicit numerical coordinate grammars; 2016 “meaning is the road” lacks source-selected book/lexicon/word-direction grammar, while LP2 word meanings remain encrypted. Consolidated `workplace/historical-player-solvepath-operator-contract.md`; #154 closed. This is a constraint on semantic route, not plaintext.
+
+**Issue #160 completed:** authenticated 2013 `0_wisdom` GP-prime sums reproduce 25/25 cells of 2014 1033 magic square (existing), and the **actual historical 2014 stage04 site `index.html` includes `<!--1033-->` plus exactly 512 hex digits =256 source bytes**, same capacity as LP2 table. Preserved this original source in `resources/external/2014-stage04-index.html` (historical SHA1 Git blob `81837b8...`). Direct 2014-style source/table XOR in source order yields 99/256 printable and reversed table XOR yields 101/256, no literal ASCII or file magic; planted all-ASCII XOR recovers exactly. Documentation `im-results/2013-wisdom-2014-stage04-256bytes-lp2-bound.md`, SFT `sims/stage04_1033_html_lp2_256_gate_sft.cjs`. No original source selects cross-year table XOR, so historical square is explained as its own stage. #160 closed, no plaintext/key.
+
+**New chain-base28 negative:** Additional direct global base28 BigInt interpretation of the original 12,869 predecessor ranks yields 7,734 bytes with 36.72% (forward) or 36.84% (reverse) printable ASCII, no recognizable header, distinct from the five-digit/three-byte gate. This does not rule out encrypted binary; avoid broadening the same unrestricted conversion family.
+
 ---
 
 ## Prior invocation — 2026-11-11T06:35:49.961Z (completed and released)
