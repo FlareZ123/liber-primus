@@ -132,10 +132,16 @@ const p57Control = [
 // Source-bounded p57 circumference / paired-ring gate.
 const fullTranscript = fs.readFileSync(path.join(ROOT, "resources/lp2-transcription.txt"), "utf8");
 const fullParsed = parseLP2Words(fullTranscript, 58);
-const p55PageWords = fullParsed.byContainedPage[54].map((word) => [...word.runes].map((rune) => runeIndex.get(rune)));
-const p57PageWords = fullParsed.byContainedPage[56].map((word) => [...word.runes].map((rune) => runeIndex.get(rune)));
+const pageFragments = fullTranscript.split("%");
+const pageWordGlyphs = (pageIndex) => (pageFragments[pageIndex].replace(/\/\s*/gu, "").match(/[\u16A0-\u16FF]+/gu) || []);
+const p55PageWordGlyphs = pageWordGlyphs(54);
+const p57PageWordGlyphs = pageWordGlyphs(56);
+const p55PageWords = p55PageWordGlyphs.map((word) => [...word].map((rune) => runeIndex.get(rune)));
+const p57PageWords = p57PageWordGlyphs.map((word) => [...word].map((rune) => runeIndex.get(rune)));
 const p57BodyWords = p57PageWords.slice(1);
 const p57First7Words = p57BodyWords.slice(0, 7);
+const p55CompleteWords = fullParsed.byStartPage[54];
+const p55IncomingCrossPageWords = fullParsed.words.filter((word) => word.startPage === 53 && word.endPage === 54);
 const p55Flat = p55PageWords.flat();
 const p57BodyFlat = p57BodyWords.flat();
 const boundaryLength = (word) => word.length === 1 ? 1 : 2;
@@ -240,9 +246,17 @@ const p55Ioc = indexOfCoincidence(p55PageWords).ioc;
 
 assert.equal(p55PageWords.length, 17);
 assert.equal(p55Flat.length, 76);
+assert.equal(p55PageWords[0].length, 1);
+assert.equal(p55CompleteWords.length, 16);
+assert.equal(p55IncomingCrossPageWords.length, 1);
+assert.equal(p55IncomingCrossPageWords[0].runes.length, 11);
+assert.ok(p55IncomingCrossPageWords[0].runes.endsWith(p55PageWordGlyphs[0]));
+assert.equal(p55CompleteWords.filter((word) => word.runes.length === 2).length, 5);
+assert.equal(p55CompleteWords.filter((word) => word.runes.length >= 3).length, 11);
 assert.equal(p55BoundaryCount, 33);
 assert.equal(p55Flat.length - p55BoundaryCount, 43);
 assert.equal(p57PageWords.length, 20);
+assert.equal(fullParsed.byContainedPage[56].length, 20);
 assert.equal(p57BodyWords.length, 19);
 assert.equal(p57BodyFlat.length, 88);
 assert.equal(p57First7Words.length, 7);
@@ -287,10 +301,14 @@ const sourceLockedWordGate = {
     unmappedFiveFactors
   },
   p55: {
-    words: p55PageWords.length,
-    wordLengths: p55PageWords.map((word) => word.length),
-    singletonWords: p55PageWords.filter((word) => word.length === 1).length,
-    twoRuneWords: p55PageWords.filter((word) => word.length === 2).length,
+    pageLocalSegments: p55PageWords.length,
+    pageLocalSegmentLengths: p55PageWords.map((word) => word.length),
+    leadingOneRuneContinuationFragment: true,
+    incomingCrossPageWordLength: p55IncomingCrossPageWords[0].runes.length,
+    completeWordsStartingOnPage: p55CompleteWords.length,
+    standaloneSingletonWords: 0,
+    twoRuneCompleteWords: p55CompleteWords.filter((word) => word.runes.length === 2).length,
+    longerCompleteWords: p55CompleteWords.filter((word) => word.runes.length >= 3).length,
     runes: p55Flat.length,
     boundaryRunes: p55BoundaryCount,
     interiorRunes: p55Flat.length - p55BoundaryCount,
@@ -299,8 +317,9 @@ const sourceLockedWordGate = {
     native76MinimumIoc: native76Iocs[0],
     permutationOnlyGate: p55Ioc < native76Iocs[0]
   },
-  conclusion: "The split is reversible but not a cipher. Ring/count concordances do not specify word-to-ring order, orientation, endpoint state update, or a GP29 symbol-changing operation."
+  conclusion: "The split is reversible but not a cipher. The p55 leading page segment continues a word from the previous page. Ring/count concordances do not specify word-to-ring order, orientation, endpoint state update, or a GP29 symbol-changing operation."
 };
+
 
 const result = {
   interpretation: "remove the first and last rune of every original word; optionally decrypt each interior with repeating GP-DIUINITY",

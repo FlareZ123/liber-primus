@@ -21,7 +21,7 @@ Applied to all 19 p57 body words, this gives **38 boundary runes and 50 interior
 
 There are seven rings and 74 cells in total. This is a notable count concordance: seven first-sentence words, seven rings, and 74 runes after removing the first seven words' endpoints. It is not yet an ordering or cipher rule. If “circumferences” applies to every word, the natural result is 50 interiors, not 74; the source does not explicitly fix that scope.
 
-The p55 page has **17 words and 76 runes**: one singleton, five two-rune words, and eleven longer words. The same lossless split gives **33 boundary runes and 43 interior runes**. No symbol is discarded.
+The p55 page contains **76 runes in 17 page-local word segments**. The first segment is a one-rune continuation: it is the final rune of an **11-rune word that starts on the preceding page** (rune-bearing page index 53) and ends on p55 (index 54). It is not a standalone singleton. There are **16 complete words starting on p55**, comprising five two-rune words and eleven longer words. Counting the incoming word's final boundary rune once, the p55 page contributes **33 boundary runes and 43 interior runes**. A page-local transform that resets at the p55 boundary would split a word and mis-handle that first rune.
 
 ## Ring and historical NUMBER checks
 
@@ -47,7 +47,7 @@ The earlier literal edge-strip/`DIVINITY` test remains negative: the best direct
 
 ## What is and is not determined
 
-The only fully source-compatible reversible word operation presently fixed is the tuple split `(left boundary, interior, right boundary)` with the length-1/2 cases above; concatenating the tuple exactly reconstructs every original word. It is a representation change, not decryption.
+The only fully source-compatible reversible word operation presently fixed is the tuple split `(left boundary, interior, right boundary)` with the length-1/2 cases above; concatenating the tuple exactly reconstructs every original word. For p55, the leading one-rune page segment must be carried as the final boundary of the incoming cross-page word, not reclassified as a one-rune word. This is a representation change, not decryption.
 
 The source still does not determine:
 
@@ -61,4 +61,4 @@ The source still does not determine:
 
 ## Reproduction
 
-Run `node sims/instar_circumference_probe.cjs`. The script reports the exact p57/p55 word partitions, ring counts, conditional NUMBER outputs, endpoint-factor match, and matched p55/native IoC gate. It uses the original transcription, GP corpus, OpenPuff square resource, and Gibran body control.
+Run `node sims/instar_circumference_probe.cjs`. The script reports the exact p57/p55 page-local partitions, incoming cross-page word, ring counts, conditional NUMBER outputs, endpoint-factor match, and matched p55/native IoC gate. It uses the original transcription, GP corpus, OpenPuff square resource, and Gibran body control.
