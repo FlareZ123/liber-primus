@@ -297,6 +297,8 @@ assert.equal(pointer43.sequence.length, 18);
 assert.equal(pointer43.repeat, 76);
 assert.equal(pointer43.preperiod, 7);
 assert.equal(pointer43.cycle, 11);
+assert.equal(pointer43.preperiod + pointer43.cycle, 18);
+assert.equal(pointer43.preperiod * pointer43.cycle - 1, 76);
 assert.equal(pointer43.sequence[3], 82);
 assert.equal(grid.bytes[205], 76);
 const matchingGpPrimeStarts = corpus.prime
@@ -305,6 +307,33 @@ const matchingGpPrimeStarts = corpus.prime
     item.signature.repeat === 76 && item.signature.sequence[3] === 82)
   .map((item) => [item.rune, item.prime]);
 assert.deepEqual(matchingGpPrimeStarts, [[13, 43]]);
+
+// The 7+11 orbit decomposition gives a locked 11x7 completion test on p55.
+// Both copies of the unique six-rune DJU-BEI anchor begin at multiples of 7.
+const p27 = corpus.pages.find((p) => p.page === 27).indices;
+const p55Original = corpus.pages.find((p) => p.page === 55).indices;
+assert.equal(p55Original.length, 76);
+assert.deepEqual(p27.slice(28, 34), p55Original.slice(70, 76));
+assert.equal(28 % pointer43.preperiod, 0);
+assert.equal(70 % pointer43.preperiod, 0);
+assert.equal((70 - 28) / pointer43.preperiod, 6);
+assert.equal(p27[34], 25); // AE
+assert.equal(corpus.translit[p27[34]], "AE");
+assert.equal(corpus.prime[p27[34]], 101);
+const p55Completed = p55Original.concat(p27[34]);
+assert.equal(p55Completed.length, pointer43.preperiod * pointer43.cycle);
+assert.deepEqual(p27.slice(28, 35), p55Completed.slice(70, 77));
+
+// In the completed 11x7 rectangle, the center is D. Its literal perimeter
+// has 32 cells, matching the 32 rows of the complete numerical table.
+const completedRows = Array.from({length: pointer43.cycle}, (_, row) =>
+  p55Completed.slice(row * pointer43.preperiod, (row + 1) * pointer43.preperiod));
+assert.equal(completedRows[5][3], 23);
+assert.equal(corpus.translit[completedRows[5][3]], "D");
+const completedPerimeterCount =
+  2 * pointer43.cycle + 2 * pointer43.preperiod - 4;
+assert.equal(completedPerimeterCount, 32);
+assert.equal(grid.shape, "32 rows by 8 columns across LP2 pages 49, 50, 51");
 
 const forward43 = grid.bytes.slice(84, 127);
 const reverse43 = forward43.slice().reverse();
@@ -550,7 +579,13 @@ console.log(JSON.stringify({
       repeat: pointer43.repeat,
       preperiod: pointer43.preperiod,
       cycle: pointer43.cycle,
-      matchingGpPrimeStarts
+      matchingGpPrimeStarts,
+      completedP55: {
+        dimensions: [pointer43.cycle, pointer43.preperiod],
+        predictedMissingRune: corpus.translit[p27[34]],
+        centerRune: corpus.translit[completedRows[5][3]],
+        perimeterCells: completedPerimeterCount
+      }
     },
     conditionalReverseModulo43Distinct: new Set(reverse43.map((x) => x % 43)).size
   },
