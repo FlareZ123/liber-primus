@@ -179,6 +179,18 @@ assert.equal(verificationSpan.length, cuneiformPrimeRanks[0] / 29);
 assert.equal(verificationSpan.toString('hex'), '7a35090ff065');
 assert.equal(verificationSpan.subarray(0, 4).toString('hex'), '7a35090f');
 assert.equal(verificationSpan.subarray(4).toString('hex'), leftHashCheck.toString('hex'));
+const m28WordAddresses = steps.map(step => applyProjective(m28, fieldMod(step)));
+assert.deepEqual(m28WordAddresses, [10, 23, 1, 21, 15, 9, 26, 8, 4, 17, 23, 6, 7, 21, 10, 19, 19, 13, 23, 13, 10, 17]);
+assert(m28WordAddresses.every(offset => offset < metadataPrefix.length));
+const m28SelectedBytes = m28WordAddresses.map(offset => metadataPrefix[offset]);
+const m28WordKey = m28SelectedBytes.map(byte => byte % 29);
+assert.equal(m28WordKey.length, steps.length);
+assert.equal(Buffer.from(m28SelectedBytes).toString('hex'), 'c10f013510850f56001f0f050235c1e5e50a0f0ac11f');
+const metadataPrefixKey = [...metadataPrefix].map(byte => byte % 29);
+const metadataPrefixM28Points = metadataPrefixKey.map(value => applyProjective(m28, value));
+assert.equal(metadataPrefixM28Points.filter(value => value === 29).length, 1);
+// Infinity has no GP29 additive value; zero is used only for this minimal diagnostic.
+const metadataPrefixM28Key = metadataPrefixM28Points.map(value => value === 29 ? 0 : value);
 /** @param {Buffer} bytes @returns {number[]} */
 function numeral29(bytes) {
   let number = BigInt('0x' + bytes.toString('hex'));
@@ -203,9 +215,12 @@ const keySources = [
   ['packet-octet-remainder', [...packet].map(x => x % 29)],
   ['packet-whole-base29', numeral29(packet)],
   ['rsa-mpi-octet-remainder', [...rsaMpi].map(x => x % 29)],
-  ['rsa-mpi-whole-base29', numeral29(rsaMpi)]
+  ['rsa-mpi-whole-base29', numeral29(rsaMpi)],
+  ['metadata-prefix-octet-remainder', metadataPrefixKey],
+  ['metadata-prefix-m28-octet-remainder-infinity-zero', metadataPrefixM28Key],
+  ['p32-word-sum-m28-metadata-prefix-octet-remainder', m28WordKey]
 ];
-assert.deepEqual(keySources.map(([, key]) => key.length), [543, 895, 512, 843]);
+assert.deepEqual(keySources.map(([, key]) => key.length), [543, 895, 512, 843, 28, 28, 22]);
 const to29 = value => (value % 29 + 29) % 29;
 const directSignatureTests = [];
 for (const [keyName, key] of keySources) {
@@ -236,7 +251,43 @@ const signatureIocRange = [
   Math.max(...directSignatureTests.map(x => x.ioc))
 ];
 assert(signatureIocRange[0] > 0.03445 && signatureIocRange[1] < 0.03453);
-assert.equal(directSignatureTests.length, 16);
+assert.equal(directSignatureTests.length, 28);
+
+function adjacentRate(input) {
+  let repeats = 0;
+  for (let i = 1; i < input.length; i++) if (input[i] === input[i - 1]) repeats++;
+  return repeats / (input.length - 1);
+}
+const m28ColumnOrder = m28WordKey
+  .map((value, index) => ({ value, index }))
+  .sort((a, b) => a.value - b.value || a.index - b.index)
+  .map(item => item.index);
+const columnCount = m28WordKey.length;
+const columnRows = Math.floor(sourceCipher.length / columnCount);
+const extraColumns = sourceCipher.length % columnCount;
+const columnLengths = Array.from({ length: columnCount }, (_, i) => columnRows + (i < extraColumns ? 1 : 0));
+const columns = Array(columnCount);
+let columnCursor = 0;
+for (const column of m28ColumnOrder) {
+  const length = columnLengths[column];
+  columns[column] = sourceCipher.slice(columnCursor, columnCursor + length);
+  columnCursor += length;
+}
+const m28ColumnarInverse = [];
+for (let row = 0; row < columnRows + 1; row++) {
+  for (let column = 0; column < columnCount; column++) {
+    if (row < columns[column].length) m28ColumnarInverse.push(columns[column][row]);
+  }
+}
+assert.equal(m28ColumnarInverse.length, sourceCipher.length);
+const m28ColumnarTest = {
+  keyOrder1Based: m28ColumnOrder.map(i => i + 1),
+  rows: columnRows,
+  extraColumns,
+  ioc: ioc(m28ColumnarInverse),
+  adjacent: adjacentRate(m28ColumnarInverse),
+  prefix: m28ColumnarInverse.slice(0, 120).map(i => corpus.translit[i]).join('')
+};
 
 
 // Exact original-page multiset shuffle, fixing the 21 cells that specify both
@@ -287,6 +338,13 @@ console.log(JSON.stringify({
   allWordFinalPosition: walk.at(-1), signatureBase64Start: 366,
   reversedDimensions: {width: decimalReverse(top), height: decimalReverse(left),
     p32FirstPrime: primes[0], signedLiesTableByte: table50.bytes[3]},
+  m28WordWalk: {
+    wordCount: steps.length,
+    addresses: m28WordAddresses,
+    selectedBytesHex: Buffer.from(m28SelectedBytes).toString('hex'),
+    keyMod29: m28WordKey
+  },
+  m28ColumnarTest,
   directSignatureTests: {sourceCipherIoC: ioc(sourceCipher),
     nativeSolvedP57IoC: ioc(corpus.pages[57].indices),
     variants: directSignatureTests.length, range: signatureIocRange,
