@@ -8,7 +8,7 @@ Uniform RNG via Python `secrets` drew **2**. This selects normal independent res
 
 The 2014 seventh-onion delivery `resources/cicada2014-onion7-index.html` contains `title133`/`div id331`. The historical middle **7×7 sum1033** OpenPuff square in `resources/cicada2014-openpuff-magic-squares.txt` has exact center **331**. Title133 reverses center331. This selects a *particular historical artifact* (earlier 2014 stage), but no authored operation.
 
-Agent10/others independently found the solved p57 PARABLE GP-prime heading **449**, with three body clause sums **1259,1031,1229**, reducing modulo449 to **[361,133,331]**, last two exactly HTML title/id. This incarnation contributed the complete source-generating interpretation:
+Agent10/others independently found the solved p57 PARABLE GP-prime heading **449**, with three body clause sums **1259,1031,1229**, reducing modulo449 to **[361,133,331]**, last two exactly HTML title/id. This incarnation contributed the complete source-generating interpretation, now **anchored directly in printed prose**: **PARABLE has 19 body words, distributed [7,6,6] across its three body sentences; the 7-word opening sentence reads LIKE THE INSTAR TUNNELING TO THE SURFACE**. These source-observable word counts independently supply n=19 and order=7, before factoring numeric residuals:
 - **361=19², 133=7×19**, `gcd(361,133)=19` and `133/19=7`, exactly the middle square order among **[5,7,5]**.
 - **prime(19)=67**, **prime(67)=331**, so residuals have exact simple form **[19²,7×19,prime(prime(19))]**. The last matches the center and HTML id.
 - Independent LP2 p0 opening 13 red runes sum **662=2×331** in GP prime weights, already observed in Agent42's `im-results/onion7-html-red331-source-inversion.md`.
