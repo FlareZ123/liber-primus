@@ -68,6 +68,20 @@ The archived 2013 `NUMBER` service returns **`+`** when a prime's decimal revers
 
 This also creates a conditional radix discriminator. Under the base59/f-skip fork, the two `3D` cells become 190, 193 occurs at cells **61 and234**, and the exhaustive self-indexed prime-distance set is empty. The ornament route therefore independently predicts the exact base60 193/44/43 bracket, conditional on the plus-as-addition interpretation. Since the 2013 server did not state that its plus response should later be treated as an arithmetic operator, retain this as strong source-constrained navigation evidence rather than an authenticated decoder.
 
+## P55 shed-interior DIVINITY span reproduces 256
+
+The solved p57 instruction gives a separate route into the same numeric structure. Removing the first and last rune of each complete p55 word, while treating the incoming p54→p55 word fragment as boundary only on p55, leaves **43 strict interiors**. GP index23 is D. Those interiors contain D exactly at one-based positions **5 and23**:
+
+- **17** runes lie strictly between the D markers;
+- their position difference is **18**, returning the fragment number;
+- the inclusive D…D span is exactly **19 runes**;
+- folding that span outer-to-inner gives **100000000₂ = 256**, with D/D the sole equal pair;
+- the span center is rune **I**, whose GP prime is **31**.
+
+Historical `NUMBER(193)` independently yields factors **17×23**, so the two factors are realized directly by the shed-interior D geometry. The first D position and inclusive span give **5×19=95**, whose decimal reversal is **59**, independently selecting the previously underdetermined 59 divisor in the p57 PARABLE route.
+
+This is also a numerical cross-check on the ornament pair. The p27 title fold selects outer **P/P**, with P at GP index **13**; the p55 D…D span selects center **I**, with GP prime **31**. Reading those independently selected runes as **PI** is a plausible circumference mnemonic. The mixed index/prime numerical match is supportive rather than an authenticated instruction.
+
 ## The pointer decomposition predicts a missing p55 corner
 
 The P=43 orbit decomposes into a **7-state preperiod** followed by an **11-state cycle**. These sizes are source-active rather than descriptive only:
