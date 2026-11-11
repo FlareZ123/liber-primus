@@ -3,13 +3,14 @@
 **Status:** the p18/p19 key arrays reproduce short plaintext prefixes only; they are not independently derived keys or full-page decryptions. The published P20 812/166/646 Deor continuation is based on a missegmented, wrongly numbered input and is retired as currently specified.
 
 Sources:
-- Wulfic [MASTER_TRACKER.md](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/MASTER_TRACKER.md)
-- Wulfic [README.md](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/README.md)
+- Wulfic current [MASTER_TRACKER.md](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/MASTER_TRACKER.md), last updated 2026-10-12; its opening data-integrity notice says pre-2026-09-29 page files did not match their scans and most older discoveries were artifacts.
+- Wulfic current [README.md](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/README.md), which directs readers to the current tracker and describes pre-correction material as history, not evidence.
+- Wulfic [archived pre-2026-09-29 tracker](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/reference/archive/MASTER_TRACKER_pre-2026-09-29.md); its archive banner says everything in §§1–11 was derived from page files that did not match their scans. The old P18/P19 “KEY CONFIRMED” entries and P20 166/646 claim occur in this superseded material.
 - Wulfic [canonical provenance](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/data/canonical/PROVENANCE.md)
 - Pinned historical artifact: [old pages/page_20/runes.txt](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/0f89de541b/pages/page_20/runes.txt), commit 0f89de541b, Git blob SHA 088f54d1336501d7378bcbf74703981d6358e1c2
-- Correct current internal p20: [pages/page_37/README.md](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/pages/page_37/README.md)
+- Correct current internal p20: [pages/page_37/README.md](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/pages/page_37/README.md), identifying scan 37 as LP2 page 20 with 269 runes.
 
-Wulfic's README explicitly classifies p18/p19 as partial and warns that many per-page “solved” labels are false positives from hill-climbing. The tracker calls the keys confirmed, but its own README is the more cautious status. Treat the arrays as hypotheses.
+The old P18/P19 “KEY CONFIRMED” wording is not the current Wulfic repository's evidence status: it appears in the archived tracker whose maintainer explicitly invalidates its pre-correction §§1–11 data basis. The current tracker says the old page files did not match their scans; it does not reaffirm those old P18/P19 keys. The independent replay below remains a reproducible observation on this repository's canonical corpus, but it does not validate the old key derivation or turn the fragments into authentic plaintext. Treat the arrays as unverified hypotheses.
 
 ## Reproduction of p18/p19 prefixes
 
