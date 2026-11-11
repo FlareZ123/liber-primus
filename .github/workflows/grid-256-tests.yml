@@ -24,6 +24,7 @@ on:
           - tree-tiling
           - tree-home
           - tree-direction
+          - tree-wordmap
           - signed2016-derivative
           - terminal-circumference
           - byte-pointer
@@ -83,6 +84,10 @@ jobs:
         run: |
           python3 -m pip install --quiet Pillow
           python3 sims/tree121_image_tiling_gate.py
+
+      - name: P32 signed-2016 word-prime navigation and conditional original-source gate
+        if: ${{ inputs.probe == 'tree-wordmap' }}
+        run: node sims/p32_2016_signed_wordmap_sft.cjs
 
       - name: Original 2016 prime image and GF29 grid derivative source bridge
         if: ${{ inputs.probe == 'signed2016-derivative' }}
