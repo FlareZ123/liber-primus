@@ -183,6 +183,106 @@ def describe(path):
              "step": SUMS[i] % MOD} for i in path]
 
 
+
+
+def walk_to_target(values, modulus, start_one, target_one, sign):
+    """Follow the 1-based word map until target or a repeated node."""
+    x = start_one
+    path = [x]
+    seen = set()
+    while x not in seen:
+        if x == target_one:
+            return {"reaches": True, "steps": len(path) - 1,
+                    "path": [{"position":i, "word":WORDS[i-1]} for i in path]}
+        seen.add(x)
+        x = 1 + ((x - 1 + sign * (values[x - 1] % modulus)) % modulus)
+        path.append(x)
+    return {"reaches": False, "steps": None,
+            "path": [{"position":i, "word":WORDS[i-1]} for i in path],
+            "cycle": path[path.index(x):]}
+
+
+def raw_marker_route():
+    # Use the actual 2013 whitespace-selected integers, not the downstream
+    # H/+ factor-index reduction: 29 mod 19 selects SHED(10), 3257 mod 19
+    # selects WE(8). The 2016 signed message supplies the broad words/map and
+    # numbers/direction clue; GP-prime weights are the native word numbers.
+    start, target = 29 % MOD, 3257 % MOD
+    plus = walk_to_target(SUMS, MOD, start, target, +1)
+    minus = walk_to_target(SUMS, MOD, start, target, -1)
+    words20 = ["PARABLE"] + WORDS
+    sums20 = [449] + SUMS
+    start20, target20 = 29 % 20, 3257 % 20
+    def walk20(sign):
+        x, path, seen = start20, [start20], set()
+        while x not in seen:
+            if x == target20:
+                return {"reaches":True,"path":[{"position":i,"word":words20[i-1]} for i in path]}
+            seen.add(x)
+            x = 1 + ((x - 1 + sign * (sums20[x - 1] % 20)) % 20)
+            path.append(x)
+        return {"reaches":False,"path":[{"position":i,"word":words20[i-1]} for i in path],
+                "cycle":path[path.index(x):]}
+    ordinal0 = [53,20,78,94,19,20,67,25,51,64,8,19,131,42,20,105,38,56,83]
+    ordinal1 = [57,22,84,101,21,22,74,27,55,68,11,22,145,46,22,113,43,59,89]
+    rune_count = [4,2,6,7,2,2,7,2,4,4,3,3,14,4,2,8,5,3,6]
+    return {
+        "raw_markers":{"29":29,"3257":3257,"29_mod19":start,"3257_mod19":target},
+        "start_word":WORDS[start-1],"target_word":WORDS[target-1],
+        "nineteen_word_map":{"plus":plus,"minus":minus},
+        "twenty_word_control":{
+            "start":start20,"target":target20,"start_word":words20[start20-1],
+            "target_word":words20[target20-1],
+            "plus":walk20(+1),"minus":walk20(-1),
+        },
+        "numeric_controls":{
+            "ordinal_zero_based":{"plus":walk_to_target(ordinal0,MOD,start,target,+1),
+                                  "minus":walk_to_target(ordinal0,MOD,start,target,-1)},
+            "ordinal_one_based":{"plus":walk_to_target(ordinal1,MOD,start,target,+1),
+                                 "minus":walk_to_target(ordinal1,MOD,start,target,-1)},
+            "rune_count":{"plus":walk_to_target(rune_count,MOD,start,target,+1),
+                          "minus":walk_to_target(rune_count,MOD,start,target,-1)},
+        },
+    }
+
+
+def raw_route_permutation_null(trials=100_000, seed=20261111):
+    """Condition on SHED's word sum; shuffle the other 18 sums."""
+    state = seed
+    def rnd():
+        nonlocal state
+        state = (1664525 * state + 1013904223) & 0xFFFFFFFF
+        return state / 4294967296
+    fixed = 10
+    pool = [v for i, v in enumerate(SUMS, start=1) if i != fixed]
+    count = 0
+    plus_three = 0
+    for _ in range(trials):
+        shuffled = pool[:]
+        for i in range(len(shuffled) - 1, 0, -1):
+            j = int(rnd() * (i + 1))
+            shuffled[i], shuffled[j] = shuffled[j], shuffled[i]
+        values, j = SUMS[:], 0
+        for i in range(19):
+            if i != fixed - 1:
+                values[i] = shuffled[j]
+                j += 1
+        plus = walk_to_target(values, MOD, 10, 8, +1)
+        minus = walk_to_target(values, MOD, 10, 8, -1)
+        if plus["reaches"] and plus["steps"] == 3:
+            plus_three += 1
+            if not minus["reaches"]:
+                count += 1
+    return {
+        "trials":trials,"seed":seed,"fixed_word":"SHED","fixed_position":10,
+        "event":"positive path reaches WE(8) in exactly 3 steps and negative path never reaches it",
+        "positive_three_steps":plus_three,
+        "positive_three_and_negative_never":count,
+        "frequency":count/trials,
+        "interpretation":"modest shuffle frequency; this path is a source-motivated check, not strong evidence by itself",
+    }
+
+
 def permutation_null(trials=100_000, seed=20261112):
     rng = Random(seed)
     movable = [i for i in range(len(SUMS)) if i not in (LIKE, FIND)]
@@ -278,6 +378,8 @@ def main():
     plus_from_like = (LIKE + SUMS[LIKE] % MOD) % MOD
     result = {
         "p55_independent_59_selector": p55_selector,
+        "raw_marker_route": raw_marker_route(),
+        "raw_marker_route_permutation_null": raw_route_permutation_null(),
         "words": WORDS,
         "sums": SUMS,
         "modulus": MOD,
