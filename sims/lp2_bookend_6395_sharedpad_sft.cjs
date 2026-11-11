@@ -137,6 +137,17 @@ function positivePlant(plaintext) {
 }
 
 const observed = lagProfile(cipher);
+let repeatedCipherSteps = 0;
+let pairedCipherSteps = 0;
+for (let i = 0; i + LAG + 1 < cipher.length; i++) {
+  const leftStep = mod29(cipher[i + 1] - cipher[i]);
+  const rightStep = mod29(cipher[i + LAG + 1] - cipher[i + LAG]);
+  if (leftStep === rightStep) repeatedCipherSteps++;
+  pairedCipherSteps++;
+}
+assert.equal(pairedCipherSteps, 6560);
+assert.equal(repeatedCipherSteps, 255);
+assert.notEqual(repeatedCipherSteps, pairedCipherSteps);
 assert.equal(observed.equalities, 199);
 assert.deepEqual(observed.differenceHistogram, [
   199,263,203,243,247,222,220,215,245,239,228,248,249,256,220,
@@ -200,12 +211,15 @@ const output = {
   original: {
     equalities: observed.equalities,
     equalityRate: observed.equalities / OVERLAP,
-    differenceHistogram: observed.differenceHistogram
+    differenceHistogram: observed.differenceHistogram,
+    lagMatchedCipherSteps: repeatedCipherSteps,
+    pairedCipherSteps,
+    lagMatchedCipherStepRate: repeatedCipherSteps / pairedCipherSteps
   },
   nativeGpReferences: referenceReports,
   positiveControl: control,
   finding:
-    "Every one of 6000 deterministic 12956-rune native-GP reference windows has more lag-6395 equalities than the original LP2 ciphertext. This rejects exact reused additive-pad state at the source-selected bookend lag for these native-GP registers.",
+    "Every one of 6000 deterministic 12956-rune native-GP reference windows has more lag-6395 equalities than the original LP2 ciphertext. This rejects exact reused additive-pad state at the source-selected bookend lag for these native-GP registers. A literal repeated ciphertext-step keystream is also impossible because only 255 of 6560 paired steps match rather than all 6560.",
   scope:
     "Does not exclude plaintext-dependent rejection/key-skip consumption, nonlinear evolving state, a different language/register, non-GP intermediate symbols, or the possibility that the repeated bookend has no key-reset meaning."
 };
