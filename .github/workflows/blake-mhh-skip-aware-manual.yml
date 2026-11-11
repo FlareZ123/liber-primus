@@ -37,6 +37,7 @@ jobs:
           test -f "$RUNNER_TEMP/dukotah/liber-primus/data/english_quadgrams.txt"
           test -f "$RUNNER_TEMP/dukotah/liber-primus/data/keys/solved_plaintext.txt"
           test -f "$RUNNER_TEMP/dukotah/liber-primus/data/keys/self_reliance.txt"
+          test -f "$RUNNER_TEMP/dukotah/liber-primus/data/keys/mabinogion.txt"
 
       - name: Run all original unknown pages against the full Blake source
         run: |

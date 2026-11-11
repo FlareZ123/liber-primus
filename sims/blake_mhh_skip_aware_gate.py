@@ -60,6 +60,9 @@ def load_external_sweep(external_root: Path):
         raise RuntimeError(f"cannot import external sweep at {path}")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
+    import skipdecode
+    if not skipdecode.gate():
+        raise RuntimeError("Campaign XVIII planted-key/wrong-key gate failed; refusing corpus screen")
     return module
 
 
