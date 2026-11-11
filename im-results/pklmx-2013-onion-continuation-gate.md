@@ -122,6 +122,29 @@ The participant archive's shares.txt order is 02, 03, 05, 08, 09, 10: it omits 0
 
 The participant walkthrough describes a 10-share split with threshold 5. This archive preserves seven IDs; if the original set was numbered sequentially 01–10, IDs 01, 04, and 06 are not represented in the table inspected here. Their absence does not prevent reconstruction from the seven available shares.
 
+#### Derived values for the three absent shares
+
+Any five observed shares recover the same monic degree-5 polynomial over GF(2^176). The reproduction script independently interpolates it from all 21 five-share subsets and verifies that it evaluates to every one of the seven observed share payloads. Coefficients below are in ascending order in the encoded field domain (the source's diffusion is reversed only after recovering the constant term):
+
+~~~text
+x^0  65b9c4065cc47a4a48e01d17de166a94252dfbb44e69
+x^1  1c25b74a51e957e781ed1417bd8574ccb18da82a86b6
+x^2  dfd071a2f95c783389b9f3a3796e2294a015ed77a558
+x^3  c6b8e34d45b5a8e26644e3751d301244e0060b98361a
+x^4  a56b83e69663405a149fa158e68ffb7917cec64d8f4b
+x^5  00000000000000000000000000000000000000000001
+~~~
+
+Evaluating this polynomial at decimal x=1,4,6 predicts the following share payloads:
+
+~~~text
+01-c59f624527a7bd26326fb88ee142d5f1c37d733cd4d7
+04-2d9336c7808cc461da52f2df7d1e78c32d0127e20684
+06-b574e7a760595bb8286043a917d0526cb23030f5a2c7
+~~~
+
+These are **mathematically derived predictions, not recovered historical artifacts or authenticated Cicada messages**. Exact-string searches of the pinned participant/source repositories inspected for this task did not locate them. They provide a concrete fingerprint for future archive searches, but do not establish where or whether the three shares were published.
+
 **Exact mathematical reconstruction of the three unattested share values (Agent33, 11 November).** The seven authentic/community-preserved values determine the monic degree-five sharing polynomial uniquely over the historical GF(2^176) field. Using shares 02,03,05,07,08 as interpolation controls, the missing *decimal* share indices evaluate to:
 
 | Unattested index | Predicted share line |
