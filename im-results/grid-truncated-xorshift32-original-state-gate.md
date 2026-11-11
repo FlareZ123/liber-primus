@@ -1,6 +1,6 @@
 # Original LP2 numeric table: truncated xorshift32 hidden-state inversion
 
-**Result:** Zero generator states recovered from the authentic 256-byte original numeric table, across 2,859,936 exhaustive xorshift32 native-byte specifications. A separate arbitrary affine LCG32 low-byte test also has zero matches. These are specific finite weak-generator exclusions; no original LP2 plaintext, key, cipher, or continuation recovered. Agent 24, 11 November 2026.
+**Result:** No source-compatible short linear-state generator recovered. Zero generator states recovered from the authentic 256-byte original numeric table, across 2,859,936 exhaustive xorshift32 native-byte specifications. A separate arbitrary affine LCG32 low-byte test also has zero matches. These are specific finite weak-generator exclusions; no original LP2 plaintext, key, cipher, or continuation recovered. Agent 24, 11 November 2026.
 
 ## Independent starting evidence and potential solve path
 
@@ -19,6 +19,18 @@ For every table reading, allow **either** three-step xorshift32 direction (left/
 **Positive state recovery:** A genuinely planted stream under xorshift32(13,17,5), left/right/left direction, byte lane 16 and unknown to the solver seed **0x3301** recovers that exact seed and predicts **256/256** planted bytes. The observed null therefore does not result from a broken seed inversion.
 
 **Distinct low-byte LCG32 test:** The low eight bits of any affine 32-bit generator satisfy an exact affine recurrence modulo256, regardless of hidden upper bits. For every one of twelve source readings, test all 256 possible low-byte multipliers; the first two observed bytes fix the additive increment, and all subsequent bytes must match. The original has **0/3,072** exact matches. A planted affine 256-byte output sequence with multiplier73 and increment41 passes the same detector.
+
+## Stronger all-hidden-linear-state obstruction
+
+The complete three-shift enumeration tests a named algorithm family. Independently, the table's eight bitplanes permit a **much broader exact all-key test** with no guessed feedback taps: for an arbitrary time-invariant GF(2)-linear generator with hidden state of dimension k and linear output bit, every output-bit sequence obeys a linear recurrence of degree at most k (Cayley–Hamilton). Compute the exact shortest recurrence from the original 256 observed bits in each bitplane with **Berlekamp–Massey**, without fitting English, a key or a source-derived phase.
+
+Under each of the same **twelve source-fixed table traversals** and all eight bit positions (96 original sequences), the exact minimal linear complexity lies in the narrow range **126–131**. The minimum 126 occurs only in selected page-local/reversed column views. In the original **printed row-major** byte order the eight bitplanes have exact degrees **128,130,129,128,128,128,128,128**. The full 2,048-bit raw row-major serialization has minimal degree **1,024** in either MSB-first or LSB-first bit order.
+
+Therefore **no arbitrary 125-bit-or-smaller GF(2)-linear state machine**, under *any* of those twelve table orderings, can produce the complete original 256-byte sequence with a fixed linear native-byte output map. This includes every possible hidden seed, transition matrix and output projection, far beyond canonical xorshift32 or an LFSR with known feedback. The printed raw 2,048-bit stream also excludes every serial-bit-output LFSR state of at most **1,023** bits when the eight bits of each original byte are genuinely consecutive generator steps in the declared order.
+
+The [new self-contained CommonJS source control](../sims/grid_byte_linear_complexity_sft.cjs) reads the exact canonical grid, verifies its SHA-256, evaluates all 96 bitplanes and both raw bit serializations, and checks that a separately planted xorshift32 stream with **32 hidden state bits** has exact degree **32 in every output bitplane**. The original degrees near the random-bit benchmark of 128 are direct source measurements, not a general claim that the table is cryptographically random.
+
+The theorem assumes **linear state evolution over GF(2) and a linear, fixed-output projection**. Nonlinear output maps, skips, hidden substitutions, carry-bearing modular recurrence, multi-source mixing and re-encryption are still possible. The bound gives a sharper reason to deprioritize short, direct linear-state key sources without knowing any 2014 author-selected generator.
 
 ## Decision and limits
 
