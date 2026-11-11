@@ -65,6 +65,16 @@ The resulting candidate codeword has all sixteen syndrome coordinates zero; 15 o
 
 **Route A decision:** source-selected degree-16 parity alone is insufficient to reveal the unknown page. Fitting a candidate to these 16 checks is guaranteed possible without discovering plaintext or a secret.
 
+### Exact p55 “shed circumferences” 43/33 refinement
+
+The p55 source has **17 printed page-local segments** with rune lengths \`[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]\`. Removing every available segment's first and last rune leaves the independently identified **43 strict-interior runes**, with **33 exterior runes** including the one-rune carry from p54. This is a concrete clue-motivated scenario in which a different decoder might recover the entire p55 interior before applying the p50 parity code to the remaining exterior.
+
+The 33 original p55 zero-based exterior positions are
+
+\`[0,1,4,5,6,7,8,9,14,15,20,21,22,23,35,36,41,42,45,46,47,48,54,55,61,62,63,64,69,70,72,73,75]\`.
+
+Assign them to the corresponding row-major p50 perimeter cells. Restrict the same exact G16 16-coordinate syndrome matrix to only these **33 unknown columns**, fixing all 43 p55 strict-interior runes plus all 180 p56+p57 interior runes. An independent GF29 elimination on the original perimeter-index map gives **rank 16**, leaving **exactly \(29^{33-16}=29^{17}\)** different exterior completions for *any* fixed source interior. This sharpens the previous general “at least 17” lower bound for the actual printed 17-word geometry. It is an information-capacity result, not a recovery of the 43 interiors or evidence that the designer used such a codec.
+
 ## Route B: the degree-238 factor supplies a full decoder, but fails on the actual closing pages
 
 The irreducible \(Q_{238}\) suggests a very different finite-field code. If the terminal 256-rune vector were the coefficient sequence of a polynomial **divisible by \(Q_{238}\)**, its generating polynomial would necessarily be
