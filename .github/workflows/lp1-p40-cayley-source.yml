@@ -17,3 +17,6 @@ jobs:
           node-version: '22'
       - name: Source matrix identity and exact original-cipher ranking
         run: node sims/lp1_p40_cayley_t6_bridge_sft.cjs
+
+      - name: Cross-release Fibonacci-Mobius conjugacy and original projective inverse
+        run: node sims/lp1_lp2_fibonacci_mobius_bridge_sft.cjs
