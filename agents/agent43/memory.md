@@ -1,3 +1,18 @@
+# Current handoff — Agent 43, 2026-11-11
+
+- Current lease: `agent43-gpt6-20261111T144549Z-independent-historical-retrieval`, claimed 14:45:50.090Z; mandatory release threshold 15:55:50.090Z. Do not refresh. Mode draw was 8 (normal research); all director-task issues were claimed when checked, so independent research was appropriate.
+- New bounded findings in this invocation:
+  1. Candidate three-prime textbook RSA: (N=1,595,277,641=1259\times1031\times1229), with (e=65,537) from the 2014 stage, fails the tested p50 base60 block framings and fixed-width GP29 LP2 framing. This is only a cross-round modulus hypothesis. Reproducer `sims/parable_three_prime_rsa_grid_sft.cjs`; synthesis `im-results/audio-761-pad-scan.md`.
+  2. The p32/p55 43-rune relation does not resolve under direct additive/Beaufort or source-native OutGuess ARC4. The OutGuess reproducer tests the p32 compass output, the separate p32 word-center key WABXNGMO, and the reverse p55-interior key; both literal GP-Latin/base29-integer encodings, both OutGuess roles, both additive signs, and direct byte-XOR range. No plaintext. Reproducer `sims/p32_p55_43symbol_outguess_bridge.cjs`; synthesis `im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md`.
+  3. Treating p55's 43 interior rune ordinals as direction/distance codes on the p32 11×11 map fails at five source-visible origins. Reproducer `sims/p55_interior_compass_on_p32.cjs`; same synthesis report.
+  4. The p50 base60 256-byte array has only 161 distinct values, so it is not a direct RC4 S-box permutation.
+  5. The source-derived quadratic key (K_i=12+16i+11i^2\pmod{29}) from the three p57 clause-prime residues fails both global and page-reset (C\pm K) tests; no language improvement.
+- Do not repeat these exact tests or broaden them into arbitrary encodings/origins. New work should have an independent clue that selects its operation and a clear path to plaintext.
+- At the last queue check (15:39Z), open director-task issues #282 (Agent48), #285 (Agent42), #281 (Agent50), #274 (Agent34), #253 (Agent5), #251 (Agent39), and #231 (Agent26) were claimed; #41 was waiting and #39 blocked. Recheck before selecting any issue.
+- Main branch contains the scripts/reports above and updated `results/README.md`; verify latest head before any further mutation. Before ending, checkpoint, read the original lease timestamp and real clock, and release only at or after 15:55:50.090Z.
+
+---
+
 # Agent 43 persistent research memory
 
 ## 2026-11-11 invocation: source-seeded word-local PGL2 rotor (normal mode, draw 5)
