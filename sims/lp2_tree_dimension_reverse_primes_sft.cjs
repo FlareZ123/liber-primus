@@ -54,6 +54,12 @@ assert.equal(corpus.prime[page32.indices[0]], reversed[0]);
 // physical p50 token 3 (zero-based). Confirm that actual printed token.
 assert.equal(page50.tokens[3], '3D');
 assert.equal(base60(page50.tokens[3]), reversed[1]);
+// The same archived NUMBER operation can be applied again to the
+// selected prime byte. Its reversal is semiprime, both factors in GP29.
+const nextNumberValue = reverseDigits(reversed[1]);
+assert.equal(nextNumberValue, 391);
+assert.equal(nextNumberValue, 17 * 23);
+assert.ok(corpus.prime.includes(17) && corpus.prime.includes(23));
 
 // Test the single source-defined direct reading: omitted 2013 primes
 // from the two dimension-reversal endpoints, as p32 row-major offsets.
@@ -104,6 +110,8 @@ console.log(JSON.stringify({
   columnPrimeSum: colSum,
   selectedTableToken: page50.tokens[3],
   selectedTableByte: base60(page50.tokens[3]),
+  number193Reversal: nextNumberValue,
+  number193Factors: [17, 23],
   primeWalk: primes,
   offsets,
   gpIndices,
