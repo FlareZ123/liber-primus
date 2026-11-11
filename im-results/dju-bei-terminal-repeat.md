@@ -13,6 +13,22 @@ I independently checked the sequence against this repository's `resources/liber-
 
 The combined archive has 17 LP1 pages before the 58 LP2 pages, so combined-image index = LP2 page + 17. Do not confuse combined image 56 with LP2 page 56: LP2 page 56 is combined image 73.
 
+## Full-source seventh-rune extension at the solved-page boundary
+
+The two visible instances of the repeated **complete two-word phrase** are on physical p27 and p55, exactly **28 pages apart**. This is the last page of each half of the **56 unsolved physical pages** (p0–27 and p28–55). This 28-page separation is a source observation and may evoke the 28 nonzero states of GP29; it does not itself specify a cyclic cipher or give a key.
+
+A new distinction emerges when the original **solved physical p56** is retained in the full 58-page rune stream. On p27, immediately after printed `DJU-BEI`, the next complete word begins with the GP rune **AE**:
+
+- p27 local offsets **28–34**: `D J U | B E I | AE`. The next printed word is `AE-F` (with its own separator after the pair).
+- p55 local offsets **70–75**: `D J U | B E I`, the final two words of all unknown pages.
+- p56 local offset **0**, the first rune of the independently solved `AN END` page: **AE** (visible ciphertext rune, GP index25).
+
+Consequently **the only repeated seven-consecutive-rune string in the full 13,136-rune LP2 corpus is `D-J-U-B-E-I-AE`**, beginning at global positions **6,555** and **12,950**. The second occurrence's last rune crosses from p55 to solved p56. In the **12,956-rune unknown-only** corpus there are **zero** repeated seven-rune windows. This matters for interpretations of the 2014-stage output: the reported 7-gram is **not a seven-symbol repeated unknown ciphertext block**, since its seventh symbol is part of a separately deciphered page.
+
+A source-fixed 28-page-lag comparison, allowing every within-page start pair on p0/p28 through p27/p55, yields **1,514,147** symbol-pair start opportunities, with matches of at least 3, 4, 5, 6 runes respectively **66, 4, 2, 1**. The two five-rune matches are overlapping windows of the same unique six-rune `DJU BEI` pair. Thus the other 27 paired pages do not exhibit a corroborating repeated long block or an obvious global 28-page ciphertext recurrence. In particular the six-rune match itself was already known, so its 28-page position is a hypothesis-generating observation rather than an independently predeclared test.
+
+This boundary extension gives a narrow useful **known-plaintext anchor** for a future fully specified mechanism: p56's visible first AE deciphers to the known initial **A** of `AN END` under that page's established prime-totient operation. The same visible AE at p27:34 has an **unknown plaintext**; equality of ciphertext glyphs alone does not justify assigning it A, carrying the p56 key backward, or treating p55's six terminal glyphs as solved. Any proposed page- or section-state mechanism should explicitly explain whether it permits the observed source-boundary extension. The enhanced [source SFT](../sims/dju_bei_prime_mean_wordpair_sft.cjs) asserts the **unique seven-rune match** and its exact physical-page coordinates.
+
 ## New source-only prime-mean and solved-word address reading (Agent 15, 11 November 2026)
 
 The exact repeated pair is also the **only duplicated adjacent complete rune-word pair** among all **2,895 adjacent pairs** of the 2,896 canonical whole LP2 ciphertext words. The two words each have exactly three GP runes and occur exactly twice individually, together on p27 and again as the final two words on p55. This observation preserves printed boundaries; it is more constrained than a duplicate six-rune window chosen from the continuous ciphertext.
