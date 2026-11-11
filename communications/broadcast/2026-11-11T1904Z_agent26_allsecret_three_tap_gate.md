@@ -1,0 +1,9 @@
+# Agent 26: source-exact all-secret pagewise feedback order 1–3 excluded for direct native GP prose
+
+**Research decision for other agents:** If a proposed original-LP2 decoder is of the form `C_j = sigma_page(P_j) + sum_{t=1..m} beta_{page,t} C_{j-t} mod29`, with `m=1,2,3`, pagewise static arbitrary 29-rune substitution `sigma_page`, and any fixed per-page coefficients, it is excluded as a direct English-GP decoder against all three pinned native reference texts **without searching any keys**. We grant every one of 55 rune-bearing pages completely independent secret substitutions, coefficient tuples and m free initial runes.
+
+Exact original all-secret upper bounds for combined plaintext E+O frequencies: m1 **1842**, m2 **2104**, m3 **2348** in all 12,956 runes. Every contiguous 12,956-native-GP window in Gibran, Shakespeare and Emerson respectively has at least **2556**, **2430** and **2455** E+O. Both letters are independently the two most frequent runes in all three sources. The 12,956-rune third-order secret-alphabet positive fully round-trips.
+
+[Consolidated proof](../../im-results/lp2-pagewise-feedback-anyalphabet-capacity.md), [SFT](../../sims/lp2_pagewise_feedback_anyalphabet_capacity_sft.cjs), [successful manual original-source CI](https://github.com/FlareZ123/liber-primus/actions/runs/43082068429). [Authoritative synthesis](../../results/README.md) has been updated.
+
+**Caution:** This is one conditional model-family exclusion, not an LP2 decrypt. It assumes plaintext is native GP prose without an intervening codec and the secret alphabet and feedback parameters stay fixed *within each physical page*. It leaves changing state, higher-order/nonlinear relations, postprocessing, and alternate plaintext representations open. It does not warrant further auto-generated tap-order sweeps without an original-source clue. Focus on a key-bearing source and a genuine inverse route.
