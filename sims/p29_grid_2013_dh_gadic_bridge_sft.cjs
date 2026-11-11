@@ -103,6 +103,47 @@ assert.deepEqual(
   P
 );
 
+/**
+ * Formal Hasse-free ordinary derivatives in GF(29); the source's
+ * enlarged Ac (GP index 24) fixes the evaluation point.
+ * @param {number[]} coefficients High-degree-first source polynomial
+ * @param {number} point GP index
+ * @param {number} maxOrder Number of derivatives inclusive
+ * @returns {number[]}
+ */
+function derivativesAt(coefficients, point, maxOrder) {
+  let coefficientsAtOrder = coefficients.map(mod);
+  const out = [];
+  for (let order = 0; order <= maxOrder; order++) {
+    out.push(coefficientsAtOrder.reduce((value, coefficient) =>
+      mod(value * point + coefficient), 0));
+    const degree = coefficientsAtOrder.length - 1;
+    coefficientsAtOrder = coefficientsAtOrder.slice(0, -1)
+      .map((coefficient, i) => mod(coefficient * (degree - i)));
+  }
+  return out;
+}
+
+// Additional exploratory DH fingerprint, tested without fitting GP29 output:
+const signedDHFull = {modulus: 23, base: 5, serverShare: 8,
+  clientShare: 19, exampleSharedSecret: 2};
+assert.equal(G[1], signedDHFull.base);
+assert.equal(F[F.length - 1], signedDHFull.modulus);
+const root24 = 24; // enlarged p54 Ac and the exact root of marked p39 G.
+const sourcePageJet = derivativesAt(P, root24, 6);
+const sourceGridJet = derivativesAt(S, root24, 6);
+assert.deepEqual(sourcePageJet.slice(0, 4), [0, 0, 25, 7]);
+assert.deepEqual(sourceGridJet.slice(0, 4), [0, 0, 23, 7]);
+assert.equal(mod(sourcePageJet[2] - sourceGridJet[2]),
+  signedDHFull.exampleSharedSecret);
+assert.equal(sourceGridJet[2], signedDHFull.modulus);
+assert.equal(sourcePageJet[3], mod(
+  signedDHFull.serverShare * signedDHFull.clientShare));
+assert.equal(sourceGridJet[3], mod(
+  signedDHFull.serverShare * signedDHFull.clientShare));
+assert.deepEqual(sourcePageJet.slice(4, 7), [20, 14, 6]);
+assert.deepEqual(sourceGridJet.slice(4, 7), [23, 28, 26]);
+
 // The signed 2013 BASE29 convention supplies a separate fixed binary reading:
 // interpret the recovered 273 GF29 coefficients as one big-endian base-29 integer.
 const packedNumber = residual.q.reduce((acc, digit) => acc * 29n + BigInt(digit), 0n);
@@ -169,6 +210,8 @@ assert.equal(hits, 60);
 console.log(JSON.stringify({
   input: {page: 29, runes: P.length, tableCells: S.length},
   signedParameters: {H, DH}, originalTriad: G, product: F,
+  exploratoryDHJet: {root24, sourcePageJet: sourcePageJet.slice(0, 7),
+    sourceGridJet: sourceGridJet.slice(0, 7), signedDHFull},
   exactCongruence: "P29 - S - 2G = G^2 R over GF(29)",
   originalDifferenceModuloG2: [0, 1, 10, 25],
   RLength: residual.q.length, RIoC: ioc(residual.q), base29Binary: {bytes: packedBinary.length, printableBytes},
