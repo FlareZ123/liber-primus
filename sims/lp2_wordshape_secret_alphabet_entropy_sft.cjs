@@ -236,6 +236,16 @@ controls.push({
   entropyByState:Object.fromEntries(modes.map((mode,i)=>[mode,latinBounds[i]])),
 });
 assert.equal(controls.length,4);
+// A single additional unknown binary secret state Z per rune cannot flatten
+// source-like plaintext enough under a (word length,position) alphabet map.
+// H(C|L,j) <= H(P|L,j)+H(Z|L,j) <= H(P|L,j)+1 bit.
+const nativeMaxWordShapeEntropy = Math.max(
+  ...controls.map(c => c.entropyByState.word.max));
+const extraStateBitsLowerBound = actual[0].entropy-nativeMaxWordShapeEntropy;
+assert(extraStateBitsLowerBound>1);
+const minimumHiddenStateCardinality=Math.ceil(2**extraStateBitsLowerBound);
+assert.equal(minimumHiddenStateCardinality,3);
+
 
 // Full secret-key positive control. Every state can have its own arbitrary GP29
 // bijection. Both forwards and backwards must be exact for a planted native passage.
@@ -327,6 +337,12 @@ console.log(JSON.stringify({
   hypothesis: "Arbitrary fixed GP29 secret substitutions and fixed within-word transpositions keyed by word length, section, or word-start page",
   sourceSHA256: Object.fromEntries([...files.map((name,i)=>[name,sha256(data[i])]),[latinPath,sha256(latinRaw)]]),
   original: actual,
+  hiddenStateLowerBound:{
+    model:"fixed source-visible word-shape state plus arbitrary additional per-rune secret alphabet selector",
+    nativeMaxWordShapeEntropy,extraStateBitsLowerBound,
+    minimumHiddenStateCardinality,
+    scope:"At least three latent symbol-map states for the 128 source-like word-shape controls; not a bound on secret seed bits or changed segmentation",
+  },
   sourceCrossings,
   controls,
   planted: {length:12956, stateTables:perms.size, exactRecovery:true,
