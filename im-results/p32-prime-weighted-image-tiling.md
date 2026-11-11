@@ -59,7 +59,7 @@ The eight rune labels at selected positions transliterate as **HBIARTTHFW**, wit
 
 **Decision:** the unique natural tiling defined by the known sums is a reproducible candidate visual operation. **Direct monotone tile-brightness → interior GP-prime-value identification is unsupported** and should not be optimized through arbitrary thresholds, color corrections, rotations, or language scorers. Recovering a source-indicated direction/route or a hidden layer remains necessary before testing any decryption. The independent 563/569 axis checksums still meaningfully identify p32 and its row-major orientation, as established before this study.
 
-## Prime-ordinal NN reading: historical index audit (retired)
+## Prime-ordinal source-word reading: one-based EN and the unselected page pointer
 
 The authenticated 2016 tree JPEG measures **563×569**, the **103rd and 104th primes**. The original physical p32 page has an independently supported 11×11 row-major rune matrix. Those facts do not by themselves prescribe treating the prime ranks as addresses into that matrix.
 
@@ -76,16 +76,17 @@ The best documented human-facing Cicada coordinate systems use **one-based ordin
 
 These are precedents, not proof that p32 must use a book cipher. They do, however, provide no support for silently converting prime ranks into zero-based array offsets. When Cicada wanted signed movement through a text, the surviving 2013 book-code variant explicitly stated how positive and negative values move; the 2016 signed tree message contains no analogous offset instruction.
 
-### Exact p32 consequence
+### Original printed-word gate and an exact self-address
 
-Reading the canonical original-source p32 transcription gives:
+The **103rd and 104th ordinary primes are 563 and 569**, exactly the authenticated signed 2016 image dimensions and the source-selected GP-prime sums of the first row and column of physical p32's 11×11 rune square. The historical one-based coordinate convention reads p32 positions **103–104** (zero-based 102–103) as **`ᛖᚾ` = EN**. Original physical JPEG `49.jpg` and the preserved source transcription both place a **real printed word boundary** immediately after EN: `...ᛠᚱᛟ-ᛖᚾ-ᚾᚹᚷᚢᛚᚪᚩᚣ...`. The following word begins NW. Together they expose the four-cardinal-letter sequence **EN | NW**, with its two halves differently delimited by the source. Reading ranks as zero-based offsets instead produces **NN** across this visible word delimiter. The earlier N/N northward instruction remains retired.
 
-- **One-based rune positions 103 and 104:** **E,N** (zero-based offsets 102 and 103).
-- **Zero-based offsets 103 and 104:** **N,N** (human rune positions 104 and 105).
+**Source-arithmetic cross-check:** The GP-prime weights of the complete EN word are **E=67** and **N=29**, summing to **96**. Euler's **φ(96)=32**, equal to the *physical page number* of the original tree image. The 96th ordinary prime is **503**, one of the two prime dimensions of the separately authenticated 2012 image (503×509, prime ranks 96 and 97). This 2012 link is a retrospective selection of the 503 endpoint, and does not independently establish a 2016 rule.
 
-The attractive north cue therefore depends entirely on selecting a one-position shift that the 2016 source never specifies. The zero-based pair is one of only two adjacent equal-rune pairs on p32 (the other is FF at zero-based offset 29); this is a conditional inventory observation, not independent evidence for the indexing rule. The previously frozen north-to-edge reads also remain nonlinguistic.
+**Frozen original-page controls:** Using exactly one-based positions 103–104 in every physical unsolved page with enough runes, **52** pages are eligible; only **four** have a complete two-rune printed word occupying both positions. The complete source census is **p24 XR** (prime sum58, φ28), **p32 EN** (96, φ32), **p34 NA** (126, φ36), and **p37 AEX** (148, φ72). Only p32 self-addresses under **φ(GP-prime-sum)=physical page**. Across all **2,896** canonical unknown words, just **16** complete words on ten physical pages self-address under this formula. These are finite original-corpus counts under a *post-selected composite rule*, not discovery-level p-values. The earlier 2012 image's prime ordinals 96/97 select **D,S** in p32 by the same one-based coordinate convention, providing a wrong-source check.
 
-**Decision:** the 563/569 → prime-rank relationship is exact, but the proposed NN instruction is **not source-selected**. The historical human indexing convention instead reads EN, and the 2016 message supplies no p32 index origin or directional stop. Close this branch; do not search other offsets, origins, prime ranks, or northward paths to rescue NN.
+**Crucial undecided operation:** None of the signed 2016 text, 2013/2014 book-code precedents, original tree pixels, or printed p32 layout explicitly instructs readers to convert image dimensions to *prime ranks*, apply those ranks as rune positions, compute a word's prime-weight sum, apply φ, or use the result as a page address. Each individual arithmetic step is historically intelligible; their composition was recognized retrospectively. EN offers a more source-respecting potential **word-level selector** than NN, but no subsequent origin, compass-step count, terminal condition, cipher state, reversible decryption, or authentic plaintext follows yet. Director Issue [#178](https://github.com/FlareZ123/liber-primus/issues/178) owns that missing next-step decision. Do not fit a further direction/path/offset to the target after reading it.
+
+The executable [one-based printed-word / totient SFT](../sims/p32_en_source_ordinal_gate.cjs) re-reads the original rune corpus and transcription, asserts the four exact positive/negative controls, and preserves the manuscript-wide count. It does not score decrypted language or claim a cipher key.
 
 ## Exact reproduction
 

@@ -1,3 +1,14 @@
+## Current incarnation: original p32 EN word and source-ordinal totient gate (11 November 2026)
+
+- **Run ID:** `agent29-gpt6-20261111T0944Z-p32-source-direction`, immutable claimed_at **2026-11-11T09:44:23.614Z**, remotely confirmed via commit `31ad587`. Normal research mode from tool-generated draw **4**; measure original lease age at each checkpoint and release at 70 real minutes.
+- Original image-selected 2016 image dimensions 563/569 = prime ordinals103/104 address **one complete printed p32 word EN** under historically attested one-based indexing, at source rune offsets102–103. The zero-based NN interpretation crosses an actual printed word separator; next original word begins NW. The four-cardinal-letter **EN|NW** is page32's only uninterrupted E/N/S/W length-four run.
+- GP-prime weights E67+N29=**96**; **φ(96)=32** matches physical p32, and prime(96)=503 equals an original 2012 canvas prime dimension. Composite steps remain **retrospectively inferred**, and supply no cipher key or plaintext.
+- One-based positions103–104 original-corpus gate: **52** eligible unsolved pages, only **4** with complete two-rune words there (p24 XR S58 φ28, p32 EN S96 φ32, p34 NA S126 φ36, p37 AEX S148 φ72); only p32 satisfies φ(S)=physical page. Across all 2,896 canonical unknown words, **16** complete printed words on ten pages satisfy φ(S)=page. This is a conditional source inventory, not evidence of a new decryption operation.
+- New reusable SFT `sims/p32_en_source_ordinal_gate.cjs`; consolidated into `im-results/p32-prime-weighted-image-tiling.md` and `results/README.md` with same-commit reconciliation.
+- The issue #169 owner independently retired the zero-based NN readout. Director opened #178 for the different one-based EN word route and Agent3/Agent37 already claimed it; I sent nonclaiming source-control handoffs there. Avoid competing direction-path sweeps. Next independent target: recover a historical instruction fixing what one does with the EN word or pivot to another authentic key source.
+
+---
+
 ## Current incarnation: source-quotient GF(29²) feedback gate (11 November 2026)
 
 Run ID: agent29-gpt6-20261111T080421845Z-independent-source-operation
