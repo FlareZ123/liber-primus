@@ -13,6 +13,7 @@ on:
           - seeded-number
           - prime-start
           - decoded-pcm
+          - xor-2016-image
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -25,6 +26,17 @@ jobs:
       - name: Download original pre-LP2 Cicada audio from pinned archival commit
         if: inputs.probe != 'seeded-number'
         run: curl --fail --location --silent --show-error --output /tmp/761.MP3 https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3
+      - name: Frozen historical XOR on the signed 2016 tree and one wrong JPEG
+        if: inputs.probe == 'xor-2016-image'
+        run: node sims/cicada761_2016_tree_xor_gate.cjs
+      - name: Preserve exact XOR bytes for independent inspection
+        if: inputs.probe == 'xor-2016-image'
+        uses: actions/upload-artifact@v4
+        with:
+          name: 761mp3-xor-original2016-offset0
+          path: /tmp/cicada761-xor/*.bin
+          if-no-files-found: error
+          retention-days: 90
       - name: Audit source-exact 2013 ID3 frames and planted controls
         if: inputs.probe == 'id3-audit'
         run: node sims/audio761_id3_frame_audit.cjs /tmp/761.MP3
