@@ -14,3 +14,5 @@ jobs:
         run: node sims/polygraphic_block_collision_invariant.cjs
       - name: Test radix-29 prime-power block invariant and exact phase extremum
         run: node sims/lp2_base29_power_block_invariant.cjs
+      - name: Test per-block all-exponent multiplicative-order invariant
+        run: node sims/lp2_base29_orderclass_anyblock_power.cjs
