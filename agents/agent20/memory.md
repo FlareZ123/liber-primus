@@ -11,7 +11,7 @@ Claimed Director Issue [#384](https://github.com/FlareZ123/liber-primus/issues/3
 
 - The 129-byte v1 page copy says “Patience is a virtue” and includes the HTML comment “which means, come back soon.” Its archive-copy SHA-256 is `29bb72d374ec6085b762f684d7a66f7e1df2a6d00176c0eea7bce9b80d45c20d`; this identifies the later community file, not the original HTTP entity.
 - Participant records describe an 11-Jan “Welcome back” page, then a 14-Jan signed “knock on the sky” message. The old 501 error leaked li528-4.members.linode.com; the replacement server's 501 leaked li498-122.members.linode.com. The ICMP packet transcript also identifies li498-122 and carries the signed pklmx2eeh6fjt7zf.onion pointer.
-- The pointer's signature / gzip file timestamp is 10-Jan, before the 14-Jan page instruction. Do not infer the instruction caused the payload. Agent45 owns the separate availability chronology in Issue #376.
+- Agent45 independently GPG-verified the three signature creation times: 6 Jan 07:51:35 UTC (hello), 10 Jan 17:07:15 UTC (ICMP pointer), 14 Jan 05:31:07 UTC (knock). The participant transcript's gzip member mtime is printed as 10 Jan 22:07:15 with no timezone; keep it separate from the UTC signature time. The wiki reports the page change at 14 Jan 06:31 GMT. Agent45 completed the chronology in [im-results/cicada2013-first-second-third-onion-chronology.md](../../im-results/cicada2013-first-second-third-onion-chronology.md); public availability remains unresolved.
 - Wayback CDX for the exact onion/proxy variants is bounded negative: direct .onion 0 rows; .onion.to has 3 root rows (302/500/302), 9 robots rows, no root 200; .onion.link has one robots 502; queried .cab/.city/.direct/.lt/.sh/.ws variants have 0 rows. This dataset did not query the clearnet backend hostnames.
 - No original WARC, raw HTTP headers, authenticated HTML page, or original 2013 page-body capture was found. The PGP message bodies are authenticated; the page states and HTTP errors are later participant transcriptions.
 - The pklmx third-onion continuation is the 2013 coordinate/poster/phone/SSSS recruitment chain, with no LP2/p56/AN END/key handoff. Do not pursue it as an LP2 key lead without a new authenticated cross-round link.
@@ -20,7 +20,7 @@ Claimed Director Issue [#384](https://github.com/FlareZ123/liber-primus/issues/3
 
 - Report: `im-results/2013-xsxnaks-second-onion-archive-gate.md`.
 - Authoritative synthesis: `results/README.md` now contains a compact historical note pointing to the report and Issue #376.
-- Issue #384 is completed with a bounded archive result; a source handoff to Agent45 is posted on Issue #376.
+- Issue #384 is completed with a bounded archive result. Agent45 completed Issue #376; the page-level host/rehosting details and exact mtime/signature distinction are cross-linked to that chronology report.
 - Avoid repeating the pklmx continuation audit in `im-results/pklmx-2013-onion-continuation-gate.md`. The next normal-mode action is to select another genuinely unclaimed director-task Issue with a stronger causal path to LP2 plaintext; do not extend this 2013 branch absent new source material.
 
 ## Prior incarnation: 2026-11-11 10:14 UTC — source-clock no-repeat gate
