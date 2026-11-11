@@ -17,6 +17,13 @@ const corpus = JSON.parse(load("resources/liber-primus/lp2-corpus.json"));
 const notes = JSON.parse(load("resources/liber-primus/lp2-quote-punctuation-spans.json"));
 const master = load("resources/transcriptions/liber_primus_master.txt");
 const transcribed = load("resources/lp2-transcription.txt");
+const originalHtml = load("resources/cicada2014-onion7-index.html");
+const sourceTitle = Number(originalHtml.match(/<title>(\d+)<\/title>/)[1]);
+const originalImageIds = [...originalHtml.matchAll(/<img src="(\d+)\.jpg"/g)]
+  .map(m => Number(m[1]));
+assert.equal(sourceTitle, 133);
+assert.deepEqual(originalImageIds, Array.from({length: 58}, (_, i) => i));
+
 const indices = new Map(corpus.runes.map((x, i) => [x, i]));
 const ciphertext = corpus.pages.filter(p => p.page <= 55).flatMap(p => p.indices);
 assert.equal(ciphertext.length, 12956);
@@ -51,6 +58,21 @@ assert.equal(source58[0].i, 3);
 const otherPrimeSum = quoted.filter(q => q.i !== source58[0].i)
   .reduce((acc, q) => acc + q.weight, 0);
 assert.equal(otherPrimeSum, 133 * (133 - 1));
+// Independent solved PARABLE source has 19 body words. Seven quotes and 56
+// encrypted pages yield a second, algebraically related numeric expression;
+// it is not an independent statistical confirmation of quote intentionality.
+const parableGroups = transcribed.split("%")[56].split(".")
+  .map(clause => clause.split("-").map(w => [...w].filter(ch => indices.has(ch)))
+    .filter(w => w.length > 0))
+  .filter(group => group.length > 0);
+assert.deepEqual(parableGroups.map(g => g.length), [1, 7, 6, 6]);
+const parableBodyWords = parableGroups.slice(1).reduce((n, group) => n + group.length, 0);
+const acIndex = corpus.translit.indexOf("A");
+const numberOfEncryptedPages = corpus.pages.filter(p => p.page <= 55).length;
+const totalQuoteWeight = quoted.reduce((acc, q) => acc + q.weight, 0);
+assert.deepEqual([parableBodyWords, acIndex, numberOfEncryptedPages], [19, 24, 56]);
+assert.equal(totalQuoteWeight, numberOfEncryptedPages * parableBodyWords ** 2 + acIndex);
+
 const leftPrimeSum = quoted.slice(0, source58[0].i).reduce((acc, q) => acc + q.weight, 0);
 const rightPrimeSum = quoted.slice(source58[0].i + 1).reduce((acc, q) => acc + q.weight, 0);
 assert.equal(leftPrimeSum, 21 * 133 - 2);
@@ -189,6 +211,7 @@ for (let k = 0; k < triadTrials; k++) {
 
 console.log(JSON.stringify({
   source: "Original quoted LP2 ciphertext; 2014 HTML title 133; later combined 75-scan order",
+  crossIdentity: {sourceTitle, originalImageCount: originalImageIds.length, totalQuoteWeight, encryptedPages: numberOfEncryptedPages, solvedParableBodyWords: parableBodyWords, acIndex, equality: "56 * 19^2 + 24 = 20240", note: "algebraically related to the 133-based quote checksum; not independent evidence"},
   caution: "The 2014 original LP2 onion index used 0.jpg..57.jpg; these addresses use a later combined-archive numbering. This is a numeric coincidence candidate, not a historical key or decryption.",
   addresses: quoted.map(q => ({
     ...q,
