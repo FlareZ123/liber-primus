@@ -32,7 +32,7 @@ The repository's current LP2 corpus records p2 as 201 runes, using all 29 GP sym
 | Text lines / rune counts | 9 lines: 21, 24, 22, 25, 23, 21, 24, 22, 19 |
 | Totals when grouped as three successive 3-line stanzas | 67, 69, 65 |
 
-The 201 = 3 × 67 coincidence is not unique enough to establish a 3-stream layout: 24 of the corpus's 58 records have rune counts divisible by three, and four records have counts equal to three times a prime (p2, p15, p16, p23). The natural 3-line grouping of p2 does not produce three equal 67-rune blocks.
+The 201 = 3 × 67 coincidence is not unique enough to establish a 3-stream layout: 24 of the corpus's 58 records (including the empty p50 record) have rune counts divisible by three; among the 57 nonempty records, 23 are divisible by three. Four nonempty records have counts equal to three times a prime (p2, p15, p16, p23). The natural 3-line grouping of p2 does not produce three equal 67-rune blocks.
 
 As a deliberately simple test, the 201-rune transcription was split into three consecutive 67-rune blocks. Their index of coincidence values are 0.03483, 0.03211, and 0.03076 (whole-page 0.03562; uniform 29-symbol expectation 1/29 ≈ 0.03448). Pairwise best additive-shift matches are only 6/67, 6/67, and 7/67 (allowing reversal for the last pair). There is no evidence here for three repeated or trivially shifted streams. This does not test a keyed polyalphabetic operation.
 
