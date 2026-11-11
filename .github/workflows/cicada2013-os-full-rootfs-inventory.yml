@@ -1,0 +1,44 @@
+name: 2013 CicadaOS complete original-initramfs inventory
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Fetch pinned 2013 boot image and verify exact Git blob
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --silent --show-error \
+            --output "$RUNNER_TEMP/3301.img" \
+            "https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/002-3301/3301-contents/boot/3301.img"
+          test "$(git hash-object "$RUNNER_TEMP/3301.img")" = "d4dba9a6d3c0d6ed751d71cdc484e4b7efe1ee0a"
+      - name: Extract original cpio rootfs without executing its startup code
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq cpio
+          mkdir -p "$RUNNER_TEMP/cicada2013-root"
+          cd "$RUNNER_TEMP/cicada2013-root"
+          gzip -dc "$RUNNER_TEMP/3301.img" | cpio -idm --quiet --no-absolute-filenames
+      - name: Audit the complete root filesystem and exact pinned source scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          node sims/cicada2013_os_full_rootfs_inventory_sft.cjs "$RUNNER_TEMP/cicada2013-root" | tee /tmp/cicada2013-inventory.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cicada2013-original-rootfs-inventory
+          path: /tmp/cicada2013-inventory.json
+          if-no-files-found: error
