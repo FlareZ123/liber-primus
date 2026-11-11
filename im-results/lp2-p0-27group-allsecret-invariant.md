@@ -31,11 +31,21 @@ Across all **827 source windows**, **none** has as few grouped same-symbol pairs
 
 For each of the 827 source passages, also minimize the exact number of extra rune replacements needed to reconcile the entire vector of 27 sorted group-frequency spectra. The **most favorable** pair needs **at least 83 replacements of 729 positions** (Shakespeare, row orientation), even after independently choosing every group alphabet and its 27-way internal permutation. This is a source-relative lower bound, not proof of 83 deliberate ciphertext edits. At ordinary prose level the group collision deficit is too large to repair by selecting more clever secret substitutions or unknown within-group reading orders.
 
+## Stronger author-native control: an actual solved Cicada passage
+
+The independently published 2014 first-release Liber Primus section **THE LOSS OF DIVINITY** is **755 unencrypted original GP runes** in `resources/transcriptions/liber_primus_master.txt`. Its actual print stream is a much closer language-register control than modern English prose converted back into runes. Do **not** treat its 27 overlapping length-729 windows as 27 independent passages.
+
+| Already-clear source | Windows | Lowest row pairs | Lowest column pairs | Lowest under 27 phases, either axis | Minimum extra replacements, row / column |
+|---|---:|---:|---:|---:|---:|
+| **Authentic solved LP1 THE LOSS OF DIVINITY** | **27 overlapping** | **563** | **562** | **556** | **106 / 100** |
+
+The original unknown p0–2 ciphertext remains at only 337/326 pairs under the equivalent source-defined square. This same-author original-GP control is farther from the unknown than the broad English controls and confirms the detector is sensitive to the style of an actual authentic Cicada cleartext. The test code directly asserts the original LP1 section length, the first eleven known GP indices, all five numerical minima and a fresh 729-symbol **native LP1** plant with a secret 29-symbol row alphabet and row-internal transposition. It reconstructs its planted source equality count and minimum zero replacements exactly.
+
 ## Positive controls and independent execution
 
 The standalone Node22 [SFT](../sims/lp2_p0_allsecret_27group_invariant_sft.cjs) loads the original source corpus and all three pinned reference texts, reconstructs the 729-rune opening, reruns all 827 windows and 27 phase allowances, asserts the table's exact integer results, and then **actually encrypts a genuine Shakespeare-GP 729-rune passage** with a separate seeded, uniformly shuffled 29-rune alphabet and independent 27-way position permutation for each row or each column. Each planted ciphertext has exactly the same group pair count as its input; the exact minimal replacement distance to its actual held-out source passage is **zero**. Both positive cases therefore pass the all-key tests regardless of their secret permutations. The test neither trains an English scoring model on the original nor optimizes keys against it.
 
-Verified successfully on Node22 in [manual GitHub Actions run 43082180010](https://github.com/FlareZ123/liber-primus/actions/runs/43082180010). The reproducible invocation is `node sims/lp2_p0_allsecret_27group_invariant_sft.cjs`. Inputs are the repository's original `lp2-corpus.json` and three `resources/control/*.txt` texts, with no external fetch or training step.
+Verified successfully on Node22 in [manual GitHub Actions run 43082180010](https://github.com/FlareZ123/liber-primus/actions/runs/43082180010), with the independently sourced original-LP1 extension in [run 43083139180](https://github.com/FlareZ123/liber-primus/actions/runs/43083139180). The reproducible invocation is `node sims/lp2_p0_allsecret_27group_invariant_sft.cjs`. Inputs are the repository's original `lp2-corpus.json`, the original 2014 LP1 transcript, and three `resources/control/*.txt` texts, with no external fetch or training step.
 
 ## Decision
 
