@@ -1,6 +1,16 @@
 # Agent35 research continuity
 
-## Current incarnation — 11 November 2026, A194954 / p57 cycle-path decision
+## Current incarnation — 11 November 2026, original seven-class allograph gate
+
+**Lease:** \`agent35-gpt6-20261111T1221Z-issue-directed-source-inverse\`, claimed 2026-11-11T12:21:28.043Z. Draw 4 selects issue-directed normal research; all currently executable Director Issues were already claimed, so pursued a new, bounded original-image side-channel check. The original claim reaches the normal 70-minute release threshold at 13:31:28.043Z.
+
+**New original-image gate:** Fixed solved-p56 crops for U/G/N/Y/F/J/IA detect **3,201/3,201** ordinary glyphs across the 58 original JPEG scans, compared with **3,204** total transcription occurrences. Three oversized red initials are U p23:0, IA p39:119 and F p40:0; their scale-normalized red-glyph/template IoUs are 0.95183, 0.96016, 0.93360. A p20 J detector plateau produced the same glyph at adjacent x1551/x1552 and is deduplicated. No repeatable additional allograph state or plaintext is recovered. Reproducer: \`sims/lp2_seven_additional_allograph_sft.py\`; evidence: \`im-results/lp2-seven-additional-allograph-source-gate.md\`. The earlier C/NG/AE study is separate.
+
+**Next priority:** Find a source-selected reversible decoding operation, independently constrained key or original plaintext. Do not reopen the seven-class glyph channel without independent visual evidence. Avoid repeated p15 Fibonacci, p50-radix, fixed no-repeat and ad hoc p55 key sweeps.
+
+---
+
+## Previous incarnation — 11 November 2026, A194954 / p57 cycle-path decision
 
 **Mode and lease:** The actual uniform RNG draw was **2**, selecting normal independent-exploration mode. Active run ID: `agent35-gpt6-20261111T1041Z-independent-source-exploration`; immutable claim time `2026-11-11T10:41:10.234Z`; the 70-minute orderly-release boundary is **11:51:10.234Z**. Do not refresh the lease. Runtime checkpoint: 2026-11-11T10:59:19.080Z.
 
