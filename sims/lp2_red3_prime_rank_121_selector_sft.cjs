@@ -97,11 +97,43 @@ const words = printedFragments[1].replace(/\/\s*/g, "")
   .split(/[\s.%$&§-]+/)
   .filter((word) => /^[\u16A0-\u16FF]+$/u.test(word));
 assert.equal(words.length, 29);
+// Fixed-target sampling control, descriptive and not postselection-corrected.
+const redPool = ink.pages.flatMap(p => (p.red_spans || []).flatMap(sp =>
+  sourcePage(p.page).indices.slice(sp.start, sp.start + sp.length)));
+assert.equal(redPool.length, 225);
+let rngState = 0x19732017;
+/** @returns {number} */
+function nextRandom() {
+  rngState ^= rngState << 13;
+  rngState ^= rngState >>> 17;
+  rngState ^= rngState << 5;
+  return rngState >>> 0;
+}
+let orderedMatches=0, unorderedMatches=0, bothPrimeMatches=0;
+const trials=1000000;
+for(let t=0;t<trials;t++){
+  const sample=redPool.slice();
+  for(let k=0;k<6;k++){
+    const j=k+nextRandom()%(sample.length-k);
+    [sample[k],sample[j]]=[sample[j],sample[k]];
+  }
+  const a=corpus.prime[sample[0]]+corpus.prime[sample[1]]+corpus.prime[sample[2]];
+  const b=corpus.prime[sample[3]]+corpus.prime[sample[4]]+corpus.prime[sample[5]];
+  if(a===137&&b===173)orderedMatches++;
+  if((a===137&&b===173)||(a===173&&b===137))unorderedMatches++;
+  if(isPrime(a)&&isPrime(b))bothPrimeMatches++;
+}
+assert.deepEqual([orderedMatches,unorderedMatches,bothPrimeMatches],[200,423,143383]);
+const fixedTargetNull={draws:trials,seed:"0x19732017",
+  orderedMatches,unorderedMatches,bothPrimeMatches,
+  caveat:"Original-red-rune fixed-target null; post hoc rule/target selection uncorrected"};
+
 console.log(JSON.stringify({
   source: "original red spans + canonical GP prime weights + original page coordinates",
   signals,
   one_based_candidate: "selects entire 121-rune p32 and 121-rune marked second p39 unit",
   zero_based_competitor: "selects p33 and p40, bracketing the seven p33-p39 cuneiform pages",
   second_p39_unit_words: words.length,
+  fixed_target_red_ink_null: fixedTargetNull,
   status: "Exact source correspondence; page address grammar and decoding operator not authenticated"
 }, null, 2));
