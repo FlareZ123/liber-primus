@@ -51,6 +51,19 @@ The [all-original SFT](../sims/lp2_grid_critical_feedback_original_sft.cjs) eval
 
 **Finite original-page comparison.** Physical p36 is the **only unsolved LP2 physical page with exactly 238 runes**, matching the highest factor degree. Encoding the 238 nonleading coefficients of the monic large factor as an aligned rune sequence produces **11/238** direct position matches with p36, or **14/238** reversed. Even allowing every possible single secret permutation of the full 29-rune alphabet, exact Hungarian optimization gives at most **45/238 forward** and **49/238 reversed** matches. The test also recovers a constructed **238/238** positive under a planted secret affine alphabet, proving the matching gate can detect a true monoalphabetic relationship. With **2,000 full-inventory Fisher–Yates shuffles** of p36 runes under the fixed xorshift32 seed 0x3301, the forward and reversed optimal-match means are **46.164** and **46.187**; **1,509** and **296** shuffles reach or exceed original matches (plus-one tails **0.754623** and **0.148426**). The single static alphabet operation therefore fails to reproduce the actual p36 sequence. This bounded original-input result leaves evolving state, variable-rate encodings, other coefficient orderings, and independent clues open.
 
+**Page-36 factor-as-known-plaintext LFSR bridge (Agent 7, 11 November).** A stronger use of the **same uniquely 238-rune page** lets the large factor serve as a *hypothetical known plaintext* rather than asking it to match ciphertext. Factor the unchanged original 256-byte table over GF29, select the 238 nonleading coefficients of the degree-238 residual as source-locked intermediate symbols R[0..237], and compute the additive keystream **K[i]=C_p36[i]−R[i] (mod29)** from all 238 original p36 ciphertext symbols. Any secret-initial-state LFSR whose characteristic polynomial is source-fixed predicts every subsequent K from its first d values, with **no seed or plaintext score fitted**.
+
+The three source-determined recurrence polynomials are the marked p3 quadratic (monic X²+26X+21), the printed-grid irreducible cubic (X³+14X²+16X+24), and the printed-grid irreducible degree-nine factor. For both natural normalizations of R (monic leading1, raw leading28) and both natural coefficient directions, the exact number of original K symbols obeying the factor recurrence is:
+
+| R normalization and order | Quadratic: matching / 236 predictions | Cubic: matching / 235 | Nonary: matching / 229 |
+| --- | ---: | ---: | ---: |
+| Monic, ascending | **12** | **4** | **10** |
+| Monic, descending | **9** | **8** | **9** |
+| Raw, ascending | **9** | **5** | **8** |
+| Raw, descending | **7** | **8** | **2** |
+
+Every one of the **12** source-readable hypotheses fails its very first predicted position or the position immediately following (index d, except raw-ascending nonary index10). Each source-shaped 238-symbol synthetic positive encrypts a known R with a hidden source-polynomial LFSR key, reproduces all original-length symbols and passes **all** its 229–236 exact continuation predictions. The joint **factor238 known-plaintext + additive small-factor LFSR** interpretation is excluded for every possible initial key under these conventions. The result **does not identify any real p36 plaintext or key** and does not rule out a non-GP intermediate, nonlinear transform, other key architecture or coefficient extraction. [Original-source single-file test](../sims/grid238_p36_knownplain_factor_recurrence_sft.cjs) · [passed manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42931236767).
+
 The page-degree match was noticed retrospectively and has no calibrated authorial-intent significance. These source arithmetic identities should not be promoted to an authenticated key or decryption.
 
 ### Source-marked 3/9-rune seeds as factor feedback state
