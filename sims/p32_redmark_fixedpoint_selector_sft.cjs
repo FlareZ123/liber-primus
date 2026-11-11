@@ -11,7 +11,7 @@ const bits=geometry.row_occupancy_top_to_bottom.map(n=>n===1?'1':'0').join(''),v
 if(JSON.stringify(binaryPair)!==JSON.stringify(TARGET))throw Error('row-code pair mismatch');
 const corpus=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/liber-primus/lp2-corpus.json'),'utf8')),page32=corpus.pages.find(p=>p.page===32),p32=page32.indices.map(i=>corpus.prime[i]);
 const transcript=fs.readFileSync(path.join(ROOT,'resources/lp2-transcription.txt'),'utf8');
-const clauses=transcript.split('%')[32].replace(/\\/\s*/gu,'').split(/[.&$§]/u).map(source=>(source.match(/[\\u16A0-\\u16FF]+/gu)||[])).filter(words=>words.length);
+const clauses=transcript.split('%')[32].replace(/\/\s*/gu,'').split(/[.&$§]/u).map(source=>(source.match(/[\u16A0-\u16FF]+/gu)||[])).filter(words=>words.length);
 const totalWords=clauses.reduce((n,words)=>n+words.length,0),firstClauseWords=clauses[0].length,centralCellCount=5*5;
 if(p32.length!==121)throw Error('p32 grid is not 11x11');
 if(JSON.stringify(clauses.map(words=>words.length))!==JSON.stringify([7,15])||totalWords!==22||centralCellCount!==25)throw Error('p32 source counts changed');
