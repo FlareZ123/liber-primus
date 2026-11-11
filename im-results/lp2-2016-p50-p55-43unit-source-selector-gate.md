@@ -159,6 +159,22 @@ No variant recovers plaintext. The best score, −5.859426, remains non-linguist
 
 **Decision:** retire the 24 tested OutGuess ARC4-derived GP29 variants across compass-key, word-center-key, and reverse p55-key directions. This does not falsify the p32 route as a selector, the p55 interior extraction, or other source-selected key representations/operations. Do not expand into arbitrary password encodings or phases. The direct additive and OutGuess results together leave no supported reversible operation between these two 43-rune streams.
 
+## p55 interiors as compass numbers on the p32 map (bounded negative)
+
+A separate reading of the 2016 instruction ("numbers are direction") is to treat the 43 p55 word-interior rune ordinals themselves as direction/distance values, using the already source-derived p50 encoding \(d=v\mathbin{\&}7\), \(r=v\mathbin{\gg}3\), and walk the p32 11×11 map. This uses the p55 "shed our own circumferences" clue to select the interior sequence, rather than using the p32 route as a password. The walk is forward and wraps modulo 11. Five source-visible origins were checked: the p32 map center, the two 2016-dimension-selected EN cells, the 2014 7×7 square center, and the existing p50 compass-route origin.
+
+| Origin | Distinct output runes | IoC | Emerson-GP language score |
+|---|---:|---:|---:|
+| p32 map center (5,5) | 19 | 0.050941 | −6.182700 |
+| 2016-selected EN first cell (9,3) | 18 | 0.060908 | −5.675726 |
+| 2016-selected EN second cell (9,4) | 18 | 0.064230 | −6.687181 |
+| 2014 7×7 square center (3,3) | 16 | 0.063123 | −7.200982 |
+| p50 compass-route origin (3,0) | 20 | 0.039867 | −6.610085 |
+
+None of the five outputs is plaintext; even the best score, −5.675726 from the EN-first origin, remains strongly non-linguistic. Reproducer: [p55_interior_compass_on_p32.cjs](../sims/p55_interior_compass_on_p32.cjs).
+
+**Decision:** reject this exact p55-interior-as-direction encoding at these five source-visible origins. Do not expand into arbitrary origins or direction permutations without a new clue.
+
 ## Exact missing selector
 
 No surviving, contemporaneous instruction reviewed here establishes all of the following:
