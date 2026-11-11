@@ -1,6 +1,6 @@
 # P27 title header-fold: 256 / prime-43 table-interval bridge
 
-**Status (11 November 2026): source-rare navigation structure selecting a 256-cell table and a 43-cell interval; traversal orientation and reversible decoder remain unresolved. No unknown LP2 plaintext or authentic cipher key recovered.**
+**Status (11 November 2026): source-rare navigation structure selecting physical p50, the 256-cell table, P=43, and the left side of a 43-cell interval; the reversible decoder remains unresolved. No unknown LP2 plaintext or authentic cipher key recovered.**
 
 ## Upstream source route
 
@@ -38,6 +38,28 @@ Thus one source-selected fold supplies two useful cardinalities:
 
 Scanning every possible contiguous 19-rune window in the complete **13,136-rune LP2 source stream** finds exactly one match to the full pattern M=19, outer payload P/P, and no other folded equality: **p27 local offset 0**, the selected title. This is a source-rarity observation, not a discovery-adjusted p-value.
 
+## The unequal fold pairs select p50 and a table-pointer orbit
+
+The eight unequal folded pairs retain directional information. In the same outer-to-inner reading, write **1 when the left GP index is smaller than the right**. The bits are:
+
+`00110010₂ = 50`
+
+which directly names **physical p50**, the page carrying the 256-cell numerical table. Reading those same eight comparison bits inner-to-outer gives:
+
+`01001100₂ = 76`
+
+exactly the number of original p55 runes. The opposite comparison convention gives 205, and p50 table cell 205 itself contains byte 76; this last equality is retained as a secondary exact relation rather than used as an independent selector.
+
+The unique equal pair already supplies **P's GP prime 43**. Treat each p50 table byte as the next zero-based cell address and start at cell 43. The functional-graph walk is:
+
+`43 → 73 → 79 → 82 → 201 → 74 → 205 → 76 → 114 → 197 → 115 → 247 → 192 → 0 → 203 → 68 → 199 → 47 → 76 ...`
+
+This has **18 distinct cells before first repeat**, exactly the header-stripped title length and fragment number. Its repeated state is **76**, exactly the full p55 rune count. The preperiod is 7 and the cycle length is 11. The first title word has length **3**, and after exactly three pointer steps the walk lands on **cell 82**.
+
+This signature is selective inside the GP source vocabulary. Among all **29 GP prime weights** used as possible table starts, **P=43 is the only start** whose walk simultaneously has 18 distinct states, repeats at 76, and lands on 82 after three steps.
+
+The pointer interpretation therefore independently reaches the left table bracket used below, without converting the 1,432-word / 1,433-rune coincidence into a direction rule.
+
 ## Mirrored table bracket selects the 43-cell interval
 
 The signed word **lies** has GP-prime sum 224, giving the already frozen base-58 address **physical p50 word index 3**, global table cell **83**, token 3D, byte **193**.
@@ -49,7 +71,7 @@ The 256-cell table contains exactly two byte-193 cells, at **83** and **127**. T
 
 The cells strictly between the two 193 boundaries are exactly **84–126**, i.e. **43 cells**. This mirrored bracket is a same-representation table fact and independently agrees with the P/P prime weight 43.
 
-The source currently **does not fix whether those 43 cells are consumed 84→126 or 126→84**. The reverse ordering investigated below is therefore a conditional branch, not a source-selected orientation.
+The P=43 pointer walk lands specifically on **cell 82**, the left neighbor of the first 193 boundary. This makes **84→126** the source-oriented interval branch. It still does not specify the reversible byte/rune operation. The previously tested reverse ordering 126→84 remains useful only as a conditional negative.
 
 ## Conditional reverse-order direct tests
 
@@ -75,16 +97,27 @@ Applying the same conditional reverse bytes positionwise to p55's 43 interior ru
 
 The outputs are unreadable.
 
-Other finite checks under that reverse hypothesis also fail: the 43 bytes have only **27 distinct residues modulo43**, and direct XOR or modular ± byte readouts using signed-word and selected-word sums reach at most **22/43** printable ASCII.
+### Source-oriented forward interval
+
+The pointer-selected forward cells **84→126** were then tested under the identical p55-interior GP29 additive model and the same **4,000** key-order shuffle control per sign:
+
+| Model | Original mean log score | Upper tail |
+| --- | ---: | ---: |
+| subtract forward byte mod29 | **−4.463345** | **0.16746** |
+| add forward byte mod29 | **−4.501544** | **0.33342** |
+
+Neither forward direction distinguishes the source order, and both decoded strings remain unreadable. Thus the pointer result improves **orientation**, while the direct additive byte/rune operation remains rejected.
+
+Other finite checks under the reverse hypothesis also fail: the 43 bytes have only **27 distinct residues modulo43**, and direct XOR or modular ± byte readouts using signed-word and selected-word sums reach at most **22/43** printable ASCII.
 
 ## Decision
 
 The durable route is:
 
-**FOLD → p55 → 18 → self-indexing p27 title → (256, 43) → mirrored 43-cell table interval.**
+**FOLD → p55 → fragment18 → self-indexing p27 title → comparison mask50 = p50 → equality P/P = prime43 → 18-state table-pointer orbit → repeat76 = p55 length → cell82 → forward 43-cell interval.**
 
-The title fold materially improves selection of the table and interval. It does not yet determine interval orientation or the reversible operation consuming the table interval, p55 interiors, and signed-message words. The 1,432-word / 1,433-rune coincidence must stay separate from direction claims unless a source instruction bridges those units.
+The title fold and pointer orbit now select the table, a source-oriented side of the 43-cell interval, and the p55-length state 76 without relying on the cross-unit 1,432/1,433 coincidence. They still do not determine the reversible operation consuming the table interval, p55 interiors, and signed-message words. The 1,432-word / 1,433-rune coincidence must stay separate from direction claims unless a source instruction bridges those units.
 
-Do not expand arbitrary byte KDFs, permutations or phase searches. A useful successor needs an independent source-visible rule for **orientation and operation**.
+Do not expand arbitrary byte KDFs, permutations or phase searches. The orientation question is materially narrowed; a useful successor needs an independent source-visible rule for the **reversible operation**.
 
 **Reproduce:** node sims/p27_title_headerfold_256_43_reverse_sft.cjs
