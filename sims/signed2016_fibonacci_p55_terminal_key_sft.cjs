@@ -55,9 +55,13 @@ const keySegments = [...BLOCKS_FROM_END].reverse().map((pageNumber) => {
 const keyOrdinal = keySegments.flat();
 assert.equal(keyOrdinal.length, 76);
 const keyPrime = keyOrdinal.map((index) => corpus.prime[index] % MOD);
+const keyFibonacciBlockShifts = [...BLOCKS_FROM_END].reverse()
+  .flatMap((length) => Array(length).fill(length % MOD));
+assert.equal(keyFibonacciBlockShifts.length, 76);
 const keyProjections = [
   {name: "gp-index", key: keyOrdinal},
-  {name: "gp-prime-mod29", key: keyPrime}
+  {name: "gp-prime-mod29", key: keyPrime},
+  {name: "fibonacci-block-shifts", key: keyFibonacciBlockShifts}
 ];
 
 const gp = new Map(corpus.translit.map((token, index) => [token, index]));
