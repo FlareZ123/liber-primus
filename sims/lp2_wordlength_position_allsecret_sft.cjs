@@ -107,6 +107,47 @@ function pageCollisionProfile(words, pageAssignment) {
     maxBucketSize, ratio: numerator / denominator};
 }
 
+/** Four native word-level dimensions: page, phase in the p15 16-cell clock,
+ * complete-word rune length and position. Secret state resets/changes freely
+ * between pages; within-page 16-phase word state is stationary. */
+function phase16Profile(words, pages, localOrdinals) {
+  const histograms = new Map();
+  for (let wordIndex = 0; wordIndex < words.length; wordIndex++) {
+    const page = pages[wordIndex];
+    const word = words[wordIndex];
+    if (page < 0 || word.length < 2) continue;
+    for (let position = 0; position < word.length; position++) {
+      const key = page + ":" + (localOrdinals[wordIndex] % 16)
+        + ":" + word.length + ":" + position;
+      if (!histograms.has(key)) histograms.set(key, new Uint32Array(29));
+      histograms.get(key)[word[position]]++;
+    }
+  }
+  let numerator = 0, denominator = 0, keptRunes = 0, keptBuckets = 0;
+  let maxBucketSize = 0;
+  for (const histogram of histograms.values()) {
+    const n = histogram.reduce((sum, count) => sum + count, 0);
+    maxBucketSize = Math.max(maxBucketSize, n);
+    if (n < 2) continue;
+    keptBuckets++;
+    keptRunes += n;
+    denominator += n * (n - 1);
+    numerator += histogram.reduce((sum, count) => sum + count * (count - 1), 0);
+  }
+  return {numerator, denominator, keptRunes, keptBuckets, maxBucketSize,
+    ratio: numerator / denominator};
+}
+
+/** Sample only page-contained, at-least-two-rune native words for the 16-lane test. */
+function nativePhase16Matched(original, pools, random, pages) {
+  return original.map((word, index) => {
+    if (pages[index] < 0 || word.length < 2) return word;
+    const choices = pools.get(word.length);
+    assert(choices && choices.length);
+    return choices[Math.floor(random() * choices.length)];
+  });
+}
+
 /** Sample native words with exactly the original printed word-length pattern. */
 function nativeLengthMatched(original, pools, random) {
   return original.map(word => {
@@ -117,7 +158,7 @@ function nativeLengthMatched(original, pools, random) {
 }
 
 /** Construct a keyed family containing an arbitrary bijection for every stratum. */
-function secretCodec(plain, random, pageAssignment = null) {
+function secretCodec(plain, random, pageAssignment = null, localOrdinals = null) {
   const keys = new Map();
   const cipher = [];
   const inverse = [];
@@ -127,6 +168,7 @@ function secretCodec(plain, random, pageAssignment = null) {
     const recovered = [];
     for (let position = 0; position < word.length; position++) {
       const key = (pageAssignment ? pageAssignment[wordIndex] + ":" : "")
+        + (localOrdinals ? localOrdinals[wordIndex] % 16 + ":" : "")
         + word.length + ":" + position;
       if (!keys.has(key)) {
         const mapping = Array.from({length: 29}, (_, index) => index);
@@ -160,6 +202,12 @@ function main() {
   const pageAssignment = parsed.words.map(word =>
     word.startPage === word.endPage ? word.startPage : -1);
   assert.equal(pageAssignment.filter(page => page >= 0).length, 2864);
+  const localPageWordCounts = new Map();
+  const localOrdinals = parsed.words.map(word => {
+    const n = localPageWordCounts.get(word.startPage) || 0;
+    localPageWordCounts.set(word.startPage, n + 1);
+    return n;
+  });
   assert(original.every(word => word.every(index => Number.isInteger(index))));
   const observed = collisionProfile(original);
   assert.deepEqual(
@@ -190,6 +238,16 @@ function main() {
     maxEqualPairs: upperPossiblePairs, maxCollisionRate: worstPossibleRatio
   }));
 
+  const observedPhase16 = phase16Profile(original, pageAssignment, localOrdinals);
+  assert.deepEqual({
+    numerator: observedPhase16.numerator, denominator: observedPhase16.denominator,
+    keptRunes: observedPhase16.keptRunes,
+    keptBuckets: observedPhase16.keptBuckets, maxBucketSize: observedPhase16.maxBucketSize
+  }, {numerator: 154, denominator: 3866, keptRunes: 3327,
+    keptBuckets: 1577, maxBucketSize: 4});
+  console.log("Independent p15 16-word-phase all-secret invariant:", observedPhase16);
+
+  const randomLane = generator(0x16f1b);
   const random = generator(20261111);
   let totalSamples = 0;
   let controlPool;
@@ -202,6 +260,13 @@ function main() {
     }
     const scores = [];
     const pageScores = [];
+    const lane16Scores = [];
+    for (let trial = 0; trial < 400; trial++) {
+      const sampled = nativePhase16Matched(
+        original, pools, randomLane, pageAssignment);
+      lane16Scores.push(
+        phase16Profile(sampled, pageAssignment, localOrdinals).ratio);
+    }
     for (let trial = 0; trial < 400; trial++) {
       const sampled = nativeLengthMatched(original, pools, random);
       scores.push(collisionProfile(sampled).ratio);
@@ -209,9 +274,14 @@ function main() {
     }
     scores.sort((a, b) => a - b);
     pageScores.sort((a, b) => a - b);
+    lane16Scores.sort((a, b) => a - b);
     const pageMin = pageScores[0];
     const pageMean = pageScores.reduce((a, b) => a + b, 0) / pageScores.length;
     const pageAtOrBelow = pageScores.filter(score => score <= observedPage.ratio).length;
+    const lane16Min = lane16Scores[0];
+    const lane16Mean = lane16Scores.reduce((a, b) => a + b, 0) / lane16Scores.length;
+    const lane16AtOrBelow = lane16Scores
+      .filter(score => score <= observedPhase16.ratio).length;
     const minimum = scores[0];
     const maximum = scores[scores.length - 1];
     const mean = scores.reduce((a, b) => a + b, 0) / scores.length;
@@ -220,12 +290,15 @@ function main() {
     console.log(source + ":", JSON.stringify({
       nativeWords: native.length, trials: scores.length,
       minimum, mean, median: scores[199], maximum, atOrBelowOriginal,
-      pageMin, pageMean, pageAtOrBelow
+      pageMin, pageMean, pageAtOrBelow,
+      lane16Min, lane16Mean, lane16AtOrBelow
     }));
     assert.equal(atOrBelowOriginal, 0,
       "The all-secret exclusion did not pass the source-language control");
     assert.equal(pageAtOrBelow, 0,
       "The independently keyed page alphabets did not pass the control");
+    assert.equal(lane16AtOrBelow, 0,
+      "The independent 16-phase secret page alphabets did not pass the control");
     if (source === SOURCES[0]) controlPool = pools;
   }
   console.log("Matched native controls at or below original: 0/" + totalSamples);
@@ -258,7 +331,21 @@ function main() {
     ciphertextPageRatio: encryptedPage.ratio,
     exactDecodedSymbols: plantedPlain.reduce((sum, word) => sum + word.length, 0)
   }));
-  console.log("PASS: original input, both all-secret invariants, native controls, full inverses.");
+  const phase16Plant = secretCodec(plantedPlain, random, pageAssignment, localOrdinals);
+  assert.deepEqual(phase16Plant.inverse, plantedPlain);
+  const phase16Source = phase16Profile(plantedPlain, pageAssignment, localOrdinals);
+  const phase16Cipher = phase16Profile(phase16Plant.cipher, pageAssignment, localOrdinals);
+  assert.equal(phase16Source.numerator, phase16Cipher.numerator);
+  assert.equal(phase16Source.denominator, phase16Cipher.denominator);
+  assert(phase16Source.ratio > observedPhase16.ratio * 2);
+  console.log("Independent p15-16-phase per-page secret-table plant:", JSON.stringify({
+    runes: plantedPlain.reduce((sum, word) => sum + word.length, 0),
+    secretPermutationTables: phase16Plant.keyCount,
+    nativeCollisionFraction: phase16Source.ratio,
+    encryptedCollisionFraction: phase16Cipher.ratio,
+    exactDecodedSymbols: plantedPlain.reduce((sum, word) => sum + word.length, 0)
+  }));
+  console.log("PASS: original input, three all-secret invariants, native controls, full inverses.");
 }
 
 main();
