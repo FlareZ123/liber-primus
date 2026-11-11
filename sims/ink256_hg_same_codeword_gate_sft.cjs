@@ -66,6 +66,16 @@ assert.deepEqual(remainder(bytes, H), [0, 0], 'authentic table H-positive');
 assert.deepEqual(remainder(bytes, G), [0, 0], 'authentic table G-positive');
 assert.deepEqual(remainder(bytes, F), [0, 0, 0, 0], 'authentic table dual-positive');
 
+// An independent 256-byte original from 2014, pinned by the existing
+// Stage04 reproduction, is an explicit same-size cross-era codeword control.
+const stage04Source = fs.readFileSync(path.join(root, 'sims/lp2_stage04_256_direct_identity_sft.cjs'), 'utf8');
+const stage04Match = stage04Source.match(/const stage04Hex = '([0-9a-f]{512})'/);
+assert.ok(stage04Match, 'historical source 256-byte literal');
+const stage04 = Array.from(Buffer.from(stage04Match[1], 'hex'));
+assert.deepEqual(remainder(stage04, H), [1, 22]);
+assert.deepEqual(remainder(stage04, G), [15, 4]);
+assert.deepEqual(remainder(stage04, F), [7, 18, 17, 16]);
+
 const ones = remainder(Array(256).fill(1), F);
 assert.deepEqual(ones, [14, 3, 19, 3]);
 
@@ -152,6 +162,7 @@ console.log(JSON.stringify({
   table_H_G_F_syndromes: { H: remainder(bytes, H), G: remainder(bytes, G), F: remainder(bytes, F) },
   ink_hg_syndromes: cases.map((item) => ({ kind: item.kind, marker: item.marker, F: item.expected })),
   affine_variants_per_case: 812,
+  independent_2014_stage04_256_f_syndromes: { H: [1, 22], G: [15, 4], F: [7, 18, 17, 16] },
   total_affine_codeword_hits: 0,
   black_marker: {event_index: blackIndex, source_page: 7, local_after_runes: 194},
   independently_anchored_orientations: rotated.map((v)=>({name:v.name,syndromes:v.expected})),
