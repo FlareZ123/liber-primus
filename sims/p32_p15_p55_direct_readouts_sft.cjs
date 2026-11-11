@@ -29,8 +29,8 @@ assert.deepEqual(keyPrimes, [61, 71, 107, 79]);
 assert.equal(keyPrimes.reduce((a, b) => a + b, 0), 318);
 
 // Canonical p55 word stream: line-wrap slashes are not word boundaries.
-const rawP55 = transcript.split('%')[54].replace(/\/\\s*/gu, '');
-const p55Words = rawP55.match(/[\\u16A0-\\u16FF]+/gu) || [];
+const rawP55 = transcript.split('%')[54].replace(/\/\s*/gu, '');
+const p55Words = rawP55.match(/[\u16A0-\u16FF]+/gu) || [];
 const p55FullFromWords = p55Words.flatMap((word) => [...word]).map((rune) => runeIndex.get(rune));
 assert.deepEqual(p55FullFromWords, p55.indices);
 assert.deepEqual(p55Words.map((word) => [...word].length), [1, 4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3]);
@@ -158,4 +158,4 @@ const result = {
   hill4Results,
   columnarResults
 };
-process.stdout.write(JSON.stringify(result, null, 2) + '\\n');
+process.stdout.write(JSON.stringify(result, null, 2) + '\n');
