@@ -224,6 +224,37 @@ So **none of the 841 unknown seeds** can directly generate this original 127-sym
 
 [Standalone reversible CommonJS source-original test](../sims/lp2_red_terminal_127_trace_projection_sft.cjs) · [successful manual Node22 CI 42931271124](https://github.com/FlareZ123/liber-primus/actions/runs/42931271124).
 
+## Source-seeded 51×127 block-reset additive pair stream (Agent 42, 11 November 2026)
+
+The exact size identity \(12{,}956=2+51\times127\times2\) suggests a source-visible framing distinct from the earlier continuous 127-period recurrence: preserve the first two original runes as a header, then treat p53's **51 red runes** as one seed per row, p54's oversized **Ac=24** as the other field coordinate, and the p39-derived 127 quotient pairs as the row clock. This is a source-motivated candidate, not an authenticated author instruction.
+
+The frozen state is \(S_{r,0}=(24,R_r)\), with the coordinate-reversed \((R_r,24)\) as the only representation comparator. In the p3 field \(u^2=8+3u\), each row updates \(S_{r,j+1}=uS_{r,j}\pm Q_j\), and the original ciphertext pair is decoded as \(P_{r,j}=C_{r,j}\pm S_{r,j}\). The state resets at each of the 51 rows. Both field-coordinate orders, both forcing signs and both output signs give **eight** deterministic variants; there are no fitted keys or ciphertext-selected phases.
+
+All eight variants re-encrypt all **12,954/12,954** original payload runes and recover **12,954/12,954** symbols from an independently generated source-native GP plant. Wrong-source controls using a one-step-shifted red seed sequence, Ac root 23, or reversed quotient order fail exact plant recovery.
+
+| Measure | Original |
+|---|---:|
+| Raw payload IoC | 0.0344789617 |
+| Raw payload Shakespeare-GP trigram | −13.28405598 |
+| Eight decoded IoCs | 0.03444959–0.03450609 |
+| Eight decoded trigram scores | −13.32658575 to −13.24471456 |
+| Best decoded score | −13.24471456 |
+| Lowest of 300 same-length native windows (Shakespeare / Gibran / Emerson) | −7.94651145 / −8.39553970 / −8.40039103 |
+
+Even the best original decode is **4.8443 nats/rune below the worst minimum** among the three same-length native-GP control-window families. The first 24 decoded symbols remain nonlinguistic. This is a bounded negative for the source-seeded, row-reset additive GF841 pair stream, not for all possible per-row state machines or non-GP registers.
+
+Reproducer: [\`sims/red_triad_51x127_blockseed_inverse.cjs\`](../sims/red_triad_51x127_blockseed_inverse.cjs).
+
+## Independent 128+128 trace-pad test (Agent 42 reproduction of Agent 48's source SFT, 11 November 2026)
+
+A separate original-ink partition is exact: p53's **128 black** runes form lane A, while p53's **51 red** runes + p54 Ac + p55's **76** runes form lane B (128 symbols each). I independently reproduced the existing [\`sims/gf841_128_pair_trace_pad.cjs\`](../sims/gf841_128_pair_trace_pad.cjs) against the canonical corpus, ink annotations, original grid and native-GP controls.
+
+Three source-fixed 128-symbol pads were compared: (1) adjacent quotient pairs with Ac field element \((24,0)\) inserted at the p54 boundary, then trace \(\mathrm{Tr}(a+bu)=2a+3b\); (2) adjacent pairs from the original row-major grid; and (3) adjacent pairs from the original column-major grid. For each pad, both lanes and both additive signs were decoded (12 candidates total). The B−A relation matches the signed quotient trace at **8/128** positions and the reverse at **9/128**; row-major gives **7/128** and **1/128**, and column-major **6/128** and **5/128**. These counts are descriptive; no familywise null was run, and they do not identify a cipher.
+
+All 12 candidate trigram scores range from **−13.74765053 to −12.95267344** nats/rune. The best is still **3.8602 nats/rune below** the worst minimum among 300 same-length native-GP control windows (Shakespeare −8.29104391; Gibran −9.09246652; Emerson −8.85094570). Candidate IoCs range **0.03198819–0.03801673**. The quotient-trace positive plant recovers **128/128** symbols; the wrong row-major pad matches only **6/128** planted symbols. The exact 128+128 source geometry therefore does not yield plaintext under these direct additive trace-pad readings.
+
+This 128+128 result is separate from the 51×127 row-reset model above and from the 127-rune terminal trace projection tested elsewhere. It is a bounded negative, not an exclusion of other stateful or non-GP uses of the two lanes.
+
 ## Interpretation and open mechanism
 
 The byte gate and separate all-secret terminal-register test are finite exclusions under different source interpretations. The static-offset byte gate excludes canonical one-byte-per-two-runes encoding under the two tested row multiplier rules. The independent evolving-state gate excludes the same canonical transport and every row-rotated consecutive 256-exponent codebook under each of two quotient-multiplier feedback laws, **even allowing all 841 unknown states per row**. It **cannot** exclude reduction modulo 256, arbitrary alternative 256-codepoint subsets, homophonic/noncanonical byte encodings, hidden within-row state, variable-rate coding, different grid orientations, or another selection of start/boundary. The public-state test is likewise a negative for one recurrence, not for GF841 altogether.
