@@ -83,6 +83,40 @@ function main(){
     }
     report.controls.authenticDefaultImages=[0,8];
 
+    if(process.env.LP2_OUTGUESS_PASSWORD){
+      // Same literal key on a known payload-free, deterministic libjpeg image.
+      // A matching seed/length header here establishes that a header alone
+      // cannot authenticate the page extractions.
+      const generator=path.join(OUTPUT,"synthetic-generator.incomplete");
+      const synthetic=path.join(OUTPUT,"synthetic-no-payload.jpg");
+      const build=spawnSync("cc",["-O2",
+        path.join(ROOT,"sims/jpeg_synthetic_control.c"),"-ljpeg",
+        "-o",generator],{encoding:"utf8",timeout:60000});
+      assert.equal(build.status,0,"Synthetic JPEG generator build failed "+build.stderr);
+      const generate=spawnSync(generator,[synthetic],{
+        encoding:"utf8",timeout:60000});
+      assert.equal(generate.status,0,"Synthetic JPEG generation failed "+generate.stderr);
+      fs.rmSync(temp,{force:true});
+      const probe=outguess(["-k",KEYS[0],"-r",synthetic,temp],120000);
+      const metadata=/Steg retrieve:\s*seed:\s*(\d+),\s*len:\s*(\d+)/i.exec(
+        (probe.stdout||"")+"\n"+(probe.stderr||""));
+      const payload=fs.existsSync(temp)?fs.readFileSync(temp):Buffer.alloc(0);
+      report.controls.syntheticNoPayload={
+        jpegSHA256:SHA(fs.readFileSync(synthetic)),
+        key:KEYS[0],status:probe.status,
+        seed:metadata?Number(metadata[1]):null,
+        headerLength:metadata?Number(metadata[2]):null,
+        bytes:payload.length,
+        headerConsistent:probe.status===0&&Boolean(metadata)&&
+          payload.length===Number(metadata[2]),
+        extractedSHA256:SHA(payload),
+        recognisable:recognisable(payload)
+      };
+      fs.rmSync(generator,{force:true});
+      fs.rmSync(synthetic,{force:true});
+      fs.rmSync(temp,{force:true});
+    }
+
     for(const key of KEYS){
       let matched=0, recognised=0;
       const unknown=[];
