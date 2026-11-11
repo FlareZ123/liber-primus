@@ -1,6 +1,12 @@
 name: LP2 primitive red-triad field inverse (manual)
 on:
   workflow_dispatch:
+    inputs:
+      qmult_gates:
+        description: "Run source quotient-multiplier all-secret gates instead of legacy triad experiments"
+        required: false
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -13,23 +19,45 @@ jobs:
         with:
           node-version: '22'
       - name: Source field construction, exact original seed gate and native plant
+        if: ${{ !inputs.qmult_gates }}
         run: node sims/lp2_red_triad_primitive_field_inverse.cjs
 
       - name: Twisted-Frobenius order-56 source-state inverse
+        if: ${{ !inputs.qmult_gates }}
         run: node sims/lp2_red_triad_frobenius56_source_state.cjs
       - name: Nonlinear source-grid polynomial evaluations over the red GF841 field
+        if: ${{ !inputs.qmult_gates }}
         run: node sims/lp2_red_triad_polynomial_eval_inverse.cjs
 
       - name: Red-factor quotient polynomial source-key inversion
+        if: ${{ !inputs.qmult_gates }}
         env:
           LP2_POLYNOMIAL_MODE: quotient
         run: node sims/lp2_red_triad_polynomial_eval_inverse.cjs
 
       - name: Two-coordinate field norm-trace affine cipher original inverse
+        if: ${{ !inputs.qmult_gates }}
         run: node sims/lp2_red_triad_normtrace_affine_inverse.cjs
 
       - name: Nonlinear two-rune original/plaintext feedback inverse
+        if: ${{ !inputs.qmult_gates }}
         run: node sims/lp2_red_triad_poly_two_rune_feedback.cjs
 
       - name: Test all-secret reversible GF841 field-trace decoder on original terminal 127 runes
+        if: ${{ !inputs.qmult_gates }}
         run: node sims/lp2_red_terminal_127_trace_projection_sft.cjs
+      - name: Source-locked quotient-multiplier direct GP inverse
+        if: ${{ inputs.qmult_gates }}
+        run: node sims/red_triad_quotient_multiplicative_inverse.cjs
+
+      - name: All 841-state dynamic byte and cyclic logarithm transports
+        if: ${{ inputs.qmult_gates }}
+        run: node sims/red_triad_qmult_allstate_byte_sft.cjs
+
+      - name: All 841 cubed initial states and arbitrary stationary 256-codebook
+        if: ${{ inputs.qmult_gates }}
+        run: node sims/red_triad_qmult_three_row_codebook_sft.cjs
+
+      - name: Original p53 red-scaled all-state 256-codebook obstruction
+        if: ${{ inputs.qmult_gates }}
+        run: node sims/red_triad_qmult_red_scaled_codebook_sft.cjs
