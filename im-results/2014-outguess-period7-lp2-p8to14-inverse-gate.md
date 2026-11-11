@@ -23,7 +23,7 @@ The **exact inverse** can be written without guessing a column order: strip spac
 
 ## One fixed original LP2 application
 
-LP2 physical **pages 8–14** form a seven-page 2014 release section with exactly **1,729** canonical runes, and **1,729 = 7 × 247**. The section size is therefore suitable for the *same* column-major seven-row operator with no padding, guessed empty cells, or alternative block widths. We applied the exact earlier inverse to the concatenated source runes in order; reversibility is asserted over all 1,729 symbols.
+LP2 physical **pages 8–14** form an exploratory contiguous seven-page interval with exactly **1,729** canonical runes, and **1,729 = 7 × 247**. These are LP2 pages; the earlier 2014 operator is a cross-round comparison, not the date or provenance of this interval. The section size is therefore suitable for the *same* column-major seven-row operator with no padding, guessed empty cells, or alternative block widths. We applied the exact earlier inverse to the concatenated source runes in order; reversibility is asserted over all 1,729 symbols.
 
 | Observable / direct inverse | Original p8–14 | Source seven-row inverse |
 | --- | ---: | ---: |
