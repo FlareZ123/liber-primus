@@ -19,3 +19,5 @@ jobs:
         run: node sims/lp2_p49_2013_ssss_5of10_original_gate_sft.cjs
       - name: Run historic GF2 to the 176-bit direct-share packing gate
         run: python sims/lp2_p50_2013_ssss_gf176_sharepack_sft.py
+      - name: Run p49 row-packed GF64 monic-degree-five 5-of-10 gate
+        run: node sims/lp2_p49_2013_ssss_gf64_row_gate_sft.cjs

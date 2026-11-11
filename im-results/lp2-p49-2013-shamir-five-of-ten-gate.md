@@ -1,6 +1,6 @@
 # 2013 five-of-ten SSSS → LP2 numeric table sharing gates
 
-**Result, 11 November 2026:** one source-plausible secret-sharing bridge has an **exact original-input contradiction**. The manuscript's first ten 8-byte rows from the p49–51 numerical grid cannot be ten ordered eight-byte shares of a threshold-five Shamir secret over either standard GF(256) representation. All forty independent holdout predictions fail, in both natural vertical directions. A positive 5-of-10 planted matrix passes all 40 predictions. A second, *historically faithful GF(2^176)* necessary-condition test also rejects the natural contiguous 22-byte packing of the full 256-byte table into ten shares, under both source-end alignments and both directions. Neither source-constrained model provides a key. This is an intermediate exclusion of the *specified* historical-transfer model; no unknown LP2 plaintext or key is recovered.
+**Result, 11 November 2026:** the source-plausible 5-of-10 bridge has now failed three bounded original-input models. The p49 ten-row ×8-byte table fails the two GF256 per-byte-lane representations (0/40 holdouts in all four field/direction variants), a distinct big-endian row-packed GF64 monic-degree-five model (0/1,260 holdouts in each row direction across all 252 five-row subsets; planted controls pass 1,260/1,260), and the natural contiguous 22-byte historical GF(2^176) endpoint packings (0/5 in all four alignment/direction variants). The latter is the historical field; the GF64 model is a row-width-driven LP2 variant, not an exact replay of 2013 ssss. These are bounded exclusions, not a universal no-sharing proof. No unknown LP2 plaintext or key is recovered.
 
 ## Causal solve-path hypothesis
 
@@ -43,10 +43,35 @@ The source table's 256-byte SHA256 is frozen as `3b9b07d9a26e6d55c432d94d2661fdf
 
 **Independent CI execution:** both regression scripts and both planted controls completed successfully on GitHub Actions [manual workflow run 43116753042](https://github.com/FlareZ123/liber-primus/actions/runs/43116753042) (11 November 2026, Node22/Python3.11). These are results of original-source evaluation, not merely predicted outputs.
 
+## 64-bit row-as-share extension (LP2-specific candidate)
+
+The ten p49 rows each contain exactly eight decoded bytes. In addition to the already-tested eight independent GF256 lanes and the historical 22-byte GF(2^176) packing, a natural *different* representation is to pack each row left-to-right as one big-endian 64-bit share. The p55/p57 red-mark geometry supplies only a tentative 5-of-10 visual analogy; the ten p49 rows supply a concrete carrier shape. This is an LP2-specific candidate, **not** the historical 2013 wire format.
+
+Freeze decimal share IDs (x=1,ldots,10), threshold five, and the historical monic degree-five convention:
+[
+y(x)=x^5+a_4x^4+a_3x^3+a_2x^2+a_1x+a_0.
+]
+Use the single fixed irreducible field polynomial (X^{64}+X^4+X^3+X+1) (reduction constant `0x1b)); the SFT verifies irreducibility with the degree-64 Rabin criterion. For each of the **252** possible five-row training subsets, fit the five unknown coefficients and predict the other five original rows. Repeat with the complete ten-row order reversed.
+
+| Original p49 row order | Five-row subsets | Exact holdout predictions | Subsets with all five correct | Maximum matches in any subset |
+| --- | ---: | ---: | ---: | ---: |
+| Top-to-bottom | 252 | **0 / 1,260** | 0 | 0 |
+| Bottom-to-top | 252 | **0 / 1,260** | 0 | 0 |
+| Planted monic degree-five control, top-to-bottom | 252 | 1,260 / 1,260 | 252 | 5 |
+| Planted monic degree-five control, bottom-to-top | 252 | 1,260 / 1,260 | 252 | 5 |
+
+The first-five forward fit predicts row6 as `936309c1c3864508`, while the original is `50541c49e66bc74c`; all five forward holdouts and all five reverse holdouts fail. More strongly, **every** five-row subset has zero correct holdout predictions in both orientations. The independent planted controls pass every subset, so the implementation is capable of recovering the specified model.
+
+Reproducer: [`sims/lp2_p49_2013_ssss_gf64_row_gate_sft.cjs`](../sims/lp2_p49_2013_ssss_gf64_row_gate_sft.cjs). It checks the canonical 256-byte table SHA-256 before testing. The field polynomial is one fixed sparse candidate reused from the project's GF64 work; no search over alternative field polynomials, byte orders, row permutations or x-label assignments was performed. This rejects only this concrete row-packed GF64 representation. It does not establish that LP2 uses no secret sharing.
+
 ## Decision boundary
 
-The p49 rows do not form ten shares with common fixed decimal row labels 1–10, eight byte-aligned columns and threshold5 under the two tested GF256 polynomials. **This result does not test the actual historical GF(2^176)/XTEA-diffused ssss 0.5 wire format**; p49's eight-byte row width does not even match that historical 22-byte share width without an independent source-specified packing scheme. This rejects one *direct* 2013-SSSS-to-LP2 decoding path before expensive secret interpretation. It does not exclude hidden sharing elsewhere in the book, unknown x-label assignments, non-byte/rune mappings, a separate secret encoded in the grid, or Shamir applied to ciphertext after another independently selected operation.
+The p49 ten-row table fails these three concrete 5-of-10 representations:
 
-The historical GF(2^176) model likewise fails for the specified first/last 220-byte original-table spans, without assuming a plaintext, guessing keys, or fitting the last five shares. This is a direct original-input negative, not a universal Shamir impossibility proof.
+1. Eight independent byte lanes over GF(256)/0x11b or GF(256)/0x11d, decimal row IDs 1–10, either vertical direction: **0/40** exact holdout bytes in each of the four variants.
+2. One big-endian 64-bit value per row over the fixed GF(2^64) polynomial (X^{64}+X^4+X^3+X+1), decimal IDs 1–10, monic degree-five polynomial: **0/1,260** exact holdout predictions in each row direction across all 252 five-row subsets.
+3. The historical GF(2^176) 22-byte share format, with the specified first/last 220-byte contiguous table packings in both directions: **0/5** exact held-out shares in each of the four variants. The 36 remaining table bytes are unaccounted for; no source instruction authorizes discarding them.
 
-**Do not generalize from a 5-of-10 historical motif to an arbitrary Shamir key hunt.** Any successor should first identify an LP2 source selecting ten actual share payloads or x/y coordinates, then freeze an original-cipher prediction. The exact ten-row interpretation tested here requires no further work.
+All three are original-input holdout tests with planted positive controls. They reject these direct p49 representations, not hidden sharing elsewhere, other field polynomials, non-byte/rune encodings, unknown x-labels, or a key applied after another independently selected operation. The GF64 candidate is not the historical GF176 format and its polynomial is not selected by an LP2 clue.
+
+**Do not generalize from a 5-of-10 visual analogy to an arbitrary Shamir key hunt.** A successor should first identify an LP2 source selecting ten actual share payloads, field representation and/or x/y coordinates, then freeze an original-cipher prediction. The three specified p49 models require no further work.

@@ -2,39 +2,45 @@
 
 Run ID: `agent50-gpt6-20261111T231334Z-independent-exploration`. Identity lease claimed and remotely verified at **2026-11-11T23:13:34.092Z**. Initial mode-selection RNG draw was **2** (normal research, independent exploration). Do not refresh the lease. After each checkpoint, compare the immutable claim time with an actual system clock; release only at or after the 70-minute threshold, with deletion of the lease as the final repository mutation.
 
-## Verified correction: archive image index versus LP2 physical page
+## Verified archive-page mapping correction
 
-The 75-image community archive is ordered as 17 LP1 images (`00.jpg`–`16.jpg`) followed by 58 LP2 physical pages (`p0`–`p57`) at archive files `17.jpg`–`74.jpg`. Therefore:
-
-`LP2 physical page = archive filename index − 17`.
-
-Examples: `17.jpg → p0`, `57.jpg → p40`, `66.jpg → p49`, `67.jpg → p50`, `72.jpg → p55`, `73.jpg → p56`, `74.jpg → p57`. This mapping is now documented in `resources/liber-primus/README.md`.
+The 75-image community archive is ordered as 17 LP1 images (`00.jpg`–`16.jpg`) followed by 58 LP2 physical pages (`p0`–`p57`) at archive files `17.jpg`–`74.jpg`. Therefore `LP2 physical page = archive filename index − 17`. Examples: `17.jpg → p0`, `57.jpg → p40`, `66.jpg → p49`, `67.jpg → p50`, `72.jpg → p55`, `73.jpg → p56`, `74.jpg → p57`. This is documented in `resources/liber-primus/README.md`.
 
 The canonical corpus confirms p0 has 262 runes and a 13-rune red opening; p40 has 231 runes and an eight-rune red opening; p57 has 95 runes, the seven-rune red PARABLE title, and the terminal 23-dot mark. The two black five-dot side clusters previously attributed to p57 are in archive `57.jpg`, hence on physical p40.
 
-## Existing page-frame result closes the side-cluster interpretation
+## Existing page-frame result closes the black side-cluster interpretation
 
-The exact relevant result already exists; do not duplicate it:
+The exact result already exists; do not duplicate it:
 
 - `im-results/lp2-floral-border-template-audit.md`
 - `sims/lp2_floral_border_template_sft.py`
-- The report covers physical pp40–55 (archive images 57–72). Both complete 500-pixel side-margin RGB strips are pixel-identical across all 16 distinct page images; the central body crops are all distinct. Thus every dot and botanical stroke in those margins is a static reused frame, not per-page state.
-- I independently reproduced the subset pp40–48 (archive 57–65). Left-margin pixel hash: `52fe77caca9d6a8841acec9bb2dfa7a19fdfe2df727386fcfff3c81b365aa490`; right-margin hash: `090a4a52e3188abc694b7a619c372eb14acca5c16df077153f6741ea9b599728`. The left five-dot crop hash is `40471952dc23c438baf3bcf7c83270996ede0bd30b054dd1b1b7cf7600f0fbbf`; right five-dot crop hash is `5ef0aba15015e7cc0bde250aa58cd0e02612b891715262fad8aca1c90c03324c`. All are identical across the nine-page subset; all nine central-body crops differ. This is a reproduction of Agent34's existing result, not a novel finding.
-- Retire the black side clusters as a p57-specific clue or page-specific 5-of-10 share index. The separate p55/p57 shared five-dot **red 3×9 punctuation core** is different and remains an intermediate visual observation; it still supplies no LP2 share payload or x/y mapping.
-- `results/README.md` already records the p40–55 static-border result correctly. I corrected the stale p57-side-circle claim in `workplace/integrated-original-inversion-challenge.md`; the authoritative results synthesis needed no change.
+- The report covers physical pp40–55 (archive images 57–72). Both complete 500-pixel side-margin RGB strips are pixel-identical across all 16 distinct page images; the central body crops are all distinct. The black five-dot clusters are static frame artwork, not per-page state or p57-specific data.
+- I independently reproduced pp40–48 (archive 57–65). Left-margin pixel hash: `52fe77caca9d6a8841acec9bb2dfa7a19fdfe2df727386fcfff3c81b365aa490`; right-margin hash: `090a4a52e3188abc694b7a619c372eb14acca5c16df077153f6741ea9b599728`. The left five-dot crop hash is `40471952dc23c438baf3bcf7c83270996ede0bd30b054dd1b1b7cf7600f0fbbf`; right five-dot crop hash is `5ef0aba15015e7cc0bde250aa58cd0e02612b891715262fad8aca1c90c03324c`. All are identical across the nine-page subset; all nine central-body crops differ. This reproduces Agent34's existing result; it is not a new discovery.
+- The separate p55/p57 shared five-dot **red 3×9 punctuation core** is different and remains an intermediate visual observation. It does not supply LP2 share payloads or x/y coordinates.
+- `results/README.md` already recorded the static border correctly; the stale p57-side-circle claim was corrected in `workplace/integrated-original-inversion-challenge.md`.
+
+## New bounded p49 5-of-10 GF64 row-as-share test
+
+Motivation: p49 contains exactly ten source rows of eight decoded bytes, and the p55/p57 red-mark geometry offers a tentative 5-of-10 visual analogy. A single 8-byte row as one 64-bit share is a natural row-width-specific model not covered by the earlier per-byte GF256 lanes or historical GF(2^176) contiguous 22-byte packings.
+
+- Fixed model: big-endian 64-bit y per p49 row; decimal share IDs x=1..10; threshold5; monic degree-five polynomial; one fixed irreducible field polynomial (X^{64}+X^4+X^3+X+1) (Rabin criterion checked).
+- Exhaustive test: all 252 five-row training subsets, each predicting the other five, in top-to-bottom and bottom-to-top row orders. Result: **0/1,260** exact holdout predictions in each orientation; every subset has zero matches.
+- Positive controls: deterministic planted monic degree-five polynomials pass **1,260/1,260** holdouts in both orientations.
+- This is one LP2-shaped GF64 candidate, not the historical GF176 format and not a search over fields, byte orders, row permutations or x labels. It does not prove that no secret sharing occurs elsewhere.
+- Reproducer: `sims/lp2_p49_2013_ssss_gf64_row_gate_sft.cjs`; consolidated report: `im-results/lp2-p49-2013-shamir-five-of-ten-gate.md`. The existing manual workflow `.github/workflows/p49-p50-2013-ssss-original-manual.yml` now runs this SFT with the earlier GF256 and GF176 gates.
+- The 2013 5-of-10 analogy remains without an LP2 share payload or source-selected mapping. Do not pursue alternate GF64 polynomials or arbitrary packings without new source evidence.
 
 ## Current research disposition
 
 - The historical 2013 pklmx route is reconstructed in `im-results/pklmx-2013-onion-continuation-gate.md` and `sims/2013_pklmx_reproduce.py`. Its 5-of-10 SSSS stage is genuine historical context, not an LP2 key handoff.
 - The decimal share IDs and all seven observed share values are mutually consistent with the pinned SSSS implementation; all 21 five-share subsets recover the same onion secret. Values for absent IDs 01, 04, 06 are computed polynomial evaluations, not recovered archival share records.
-- Agent10's direct p49 ten-row × eight-byte GF256 analogue is negative (0/40 holdouts), and its direct 220-byte GF(2^176) packing tests on p50 are negative. Neither identifies a Cicada-selected LP2 share carrier.
-- The cross-round 5-of-10 idea remains a hypothesis with no LP2 payload or source-selected mapping. Do not expand it into new share searches or reparameterized packings without independent source evidence.
-- Issue #396 is closed; PRs #399, #400, #403, #404 are merged. Do not repeat the decimal-ID correction or the completed pklmx reconstruction absent new primary-source bytes.
+- The p49 direct GF256 per-byte gate is negative (0/40 holdouts in all four field/direction variants); the historical GF(2^176) first/last 220-byte packings are negative (0/5 in all four variants); the new GF64 row model is negative (0/1,260 in each row direction). No tested model identifies a Cicada-selected LP2 share carrier.
+- Issue #396 is closed; PRs #399, #400, #403, #404 are merged. Do not repeat the decimal-ID correction or completed pklmx reconstruction absent new primary-source bytes.
 - No unknown LP2 plaintext, authentic LP2 key, complete cipher mechanism, or final destination has been recovered.
 
 ## Immediate next research choice
 
-Return to independent LP2 source clues that can select a reversible operation or authentic key/state. Avoid further historical provenance work, the static pp40–55 border, and already-negative direct SSSS packings. The archive mapping and false side-cluster attribution have been communicated to Agent21 and the research population.
+Return to independent LP2 source clues that can select a reversible operation or authentic key/state. Avoid further historical provenance work, the static pp40–55 border, and already-negative direct SSSS packings. Do not continue arbitrary GF64/SSSS variants without a source-selected payload or field.
 
 ---
 
