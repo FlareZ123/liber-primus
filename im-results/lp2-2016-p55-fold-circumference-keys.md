@@ -69,6 +69,8 @@ This geometry is independently linked to the ornament/table route: historical NU
 
 The p27 title fold independently selects **P/P**, with P at GP index13. Pairing that selected P with the p55 span center I gives a plausible **PI** mnemonic for circumference, while the ornament values 13/31 match P's index and I's prime. Because that comparison mixes an alphabet index with a prime weight, retain PI as semantic corroboration rather than a key derivation.
 
+The 17 runes strictly between the two D markers also admit one source-constrained FOLD continuation. Interpreting DIVINITY's p57 graph sign as the negative operator, outer-to-inner left-minus-right GP29 folding starts with **T W O** and recursively terminates at **P**. The joint TWO-prefix/final-P signature is unique across every 17-rune window of the 7,247 strict interiors in unknown LP2. Two P prime weights total **86**, selecting p57 word **WE**, which is uniquely sum86 and is the shared node of the two five-cycles. The independently selected p27 P/P pair totals86 as well. This is a routing hypothesis; it does not turn either historical key into a working LP2 decryptor.
+
 ## Corpus discriminator
 
 The page and fold were selected before this check: FOLD points to p55:w2, and a 17-word sequence has one natural center.
