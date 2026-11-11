@@ -1,0 +1,23 @@
+name: Cross-round mod661 35-stride DES-key inverse
+
+on:
+  push:
+    paths:
+      - "sims/crossround_mod661_des35_inverse.cjs"
+      - ".github/workflows/crossround-mod661-des35.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test source-derived 32-key schedule on original LP2
+        run: node sims/crossround_mod661_des35_inverse.cjs
