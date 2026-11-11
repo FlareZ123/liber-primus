@@ -54,6 +54,25 @@ assert.equal(corpus.prime[page32.indices[0]], reversed[0]);
 // physical p50 token 3 (zero-based). Confirm that actual printed token.
 assert.equal(page50.tokens[3], '3D');
 assert.equal(base60(page50.tokens[3]), reversed[1]);
+
+// The already reported source pointer x -> table.bytes[x], starting at the
+// frozen global physical p50 cell 83, crosses both reverse-dimension primes.
+// The common factor five is a candidate FIVE-STEP stop rule: the fifth
+// pointer step reaches p32's top-right GP prime 79.
+const page50Start = grid.pages.filter((page) => page.page < 50)
+  .reduce((n, page) => n + page.tokens.length, 0);
+const startIndex = page50Start + 3;
+assert.equal(startIndex, 83);
+assert.equal(grid.bytes[startIndex], reversed[1]);
+const pointerPath = [startIndex];
+for (let step = 0; step < 5; step += 1) {
+  pointerPath.push(grid.bytes[pointerPath.at(-1)]);
+}
+assert.deepEqual(pointerPath, [83, 193, 155, 112, 73, 79]);
+assert.equal(pointerPath[4], reversed[0]);
+assert.equal(corpus.prime[page32.indices[10]], pointerPath[5]);
+assert.equal(grid.bytes[reversed[0]], pointerPath[5]);
+
 // The same archived NUMBER operation can be applied again to the
 // selected prime byte. Its reversal is semiprime, both factors in GP29.
 const nextNumberValue = reverseDigits(reversed[1]);
@@ -110,6 +129,7 @@ console.log(JSON.stringify({
   columnPrimeSum: colSum,
   selectedTableToken: page50.tokens[3],
   selectedTableByte: base60(page50.tokens[3]),
+  selectedPointerPath: pointerPath,
   number193Reversal: nextNumberValue,
   number193Factors: [17, 23],
   primeWalk: primes,
