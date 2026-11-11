@@ -46,6 +46,7 @@ on:
           - signed-message-map
           - stipple-241-331
           - source-dh-log
+          - signed2013-field-dh-p29
           - source-base29-literal
           - image-dim-page
           - microqr-finder
@@ -141,6 +142,10 @@ jobs:
         run: |
           node sims/lp2_2013_p56_prime84_field_basis_sft.cjs
           node sims/lp2_2013_dh_prime_field_log_inverse_sft.cjs
+
+      - name: Signed 2013 BASE29 field-DH p29 source-residue trace gate
+        if: ${{ inputs.probe == 'signed2013-field-dh-p29' }}
+        run: node sims/p29_signed2013_field_dh_trace_sft.cjs
 
       - name: Original p57 cicada-stipple 241/331 selector and 51x127 field-clock gate
         if: ${{ inputs.probe == 'stipple-241-331' }}
