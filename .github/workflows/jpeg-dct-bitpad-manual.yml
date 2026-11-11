@@ -1,8 +1,18 @@
 name: Original JPEG DCT parity source-pad challenge
 on:
   workflow_dispatch:
+    inputs:
+      probe:
+        description: "Select original JPEG DCT source challenge or page-color audit"
+        required: true
+        type: choice
+        default: dct
+        options:
+          - dct
+          - page-mode
 jobs:
   dct-bitpad:
+    if: inputs.probe == 'dct' || inputs.probe == ''
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -22,3 +32,17 @@ jobs:
         run: LP_DCT_BITS=/tmp/lp_jpeg_dct_bits node sims/jpeg_dct_bitpad_attack.cjs
       - name: Test original JPEGs for sequential stego payload headers
         run: LP_DCT_BITS=/tmp/lp_jpeg_dct_bits node sims/jpeg_sequential_payload_gate.cjs
+
+  page-mode:
+    if: inputs.probe == 'page-mode'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Pillow and NumPy to inspect original JPEG pixels
+        run: python -m pip install --disable-pip-version-check Pillow numpy
+      - name: Test original 58-page mode sequence against visible source content
+        run: python sims/lp2_jpeg_page_mode_sequence_sft.py
