@@ -91,6 +91,26 @@ function transformPairs(input, schedule, model, encode) {
   return Array.from(out);
 }
 
+function fieldAdd(x, y) {
+  return [mod(x[0] + y[0]), mod(x[1] + y[1])];
+}
+function fieldSub(x, y) {
+  return [mod(x[0] - y[0]), mod(x[1] - y[1])];
+}
+function transformSourceAffine(input, alpha, offset, encode) {
+  const out = new Uint8Array(input.length);
+  const alphaInverse = fieldInverse(alpha);
+  for (let i = 0; i < input.length; i += 2) {
+    const pair = [input[i], input[i + 1]];
+    const value = encode
+      ? fieldAdd(multiply(alpha, pair), offset)
+      : multiply(alphaInverse, fieldSub(pair, offset));
+    out[i] = value[0];
+    out[i + 1] = value[1];
+  }
+  return Array.from(out);
+}
+
 function loadScorer(corpus) {
   const letters = corpus.translit.map(s =>
     Array.from(s, ch => ch.charCodeAt(0) - 65));
@@ -200,6 +220,13 @@ function main() {
   const allLambda = lambdas();
   assert.equal(allLambda.length, 840);
 
+  const sourceAffineCandidates = [
+    {name: 'u*P+beta', alpha: u, offset: beta},
+    {name: 'u*P-beta', alpha: u, offset: [mod(-beta[0]), mod(-beta[1])]},
+    {name: 'beta*P+u', alpha: beta, offset: u},
+    {name: 'beta*P-u', alpha: beta, offset: [mod(-u[0]), mod(-u[1])]}
+  ];
+
   const rawScore = score(cipher);
   const raw = {
     ioc: ioc(cipher),
@@ -224,6 +251,21 @@ function main() {
       }
     }
   }
+
+  const sourceAffineOriginal = sourceAffineCandidates.map(candidate => {
+    const decoded = transformSourceAffine(
+      cipher, candidate.alpha, candidate.offset, false);
+    const scored = score(decoded);
+    return {
+      name: candidate.name,
+      alpha: keyOf(candidate.alpha),
+      offset: keyOf(candidate.offset),
+      scorePerLetter: scored.scorePerLetter,
+      missingQuadgrams: scored.missingQuadgrams,
+      ioc: ioc(decoded),
+      preview: decoded.slice(0, 160).map(x => corpusTranslit[x]).join('')
+    };
+  });
 
   const shakespeare = fs.readFileSync(
     path.join(ROOT, 'resources/control/shakespeare_first300k.txt'), 'utf8');
@@ -259,6 +301,21 @@ function main() {
     }
   }
 
+  const sourceAffinePlants = sourceAffineCandidates.map(candidate => {
+    const encrypted = transformSourceAffine(
+      native, candidate.alpha, candidate.offset, true);
+    const recovered = transformSourceAffine(
+      encrypted, candidate.alpha, candidate.offset, false);
+    assert.deepEqual(recovered, native);
+    const scored = score(recovered);
+    return {
+      name: candidate.name,
+      scorePerLetter: scored.scorePerLetter,
+      ioc: ioc(recovered),
+      exactRecovery: recovered.length
+    };
+  });
+
   console.log(JSON.stringify({
     classification: 'Original-input two-rune field test; no plaintext unless independently scored',
     source: {
@@ -272,6 +329,8 @@ function main() {
       fieldPairs: cipher.length / 2,
       pairAlignment: 'global from the first rune, continuous across physical pages'
     },
+    sourceAffineOriginal,
+    sourceAffinePositiveControls: sourceAffinePlants,
     original: {
       raw,
       candidateFamilies: original,
