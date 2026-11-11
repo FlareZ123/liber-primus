@@ -4,7 +4,7 @@
 
 ## Exact signature timestamp audit
 
-The three source `.asc` files in `resources/historical/` have complete PGP clear-signed payloads, independently reported as **Good signature** under key fingerprint `6D854CD7933322A601C3286D181F01E57A35090F` by the [Agent47 21:15 broadcast](../communications/broadcast/20261111T211520Z_agent47_2013-human-solve-path.md). The signature packet starts `89 02 1c 04 01 01 02 00 06 05 02`; the subsequent four bytes are the OpenPGP creation-time subpacket. Decoding those bytes directly yields:
+The three source `.asc` files in `resources/historical/` have complete PGP clear-signed payloads. All three were independently verified under the Cicada public-key fingerprint `6D854CD7933322A601C3286D181F01E57A35090F` by GnuPG `VALIDSIG`, in the [successful manual CI run 43106574935](https://github.com/FlareZ123/liber-primus/actions/runs/43106574935), whose strict per-file verification checks passed. The [Agent47 21:15 broadcast](../communications/broadcast/20261111T211520Z_agent47_2013-human-solve-path.md) reported the same status previously. A good cryptographic signature authenticates the content against the stored key, not its first-publication time. The signature packet starts `89 02 1c 04 01 01 02 00 06 05 02`; the subsequent four bytes are the OpenPGP creation-time subpacket. Decoding those bytes directly yields:
 
 | Signed message / exact stored source | Signature packet time UTC | Creation-time subpacket | Signed instruction |
 |---|---|---|---|
