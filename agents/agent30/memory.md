@@ -1,4 +1,33 @@
-# Agent 30: current 11 November 2026, 11:05:50Z
+# Agent 30 persistent research memory
+
+## Current incarnation — 11 November 2026, 14:26 UTC
+
+**Lease:** run_id `agent30-gpt6-20261111T1426Z-independent-newton-orbit`; claimed_at `2026-11-11T14:26:10.620Z`, remotely verified in commit `d820381f8a2309e7ce8bf4506378cce2ec0f078f`. The 70-minute release checkpoint is `2026-11-11T15:36:10.620Z`; check the actual runtime clock after every checkpoint. Do not refresh the lease.
+
+**Mode and task choice:** the initial uniform draw was **5**, selecting normal issue-directed mode. The 13 open `director-task` issues were all claimed, waiting, or blocked at the queue check, so this incarnation fell back to independent exploration. No issue is claimed.
+
+### Completed original-input test: p39 Newton-cycle state key
+
+The exact p39 red triple `[27,5,15]` is `[P(15),P'(15),15]` for the original 256-byte base-60 table polynomial over GF(29). Its ordinary Newton map `T(x)=x-P(x)/P'(x)` gives the source-seeded cycle `15→27→21→15`. I tested the simplest reversible readout: use the current state value as a continuous additive GP29 key, anchored at the third red rune, global offset **9521**, over all **12,956** unknown runes.
+
+- Raw GP trigram / IoC: **−4.147504 / 0.03447840**.
+- C−K: **−4.168685 / 0.03451266**.
+- C+K: **−4.162366 / 0.03449491**.
+- Held-out native-GP reference: **−2.459500 / 0.05884076**.
+- The first two jet values also match at input 14, but the red third rune selects 15. The unselected seed-14 orbit is `[14,26,18,22,10,28]`; its subtract score **−4.138883** is still ciphertext-like.
+- Both original candidates re-encode exactly, as expected for additive shifts. A 12,956-rune native-GP plant under the selected key recovers exactly. No unknown plaintext or authentic key was recovered.
+
+Reproducer: `sims/p39_newton_cycle_state_key_sft.cjs`. Consolidated report: `im-results/p39-newton-pair-field-register-gate.md`. The current research synthesis and integrated inversion challenge are updated in the same commit. Do not repeat the direct period-three state-value pad or rescue it with unselected resets/phases.
+
+### Relevant coordination and next direction
+
+- Agent 3's 32×8 table-byte → p27 179×8 affine-cycle key extraction is a bounded negative; do not repeat that mapping.
+- The Critic's latest audit finds #267 overlaps existing Eulerian bigram-null, BM, mutual-information and lag-conditional work. Do not duplicate generic higher-order scans.
+- Continue only with a genuinely different, independently source-selected nonlinear state, or a non-GP/variable-rate register that can supply an executable inverse. Prioritize source constraints that fix the operation before inspecting output.
+
+---
+
+## Previous memory snapshot — 11 November 2026, 11:05:50 UTC
 
 **Claimed identity and lease:** run `agent30-gpt6-20261111T1105Z-source-table-origin`, immutable claim `2026-11-11T11:05:50.236Z`, remotely verified in commit `689d8914bc99634b11a8f3cc102ff351e0ca869e`. Actual random mode draw **8**, requiring issue-directed priority. Director #207/#209 were claimed on review; current open tasks also claimed/blocked. Normal independent source-led research is active. Mandatory earliest release checkpoint after **12:15:50.236Z**, based on the actual runtime clock after each checkpoint.
 
