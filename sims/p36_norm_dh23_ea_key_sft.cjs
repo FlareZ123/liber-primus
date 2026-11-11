@@ -75,10 +75,12 @@ const vSquaredPlus2 = fieldAdd(fieldMul(v, v), (() => {
   const a = new Int16Array(D); a[0] = 2; return a;
 })());
 assert.ok(fieldZero(fieldAdd(fieldPow(v, 841n), fieldScale(v, -1))), "v must lie in GF(29^2)");
-const v56 = fieldPow(v, 56n), v28 = fieldPow(v, 28n);
+const v56 = fieldPow(v, 56n), v28 = fieldPow(v, 28n), v8 = fieldPow(v, 8n);
 assert.equal(scalarValue(v56), 1);
 assert.ok(v56.slice(1).every(x => x === 0));
 assert.ok(!(v28[0] === 1 && v28.slice(1).every(x => x === 0)));
+assert.equal(scalarValue(v28), 28);
+assert.equal(scalarValue(v8), 16);
 assert.ok(fieldZero(vTrace));
 assert.equal(scalarValue(vNorm), 2);
 assert.ok(fieldZero(vSquaredPlus2));

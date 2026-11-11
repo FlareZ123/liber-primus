@@ -62,7 +62,7 @@ v=N_{F/E}(S)=S^{(29^{238}-1)/840}.
 Exact arithmetic gives:
 
 - \(v^{841}=v\), so \(v\in E\);
-- \(v^{56}=1\) but \(v^{28}\ne1\), so \(v\) has order 56;
+- \(v^{56}=1\), \(v^{28}=28=-1\), and \(v^8=16\ne1\), so \(v\) has order 56;
 - \(v+v^{29}=0\) and \(v\,v^{29}=2\);
 - \(v^2=-2\) in \(E\);
 - by transitivity, \(N_{F/GF(29)}(S)=2\).
