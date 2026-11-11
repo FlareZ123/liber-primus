@@ -1,6 +1,6 @@
 "use strict";
 /**
- * Source-quotient GF(29^2) trace-feedback gate on the original LP2 stream.
+ * Source-quotient GF(29^2) trace/norm-feedback gate on the original LP2 stream.
  *
  * Source inputs:
  *   p3 red polynomial F3 = 13 + 23X + 2X^2, hence u^2 = 3u + 8;
@@ -8,12 +8,14 @@
  *   p50's original 256-byte row-major table polynomial P50.
  *
  * Exact quotient: (P50 / F39) mod F3 = g = 19 + 13u, order 840.
- * The p54 enlarged Ac gives beta=24. The field trace is Tr(a+bu)=2a+3b.
+ * The p54 enlarged Ac gives beta=24. Projections are Tr(a+bu)=2a+3b
+ * and N(a+bu)=a^2+3ab+21b^2.
  *
- * Test c_i = p_i + sign*Tr(s_i), s_(i+1)=g^(+/-1)*s_i+24*f_i,
- * with f_i either recovered plaintext or ciphertext. Exhausts both signs,
- * book/page clocks, both feedback conventions, both generator directions,
- * and all 841 initial states: 13,456 exact original-input inversions.
+ * Test c_i = p_i + sign*projection(s_i), s_(i+1)=g^(+/-1)*s_i+24*f_i,
+ * with projection = field trace or norm, and f_i = recovered plaintext or
+ * ciphertext. Exhausts both signs, book/page clocks, both feedback rules,
+ * both generator directions, both projections, and all 841 seeds: 26,912
+ * exact original-input inversions.
  *
  * Shakespeare 240k-character training / 60k heldout GP trigram model;
  * Gibran and heldout Shakespeare are independent native-GP controls.
@@ -207,13 +209,14 @@ function scoreControlWindow(words, offset, count, lm) {
   }
   return score / count;
 }
-function buildTables(generator, sign, feedback, beta) {
+function buildTables(generator, sign, feedback, beta, projection) {
   const plain = new Uint8Array(841 * ALPHA), next = new Uint16Array(841 * ALPHA);
   for (let a = 0; a < 29; a++) for (let b = 0; b < 29; b++) {
-    const state = a * 29 + b, trace = mod(2 * a + 3 * b);
+    const state = a * 29 + b;
+    const output = projection === "trace" ? mod(2 * a + 3 * b) : mod(a * a + 3 * a * b + 21 * b * b);
     for (let c = 0; c < 29; c++) {
       const ix = state * 29 + c;
-      const p = mod(c - sign * trace);
+      const p = mod(c - sign * output);
       const f = feedback === "plaintext" ? p : c;
       const product = multiply(generator, [a, b]);
       plain[ix] = p;
@@ -233,13 +236,14 @@ function decrypt(input, seed, clock, tables, pageStart) {
   }
   return output;
 }
-function encrypt(input, seed, clock, feedback, generator, sign, beta, pageStart) {
+function encrypt(input, seed, clock, feedback, generator, sign, beta, projection, pageStart) {
   const output = new Uint8Array(input.length);
   let state = seed;
   for (let i = 0; i < input.length; i++) {
     if (clock === "page" && pageStart[i]) state = seed;
     const a = Math.floor(state / 29), b = state % 29;
-    const c = mod(input[i] + sign * mod(2 * a + 3 * b));
+    const output = projection === "trace" ? mod(2 * a + 3 * b) : mod(a * a + 3 * a * b + 21 * b * b);
+    const c = mod(input[i] + sign * output);
     output[i] = c;
     const f = feedback === "plaintext" ? input[i] : c;
     const product = multiply(generator, [a, b]);
@@ -273,10 +277,10 @@ function main() {
   ];
   const modeResults = [], globalTop = [];
   let bestHeldout = null;
-  for (const generator of generators) for (const sign of [1, -1])
+  for (const projection of ["trace", "norm"]) for (const generator of generators) for (const sign of [1, -1])
     for (const clock of ["book", "page"])
       for (const feedback of ["plaintext", "ciphertext"]) {
-        const tables = buildTables(generator.value, sign, feedback, source.beta);
+        const tables = buildTables(generator.value, sign, feedback, source.beta, projection);
         const candidates = [];
         for (let a = 0; a < 29; a++) for (let b = 0; b < 29; b++) {
           const seed = a * 29 + b;
@@ -285,42 +289,47 @@ function main() {
           const row = { ...score, seed: [a, b], seedIndex: seed };
           candidates.push(row);
           if (!bestHeldout || row.heldout > bestHeldout.heldout)
-            bestHeldout = { ...row, mode: { generator: generator.name, sign, clock, feedback } };
+            bestHeldout = { ...row, mode: { projection, generator: generator.name, sign, clock, feedback } };
         }
         candidates.sort((x, y) => y.train - x.train);
         modeResults.push({
-          generator: generator.name, sign, clock, feedback,
+          projection, generator: generator.name, sign, clock, feedback,
           bestTraining: candidates[0],
           topThree: candidates.slice(0, 3)
         });
         globalTop.push(...candidates.slice(0, 5).map(row => ({
-          ...row, mode: { generator: generator.name, sign, clock, feedback }
+          ...row, mode: { projection, generator: generator.name, sign, clock, feedback }
         })));
       }
   globalTop.sort((x, y) => y.train - x.train);
   const best = globalTop[0];
   const bestGenerator = best.mode.generator === "g" ? source.g : source.gInverse;
-  const bestTables = buildTables(bestGenerator, best.mode.sign, best.mode.feedback, source.beta);
+  const bestTables = buildTables(bestGenerator, best.mode.sign, best.mode.feedback, source.beta, best.mode.projection);
   const bestPlain = decrypt(input.original, best.seedIndex, best.mode.clock, bestTables, input.pageStart);
   const reencrypted = encrypt(bestPlain, best.seedIndex, best.mode.clock, best.mode.feedback,
-    bestGenerator, best.mode.sign, source.beta, input.pageStart);
+    bestGenerator, best.mode.sign, source.beta, best.mode.projection, input.pageStart);
   assert.deepEqual(Array.from(reencrypted), input.original);
   const plant = makeStream(gibranWords, input.original.length).xs;
   assert.equal(plant.length, input.original.length);
   const plantSeed = 13 * 29 + 23;
-  const plantTables = buildTables(source.g, 1, "plaintext", source.beta);
-  const plantCipher = encrypt(plant, plantSeed, "book", "plaintext", source.g, 1,
-    source.beta, new Uint8Array(plant.length));
-  const plantDecoded = decrypt(plantCipher, plantSeed, "book", plantTables, new Uint8Array(plant.length));
-  assert.deepEqual(Array.from(plantDecoded), plant);
+  const positivePlants = [];
+  for (const projection of ["trace", "norm"]) {
+    const plantTables = buildTables(source.g, 1, "plaintext", source.beta, projection);
+    const noPageResets = new Uint8Array(plant.length);
+    const plantCipher = encrypt(plant, plantSeed, "book", "plaintext", source.g, 1,
+      source.beta, projection, noPageResets);
+    const plantDecoded = decrypt(plantCipher, plantSeed, "book", plantTables, noPageResets);
+    assert.deepEqual(Array.from(plantDecoded), plant);
+    positivePlants.push({ projection, runes: plant.length, exactRecovery: true });
+  }
   const originalScore = scoreSplit(input.original, input.starts, input.ends, input.train, lm);
   console.log(JSON.stringify({
-    classification: "Bounded negative for source-quotient GF(29^2) trace-feedback native-GP decoder",
+    classification: "Bounded negative for source-quotient GF(29^2) trace/norm-feedback native-GP decoder",
     source: {
       F3: source.F3, F39: source.F39, beta: source.beta,
       quotientElement: source.g, inverse: source.gInverse,
       multiplicativeOrder: 840, quotientCoefficients: source.quotientLength,
-      field: "u^2 = 3u + 8", trace: "Tr(a+bu) = 2a+3b"
+      field: "u^2 = 3u + 8", trace: "Tr(a+bu) = 2a+3b", norm: "N(a+bu) = a^2+3ab+21b^2"
     },
     original: {
       runes: input.original.length, words: input.starts.filter(Boolean).length,
@@ -335,8 +344,8 @@ function main() {
       nativeControlWindows: controls
     },
     search: {
-      models: 13456,
-      dimensions: "2 generator directions x 2 signs x 2 clocks x 2 feedback rules x 841 seeds",
+      models: 26912,
+      dimensions: "2 projections x 2 generator directions x 2 signs x 2 clocks x 2 feedback rules x 841 seeds",
       bestTraining: best,
       bestHeldout: bestHeldout,
       topFiveTraining: globalTop.slice(0, 5),
@@ -344,9 +353,9 @@ function main() {
     },
     validation: {
       bestOriginalReencryption: "12956/12956",
-      positivePlant: "independent Gibran GP text, 12956/12956 exact recovery",
+      positivePlants,
       positivePlantSeed: [13, 23],
-      positivePlantModel: "g, positive trace, continuous book clock, plaintext feedback"
+      positivePlantModel: "g, positive sign, continuous book clock, plaintext feedback; one exact plant per projection"
     },
     bestCandidatePrefix: Array.from(bestPlain.slice(0, 100), x => source.corpus.translit[x]).join(" ")
   }, null, 2));
