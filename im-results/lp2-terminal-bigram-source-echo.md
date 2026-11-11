@@ -1,6 +1,12 @@
 # Exact two-word echo at the last six unsolved LP2 runes
 
-**Classification:** reproducible original-ciphertext structure; candidate deliberate cross-reference, **no plaintext, key, or decoder recovered**. This report is an intermediate clue, not an established cryptographic mechanism.
+**Classification:** independent reproduction and alternative conditional-null calibration of a **previously published** original-ciphertext observation. **No plaintext, key, or decoder recovered.** This report is an intermediate clue, not an established cryptographic mechanism.
+
+## Prior art and what this adds
+
+The repeated `ᛞᛄᚢ-ᛒᛖᛁ` words, page-27/page-55 offsets, whole-word division, original-image confirmation and terminal placement were already independently reported in October 2026. See [Cicada Notebook Session 04](https://cicadanotebook.com/sessions/4.html) and [Session 32 source-image audit](https://cicadanotebook.com/sessions/32.html), as well as [pnotisdev's research status and October 2026 community attribution](https://github.com/pnotisdev/cicada3301/blob/main/STATUS.md). Our observation **must not be presented as a new discovery or new source constraint**. Earlier work also used 999 source-page rune shuffles (none with a repeated six-rune two-word phrase) and length-constrained shuffles. The 30,000-trial test below is an additional word-multiset-preserving calibration, not a first demonstration, and these distinct nulls cannot be compared as if they shared the same conditioning. In particular, this note offers **no new decryption method**.
+
+The present continuous parser produces 2,896 words and 2,895 adjacent pairs because it uses the repository's corrected punctuation/word mapping, whereas some older external reports count approximately 2,899 words or 2,887 within-section pairs; comparing counts requires honoring the original delimiters and segmentation. The exact source-image phrase is unchanged.
 
 ## Exact observation
 
