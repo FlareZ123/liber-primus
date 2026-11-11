@@ -150,12 +150,14 @@ function permuteSeven(values, order) {
 const historicalJointRepeatCount = adjacent(transformed) + adjacent(illustratedInverse);
 assert.equal(historicalJointRepeatCount, 96);
 const permutationCounts = [];
+const illustratedPermutationCounts = [];
 /** @param {number[]} order @param {number} position */
 function enumerateOrders(order, position) {
   if (position === 7) {
     permutationCounts.push(
       adjacent(permuteSeven(original, order)) +
       adjacent(permuteSeven(illustratedPassage, order)));
+    illustratedPermutationCounts.push(adjacent(permuteSeven(illustratedPassage, order)));
     return;
   }
   for (let next = position; next < 7; next++) {
@@ -166,11 +168,15 @@ function enumerateOrders(order, position) {
 }
 enumerateOrders([0, 1, 2, 3, 4, 5, 6], 0);
 permutationCounts.sort((a, b) => a - b);
+illustratedPermutationCounts.sort((a, b) => a - b);
 assert.equal(permutationCounts.length, 5040);
 assert.equal(permutationCounts[0], 21);
 assert.equal(permutationCounts[2520], 99);
 assert.equal(permutationCounts[5039], 146);
 assert.equal(permutationCounts.filter(value => value <= historicalJointRepeatCount).length, 2318);
+assert.deepEqual([illustratedPermutationCounts[0], illustratedPermutationCounts[2520],
+  illustratedPermutationCounts[5039]], [12, 50, 87]);
+assert.equal(illustratedPermutationCounts.filter(value => value <= 50).length, 2607);
 
 // Primary source selector: the seven consecutive illustrated p33–39 physical pages.
 // Preserve the two existing section clocks: p33 starts whole, or after its 91-rune interlude.
@@ -240,6 +246,8 @@ console.log(JSON.stringify({
     range: [permutationCounts[0], permutationCounts[5039]],
     median: permutationCounts[2520],
     historicalLowerOrEqualRank: 2318,
+    illustratedOnlyOrders: {min: 12, median: 50, max: 87,
+      historicalSourceInverseRepeats: 50, rankLessOrEqual: 2607},
     note: 'Source inverse does not retain original near-absence of adjacent duplicate runes' },
   directVigenereDigitKey: directKeyScreen,
   directP56PrimeTotientGate: { solvedP56PositiveControl: totientFeasible(solvedP56), raw: totientFeasible(original),
