@@ -1,0 +1,16 @@
+name: LP1 p05 full 28-cycle word-local Möbius rotor (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  full28-word-rotor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test full p05 28-cycle and p16 six-step word-local directions
+        run: node sims/lp1_mobius_full28_word_rotor_sft.cjs
