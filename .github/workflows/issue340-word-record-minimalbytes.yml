@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   per-word-base29:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
