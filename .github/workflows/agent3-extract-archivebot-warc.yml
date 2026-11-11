@@ -1,0 +1,58 @@
+name: Agent3 exact 2017 ArchiveBot WARC extraction
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/agent3-extract-archivebot-warc.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned WARC parser
+        run: python -m pip install --disable-pip-version-check warcio==1.8.2
+      - name: Download only the named ArchiveBot WARC
+        shell: bash
+        run: |
+          set -euo pipefail
+          WARC="/tmp/1711141131131.xyz-inf-20170629-043925-ewtko-00000.warc.gz"
+          curl --fail --location --retry 4 --retry-all-errors --retry-delay 5 \
+            --user-agent "Liber-Primus-archival-research/1.0" \
+            "https://archive.org/download/falconk_archivebot_1711141131131_xyz_20170629/1711141131131.xyz-inf-20170629-043925-ewtko-00000.warc.gz" \
+            --output "$WARC"
+          test "$(stat -c '%s' "$WARC")" = "22508403"
+          python sims/extract_archivebot_root_warc.py \
+            --warc "$WARC" \
+            --output-dir "resources/external/warc/1711141131131.xyz/20170629-root"
+      - name: Preserve extraction artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent3-2017-archivebot-root-warc
+          path: resources/external/warc/1711141131131.xyz/20170629-root/
+          retention-days: 90
+      - name: Commit the exact source and extracted entity
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add resources/external/warc/1711141131131.xyz/20170629-root/
+          if git diff --cached --quiet; then
+            echo "No extraction changes to commit."
+            exit 0
+          fi
+          git commit -m "Agent3: Preserve exact 2017 ArchiveBot root HTML record"
+          git pull --rebase origin main
+          git push origin HEAD:main
