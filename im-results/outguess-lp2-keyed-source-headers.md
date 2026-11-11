@@ -1,6 +1,6 @@
-# OutGuess keyed-image extraction: 22 source clues, 58 original LP2 JPEGs, and a source-independent false-header pattern
+# OutGuess keyed-image extraction: 22 corpus-wide source clues plus one isolated INSTAR candidate, with a source-independent false-header pattern
 
-**Evidence class:** exact source-guided extraction experiment with authentic historical and newly embedded positive controls. Agent 40, 2026-11-10. **No new LP2 plaintext, authenticated hidden LP2 message, or cryptographic key recovered.**
+**Evidence class:** exact source-guided extraction experiments with authentic historical and newly embedded positive controls. Agent 40, 2026-11-10; Agent 8, 2026-11-11. **No new LP2 plaintext, authenticated hidden LP2 message, or cryptographic key recovered.**
 
 ## Purpose
 
@@ -13,7 +13,7 @@ Original source images: resources/liber-primus/17.jpg to 74.jpg inclusive, **58 
 - Red-sum page-triangle and historical source numbers: **15, 22, 53, 78, 79, 435, 638, 2262, 3299, 3301**.
 - Exact lexical candidates in lowercase and uppercase: **fibonacci, totient, divinity, firfumferenfe, cicada3301, liberprimus**.
 
-These spellings and case choices are hypotheses, not authenticated author-supplied passwords. The finite family comprises **22×58=1,276 independent key/image extraction attempts**. A result counts as header-consistent only if the process exits successfully, prints an OutGuess 'Steg retrieve' seed and length, and writes exactly that positive number of bytes. A recognizable-output flag requires a standard PGP, ZIP, gzip or PNG signature, or over 97% ASCII printable/whitespace characters in a payload of at least 32 bytes. A message can be intentionally encrypted binary and evade this recognizer; flags are strictly first-pass authentication heuristics.
+These spellings and case choices are hypotheses, not authenticated author-supplied passwords. The finite family comprises **22×58=1,276 independent key/image extraction attempts**. A separate, single-carrier INSTAR hypothesis is evaluated below and is not included in those corpus-wide counts. A result counts as header-consistent only if the process exits successfully, prints an OutGuess 'Steg retrieve' seed and length, and writes exactly that positive number of bytes. A recognizable-output flag requires a standard PGP, ZIP, gzip or PNG signature, or over 97% ASCII printable/whitespace characters in a payload of at least 32 bytes. A message can be intentionally encrypted binary and evade this recognizer; flags are strictly first-pass authentication heuristics.
 
 **Actual embedding positive:** Use the original image 17.jpg as cover, embed the 47-byte message 'AGENT40 OUTGUESS KEYED RED TRIANGLE CONTROL 79' followed by a newline, with password '79'. Extract it using that same password from the *newly generated* stego JPEG. The recovered 47 bytes agree exactly with the original message, SHA-256 762005b411d8e83b361f8196c5240016465dec12029800e74d46ab0413c44ecb. In addition, the historical default OutGuess signature on source image 00.jpg and the known readable note on 08.jpg both extract correctly. This controls real password embedding, retrieval and recognizable content.
 
@@ -63,15 +63,28 @@ Separately, a newly embedded 35-byte real message with password79 into the origi
 
 Executed source and complete positive/negative outputs: [synthetic detector](../sims/outguess_header_synthetic_probe.cjs), [completed manual GitHub Actions run 42782492897](https://github.com/FlareZ123/liber-primus/actions/runs/42782492897), [machine output artifact](https://github.com/FlareZ123/liber-primus/actions/runs/42782492897/artifacts/13745984522). The source JPEG and historical LP2 images remain unchanged.
 
+## Additional isolated INSTAR candidate on the moth-bearing p55 image
+
+A separate source-derived candidate was tested after the 22-key corpus gate. Agent35's exploratory all-20-word p57 map reaches **INSTAR** from both source markers under both signs, although neither modulus nor sign is source-fixed (the reported permutation diagnostic was 604/100,000). The p55 illustration supplies an independent moth/instar semantic association. This is a plausible human clue, not an established key derivation. To avoid a dictionary sweep, only uppercase `INSTAR` was tested, once, against original physical p55 carrier `resources/liber-primus/72.jpg`.
+
+Both positive controls passed:
+- The authentic 2016 image/payload pair recovered exactly **1,136/1,136 bytes**, SHA-256 `fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010`.
+- A planted 49-byte INSTAR-keyed message embedded into original `17.jpg` recovered exactly **49/49 bytes**, SHA-256 `f147781416c565405ccb732fe815df0b139a94286b7092c7c44e7bd9fbf24f48`.
+
+The original p55 extraction exited successfully and reported seed **34964**, length **7553**, with exactly 7,553 bytes written. Its SHA-256 is `ad2fb27dbcb510a3028cbb37330b55a84b5a57984f61289f593fb353f6870f08`. It had no ASCII-armored PGP, ZIP, gzip, PNG, PDF, or nearly printable structure. The Unix `file` heuristic labels the leading bytes as an OpenPGP secret key, but this is a false signature: `gpg --batch --list-packets` exits **2**, reporting impossible packet versions 129, 195 and 104 and invalid packet CTBs `2a` and `7c`. The payload is therefore a malformed binary false positive, not an authenticated OpenPGP object. **INSTAR is rejected for this carrier.**
+
+Reproduction: [successful manual/path-triggered GitHub Actions run 42979839636](https://github.com/FlareZ123/liber-primus/actions/runs/42979839636), [exact result artifact](https://github.com/FlareZ123/liber-primus/actions/runs/42979839636/artifacts/13837166186), [single-probe script](../sims/lp2_instar_outguess_single_probe.cjs). The script verifies both controls before testing the one original carrier and preserves the exact candidate bytes and summary. No case, phase, carrier, or dictionary sweep was performed.
+
 ## Scope and research consequence
 
-No original LP2 hidden PGP-signed message or readable nonempty content was recovered under these 22 exact passwords. Their consistent extraction headers are not cryptographic authentication. A hidden payload using other password derivation, key material, image encoding, nested encryption or unrelated DCT steganography remains untested. The source-derived finite password search therefore gives a **bounded negative with a useful detection discriminator**, rather than a proof of no source-image steganography.
+No original LP2 hidden PGP-signed message or readable nonempty content was recovered under the 22 corpus-wide source passwords or the separate INSTAR p55 test. Their consistent extraction headers are not cryptographic authentication. A hidden payload using other password derivation, key material, image encoding, nested encryption or unrelated DCT steganography remains untested. The source-derived finite password search therefore gives a **bounded negative with a useful detection discriminator**, rather than a proof of no source-image steganography.
 
 Potential next source-image attack should demand exact recovered material and a distinguishing planted control, preferably a signed message or a demonstrated LP2 key with genuine decipherment. Further unrestricted passphrase guesses against these header artifacts have weak expected value without a new independent key clue.
 
 ## Reproduction
 
 - [Exact CommonJS source-key extractor and planted controls](../sims/outguess_lp2_keyed_probe.cjs).
-- [Existing manually triggered OutGuess workflow](../.github/workflows/lp2-outguess.yml), option keyed_probe=true. Uses pinned maintained OutGuess commit 24810e14327c2bbeedeaadd3e24491f2a4425c02 and authentic original JPEGs. The successful command output also lists each password's counts.
+- [Isolated INSTAR probe and controls](../sims/lp2_instar_outguess_single_probe.cjs).
+- [Existing OutGuess workflow](../.github/workflows/lp2-outguess.yml), options keyed_probe=true or instar=true. Uses pinned maintained OutGuess commit 24810e14327c2bbeedeaadd3e24491f2a4425c02 and authentic original JPEGs. The successful command output also lists each password's counts.
 - [Complete successful run](https://github.com/FlareZ123/liber-primus/actions/runs/42780745513) and [preserved exact machine output](https://github.com/FlareZ123/liber-primus/actions/runs/42780745513/artifacts/13746300544).
 - [Independent full-corpus direct-pad inversion of the 16 default-key binary arrays](outguess-lp2-original-directpad.md) tested a different possible use and also found no original plaintext.
