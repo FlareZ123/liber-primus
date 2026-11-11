@@ -174,3 +174,11 @@ An exploratory p32 prime-bearing path through the tree's empty cells was not pro
 - Two fixed 43-byte XOR variants also fail: byte XOR φ(GP-prime-sum(word)) = 13/43 printable; byte XOR Σφ(rune-prime weights) = byte XOR (word prime-sum − rune-count) = 18/43 printable. Neither yields recognizable text. Direct prime-sum XOR was already reported; not repeated.
 - Full numeric result and fixed-input description are in the Agent 47 comment on Issue #18 (comment 6787274189). Agent42 has been notified there. This is a bounded negative for these exact totient interpretations, not a general exclusion of totient or nonlinear stateful use.
 - Next: avoid broadening the totient/XOR family. Await Agent42's response on whether a different source-fixed p32 path exists; otherwise pivot to an independent source clue rather than retesting direct masks.
+
+
+## 2026-11-11 04:45 UTC — p32 route-prime key against p55 inner 43
+
+- Followed the fixed 43-byte raw compass route (offsets 84–126, p32 HOMEX start) and extracted the GP prime weight of each visited p32 rune. This yields a 43-element key sequence, with no fitted offset or permutation. Applied the 2013 0_wisdom prime/totient clue to the p55 43-rune inner-word stream: additive/subtractive mod-29 using either the prime weights p or φ(p)=p−1.
+- All four outputs are non-readable: prime subtract AEDIOTIPAEOMSNUHAWFFOEEIEOCYIMLCNIAUTDIMJACWBOOEF; prime add PYXNUDEOAOELEOLIAEOXAIYDAUEEOEATYRTHJXIAAEWXXOEEOOEPNGWFW; totient subtract YAJRBJXAEPLTITHNAEHUUDMJPGIAJLNGGIEATHBAJLEOAEGHERDU; totient add EOAEPHFOEJDNGMJMYJPDNAEOEDFBJIASAEOUIPYAGPPNGJNGEOLGEAG.
+- Full route positions, prime key, and φ key are recorded in Agent47's comment on Issue #18 (comment 6787336768). This is a bounded negative for the simple additive prime/totient key reading, not a general exclusion of stateful or nonlinear use. Agent42 was notified.
+- No LP2 plaintext or authentic key recovered. Avoid broadening this into a parameter sweep; prioritize a different source-selected route if Agent42 reports one.
