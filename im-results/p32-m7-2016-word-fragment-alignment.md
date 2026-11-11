@@ -49,7 +49,7 @@ The complete signed cleartext has **45 alphanumeric tokens** if its visible fina
 
 The 31 annotated 13-dot marks split the complete 13,136-rune manuscript stream into **32 full-text fragments**. The first 28 fragments end at the 12,956-rune unknown LP2 stream; the final four are the solved p56/p57 tail. Exactly **30 fragments are nonempty**. The two empty fragments are zero-based indices **8 and 11**.
 
-Align the 32-letter stream above with the 32 chronological fragments:
+Align the 32-letter B stream above with the 32 chronological fragments:
 - Empty fragment 8 carries **N**, the final letter of *DIRECTION*.
 - Empty fragment 11 carries **E**, the final letter of *ARE*.
 
@@ -57,11 +57,30 @@ The empty slots therefore spell **NE**. The first two B-word lengths, 9 and 3, p
 
 Removing the N/E positions leaves the 30-letter stream `DIRECTIOARSEEKSPATHSLIESTHEAND`, aligned in length with the 30 nonempty fragments.
 
-Independently, the 30-letter A stream partitions the 30 nonempty fragments using its word lengths `3,4,3,4,8,5,3`. Its group boundaries are after original fragment IDs `2,6,10,15,23,28,31`. Both partitions share the terminal boundaries after original fragment 28 (the p56 start) and fragment 31 (manuscript end).
+Independently, the 30-letter A stream partitions the 30 nonempty fragments using its word lengths `3,4,3,4,8,5,3`. Its group boundaries are after original fragment IDs `2,6,10,15,23,28,31`. Both partitions share boundaries after original fragment IDs 28 and 31.
 
-This is the strongest observation here: two 30-letter streams label the 30 nonempty fragments, while the 32-letter stream marks NE at the two empty slots. It does not yet specify how to decode or permute fragment contents.
+## Paired partitions do not define a fragment permutation
 
-## Bounded tests and exclusions
+The previously open question was whether the A and B word partitions jointly prescribe a nontrivial permutation of the 30 nonempty fragments. I built the exact 7×7 overlap matrix, with A-word groups as rows and B-word groups as columns. Each cell contains the fragments that lie in both contiguous intervals:
+
+| A group \ B group | direction | are | seeks | paths | lies | the | and |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| the | 3 | 0 | 0 | 0 | 0 | 0 | 0 |
+| road | 4 | 0 | 0 | 0 | 0 | 0 | 0 |
+| map | 1 | 2 | 0 | 0 | 0 | 0 | 0 |
+| path | 0 | 0 | 4 | 0 | 0 | 0 | 0 |
+| epiphany | 0 | 0 | 1 | 5 | 2 | 0 | 0 |
+| their | 0 | 0 | 0 | 0 | 2 | 3 | 0 |
+| are | 0 | 0 | 0 | 0 | 0 | 0 | 3 |
+
+The nonzero cells form a monotone staircase. Reading the occupied cells row-major or column-major, preserving chronological order within each cell, yields exactly the original chronological fragment order:
+`[0,1,2,3,4,5,6,7,9,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]`.
+
+This is not a new permutation. It is the inevitable overlap structure of two interval partitions of the same ordered sequence. The A/B streams supply two synchronized segmentations, not a reordering. Consequently, no language-score change is possible from row-major versus column-major reading alone.
+
+**Decision:** close the paired-partition-as-permutation hypothesis. Do not search arbitrary within-cell permutations or additional transpositions without an independent source clue. The NE alignment and shared boundaries remain structural observations, not a cipher.
+
+## Earlier bounded tests and exclusions
 
 - A1Z26 Vigenère using A, both signs and global/page clocks: worse than raw GP29 ciphertext.
 - A1Z26 constant Caesar shift per full-text fragment using B, both signs and A=0/A=1 conventions: worse than raw.
@@ -70,9 +89,5 @@ This is the strongest observation here: two 30-letter streams label the 30 nonem
 - Pairing A and B-without-NE as projective coordinates does not enumerate \(\mathbf P^1(\mathbb F_{29})\); the simplest A1Z26 ratio map has only 20 distinct outputs.
 
 The earlier 7×7 square route with a \(4\times30\) residual was withdrawn because it depended on an unsupported compass-index convention. Do not reuse that checksum. Agent 48's separate inverse-M7 first-clause centre route and its 47 residual are distinct.
-
-## Next decision
-
-Test whether the paired 30-letter streams define a source-fixed permutation of the 30 nonempty fragments, with NE at the two empty slots and the shared terminal boundary at fragment 28 as a control. Do not sweep arbitrary transpositions or keys. Do not assume a 4×8 grid merely because 32=4×8. Keep the 45-token convention explicit until its intended status is established.
 
 Reproducer: `sims/p32_m7_2016_word_fragment_alignment.cjs`.
