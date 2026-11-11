@@ -104,6 +104,30 @@ This is a precise cross-artifact algebraic correspondence. The p55 matrix's irre
 
 The simplest direct use—multiplication of fixed adjacent two-rune GP29 pairs by a field element or a period-840 field schedule—is already contained in the all-secret pair-bijection exclusion in sims/lp2_gf841_pair_phase_allsecret_sft.cjs. The literal p55 Hill3 inverse and the one signed-word evolving-matrix state are also negative on their source-marked original spans. No cipher operation, direction or clock is selected, and no unknown plaintext is recovered.
 
+## Direct polynomial quotient as message/key — bounded negative (Agent3, 11 November 2026)
+
+The exact dual-factor relation makes one further, finite interpretation worth testing. Let (H=3+26X+24X^2) be the factor selected by the preserved 2013 `BASE29 3301 → 3QO` example, and (G=27+5X+15X^2) the p39 red/DH23 factor. Their monic product is
+[
+F=H G=X^4+28X^3+13X^2+9X+14
+]
+over GF(29). Reading the original p50 base-60 row-major bytes as high-to-low coefficients, reducing mod 29, and dividing by (F) gives **zero remainder** and a degree-251 quotient (Q) of exactly **252 GF(29) symbols**. This is distinct from the already-reported (P_{50}/G mod F_3=19+13u) primitive-field remainder.
+
+The natural direct readouts were frozen to the source order, with no phase, reversal, permutation, padding or extra cipher layer:
+
+1. **(Q) as a GP29 plaintext stream.** The 252-symbol transliteration begins `FEANGBAISLPBLUUNGLYLPYAGRPEAAHEOUAELEANGAAEE...`; it has IoC **0.03633087** and Gibran-trained GP trigram score **−12.23942** nats/rune. It contains no word boundaries and is not readable plaintext.
+2. **(Q) as one BASE29 big-endian integer.** The 252 digits form a **1,220-bit / 153-byte** integer. Its first bytes are `0a 21 2d 90 ff 3f 0e 10`; only **45/153 (29.4%)** bytes are printable ASCII and byte entropy is **6.68863 bits**. No recognized file header or clear payload appears. This is the one direct numeric serialization suggested by the historical BASE29 example; alternate endian/packing searches were not performed.
+3. **(Q) as a repeating additive key.** Repeating the 252 symbols continuously over all **12,956** original unknown runes gives:
+   - raw ciphertext: IoC **0.03447840**, trigram **−12.27633**;
+   - (C-Q): IoC **0.03449675**, trigram **−12.28142**;
+   - (C+Q): IoC **0.03448428**, trigram **−12.27338**;
+   - (Q-C): IoC **0.03449675**, trigram **−12.28945**.
+   
+   All **50** complete 256-rune output windows for each direction fall below the worst of **88** held-out native-GP Gibran windows (worst native score **−9.13104**). Exact inverse/re-encryption checks pass on all 12,956 original runes.
+
+This is a bounded negative, not a rejection of the algebraic factor relation. The experiment is **conditional on the conventional base-60 byte interpretation**; Issue #337 separately evaluates the base-59/base-60 source convention, so the quotient must be recomputed if that decision changes. Retire only the direct (Q)-as-GP plaintext, single BASE29 integer serialization, and period-252 additive-key readings. No authentic key, plaintext or source-selected parity frame follows.
+
+Reproducer: [`sims/p50_dualfactor_quotient_direct_gate.cjs`](../sims/p50_dualfactor_quotient_direct_gate.cjs).
+
 ## Current assessment
 
 The exact quotient \(P_{50}/F_{39}\bmod F_3=19+13u\) is reproducible and has an exact p55-matrix eigenvalue correspondence. Its direct power, discrete-log, pair, and source-quotient coordinate/trace/norm-feedback interpretations remain nonlinguistic under the bounded original-input tests documented above. The p53/2013 NUMBER selector remains a hypothesis, and no source instruction selects the tested trace-feedback architecture. Retain the algebraic relation as intermediate evidence; no plaintext, authentic key, or intended operation is established.
