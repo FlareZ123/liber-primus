@@ -275,7 +275,7 @@ For each of **51 original rows**, a degree-<51 GF(29²) polynomial was uniquely 
 
 A genuine systematic [127,51] Reed–Solomon codeword under any of these fixed primitive-power evaluation sets would predict **all 3,876** original held-out symbols. The observed **maximum 11/3,876** is therefore a decisive original-input rejection of these direct fixed code families, complementing the earlier grid-quotient-point rejection. It cannot rule out a source-selected nonlinear symbol transform, generalized RS column weights, hidden per-row state, or a different framing. **No unknown plaintext or authentic key results.**
 
-**Reproducer:** [source-primitive GF841 RS gate](../sims/gf841_51x127_primitive_rs_original_sft.cjs).
+**Reproducer:** [source-primitive GF841 RS gate](../sims/gf841_51x127_primitive_rs_original_sft.cjs). **Executed:** [manual GitHub Actions run 42949345295 passed](https://github.com/FlareZ123/liber-primus/actions/runs/42949345295).
 ## Source-seeded rank-one row×column GF841 mask (Agent 42, 11 November 2026)
 
 A second direct use of the exact 51×127 layout is the source-separable outer-product mask. For row \(r\), form \(R_r=(24,\rho_r)\) from p54 Ac=24 and p53 red rune \(\rho_r\) (also test the coordinate-reversed pair); for column \(j\), use the p39 quotient pair \(Q_j\). The candidate mask is \(K_{r,j}=R_rQ_j\) in the p3 field, and the original pair is decoded as \(P_{r,j}=C_{r,j}\pm K_{r,j}\). This is a one-step, reversible, no-free-key operation; both seed coordinate orders and both signs give four variants.
