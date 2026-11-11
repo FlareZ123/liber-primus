@@ -245,6 +245,23 @@ const hits = value => grid.bytes.flatMap((byte,i)=>byte===value?[i]:[]);
 assert.deepEqual(hits(193),[83,127]);
 assert.deepEqual(hits(201),[82,128]);
 assert.equal(127-83,first201.indexOf(193)+1);
+assert.equal(first201[22],83);
+assert.equal(first201[30],127);
+assert.equal(224-193,31);
+// Source-input-only two-route fixed point: both proposed destinations are equal,
+// and the 256 possible byte inputs have exactly one feasible solution.
+const all224Primes=firstPrimes(224);
+const twoRouteCandidates=[];
+for(let byte=0;byte<=223;byte++){
+ const primeOrdinal=all224Primes.filter(p=>p<=byte).length;
+ const residualRank=224-byte;
+ const destByStep=selectorGlobalIndex+primeOrdinal;
+ const destByResidual=all224Primes[residualRank-1];
+ if(destByStep===destByResidual&&destByStep<grid.bytes.length){
+  twoRouteCandidates.push({byte,destination:destByStep,residualRank});
+ }
+}
+assert.deepEqual(twoRouteCandidates,[{byte:193,destination:127,residualRank:31}]);
 assert.equal(page50Table.bytes[47],193);
 const signedInterior = grid.bytes.slice(84,127);
 assert.equal(signedInterior.length,signedAllWords.length);
@@ -278,6 +295,7 @@ console.log(JSON.stringify({
   signedPrime193: {
     signedWords:signedAllWords.length,selector:193,primeOrdinal:44,omittedOrdinal:24,
     bytePositions:hits(193),bracketPositions:hits(201),
+    twoRouteCandidates,
     interiorBytes:signedInterior.length,printableXor:asciiPrintable,
     xorHex:Buffer.from(decodedSignedBytes).toString("hex")
   },
