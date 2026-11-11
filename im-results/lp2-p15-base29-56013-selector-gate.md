@@ -1,6 +1,6 @@
 # LP2 p15 red-heading BASE29 coincidence and CicadaOS 560.13 transfer gate
 
-**Classification: exact original-input arithmetic and a bounded negative decoder test. No recovered unknown LP2 plaintext, authenticated key or intended continuation. Agent 5, 11 November 2026.**
+**Classification: original-input arithmetic, source-frozen 118 MB historic-file negative and bounded earlier-prefix tests. No recovered unknown LP2 plaintext, authenticated key or intended continuation. Agent 5, 11 November 2026.**
 
 ## Why this route is attractive
 
@@ -42,7 +42,19 @@ This naturally suggests **`DATA/560.13` byte offset 8,952,964** when paired with
 
 The locally preserved reconstructed file covers only byte offsets **0–15,329**, far short of **8,952,964**. The complete ISO member's pinned SHA-256 is `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`. An executable **[full-source single-file test](../sims/lp2_p15_56013_quotient_offset_sft.cjs)** verifies this digest, extracts the exact offset, applies the source-native XOR to both GP index and prime-weight serializations of the fixed 1,894-rune following section, and applies the two fixed GP29 reductions under both signs. The same script tests the specific nine-rune `FIBONACCI` red-title crib as a conditional plaintext prediction, including the historically known solved-page option to leave initial F unencrypted. [Manual original-source test workflow](../.github/workflows/lp2-p15-56013-quotient-offset.yml) downloads the 118 MB archived file. No fitting or key-phase scan is performed.
 
-**Interpretation:** The numerical pair `(560, 8,952,964)` is exact arithmetic, and the original 2013 cipher operation is historical fact. Their *connection* to LP2 is still hypothetical. A failed direct XOR or mod29 test of the precise quotient would reject those direct transfers while leaving other authenticated consumers to be discovered. The full-file experiment must finish and yield reproducible output before any plaintext claim or firm negative decision on this stronger quotient-offset test.
+**Completed original 118 MB file experiment (11 November 2026).** The exact [Windows CI run 43102564195](https://github.com/FlareZ123/liber-primus/actions/runs/43102564195) successfully downloaded the original 118,818,811-byte `DATA/560.13`, verified its pinned SHA-256 `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`, and executed the complete source-frozen test at exactly **byte 8,952,964**, preserving the original 1,894 GP rune sequence from p15:9 to p22:end. The job and every assertion passed.
+
+| Actual full-file key starting at offset 8,952,964 | Original source result |
+| --- | --- |
+| Native historical XOR with original GP29 symbol indices | **731/1894 printable ASCII**, 412 letters, six spaces; no prose |
+| Native historical XOR with original GP prime weights | **741/1894 printable ASCII**, 462 letters, seven spaces; no prose |
+| GP29 subtraction/addition with original file bytes reduced modulo29 | IoC **0.03463882 / 0.03445864**, no prose |
+| GP29 subtraction/addition with bytes scaled via floor(29×byte/256) | IoC **0.03434763 / 0.03475931**, no prose |
+| Conditional red-heading FIBONACCI crib, both reductions/signs, initial F consuming or literal | At most **1 of 9** encrypted runes match, or **0 of 8** with literal F |
+
+The unchanged original section IoC is **0.03449490**. No candidate is close to a direct GP-English passage, and the historical byte-XOR results contain far too few printable bytes for ordinary ASCII. The FIBONACCI crib is an independently motivated guess from the prime spiral, **not** independently recovered title plaintext. The test conclusively rejects **these fixed, direct bytewise XOR or GP29 additive interpretations** of the quotient-derived full-file address, without ruling out a genuinely indicated nonlinear or stateful key consumer. The source-conditioned dataset/offset pair is preserved as a possible intended clue, not as an authenticated cipher or decryption.
+
+
 
 ## Source-pad inverse tests
 
