@@ -92,6 +92,28 @@ all_bad = {(r["page"], r["page_local_offset"]) for r in positions
 shift_set = {(p, s + i) for p, s, n in SHIFTED for i in range(n)}
 remaining = sorted(all_bad - shift_set)
 assert len(all_bad) == 79
+# Page 0 has a separately visible joined S/Y glyph at assigned position 8,
+# three shifted ordinary red glyphs, and a punctuation sliver at position 12.
+# This supplies a native-image explanation for the five residual tail flags.
+p0 = sorted((r for r in positions if r["page"] == 0), key=lambda r: r["page_local_offset"])
+assert len(p0) == 13
+assert (p0[8]["box"][0], p0[8]["box"][2]) == (1134, 1233)
+assert p0[8]["box"][2] - p0[8]["box"][0] >= 95
+assert [r["p43_nearest"] for r in p0[9:12]] == [r["expected"] for r in p0[10:13]]
+assert p0[12]["p43_nearest"] == "I"
+assert p0[12]["box"][2] - p0[12]["box"][0] <= 12
+p0photo = image_for(0)
+assert np.count_nonzero(red(p0photo[643:768, 1134:1233])) > 3000
+assert np.count_nonzero(red(p0photo[687:768, 1419:1429])) > 350
+# The six other flags are first positions of visually enlarged red headings.
+# They must remain stylistic exceptions: a black-font classifier is invalid
+# evidence for changing the corresponding source rune.
+decorative = {(0, 0), (6, 71), (8, 0), (23, 0), (33, 0), (40, 0)}
+p0_merge = {(0, i) for i in range(8, 13)}
+assert set(remaining) == decorative | p0_merge
+print("Original-image classification: 68 shifted-span flags, 5 p0 merged-glyph "
+      "flags, 6 enlarged-title glyph flags; 79/79 raw flags explained")
+
 assert remaining == [(0, 0), (0, 8), (0, 9), (0, 10), (0, 11), (0, 12),
                      (6, 71), (8, 0), (23, 0), (33, 0), (40, 0)]
 print(f"p53 original: 51/51 labels, 40/40 repeated native red shapes; residual flags {remaining}")
