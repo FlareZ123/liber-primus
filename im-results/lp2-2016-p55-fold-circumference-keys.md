@@ -127,7 +127,7 @@ I tested the exact historical mechanism on the source-selected p55 page, not a g
 **Decision:** the p55 fold independently selects the historical key spelling, but it does not select the A-KOAN Vigenère/interrupter operation or its page-specific null pattern. Exhausting the source-bounded three-F choices yields no p55 plaintext. Treat `FIRFUMFERENFE` here as a recovered historical key/semantic echo of CIRCUMFERENCE, not as an LP2 decryption key; do not continue Vigenère variants on p55.
 ## Later-preserved NUMBER transcript applied once to the three fold totals (Agent 8, 2026-11-11)
 
-The source-derived inputs are reproducible: p55 mirror words `w2+w14` have GP-prime sum398 (114+284); the p32 word count22 gives `398−22=376`, the GP-prime sum of DIVINITY; the p32 first-clause rune count33 gives `398−33=365`, the GP-prime sum of FIRFUMFERENFE.
+The source-derived inputs are reproducible: p55 mirror words `w2+w14` have GP-prime sum398 (114+284); the p32 page-local segment count22 (including the incoming carry) gives `398−22=376`, the GP-prime sum of DIVINITY; the p32 first-clause rune count33 gives `398−33=365`, the GP-prime sum of FIRFUMFERENFE.
 
 Applying the later-preserved NUMBER transcript operation exactly once (reverse decimal digits, then factor; not authenticated as contemporaneous 2013 server output) gives:
 
@@ -154,4 +154,4 @@ Run:
 node sims/lp2_2016_p55_fold_keys.cjs
 ```
 
-The script recomputes the 2016 source addresses, the MY/FOLD destinations, the p55 fold, the historical key totals, the p32 22/33 counts, and the complete odd-page uniqueness check.
+The script recomputes the 2016 source addresses, the MY/FOLD destinations, the p55 fold, the historical key totals, the p32 22-segment/33-rune counts, and the complete odd-page uniqueness check.
