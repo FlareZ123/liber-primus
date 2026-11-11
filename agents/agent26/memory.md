@@ -18,9 +18,18 @@ Run ID: \`agent26-gpt6-20261111T201329Z-p50-numeral-allographs-5d0c\`. Original 
 - Best full-book IoC 0.034538 (41st null percentile); best page-local IoC 0.039647 (29th null percentile), versus Gibran GP29 control 0.058400. No plaintext. This rejects only direct 5-bit mapping at those source-fixed offsets in the local prefix; arbitrary full-file offsets, XOR-with-rune-index, skip channels and non-additive uses remain open.
 - Verified commit: [2c11aac0d71b14418c5ef11460386269c2f1cec1](https://github.com/FlareZ123/liber-primus/commit/2c11aac0d71b14418c5ef11460386269c2f1cec1). The external full-file work is prior art, not locally reproduced.
 
+### Completed: p32 13-rune window as a period-13 additive key
+
+- The provisional signed-2016 \`Beware\` pointer and 13-dot mark select the p32 window at local offsets25–37: GP tokens \`IA,R,T,TH,F,F,O,TH,H,O,M,E,X\`, prime-weight sum413≡7 mod29.
+- Tested the exact forward window as a repeating additive GP29 key on the other 54 rune-bearing pages, excluding p32 from scoring; continuous and page-reset clocks; both signs; no rotations, phases, or reverse-key variants. Four planted-English controls passed.
+- The other-page baseline IoC is 0.0344821. Best decoded full-book IoC is 0.0345372 (92nd percentile of 100 random 13-symbol keys, still below the null 95th percentile 0.0345402). Best page IoC is 0.0370646 (p45), below null median 0.0381339 and at the 3rd percentile. Gibran control IoC is 0.0584002. p33–39 best subset IoC is 0.0345274.
+- Conclusion: the selected window is not a direct period-13 additive key for the other pages. This does not invalidate the p32 word-address/pole selector; it only rejects the simple key use.
+- Script: \`sims/p32_13runic_window_period13_key_sft.cjs\`; result integrated into \`im-results/lp2-2016-signed-message-base58-word-map.md\`, \`results/README.md\`, and \`workplace/integrated-original-inversion-challenge.md\`.
+- Verified commit: [c4d953d6c4a379b7d0b6d0504dd0296e78208c7c](https://github.com/FlareZ123/liber-primus/commit/c4d953d6c4a379b7d0b6d0504dd0296e78208c7c).
+
 ### Current frontier and next action
 
-The p50 numeral/allograph route and direct 5-bit 560.13 key mapping are bounded negatives; do not reopen them without a new independent clue. The repository already contains extensive direct p50 byte, Möbius/Dirichlet, prime/totient, periodic-key, homophonic, Bifid/Trifid, autokey and source-ring tests; avoid generic cipher-family or arbitrary-offset sweeps. Continue only where an original clue fixes a reversible operation or authentic key source. If another agent's active issue offers a genuinely independent subtest, coordinate rather than duplicate. No new plaintext, authentic LP2 key, cipher mechanism or destination has been recovered in this incarnation.
+The p50 numeral/allograph route, direct 5-bit 560.13 key mapping, and direct period-13 additive use of the p32 window are bounded negatives; do not reopen them without a new independent clue. The repository already contains extensive direct p50 byte, Möbius/Dirichlet, prime/totient, periodic-key, homophonic, Bifid/Trifid, autokey and source-ring tests; avoid generic cipher-family or arbitrary-offset sweeps. Continue only where an original clue fixes a reversible operation or authentic key source. If another agent's active issue offers a genuinely independent subtest, coordinate rather than duplicate. No new plaintext, authentic LP2 key, cipher mechanism or destination has been recovered in this incarnation.
 
 ---
 
