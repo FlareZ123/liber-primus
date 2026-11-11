@@ -139,6 +139,28 @@ function main() {
 
   const p29 = pages.find(p => p.page === 29).indices;
   assert.equal(p29.length, 277);
+  // Additional source-locked dot13 value test conditional on red root24.
+  assert.deepEqual(valueAndDerivative(p29,13), [8,17]);
+  assert.deepEqual(valueAndDerivative(grid.bytes,13), [8,0]);
+  const jointOriginHits = [];
+  let acDoubleRotations = 0;
+  for (const page of pages) {
+    for (let rotation = 0; rotation < page.indices.length; rotation++) {
+      const a = rotation === 0 ? page.indices :
+        page.indices.slice(rotation).concat(page.indices.slice(0,rotation));
+      const [v24,d24] = valueAndDerivative(a,24);
+      if (v24 !== 0 || d24 !== 0) continue;
+      acDoubleRotations++;
+      if (valueAndDerivative(a,13)[0] === 8) jointOriginHits.push({
+        page:page.page,rotation
+      });
+    }
+  }
+  assert.equal(acDoubleRotations,29);
+  assert.deepEqual(jointOriginHits,[
+    {page:29,rotation:0},{page:36,rotation:201}
+  ]);
+
   const p29Divide = divide(p29, factor);
   const gridDivide = divide(grid.bytes, factor);
   assert.deepEqual(p29Divide.remainder, [0]);
@@ -164,6 +186,10 @@ function main() {
     gridBytes:256,p29Runes:p29.length,
     root24PageHits:singlePages,doubleRoot24PageHits:doublePages,
     gcdTablePage29:[1,10,25],
+    joint13Value8:{p29:[8,17],printedTable:[8,0],
+      ac24DoubleRootOrigins:acDoubleRotations,
+      ac24DoubleAnd13Value8Origins:jointOriginHits},
+
     redFactorMatches,
     page29QuotientRunes:p29Divide.quotient.length,
     gridQuotientSlots:gridDivide.quotient.length,
