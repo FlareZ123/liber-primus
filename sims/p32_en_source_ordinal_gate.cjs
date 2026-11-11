@@ -122,7 +122,31 @@ function main() {
   assert.deepEqual([nthPrime(103),nthPrime(104),nthPrime(96),nthPrime(97)],[563,569,503,509]);
   assert.equal(p32.indices.slice(102,106).map(i=>corpus.translit[i]).join(''),'ENNW');
   assert.equal(phi(96),32);
-  const out={treeImage:[row,col],primeOrdinalPositions:[103,104],eligiblePages:eligible,completeSourceWords:matchingWords,canonicalWords:all.length,wholePageSelfPointers:self.length,selectedPrimeSum:96,totientPage:32,plaintextRecovered:false};
+  // Source-selected two-rune EN walk, with the *inferred* initial-cell origin.
+  const ePos=102, firstEast=ePos+1, nextNorth=firstEast-11;
+  assert.equal(firstEast,103);
+  assert.equal(nextNorth,92);
+  assert.equal(corpus.translit[p32.indices[nextNorth]],'M');
+  const localP32=parsePage(pages[32],runeToId,corpus.prime,corpus.translit);
+  assert.ok(localP32.words.some(w=>w.start===102&&w.count===2&&w.text==='EN'));
+  assert.ok(localP32.words.some(w=>w.start===92&&w.count===5&&w.text==='MBUDS'));
+  const buds=p32.indices.slice(93,97).map(i=>corpus.translit[i]).join('');
+  assert.equal(buds,'BUDS');
+  const budSum=p32.indices.slice(93,97).reduce((s,i)=>s+corpus.prime[i],0);
+  assert.equal(budSum,206);
+  assert.equal(budSum,2*103);
+  assert.equal(phi(budSum),102);
+  // Wrong-origin NN: offset103 -> 92 -> 81; ends inside another printed word.
+  assert.equal(corpus.translit[p32.indices[81]],'NG');
+  assert.ok(localP32.words.some(w=>w.start<81&&w.start+w.count>81));
+  // Exact consecutive-window controls, including one boundary-crossing anagram.
+  const windows=[];
+  for(let start=0;start<=117;start++){
+    const S=p32.indices.slice(start,start+4).reduce((s,i)=>s+corpus.prime[i],0);
+    if(phi(S)===102)windows.push(start);
+  }
+  assert.deepEqual(windows,[93,94]);
+  const out={treeImage:[row,col],primeOrdinalPositions:[103,104],eligiblePages:eligible,completeSourceWords:matchingWords,canonicalWords:all.length,wholePageSelfPointers:self.length,selectedPrimeSum:96,totientPage:32,ENwalk:[102,103,92],BUDSPrimeSum:206,BUDSTotientReturn:102,plaintextRecovered:false};
   console.log(JSON.stringify(out,null,2));
 }
 if(require.main===module)main();

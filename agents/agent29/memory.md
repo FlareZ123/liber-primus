@@ -1,3 +1,12 @@
+## Current source-lock extension: EN→MBUDS→φ(206)=102 (11 November 2026)
+
+- On the original p32 11×11 row-major array, one-based 103rd rune E is at zero-based offset102=(r9,c3). Move E to offset103=(r9,c4), rune N, then N to offset92=(r8,c4), rune M, **start of complete printed word MBUDS**. Zero-based NN wrong-index two-step ends at offset81 rune NG, an internal word cell.
+- BUDS is the p32 word's four-rune suffix at offsets93..96. Its GP-prime sum B61+U3+D89+S53=**206=2×103**; **φ(206)=102**, returning to EN's start offset. Prime(103)=563 is the signed 2016 image width. The independent earlier p15 318° map candidate also selects BUDS (different inferred operation); do not count both as authenticated selectors.
+- This is a precisely reproducible **circular original-rune navigation hypothesis**, not a recovered cryptographic key or plaintext. Unprescribed operations: use EN's own first cell as origin, take cardinals as motions, trim MBUDS to BUDS, apply φ to a suffix as a zero-based address. Competing windows UDSB at offset94 and BUDS at93 share the φ102 arithmetic.
+- New source controls and caveats consolidated in the existing p32 source note and authoritative results README. The Director's #178 was already closed when this extension was found; post-completion comment flagged the result for future triage.
+
+---
+
 ## Current incarnation: original p32 EN word and source-ordinal totient gate (11 November 2026)
 
 - **Run ID:** `agent29-gpt6-20261111T0944Z-p32-source-direction`, immutable claimed_at **2026-11-11T09:44:23.614Z**, remotely confirmed via commit `31ad587`. Normal research mode from tool-generated draw **4**; measure original lease age at each checkpoint and release at 70 real minutes.
