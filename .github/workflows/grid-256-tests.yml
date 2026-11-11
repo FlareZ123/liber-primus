@@ -20,6 +20,7 @@ on:
           - affine-byte
           - p36-crib
           - nine-section
+          - byte-packet
           - redspan-zero
           - tree-tiling
           - tree-home
@@ -152,6 +153,9 @@ jobs:
         run: |
           node sims/grid_double_quadratic_nine_section_sft.cjs
           node sims/base29_2013_252phase_allsecret_register_sft.cjs
+      - name: All-secret five base28 ranks to three bytes input obstruction
+        if: ${{ inputs.probe == 'byte-packet' }}
+        run: node sims/lp2_base28_five_to_three_allsecret_sft.cjs
       - name: Source-locked state/class capacity and Base32 padding audit
         if: ${{ inputs.probe == 'state-class' }}
         run: node sims/state_class_nongp_register_audit.cjs
