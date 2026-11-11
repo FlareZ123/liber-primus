@@ -20,14 +20,15 @@ jobs:
         with:
           node-version: '22'
       - name: Run source-fixed combined row and column map
-        run: node sims/fragment_grid_des_debruijn_lcg8_inverse.cjs > /tmp/result.json
+        run: |
+          node sims/fragment_grid_des_debruijn_lcg8_inverse.cjs > /tmp/result.json
+          cat /tmp/result.json
       - name: Persist compact reproducible result
-        env:
-          GH_TOKEN: \${{ secrets.GITHUB_TOKEN }}
         run: |
           cp /tmp/result.json im-results/fragment-grid-des-debruijn-lcg8-inverse.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add im-results/fragment-grid-des-debruijn-lcg8-inverse.json
           git commit -m "Agent 23: record combined de Bruijn LCG8 DES screen"
+          git pull --rebase origin main
           git push
