@@ -58,7 +58,8 @@ const entries = corpus.translit.map((s, i) => ({s, i}))
 function gpEncode(original) {
   const sequence = [];
   const spelling = {K: "C", V: "U", Z: "S"};
-  const words = original.toUpperCase().match(/[A-Z]+/g) || [];
+  const clean = original.replace(/^#.*$/gm, " ").replace(/\[[^\]]*\]/g, " ");
+  const words = clean.toUpperCase().match(/[A-Z]+/g) || [];
   for (const rawWord of words) {
     const word = [...rawWord].map((ch) => spelling[ch] || ch).join("");
     for (let index = 0; index < word.length;) {
@@ -101,9 +102,10 @@ for (let i = 0; i + 43 <= training.length; i++) {
 }
 nativeScores.sort((a, b) => a - b);
 
+/** @typedef {{type:"endpoints",a:number,b:number} | {type:"cycling"|"cipher-autokey"|"plain-autokey",sign:number}} Mode */
 /**
  * @param {number[]} input
- * @param {{type:"endpoints"|"cycling"|"cipher-autokey"|"plain-autokey",a?:number,b?:number,sign?:number}} mode
+ * @param {Mode} mode
  */
 function decrypt(input, mode) {
   const output = [];
@@ -125,7 +127,7 @@ function decrypt(input, mode) {
 /**
  * Inverse rule with exactly the same exterior rune source and clock.
  * @param {number[]} plain
- * @param {Parameters<typeof decrypt>[1]} mode
+ * @param {Mode} mode
  */
 function encrypt(plain, mode) {
   const ciphertext = [];
@@ -144,6 +146,7 @@ function encrypt(plain, mode) {
   }
   return ciphertext;
 }
+/** @type {Mode[]} */
 const modes = [];
 for (const a of [-1, 0, 1]) for (const b of [-1, 0, 1]) {
   if (a || b) modes.push({type: "endpoints", a, b});
