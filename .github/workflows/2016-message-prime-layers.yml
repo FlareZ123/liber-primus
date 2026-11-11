@@ -12,6 +12,7 @@ on:
           - cumulative
           - pgphash
           - xor43
+          - fibonacci-page-route
         default: original
 
 jobs:
@@ -68,3 +69,15 @@ jobs:
           node-version: '22'
       - name: Test original 2016 signed-43 XOR/book-map anchor and matched null
         run: node sims/lp2_signed2016_xor43_bookmap_sft.cjs
+
+  fibonacci-page-route:
+    if: ${{ inputs.probe == 'fibonacci-page-route' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce signed 2016/2017 Fibonacci physical-page selector
+        run: node sims/signed2016_fibonacci_page_route_sft.cjs
