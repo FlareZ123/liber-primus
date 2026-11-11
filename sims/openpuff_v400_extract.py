@@ -169,14 +169,21 @@ def extracted_files(output_dir):
 def wait_for_extraction(app, output_path, output_dir, timeout_seconds=30):
     deadline = time.time() + timeout_seconds
     save_dialog_seen = False
+    last_sizes = None
+    stable_polls = 0
     while time.time() < deadline:
         if save_dialog_if_present(app, output_path, output_dir):
             save_dialog_seen = True
-        # The payload filename is supplied by the embedded record, and is
-        # generally unknown for original LP2 carriers.
-        if extracted_files(output_dir):
-            time.sleep(0.8)
-            break
+        # The embedded record determines the filename. Only accept an output
+        # after file sizes have stopped changing across several polls.
+        sizes = tuple((p.name, p.stat().st_size) for p in extracted_files(output_dir))
+        if sizes and sizes == last_sizes:
+            stable_polls += 1
+            if stable_polls >= 3:
+                break
+        else:
+            stable_polls = 0
+        last_sizes = sizes
         time.sleep(0.5)
     return save_dialog_seen
 
@@ -338,8 +345,12 @@ if __name__ == "__main__":
     try:
         main()
     except Exception:
-        Path("probe-output").mkdir(exist_ok=True)
-        Path("probe-output/error.txt").write_text(
+        # Preserve an error in the same per-carrier evidence directory that
+        # the workflow uploads, including when processing the last LP2 page.
+        out_arg = sys.argv[sys.argv.index("--out") + 1] if "--out" in sys.argv else "probe-output"
+        error_dir = Path(out_arg)
+        error_dir.mkdir(parents=True, exist_ok=True)
+        error_dir.joinpath("error.txt").write_text(
             traceback.format_exc(), encoding="utf-8"
         )
         print(traceback.format_exc(), file=sys.stderr)
