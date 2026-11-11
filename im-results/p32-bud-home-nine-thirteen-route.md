@@ -8,7 +8,7 @@ The authenticated 2016 Cicada image repeats the original p32 tree and says that 
 
 One further straight three-rune run is visible in this **same unchanged grid**: **BUD** occurs along the northwest diagonal from (row 10, col 9) to (8,7). That D is the **same source rune** as the D of horizontal BUDS at (8,5)..(8,8). This creates a two-branch junction with no inserted letters or independent cipher key.
 
-**Terminology matters:** HOME is the start of a longer printed ciphertext word and BUDS is the end of another; neither is a complete whitespace-delimited source word or recovered plaintext. The additional BUD is a geometric three-rune occurrence. All coordinates are zero-based in the conceptual 11×11 row-major array, rather than the printed line coordinates.
+**Terminology matters:** HOME starts an eleven-rune printed ciphertext word **HOMEXWDSLFD**, and BUDS is itself a complete separately delimited printed ciphertext word on this page (preceded by M and separated from BJ by a hyphen); neither is a complete whitespace-delimited source word or recovered plaintext. The additional BUD is a geometric three-rune occurrence. All coordinates are zero-based in the conceptual 11×11 row-major array, rather than the printed line coordinates.
 
 | Exact source route | Cell sequence | Printed-rune reading | GP-prime total | Modulo 29 |
 | --- | --- | --- | ---: | ---: |
@@ -52,16 +52,16 @@ Reading these three spatial segments from HOME toward the added BUD branch gives
 
 ## Competing source-visible endpoint: extend to the **X** of HOMEX
 
-The original printed word at p32 offsets 33–37 is **HOMEX**, with GP indices \`[8,3,19,18,14]\`. The route above stops on **E**, immediately before its final **X**, using only the HOME substring. Since X is a conventional map marker, **continuing one more horizontal step to X is at least as natural** as stopping at E. This alternative must be recorded rather than silently treated as a failed variant.
+The original *five-rune prefix* at p32 offsets 33–37 is **HOMEX**, with GP indices \`[8,3,19,18,14]\`. The **complete printed ciphertext word** is in fact **HOMEXWDSLFD**, with eleven GP runes. The route above stops on **E**, immediately before **X** in that word. Since X is a conventional map marker, **continuing one more horizontal step to X is another possible but still *partial-word* stop, not an independently dictated word boundary** as stopping at E. This alternative must be recorded rather than silently treated as a failed variant.
 
 | Same geometric branch, endpoint changed from E to X | Source runes visited | GP-prime sum | Residue | Existing M7 output |
 | --- | ---: | ---: | ---: | ---: |
 | Horizontal BUDS B → full HOMEX X | **10 cells / 9 edges** | **594** | 14 | **18 = 1033 mod29** |
 | Diagonal BUD B → shared D → full HOMEX X | **14 cells / 13 edges** | **750** | 25 | **25 (fixed point)** |
 
-The final X has GP prime value **47 ≡18 mod29**. Hence the X-inclusive residues are algebraically forced from the earlier E-stop residues: \`25+18 ≡14\` and \`7+18 ≡25\`. The first value14 agrees with a previously documented *different* p32 source selector, the first punctuated clause residue14 that the same M7 sends to the immediately following p33 cuneiform value \`1033 mod29 =18\`. The second value25 is an M7 fixed point. These matches are **not independent** of the original route sums, and they do **not** separately authenticate a next-page cipher rule. However, the original stencil's **nine occupied rows and thirteen dots** now correspond to **actual edge counts 9 and13** rather than vertex counts 9 and13. This is a defensible competing reading of what a solver would count.
+The fifth rune X has GP prime value **47 ≡18 mod29**. Hence the X-inclusive residues are algebraically forced from the earlier E-stop residues: \`25+18 ≡14\` and \`7+18 ≡25\`. The first value14 agrees with a previously documented *different* p32 source selector, the first punctuated clause residue14 that the same M7 sends to the immediately following p33 cuneiform value \`1033 mod29 =18\`. The second value25 is an M7 fixed point. These matches are **not independent** of the original route sums, and they do **not** separately authenticate a next-page cipher rule. However, the original stencil's **nine occupied rows and thirteen dots** now correspond to **actual edge counts 9 and13** rather than vertex counts 9 and13. This is a defensible competing reading of what a solver would count.
 
-Because the original source provides no explicit instruction to stop at E rather than X, or to count visited cells rather than path steps, the two interpretations must remain parallel. The prior conditional permutation counts are **exactly unchanged** for the X-inclusive version, since X is among the same frozen source cells: the X-inclusive 10-cell residue14 event is equivalent to the earlier nine-cell residue25 event. **Do not report those identical counts as a second statistical replication.** An independently source-selected stopping rule is now a prerequisite for continuing either proposed route.
+Because the original source provides no explicit instruction to stop at E, X, or the end of the full eleven-rune printed word, or to count visited cells rather than path steps, the two interpretations must remain parallel. The prior conditional permutation counts are **exactly unchanged** for the X-inclusive version, since X is among the same frozen source cells: the X-inclusive 10-cell residue14 event is equivalent to the earlier nine-cell residue25 event. **Do not report those identical counts as a second statistical replication.** An independently source-selected stopping rule is now a prerequisite for continuing either proposed route.
 
 ## Source-conditioned falsification calibration
 
