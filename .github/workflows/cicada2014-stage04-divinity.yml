@@ -28,7 +28,7 @@ jobs:
           git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
           cd /tmp/outguess
           ./autogen.sh
-          ./configure
+          ./configure --with-generic-jconfig
           make -j2
           sudo make install
           outguess -h || true
