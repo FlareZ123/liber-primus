@@ -159,6 +159,55 @@ function main() {
   const matches55 = predicted55.filter((v, i) => v === page55[i]).length;
   assert.equal(matches55, 2);
 
+  // The quartic factor and 19 PARABLE body words independently suggest
+  // four-rune blocks. Over GF29 every secret affine 4x4 Hill transform
+  // preserves linear dependence among the five-coordinate augmented
+  // plaintext blocks [p0,p1,p2,p3,1]. A six-block witness suffices.
+  const {decryptTotient} = require("./solved_cipher_regression.cjs");
+  const knownPlain = [...decryptTotient(page56, new Set([56])),...page57];
+  const knownVisible = [...page56,...page57];
+  const interior = grid.byte_rows.slice(1,31)
+    .flatMap((row) => row.slice(1,7).map(mod));
+  assert.deepEqual([knownPlain.length,knownVisible.length,interior.length],
+    [180,180,180]);
+  const firstSix = Array.from({length:6},(_,i)=>
+    [...knownPlain.slice(4*i,4*i+4),1]);
+  assert.deepEqual(firstSix[0],[24,9,18,9,1]);
+  assert.deepEqual(firstSix[5],[18,4,18,18,1]);
+  const dependence=[6,17,28,14,19];
+  for(let j=0;j<5;j++)
+    assert.equal(mod(dependence.reduce(
+      (sum,coefficient,k)=>sum+coefficient*firstSix[k][j],0)),
+      firstSix[5][j]);
+
+  /** @param {number[]} values @returns {{prediction:number[],actual:number[],equalCount:number}} */
+  function affineWitness(values) {
+    const blocks=Array.from({length:6},(_,i)=>values.slice(4*i,4*i+4));
+    const prediction=Array.from({length:4},(_,j)=>mod(
+      dependence.reduce((sum,beta,k)=>sum+beta*blocks[k][j],0)));
+    const actual=blocks[5];
+    return {prediction,actual,
+      equalCount:prediction.filter((v,j)=>v===actual[j]).length};
+  }
+  const gridHill=affineWitness(interior);
+  const visibleHill=affineWitness(knownVisible);
+  const shiftHill=affineWitness(knownVisible.map(
+    (v,i)=>mod(v-knownPlain[i])));
+  assert.deepEqual(gridHill,{prediction:[16,27,11,10],
+    actual:[10,25,22,17],equalCount:0});
+  assert.deepEqual(visibleHill,{prediction:[12,6,28,15],
+    actual:[3,24,13,19],equalCount:0});
+  assert.deepEqual(shiftHill,{prediction:[18,2,18,15],
+    actual:[14,20,24,1],equalCount:0});
+  // Positive control: a secret affine map always respects this relation.
+  const plant=firstSix.map((x)=>[
+    mod(2*x[0]+5*x[2]+7*x[4]),
+    mod(x[1]+x[3]+11*x[4]),
+    mod(x[0]+x[1]+x[2]+x[3]+x[4]),
+    mod(3*x[0]+23*x[1]+4*x[4])
+  ]).flat();
+  assert.equal(affineWitness(plant).equalCount,4);
+
   // Under the *full-field evaluation* GF(256) RS(256,180) model,
   // summing all 256 evaluations must be zero regardless of traversal.
   // This does not exclude an extended RS model with a point at infinity.
@@ -180,6 +229,9 @@ function main() {
     canonicalInkRemainder: canonicalEvents.check,
     word19ToPage55Matches: matches55,
     word19ToPage55Total: predicted55.length,
+    fourRuneAffineHill:{firstSixDependency:dependence,
+      gridInterior:gridHill,visibleCipher:visibleHill,
+      originalKnownShift:shiftHill},
     gf256FullFieldEvaluationXor: {base60: 148, radix59: 33},
   }, null, 2));
 }
