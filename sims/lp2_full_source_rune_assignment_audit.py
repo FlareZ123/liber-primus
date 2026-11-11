@@ -367,6 +367,20 @@ def main():
     total_positions = sum(len(line) for lines in unknown.values() for line in lines)
     assert total_positions == 12956, total_positions
 
+    ink = json.loads((args.root / "resources" / "liber-primus" / "lp2-ink-annotations.json").read_text(encoding="utf-8"))
+    red_spans_by_page = {int(p["page"]): p.get("red_spans", []) for p in ink["pages"]}
+    line_offsets = {}
+    for page, lines in unknown.items():
+        offsets, cursor = [], 0
+        for line in lines:
+            offsets.append(cursor)
+            cursor += len(line)
+        line_offsets[page] = offsets
+    red_runes_in_unknown_pages = sum(
+        span["length"] for p in ink["pages"] if int(p["page"]) in unknown
+        for span in p.get("red_spans", [])
+    )
+
     source = ImageSource(args.root, args.archive)
 
     # p43 is the source template page; its 274 crops are line-registered exactly.
@@ -440,6 +454,8 @@ def main():
                 unmapped_observed_components += len(row)
                 unresolved.append({"page": page, "line": li, "expected": len(expected),
                                    "detected": len(row), "missing": len(expected) - len(row),
+                                   "page_local_start": line_offsets[page][li],
+                                   "expected_runes": "".join(RUNES[v] for v in expected),
                                    "observed_components": observed})
                 page_record["lines"].append({"line": li, "expected": len(expected),
                                              "detected": len(row), "status": "undercount",
@@ -457,7 +473,20 @@ def main():
                 hog_pred = int(hog_model.predict(np.asarray([hog_feature(group["crop"])]))[0]) if hog_model else None
                 if want != got:
                     d = templates.distances(group["crop"])
-                    item = {"page": page, "line": li, "position": pos, "box": group["box"],
+                    page_local_offset = line_offsets[page][li] + pos
+                    red_spans = red_spans_by_page.get(page, [])
+                    red_span_index = next((j for j, span in enumerate(red_spans)
+                                           if span["start"] <= page_local_offset < span["start"] + span["length"]), None)
+                    red_span = red_spans[red_span_index] if red_span_index is not None else None
+                    item = {"page": page, "line": li, "position": pos,
+                            "page_local_offset": page_local_offset,
+                            "is_red": red_span is not None,
+                            "is_red_initial": bool(red_span is not None and page_local_offset == red_span["start"]),
+                            "red_span_index": red_span_index,
+                            "red_span_start": red_span["start"] if red_span is not None else None,
+                            "red_span_offset": page_local_offset - red_span["start"] if red_span is not None else None,
+                            "red_span_length": red_span["length"] if red_span is not None else None,
+                            "box": group["box"],
                             "expected_index": want, "expected": TRANSLIT[want],
                             "nearest_index": got, "nearest": TRANSLIT[got],
                             "nearest_distance": group["dist"],
@@ -485,6 +514,9 @@ def main():
     heldout_exact_mismatches = exact_nodrop_mismatch
     heldout_exact_correct = heldout_exact_positions - heldout_exact_mismatches
     heldout_mismatch_records = [m for m in mismatch_records if m["page"] != 43]
+    red_mismatch_records = [m for m in heldout_mismatch_records if m["is_red"]]
+    black_mismatch_records = [m for m in heldout_mismatch_records if not m["is_red"]]
+    red_initial_mismatch_records = [m for m in heldout_mismatch_records if m["is_red_initial"]]
     high_confidence = [m for m in mismatch_records
                        if m["page"] == 0 and m["line"] == 0 and m["position"] in (9, 10, 11, 12)]
     report = {
@@ -506,10 +538,16 @@ def main():
             "position_aligned_classifications_including_p43": classified_positions,
             "position_aligned_classifications_heldout": classified_positions - len(train_labels),
             "unmapped_observed_components": unmapped_observed_components,
-            "unresolved_expected_positions": sum(x.get("missing", 0) for x in unresolved),
+            "unresolved_expected_positions": total_positions - classified_positions,
+            "undercount_missing_positions": sum(x.get("missing", 0) for x in unresolved),
+            "expected_positions_in_unresolved_rows": sum(x.get("expected", 0) for x in unresolved),
+            "red_runes_in_unknown_pages": red_runes_in_unknown_pages,
             "nearest_neighbor_mismatches_including_p43": len(mismatch_records),
             "nearest_neighbor_matches_including_p43": classified_positions - len(mismatch_records),
             "nearest_neighbor_mismatches_heldout": len(heldout_mismatch_records),
+            "red_mismatches_heldout": len(red_mismatch_records),
+            "black_mismatches_heldout": len(black_mismatch_records),
+            "red_initial_mismatches_heldout": len(red_initial_mismatch_records),
             "nearest_neighbor_matches_heldout": classified_positions - len(train_labels) - len(heldout_mismatch_records),
             "exact_count_no_drop_positions_including_p43": exact_nodrop_positions + len(train_labels),
             "exact_count_no_drop_positions_heldout": heldout_exact_positions,
