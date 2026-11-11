@@ -12,6 +12,24 @@ The split counts are both prime:
 
 The exclusion of the two large structures is visually motivated but remains an interpretation: including them changes the split to 242/332, which is not prime.
 
+## Original-image selector sensitivity (Agent 14, 11 November 2026)
+
+A separate image-only [single-file control](../sims/lp2_stipple_component_selector_sft.py) uses original `74.jpg` SHA-256 `1dabc100ddbf1fc49715219636984eb6ad96a2bd8035e196c12e66db77a1077b`, exactly the same crop and threshold as above. This is a *selection-rule control* rather than an independent recovery of the GIMP reconstruction. It asks which equally reproducible connected-component choices produce the proposed prime pair.
+
+| Connectedness | Largest components removed | Left/right counts at page x=1200 | Both prime? |
+| --- | ---: | ---: | --- |
+| 8-neighbour | 0 | 242/332 | No |
+| 8-neighbour | 1 | 242/331 | No |
+| **8-neighbour** | **2** | **241/331** | **Yes** |
+| 8-neighbour | 3 | 241/330 | No |
+| 8-neighbour | 10 | 240/324 | No |
+| 4-neighbour | 2 | 337/475 | No |
+| 4-neighbour | 10 | 337/467 | Yes (a different prime pair) |
+
+Under eight-connectivity, the image contains 574 components with top areas **[12821, 1027, 614, 613, 585, 398, 385, 373]** native pixels. In particular, choosing exactly two non-stipple structures excludes an area-1,027 component but retains an area-614 one. The count **241/331** survives whole-page vertical axes x=1198 through x=1205 inclusive; a center at x=1213 (the largest component's area-weighted x centroid, distinct from its bounding-box midpoint) gives **248/324**. Standard four-connectivity instead yields **814** components. The original rule is visually plausible, but *neither the integer pair nor its primality is invariant to how components are defined or excluded*. The alternative 337/467 prime pair illustrates why choosing segmentation by a desired prime result would be circular.
+
+This does not disprove intentional alignment with the **page** midline x=1200, a natural coordinate, and does not replicate SECRA's predicted GIMP mask. It strengthens the existing requirement: freeze the historically intended component/connectivity/exclusion rule from source evidence, then compare the actual output with a GIMP-rendered negative control *before* using 241/331 to select a rune or cryptographic state. No unknown LP2 plaintext follows.
+
 ## Confidence downgrade: p57 stipple may be a GIMP rendering artifact
 
 SECRA's 15 October 2026 report, [Inside Liber Primus](https://secra.tech/research/liber-primus-strongest-findings/), reports that the p57 dotted-insect positions strongly match the deterministic legacy GIMP Dissolve field: 268,435,456 offset/orientation/polarity configurations, 96.0% whole-image F1, 93.9% held-out F1, and 166 residual cells. Its [evidence index](https://secra.tech/research/liber-primus-strongest-findings/evidence/index.html) reports 100,000 local-pattern-preserving randomizations without a comparable match. The fixed seed 314159265 is a GIMP default, not a π key.
