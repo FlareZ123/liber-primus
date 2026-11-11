@@ -144,6 +144,56 @@ for (const reducer of ["prime", "totient"]) {
   }
 }
 
+
+// Literal historical 2013 XOR mechanism on the printed byte table. Cicada
+// demonstrably used XOR with a source-supplied file during the 2013 puzzle.
+// Align the omitted 180 primes to the 30x6 interior (row-major) and the
+// visible first-256-prime complement to the 76-cell perimeter (clockwise
+// starting upper-left). This one fully specified native-byte interpretation
+// needs no runic transcription, key fitting, phase search, or English score.
+const tableRows = require("../resources/liber-primus/base60-grid.json").byte_rows;
+assert.equal(tableRows.length, 32);
+for (const row of tableRows) assert.equal(row.length, 8);
+const primeGridKey = Array.from({length: 32}, () => Array(8).fill(null));
+let primeInterior = 0;
+for (let y = 1; y < 31; y++) for (let x = 1; x < 7; x++) {
+  primeGridKey[y][x] = missing[primeInterior++];
+}
+assert.equal(primeInterior, 180);
+const primeBorder = [];
+for (let x = 0; x < 8; x++) primeBorder.push([0, x]);
+for (let y = 1; y < 32; y++) primeBorder.push([y, 7]);
+for (let x = 6; x >= 0; x--) primeBorder.push([31, x]);
+for (let y = 30; y >= 1; y--) primeBorder.push([y, 0]);
+assert.equal(primeBorder.length, 76);
+primeBorder.forEach(([y, x], i) => primeGridKey[y][x] = visible[i]);
+const gridBytes = tableRows.flat();
+const keyBytes = primeGridKey.flat().map(k => k & 255);
+assert.equal(keyBytes.length, 256);
+assert.ok(primeGridKey.flat().every(k => Number.isInteger(k)));
+/** @param {number[]} bytes */
+const printableCount = bytes => bytes.filter(v => v >= 32 && v <= 126).length;
+/** @param {number[]} a @param {number[]} b */
+const xorBytes = (a, b) => a.map((v, i) => v ^ b[i]);
+const primeXorOutput = xorBytes(gridBytes, keyBytes);
+assert.deepEqual(xorBytes(primeXorOutput, keyBytes), gridBytes);
+const asciiPlant = Buffer.from("LIKE THE INSTAR TUNNELING TO THE SURFACE. ".repeat(7)).subarray(0, 256);
+const plantedCipher = xorBytes([...asciiPlant], keyBytes);
+assert.deepEqual(xorBytes(plantedCipher, keyBytes), [...asciiPlant]);
+assert.equal(printableCount(gridBytes), 103);
+assert.equal(printableCount(primeXorOutput), 89);
+console.log(JSON.stringify({
+  originalTableByteXorGate: "2013 prime-gap native XOR, original 32x8 positions",
+  primeAssignment: "180 inside row-major + 76 clockwise perimeter",
+  originalPrintable: printableCount(gridBytes),
+  recoveredPrintable: printableCount(primeXorOutput),
+  recoveredAsciiPreview: primeXorOutput.map(v => v >= 32 && v <= 126 ?
+      String.fromCharCode(v) : ".").join("").slice(0, 128),
+  recoveredHex: Buffer.from(primeXorOutput).toString("hex"),
+  recoveredOriginalByExactReXor: true,
+  plantedAsciiRecoveredExactly: true
+}));
+
 for (const [region, ciphertext, sourceKey] of [
   ["interior-p53-plus-p54-A", interior, missing],
   ["perimeter-p55", exterior, visible]
