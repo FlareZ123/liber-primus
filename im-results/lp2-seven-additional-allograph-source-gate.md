@@ -1,6 +1,6 @@
-# Original-JPEG allograph source gate: twenty-two selected classes beyond A/R/E
+# Original-JPEG allograph source gate: twenty-six selected classes beyond A/R/E
 
-**Current original-source decision, 11 November 2026:** Fixed solved-page glyph images account for **9,984/9,984 ordinary original-image occurrences of 22 GP29 classes** beyond the three separately studied A/R/E symbols. Eleven remaining occurrences of these classes are visually distinct original-image red initials or red-rubric glyphs. Including A/R/E, **25 of 29 GP29 classes** now have source-fixed ordinary-form controls. This is a bounded typography result; it yields no unknown plaintext, source-derived cryptographic key, or decrypting operation.
+**Current original-source decision, 11 November 2026:** Fixed solved-page glyph images account for **11,738/11,738 ordinary original-image occurrences of 26 GP29 classes** beyond the three separately studied A/R/E symbols. Seventeen additional source glyphs are enlarged red/artistic initials or physically connected rune clusters. Together with separately studied A/R/E, **all 29 GP29 classes** have bounded source-visible ordinary-font controls. This is a bounded typography result; it yields no unknown plaintext, source-derived cryptographic key, or decrypting operation.
 
 ## Exact source and method
 
@@ -17,7 +17,8 @@ The fixed image-template audits binarize grayscale at less than 160 and use norm
 | EO, X, S, B, OE, EA | 2,704 | 2,702 | X p8:0; S p0:0 |
 | O, H, P, T, L | 2,243 | 2,239 | P p3:119, p57:0; L p3:0, p15:9 |
 | I, source-height original scan component gate | 481 | 481 | none |
-| **Total (22 selected classes)** | **9,995** | **9,984** | **11 source-red instances** |
+| TH, W, M, D, complete source components | 1,760 | 1,754 | 6 red, artistic or joined-source cases |
+| **Total (26 selected classes)** | **11,755** | **11,738** | **17 source-identified exceptions** |
 
 The five newly completed classes, using exactly the same original scan source:
 
@@ -42,6 +43,14 @@ This one frozen geometric rule returns the exact expected I count on every runic
 
 The I result excludes one coarse printed-stroke allograph in this source class. It is conditional on physical source registration and does not identify cipher semantics, intentionally altered stroke micropixels, or a recovered key.
 
+## Final four classes TH, W, M, D: original-source full component result
+
+**The final four classes now have an exact 58-image ordinary glyph census: TH460/460, W408/408, M439/439, D447/447.** The six exceptional, visually identifiable source positions are p2 M in an insect-connected HBM cluster; p25 TH in a source-joined CTH pair; oversized source-red first initials p27 M and p33 D; and p39 M and W inside its enlarged, artistic black five-rune line M/S/W/OE/H. These six exceptions were already identifiable from the original layout and the separate full-source segmentation audit. All four class counts pass every physical scan p0–p57.
+
+The discriminator uses 84 original p56 solved-image glyphs across 29 classes plus 274 existing transcription-labeled p43 original-image glyphs, with exact source-row component registration. It binarizes full source glyph components, resizes each to 48×64, then compares squared pixel distances across all 358 source controls. TH/W full source-component width must be 33–35 pixels, M/D 52–54. The fixed class score ceilings are TH 0.12, W 0.10, M 0.06, D 0.10. The larger TH ceiling preserves two original p4/p15 variants; the narrower M ceiling rejects visually similar D/E-like glyphs. The thresholds were selected during original-source examination and **were not blind preregistered cryptographic predictions**. In particular the p39 two ordinary B glyphs generate W-shaped partial similarities around score .13, which the fixed W threshold rejects, while the ordinary W glyph p39 is recovered.
+
+This is a conditional original-image **whole-glyph morphology census**, because p43 training labels and target counts are based on the canonical preexisting rune transcript. It does not authenticate all original runes independently, exclude chroma, microscopic steganography or punctuation layers, or recover any hidden plaintext or key. [Four-class original-source reproducer](../sims/lp2_last_four_allograph_source_sft.py) reads the 58 original JPEG scans and reconstructs all six exceptions.
+
 ## Previously established source controls preserved
 
 The earlier EO/X/S/B/OE/EA six-class audit has **2,702/2,702 ordinary** matches, respective lowest NCCs 0.93358, 0.94142, 0.94219, 0.94064, 0.91785 and 0.94018. It corrected a false discrepancy caused by extending the solved-page B crop past x1361 into adjacent black punctuation. Previous U/G/N/Y/F/J/IA original-source controls matched **3,201/3,201** ordinary symbols and identified three enlarged red initials with scale-normalized IoU 0.95183, 0.96016 and 0.93360. The earlier C/NG/AE source test counted **1,361/1,361** ordinary glyphs and distinguished the oversized red p33:91 NG from the following ordinary p33:92 TH.
@@ -50,6 +59,6 @@ The earlier EO/X/S/B/OE/EA six-class audit has **2,702/2,702 ordinary** matches,
 
 At this source resolution there is no evidence for a second ordinary-font morphographic bit that depends on a visibly distinct letter drawing within the twenty-two audited additional GP29 classes. Count equality cannot exclude subtle differences in image compression, chroma, punctuation, kerning, DCT coefficients, or non-GP illustration channels. It also cannot itself identify a cipher primitive, source key or original author's intended reading order. No previously encrypted LP2 plaintext is recovered by the morphology census.
 
-**Four classes still lack full-source allograph discrimination: TH, W, M and D.** Ordinary local templates for these symbols produce many matches inside other glyphs. Their next productive check requires genuinely source-anchored full-glyph components and solved-page controls, with any proposed exception identified in original pixels independently of the ciphertext. The separately studied A/R/E classes and the new source-height I gate are outside this remaining scope.
+**Remaining ordinary-font allograph census classes: none.** All 29 GP29 source glyph classes have bounded original-image audits, including distinct A/R/E work. A future font-state test must arise from an independent positive clue and predict an actual cryptographic state; arbitrary template sweeps are not a route to plaintext.
 
-**Reproducers:** sims/lp2_selected_allograph_original_sft.py (C/NG/AE), sims/lp2_seven_additional_allograph_sft.py (U/G/N/Y/F/J/IA), sims/lp2_six_more_allograph_sft.py (EO/X/S/B/OE/EA), , sims/lp2_five_more_allograph_source_sft.py (O/H/P/T/L) and sims/lp2_I_full_component_sft.py (I). Both added scripts read the original source ZIP directly with --archive, support disjoint --start/--stop ranges, and validate compact per-page counts against the canonical corpus when present.
+**Reproducers:** sims/lp2_selected_allograph_original_sft.py (C/NG/AE), sims/lp2_seven_additional_allograph_sft.py (U/G/N/Y/F/J/IA), sims/lp2_six_more_allograph_sft.py (EO/X/S/B/OE/EA), sims/lp2_five_more_allograph_source_sft.py (O/H/P/T/L) sims/lp2_I_full_component_sft.py (I), and sims/lp2_last_four_allograph_source_sft.py (TH/W/M/D). The source-test scripts read the original source ZIP directly with --archive, support disjoint --start/--stop ranges, and validate compact per-page counts against the canonical corpus when present.
