@@ -1,10 +1,5 @@
 name: OpenPGP key-ID to GP29 Vigenere source test
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'sims/pgp_keyid_base29_vigenere_sft.cjs'
-      - '.github/workflows/pgp-keyid-base29-vigenere-sft.yml'
   workflow_dispatch:
 permissions:
   contents: write
