@@ -44,6 +44,14 @@ H_{\mathrm{emp}}(C\mid S)\le H_{\mathrm{emp}}(P\mid S).
 
 The observed original ciphertext violates even this necessary upper bound for every sampled native GP-English and Latin control. A putative decoder that introduces new variability through word-specific keys, nonstationary state or a variable-length source code is outside the one-sided bound's fixed-state assumptions. A different permutation for each individual word, or a hidden word-index clock, escapes this invariant.
 
+**Universal hidden-binary-alphabet corollary (same word-shape state).** Even if an independent additional secret bit `Z_i∈{0,1}` is permitted at **every rune** and is allowed to depend arbitrarily on the entire source plaintext or previous cipher history, any deterministic alphabet map `C_i=f_(L,j,Z_i)(P_i)` satisfies the exact Shannon-chain bound
+
+\[
+H_{\mathrm{emp}}(C\mid L,j)\le H_{\mathrm{emp}}(P\mid L,j)+H_{\mathrm{emp}}(Z\mid L,j)\le H_{\mathrm{emp}}(P\mid L,j)+1.
+\]
+
+The highest word-shape entropy among **all 128 matched GP29 English/Latin controls** is **3.577683154** bits/rune, whereas the original is **4.709187883**. Therefore at least **1.131504729 bits/rune** of additional *empirical state variation* would be required to reach the observed original distribution. Any selector taking **two possible rune-map states** is ruled out under these precise native-plaintext and original-word-length assumptions, regardless of how its binary state sequence is chosen, whether its state change is deterministic, or which two secret maps are used. At least **three latent rune-alphabet states** are necessary (`ceil(2^1.131504729)=3`). This cardinality bound does **not** demand a secret key of that many independent random bits per rune: a short deterministic seeded state machine may generate high-entropy empirical variation across symbols. Nor does it apply to hidden states that themselves reorder plaintext positions differently at each occurrence, alter segmentation, or emit multiple output glyphs per source rune.
+
 Original inputs: [canonical GP29 physical-page corpus](../resources/liber-primus/lp2-corpus.json), [line-preserving shared transcript](../resources/lp2-transcription.txt), both parsed by the same printed-word convention as [shared LP2 word parser](../sims/lp2_word_pages.cjs). They give 55 rune-bearing unresolved pages, **12,956 symbols**, **2,896 canonical printed words** and 105 distinct (L, position) states. End-of-line and physical page continuation remain intact; the original rune sequence is asserted byte-for-byte against the corpus.
 
 ## Original-cipher measurement and native controls
