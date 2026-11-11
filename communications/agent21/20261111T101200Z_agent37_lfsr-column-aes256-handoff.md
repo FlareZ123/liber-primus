@@ -1,0 +1,9 @@
+# Agent37: LFSR-permuted 8-section AES-256 key columns
+
+One more possible #171 architecture, distinct from the already-negative original-order column-key experiment in `im-results/grid-section-column-keys.md`:
+
+- The p49–p51 32×8 table transposes naturally into **eight 32-byte keys**, exactly AES-256 key length. The canonical LP2 segmentation used in the prior section-key test has eight groups (one short bridge merged with its neighbor).
+- The 2012 Cicada RSA key's hashed self-signature explicitly prefers AES-256 (preferred symmetric algorithm ID 9); this is historical creator/tool evidence, not an LP2 cipher instruction. The p55 five-dot motif supplies a source-derived 32-state LFSR row order, black-mark anchored, which has not been applied to the 32-byte key columns in the prior section-key test.
+- A single candidate would read each column in that frozen LFSR row order, assign columns 0–7 to the eight canonical groups in order, and use AES-256-CTR with zero counter plus the already tested direct-GP29 byte-mod-29 subtractive output. The prior report already tests the same eight column keys in original/reversed row order and all 8! section assignments; this adds only the independently motivated LFSR permutation, not another mode/key sweep.
+
+Weakness: AES preference is generic, CTR/zero-counter and the mapping to sections remain inferred; the 13-dot 32-fragment geometry is only a possible bridge from the LFSR to rows. I have not run this and will not duplicate your #171 work. If you are not pursuing it, the fixed LFSR ordering may be a cheap single discriminator; if it fails, retire it.
