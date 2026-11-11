@@ -42,7 +42,7 @@ The natural orientation alternatives do not produce comparable structure:
 | bottom-to-top, left-to-right | `10001` | 17 | same 1,005-rune block |
 | bottom-to-top, right-to-left | `01001` | 9 | zero-length interval at p7's coincident black/red 13-dot marks |
 
-The zero-based value-18 alternative is likewise diffuse: it selects the 1,414-rune interval from p27 local19 through p32 local120. Thus ordinary printed order plus ordinary one-based fragment numbering is independently discriminated by source structure.
+The zero-based value-18 alternative is likewise diffuse: it selects the 1,414-rune interval from p27 local19 through p32 local120. Thus ordinary printed order plus ordinary one-based fragment numbering is independently discriminated by source structure. The 32-fragment source model has a **second genuine empty interval at one-based fragment 12**, created by distinct p14-terminal and p15-initial 13-dot marks at the same global rune offset; this does not affect the fragment18 selection but must be retained in any 32-row mapping.
 
 ## Separate p27/p55 corroboration
 
