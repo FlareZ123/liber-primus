@@ -11,6 +11,7 @@ on:
           - original
           - cumulative
           - pgphash
+          - xor43
         default: original
 
 jobs:
@@ -55,3 +56,15 @@ jobs:
           node-version: '22'
       - name: Reproduce native OpenPGP signed hash and original p32 direct inverse
         run: node sims/lp2_p32_signed2016_pgphash_source_sft.cjs
+
+  signed-xor43-bookmap:
+    if: ${{ inputs.probe == 'xor43' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original 2016 signed-43 XOR/book-map anchor and matched null
+        run: node sims/lp2_signed2016_xor43_bookmap_sft.cjs
