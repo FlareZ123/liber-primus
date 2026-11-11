@@ -322,7 +322,138 @@ assert.equal(multiplicativeOrder(31, sectionRunes.length), 179);
 
 // Cross-section controls: p27's section is uniquely both totient-matched to
 // the repeated-pair gap and seeded by a full-order first rune.
-const sectionControls = transcription.split('
+const sectionControls = transcription.split('$').map((part, section0) => {
+  const runes = [...part].filter((ch) => RUNIC.test(ch)).map((rune) => runeToIndex.get(rune));
+  const length = runes.length;
+  const first = runes[0] ?? null;
+  const totient = phi(length);
+  return {
+    section0,
+    length,
+    prime: isPrime(length),
+    totient,
+    first,
+    firstOrder: first === null ? null : multiplicativeOrder(first, length),
+    gapMatchesTotient: totient === wordNumberGap,
+    firstHasFullOrder: first !== null && multiplicativeOrder(first, length) === totient
+  };
+});
+assert.deepEqual(sectionControls.filter((x) => x.gapMatchesTotient).map((x) => x.section0), [5]);
+assert.deepEqual(sectionControls.filter((x) => x.firstHasFullOrder).map((x) => x.section0), [5]);
+
+
+
+// Direct p55 consequence of the fold-selected 19-rune p27 title.
+// p55 is exactly four periods; keep the key, phase, and operation family frozen.
+const p55Title = p27.slice(0, 19);
+assert.deepEqual(p55Title, expectedTitle);
+assert.equal(p55.length, 76);
+assert.equal(p55Title.length, 19);
+assert.equal(p55.length / p55Title.length, 4);
+
+const titleQuadgramCounts = new Map();
+let titleQuadgramTotal = 0;
+for (const line of fs.readFileSync('resources/control/duko_round27_english_quadgrams.txt', 'utf8').trim().split(/\r?\n/u)) {
+  const match = line.match(/^([A-Z]{4})\s+(\d+)$/u);
+  if (match) {
+    const count = Number(match[2]);
+    titleQuadgramCounts.set(match[1], count);
+    titleQuadgramTotal += count;
+  }
+}
+function titleExpandGp(indices) {
+  return indices.map((index) => corpus.translit[index]).join('').replace(/[^A-Z]/gu, '');
+}
+function titleScoreEnglishQuadgrams(text) {
+  let sum = 0;
+  let windows = 0;
+  let known = 0;
+  for (let i = 0; i + 4 <= text.length; i += 1) {
+    const count = titleQuadgramCounts.get(text.slice(i, i + 4)) ?? 0;
+    sum += Math.log10((count + 0.1) / (titleQuadgramTotal + 0.1 * 26 ** 4));
+    windows += 1;
+    if (count > 0) known += 1;
+  }
+  return { mean: sum / windows, known, windows };
+}
+
+const titleGibranText = fs.readFileSync('resources/control/gibran_prophet_58585.txt', 'utf8').replace(/^\uFEFF/u, '');
+const titleGibranStartMarker = '*** START OF THIS PROJECT GUTENBERG EBOOK THE PROPHET ***';
+const titleGibranEndMarker = '*** END OF THIS PROJECT GUTENBERG EBOOK THE PROPHET ***';
+const titleGibranStart = titleGibranText.indexOf(titleGibranStartMarker);
+const titleGibranEnd = titleGibranText.indexOf(titleGibranEndMarker);
+assert.ok(titleGibranStart >= 0 && titleGibranEnd > titleGibranStart);
+const titleGibranBody = titleGibranText.slice(titleGibranStart + titleGibranStartMarker.length, titleGibranEnd);
+const titleTranslitMap = new Map(corpus.translit.map((token, index) => [token, index]));
+function titleEncodeEnglishWord(word) {
+  const normalized = word.toUpperCase().replace(/QU/gu, 'CW').replace(/V/gu, 'U').replace(/K/gu, 'C').replace(/Z/gu, 'S');
+  const encoded = [];
+  for (let i = 0; i < normalized.length;) {
+    const digraph = normalized.slice(i, i + 2);
+    if (titleTranslitMap.has(digraph)) {
+      encoded.push(titleTranslitMap.get(digraph));
+      i += 2;
+    } else if (titleTranslitMap.has(normalized[i])) {
+      encoded.push(titleTranslitMap.get(normalized[i]));
+      i += 1;
+    } else {
+      i += 1;
+    }
+  }
+  return encoded;
+}
+const titleGibranWords = titleGibranBody.toUpperCase().match(/[A-Z]+/gu) ?? [];
+const titleGibranRunes = titleGibranWords.flatMap(titleEncodeEnglishWord);
+const titleNativeWindowScores = [];
+for (let i = 0; i + 76 <= titleGibranRunes.length; i += 1) {
+  titleNativeWindowScores.push(titleScoreEnglishQuadgrams(titleExpandGp(titleGibranRunes.slice(i, i + 76))).mean);
+}
+titleNativeWindowScores.sort((a, b) => a - b);
+assert.equal(titleNativeWindowScores.length, 47959);
+const titleNativeMinimum = titleNativeWindowScores[0];
+const titleNativeMedian = titleNativeWindowScores[Math.floor(titleNativeWindowScores.length / 2)];
+const titleRawP55Score = titleScoreEnglishQuadgrams(titleExpandGp(p55));
+
+const p55TitleKeyVariants = [];
+for (const [orientation, key] of [
+  ['forward', p55Title],
+  ['reversed', p55Title.slice().reverse()]
+]) {
+  for (const [operation, apply] of [
+    ['C-K', (cipher, keyValue) => mod29(cipher - keyValue)],
+    ['C+K', (cipher, keyValue) => mod29(cipher + keyValue)],
+    ['K-C', (cipher, keyValue) => mod29(keyValue - cipher)]
+  ]) {
+    const outputIndices = p55.map((cipher, i) => apply(cipher, key[i % key.length]));
+    const output = titleExpandGp(outputIndices);
+    p55TitleKeyVariants.push({
+      orientation,
+      operation,
+      score: titleScoreEnglishQuadgrams(output),
+      output
+    });
+  }
+}
+assert.equal(p55TitleKeyVariants.length, 6);
+assert.ok(p55TitleKeyVariants.every((candidate) => candidate.score.mean < titleRawP55Score.mean));
+assert.ok(p55TitleKeyVariants.every((candidate) => candidate.score.mean < titleNativeMinimum));
+
+const p55TitleKeyGate = {
+  p55Runes: p55.length,
+  titleRunes: p55Title.length,
+  periods: p55.length / p55Title.length,
+  phaseSearch: false,
+  rawP55: titleRawP55Score,
+  nativeGibranBody: {
+    gpRunes: titleGibranRunes.length,
+    windows: titleNativeWindowScores.length,
+    minimum: titleNativeMinimum,
+    median: titleNativeMedian
+  },
+  variants: p55TitleKeyVariants
+};
+
+console.log(JSON.stringify({
   classification: 'source-image navigation candidate; no plaintext recovered',
   foldMismatch: readings,
   thirteenDotMarks: thirteenDotGlobals.length,
@@ -363,57 +494,8 @@ const sectionControls = transcription.split('
     firstRuneOrder: multiplicativeOrder(selected.indices[0], sectionRunes.length),
     order31: multiplicativeOrder(31, sectionRunes.length),
     factorization: '1432 = 8 * 179',
-    interpretation: 'word gap equals phi(1433); additively it is -1, multiplicatively M=19 is a full-cycle generator'
+    interpretation: 'word gap equals phi(1433); M=19 is full-order; backward traversal remains conditional'
   },
-  sectionControls
-}, null, 2));
-).map((part, section0) => {
-  const runes = [...part].filter((ch) => RUNIC.test(ch)).map((rune) => runeToIndex.get(rune));
-  const length = runes.length;
-  const first = runes[0] ?? null;
-  const totient = phi(length);
-  return {
-    section0,
-    length,
-    prime: isPrime(length),
-    totient,
-    first,
-    firstOrder: first === null ? null : multiplicativeOrder(first, length),
-    gapMatchesTotient: totient === wordNumberGap,
-    firstHasFullOrder: first !== null && multiplicativeOrder(first, length) === totient
-  };
-});
-assert.deepEqual(sectionControls.filter((x) => x.gapMatchesTotient).map((x) => x.section0), [5]);
-assert.deepEqual(sectionControls.filter((x) => x.firstHasFullOrder).map((x) => x.section0), [5]);
-
-console.log(JSON.stringify({
-  classification: 'source-image navigation candidate; no plaintext recovered',
-  foldMismatch: readings,
-  thirteenDotMarks: thirteenDotGlobals.length,
-  fragments: boundaries.length - 1,
-  selected: {
-    oneBased: selected.oneBased,
-    length: selected.indices.length,
-    start: selected.startLocation,
-    end: selected.endLocation,
-    firstIndex: selected.indices[0],
-    remainingAfterFirst: selected.indices.length - 1,
-    transliteration: selected.indices.map((index) => corpus.translit[index]).join(''),
-    wordLengths: printedWords.map((word) => word.length)
-  },
-  orientationControls: {
-    fragment17Length: fragment(17).indices.length,
-    fragment9Length: fragment(9).indices.length,
-    fragment12Length: fragment(12).indices.length,
-    zeroBased18AlternativeLength: fragment(19).indices.length
-  },
-  p27p55Bookend: bookend,
-  wordNumberDirection: {
-    canonicalWordCount: canonicalWords.length,
-    pairStartOffsetsZeroBased: bookendStarts,
-    gap: wordNumberGap,
-    selectedSectionRunes: sectionRunes.length,
-    modularStep: wordNumberGap % sectionRunes.length,
-    interpretation: '1432 mod 1433 = -1: reverse traversal'
-  }
+  sectionControls,
+  p55TitleKeyGate
 }, null, 2));
