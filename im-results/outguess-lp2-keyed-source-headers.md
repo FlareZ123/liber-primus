@@ -83,8 +83,8 @@ Potential next source-image attack should demand exact recovered material and a 
 
 ## Reproduction
 
-- [Exact CommonJS source-key extractor and planted controls](../sims/outguess_lp2_keyed_probe.cjs).
+- [Exact CommonJS source-key extractor and planted controls](../sims/outguess_lp2_keyed_probe.cjs). The 22-key corpus gate remains unchanged. For one exact externally derived candidate, set `LP2_OUTGUESS_PASSWORD` to that password; optionally set `LP2_OUTGUESS_SOURCE_IMAGE` to one original JPEG index17–74. In this single-key override mode the script preserves **every nonempty extraction output**, including unrecognized or header-inconsistent bytes, as `candidate_0_<page>.bin`, and records its status, header fields, size, hash and path in `rawCandidates`. The default 22-key run retains its prior artifact behavior.
 - [Isolated INSTAR probe and controls](../sims/lp2_instar_outguess_single_probe.cjs).
-- [Existing OutGuess workflow](../.github/workflows/lp2-outguess.yml), options keyed_probe=true or instar=true. Uses pinned maintained OutGuess commit 24810e14327c2bbeedeaadd3e24491f2a4425c02 and authentic original JPEGs. The successful command output also lists each password's counts.
+- [Existing OutGuess workflow](../.github/workflows/lp2-outguess.yml), options `keyed_probe=true` or `instar=true`. It now also exposes `custom_password` and optional `custom_image` inputs for the exact one-key path; the workflow remains manual-dispatch-only. The p0 DH18 proposal is prepared as `custom_password=18`, `custom_image=17`, but **has not been dispatched or executed**. Uses pinned maintained OutGuess commit 24810e14327c2bbeedeaadd3e24491f2a4425c02 and authentic original JPEGs.
 - [Complete successful run](https://github.com/FlareZ123/liber-primus/actions/runs/42780745513) and [preserved exact machine output](https://github.com/FlareZ123/liber-primus/actions/runs/42780745513/artifacts/13746300544).
 - [Independent full-corpus direct-pad inversion of the 16 default-key binary arrays](outguess-lp2-original-directpad.md) tested a different possible use and also found no original plaintext.
