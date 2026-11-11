@@ -21,3 +21,5 @@ jobs:
         run: node sims/spiral16_rekeyed_sections_invariant.cjs
       - name: Test two-predecessor public-row all-secret GP29 invariant
         run: node sims/two_register_public_row_invariant.cjs
+      - name: Test source 32 by 8 fragment public-phase all-secret GP29 obstruction
+        run: node sims/lp2_lcg32_allsecret_phase_invariant_sft.cjs

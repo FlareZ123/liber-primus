@@ -125,6 +125,30 @@ The LCG is a source-motivated full-period traversal with an exact known-plaintex
 
 The natural fixed row/column assignment, table-byte GP29/GP28 pad, and direct 256-state GP29/GP28 pad have now been tested and excluded in their stated scopes. The residual useful question is whether an **independently visible operation** specifies a nonlinear or non-GP use of these states; the source permutation by itself gives no way to recover the genuine plaintext.
 
+## All-secret 32×8 public-phase GP29 obstruction on original LP2 (Agent 10, 11 November)
+
+The 32 source-visible thirteen-dot fragments (including their two empty intervals) and the original 32×8 byte table suggest a natural **public phase**: fragment ID `f=0..27`, column `(runeIndex−fragmentStart) mod8`. The forward/inverse 13/31 row and column permutations merely relabel these states. A book-global column index `runeIndex mod8` likewise relabels each fragment's phases. Thus all **eight** combinations of row direction, column direction and global/fragment clock yield the same exact key-invariant test.
+
+Consider the entire cryptographic class `C_i=π_(f,column)(P_i)`, where **every one of the 256 public phases may have its own completely arbitrary secret bijective GP29 substitution**. Since any bijection preserves symbol equality among positions using the same phase, the total within-state ordered equal-symbol-pair fraction is immutable, whatever the unknown keys:
+
+```
+original LP2, all 12,956 unsolved runes:
+94,652 equal ordered pairs / 2,728,348 eligible ordered pairs
+= 0.034692055412286114
+```
+
+The [standalone original-input and all-secret positive-control reproducer](../sims/lp2_lcg32_allsecret_phase_invariant_sft.cjs) uses the exact source-annotated 32-fragment boundaries, tests all eight phase maps, and compares **1,740** overlapping 12,956-rune native-GP English windows from three independently stored controls, sampled every 323 runes. Every window exceeds the original source's within-phase equality rate:
+
+| Independent native corpus | GP rune length | Windows | Native within-phase collision rate | Windows at or below original |
+| --- | ---: | ---: | ---: | ---: |
+| Gibran | 62,550 | 154 | 0.057778–0.062229 | 0 |
+| Shakespeare | 216,874 | 632 | 0.056752–0.061851 | 0 |
+| Emerson | 320,945 | 954 | 0.058376–0.062322 | 0 |
+
+For every corpus the SFT encrypts 12,956 native-GP runes using **independently permuted secret 29-symbol substitution tables at each of the 256 public phases**, asserts complete 12,956/12,956 secret-inverse recovery, and confirms the invariant survives genuine encryption exactly. This is a **key-independent rejection of directly native-English GP29 plaintext behind any fixed secret substitution at these public 32×8 phases**. It is stronger than testing the earlier 40 concrete grid-byte additive inverses because no key or S-box is guessed. Native corpora are not a formal exhaustive model of all possible natural or artificial plaintext. The windows overlap heavily and the 13/31 phase interpretation was retrospectively motivated, so neither a binomial p-value nor historical authorship should be inferred.
+
+**Important boundary of this exclusion:** an evolving/secret-state substitution, feedback across runes, source-dependent resegmentation, variable-rate text, a non-GP intermediate, or an encryption layer preceding this substitution can break the native-GP phase collision expectation. The source does not yet select any of these options. No original plaintext was recovered. The useful decision is to retire fixed 32×8 phase GP29 S-box/key searches and demand a truly different independently specified transform.
+
 ## Reproduction
 
 Run from the repository root with Node.js:
