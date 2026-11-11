@@ -336,11 +336,11 @@ The proposed southeast-diagonal extraction was tested by Agent 24, conditional o
 | + | − | 1,951 / 6,477 | 2,025 / 6,477 | −13.27281310 |
 | + | + | 1,959 / 6,477 | 1,969 / 6,477 | −13.29562028 |
 
-The byte counts are near the 1,971.60 random expectation; the best trigram score remains 4.8481 nats/rune below the weakest native-control minimum (−8.40039103). This rejects the direct SE-diagonal-as-row-seed recurrence as a canonical-byte or GP-English decoder, not other diagonal uses or the selector itself. Reproducer: [Agent 24 SE-diagonal SFT](../sims/gf841_51x127_se_diagonal_seed_sft.cjs).
+The byte counts are near the 1,971.60 random expectation; the best trigram score remains 4.8481 nats/rune below the weakest native-control minimum (−8.40039103). This rejects the direct SE-diagonal-as-row-seed recurrence as a canonical-byte or GP-English decoder; it does not validate the selector, whose 241/331 input remains GIMP-confounded. Reproducer: [Agent 24 SE-diagonal SFT](../sims/gf841_51x127_se_diagonal_seed_sft.cjs).
 
 All four original-input transformations re-encrypt exactly. A deterministic **6,477-byte** canonical plant, b[i] = (73*i+41) mod 256, is also recovered exactly under all four inverse operations. The 127 quotient pairs are nonzero, so the multiplicative cases are well-defined.
 
-**Decision:** this rejects the exact zL^r*zR^j*Q[j] mask as a direct canonical-byte transport or recognizable GP-English decode. It does not reject other uses of the p57 counts, the p32 antipodal pair, or nonlinear/non-byte state.
+**Decision:** this rejects the exact zL^r*zR^j*Q[j] mask as a direct canonical-byte transport or recognizable GP-English decode. It does not validate the selector: the 241/331 values remain rendering-confounded until the exact crop is compared with the GIMP field and residual.
 
 Reproducers: [Agent 24's canonical-byte two-cycle gate](../sims/gf841_51x127_two_cycle_mask_sft.cjs) and [Agent 42's full source-fixed field-clock gate](../sims/lp2_stipple_241_331_field_clock_gate.cjs).
 
