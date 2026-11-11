@@ -239,12 +239,51 @@ assert.deepEqual(reports.map(r => [
     [86, 477, 517, 464, 86, 95],
     [443, 483, 518, 462, 87, 98]]);
 
+// A genuinely original Cicada-authored native GP plaintext controls the
+// English-register assumption: solved LP1 section 4 is printed in the clear.
+// Its 755 runes yield 27 overlapping 729-rune windows, not 27 independent texts.
+const master = read("resources/transcriptions/liber_primus_master.txt");
+const runeIndex = new Map(Array.from(corpus.runes, (rune, index) => [rune, index]));
+const sections = master.slice(master.indexOf("\n\n") + 2).split(/\s*\$\s*/)
+  .filter(section => Array.from(section).some(symbol => runeIndex.has(symbol)));
+assert.equal(sections.length, 18);
+const nativeLp1 = Array.from(sections[4])
+  .filter(symbol => runeIndex.has(symbol)).map(symbol => runeIndex.get(symbol));
+assert.equal(nativeLp1.length, 755);
+assert.deepEqual(nativeLp1.slice(0, 11), [2, 18, 20, 3, 15, 15, 3, 0, 23, 10, 1]);
+
+const originalAuthorWindows = [];
+for (let i = 0; i + LENGTH <= nativeLp1.length; i++) {
+  const passage = nativeLp1.slice(i, i + LENGTH);
+  originalAuthorWindows.push({
+    row: equalPairs(passage, "row"),
+    column: equalPairs(passage, "column"),
+    phaseAny: minimumPhaseCollision(passage),
+    editRow: minimumExtraReplacements(source, passage, "row"),
+    editColumn: minimumExtraReplacements(source, passage, "column"),
+  });
+}
+const minAuthor = key => Math.min(...originalAuthorWindows.map(item => item[key]));
+assert.equal(originalAuthorWindows.length, 27);
+assert.deepEqual(
+  ["row", "column", "phaseAny", "editRow", "editColumn"].map(minAuthor),
+  [563, 562, 556, 106, 100]
+);
+const plantedAuthor = plantedCiphertext(nativeLp1.slice(0, LENGTH), "row", rng32(0x3302));
+assert.equal(equalPairs(plantedAuthor, "row"), equalPairs(nativeLp1.slice(0, LENGTH), "row"));
+assert.equal(minimumExtraReplacements(plantedAuthor, nativeLp1.slice(0, LENGTH), "row"), 0);
+
 console.log(JSON.stringify({
   interpretation: "independent arbitrary row-or-column secret 29-rune substitution and within-group positional permutation, one 27x27 source square",
   original: { runeCount: LENGTH, rowPairs: cRow, columnPairs: cColumn,
     maximumOver27RowPhases: Math.max(...cRowPhases),
     maximumOver27ColumnPhases: Math.max(...cColPhases) },
   referenceWindowCount: allWindows,
+  independentlyAuthoredNativeLp1Control: { actualCleartextRunes: nativeLp1.length,
+    overlappingWindows: originalAuthorWindows.length, lowestRowPairs: minAuthor("row"),
+    lowestColumnPairs: minAuthor("column"), lowestEitherAxisAny27Phases: minAuthor("phaseAny"),
+    leastExtraReplacementsRow: minAuthor("editRow"),
+    leastExtraReplacementsColumn: minAuthor("editColumn") },
   minimumReferencePairsEvenAfter27PhaseAndAxisSelection: absoluteEnglishMinAny,
   minimumExtraRuneReplacementsOverAllReferenceWindows: absoluteMinEdits,
   independentSourceControls: reports,
