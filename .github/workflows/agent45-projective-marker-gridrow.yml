@@ -1,10 +1,6 @@
 name: Agent45 projective marker gridrow nonce probe
 on:
-  push:
-    branches: [main]
-    paths:
-      - sims/projective_marker_gridrow_nonce_probe.cjs
-      - .github/workflows/agent45-projective-marker-gridrow.yml
+  workflow_dispatch:
 jobs:
   projective-marker-gridrow:
     runs-on: ubuntu-latest
