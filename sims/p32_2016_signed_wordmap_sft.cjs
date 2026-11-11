@@ -81,9 +81,104 @@ assert(armored);
 const packet = Buffer.from(armored[1].split(/\r?\n/u)
   .filter(line => line && !line.startsWith('=')).join(''), 'base64');
 assert.equal(packet.length, 543);
-assert.equal(packet.readUInt16BE(1), 540);
-const rsaMpi = packet.subarray(-512);
-assert.equal(rsaMpi.length, 512);
+
+// The p32 word walk selects this packet before any packet-field analysis.
+const packetBodyLength = packet.readUInt16BE(1);
+const packetHeaderLength = packet.length - packetBodyLength;
+assert.deepEqual([...packet.subarray(0, 3)], [0x89, 0x02, 0x1c]);
+assert.deepEqual([packetHeaderLength, packetBodyLength], [3, 540]);
+const body = packet.subarray(packetHeaderLength);
+assert.equal(body[0], 4);
+const hashedSubpacketLength = body.readUInt16BE(4);
+const unhashedLengthOffset = 6 + hashedSubpacketLength;
+const unhashedSubpacketLength = body.readUInt16BE(unhashedLengthOffset);
+const unhashedSubpacketOffset = unhashedLengthOffset + 2;
+assert.deepEqual([hashedSubpacketLength, unhashedLengthOffset, unhashedSubpacketLength, unhashedSubpacketOffset], [6, 12, 10, 14]);
+const issuerSubpacketLength = body[unhashedSubpacketOffset];
+const issuerSubpacketType = body[unhashedSubpacketOffset + 1] & 0x7f;
+const issuerKeyIdOffset = unhashedSubpacketOffset + 2;
+const issuerKeyIdLength = issuerSubpacketLength - 1;
+const issuerKeyId = body.subarray(issuerKeyIdOffset, issuerKeyIdOffset + issuerKeyIdLength);
+assert.deepEqual([issuerSubpacketLength, issuerSubpacketType, issuerKeyIdOffset, issuerKeyIdLength], [9, 16, 16, 8]);
+assert.equal(issuerKeyId.toString('hex'), '181f01e57a35090f');
+assert(signature.toString('ascii').includes('Verify OpenPGP 7A35090F.'));
+const leftHashOffset = unhashedSubpacketOffset + unhashedSubpacketLength;
+const leftHashCheck = body.subarray(leftHashOffset, leftHashOffset + 2);
+const mpiBitLengthOffset = leftHashOffset + 2;
+const mpiBitLength = body.readUInt16BE(mpiBitLengthOffset);
+const rsaMpi = body.subarray(mpiBitLengthOffset + 2);
+const metadataPrefix = body.subarray(0, mpiBitLengthOffset + 2);
+assert.deepEqual([leftHashOffset, leftHashCheck.toString('hex'), mpiBitLengthOffset, mpiBitLength, metadataPrefix.length, rsaMpi.length],
+  [24, 'f065', 26, 4094, 28, 512]);
+
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let d = 2; d * d <= n; d++) if (n % d === 0) return false;
+  return true;
+}
+function primeRank(value) {
+  assert(isPrime(value));
+  let rank = 0;
+  for (let n = 2; n <= value; n++) if (isPrime(n)) rank++;
+  return rank;
+}
+const cuneiformPrimeRanks = [primeRank(1033), primeRank(3301)];
+assert.deepEqual(cuneiformPrimeRanks, [174, 464]);
+const packetSelector = [cuneiformPrimeRanks[0] / 58, cuneiformPrimeRanks[0] / 29,
+  cuneiformPrimeRanks[1] / 29, cuneiformPrimeRanks[1] / 58];
+assert.deepEqual(packetSelector, [3, 6, 16, 8]);
+const clauseRows = clauses.map((clause) => clause.reduce((n, word) => n + [...word].length, 0) / 11);
+const p32Geometry = [clauseRows[0], (11 + 1) / 2, ring.length, clauseRows[1]];
+const packetGeometry = [packetHeaderLength, hashedSubpacketLength, issuerKeyIdOffset, issuerKeyIdLength];
+assert.deepEqual(p32Geometry, [3, 6, 16, 8]);
+assert.deepEqual(packetGeometry, p32Geometry);
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const word8Gp = [...clauses[1][0]].map((rune) => corpus.translit[runeIndex.get(rune)]).join('');
+assert.equal(word8Gp, 'HOMEXWDSLFD');
+assert.equal(steps[7], packetBodyLength);
+
+const sumValues = (values) => values.reduce((a, b) => a + b, 0);
+const at = (r, c) => primes[11 * r + c];
+const inclusiveSides = [
+  sumValues(Array.from({ length: 5 }, (_, i) => at(3, 3 + i))),
+  sumValues(Array.from({ length: 5 }, (_, i) => at(3 + i, 7))),
+  sumValues(Array.from({ length: 5 }, (_, i) => at(7, 3 + i))),
+  sumValues(Array.from({ length: 5 }, (_, i) => at(3 + i, 3)))
+];
+assert.deepEqual(inclusiveSides, [275, 347, 373, 339]);
+const fieldMod = (n) => ((n % 29) + 29) % 29;
+function fieldInv(a) {
+  for (let x = 1; x < 29; x++) if (fieldMod(a * x) === 1) return x;
+  throw new Error('noninvertible field element');
+}
+const m28 = inclusiveSides.map(fieldMod);
+assert.deepEqual(m28, [14, 28, 25, 20]);
+function applyProjective(matrix, x) {
+  const [a, b, c, d] = matrix;
+  if (x === 29) return c === 0 ? 29 : fieldMod(a * fieldInv(c));
+  const denominator = fieldMod(c * x + d);
+  if (denominator === 0) return 29;
+  return fieldMod((a * x + b) * fieldInv(denominator));
+}
+function projectiveOrder(matrix) {
+  const points = Array.from({ length: 30 }, (_, i) => i);
+  let image = points.slice();
+  for (let order = 1; order <= 60; order++) {
+    image = image.map((x) => applyProjective(matrix, x));
+    if (image.every((x, i) => x === points[i])) return order;
+  }
+  throw new Error('projective order not found');
+}
+const fixed28 = Array.from({ length: 30 }, (_, i) => i).filter((x) => applyProjective(m28, x) === x);
+const m28Order = projectiveOrder(m28);
+assert.deepEqual(fixed28, [20, 25]);
+assert.equal(m28Order, metadataPrefix.length);
+assert.equal(fixed28.reduce((n, x) => n + corpus.prime[x], 0), cuneiformPrimeRanks[0]);
+const verificationSpan = metadataPrefix.subarray(fixed28[0], fixed28[1] + 1);
+assert.equal(verificationSpan.length, cuneiformPrimeRanks[0] / 29);
+assert.equal(verificationSpan.toString('hex'), '7a35090ff065');
+assert.equal(verificationSpan.subarray(0, 4).toString('hex'), '7a35090f');
+assert.equal(verificationSpan.subarray(4).toString('hex'), leftHashCheck.toString('hex'));
 /** @param {Buffer} bytes @returns {number[]} */
 function numeral29(bytes) {
   let number = BigInt('0x' + bytes.toString('hex'));
@@ -183,6 +278,11 @@ assert.deepEqual(count, { ring1136: 26, first1467: 425, difference331: 31, joint
 console.log(JSON.stringify({
   source: { page: 32, top, left, first33, ringValues, perimeter, difference: 331 },
   signedMessage: { bytes: signature.length, headerStart: begin, headerLength: header.length, headerCenter: center },
+  openPgpGeometry: {packetBytes:packet.length, packetHeaderLength, packetBodyLength, metadataPrefixLength:metadataPrefix.length,
+    mpiBitLength, word8Gp, word8PrimeSum:steps[7], cuneiformPrimeRanks, packetSelector, p32Geometry, packetGeometry,
+    issuerKeyId:issuerKeyId.toString('hex'), leftHashCheck:leftHashCheck.toString('hex'),
+    m28:{matrix:m28, order:m28Order, fixed:fixed28, fixedPrimeSum:fixed28.reduce((n,x)=>n+corpus.prime[x],0),
+      verificationSpan:verificationSpan.toString('hex')}},
   firstSeven: { steps: steps.slice(0, 7), positions: walk.slice(0, 7) },
   allWordFinalPosition: walk.at(-1), signatureBase64Start: 366,
   reversedDimensions: {width: decimalReverse(top), height: decimalReverse(left),
