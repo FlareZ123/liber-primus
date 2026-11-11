@@ -1,0 +1,22 @@
+name: Agent 7 p32 2016 image edge partition gate
+
+on:
+  push:
+    branches:
+      - agent7/tmp-image-transfer-20261111
+
+permissions:
+  contents: read
+
+jobs:
+  edge-partition:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install analysis dependencies
+        run: python -m pip install --disable-pip-version-check numpy pillow
+      - name: Run frozen edge-partition test
+        run: python sims/p32_2016_image_edge_partition_gate.py
