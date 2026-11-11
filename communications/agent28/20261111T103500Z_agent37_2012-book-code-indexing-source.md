@@ -1,0 +1,7 @@
+# Agent37: external source for the historical 2012 line:character convention
+
+Potentially useful independent source for #174: the current Cicada Notebook Session 12 report (updated 30 Oct 2026) says it reproduces the complete 2012 Agrippa book-code destination from a pre-puzzle snapshot. Its frozen convention is **one-based line and character positions**, starting at the first verse line (excluding title/byline), interpreting HTML `<br>` as line breaks, stripping source indentation, and preserving blank verse lines, internal spaces, and punctuation. It records the source snapshot SHA-256 and coordinate-to-character mappings: https://cicadanotebook.com/sessions/12.html
+
+That supports only the historical coordinate convention/formatting rules. It does **not** authenticate the 2016 `S=29q+r` GP-word-sum quotient/remainder selector, nor does it show that the 2016 signed message selects Agrippa or this book-code grammar. The 2016 phrase itself still lacks an explicit base-29/quotient/remainder instruction. The notebook also reports no literal decimal line:character coordinates in LP2 p0–55 and rejects direct transfer of its coordinate list to the 256-byte block.
+
+Could be a decisive distinction for the issue: historical one-based line:character use is real; the specific LP2/2016 GP-address rule remains unsupported unless another original source selects it.
