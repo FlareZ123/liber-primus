@@ -59,11 +59,21 @@ def run() -> dict:
                     ink_delta = ImageChops.difference(earlier_ink, later_ink)
                     ink_disagreement = int(ImageStat.Stat(ink_delta).sum[0] / 255)
                     mean_abs = [round(v, 6) for v in ImageStat.Stat(delta).mean]
+                    tile_counts = []
+                    for yy in range(0, ink_delta.height, 128):
+                        for xx in range(0, ink_delta.width, 128):
+                            tile = ink_delta.crop(
+                                (xx, yy, min(xx + 128, ink_delta.width), min(yy + 128, ink_delta.height))
+                            )
+                            tile_counts.append(int(ImageStat.Stat(tile).sum[0] / 255))
+                    maximum_tile = max(tile_counts)
+                    tiles_20 = sum(n >= 20 for n in tile_counts)
                     print(
                         f"PIXEL_DIFFERENCE page={page} bbox={delta.getbbox()} "
                         f"qtable_equal={quantization_same} "
                         f"mean_rgb_abs={mean_abs} ink_mask_diff_pixels={ink_disagreement} "
                         f"ink_bbox={ink_delta.getbbox()} "
+                        f"max_128px_tile={maximum_tile} tiles_ge20={tiles_20} "
                         f"historical_sha256={hashlib.sha256(historic).hexdigest()} "
                         f"canonical_sha256={hashlib.sha256(canonical).hexdigest()}",
                         flush=True,
