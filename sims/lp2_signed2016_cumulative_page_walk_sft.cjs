@@ -80,28 +80,48 @@ assert.deepEqual(inverse([known.map((c,i)=>(c+key[i%key.length])%29)],true,-1),k
 const p55 = corpus.pages.find((x) => x.page === 55);
 assert.equal(p55.indices.length, 76);
 assert.equal(key.length, p55.indices.length);
-const directTerminal = [-1, 1].map((sign) => {
- const indices = p55.indices.map((c, i) =>
-   (c + sign * key[i] + 29) % 29);
- let offset = 0;
- const segmented = pages[55].map((runeWord) => {
-   const word = indices.slice(offset, offset + runeWord.length);
-   offset += runeWord.length;
-   return word.map((n) => corpus.translit[n]).join("");
- });
- assert.equal(offset, 76);
- return {
-   sign, transliteration: indices.map((n) => corpus.translit[n]).join(""),
-   segmentedGP: segmented.join(" "), outputIoC: ioc(indices)
- };
-});
+const originalGrid = JSON.parse(read("resources/liber-primus/base60-grid.json")).byte_rows;
+assert.equal(originalGrid.length, 32);
+assert(originalGrid.every((row) => row.length === 8));
+const perimeter = originalGrid.flatMap((row, rowIndex) =>
+  row.filter((_, col) => rowIndex === 0 || rowIndex === 31 || col === 0 || col === 7));
+assert.equal(perimeter.length, 76);
+const keyProjections = [
+  {name: "ordinal", digits: key},
+  {name: "GP-prime-mod29", digits: key.map((index) => corpus.prime[index] % 29)},
+  {name: "totient-GP-prime-mod29", digits: key.map((index) => (corpus.prime[index] - 1) % 29)}
+];
+const directTerminal = [];
+for (const projection of keyProjections) {
+  for (const usePerimeter of [false, true]) {
+    for (const sign of [-1, 1]) {
+      const indices = p55.indices.map((cipher, i) =>
+        (cipher + sign * (projection.digits[i] +
+          (usePerimeter ? perimeter[i] : 0)) % 29 + 29) % 29);
+      let offset = 0;
+      const words = pages[55].map((runeWord) => {
+        const indicesInWord = indices.slice(offset, offset + runeWord.length);
+        offset += runeWord.length;
+        return indicesInWord.map((n) => corpus.translit[n]).join("");
+      });
+      assert.equal(offset, 76);
+      directTerminal.push({
+        projection: projection.name,
+        usePrintedRowMajorPerimeter: usePerimeter,
+        sign,
+        transliteration: words.join(" "),
+        ioc: ioc(indices)
+      });
+    }
+  }
+}
 const result={
  status:"provisional route, no plaintext or key recovered",
  source:"signed 2016 16-word sentence; GP-prime sums; cumulative modulo 58",
  sourceSum:route.reduce((n,x)=>n+x.primeSum,0),
  sourcePageCount:58,
  anchors:{firstPage:27,lastPage:55,bookendPair:pair,treePage:route[1].page,numericTablePage:route[12].page,uniqueVisited:16},
- selectedRunes:key.length, originalP55Runes:p55.indices.length, directP55PadInverse:directTerminal,
+ selectedRunes:key.length, originalP55Runes:p55.indices.length, directP55PadInverse:directTerminal, perimeterOriginalBytes:perimeter.length,
  originalCipherIoC:ioc(cipherPages.flat()),
  directKeyInversions:controls,
  route:route.map(x=>({...x,selectedGP:toIndices(x.selected).map(n=>corpus.translit[n]).join("")}))
