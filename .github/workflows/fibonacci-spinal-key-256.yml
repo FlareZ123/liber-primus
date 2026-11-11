@@ -1,8 +1,18 @@
 name: Fibonacci-prime square as a 256-bit cipher key
 on:
   workflow_dispatch:
+    inputs:
+      probe:
+        description: "Prior packed AES keyscan or literal 16-periodic byte/GP29 pad"
+        required: true
+        type: choice
+        default: packed
+        options:
+          - packed
+          - literal-pad
 jobs:
   scan:
+    if: inputs.probe == 'packed' || inputs.probe == ''
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -14,3 +24,15 @@ jobs:
       - run: node sims/fibonacci_square_grid_payload.cjs
       - run: node sims/fibonacci_heading_crib.cjs
       - run: node sims/fibonacci_title_gematria_alignment.cjs
+
+  literal-pad:
+    if: inputs.probe == 'literal-pad'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fixed phase-zero 16-value p15 Fibonacci pad against original p50 256 bytes
+        run: node sims/p15_fibonacci_16byte_p50_grid_direct_pad_sft.cjs
