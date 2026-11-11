@@ -45,30 +45,22 @@ The Parable's wording about shedding circumferences motivates removing the outer
 
 Its sum is **1,136**, exactly the byte length of the PGP-authenticated signed 2016 payload `resources/historical/cicada2016-4gq25-outguess.asc`. This is an exact cross-artifact equality, but by itself does not specify an extraction.
 
-### Four-side matrix
+### Four-side matrix and the corner-ownership ambiguity
 
-The four side sums are:
+The originally proposed clockwise four-side sums were **N=275, E=257, S=373, W=231**. Their actual geometric convention matters. They are a **corner-exclusive** partition of the 16 perimeter glyphs: the north and south rows take **five cells each, including all four corner cells**, while east and west take **three interior cells each**. With row-major placement, this yields:
 
-| Side (clockwise) | Sum | Modulo 29 |
-|---|---:|---:|
-| North | 275 | 14 |
-| East | 257 | 25 |
-| South | 373 | 25 |
-| West | 231 | 28 |
+\[
+M=\begin{pmatrix}14&25\\25&28\end{pmatrix}\pmod{29},
+\qquad f(x)=\frac{14x+25}{25x+28}\pmod{29}.
+\]
 
-Placing these clockwise side sums in row-major order gives a source-oriented 2×2 matrix over (mathbb F_{29}):
+Under this particular allocation, \(\det M=28=-1\), trace \(13\), \(f(13)=24\), and the projective map has order **7**, finite fixed points **22** and **25** and four seven-cycles on \(\mathbb P^1(\mathbb F_{29})\). The source ring and all these computations are exact; assignment of the corners to horizontal rather than vertical sides is a **proposed operation**, not an image-fixed instruction.
 
-[
-M=\begin{pmatrix}14&25\\25&28\end{pmatrix}.
-]
+The geometrically conventional alternative, summing all five cells on **each inclusive side**, counts the four corners twice and yields sides **[275,347,373,339]**, matrix **[[14,28],[25,20]]** modulo29, determinant **15**, trace **5**, projective order **28**, and \(f(13)=17\). This is also a legitimate reproducible map, with a different cycle structure. Another natural alternative, dividing the clockwise 16-rune sequence into equal consecutive four-cell quarters from the top-left, yields sides **[222,310,332,272]**, matrix **[[19,20],[13,11]]** modulo29, projective order **5**, and \(f(13)=1\).
 
-Its determinant is (28=-1pmod{29}), and its trace is (13). It therefore defines an invertible Möbius transformation
+For a finite sensitivity test preserving the physical geometry, assign each of the four corner glyphs to exactly one of its two adjacent sides and assign each of the twelve noncorner glyphs to their unique respective sides. There are precisely **16** possible corner-ownership assignments. The prior horizontal-corner choice is the only one of these 16 with the **joint** numerical signature (trace13, determinant28, projective order7, \(f(13)=24\)); indeed it is also the only order-7 choice. Rotating the four-cell-quarter partition through all **16** ring origins yields **none** with the joint signature. These are exhaustive conditional counts, **not** evidence that the maker specified the horizontal choice; the signature was selected retrospectively using its attractive modular correspondences.
 
-[
-f(x)=\frac{14x+25}{25x+28}\pmod{29}.
-]
-
-The map has projective order **7**, and (f(13)=24). Its finite fixed points are (22) and (25); their sum is (18pmod{29}). The action on (\mathbb P^1(\mathbb F_{29})) consists of four 7-cycles and two fixed points. The fixed points correspond to GP indices OE (22) and AE (25); the 7-cycle containing 13 is (13\to24\to19\to3\to6\to20\to17\to13).
+The proposed 7-cycle and its external matches are thus **conditional on corner ownership**. To claim a historical key or operation, a surviving manuscript instruction must disambiguate the partition independently of those matches. The alternative order-28 map may merit attention because \(\varphi(29)=28\), but that equality alone has no plaintext consequence. [Source-asserting enumeration](../sims/tree121_mobius_corner_conventions_sft.cjs) and [successful original-input manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42949089685).
 
 ### Cross-artifact constraints
 
@@ -84,7 +76,7 @@ These are exact modular correspondences, not fitted parameters:
 
 The image-dimension residues are also consistent with the p32 tiling already established: the top-row and left-column prime sums are exactly 563 and 569. The 16 ring cells plus the 13-dot count total 29, the GP alphabet size; this count identity is suggestive but does not yet specify a mapping. The projective point at infinity supplies a natural 30th state for the 29-symbol alphabet, but identifying it with the 13-dot mark remains a hypothesis.
 
-This is now a strong **source-constrained Möbius/map hypothesis**: p32 supplies the ring and matrix; the earlier LP1 MOBIUS reference supplies the operation family; the 2016 image and 2014 square independently constrain the matrix invariants; the seven-cycle structure matches the 7×7 historical square. It is not yet a plaintext recovery or proof that this is the intended cipher.
+This is a **source-anchored but partition-dependent Möbius/map hypothesis**: p32 supplies the ring, while the original seven-cycle matrix requires an additional, unproven corner allocation. The earlier LP1 MOBIUS reference suggests the operation family; the 2016 image and 2014 square supply retrospective checks on the chosen matrix's invariants. The seven-cycle alone cannot establish the historical selection rule and does not recover plaintext.
 
 ### Bounded direct-use tests
 
@@ -136,6 +128,6 @@ The exact source image dimensions, p32 prime checksums, and the proposed ring/wo
 
 ## Decision and next discriminator
 
-The strongest current source leads are the **ring-derived Möbius action** and the separately specified **p32 word-sum walk into the 2016 signed PGP marker**, both anchored by the exact central-ring sum = signed payload length = 1,136. Neither identifies the authentic unknown-LP2 cipher. The direct cipher interpretations are negative; do not repeat them. A high-value next discriminator is whether the walk's **317→331** signature-delimiter transition fixes an unambiguous source operation that predicts original LP2 plaintext. Independently, determine whether the matrix's four 7-cycles and two fixed points supply a source-defined rune map, and whether projective infinity corresponds to a 13-dot marker. Both original-image direction probes are negative: mod4/Sobel and literal continuous-degree/Sobel. A successor must fix a distinct source-visible extraction or a forward key mechanism before reading unknown LP2. Do not expand into arbitrary ring rotations, image thresholds, or unconstrained key families.
+The strongest current source leads are the **corner-conditional ring-derived Möbius action** and the separately specified **p32 word-sum walk into the 2016 signed PGP marker**, both anchored by the exact central-ring sum = signed payload length = 1,136. Neither identifies the authentic unknown-LP2 cipher. The direct cipher interpretations are negative; do not repeat them. A high-value next discriminator is whether the walk's **317→331** signature-delimiter transition fixes an unambiguous source operation that predicts original LP2 plaintext. Independently, determine whether the matrix's four 7-cycles and two fixed points supply a source-defined rune map, and whether projective infinity corresponds to a 13-dot marker. Both original-image direction probes are negative: mod4/Sobel and literal continuous-degree/Sobel. A successor must fix a distinct source-visible extraction or a forward key mechanism before reading unknown LP2. Do not expand into arbitrary ring rotations, image thresholds, or unconstrained key families.
 
 **Reproducers and sources:** [sims/tree_prime_canvas_partition_sft.py](../sims/tree_prime_canvas_partition_sft.py) for p32 geometry and prior image negatives; [sims/tree121_directional_field_sft.py](../sims/tree121_directional_field_sft.py) and [sims/tree121_continuous_direction_sft.py](../sims/tree121_continuous_direction_sft.py) for completed original-image direction negatives; [resources/historical/cicada2014-openpuff-magic-squares.txt](../resources/historical/cicada2014-openpuff-magic-squares.txt) for the 7×7 square; [workplace/2016-image-dimensions-lag6-source-derivation.md](../workplace/2016-image-dimensions-lag6-source-derivation.md) for the signed-image coordinate derivation. This remains intermediate research, not an established decryption.
