@@ -72,7 +72,28 @@ Several immediate interpretations were tested and are negative:
 
 The best canonical-coset read order has GP trigram score about **-13.8615**, versus **-13.9040** for chronological ciphertext, with the same near-uniform IoC. It is not native GP plaintext. The grid-cell transforms are likewise random-like. These gates reject a bare transposition or direct table pad.
 
-The surviving decision is narrower: the source values specify a natural 179×8 state space, while the manuscript's numerical table has **32 rows × 8 columns**. A useful successor must explain, from source evidence, how those 32 rows select or advance within the 179 row states. Free row phases or language-selected step rules are not justified.
+A concrete source-motivated 32→179 mapping has now been tested: table row r corresponds to 13-dot fragment r; column c selects one of the eight affine cycles; cell byte b advances that cycle b steps from its canonical start; the p27-section rune at the resulting position becomes K[r,c]. The row's eight runes then repeat as a per-fragment key. Both natural and PATIENCE column orders, each under C−K, C+K and K−C, fail the original language test. This rejects only that exact table-byte-as-step / p27-rune repeating-key interpretation; it does not resolve every possible 32-row/179-state mapping. Free row phases or language-selected step rules remain unjustified.
+
+## 32×8 table bytes as 179-cycle steps: bounded negative
+
+The simplest way to connect the printed 32×8 table to the eight 179-cycles is to let table row r identify the matching 13-dot fragment, column c identify affine cycle c, and byte b=T[r,c] count forward applications of `A(x)=31x+13 mod1433` from canonical start `x_c=525+19^c`. Read the p27-section rune at `A^b(x_c)` as the key symbol `K[r,c]`. The eight selected runes form a period-eight key for fragment r. This is motivated by the signed clue's 'words/map, numbers/direction' framing, the 32-fragment/32-row match, and the eight table columns/eight cycles; it remains an interpretation, not an explicit cipher instruction. The p27 section is itself unknown ciphertext, so this is a self-keyed map, not an external plaintext key.
+
+The source schedule is fixed: 31 thirteen-dot marker layers, 29 unique global offsets, two empty intervals and 30 nonempty fragments; the first 28 fragments contain all 12,956 unknown runes. The eight canonical cycle starts are `[526,544,886,219,443,400,1016,1256]`. The test resets the eight-symbol key at each fragment and does not search a phase, row permutation, cycle offset or alternate affine map. It tests natural table-column order and the source-motivated PATIENCE order, each with the three standard Vigenere orientations:
+
+| Column order | Direction | Original IoC | Original GP trigram mean |
+| --- | --- | ---: | ---: |
+| Natural | C−K | 0.0344847 | -4.472523 |
+| Natural | C+K | 0.0345031 | -4.473666 |
+| Natural | K−C | 0.0344847 | -4.464071 |
+| PATIENCE | C−K | 0.0344671 | -4.471688 |
+| PATIENCE | C+K | 0.0345016 | -4.446553 |
+| PATIENCE | K−C | 0.0344671 | -4.465332 |
+
+Raw ciphertext is IoC **0.0344784**, GP trigram mean **-4.450153**; the best candidate (PATIENCE/C+K) improves the score by only **0.00360** nats per rune and remains far below the held-out native-GP positive control (**-2.306011**, IoC **0.0598323**). All six candidates re-encode the original exactly and recover a 12,956-rune native-GP plant exactly. Those round trips verify the implementation, not the historical key. No output is plaintext; all remain uniform-like.
+
+**Decision:** reject this specific 32-row/fragment × 8-cycle/cell-byte-step × p27-rune × repeating-period-eight Vigenere schedule. Retain the exact 179×8 affine decomposition as a structural observation, but do not broaden this negative into arbitrary phases, row/column permutations or key transformations. A successor must supply a distinct source-selected 32→179 readout or reversible operation.
+
+Reproducer: [`sims/p27_affine_tablebyte_fragment_key_sft.cjs`](../sims/p27_affine_tablebyte_fragment_key_sft.cjs).
 
 ## 2016 word-address convergence, bounded
 
@@ -85,4 +106,4 @@ However, `TWO` is reached from the existing FOLD component only by continuing re
 
 ## Reproduction
 
-Run [`p27_border_affine_179x8_sft.cjs`](../sims/p27_border_affine_179x8_sft.cjs). It asserts the section length, prime/totient relation, primitive-root order, 179 relation, both border identities, affine cycle partition, canonical coset starts, WORDS prime sum, and the two exact p27 title word-address hits.
+Run [`p27_border_affine_179x8_sft.cjs`](../sims/p27_border_affine_179x8_sft.cjs) for the arithmetic/cycle decomposition and [`p27_affine_tablebyte_fragment_key_sft.cjs`](../sims/p27_affine_tablebyte_fragment_key_sft.cjs) for the frozen 32×8 table-byte → 179-cycle → p27-rune fragment-key test.
