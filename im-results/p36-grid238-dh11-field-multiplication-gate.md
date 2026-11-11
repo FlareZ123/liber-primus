@@ -1,6 +1,6 @@
 # Source factor GF(29^238): p36 field operations and DH3301 exponent-11 stream tests
 
-**Status:** the original p36/R238 field multiplier, exponent-11 inverse and power-11/relative-trace stream remain negative. A newly derived canonical norm of the p36 field element equals the signed DH23 shared secret `2`, and its GF(29²) norm has a precise relation to the p3 red-field generator. The natural pairwise, scalar and EA-key interpretations were tested on untouched original LP2 ciphertext with native-GP positive controls; all are negative. **No unknown plaintext, authentic key or destination recovered.** The norm correspondence is intermediate evidence, not an established cipher instruction.
+**Status:** original p36/R238 multiplication, exponent-11 inversion, power-11/relative-trace streaming, direct trace-of-powers additive streaming, and frozen DH-share relations all give bounded negatives. A newly derived canonical norm of the p36 field element equals the signed DH23 shared secret `2`, and its GF(29²) norm has a precise relation to the p3 red-field generator. The natural pairwise, scalar and EA-key interpretations were tested on untouched original LP2 ciphertext with native-GP positive controls; all are negative. **No unknown plaintext, authentic key or destination recovered.** The norm correspondence is intermediate evidence, not an established cipher instruction.
 
 ## Why these are plausible finite operations
 
@@ -33,6 +33,32 @@ All post-p36 blocks are likewise below IoC **0.045**; the mean is approximately 
 | Reversed | **0.0338262** | F F N F AE A C IA H R U X A I I G G M L P TH L R N P |
 
 Both outputs are nonlinguistic by the same predeclared GP coincidence threshold. For all transformations the original input is reproduced exactly when reencryption is applied. A 238-rune plaintext plant made by repeating the source-solved p57 text is encrypted then recovered **238/238** under every tested inverse. This validates implementation and detection capacity; it does not constitute evidence of an unknown-page decryption.
+
+## Original-source DH-share equality and trace-of-X-power stream (Agent 7, 11 November 2026)
+
+This is a distinct original-input test of the published 238-dimensional field, using **no fitted ciphertext plaintext, state, or variable phase**. Its strongest premise is speculative: if printed p36 is one field public value and the two independently marked 119-rune prefixes preceding p3/p39 red triads supply another, the source-authenticated 2013 DH23 example suggests checking the exponents **6** (server) and **15** (client). The values 11 and 331 come from the separately archived DH3301 participant transcript, where 331 was participant-generated rather than a Cicada-selected exponent. Both constructions rely on the unproven decision to cast GP29 runes into GF(29^238) field elements.
+
+With p36 as \(A\) and the two possible p3/p39 119-prefix concatenations as \(B\), test the exact field identities \(A^{15}=B^{6}\), \(A^{6}=B^{15}\), and, as a weak secondary comparator, \(A^{11}=B^{331}\). Both ascending and descending original coefficient orientation are fixed before examining the answers. The results below count identical coordinates out of **238** and must equal **238/238** to indicate a DH relation:
+
+| Coefficient order | 119-prefix order | A^15 versus B^6 | A^6 versus B^15 | A^11 versus B^331 |
+| --- | --- | ---: | ---: | ---: |
+| Descending | p3,p39 | 10 | 9 | 10 |
+| Descending | p39,p3 | 15 | 12 | 8 |
+| Ascending | p3,p39 | 9 | 7 | 5 |
+| Ascending | p39,p3 | 11 | 6 | 8 |
+
+**None of the twelve equations holds.** A field exponentiation positive control \( (X^6)^{15}=(X^{15})^6 \) holds coefficient-for-coefficient. This retires these exact two-source public-share readings; it does not exclude a shared secret encoded elsewhere, altered framing, or a genuinely specified key-derivation function.
+
+A second direct source-motivated operation treats the complete original p36 238-rune vector as \(S\in GF(29^{238})\) and uses the quotient indeterminate \(X\) as the field clock. For each runic position emit \(K_i=\operatorname{Tr}_{GF(29^{238})/GF(29)}(S X^i)\), and invert \(P_i=C_i\pm K_i\bmod29\). This differs from the previously tested **power-11 state recurrence**: the state advances by multiplication with the field element \(X\), and the output is the canonical field trace. Newton sums derived from the full original polynomial give the fixed first basis traces \(238\bmod29=6,\ 18,\ 4\). Four unadjusted original full-book cases were tested:
+
+| p36 coefficient order | Subtract trace IoC | Add trace IoC |
+| --- | ---: | ---: |
+| Ascending | 0.03445646 | 0.03448517 |
+| Descending | 0.03455266 | 0.03447779 |
+
+The unchanged original IoC is **0.03447840**; independently recovered native GP prose is typically substantially higher. All **12,956** original ciphertext symbols re-encrypt exactly for each of the four bijective additive candidates, and independent planted solved-page GP symbols also invert exactly. Neither order/sign produces a language-frequency change indicative of authentic plaintext; in particular reencryption is a necessary software invariant, not a key-identification test. The source does not command the trace stream, so this is a deliberately bounded mechanical negative.
+
+[Exact source-based CommonJS single-file test](../sims/p36_q238_trace_x_and_dh_shares_sft.cjs) computes the monic field polynomial from all original 256 table bytes, checks the byte SHA-256, validates the source rune counts, and carries both independent comparisons.
 
 ## Power-11 state recurrence and relative-trace output (Agent 30, 11 November 2026)
 
