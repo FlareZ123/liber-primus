@@ -69,9 +69,24 @@ The p27 section used for the Vigenère check is the 1433-rune run beginning at p
 
 An exploratory calculation \(31^{167}\bmod1433=1329\), followed by reductions of 1329 into the p50 table, is not an authenticated DH construction. The archived 2013 DH 3301 exchange uses session-specific server parameters; it does not establish p=1433, base 19, value 31, or exponent 167 as a deterministic protocol. Do not promote numerical projections of 1329 to evidence. Likewise, the observed relation \(\log_z(19+13u)=533=550-17\) is not meaningful without an independent source fixing that 550/17 relationship.
 
+## Exact cross-link to the p55 fold matrix
+
+The p55 three-source matrix has characteristic polynomial \((X-21)(X^2-15X+18)\), with its two non-base-field eigenvalues \(u^{83}=18+22u\) and \(u^{727}=26+7u\). The p50 quotient element is not merely another order-840 element: direct field arithmetic gives
+
+\[
+g^{127}=u^{83}=18+22u,\qquad
+g^{323}=u^{727}=26+7u.
+\]
+
+The conjugacy is exact: \(g^{323}=(g^{127})^{29}\), since \(127\cdot29\equiv323\pmod{840}\). The exponents have source-compatible readings: 127 is the last zero-based position of p53's 128-rune black prefix; 323 is p53 word26's final GP rune B/17 multiplied by the p27 red-title length 19; and 83 is the p50 global row-major index of token 3D. The updated reproducer checks these identities from the original grid and corpus inputs.
+
+This is a precise cross-artifact algebraic correspondence. The p55 matrix's irreducible quadratic component has the same characteristic polynomial as multiplication by \(g^{127}\); equivalently, its 2D component is similar over GF(29) to the regular-representation matrix for multiplication by \(g^{127}\) in the p3 basis \(u\). The similarity basis itself is not source-selected. The source exponents are candidate selectors, not proof of intended use.
+
+The simplest direct use—multiplication of fixed adjacent two-rune GP29 pairs by a field element or a period-840 field schedule—is already contained in the all-secret pair-bijection exclusion in sims/lp2_gf841_pair_phase_allsecret_sft.cjs. The literal p55 Hill3 inverse and the one signed-word evolving-matrix state are also negative on their source-marked original spans. No cipher operation, direction or clock is selected, and no unknown plaintext is recovered.
+
 ## Current assessment
 
-The exact quotient \(P_{50}/F_{39}\bmod F_3=19+13u\) is a reproducible algebraic result and a plausible primitive-generator clue. Its intended application remains unknown. The p53-to-p3/p39 selector is a useful hypothesis for prioritizing this field structure, but neither it nor the primitive element currently yields plaintext.
+The exact quotient \(P_{50}/F_{39}\bmod F_3=19+13u\) is reproducible and has an exact p55-matrix eigenvalue correspondence. The source clues make the relationship worth preserving, but no operation on unknown ciphertext is selected. Retain it as intermediate evidence; do not promote it to an established result or reopen unconstrained field searches.
 
 Related work:
 - results/README.md — authoritative p3/p39 polynomial and current synthesis

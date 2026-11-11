@@ -88,6 +88,27 @@ function powField(a,n){
 }
 /** @param {Field} a @returns {number[]} */
 const traceNorm=([a,b])=>[mod(2*a+3*b),mod(a*(a+3*b)-8*b*b)];
+function sourcePrimitiveElement() {
+  const P=grid.byte_rows.flat().map(mod);
+  function divideBy24(desc) {
+    const q=[mod(desc[0])];
+    for(let i=1;i<desc.length-1;i++)q.push(mod(desc[i]+24*q[i-1]));
+    const remainder=mod(desc[desc.length-1]+24*q[q.length-1]);
+    return {q,remainder};
+  }
+  const d1=divideBy24(P),d2=divideBy24(d1.q);
+  assert.equal(d1.remainder,0);
+  assert.equal(d2.remainder,0);
+  const quotient=d2.q.map(x=>mod(2*x));
+  const a=quotient.slice().reverse().map(mod);
+  for(let i=a.length-1;i>=2;i--){
+    const factor=mod(15*a[i]);
+    a[i]=0;
+    a[i-1]=mod(a[i-1]-23*factor);
+    a[i-2]=mod(a[i-2]-13*factor);
+  }
+  return [mod(a[0]),mod(a[1])];
+}
 /** @param {number[]} x @param {number[][]} m @returns {number[]} */
 function transform(x,m){
   assert.equal(x.length%3,0);
@@ -143,6 +164,18 @@ function main(){
   assert.deepEqual([det3(N),order3(N)],[27,84]);
   const u83=powField([0,1],83),u727=powField([0,1],727);
   assert.deepEqual([u83,u727],[[18,22],[26,7]]);
+  const g=sourcePrimitiveElement();
+  const g127=powField(g,127),g323=powField(g,323);
+  assert.deepEqual(g,[19,13]);
+  assert.deepEqual([g127,g323],[u83,u727]);
+  const p53Word26=wordsOf(53)[25];
+  const p27TitleFirst=page(27)[0];
+  const p53BlackPrefix=annotation(53).red_spans.find(s=>s.start===128&&s.length===51).start;
+  assert.deepEqual(p53Word26,[12,1,17]);
+  assert.equal(p27TitleFirst,19);
+  assert.equal(p53BlackPrefix-1,127);
+  assert.equal(p53Word26.at(-1)*p27TitleFirst,323);
+  assert.equal(tokens[83],"3D");
   assert.deepEqual(traceNorm(u83),[15,18]);
   assert.deepEqual(traceNorm(u727),[15,18]);
   assert.deepEqual(powField([0,1],840),[1,0]);
@@ -213,7 +246,10 @@ function main(){
   console.log(JSON.stringify({red_rows:[a,b],fold_totals:totals,
     radix60:{row:row60,charpoly:char3(M),det:det3(M),order:order3(M)},
     radix59:{row:row59,charpoly:char3(N),det:det3(N),order:order3(N)},
-    field:{u83,u727,trace_norm:traceNorm(u83)},
+    field:{u83,u727,g,g127,g323,trace_norm:traceNorm(u83),
+      source_exponents:{black_prefix_last:p53BlackPrefix-1,
+        word26_B_times_title_M:p53Word26.at(-1)*p27TitleFirst,
+        p50_3D_global_index:83}},
     original_direct_Hill3:actual,original_42signed_state: keyedOriginal,known_plaintext_plant:"75/75 restored",
     status:"Exact source-algebraic bridge, no recovered unknown LP2 plaintext"},null,2));
 }

@@ -57,6 +57,27 @@ function mulGF841(x, y) {
     29 * mod(a * d + b * c + 3 * b * d);
 }
 
+function powGF841(x, n) {
+  let acc = 1;
+  while (n > 0) {
+    if (n % 2) acc = mulGF841(acc, x);
+    x = mulGF841(x, x);
+    n = Math.floor(n / 2);
+  }
+  return acc;
+}
+
+const pairGF841 = x => [x % 29, Math.floor(x / 29)];
+const u = 29; // 0 + 1u in the [a,b] = a + bu representation
+const g127 = powGF841(g, 127);
+const g323 = powGF841(g, 323);
+const u83 = powGF841(u, 83);
+const u727 = powGF841(u, 727);
+if (g127 !== u83 || g323 !== u727 ||
+    powGF841(g127, 29) !== g323) {
+  throw new Error('p55 matrix eigenvalue cross-link failed');
+}
+
 let order = 1;
 let value = g;
 while (value !== 1 && order <= 840) {
@@ -78,7 +99,22 @@ const result = {
   field_element: String(constant) + ' + ' + String(uCoefficient) + 'u',
   integer_encoding: g,
   multiplicative_order: order,
-  primitive: order === 840
+  primitive: order === 840,
+  p55_matrix_eigenvalue_crosslink: {
+    g_127: pairGF841(g127),
+    g_323: pairGF841(g323),
+    u_83: pairGF841(u83),
+    u_727: pairGF841(u727),
+    identities: {
+      g127_equals_u83: g127 === u83,
+      g323_equals_u727: g323 === u727,
+      frobenius_conjugate: powGF841(g127, 29) === g323
+    },
+    source_candidate_exponents: {
+      127: 'p53 black-prefix length 128 minus one',
+      323: 'p53 word26 final GP rune 17 times p27 red-title length 19'
+    }
+  }
 };
 
 if (constant !== 19 || uCoefficient !== 13 || order !== 840) {
