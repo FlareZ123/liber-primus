@@ -1,6 +1,6 @@
 # Key-free source-text fingerprint from original LP2 word lengths
 
-**Scope and decision (11 November 2026).** Original LP2 word boundaries persist as a possible side channel regardless of the rune substitution/stream cipher, provided the encryption preserves word segmentation. We tested an independent route to *actual* plaintext: a source passage reused verbatim from an already available philosophical/literary text would have a long, highly distinctive sequence of Gematria-Primus rune word lengths. Neither the five prior literary/language controls nor the two historically selected Cicada book-code texts produced a decisive match. **No unknown LP2 plaintext or key was recovered.**
+**Scope and decision (11 November 2026).** Original LP2 word boundaries persist as a possible side channel regardless of the rune substitution/stream cipher, provided the encryption preserves word segmentation. We tested an independent route to *actual* plaintext: a source passage reused verbatim from an already available philosophical/literary text would have a long, highly distinctive sequence of Gematria-Primus rune word lengths. Neither the five literary/language controls, the two historically selected Cicada book-code texts, nor the authenticated 2016 Cicada-signed instruction produced a decisive match. **No unknown LP2 plaintext or key was recovered.**
 
 ## Original-input test and reproducibility
 
@@ -37,6 +37,25 @@ The historically archived participant reference texts are pinned verbatim as `re
 The four archival files contain respectively **1,897, 1,968, 2,002 and 120** Latin-letter words. Across the combined **5,867** Crowley words the longest exact consecutive match with the original ciphertext is **8 words**, and the longest two-error match is **13 words**. The latter aligns original LP2 word **1,131** (physical p20) against chapter II source word **1,264**, beginning *"lift thee up nor shall they who cry aloud their folly that thou"*. Its 13 matching lengths contain two errors. There is no independent clue selecting this page/verse pairing, and the sequence is too short to identify a quotation. The Blake original clipping gives a maximum of **7** exact words and no ≥11-word two-error match. A known p57 textual control matches **19 of 20 words**; a different hidden **40-word** authentic-Crowley planted alignment with two length errors is recovered as **40/40** under this same scanner. The detector has demonstrable power for a verbatim 40-word source passage, while long genuine encrypted quotations could still be missed by non-preserved word boundaries or differing GP segmentation.
 
 **Executed independent result:** [successful manual GitHub Actions run 43005379989](https://github.com/FlareZ123/liber-primus/actions/runs/43005379989), commit `dca63d9`, Node 22. Its log prints all four source chapter scores, source positions and both positive controls. The test recovers **no unknown plaintext, authentic key or LP2 cipher**; it is a finite negative for literal passage reuse from precisely these two historical book-code source works.
+
+## Cicada-signed 2016 message: original-word-length crib (Agent 28, 11 November 2026)
+
+**Finite decision: the exact 43-word signed message does not align distinctively with unknown LP2 words.** The original OutGuess payload from the 2016 \`4gq25.jpg\` clue is a preserved **1,136-byte** clear-signed ASCII file with SHA-256 \`fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010\`. Its OpenPGP signature was previously verified under repository key fingerprint \`6D854CD7933322A601C3286D181F01E57A35090F\` ([authenticated source record](../resources/cicada2016-4gq25.md)). The full signed body starts \`Hello.\` and ends \`Beware false paths. Verify OpenPGP 7A35090F.\`; word and paragraph boundaries are preserved in that file. Tokenizing exact source-body alphanumeric tokens and selecting alphabetic words yields **43** words. The signed numeric \`3301\` and mixed \`7A35090F\` are excluded as non-GP words; importantly \`7A35090F\` is **not** split into accidental \`A\` and \`F\` tokens. This choice is fixed before comparison.
+
+The existing canonical **2,896-word / 12,956-rune** LP2 word parser is reused, including words continued across physical page turns. The existing historical crib detector recognizes the longest exact common word-length sequence and separately requires **six consecutive exact GP lengths before allowing two later mismatches, with a 40-word cap**. Latin words use the repository's frozen GP multigraph rules \`TH/NG/EO/OE/AE/IA/EA\`. The significance gate was fixed at **at least 20** consecutive source-aligned word lengths with at most two mismatches, plus independently selected placement or actual rune-level plaintext before accepting a true crib.
+
+| Original ciphertext versus authenticated signed body | Bounded outcome |
+| --- | --- |
+| Signed source size | 43 alphabetic words (source bytes pinned) |
+| Longest exact common length run | **6 words**, LP2 zero-based word **1851**, source word **27** |
+| Longest six-seed/two-error run | **8 words**, with **2 length errors**, at the same offsets |
+| Any matched run of 11+ words under the frozen fuzzy detector | **0** |
+| Qualified 20-word original candidate | **0** |
+| Fixed 128 permutations of the same 43 source GP lengths | Median maximal fuzzy run **8**, maximum **12** |
+
+The 8-word original match begins in the signed body's \`ARE THE DIRECTION SEEK AND YOU WILL BE FOUND\` passage. Its length is identical to the median matched-length shuffle maximum, so it supplies no distinctive known plaintext. Two positive controls are retained: the independent solved-p57 wording agrees **19/20** GP rune word lengths, and a **40-word hidden signed-source plant with two length edits is recovered 40/40** by the same detector. The resulting finite negative excludes exact or nearly exact reuse of a substantial run of **this** signed instruction under preserved GP word boundaries and the declared spelling tolerance. It says nothing about paraphrases, altered spacing, other messages or different hidden encoding.
+
+**Reproducer:** [single-file Node 22 SFT](../sims/lp2_2016_signed43_wordlength_sft.cjs), using the pinned 1,136-byte source and unchanged canonical manuscript. No cipher key, original unknown plaintext or intended destination was recovered. Issue [#222](https://github.com/FlareZ123/liber-primus/issues/222) is complete; do not widen the historical-text scan without an independently selected new passage.
 
 ## What this changes and what it does not
 
