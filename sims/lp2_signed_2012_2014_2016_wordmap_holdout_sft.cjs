@@ -130,10 +130,32 @@ assert.equal(select(map(tokens.signed2016)).length,9);
 assert.deepEqual(select(map(tokens.stage112014)).map(x=>x.word),['hearing']);
 assert.deepEqual(select(map(tokens.signed2016)).map(x=>x.word)
   .filter(x=>x.toLowerCase()==='seeks'), ['seeks']);
+// Independent source-count alternative: "Liber Primus" names the *whole*
+// original printed book (17 LP1 + 58 LP2 = 75 scans), rather than only LP2.
+// The published 2016 pronoun "Its" does not explicitly authorize discarding
+// the first 17 pages. Preserve original printed LP2 word boundaries.
+const wholeMaster = read('resources/transcriptions/liber_primus_master.txt')
+  .split('%');
+assert.equal(wholeMaster.length,75);
+const fullBookPages = Array.from({length:75}, (_, p) =>
+  p<17 ? printedWords(wholeMaster[p]) : pages[p-17]);
+/** @param {string} word */
+function wholeBookAddress(word) {
+  const sum = gpSum(word), globalPage = sum%75;
+  const wordIndex = Math.floor(sum/75);
+  const destination = fullBookPages[globalPage]?.[wordIndex] || null;
+  return {word,sum,globalPage,wordIndex,destination:gpText(destination)};
+}
+const wholeBookAlternatives = ['the','their','seeks','lies']
+  .map(wholeBookAddress);
+assert.deepEqual(wholeBookAlternatives.map(x=>x.destination),
+  ['NG','IG','THNIEA','THE']);
+
 console.log(JSON.stringify({
   test:'Frozen GP-prime / 58-page signed-message map, 2012/2014 holdouts',
   sourceFiles, originalPages:58,printedWordCount:2973,
   anchors, baseline, alternatives,
   independentSameSum:{historicalHearing,laterSeeks},
+  wholeBook75Alternative:{count:fullBookPages.length,examples:wholeBookAlternatives},
   conclusion:'One same-sum historical MY pointer, no authenticated 58-page quotient/remainder/zero-origin instruction or original plaintext.'
 },null,2));
