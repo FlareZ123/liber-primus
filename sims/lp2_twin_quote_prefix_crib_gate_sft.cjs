@@ -165,6 +165,61 @@ const differencePeriods=Array.from({length:20},(_,i)=>({
   mismatches:periodMismatches(diff,i+1),
 }));
 assert.ok(differencePeriods.every(x=>x.mismatches>0));
+
+/**
+ * Test whether any order-r homogeneous GF29 linear-feedback recurrence fits
+ * every observed difference digit. Both quote keys may start at unrelated IVs
+ * while sharing an unknown fixed recurrence polynomial.
+ * @param {number[]} data
+ * @param {number} order
+ * @returns {boolean}
+ */
+function fitsLinearFeedback(data,order){
+  const m=x=>((x%29)+29)%29;
+  const inverse=x=>{
+    for(let y=1;y<29;y++)if(m(x*y)===1)return y;
+    throw Error('nonzero field element expected');
+  };
+  const rows=[];
+  for(let i=order;i<data.length;i++){
+    rows.push([...Array.from({length:order},(_,j)=>data[i-j-1]),data[i]]);
+  }
+  let rank=0;
+  for(let col=0;col<order;col++){
+    let pivot=rank;
+    while(pivot<rows.length&&m(rows[pivot][col])===0)pivot++;
+    if(pivot===rows.length)continue;
+    [rows[pivot],rows[rank]]=[rows[rank],rows[pivot]];
+    const scale=inverse(m(rows[rank][col]));
+    for(let j=col;j<=order;j++)rows[rank][j]=m(rows[rank][j]*scale);
+    for(let i=0;i<rows.length;i++){
+      if(i===rank)continue;
+      const times=m(rows[i][col]);
+      for(let j=col;j<=order;j++)
+        rows[i][j]=m(rows[i][j]-times*rows[rank][j]);
+    }
+    rank++;
+  }
+  return rows.every(row=>row.slice(0,order).some(x=>m(x)!==0)||m(row[order])===0);
+}
+const feedbackFits=Array.from({length:11},(_,i)=>fitsLinearFeedback(diff,i+1));
+assert.deepEqual(feedbackFits,[false,false,false,false,false,false,false,false,false,false,true]);
+const feedbackCoefficients=[1,2,3];
+/** @param {number[]} startingState @returns {number[]} */
+function generatedStream(startingState){
+  const result=startingState.slice();
+  while(result.length<21){
+    let v=0;
+    for(let i=0;i<3;i++)v+=feedbackCoefficients[i]*result[result.length-i-1];
+    result.push(v%29);
+  }
+  return result;
+}
+const startStream=generatedStream([2,7,11]);
+const endStream=generatedStream([13,17,19]);
+const plantedDifference=startStream.map((v,i)=>(endStream[i]-v+29)%29);
+assert.equal(fitsLinearFeedback(plantedDifference,3),true);
+
 /**
  * If both quotes contain the same first 21 plaintext runes, their key
  * differences must equal the observed ciphertext differences.
@@ -230,6 +285,9 @@ console.log(JSON.stringify({
     positiveControlConflicts:0},
   keyIndependentPeriodicDifferenceTest:{testedPeriods:'1 through 20',
     originalMismatches:differencePeriods,positivePeriod7:periodMismatches(periodicDiff,7)},
+  keyIndependentSharedLinearRecurrence:{originalOrders1through11:feedbackFits,
+    lowestConsistentOrder:feedbackFits.indexOf(true)+1,
+    plantedOrder3:true},
   testedSourceFixedKeyFamilies:tests.length,bestKeyTests:tests.slice(0,6),
   authenticSolvedPagePositive:{runicSymbols:21,matchingKeyDifferences:21},
   conclusion:'Original quote openings suggest a bounded crib candidate, but no source-fixed tested additive key explains a shared 21-rune plaintext.',
