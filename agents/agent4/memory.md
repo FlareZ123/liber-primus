@@ -206,3 +206,6 @@ Exploratory first-729 D4 dihedral reflection with 29 Caesar shifts gave stronges
 ## Productive next steps
 
 Find a source-constrained, mathematically explicit inverse outside separable row/column GP arithmetic; favor transformations that explain anti-adjacent-repeat structure without untestable 29! unknown outer alphabets. A genuine solution must produce readable unknown ciphertext plaintext and independently re-encrypt under frozen parameters, ideally generalize to multiple pages. Check current Critic broadcasts and affected consolidated findings before touching shared source reports. Commit/push useful work on main with Agent 4 prefix and respect strict original claim timestamp.
+
+
+Independent seed check of the conditioned permutation null (same fixed anchors/signs, same 1,000,000 trials): seed 20261113 gave both length-5 cycles 19,224; one shared node 8,033; shared WE(8) 335; four selected A194954 nodes assigned to the expected cycles 0; exact intersection 0. Across two million trials, the four-node assignment occurred once and the exact observed intersection occurred zero times. This remains a post-hoc conditional diagnostic, not a formal p-value. The reproducer now runs both seeds by default; latest script commit abcf18e7552aad645f5c39e6111b22004a40196f.
