@@ -136,7 +136,24 @@ The most economical direct test takes **MIX** and **MIXNG** (GP spelling of MIXI
 
 A separate, source-motivated phase test uses the exact 13-GP-rune path **CABAL→UOID→FORM** as a repeating key and resets its phase at each of the **28 original thirteen-dot events** in unknown pages p0–55. This creates 28 fragments, including the two source-verified empty intervals (fragments 9 and12). Fixed direct GP29 Vigenère in both signs and Beaufort are tested under both fragment-reset and continuous-global clocks. All six exact original re-encryptions pass, but the best fragment-reset GP-English score is only **−6.28008** (raw unknown stream **−6.29600**; native LP1 plaintext control **−2.32704**); fragment-reset IoCs remain **0.034465–0.034480** versus raw **0.034478**. The p55 and p36 outputs remain ciphertext-like. This retires only direct additive/Beaufort use of this key under these clocks; it does not exclude a different operation or key role. Full reproducible gate: [13-dot-reset key SFT](../sims/p55_wisdom_13dot_key_reset_sft.cjs).
 
-No source instruction yet selects Vigenère, Beaufort, a key clock, or a target beyond the proposed central-column path. An authenticated unknown-LP2 cipher key and destination remain unresolved.
+### “MIXING” as a 13-column keyed transposition: bounded negative
+
+The route yields the 13-GP-rune string `CABALUOIDFORM` and the conditional instruction word `MIX/MIXING`. The simplest recognizable “mix” operation not yet tested was a standard columnar transposition using that exact 13-rune key. The key's column order is ranked by **Gematria Primus rune order** (stable original-column order for equal key runes), not by a second, unselected English-alphabet convention. Both ascending and descending read orders were tested, on the source-selected p55 76-rune page and on the full 12,956-rune unknown stream. The ragged final row is handled exactly; there is no padding, phase, or reset parameter.
+
+The trigram model was trained separately on the pinned Shakespeare and Gibran GP29 controls (add-`0.1` smoothing). Native-reference scores are **−2.22983** (Shakespeare) and **−2.06219** (Gibran); raw unknown LP2 scores are **−4.67945** and **−4.34935**. Uniform GP29 is **−3.36730**.
+
+| GP-key read order | Target | Shakespeare score | Gibran score |
+|---|---|---:|---:|
+| ascending | p55, 76 runes | −4.74893 | −4.29003 |
+| ascending | full unknown, 12,956 runes | −4.69726 | −4.36178 |
+| descending | p55, 76 runes | −4.76471 | −4.58776 |
+| descending | full unknown, 12,956 runes | −4.67088 | −4.36723 |
+
+The best full-stream score is effectively unchanged from raw ciphertext for Shakespeare (−4.67088 versus −4.67945) and worse for Gibran. Every output remains substantially below native language and even below the uniform-symbol baseline. A 12,956-symbol known-English round-trip control passes with the same ragged-column implementation and both key orders.
+
+**Decision:** reject this first, source-motivated columnar interpretation of `MIXING`. The route's “MIX” word remains an underspecified clue; it does not license more transposition families, arbitrary rotations, reset rules, or other transformations without an independent source selector. Reproducer: [13-key columnar gate](../sims/p55_wisdom_13key_columnar_gate.cjs).
+
+The first natural columnar interpretation of “MIXING” is now tested and negative. No source instruction yet selects Vigenère, Beaufort, columnar transposition, a key clock, or a target beyond the proposed central-column path. An authenticated unknown-LP2 cipher key and destination remain unresolved.
 
 [Source-exact route SFT](../sims/p55_wisdom_cardinal_route_sft.cjs) asserts both original routes, original 2013 mixed-table token, alternative historical-square controls, both permutation experiments and the fixed original-key inverses. The first global-census version passed [manual CI run 42988336268](https://github.com/FlareZ123/liber-primus/actions/runs/42988336268); the new fragment-reset key test is a separate bounded negative. The parent [Director Issue #156](https://github.com/FlareZ123/liber-primus/issues/156) is closed: a 16-cell-ring cipher transfer remains **unselected**, and this new exact cross-page directional pattern is held as a **conditional** original-cipher lead requiring a next source-selected operation.
 
