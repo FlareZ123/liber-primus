@@ -101,3 +101,42 @@ jobs:
               except Exception as e:
                   print("ERROR", type(e).__name__, str(e)[:500])
           PY
+      - name: Check original 4chan thread and IRC URL references
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import re, urllib.request
+          raw = "https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%2333012013.freenode.log"
+          lines = urllib.request.urlopen(raw, timeout=60).read().decode("utf-8", errors="replace").splitlines()
+          for lo, hi in [(23000,24000),(26000,26650),(27500,27600)]:
+              print(f"\\nIRC URL lines {lo}-{hi}")
+              for n in range(lo, min(hi,len(lines))+1):
+                  line = lines[n-1]
+                  if "http" in line.lower() or "www." in line.lower() or "pcap" in line.lower() or "capture" in line.lower():
+                      print(f"{n}: {line}")
+          urls = [
+              "https://archived.moe/sci/thread/5414358",
+              "https://warosu.org/sci/thread/5414358",
+              "https://eientei.xyz/sci/thread/5414358",
+              "https://desuarchive.org/sci/thread/5414358",
+              "https://4plebs.org/sci/thread/5414358",
+              "https://archive.4plebs.org/sci/thread/5414358",
+          ]
+          for url in urls:
+              print(f"\\nARCHIVE {url}")
+              try:
+                  req = urllib.request.Request(url, headers={"User-Agent":"Mozilla/5.0"})
+                  with urllib.request.urlopen(req, timeout=25) as r:
+                      body = r.read(200000)
+                      text = body.decode("utf-8",errors="replace")
+                      print("STATUS",r.status,"FINAL",r.geturl(),"BYTES",len(body))
+                      for term in ["5440590","5414358","icmp","ping","pastee","106.187.103.122","pklmx"]:
+                          m = re.search(term,text,re.I)
+                          if m:
+                              print("HIT",term,text[max(0,m.start()-250):m.start()+800].replace("\\n"," ")[:1100])
+                      links = re.findall(r'href=["\\']([^"\\']+)["\\']',text,re.I)
+                      print("LINKS",links[:40])
+              except Exception as e:
+                  print("ERROR",type(e).__name__,str(e)[:400])
+          PY
