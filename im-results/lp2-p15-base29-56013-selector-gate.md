@@ -27,6 +27,23 @@ The bar marks an actual printed word boundary. Joining the two words yields the 
 
 Among the **18** source-annotated red rune spans across all 58 physical LP2 pages (including the two solved pages), this top p15 span is the **only** one with remainder 560 in either the forward or reverse reading. This is a descriptive census and is **not** a significance estimate for the larger after-the-fact space of lengths, operations, target numbers and orientations.
 
+## New source-locked Euclidean quotient: a full historical-file offset
+
+The same **unfitted** positional numeral has a second component from dividing by 3301:
+
+```text
+29,553,734,724 = 3301 × 8,952,964 + 560
+                              ^          ^
+                              byte       numeric DATA/560.* stem
+                              offset?
+```
+
+This naturally suggests **`DATA/560.13` byte offset 8,952,964** when paired with the square's unique `13` suffix discriminator. Crucially, the authentic 2013 phone stage already demonstrates **the operation of XOR with a byte from a numbered data file at a stated offset**. Reusing the divisor/remainder of one source-visible red title to select a dataset number and location provides a concrete human-solvable hypothesis with no arbitrary offset search. The hypothesized file position is inside the independently reported full dataset length **118,818,811 bytes**, while the reversed nine-rune numeral's quotient **3,756,882,266** lies outside the file, favoring the forward original-reading orientation for this *particular* model.
+
+The locally preserved reconstructed file covers only byte offsets **0–15,329**, far short of **8,952,964**. The complete ISO member's pinned SHA-256 is `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`. An executable **[full-source single-file test](../sims/lp2_p15_56013_quotient_offset_sft.cjs)** verifies this digest, extracts the exact offset, applies the source-native XOR to both GP index and prime-weight serializations of the fixed 1,894-rune following section, and applies the two fixed GP29 reductions under both signs. The same script tests the specific nine-rune `FIBONACCI` red-title crib as a conditional plaintext prediction, including the historically known solved-page option to leave initial F unencrypted. [Manual original-source test workflow](../.github/workflows/lp2-p15-56013-quotient-offset.yml) downloads the 118 MB archived file. No fitting or key-phase scan is performed.
+
+**Interpretation:** The numerical pair `(560, 8,952,964)` is exact arithmetic, and the original 2013 cipher operation is historical fact. Their *connection* to LP2 is still hypothetical. A failed direct XOR or mod29 test of the precise quotient would reject those direct transfers while leaving other authenticated consumers to be discovered. The full-file experiment must finish and yield reproducible output before any plaintext claim or firm negative decision on this stronger quotient-offset test.
+
 ## Source-pad inverse tests
 
 The independently documented [CicadaOS `560.13` prefix](../resources/derived/cicada2013-56013-reconstruction.md) contains the exact first **15,330** bytes reconstructed from two preserved 2013 XOR-stage outputs. Before any LP2 use, the reproducible test verifies the historical positive control: XOR the 23-byte 2013 ciphertext `28c07e1b102d4d5c4c1a376e064477e1416fcc94928765` with dataset bytes beginning at **12821** to recover exactly `gbyh7znm6c7ezsmr.onion\n`. This confirms the period-original byte operation and the available reconstructed bytes.
