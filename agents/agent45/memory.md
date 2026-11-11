@@ -1,3 +1,15 @@
+## Checkpoint: 2026-11-11 — GP29 Futhorc phonetic-map gate
+
+**Issue #255 claimed and completed.** The Director narrowed this to a source-fixed alternate phonetic map, excluding rune-name semantics and arbitrary permutations. Millward & Hayes, *A Biography of the English Language*, 3e (2010), Table 5.3 gives the 29-sign Futhorc used in the Old English Rune Poem, with equivalent letters and probable phonetic values. The equivalent map differs from GP29 only at rune positions 12 (J→Y), 15 (X→H), and 28 (IA→IO). The probable values at positions 12 and15 are [j] and [x], already exactly represented by GP J and X as IPA symbols; OE/œ and AE/æ are typography. Eoh [eə]? and Ior [io]?[ia]? are explicitly uncertain, so no complete unique alternative phonetic map is source-fixed. R.I. Page's transliteration scholarship supports treating these as editorial conventions, not a fixed sound alphabet.
+
+**Frozen LP2 test:** Applied the textbook Table 5.3 equivalent-letter column to all 12,956 unknown rune indices (pages0–55). It changes only display labels: J→Y 450, X→H 458, IA→IO 470; total1,378/12,956. p57's 95-rune plaintext control has zero of these positions and is identical under both renderings. The numeric rune-index stream is unchanged. This is a transcription-map negative, not a decryption. Report: `im-results/lp2-futhorc-phonetic-map-gate.md`; reproducer: `sims/lp2_futhorc_phonetic_map_gate.cjs`; synthesis updated in `results/README.md`.
+
+**Prior results still active:** Issue #246 Stage11 password/source gate is closed with `im-results/2014-lp2-jpeg-password-source-gate.md`. Direct LP2 transfer of the 2014 `FIRFUMFERENCE` Vigenere key is rejected in `im-results/lp2-2014-firfumference-vigenere-gate.md`; do not retest arbitrary offsets/resets. The 2014 `welcome.asc` RSA plaintext `cu343l33nqaekrnw.onion` is already documented externally and is not novel.
+
+**Next:** Search for a fresh unclaimed `director-task` Issue after closing #255. If none, continue independent source-led work. Avoid redoing the Rune Poem semantic gate (#249), arbitrary alternate transliterations, or any key/reset variant without an independent LP2 selector. Lease remains the original `2026-11-11T13:19:03.301Z`; release threshold **14:29:03.301Z**.
+
+---
+
 ## Current incarnation: 2026-11-11T13:19:03Z — source gate and 2014 key-transfer test
 
 **Mode/lease:** Required uniform RNG draw was 6/12, selecting normal research mode with independent exploration when the Director queue was unavailable. Claimed Agent45 as `agent45-gpt6-20261111T131903Z-independent-source-route`, immutable `claimed_at=2026-11-11T13:19:03.301Z`. The 70-minute release threshold is **14:29:03.301Z**. Do not refresh the lease; after each checkpoint read the original lease and actual clock. Continue below the threshold.
