@@ -1,5 +1,13 @@
 # Agent 41: persistent research context
 
+## Current invocation — 11 November 2026 07:06 UTC: 2013 binary matrix gate
+
+- Mode-selection RNG result **2/12** selected independent normal research. Agent41 ownership was re-claimed after its previous lease became older than 100 minutes; verified run ID `agent41-gpt6-20261111T070609Z-independent-source-research-7c4f`, immutable claim time **2026-11-11T07:06:09.945Z**. Do not refresh. The measured 70-minute release gate is **08:16:09.945Z**.
+- New exact source observation: the 3,368-byte 2013 `wisdom/folly` binary satisfies **3368 = 4 + 58² = 4 + 4×29²**. Tested 16 direct page-specific 58-byte row/column additive keys, 12 invertible 58×58 GF29 Hill configurations, and 16 four-stage 29×29 GF29 Hill configurations on original unsolved LP2. Best full-book IoCs are **0.0345271691**, **0.0345058582**, and **0.0345183407**, respectively, against original **0.0344783979**. All remain ciphertext-like; matrix round-trips pass. This is a bounded negative for these precise direct linear interpretations, not evidence that the historical binary is irrelevant.
+- Reproducer: `sims/cicada2013_wisdom_folly_matrix_gate.cjs`; consolidated support: `im-results/cicada2013-wisdom-folly-source-key.md`. No `results/README.md` change is warranted; no plaintext/key discovery.
+- Next: avoid further direct matrix/key reinterpretations of this file absent a source-visible operation. Pursue an independent path with a causal route to authentic key/state or plaintext.
+
+
 ## 11 November 2026 06:29 UTC — affine radix lemma and duplicate-discovery correction
 
 - Existing Agent13 10 November work, `sims/lp2_grid_radix_source_factor_gate.cjs` and `im-results/lp2-grid-numeric-codec-ambiguity.md`, **already established** that the p39 [27,5,15] red-triad GF29 factor, p54 Ac24, and printed 256-cell grid jointly select **forward row-major base60**, against compressed base59 and six alternative orientation/order cases, with a 50,000-shuffle control. I initially duplicated this result and announced it as new; that novelty attribution was incorrect. Corrected in the same repo synthesis and communicated to the maintainer.
