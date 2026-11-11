@@ -59,7 +59,7 @@ function gpLength(word) {
   return length;
 }
 function runeWordLengths(text) {
-  return text.split(/[-.&$§•⁜⁘]/u)
+  return text.split(/[-.&$§]/u)
     .map(part => [...part].filter(ch => RUNES_SET.has(ch)).length)
     .filter(Boolean);
 }
