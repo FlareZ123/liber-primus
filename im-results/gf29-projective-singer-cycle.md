@@ -1,6 +1,6 @@
 # GF(29²) projective cycle and 13-dot marker alignment
 
-**Classification (11 November 2026):** p3's quadratic field and the order-30 projective action of its generator u are exact. The earlier z=23+27u orbit also has order30, but its claimed source selection via p3/p39 cross-mark offsets is not established after corrected offsets; treat z as a comparison, not a selected element. The 30-site marker correspondence is an arithmetic map, not a proven instruction. Direct substitution, additive-key, grid-row IV, and source-ordered grid-row/column lookups remain negative.
+**Classification (11 November 2026):** p3's quadratic field and the order-30 projective action of its generator u are exact. The earlier z=23+27u orbit also has order30, but its claimed source selection via p3/p39 cross-mark offsets is not established after corrected offsets; treat z as a comparison, not a selected element. The marker corpus has 31 layers, 30 page-local annotations, and 29 global offsets; the corrected 30-state map assigns states to 29 global boundaries plus the terminal fragment. The projective marker-to-fragment operation remains a hypothesis. Direct substitution, additive-key, and the tested old page-local grid-row/column lookups remain negative.
 
 ## Source-derived field construction
 
@@ -101,8 +101,8 @@ The new marker-to-row map was then tested as a **per-fragment grid-row IV schedu
 **Reproducers:**
 
 - `sims/gf29_projective_singer_cycle_probe.cjs` — field construction, 30-cycle, direct substitution and additive tests.
-- `sims/projective_marker_gridrow_nonce_probe.cjs` — marker deduplication, source-order state assignment, 32-row mapping, and the 256-variant negative IV test.
-- `sims/projective_marker_gridrow_column_probe.cjs` — source-ordered 8-column repeating-key and ciphertext-residue lookup tests, plus the 500-permutation family-wise row-map null.
+- `sims/projective_marker_gridrow_nonce_probe.cjs` — the superseded page-local marker map and its 256-variant negative IV test; not the corrected global-offset schedule.
+- `sims/projective_marker_gridrow_column_probe.cjs` — repeating-key and ciphertext-residue lookup tests, plus the 500-permutation null, all on the superseded page-local map.
 - GitHub Actions run: https://github.com/FlareZ123/liber-primus/actions/runs/42944677668
 
 **Related studies:** `lp2-red-triad-primitive-840-phase-gate.md`, `red-triad-gf841-840-phase-gate.md`, and `red-256-event-grid-correspondence.md`.
