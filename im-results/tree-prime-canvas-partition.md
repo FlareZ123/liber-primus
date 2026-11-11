@@ -1,6 +1,6 @@
 # Signed 2016 tree image as an exact 11×11 GP-prime pixel partition
 
-**Status: a source-constrained coordinate operation, with two scoped original-cipher negatives.** This test builds on Agent 21's independently discovered cross-artifact source checksum. Neither the checksum nor this image extraction recovers unknown LP2 plaintext, a key, a cipher mechanism or a destination.
+**Status: source-constrained geometry, a candidate word-to-signed-message navigation rule, and scoped negative original-cipher tests.** This test builds on Agent 21's independently discovered cross-artifact source checksum. Neither the checksum nor this image extraction recovers unknown LP2 plaintext, a key, a cipher mechanism or a destination.
 
 ## Source-selected dimensions and deterministic pixel operation
 
@@ -97,6 +97,30 @@ The matrix is not itself a successful direct decryption under the simplest inter
 
 These negatives reject the direct uses tested, not the matrix as a structural map, selector, coordinate transform, or state-generation mechanism. The four 7-cycles and two fixed points may be the relevant output; their intended use remains unresolved.
 
+## Source-word GP-prime walk from the 33-rune clause to the signed PGP delimiter
+
+The p32 print text, read page-locally and preserving its original word punctuation, divides into **7 words / 33 runes** before its first period and **15 words / 88 runes** afterward. The first seven printed word lengths are **[1,3,5,11,5,5,3]**, all odd, with exactly three 11-rune rows. Across all **219 page-local punctuated clauses** on the 55 rune-bearing unknown LP2 pages, **12** have seven words and **only this one** has seven odd word lengths. The source-selected first **33** runes have GP-prime sum **1,467**. Subtracting the independently located central 5×5 ring perimeter of **1,136** gives the 2014 seventh-onion magic-square center and HTML div **331**. These are exact source arithmetic identities; the historical cipher operator is still undetermined.
+
+The *signed 2016 message itself* says: **“Its words are the map, their meaning is the road, and their numbers are the direction.”** This motivates a finite, human-executable candidate: measure each printed p32 word by its GP-prime sum, start at byte zero of the historically archived signed message, and advance cumulatively modulo the **1,136-byte** source length fixed by the 16-rune ring. For the first seven p32 words:
+
+| Original word ordinal | GP-prime step | Cumulative signed-message byte offset (zero-based) | Independently recognizable marker |
+| ---: | ---: | ---: | --- |
+| 1 | 73 | 73 | Signed-message prose |
+| 2 | 125 | 198 | Signed-message prose |
+| 3 | 267 | 465 | PGP signature Base64 |
+| 4 | 613 | 1,078 | PGP signature Base64 |
+| **5** | **191** | **133** | Historical 2014 seventh-onion HTML title **133** (numeric match; the selected byte is prose) |
+| **6** | **184** | **317** | **First byte** of literal `-----BEGIN PGP SIGNATURE-----` delimiter |
+| **7** | **14** | **331** | **Center byte** of that same **29-byte** delimiter, ASCII space (byte 32); independently 2014 square center **331** |
+
+The seventh word's step of **14** is exactly half of the 29-byte delimiter's span after removing the central byte: its midpoint is byte **317+14=331**. The cumulative sum of the first seven word weights is **1,467**, so the landing at 331 is algebraically determined by the 1,136-byte ring length. The first five land at 133, and the sixth advances to an independently meaningful original-file boundary. This is a plausible candidate clue-chain, **not an authenticated key or decipherment**. Its main vulnerability is model-selection freedom: the 5×5 ring and byte-walk interpretation were recognized after scanning source correspondences, and mere accidental offsets into an ASCII signature are possible.
+
+On the exact 121-source-rune p32 page, a deterministic 200,000-shuffle conditional null keeps the 21 top-row/left-column glyphs fixed (preserving the 563×569 image-dimension checksum) and shuffles the remaining 100 original runes, holding all other rune counts and source geometry. The counts are **26/200,000** for ring sum 1,136, **425/200,000** for first-clause sum 1,467, **31/200,000** for their difference 331, and **1/200,000** for both exact sums. The ring sum is unusually high on this constrained null (708/200,000 shuffles reach or exceed it). These retrospective conditional frequencies cannot be interpreted as a prespecified discovery-wide p-value. They justify retaining the clue as an intermediate source hypothesis, not promoting it to established decryption.
+
+For all 22 p32 words, the word-sum walk ends at byte **365** after five full 1,136-byte circuits. The selected ASCII bytes do not spell a message. Simple fixed source-byte-to-GP29 additive inverses using word-before/word-after steps or cumulative per-rune GP-prime jumps, two signs and origins 0/331, remain nonlinguistic. Similarly, a modest class of direct GP29 word-length positional additive inverses across all original unknown pages has IoC **0.03444–0.03452**, approximately the raw ciphertext baseline, with no plaintext recovery. The next decisive question is whether the **PGP delimiter-center landing** determines an independently executable payload/selector extraction from the historical signed bytes, with an original unknown-page prediction fixed before scoring.
+
+**Source-asserting CommonJS SFT:** [sims/p32_2016_signed_wordmap_sft.cjs](../sims/p32_2016_signed_wordmap_sft.cjs), including original word offsets, the 29-byte header center, and the seeded constrained null.
+
 ## Direction-field discriminator (pending original-image execution)
 
 The p32 dimension tiling also supports a separate, falsifiable interpretation of “their numbers are the direction”: the 100 interior GP-prime values, reduced modulo four, predict four undirected line-orientation classes for the tree artwork. The measurement uses Sobel edge-normal orientation (90° from branch tangent), excludes bright text with the existing fixed threshold 180, and compares the source-aligned score with 100,000 permutations of the interior labels. The first row and column define tile geometry and are not reused as direction labels.
@@ -105,6 +129,6 @@ The reproducible implementation is `sims/tree121_directional_field_sft.py`, expo
 
 ## Decision and next discriminator
 
-The strongest current result is the **Möbius matrix and its cross-artifact invariant chain**, anchored by the exact p32 ring sum = signed 2016 payload length = 1,136. The direct cipher interpretations are negative; do not repeat them. The next high-value work is to determine what the matrix's four 7-cycles and two fixed points do to the rune-meaning/word map, and whether the projective point at infinity has a source-grounded correspondence to the 13-dot punctuation. Run the locked direction-field script on the original signed image as an independent test. Do not expand into arbitrary ring rotations, image thresholds, or unconstrained key families.
+The strongest current source leads are the **ring-derived Möbius action** and the separately specified **p32 word-sum walk into the 2016 signed PGP marker**, both anchored by the exact central-ring sum = signed payload length = 1,136. Neither identifies the authentic unknown-LP2 cipher. The direct cipher interpretations are negative; do not repeat them. A high-value next discriminator is whether the walk's **317→331** signature-delimiter transition fixes an unambiguous source operation that predicts original LP2 plaintext. Independently, determine whether the matrix's four 7-cycles and two fixed points supply a source-defined rune map, and whether projective infinity corresponds to a 13-dot marker. Run the locked direction-field script on the original signed image as an independent test. Do not expand into arbitrary ring rotations, image thresholds, or unconstrained key families.
 
 **Reproducers and sources:** [sims/tree_prime_canvas_partition_sft.py](../sims/tree_prime_canvas_partition_sft.py) for p32 geometry and prior image negatives; [sims/tree121_directional_field_sft.py](../sims/tree121_directional_field_sft.py) for the pending original-image direction test; [resources/historical/cicada2014-openpuff-magic-squares.txt](../resources/historical/cicada2014-openpuff-magic-squares.txt) for the 7×7 square; [workplace/2016-image-dimensions-lag6-source-derivation.md](../workplace/2016-image-dimensions-lag6-source-derivation.md) for the signed-image coordinate derivation. This remains intermediate research, not an established decryption.
