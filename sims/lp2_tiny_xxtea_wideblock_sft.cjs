@@ -70,8 +70,8 @@ function write32(value, little) {
  * @returns {number}
  */
 function mx(z, y, sum, p, e, key) {
-  return (((((z >>> 5) ^ (y << 2)) + ((y >>> 3) ^ (z << 4)))
-    ^ ((sum ^ y) + (key[(p & 3) ^ e] ^ z)))) >>> 0);
+  return ((((z >>> 5) ^ (y << 2)) + ((y >>> 3) ^ (z << 4)))
+    ^ ((sum ^ y) + (key[(p & 3) ^ e] ^ z))) >>> 0;
 }
 
 /**
