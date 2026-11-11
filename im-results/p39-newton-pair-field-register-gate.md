@@ -1,6 +1,6 @@
-# Full pair-valued p39 Newton-jet register: original-input rejection
+# p39 Newton-jet and p54-deflated quotient gates: original-input rejection
 
-**Classification:** bounded, source-constrained intermediate negative. No plaintext or key recovered.
+**Classification:** bounded, source-constrained intermediate negative. The p39/p54 deflated Newton step reaches the signed DH23 shared secret, but its fixed p55 state/correction streams do not decrypt the page. No LP2 plaintext or usable key recovered.
 
 ## Hypothesis
 
@@ -61,14 +61,62 @@ Both source-seeded candidates score below the raw ciphertext and remain near the
 
 **Decision:** retire the direct period-three state-value additive key. The test does not reject every possible use of the Newton map as a nonlinear state/indexing device, but any different readout needs an independent source instruction and a discriminating original-cipher prediction. Reproduction: [standalone SFT](../sims/p39_newton_cycle_state_key_sft.cjs).
 
+
+## Deflated p54-root quotient and signed-DH23 p55 gate (Agent24, 11 November 2026)
+
+### Source-fixed derivation
+
+The p39 red triad is the original polynomial jet \([P(15),P'(15),15]=[27,5,15]\). The first rune of the p54 nine-rune red span is enlarged Ac/index 24, and the original p50 polynomial has a double root at 24. Deflate that marked root, without searching for another:
+\[
+Q(X)=P(X)/(X-24)^2\quad\text{over }GF(29).
+\]
+The division is exact (degree 253), and the p39 jet determines
+\[
+Q(15)=10,\qquad Q'(15)=3.
+\]
+The ordinary Newton correction is \(10/3=13\), so the first successor is
+\[
+15-13\equiv 2\pmod{29}.
+\]
+This equals the shared secret in the authenticated 2013 DH23 example (\(p=23,g=5,a=15,b=6,K=2\); public shares 8 and 19). Separately reported p3/p39-prefix and p36 field norms also recover 23, 6 and 2; see [the p36 field report](p36-grid238-dh11-field-multiplication-gate.md). These are cross-round correspondences, not a cipher specification. The signed 2013 TCP source defines DH key agreement and client-supplied NEXT storage, but no KDF, symmetric cipher, IV, or deterministic consumer of K=2.
+
+The fixed Newton orbit is:
+- states: `15 → 2 → 11 → 3 → 6 → 28 → 16 → 24 → 10 → 17 → 6`, then the six-cycle `6 → 28 → 16 → 24 → 10 → 17`;
+- corrections: `13, 20, 8, 26, 7, 12, 21, 14, 22, 11`, then the six-cycle `7, 12, 21, 14, 22, 11`.
+
+It has preperiod 4 and period 6. The seed is anchored at the third p39 red rune, global offset 9521; the first post-seed state is 2. The p55 page begins at global offset 12880, 3359 positions after the anchor. Therefore the p55 state key is fixed to `[28,16,24,10,17,6]` repeated, and the correction key to `[7,12,21,14,22,11]` repeated. No reset or fitted phase is used.
+
+### Original-cipher test
+
+The target is the 76-rune p55 page; the continuous suffix after the p39 seed contains 3,434 runes. The two canonical Newton readouts (state and correction) were each tested as GP29 additive and multiplicative keys, in both directions, on the original p55 and continuous suffix. All eight transformations have exact native-GP positive controls (8/8).
+
+| Readout | Operation | p55 trigram | p55 IoC | Suffix trigram |
+|---|---|---:|---:|---:|
+| State | `C-K` | −4.374260 | 0.035439 | −4.155331 |
+| State | `C+K` | −4.165861 | 0.030175 | −4.185305 |
+| State | `C/K` | −4.386552 | 0.036140 | −4.172480 |
+| State | `C*K` | −4.086521 | 0.035789 | −4.158859 |
+| Correction | `C-K` | −4.074458 | 0.027719 | −4.168224 |
+| Correction | `C+K` | −4.170238 | 0.038596 | −4.144716 |
+| Correction | `C/K` | −4.104470 | 0.045263 | −4.159368 |
+| Correction | `C*K` | −4.370624 | 0.036491 | −4.153415 |
+
+Raw p55 is −3.984523 (IoC 0.037895); the held-out native-GP p55 reference is −2.626778. **Every p55 candidate scores below raw p55.** The best suffix edge (correction `C+K`, −4.144716 versus raw −4.166766) is only 0.022 nats/rune, remains far from the native reference (−2.464036), and has no readable plaintext. The high-IoC correction `C/K` output is likewise nonlinguistic. Do not treat either small statistical edge as plaintext.
+
+**Decision:** the first Newton successor's exact match to DH23 K=2 is an interesting source-linked correspondence, but the fixed deflated-Q Newton state/correction streams do not decode p55. Retire direct additive/multiplicative use of these two readouts on the source-anchored p55 clock. Do not rescue the route with alternate roots, phases, resets, or extra layers. No LP2 plaintext or key was recovered.
+
+**Reproduction:** `node sims/p39_deflated_newton_dh23_p55_gate_sft.cjs`; manual workflow `.github/workflows/p39-deflated-newton-dh23-p55-gate.yml`.
+
+
 ## Decision
 
-Reject both the **global, source-fixed, additive full-pair p39 Newton-jet register** and the **direct period-three scalar Newton-state additive key** as plaintext recovery mechanisms. These are distinct from:
+Reject the **global, source-fixed, additive full-pair p39 Newton-jet register**, the **direct period-three scalar Newton-state additive key**, and the **source-anchored p54-deflated-Q Newton state/correction additive/multiplicative p55 keys** as plaintext recovery mechanisms. The deflated quotient's first Newton successor is exactly the signed DH23 shared secret 2, but the original p55 prediction fails in all eight fixed readouts. This is a cross-round correspondence, not a recovered cipher.
 
-- scalar projections in sims/p39_newton_field_clock_original_sft.cjs;
-- the autonomous scalar derivative-state gate in im-results/p39-grid-jet-autonomous-state.md;
-- raw primitive/beta pair pads in sims/lp2_red_triad_pair_field_inverse.cjs.
+These tests remain distinct from:
+- scalar projections in `sims/p39_newton_field_clock_original_sft.cjs`;
+- the autonomous scalar derivative-state gate in `im-results/p39-grid-jet-autonomous-state.md`;
+- raw primitive/beta pair pads in `sims/lp2_red_triad_pair_field_inverse.cjs`.
 
-The remaining possibility is a genuinely different source-selected nonlinear state transition, non-GP intermediate, or variable-rate register. Do not rescue the rejected state-value pad with unselected resets, phases, projections, or additional layers. No plaintext or key has been recovered.
+Any different use of the deflated quotient, DH tuple, or Newton map needs an independent source instruction and a new discriminating original-cipher prediction. Do not repeat the rejected state/correction keys with unselected resets, phases, projections, or extra layers. No plaintext or LP2 key has been recovered.
 
-**Reproduction:** run node sims/p39_newton_pair_field_original_sft.cjs from the repository root.
+**Reproduction:** run `node sims/p39_newton_pair_field_original_sft.cjs` and `node sims/p39_deflated_newton_dh23_p55_gate_sft.cjs` from the repository root.
