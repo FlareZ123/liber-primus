@@ -248,6 +248,35 @@ const sourceEightColumnSectionClock = sectionClockRows(8);
 assert.ok(Math.abs(sourceEightColumnSectionClock - 4.41259831593486) < 1e-10);
 assert.ok(sourceEightColumnSectionClock > 4.28910);
 
+// The same 29x8 source table can also restart its eight-column phase
+// at each original printed word boundary, with no new secret tables.
+function wordClockRows(period) {
+  const raw = read("resources/liber-primus/lp2-transcription.txt")
+    .split("%").slice(0, 55).join("%");
+  const indexByRune = new Map(corpus.runes.map((r, i) => [r, i]));
+  const decoded = [], wordOffset = [];
+  let wordPos = 0;
+  for (const ch of raw) {
+    if (indexByRune.has(ch)) {
+      decoded.push(indexByRune.get(ch));
+      wordOffset.push(wordPos++);
+    } else if (ch === "-" || ch === ".") {
+      wordPos = 0;
+    }
+  }
+  assert.deepEqual(decoded, ciphertext);
+  const rows = Array.from({length: period}, () =>
+    Array.from({length: 29}, () => Array(29).fill(0)));
+  for (let i = 1; i < N; i++) {
+    if (pageStarts.has(i)) continue;
+    rows[wordOffset[i] % period][ciphertext[i - 1]][ciphertext[i]]++;
+  }
+  return conditionalEntropy(rows);
+}
+const sourceEightColumnWordClock = wordClockRows(8);
+assert.ok(Math.abs(sourceEightColumnWordClock - 4.439187399358807) < 1e-10);
+assert.ok(sourceEightColumnWordClock > 4.28910);
+
 console.log(JSON.stringify({
   source: {
     runes: N, pages: PAGE_LENGTHS.length, sections: SECTION_LENGTHS.length,
@@ -257,6 +286,7 @@ console.log(JSON.stringify({
   controls: out,
   phaseClock,
   sourceEightColumnSectionClock,
+  sourceEightColumnWordClock,
   secretBijectionPlant: {
     recovered: recovered.length, conditionalBits: plantEncryptedH,
     plaintextMarginalBits: plantUnconditionalH
