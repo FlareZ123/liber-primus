@@ -188,5 +188,23 @@ const nextThen=parse(paths[16]);
 assert.ok(nextThen.every(x=>Math.floor(x/27)===Math.floor(nextThen[0]/27)));
 console.log("Report 03 SOON source-state fork, same plaintext/key:",nextAxes);
 
+// Report 04 from the preceding YOU block resolves the SOON source choice.
+// This is a retrospective fitted constraint, yet it MUST be applied when
+// assessing consistency of the full published Reports 01-16 rule set.
+const youB=parse(paths[14])[0],youE=parse(paths[14]).at(-1);
+const youCenter=parse(sources[14])[1];
+const n2You=n180(youB);
+const predictedSoonRow=(1+(youB%27+1)+(Math.floor(youE/27)+1)+
+  (Math.floor(youCenter/27)+1)+mu(n2You))%2;
+const predictedSoonCol=(1+(Math.floor(youB/27)+1)+(Math.floor(youE/27)+1)+
+  (Math.floor(youCenter/27)+1))%2;
+assert.equal(n2You,10);
+assert.deepEqual([predictedSoonRow,predictedSoonCol],[1,1]);
+const report04Accepted=nextAxes.filter(x=>x.center[0]%2===predictedSoonRow&&
+  x.center[1]%2===predictedSoonCol);
+assert.deepEqual(report04Accepted.map(x=>x.center),[[25,7]]);
+console.log("Report 04 from YOU selects SOON source (25,7); predicted axis H.");
+
+
 console.log("PASS: conditional inverse, positive source-triple check and exact forward re-encryption.");
 console.log("No source-prospective selector or authentic plaintext established.");
