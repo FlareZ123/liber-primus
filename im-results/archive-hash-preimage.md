@@ -128,6 +128,28 @@ A separate third-party [`BHQST/3301` `Sevens_Exposed` README](https://github.com
 
 The raw WARC response bodies remain unextracted. They could establish what the 2017 site displayed, but cannot authenticate it without a valid Cicada signature or another independent source link. Keep this branch separate from the 2016 `uRkNsGsa.htm` report, which is already attested as a copy of the known hash. **Do not treat the 2019 onion/domain/video as the p56 destination** absent a source-authenticated signature or an exact digest preimage. The target algorithm, canonical preimage, and destination remain unresolved.
 
+
+### 2013 pklmx signed-page archive candidates against the p56 target (Agent32, 11 November 2026)
+
+The solved p57 page repeats the 2013 Instar Emergence material, and its 5/10 geometry makes the earlier pklmx secret-sharing stage a reasonable historical lead. The p56 page independently supplies a 128-hex digest. A human solver following that cross-round clue could therefore test the three preserved 2013 pklmx pages as literal p56 preimages before inventing a new cipher layer.
+
+I compared the exact participant-archive copies in resources/historical/pklmx-2013 against the p56 target:
+
+| Candidate bytes | Size | SHA-512 | Match |
+|---|---:|---|---|
+| standby.html, full HTML | 983 | d9c3c73ef898f3767f34bd78b20e1b5880668811f4de074fc5f5be4911504a95d47386b41cb034e65e20e19d502e05d33c59b0effb018940b4768a811e29f29c | No |
+| standby.txt.asc, signed payload | 909 | ccc331a9db2caf12e799ef21869f7138b91bc8776d9bd45f404dd6139d1e3be33831b1da90e2cfc3dc843a6850ba83a4b4d16a571827c23afb29230faa96e624 | No |
+| okinawa.html, full HTML | 976 | 127d7595306c5c7bd1ed76bbc79118168573400ddee9a9a92fe22e3de9ba62cbfc361cafdaa536cc4f304ee62f9891f6b5f279d9aa503a229abfd2fa288c1087 | No |
+| okinawa-japan.txt.asc, signed payload | 902 | a8577c52091a55429929fc390c26e92f8d252e83669d1d822566c3b9737bba1d0808ded184500f001abbec8bdfc95a67d8391a692d9318f69f3b2963cae5f030 | No |
+| annapolis.html, full HTML | 978 | 87b93562161f9ff35d8ced0d7f3c83c92038848a8c3f08f5ac0460c9b414ad37eb5774ed2a70fdc9961812e6eca4ea7ccb96116b6c7109b6f9f2122632748411 | No |
+| annapolis-md.txt.asc, signed payload | 904 | 73bf57a6173bc422ae52b5aa44c1e92a5868b4ef887dfbd8a3b89b092b1d41e2d818ddd7652c2cbde3413a4a3ae297ee1c8ec727a06dd81fbcd631aec4dc8c5e | No |
+
+The archive README states that each HTML <pre> payload is byte-identical to its .asc companion; the reproducer asserts that equality and the exact file sizes. Four additional literal candidates also fail: the reconstructed SSSS onion domain p7amjopgric7dfdi.onion, the pklmx2eeh6fjt7zf.onion domain, and each exact HTTP URL with a trailing slash. This is **0/10** direct candidates.
+
+**Decision:** the exact archived pklmx pages, their signed payloads, and the four literal address/URL forms are not the p56 hash preimage. This does not reject the unrecovered original HTTP entity: the archive README explicitly says the participant copy is not the original server response, and the quoted 1869-byte entity has not been recovered. Do not expand into guessed HTML wrappers or normalization variants without the original response bytes or a new source-fixed serialization. No p56 preimage, LP2 key, or unknown plaintext is recovered.
+
+Reproducer: [sims/pklmx_2013_p56_hash_gate.py](../sims/pklmx_2013_p56_hash_gate.py).
+
 ## Direct original-grid-to-AN-END digest challenge
 
 The **256-byte base-60 number table** on LP2 physical pages 49–51 appears shortly before the authenticated **128-hex-digit/64-byte deep-web hash target** on solved p56. A direct, independently testable equation is that the hash might refer to the literal table bytes, a particular printed table layout, or a natural 32-/64-byte block extracted from that source. The table is **not absent from all historical archives**: a separate 2014 stage11 solver-archive commit preserves a 256-byte `sexagesimal.bin` plus its decimal source and converter. That earlier file is a distinct version, not the exact LP2 transcription.
