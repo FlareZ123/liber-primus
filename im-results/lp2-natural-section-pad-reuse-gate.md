@@ -1,0 +1,26 @@
+# Natural-section GP29 pad-reuse gate: sections 4 and 5
+
+**Result (11 November 2026):** A distinctive exploratory difference-language score between two original LP2 text sections does **not** lead to authentic plaintext. Under an exactly aligned, reused additive GP29 pad with preserved source word boundaries, the original 1,021-rune overlap requires **at least 55 non-dictionary plaintext words**, even when both plaintext streams and the pad are completely unknown. A source-word-layout-matched same-pad positive control requires zero. This is substantial negative evidence against ordinary-English, direct-start pad reuse for this pair. It does **not** exclude other English vocabularies, hidden word segmentation changes, key skips, fresh pads, or different cipher laws.
+
+## Concrete original-input question
+
+The canonical 12,956 unknown runes divide into source-defined sections of lengths `[729,1145,1729,9,1894,1021,1524,1589,3316]`. Section 4 begins at global index **3,612** and has 1,894 runes, spanning p15's body and pp16–22. Section 5 begins at global index **5,506** and has 1,021 runes, spanning pp23–26. Both begin at printed word starts. An exploratory start-aligned differential screen of section pairs found this adjacent pair unusually compatible with a shared additive pad, but language-score selection alone does not identify a key. The decisive follow-up was therefore performed with the pair and clock frozen.
+
+For an identical GP29 pad at both starts, `C4[t] = (P4[t]+K[t]) mod 29` and `C5[t] = (P5[t]+K[t]) mod 29`, hence the **known** difference `D[t] = (C4[t]-C5[t]) mod 29 = (P4[t]-P5[t]) mod 29` for every aligned position. This eliminates the unknown key. It allows testing both unknown plaintexts jointly against the visible word separators, without guessing the pad or a phrase.
+
+## Exact test and controls
+
+- Original inputs: `resources/liber-primus/lp2-corpus.json` and `lp2-transcription.txt`. Parsing rune positions while treating `-` and `.` as printed word separators reproduces **12,956/12,956** source runes and the established **2,896** words. Section 4/5's first 1,021 positions end at complete printed words in both streams.
+- Candidate language: the existing `resources/control/english_wordfreq_textblob.txt`, 29,157 entries, becomes **29,061 distinct GP29 word forms** in a 74,946-node trie. Transliteration is longest matching GP digraph, with the conventional K→C, V→U, Z→S, Q→C simplification. This generous general-English vocabulary covers **15,441/15,733** tokens of the separate Gibran control (`resources/control/gibran_prophet_58585.txt`), leaving **292 / 15,733 = 1.856%** outside the vocabulary.
+- At each rune position, consider **all 29** possible first-plaintext values. The second value is fixed by `D`. A joint exact trie dynamic program carries both current dictionary prefixes and minimizes the total number of words that depart from the vocabulary. Once a word is outside, its remaining runes are arbitrary, charged **once** for that word. At a printed word end, any unfinished dictionary prefix is also charged once. This is the minimum possible non-vocabulary count, not the result of a heuristic beam search.
+- Original minimum: **55** words outside the 29,061-form lexicon on the 1,021-rune overlap. The first unavoidable out-of-vocabulary word occurs at zero-based position **23**. Intermediate minima after 200/400/600/800/1,000 positions are **11/20/32/43/53**. The two streams have **239 and 224** printed word starts in this overlap, respectively, or 463 words together.
+- Matched positive control: independently selected complete GP dictionary words of exactly the same printed word-length layouts are combined through one identical artificial additive pad. The resulting difference yields **zero** forced out-of-vocabulary words, and the full 1,021-rune program completes.
+
+**Reproducer:** [exact standalone dynamic-programming SFT](../sims/lp2_section_reused_pad_dictionary_sft.cjs). It asserts the original corpus alignment, word count, dictionary/trie sizes, first failure, original minimum, independent native word coverage, and planted control, then prints every checkpoint. The DP uses original printed section starts and **no offset, key phase, dictionary adaptation, crib selection, or reranking after observing output**.
+
+## Interpretation and next decision
+
+The original section-pair effect was an exploratory high score across natural boundaries. The independent word-feasibility requirement is much less supportive of reused-pad plaintext: **55/463** forced unknown words, while the separate original-language-like reference has **292/15,733** unknown words. A coherent ordinary GP-English two-time-pad decryption should have produced a large lexicon-consistent candidate set, not dozens of forced exceptions. The original cipher and any underlying key remain unidentified; no authentic unknown plaintext has been produced.
+
+**Do not spend new effort on this exact natural-start identical-pad pair.** A distinct shared-pad route would need an independently specified clock or offset, plausible unusual vocabulary and a successful whole-word reconstruction on original ciphertext. Keystream consumption that skips rejected repetitions is a different model, which requires recoverable skip state. The broader 56-page cipher remains unsolved.
+
