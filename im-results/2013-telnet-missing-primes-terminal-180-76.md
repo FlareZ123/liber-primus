@@ -63,6 +63,16 @@ A separate, language-free source check asks whether the same split has an obviou
 
 The 1, 4, 0 and 0 coincidences are consistent with unrelated bytes under this direct interpretation. This specifically fails to corroborate a literal prime-valued byte table. The historical base59 numeral-codec ambiguity does not provide a reason to optimize the byte interpretation after this negative result.
 
+## Historically motivated native-byte XOR, exact full-grid test
+
+The 2013 Cicada onion `clue` was decrypted by **XOR against an explicitly supplied historical file** (`_560.00`), so XOR is an actual creator-used operation rather than a cipher family imported without a puzzle precedent. The 180/76 mapping also naturally describes the **256 printed table byte cells**, independently of any runic message assignment. This selects one additional bounded experiment: place the omitted 180 primes in the **30×6 table interior row-major**, place the visible first-256-prime complement on the **perimeter clockwise starting upper-left**, reduce every prime modulo 256, and XOR each original byte with its assigned key byte. The table is read in its printed, unpermuted row-major order. See [SFT](../sims/lp2_telnet_prime_gap_terminal_sft.cjs).
+
+Of the original **256** printed source bytes, **103** are printable ASCII (0x20–0x7E). After the source-locked XOR, only **89** are printable ASCII, with **54** letters or spaces, four spaces and one NUL. The recovered first 95 bytes rendered with nonprintables as `.` begin:
+
+`....j.o......e..4.dL...J$O&.....4.h...D ....9."e.......{.{.Ps.Y.Q......Y......[i.A.D ..|..c.]..`
+
+No English plaintext, file signature, or recognizable contiguous message appears in the full original output. The source program prints all 256 recovered bytes as hex for independent assessment, exactly re-XORs to the original bytes, and recovers a constructed 256-byte ASCII plant under the same frozen key and layout. This **rules out the single literal native-byte XOR** interpretation of this source mapping as ordinary uncompressed English, not compressed/encrypted/multilayer data and not an arbitrary other perimeter order. The source-linked prime list still lacks a creator-authenticated instruction selecting this mapping, so there is no reason to multiply variants.
+
 ## What would change the decision
 
 The historic prime-gap interval is a more specific cross-round starting point than another arbitrary 180-number list; its most direct additive uses fail. It should **not** be used to launch permutations, cyclic offsets, multi-layer transformations, or a general prime-pad sweep. The valuable next evidence would be either a truly original 2013 telnet transcript or source-code capture establishing intentional omission, or a historically visible instruction selecting a **specific reversible mapping** from the prime interval and table interior/perimeter to runes. Freeze such a map before looking at original plaintext; use a solved historical control and a distinct original holdout. Until then this remains a provisional source clue with no decrypted text.
