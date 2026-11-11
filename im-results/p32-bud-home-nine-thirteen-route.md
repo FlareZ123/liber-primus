@@ -8,12 +8,12 @@ The authenticated 2016 Cicada image repeats the original p32 tree and says that 
 
 One further straight three-rune run is visible in this **same unchanged grid**: **BUD** occurs along the northwest diagonal from (row 10, col 9) to (8,7). That D is the **same source rune** as the D of horizontal BUDS at (8,5)..(8,8). This creates a two-branch junction with no inserted letters or independent cipher key.
 
-**Terminology matters:** HOME starts an eleven-rune printed ciphertext word **HOMEXWDSLFD**, and BUDS is itself a complete separately delimited printed ciphertext word on this page (preceded by M and separated from BJ by a hyphen); neither is a complete whitespace-delimited source word or recovered plaintext. The additional BUD is a geometric three-rune occurrence. All coordinates are zero-based in the conceptual 11×11 row-major array, rather than the printed line coordinates.
+**Terminology matters:** HOME starts an eleven-rune printed ciphertext word **HOMEXWDSLFD**, and BUDS is the four-rune suffix of the complete printed ciphertext word **MBUDS** (preceded by M within the same word and separated from BJ by a hyphen); neither is a complete whitespace-delimited source word or recovered plaintext. The additional BUD is a geometric three-rune occurrence. All coordinates are zero-based in the conceptual 11×11 row-major array, rather than the printed line coordinates.
 
 | Exact source route | Cell sequence | Printed-rune reading | GP-prime total | Modulo 29 |
 | --- | --- | --- | ---: | ---: |
-| Horizontal HOME prefix of a longer source word | (3,0)→(3,3) | H O M E | 168 | 23 |
-| Horizontal BUDS suffix of a longer source word | (8,5)→(8,8) | B U D S | 206 | 3 |
+| Horizontal HOME prefix of 11-rune HOMEXWDSLFD | (3,0)→(3,3) | H O M E | 168 | 23 |
+| Horizontal BUDS suffix of 5-rune MBUDS | (8,5)→(8,8) | B U D S | 206 | 3 |
 | Additional diagonal BUD | (10,9)→(9,8)→(8,7) | B U D | 153 | 8 |
 | **Nine-cell BUDS-to-HOME path** | (8,5),(7,4),(6,3),(5,2),(4,1),(3,0),(3,1),(3,2),(3,3) | **B NG IA M B H O M E** | **547** | **25** |
 | **Thirteen-cell twin-BUD-to-HOME path** | (10,9),(9,8),(8,7),(8,6), then the entire nine-cell route | **B U D U B NG IA M B H O M E** | **703** | **7** |
