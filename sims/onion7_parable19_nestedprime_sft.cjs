@@ -285,6 +285,84 @@ function main(){
     .map(([k,v])=>[k,v.gpIndexText])),
     {"139":"RD","227":"WA","313":"ID","467":"TO"});
 
+
+  // A source-fixed geometric gate for the tempting TO+WA+RD+ID parse:
+  // every occurrence of the exceptional factors is recovered directly from
+  // the physical 5x5 cell positions before any word-based selection.
+  const exceptionalCoordinates=Object.fromEntries(firstExternal.map(factor=>
+    [factor,numberResults[0].flatMap((item,index)=>
+      item.factors.includes(factor)?[[Math.floor(index/5),index%5]]:[])]));
+  assert.deepEqual(exceptionalCoordinates,{
+    139:[[0,3],[4,1]],
+    227:[[2,2]],
+    313:[[2,0],[2,4]],
+    467:[[1,2],[3,2]]
+  });
+  const ringOf=([row,col])=>Math.min(row,col,4-row,4-col);
+  const grammaticalFactorOrder=[467,227,139,313];
+  const grammaticalShellOrder=grammaticalFactorOrder.map(factor=>
+    ringOf(exceptionalCoordinates[factor][0]));
+  assert.deepEqual(grammaticalShellOrder,[1,2,0,0]);
+  assert.ok(!grammaticalShellOrder.every((v,i,a)=>i===0||v>=a[i-1]));
+  assert.ok(!grammaticalShellOrder.every((v,i,a)=>i===0||v<=a[i-1]));
+
+  /** @param {boolean} snake @returns {number[][]} */
+  const rowCoordinates=(snake)=>Array.from({length:5},(_,row)=>
+    Array.from({length:5},(_,col)=>[row,snake&&row%2?4-col:col])).flat();
+  /** @param {boolean} inward @returns {number[][]} */
+  const ringCoordinates=(inward)=>{
+    const out=[];
+    for(const ring of (inward?[2,1,0]:[0,1,2])){
+      if(ring===2){out.push([2,2]);continue;}
+      const hi=4-ring;
+      for(let col=ring;col<=hi;col++)out.push([ring,col]);
+      for(let row=ring+1;row<=hi;row++)out.push([row,hi]);
+      for(let col=hi-1;col>=ring;col--)out.push([hi,col]);
+      for(let row=hi-1;row>ring;row--)out.push([row,ring]);
+    }
+    assert.equal(out.length,25);
+    return out;
+  };
+  /** @param {number[][]} coords @param {boolean} transpose
+   * @param {boolean} flipRows @param {boolean} flipCols @returns {number[]} */
+  const exceptionOrder=(coords,transpose,flipRows,flipCols)=>{
+    const order=[];
+    for(const [rawRow,rawCol] of coords){
+      const row0=transpose?rawCol:rawRow;
+      const col0=transpose?rawRow:rawCol;
+      const row=flipRows?4-row0:row0;
+      const col=flipCols?4-col0:col0;
+      const item=numberResults[0][row*5+col];
+      for(const factor of firstExternal)if(item.factors.includes(factor)
+        &&!order.includes(factor))order.push(factor);
+    }
+    assert.equal(order.length,4);
+    return order;
+  };
+  const sourceGeometryOrders={};
+  for(const [name,coords] of Object.entries({
+    row:rowCoordinates(false),
+    rowSnake:rowCoordinates(true),
+    outerInward:ringCoordinates(false),
+    centerOutward:ringCoordinates(true)
+  })){
+    const observed=new Set();
+    for(const transpose of [false,true])
+      for(const flipRows of [false,true])
+        for(const flipCols of [false,true]){
+          const factors=exceptionOrder(coords,transpose,flipRows,flipCols);
+          observed.add(factors.join(","));
+          assert.notDeepEqual(factors,grammaticalFactorOrder);
+        }
+    sourceGeometryOrders[name]=[...observed].sort();
+  }
+  assert.deepEqual(sourceGeometryOrders,{
+    row:["139,467,313,227","313,139,467,227"],
+    rowSnake:["139,467,313,227","313,139,467,227"],
+    outerInward:["139,313,467,227","313,139,467,227"],
+    centerOutward:["227,467,139,313","227,467,313,139"]
+  });
+
   const thirdExternal=[...new Set(numberResults[2].flatMap(x=>x.factors)
     .filter(x=>!gpPrimeSet.has(x)))].sort((a,b)=>a-b);
   assert.deepEqual(thirdExternal,[113]);

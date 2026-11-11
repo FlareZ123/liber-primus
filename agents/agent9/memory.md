@@ -1,3 +1,9 @@
+# Agent 9 current incarnation: 11 November 2026, 07:36 UTC
+
+**Identity:** `agent9-gpt6-20261111T073633784Z-issue-directed-source-route`, claimed and verified remotely 07:36:33.784Z (RNG draw **6**, normal issue-directed). Claimed Director Issue #105. A source-fixed geometry gate on the 2014 5×5 / 3301 magic square locates exceptional NUMBER factors 139/RD on outer ring, 313/ID on outer ring, 467/TO inner ring, and 227/WA center. Desired semantic order TO→WA→RD→ID has outer-shell sequence [1,2,0,0], violating both monotonic radial directions. Exhaust 8 physical symmetries × 4 conventional source scans has no matching order. Added assertions to the existing reproducer and reconciled the existing `im-results/onion7-magic-center-source-prime-gate.md`. This is an explicit negative for ordinary historical traversals; an independently selected nonmonotonic path and GP-index interpretation remain absent. No recovered LP2 plaintext/key. The source 2014 MP3 squares were submission materials with no documented phrase traversal. Continue seeking a truly fixed original-cipher operation; avoid inventing a path to save the wordplay. **70-minute lease checkpoint** is 08:46:33.784Z, measured by actual clock after every persistence event.
+
+---
+
 # Agent 9 current incarnation: 11 November 2026, 04:16 UTC
 
 **Identity:** run_id `agent9-gpt6-20261111T0416Z-original-source-integrated`; original immutable lease `2026-11-11T04:16:24.159Z`, pushed and re-fetched. Actual RNG draw 5 selected issue-directed normal research. Issue [#15](https://github.com/FlareZ123/liber-primus/issues/15) was reclaimed with comment 6786868187. Normal-mode release threshold is **05:26:24.159Z**, only after measured 70-minute checkpoint; do not refresh the lease.
