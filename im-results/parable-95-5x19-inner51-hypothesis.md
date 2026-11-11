@@ -1,18 +1,18 @@
-# PARABLE page: 95 runes, a 5×19 rectangle, and a 51-cell inner region
+# p57 95 = 5×19 and p53 51: a derived structural coincidence, not a selected map
 
-**Classification:** source-grounded structural hypothesis plus bounded negative tests. This is not a decryption, a recovered key, or proof that the creator intended this layout.
+**Classification:** intermediate hypothesis, now **parked** after correcting the original-layout premise and running direct gates. No decryption, recovered key, or demonstrated creator-intended map has resulted.
 
 ## Source observations
 
-The final solved LP2 page (physical p57; combined JPEG archive scan 74) contains **95 runes** including the red seven-rune heading `PARABLE`, and **19 body words**. Its first printed line is exactly **19 runes**:
+Physical p57 (the final solved LP2 page; combined JPEG scan 74) contains **95 runes**, including the seven-rune red heading `PARABLE`, and **19 body words**. The actual printed-line rune counts are **20 / 17 / 17 / 18 / 23**, totaling 95. The first printed line includes the first rune `T` of `TUNNELING`:
 
 ```text
-PARABLE LIKE THE INSTAR
+PARABLE LIKE THE INSTAR T
 ```
 
-The remaining 76 runes are exactly four more groups of 19. The source transcription is [`resources/lp2-transcription.txt`](../resources/lp2-transcription.txt), page segment 56; rune indices and prime weights are in [`resources/liber-primus/lp2-corpus.json`](../resources/liber-primus/lp2-corpus.json). The supplied original combined scan is `liber-primus-jpegs/74.jpg`.
+This corrects the earlier claim that the first printed line has 19 runes. The 5×19 row-major candidate's first row ends immediately before that `T`, so it does **not** align with the printed line. Agent 38 checked the canonical transcription's physical-line separators and original scan 74; the correction is preserved in [the source-layout message](../communications/agent35/20261111T0642Z_agent38_p57-5x19-line-correction.md).
 
-A natural 5×19 row-major rendering of those 95 runes is:
+A purely arithmetic 5×19 rendering of the 95-rune stream is:
 
 | Row | 19 rune transliterations |
 |---:|---|
@@ -22,46 +22,47 @@ A natural 5×19 row-major rendering of those 95 runes is:
 | 4 | `UMFERENCESFINDTHEDIU` |
 | 5 | `INITYWITHINANDEMERGE` |
 
-The first row agrees with the first printed line. The later row boundaries split `WE`, `CIRCUMFERENCES`, and `DIVINITY`; this is an observed consequence of the 19-rune width, not yet an explanation.
+These are simply consecutive 19-rune chunks. The later row boundaries split `WE`, `CIRCUMFERENCES`, and `DIVINITY`; the 19-rune width is not independently selected by the page layout.
 
-The 5×19 rectangle has nested cell counts **44 / 36 / 15**: its outer border contains 44 cells; removing that border leaves a 3×17 interior of **51** cells; removing the next border leaves a 1×15 core. The 1×15 central core after removing the second border is `USTSHEDOUROWNCI`. Separately, the final 15 runes in source order are `YWITHINANDEMERGE`; they occupy the right end of the bottom row, not the geometric centre.
+If one chooses this rectangle, its border sizes are **44 / 36 / 15**: removing the 44-cell outer border leaves a 3×17 interior of **51** cells; removing the next border leaves a 1×15 central core `USTSHEDOUROWNCI`. Separately, the final 15 source-order runes are `YWITHINANDEMERGE`; they lie at the right end of the bottom row, not at the geometric centre.
 
-A separate source-visible LP2 feature is the **51-rune red span on p53**, at zero-based page-local rune offset 128. Its exact annotation is in [`resources/liber-primus/lp2-ink-annotations.json`](../resources/liber-primus/lp2-ink-annotations.json), page 53. Its transliteration is:
+The p53 red span is **51 runes** at zero-based page-local offset 128. Its transliteration is:
 
 ```text
 TPWEOSWBEOTHNHGJRIADIATHAIEOAEXLEOEAIAAJHRTHPDJNGOGFEOMCHDOTCURPN
 ```
 
-Thus the p57 rectangle's inner area and the p53 red span have the same length, 51. On original combined scan 70 the p53 span is not printed as a 3×17 block: its 51 runes span the final rune of the preceding line plus the next three red lines (1 + 24 + 22 + 4). The match is therefore only a length/area correspondence, not a visible geometric alignment. The inner 3×17 p57 text is:
+On original combined scan 70, these 51 runes span the final rune of the preceding line plus the next three red lines (**1 + 24 + 22 + 4**). They are not printed as a 3×17 block. Thus the p53/p57 relation is only a length/area match after choosing 5×19; it is not a visible geometric alignment.
 
-```text
-UNNELNGTOTHESURFACEMUSTSHEDOUROWNCIRMFERENCESFINDTHEDI
-```
+The source transcription is [`resources/lp2-transcription.txt`](../resources/lp2-transcription.txt), with rune indices and prime weights in [`resources/liber-primus/lp2-corpus.json`](../resources/liber-primus/lp2-corpus.json). The p53 red-span annotation is in [`resources/liber-primus/lp2-ink-annotations.json`](../resources/liber-primus/lp2-ink-annotations.json).
 
-## Whole-page prime-sum checksum (secondary observation)
+## Possible historical selector, but not enough to establish the map
 
-The GP-prime weights of all 95 p57 runes, including the heading, sum to **3968 = 128×31 = 2⁷×31**. The factor 128 equals the hexadecimal character count of the solved-p56 64-byte hash documented in [the authoritative synthesis](../results/README.md); this is a possible cross-stage length/checksum clue, not a demonstrated decoding step. The other factor 31 does **not** map to C under the current source-derived 2013 `NUMBER` model: `numberCommand(31)` reverses to 13, which is prime, and therefore returns `+`. Do not turn this factorization into a rune selector without an independent rule. The p57 sum and factorization are reproducible directly from the corpus prime weights.
+Existing research records the 2013 `NUMBER` operation on the PARABLE prime sum 449 as reversing 449 to 944 and factoring 944 as 16×59. Applying the same source-derived rule to the factor 59 predicts 95=5×19. **There is no preserved historical response for a literal `NUMBER 59` query**; this is a derived follow-up, not an authenticated instruction. It is the only present selector for width 19. The actual printed line does not independently support that width.
 
-## Why this is a plausible solve-path hypothesis
+The p57 parable's “tunneling to the surface” / “shed our own circumferences” language makes a rectangular peel an understandable hypothesis, and the 2016 signed message's “words are the map” / “numbers are the direction” wording is broadly compatible with map-making. Neither source selects a 5×19 orientation or specifies how p53 red values act on the p57 interior.
 
-The p57 instruction says “like the instar tunneling to the surface” and “we must shed our own circumferences” before “find the divinity within and emerge.” A 5×19 rectangle is a compact way to make “circumferences” literal: peel the 44-cell outer border, then the 36-cell border, leaving a 15-cell core. The exact 51-cell interior also gives a specific place to compare the p53 red span.
+## Secondary arithmetic observations
 
-There is a possible historical selector, but it must be kept conditional. Existing research records the 2013 `number` operation on the PARABLE prime sum 449 as reversing 449 to 944 and factoring 944 as 16×59. **If** the same reverse-and-factor operation is applied to 59, it predicts 95=5×19. I found no preserved historical server response for a literal `number 59` query; this 95=5×19 step is a derived prediction, not an authenticated instruction. The 95-rune page length and 19-rune first line stand independently of that inference.
+The GP-prime weights of all 95 p57 runes, including the heading, sum to **3968 = 128×31 = 2⁷×31**. The factor 128 equals the hexadecimal character count of the solved-p56 64-byte hash documented in [the authoritative synthesis](../results/README.md). This is a possible cross-stage length/checksum coincidence, not a demonstrated decoding step. The factor 31 does **not** map to C under the current source-derived 2013 `NUMBER` rule: `numberCommand(31)` reverses to 13, which is prime, and therefore returns `+`.
 
-The 2016 signed message's “words are the map” / “numbers are the direction” wording is compatible with a map interpretation, but does not specify the 5×19 layout or the p53-to-p57 relation. These clues motivate one bounded test; they do not establish the model.
+The 19 body-word GP-prime sums are `184,72,280,339,66,72,246,86,186,232,21,55,451,151,72,376,115,215,300`. Applying the archived NUMBER rule (factor composites; reverse primes and return `+` when the reversal is prime) yields **41 distinct-factor tokens**, one `+` (151), and one factor outside GP29 (113). The count 41 equals the 2014 7×7 square's 41 active NUMBER cells. This count equality is not a mechanism: the 40 mapped GP tokens do not match the 41-symbol centre-out key (best alignment 6/40), and using them as compass directions on the 7×7 active-cell map from its centre exits, hits a plus cell, or cycles after only 3–7 visited cells.
 
-## Bounded tests and result
+## B ounded tests and result
 
-1. **Direct 51-symbol correspondence:** the row-major 3×17 interior and p53 red span have only 1 same-position match out of 51, different rune histograms, and no consistent one-to-one monoalphabetic substitution. They are not the same string or a simple transposition/substitution of one another.
-2. **Direction-walk test:** interpreting each p53 red rune's GP prime weight modulo 4 as a left / straight / right instruction on the 3×17 interior, starting at its centre, was tested over all four initial headings and both turn polarities. The path exits after only 4–7 visited cells; it does not traverse the 51-cell interior. Absolute direction interpretations using rune ordinal modulo 4 or prime ordinal modulo 4 cycle after three cells. These reject only the stated natural mappings, not every possible use of the red span.
-3. **Standard grid reads:** column-major, alternating-row, and clockwise-spiral readings of the full 5×19 array do not produce a second readable text; only row-major preserves the parable.
+1. **Direct 51-symbol correspondence:** the row-major p57 3×17 interior and p53 red span have only 1 same-position match out of 51, different rune histograms, and no consistent one-to-one monoalphabetic substitution.
+2. **Affine correspondence family:** Agent 9 tested identity / horizontal flip / vertical flip / 180° orientation and every nonzero (a\in GF(29)) in the complete separable family (C[r,c]=aP[r,c]+R[r]+K[c]\pmod{29}). No exact fit exists. Best is 24/51 (vertical flip, (a=8)); 19 cells are forced by fitting the first row and column, leaving only 5/32 additional matches.
+3. **Difference-stream language check:** the p53-minus-p57 stream `SRIADASUNFLOECWROENEODAAEIGTHEAEYLHUAYOMNGNGXTHJOXTOEDOEWJEASMEA` looks superficially language-like, but a fixed native-GP bigram/trigram score is null against 20,000 permutations of the same 51 solved p57 values: upper-tail 0.44278 for subtraction and 0.88401 for addition.
+4. **Direction / route tests:** p53 red prime-weight mod-4 left/straight/right walks from the p57 interior centre exit after 4–7 cells; ordinal mod-4 / prime-ordinal mod-4 absolute walks cycle after three. Agent 9's cumulative red-rune walks modulo 51 are not permutations (distinct positions: 28/51 for ordinal, 38/51 for ordinal+1, 33/51 for GP-prime values). Eight-way ordinal walks also exit or hit a boundary/previous cell within 3–8 steps.
+5. **Standard grid reads:** column-major, alternating-row, and clockwise-spiral reads of the full 5×19 array do not produce a second readable text; only row-major preserves the parable.
+6. **Direct p53-span additive key:** using the 51 red-span rune ordinals or their GP prime weights modulo 29 as a repeating additive key against the 12,956 unsolved runes (both signs, continuous-book and page-reset clocks) does not improve the language score; all tested quadgram scores are worse than the unmodified ciphertext.
+7. **NUMBER-derived word keys:** repeating the 41-factor sequence (113 mapped to zero), dropping 113 for a 40-symbol key, or aggregating factor indices per word into a 19-symbol key all score worse than raw ciphertext under both signs and book/page clocks. The 41-factor-to-7×7 direction walk also fails as above.
+8. **No plaintext recovered:** no tested operation yields a key, plaintext, or intended route.
 
-4. **Direct p53-span additive key:** using the 51 red-span rune ordinals or their GP prime weights modulo 29 as a repeating additive key against the 12,956 unsolved runes (both signs, continuous-book and page-reset clocks) does not improve the language score; all tested quadgram scores are worse than the unmodified ciphertext. This rejects the direct period-51 GP29 key reading, not more complex mechanisms.
-5. **2013 NUMBER on the 19 body-word prime sums:** the 19 sums are `184,72,280,339,66,72,246,86,186,232,21,55,451,151,72,376,115,215,300`. Applying the archived NUMBER rule (factor composites; reverse primes and return `+` when the reversal is prime) yields **41 distinct-factor tokens**, one `+` (151), and one factor outside GP29 (113). The count 41 equals the 2014 7×7 square's 41 active NUMBER cells, but the 40 mapped GP tokens do not match its 41-symbol centre-out key (best alignment 6/40). Repeating the resulting 41-symbol key with 113 mapped to zero, dropping 113 for a 40-symbol key, or aggregating factor indices per word into a 19-symbol key all score worse than raw ciphertext under both signs and book/page clocks. Treat the 41-count equality as an observation, not a mechanism. Using the 40 GP factors as compass directions on the 7×7 active-cell map (GP ordinal mod4/mod8 or prime value mod8), starting at the square centre, exits, hits a plus cell, or cycles after only 3–7 visited cells; it does not traverse the 41 active cells.
-6. **No plaintext recovered:** the 5×19 layout is a structural observation. It does not by itself decrypt the unsolved pages or identify a key.
+Agent 9's complete direct-gate results are preserved in [the follow-up message](../communications/agent35/20261111T0650Z_agent9_p53-p57-inner51-direct-gates.md).
 
 ## Decision
 
-Retain this as a **candidate human solve path**, not an established mechanism. The strongest reason to keep it is the conjunction of (a) 95 total p57 runes, (b) a 19-rune first printed line, (c) a 5×19 factorization that would follow from the documented reverse-and-factor operation on 59, and (d) a 51-cell inner region matching a source-annotated 51-rune red span on p53.
+**Park this branch.** The valid facts are the p57 95-rune count, 19 body words, the derived 95=5×19 factorization, the conditional 59→95 NUMBER follow-up, the 51-rune p53 red span, and the 51-cell area obtained after choosing a 5×19 rectangle. The earlier claimed 19-rune first-line alignment was wrong. The remaining 51=51 equality is under-selected and the natural direct correspondences have failed.
 
-Do not expand this into arbitrary grid orientations, modular direction alphabets, or cipher menus. A useful successor must supply an independent source clue fixing how the p53 red values act on the 51 interior cells (or another specific reversible operation on the 5×19 map). Until then, the 51-length match remains a potentially meaningful correspondence, not evidence of a key.
+Do not create a Director task or expand this into arbitrary orientations, modular direction alphabets, or cipher menus. Reopen only if an independent source selects width 19 or supplies a specific reversible operation linking the p53 red span to the p57 interior.
