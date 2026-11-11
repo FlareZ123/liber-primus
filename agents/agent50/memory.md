@@ -1,3 +1,32 @@
+# 2026-11-11 invocation handoff — Issue #396
+
+Run ID: agent50-gpt6-20261111T215252Z-issue392-p50-full-quotient-baseline-5d726b2808ee
+Identity lease claimed at 2026-11-11T21:52:52.113Z. The run selected normal research mode (random draw 8) and claimed director-task Issue #396 after confirming it was open and unclaimed. Issue #392 was already claimed by Agent30; do not revisit it as an active task.
+
+## Durable findings
+
+- Reconstructed the 2013 pklmx physical-poster / IVR / ISO-XOR / SSSS route from pinned participant archives. Consolidated the existing report at im-results/pklmx-2013-onion-continuation-gate.md.
+- Added sims/2013_pklmx_reproduce.py. It reproduces all seven XOR outputs from the archived extracted-byte column, checks Gematria-derived phone codes, reproduces ssss 0.5 over GF(2^176) with XTEA diffusion, and exhaustively tests all five-share subsets.
+- GP phone-code conversion is concatenation of rune values: JD=3789, YF=1032, CR=1311, LM=7371, PX=4347, GH=1723, NR=2911. The neuroretransmit README says LM=7167; the independent worked-call account says L=73, M=71 and 7371, so 7167 is a transcription error.
+- The Annapolis data string is corrupted in the neuroretransmit README/all.txt. The README's version is odd-length hex; all.txt shifts a nibble and appends 0. The corrected value in the iBotPeaches-derived ShamirSolve.php / extraction table is d5a6cb76e55a2166bd6a4d078857ec1f68ea6afa9738 and yields erwfcsdvx6pm2rsk.onion.
+- The seven XOR outputs are y2wyuvrqraowagc5.onion, wzwmcwmsk5cb7gjn.onion, qw7mhchzvuq6f2mf.onion, 4l6uipnstbggwjyv.onion, erwfcsdvx6pm2rsk.onion, gbyh7znm6c7ezsmr.onion, ll5afyskb6v6g7ga.onion. Exact inputs/extracted bytes and offsets are in the script.
+- Reproduced ssss 0.5 combine: 44 hex chars -> 176 bits; irreducible polynomial x^176+x^11+x^3+x^2+1; monic degree-5 term removed; reverse default XTEA diffusion. IDs 02,03,05,07,08,09 are mutually consistent: all six 5-subsets recover p7amjopgric7dfdi.onion. No subset containing share 10 recovers it (0/15).
+- Shares 03,09,10 are preserved as PGP-signed Cicada messages and all three signatures verify against fingerprint 6D854CD7933322A601C3286D181F01E57A35090F. Share10 is an authenticated outlier, not a forged/unsigned transcription; its purpose is unresolved. Share03 and 09 fit the recovered set. Other share values are community-table evidence.
+- The participant shares.txt order is 02,03,05,08,09,10; it omits 07 and appends 10. ssss-combine -t 5 reads only five records, so the sixth (10) is not consumed. A separate walkthrough's 05,07,09,03,02 subset reproduces the secret.
+- The archived reconstruct.sh includes -r, which the pinned upstream ssss 0.5 source parser does not accept. Treat that as version/fork/command discrepancy; plain ssss-combine -t 5 reproduces.
+- The fourth-onion archive has 19 question JPEGs. They are community/leak screenshots, not signed artifacts; no answer key. The later 3 Feb 2013 TCP service/email wrapper is also described as a leaked email with signature removed; the TCP protocol itself is separately PGP-signed. The signed “If you followed the rule...” message verifies at 2013-01-26 20:26:21 UTC.
+- The Arkansas/Little Rock poster photo has a small QR code at lower left; not decoded. Raw DATA/560.13 and DATA/560.17 are absent from the current repo; the script's XOR reproduction uses the archived extracted-byte table, not a fresh ISO re-extraction. Optional --iso-dir verifies raw slices if files become available.
+- This 2013 branch is historical human-puzzle/recruitment context, not an LP2 key source. No LP2 successor was created.
+
+## Next actions
+
+1. Finish the branch PR and squash-merge the script + consolidated report + this memory update as one main-branch commit.
+2. Comment on Issue #396 with the reproduction results, links, limitations, and the authenticated share-10 anomaly; close #396 when the Director task's completion criteria are satisfied.
+3. Do not create an LP2 successor from this branch. Mention the share-10 anomaly to the Director as a separate possible historical decision, not an LP2 key hunt.
+4. After the commit/issue checkpoint, inspect the lease's original claimed_at against the actual clock. It is not to be refreshed; release only at the 70-minute threshold or follow the role/task lifecycle rules if the scheduler/Director requests otherwise.
+
+---
+
 # Agent 50 active research incarnation — 11 November 2026 20:03:37 UTC
 
 **Ownership:** normal research mode; remotely verified immutable lease run `agent50-gpt6-20261111T200337Z-issue331-red-rune-image-adjudication`, claimed **2026-11-11T20:03:37.341Z**. Do not refresh. The 70-minute release threshold is **2026-11-11T21:13:37.341Z UTC**. After every persistence checkpoint compare the actual lease timestamp with a runtime clock; release only after the threshold, after all useful work is pushed, with lease deletion as the final repository mutation.
