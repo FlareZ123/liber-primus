@@ -29,44 +29,52 @@ const mod = (x) => (x % M + M) % M;
 const digraphs = {TH:2,NG:21,EO:12,OE:22,AE:25,IA:27,EA:28};
 const letters = {A:24,B:17,C:5,D:23,E:18,F:0,G:6,H:8,I:10,J:11,K:5,L:20,M:19,N:9,O:3,P:13,Q:5,R:4,S:15,T:16,U:1,V:1,W:7,X:14,Y:26,Z:15};
 
-function encode(text) {
-  const s = text.toUpperCase().replace(/[^A-Z]/g, "");
+function encodeWords(text, alphabet) {
+  const normalized = text.toUpperCase().replace(/K/g, "C").replace(/Q/g, "C")
+    .replace(/V/g, "U").replace(/Z/g, "S").replace(/[^A-Z]+/g, " ").trim();
+  const tokens = alphabet.map((token, index) => ({token, index})).sort((a, b) => b.token.length - a.token.length);
   const out = [];
-  for (let i = 0; i < s.length; i++) {
-    const d = digraphs[s.slice(i, i + 2)];
-    if (d !== undefined) { out.push(d); i++; }
-    else out.push(letters[s[i]]);
+  for (const word of normalized.split(/\s+/)) for (let i = 0; i < word.length;) {
+    const match = tokens.find(x => word.startsWith(x.token, i));
+    if (!match) throw new Error("Unmapped GP spelling: " + word.slice(i));
+    out.push(match.index); i += match.token.length;
   }
   return out;
 }
-function train(text) {
-  const symbols = encode(text);
-  const u = new Uint32Array(M), b = new Uint32Array(M * M);
-  const tri = new Uint32Array(M * M * M);
+function train(text, alphabet) {
+  const symbols = encodeWords(text, alphabet);
+  const u = new Uint32Array(M), b = new Uint32Array(M * M), tri = new Uint32Array(M * M * M);
   for (let i = 0; i < symbols.length; i++) {
-    u[symbols[i]]++;
-    if (i) b[symbols[i - 1] * M + symbols[i]]++;
+    u[symbols[i]]++; if (i) b[symbols[i - 1] * M + symbols[i]]++;
     if (i > 1) tri[(symbols[i - 2] * M + symbols[i - 1]) * M + symbols[i]]++;
   }
   const q = Array.from(u, x => (x + 1) / (symbols.length + M));
-  const unigram = new Float64Array(M), bigram = new Float64Array(M * M);
-  const trigram = new Float64Array(M * M * M);
+  const unigram = new Float64Array(M), bigram = new Float64Array(M * M), trigram = new Float64Array(M * M * M);
   for (let c = 0; c < M; c++) unigram[c] = Math.log(q[c]);
-  for (let a = 0; a < M; a++) for (let c = 0; c < M; c++) {
-    bigram[a * M + c] = Math.log(
-      (b[a * M + c] + 12 * q[c]) / (u[a] + 12)
-    );
-  }
+  for (let a = 0; a < M; a++) for (let c = 0; c < M; c++)
+    bigram[a * M + c] = Math.log((b[a * M + c] + 12 * q[c]) / (u[a] + 12));
   for (let a = 0; a < M; a++) for (let v = 0; v < M; v++) for (let c = 0; c < M; c++) {
     const ix = (a * M + v) * M + c;
-    trigram[ix] = Math.log(
-      (tri[ix] + 9 * Math.exp(bigram[v * M + c])) / (b[a * M + v] + 9)
-    );
+    trigram[ix] = Math.log((tri[ix] + 9 * Math.exp(bigram[v * M + c])) / (b[a * M + v] + 9));
   }
-  return {symbols: symbols.length, q, unigram, bigram, trigram};
+  return {symbols, q, unigram, bigram, trigram};
 }
-
-/* Exact truncated forward likelihood, with no wrap and a fixed start offset. */
+function firstPrimes(n) {
+  const out = [];
+  for (let x = 2; out.length < n; x++) {
+    let prime = true; for (let d = 2; d * d <= x; d++) if (x % d === 0) {prime = false; break;}
+    if (prime) out.push(x);
+  }
+  return out;
+}
+function p56Regression(corpus) {
+  const cipher = corpus.pages.find(p => p.page === 56).indices;
+  const expected = encodeWords("AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE", corpus.translit);
+  const f = cipher.map((x, i) => x === 0 ? i : -1).filter(i => i >= 0);
+  const ps = firstPrimes(cipher.length + 29); let j = 0;
+  const recovered = cipher.map((c, i) => i === f[3] ? 0 : mod(c - (ps[j++] - 1)));
+  return {exact: recovered.length === expected.length && recovered.every((x, i) => x === expected[i]), fPositions: f};
+}
 function logLikelihood(cipher, key, offset, q) {
   const stateSize = cipher.length + MAX_TOTAL + 2;
   let state = new Float64Array(stateSize);
@@ -228,7 +236,9 @@ function decodeBeam(cipher, key, offset, model, translit, beamSize = 30000) {
 function main() {
   const source = JSON.parse(read("resources/cicada-hiddenservice-256-candidates.json"));
   const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
-  const training = train(read("resources/control/shakespeare_first300k.txt"));
+  const training = train(read("resources/control/shakespeare_first300k.txt"), corpus.translit);
+  const p56 = p56Regression(corpus);
+  if (!p56.exact) throw new Error("Canonical GP29 / p56 regression failed");
   const pages = corpus.pages.filter(p => p.status === "unsolved" && p.indices.length >= 3);
   const blobs = source.sourceServices.map(s => ({
     id: s.id,
@@ -244,7 +254,7 @@ function main() {
 
   // Positive control: known English plaintext, true byte key, known offset.
   const plantKey = blobs[0].bytes.map(x => x % M);
-  const planted = plant( training.symbols ? encode(read("resources/control/shakespeare_first300k.txt")).slice(500, 700) : [], plantKey, 7, 0x3301);
+  const planted = plant(training.symbols.slice(500, 700), plantKey, 7, 0x3301);
   const plantLLR = llr(planted.cipher, plantKey, 7, training.q);
   const wrongKey = blobs[0].bytes.map(x => (x * 7 + 13) % M);
   const wrongLLR = llr(planted.cipher, wrongKey, 7, training.q);
@@ -276,12 +286,13 @@ function main() {
   const exceeded = nulls.filter(x => x.best >= pairBest.llr).length;
 
   console.log(JSON.stringify({
+    p56Regression: p56,
     model: {
       rejectRepeat: R, maxTotalSkips: MAX_TOTAL,
       maxSkippedPerOutput: MAX_LOCAL, wrap: false,
       offsetRange: "0..20; maximum over offsets",
       FNull: "not included",
-      trainingSymbols: training.symbols
+      trainingSymbols: training.symbols.length
     },
     positiveControl: {
       length: planted.cipher.length, skips: planted.skips,
@@ -301,4 +312,4 @@ function main() {
   }, null, 2));
 }
 if (require.main === module) main();
-module.exports = {encode, train, logLikelihood, llr, pairBE, scan, decodeBeam};
+module.exports = {encodeWords, train, logLikelihood, llr, pairBE, scan, decodeBeam};
