@@ -1,6 +1,6 @@
 # Canonical signed-2016 full 179-GP length versus original LP2 p53
 
-**Decision: retire this exact-length match as a direct GP29 additive key route.** The source-length arithmetic is reproducible, the tested six original-cipher inverses fail, and neither the signed instructions nor the manuscript prescribe this use of the text. No unknown plaintext, authentic key, full mechanism or destination is recovered.
+**Decision: retire this exact-length match as a physical-page selector and direct GP29 additive key route.** The source-length arithmetic is reproducible, the tested six original-cipher inverses fail, and neither the signed instructions nor the manuscript prescribe this use of the text. No unknown plaintext, authentic key, full mechanism or destination is recovered.
 
 ## Original source and precise candidate
 
@@ -9,6 +9,14 @@ The fully preserved, 2016 GPG-verified [signed OutGuess message](../resources/hi
 On that mapping the **whole signed cleartext body**, excluding packet framing, signature and numerals but retaining the letters **A/F within the final hexadecimal OpenPGP identifier**, has **exactly 179 GP symbols**. Physical unsolved LP2 **page53 uniquely has 179 original runes** among all 56 unknown pages. This suggests a simple, cheap original-cipher test: interpret the canonical signed 179-symbol text as a one-to-one page53 keystream.
 
 **Strongest objection:** a player might properly treat the hexadecimal key ID as metadata rather than GP prose. Excluding `7A35090F` entirely reduces the key to **177 runes**, for which **no unknown page has a matching rune count**. The original text does not direct solvers to include the A/F hexadecimal letters, use rune-count matching, or take the 2016 message as an encryption key. This interpretation was also noticed after corpus-page lengths were already known, so the numerical agreement is postselected.
+
+## Page-selector source audit (11 November 2026)
+
+The exact OpenPGP framing resolves one ambiguity but does not supply the missing selector. `7A35090F` is inside the clear-signed body, before `-----BEGIN PGP SIGNATURE-----`; it is therefore signed content, not detached armor. But the body labels it explicitly as an **OpenPGP identifier**. The preserved 2017 signed warning repeats the same value in the instruction “Always verify PGP signature from 7A35090F,” and its source record identifies the full signing-key fingerprint ending in `7A35090F`. Thus the two letters A/F are hexadecimal digits in one identifier, not ordinary GP prose. Counting those two characters as GP runes while discarding the identifier's six decimal digits is an ad hoc split. Treating the identifier as an opaque key ID (or excluding it from GP transliteration) leaves 177 symbols, which matches no unknown page. The 179 count is therefore contingent on a non-source-selected tokenization.
+
+The 2016 message's explicit unit is **words**: “Its words are the map.” It does not say that its total GP-symbol length is a page address. A more source-aligned competing count is the 43 alphabetic words (with `OpenPGP` as a word, and the numeric `3301` and hexadecimal key ID excluded) against the 43 p55 interior runes selected by the solved p57 instruction to “shed our own circumferences.” That relationship is not a recovered cipher—the fixed direct word-prime-sum and p32-compass additive bridges on p55 fail—but it follows the stated word unit and a separate solved-page operation more naturally than counting A/F inside a hex identifier. See [the existing 43-unit source-selector audit](lp2-2016-p50-p55-43unit-source-selector-gate.md).
+
+The preserved 2012, 2014, 2016 and 2017 signed Cicada artifacts and the current solved-stage record provide no independent convention instructing a solver to convert a whole signed message's GP-symbol count into a physical LP2 page number. The 2016 text supplies no such rule; its word/map language does not select total symbol length. Since no independent p53 selector survives, the task's conditional p53-layout inspection is not triggered. **Retire the 179-to-p53 length match as a postselected coincidence; do not search for a new p53 cipher or operation from it.**
 
 ## Frozen reversible original-cipher consumers
 
