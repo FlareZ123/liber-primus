@@ -13,6 +13,7 @@ on:
           - pgphash
           - xor43
           - fibonacci-page-route
+          - fibonacci-p55-prefix
         default: original
 
 jobs:
@@ -81,3 +82,15 @@ jobs:
           node-version: '22'
       - name: Reproduce signed 2016/2017 Fibonacci physical-page selector
         run: node sims/signed2016_fibonacci_page_route_sft.cjs
+
+  fibonacci-p55-prefix:
+    if: ${{ inputs.probe == 'fibonacci-p55-prefix' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test frozen Fibonacci 76-rune prefix key on p55
+        run: node sims/signed2016_fibonacci_p55_prefix_key_sft.cjs
