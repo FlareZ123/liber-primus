@@ -87,8 +87,37 @@ The two literal marked-end traversals were also tested without a key. Reversing 
 **Reproduce:** [terminal-key/readout SFT](../sims/signed2016_fibonacci_p55_terminal_key_sft.cjs); final successful CI [run 42973198290](https://github.com/FlareZ123/liber-primus/actions/runs/42973198290).
 
 
+## Prime-ordinal starts for the solved p56 clock: bounded negative
+
+The 2016/2017 signed-message route gives page/prime-ordinal pairs **p13/#431**, **p21/#410**, **p34/#376**, and **p55/#321**, corresponding to primes **3001, 2819, 2579, 2131**. A natural, locked extension is to start the solved p56 clock at the matching one-based prime ordinal on each selected page, using the established operation \(P_i=C_i-(p_{n+i}-1)\pmod{29}\).
+
+The test covered the full rune streams on p13, p21, p34 and p55. For p55 it also tested both orders suggested by “shed circumferences”: strip to the **43 interior runes before** decryption, or decrypt the full 76-rune page and then select those same 43 positions. The optional p56-style Möbius exception was tested separately: a ciphertext F (GP index 0) passes through without consuming a prime only where the zero-based Möbius function is zero. No nearby start offsets or fitted phases were searched.
+
+Both implementation controls pass: the established p56 clock recovers its exact known plaintext with the known offset-56 literal-F skip, and a planted 43-rune stream encrypted under the p321 clock is recovered exactly.
+
+| Target | Start prime | F handling | Score | Native q05 | Native q95 |
+|---|---:|---|---:|---:|---:|
+| p13 full | 431 / 3001 | none | −6.08515 | −2.38086 | −2.09771 |
+| p13 full | 431 / 3001 | Möbius-F | −6.23153 | −2.38086 | −2.09771 |
+| p21 full | 410 / 2819 | none | −5.92522 | −2.36459 | −2.08799 |
+| p21 full | 410 / 2819 | Möbius-F | −6.36402 | −2.36459 | −2.08799 |
+| p34 full | 376 / 2579 | none | −6.16395 | −2.37266 | −2.08470 |
+| p34 full | 376 / 2579 | Möbius-F | −6.34380 | −2.37266 | −2.08470 |
+| p55 full | 321 / 2131 | none | −6.53752 | −2.47101 | −2.01891 |
+| p55 full | 321 / 2131 | Möbius-F | −6.65014 | −2.47101 | −2.01891 |
+| p55 interior-first (43) | 321 / 2131 | none | −5.59876 | −2.56024 | −1.97253 |
+| p55 interior-first (43) | 321 / 2131 | Möbius-F | −5.59876 | −2.56024 | −1.97253 |
+| p55 full-then-strip (43) | 321 / 2131 | none | −6.37983 | −2.56024 | −1.97253 |
+| p55 full-then-strip (43) | 321 / 2131 | Möbius-F | −6.39012 | −2.56024 | −1.97253 |
+
+Scores are mean native-GP trigram log probabilities; each length has **800 deterministic native Shakespeare-GP control windows**. Every candidate falls far below even its matched native fifth percentile. The best is p55 interior-first at −5.59876, still 3.04 nats/rune below its native q05. The Möbius-F skip positions are p13 [36,50,60,90,125], p21 [84,160], p34 [44,162,212], p55 full [25]; the 43-symbol p55 interior has no such F positions.
+
+**Decision:** reject the exact **route-prime-ordinal = p56-clock-start** hypothesis. This does not reject the 2016/2017 route as a page-selection clue, nor the p56 clock on its solved page; it shows that these route ordinals do not provide a usable start schedule for that clock. Do not expand into an arbitrary prime-offset sweep.
+
+**Reproduce:** [single-file SFT](../sims/signed2016_fibonacci_prime_clock_start_sft.cjs). Inputs are the canonical [LP2 corpus](../resources/liber-primus/lp2-corpus.json), [transcription](../resources/lp2-transcription.txt), and fixed [Shakespeare control text](../resources/control/shakespeare_first300k.txt).
+
 ## Research consequence
 
-The strongest consequence is **target selection**: p55 now has a second source-motivated route from the later signed-message/Fibonacci structure, in addition to existing independent p55-focused manuscript analyses. This does not solve the missing operation required by Director Issue #41. A useful successor must explain what reversible operation is to be performed on p55's 76 runes, or make a locked prediction on one of p13/p21/p34 before reading its output.
+The strongest consequence remains **target selection**: the signed-message/Fibonacci route still terminates at p55, but the source-derived prime ordinals do not select the solved p56 prime-totient clock as its decoder. The direct word-index, Fibonacci-prefix additive, terminal-block additive, and prime-clock-start readings are now bounded negatives. A successor must supply a different source-selected reversible operation; arbitrary offsets, phases, and key searches are not justified.
 
-**Reproduce:** [single-file CommonJS SFT](../sims/signed2016_fibonacci_page_route_sft.cjs). Corrected physical-page-clock CI: [run 42972615216](https://github.com/FlareZ123/liber-primus/actions/runs/42972615216). Inputs are the byte-preserved [2016 signed payload](../resources/historical/cicada2016-4gq25-outguess.asc), [2017 signed warning](../resources/historical/cicada2017-yEiTHhvF.asc), canonical [LP2 corpus](../resources/liber-primus/lp2-corpus.json), and [transcription](../resources/lp2-transcription.txt).
+**Reproduce:** [page-route SFT](../sims/signed2016_fibonacci_page_route_sft.cjs) and [prime-clock-start SFT](../sims/signed2016_fibonacci_prime_clock_start_sft.cjs). The route inputs are the byte-preserved [2016 signed payload](../resources/historical/cicada2016-4gq25-outguess.asc), [2017 signed warning](../resources/historical/cicada2017-yEiTHhvF.asc), canonical [LP2 corpus](../resources/liber-primus/lp2-corpus.json), and [transcription](../resources/lp2-transcription.txt).
