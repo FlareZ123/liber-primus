@@ -36,6 +36,19 @@ All 16 variants preserve the full original rune array under exact forward reencr
 
 **Important false-positive trap:** one reversed, totient, additive p55 transliteration begins with the Latin string `SPONGEO...`. Its actual first five GP rune tokens are **S · P · O · NG · EO**, so the apparent substring `SPONGE` is produced by cutting the one-rune **EO** digraph. It is **not** the rune spelling of the word SPONGE, not a plaintext crib, and the remainder is nonlinguistic. The SFT records full rune-index outputs to prevent this ambiguity.
 
+## Independent printed-table numeric check
+
+A separate, language-free source check asks whether the same split has an obvious **bytewise** correspondence with the printed table itself. Freeze the table's natural 30×6 interior row-major reading and the standard outer ring clockwise from the upper-left corner. Compare those 180 and 76 base60-decoded byte values with the two historical prime sets reduced mod256, using either the prime or its φ(prime)=prime−1. There is no fitted rotation or optimized correspondence.
+
+| Original table region versus source key | Equality count | Pearson r |
+| --- | ---: | ---: |
+| Interior versus missing primes mod256 | 1/180 | −0.09733 |
+| Interior versus missing φ(prime) mod256 | 4/180 | −0.09733 |
+| Exterior versus visible primes mod256 | 0/76 | +0.10812 |
+| Exterior versus visible φ(prime) mod256 | 0/76 | +0.10812 |
+
+The 1, 4, 0 and 0 coincidences are consistent with unrelated bytes under this direct interpretation. This specifically fails to corroborate a literal prime-valued byte table. The historical base59 numeral-codec ambiguity does not provide a reason to optimize the byte interpretation after this negative result.
+
 ## What would change the decision
 
 The historic prime-gap interval is a more specific cross-round starting point than another arbitrary 180-number list; its most direct additive uses fail. It should **not** be used to launch permutations, cyclic offsets, multi-layer transformations, or a general prime-pad sweep. The valuable next evidence would be either a truly original 2013 telnet transcript or source-code capture establishing intentional omission, or a historically visible instruction selecting a **specific reversible mapping** from the prime interval and table interior/perimeter to runes. Freeze such a map before looking at original plaintext; use a solved historical control and a distinct original holdout. Until then this remains a provisional source clue with no decrypted text.
