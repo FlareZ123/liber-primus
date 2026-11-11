@@ -4,8 +4,9 @@
  * Original LP2 word-shape state entropy gate, including page- and section-keyed
  * permutations. SFT: node sims/lp2_wordshape_secret_alphabet_entropy_sft.cjs
  *
- * Any fixed bijection P -> C chosen only by (word length, position, optional
- * page/section) preserves the empirical conditional entropy H(C | state).
+ * Any fixed secret position shuffle per (word length, optional section/word-start
+ * page) plus independent secret GP29 position alphabets preserves weighted
+ * empirical conditional entropy H(C | state).
  * Native controls are resampled to MATCH EACH original word length.
  */
 const assert = require("node:assert/strict");
@@ -75,6 +76,11 @@ for (const word of words) {
   absolute += length;
 }
 assert.equal(absolute, 12956);
+const sourceCrossings = {
+  sections: wordStates.filter(states => states[0].section !== states.at(-1).section).length,
+  pages: wordStates.filter(states => states[0].page !== states.at(-1).page).length,
+};
+assert.deepEqual(sourceCrossings,{sections:0,pages:32});
 
 /** @param {RuneState} state @param {"word"|"section"|"page"|"startPage"} model */
 function stateKey(state, model) {
@@ -321,6 +327,7 @@ console.log(JSON.stringify({
   hypothesis: "Arbitrary fixed GP29 secret substitutions and fixed within-word transpositions keyed by word length, section, or word-start page",
   sourceSHA256: Object.fromEntries([...files.map((name,i)=>[name,sha256(data[i])]),[latinPath,sha256(latinRaw)]]),
   original: actual,
+  sourceCrossings,
   controls,
   planted: {length:12956, stateTables:perms.size, exactRecovery:true,
     pageEntropyPlaintext:conditionalEntropy(histogramByState(planted,"page")),
