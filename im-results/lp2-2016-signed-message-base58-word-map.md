@@ -91,6 +91,24 @@ Two further predictions arise without changing the addressing convention. The si
 
 The `lies`→p50 address and FOLD/END correspondences are exact conditional outcomes of the proposed map, but their selection and interpretation do not establish that a contemporary solver was meant to use this map. The 42/43 in-bounds result is not discriminating under the documented phase-shift null. The special treatment of `lies` as a table-cell pointer was adopted after the absent rune word was observed. The signed message's grammatical subject is the book, and no historical clue has been found prescribing a 43-way correspondence. The next meaningful advance would require an independent instruction that fixes a reversible operation and makes a withheld original-ciphertext prediction. The full-source assertions and a summary are embedded in the original SFT, [`sims/lp2_2016_message_base58_word_map.cjs`](../sims/lp2_2016_message_base58_word_map.cjs).
 
+## Independent cross-round signed-message control: earlier `hearing` selects `MY`
+
+**Completed, 11 November 2026 (Agent 1).** This is a finite external-message challenge of the already fixed 58-page GP-prime-sum word-address hypothesis, rather than a new parameter search. The 2016 clue supplies its 43 canonical signed word tokens. Earlier, independently signed Cicada sources are preserved byte-for-byte at `resources/historical/cicada2012-countdown-message.asc` and `resources/historical/cicada2014-stage11-message.asc`, copied from archival original mirrors. The tests use only natural-language words of the signed cleartext: 2012 countdown = **22** words and 2014 final-onion announcement = **14** words; its hostname, number 3301 and PGP-armour are excluded.
+
+The **2014** authenticated instruction includes “We look forward to **hearing** from you.” Under *exactly* the same earlier specified GP enciphering and 58-page quotient/remainder rule, `hearing` has prime sum **253**, hence p21 word index4, whose original unchanged two-rune ciphertext is **MY**. The **2016** held-out `seeks` also sums to **253** and therefore reaches that same MY. This is a real **pre-2016 textual same-sum recurrence**, but it is **not an independent test of the page/address formula**: identical inputs to the proposed numerical addressing function must have identical destinations, regardless of whether the function was intended. The 2012 signed countdown contains no words mapping to the three already selected anchors (p14:w1 **FOLD**, p21:w4 **MY**, p56:w1 cipher for solved **END**).
+
+| Source signed text | Tokens | Hits to the three previously privileged original addresses under fixed mod58, origin0 |
+| --- | ---: | --- |
+| 2012 countdown, original January 2012 | 22 | 0 |
+| 2014 final-onion announcement | 14 | 1: `hearing`→MY |
+| 2016 complete signed message | 43 | 9: six instances of `the`→FOLD, two of `their`→END, one `seeks`→MY |
+
+Frozen, non-tuned controls: changing only modulus to **57**, origin0 sends `you` to the previously privileged p56:w1 cipher for END in the 2012 and 2014 texts, illustrating that source-word-to-endpoint hits need not be unique to the hypothesized modulus. Modulus **59**, origin0 gives zero hits in each source. Keeping modulus58 but using zero-based index shifted by **−1** sends 2016 `found` to FOLD; shifting by **+1** produces no privileged hits. These comparisons are a diagnostic of parameter sensitivity, not significance tests; anchor selection was guided by the 2016 source, and repeated `the` tokens are non-independent.
+
+**Decision:** the original signed text authenticates a recommendation to use words/numbers, and 2013's solved Cicada `count` operator documents GP-prime summation as an author-used operation. No independent historical source selects **58** as the modulus, **page = remainder**, **word = quotient**, or **zero-based origin** as a combined 2016 instruction. Under this finite cross-round holdout, MY FOLD remains a striking *conditional* phrase, not a confirmed page-address or plaintext-recovery algorithm. Further work should seek an explicit original-source address contract or an independently prespecified decode, rather than multiplying numerical coincidences.
+
+**Reproduce:** [source-preserving standalone CommonJS test](../sims/lp2_signed_2012_2014_2016_wordmap_holdout_sft.cjs), with [passing manual GitHub Actions 42982615795](https://github.com/FlareZ123/liber-primus/actions/runs/42982615795). This holds out two earlier signed messages while leaving the original p0–57 GP data, printed token boundaries and the 2016 parameters unchanged.
+
 ## Source-preserving recursive word route: FOLD → SB → END
 
 After a signed-source word selects a rune word, apply the **same fixed** prime-sum quotient/remainder operation to that selected printed rune word. This gives a reproducible two-hop route across the original book:
