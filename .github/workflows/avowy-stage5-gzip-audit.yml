@@ -67,6 +67,52 @@ jobs:
           print("byte_entropy",H,"distinct_bytes",len(counts))
           PY
           strings -a -n 8 data.out | head -150 >> audit.txt
+      - name: Build maintained OutGuess 0.4
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y autoconf automake libtool build-essential libjpeg-dev file
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess
+          ./autogen.sh
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
+          make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
+          sudo make install
+      - name: Split the two archived tablet images and test source-fixed OutGuess modes
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          b=Path("data.out").read_bytes()
+          # The two adjacent 2400x3600 JPEGs are independently decoded and verified.
+          bounds=[0,823807,1647321]
+          assert b[:2]==b"\\xff\\xd8" and b[bounds[1]-2:bounds[1]]==b"\\xff\\xd9"
+          assert b[bounds[1]:bounds[1]+2]==b"\\xff\\xd8" and b[bounds[2]-2:bounds[2]]==b"\\xff\\xd9"
+          Path("tablet-front.jpg").write_bytes(b[bounds[0]:bounds[1]])
+          Path("tablet-back.jpg").write_bytes(b[bounds[1]:bounds[2]])
+          Path("trailer.bin").write_bytes(b[bounds[2]:])
+          print("front",bounds[1]-bounds[0],"back",bounds[2]-bounds[1],"trailer",len(b)-bounds[2])
+          PY
+          for image in tablet-front.jpg tablet-back.jpg; do
+            for mode in default divinity; do
+              out="outguess-$image-$mode.bin"
+              if [ "$mode" = default ]; then
+                outguess -r "$image" "$out" >"$out.log" 2>&1 || true
+              else
+                outguess -k divinity -r "$image" "$out" >"$out.log" 2>&1 || true
+              fi
+              echo "=== $image $mode ===" | tee -a outguess-audit.txt
+              cat "$out.log" | tee -a outguess-audit.txt
+              if [ -f "$out" ]; then
+                wc -c "$out" | tee -a outguess-audit.txt
+                sha256sum "$out" | tee -a outguess-audit.txt
+                file "$out" | tee -a outguess-audit.txt
+                strings -a -n 5 "$out" | head -40 | tee -a outguess-audit.txt || true
+              fi
+            done
+          done
       - name: Upload source and decoded object with audit
         uses: actions/upload-artifact@v4
         with:
@@ -77,4 +123,9 @@ jobs:
             stage5-object.gz
             data.out
             audit.txt
+            tablet-front.jpg
+            tablet-back.jpg
+            trailer.bin
+            outguess-*
+            outguess-audit.txt
           retention-days: 14
