@@ -1,6 +1,6 @@
 # 2016 signed-message word-map hypotheses: base-58 addresses and base-29 line:character PRNG
 
-**Status: the base-58 map remains provisional. Its full 43-word output, after p57 circumference stripping, yields a 91-symbol 7×13 stream; simple uses against the 273-symbol p29 residual are negative. The p32 M7 route and separate base-29 line:character PRNG reading remain provisional, not decryptions.**
+**Status: the base-58 map remains provisional. Its full 43-word output, after p57 circumference stripping, yields a 91-symbol 7×13 stream; simple uses against the 273-symbol p29 residual are negative. The selected p32 13-rune window is negative as a direct period-13 additive key. The p32 M7 route and separate base-29 line:character PRNG reading remain provisional, not decryptions.**
 
 ## Hypothesis
 
@@ -157,6 +157,17 @@ Under base60, `3D` is **193**. The existing [p50/p55 source-selector gate](lp2-2
 **Exploratory only:** treating the suffix's 50th-prime ordinal as an instruction to address p50 is not explicitly specified. The stronger checks are the exact 193+36 suffix checksum and the independent `lies`→p50 address.
 
 The `lies`→p50 address and FOLD/END correspondences are exact conditional outcomes of the proposed map, but their selection and interpretation do not establish that a contemporary solver was meant to use this map. The 42/43 in-bounds result is not discriminating under the documented phase-shift null. The special treatment of `lies` as a table-cell pointer was adopted after the absent rune word was observed. The signed message's grammatical subject is the book, and no historical clue has been found prescribing a 43-way correspondence. The new p32 13-rune W/infinity route is a candidate navigation constraint, but the next meaningful advance still requires an independently fixed reversible operation or key/state that makes a held-out original-ciphertext prediction. The full-source assertions and a summary are embedded in the original SFT, [`sims/lp2_2016_message_base58_word_map.cjs`](../sims/lp2_2016_message_base58_word_map.cjs).
+
+
+## The p32 13-rune window as a period-13 additive key: negative
+
+The p32 window selected by the provisional signed-2016 \`Beware\` address is exactly 13 GP symbols (local offsets 25–37): \`IA,R,T,TH,F,F,O,TH,H,O,M,E,X\`, prime-weight sum **413≡7 (mod 29)**. The 13-dot mark and the 2016 pointer therefore provide a source-motivated key candidate, while the additive GP29 operation is a simple cipher-family interpretation (not an explicit instruction). The key is derived from p32 ciphertext, so p32 itself is excluded from scoring.
+
+\`sims/p32_13runic_window_period13_key_sft.cjs\` tests only the forward printed-order key, both signs, and two natural clocks: continuous from the start of the full LP2 stream (advancing through excluded p32), or reset at each page. No rotations, phase search, reversed key, or alternate window is admitted. All four planted-English controls recover exactly.
+
+The 12,835 runes on the other 54 rune-bearing pages have raw IoC **0.0344821**. The best decoded full-book IoC is **0.0345372** (continuous, addition); this is below the 95th percentile **0.0345402** of 100 random 13-symbol keys evaluated over the same four-model grid (92nd percentile). The best page-local IoC is **0.0370646** (p45), below the random-null median **0.0381339** and at the 3rd percentile. The Gibran GP29 control is **0.0584002**. On p33–39, the best tested subset IoC is **0.0345274**, still near-uniform.
+
+**Decision:** the exact p32 13-rune window is not a direct period-13 additive GP29 key for the other pages. This is a bounded negative on the four stated variants; the p32 word-address/pole selector remains a navigation hypothesis, not a decryption.
 
 ## 2016 dimensions → p32 prime ranks → `EN`: exact boundary, not an executable route
 
