@@ -1,8 +1,8 @@
 "use strict";
 /**
- * Source-constrained test of the 29-adic derivative at the p3-marked root.
+ * Postselected test of a speculative 29-adic derivative candidate.
  *
- * The p3 red triad defines u^2 = 3u + 8 and the root seed z = 23 + 27u.
+ * The p3 red triad defines u^2 = 3u + 8. Candidate seed z=23+27u is NOT source-selected: corrected p3/p39 offsets are 848 and 9519 (difference 8671 mod840=271; pair difference 4335 mod840=135). It is retained only for a reproducible negative test.
  * The 256 original base60 bytes define P over GF(29), lifted in Z_29[u].
  * This script tests:
  *   (1) the direct GF(29^2) first-jet map C_i = P'(z)_i * M_i + P(z)_i;
@@ -264,7 +264,7 @@ function main() {
   assert.deepEqual(recovered, solved.slice(0, 94));
 
   const output = {
-    classification: "bounded source-derived negative; no unknown plaintext or key",
+    classification: "postselected algebraic negative; root seed not source-selected",
     source: {
       originalUnsolvedPages: pages.length,
       originalRunes: original.length,
@@ -273,6 +273,7 @@ function main() {
       redTriads: triads,
       p39OneJet: { P15: Number(p39.v[0]), dP15: Number(p39.d[0]) },
       p3Extension: "u^2 = 3u + 8",
+      offsetAudit: { p3GlobalRune: 848, p39GlobalRune: 9519, difference: 8671, differenceMod840: 271, pairDifference: 4335, pairDifferenceMod840: 135, candidateSeedSourceSelected: false },
       liftedRootMod29: [Number(lifted.x[0] % MOD), Number(lifted.x[1] % MOD)],
       precision: count,
       checkedPrecisions: lifted.checks

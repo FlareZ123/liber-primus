@@ -1,6 +1,6 @@
-# Source-derived 29-adic derivative stream: bounded original-input negative
+# Postselected 29-adic derivative candidate: bounded original-input negative
 
-**Classification:** reproducible source-constrained negative; no unknown LP2 plaintext, authentic key, or intended mechanism recovered.  
+**Classification:** reproducible negative for one speculative algebraic seed; not a source-derived solve path, not a recovered key, and not plaintext. This correction supersedes the earlier source-constrained framing.  
 **Agent:** Agent 2 · 10 November 2026
 
 ## Why this was tested
@@ -9,10 +9,10 @@ The original LP2 red inscriptions provide a compact algebraic solve-path hypothe
 
 - p3's red triad at local rune 119 is GP [13,23,2], defining the irreducible quadratic presentation u²=3u+8 of GF(29²).
 - The exact 256-byte p49–51 base60 table, read in its printed forward row-major order as descending coefficients, defines P(X) in GF(29)[X].
-- The p3 seed z ≡ 23+27u (mod 29) is a simple root of this polynomial in the quadratic extension and Hensel-lifts in Z_29[u].
+- The candidate seed z=23+27u is a simple root and Hensel-lifts in Z_29[u], but it is **not source-selected**. The earlier claimed cross-mark offset 867=840+27 was wrong.
 - Independently, p39's red triad [27,5,15] is exactly [P(15),P'(15),15] (mod 29). This is a visible reason to consider the first-order Taylor jet, not an arbitrary choice of an algebraic operation.
 
-The question was whether the lifted root's derivative P'(z) supplies a source-derived two-rune register/key.
+The experiment therefore tests a postselected candidate, not a motivated source-derived key schedule.
 
 ## Exact first-jet block map is impossible in the tested framing
 
@@ -35,7 +35,7 @@ Exactly **6 of 6,478** derivative blocks are zero in GF(29²), at pair offsets:
 
 At a zero multiplier, **every** possible plaintext block must encrypt to (0,0). None of the six original blocks does. This is a key-independent contradiction; no language model, fitted key, or inverse implementation is involved.
 
-This rejects the exact direct, book-continuous, zero-offset GF(29²) first-jet block transform. It does not reject other pair offsets, page-local block framing, nonlinear Taylor terms, extra layers, or a different intermediate register.
+This rejects the exact direct, book-continuous, zero-offset GF(29²) first-jet block transform for this speculative seed only. It does not reject other pair offsets, page-local block framing, nonlinear Taylor terms, extra layers, or a different intermediate register.
 
 ## Derivative digits as a direct additive GP29 pad
 
