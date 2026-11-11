@@ -8,12 +8,12 @@ The canonical continuous original-LP2 transcription has 12,956 runes in 2,896 wo
 
 | Physical page | Source JPEG | Page-local rune offsets (zero-based) | Global word indices (zero-based) | Exact two-word sequence | Printed context |
 | --- | --- | --- | --- | --- | --- |
-| 27 | 44.jpg | 28–33 | 1462–1463 | \`ᛞᛄᚢ-ᛒᛖᛁ\` (D-J-U / B-E-I) | second text line, after \`ᛒᚠ-\`, before \`-ᚫᚠ\` |
-| 55 | 72.jpg | 70–75 | 2894–2895 | \`ᛞᛄᚢ-ᛒᛖᛁ\` | **last two encrypted words**, after \`ᚳᛉ-\`, before final period |
+| 27 | 44.jpg | 28–33 | 1462–1463 | `ᛞᛄᚢ-ᛒᛖᛁ` (D-J-U / B-E-I) | second text line, after `ᛒᚠ-`, before `-ᚫᚠ` |
+| 55 | 72.jpg | 70–75 | 2894–2895 | `ᛞᛄᚢ-ᛒᛖᛁ` | **last two encrypted words**, after `ᚳᛉ-`, before final period |
 
-The six GP indices are \`[23,11,1,17,18,10]\` at both source positions. The corresponding raw runes are visually checkable in the two original image regions. The second instance ends at p55's complete 76-rune physical-page text; it is followed by the three-column red-dot terminator and the book's printed cicada illustration. Page 27 bears a large red initial and a single insect-wing illustration. The page numbers differ by **28**, half of the 56 currently unsolved physical pages. None of the latter presentation features establishes the intended operation.
+The six GP indices are `[23,11,1,17,18,10]` at both source positions. The corresponding raw runes are visually checkable in the two original image regions. The second instance ends at p55's complete 76-rune physical-page text; it is followed by the red-dot terminal mark and the book's printed cicada illustration. Page 27 bears a large red initial and a single insect-wing illustration. The page numbers differ by **28**, half of the 56 currently unsolved physical pages. None of the latter presentation features establishes the intended operation.
 
-The raw transcription's physical page 50 is runeless, so the continuous parser calls p55 its *rune-bearing page index 54*. The supporting SFT uses the repository's established \`physicalLP2Page\` conversion to avoid a false one-page displacement. It checks the 32 cross-page words rather than treating a printed page turn as a word separator. The displayed punctuation and two-word boundaries are on the actual pages, so this observation does not depend on disputed line/word carries.
+The raw transcription's physical page 50 is runeless, so the continuous parser calls p55 its *rune-bearing page index 54*. The supporting SFT uses the repository's established `physicalLP2Page` conversion to avoid a false one-page displacement. It checks the 32 cross-page words rather than treating a printed page turn as a word separator. The displayed punctuation and two-word boundaries are on the actual pages, so this observation does not depend on disputed line/word carries.
 
 ## Calibration and competing explanations
 
@@ -36,8 +36,8 @@ Use the source-fixed pair as an **out-of-sample constraint** on an independently
 
 ## Reproduction and inputs
 
-- SFT: [\`sims/lp2_terminal_word_pair_echo_sft.cjs\`](../sims/lp2_terminal_word_pair_echo_sft.cjs), pure CommonJS, deterministic shuffle seed \`0x4e5ea928\`, 30,000 trials, no third-party dependencies.
-- Source transcript: [\`resources/lp2-transcription.txt\`](../resources/lp2-transcription.txt), Git blob \`43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7\`.
-- Page/rune map: [\`resources/liber-primus/lp2-corpus.json\`](../resources/liber-primus/lp2-corpus.json).
-- Original images: [\`resources/liber-primus/44.jpg\`](../resources/liber-primus/44.jpg) and [\`72.jpg\`](../resources/liber-primus/72.jpg); their bytes come from the repository's original JPEG archive.
-- Word parser: [\`sims/lp2_word_pages.cjs\`](../sims/lp2_word_pages.cjs); page 50 is explicitly omitted from the text-only stream.
+- SFT: [`sims/lp2_terminal_word_pair_echo_sft.cjs`](../sims/lp2_terminal_word_pair_echo_sft.cjs), pure CommonJS, deterministic shuffle seed `0x4e5ea928`, 30,000 trials, no third-party dependencies.
+- Source transcript: [`resources/lp2-transcription.txt`](../resources/lp2-transcription.txt), Git blob `43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7`.
+- Page/rune map: [`resources/liber-primus/lp2-corpus.json`](../resources/liber-primus/lp2-corpus.json).
+- Original images: [`resources/liber-primus/44.jpg`](../resources/liber-primus/44.jpg) and [`72.jpg`](../resources/liber-primus/72.jpg); their bytes come from the repository's original JPEG archive.
+- Word parser: [`sims/lp2_word_pages.cjs`](../sims/lp2_word_pages.cjs); page 50 is explicitly omitted from the text-only stream.
