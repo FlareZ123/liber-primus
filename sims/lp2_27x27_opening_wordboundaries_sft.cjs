@@ -53,6 +53,45 @@ const only = matches[0];
 assert.deepEqual(only.map(w => w.separator), [".", "-", "-", "-"]);
 assert.deepEqual(only.map(w => [w.start, w.end]),
   [[348, 349], [350, 350], [351, 352], [353, 354]]);
+
+// Candidate source-only locator. The source's typeset line break and the
+// inferred 27x27 row break are distinct clocks. The conjunction below was
+// formulated retrospectively after block01 was published, so it tests a
+// possible human-visible selector, not a preregistered decryption.
+const openingThreePages = source.split("%").slice(0, 3).join("%");
+const lineEnds = new Set();
+let runesBefore = 0;
+for (const ch of openingThreePages) {
+  if (index.has(ch)) runesBefore++;
+  else if (ch === "/") lineEnds.add(runesBefore - 1);
+}
+assert.equal(runesBefore, 729);
+const firstThreeWords = words.filter(w => w.end < 729);
+const gridAndPrintCandidates = [];
+for (let j = 0; j < firstThreeWords.length - 3; j++) {
+  const four = firstThreeWords.slice(j, j + 4);
+  if (four[0].separator !== ".") continue;
+  if ((four[1].end + 1) % 27 !== 0) continue;
+  if (!lineEnds.has(four[2].end)) continue;
+  gridAndPrintCandidates.push(four);
+}
+assert.equal(gridAndPrintCandidates.length, 1);
+assert.deepEqual(gridAndPrintCandidates[0].map(w => [w.start, w.end]),
+  [[348,349],[350,350],[351,352],[353,354]]);
+assert.equal(lineEnds.has(352), true);
+const phaseControls = [];
+for (let phase = 0; phase < 27; phase++) {
+  let hits = 0;
+  for (let j = 0; j < firstThreeWords.length - 3; j++) {
+    const four = firstThreeWords.slice(j, j + 4);
+    if (four[0].separator === "." &&
+      (four[1].end + 1 + phase) % 27 === 0 &&
+      lineEnds.has(four[2].end)) hits++;
+  }
+  if (hits) phaseControls.push({phase, hits});
+}
+assert.deepEqual(phaseControls, [{phase:0,hits:1},{phase:10,hits:1}]);
+
 const key = ["AE", "I", "EA"].map(name => corpus.translit.indexOf(name));
 assert.deepEqual(key, [25, 10, 28]);
 const plain = first.slice(348, 355).map((v, i) =>
@@ -77,6 +116,10 @@ console.log(JSON.stringify({
   sourceCipherWords: cipherWords,
   sourceLengthPattern: pattern,
   originalDelimiters: only.map(w => w.separator),
+  gridAndPrintStart: gridAndPrintCandidates[0][0].start,
+  sourceLineBoundaryAfterRune: 352,
+  squareRowBoundaryAfterRune: 350,
+  shiftedSquarePhaseHits: phaseControls,
   punctuationPreservedReading: "AS. I GO THE",
   derivedRuneOutput: plain,
   interpretedSourceAlignedWords: ["AS", "I", "GO", "THE"],
