@@ -1,6 +1,20 @@
 # Agent 31: persistent structural cryptanalysis context
 
-## Current incarnation: native p57 raster and historical GIMP alignment
+## Current incarnation (11 November 2026): cross-round source-operations and original-cipher decision
+
+**Run:** `agent31-gpt6-20261111T052614802Z-original-key-route`; immutable identity lease claimed **05:26:14.802Z**. Normal mode draw 9. Original issue-directed queue was fully claimed or waiting; #44 claimed by Agent20, #48 claimed by Agent38, #39 awaits owner action, #41 awaits source-derived p55 key/decoder. Independent exploration.
+
+### New decision-quality results
+
+1. Historical 2013 telnet `count parable` + `number` makes **449→944=16×59** for the independently solved p57 PARABLE GP-prime sum449. Existing 2014 onion7 7×7 square has an inner 16-cell perimeter, while the original 256-token numeral grid has a recognized 59-character f-omitting codec. The intersection supplies a **conditional** source-human explanation for choosing the existing base59 decoding. It competes with the independently marked p39 / Ac24 exact polynomial factor favoring original forward row-major base60. No key or plaintext. Source comparison: [`workplace/parable-number-944-base59-bridge.md`](../../workplace/parable-number-944-base59-bridge.md).
+2. Source 31 thirteen-dot intervals create 32 ordered fragments and **two truly empty fragments, at indices8 and11**. Their two distinct 8-byte grid rows concatenate to a source-selected 16-byte AES-128 key; the remaining 30 rows have exactly 240 bytes. Ran the fully frozen **2 radix codecs × 2 key orders × 4 table decryptors** and 16 original 12,956-rune direct AES-CTR GP29 inverses. Maximum full-book IoC **0.0345263230** (uniform GP benchmark 0.03448276), no coherent plaintext, **4/4 positive native-GP recoveries**, and all table decodes binary-like. **Discontinue this exact direct family**; there is no source IV/mode instruction. Complete test [`sims/lp2_empty_fragment_aes128_source_gate.cjs`](../../sims/lp2_empty_fragment_aes128_source_gate.cjs), result [`im-results/lp2-empty-fragment-aes128-source-gate.md`](../../im-results/lp2-empty-fragment-aes128-source-gate.md), successful [manual CI 42969679673](https://github.com/FlareZ123/liber-primus/actions/runs/42969679673). Existing .github/workflows/grid-256-tests.yml gained **manual-only** `empty-fragment-aes128` option. The observed table quotient-class q8 clustering failed to supply a decoder; familywise shuffle p ≈0.029 is exploratory and does not merit a new cipher search.
+3. Previous p57 stipple 574/241+331 source-statistics require an independent GIMP Dissolve predicted-mask null; prior 11-parameter p24 transfer F1 0.832 is only a fitted approximation. Replied to Agents39/41 with exact ownership handoff at `communications/agent39/20261111T0536Z_agent31_gimp-residual-handoff.md` and `communications/agent41/20261111T0536Z_agent31_gimp-residual-handoff.md`. Do not duplicate their exact predicted-mask work.
+
+**Research frontier:** No recovered unknown LP2 plaintext, source-authenticated cipher, key, or destination. Favor independently documented creator-instructions that identify original cipher operations with fixed source state and leave room for truly different explanations. Avoid another AES/ChaCha key-order sweep, raw 256-byte key mapping or p57 stipple arithmetic based only on the 574/241/331 measurement.
+
+---
+
+## Previous incarnation: native p57 raster and historical GIMP alignment
 
 Run `agent31-gpt6-20261111T034525651Z-issue-directed-source-route`; immutable lease 2026-11-11T03:45:25.651Z, normal mode initial draw 9. Open director-task Issues were actively claimed, so this is independent fallback.
 
