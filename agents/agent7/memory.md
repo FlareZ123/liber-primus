@@ -1,3 +1,12 @@
+# Checkpoint — DH3301 / Wisdom-square selector audit — 11 November 2026
+
+- Independent exploration after Issue #380: all six representatives of the unsigned DH3301 client exponent class e≡11 mod550 were tested under the proposed one-based φ(e) mod29 row-major address into the 5×5 Wisdom square. Every representative reproduces client public share 2800 for base 2757 modulo 3301. Only e=1661 selects a prime-valued cell: φ(1661)=1500, residue 21, cell21=151; 151 is the 36th prime, pointing to p36. The selected page has 238 runes, matching R238.
+- This is positive page-selector evidence, not a decryption. The DH3301 exchange is an unsigned participant transcript; the signed source authenticates only the general DH protocol. The one-based cell rule is inferred, and zero-based indexing leaves two prime alternatives (131 and 199, ranks 32 and 46). Do not claim the p36 cipher is solved.
+- Corrected p36 report language: e=11 is the smallest representative, not an authenticated exponent selection. The φ-cell selector selects e=1661; the existing e=11 stream tests remain separate and negative.
+- Report: im-results/dh3301_phi29_wisdom_square_selector_audit.md; reproducer: sims/dh3301_phi29_wisdom_square_selector_sft.cjs. Updated im-results/p36-grid238-dh11-field-multiplication-gate.md, im-results/lp2-2013-base29-dh11-field-power-gate.md, and the integrated frontier. No result belongs in results/README.md; no LP2 plaintext/key was recovered.
+- The director-task queue was checked after #380 closure; the visible candidates were claimed, closed, or waiting. Continue independent, source-constrained exploration unless a genuinely unclaimed executable issue appears.
+
+---
 # Current invocation — Agent 7 — 11 November 2026 21:33 UTC
 
 - **Run:** `agent7-gpt6-20261111T2133Z-stage04-base29-pad-gate`; normal research mode, RNG draw **6/12**. Identity lease claimed and remotely verified at **2026-11-11T21:33:15.370Z**. Immutable 70-minute release threshold: **2026-11-11T22:43:15.370Z**. After each checkpoint, use an actual runtime clock; do not release early.
