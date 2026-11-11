@@ -76,32 +76,17 @@ This is a source-derived selector candidate, not a plaintext decryption or proof
 
 ### The p32 source counts reconstruct the selected order-seven map
 
-A further exact relation removes the remaining projective orientation ambiguity without consulting any candidate plaintext. Physical p32 has **22 printed words** in total, its peeled central square has **25 cells**, and its first punctuated clause has **7 words**. The selected row-major matrix (M_7) has ordered fixed points 22 and 25. In the fixed-point coordinate
+A further exact relation substantially constrains the projective orientation without consulting candidate plaintext. Physical p32 has **22 printed words**, its peeled central square has **25 cells**, and its first punctuated clause has **7 words**. The selected row-major matrix M7 has fixed points 22 and 25. In the ordered fixed-point coordinate `h(x)=(x−22)/(x−25)`, its action is exactly `h(M7(x))=7h(x) mod29`.
 
-[
-h(x)=\frac{x-22}{x-25},
-]
+Conversely, those source counts reconstruct the same projective map. Taking ordered fixed points 22 and 25 with multiplier 7 gives the representative `N=[[8,6],[6,16]]`. The p32 red mark has **nine occupied rows**, and `9N mod29 = [[14,25],[25,28]] = M7`, exactly the representative independently obtained from the single-count ring side sums. Projective scaling is mathematically irrelevant, so the nine-row equality is supporting source structure rather than extra cipher state.
 
-its action is exactly
+The signed 2016 instruction specifically describes the book's **words** as a map and their **numbers** as direction. Under the GP-prime numbering used throughout this p32 route, the fixed point **22** has a direct source interpretation unavailable to fixed point 25: p32 contains exactly 22 words, so 22 is the only member of the pair that is a valid page-local word address. The **22nd word**, `ᚪᚷᛒᛇ` (`AGBEO` in the repository transliteration), has GP-prime sum **216 = 7×29 + 13**. Its base-29 quotient independently repeats the map multiplier **7**, while its remainder independently repeats the mark's **13 red dots**. Feeding that remainder into M7 yields **24**, exactly `3301 mod29`, matching the adjacent cuneiform / historical Cicada number already tied to the page.
 
-[
-h(M_7x)=7h(x)\pmod{29}.
-]
+The source chain is therefore unusually compact: fixed points **22/25** align with **22 words / 25 central cells**; word 22 has number **216 = 7×29+13**; the first clause independently contains **7 words**; the mark independently contains **13 dots in 9 rows**; the nine rows scale the count-derived projective representative to the exact ring representative; and the seed **13** maps to **24 = 3301 mod29**. The GP-prime interpretation of “number” remains an interpretive choice, although it is independently motivated by the puzzle's established prime-number machinery.
 
-Conversely, those three source counts alone reconstruct the same projective map. Taking (alpha=22), (eta=25), and (lambda=7), the standard fixed-point form gives the representative
+The existing source-preserving shuffle was extended with these locked conditions. Holding p32's first row and first column fixed and shuffling the other 100 source prime values, the ordered map signature **fixed points 22,25 + multiplier 7** occurs in **108/200,000** trials under any of the 16 legal corner assignments and **6/200,000** under the original horizontal assignment. The exact selected word-22 sum **216** occurs in **2,064/200,000** shuffles. Requiring both the complete map signature and the exact word-22 sum leaves **3/200,000** trials under any legal assignment and **0/200,000** under the original horizontal assignment. Add-one conditional frequencies are therefore about **0.000020** and **0.000005** for the joint any-assignment and fixed-horizontal tests. These are post-discovery conditional frequencies, not discovery-wide probabilities.
 
-[
-N=\begin{pmatrix}8&6\\6&16\end{pmatrix},
-]
-
-with fixed points ({22,25}) and multiplier 7. The p32 red mark has **nine occupied rows**, and (9N\equiv [[14,25],[25,28]]=M_7\pmod{29}), exactly the integer-ring representative already obtained from the single-count side sums. Projective scaling is mathematically irrelevant, so the nine-row equality is supporting source structure rather than extra cipher state.
-
-The same mark contains **13 red dots**. Feeding 13 into the reconstructed map yields **24**, exactly (3301\bmod29), independently matching the adjacent cuneiform / historical Cicada number already tied to this page. This produces a compact source self-description: **22 total words → first fixed point; 25 central cells → second fixed point; 7 first-clause words → projective multiplier; 9 mark rows → the displayed matrix scalar; 13 dots → seed; 24 → 3301 mod29**.
-
-The existing source-preserving shuffle was extended with the complete ordered signature. Holding p32's first row and first column fixed, shuffling the other 100 source prime values, and testing all 16 legal corner assignments for **fixed points 22/25 in that order plus multiplier 7**, only **108/200,000** trials admit any matching assignment; only **6/200,000** match the original horizontal corner assignment. The add-one conditional frequencies are **109/200,001 ≈ 0.000545** and **7/200,001 ≈ 0.000035**. These are post-discovery conditional frequencies, not global discovery probabilities.
-
-This strengthens the evidence that the row-major order-seven map is the intended p32 structural object. It still supplies no authenticated readout, key, or unknown plaintext. The next discriminating test should use this now source-fixed orientation to make a locked prediction on another original artifact rather than reopen ring conventions or fit a language model. The updated [fixed-point selector SFT](../sims/p32_redmark_fixedpoint_selector_sft.cjs) asserts the count reconstruction and exact conditional-null totals.
-
+This strengthens the evidence that the row-major order-seven map is a genuine p32 structural object and gives a source-motivated forward orientation. It still supplies no authenticated ciphertext readout, key, or unknown plaintext. The next discriminating test should use this fixed orientation to make a locked prediction on another original artifact. The updated [fixed-point selector SFT](../sims/p32_redmark_fixedpoint_selector_sft.cjs) asserts the count reconstruction, word-22 decomposition, and exact deterministic-null totals.
 ### Inclusive-side map is the conjugate cube of the earlier two LP1 Möbius squares
 
 **Evidence class:** exact original-source algebra plus a finite original-rune inverse that fails to recover plaintext. This relation is *conditional on the inclusive-side convention* described above. It is more specific than the earlier order-seven corner-exclusive analogy, but it still lacks an independent authorial instruction selecting the matrix reading or the cipher.
