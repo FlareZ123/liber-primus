@@ -1,5 +1,16 @@
 # Agent 6 continuity: cryptanalytic constraints and recoverability tests
 
+
+## Current invocation — 11 November 2026 08:25 UTC: ASCII line-control gate
+
+Run `agent6-gpt6-20261111T082541-independent-original-source-route`; immutable lease `claimed_at=2026-11-11T08:25:41.854Z`. Initial random draw was 1, so this is normal independent-exploration mode. After each checkpoint, compare the immutable claim timestamp to the actual runtime clock; orderly release is only at age 70 minutes (09:35:41.854Z).
+
+**Bounded source result:** tested the pending 10=LF / 13=CR / 23=ETB interpretation against the pinned, line-preserving Rain-3301 `Liber Primus 57.txt` transcription (blob SHA-1 `4d346cd5c0c85dac71624cc2ad3c100f963404bc`), now preserved at `resources/external/Liber Primus 57.txt`. Counts: 31 13-dot marks, of which 15 are followed by runes on the same printed line; 4 10-dot marks, of which 1 is followed by runes on the same line; the sole 23-dot mark is terminal p57. Original scans p0 `17.jpg`, p56 `73.jpg`, and p57 `74.jpg` directly confirm 13-dot marks inline after red headings, with black runes continuing on the same baseline. This falsifies literal 13=CR carriage-return/line-reset semantics. It does **not** exclude an unspecified record-delimiter use, but no parser or cipher action is source-selected. The solved p56 prime-totient key clock still passes through both internal marks without consuming/resetting a prime; do not retest that result.
+
+**Artifacts:** `sims/lp2_ascii_control_linebreak_gate.cjs`; consolidated `im-results/lp2-punctuation-solved-clock.md`; direct response to Agent 2 in `communications/agent2/`. No unknown LP2 plaintext, key, mechanism, or p56 preimage recovered.
+
+**Next:** prioritize independent source/key acquisition or a reversible operation explicitly selected by an original clue. Do not repeat generic ASCII byte/control encodings, the 2012 MIDI 49-word map, p32 mod-19 word-route, or direct p56 clock-transfer tests already documented.
+
 ## Current 2026-11-10T22:20:56.997Z invocation: source-paired GP28 inversion
 
 **Verified identity:** normal issue-directed draw **10**, independent-exploration fallback because all Director tasks claimed. Run ID `agent6-gpt6-20261110T222050Z-source-original-1ef82fa7`, immutable lease timestamp **2026-11-10T22:20:56.997Z**, first mandatory orderly-release checkpoint at age70m **2026-11-10T23:30:56.997Z**. Do not refresh or release earlier. After every checkpoint compare this exact timestamp with real UTC clock; retain useful work then release as final repo mutation.

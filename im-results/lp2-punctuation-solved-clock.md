@@ -12,7 +12,21 @@ The complete original-page colour annotation records three large dot stencils on
 | **45** | **10** | Before the page's non-runic SHA-512 hexadecimal digest |
 | **85** | **13** | After the final encoded prose rune |
 
-A [CicadaSolvers structural overview](https://www.cicadasolvers.com/wiki/liber-primus/liber-primus-structural-overview/) observes the numerical correspondence of large-dot stencil counts to ASCII controls `10 = LF`, `13 = CR`, and `23 = ETB`. This is an **interpretive analogy, not an established decoder rule**: the final 23-dot mark is actually on solved page 57 after the complete message. The printed marks definitely separate visual text features, but whether they alter a cryptographic key state is a distinct question.
+A [CicadaSolvers structural overview](https://www.cicadasolvers.com/wiki/liber-primus/liber-primus-structural-overview/) observes the numerical correspondence of large-dot stencil counts to ASCII controls `10 = LF`, `13 = CR`, and `23 = ETB`. This is an **interpretive analogy, not an established decoder rule**. The pinned Rain-3301 transcription maps `10 = ᛭`, `13 = ⁕`, and `23 = ᛭⁕`; that is a transcription convention, not evidence for ASCII semantics. The source-line test below contradicts the literal `13 = CR` line-control interpretation. The final 23-dot mark is on solved page 57 after the complete message; the marks' cryptographic effect remains unestablished.
+
+### Source-line test of the ASCII analogy
+
+The pinned third-party [Rain-3301 transcription](https://github.com/cicada-solvers/Rain-3301/blob/76d3ee8c762f60025822c8c05edbf31351636469/Liber%20Primus%2057.txt), preserved as `resources/external/Liber Primus 57.txt` (Git blob `4d346cd5c0c85dac71624cc2ad3c100f963404bc`), retains printed line breaks and gives the symbol key `10 = ᛭`, `13 = ⁕`, `23 = ᛭⁕`. Parsing its 58 page sections gives:
+
+| Dot count / token | Events | Followed by runes on the same printed line | At line end |
+| --- | ---: | ---: | ---: |
+| 13 / ⁕ | 31 | 15 | 16 |
+| 10 / ᛭ | 4 | 1 | 3 |
+| 23 / ᛭⁕ | 1 | 0 | 1 |
+
+The 13-dot mark is visibly inline in original scans: p0's archive image `17.jpg` places it between the red opening heading and black runes continuing on the same baseline; solved p56 `73.jpg` does the same after `AN END`; solved p57 `74.jpg` does the same after `PARABLE`. The transcription's corresponding examples are p0 line 19, p56 line 726, and p57 line 737. Thus the literal `13 = CR` carriage-return/line-reset reading is contradicted by the source layout. One of four 10-dot marks is likewise followed by text on the same transcription line (p38 line 503); the sole 23-dot mark is terminal on p57.
+
+This rejects the specific ASCII CR/LF/ETB **text-line-control** interpretation, not every possible use of the marks as record delimiters. A general record parser has not been specified by the source and should not be inferred from the numeric resemblance alone. This result does not change the solved p56 key-clock finding below: its authentic prime-totient stream passes through the internal 13- and 10-dot marks without consuming or resetting a prime. Reproducer: `node sims/lp2_ascii_control_linebreak_gate.cjs`.
 
 The solved p56 cipher is independently known: for GP29 ciphertext rune `C_i`, subtract `prime_j − 1` modulo 29, starting `j=0`, except the single literal unencrypted `F` at **rune offset 56**, which does **not** consume a prime. In historic GP spelling the plaintext begins **`AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO`** and finishes **`IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE`**. It totals **85** original runes. The 128 hex digits of the displayed SHA-512 hash (64 bytes) are outside that GP-rune count. To distinguish *ignoring* the non-runic digest from consuming it as key material, the SFT also tests advancing the prime counter by exactly 64 steps for the bytes or 128 steps for the printed hex digits before continuing the next rune. Advancing 64 yields **48/85** true runes, including **3/40** after the digest; advancing 128 yields **49/85**, including **4/40** after the digest. The authentic zero-step treatment yields **85/85**, including all **40/40** subsequent runes.
 
