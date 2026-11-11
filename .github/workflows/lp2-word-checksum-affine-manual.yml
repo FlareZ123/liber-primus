@@ -1,0 +1,16 @@
+name: Original LP2 affine word-checksum capacity and anti-repeat positive
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  word-checksum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run original checksum SFT and matched controls
+        run: node sims/lp2_word_checksum_affine_sft.cjs
