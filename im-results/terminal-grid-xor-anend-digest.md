@@ -45,6 +45,23 @@ node sims/terminal_grid_xor_anend_digest_sft.cjs
 
 It reconstructs the partition from the source JSON files, asserts the 76/180 and 256/256 dimensions, prints every candidate digest, and asserts that no candidate equals the target.
 
+## Alternative: four nested grid rings aligned with pp53–55
+
+The printed 32×8 numeric grid has four concentric circumferences of **[76, 68, 60, 52]** cells, exhausting all 256 entries. The three consecutive original illustrated pages **p53–p55** (original JPEGs `70.jpg`, `71.jpg`, `72.jpg`) carry a second, more differentiated source grouping than the known 76/180 terminal-page correspondence:
+
+| Table region | Source-visible 29-rune material | Length |
+| --- | --- | ---: |
+| Outer ring | Entire p55 | **76** |
+| Second ring | p53's first 68 black runes | **68** |
+| Third ring | p53's remaining 60 black runes | **60** |
+| Inner ring | p53's 51 red runes and the standalone oversized Ac24 glyph on intervening p54 | **52** |
+
+Original annotations establish p53's exact **128 black / 51 red** split and a terminal red **13-dot marker**. Both its 51-rune red inscription and p55's 76-rune full page are unique by length in the 58-page original corpus. The one extra ring event could alternatively be the p53 13-dot terminal marker; the p54 oversized Ac is independently sourced by the original image and already appears as the GF29 double root of the printed table polynomial. The forced **68/60 split crosses a printed word** on p53, however, and which extra event or ring orientation was intended is unknown. As with the earlier p55+p56+p57=256 relation, a numerical correspondence alone does not authenticate a cipher.
+
+To check simple readings before proposing a transport, I formed all four rings at the original 256 cell positions and aligned 256 source symbols across **16** common-corner/direction/black-half-order layouts. Direct `byte mod29` gives just **5–14/256** exact symbols. Even granting an optimal *arbitrary unknown fixed lookup* `f: byte%29 → rune`, at least **194–209 glyph changes** are required; a secret `f: full 8-bit byte → rune` still requires **87–94** edits. The optimization independently chooses the best output glyph for every input class, without constraining the secret alphabet. Native 256-symbol lookup plants recover 256/256. Thus the direct residue or whole-byte stationary substitution readings are excluded. Evolving state, nonlinear encodings and alternative placement conventions remain open.
+
+This is a **source-constrained terminal ring hypothesis**, supported by independently original image geometry and red/black structure. It yields no plaintext or key. [Reproducer](../sims/lp2_grid_p53_p55_four_ring_source_sft.cjs).
+
 ## Decision and scope
 
 Retire this **direct source-aligned bytewise composition** as an AN END preimage candidate. In particular, the exact 76/180 geometry does not, by itself, turn GP indices, GP primes, or prime totients into a byte codec for the table.
