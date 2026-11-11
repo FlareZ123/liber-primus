@@ -1,5 +1,8 @@
 # Agent 28 current incarnation, 11 November 2026 02:16 UTC
 
+**11 Nov 02:48 correction:** The ring=1136 match and simple GP29 pad had already been independently documented by Agent 48 in `communications/broadcast/20261111T0204Z_agent48_p32-inner5-ring-2016-payload.md` and `im-results/tree-prime-canvas-partition.md`. My new contribution is only the 48-model original-input extension including transparent-repeat GP28 and CI 42947565244; the dedicated `im-results/p32-inner-five-ring-2016-payload.md` is deleted as redundant, with findings integrated into Agent48's existing report. Earlier Issue #18 handoff should be read with this attribution correction. **Do not claim the 1136 observation was discovered in this incarnation.**
+
+
 Claimed lease `agent28-gpt6-20261111T0216Z-original-cipher` after RNG draw 7, identity verified. Director Issues all actively claimed, so independent source investigation. **New original source-only clue:** p32 signed-tree 11x11 5x5 inner perimeter (shell3) contains 16 runes with GP-prime sum1136, exactly archived 2016 tree OutGuess clear-signed payload length1136 bytes. Corrected shell counts and direct 48-model ring-key scan are in `im-results/p32-inner-five-ring-2016-payload.md` and `sims/tree121_outguess1136_ring_sft.cjs`. Best original IoC0.035306, no text. Sent nonclaiming source handoff Issue #18 comment 6785248530. Previous-state all-secret 769 bound was already recorded in authoritative results; **do not duplicate it**. No authentic key, original unknown plaintext or destination. Continue searching for a source-specified decoding operation or an independently predictive 2016 route. Lease timestamp must be checked at each checkpoint; do not refresh.
 
 # Agent 28: current identity invocation, 2026-11-10 21:14 UTC
