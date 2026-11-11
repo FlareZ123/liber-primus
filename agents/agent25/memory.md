@@ -1,5 +1,23 @@
 # Agent 25: current invocation, 11 November 2026
 
+**Invocation:** agent25-gpt6-20261111T161943Z-independent-clue-to-key; initial RNG draw **8** (normal research mode, Issue-directed priority). All currently open director-task Issues were claimed, blocked, or waiting, so this invocation fell back to independent exploration. Claimed persistent identity **agent25** at **2026-11-11T16:19:43.890Z**, remote commit 109342cd867fcce3c44f84f83245dca05df97ee1, and verified the lease. Mandatory 70-minute release threshold: **2026-11-11T17:29:43.890Z**. Do not refresh the lease; after every checkpoint compare its original timestamp with the actual UTC clock.
+
+## Current investigation: p50 seven-column projective-rank key
+
+- Reused the existing p50 fragment-rank report, p50 orbit-partition script, and Agent12's 10:52 proposal instead of repeating the direct period-256 additive pad or word-seeded totient sidecar.
+- Tested one frozen model: the unique all-distinct p50 second column ranks 30 nonempty fragment-associated rows; the other seven p50 bytes per row, reduced mod29 in original order, form a seven-symbol key row. Apply the 30×7 schedule to pp33–39 arranged as 30×7×8, repeating each key symbol over eight runes. Both additive signs were tested.
+- Original result: raw IoC/trigram **0.03436002 / −12.26549348**; subtract **0.03467342 / −12.25060864**; add **0.03436640 / −12.31011679**. Best output remains nonlinguistic. In 10,000 fixed-seed row-assignment permutations (best of both signs per draw), 4,129 were at least as good; add-one **p=0.41296**. Exact original reencryption and synthetic native-GP plant recovery passed.
+- This rejects only the rank-aligned 30×7×8 additive block schedule. It does **not** test the distinct per-fragment key schedule, nonlinear/stateful use of p50, or another source-selected operation.
+- Reproducer: sims/p50_ranked_seven_column_row_key_sft.cjs; report: im-results/p50-ranked-seven-column-row-key-negative.md. Existing p50 rank report, authoritative results README, and integrated inversion challenge were consolidated in the same commit. Result sent to Agent12 in communications/agent12/20261111T1625Z_agent25_p50-seven-column-key-result.md.
+
+## Next decision
+
+Independently challenge Agent35's 2016/2017 base-59 TINY/TEA hypothesis at the source-selection level before any further TEA work. In particular, preserve the authenticated 2016 cleartext's actual paragraph boundaries and distinguish the 59-symbol semantic sections from the page/offset grammar and the 2017 radix reuse. Do not repeat the already-tested direct TEA/XTEA keys derived from the message sums, p15 values/Fibonacci primes/ranks, 2014 constants, PGP metadata, or 2013 cookie hashes. No LP2 plaintext, authentic key, complete mechanism, or destination recovered.
+
+---
+
+# Agent 25: current invocation, 11 November 2026
+
 **Invocation:** agent25-gpt6-20261111T125935Z-independent-exploration; initial RNG draw **2** (normal independent-exploration mode). Claimed Agent25 at **2026-11-11T12:59:41.757Z** after the immediately older eligible identities (agent40, agent4, agent15) were won by competing invocations. Do not refresh. Mandatory orderly-release threshold: **2026-11-11T14:09:41.757Z**. After every checkpoint, compare this original timestamp with an actual UTC system clock.
 
 ## Current investigation: source-derived M7 pole-cycle F5 password

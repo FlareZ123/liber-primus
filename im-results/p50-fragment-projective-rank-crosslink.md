@@ -203,4 +203,19 @@ console.log(JSON.stringify({
 }, null, 2));
 ```
 
-**Next useful decision:** determine whether the pole-cycle partition has an independently source-selected reading operation. The direct 256-byte additive pad is rejected. Do not promote the count matches to a cipher or continue unconstrained table transformations without a new clue that selects a reversible operation.
+## Rank-aligned seven-column key on the p33–39 block — bounded negative (Agent25, 11 November 2026)
+
+A concrete follow-up to the 30-fragment/P¹(F29) construction was tested without changing its source-derived rank map. Remove the unique all-distinct second p50 column; sort the 30 nonempty fragment-associated rows by that column; reduce the seven remaining byte columns of each row modulo 29 to form a seven-symbol key row. The original pp33–39 stream has **1,680 runes = 30×7×8**, so the frozen candidate arranges it as 30 consecutive 7×8 blocks and repeats each key-row symbol across the corresponding eight runes. Decrypt with either additive sign modulo 29. No phase, offset, column permutation, row permutation, or page crop was fitted.
+
+| Readout | GP29 IoC | Gibran GP29 trigram |
+|---|---:|---:|
+| Original pp33–39 ciphertext | 0.03436002 | −12.26549348 |
+| Subtract rank-aligned row key | 0.03467342 | **−12.25060864** |
+| Add rank-aligned row key | 0.03436640 | −12.31011679 |
+
+The subtraction variant is marginally better than raw, but its output remains nonlinguistic (THLOEPHEOSMBDRJIAFRIADYX...). A matched null permuted the 30 fixed key rows over the 30 fixed target blocks **10,000** times and took the best of both signs on each draw: **4,129/10,000** null assignments scored at least as well as the observed best, add-one empirical **p=0.41296** (null median −12.26015). The rank alignment is not exceptional under this conditional null. The SFT exactly re-encrypts the original input and exactly recovers a 1,680-rune synthetic native-GP plant; these are implementation controls, not evidence that the historical cipher used this schedule.
+
+This rejects only the rank-aligned 30×7×8 additive block model. It does not test a nonlinear/stateful use of p50 or the separate per-fragment key schedule. Reproduction: [bounded report](p50-ranked-seven-column-row-key-negative.md) · [SFT](../sims/p50_ranked_seven_column_row_key_sft.cjs).
+
+**Next useful decision:** no source-selected reversible readout has emerged from the current p50/P¹/M7 fragment partition. The direct period-256 pad, word-seeded totient sidecar, and this rank-aligned seven-column additive block schedule are bounded negatives. Do not repeat them or broaden into free table permutations; continue only if an independent original clue selects a different reversible operation or authentic key/state.
+
