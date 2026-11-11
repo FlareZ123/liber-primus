@@ -33,6 +33,35 @@ The test enumerates **all 841 possible beta offsets independently for every one 
 
 The plant uses the complete source quotient and 51 real red row multipliers, deterministically chooses actual bytes \`b_i=(73i+41) mod256\`, encrypts with hidden row offsets \`[(7r+2)mod29,(17r+4)mod29]\`, and checks the exact inverse for every 6,477 byte. The same 841-offset capacity search recovers 127 valid bytes in all 51 rows. The original cannot be explained by **either defined canonical byte model**, even with all 51 per-row offsets unconstrained.
 
+## All-841-row-state variable-multiplier byte obstruction (Agent 48)
+
+A distinct use of the same source-fixed 127 quotient field elements lets the **state evolve within each row**, with no restriction on its unknown row seed. As before, the 12,954 original rune positions following the two-rune header form exactly 51 rows of 127 ciphertext pairs \(C_{r,j}\in\mathrm{GF}(29^2)\). The only source multipliers are the 127 original quotient pairs \(Q_j\). The proposed emission is \(C_{r,j}=P_{r,j}+S_{r,j}\), with either of two feedback laws:
+
+\[
+S_{r,j+1}=Q_jS_{r,j}+C_{r,j},
+\quad\text{or}\quad
+S_{r,j+1}=Q_jS_{r,j}+P_{r,j}.
+\]
+
+Grant **each row its own arbitrary hidden initial field element**, exhausting **all 841 possibilities in every row**, with no English scoring or fitting. The first two original runes [15,8] are retained as a public two-rune header but **not used to constrain any row seed**. The binary plaintext register may take either canonical radix29 field representation \(P=[b\bmod29,\lfloor b/29\rfloor]\) or its coordinate reverse \(P=[\lfloor b/29\rfloor,b\bmod29]\) for any byte \(0\le b<256\).
+
+| Original 51-row exact gate | Ciphertext feedback | Plaintext feedback |
+| --- | ---: | ---: |
+| Rows admitting **127/127** canonical bytes, *either coordinate order* | **0/51** | **0/51** |
+| Best count over **all 51×841** row states, \(a+29b<256\) | **60/127** | **60/127** |
+| Best count over **all 51×841** row states, \(b+29a<256\) | **60/127** | **62/127** |
+
+Even the individually best hidden seed for the best row cannot place half the plaintext field pairs inside the canonical 256-byte alphabet. This is an **all-secret key-independent exclusion** of these two fully specified within-row feedback laws as direct canonical-byte transports. The 51 independent row seeds are far more permissive than a single initial state or the original public header.
+
+The primitive element \(u\) from p3 provides a further **source-selected noncanonical-byte encoding**: interpret any byte \(b\) as \(u^{h+b}\), with a **completely unknown row-local cyclic phase** \(h=0,\dots,839\). This grants every possible rotation of the 256 consecutive exponent codepoints in the field's 840-element multiplicative cycle, without assuming the actual byte contents or matching the 256 printed grid values. A candidate row's 127 plaintext field elements admit such an interpretation iff they are all nonzero and their 127 discrete-log residues fit a cyclic arc of span at most 255. For every source row and all 841 hidden initial states:
+
+- **Ciphertext feedback:** 0/51 rows can be encoded; the **shortest attainable** log arc among all original row/state candidates spans **727** exponents, against maximum allowed 255.
+- **Plaintext feedback:** 0/51 rows can be encoded; the shortest attainable arc spans **743** exponents.
+
+Each of the two feedback laws passes a complete planted 51-row byte-register test for both the canonical base29 and the cyclic-log transport when the original quotient multipliers and correct secret row states are supplied. In the frozen first-row byte and logarithmic plants, rotating the source multiplier schedule by one pair yields no compatible secret initial seed. These controls show the capacity obstruction would not reject a true key under the declared model. They do **not** provide a private key for the authentic manuscript.
+
+**Reproduce:** [all-841-seed variable-multiplier 51×127 byte gate](../sims/red_triad_qmult_allstate_byte_sft.cjs). This adds a dynamic, fully hidden row-state architecture and an unknown-phase primitive-logarithm codebook, neither of which was included in the earlier constant row-offset capacity gate. It remains conditional on the source's particular quotient order, pair boundaries, field addition, two feedback laws and the byte alphabet. A completely arbitrary 256-symbol codebook, additional secret nonlinear transformations, or other state updates are untested.
+
 ## Distinct fully reversible GP original-input experiment
 
 The adjacent [field-state program](../sims/red_triad_gf841_127cycle_inverse.cjs) tests a separate 51-cycle, source-forced field recurrence with \`S_0\` equal to the first two original ciphertext GP indices \`[15,8]\`, \`P_t=C_t-S_t\`, and \`S_(t+1)=u S_t+Q_(t mod127)\`. It exactly re-encrypts all 12,954 payload glyphs; the original decoded GP-index IoC is **0.0344807853**, while the original payload IoC is **0.0344789617**. The first decoded passage is nonlinguistic. An independent 12,954-GP-rune Shakespeare-based plant decrypts **12,954/12,954** and has IoC **0.06632997**; rotating the 127 source quotient pairs for that plant produces only **425/12,954** correct runes, with IoC **0.03447976**. Thus the particular source-fixed direct-GP evolving-field inverse yields no readable original plaintext despite a working true-source control.
@@ -72,6 +101,6 @@ The eight two-ink-compatible adjacent seeds are [1,1], [6,7], [7,22], [8,1], [9,
 
 ## Interpretation and open mechanism
 
-The byte gate and separate all-secret terminal-register test are finite exclusions under different source interpretations. The byte gate is an exact original-input obstruction to a **canonical one-byte-per-two-runes** field transport with only row-wise secret offsets under the two declared source-multiplier rules. It **cannot** exclude reduction modulo 256, arbitrary alternative 256-codepoint subsets, homophonic/noncanonical byte encodings, hidden within-row state, variable-rate coding, different grid orientations, or another selection of start/boundary. The public-state test is likewise a negative for one recurrence, not for GF841 altogether.
+The byte gate and separate all-secret terminal-register test are finite exclusions under different source interpretations. The static-offset byte gate excludes canonical one-byte-per-two-runes encoding under the two tested row multiplier rules. The independent evolving-state gate excludes the same canonical transport and every row-rotated consecutive 256-exponent codebook under each of two quotient-multiplier feedback laws, **even allowing all 841 unknown states per row**. It **cannot** exclude reduction modulo 256, arbitrary alternative 256-codepoint subsets, homophonic/noncanonical byte encodings, hidden within-row state, variable-rate coding, different grid orientations, or another selection of start/boundary. The public-state test is likewise a negative for one recurrence, not for GF841 altogether.
 
 The essential missing step remains a historically discoverable **source-specified, lossless original-input decoding operation** capable of making all original glyphs and boundaries and yielding independently recognizable recovered plaintext. Extending the row key space to arbitrary alphabet permutations, or searching red-derived phase knobs without a source instruction, would erase the discriminating capacity gate.
