@@ -1,4 +1,4 @@
-# LP2 whole-word collision invariants exclude book-static deterministic word ciphers for native-GP prose
+# LP2 word collisions exclude book-, page- and line-static deterministic word ciphers for native-GP prose
 
 **Classification: exact key-independent ciphertext invariant, with source-conditional exclusion; no recovered unknown plaintext or real key.** Agent4, 11 November 2026; Director Issue [#356](https://github.com/FlareZ123/liber-primus/issues/356). One-file offline reproducer: [\`sims/lp2_word_collision_injective_sft.cjs\`](../sims/lp2_word_collision_injective_sft.cjs).
 
@@ -53,6 +53,25 @@ For each of the exact original 55 page-specific GP-length inventories, the same 
 
 Every one of **8,000** length- and source-page-matched English control samples lies far above the actual **four** intra-page repetitions. The fixed-corpus per-author one-sided plus-one upper tail is at most **1/2,001**. Page-wise deterministic per-word mappings are therefore incompatible with the tested ordinary native-GP English models even when **55 wholly different secret word codebooks** are permitted. This does not prove all possible natural language or all page-reset ciphers impossible. Cipher state changing *within* pages, changes to word boundaries, and unknown non-native source registers remain viable. The SFT separately plants an injective page-local word map and verifies identical per-page collision counts for the control.
 
+
+## Strongest printed-line-local invariant: 593/594 lines contain no repeated word
+
+The page-local exclusion still permits a separate word dictionary for *every printed line*. Test instead the **594 original source-printed rune lines** previously image-confirmed; parsing \`/\` and page breaks \`%\` preserves cross-line words by assigning each complete GP word to its **starting printed line**. Exactly **2,896 original words** and **12,956 original runes** are represented. Two lines start no complete word because of a carry. Only **one** pair of identical words appears within any single printed line. **593/594 printed lines contain no duplicated word**, and the sole repeated pair is at most two runes long.
+
+Every deterministic **line-static** word-to-word map must preserve identical word pairs inside each line. Even allowing an independent, arbitrary secret bijection for all 594 lines, the unknown native plaintext must itself have **at most one** identical within-line word pair, provided the source-printed separators represent plaintext word boundaries. An injective line-secret dictionary cannot remove any repeat, and a noninjective deterministic dictionary can only increase them.
+
+With a separately frozen XorShift32 seed \`0x5033301\`, the same four native-GP English controls and original GP normalization were sampled **2,000 times each**, drawing source words with replacement in their corresponding GP-length bins while preserving **every original printed line's word count and every word length**. All exact original source lines stay fixed.
+
+| Source | Median within-line identical-word pairs | Minimum of 2,000 | Maximum zero-duplicate original lines |
+| --- | ---: | ---: | ---: |
+| Solved LP1 plus solved p57 | **60** | **38** | 558 |
+| Gibran, *The Prophet* | **57** | **34** | 561 |
+| Shakespeare first 300k characters | **28** | **13** | 582 |
+| Emerson, Essays | **45** | **24** | 572 |
+| **Original unknown LP2** | **1** | **1** | **593** |
+
+Every one of 8,000 line- and length-matched native-source controls shows **more** repeated word pairs than the source-printed original, with fixed-corpus one-sided plus-one empirical tail at most **1/2,001** for each model. A planted injective whole-word GP29 codebook reproduces the entire sampled line-local equality partition exactly in each corpus. This is an additional, **finer causal restriction**: ordinary English with preserved printed word boundaries is incompatible even with secret word dictionaries restarted independently every printed line. This is **conditional** on the native prose register and independent source sampling; actual plaintext could have deliberately no short-range repeats. Changing keys/state at each occurrence, altered word segmentation and other plaintext languages remain open.
+
 ## Locked native-source comparison
 
 Before scoring originals, the source model retains the exact 14-bin original word-length inventory, GP-normalizes each English word using the repository's documented QU→CW, V→U, K→C, Z→S, TH/EO/OE/AE/IA/EA/NG digraph and ING contraction, then independently draws source tokens **with replacement within each original GP-length bin**. This changes source order while retaining each real author's source-word multiplicities and the original total/count per length. It is a literal length-matched source-word multiset bootstrap, rather than selecting advantageous English sentences.
@@ -77,4 +96,4 @@ The observed 230 total pairs and zero long pairs are ordinary under this indepen
 
 ## Next research decision
 
-This original-input invariant adds to the previously established singleton and within-word-equality restrictions. Under ordinary native-GP prose with preserved word separators, retire **all position-independent deterministic word-to-word mappings that are static within any physical page**, including independently secret page-specific injective codebooks and fixed per-word permutations, without searching their keys. Future decryptors must allow at least one independently motivated missing ingredient: a varying state/key by word occurrence, an altered word-boundary interpretation, or a different constructed source register. The invariant supplies **no direct plaintext** and should never be reinterpreted as proof that every form of English encryption is impossible.
+This original-input invariant adds to the previously established singleton and within-word-equality restrictions. Under ordinary native-GP prose with preserved word separators, retire **all position-independent deterministic word-to-word mappings that are static even within any printed line**, including independently secret page-specific injective codebooks and fixed per-word permutations, without searching their keys. Future decryptors must allow at least one independently motivated missing ingredient: a varying state/key by word occurrence, an altered word-boundary interpretation, or a different constructed source register. The invariant supplies **no direct plaintext** and should never be reinterpreted as proof that every form of English encryption is impossible.

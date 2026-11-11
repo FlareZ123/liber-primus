@@ -267,6 +267,28 @@ function pageQuantiles(obs,original) {
   return out;
 }
 
+
+/** Original source-printed rune lines, with words assigned to starting line.
+ * @param {string} raw @returns {string[][]} */
+function originalPrintedLineWordGroups(raw) {
+  const lines=[];let word="",start=0;
+  const flush=()=>{if(word){lines[start].push(word);word="";}};
+  for(const page of raw.split("%").slice(0,55))
+    for(const printed of page.split("/")) {
+      if(![...printed].some(ch=>RUNES_SET.has(ch)))continue;
+      const index=lines.length;lines.push([]);
+      for(const ch of printed) {
+        if(RUNES_SET.has(ch)){if(!word)start=index;word+=ch;}
+        else if("-.&$§".includes(ch))flush();
+      }
+    }
+  flush();
+  assert.equal(lines.length,594);
+  assert.equal(lines.flat().length,2896);
+  assert.equal(lines.flat().join("").length,12956);
+  return lines;
+}
+
 function run() {
   const originalWords=unknownRuneWords(
     read("resources/liber-primus/lp2-transcription.txt"));
@@ -279,6 +301,13 @@ function run() {
   assert.equal(pageObserved.pairs,4);
   assert.equal(pageObserved.longPairs,0);
   assert.equal(pageObserved.pagesWithoutRepeats,51);
+  const printedLines=originalPrintedLineWordGroups(
+    read("resources/liber-primus/lp2-transcription.txt"));
+  assert.deepEqual(printedLines.flat(),originalWords);
+  const lineObserved=perPageCollisionMetrics(printedLines);
+  assert.equal(lineObserved.pairs,1);
+  assert.equal(lineObserved.longPairs,0);
+  assert.equal(lineObserved.pagesWithoutRepeats,593);
   assert.equal(original.pairs,230);
   assert.equal(original.longPairs,0);
   assert.equal(original.distinct,2731);
@@ -337,13 +366,41 @@ function run() {
     pageSources.push({source:file,trials:observations.length,
       quantiles:pageQuantiles(observations,pageObserved)});
   }
+  // Freeze and test 594 individual original printed-line dictionaries.
+  const nextLine=rng(0x5033301),lineSources=[];
+  for(const file of SOURCES) {
+    const pools=sourcePools(file),obs=[];
+    for(let trial=0;trial<2000;trial++) {
+      const sample=matchedPageSample(printedLines,pools,nextLine);
+      if(trial===0) {
+        const encoded=plantedInjectiveWordCodebook(sample.flat());
+        let cursor=0;
+        const planted=sample.map(line=>{
+          const words=encoded.slice(cursor,cursor+line.length);
+          cursor+=line.length;return words;
+        });
+        assert.deepEqual(perPageCollisionMetrics(planted),
+          perPageCollisionMetrics(sample),"A line-static injective map must preserve line collisions");
+      }
+      obs.push(perPageCollisionMetrics(sample));
+    }
+    assert.ok(Math.min(...obs.map(x=>x.pairs))>lineObserved.pairs);
+    lineSources.push({source:file,trials:obs.length,
+      quantiles:pageQuantiles(obs,lineObserved)});
+  }
   console.log(JSON.stringify({unknownWords:originalWords.length,
     GP29AlphabetSize:29,original,seed:SEED,
     controlTrialCount:N,sources:results,
     pageLocal:{runePages:55,original:pageObserved,
-      sourceSeed:"0x503331",sources:pageSources}},null,2));
+      sourceSeed:"0x503331",sources:pageSources},
+    lineLocal:{runeLines:594,original:{
+      pairs:lineObserved.pairs,longPairs:lineObserved.longPairs,
+      linesWithoutRepeats:lineObserved.pagesWithoutRepeats,
+      pairsByLength:lineObserved.pairsByLength},
+      sourceSeed:"0x5033301",sources:lineSources}},null,2));
 }
 if(require.main===module)run();
 module.exports={unknownRuneWords,normalizeGP,metrics,matchedSample,
   independentPad,plantedInjectiveWordCodebook,
-  originalPageWordGroups,perPageCollisionMetrics,matchedPageSample,run};
+  originalPageWordGroups,originalPrintedLineWordGroups,
+  perPageCollisionMetrics,matchedPageSample,run};
