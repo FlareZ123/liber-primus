@@ -83,7 +83,8 @@ The strongest unresolved question is now **what source-prescribed operation foll
 
 ## Reproduction and source files
 
-- Executable source check: `node sims/p32_p15_spiral_edge_route_sft.cjs`
+- Executable route check: `node sims/p32_p15_spiral_edge_route_sft.cjs`
+- Bounded p55 direct-readout negative check: `node sims/p32_p15_p55_direct_readouts_sft.cjs` (reproduces the ordinal/prime/totient Vigenère, Hill-4, and four-column transposition tests).
 - p32 corpus and original transcription: `resources/liber-primus/lp2-corpus.json`, `resources/lp2-transcription.txt`
 - p15 original table scan: `resources/liber-primus/32.jpg` (physical p15)
 - p32 original page image: `resources/liber-primus/49.jpg` (physical p32)
