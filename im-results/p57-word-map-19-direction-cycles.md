@@ -12,7 +12,7 @@ Applying the same GP-prime-sum / NUMBER factor-index reduction to p57's 19 body 
 - **LIKE**, body-word position 1, sum 184 = 2³×23, reduces to **H**.
 - **FIND**, body-word position 14, sum 151 is prime and reverses to itself, so it returns **+**.
 
-The ordered marker signatures H, + therefore select LIKE, FIND in the same order. The 19-word sum table is in the linked note above.
+The ordered marker signatures H, + therefore select LIKE, FIND in the same order. They select candidate anchors, not both directions: the literal `+` supports FIND-plus, while the H signature does not independently mean subtraction or select LIKE-minus. The 19-word sum table is in the linked note above.
 
 Separately, the 2013 NUMBER operation on the PARABLE sum 449 reverses to 944, whose divisors include 59. Earlier work then chose 59 for a derived follow-up, obtaining 95 = 5×19, but **59 was not independently selected from the many divisors of 944**.
 
@@ -71,6 +71,24 @@ This makes the actual 5-row word layout relevant to the 2016 “words are the ma
 
 The A194954-derived 41×316 direct-key interpretations have been tested and rejected; see [the bounded key-gate report](a194954_41x316_direct_key_gate.md). This does not retire the sequence as a possible selector or navigation instruction.
 
+## A194954 / cycle-intersection audit: reproduced, no unique traversal
+
+Agent 4's conditioned one-million-permutation diagnostic was independently reproduced with a separate implementation and seed **20261112**. The counts match: both cycles length 5 in **19,128/1,000,000** trials; both length 5 with one shared node in **7,909**; shared node specifically WE in **317**; all four A194954-selected cycle nodes assigned to their observed respective cycles in **1**; and the exact observed intersection with no other selected nodes in either cycle in **0**. The original reproducer is [`im-results/a194954-p57-cycle-intersection.py`](a194954-p57-cycle-intersection.py).
+
+The first seven provisional A194954 terms select p57 body positions **[2,3,5,7,11,13,17]**: THE / INSTAR / TO / SURFACE / OUR / CIRCUMFERENCES / WITHIN. Four selected words are cycle nodes, in A194954 order **TO(5), SURFACE(7), CIRCUMFERENCES(13), WITHIN(17)**. The two fixed cycle directions are:
+
+- LIKE-minus: LIKE(1) → SURFACE(7) → WE(8) → WITHIN(17) → DIVINITY(16).
+- FIND-plus: FIND(14) → CIRCUMFERENCES(13) → WE(8) → AND(18) → TO(5).
+
+Consequently the selected pair on LIKE-minus follows its cycle direction (**SURFACE → WE → WITHIN**), but the selected pair on FIND-plus is reversed (**TO** precedes **CIRCUMFERENCES** in A194954 order, while the directed cycle runs **CIRCUMFERENCES → WE → AND → TO**). The A194954 order therefore interleaves the two cycles; it is not a single directed walk through WE. It identifies two pairs of nodes on a shared-node graph, not a unique traversal.
+
+The original five-line layout gives WE a suggestive physical location: SURFACE ends at line 2, column 17; WE starts at line 3, column 1; CIRCUMFERENCES starts at line 3, column 17, the final rune column of that line, and continues onto line 4. A line-3 wrap could support CIRCUMFERENCES → WE, but no independent source instruction prescribes circular rows or that wrap. The source-coordinate check is reproducible in [`sims/p57_a194954_cycle_path_audit.py`](../sims/p57_a194954_cycle_path_audit.py).
+
+Two source gates remain weak. First, the 2013 H/+ reduction identifies LIKE and FIND as anchors, but H does not select the minus sign; only FIND-plus has a literal plus-marker interpretation. The LIKE-minus cycle is therefore conditional on carrying a separate fold/sign interpretation. Second, the A194954 sequence comes from archived 2014 whitespace runs: only the 2-space internal run and 5-space leading indentation survive OpenPGP cleartext canonicalization; the later runs used for terms 3, 7, 11, 13 and 17 are not signature-authenticated. The permutation result is conditional on those selected positions and signs; it is a post-observed diagnostic, not a formal p-value or independent evidence of intended construction.
+
+**Decision:** retain the cycle intersection as a conditional map-structure clue, but do not claim a unique directed route, a source-fixed two-cycle operation, a key, or recovered plaintext. Do not repeat sign/modulus/path sweeps. Reopen only if an independent source authenticates the later A194954 terms and fixes the LIKE direction or the line-3 wrap, or supplies a reversible operation that predicts unknown LP2 text.
+
+
 ## Reproducible map operation
 
 Number the 19 body words 1–19 in source order. Let S_i be the sum of the GP prime weights of word i. Use the source-selected modulus 19 and the directed step (with residue 0 represented by position 19):
@@ -95,7 +113,7 @@ The marker-selected LIKE and FIND anchors produce:
 	ext{FIND}_{14}.
 ]
 
-The opposite direction from LIKE gives a second 5-cycle:
+The opposite direction from LIKE gives a second, conditional 5-cycle; the H anchor does not itself select this minus sign:
 
 [
 	ext{LIKE}_{1}\to
@@ -176,4 +194,4 @@ The conservative relevant frequency is **0.860%**, because the sign assignment a
 
 ## Next decision
 
-Do not extend the graph beyond WE or search alternative moduli/signs. Seek an independent source instruction that confirms the exact word-step rule and says whether WE is a stop, a command, or a pointer to another artifact. If no such instruction appears, retain the raw-marker route and p55/P/P convergence as candidate human solve-path evidence, not as an established cipher.
+Do not extend the graph beyond WE or search alternative moduli/signs. The A194954/cycle intersection does not define a unique directed traversal, and its second cycle and selector depend on conditional or unauthenticated inputs. Retain the raw-marker SHED → FIND → CIRCUMFERENCES → WE route and p55/P/P convergence only as candidate human solve-path evidence, not as an established cipher. Reopen this branch only if an independent source fixes the missing direction/selector and specifies a reversible operation on unknown LP2 text.
