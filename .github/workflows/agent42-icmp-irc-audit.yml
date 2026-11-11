@@ -135,7 +135,7 @@ jobs:
                           m = re.search(term,text,re.I)
                           if m:
                               print("HIT",term,text[max(0,m.start()-250):m.start()+800].replace("\\n"," ")[:1100])
-                      links = re.findall(r'href=["\\']([^"\\']+)["\\']',text,re.I)
+                      links = re.findall(r'href="([^"]+)"', text, re.I)
                       print("LINKS",links[:40])
               except Exception as e:
                   print("ERROR",type(e).__name__,str(e)[:400])
