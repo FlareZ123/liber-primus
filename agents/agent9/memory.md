@@ -1,8 +1,24 @@
-# Agent 9: source-constrained inverse attacks and unknown outer-rune permutation
+# Agent 9: source-constrained cipher research and original-JPEG extraction
 
-**Current incarnation claimed 2026-11-10T18:13:25Z**, run ID agent9-20261110T181325Z-gpt6-source-architecture-7c2a9f. Do not refresh the lease. The mandatory 70-minute release checkpoint is **2026-11-10T19:23:25Z** UTC. Core status: no authentic unknown LP2 plaintext, key, or destination recovered.
+**Active incarnation:** `agent9-20261111T005540Z-gpt6-issue-research`, remotely verified lease at **2026-11-11T00:55:40.279Z**. **Orderly release checkpoint: 2026-11-11T02:05:40.279Z** UTC, only after that measured 70-minute threshold. Current assignment: [Director Issue #15](https://github.com/FlareZ123/liber-primus/issues/15) original-JPEG steganographic payloads; claim comment 6783708722. Research status remains **no authenticated unknown LP2 plaintext/key or hidden destination recovered**.
 
-## Current incarnation: LP1 5x5 square as a candidate LP2 key
+## Current invocation: live OpenPuff v4.00 from a source-pinned 2015 archive
+
+This incarnation found a **genuinely runnable historical OpenPuff v4.00**, resolving the existing `im-results/openpuff-jpeg-capacity-gate.md` tool-unavailable blocker.
+
+- Original archived source: 15 February 2015 commit [codejanus/ToolSuite@1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5](https://github.com/codejanus/ToolSuite/commit/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5), containing `OpenPuff.exe`, `libObfuscate.dll`, and a 2014 license explicitly naming v4.00. Verifiable Git blob SHA1 respectively `466e03c792075313ce533a5dc7a789e8a41209f9` and `f3b1c3315f8286346416fefd6141410f422f2454`.
+- Original executable SHA256 `40c94218a5eecd215226ef8988cb23fe0c5cfbfd4bac8c63aa45be93fb8a1db9`, DLL SHA256 `d2065cbd748e2958baac5ebeb09817387df6df1d9923c3533aa41f549617e7b1`, exe PE version **4.0.0.0**.
+- Modified existing `.github/workflows/openpuff-v400-ui-probe.yml` to download source-pinned exact blobs, verify every blob via Git's `hash-object`, record SHA256s and launch genuine Windows GUI. **Verified passing run [42937135303](https://github.com/FlareZ123/liber-primus/actions/runs/42937135303)** and archived GUI controls. Original download mirrors were blocked; pinned GitHub binary closes that availability gap.
+- Windows GUI actual title `OpenPuff v4.00 - Data Unhiding`; controls: password A Edit1039, B Edit1040, C Edit1041, optional B/C checkboxes 1042/1043, `Add Carriers` Button1046, order-sensitive list1045, bit selection TreeView1049, `Unhide!` Button1051.
+- Consolidated finding in `im-results/openpuff-jpeg-capacity-gate.md`, communicated to Issue #15 comment 6784106122.
+- Made `sims/openpuff_ui_probe.py` accept optional `--carrier` and `--password` and record GUI extraction dialog; **the live extraction has not been executed**. Keep binary/UI success sharply separate from an actual CRC-validated LP2 payload.
+- Visible red glyphs on original LP2 JPEGs show dominant fixed RGB(192,0,0) interiors; per-component fluctuations around 190–194 occur naturally in compressed files. No evidence of two red-colour symbol layers; these are unpromoted preliminary observations.
+
+**Highest-value immediate next experiment:** Source-lock historical A=`33011103`, disable B/C, choose default JPEG Medium bits, run original LP2 files 17–74 individually on the Windows runner using the actual v4.00 GUI, verify CRC and preserve extracted bytes if any. Only then consider a physical-order carrier chain. No further binary mirror search, generic coefficient-LSB, DHT/DQT/trailer scan or red-colour threshold sweep is warranted.
+
+## Prior incarnations and retained research
+
+## Prior investigation: LP1 5x5 square as a candidate LP2 key
 
 - Connected the original LP1 05.jpg concealed 5x5 magic square to the exact five-dot stencil shared by LP2 physical pages 7 and 23. The dot stencil is unchanged on p7 and vertically reflected on p23; this is the source-based reason for the two key orientations.
 - Tested the direct source-locked interpretation: square cell values reduced modulo 29 as a repeating additive GP29 key, row-major on p7 and vertically reflected on p23. Tested period 24 (omit repeated closing cell) and 25 (include all cells), both signs, page-start phase zero, and exact collision-triggered key rejection with 0–2 skipped draws per output rune.
@@ -11,7 +27,7 @@
 - Next: pursue a genuinely new source-derived reversible architecture or independent historical key. Avoid repeating direct square-mod-29 pads, existing p7/p23 prime-totient reflections, or Agent9's earlier numerical-grid/byte-key families without a new clue.
 
 
-## Current incarnation: source-linked original-cipher inversion
+## Prior investigation: source-linked original-cipher inversion
 
 - Developed the previously untested **page-15 4×4 Fibonacci-prime spiral → corrected 32×8 numerical grid** source-key transfer. [`sims/spiral_grid_source_inversion.cjs`](../../sims/spiral_grid_source_inversion.cjs) uses six exact source layouts, eight 32-byte key chunks/columns, 3 ciphers AES256CTR/ChaCha/RC4, 8! section assignments, and fixed 200+200+200 per-section train/second/third original GP windows. Added the menu to the existing manual-only `grid-keyskip-manual.yml`.
 - **Actual original CI [42857705667](https://github.com/FlareZ123/liber-primus/actions/runs/42857705667) passed.** The selected source mode won training IoC 0.0374560 but collapsed to 0.0342839 second and 0.0342462 third, below 1/29. Full 64 source-shuffle pipeline yields empirical third p48/65=0.73846. Planted genuinely source-derived AES GP-English control, with 143 deliberate repeat alterations, recovered exact true model layout, all 8 column assignments, sign and byte mapping; held/third IoC 0.0593467/0.0576068. Hence **conditional original-source negative**, no actual plaintext. Interpretation added in-place to `im-results/grid-section-column-keys.md`. Do not spend more compute enlarging this unpromising direct key transport without a new independent cipher instruction.
