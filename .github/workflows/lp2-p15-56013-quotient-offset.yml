@@ -35,3 +35,11 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "p55 central-23 script syntax failed" }
           node sims/lp2_p55_circumference_23byte_56013_sft.cjs $asset
           if ($LASTEXITCODE -ne 0) { throw "p55 central-23 XOR gate failed" }
+      - name: Execute direct 2013 XOR on original 256 numerical-table bytes
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          node --check sims/p15_iso56013_grid256_historical_xor_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "p50 grid XOR syntax failed" }
+          node sims/p15_iso56013_grid256_historical_xor_sft.cjs $asset
+          if ($LASTEXITCODE -ne 0) { throw "p50 grid XOR source gate failed" }
