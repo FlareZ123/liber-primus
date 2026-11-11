@@ -113,6 +113,24 @@ The simplest direct symbol action of the source-derived M7 is its permutation of
 
 I applied only M7 and M7⁻¹ to two source-fixed targets, preserving word boundaries as the 30th input state and ignoring line wraps/page breaks: (1) full physical pp33–39, **1,680 runes + 378 word boundaries**; and (2) the exact matching three-dot bracket p33 local91 through p39 local119, **1,468 runes + 326 word boundaries**. On the full pages, M7/M7⁻¹ produce only **64/55 spaces** (65/55 words, mean lengths **30.677/36.418**) instead of 378 source boundaries; on the bracketed body they produce **47/46 spaces** (48/46 words, mean lengths **36.396/38.000**) instead of 326. Duko Round27 quadgram means are **−18.50766046/−17.69639681** versus raw **−17.25835981** on full pages, and **−18.52003128/−17.71087293** versus raw **−17.31601836** on the bracketed body. The solved p56+p57 and native Shakespeare controls score **−14.07409897** and **−10.00056948**. Both maps are exact inverses and recover a planted 30-state stream; that validates implementation, not the cipher hypothesis. The output samples are nonlinguistic. **Retire only this direct P¹(F29) substitution with infinity-as-space**; do not search arbitrary alternative infinity assignments. Reproducer: [`p32_m7_30state_alphabet_substitution_sft.cjs`](../sims/p32_m7_30state_alphabet_substitution_sft.cjs).
 
+## Cross-round Liber AL geometry (source evidence; not a solved readout)
+
+The 2013 Cicada source bundle includes transcriptions of *Liber AL* I/II/III in [Book I](../resources/external/2013-book-of-law-I.txt), [Book II](../resources/external/2013-book-of-law-II.txt), and [Book III](../resources/external/2013-book-of-law-III.txt). They contain a tightly connected geometric vocabulary:
+
+- I:6 identifies Hadit as the speaker's "secret centre".
+- I:60 gives the number 11 and describes a five-pointed star with a red circle in its middle.
+- II:3 says: "In the sphere I am everywhere the centre, as she, the circumference, is nowhere found."
+- II:55 directs the reader to obtain the order and value of the English alphabet and assign new symbols.
+- III:47 describes a drawn line and a squared circle as keys.
+
+This is a notable cross-round match to the solved LP2 tail: p56's koan says "the I is the voice of the circumference"; p57 says to "shed our own circumferences" and "find the divinity within". It also makes the p32 original-page infinity glyph, red heading, 4×4 numerical square, and 121-rune block worth interpreting geometrically, alongside the 2013 `0_wisdom` MOBIUS marker and the already-derived p32 projective/Möbius map. The source cluster strengthens a Thelemic centre/circumference/line/circle interpretation as a plausible human solve-path hypothesis.
+
+**Limits.** The 121 p32 runes are printed in six lines, not as an 11×11 square; 11×11 is a derived reflow. I:60 therefore motivates, but does not prove, that reflow or a pentagram overlay. The source texts do not specify a rasterization, orientation, symbol readout, or mapping from the 29 GP symbols to the English Qabalah/ALW alphabet. Do not assume that later ALW interpretations are Cicada's intended cipher.
+
+**Bounded negative checks.** Literal GP29 Vigenère keys `HADIT` and `NUIT` on p55, a simple per-word centre-as-key operation, and the 11-rune p32 main-diagonal key on pp33–39 did not yield readable plaintext. A standard top-point pentagram rasterization of an 11×11 reflow produced a 45-rune candidate key; its forward/reverse and centre-inserted variants did not decrypt pp33–39 under the p56 additive convention. These results reject only those exact readings; they do not disprove every geometrically motivated route. Do not continue unconstrained Thelemic word-key sweeps.
+
+**Best next decision.** Recover and inspect the original *Liber AL* III:47 diagram/line construction, then compare its actual geometry with p32's printed layout before commissioning another cipher test. A successor should lock one source-derived traversal and readout (or reject the analogy) before using the p32 M7 map on ciphertext. The new source cluster strengthens the family selection; it does not validate the current 210-state M7 readout.
+
 ## What this changes
 
 The p32 row-major projective map can now be selected from the complete 16-member physical corner family using the adjacent cuneiform numbers. Those same values select its infinity cycle, prescribe the p3-to-p39 triad correction, and produce a whole-section 8 x 210 geometry.
