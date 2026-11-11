@@ -12,8 +12,23 @@ The archived telnet display omits 180 primes, p21–p200 (`73…1223`). Their su
 - **Literal 180/76 table mapping:** place gaps (or half-gaps) row-major in the 30×6 interior and the 76 visible first-256-prime complement clockwise around the perimeter; XOR with the original 32×8 bytes. Outputs contain **105/106 printable bytes**, versus **103** in the original, but neither is readable ASCII or a recognized file signature. Planted ASCII controls recover exactly.
 - **Cumulative gap walk:** starting at p53 offset0 and using the 179 internal gaps as forward step lengths modulo179 visits only **136/179** positions. It is not a permutation; collision resolution would require an extra source rule.
 
+## Source-fixed multiplicative GF29 check
+
+The 179 internal gaps also admit one simple non-additive test: use each gap as a multiplicative key in GF(29), with no fitted key, phase, offset or traversal. I tested both directions (multiply and divide by the gap), both the 179-rune p53 region and the 180-rune p53+p54-Ac extension, and the equally simple half-gap normalization. Each operation is losslessly reversible and passes the same held-out Shakespeare GP29 positive control.
+
+| Region/key | Multiply trigram | Divide trigram |
+| --- | ---: | ---: |
+| p53 / internal gaps | **−4.432857** | **−4.515573** |
+| p53 / half-gaps | **−4.374052** | **−4.504362** |
+| p53+p54-Ac / extended gaps | **−4.429817** | **−4.509122** |
+| p53+p54-Ac / half-gaps | **−4.368395** | **−4.511445** |
+
+The unchanged p53 scores **−4.237113**, p53+p54-Ac scores **−4.236216**, and the fixed held-out English control scores **−2.319804**. All four multiplicative variants are worse than the original ciphertext; none approaches English. This rejects these source-fixed multiplicative/divisive GF29 gap pads, not every nonlinear use of the historical prime sequence.
+
+Reproducer: [source-fixed nonlinear bridge gate](../sims/agent47_2013_missingprime_nonlinear_gate.cjs).
+
 ## Decision
 
-Reject these exact direct gap/half-gap additive pads, the 180-interior/76-perimeter gap XOR, and the literal cumulative gap walk. This does not refute the 180-prime/180-cell structural correspondence, the separate 361-entry sequence, or the p32 prime-gap compass hypothesis. Do not extend this branch with arbitrary moduli, offsets, collision rules or alternate traversals.
+Reject these exact direct gap/half-gap additive pads, the fixed multiplicative/divisive GF29 gap pads above, the 180-interior/76-perimeter gap XOR, and the literal cumulative gap walk. This does not refute the 180-prime/180-cell structural correspondence, the separate 361-entry sequence, or the p32 prime-gap compass hypothesis. Do not extend this branch with arbitrary moduli, offsets, collision rules or alternate traversals.
 
 Reproducer: [`sims/lp2_telnet_prime_gap_difference_sft.cjs`](../sims/lp2_telnet_prime_gap_difference_sft.cjs).

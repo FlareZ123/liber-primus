@@ -62,10 +62,21 @@ These are best-case errors over all eight orientations, with a separate syntheti
 
 Thus **none of the direct stationary input-residue lookup families** explains the interior table under the eight elementary rectangle readings, however its secret mapping is chosen. This strengthens the previously reported single-order negative without assuming a secret key; nonlinear position-dependent state, independently prescribed rearrangements and unrelated uses remain untested. The archived historical telnet transcript is a secondary witness.
 
+## Source-fixed nonlinear bridge tests
+
+I tested the natural non-additive operations against the known 180-rune plaintext on solved pp56+57, using the original 30×6 table interior in row-major order. The 180 missing primes p21..p200 are the only length-matched key stream.
+
+- **GF(29) multiplication/division:** table-byte residues multiplied by p_i mod29 match **2/180** known rune indices; division by p_i mod29 matches **3/180**. Using the historically documented decimal-reversed prime values gives **14/180** matches for multiplication and **9/174** valid positions for division. This is not a decryption.
+- **p32-anchored coordinate key:** p32's top-left GP-prime weight is 73, the first missing 2013 prime. The frozen address rule cell=(p−73) mod121 samples the 11×11 row-major p32 rune matrix into a 180-symbol stream. Using either rune ordinals or GP-prime weights as that stream, then applying GF(29) addition, subtraction, multiplication or division to the 30×6 table interior, gives at most **9/180** exact known-rune matches.
+
+These are finite, source-fixed candidate operations, not an exhaustive no-go for arbitrary stateful ciphers. They produce no held-out plaintext. The historical PRIMES/NUMBER service is **not** authenticated by the recovered signed 2013 TCP-server challenge, which specifies BASE29/DH/NEXT but no PRIMES or NUMBER command. The missing-prime list remains a secondary historical witness, and the 2016 signed tree message does not prescribe the p32 address rule.
+
+Reproducer: [source-fixed nonlinear bridge gate](../sims/agent47_2013_missingprime_nonlinear_gate.cjs).
+
 ## Frozen minimal original-input decision
 
 Using the **original 180 inner table bytes** in forward row-major order against the **ascending omitted primes** gives only **1/180** byte agreements for `prime mod256`, **4/180** for `(prime−1) mod256`, and **3/180** for `prime mod29`. Comparing the original 180 terminal ciphertext indices to `(prime−1) mod29` gives **5/180**. Decrypting original p56 with missing-prime totient shifts and the authentic fixed literal-F at rune 56 recovers **5/85** known plaintext runes; using the established p1-starting sequence recovers **85/85**. This rules out a naive missing-prime replacement for the documented p56 totient key. The tests were selected from the obvious source-index mappings and do not cover independently specified permutations, source-key derivations, or other original registers.
 
-**Most useful next decision:** find an original 2013/2014 instruction that uniquely transforms these 180 source-ordered primes into either the table interior or a reproducible LP2 position/state schedule. Freeze the mapping independently of the ciphertext result and demand a held-out original plaintext interval, with full lossless inverse. Without that missing operation, retire the correspondence as an unproven source lead rather than scanning unconstrained pad variations.
+**Decision after the nonlinear gate:** the natural direct GF(29) multiplicative/divisive prime pad and the p32-anchored cell=(p−73) mod121 key stream both fail against the known 180-rune pp56+57 plaintext. The best isolated exact count is 14/180 under decimal-reversed-prime multiplication mod29; this does not recover text. Do not continue with arbitrary moduli, offsets, or permutations. Reopen only if a primary source supplies a specific nonlinear/state update or index rule.
 
 The project still has **no recovered plaintext on LP2 pp0–55**.
