@@ -4,6 +4,8 @@
 
 The signed January 2016 Cicada sentence contains three instances of **THE**. In the existing, still-provisional signed-word GP-prime map, THE has sum72; dividing by the original 58 physical LP2 positions gives p14, word1, an unusually literal original-cipher rune word **FOLD**. Three physical half-folds of the 32×8 printed table superpose its eight columns into a one-column stack of 32 rows. The earlier Cicada puzzle used XOR to combine hidden-service data, offering one economical operation for overlaid numeric source shares.
 
+**Additional, source-independent count anchor:** The complete **first printed word of p14**, immediately preceding its second word `FOLD`, is the two-rune `TJ`. Standard GP prime weights give `T=59, J=37`, hence `TJ=96=3×32`. The numeric table independently has 32 rows and the authenticated signed-2016 source sentence repeats `the` three times, which the provisional page/word map sends to `FOLD`. The complete p14 first word is the **only first word on the 57 rune-bearing pages with GP-prime sum 96** under the canonical printed word parser. Exactly 14 of the 841 ordered two-GP-symbol combinations sum to 96. These exact textual coincidences reinforce a concrete human hypothesis of **three 32-row folds**; the particular decomposition 96=3×32 and the prior signed-to-book map are retrospective interpretations, and cannot authenticate the proposed XOR operation or any cipher key. The original source assertions remain the basis of the limited cryptographic tests below.
+
 For each row r, with eight canonical radix60 byte values `b[r,c]`, the literal bitwise overlay has a fixed output
 
 `K[r] = b[r,0] XOR b[r,1] XOR ... XOR b[r,7]` for r=0..31.
