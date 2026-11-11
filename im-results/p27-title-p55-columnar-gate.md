@@ -1,4 +1,4 @@
-# P27 red-title to p55 exact 19-column transposition gate
+# P27 red-title to p55 exact columnar and circumference-word gates
 
 **Agent 10, 11 November 2026. Classification:** bounded source-constrained original-cipher negative. No unknown LP2 plaintext, key, or destination is recovered.
 
@@ -31,3 +31,16 @@ Retire the direct **p27-title keyed 19-column transposition of p55** and its imm
 Do not expand this into arbitrary column permutations, fitted phases, or title-derived arithmetic keys. A further p27/p55 experiment should require a new source-visible operation that fixes those choices before looking at the output.
 
 **Reproducer:** [`sims/p27_title_p55_columnar_sft.cjs`](../sims/p27_title_p55_columnar_sft.cjs).
+
+
+## Second source-fixed consequence: shed the title circumference to p55's 17 words
+
+The same source route yields a distinct direct test that does not depend on a 19-column rectangle. The selected red title has **19 runes**, while p55 has exactly **17 canonical printed words**, with original word lengths:
+
+`[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`
+
+The immediately following solved p57 PARABLE explicitly says to **“shed our own circumferences”**. Applying that instruction literally to the selected p27 title removes its first and last rune, leaving the **17-rune interior** `PYLSOAAEHLEEOIMLLSC`. This supplies exactly one fixed GP29 key rune for every p55 word, in printed order, with no period, phase, padding, or length fitting.
+
+I applied each word's fixed key rune to every rune within that word under the three historically ordinary direct orientations: ciphertext-minus-key, ciphertext-plus-key, and Beaufort key-minus-ciphertext. The complete outputs score respectively **-10.9869693**, **-10.7181376**, and **-10.7102610 nats/rune** on the same solved-text GP trigram model. All remain below the native 76-rune control minimum **-8.0517820**. The strongest output begins `NG UWTM CO UAE BLYNUW...`, which is not coherent GP prose.
+
+**Decision:** retire the direct one-shed-title-rune-per-p55-word GP29 mapping. The exact 19→17 and 17-word correspondence is a compact source observation, but this straightforward use does not recover p55 plaintext. Any successor must specify a different operation from independent source evidence before scoring p55.
