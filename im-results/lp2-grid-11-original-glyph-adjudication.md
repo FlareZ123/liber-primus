@@ -44,6 +44,24 @@ The independent [font-wide original-image SFT](../sims/lp2_grid_fullfont_source_
 
 Each font class is defined by its printed transcription label and first/second-character position. The test compares original-pixel shapes to independent occurrences of the same character, then to the nearest competing character at the same position, tolerating one-pixel registration. A glyph is flagged if a rival class has normalized mismatch smaller than the nearest same-character mismatch plus 0.03. Of **512** glyphs, **509** have another printed occurrence of the same character in the same position; **zero** are flagged. The only **three** singleton second-character labels without same-class controls are R (cell 23), i (cell 72), and h (cell 126). Those remain unadjudicated by this test. **Independent original-image visual inspection** of the exact three source rows supports each printed singleton: 66.jpg row 2 ends in 1R with R's diagonal leg visibly present; 66.jpg row 9 starts 2i with the lowercase i's separated dot; and 67.jpg row 5 contains 2h with a tall ascender and curved shoulder. This original-pixel reading is a separate manual judgment, not an additional score from the automatic nearest-class test.
 
+
+### Independent p15 numeric-printing control and cross-position comparison
+
+The 256-token table is distributed across physical pp49–51: **10 rows / 80 tokens** on scan 66.jpg, **13 rows / 104 tokens** on scan 67.jpg (physical p50), and **9 rows / 72 tokens** on scan 68.jpg. The p15 numerical typesetting control is physical p15, original scan **32.jpg**. Its four printed rows contain **63 digit glyphs** (the final value is the three-digit number 708). The source-locked crop uses native grayscale below 90, x=550–1849, and row bands centered at y=915, 1055, 1193 and 1350; all four rows segment to their visually read digit counts (16, 16, 16, 15).
+
+Using the same native-mask mismatch measure as the full-table audit—minimum XOR mismatch divided by the larger ink area over translations of at most one pixel—the p15 control gives **265 same-digit pair comparisons**. Across the 256-token LP2 table, the 298 printed digits give **8,099 same-digit comparisons**. The p50-table digits are substantially more self-consistent than the ordinary p15 control:
+
+| Original source cohort | Digit glyphs | Same-digit pairs | Median mismatch | 90th percentile | 95th percentile | Maximum mismatch |
+|---|---:|---:|---:|---:|---:|---:|
+| p15 numeric-printing control, scan 32.jpg | 63 | 265 | 0.000751 | 0.037176 | 0.064263 | **0.064263** (digit 2) |
+| Complete pp49–51 table | 298 | 8,099 | 0.000879 | 0.002047 | 0.002985 | **0.005982** (digit 2) |
+
+The control is not asserted to be an identical-size font specimen; it calibrates ordinary source-image printing/raster variation on another original numeric page. Its largest same-digit mismatch is **6.43%**, versus **0.60%** for the complete LP2 table's digits. The LP2 table's 95th-percentile digit mismatch is below 0.30%. This is inconsistent with a stable binary allograph split in any repeated digit.
+
+A second comparison removes the first/second-token-position restriction and compares each of the 512 table glyphs with every other occurrence of the same printed character across both positions. **509 glyphs** have a repeated same-character control, yielding **8,543 pairwise comparisons**; the maximum mismatch is **0.028708 (2.87%)**, for \`J\`. The remaining three singleton labels are **R, i and h**, already manually read against their original rows above. The all-position result therefore does not reveal a second repeated glyph class missed by the stricter original position-conditioned test.
+
+These are source-image consistency tests, not an exhaustive exclusion of every possible microscopic or non-shape channel. They provide no stable class alphabet, orientation/clock, or withheld original-cell prediction. Under the Issue #345 gate, there is consequently **no justified downstream steganographic or cipher sweep**.
+
 This confirms **no repeated-font inconsistency** suggesting an overlooked transcription error elsewhere in the printed table. It does **not** prove each unique glyph was read correctly, establish a numeric radix, or recover cryptographic key material. The check is self-supervised and conditioned on current transcription labels; the 509 covered glyphs are not 509 independent manual validations. The eleven previously disputed readings remain the separately adjudicated original-source facts above.
 
 Reproduce with Pillow, NumPy and SciPy using the checked-in program [sims/lp2_grid_fullfont_source_audit.py](../sims/lp2_grid_fullfont_source_audit.py). It reads only the original three JPEGs and canonical table JSON, and emits a complete JSON summary of conflicts, singleton controls, and source rows.

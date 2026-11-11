@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Self-supervised original-image audit of all 256 LP2 numeric-table tokens.
+"""Self-supervised original-image audit of all 256 LP2 numeric-table tokens and p15 print control.
 
 Run: python sims/lp2_grid_fullfont_source_audit.py
 Requirements: Pillow, numpy, scipy. Reads only existing repository sources.
@@ -19,6 +19,16 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "resources" / "liber-primus"
 ROWS_BY_SCAN = {66: 10, 67: 13, 68: 9}
 LAYOUT = {66: (318.0, 44.7), 67: (166.0, 45.0), 68: (165.0, 45.0)}
+
+# Physical p15 (archive scan 32.jpg) numerical-printing control. The final
+# printed value is 708, so this control contains 63 digit glyphs, not 64.
+P15_ROW_CENTERS = (915, 1055, 1193, 1350)
+P15_DIGIT_ROWS = (
+    "3258322231523038",
+    "3278329932982838",
+    "3288329432962472",
+    "451612067081820",
+)
 
 
 def segment_row(image: np.ndarray, scan: int, row: int) -> list[np.ndarray]:
@@ -53,6 +63,63 @@ def segment_row(image: np.ndarray, scan: int, row: int) -> list[np.ndarray]:
     return shapes
 
 
+
+def segment_p15_row(image: np.ndarray, row: int) -> list[np.ndarray]:
+    """Return the independently read p15 numeric-control glyphs."""
+    center = P15_ROW_CENTERS[row]
+    ink = image[center - 50:center + 60, 550:1850] < 90
+    xs = np.flatnonzero(ink.any(axis=0))
+    gaps = np.flatnonzero(np.diff(xs) > 1)
+    bounds = [(int(xs[s]), int(xs[t]))
+              for s, t in zip(np.r_[0, gaps + 1],
+                              np.r_[gaps, len(xs) - 1])]
+    expected = P15_DIGIT_ROWS[row]
+    assert len(bounds) == len(expected), (row, len(bounds), len(expected))
+    shapes = []
+    for left, right in bounds:
+        mask = ink[:, left:right + 1]
+        rows = np.flatnonzero(mask.any(axis=1))
+        assert len(rows)
+        shapes.append(mask[rows[0]:rows[-1] + 1])
+    return shapes
+
+
+def pairwise_report(classes: dict[str, list[np.ndarray]]) -> tuple[dict, list]:
+    """Summarize native-mask mismatch for every pair in each glyph class."""
+    per_character = {}
+    all_values = []
+    for character, shapes in sorted(classes.items()):
+        distances = [
+            distance(shapes[i], shapes[j])
+            for i in range(len(shapes))
+            for j in range(i + 1, len(shapes))
+        ]
+        assert all(np.isfinite(value) for value in distances), character
+        if distances:
+            per_character[character] = {
+                "glyphs": len(shapes),
+                "pairs": len(distances),
+                "median_mismatch": float(np.median(distances)),
+                "p90_mismatch": float(np.percentile(distances, 90)),
+                "max_mismatch": float(max(distances)),
+            }
+            all_values.extend((value, character) for value in distances)
+    return per_character, all_values
+
+
+def aggregate_pairwise(values: list) -> dict:
+    distances = np.asarray([value for value, _ in values], dtype=float)
+    worst = max(values, key=lambda item: item[0])
+    return {
+        "pairs": int(len(values)),
+        "median_mismatch": float(np.median(distances)),
+        "p90_mismatch": float(np.percentile(distances, 90)),
+        "p95_mismatch": float(np.percentile(distances, 95)),
+        "max_mismatch": float(worst[0]),
+        "worst_character": worst[1],
+    }
+
+
 def distance(a: np.ndarray, b: np.ndarray) -> float:
     """Minimum relative pixel difference over nine small translations."""
     ah, aw = a.shape
@@ -69,7 +136,6 @@ def distance(a: np.ndarray, b: np.ndarray) -> float:
             other[2 + dy:2 + dy + bh, 2 + dx:2 + dx + bw] = b
             mismatch = min(mismatch, int(np.count_nonzero(canvas ^ other)))
     return mismatch / max(int(a.sum()), int(b.sum()))
-
 
 def main() -> dict:
     table = json.loads((SOURCE / "lp2-grid-256.json").read_text("utf-8"))
@@ -124,6 +190,45 @@ def main() -> dict:
          "character": g["character"]}
         for g in glyphs
         if len(classes[g["position"], g["character"]]) == 1]
+
+    # Compare each printed character across both token positions, not only
+    # within the same first/second-character slot.
+    all_character_classes = defaultdict(list)
+    digit_classes = defaultdict(list)
+    for glyph in glyphs:
+        all_character_classes[glyph["character"]].append(glyph["shape"])
+        if glyph["character"].isdigit():
+            digit_classes[glyph["character"]].append(glyph["shape"])
+    all_character_per, all_character_values = pairwise_report(all_character_classes)
+    digit_per, digit_values = pairwise_report(digit_classes)
+    repeated_character_glyphs = sum(
+        entry["glyphs"] for entry in all_character_per.values())
+
+    # Independent control: the four-row numeric table on physical p15 (32.jpg).
+    with Image.open(SOURCE / "32.jpg") as original:
+        assert original.size == (2400, 3600)
+        p15_image = np.asarray(original.convert("L"))
+    p15_classes = defaultdict(list)
+    p15_glyphs = 0
+    for row, text in enumerate(P15_DIGIT_ROWS):
+        shapes = segment_p15_row(p15_image, row)
+        assert len(shapes) == len(text)
+        for character, shape in zip(text, shapes):
+            p15_classes[character].append(shape)
+            p15_glyphs += 1
+    p15_per, p15_values = pairwise_report(p15_classes)
+
+    all_character_summary = aggregate_pairwise(all_character_values)
+    digit_summary = aggregate_pairwise(digit_values)
+    p15_summary = aggregate_pairwise(p15_values)
+    assert repeated_character_glyphs == 509
+    assert len(all_character_values) == 8543
+    assert p15_glyphs == 63 and len(p15_values) == 265
+    assert sum(len(v) for v in digit_classes.values()) == 298
+    assert len(digit_values) == 8099
+    assert all_character_summary["max_mismatch"] < 0.03
+    assert digit_summary["max_mismatch"] < p15_summary["max_mismatch"]
+
     return {
         "source_images": ["66.jpg", "67.jpg", "68.jpg"],
         "tokens": 256, "glyphs": 512, "rows": 32,
@@ -131,7 +236,27 @@ def main() -> dict:
         "checked_with_same_character_control": checked,
         "singleton_characters": singletons,
         "conflicting_classifications": disputes,
-        "conclusion": "Self-consistent printed transcription; not an independent decipherment."}
+        "all_position_same_character": {
+            "checked_glyphs": repeated_character_glyphs,
+            "pairwise_comparisons": len(all_character_values),
+            "aggregate": all_character_summary,
+            "per_character": all_character_per,
+        },
+        "p50_digit_control": {
+            "glyphs": sum(len(v) for v in digit_classes.values()),
+            "pairwise_comparisons": len(digit_values),
+            "aggregate": digit_summary,
+            "per_digit": digit_per,
+        },
+        "p15_printing_control": {
+            "source_image": "32.jpg",
+            "rows": len(P15_DIGIT_ROWS),
+            "glyphs": p15_glyphs,
+            "pairwise_comparisons": len(p15_values),
+            "aggregate": p15_summary,
+            "per_digit": p15_per,
+        },
+        "conclusion": "Self-consistent printed transcription; no stable repeated-glyph side channel; not an independent decipherment."}
 
 
 if __name__ == "__main__":
