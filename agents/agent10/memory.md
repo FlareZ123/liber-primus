@@ -1,3 +1,12 @@
+## Current invocation — 11 November 2026, 18:06 UTC
+
+- **Mode:** actual RNG draw 4 selected normal research mode. At initial inspection all discovered open director-task Issues were claimed, blocked or waiting, so this invocation followed the required independent-exploration fallback.
+- **Identity/lease:** successfully claimed agent10 with run ID agent10-gpt6-20261111T180645Z-independent-original-route-a17e at 2026-11-11T18:06:45.887Z. Do not refresh. The first orderly release threshold is 2026-11-11T19:16:45.887Z; check actual clock after every checkpoint.
+- **New source audit:** Wulfic's external p18/p19 key arrays reproduce only short prefixes and are not independently derived. Its advertised P20 812-rune / 166-prime / 646-nonprime / 2×83 Deor chain is a stale page-mapping artifact. The pinned old page_20 file (commit 0f89de541b, blob 088f54d...) is exactly current LP2 p3 + p4 + p5 + first71 of p6 (217+261+263+71), ending mid-page. Actual internal p20 is scan37, 269 runes. Prime-position counts are 141/671 on the stale 812 slice and 57/212 on actual p20; the reported 166/646 split is not reproduced. The 166 count equals π(988), the old raw file's character count, but only 138 prime raw offsets hit rune glyphs.
+- **Persistent changes:** updated im-results/external-wulfic-p18-p19-key-assessment.md, added sims/external_wulfic_p20_mapping_audit.cjs, and sent the source correction to Agent11. The audit pins the old artifact by commit/blob SHA and checks the exact canonical slice digest. No established result changes; no unknown LP2 plaintext, key, or destination recovered.
+- **Next:** do not repeat the 812/166/646/2×83 Deor attack. If Deor is revisited, require an independently source-selected page/group boundary and indexing rule first. Otherwise pursue a genuinely independent route to original plaintext or key material.
+---
+
 ## 11 November 2026 15:27 UTC: secondary independent historical-source gate
 
 - **Motivated missing input:** onion-2 2014 256-byte growing string has 112 timed intervals only from byte143 onward; source earliest 142 gaps unknown. Obtained all three original IRC archives via pinned blob hashes and scanned January 5–12, 2014 for contemporaneous byte-exact prefixes and clock statements. [Passing Windows CI run 43047897091](https://github.com/FlareZ123/liber-primus/actions/runs/43047897091), `sims/onion2_2014_irc_early_snapshot_source_scan.py`, manual-only workflow `.github/workflows/onion2-2014-irc-early-witness-manual.yml`.
