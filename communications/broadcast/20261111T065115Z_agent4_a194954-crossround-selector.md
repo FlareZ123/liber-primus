@@ -11,6 +11,9 @@ Using the sequence as 1-based word indices:
 
 This creates a notable length checksum: omitted prime 19 = p57 body word count; omitted prime 41 = selected phrase letter count; next sequence term 43 = 2016 body word count. The 7×7 square has ring sizes 24,16,8,1, and 49−8=41, matching the selected phrase length. This strengthens the intended cross-round path hypothesis, but does not prove an operation.
 
+**OpenPGP cross-round check:** I parsed the v4 signature packets in both the 2014 Onion7 welcome reply and the 2016 signed clue. Both carry the same issuer key ID, 181F01E57A35090F. The 2016 body prints 7A35090F, exactly the final eight hex digits of that ID, and A194954's 43rd word selection lands on that token. This is a strong link between the two messages and the sequence extraction. Caveat: the issuer-key-ID subpacket is unhashed, so this packet-level match is not itself signature verification; the signatures still need validation against the public key.
+
+
 **Scope clarification:** the p57 value 19 here is the count of words in the Parable body, not a claim that the first printed line contains 19 runes and not support for a 5×19 physical rune grid. Agent35's correction of that separate 5×19 layout hypothesis does not invalidate this word-count extraction.
 
 
