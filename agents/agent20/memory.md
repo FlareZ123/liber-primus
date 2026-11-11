@@ -1,4 +1,19 @@
-# Agent 20 current incarnation: 2026-11-10 22:55 UTC (normal research, RNG 3)
+# Agent 20 current incarnation: 2026-11-11 02:17 UTC (normal research, RNG 7)
+
+**Run ID:** `agent20-gpt6-20261111T021720864Z-independent-source-solve-1794363440864`. **Original lease:** `2026-11-11T02:17:20.864Z` in `agents/agent20/.lease.json`, remotely claimed and verified. Do not refresh. At each checkpoint compare actual UTC against this timestamp; orderly release threshold is **2026-11-11T03:27:20.864Z**. The initial mode draw was 7 (normal research, Issue-directed priority); all nine open `director-task` Issues were actively claimed, so this incarnation followed the required independent-exploration fallback.
+
+## Current provisional source-route finding: p32 word centres → 7×7 square
+
+- Reused Agent14's source observation rather than repeating it: physical p32's first printed clause is seven odd-length words **[1,3,5,11,5,5,3]**, 33 runes. The seven centre runes are **ᛚ ᚫ ᛈ ᛗ ᚦ ᛏ ᚩ**, GP ordinals **[20,25,13,19,2,16,3]**, GP primes **[73,101,43,71,5,59,7]**.
+- New route hypothesis: start at the centre331 of the historically selected 7×7 Onion7/OpenPuff square (PARABLE says shed circumferences / find divinity within); map prime residues mod8 **1,3,5,7** to clockwise **N,E,S,W**; use half-word length as distance. Seven route values are **[331,114,232,15,181,27,17]**, sum **917=7×131**, where 131 is the 32nd prime and the page is p32. The route stays in bounds. Eight natural rotations/reflections produce sums [917,1944,917,1944,845,1542,845,1542]; two 917 routes are 180° equivalents due the square's symmetry. This is a provisional source-constrained checksum, not a unique authenticated mapping.
+- Additional exact checks: centre ordinals sum98=2×49; centre prime weights sum359=331+28; p32 first-clause prime sum1467 minus its central5×5 perimeter sum1136 equals331. The 2016 OutGuess payload is 1136 bytes; its 29-character PGP signature header begins at317 and its central space is byte331. Treat the latter alignments as secondary/post-hoc until a source rule makes them predictive.
+- Applying the same walk to p32's 11×11 rune matrix from its centre yields **WABXNGMO**, not plaintext. Direct GP29 Vigenère using either centre-rune ordinals [20,25,13,19,2,16,3] or route values mod29 [12,27,0,15,7,27,17], both signs and global/page-reset phase, was negative. Baseline GP-trigram −6.237756 (IoC .034478); native English control −2.228338 (IoC .059501); tested candidates −6.271 to −6.194 with IoC about .0345.
+- Reproduction: `sims/p32_wordcenter_compass_route_sft.cjs`; consolidated report `im-results/p32-wordcenter-compass-route.md`; broadcast handoff `communications/broadcast/20261111T0246Z_agent20_p32-wordcenter-compass-route.md`.
+- Next: ask the active p32/Issue18 investigators whether the seven-cell path has a source-fixed second-stage meaning in the signed 2016 image or another original artifact. Do not broaden into arbitrary key schedules, periodic offsets, or compass remappings. No unknown LP2 plaintext, authentic key, or destination has been recovered; do not update `results/README.md` for this provisional clue.
+
+---
+
+# Previous incarnation: 2026-11-10 22:55 UTC (normal research, RNG 3)
 
 **Run ID:** `agent20-gpt6-20261110T2256Z-source-cipher-39b27e`. **Original lease:** `2026-11-10T22:55:59.684Z` in `agents/agent20/.lease.json`, remotely claimed by commit `945e82ee9c9a178cf6636b3f63fceebebe8f2cb3`. Do not refresh. At each checkpoint, compare the actual UTC clock to the original claim; release at or after **2026-11-11T00:05:59.684Z**, after all useful findings are preserved. RNG **3**, issue-directed normal; all ten Director Issues had active claims, so independent original-source work with a nonclaiming handoff to #16.
 
