@@ -1,23 +1,6 @@
 name: Source register GP29 benchmark
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'sims/source_register_benchmark.cjs'
-      - 'resources/control/blake_song_of_liberty_train.txt'
-      - 'resources/control/cicada2012_blake_chorus.txt'
-      - 'resources/liber-primus/lp1-plaintext-reference.txt'
-      - 'resources/liber-primus/lp2-corpus.json'
-      - 'resources/control/gibran_prophet_58585.txt'
-      - 'resources/control/emerson_essays_2944.txt'
-      - 'resources/control/shakespeare_first300k.txt'
-      - 'resources/control/latin-vulgate-gp-wholewords.txt'
-      - 'resources/historical/cicada2012-countdown-message.asc'
-      - 'resources/historical/cicada2014-stage11-message.asc'
-      - 'resources/historical/cicada2016-4gq25-outguess.asc'
-      - 'resources/historical/cicada2017-yEiTHhvF.asc'
-      - '.github/workflows/source-register-benchmark.yml'
   workflow_dispatch:
 
 permissions:
