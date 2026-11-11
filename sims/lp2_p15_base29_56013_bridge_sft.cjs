@@ -104,6 +104,38 @@ assert.equal(letters(xorPrime), 32);
 assert.ok(Math.abs(ioc(modSub) - 0.03513710770514024) < 1e-12);
 assert.ok(Math.abs(ioc(spiralModSub) - 0.03430299238869774) < 1e-12);
 
+// The original p15 grid's sixteen prime values contain 13, but neither 0 nor
+// 17, selecting suffix .13 among the three historical CicadaOS 560.* files.
+// The independent 2013 phone transcript fixes dataset13 offset 12821.
+assert.deepEqual([0, 13, 17].filter((v) => primeOffsets.includes(v)), [13]);
+const section11 = corpus.pages.filter((p) => p.page >= 15 && p.page <= 22)
+  .flatMap((p) => p.page === 15 ? p.indices.slice(9) : p.indices);
+assert.equal(section11.length, 1894);
+const historicalOffset = 12821;
+assert.ok(historicalOffset + section11.length <= pad.length);
+const historicalKey = [...pad.subarray(historicalOffset, historicalOffset + section11.length)];
+const historicalXorIndex = section11.map((v, i) => v ^ historicalKey[i]);
+const historicalXorPrime = section11.map((v, i) => corpus.prime[v] ^ historicalKey[i]);
+const gpDecodings = {};
+for (const projection of ["byte_mod29", "byte_scaled29"]) {
+  const key = historicalKey.map((v) => projection === "byte_mod29" ? v % 29 : Math.floor(29 * v / 256));
+  gpDecodings[projection] = {
+    subtract_ioc: ioc(section11.map((v, i) => mod29(v - key[i]))),
+    add_ioc: ioc(section11.map((v, i) => mod29(v + key[i]))),
+  };
+}
+assert.equal(printable(historicalXorIndex), 702);
+assert.equal(letters(historicalXorIndex), 404);
+assert.equal(historicalXorIndex.filter((v) => v === 32).length, 3);
+assert.equal(printable(historicalXorPrime), 688);
+assert.equal(letters(historicalXorPrime), 393);
+assert.equal(historicalXorPrime.filter((v) => v === 32).length, 4);
+assert.ok(Math.abs(ioc(section11) - 0.034494896163322776) < 1e-12);
+assert.ok(Math.abs(gpDecodings.byte_mod29.subtract_ioc - 0.0345110731416975) < 1e-12);
+assert.ok(Math.abs(gpDecodings.byte_mod29.add_ioc - 0.03442795694246183) < 1e-12);
+assert.ok(Math.abs(gpDecodings.byte_scaled29.subtract_ioc - 0.034527807946912736) < 1e-12);
+assert.ok(Math.abs(gpDecodings.byte_scaled29.add_ioc - 0.03447648787758602) < 1e-12);
+
 const report = {
   established_arithmetic: {
     page: 15,
@@ -128,6 +160,20 @@ const report = {
     mod29_subtraction_ioc: ioc(modSub),
     prime_offset_16_key_ioc: ioc(spiralModSub),
     original_ioc: ioc(original),
+  },
+  historical_section11: {
+    p15_grid_prime_suffix_selection: [13],
+    documented_2013_dataset13_offset: historicalOffset,
+    original_section11_runes: section11.length,
+    file_byte_last_exclusive: historicalOffset + section11.length,
+    original_ioc: ioc(section11),
+    xor_gp_index_printable: printable(historicalXorIndex),
+    xor_gp_index_letters: letters(historicalXorIndex),
+    xor_gp_index_spaces: historicalXorIndex.filter((v) => v === 32).length,
+    xor_gp_prime_printable: printable(historicalXorPrime),
+    xor_gp_prime_letters: letters(historicalXorPrime),
+    xor_gp_prime_spaces: historicalXorPrime.filter((v) => v === 32).length,
+    gpDecodings,
   },
   decision: "The literal byte-XOR and modulo29 transfers do not recover readable p15 original plaintext. No file suffix, offset rule, cipher or plaintext is authenticated by the modular coincidence.",
 };
