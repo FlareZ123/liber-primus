@@ -40,7 +40,7 @@ on:
         required: false
         default: false
       fragment7:
-        description: Test the exact 11-rune Ac fragment as an OutGuess passphrase on original p6 image23.jpg
+        description: Test the exact 11-rune Ac fragment as an OutGuess passphrase on original p6 and signed 2016 tree images
         type: boolean
         required: false
         default: false
@@ -73,7 +73,7 @@ jobs:
         run: |
           node --check sims/lp2_instar_outguess_single_probe.cjs
           node sims/lp2_instar_outguess_single_probe.cjs
-      - name: Test the 11-rune Ac fragment as a passphrase on its original p6 carrier
+      - name: Test the 11-rune Ac fragment on its p6 source page and signed 2016 tree carrier
         if: ${{ inputs.fragment7 }}
         run: |
           node --check sims/lp2_fragment7_outguess_sft.cjs
