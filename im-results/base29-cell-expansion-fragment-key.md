@@ -46,12 +46,18 @@ The source-mapped first fragment does not yield a readable heading. Its 13 ciphe
 
 All four exact inverses re-encrypt the original 12,956 runes. Independent held-out GP-English controls of the same length also round-trip exactly under both schedules and signs. This verifies the implementation, not the key hypothesis. The original outputs remain at the raw ciphertext's near-uniform distribution and far below the English control.
 
+## Whole-table BASE29 integer: bounded negative
+
+A separate, parameter-free reading of the 32×8 p50 table is to decode its 256 printed two-character base-60 tokens in row-major order, treat the resulting 256 bytes as one unsigned big-endian integer, and apply the signed 2013 BASE29 conversion once. The reproducer derives bytes directly from `base60-grid.json`'s token rows and asserts equality with its stored byte rows; it does not use the later participant `sexagesimal.bin`. The upstream transcription audit establishes that this participant binary is a conversion of manually transcribed files, not a demonstrated creator-side generator, and that it contains transcription discrepancies. The committed p50 token transcription is itself a derived resource whose notes record independent scan checks at 11 disputed indices, not a full 256-cell re-audit.
+
+The frozen conversion yields a **2,048-bit** integer and **422 BASE29 digits**. The signed 2013 example is reproduced exactly (`3301 → [3,26,24]`). The resulting GP transliteration begins `CXNGIATOEOCNGXNMCCYOGEOTDPJPIJGYAEALAESFOJNGP...`; its IoC is **0.03533676**, near the uniform (1/29) baseline, and it has no language-like reading. This is a bounded negative for the direct output-as-plaintext interpretation, conditional on the committed 256-cell transcription. No target is selected for treating the 422-symbol output as a key, so do not repurpose it as one.
+
 ## Decision and scope
 
-**Reject the tested direct BASE29-expanded additive-key route.** The source-authenticated numeral conversion, the 32×8 / 32-fragment correspondence, and the p3 projective row map do not, in this direct Vigenere construction, recover plaintext or even a readable first marked fragment.
+**Reject the tested direct BASE29-expanded additive-key route and the direct whole-table BASE29 integer as plaintext.** The source-authenticated numeral conversion, the 32×8 / 32-fragment correspondence, the p3 projective row map, and the one-shot big-endian table conversion do not recover plaintext or even a readable first marked fragment. The 422-symbol table conversion has no source-selected target for key use.
 
 This does not exclude BASE29 digits used in a different cipher, a different role for the grid, a non-additive state machine, or a separate source-derived key. Do not retune offsets, row orders, digit padding, or clocks against English output without an independent source instruction.
 
 ## Reproduction
 
-Run node sims/base29_cell_expansion_fragment_key_sft.cjs from the repository root with Node.js 22. The script asserts the original grid-byte hash, all base-60 cell values, the 2013 3301 -> 3QO example, marker segmentation, projective orbit and row permutation; it performs both original inverses and exact held-out positive-control re-encryption.
+Run node sims/base29_cell_expansion_fragment_key_sft.cjs and node sims/p50_whole_table_base29_integer_gate.cjs from the repository root with Node.js 22. The script asserts the original grid-byte hash, all base-60 cell values, the 2013 3301 -> 3QO example, marker segmentation, projective orbit and row permutation; it performs both original inverses and exact held-out positive-control re-encryption.
