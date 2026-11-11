@@ -54,6 +54,96 @@ assert.deepEqual(steps.slice(0, 7), [73, 125, 267, 613, 191, 184, 14]);
 assert.deepEqual(walk.slice(0, 7), [73, 198, 465, 1078, 133, 317, 331]);
 assert.deepEqual([begin, header.length, center, signature[center], walk.at(-1)], [317, 29, 331, 32, 365]);
 
+// The final 22-word address is also an original-file structural boundary:
+// ASCII LF immediately before the PGP signature's first base64 symbol.
+assert.equal(steps.length, 22);
+assert.equal(steps.reduce((n, step) => n + step, 0), 6045);
+assert.equal(6045, 5 * signature.length + walk.at(-1));
+assert.equal(signature[365], 10);
+assert.equal(signature.subarray(366, 370).toString('ascii'), 'iQIc');
+const decimalReverse = n => Number(String(n).split('').reverse().join(''));
+assert.equal(decimalReverse(top), 365);
+assert.equal(365, 5 * primes[0]);
+const grid = JSON.parse(fs.readFileSync(
+  path.join(root, 'resources/liber-primus/lp2-grid-256.json'), 'utf8'));
+const table50 = grid.pages.find(p => p.page === 50);
+assert(table50);
+assert.equal(table50.bytes[3], 193);
+assert.equal(decimalReverse(left), 5 * table50.bytes[3]);
+
+// The signed RSA signature is one possible key source under the source walk.
+// Freeze complete packet/MPI and their natural octet/mod29 or 2013 BASE29
+// encodings. No key phase, clock offset, secret alphabet, or candidate
+// plaintext is fitted to the unknown book.
+const armored = signature.toString('utf8').match(
+  /-----BEGIN PGP SIGNATURE-----\r?\nVersion: [^\r\n]+\r?\n\r?\n([\s\S]*?)\r?\n-----END PGP SIGNATURE-----/u);
+assert(armored);
+const packet = Buffer.from(armored[1].split(/\r?\n/u)
+  .filter(line => line && !line.startsWith('=')).join(''), 'base64');
+assert.equal(packet.length, 543);
+assert.equal(packet.readUInt16BE(1), 540);
+const rsaMpi = packet.subarray(-512);
+assert.equal(rsaMpi.length, 512);
+/** @param {Buffer} bytes @returns {number[]} */
+function numeral29(bytes) {
+  let number = BigInt('0x' + bytes.toString('hex'));
+  const digits = [];
+  while (number > 0n) {
+    digits.unshift(Number(number % 29n));
+    number /= 29n;
+  }
+  return digits;
+}
+/** @param {number[]} input @returns {number} */
+function ioc(input) {
+  const counts = Array(29).fill(0);
+  for (const value of input) counts[value]++;
+  return counts.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (input.length * (input.length - 1));
+}
+const fullUnknown = corpus.pages.filter(p => p.page < 56 && p.indices.length);
+const sourceCipher = fullUnknown.flatMap(p => p.indices);
+assert.equal(sourceCipher.length, 12956);
+const keySources = [
+  ['packet-octet-remainder', [...packet].map(x => x % 29)],
+  ['packet-whole-base29', numeral29(packet)],
+  ['rsa-mpi-octet-remainder', [...rsaMpi].map(x => x % 29)],
+  ['rsa-mpi-whole-base29', numeral29(rsaMpi)]
+];
+assert.deepEqual(keySources.map(([, key]) => key.length), [543, 895, 512, 843]);
+const to29 = value => (value % 29 + 29) % 29;
+const directSignatureTests = [];
+for (const [keyName, key] of keySources) {
+  for (const sign of [-1, 1]) {
+    for (const clock of ['global', 'page']) {
+      const decoded = [];
+      let keyPosition = 0;
+      for (const original of fullUnknown) {
+        if (clock === 'page') keyPosition = 0;
+        for (const ciphertext of original.indices) {
+          const k = key[keyPosition % key.length];
+          const plaintext = to29(ciphertext + sign * k);
+          assert.equal(to29(plaintext - sign * k), ciphertext);
+          decoded.push(plaintext);
+          keyPosition++;
+        }
+      }
+      assert.equal(decoded.length, sourceCipher.length);
+      directSignatureTests.push({
+        keyName, period: key.length, sign, clock, ioc: ioc(decoded),
+        prefix: decoded.slice(0, 24).map(i => corpus.translit[i]).join('')
+      });
+    }
+  }
+}
+const signatureIocRange = [
+  Math.min(...directSignatureTests.map(x => x.ioc)),
+  Math.max(...directSignatureTests.map(x => x.ioc))
+];
+assert(signatureIocRange[0] > 0.03445 && signatureIocRange[1] < 0.03453);
+assert.equal(directSignatureTests.length, 16);
+
+
 // Exact original-page multiset shuffle, fixing the 21 cells that specify both
 // image dimensions. A conditional post-discovery null, not a discovery p-value.
 const fixed = new Set([...Array.from({ length: 11 }, (_, i) => i), ...Array.from({ length: 11 }, (_, i) => i * 11)]);
@@ -94,6 +184,13 @@ console.log(JSON.stringify({
   source: { page: 32, top, left, first33, ringValues, perimeter, difference: 331 },
   signedMessage: { bytes: signature.length, headerStart: begin, headerLength: header.length, headerCenter: center },
   firstSeven: { steps: steps.slice(0, 7), positions: walk.slice(0, 7) },
-  allWordFinalPosition: walk.at(-1), conditionalNull: { trials, count },
+  allWordFinalPosition: walk.at(-1), signatureBase64Start: 366,
+  reversedDimensions: {width: decimalReverse(top), height: decimalReverse(left),
+    p32FirstPrime: primes[0], signedLiesTableByte: table50.bytes[3]},
+  directSignatureTests: {sourceCipherIoC: ioc(sourceCipher),
+    nativeSolvedP57IoC: ioc(corpus.pages[57].indices),
+    variants: directSignatureTests.length, range: signatureIocRange,
+    candidates: directSignatureTests},
+  conditionalNull: { trials, count },
   status: 'Source-based navigation candidate, no LP2 plaintext or key recovered'
 }, null, 2));

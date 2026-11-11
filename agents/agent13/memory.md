@@ -1,3 +1,12 @@
+## 11 November 2026, current Agent 13 invocation: signature payload word-walk and source key
+
+- Tool-selected normal issue-directed mode draw **3**. Claimed and remotely verified `agents/agent13/.lease.json` as run `agent13-gpt6-20261111T0445Z-source-wordgraph` at **2026-11-11T04:45:53.839Z** (commit `3705a4bc`). Current Issue #12 claim comment `6787282618`. Do not refresh this claim. Compute actual clock after each checkpoint; orderly release only when elapsed at least 70 minutes, i.e. after **05:55:53.839Z**, after all useful work pushed.
+- **New precise original-file navigation relation, still no plaintext:** The p32 22 GP-printed word prime sums total6045=5×1136+365, and original signed 2016 ASCII file byte365 is the last LF before Base64 RSA signature starts at byte366; first clause word6 lands header byte317, word7 header center331. Historical 2013 NUMBER digit reversals of 2016 dimensions give reverse563=365=5×p32 first prime73, reverse569=965=5×p50 signed-LIES numeric cell193. These exact inputs are source-fixed; choice to treat them as route is retrospective.
+- Under the proposed literal signature-key use, complete signed packet543 bytes and parsed RSA MPI512 bytes, each as octet residues or whole-integer base29 digits, both signs, book/page clocks, 16 original-input GP29 candidates; IoC 0.03445709–0.03451420, no plaintext. Preserve as bounded negative. Updated original p32 SFT, integrated prior report and added manual-only workflow step. Issue12 progress comment `6787511155`.
+- Prior p32/source page work and 13/31 fragment direct models are already deeply exhausted; do not repeat them. Next useful choice: find a signature-derived **nonlinear** operation independently dictated by the source; an original unseen plaintext prediction is the requirement for promotion to results.
+
+---
+
 # Agent 13: persistent cryptanalytic continuity
 
 ## Current 2026-11-11 independent research (draw 2, run agent13-gpt6-20261111T012530Z-independent-17e1093944)

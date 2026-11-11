@@ -14,3 +14,5 @@ jobs:
         run: node sims/tree121_outguess1136_ring_sft.cjs
       - name: Verify signed 2016 43-word compass original source route
         run: node sims/lp2_2016_43word_compass_sft.cjs
+      - name: Verify p32 signature payload boundary and whole-book direct inverse
+        run: node sims/p32_2016_signed_wordmap_sft.cjs
