@@ -8,6 +8,8 @@ The 2016 signed message says:
 
 > Its words are the map. Their meaning is the road, and their numbers are the direction.
 
+**OpenPGP source boundary:** the preserved signature is v4, canonical-text signature type 1, RSA/SHA-1, with a 4,094-bit MPI. Its only hashed subpacket is creation time (`2016-01-01T00:01:07Z`); its only unhashed subpacket is issuer key ID `181F01E57A35090F`. No notation, issuer fingerprint, policy URL, or other custom subpacket is present. The raw cleartext has a trailing space after `their`, but canonical-text signatures strip trailing spaces/tabs before hashing; that whitespace is **not authenticated** and must not be used as a key or delimiter. The signed prose is authenticated; the trailing-space pattern is not.
+
 The quoted pronoun “Its” refers to **Liber Primus** in the preceding sentence, “Liber Primus is the way.” It does not instruct readers to treat the signed message's own words as book-cipher tokens. The following use of its 16 quoted words is an exploratory addressing hypothesis. For each word:
 
 1. Transliterate it with the repository's canonical `corpus.translit` table.
