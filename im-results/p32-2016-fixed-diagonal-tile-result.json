@@ -1,0 +1,51 @@
+{
+  "status": "source-frozen visual route; no decipherment claim",
+  "source": "resources/historical/cicada2016-4gq25.jpg",
+  "image_dimensions": [563, 569],
+  "threshold": 180,
+  "comparison": "every 6-tile southeast diagonal, starts row/column 0..5",
+  "chosen": {
+    "start": [3, 0],
+    "cells": [
+      {"row":3,"column":0,"rectangle_xyxy":[0,101,73,124],"source_prime":23,"source_gp":"H","area_px":1679,"bright_px":61,"bright_fraction":0.03633114949374628},
+      {"row":4,"column":1,"rectangle_xyxy":[73,124,78,203],"source_prime":61,"source_gp":"B","area_px":395,"bright_px":27,"bright_fraction":0.06835443037974684},
+      {"row":5,"column":2,"rectangle_xyxy":[78,203,179,262],"source_prime":71,"source_gp":"M","area_px":5959,"bright_px":359,"bright_fraction":0.06024500755160262},
+      {"row":6,"column":3,"rectangle_xyxy":[179,262,198,315],"source_prime":107,"source_gp":"IA","area_px":1007,"bright_px":0,"bright_fraction":0.0},
+      {"row":7,"column":4,"rectangle_xyxy":[198,315,299,394],"source_prime":79,"source_gp":"NG","area_px":7979,"bright_px":0,"bright_fraction":0.0},
+      {"row":8,"column":5,"rectangle_xyxy":[299,394,302,453],"source_prime":61,"source_gp":"B","area_px":177,"bright_px":0,"bright_fraction":0.0}
+    ],
+    "aggregate_bright_fraction": 0.025994417306350315,
+    "mean_tile_bright_fraction": 0.027488431237515955,
+    "empty_tile_count": 3,
+    "total_bright_px": 447,
+    "total_area_px": 17196
+  },
+  "controls": {
+    "all_36_bright_area_rank": {
+      "number_of_36_with_value_le_original": 12,
+      "empirical_lower_tail": 0.3333333333333333,
+      "min": 0.0,
+      "median": 0.03063301445145532,
+      "max": 0.07335537765402018
+    },
+    "all_36_equal_tile_rank": {
+      "number_of_36_with_value_le_original": 12,
+      "empirical_lower_tail": 0.3333333333333333,
+      "min": 0.0,
+      "median": 0.06779811026532181,
+      "max": 0.1291678159618251
+    },
+    "all_36_empty_tile_count": {
+      "chosen": 3,
+      "number_with_at_least_chosen": 25
+    },
+    "best_5_by_aggregate": [
+      {"start":[5,5],"fraction":0.0},
+      {"start":[4,5],"fraction":0.0008852322432826495},
+      {"start":[5,4],"fraction":0.014443549315226147},
+      {"start":[5,1],"fraction":0.015069889341875364},
+      {"start":[3,4],"fraction":0.017575100650356147}
+    ]
+  },
+  "caveat": "The HOME and BUDS endpoints are substrings of longer canonical p32 words; no authenticated path selector or decode rule follows."
+}
