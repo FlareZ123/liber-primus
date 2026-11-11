@@ -39,6 +39,11 @@ on:
         type: boolean
         required: false
         default: false
+      fragment7:
+        description: Test the exact 11-rune Ac fragment as an OutGuess passphrase on original p6 image23.jpg
+        type: boolean
+        required: false
+        default: false
 jobs:
   extract:
     runs-on: ubuntu-latest
@@ -68,6 +73,11 @@ jobs:
         run: |
           node --check sims/lp2_instar_outguess_single_probe.cjs
           node sims/lp2_instar_outguess_single_probe.cjs
+      - name: Test the 11-rune Ac fragment as a passphrase on its original p6 carrier
+        if: ${{ inputs.fragment7 }}
+        run: |
+          node --check sims/lp2_fragment7_outguess_sft.cjs
+          node sims/lp2_fragment7_outguess_sft.cjs
       - name: Reproduce exact 2016 OutGuess extraction and verify signature
         if: ${{ inputs.cicada2016 }}
         run: |
@@ -80,13 +90,13 @@ jobs:
           gpg --batch --verify outguess-2016-results/4gq25.jpg.outguess
           sha256sum outguess-2016-results/4gq25.jpg.outguess
       - name: Retrieve hidden messages from every LP2 page
-        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && ((!inputs.keyed_probe && !inputs.synthetic_only) || inputs.xor_shares) }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && ((!inputs.keyed_probe && !inputs.synthetic_only) || inputs.xor_shares) }}
         env:
           OUTGUESS_SCAN_ALL_LP1: ${{ inputs.lp1_history && '1' || '0' }}
           OUTGUESS_PRINT_LP1_SIGNED: ${{ inputs.lp1_history && '1' || '0' }}
         run: node sims/outguess_lp2_scan.cjs
       - name: Install Python for direct binary-stream pad testing
-        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 }}
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -104,7 +114,7 @@ jobs:
           node --check sims/outguess_lp2_share_xor.cjs
           node sims/outguess_lp2_share_xor.cjs
       - name: Probe source-defined passwords for authentic hidden LP2 messages
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.keyed_probe && !inputs.synthetic_only && !inputs.cicada2016 }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.keyed_probe && !inputs.synthetic_only && !inputs.cicada2016 && !inputs.fragment7 }}
         run: |
           node --check sims/outguess_lp2_keyed_probe.cjs
           node sims/outguess_lp2_keyed_probe.cjs
@@ -114,7 +124,7 @@ jobs:
           node --check sims/outguess_header_synthetic_probe.cjs
           node sims/outguess_header_synthetic_probe.cjs
       - name: Preserve exact recovered payloads and summary
-        if: ${{ always() && github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar }}
+        if: ${{ always() && github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.fragment7 }}
         uses: actions/upload-artifact@v4
         with:
           name: outguess-lp2-default-key
@@ -146,6 +156,15 @@ jobs:
         with:
           name: outguess-lp2-instar
           path: outguess-results-instar/
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Preserve 199/Ac fragment7 OutGuess test
+        if: ${{ always() && inputs.fragment7 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: outguess-lp2-fragment7
+          path: outguess-fragment7-results/
           if-no-files-found: warn
           retention-days: 30
 
