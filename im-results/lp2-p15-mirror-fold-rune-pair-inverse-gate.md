@@ -1,32 +1,54 @@
-# Original p15-symmetric page-pair arithmetic gate
+# p15 mirrored leaves: 20 red runes exactly balance the two eight-page streams
 
-**Evidence class:** bounded, source-motivated original-cipher inverse test; negative for direct GP29 pairing. **No unknown LP2 plaintext, authentic key or recovered destination.**
+**Evidence class:** original-source structural correspondence with two bounded original-cipher inverse negatives. **No unknown LP2 plaintext, authentic cipher key, complete inverse, or destination has been recovered.**
 
-## Source-triggered hypothesis and missing premise
+## The independent visual trigger and new numeric correspondence
 
-The original five-dot ornaments on physical p7 and p23 match under a fixed vertical mirror at native image coordinates `(x,y) → (x,3674−y)`. Their page indices satisfy `7+23=2×15`, around the authentic p15 Fibonacci-prime 4×4 diagram. This could invite a contemporary solver to fold the sixteen leaves p7–14/p16–23 and combine corresponding rune streams.
+Native source scans of physical pp7 and 23 have nearly identical five-dot ornaments under the exact vertical reflection `(x,y) → (x,3674−y)`. Their physical page indices straddle p15: `7+23=30=2×15`. Sixteen physical leaves lie between these source-matched ornaments excluding central p15, exactly the number of positions in p15's proven 4×4 Fibonacci-prime spiral. These source clues independently select a **p15-centered, eight-page-per-side comparison**, without selecting a cipher operation.
 
-The specific, **unselected** cipher premise tested here is that paired source-order GP29 rune indices should be combined by a direct residue operation. With the mirrored right-hand page read backward, the simplest such candidate is `(A−reverse(B)) mod 29`. A parallel `+` diagnostic and two forward-reading controls bound that proposal without fitting keys, offsets, phase, or source order. The source mirror supports which *pages* to compare; it does not independently prescribe a rune alignment or modulo-29 addition/subtraction.
+The pinned original-rune corpus and independent original-ink annotation give the following **new exact balance**:
 
-## Exact original contract and result
+| Source unit | Physical pages or p15 ink | GP29 runes |
+| --- | --- | ---: |
+| Earlier eight leaves | p7–14 | **1,937** |
+| p15 red inscription above the grid | p15 first marked span | **9** |
+| p15 red inscription below the grid | p15 second marked span | **11** |
+| Later eight leaves | p16–23 | **1,957** |
 
-Use the pinned `resources/liber-primus/lp2-corpus.json`, physical page pairs `(7,23),(8,22),(9,21),(10,20),(11,19),(12,18),(13,17),(14,16)`. Retain each printed page's rune order. For each pair, combine corresponding rune positions up to the **shorter** page's length. Reversing a page means reversing its entire page-local rune sequence, with no fitted phase or word-boundary repair.
+Therefore **1,937 + 9 + 11 = 1,957**. Crucially, the two 9- and 11-rune red spans are visually separated by the p15 diagram; the flattened transcription joins them, but the scan does not. Treating them as a split 20-rune balancing token is an **inferred interpretation**, not an authenticated instruction to insert them into a key or plaintext stream.
 
-The eight pairwise comparison lengths are `[208,131,268,263,271,260,272,137]`, totaling **1,810 output runes**. Because both sides originally contain **3,894** runes together, a further **274 input runes** lack a partner. Even a favorable 1,810-rune result would therefore require a source-selected rule for those leftover symbols before claiming a complete lossless inverse.
+Two conditional comparisons clarify how unusual the numeric observation is, while preserving the actual limits of the evidence:
 
-| Fixed operator on paired original runes | Output GP29 IoC | All `8!` assignment tail `Pr(IoC≥observed)` |
+- Among **all 12,870** eight-versus-eight assignments of the same 16 source page lengths, **91** leave a signed difference of exactly 20 (91/12,870 ≈ **0.007071**). This allocation model is conditional on the selection of those source pages, and it does not estimate a historical author's intent.
+- Over all 40 centers p8–47 that permit eight physical pages on both sides, **p15 alone** has an eight-page **absolute** length difference exactly equal to its center page's marked-red rune count. The nearby p27 case differs by one: `|1945−1965|=20`, while the center's red inscription has 19 runes. This scan is a descriptive sensitivity check, not an independently frozen discovery gate.
+
+The 20-symbol balance is a stronger and more source-specific reason to test full-side alignment than the earlier six-page/two-outlier glyph-length resemblance. It does not establish whether the red strings supply ciphertext, an operation, a key, padding, or an unrelated inscription.
+
+## Two finite original-cipher experiments
+
+**A. Original per-page mirrored fold (initial gate).** Match the eight pairs `(7,23),(8,22),(9,21),(10,20),(11,19),(12,18),(13,17),(14,16)`; read each side in source-order, optionally reverse the second page, then combine its first `min(length(A),length(B))` GP29 positions with ± modulo29. This uses **1,810** rune pairs; the source length mismatch discards 274 runes. The original-source output and exhaustive **8!** page-pairing comparison show no privileged original GP29 plaintext:
+
+| Fixed operator | Output GP29 IoC | All 40,320 alternative pairings with IoC ≥ observed |
 | --- | ---: | ---: |
-| `(A−reverse(B)) mod29` (primary) | 0.034508244535 | 18,461/40,320 = 0.457862 |
-| `(A+reverse(B)) mod29` | 0.034335382633 | 32,696/40,320 = 0.810913 |
-| `(A−B) mod29` | 0.034261473480 | 37,812/40,320 = 0.937798 |
-| `(A+B) mod29` | 0.034259641021 | 39,064/40,320 = 0.968849 |
+| `(A−reverse(B)) mod29` | 0.034508244535 | 18,461 |
+| `(A+reverse(B)) mod29` | 0.034335382633 | 32,696 |
+| `(A−B) mod29` | 0.034261473480 | 37,812 |
+| `(A+B) mod29` | 0.034259641021 | 39,064 |
 
-The exact enumeration fixes each of the four operators and compares the p15-symmetric partner assignment with all **40,320** bijections between the eight left and eight right pages. Every candidate's output remains near uniform-GP29 coincidence `1/29≈0.03448`; the source-selected matching is unexceptional among alternative partners. The 100-rune original primary output begins with `G OE EO W B Y NG X IA Y D...` in canonical GP transliteration, and shows no direct readable passage. A planted mirrored-pad control recovers a known synthetic 208-rune string exactly. That test validates the implementation, not a historical key.
+**B. Full-side, red-balanced fold (new source-specific gate).** To avoid discarding the unpaired page-local ends, construct the left `9 red above | p7..14 text | 11 red below` as **1,957** symbols, then reverse the entire chronological p16..23 rune stream, also **1,957** symbols, before combining positionwise. This is one frozen, visually motivated candidate; it is not selected by an original deciphering instruction.
 
-## Decision and independently reproducible computation
+| Candidate output operation | Original length | Coincidence index | Additional observation |
+| --- | ---: | ---: | --- |
+| `(A−reverse(B)) mod29` | 1,957 | **0.034323852397** | Flat native-GP histogram; no legible original passage |
+| `(A+reverse(B)) mod29` | 1,957 | **0.034566805960** | Flat native-GP histogram; no legible original passage |
+| Five-bit `A XOR reverse(B)` | 1,957 | **0.031411022046** over 32 values | All 32 values occur; **180** values belong to 29,30,31 and no source selects their meaning |
 
-**Reject direct page-local GP29 residue addition/subtraction at fixed start/end alignment as the decrypting operation selected by the p7/p23 mirror.** The source-only mirror correspondence remains authentic, but it supplies no rune-to-rune match over the 274 unmatched symbols and no author-selected algebra. This does not reject a separately instructed fold or image-space extraction; those would require new source evidence establishing the alignment and a genuine lossless readout before further calculation.
+The XOR case is historically motivated by Cicada's documented 2014 XOR-share operation, but no source tells the solver to XOR LP2's reflected pages or specifies an authentic 32-symbol plaintext alphabet. The first two recover no native GP29 language. A synthetic GP29 pad/inverse control passes exactly, which validates the implementation without making the key historical. A separately tested handful of alternative red placements and right-page read orientations had best IoC 0.034684364, again flat; no phase, offset, key or map was tuned to maximize language.
 
-One dependency-free CommonJS SFT, [`sims/lp2_p15_fold_rune_pair_inverse_sft.cjs`](../sims/lp2_p15_fold_rune_pair_inverse_sft.cjs), recomputes all four original outputs, asserts their numerical results, enumerates every assignment, and checks a planted inverse. It uses the committed source corpus, no network, no randomness and no additional libraries. Related but distinct prior work is [the p7/p23 geometric source test and 16-page image-mirror gate](lp2-p7-p23-five-dot-mirror-page15-gate.md), which found the native five-dot reflection but did not identify a manuscript-wide cipher operation.
+## Cryptanalytic decision
 
-**Next research decision:** pursue an independent source object selecting a key/state and reversible transformation; do not enlarge this failed fold into a tuned orientation, offset, page-order or alphabet sweep merely because its original visual trigger is striking.
+**Retire direct GP29 sum/difference and plain five-bit XOR of the p15-balanced streams as original plaintext operations.** Preserve the stronger verified source fact `p7–14 + p15 red(9+11) = p16–23`, with p7/p23's geometric mirror and p15's 16-position central diagram, as a candidate structural clue. There is still no source-chosen symbol-level pairing, word/punctuation restoration, key, reversible output representation or independently predicted plaintext.
+
+An actionable successor would identify a **visible, historically plausible instruction** specifying what to do with the two 1,957-rune streams and the center's red inscriptions. It must explain all symbols of the proposed unit, yield an explicit inverse before examining its English output, and predict a withheld original segment. Do not expand to arbitrary placements, rotations, byte mappings or further numeric coincidences absent such a selector.
+
+**Reproduction:** [full-side source balance and original operations](../sims/lp2_p15_red20_symmetric_fold_sft.cjs) reads `resources/liber-primus/lp2-corpus.json` plus `lp2-ink-annotations.json` and asserts every count, the exact partition enumeration, the 40-center check, three original inverse outputs and a planted GP29 pad. [Per-page matching and exhaustive assignment](../sims/lp2_p15_fold_rune_pair_inverse_sft.cjs) is independent. [Earlier original-image five-dot reflection proof](lp2-p7-p23-five-dot-mirror-page15-gate.md) fixes the geometry and shows that complete 16-page mirrored *ink overlap* is unexceptional; it does not test this rune-length balance or direct source-paired ciphertext operation.
