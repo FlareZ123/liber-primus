@@ -32,6 +32,10 @@ const OUT = path.join(ROOT, "stage04-textguide-results");
 const SHA1 = (buffer) =>
   crypto.createHash("sha1").update(buffer).digest("hex");
 
+/** @param {Buffer} buffer @returns {string} */
+const gitBlobSHA1 = (buffer) =>
+  SHA1(Buffer.concat([Buffer.from("blob " + buffer.length + "\\0"), buffer]));
+
 /**
  * @param {string[]} args
  * @returns {{status:number|null, stderr:string, stdout:string}}
@@ -91,7 +95,7 @@ function main() {
   ));
   const archived = fs.readFileSync(REFERENCE);
   assert.equal(archived.length, 7524);
-  assert.equal(SHA1(archived), "d738b052bf0548e2f431e231af7ef1514becb4ad");
+  assert.equal(gitBlobSHA1(archived), "d738b052bf0548e2f431e231af7ef1514becb4ad");
 
   const defaultFile = path.join(OUT, "stage04-default.bin");
   const defaultRun = outguess(["-r", SOURCE, defaultFile]);
