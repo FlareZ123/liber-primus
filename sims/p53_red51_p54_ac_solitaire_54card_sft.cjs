@@ -23,6 +23,7 @@ const page = n => corpus.pages.find(p => p.page === n).indices;
 const source = ink.pages.find(p => p.page === 53);
 const red = page(53).slice(128, 179);
 const p55 = page(55);
+const afterHeading = page(54).slice(9).concat(p55);
 const p57 = page(57);
 assert.equal(red.length, 51);
 assert.deepEqual(source.red_spans.map(p => [p.start, p.length]), [[128, 51]]);
@@ -30,6 +31,7 @@ assert.deepEqual(source.large_punctuation, [[179, 13, 'red']]);
 assert.deepEqual(ink.pages.find(p => p.page === 54).large_punctuation, [[9, 13, 'red']]);
 assert.equal(page(54)[0], 24); // p54 large initial Ac is already the first red title rune
 assert.equal(p55.length, 76);
+assert.equal(afterHeading.length, 299);
 assert.equal(p57.length, 95);
 
 // Every position is a distinct physical card, including repeated GP glyphs.
@@ -131,6 +133,7 @@ function render(values) {
 }
 const controls = [];
 const results = [];
+const afterHeadingResults = [];
 for (const mode of /** @type {const} */ (['direct','sorted','cyclic'])) {
   for (const sign of /** @type {const} */ ([-1,1])) {
     const decrypted = transform(p55, mode, sign, 'decode');
@@ -140,12 +143,22 @@ for (const mode of /** @type {const} */ (['direct','sorted','cyclic'])) {
     assert.deepEqual(transform(encoded, mode, sign, 'decode'), plantedPlain);
     controls.push({mode,sign,recovered:76});
     results.push({mode,sign,ioc:ioc(decrypted),prefix:render(decrypted.slice(0,30))});
+    const longer = transform(afterHeading, mode, sign, 'decode');
+    assert.deepEqual(transform(longer, mode, sign, 'encode'), afterHeading);
+    const plant299 = Array.from({length:299}, (_,i) => p57[i % p57.length]);
+    assert.deepEqual(transform(transform(plant299, mode, sign, 'encode'),
+      mode, sign, 'decode'), plant299);
+    afterHeadingResults.push({mode, sign, ioc:ioc(longer),
+      sourcePrefix:render(longer.slice(0,30))});
   }
 }
 assert.equal(results.length, 6);
 assert.deepEqual(results.map(v => +v.ioc.toFixed(8)),
   [0.03508772,0.03789474,0.03298246,0.03122807,0.03929825,0.03789474]);
 assert(results.every(v => v.ioc < 0.045));
+assert.equal(afterHeadingResults.length, 6);
+assert.deepEqual(afterHeadingResults.map(v => +v.ioc.toFixed(8)),
+  [0.03654239,0.03333259,0.03548742,0.03737290,0.03524051,0.03445489]);
 console.log(JSON.stringify({
   hypothesis: '2014 PATIENCE Solitaire with physical red51+Ac card deck and red13 Jokers',
   sourceDeck: initialDeck,
@@ -153,6 +166,9 @@ console.log(JSON.stringify({
   p55RawIoc:ioc(p55),
   nativeP57Ioc:ioc(p57),
   sixOriginalInverseResults:results,
+  afterP54HeadingPlusP55Runes:afterHeading.length,
+  afterP54HeadingOriginalIoc:ioc(afterHeading),
+  sixAfterHeadingInverseResults:afterHeadingResults,
   exactPositiveReencryptions:controls,
   classification:'No authentic unknown plaintext or key; all six frozen direct uses negative'
 }, null, 2));
