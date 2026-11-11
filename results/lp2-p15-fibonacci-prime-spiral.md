@@ -13,15 +13,13 @@ Original source: [LP2 original archive scan 32.jpg](../resources/liber-primus/32
 4516  1206   708  1820
 ```
 
-Let (f_0,f_1,ldots) be the **distinct Fibonacci values**, beginning `0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987`. The repeated `1` in the standard Fibonacci list is deliberately skipped. Let (p_j) be the (j)-th positive prime, (p_1=2). Then **all original values** satisfy:
+Let **f₀, f₁, …** be the **distinct Fibonacci values**, beginning `0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987`. The repeated `1` in the standard Fibonacci list is deliberately skipped. Let **pⱼ** be the j-th positive prime (p₁ = 2). Then **all original values** satisfy:
 
-[
-\boxed{N_n=\left|3301-p_{f_n+1}\right|,\quad 0\le n<16.}
-]
+**N(n) = |3301 − prime(fₙ + 1)|, for n = 0, …, 15.**
 
 The term order is the four-neighbour spiral starting at the red 3299 in row2,column2, travelling **right, down, left, left, up, up, right, right, right, down, down, down, left, left, left**. This is the unique natural elementary four-neighbour square spiral orientation for this visually red starting cell and its next-value neighbor 3298.
 
-| Spiral step (n) | Fibonacci (f_n) | Prime index (f_n+1) | Prime (p_{f_n+1}) | Original printed number (N_n) |
+| Spiral step n | Fibonacci fₙ | Prime index fₙ + 1 | Prime at that index | Original printed number |
 |---:|---:|---:|---:|---:|
 | 0 | 0 | 1 | 2 | **3299** (red) |
 | 1 | 1 | 2 | 3 | 3298 |
@@ -44,6 +42,6 @@ The last two terms explain why a naive unsigned expression `3301 − prime` fail
 
 ## What is established and what is still unknown
 
-The exact [single-file Node.js reproducer](../sims/lp2_p15_fibonacci_prime_spiral_sft.cjs) reads the original source scan as an identity input, reconstructs all 16 primes, performs all 16 cell equality assertions, checks the distinct Fibonacci sequence/prime indices, and reconstructs the original row-major four-by-four arrangement from the spiral output. No fitted constants beyond the historically published **3301**, the exact printed cells, and the source-visible red starting point enter the derivation.
+The exact [single-file Node.js reproducer](../sims/lp2_p15_fibonacci_prime_spiral_sft.cjs) hashes the original scan, uses an explicitly human-transcribed 4×4 input grid, reconstructs all 16 primes, performs all 16 cell equality assertions, checks the distinct Fibonacci sequence/prime indices, and reconstructs the original row-major four-by-four arrangement from the spiral output. No fitted constants beyond the historically published **3301**, the exact printed cells, and the source-visible red starting point enter the derivation.
 
 The **16-valued Fibonacci prime-index spiral is an authentic recoverable mathematical instruction**. It specifies a generator and a 16-position key/order candidate. The project should now use this generated sequence as a bounded independent candidate key schedule only when a specific cipher/key-application operation can be justified from adjoining p15 runes, solved-page instruction text, or 2013 prime-script behavior. It has **not** decoded the surrounding p15 rune text, nor any other unknown LP2 ciphertext page. Promoting the number-grid solution to a plaintext/key recovery claim would overstate it.
