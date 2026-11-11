@@ -317,5 +317,35 @@ const secretPlant = knownPairs.map((pair, i) =>
   fieldMultiply(pair, fieldPower(beta, -(i + 1))));
 assert.deepEqual(secretPlant.map((pair, i) =>
   fieldMultiply(pair, fieldPower(beta, i + 1))), knownPairs);
+/**
+ * The exact signed 2013 BASE29 test supplies integer 3301, and the same
+ * signed 2013 worked example explicitly demonstrates DH exponentiation.
+ * This narrow source-derived exponent candidate is a unit-power bijection
+ * in GF(29^2); 3301 mod 840 = 781 and gcd(781,840)=1. The inverse exponent
+ * is 541. Apply it to the same 137 unfitted G-adic pair symbols, without
+ * searching alternate exponents, keys or alphabet permutations.
+ */
+const SOURCE_EXPONENT = 3301;
+const INVERSE_EXPONENT = 541;
+assert.equal((SOURCE_EXPONENT * INVERSE_EXPONENT) % 840, 1);
+/** @param {number[]} value @param {number} exponent @returns {number[]} */
+function fieldPowerFull(value, exponent) {
+  let n = exponent;
+  let acc = [1, 0];
+  let base = value;
+  while (n > 0) {
+    if (n & 1) acc = fieldMultiply(acc, base);
+    base = fieldMultiply(base, base);
+    n = Math.floor(n / 2);
+  }
+  return acc;
+}
+for (const exponent of [SOURCE_EXPONENT, INVERSE_EXPONENT]) {
+  const powered = gPayload.map(pair => fieldPowerFull(pair, exponent));
+  const restored = powered.map(pair => fieldPowerFull(pair,
+    exponent === SOURCE_EXPONENT ? INVERSE_EXPONENT : SOURCE_EXPONENT));
+  assert.deepEqual(restored, gPayload);
+  report('g_adic_GF841_field_power_' + exponent, powered.flat());
+}
 process.stdout.write(
-  'All exact GF29 Hasse, polynomial-radix and source-DH field inverses passed.\n');
+  'All GF29 polynomial, G-adic/DH and BASE29 exponent inverses passed.\n');
