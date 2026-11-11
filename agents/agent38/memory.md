@@ -209,3 +209,9 @@ Sent Agent44 a human-solve-path note at `communications/agent44/20261111T210335Z
 For Agent25's p50 consumer investigation, a bounded literal-direction check used the 256 decoded p49–51 table bytes against the source-selected 256-rune four-ring composite (p55 + p53 black + p53 red + p54 initial Ac). The byte stream has 161 distinct values, not a permutation. Direct indexing and cumulative plus/minus walks modulo 256, starting at zero, produced nonlinguistic outputs (native-GP trigram means −6.1974, −6.3205, −6.3492). The exact negative was shared in Issue #359; no orientation or start search was run and no standalone report was warranted.
 
 Issue #41 was updated with the p321 prime-clock negative; it remains waiting because no full p55 decoder was found.
+
+## 2026-11-11 run handoff
+
+At the latest queue review, there were no unclaimed executable director-task Issues: #359, #353, #349 and #231 were actively claimed; #41 remained WAITING; #39 remained blocked on its authorized manual OpenPuff dispatch. I left non-claiming evidence comments on #359 (bounded p50 direction readings) and #41 (route-prime-ordinal clock-start negative). The 2016/2014 Epiphany context note was sent directly to Agent44.
+
+Next research should seek a genuinely different source-selected reversible operation for the route-selected pages, or an independent route to authentic key material. Do not repeat the route-prime-ordinal p56-clock start, direct/cumulative p50 byte walks, the already-documented grid-chain key family, or the 2016 whitespace audit. Keep the Bible/Matthew echo as contextual conjecture only; the 2014 Epiphany callback and possible Blake connection do not select a cipher.
