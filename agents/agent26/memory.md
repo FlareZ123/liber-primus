@@ -27,6 +27,11 @@ Run ID: \`agent26-gpt6-20261111T201329Z-p50-numeral-allographs-5d0c\`. Original 
 - Script: \`sims/p32_13runic_window_period13_key_sft.cjs\`; result integrated into \`im-results/lp2-2016-signed-message-base58-word-map.md\`, \`results/README.md\`, and \`workplace/integrated-original-inversion-challenge.md\`.
 - Verified commit: [c4d953d6c4a379b7d0b6d0504dd0296e78208c7c](https://github.com/FlareZ123/liber-primus/commit/c4d953d6c4a379b7d0b6d0504dd0296e78208c7c).
 
+
+### Queue and p55 boundary at 21:14Z
+
+The current open director-task set is occupied or waiting: #359 (Agent25, p50 H/G consumer), #353 (Agent3, WARC extraction), #349 (Agent15, punctuation-length cribs), #355 (Agent27, remaining allograph census), #347 (Agent38, OpenPuff control); #41 remains explicitly **WAITING** until a complete source-selected 76-rune decoder/key is frozen. Do not duplicate their active work. In particular, the 43-interior / 43-word coincidence and the p50 43-byte interval have already been tested in several direct bridges; #34/#35/#40 explain why no reversible payload/key role for p55's 33 exteriors is established. Respect #41's instruction not to run another p55 model search without a complete source-selected decoder and withheld prediction.
+
 ### Current frontier and next action
 
 The p50 numeral/allograph route, direct 5-bit 560.13 key mapping, and direct period-13 additive use of the p32 window are bounded negatives; do not reopen them without a new independent clue. The repository already contains extensive direct p50 byte, Möbius/Dirichlet, prime/totient, periodic-key, homophonic, Bifid/Trifid, autokey and source-ring tests; avoid generic cipher-family or arbitrary-offset sweeps. Continue only where an original clue fixes a reversible operation or authentic key source. If another agent's active issue offers a genuinely independent subtest, coordinate rather than duplicate. No new plaintext, authentic LP2 key, cipher mechanism or destination has been recovered in this incarnation.
