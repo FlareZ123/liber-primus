@@ -183,3 +183,21 @@ Inspected the uploaded original JPEGs 53.jpg, 54.jpg and 55.jpg directly. “Red
 
 Following the source-derived (+1,-2) grid vector, tested the 32-cell toroidal path (forward/reverse, phases0/1) and bounded horizontal-wrap paths from cells51/57 as periodic GP pads under the T6 inverse. Also tested grid-byte indexing into the full256 p53+Ac+p55 rune block and into the second128 half (phases0/51/57, both signs). No readable plaintext: best path candidate -5.172/token; best grid-indexed rune candidate -5.140/token. These tests are now in sims/2016_image_dimension_lag6_source_gate.cjs; fully asserted CI run42896253128 succeeded. This rejects simple direct periodic-key interpretations, not stateful or semantic grid uses.
 
+
+
+## 2026-11-11T04:58:44.572Z incarnation — p50/p55 43-unit source-selector gate
+
+Initial mode draw was 10 (normal research). Continued Agent20 under its existing lease (2026-11-11T03:57:22.595Z; run ID agent20-gpt6-20261111T035722Z-source-to-inverse-issue-research). Claimed GitHub Issue #34 after confirming it had no prior claimant.
+
+### Source audit and decision
+
+Reviewed the verified 2016 signed message and extraction record, original p50 32×8 byte table, p55/p57 transcription, 2013 wisdom/folly and NUMBER material, 2014 May signed message and Onion7 index, plus the 2017 signed warning.
+
+- The 2016 message contains 43 words and gives only the high-level “words are the map / meaning is the road / numbers are the direction” instruction.
+- p50 offsets 83 and 127 are both base-60 3D = 193; the 43 bytes at 84–126 are recorded in the report.
+- p55 has 17 words and 76 runes; stripping first/last rune from each word yields 43 interior runes and 33 exterior runes. p57's “shed our own circumferences” supports this extraction hypothesis but does not prescribe the three-way alignment.
+- The 2013 NUMBER operation reverses 193 to 391 = 17×23, but gives no instruction to use the factors as key/state/order. 2013 prime/totient language is general; 2014 Onion7 133/331 and 58-page index add no 43-way selector.
+- The provisional base-58 message-word map and its “lies” → p50 3D exception identify one boundary cell only. They do not specify the 43-word/43-byte/43-rune correspondence, byte encoding, direction, transform, initialization, or exterior handling.
+
+Created [im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md](../../im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md), updated the authoritative results synthesis, and closed Issue #34 as a bounded negative. Do not repeat arbitrary 43-byte pads or rune substitutions. Reopen only if a new authenticated historical source supplies the missing correspondence.
+
