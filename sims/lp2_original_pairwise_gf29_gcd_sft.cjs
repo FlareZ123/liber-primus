@@ -160,6 +160,66 @@ assert.deepEqual(pairs.map(p=>p.pages),[[27,48],[29,"grid"]]);
 assert.deepEqual(pairs.map(p=>p.monicFactor),[[1,6,0],[1,10,25]]);
 assert.deepEqual(gcd([1,10,25,1,10,25],[1,10,25,2,20,50]),
   [1,10,25]); // common quadratic, distinct following linear factors
+
+// Direct inverse/readout of the one newly observed quadratic, X(X+6).
+// A common factor is useful as an encoder only if its inverse yields
+// meaningful native GP plaintext or a source-selected intermediate.
+/** @param {number[]} a @param {number[]} f */
+function quotientExact(a,f){
+  const work=a.map(mod),q=[];
+  for(let i=0;i<=a.length-f.length;i++){
+    const factor=work[i]; // monic leading term
+    q.push(factor);
+    for(let j=0;j<f.length;j++)
+      work[i+j]=mod(work[i+j]-factor*f[j]);
+  }
+  assert(work.slice(q.length).every(x=>x===0));
+  return q;
+}
+/** @param {number[]} a */
+function ioc(a){
+  const h=Array(29).fill(0);
+  for(const x of a)h[x]++;
+  return h.reduce((s,x)=>s+x*(x-1),0)/(a.length*(a.length-1));
+}
+/** @param {number[]} a @param {number[]} b */
+function polynomialProduct(a,b){
+  const r=Array(a.length+b.length-1).fill(0);
+  for(let i=0;i<a.length;i++)for(let j=0;j<b.length;j++)
+    r[i+j]=mod(r[i+j]+a[i]*b[j]);
+  return r;
+}
+const factor=[1,6,0];
+const native=c.pages.find(p=>p.page===57).indices;
+assert.equal(native.length,95);
+const planted=polynomialProduct(native,factor);
+assert.deepEqual(quotientExact(planted,factor),native);
+assert.deepEqual(polynomialProduct(quotientExact(planted,factor),factor),planted);
+const primes=[];
+for(let v=2;primes.length<300;v++){
+  let prime=true;
+  for(let d=2;d*d<=v;d++)if(v%d===0){prime=false;break;}
+  if(prime)primes.push(v);
+}
+/** @param {number[]} input @param {number} sign @param {boolean} skipF */
+function applyP56Phi(input,sign,skipF){
+  let k=0;
+  return input.map(x=>(skipF&&x===0)?0:mod(x+sign*(primes[k++]-1)));
+}
+const newPairQuotients=[27,48].map(page=>{
+  const a=entries.find(p=>p.page===page).values;
+  const q=quotientExact(a,factor);
+  assert.deepEqual(polynomialProduct(q,factor),a);
+  const phiCases=[];
+  for(const sign of [-1,1])for(const skipF of [false,true])
+    phiCases.push({sign,skipF,ioc:ioc(applyP56Phi(q,sign,skipF))});
+  const preview=q.slice(0,60).map(v=>c.translit[v]).join("");
+  return {page,sourceRunes:a.length,quotientRunes:q.length,rawIoC:ioc(a),
+    quotientIoC:ioc(q),preview,primeTotientReadouts:phiCases};
+});
+assert(newPairQuotients.every(x=>x.quotientIoC<0.04&&
+  x.primeTotientReadouts.every(v=>v.ioc<0.04)));
+
 const ps=entries.map(p=>p.values);
 const original=rootStats(ps);
 assert.equal(original.rootTotal,75);
@@ -174,7 +234,9 @@ console.log(JSON.stringify({
     polynomialCount:entries.length,pairsChecked:1540},
   observed:{gcdDegrees:{zero:byDegree[0],one:byDegree[1],
     two:byDegree[2],atLeastThree:byDegree.slice(3).reduce((a,b)=>a+b,0)},
-    uniqueHigherDegreePairs:pairs,...original},
+    uniqueHigherDegreePairs:pairs,...original,
+    newPairLiteralInverse:newPairQuotients,
+    solvedP57PositiveControl:"95/95 exact quadratic forward and inverse"},
   nullExpectation:{degreeAtLeastTwo:1540/(29*29),
     degreeAtLeastThree:1540/(29**3),totalRoots:56,
     pairOverlapApprox:1540/29},
