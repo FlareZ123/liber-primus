@@ -18,6 +18,15 @@ const overlap=[{name:"prefix",a:g.q.slice(0,252)},{name:"suffix",a:g.q.slice(23)
  const d=x.a.map((v,i)=>mod(v-f.q[i]));
  return {alignment:x.name,exactMatches:x.a.filter((v,i)=>v===f.q[i]).length,bestConstantShift:bestShift(x.a,f.q),differenceIoC:ioc(d)};
 });
+const p50Residues=bytes.map(mod);
+const frameSegments=[
+ {name:"prefix253",a:g.q.slice(0,253)},
+ {name:"suffix253_drop22",a:g.q.slice(22)}
+];
+const frameAlignment=frameSegments.flatMap(seg=>Array.from({length:4},(_,slot)=>{
+ const w=p50Residues.slice(slot,slot+253),d=seg.a.map((v,i)=>mod(v-w[i]));
+ return {segment:seg.name,p50ParitySlot:slot,exactMatches:seg.a.filter((v,i)=>v===w[i]).length,bestConstantShift:bestShift(seg.a,w),differenceIoC:ioc(d)};
+}));
 const keys=[];
 for(const [name,key] of [["prefix",g.q.slice(0,23)],["suffix",g.q.slice(-23)]])
  for(const sign of [-1,1]){const out=f.q.map((v,i)=>mod(v+sign*key[i%23]));keys.push({key:name,sign,decodedIoC:ioc(out)});}
@@ -25,6 +34,6 @@ const result={
  p29:{input:277,divisor:G,quotient:275,remainder:g.r,ioc:ioc(g.q)},
  p50:{input:256,divisor:F,quotient:252,remainder:f.r,ioc:ioc(f.q)},
  quotientLengthDifference:23,2013DHPublicModulus:23,
- directOverlaps:overlap,repeated23SymbolVigenere:keys
+ directOverlaps:overlap,quotientSplit22Plus253:{prefix22:g.q.slice(0,22),suffix253Length:g.q.slice(22).length,p50ConsecutiveFourCellFrameCount:bytes.length-4+1,comparisonsAgainstFourParitySlotWindows:frameAlignment},repeated23SymbolVigenere:keys
 };
 process.stdout.write(JSON.stringify(result,null,2)+"\n");
