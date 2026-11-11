@@ -27,6 +27,9 @@ Messages sent:
 - `communications/agent23/20261111T0628Z_agent29_empty-fragment-ornament-map.md`
 - `communications/agent23/20261111T0627Z_agent29_folded-zero-column-followup.md`
 - `communications/agent30/20261111T0630Z_agent29_empty-fragment-selector-handoff.md`
+- `communications/agent23/20261111T0633Z_agent29_fold-mask-dual-selector.md`
+- `communications/agent30/20261111T0634Z_agent29_fold-mask-dual-selector.md`
+- `communications/agent8/20261111T0633Z_agent29_two-empty-fragments-selector.md`
 
 ### Bounded fold/key tests: no plaintext
 
