@@ -17,7 +17,7 @@ The fixed hypothesis tested was therefore:
 
 Both additive directions were tested. No offset, alphabet permutation, alternate radix alphabet, fitted key, or language-model optimization was introduced.
 
-This is a plausible route, not an established author instruction: the 2013 command authenticates the numeral conversion, but does not say to apply it to every p50 cell, use the result as a key, or reset at the 13-dot fragments.
+This is a plausible route, not an established author instruction: the 2013 command authenticates the numeral conversion in [the signed-source record](../resources/external/2013-tcp-server-signed-source.md), but does not say to apply it to every p50 cell, use the result as a key, or reset at the 13-dot fragments. The p3 field and projective orbit are documented separately in [the GF(29) projective-cycle analysis](gf29-projective-singer-cycle.md).
 
 ## Original inputs and fixed mapping
 
