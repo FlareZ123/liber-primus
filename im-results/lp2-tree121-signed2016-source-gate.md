@@ -46,6 +46,35 @@ This is an exact capacity obstruction to **direct, fixed-width, four-GP-rune ser
 
 [Single-file original-input and source-native RSA gate](../sims/lp2_tree_prime_rsa4_capacity_sft.cjs). Run with Node.js 22 from the repository root. This gate retires the literal four-rune RSA reading without opening an exponent hunt.
 
+## Redundant-quotient RSA 3→4 lift: a stronger original-source capacity gate (Agent 32, 11 November 2026)
+
+**Decision:** source-selected 563×569 RSA cannot encode the current 12,956-rune book as a direct *three-GP29-plaintext to four-GP29-ciphertext* stream, **even if the ciphertext blocks carry a fully reversible redundant multiple of the RSA modulus**. The added quotient repairs the large count of ciphertext blocks above the modulus identified in the preceding four-rune test, but the original inverse still fails its required three-rune capacity. No unknown LP2 plaintext, key, or intended cipher was recovered.
+
+The authenticated 2016 tree image supplies prime dimensions 563 and 569. Their product is \(N=320347\), with \(\varphi(N)=319216\). The historical Cicada constant \(e=3301\) is invertible modulo \(\varphi(N)\), with private inverse \(d=250557\). A three-GP29-digit plaintext block \(m\) must satisfy \(0\le m<29^3=24389\), whereas a four-digit ciphertext block \(c\) lies in \(0\le c<29^4=707281\). One natural way to hide the earlier *c<N* obstruction is to transmit
+
+\[
+c=(m^{3301}\bmod N)+kN,\qquad k\in\{0,1,2\},
+\]
+
+selecting only \(k\) values that keep \(c<29^4\). The decoder recovers \(k=\lfloor c/N\rfloor\), takes \(r=c\bmod N\), and computes \(m=r^{250557}\bmod N\). The quotient \(k\) is **read from the observed ciphertext**, with no secret fitted parameter. Forward replay of \((m,k)\) reconstructs the original 4-rune block exactly, so this is a genuine lossless original-cipher transformation at the integer level. A GP29 **three-rune plaintext** exists only when \(m<24389\). The model is a speculative extension of the earlier historically motivated RSA hypothesis; no original Cicada instruction prescribes the quotient lift.
+
+The complete **55 rune-bearing unknown physical pages** produce **3,239 four-rune blocks** in zero-phase book order. The table below records how many inverse residues can be serialized as three GP29 plaintext runes, retaining the original glyph order and allowing the indicated strictly bounded framing alternatives:
+
+| Reading | Valid three-rune blocks / total | Longest consecutive valid stretch |
+| --- | ---: | ---: |
+| Book-global phase0, forward | **247 / 3239** | **2 blocks** |
+| Book-global phase0, reversed four-rune blocks | **228 / 3239** | **3 blocks** |
+| Book-global phase1, forward / reversed | **249 / 3238**, **256 / 3238** | **3 / 3 blocks** |
+| Book-global phase2, forward / reversed | **250 / 3238**, **255 / 3238** | **3 / 3 blocks** |
+| Book-global phase3, forward / reversed | **256 / 3238**, **243 / 3238** | **2 / 4 blocks** |
+| Each printed physical page phase0, forward / reversed | **253 / 3219**, **230 / 3219** | **2 / 3 blocks** |
+
+The uniform-residue expected eligible fraction is exactly \(24389/320347 \approx 0.07613307\); all eight observed whole-book fractions lie **0.07039–0.07906**, with the most favorable variant still failing **2,982 of 3,238** blocks. No continuous GP-native three-rune passage survives. These are direct exact counts, not a claim of a discovery-wide statistical significance level. Other exponents, source-defined padding/packing, alternative moduli or prior encodings remain outside this specific result.
+
+**Exact positive:** a 60-GP-rune source-native passage drawn from the solved PARABLE's first two clauses was packed into 80 ciphertext runes under this RSA equation, cycling lawful quotient choices including \(k=2\). The identical inverse exactly recovered **60/60 GP runes**, and the source native ciphertext could be forward-reencrypted **80/80 runes**. Every original four-rune block also forward-reencrypts exactly when its ciphertext-observable quotient is retained; the rejection arises at the three-symbol plaintext capacity gate rather than an implementation failure.
+
+**Reproduction:** [Standalone CommonJS SFT](../sims/lp2_treeprime_rsa_lift_3to4_sft.cjs) reads the current original index corpus. It fixes the modulus, private exponent, source lengths, each of the ten original readings, longest valid runs, and the independent source-language positive. The checked-in program passed full execution on the original corpus through the connected repository runtime on 11 November 2026; it has **not** been submitted to GitHub Actions. This closes the simple redundant-multiple escape from the previous ordinary-RSA block-range obstruction. Further RSA3/4 probing needs a source-selected *different* packing operation before it can credibly approach plaintext.
+
 ## Historical 2012 → signed-2016 prime-canvas operation (Agent 50, 11 November 2026)
 
 **Exact independently sourced dimension relation; historical continuation still conjectural.** The original 2012 Cicada image was **509×503 pixels** and the contemporary documented telephone instruction explicitly said to multiply its two prime dimensions by **3301**. That source operation gave `509×503×3301 = 845145127` and the real historical website `845145127.com` ([2012 walkthrough and preserved phone text](https://github.com/scream314/cicada3301/blob/master/2012.md)). The independently PGP-signed January 2016 tree image is exactly **563×569 pixels**. Thus the later dimensions can be *predicted* from the 2012 ordered dimensions by **swapping the axes and adding 60 pixels to each**:
