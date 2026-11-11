@@ -127,11 +127,12 @@ assert.ok(affineCombinedRank>affinePlainRank);
 // Deterministic native positive: plant one unknown affine Hill8 transform
 // without consulting the ciphertext, proving that the rank criterion allows
 // all model-generated source-controlled cases.
-const seeded=plain88.map(p=>p.map((v,j)=>
-  mod29(v + 2*p[(j+1)%8] + 7)));
-assert.equal(finiteRank(plain88.map((p,i)=>p.concat(seeded[i]))),
+const seededLinear=plain88.map(p=>p.map((v,j)=>
+  mod29(v + 2*p[(j+1)%8])));
+const seededAffine=seededLinear.map(v=>v.map(x=>mod29(x+7)));
+assert.equal(finiteRank(plain88.map((p,i)=>p.concat(seededLinear[i]))),
   hillPlainRank);
-assert.equal(finiteRank(affinePlain.map((p,i)=>p.concat(seeded[i]))),
+assert.equal(finiteRank(affinePlain.map((p,i)=>p.concat(seededAffine[i]))),
   affinePlainRank);
 
 // Use exact 2016 PGP-signed message grammar as source counts.
