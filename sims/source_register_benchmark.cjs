@@ -24,7 +24,8 @@ function pageSection(text, page) {
   const rest = text.slice(match.index + match[0].length);
   const next = rest.search(/^### \d+/m);
   return (next < 0 ? rest : rest.slice(0, next))
-    .replace(/\[[^\]]*Continuation[^\]]*\]/gi, ' ')
+    .replace(/\[[^\]]*(?:Continuation|Conclusion)[^\]]*\]/gi, ' ')
+    .replace(/\(continued from[^)]*\)/gi, ' ')
     .trim();
 }
 
@@ -156,7 +157,7 @@ const blakeChorus = extractBlock(
   'BEGIN SOURCE TEXT',
   'END SOURCE TEXT'
 );
-const koanTrain = pageSection(lp1, 6);
+const koanTrain = pageSection(lp1, 6) + ' ' + pageSection(lp1, 9);
 const koanHoldout = pageSection(lp1, 14) + ' ' + pageSection(lp1, 15);
 
 const signed2012 = cleanCicadaMessage(clearSignedMessage(
@@ -191,7 +192,7 @@ const sources = {
   a_koan: {
     train: koanTrain,
     holdouts: { second_koan: koanHoldout },
-    role: 'source-backed solved LP1 dialogue/koan pages 6–9 versus 14–16'
+    role: 'source-backed solved LP1 dialogue/koan: text-bearing pages 6/9 held out against 14/15; continuation placeholders and the page-16 numeric table excluded'
   },
   gibran: {
     train: gibran.train,
@@ -268,7 +269,7 @@ const knownPlaintextFull = Object.fromEntries(
   ])
 );
 
-const MATCHED_SIZE = 1400;
+const MATCHED_SIZE = 700;
 const matchedModels = {};
 for (const [name, definition] of Object.entries(sources)) {
   if (name === 'cicada') continue;
@@ -390,7 +391,7 @@ assert.equal(sourceSizes.cicada < 300, true, 'Cicada signed-message model unexpe
 assert.equal(p57InGibranControl['LIKE THE INSTAR'], false);
 assert.equal(p57InGibranControl['CIRCUMFERENCES'], false);
 assert.equal(p57InGibranControl['DIVINITY WITHIN'], false);
-assert.equal(fullHeldouts.find((x) => x.id === 'a_koan_second_koan').own_rank, 1);
+assert.equal(matchedHeldouts.find((x) => x.id === 'a_koan_second_koan').own_rank, 1);
 assert.equal(fullHeldouts.find((x) => x.id === 'latin_heldout').own_rank, 1);
 assert(positivePlants.every((x) => x.margin > 0), 'A seeded additive plant did not reduce its source model score');
 
