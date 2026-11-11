@@ -52,6 +52,19 @@ Two one-based indexing conventions were frozen:
 
 Neither readout is recognizable plaintext, an instruction, a key, or a destination. Both have a natural stop at p55, but that alone does not select either convention. **Retire these two literal word-index continuations.** Do not tune indexing, offsets, or alternative word segmentation without a new source clue.
 
+
+## One 76-rune p55 key consequence: bounded negative
+
+A postselected but unusually exact length identity is
+`8 + 13 + 21 + 34 = 76`, matching p55's complete ciphertext length. To give that observation one finite test, take the **first N runes of physical page N** for the four consecutive preceding Fibonacci pages `[8,13,21,34]`, concatenate them in forward order, and use the resulting 76 GP indices as a direct additive p55 key. Only the two reversible orientations `P=C−K` and `P=C+K (mod29)` were tested. No suffix, phase, alternate projection, page permutation or fitted clock was searched.
+
+The stronger of the two original candidates scores **−11.61165742 nats/trigram-rune** under a fixed native-GP trigram model; the other scores **−11.98175332**. Across **1,000** independent 76-rune native-GP control windows, the worst control is **−8.87918067**, median **−7.89832242**. Thus **0/2** original candidates reach even the lowest native-GP control score. Their transliterations are nonlinguistic. An exact forward emitter recovers a 76-rune native-GP plant under both signs, with recovered score **−7.85654664**.
+
+**Decision:** retire this direct Fibonacci-prefix additive key. The length identity is worth recording because it could still be framing evidence, but it supplies no direct GP plaintext under the single operation most naturally implied by a same-alphabet 76-rune key. Do not multiply projections or orientations without a new source selector.
+
+**Reproduce:** [single-file SFT](../sims/signed2016_fibonacci_p55_prefix_key_sft.cjs); successful manual CI [run 42972354667](https://github.com/FlareZ123/liber-primus/actions/runs/42972354667).
+
+
 ## Research consequence
 
 The strongest consequence is **target selection**: p55 now has a second source-motivated route from the later signed-message/Fibonacci structure, in addition to existing independent p55-focused manuscript analyses. This does not solve the missing operation required by Director Issue #41. A useful successor must explain what reversible operation is to be performed on p55's 76 runes, or make a locked prediction on one of p13/p21/p34 before reading its output.
