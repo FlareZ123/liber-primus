@@ -47,6 +47,16 @@ The already measured p32/p55 silhouette correspondence above is the only specifi
 
 A [contemporaneous January 2016 thread](https://4chanarchives.com/board/x/thread/17183963/post-all-your-cicada-3301-clues-here) explicitly compared the background **oak tree** in 2016 image `4gq25.jpg` with Liber Primus combined archive **49.jpg**. The prior public identification of that relationship must not be presented as a discovery made in this study. The [historical signed-message archive](https://github.com/scream314/cicada3301/blob/master/2016.md) independently documents `4gq25.jpg` as carrying an OutGuess-extracted and PGP-verified message including “Liber Primus is the way” and directions to treat its words, meanings and numbers as a route. The source-image comparison here adds the previously unreported **p55 detailed tree silhouette** to this visual lineage. Neither the text nor original illustration supplies a specified mathematical function mapping tree branches to rune plaintext.
 
+
+## Kabbalah / Tree-of-Life interpretation: source gate fails
+
+A conditional navigation result in [the 2014 Wisdom-square report](2014-magic-square-direction-map.md#two-original-lp2-cipher-triples-navigate-into-the-2013-wisdom-square) reaches the 2013/2014 square cell **CABAL** from a p55 three-word GP-prime-sum/totient/cardinal-direction construction. That makes “Cabala/Kabbalah” a plausible semantic association, especially alongside p32's 22 page-local words, page number 32, and the repeated tree motif. It does **not** establish a Hebrew or Tree-of-Life decoding rule.
+
+The decisive visual test is absent: original p32 49.jpg is a blurred natural trunk-and-branch tree; p55 72.jpg is the matching outlined tree over a moth; the archived 2016 4gq25.jpg shows a faint leafless oak. None shows a 10-node/22-path diagram, node circles, Hebrew letter labels, or another unmistakable Kabbalah-specific structure. The 2016 signed text says LP words are a map, meanings a road, and numbers directions, but does not name Kabbalah, Hebrew, sefirot, or a 22-path ordering. The 22-word count and page number are therefore not source-selected assignments to Hebrew letters. Gematria Primus has 29 symbols, so a 22-letter correspondence would additionally need an explicit selection/omission rule that no source supplies.
+
+**Decision:** retire the direct Kabbalah/22-Hebrew-path mapping branch. Retain CABAL as a conditional semantic destination in the Wisdom-square route, and retain the p32/p55/2016 tree images as a real visual motif, but do not conflate either with a Tree-of-Life cipher. Do not run Atbash, Albam, free Hebrew substitutions, or path re-ordering. Reopen only if a new primary clue selects the Hebrew alphabet/order or an explicit 10-node/22-path structure.
+
+
 ## Specific bookend-phrase OutGuess test
 
 The original ciphertext pair `ᛞᛄᚢ ᛒᛖᛁ` is duplicated on p27 and p55. Since historical Cicada used OutGuess and these pages have source-image connections, a finite source-fixed extraction test used six literal and transliterated forms of that pair as candidate passwords across **all 58** original LP2 JPEGs: `DJUBEI`, `djubei`, `DJU-BEI`, `dju-bei`, `DJU BEI`, and `ᛞᛄᚢᛒᛖᛁ`. The existing pinned extractor passed authentic LP1 and synthetic embedded-message controls.
