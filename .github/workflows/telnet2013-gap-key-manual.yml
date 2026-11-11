@@ -1,10 +1,20 @@
 name: LP2 2013 omitted-prime source key (manual)
 on:
   workflow_dispatch:
+    inputs:
+      attack:
+        description: Select source-family inverse
+        type: choice
+        required: true
+        default: gap-key
+        options:
+          - gap-key
+          - red225
 permissions:
   contents: read
 jobs:
   gap-key:
+    if: inputs.attack == 'gap-key'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -14,3 +24,14 @@ jobs:
           node-version: '22'
       - name: Test source-selected 180-prime keys with heldout and planted controls
         run: node sims/telnet2013_missing_primes_holdout.cjs
+  red-prime-pair:
+    if: inputs.attack == 'red225'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test exact all-secret prime-pair maps and planted controls
+        run: node sims/telnet2013_spaced450_red225_affine_sft.cjs
