@@ -286,7 +286,7 @@ This rejects only the direct source-fixed rank-one mask \(R_rQ_j\), not arbitrar
 
 Reproducer: [\`sims/gf841_51x127_outer_product_mask.cjs\`](../sims/gf841_51x127_outer_product_mask.cjs).
 
-## p57-stipple-selected two-cycle mask on the 51×127 register (Agent 24, 11 November 2026)
+## p57 cicada stipple 241/331 selector gate
 
 A source-constrained two-dimensional mask was tested from the p57 cicada illustration and p32's 11×11 prime grid. The original image analysis gives **241** small stipple components on the left and **331** on the right. These are the 53rd and 67th primes; the proposed selector maps those ordinal positions to p32 rune offsets **53** and **67**, whose GP-prime weights are **101** and **11**. Since 53 and 67 are also GP prime weights for **S** and **E**, the same counts admit a secondary literal **SE** reading. That compass interpretation is not used by the mask below and has not been tied to a unique route. The p32 offset selection is a candidate cross-page relation, not an established author instruction (see [Agent 46's source proposal](../communications/agent42/20261111T0247Z_agent46_p57-stipple-gf841-period-pair.md)).
 
@@ -310,11 +310,28 @@ No phases, rotations, row keys, or fitted parameters are used. The four natural 
 
 The random expectation for either canonical 256-of-841 strip is **1,971.60/6,477**. All four results are near this baseline, and no row yields a complete 127-byte sequence. The original payload's Shakespeare-GP trigram score is **−13.28405598** nats/rune; the four decoded scores are **−13.27240204**, **−13.23542527**, **−13.29513756**, and **−13.26385430**. The best remains **4.8350 nats/rune below** the weakest minimum among 300 same-length native-GP windows (Shakespeare **−7.94651145**, Gibran **−8.39553970**, Emerson **−8.40039103**). No GP-English structure appears.
 
+**Additional source reading and row-clock tests (Agent 42).** The same 241/331 split has a second compact reading through the visible thirteen-dot mark: 241 = 13·18 + 7 and 331 = 13·25 + 6. This gives M=[[18,7],[25,6]] over F29, an invertible matrix of exact order 105=3·5·7. The remainders match p57 body sentence word counts 7/6/6; quotient 18 is GP rune E, the final rune of red PARABLE, and 25 is AE. The total stipple count 574 is also 7×(51+31), where 51 is the p53 red-run length and 31 the count of thirteen-dot marks. This is a second candidate interpretation, not an authenticated operation.
+
+Agent42's original-input SFT additionally tested M as a row-reset state transition, S[r,0]=(24,R[r]) or (R[r],24), P=C−S and S[r,j+1]=M·S[r,j]+Q[j]. It also tested the two-cycle mask with the p53 red-rune value as the row exponent, K[r,j]=zL^R[r]·zR^j·Q[j], under all four additive/multiplicative operations. Results:
+
+| Additional candidate | Source-fixed rule | Original GP IoC | Shakespeare-GP trigram, nats/rune |
+|---|---|---:|---:|
+| M state | seed (24,R); S'=MS+Q | 0.03448360 | −13.25225692 |
+| M state | seed (R,24); S'=MS+Q | 0.03448 | −13.29682052 |
+| Red-rune two-cycle additive | P=C−K | 0.03447604 | −13.29314225 |
+| Red-rune two-cycle additive | P=C+K | 0.03447332 | −13.26999841 |
+| Red-rune two-cycle multiplicative | P=C/K | 0.03445316 | −13.30056585 |
+| Red-rune two-cycle multiplicative | P=C·K | 0.03450538 | −13.22758560 |
+
+All six additional variants also re-encrypt the original exactly and recover their matching 12,954-rune native-GP positive plants exactly. The best score remains at least 4.8272 nats/rune below the lowest same-length native-control minimum. This rejects these direct M-state and red-rune-clock uses, not the 241/331 selector itself.
+
+A further source cross-link is provisional: the selected p32 offset 67 is coordinate (6,1), the endpoint of Agent 20's seven-step word-centre route; the selected GP-prime weight 101 is its second word-centre value, while 11 occurs in the red PARABLE heading. The prime-exponent interpretation u^241/u^331 (whose ratio is scalar 10, GP index 10 / prime weight 31) and the proposed southeast-diagonal extraction remain untested.
+
 All four original-input transformations re-encrypt exactly. A deterministic **6,477-byte** canonical plant, b[i] = (73*i+41) mod 256, is also recovered exactly under all four inverse operations. The 127 quotient pairs are nonzero, so the multiplicative cases are well-defined.
 
 **Decision:** this rejects the exact zL^r*zR^j*Q[j] mask as a direct canonical-byte transport or recognizable GP-English decode. It does not reject other uses of the p57 counts, the p32 antipodal pair, or nonlinear/non-byte state.
 
-Reproducer: [`sims/gf841_51x127_two_cycle_mask_sft.cjs`](../sims/gf841_51x127_two_cycle_mask_sft.cjs).
+Reproducers: [Agent 24's canonical-byte two-cycle gate](../sims/gf841_51x127_two_cycle_mask_sft.cjs) and [Agent 42's full source-fixed field-clock gate](../sims/lp2_stipple_241_331_field_clock_gate.cjs).
 
 ## Interpretation and open mechanism
 
