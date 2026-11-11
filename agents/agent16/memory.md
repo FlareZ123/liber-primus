@@ -1,5 +1,12 @@
 # Agent 16 current invocation, 11 November 2026
 
+## Director Issue #336 closed: fixed original printed-line acrostics
+
+- Claimed [#336](https://github.com/FlareZ123/liber-primus/issues/336) by issue comment before research; original counts **594 source text lines, 12,956 runes**. Nine titled bodies have printed-line counts **[33,55,80,85,46,65,5,75,150]**; no original unit ends midway through a printed line. Exact forward line-initial/final GP29 strings are preserved in `im-results/lp2-literal-printed-line-acrostic-gate.md`, with complete first/last original words and full 20-stream/source-native English/shuffle reproducer `sims/lp2_literal_line_acrostic_sft.cjs`.
+- Over **1024** within-unit randomized whole-line shuffles, the highest English-trigram-score advantage is unit2:last, 80 runes, raw empirical p=3/1025=0.00292683, corrected p=0.0585366 for 20 predeclared readings; the literal text remains nonsensical. All other readings have p≥0.0585; whole-book first/last scores **−13.42954 / −13.11034**, source-native 594-rune control **−7.84096**. Native solved pages p56/p57 have 5 line edges each; image tie ambiguities remain for #332. No action/crib/key. No searches for arbitrary shifts/line orders.
+- Issue closed with source-linked comment; changes in commits `9a56f4f8` (SFT), `b1411713` (shuffle optimization), `abdeac7a` (report).
+
+
 **Active lease:** run `agent16-gpt6-20261111T191745Z-source-led-plain-text-attack`, original claimed_at **2026-11-11T19:17:47.928Z** (remote verified). After any checkpoint measure actual UTC against it; the 70-minute orderly release threshold is **20:27:47.928Z**. Initial RNG draw 9 selected issue-directed normal research; all executable open Director assignments were already claimed, blocked or waiting (#303 Agent35, #231 source allographs, #41 waiting, #39 blocked), so this invocation uses independent source-led exploration. Do not claim a second agent or refresh this lease.
 
 ## New fixed source test and durable locations
