@@ -17,6 +17,23 @@ const red=[...redSpan].map(r=>corpus.runes.indexOf(r));
 assert.equal(red.length,51);
 assert.deepEqual(red,page53.slice(128,179));
 const primeWeights=red.map(i=>corpus.prime[i]);
+const innerPrimeMod29=inner.map(i=>corpus.prime[i]%29);
+const redPrimeMod29=red.map(i=>corpus.prime[i]%29);
+const add29=(left,right,sign)=>translit(left.map((v,i)=>mod(v+sign*right[i],29)));
+const additive51={
+  redMinusInner:add29(red,inner,-1),
+  redPlusInner:add29(red,inner,1),
+  redMinusInnerPrime:add29(red,innerPrimeMod29,-1),
+  redPlusInnerPrime:add29(red,innerPrimeMod29,1),
+  innerMinusRedPrime:add29(inner,redPrimeMod29,-1),
+  innerPlusRedPrime:add29(inner,redPrimeMod29,1)
+};
+assert.equal(additive51.redMinusInner,"SRIADASUNFLOECWROENEODAAEIGTHEAEYLHUAYOMNGNGXTHJOXTOEDOEWJEASMEA");
+assert.equal(additive51.redPlusInner,"BOETUGEARSRIADWSROEEATNGAEAEEAJOENGTHEAEAXSPWDIAUNGNGIENGADDDPAEEAOOEWM");
+assert.equal(additive51.redMinusInnerPrime,"PPWOFSTCYFPOFTHBIEENGSJULJINGAPREREJEOIAMDALEOGAEPNGUTOAEAJW");
+assert.equal(additive51.redPlusInnerPrime,"MPWNGUEAEMWEONOEGHWWSIACPLHFXGUGEIARSSCADEOBNEOOXOAECTWGPSJ");
+assert.equal(additive51.innerMinusRedPrime,"FAMGAETHPLYENGPAEEROIAXLPRUMOJIIDAPIAFAETHJHJTTYNGCNGIAOHIEAWNI");
+assert.equal(additive51.innerPlusRedPrime,"THDEAUSJMSWENEEOJSWNAJBEAFYRGAENGXJULIAGIANGAENGLNGETHNTHBIWCFHI");
 const runeOrdinals=red.map(i=>i+1);
 const mod=(n,m)=>((n%m)+m)%m;
 const dirs=[[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1]]; // N, NE, E, SE, S, SW, W, NW
@@ -82,6 +99,7 @@ const result={
     p53RedSpanLength:red.length,
     p53RedSpanMatchesCorpus:JSON.stringify(red)===JSON.stringify(page53.slice(128,179))
   },
+  additive51,
   directionValues:{
     primeWeights,
     primeWeightsMod8:primeMod8,
