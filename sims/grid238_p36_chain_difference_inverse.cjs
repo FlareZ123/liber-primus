@@ -168,6 +168,9 @@ for (const reverseSeed of [false, true]) {
   }
 }
 
+const known = corpus.pages.find(p => p.page === 57).indices;
+const planted = Array.from({ length: all.length }, (_, i) => known[i % known.length]);
+
 // Zero-suppressed variant: the contemporary 2014 discussion explicitly
 // described deleting zeroes from 1033/3301 to obtain 133/331. As a separate,
 // clue-motivated (but not authenticated) extension, suppress zero outputs of
@@ -252,8 +255,6 @@ for (const reverseSeed of [false, true]) {
 
 // Positive control: encrypt a known p57-derived stream under the exact
 // chain-additive model and recover every difference-domain plaintext rune.
-const known = corpus.pages.find(p => p.page === 57).indices;
-const planted = Array.from({ length: all.length }, (_, i) => known[i % known.length]);
 const controlKey = makeAnchoredKey(false).key;
 const syntheticCipher = [planted[0]];
 for (let i = 1; i < planted.length; i++) {
