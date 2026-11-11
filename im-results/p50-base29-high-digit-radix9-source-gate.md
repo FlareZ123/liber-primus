@@ -1,4 +1,4 @@
-# P50 higher BASE29 digit channel: direct radix-nine readout
+# P50 higher BASE29 digit channel: radix-nine and additive-use gates
 
 **Decision:** original-image-derived direct readout is nonlinguistic. No unknown Liber Primus ciphertext has been decrypted, and no key or hidden destination is recovered.
 
@@ -30,8 +30,17 @@ Only **35/102** bytes are printable ASCII, consistent with unscripted binary dat
 
 The original ordered 256-byte table continues to satisfy the exact H and G zero-remainder assertions. A planted, 256-digit base-9 serialization of independent ASCII text round-trips exactly. The [single-file CJS](../sims/p50_base29_high_digit_radix9_sft.cjs) was run successfully in [GitHub Actions 43038348425](https://github.com/FlareZ123/liber-primus/actions/runs/43038348425), using the `p50-base9` source-only probe.
 
+## 3×3-dot quotient-channel tests
+
+The original p49 text ends at a red **3×3 dot cluster** immediately before the numeric table; the same 3×3 motif recurs in the p49–51 margins. This is a plausible nine-state selector for `q∈[0,8]`, but it does not itself specify an arithmetic operation. To test the simplest use without fitting offsets or resets, the fixed row-major base60 bytes were decomposed as `B=29q+r` and only the two natural additive directions were tried.
+
+1. **Recombine the two channels inside the table:** `P=(r−q) mod29` and `P=(r+q) mod29` over all 256 cells. The raw residue stream scores **−7.37528989** mean English-quadgram log10 frequency per quadgram; `r−q` scores **−7.29330844** and `r+q` **−7.52358030**. Neither yields readable text.
+2. **Use q as a Gronsfeld stream on the flanking runic text:** concatenate p49's 66 runes and p51's 92 runes in source order (158 total), align the first 158 q digits from the table to p49 local rune 0, and continue without a reset across p51. Base60 subtraction/addition score **−7.50012991 / −7.32724813**, against raw **−7.48337804**. The corresponding base59 controls score **−7.47006507 / −7.39694117**. No direction produces words; the 98 unused q digits and lack of an explicit key-to-text instruction remain objections.
+
+The score model is the same Duko Round27 English quadgram table used by the reproducer, with mean `log10((count or 0.01)/total)`. These are bounded, source-motivated probes, not an authenticated cipher selection. The modest score changes are not plaintext evidence; all candidates remain far below the solved p56 positive control (**−4.46164858** under the same model).
+
 ## Impact on the solve path
 
-This retires **one literal higher-byte-channel interpretation**: treating `floor(B/29)` as 256 base-9 digits giving a single unencrypted binary payload. It supplies no plaintext, key, URL or independently authenticated LP2 operation. It does **not** establish that the higher digits are meaningless: a separate supplied key, compression rule, authenticated chunking rule or other source-native codec could change their interpretation. Without such a clue, additional packings or offsets would be a post-selected search.
+This retires three literal higher-channel interpretations: (a) `q` as one big-endian base-9 integer yielding a standalone binary payload; (b) direct within-cell `r±q` recombination into a GP29 stream; and (c) the first 158 q digits as a continuous Gronsfeld key for the adjacent p49/p51 text. The 3×3 dots make the nine-valued quotient channel a reasonable thing to notice, but they do not select addition, subtraction, or a key-to-flanking-text relationship. No unknown LP2 plaintext, key, URL or destination is recovered.
 
-Existing work on the **252 GF(29) polynomial-division quotient** is a different register. The higher-byte quotient here is `floor(B/29)`, defined separately per original byte, and must not be confused with that polynomial quotient. The authoritative overall LP2 solution status remains unchanged.
+The higher digits are not thereby proved meaningless. Further uses require a new source-native instruction that selects an operation, alignment and target; do not expand this into offsets, resets, multipliers, or alternate packing searches. The separate 252 GF(29) polynomial-division quotient remains a different register and must not be confused with the per-byte `floor(B/29)` channel. The authoritative overall LP2 solution status remains unchanged.
