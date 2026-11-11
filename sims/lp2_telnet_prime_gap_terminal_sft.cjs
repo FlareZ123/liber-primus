@@ -279,6 +279,8 @@ assert.deepEqual(terminalPairHits, [
   {page: 54, offset: 90, followingIndex: 20, followingPrime: 73},
   {page: 55, offset: 38, followingIndex: 13, followingPrime: 43}
 ]);
+// The unique p55 D/IA pair starts at the exact 76-rune midpoint.
+assert.equal(terminalPairHits[3].offset, exterior.length / 2);
 const selectedBlack = terminalPairHits.slice(2);
 assert.equal(selectedBlack.map(p => corpus.translit[p.followingIndex]).join(""), "LP");
 console.log(JSON.stringify({
