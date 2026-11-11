@@ -4,7 +4,7 @@
 
 ## Source-only decision before ciphertext scoring
 
-Inspect the original native manuscript scans, physical p0–55 = original JPEG \`17.jpg\`–\`72.jpg\`; preserve the distinction between physical and rune-bearing indices. Use the following transitions, chosen for plainly visible changes in page treatment rather than for rune frequencies:
+Inspect the original native manuscript scans, physical p0–55 = original JPEG `17.jpg`–`72.jpg`; preserve the distinction between physical and rune-bearing indices. Use the following transitions, chosen for plainly visible changes in page treatment rather than for rune frequencies:
 
 - **Development segment:** physical p3 (opening staves → scrolls), p8 (scrolls → trees), p15 (trees → exceptional numeral square), p16 (numeral square → plain text), p24 (plain → symmetric dragonfly/flora), p27 (dragonfly → standalone wing, then comparatively plain pages).
 - **Held-out illustrated text:** p33 (standalone p32 tree → cuneiform-headlined pp33–39), p40 (cuneiform → enclosed floral frame).
@@ -30,7 +30,7 @@ The alternative is *larger divergence at artwork transitions*. Compare the arith
 | Expanded p33,40,49,52; candidate b32–53 | Bigram JS | 0.1611052792 | 5,893 / 5,985 | **0.984628** |
 | Expanded including short table | Unigram H² | 0.0214231843 | 189 / 5,985 | **0.031579** |
 
-**Table confound checked independently.** For each held-out seam, permute the **pooled original local four-page GP29 symbol multiset** between its unchanged left/right rune counts using 4,000 deterministic Fisher–Yates repetitions (seed \`0x5317cafe\`, xorshift32). This controls symbol-frequency sample-size imbalance at each seam. The table passage has drastically different window sizes because the true p49 and p51 text totals only **66 and 92** runes and p50 is runeless.
+**Table confound checked independently.** For each held-out seam, permute the **pooled original local four-page GP29 symbol multiset** between its unchanged left/right rune counts using 4,000 deterministic Fisher–Yates repetitions (seed `0x5317cafe`, xorshift32). This controls symbol-frequency sample-size imbalance at each seam. The table passage has drastically different window sizes because the true p49 and p51 text totals only **66 and 92** runes and p50 is runeless.
 
 | Physical seam | Left/right rune counts | Observed unigram H² | Length-matched null mean | Null draws as high | Plus-one fraction |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -58,4 +58,4 @@ This confirms the known manuscript-wide suppression extends across words but doe
 
 This result **does not exclude** hidden word/page-dependent state, language beyond the tested GP29 register, layered or highly mixing ciphers, or an illustration encoding a specific literal instruction. To reopen a boundary-specified inverse, identify a source-derived reset action/key and a held-out original-cipher prediction before scoring plaintext.
 
-**Exact standalone test:** [\`sims/lp2_artwork_change_point_sft.cjs\`](../sims/lp2_artwork_change_point_sft.cjs), Node.js 22 CommonJS, no dependencies or writes. It asserts source transcription equality on every p0–55 rune, all repetition counts, and the frozen exact-rank and local-null counts. Tested with the live repository contents of \`lp2-corpus.json\` (blob \`054f2a0f780b7d46901acbe3d9bf4f0ac1801165\`) and \`lp2-transcription.txt\` (blob \`43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7\`). The original JPEGs were reviewed as an all-56-page source-only contact sheet; no modifications to the authentic images or ciphertext were made.
+**Exact standalone test:** [`sims/lp2_artwork_change_point_sft.cjs`](../sims/lp2_artwork_change_point_sft.cjs), Node.js 22 CommonJS, no dependencies or writes. It asserts source transcription equality on every p0–55 rune, all repetition counts, and the frozen exact-rank and local-null counts. Tested with the live repository contents of `lp2-corpus.json` (blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`) and `lp2-transcription.txt` (blob `43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7`). The original JPEGs were reviewed as an all-56-page source-only contact sheet; no modifications to the authentic images or ciphertext were made.
