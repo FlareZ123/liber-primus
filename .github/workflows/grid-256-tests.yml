@@ -64,6 +64,7 @@ on:
           - p0-word-punctuation
           - hg256-secret-alphabet
           - p50-base9
+          - ssss256-column
           - p50-q55
           - signed-wordends-p55
         default: full
@@ -92,6 +93,10 @@ jobs:
       - name: Original H/G 256-block all-secret alphabet impossibility
         if: ${{ inputs.probe == 'hg256-secret-alphabet' }}
         run: node sims/lp2_hg256_allsecret_substitution_sft.cjs
+
+      - name: Historical original 2013 ssss GF256-bit Shamir five-of-eight source gate
+        if: ${{ inputs.probe == 'ssss256-column' }}
+        run: node sims/p50_2013_ssss_256bit_column_gate_sft.cjs
 
       - name: Original p50 high-digit radix-9 direct payload gate
         if: ${{ inputs.probe == 'p50-base9' }}
