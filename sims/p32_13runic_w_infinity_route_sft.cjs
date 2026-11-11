@@ -95,6 +95,12 @@ const windowSum = window13.reduce((n, i) => n + corpus.prime[i], 0);
 assert.equal(window13.length, 13);
 assert.equal(windowSum, 413);
 assert.equal(windowSum % 29, 7);
+const homeX = p32Indices.slice(33, 38).map(index => corpus.translit[index]).join("");
+const windowTail = p32Indices.slice(startOffset + 8, startOffset + 13)
+  .map(index => corpus.translit[index]).join("");
+assert.equal(homeX, "HOMEX");
+assert.equal(startOffset + 12, 37);
+assert.equal(windowTail, "HOMEX");
 
 const eligibleStarts = p32.map((word, index) => ({
   index, offset: word.globalStart - p32Start
@@ -184,7 +190,7 @@ console.log(JSON.stringify({
   beware:{sum:bewareSum,address:address(bewareSum)},
   p32:{wordCount:p32.length,word5:"IARTTHF",word5Sum:184,word5Offset:25,
     p57LikeSum:sumWord(p57[1]),m7FixedPointPrimeSum:184,sum184OccurrencesAmongUnknownWords:sum184UnknownWordCount,
-    redDotCount:13,window13:{sum:windowSum,residue:7,eligibleWordStarts:19,
+    redDotCount:13,homeXMarker:{start:33,end:37,text:homeX,windowEndsAt:startOffset+12,windowTail},window13:{sum:windowSum,residue:7,eligibleWordStarts:19,
       matchingWordStarts:wordStartHits,allOffsetMatches:allOffsetHits},
     M7:{matrix:M,fixedPoints:fixed,pole:7,forward,inverse:reverse,literalWordTraversal:false,negativeGate:"sims/p32_m7_pole_wordmap_gate.cjs"},
     residueCounts:counts,
