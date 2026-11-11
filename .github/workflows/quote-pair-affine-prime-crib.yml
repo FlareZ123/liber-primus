@@ -9,6 +9,7 @@ on:
           - prime
           - generic
           - f79-f29
+          - quote133
         default: prime
 
 permissions:
@@ -24,8 +25,11 @@ jobs:
         with:
           node-version: '22'
       - name: Exact original-LP2 phase search with planted affine control
-        if: ${{ inputs.mode != 'f79-f29' }}
+        if: ${{ inputs.mode == 'prime' || inputs.mode == 'generic' }}
         run: node sims/${{ inputs.mode == 'generic' && 'quote_pair_generic_invariants.cjs' || 'quote_pair_affine_prime_crib.cjs' }}
       - name: Source-derived F79/F29 equality gate for frozen p40/p53 crib
         if: ${{ inputs.mode == 'f79-f29' }}
         run: node sims/quote_pair_f79_f29_equality_gate.cjs
+      - name: Source-locked seven-quote prime address and 58-rune checksum gate
+        if: ${{ inputs.mode == 'quote133' }}
+        run: node sims/lp2_quote133_pageword_source_gate.cjs
