@@ -39,6 +39,7 @@ on:
           - tree-wordmap
           - signed2016-derivative
           - terminal-circumference
+          - terminal-f19
           - terminal-known-tail
           - terminal-shed-43
           - quartic-annihilator
@@ -79,6 +80,13 @@ jobs:
       - name: All-secret LP2 plaintext-autokey continuous/page/word gate
         if: ${{ inputs.probe == 'plaintext-autokey' }}
         run: node sims/lp2_plaintext_autokey_allseed_gate_sft.cjs
+
+      - name: Source-linked H/G quotient fingerprint and 76-rune F19 decoding gate
+        if: ${{ inputs.probe == 'terminal-f19' }}
+        run: |
+          node sims/lp2_hg_quotient_repeat_register_sft.cjs
+          node sims/lp2_terminal_hg_codeword_single_error_sft.cjs
+          node sims/lp2_terminal_f19_erasure_recovery_sft.cjs
 
       - name: Original H/G 256-block all-secret alphabet impossibility
         if: ${{ inputs.probe == 'hg256-secret-alphabet' }}
