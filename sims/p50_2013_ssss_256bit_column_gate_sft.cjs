@@ -100,7 +100,7 @@ function evaluate(coefficients, x) {
 }
 
 function main() {
-  const { bytes } = JSON.parse(fs.readFileSync(INPUT, "utf8"));
+  const { bytes, pages } = JSON.parse(fs.readFileSync(INPUT, "utf8"));
   assert.equal(bytes.length, 256);
   const sourceHash = crypto.createHash("sha256")
     .update(Buffer.from(bytes)).digest("hex");
@@ -109,6 +109,32 @@ function main() {
   const ys = xs.map((_, column) =>
     BigInt("0x" + Array.from({ length: 32 }, (_, row) =>
       bytes[row * 8 + column].toString(16).padStart(2, "0")).join("")));
+
+  // The separately source-supported f-omitting radix59 codec changes
+  // 220 of the printed table bytes. The same fixed historical x/threshold
+  // test applies without reordering the original source tokens.
+  const alphabet59 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmno"
+    + "pqrstuvwx"; // lowercase f is deliberately absent
+  const otherBytes = pages.flatMap(page => page.tokens).map(token =>
+    59 * alphabet59.indexOf(token[0]) + alphabet59.indexOf(token[1]));
+  assert.equal(otherBytes.length, 256);
+  const otherHash = crypto.createHash("sha256")
+    .update(Buffer.from(otherBytes)).digest("hex");
+  assert.equal(otherHash,
+    "511d4fdb69ffbae4707ef93acf7465421f5480208e28d8e8c598cafa0d33cb79");
+  const otherY = xs.map((_, column) =>
+    BigInt("0x" + Array.from({ length: 32 }, (_, row) =>
+      otherBytes[row * 8 + column].toString(16).padStart(2, "0")).join("")));
+  const alternativeChecks = [];
+  for (let threshold = 2; threshold <= 7; threshold++) {
+    let matches = 0;
+    for (let col = threshold; col < 8; col++) {
+      matches += Number(interpolate(xs[col], xs.slice(0, threshold),
+        otherY.slice(0, threshold)) === otherY[col]);
+    }
+    assert.equal(matches, 0);
+    alternativeChecks.push({ threshold, matches, heldOut: 8 - threshold });
+  }
 
   // A genuine 5-of-8 source polynomial must predict all 3 held-out shares.
   // For any smaller threshold, every withheld share must also be predicted.
@@ -145,9 +171,11 @@ function main() {
     layout: "8 printed columns, top-to-bottom 32-byte big-endian shares",
     xCoordinates: xs.map(Number),
     checks,
+    alternativeBase59SHA256: otherHash,
+    alternativeChecks,
     positive: "degree-four 5-of-8 shares and recovered secret: PASS",
     firstFiveOnlySecretHex: hypotheticalSecret,
-    conclusion: "No threshold 2..7 fits the 8 original columns; the 5-of-8 2013-style Shamir interpretation is rejected. Threshold8 alone is vacuous."
+    conclusion: "Neither source-supported base60 nor f-omitting base59 has any threshold-2..7 original-column Shamir consistency. Threshold8 alone is vacuous."
   };
   console.log(JSON.stringify(result, null, 2));
   return result;
