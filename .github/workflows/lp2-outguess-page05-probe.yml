@@ -16,20 +16,21 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
-          repository: henkman/outguess
-          ref: 80f4b313c580a6928aa7fe8bf0bb4fabb7990262
+          repository: resurrecting-open-source-projects/outguess
+          ref: 24810e14327c2bbeedeaadd3e24491f2a4425c02
           path: outguess-src
           persist-credentials: false
-      - uses: actions/setup-go@v5
-        with:
-          go-version: '1.22.x'
-      - name: Build pinned read-only OutGuess extractor (MIT Go port)
+      - name: Build pinned OutGuess 0.4 C extractor (BSD)
         run: |
-          mkdir -p "$RUNNER_TEMP/gopath/src/github.com/henkman"
-          ln -s "$GITHUB_WORKSPACE/outguess-src" "$RUNNER_TEMP/gopath/src/github.com/henkman/outguess"
-          GO111MODULE=off GOPATH="$RUNNER_TEMP/gopath" go build -o "$RUNNER_TEMP/outguess" github.com/henkman/outguess/cmd/outguess
+          sudo apt-get update
+          sudo apt-get install -y autoconf automake libtool
+          cd outguess-src
+          ./autogen.sh
+          ./configure --with-generic-jconfig
+          make -j2
+          echo "$GITHUB_WORKSPACE/outguess-src/src" >> "$GITHUB_PATH"
       - name: Probe known carrier 00 and candidate 05
-        run: bash sims/outguess_lp2_page05_probe.sh "$RUNNER_TEMP/outguess" "$GITHUB_WORKSPACE" "$RUNNER_TEMP/outguess-probe"
+        run: bash sims/outguess_lp2_page05_probe.sh outguess "$GITHUB_WORKSPACE" "$RUNNER_TEMP/outguess-probe"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
