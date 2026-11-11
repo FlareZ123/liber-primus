@@ -1,6 +1,6 @@
 # GF(29²) projective cycle and 13-dot marker alignment
 
-**Classification (11 November 2026):** the field construction and its 30-state projective orbit are exact. A newly identified source-order correspondence maps the 30 unique thirteen-dot marker sites onto that orbit, but the intended use remains unproved. Direct substitution, additive-key, and the tested grid-row IV uses do not recover LP2 plaintext.
+**Classification (11 November 2026):** the field construction and its 30-state projective orbit are exact. A source-order correspondence maps the 30 unique thirteen-dot marker sites onto that orbit, but its intended use remains unproved. Direct substitution, additive-key, grid-row IV, and source-ordered grid-row/column lookups do not recover LP2 plaintext.
 
 ## Source-derived field construction
 
@@ -76,14 +76,22 @@ Neither produces a coherent passage. The best previous trigram scores improve on
 
 The new marker-to-row map was then tested as a **per-fragment grid-row IV schedule** for all 28 unknown fragments. `sims/projective_marker_gridrow_nonce_probe.cjs` ran 256 variants: four fragment-length key orders, four row/zero IV layouts, AES-256-CTR and ChaCha20, additive and predecessor-exclusion families, both signs, and both pad projections. The best normalized IoCs were only about1.027 on the training segment and1.026 on heldout, versus a planted-control value of2.077; output prefixes remained incoherent. Thus this particular direct key/IV use is rejected. It does not invalidate the marker-state correspondence as a possible map or routing instruction.
 
-## Decision and next useful question
+## Additional source-ordered grid-row/column tests
 
-Do not rerun the direct projective substitution, additive orbit, or the 256 tested row-IV variants. The useful unresolved question is **what operation does the source-order projective state sequence prescribe?** A worthwhile continuation must derive a fixed transformation of the 32 fragments or grid from the marker states and then make a held-out prediction. Arbitrary row permutations, extra key layers, or more cipher-mode sweeps are not justified.
+**New original-input test (Agent 35, 11 November 2026).** The 32-fragment row map was tested as an eight-column lookup, not only as a cipher IV. Two simple uses were frozen:
+
+1. **Repeating row key:** use the mapped grid row as an 8-symbol additive key within each fragment. Test zero, state, next-state and state-difference phase; forward/reverse column order; mod-29/scaled byte reduction; both signs (32 variants). Best trigram score is **−11.13583** nats/rune, versus raw ciphertext **−11.15402**; IoC is **0.034485**, effectively unchanged from **0.034478**. No coherent plaintext.
+2. **Ciphertext-residue column:** for each rune, use the mapped fragment row and select one of eight columns by (C\bmod8), ((C+1)\bmod8), ((C+s)\bmod8), or ((C+1+s)\bmod8), where (s) is the fragment's projective state (infinity represented by 29). Test mod-29/scaled byte reductions and both signs (16 variants). The best score is **−11.06713**, with IoC **0.040141** and top-12 mass **0.570856**; the prefix remains incoherent. The concentration increase alone is not evidence of plaintext.
+
+**Source-map null control.** For each of **500** deterministic random permutations of the 32 grid rows (LCG seed 3301), maximize the trigram score over the same 16 ciphertext-residue variants. The source map's best score is exceeded or matched by **213/500** random maps; random mean best is **−11.06903**, maximum **−10.97639**, and the add-one empirical tail probability is **0.42715**. Thus the apparent score/concentration improvement is not specific to the projective row order. The straightforward repeating-row and ciphertext-residue lookup families are rejected as decryptions; the projective marker-to-row correspondence remains an unproved map, not a key.
+
+**Reproduction:** `sims/projective_marker_gridrow_column_probe.cjs` reconstructs the marker orbit, row map and fragment boundaries from the original corpus/ink annotations, runs both fixed families, and reproduces the 500-permutation family-wise null. It uses the same LP1 GP trigram reference as the projective-cycle probe.
 
 **Reproducers:**
 
 - `sims/gf29_projective_singer_cycle_probe.cjs` — field construction, 30-cycle, direct substitution and additive tests.
 - `sims/projective_marker_gridrow_nonce_probe.cjs` — marker deduplication, source-order state assignment, 32-row mapping, and the 256-variant negative IV test.
+- `sims/projective_marker_gridrow_column_probe.cjs` — source-ordered 8-column repeating-key and ciphertext-residue lookup tests, plus the 500-permutation family-wise row-map null.
 - GitHub Actions run: https://github.com/FlareZ123/liber-primus/actions/runs/42944677668
 
 **Related studies:** `lp2-red-triad-primitive-840-phase-gate.md`, `red-triad-gf841-840-phase-gate.md`, and `red-256-event-grid-correspondence.md`.
