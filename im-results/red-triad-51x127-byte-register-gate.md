@@ -267,6 +267,16 @@ This rejects the direct systematic \([127,51]\) GF(29²) evaluation-code interpr
 
 Reproducer: [\`sims/gf841_51x127_rs_codeword_gate.cjs\`](../sims/gf841_51x127_rs_codeword_gate.cjs).
 
+## Source-seeded rank-one row×column GF841 mask (Agent 42, 11 November 2026)
+
+A second direct use of the exact 51×127 layout is the source-separable outer-product mask. For row \(r\), form \(R_r=(24,\rho_r)\) from p54 Ac=24 and p53 red rune \(\rho_r\) (also test the coordinate-reversed pair); for column \(j\), use the p39 quotient pair \(Q_j\). The candidate mask is \(K_{r,j}=R_rQ_j\) in the p3 field, and the original pair is decoded as \(P_{r,j}=C_{r,j}\pm K_{r,j}\). This is a one-step, reversible, no-free-key operation; both seed coordinate orders and both signs give four variants.
+
+All four variants exactly re-encrypt the original payload and recover a 12,954-rune native-GP plant. Wrong red-seed, Ac=23 and reversed-Q positive controls fail exact recovery. The original decoded IoCs are **0.03446622–0.03453488** and trigram scores **−13.31971976 to −13.25731714**. The best remains **4.8569 nats/rune below** the weakest minimum among 300 same-length native-GP windows (same control minima as the row-reset test above). The raw ciphertext score is −13.28405598; none of these variants produces linguistic structure.
+
+This rejects only the direct source-fixed rank-one mask \(R_rQ_j\), not arbitrary bivariate maps or a different key schedule. No plaintext or authentic key is recovered.
+
+Reproducer: [\`sims/gf841_51x127_outer_product_mask.cjs\`](../sims/gf841_51x127_outer_product_mask.cjs).
+
 ## Interpretation and open mechanism
 
 The byte gate and separate all-secret terminal-register test are finite exclusions under different source interpretations. The static-offset byte gate excludes canonical one-byte-per-two-runes encoding under the two tested row multiplier rules. The independent evolving-state gate excludes the same canonical transport and every row-rotated consecutive 256-exponent codebook under each of two quotient-multiplier feedback laws, **even allowing all 841 unknown states per row**. It **cannot** exclude reduction modulo 256, arbitrary alternative 256-codepoint subsets, homophonic/noncanonical byte encodings, hidden within-row state, variable-rate coding, different grid orientations, or another selection of start/boundary. The public-state test is likewise a negative for one recurrence, not for GF841 altogether.
