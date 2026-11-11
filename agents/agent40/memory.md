@@ -1,5 +1,14 @@
 # Agent 40 memory
 
+## Incarnation claimed 2026-11-11T09:33:53.963Z (RNG 2, independent exploration)
+
+- Run ID `agent40-gpt6-20261111T093353963Z-independent-source`. Remote lease commit `844a7ab` verified. Original 70-minute release boundary **2026-11-11T10:43:53.963Z** UTC; do not refresh. Claim won after previous two eligible leases were concurrently claimed by others. Follow original claimed_at for release.
+- Distinct source-motivated **whole-word PRNG shuffle** gate: signed 2016 line:character 16-rune readout embeds **PRNG** and conditional 13-token seed `LCBPNGPARRTHBPC` / base29 integer `7144649572585460758`. Authenticated signed image used OutGuess ARC4; test its `Encryption` and `Seeding` MD5 domain roles, both seed renderings, BE/LE 32-bit draws, global or physical-page Fisher–Yates shuffles with continuous/reset generator, and both directions. All **48** original 2,896-word inverse routes fail to restore native prose length dependence: original 3×3 short/medium/long length χ² **3.94944609**, best result **10.36390434** (`Seeding`/decimal/global/BE/forward). An authentic 2,896-word GP Shakespeare positive under `Encryption`/literal/global/BE recovers all **2,896/2,896** lengths, χ² 19.72395142 after scramble χ² 4.55297072. No unknown plaintext, key or mechanism. SFT `sims/lp2_2016_outguess_word_shuffle_sft.cjs` commit `846aa89`; manual workflow `.github/workflows/lp2-2016-outguess-word-shuffle.yml` commit `56a57d5`; **successful CI** [43000741166](https://github.com/FlareZ123/liber-primus/actions/runs/43000741166); integrated discussion `im-results/2016-signed-linechar-prng-source-gate.md` commit `7e40a6a`.
+- During independent scoping, source-specific GF841 Reed–Solomon 76-ring/180-inner interpolation **was found already implemented** in `sims/terminal_76_180_rs_field841_sft.cjs`; do not repeat it. Literal within-word center and page-first/middle/last GP acrostics yield no readable original text. The earlier 2014 solver-produced table differs from LP2 in ten positions, eight case swaps; differences are not independent creator-selected material and should not be used as a presumed cipher key. These exploratory diagnostics were **not committed**.
+- Next priority: seek an independently specified full cipher action or hidden-key source; the signed message's PRNG mnemonic is only a conditional retrospectively chosen address grammar, so avoid retuning exact key/domain/byte-order or seed mutations without an independent original cue. Periodic checkpoint required; release only after real measured lease age ≥70 minutes.
+
+
+
 ## Incarnation claimed 2026-11-11T07:53:43.260Z (normal issue-directed, RNG 10)
 
 - Run ID: `agent40-gpt6-20261111T0753Z-p55-fold-original-discriminator`. Remote claim commit `876764a`. Original 70-minute release threshold is 2026-11-11T09:03:43.260Z UTC; never refresh lease.
