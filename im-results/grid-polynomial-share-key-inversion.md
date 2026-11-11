@@ -1,6 +1,6 @@
 # LP2 32×8 grid as polynomial secret shares: full-byte reconstruction and original-cipher inverse
 
-**Agent 33, 10 November 2026. Classification: bounded negative of a source-grounded key hypothesis.** No previously unknown Liber Primus plaintext, key, cipher method or destination was recovered.
+**Agent 33 with Agent14 and Agent32 extensions, 10–11 November 2026. Classification: two bounded negatives of source-grounded Shamir-key hypotheses (eight-column shares and 31-row shares).** No previously unknown Liber Primus plaintext, key, cipher method or destination was recovered.
 
 ## Concrete mechanism and original source
 
@@ -73,6 +73,27 @@ coordinates, nonlinear byte mappings, unknown field encodings, altered
 source bytes, or degree-seven eight-of-eight interpolation remain outside
 its reach; no manuscript plaintext or key is recovered.
 
+## Independent row-oriented 13-of-31 Shamir gate (Agent32, 11 November 2026)
+
+**Source premise and why this differs from the excluded column-share orientation.** The 32×8 table also has a natural representation as **32 possible share records, each eight bytes long**, whereas the prior test above treated eight *columns* as shares of each row. The original repeated five-slot ornaments admit the conditional binary values **13** and **31**, and historical 2013 Cicada used Shamir secret sharing. Thus one specific, economical source hypothesis is **31 shares at threshold 13 plus one secret/evaluation row**, with each of the table's eight columns an independently shared secret byte. The ornaments' binary reading and the identification of table rows as shares remain conjectural; neither is a creator-authenticated instruction.
+
+For each of the three finite fields **GF(256) with polynomials 0x11b and 0x11d, and GF(257)**, freeze two source-natural coordinate clocks: (1) printed row number x=1…32; (2) the previously documented five-bit de-Bruijn row states `[31,30,28,25,19,6,13,26,20,9,18,4,8,16,0,1,2,5,10,21,11,23,14,29,27,22,12,24,17,3,7,15]`, whose single x=0 position can be interpreted as the one secret row. For **each** of eight independent byte columns, fit the unique degree≤12 polynomial to the **first 13 printed rows** and predict the **remaining 19 original rows**. No unknown ciphertext, language fit, polynomial coefficient, extra threshold, or row order is searched.
+
+| Field | Row coordinate assignment | Correct held-out values across 8 × 19 = 152 |
+| --- | --- | ---: |
+| GF(256), AES 0x11b | printed x=1…32 | **0 / 152** |
+| GF(256), AES 0x11b | documented 5-bit state x | **1 / 152** |
+| GF(256), RS 0x11d | printed x=1…32 | **0 / 152** |
+| GF(256), RS 0x11d | documented 5-bit state x | **1 / 152** |
+| GF(257) | printed x=1…32 | **1 / 152** |
+| GF(257) | documented 5-bit state x | **0 / 152** |
+
+Across all six original-input variants, **not one of the eight columns is a valid degree≤12 share polynomial**. Each original column disagrees with its own held-out evaluations at least 18 times. The GF(256) de-Bruijn x=0 cell at zero-based printed row14 is also inconsistent with the first 13 share rows; no embedded eight-byte x=0 secret record is recovered. By contrast, for each field/coordinate convention an independently generated degree12, eight-lane synthetic share matrix correctly recovers **32/32 evaluations in each column** and the polynomial's x=0 secret in every case, validating the interpolation implementation.
+
+**Decision:** reject the source-suggested **13-of-31, eight parallel Shamir secret-byte** interpretation with either original coordinate map and all three declared fields. This is a distinct bounded negative from the above eight-column threshold≤7 gate. It does not reject Shamir with a source-specified alternative x-coordinate schedule, altered/encoded shares, different field, or nonstandard secret-sharing scheme. Inventing one solely to fit the observed bytes would forfeit the human-solve-path motivation. A source-selected operation remains missing; no LP2 key or plaintext is recovered.
+
+[Independent source-only CommonJS reproducer](../sims/grid_31share13_threshold_gate.cjs) reads the original checked-in 256-byte table, asserts every held-out exact count, and tests independent true-share plants for all fields/coordinate maps.
+
 ## Original ciphertext decryption test
 
 For completeness, derive six 32-byte candidate keys by degree-seven interpolation to \(x=0\): three fields in normal and reversed column order. All six candidates happen to be valid byte strings. Two additional natural eight-of-eight combinations are the bytewise XOR of the eight columns and their arithmetic sum modulo 256, each producing one 32-byte candidate key. Like degree-seven interpolation, neither reconstruction contains redundancy or proves the table intentionally encodes shares. Test all eight candidates against **all 55 rune-bearing unsolved pages and all 12,956 original rune positions** with two frozen stream generators, AES-256-CTR and ChaCha20, using zero IVs, keystream reset at each physical page, both mod-29 signs and \`byte % 29\` reduction. This defines **32 explicit original-cipher decryption settings**.
@@ -81,7 +102,7 @@ The original ciphertext has global GP-rune index of coincidence **0.034478398**.
 
 ### Decision
 
-The table cannot be an **unmodified, low-degree 8-column polynomial share matrix** under the three specified fields and column coordinates. Neither degree-seven interpolants nor XOR/arithmetic eight-share combined secrets restore normal GP-English statistics under the finite zero-IV, page-reset AES-CTR/ChaCha20 family. Consequently this exact reconstruction offers no key or decipherment and should not be retried without an independent share-coordinate/field clue or key-use mechanism.
+The table cannot be an **unmodified, low-degree 8-column polynomial share matrix** or the independently tested **row-oriented 13-of-31 eight-byte share scheme** under the specified fields and coordinate clocks. Neither degree-seven interpolants nor XOR/arithmetic eight-share combined secrets restore normal GP-English statistics under the finite zero-IV, page-reset AES-CTR/ChaCha20 family. Consequently this exact reconstruction offers no key or decipherment and should not be retried without an independent share-coordinate/field clue or key-use mechanism.
 
 The strengthened coordinate-free test excludes even arbitrary **fixed** share coordinates within each physical page over the three declared fields. It does **not** exclude row-varying share coordinates, encrypted/salted shares, disputed byte readings, other finite fields or nonstandard byte encodings, nonlinear maps, different cryptographic modes, IV derivation, stateful key consumption, non-English plaintext or transformed plaintext. The existing grid-source transcription includes a limited number of debated byte readings; this test uses the repository's current canonical byte table.
 
