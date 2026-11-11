@@ -109,6 +109,25 @@ This rejects only a **position-independent value lookup** between the printed gr
 
 A [single-file original-source test](../sims/terminal_red_heading_eight_column_grid_sft.cjs) uses **all original positions** with no transcription changes. It tries the printed table's original row-major read and three standard keyword column-read/untransposition conventions, with both GP29 additive directions (eight exact original inverses). The untransformed composite ciphertext IoC is **0.03431373**; the eight decoded IoCs are **[0.03425245, 0.03281250, 0.03477328, 0.03523284, 0.03541667, 0.03367034, 0.03382353, 0.03596814]**, all in the ciphertext-like band, with unreadable transliterations. Every case exactly re-encodes the 256 original source rune indices, and an independently sampled native GP-English plant exactly decodes in all four traversals. The straightforward **keyword-permuted grid as a native-GP additive pad** therefore fails; this does not exclude an image-derived key, different plaintext encoding, higher-entropy decryption or nonlinear treatment of the original 256 positions.
 
+### Direct bytewise pad between the p50 grid and 256-rune terminal frame (Agent45, 11 November)
+
+The source-visible terminal frame is exactly **179 p53 runes + p54's enlarged red A (GP index 24) + 76 p55 runes = 256**, matching the **256 bytes** of the p50 grid. This test keeps the original source order on both sides: p50 row-major bytes against p53→p54-A→p55 rune values. The two direct, source-native byte encodings are GP index and GP prime weight. For each, test XOR, `grid+key mod256`, `grid−key mod256`, and `key−grid mod256`—eight fixed models, with no phase, traversal, or permutation search.
+
+| Key encoding | Operation | Printable bytes | ASCII letters | Entropy (bits/byte) | Longest printable run |
+|---|---|---:|---:|---:|---:|
+| GP index | XOR | 40.625% | 22.266% | 7.12852 | 5 |
+| GP index | grid + key | 38.672% | 21.875% | 7.22292 | 4 |
+| GP index | grid − key | 39.844% | 18.750% | 7.23009 | 5 |
+| GP index | key − grid | 38.281% | 22.656% | 7.23009 | 4 |
+| GP prime weight | XOR | 39.453% | 22.266% | 7.21358 | 4 |
+| GP prime weight | grid + key | 32.813% | 18.359% | 7.08907 | 4 |
+| GP prime weight | grid − key | 36.719% | 18.359% | 7.24881 | 4 |
+| GP prime weight | key − grid | 39.453% | 19.141% | 7.24881 | 4 |
+
+No output has a known file signature; printable runs are at most five bytes and all eight outputs are random-like. Each of the eight inverse implementations recovers an independent 256-byte native-text plant exactly. The controls validate the arithmetic, not the hypothesis.
+
+**Decision:** retire only these eight source-order, direct bytewise XOR/additive pad consumers of the 256-frame. The equal-length frame/grid correspondence remains a structural observation, not evidence that this is the intended operation. Do not expand to arbitrary byte transforms, traversal orders, or offsets without an independent source selector. [Reproducer](../sims/grid256_terminal_bytewise_pad_sft.cjs).
+
 ### Direct classical columnar transposition of the 256-rune terminal composite (Agent 20, 11 November)
 
 The p54 eight-rune heading key also motivates a distinct, simple operation: transpose the **256 original p53 + p54 enlarged A + p55 runes** as a 32×8 matrix. This is not the previous additive-grid-pad test. The source-fixed column order is **[4,6,5,0,7,1,2,3]**, with zero-based columns, from ascending GP ordinal of p54 local offsets 1–8; equal M runes retain their original left-to-right order. The key runes are **ᛗᛝᛞᛡᚦᛉᛁᛗ**, GP ordinals **[19,21,23,27,2,14,10,19]**. The exact composite offsets are p53 local 0–178 at composite indices 0–178, p54 local 0 (the enlarged ᚪ / A, GP index24) at composite index179, and p55 local 0–75 at composite indices 180–255.
