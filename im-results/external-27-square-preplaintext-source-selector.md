@@ -62,6 +62,12 @@ The external proposal's opening node AE–J–EA at row 13, columns 11–13 is c
 
 The repeated infinity marks are especially weak as a transition selector: the existing original-image audit finds the seven marks on pp0–2 and p15 share the same orientation and crossing/gap pattern. No unique entry, exit, seam, or handedness is marked.
 
+### Competing stave interpretation now under test (Issue #194)
+
+A separate historical hypothesis has since been raised for the same artwork: Younger Futhark cipher-rune/twig-rune notation. The cited Menota Handbook describes a rune-row number and a position within that row, represented by branches on either side of a stave; a specific Orkney 6:5:5 convention (Barnes, 2003) maps 3|3 to thorn (Þ/TH). The measured p0 branch counts are 3|3, and the first black GP rune immediately after p0's red span is TH. This is a more specific competing interpretation than treating the projections as a three-rune key node.
+
+It does not change this audit's decision: 3|3 → TH is a candidate rune-value/crib selector, not a rule for constructing the external proposal's AE–J–EA key node or predicting its first two block transitions. The cited Orkney ordering is one historical variant, and p1/p2 do not begin with TH. Issue #194 is actively testing the branch-rune reading and its withheld controls; this audit does not duplicate or decide that work. Do not count the same three projections as independent evidence for both branch-rune notation and three-rune key-node size.
+
 ## Why the published 38 blocks cannot supply the missing selector
 
 The external proposal's own method defines several fitted transition filters and reports a 38-block reading. That reading cannot serve as an independent source instruction for choosing its own first node or first transitions. The existing block-39 audit leaves 21,818 admissible next-block assignments, with no unique continuation. This is supporting evidence of underdetermination, not the basis of the source-only decision above.
