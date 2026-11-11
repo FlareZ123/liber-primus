@@ -37,6 +37,22 @@ function phi(n) {
   if (n > 1) out -= out / n;
   return out;
 }
+function multiplicativeOrder(g, p) {
+  let x = 1n;
+  for (let k = 1; k <= p - 1; k++) {
+    x = x * g % p;
+    if (x === 1n) return k;
+  }
+  return null;
+}
+function discreteLog(g, target, p) {
+  let x = 1n;
+  for (let k = 0; k < p - 1; k++) {
+    if (x === target) return k;
+    x = x * g % p;
+  }
+  return null;
+}
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
 const translit = (indices) => indices.map((i) => corpus.translit[i]).join("-");
 
@@ -59,6 +75,8 @@ const serverPublic = modPow(g, BigInt(exponent), p);
 const clientPublic = M % p;
 assert.notEqual(clientPublic, 0n, "DH public share must be nonzero");
 const shared = modPow(clientPublic, BigInt(exponent), p);
+const p0GroupOrder = multiplicativeOrder(g, p);
+const clientExponent = discreteLog(g, clientPublic, p);
 
 assert.equal(N.toString(), "5412445423142629857");
 assert.equal(M.toString(), "1420123033");
@@ -68,6 +86,8 @@ assert.equal(heading.at(-1), 5); // matches the source DH base
 assert.equal(clientPublic, 16n);
 assert.equal(serverPublic, 17n);
 assert.equal(shared, 18n);
+assert.equal(p0GroupOrder, 22);
+assert.equal(clientExponent, 8); // 16 = 5^8 mod 23
 
 // Finite control: search every page-local 13-rune window on LP2 pages 0–55.
 let scannedWindows = 0;
@@ -136,6 +156,42 @@ for (let page = 0; page < wordsByPage.length; page++) {
 assert.equal(sum343Words.length, 5);
 assert.deepEqual(sum343Words.filter((x) => x.length === 7).map((x) => [x.page, x.wordNumber]), [[18, 7]]);
 
+// The other red spans divisible by 23 are negative DH controls under the same reading.
+const p15Red = annotations.pages.find((p) => p.page === 15).red_spans
+  .find((s) => s.start === 0);
+const p15Digits = corpus.pages[15].indices.slice(p15Red.start, p15Red.start + p15Red.length);
+const p15Base = BigInt(p15Digits.at(-1)) % p;
+const p15Order = multiplicativeOrder(p15Base, p);
+
+const p33Red = annotations.pages.find((p) => p.page === 33).red_spans
+  .find((s) => s.start === 0);
+const p33Digits = corpus.pages[33].indices.slice(p33Red.start, p33Red.start + p33Red.length);
+const p33Value = base29(p33Digits);
+const p33Base = BigInt(p33Digits.at(-1)) % p;
+const p33Exponent = p33Value % 22n;
+const p33Raw = printedSource[33];
+const p33FirstBlackLineText = (p33Raw.split(".")[1] || "").split("/")[0] || "";
+const p33FirstBlackLine = [...(p33FirstBlackLineText.match(/[ᚠ-᛿]/gu) || [])]
+  .map((r) => runeIndex.get(r));
+assert.equal(p33FirstBlackLine.length, 8);
+const p33M = base29(p33FirstBlackLine);
+const p33ClientPublic = p33M % p;
+const p33Order = multiplicativeOrder(p33Base, p);
+const p33Subgroup = new Set();
+let subgroupValue = 1n;
+for (let k = 0; k < Number(p33Order); k++) {
+  p33Subgroup.add(subgroupValue.toString());
+  subgroupValue = subgroupValue * p33Base % p;
+}
+assert.equal(p15Base, 1n);
+assert.equal(p15Order, 1);
+assert.equal(p33Base, 6n);
+assert.equal(p33Exponent, 21n);
+assert.equal(p33M.toString(), "220096403606");
+assert.equal(p33ClientPublic, 10n);
+assert.equal(p33Order, 11);
+assert.equal(p33Subgroup.has("10"), false);
+
 // Conditional use of the provisional 2016 base-58 word-pointer rule.
 const p53w6 = wordInfo(343 % 58, Math.floor(343 / 58));
 const p53Next = {
@@ -168,8 +224,16 @@ console.log(JSON.stringify({
   firstBlackLine: { indices: firstBlackLine, transliteration: translit(firstBlackLine),
     base29: M.toString(), mod23: Number(clientPublic), length: firstBlackLine.length },
   dh23: { p: 23, base: 5, serverExponent: exponent, serverPublic: Number(serverPublic),
-    clientPublic: Number(clientPublic), sharedSecret: Number(shared) },
+    clientPublic: Number(clientPublic), clientExponent, sharedSecret: Number(shared),
+    groupOrder: p0GroupOrder },
   selectorControl: { scannedWindows, hits: selectorHits, redSpanDivisibleBy23 },
+  alternateRedSpanControls: {
+    p15: { base: Number(p15Base), groupOrder: p15Order },
+    p33: { base: Number(p33Base), exponent: Number(p33Exponent),
+      firstBlackLine: translit(p33FirstBlackLine), firstBlackLineLength: p33FirstBlackLine.length,
+      publicShare: Number(p33ClientPublic), groupOrder: p33Order,
+      generatedSubgroup: [...p33Subgroup], shareInSubgroup: p33Subgroup.has(p33ClientPublic.toString()) }
+  },
   conditionalWordMap: { p18w7, sum343WordCount: sum343Words.length,
     onlySevenRuneSum343: sum343Words.filter((x) => x.length === 7).map((x) => [x.page, x.wordNumber]),
     p53w6, next: p18w5 },
