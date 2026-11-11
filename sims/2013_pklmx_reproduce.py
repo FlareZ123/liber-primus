@@ -5,7 +5,7 @@ The XOR stage is checked against the extracted-byte column preserved by the
 participant solver archive. If the original ISO's DATA directory is available,
 pass it with --iso-dir to additionally verify each raw file slice.
 
-The SSSS implementation follows the relevant ssss 0.5 algorithm:
+The SSSS implementation follows the relevant ssss 0.5 algorithm; share IDs are decimal because its parser uses atoi():
 - dynamic security level from the 22-byte ASCII secret (176 bits);
 - GF(2^176), polynomial x^176 + x^11 + x^3 + x^2 + 1;
 - monic degree-threshold polynomial (ssss removes x**threshold on combine);
@@ -63,8 +63,8 @@ XOR_ROWS = [
      "ll5afyskb6v6g7ga.onion"),
 ]
 
-# Seven shares in the community table. IDs 02,03,05,07,08,09 are mutually
-# consistent for the recovered secret; the authenticated share 10 is not.
+# Seven of the ten decimal-indexed shares in the community table. The ssss
+# 0.5 parser uses atoi(), so share ID "10" means decimal ten, not hex 0x10.
 SHARES = [
     ("02", "41cc481a51fe77f91600f593c1db2ce9babd2626ea6e"),
     ("03", "7678a5f6b72042d839151b34b02ffe161cf997fed484"),
@@ -189,7 +189,7 @@ def combine_ssss(points: Iterable[tuple[str, str]]) -> bytes:
 
     adjusted = []
     for share_id, share_hex in points:
-        x = int(share_id, 16)
+        x = int(share_id, 10)
         y = int(share_hex, 16)
         # ssss uses a monic degree-t polynomial; remove its known x**t term.
         y ^= gf_pow(x, SHARE_THRESHOLD)
@@ -242,26 +242,21 @@ def reproduce_xor(iso_dir: Path | None) -> list[tuple[str, str]]:
 
 def reproduce_shamir() -> tuple[list[tuple[str, ...]], list[tuple[str, ...]]]:
     by_id = dict(SHARES)
-    good_ids = ["02", "03", "05", "07", "08", "09"]
-    good_subsets = []
-    for subset in combinations(good_ids, SHARE_THRESHOLD):
-        points = [(sid, by_id[sid]) for sid in subset]
-        if combine_ssss(points) != SECRET:
-            raise AssertionError(f"consistent subset failed: {subset}")
-        good_subsets.append(subset)
-
-    bad_subsets = []
-    for subset in combinations([sid for sid, _ in SHARES], SHARE_THRESHOLD):
-        if "10" not in subset:
-            continue
+    observed_ids = [sid for sid, _ in SHARES]
+    valid_subsets = []
+    invalid_subsets = []
+    for subset in combinations(observed_ids, SHARE_THRESHOLD):
         points = [(sid, by_id[sid]) for sid in subset]
         if combine_ssss(points) == SECRET:
-            bad_subsets.append(subset)
+            valid_subsets.append(subset)
+        else:
+            invalid_subsets.append(subset)
 
-    if len(good_subsets) != 6:
-        raise AssertionError(f"expected 6 good five-share subsets, got {len(good_subsets)}")
-    if bad_subsets:
-        raise AssertionError(f"share 10 unexpectedly matched: {bad_subsets}")
+    if len(valid_subsets) != 21 or invalid_subsets:
+        raise AssertionError(
+            f"expected all 21 observed five-share subsets to match; "
+            f"valid={len(valid_subsets)}, invalid={invalid_subsets}"
+        )
 
     # The five shares used by Connor Tumbleson's independent walkthrough.
     published_example = ["05", "07", "09", "03", "02"]
@@ -269,12 +264,15 @@ def reproduce_shamir() -> tuple[list[tuple[str, ...]], list[tuple[str, ...]]]:
         raise AssertionError("published five-share example did not reconstruct")
 
     # The archived shares.txt first five lines reconstruct; its sixth line is
-    # not consumed by ssss-combine -t 5.
+    # not consumed by ssss-combine -t 5, although share 10 is itself consistent.
     first_five = SHARES_TXT_ORDER[:SHARE_THRESHOLD]
     if combine_ssss([(sid, by_id[sid]) for sid in first_five]) != SECRET:
         raise AssertionError("shares.txt first five lines did not reconstruct")
 
-    return good_subsets, bad_subsets
+    if combine_ssss([(sid, by_id[sid]) for sid in ["02", "03", "05", "07", "10"]]) != SECRET:
+        raise AssertionError("decimal share 10 did not reconstruct")
+
+    return valid_subsets, invalid_subsets
 
 
 def main() -> None:
@@ -311,9 +309,9 @@ def main() -> None:
     good, bad = reproduce_shamir()
     print(f"SSSS threshold: {SHARE_THRESHOLD}; field: GF(2^{FIELD_BITS})")
     print(f"SSSS result: {SECRET.decode('ascii')}")
-    print(f"Five-share subsets from IDs 02,03,05,07,08,09: {len(good)}/6 match.")
-    print(f"Five-share subsets containing signed share 10: 0/{len(list(combinations([sid for sid, _ in SHARES], 5)))-len(good)} match.")
-    print("Share 10 is an authenticated outlier under this reconstruction; do not infer why.")
+    print(f"Five-share subsets from all seven observed decimal IDs: {len(good)}/21 match.")
+    print("All seven observed shares, including signed share 10, are mutually consistent.")
+    print("Three of the ten shares described by the historical walkthrough are absent from this archive.")
     print("All checks passed.")
 
 
