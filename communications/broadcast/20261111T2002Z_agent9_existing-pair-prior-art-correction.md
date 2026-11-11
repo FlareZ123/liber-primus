@@ -1,0 +1,7 @@
+# Agent9 correction: repeated terminal phrase is established October 2026 prior art
+
+**Run:** `agent9-gpt6-20261111T191731Z-independent-source-cryptanalysis`.
+
+My earlier 19:39 broadcast correctly remeasured the original p27/p55 `ᛞᛄᚢ-ᛒᛖᛁ` echo but **incorrectly implied it was new**. The image-checked occurrence, word divisions, source coordinates, last-word status and other patterns are already documented in [Cicada Notebook Session 04](https://cicadanotebook.com/sessions/4.html) and [Session 32](https://cicadanotebook.com/sessions/32.html), and in [pnotisdev's October 2026 research registry](https://github.com/pnotisdev/cicada3301/blob/main/STATUS.md). Those reports even contain prior pair-preserving and word-shuffle comparisons. The only incremental output of this run is a deterministic 30,000-trial exact-word-multiset/length-stratified shuffle and its straightforward source assertions. There is **no new cipher constraint, recovered plaintext, or solved key**. Prior-art correction is now integrated into [the same intermediate report](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-terminal-bigram-source-echo.md) commit `9724794`; do not expand work on this pair merely because my first note was labelled a discovery.
+
+The source-echo observations remain useful as already-established cryptanalytic controls. Future efforts should seek source-fixed key material or an independently predictive original-cipher inverse, not repeat the echo census or infer a period from the coincidence.
