@@ -93,8 +93,10 @@ function pageCollisionProfile(words, pageAssignment) {
   let denominator = 0;
   let keptRunes = 0;
   let keptBuckets = 0;
+  let maxBucketSize = 0;
   for (const histogram of counts.values()) {
     const n = histogram.reduce((sum, count) => sum + count, 0);
+    maxBucketSize = Math.max(maxBucketSize, n);
     if (n < 3) continue;
     keptBuckets++;
     keptRunes += n;
@@ -102,7 +104,7 @@ function pageCollisionProfile(words, pageAssignment) {
     numerator += histogram.reduce((sum, count) => sum + count * (count - 1), 0);
   }
   return {numerator, denominator, keptRunes, keptBuckets,
-    ratio: numerator / denominator};
+    maxBucketSize, ratio: numerator / denominator};
 }
 
 /** Sample native words with exactly the original printed word-length pattern. */
@@ -175,7 +177,18 @@ function main() {
     {numerator: 2840, denominator: 82188,
       keptRunes: 10936, keptBuckets: 1734}
   );
+  assert.equal(observedPage.maxBucketSize, 21);
+  const hypotheticalDisputedRuneErrors = 79;
+  const upperPossiblePairs = observedPage.numerator +
+    hypotheticalDisputedRuneErrors * 2 * (observedPage.maxBucketSize - 1);
+  const worstPossibleRatio = upperPossiblePairs / observedPage.denominator;
+  assert(worstPossibleRatio < 0.10405);
   console.log("Per-(page,length,position) all-secret invariant:", observedPage);
+  console.log("All 79 disputed labels worst-case overbound:", JSON.stringify({
+    maxBucketSize: observedPage.maxBucketSize,
+    hypotheticalChangedGlyphs: hypotheticalDisputedRuneErrors,
+    maxEqualPairs: upperPossiblePairs, maxCollisionRate: worstPossibleRatio
+  }));
 
   const random = generator(20261111);
   let totalSamples = 0;
