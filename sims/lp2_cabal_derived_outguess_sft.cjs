@@ -20,7 +20,7 @@ const root = path.resolve(__dirname, "..");
 const src = path.join(root, "resources/liber-primus");
 const historical = path.join(root, "resources/historical");
 const output = path.join(root, "outguess-cabal-derived-results");
-const key = "CABALUOIDFORM"; // exact GP transliteration; do not normalize UOID to VOID
+const key = "CABALVOIDFORM"; // semantic English reading of GP-transliterated UOID
 const carriers = [
   { file: "31.jpg", page: 14, reason: "original FOLD/tree page" },
   { file: "49.jpg", page: 32, reason: "original blurred-tree / 11x11 page" },
@@ -70,13 +70,13 @@ function main() {
   const lockHandle = fs.openSync(lock, "wx");
   const scratch = path.join(output, "extract.incomplete");
   const result = {
-    classification: "single source-derived passphrase, three original carriers; no password tuning",
+    classification: "single source-derived semantic passphrase, three original carriers; no password tuning",
     key,
     keyLength: key.length,
     keyDerivation: {
       source: "2013 0_wisdom / p55-p36 central-column navigation",
-      orderedWords: ["CABAL", "UOID", "FORM"],
-      note: "UOID is retained as the exact GP transliteration; no V/VOID normalization"
+      orderedWords: ["CABAL", "VOID", "FORM"],
+      note: "VOID is the English meaning of the GP-transliterated UOID; selected by the signed 2016 instruction that word meanings are the road"
     },
     carriers,
     attempts: [],
