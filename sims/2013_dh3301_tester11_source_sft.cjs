@@ -416,7 +416,11 @@ console.log(JSON.stringify({
   candidateResults,
   selectedBase29Additive,
   selectedElgamal: {
-    originalBook: selectedOriginalElgamal,
+    originalBook: {
+      blocks: selectedOriginalElgamal.blocks,
+      zeroFirstComponents: selectedOriginalElgamal.zeroFirstComponents,
+      leftoverRunes: selectedOriginalElgamal.leftoverRunes,
+    },
     quotient252: {
       score: score(selectedQuotientElgamal.out),
       byteRange0to255: selectedQuotientElgamalBytes.filter((x) => x < 256).length,
