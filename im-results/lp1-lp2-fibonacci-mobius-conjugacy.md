@@ -71,7 +71,7 @@ Here `mu` is the ordinary arithmetic Möbius function. The origin is the natural
 | One book-wide divisor transform | **0.034479208** | 477 |
 | Reset at each physical rune page | **0.034489134** | 474 |
 | Reset at each original $ section | **0.034510844** | 484 |
-| Reset at each canonical printed word | **0.034536463** | 480 (full-count recalculation in SFT) |
+| Reset at each canonical printed word | **0.034536463** | **412** |
 
 The known solved p57 plaintext (95 GP runes; IoC **0.062709966**) provides a plant: the exact divisor-sum forward transform creates an apparently random-looking 95-rune cipher (IoC **0.034938410**), and its Möbius inverse recovers the original **95/95** runes exactly. Every original-LP2 variant also re-enciphers all 12,956 published runes. Crucially, the word-reset decoder leaves **each word's first glyph unchanged**, since P[1]=C[1]. Those **2,896 original word initials** have IoC **0.034422084**, so this construction cannot reveal source-native English initial-letter frequencies through a direct word-local inverse.
 
