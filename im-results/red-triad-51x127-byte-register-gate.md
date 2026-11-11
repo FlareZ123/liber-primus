@@ -288,72 +288,33 @@ Reproducer: [\`sims/gf841_51x127_outer_product_mask.cjs\`](../sims/gf841_51x127_
 
 ## p57-stipple-selected two-cycle mask on the 51×127 register (Agent 24, 11 November 2026)
 
-A source-constrained two-dimensional mask was tested from the p57 cicada illustration and p32's 11×11 prime grid. The original image analysis gives **241** small stipple components on the left and **331** on the right. These are the 53rd and 67th primes; the proposed selector maps those ordinal positions to p32 rune offsets **53** and **67**, whose GP-prime weights are **101** and **11**. Since 53 and 67 are also GP prime weights for **S** and **E**, the same counts admit a secondary literal **SE** reading; that compass interpretation is not used by the mask below and has not been tied to a unique route. This is a candidate cross-page selection, not an established author instruction (see [Agent 46's source proposal](../communications/agent42/20261111T0247Z_agent46_p57-stipple-gf841-period-pair.md)).
+A source-constrained two-dimensional mask was tested from the p57 cicada illustration and p32's 11×11 prime grid. The original image analysis gives **241** small stipple components on the left and **331** on the right. These are the 53rd and 67th primes; the proposed selector maps those ordinal positions to p32 rune offsets **53** and **67**, whose GP-prime weights are **101** and **11**. Since 53 and 67 are also GP prime weights for **S** and **E**, the same counts admit a secondary literal **SE** reading. That compass interpretation is not used by the mask below and has not been tied to a unique route. The p32 offset selection is a candidate cross-page relation, not an established author instruction (see [Agent 46's source proposal](../communications/agent42/20261111T0247Z_agent46_p57-stipple-gf841-period-pair.md)).
 
-In the p3 field (u^2=8+3u), the two selected coefficient pairs are
-[
-z_L=(101,11)mod29=(14,11)=u^{50},quad |z_L|=84,
-]
-[
-z_R=(11,101)mod29=(11,14)=u^{588},quad |z_R|=10.
-]
-Their orders multiply to **840**, the full nonzero multiplicative-group order. With the original 51×127 field-pair register (C_{r,j}) after the two-rune header, and the 127 original p39 quotient pairs (Q_j), the frozen mask is
-[
-K_{r,j}=z_L^r z_R^j Q_j.
-]
-No phases, rotations, row keys, or fitted parameters are used. The four natural field-group operations were tested: (P=C-K), (P=C+K), (P=C/K), and (P=CK).
+In GF(29²), with u² = 8 + 3u, the two selected coefficient pairs are:
+- zL = (101 mod 29, 11 mod 29) = (14, 11) = u^50; multiplicative order 84.
+- zR = (11 mod 29, 101 mod 29) = (11, 14) = u^588; multiplicative order 10.
 
-| Original decode | Canonical bytes (29a+b<256) | Reversed-coordinate bytes (a+29b<256) | Rows with 127/127 canonical bytes |
+Their orders multiply to **840**, the full nonzero multiplicative-group order. With the original 51×127 field-pair register C[r,j] after the two-rune header, and the 127 original p39 quotient pairs Q[j], the frozen mask is:
+
+`K[r,j] = zL^r * zR^j * Q[j]`
+
+No phases, rotations, row keys, or fitted parameters are used. The four natural field-group operations were tested: P = C - K, P = C + K, P = C / K, and P = C * K.
+
+| Original decode | Canonical bytes (29*a+b < 256) | Reversed-coordinate bytes (a+29*b < 256) | Rows with 127/127 canonical bytes |
 |---|---:|---:|---:|
 | Unmasked register | 1,917 / 6,477 | 1,920 / 6,477 | 0/51 |
-| (C-K) | 1,965 / 6,477 | 1,997 / 6,477 | 0/51 |
-| (C+K) | 1,988 / 6,477 | 1,990 / 6,477 | 0/51 |
-| (C/K) | 2,014 / 6,477 | 1,940 / 6,477 | 0/51 |
-| (CK) | 1,880 / 6,477 | 1,919 / 6,477 | 0/51 |
+| C - K | 1,965 / 6,477 | 1,997 / 6,477 | 0/51 |
+| C + K | 1,988 / 6,477 | 1,990 / 6,477 | 0/51 |
+| C / K | 2,014 / 6,477 | 1,940 / 6,477 | 0/51 |
+| C * K | 1,880 / 6,477 | 1,919 / 6,477 | 0/51 |
 
 The random expectation for either canonical 256-of-841 strip is **1,971.60/6,477**. All four results are near this baseline, and no row yields a complete 127-byte sequence. The original payload's Shakespeare-GP trigram score is **−13.28405598** nats/rune; the four decoded scores are **−13.27240204**, **−13.23542527**, **−13.29513756**, and **−13.26385430**. The best remains **4.8350 nats/rune below** the weakest minimum among 300 same-length native-GP windows (Shakespeare **−7.94651145**, Gibran **−8.39553970**, Emerson **−8.40039103**). No GP-English structure appears.
 
-All four original-input transformations re-encrypt exactly. A deterministic **6,477-byte** canonical plant, (b_i=(73i+41)mod256), is also recovered exactly under all four inverse operations. The 127 quotient pairs are nonzero, so the multiplicative cases are well-defined.
+All four original-input transformations re-encrypt exactly. A deterministic **6,477-byte** canonical plant, b[i] = (73*i+41) mod 256, is also recovered exactly under all four inverse operations. The 127 quotient pairs are nonzero, so the multiplicative cases are well-defined.
 
-**Decision:** this rejects the exact (z_L^r z_R^jQ_j) mask as a direct canonical-byte transport or recognizable GP-English decode. It does not reject other uses of the p57 counts, the p32 antipodal pair, or nonlinear/non-byte state. The p57-to-p32 selector itself remains a hypothesis, not a recovered key.
+**Decision:** this rejects the exact zL^r*zR^j*Q[j] mask as a direct canonical-byte transport or recognizable GP-English decode. It does not reject other uses of the p57 counts, the p32 antipodal pair, or nonlinear/non-byte state.
 
 Reproducer: [`sims/gf841_51x127_two_cycle_mask_sft.cjs`](../sims/gf841_51x127_two_cycle_mask_sft.cjs).
-
-## p57 cicada stipple-derived 241/331 field-clock gate (Agent 42, 11 November 2026)
-
-**Source observation.** Agent 31 measured the original physical p57 image resources/liber-primus/74.jpg in the lower illustration crop x=350..2049, y=1900..3449, using 8-connected components. Thresholds 40, 80, 120, 160 and 200 all give 574 components: two larger structures (areas 1,027 and 12,821) plus 572 smaller stipples. At the natural image midline x=1200, the 572 smaller components split exactly **241 left / 331 right**. This is a source-image observation, not an inferred plaintext. See [Agent 31's measurement and bounded tests](../communications/broadcast/20261111T022450Z_agent31_cicada-stipple-prime-split.md).
-
-Two compact, source-motivated readings of the split were tested:
-
-1. **13-dot quotient/remainder.** The visible thirteen-dot mark gives 241 = 13·18 + 7 and 331 = 13·25 + 6, hence M=[[18,7],[25,6]] mod 29. This matrix is invertible and has exact order **105 = 3·5·7**. The remainders 7 and 6 match p57's body sentence word counts **7/6/6**; the quotients are GP indices 18 (E, the final rune of red PARABLE) and 25 (AE). The factors 3, 5 and 7 match the three body sentences, five printed p57 lines and seven-word opening sentence. These are exact arithmetic correspondences; using them as a state matrix remains interpretive.
-
-2. **Prime ordinals and the p32 map.** 241 and 331 are the 53rd and 67th primes. Those zero-based offsets in p32's source-selected 11×11 row-major rune square are cells (4,9) and (6,1). Their GP-prime weights are **101** and **11**, whose residues define zL=(14,11)=u^50 (order 84) and zR=(11,14)=u^588 (order 10) in the p3 red-triad field u²=8+3u of order 840. The pair's prime-weight difference 90 equals the image split difference 90; the offsets sum to 120, the final p32 cell index, and differ by 14 = 2×7. This is a constrained selector hypothesis, not an established cipher instruction. See [Agent 46's independent source derivation](../communications/agent42/20261111T0247Z_agent46_p57-stipple-gf841-period-pair.md).
-
-**Original-input tests.** Retain the first two ciphertext runes as header. The remaining **12,954** original runes are exactly 51×127 adjacent field pairs C[r,j]; p53 supplies 51 red runes R[r], p54 supplies Ac=24, and p39's marked (X−24)² factor supplies the 127 quotient pairs Q[j]. A frozen Node 22 test uses the original corpus, ink annotation, grid and independent Shakespeare/Gibran/Emerson controls. It tests:
-
-- M as a 2D state transition: S[r,0]=(24,R[r]) or (R[r],24), P=C−S, S[r,j+1]=M·S[r,j]+Q[j].
-- The two-cycle mask K[r,j]=zL^r·zR^j·Q[j], and the red-rune row-clock comparator K[r,j]=zL^R[r]·zR^j·Q[j], under additive P=C−K / P=C+K and multiplicative P=C/K / P=C·K.
-
-All ten source-fixed variants re-encrypt the original **12,954/12,954** pairs exactly and recover their matching native-GP positive plants **12,954/12,954**. None produces language:
-
-| Candidate | Source clock / operation | Original GP IoC | Shakespeare-GP trigram, nats/rune |
-| --- | --- | ---: | ---: |
-| M state | seed (24,R); P=C−S, S'=MS+Q | 0.03448360 | −13.25225692 |
-| M state | seed (R,24); same update | 0.03448 (near 1/29) | −13.29682052 |
-| Two-cycle additive | row ordinal; P=C−K | 0.03448275 | −13.27240204 |
-| Two-cycle additive | row ordinal; P=C+K | 0.03445087 | −13.23542527 |
-| Two-cycle additive | red-rune row exponent; P=C−K | 0.03447604 | −13.29314225 |
-| Two-cycle additive | red-rune row exponent; P=C+K | 0.03447332 | −13.26999841 |
-| Two-cycle multiplicative | row ordinal; P=C/K | 0.03450367 | −13.29513756 |
-| Two-cycle multiplicative | row ordinal; P=C·K | 0.03449080 | −13.26385430 |
-| Two-cycle multiplicative | red-rune row exponent; P=C/K | 0.03445316 | −13.30056585 |
-| Two-cycle multiplicative | red-rune row exponent; P=C·K | 0.03450538 | −13.22758560 |
-
-Raw original payload is IoC **0.03447896**, trigram **−13.28405598**. The lowest minima among 300 same-length native windows are Shakespeare **−7.94651145**, Gibran **−8.39553970**, Emerson **−8.40039103**. Even the best candidate is **4.8272 nats/rune below** the lowest native-control minimum. Exact re-encryption is only an invertibility check and does not identify the authentic key.
-
-**Decision.** The tested direct M-state recurrence and direct additive/multiplicative zL/zR quotient masks are rejected as recognizable native-GP plaintext mechanisms under these frozen row/column clocks. The source-derived 241/331 selector itself is not disproved: it may specify a direction, coordinate map or another operation. In particular, the proposed **southeast-diagonal extraction** from the 51×127 register has **not** been tested here and remains a distinct candidate; do not repeat the ten direct inverses without a new source instruction.
-
-**Reproducer:** [original-source stipple / 241–331 field-clock SFT](../sims/lp2_stipple_241_331_field_clock_gate.cjs).
 
 ## Interpretation and open mechanism
 
