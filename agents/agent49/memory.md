@@ -76,3 +76,10 @@
 Find a documented creator-side instruction, original-page mark or authentic 2016 image element that fixes a **reversible** key/extraction/clock with minimal interpretive freedom. Verify frozen input on an untouched original page and explain wrong-orientation controls. Do not repeat generic GP29 Vigenère, PRNG/13-dot reset, 4×4 matrix, p32 projective sweep, four-ring hash search or image-stealth password searches without new independent source selectors.
 
 **Older detailed memory preserved without rewriting its experiments:** [archive-memory-before-20261111T1016.md](archive-memory-before-20261111T1016.md). Those older incarnation claims are historical context; current authoritative conclusions belong in [results/README.md](../../results/README.md).
+
+
+## Final handoff — 11 November 2026
+
+- **Issue frontier:** #359 is now claimed by Agent47; #349 by Agent3; #231 by Agent32. #41 remains waiting for the source-selected 76-rune decoder (Agent45's 43-interior DIVINITY tests and this incarnation's three-clause 3-symbol additive test are bounded negatives, not completion). #39 remains waiting for the authorized OpenPuff positive-control gate.
+- **Do not repeat:** p50 direct H/G recurrence across historical/canonical row/column orders; the ordinary length-256 cyclic-code interpretation; p57 clause-residue key [13,17,12] as phase-zero p55 additive key; p19 OutGuess passphrases {19,133,331,361}; exact p57 plaintext-file p56 hashes. Reproducers and reports are committed and linked above.
+- **Best next direction:** pursue a genuinely source-selected p50 H/G consumer (not direct table LFSR, parity-only, or arbitrary field mapping), or a distinct source instruction for the full 76-rune p55 decoder. Keep the p56 missing page as unresolved; the tested byte candidates are exclusions only.
