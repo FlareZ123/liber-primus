@@ -256,6 +256,40 @@ assert.deepEqual(redHits, [
   {page: 53, localRuneOffset: 143, followingRune: corpus.runes[2]},
   {page: 54, localRuneOffset: 3, followingRune: corpus.runes[2]}
 ]);
+// Preserve every occurrence of the source-selected D/IA pair in the three
+// page-image-linked terminal members, including the black occurrences. The
+// two black continuation runes (p54 then p55) visibly spell L/P, which are
+// also the established GP-prime-difference center readout from 2014 squares.
+// This is an extraction from ciphertext glyphs, not a deciphered message.
+const terminalPairHits = [];
+for (const page of corpus.pages.filter(page => [53,54,55].includes(page.page))) {
+  for (let i = 0; i + 2 < page.indices.length; i++) {
+    if (page.indices[i] === 23 && page.indices[i+1] === 27) {
+      terminalPairHits.push({
+        page: page.page, offset: i,
+        followingIndex: page.indices[i+2],
+        followingPrime: corpus.prime[page.indices[i+2]]
+      });
+    }
+  }
+}
+assert.deepEqual(terminalPairHits, [
+  {page: 53, offset: 143, followingIndex: 2, followingPrime: 5},
+  {page: 54, offset: 3, followingIndex: 2, followingPrime: 5},
+  {page: 54, offset: 90, followingIndex: 20, followingPrime: 73},
+  {page: 55, offset: 38, followingIndex: 13, followingPrime: 43}
+]);
+const selectedBlack = terminalPairHits.slice(2);
+assert.equal(selectedBlack.map(p => corpus.translit[p.followingIndex]).join(""), "LP");
+console.log(JSON.stringify({
+  sourceSelector: "2013 NUMBER(3259)=89*107 => GP red D/IA",
+  completeTerminalPairHits: terminalPairHits,
+  twoRedContinuations: "TH TH",
+  twoBlackContinuations: "LP",
+  comparison: "2014 square-center GP-prime differences 73,43 => LP",
+  status: "source-selected possible signpost, not a recovered plaintext/key"
+}));
+
 const originalTriadHits = [];
 for (const page of corpus.pages.filter(page => page.page <= 55)) {
   for (let i = 0; i + 2 < page.indices.length; i++) {
