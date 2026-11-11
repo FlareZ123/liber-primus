@@ -102,9 +102,9 @@ function sourceKeys() {
   assert.ok(isPrime64(largeFactor), 'large short-ID factor is prime');
   assert.equal(String(largeFactor).split('').reduce((s,c)=>s+Number(c),0), 29);
   const candidates = [
-    {name:'full64-issuer-id', sourceHex:fullHex, number:full, key:base29(full)},
-    {name:'explicit-short32-id', sourceHex:shortHex, number:short, key:base29(short)},
-    {name:'short32-large-prime-factor', sourceHex:String(largeFactor), number:largeFactor, key:base29(largeFactor)}
+    {name:'full64-issuer-id', sourceHex:fullHex, number:full.toString(), key:base29(full)},
+    {name:'explicit-short32-id', sourceHex:shortHex, number:short.toString(), key:base29(short)},
+    {name:'short32-large-prime-factor', sourceHex:String(largeFactor), number:largeFactor.toString(), key:base29(largeFactor)}
   ];
   assert.deepEqual(candidates.map(x=>x.key.length), [13,7,5]);
   for (const c of candidates) {
@@ -127,8 +127,8 @@ function originalSegments() {
   for (const p of corpus.pages) { pageStart[p.page] = base; base += p.indices.length; }
   const marks = ink.pages.flatMap(p => (p.large_punctuation || [])
     .filter(m => m[1] === 13)
-    .map(m => ({page:p.page, offset:m[0], global:pageStart[p.page]+m[0]})))
-    .sort((a,b)=>a.global-b.global);
+    .map(m => ({page:p.page, offset:m[0], ink:m[2], global:pageStart[p.page]+m[0]})))
+    .sort((a,b)=>a.global-b.global || (a.ink === 'black' ? -1 : b.ink === 'black' ? 1 : 0));
   assert.equal(marks.length, 31);
   const all = corpus.pages.flatMap(p => p.indices);
   const boundaries = [0, ...marks.map(m => m.global)];
