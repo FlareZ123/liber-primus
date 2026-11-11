@@ -253,6 +253,36 @@ for (const reverseSeed of [false, true]) {
   });
 }
 
+// Direct original-table running key on the same difference stream. The
+// source-native layouts are file order and the 32x8 table transpose, each in
+// both directions. Reducing the 0..59 values mod 29 is the direct field map;
+// subtracting one is only a global Caesar shift and is not a distinct family.
+const tableKeyVariants = [];
+for (const orientation of ["file-forward", "file-reverse", "column-major", "column-major-reverse"]) {
+  let bytes;
+  if (orientation.startsWith("file")) {
+    bytes = grid.bytes.slice();
+  } else {
+    const rows = Array.from({ length: 32 }, (_, row) => grid.bytes.slice(row * 8, row * 8 + 8));
+    bytes = Array.from({ length: 8 }, (_, column) => rows.map(row => row[column])).flat();
+  }
+  if (orientation.endsWith("reverse")) bytes.reverse();
+  const baseKey = bytes.map(mod);
+  const key = Array.from({ length: differences.length }, (_, i) => baseKey[i % baseKey.length]);
+  for (const sign of [-1, 1]) {
+    const plain = differences.map((d, i) => mod(d + sign * key[i]));
+    tableKeyVariants.push({
+      orientation,
+      sign,
+      keyPeriod: baseKey.length,
+      symbols: plain.length,
+      ioc: ioc(plain),
+      top: top(plain),
+      prefix: prefix(plain)
+    });
+  }
+}
+
 // Positive control: encrypt a known p57-derived stream under the exact
 // chain-additive model and recover every difference-domain plaintext rune.
 const controlKey = makeAnchoredKey(false).key;
@@ -293,6 +323,7 @@ const output = {
   stateOnlyVariants,
   zeroSuppressedVariants,
   zeroSuppressedPositiveControls: zeroSuppressedControls,
+  tableKeyVariants,
   positiveControl: {
     recoveredSymbols: syntheticRecovered.length,
     exactRoundTrip: true
