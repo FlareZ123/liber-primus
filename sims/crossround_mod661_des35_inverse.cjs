@@ -298,6 +298,87 @@ function plant() {
   };
 }
 
+
+const groupPowerKey = permutation.map(i => modPow(base, table[i], modulus) % 29);
+const groupPowerKeySha256 = crypto.createHash('sha256')
+  .update(Buffer.from(groupPowerKey)).digest('hex');
+const groupModes = [];
+for (const clock of ['book', 'page'])
+  for (const format of ['direct29', 'diff28'])
+    for (const sign of [-1, 1])
+      groupModes.push({clock, format, sign});
+function groupDecode(segs, mode) {
+  let global = 0;
+  return segs.map(seq => {
+    const out = [];
+    for (let j = 0; j < seq.length; j++) {
+      const c = seq[j], direct = mode.format === 'direct29' || j === 0;
+      const radix = direct ? 29 : 28;
+      const idx = mode.clock === 'book' ? global : j;
+      const digit = groupPowerKey[idx % 256] % radix;
+      if (direct) out.push(mod(c - mode.sign * digit, 29));
+      else if (c === seq[j - 1]) out.push(28);
+      else out.push(mod(mod(c - seq[j - 1] - 1, 29) -
+        mode.sign * digit, 28));
+      global++;
+    }
+    return out;
+  });
+}
+function groupEncode(segs, mode) {
+  let global = 0;
+  return segs.map(seq => {
+    const out = [];
+    for (let j = 0; j < seq.length; j++) {
+      const p = seq[j], direct = mode.format === 'direct29' || j === 0;
+      const radix = direct ? 29 : 28;
+      const idx = mode.clock === 'book' ? global : j;
+      const digit = groupPowerKey[idx % 256] % radix;
+      if (direct) out.push(mod(p + mode.sign * digit, 29));
+      else if (p === 28) out.push(out[j - 1]);
+      else out.push(mod(out[j - 1] + 1 +
+        mod(p + mode.sign * digit, 28), 29));
+      global++;
+    }
+    return out;
+  });
+}
+function groupSearch(segs) {
+  return groupModes.map(mode => {
+    const decoded = groupDecode(segs, mode);
+    const {tr, ho} = sliceSplit(decoded);
+    return {
+      mode, train: plainScore(tr, english), heldout: plainScore(ho, english),
+      trainIoc: ioc(tr), heldoutIoc: ioc(ho),
+      prefix: decoded[0].slice(0, 45).map(x => corpus.translit[x]).join(''),
+      decoded
+    };
+  }).sort((a, b) => b.train - a.train);
+}
+function groupPlant() {
+  const truth = {clock: 'book', format: 'direct29', sign: 1};
+  const ref = nativeRef.slice(0, 12956);
+  let offset = 0;
+  const native = segments.map(s => {
+    const v = ref.slice(offset, offset + s.length);
+    offset += s.length;
+    return v;
+  });
+  const cipher = groupEncode(native, truth);
+  const recovered = groupDecode(cipher, truth);
+  assert.deepEqual(recovered, native);
+  assert.deepEqual(groupEncode(recovered, truth), cipher);
+  const match = groupSearch(cipher);
+  const idx = match.findIndex(x => JSON.stringify(x.mode) === JSON.stringify(truth));
+  return {
+    trueModeRank: idx + 1, correctMode: truth,
+    recovered: recovered.flat().length, reencrypted: cipher.flat().length,
+    trueModeHeldout: match[idx].heldout,
+    bestAlternativeTraining: match.filter(x =>
+      JSON.stringify(x.mode) !== JSON.stringify(truth))[0].train
+  };
+}
+
 function main() {
   const results = search(original);
   const best = results[0];
@@ -316,7 +397,14 @@ function main() {
       uniqueOpenPuffSquareOrders: uniqueSquareOrders, squareOrderProduct: squareProduct,
       tableLength: table.length, seed: seed, stride: stride, gcdStrideTable: gcd(stride, 256),
       permutationUnique: new Set(permutation).size, keySha256: keyHash,
-      first32KeyBytes: [...permutedBytes.subarray(0, 32)]
+      first32KeyBytes: [...permutedBytes.subarray(0, 32)],
+      selectedPrimePair: [449, 1109], primePairDifference: 1109 - 449,
+      primePairDifferenceEqualsGroupOrder: 1109 - 449 === modulus - 1,
+      cicada3301ResidueModGroupOrder: 3301 % (modulus - 1),
+      selectedPrimePairPowersEqual: modPow(base, 449, modulus) === modPow(base, 1109, modulus),
+      cicada3301PowerIsBase: modPow(base, 3301, modulus) === base,
+      groupPowerKeySha256: groupPowerKeySha256,
+      groupPowerKeyFirst32: groupPowerKey.slice(0, 32)
     },
     sourceLayout: {
       originalRunes: original.flat().length, fragments: segments.length,
@@ -332,7 +420,15 @@ function main() {
       train: plainScore(split.tr, english), heldout: plainScore(split.ho, english),
       trainIoc: ioc(split.tr), heldoutIoc: ioc(split.ho)
     },
-    trueSourceControl: plant()
+    trueSourceControl: plant(),
+    groupPowerKeyTest: {
+      modes: groupModes.length,
+      topTraining: groupSearch(original).map(({mode, train, heldout, trainIoc, heldoutIoc, prefix}) =>
+        ({mode, train, heldout, trainIoc, heldoutIoc, prefix})),
+      noKeyNative: {train: plainScore(split.tr, english), heldout: plainScore(split.ho, english),
+        trainIoc: ioc(split.tr), heldoutIoc: ioc(split.ho)},
+      trueSourceControl: groupPlant()
+    }
   };
   console.log(JSON.stringify(output, null, 2));
 }
