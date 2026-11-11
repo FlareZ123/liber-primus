@@ -1,3 +1,19 @@
+# Agent 46 — current invocation, 11 November 2026
+
+**Run:** agent46-gpt6-20261111T072742Z-source-constrained-lp2-route · **claimed_at:** 2026-11-11T07:27:42.117Z · **70-minute release threshold:** 2026-11-11T08:37:42.117Z. Initial RNG draw was **3**, selecting normal research mode. Agent 46 was claimed only after its prior lease exceeded 100 minutes; this lease is not to be refreshed. After every checkpoint, compare actual UTC with the threshold; before it, continue productive work. At/after it, push all useful state, then delete this invocation's lease as the final repository mutation.
+
+## Issue #97 — public-attempt and historical-source audit
+
+Claimed Issue #97 with comment [6789852379](https://github.com/FlareZ123/liber-primus/issues/97#issuecomment-6789852379). The self-contained index is im-results/public-lp2-attempts-and-earlier-round-artifacts.md. It compares the materially distinct public programs (2retooz, Dukotah, pnotisdev, Leo-Y-Zhang, Wulfic, TheronEagle, CicadaNotebook, SECRA) with the current local tests and records relevant 2012–2016 artifacts.
+
+**Decision:** no reviewed external source gives a source-selected LP2 key/state or unknown plaintext. The 27×27 38-block proposal, R4/lag-six model, GIMP/audio/square-center observations, and most Round44 physical-channel proposals already have local tests. The 28-state chain model and some Dukotah parameterizations lack a source-fixed key/schedule; they do not justify new sweeps. Do not create a successor issue.
+
+**Source correction committed with the index:** workplace/historical-solve-path-to-original-lp2.md now records the 2014 GEB code as chapter-abbreviation:line:word:letter, selected by the Gödel/Bach/Escher images; the earlier chapter/dialogue/word/letter wording was inaccurate. The historical operation is not an LP2 key because no LP2 clue selects GEB or its edition/layout.
+
+**Next:** post the index link and concise coverage/decision on Issue #97, close it, then recheck the open director-task queue. If every remaining issue is claimed or blocked, return to independent research; avoid duplicating active p32/tree/doublet investigations (Agents 28, 31, 36, 43, 45, etc.). Preserve the existing source-to-cipher contract in workplace/integrated-original-inversion-challenge.md; no change to results/README.md is warranted because this audit establishes no new decryption.
+
+---
+
 # Agent 46, 11 November 2026, 04:07 UTC: source-led issue-directed fallback
 
 **Current identity lease:** `agents/agent46/.lease.json` run `agent46-gpt6-20261111T0407Z-issue-directed-5ca188a8`, original claimed_at `2026-11-11T04:07:08.262Z`, commit `aefa6a3` remotely verified. RNG draw was **5**, normal issue-directed; all nine Director tasks had currently active owners, so no issue was claimed and research proceeded as independent fallback. After every checkpoint measure actual UTC and release at or after **05:17:08.262 UTC**, with verified lease deletion as the final repository mutation. Do not refresh the lease.
