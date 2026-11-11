@@ -47,9 +47,20 @@ function main(){
   assert.equal(bodyWords,19);
   const firstBodyWords=wordCounts[1];
   assert.equal(firstBodyWords,7);
+  const sentenceCount=wordCounts.length-1;
+  assert.equal(sentenceCount,3);
+  const repeatedLastWordCount=wordCounts[2];
+  assert.deepEqual(wordCounts.slice(2),[6,6]);
+  const primesForSentenceCounts=primes(464);
+  const primeForThreeSentences=primesForSentenceCounts[sentenceCount*29-1];
+  const primeForSixWords=primesForSentenceCounts[repeatedLastWordCount*29-1];
+  assert.equal(primeForThreeSentences,449);
+  assert.equal(primeForSixWords,1033);
+
 
   const sums=clauses.map(runes=>runes.reduce((s,r)=>s+runePrime.get(r),0));
   assert.deepEqual(sums,[449,1259,1031,1229]);
+  assert.equal(sums[0],primeForThreeSentences);
   const residual=sums.slice(1).map(x=>x%sums[0]);
   assert.deepEqual(residual,[361,133,331]);
 
@@ -59,6 +70,7 @@ function main(){
   const squares=blocks.map(b=>b.trim().split(/\r?\n/)
     .map(line=>line.trim().split(/\s+/).map(Number)));
   assert.deepEqual(squares.map(x=>x.length),[5,7,5]);
+  assert.equal(squares[1][0].reduce((a,b)=>a+b,0),primeForSixWords);
   assert.deepEqual(squares.map(a=>a[Math.floor(a.length/2)][Math.floor(a.length/2)]),
     [809,331,91]);
 
@@ -99,6 +111,9 @@ function main(){
       "solved original LP2 p57 PARABLE", "original LP2 p0 red-ink span"],
     parableHeadingPrimeSum:sums[0],bodyGPPrimeSums:sums.slice(1),
     parableWordCounts:wordCounts,bodyWords,firstBodyWords,
+    sentenceCount,primeBySentenceCount:primeForThreeSentences,
+    lastTwoSentenceWordCount:repeatedLastWordCount,
+    primeByLastTwoWordCount:primeForSixWords,
     bodyResiduals:residual,
     generativeCandidate:{commonFactor:common,first:common**2,
       order:order,second:common*order,
