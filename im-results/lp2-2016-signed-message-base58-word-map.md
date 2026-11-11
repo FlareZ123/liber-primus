@@ -28,12 +28,15 @@ Run from the repository root:
 node sims/lp2_2016_message_base58_word_map.cjs
 ```
 
-The script reads only:
+The script reads the canonical GP corpus, physical-word transcription, historical master (only for a regression comparison), authenticated signed 2016 payload and printed numeral table:
 
 - `resources/liber-primus/lp2-corpus.json`
+- `resources/lp2-transcription.txt`
 - `resources/transcriptions/liber_primus_master.txt`
+- `resources/historical/cicada2016-4gq25-outguess.asc`
+- `resources/liber-primus/lp2-grid-256.json`
 
-It asserts the 58-page LP2 slice, every selected address, the unique FOLD token, the p56 END decryption, and the p32 row/column checksum.
+It asserts the 58-page LP2 slice, physical word segmentation, each frozen signed address, the FOLD and independently solved END anchors, a new two-step book-pointer connection, and the p32 source-image checksum.
 
 ## Word-by-word addresses
 
@@ -43,7 +46,7 @@ The canonical corpus transliteration gives these prime sums and zero-based page/
 |---|---:|---:|---:|---|
 | Its | 143 | 27 | 2 | `ᛚᛋᚳᛈ` (LSCP) |
 | words | 179 | 5 | 3 | `ᛁᛝᚩ` (INGO) |
-| are | 175 | 1 | 3 | `ᚳᚱᚦ` (CRTH) |
+| are | 175 | 1 | 3 | `ᚳᚱᚦᛡ` (CRTHIA) |
 | the | 72 | 14 | 1 | `ᚠᚩᛚᛞ` (FOLD) |
 | map | 211 | 37 | 3 | `ᛏᛠᛈᛉ` (TEAPX) |
 | their | 114 | 56 | 1 | `ᛟᛋᚱ` (OSR) |
@@ -82,9 +85,25 @@ The base-58 rule above was first tested on the conspicuous 16-word sentence and 
 
 **42 of 43 signed-message words address existing original rune words. Exactly one fails the rune-word contract: `lies`.** Its canonical spelling `L-I-E-S` has GP prime weights `73+31+67+53=224`, and `224 = 58×3 + 50`: physical LP2 **page50, zero-based word index3**. This is the **only rune-free numerical page** among the 58 original LP2 page slots. The source sentence containing that word reads `The path lies empty; epiphany seeks the devoted.` This is an independently predicted and semantically suggestive page selection under the already-frozen rule, with an obvious alternative interpretation: the word's address could target a *table cell* in place of an absent rune word. Original p50 does have 104 two-digit cells; its fourth token is exactly **`3D` = 193** under the canonical base-60 grid codec. Reading a table cell at that position is a **new candidate semantic extension**, not part of the originally specified rune-word rule.
 
-Two further predictions arise without changing the addressing convention. The signed word `found` has prime sum `130 = 58×2+14`, pointing to **physical p14 word2**, immediately after the unique p14 word1 `FOLD` selected repeatedly by `the`. The word `Beware` sums to `322 = 58×5+32`, selecting **p32 word5**, the same 11×11 tree page that independently matches the dimensions of the signed 2016 image. Neither of these selected unknown ciphertext words is established plaintext. Most of the other 42 selected rune words remain opaque.
+Two further predictions arise without changing the addressing convention. The signed word `found` has prime sum `130 = 58×2+14`, pointing to **physical p14 word2**, immediately after the unique p14 word1 `FOLD` selected repeatedly by `the`. The word `Beware` sums to `322 = 58×5+32`, selecting **p32 word5**, the same 11×11 tree page that independently matches the dimensions of the signed 2016 image. Neither of these selected unknown ciphertext words is established plaintext. Most of the other 42 selected rune words remain opaque. Their values must be read from the physical word boundaries, not from line-wrapped rune fragments.
 
 These source-fixed matches strengthen the **candidate** book-navigation interpretation because they were discovered after fixing the map on the earlier 16-word sentence. They do **not** supply an authenticated original-LP2 decryption or prove the creator chose this addressing rule; the special interpretation of `lies` was recognized after observing the table hit. A justified next operation must specify what to do with the p50 numeric token and the selected words, then predict unseen authentic text, a key or a recoverable destination. The full-source assertions and a summary are embedded in the original SFT, [`sims/lp2_2016_message_base58_word_map.cjs`](../sims/lp2_2016_message_base58_word_map.cjs).
+
+## Source-preserving recursive word route: FOLD → SB → END
+
+After a signed-source word selects a rune word, apply the **same fixed** prime-sum quotient/remainder operation to that selected printed rune word. This gives a reproducible two-hop route across the original book:
+
+| Source | Unmodified GP-prime sum | Address | Destination |
+|---|---:|---|---|
+| signed word **the** | `TH(5)+E(67)=72` | p14 word1 | `ᚠᚩᛚᛞ` = **FOLD** |
+| p14 word1 **FOLD** | `F(2)+O(7)+L(73)+D(89)=171` | p55 word2 | `ᛋᛒ` = SB |
+| p55 word2 **SB** | `S(53)+B(61)=114` | p56 word1 | `ᛟᛋᚱ` = **END** (verified plaintext under the separately solved p56 totient cipher) |
+
+The first intermediate destination is **p55, the final unsolved physical LP2 page**; the second is **p56, the first solved physical LP2 page**. The independently signed source word **their** has the same GP-prime sum **114** as SB and thus selects the same END word directly. These relationships survive correction of printed word boundaries. They offer a particularly precise candidate **book-navigation route** whose endpoints are source-visible and whose end word is independently decryptable.
+
+The **entire** physical word corpus contains **2,973 printed rune words**, versus **3,367 artificial rune runs** yielded by scanning the master transcript line-by-line. The earlier initial 16-word mapping, which used those line runs, splits a few real words at printed wraps. Among the 43 distinct-position signed source words, five addressed occurrences change their selected raw rune string under the correct printed parser: twice `are` at p1 word3, `empty` at p53 word5, `epiphany` at p30 word7, and `devoted` at p33 word6. All 43 computed **numeric addresses remain identical**, as do the 42 existent destinations and the unique p50 exception. This is an essential implementation correction for any human-readable route. It is source-grounded, with no plaintext recovery beyond the already known END.
+
+The pointer walk must *stop or change rule* when it encounters an absent word on the rune-free p50. Directly iterating it elsewhere creates ordinary convergent cycles and does not automatically yield an unknown-language plaintext. A successful solve must still supply a distinct source-prescribed stop, selection, folding or decryption instruction.
 
 ## Independent numerical bridge to the 2016 image
 
