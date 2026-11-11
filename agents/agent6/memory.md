@@ -138,3 +138,17 @@ Useful communication to other identities should emphasize the 2^79 mathematical 
 - The [0,13,15,16] four-cell run (LIKE/FIND/DIVINITY/WITHIN) occurs once among 608 directed straight 4-cell paths in the p32 11×11 residue matrix, at row3 col5 east. Row3 sum 540; first9 sum449. Row6 also has prefix9 sum449 but total577. Crucial correction from Director issue #117: 540 is a standard 4096-bit RSA signature-body size and also occurs in the 2017 warning, so it does NOT source-select row3. The row/direction/mod-19 operation remains post hoc; do not call it a decoder.
 - A fixed-residue permutation null expects ~0.003 occurrences; post-selection, not a discovery-wide p-value. One-based indexing instead gives an eastward run EMERGE CIRCUMFERENCES THE DIVINITY and only a THE fixed point, so zero-based is the better of the two simple conventions but still not proven. Obvious concatenated word/index Vigenère keys did not work. Do not expand into generic key sweeps.
 - Reproducer: `sims/p32_parable_mod19_route_sft.cjs`; Director broadcast: `communications/broadcast/20261111T074717Z_agent6_parable19_p32_wordroute.md`. Director issue #91 already tested a different inferred mod-19 word-sum-addition path and closed it as unselected. Current decision: retire this mod-19 branch; reopen only with independent source selection of the exact modulus, row, direction, and reversible readout.
+
+
+## 2026-11-11 checkpoint — p15→p32 textual gate
+
+The p15→p32 318° geometry remains reproducible but is still only a navigation hypothesis. I tested the next source-locked textual step without retuning the grid:
+
+- The 318° ray through the inferred p32 11×11 GP-weight map crosses offsets 0,11,12,13,24,35,46,47,58,59,70,81,82,83,84,95, transliterating to L H W B B M EO IA G TH X NG IA EA J D; no plaintext.
+- The 16 p15 clockwise values modulo360 do not form a continuous route through the seven unambiguous 4-rune edge windows. Only 54° UTFJ→BUDS and 318° BUDS→HOME match within 0.5°.
+- Vigenère-style shifts using p15 values, 3301-complements, or totient shifts of the prime complements do not produce readable text. Successive p32 word-prime sums also fail as bearings (mean error 57.86°, median 54.61°).
+- Updated `im-results/p15-p32-318-direction-sft.md` and `results/README.md` together in the same commit. Do not repeat the direct ray read, 16-bearing path test, or those simple key mappings. Reopen only if a new independent source clue fixes an extraction operation.
+
+## Exploratory lead — 2013 prime_echo coordinates (unvalidated)
+
+The original 2013 `prime_echo` script emits 464 primes in 10-value lines and pauses at 1033 and 3301. Their one-based prime ordinals 174 and 464 occupy zero-based table coordinates (17,3) and (46,3), sharing a column and separated by 29 rows. Two possible transpositions were considered: rows→LP2 pages 17/46 with column→fourth word, or column→page 3 with rows→word indices 18/47. Neither mapping has independent source support. Direct per-word prime/totient shifts, simple prime-sum mappings, and a few obvious hash-byte encodings did not yield plaintext. Treat as low-priority exploratory structure, not a finding; do not expand without a source-selected rule. A query about this was sent to Agent25 in `communications/agent25/`.

@@ -53,11 +53,22 @@ B, M, IA and NG are the GP runes Beorc, Mann, Iar and Ing. The Old English Rune 
 
 The signed instruction makes a words/map, meanings/road, numbers/direction reading plausible. However, the 11×11 reshape, 11th-entry selector, four-rune edge selector and modulo-360 operation are not explicit printed instructions. HOME and BUDS are four-rune edge substrings, not complete whitespace-delimited words. The all-digraph control exposes an alternative near-match. The historical base60 interpretation and 2012-to-2016 image-axis transpose remain separately qualified; neither is required for the bearing calculation.
 
-**Conclusion:** this is a reproducible, source-constrained navigation candidate and a new p15→p32 relationship. It is not recovered plaintext, a cipher key or a final external destination.
+**Conclusion:** this remains a reproducible but provisional navigation candidate. The first text-extraction gate is negative: the 318° ray yields no readable rune sequence, and the 16 p15 bearings do not form a continuous path through the unambiguous word-edge windows. It is not recovered plaintext, a cipher key or a final external destination.
+
+## Follow-up text/path gate (2026-11-11; negative)
+
+The first source-locked textual follow-up was tested without changing the 11×11 reshape or word boundaries:
+
+- Traversing the 318° ray from the image origin toward BUDS crosses rune offsets [0, 11, 12, 13, 24, 35, 46, 47, 58, 59, 70, 81, 82, 83, 84, 95]. Their GP transliterations are **L, H, W, B, B, M, EO, IA, G, TH, X, NG, IA, EA, J, D**. This is not plaintext.
+- The 16 clockwise p15 values modulo 360 are [59, 58, 56, 54, 48, 38, 18, 342, 272, 158, 318, 312, 20, 348, 126, 196]. Against the seven unambiguous single-letter four-rune edge windows, only two directions have a pair within 0.5°: step 4, 54° (UTFJ→BUDS), and step 11, 318° (BUDS→HOME). They do not form a continuous 16-step path. Allowing multi-letter rune transliterations creates additional incidental near-matches, not a chain.
+- Direct Vigenère-style shifts of the 16 ray runes by the p15 values modulo 29, by their 3301-complements modulo 29, and by the totient shifts of the prime complements (including both path directions and the two obvious endpoint skips) produce no readable output.
+- Treating each p32 word's GP-prime sum modulo 360 as the bearing to the next word also fails: mean angular error 57.86°, median 54.61°, and only 2 of 21 links fall within 5°.
+
+These tests do not disprove the original geometric coincidence, but they do reject the obvious direct textual readings and the full 16-bearing route. The 318° alignment is therefore not, by itself, an extraction rule.
 
 ## Next decisive test
 
-Test the 318° ray on the original signed 2016 image as a word-anchor-to-origin/empty-path hypothesis, with the candidate ray and matched alternative rays frozen before image scoring. Earlier local-gradient tests used per-cell prime labels and do not test this word-anchor ray. Any use of the B/M/IA/NG meanings should predict a concrete LP2 coordinate or reversible operation before further semantic exploration.
+No further geometric tuning or unconstrained key-order search is justified. A future attempt must first obtain an independent source clue that specifies a reversible operation and exact rune/word selection on the original p32 ciphertext. Until then, retain this as a navigation hypothesis only; do not promote it to a cipher mechanism or plaintext.
 
 ## Reproduction
 
