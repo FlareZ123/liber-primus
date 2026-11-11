@@ -88,6 +88,22 @@ A direct adjacent-page check now supplies an independent finite selector. The tw
 
 This relation is unique inside the complete 16-member corner-ownership family: **only mask 4**, the same horizontal single-count assignment selected by the red fixed-point code, maps ordered clause-end residues `[14,13]` to ordered adjacent cuneiform residues `[18,24]`. No assignment does so under inverse action or with only one side's source order reversed. This is a cross-artifact alignment recognized after both pages were available, so it is evidence for the map/orientation rather than a prospective plaintext prediction.
 
+The cuneiform notation provides a stronger independent reconstruction of the same projective map. Write the two displayed sexagesimal values as `(17,13)=1033` and `(55,1)=3301`. Three source-visible F29 correspondences follow directly from their digits and residues:
+
+- `17 → 13` from the first cuneiform pair;
+- `13 → 24`, because `3301 mod29 = 24`;
+- `18 → 26`, because `1033 mod29 = 18` and `55 mod29 = 26`.
+
+A projectivity is determined by three distinct point correspondences. Exhaustively enumerating the 29³ matrices normalized to bottom-right entry 1 leaves exactly one solution,
+
+`P = [[15,4],[4,1]]`.
+
+This is projectively identical to the p32 ring map: `28P = [[14,25],[25,28]] = M7 mod29`. More strikingly, scaling by the second cuneiform prime-rank quotient gives the independently count-derived representative:
+
+`16P = [[8,6],[6,16]] = N`,
+
+where `16 = rank(3301)/29 = 464/29`. The entries of N are themselves exactly `[[rank(3301)/58, rank(1033)/29],[rank(1033)/29, rank(3301)/29]] = [[8,6],[6,16]]`. Thus the p32 word/cell counts, the p32 ring side sums, and the p33 cuneiform values independently land in the same PGL2 class. The arrangement of the prime-rank quotients was recognized after the map was known, so it is supporting convergence rather than an a-priori probability claim.
+
 The deterministic source-preserving null gives **251/200,000** shuffles whose two clause-end residues map to `[18,24]` under fixed source M7, and **1/200,000** shuffles with the exact original clause-end sums `[14,216]`. Requiring a shuffled corner assignment to reproduce the full source-count self-description and map its shuffled clause ends to the p33 pair gives **0/200,000** matches under the fixed horizontal rule and **0/200,000** when any of the 16 legal assignments is allowed; the add-one conditional frequency is **1/200,001 ≈ 0.000005** in either case. This remains a post-discovery conditional diagnostic.
 
 The existing source-preserving shuffle was extended with these locked conditions. Holding p32's first row and first column fixed and shuffling the other 100 source prime values, the ordered map signature **fixed points 22,25 + multiplier 7** occurs in **108/200,000** trials under any of the 16 legal corner assignments and **6/200,000** under the original horizontal assignment. The exact selected word-22 sum **216** occurs in **2,064/200,000** shuffles. Requiring both the complete map signature and the exact word-22 sum leaves **3/200,000** trials under any legal assignment and **0/200,000** under the original horizontal assignment. Add-one conditional frequencies are therefore about **0.000020** and **0.000005** for the joint any-assignment and fixed-horizontal tests. These are post-discovery conditional frequencies, not discovery-wide probabilities.
