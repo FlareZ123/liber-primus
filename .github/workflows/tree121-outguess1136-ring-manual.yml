@@ -12,3 +12,5 @@ jobs:
           node-version: "22"
       - name: Verify source circumference and lossless original inverses
         run: node sims/tree121_outguess1136_ring_sft.cjs
+      - name: Verify signed 2016 43-word compass original source route
+        run: node sims/lp2_2016_43word_compass_sft.cjs
