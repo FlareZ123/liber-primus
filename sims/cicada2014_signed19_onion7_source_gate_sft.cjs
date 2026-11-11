@@ -78,9 +78,30 @@ assert.equal(divId, 331);
 assert.equal(Number(String(title).split("").reverse().join("")), divId);
 assert.equal(title, 7 * missing[0]);
 
-// Perturbing the source-visible address indent loses the single-19-gap pattern.
+/**
+ * OpenPGP cleartext signatures strip trailing whitespace before hashing,
+ * per RFC 4880 section 7.1. An all-space line is therefore an unsigned
+ * presentation channel even when the armored signature verifies.
+ * @param {string} armored
+ */
+function canonicalBody(armored) {
+  const start = armored.indexOf("\n\n");
+  const end = armored.indexOf("-----BEGIN PGP SIGNATURE-----");
+  return armored.slice(start + 2, end).split(/\r?\n/)
+    .map((line) => line.replace(/[ \t]+$/g, "")).join("\r\n");
+}
+
+// Altering a whitespace-only line can introduce "19" while preserving
+// the exact signed canonical content. This bounds the evidence strength.
+const unsignedWhitespaceMutation = signed.replace("\n   \n", "\n                   \n");
+assert.notEqual(unsignedWhitespaceMutation, signed);
+assert.notDeepEqual(whitespaceRuns(unsignedWhitespaceMutation), found);
+assert.equal(canonicalBody(unsignedWhitespaceMutation), canonicalBody(signed));
+
+// Changing the five-space INDENT before the address changes signed content.
 const wrong = signed.replace(/     ky2khlqdf7qdznac\.onion/, "    ky2khlqdf7qdznac.onion");
 assert.notDeepEqual(whitespaceRuns(wrong), found);
+assert.notEqual(canonicalBody(wrong), canonicalBody(signed));
 
 console.log(JSON.stringify({
   status: "PASS",
@@ -93,5 +114,7 @@ console.log(JSON.stringify({
   titleFactorization: "7 * 19",
   historicalImageCount: images.length,
   selectedCandidateImage: missing[0] + ".jpg",
+  signatureBindsWhitespaceRunList: false,
+  unsignedSpaceMutationPreservesCanonicalSignedBody: true,
   interpretation: "Exact cross-artifact number relation; no decoder or recovered LP2 plaintext",
 }, null, 2));
