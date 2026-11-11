@@ -1,4 +1,4 @@
-# 13-dot punctuation: two coincident printed-boundary pairs
+# 13-dot punctuation: full-release and unknown-prefix boundary ledger
 
 ## Established source-derived observation
 
@@ -15,6 +15,31 @@ These are not transcription-only duplicates: the original page images show disti
 - zero-based fragment 11 (one-based fragment 12), between the p14 end and p15 start marks at global offset 3603.
 
 The other 30 intervals are nonempty and together contain all 13,136 canonical runes. Reproducer: `sims/lp2_13dot_coincident_fragment_audit.cjs`.
+
+## Unknown-prefix scope (physical pp0–55)
+
+The 31-event/32-interval count above applies to the **full 58-page release** and includes three 13-dot events on solved pp56–57. It is not the event count for the unknown ciphertext.
+
+Restricting the same original annotation records to physical pp0–55 gives:
+
+| Observable | Unknown-prefix count |
+|---|---:|
+| Original runes | **12,956** |
+| Printed 13-dot events | **28** (27 red, 1 black) |
+| Distinct global rune offsets | **26** |
+| Event-indexed intervals, preserving every printed mark | **29** |
+| Nonempty intervals | **26** |
+| Zero-length intervals | **3** |
+
+The three empty intervals are zero-based indices **8, 11 and 28**:
+
+- **8:** between the black and red p7 marks at global rune offset 1,860;
+- **11:** between the p14-end and p15-start red marks at global rune offset 3,603;
+- **28:** after the terminal red p55 mark at local offset 76, global offset **12,956**, exactly the end of the unknown prefix.
+
+The two coincident pairs account for two empty intervals; the p55 terminal mark accounts for the third. All 26 nonempty intervals together contain exactly the 12,956 unknown runes. The event count is therefore **28**, not 31, for the unknown prefix. The 13 is the number of dots within each stencil, not the number of events.
+
+This distinction matters for every proposed fragment/state clock: a full-release 32-fragment mapping includes the solved tail, whereas an unknown-prefix mapping has 29 event-indexed intervals and three empty intervals. Neither count alone specifies how a cipher should handle co-located marks or the terminal event.
 
 ## Ornament and table crosslinks
 
@@ -43,3 +68,10 @@ Direct checks of the 18 interior values against the p27 title body (mod29, per-b
 - **Bounded negative:** the combined BLACK×LCG8 per-fragment DES-key interpretation produces no plaintext.
 - **Not established:** whether the two zero-length intervals are intended semantic fragments, whether the row/column crosslinks are authorial instructions, or what reversible operation uses the table.
 - **Next useful work:** seek an independently motivated non-DES operation or semantic route; do not repeat direct row-XOR, generic table, or unconstrained DES/key searches.
+
+
+## Consequence for a proposed 13-state register
+
+The repeated stencil supplies a visible count of 13 dots, but the unknown prefix contains 28 printed events, not a 13-event cycle. The original marks do not supply an independently documented state alphabet, ordered traversal, transition/update function, initialization, or rule for the two coincident pairs and terminal mark. The solved p56 prime-totient control passes through its internal 13-dot mark without advancing or resetting the prime counter; the same mark is inline on the printed line, so a literal ASCII carriage-return interpretation is not supported. See [the solved-page punctuation-clock test](lp2-punctuation-solved-clock.md) and [the source-image test of the 2013 0_wisdom punctuation](2013-0-wisdom-punctuation-image-audit.md).
+
+Accordingly, the source currently selects **no 13-state reversible cipher**. Do not infer an LFSR, state order, or period/phase search from the dot count alone. This retires the 13-dot-as-13-state-register reading pending a separate original clue that fixes a complete reversible operation; it does not rule out every cipher that might use punctuation as input.

@@ -86,18 +86,74 @@ const empty = fragments.filter(x => x.length === 0);
 assert.deepEqual(empty.map(x => x.zeroBasedIndex), [8, 11]);
 assert.deepEqual(empty.map(x => x.oneBasedNumber), [9, 12]);
 
-// Original scans supporting the two pairs are retained in resources.
+// The unknown LP2 prefix is physical pp0–55. The three 13-dot events on
+// solved pp56–57 belong to the full-release count, not this cipher target.
+const unknownRuneCount = corpus.pages
+  .filter(page => page.page <= 55)
+  .reduce((sum, page) => sum + page.runic_count, 0);
+assert.equal(unknownRuneCount, 12956);
+const unknownEvents = events.filter(event => event.page <= 55);
+assert.equal(unknownEvents.length, 28);
+assert.equal(unknownEvents.filter(event => event.color === 'red').length, 27);
+assert.equal(unknownEvents.filter(event => event.color === 'black').length, 1);
+
+const unknownGroups = new Map();
+for (const event of unknownEvents) {
+  if (!unknownGroups.has(event.globalOffset)) unknownGroups.set(event.globalOffset, []);
+  unknownGroups.get(event.globalOffset).push(event);
+}
+assert.equal(unknownGroups.size, 26);
+
+const unknownFragments = [];
+let unknownPrevious = 0;
+for (const event of unknownEvents) {
+  unknownFragments.push({
+    zeroBasedIndex: unknownFragments.length,
+    start: unknownPrevious,
+    end: event.globalOffset,
+    length: event.globalOffset - unknownPrevious,
+    terminatingEvent: event
+  });
+  unknownPrevious = event.globalOffset;
+}
+unknownFragments.push({
+  zeroBasedIndex: unknownFragments.length,
+  start: unknownPrevious,
+  end: unknownRuneCount,
+  length: unknownRuneCount - unknownPrevious,
+  terminatingEvent: null
+});
+assert.equal(unknownFragments.length, 29);
+const unknownEmpty = unknownFragments.filter(x => x.length === 0);
+assert.deepEqual(unknownEmpty.map(x => x.zeroBasedIndex), [8, 11, 28]);
+assert.equal(unknownFragments.filter(x => x.length > 0).length, 26);
+assert.equal(unknownFragments.reduce((sum, x) => sum + x.length, 0), unknownRuneCount);
+assert.equal(unknownEvents.at(-1).globalOffset, unknownRuneCount); // p55 terminal mark
+
+// Original scans supporting the two coincident pairs are retained in resources.
 for (const file of ['24.jpg', '31.jpg', '32.jpg']) {
   assert.ok(fs.existsSync(path.join(root, 'resources/liber-primus', file)),
     `missing original scan ${file}`);
 }
 
 console.log(JSON.stringify({
-  totalOriginalRunes: totalRunes,
-  printed13DotEvents: events.length,
-  uniqueLogicalOffsets: groups.size,
-  coincidentPhysicalMarkPairs: coincident,
-  fragmentCountWhenAllPrintedEventsArePreserved: fragments.length,
-  zeroLengthFragments: empty,
-  interpretation: 'Two distinct physical 13-dot mark pairs delimit zero-rune intervals. Do not silently deduplicate without a source rule.'
+  fullRelease: {
+    totalOriginalRunes: totalRunes,
+    printed13DotEvents: events.length,
+    uniqueLogicalOffsets: groups.size,
+    coincidentPhysicalMarkPairs: coincident,
+    fragmentCountWhenAllPrintedEventsArePreserved: fragments.length,
+    zeroLengthFragmentIndices: empty.map(x => x.zeroBasedIndex)
+  },
+  unknownPrefix: {
+    physicalPages: '0–55',
+    totalRunes: unknownRuneCount,
+    printed13DotEvents: unknownEvents.length,
+    uniqueLogicalOffsets: unknownGroups.size,
+    fragmentCountWhenAllPrintedEventsArePreserved: unknownFragments.length,
+    nonemptyFragmentCount: unknownFragments.filter(x => x.length > 0).length,
+    zeroLengthFragmentIndices: unknownEmpty.map(x => x.zeroBasedIndex),
+    terminalMark: unknownEvents.at(-1)
+  },
+  interpretation: 'The 31-event/32-interval count is full-release only. The unsolved prefix has 28 events, 26 distinct offsets, and 29 event-indexed intervals including three empty intervals. Preserve coincident physical marks and the terminal p55 mark.'
 }, null, 2));
