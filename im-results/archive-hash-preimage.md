@@ -1,6 +1,6 @@
 # Historical onion-page hash preimage: independently executed bounded regression
 
-**Current assessment (2026-11-11):** four independently executed **bounded source-native test groups** report zero matches: **246** comparisons of 2014 stage captures and URL representations, **232** comparisons of the 58 original archived LP2 JPEG page-byte streams, **340** comparisons of frozen 32×8 original numeric-grid byte serializations, and **40** comparisons of 64-byte encodings of the original page-15 Fibonacci-prime square. Counts are finite operations, **not** independent preimage discoveries; historical-corpus overlap with external audits is unquantified. Counts are finite operations, **not** independent preimage discoveries; historical-corpus overlap with external audits is unquantified. An early-May-2014 historical `56.bin` was demonstrated to be a derived conversion of the same printed target hex, not a captured missing page or independent hash witness. No original unknown LP2 text, key, algorithm, missing target-page bytes, or final destination recovered.
+**Current assessment (2026-11-11):** six independently executed **bounded source-native test groups** report zero matches: **246** comparisons of the frozen 2014 stage captures and URL representations, **232** comparisons of the 58 original archived LP2 JPEG page-byte streams, **340** comparisons of frozen LP2 32×8 grid serializations, **40** comparisons of 64-byte page-15 Fibonacci-square encodings, **12** raw hashes of the original 2014 stage11 sexagesimal source files, and **36** 2014-table/terminal-rune compositions. Counts are finite operations, **not** independent preimage discoveries; historical-corpus overlap with external audits is unquantified. The 2014 `56.bin` remains a derived rendering of the printed target hex, while the separately preserved `sexagesimal.bin` is a historical 256-byte table variant, not a missing page. No original unknown LP2 text, key, algorithm, missing target-page bytes, or final destination recovered.
 
 ## Why this test exists
 
@@ -18,7 +18,7 @@ The earliest public solver mirror of stage 11 gives no missing algorithm either.
 
 A later authentic 2017 signed warning uses a `Hash: SHA512` OpenPGP header, but it postdates the p56 target by roughly three years and is signature metadata. It cannot independently select the 2014 page-hash algorithm. Therefore the preserved public chain still terminates with a genuine missing input: either the target page/locator itself or a pre-May-2014 instruction that fixes the digest family and byte representation. Further algorithm expansion over already-held pages is not source-selected by this material.
 
-The public `krisyotam/cicada3301` archive contains staged copies of historical 2014 onion-web assets. We froze this archive at commit `76d3ee8c762f60025822c8c05edbf31351636469` and selected 22 stage-specific web-page/puzzle/signature files, plus the seven evidenced 2014 onion hostnames. The exact inputs and expected archive file lengths are specified in [the frozen candidate manifest](../resources/cicada2014-archive-hash-manifest.json). The archive's stored bytes are retrievable; they are **not** independently authenticated as the original 2014 HTTP response bytes, especially for copied/reencoded archives.
+The public `krisyotam/cicada3301` archive contains staged copies of historical 2014 onion-web assets. We froze this archive at commit `76d3ee8c762f60025822c8c05edbf31351636469` and selected 22 stage-specific web-page/puzzle/signature files, plus the seven evidenced 2014 onion hostnames. The exact inputs and expected archive file lengths are specified in [the frozen candidate manifest](../resources/cicada2014-archive-hash-manifest.json). The archive's stored bytes are retrievable; they are **not** independently authenticated as the original 2014 HTTP response bytes, especially for copied/reencoded archives. The frozen 22-file manifest does not include three auxiliary files separately discovered in the original solver archive's stage11 tree: `decimal.txt`, `decimaltobyte.pm`, and `sexagesimal.bin`. Those are preserved and tested separately in [the sexagesimal source manifest](../resources/cicada2014-sexagesimal-source.json); they are archive copies, not independently captured original HTTP responses.
 
 ## Crucial earlier work and overlap
 
@@ -54,25 +54,13 @@ Executed local [reproducer](../sims/anend_original_jpeg_gate.py) on the maintain
 
 ## Direct original-grid-to-AN-END digest challenge
 
-The source itself offers a finite missing-input candidate absent from
-the historical website archives: the **256-byte base-60 number table**
-on LP2 physical pages 49–51 appears shortly before the authenticated
-**128-hex-digit/64-byte deep-web hash target** on solved p56. A direct,
-independently testable equation would be that the hash refers to the
-literal table bytes, a particular printed table layout, or a natural
-32-/64-byte block extracted from that printed source.
+The **256-byte base-60 number table** on LP2 physical pages 49–51 appears shortly before the authenticated **128-hex-digit/64-byte deep-web hash target** on solved p56. A direct, independently testable equation is that the hash might refer to the literal table bytes, a particular printed table layout, or a natural 32-/64-byte block extracted from that source. The table is **not absent from all historical archives**: a separate 2014 stage11 solver-archive commit preserves a 256-byte `sexagesimal.bin` plus its decimal source and converter. That earlier file is a distinct version, not the exact LP2 transcription.
 
-The [original-source digest bridge](../sims/grid_anend_hash_bridge.cjs)
-takes the corrected **32×8 source tokens**, reconstructs all 256
-byte values and asserts the exact base-60 roundtrip. It evaluates
-**85** concrete raw-grid, reversed, column-major, page-column-major,
-byte-complement, 64-byte chunk, 32-byte chunk, column-pair and
-printed-base60 textual presentations against the full exact
-original p56 target
+The [original-source digest bridge](../sims/grid_anend_hash_bridge.cjs) takes the corrected **32×8 LP2 source tokens**, reconstructs all 256 byte values and asserts the exact base-60 roundtrip. It evaluates **85** concrete raw-grid, reversed, column-major, page-column-major, byte-complement, 64-byte chunk, 32-byte chunk, column-pair and printed-base60 textual presentations against the full exact original p56 target
 `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`.
-Each candidate is hashed with SHA-512, SHA3-512, BLAKE2b-512 and
-SHAKE256 producing 64 bytes, **340 exact digest comparisons total**.
-A published SHA-512('abc') digest validates the digest implementation.
+Each candidate is hashed with SHA-512, SHA3-512, BLAKE2b-512 and SHAKE256 producing 64 bytes, **340 exact digest comparisons total**. A published SHA-512('abc') digest validates the digest implementation.
+
+**Additional 2014 source-variant gate:** the original solver archive `micheloosterhof/cicada-2014` records commit [`a9201dd`](https://github.com/micheloosterhof/cicada-2014/commit/a9201dd469a1a514eb0d8ff8f3449dbe2e7f7462), dated 2014-05-11 21:39:09Z, adding `decimal.txt`, `decimaltobyte.pm`, and `sexagesimal.bin` under `stage11/ky2khlqdf7qdznac.onion/`. The converter packs each decimal line as one byte, reproducing the binary's Git blob SHA-1. This 2014 table differs from the later LP2 canonical byte sequence at ten indices (25, 45, 50, 165, 170, 172, 175, 182, 199, 246). Its raw binary, decimal text, and converter were each hashed under SHA-512, SHA3-512, BLAKE2b-512, and SHAKE256(64): **0/12** target matches. The same 76/180 ring/interior partition was combined with the p55+p56+p57 terminal rune stream under the three rune encodings and three byte operations: **0/36** target matches. The original LP2-table version of that same 36-case composition also remains **0/36**. The updated [terminal-grid report](../im-results/terminal-grid-xor-anend-digest.md) and [source manifest](../resources/cicada2014-sexagesimal-source.json) preserve the exact input and differences. The historical commit chronology is repository metadata, not authenticated proof of author intent.
 
 **Page-15 square as a 64-byte preimage candidate (Agent 23, 11 November 2026).** The source-fixed 4×4 Fibonacci-prime square contains 16 integers; representing them as sixteen 32-bit values gives a natural 64-byte candidate input. Tested five exact source-derived sequences—clockwise displayed values, printed row-major values, underlying primes, prime ordinals and Fibonacci indices—each in 32-bit big-endian and little-endian form, under SHA-512, SHA3-512, BLAKE2b-512 and SHAKE256-512: **40 comparisons, zero exact matches** against the p56 target. This is a finite raw-integer serialization screen; it does not establish a target serialization or digest algorithm and does not motivate arbitrary further formats.
 
