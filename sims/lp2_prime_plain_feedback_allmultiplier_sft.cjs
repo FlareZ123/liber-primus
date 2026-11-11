@@ -207,9 +207,14 @@ const controls = [
     15733, 12838, 1978, 81, 8134, 7]
 ];
 const results = [];
+const dictionary = new Set();
+const nativeReferences = [];
 for (const [label, file, expectedWords, expectedWindows,
     offset, hits, pairs, multiplier] of controls) {
-  const result = evaluateNativeControl(nativeWords(read(file)));
+  const words = nativeWords(read(file));
+  nativeReferences.push({label, words});
+  for (const word of words) dictionary.add(word.join(","));
+  const result = evaluateNativeControl(words);
   assert.equal(result.words, expectedWords, label + " word count");
   assert.equal(result.windows, expectedWindows, label + " windows");
   assert.equal(result.windowsAtOrBelowOriginal, 0, label + " original-rate window");
@@ -221,6 +226,132 @@ for (const [label, file, expectedWords, expectedWindows,
 }
 assert.equal(results.reduce((s, x) => s + x.windows, 0), 140387);
 
+
+// Additional independent challenge: adding one to the GP-prime feedback
+// can match the RARE-DOUBLET rate, but its full 29-bin step spectrum and
+// original word candidates must also match. This is a retrospective
+// mechanism comparison, not a newly authenticated author instruction.
+
+/** @param {number[]} word @param {number} a @param {number} initial */
+function plusOneEncrypt(word, a, initial) {
+  let key = initial;
+  return word.map(p => {
+    const c = mod(p + key);
+    key = mod(key + a * (gp.prime[p] + 1));
+    return c;
+  });
+}
+
+/** @param {number[]} word @param {number} a @param {number} initial */
+function plusOneDecrypt(word, a, initial) {
+  let key = initial;
+  return word.map(c => {
+    const p = mod(c - key);
+    key = mod(key + a * (gp.prime[p] + 1));
+    return p;
+  });
+}
+
+const longUnknown = original.filter(w => w.length >= 5);
+assert.equal(longUnknown.length, 1132);
+assert.equal(longUnknown.filter(w => w.length >= 6).length, 815);
+
+const plusOneWordMatches = [];
+for (let a = 1; a < N; a++) {
+  let matchedAtLeast5 = 0, matchedAtLeast6 = 0, candidateCount = 0;
+  for (const word of longUnknown) {
+    let matches = 0;
+    for (let initial = 0; initial < N; initial++) {
+      const plain = plusOneDecrypt(word, a, initial);
+      if (dictionary.has(plain.join(","))) matches++;
+    }
+    if (matches) {
+      matchedAtLeast5++;
+      if (word.length >= 6) matchedAtLeast6++;
+      candidateCount += matches;
+    }
+  }
+  plusOneWordMatches.push({a, matchedAtLeast5, matchedAtLeast6,
+    candidateCount});
+}
+assert.equal(Math.max(...plusOneWordMatches.map(x => x.matchedAtLeast5)), 3);
+assert(plusOneWordMatches.every(x => x.matchedAtLeast6 === 0));
+
+// Real solved-LP1 language is an independent positive from the
+// Shakespeare/Emerson/Gibran dictionary. This tests recognition, not just
+// algebraic reencryption, and varies the seed for each source word.
+const lp1Text = read("resources/liber-primus/lp1-plaintext-reference.txt")
+  .split(/\r?\n/u).filter(line => {
+    const s = line.trim();
+    return s && !s.startsWith("#") && !s.startsWith("[") &&
+      !/^[0-9a-f]{25,}$/iu.test(s) && !/^\d+[\s\d]+$/.test(s);
+  }).join(" ");
+const lp1Words = nativeWords(lp1Text);
+assert.equal(lp1Words.length, 796);
+let positiveEligible = 0, positiveDictionaryCovered = 0,
+  positiveCipherCandidates = 0;
+for (let i = 0; i < lp1Words.length; i++) {
+  const word = lp1Words[i];
+  const initial = mod(seed + 17 * i);
+  const encoded = plusOneEncrypt(word, 1, initial);
+  assert.deepEqual(plusOneDecrypt(encoded, 1, initial), word);
+  if (word.length < 5) continue;
+  positiveEligible++;
+  if (dictionary.has(word.join(","))) positiveDictionaryCovered++;
+  let matches = 0;
+  for (let key = 0; key < N; key++)
+    if (dictionary.has(plusOneDecrypt(encoded, 1, key).join(","))) matches++;
+  if (matches) positiveCipherCandidates++;
+}
+assert.equal(positiveEligible, 249);
+assert.equal(positiveDictionaryCovered, 206);
+assert.equal(positiveCipherCandidates, 206);
+
+// Key-independent within-word step spectrum:
+// delta(C) = delta(P) + a * (GPprime(previous P) + 1).
+const originalSteps = new Int32Array(N);
+for (const word of original)
+  for (let i = 1; i < word.length; i++)
+    originalSteps[mod(word[i] - word[i - 1])]++;
+assert.deepEqual([...originalSteps].slice(0, 5), [63,356,373,354,338]);
+
+/** @param {number[][]} words @param {number} a */
+function plusOnePredictedSteps(words, a) {
+  const hist = new Int32Array(N);
+  let pairs = 0;
+  for (const word of words)
+    for (let i = 1; i < word.length; i++) {
+      hist[mod(word[i] - word[i - 1] +
+        a * (gp.prime[word[i - 1]] + 1))]++;
+      pairs++;
+    }
+  return {hist, pairs};
+}
+
+const plusOneSpectra = [];
+const wantedChi = [803.711968304214, 998.3770908237242,
+  1041.364920967545];
+for (let index = 0; index < nativeReferences.length; index++) {
+  const {label, words} = nativeReferences[index];
+  let best = {a: 0, chiSquare: Infinity};
+  for (let a = 1; a < N; a++) {
+    const {hist, pairs} = plusOnePredictedSteps(words, a);
+    const expected = Array.from(hist, n => originalDoublets.pairs * n / pairs);
+    const chiSquare = expected.reduce((s, n, i) =>
+      s + (originalSteps[i] - n) ** 2 / (n + 1e-9), 0);
+    if (chiSquare < best.chiSquare) {
+      const totalVariation = expected.reduce((s, n, i) =>
+        s + Math.abs(originalSteps[i] - n), 0) /
+          (2 * originalDoublets.pairs);
+      best = {a, chiSquare, totalVariation,
+        predictedEqualRate: hist[0] / pairs};
+    }
+  }
+  assert.equal(best.a, 1, label + " plus-one spectrum winner");
+  assert(Math.abs(best.chiSquare - wantedChi[index]) < 1e-6);
+  plusOneSpectra.push({label, ...best});
+}
+
 console.log(JSON.stringify({
   source: "LP2 original GP29 words; signed 2016 clue and original GP-prime weights",
   model: "C=P+K mod29; K_next=K+a*GPprime(P) mod29",
@@ -230,5 +361,20 @@ console.log(JSON.stringify({
   directA1DecodedIoC: decodedIoC,
   nativeSignedPositive: "28/28 multiplier models reencrypt and recover exactly",
   nativeControls: results,
+  retrospectivePlusOne: {
+    model: "K_next=K+a*(GPprime(P)+1) mod29; a=1..28",
+    sourceDictionaryGPWordTypes: dictionary.size,
+    unknownLen5Plus: 1132, unknownLen6Plus: 815,
+    maxOriginalDictionaryWordsAmongAllA: 3,
+    originalLen6PlusDictionaryHitsAcrossAllA: 0,
+    perMultiplierWordCandidateCounts: plusOneWordMatches,
+    solvedLP1Positive: {
+      totalWords: lp1Words.length,
+      eligibleLength5Plus: positiveEligible,
+      inIndependentDictionary: positiveDictionaryCovered,
+      encryptedWordsWithRecognizedSeedCandidate: positiveCipherCandidates
+    },
+    fullStepSpectrum: plusOneSpectra
+  },
   decision: "conditional negative, no original plaintext or key recovered"
 }, null, 2));
