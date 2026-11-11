@@ -16,3 +16,7 @@ jobs:
         run: |
           node --check sims/lp2_p15_fibonacci_prime_spiral_sft.cjs
           node sims/lp2_p15_fibonacci_prime_spiral_sft.cjs
+      - name: Test p15 red-heading source-pad selector against historical XOR control
+        run: |
+          node --check sims/lp2_p15_base29_56013_bridge_sft.cjs
+          node sims/lp2_p15_base29_56013_bridge_sft.cjs
