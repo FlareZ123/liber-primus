@@ -1,6 +1,6 @@
 # 2016 signed tree: exact p32-prime-width image tiling and direct pixel-value gate
 
-**Evidence class:** Independent reproduction and limited extension of a preexisting p32 source-image hypothesis. The 563×569 prime-axis checksums were established in [the original p32 analysis](lp2-tree121-signed2016-source-gate.md); the **identical unequal 11×11 image tiling had already been constructed and tested** in [Agent14's tiling gate](tree121-image-tiling-source-gate.md) and the wider [tree-prime partition analysis](tree-prime-canvas-partition.md). The original brightness/GP correlation was therefore already a reported negative. The incremental results here are a separately reproduced 100,000-control three-feature discriminator, a fixed center-pixel readout, literal JPEG DQT/container checks, and the provisional prime-ordinal NN address observation. **No unknown LP2 plaintext, historical key, directed walk or destination is recovered.**
+**Evidence class:** Independent reproduction and limited extension of a preexisting p32 source-image hypothesis. The 563×569 prime-axis checksums were established in [the original p32 analysis](lp2-tree121-signed2016-source-gate.md); the **identical unequal 11×11 image tiling had already been constructed and tested** in [Agent14's tiling gate](tree121-image-tiling-source-gate.md) and the wider [tree-prime partition analysis](tree-prime-canvas-partition.md). The original brightness/GP correlation was therefore already a reported negative. The incremental results here are a separately reproduced 100,000-control three-feature discriminator, a fixed center-pixel readout, literal JPEG DQT/container checks, and the prime-ordinal NN address observation, now retired as source-unselected after a historical indexing audit. **No unknown LP2 plaintext, historical key, directed walk or destination is recovered.**
 
 ## Human-visible route and finite geometrical definition
 
@@ -59,13 +59,33 @@ The eight rune labels at selected positions transliterate as **HBIARTTHFW**, wit
 
 **Decision:** the unique natural tiling defined by the known sums is a reproducible candidate visual operation. **Direct monotone tile-brightness → interior GP-prime-value identification is unsupported** and should not be optimized through arbitrary thresholds, color corrections, rotations, or language scorers. Recovering a source-indicated direction/route or a hidden layer remains necessary before testing any decryption. The independent 563/569 axis checksums still meaningfully identify p32 and its row-major orientation, as established before this study.
 
-## Separate source-ordinal N/N address candidate (exploratory)
+## Prime-ordinal NN reading: historical index audit (retired)
 
-The authentic signed tree JPEG measures **563×569**. These dimensions are the **103rd and 104th prime numbers**. Given the independently recovered 11×11 row-major original p32 rune square, there is one further finite, human-reachable reading: use the two prime **ordinal indices** as zero-based addresses into the 121 original runes. This produces `p32[103]=N` and `p32[104]=N`, at (row9,col4) and (row9,col5). The source's 2016 wording says that the numbers are the direction; **NN** is a possible literal two-step *north* cue. This relationship was noticed retrospectively and is a direction *hypothesis*, not a decipherment.
+The authenticated 2016 tree JPEG measures **563×569**, the **103rd and 104th primes**. The original physical p32 page has an independently supported 11×11 row-major rune matrix. Those facts do not by themselves prescribe treating the prime ranks as addresses into that matrix.
 
-There are exactly two adjacent equal-rune pairs anywhere in p32: `FF` at zero-based offset29 and `NN` at offset103. In a source-axis-preserving null that fixes the original first row and column and randomly arranges the 100 original interior rune weights, the probability that the *two specified* cells 103,104 are both N equals `3×2/(100×99) = 0.00060606`; the probability they match as **any** rune is `340/9900 = 0.03434343`. Because the word, position, prime-ordinal operation, and address origin were considered after inspection, these are conditional inventory properties, **not** a discovery-wide significance claim. In particular, original prime ordinal numbering is mathematically 1-based. Reading the 103rd and 104th rune in 1-based page positions instead gives **E,N**, making the north cue disappear. Although LP2's page filenames are zero-based, that does not establish a rune-ordinal addressing convention.
+The signed 2016 OutGuess payload says that Liber Primus's words are the map, their meaning the road, and their numbers the direction ([archived signed payload](../resources/historical/cicada2016-4gq25-outguess.asc)). It does **not** specify prime-ordinal rune indexing, a zero-based offset, an origin, a traversal direction, or a stopping rule.
 
-**Immediate source control and directional stop.** The different authentic 2012 photograph has consecutive-prime dimensions **503,509**, the **96th and 97th** primes. Applying the identical zero-based address operation to p32's original ciphertext yields **S,B**, rather than a compass instruction. With the 2016 selected cells as literal starts, a straight run due north until the grid top yields column-4 `N M NG X TH L X R S AE` and column-5 `N B IA A W A W T OE U`, neither supplying a recognizable imperative or plaintext. The 2016 message does not say to use prime *ordinals*, use zero-based rune addresses, read two compass moves, or continue north to the edge. Retain NN as a bounded prospective selector requiring a separate original clue, and do not infer further decoder steps from a numerically appealing address.
+### Historical indexing precedents
+
+The best documented human-facing Cicada coordinate systems use **one-based ordinal positions**:
+
+- The 2013 PGP-signed book code begins with **I:1:6**. The archived solve identifies this as the sixth character of the first line in the first chapter of *Liber AL vel Legis* ([signed-message archive](https://github.com/neuroretransmit/cicada/blob/main/2013/001-232.jpg/README.md); [historical explanation](https://uncovering-cicada.fandom.com/wiki/What_Happened_Part_1_(2013))).
+- The 2014 PGP-signed opening code begins with **1:2:3:1**. Its documented interpretation is first paragraph, second sentence, third word, first letter ([original OutGuess payload](https://github.com/micheloosterhof/cicada-2014/blob/master/stage01/zN4h51m.jpg.outguess); [historical explanation](https://uncovering-cicada.fandom.com/wiki/What_Happened_Part_1_(2014))).
+- The later 2014 Gödel–Escher–Bach book code uses **chapter:line:word:letter**, with examples such as **3PI:6:1:3**; its word and letter fields are likewise human ordinal positions beginning at 1 ([2014 walkthrough](https://embeddedsw.net/doc/Openpuff_for_experts_Cicada_3301_recruitment_puzzle_2014.pdf)).
+- The 2012 book-code route also uses line/character coordinates, consistent with this convention ([2012 historical account](https://uncovering-cicada.fandom.com/wiki/What_Happened_(2012))).
+
+These are precedents, not proof that p32 must use a book cipher. They do, however, provide no support for silently converting prime ranks into zero-based array offsets. When Cicada wanted signed movement through a text, the surviving 2013 book-code variant explicitly stated how positive and negative values move; the 2016 signed tree message contains no analogous offset instruction.
+
+### Exact p32 consequence
+
+Reading the canonical original-source p32 transcription gives:
+
+- **One-based rune positions 103 and 104:** **E,N** (zero-based offsets 102 and 103).
+- **Zero-based offsets 103 and 104:** **N,N** (human rune positions 104 and 105).
+
+The attractive north cue therefore depends entirely on selecting a one-position shift that the 2016 source never specifies. The zero-based pair is one of only two adjacent equal-rune pairs on p32 (the other is FF at zero-based offset 29); this is a conditional inventory observation, not independent evidence for the indexing rule. The previously frozen north-to-edge reads also remain nonlinguistic.
+
+**Decision:** the 563/569 → prime-rank relationship is exact, but the proposed NN instruction is **not source-selected**. The historical human indexing convention instead reads EN, and the 2016 message supplies no p32 index origin or directional stop. Close this branch; do not search other offsets, origins, prime ranks, or northward paths to rescue NN.
 
 ## Exact reproduction
 

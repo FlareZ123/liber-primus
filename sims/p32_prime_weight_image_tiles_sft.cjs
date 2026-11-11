@@ -32,6 +32,13 @@ const image = decodeJpeg(jpegBytes, {
 const page = corpus.pages.find((entry) => entry.page === 32);
 assert(page);
 assert.equal(page.indices.length, 121);
+const p32Runes = page.indices.map((index) => corpus.translit[index]);
+const primeOrdinalReadings = {
+  oneBasedPositions103_104: p32Runes.slice(102, 104),
+  zeroBasedOffsets103_104: p32Runes.slice(103, 105)
+};
+assert.deepEqual(primeOrdinalReadings.oneBasedPositions103_104, ['E', 'N']);
+assert.deepEqual(primeOrdinalReadings.zeroBasedOffsets103_104, ['N', 'N']);
 assert.equal(image.width, 563);
 assert.equal(image.height, 569);
 assert.equal(image.data.length, image.width * image.height * 3);
@@ -182,6 +189,7 @@ for (let trial = 0; trial < iterations; trial++) {
 }
 const result = {
   imageSize: [image.width, image.height],
+  primeOrdinalReadings,
   imageBytes: jpegBytes.length,
   tileWidthPixels: widths,
   tileHeightPixels: heights,
