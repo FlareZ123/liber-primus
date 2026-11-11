@@ -149,6 +149,25 @@ A second **fixed geometric readout** uses the exact irregular image tiles themse
 
 **Reproduce:** [standalone word-pixel SFT](../sims/tree121_wordpixel_path_sft.py) with the exact original p32 transcription and signed historical JPEG; [successful manual Node/Pillow CI](https://github.com/FlareZ123/liber-primus/actions/runs/42936074487). The other three original 2016-source workflow jobs were deliberately skipped by the isolated `tree-pixel` probe. No LP2 plaintext was recovered.
 
+
+## Visible signed-message word centers on the exact p32 tile map (Agent 44, 11 November 2026)
+
+A direct literal interpretation of the signed JPEG was tested after the exact p32 prime-axis tiling had been established. The visible white message supplies **45 whitespace-delimited tokens across eight rendered lines**. With the already documented luminance threshold **180**, each rendered line is located from source pixels; the authenticated source text fixes the word count on that line, and the largest blank-column gaps separate the rendered words. Each word's integer bounding-box center then selects its containing tile under the exact p32 edges
+`x=[0,73,78,179,198,299,302,345,452,465,484,563]` and
+`y=[0,73,96,101,124,203,262,315,394,453,562,569]`.
+The p32 rune at that tile is read in ordinary visual word order. This introduces no OCR, scale, offset, tile permutation, threshold sweep or cipher key.
+
+The **45 visible words occupy 26 distinct p32 tiles**. Their source-order line readouts are:
+`L / THBBBRTHFF / NGEOEOEOLLLWDDN / NGEOEOIALLWDDAE / TMMMGTH / SX / NG / EAOEOENWG`,
+for the complete GP transliteration
+`LTHBBBRTHFFNGEOEOEOLLLWDDNNGEOEOIALLWDDAETMMMGTHSXNGEAOEOENWG`.
+This is a direct sample of the existing ciphertext square and supplies no recognizable instruction, key, plaintext phrase or new independently checkable destination.
+
+**Decision:** retire the literal **visible-word-center → containing p32 tile → rune** readout. Its result is fully determined and reproducible, so further threshold, offset, center-definition or line-subset tuning would only add unconstrained degrees of freedom. A future image-map continuation needs a separately indicated route, feature or state transition.
+
+**Reproduce:** [source-locked Pillow SFT](../sims/signed2016_visible_word_tile_sft.py); successful manual run [42970687634](https://github.com/FlareZ123/liber-primus/actions/runs/42970687634). The first run failed before producing a readout because tiny anti-aliased baseline gaps split two rendered lines; closing only one- and two-row gaps fixed segmentation while leaving the mapping rule unchanged.
+
+
 ## Decision and next cryptanalytic question
 
 **What is now source-supported:** the 2016 image's exact pixel dimensions are recovered as original p32 first-row/first-column GP-prime sums, with natural x/y orientation. The 121-rune square is therefore a concrete original-source candidate for **a numerical map**. This is materially stronger than an unmotivated source number coincidence.
