@@ -2,6 +2,7 @@
 
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
+const crypto = require("node:crypto");
 const path = require("node:path");
 
 /**
@@ -155,6 +156,14 @@ assert.equal(packedBinary.subarray(0, 16).toString("hex"), "166a370a936ebaf8dc6c
 const printableBytes = [...packedBinary].filter((v) => v >= 32 && v < 127).length;
 assert.equal(printableBytes, 52);
 
+// The only source-selected p56 comparison: SHA-512 of the canonical
+// big-endian BASE29 integer bytes, against the digest printed on original p56.
+const p56Digest = "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4";
+assert.equal(p56Digest.length, 128);
+const candidateSha512 = crypto.createHash("sha512").update(packedBinary).digest("hex");
+assert.equal(candidateSha512, "f065b5e900b135cd91971e7c49d15ab7b411779795242def18a7c6d4db3414ea260a04f54e63918f2ce82a025904af6716a8770c695538f2dfc76d5565bf2cc5");
+assert.notEqual(candidateSha512, p56Digest);
+
 // A natural framed-page key interpretation: the 273-rune residual is exactly
 // as long as original framed pages p41 and p44, immediately before the table.
 // Freeze first-rune phase and GP29 additive signs, with no crib/key search.
@@ -232,6 +241,7 @@ console.log(JSON.stringify({
   exactCongruence: "P29 - S - 2G = G^2 R over GF(29)",
   originalDifferenceModuloG2: [0, 1, 10, 25],
   RLength: residual.q.length, RIoC: ioc(residual.q), base29Binary: {bytes: packedBinary.length, printableBytes},
+  p56Sha512Preimage: {candidate: candidateSha512, target: p56Digest, match: false},
   nativePlantRecovered: plant.length, equalLengthFramed,
   matchingPages,
   conditionalShuffles: {trials, hits, pAddOne: (hits + 1) / (trials + 1)}

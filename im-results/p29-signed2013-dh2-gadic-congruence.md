@@ -99,6 +99,8 @@ HMIUDAIANGSCAEOEONORSNGEOBGIOEJDIYSGLNAEYNNGUHCNGTCMOENGCRCWNNNGTHPENISOESEOWBOD
 
 No coherent native-GP English is recovered. The separately source-motivated **2013 BASE29 integer interpretation** of all 273 coefficients yields a minimal **166-byte** big-endian buffer beginning `166a370a936ebaf8dc6c0cdc798dee98`; **52/166** bytes are printable ASCII, and no recognizable unencrypted file header appears. This does not support a direct Base29 binary payload.
 
+The one natural cross-check against the original p56 SHA-512 target is also negative: hashing those exact 166 bytes gives `f065b5e900b135cd91971e7c49d15ab7b411779795242def18a7c6d4db3414ea260a04f54e63918f2ce82a025904af6716a8770c695538f2dfc76d5565bf2cc5`, not the 128-hex digest printed on original p56 (`36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`). Thus the canonical big-endian BASE29 bytes of R are not a direct preimage of the p56 digest. No alternate byte order, padding or encoding was searched.
+
 A separate positive uses 273 authentic solved-p57 GP symbols as an input R, encrypts them as `P'=S+2G+G²R` and inverts that ciphertext, recovering **273/273** exact symbols. A one-glyph original-cipher mutation breaks the congruence. This proves the algebraic inverse works under the constructed source-motivated encoder, while leaving its historical status undecided.
 
 ### Direct equal-length framed-page key test
