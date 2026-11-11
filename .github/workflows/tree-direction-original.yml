@@ -1,12 +1,6 @@
 name: LP2 p32 direction-field test on original 2016 image
 
 on:
-  push:
-    paths:
-      - ".github/workflows/tree-direction-original.yml"
-      - "sims/tree121_directional_field_sft.py"
-      - "resources/historical/cicada2016-4gq25.jpg"
-      - "resources/liber-primus/lp2-corpus.json"
   workflow_dispatch:
 
 jobs:
