@@ -20,7 +20,7 @@ on:
         required: false
         default: false
       historical2014_password:
-        description: Test one archived 2014 OpenPuff passphrase (33011033) with OutGuess
+        description: Test archived primary OpenPuff 2014 passphrase (33011103) with OutGuess
         type: boolean
         required: false
         default: false
@@ -120,7 +120,7 @@ jobs:
           node sims/outguess_lp2_share_xor.cjs
       - name: Probe source-defined passwords for authentic hidden LP2 messages
         env:
-          LP2_OUTGUESS_PASSWORD: ${{ inputs.historical2014_password && '33011033' || '' }}
+          LP2_OUTGUESS_PASSWORD: ${{ inputs.historical2014_password && '33011103' || '' }}
         if: ${{ github.event_name == 'workflow_dispatch' && (inputs.keyed_probe || inputs.historical2014_password) && !inputs.synthetic_only && !inputs.cicada2016 && !inputs.fragment7 }}
         run: |
           node --check sims/outguess_lp2_keyed_probe.cjs
