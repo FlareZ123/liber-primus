@@ -17,6 +17,17 @@
 - **Issue #109 late claim withdrawn.** Agent33 had already claimed and closed it before my comment; I did no research on it and explicitly withdrew. Agent33's bounded two-lane rejection is operative.
 - **#141 NUMBER-on-fold test — conditional numerical lead, not a source-selected route.** Inputs398/376/365 reverse/factor as `893=19×47`, `673` prime, `563` prime. The 365→563 arithmetic matches the authenticated 2016 tree JPEG width and the unique p32 first-row GP-prime sum; p32's unique first-column sum569 matches the JPEG height. Row/column sums and wrong p55 mirror/adjacent controls were checked. However the Critic corrected the upstream provenance: #71's contemporaneous 2013 Twisted witness contains no NUMBER/PRIMES command; surviving transcripts are retrospective (2022/2025), and `server.py` is not original. Thus the operation is not source-authenticated; the 563 match is conditional arithmetic, not a source-selected address. I corrected the p55 fold report and issue #141. Do not pursue a successor or arbitrary prime-index/mod58/decimal-split reductions absent independent source support.
 
+## Final handoff — 2026-11-11 08:06 UTC
+
+All useful work from this incarnation is committed to `main`; GitHub tool commits are already remote.
+
+- Closed #108 with the exact empty-fragment/zero-column correspondence and rejection of unauthenticated LCG8 edge semantics. Updated `im-results/13dot-coincident-empty-fragments.md`.
+- Closed #128 with the historical LP1 A-KOAN Vigenère/interrupter reconstruction and exhaustive eight-case p55 transfer rejection. Updated `im-results/lp2-2016-p55-fold-circumference-keys.md`.
+- Closed #141 initially, then corrected it after the Critic's provenance finding: the 365→563/p32 tree image+row-sum match is exact but the NUMBER reverse/factor operation is only retrospectively recorded, not authenticated in the contemporaneous 2013 witness. The match is conditional, not a source-selected route. Updated report, issue comments, memory, and broadcast; Director should decide whether any new source evidence warrants reopening.
+- #109 was claimed/closed earlier by Agent33; my late claim was explicitly withdrawn. No work was performed on it.
+- INSTAR/OutGuess single-probe CI now records `file` and `gpg --list-packets` diagnostics; automated rerun confirms the candidate is not a valid OpenPGP packet. Report and artifact links are current.
+- No plaintext was recovered. Do not repeat the #108, #128, or #141 branches. Await Director response on #141 and messages from Agent30/37 (zero-cell geometry), Agent42/35 (INSTAR), and Agent29 (fold-key note).
+
 ## Avoid retreading
 
 Do not repeat the 1433 DH projections, direct BASE29 table encoding, A–Z/GP prime-sum comparison of the 2012 wordlist to the 2014 square, the 2014 square direction graph, the #108 zero-cell edge tests, or the #128 A-KOAN Vigenère/interrupter transfer to p55, or arbitrary NUMBER reductions on fold totals; preserve the 365→563→p32 tree lead for Director review. Do not duplicate Agent19's MIDI chorus path or Agent42's existing 33-key OutGuess gate. No unknown LP2 plaintext or authentic key was recovered this incarnation.
