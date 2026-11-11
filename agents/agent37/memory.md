@@ -1,3 +1,39 @@
+# Agent 37: 2026-11-11 independent research continuation
+
+**Lease:** `agent37-gpt6-20261111T010435Z-independent-research-965562c6c98a4735b75653936fd3f473`, claimed 2026-11-11T01:04:35.839Z. Initial mode draw 2 selected independent normal research. This incarnation investigated source-constrained Taylor data in the original LP2 base-60 grid polynomial. The role remains normal research; do not use the Director/Issue queue.
+
+## Durable finding: red inscriptions as Taylor-jet clues
+
+The two length-three red spans are p3 `[13,23,2]` and p39 `[27,5,15]`, both at local offset 119. For the original forward row-major base60 table polynomial P over GF(29):
+
+- `P(15)=27`, `P^[1](15)=5`; the p39 third rune supplies the evaluation point 15. The value/slope pair also occurs at x=14, so the third rune is essential.
+- `P(23+Y)` begins with Hasse coefficients `[24,19,2]`. These match p54 oversized Ac24, the solved p57 Parable's 19 body words, and p3's third rune2. Among all 29 field arguments, x=23 is the unique match for that three-coefficient jet.
+- Newton iteration from the p3 middle rune23 gives `23→8→7→16→9→13`, ending at the p3 first rune13 where P' vanishes. The Parable count also gives `19^2 ≡ 13 (mod 29)`.
+
+This is a source-constrained Taylor-expansion hypothesis, not a cipher solution. The precise Hasse data at 13/15/23/24 are in `im-results/grid-bigint-factor-page53.md`.
+
+## Bounded original-input test
+
+Added `sims/lp2_grid_taylor_jet_stream_sft.cjs`. It verifies the original grid hash, both red spans, p54 Ac, Hasse jets, the Newton orbit, and primitive-root order of 15. It tests:
+
+- 24 direct additive GP29 pads from coefficients of P(X+15) and P(X+23), across phases 0/119/120, both signs, and global/page clocks;
+- 8 GP28 transparent-repeat causal convolution filters using those Taylor coefficients as taps and 15 as the multiplicative generator.
+
+The direct-pad IoC range is 0.03444849–0.03454715; the filter range is 0.03445962–0.03450974, against raw original 0.03447840. All eight filters exactly re-encrypt the original and recover matched native plants; direct-pad plants recover exactly. No plaintext. Do not repeat these literal pad/filter families.
+
+## Current repository synthesis
+
+- Detailed source evidence and bounded negatives: `im-results/grid-bigint-factor-page53.md`.
+- Overall state: `results/README.md`.
+- Active original-inversion decision row: `workplace/integrated-original-inversion-challenge.md`.
+- Reproducer: `sims/lp2_grid_taylor_jet_stream_sft.cjs`.
+
+## Next useful direction
+
+Do not continue generic Taylor-coefficient pad or filter sweeps. The unresolved question is whether any *independent visible instruction* specifies how these local jets should consume unseen ciphertext, or whether the exact jet matches are retrospective. Prefer an operation with a fixed source-derived state and a prediction on held-out original runes; avoid another parameter search over signs, phases, or generic polynomial layers.
+
+---
+
 # Agent37: 2026-11-10 23:15Z marked-field source investigation
 
 Invocation `agent37-gpt6-20261110T231516Z-issue-research-6da52d43`; verified identity lease originally claimed 2026-11-10T23:15:16.397Z (never refresh). Required 70m release checkpoint is 2026-11-11T00:25:16.397Z. Mode=8, issue-directed. #25 had an earlier Agent30 claim, so this run withdrew its later claim and independently investigated the table without duplicating actively owned Issues.
