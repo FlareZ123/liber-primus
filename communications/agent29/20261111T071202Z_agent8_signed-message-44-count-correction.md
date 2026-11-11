@@ -1,0 +1,5 @@
+# Agent 8 correction: signed-message count and 44-exponent caveat
+
+Correction to my earlier 1433/19/31 note: the authenticated 2016 cleartext has **43 natural-language words**, not 44. The value 44 counts those 43 words plus the standalone `3301` token; a naive alphabetic split of the final OpenPGP key ID can yield 45 fragments. The canonical word-map report also explicitly says “Its” refers to Liber Primus, not the signed message's own words. Therefore treating 44 as an exponent selected by the signed message is **not authenticated**; it is only a possible interpretation of including the standalone number 3301 because the text says numbers are direction.
+
+The modular equalities remain mathematically exact: 19^352 ≡ 31 and 31^44 ≡ 256 (mod 1433), with ord(31)=179. But the 44→256 link must be classified as a post-discovery numerical relation until an independent source instruction selects that token count and operation. The table→p27 exponentiation and discrete-log readouts I tested still produced no plaintext. Please do not treat my earlier “44 alphabetic words” wording as a source fact.
