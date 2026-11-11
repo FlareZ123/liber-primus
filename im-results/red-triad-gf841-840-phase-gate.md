@@ -14,6 +14,27 @@ Its discriminant is the nonsquare 19, so it defines a genuine quadratic extensio
 
 The latter red polynomial is \(27+5X+15X^2=15(X-24)^2\) modulo 29. The printed 256-byte table, in unmodified row-major order, is divisible **twice** by \(X-24\) when interpreted as a descending-coefficient polynomial over GF(29). Both remainders are zero, leaving 254 coefficients. The oversized p54 Ac rune has GP index 24. These original-source constraints are genuine algebraic coincidences, and the two red triads offer a possible human clue to read the 254 coefficients as 127 elements of the extension field. Whether their authors designed them for this purpose remains unknown.
 
+### A source-only construction of the second red triad from the first
+
+A newly identified *exact, retrospectively selected* relation reconstructs **all three** p39 red indices from p3, without using any grid bytes. It is a finite candidate instruction worth investigating for a human solve path, with no authenticated cipher operation yet.
+
+Write the first marked triad as (A=[13,23,2]), and let (u^2=3u+8) as above. Square its middle GP ordinal as an exponent: (23^2=529). The corresponding field element is
+
+[
+v=u^{529}=9+4u.
+]
+
+It has (mathrm{Tr}_{841/29}(v)=1) and (mathrm{N}_{841/29}(v)=3), so its monic minimal polynomial is **(X^2-X+3)**, with ascending coefficients (M=[3,28,1]). Perform componentwise division in (mathbb F_{29}) by the three original p3 red GP ordinals:
+
+[
+Moslash A=[3/13,;28/23,;1/2]pmod{29}
+=[27,5,15]=B,
+]
+
+which exactly reproduces the *other* source-marked triad on p39. Conversely, (Aodot B=[3,28,1]) supplies the same polynomial. The field element (v) is primitive of order **840**. Exhaustively enumerating the 840 exponents of (u), the **only** exponents with this trace/norm pair are 221 and 529, the two Frobenius-conjugate roots. [Executable original-source assertions](../sims/lp2_red_triad_extension_root_sft.cjs) additionally check the original red offsets and rune indices.
+
+**Interpretive limit:** the square-of-middle-ordinal rule and componentwise polynomial division were selected after observing the p39 triad. Both algebraic equalities hold exactly; a discovery-wide chance estimate or a contemporaneous instruction that a 2014 solver would recognize is absent. The shared local offset 119 and the p39 factor of the grid remain separate source clues, and there is no evidence this self-power relation was used to encrypt LP2. A consequential test would freeze (v), a source-specified clock and original ciphertext positions, and recover independently meaningful plaintext across previously unseen material. Merely confirming this equality again would add nothing.
+
 A simple, economically testable proposed cipher would generate a single hidden state \(s_i=s_0u^i\) in this field and apply **any secret bijection of all 29 GP symbols chosen by that state**. The key may contain 840 unrelated 29! lookup rows, and their contents need never be recovered. Every state repeats by 840, therefore:
 
 \[
