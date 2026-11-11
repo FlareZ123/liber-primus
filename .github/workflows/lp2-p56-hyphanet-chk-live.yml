@@ -32,7 +32,7 @@ jobs:
         run: |
           docker pull ghcr.io/soren-work/freenet:latest
           docker image inspect ghcr.io/soren-work/freenet:latest --format '{{.Id}}'
-          docker run -d --name lp2-hyphanet --memory 1536m -p 127.0.0.1:8888:8888/tcp -p 28950:28950/udp -v "$RUNNER_TEMP/lp2-hyphanet:/data" ghcr.io/soren-work/freenet:latest
+          docker run -d --name lp2-hyphanet --network host --memory 1536m -v "$RUNNER_TEMP/lp2-hyphanet:/data" ghcr.io/soren-work/freenet:latest
       - name: Allow the ephemeral node a fixed real-time bootstrap interval
         run: sleep 180
       - name: Probe four source-locked candidate CHKs and a documented public control
