@@ -275,9 +275,27 @@ function main() {
   const exact = sourceWords.filter((word,i) =>
     word === recovered.plains[i]).length;
   assert.ok(exact >= 45, "Uninformative control decoder");
+  // Freeze the p0-selected construction and carry the same key clock
+  // forward through complete original words at physical pages 0 and 1.
+  // The word crossing the page boundary is retained as a single word.
+  const selected = models[0];
+  const page01 = originalWords().filter((w) => w.end <= 1);
+  const fullKey = keys(selected.role,selected.password,
+    selected.reduction,selected.sign,1000);
+  const heldout = decode(page01.map((w) => w.indices),fullKey,
+    frequencies,total,80,65);
+  const page1WordCount = page01.filter((w) => w.page === 1).length;
+  const page1Heldout = heldout.plains.slice(-page1WordCount);
   console.log(JSON.stringify({
     models:models.length,originalP0CompleteWords:p0.length,
     originalP0Runes:size,originalTop:models.slice(0,8),
+    originalPage1Heldout:{completeWords:page1WordCount,
+      selectedPage0Model:selected,
+      originalFirstWords:page1Heldout.slice(0,32).join(" "),
+      combinedScore:heldout.score,
+      combinedLexiconHits:heldout.hits,
+      combinedNulls:heldout.nulls,
+      combinedKeySkips:heldout.skips},
     planted:{words:sourceControl.length,
       plaintextRunes:sourceControl.flat().length,
       printedRunes:encoded.output.flat().length,
