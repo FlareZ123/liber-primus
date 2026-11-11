@@ -1,0 +1,14 @@
+name: 2014 original Onion2 RSA half-factor gate
+on:
+  workflow_dispatch:
+jobs:
+  exact-public-modulus-test:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original two-endian GCD and synthetic positive
+        run: node sims/onion2_2014_rsa_half_factor_gate.cjs
