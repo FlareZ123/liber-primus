@@ -6,6 +6,8 @@
 
 Another new source-only number relation from the same archival HTML: **133+331=464=8×58=16×29**, p464=3301; mod58 values17/41 are reciprocal square roots of −1. They generate two exact reversible page-index maps, each with fixed0/29 and fourteen four-cycles; solved pages p56,p57 connect to respective unsolved pages p2,p1 in cycles. The index actually lists images in numeric order, and both hypothetical 17/41 reading permutations produce one 16-rune word versus original maximum14, weak typography only. [SFT](../../sims/onion7_133331_page_cycle_sft.cjs), [passing CI42930454427](https://github.com/FlareZ123/liber-primus/actions/runs/42930454427). Shared under Issue#12 (6783106657). Does **not** provide known plaintext.
 
+Further source-motivated, **unproven** selector: reducing all three 449-modulus remainders by the 58 original image count gives **[13,17,41]**, where 13 equals the visible original 13-dot separator size (31 separators delimit 32 full-text fragments) and 17/41 are reversible inverse mod58 page multipliers. The 32-fragment affine traversal x→13x+17 mod32 (seed0) has full period by Hull–Dobell; x→13x+41 mod32 also has full period, so neither is uniquely instructed or known to decrypt. Shared as a provisional option with the active #12 owner (comment 6783308866), without running redundant fragment scans.
+
 Interpretation next time: **Use first residue361 as a clue only if manuscript/source specifies its operation**, or infer intended decoding from mathematically connected title/id and the authenticated older p57. Avoid uninformed 361 PRNG sweeps or re-running cookie/MP3 key search; exhaustive direct mechanisms have been covered.
 
 ---
