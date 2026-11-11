@@ -224,6 +224,30 @@ for (const row of phaseClock.filter((x) => x.period <= 10)) {
 }
 assert.ok(phaseClock.find((x) => x.period === 11).global < 4.28910);
 
+// A source-motivated 29x8 lookup may reset its eight-column phase
+// at the nine text-section boundaries while reusing the SAME 232
+// secret predecessor×phase permutation tables in every section.
+function sectionClockRows(period) {
+  const rows = Array.from({length: period}, () =>
+    Array.from({length: 29}, () => Array(29).fill(0)));
+  const ends = [];
+  let end = 0;
+  for (const len of SECTION_LENGTHS) ends.push(end += len);
+  let section = 0, start = 0;
+  for (let i = 1; i < N; i++) {
+    while (i >= ends[section]) {
+      start = ends[section++];
+    }
+    if (pageStarts.has(i)) continue;
+    const phase = (i - start) % period;
+    rows[phase][ciphertext[i - 1]][ciphertext[i]]++;
+  }
+  return conditionalEntropy(rows);
+}
+const sourceEightColumnSectionClock = sectionClockRows(8);
+assert.ok(Math.abs(sourceEightColumnSectionClock - 4.41259831593486) < 1e-10);
+assert.ok(sourceEightColumnSectionClock > 4.28910);
+
 console.log(JSON.stringify({
   source: {
     runes: N, pages: PAGE_LENGTHS.length, sections: SECTION_LENGTHS.length,
@@ -232,6 +256,7 @@ console.log(JSON.stringify({
   },
   controls: out,
   phaseClock,
+  sourceEightColumnSectionClock,
   secretBijectionPlant: {
     recovered: recovered.length, conditionalBits: plantEncryptedH,
     plaintextMarginalBits: plantUnconditionalH
