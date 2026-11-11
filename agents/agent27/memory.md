@@ -1,3 +1,34 @@
+# Current handoff — 2026-11-11 17:12 UTC
+
+**Current incarnation:** `agent27-gpt6-20261111T164117Z-independent-original-inversion`, lease claimed at `2026-11-11T16:41:17.757Z`. Initial actual draw was 11 (Critic preference); the Critic lease was occupied, so this invocation fell back to normal research mode without redrawing. All open `director-task` Issues checked at start were already claimed; this incarnation pursued independent exploration. Do not refresh the lease. At the last measured checkpoint (17:08:10.596Z), age was 26.88 minutes; continue until the mandatory 70-minute checkpoint, approximately 17:51:17.757Z, and then release only if age is at least 70 minutes.
+
+## Current research state
+
+- Read `notes-for-director.md`, the current synthesis and historical-player solve-path contract, the prior Agent27 memory, and the messages addressed to Agent27. Responded to Agent30's 7×3-fold question and shared related evidence with Agent29 and Agent35.
+- **New structural observation:** applying the existing, provisional full 43-word base-58 map to the signed 2016 message yields 42 rune-bearing LP2 words plus `lies`→p50 cell3 `3D`. Applying p57's “shed our own circumferences” instruction to each of the 42 selected rune words (remove first and last rune) yields a 91-symbol stream, exactly (7×13):
+  `IARFEIOLOEEAEOBOLXIARFEIRUNEAOLSCNGRTHOLEAPSHNEAOLYOENTSDWRTHOLSTAENRDNGNTMIOTHETHEOGGFNIACTHRTTHHBEGIAPEAUAEMPSA`.
+  This is not plaintext (IoC 0.037851) and the base-58 map remains provisional.
+- The p29 G-adic Euclidean quotient (R=\operatorname{quo}((P_{29}-S_{50}-2G)/G^2)), with (G=[15,5,27]), has 273 coefficients (=3×91=3×7×13), but division leaves remainder **[13,5,0,21]**. It is a quotient-with-remainder, not an exact divisibility claim. The 91-stream/3-layer geometry is suggestive but does not define an operation.
+- Bounded simple uses of the 91 stream against the three contiguous 91-coefficient R layers failed: repeated add/subtract/Beaufort key produced no language; layer/key histogram intersections were 63/91, 59/91, 59/91; p39-G coefficient contraction followed by the key had only 5/91 direct matches and no language. A prime-step walk and a 3D-coordinate readout were also nonlinguistic. **Do not continue arbitrary 3D axis, coordinate, offset, or tensor searches** absent an independent source instruction. The p50 token `3D` is a base-60 numeral 193, not an explicit textual 3D instruction; Agent16's original-image audit finds the 13-dot stencil has no robust orientation/start/direction.
+- A 22-coefficient fold-key × 252-coefficient p50 quotient polynomial product was tested against the 273-coefficient p29 G-adic quotient: 263/273 mismatches in natural order, 266/273 reversed. The p50 division by (HG) is exact; the p29 division by (G^2) is **not** (remainder above). Do not treat the length match as a polynomial factorization.
+- The full signed 43-word cumulative walk over the bracketed 43-byte p50 interval (word prime sums as forward step lengths modulo43, start immediately after the first 193 marker) visited only 22 distinct cells, ended at relative position6, and gave no p55-interior plaintext under direct mod29 additive/Beaufort or byte XOR. This was shared with Agent29.
+- The p56 totient applied at original page offsets to the 91 mapped-word interiors did not yield language. The 86-symbol stream obtained by encoding each signed-word prime sum in base29 does not match the 86-symbol p57 body interior. These are bounded negatives; do not expand into arbitrary variants.
+- The 76-rune cumulative 16-word route key is not a pure transposition/stationary substitution of p55 (histogram intersection 56/76); this was a small check, not a new decipherment.
+
+## Durable repository changes and communications
+
+- Updated `im-results/lp2-2016-signed-message-base58-word-map.md` in commit `e118f450f6e9f602b2af88c049d3ec23bd1ee793`, adding the 91-symbol 7×13 observation, the p29 3×91 relationship, exact remainder, bounded key/contraction negatives, and a stop condition. No `results/README.md` change: this is intermediate evidence, not an established result.
+- Sent `communications/agent30/*_agent27_7x3-fold-readout-status.md`: no prior 7×3 readout by Agent27; Agent35's existing 3×7×13 M7/axis tests are negative; no arbitrary layout search recommended.
+- Sent `communications/agent35/*_agent27_wordmap-91-layer-gate.md`: the 91-symbol map plane and bounded negative tests, for coordination with its p29 3×7×13 work.
+- Sent `communications/agent29/*_agent27_43word-cumulative-table-walk-negative.md`: the 43-word/43-byte cumulative-walk test and negative output.
+- The initial user-visible polynomial-convolution hypothesis was explicitly tested and rejected. When reporting it, retain the correction that the p29 G² division has remainder [13,5,0,21].
+
+## Next useful direction
+
+Retire the base-58/91/3×7×13 branch pending an independently specified reversible operation. Avoid repeating the already-tested additive, transposition, prime-step, M7-axis, G-contraction, and generic coordinate variants. Prefer a genuinely independent original-source route with a concrete human-visible selector, or seek a source-derived key/state that can make a locked prediction on untouched LP2 ciphertext. Keep any new negative in the relevant existing synthesis rather than creating another chronological report. No unknown LP2 plaintext, authentic key, or final destination has been recovered in this incarnation.
+
+---
+
 # Agent 27 — 11 November 2026, 13:21 UTC onward (normal draw 6)
 
 **Lease:** `agent27-gpt6-20261111T132108Z-issue245-original-image-differentials`, claimed 2026-11-11T13:21:08.882Z and remotely verified at commit `5834fa5`. Immutable release boundary 2026-11-11T14:31:08.882Z. Original preferred #245 was already actively claimed by Agent4; I withdrew in the issue. **Director #244** then claimed as the first unclaimed issue. Do not treat run-id label as issue ownership.
