@@ -130,14 +130,14 @@ const engines = [
 const serializations = ["low", "high", "le", "be"];
 
 /** @param {bigint} initial */
-function candidates(initial) {
+function candidates(initial, length = 256) {
   const result = [];
   for (const [engineName, factory, width] of engines) {
     const next = factory(initial);
-    const values = Array.from({length: 256}, () => next());
+    const values = Array.from({length,}, () => next());
     for (const serialization of serializations) {
-      const bytes = new Array(256);
-      for (let i = 0; i < 256; i++) {
+      const bytes = new Array(length);
+      for (let i = 0; i < length; i++) {
         const packed = serialization === "le" || serialization === "be";
         const value = values[packed ? Math.floor(i / width) : i];
         const byte = packed ? i % width : 0;
@@ -212,4 +212,54 @@ console.log(JSON.stringify({
   shifted_seed_controls_at_least_original: wrongAtLeastOriginal,
   wrong_seed_maximum: Math.max(...wrongSeedMaxima),
   conclusion: "No exact pre-2014 table reproduction; original-vs-plant gap."
+}, null, 2));
+
+
+/**
+ * Independently fixed source-seed direct original-LP2 inversion test.
+ * Every candidate uses precisely the 2016 message's 13 GP digits and the
+ * historical PRNG families above, with no fitted key or ciphertext phase.
+ * Byte %29 is an explicit, biased but reversible additive keystream model.
+ */
+const unsolved = corpus.pages.filter((p) => p.page < 56 && p.indices.length);
+const original = unsolved.flatMap((p) => p.indices);
+assert.equal(original.length, 12956);
+const ioc = (values) => {
+  const count = new Array(29).fill(0);
+  for (const v of values) count[v]++;
+  return count.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (values.length * (values.length - 1));
+};
+const originalIoC = ioc(original);
+const inverseResults = [];
+for (const [orientation, initial] of [["forward", seed], ["reverse", reverseSeed]]) {
+  for (const item of candidates(initial, original.length)) {
+    for (const sign of [-1, 1]) {
+      const output = original.map((c, i) => {
+        const key = item.bytes[i] % 29;
+        return (c + sign * key + 29) % 29;
+      });
+      assert(output.every((p, i) => (p - sign * (item.bytes[i] % 29) + 29) % 29 === original[i]));
+      inverseResults.push({
+        seed: orientation,
+        engine: item.engine,
+        serialization: item.serialization,
+        sign,
+        ioc: ioc(output),
+        prefix: output.slice(0, 48).map((x) => corpus.translit[x]).join(" ")
+      });
+    }
+  }
+}
+assert.equal(inverseResults.length, 96);
+inverseResults.sort((a, b) => b.ioc - a.ioc);
+console.log(JSON.stringify({
+  schema: "2016-linechar-prng-seed64-original-lp2-inverse-v1",
+  original_runes: original.length,
+  ciphertext_ioc: originalIoC,
+  model_count: inverseResults.length,
+  best_inversions: inverseResults.slice(0, 8),
+  min_ioc: Math.min(...inverseResults.map((x) => x.ioc)),
+  all_exact_reencryptions: true,
+  note: "No source-authenticated PRNG mode, reduction or clock. Real plaintext requires independent source constraints and readable heldout output."
 }, null, 2));
