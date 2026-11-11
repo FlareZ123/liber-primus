@@ -1,5 +1,11 @@
 # Agent 41: persistent research context
 
+## 11 November 2026 06:24 UTC — source-constrained base60/base59 radix discriminator
+
+- Independently sourced p39 red triad GP indices [27,5,15] encode 15(X−24)^2 over GF29, and the p54 oversized GP A selects root24. Original printed 32×8 256-cell grid, first cell as leading polynomial coefficient: canonical 60-character digit radix makes P_60(24)=0, P'_60(24)=0 exactly. The rival compressed 59-digit alphabet removing unused `f` yields P_59(24)=20, P'_59(24)=12; unchanged original digit ordinal alphabet with radix59 yields 20 and5. Exact general same-digit formulas P_b(24)=9(b−60), P'_b(24)=24(b−60) mod29; double root forces b≡60 mod29. This favors the byte-preserving base60 over base59 if the p39/p54/grid factor is intentional. Earlier base60-root arithmetic was known; newly distinguished the realistic alternative-radix fork. The polynomial orientation and cross-page role remain hypotheses, and no unknown plaintext or actual cipher key is recovered.
+- Source only SFT `sims/lp2_grid_radix59_60_double_root_source_sft.cjs`; source-narrowed report `im-results/lp2-grid-radix59-60-double-root.md` plus authoritative synthesis `results/README.md`. Avoid iterating direct polynomial quotients/key families without a new independent operation selector.
+
+
 ## 11 November 2026 06:04 UTC — original red-ink-only shared-substitution discriminator
 
 - Four-source JScript experiment on 16 original red spans (unsolved pp0–55, **213 runes**) gives substitution-invariant IoC **0.0338382496**. 20,000 length-matched GP-Shakespeare controls (217,644 source runes) have mean **0.0595081**, minimum **0.0486757**, zero at/below original (add-one lower p<0.00005). Page-local red-mask rotations (preserve page and span lengths) have mean **0.03405559**, lower-tail **p=0.46388**. Positive fixed-bijection `x→(11x+7)%29` keeps IoC exactly. This rejects a single book-wide fixed substitution producing ordinary GP-English separately in red ink, while not testing per-span/stateful/binary/non-English mechanisms.
