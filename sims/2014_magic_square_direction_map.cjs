@@ -22,6 +22,61 @@ const magic = [
 ];
 const mod = n => ((n % 29) + 29) % 29;
 
+/*
+ * The pinned 2013 0_wisdom page gives a mixed 5x5 table. Its prose says that
+ * primes and the totient function are sacred. Replacing each runic word by
+ * the sum of its GP prime weights reconstructs the archived 2014 stage04
+ * magic square exactly; numeric cells are preserved unchanged.
+ */
+const wisdomText = fs.readFileSync("resources/external/2013-0-wisdom.txt", "utf8");
+const wisdomLines = wisdomText.split(/\r?\n/);
+const wisdomHeading = wisdomLines.findIndex(line => line.includes("ᚳᚾᚩᚹ•ᚦᛁᛋ"));
+assert.notEqual(wisdomHeading, -1, "2013 0_wisdom table heading must be present");
+const wisdomTableLines = wisdomLines.slice(wisdomHeading + 1).filter(line => line.trim()).slice(0, 5);
+assert.equal(wisdomTableLines.length, 5, "2013 0_wisdom table must have five rows");
+const wisdomRows = wisdomTableLines.map(line =>
+  line.trim().split(/\s{2,}/).map(cell => cell.replace(/[⁘⁜]/gu, "").trim()).filter(Boolean)
+);
+assert(wisdomRows.every(row => row.length === 5), "2013 0_wisdom table must be 5x5");
+const wisdomWordCells = [];
+const wisdomSquare = wisdomRows.map((row, r) => row.map((cell, c) => {
+  if (/^\d+$/.test(cell)) return Number(cell);
+  const runeIndices = Array.from(cell, rune => corpus.runes.indexOf(rune));
+  assert(runeIndices.length > 0 && runeIndices.every(i => i >= 0),
+    "2013 0_wisdom word must contain only canonical GP runes");
+  const primeWeights = runeIndices.map(i => corpus.prime[i]);
+  const primeSum = primeWeights.reduce((a, b) => a + b, 0);
+  wisdomWordCells.push({
+    row:r + 1, column:c + 1, runes:cell,
+    translit:runeIndices.map(i => corpus.translit[i]).join(""),
+    primeWeights, primeSum,
+  });
+  return primeSum;
+}));
+assert.equal(wisdomWordCells.length, 13, "2013 table must contain 13 word cells");
+assert.deepEqual(wisdomSquare, magic,
+  "GP prime-summing the 2013 0_wisdom word cells must reproduce 2014 stage04 cell-for-cell");
+const wisdomRowSums = wisdomSquare.map(row => row.reduce((a, b) => a + b, 0));
+const wisdomColumnSums = Array.from({length:5}, (_, c) =>
+  wisdomSquare.reduce((sum, row) => sum + row[c], 0)
+);
+const wisdomDiagonalSums = [
+  wisdomSquare.reduce((sum, row, i) => sum + row[i], 0),
+  wisdomSquare.reduce((sum, row, i) => sum + row[4 - i], 0),
+];
+assert(wisdomRowSums.every(x => x === 1033));
+assert(wisdomColumnSums.every(x => x === 1033));
+assert(wisdomDiagonalSums.every(x => x === 1033));
+const wisdomTo2014 = {
+  sourceFile:"resources/external/2013-0-wisdom.txt",
+  sourceImageBlobSha:"2829e13812015601ff1014cb4427587b4a8aa3a6",
+  sourceTranscriptionBlobSha:"320257b0db6ee6326ef3fc216c5379c9c91694f3",
+  originalNumericCells:12, primeSummedWordCells:13, totalCells:25,
+  cellwiseMatch:true, wordPrimeSums:wisdomWordCells,
+  reconstructedSquare:wisdomSquare,
+  rowSums:wisdomRowSums, columnSums:wisdomColumnSums, diagonalSums:wisdomDiagonalSums,
+};
+
 function phi(n) {
   assert(Number.isInteger(n) && n > 0, "Euler phi is defined here only for positive integers");
   let x = n, out = n;
@@ -557,4 +612,4 @@ const lagSixGraphGate = {
   decision:'The source-fixed 2014 direction graph and its six-cycle do not enrich or select the original sparse T6 event positions.'
 };
 
-console.log(JSON.stringify({magicSquare:magicResult, lp2GridTransfer, fragmentBridge, lagSixGraphGate}, null, 2));
+console.log(JSON.stringify({wisdomTo2014, magicSquare:magicResult, lp2GridTransfer, fragmentBridge, lagSixGraphGate}, null, 2));

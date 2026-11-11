@@ -129,3 +129,20 @@ The real bottleneck is **finding external/source-derived key material or a rever
 - Best full scores by section: [-5.208,-5.475,-5.441,-5.457,-5.563,-5.346,-5.535,-5.566]. The strongest short-head candidates collapse on 220 runes; no coherent GP-English passage or key recovered. This rejects these direct MIDI/interval/rhythm-as-key mappings, not lyric alignment or more specific fretboard/score-derived transforms.
 - Updated `im-results/audio-761-pad-scan.md` with the carrier-phase and direct note-key negatives. Reproducer: `sims/audio_761_note_key_probe.cjs`; successful run 42897650301.
 - Next: do not broaden arbitrary MIDI mapping sweeps. A further music investigation needs a concrete clue for note-to-rune mapping or synchronization; otherwise move to a different source-derived path.
+
+## 2026-11-11: 2013 0_wisdom → 2014 stage04 exact prime-sum derivation
+
+A high-confidence historical cross-round relationship was established and integrated into the shared synthesis. The pinned 2013 `0_wisdom` 5×5 table has 12 numeric cells and 13 GP-rune word cells. Replacing each word with the sum of its canonical GP prime weights, while leaving numeric cells unchanged, reconstructs the archived 2014 stage04 magic square **cell-for-cell (25/25)**. Every row, column, and principal diagonal sums to 1033. The 2013 page's prose explicitly says the primes and totient function are sacred, so the operation is clue-constrained rather than a fitted numerical coincidence.
+
+Key artifacts:
+- `resources/external/2013-0-wisdom.txt` — pinned third-party raw rune transcription.
+- `resources/external/2013-0-wisdom-source.md` — source URLs, blob SHAs, and evidence limits.
+- `sims/2014_magic_square_direction_map.cjs` — reads the transcription, recomputes all 13 word sums from the canonical corpus, asserts the 25-cell match and 1033 sums, then runs the existing 2014/LP2 analyses.
+- `im-results/2014-magic-square-direction-map.md` — consolidated derivation and evidence boundary.
+- `results/README.md` — authoritative synthesis updated with the verified cross-round relation.
+
+The 13 word sums are SHADOWS=341, AETHEREAL=366, BUFFERS=199, UOID/VOID=130, CARNAL=320, OBSCURA=245, FORM=91, MOBIUS=226, ANALOG=320, UOID/VOID=130, MOURNFUL=199, AETHEREAL=366, CABAL=341. This makes the 2014 square a numeric expansion of the 2013 table. The subsequent `φ(n) mod 29` labels and degree bearings are the existing 2014 mechanism; the 2016→LP2 bridge remains a hypothesis, not plaintext recovery.
+
+Related coordination: Agent 6 was given the 2013 image/transcription source and the existing red microdot census. Do not duplicate `im-results/red-microdot-motif-inventory.md` or `resources/liber-primus/lp2-ink-annotations.json`; an independent scan reproduced 35 red clusters (30×13, 4×10, 1×23), confirming the existing census rather than adding a new result.
+
+An exploratory p32 prime-bearing path through the tree's empty cells was not promoted: the source-fixed bottom-root path was only 7–8 cells and its permutation-null tail was about 0.036–0.060 depending on the image mask. It is not a decryption and should not be treated as established.

@@ -1,6 +1,6 @@
 # 2014 stage04 magic-square direction map: cell 6 Rad ↔ cell 7 Ac
 
-**Status:** a reproducible cross-round fragment-structure hypothesis, including an exact 199 → empty fragment 6 / Ac fragment 7 bridge, alongside bounded negative tests of direct table transfer, recursive prime-fragment continuation, and the 2014 direction graph as a sparse lag-six event selector. The full graph does not explain the observed T6 event positions under a word-structure-matched null. No LP2 plaintext or authentic key has been recovered.
+**Status:** a verified 2013 `0_wisdom` → 2014 stage04 word-prime-sum reconstruction (**25/25 cells**), plus a reproducible 2014→2016→LP2 fragment-structure hypothesis including an exact 199 → empty fragment 6 / Ac fragment 7 bridge. Bounded negative tests reject direct table transfer, recursive prime-fragment continuation, and the 2014 direction graph as a sparse lag-six event selector. The full graph does not explain the observed T6 event positions under a word-structure-matched null. No LP2 plaintext or authentic key has been recovered.
 
 ## 2014 source and selector
 
@@ -31,6 +31,26 @@ The selector is independently constrained. The 2014 stage03 comment is “Patien
 ```
 
 The 2016 message was published on 5 January, immediately before Epiphany (6 January). Both the historical phrase and the date therefore select **cell 6**.
+
+## 2013 `0_wisdom` table → 2014 square: exact prime-sum reconstruction
+
+The pinned 2013 `0_wisdom` page contains a mixed 5×5 table: **12 numeric cells and 13 GP-rune word cells**. Its surrounding prose explicitly states that the primes and the totient function are sacred. Using the canonical GP prime assignment, replace each runic word with the **sum of its rune-prime weights**, leaving the numeric cells unchanged. The resulting 5×5 matrix is exactly the 2014 stage04 magic square, **cell-for-cell (25/25)**:
+
+```
+2013 mixed table:                    after word prime-sums:
+
+272  138  SHADOWS  131  151          272  138  341  131  151
+AETHEREAL BUFFERS UOID CARNAL 18     366  199  130  320   18
+226  OBSCURA FORM 245 MOBIUS          226  245   91  245  226
+18   ANALOG UOID MOURNFUL AETHEREAL  18   320  130  199  366
+151  131  CABAL    138  272          151  131  341  138  272
+```
+
+The 13 word-cell sums are: SHADOWS→341; AETHEREAL→366; BUFFERS→199; UOID (plaintext rendering VOID)→130; CARNAL→320; OBSCURA→245; FORM→91; MOBIUS→226; ANALOG→320; UOID→130; MOURNFUL→199; AETHEREAL→366; CABAL→341. The complete per-rune prime weights are emitted by the reproducer.
+
+The expanded square has all five row sums, all five column sums, and both principal diagonal sums equal to **1033**. There is no fitted offset, modulus, permutation, or search: the source supplies the words, the GP alphabet supplies the primes, and the 2013 prose motivates prime arithmetic. The 2014 square is therefore a numeric expansion of the 2013 table, not an independent numerical coincidence. The pinned transcription and source metadata are preserved in [`resources/external/2013-0-wisdom.txt`](../resources/external/2013-0-wisdom.txt) and [its source note](../resources/external/2013-0-wisdom-source.md); the [reproducer](../sims/2014_magic_square_direction_map.cjs) asserts all 25 cells and the 1033 sums.
+
+**Evidence boundary:** the cellwise arithmetic identity is established and reproducible. Attribution of the prime-sum operation to intended author instruction is strongly clue-constrained by the page's explicit prose, but remains a historical interpretation. It does not recover LP2 plaintext or establish that every later LP2 page uses the same mechanism. The following `φ(n) mod 29` labels and degree bearings are the next operation in the 2014 analysis, not a newly proven LP2 cipher.
 
 ## Direction-field test
 
