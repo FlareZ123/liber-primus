@@ -1,0 +1,23 @@
+name: 13-31 LCG grid-row DES inverse
+on:
+  push:
+    paths:
+      - 'sims/fragment_grid_des_inverse.cjs'
+      - 'sims/fragment_grid_des_lcg_inverse.cjs'
+      - '.github/workflows/fragment-grid-des-lcg-inverse.yml'
+      - 'resources/liber-primus/lp2-corpus.json'
+      - 'resources/liber-primus/lp2-ink-annotations.json'
+      - 'resources/liber-primus/base60-grid.json'
+      - 'resources/control/shakespeare_first300k.txt'
+  workflow_dispatch:
+jobs:
+  lcg-grid-des:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source-derived LCG row/column DES schedules
+        run: node sims/fragment_grid_des_lcg_inverse.cjs
