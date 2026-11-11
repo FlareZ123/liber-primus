@@ -190,8 +190,12 @@ function main() {
   const betaOrder = powers(beta, 70);
   const uOrder = powers(u, 840);
   const generators = [
-    {name: 'p3-primitive-u', period: 840, powers: uOrder},
-    {name: 'p39-on-p3-beta', period: 70, powers: betaOrder}
+    {name: 'constant-field-element', period: 1, powers: [[1, 0]],
+      directions: ['constant']},
+    {name: 'p3-primitive-u', period: 840, powers: uOrder,
+      directions: ['forward', 'reverse']},
+    {name: 'p39-on-p3-beta', period: 70, powers: betaOrder,
+      directions: ['forward', 'reverse']}
   ];
   const allLambda = lambdas();
   assert.equal(allLambda.length, 840);
@@ -204,8 +208,8 @@ function main() {
   };
   const original = [];
   for (const generator of generators) {
-    for (const direction of ['forward', 'reverse']) {
-      const basePowers = direction === 'forward'
+    for (const direction of generator.directions) {
+      const basePowers = direction !== 'reverse'
         ? generator.powers
         : powers(power(generator.powers[1], generator.period - 1),
           generator.period);
@@ -228,8 +232,8 @@ function main() {
   const plantLambda = [4, 13];
   const plants = [];
   for (const generator of generators) {
-    for (const direction of ['forward', 'reverse']) {
-      const basePowers = direction === 'forward'
+    for (const direction of generator.directions) {
+      const basePowers = direction !== 'reverse'
         ? generator.powers
         : powers(power(generator.powers[1], generator.period - 1),
           generator.period);
