@@ -69,7 +69,7 @@ The original signed message, GP-encoded with the same normalization, scores **-2
 
 ### Test as a 43-symbol key for p55
 
-The p55 13-dot interior extraction contains 43 runes in 17 word fragments. Aligning the 43 transformed 2016 tokens to those 43 runes is a source-motivated one-to-one test. The literal `+` positions are treated as zero shift (no-op); both GP29 signs are tested.
+The p55 word-interior extraction (remove the first and last rune of each printed word) contains 43 runes in 17 word fragments. Aligning the 43 transformed 2016 tokens to those 43 runes is a source-motivated one-to-one test. The literal `+` positions are treated as zero shift (no-op); both GP29 signs are tested.
 
 | Sequence | Mean log score |
 |---|---:|
