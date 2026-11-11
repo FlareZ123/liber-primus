@@ -136,7 +136,7 @@ assert(latinRunes.every(x=>x>=0&&x<29));
 assert.equal(latinRunes.length,204802);
 checkNative("Latin Vulgate",latinRunes);
 // Beowulf fixture is a source-preserved 12,956-rune GP29 window.
-const beowulf=JSON.parse(read("resources/control/beowulf_oe_gp_profile.json"));
+const beowulf=JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
 const oldEnglish=Array.from(beowulf.positiveControlGpBase29,
   c=>beowulf.positiveControlAlphabet.indexOf(c));
 assert(oldEnglish.every(x=>x>=0&&x<29));
