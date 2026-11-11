@@ -416,6 +416,7 @@ def main():
     solved = parse_solved_lines(args.root / "resources" / "external" / "Liber Primus 57.txt")
     control_crops, control_labels, control_ink_flags = [], [], []
     red_control_crops, red_control_labels = [], []
+    red_control_records = []
     control_results = []
     for page, lines in solved.items():
         solved_line_offsets, cursor = [], 0
@@ -445,6 +446,12 @@ def main():
                     line_red_correct += int(want == got)
                     red_control_crops.append(group["crop"])
                     red_control_labels.append(want)
+                    red_control_records.append({
+                        "page": page, "line": li, "position": pos,
+                        "page_local_offset": page_local_offset,
+                        "expected": TRANSLIT[want], "p43_nearest": TRANSLIT[got],
+                        "box": group["box"]
+                    })
                 else:
                     line_black_total += 1
                     line_black_correct += int(want == got)
@@ -675,6 +682,7 @@ def main():
             "red_template_model": {
                 "control_samples": len(red_control_labels),
                 "control_classes": [TRANSLIT[i] for i in sorted(red_control_class_indices)],
+                "control_records": red_control_records,
                 "duplicate_class_leave_one_out": {"correct": red_loo_correct, "total": red_loo_total},
                 "unknown_red_positions": red_model_total,
                 "covered_expected_classes": red_model_covered,
