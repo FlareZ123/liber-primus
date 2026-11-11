@@ -33,6 +33,7 @@ const keyMaps=[
   {name:"Euler-totient(GP-prime) mod28",values:rawKey.map(v=>(primes[v]-1)%28)}
 ];
 const full=corpus.pages.filter(p=>p.page>=33&&p.page<=39).flatMap(p=>p.indices);
+// Source bracket: p33 local91 through p39 local119; 91-rune prelude + 1,468 body + 121-rune tail = 1,680 page-span runes.
 const cuneiformStart=91,cuneiformEnd=1559,cuneiform=full.slice(cuneiformStart,cuneiformEnd);
 assert.equal(full.length,1680);
 assert.equal(cuneiform.length,1468);
