@@ -1,6 +1,6 @@
 # The 2016 / p50 / p55 43-unit bridge: source-selector gate
 
-**Classification:** bounded source audit, negative. No source-authenticated, reversible 43-unit operation has been established. The direct one-to-one GP29 additive/Beaufort bridge between the conditional p32 43-rune compass output and p55's 43 interior runes is also falsified under the six fixed forward/reverse variants below. This does not exclude other keyed, nonlinear, or stateful operations.
+**Classification:** bounded source audit, negative. No source-authenticated, reversible 43-unit operation has been established. The direct p32-compass additive/Beaufort bridge and a direct source-order key made from the signature-verified 2016 message's 43 GP-prime word sums both fail on p55's 43 interiors. These results do not exclude other keyed, nonlinear, or stateful operations.
 
 ## Fixed source observations
 
@@ -40,7 +40,7 @@ That is 76 page-local runes. The leading one-rune segment is the final boundary 
 
 The solved p57 Parable says, “We must shed our own circumferences. Find the divinity within and emerge.” Under the lossless cross-page-aware stripping above, this yields a concrete internal marker geometry. GP index23 is D, and the 43 interiors contain D exactly at one-based positions **5 and23**. There are **17 runes strictly between**, their position difference is **18**, and the inclusive D…D span has **19 runes**. Historical `NUMBER(193)` independently yields **391=17×23**, so both factors are realized without choosing a new key. The D…D span folds to **100000000₂=256** and its center is I, whose GP prime is31.
 
-This supports the interior-extraction convention substantially more strongly than cardinality alone. It still says nothing by itself about pairing the 43 interiors with p50 bytes or 2016 message words, and it does not specify whether boundary symbols should later be reinserted.
+This supports the interior-extraction convention substantially more strongly than cardinality alone. It does not fix the p50-byte mapping or whether boundary symbols should later be reinserted. A separate direct pairing of the 43 signed-message words with these interiors, using word GP-prime sums as shifts, is tested below and fails.
 
 ### The earlier historical instructions
 
@@ -82,11 +82,33 @@ For scale, the first 43 body runes of solved p57 (after its seven-rune PARABLE h
 
 **Decision:** reject the direct stationary additive/Beaufort pairing between the conditional p32 compass output and p55's 43 interiors. This does not falsify the p32 route as a selector, nor does it test nonlinear/stateful transforms or a separately source-selected alignment. Do not expand this into arbitrary 43-way permutations or phases.
 
+
+## Direct signed-2016 word-prime-sum key → p55 interior (bounded negative)
+
+The signature-verified 2016 clear-signed message contains **43 alphabetic words**, matching the 43 p55 interior runes. A simple reading of “their numbers are the direction” is to encode each word in GP, sum its rune prime weights, reduce modulo29, and use that 43-value sequence as a one-symbol-per-rune shift key in source order. This is a motivated test, not an authenticated cipher instruction: the message does not explicitly prescribe prime sums, modulo29 reduction, or Vigenère.
+
+The exact GP encoding uses the corpus transliteration and prime arrays, greedily consuming TH/NG/EO/OE/AE/IA/EA; the equivalent-letter map supplies K=C, V=U, and Z=S. The numeric token 3301 and mixed alphanumeric key ID 7A35090F are not words; OpenPGP is retained as the 43rd alphabetic word. The fixed key modulo29 is:
+
+[11,14,0,21,24,1,21,14,4,11,9,26,14,16,27,5,1,14,8,27,0,26,14,1,12,27,5,1,14,18,26,12,26,22,12,14,4,15,3,2,24,14,17]
+
+Only the natural-order C-K and C+K directions were tested on the source-derived p55 interiors; no reversal, phase, key permutation, or alternate word encoding was searched.
+
+| Stream | IoC | Shakespeare-GP trigram log mean |
+|---|---:|---:|
+| Raw p55 interiors | 0.034330 | −6.351839 |
+| C-K | 0.038760 | −5.520948 |
+| C+K | 0.029900 | −7.435180 |
+| Solved p57 first 43 body runes | 0.056478 | −2.571630 |
+
+The C-K output is HAE EOXEAU GIPD MOFDNGAEREAFDL ENYU IW BAEBBD EMMBX PWBI Y U when split by the original p55 interior word boundaries; C+K is likewise incoherent. The modest C-K score increase is not distinctive: **10,000** Fisher–Yates permutations of the same 43 key values (xorshift32 seed 0x45c1d0) put the source order at the **91.54th percentile**, with empirical add-one upper tail **0.084692** (shuffle q05/median/q95/q99 = −6.956251/−6.186647/−5.382346/−5.066929). It does not reach a 5% tail and remains far below the solved-p57 control.
+
+A synthetic positive control encrypts the first 43 solved-p57 body runes by adding this same key and recovers them exactly with C-K. This validates the arithmetic only; it cannot authenticate the historical key. **Decision:** reject this specific direct prime-sum-as-additive-shift reading. It does not rule out every semantic use of the signed words, but no further 43-way phases or transformations are justified without a new source-visible rule. The existing [combined reproducer](../sims/p32_p55_43symbol_additive_bridge.cjs) now emits both the p32-compass and signed-word-prime-sum results.
+
 ## Exact missing selector
 
 No surviving, contemporaneous instruction reviewed here establishes all of the following:
 
-1. Which signed-message word corresponds to which p50 byte and which p55 interior rune.
+1. Which signed-message word corresponds to which p50 byte. The fixed natural-order word-prime-sum shift to p55's 43 interiors is negative and does not establish a three-way p50/message/p55 mapping.
 2. Whether the three 43-element sequences are paired in natural order, reversed, permuted, or grouped another way.
 3. Whether a p50 value is a raw byte, a base-60 token, an 8-way direction/distance value, or something else when applied to a GP rune.
 4. The direction and traversal order for the p55 interior sequence.
@@ -97,7 +119,7 @@ The current 43-word base-58 address map is a later reconstruction from GP prime 
 
 ## Decision
 
-**Stop arbitrary 43-way key expansion and direct additive/Beaufort pairing.** A newer source-derived navigation chain strengthens the cardinality selection while leaving the decoder incomplete. The repeated signed-word map selects **FOLD**; the p55 image fold selects one-based 13-dot fragment **18**; that fragment is the p27 red 19-rune title whose first rune is GP index **19**, leaving 18 payload runes. Folding that payload outer-to-inner gives **100000000₂ = 256**, and its only matching pair is **P/P**, whose GP prime is **43**. The full compound 19-rune signature occurs exactly once in the complete 13,136-rune LP2 source stream.
+**Stop arbitrary 43-way key expansion and the tested direct stationary additive/Beaufort pairings.** The signature-verified 43-word prime-sum key also fails on p55; do not expand it into unsourced word-value, phase, or permutation variants. A newer source-derived navigation chain strengthens the cardinality selection while leaving the decoder incomplete. The repeated signed-word map selects **FOLD**; the p55 image fold selects one-based 13-dot fragment **18**; that fragment is the p27 red 19-rune title whose first rune is GP index **19**, leaving 18 payload runes. Folding that payload outer-to-inner gives **100000000₂ = 256**, and its only matching pair is **P/P**, whose GP prime is **43**. The full compound 19-rune signature occurs exactly once in the complete 13,136-rune LP2 source stream.
 
 The table itself provides a same-representation 43-cell bracket: the derived signed `lies` address selects byte193 at cell83; the only other byte193 is at cell127; their outward neighbors are both 201, giving **[201,193] … [193,201]** around cells84–126, exactly 43 cells. This materially improves the earlier count-only alignment. **Traversal orientation remains unresolved.** The duplicated p27/p55 word pair is 1,432 canonical words apart and the selected section has 1,433 runes, but those are different units and the numerical −1 relation does not supply direction without another instruction.
 
@@ -108,7 +130,7 @@ The reverse order 126→84 was nevertheless tested as a conditional branch. As p
 - Original signed extraction and source record: [cicada2016-4gq25-outguess.asc](../resources/historical/cicada2016-4gq25-outguess.asc), [cicada2016-4gq25.md](../resources/cicada2016-4gq25.md)
 - Original p50 bytes and GP corpus: [lp2-grid-256.json](../resources/liber-primus/lp2-grid-256.json), [lp2-corpus.json](../resources/liber-primus/lp2-corpus.json)
 - p55 and p57 transcription: [lp2-transcription.txt](../resources/lp2-transcription.txt)
-- Direct p32/p55 43-symbol additive/Beaufort reproducer: [p32_p55_43symbol_additive_bridge.cjs](../sims/p32_p55_43symbol_additive_bridge.cjs)
+- Combined p32-compass and signed-word-prime-sum 43-symbol reproducer: [p32_p55_43symbol_additive_bridge.cjs](../sims/p32_p55_43symbol_additive_bridge.cjs)
 - Provisional signed-message word map: [lp2-2016-signed-message-base58-word-map.md](lp2-2016-signed-message-base58-word-map.md)
 - 2013 historical number operation and its limitations: [cicada2013-reversed-prime-cookie-original-inverse.md](cicada2013-reversed-prime-cookie-original-inverse.md), [cicada2013_parable_reversal_ring_sft.cjs](../sims/cicada2013_parable_reversal_ring_sft.cjs)
 - 2013 wisdom/folly material: [cicada2013-wisdom-folly.md](../resources/cicada2013-wisdom-folly.md), [2013-0-wisdom-source.md](../resources/external/2013-0-wisdom-source.md)

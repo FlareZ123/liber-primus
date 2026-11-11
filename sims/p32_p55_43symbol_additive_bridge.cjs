@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 'use strict';
 
-// Test the one-to-one GP29 additive/Beaufort bridge between:
-//   A) the 43-rune output of the frozen 2016 p50-byte -> p32 compass SFT, and
-//   B) the 43 p55 interior runes selected by "shed our own circumferences".
-// Only source-fixed forward/reverse alignments are tested. No phase, shuffle,
-// arbitrary key, or per-symbol mapping search is performed.
+// Test two fixed 43-symbol source bridges to the p55 interior:
+//   A) the frozen 2016 p50-byte -> p32 compass stream;
+//   B) the signature-verified 2016 message's 43 word GP-prime sums.
+// The p55 interior is selected by "shed our own circumferences". No phase,
+// reversal, arbitrary key, or per-symbol mapping search is performed.
 
 const fs = require('fs');
 const path = require('path');
@@ -17,6 +17,7 @@ const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const grid = JSON.parse(read('resources/liber-primus/lp2-grid-256.json'));
 const transcription = read('resources/lp2-transcription.txt');
 const shakespeare = read('resources/control/shakespeare_first300k.txt');
+const signed2016 = read('resources/historical/cicada2016-4gq25-outguess.asc');
 
 const MOD = 29;
 const mod = (n, m = MOD) => ((n % m) + m) % m;
@@ -86,6 +87,19 @@ function encodeGP(s) {
   }
   return out;
 }
+
+// The clear-signed body has 43 alphabetic words. Exclude the numeric 3301
+// and mixed alphanumeric key ID 7A35090F; retain OpenPGP as a word.
+const signedBody = signed2016
+  .replace(/^-----BEGIN PGP SIGNED MESSAGE-----\r?\nHash:.*?\r?\n\r?\n/, '')
+  .split(/^-----BEGIN PGP SIGNATURE-----/m)[0];
+const signedWords = (signedBody.match(/[A-Za-z0-9]+/g) || [])
+  .filter(word => /^[A-Za-z]+$/.test(word));
+assert.strictEqual(signedWords.length, 43);
+const signedWordPrimeSums = signedWords.map(word =>
+  encodeGP(word).reduce((sum, rune) => sum + corpus.prime[rune], 0));
+const signedWordPrimeKey = signedWordPrimeSums.map(sum => mod(sum));
+
 const training = encodeGP(shakespeare.slice(0, 240000));
 const unigramCounts = new Uint32Array(MOD);
 const bigramCounts = new Uint32Array(MOD * MOD);
@@ -115,6 +129,78 @@ function trigramLogMean(xs) {
     sum += trigram[(xs[i - 2] * MOD + xs[i - 1]) * MOD + xs[i]];
   return sum / (xs.length - 2);
 }
+
+// Fixed direct reading of the signed message's "numbers": one GP-prime sum
+// per alphabetic word, reduced mod29, paired in source order with p55's 43
+// interior runes. Test only the two ordinary additive directions.
+const signedPrimeMinus = inner55.map((c, i) => mod(c - signedWordPrimeKey[i]));
+const signedPrimePlus = inner55.map((c, i) => mod(c + signedWordPrimeKey[i]));
+const signedPrimeMinusScore = trigramLogMean(signedPrimeMinus);
+const signedPrimePlusScore = trigramLogMean(signedPrimePlus);
+const p55RawScore = trigramLogMean(inner55);
+const signedPrimeSyntheticCipher = p57Control.map((p, i) => mod(p + signedWordPrimeKey[i]));
+const signedPrimeSyntheticRecovered = signedPrimeSyntheticCipher.map((c, i) =>
+  mod(c - signedWordPrimeKey[i]));
+assert.deepStrictEqual(signedPrimeSyntheticRecovered, p57Control);
+
+// Same-multiset order control: 10,000 deterministic Fisher-Yates permutations
+// of the 43 fixed key values, scoring only C-K.
+const shuffleCount = 10000;
+let shuffleState = 0x45c1d0;
+function nextShuffleU32() {
+  shuffleState ^= shuffleState << 13;
+  shuffleState ^= shuffleState >>> 17;
+  shuffleState ^= shuffleState << 5;
+  return shuffleState >>> 0;
+}
+const shuffleScores = [];
+for (let trial = 0; trial < shuffleCount; trial++) {
+  const shuffledKey = signedWordPrimeKey.slice();
+  for (let i = shuffledKey.length - 1; i > 0; i--) {
+    const j = nextShuffleU32() % (i + 1);
+    [shuffledKey[i], shuffledKey[j]] = [shuffledKey[j], shuffledKey[i]];
+  }
+  shuffleScores.push(trigramLogMean(inner55.map((c, i) => mod(c - shuffledKey[i]))));
+}
+shuffleScores.sort((a, b) => a - b);
+const observedPrimeMinus = signedPrimeMinusScore;
+const shuffleGreaterEqual = shuffleScores.filter(score => score >= observedPrimeMinus).length;
+const shuffleLess = shuffleScores.filter(score => score < observedPrimeMinus).length;
+const shuffleEqual = shuffleCount - shuffleGreaterEqual - shuffleLess;
+const shuffleQuantile = q => shuffleScores[Math.floor(q * (shuffleCount - 1))];
+
+const signedPrimeSumKeyResult = {
+  signedWords,
+  primeSums: signedWordPrimeSums,
+  keyMod29: signedWordPrimeKey,
+  p55Cipher: tokens(inner55),
+  cMinusK: {
+    tokens: tokens(signedPrimeMinus),
+    ioc: ioc(signedPrimeMinus),
+    gpShakespeareTrigramLogMean: signedPrimeMinusScore,
+    p55InteriorSegments: p55WordLengths.map(n => Math.max(0, n - 2)),
+  },
+  cPlusK: {
+    tokens: tokens(signedPrimePlus),
+    ioc: ioc(signedPrimePlus),
+    gpShakespeareTrigramLogMean: signedPrimePlusScore,
+  },
+  p55Raw: { ioc: ioc(inner55), gpShakespeareTrigramLogMean: p55RawScore },
+  sameMultisetKeyOrderShuffle: {
+    seed: '0x45c1d0',
+    trials: shuffleCount,
+    greaterOrEqual: shuffleGreaterEqual,
+    addOneUpperTail: (shuffleGreaterEqual + 1) / (shuffleCount + 1),
+    observedRankFraction: (shuffleLess + 0.5 * shuffleEqual) / shuffleCount,
+    quantiles: {
+      q05: shuffleQuantile(0.05),
+      median: shuffleQuantile(0.5),
+      q95: shuffleQuantile(0.95),
+      q99: shuffleQuantile(0.99),
+    },
+  },
+  syntheticP57AdditiveRecoveryPassed: true,
+};
 
 const outputs = [];
 for (const reverse of [false, true]) {
@@ -163,10 +249,12 @@ const report = {
     p57ControlIoC: ioc(p57Control),
     p57ControlGpShakespeareTrigramLogMean: trigramLogMean(p57Control),
     syntheticAdditiveRecoveryPassed: true,
+    signedMessagePrimeKeySyntheticRecoveryPassed: true,
     trainingCharacters: 240000,
     trainingRunes: training.length,
   },
   outputs,
-  conclusion: 'The six fixed one-to-one GP29 additive/Beaufort alignments are not plaintext. This rejects only direct stationary pairing; it does not test or exclude nonlinear, stateful, or differently keyed mechanisms.',
+  signedMessagePrimeSumKey: signedPrimeSumKeyResult,
+  conclusion: 'The six fixed p32-compass additive/Beaufort alignments and the direct source-order 43-word GP-prime-sum key do not recover p55 plaintext. This rejects only these stationary additive readings; it does not test or exclude nonlinear, stateful, or differently keyed mechanisms.',
 };
 console.log(JSON.stringify(report, null, 2));

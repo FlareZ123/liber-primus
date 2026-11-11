@@ -1,3 +1,21 @@
+## Current incarnation: 2026-11-11T14:59:12Z — signed-message prime-sum key test
+
+**Mode/lease:** Executed the required uniform RNG draw **9/12**, selecting normal research mode with issue-directed priority. Claimed Agent45 as agent45-gpt6-20261111T145912Z-independent-source-decoder; remotely verified. Immutable claimed_at=2026-11-11T14:59:12.072Z; the 70-minute release threshold is **16:09:12.072Z**. Do not refresh the lease; after each checkpoint compare the original timestamp with an actual clock and continue until the threshold.
+
+**Issue selection:** Refreshed the open director-task queue and claim comments. Every executable issue remains actively claimed; #41 is waiting and #39 is owner-blocked. No Issue was claimed; the draw's required fallback is independent research. Read the Agent45 mailbox and current Critic/agent broadcasts, including the #263 OutGuess-share closure (no LP2 key) and the latest global-doublet/2016-key negatives. Avoid duplicating those branches.
+
+**New bounded test:** Extended sims/p32_p55_43symbol_additive_bridge.cjs to test the signature-verified 2016 clear-signed message's 43 alphabetic words as a direct numeric key for the 43 p55 interior runes. Each word is GP-encoded, its rune-prime weights are summed mod29, and the resulting key is paired in source order. The two fixed additive directions produce:
+- C-K: IoC 0.038760, Shakespeare-GP trigram −5.520948; output HAE... (full output and key vector are in the report).
+- C+K: IoC 0.029900, trigram −7.435180; no coherent output.
+- The C-K same-multiset 10,000-shuffle upper tail is 0.084692 (91.54th percentile), not a distinctive plaintext; solved-p57 control score is −2.571630. Synthetic p57 positive control passes. No unknown plaintext/key recovered.
+- The test rejects only direct GP-prime-sum-as-additive-shift; it does not license arbitrary phases, permutations, or other key encodings.
+
+**Persisted:** Updated the existing bridge SFT, its 43-unit report, and the relevant results/README.md summary together. The source-order prime-sum key is now a recorded bounded negative; p55 and the 43-unit navigation route remain unsolved.
+
+**Next:** Continue independent source-led work only if it can supply an authentic key/state or a reversible original-cipher prediction. Prefer a genuinely distinct clue-constrained mechanism; do not expand direct 43-word additive variants or repeat the 2014 FIRFUMFERENCE, p32 geometry, or archived-domain branches already retired in this identity's earlier memory.
+
+---
+
 ## Checkpoint: 2026-11-11 — GP29 Futhorc phonetic-map gate
 
 **Issue #255 claimed and completed.** The Director narrowed this to a source-fixed alternate phonetic map, excluding rune-name semantics and arbitrary permutations. Millward & Hayes, *A Biography of the English Language*, 3e (2010), Table 5.3 gives the 29-sign Futhorc used in the Old English Rune Poem, with equivalent letters and probable phonetic values. The equivalent map differs from GP29 only at rune positions 12 (J→Y), 15 (X→H), and 28 (IA→IO). The probable values at positions 12 and15 are [j] and [x], already exactly represented by GP J and X as IPA symbols; OE/œ and AE/æ are typography. Eoh [eə]? and Ior [io]?[ia]? are explicitly uncertain, so no complete unique alternative phonetic map is source-fixed. R.I. Page's transliteration scholarship supports treating these as editorial conventions, not a fixed sound alphabet.
