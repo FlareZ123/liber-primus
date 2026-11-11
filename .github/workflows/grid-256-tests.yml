@@ -58,6 +58,7 @@ on:
           - historical-cookies
           - framed8-repeated-key
           - p0-block03-source
+          - p0-word-punctuation
           - hg256-secret-alphabet
           - p50-base9
           - signed-wordends-p55
@@ -80,6 +81,10 @@ jobs:
       - name: Original p50 high-digit radix-9 direct payload gate
         if: ${{ inputs.probe == 'p50-base9' }}
         run: node sims/p50_base29_high_digit_radix9_sft.cjs
+
+      - name: Original 27x27 opening word boundaries and punctuation type
+        if: ${{ inputs.probe == 'p0-word-punctuation' }}
+        run: node sims/lp2_27x27_opening_wordboundaries_sft.cjs
 
       - name: Source-only 27x27 third-block key, start, and length uniqueness
         if: ${{ inputs.probe == 'p0-block03-source' }}
