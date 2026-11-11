@@ -76,6 +76,7 @@ for (const literalF of [false, true]) {
   const d = decode(inner, literalF);
   assert.deepEqual(encodeWithFixedFlags(d.text, d.literalPositions), inner);
   cases.push({
+    clock:"continuous strict interiors",
     literalF, consumedKeys:d.keyPosition, literalPositions:d.literalPositions,
     output:d.text.map(x => corpus.translit[x]).join(" "),
     indexOfCoincidence:ioc(d.text),
@@ -84,6 +85,38 @@ for (const literalF of [false, true]) {
     originalReencryptedExactly:true
   });
 }
+
+// A second, original-word-selected clock restarts the same historical key
+// at each source-delimited word's strict interior. No phase/key fitting.
+const interiorsByWord = wholeWords
+  .map(word => [...word].slice(1, -1).map(r => byRune.get(r)));
+assert.equal(interiorsByWord.flat().length, 43);
+for (const literalF of [false, true]) {
+  const decodedWords = interiorsByWord.map(word => decode(word, literalF));
+  const decoded = decodedWords.flatMap(word => word.text);
+  assert.deepEqual(decodedWords.flatMap(word =>
+    encodeWithFixedFlags(word.text, word.literalPositions)), inner);
+  cases.push({
+    clock:"key phase0 restarted at each whole word",
+    literalF,
+    consumedKeys:decodedWords.reduce((sum, word) => sum + word.keyPosition, 0),
+    literalPositions:decodedWords.flatMap((word, index) => {
+      const base = interiorsByWord.slice(0, index).reduce((sum,w) => sum + w.length,0);
+      return word.literalPositions.map(x => x + base);
+    }),
+    output:decoded.map(x => corpus.translit[x]).join(" "),
+    indexOfCoincidence:ioc(decoded),
+    outputJCount:decoded.filter(x => x === 11).length,
+    outputAECount:decoded.filter(x => x === 25).length,
+    originalReencryptedExactly:true
+  });
+}
+assert.equal(cases.length, 4);
+assert.equal(cases[2].indexOfCoincidence, 0.03765227021040975);
+assert.equal(cases[3].indexOfCoincidence, 0.046511627906976744);
+assert.equal(cases[2].outputJCount, 1);
+assert.equal(cases[3].outputJCount, 1);
+
 assert.equal(cases[0].consumedKeys, 43);
 assert.equal(cases[1].consumedKeys, 42);
 assert.equal(cases[0].outputJCount, 7);
@@ -101,5 +134,5 @@ console.log(JSON.stringify({
   nativeSolvedP57Body43IoC:ioc(knownP57),
   syntheticGPForwardInversePassed:true,
   directInverses:cases,
-  conclusion:"Neither historical DIVINITY key-consumption interpretation yields readable plaintext; other operations remain unknown."
+  conclusion:"Neither historical DIVINITY key-consumption convention with continuous or source-word-reset phase yields readable plaintext; other operations remain unknown."
 },null,2));
