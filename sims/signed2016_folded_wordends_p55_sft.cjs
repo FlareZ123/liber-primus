@@ -148,6 +148,39 @@ function exactPairProbability(multiset, targets) {
     denominator: denominator.toString(),
     probability: Number(numerator) / Number(denominator) };
 }
+
+// 58 exact matched native control maps: shift physical page origin while
+// preserving the signed words, GP sums and the complete LP2 word inventory.
+// Both a shift of total prime sum and a page-only cyclic re-origin are fixed.
+function signedWordMapPhase(shift, pageOnly) {
+  const ends = sourceRows.map(row => {
+    const page = (row.page + shift) % 58;
+    const wordIndex = pageOnly ? row.wordIndex :
+      Math.floor((row.sum + shift) / 58);
+    const runes = pageWords[page][wordIndex];
+    return runes ? corpus.runes.indexOf([...runes].at(-1)) : null;
+  });
+  return [9, 10, 11].map(i =>
+    ends[i] === null || ends[42 - i] === null ? null :
+      mod(ends[i] + ends[42 - i]));
+}
+const phaseNull = {};
+for (const pageOnly of [false, true]) {
+  const selected = [];
+  let fullyDefined = 0;
+  for (let phase = 0; phase < 58; phase++) {
+    const center = signedWordMapPhase(phase, pageOnly);
+    if (center.every(v => v !== null)) fullyDefined++;
+    if (center.every((v, i) => v === encodeWord("END")[i]))
+      selected.push(phase);
+  }
+  assert.deepEqual(selected, [0]);
+  assert.equal(fullyDefined, 52);
+  phaseNull[pageOnly ? "pageOnly" : "totalPrimeSum"] = {
+    phases: 58, fullyDefined, matchedEND: selected
+  };
+}
+
 const matchedNull = exactPairProbability(terminal, encodeWord("END"));
 assert.deepEqual([matchedNull.numerator, matchedNull.denominator],
   ["148000", "4389446880"]);
@@ -227,6 +260,7 @@ console.log(JSON.stringify({
     [[9,33],[10,32],[11,31]].map(([i,j]) =>
       [sourceRows[i].word, sourceRows[j].word]) },
   permutationNull: matchedNull,
+  matchedOriginalPhase: phaseNull,
   tableFreeCenteredEND: {
     missingSourceWord: "lies", missingSourcePosition: 3,
     knownRuneDestinations: 42,
