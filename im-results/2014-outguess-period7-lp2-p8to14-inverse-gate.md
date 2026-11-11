@@ -81,8 +81,74 @@ A prespecified null randomly permutes the **word lengths within each of the eigh
 **Reproducibility:** [CommonJS SFT](../sims/lp2_2014_word_septet_sft.cjs), [manual-only workflow](../.github/workflows/lp2-2014-word-septet-manual.yml) and [successful original-input run 43078971989](https://github.com/FlareZ123/liber-primus/actions/runs/43078971989). The eight source sections derive from the canonical transcript's dollar-sign delimiters; the historical master text has additional subdivisions and is **not** a drop-in eight-section parser. Independent historical C/P and all original counts are asserted before the test. The scope is exact and finite, and no LP2 key or plaintext is claimed.
 
 
+## Source-titled p33 first 91-rune unit: bounded negative
+
+The source-titled first unit on physical p33 is the first **91 canonical GP29 runes** of `resources/liber-primus/50.jpg`, not the later p33 offset-91 unit already covered above. The page has 214 runes total. The first 91 are exactly 13 blocks of seven and include the complete 10-rune red heading `D EO X C F I A W H G`; the independently source-verified unit is 23 words (Issue #329). No padding or phase was required.
+
+The only operation used was the historical 2014 inverse already fixed above: for each seven-rune block, output source positions `[0, 6, 2, 5, 1, 4, 3]`. Its exact forward counterpart is `[0, 4, 2, 6, 5, 3, 1]`. No alternate order, direction, phase, padding, or second cipher was tried.
+
+**Positive controls passed:**
+
+- The original 56-character 2014 note forward-transforms exactly to `TLBEIEOVUTHTREIDTSEOSTPOSOYRSLBTIIIYT4DGUQIMNU442I15339M`, and the historical inverse recovers `TOBELIEVETRUTHISTODESTROYPOSSIBILITYQ4UTGDI2N4M4UIM59133` exactly.
+- A planted 91-rune held-out Shakespeare GP29 excerpt was forward-encoded and recovered exactly. Its native trigram score is `−2.118616`; its forward-encoded score is `−4.174822`.
+
+**Exact p33 candidate output** (13 blocks of seven GP runes):
+
+```
+D A X I EO F C
+W T G F H OE EO
+E G EA S OE IA A
+Y O N R EA AE TH
+IA D W Y M M X
+B AE R H T J U
+OE F NG S IA H W
+IA T TH W L I T
+O S N L U M W
+TH AE W J EA A J
+G IA M P Y D W
+E W W H J U E
+NG L S J I G AE
+```
+
+The exact forward re-encryption returns the original 91-rune input, block for block:
+
+```
+D EO X C F I A
+W H G EO OE F T
+E OE EA A IA S G
+Y EA N TH AE R O
+IA M W X M Y D
+B T R U J H AE
+OE IA NG W H S F
+IA L TH T I W T
+O U N W M L S
+TH EA W J A J AE
+G Y M W D P IA
+E J W E U H W
+NG I S AE G J L
+```
+
+Re-encryption is an exact implementation check, not evidence of plaintext. The decoded stream is not independently intelligible.
+
+**Held-out language and shuffled-source controls.** Each of three independent GP29 English sources was split 80/20: its first 80% trained a conditional trigram model, and 1,000 random 91-rune windows from the held-out 20% supplied native and shuffled controls. Each shuffled control independently Fisher–Yates-shuffled the symbols *within each of its thirteen seven-rune blocks*, preserving block inventory while destroying source order. All scores are nats/rune; lower shuffled percentile means the candidate is even less language-like than the shuffled controls.
+
+| Independent source model | Raw p33 | Historical inverse | Native window median (P05–P95) | Shuffled median (P95; max) | Candidate percentile vs shuffled |
+|---|---:|---:|---:|---:|---:|
+| Shakespeare | −4.758287 | −4.789872 | −2.361860 (−2.601642 to −2.142110) | −4.101378 (−3.724102; −3.402034) | 0.2% |
+| Gibran | −4.298222 | −4.421477 | −2.385192 (−2.793883 to −2.117111) | −4.054777 (−3.699299; −3.328703) | 3.0% |
+| Emerson | −4.894418 | −4.974431 | −2.266868 (−2.542048 to −2.072463) | −4.067096 (−3.677149; −3.246370) | 0.0% |
+
+The historical inverse is slightly worse than the raw p33 unit under all three independent models, and the output falls below the shuffled-control distribution rather than approaching native English. This is not a marginal IoC decision: the positive controls demonstrate that the fixed operator can recover English when it is actually present, while the original unit does not respond that way.
+
+**Decision for this bounded task:** retire the transfer of the historical 2014 seven-column inverse to p33 offsets 0–90. It produces no plaintext and no source-chosen second operation predicts withheld original material. Do not extend this result into alternate seven-column orders or revisit the separate p8–14 and p33 offset-91→p39 tests.
+
+Reproducer: [`sims/p33_91_historical_7col_gate.cjs`](../sims/p33_91_historical_7col_gate.cjs).
+
+
 ## Decision
 
-The historical seven-column permutation is an **authentic, executable creator precedent** with an independent plaintext positive control. Its exact fit to the 1,729-rune seven-page section makes it worth preserving as possible *layer ordering* or a later missing-key framing clue. However, matching section divisibility alone does **not** license applying an unspecified second cipher or searching alternative 7-orderings; the simple transposition and periodic digit-key transfers do **not** recover anything, while the restricted no-F totient-content assumption fails at fixed positions. The general totient decoder remains unexcluded by feasibility and has no independently selected LP2 key/start state. Reopen this as a decoding route only if an independent original instruction or key identifies how the seven-way reorder is combined with a decrypting transformation. This is not a new Liber Primus solve.
+The 2014 seven-position permutation is an **authentic, executable historical operation** with a successful 56-character plaintext control. Its direct transfer to LP2 has now been tested on the original p8–14 seven-page interval, the separate p33 offset-91→p39 illustrated interval, the seven-word septet interpretation, and the independently source-titled p33 offset-0..90 91-rune unit. None recovers LP2 plaintext. In the new p33 91-rune test, the exact historical inverse is less language-like than the raw input under all three independent GP29 English models and falls below the shuffled-source controls; both historical and planted-English positive controls pass.
 
-**Reproduction:** [single-file Node CommonJS source control and complete LP2 gate](../sims/2014_lp1_period7_lp2_p8to14_sft.cjs). It asserts both exact 2014 plaintext recovery and full LP2 reordering/reversal.
+**Retire direct historical seven-column transfer as an LP2 decryption route.** Preserve the 2014 operation as a genuine creator precedent, but do not reopen it through alternative seven-orders, phases, padding, or page resets. Reconsider only if a new original clue selects a different layer ordering or supplies a source-derived second operation/key that predicts withheld original material.
+
+**Reproduction:** [2014 source-control and LP2 gates](../sims/2014_lp1_period7_lp2_p8to14_sft.cjs), [word-septet control](../sims/lp2_2014_word_septet_sft.cjs), and [source-titled p33 91-rune gate](../sims/p33_91_historical_7col_gate.cjs).
