@@ -128,6 +128,16 @@ There is a further precise, still provisional source-navigation relationship: ap
 
 All table bytes, addresses, word counts, and solved-text anchors are asserted by [the updated source SFT](../sims/lp2_2016_message_base58_word_map.cjs). They form an exact computational relationship and a candidate intended walk, not authenticated plaintext. The sixteen-step stopping condition was inferred after observing the source, and the source does not explicitly specify one pointer advance per signed word. The missing operational clue is how to read the route as plaintext or use it to decode the withheld **p55 word1**. Further ungrounded offset and key sweeps would dilute this constraint.
 
+### Source-selected 44-byte key/nonce: an actual authenticated-decryption test
+
+The source-selected 193 copies are **44 printed cells apart**, so the original contiguous span can supply a **32-byte AES/ChaCha key and 12-byte nonce**, precisely 44 bytes. The source-defined interval permits two 44-byte windows, one including the first 193 and one including the last. Testing both byte directions and the two consecutive key/nonce field orders gives **eight source-exact candidates**; there is no secret phrase or arbitrary key search.
+
+A [new standalone positive-controlled original-inverse test](../sims/gp29_193_signed_source_aead_sft.cjs) uses the existing whole-book 12,956-rune GP29 big-integer codec (7,868 bytes), in five previously specified orientations, and both natural payload framings (nonce externally supplied from the table, or initial 12 bytes of the cipher payload as nonce). Each candidate is tested with standard **AES-256-GCM** and **ChaCha20-Poly1305** with 16-byte final tag and empty associated data. Total: **160 attempts**.
+
+**Original result: 0 authenticated plaintexts out of 160**, with both 7,852-byte positive controls recovering every byte under the actual source-derived key and failing correctly on a tampered tag. The complete successful [CI run 42954840869](https://github.com/FlareZ123/liber-primus/actions/runs/42954840869) executes the new SFT immediately after the frozen signed-word map in the existing manual workflow. Crypto API semantics follow [Node.js official crypto documentation](https://nodejs.org/api/crypto.html#class-decipheriv).
+
+This rejects the precisely defined whole-book GP29/AEAD envelope under those key/nonce windows. It does **not** recover or rule out a p55-only key, another intermediate encoding, an unauthenticated cipher, or a different source-selected operation. The 44=32+12 interpretation was noticed after observing the cell spacing, so its motivation is provisional. Retire this direct key/nonce route unless an original clue determines a different framing.
+
 ## Independent numerical bridge to the 2016 image
 
 The first four words, “Its words are the”, have GP prime sum:
