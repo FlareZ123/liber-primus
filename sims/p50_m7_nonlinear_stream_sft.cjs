@@ -137,7 +137,7 @@ function scoreText(seq, includeDetails=false) {
   };
   for(const x of seq){
     if(x===29){finish();continue;}
-    if(x<0||x>28) throw new Error("invalid decoded state");
+    if(!Number.isInteger(x)||x<0||x>29) throw new Error("invalid decoded state");
     run.push(x);freq[x]++;symbols++;
   }
   finish();
@@ -163,8 +163,10 @@ function scoreText(seq, includeDetails=false) {
   return {...details,prefix};
 }
 function decode(seq,key,sign,direction){
-  const map=direction==="forward"?m7:inverseM7;
-  return seq.map((c,i)=>map[mod(c+sign*key[i%256])]);
+  return seq.map((c,i)=>{
+    const x=mod(c+sign*key[i%256]);
+    return direction==="forward"?m7(x):inverseM7[x];
+  });
 }
 function roundTripCheck(){
   for(const direction of ["forward","inverse"]) for(const sign of [-1,1])
