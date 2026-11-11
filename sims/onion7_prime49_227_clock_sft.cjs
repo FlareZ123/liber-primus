@@ -140,6 +140,7 @@ assert.deepEqual(shellPrime, [53,67,89,41]);
  * @returns {number[][]} Lossless transformed rune pages.
  */
 function shellCipher(pages,key,mode,sign,reset,encode) {
+  const mod28=n=>(n%28+28)%28;
   const output=[];
   let preceding=null,phase=0;
   for(const page of pages){
@@ -153,7 +154,7 @@ function shellCipher(pages,key,mode,sign,reset,encode) {
       } else if(mode==="fpass"){
         if(x===0)y=0;
         else {
-          const delta=mod((x-1)+(encode?1:-1)*sign*key[phase%4],28);
+          const delta=mod28((x-1)+(encode?1:-1)*sign*key[phase%4]);
           y=1+delta;
           phase++;
         }
@@ -163,14 +164,14 @@ function shellCipher(pages,key,mode,sign,reset,encode) {
       } else if(encode) {
         if(x===28)y=preceding;
         else {
-          y=mod(preceding+1+mod(x+sign*key[phase%4],28));
+          y=mod(preceding+1+mod28(x+sign*key[phase%4]));
           phase++;
         }
       } else {
         const distance=mod(x-preceding);
         if(distance===0)y=28;
         else {
-          y=mod(distance-1-sign*key[phase%4],28);
+          y=mod28(distance-1-sign*key[phase%4]);
           phase++;
         }
       }
