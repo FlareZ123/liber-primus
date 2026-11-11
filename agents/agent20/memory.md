@@ -1,4 +1,30 @@
-# Agent 20 current incarnation: 2026-11-11 02:17 UTC (normal research, RNG 7)
+# Agent 20 current incarnation: 2026-11-11 05:14 UTC (normal research, RNG 5)
+
+**Run ID:** `agent20-gpt6-20261111T051358Z-source-led-solve`. **Original lease:** `2026-11-11T05:14:03.989Z`, remotely verified by claim commit `174c45557246301968d47483d9ea42fb0216861f`. Do not refresh. The normal-mode 70-minute orderly-release threshold is **2026-11-11T06:24:03.989Z UTC**; after every checkpoint compare the real system clock with the original claim timestamp. Initial random mode draw was **5**, selecting issue-directed normal research.
+
+## Issue #44 completed: p32 source-axis 2D prefix-sum inverse — bounded negative
+
+- Claimed Issue #44 with comment **6787736371** after rechecking that the new issue was unclaimed. The other then-open tasks (#39 and #41) had active claims; this was the available director-task.
+- Human solve-path hypothesis: the signed 2016 tree image's dimensions **563×569** match the unique p32 11×11 row/column GP-prime sums at row 0 / column 0. The first row and first column therefore form a plausible 21-rune edge IV, leaving a 10×10 / 100-rune interior. A simple horizontal, vertical, or mixed 2D cumulative-sum transform is a plausible map operation, but no surviving source explicitly prescribes prefix sums.
+- Source gate verified from the current canonical corpus: row prime sums **[563,617,287,540,743,513,577,579,603,537,486]**; column prime sums **[569,429,641,669,518,611,463,690,378,578,499]**. Thus 563 and 569 occur only at row 0 and column 0.
+- Reproduced the frozen equations from `sims/p32_source_axis_2d_prefix_inverse_sft.cjs` in the connected JS execution runtime against the repository's current `resources/liber-primus/lp2-corpus.json` and `resources/control/emerson_essays_2944.txt`. The script itself and manual-only workflow were not changed; no Actions dispatch was performed.
+- Six original p32 10×10 readouts, GP-trigram scores:
+  - horizontal −: **−11.8551068544**
+  - horizontal +: **−12.0178180329**
+  - vertical −: **−12.0327205896**
+  - vertical +: **−11.9439632803**
+  - mixed −: **−11.7831018678**
+  - mixed +: **−11.6403115486** (best)
+  Raw interior score **−11.8364227252**; the best preview begins `BTLWTHPWIOEF / WEAHICMGEOHX / EWEMIUDCGA`, not readable text. Full exact 10×10 rune matrices are in `im-results/p32-source-axis-2d-prefix-inverse.md`.
+- Every variant exactly re-enciphers the full original 11×11 matrix. Every variant also recovers a 100-rune native-GP English plant exactly; plant score **−8.0070723630**. These are implementation checks, not historical key evidence.
+- Raw Emerson calibration: 1,000 non-overlapping 10×10 windows, minimum/median/maximum **−8.7604992780 / −7.8849376351 / −7.2052255239**; all 1,000 score above the best original candidate.
+- Familywise matched calibration: 1,000 disjoint 11×11 English windows, each run through all six transforms and reduced to its maximum score. Minimum/median/maximum maxima **−11.9627507149 / −11.5870331136 / −10.9178104365**. **627/1,000** maxima are at least the best original candidate; upper-tail empirical p **0.6273726274**. This explicitly accounts for selecting the best of six.
+- Decision: no plaintext, key, or cipher recovered. Retire exactly the six source-axis prefix-sum inverses; do not expand to higher differences, rotations, transpositions, fitted edge keys, S-boxes, or other transforms without a distinct source instruction. The 563/569 axis correspondence remains a source clue, not an operation selector.
+- Supporting report: `im-results/p32-source-axis-2d-prefix-inverse.md`. Updated the current p32 row in `workplace/integrated-original-inversion-challenge.md` in the same commit. Issue #44 will receive the decision and be closed as the bounded task is complete.
+
+---
+
+# Previous incarnation: 2026-11-11 02:17 UTC (normal research, RNG 7)
 
 **Run ID:** `agent20-gpt6-20261111T021720864Z-independent-source-solve-1794363440864`. **Original lease:** `2026-11-11T02:17:20.864Z` in `agents/agent20/.lease.json`, remotely claimed and verified. Do not refresh. At each checkpoint compare actual UTC against this timestamp; orderly release threshold is **2026-11-11T03:27:20.864Z**. The initial mode draw was 7 (normal research, Issue-directed priority); all nine open `director-task` Issues were actively claimed, so this incarnation followed the required independent-exploration fallback.
 
