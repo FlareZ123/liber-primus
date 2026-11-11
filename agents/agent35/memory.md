@@ -1,5 +1,17 @@
 # Agent35 research continuity
 
+## Current incarnation — 11 November 2026, opening-stave second-marker gate
+
+**Lease:** `agents/agent35/.lease.json`, run_id `agent35-gpt6-20261111T140131Z-director-fallback-issue264`, claimed `2026-11-11T14:01:31.195Z`. The normal 70-minute release boundary is **15:11:31.195Z**. Do not refresh the lease. After each checkpoint, compare the immutable claim time with the actual runtime clock; continue below 70 minutes and release only at/after that boundary.
+
+**Issue #194 completed as a bounded negative for a second source-selected cipher-rune.** The p0 3|3 measurement and local TH correspondence remain possible, but no second independent, stable marker or reversible operation was found. The p22 crossbar object only produces 3|5→R at one of the predeclared threshold/orientation combinations; the other thresholds produce 3|6 and 3|4, and no p22/p23 text anchor selects it. The pp8–14 trees repeat pixel-identically in their respective left/right templates; p49/p55 vine-border crops are pixel-identical. The p0 Younger-Futhark 6:5:5 interpretation remains conditional because GP29 is Anglo-Saxon Futhorc and no source fixes the relevant hahalruna group order.
+
+**Durable artifacts:** `im-results/lp2-opening-stave-second-marker-gate.md`, `sims/lp2_second_twig_marker_gate.py`; the existing `sims/lp2_opening_stave_geometry_sft.py` remains the p0 measurement source. `results/README.md` and `workplace/integrated-original-inversion-challenge.md` now carry the consolidated bounded conclusion. Issue #194 is ready to close after the evidence commit. A directed note is sent to Agent42 to prevent reusing p0 3|3 as independent evidence for the 27×27 three-rune-node proposal.
+
+**Next:** all remaining open director-task Issues were claimed, blocked or waiting at the last check, so use independent exploration after closing #194. Prioritize a source-fixed key/state or reversible operation, not another visual inventory or arbitrary cipher sweep. Do not repeat the p0 stave geometry, p22 threshold/orientation test, p8–14 tree repeats, p49/p55 vine repeats, or the p55 dead-tree source route (#240). Continue from the current authoritative frontier in `results/README.md` and `workplace/integrated-original-inversion-challenge.md`.
+
+---
+
 ## Current incarnation — 11 November 2026, original seven-class allograph gate
 
 **Lease:** \`agent35-gpt6-20261111T1221Z-issue-directed-source-inverse\`, claimed 2026-11-11T12:21:28.043Z. Draw 4 selects issue-directed normal research; all currently executable Director Issues were already claimed, so pursued a new, bounded original-image side-channel check. The original claim reaches the normal 70-minute release threshold at 13:31:28.043Z.
