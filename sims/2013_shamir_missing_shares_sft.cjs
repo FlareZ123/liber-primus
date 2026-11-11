@@ -73,6 +73,39 @@ function evaluate(x) {
   return value;
 }
 
+/**
+ * Compute full historical monic degree-five sharing polynomial,
+ * including its five originally random coefficients.
+ * @returns {bigint[]}
+ */
+function reconstructCoefficients() {
+  const out = Array(6).fill(0n);
+  out[5] = 1n;
+  for (const [xi, yi] of SHARES) {
+    let basis = [1n];
+    for (const [xj] of SHARES) {
+      if (xi === xj) continue;
+      const next = Array(basis.length + 1).fill(0n);
+      for (let k = 0; k < basis.length; k++) {
+        next[k] ^= mul(basis[k], xj);
+        next[k + 1] ^= basis[k];
+      }
+      basis = next;
+    }
+    const denominator = basis.reduce((sum, coeff, k) =>
+      sum ^ mul(coeff, pow(xi, BigInt(k))), 0n);
+    const scale = mul(yi ^ pow(xi, THRESHOLD), inv(denominator));
+    for (let k = 0; k < basis.length; k++) out[k] ^= mul(basis[k], scale);
+  }
+  return out;
+}
+
+/** @param {bigint[]} coefficients @param {bigint} x @returns {bigint} */
+function evaluatePolynomial(coefficients, x) {
+  return coefficients.reduceRight((value, coefficient) =>
+    mul(value, x) ^ coefficient, 0n);
+}
+
 /** @param {bigint} value @returns {string} */
 function hex(value) {
   return value.toString(16).padStart(44, '0');
@@ -92,9 +125,11 @@ const expected = new Map([
   [16n, '7a41506204fd054000ad4849923eeb318eee07ca6d5f'],
 ]);
 
+const coefficients = reconstructCoefficients();
 const actual = [...expected].map(([index, reference]) => {
   const result = hex(evaluate(index));
   assert.equal(result, reference, 'decimally indexed share ' + index);
+  assert.equal(hex(evaluatePolynomial(coefficients, index)), reference);
   return {decimalIndex: Number(index), shareHex: result};
 });
 assert.notEqual(evaluate(10n), evaluate(16n), 'decimal versus hexadecimal index control');
@@ -105,6 +140,7 @@ console.log(JSON.stringify({
   signedSourceControls: [3, 9, 10],
   originalMissingShareIndices: [1, 4, 6],
   allPredictionsMatch: true,
+  coefficientsAscendingDegree: coefficients.map(hex),
   shares: actual,
   limitation: 'Missing shares are inferred mathematical values, not recovered signed originals or LP2 plaintext.',
 }, null, 2));
