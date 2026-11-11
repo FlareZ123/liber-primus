@@ -111,6 +111,9 @@ function totientFeasible(ciphertext) {
   }
   return { possible: true, firstFailure: null };
 }
+const solvedP56 = corpus.pages.find(page => page.page === 56).indices;
+assert.equal(solvedP56.length, 85);
+assert.deepEqual(totientFeasible(solvedP56), { possible: true, firstFailure: null });
 assert.deepEqual(totientFeasible(original), { possible: false, firstFailure: 30 });
 assert.deepEqual(totientFeasible(transformed), { possible: false, firstFailure: 4 });
 
@@ -123,7 +126,7 @@ console.log(JSON.stringify({
   sourceInverse: { adjacentRepeats: adjacent(transformed), gpIoC: ioc(transformed),
     originalRestored: true },
   directVigenereDigitKey: directKeyScreen,
-  directP56PrimeTotientGate: { raw: totientFeasible(original),
+  directP56PrimeTotientGate: { solvedP56PositiveControl: totientFeasible(solvedP56), raw: totientFeasible(original),
     transposed: totientFeasible(transformed) },
   result: 'Source-period7 inverse is real, exactly reproducible; no LP2 plaintext or direct known-key inversion'
 }, null, 2));
