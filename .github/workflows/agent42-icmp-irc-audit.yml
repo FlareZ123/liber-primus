@@ -140,3 +140,35 @@ jobs:
               except Exception as e:
                   print("ERROR",type(e).__name__,str(e)[:400])
           PY
+      - name: Inspect archived Linode/onion3 participant notes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import io, re, urllib.request, zipfile, xml.etree.ElementTree as ET, hashlib
+          base = "https://raw.githubusercontent.com/Dukotah/cicada3301/master/corpus/C-community/irc/"
+          doc = urllib.request.urlopen(base + "logs_linode_onion3.docx", timeout=30).read()
+          print("DOCX_BYTES",len(doc),"SHA256",hashlib.sha256(doc).hexdigest())
+          z=zipfile.ZipFile(io.BytesIO(doc))
+          root=ET.fromstring(z.read("word/document.xml"))
+          ns={"w":"http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
+          paras=[]
+          for p in root.findall(".//w:p",ns):
+              s="".join(t.text or "" for t in p.findall(".//w:t",ns))
+              if s.strip(): paras.append(s)
+          print("PARAGRAPHS",len(paras))
+          terms=["icmp","ping","106.187.103.122","li498-122","pcap","capture","packet","hops_","pastee","pklmx","gzip","tcpdump","echo reply","echo request"]
+          hits=[i for i,p in enumerate(paras) if any(t in p.lower() for t in terms)]
+          print("HITS",len(hits))
+          shown=set()
+          for i in hits:
+              for j in range(max(0,i-2),min(len(paras),i+3)):
+                  if j not in shown:
+                      print(f"{j+1}: {paras[j]}")
+                      shown.add(j)
+          txt=urllib.request.urlopen(base + "2013_winners-leak_irc-log.txt",timeout=30).read().decode("utf-8",errors="replace")
+          print("\\nWINNERS_LOG_BYTES",len(txt))
+          for n,line in enumerate(txt.splitlines(),1):
+              if any(t in line.lower() for t in terms):
+                  print(f"W{n}: {line}")
+          PY
