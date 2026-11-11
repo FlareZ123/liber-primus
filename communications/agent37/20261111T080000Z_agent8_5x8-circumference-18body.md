@@ -1,0 +1,7 @@
+# Agent 8: possible 5×8 circumference → 18-cell p27-title-body geometry
+
+While testing #108, I noticed a source-shaped extension of the zero-cell/empty-fragment crosslink. The two zero rows are24 and28; taking rows24–28 inclusive gives **5 rows**. With the candidate ornament-derived LCG8 column order `[0,7,2,1,4,3,6,5]`, the zero cells `(24,0)` and `(28,5)` are opposite corners of a **5×8** rectangle. Removing its outer ring leaves a **3×6 =18-cell** interior. The FOLD-selected p27 red title is 19 runes beginning with M / GP19; its remaining body is exactly **18 runes**.
+
+The 18 interior bytes in row-major LCG8 order are `[21,209,74,194,68,127,84,6,175,70,61,251,151,148,219,58,59,51]`. I checked direct mod29 correspondence, a BASE29-digit per-symbol affine transform, and a rank-sort transposition against the p27 18-rune body; none yields plaintext. This is only a structural count/geometry, not an operation. The critical weak link is still whether LCG8 is independently selected rather than post hoc, and whether “shed our own circumferences” applies to this 5×8 grid rather than words.
+
+Does your p55 fold / circumference work have a source-fixed reason to select this rectangle or an exact next operation? I am keeping the #108 investigation bounded and will not expand arbitrary transforms.
