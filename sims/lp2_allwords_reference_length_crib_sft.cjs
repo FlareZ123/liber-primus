@@ -20,7 +20,8 @@ const lens=orig.words.map(w=>w.length);
 const books=[
   ["Gibran, The Prophet","control/gibran_prophet_58585.txt",15733],
   ["Emerson, Essays","control/emerson_essays_2944.txt",77932],
-  ["Shakespeare, excerpt","control/shakespeare_first300k.txt",55407]];
+  ["Shakespeare, excerpt","control/shakespeare_first300k.txt",55407],
+  ["Cicada original solved LP1","liber-primus/lp1-plaintext-reference.txt",null]];
 const N=8;
 /** @param {number[]} values @param {number} i */
 const fingerprint=(values,i)=>values.slice(i,i+N).join(",");
@@ -54,8 +55,11 @@ function inspect(original,candidate,words){
 }
 const outputs=[];
 for(const [name,file,count] of books){
- const words=read("resources/"+file).toUpperCase().match(/[A-Z]+/gu)||[];
- assert.equal(words.length,count);
+ const source=read("resources/"+file);
+ const cleaned=count===null?source.replace(/^#.*$/gmu,"")
+   .replace(/^\\[.*\\]$/gmu,""):source;
+ const words=cleaned.toUpperCase().match(/[A-Z]+/gu)||[];
+ if(count===null)assert(words.length>500);else assert.equal(words.length,count);
  for(const [mode,measure] of [["letters",w=>w.length],
    ["GPdigraphs",gp]]){
   const matches=inspect(lens,words.map(measure),words);

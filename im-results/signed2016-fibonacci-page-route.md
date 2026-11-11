@@ -65,6 +65,26 @@ The stronger of the two original candidates scores **−11.61165742 nats/trigram
 **Reproduce:** [single-file SFT](../sims/signed2016_fibonacci_p55_prefix_key_sft.cjs); successful manual CI [run 42972354667](https://github.com/FlareZ123/liber-primus/actions/runs/42972354667).
 
 
+
+## Terminal red-mark Fibonacci framing on p55: direct additive family negative
+
+Physical p55 has a source-annotated **red 13-dot punctuation mark at local offset 76**, immediately after all 76 ciphertext runes. Its four printed rune lines have lengths **24, 22, 22, 8**, so the final printed line itself is exactly the preceding Fibonacci value **8**. Reading from that marked end permits a source-anchored 76-rune partition with consecutive lengths **8, 13, 21, 34**.
+
+That boundary evidence justified one end-aligned direct family beyond the weaker forward-prefix test. For each Fibonacci length `N∈{8,13,21,34}`, take the **last N runes of physical page N**. Align p8's suffix to the final 8-rune p55 block, p13 to the preceding 13, p21 to the preceding 21, and p34 to the first 34. In forward p55 order the key is therefore `suffix34 || suffix21 || suffix13 || suffix8`.
+
+Three source-linked additive projections were tested, each under the two global signs `P=C±K mod29`:
+
+- canonical GP rune indices;
+- each source rune's assigned **GP prime weight modulo29**, motivated directly by the signed-message GP-prime arithmetic;
+- the Fibonacci values themselves as constant block shifts, i.e. forward blocks of lengths/shifts `34,21,13,8`.
+
+Across all **6** original variants, the best fixed native-GP trigram score is **−11.01380950**. The worst of **1,000** matched native-GP 76-rune controls is **−8.87918067**, so **0/6** candidates enter the native reference range. Exact planted controls recover for every projection/sign pair.
+
+**Decision:** retain the terminal 76/13-dot/8-rune-line geometry as source structure, but retire these direct additive interpretations. Any further use of the Fibonacci blocks requires a separately indicated non-additive operation or traversal.
+
+**Reproduce:** [terminal-key SFT](../sims/signed2016_fibonacci_p55_terminal_key_sft.cjs); final successful CI [run 42973055128](https://github.com/FlareZ123/liber-primus/actions/runs/42973055128).
+
+
 ## Research consequence
 
 The strongest consequence is **target selection**: p55 now has a second source-motivated route from the later signed-message/Fibonacci structure, in addition to existing independent p55-focused manuscript analyses. This does not solve the missing operation required by Director Issue #41. A useful successor must explain what reversible operation is to be performed on p55's 76 runes, or make a locked prediction on one of p13/p21/p34 before reading its output.

@@ -125,6 +125,29 @@ const candidates = keyProjections.flatMap((projection) => [-1, 1].map((sign) => 
     transliteration: translit(plain), plain};
 })).sort((a, b) => b.score - a.score);
 
+const forwardBlockLengths = [...BLOCKS_FROM_END].reverse();
+let blockOffset = 0;
+const forwardBlocks = forwardBlockLengths.map((length) => {
+  const block = p55.indices.slice(blockOffset, blockOffset + length);
+  blockOffset += length;
+  return block;
+});
+assert.equal(blockOffset, 76);
+const transpositionCandidates = [
+  {
+    name: "reverse-fibonacci-block-order",
+    plain: [...forwardBlocks].reverse().flat()
+  },
+  {
+    name: "read-every-rune-backward-from-terminal-mark",
+    plain: [...p55.indices].reverse()
+  }
+].map((candidate) => ({
+  name: candidate.name,
+  score: score(candidate.plain),
+  transliteration: translit(candidate.plain)
+}));
+
 const controls = [];
 for (let i = 0; i < 1000; i++) {
   const start = 60000 + i * 137;
@@ -156,6 +179,7 @@ const result = {
     projections: keyProjections.map((projection) => projection.name)
   },
   variants: candidates.map(({plain, ...candidate}) => candidate),
+  directMarkedEndReadouts: transpositionCandidates,
   reference: {
     nativeWindows: controls.length,
     nativeMinimum: controls[0],
