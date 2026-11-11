@@ -58,7 +58,7 @@ M=\begin{pmatrix}14&25\\25&28\end{pmatrix}\pmod{29},
 \qquad f(x)=\frac{14x+25}{25x+28}\pmod{29}.
 \]
 
-Under this particular allocation, \(\det M=28=-1\), trace \(13\), \(f(13)=24\), and the projective map has order **7**, finite fixed points **22** and **25** and four seven-cycles on \(\mathbb P^1(\mathbb F_{29})\). The source ring and all these computations are exact; assignment of the corners to horizontal rather than vertical sides is a **proposed operation**, not an image-fixed instruction.
+Under this particular allocation, \(\det M=28=-1\), trace \(13\), \(f(13)=24\), and the projective map has order **7**, finite fixed points **22** and **25** and four seven-cycles on \(\mathbb P^1(\mathbb F_{29})\). The row-major single-count rule has a simple geometric reading: the top and bottom are complete five-cell rows, while east and west contain only their three interior cells, so each perimeter glyph is counted once. This is a plausible human operation, not an explicit source instruction; other corner allocations remain possible.
 
 The geometrically conventional alternative, summing all five cells on **each inclusive side**, counts the four corners twice and yields sides **[275,347,373,339]**, matrix **[[14,28],[25,20]]** modulo29, determinant **15**, trace **5**, projective order **28**, and \(f(13)=17\). This is also a legitimate reproducible map, with a different cycle structure. Another natural alternative, dividing the clockwise 16-rune sequence into equal consecutive four-cell quarters from the top-left, yields sides **[222,310,332,272]**, matrix **[[19,20],[13,11]]** modulo29, projective order **5**, and \(f(13)=1\).
 
@@ -86,11 +86,13 @@ C=\begin{pmatrix}275&347\\373&339\end{pmatrix}
 \equiv\begin{pmatrix}14&28\\25&20\end{pmatrix}\pmod{29}.
 \]
 
-Set \(Q=\begin{pmatrix}17&8\\0&1\end{pmatrix}\); its projective action is \(Q(x)=8-12x\pmod{29}\), and **12=563 mod29** is the independently signed image's source width. The translation 8 is the average of \(C\)'s two fixed points, 20 and 25, so this portion of \(Q\) is **derived from the target matrix**, not an independent original-text instruction. Exact source matrix arithmetic gives
+Set \(Q_{28}=\begin{pmatrix}17&8\\0&1\end{pmatrix}\), whose projective action is \(Q_{28}(x)=8-12x\pmod{29}\). Both entries now have a source-geometric construction: **12=563 mod29** is the signed image width residue, and **8=16/2** is half the 16-cell p32 inner perimeter. The latter also happens to be the mean of \(C\)'s fixed points 20 and 25, but it need not be selected from the target matrix. Exact source arithmetic gives
 
 \[
-C=3QA^3Q^{-1},\qquad C^2=17QBQ^{-1}\pmod{29}.
+C\sim Q_{28}A^3Q_{28}^{-1},\qquad C^2\sim Q_{28}BQ_{28}^{-1}\pmod{29},
 \]
+
+with the particular integer representatives satisfying \(C=3Q_{28}A^3Q_{28}^{-1}\) and \(C^2=17Q_{28}BQ_{28}^{-1}\). The scalar factors are projectively irrelevant, not extra key material.
 
 This means the conventional p32 map is an affine conjugate of the **third power** of the previously documented 2014/LP1 `MOBIUS` square, and its square is conjugate to the other earlier square. The 11×11 p32 grid supplies **11**, the signed image's prime-dimension difference 569−563 supplies **6**, and these form \(A=[[11,6],[6,11]]\) numerically; the central 5×5 ring is reached by removing **three** outer layers from the 11×11 grid. These are exact source correspondences, but the choice of matrix convention and the use of a cube were recognized after the available inputs had been explored. Algebraic conjugacy by itself does not specify a cipher or a key.
 
@@ -109,6 +111,38 @@ turns the matrix action into multiplication by **8=2³ modulo29**. This source-s
 | Independent Emerson GP holdout, 12,000 runes | **0.062545** | **−7.8751** |
 
 The inverse is therefore a **bounded negative** for the declared source-cycle transports, despite the exact matrix relations. [Original-source single-file inverse and 12,956-rune positive controls](../sims/tree121_inclusive_mobius_lp1_cube_inverse_sft.cjs) · [successful manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42951200200).
+
+### Nested row-major and inclusive maps: a source-derived cross-round chain
+
+The two p32 matrices are not unrelated alternatives. Let \(M_7\) be the row-major single-count 5–3–5–3 matrix and \(C=M_{28}\) the inclusive-side matrix. Define
+
+\[
+S=\begin{pmatrix}11&8\\0&1\end{pmatrix},\qquad S(x)=11x+8.
+\]
+
+Then the original-source matrices satisfy the exact projective identity
+
+\[
+M_7\sim S\,C^4\,S^{-1}\pmod{29}.
+\]
+
+Here **11** is the outer p32 square's side length, **8** is half the 16-cell inner perimeter, and **4** is the number of sides. Since \(C\) has projective order 28, its fourth power has order 7, matching \(M_7\). This makes the row-major single-count map a geometrically simple fourth-power transform of the inclusive map, rather than an unrelated competing matrix.
+
+The LP1 p05 corner matrix \(A=[[11,6],[6,11]]\) completes the chain:
+
+\[
+C\sim Q_{28}A^3Q_{28}^{-1},\qquad
+M_7\sim Q_7A^{12}Q_7^{-1},\qquad
+Q_7=SQ_{28}=\begin{pmatrix}13&9\\0&1\end{pmatrix}.
+\]
+
+The \(Q_7\) parameters are also source-derived: **13** is the original p32 red 13-dot mark count, **9** is half the signed image-height residue \(569\bmod29=18\), and **12=3\times4=563\bmod29** is both the three peeled layers times four sides and the image-width residue. A second coordinate convention \(Q_2(x)=16x+9\) with \(A^{16}\) gives the same \(M_7\); it is related to \(Q_7\) by the reflection \(x\mapsto-x\), so this is an orientation representation, not a second map. A bounded search over slopes \(\pm\{12,18,13,16\}\), translations \(\pm\{9,8,16,13,3,5,6,11\}\), and all exponents 1–28 finds only two distinct affine parameterizations for each target: \(M_7\) has \((a,b,k)=(13,9,12)\) or \((16,9,16)\); \(C\) has \((17,8,3)\) or \((12,8,25)\). This is a finite source-vocabulary check, not an exhaustive search over all projective transformations.
+
+The row-major map also has two independent solved-round anchors. Its fixed points are **22 and 25**, whose GP-prime weights **83+101=184** equal the first body word **LIKE** on solved p57 under the standard GP normalization \(L,I,C,E\) (K maps to C). It also sends the p32 13-dot count to **24**, exactly \(3301\bmod29\). The seven-cycle through 13 is \(13\to24\to19\to3\to6\to20\to17\to13\). The six finite states in the cycle containing projective infinity are \(\{2,7,8,10,11,16\}\); their GP-prime weights sum **174=6\times29**, also the prime-weight sum of the inclusive map's fixed points 20 and 25. These are exact cross-artifact equalities, not recovered prose.
+
+A conditional null tested the nested identity directly. It held the 21 first-row/first-column p32 values fixed, permuted the other 100 original GP-prime values without replacement, and evaluated all 16 legal single-count corner assignments on each of 200,000 draws (xorshift32 seed 0x56356929). The fixed horizontal-row ownership reproduced \(M_7\sim SC^4S^{-1}\) in **13/200,000** draws; allowing any of the 16 corner assignments produced at least one match in **126/200,000** draws (**135** matching assignments total). The plus-one fractions are \(14/200001\approx0.000070\) for the fixed row-major rule and \(127/200001\approx0.000635\) after the 16-way assignment search. This is conditional on the p32 axes and prime inventory; the clue family was recognized retrospectively, so neither fraction is a discovery-wide significance test.
+
+This nested algebra gives a plausible human solve path—solve the 2014 \(MOBIUS\) square, use the Parable's “shed circumferences” to isolate p32's central ring, read its complete horizontal rows once, then use the signed 2016 dimensions and red mark to fix the affine coordinates. It does **not** yet specify how to turn the seven-cycle into an original-cipher key or a route through words/positions. Direct rune substitution, period-seven state-stream and related inverses remain negative; do not repeat them. [Source-derived nested-map SFT](../sims/tree121_mobius_nested_crossround_sft.cjs).
 
 ### The HOME/BUDS cross-ratio word landmark and its limited +60 continuation
 
@@ -134,7 +168,7 @@ These are exact modular correspondences, not fitted parameters:
 | Source quantity | Residue / invariant | Independent match |
 |---|---:|---|
 | 2016 image width, 563 | (12\pmod{29}) | 2014 magic-square centre, (331\equiv12) |
-| 2016 image height, 569 | (18\pmod{29}) | 2014 7×7 magic constant, (1033\equiv18); also the sum of Möbius fixed points |
+| 2016 image height, 569 | (18\pmod{29}) | 2014 7×7 magic constant, (1033\equiv18); also the sum (22+25=47\equiv18) of the row-major order-7 map's fixed points |
 | 2016 image area, (563\times569) | (13\pmod{29}) | p32's 13-dot mark and (\operatorname{tr}(M)=13) |
 | Cicada number, 3301 | (24\pmod{29}) | (f(13)=24) |
 | p32 inner-5 perimeter | (1,136) | signed 2016 payload length, 1,136 bytes |
@@ -193,6 +227,6 @@ The exact source image dimensions, p32 prime checksums, and the proposed ring/wo
 
 ## Decision and next discriminator
 
-The strongest current source leads are the **matrix-convention-dependent p32 ring map and its exact LP1 cube relation** and the separately specified **p32 word-sum walk into the 2016 signed PGP marker**, both anchored by the exact central-ring sum = signed payload length = 1,136. Neither identifies the authentic unknown-LP2 cipher. The direct cipher interpretations are negative; do not repeat them. A high-value next discriminator is whether the walk's **317→331** signature-delimiter transition fixes an unambiguous source operation that predicts original LP2 plaintext. Independently, determine whether the matrix's four 7-cycles and two fixed points supply a source-defined rune map, and whether projective infinity corresponds to a 13-dot marker. Both original-image direction probes are negative: mod4/Sobel and literal continuous-degree/Sobel. A successor must fix a distinct source-visible extraction or a forward key mechanism before reading unknown LP2. Do not expand into arbitrary ring rotations, image thresholds, or unconstrained key families.
+The strongest current source leads are the **nested p32/LP1 Möbius chain**—the row-major order-7 map is a fourth-power affine conjugate of the inclusive order-28 map, and both connect to LP1 p05—and the separately specified **p32 word-sum walk into the 2016 signed PGP marker**, both anchored by the central-ring sum = signed payload length = 1,136. The fixed-point/LIKE and 13→24/3301 correspondences strengthen the map as a structural selector, but do not identify an authentic cipher. Direct rune substitutions and period-7/28 state inverses are negative; do not repeat them. The next useful discriminator is whether the signed instruction's words/map and numbers/direction specify a unique traversal of the seven-cycle through p32 words/positions or the 317→331 PGP transition, yielding a frozen prediction on unknown LP2. Do not expand into arbitrary ring rotations, image thresholds, or unconstrained key families.
 
 **Reproducers and sources:** [sims/tree_prime_canvas_partition_sft.py](../sims/tree_prime_canvas_partition_sft.py) for p32 geometry and prior image negatives; [sims/tree121_directional_field_sft.py](../sims/tree121_directional_field_sft.py) and [sims/tree121_continuous_direction_sft.py](../sims/tree121_continuous_direction_sft.py) for completed original-image direction negatives; [resources/historical/cicada2014-openpuff-magic-squares.txt](../resources/historical/cicada2014-openpuff-magic-squares.txt) for the 7×7 square; [workplace/2016-image-dimensions-lag6-source-derivation.md](../workplace/2016-image-dimensions-lag6-source-derivation.md) for the signed-image coordinate derivation. This remains intermediate research, not an established decryption.
