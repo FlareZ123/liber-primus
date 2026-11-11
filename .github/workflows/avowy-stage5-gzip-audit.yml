@@ -123,6 +123,25 @@ jobs:
         run: |
           set -euo pipefail
           node sims/stage5_original_outguess_columnar_sft.cjs stage5-image-03-outguess.txt | tee stage5-onion-recovery.txt
+      - name: Test source-tail 9133 as OutGuess password on recovered fourth image
+        run: |
+          set -euo pipefail
+          IMAGE=stage5-images/stage5-image-04.jpg
+          test "$(sha256sum "$IMAGE" | cut -d' ' -f1)" = "975cda73bbf829b2775f25beb609d34fa429728b2f2a4ce863c129b10b005089"
+          OUTGUESS=$(find /tmp/outguess /usr/local/bin -type f -name outguess -perm -111 2>/dev/null | head -1)
+          test -n "$OUTGUESS"
+          "$OUTGUESS" -k 9133 -r "$IMAGE" stage5-image-04-9133.bin >stage5-image-04-9133.log 2>&1 || true
+          echo '=== source-selected suffix 9133 on source-identical 09.jpg ==='
+          cat stage5-image-04-9133.log
+          if [ -f stage5-image-04-9133.bin ]; then
+            file stage5-image-04-9133.bin
+            wc -c stage5-image-04-9133.bin
+            sha256sum stage5-image-04-9133.bin
+            python3 -c 'from pathlib import Path; from collections import Counter; import math; b=Path("stage5-image-04-9133.bin").read_bytes(); c=Counter(b); h=-sum((n/len(b))*math.log2(n/len(b)) for n in c.values()) if b else 0; print("byte_entropy",h,"printable_fraction",sum(32<=x<=126 or x in (9,10,13) for x in b)/len(b) if b else 0,"prefix_hex",b[:80].hex())'
+            strings -a -n 5 stage5-image-04-9133.bin | head -20 || true
+          else
+            echo 'No file was extracted with source-tail key 9133'
+          fi
       - name: Split the two archived tablet images and test source-fixed OutGuess modes
         run: |
           set -euo pipefail
@@ -180,6 +199,7 @@ jobs:
             stage5-onion-recovery.txt
             stage5-images/
             stage5-image-*-outguess.txt*
+            stage5-image-04-9133.*
             tablet-front.jpg
             tablet-back.jpg
             trailer.bin
