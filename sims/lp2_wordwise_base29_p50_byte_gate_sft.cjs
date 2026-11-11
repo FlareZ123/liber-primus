@@ -57,6 +57,8 @@ function diagnostics(bytes) {
       entropy -= probability * Math.log2(probability);
     }
   }
+  const sorted = [...frequencies].sort((a, b) => b - a);
+  const cover = (alphabet) => sorted.slice(0, alphabet).reduce((sum, count) => sum + count, 0);
   let longest = "";
   let current = "";
   for (const byte of bytes) {
@@ -70,6 +72,11 @@ function diagnostics(bytes) {
   const string = Buffer.from(bytes).toString("latin1");
   return {
     length: bytes.length,
+    distinct_byte_values: frequencies.filter((count) => count !== 0).length,
+    // Exact best possible under ANY single secret global 256-byte permutation:
+    // only 'alphabet' source symbols can map to an allowed target alphabet.
+    max_global_bijection_english27: cover(27),
+    max_global_bijection_ascii95: cover(95),
     entropy_bits_per_byte: entropy,
     printable_fraction: bytes.filter((byte) => byte >= 32 && byte <= 126).length / bytes.length,
     longest_printable_run: longest,
@@ -109,6 +116,12 @@ assert.equal(Buffer.from(tablePositive.map((runes) => table[wordAddress(runes)])
 
 // Frozen original-input outputs, computed without fitting offsets or any key.
 assert.equal(original.byte_mod256.length, 2896);
+assert.equal(original.byte_mod256.distinct_byte_values, 256);
+assert.equal(original.p50_lookup.distinct_byte_values, 161);
+assert.equal(original.byte_mod256.max_global_bijection_english27, 496);
+assert.equal(original.p50_lookup.max_global_bijection_english27, 991);
+assert.equal(original.byte_mod256.max_global_bijection_ascii95, 1426);
+assert.equal(original.p50_lookup.max_global_bijection_ascii95, 2300);
 assert.equal(original.p50_lookup.length, 2896);
 assert(Math.abs(original.byte_mod256.printable_fraction - 0.3639502762430939) < 1e-12);
 assert(Math.abs(original.p50_lookup.printable_fraction - 0.4053867403314917) < 1e-12);
