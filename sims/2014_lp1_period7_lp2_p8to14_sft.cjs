@@ -1,7 +1,7 @@
 'use strict';
 /**
  * Single-file exact source-orientation gate: archived 2014 LP1 7-column
- * OutGuess transposition as a potential LP2 physical pages8–14 operation.
+ * OutGuess transposition on source-marked illustrated pp33–39 and exploratory pp8–14.
  * Node >=18, CommonJS, no third-party dependencies. Agent50 2026-11-11.
  */
 const assert = require('node:assert/strict');
@@ -172,10 +172,60 @@ assert.equal(permutationCounts[2520], 99);
 assert.equal(permutationCounts[5039], 146);
 assert.equal(permutationCounts.filter(value => value <= historicalJointRepeatCount).length, 2318);
 
+// Primary source selector: the seven consecutive illustrated p33–39 physical pages.
+// Preserve the two existing section clocks: p33 starts whole, or after its 91-rune interlude.
+const illustratedPages = corpus.pages.filter(page => page.page >= 33 && page.page <= 39);
+assert.equal(illustratedPages.length, 7);
+const illustratedFull = illustratedPages.flatMap(page => page.indices);
+const illustratedBody = illustratedPages[0].indices.slice(91)
+  .concat(illustratedPages.slice(1).flatMap(page => page.indices));
+assert.equal(illustratedFull.length, 1680);
+assert.equal(illustratedBody.length, 1589);
+const sevenPageWindows = Array.from({ length: 50 }, (_, start) => ({
+  start, length: corpus.pages.slice(start, start + 7)
+    .reduce((total, page) => total + page.indices.length, 0)
+}));
+const divisibleWindows = sevenPageWindows.filter(window => window.length % 7 === 0);
+assert.deepEqual(divisibleWindows.map(window => window.start),
+  [0, 8, 18, 20, 21, 32, 33, 42]);
+
+/** @param {number[]} source @param {number} expectedAfter @param {number} expectedFailure */
+function measuredSourceInverse(source, expectedAfter, expectedFailure) {
+  const altered = reverseHistoricalColumns(source);
+  assert.deepEqual(restoreHistoricalColumns(altered), source);
+  assert.equal(adjacent(altered), expectedAfter);
+  assert.equal(ioc(altered), ioc(source));
+  assert.deepEqual(totientFeasible(altered),
+    { possible: false, firstFailure: expectedFailure });
+  const digitKey = [source, altered].flatMap((stream, i) =>
+    /** @type {const} */ ([1, -1]).map(direction => ({
+      source: i === 0 ? 'original' : 'historical-inverse',
+      direction, ioc: ioc(directShift(stream, direction))
+    }))
+  );
+  assert(digitKey.every(result => result.ioc < .04));
+  return { originalRunes: source.length, rows: 7, columns: source.length / 7,
+    originalRepeats: adjacent(source), transformedRepeats: adjacent(altered),
+    fixedIoC: ioc(altered), originalTotient: totientFeasible(source),
+    transformedTotient: totientFeasible(altered), digitKey };
+}
+assert.equal(adjacent(illustratedFull), 12);
+assert.equal(adjacent(illustratedBody), 12);
+const illustratedFullResult = measuredSourceInverse(illustratedFull, 52, 69);
+const illustratedBodyResult = measuredSourceInverse(illustratedBody, 50, 128);
+assert.deepEqual(illustratedFullResult.originalTotient,
+  { possible: false, firstFailure: 58 });
+assert.deepEqual(illustratedBodyResult.originalTotient,
+  { possible: false, firstFailure: 1 });
+
 console.log(JSON.stringify({
   historicalProof: { input: historicalSource, recovered: historicalRecovered,
     sourceUrl: 'https://uncovering-cicada.fandom.com/wiki/What_Happened_Part_1_(2014)' },
-  originalLP2: { pageRange: [8, 14], runes: original.length, rows: 7,
+  sourceSelectedLP2: { span: 'p33-39', full: illustratedFullResult,
+    bodyStartingAtP33Local91: illustratedBodyResult },
+  windowSelectionCaveat: { sevenPageWindows: sevenPageWindows.length,
+    divisibleCount: divisibleWindows.length, eligibleStarts: divisibleWindows.map(window => window.start) },
+  exploratoryLP2: { pageRange: [8, 14], runes: original.length, rows: 7,
     columns: original.length / 7, adjacentRepeats: adjacent(original),
     gpIoC: ioc(original) },
   sourceInverse: { adjacentRepeats: adjacent(transformed), gpIoC: ioc(transformed),
