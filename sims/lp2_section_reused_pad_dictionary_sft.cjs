@@ -1,8 +1,9 @@
 "use strict";
 /**
- * SFT: key-independent dictionary gate for a reused additive GP29 pad at
- * original LP2 source-section starts 4 and 5. Exact DP finds the minimum
- * number of non-lexicon words jointly required by C4-C5 (mod 29).
+ * SFT: key-independent dictionary gates for (a) a reused direct additive
+ * GP29 pad and (b) a reused key on ciphertext first differences (chain cipher),
+ * each at natural LP2 source-section starts 4 and 5. Exact DP minimizes the
+ * nonlexicon word count jointly under the two original difference streams.
  *
  * Run from repository root: node sims/lp2_section_reused_pad_dictionary_sft.cjs
  * No network, randomness, or file writes.
@@ -174,6 +175,22 @@ const actual = minOov(difference(a, b), ca, cb);
 const plantedA = nativePlant(ca, 179);
 const plantedB = nativePlant(cb, 521);
 const planted = minOov(difference(plantedA, plantedB), ca, cb);
+/** GP29 ciphertext first differences, natural section reset to zero. */
+const steps = (sequence) => sequence.map((value, i) =>
+  (value - (i ? sequence[i - 1] : 0) + 29) % 29);
+const originalChain = minOov(difference(steps(a), steps(b)), ca, cb);
+const sharedChainPad = Array.from({ length: count }, (_, i) => (17 * i + 31) % 29);
+/** Re-encrypt dictionary text under a common incremental GP29 pad. */
+function chainEncrypt(plain) {
+  let state = 0;
+  return plain.map((value, i) => {
+    state = (state + value + sharedChainPad[i]) % 29;
+    return state;
+  });
+}
+const plantedChain = minOov(difference(
+  steps(chainEncrypt(plantedA)), steps(chainEncrypt(plantedB))), ca, cb);
+
 const nativeWords = read("resources/control/gibran_prophet_58585.txt")
   .toUpperCase().match(/[A-Z]+/g).map(toRunes).filter((w) => w.length);
 const nativeOov = nativeWords.filter((w) => !dictionary.has(w.join(","))).length;
@@ -181,6 +198,8 @@ const nativeOov = nativeWords.filter((w) => !dictionary.has(w.join(","))).length
 assert.equal(actual.minOov, 55);
 assert.equal(actual.firstUnavoidableOovAt, 23);
 assert.equal(planted.minOov, 0);
+assert.equal(originalChain.minOov, 57);
+assert.equal(plantedChain.minOov, 0);
 assert.equal(nativeWords.length, 15733);
 assert.equal(nativeOov, 292);
 
@@ -191,5 +210,6 @@ console.log(JSON.stringify({
   nativeReference: { words: nativeWords.length, oov: nativeOov,
     fraction: nativeOov / nativeWords.length },
   exactMinimumOov: actual,
-  matchedLayoutSamePadPositiveControl: planted
+  matchedLayoutSamePadPositiveControl: planted,
+  chainStepModel: { original: originalChain, matchedLayoutPositiveControl: plantedChain }
 }, null, 2));
