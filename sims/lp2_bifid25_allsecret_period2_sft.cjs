@@ -332,6 +332,14 @@ const plant5 = bifidPeriod(source, plantMask, 5, false);
 assert.deepEqual(bifidPeriod(plant5, plantMask, 5, true), source);
 const plant5Bound = generalCapacity([plant5], plantMask, 5);
 assert.ok(plant5Bound >= 1517);
+const periodSeven = generalExhaustive([all], 7);
+assert.equal(periodSeven.maximum, 849);
+assert.equal(periodSeven.minimum, 745);
+assert.deepEqual(periodSeven.maximizingMask, [6, 23, 25, 26]);
+const plant7 = bifidPeriod(source, plantMask, 7, false);
+assert.deepEqual(bifidPeriod(plant7, plantMask, 7, true), source);
+const plant7Bound = generalCapacity([plant7], plantMask, 7);
+assert.ok(plant7Bound >= 1517);
 console.log(JSON.stringify({
   source: "LP2 original 55 rune pages; 29 GP glyphs",
   originalRunes: N,
@@ -344,8 +352,10 @@ console.log(JSON.stringify({
     plantExactRoundtrip: true,
     plantedKeyCapacity: plantCapacity.bound,
     periodFivePlantCapacity: plant5Bound,
+    periodSevenPlantCapacity: plant7Bound,
   },
   original,
   periodFive,
+  periodSeven,
   decision: "All 25! secret squares and all four-transparent selections, for the listed period-2 reset clocks, have GP-E frequency capacity below source English.",
 }, null, 2));
