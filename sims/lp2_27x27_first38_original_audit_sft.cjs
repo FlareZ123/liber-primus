@@ -121,5 +121,40 @@ console.log("Conflicting plaintext assignments:",conflicts.length);
 for(const [pos,assigned] of conflicts)console.log(
   "(",Math.floor(pos/27)+1,",",pos%27+1,")",
   assigned.map(x=>x[0]+":"+data.translit[x[1]]).join(" "));
+
+// Source-constrained first-key ambiguity: actual page-0 red 13-rune heading
+// gives (13, phi(13)) or its axis-transposed coordinate (12,13).
+// Even granting radius one and the external phase-zero opening, it does not
+// uniquely select the original HORIZONTAL node or center-transform choice.
+const ink=JSON.parse(fs.readFileSync(path.join(__dirname,"..",
+  "resources","liber-primus","lp2-ink-annotations.json"),"utf8"));
+const redCount=ink.pages.find(x=>x.page===0).red_spans[0].length;
+assert.equal(redCount,13);
+const anchor=phi(redCount);
+assert.equal(anchor,12);
+const firstCandidates=[];
+for(const [cy,cx] of [[redCount,anchor],[anchor,redCount]]) {
+  for(const [axis,dr,dc] of [["H",0,1],["V",1,0],["NWSE",1,1],["NESW",1,-1]]) {
+    const pts=[-1,0,1].map(t=>(cy+t*dr-1)*27+cx+t*dc-1);
+    const source=pts.map(i=>c[i]);
+    for(const transform of [false,true]) {
+      const key=source.slice();
+      if(transform)key[1]=phi(key[1]);
+      if(key.some(n=>n===0))continue;
+      const phase=((key.reduce((s,x)=>s+mu(phi(x)),0)%3)+3)%3;
+      if(phase!==0)continue;
+      const word=parse(paths[0]).map((p,j)=>
+        data.translit[(c[p]-key[j%3]+29)%29]).join("");
+      firstCandidates.push({center:[cy,cx],axis,transform,word,key});
+    }
+  }
+}
+assert.equal(firstCandidates.length,5);
+assert.equal(new Set(firstCandidates.map(x=>x.word)).size,5);
+assert.equal(firstCandidates.filter(x=>x.word==="ASIGOTHE").length,1);
+assert.ok(firstCandidates.some(x=>x.center[0]===12&&x.center[1]===13
+  &&x.axis==="V"&&!x.transform&&x.key.join(",")==="16,19,28"));
+console.log("Source-constrained first-key ambiguity:",firstCandidates);
+
 console.log("PASS: conditional inverse, positive source-triple check and exact forward re-encryption.");
 console.log("No source-prospective selector or authentic plaintext established.");
