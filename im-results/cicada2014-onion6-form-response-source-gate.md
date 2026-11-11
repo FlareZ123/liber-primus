@@ -27,6 +27,10 @@ The earlier hello-you-have-done-well.asc is the January upload-instructions/form
 
 Targeted GitHub searches for questionnaire, “welcome questionnaire,” and message.txt.asc across the inspected archives surfaced no separate response artifact. Search-index absence is not proof of nonexistence.
 
+## Upload-endpoint actor correction
+
+The original 2014 signed instruction explicitly delegates `/cgi-bin/upload` to **the participant's own** Tor hidden service; the May 2 `GET /key.asc` and `POST /cgi-bin/upload` are outbound **Cicada-client** requests to that participant. The archived `cgi/cgi.py` is marked as a mock by its author. Thus [the original operator source gap](2014-stage11-upload-direction-correction.md) concerns Cicada's outbound client and distinct upload envelopes rather than a hypothetical Cicada-owned `/cgi-bin/upload` handler. The standard reply is clear-signed; fetching a public key alone does not prove how the author used it.
+
 ## Decision
 
 **Close the alternative-response search as unrecoverable from the surviving public record.** The 2024 retrospective claim remains uncorroborated. The January welcome.asc is an earlier RSA-OAEP challenge; the later filenames containing “onion-welcome” are copies of the standard signed redirect. No authenticated distinct Stage11 questionnaire message, recipient-specific key/state, or LP2-relevant instruction was recovered.

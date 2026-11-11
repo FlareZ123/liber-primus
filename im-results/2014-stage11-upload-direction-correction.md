@@ -1,0 +1,31 @@
+# 2014 Stage11 upload direction: the server handler was participant-controlled
+
+**Source-anchored correction, 11 November 2026.** Original Cicada-signed January 2014 instructions identify `/cgi-bin/upload` as a CGI endpoint that *participants themselves* were to host on their own Tor hidden services. There is no unique Cicada-owned server-side upload handler at this address for original-author source recovery. The relevant missing creator-side code is the **outbound HTTP client** that fetched a participant's `/key.asc` and then submitted a signed message to their endpoint. This is a positive correction to which original operation can have cryptographic significance, not a discovery of such source code or a new LP2 decryption.
+
+## Original, signed instructions select the request direction
+
+1. [Original sixth-onion OutGuess from `10.jpg.asc`](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/10.jpg.asc) says: *“Create one Tor hidden service that can accept CGI file uploads.”* It instructs participants to post their three magic squares and **their own Tor-service URL** into Cicada's form. Three other original image OutGuess messages repeat the same instruction; they differ in their border digits.
+2. [Original subsequent form signed body](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/ut3qtzbrvs7dtvzp.onion.v2-form.html.asc), Git blob `ff4d21ad4e56836070f431a6a297ab14a10a099b`, explicitly says *“the path to **your CGI script** which accepts uploads should be '/cgi-bin/upload'”*. It names HTML file field `file`, tells the solver to generate a GnuPG key pair and publish its public part at `/key.asc`, and promises a later contact.
+3. The original contemporaneous [form HTML](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/ut3qtzbrvs7dtvzp.onion.v2-form.html) has a *different* `<form action="/cgi-bin/squares">` on **Cicada's own** onion, used for submitting the three squares and the participant's service address. Its server-side `/cgi-bin/squares` is a separate, creator-controlled, still-unrecovered script. Mixing these endpoints reverses the request direction.
+
+## Contemporary May 2 reverse flow
+
+The [2014 hidden-service reply archive](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/010-hidden-service-reply/README.md) preserves an observer's local access-log excerpt, with timestamps redacted, where Cicada made three requests to the participant's service:
+
+| Local timestamp, 2014-05-02 | Request from Cicada's user agent | Response in archived log |
+| --- | --- | --- |
+| 10:**:** +0200 | `GET /key.asc`, `Cicada/33.01 CicaDOS 1.033 E Edition` | HTTP 200 |
+| 10:**:** +0200 | `GET /`, same user agent | HTTP 200 |
+| 11:**:** +0200 | `POST /cgi-bin/upload`, `Cicada/33.01 Cic/DOS/ 1.033 S Edition` | HTTP 200 |
+
+The archived uploaded `message.txt.asc` is the known Cicada-signed, **clear-signed** message pointing to `ky2khlqdf7qdznac.onion`. Its signature is independently inventoried under the Cicada key; it has no visible per-recipient encrypted packet. The GET of a public key proves retrieval occurred but does **not** prove parsing, storage, cryptographic use or deliberate ignoring. The saved access log has no HTTP bodies, public-key fingerprint, ciphertext envelope or client's runtime trace. There is no basis for reconstructing author-side key processing.
+
+The same historical [sixth-onion archive README](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/README.md) points to a `cgi/cgi.py` example and explicitly warns this was a **mock CGI service** never used in the real puzzle. It is participant-side demonstration code, not recovered Cicada implementation.
+
+## Correct research dependency and decision
+
+**Retire the creator-side `/cgi-bin/upload` handler hunt:** the target endpoint is participant-hosted and variable by solver. Surviving authentic input establishes the exact protocol and outbound message in one documented case.
+
+A genuinely new cryptographic result requires one of: (a) Cicada's **outbound client** implementation or its dated execution log showing what it did with retrieved `/key.asc`, or (b) a recipient-preserved complete HTTP upload carrying a distinct signed/encrypted `message.txt.asc` that can be associated with that participant's original key. Original `/cgi-bin/squares` processing would be another creator-side artifact, though it is separate from the requested upload.
+
+**LP2 consequence:** none established. The standard submitted message points to the published second release, and no original ciphertext key, secret state, or recovered unknown plaintext has been demonstrated by this evidence. Do not equate a participant-run CGI example with Cicada-authored source.
