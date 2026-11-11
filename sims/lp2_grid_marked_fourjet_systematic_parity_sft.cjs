@@ -153,6 +153,60 @@ function main() {
   assert.equal(byteValues[165], 18);
   assert.deepEqual(alternate.map(mod), official);
 
+  // First-class original-cipher follow-through: if 252 systematic
+  // information residues were intended as a period252 additive GP29 pad,
+  // its first phase would reveal an ordinary nonuniform native-GP register.
+  // Test only the source page and book origins, each with both signs.
+  const corpus = JSON.parse(fs.readFileSync(
+    path.join(root, "resources", "liber-primus", "lp2-corpus.json"), "utf8"
+  ));
+  const pages = corpus.pages.filter(
+    (page) => page.status === "unsolved" && page.indices.length
+  );
+  const ciphertext = pages.flatMap((page) => page.indices);
+  assert.equal(ciphertext.length, 12956);
+
+  /** @param {number[]} symbols */
+  function coincidence(symbols) {
+    const h = Array(29).fill(0);
+    for (const symbol of symbols) h[symbol]++;
+    return h.reduce((sum, n) => sum + n * (n - 1), 0) /
+      (symbols.length * (symbols.length - 1));
+  }
+
+  /**
+   * @param {"book"|"page"} scope
+   * @param {number} sign
+   */
+  function decodeDirectPad(scope, sign) {
+    if (scope === "book") return ciphertext.map(
+      (c, i) => mod(c + sign * first252[i % 252])
+    );
+    return pages.flatMap((page) => page.indices.map(
+      (c, i) => mod(c + sign * first252[i % 252])
+    ));
+  }
+  const directPadIoC = {
+    bookSubtract: coincidence(decodeDirectPad("book", -1)),
+    bookAdd: coincidence(decodeDirectPad("book", 1)),
+    pageSubtract: coincidence(decodeDirectPad("page", -1)),
+    pageAdd: coincidence(decodeDirectPad("page", 1))
+  };
+  assert(Math.abs(directPadIoC.bookSubtract - 0.03449591402733641) < 1e-12);
+  assert(Math.abs(directPadIoC.bookAdd - 0.03451093979694835) < 1e-12);
+  assert(Math.abs(directPadIoC.pageSubtract - 0.03449438881043687) < 1e-12);
+  assert(Math.abs(directPadIoC.pageAdd - 0.034472142092066144) < 1e-12);
+
+  // A real source-native plant exactly re-encrypts under the chosen 252 key.
+  const solvedPage = corpus.pages.find((page) => page.page === 57);
+  assert(solvedPage && solvedPage.indices.length === 95);
+  const planted = ciphertext.map((_, i) => solvedPage.indices[i % 95]);
+  const encrypted = planted.map((p, i) => mod(p + first252[i % 252]));
+  assert.deepEqual(
+    encrypted.map((c, i) => mod(c - first252[i % 252])),
+    planted
+  );
+
   /** @type {number[]} */
   const frequency = Array(29).fill(0);
   for (const rune of first252) frequency[rune]++;
@@ -170,9 +224,12 @@ function main() {
     archivedVariantAtAc24: jet(archived.decimal_values, 24),
     archivedVariantAtDot13: jet(archived.decimal_values, 13),
     dataPrefixIoC: ioc,
+    originalCiphertextIoC: coincidence(ciphertext),
+    directPadIoC,
+    plantedGP29Recovered: true,
     gf29CannotDistinguishByte165: true
   }, null, 2));
-  console.log("PASS: exact source-bound four-jet systematic parity candidate, no language.");
+  console.log("PASS: four-jet parity and bounded original source-derived direct pad exclusion.");
 }
 
 main();
