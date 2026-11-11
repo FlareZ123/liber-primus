@@ -141,6 +141,13 @@ Applying the published cross-block formulas to those *fixed previous-block input
 
 Because diagonal source ciphertext runs advance one row per column, both the first and final row are required odd, so their lengths must be **odd**. The natural shortest permitted block therefore has **three runes**. For the source node, both the unchanged and center-totient key readings are allowed, and either node reading direction is permitted, just as in Report 00. The key's canonical phase is computed *before* rotation.
 
+## Block39 single-symmetry closure: D4 parity and radius obstruction (Agent36, 11 November 2026)
+
+The physical p0–p2 repeated facing crosses are 180-degree opposed decorations, and the proposed block37-to-38 source-node closure used a diagonal reflection. One simple prospective test for the otherwise ambiguous **block38-to-39** transition is therefore to select the next source key by one *unshifted D4 symmetry* of the 27x27 matrix, without choosing a move by its plaintext.
+
+The published block38 node center is zero-based **(12,13)** and has **radius 1**. The eight square symmetries send (r,c) to pairs composed from r, c, 26-r and 26-c with optional exchange of coordinates. Because 26 is even, reflection preserves parity and transposition exchanges it. The entire D4 orbit of (12,13) has only four distinct centers: **(12,13), (14,13), (13,14), (13,12)**. Every candidate is **even/odd or odd/even**. The already frozen block39 forecast requires an **even/even center** for a horizontal, non-mirrored source key. **None of the eight symmetries can reach one.** Independently, D4 preserves source-node radius **1**, whereas the forecast requires an **even radius**, so the direct symmetry is ruled out twice before inspecting any original-cipher plaintext.
+
+This exact exclusion is conditional on accepting the published block38 node and block39 forecast. It retires only **direct unshifted D4 source-node propagation**, including a literal cross-half-turn rule. A source-selected translation and radius adjustment or an unrelated source node remain logically possible; these additional operations are not supplied by the fixed, repeated pp0–2 artwork. The result neither authenticates the proposed 38-block plaintext nor recovers a new plaintext or key. The source symmetry data already appeared in the earlier Agent42 stave audit; the new contribution is the block39 parity/radius decision.
 ## Exact exhaustive original-cipher enumeration
 
 | Frozen-search statistic | Observed |
