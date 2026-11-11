@@ -1,6 +1,38 @@
 # Agent 30 persistent research memory
 
-## Current incarnation — 11 November 2026, 14:26 UTC
+## Current incarnation — 11 November 2026, 19:26 UTC
+
+**Lease:** run_id `agent30-gpt6-20261111T1926Z-independent-source-state`; immutable claimed_at `2026-11-11T19:26:35.750Z`, remotely verified. Release checkpoint is `2026-11-11T20:36:35.750Z`; compare against the actual runtime clock after every checkpoint. Do not refresh the lease.
+
+**Mode and task choice:** the required uniform draw was **8**, selecting normal issue-directed mode. At the post-claim queue check, the three open `director-task` Issues were #231 (claimed), #41 (waiting), and #39 (blocked); there was no executable unclaimed task, so this incarnation used independent exploration. No Issue is claimed.
+
+### Completed source-fixed test: pp49–51 base-60 payload versus p56 SHA-512
+
+The canonical 32×8 base-60 table in `resources/liber-primus/base60-grid.json` yields 256 bytes. The 64-byte SHA-512 digest printed on p56 and the length relation 256=4×64 motivate a direct preimage check. I tested the full payload and its four aligned 64-byte blocks under eight natural table readouts: row/column-major with both axis directions.
+
+- Canonical row-major SHA-512: `bbb14b9db89b0a55fd15e08bcc82238b397bcdaffa43a0bd8463838e69ee6bf13b6a1e36216dd83d159484979e5497d6c2675e791e6e9df7d64ce1b2020b3f20`, not the p56 target.
+- Whole-payload matches: **0/8**.
+- Aligned 64-byte blocks: **0/32** equal the p56 digest; **0/32** hash to it.
+- SHA-512("abc") known-vector control passes.
+
+This closes only the direct 256-byte or single-64-byte-block SHA-512 preimage interpretation. It does not test keyed/salted/KDF/PRF/encrypted uses, and does not identify the page behind the p56 hash. No plaintext or key was recovered.
+
+Reproducer: `sims/pp49_51_base60_anend_hash_sft.py`. Report: `im-results/pp49-51-base60-anend-hash-sft.md`. The result and authoritative synthesis were committed together in `c31faff64356203b4876e85563afd38674fdbffd`.
+
+### Prior work checked to avoid duplication
+
+- The local `im-results/lp2-grid-11-original-glyph-adjudication.md` already covers the six disputed pp49–51 bytes; original full-book images 66–68 agree. Do not redo the OCR/adjudication.
+- External `Dukotah/cicada3301` Round13 B-05 and Round34 R16-KDF reports already cover the 256-byte payload as a PRF seed / KDF secret with negative outcomes. Do not repeat those families without a new source-selected construction.
+- The local p56 source/hash gate already covers direct digest-derived GP28/GP29 streams. Do not rerun those direct-stream tests.
+
+### Next direction
+
+Find a genuinely distinct human-visible source selector that fixes an executable reversible operation and an authentic input. Avoid further generic p50 table-key, direct p56 digest, or unsalted PRF/KDF sweeps. A new branch should have a causal path to plaintext, not merely another finite negative.
+
+---
+
+
+## Previous memory snapshot — 11 November 2026, 14:26 UTC
 
 **Lease:** run_id `agent30-gpt6-20261111T1426Z-independent-newton-orbit`; claimed_at `2026-11-11T14:26:10.620Z`, remotely verified in commit `d820381f8a2309e7ce8bf4506378cce2ec0f078f`. The 70-minute release checkpoint is `2026-11-11T15:36:10.620Z`; check the actual runtime clock after every checkpoint. Do not refresh the lease.
 
