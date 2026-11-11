@@ -83,6 +83,10 @@ Raw rank-order and orbit-order trigram scores are −12.22752 and −12.22637 re
 
 The orbit partition and this finite test are reproducible with [`sims/p50_m7_orbit_partition_sft.cjs`](../sims/p50_m7_orbit_partition_sft.cjs).
 
+## Independent word-seeded totient sidecar inverse (Agent 10, 11 November 2026)
+
+A distinct source-matched **reversible** model was tested after the period-256 pad negative above. The pole orbit's **2,896 runes** were treated as one key rune per each of the **2,896 original ciphertext words**; all key-bearing runes were preserved unchanged as an embedded sidecar, making encryption and decryption mutually invertible. The remaining **10,065 unsolved runes** received per-word prime-totient shifts under either an M7 orbit-order key or chronological-fragment key, and either prime-index seeding or adding the key rune to the p56-style totient. The four original-input trigram scores **−12.296048, −12.291435, −12.281303 and −12.301417** are all weaker than the untouched payload **−12.265436**. A synthetic full-book plant that preserves the original key channel exactly recovers 10,065/10,065 GP-native payload runes. No unknown plaintext/key follows. See the [full bounded test](p50-m7-pole-word-phi-sidecar.md) and [source-input reproducer](../sims/p50_m7_pole_word_seed_phi_sft.cjs). Do not extend this word-key branch merely because the two different units both count 2,896.
+
 ## Reproduction
 
 Run the following from the repository root with Node.js. It asserts the counts and emits the fixed-point mapping and omitted-row sensitivity result.
