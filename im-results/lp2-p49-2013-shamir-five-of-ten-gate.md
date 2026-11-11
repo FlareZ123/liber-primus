@@ -41,6 +41,8 @@ The [original-field SFT](../sims/lp2_p50_2013_ssss_gf176_sharepack_sft.py) reuse
 
 The source table's 256-byte SHA256 is frozen as `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. This extension is more faithful to the *historical* 2013 implementation than the separate eight-column GF256 structural analogue, but requires an **additional hypothetical 220-of-256 packing**. It excludes only these natural endpoint packings. Other packing schemes should require independent instructions before further compute.
 
+**Independent CI execution:** both regression scripts and both planted controls completed successfully on GitHub Actions [manual workflow run 43116753042](https://github.com/FlareZ123/liber-primus/actions/runs/43116753042) (11 November 2026, Node22/Python3.11). These are results of original-source evaluation, not merely predicted outputs.
+
 ## Decision boundary
 
 The p49 rows do not form ten shares with common fixed decimal row labels 1–10, eight byte-aligned columns and threshold5 under the two tested GF256 polynomials. **This result does not test the actual historical GF(2^176)/XTEA-diffused ssss 0.5 wire format**; p49's eight-byte row width does not even match that historical 22-byte share width without an independent source-specified packing scheme. This rejects one *direct* 2013-SSSS-to-LP2 decoding path before expensive secret interpretation. It does not exclude hidden sharing elsewhere in the book, unknown x-label assignments, non-byte/rune mappings, a separate secret encoded in the grid, or Shamir applied to ciphertext after another independently selected operation.
