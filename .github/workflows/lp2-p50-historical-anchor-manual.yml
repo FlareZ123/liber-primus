@@ -1,0 +1,21 @@
+name: P50 historical original-byte anchors (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-payload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact byte-anchor original SFT
+        run: |
+          node --check sims/lp2_p50_original_historical_byte_anchor_sft.cjs
+          node sims/lp2_p50_original_historical_byte_anchor_sft.cjs
