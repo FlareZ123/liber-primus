@@ -138,7 +138,7 @@ for (const pairing of ["adjacent", "halves"]) {
       }
 
       // Standard ElGamal: m = c2 * c1^(-x), with x=15 and |GF841*|=840.
-      const original = mul(c2, pow(c1, 824));
+      const original = mul(c2, pow(c1, 825));
       assert.deepEqual(mul(original, pow(c1, 15)), c2);
       if (original[1] === 0) gpSubfield++;
       if (original[0] + 29 * original[1] <= 255) literalByte++;
@@ -147,7 +147,7 @@ for (const pairing of ["adjacent", "halves"]) {
       // actual c1 and the exact source-selected client exponent.
       const planted = /** @type {FieldElement} */ ([originalSolvedGP[i], 0]);
       const encrypted = mul(planted, pow(c1, 15));
-      assert.deepEqual(mul(encrypted, pow(c1, 824)), planted);
+      assert.deepEqual(mul(encrypted, pow(c1, 825)), planted);
       assert.deepEqual(mul(planted, pow(c1, 15)), encrypted);
       positive++;
     }
@@ -158,8 +158,8 @@ for (const pairing of ["adjacent", "halves"]) {
   }
 }
 
-assert.deepEqual(models.map((row) => row.gpSubfield), [1,4,1,3]);
-assert.deepEqual(models.map((row) => row.literalByte), [11,24,18,21]);
+assert.deepEqual(models.map((row) => row.gpSubfield), [4,1,2,2]);
+assert.deepEqual(models.map((row) => row.literalByte), [19,19,23,22]);
 console.log(JSON.stringify({
   claim:"literal ElGamal transfer only; no LP2 plaintext or authentic key",
   input:"256 unchanged original row-major base60 table bytes",
