@@ -86,6 +86,8 @@ The nine injective **literal GP-prime residue alphabets** admit only the identit
 
 ## 4. Well-tested *bounded* negative families
 
+**Original p32 Micro QR M1 all-secret finder exclusion (bounded).** The independently sourced 11×11 GP rune matrix on physical p32 cannot be a literal 11×11 Micro QR M1 through any fixed secret rune-to-bit map. All **25** geometrically possible 7×7 finder placements remain contradictory even after granting independent unknown XOR masks for each row and each column. A **four-source-cell parity certificate** makes the upper-left standard finder impossible regardless of the secret mapping; real synthetic hidden-color finders pass. This excludes one direct binary visual decoder, leaving independently specified transpositions and nonlinear maps open. [Source-exact SFT](../sims/lp2_p32_microqr_allsecret_finder_sft.cjs) · [Source/evidence note](../im-results/lp2-p32-microqr-finder-allsecret-gate.md).
+
 These eliminate specified mechanisms under their documented source and repair assumptions. They do not prove that LP2 is unbreakable or that every stateful, variable-length or alternate-language cipher is excluded.
 
 | Family or source | Actual constraint or completed search | Evidence |

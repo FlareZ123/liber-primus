@@ -40,6 +40,7 @@ on:
           - source-dh-log
           - source-base29-literal
           - image-dim-page
+          - microqr-finder
         default: full
 
 jobs:
@@ -51,6 +52,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: All-secret original p32 Micro QR finder obstruction
+        if: ${{ inputs.probe == 'microqr-finder' }}
+        run: node sims/lp2_p32_microqr_allsecret_finder_sft.cjs
+
       - name: Source image GP29 page-edge and dimension-selected page-pair SFTs
         if: ${{ inputs.probe == 'image-dim-page' }}
         run: |
