@@ -55,7 +55,7 @@ EXPECTED = {
 
 
 def git_blob_sha1(data: bytes) -> str:
-    header = f"blob {len(data)}\\0".encode("ascii")
+    header = b"blob " + str(len(data)).encode("ascii") + bytes([0])
     return hashlib.sha1(header + data).hexdigest()
 
 
@@ -102,7 +102,7 @@ def verified_cleartext_body() -> bytes:
             capture_output=True,
             text=True,
         )
-        status = result.stdout + "\\n" + result.stderr
+        status = result.stdout + result.stderr
         if f"[GNUPG:] VALIDSIG {FINGERPRINT}" not in status:
             raise RuntimeError("GnuPG did not report the expected valid signer fingerprint")
         return body_path.read_bytes()
