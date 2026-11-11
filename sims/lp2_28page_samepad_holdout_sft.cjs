@@ -381,3 +381,146 @@ for (const reduced of [false, true]) {
     );
   }
 }
+
+
+/**
+ * More permissive affine-key architecture, now giving EACH page an independent
+ * secret invertible multiplier as well as a free shift, while retaining a
+ * common page-local pad: C[p,i]=a[p]*(P[p,i]+K[i])+b[p] (mod m).
+ * Relative multiplication u=a[p]/a[p+28] cancels the unknown common pad.
+ * No discrete-language threshold is assumed. Compare observed all-secret
+ * maxima to matched original page-reassignment and native text controls.
+ *
+ * @param {number[]} a @param {number[]} b
+ * @param {number} mod @param {number} start
+ * @returns {{m:number,n:number}}
+ */
+function bestAffine(a, b, mod, start) {
+  let peak = 0;
+  let sampleSize = 0;
+  for (let scale = 1; scale < mod; scale++) {
+    if (mod === 28 && (scale % 2 === 0 || scale % 7 === 0)) continue;
+    const differences = Array(mod).fill(0);
+    let n = 0;
+    for (let i = start; i < Math.min(a.length, b.length); i++) {
+      if (a[i] < 0 || b[i] < 0) continue;
+      differences[(a[i] - (scale * b[i]) % mod + mod) % mod]++;
+      n++;
+    }
+    const frequency = Math.max(...differences);
+    if (frequency > peak) {
+      peak = frequency;
+      sampleSize = n;
+    }
+  }
+  return { m: peak, n: sampleSize };
+}
+const affineArrays = [pages, ranks];
+const affineMatrices = affineArrays.map((source, mode) =>
+  Array.from({ length: 27 }, (_, p) => Array.from({ length: 28 }, (_, q) =>
+    bestAffine(source[p], source[q + 28], mode ? 28 : 29, mode ? 1 : 0))));
+const affineObserved = affineMatrices.map((matrix) => {
+  let m = 0;
+  let n = 0;
+  for (let p = 0; p < 27; p++) {
+    m += matrix[p][p].m;
+    n += matrix[p][p].n;
+  }
+  return { m, n, rate: m / n };
+});
+assert.deepEqual(affineObserved.map((v) => [v.m, v.n]),
+  [[453, 5587], [427, 5489]]);
+
+// 10,000 original-cipher matched page reassignments, fitting scale AND shift
+// for every candidate pair. Retain the page/word/letter corpus unchanged.
+const affineAssignments = [[], []];
+for (let t = 0; t < 10000; t++) {
+  const second = Array.from({ length: 28 }, (_, i) => i);
+  for (let i = 27; i > 0; i--) {
+    const j = randomBelow(i + 1);
+    [second[i], second[j]] = [second[j], second[i]];
+  }
+  for (let mode = 0; mode < 2; mode++) {
+    let m = 0;
+    let n = 0;
+    for (let p = 0; p < 27; p++) {
+      const result = affineMatrices[mode][p][second[p]];
+      m += result.m;
+      n += result.n;
+    }
+    affineAssignments[mode].push(m / n);
+  }
+}
+for (let mode = 0; mode < 2; mode++) {
+  const observed = affineObserved[mode];
+  console.log(JSON.stringify({
+    family: mode ? "fully affine GP28 rank" : "fully affine GP29",
+    original: observed,
+    assignmentNullRange: range(affineAssignments[mode]),
+    pagePermutationLowerPercentile:
+      affineAssignments[mode].filter((rate) => rate <= observed.rate).length / 10000,
+  }));
+}
+
+// The 28-way/12-way hidden-scale family is much more permissive than page
+// Caesar. Preserve exact overlap counts and do not claim an exclusion when
+// the most generous GP29 controls occasionally overlap the ciphertext.
+for (const src of sourcePaths) {
+  const gp = toGp(fs.readFileSync(path.join(root, src), "utf8"));
+  for (const reduced of [false, true]) {
+    const mod = reduced ? 28 : 29;
+    const source = reduced ? gp.filter((x) => x !== 0).map((x) => x - 1) : gp;
+    const controls = [];
+    for (let t = 0; t < 150; t++) {
+      let m = 0;
+      let n = 0;
+      for (let p = 0; p < 27; p++) {
+        const length = Math.min(pages[p].length, pages[p + 28].length);
+        if (!length) continue;
+        const a = randomBelow(source.length - length);
+        const b = randomBelow(source.length - length);
+        const result = bestAffine(
+          source.slice(a, a + length), source.slice(b, b + length), mod,
+          reduced ? 1 : 0,
+        );
+        m += result.m;
+        n += result.n;
+      }
+      controls.push(m / n);
+    }
+    const original = affineObserved[Number(reduced)];
+    console.log(JSON.stringify({
+      source: path.basename(src),
+      family: reduced ? "fully affine GP28 rank" : "fully affine GP29",
+      nativeRange: range(controls),
+      nativeAtOrBelowOriginal: controls.filter((v) => v <= original.rate).length,
+      repetitions: controls.length,
+    }));
+  }
+}
+
+// Exact algebraic positive plants for the hidden-scale / hidden-offset
+// necessary condition. The genuine encrypted relative differences must be
+// a hidden scaled and shifted version of the plaintext differences.
+for (const reduced of [false, true]) {
+  const mod = reduced ? 28 : 29;
+  const plain = reduced
+    ? native.filter((x) => x !== 0).map((x) => x - 1) : native;
+  const x = plain.slice(1000, 1300), y = plain.slice(2000, 2300);
+  const key = Array.from({ length: 300 }, () => randomBelow(mod));
+  const unitA = reduced ? 5 : 7, unitB = reduced ? 9 : 11;
+  const offsetA = 13, offsetB = 17;
+  const encryptedX = x.map((v, i) => (unitA * (v + key[i]) + offsetA) % mod);
+  const encryptedY = y.map((v, i) => (unitB * (v + key[i]) + offsetB) % mod);
+  let invB = 0;
+  for (let u = 1; u < mod; u++) if ((unitB * u) % mod === 1) invB = u;
+  assert(invB > 0);
+  const relative = (unitA * invB) % mod;
+  const shift = (offsetA - relative * offsetB + mod * mod) % mod;
+  for (let i = 0; i < 300; i++) {
+    assert.equal(
+      (encryptedX[i] - relative * encryptedY[i] + mod * mod) % mod,
+      (unitA * (x[i] - y[i]) + shift + mod * mod) % mod,
+    );
+  }
+}
