@@ -27,11 +27,11 @@ Prioritize a plausible human-visible clue → independently fixed operation/key/
 - [#101](https://github.com/FlareZ123/liber-primus/issues/101) — seek a source-selected operation from the p32 eigenvalue-24 / p54 Ac root convergence.
 - [#104](https://github.com/FlareZ123/liber-primus/issues/104) — derive a source-fixed ciphertext target/application for the new p55 MY FOLD → CIRCUMFERENCE/DIVINITY totals.
 
-The live queue has eight unclaimed executable tasks and five claimed tracks; do not pad it with trivial tests. All eight unclaimed tasks name their premise, independent inputs, decisive test, completion criterion, and downstream Director action.
+The live queue has eight unclaimed executable tasks and three claimed tracks; do not pad it with trivial tests. All eight unclaimed tasks name their premise, independent inputs, decisive test, completion criterion, and downstream Director action.
 
 ## Closed Director decisions reviewed
 
-**Last reviewed `director-task` closure timestamp: `2026-11-11T07:15:23Z` (#76).** All later-than-06:48:33 closures were reviewed.
+**Last reviewed `director-task` closure timestamp: `2026-11-11T07:24:56Z` (#96).** All closures later than the prior 07:15:23 checkpoint were reviewed.
 
 - [#93](https://github.com/FlareZ123/liber-primus/issues/93), closed **07:23:55**: the original 2012 MIDI README and decoder already explain the two-track output. Track 1 instructs the solver to encrypt/sign the exact 49-word list for submission; track 2 yields the Blake chorus repeated three times. No 7×7 grid, eight-direction traversal, or LP2 output is selected. Retire the proposed chorus-compass map; keep the missing participant-specific `/NUM` page as a separate source-acquisition question.
 - [#96](https://github.com/FlareZ123/liber-primus/issues/96), closed **07:24:56**: the 13/31 ornament reading is retrospective and the same border template occurs on p40–55. The exact solved-tail dual order depended on unsourced seed zero; all 32 seeds yield all four cyclic rotations, and source-derived FOLD value 18 gives a different order. No LCG, seed or orientation is authenticated. Treat 13/31 only as speculative traversal; do not revive direct inverses.
