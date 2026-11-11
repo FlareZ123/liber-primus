@@ -183,6 +183,54 @@ for (let src = 0; src < nativeLookups.length; src++) {
     entropyByState: Object.fromEntries(modes.map((mode, i) => [mode, bounds[i]]))});
 }
 
+// Distinct pre-encoded historical-language control: the published Latin
+// Vulgate New Testament is already GP29 word-preserving, with 0..9 A..S
+// encoding rune indices 0..28. No Latin prose is silently re-tokenized.
+const latinPath = "resources/control/latin-vulgate-gp-wholewords.txt";
+const latinRaw = read(latinPath);
+const radix29 = "0123456789ABCDEFGHIJKLMNOPQRS";
+assert.equal(radix29.length, 29);
+const latinLookup = new Map();
+let latinWords = 0;
+for (const line of latinRaw.split(/\r?\n/)) {
+  const token = line.trim();
+  if (!/^[0-9A-S]+$/.test(token)) continue;
+  const gp = [...token].map(c => {
+    const i = radix29.indexOf(c);
+    assert(i >= 0);
+    return i;
+  });
+  const length = gp.length;
+  if (!latinLookup.has(length)) latinLookup.set(length, []);
+  latinLookup.get(length).push(gp);
+  latinWords++;
+}
+assert.equal(latinWords, 39835);
+const latinRows = [[], [], []];
+let latinSeed = 0x29a21111;
+/** @param {number} n */
+function latinRandomIndex(n) {
+  latinSeed = (Math.imul(latinSeed, 1664525) + 1013904223) >>> 0;
+  return latinSeed % n;
+}
+for (let t = 0; t < 32; t++) {
+  const nativeSample = words.map(w => {
+    const pool = latinLookup.get(w.length);
+    assert(pool && pool.length, "Missing Latin GP word length " + w.length);
+    return pool[latinRandomIndex(pool.length)];
+  });
+  for (let k = 0; k < modes.length; k++) {
+    latinRows[k].push(conditionalEntropy(histogramByState(nativeSample, modes[k])));
+  }
+}
+const latinBounds = latinRows.map(range);
+assert(latinBounds.every((r, i) => r.max < actual[i].entropy));
+controls.push({
+  source: latinPath, matchedSamples:32, availableLengths:latinLookup.size,
+  entropyByState:Object.fromEntries(modes.map((mode,i)=>[mode,latinBounds[i]])),
+});
+assert.equal(controls.length,4);
+
 // Full secret-key positive control. Every state can have its own arbitrary GP29
 // bijection. Both forwards and backwards must be exact for a planted native passage.
 const planted = sampleMatchingLengths(nativeLookups[1]);
@@ -215,7 +263,7 @@ for (const mode of modes) {
 }
 console.log(JSON.stringify({
   hypothesis: "Arbitrary fixed GP29 permutation keyed by word shape, plus optional section or physical page",
-  sourceSHA256: Object.fromEntries(files.map((name,i)=>[name,sha256(data[i])])),
+  sourceSHA256: Object.fromEntries([...files.map((name,i)=>[name,sha256(data[i])]),[latinPath,sha256(latinRaw)]]),
   original: actual,
   controls,
   planted: {length:12956, stateTables:perms.size, exactRecovery:true,
