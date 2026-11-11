@@ -155,8 +155,8 @@ for (let e = 11; e < modulus; e += 550) if (e >= 2) candidates.push(e);
 assert.deepEqual(candidates, [11, 561, 1111, 1661, 2211, 2761]);
 for (const e of candidates) assert.equal(modPow(base, e, modulus), 2800);
 
-// Same-round source selector: NUMBER factors composite input directly, and 151 is
-// a printed numeric cell in the 2013 0_wisdom square.
+// Cross-round source selector: the 2013 NUMBER service factors composite input directly,
+// and 151 is a printed numeric cell in the 2014 Liber Primus Wisdom/05.jpg square.
 const wisdomNumericCells = new Set([272, 138, 131, 151, 18, 226, 245]);
 const matching = candidates.map((e) => ({
   e,
@@ -213,7 +213,7 @@ function phi(n) {
 }
 
 // The two 151 cells are opposite anti-diagonal corners of the reconstructed
-// 2013/2014 5x5 magic square. Test only that uniquely selected diagonal.
+// 2014 Wisdom/05.jpg 5x5 magic square. Test only that uniquely selected diagonal.
 const antiDiagonal = [151, 320, 91, 320, 151];
 assert.equal(antiDiagonal.reduce((a, b) => a + b, 0), 1033);
 const antiDiagonalKeys = {
