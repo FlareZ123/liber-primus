@@ -1,11 +1,6 @@
 name: LP2 OutGuess page 05 probe (manual)
 on:
   workflow_dispatch:
-  pull_request:
-    paths:
-      - 'sims/outguess_lp2_page05_probe.sh'
-      - 'resources/liber-primus/05.jpg'
-      - '.github/workflows/lp2-outguess-page05-probe.yml'
 permissions:
   contents: read
 jobs:
