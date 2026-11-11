@@ -99,19 +99,17 @@ The participant implementation shown in the same archive chooses its server base
 
 The multiplicative order of 2757 modulo 3301 is **550**. Solving the exact logged relation gives
 
-[
-2757^e \equiv 2800 \pmod{3301}
-]
+`2757^e ≡ 2800 (mod 3301)`
 
 with canonical residue **e = 11 mod 550**. The logged shared key independently checks that residue: `1264^11 mod 3301 = 1067`. If the client private integer is only assumed to lie in the ordinary range 2 through 3300, the transcript permits six representatives: **[11, 561, 1111, 1661, 2211, 2761]**. The transcript therefore fixes an exponent residue class rather than a unique private integer.
 
-This gives a bounded source-native test in the p3 field (mathbb F_{29^2}). A literal DH power operation on a two-rune field element is (x\mapsto x^e). Modulo the field's nonzero order 840, the six representatives become **[11, 561, 271, 821, 531, 241]**. The 561 and 531 cases have gcd 3 with 840 and cannot be lossless permutations of all nonzero field elements. The other four are invertible with inverse exponents **[611, 31, 221, 481]**.
+This gives a bounded source-native test in the p3 field `GF(29^2)`. A literal DH power operation on a two-rune field element is `x -> x^e`. Modulo the field's nonzero order 840, the six representatives become **[11, 561, 271, 821, 531, 241]**. The 561 and 531 cases have gcd 3 with 840 and cannot be lossless permutations of all nonzero field elements. The other four are invertible with inverse exponents **[611, 31, 221, 481]**.
 
 Applying those four exact inverses to every original unknown LP2 rune pair, under the only two natural pair boundaries tested here, remains ciphertext-like. Whole-book pairing gives IoC **0.03446384 to 0.03448013** and LP1-reference trigram scores **-11.07558 to -11.06994 nats/rune**. Physical-page pairing gives IoC **0.03446318 to 0.03450404** and trigram scores **-11.07766 to -11.06752**. The unchanged ciphertext is **0.03447840 / -11.07314**; held-out native GP reference is **0.06512502 / -8.41667**.
 
 The same four inverse powers were applied after the already source-linked double division of the 256-cell table, on its fixed-width **252 GF29 slots** paired as 126 p3-field elements. The results remain nonlinguistic: trigram scores **-11.11017 to -11.09286**, IoC **0.03358 to 0.03715**, only **28 to 46 of 126** direct coordinate integers fall in byte range 0 to 255, and only **8 to 13** are printable ASCII. Native-GP field-power plants recover exactly.
 
-A separate inbound-only log contains the client value **3034** after `DH 3301`. Arithmetic gives (5^{11}=3034\pmod{3301}), and both 5 and 3034 have multiplicative order **75** modulo 3301. The missing server response means base 5 is not established for that exchange, so the order-75 equality is retained only as a conditional observation. It is not used to select a decoder.
+A separate inbound-only log contains the client value **3034** after `DH 3301`. Arithmetic gives `5^11 ≡ 3034 (mod 3301)`, and both 5 and 3034 have multiplicative order **75** modulo 3301. The missing server response means base 5 is not established for that exchange, so the order-75 equality is retained only as a conditional observation. It is not used to select a decoder.
 
 **Decision:** the preserved tester exchange upgrades the 2013 bridge by supplying a source-controlled DH exponent residue. Its literal lossless field-power interpretation fails on both original LP2 ciphertext and the source-derived table quotient. A different private-exponent representative, state register, or output codec needs an independent source selector before more DH-field searches are justified.
 
