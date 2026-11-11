@@ -158,6 +158,24 @@ Every system has full possible coefficient rank nine and an inconsistent augment
 
 **Decision:** The 2016 FOLD clue and terminal circumference counts do not rescue the specific 8-column *stationary linear cyclic table-to-GP29* model, even with arbitrary hidden coefficients and either numeral interpretation. This is distinct from the earlier fixed four-rune Hill-block exclusion and fixed byte lookup: it works on actual source rows of width eight and grants nine wholly unknown secret coefficients. It leaves unknown nonlinear/stateful registers, row-dependent transformations, non-GP intermediate symbols, and an independently source-selected cipher operation open. No p55 plaintext is inferred.
 
+
+## Terminal 256-rune quartic-codeword and one-error gate (Agent 19, 11 November 2026)
+
+The table's historically selected H/G factors define an exact GF29 **[256,252,3]** linear code, and the final physical pages have **76+85+95=256** rune positions. If the terminal runes are another codeword in the **same source polynomial**, the independently fixed four-residue syndrome must be zero. Even if a single printed rune is erroneous, that code's distance three permits correction of precisely one erroneous GP29 symbol; there are **7,168 distinct nonzero one-error syndromes** among the possible 256 positions and 28 nonzero error magnitudes.
+
+Test precisely four source-natural placements without tuning by the outcome: concatenate original p55+p56+p57 runes in physical reading order, or fill the **32×8 table's 76-cell clockwise outer border from its upper-left corner with p55** and its **30×6 interior row-major with p56+p57**. Each placement uses either the visibly printed p56 ciphertext or its independently established exact p56 plaintext; p57 is already clear. Use the independently sourced ascending-power quartic \(H_{2013}G_{p39}=23+21X+11X^2+17X^3+12X^4\) as a divisor of the descending-power 256-cell rune polynomial. The **unaltered original table itself returns [0,0,0,0]**, providing an original-source positive codeword control.
+
+| Terminal encoding fixed before the test | Original four-residue syndrome, ascending power | Exact 1-rune correction? |
+| --- | --- | --- |
+| Consecutive p55 + printed p56 + p57 | **[2,16,22,3]** | No |
+| Consecutive p55 + solved p56 + p57 | **[17,12,10,6]** | No |
+| p55 perimeter + printed p56/p57 interior | **[28,15,15,10]** | No |
+| p55 perimeter + solved p56/p57 interior | **[4,16,17,15]** | No |
+
+All four original-input syndromes are nonzero and absent from the full one-error lookup dictionary, so **none is a codeword even after one GP29 symbol correction**. This negative is exact under each named layout, original visible register and divisor; it does not depend on an English score, key search or shuffling. A positive source-GF29 codeword plant that changes one symbol at position 55 by +7 is uniquely decoded back to the original table. The [self-contained CommonJS SFT](../sims/lp2_terminal_hg_codeword_single_error_sft.cjs) asserts these four original outcomes, every one-error syndrome's uniqueness and the planted correction.
+
+**Consequence:** the terminal length coincidence cannot by itself authorize applying the **same quartic code directly to original visible p55+p56+p57 runes**, or explaining their apparent nondivisibility by one transcription error. A different plaintext/code register, non-linear encipherment, orientation or source-predicted transformation remains possible, but none is selected by this test. No p55 plaintext or other unknown LP2 text was recovered. Avoid treating the 256-count identity as a cryptographic decoding rule without a step that predicts original input.
+
 ## Consequence for subsequent research
 
 The strongest contribution here is a **geometrically prescribed 76/180 source split that matches the last three pages exactly**, alongside early eliminations that prevent a futile search for a fixed table-byte substitution key. The theme of removing a circumference supplies a plausible human solve-path *hypothesis*, but the instructions were recognized after examining existing materials, so the count match is not independent confirmation of an authentic cipher.
