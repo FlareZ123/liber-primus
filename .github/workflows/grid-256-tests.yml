@@ -201,7 +201,7 @@ jobs:
       - name: P32 red-mark and source-count self-describing M7 gate
         if: ${{ inputs.probe == 'tree-redmark-self-description' }}
         run: |
-          python3 -m pip install --quiet Pillow
+          python3 -m pip install --quiet numpy Pillow
           node sims/p32_redmark_fixedpoint_selector_sft.cjs
 
       - name: Adjacent cuneiform prime-rank selector for nested p32 Möbius maps
