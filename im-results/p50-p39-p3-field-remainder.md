@@ -41,15 +41,17 @@ node sims/p50_p39_p3_field_remainder.cjs
 
 The script checks exact divisibility and verifies the order of the resulting field element.
 
-## Relationship to the p53 selector
+## Conditional p53 cross-round selector (not an upstream premise)
 
-The p27-title/gridfold/p53 closure selects p53 word26, whose rune indices are [12,1,17] and whose GP prime weights sum to 105. Applying the documented 2013 NUMBER operation gives
+A previous p27-title/gridfold/p53 construction assigns p53 word26 under the proposed GP-prime-sum-to-page/word mapping; its rune indices are [12,1,17] and its GP-prime weights sum to 105. Closed Issue #129 found no independent source selecting that combined mapping, so word26 is not a source-fixed target.
+
+A later-preserved secondary transcript labels decimal digit reversal/factorization as NUMBER, giving
 
 \[
 105\rightarrow501=3\times167.
 \]
 
-167 is the 39th prime, so this is a plausible cross-round selector for p3 and p39. The selection is not unique by itself: prime sum 105 occurs in eight LP2 words. The gridfold construction is what singles out this occurrence. Treat the p3/p39 selection as a hypothesis, not a proven instruction.
+167 is prime #39, but this is conditional arithmetic only. The contemporaneous February 2013 Twisted witness cited in Issue #71 documents BASE29/DH/NEXT, not NUMBER/COUNT/PRIMES; the surviving NUMBER examples are retrospective, and the archived server implementation is reconstructed. Do not treat this p53 route as an authenticated instruction or independent confirmation of the p3/p39 selector. The exact p50/F39/F3 quotient stands independently of this p53 construction.
 
 ## What the primitive element does—and does not—establish
 
