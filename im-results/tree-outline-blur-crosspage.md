@@ -1,6 +1,6 @@
 # The blurred page-32 and outlined page-55 trees share a source silhouette
 
-**Evidence: original-image geometric correspondence, 10 November 2026.** The full manuscript still has **no recovered unknown LP2 plaintext or key**. This is an image-side relationship for investigating visual continuity across sections, not a decipherment, cryptographic key, statistically pre-specified clue, or evidence of source instructions.
+**Evidence: original-image geometric correspondence and terminal-page controls, 10–11 November 2026.** The full manuscript still has **no recovered unknown LP2 plaintext or key**. This is an image-side relationship for investigating visual continuity across sections, not a decipherment, cryptographic key, statistically pre-specified clue, or evidence of source instructions.
 
 ## Source and method
 
@@ -26,6 +26,22 @@ Exact scans hashed SHA-256:
 - `72.jpg`: `a80191592add93a86ed3868f9e4e6ba3944ec20c9ffccc7d3e221b461344beba`
 
 Run [the self-contained geometry reproducer](../sims/tree_outline_blur_registration.py) with Python, NumPy, SciPy and OpenCV; it loads the original images from `resources/liber-primus/` and reports the metrics. This source comparison has been executed locally on the original attached JPEG bytes. No new CI workflow was created.
+
+## Terminal pp53–57 pale-layer controls (Agent 27, 11 November 2026)
+
+The new pale-layer question is narrower than the existing p32/p55 silhouette comparison. On the original scans, the coherent pale central tree is present on **p55 (scan 72) only**; p54 (scan 71) has no corresponding pale central illustration. A fixed crop x=[650,1760), y=[1410,2480) was measured identically on scans 70–74. The fixed mid-gray mask is 180 ≤ gray < 245, with 8-connected components:
+
+| Physical page | Scan | Mid-gray pixels | Components | Largest component |
+| ---: | ---: | ---: | ---: | ---: |
+| 53 | 70 | 12,343 | 1,920 | 133 |
+| 54 | 71 | 65 | 65 | 1 |
+| 55 | 72 | 213,499 | 293 | 212,921 |
+| 56 | 73 | 5,364 | 2,869 | 31 |
+| 57 | 74 | 748 | 155 | 24 |
+
+This isolates one large continuous pale drawing on p55; the matched p53/p54/p56/p57 crop controls contain only fragmented antialiasing or ordinary page ink. The separate known p57 GIMP-stipple insect control (scan 74, crop x=[350,2050), y=[1900,3450), gray < 128) contains 35,210 dark pixels in 574 components, largest 12,821. It is a high-contrast dot field, not the p55 tree's continuous mid-gray line art. The p55 tree is therefore a real illustration, not JPEG background noise or the same GIMP-stipple layer.
+
+The already measured p32/p55 silhouette correspondence above is the only specific tree-to-tree page relation. The p55 tree is visually meaningful, but neither it nor the p53/p55 repeated moth/border motif specifies a branch traversal, root, direction, endpoint, axis-to-rune mapping, or exact rune indices. No source-selected operation follows from the pale drawing. Treat it as an illustrative cross-page motif, not an authenticated cipher key layer. Reproduction: [terminal control script](../sims/p55_pale_tree_terminal_control.py).
 
 ## Independent historical context: the signed 2016 tree image
 
@@ -234,4 +250,4 @@ The [reproducer](../sims/terminal_p50_two_byte_page_frame_sft.cjs) asserts the 4
 
 The source evidence links the tree terminating the p27–32 wing-and-tree sequence to the final unsolved p55 tree and additionally permits an exact, provisional **128 numeric-pairs versus 128 black/128 colored terminal-rune** page framing. The newly tested direct two-byte GP29 additive interpretations remain ciphertext-like. The adjacent repeated ciphertext pair `ᛞᛄᚢ ᛒᛖᛁ` occurs on p27 and again as the final unsolved pair on p55; this independent observed recurrence is documented in [the existing bookend-phrase study](lp2-repeated-wordpair-structure.md). It could motivate a constrained test of a deliberate chapter bookend, but the previously measured physical-page-preserving recurrence null has p≈0.025. The visual and textual observations are both postselected and must not be treated as mutually independent confirmations.
 
-A useful next step would need an **exact source-derived rule**: for example a specific branch traversal that emits a 29-symbol permutation or a key, predicts a previously unfitted LP2 interval, and re-encrypts it. Neither the blurred image nor the outlined tree currently supplies such a rule. No symbolic branch reading or arbitrary shape interpretation is promoted here.
+The p53–p57 control confirms that the p55 pale tree is a real, unique low-contrast illustration, not the p57 GIMP-stipple field or JPEG background noise; the existing p32↔p55 silhouette match remains a visual correspondence only. A useful next step would need an **exact source-derived rule**: for example a specific branch traversal that emits a 29-symbol permutation or a key, predicts a previously unfitted LP2 interval, and re-encrypts it. Neither the blurred image nor the outlined tree currently supplies such a rule. No symbolic branch reading or arbitrary shape interpretation is promoted here.
