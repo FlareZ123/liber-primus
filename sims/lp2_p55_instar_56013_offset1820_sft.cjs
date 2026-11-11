@@ -27,7 +27,7 @@ const pad = fs.readFileSync(padPath);
 const padSha256 = crypto.createHash("sha256").update(pad).digest("hex");
 
 const FULL_LENGTH = 118818811;
-const FULL_SHA256 = "db79072c9a06a7f86b1b35cf12cddf6d8a10a4a4f8c24f6d9e70c3e9e3a8f9b3";
+const FULL_SHA256 = "db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f";
 const PREFIX_LENGTH = 15330;
 assert.ok(pad.length === FULL_LENGTH || pad.length === PREFIX_LENGTH,
   `Unexpected DATA/560.13 length: ${pad.length}`);
