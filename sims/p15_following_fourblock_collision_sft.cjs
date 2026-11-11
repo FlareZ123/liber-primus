@@ -182,5 +182,72 @@ assert.equal(report.controls.Shakespeare.independent.min, 14);
 assert.equal(report.controls.Gibran.independent.count, 26);
 assert.equal(report.controls.Gibran.independent.min, 24);
 assert.equal(report.controls.Latin.independent.min, 40);
+
+// Stronger key-independent test: the same source-p15 four-vector mapping
+// hypothesized to stay fixed across all subsequent physical pages p16–55.
+// The whole unknown manuscript is a further stationarity sensitivity control.
+const fullUnknown = corpus.pages.filter((p) => p.page <= 55)
+  .flatMap((p) => p.indices);
+const afterP15 = corpus.pages.filter((p) => p.page >= 16 && p.page <= 55)
+  .flatMap((p) => p.indices);
+assert.equal(fullUnknown.length, 12956);
+assert.equal(afterP15.length, 9194);
+assert.equal(blockCollisions(applyMatrix(fullUnknown, M)).pairs,
+  blockCollisions(fullUnknown).pairs);
+
+/**
+ * Count all four-phase collision pairs in matched real prose source windows.
+ * The stride uses overlapping windows deliberately; do not claim trial
+ * independence or a calibrated discovery-wide p-value.
+ * @param {number[]} sequence
+ * @param {number} windowLength
+ * @returns {{n:number, minByPhase:number[], medianByPhase:number[]}}
+ */
+function extendedControls(sequence, windowLength) {
+  const buckets = Array.from({length: WIDTH}, () => []);
+  for (let start = 0; start + windowLength <= sequence.length; start += 200) {
+    const window = sequence.slice(start, start + windowLength);
+    for (let phase = 0; phase < WIDTH; phase++) {
+      buckets[phase].push(blockCollisions(window, phase).pairs);
+    }
+  }
+  for (const bucket of buckets) bucket.sort((a, b) => a - b);
+  return {
+    n: buckets[0].length,
+    minByPhase: buckets.map((a) => a[0]),
+    medianByPhase: buckets.map((a) => a[Math.floor(a.length / 2)])
+  };
+}
+report.extended = {};
+for (const [label, cipher] of [
+  ["p16-p55", afterP15],
+  ["p0-p55", fullUnknown]
+]) {
+  const originalByPhase = [0, 1, 2, 3]
+    .map((phase) => blockCollisions(cipher, phase).pairs);
+  const controlResults = {};
+  for (const [sourceName, sequence] of [
+    ["Shakespeare", shakespeare], ["Gibran", gibran]
+  ]) {
+    const comparison = extendedControls(sequence, cipher.length);
+    assert(comparison.minByPhase.every((value, i) =>
+      value > originalByPhase[i]));
+    controlResults[sourceName] = comparison;
+  }
+  report.extended[label] = {
+    runes: cipher.length, originalByPhase, controls: controlResults
+  };
+}
+assert.deepEqual(report.extended["p16-p55"].originalByPhase, [8, 1, 1, 1]);
+assert.deepEqual(report.extended["p0-p55"].originalByPhase, [5, 6, 10, 11]);
+assert.deepEqual(report.extended["p16-p55"].controls.Shakespeare.minByPhase,
+  [456, 489, 478, 502]);
+assert.deepEqual(report.extended["p16-p55"].controls.Gibran.minByPhase,
+  [782, 840, 782, 832]);
+assert.deepEqual(report.extended["p0-p55"].controls.Shakespeare.minByPhase,
+  [1018, 1029, 960, 1014]);
+assert.deepEqual(report.extended["p0-p55"].controls.Gibran.minByPhase,
+  [1702, 1661, 1558, 1638]);
+
 console.log(JSON.stringify(report, null, 2));
-console.log("PASS: p16..p22 block equality obstruction and all controls");
+console.log("PASS: p16..p55 and whole LP2 all-secret four-block equality obstruction");
