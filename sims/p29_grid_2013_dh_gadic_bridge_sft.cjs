@@ -155,6 +155,23 @@ assert.equal(packedBinary.subarray(0, 16).toString("hex"), "166a370a936ebaf8dc6c
 const printableBytes = [...packedBinary].filter((v) => v >= 32 && v < 127).length;
 assert.equal(printableBytes, 52);
 
+// A natural framed-page key interpretation: the 273-rune residual is exactly
+// as long as original framed pages p41 and p44, immediately before the table.
+// Freeze first-rune phase and GP29 additive signs, with no crib/key search.
+const equalLengthFramed = [41, 44].map((number) => {
+  const target = corpus.pages.find((page) => page.page === number).indices;
+  assert.equal(target.length, residual.q.length);
+  const subtractKey = target.map((value, i) => mod(value - residual.q[i]));
+  const addKey = target.map((value, i) => mod(value + residual.q[i]));
+  assert.deepEqual(add(subtractKey, residual.q), target);
+  assert.deepEqual(sub(addKey, residual.q), target);
+  return {page: number, rawIoC: ioc(target),
+    subtractKeyIoC: ioc(subtractKey), addKeyIoC: ioc(addKey)};
+});
+assert.deepEqual(equalLengthFramed.map((x) => x.page), [41, 44]);
+assert.ok(equalLengthFramed.every((x) => x.subtractKeyIoC < 0.036 &&
+  x.addKeyIoC < 0.036));
+
 // Page-wide original-source uniqueness, holding the signed constants and table fixed.
 const matchingPages = corpus.pages.filter((x) => x.page <= 55 && x.indices.length >= 5)
   .filter((x) => {
@@ -215,7 +232,7 @@ console.log(JSON.stringify({
   exactCongruence: "P29 - S - 2G = G^2 R over GF(29)",
   originalDifferenceModuloG2: [0, 1, 10, 25],
   RLength: residual.q.length, RIoC: ioc(residual.q), base29Binary: {bytes: packedBinary.length, printableBytes},
-  nativePlantRecovered: plant.length,
+  nativePlantRecovered: plant.length, equalLengthFramed,
   matchingPages,
   conditionalShuffles: {trials, hits, pAddOne: (hits + 1) / (trials + 1)}
 }, null, 2));
