@@ -1,6 +1,6 @@
 # The 2016 / p50 / p55 43-unit bridge: source-selector gate
 
-**Classification:** bounded source audit, negative. No source-authenticated, reversible 43-unit operation has been established. The direct p32-compass additive/Beaufort bridge and a direct source-order key made from the signature-verified 2016 message's 43 GP-prime word sums both fail on p55's 43 interiors. These results do not exclude other keyed, nonlinear, or stateful operations.
+**Classification:** bounded source audit, negative. No source-authenticated, reversible 43-unit operation has been established. The direct p32-compass additive/Beaufort bridge and a direct source-order key made from the signature-verified 2016 message's 43 GP-prime word sums both fail on p55's 43 interiors. A new full-book test also rejects the natural continuous period-43 prime-sum key after p0's 13-rune red heading, and simple period-7 keys from p0's first black line. The exact 43×301 = 7×43² count relation is a source observation, not proof of an intended tensor or cipher. These results do not exclude other keyed, nonlinear, or stateful operations.
 
 ## Fixed source observations
 
@@ -114,6 +114,28 @@ The C-K output is HAE EOXEAU GIPD MOFDNGAEREAFDL ENYU IW BAEBBD EMMBX PWBI Y U w
 
 A synthetic positive control encrypts the first 43 solved-p57 body runes by adding this same key and recovers them exactly with C-K. This validates the arithmetic only; it cannot authenticate the historical key. **Decision:** reject this specific direct prime-sum-as-additive-shift reading. It does not rule out every semantic use of the signed words, but no further 43-way phases or transformations are justified without a new source-visible rule. The existing [combined reproducer](../sims/p32_p55_43symbol_additive_bridge.cjs) now emits both the p32-compass and signed-word-prime-sum results.
 
+## Full-book 43×301 / 7×43² source-shape gate (bounded negative)
+
+The 55 rune-bearing LP2 pages contain 12,956 runes. The p0 red heading is the first **13** runes (two words of lengths 8 and 5); the next black line is **7** runes (two words of lengths 4 and 3), with GP indices **[2,11,6,25,0,11,22]**. Removing only the red heading leaves **12,943 = 43×301 = 7×43²** runes. Removing the following seven-rune line as a putative key leaves **12,936 = 7×1,848 = 7×(43²−1)**. The 2016 signed message contains **43 alphabetic words**. These are exact source counts, and they motivate a 43-position clock and a seven-layer reading; they do **not** establish that the text is a 43×43×7 tensor or that either preamble is a key.
+
+The source-derived GP prime-sum key is the same 43-value vector recorded above. I tested it as a continuous additive key over every rune after p0's 13-rune red heading, with no page resets and no phase fitting. This differs from the earlier p55-only test: p55 begins at global rune offset 12,880, so its phase under this clock is **10**, not zero. A word-internal GP trigram model trained on the first 80% of the Shakespeare control file and evaluated on its last 20% gives the following results:
+
+| Candidate | Direction | IoC | Shakespeare-GP trigram mean |
+|---|---|---:|---:|
+| Raw post-heading stream | — | 0.034479 | −4.396689 |
+| 43 prime sums, source order | C−K | 0.034491 | −4.379136 |
+| 43 prime sums, source order | C+K | 0.034477 | −4.357244 |
+| 43 prime sums, ascending numeric order | C−K | 0.034463 | −4.420824 |
+| 43 prime sums, ascending numeric order | C+K | 0.034455 | −4.375215 |
+| 43 prime sums, descending numeric order | C−K | 0.034464 | −4.379009 |
+| 43 prime sums, descending numeric order | C+K | 0.034452 | −4.384874 |
+
+The held-out native Shakespeare-GP control scores **−1.839432**. None of these outputs approaches English; the slight score changes are not plaintext evidence. The obvious word-number residue map also fails to supply a 43-column permutation: the 43 prime sums have only **26 distinct residues modulo 43**, omitting 17 residues.
+
+A second source-shaped reading treats p0's first black seven-rune line as a repeating key for the 12,936 runes that follow it. Both signs were tested under the GP-index, GP-prime-weight, and prime-totient encodings. Scores remain between **−4.419905 and −4.359501**, versus the same native holdout at −1.839432. A combined 43-word/7-layer reading, \(K_i=\text{firstBlack}[S_i\bmod7]\), where \(S_i\) is the signed word's GP-prime sum, also fails in both signs (−4.401832/−4.415428). The 43 prime sums modulo 7 occupy only six residues, omitting 6.
+
+The exact arithmetic makes this a worthwhile human-solve-path observation, but the natural additive interpretations do not decrypt the book. Do not escalate to arbitrary tensor orientations, row/column permutations, phases, or state rules without an independent instruction selecting them. The runnable, source-frozen test is [the full-book SFT](../sims/lp2_signed2016_43period_fullbook_key_sft.cjs); it derives the 43 words and key from the clear-signed source, checks the original LP2 counts, and includes exact p57 arithmetic round-trip controls.
+
 ## Source-native OutGuess ARC4 bridge between the two 43-rune streams (bounded negative)
 
 The 2016 carrier's signed payload authenticates OutGuess as a source technology, and its original ARC4 implementation uses \(MD5(\text{type}\,\|\,\text{password})\) followed by the ARC4 state/key schedule. The 43-rune p32 compass output is a source-derived candidate password; the 43 p55 interiors are the source-derived target. This is a plausible next operation after the direct additive/Beaufort bridge failed, but the use of the p32 stream as the password is still an inference.
@@ -215,11 +237,12 @@ No surviving, contemporaneous instruction reviewed here establishes all of the f
 4. The direction and traversal order for the p55 interior sequence.
 5. The reversible transform, key material, key/state initialization, and any skip or carry rule.
 6. Whether the 33 boundary p55 runes are discarded, preserved as plaintext, or used as key/state material, including correct state carry for the incoming cross-page word.
+7. Whether p0's 13-rune red heading is a preamble and the next seven-rune black line is a key/header, or whether the 43 signed words define a continuous 43-position clock. The source-ordered, number-sorted, and first-line additive readings tested here all fail; the prime sums modulo 43 do not form a permutation.
 
 The current 43-word base-58 address map is a later reconstruction from GP prime sums and the 58-page count, not a protocol stated in the signed message. Its exceptional “lies” → p50 3D result is not enough to determine the missing 43-way correspondence.
 
 ## Decision
 
-The 43-unit cardinality bridge is a strong selector clue but still lacks an authenticated reversible operation. Direct p50 compass-byte interpretation on p32, signed 2016 word-prime-sum keying on p55, the newly tested p50 raw-byte-mod29 key against p55's 43 interiors, and raw-byte XOR all fail to produce plaintext. The fold/END observation remains conditional and is not a decryption.
+The 43-unit cardinality bridge is a strong selector clue but still lacks an authenticated reversible operation. Direct p50 compass-byte interpretation on p32, signed 2016 word-prime-sum keying on p55, the p50 raw-byte-mod29 key and raw-byte XOR against p55's 43 interiors, the continuous 43-period prime-sum key over the 12,943-rune post-heading stream, and the simple p0 first-line period-7 keys all fail to produce plaintext. The exact 43×301 = 7×43² shape is a count relation, not a decoder. The fold/END observation remains conditional and is not a decryption.
 
 Do not expand this branch by trying arbitrary byte maps, shifts, phases, or word permutations. A successor needs an independent source clue selecting the p50 representation and the reversible operation; otherwise the 43-unit alignment alone is not enough to justify more key-search variants.
