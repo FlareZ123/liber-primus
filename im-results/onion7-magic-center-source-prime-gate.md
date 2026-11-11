@@ -40,8 +40,27 @@ Raw p0 under the same scoring model is **−4.185337102**. All five best outputs
 
 **Reproduction:** [single runnable source-and-original test](../sims/onion7_magic_center_reversal_sft.cjs); [successful manual Node22 CI](https://github.com/FlareZ123/liber-primus/actions/runs/42932193081), existing `grid-256-tests.yml` `onion7-magic` probe.
 
+## Digit-reversed 7×7 source matrix on the seven illustrated pages
+
+A second source-constrained test interprets the HTML title's reversal as an instruction to reverse the **decimal digits of all 49 values** in the earlier 7×7 OpenPuff square. Both the historical and the digit-reversed 7×7 matrices are invertible modulo **29** (determinants 2 and 25 mod29). A candidate Hill-style decoder was run on the original, source-enclosed **1,589 = 7×227** GP29 ciphertext runes from p33 offset91 through p39, where the identical 1033/3301 cuneiform header appears on seven physical pages.
+
+The exact finite experiment covers both matrices, four distinct D4 row/column/transpose orientations per matrix, adjacent seven-rune blocks versus seven interleaved lanes, and direct versus inverse matrix application: **32 unique settings**. Every original-input setting exactly re-encrypts the authentic ciphertext using the paired inverse. Independent Shakespeare-GP plants of the same length, encoded with the **digit-reversed square itself**, recover **1,589/1,589** symbols exactly under both layouts. The same Emerson-trained GP trigram model scores those native controls **−2.407645864** with IoC **0.0617810**.
+
+Original input scores:
+
+| Source matrix | Best trigram score, nats/rune | Best output IoC | Reading |
+| --- | ---: | ---: | --- |
+| Raw original ciphertext | −4.233558632 | 0.0343498 | Original random-like baseline |
+| Unmodified 7×7 square | −4.215962218 | 0.0345408 | No plaintext |
+| Digit-reversed 7×7 square | −4.203346862 | 0.0345091 | No plaintext |
+| Source-key native planted control | −2.407645864 | 0.0617810 | Exact English restoration |
+
+A slightly better score relative to raw ciphertext is insufficient to indicate a correct key. Decoded examples remain nonlinguistic and their coincidence stays near GP29 uniform. This retires the specific **fixed direct-GP29 Hill7 family on the seven-page passage**, including source-digit reversal. It does not address an evolving key, different plaintext alphabet, page-specific framing or non-Hill operations.
+
+**Reproducer:** [source-driven original 7×7 Hill test](../sims/onion7_reverse_square_hill7_sft.cjs); [successful manual CI, both source experiments](https://github.com/FlareZ123/liber-primus/actions/runs/42933131705).
+
 ## Next useful question
 
-The strongest new historical lead is the direct **HTML id331 → 7×7 square center 331** selection, with the HTML title supplying a reversal. Was this an intended human-solvable pointer to a particular earlier magic square or arrangement? Search first for an independently authenticated stage-six/stage-seven instruction that selects an **operation**, not only a number. A useful next test would derive a lossless and exact decoder from that instruction before inspecting unknown original ciphertext.
+The strongest new historical lead is the direct **HTML id331 → 7×7 square center 331** selection, with the HTML title supplying a reversal. Was this an intended human-solvable pointer to a particular earlier magic square or arrangement? Search first for an independently authenticated stage-six/stage-seven instruction that selects an **operation**, not only a number. Any new decoder should be specified from that source instruction and should make a specific original-cipher prediction before language-based model selection. The direct source-prime and reversed-square Hill interpretations above have already failed.
 
 More arbitrary digit permutations, suffix-length matches, or unconstrained direct keys offer little additional discriminatory power.
