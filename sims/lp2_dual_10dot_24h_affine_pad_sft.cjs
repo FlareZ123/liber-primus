@@ -132,6 +132,54 @@ for (const mapping of ["mod29", "scale29"]) {
 }
 candidates.sort((a,b) => b.quadgram-a.quadgram);
 const bestIoC = [...candidates].sort((a,b)=>b.ioc-a.ioc)[0];
+
+const clockVigenere = [];
+const vigenereKeys = [
+  {name:"time-digits-period8", key:[0,9,1,3,1,4,4,7]},
+  {name:"time-fields-period4", key:[9,13,14,47%29]}
+];
+for (const item of vigenereKeys) {
+  for (const sign of [-1,1]) {
+    for (const reset of ["global","page"]) {
+      const output = [];
+      if (reset === "global") {
+        for (let i=0; i<unknown.length; i++) output.push((unknown[i] + sign*item.key[i%item.key.length] + 29*29)%29);
+      } else {
+        for (const page of unknownPages) {
+          for (let i=0; i<page.indices.length; i++) output.push((page.indices[i] + sign*item.key[i%item.key.length] + 29*29)%29);
+        }
+      }
+      clockVigenere.push({key:item.name, sign, reset, ...metrics(output)});
+    }
+  }
+}
+const tableRows = Array.from({length:32}, (_,r) => grid.slice(r*8, r*8+8));
+const clockRowPermPad = [];
+for (const clock of [
+  {name:"09:13", start:9, step:13},
+  {name:"14:47", start:14, step:15}
+]) {
+  const bytes = Array.from({length:32}, (_,i) => tableRows[(clock.start+clock.step*i)%32]).flat();
+  for (const mapping of ["mod29","scale29"]) {
+    const key = bytes.map(b => mapping === "mod29" ? b%29 : Math.floor(29*b/256));
+    for (const sign of [-1,1]) {
+      for (const reset of ["global","page"]) {
+        const output = [];
+        if (reset === "global") {
+          for (let i=0; i<unknown.length; i++) output.push((unknown[i] + sign*key[i%256] + 29*29)%29);
+        } else {
+          for (const page of unknownPages) {
+            for (let i=0; i<page.indices.length; i++) output.push((page.indices[i] + sign*key[i%256] + 29*29)%29);
+          }
+        }
+        clockRowPermPad.push({clock:clock.name, mapping, sign, reset, ...metrics(output)});
+      }
+    }
+  }
+}
+const bestVigenere = [...clockVigenere].sort((a,b)=>b.quadgram-a.quadgram)[0];
+const bestRowPerm = [...clockRowPermPad].sort((a,b)=>b.quadgram-a.quadgram)[0];
+
 console.log(JSON.stringify({
   totalRunes, unknownRunes: unknown.length,
   markerCounts: {thirteen: m13.length, ten: m10.length, twentyThree: m23.length},
@@ -148,5 +196,12 @@ console.log(JSON.stringify({
   },
   bestQuadgram: candidates[0],
   bestIoC,
-  candidates
+  candidates,
+  clockVigenere: {bestQuadgram: bestVigenere, candidates: clockVigenere},
+  clockRowPermPad: {
+    bestQuadgram: bestRowPerm,
+    minIoC: Math.min(...clockRowPermPad.map(x=>x.ioc)),
+    maxIoC: Math.max(...clockRowPermPad.map(x=>x.ioc)),
+    candidates: clockRowPermPad
+  }
 }, null, 2));

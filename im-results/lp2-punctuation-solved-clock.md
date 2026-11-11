@@ -117,7 +117,14 @@ Here `887 mod 256 = 119` and `gcd(119,256)=1`, so the rule visits every table by
 
 The two candidate maxima are different configurations; neither is language-like, and both quadgram scores are worse than raw.
 
-Across all eight candidates, IoC stays in **0.03445396–0.03452555**, effectively the random 29-symbol baseline **1/29 = 0.03448276**; quadgram scores range **−17.29012 to −17.20931**, all worse than the unmodified ciphertext. The most IoC-favourable case is still nonlinguistic, and the best quadgram case is worse than raw. Thus the obvious affine use of the two interval lengths as a 256-byte offset/stride pad is **negative**. This does not test a clock-driven fragment traversal, a nonlinear state, or any other use of the 24-hour relation.
+Across all eight candidates, IoC stays in **0.03445396–0.03452555**, effectively the random 29-symbol baseline **1/29 = 0.03448276**; quadgram scores range **−17.29012 to −17.20931**, all worse than the unmodified ciphertext. The most IoC-favourable case is still nonlinguistic, and the best quadgram case is worse than raw. Thus the obvious affine use of the two interval lengths as a 256-byte offset/stride pad is **negative**.
+
+Two other direct clock-key readings were tested without further parameter fitting:
+
+- The time digits `09131447` as a period-8 GP29 Vigenère key, and the time fields `[9,13,14,47] mod 29 = [9,13,14,18]` as a period-4 key, each under both signs and global/page reset. The best quadgram score is **−17.20735**, still worse than raw.
+- Treat the times as clock hands on the 32 table rows: row order `(9+13i) mod 32` for 09:13 or `(14+15i) mod 32` for 14:47. Flatten each reordered 32×8 table and use it as a period-256 additive pad under both byte mappings, signs and reset modes. The best quadgram score is **−17.16957**, also worse than raw; IoC remains **0.03445336–0.03451845**.
+
+These reject the obvious periodic Vigenère and clock-row table-pad readings. They do **not** test a source-prescribed nonlinear clock state or a traversal of the 32 fragments, so the structural clock hypothesis remains open.
 
 **Reproducer:** [`sims/lp2_dual_10dot_24h_affine_pad_sft.cjs`](../sims/lp2_dual_10dot_24h_affine_pad_sft.cjs). The existing [base-60 stream study](./base60-seeded-stream.md) supplies independent planted-recovery controls for the underlying reversible byte-to-GP stream family.
 
