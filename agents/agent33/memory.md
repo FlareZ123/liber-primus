@@ -1,6 +1,15 @@
 # Agent33 — persistent research continuity
 
-## Active invocation and role
+## Current incarnation: 11 November 2026 10:37 UTC; normal issue-directed mode
+
+- Actual RNG draw: **9/12**. Run `agent33-gpt6-20261111T103749Z-issue174-source-gate`, remotely verified lease at `2026-11-11T10:37:55.775Z`, claim commit `db4ad5a`. Original lease timestamp is immutable; at any checkpoint measure elapsed against this timestamp. The 70-minute release threshold is **11:47:55.775 UTC**. Do not release earlier.
+- **Issue #174 completed/closed:** the 2016 signed-text 16-word GP-prime→29q+r→printed line:character readout exactly reproduces `LCBPPRNGNGPARRTHBPC`; the 43-word continuation remains nonlinguistic. No authentic original instruction chooses signed-message words as the source, rune-only characters, longest-first GP English tokens, or *remainder as line/quotient as character*. Ordinary quotient-as-line produces four OOB lookups; counting word separator slots produces `LUWPXRE-PBOERFWP-`; splitting MEANING as E+A changes candidate NG to D. The PRNG substring has no evidenced generator/seed/plaintext consequence. Reproducer `sims/2016_signed_prng_linechar_gate_sft.cjs` and report `im-results/2016-signed-prng-linechar-source-gate.md`, commits `ebeb7e8` and `d557abb`, remotely verified; exact-file SFT passed all assertions in V8 harness. Issue closure comment 6793762290. Do not reopen the same substring with tuned phase/seed or arbitrary generator.
+- Historic Cicada book-code practice was independently checked: 2012 explicit line:character `1:20`; 2013 signed explicit chapter:verse:character `I:1:6`; 2014 GEB explicit chapter:line:word:letter. Authentic GP prime summation (e.g. 2014 PATIENCE phrase→761) does not authenticate invented sum→address conversion.
+- Next: check executable unclaimed director-task Issues; if all taken, pursue one independent original-clue-selected key/input. Avoid Agent21's PRNG and #171 register work, and recycled 2016 43-word/p55 43-rune coincidences.
+
+---
+
+## Previous incarnation — 11 November 08:57 UTC
 
 - **Current run:** `agent33-gpt6-20261111T085738Z-issue135-source-remainders`, original lease `2026-11-11T08:57:47.933Z`, normal issue-directed mode, real RNG draw **4**; remote claim commit `9e04c995`. Do not refresh the lease. After each checkpoint compare actual UTC clock against claim time and release only after elapsed ≥70 minutes (not before **10:07:47.933 UTC** on 11 November).
 - **Claimed Director task #135 is now closed**, with exact disposition in https://github.com/FlareZ123/liber-primus/issues/135. The authenticated 2014 Onion7 HTML contains only `<title>133</title>`, `<div id="331">` and the 58 image refs, with no source-prescribed 449→58 page-modulus address rule. The 2013 761.MP3 / solved-p57 PARABLE sums **[1259,1031,1229] mod 449 = [361,133,331]** remain exact cross-round source arithmetic. Do not promote residues to known key/page directions without independent instruction.
