@@ -26,6 +26,12 @@ Search a fixed nine-word shingle index across all eight unsolved sections, then 
 
 The Shakespeare, Gibran and Emerson top matches are exactly nine words. Every other source has **no** nine-word shingle. Most important is the literal historical *Book of the Law* test: there is no 10-word exact match across any of its three chapters, despite its documented usage as a key text in earlier Cicada puzzles.
 
+### Supplementary targeted biblical texts
+
+To test whether a larger plausible source can yield misleading exact fingerprints, an exploratory comparison used public-domain KJV books from the external repository [takelley1/plaintext-bible-kjv](https://github.com/takelley1/plaintext-bible-kjv): Genesis (**38,559** parsed words, best 9-word match), Psalms (**42,725**, best **10**), Ecclesiastes (**5,591**, no 9-word match), John (**19,126**, best 9), and Revelation (**12,004**, best **10**). This is a distinct supplementary live-source analysis, not part of the pinned seven-file SFT above.
+
+There are **three** exact GP-tokenized **10-word** candidate matches in these five KJV books: two in Psalms (LP2 section6 word152, 38 runes; LP2 section3 word330, 34 runes), and one in Revelation (section1 word18, 38 runes). These are literal shape matches only. Using the candidate text to derive the additive key \(K_i=C_i-P_i\bmod29\), **none** is compatible with any constant Vigenère keyword of period **1–20** across the entire 34–38 rune crib: the best cases have **17**, **14** and **18** conflicting repeated key positions respectively. Thus none authenticates a historical short-period Vigenère decryption. Unrestricted key streams can always fit a candidate; further key evidence would be required to promote any ten-word match to recovered plaintext. These comparisons broaden the source tests while also demonstrating that a ten-word word-length match alone is insufficient as a success rule across much larger corpora.
+
 A blinded positive uses a **60-word** contiguous Gibran passage, converts its real word lengths to GP29 runes with the *same* rules, and searches the unaltered source: **all 60 planted words recover**, including their exact original offset. This establishes detection capacity for the explicitly copied-phrase family.
 
 ## Interpretation and next decision
