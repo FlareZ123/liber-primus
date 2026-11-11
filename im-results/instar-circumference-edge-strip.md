@@ -47,6 +47,17 @@ The p55 value is below every matched native window. Therefore no permutation-onl
 
 The earlier literal edge-strip/`DIVINITY` test remains negative: the best direct additive output scored worse than raw p55 and worse than native controls. The old p55-only 43-interior extraction is lossy and is not being repeated.
 
+
+## Cicada-linked literary-source selector audit (Issue #250)
+
+The p57 Parable is present in the ID3 user-text field of Cicada's 2013 `761.MP3` (see [the audio source report](audio-761-pad-scan.md)). Its wording is a source-visible clue, but it does not uniquely select one of the prior-round literary sources:
+
+- **Liber AL / Crowley:** the archived 2013 PGP-signed book-code message selects `Liber AL vel Legis` through its “book whose study is forbidden” riddle. The exact text in `resources/external/2013-book-of-law-II.txt` has the distinctive pair **centre/circumference** together in II:3; “within” also has a natural echo in I:13 (“I am above you and in you”). This is the strongest single-verse candidate for p57's “shed our own circumferences / find the divinity within.” However, the 2013 book-code coordinate list does **not** contain II:3; it selects other positions, including I:60:11. Under the archived spaces-stripped convention, I:60:11 selects the first `1` in “My number is 11”, not II:3 or a key for LP2.
+- **Blake / *The Marriage of Heaven and Hell*:** the exact archived 2012 Cicada MIDI chorus is a secondary transcription of a Blake passage, but it contains none of `road`, `circumference`, `divinity`, or `within`. The wider *Marriage* does contain “Reason is the bound or outward circumference of Energy” and the “road of excess” proverb (see the [validated Wikisource page](https://en.wikisource.org/wiki/Page:Life_of_William_Blake,_Gilchrist.djvu/112)). These make p57's `circumferences` and the 2016 signed clue's `road` semantically compatible with Blake. They do not prove that the wider book, rather than the exact 2012 chorus, is selected as an LP2 source or identify a unique passage/edition.
+- **2016 message:** its `road` wording could be read as a pointer to Blake's proverb, but it does not name “excess”, “palace”, or “wisdom”; this remains an associative lead, not a locked selector. The 2016 message/crib is already the subject of #222; no 2016 crib or word-length test is repeated here.
+
+The best candidate allusion is Liber AL II:3, but the same p57 wording can also be read through Blake's *Marriage*, while the 2016 `road` clue can be read through Blake's proverb. No original LP2 clue fixes one exact source **and** a target page/word interval or a reversible key derivation. Consequently there is no frozen original-cipher test to run under #250's gate. **Stop before scanning:** this is a bounded missing-selector result, not an LP2 crib, key, plaintext, or decryption.
+
 ## What is and is not determined
 
 The only fully source-compatible reversible word operation presently fixed is the tuple split `(left boundary, interior, right boundary)` with the length-1/2 cases above; concatenating the tuple exactly reconstructs every original word. For p55, the leading one-rune page segment must be carried as the final boundary of the incoming cross-page word, not reclassified as a one-rune word. This is a representation change, not decryption.
