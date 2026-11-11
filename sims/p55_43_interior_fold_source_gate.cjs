@@ -105,15 +105,15 @@ const targetFoldDifference = Array.from({ length: 21 }, (_, i) =>
 // fold the p55 43-rune interior first, then use the folded 2016 word-end
 // sequence as a GP29 additive key. The p50-derived key position remains erased.
 function combine(target, sign) {
-  const pairs = target.map((v, i) =>
+  return target.map((v, i) =>
     keyFold[i] === null ? null : mod(v + sign * keyFold[i]));
-  pairs.push(mod(interior[21] + sign * keyCenter));
-  return pairs;
 }
 const sumMinusKey = combine(targetFoldSum, -1);
 const sumPlusKey = combine(targetFoldSum, 1);
 const differenceMinusKey = combine(targetFoldDifference, -1);
 const differencePlusKey = combine(targetFoldDifference, 1);
+const centerMinusKey = mod(interior[21] - keyCenter);
+const centerPlusKey = mod(interior[21] + keyCenter);
 
 assert.equal(keyFold.filter(v => v === null).length, 1);
 assert.deepEqual(keyFold.flatMap((v, i) => v === null ? [i] : []), [3]);
@@ -158,7 +158,9 @@ const output = {
     differenceMinusKey: gp(differenceMinusKey),
     differenceMinusKeyIoC: ioc(differenceMinusKey),
     differencePlusKey: gp(differencePlusKey),
-    differencePlusKeyIoC: ioc(differencePlusKey)
+    differencePlusKeyIoC: ioc(differencePlusKey),
+    centerMinusKey: corpus.translit[centerMinusKey],
+    centerPlusKey: corpus.translit[centerPlusKey]
   },
   scope: [
     "The source word-map and FOLD reading remain provisional, not authenticated instructions.",
