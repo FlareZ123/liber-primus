@@ -218,6 +218,12 @@ function main() {
     59 * radix59.indexOf(token[0]) + radix59.indexOf(token[1]));
   assert(bytes59.every((byte) => byte >= 0 && byte < 256));
   assert.equal(xor(bytes59), 33);
+  assert.deepEqual(remainder(bytes59,g),[7,1,19,8]);
+  const printed=grid.rows.flat();
+  assert.deepEqual(remainder(printed.map((token)=>
+    radix59.indexOf(token[1])),g),[28,3,6,15]);
+  assert.deepEqual(remainder(printed.map((token)=>
+    radix59.indexOf(token[0])),g),[8,27,13,22]);
 
   console.log(JSON.stringify({
     status: "Source-derived GF29 checksum relation; no unknown plaintext",
@@ -233,6 +239,7 @@ function main() {
       gridInterior:gridHill,visibleCipher:visibleHill,
       originalKnownShift:shiftHill},
     gf256FullFieldEvaluationXor: {base60: 148, radix59: 33},
+    quarticRemainderRadix59: [7,1,19,8],
   }, null, 2));
 }
 if (require.main === module) main();
