@@ -274,6 +274,6 @@ const result = {
     joint: [jointNumerator, jointDenominator],
     probability: '1/21504000'
   },
-  caveat: 'The 4-rune edge extraction and 11th-spiral selector are plausible source-guided choices, not explicit instructions. The exact 3301-complement→90th-prime→p32-position-90 address is a stronger selector, but no reversible downstream readout is established; 2838 mod 121 = 55 is only a possible p55 page pointer. The conditional null is not familywise over alternative pages, fragment lengths, spirals, or operations.'
+  caveat: 'The 4-rune edge extraction and 11th-spiral selector are plausible source-guided choices, not explicit instructions. The exact 3301-complement→p90→F=89 address matches p32 zero-based offset 89, but no reversible downstream readout is established; 2838 mod 121 = 55 is only a possible p55 page pointer. The conditional null is not familywise over alternative pages, fragment lengths, spirals, or operations.'
 };
 process.stdout.write(JSON.stringify(result, null, 2) + '\n');
