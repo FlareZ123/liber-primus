@@ -40,6 +40,31 @@ def main() -> None:
     ]
     assert len(first_ninety_primes) == 90 and first_ninety_primes[-1] == 463
 
+    # Independent 2012/2016 image dimensions have consecutive prime ranks.
+    image_primes = [
+        p for p in range(2, 570)
+        if all(p % q for q in range(2, int(p ** 0.5) + 1))
+    ]
+    assert [image_primes[i - 1] for i in (96, 97, 103, 104)] == [
+        503, 509, 563, 569
+    ]
+    assert 103 - 96 == 104 - 97 == 7
+    assert 103 - 13 == 90
+
+    # Width ordinal minus the source-visible 13-dot marker selects p32's
+    # one-based 90th rune, which starts a printed word.
+    transcript = (ROOT / "resources/lp2-transcription.txt").read_text(
+        encoding="utf-8"
+    ).split("%")[32]
+    rune_sites = [
+        i for i, char in enumerate(transcript)
+        if 0x16A0 <= ord(char) <= 0x16FF
+    ]
+    assert len(rune_sites) == 121
+    assert transcript[rune_sites[89]] == "ᛟ"
+    assert transcript[rune_sites[89] - 1] == "-"
+
+
     rng = np.random.default_rng(SEED)
     inner = weights[1:, 1:].ravel()
     cell = col = joint = anycol = anyaxis = 0
