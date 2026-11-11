@@ -71,6 +71,16 @@ The seven physical pages carrying the cuneiform header, pp33-39, contain exactly
 
 and **8** is exactly `464/58`. Among every contiguous seven-page window in physical pp0-55, pp33-39 is the only window whose rune count is divisible by 210. This gives a source-fixed state period and target interval without fitting a language score.
 
+## Direct projective readout gates
+
+The first two natural symbol-readout families are now closed on the unchanged pp33–39 ciphertext. The three evolving projective coordinates collide with each other at **15 of the 210 states**, so a single projectivity carrying the distinct initial triad to every later triad does not exist. That rules out the most direct moving three-point frame before language scoring.
+
+A homogeneous 2×2×2 tensor readout remains defined through infinity and gives exactly eight field coordinates per state, matching 210×8 = 1,680. Using the canonical binary coordinate order and the pre-existing PATIENCE column order, with direct add/subtract/Beaufort-style GP29 combination, gives six original-cipher candidates with IoC only **0.034270683–0.034759919**. No candidate approaches native-GP prose.
+
+A second lossless construction composes the actual coordinate-map powers into one PGL2 keystream, using the two natural component orders F0^n F1^n F2^n and F2^n F1^n F0^n and testing forward/inverse action. The four candidates produce **48, 59, 51 and 48 projective-infinity outputs**; their remaining finite symbols have IoC **0.034086811–0.034513827**. Treating infinity as a possible source-visible delimiter does not rescue the model: the strongest of the four has **17/51** poles exactly at the 378 canonical word ends, versus **11.475** expected; the one-sided hypergeometric tail is **0.0477966 before accounting for the four tested variants**. This is not a discriminating boundary selector.
+
+These results reject only these direct readouts. They do not refute the 210-state source relation itself, and they do not authorize an arbitrary infinity-to-rune patch, phase search, or fitted nonlinear map. A successor needs an independently source-specified symbol action. Reproducer: [projective-readout SFT](../sims/p32_cuneiform_projective_readout_gate.cjs).
+
 ## What this changes
 
 The p32 row-major projective map can now be selected from the complete 16-member physical corner family using the adjacent cuneiform numbers. Those same values select its infinity cycle, prescribe the p3-to-p39 triad correction, and produce a whole-section 8 x 210 geometry.
