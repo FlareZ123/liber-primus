@@ -53,11 +53,25 @@ cc -O2 -Wall -Wextra sims/openpuff_jpeg_capacity_gate.c -ljpeg -o /tmp/openpuff_
 
 The program requires exactly pages 17–74 and checks the expected 35 RGB / 23 grayscale component census.
 
-## What remains untested
+## Historical v4.00 binary recovered and run on Windows (11 November 2026)
 
-The actual OpenPuff 4.00 binary was not available in this Linux runtime: Wine/Windows is absent and outbound network resolution is disabled here; the PacketStorm download endpoint also blocks automated retrieval. No extraction attempt was therefore made. The 2018 academic analysis states that OpenPuff itself is closed source (the cryptographic library is open source) and studies its PDF carrier, not its JPEG parser. LibrePuff declares JPEG as a carrier type but currently implements only the WAV parser; other carrier parsers are unimplemented.
+The earlier blocker was the absence of a runnable OpenPuff 4.00 executable in the local Linux environment. That blocker is now **resolved for the tool**, although an actual JPEG extraction has not yet been attempted.
 
-The decisive next action is a checksum-verified OpenPuff **4.00** run in an isolated Windows/Wine environment using the frozen A-only/Medium candidate. Test each of the 58 pages individually and accept a result only if OpenPuff reports successful CRC validation and the extracted file is preserved with its hash. If all individual trials fail, test the complete physical sequence 17→74 as one ordered chain at the same fixed settings. Record binary hash, password fields, bit level, carrier order, report/CRC, output hash, and exact error. A failed CRC is not a successful negative if the binary version or settings differ from the source.
+A public [ToolSuite commit from 15 February 2015](https://github.com/codejanus/ToolSuite/commit/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5) preserved the original `OpenPuff.exe`, `libObfuscate.dll`, and an accompanying 2014 license identifying **OpenPuff v4.00**. The existing manual [Windows GUI workflow](../.github/workflows/openpuff-v400-ui-probe.yml) now downloads those three files from the fixed 2015 commit, verifies their exact original Git blob identities, records their SHA-256 hashes, and launches the application on `windows-latest`.
+
+The [successful original-tool run 42937135303](https://github.com/FlareZ123/liber-primus/actions/runs/42937135303) established:
+
+| Binary | Git blob SHA-1 | SHA-256 |
+| --- | --- | --- |
+| `OpenPuff.exe` | `466e03c792075313ce533a5dc7a789e8a41209f9` | `40c94218a5eecd215226ef8988cb23fe0c5cfbfd4bac8c63aa45be93fb8a1db9` |
+| `libObfuscate.dll` | `f3b1c3315f8286346416fefd6141410f422f2454` | `d2065cbd748e2958baac5ebeb09817387df6df1d9923c3533aa41f549617e7b1` |
+| `OpenPuff_license.txt` | `b0bab97d3c9906caada26fbb890a2a6fe028baa4` | `3833d08c693b46fd56230a3d6a160ef203779cddd587816701fb80e6ce15b5c1` |
+
+The Windows PE file version is **4,0,0,0**, and the live UI title is **`OpenPuff v4.00 - Data Unhiding`**. The [saved Actions artifact](https://github.com/FlareZ123/liber-primus/actions/runs/42937135303) contains the machine-readable GUI control inventory: password fields **A/B/C** with 8–32-character limits, optional **Enable (B)** / **(C)** checkboxes, order-sensitive carrier list with **Add Carriers**, a bit-selection tree, and **Unhide!**. These are actual native controls, not a presumed 4.01 interface.
+
+**Exact next experiment:** use this now-functional 4.00 GUI to select first one original LP2 JPEG in physical order, the historically documented password **A=33011103** with B/C disabled, and the JPEG default Medium bit selection (1/5). Capture its own extraction/CRC report and any payload, preserving original JPEG and output hashes. If a single carrier fails, repeat for remaining 57 single pages, then test the complete ordered 17–74 carrier chain under the same frozen settings. A failed GUI operation, missing carrier support or wrong options must remain a *test blocker*, not a purported negative cryptanalytic result. The original OpenPuff 2014 operation was on MP3; no independent LP2 clue mandates reuse of the tool or this password.
+
+The first Windows workflow attempt [42936020518](https://github.com/FlareZ123/liber-primus/actions/runs/42936020518) was blocked by anti-bot / incorrect downloadable bytes at PacketStorm and SoftRadar. The second [42937018587](https://github.com/FlareZ123/liber-primus/actions/runs/42937018587) failed due to a corrected PowerShell variable-parsing issue. The **third run** above completed all hash, version, launch, and GUI tests. No original LP2 key, plaintext, payload, or destination was recovered by these tool-access steps.
 
 ## Sources
 
