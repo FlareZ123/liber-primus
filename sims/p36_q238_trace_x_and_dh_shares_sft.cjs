@@ -173,6 +173,34 @@ for (let i = 0; i < normNull.sampleCount; i++) {
   normNull.matching6 += Number(match6);
   normNull.simultaneous += Number(match23 && match6);
 }
+/*
+ * Source-page-pair comparator: every complete original page with >=119 runes,
+ * first 119 only, unordered page IDs in increasing manuscript order.
+ * This measures the chance of finding the same norm pair among other printed
+ * pages, without using any English or a fitted field alphabet.
+ */
+const pagePrefixes = pages.filter(p => p.page < 56 && p.indices.length >= 119)
+  .map(p => ({page: p.page, runes: p.indices.slice(0, 119)}));
+assert.equal(pagePrefixes.length, 52);
+let comparedPairs = 0, first23Count = 0, swap6Count = 0;
+const comparableNormPairs = [];
+for (let i = 0; i < pagePrefixes.length; i++) {
+  for (let j = i + 1; j < pagePrefixes.length; j++) {
+    const left = pagePrefixes[i], right = pagePrefixes[j];
+    const a23 = fieldNorm(left.runes.concat(right.runes)) === 23;
+    const b6 = fieldNorm(right.runes.concat(left.runes)) === 6;
+    comparedPairs++;
+    first23Count += Number(a23);
+    swap6Count += Number(b6);
+    if (a23 && b6) comparableNormPairs.push([left.page, right.page]);
+  }
+}
+assert.equal(comparedPairs, 1326);
+assert.equal(first23Count, 56);
+assert.equal(swap6Count, 48);
+assert.deepEqual(comparableNormPairs,
+  [[3, 39], [7, 24], [21, 31], [23, 33]]);
+
 assert.deepEqual(normNull, {sampleCount: 1500,
   matching23: 56, matching6: 50, simultaneous: 2, seed: "0x7f330123"});
 
@@ -303,6 +331,7 @@ console.log(JSON.stringify({
   field: "GF(29^238)", modulusVerified: true,
   DH_exponents: DH,
   fieldNorms, fieldNormShuffleNull: normNull,
+  comparableNormPairs, comparedPairs, first23Count, swap6Count,
   p36ConjugateFixed, conjugateChecks,
   tracePowerX: traceTests,
   rawOriginalIoC: ioc(runes),
