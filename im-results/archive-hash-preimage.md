@@ -46,7 +46,7 @@ For the same Onion7 label, six documented proxy suffixes returned zero CDX recor
 
 The broader exact-label wildcard `ky2khlqdf7qdznac.*/*` was attempted but did not yield a preserved result: the Internet Archive returned intermittent HTTP 503 responses, and one intermediate run hit a summary-serialization error after the queries. No wildcard negative is claimed. The bounded result is therefore: one known `.onion.to` gateway capture set containing only root/robots content, six tested suffixes with no records, and four suffixes unresolved. It does not exhaust all proxies or all seven Cicada hostnames.
 
-A source-manifested seven-host probe across `.onion.to` and `.tor2web.org`, plus an independent Common Crawl index probe, are maintained separately; their results must be evaluated only after their positive controls pass. No page-59 bytes or digest preimage have been recovered.
+A source-manifested seven-host probe across `.onion.to` and `.tor2web.org` is reproducible in [`anend_cicada_onion_proxy_cdx.cjs`](../sims/anend_cicada_onion_proxy_cdx.cjs); the independent Common Crawl index probe is in [`anend_commoncrawl_probe.cjs`](../sims/anend_commoncrawl_probe.cjs). Their runs (43095171382, 43095302351, 43095923747) remain queued with no job results; evaluate them only after their positive controls pass. No page-59 bytes or digest preimage have been recovered.
 
 ## Crucial earlier work and overlap
 
