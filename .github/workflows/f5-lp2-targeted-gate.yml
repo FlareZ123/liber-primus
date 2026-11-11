@@ -1,0 +1,35 @@
+name: F5 LP2 targeted JPEG carrier gate
+
+on:
+  push:
+    paths:
+      - ".github/workflows/f5-lp2-targeted-gate.yml"
+      - "sims/f5_lp2_targeted_gate.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  f5-carrier-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.0"
+      - name: Install pinned F5 implementation
+        run: |
+          go install github.com/0verkilll/f5/cmd/f5@v1.0.0
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+          f5 version
+      - name: Run bounded positive-control, detector, and extraction gate
+        run: python3 sims/f5_lp2_targeted_gate.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: f5-lp2-targeted-gate
+          path: im-results/f5-lp2-targeted-gate/
+          if-no-files-found: warn
+          retention-days: 30
