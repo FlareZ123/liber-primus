@@ -79,6 +79,17 @@ function remainder(values, factor) {
   return a.slice(1-factor.length);
 }
 
+const columns = Array.from({length:8}, (_, j) => rows.map(row => row[j]));
+const columnMajor = columns.flat();
+// Original 32x8 layout has two source-visible global read directions.
+// The published factors select ordinary left-to-right row-major order.
+assert.deepEqual(remainder(columnMajor,H),[28,28]);
+assert.deepEqual(remainder(columnMajor,G),[1,21]);
+assert.deepEqual(remainder(columnMajor,F),[9,7,5,5]);
+for(const column of columns){
+  assert.ok(remainder(column,H).some(value => value!==0));
+  assert.ok(remainder(column,G).some(value => value!==0));
+}
 for (const factor of [H,G,F])
   assert.ok(remainder(bytes,factor).every(value => value===0),
     "authentic complete 256-byte table must carry both fixed checks");
@@ -122,6 +133,7 @@ assert.deepEqual(terminalSyndromes,{
 
 console.log(JSON.stringify({
   sourceChecks: {H,G,F},
+  printedColumnMajorChecks:{H:[28,28],G:[1,21],F:[9,7,5,5]},
   runeCount: ciphertext.length,
   marks: marks.length,
   fragments:fragments.length,
