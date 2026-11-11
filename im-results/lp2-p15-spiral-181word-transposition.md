@@ -40,6 +40,24 @@ The diagnostic is the existing **three-category adjacent word-length Pearson χ�
 
 All eight original-cipher inverses remain below χ²=6. The best, **5.821170**, supplies essentially no recovery relative to the original **3.949446**, despite a true source-language plant being exactly recovered and detected by the same program. The strong original word-order independence remains unexplained.
 
+## Authenticated historical book-code crib after arbitrary 16-word permutations
+
+The failure of a single p15 spiral does not rule out a different local word ordering. To test a stronger **key-free necessary condition for literal plaintext reuse**, compare each original 16-word block by the **sorted multiset of its 16 GP word lengths** against every contiguous 16-word window in independently creator-selected historical sources. This preserves a possible arbitrary secret permutation of the words inside each block, without assuming the printed p15 spiral is the actual key. A contiguous quotation spanning **32 words** and aligned at an original 16-word block boundary would necessarily produce **two matching bags at source offsets separated by exactly 16**, regardless of the hidden within-block word permutation.
+
+The previously archived 2013 Book of the Law chapters I–III were selected by a signed Cicada book code, and the 2012 Blake Marriage of Heaven and Hell clipping by another earlier signed book code. Exact source texts and GP multigraph counts are shared with [the original wordlength-crib study](lp2-wordlength-public-source-matching.md). A new source-bag gate in the same [SFT](../sims/lp2_p15_spiral_181word_transposition_sft.cjs) scans every possible source start against all 181 untouched original 16-word blocks.
+
+| Independently selected source | GP source words | Exact single 16-word bag matches | Consecutive 32-word bag matches |
+| --- | ---: | ---: | ---: |
+| 2013 Book of the Law I | 1,897 | 1 | **0** |
+| 2013 Book of the Law II | 1,968 | 1 | **0** |
+| 2013 Book of the Law III | 2,002 | 3 | **0** |
+| 2012 Blake clipping | 120 | 0 | **0** |
+| Total | **5,987** | **5** | **0** |
+
+The single matches are isolated: Book I original block 1 / source word 1,029; Book II block 135 / word 1,215; Book III blocks 55/1,220, 66/1,274, and 107/433. An independent positive plants two adjacent 16-word windows from Book II at source word 100, reverses each block, and the unchanged unordered detector recovers the planted 32-word source offset **exactly**. Therefore a contiguous author-source quotation extending at least 32 aligned words is absent under the stated word-preserving, within-block-permutation hypothesis, even though every possible permutation inside each block is allowed.
+
+This is a finite comparison with two historically chosen literary sources, not a proof that arbitrary other books, edited text, noncontiguous quotes or unaligned 16-word fragments are absent. In particular, the two historically selected texts were used as previous *book-code sources* and are not authenticated LP2 plaintext. The 16-word alignment is inferred from p15 and the 2,896-word divisor; it is not independently prescribed.
+
 ## Decision
 
 The source arithmetic **2,896 = 16×181** is exact, and the p15 16-position spiral is authentic. Under the proposed coupling these eight complete original-cipher word-reordering operations do not recover native-GP prose adjacency; no unknown plaintext or key follows. Do not treat the 181 association as historically selected or enlarge the scan with unconstrained starts, offsets, orientation choices or additional numeral-cipher layers.
