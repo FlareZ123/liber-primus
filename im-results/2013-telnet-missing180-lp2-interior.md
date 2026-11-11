@@ -1,6 +1,6 @@
 # 2013 missing-prime telnet segment and the 180-slot LP2 interior
 
-**Status: source-motivated cross-round candidate; no unknown plaintext, key, or cipher mechanism.** The concrete integer sequence is identifiable independently of LP2, but no original instruction assigns it a byte/key operation. See the executable original-data test at [`sims/lp2_telnet_missing180_source_sft.cjs`](../sims/lp2_telnet_missing180_source_sft.cjs).
+**Status: source-motivated cross-round candidate; no unknown plaintext, key, or cipher mechanism.** The concrete integer sequence is identifiable independently of LP2, but no original instruction assigns it a byte/key operation. The historical telnet and baseline direct tests are reproducible in [`sims/lp2_telnet_missing180_source_sft.cjs`](../sims/lp2_telnet_missing180_source_sft.cjs); the expanded 8-orientation arbitrary-secret tests are in [`sims/telnet2013_missing180_grid_interior_sft.cjs`](../sims/telnet2013_missing180_grid_interior_sft.cjs).
 
 ## Visible pre-LP2 input
 
@@ -27,7 +27,16 @@ A stronger exact, key-independent test grants a secret arbitrary stationary mapp
 | `reverse_digits(prime) mod256` | 141 | 141/180 | 39 |
 | `reverse_digits(prime) mod29` | 29 | 30/180 | 150 |
 
-Thus none of these four fixed-order direct lookup families can explain the 180 authentic table interior bytes, however the secret lookup is chosen. Nonstationary state and source-prescribed permutations remain untested. The telnet reverse operation is source-documented; its use on omitted values as an LP2 key is hypothetical.
+These originally reported bounds use **forward row-major** table order. The stronger original-input question now also exhausts the 8 geometrically natural readings of the *same* 30×6 interior: horizontal/vertical flips and row-/column-major traversal, for both unchanged primes and the documented reversed-decimal numbers. Each model still grants an arbitrary, possibly non-bijective secret stationary lookup, so its best possible agreement is exact:
+
+| Input values | Modulus 29: minimum wrong /180 | Modulus 60: minimum wrong /180 | Modulus 256: minimum wrong /180 |
+| --- | ---: | ---: | ---: |
+| Original 180 missing primes | **132** | **148** | **69** |
+| Telnet-reversed decimal primes | **135** | **135** | **38** |
+
+These are best-case errors over all eight orientations, with a separate synthetic stationary-lookup positive control recovering every planted output. The decimal-reversal operation is explicitly source-native, whereas applying it to omitted-prime values as an LP2 instruction remains hypothetical. Reproducer: [8-orientation source-gate SFT](../sims/telnet2013_missing180_grid_interior_sft.cjs), extension [commit 30c0dcf4](https://github.com/FlareZ123/liber-primus/commit/30c0dcf457770aa02559a77c15e70ba44165a3b3).
+
+Thus **none of the direct stationary input-residue lookup families** explains the interior table under the eight elementary rectangle readings, however its secret mapping is chosen. This strengthens the previously reported single-order negative without assuming a secret key; nonlinear position-dependent state, independently prescribed rearrangements and unrelated uses remain untested. The archived historical telnet transcript is a secondary witness.
 
 ## Frozen minimal original-input decision
 
