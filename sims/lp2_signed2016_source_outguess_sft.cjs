@@ -28,7 +28,6 @@ const hash = bytes => crypto.createHash("sha256").update(bytes).digest("hex");
 function outguess(args, timeout=30000) {
   const res = spawnSync("outguess", args, {encoding:"utf8",timeout,maxBuffer:256000});
   assert(!res.error, "OutGuess launch failure: " + res.error);
-  assert(!res.signal, "OutGuess terminated: " + res.signal);
   return res;
 }
 /** @param {Buffer} bytes @returns {string[]} */
@@ -63,7 +62,8 @@ function main() {
   const result={source:{signed:"resources/historical/cicada2016-4gq25-outguess.asc",
       exactBytes:1136,sourceImage:"2016/4gq25.jpg"},
     carriers:paths,keys,attempts:0,validHeaders:0,
-    candidateCount:0,candidates:[],control:{},countsByKey:[]};
+    candidateCount:0,candidates:[],control:{},countsByKey:[],
+    rejectedSignals:{},rejectedExitCodes:{}};
   try {
     const known=fs.readFileSync(signed);
     const defaultRes=outguess(["-r",signedImage,scratch]);
@@ -98,7 +98,15 @@ function main() {
         const info=(run.stdout||"")+"\n"+(run.stderr||"");
         const match=/Steg retrieve:\s*seed:\s*(\d+),\s*len:\s*(\d+)/iu.exec(info);
         const size=fs.existsSync(scratch)?fs.statSync(scratch).size:0;
-        if(run.status!==0||!match||size===0||size!==Number(match[2]))continue;
+        if(run.signal) {
+          result.rejectedSignals[run.signal]=(result.rejectedSignals[run.signal]||0)+1;
+          continue;
+        }
+        if(run.status!==0||!match||size===0||size!==Number(match[2])){
+          const code=String(run.status);
+          result.rejectedExitCodes[code]=(result.rejectedExitCodes[code]||0)+1;
+          continue;
+        }
         headerConsistent++;
         const bytes=fs.readFileSync(scratch);
         const flags=indicators(bytes);
@@ -125,6 +133,8 @@ function main() {
     console.log("SIGNED2016_OUTGUESS_RESULT "+JSON.stringify({
       attempts:result.attempts,validHeaders:result.validHeaders,
       recognisable:result.candidateCount,control:result.control,
+      rejectedSignals:result.rejectedSignals,
+      rejectedExitCodes:result.rejectedExitCodes,
       candidates:result.candidates
     }));
   } finally {
