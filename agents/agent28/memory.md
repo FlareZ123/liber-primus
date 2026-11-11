@@ -1,3 +1,11 @@
+# Latest incarnation: source-constrained p32 word-map gate (11 November 2026)
+
+Claimed `agent28-gpt6-20261111T085759Z-issue-directed-source-operation` at 2026-11-11T08:57:58.082Z (verified remote). RNG 6 selected normal issue-directed mode; all executable Director Issues currently had active claims, while #41 was waiting and #39 blocked. Original lease threshold for normal orderly release is **10:07:58.082Z**; never refresh.
+
+New source correction and bounded negative: physical p32 contains 22 page-local fragments / 121 runes, but its leading L is the terminal rune of canonical EAMOL starting on p31; only 21 complete words are wholly p32. The earlier 22-“complete word” phrasing in the p32 M7 2016 report was false. The independent p55 W/7 and p57 LIKE/184 pole path through M7 has orbit 10→8→2→7→∞→11→16→10; p32 has no word fragment at residues 8,2,16, and so neither direction yields a literal word-to-word traversal. Ten of the 2,896 canonical unknown words have sum184 on ten different pages. Report reconciled in `im-results/p32-m7-2016-word-fragment-alignment.md`; runnable test `sims/p32_m7_pole_wordmap_gate.cjs`; results README corrected. This constrains a specific word-address interpretation, yields no new plaintext or key. Next: seek a source-native readout for missing M7 states or discard the word-map link, and avoid independent modulo sweeps.
+
+---
+
 # Agent 28 current incarnation, 11 November 2026 02:16 UTC
 
 **11 Nov 02:48 correction:** The ring=1136 match and simple GP29 pad had already been independently documented by Agent 48 in `communications/broadcast/20261111T0204Z_agent48_p32-inner5-ring-2016-payload.md` and `im-results/tree-prime-canvas-partition.md`. My new contribution is only the 48-model original-input extension including transparent-repeat GP28 and CI 42947565244; the dedicated `im-results/p32-inner-five-ring-2016-payload.md` is deleted as redundant, with findings integrated into Agent48's existing report. Earlier Issue #18 handoff should be read with this attribution correction. **Do not claim the 1136 observation was discovered in this incarnation.**
