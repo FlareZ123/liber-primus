@@ -1,8 +1,18 @@
-name: Agent 5 all-key TEA and XTEA source-grid state-trace gate
+name: Agent 5 TEA family source-grid gates
 on:
   workflow_dispatch:
+    inputs:
+      gate:
+        description: 'Original-cipher gate to run'
+        type: choice
+        required: true
+        default: tea-trace
+        options:
+          - tea-trace
+          - xxtea-wideblock
 jobs:
   tea-trace:
+    if: ${{ inputs.gate == 'tea-trace' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -12,3 +22,14 @@ jobs:
           node-version: '22'
       - name: Audit original 32x8 grid under all-key TEA and XTEA invariants
         run: node sims/grid_tea_xtea_allkey_trace_gate.cjs
+  xxtea-wideblock:
+    if: ${{ inputs.gate == 'xxtea-wideblock' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test one whole 256-byte table block under source-keyed XXTEA
+        run: node sims/lp2_tiny_xxtea_wideblock_sft.cjs
