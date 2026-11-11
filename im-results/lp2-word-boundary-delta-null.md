@@ -1,58 +1,74 @@
-# LP2 word-boundary delta alignment under an exact first-order conditional null
+# LP2 printed-boundary first-difference tests under conditional nulls
 
-**Status:** reproducible negative for a simple word-reset additive clock. This does not recover plaintext, key material, or a complete cipher.
+**Status:** reproducible negative for simple line- and word-reset additive clocks; page-boundary diagnostic is low-powered. No plaintext, key, or reversible cipher was recovered.
 
-## Question and source-defined feature
+## Question and source-defined features
 
-The 2016 signed Cicada message says “words are the map.” A concrete, falsifiable interpretation is that printed word boundaries may select a different state transition from within-word positions. The 86 adjacent equalities alone do not settle this: Agent36's exact partition is 63/10,060 within-word and 23/2,895 cross-word (Fisher exact p≈0.363).
+The 2016 signed Cicada message says “words are the map.” Printed word boundaries are therefore a motivated candidate state clock. The manuscript also exposes line ends and page boundaries. I tested whether these three source-visible boundary types select a distinct GP29 first-difference distribution, rather than repeating generic lag or period scans.
 
-I tested the full GP29 first-difference class at each source-visible word boundary, not just equality. For each adjacent pair inside one physical page, define
+For each adjacent rune pair, define \(\Delta_i=(C_{i+1}-C_i)\bmod 29\). For a chosen boundary flag \(B_i\), the sole statistic is mutual information \(I(B;\Delta)\) in nats. The word and line tests include only edges within physical pages. The separate page test includes all 12,955 edges and marks the 54 transitions between the 55 rune-bearing page records.
 
-- \(B_i=1\) if the edge ends a printed word, otherwise \(0\);
-- \(\Delta_i=(C_{i+1}-C_i)\bmod 29\).
+The exact canonical word contract comes from sims/lp2_word_pages.cjs. Printed line ends are the slash markers in resources/lp2-transcription.txt.
 
-The sole statistic is the mutual information \(I(B;\Delta)\) in nats. Page-boundary edges are excluded, matching the per-page null. This asks whether word boundaries select a distinct GP29 step-size distribution after conditioning on each page's exact first-order transition counts.
+## Conditional nulls and controls
 
-## Conditional null and controls
+### Word and line boundaries
 
-The canonical inputs are resources/liber-primus/lp2-corpus.json and resources/lp2-transcription.txt, parsed with the repository's existing sims/lp2_word_pages.cjs word contract. Invariants: 55 rune-bearing pages, 12,956 runes, 2,896 words, 32 cross-page words, 12,901 page-internal adjacent pairs, 2,873 word-boundary edges, and 10,028 within-word edges.
+For each null sample, independently shuffle outgoing edge order within each physical page and reconstruct an Eulerian trail. This preserves that page's exact 29×29 bigram table, rune counts, first rune, last rune, and length. The original word/line boundary positions remain fixed. It tests whether the placement of the original bigram differences at those boundaries is unusual after conditioning on every page's complete first-order transition counts. The ensemble is reproducible but is not claimed to sample uniformly from all distinct Eulerian trails.
 
-For each null sample, independently shuffle outgoing edge order within each physical page and reconstruct an Eulerian trail. This preserves that page's exact 29×29 bigram table, rune counts, first rune, last rune, and length. The original word-boundary positions remain fixed. It therefore tests whether the original placement of bigram differences at word boundaries is unusual, conditional on every page's complete first-order transition counts. As in the existing im-results/bigram-conditioned-higher-order.md study, this is a reproducible conditional randomization ensemble, not a claim of uniform sampling over all distinct Eulerian trails.
+There are 55 rune-bearing pages, 12,956 runes, 2,896 words, 32 cross-page words, and 594 printed lines. The page-internal edge counts are 12,901 total, 2,873 word-boundary edges, 10,028 within-word edges, 539 line-boundary edges, and 12,362 within-line edges. The 22 word boundaries and 55 line ends that coincide with physical page boundaries are excluded from these within-page tests.
 
-The test uses 1,000 original null samples. Two synthetic controls use the first 12,956 GP29 tokens of resources/control/shakespeare_first300k.txt, cut by the exact LP2 word-length sequence:
+The original uses 1,000 Eulerian null samples. Positive controls use the first 12,956 GP29 tokens encoded from resources/control/shakespeare_first300k.txt, cut by the exact LP2 segment lengths:
+- one independent uniform additive shift per word;
+- one independent uniform additive shift per printed line.
 
-1. **Word-reset additive positive control:** one independent uniform additive shift per LP2 word.
-2. **Independent per-symbol additive control:** one independent uniform additive shift per rune.
+A negative control applies independent uniform additive shifts per rune. Each control uses 250 Eulerian null samples.
 
-Each control is calibrated against 250 Eulerian null samples preserving its own page bigram tables and endpoints. These are synthetic power/negative controls, not claims about Cicada plaintext.
+### Page boundaries
+
+There are only 54 transitions between the 55 rune-bearing page records (the blank physical p50 is absent from the rune stream). The diagnostic computes I(page-boundary; delta) over all 12,955 adjacent pairs and compares it to 1,000 permutations that randomly place exactly 54 boundary labels among those pairs. This does not preserve page-endpoint distributions and is intentionally weaker than the word/line null.
+
+A page-reset positive control applies one independent additive shift per page; an independent per-rune pad is the negative control. Each uses 250 fixed-count label-permutation null samples. The page test is underpowered: the page-reset control is not separated from its null, so this diagnostic cannot exclude page-reset ciphers.
 
 ## Results
 
-| Measurement | Original LP2 | Word-reset additive plant | Per-symbol additive plant |
-|---|---:|---:|---:|
-| Observed \(I(B;\Delta)\), nats | **0.000997608** | **0.016056345** | **0.001334633** |
-| Null mean | 0.001075606 | 0.001085104 | 0.001084887 |
-| Null SD | 0.000287736 | 0.000292961 | 0.000304242 |
-| Null median | 0.001039240 | 0.001061658 | 0.001067982 |
-| Null 95th percentile | 0.001577643 | 0.001588396 | 0.001610637 |
-| Null samples ≥ observed | 565/1000 | 0/250 | 45/250 |
-| Upper-tail add-one p | **0.5654** | **0.0040** | **0.1833** |
+### Original LP2
 
-For the original, the lower-tail add-one probability is 0.4356. The observed statistic is near the conditional-null center, not an upper- or lower-tail departure. The word-reset plant is far above every null replicate, demonstrating that this statistic detects a simple per-word additive shift clock at the stated sample size. The independent per-symbol pad remains compatible with its conditional null.
+| Boundary | Observed MI (nats) | Null mean ± SD | Upper-tail add-one p | Lower-tail add-one p |
+|---|---:|---:|---:|---:|
+| Word | 0.000997608 | 0.001075606 ± 0.000287736 | 0.5654 | 0.4356 |
+| Line | 0.000871570 | 0.001082698 ± 0.000288057 | 0.7642 | 0.2368 |
+| Page | 0.001603457 | 0.001229690 ± 0.000299640 | 0.1079 | 0.8931 |
 
-## Cryptanalytic consequence and limits
+The two-test max-|z| familywise result for word and line is 700/1001 exceedances (add-one p=0.7003). The page test is separate; its two-sided add-one estimate is about 0.216, and it is not significant after a three-test Bonferroni correction.
 
-The original ciphertext provides **no evidence that printed word boundaries align a special GP29 first-difference distribution beyond the page-specific bigram tables**. The tested simple per-word additive reset is absent under a control with the exact original word lengths. This is a bounded negative for that clock family, not for all word-local or stateful ciphers.
+### Synthetic controls
 
-Combined with the existing reproducible higher-order work:
+| Control | Observed MI (nats) | Null mean ± SD | Null samples ≥ observed | Upper-tail add-one p |
+|---|---:|---:|---:|---:|
+| Word-reset additive plant | 0.016056345 | 0.001085104 ± 0.000292961 | 0/250 | 0.0040 |
+| Line-reset additive plant | 0.003109837 | 0.001074462 ± 0.000288929 | 0/250 | 0.0040 |
+| Per-rune additive pad, word statistic | 0.001334633 | 0.001084887 ± 0.000304242 | 45/250 | 0.1833 |
+| Page-reset additive plant, page statistic | 0.001602953 | 0.001242416 ± 0.000299912 | 30/250 | 0.1235 |
+| Per-rune additive pad, page statistic | 0.001258228 | 0.001200434 ± 0.000290005 | 106/250 | 0.4263 |
+
+The word- and line-reset positive controls are far above every null replicate, showing that these statistics detect simple additive reset clocks at the stated sample size. The page-reset control is not detected; with only 54 page transitions, the page diagnostic has inadequate demonstrated power.
+
+## Cryptanalytic consequence and residual uncertainty
+
+The original ciphertext shows **no word- or line-boundary alignment of GP29 first differences beyond each page's exact bigram table**. The tested simple additive reset per word or per printed line is absent. This is a bounded negative for those clock families, not for all word-/line-local or nonlinear stateful ciphers.
+
+The page-boundary diagnostic is inconclusive, not a negative: only 54 edges are available and its simple page-reset positive control is not detected. Cross-page state remains unresolved.
+
+The broader reproducible higher-order evidence is consistent with no currently actionable clock:
 
 - im-results/bigram-conditioned-higher-order.md tests 102 lag/block statistics under exact page-wise bigram conditioning; its family-wise upper-tail estimate is 128/321≈0.39875, while a planted lag-11 signal is detected.
 - im-results/lp2-ciphertext-linear-complexity-gate.md excludes direct GF29 LFSR output of order ≤256 (original Berlekamp–Massey complexity 6,478).
 - im-results/lag5-lag6-heldout-conditional-prediction.md finds small held-out predictive dependencies for previously selected motifs, but the predictor is autoregressive over ciphertext and is not an encoder/decryptor or a source-selected clock.
 - sims/longlag_label_invariant_mi.cjs tests the exact 6,395-rune bookend separation with label-invariant MI and planted controls.
-- im-results/lp2-repeated-wordpair-structure.md and the word-boundary equality partition cover the repeated-pair and doublet structure.
+- im-results/lp2-repeated-wordpair-structure.md and the word-boundary equality partition cover repeated-pair and doublet structure.
 
-No statistically robust, source-selected, reversible higher-order clock emerges from these families. The residual uncertainty is not “one more generic lag scan”: nonlinear or variable-state ciphers, hidden transposition/fractionation, external key material, and non-English or binary intermediates remain possible. The decisive missing input is still an independently source-selected key/state and its reversible role.
+No statistically robust, source-selected, reversible higher-order clock emerges from these tested families. The exact remaining uncertainty is: cross-page state, nonlinear or variable-state ciphers, hidden transposition/fractionation, external key material, and non-English or binary intermediates. A generic higher-order statistic cannot resolve those without an independently selected key/state and its reversible role.
 
 ## Reproduction
 
@@ -60,4 +76,4 @@ Run from the repository root:
 
     node sims/lp2_word_boundary_delta_mi.cjs
 
-The script uses Node built-ins and the existing sims/lp2_word_pages.cjs parser. All random seeds and sample counts are fixed in the script. It asserts the source counts and the positive-control detection.
+The script uses Node built-ins and the existing sims/lp2_word_pages.cjs parser. All random seeds and sample counts are fixed. It asserts the corpus counts and both word/line positive-control detections.
