@@ -64,14 +64,34 @@ function polynomialRemainder(values, divisor) {
   }
   return a.slice(0, divisor.length - 1);
 }
-/** All 21 GF(29) monomials in five input symbols, total degree at most two. */
+/**
+ * Full quadratic feature space over an arbitrary number of GP29 inputs.
+ * @param {number[]} values
+ * @returns {number[]}
+ */
 function quadraticFeatures(values) {
   const result = [1, ...values];
-  for (let i = 0; i < 5; i++) {
-    for (let j = i; j < 5; j++) result.push(mod(values[i] * values[j]));
+  for (let i = 0; i < values.length; i++) {
+    for (let j = i; j < values.length; j++) result.push(mod(values[i] * values[j]));
   }
-  assert.equal(result.length, 21);
+  assert.equal(result.length, (values.length + 1) * (values.length + 2) / 2);
   return result;
+}
+/** Canonical GP encoding of a word from the authentic signed 2016 clue. */
+function gpEncode(word) {
+  const alphabet = corpus.translit.map((token, index) =>
+    ({token: token.toLowerCase(), index}))
+    .sort((a, b) => b.token.length - a.token.length);
+  let text = word.toLowerCase().replace(/qu/g, "cw").replace(/k/g, "c")
+    .replace(/v/g, "u").replace(/z/g, "s").replace(/q/g, "c");
+  const out = [];
+  while (text.length > 0) {
+    const match = alphabet.find(v => text.startsWith(v.token));
+    assert.ok(match, "unmappable signed 2016 word: " + word);
+    out.push(match.index);
+    text = text.slice(match.token.length);
+  }
+  return out;
 }
 const translit = indices => indices.map(i => corpus.translit[i]).join("");
 const p27 = corpus.pages[27].indices;
@@ -94,9 +114,21 @@ assert.equal(target.length, 43);
 assert.equal(table.byte_rows.flat().length, 256);
 const byte43 = table.byte_rows.flat().slice(84, 127);
 assert.equal(byte43.length, 43);
+const signed2016 = fs.readFileSync(path.join(root, "resources",
+  "historical", "cicada2016-4gq25-outguess.asc"), "utf8");
+const clearText = signed2016.slice(signed2016.indexOf("Hello."),
+  signed2016.indexOf("-----BEGIN PGP SIGNATURE-----"));
+const signedWords = clearText.match(/(?<![A-Za-z0-9])[A-Za-z]+(?![A-Za-z0-9])/g) || [];
+assert.equal(signedWords.length, 43);
+const signedPrimeSums = signedWords.map(word =>
+  mod(gpEncode(word).reduce((sum, i) => sum + corpus.prime[i], 0)));
+assert.deepEqual(signedPrimeSums, [11,14,0,21,24,1,21,14,4,11,9,26,14,
+  16,27,5,1,14,8,27,0,26,14,1,12,27,5,1,14,18,26,12,26,22,12,14,
+  4,15,3,2,24,14,17]);
 
 const tests = [];
 const quadratics = [];
+const quadraticsWithSources = [];
 const selectors = [];
 for (const layout of ["rows-of-43", "five-tuples"]) {
   for (const encoding of ["ordinal", "prime-residue"]) {
@@ -160,6 +192,39 @@ for (const layout of ["rows-of-43", "five-tuples"]) {
       firstMismatch: {columnOneBased: 22, predicted: predictionsQ[21],
         observed: Y[21]},
       matchesOf43: predictionsQ.filter((value, i) => value === Y[i]).length});
+    // Source-saturated, yet overdetermined, degree<=2 transfer: five p27
+    // row runes + one p50 bracket byte + one 2016 signed word prime sum.
+    // The 43x36 system grants EVERY arbitrary fixed quadratic coefficient.
+    const sourced = X.map((row, i) => quadraticFeatures([
+      ...row, mod(byte43[i]), signedPrimeSums[i]
+    ]));
+    assert.equal(sourced[0].length, 36);
+    const sourceRank = rref(sourced, 36);
+    const sourceAugmented = rref(sourced.map((row, i) => [...row, Y[i]]), 37);
+    assert.equal(sourceRank.rank, 36);
+    assert.equal(sourceAugmented.rank, 37);
+    const sourceFit = rref(sourced.slice(0, 36).map((row, i) =>
+      [...row, Y[i]]), 37);
+    assert.equal(sourceFit.rank, 36);
+    const coefficientsS = Array(36).fill(0);
+    sourceFit.pivots.forEach((col, i) => {
+      coefficientsS[col] = sourceFit.matrix[i][36];
+    });
+    const sourcePredictions = sourced.map(row => mod(row.reduce((sum, val, i) =>
+      sum + val * coefficientsS[i], 0)));
+    const sourceFirstMismatch = sourcePredictions.findIndex((v, i) => v !== Y[i]);
+    assert.ok(sourceFirstMismatch >= 36);
+    const plantedSourceCoefficients = Array.from({length: 36}, (_, i) =>
+      mod(11 * i + 7));
+    const plantedSource = sourced.map(row => mod(row.reduce((sum, val, i) =>
+      sum + val * plantedSourceCoefficients[i], 0)));
+    assert.equal(rref(sourced.map((row, i) => [...row, plantedSource[i]]), 37).rank, 36);
+    quadraticsWithSources.push({layout, encoding, secretCoefficients: 36,
+      rank: sourceRank.rank, augmentedRank: sourceAugmented.rank,
+      firstMismatch: {columnOneBased: sourceFirstMismatch + 1,
+        predicted: sourcePredictions[sourceFirstMismatch],
+        observed: Y[sourceFirstMismatch]},
+      matchesOf43: sourcePredictions.filter((val, i) => val === Y[i]).length});
     const key = byte43.map((value, col) => sample(col, value % 5));
     const candidates = [-1, 1].map(sign => {
       const candidate = target.map((symbol, i) => mod(symbol + sign * key[i]));
@@ -188,11 +253,13 @@ assert.deepEqual(polynomialChecks, {
 });
 assert.equal(tests.length, 8);
 assert.equal(quadratics.length, 4);
+assert.equal(quadraticsWithSources.length, 4);
 assert.equal(selectors.length, 4);
 process.stdout.write(JSON.stringify({source: {
   p27RedTitle: 19, p27BlackBody: 215, p55WordInteriors: 43,
   p50TableBracket: [84, 126], p55DoubleShavedPlusP27Length: 256
 }, allSecretAffineRelation: tests, allSecretQuadraticRelation: quadratics,
+  sevenSourceQuadraticRelation: quadraticsWithSources,
   tableMod5Selector: selectors,
   speculative256HGCheck: polynomialChecks,
-  conclusion: "No exact fixed degree<=2 GF29 polynomial source relation, no intelligible table-selected 43-rune candidate, and no H/G codeword under the frozen 256 concatenation; no LP2 plaintext recovered."}, null, 2) + "\n");
+  conclusion: "No exact fixed degree<=2 GF29 polynomial transfer, even using all seven source-aligned inputs, no intelligible table-selected 43-rune candidate, and no H/G codeword under the frozen 256 concatenation; no LP2 plaintext recovered."}, null, 2) + "\n");
