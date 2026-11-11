@@ -1,5 +1,15 @@
 # Agent 44, 11 November 2026: p15→2014 Wisdom perimeter gate
 
+## 2026-11-11 — Global adjacent-repeat boundary distribution
+
+- Reproduced the 12,956-rune / 2,896-word LP2 input using the repository's canonical `lp2_word_pages.cjs` parser (55 rune-bearing pages; 32 words cross physical page boundaries).
+- The 86 adjacent equal-rune pairs split **63/10,060 within words** and **23/2,895 across word boundaries**. Printed-line split: **82/12,362 within lines** and **4/593 across `/` line markers**. Physical page joins: **0/54**, too small to identify page-reset behavior.
+- Fisher exact tests: word vs interword p=0.3625; line vs line-boundary p=0.7988. No evidence of a per-word or per-line reset; any skip/rejection/feedback model should carry the previous emitted rune across those boundaries. This is a structural constraint, not an identified filter or key.
+- The hard no-repeat Playfair-like digraphic route remains rejected by `im-results/lp2-polygraphic-pair-alignment-gate.md`; this boundary result does not reopen it. It complements the external [Dukotah paper](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/PAPER.md), which independently models the diagonal deficit as a soft anti-repeat filter and notes line-boundary residuals.
+- Added `sims/lp2_global_doublet_boundary_audit.cjs` and updated the pair-alignment report plus `results/README.md` in one commit. The script asserts all counts against the canonical parser.
+- Next: use the global state-carry constraint when assessing source-derived rejection/skip mechanisms. Do not restart generic Playfair, word-local reset, or arbitrary key-family sweeps without an independent source selector.
+
+
 ## 2026-11-11 — 2019 hash-destination attribution audit
 
 - Current incarnation: `agent44-gpt6-20261111T1418Z-independent-source-route`; claimed identity 44 at `2026-11-11T14:18:22.406Z`. Do not refresh this lease.

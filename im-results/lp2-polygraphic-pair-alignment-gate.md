@@ -18,6 +18,27 @@ The canonical parser yields 2,896 words and 32 words crossing physical page boun
 
 There is one apparent escape: **all 62 words containing repeats happen to have their repeated pairs at only one parity within that word**. If a separate phase is freely selected for every word, zero events are forced inside pairs. This is not an independent solution: the phase is selected from the ciphertext being explained, no original clue specifies 2,896 word phases, and the standard word-start convention is abandoned. It is a post-selected accommodation, not a source-derived mechanism.
 
+## Global boundary distribution of the 86 residual doublets
+
+The existing pair gate records **63** equal adjacent pairs inside canonical words. The remaining **23** occur across canonical word boundaries. Recounting the continuous 12,956-rune stream with the repository's exact `lp2_word_pages.cjs` segmentation gives:
+
+| Context | Equal pairs | Adjacent transitions | Rate |
+|---|---:|---:|---:|
+| Within canonical words | 63 | 10,060 | 0.626% |
+| Across canonical word boundaries | 23 | 2,895 | 0.794% |
+| Within printed lines | 82 | 12,362 | 0.663% |
+| Across `/` line markers | 4 | 593 | 0.675% |
+| Within physical pages | 86 | 12,901 | 0.667% |
+| Across physical page joins | 0 | 54 | 0.000% |
+
+Fisher exact tests find no detectable difference between within-word and interword repeat rates (`p = 0.3625`), or between within-line and line-boundary rates (`p = 0.7988`). The observed deficit therefore is **not supported as a per-word or per-line reset**. This does not prove the rates are identical; it means the boundary split does not distinguish them. The 0/54 page-join result is underpowered (a global rate of 86/12,955 predicts only 0.36 repeats there), so page-reset behavior remains unresolved.
+
+An independent [Dukotah analysis](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/PAPER.md) models the diagonal deficit as a soft anti-repeat filter and notes that 4 of 86 residual doublets cross printed-line boundaries. This audit reproduces that LP2-only line-boundary count and adds the word-boundary split. The filter remains a **phenomenological hypothesis**, not a source-identified operation.
+
+**Decoder implication:** any rejection, skip, or feedback inverse that models this repeat deficit should carry the previous emitted rune across canonical word and printed-line boundaries. Do not reset its anti-repeat state at each word or line. No conclusion about a page reset follows from the 54 page joins. The result constrains state handling; it does not recover plaintext, a key, or a complete cipher.
+
+Reproduce with `node sims/lp2_global_doublet_boundary_audit.cjs`. The script imports the canonical word parser, asserts the 12,956-rune / 2,896-word / 32-cross-page-word input contract, and emits all counts above. The boundary split is conditional on the checked-in transcription/parser; it is not a new independent visual transcription of the JPEGs.
+
 ## Why the visible squares do not select Playfair
 
 A human solver could reasonably notice the numeric square imagery and consider a square-based cipher. The actual candidate artifacts do not provide a keyed 29-symbol digraphic square:
@@ -52,4 +73,4 @@ The script reads the canonical `resources/liber-primus/lp2-corpus.json` and shar
 
 A successor would first need an independent source instruction that fixes the 29-symbol mapping, digraph phase/reset, key square or key-generation rule, and treatment of repeated plaintext letters/fillers. It must then make a frozen rune-level prediction on original LP2 ciphertext. Without that input, the polygraphic route is an architecture gap, not an actionable decryption candidate.
 
-No change to `results/README.md` is warranted: this is a bounded intermediate negative, not an established plaintext or cipher mechanism.
+Update `results/README.md` with the global word/line-boundary distribution: it refines the interpretation of the established repeat anomaly but remains a structural constraint, not a plaintext or identified cipher mechanism.
