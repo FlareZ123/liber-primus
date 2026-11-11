@@ -47,6 +47,18 @@ To calibrate the register of ordinary GP29-encoded prose, the SFT uses the repos
 
 All **89** measured windows fall below even the nine-section source lower bound. The narrowest gap is \(4.42957231-4.28909395=0.14047836\) bits/rune. Any stationary predecessor-feedback permutation with these resets would necessarily decode the original into a GP29 sequence whose empirical marginal entropy is higher than every sampled native-English control. Merely choosing a cleverer secret 29×29 table, nonlinear row entries, or nine unrelated secret tables cannot repair this invariant.
 
+## Minimum additional changing-state information
+
+There is also a quantitative implication for any more powerful deterministic rune converter \(C_i=f(P_i,S_i,T_i)\), where \(T_i\) is the tested *public* predecessor/clock state and \(S_i\) is additional unseen or changing cipher state. The chain-rule bound on the empirical joint sequence is
+
+\[
+H_{\rm emp}(C_i\mid T_i)\le H_{\rm emp}(P_i)+H_{\rm emp}(S_i\mid T_i).
+\]
+
+Thus, **conditional on the highest 4.28909395-bit marginal entropy seen among the 89 native-GP controls**, the original global previous-ciphertext model requires at least **0.49621279 bits/rune of additional conditional state variation**. Even after revealing a public eight-step global clock, a model still needs at least **0.13267365 bits/rune of further conditional state variation** to reach this language register; the corresponding word-reset period-eight requirement is **0.15009345 bits/rune**. The nine-section independently keyed model requires at least **0.14047837 bits/rune** beyond its stated source-section/previous-ciphertext state.
+
+These are **empirical state-distribution lower bounds**, **not per-rune fresh secret entropy, computational key lengths, or evidence that the cipher uses particular states**: a short seed with deterministic evolution can produce conditional variation across positions. They quantify what a proposed evolving-state mechanism must supply to escape the simpler arbitrary-key exclusion.
+
 ## Arbitrary hidden alphabet per repeating clock phase
 
 The same exact invariant applies when the key depends on the preceding ciphertext rune **and** a known public phase \(t\bmod k\): \(S_i=(C_{i-1},t\bmod k)\). Each of the \(29k\) states is allowed a completely unrelated secret GP29 permutation. The repeated clock can advance continuously over the 12,956-rune book or restart at the original page boundary. Source-suggested five and seven phases match the sizes of the earlier round's original 5×5 and 7×7 magic-square clues; they are candidates, not verified LP2 clock instructions.
