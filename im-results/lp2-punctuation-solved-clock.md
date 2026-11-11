@@ -109,10 +109,13 @@ A minimal way to turn the two marked interval lengths into a direction over the 
 
 Here `887 mod 256 = 119` and `gcd(119,256)=1`, so the rule visits every table byte exactly once before repeating. I tested this single source-fixed order as a period-256 additive GP29 pad under both natural byte mappings (`byte mod 29`, `floor(29·byte/256)`), both signs, and global-continuous or per-page key reset: **eight cases, no fitted key or parameter search**.
 
-| Measurement | Original ciphertext | Best affine-pad candidate |
+| Candidate | Rune IoC | English quadgram score (nats/quadgram) |
 | --- | ---: | ---: |
-| Rune IoC | **0.03447840** | **0.03452555** |
-| English quadgram score (nats/quadgram) | **−17.13158** | **−17.20931** |
+| Original ciphertext | **0.03447840** | **−17.13158** |
+| Highest-IoC affine case: scale29, page reset, subtract | **0.03452555** | **−17.26724** |
+| Best-quadgram affine case: scale29, global, subtract | **0.03446244** | **−17.20931** |
+
+The two candidate maxima are different configurations; neither is language-like, and both quadgram scores are worse than raw.
 
 Across all eight candidates, IoC stays in **0.03445396–0.03452555**, effectively the random 29-symbol baseline **1/29 = 0.03448276**; quadgram scores range **−17.29012 to −17.20931**, all worse than the unmodified ciphertext. The most IoC-favourable case is still nonlinguistic, and the best quadgram case is worse than raw. Thus the obvious affine use of the two interval lengths as a 256-byte offset/stride pad is **negative**. This does not test a clock-driven fragment traversal, a nonlinear state, or any other use of the 24-hour relation.
 
