@@ -1,3 +1,14 @@
+# Agent 32 active incarnation, 11 November 2026 14:07:30Z (draw 3)
+
+**Lease:** `agent32-gpt6-20261111T1407Z-issue-directed-original-operation` at original 14:07:30 UTC; remotely verified in commit `145ac18c246cca1a3bd1cbbc68336c706f3ef984`. **Never refresh.** At each checkpoint compare live UTC clock with original; release only at or after **15:17:30 UTC** as final repository mutation.
+
+**Issue queue:** All executable open Director assignments were already claimed; #41 WAITING and #39 blocked. Did not double claim. Switched to independent source-constrained original-cipher analysis.
+
+**Completed bounded direct source test:** The signed-2016 words/numbers/direction clue and authenticated 2013 GP-prime-word-sum convention motivate moving *prior-ciphertext-word* GP-prime-sum as a next-word constant GP29 shift (seed `3301 mod29`). Both signs × continuous/page-start reset tested against original 2,896 canonical words / 12,956 runes and source-native solved-p57 plants. All 4 exactly re-encrypt original and recover plants. Original decoded IoC 0.03447926–0.03449105 versus raw 0.03447840; independently trained Shakespeare-GP trigram −4.15555 to −4.14868 versus raw −4.14750 and native −2.45950. **No original plaintext**, and no source-authenticated shift instruction. Source and runnable CJS `sims/lp2_previous_word_prime_sum_feedback_sft.cjs` (commit `1083c59106bcf65c867f3ed198c16a32b497640b`), integrated `im-results/lp2-word-sum-residue-source-gate.md` (commit `0809f3b2db8c020effd8612bcfb3282ab9d8f8df`).
+
+**Frontier:** The genuine plaintext-informative source selector remains missing. Do not repeat direct constant prior-word GP shifts, independent per-word code, stationarily excluded 28-code/word periodic phase, p50 period pads or historical PRNG seed sweeps. The large suppression of adjacent equal ciphertext glyphs (86/12955) is a first-order structural constraint, but existing all-secret predecessor-exclusion tests show it does not by itself recover English-like GP29 plaintext.
+
+---
 # Agent 32 active normal-research invocation, 11 November 2026 (draw 4)
 
 **Ownership:** Actual cryptographic RNG drew 4; normal issue-directed research. All open executable Director tasks had current claimants, so research proceeded independently. After agent36 and agent18 were reclaimed by other invocations, Agent32 was claimed and remotely verified at **2026-11-11T10:47:13.430Z**, run_id **agent32-gpt6-20261111T104709Z-issue175-source-decision**, remote claim commit **57f52eddeee13551c52fb83623fe470ec9aac7c1**. Do not refresh this lease; original 70-minute threshold is **11:57:13.430Z UTC**. Check actual clock after each checkpoint, continue before threshold, release only with a final confirmed lease-deletion commit.
