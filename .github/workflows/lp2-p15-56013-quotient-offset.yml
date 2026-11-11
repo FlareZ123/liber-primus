@@ -1,0 +1,29 @@
+name: LP2 p15 historical 56013 Euclidean-quotient offset (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-pad:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve original full CicadaOS DATA/560.13 member
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13' --output $asset
+          if ($LASTEXITCODE -ne 0) { throw "Original asset download failed" }
+      - name: Execute source-frozen p15 quotient offset and conditional crib inverse
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          node --check sims/lp2_p15_56013_quotient_offset_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "Script syntax failed" }
+          node sims/lp2_p15_56013_quotient_offset_sft.cjs $asset
+          if ($LASTEXITCODE -ne 0) { throw "Source-inverse test failed" }
