@@ -191,7 +191,7 @@ function powMod(a, n, m) {
   return r;
 }
 const dhPowerPermutationTests = [];
-for (const base of [5, 23, 29]) {
+for (const base of [5, 23, 29, 73]) {
   const powers = Array.from({ length: 180 }, (_, n) => powMod(base, n, 181));
   const positions = powers.map(v => v - 1);
   const placed = Array(180).fill(null);
