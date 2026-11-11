@@ -44,6 +44,8 @@ The independently documented [CicadaOS `560.13` prefix](../resources/derived/cic
 
 The original same-section ciphertext has IoC **0.03449490**. The period-native XOR operations fail to produce ordinary ASCII. All four ordinary modulo-29 transfers remain ciphertext-like, with no language or known-key recovery. This retires these *specific* serializations of the strongest independent-offset transfer, without excluding a different cipher architecture using the same file.
 
+**Combined grid-offset key test.** Instead of consuming sequential file bytes, read exactly the sixteen `560.13` bytes at the source grid's underlying prime offsets and repeat that 16-byte key from the beginning of the same 1,894-rune section. This is the most literal direct way to combine the numeric square, selected historical dataset and following encrypted text without an unknown phase. For GP29 subtraction/addition with each byte reduced modulo29, original IoCs are **0.03460646 / 0.03457411**. For bytes scaled by floor(29×byte/256), original IoCs are **0.03439951 / 0.03469181**. All four streams remain nonlinguistic; none separates meaningfully from the unchanged 0.03449490 ciphertext. These results also retire this exact periodic sixteen-byte extraction.
+
 **Secondary speculative lower-heading-offset transfer.** For comparison, use the lower p15 red heading's modulo-3301 remainder **2293** as a proposed source-pad offset. This is less independently motivated than historical offset12821. Test the **139 original p15 body runes after both red headings** as a short diagnostic:
 
 | Fixed original-input operation | Observed result |
