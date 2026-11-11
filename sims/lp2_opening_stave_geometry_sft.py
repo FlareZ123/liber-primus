@@ -104,6 +104,47 @@ def major_projection_rows(image: np.ndarray, rotation: int = 0) -> list[int]:
     return sorted(selected)
 
 
+
+def branch_side_peaks(image: np.ndarray, side: str, min_peak: float = 80.0) -> list[tuple[int, float]]:
+    """Measure prominent lateral branch groups on one side of the main stave.
+
+    The stave centre is the column with the largest vertical dark-pixel count.
+    For each row, measure lateral extent beyond an 8 px shaft margin, smooth
+    with sigma=15 px, then report separated local maxima above min_peak.
+    This is a descriptive image measurement; the historical 3|3 mapping is
+    evaluated separately and is not used to choose the peaks.
+    """
+    if side not in ("left", "right"):
+        raise ValueError("side must be left or right")
+    dark = image < 100
+    center = int(np.argmax(dark.sum(axis=0)))
+    extents = []
+    for row in dark:
+        xs = np.flatnonzero(row)
+        if side == "left":
+            xs = xs[xs < center - 8]
+            extent = center - int(xs.min()) if len(xs) else 0
+        else:
+            xs = xs[xs > center + 8]
+            extent = int(xs.max()) - center if len(xs) else 0
+        extents.append(extent)
+    smoothed = cv2.GaussianBlur(
+        np.asarray(extents, dtype=np.float32).reshape(-1, 1),
+        (1, 91), 0, sigmaY=15,
+    ).ravel()
+    candidates = [
+        i for i in range(1, len(smoothed) - 1)
+        if smoothed[i] >= smoothed[i - 1]
+        and smoothed[i] > smoothed[i + 1]
+        and smoothed[i] > min_peak
+    ]
+    selected = []
+    for point in sorted(candidates, key=lambda i: smoothed[i], reverse=True):
+        if all(abs(point - prior) >= 80 for prior in selected):
+            selected.append(point)
+    return [(point, round(float(smoothed[point]), 1)) for point in sorted(selected)]
+
+
 def main() -> None:
     root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("resources/liber-primus")
     crops = read_rois(root)
@@ -145,8 +186,19 @@ def main() -> None:
         print(f"three dominant transverse projections {name}: {points}")
         assert len(points) == 3
 
-    print("PASS: pp0–2 reuse one left/right stave pair; the pair is the same template at 180°; p0 and p22 each show three dominant projections.")
-    print("The count may cue a three-rune node, but it does not establish an Ogham transcription, grid, or path.")
+    print("p0 stave side-branch profiles (threshold 80; shaft at max vertical projection):")
+    for name in ("p0-left", "p0-right"):
+        for side in ("left", "right"):
+            peaks = branch_side_peaks(crops[name], side, min_peak=80)
+            print(f"  {name} {side}: {peaks}")
+            assert len(peaks) == 3
+        for threshold in (85, 90):
+            for side in ("left", "right"):
+                peaks = branch_side_peaks(crops[name], side, min_peak=threshold)
+                assert len(peaks) == 3, (name, side, threshold, peaks)
+
+    print("PASS: pp0–2 reuse one left/right stave pair; the pair is the same template at 180°; both p0 staves have 3|3 side-branch counts at thresholds 80, 85 and 90.")
+    print("This makes a twig/cipher-rune reading testable; the script does not hard-code a rune mapping.")
 
 
 if __name__ == "__main__":
