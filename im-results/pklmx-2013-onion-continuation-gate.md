@@ -102,21 +102,25 @@ With the archived extracted bytes, that value XORs to erwfcsdvx6pm2rsk.onion. Th
 
 Raw ISO limitation: the current Liber Primus repository does not contain DATA/560.13 or DATA/560.17, and I did not independently re-extract these slices from the 3301.iso container in this run. The krisyotam archive's ShamirSolve.php reads those exact DATA files, converts them to hex, slices at offset*2, and XORs; its extraction table preserves the resulting byte slices. Its download script pins the 3301.iso MD5 as 74062dee4093c6ca0340cda23f0e994b. A separate recovery note records DATA/560.13 as 118,818,811 bytes with SHA-256 db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f. These are secondary-source checksums, not checksums independently recomputed here. The script accepts --iso-dir to verify the raw slices when those files are available.
 
-### Shamir reconstruction and the authenticated outlier
+### Shamir reconstruction: decimal share IDs and full consistency
 
-The seven community-table share values have IDs 02, 03, 05, 07, 08, 09, and 10. The signed share messages preserved in the iBotPeaches archive are 03, 09, and 10. I verified all three clear-signatures locally against the repository's Cicada key (fingerprint 6D854CD7933322A601C3286D181F01E57A35090F); share 03 and share 10 were signed at 2013-01-15 20:05:42 UTC, share 09 at 20:05:44 UTC. Share 10 is therefore authenticated material, not an unsigned transcription.
+The seven community-table share values have IDs 02, 03, 05, 07, 08, 09, and 10. The signed share messages preserved in the iBotPeaches archive are 03, 09, and 10. I verified all three clear-signatures locally against the repository's Cicada key (fingerprint 6D854CD7933322A601C3286D181F01E57A35090F); share 03 and share 10 were signed at 2013-01-15 20:05:42 UTC, share 09 at 20:05:44 UTC.
 
-I implemented the relevant ssss 0.5 combine path independently. The source is [osresearch/ssss, ssss.c blob 0955e250971da324412fdc8454888881df9d3411](https://github.com/osresearch/ssss/blob/0955e250971da324412fdc8454888881df9d3411/ssss.c). The 44-hex-character share payloads imply a 176-bit field. The source's irreducible-coefficient entries at indices 63–65 are 11, 3, and 2, giving x^176 + x^11 + x^3 + x^2 + 1. Its split polynomial is monic of degree threshold; combine removes the known x^threshold term before interpolation. The default diffusion is the 40-pass sliding 64-bit XTEA layer. The reproduction implements the same field, byte order, monic term, and inverse diffusion.
+**Important correction to the first reconstruction:** SSSS share identifiers are decimal, not hexadecimal. The pinned ssss 0.5 source parses the identifier with atoi(), so the label “10” means decimal x=10, not hexadecimal x=16. The first version of this report and script incorrectly parsed it as base 16 and falsely classified share 10 as inconsistent. The corrected implementation parses decimal IDs.
 
-Result: IDs 02, 03, 05, 07, 08, and 09 are mutually consistent. All six five-share subsets drawn from those six IDs recover exactly:
+The implementation follows [osresearch/ssss, ssss.c blob 0955e250971da324412fdc8454888881df9d3411](https://github.com/osresearch/ssss/blob/0955e250971da324412fdc8454888881df9d3411/ssss.c). The 44-hex-character share payloads imply a 176-bit field. The source's irreducible-coefficient entries at indices 63–65 are 11, 3, and 2, giving x^176 + x^11 + x^3 + x^2 + 1. Its split polynomial is monic of degree threshold; combine removes the known x^threshold term before interpolation. The default diffusion is the 40-pass sliding 64-bit XTEA layer. The reproduction implements the same field, byte order, monic term, decimal share coordinates, and inverse diffusion.
+
+Result: all seven observed shares (02, 03, 05, 07, 08, 09, 10) are mutually consistent. Every five-share subset recovers exactly:
 
 ~~~text
 p7amjopgric7dfdi.onion
 ~~~
 
-No five-share subset containing ID 10 recovers that secret (0 of 15 subsets). This does not establish why share 10 differs: it could be a deliberate outlier, a share from another set, or a source-level anomaly. Do not call it forged; its PGP signature is valid. Of the three surviving signed share messages, 03 and 09 fit the recovered set and 10 does not. The other four values are community-table evidence, not PGP-authenticated messages in the archives inspected.
+That is **21/21** five-share subsets. Share 10 is not an outlier; its valid PGP signature and its numerical value both fit the same threshold-5 reconstruction. The other four share values are community-table evidence, not PGP-authenticated messages in the archives inspected.
 
-The participant archive's shares.txt order is 02, 03, 05, 08, 09, 10: it omits 07 and appends 10. Its first five shares recover the same secret. The ssss 0.5 combine implementation reads exactly threshold share records, so the sixth line is not consumed. A separate walkthrough uses 05, 07, 09, 03, 02 and also recovers the secret. Thus the archived successful command did not test share 10; exhaustive subset testing reveals the outlier.
+The participant archive's shares.txt order is 02, 03, 05, 08, 09, 10: it omits 07 and appends 10. Its first five shares recover the same secret. The ssss 0.5 combine implementation reads exactly threshold share records, so the sixth line is not consumed by that invocation; this is merely input behavior, not evidence against share 10. A separate walkthrough uses 05, 07, 09, 03, 02 and also recovers the secret.
+
+The participant walkthrough describes a 10-share split with threshold 5. This archive preserves seven IDs; if the original set was numbered sequentially 01–10, IDs 01, 04, and 06 are not represented in the table inspected here. Their absence does not prevent reconstruction from the seven available shares.
 
 The preserved reconstruct.sh invokes ssss-combine with -t 5 -r. That -r flag is not accepted by the pinned upstream 0.5 source's option parser, so this exact shell command is version/fork-dependent or erroneous. The independent walkthrough's plain ssss-combine -t 5 command is reproduced by the script. Do not let this CLI discrepancy obscure the reproduced secret.
 
@@ -156,20 +160,20 @@ Run:
 python3 sims/2013_pklmx_reproduce.py
 ~~~
 
-The script verifies the seven Gematria-derived access codes (flagging the Little Rock mismatch), all seven XOR outputs against the archived extracted-byte column, the Annapolis transcription error, and all 21 five-share combinations. It prints 6/6 matching subsets from IDs 02,03,05,07,08,09 and 0/15 matches among subsets containing signed share 10. Pass --iso-dir with the extracted DATA directory to additionally check the raw ISO slices.
+The script verifies the seven Gematria-derived access codes (flagging the Little Rock mismatch), all seven XOR outputs against the archived extracted-byte column, the Annapolis transcription error, and all 21 five-share combinations from the seven observed decimal IDs. It prints 21/21 matching subsets, including those containing share 10. Pass --iso-dir with the extracted DATA directory to additionally check the raw ISO slices.
 
 The human solve path is unusually explicit: a signed “standby for coordinates” instruction; GPS coordinates; physical posters; Gematria Primus values; phone IVR fields labelled dataset/offset/data; byte-offset XOR; a named Shamir scheme; then a 19-question screening stage and a small, explicit TCP protocol. This is good historical evidence for the maintainer's clue-constrained, human-player model. It is not evidence that LP2 uses this same pipeline, that the 2013 share 10 is an LP2 key, or that p7amjopgric7dfdi.onion is the manuscript's destination.
 
 ## Remaining historical uncertainties
 
-- The authenticated share 10 is outside the recovered 5-of-10 polynomial. Its intended role is unresolved; the present evidence does not distinguish a deliberate decoy, a second share set, or an archive-level mismatch.
+- The participant walkthrough describes ten total shares, but the inspected archive preserves seven decimal IDs. If IDs run 01–10, 01, 04, and 06 are absent; the seven observed shares are all mutually consistent.
 - The Little Rock LM value is 7371 by the independently documented GP mapping, while the participant README says 7167.
 - The Annapolis hex is inconsistent in the README and all.txt; the corrected ShamirSolve.php value is the one that yields the published onion address and a consistent share.
 - The Arkansas/Little Rock poster photograph contains a small QR code at the lower left. Its payload is not decoded in the preserved notes or this run.
 - The original DATA/560.13 and DATA/560.17 files are not present in the current repository; the XOR stage is reproduced from archived extraction bytes, not freshly re-extracted from the ISO.
 - The 19-question images and email wrapper remain community/leak evidence, not signed Cicada material.
 
-**Closure:** this is a completed historical reconstruction task. No LP2 cipher successor is justified by these findings. If the Director considers the signed share-10 outlier worth pursuing, it should be a separate bounded historical-source decision, not an LP2 key hunt.
+**Closure:** this is a completed historical reconstruction task. No LP2 cipher successor is justified by these findings. If the Director wants further historical work, recovering the three absent share records (if they survive) is a bounded source-acquisition question, not an LP2 key hunt.
 
 
 ## Cryptanalytic disposition
