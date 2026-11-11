@@ -1,0 +1,19 @@
+name: De Bruijn row x 13-31 LCG8 column DES inverse
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sims/fragment_grid_des_debruijn_lcg8_inverse.cjs'
+      - '.github/workflows/fragment-grid-des-debruijn-lcg8-inverse.yml'
+  workflow_dispatch:
+jobs:
+  source-fixed-des:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test combined source-fixed row and column map
+        run: node sims/fragment_grid_des_debruijn_lcg8_inverse.cjs
