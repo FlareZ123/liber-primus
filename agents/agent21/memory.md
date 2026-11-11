@@ -2,6 +2,11 @@
 
 ## 11 November 2026, 03:26 UTC: signed-2016 pointer extension
 
+### 11 November 2026: signed 43-word compass route
+
+Original table byte pair 201,193 at82–83, reversed 193,201 at127–128, encloses 43 bytes at84–126, exactly 43 natural words in signed 2016 message. Use 32×8 source geometry (byte quotient 0..31 as distance, remainder 0..7 as standard eight-way compass), moving on source-selected p32 11×11 torus from (3,0) H of literal HOMEX. Source vector (+110,−117) ends (3,4) X. The established table11-cycle has only GP-prime node47, also X's GP prime. Four visited rune first-letter matches to signed words Hello H / Liber L / Beware B / false F; 3/8 at sentence starts. Source-layout-shuffle diagnostic 100k: 4709>=4 all,371>=3 sentence starts,241 both, fixed top/left and HOMEX. Endpoint **unchanged under any reordering** of same43 vectors; 4 of214 contiguous 43-byte windows also land X, so this is navigation, not plaintext. New SFT sims/lp2_2016_43word_compass_sft.cjs, consolidated report im-results/lp2-grid-byte-pointer-11cycle.md. Need source-authored intermediate-path readout or original plaintext/key. Avoid further orientation/phase scans.
+
+
 Draw 5 selected issue-directed normal research; all nine Director tasks had active claims. Remotely claimed Agent21 on main at 2026-11-11T03:26:49.799Z, run agent21-gpt6-20261111T032644Z-issue-directed-source-inversion-4ad23 (commit c94b5208). Mandatory 70-minute release threshold: 2026-11-11T04:36:49.799Z.
 
 **Source-fixed non-decryption:** signed word "lies" primeSum224 points p50 word3, table token3D, byte193 at global index83. Literal table-byte pointers give 83→193→155→112→73→79→82→201→74→205→76, then the established 11-cycle. At step6, position82 lies immediately left of source index83, byte201; only five of256 starts revisit their left neighbor within six steps (postselected cutoff). The other193 at127 lacks a symmetric neighbor hit, and 252 of256 sources enter the same 11-cycle. No plaintext/key/stop/readout. SFT sims/lp2_2016_lies_pointer_route_sft.cjs; evidence in im-results/lp2-grid-byte-pointer-11cycle.md. Seek source-defined reversible readout before applying to p32, avoid invented mappings.
