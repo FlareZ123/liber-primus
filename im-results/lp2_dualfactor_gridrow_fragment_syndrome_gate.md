@@ -27,6 +27,12 @@ The first row's H syndrome is `[19,8]`, while its first 13-rune fragment has `[1
 
 The deterministic [CommonJS reproducer](../sims/lp2_dualfactor_gridrow_fragment_syndrome_sft.cjs) loads the current canonical original byte table, complete 13,136-rune corpus and original marker inventory, includes **all** 31 events and both empty fragments, checks both global factors, computes every original syndrome and verifies the positive and wrong-row controls.
 
+## Source-layout orientation: a positive selector for row-major algebra
+
+The same two independently selected polynomial checks distinguish the two literal ways to serialize the **32×8 printed source grid**. All 256 bytes read in ordinary row-major order give both exact zero syndromes; column-major serialization gives **H=[28,28], G=[1,21], HG=[9,7,5,5]**. Testing each of the eight 32-byte source columns separately also yields nonzero H and G syndromes in every column. This is an exact, source-bounded positive observation: the H/G checksum identity is **specific to the natural printed row-major serialization**, and it does not survive the competing vertical table read. The code asserts the original bytes and these values.
+
+The result supports choosing row-major for subsequent polynomial investigations but says nothing yet about mapping rows to ciphertext, since the direct 32-row fragment gate above is negative. It is not evidence of an independently hidden plaintext.
+
 ## Independent terminal 256-rune codeword test
 
 The original manuscript also offers a conspicuous, source-fixed **256-to-256 size equality**: terminal p55 has 76 runes, solved p56 has 85, and solved p57 has 95. Thus the contiguous terminal three-page sequence is exactly **256 GP29 runes**, the same width as the numerical table's 256 bytes. The simplest cross-object algebraic prediction is that the terminal rune polynomial carries the same source H/G factors as the numeric table.
