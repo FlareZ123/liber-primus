@@ -321,8 +321,6 @@ const invariantRows = testerCandidates.map((exponent) => {
   };
 });
 const invariantMatches = invariantRows.filter((r) =>
-  r.coordinateSum === toyDh.modulus &&
-  r.coordinateProduct === toyDh.clientPrivate &&
   r.trace === toyDh.generator &&
   r.norm === toyDh.shared
 );
@@ -335,6 +333,10 @@ assert.deepEqual(invariantMatches, [{
   trace: 5,
   norm: 2,
 }]);
+// Secondary checks were not used to select the candidate.
+assert.equal(invariantMatches[0].w[0], toyDh.serverPrivate);
+assert.equal(invariantMatches[0].coordinateSum, toyDh.modulus);
+assert.equal(invariantMatches[0].coordinateProduct, toyDh.clientPrivate);
 
 const selectedExponent = invariantMatches[0].exponent;
 const selectedFieldExponent = invariantMatches[0].exponentMod840;
@@ -411,7 +413,12 @@ console.log(JSON.stringify({
     inverseFieldExponent: selectedInverseExponent,
     base29Digits: base29Digits(selectedExponent),
     fieldElement: invariantMatches[0].w,
-    toyDhReconstruction: invariantMatches[0],
+    selectionCriterion: { trace: toyDh.generator, norm: toyDh.shared },
+    secondaryChecks: {
+      firstCoordinate: invariantMatches[0].w[0],
+      coordinateSum: invariantMatches[0].coordinateSum,
+      coordinateProduct: invariantMatches[0].coordinateProduct,
+    },
   },
   candidateResults,
   selectedBase29Additive,
