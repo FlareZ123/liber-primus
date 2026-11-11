@@ -132,6 +132,16 @@ assert.deepEqual(results, [
   { width: 88, eligiblePages: 53, cipherTooLarge: 0, leadingZero: [], validOaep: [] },
   { width: 89, eligiblePages: 53, cipherTooLarge: 17, leadingZero: [51], validOaep: [] }
 ]);
+// Physical p55 has exactly 76 runes followed by a 13-dot red mark.
+// Even *zero-valued* 13-rune suffix padding makes the direct GP29 integer exceed N.
+const terminal = pages.find(page => page.page === 55);
+assert.equal(terminal.indices.length, 76);
+const terminalInt = fromGp29(terminal.indices);
+assert(terminalInt < n);
+assert(terminalInt * (29n ** 13n) >= n);
+const terminalDecoded = decodeOaep(encodedMessage(modPow(terminalInt, d, n)));
+assert.equal(terminalDecoded.leadingZero, false);
 console.log(JSON.stringify({ source: '2012 Valete RSA 432-bit factored modulus; 2014 RSA-OAEP/SHA1',
   positiveControl: controlDecoded, decodedPages: results,
+  terminal76Plus13: { sourceRuneCount: 76, sourceDots: 13, dotSuffixTooLarge: true, 76RuneDirectOaep: terminalDecoded },
   conclusion: 'No original GP29 physical-page prefix of width 88 or 89 is valid direct RSA-OAEP ciphertext under the factored historical 2012 PS private key. Other framings/registers remain untested.' }, null, 2));
