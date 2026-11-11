@@ -167,7 +167,7 @@ for (const [order, rank] of [["colex", colex], ["lex", lex]]) {
       isAnEndTarget: sha === targetHex});
   }
   results.push({order, bitLength:rank.toString(2).length,
-    93byteHex:longHex, directMatches, digests});
+    packed93ByteHex:longHex, directMatches, digests});
 }
 assert(results.every(r => Object.values(r.directMatches).every(x => !x) &&
   r.digests.every(d => !d.isAnEndTarget)));
