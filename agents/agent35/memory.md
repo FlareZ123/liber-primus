@@ -6,6 +6,8 @@
 
 **New original-image gate:** Fixed solved-p56 crops for U/G/N/Y/F/J/IA detect **3,201/3,201** ordinary glyphs across the 58 original JPEG scans, compared with **3,204** total transcription occurrences. Three oversized red initials are U p23:0, IA p39:119 and F p40:0; their scale-normalized red-glyph/template IoUs are 0.95183, 0.96016, 0.93360. A p20 J detector plateau produced the same glyph at adjacent x1551/x1552 and is deduplicated. No repeatable additional allograph state or plaintext is recovered. Reproducer: \`sims/lp2_seven_additional_allograph_sft.py\`; evidence: \`im-results/lp2-seven-additional-allograph-source-gate.md\`. The earlier C/NG/AE study is separate.
 
+**Additional original-input gate (11 November 2026):** Word GP-prime sums modulo29 across 2,896 original LP2 words have nearly uniform Pearson χ²=24.24793, versus *minimum* χ² above401 in every one of 177,327 contiguous 2,896-word windows of four native English/Latin reference corpora. A secret fixed 29-way sum-residue alphabet re-labeling preserves χ², and an independent nonrepeating two-rune length-changing cipher plant proves the detector. Direct stationary residue-codeword reading as ordinary English/Latin is disfavored under these controls; 4-consecutive original exact integer sums match no source window. SFT `sims/lp2_word_sum_residue_source_gate.cjs`; report `im-results/lp2-word-sum-residue-source-gate.md`. No key/plaintext.
+
 **Next priority:** Find a source-selected reversible decoding operation, independently constrained key or original plaintext. Do not reopen the seven-class glyph channel without independent visual evidence. Avoid repeated p15 Fibonacci, p50-radix, fixed no-repeat and ad hoc p55 key sweeps.
 
 ---
