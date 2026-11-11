@@ -1,0 +1,19 @@
+name: p56 Onion5 post-page hash gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "sims/p56_onion5_post_hash_gate.py"
+      - ".github/workflows/p56-onion5-post-hash-gate.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  source-hash:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Hash exact archived Onion5 page snapshots
+        run: python3 sims/p56_onion5_post_hash_gate.py
