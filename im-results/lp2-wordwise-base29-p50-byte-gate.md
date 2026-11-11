@@ -1,0 +1,35 @@
+# Canonical LP2 word values as a direct byte channel through the 256-cell table
+
+**Decision (11 November 2026):** The exact big-endian GP29 word-value → low byte and word-value → printed 256-cell table byte transports produce no coherent English instruction on original LP2. Both mappings pass planted-text controls. This is a **bounded negative** of two direct source-motivated readings, with no recovered plaintext, key, or reversible original-rune cipher. The table's base60 byte interpretation and the word-value modulo operation remain hypotheses.
+
+## Source and prospective human operation
+
+The authentic 26 January 2013 Cicada TCP specification [documents BASE29 numeral conversion](../resources/external/2013-tcp-server-signed-source.md), and LP2 supplies a 29-rune alphabet with printed word delimiters and a visually explicit **32×8 table** across physical pp49–51. The original signed 2016 message also invites treating the manuscript's words as a map and their numbers as directions, although it does not instruct this byte conversion. An economical possible player operation is to read one table address or character for each canonical printed word.
+
+The source does **not** select whether a word is a base29 integer, why its low byte should be retained, or why the p50 numbers should be treated as a byte-substitution table. In particular the source-led logic is a plausible finite trial, not an authorial instruction or an encrypted-text decoding algorithm.
+
+## Fixed test, before original output inspection
+
+- Read the canonical [58-page GP index corpus](../resources/liber-primus/lp2-corpus.json) and [original continuous word transcription](../resources/liber-primus/lp2-transcription.txt) through the established [word parser](../sims/lp2_word_pages.cjs), preserving words that cross original page/line boundaries. Use exactly **2,896** words and **12,956** unknown ciphertext runes; runeless physical p50 is a grid source, not a word-bearing ciphertext page.
+- For each original word with GP indices `d_0 … d_(L−1)`, compute its big-endian base29 integer `V = Σ d_i·29^(L−1−i)` using unbounded precision.
+- **Transport A:** emit `V mod 256` as one byte.
+- **Transport B:** treat `V mod 256` as a zero-based address into the actual source-order **256** base60-decoded table bytes (10+13+9 printed rows). Emit that selected byte.
+- Preserve source word order; keep byte offset zero at word zero. No shifted phases, guessed passwords, alphabet relabeling, re-segmentation, rescoring of alternative starts, or arbitrary address operations.
+- Use exact positive controls: fresh two-rune base29 words carrying ASCII **HI** decode under Transport A; table-address rune words carrying **THE** decode under Transport B.
+
+Both operations discard upper word-integer digits and are intrinsically non-injective. Consequently their failure or success as **secondary byte readouts** cannot by itself establish a lossless LP2 encryption scheme. A full decoder would require independently recoverable source state.
+
+## Original-input result
+
+| Frozen transport | Output bytes | Printable ASCII | Empirical byte entropy | Longest printable run |
+| --- | ---: | ---: | ---: | --- |
+| Base29 word integer, low byte | 2,896 | 36.3950% | 7.925206 bits | `Z'_]1!&` (7) |
+| Base29 word integer, low byte, then p50 table lookup | 2,896 | 40.5387% | 7.101605 bits | `P*L\\ns4` (7) |
+
+Neither byte stream contains the ASCII trigrams `THE`, `AND`, `ING`, `ION`, `YOU`, `KEY`, or `END`. The lower entropy of the table lookup follows in part from its non-bijective 256-byte table, which has only **161** distinct values. A higher printable share there is not independent evidence of a plaintext channel. The bounded test does not rule out binary ciphertext, historically justified secret parameters, a richer source-selected map, or a byte channel that is further encrypted. It does not establish such a richer model either.
+
+## Reproduce
+
+[Standalone Node.js SFT](../sims/lp2_wordwise_base29_p50_byte_gate_sft.cjs) requires no third-party dependencies and computes both complete streams directly from committed source artifacts. From the repository root run `node sims/lp2_wordwise_base29_p50_byte_gate_sft.cjs`. It asserts the source lengths, table uniqueness, empirical original-input diagnostics and both positive text controls.
+
+**Research decision:** retire these two literal byte transports. Reopen only if independent historic or original-page evidence prescribes a specific offset, operation, word-grouping rule, second cipher stage or missing decoding state. Do not promote this bounded negative to an established key/plaintext finding.
