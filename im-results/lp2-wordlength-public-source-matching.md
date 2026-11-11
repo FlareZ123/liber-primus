@@ -8,7 +8,7 @@ The runic-only 55 unsolved pages in `resources/lp2-transcription.txt`, joined ac
 
 **Authentic solved-page control:** p57's unencrypted PARABLE and its 19-word body comprise 20 canonical rune words. Converting their independently known Latin transliteration yields **19/20 word lengths exactly**: the single difference is zero-based word 4, where the original rune spelling `TUNNELNG` has seven GP runes, while standard `TUNNELING` has eight. This establishes that a narrowly fuzzy source scan is necessary even for genuinely known text.
 
-**Original unknown ciphertext against five generic controls and two independently historically selected source works:**
+**Original unknown ciphertext against six generic controls and two independently historically selected source works:**
 
 | Reference | Reference words | Longest exact consecutive word-length agreement | Longest match with up to two errors |
 | --- | ---: | ---: | ---: |
@@ -17,12 +17,16 @@ The runic-only 55 unsolved pages in `resources/lp2-transcription.txt`, joined ac
 | Solved LP1 reference | 821 after removing comment lines | no independently significant long run | no 15-word candidate |
 | Gibran, *The Prophet* | 15,733 | at most 9 in this comparison | 12 words, 2 errors |
 | Latin Vulgate (GP29 one word per line) | 39,835 | at most 9 in this comparison | 12 words, 2 errors |
+| Corrected Old English *Beowulf* | **10,885** | **8 words** | **13 words, 2 errors** |
 | 2013 Cicada-selected *Book of the Law*, chapter I | **1,897** | **7** | **12 words, 2 errors** |
 | 2013 Cicada-selected *Book of the Law*, chapter II | **1,968** | **8** | **13 words, 2 errors** |
 | 2013 Cicada-selected *Book of the Law*, chapter III | **2,002** | **8** | no 11-word match with ≤2 errors |
 | 2012 Cicada-selected Blake *Marriage of Heaven and Hell* clipping | **120** | **7** | no 11-word match with ≤2 errors |
 
 The first two fuzzy search maxima are at LP2 word 2210 against Emerson `FROM THINGS FROM SPACE FROM LIGHT FROM TIME FROM MAN BUT ONE WITH` and LP2 word 2585 against Shakespeare `THAT BE NOBLE HELP HIM YOUNG AND OLD CITIZENS DOWN WITH HIM DOWN WITH`, respectively. They contain two mismatches each and have **no cipher-independent evidence of plaintext identity**. The LP1 line summaries include editorial and duplicate solved material; therefore its negative is only a finite-file comparison.
+
+
+**Old English, original-source crib (Agent 23, 11 November 2026).** The corrected Old English *Beowulf* GP fixture contains 10,885 words and 48,012 GP runes. Applying the same original 2,896-word LP2 parser gives a longest exact match of **8 words** (four ties), **13 words** with a six-exact-word seed plus up to two rune-length discrepancies (333 original seed alignments), and **13 words** when each source word may gain zero or one ciphertext rune. No distinctively long source passage is recovered. The [standalone CommonJS source-wordlength SFT](../sims/beowulf_wordlength_source_crib_sft.cjs) also recovers three independent known 30-word planted source passages, and reuses [the corrected Old English fixture](beowulf_old_english_periodic_inverse.md) rather than the earlier flawed thorn/eth profile. This rejects only a substantial *verbatim* Beowulf passage with preserved word boundaries under the tested conventions; it says nothing about originally authored Old English plaintext or hidden text with changed segmentation.
 
 
 **Original-boundary length profile:** all 2,896 unknown words have mean 4.47376 runes, 83 single-rune words (2.87%) and 448 two-rune words (15.47%). For the finite reference sets, corresponding GP-length means and two-rune fractions are Emerson 4.166/26.88%, Shakespeare 3.949/20.84%, Gibran 4.012/23.24%, solved LP1 prose approximately 4.13/22.35%, and Latin Vulgate 5.141/17.24%. In independently sampled (150-word stride) 2,896-word contiguous control windows, the two-rune proportion never falls below 24.65% in Emerson, 17.99% in Shakespeare, or 21.20% in Gibran, versus the unknown 15.47%. The unknown may contain different prose style/language or non-native word framing. These simple word-length differences do **not** establish that native GP English is impossible, and selecting a language after inspecting these distributions would require a held-out original-cipher consequence.
