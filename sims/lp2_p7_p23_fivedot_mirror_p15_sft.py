@@ -1,6 +1,6 @@
-"""Source-first SFT: p7/p23 five-dot mirror and p15 16-page prime-clock gate.
+"""Source-first SFT: p7/p23/p56 mirrored five-dot template and p15 prime-clock gate.
 
-Read-only, reproducible from original resources/liber-primus/{24,40}.jpg
+Read-only, reproducible from original resources/liber-primus/{24,40,73}.jpg
 and resources/liber-primus/lp2-corpus.json.
 Requires numpy and opencv-python-headless.
 """
@@ -95,12 +95,19 @@ def evaluate_prime_clock(corpus: dict, primes: list[int], fib: list[int],
 def main() -> None:
     p7 = load_greyscale(24)
     p23 = load_greyscale(40)
+    p56 = load_greyscale(73)
     dots7 = locate_five_dots(p7, 2750, 3550)
     dots23 = locate_five_dots(p23, 100, 1400)
+    dots56 = locate_five_dots(p56, 2100, 3000)
     x_differences = [abs(a[0] - b[0]) for a, b in zip(dots7, dots23)]
     y_sums = [a[1] + b[1] for a, b in zip(dots7, dots23)]
     assert max(x_differences) < 0.1
     assert max(abs(s - 3674) for s in y_sums) < 0.12
+    # Five identical source circles reappear at solved p56 after a horizontal flip.
+    x_reflect_sums = [a[0] + b[0] for a, b in zip(dots7, reversed(dots56))]
+    y_translations = [a[1] - b[1] for a, b in zip(dots7, reversed(dots56))]
+    assert max(abs(s - 2400.65) for s in x_reflect_sums) < 0.5
+    assert max(abs(s - 419.36) for s in y_translations) < 0.5
 
     ys = np.arange(2760, 3220)
     xs = np.arange(740, 1590)
@@ -109,7 +116,12 @@ def main() -> None:
     flat_shift = round(float(np.median([b[1] - a[1] for a, b in zip(dots7, dots23)])))
     translated = p23[np.ix_(ys + flat_shift, xs)] < 180
     flipped_both = p23[np.ix_(3674 - ys, 2324 - xs)] < 180
+    p56_horizontal = p56[np.ix_(ys - 419, 2401 - xs)] < 180
+    p56_translation = p56[np.ix_(ys - 419, xs)] < 180
     mirror_iou = jaccard(observed, mirrored)
+    p56_iou = jaccard(observed, p56_horizontal)
+    assert p56_iou > 0.97
+    assert jaccard(observed, p56_translation) < 0.05
     assert mirror_iou > 0.998
     assert jaccard(observed, translated) < mirror_iou
     assert jaccard(observed, flipped_both) < mirror_iou
@@ -142,9 +154,16 @@ def main() -> None:
         assert abs(ioc(seq) - ioc(constant_shifted)) < 1e-14
 
     print(json.dumps({
-        "images": ["24.jpg: physical p7", "40.jpg: physical p23"],
+        "images": ["24.jpg: physical p7", "40.jpg: physical p23",
+                   "73.jpg: solved physical p56"],
         "dot_centroids_p7": [[round(a, 3), round(b, 3)] for a, b in dots7],
         "dot_centroids_p23": [[round(a, 3), round(b, 3)] for a, b in dots23],
+        "dot_centroids_p56": [[round(a, 3), round(b, 3)] for a, b in dots56],
+        "p56_horizontal_mirror_ink_mask_iou": round(p56_iou, 9),
+        "p56_translation_wrong_control_iou": round(jaccard(observed, p56_translation), 9),
+        "p56_mirror_mask_disagreement_pixels": int(np.count_nonzero(observed ^ p56_horizontal)),
+        "p7_p56_x_reflection_sums_px": [round(s, 5) for s in x_reflect_sums],
+        "p7_p56_y_translation_differences_px": [round(s, 5) for s in y_translations],
         "max_horizontal_delta_px": round(max(x_differences), 6),
         "all_corresponding_y_sums_px": [round(v, 5) for v in y_sums],
         "mirror_ink_mask_iou": round(mirror_iou, 9),
@@ -160,7 +179,8 @@ def main() -> None:
         "wrong_start_plant_mismatches": sum(a != b for a, b in zip(wrong_key, known)),
         "chronological_prime_phi": chronological,
         "center_out_prime_phi": outward,
-        "conclusion": "Original-page geometry is a strong source linkage, but neither "
+        "conclusion": "The p7/p23/p56 glyphs form a single reused source figure; "
+                      "mirroring around p15 alone is not an intended-key proof. Neither "
                       "one-value-per-page GP29 Caesar nor source-seeded running "
                       "prime-totient shifts recover native GP-English plaintext. "
                       "Neither cipher transfer is independently instructed by the dots."
