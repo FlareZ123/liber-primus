@@ -60,7 +60,7 @@ def run():
     quantiles=np.quantile(roi,(0,.25,.5,.75,.90,.95,.99,1)).tolist()
     print("Signed JPEG tree crop gray quantiles",quantiles,flush=True)
     peak=max(5,np.quantile(roi,.97))
-    dest=np.clip(roi.astype(np.float32)/peak,0,1)
+    dest=np.clip(roi.astype(np.float32)/float(peak),0,1).astype(np.float32)
     report={"signed":{"path":str(HIST.relative_to(ROOT)), "sha256":sha,
                        "dimensions":[563,569], "crop":list(TARGET),
                        "quantiles":quantiles}, "pages":{}}
