@@ -1,6 +1,6 @@
 # p32 two-clause / concentric-ring prime-sum checksum
 
-**Classification:** provisional source-level structural clue; no unknown LP2 plaintext, key, or cipher operation recovered. This report records exact p32 arithmetic relations, a packet-level 2016 anchor, and a conditional layout-preserving randomization test. It does not establish creator intent or a decryptor.
+**Classification:** provisional source-level structural clue plus an exploratory 19-word PARABLE residue route; no reversible unknown-page decoder, key, or complete LP2 plaintext recovered. This report records exact p32 arithmetic relations, a packet-level 2016 anchor, and a conditional layout-preserving randomization test. It does not establish creator intent or a decryptor.
 
 ## Source-fixed p32 input
 
@@ -20,6 +20,49 @@ The signed January 2016 message explicitly tells the reader to verify OpenPGP ke
 The first word of p32's second sentence is the complete 11-rune word at local offset 33, `ᚻᚩᛗᛖᛉᚹᛞᛋᛚᚠᛞ` (GP transliteration `HOMEXWDSLFD`). Its GP-prime sum is exactly **540**, the PGP signature packet body length. Across the complete 58-page corpus there are **2,941** canonical words and **32** 11-rune words; p32 is the **only** 11-rune word with prime sum 540. There is one other word of any length with sum 540: a 9-rune word on p5 (`ᚠᛞᛚᛁᛠᛈᛟᚣᚩ`). Thus the independently selected 11×11 tree page and 11-rune word length disambiguate the p32 match; the p5 alternative remains an explicit control.
 
 This is a candidate source anchor, not a plaintext claim. The first four rune transliterations of the p32 word spell `HOME`, but the complete word remains ciphertext. The 540 equality does not by itself specify what operation to perform on that word.
+
+## Exploratory zero-based 19-word PARABLE map on the 540-word
+
+This is a new interpretation of the already documented 11-rune p32 second-clause word at local rune offset 33, not a repeat of the 540-byte packet or 1,136-byte perimeter checks. The signed 2016 instruction says that Liber Primus words are a map and their numbers give direction; p32 supplies a 19-valued central prime and the solved p57 PARABLE supplies exactly 19 body words. The phrase “the path lies empty” is compatible with a zero-based index, but does not authenticate modulo 19 by itself.
+
+Define a directed map on the 19 PARABLE body words. For body-word index i (0–18), sum the GP-prime weights of its runes and take the result modulo 19; the residue selects the next body word. The reproducible map is:
+
+| Index | Word | GP-prime sum | Next index | Next word |
+|---:|---|---:|---:|---|
+| 0 | LIKE | 184 | 13 | FIND |
+| 1 | THE | 72 | 15 | DIVINITY |
+| 2 | INSTAR | 280 | 14 | THE |
+| 3 | TUNNELING | 339 | 16 | WITHIN |
+| 4 | TO | 66 | 9 | SHED |
+| 5 | THE | 72 | 15 | DIVINITY |
+| 6 | SURFACE | 246 | 18 | EMERGE |
+| 7 | WE | 86 | 10 | OUR |
+| 8 | MUST | 186 | 15 | DIVINITY |
+| 9 | SHED | 232 | 4 | TO |
+| 10 | OUR | 21 | 2 | INSTAR |
+| 11 | OWN | 55 | 17 | AND |
+| 12 | CIRCUMFERENCES | 451 | 14 | THE |
+| 13 | FIND | 151 | 18 | EMERGE |
+| 14 | THE | 72 | 15 | DIVINITY |
+| 15 | DIVINITY | 376 | 15 | DIVINITY |
+| 16 | WITHIN | 115 | 1 | THE |
+| 17 | AND | 215 | 6 | SURFACE |
+| 18 | EMERGE | 300 | 15 | DIVINITY |
+
+The graph has one fixed point, DIVINITY (15), and one nontrivial cycle, TO (4) ↔ SHED (9). Starting at LIKE gives LIKE → FIND → EMERGE → DIVINITY. The graph's semantics fit “find the divinity within” and “beware false paths,” but that fit is interpretive, not cryptographic proof.
+
+The p32 word at offset 33 is HOMEXWDSLFD. Its 11 GP-prime values are [23, 7, 71, 67, 47, 19, 89, 53, 73, 2, 89], giving residues modulo 19 [4, 7, 14, 10, 9, 0, 13, 15, 16, 2, 13]. Mapping these residues to the PARABLE body words yields:
+
+- Whole word, left-to-right: **TO WE THE OUR SHED LIKE FIND DIVINITY WITHIN INSTAR FIND**
+- From the central 19-valued rune eastward: **LIKE FIND DIVINITY WITHIN INSTAR FIND**
+- From that same rune westward: **LIKE SHED OUR THE WE TO**
+
+The four-residue sequence [0, 13, 15, 16] (LIKE, FIND, DIVINITY, WITHIN) occurs exactly once among the 608 directed straight four-cell paths (horizontal, vertical, or diagonal) in the 11×11 p32 prime-residue matrix: zero-based start (3,5), east. Under a simple random-permutation null preserving the observed residue counts, the expected number of such occurrences is about 0.003. This is a diagnostic, not a discovery-wide p-value; the phrase and route were selected after noticing the PARABLE wording.
+
+There is a useful false-candidate control. The first nine values of both logical row 3 and logical row 6 sum to 449, the GP-prime sum of the PARABLE heading. But row 3 sums to 540, the independently parsed OpenPGP signature packet body length; row 6 sums to 577. Thus the 540-byte packet-body gate selects the p32 word rather than the competing row-6 prefix. The 540 equality itself is already documented above and is not re-counted as independent evidence here.
+
+**Status and next decision.** This gives a candidate semantic word route, not a reversible cipher, an independently recovered unknown-page plaintext, or a key. Modulo 19 and zero-based indexing are motivated by the 19-word body, the p32 prime value 19, and “path lies empty”; the exact eastward readout still lacks an independently authenticated selector. Do not turn the phrase into an unconstrained Vigenère key or repeat the existing perimeter-key tests. The decisive next test is a frozen, source-prescribed readout that makes a specific prediction on a second original unknown page or payload. If no such readout can be derived without choosing it after seeing this phrase, retain this as a semantic cross-reference and do not extend it. Reproducer: [p32_parable_mod19_route_sft.cjs](../sims/p32_parable_mod19_route_sft.cjs).
+
 
 ## Exact cross-artifact clause/ring identities
 
@@ -119,4 +162,4 @@ For comparison, p55 ciphertext IoC is **0.037895** and the solved p57 prose IoC 
 
 The p33 cuneiform prime ranks now give an independent, source-motivated selector for p32's **3/8 clause partition**, **6/16 concentric geometry**, the full nested projective parameter set **6/3/16/8**, and, conditionally on prime ranking, the previously ambiguous M7/M28 ring conventions. The packet-coordinate continuation makes this the strongest current structural connection in this investigation: the same source-selected values now bridge p32 geometry, its projective maps, and the authenticated 2016 verification packet. The direct Vigenère keys from the 16-cell perimeter and six layer sums, and direct 2×2 Hill uses of the p32/LP1 matrices on p55, have all failed; do not repeat them.
 
-The remaining consequential question is whether the cuneiform-selected exponents and p32 projective matrices prescribe a unique stateful operation with a prospective prediction on an unknown page. Without a source-fixed state update, initialization and readout, further cipher-family sweeps would be unconstrained. No unknown LP2 plaintext, key, or complete decryption has been recovered.
+The mod-19 PARABLE route adds a semantic candidate around the already selected 540-word, but still lacks an authenticated eastward/readout rule or a blind prediction on a second unknown page. The remaining consequential question is whether the cuneiform-selected exponents and p32 projective matrices, or this new PARABLE map, prescribe a unique stateful operation with a prospective prediction on an unknown page. Without a source-fixed state update, initialization and readout, further cipher-family sweeps would be unconstrained. No unknown LP2 plaintext, key, or complete decryption has been recovered.
