@@ -2,13 +2,17 @@
 
 ## Decision
 
-The p55 interior geometry is exact and unusually structured, but the proposed chain does **not** provide a source-selected navigation rule. Three independent ambiguities remain decisive:
+The p55 D interval has a plausible source-directed selector that does **not** require the p50 numeric chain. The 2013 Cicada audio's ID3 metadata publishes the exact Parable later printed on p57. Its instruction — “We must shed our own circumferences; Find the divinity within and emerge” — can reasonably lead a solver to remove the first and last rune of each p55 printed word, then search the strict interiors for **D**, the initial of *divinity*. The source-correct extraction gives D at positions **5 and23**.
+
+This is a simpler human solve-path hypothesis than deriving D from NUMBER(193), and it bypasses the radix and factor-representation ambiguities in that numeric route. It remains an interpretation: “circumferences” does not uniquely specify word-edge stripping, and “divinity” does not explicitly say to take its initial. The text plausibly nominates the D markers; it does not specify the subsequent recursive left-minus-right fold, its sign, or the mapping TWO P → 86 → WE.
+
+The separate 193 → 391 = 17×23 corroboration remains conditional for three reasons:
 
 1. the printed p50 token `3D` is 193 only under the still-provisional base60 reading; the source-compatible radix59 fork gives 190;
 2. NUMBER's factor 23 must be reinterpreted as a zero-based GP ordinal to obtain D, while the same chain elsewhere treats 17/23 as GP prime values for the factor-index reduction;
 3. the strengthened 59 derivation is arithmetically circular: construct 95 as 5×19, reverse to 59, then NUMBER(59) returns 5×19.
 
-No start, direction, stop, next address, key, or unknown plaintext is fixed.
+No complete start, direction, stop, next address, key, or unknown plaintext is fixed.
 
 ## Frozen source facts
 
@@ -38,9 +42,9 @@ M I EO G D TH IA A B C EA F X I M U C P H NG L
 S D IA P H EO E I G X G S EO TH TH E EA I M C J E
 ```
 
-## D is a real conditional discriminator
+## D is a plausible text-selected marker
 
-Using zero-based GP ordinal 23, D occurs in the strict interior at positions **5 and23**.
+The source-text route above nominates D as the initial of *divinity*, independently of NUMBER's factor 23. Applying the plausible word-edge reading of “shed our own circumferences” and then “find the divinity within” gives the following reproducible source facts.
 
 At the page-local segment level, D occurs strictly inside exactly segments **5 and9**. Among all 29 GP runes, D alone has that exact segment pair. Nine runes occur in exactly two strict-interior segments, so “two segments” alone is not selective.
 
@@ -49,10 +53,10 @@ In the concatenated 43-rune interior:
 - D positions: **5, 23**
 - runes strictly between: **17**
 - position difference: **18**
-- inclusive span length: **19**
+- inclusive D…D span length: **19**
 - D is the **only** GP rune with an occurrence at the position equal to its own ordinal: ordinal23 at position23.
 
-These are reproducible original-cipher facts.
+The last fact is an additional exact coincidence, not the reason to choose D under the textual reading. The extraction still assumes that “divinity” selects its initial rather than the full word or a different semantic representation. These are reproducible original-cipher facts under the stated word-edge parse.
 
 ## The 17/19/fold geometry is not unique to D
 
@@ -80,9 +84,9 @@ NUMBER returns factors **17 and23**. The route needs several incompatible interp
 | as zero-based GP ordinals | B (index17) | D (index23) | B/D |
 | factor-index reduction | index6 + index8 |  | GP14 = X |
 
-The historical NUMBER service does not state that a returned prime factor should suddenly be read as a zero-based Gematria alphabet ordinal. D is obtained only under that additional convention.
+The historical NUMBER service does not state that a returned prime factor should suddenly be read as a zero-based Gematria alphabet ordinal. The numeric route therefore changes representation without a source selector.
 
-The chain then uses the factor-index interpretation to obtain X/DIVINITY and the ordinal interpretation to obtain D inside p55. That switch is not source-selected.
+That ambiguity weakens the 193 → D numeric corroboration, but it does not negate the separate text-directed D hypothesis above. The factor-index interpretation yields X/DIVINITY; the poem's initial-letter reading yields D in the p55 word interiors. These are distinct routes and should not be presented as one consistent NUMBER operation.
 
 ## Radix59 is a direct matched control
 
@@ -121,17 +125,19 @@ The 19-body-word graph remains a candidate architecture. It uses GP-prime word s
 
 The conditional 5×19 route does not repair any of those missing selectors. No predeclared next address follows from 95 or59 without adding a new convention.
 
+The separate p55 recursive-fold report (`im-results/p55-dspan-two-p-original-control.md`) shows that the 17 runes strictly between the D markers yield first-level **TWO** and terminal **P** under left-minus-right modulo29, and that this combined signature occurs once across the 7,247 strict word-interior runes. This is a real convergence candidate: reading TWO P as two P values gives 2×43=86, the GP-prime sum of the unique p57 body word **WE**, which is also the shared node of the two five-cycles. But the Parable's word-edge/D clue does not specify left-minus-right, pair order, center retention, or recursive repetition. The earlier Cicada-operation audit found no preserved precedent for that exact arithmetic fold. Nor does the source explicitly prescribe the TWO P → 86 → WE lookup. The result supports a plausible route to WE; it does not independently validate the 19-node graph's modulus, direction rule, or sign.
+
 ## Completion rule
 
 Retain the exact p55 D geometry as a potentially useful clue. Retire the stronger claim that it **independently selects 59** or validates the 19-word graph.
 
-A successor needs an original instruction that fixes, before reading the outcome:
+The direct textual D selection can be retained as a **plausible intended marker**, without requiring the p50 number chain. A successor seeking a complete D → WE navigation rule still needs an original instruction that fixes, before reading the outcome:
 
-- radix60 rather than the source-compatible radix59 fork;
-- the representation of NUMBER factors (prime weight, GP ordinal, factor-index reduction, or another declared map);
-- the numerical operation applied to the selected p55 positions/span;
+- whether “circumferences” means stripping the first and last rune of each printed word and whether “divinity” selects its initial D;
+- the recursive fold operator, left/right orientation, center handling, and repetition rule;
+- the mapping from TWO P to 86 and from 86 to a p57 word;
 - the p57 node set, direction number, and sign/start/stop rule.
 
-Without such a selector, extending this chain would multiply post-selected arithmetic instead of moving toward plaintext.
+Only the separate numeric corroboration requires radix60 and a consistent representation of NUMBER factors. Without the missing fold and address selectors, extending this chain would multiply post-selected arithmetic instead of moving toward plaintext.
 
 **Reproducer:** `sims/p55_number193_dwithin_control_sft.cjs`.
