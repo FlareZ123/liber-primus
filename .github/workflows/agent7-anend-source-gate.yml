@@ -1,9 +1,7 @@
 name: Agent 7 AN END source gate
 
 on:
-  push:
-    branches:
-      - agent7/anend-2016-2017-message-gate-20261111
+  workflow_dispatch:
 
 permissions:
   contents: read
