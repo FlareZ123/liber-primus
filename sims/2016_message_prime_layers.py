@@ -172,7 +172,11 @@ def message_gp_structure(primes):
         ],
         "2017_crosscheck_not_used": {
             "reported_gp_sum": 2131, "prime_index": 321,
-            "note": "Excluded from the key family because the 2017 message's authenticity is disputed."
+            "note": (
+                "Not used in this 2016-only key family. The preserved 2017 warning is "
+                "now independently verified under the same archived 7A35090F key; "
+                "see resources/historical/cicada2017-yEiTHhvF.md."
+            )
         }
     }
 
