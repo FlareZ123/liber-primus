@@ -51,6 +51,36 @@ The authentic historical inverse **does not preserve the manuscript's strong adj
 
 The [extended source-and-original single-file SFT](../sims/2014_lp1_period7_lp2_p8to14_sft.cjs) checks the archived 56-character plaintext positive control, forward restoration for both LP2 segments, source boundary/length assertions, all 5,040 complete seven-position orders, and explicitly distinguishes the conditional no-F plaintext gate from the always-defined unrestricted totient inverse.
 
+
+## Independent seven-*word* septet inverse: source-language order test
+
+**Agent 30, 11 November 2026.** The rune-level seven-position inverses above operate on character indices. A separate motivated interpretation applies the same **source-authentic 2014 permutation** to each **consecutive group of seven complete printed LP2 words**. Unlike the earlier seven-*rune* test, this preserves the word and rune inventory in every word while altering adjacency and hence the language-like word-length dependency. The proposal is still a transfer hypothesis: neither the 2014 note nor the 2016 signed message specifies that LP2 encrypted words in septets.
+
+The historical source-control ciphertext, stripped of spaces, is exactly 56 characters:
+
+\`TLBEIEOVUTHTREIDTSEOSTPOSOYRSLBTIIIYT4DGUQIMNU442I15339M\`
+
+The unique position mapping reproducing the independently documented solved string \`TOBELIEVETRUTHISTODESTROYPOSSIBILITYQ4UTGDI2N4M4UIM59133\` for **each of the eight septets** is the zero-based forward list \`[0,4,2,6,5,3,1]\` (key \`1736254\`). Its inverse is \`[0,6,2,5,1,4,3]\`; exact forward and reverse 56-character assertions are implemented in [the new standalone source-control and LP2 SFT](../sims/lp2_2014_word_septet_sft.cjs).
+
+The canonical original unsolved manuscript contains **2,896 complete printed words**, with eight source-delimited text-section word counts \`[158,255,385,435,224,326,378,735]\`. Original word breaks may cross physical pages. The exact same fixed permutation is applied to septets either across the complete 2,896-word stream or reset within each of these eight source sections. The final incomplete septet in each independently reset group remains in original order. Both historical directions are included to avoid assuming an undocumented author encoding direction.
+
+The test's frozen observable is the original three-category (word length **1–2 / 3–5 / 6+ GP runes**) adjacent-length Pearson independence statistic, previously reported as 3.949446 on the original, whose source-language controls ordinarily produce much larger values. This statistic is invariant under a letter-level substitution that preserves the word boundaries. Results of the **four fully specified** variants:
+
+| LP2 word order | Length-dependence chi-square |
+| --- | ---: |
+| Original ciphertext order | **3.94944609** |
+| Global decryption orientation | **7.71256290** |
+| Global encryption orientation | **2.42083403** |
+| Eight-section decryption orientation | **5.02855264** |
+| Eight-section encryption orientation | **2.93439933** |
+
+A prespecified null randomly permutes the **word lengths within each of the eight original source sections**, retaining each section's length inventory and the full observed word-length histogram. Each of 600 deterministic, independent fixed-seed shuffles evaluates the **maximum of all four historical-operator transfers**, so the reported tail accounts for the model-choice family. The original maximum is **7.71256290**; the null maximum's median is **6.38149**, 95th percentile **12.46127**, with **198/600 null maxima at least the original**. The plus-one familywise tail is **199/601 = 0.33111**. Thus there is **no evidence of recovering ordinary prose word adjacency** under this original-history-selected seven-word shuffle.
+
+**Exact native-language positive:** convert 2,896 contiguous Shakespeare words to GP rune lengths (the repository's TH/NG/EO/OE/AE/IA/EA contract), partition them into the eight actual source section lengths, and deliberately scramble the words by the 2014 source-derived forward key. The original Shakespeare words have adjacent-length chi-square **22.71653**, the cipher-order text drops to **2.64714**, and the authentic historical inverse restores all **2,896 original words exactly** and the original **22.71653** statistic. This establishes that the same test could recognize a seven-word shuffling mechanism that had hidden the ordinary source-language word-length dependence. The original LP2 result falls within the matched null instead.
+
+**Reproducibility:** [CommonJS SFT](../sims/lp2_2014_word_septet_sft.cjs), [manual-only workflow](../.github/workflows/lp2-2014-word-septet-manual.yml) and [successful original-input run 43078971989](https://github.com/FlareZ123/liber-primus/actions/runs/43078971989). The eight source sections derive from the canonical transcript's dollar-sign delimiters; the historical master text has additional subdivisions and is **not** a drop-in eight-section parser. Independent historical C/P and all original counts are asserted before the test. The scope is exact and finite, and no LP2 key or plaintext is claimed.
+
+
 ## Decision
 
 The historical seven-column permutation is an **authentic, executable creator precedent** with an independent plaintext positive control. Its exact fit to the 1,729-rune seven-page section makes it worth preserving as possible *layer ordering* or a later missing-key framing clue. However, matching section divisibility alone does **not** license applying an unspecified second cipher or searching alternative 7-orderings; the simple transposition and periodic digit-key transfers do **not** recover anything, while the restricted no-F totient-content assumption fails at fixed positions. The general totient decoder remains unexcluded by feasibility and has no independently selected LP2 key/start state. Reopen this as a decoding route only if an independent original instruction or key identifies how the seven-way reorder is combined with a decrypting transformation. This is not a new Liber Primus solve.
