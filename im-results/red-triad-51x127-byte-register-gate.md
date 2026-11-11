@@ -33,6 +33,29 @@ The test enumerates **all 841 possible beta offsets independently for every one 
 
 The plant uses the complete source quotient and 51 real red row multipliers, deterministically chooses actual bytes \`b_i=(73i+41) mod256\`, encrypts with hidden row offsets \`[(7r+2)mod29,(17r+4)mod29]\`, and checks the exact inverse for every 6,477 byte. The same 841-offset capacity search recovers 127 valid bytes in all 51 rows. The original cannot be explained by **either defined canonical byte model**, even with all 51 per-row offsets unconstrained.
 
+## All-secret affine 51×127 source-quotient byte obstruction (Agent 11, 11 November 2026)
+
+The previously tested two per-row scalar multipliers leave a larger, precisely testable family: **any invertible secret 2×2 matrix and any secret two-coordinate offset independently for each of all 51 source-sized rows**. Retain the first two original runes as a header, then use the original p3 irreducible red-triad field \(u^2=8+3u\), the p39 factor \(15(X-24)^2\), the 254 exact quotient coefficients of the original 256-cell base60 table, and their 127 adjacent pairs \(Q_j\in\mathrm{GF}(29^2)^\times\). For each of the 51 rows of 127 original ciphertext field pairs, the bounded candidate encoder is
+
+\[
+C_{rj}=Q_j^{\varepsilon}\bigl(L_r B(b_{rj})+\beta_r\bigr),\qquad \varepsilon\in\{+1,-1\},\quad L_r\in\mathrm{GL}_2(\mathbb F_{29}),\quad \beta_r\in\mathbb F_{29}^2.
+\]
+
+Here \(B(b)=(\lfloor b/29\rfloor,b\bmod29)\) is the canonical injective byte representation for \(0\le b\le255\). The source-derived field schedule and all original rune coordinates are frozen, while **every hidden affine key in each row is unconstrained**. This gate therefore strictly extends the earlier source-red-multiplier/static-row-offset test and is distinct from the separately evaluated evolving-feedback byte and arbitrary stationary-codebook models.
+
+An unavoidable necessary condition for a decoded byte is that its first field coordinate belongs to \(\{0,\dots,8\}\). We deliberately accept all \(9\times29=261\) field pairs in this strip, including five invalid byte values, favouring the proposed cipher. The first coordinate of the inverse of any affine \(L_r\) is a nonzero linear functional plus a constant. Over the field basis fixed by p3, all 840 nonzero linear functionals can be enumerated exactly as the first coordinate of multiplication by each nonzero GF841 scalar. All possible additive offsets correspond to the 29 modular translates of the nine-adjacent-residue strip. Therefore the maximum valid-pair count after maximizing over **all 840×29 possibilities for each row separately** is an exact upper bound for *every secret* \(L_r,\beta_r\), not a fitted language score or sampled key search.
+
+| Original field transform | Lowest row-specific maximum (out of 127) | Highest row-specific maximum | Mean of 51 row maxima | Fully byte-valid rows |
+| --- | ---: | ---: | ---: | ---: |
+| Divide original ciphertext by \(Q_j\) | **57** | **66** | **59.86274510** | **0/51** |
+| Multiply original ciphertext by \(Q_j\) | **56** | **64** | **59.76470588** | **0/51** |
+
+Even the *best* original row falls at least **61/127** symbols short of the generous necessary condition. For positive controls, both orientations encrypt a deterministic complete **6,477-byte** sequence using all 51 original red-rune row selectors, source-fixed \(Q_j\), a hidden invertible field multiplier, and a hidden row offset. Each planted byte is exactly decoded and re-encodes, while the same all-secret strip test admits **127/127 for all 51 planted rows** in both orientations. The exact source-input Node 22 manual run [42934090147](https://github.com/FlareZ123/liber-primus/actions/runs/42934090147) passes with the above counts and all planted controls.
+
+**Decision:** No source-original ciphertext under either declared \(Q_j^\pm\) orientation can be an ordinary fixed-width 8-bit byte sequence through an arbitrary *row-stationary affine GL2(F29) block transform*, regardless of its 51 hidden keys. This says nothing about other pairings, a source-dependent per-column state, nonlinear byte codebooks, variable-length encoding, or a different use of the red inscriptions. It provides an all-secret negative for a larger original-source cipher family and no new plaintext.
+
+**Reproducer:** [all-secret affine quotient-byte SFT](../sims/grid_quotient_allsecret_affine_byte_gate.cjs) on the original 12,956-rune corpus, 256-byte grid and ink annotation.
+
 ## All-841-row-state variable-multiplier byte obstruction (Agent 48)
 
 A distinct use of the same source-fixed 127 quotient field elements lets the **state evolve within each row**, with no restriction on its unknown row seed. As before, the 12,954 original rune positions following the two-rune header form exactly 51 rows of 127 ciphertext pairs \(C_{r,j}\in\mathrm{GF}(29^2)\). The only source multipliers are the 127 original quotient pairs \(Q_j\). The proposed emission is \(C_{r,j}=P_{r,j}+S_{r,j}\), with either of two feedback laws:
