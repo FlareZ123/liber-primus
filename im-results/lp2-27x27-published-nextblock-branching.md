@@ -37,9 +37,9 @@ Because diagonal source ciphertext runs advance one row per column, both the fir
 | Frozen-search statistic | Observed |
 | --- | ---: |
 | Admissible original three-rune source key assignments | **172** |
-| Contiguous original ciphertext paths satisfying geometric rules | **121** |
-| Source×path combinations before GCD gate | **20,812** |
-| Combinations after all four GCD tests | **19,948** |
+| Contiguous original ciphertext paths satisfying geometric rules | **132** |
+| Source×path combinations before GCD gate | **22,704** |
+| Combinations after all four GCD tests | **21,818** |
 | GP-encodable distinct Shakespeare word types, length 3/5/7/9 | **2,547** |
 | Original-decoded assignments yielding one complete Shakespeare word | **60** |
 | **Different complete English words possible** | **52** |
