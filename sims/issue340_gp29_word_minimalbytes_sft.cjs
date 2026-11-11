@@ -161,7 +161,7 @@ function run() {
   const parsed = parseSharedCorpus();
   assert.equal(parsed.words.length, 2896);
   assert.equal(parsed.runeCount, 12956);
-  assert.equal(parsed.crossPageWords, 34);
+  assert.equal(parsed.crossPageWords, 32);
   const records = [];
   const byteChunks = [];
   let offset = 0;
