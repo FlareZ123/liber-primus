@@ -453,6 +453,60 @@ const p55TitleKeyGate = {
   variants: p55TitleKeyVariants
 };
 
+// Distinct stateful consequence of the exact 76 = 4 * 19 relation:
+// use the fold-selected 19-rune title as an autokey seed, then feed back
+// either prior ciphertext or prior recovered plaintext. No phase search.
+const p55TitleAutokeyVariants = [];
+for (const [cipherOrientation, cipher] of [
+  ['forward', p55],
+  ['reversed', p55.slice().reverse()]
+]) {
+  for (const [seedOrientation, seed] of [
+    ['forward', p55Title],
+    ['reversed', p55Title.slice().reverse()]
+  ]) {
+    for (const mode of ['ciphertext-autokey', 'plaintext-autokey']) {
+      for (const [operation, sign] of [['C-K', -1], ['C+K', 1]]) {
+        const plain = [];
+        for (let i = 0; i < cipher.length; i += 1) {
+          const keyValue = i < seed.length
+            ? seed[i]
+            : mode === 'ciphertext-autokey' ? cipher[i - seed.length] : plain[i - seed.length];
+          plain.push(mod29(cipher[i] + sign * keyValue));
+        }
+        const output = titleExpandGp(plain);
+        p55TitleAutokeyVariants.push({
+          cipherOrientation,
+          seedOrientation,
+          mode,
+          operation,
+          score: titleScoreEnglishQuadgrams(output),
+          output
+        });
+      }
+    }
+  }
+}
+assert.equal(p55TitleAutokeyVariants.length, 16);
+const p55TitleAutokeyBest = p55TitleAutokeyVariants
+  .slice()
+  .sort((a, b) => b.score.mean - a.score.mean)[0];
+assert.ok(p55TitleAutokeyVariants.every((candidate) => candidate.score.mean < titleNativeMinimum));
+const p55TitleAutokeyGate = {
+  p55Runes: p55.length,
+  seedRunes: p55Title.length,
+  blocks: p55.length / p55Title.length,
+  phaseSearch: false,
+  feedbackModes: ['ciphertext-autokey', 'plaintext-autokey'],
+  operations: ['C-K', 'C+K'],
+  orientations: ['forward', 'reversed'],
+  rawP55: titleRawP55Score,
+  nativeMinimum: titleNativeMinimum,
+  nativeMedian: titleNativeMedian,
+  best: p55TitleAutokeyBest,
+  variants: p55TitleAutokeyVariants
+};
+
 console.log(JSON.stringify({
   classification: 'source-image navigation candidate; no plaintext recovered',
   foldMismatch: readings,
@@ -497,5 +551,6 @@ console.log(JSON.stringify({
     interpretation: 'word gap equals phi(1433); M=19 is full-order; backward traversal remains conditional'
   },
   sectionControls,
-  p55TitleKeyGate
+  p55TitleKeyGate,
+  p55TitleAutokeyGate
 }, null, 2));
