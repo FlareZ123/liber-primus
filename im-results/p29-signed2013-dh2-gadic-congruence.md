@@ -112,6 +112,23 @@ The residual also fails a literal DH *progressive-power* inverse \(R_j/K^{j+1}\)
 
 **Reproduce:** [single-file CommonJS original-corpus test](../sims/p29_hfield_dh_shared_key_sft.cjs). Do not expand arbitrary DH bases, phases, secret-sharing interpretations or key derivations without an independent original instruction selecting them.
 
+### Source-defined p33 cuneiform body: local pair-consumer gate (negative)
+
+The source-defined cuneiform body runs from p33 local rune 91 through p39 local rune 118 inclusive: **1,468 runes / 734 pairs**. It begins at global rune offset **8,051**, which is odd. Consequently, pairing from the beginning of the whole book does not pair the first body rune with the second body rune; resetting pair boundaries at the marked cuneiform-unit start is a distinct, source-local alignment. The boundary is independently recorded in the [2013 NEXT/cuneiform section analysis](2013-next-chain-p33-39-gate.md).
+
+Using the already-derived candidate `K=7X+1` from the p29/p50 H-field relation above, I tested exactly four source-local consumers. Consecutive body runes are interpreted in printed order as `aX+b` in `GF(29)[X]/(X²+18X+11)`: static multiplication by `K`, static multiplication by `K⁻¹`, progressive multiplication by `K^(j+1)`, and progressive multiplication by `K^−(j+1)`. No pair reversal, alternate phase, extra state, or new field element was searched.
+
+| Fixed body-local operation | IoC | GP trigram nats/rune |
+|---|---:|---:|
+| static `K` | 0.03497285 | −11.77881 |
+| static `K⁻¹` | 0.03474904 | −11.89480 |
+| progressive `K^(j+1)` | 0.03415653 | −11.91461 |
+| progressive `K^−(j+1)` | 0.03459209 | −11.83657 |
+
+The unchanged body scores IoC **0.03431255** and −11.83876 nats/rune. Across **2,126** native Gibran windows of the same 1,468-rune length, the minimum trigram score is **−8.30153**, the 10th percentile **−8.09781**, and the median **−7.98352**. None of the four outputs enters the native range. All four original-input inverses re-encrypt exactly, and all four independently planted native-GP plaintext controls recover exactly.
+
+**Decision:** retire these four static/progressive body-local pair consumers of the provisional `K` candidate. This closes the previously untested odd-offset, section-reset pairing; it does not invalidate the exact H-field arithmetic or prove that `K` is an intended LP2 key. Do not expand to alternate pair orientations or phases without an original-source selector. [Reproducer](../sims/p33_cuneiform_hfield_dh_shared_key_sft.cjs).
+
 ## Additional signed-DH fingerprint at the source-selected Ac24 root
 
 The exact polynomial relationship supports a more specific, still **exploratory** fingerprint of the entire signed 2013 worked example. Its parameters are modulus **23**, generator/base **5**, server public share **8**, client public share **19**, and shared secret **2**. The enlarged LP2 p54 **Ac=24** and G's double root independently fix the evaluation point before viewing numerical outputs. Ordinary formal polynomial derivatives, evaluated at X=24 in GP29, give:
