@@ -114,9 +114,9 @@ field trace                = 5
 field norm                 = 2
 ```
 
-Among the six representatives, **1661 is uniquely selected using only the two canonical field invariants**: trace **5** equals the worked-example generator and norm **2** equals its shared key. The coordinate relations were not needed for that selection. After selection, the resulting element `6+17u` additionally has first coordinate **6**, coordinate sum **23**, and coordinate product **15**, reproducing the worked-example server private exponent, modulus, and client private exponent. From those values, `5^6 mod 23 = 8` and `5^15 mod 23 = 19`, reproducing both public shares. These extra coordinate alignments are corroborative observations, with their operation choices still retrospective.
+Those four values reconstruct the worked example without using unknown LP2 ciphertext: modulus **23**, recovered client private exponent **15**, generator **5**, and shared key **2**. The first coordinate **6** is also the recovered worked-example server private exponent. From these values, `5^6 mod 23 = 8` and `5^15 mod 23 = 19`, reproducing both public shares.
 
-Equivalently, the real `DH 3301` transcript gives `e ≡ 11 mod 550`, while the trace/norm selector fixes `e ≡ 821 mod 840`; the compatible class is **e ≡ 1661 mod 46200**. In the ordinary DH range below 3301 this selects **1661** exactly.
+Among the six representatives, **1661 is the only one** satisfying all four displayed invariant equalities. Equivalently, the real `DH 3301` transcript gives `e ≡ 11 mod 550`, while the field embedding gives `e ≡ 821 mod 840`; the compatible class is **e ≡ 1661 mod 46200**. In the ordinary DH range below 3301 this selects **1661** exactly.
 
 This is a strong cross-source key candidate because the selector uses only pre-existing source values and canonical field operations. It is still **conditional**: no surviving Cicada instruction says to compare coordinate sum/product and field trace/norm in this way. The match is therefore a locked structural hypothesis rather than an authenticated key instruction.
 
@@ -170,6 +170,30 @@ As a candidate hidden table register, all eight serialized 252-rune outputs rema
 The same eight source-derived 252-digit streams were then tested once as fixed additive GP29 keys on all **12,956 unchanged unsolved runes**, with both signs and only book-continuous versus physical-page-reset clocks: **32 complete original-input models**. The best trigram score is **−10.64621**, essentially the raw ciphertext baseline **−10.65959**, versus the 2,400-rune native control **−7.28951**; every model has IoC below **0.036**. A source-native additive plant decodes exactly. This closes the simplest `factor quotient → DH discrete log → BASE29 digits → native GP text/repeating key` route. It does not exclude a different externally specified state machine, a non-GP register, or a historically supplied session key.
 
 Reproducer: [`sims/base29_2013_quotient_dlog_key_sft.cjs`](../sims/base29_2013_quotient_dlog_key_sft.cjs).
+
+## Additional source-selected original-text transports: bounded negatives
+
+The exact table factors and the p3 field invite several specific continuations. They were tested against the unchanged original p0–p55 ciphertext, not only against the 252-slot quotient.
+
+### Nine 28-symbol section keys
+
+The 252-slot quotient is exactly \(9\times28\). The source-visible body clock gives nine rune spans of lengths **[729, 1145, 1738, 1894, 1021, 1433, 91, 1589, 3316]**: seven internal dollar markers plus the second p33 heading at local rune offset 91. This motivates one 28-symbol quotient row per body, with literal F passed through without consuming key. All 16 fixed variants were tested: modulo-29 versus the 28-symbol non-F alphabet, forward/reverse row order, forward/reverse key order, and addition/subtraction. The best full-text IoC is only **0.0361** (raw ciphertext **0.0344784**); no plaintext appears. This rejects the direct per-body Vigenère reading, not other uses of the quotient.
+
+### Q238 and the 238-rune p36 page
+
+The monic irreducible factor Q238 has 238 non-leading coefficients, while physical p36 contains exactly 238 runes. Using those coefficients as a repeating key, with continuous, per-page or per-body clocks, both orientations and signs, gives a best IoC of **0.0359**. Using p36 itself as the initial 238-symbol state of an LFSR with Q238 (or its reciprocal), forward or bidirectional extension, both seed orders and signs, gives a best IoC of **0.0346**. Neither produces language. The length match is retrospective; no authenticated instruction selects p36 as a seed or Q238 as a key.
+
+### Original-ciphertext ElGamal block transport
+
+The p3 quadratic defines GF(29²) with u²=3u+8 and primitive u of order 840. A literal ElGamal encoding would use four GP runes per block: two for c1, two for c2, and recover a two-rune field element m=c2*c1^(-x). The source supplies the six DH 3301 private-exponent representatives **[11, 561, 1111, 1661, 2211, 2761]**; the earlier worked DH 23 example and p39 factor also motivate x=15. All seven exponents, adjacent or half-lane pairing, both coordinate orders and both directions were tested (56 models). The best IoC is **0.0346**; the best model has no zero c1, but no language signal. The 458 literal F runes leave **12,498** non-F runes, which is **not divisible by four**, so the p56-style F-interrupter cannot be combined with this four-rune block layout without an additional rule.
+
+A simpler one-rune-per-ciphertext-pair ElGamal interpretation over GF29, after skipping F, was also tested for all seven exponent classes and both adjacent/half-lane layouts (14 models). Its best IoC is **0.0358**. This is likewise negative.
+
+These are bounded exclusions of the stated source-motivated encodings, not evidence that the table factors are meaningless and not a complete rejection of DH-based mechanisms. The 2013 protocol-to-LP2 branch remains **underdetermined**: no source-selected state update, session-key transfer, clock and output register have been recovered.
+
+Reproducers:
+- [sims/quotient252_q238_p36_and_p55_border_sft.cjs](../sims/quotient252_q238_p36_and_p55_border_sft.cjs) — quotient rows, Q238 key and p36 LFSR seed.
+- [sims/2013_dh3301_original_elgamal_block_sft.cjs](../sims/2013_dh3301_original_elgamal_block_sft.cjs) — source-derived DH exponent classes and original-text ElGamal block layouts.
 
 ## Protocol semantics, real continuation and finite literal inverse
 
