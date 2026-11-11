@@ -36,6 +36,41 @@ The natural numerical read “TWO P” is unusually well connected to the indepe
 
 The 2016 signed message says: “Its words are the map, their meaning is the road, and their numbers are the direction.” This is compatible with treating the 19 words as map nodes and their GP-prime sums as step sizes, though it does not explicitly specify the modular operation.
 
+## Original p57 physical word layout
+
+The original p57 transcription segment (segment 56, with the runeless physical p50 omitted) has **five physical rune lines**, with counts **20 / 17 / 17 / 18 / 23**. These counts include the red heading PARABLE (7 runes); the 19 body words contain 94 runes. This is not a physical 5×19 rune rectangle. Three body words cross line boundaries, so line breaks must not be treated as word boundaries.
+
+The word-start coordinates below are 1-based (physical line, rune column); columns count GP runes, not Latin transliteration letters. The heading occupies row 1, columns 1–7.
+
+| Body position | Word | Start | End | GP runes |
+|---:|---|---|---|---:|
+| 1 | LIKE | (1,8) | (1,11) | 4 |
+| 2 | THE | (1,12) | (1,13) | 2 |
+| 3 | INSTAR | (1,14) | (1,19) | 6 |
+| 4 | TUNNELING | (1,20) | (2,6) | 7 |
+| 5 | TO | (2,7) | (2,8) | 2 |
+| 6 | THE | (2,9) | (2,10) | 2 |
+| 7 | SURFACE | (2,11) | (2,17) | 7 |
+| 8 | WE | (3,1) | (3,2) | 2 |
+| 9 | MUST | (3,3) | (3,6) | 4 |
+| 10 | SHED | (3,7) | (3,10) | 4 |
+| 11 | OUR | (3,11) | (3,13) | 3 |
+| 12 | OWN | (3,14) | (3,16) | 3 |
+| 13 | CIRCUMFERENCES | (3,17) | (4,13) | 14 |
+| 14 | FIND | (4,14) | (4,17) | 4 |
+| 15 | THE | (4,18) | (5,1) | 2 |
+| 16 | DIVINITY | (5,2) | (5,9) | 8 |
+| 17 | WITHIN | (5,10) | (5,14) | 5 |
+| 18 | AND | (5,15) | (5,17) | 3 |
+| 19 | EMERGE | (5,18) | (5,23) | 6 |
+
+The 2013 raw-marker residues select SHED (body position 10, row 3 column 7) and WE (position 8, row 3 column 1): both anchors lie on the **same physical line**. The forward graph route SHED → FIND → CIRCUMFERENCES → WE leaves row 3 for FIND on row 4, then returns through the word that begins on row 3 and crosses into row 4, ending at WE on row 3. The secondary H/+ anchors are LIKE at (1,8) and FIND at (4,14).
+
+This makes the actual 5-row word layout relevant to the 2016 “words are the map” clue, but it does not yet specify a 2D movement rule. Do not invent a row-wrap, column-wrap, or coordinate modulus to force one. The updated reproducer emits this layout as `p57_physical_word_layout`:
+`sims/p57_word_map_19_direction_cycles.py`.
+
+The A194954-derived 41×316 direct-key interpretations have been tested and rejected; see [the bounded key-gate report](a194954_41x316_direct_key_gate.md). This does not retire the sequence as a possible selector or navigation instruction.
+
 ## Reproducible map operation
 
 Number the 19 body words 1–19 in source order. Let S_i be the sum of the GP prime weights of word i. Use the source-selected modulus 19 and the directed step (with residue 0 represented by position 19):
