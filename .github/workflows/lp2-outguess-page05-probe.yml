@@ -27,6 +27,8 @@ jobs:
           cd outguess-src
           ./autogen.sh
           ./configure --with-generic-jconfig
+          # The generic libjpeg config leaves prototypes undefined; enable them for modern compilers.
+          sed -i 's/^#undef HAVE_PROTOTYPES/#define HAVE_PROTOTYPES/' src/jpeg-6b-steg/jconfig.h
           make -j2
           echo "$GITHUB_WORKSPACE/outguess-src/src" >> "$GITHUB_PATH"
       - name: Probe known carrier 00 and candidate 05
