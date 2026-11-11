@@ -28,7 +28,7 @@ A separate 2017 signed warning is now preserved at [`cicada2017-yEiTHhvF.asc`](c
 
 ## Interpretation limits
 
-The two archives are byte-identical mirrors, not independent captures from the original infotomb host or tweet CDN. The matching Git blob SHA establishes that the checked-in resource preserves those archived bytes exactly; it does not independently authenticate the image's original delivery or prove that its dimensions were intentionally selected as a cipher clue.
+The two image archives are byte-identical mirrors, not independent captures from the original infotomb host or tweet CDN. A separate contemporaneous Boards.net repost of the signed message by `wetsand` on 2016-01-19 11:32:05 UTC is now documented in [the signed-payload source record](../cicada2016-4gq25.md) and [the whitespace audit](../../im-results/2016-signed-payload-whitespace-audit.md). It is an independent period posting of the signed text, not a second OutGuess extraction or original-host capture. The matching image Git blob SHA establishes that the checked-in resource preserves the archived image bytes exactly; it does not independently authenticate the image's original delivery or prove that its dimensions were intentionally selected as a cipher clue.
 
 The 563 × 569 dimensions used in the lag-six source hypothesis are now confirmed from the archived binary rather than only from a contemporaneous 4chan post. This strengthens the input datum, not the interpretation: no LP2 plaintext, key, or complete mechanism follows from the image inventory.
 
