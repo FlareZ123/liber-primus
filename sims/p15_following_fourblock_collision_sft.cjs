@@ -30,9 +30,9 @@ assert(original.every((n) => Number.isInteger(n) && n >= 0 && n < 29));
  * @param {number[]} sequence - Flattened GP29 rune indices.
  * @returns {{pairs:number, repeats:Array<{key:number,offsets:number[]}>}}
  */
-function blockCollisions(sequence) {
+function blockCollisions(sequence, phase = 0) {
   const buckets = new Map();
-  for (let i = 0; i + WIDTH <= sequence.length; i += WIDTH) {
+  for (let i = phase; i + WIDTH <= sequence.length; i += WIDTH) {
     const key = ((sequence[i] * 29 + sequence[i + 1]) * 29 +
       sequence[i + 2]) * 29 + sequence[i + 3];
     const offsets = buckets.get(key) || [];
@@ -113,6 +113,9 @@ assert.deepEqual(applyMatrix(applyMatrix(original, M), MINV), original);
 const observed = blockCollisions(original);
 assert.equal(observed.pairs, 1);
 assert.deepEqual(observed.repeats[0].offsets, [604, 1100]);
+const allPhasePairs = [0, 1, 2, 3].map((phase) =>
+  blockCollisions(original, phase).pairs);
+assert.deepEqual(allPhasePairs, [1, 0, 0, 0]);
 assert.equal(blockCollisions(applyMatrix(original, M)).pairs, observed.pairs);
 
 const shakespeare = encodeGP(load("resources/control/shakespeare_first300k.txt"));
@@ -136,10 +139,10 @@ assert.equal(blockCollisions(applyMatrix(shakespeare.slice(0, LENGTH), M)).pairs
  * @param {number} stride
  * @returns {{count:number,min:number,median:number,max:number,atMostOriginal:number}}
  */
-function controls(a, stride) {
+function controls(a, stride, phase = 0) {
   const values = [];
   for (let start = 0; start + LENGTH <= a.length; start += stride) {
-    values.push(blockCollisions(a.slice(start, start + LENGTH)).pairs);
+    values.push(blockCollisions(a.slice(start, start + LENGTH), phase).pairs);
   }
   values.sort((x, y) => x - y);
   return {
@@ -159,7 +162,9 @@ const report = {
   original: {pages: pages.map((p) => p.page), runes: LENGTH,
     blocks: LENGTH / WIDTH, collisions: observed.pairs,
     repeats: observed.repeats},
-  controls: {}
+  controls: {},
+  phasePairs: allPhasePairs,
+  phaseControlMin: {}
 };
 for (const [label, {sequence, overlappingStride}] of Object.entries(sets)) {
   const independent = controls(sequence, LENGTH);
@@ -167,6 +172,10 @@ for (const [label, {sequence, overlappingStride}] of Object.entries(sets)) {
   assert(independent.min > observed.pairs);
   assert(overlapping.min > observed.pairs);
   report.controls[label] = {sourceRunes: sequence.length, independent, overlapping};
+  const perPhaseMin = allPhasePairs.map((_, phase) =>
+    controls(sequence, overlappingStride, phase).min);
+  assert(perPhaseMin.every((min, phase) => min > allPhasePairs[phase]));
+  report.phaseControlMin[label] = perPhaseMin;
 }
 assert.equal(report.controls.Shakespeare.independent.count, 124);
 assert.equal(report.controls.Shakespeare.independent.min, 14);
