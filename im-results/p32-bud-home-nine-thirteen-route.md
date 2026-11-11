@@ -38,6 +38,18 @@ The signed 2016 words **“The path lies empty”** suggest an interpretation of
 
 The earlier [p15/p32 318-degree image-bearing hypothesis](p15-p32-318-direction-sft.md) used the same BUDS-to-HOME diagonal and failed an original-JPEG directional-edge discriminator. This new source-only twin-BUD/M7 graph **does not repair** that pixel failure or license further image-ray tuning. Its distinguishing additional inputs are the independently visible second BUD branch, the p32 dot-count relation, and the established projective fixed-point/pole arithmetic.
 
+### The same path as a 4–5–4 red-dot-column decomposition
+
+The **actual red stencil**, inspected in the original p32 JPEG, has **four dots in its left column, five in its center and four on its right**, alongside the nine-row alternating occupancy. The source path of thirteen runes has a natural three-part segmentation in reverse spatial order:
+
+| Path segment | Runes | GP-prime sum | Residue modulo 29 |
+| --- | --- | ---: | ---: |
+| Extra BUD branch up to the junction, excluding its return to BUDS B | **B U D U** (4) | 156 | 11 |
+| Diagonal from BUDS B through the cell before HOME H | **B NG IA M B** (5) | 379 | 2 |
+| The complete horizontal HOME substring | **H O M E** (4) | 168 | 23 |
+
+Reading these three spatial segments from HOME toward the added BUD branch gives the residue vector **[23,2,11]**. The values **23** and **2** are the actual modulus and shared key in the earlier 2013 Cicada DH23 worked example, while **11** is the separately reconstructed minimal DH3301 client-exponent representative used in the project's p36 field tests. This is a possible human-recognizable cross-round numeric mnemonic, but **the source does not tell the solver to associate the dot columns with these path segments or to mix two different DH examples**. These three residues are simply the already reported 9/13 endpoint arithmetic decomposed into parts, so this does **not** constitute independent statistical evidence or provide an LP2 cipher key.
+
 ## Source-conditioned falsification calibration
 
 Freeze **43 distinct original cells**: the complete p32 top row/left column defining the 563×569 image axes, the 16-cell central-perimeter ring defining M7, and horizontal HOME and BUDS substrings. Shuffle the remaining **78** rune labels among their original cells, preserving their exact multiset. On every shuffle, count:
