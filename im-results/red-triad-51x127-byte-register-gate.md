@@ -255,6 +255,18 @@ All 12 candidate trigram scores range from **−13.74765053 to −12.95267344** 
 
 This 128+128 result is separate from the 51×127 row-reset model above and from the 127-rune terminal trace projection tested elsewhere. It is a bounded negative, not an exclusion of other stateful or non-GP uses of the two lanes.
 
+## Source-quotient [127,51] Reed–Solomon codeword test (Agent 42, 11 November 2026)
+
+The exact \(51\times127\) shape also motivates a source-locked error-correcting-code hypothesis: interpret each row as a degree-\(<51\) polynomial over the p3 field \(\mathrm{GF}(29^2)\), evaluated at the 127 adjacent quotient pairs \(Q_j\) from the p39-divided original grid. The first 51 evaluations are the systematic data; the remaining 76 are held-out parity symbols. The p53 red-span count supplies \(k=51\), while the quotient supplies the ordered \(n=127\) points. This is a candidate interpretation of the dimensions, not evidence that Cicada used Reed–Solomon coding.
+
+The 127 source quotient pairs contain only **121 distinct field points**. The six duplicate pairs occur at zero-based positions **[2,108], [3,99], [11,86], [30,85], [34,118], [40,54]**. A polynomial evaluation at the same field point must return the same field symbol. Across all 51 original rows, **0/306** duplicate-point comparisons agree. This alone contradicts direct evaluation at the source-ordered \(Q_j\).
+
+As a second independent check, Newton interpolation through the first 51 (all distinct) source points predicts only **2/3,876** held-out original field symbols; a uniform random match expectation is \(3{,}876/841=4.6088\). The two accidental matches are one each in rows 30 and 32; every other row has zero. The same interpolation implementation recovers a planted set of 51 independent degree-\(<51\) native field polynomials at **3,876/3,876** held-out symbols.
+
+This rejects the direct systematic \([127,51]\) GF(29²) evaluation-code interpretation with the original quotient-point order. It does not exclude a generalized code with independently source-specified column multipliers, a different evaluation set, or a clue-directed pre/post transform; none is supplied by the tested direct reading. No plaintext or key is recovered.
+
+Reproducer: [\`sims/gf841_51x127_rs_codeword_gate.cjs\`](../sims/gf841_51x127_rs_codeword_gate.cjs).
+
 ## Interpretation and open mechanism
 
 The byte gate and separate all-secret terminal-register test are finite exclusions under different source interpretations. The static-offset byte gate excludes canonical one-byte-per-two-runes encoding under the two tested row multiplier rules. The independent evolving-state gate excludes the same canonical transport and every row-rotated consecutive 256-exponent codebook under each of two quotient-multiplier feedback laws, **even allowing all 841 unknown states per row**. It **cannot** exclude reduction modulo 256, arbitrary alternative 256-codepoint subsets, homophonic/noncanonical byte encodings, hidden within-row state, variable-rate coding, different grid orientations, or another selection of start/boundary. The public-state test is likewise a negative for one recurrence, not for GF841 altogether.
