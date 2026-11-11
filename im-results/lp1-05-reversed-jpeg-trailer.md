@@ -15,6 +15,21 @@ Thus the appended bytes are an exact reversal of the file's *own initial 72,700 
 
 An identical EOI/trailer census of all **75** supplied original JPEGs (`00.jpg` through `74.jpg`) finds **74 with zero bytes after the final EOI marker**. Only LP1 `05.jpg` has an appended payload. This distinguishes the observation from an ordinary characteristic shared by the archive's JPEG encoder. None of the **58** LP2 JPEGs has appended data after the final EOI.
 
+## Fixed original-LP2 byte-key screen
+
+To test the cheapest possible causal route from this literal source-byte stream to unknown LP2 ciphertext, consume the **actual post-EOI bytes in printed file order**, starting at its first byte, with one continuous book-global GP clock over all **12,956 unknown runes**. Map each source byte to a 29-way residue and invert GP29 addition/subtraction. Neither choice produces source-language-looking text:
+
+| Fixed original inversion | Original decoded IoC | Observable result |
+| --- | ---: | --- |
+| Raw unknown LP2, before inverse | 0.0344783978645 | Near-uniform native GP |
+| `P_i = (C_i − trailer[i] mod 29) mod 29` | **0.0344812933935** | Unreadable |
+| `P_i = (C_i + trailer[i] mod 29) mod 29` | **0.0344950203456** | Unreadable |
+| `trailer[i] mod 28` after excluding prior GP ciphertext symbol | **0.0357254560223** on 12,870 eligible positions | **86 original adjacent repeats are undefined** by this 28-choice rule |
+
+The last rule cannot invert all original positions without an extra independently identified escape mechanism. Under the two direct additive rules, the IoCs remain at the cipher baseline; they do not recover GP-English plaintext or identify the historical cipher. No extra byte offsets, rotations, file variants, salts or tunable mappings were introduced. All mappings are conjectural because the source itself does not prescribe a byte→GP29 conversion.
+
+Reproduce directly against source bytes and the pinned complete original rune corpus using the [full original-inversion SFT](../sims/lp1_p05_jpeg_trailer_original_inverse_sft.cjs), alongside the [JPEG-only source gate](../sims/lp1_05_reversed_jpeg_trailer_sft.py).
+
 ## Interpretation and cryptanalytic status
 
 The construction is a literally reversible byte operation visible to a byte-level human inspection of a historical Cicada page. Whether it is a deliberately planted reversal hint, a downstream artifact-repacking effect, or some other production anomaly is **undetermined**. The doubled fragment is a prefix of the same JPEG, so it cannot itself serve as a previously unknown independent high-entropy keystream. The source does not say which later page, text region, bit order or ciphertext register should be reversed, nor which key follows. Whole-stream reversal is only a positional transposition and cannot by itself explain the book's near-uniform ciphertext marginals.
