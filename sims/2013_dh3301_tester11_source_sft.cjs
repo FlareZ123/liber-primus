@@ -272,6 +272,27 @@ const positions151 = wisdomSquare
 assert.deepEqual(positions151, [5, 21]);
 assert.deepEqual([phi(151) % 29, phi(sourceSelectedExponent) % 29], positions151);
 
+const pointerRows = testerCandidates.map((exponent) => {
+  const position = phi(exponent) % 29;
+  const cell = position >= 1 && position <= wisdomSquare.length ? wisdomSquare[position - 1] : null;
+  return {
+    exponent,
+    position,
+    cell,
+    cellDividesExponent: cell !== null && exponent % cell === 0,
+  };
+});
+const pointerMatches = pointerRows.filter((r) => r.cellDividesExponent);
+assert.deepEqual(pointerMatches, [{
+  exponent: 1661,
+  position: 21,
+  cell: 151,
+  cellDividesExponent: true,
+}]);
+const secondPointer = phi(pointerMatches[0].cell) % 29;
+assert.equal(secondPointer, 5);
+assert.equal(wisdomSquare[secondPointer - 1], 151);
+
 
 // Separate inbound-only log value. The base for that exchange is not preserved here.
 // These are arithmetic observations only, not a claim that its server selected base 5.
@@ -490,6 +511,9 @@ console.log(JSON.stringify({
     gpResidues: { cell151: 151 % 29, exponent1661: sourceSelectedExponent % 29 },
     wisdomPositions151: positions151,
     totientPositionLock: [phi(151) % 29, phi(sourceSelectedExponent) % 29],
+    candidatePointerRows: pointerRows,
+    uniquePointerMatch: pointerMatches[0],
+    secondPointer,
   },
   invariantRows,
   selectedExponent: {
