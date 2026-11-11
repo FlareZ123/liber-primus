@@ -31,12 +31,35 @@ Maintained OutGuess 0.4 source commit `24810e14327c2bbeedeaadd3e24491f2a4425c02`
 
 These outputs are high-entropy, contain no recognized file header, and lack readable plaintext. The old report incorrectly treated them as the entirety of the Stage5 hidden-payload test because the two reversed images had not yet been extracted. The front/back output correlations alone do not indicate an XOR-share mechanism.
 
-The same historical walkthrough documents an **unkeyed OutGuess extraction from `onion4image3.jpg`** producing a cleartext word-group cipher, subsequently decoded with a seven-column transposition to a `q4utgdi2n4m4uim5.onion` continuation. That independently documented output is a strong **positive control for the newly recovered third/fourth images**. A subsequent manually dispatched workflow will extract each under the same tool and default key, without a password search. Until confirmed on the preserved original bytes, the walkthrough's result should remain external historical evidence and not be conflated with a successful modern extraction.
+**Recovered original image 3 gives an exact historical plaintext recovery.** In [manual CI run 43115488487](https://github.com/FlareZ123/liber-primus/actions/runs/43115488487), default-key OutGuess 0.4 at fixed source commit `24810e14327c2bbeedeaadd3e24491f2a4425c02` on image-03 (SHA above) reports `Steg retrieve: seed: 38, len: 140`. The 140-byte extracted file has SHA-256 `4767d811f22abdb15bfee53c29bbd2488b123a9c290f63712f4ed12fdbc5963d` and consists of the same text reported in the independently preserved 2014 walkthrough:
+
+```text
+
+For those who have fallen behind:
+
+TL BE IE OV UT HT RE ID TS EO ST PO SO YR
+SL BT II IY T4 DG UQ IM NU 44 2I 15 33 9M
+
+Good luck.
+
+3301
+
+```
+
+The original bytes include one leading blank line, a trailing space after the first group line, and two final newlines, precisely accounting for the 140-byte file. Stripping only whitespace from the two grouped lines gives 56 ciphertext characters. The historical seven-column key **1736254** is a *permutation of each consecutive seven-character row*: output characters at zero-based ciphertext positions `[0,6,2,5,1,4,3]`. Applied unchanged to all eight rows, it recovers exactly:
+
+```text
+TOBELIEVETRUTHISTODESTROYPOSSIBILITYQ4UTGDI2N4M4UIM59133
+```
+
+The 16-character v2 onion hostname is **`q4utgdi2n4m4uim5.onion`**, and the four trailing characters `9133` have no source-established further role. The source/decoded text, exact inverse transpose, source SHA, and continuation are locked in `sims/stage5_original_outguess_columnar_sft.cjs`, executed on the *actual extracted 140-byte file* by the manually dispatched workflow. Image-04's default-key extraction returns 58,152 opaque bytes, SHA-256 `a35f439175a16486e6b5699cc45a265fa9d82eea15b92a52a124d549d97ff4f1`, with no comparable authenticated plaintext. No passwords or arbitrary transposition orders were searched.
+
+**This closes a real 2014 historical solve path from an original archived gzip object through two recovered JPEGs and a specific OutGuess/columnar result.** The key and operation are independently historical, and the extracted authentic message is reproducible from pinned input. Its known 2014 plaintext is distinct from unknown LP2 ciphertext.
 
 ## Reproduction and status
 
 - `sims/stage5_four_image_carve_sft.py` is a self-testing, SHA-pinned complete-image carving and extraction tool. `--extract data.out OUTPUT_DIR` writes the four byte-identical decoded JPEGs, after checking every output hash and decoding each image independently.
-- `.github/workflows/avowy-stage5-gzip-audit.yml` is manual-only (`workflow_dispatch`); it fetches the pinned archival source, expands the exact GZIP, runs the four-image plant and source checks, exports all four recovered source JPEGs, and tests original OutGuess on the two newly discovered images. It also preserves the previous bounded first-two-image controls. The first four-image detection passed in [run 43114953136](https://github.com/FlareZ123/liber-primus/actions/runs/43114953136).
+- `.github/workflows/avowy-stage5-gzip-audit.yml` is manual-only (`workflow_dispatch`); it fetches the pinned archival source, expands the exact GZIP, runs the four-image plant and source checks, exports all four recovered source JPEGs, and tests original OutGuess on the two newly discovered images. It also preserves the previous bounded first-two-image controls. The first four-image detection passed in [run 43114953136](https://github.com/FlareZ123/liber-primus/actions/runs/43114953136); the further four-image and historical OutGuess verification passed in [run 43115488487](https://github.com/FlareZ123/liber-primus/actions/runs/43115488487).
 - Archived upstream: `https://github.com/iBotPeaches/cicada_3301/blob/master/onions/avowyfgl5lkzfj3n.onion/post/index.html`.
 
-**Research decision:** preserve all four images as recovered original historical material and use their documented contents and OutGuess positive control to reconstruct the 2014 continuation accurately. Do not infer that the numeric `pre` object selects any LP2 key, or guess OutGuess passwords without a new source instruction. No unknown LP2 plaintext, authentic LP2 key, complete LP2 mechanism or final destination is recovered by this Stage5 source repair.
+**Research decision:** all four original-image byte streams, the exact third-image 140-byte steganographic plaintext, and its 2014 onion continuation are now independently reproducible. Preserve the source-authenticated bytes and reuse this known original-method control when considering source-motivated LP2 operations. Do not infer that the numeric `pre` object selects any LP2 key, or guess OutGuess passwords without a new source instruction. No unknown LP2 plaintext, authentic LP2 key, complete LP2 mechanism or final destination is recovered by this Stage5 source repair.
