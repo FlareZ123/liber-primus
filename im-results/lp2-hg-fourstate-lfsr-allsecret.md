@@ -1,6 +1,6 @@
 # Signed-2013 / p39 source polynomial: complete four-state additive GP29 inversion
 
-**Agent 26, 11 November 2026. Original-input, all-secret-state negative for a precisely defined reversible cipher.** The [single-file CommonJS reproduction](../sims/lp2_hg_fourstate_lfsr_allsecret_sft.cjs) tests both directions of the exact independently source-linked degree-four polynomial against the original 729-rune opening and additional original physical-page scopes. **No previously unknown LP2 plaintext, author-selected encryption key, or destination was recovered.**
+**Agent 26, 11 November 2026. Original-input, all-secret-state negative for a precisely defined reversible cipher.** The [single-file CommonJS reproduction](../sims/lp2_hg_fourstate_lfsr_allsecret_sft.cjs) tests both directions of the exact independently source-linked degree-four polynomial against the original 729-rune opening and nine further original physical-page scopes. The [completed manual full-scope CI run 43037650459](https://github.com/FlareZ123/liber-primus/actions/runs/43037650459) passed **20/20 original-source search assertions plus the full native GP positive control** on Node 22.23.4. **No previously unknown LP2 plaintext, author-selected encryption key, or destination was recovered.**
 
 ## Why a contemporary solver could try a four-state register
 
@@ -54,7 +54,7 @@ Across the original 729-rune opening pp0–2, the untransformed ciphertext has G
 
 The **independent power test** uses the final 729 GP runes of the same stored Shakespeare file, disjoint from its first-150,000 training runes. Encrypt them with a hidden four-element key \`[1,5,11,24]\` (state number **594,733**). The unmodified all-secret inversion ranks that **true key first of 707,281**, recovers **729/729 authentic original-control GP runes exactly**, and reciphers them exactly. Its first 42 native transliteration characters begin \`HONSINCEWEAREUPINARMSIFNOTTOFIGHTWITHFOREIG\`, corresponding to genuine prose. This is **synthetic model-controlled recovery**, explicitly distinct from decrypting LP2.
 
-Four more original physical-source scopes were independently tested using the **same frozen scorer and the first 729 runes of each**, with all 707,281 secret seeds per orientation:
+Nine more original physical-source scopes were independently tested using the **same frozen scorer and the first 729 runes of each**, with all 707,281 secret seeds per orientation:
 
 | Original rune scope | Original \(F\): validation / untouched | Reciprocal: validation / untouched |
 | --- | --- | --- |
@@ -62,8 +62,15 @@ Four more original physical-source scopes were independently tested using the **
 | p33–39 | −3.88109 / −4.47879 | −3.94195 / −4.26204 |
 | p40–55 | −3.95985 / −4.34946 | −3.98430 / −4.21640 |
 | p52–55 | −3.93392 / −4.17155 | −3.99640 / −4.43011 |
+| p0–2 after the 13-red-rune heading (716 runes) | −4.00231 / −4.08953 | −3.90622 / −4.10487 |
+| p8–14 | −4.02556 / −4.17360 | −4.03430 / −4.29947 |
+| p15–22 | −3.95829 / −4.39649 | −3.95011 / −4.34216 |
+| p23–26 | −3.85312 / −4.19656 | −3.90629 / −4.11416 |
+| p27–32 | −3.90080 / −4.11098 | −4.00036 / −4.26131 |
 
-All original recovered IoCs are **0.0345–0.0356**, broadly consistent with rune-like random data; none approaches the independent native control. Each scope is first-key optimized from scratch, giving the hypothesis considerable latitude. These extra scopes are not statistically independent from one another and should not be counted as separate evidential confirmations.
+All original recovered IoCs are **0.0343–0.0358**, broadly consistent with rune-like random data; none approaches the independent native control. Each scope is first-key optimized from scratch, giving the hypothesis considerable latitude. These extra scopes are not statistically independent from one another and should not be counted as separate evidential confirmations.
+
+**Full execution:** [Successful 20-case manual CI run, 11 November 2026](https://github.com/FlareZ123/liber-primus/actions/runs/43037650459). The program asserts the source-polynomial product and original printed-grid divisibility, tests all 707,281 states for both orientations on every one of the 10 physical-page scopes, and ranks the correct independent English-plant seed first. It reports **zero original native-like outputs** under its predeclared GP-score/IoC gate. Only the existing, deliberately unrelated original scopes overlap; those repeated windows are never misrepresented as independent p-values.
 
 **Run details:** [manual-only reproducible workflow](../.github/workflows/lp2-hg-fourstate-allsecret-manual.yml), [original numerical grid](../resources/liber-primus/lp2-grid-256.json), [original LP2 rune corpus](../resources/liber-primus/lp2-corpus.json), [source-linked 2013 factor derivation](2013-base29-gf29-grid-factor.md), [full grid polynomial factorization](lp2-grid-complete-gf29-factorization.md).
 
