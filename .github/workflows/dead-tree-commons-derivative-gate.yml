@@ -2,9 +2,19 @@ name: LP2 DeadTree exact Commons derivative gate
 
 on:
   workflow_dispatch:
+    inputs:
+      probe:
+        description: "Run Commons derivative control or signed-2016 tree identity test"
+        required: false
+        type: choice
+        options:
+          - commons
+          - signed-tree
+        default: commons
 
 jobs:
   derivative-gate:
+    if: ${{ inputs.probe == 'commons' || inputs.probe == '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -27,3 +37,17 @@ jobs:
             im-results/dead-tree-commons-derivative-gate.json
             im-results/dead-tree-commons-derivative-gate.log
           if-no-files-found: warn
+
+  signed-2016-tree:
+    if: ${{ inputs.probe == 'signed-tree' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install image source comparison dependencies
+        run: python -m pip install --disable-pip-version-check --quiet numpy opencv-python-headless
+      - name: Compare signed 2016 tree to original LP2 page-32 and page-55 tree artwork
+        run: python sims/2016_tree_identity_sft.py
