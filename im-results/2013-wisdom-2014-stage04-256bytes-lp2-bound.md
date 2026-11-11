@@ -22,7 +22,7 @@ The separate `server-status` response in the same contemporary 2014 stage04 arch
 
 ## Updated 3301 payload (Issue #298)
 
-The previously unparsed Stage04 `<!--3301-->` update is now bounded by exact object identities. Its `03.jpg` and `04.jpg` are byte-identical to original LP1 resources 03 and 04; the complete `server-status.bin` is byte-identical to the full LP1 page-05 artifact. The fixed page-05 trailer extraction reproduces the same 1033 5×5 square already derived from the 2013 `0_wisdom` material. The page-03 OutGuess output contains the signed “Let the text guide you” instruction and its small rune image; the page-04 OutGuess output is retained as an opaque 7,524-byte binary. No source-selected LP2 key or operation is established. See the [full Stage04 object inventory and reproduction SFT](cicada2014-stage04-256-p50-direct-identity-gate.md).
+The previously unparsed Stage04 `<!--3301-->` update is now bounded by exact object identities. Its `03.jpg` and `04.jpg` are byte-identical to original LP1 resources 03 and 04; the complete `server-status.bin` is byte-identical to the full LP1 page-05 artifact. The fixed page-05 trailer extraction reproduces the same 1033 5×5 square already derived from the 2013 `0_wisdom` material. The page-03 OutGuess output contains the PGP-verified “Let the text guide you” instruction and its signed small rune image; the page-04 OutGuess output is retained as an opaque 7,524-byte binary. No source-selected LP2 key or operation is established. See the [full Stage04 object inventory and reproduction SFT](cicada2014-stage04-256-p50-direct-identity-gate.md).
 
 ## Separate Stage04 small-image continuation (Issue #300, 11 November 2026)
 

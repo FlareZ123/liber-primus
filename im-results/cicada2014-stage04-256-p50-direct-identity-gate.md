@@ -31,7 +31,7 @@ The recovered 5×5 square has every row, column and both main diagonals summing 
 
 ## OutGuess payloads and what remains unknown
 
-- The page-03 OutGuess output is a PGP clear-signed text containing “Let the text guide you” and a small JPEG. The embedded JPEG is now preserved separately and checked byte-for-byte against the hex span. The workflow verifies the clear-signature against the repository's Cicada public key.
+- The page-03 OutGuess output is a PGP clear-signed text containing “Let the text guide you” and a small JPEG. The embedded JPEG is now preserved separately and checked byte-for-byte against the hex span. The clear-signature was verified successfully in [workflow run 43065776356](https://github.com/FlareZ123/liber-primus/actions/runs/43065776356) against `resources/control/cicada-3301-public-key.asc` (fingerprint `6D854CD7933322A601C3286D181F01E57A35090F`). The embedded small rune JPEG is therefore covered by the verified signed text.
 - The page-04 OutGuess output is a 7,524-byte binary with measured Shannon entropy about 7.978 bits/byte. It has none of the common JPEG, PNG, GIF, ZIP, GZIP, PDF, ELF, BZIP2 or XZ signatures tested by the SFT. These observations do not prove encryption or identify a cipher. The bytes are preserved at `resources/external/derived/2014-stage04/04-outguess.bin` for future work if a source-selected key or operation appears.
 - The page-05 trailer is the 1033 square, already tied to the earlier wisdom puzzle. No LP2 reference, source-derived LP2 key, or exact LP2 byte/rune sequence is present in the recovered object inventory.
 

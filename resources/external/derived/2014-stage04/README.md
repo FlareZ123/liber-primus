@@ -31,6 +31,6 @@ The updated 3301 payload reconstructs LP1 pages 03–05 and the already-known 20
 
 `04-outguess.bin` has no common file signature among the formats tested by the SFT and has measured byte entropy of about 7.978 bits/byte. That is an observation, not proof of encryption or a license to guess transforms. It remains an opaque 2014 OutGuess object. No source-selected operation connects it to LP2.
 
-Run `node sims/cicada2014_stage04_3301_object_inventory_sft.cjs` to reproduce local identity and extraction checks. The workflow also verifies the PGP clear-signature against `resources/control/cicada-3301-public-key.asc`.
+Run `node sims/cicada2014_stage04_3301_object_inventory_sft.cjs` to reproduce local identity and extraction checks. The PGP clear-signature was verified successfully in [workflow run 43065776356](https://github.com/FlareZ123/liber-primus/actions/runs/43065776356) against `resources/control/cicada-3301-public-key.asc` (fingerprint `6D854CD7933322A601C3286D181F01E57A35090F`).
 
 Full research decision: [Stage04 1033/3301 source gate](../../../../im-results/cicada2014-stage04-256-p50-direct-identity-gate.md).
