@@ -168,7 +168,7 @@ console.log(JSON.stringify({
     p50CellIndex: note.wordIndex,
     p50CellToken: page50.tokens[2],
     p50CellValue: page50.bytes[2],
-    2016MessageWord: "lies",
+    prior2016MessageWord: "lies",
     2016MapP50CellIndex: 3,
     2016MapP50CellToken: page50.tokens[3],
     2016MapP50CellValue: page50.bytes[3]
