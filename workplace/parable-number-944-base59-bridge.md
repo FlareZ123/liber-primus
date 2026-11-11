@@ -16,6 +16,12 @@ Conditional on the retrospectively reconstructed `number` operation applied to t
 
 A solver would have to **notice the 2013 count and reapply its number operation**, **select the 16-factor ring**, **select 59 as a radix**, and then identify the p49–51 table as the target. None of those selections is explicitly instructed by the surviving later manuscript. In particular, 944 has other divisors; both the 59-digit codec and inner ring were recognized separately before this intersection. This post-selection is a real objection, and the number 59 is not an independently established secret key.
 
+## Separate original TXXX checksum and mod449 identifier route
+
+The original 2013 MP3 TXXX field stores `Parable 1,595,277,641`. The four p57 clause GP-prime sums are `[449,1259,1031,1229]`; the three body-clause product is exactly `1259×1031×1229 = 1,595,277,641`. Taking the heading sum 449 as a modulus gives body remainders `[361,133,331]`; the last two match the 2014 Onion7 HTML `<title>133</title>` and `<div id="331">`. The source-only comparison across 24 ordered choices finds this exact pair only with the heading as modulus and the two later body clauses.
+
+This is a strong cross-round numeric checksum and a clue-constrained candidate route to 2014 HTML identifiers. It is **separate from** the reconstructed NUMBER reversal used for `449→944=16×59`. The original TXXX product is byte-level source evidence; choosing modulo by the heading sum is still inferred, and 133/331 are HTML metadata fields, not LP2 physical page or word indices. Keep this as a candidate for the existing p57/2014 selector gate in [Issue #150](https://github.com/FlareZ123/liber-primus/issues/150), not as a confirmed LP2 address or base59 selection. Full source arithmetic: [audio-761-pad-scan](../im-results/audio-761-pad-scan.md#parable-s-heading-is-the-modulus-of-the-seventh-onion-title-and-id).
+
 ## Provenance and address scope
 
 The 2013 `COUNT`/`NUMBER` semantics used here are not source-authenticated. The 2013 `761.MP3` title-sum match is independent of those commands and does not validate the 449 reversal or select a page address. `761→167` and `449→944→16×59` remain candidate arithmetic only; the 944 factorization has multiple divisors, and no original instruction selects 16 as a ring and 59 as a radix. The competing base60 p39/Ac24 factor is recorded below. This note should not be used to launch another unconstrained base59/key search.

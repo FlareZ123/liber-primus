@@ -17,7 +17,7 @@ The exact title sum equals the original file basename **761**. The source bytes 
 
 This is a genuine artifact-level GP-prime-sum→filename correspondence, independent of LP2 plaintext. It is reasonable to regard deliberate numerical naming as plausible, but the file itself does not contain an instruction saying “sum the title and use the result as a filename.” Most importantly, a filename is not a general word/page address contract.
 
-## 2. Stronger source-constrained numeric control: 2013 `0_wisdom` → 2014 square
+## 3. Stronger source-constrained numeric control: 2013 `0_wisdom` → 2014 square
 
 The original 2013 [`0_wisdom` page](../resources/external/2013-0-wisdom.txt) explicitly says that **the primes are sacred** and **the totient function is sacred**. Its mixed 5×5 table contains 12 numeric cells and 13 GP-rune word cells. Replacing each word cell with the sum of its canonical GP prime weights, leaving the numeric cells unchanged, reproduces the archived 2014 stage04 5×5 magic square **cell-for-cell (25/25)**. All rows, columns and principal diagonals then sum to **1033**. The full word-by-word mapping and reproducer are in [the 2014 stage04 source study](2014-magic-square-direction-map.md) and [`sims/2014_magic_square_direction_map.cjs`](../sims/2014_magic_square_direction_map.cjs).
 

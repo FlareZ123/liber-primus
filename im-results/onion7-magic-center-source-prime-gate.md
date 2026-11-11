@@ -8,6 +8,8 @@ The seventh 2014 onion delivery page preserved in `resources/cicada2014-onion7-i
 
 The archived OpenPuff source `resources/cicada2014-openpuff-magic-squares.txt` has three ordered squares. Its **middle 7×7 square**, magic sum **1033**, has exact center **331**, matching the HTML `div id`. The HTML title **133** reverses the center's decimal digits. These features can be selected from historical source material before consulting LP2 unknown ciphertext.
 
+The original 2013 `761.MP3` TXXX frame also stores `Parable 1,595,277,641`, exactly the product of the three later p57 body-clause GP-prime sums `1259×1031×1229`. This is a byte-level source link between the original audio metadata and the p57 clause arithmetic; the complete frame and product calculation are preserved in [the audio analysis](audio-761-pad-scan.md#parable-s-heading-is-the-modulus-of-the-seventh-onion-title-and-id). It strengthens the cross-round numeric relationship but does not itself prescribe the modulo-449 operation below.
+
 Further exact arithmetic is **retrospectively noticed**:
 
 - `133+331=464=16×29`, and prime number 464 is **3301**, the digit-reversed historical sum 1033;
