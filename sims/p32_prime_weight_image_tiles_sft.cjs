@@ -20,11 +20,10 @@ const corpus = JSON.parse(fs.readFileSync(
   path.join(root, 'resources', 'liber-primus', 'lp2-corpus.json'),
   'utf8'
 ));
-const jpegBase64 = fs.readFileSync(
-  path.join(root, 'resources', 'historical', '2016-cicada-4gq25.jpg.base64'),
-  'utf8'
-).trim();
-const image = decodeJpeg(Buffer.from(jpegBase64, 'base64'), {
+const jpegBytes = fs.readFileSync(
+  path.join(root, 'resources', 'historical', 'cicada2016-4gq25.jpg')
+);
+const image = decodeJpeg(jpegBytes, {
   useTArray: true,
   formatAsRGBA: false,
   maxResolutionInMP: 2
@@ -183,7 +182,7 @@ for (let trial = 0; trial < iterations; trial++) {
 }
 const result = {
   imageSize: [image.width, image.height],
-  imageBytes: Buffer.from(jpegBase64, 'base64').length,
+  imageBytes: jpegBytes.length,
   tileWidthPixels: widths,
   tileHeightPixels: heights,
   tileXEdges: xEdges,
