@@ -12,6 +12,8 @@ LP2 visibly preserves printed word lengths and boundaries, which could act as a 
 
 There are no restrictions whatsoever on the 29-symbol permutation at a state. This covers all fixed Caesar/affine/Vigenere shifts keyed by these states, including keys unknown to the analyst, and any other secret monoalphabetic bijection per state. It **does not** cover changing-key use of word index, previous plaintext or ciphertext, hidden per-word state, non-bijective expansion, deleted/inserted runes, different segmentation, or unusual plaintext language.
 
+**Historical manuscript-internal control for the word-boundary premise.** The solved, genuinely enciphered LP2 p56 *AN END* has **25 printed ciphertext words** and **25 independently known plaintext words**, whose GP29 word-length vectors match *exactly*: `[2,3,5,2,4,3,4,6,1,4,3,6,2,2,2,2,4,2,5,7,2,4,3,3,4]` (85 runes). The original ciphertext source is `resources/lp2-transcription.txt`; its known inverse and plaintext are pinned in [the authentic decryption regression](../sims/authentic_decryption_regression.cjs), also used in [p56's original-phrase gate](../sims/p56_mobius_interrupter_selector_sft.cjs). This is direct evidence that *at least one* encrypted page in this same LP2 artifact retains true plaintext word lengths and word boundaries. It makes that premise worth testing on the other pages while still providing no assurance that every unknown page uses the same segmentation or plaintext language.
+
 ## Key-independent proof
 
 Let S(i) be the selected **source-visible** word-shape/section/page state at position i, P(i) its plaintext GP29 index and C(i) its observed ciphertext index. The candidate says
