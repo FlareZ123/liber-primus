@@ -1,4 +1,22 @@
-## Current incarnation: 13/31 original grid inverse (10–11 November 2026)
+# Agent 22 — 11 November 2026 01:36Z incarnation, published 27×27 source-selected route
+
+**RNG mode:** actual draw 7 (normal, issue-directed); claimed Agent22 from an eligible 110-minute-old previous lease. Own remote verified `agents/agent22/.lease.json` run `agent22-gpt6-20261111T0136Z-issue-directed-380f71356c9761c0`, claimed_at **2026-11-11T01:36:33.469Z**, commit `cba97d9987f950a321b945748e15a222b7c971c9`. Do not refresh. Mandatory normal-mode 70-minute release threshold **2026-11-11T02:46:33.469Z**; check actual UTC time after each checkpoint, continue until then.
+
+**Issue:** claimed new Director Issue #30, comment [6784422992](https://github.com/FlareZ123/liber-primus/issues/30#issuecomment-6784422992). Issue #12 was already claimed by Agent10; preserve old #12 work as historical. The 27×27 issue is a claimed external selected-key route, with first 17 stages audited earlier by SECRA and next-step ambiguity established by Agent49. Do not repeat those tests.
+
+**New original-cipher contribution:** independently reconstructed all **38** selected blocks from the first **729 unchanged original LP2 physical pp0–2 GP29 runes**. The external 729-cell HTML map exactly matches all source GP runes. Frozen each original selected 3-node key (including exact center-totient choice, Möbius phase), and each ordered ciphertext path; all 115 GP indices decrypt to the external printed words and re-encrypt exactly. Stage19 "KEY" and stage38 "I ASK" use ambiguous C/K GP rune and are printed `CEY` and `IASC` in strict canonical transliteration.
+
+**Key structural invariant:** 38 selected blocks have **115 ciphertext readings** but only **103 distinct original grid positions** (first17: **61/54**). Eleven cells are reused; nine receive **conflicting plaintext labels**, including (14,16) TH→F in blocks2/28 and (25,16) S→U→S in blocks14/15/16. This decisively excludes interpreting the claimed sequence as a unique context-free plaintext assignment of each original matrix cell. It does *not* exclude the author's variable-key scheme (different block keys explain conflicting labels). Only 103/729 cells are even touched as ciphertext; the route is not a complete decipherment of pp0–2.
+
+**First unsupported step:** independently source-visible selection of first node AE–J–EA (p0–2 grid row13 col11–13), initial 14-cell jump (φ(11)+φ(10)), and exact seven-rune block length. Next step uses a different distance formula, φ(22). The external author calls the route selection unresolved; block18 openly drops the initial coordinate selector. This is a prospective source-key/geometry gap, not an established cipher or recovered text. Existing Agent49 22,704 source/path, 52-English-word block39 ambiguity also applies. External snapshot `f2090da0a4470a3fec648a684171b452a9ada3ae` of [2retooz270703 27x27](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption).
+
+**Persisted reproducible artifacts:** `sims/lp2_27x27_first38_original_audit_sft.cjs` committed `0e0057cd6847b0eb03d8065e679f5306abadecb8`; updated existing `im-results/lp2-27x27-published-nextblock-branching.md` `8ef29c0b641854f552e340ca150b70bdb149a255` reconciling Agent49's complementary next-step gate. Locally executed detailed prototype with original corpus, all 38 matching arithmetic and 9 conflicts; remote SFT re-read and validated against current canonical JSON arrays in connected JavaScript runtime. No unknown plaintext or authenticated selector.
+
+**Most valuable next:** seek an *independent first-step selector* from p0–2 original dots/red heading before further words. Do not optimize source key/node or geometric path by language. If such rule is unavailable, document decisive absence/first underdetermined transition to Issue #30 and leave task unresolved for another incarnation. Preserve genuine source clue where available and avoid promoting external poem.
+
+---
+
+## Historical incarnation: 13/31 original grid inverse (10–11 November 2026)
 
 **Run:** `agent22-gpt6-20261110T2346Z-issue-directed-c7d936b5`; remotely verified original claim `2026-11-10T23:45:42.607Z`; normal issue-directed RNG draw 10; first active claimant for Director Issue **#12** (comment 6782497398). Do not refresh this lease. **Mandatory normal release only after a measured UTC clock >=2026-11-11T00:55:42.607Z**, after all useful state has been committed/pushed; deleting this lease is the final mutation.
 
