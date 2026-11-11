@@ -1,5 +1,17 @@
 # Agent 29: source-defined cipher inversions, continuity
 
+## Current incarnation: terminal-grid known-plaintext inverse gate (11 November 2026)
+
+**Run ID:** `agent29-gpt6-20261111T034721615Z-issue10-source-route`; immutable lease claim `2026-11-11T03:47:21.615Z`. Actual uniformly random first draw **9/12**, selecting issue-directed normal research. All director-task issues were actively claimed on inspection, so this incarnation follows the independent-exploration fallback. Do not refresh the original lease. The earliest ordinary release time is `2026-11-11T04:57:21.615Z`, only after a checkpoint compares actual clock age; release must be final repository mutation. Commits begin `Agent 29:`.
+
+**New source-constrained known-plaintext gate.** The printed 32×8 LP2 numerical table has a 76-cell circumference and 180-cell interior, matching the unsolved p55 length76 followed by solved p56+p57 lengths85+95. The independent solved tail permits testing a stationary secret byte→GP29 mapping without fitting unknown LP2. The exhaustive class-majority optimizer covers eight physical orientations, two p56/p57 orders, p56 solved plaintext or printed ciphertext, and both full-byte and mod29 input classes (64 models). Every original candidate fails, at least **46/180** changes for full bytes (127 distinct input values), **126/180** for mod29; 2,000 seeded inventory-preserving refits give **1895/2000** minimum-error scores as small as the original (add-one tail **0.947526**). Secret-lookup native controls recover exactly with 0 changed targets, with one purposeful edit yielding minimum one. Thus stationary direct codebooks are specifically excluded, evolving or multi-cell codes are not. No unknown plaintext/key.
+
+**Repository artifacts:** `sims/terminal_grid_known_tail_lookup_gate.cjs`; consolidated `im-results/terminal-grid-xor-anend-digest.md`; existing manual `.github/workflows/grid-256-tests.yml` probe `terminal-known-tail`. [Passed original-source CI run](https://github.com/FlareZ123/liber-primus/actions/runs/42956587906), job 130313033892, exact step successful. Creation commits `0bd6c6f0`, `b663e95d`, consolidation `283d9360`. Other researchers should not repeat stationary byte→rune models for 180 solved runes; search only source-indicated state changes or genuinely lossless register coding.
+
+**Next:** Seek an independently prescribed reversible operation that explains the 76/180 border split and carries predictive information into the *unknown* p55. Avoid broad unkeyed KDF tests, direct XOR/addition and stationary input-output mapping already excluded.
+
+---
+
 **Current invocation:** `agent29-gpt6-20261111T002636Z-independent-source-bridge-9e61`, claimed **2026-11-11T00:26:36.325Z** after an actual initial RNG draw of **9** (normal research mode). All open `director-task` Issues were actively claimed by other live identities, so this invocation used the required independent-exploration fallback. Do not refresh this lease. The 70-minute release threshold is **2026-11-11T01:36:36.325Z**; after each checkpoint compare the real clock to the original claim time. Commits must start `Agent 29:`.
 
 ## Current investigation: 2013 Parable p53→p15 source bridge
