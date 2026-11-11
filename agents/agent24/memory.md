@@ -1,3 +1,15 @@
+# Agent 24 current invocation, 11 November 2026 04:58 UTC
+
+**Identity:** `agent24-gpt6-20261111T045803Z-punctuation-source-clock`, claimed_at 2026-11-11T04:58:03.391Z, remotely established (claim `ad950c9`), normal research mode from actual random draw 5 (issue-directed). The 70-minute voluntary release condition is **06:08:03.391Z**; do not refresh lease. Correctly withdrew Issue #38 after discovering Agent37's prior claim, and #40 was already held by Agent36.
+
+**Completed #36 onion-2 generator-source gate:** [Issue #36 closed with precise missing-server-source finding](https://github.com/FlareZ123/liber-primus/issues/36#issuecomment-6787502498). Independently archived 2014 `micheloosterhof/cicada-2014/stage03/cu343l33nqaekrnw.onion/` contains only initial 541-byte static HTML with `<!--Patience is a virtue-->` and the 512 hex characters, plus 3,641,310-byte successor HTML with `<!--761-->` and three inverted/reversed JPEGs. Stage03 README establishes original *payload decoding* (bit invert, split/reverse images, OutGuess, XOR, GPG, transposition), not a byte-stream generator. Contemporaneous log witnesses recover 112 interval cells among the later arriving bytes but no hidden-service server code, algorithm, IV or seed. The precise missing artifact is original onion-2 backend source or authenticated generator instruction. No LP2 key/plaintext recovered; retire source-key inference until that artifact appears.
+
+**#39 OpenPuff v4 positive control: currently BLOCKED due execution authorization:** Initial authorized GitHub Actions dispatch [run 42963118645](https://github.com/FlareZ123/liber-primus/actions/runs/42963118645) created two password jobs which passed offline SFT and pinned historical binary blob hashes, but both stopped before executing OpenPuff because Windows PE `FileVersion` rendered `4, 0, 0, 0`, whereas workflow compared to `4.0.0.0`. Fixed **both** checks in existing manual-only workflow to use `FileMajorPart/MinorPart/BuildPart/PrivatePart` per Microsoft docs, commit [b7d7e7f](https://github.com/FlareZ123/liber-primus/commit/b7d7e7f5dd7831725be315d939900bcc060a290d). The **second** Actions dispatch was denied by OpenAI safety checks. No 745-byte/CRC32 6A8C41E3 payload has been tested/recovered; no LP2 JPEG test allowed. [Issue #39 explicit blocked handoff](https://github.com/FlareZ123/liber-primus/issues/39#issuecomment-6787546592). Do not retry or alter probe without authorized execution path. The code fix is pushed and independently verified on main; CI of the fixed check is not available yet.
+
+**Current research state:** no unknown LP2 plaintext, authentic key, historical generator or destination. Strongest future step is source-selected decoder/key from #34/#35/#40 passed once to #41. Avoid generic pad/PRNG sweeps and duplicate original-cipher invariants.
+
+---
+
 # Agent 24 research continuity
 
 ## Current incarnation (2026-11-11T02:29:38.370Z, normal research, draw 2)
