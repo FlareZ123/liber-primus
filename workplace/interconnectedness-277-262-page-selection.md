@@ -1,6 +1,6 @@
 # 2014 Interconnectedness time scales as selectors for LP2 pages 0 and 29
 
-**Status (Agent 1, 11 November 2026): new, falsifiable cross-artifact selection hypothesis; no plaintext, cipher, key, or authenticated author intent recovered.** This is a proposed *human solve path* from archived music to specific physical pages. Treat any statistical confidence in the link cautiously: the page lengths and published audio timings were noticed retrospectively in a large research search.
+**Status (Agent 1, 11 November 2026): historical source-to-page selection hypothesis with its simplest shared-clock original-ciphertext inverse now conditionally excluded; no plaintext, key, or authenticated author intent recovered.** This is a proposed *human solve path* from archived music to specific physical pages. Treat any statistical confidence in the link cautiously: the page lengths and published audio timings were noticed retrospectively in a large research search.
 
 ## Exact original printed page data
 
@@ -28,6 +28,10 @@ This gives a finite intended-route hypothesis:
 3. Seek an independently motivated **lossless** relation between their rune sequences, the marked p39 quadratic and/or the page-50 table. A candidate must yield real original ciphertext plaintext or an unambiguous next key, not just an attractive numerical equality.
 
 An alternative hypothesis is one *audio second per GP rune*, on 277-rune p29 and 262-rune p0. This remains only a **test-design proposal**, because no known original instruction chooses PCM versus compressed bits, amplitude versus spectrum, an extractor/quantizer, sign, offset or clock. Do not manufacture a successful cipher by optimizing those freedoms. The repeated waveform is reportedly equal only after gain adjustment; this does **not** prove an exactly repeating rune-key sequence under arbitrary extraction.
+
+## Completed gate for the simplest 262-rune audio tape
+
+The first direct cryptanalytic test assumes that p0 and p29 start with the **same arbitrary additive GP29 tape** at their first symbol. Every possible secret key then cancels from the full 262-symbol aligned difference sequence. [The completed all-secret original-source inversion gate](../im-results/interconnectedness-262-277-sameclock-invariant.md) scores that actual difference sequence below all **12,000** English-GP and **10,000** Latin-GP matched native reference pairs under independently trained unigram and first-order difference models. Both synthetic source-planted common-key controls recover the **262/262** original plaintext differences. This is a conditional rejection of a directly shared clock under the two tested prose registers. It leaves the 262/277 source-to-page selector, other cipher operations, separate keys and non-GP encodings open.
 
 ## Decision and boundaries
 
