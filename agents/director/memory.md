@@ -1,6 +1,6 @@
 # Director memory: current independent routes to LP2 plaintext
 
-**Review checkpoint: 2026-11-11T13:38:26Z. Last reviewed director-task closure: 2026-11-11T13:36:30Z, #245.** Since the 13:11 checkpoint, reviewed closures are #239, #244, #246, #247, #241 and #245. #235 was already reviewed at its 12:54:32Z closure; its later comment update is not a new closure. This is a replaceable frontier, not a chronological log.
+**Review checkpoint: 2026-11-11T13:39:29Z. Last reviewed director-task closure: 2026-11-11T13:36:30Z, #245.** Since the 13:11 checkpoint, reviewed closures are #239, #244, #246, #247, #241 and #245. #235 was already reviewed at its 12:54:32Z closure; its later comment update is not a new closure. This is a replaceable frontier, not a chronological log.
 
 ## Established position
 
@@ -11,8 +11,8 @@ The signed 2013 TCP challenge authenticates BASE29/DH/NEXT, including BASE29 330
 ## Current causal frontier
 
 1. **p50 H/G factors and 2013 signed BASE29/DH values — active #243 (Agent17).** Exact quadratic factors in the original 256-byte table correspond to source-authenticated BASE29/DH worked values. The 252-slot quotient still has no source-selected framing, check order, payload map, or transport to 12,956 runes. Agent16 independently confirmed original p50 glyphs at zero-based indices 45/50/246 as 107/47/198; do not use the external alternate payload values 81/21/224. This is input integrity, not a decoder.
-2. **Opening staves — #194.** The 3|3 projection candidate reads TH under one historically attested Orkney 6:5:5 convention, and TH follows the p0 red prefix. This is not a selected GP29 alphabet transfer: the staves repeat on pp0–2, no independent second mark or operation has been found. Agent42's previous 11:55 claim became stale; a fresh Agent42 lease was created at 13:35:20Z, but verify a new #194 claim comment before treating the issue as claimed.
-3. **External p0 27×27 / three-rune-node proposal — provisional, not a decoder.** The 38-block English output has unresolved node, key, length and continuation selectors. The 13:06 Agent19 geometry check predicts only block03 axis/leftmost boundary; the block03 key source, start and length remain imported from the external route. Critic's 12:58 audit rejects treating ASIGOTHE/WEATHER or φ(662)/φ(331) as independently selected. Do not commission English dictionary sweeps.
+2. **Opening staves — #194.** The 3|3 projection candidate reads TH under one historically attested Orkney 6:5:5 convention, and TH follows the p0 red prefix. This is not a selected GP29 alphabet transfer: the staves repeat on pp0–2, no independent second mark or operation has been found. Agent42's previous 11:55 claim became stale; a fresh Agent42 lease was created at 13:35:20Z. Check for a new #194 claim comment before reallocating or treating it as active.
+3. **External p0 27×27 / three-rune-node proposal — provisional, not a decoder.** The 38-block English output has unresolved node, key, length and continuation selectors. The 13:06 Agent19 geometry check predicts only block03 axis/leftmost boundary; the block03 key source, start and length remain imported from the external route. New #259 is a bounded source-only test of whether original clues independently fix that block03 key/start/length/sign; no English selection is allowed before the gate. Critic's 12:58 audit rejects treating ASIGOTHE/WEATHER or φ(662)/φ(331) as independently selected.
 4. **p32/p55/2016 tree artwork — active #240 (Agent43).** Shared silhouette is a source observation, not a coordinate/key rule. Require an attributable original and a source-frozen marker/coordinate with a real cipher consequence.
 5. **86 adjacent equalities / first differences — #241 closed.** Agent22's frozen root18 discrete-log, exponent-7, word-clock and dynamic-carry variants were ciphertext-like. The p36 degree-238 LFSR, zero-suppressed form, and direct p50 table pads were also negative. A new arithmetic observation uses the p0 red span/first black line with the signed 2013 group p=23,g=5 to derive candidate shared element 18 (order 28), but no source instructs transfer of that worked group into LP2. The 86 zero steps do not select the 28-way nonzero map, zero/escape rule, initial predecessor, or continuity. No successor until a source selects those missing inputs.
 6. **Original image channels.** #231 (Agent5) covers only the remaining 16 GP classes: A/R/E, C/NG/AE, and U/G/N/Y/F/J/IA already cover 13/29. The 3,201/3,201 seven-class census must not be repeated. #242 (Agent1) tests word spacing/baseline geometry. #236 (Agent28) seeks editable compositor/build sources. #245 closed: earliest 11-May-2014 Stage11 JPEG tree matches the present 58 originals 58/58 byte-for-byte; six additional mirror/fork heads retain the same objects. A 2022-imported archive contains only APP0 removals/recompressions, not creator-attributable rune/punctuation changes. Reopen only on a dated author-origin changed-rune image pair.
@@ -21,18 +21,18 @@ The signed 2013 TCP challenge authenticates BASE29/DH/NEXT, including BASE29 330
 
 ## Current assignments and queue
 
-**19 director-task Issues are open.** Eight new tasks are currently unclaimed and executable:
+**21 director-task Issues are open.** Eight new tasks are currently unclaimed and executable:
 
 - **#250** test exact Cicada-linked Blake/Crowley text reuse as a fixed LP2 crib/key.
 - **#251** independently audit unknown-page GP29 symbol assignments against original pixels (not an allograph-variant search).
 - **#252** audit modern public LP2 solve claims for reproducible unknown plaintext/keys.
-- **#253** discover one new source-constrained reversible architecture outside tested families.
 - **#255** test whether the complete historical GP29 rune order selects an alternate phonetic map.
 - **#256** recover the original 2014 square-form client page and exact input serialization.
 - **#257** recover raw 2014 participant request/response captures for `/cgi-bin/squares`.
-- **#258** same endpoint's byte-preserving participant capture route, separate from server code (#248) and client code (#256).
+- **#258** separate participant-side capture route for the magic-square endpoint.
+- **#259** test whether original LP2 clues fix the external 27×27 route's block03 key node, start, length and sign.
 
-**Claimed new tasks:** #248 (Agent22), #249 (Agent39), #254 (Agent49). #240/#242/#243/#236/#231/#213 remain claimed. #245 is closed. #194 has a fresh Agent42 identity lease but no new issue claim comment was present at this checkpoint; check before reallocating it. #41 remains WAITING for a complete source-selected 76-rune p55 inverse; #39 remains BLOCKED pending owner-authorized manual OpenPuff v4 positive-control dispatch. Keep total open issues ≤30 and do not create successors just to pad counts.
+**Claimed new tasks:** #248 (Agent22), #249 (Agent39), #253 (Agent5), #254 (Agent49). #240/#242/#243/#236/#231/#213 remain claimed. #245 is closed. #194 has a fresh Agent42 identity lease but verify a new issue claim comment before treating it as claimed. #41 remains WAITING for a complete source-selected 76-rune p55 inverse; #39 remains BLOCKED pending owner-authorized manual OpenPuff v4 positive-control dispatch. Keep total open issues ≤30 and do not create successors just to pad counts.
 
 ## Director decisions and operating constraints
 
