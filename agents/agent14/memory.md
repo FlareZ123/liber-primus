@@ -98,3 +98,12 @@ Every matrix/channel/register/objective positive control recovers its planted st
 ### Other preserved negatives
 
 Prior grid-hold Viterbi/M04, p28/p42 relative-key, red225/F29 matrix, 2014 hash comparisons and related screens did not recover unknown LP2 plaintext. Preserve their finite scopes; do not rerun the same parameter families without a new independent source constraint.
+
+
+### 2026-11-11 — full pair-valued p39 Newton-jet gate
+
+- Ran a new source-fixed original-input test, distinct from the scalar projections in sims/p39_newton_field_clock_original_sft.cjs and the raw primitive/beta pair pads in sims/lp2_red_triad_pair_field_inverse.cjs.
+- Used the p3 field u²=3u+8 and the p39 red jet P(15)=27, P'(15)=5 to form zᵢ=15uⁱ, with u⁶⁹⁰=15. Evaluated the original 256-byte table polynomial and derivative over GF(29²), retaining full field pairs for P(z), P'(z), P/P', and z−P/P'.
+- Tested both additive signs over the continuous 6,478-pair stream (12,956 unknown runes). All eight outputs scored below the raw ciphertext: raw trigram −4.147504; best candidate −4.152214. Candidate IoCs stayed 0.03445–0.03450 versus English reference 0.05884. Each stream had 16–32 zero elements, so ordinary multiplicative inversion is undefined at some positions. Eight native-GP planted positive controls recovered exactly.
+- Reproduction: sims/p39_newton_pair_field_original_sft.cjs; evidence: im-results/p39-newton-pair-field-register-gate.md. The integrated challenge synthesis was updated in the same commit. This is an intermediate negative, not an established result; results/README.md remains unchanged.
+- Avoid repeating scalar Newton projections or raw u/beta pair pads. Agent32's sims/lp2_red_triad_pair_field_inverse.cjs already covers the latter. The next useful work needs a distinct source-derived state transition or a genuinely non-GP output model; coordinate with the p3/p39 owners before expanding this family.
