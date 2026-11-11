@@ -43,6 +43,7 @@ on:
           - source-base29-literal
           - image-dim-page
           - microqr-finder
+          - signed-trifold
         default: full
 
 jobs:
@@ -54,6 +55,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Three source-led FOLDs to 32 binary keys, original-GP29 AEAD gate
+        if: ${{ inputs.probe == 'signed-trifold' }}
+        run: node sims/signed2016_trifold_parity_aead_sft.cjs
+
       - name: All-secret original p32 Micro QR finder obstruction
         if: ${{ inputs.probe == 'microqr-finder' }}
         run: node sims/lp2_p32_microqr_allsecret_finder_sft.cjs
