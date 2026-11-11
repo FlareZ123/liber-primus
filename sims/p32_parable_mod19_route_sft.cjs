@@ -38,6 +38,42 @@ const labels = [
 assert.equal(parableBody.length, 19);
 assert.equal(labels.length, 19);
 
+
+/**
+ * GP prime weights modulo nineteen cannot equal one: the least prime of
+ * the form 19*k + 1 is 191, beyond the 29 historical GP weights (2..109).
+ * Test complete distinct-vocabulary coverage under both ordinary word origins
+ * without looking at the p32 semantic output.
+ */
+const representableResidues = [...new Set(corpus.prime.map((p) => p % 19))]
+  .sort((a, b) => a - b);
+assert.deepEqual(representableResidues, [
+  0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18
+]);
+const distinctParableBodyWords = [...new Set(labels)];
+assert.equal(distinctParableBodyWords.length, 17);
+const zeroBasedVocabulary = new Set(representableResidues.map((r) => labels[r]));
+const oneBasedVocabulary = new Set(representableResidues.map((r) =>
+  labels[r === 0 ? 18 : r - 1]));
+const zeroBasedMissingDistinctWords = distinctParableBodyWords.filter((word) =>
+  !zeroBasedVocabulary.has(word));
+const oneBasedMissingDistinctWords = distinctParableBodyWords.filter((word) =>
+  !oneBasedVocabulary.has(word));
+assert.deepEqual(zeroBasedMissingDistinctWords, []);
+assert.deepEqual(oneBasedMissingDistinctWords, ['LIKE']);
+assert.deepEqual(labels.flatMap((word, index) =>
+  word === 'THE' ? [index] : []), [1,5,14]);
+const nativeVocabularyCoverage = {
+  missingOriginalPrimeResidue: 1,
+  missingZeroBasedWord: labels[1],
+  missingOneBasedWord: labels[0],
+  distinctWords: distinctParableBodyWords.length,
+  representableDistinctWordsZeroBased: zeroBasedVocabulary.size,
+  representableDistinctWordsOneBased: oneBasedVocabulary.size,
+  zeroBasedMissingDistinctWords,
+  oneBasedMissingDistinctWords
+};
+
 const parableSums = parableBody.map(sumWord);
 const next = parableSums.map((sum) => sum % 19);
 // One-based alternative: residue 0 selects body word 19; residue r>0 selects word r.
@@ -393,6 +429,7 @@ const output = {
   classification: 'exploratory semantic route; not a decoder',
   parable: {
     bodyWordCount: parableBody.length,
+    nativeVocabularyCoverage,
     titlePrimeSum: titleSum,
     words: labels.map((word, i) => ({
       index: i, word, gpPrimeSum: parableSums[i],
