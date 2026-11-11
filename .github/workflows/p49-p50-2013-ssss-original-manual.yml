@@ -1,0 +1,21 @@
+name: LP2 2013 five-of-ten original numerical-table gates
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run printed p49 ten-row GF256 Shamir gate and synthetic control
+        run: node sims/lp2_p49_2013_ssss_5of10_original_gate_sft.cjs
+      - name: Run historic GF2 to the 176-bit direct-share packing gate
+        run: python sims/lp2_p50_2013_ssss_gf176_sharepack_sft.py
