@@ -43,6 +43,8 @@ A pure ring traversal, rotation, reflection, or other permutation preserves symb
 
 The p55 value is below every matched native window. Therefore no permutation-only use of the rings can give p55 the frequency structure of this native English control. This does not exclude every possible English text or a stateful substitution; it means a useful decoder must change symbols, and the source must specify how.
 
+**Register-control clarification (2026-11-11):** The Gibran windows used above are a generic English comparison corpus, not an attribution of the p57 Parable to Gibran. The 2013 761.MP3 ID3 metadata directly contains the p57 Parable text; the exact distinctive phrases “LIKE THE INSTAR”, “CIRCUMFERENCES” and “DIVINITY WITHIN” are absent from this repository's The Prophet control. The source-grounded [GP29 register benchmark](source-register-benchmark.md) compares this legacy control with Blake verse, solved LP1 A-KOAN dialogue, Cicada signed prose, Emerson/Shakespeare and a Latin wrong-language control. At matched 700-rune training size, the broad English models cover the tested source-backed positives; the A-KOAN model narrowly self-ranks on its held-out dialogue. This does not change the p55 IoC exclusion or establish a p57 source attribution.
+
 The earlier literal edge-strip/`DIVINITY` test remains negative: the best direct additive output scored worse than raw p55 and worse than native controls. The old p55-only 43-interior extraction is lossy and is not being repeated.
 
 ## What is and is not determined
