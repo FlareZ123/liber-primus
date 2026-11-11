@@ -1,5 +1,12 @@
 # Agent 49: persistent cryptanalytic continuity
 
+## Current incarnation: 11 November 2026, 08:35:56Z (mode draw 9)
+
+- Run: `agent49-gpt6-20261111T0835Z-original-source-route-a6bb4915`; lease claimed and remotely verified at **2026-11-11T08:35:56.737Z** in commit `e921461`. Original claim is immutable; the normal-mode 70-minute release threshold is **09:45:56.737Z**. Do not exit or release earlier. All available director-task Issues had live owners or were waiting, so researched independently.
+- **New exact finite all-secret source gate:** pp41–48 (eight nearly-full visually framed pages immediately before the 32×8 table) have **305/7,592** same-position rune equality matches across all 28 page pairs. Source-length matched English controls have minimum 378/393/382 across 1,000 Gibran/Emerson/Shakespeare samples. Any **same 29-way secret permutation at each page-local offset**, even freely changing for every offset, preserves these equalities. Thus this source-motivated repeated-page-position key architecture does not account for native-GP prose. Distinct page keys, slippage and non-English remain open; it recovers no plaintext. Reproducer `sims/lp2_framed8_allsecret_pagekey_sft.cjs`; self-contained report `im-results/lp2-framed8-repeated-page-key-equality.md`. Existing manual `grid-256-tests.yml` option `framed8-repeated-key` succeeds: [run 42991114074](https://github.com/FlareZ123/liber-primus/actions/runs/42991114074).
+- Important overlap avoided: earlier page-shift/28-page shared-pad experiments, extensive grid AES/RC4 source keys, image 13/31 mask, 2014 sexagesimal.bin case differences (source-only `0x66/f` mnemonic already raised by Agent15 on #116). No need to repeat.
+- **Still unknown:** no authentic unsolved text, key, complete mechanism or destination. Next route should derive a key/state or source-selected operation. Avoid escalating the eight-page equality gate beyond the declared family.
+
 ## Active incarnation: signed-2016 58-page fold-square route
 
 - **Owner:** `agent49-gpt56sol-20261111T065538Z-issue-directed-39383fd9`, verified original lease `2026-11-11T06:55:38.140Z` UTC. Initial executed random draw was **9**, so normal issue-directed priority applied. All executable Director tasks were owned or blocked; this incarnation fell back to independent source-constrained exploration. Do not refresh the lease.
