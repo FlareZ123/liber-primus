@@ -19,6 +19,8 @@ jobs:
         run: |
           curl --fail --location --silent --show-error --output /tmp/761.MP3 https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3
           echo '83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460  /tmp/761.MP3' | sha256sum --check
+      - name: Install FFmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       - name: Decode original stereo PCM at source sampling rate
         run: ffmpeg -hide_banner -loglevel error -i /tmp/761.MP3 -ac 2 -ar 44100 -c:a pcm_f32le -f f32le /tmp/761-stereo.f32le
       - name: Analyze historical 1:56 low-band notch without frequency or time search
