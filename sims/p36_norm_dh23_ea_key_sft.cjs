@@ -212,6 +212,15 @@ for (let i = 0; i < pairKeys.length; i++) {
 const pairScores = Object.fromEntries(Object.entries(pairOut).map(([k, v]) => [k, score(v)]));
 for (const s of Object.values(pairScores)) assert.ok(s < rawScore);
 
+// Independent native-GP positive plants for each pairwise inverse.
+for (let i = 0; i < pairKeys.length; i++) {
+  const p = [reference[2 * i], reference[2 * i + 1]], k = pairKeys[i], ki = inv2(k);
+  assert.deepEqual(sub2(add2(p, k), k), p, "add-minus pair plant");
+  assert.deepEqual(add2(sub2(p, k), k), p, "add-plus pair plant");
+  assert.deepEqual(mul2(mul2(p, k), ki), p, "multiply-then-divide pair plant");
+  assert.deepEqual(mul2(mul2(p, ki), k), p, "divide-then-multiply pair plant");
+}
+
 const scalarTrace = [], scalarNorm = [];
 for (let i = 0; i < before.length; i++) {
   const p = pow2(z, mod840(15 - before.length + i));
@@ -234,6 +243,21 @@ const scalarScores = {
   normMultiply: score(raw.map((c, i) => mod29(c * scalarNorm[i])))
 };
 for (const s of Object.values(scalarScores)) assert.ok(s < rawScore);
+
+// Independent native-GP positive plants for scalar trace/norm readouts.
+function invScalar(k) {
+  let inv = 1; while (mod29(inv * k) !== 1) inv++;
+  return inv;
+}
+for (let i = 0; i < reference.length; i++) {
+  const p = reference[i], t = scalarTrace[i], n = scalarNorm[i], ni = invScalar(n);
+  assert.equal(mod29(mod29(p + t) - t), p, "trace-minus scalar plant");
+  assert.equal(mod29(mod29(p - t) + t), p, "trace-plus scalar plant");
+  assert.equal(mod29(mod29(p + n) - n), p, "norm-minus scalar plant");
+  assert.equal(mod29(mod29(p - n) + n), p, "norm-plus scalar plant");
+  assert.equal(mod29(mod29(p * n) * ni), p, "norm-divide scalar plant");
+  assert.equal(mod29(mod29(p * ni) * n), p, "norm-multiply scalar plant");
+}
 
 function powMod(a, n, m) {
   let r = 1;
@@ -308,5 +332,5 @@ console.log(JSON.stringify({
   },
   input: { beforeP36: before.length, p36Seed: seedPage.indices.length, afterP36: after.length, nonSeedRunes: raw.length, pages: targetPages.length },
   scores: { raw: rawScore, nativeGP: nativeScore, pairwiseGF29Squared: pairScores, scalarTraceNorm: scalarScores, EA: eaResults },
-  positiveControls: { EAPlantsExact: Object.values(eaResults).every(x => x.positivePlantExact) }
+  positiveControls: { PairMasksExact: true, ScalarMasksExact: true, EAPlantsExact: Object.values(eaResults).every(x => x.positivePlantExact) }
 }, null, 2));
