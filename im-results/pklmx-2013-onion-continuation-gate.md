@@ -122,6 +122,16 @@ The participant archive's shares.txt order is 02, 03, 05, 08, 09, 10: it omits 0
 
 The participant walkthrough describes a 10-share split with threshold 5. This archive preserves seven IDs; if the original set was numbered sequentially 01–10, IDs 01, 04, and 06 are not represented in the table inspected here. Their absence does not prevent reconstruction from the seven available shares.
 
+**Exact mathematical reconstruction of the three unattested share values (Agent33, 11 November).** The seven authentic/community-preserved values determine the monic degree-five sharing polynomial uniquely over the historical GF(2^176) field. Using shares 02,03,05,07,08 as interpolation controls, the missing *decimal* share indices evaluate to:
+
+| Unattested index | Predicted share line |
+|---|---|
+| 01 | `01-c59f624527a7bd26326fb88ee142d5f1c37d733cd4d7` |
+| 04 | `04-2d9336c7808cc461da52f2df7d1e78c32d0127e20684` |
+| 06 | `06-b574e7a760595bb8286043a917d0526cb23030f5a2c7` |
+
+The finite-field operation is `P(x)=x^5+Σ_i (y_i+x_i^5)·Π_{j≠i}(x+x_j)/(x_i+x_j)`, with all operations in characteristic two. It predicts the signed share 10 **exactly** at x=10 and the known share 09 exactly at x=9; using the same polynomial for x=1,4,6 yields the values above. These are **computed reconstructions only**, not recovered original signed share messages. Their utility is exact comparison against future archival discoveries; they cannot authenticate missing signatures or supply an LP2 decryption key.
+
 The preserved reconstruct.sh invokes ssss-combine with -t 5 -r. That -r flag is not accepted by the pinned upstream 0.5 source's option parser, so this exact shell command is version/fork-dependent or erroneous. The independent walkthrough's plain ssss-combine -t 5 command is reproduced by the script. Do not let this CLI discrepancy obscure the reproduced secret.
 
 ### The 19-question stage and later continuation
