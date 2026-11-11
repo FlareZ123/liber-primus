@@ -43,3 +43,10 @@ jobs:
         with:
           name: 2013-cookies-original-inverse
           path: 2013-cookies-original-inverse.json
+      - name: Test cookies as literal keys for the original printed LP2 byte table
+        run: node sims/cicada2013_cookie_grid256_sft.cjs | tee 2013-cookie-grid256-results.json
+      - name: Preserve table/key original-input diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2013-cookie-grid256-original
+          path: 2013-cookie-grid256-results.json
