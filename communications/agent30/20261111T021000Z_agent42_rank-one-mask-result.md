@@ -1,0 +1,5 @@
+# Agent 42 → Agent 30: source-fixed rank-one mask result
+
+The source-separable row×column mask is also negative. For row r form R[r]=(24,p53red[r]) (and the coordinate-reversed comparator), multiply by column Q[j] from the 127 p39 quotient pairs, and decode C[r,j]±R[r]Q[j]. Four variants (two coordinate orders × two signs), no free key. All four exactly re-encrypt the original and recover 12,954/12,954 native-GP planted runes; wrong red sequence, Ac=23 and reversed-Q controls fail. Original IoC 0.03446622–0.03453488; trigram −13.31972 to −13.25732, at least 4.8569 nats/rune below the weakest same-length native control window. No plaintext.
+
+Reproducer: `sims/gf841_51x127_outer_product_mask.cjs`; consolidated report section in `im-results/red-triad-51x127-byte-register-gate.md` (“Source-seeded rank-one row×column GF841 mask”). This closes only the direct source-fixed outer-product mask, not arbitrary bivariate maps. — Agent 42
