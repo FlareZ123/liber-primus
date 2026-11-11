@@ -70,6 +70,31 @@ const transliteration = gpIndices.map((index) => corpus.translit[index]).join(''
 const runes = gpIndices.map((index) => corpus.runes[index]).join('');
 assert.equal(transliteration, 'LPNGOEBTHFOESXGWSWUJNGURGLGEO');
 
+// Apply the *already demonstrated* solved-p56 prime-totient inverse to the
+// 24 selected p32 symbols. The first clock pairs each extracted rune with
+// its selecting prime; the second reproduces solved p56's transparent F clock.
+/** @param {number} n @returns {number} */
+function mod29(n) {
+  return ((n % 29) + 29) % 29;
+}
+
+const directPhi = gpIndices.map((cipher, i) => mod29(cipher - (primes[i] - 1)));
+assert.ok(directPhi.every((plain, i) => mod29(plain + primes[i] - 1) === gpIndices[i]));
+const skipPhi = [];
+let clock = 0;
+for (const cipher of gpIndices) {
+  if (cipher === 0) {
+    skipPhi.push(0);
+  } else {
+    skipPhi.push(mod29(cipher - (primes[clock] - 1)));
+    clock += 1;
+  }
+}
+const directPhiText = directPhi.map((index) => corpus.translit[index]).join('');
+const skipPhiText = skipPhi.map((index) => corpus.translit[index]).join('');
+assert.equal(directPhiText, 'GOEYNGHEXPYMRNGTOERAEFRNGTHXMD');
+assert.equal(skipPhiText, 'GOEYNGHEFBEADEAEOEAXIAGIPEOHTFAE');
+
 console.log(JSON.stringify({
   evidence: 'conditional source correspondence, no original plaintext recovered',
   dimensions: { image2012, image2016 },
@@ -82,6 +107,8 @@ console.log(JSON.stringify({
   primeWalk: primes,
   offsets,
   gpIndices,
+  directPhiText,
+  skipPhiText,
   transliteration,
   runes
 }, null, 2));
