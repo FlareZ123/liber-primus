@@ -161,6 +161,73 @@ def main() -> None:
     assert min(direct_fragment_ioc.values()) > 0.03444
     assert max(direct_fragment_ioc.values()) < 0.03450
 
+    # The archived 2013 NUMBER service marks a prime whose digit reversal is
+    # also prime with '+'. For the source-visible 13/31 pair, that suggests
+    # the simplest arithmetic follow-up 13 + 31 = 44. The 44th prime is 193.
+    # Test that prediction against both live numeral-codec forks.
+    assert sampled["right"]["binary_value"] - sampled["left"]["binary_value"] == 18
+    ornament_sum = (
+        sampled["left"]["binary_value"] + sampled["right"]["binary_value"]
+    )
+    assert ornament_sum == 44
+
+    primes: list[int] = []
+    candidate = 2
+    while len(primes) < ornament_sum:
+        if all(candidate % p for p in primes if p * p <= candidate):
+            primes.append(candidate)
+        candidate += 1
+    predicted_prime = primes[ornament_sum - 1]
+    assert predicted_prime == 193
+
+    grid = json.loads(
+        (ROOT / "resources" / "liber-primus" / "lp2-grid-256.json").read_text("utf8")
+    )
+    tokens = [
+        token for page in grid["pages"] for token in page["tokens"]
+    ]
+    assert len(tokens) == len(grid["bytes"]) == 256
+    base60 = grid["bytes"]
+    alphabet59 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdeghijklmnopqrstuvwx"
+    base59 = [
+        59 * alphabet59.index(token[0]) + alphabet59.index(token[1])
+        for token in tokens
+    ]
+
+    def self_indexed_prime_distance_pairs(values: list[int]) -> list[dict]:
+        positions: dict[int, list[int]] = {}
+        for offset, value in enumerate(values):
+            positions.setdefault(value, []).append(offset)
+        prime_ordinal = {prime: index + 1 for index, prime in enumerate(primes)}
+        pairs: list[dict] = []
+        for value, offsets in positions.items():
+            ordinal = prime_ordinal.get(value)
+            if ordinal is None:
+                continue
+            for left_index, left in enumerate(offsets):
+                for right in offsets[left_index + 1:]:
+                    if right - left == ordinal:
+                        pairs.append({
+                            "value": value,
+                            "prime_ordinal": ordinal,
+                            "left_cell": left,
+                            "right_cell": right,
+                        })
+        return pairs
+
+    base60_pairs = self_indexed_prime_distance_pairs(base60)
+    base59_pairs = self_indexed_prime_distance_pairs(base59)
+    assert base60_pairs == [{
+        "value": 193,
+        "prime_ordinal": 44,
+        "left_cell": 83,
+        "right_cell": 127,
+    }]
+    assert base59_pairs == []
+    assert [i for i, value in enumerate(base60) if value == 193] == [83, 127]
+    assert [i for i, value in enumerate(base59) if value == 193] == [61, 234]
+    assert [base59[83], base59[127]] == [190, 190]
+
     print(json.dumps({
         "source": str(IMAGE.relative_to(ROOT)),
         "sha256": SHA256,
@@ -179,6 +246,14 @@ def main() -> None:
         ),
         "reversed_prime_pair": [13, 31],
         "historical_number_response_for_either": "+",
+        "ornament_difference": 18,
+        "ornament_sum": ornament_sum,
+        "prime_at_ornament_sum": predicted_prime,
+        "base60_self_indexed_prime_distance_pairs": base60_pairs,
+        "base59_self_indexed_prime_distance_pairs": base59_pairs,
+        "base60_193_cells": [83, 127],
+        "base59_193_cells": [61, 234],
+        "base59_cells_83_127": [base59[83], base59[127]],
         "hollow_mask_p55_key_count": len(hollow_key),
         "hollow_mask_p55_key_translit": "".join(
             corpus["translit"][value] for value in hollow_key

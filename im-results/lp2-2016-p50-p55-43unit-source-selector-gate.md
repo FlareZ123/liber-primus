@@ -20,6 +20,14 @@ The original 32×8 numerical table contains 256 source bytes. At row-major byte 
 
 The later signed-message word-map hypothesis sends the word “lies” to p50 token 3D. That singles out one table cell; it does not define a one-to-one mapping from all 43 signed words to all 43 interior bytes.
 
+### Ornament-derived 44/193/43 bracket selector
+
+The p55 fold artwork now supplies a separate conditional selector for the same p50 interval. Its ordinary five-position ornaments read **13** and **31**; the left filled cells are exactly positions 2,3,5, while 13 and31 are reversed primes. Their difference **18** reproduces the fold-selected fragment18. The left value13 is GP index P, and fragment18's sole equal folded pair is P/P, whose GP prime is **43**.
+
+The archived 2013 `NUMBER` service would answer either 13 or31 with **`+`**, because each prime reverses to the other prime. Reading that historical response as an addition cue gives **13+31=44**; prime(44)=**193**. Under base60, 193 appears only at p50-global cells **83 and127**, exactly **44** apart, leaving **43** enclosed cells. Exhaustively checking all prime-valued base60 bytes finds this as the only pair with separation equal to the byte's prime ordinal. Under base59, cells83/127 equal190, value193 moves to cells61/234, and there is no such self-indexed prime-distance pair.
+
+This is stronger selector evidence for the physical interval and a conditional discriminator in favor of base60. The unresolved premise is the semantic use of the historical `+` response as an instruction to add the later ornament values; the original server used it as a classification marker. It still does not provide the reversible 43-unit cipher operation.
+
 ### The p55 interior and p57 instruction
 
 The p55 transcription contains 17 printed words with rune lengths:

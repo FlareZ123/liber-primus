@@ -54,6 +54,25 @@ The simplest boundary-key interpretation is negative. Pair the 31 runes with the
 
 This closes the direct one-rune-per-boundary Caesar interpretation. The exact **31 selected p55 positions ↔ 31 thirteen-dot marks** cardinality remains a source-side clue, but a successor needs a different independently specified reversible operation rather than another shift or phase search. The image/source assertions and all eight IoCs are reproduced by [`p55_binary_ornaments.py`](../sims/p55_binary_ornaments.py).
 
+## Reversed-prime arithmetic converges on the p50 43-cell bracket
+
+The two ornament values now give a compact two-route continuation without fitting ciphertext. Their difference is **31−13=18**, exactly the fragment number already obtained from the literal fold mismatch. The left value **13** is also GP index **P**. Fragment18's header-aware payload fold independently has **P/P** as its sole equal pair, returning the same rune; P's GP prime is **43**.
+
+The archived 2013 `NUMBER` service marks a prime whose decimal reversal is also prime with **`+`**. Since 13 and31 are such a pair, the simplest conditional arithmetic reading of that historical response is **13+31=44**. The **44th prime is 193**. This makes a concrete prediction against the original 256-cell numeral table:
+
+- under conventional base60, **193 occurs only at cells 83 and127**;
+- their separation is **127−83=44**, exactly the prime ordinal just derived;
+- the cells strictly between them are **84–126**, exactly **43 cells**, agreeing with P's GP prime;
+- across every prime-valued base60 table entry, this is the **only** occurrence pair whose separation equals that value's one-based prime ordinal.
+
+The same test rejects the source-compatible base59/f-skip interpretation inside this hypothesis. Under base59 the two literal `3D` cells at 83 and127 are **190**, while value193 appears at cells **61 and234**; **no** prime-valued base59 entry has an occurrence pair separated by its own prime ordinal. Thus the route
+
+**13↔31 → difference18 → fragment18/P → prime43**, and conditionally **13+31=44 → prime(44)=193 → 44-spaced 193 pair → 43-cell interior**
+
+converges on the same p50 interval from the artwork and GP prime system.
+
+This materially strengthens the human-solve-path hypothesis and conditionally resolves the base59/base60 fork in favor of base60. It does **not** authenticate the addition step: the historical service's `+` was a response marker, not an explicit instruction to add the later ornament values. The table interval still lacks a source-fixed reversible cipher operation.
+
 ## Prime-totient address closure and the 18 by 13 page
 
 The fragment selection has a further source-exact self-check. Physical p27 contains **234 runes = 18 × 13**. Across all 32 thirteen-dot-delimited fragments, fragment 18 is the **only** fragment whose start page contains exactly `13 × fragment_number` runes. Thus the same source quantities that select the fragment also specify an exact 18 by 13 rectangle for its page.
