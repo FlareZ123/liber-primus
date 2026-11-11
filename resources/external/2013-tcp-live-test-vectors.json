@@ -1,5 +1,5 @@
 {
-  "classification": "secondary archival participant/server transcripts; command sequence is historically documented but not independently OpenPGP-authenticated here",
+  "classification": "mixed provenance: the TCP protocol specification is authenticated by a separate signed 2013 artifact; the participant/server session transcript remains secondary and is not OpenPGP-signed as a whole",
   "archiveCommit": "ade9a02889ef8acbc8cde8edbfd0a785c369f4c3",
   "sources": [
     {
@@ -45,5 +45,17 @@
     "base29Request": 1033,
     "base29Response": "16I",
     "dhModulus": 3301
-  }
+  },
+  "signedProtocolSpecification": {
+    "role": "decrypted signed copy of the original 2013 TCP-server challenge",
+    "url": "https://github.com/iBotPeaches/cicada_3301/blob/27309e66746e21542f2b908d7f60b906915fe7c6/messages/2013/tcp-server.asc",
+    "archiveCommit": "27309e66746e21542f2b908d7f60b906915fe7c6",
+    "signatureTimestampUtc": "2013-01-26T09:16:23Z",
+    "signingKeyId": "181F01E57A35090F",
+    "signingKeyFingerprint": "6D854CD7933322A601C3286D181F01E57A35090F",
+    "sha256": "fdfe1208b49f75ce634224d2b0561e4c8b322f27dd74bd757f5d83ebcfbdb88c",
+    "verification": "Good signature / VALIDSIG with resources/control/cicada-3301-public-key.asc; full verification and limitations in 2013-tcp-server-signed-source.md",
+    "scope": "Authenticates BASE29/DH/NEXT protocol specification; does not authenticate first-onion NUMBER/PRIMES/COUNT grammar or participant DH log as a whole"
+  },
+  "provenanceNote": "The signed TCP challenge is a separate authenticated protocol specification. The DH3301 values in the participant transcript remain participant-recorded; the March NEXT payload verifies independently, but this does not sign the preceding exchange."
 }

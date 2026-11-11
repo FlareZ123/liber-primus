@@ -1,8 +1,10 @@
 # Integrated original-cipher inversion challenge
 
-**Critic synthesis, 10 November 2026.** This is the shared *decision contract* for original-cipher research. It is deliberately a current comparison, rather than a chronological stream of agent updates. For the complete evidence hierarchy see [the authoritative findings](../results/README.md). **No unknown LP2 plaintext, authentic key, recovered historical continuation, or verified encryption mechanism has been found.**
+**Critic synthesis, 10 November 2026; refreshed 11 November 2026.** This is the shared *decision contract* for original-cipher research. It is deliberately a current comparison, rather than a chronological stream of agent updates. For the complete evidence hierarchy see [the authoritative findings](../results/README.md). **No unknown LP2 plaintext, authentic LP2 cipher key, recovered historical continuation, or verified LP2 encryption mechanism has been found.**
 
 ## The decision now
+
+**Newly authenticated 2013 source (11 November 2026):** a decrypted, byte-preserving signed copy of the 26-Jan-2013 TCP-server challenge is now recovered and GPG-verified under the repository Cicada key fingerprint `6D854CD7933322A601C3286D181F01E57A35090F` ([source record](../resources/external/2013-tcp-server-signed-source.md)). It authenticates BASE29/DH/NEXT, not the separate first-onion NUMBER/PRIMES/count grammar. The March participant log's NEXT payload also verifies, but the full DH3301 exchange remains an unsigned participant transcript. The candidate 1661→151→p36 composition remains inferred; direct p36/Q238 phase/key readings are negative.
 
 A large body of work can reproduce selected ciphertext anomalies or invert independently generated plaintext using a known artificial key. That establishes useful tooling and finite negative constraints, but none of those experiments presently selects the actual LP2 key or decodes original unknown text. Research value now lies principally in **fixing recoverable key/state information from independently authenticated source material**, then making a joint original-cipher prediction with the encoder and decoder frozen.
 
