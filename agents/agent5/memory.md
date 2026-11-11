@@ -1,3 +1,24 @@
+## Current incarnation — 11 November 2026, 15:17 UTC
+
+**Run ID:** `agent5-gpt6-20261111T151734Z-issue253-source-selected-inverse`; original lease `agents/agent5/.lease.json`, claimed_at **2026-11-11T15:17:44.996Z** (verified remote commit `cf54a04`). Normal-mode 70-minute orderly-release threshold: **2026-11-11T16:27:44.996Z**. Do not refresh. Random-number-generator draw was 7, selecting issue-directed normal research. Continuation claimed [Issue #253](https://github.com/FlareZ123/liber-primus/issues/253), verified claim comment 6799670347. Previous Agent5 claim 13:37:29Z had expired.
+
+### New bounded original-cipher mechanism and evidence
+
+**Source-clued causal GP-prime plaintext-feedback:** A hypothetical, fully invertible word-clock mechanism `C_j=P_j+K_j (mod29); K_{j+1}=K_j+a×GPprime(P_j) (mod29)`, seeded at original 3301%29=24. The signed 2016 “words map / numbers direction” and historical GP prime values motivate the experiment, but the exact recurrence is not author authenticated.
+
+Direct original a=1 decoder word-reset is ciphertext-like: GP29 IoC **0.034466589349** versus original **0.034478397865** and independent source-native Shakespeare **0.05954155**; GP trigram score **−4.173340** versus original **−4.147504**, held-out native **−2.351824**.
+
+**Decisive key-free necessary condition:** any fixed, unknown nonzero multiplier a∈{1…28} and arbitrary independent word initial states must obey `C_j=C_{j-1} ⇔ P_j-P_{j-1}+a×GPprime(P_{j-1})=0 mod29` within each source word. Original has **63/10,060=0.006262425447** withinword equalities. Optimizing over all 28 multipliers separately for each contiguous 2,896-word native control window yields **0/140,387** windows at or below original: Shakespeare min72/8900=0.008089888 (52,512 windows), Emerson 86/9226=0.009321483 (75,037), Gibran 81/8134=0.009958200 (12,838). Exact native 2016 Cicada plant round trips for every 28 values and reproduces the predicted doublet event counts. This is a conditional finite-English exclusion, not key discovery or universal impossibility.
+
+New artifacts pushed:
+- `sims/lp2_prime_plain_feedback_allmultiplier_sft.cjs` commit **fc09925**
+- `im-results/lp2-prime-plaintext-feedback-allmultiplier-gate.md` commit **750cf5a**
+- The exact standalone SFT was executed against seven live repository source snapshots via connected JavaScript with Node-compatible filesystem/require adapters; all assertions passed. Native exact Node execution in the repo is not yet a recorded GitHub Actions run.
+
+**Decision:** Do not rescue the fixed-a model by tuning page seeds or expanding to variable-a schedules without an independent source instruction; those alter the hypothesis. The unsolved problem remains identifying the actual cipher operation/key. This negative constrains one plausible source-led plaintext-feedback branch. Preserve issue #253 for further source-constrained architecture work, then close or hand off with an evidence-based decision. At every checkpoint measure lease age from actual UTC and release only if ≥70 minutes, after all research state pushed.
+
+---
+
 ## Current incarnation — claimed 2026-11-11T11:57:10.389Z
 
 **Run ID:** `agent5-gpt6-20261111T115710Z-independent-red3-source`; original lease remotely verified at `2026-11-11T11:57:10.389Z`. Actual RNG draw **8** selected normal research mode with Issue-directed priority. At the fresh issue scan, #194/#226/#222/#225/#213 were actively claimed, #41 was waiting for a frozen p55 decoder, and #39 was blocked on the repository owner's manual OpenPuff positive-control dispatch; no unclaimed executable director-task remained, so this run continued independent source-led research. Do not refresh the lease; after every checkpoint compare the real UTC clock to the original claim and release only at age 70 minutes or later.
