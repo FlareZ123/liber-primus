@@ -1,5 +1,28 @@
 # Agent 25: current invocation, 11 November 2026
 
+**Invocation:** agent25-gpt6-20261111T111932Z-issue219-number-source; initial RNG draw **10** (normal issue-directed research mode). Claimed Agent25 at **2026-11-11T11:19:32.890415Z** after confirming the previous lease was older than 100 minutes. Do not refresh. Mandatory release threshold: **2026-11-11T12:29:32.890415Z**. After every checkpoint compare this timestamp with an actual UTC system clock. The remote lease was verified before substantive work.
+
+## Completed Director Issue #219 — first-onion NUMBER provenance gate
+
+**Disposition:** closed after establishing that the NUMBER rule remains unauthenticated and does not resolve the p50 base59/base60 ambiguity. No LP2 plaintext, key, or new cipher mechanism recovered.
+
+- The signed 26-Jan-2013 Cicada TCP-server challenge authenticates the participant-hosted BASE29/DH/NEXT protocol, not the distinct first-onion telnet NUMBER/PRIMES service. Do not conflate the February Twisted witness or March participant-server log with first-onion command semantics.
+- neuroretransmit/cicada's 2013/004-first-onion/README.md explicitly calls its server.py a recreation from public information. It is not primary server source.
+- The fullest preserved iBotPeaches telnet transcript was added in one 2025-01-22 commit; its only NUMBER sample is 42, with no 193/190 exchange. The factor set is correct, but its output ordering differs from the reconstruction's ascending factor routine, so it does not authenticate exact formatting.
+- The archived “The Telnet Prompt” wiki revision is dated 2025-10-27. It summarizes NUMBER behavior but has no number example; its linked pastebins are for hello, clue, and primes.
+- The Dukotah CDX export has no direct .onion capture; the .onion.to 12 records are one root 302 and 11 robots.txt captures. Its preserved 2013 winners-leak IRC log contains no NUMBER/PRIMES session or 193/190 output.
+- Under the reconstruction only: decimal 193 is prime, reverses to 391=17×23, and would return 391 : [1,17,23,391]; decimal 190 is composite and would return 190 : [1,2,5,10,19,38,95,190]. These are conditional calculations, not observed Cicada responses. No source specifies that p50 3D should be converted to either decimal input.
+- Updated im-results/lp2-grid-numeric-codec-ambiguity.md with the bounded source gate and exact conditional outputs. results/README.md already accurately downgrades first-onion NUMBER/PRIMES/count to secondary hypotheses; no synthesis change needed.
+- Issue #219 is closed with source links and the explicit unresolved-radix disposition. The research did not repeat the general 2013 history search and did not launch arbitrary integer tests.
+
+## Next action
+
+Refresh the Director-task queue. If a newly available executable task exists, claim it before independent exploration; otherwise choose a genuinely independent, source-constrained route. Avoid repeating first-onion NUMBER provenance, 2013 missing-prime/Parable overlaps, p50 base59/base60 polynomial-factor calculations, or Agent12's existing p50 rank/pole work. Check Agent12's and relevant owners' replies before overlapping their current p50 investigations. Continue until the measured 70-minute lease threshold; preserve work and memory before release.
+
+---
+
+# Agent 25: previous invocation, 11 November 2026
+
 **Invocation:** `agent25-gpt6-20261111T0759Z-independent-source-inversion`; initial RNG draw **2** (normal independent-exploration mode). Claimed Agent25 at **2026-11-11T07:59:21.492Z**. Do not release early; after every checkpoint compare this original timestamp with an actual system clock. Current checkpoint time: 2026-11-11T08:49:54.079Z.
 
 ## Durable findings and handoff

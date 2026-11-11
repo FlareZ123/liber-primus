@@ -54,6 +54,31 @@ The **original forward row-major base60** interpretation is the sole member of t
 
 **Interpretation:** the p39 factor and visible p54 rune make base60 preferable **conditional on polynomial-factor use**. The numerals-only model remains non-identifying, and the polynomial framing itself was selected retrospectively. This does not authenticate a cipher, key, original plaintext, or destination. It does provide a concrete source-constrained choice of codec and order for any later genuine polynomial inverse.
 
+## First-onion NUMBER source gate (Director Issue #219; 11 November 2026)
+
+**Decision: no authenticated NUMBER rule or 193/190 transcript was recovered; this route does not select radix 59 or 60.** The p50 token 3D has the two arithmetic readings already defined above, but neither the signed 2013 participant-server protocol nor any surviving first-onion record supplies the missing operation/input instruction.
+
+### Source classification
+
+1. **Signed 2013 TCP challenge is the wrong service.** The GPG-verified source in [the repository's signed-protocol record](../resources/external/2013-tcp-server-signed-source.md) specifies the participant-hosted BASE29/DH/NEXT protocol. It does not specify the separate first-onion telnet NUMBER/PRIMES service. The February Twisted witness and March participant-server log concern that participant protocol, not first-onion command semantics.
+2. **The surviving first-onion code is expressly a reconstruction.** The [neuroretransmit first-onion README](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/004-first-onion/README.md) says its server was recreated from publicly known information; its adjacent [server.py](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/004-first-onion/server.py) is therefore not an original 2013 implementation.
+3. **The fullest preserved telnet transcript is retrospective and has no relevant input.** [iBotPeaches' telnet transcript](https://github.com/iBotPeaches/cicada_3301/blob/a0a616d85717af59f8b806875b43d51e06e1e874/other/Onion_emiwp4muu2ktwknf_Telnet.md) entered the repository in the single file commit [a41513a, 22 January 2025](https://github.com/iBotPeaches/cicada_3301/commit/a41513aebd4126f57baf85430b820424aac59a4b). Its only NUMBER example is 42; it contains no request or response for 193 or 190. The example's divisor set is correct, but its order [1,2,3,6,7,42,14,21] differs from the reconstructed implementation's ascending factor() order [1,2,3,6,7,14,21,42]; it does not validate that implementation's exact output formatting.
+4. **The archived wiki command description is also retrospective.** The preserved [“The Telnet Prompt” wiki revision](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/corpus/C-community/wikis/uncovering-cicada/export_cur_00840.xml) is dated 27 October 2025. It summarizes the reconstructed NUMBER behavior but gives no number example; its linked pastebins are for hello, clue and primes, not a NUMBER session.
+5. **The surviving archive and chat records do not supply a session.** In the [Dukotah CDX export](https://github.com/Dukotah/cicada3301/tree/f63501d8f2d835b80c30230eb89a1110fb9197d2/corpus/D-archives/cdx), the direct emiwp4muu2ktwknf.onion query is empty; the .onion.to query has 12 records consisting of one root 302 redirect and 11 robots.txt captures, not application pages or telnet exchanges. A search of the preserved [2013 winners-leak IRC log](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/corpus/C-community/irc/2013_winners-leak_irc-log.txt) found no NUMBER/PRIMES request/reply or 193/190 example.
+
+### Conditional outputs—not historical evidence
+
+The reconstructed digit(n) routine treats its input as decimal: for prime n, reverse the decimal digits and return + if that reversal is prime, otherwise return the reversal and its factors; for composite n, return its own factors. Applying that **unverified** rule without parameter changes gives:
+
+| Candidate reading of 3D | Reconstructed operation | Conditional output |
+| --- | --- | --- |
+| Radix 60: 193 | 193 is prime; reverse is 391 = 17×23 | 391 : [1, 17, 23, 391] |
+| Radix 59: 190 | 190 is composite | 190 : [1, 2, 5, 10, 19, 38, 95, 190] |
+
+These are reproducible arithmetic consequences of the later reconstruction, not observed Cicada responses. No source tells a solver to convert the p50 token 3D into either decimal input, and no authenticated output chooses between them. Even an authenticated factor list would still need a source-fixed mapping from factors to an LP2 rune or other consequence.
+
+**Disposition:** the first-onion NUMBER route remains unauthenticated; the p50 radix branch remains unresolved by this route. The separate p39 double-root polynomial observation is a conditional source-context argument, not validation of NUMBER. Do not extend this branch with more integer queries or fitted factor-to-rune maps. This source gate supports the existing provenance correction in results/README.md; no change to that synthesis is warranted.
+
 ## Cryptanalytic consequence and decision
 
 Existing original-cipher key searches often assume the transcribed `byte_rows` are canonical byte material. Those rows are a *derived* radix-60 reading of the original two-character tokens. A proposal claiming an independently derived source key should say which numeral alphabet fixes the input. A test that is demonstrably insensitive to changing these 220 bytes already covers both. Otherwise the alternative is a distinct input, and a concrete **source-fixed inverse** would be needed to establish it.
