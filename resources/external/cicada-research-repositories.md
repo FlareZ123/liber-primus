@@ -27,3 +27,24 @@ A community historical archive of Cicada stages and artifacts. Particularly usef
 - [2014 stage 11 / Liber Primus](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2014/011-seventh-onion/README.md): documents the 58 LP2 pages 0–57, the totient-shift solution for page 56, the plaintext page 57, and the unresolved “An End” hash continuation.
 
 The archive is a community reconstruction, not a substitute for checking original image/audio bytes. The 2014 GEB chain is a strong precedent for clue-constrained book ciphers: do not transplant its book or coordinate convention to LP2 without a corresponding source-selection clue.
+
+
+## Leo-Y-Zhang/LiberPrimusAnalysis (pinned 7 November 2026)
+
+Repository: https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/tree/0b907164e95e3a44ee74c1d28efbf4688b770865
+
+- Independent September 6–7, 2026 session; repository last pushed 7 November. It reproduces the nine established solved sections and reports no LP2 plaintext.
+- Reports the 12,956-rune / 86-adjacent-repeat fingerprint, flat nonzero first-difference stream, no detected periodicity to its stated limits, and no shared keystream between sections. Its proposed chain model, c_i=c_(i-1)+s_i with nonzero 28-way steps and a rare zero event, is a **candidate explanation**, not an identified cipher or plaintext.
+- Its source/key hunt includes OutGuess on all 75 images with no key and 96 candidate keys (4,521 nonempty outputs; unsolved-page outputs are 58,152-byte high-entropy noise), 692,438 archived candidates plus OutGuess payloads against the p56 target, and raw JPEG / growing-string running-key scans. These are useful prior-art negatives; overlap with other repositories and this project's later tests is not fully independent.
+- Start with [REPORT.md](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/0b907164e95e3a44ee74c1d28efbf4688b770865/docs/REPORT.md), [FINDINGS.md](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/0b907164e95e3a44ee74c1d28efbf4688b770865/docs/FINDINGS.md), and [OutGuess / hash-source results](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/0b907164e95e3a44ee74c1d28efbf4688b770865/outguess/RESULTS.md). The repository declares an "Other" source-available license; inspect it before reusing code.
+
+## SECRA — Inside Liber Primus (15 October 2026)
+
+Article: https://secra.tech/research/liber-primus-strongest-findings/
+
+Supporting measurements: https://secra.tech/research/liber-primus-strongest-findings/evidence/index.html
+
+- The page-57 mayfly dots strongly match a historical GIMP Dissolve / GLib random-field pattern: reported whole-image F1 **0.9601**, held-out F1 **0.9391**, with **166** cells still differing. The seed **314159265** is a GIMP software default, not evidence of a puzzle-selected π key. This is a rendering fingerprint, not a plaintext or cipher key.
+- The archived 2014 *Interconnectedness* MP3 contains a repeated opening/ending noise waveform separated by **11,559,607 samples** (about **262.122608 s** at 44.1 kHz). Controlled cancellation did not reveal a supported additional message or key; the separate archived OpenPuff payload is a different channel.
+- Three earlier magic squares have prescribed line sums 3301, 1033 and 1033. The community-observed center sequence 809, 331, 91 gives π-count differences 73 and 43 (GP letters L/P), but the article explicitly does **not** establish that center selection, prime counting and subtraction were uniquely instructed by Cicada.
+- These findings overlap the current GIMP-confound assessment in `results/README.md`; do not reopen the retired p57 241/331 selector or audio residual search without the exact missing source artifact or a new independent selector. The article reports no LP2 decryption, key or destination.

@@ -1,8 +1,8 @@
-# A historical reversible-prime cookie pair as a candidate external key source
+# A reported reciprocal-prime cookie pair as a candidate external key source
 
-**Status, 11 November 2026, Agent 26:** a previously unindexed public-archive lead, with one exact source-selected operation and one finite failed cross-round digest test. It yields **no decrypted original LP2 ciphertext, authenticated key, or solved destination**. Do not launch an unconstrained cipher or KDF search from these bytes.
+**Status, 11 November 2026, Agent 26:** a retrospective archive lead with one exact arithmetic relation and finite failed cross-round digest/table tests. It yields **no decrypted original LP2 ciphertext, authenticated key, or solved destination**. The apparent decimal-reversal operation is not authenticated by a contemporaneous 2013 source. Do not launch an unconstrained cipher or KDF search from these bytes.
 
-## Clue visible to a 2013–2014 participant
+## What the later archive reports (original player visibility unestablished)
 
 The [historical 2013 unused-hints archive](https://github.com/scream314/cicada3301/blob/master/hints_never_used.md), repeated in the [later full archive](https://github.com/krisyotam/cicada3301/blob/main/liber-primus/analysis/HINTS-NEVER-USED.md), reports that `p7amjopgric7dfdi.onion` set these two HTTP cookies:
 
@@ -11,7 +11,7 @@ The [historical 2013 unused-hints archive](https://github.com/scream314/cicada33
 761=7bc1e7805ccfa518920f0d94fc4e8f7dbd83287a03b337b89109cd2287befae5
 ```
 
-Both cookie names are **three-digit primes**, and their decimal reversals map exactly into each other: **167 ↔ 761**. This has an independently documented *historical* operation: the 2013 Cicada `NUMBER` command takes a prime and factors its decimal reversal. [Reconstructed command semantics and original historical examples](../im-results/onion7-magic-center-source-prime-gate.md). The archive does **not** preserve an authenticated original HTTP response, cookie flags, creation times, or evidence that these were stable rather than participant/session-specific tokens.
+Both cookie names are **three-digit primes**, and their decimal reversals map exactly into each other: **167 ↔ 761**. A later reconstructed first-onion `server.py` contains a `NUMBER` handler that factors a decimal reversal, but the authenticated 2013 TCP challenge documents `BASE29`, `RAND`, `DH` and `NEXT`—not `NUMBER`, `PRIMES` or `COUNT`. The later command reconstruction is not an authenticated contemporaneous protocol witness, and the repeated archive entry is not independent corroboration. The archives do **not** preserve an authenticated original HTTP response, cookie flags, creation times, or evidence that these values were visible to a solver in a live session or stable rather than participant/session-specific tokens. The reversal is an arithmetic relation; its status as an intended Cicada operation is unverified.
 
 An exhaustive elementary census of every unordered **three-digit prime/reversed-prime pair** gives **14 pairs**. Of these, **(167,761) is uniquely the pair whose sum is divisible by 29**, and the resulting quotient is **32**. This is a finite and reproducible *retrospective* discriminator, not an author-intent significance claim: the analyst noticed the sum after seeing both the cookies and the 32×8 table. It increases the potential specificity of the human solve-path hypothesis while leaving the actual operation unknown.
 
@@ -37,6 +37,6 @@ The same [standalone SFT](../sims/cicada2013_reverse_prime_cookies_p56_sft.cjs) 
 
 ## Research decision
 
-The two cookies should be preserved as **historically reported, unauthenticated candidate external material**, because their labels independently instantiate a real Cicada-era decimal-reversal operation and their values have key-sized lengths. The currently available sources do **not** tell us to transfer them into Liber Primus, specify whether the bytes were participant-specific, or identify a reversible transformation of the 29-rune ciphertext. A useful next step would recover a contemporaneous HTTP header capture or a signed message explicitly connecting this onion session and the later book; absent that, treating either value as an arbitrary stream-cipher key would reproduce the unmotivated-key-search problem.
+The two cookies should be preserved as **historically reported, unauthenticated candidate external material**. Their reciprocal-prime labels are an arithmetic fact, and the later reconstructed `NUMBER` handler offers a retrospective explanation, but the authenticated 2013 challenge does not establish that operation or these cookies as player-visible. The currently available sources do **not** tell us to transfer them into Liber Primus, specify whether the bytes were participant-specific, or identify a reversible transformation of the 29-rune ciphertext. A contemporaneous HTTP header capture or a signed Cicada instruction explicitly connecting this onion session and the later book would materially change the assessment; absent that, do not treat the reversal as a source-selected operation or either value as an established key source.
 
 This branch is a source-selection observation and a negative digest identification, **not** evidence of an LP2 cryptographic solution.
