@@ -199,11 +199,44 @@ for (const orientation of ['forward', 'reverse']) {
   }
 }
 
+/** @param {number} n */
+function phi(n) {
+  let result = n;
+  let x = n;
+  for (let p = 2; p * p <= x; p++) {
+    if (x % p !== 0) continue;
+    while (x % p === 0) x /= p;
+    result -= result / p;
+  }
+  if (x > 1) result -= result / x;
+  return result;
+}
+
+// The two 151 cells are opposite anti-diagonal corners of the reconstructed
+// 2013/2014 5x5 magic square. Test only that uniquely selected diagonal.
+const antiDiagonal = [151, 320, 91, 320, 151];
+assert.equal(antiDiagonal.reduce((a, b) => a + b, 0), 1033);
+const antiDiagonalKeys = {
+  rawMod29: antiDiagonal.map((x) => mod29(x)),
+  totientMod29: antiDiagonal.map((x) => mod29(phi(x))),
+};
+assert.deepEqual(antiDiagonalKeys.rawMod29, [6, 1, 4, 1, 6]);
+assert.deepEqual(antiDiagonalKeys.totientMod29, [5, 12, 14, 12, 5]);
+const antiDiagonalResults = [];
+for (const [name, key] of Object.entries(antiDiagonalKeys)) {
+  for (const sign of [-1, 1]) {
+    const decoded = p36.map((c, i) => mod29(c + sign * key[i % key.length]));
+    antiDiagonalResults.push({ name, sign, ...score(decoded) });
+  }
+}
+
 const nativeWindows = [];
 for (let i = 0; i + 238 <= reference.length; i++) nativeWindows.push(score(reference.slice(i, i + 238)).trigramNatsPerRune);
 nativeWindows.sort((a, b) => a - b);
 const bestOriginal = Math.max(...results.map((r) => r.trigramNatsPerRune));
+const bestAntiDiagonal = Math.max(...antiDiagonalResults.map((r) => r.trigramNatsPerRune));
 assert(bestOriginal < nativeWindows[0]);
+assert(bestAntiDiagonal < nativeWindows[0]);
 
 console.log(JSON.stringify({
   selector: {
@@ -220,11 +253,16 @@ console.log(JSON.stringify({
   },
   rawP36: score(p36),
   results,
+  antiDiagonal: {
+    values: antiDiagonal,
+    keys: antiDiagonalKeys,
+    results: antiDiagonalResults,
+  },
   native238Windows: {
     count: nativeWindows.length,
     minimum: nativeWindows[0],
     median: nativeWindows[Math.floor(nativeWindows.length / 2)],
     maximum: nativeWindows.at(-1),
   },
-  decision: 'All four source-fixed phase-151 Q238 additive inverses score below every same-length native solved-reference window.',
+  decision: 'The phase-151 Q238 inverses and the 151-selected anti-diagonal raw/totient additive keys all score below every same-length native solved-reference window.',
 }, null, 2));
