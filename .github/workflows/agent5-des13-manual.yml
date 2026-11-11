@@ -1,8 +1,18 @@
-name: Agent 5 source-row DES fragment inverse
+name: Source-grid DES and triple-DES fragment inverses
 on:
   workflow_dispatch:
+    inputs:
+      attack:
+        description: Source-keyed inverse family
+        type: choice
+        required: true
+        default: des
+        options:
+          - des
+          - 3des
 jobs:
   source-row-des:
+    if: inputs.attack == 'des'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -12,3 +22,14 @@ jobs:
           node-version: '22'
       - name: Test original and synthetic source-fragment DES inversions
         run: node sims/des_row13_fragment_inverse.cjs
+  source-triple-des:
+    if: inputs.attack == '3des'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source-clued 3DES with original and synthetic LP2
+        run: node sims/fragment_grid_3des_source_inverse.cjs
