@@ -94,7 +94,30 @@ conditional on these two specific GP orthographies and finite corpora.
 | Vulgate Latin | Reverse | **69.103** | 36.486 / 79.251 | **2/500** |
 
 The add-one empirical upper tails are **1/501**, **1/501**,
-**1/501**, and **3/501**, respectively. The SFT also generates
+**1/501**, and **3/501**, respectively. **Reset-safe original control.** The source parser also identifies 32
+printed words continuing over a physical page edge. Removing them leaves
+**1,108** complete, page-contained words of length at least five, with
+**3,152** genuine original windows. The same SFT maps all **28** original
+thirteen-dot mark events on physical pp0–55 (26 distinct global positions)
+and confirms that **no one of these 3,152 windows crosses a mark**.
+Consequently neither a page-boundary reset nor a thirteen-dot reset can
+invalidate this exact test cohort.
+
+| Native reference | Filter orientation | Original χ² on page/mark-safe windows | Maximum of 500 length-matched native controls | Controls at least as discrepant |
+| --- | --- | ---: | ---: | ---: |
+| Shakespeare English | Forward | 190.752 | 76.862 | 0/500 |
+| Shakespeare English | Reverse | 121.076 | 63.264 | 0/500 |
+| Vulgate Latin | Forward | 94.946 | 72.485 | 0/500 |
+| Vulgate Latin | Reverse | 65.953 | 76.005 | 4/500 |
+
+The corresponding empirical upper tails are 1/501, 1/501, 1/501,
+and 5/501. The last Latin/reverse score is the least decisive of the
+four. Both cohort analyses passed
+[manual CI 42949024650](https://github.com/FlareZ123/liber-primus/actions/runs/42949024650).
+This added control **does not** exclude a private step/skip within an
+unmarked printed word or a language register outside the two tested corpora.
+
+The SFT also generates
 independent unknown random four-rune initial states for 100 separate
 English and 100 Latin native words under each polynomial orientation,
 then verifies the *identical* annihilated plaintext and ciphertext
