@@ -36,6 +36,8 @@ These recover the four joined glyph positions in the three formerly undercounted
 | Disagreements on the p39 special enlarged black line | 4 |
 | Red-span first-glyph mismatches | 13 |
 
+**Native red registration correction (11 November 2026):** 68 of the 79 raw red mismatch flags arise from seven one-position displaced glyph assignments where an oversized first rune was dropped and a 13-dot terminal mark was included as I. The following 62 ordinary red glyph predictions align exactly with the *next* source label, 62/62; the source JPEGs independently show the missed initial rune. The [original-image adjudication](lp2-red-rune-image-adjudication.md) identifies all seven, the eleven remaining flags, and an unchanged 51-position p53 reading with 40/40 within-red repeated-class matches. Keep the raw 79 count as a model diagnostic, not a tally of questionable source glyphs.
+
 The 83 disagreements are not ordinary black-text transcription corrections. The 79 red-span disagreements are inside the 213 annotated red positions. The four black disagreements are all on p39 line 5, a five-glyph enlarged line immediately before a three-rune red span and red 13-dot punctuation. Manual inspection of the original crop supports the existing `MSWOH` reading; it remains explicitly marked as a special-form exception rather than being silently accepted or corrected.
 
 Among the 11,891 held-out positions on lines with exact observed component counts and no skipped components, 11,881 match the p43 nearest-template prediction; the 10 disagreements are all red-span positions. No disagreement surfaced in ordinary black text.
@@ -50,7 +52,7 @@ The solved p56/p57 controls contain 168 black positions and 12 red positions:
 
 The first visual lines of p56/p57 are mixed lines containing known red GP rune spans (5 and 7 runes) alongside black text; they are not Latin titles. Their red positions are now identified from the source ink annotations and retained separately.
 
-A red-only nearest-template experiment trained on those 12 solved red glyphs has duplicate-class leave-one-out accuracy **1/4**. On unknown red positions whose expected class is represented among those controls, it agrees at only **3/59** positions. This is too weak to validate or correct the red transcription. The red glyphs are a distinct visual domain for these simple classifiers; the 79 red mismatches must not be interpreted as 79 transcription errors. All 213 red positions, their source boxes, expected runes, and model predictions are retained in the JSON for an image-first follow-up.
+A red-only nearest-template experiment trained on those 12 solved red glyphs has duplicate-class leave-one-out accuracy **1/4**. On unknown red positions whose expected class is represented among those controls, it agrees at only **3/59** positions. This is too weak to validate or correct the red transcription. The red glyphs are a distinct visual domain for these simple classifiers; the 79 raw red mismatches must not be interpreted as 79 transcription errors. Sixty-eight are demonstrably misregistered, leaving eleven flags for focused source inspection. All 213 red positions, their source boxes, expected runes, and model predictions are retained in the JSON for an image-first follow-up.
 
 ## Eight apparent registration ties resolved by original images
 
