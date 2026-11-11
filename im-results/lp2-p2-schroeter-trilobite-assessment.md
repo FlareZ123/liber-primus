@@ -52,6 +52,8 @@ The finite test used the natural base-3 flattening to `A–Z + space` or `A–Z 
 
 For scale, the same quadgram model scored 22,939 stride-10 windows of 67 letters from the repository's first 300k Shakespeare control characters: minimum −13.1132, median −9.9711, maximum −8.2386. All tested Legendre outputs are substantially worse than even the least English-like sampled control windows. The small score improvements within the finite search are not plaintext evidence.
 
+A simpler ternary alternative was also tested: map each GP rune's assigned prime directly to p_i mod 3, use the same 3×67 column-triplet layout, and decode the 27 states as `A–Z + space` or `A–Z + period`. The trit counts are 8/94/99. Across the same 48 cube symmetries the best mean quadgram score is −18.9418 (four dictionary hits in ten tokens, with no coherent text); the figure-specific row orientation (first row forward, second reversed, tail reversed and 1↔2 inverted) is also gibberish. The same 22,939 Shakespeare windows have a minimum score of −13.1132. This retires the obvious prime-mod-3 / three-lobe decode as well.
+
 **Decision:** retire the direct Legendre-trit → 27-symbol p2 decode and the simple period-29 additive Legendre key. Do not expand into arbitrary 27-symbol cube orders or additional fitted offsets. A different Legendre-derived state would need an independent source instruction and a new held-out prediction.
 
 ## Existing Trifid constraint
