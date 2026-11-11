@@ -34,6 +34,7 @@ on:
           - byte-pointer
           - collision-quote
           - signed-message-map
+          - source-dh-log
         default: full
 
 jobs:
@@ -45,6 +46,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Source-locked 2013 DH / solved-prime-84 F29-square logarithm inverse
+        if: ${{ inputs.probe == 'source-dh-log' }}
+        run: |
+          node sims/lp2_2013_p56_prime84_field_basis_sft.cjs
+          node sims/lp2_2013_dh_prime_field_log_inverse_sft.cjs
+
       - name: Full authenticated 2016 signed-message base-58 word map
         if: ${{ inputs.probe == 'signed-message-map' }}
         run: node sims/lp2_2016_message_base58_word_map.cjs
