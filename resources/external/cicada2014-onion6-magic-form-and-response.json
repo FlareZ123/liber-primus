@@ -1,0 +1,20 @@
+{
+  "schema": "cicada2014-onion6-static-form-and-response-v1",
+  "source_repository": "iBotPeaches/cicada_3301",
+  "introduced_in_archiving_commit": "df50c0cc88f0a",
+  "recorded_git_date": "2024-12-19T11:41:24Z",
+  "historical_scope": "A later public reproduction/capture of 2014 Onion6 form and its submitted-result page. The signed passage in the form is authentically signed; the surrounding HTML and response are not themselves signed. Independently documented in older community walkthroughs.",
+  "original_onion": "ut3qtzbrvs7dtvzp.onion",
+  "files": [
+    {
+      "archived_path": "onions/ut3qtzbrvs7dtvzp.onion/post/index.html",
+      "original_git_blob_sha1": "e2eefba48af2006957072f60bfdeabb4f27b28f4",
+      "raw_html": "<html>\n<head>\n    <title>Welcome, pilgrim.</title>\n</head>\n<body>\n<pre>\n-----BEGIN PGP SIGNED MESSAGE-----\nHash: SHA1\n\n\nHello.  You have done well to come this far.\n\nPlease paste the magic squares into the appropriate textareas below, then\nprovide the URL to your Tor hidden service.\n\nThe path to your CGI script which accepts uploads should be '/cgi-bin/upload'\nand the HTML form input which accepts file uploads should be named 'file'.\n\nAdditionally, please generate a GnuPG key pair, and place the public key\nin the location '/key.asc'.\n\nWe will contact you soon.\n\nGood luck.\n\n3301\n\n\n-----BEGIN PGP SIGNATURE-----\nVersion: GnuPG v1.4.11 (GNU/Linux)\n\niQIcBAEBAgAGBQJS43VRAAoJEBgfAeV6NQkPVcQP/Rnli3AdTLAj28W1SMHTD6v0\nQ67n89uGF6ZeD4U+dD2FHULAL9upNBRdzF7golqcfJCpeIKN0JYyilpGgSyTQmx+\nyJXinlq4ZY+NNN45t8FtULvpVVO+L1ztF6dcohK+ZhAWWFj5u5WwEINx0mo+TE35\nS7imfprBdk2C5B/E8ds7m35s74oWfdys8oY+vUHzOT4KB0SYFbankH6aLIe7fiTa\nSTB1Effelhg9F8YjDsopFHyF/kozI+eYk9yJcDEhlO4aiIkfZdNdLhXz80SIKw9v\nryjTCPUJfFrVpaelHxBefTOQHPfQEWnua7h6V6bx8Wiem7eiNyfXMAk1uoiu9zWW\nFbA+MIFZ711kLvzD9Sg/0YGY97Gzzt0M1e8Pl/JYYzjOzFOH5pqmgMoOTBO0bvV+\nd+QaLLiKmH0cYdTKmLv2xJ/1y7z0pakmgXCOhzIVQCDwoMxfGELLi9MNroaZFK3e\nJzeDy828EfafrWpQ/LNzovb0XHyR1p4RRLq9vqMTFo0U0U7lLDKfWJvs4Y73o2Pn\nQRNzn2+2GPQPj1CRMp5gxDFzwAMT0RBAfagkDiQu2uDxk8NZfSWkJVmsAUlLQLA9\n7Wa5zuxPNvBf8Bws6y1C241FVfyttC4tNZEp2ShtbnHkZj1gFZf5v4rbq8wsxPrJ\nJp8kkuLi0PWCITmtfTsb\n=TwC1\n-----END PGP SIGNATURE-----\n</pre>\n\n<form method=\"post\" action=\"/cgi-bin/squares\">\n    <div>\n\n        <p> Order 5 Square, 3301 </p>\n        <textarea name=\"53301\"></textarea>\n    </div>\n    <div>\n        <p> Order 7 Square, 1033 </p>\n        <textarea name=\"71033\"></textarea>\n\n    </div>\n    <div>\n        <p> Order 5 Square, 1033 </p>\n        <textarea name=\"51033\"></textarea>\n    </div>\n    <div>\n        <p> Your onion address: </p>\n\n        <input type=\"text\" name=\"onion\" />\n    </div>\n    <div>\n        <input type=\"submit\" value=\"Submit\" />\n    </div>\n</form>\n</body>\n</html>\n"
+    },
+    {
+      "archived_path": "onions/ut3qtzbrvs7dtvzp.onion/post2/index.html",
+      "original_git_blob_sha1": "d71303af76016c8e88ed5dcc8a18b08e6276a437",
+      "raw_html": "<html><head></head><body>\n<p> Thank you for you submission. </p>\n<img src=\"/107.jpg\" /><br />\n<img src=\"/167.jpg\" /><br />\n<img src=\"/229.jpg\" /><br />\n"
+    }
+  ]
+}
