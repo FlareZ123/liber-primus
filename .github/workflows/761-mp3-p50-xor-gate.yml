@@ -1,0 +1,30 @@
+name: 761 MP3 XOR p50 source gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sims/761_mp3_xor_p50_gate.cjs'
+      - '.github/workflows/761-mp3-p50-xor-gate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch pinned 2013 761.MP3
+        run: |
+          curl --fail --location --retry 3 --retry-delay 2 \
+            --output /tmp/761.MP3 \
+            https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3
+          sha256sum /tmp/761.MP3
+      - name: Run historical XOR positive control and frozen p50 test
+        run: node sims/761_mp3_xor_p50_gate.cjs /tmp/761.MP3
