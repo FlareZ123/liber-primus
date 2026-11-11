@@ -145,9 +145,8 @@ function main() {
   const model = makeModel(native);
   assert.equal(model.referenceWindows.length, 88);
 
-  // Three fixed interpretations: quotient as GP plaintext; repeated additive key
-  // over the complete continuous unknown-rune stream; and the direct base-29
-  // big-endian integer serialization demonstrated by the 2013 BASE29 command.
+  // Fixed interpretations: quotient as GP plaintext; repeated additive key
+  // over the complete continuous unknown-rune stream; and both direct BASE29 serializations motivated by the authenticated 2013 numeral example.
   const raw = summary(cipher, model);
   const quotientPlaintext = summary(quotient, model);
   const cMinusQ = addKey(cipher, quotient, -1);
@@ -160,6 +159,11 @@ function main() {
 
   const packed = base29BigEndianBytes(quotient);
   const packedBuffer = Buffer.from(packed.bytes);
+  const base29Alphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
+  assert.equal(base29Alphabet.length, 29);
+  const base29Numeral = quotient.map(digit => base29Alphabet[digit]).join("");
+  assert.equal(base29Numeral.length, 252);
+  const base29NumeralBuffer = Buffer.from(base29Numeral, "ascii");
   const p56TargetHex = "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4";
   const whirlpoolDigest = data => {
     const output = execFileSync("openssl", ["dgst", "-provider", "legacy", "-whirlpool"], { input: data, encoding: "utf8" }).trim();
@@ -177,6 +181,16 @@ function main() {
     whirlpool: whirlpoolDigest(packedBuffer)
   };
   const p56Matches = Object.fromEntries(Object.entries(p56Digests).map(([name, digest]) => [name, digest === p56TargetHex]));
+  const p56Base29TextDigests = {
+    sha512: crypto.createHash("sha512").update(base29NumeralBuffer).digest("hex"),
+    sha3_512: crypto.createHash("sha3-512").update(base29NumeralBuffer).digest("hex"),
+    blake2b_512: crypto.createHash("blake2b512").update(base29NumeralBuffer).digest("hex"),
+    shake256_64: crypto.createHash("shake256", { outputLength: 64 }).update(base29NumeralBuffer).digest("hex"),
+    whirlpool: whirlpoolDigest(base29NumeralBuffer)
+  };
+  const p56Base29TextMatches = Object.fromEntries(
+    Object.entries(p56Base29TextDigests).map(([name, digest]) => [name, digest === p56TargetHex])
+  );
   const printable = packed.bytes.filter(x => x >= 32 && x <= 126).length;
   const byteCounts = Array(256).fill(0);
   for (const x of packed.bytes) byteCounts[x]++;
@@ -213,6 +227,8 @@ function main() {
     },
     quotientAsGpPlaintext: quotientPlaintext,
     p56TargetHashGate: { targetHex: p56TargetHex, digestValues: p56Digests, matches: p56Matches, allMiss: !Object.values(p56Matches).some(Boolean), whirlpoolAbcKnownAnswer: whirlpoolAbc },
+    quotientAsBase29NumeralString: { alphabet: base29Alphabet, length: base29Numeral.length, text: base29Numeral, sha256: crypto.createHash("sha256").update(base29NumeralBuffer).digest("hex") },
+    p56TargetBase29TextHashGate: { targetHex: p56TargetHex, digestValues: p56Base29TextDigests, matches: p56Base29TextMatches, allMiss: !Object.values(p56Base29TextMatches).some(Boolean), whirlpoolAbcKnownAnswer: whirlpoolAbc },
     quotientAsBase29BigEndianInteger: {
       bitLength: packed.bitLength,
       byteLength: packed.bytes.length,

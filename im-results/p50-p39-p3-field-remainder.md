@@ -106,16 +106,17 @@ The simplest direct use—multiplication of fixed adjacent two-rune GP29 pairs b
 
 ## Direct polynomial quotient as message/key — bounded negative (Agent3, 11 November 2026)
 
-This tests one direct interpretation of the source-linked dual-factor relation. The 2013 `BASE29 3301 → 3QO` example supplies `H=3+26X+24X²`; the p39 red/DH23 factor is `G=27+5X+15X²`. Their product has leading coefficient 12; its monic normalization is `F(X)=X⁴+28X³+13X²+9X+14` over GF(29).
+This tests direct interpretations of the source-linked dual-factor relation. The authenticated 2013 TCP-server challenge supplies `BASE29 3301 → 3QO`, whose digits are `[3,26,24]`; the p39 red/DH23 factor is `G=27+5X+15X²`. Their product has leading coefficient 12; its monic normalization is `F(X)=X⁴+28X³+13X²+9X+14` over GF(29).
 
 Read the original p50 base-60 row-major bytes as high-to-low coefficients, reduce mod 29, and divide by `F` in GF(29)[X]. The remainder is exactly `[0,0,0,0]`; the degree-251 quotient `Q` has **252 GF(29) symbols**. This is distinct from the previously reported `P50/G mod F3 = 19+13u` primitive-field remainder and from the earlier 127-pair quotient forcing/multiplier recurrences.
 
 The direct readouts were fixed to source order, without phase, reversal, permutation, padding or extra cipher layers:
 
-1. **`Q` as GP29 plaintext.** The 252-symbol transliteration begins `FEANGBAISLPBLUUNGLYLPYAGRPEAAHEOUAELEANGAAEE...`; IoC **0.03633087**, Gibran-trained GP trigram score **−12.23942** nats/rune. It has no word boundaries and is not readable plaintext.
-2. **`Q` as one BASE29 big-endian integer.** The 252 digits form a **1,220-bit / 153-byte** integer. Its first bytes are `0a 21 2d 90 ff 3f 0e 10`; only **45/153 (29.4%)** bytes are printable ASCII and byte entropy is **6.68863 bits**. Its SHA-256 is `2a9f63b2e880a23f5e717f106b1829970ee26712fccf7a0e0d9a1c62bf919819`. No recognized file signature or clear payload appears. This is the direct numeric serialization suggested by the historical BASE29 example; alternate endian/packing searches were not performed.
-3. **The same 153 bytes as a direct p56 preimage candidate.** SHA-512, SHA3-512, BLAKE2b-512, SHAKE256(64), and Whirlpool all miss the exact p56 target (**0/5**). Whirlpool's `abc` known-answer check passes. Full digest values and the exact target are preserved in [the hash-preimage report](archive-hash-preimage.md#source-derived-p50-dual-factor-quotient-as-a-p56-preimage-candidate).
-4. **`Q` as a repeating additive key.** Repeating the 252 symbols continuously over all **12,956** original unknown runes gives:
+1. **`Q` as GP29 plaintext.** The canonical corpus transliteration begins `FEONEATHAEDNGEEANGBBHSNGWNGEWTHSIEEOTHLU...`; IoC **0.03633087**, Gibran-trained GP trigram score **−12.23942** nats/rune. It has no word boundaries and is not readable plaintext.
+2. **`Q` as one BASE29 big-endian integer.** The 252 digits form a **1,220-bit / 153-byte** integer. Its first bytes are `0a 21 2d 90 ff 3f 0e 10`; only **45/153 (29.4%)** bytes are printable ASCII and byte entropy is **6.68863 bits**. Its SHA-256 is `2a9f63b2e880a23f5e717f106b1829970ee26712fccf7a0e0d9a1c62bf919819`. No recognized file signature or clear payload appears.
+3. **`Q` as the source-authenticated BASE29 numeral string.** Use the exact 2013 alphabet `0123456789ABCDEFGHIJKLMNOPQRS`, which maps the published example `3QO` back to digits `[3,26,24]`. The quotient renders as **252 ASCII bytes**, beginning `0C9S2PNLISLHH8FL7LI72FAIC2K1HJLC92J16NHP3MPN45ONP2KF8I58EO7LF798A2C3RKRD7KJ0LHSQ` and ending `R7CFKJG5PRAGJNI52K6GKP78QEFPLEHH63B8R2K9LDL8RRS679K3OCPGDLDPB539I09NE1QDI2E8RJ46`; SHA-256 `7a629c5caf4b04fc695054646117c6e2fdd925ca492e12f210a02ce249a949d8`.
+4. **The two fixed serializations as direct p56 preimage candidates.** The 153-byte integer and 252-byte BASE29 numeral string each miss the exact p56 target under SHA-512, SHA3-512, BLAKE2b-512, SHAKE256(64), and Whirlpool (**0/10**). Whirlpool's `abc` known-answer check passes. Full digest values and the exact target are preserved in [the hash-preimage report](archive-hash-preimage.md#source-derived-p50-dual-factor-quotient-as-p56-preimage-candidates).
+5. **`Q` as a repeating additive key.** Repeating the 252 symbols continuously over all **12,956** original unknown runes gives:
    - raw ciphertext: IoC **0.03447840**, trigram **−12.27633**;
    - `C−Q`: IoC **0.03449675**, trigram **−12.28142**;
    - `C+Q`: IoC **0.03448428**, trigram **−12.27338**;
@@ -123,7 +124,7 @@ The direct readouts were fixed to source order, without phase, reversal, permuta
 
    All **50** complete 256-rune output windows for each direction fall below the worst of **88** held-out native-GP Gibran windows (worst native score **−9.13104**). Exact inverse/re-encryption checks pass on all 12,956 original runes.
 
-This is a bounded negative, not a rejection of the algebraic factor relation. The experiment is conditional on the conventional base-60 table interpretation. A pre-2014 MIRACL manual (2007) and Sendmail V8.10–V8.12 (2002) document the exact base-60 alphabet, but no Cicada artifact links p50 to either implementation; base60 is the stronger conventional working interpretation, not authenticated authorial intent. Issue #337's source-use question remains distinct. Retire only the direct `Q`-as-GP plaintext, single BASE29 integer serialization, its direct p56-preimage reading, and period-252 additive-key reading. No authentic key, plaintext or source-selected parity frame follows.
+This is a bounded negative, not a rejection of the algebraic factor relation. The experiment is conditional on the conventional base-60 table interpretation. A pre-2014 MIRACL manual (2007) and Sendmail V8.10–V8.12 (2002) document the exact base-60 alphabet, but no Cicada artifact links p50 to either implementation; base60 is the stronger conventional working interpretation, not authenticated authorial intent. Issue #337's source-use question remains distinct. Retire only the direct GP29 plaintext, the two direct BASE29 serializations as p56 preimages, and the period-252 additive-key reading. No authentic key, plaintext or source-selected parity frame follows.
 
 Reproducer: [`sims/p50_dualfactor_quotient_direct_gate.cjs`](../sims/p50_dualfactor_quotient_direct_gate.cjs).
 
