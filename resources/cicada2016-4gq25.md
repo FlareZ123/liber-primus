@@ -19,6 +19,14 @@
 - A byte-exact copy is now preserved at `resources/historical/cicada2016-4gq25-outguess.asc`; its local Git blob SHA was checked against the external archive's blob SHA and matches exactly.
 - The file is an ASCII OpenPGP clear-signed message with key ID `7A35090F`. The archive's `stage01/README.md` documents extraction with `outguess -r 4gq25.jpg 4gq25.jpg.outguess` and reports `seed: 230, len: 1136`. This invocation independently reconstructed the exact 1,136-byte file (Git blob SHA matches the archived blob), imported `resources/control/cicada-3301-public-key.asc`, and ran `gpg --verify`. GnuPG returned **Good signature** from “Cicada 3301 (845145127)” using RSA key `0x181F01E57A35090F`, fingerprint `6D85 4CD7 9333 22A6 01C3 286D 181F 01E5 7A35 090F`. GnuPG also reported `[unknown]` trust: this verifies the signature against the stored public key, not the key's real-world identity. Reproduction commands: `gpg --import resources/control/cicada-3301-public-key.asc` then `gpg --verify resources/historical/cicada2016-4gq25-outguess.asc`. The extraction was subsequently reproduced in CI using the repository's pinned OutGuess 0.4 build: `outguess -r resources/historical/cicada2016-4gq25.jpg outguess-2016-results/4gq25.jpg.outguess` returned `seed: 230, len: 1136`; `cmp` confirmed byte-for-byte equality with the preserved `.asc` file, and GPG verification of the extracted output succeeded. Extracted-payload SHA-256: `fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010`. The regression is in `.github/workflows/lp2-outguess.yml` (manual input `cicada2016`, also triggered by changes to the preserved source files).
 
+## Independent period witness and byte-level whitespace audit
+
+A separate contemporaneous repost appears in the [Boards.net thread 6, “Clue 2016 No silly Spaces this time”](https://cicada3301.boards.net/thread/6/clue-2016-silly-spaces-time), in a post by `wetsand` dated 2016-01-19 11:32:05 UTC. The archived HTML witness is [preserved by Dukotah](https://github.com/Dukotah/cicada3301/blob/master/corpus/C-community/forums/boards_net_live/thread_6_clue-2016-silly-spaces-time.html) (Git blob SHA `10eb541af5a0db09542106d11cc34678723ac247`). Its PGP block is extracted at [`im-results/2016-forum-witness-extract.asc`](../im-results/2016-forum-witness-extract.asc); this is a derived HTML extraction, not a raw capture from the original host.
+
+The forum repost preserves the same signature packet and the same cleartext body after OpenPGP normalization. Both copies verify as a **Good signature** under the repository key fingerprint `6D85 4CD7 9333 22A6 01C3 286D 181F 01E5 7A35 090F` (GnuPG trust remains unknown). The two internal double spaces—after `way.` and `paths.`—are part of the signed body and appear in the period repost. They are consistent with two-space sentence spacing; no source-selected key mapping follows. The extracted file's single trailing space after `their` is absent from the forum repost and is stripped by OpenPGP cleartext canonicalization, so it is not authenticated.
+
+The source record's earlier transcription had a full stop after `map`; the signed bytes and forum repost both have a comma: `the map, their meaning`. Full comparison, hashes, and reproduction are in [the whitespace audit](../im-results/2016-signed-payload-whitespace-audit.md).
+
 The following is a normalized human-readable transcription; use the `.asc` file above for byte-exact content and signature verification:
 
 ```text
@@ -26,7 +34,7 @@ Hello.
 
 The path lies empty; epiphany seeks the devoted.
 
-Liber Primus is the way.  Its words are the map.  Their
+Liber Primus is the way.  Its words are the map, their
 meaning is the road, and their numbers are the direction.
 
 Seek and you will be found.
@@ -40,4 +48,4 @@ Beware false paths.  Verify OpenPGP 7A35090F.
 
 The explicit **“Beware false paths”** warning is important: semantic/geographic matches must be tested against alternatives and an independently fixed stopping rule. The signed text does not add an explicit A-road name, coordinate, cipher key, or LP2 plaintext.
 
-This is a reference record for the archived copies. The blob SHA establishes that the two repository copies are byte-identical to each other, not that either archive independently authenticates the original publication.
+This is a reference record for the archived image and extracted payload. The two GitHub image/payload archives are byte-identical mirrors, not independent captures from the original infotomb host or tweet CDN. The separate January 2016 forum post is a contemporaneous repost of the signed message, not an independent OutGuess extraction or original-host capture.
