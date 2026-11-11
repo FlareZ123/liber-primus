@@ -196,6 +196,28 @@ assert.deepEqual(secondHop, {sum: 114, page: 56, index: 1});
 assert.equal(decodeRunes(lp2Pages[56][1]), "OESR");
 
 
+// Recursion has no source-defined stopping rule. Measure its actual behavior
+// from every authenticated signed-message origin, retaining duplicate words.
+function walkToRepeatOrMissing(page, index) {
+  const visited = new Set();
+  let passedSolvedEnd = false;
+  while (lp2Pages[page]?.[index]) {
+    const key = page + ":" + index;
+    if (visited.has(key)) return {kind: "cycle", passedSolvedEnd};
+    visited.add(key);
+    if (page === 56 && index === 1) passedSolvedEnd = true;
+    const next = nextWord(page, index);
+    page = next.page;
+    index = next.index;
+  }
+  return {kind: "missing", page, index, passedSolvedEnd};
+}
+const walks = fullMap.map(row => walkToRepeatOrMissing(row.page, row.wordIndex));
+const missing = walks.filter(row => row.kind === "missing");
+const cycles = walks.filter(row => row.kind === "cycle");
+const visitsEnd = walks.filter(row => row.passedSolvedEnd);
+assert.deepEqual([missing.length, cycles.length, visitsEnd.length], [15, 28, 9]);
+assert(missing.every(row => row.page === 50));
 // Cross-check the 2016 clue phrase against the p32 11x11 GP-prime square.
 const p32Page = corpus.pages.find((page) => page.page === 32);
 assert(p32Page);
@@ -267,5 +289,7 @@ console.log(JSON.stringify({
       tableToken: page50Table.tokens[3], tableByte: page50Table.bytes[3]},
     unfittedAddresses: {found: [14, 2], beware: [32, 5]},
     pointerRoute: {fold: [14, 1], lastUnsolved: [55, 2], solvedEnd: [56, 1]},
-    printedWordCount: 2973, lineFragmentCount: 3367}
+    printedWordCount: 2973, lineFragmentCount: 3367,
+    completePointerWalk: {missingOnPage50: missing.length,
+      convergeToCycles: cycles.length, visitSolvedEND: visitsEnd.length}}
 }, null, 2));
