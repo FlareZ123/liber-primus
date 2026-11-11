@@ -89,6 +89,16 @@ assert.equal(selected.indices[0], 19);
 assert.equal(selected.indices.length, selected.indices[0]);
 assert.equal(selected.indices.length - 1, selected.oneBased);
 
+// Fragment 18 is also uniquely self-addressing at page scale: the 13-dot
+// punctuation supplies width 13 and its start page contains 18*13 runes.
+assert.equal(pageByNumber.get(27).indices.length, 18 * 13);
+const startPageForFragment = (item) => item.startLocation?.page;
+const fragmentPageProducts = Array.from({ length: 32 }, (_, i) => fragment(i + 1))
+  .filter((item) => item.startLocation)
+  .filter((item) => (pageByNumber.get(startPageForFragment(item))?.indices.length ?? -1) === item.oneBased * 13)
+  .map((item) => item.oneBased);
+assert.deepEqual(fragmentPageProducts, [18]);
+
 const allFragments = Array.from({ length: 32 }, (_, i) => fragment(i + 1));
 assert.deepEqual(
   allFragments.filter((x) => x.indices.length > 0 && x.indices.length === x.indices[0]).map((x) => x.oneBased),
@@ -128,6 +138,111 @@ const p55 = pageByNumber.get(55).indices;
 const bookend = [23, 11, 1, 17, 18, 10];
 assert.deepEqual(p27.slice(28, 34), bookend);
 assert.deepEqual(p55.slice(70, 76), bookend);
+
+// The selected fragment begins with enlarged M (GP index 19, prime 71).
+// The first rune after its 13-dot boundary is N (index 9, prime 29).
+// The two copies of the unique ciphertext bookend start exactly at the
+// corresponding Euler-totient offsets phi(71)=70 and phi(29)=28.
+const M = selected.indices[0];
+const N = p27[selected.indices.length];
+assert.equal(M, 19);
+assert.equal(N, 9);
+assert.equal(corpus.prime[M], 71);
+assert.equal(corpus.prime[N], 29);
+assert.equal(corpus.prime[M] - 1, 70);
+assert.equal(corpus.prime[N] - 1, 28);
+assert.equal((70 - 28) % 29, 13);
+assert.deepEqual([Math.floor(28 / 13), 28 % 13], [2, 2]);
+assert.deepEqual([Math.floor(70 / 13), 70 % 13], [5, 5]);
+
+// Exact solved-p56 prime-totient semantics: plaintext F is emitted as
+// literal ciphertext F and consumes no prime; all other plaintext symbols
+// consume one consecutive prime-totient step. Test only the source-selected
+// starts N=9 and M=19 under the authentic solved-page sign.
+const primes = [];
+for (let candidate = 2; primes.length < 1000; candidate += 1) {
+  let prime = true;
+  for (let divisor = 2; divisor * divisor <= candidate; divisor += 1) {
+    if (candidate % divisor === 0) { prime = false; break; }
+  }
+  if (prime) primes.push(candidate);
+}
+const mod29 = (value) => ((value % 29) + 29) % 29;
+const ioc = (values) => {
+  const counts = new Array(29).fill(0);
+  for (const value of values) counts[value] += 1;
+  return counts.reduce((sum, count) => sum + count * (count - 1), 0) /
+    (values.length * (values.length - 1));
+};
+/** @param {number[]} cipher @param {number} start */
+function enumerateSolvedP56Paths(cipher, start) {
+  let paths = [{ plain: [], clock: 0, mask: [] }];
+  for (let offset = 0; offset < cipher.length; offset += 1) {
+    const next = [];
+    for (const path of paths) {
+      const cipherRune = cipher[offset];
+      const normalPlain = mod29(cipherRune - (primes[start + path.clock] - 1));
+      if (normalPlain !== 0) {
+        next.push({
+          plain: [...path.plain, normalPlain],
+          clock: path.clock + 1,
+          mask: [...path.mask, false]
+        });
+      }
+      if (cipherRune === 0) {
+        next.push({
+          plain: [...path.plain, 0],
+          clock: path.clock,
+          mask: [...path.mask, true]
+        });
+      }
+    }
+    paths = next;
+  }
+  return paths;
+}
+const p27P56Paths = enumerateSolvedP56Paths(p27, N);
+const p55P56Paths = enumerateSolvedP56Paths(p55, M);
+assert.equal(p27P56Paths.length, 2);
+assert.equal(p55P56Paths.length, 0);
+const p27P56Iocs = p27P56Paths.map((path) => ioc(path.plain)).sort((a, b) => b - a);
+assert.ok(Math.abs(p27P56Iocs[0] - 0.03396793954733869) < 1e-15);
+assert.ok(Math.abs(p27P56Iocs[1] - 0.03389457466710685) < 1e-15);
+
+// A literal reversible fold of the unique 18x13 page is also finite.
+// Symmetric row/column pairs map through (a,b)->(a+b,a-b) over F29.
+const p27Grid = Array.from({ length: 18 }, (_, row) => p27.slice(row * 13, (row + 1) * 13));
+function rowFold(grid, reversedDifference) {
+  const out = Array.from({ length: 18 }, () => new Array(13));
+  for (let row = 0; row < 9; row += 1) for (let column = 0; column < 13; column += 1) {
+    const a = grid[row][column];
+    const b = grid[17 - row][column];
+    out[row][column] = mod29(a + b);
+    out[17 - row][column] = mod29(reversedDifference ? b - a : a - b);
+  }
+  return out;
+}
+function columnFold(grid, reversedDifference) {
+  const out = Array.from({ length: 18 }, () => new Array(13));
+  for (let row = 0; row < 18; row += 1) {
+    for (let column = 0; column < 6; column += 1) {
+      const a = grid[row][column];
+      const b = grid[row][12 - column];
+      out[row][column] = mod29(a + b);
+      out[row][12 - column] = mod29(reversedDifference ? b - a : a - b);
+    }
+    out[row][6] = grid[row][6];
+  }
+  return out;
+}
+const foldIocs = [];
+for (const rowReverse of [false, true]) for (const columnReverse of [false, true]) {
+  const rowOnly = rowFold(p27Grid, rowReverse);
+  const columnOnly = columnFold(p27Grid, columnReverse);
+  const both = columnFold(rowOnly, columnReverse);
+  foldIocs.push(ioc(rowOnly.flat()), ioc(columnOnly.flat()), ioc(both.flat()));
+}
+assert.ok(Math.abs(Math.max(...foldIocs) - 0.03492168299035252) < 1e-15);
 
 // Canonical 2,896-word parser: page markers and line wraps do not split a
 // printed word. The unique repeated p27/p55 pair supplies a word-number gap.
@@ -229,6 +344,14 @@ const sectionControls = transcription.split('
     zeroBased18AlternativeLength: fragment(19).indices.length
   },
   p27p55Bookend: bookend,
+  primeTotientAnchor: {
+    fragmentFirstRune: { index: M, prime: corpus.prime[M], totient: corpus.prime[M] - 1, p55BookendOffset: 70 },
+    postBoundaryRune: { index: N, prime: corpus.prime[N], totient: corpus.prime[N] - 1, p27BookendOffset: 28 },
+    offsetDifferenceMod29: (70 - 28) % 29,
+    uniqueFragmentPageProduct: fragmentPageProducts,
+    solvedP56Transfer: { p27ValidPaths: p27P56Paths.length, p27Iocs: p27P56Iocs, p55ValidPaths: p55P56Paths.length },
+    reversibleFoldMaxIoc: Math.max(...foldIocs)
+  },
   wordNumberDirection: {
     canonicalWordCount: canonicalWords.length,
     pairStartOffsetsZeroBased: bookendStarts,
