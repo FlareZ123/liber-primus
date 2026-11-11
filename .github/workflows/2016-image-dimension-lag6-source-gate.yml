@@ -11,6 +11,7 @@ on:
           - original
           - tree-pixel
           - bookword43
+          - tree-diagonal
         default: original
 jobs:
   source-gate:
@@ -83,3 +84,17 @@ jobs:
           node-version: '22'
       - name: Test signed source word-address map and 43-byte printed-grid direct inverses
         run: node sims/lp2_2016_43byte_bookword_inverse_sft.cjs
+
+  signed-tree-six-diagonal:
+    if: ${{ inputs.probe == 'tree-diagonal' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Inspect frozen six-tile southeast route and all 36 matched diagonals
+        run: python sims/p32_2016_fixed_diagonal_tiles_sft.py
