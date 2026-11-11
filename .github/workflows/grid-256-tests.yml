@@ -22,6 +22,7 @@ on:
           - nine-section
           - redspan-zero
           - tree-tiling
+          - tree-direction
           - signed2016-derivative
           - terminal-circumference
           - byte-pointer
@@ -81,6 +82,12 @@ jobs:
       - name: Original 2016 prime image and GF29 grid derivative source bridge
         if: ${{ inputs.probe == 'signed2016-derivative' }}
         run: node sims/2016_prime_area_gf29_derivative_gate.cjs
+
+      - name: Source-locked p32 GP-prime direction field against 2016 oak-tree branches
+        if: ${{ inputs.probe == 'tree-direction' }}
+        run: |
+          python3 -m pip install --quiet Pillow
+          python3 sims/tree121_directional_field_sft.py
 
       - name: Red GP prime-sum page-conditioned circular-control audit
         if: ${{ inputs.probe == 'redspan-zero' }}
