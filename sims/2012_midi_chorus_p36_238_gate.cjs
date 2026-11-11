@@ -303,7 +303,12 @@ const result = {
     p36_distinct_runes: new Set(p36).size,
     chorus_gp_distinct_symbols: new Set(gpKey).size,
   },
-  direct_running_key_tests: keyTests,\n  source_fixed_historical_columnar_tests: {\n    orders: sourceFixedColumnarOrders,\n    tests: sourceFixedTranspositionTests,\n    note: "The corresponding inverse permutation on p36 with the untransposed chorus is exactly permutation-equivalent; the script verifies this identity. No arbitrary column orders or phases are searched."\n  },
+  direct_running_key_tests: keyTests,
+  source_fixed_historical_columnar_tests: {
+    orders: sourceFixedColumnarOrders,
+    tests: sourceFixedTranspositionTests,
+    note: "The corresponding inverse permutation on p36 with the untransposed chorus is exactly permutation-equivalent; the script verifies this identity. No arbitrary column orders or phases are searched."
+  },
   source_crib_tests: {
     plaintext_symbol_to_cipher_conflicts: monoalphabetic.conflicts,
     plaintext_symbols: monoalphabetic.source_symbols,
@@ -313,7 +318,7 @@ const result = {
     adjacent_pair_affine_GF29: pairAffine,
   },
   q238_2014_table_crossround_tests: q238CrossRoundTests,
-  decision: "Do not extend this into phase/reversal/permutation sweeps. Retain the 238 alignment as an unresolved clue only; a new attempt needs an independently source-selected reversible operation."
+  decision: "Retire direct and source-fixed T7/T14 transposed running-key interpretations, as well as the tested Q238 direct field-key correspondence. Retain the 238 alignment as an unresolved clue only; do not search arbitrary permutations, phases, or reversals without a new source instruction."
 };
 
 assert.equal(pairAffine.matches, 3);
