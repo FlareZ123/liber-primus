@@ -99,7 +99,10 @@ function main() {
     path.join(ROOT,'resources/liber-primus/lp2-corpus.json'),'utf8')).runes);
   // The eight actual ciphertext section separators are dollar signs in
   // the canonical source; the historical master contains extra subdivisions.
-  const sections=transcript.split('
+  const sections=transcript.split('$').slice(0,8).map(part=>part
+    .replace(/\/\s*\n/g,'').replace(/%\s*/g,'')
+    .split(/[-.\s&]+/).map(token=>[...token].filter(ch=>runes.has(ch)).length)
+    .filter(Boolean).length);
   assert.deepEqual(sections,[158,255,385,435,224,326,378,735]);
   assert.equal(words.length,2896);
   let off=0;
