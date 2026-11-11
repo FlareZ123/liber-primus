@@ -44,6 +44,23 @@ If the DH outputs are read as page 18, word 7, the canonical printed-word parser
 
 This is an interesting conditional consistency, not a plaintext recovery: neither source explicitly says to interpret the DH pair as a page/word coordinate. Applying the provisional 2016 base-58 word-pointer rule to 343 gives p53:w6 (\`DOEER\`), then p18:w5 (\`IDJ\`); the deterministic walk enters a 33-cycle and does not reach solved p56/p57.
 
+## Conditional GAHEALGO prime-weight Vigenère key (negative)
+
+The conditional p18:w7 address above selects `GAHEALGO`, whose GP-prime weights are `[17,97,23,109,73,17,7]`. Since the 2016 signed message says that words' numbers supply direction, a bounded next test treated those seven prime weights as a repeating numeric key for the p0 body. The body begins at canonical offset 20 (after the 13-rune red heading and seven-rune first black line) and contains 242 runes.
+
+Four fixed phase-zero models were tested: direct prime weights modulo 29 and `φ(prime)=prime−1` modulo 29, each with both additive signs. No phase, offset, key permutation, or further key transformation was searched.
+
+| Fixed key mapping | Sign | Key modulo 29 | GP trigram nats/rune | IoC |
+|---|---:|---|---:|---:|
+| prime weight | − | `[17,10,23,22,15,17,7]` | −11.65467 | 0.034567 |
+| prime weight | + | `[17,10,23,22,15,17,7]` | −11.70195 | 0.035767 |
+| φ(prime weight) | − | `[16,9,22,21,14,16,6]` | −11.86494 | 0.034567 |
+| φ(prime weight) | + | `[16,9,22,21,14,16,6]` | −12.06681 | 0.035767 |
+
+The raw p0 body scores −12.00701 nats/rune (IoC 0.034292). Across 8,982 native Gibran windows of the same 242-rune length, the minimum score is −8.62957, the 10th percentile −8.20543, and the median −7.98626. None of the four candidates approaches even the least English-like native window. All four ciphertext round trips and all four synthetic positive plants recover exactly; this validates the implementation, not the hypothesis.
+
+**Decision:** reject only the direct repeating-key consumers “p18:w7 prime weights” and “p18:w7 φ(prime weights)” on the p0 body. The p18:w7 observation remains a conditional address consistency, not a demonstrated key derivation. Do not try other encodings of this word without a new original-source selector. Reproduce with `node sims/p0_dh23_gahealgo_prime_key_sft.cjs`.
+
 ## Conditional transfer of the solved p56 prime-totient clock (negative)
 
 The p0 DH reading gives candidate shared secret K=18, but does not specify the symmetric operation. A cheap, source-motivated transfer test was therefore made against the already solved p56 mechanism: subtract φ(p_i)=p_i-1 mod 29 from each GP29 symbol, using 18 as the one-based starting prime ordinal. The 13-rune red heading and seven-rune first black line are DH inputs, so the p0 ciphertext body begins at canonical offset 20 and contains 242 runes. The p56-only literal-F skip at offset 56 was not imported into p0.
@@ -71,4 +88,4 @@ The local retrieval implementation is checked against the pinned OutGuess workfl
 
 Run \`node sims/p0_dh23_red_heading_candidate.cjs\` from the repository root. It reconstructs the BASE29 values, DH exchange, red-span and subgroup controls, conditional word-map observation, and rejected 27×27 continuation from the canonical resources.
 
-**Research decision:** retain this as a candidate source-derived key, but do not promote it to \`results/\`. Both tested direct consumers of K=18—the p56 prime-totient clock on p0 and OutGuess passphrase18 on image17—have now failed to recover plaintext. The missing piece remains a different source-selected reversible LP2 operation that consumes shared secret 18, or an independent second DH-encoded passage that validates the mapping. Do not expand into arbitrary PRNGs, coordinate orderings, or cipher families without another original clue.
+**Research decision:** retain this as a candidate source-derived key, but do not promote it to \`results/\`. The tested direct consumers of the provisional DH route have all failed: the p56 prime-totient clock on p0, OutGuess passphrase18 on image17, and the conditional p18:w7 prime-weight/φ-prime-weight repeating keys on p0. The missing piece remains a different source-selected reversible LP2 operation that consumes shared secret 18, or an independent second DH-encoded passage that validates the mapping. Do not expand into arbitrary PRNGs, coordinate orderings, or cipher families without another original clue.
