@@ -1,6 +1,6 @@
 # Fibonacci companion and LP1 magic-square Möbius bridge
 
-**Classification:** an exact, previously unrecorded cross-release matrix identity, together with one source-fixed and fully reversible original-LP2 decoding test that fails native-GP plaintext. The identity supplies a possible common algebraic state space but does **not** select a historical cipher, key schedule, or decoded unknown text.
+**Classification:** an exact cross-release matrix identity and two distinct reversible source-named inversions (projective Möbius rotor and arithmetic Möbius divisor sum). Neither recovers unknown LP2 plaintext, authentic keys or a destination. The identity supplies a possible common algebraic state space but does **not** select a historical cipher, key schedule, or decoded unknown text.
 
 ## Independent visible premises
 
@@ -53,6 +53,29 @@ The exact CJS SFT tests all **12,956** original unknown runes on 55 rune-bearing
 The decoder additionally yields **100 AE** plaintext indices, while the held-out native window contains zero. Its beginning is `NGOAUPEONGESUWMJGRCFXNGXNGAHBNEOUPIAOTHH...`, without coherent words. The planted 12,956-symbol English message round-trips exactly. These measurements **reject the explicit source-frozen rotor as a direct native-GP English decoder**; an arbitrary extra layer would be unmotivated by this test.
 
 **Executable source and passed run:** [`sims/lp1_lp2_fibonacci_mobius_bridge_sft.cjs`](../sims/lp1_lp2_fibonacci_mobius_bridge_sft.cjs) and [manual GitHub Actions run 42997114545](https://github.com/FlareZ123/liber-primus/actions/runs/42997114545), Node.js 22. The existing [manual LP1-P40 workflow](../.github/workflows/lp1-p40-cayley-source.yml) now also invokes this SFT. The project's no-per-commit-workflow restriction is preserved.
+
+## Independent number-theoretic Möbius inversion (source-native arithmetic branch)
+
+The printed LP1 `MOBIUS` word also names **Möbius inversion of divisor sums**, mathematically distinct from the projective Möbius transformations above. A solver who sees that word alongside Cicada's conspicuous primes could reasonably try the exact **Dirichlet zeta transform over GP29**:
+
+```text
+Encryption: C[n] = sum(P[d] for d | n) mod 29, n >= 1
+Decryption: P[n] = sum(mu(d) * C[n/d] for d | n) mod 29
+```
+
+Here `mu` is the ordinary arithmetic Möbius function. The origin is the natural mathematical index **one**. No key or alphabet phase is fitted. One model uses the entire 12,956-rune book as its domain; three separate reset scopes use only **the original 55 nonempty physical pages, eight printed $ sections, or 2,896 complete printed words** (including words crossing physical page boundaries). This is a concrete alternative interpretation of the **named operation**, not a claim that LP1 explicitly instructs its application to LP2.
+
+| Source-framed inverse | Original decoded GP29 IoC | Adjacent equal glyphs (full joined output) |
+| --- | ---: | ---: |
+| Raw 12,956 ciphertext runes | 0.034478398 | 86 |
+| One book-wide divisor transform | **0.034479208** | 477 |
+| Reset at each physical rune page | **0.034489134** | 474 |
+| Reset at each original $ section | **0.034510844** | 484 |
+| Reset at each canonical printed word | **0.034536463** | 480 (full-count recalculation in SFT) |
+
+The known solved p57 plaintext (95 GP runes; IoC **0.062709966**) provides a plant: the exact divisor-sum forward transform creates an apparently random-looking 95-rune cipher (IoC **0.034938410**), and its Möbius inverse recovers the original **95/95** runes exactly. Every original-LP2 variant also re-enciphers all 12,956 published runes. Crucially, the word-reset decoder leaves **each word's first glyph unchanged**, since P[1]=C[1]. Those **2,896 original word initials** have IoC **0.034422084**, so this construction cannot reveal source-native English initial-letter frequencies through a direct word-local inverse.
+
+**Decision:** the direct additive divisor-sum interpretation also fails to recover actual plaintext. The field is GP29 and the clock contracts are explicit; this excludes those **four** precise, source-shaped transforms as direct English decoders. It leaves keyed Dirichlet kernels, transformed alphabets, and non-GP intermediary representations untested, because no original source currently specifies one. [Standalone exact original-cipher reproducer with solved-page control](../sims/lp1_mobius_dirichlet_original_inverse_sft.cjs).
 
 ## Causal next decision
 
