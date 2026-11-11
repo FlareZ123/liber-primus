@@ -57,6 +57,14 @@ assert.equal(quotient[251], 0);
 const p36 = corpus.pages.find((p) => p.page === 36).indices;
 assert.equal(p36.length, 238);
 
+// In the BASE29 most-significant-first serialization, omit the formal
+// leading zero and reverse the ascending-power quotient coefficients.
+// A GF29 multiplicative-group pad requires every key symbol to be nonzero.
+const canonicalKey = quotient.slice(0, 251).reverse();
+const canonicalKeyZeroPositions = canonicalKey.map((x, i) => x === 0 ? i : -1).filter((i) => i >= 0);
+assert.deepEqual(canonicalKeyZeroPositions, [74, 119, 139, 169, 236]);
+assert(canonicalKeyZeroPositions.every((i) => p36[i] !== 0));
+
 // Reuse the established held-out GP trigram score from the p36/Q238 SFT.
 const tokens = corpus.translit.map((s, i) => ({ s, i })).sort((a, b) => b.s.length - a.s.length);
 const prose = readText('resources/liber-primus/lp1-plaintext-reference.txt')
@@ -140,6 +148,8 @@ console.log(JSON.stringify({
     quotientSlots: quotient.length,
     quotientNonzeroSymbols: quotient.filter((x) => x !== 0).length,
     quotientTrailingSlot: quotient[251],
+    canonicalKeyZeroPositions,
+    p36CipherAtZero: canonicalKeyZeroPositions.map((i) => p36[i]),
     p36Runes: p36.length,
   },
   rawP36: raw,
@@ -152,5 +162,5 @@ console.log(JSON.stringify({
   },
   trials,
   best,
-  decision: 'The source-derived p50 Q252 quotient is not a direct additive GP29 key for source-selected p36 under either coefficient orientation, signs, or the two source-fixed phases 0 and 151.'
+  decision: 'The source-derived p50 Q252 quotient is not a direct additive GP29 key for source-selected p36 under either coefficient orientation, signs, or phases 0/151. Its canonical most-significant-first digits also cannot form an invertible per-rune GF29 multiplicative-group pad: five zero key digits align with nonzero p36 ciphertext runes.'
 }, null, 2));
