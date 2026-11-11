@@ -188,7 +188,7 @@ function main() {
       fs.rmSync(scratch, { force: true });
       const run = outguess(["-k", variant.key, "-r", CARRIER, scratch], 120000);
       const combined = (run.stdout || "") + "\n" + (run.stderr || "");
-      const match = /Steg retrieve:\\s*seed:\\s*(\\d+),\\s*len:\\s*(\\d+)/iu.exec(combined);
+      const match = /Steg retrieve:\s*seed:\s*(\d+),\s*len:\s*(\d+)/iu.exec(combined);
       const bytes = fs.existsSync(scratch) ? fs.readFileSync(scratch) : Buffer.alloc(0);
       const consistent = Boolean(match && bytes.length > 0 && bytes.length === Number(match[2]));
       const item = {
@@ -201,7 +201,7 @@ function main() {
         entropyBitsPerByte: bytes.length ? entropy(bytes) : null,
         ...indicators(bytes),
         opening: bytes.length ? bytes.subarray(0, 80).toString("latin1")
-          .replace(/[^\\x20-\\x7e]/g, ".") : ""
+          .replace(/[^\x20-\x7e]/g, ".") : ""
       };
       if (consistent) {
         item.diagnostics = diagnostic(scratch);
