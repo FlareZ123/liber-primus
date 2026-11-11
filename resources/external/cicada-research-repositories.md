@@ -61,3 +61,27 @@ Supporting measurements: https://secra.tech/research/liber-primus-strongest-find
 - The archived 2014 *Interconnectedness* MP3 contains a repeated opening/ending noise waveform separated by **11,559,607 samples** (about **262.122608 s** at 44.1 kHz). Controlled cancellation did not reveal a supported additional message or key; the separate archived OpenPuff payload is a different channel.
 - Three earlier magic squares have prescribed line sums 3301, 1033 and 1033. The community-observed center sequence 809, 331, 91 gives π-count differences 73 and 43 (GP letters L/P), but the article explicitly does **not** establish that center selection, prime counting and subtraction were uniquely instructed by Cicada.
 - These findings overlap the current GIMP-confound assessment in `results/README.md`; do not reopen the retired p57 241/331 selector or audio residual search without the exact missing source artifact or a new independent selector. The article reports no LP2 decryption, key or destination.
+
+## Additional modern research and tooling (reviewed 11 November 2026)
+
+These sources were inspected for post-2018 claims of unknown-page plaintext or keys. None supplies a verified LP2 p0–55 decryption. Keep tools, candidate models, and actual plaintext recovery separate.
+
+### Wulfic/Cicada3301-Liber_Primus (2026)
+
+Repository: https://github.com/Wulfic/Cicada3301-Liber_Primus
+
+A substantial independent workspace, last pushed 12 October 2026. Its own [README](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/README.md) and [MASTER_TRACKER](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/MASTER_TRACKER.md) explicitly mark LP2 scans 17–66 and 68–72 (12,956 runes) **unsolved**. The [logic findings](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/reference/findings/lp2_logic_findings_2026-09-29.md) register 28 constraints and discuss an output-side anti-doublet/re-key interpretation of the 86 adjacent equalities. The reported “19% leak” is a model interpretation relative to a uniform baseline, not an identified re-key algorithm or key. The repository's hillclimber cribs are not verified plaintext. Useful independent prior art for the doublet question; do not cite it as a solution.
+
+### anon5376/cicada (2026)
+
+Repository: https://github.com/anon5376/cicada
+
+A reproducible execution lab, explicitly not a claim that Liber Primus is solved. Its [EXP-LP-UNKNOWN-NEXT-001](https://github.com/anon5376/cicada/tree/main/experiments/EXP-LP-UNKNOWN-NEXT-001) reports `derived_kept=0` and `verified_new_decrypt_runes=0`; no new key or plaintext was retained.
+
+### Parcae and Rune Decrypter Prime
+
+- [ToldByNun/Parcae](https://github.com/ToldByNun/Parcae): C++20 cryptanalysis toolkit with known-page regression fixtures; the README tutorial demonstrates Atbash on the already-solved “A Warning” page, not an unknown-page decryption.
+- [mortlach/RuneDecrypterPrime](https://github.com/mortlach/RuneDecrypterPrime): reusable cipher/key/search framework; no verified unknown-page plaintext or authentic LP2 key surfaced in the inspected material.
+- [mortlach/Liber-Primus-Crib-Assist](https://github.com/mortlach/Liber-Primus-Crib-Assist): crib-search tooling, not a recovered solution.
+
+For the detailed claim-by-claim audit, including the unsupported 2026 “dynamic stream / geographic cipher” Reddit claim and the README-only “full translation” repository, see [modern-public-claim-audit-2026-11-11.md](../../im-results/modern-public-claim-audit-2026-11-11.md).
