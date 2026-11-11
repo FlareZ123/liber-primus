@@ -26,6 +26,15 @@ Both operations discard upper word-integer digits and are intrinsically non-inje
 | Base29 word integer, low byte | 2,896 | 36.3950% | 7.925206 bits | `Z'_]1!&` (7) |
 | Base29 word integer, low byte, then p50 table lookup | 2,896 | 40.5387% | 7.101605 bits | `P*L\\ns4` (7) |
 
+**All-secret one-byte alphabet capacity, exact rather than heuristic.** Even if every byte is globally relabeled by a completely unknown bijection, that cannot turn all 2,896 output positions into an unbroken printable-ASCII sentence. Counting each source byte and sorting its 256 frequencies yields a sharp, achievable upper bound: a bijection may map at most the **95** most frequent source symbols to the 95 printable ASCII characters, or at most the **27** most frequent symbols to an uppercase A–Z+space register. No source byte may independently change its mapping with position under this model.
+
+| Input byte stream | Observed distinct symbols | Maximum printable ASCII among 2,896 positions under *any* byte permutation | Minimum positions requiring a changed byte | Maximum A–Z+space under any permutation |
+| --- | ---: | ---: | ---: | ---: |
+| Raw low byte | **256** | **1,426** | **1,470** | **496** |
+| Printed-table lookup | **161** | **2,300** | **596** | **991** |
+
+These are exact capacity bounds conditional on **one** output byte per original printed word and a **single global bijective byte renaming**. They exclude readable *all-printable ASCII* under that fixed-bijection family and likewise any continuous 27-symbol A–Z+space message. They cannot exclude an independently justified position-changing key, more than one emitted byte per word, custom encodings, compressed payloads or non-bijective maps applied after the tested output.
+
 Neither byte stream contains the ASCII trigrams `THE`, `AND`, `ING`, `ION`, `YOU`, `KEY`, or `END`. The lower entropy of the table lookup follows in part from its non-bijective 256-byte table, which has only **161** distinct values. A higher printable share there is not independent evidence of a plaintext channel. The bounded test does not rule out binary ciphertext, historically justified secret parameters, a richer source-selected map, or a byte channel that is further encrypted. It does not establish such a richer model either.
 
 ## Reproduce
