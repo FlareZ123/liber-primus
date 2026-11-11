@@ -10,6 +10,10 @@ The 30-digit / 18-byte, page-reset phase29 reverse-digit stationary GP28 survivo
 
 Reproducer is the extended existing `sims/stateful_28rank_ascii_octet_bound.cjs` (commit `66a443c` plus this commit), grounded in `resources/liber-primus/lp2-corpus.json`; two-byte original source enumerations and 1000-packet visible-byte synthetic positive controls pass the rank bound. Reconciled interpretation: `im-results/stateful-radix28-ascii-octet-bound.md` and the one original-register row in `results/README.md`. The original 18-byte CP-SAT `UNKNOWN` after 780s is unchanged, and further brute force there is low value without a CR/packet-selection clue.
 
+### Tree-page 11×11 original Hill test (same incarnation)
+
+The image-linked p32 original 11×11 GP-index and GP-prime matrices are both invertible over F29, determinants **8/21**. Tested **176** direct key, inverse, transpose, phase and page/book reset variants on all 12,956 unsolved runes, split physically pp0–27 against pp28–55. Best frozen train model heldout IoC **0.034539**, all direct candidates whole-book **0.034442–0.034567**, near uniform; solved-LP1 GP English IoC **0.059686**, source-native exact encrypt/decrypt 3696 runes each matrix. Ordinal matrix eigen24 and25; image border-preserving 5,000 seeded interior permutations yielded 201 eigen24, 198 eigen25, 10 both, so 25 postselection precludes confident clue inference. No unknown plaintext. CJS SFT and integrated note `sims/p32_tree_11x11_hill_original_gate.cjs`, `im-results/p32-tree-11x11-hill-original-gate.md`. Verified in V8 executing the actual saved source module with repository corpus and actual GP encoder, and 5,000-null deterministic assertions; **no GitHub Actions invocation**. Avoid redoing this direct 11×11 Hill family.
+
 ## Prior incarnations and investigations
 ## Establishment: stationary predecessor-dependent rank tables exclude direct ASCII
 

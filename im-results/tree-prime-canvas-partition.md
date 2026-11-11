@@ -15,6 +15,10 @@ Agent 21's source fact: **the first row totals 563** and **the first column tota
 
 The decomposition is an *interpretation of an exact original relation*, rather than proof the creator intended rectangular tiling. It yields a falsifiable 121-cell image input for future source-constrained routes.
 
+## Direct finite-field matrix decoding is also bounded
+
+The same unaltered 121-rune 11×11 source square is invertible over GF29 in either GP ordinal or GP-prime-residue form (determinants 8 and 21). A separate [176-case, heldout original-input Hill test](p32-tree-11x11-hill-original-gate.md) tried both matrices, their inverses/transposes, all eleven phases, and book/page resets with exact solved-English cryptographic controls. No unknown LP2 plaintext emerged; all original IoCs remained near 1/29. The ordinal square has eigenvalues 24 and 25, with the 24 coincidence being conditional and nondecisive under 5,000 border-fixed null permutations.
+
 ## Two simple original-input predictions rejected
 
 Each exact rectangle is read as (1) mean RGB luminance 0.299R+0.587G+0.114B, and (2) fraction of pixels with luminance at least 180. Testing the corresponding source rune's GP **ordinal** or **prime value** against either image statistic yields the following 100-cell **interior** Pearson correlations, excluding the row/column that specify the partition:
