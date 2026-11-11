@@ -1,6 +1,6 @@
-# P27 title fold selects the 32x8 table; table fold closes on p53 word 26
+# P27 title/table fold: reproducible p53 coincidence, unresolved selector
 
-**Evidence class:** source-constrained navigation hypothesis with exact original-corpus reproduction and a conditional shuffled-table diagnostic. **No unknown LP2 plaintext, complete key, cipher mechanism, or destination is claimed.**
+**Evidence class:** exact source arithmetic with a conditional navigation hypothesis and a bounded selector-dependence audit (11 November 2026). No original instruction uniquely selects the proposed p53 word-26/B route. **No unknown LP2 plaintext, key, cipher mechanism or destination has been recovered.**
 
 ## Upstream selector
 
@@ -18,7 +18,7 @@ Pair the nine positions equidistant from the title centre. Mark a pair with 1 ex
 
 Read in printed left-to-right order this is **32**; read in the reverse direction it is **8**. Those are exactly the physical dimensions of the printed base-60 byte table: **32 rows × 8 columns**.
 
-This joint 32/8 result is unique among all odd-length original red spans in the current ink annotation. P27 is also the only 19-rune red span. This is a source selector, not an assertion that the binary convention was explicitly stated by Cicada.
+This 32/8 result is unique among odd-length original red spans in the current annotation, and p27 is the only 19-rune red span. **It is one event read twice, not two independent hints:** one equality at the fourth of nine mirrored comparisons gives 32 forward and 8 backward automatically. The artifact does not prescribe an equality predicate, nine-bit binary or reading both directions as table dimensions.
 
 ## Fold the selected 32x8 table
 
@@ -53,9 +53,9 @@ The matched grid token closes on that word in several source-native ways:
 1. The low base-60 digit of `1Q` is **Q = 26**, exactly the selected p53 word ordinal.
 2. The grid match is at one-based **column 3**; p53 word 26 has length **3**, so that column selects its final rune.
 3. That selected rune is GP index **17** (B), exactly the lower matched grid row number **17**.
-4. The upper/lower row difference is **1**, exactly the high base-60 digit of `1Q`.
+4. The upper/lower row difference is **1**, matching the high base-60 digit of `1Q`; the difference is structurally forced by the collision at adjacent middle rows 16/17.
 5. The selected word's GP-prime sum is **105**, and **105 mod 29 = 18**, returning to the upstream p55 fold selector.
-6. Independently, **86 + 19 = 105**: matched byte plus the selected p27 title length equals the selected p53 word's GP-prime sum.
+6. **86 + 19 = 105**: matched byte plus p27 title length equals the selected p53 word's GP-prime sum. This **entails** point 5: (86+19) mod29 = 18. It is one arithmetic relation rather than two independent checks.
 
 This is a closed, finite navigation relation across the p55 fold, the p27 red title, the physical 32×8 table, and p53's black/red boundary. It identifies a single p53 word and a single rune without language scoring or a fitted cipher phase.
 
@@ -81,10 +81,16 @@ The add-one frequencies are approximately **1.75×10⁻⁴** for the base closur
 
 These are **conditional diagnostics, not discovery-wide p-values**. The operation chain was discovered from the available source material, so this test does not quantify the probability that the entire route arose by chance.
 
-## Cryptanalytic consequence and current limit
+## Selector-dependence decision (Issue #92, 11 November 2026)
 
-The route materially narrows the source state to **p53 word 26, third rune B / GP index 17**. It does not yet say whether B is plaintext, key material, a state label, or another address.
+The reported correspondences remain reproducible, but the next address and decoder are not historically selected by an original instruction.
 
-Simple direct additive use of the 128 folded byte combinations against the p53 black prefix did not produce readable plaintext, so that family is not being expanded. The next productive test must derive a reversible operation or next address from the selected `1Q → word26 → letter3 → B(17)` closure itself, rather than launching a generic key sweep.
+- **Title mask:** One equality at the fourth of nine mirrored pairs automatically yields both 32 and 8 under bit-order reversal. A 32-by-8 table necessarily yields 128 paired positions after halving; p53's source-authentic 128 black runes supply one independent cardinality match, without fixing a cipher state.
+- **Table axis and p53 alignment:** Vertical folding finds the sole equal byte at folded zero-based index122 and original rows16/17 column3. Mapping index122 to p53 rune122 assumes forward zero-offset row-major alignment between different artifacts. A lossless reversed 128-position alignment maps the same cell to local **5**, GP index **1 (U)**; forward maps to local122, GP index **17 (B)**. No source cue chooses either mapping. The upward-looking red glyph adjacent to the black/red boundary on p53 is a **Tiwaz T rune** (GP index16, source red position128), not a separate instruction arrow.
+- **Dependent closures:** The equality's central-row difference1 is fixed geometrically. The 105 mod29 =18 relation follows from 86+19=105 and cannot independently corroborate it. Q=26, the selected word26, column3, length3 and lower row17/B17 remain exact conditional observations. The prior shuffled-table diagnostic fixes the entire post-selected operator/alignment chain and therefore cannot establish its discovery-wide significance.
 
-**Reproducer:** `sims/p27_title_gridfold_p53_closure_sft.cjs`.
+The [bounded historical operator audit](earlier-cicada-p55-fold-operator-audit.md) found no preserved earlier instruction to convert mirrored rune equality into a binary address or to use a recursive GP arithmetic fold. That audit cannot exclude lost clues, but supplies no independent selector here.
+
+**Decision:** Retire the specific p27-equality-mask to vertical-table-1Q to forward-p53-B17 path as an actionable original-cipher route until a new source instruction fixes the equality rule, fold axis, projection and B17's operational role. The finite source arithmetic remains preserved. There is no independently frozen unknown-text prediction, original key or unknown LP2 plaintext. Previously tested direct folded-table additive inverses are negative; no further unconstrained key sweep is warranted.
+
+**Reproduction:** `sims/p27_title_gridfold_p53_closure_sft.cjs` retains all exact reported finite checks. Reverse alignment is the elementary bijection `local = 127 - foldedIndex`, so the equal cell projects to local5 instead of local122.
