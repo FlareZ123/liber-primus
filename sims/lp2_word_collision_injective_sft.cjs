@@ -308,6 +308,18 @@ function run() {
   assert.equal(lineObserved.pairs,1);
   assert.equal(lineObserved.longPairs,0);
   assert.equal(lineObserved.pagesWithoutRepeats,593);
+  // Exact iid-GP29 expected collision pairs, conditional on the original
+  // printed-line GP word lengths, without any fitted language parameter.
+  const iidLineExpectation=printedLines.reduce((total,line)=>{
+    const byLength=new Map();
+    for(const w of line)byLength.set(w.length,(byLength.get(w.length)||0)+1);
+    for(const [length,count] of byLength)
+      total += count*(count-1)/2/29**length;
+    return total;
+  },0);
+  assert.ok(Math.abs(iidLineExpectation-0.2577481406171682)<1e-10);
+  assert.deepEqual(printedLines[84].slice(1,3),["ᛞᛝ","ᛞᛝ"]);
+
   assert.equal(original.pairs,230);
   assert.equal(original.longPairs,0);
   assert.equal(original.distinct,2731);
@@ -393,7 +405,11 @@ function run() {
     controlTrialCount:N,sources:results,
     pageLocal:{runePages:55,original:pageObserved,
       sourceSeed:"0x503331",sources:pageSources},
-    lineLocal:{runeLines:594,original:{
+    lineLocal:{runeLines:594,
+      iidGP29ExpectedCollisions:iidLineExpectation,
+      solePrintedLinePair:{zeroBasedLine:84,physicalPage:7,
+        originalGPWord:"ᛞᛝ",runeOffsets:[1800,1802]},
+      original:{
       pairs:lineObserved.pairs,longPairs:lineObserved.longPairs,
       linesWithoutRepeats:lineObserved.pagesWithoutRepeats,
       pairsByLength:lineObserved.pairsByLength},
