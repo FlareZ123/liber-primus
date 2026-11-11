@@ -58,6 +58,7 @@ on:
           - historical-cookies
           - framed8-repeated-key
           - p0-block03-source
+          - hg256-secret-alphabet
           - p50-base9
         default: full
 
@@ -71,6 +72,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Original H/G 256-block all-secret alphabet impossibility
+        if: ${{ inputs.probe == 'hg256-secret-alphabet' }}
+        run: node sims/lp2_hg256_allsecret_substitution_sft.cjs
+
       - name: Original p50 high-digit radix-9 direct payload gate
         if: ${{ inputs.probe == 'p50-base9' }}
         run: node sims/p50_base29_high_digit_radix9_sft.cjs
