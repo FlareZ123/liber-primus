@@ -87,10 +87,30 @@ A third readout now closes the most direct use of the cuneiform-derived 3/8 pair
 
 These results reject only these direct readouts, including the source-selected affine-chart cube. They do not refute the 210-state source relation itself, and they do not authorize an arbitrary infinity-to-rune patch, phase search, or fitted nonlinear map. A successor needs an independently source-specified symbol action. Reproducer: [projective-readout SFT](../sims/p32_cuneiform_projective_readout_gate.cjs).
 
+## Projective cross-ratio readout gate
+
+The canonical cross-ratio is the natural projective invariant to try after the direct coordinate, tensor, Segre and affine-chart readouts: it is defined on \(P^1(F_{29})\) without selecting an affine chart. I tested a bounded, source-tied family against the unchanged **1,680-rune pp33–39** target.
+
+The 30 nonempty thirteen-dot fragments are ranked by the p50 table's all-distinct second column, giving the existing bijection between ranks 0–29 and fragments. The M7 fixed rank **25** selects fragment 22, the **eight-rune p33 second heading**; its p50 row is row 22. For each of the 210 states and each of eight columns, I tested three readouts:
+
+1. \(CR(x_n,y_n;z_n,d_j)\), where \(d_j\) is one of the eight row-22 table bytes reduced modulo 29.
+2. The same state triple with \(d_j\) taken from the eight p33 heading runes.
+3. \(CR(B_{x_n,j},B_{y_n,j};B_{z_n,j},h_j)\), where each \(B\) is the p50 byte in the row selected by that state's projective rank and \(h_j\) is the corresponding p33 heading rune.
+
+The convention is
+\[
+CR(a,b;c,d)=\frac{\det(a,c)\det(b,d)}{\det(a,d)\det(b,c)},
+\]
+with finite points represented by \([x:1]\) and infinity by \([1:0]\). Each result in \(P^1(F_{29})\) is mapped through the 30-fragment rank order to the first rune of that fragment; infinity therefore maps to rank 29 without an affine patch. The first-rune representative is an explicit candidate readout, not a source-established rule. A 0/0 degeneracy is retained as an erasure, never silently replaced.
+
+The three readout families, two source-anchored orientations (p3-forward / p39-backward), and both additive signs give **12** predeclared inverses. They produce **1–17 erasures** and **90–163 infinity outputs** per 1,680-symbol key. Across the 12 outputs, IoC is **0.03427–0.03478** (raw target **0.03436**); held-out Gibran trigram score is **−12.3237 to −12.1753**, against raw **−12.2651** and a matched 1,680-rune native Gibran control **−7.69065** (control IoC **0.06188**). Some candidates move the raw score slightly, but none approaches native prose. A modulo-29 synthetic encrypt/decrypt positive control recovers every non-erased position exactly.
+
+**Conclusion:** the natural cross-ratio/table/heading readouts do not decrypt pp33–39. This rejects only these specified readouts and the explicit first-rune codebook choice; it does not refute the source-derived 210-state recurrence or justify inventing a different projective patch. Any successor needs an independently motivated readout and a locked, source-supported symbol action. Reproducer: sims/p32_m7_projective_crossratio_readout_sft.cjs.
+
 ## What this changes
 
 The p32 row-major projective map can now be selected from the complete 16-member physical corner family using the adjacent cuneiform numbers. Those same values select its infinity cycle, prescribe the p3-to-p39 triad correction, and produce a whole-section 8 x 210 geometry.
 
-The missing component is a **projective-safe readout** from the 210 state cycle to the 1,680 ciphertext runes. Treating each state as ordinary quadratic coefficients and reading its discriminant is invalid because genuine projective-infinity states occur. An arbitrary infinity-to-rune patch would reintroduce an unconstrained choice. The next decoder should derive a readout that remains defined on P1(F29), then apply it once to the frozen pp33-39 interval.
+The missing component is still a **source-specified projective-safe readout** from the 210 state cycle to the 1,680 ciphertext runes. The canonical cross-ratio constructions above are now tested and nonlinguistic; they do not authorize a fitted nonlinear map, arbitrary infinity patch, or further phase search. A successor must supply a distinct readout and symbol action from independent source evidence before applying it to the frozen pp33–39 interval.
 
 **Reproducer:** [`sims/p32_cuneiform_redtriad_mobius_bridge_sft.cjs`](../sims/p32_cuneiform_redtriad_mobius_bridge_sft.cjs). It reads the unchanged canonical corpus and ink annotations, enumerates all 16 corner assignments, asserts both unique selectors, reconstructs the red triads, verifies the projective relations, proves the 210 source-started period, and checks every contiguous seven-page LP2 window.
