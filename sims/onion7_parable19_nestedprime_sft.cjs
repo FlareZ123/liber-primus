@@ -35,6 +35,19 @@ function main(){
     .map(t=>[...t].filter(ch=>runePrime.has(ch)))
     .filter(r=>r.length>0);
   assert.deepEqual(clauses.map(x=>x.length),[7,30,30,28]);
+  // The values 19 and 7 are visible word counts in the original solved text.
+  // Printed '/' line wraps are ignored; '-' is the actual word delimiter.
+  const wordGroups=transcript[56].split(".")
+    .map(part=>part.split("-").map(word=>[...word].filter(r=>runePrime.has(r)))
+      .filter(word=>word.length>0))
+    .filter(group=>group.length>0);
+  const wordCounts=wordGroups.map(group=>group.length);
+  assert.deepEqual(wordCounts,[1,7,6,6]);
+  const bodyWords=wordCounts.slice(1).reduce((s,n)=>s+n,0);
+  assert.equal(bodyWords,19);
+  const firstBodyWords=wordCounts[1];
+  assert.equal(firstBodyWords,7);
+
   const sums=clauses.map(runes=>runes.reduce((s,r)=>s+runePrime.get(r),0));
   assert.deepEqual(sums,[449,1259,1031,1229]);
   const residual=sums.slice(1).map(x=>x%sums[0]);
@@ -50,10 +63,10 @@ function main(){
     [809,331,91]);
 
   const common=gcd(residual[0],residual[1]);
-  assert.equal(common,19);
+  assert.equal(common,bodyWords);
   assert.equal(common**2,residual[0]);
   const order=residual[1]/common;
-  assert.equal(order,7);
+  assert.equal(order,firstBodyWords);
   const matches=squares.filter(a=>a.length===order);
   assert.equal(matches.length,1);
   const center=matches[0][Math.floor(order/2)][Math.floor(order/2)];
@@ -85,6 +98,7 @@ function main(){
     sources:["2014 seventh-onion delivery HTML", "three OpenPuff magic squares",
       "solved original LP2 p57 PARABLE", "original LP2 p0 red-ink span"],
     parableHeadingPrimeSum:sums[0],bodyGPPrimeSums:sums.slice(1),
+    parableWordCounts:wordCounts,bodyWords,firstBodyWords,
     bodyResiduals:residual,
     generativeCandidate:{commonFactor:common,first:common**2,
       order:order,second:common*order,
