@@ -1,6 +1,6 @@
 # p15→p32 318° map/direction test
 
-**Classification:** provisional source-constrained navigation hypothesis; not a decoder.
+**Classification:** arithmetic cross-artifact correspondence only; the proposed 318° tree-route interpretation fails the original-image discrimination test; not a decoder.
 
 ## Source instruction and proposed operation
 
@@ -53,7 +53,7 @@ B, M, IA and NG are the GP runes Beorc, Mann, Iar and Ing. The Old English Rune 
 
 The signed instruction makes a words/map, meanings/road, numbers/direction reading plausible. However, the 11×11 reshape, 11th-entry selector, four-rune edge selector and modulo-360 operation are not explicit printed instructions. HOME and BUDS are four-rune edge substrings, not complete whitespace-delimited words. The all-digraph control exposes an alternative near-match. The historical base60 interpretation and 2012-to-2016 image-axis transpose remain separately qualified; neither is required for the bearing calculation.
 
-**Conclusion:** this remains a reproducible but provisional navigation candidate. The first text-extraction gate is negative: the 318° ray yields no readable rune sequence, and the 16 p15 bearings do not form a continuous path through the unambiguous word-edge windows. It is not recovered plaintext, a cipher key or a final external destination.
+**Conclusion:** the p15/p32 arithmetic correspondences are reproducible, but the proposed 318° tree-route interpretation is not supported by the original signed 2016 image. The selected segment is not a distinctive tree-aligned path relative to the source-derived anchor pairs or p15 direction set. Retire it as a live navigation/destination lead; it is not recovered plaintext, a cipher key or a final external destination.
 
 ## Follow-up text/path gate (2026-11-11; negative)
 
@@ -66,14 +66,32 @@ The first source-locked textual follow-up was tested without changing the 11×11
 
 These tests do not disprove the original geometric coincidence, but they do reject the obvious direct textual readings and the full 16-bearing route. The 318° alignment is therefore not, by itself, an extraction rule.
 
+## Original signed-2016 image pixel gate (2026-11-11; negative)
+
+The proposed BUDS→HOME ray was tested against the original resources/historical/cicada2016-4gq25.jpg, SHA-256 a8340ad04b83fb3130e7ed9172867a440812e87089d6aa2b932d97c6ae38aebe, at its native 563×569 dimensions. The probe reuses the exact p15 spiral, p32 transcription, word boundaries, irregular tile edges and BUDS/HOME centers above. It does not refit the coordinates.
+
+The predeclared diagnostic used the central tree ROI [180,290,420,460], a 7-pixel-wide segment band, Gaussian blur radius 1.5, and grayscale cutoffs 60, 90 and 128. The ROI was selected from the visible central low-contrast tree before scoring; it is an analyst-defined measurement region, not an instruction in the source.
+
+- The BUDS→HOME segment (bearing 317.698813°) has directional edge score 0.135619. The BUDS→origin ray (317.949316°) scores 0.133527.
+- The target ranks 10/26 among valid ordered pairs from the seven single-letter four-rune edge windows; the stronger alternative SLFD→UTFJ scores 0.367135.
+- Among the 24 all-digraph four-rune edge windows, the target ranks 136/284; AEUPIA→TFJT scores 0.522892.
+- Among the 16 p15 bearings, step 11 (318°) ranks 3/16. The 312° step scores 0.187026 and the 272° step scores 0.166491, both above 318° (0.133292).
+- Among all 360 integer bearings from BUDS, the exact BUDS→HOME segment ranks 58/360.
+- The target band has 17.96% pixels above grayscale 2, below the ROI baseline 18.61%. The ROI itself is extremely dark (p50=1, p90=5, p99=9; no pixels above 20), so the three high cutoffs produce identical masks. This limits the strength of the image evidence; it does not create a positive result.
+- A synthetic positive control, with a faint line deliberately planted on BUDS→HOME, ranks step 11 1/16 under the same statistic. The measurement can detect the proposed line when it is actually present.
+
+**Decision:** the original image does not uniquely support the 318° ray as a path through the tree. The exact numerical bearing and diagonal sum remain observations, but they do not establish a source-selected direction, route or destination. Do not continue angle/anchor tuning without a new primary-source rule.
+
+Reproducer: sims/p32_buds_origin_ray_pixel_gate.py; successful CI run [43015518137](https://github.com/FlareZ123/liber-primus/actions/runs/43015518137). The existing manual workflow also exposes the tree-buds-ray probe in .github/workflows/grid-256-tests.yml.
 ## Next decisive test
 
-No further geometric tuning or unconstrained key-order search is justified. A future attempt must first obtain an independent source clue that specifies a reversible operation and exact rune/word selection on the original p32 ciphertext. Until then, retain this as a navigation hypothesis only; do not promote it to a cipher mechanism or plaintext.
+The original-image pixel gate has now failed to discriminate the selected 318° ray. Do not repeat angle, anchor, ROI or threshold sweeps, and do not treat this line as a destination. Retain the exact arithmetic equalities only as intermediate observations. Reopen the route only if an independent primary source selects the image feature, coordinate origin and word-edge pair, or specifies a reversible operation on original ciphertext. Otherwise prioritize a source-derived key/state or a distinct executable inverse.
 
 ## Reproduction
 
 Run from the repository root:
 
     python sims/p15_p32_318_direction_sft.py
+    python sims/p32_buds_origin_ray_pixel_gate.py
 
-The script reads the original transcription from **resources/liber-primus/lp2-transcription.txt** and asserts the dimension checksums, p15 prime/Fibonacci address, 318° geometry, diagonal sum, wrong-direction/indexing controls and unrelated 4×4 control.
+The first script asserts the dimension checksums, p15 prime/Fibonacci address, 318° geometry, diagonal sum and source controls. The second reads the original signed 2016 JPEG and the same original transcription, scores the fixed BUDS→HOME segment against source-derived alternatives, and includes a synthetic positive control. It requires Pillow and NumPy; the existing grid-256-tests.yml workflow exposes it as tree-buds-ray.
