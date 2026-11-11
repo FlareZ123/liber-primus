@@ -54,22 +54,48 @@ occur at **p27 local 28–33** and again as **p55 local 70–75, the final six u
 
 The fold-derived route therefore connects p55 to a p27 source boundary that already has an independent p55 connection.
 
-## The repeated pair's word-number gap does not yet authenticate reverse direction
+## Word-number gap, LP1 totient support, and the p27 primitive cycle
 
-Under the canonical **2,896-word** parser, which keeps page and line wraps transparent inside printed words, the two copies of `DJU-BEI` begin at zero-based word offsets **1462** and **2894**. Their difference is therefore
+Under the canonical **2,896-word** parser, which keeps page and line wraps transparent inside printed words, the two copies of `DJU-BEI` begin at zero-based word offsets **1462** and **2894**. Their difference is
 
 `2894 - 1462 = 1432`.
 
-The independently fold-selected p27 `$`
- section contains exactly **1,433 runes**, including its 19-rune red title. It has exactly **1,432 adjacent rune steps** from its first rune to its last. Consequently,
+The independently fold-selected p27 `$` section contains exactly **1,433 runes**. **1433 is prime**, so
 
-`1432 mod 1433 = -1 mod 1433`.
+`φ(1433) = 1432`.
 
-The numerical equality is exact and worth preserving, but it is **not presently a source-fixed direction rule**. The construction changes units from a difference of global **word ordinals** to a count of local **rune steps**, then introduces the selected section length as a modulus and interprets `1432 mod 1433 = -1` as backward traversal. No authenticated source currently specifies those unit changes or that modular operation. The fact that no phase or modulus was fitted after language scoring does not remove this upstream interpretive freedom.
+This upgrades the equality from an isolated length coincidence to a source-relevant arithmetic relationship: LP1 explicitly tells the solver that primes and the totient function are sacred. Across all canonical `$` sections, this p27 section is the **only** one whose totient equals the unique repeated-pair word gap.
 
-Accordingly, **reverse traversal remains a hypothesis rather than a recovered state/clock constraint**. A future promotion requires an independent rule telling a solver to convert the two word numbers into rune-step displacement on this section, or a calibrated null over the full comparable source-choice family.
+A second exact property uses the fold-selected title itself. Its enlarged first rune is **M = canonical GP index 19**, and
 
-Conditional on the reverse hypothesis, direct reversal is negative. Reversing the section, including cyclic reverse traversals anchored immediately before/at/after the p27 bookend, keeps the source trigram score at about **-13.914** versus **-13.904** forward and preserves the near-uniform IoC. Applying literal `FOLD` or `DLOF` as four-rune add/subtract/Beaufort keys on those reverse paths also fails; the best such score is about **-13.961**. These tests bound those literal follow-ons only.
+`ord_1433(19) = 1432 = φ(1433)`.
+
+Thus 19 is a primitive root modulo the selected prime section length and visits every nonzero section position exactly once. Across every canonical `$` section, p27 is also the **only** section whose first rune has full multiplicative order modulo its own section length. The other prime-length section has length 1021 but begins with GP index 1, of order 1.
+
+The same cycle factors as
+
+`1432 = 8 × 179`.
+
+The border value **31** has multiplicative order **179 modulo 1433**, so the nonzero section positions admit a complete 179×8 coordinate system
+
+`position(r,c) = 31^r · 19^c mod 1433`, with `0 ≤ r < 179`, `0 ≤ c < 8`.
+
+The eight-column factor matches the printed 32×8 numerical table width. This is a source-constrained structural relationship, not a decipherment.
+
+### What this does and does not specify
+
+Additively, `1432 ≡ -1 (mod 1433)`, and the repeated p27 occurrence starts at section offset **28**, giving an exact anchor. However, a direction claim still requires converting a difference of global **word ordinals** into a local **rune-position** operation. The totient instruction makes that conversion materially better motivated, but no authenticated source has yet stated the exact positional action. Treat backward traversal as a strengthened hypothesis, not as an established cipher clock.
+
+The obvious direct consequences are negative:
+
+- chronological reversal and cyclic reverse walks around the p27 bookend remain ciphertext-like;
+- primitive-root position walks using 19, including the source anchor at section offset 28, remain ciphertext-like in both directions;
+- direct GP29 and predecessor-excluded GP28 state streams from powers of 19 remain nonlinguistic. The best fixed source variant, inverse-generator GP28, scores **-13.8101** versus **-13.9040** raw, but ranks only **73rd of 1,424** signed primitive-root controls, so the gain is not discriminating;
+- direct 179×8 coordinate transpositions remain nonlinguistic;
+- an invertible three-stage 8-wide Walsh-Hadamard fold motivated by literal `FOLD` plus the wing/moth imagery worsens the language score;
+- literal `FOLD`/`DLOF` additive and Beaufort keys on reverse paths also fail.
+
+These tests retire the simplest read-order, direct state-pad, and linear eight-wide fold interpretations while preserving the exact totient/generator structure as a possible state-space clue.
 
 ## First cryptographic consequences tested
 
