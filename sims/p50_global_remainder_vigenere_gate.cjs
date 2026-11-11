@@ -35,7 +35,8 @@ const corpus = JSON.parse(raw.corpus.toString("utf8"));
 const base60 = JSON.parse(raw.base60.toString("utf8"));
 const grid = JSON.parse(raw.grid.toString("utf8"));
 const pageSet = corpus.pages.filter(p => p.page <= 55);
-const cipher = pageSet.filter(p => p.runic_count > 0).flatMap(p => p.indices);
+const runePages = pageSet.filter(p => p.runic_count > 0);
+const cipher = runePages.flatMap(p => p.indices);
 const bytes = base60.byte_rows.flat();
 assert(pageSet.length === 56, "expected p0-p55");
 assert(pageSet.filter(p => p.runic_count > 0).length === 55, "expected 55 rune-bearing pages");
@@ -152,8 +153,101 @@ for (const [name, index] of [["minus", 0], ["plus", 1]]) {
   nullP[name] = { nullAtOrAbove: atOrAbove, addOneP: (1 + atOrAbove) / 513 };
 }
 
+// Page-local clock: reset the same key to key[0] at each rune-bearing page.
+const nativeStart = 40000;
+const heldPrefix = [0];
+for (let i = nativeStart + 2; i < native.length; i++) {
+  const k = native[i - 2] * 841 + native[i - 1] * 29 + native[i];
+  heldPrefix.push(heldPrefix[heldPrefix.length - 1] +
+    Math.log((trigramCounts[k] + 0.1) / denominator));
+}
+const heldCache = new Map();
+const heldWindowScores = length => {
+  if (heldCache.has(length)) return heldCache.get(length);
+  const values = [];
+  for (let start = 0; start + length <= native.length - nativeStart; start++) {
+    values.push((heldPrefix[start + length - 2] - heldPrefix[start]) / (length - 2));
+  }
+  values.sort((a, b) => a - b);
+  heldCache.set(length, values);
+  return values;
+};
+const pageWeightedMean = scores => {
+  let sum = 0, weight = 0;
+  for (let i = 0; i < scores.length; i++) {
+    const w = runePages[i].indices.length - 2;
+    sum += scores[i] * w;
+    weight += w;
+  }
+  return sum / weight;
+};
+const pageResetCandidate = (sign, k) => {
+  const decodedPages = runePages.map(page =>
+    page.indices.map((x, i) => mod(x + sign * k[i % 256])));
+  const restored = decodedPages.map((page, p) =>
+    page.map((x, i) => mod(x - sign * k[i % 256])));
+  assert(restored.every((page, p) => page.every((x, i) => x === runePages[p].indices[i])),
+    "page-reset inverse round-trip failed");
+  const scores = decodedPages.map(trigramScore);
+  const pageStats = scores.map((score, i) => {
+    const length = runePages[i].indices.length;
+    const held = heldWindowScores(length);
+    const native95 = held[Math.floor(0.95 * (held.length - 1))];
+    const native99 = held[Math.floor(0.99 * (held.length - 1))];
+    return {
+      page: runePages[i].page,
+      length,
+      score,
+      native95,
+      native99,
+      aboveNative95: score >= native95,
+      aboveNative99: score >= native99
+    };
+  });
+  const sorted = pageStats.slice().sort((a, b) => b.score - a.score);
+  return {
+    sign: sign < 0 ? "C-K" : "C+K",
+    weightedMean: pageWeightedMean(scores),
+    unweightedMean: scores.reduce((a, b) => a + b, 0) / scores.length,
+    pagesAboveNative95: pageStats.filter(x => x.aboveNative95).length,
+    pagesAboveNative99: pageStats.filter(x => x.aboveNative99).length,
+    bestPage: sorted[0],
+    worstPage: sorted[sorted.length - 1],
+    pageStats
+  };
+};
+const rawPageScores = runePages.map(page => trigramScore(page.indices));
+const pageResetResults = [
+  pageResetCandidate(-1, key),
+  pageResetCandidate(1, key)
+];
+const randomPage = mulberry32(0x20261112);
+const pageNull = { minus: [], plus: [] };
+for (let n = 0; n < 512; n++) {
+  const shuffled = key.slice();
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(randomPage() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  for (const sign of [-1, 1]) {
+    const scores = runePages.map(page =>
+      trigramScore(page.indices.map((x, i) => mod(x + sign * shuffled[i % 256]))));
+    pageNull[sign < 0 ? "minus" : "plus"].push(pageWeightedMean(scores));
+  }
+}
+const pageNullSummary = {
+  minus: summarize(pageNull.minus),
+  plus: summarize(pageNull.plus)
+};
+const pageP = {};
+for (const [name, index] of [["minus", 0], ["plus", 1]]) {
+  const score = pageResetResults[index].weightedMean;
+  const atOrAbove = pageNull[name].filter(x => x >= score).length;
+  pageP[name] = { nullAtOrAbove: atOrAbove, addOneP: (1 + atOrAbove) / 513 };
+}
+
 const output = {
-  hypothesis: "B mod 29, row-major, period 256, phase 0, continuous over p0-p55 rune stream; both additive signs",
+  hypothesis: "Full row-major B mod 29 remainder key, period 256, phase 0; continuous-book and page-reset clocks; both additive signs",
   sources: Object.fromEntries(Object.keys(paths).map(k => [k, {
     path: paths[k],
     gitBlobSha1: expectedBlob[k],
@@ -162,22 +256,34 @@ const output = {
   }])),
   dimensions: {
     pages: pageSet.length,
-    runeBearingPages: 55,
+    runeBearingPages: runePages.length,
     runes: cipher.length,
     tableBytes: bytes.length,
     keyUniqueResidues: new Set(key).size,
     nativeGpRunes: native.length,
-    heldNativeWindows: heldNative.length,
-    worstNativeWindow,
-    medianNativeWindow
+    heldNativeWindows256: heldNative.length,
+    worstNativeWindow256: worstNativeWindow,
+    medianNativeWindow256: medianNativeWindow
   },
-  raw: { meanTrigram: trigramScore(cipher), ioc: ioc(cipher) },
-  candidates: results,
-  shuffledKeyNull: nullSummary,
-  empiricalUpperTailP: nullP
+  global: {
+    raw: { meanTrigram: trigramScore(cipher), ioc: ioc(cipher) },
+    candidates: results,
+    shuffledKeyNull: nullSummary,
+    empiricalUpperTailP: nullP
+  },
+  pageReset: {
+    rawWeightedMean: pageWeightedMean(rawPageScores),
+    candidates: pageResetResults,
+    shuffledKeyNull: pageNullSummary,
+    empiricalUpperTailP: pageP
+  }
 };
-assert(close(results[0].meanTrigram, -12.279453489937294), "C-K score changed");
-assert(close(results[1].meanTrigram, -12.280555278323039), "C+K score changed");
+assert(close(results[0].meanTrigram, -12.279453489937294), "global C-K score changed");
+assert(close(results[1].meanTrigram, -12.280555278323039), "global C+K score changed");
 assert(results.every(x => x.windows === 50 && x.windowsAtOrBelowWorstNative === 50),
-  "candidate windows no longer match the recorded negative");
+  "global candidate windows changed");
+assert(close(pageResetResults[0].weightedMean, -12.278223408948609), "page-reset C-K score changed");
+assert(close(pageResetResults[1].weightedMean, -12.306168741401416), "page-reset C+K score changed");
+assert(pageResetResults.every(x => x.pagesAboveNative95 === 0 && x.pagesAboveNative99 === 0),
+  "a page unexpectedly entered the native-GP reference range");
 console.log(JSON.stringify(output, null, 2));
