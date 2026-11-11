@@ -138,6 +138,23 @@ A [new standalone positive-controlled original-inverse test](../sims/gp29_193_si
 
 This rejects the precisely defined whole-book GP29/AEAD envelope under those key/nonce windows. It does **not** recover or rule out a p55-only key, another intermediate encoding, an unauthenticated cipher, or a different source-selected operation. The 44=32+12 interpretation was noticed after observing the cell spacing, so its motivation is provisional. Retire this direct key/nonce route unless an original clue determines a different framing.
 
+## Original-LP2 inverse: 43 table bytes as a key for the 43 addressed words
+
+**Bounded negative, 11 November 2026.** The previously frozen signed 2016 message contains 43 GP-encodable natural-language words. Its same 58-page GP-prime-sum address rule selects **42 actual LP2 rune-words and the single p50 table-cell exception**, a total of **175 source ciphertext runes**. The independently observed reversed numerical bracketing `201,193,[43 bytes],193,201` supplies exactly 43 original printed base-60 grid bytes at global offsets **84–126**. A literal source-to-cipher operation is therefore to pair the addressed rune-words with those bytes in the unchanged 2016 message order.
+
+The [standalone reproducible inverse](../sims/lp2_2016_43byte_bookword_inverse_sft.cjs) freezes this byte alignment and applies each original byte modulo 29 as one additive GP29 shift for every rune in its corresponding *selected* printed word. Both reversible signs are tested; the absent p50 word simply carries no runes. Each model deciphers and then exactly re-encrypts the **175 original rune positions**. To evaluate something independent of roundtrip identity, a smoothed GP word-internal bigram/trigram model is trained on the first 75% of the repository's Shakespeare corpus, and **2,000 permutations of the same 43 source bytes** are tested per sign without varying the original book addresses. The last 25% of the Shakespeare GP corpus supplies held-out plaintext word-length-matched to all selected original words; encrypting it under the *same* table bytes and then inverting restores every planted rune.
+
+| Original source-key decoder | Original mean log GP bigram+trigram | Key-order-null mean | Same-source shuffle upper tail |
+| --- | ---: | ---: | ---: |
+| Subtract table byte mod29, per selected rune-word | **−4.677788** | −4.699041 | **0.412794** |
+| Add table byte mod29, per selected rune-word | **−4.760124** | −4.713194 | **0.676162** |
+
+The held-out native plaintext plant scores **−2.127767** under the same trained model, with **175/175** symbols exactly recovered and reencryption passing. Neither original direction is informative against the preserved-source key-order null. This rejects the simple table-byte-per-addressed-word GP29 additive use; it does not exclude a different word traversal, nonlinear register, variable-rate intermediate or undiscovered key.
+
+A separate direct 43-byte readout uses the GP-prime sums of the *selected LP2 rune-words*, a different and now frozen source from the original signed-word prime-sum XOR reported above. For the rune-free `lies` address only, it uses the selected table token value **193**. Direct XOR of the 43 interior bytes with selected-word prime sums leaves **16/43 printable ASCII**; the corresponding selected-word ordinal-sum XOR gives **15/43**. Direct modular subtraction/addition of selected-word prime sums yields **22/43** and **13/43** printable bytes, respectively. None is recognizable plaintext. The source-native wordwise GP29 plant and these finite negative byte readouts were executed successfully in [manual CI 42955097211](https://github.com/FlareZ123/liber-primus/actions/runs/42955097211). No unknown LP2 plaintext or authentic cipher key follows.
+
+The candidate 43-byte alignment itself remains retrospective; further inverse searches would require a specific source-prescribed operation rather than expanding unconstrained byte/key transformations.
+
 ## Independent numerical bridge to the 2016 image
 
 The first four words, “Its words are the”, have GP prime sum:
