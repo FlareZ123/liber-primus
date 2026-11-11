@@ -1,8 +1,8 @@
 # Physical p0 cross half-turn: exact source motif, bounded original-cipher readout
 
-**Classification:** original-JPEG triple-bar-cross **reused frame** on pp0–2, plus one finite, direct reversed-read-order cipher test. No unknown LP2 plaintext, key, complete mechanism, or destination is recovered. The visual half-turn is a static artwork feature, and no source authenticates rune reversal.
+**Classification:** **independent reproduction of previously documented p0–2 cross artwork**, plus a narrow reversed-read-order / solved-p56-key negative. No unknown LP2 plaintext, key, complete mechanism or destination is recovered. The cross geometry and pp1/pp2 reuse were previously established by Agent42, as recorded in [the original visual-clue audit](original-visual-clue-operation-map.md) and [the 27×27 opening report](lp2-27x27-published-nextblock-branching.md); the present tighter pixel numbers are NOT a new discovery.
 
-## The source image actually repeats a cross under a 180° rotation
+## The known p0 cross half-turn: independent pixel replication
 
 On original unsolved physical **p0**, archive scan **17.jpg** (2,400×3,600 pixels; SHA-256 \`197e1e153958b9a2736b09c10eea7d8bb00e0632fd22a8d9606840becc79942e\`), two large, highly distinctive triple-bar crosses flank the runic text at diagonally opposite corners. They look inverted relative to one another, so a human solver might try a backwards read order. Before treating the cue cryptographically, compare the original pixels.
 
@@ -22,9 +22,9 @@ Thresholding the original grayscale at 145, the lower-left crop compared with th
 
 The original grayscale mean absolute pixel difference **after rotation** is only **0.9463173/255**. The binary overlap remains 0.9823–0.9887 across thresholds 50–230. This is overwhelming evidence for **one reused graphic placed at opposing orientations**; the residual is compatible with local JPEG rasterization, and there is no separate content to decode from the cross drawings themselves.
 
-### The whole pp0–2 cross frame is static
+### Previously reported pp0–2 cross frame: independent fixed-crop control
 
-The **same fixed crop coordinates** are present on the next two original scans, `18.jpg` (physical p1, SHA-256 `f804fae06a68315eb6206158a2b34f55fe157c7d663fa961639fbe8dfc52a39f`) and `19.jpg` (p2, SHA-256 `74e955ebe248e6d7442e2d2cd3029951f258017987d5762f48e7897cf6611e34`). Comparing each directly with p0 (without alignment, resizing, flipping or optimizations) gives:
+Agent42 previously noted the exact p0/p1/p2 cross reuse. In this independent replication, the **same fixed crop coordinates** are present on the next two original scans, `18.jpg` (physical p1, SHA-256 `f804fae06a68315eb6206158a2b34f55fe157c7d663fa961639fbe8dfc52a39f`) and `19.jpg` (p2, SHA-256 `74e955ebe248e6d7442e2d2cd3029951f258017987d5762f48e7897cf6611e34`). Comparing each directly with p0 (without alignment, resizing, flipping or optimizations) gives:
 
 | Repeated frame crop | p1 vs p0 mask IoU | p2 vs p0 mask IoU | Grayscale MAE /255 |
 | --- | ---: | ---: | ---: |
@@ -57,5 +57,7 @@ Both candidate inversions score well below **every** finite held-out control. Re
 ## Consequence and next original-cipher decision
 
 The two paired crosses form an almost unchanged **pp0–2 decorative frame** under half-turn, and p1/p2 preserve the same artwork at the same coordinates. This makes a unique p0 reversal instruction substantially less plausible. The cross symmetry supplies no authentic key, and the documented direct transfer from the known p56 method fails on original p0. No further cipher variants are warranted without independently selected key material.
+
+**Prior-art distinction:** Agent42's source-registered result reports rotated-pair IoU **0.961925** under a different mask/crop contract, and p1/p2 artwork reuse. This study's 0.98747722 is a separate fixed-crop threshold, not a new underlying fact. The direct p56-key reversed-order readout is an additional bounded test, without plaintext.
 
 **Reproducer:** [source-fixed standalone Python test](../sims/lp2_p0_inverted_cross_source_readout_sft.py), using the unchanged original scan, original canonical GP29 transcription, and frozen native-GP Shakespeare control. All source assertions and values are embedded. The script writes no files.
