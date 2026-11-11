@@ -1,22 +1,14 @@
 name: F5 FGH-2002 detector calibration
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'sims/f5_detector_calibration/main.go'
-      - 'resources/liber-primus/*.jpg'
   workflow_dispatch:
-  issue_comment:
-    types: [created]
 
 concurrency:
   group: f5-fgh2002-calibration
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   calibrate:
-    if: ${{ github.event_name != 'issue_comment' || (github.event.issue.number == 389 && github.event.comment.body == '/run-f5-calibration') }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     permissions:
