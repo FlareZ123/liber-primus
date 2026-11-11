@@ -224,6 +224,57 @@ console.log(JSON.stringify({
 }));
 
 
+// The only two documented double spaces in the 2013 telnet prime output
+// immediately precede prime31 and prime3259. Applying the 2013 NUMBER
+// decimal-reversal-and-factor operation selects the GP primes13 and
+// 89*107, with 89/107 giving adjacent D/IA runes in exactly two red
+// original LP2 spans. This is source-only pointer material, not plaintext.
+const markedNextPrimes = [31, 3259];
+assert.equal(reversePrimeDigits(markedNextPrimes[0]), 13);
+assert.equal(reversePrimeDigits(markedNextPrimes[1]), 9523);
+assert.equal(89 * 107, 9523);
+assert.equal(corpus.prime.indexOf(13), 5);
+assert.equal(corpus.prime.indexOf(89), 23);
+assert.equal(corpus.prime.indexOf(107), 27);
+const ink = require("../resources/liber-primus/lp2-ink-annotations.json");
+const selectedRunes = [corpus.runes[23], corpus.runes[27]];
+const redHits = [];
+for (const page of ink.pages) for (const span of page.red_spans || []) {
+  const spanRunes = [...span.runes];
+  for (let i = 0; i + 1 < spanRunes.length; i++) {
+    if (spanRunes[i] === selectedRunes[0] && spanRunes[i + 1] === selectedRunes[1]) {
+      redHits.push({
+        page: page.page, localRuneOffset: span.start + i,
+        followingRune: spanRunes[i + 2] || null
+      });
+    }
+  }
+}
+assert.deepEqual(redHits, [
+  {page: 53, localRuneOffset: 143, followingRune: corpus.runes[2]},
+  {page: 54, localRuneOffset: 3, followingRune: corpus.runes[2]}
+]);
+const originalTriadHits = [];
+for (const page of corpus.pages.filter(page => page.page <= 55)) {
+  for (let i = 0; i + 2 < page.indices.length; i++) {
+    if (page.indices[i] === 23 && page.indices[i+1] === 27 &&
+        page.indices[i+2] === 2) {
+      originalTriadHits.push({page: page.page, offset: i});
+    }
+  }
+}
+assert.deepEqual(originalTriadHits, [
+  {page: 53, offset: 143}, {page: 54, offset: 3}
+]);
+console.log(JSON.stringify({
+  historicalInput: "two 2013 telnet doubled spaces before 31 and 3259",
+  documentedNumberOperation: "reverse decimal, factor if composite",
+  number31: 13, number3259: {reversed: 9523, primeFactors: [89,107]},
+  GPselected: ["C", "D", "IA"], redRunePair: ["D", "IA"],
+  redPairHits: redHits, completeUnknownTriadHits: originalTriadHits,
+  interpretation: "Source-motivated red motif, not a plaintext/key"
+}));
+
 // A second historically documented 2013 operator, NUMBER, reverses decimal
 // digits of prime inputs before factorizing the reversed number. This is a
 // separate *single-rule* gate: decimal reversal of each source prime before
