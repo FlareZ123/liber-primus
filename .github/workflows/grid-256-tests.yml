@@ -36,6 +36,7 @@ on:
           - signed-message-map
           - stipple-241-331
           - source-dh-log
+          - source-base29-literal
         default: full
 
 jobs:
@@ -47,6 +48,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Literal 2013 BASE29 quotient and 1033 polynomial control
+        if: ${{ inputs.probe == 'source-base29-literal' }}
+        run: node sims/base29_protocol_literal_quotient_sft.cjs
+
       - name: Source-locked 2013 DH / solved-prime-84 F29-square logarithm inverse
         if: ${{ inputs.probe == 'source-dh-log' }}
         run: |
