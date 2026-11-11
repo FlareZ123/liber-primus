@@ -139,8 +139,21 @@ Both additive outputs are worse than the raw page and far below the native-langu
 
 This is a distinct test from sorting the 19 sums into a columnar permutation or rotating each column modulo four. It does not test a reversed key, alternate phase, or a different cipher family.
 
+## Direct three-clause remainder key (bounded negative)
+
+The separate p57 source analysis gives the three body-clause prime sums `[1259,1031,1229]`; reducing them modulo the red PARABLE heading sum `449` gives `[361,133,331]`, and reducing those three values modulo 29 gives the fixed GP29 key `[13,17,12]`. The parable's wording about a small key and a lock makes this a plausible direct three-symbol additive key for the 76-rune p55 page. It is a source-motivated hypothesis, not an explicit cipher instruction.
+
+Only the two phase-zero repeating-key readings were tested, in printed clause order:
+- `P = C − K mod 29`: IoC **0.02807017544**
+- `P = C + K mod 29`: IoC **0.03508771930**
+- Raw p55 IoC: **0.03789473684**
+
+Both outputs are nonlinguistic and have lower IoC than the original. The fixed implementation round-trips all 76 original runes and a 76-rune planted control under each sign. No phase, reversal, key permutation, alternate modulo, or additional cipher family was searched. The [reproducer](../sims/p57_clause_residue_p55_key_gate.cjs) asserts the source residues, key, outputs, and exact round-trips.
+
+This retires only the direct three-symbol GP29 additive use of the p57 clause remainders on p55. It does not invalidate the historical 133/331 association or establish that the clause sums were intended as a key.
+
 ## Decision and scope
 
-Retire the direct repeating 19-symbol GP29 additive key in both signs, the p57-body-prime-sum → p55 19-column transposition in both standard directions and both key orders, and the per-column rotations modulo four. Preserve the exact 19-body-word / 76-rune dimensional fit and the 2016 “words/numbers” clue as observations, but do not extend these candidates into alternate key encodings, phases, widths, or transposition families without an independent source instruction. No source-selected p55 decoder or plaintext has been established.
+Retire the direct repeating 19-symbol GP29 additive key in both signs and the direct three-symbol clause-remainder GP29 additive key in both signs, the p57-body-prime-sum → p55 19-column transposition in both standard directions and both key orders, and the per-column rotations modulo four. Preserve the exact 19-body-word / 76-rune dimensional fit and the 2016 “words/numbers” clue as observations, but do not extend these candidates into alternate key encodings, phases, widths, or transposition families without an independent source instruction. No source-selected p55 decoder or plaintext has been established.
 
 **Reproducer:** [sims/p57_bodyword_prime_sum_p55_columnar_gate.cjs](../sims/p57_bodyword_prime_sum_p55_columnar_gate.cjs). It asserts the 20-word source parse, the 19 body-word sums, both direct additive outputs and a 76-rune positive-control round trip, four columnar outputs, both per-column rotation controls, and the matched 47,959-window Gibran control.
