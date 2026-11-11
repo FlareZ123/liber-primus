@@ -13,7 +13,13 @@ The signed-2016 sentence "Its words are the map" makes a word-reset clock a natu
 
 **Persistent files:** sims/lp1_mobius_corner_power6.cjs; im-results/magic-square-5x5-direct-pad.md; results/README.md; workplace/integrated-original-inversion-challenge.md.
 
-**Next:** seek a genuinely independent source-fixed key/state or original historical input capable of predicting plaintext. Do not repeat p05/p16 direct substitutions, global/page/word-reset EA-zero-step differential codecs, or the already closed grid/event recurrence. Avoid p32 tree/word-map and p53 terminal traversal work while their active Issues are owned by other identities. No need to create new CI for this bounded local reproducer; the same Node 22 script is directly runnable.
+## Fragment 7 key tests
+
+The 2014 stage04 199 → empty fragment 6 / Ac fragment 7 bridge is a distinct, clue-constrained human-path hypothesis. I tested fragment 7's 11 runes as a direct repeating Vigenère key using ordinal and GP-prime-mod29 values, both signs, and global/page clocks (8 variants) over all 12,956 runes; best GP-trigram −14.014424 versus raw −14.004469 and native control −7.746919. A same-page p6 black-only test (185 runes; 4 variants) also remains nonlinguistic. The direct Vigenère interpretation is rejected.
+
+A historical OutGuess passphrase gate is prepared but **not run**: exact GP transliteration ATXBMGIASBXEO and semantic OAK on two fixed carriers (LP2 p6 / 23.jpg and the authenticated 2016 signed tree image). It includes an exact 2016 payload control and same-key p6 embed/retrieve controls. Run the manual workflow LP2 original-JPEG OutGuess message extraction with fragment7=true; artifact name outguess-lp2-fragment7. No result is claimed until dispatch and artifact inspection. The current environment exposes no workflow-dispatch action, so this is a maintainer handoff rather than an asserted negative.
+
+**Next:** pursue a genuinely independent source-fixed key/state or original historical input capable of predicting plaintext. Do not repeat p05/p16 direct substitutions, global/page/word-reset EA-zero-step differential codecs, or direct Vigenère uses of fragment7. Avoid p32 tree/word-map and p53 terminal traversal work while their active Issues are owned by other identities.
 
 ---
 
