@@ -27,6 +27,15 @@ Direct prime-indexed table key: the best of eight configurations is offset 10, r
 
 Collision-aware transfer: the best of twelve configurations has English-versus-uniform LLR **−104.096** (offset 0, reset at p51, global fourth-F null). A 158-symbol planted control under the same table-derived key and fixed-null/skip rules scores **+60.628** under the true key versus **−102.226** under the reversed key.
 
+## Source-fixed 79-rune packet-reset extension
+
+The original p49/p51 geometry also supports two consecutive 79-rune packets, with the second boundary at compact offset 79 (inside a printed p51 word). This is distinct from a reset at the physical p51 boundary. The same table-prime key was therefore tested with the key clock reset to the same offset at rune 79, for offsets 0 and 10 and no/global-fourth-F null. This extension was not included in the 100-permutation direct-family calibration.
+
+- Direct 79-reset best: **−6.503684 per rune** (offset 10, no F-null); the other three configurations range from −6.514 to −6.668. No readable plaintext.
+- Collision-aware 79-reset best: **−121.961 LLR** (offset 0, no F-null); the other configurations are still worse (−128.964 to −149.617).
+
+The 79-packet reset does not improve the table-prime transfer; it is substantially worse under the collision-aware model. This closes the source-fixed 79-reset variant of this key hypothesis.
+
 ## Conclusion and limits
 
 **Reject the p50-byte-as-prime-index key for the p49/p51 flank under both the direct p56 operation and the tested collision-aware extension.** The p56 mechanism itself remains independently verified; its transfer to this table is unsupported.
