@@ -114,6 +114,11 @@ function languageScore(vals){
   }
   return score/(vals.length-2);
 }
+/** @param {typeof lines} group */
+function runeReadout(group){
+  return {first:group.map(l=>l.vals[0]),
+    last:group.map(l=>l.vals.at(-1))};
+}
 const frozen=units.map(readout);
 const global=readout(lines);
 const slots=[
@@ -144,9 +149,9 @@ const nulls=Array.from({length:slots.length},()=>[]);
 const reps=1024;
 for(let rep=0;rep<reps;rep++){
   const randomized=units.map(shuffle);
-  const all=readout(randomized.flat());
+  const all=runeReadout(randomized.flat());
   const streams=[all.first,all.last,...randomized.flatMap(u=>{
-    const r=readout(u);return [r.first,r.last];
+    const r=runeReadout(u);return [r.first,r.last];
   })];
   assert.equal(streams.length,slots.length);
   streams.forEach((v,i)=>nulls[i].push(languageScore(v)));
