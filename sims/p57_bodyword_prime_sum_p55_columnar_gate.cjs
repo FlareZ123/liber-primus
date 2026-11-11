@@ -61,10 +61,27 @@ const expectedRotations={
  shiftMinus:"NGAEMRBSEOCEOSMCPHAEFEOMBCUWFSEAOECEAMEOEIGNGLSESDIAPEWHBXMEUCXDXGBESEOTHTHIBTHFXIIEAGDTHJUIAAI"
 };
 for(const [name,indices] of Object.entries(rotations))assert.equal(indices.map(i=>corpus.translit[i]).join("").replace(/[^A-Z]/gu,""),expectedRotations[name]);
- decryptDesc:decryptColumnsToRows(p55,descending),
- readAsc:readColumnsFromRows(p55,ascending),
- readDesc:readColumnsFromRows(p55,descending)
+
+// Direct GP29 additive reading: one p57 body-word prime sum per p55 column.
+// p55 is exactly four 19-rune rows, so the source-order key repeats four times.
+const additiveKey=bodyWordSums.map(value=>mod(value,29));
+function applyAdditive(sign){
+ return p55.map((value,index)=>mod(value+sign*additiveKey[index%19],29));
+}
+const additiveOutputs={
+ subtract:applyAdditive(-1),
+ add:applyAdditive(1)
 };
+const expectedAdditive={
+ subtract:"JJFMEAUOSWSLNWAEJUEAEOWATBPNXSSIAMNHYTHWNGPWCPPDNNDIAGFEWNGDFFWTGCTHBEOIAWBHGTIIAHIABYTHEGF",
+ add:"THINUSFTHPTHSROIHIEAYWIASSYAAEPXPOEMOETHFXGMJTHAEREOOLAEOEYRAELSYEOEACXUAEOETNGNDTWRJIJTHUFAEFTUL"
+};
+for(const [name,indices] of Object.entries(additiveOutputs))assert.equal(translit(indices).replace(/[^A-Z]/gu,""),expectedAdditive[name]);
+// Exact known-text round-trip control for the fixed 19-symbol additive implementation.
+const plantedPlain=corpus.pages[57].indices.slice(0,76);
+const plantedCipher=plantedPlain.map((value,index)=>mod(value+additiveKey[index%19],29));
+const plantedRecovered=plantedCipher.map((value,index)=>mod(value-additiveKey[index%19],29));
+assert.deepEqual(plantedRecovered,plantedPlain);
 const expected={
  decryptAsc:"MDSCMIAXEAPEANGWUHUCMEOESTHEOEASAGFFEAESBNGWXUCSDAETHIEOBSXBIMBELRDCEOTHIAFTHMGCEIHGIXIEOBJPEOE",
  decryptDesc:"MXIAMCSUEAHEAUCNGPEWEOMDSGASEAEOWENGFBXAEFSSCUTHDSBEOITHRILXEDMBTHBEOCAEIAECGMTHBGEOIIJIHOEXEPF",
@@ -112,8 +129,11 @@ assert.equal(nativeScores.length,47959);
 const rawScore=score(expand(p55));
 const candidateScores=Object.fromEntries(Object.entries(outputs).map(([name,indices])=>[name,score(expand(indices))]));
 const rotationScores=Object.fromEntries(Object.entries(rotations).map(([name,indices])=>[name,score(expand(indices))]));
+const additiveScores=Object.fromEntries(Object.entries(additiveOutputs).map(([name,indices])=>[name,score(expand(indices))]));
 assert.ok(Object.values(rotationScores).every(x=>x.mean<rawScore.mean));
 assert.ok(Object.values(candidateScores).every(x=>x.mean<nativeScores[0]));
+assert.ok(Object.values(additiveScores).every(x=>x.mean<rawScore.mean));
+assert.ok(Object.values(additiveScores).every(x=>x.mean<nativeScores[0]));
 const result={
   p57:{totalWords:words.length,heading:translit(words[0]),bodyWords:bodyWords.map(translit),bodyWordSums,terminalWord:translit(words[19])},
   p55:{runes:p55.length,rows:4,columns:19},
@@ -122,7 +142,11 @@ const result={
   wordSumsMod4,
   columnRotations:Object.fromEntries(Object.entries(rotations).map(([name,indices])=>[name,expand(indices)])),
   rotationScores,
+  additiveKeyModulo29:additiveKey,
+  directAdditiveOutputs:Object.fromEntries(Object.entries(additiveOutputs).map(([name,indices])=>[name,expand(indices)])),
+  directAdditiveScores:additiveScores,
+  additiveRoundTrip:{plaintextRunes:plantedPlain.length,recoveredRunes:plantedRecovered.length,exact:plantedRecovered.every((value,index)=>value===plantedPlain[index])},
   scores:{raw:rawScore,candidates:candidateScores,native:{windows:nativeScores.length,minimum:nativeScores[0],median:nativeScores[Math.floor(nativeScores.length/2)]}},
-  decision:"Using the 19 body-word prime sums as a stable 19-column key does not recover plaintext in either standard transposition direction. The best candidate remains below every native 76-rune Gibran window."
+  decision:"The direct repeating 19-symbol GP29 additive key fails in both signs: both scores are below raw p55 and every native 76-rune Gibran window. The 19-column transpositions and per-column rotations also fail. These are bounded candidate negatives, not a source-authenticated cipher exclusion."
 };
 process.stdout.write(JSON.stringify(result,null,2)+"\n");

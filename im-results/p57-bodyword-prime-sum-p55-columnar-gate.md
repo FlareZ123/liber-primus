@@ -1,6 +1,6 @@
 # p57 19 body-word prime sums as a p55 19-column key: bounded negative
 
-**Classification:** source-motivated transposition test. The p57 page has a separate PARABLE heading and 19 body words; p55 has 76 = 4×19 runes. The body-word prime-sum key gives a modest quadgram-score change but no plaintext and remains far below native Gibran text. No unknown LP2 plaintext or key is recovered.
+**Classification:** bounded source-motivated key/transposition tests. The p57 page has a separate PARABLE heading and 19 body words; p55 has 76 = 4×19 runes. The 19 body-word GP-prime sums were tested as a repeating 19-symbol GP29 additive key in both signs, a 19-column transposition key in both standard directions and key orders, and a per-column rotation modulo four. None recovers plaintext; the additive candidates score below raw p55 and every tested native Gibran window. No unknown LP2 plaintext or key is recovered.
 
 ## Source-fixed structure
 
@@ -105,8 +105,42 @@ NGAEMRBSEOCEOSMCPHAEFEOMBCUWFSEAOECEAMEOEIGNGLSESDIAPEWHBXMEUCXDXGBESEOTHTHIBTHF
 
 Their matched native-Gibran quadgram scores are −6.887693 and −6.874852, both below raw p55 (−6.791722) and far below the worst native 76-rune Gibran window (−5.231302). This direct column-rotation reading is also negative.
 
+## Direct additive GP29 key
+
+The same 19 body-word prime sums define a natural 19-symbol key after reduction modulo 29:
+
+```
+[10, 14, 19, 20, 8, 14, 14, 28, 12, 0, 21, 26, 16, 6, 14, 28, 28, 12, 10]
+```
+
+Because p55 contains exactly four 19-rune rows, repeat this key in printed order across all 76 runes. Test only the two direct additive readings, (P=C-K\pmod{29}) and (P=C+K\pmod{29}), with no phase, reversal, or reordering.
+
+**Subtraction output**
+```
+JJFMEAUOSWSLNWAEJUEAEOWATBPNXSSIAMNHYTHWNGPWCPPDNNDIAGFEWNGDFFWTGCTHBEOIAWBHGTIIAHIABYTHEGF
+```
+
+**Addition output**
+```
+THINUSFTHPTHSROIHIEAYWIASSYAAEPXPOEMOETHFXGMJTHAEREOOLAEOEYRAELSYEOEACXUAEOETNGNDTWRJIJTHUFAEFTUL
+```
+
+Using the same GP transliteration expansion and English quadgram model as the columnar tests:
+
+| Stream | Mean base-10 log quadgram score |
+|---|---:|
+| Raw p55 | −6.791722 |
+| Direct subtraction | −7.147347 |
+| Direct addition | −7.013395 |
+| Worst native 76-rune Gibran window | −5.231302 |
+| Median native 76-rune Gibran window | −4.215196 |
+
+Both additive outputs are worse than the raw page and far below the native-language controls. The exact 76-rune positive-control plant also round-trips under the same fixed 19-symbol implementation; that validates the arithmetic, not the key's authenticity.
+
+This is a distinct test from sorting the 19 sums into a columnar permutation or rotating each column modulo four. It does not test a reversed key, alternate phase, or a different cipher family.
+
 ## Decision and scope
 
-Retire the direct p57-body-prime-sum → p55 19-column transposition in both standard directions and both key orders. Preserve the exact 19-body-word / 76-rune dimensional fit and the 2016 “words/numbers” clue as observations, but do not extend this into alternate key encodings, phases, widths, or transposition families without an independent source instruction.
+Retire the direct repeating 19-symbol GP29 additive key in both signs, the p57-body-prime-sum → p55 19-column transposition in both standard directions and both key orders, and the per-column rotations modulo four. Preserve the exact 19-body-word / 76-rune dimensional fit and the 2016 “words/numbers” clue as observations, but do not extend these candidates into alternate key encodings, phases, widths, or transposition families without an independent source instruction. No source-selected p55 decoder or plaintext has been established.
 
-**Reproducer:** [sims/p57_bodyword_prime_sum_p55_columnar_gate.cjs](../sims/p57_bodyword_prime_sum_p55_columnar_gate.cjs). It asserts the 20-word source parse, the 19 body-word sums, four columnar outputs, both per-column rotation controls, and the matched 47,959-window Gibran control.
+**Reproducer:** [sims/p57_bodyword_prime_sum_p55_columnar_gate.cjs](../sims/p57_bodyword_prime_sum_p55_columnar_gate.cjs). It asserts the 20-word source parse, the 19 body-word sums, both direct additive outputs and a 76-rune positive-control round trip, four columnar outputs, both per-column rotation controls, and the matched 47,959-window Gibran control.
