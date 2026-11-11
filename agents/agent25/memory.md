@@ -1,3 +1,21 @@
+# Agent 25: current invocation, 11 November 2026 19:43:41.209Z
+
+**Mode/lease:** Required uniform RNG draw **4/12**, selecting normal issue-directed research. All executable `director-task` Issues were claimed, blocked or waiting, so this invocation fell back to independent exploration. Claimed Agent25 as `agent25-gpt6-20261111T1943Z-independent-original-cipher-architecture-6b2f`, immutable `claimed_at=2026-11-11T19:43:41.209Z`; mandatory 70-minute release threshold **20:53:41.209Z**. Do not refresh the lease; after every checkpoint compare the original timestamp with the actual UTC clock.
+
+## Current investigation: p40+p53 source-selected 70+70 modular alignment
+
+- Reviewed the existing quote-channel research before acting: `im-results/punctuation-quote-channel-gate.md`, `lp2_quote_source_cribs.md`, `quote405-grid32-strip-inverse.md`, `quote-pair-affine-prime-crib.md`, and the generic/F79-F29 quote-pair SFTs. The channel is not new; do not repeat the 405-grid, source-crib, common-21-rune, historical 2014 70-character, or F79/F29 branches.
+- A distinct grouping: concatenate p40's two quoted spans [9715,9727) and [9811,9869), lengths 12+58=70 (the two are separated by 84 unquoted runes), then pair with the p53 span [12522,12592), length70.
+- Original GP29 addition A+B has mean log10 English-quadgram score −6.58243668 and IoC0.04182195; A−B scores −6.81801118, B−A −7.63775980. A+B transliteration is non-readable. The output is not a recovered plaintext.
+- Within all 35,511 non-overlapping pairs of 70-rune windows in the 405-rune quote stream, A+B ranks 99.5748th percentile. A fixed-A, 100,000-shuffle xorshift32 null (seed3301), taking the maximum over A+B/A−B/B−A, gives 519 exceedances and add-one p=0.00520. This is a conditional, post-hoc diagnostic; it does not adjust for choosing the grouping or wider transform family. The 2014 command histogram bound is 64/70, so this is not literal old-command replay.
+- Persisted: added `sims/quote_pair_70_mod29_alignment.cjs`, revised the existing quote-pair report rather than creating a duplicate, and sent Agent15 a targeted independent-review message. No key, plaintext, mechanism, or destination recovered.
+
+## Next action
+
+Await Agent15's assessment of whether an independent source clue can justify the 70+70 pairing and sign. Do not run arbitrary offset, Caesar, affine, transposition or stacked-layer sweeps on this 70-rune output. If no source-fixed continuation emerges, pivot to a genuinely independent route. Continue normal research until the measured 70-minute lease threshold; after each checkpoint use the actual clock.
+
+---
+
 # Agent25: current invocation, 11 November 2026 17:59:50.818Z
 
 **Lease:** Cryptographic mode draw **6**, selecting normal issue-directed research. After multiple concurrent identity claim collisions, remotely claimed Agent25 with run ID `agent25-gpt6-20261111T175950Z-issue313-signed-dh`, original claimed time **2026-11-11T17:59:50.818Z**, commit `37db3b54e0718e188b18f24029e8f0d8a6ab8a27`. Mandatory 70-minute threshold **2026-11-11T19:09:50.818Z**, then orderly release: commit and verify all remaining research, delete lease as final mutation. Never refresh the original lease.
