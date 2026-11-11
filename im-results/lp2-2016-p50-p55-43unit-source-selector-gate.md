@@ -185,6 +185,23 @@ None of the five outputs is plaintext; even the best score, −5.675726 from the
 
 **Decision:** reject this exact p55-interior-as-direction encoding at these five source-visible origins. Do not expand into arbitrary origins or direction permutations without a new clue.
 
+## Direct p50 43-byte interval → p55 43-interior GP29 key test (bounded negative)
+
+The source-selected 43-unit bridge offers a simple direct test before inventing a more elaborate selector: take the 43 raw p50 bytes strictly between the two byte-193 / base60-`3D` markers (row-major offsets 84–126), reduce each byte modulo 29, and use that sequence as a GP29 key for the 43 p55 interior runes. The p55 interior is extracted with its original word boundaries; the leading one-rune fragment is a cross-page word boundary, not a singleton. The 43-byte and 43-rune sequences are therefore aligned in their source order. A reversed-key alignment is included as the only orientation control.
+
+| Alignment | Direction | IoC | Result |
+|---|---|---:|---|
+| Forward | C−K | 0.0299003322 | No readable English |
+| Forward | C+K | 0.0354374308 | No readable English |
+| Forward | K−C | 0.0299003322 | No readable English |
+| Reversed key | C−K | 0.0321151717 | No readable English |
+| Reversed key | C+K | 0.0354374308 | No readable English |
+| Reversed key | K−C | 0.0321151717 | No readable English |
+
+For the 43-symbol sample, IoC is only descriptive; the word-break-preserving outputs are also nonlinguistic. The script includes an arithmetic positive-control round-trip and pins the exact Git blob SHAs of the p50 grid, GP29 corpus, and page transcription. Reproducer: `sims/p50_43byte_to_p55_interior_mod29_gate.cjs`.
+
+This rejects the direct `raw_byte mod 29` additive/Beaufort pairing only. It does not reject a separately source-selected use of p50 bytes as base-60 digits, directions, or another representation; no such mapping is currently selected by evidence.
+
 ## Exact missing selector
 
 No surviving, contemporaneous instruction reviewed here establishes all of the following:
@@ -200,20 +217,6 @@ The current 43-word base-58 address map is a later reconstruction from GP prime 
 
 ## Decision
 
-**Stop arbitrary 43-way key expansion and the tested direct stationary additive/Beaufort pairings.** The signature-verified 43-word prime-sum key also fails on p55; do not expand it into unsourced word-value, phase, or permutation variants. A newer source-derived navigation chain strengthens the cardinality selection while leaving the decoder incomplete. The repeated signed-word map selects **FOLD**; the p55 image fold selects one-based 13-dot fragment **18**; that fragment is the p27 red 19-rune title whose first rune is GP index **19**, leaving 18 payload runes. Folding that payload outer-to-inner gives **100000000₂ = 256**, and its only matching pair is **P/P**, whose GP prime is **43**. The full compound 19-rune signature occurs exactly once in the complete 13,136-rune LP2 source stream.
+The 43-unit cardinality bridge is a strong selector clue but still lacks an authenticated reversible operation. Direct p50 compass-byte interpretation on p32, signed 2016 word-prime-sum keying on p55, and the newly tested p50 raw-byte-mod29 key against p55's 43 interiors all fail to produce plaintext. The fold/END observation remains conditional and is not a decryption.
 
-The table itself provides a same-representation 43-cell bracket: the derived signed `lies` address selects byte193 at cell83; the only other byte193 is at cell127; their outward neighbors are both 201, giving **[201,193] … [193,201]** around cells84–126, exactly 43 cells. This materially improves the earlier count-only alignment. **Traversal orientation remains unresolved.** The duplicated p27/p55 word pair is 1,432 canonical words apart and the selected section has 1,433 runes, but those are different units and the numerical −1 relation does not supply direction without another instruction.
-
-The reverse order 126→84 was nevertheless tested as a conditional branch. As per-word GP29 shifts on the 43 signed-addressed LP2 words, same-source shuffle upper tails are **0.8141** (subtract) and **0.2164** (add); applied positionwise to the 43 p55 interiors they are **0.2207** and **0.7906**. Direct XOR and modular ± byte readouts remain unreadable, with at most **22/43** printable ASCII. No source yet fixes how the table interval, p55 interiors and signed words combine into a reversible key/state transition. Keep p55 unsolved. See [the header-fold report](p27-title-headerfold-256-43-reverse-table.md) and [standalone reproducer](../sims/p27_title_headerfold_256_43_reverse_sft.cjs).
-
-## Sources
-
-- Original signed extraction and source record: [cicada2016-4gq25-outguess.asc](../resources/historical/cicada2016-4gq25-outguess.asc), [cicada2016-4gq25.md](../resources/cicada2016-4gq25.md)
-- Original p50 bytes and GP corpus: [lp2-grid-256.json](../resources/liber-primus/lp2-grid-256.json), [lp2-corpus.json](../resources/liber-primus/lp2-corpus.json)
-- p55 and p57 transcription: [lp2-transcription.txt](../resources/lp2-transcription.txt)
-- Combined p32-compass and signed-word-prime-sum 43-symbol reproducer: [p32_p55_43symbol_additive_bridge.cjs](../sims/p32_p55_43symbol_additive_bridge.cjs)
-- Provisional signed-message word map: [lp2-2016-signed-message-base58-word-map.md](lp2-2016-signed-message-base58-word-map.md)
-- 2013 historical number operation and its limitations: [cicada2013-reversed-prime-cookie-original-inverse.md](cicada2013-reversed-prime-cookie-original-inverse.md), [cicada2013_parable_reversal_ring_sft.cjs](../sims/cicada2013_parable_reversal_ring_sft.cjs)
-- 2013 wisdom/folly material: [cicada2013-wisdom-folly.md](../resources/cicada2013-wisdom-folly.md), [2013-0-wisdom-source.md](../resources/external/2013-0-wisdom-source.md)
-- 2014 material: [cicada2014-may2-signed-message.asc](../resources/cicada2014-may2-signed-message.asc), [cicada2014-onion7-index.html](../resources/cicada2014-onion7-index.html)
-- 2017 signed warning: [cicada2017-yEiTHhvF.asc](../resources/historical/cicada2017-yEiTHhvF.asc)
+Do not expand this branch by trying arbitrary byte maps, shifts, phases, or word permutations. A successor needs an independent source clue selecting the p50 representation and the reversible operation; otherwise the 43-unit alignment alone is not enough to justify more key-search variants.
