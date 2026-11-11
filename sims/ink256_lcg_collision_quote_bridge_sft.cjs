@@ -188,6 +188,24 @@ assert.equal(end133, 1535);
 assert.equal(exact170, 2387);
 assert.equal(joint, 47);
 
+// A key-independent obstruction to ANY fixed secret state→doublet-rune table:
+// collision states reused in the 86 ordered observations must emit one glyph.
+const stateOutputs = new Map();
+for (let i = 0; i < observed.repeats.length; i++) {
+  const x = observed.repeats[i].state;
+  if (!stateOutputs.has(x)) stateOutputs.set(x, []);
+  stateOutputs.get(x).push(doublets[i].index);
+}
+const reusedStates = [...stateOutputs.values()].filter(a => a.length > 1);
+const minimumForcedErrors = reusedStates.reduce((n, a) => {
+  const counts = new Map();
+  for (const glyph of a) counts.set(glyph, (counts.get(glyph) || 0) + 1);
+  return n + a.length - Math.max(...counts.values());
+}, 0);
+assert.equal(stateOutputs.size, 72);
+assert.equal(reusedStates.length, 12);
+assert.equal(minimumForcedErrors, 14);
+
 const comparison = {};
 for (const [name, key] of Object.entries(keys))
   comparison[name] = key.filter((v, i) => v === doublets[i].index).length;
@@ -202,7 +220,10 @@ console.log(JSON.stringify({
     meanDistinct: distinctSum / trials,
     sdDistinct: Math.sqrt(distinctSq / trials - (distinctSum / trials) ** 2),
     jointAddOne: (joint + 1) / (trials + 1)},
-  originalRuneAgreement: comparison, nativeQuoteBaseline: baseline,
+  originalRuneAgreement: comparison,
+  allSecretStationaryStateOutputGate: {distinctCollisionStates: stateOutputs.size,
+    reusedStates: reusedStates.length, minimumForcedErrors},
+  nativeQuoteBaseline: baseline,
   proposedWordwiseInverses: candidates, nativePlantRoundtrip: true,
   conclusion: "Post-selected source coincidence; no recovered LP2 plaintext/key."
 }, null, 2));
