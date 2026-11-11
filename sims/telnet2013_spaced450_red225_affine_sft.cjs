@@ -12,8 +12,9 @@
  * stationary output substitution f: F29 -> 29 LP2 rune labels (not required
  * bijective). Maximize exact source-rune matches without guessing f.
  *
- * This program makes no claim that the historical extra spaces were authored
- * deliberately or that a prime-pair operation was a cipher instruction.
+ * The source's historical decimal prime-reversal operation is tested alongside
+ * the primes themselves. This program makes no claim that the historical extra
+ * spaces were authored deliberately or that a prime-pair operation was a cipher.
  *
  * Manual SFT: node sims/telnet2013_spaced450_red225_affine_sft.cjs
  */
@@ -104,13 +105,16 @@ function positiveControl() {
 
 function main() {
   const decisions = [];
+  const historicalReversed = primeRange.map(value => Number(String(value).split('').reverse().join('')));
+  for (const sourceOperation of ['ordinary-prime', 'telnet-decimal-reversal'])
   for (const redOrder of ['printed', 'reversed'])
   for (const primeOrder of ['ascending', 'descending']) {
     const seen = redOrder === 'printed' ? red : red.slice().reverse();
-    const keys = primeOrder === 'ascending' ? primeRange : primeRange.slice().reverse();
-    decisions.push({redOrder, primeOrder, ...maximumLookup(keys,seen)});
+    const primeValues = sourceOperation === 'ordinary-prime' ? primeRange : historicalReversed;
+    const keys = primeOrder === 'ascending' ? primeValues : primeValues.slice().reverse();
+    decisions.push({sourceOperation, redOrder, primeOrder, ...maximumLookup(keys,seen)});
   }
-  assert.deepEqual(decisions.map(x=>x.best), [55,53,53,55]);
+  assert.deepEqual(decisions.map(x=>x.best), [55,53,53,55,53,52,52,53]);
   const plant = positiveControl();
   console.log(JSON.stringify({
     interpretation:'secondary 2013 telnet spacings; source intent unproven',
@@ -118,12 +122,12 @@ function main() {
     sourceMissingPrimeCount:180,
     underlyingPrimeCount:primeRange.length,
     observedRedRuneCount:red.length,
-    family:'a*p_(2i)+b*p_(2i+1) mod29; arbitrary stationary f; all a,b',
+    family:'a*sourcePrimePair_(2i)+b*sourcePrimePair_(2i+1) mod29; ordinary or historical decimal digit reversal; arbitrary stationary f',
     coefficientPairs:29*29,
     explicitOutputSubstitutions:'optimally chosen, even non-bijective; no search bound',
     decisions,
     syntheticPlant:{best:plant.best,optimizers:plant.optimizers},
-    implication:'Every tested orientation has >=170 exact mismatches; no direct pair-affine global substitution',
+    implication:'All 8 historical-prime/reversal and orientation models have >=170 exact mismatches; no direct stationary pair-affine substitution',
     plaintextRecovered:false
   },null,2));
 }
