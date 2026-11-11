@@ -1,0 +1,31 @@
+name: Original 761 MP3 low-frequency boundary gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  low-notch-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch and pin authentic historical audio
+        run: |
+          curl --fail --location --silent --show-error --output /tmp/761.MP3 https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3
+          echo '83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460  /tmp/761.MP3' | sha256sum --check
+      - name: Decode original stereo PCM at source sampling rate
+        run: ffmpeg -hide_banner -loglevel error -i /tmp/761.MP3 -ac 2 -ar 44100 -c:a pcm_f32le -f f32le /tmp/761-stereo.f32le
+      - name: Analyze historical 1:56 low-band notch without frequency or time search
+        run: node sims/audio_761_low_notch_sft.cjs /tmp/761-stereo.f32le artifacts/audio-761-low-notch.json
+      - name: Upload exact spectrum and synthetic positive-control result
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-audio-761-low-notch
+          path: artifacts/audio-761-low-notch.json
+          if-no-files-found: error
