@@ -126,11 +126,54 @@ for (const rows of [false, true]) {
   assert.deepEqual(transform(ciphertext, Minv, rows), control);
   assert.deepEqual(transform(transform(control, Minv, rows), M, rows), control);
 }
+
+/**
+ * Block t uses matrix^t or matrix^(t+1). The printed infinity sign and arrow
+ * offer a plausible repeated-action interpretation; no phase/key is fitted.
+ * @param {number[]} input @param {number[][]} matrix
+ * @param {boolean} rows @param {number} start
+ */
+function transformRunning(input, matrix, rows, start) {
+  const output = [];
+  let power = Array.from({length:5}, (_,i) =>
+    Array.from({length:5}, (_,j) => Number(i === j)));
+  /** @param {number[][]} A @param {number[][]} B */
+  function multiply(A, B) {
+    return A.map(row => B[0].map((_,j) =>
+      mod(row.reduce((s,v,k) => s + v*B[k][j], 0))));
+  }
+  if (start === 1) power = matrix;
+  for (let k = 0; k < input.length/5; k++) {
+    output.push(...transform(input.slice(k*5, k*5+5), power, rows));
+    power = multiply(power, matrix);
+  }
+  return output;
+}
+const runningExpected = [
+  0.03498881431767338,0.037225950782997765,
+  0.03543624161073825,0.032662192393736016,
+  0.033914988814317676,0.03516778523489933,
+  0.032214765100671144,0.03373601789709172
+];
+const running = [];
+for (const [keyName,key,opposite] of [["M",M,Minv],["Minv",Minv,M]]) {
+  for (const start of [0,1]) for (const rows of [false,true]) {
+    const candidate = transformRunning(body,key,rows,start);
+    assert.deepEqual(transformRunning(candidate,opposite,rows,start),body);
+    assert.ok(Math.abs(ioc(candidate)-runningExpected[running.length])<1e-14);
+    const plant = transformRunning(control,opposite,rows,start);
+    assert.deepEqual(transformRunning(plant,key,rows,start),control);
+    running.push({key:keyName,firstExponent:start,
+      action:rows?"row-vector":"column-vector",ioc:ioc(candidate),
+      opening60:print(candidate.slice(0,60))});
+  }
+}
+
 console.log(JSON.stringify({
   classification:"source-composite p15 Hill5 direct original-cipher negative",
   source:"p15 red9+spiral16→5x5; p15 body150→30 five-rune packets",
   matrix:M, determinant:det, inverse:Minv,
-  originalBodyIoC:ioc(body), variants,
-  positiveControl:"p57 known GP95 plus its first55 = 150; all four inverse pairs exact",
+  originalBodyIoC:ioc(body), variants, running,
+  positiveControl:"p57 known GP95 plus its first55 = 150; all 12 stationary and running inverse families exact",
   verdict:"No deciphered p15 native-GP plaintext or source-authentic cipher mechanism."
 }, null, 2));
