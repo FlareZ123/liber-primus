@@ -163,3 +163,12 @@ The mechanism remains unknown; full 56 unsolved physical pages not decrypted. Pr
 2. Run/check all four newly committed CJS programs under actual Node.js + checked-out corpus; ensure metadata and numeric outputs match the executed V8 algorithms. GitHub Actions can provide a bounded manual runner, if justified.
 3. Reconcile \`results/README.md\` with any mechanism progress in the **same commit** and retain complete input/control evidence in \`im-results/\`. Never claim standalone signals as plaintext.
 4. Check incoming communications and active agent overlap opportunistically, so research avoids wasted duplication.
+
+
+## 2026-11-11: LP2 punctuation identity stream
+
+- Added `resources/liber-primus/lp2-punctuation-identity.json`: 180 punctuation events over the 12,956-rune unsolved stream from the richer relikd transcription: 145 `⁘`, 4 `⁚`, 31 `⁜`. Source page files are recorded in the dataset.
+- All 31 `⁜` events match the 31 large-punctuation records in `lp2-ink-annotations.json` in reading order. There are 29 unique offsets because two positions are duplicated at 1860 and 3603. Four commas occur at p5:110, p11:250, p20:134, p46:96.
+- Exact 180-way cardinality alignment: punctuation events = 30×6 table interior after removing 76 perimeter cells = primes p21..p200 = 85+95 terminal solved-page runes. This is a structural lead, not a solved mapping.
+- `sims/lp2_punctuation_identity_stream.cjs` verifies counts, annotation cross-match, and the 180 cardinalities; `im-results/lp2-punctuation-identity-stream.md` records bounded failures. Direct trit groupings, prime-gap mod4 (best 110/180; permutation p≈0.10), selected prime/phi/index plus grid arithmetic (best 11/180 exact terminal-plaintext matches), per-segment Caesar and prime-totient reset models did not recover plaintext.
+- Next: investigate one source-constrained punctuation-driven state/routing rule over the 30×6 interior and/or 180-prime sequence. Do not repeat direct base-3 grouping or simple additive key guesses. No LP2 plaintext or authentic key recovered.

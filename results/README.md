@@ -127,6 +127,12 @@ These eliminate specified mechanisms under their documented source and repair as
 
 A correctly recovered synthetic key validates an experiment's declared implementation. It does not establish that the manuscript used that mechanism. Historical family searches and their precise variants remain available in `im-results/` and `sims/`.
 
+### Punctuation identity stream (new source inventory; not a decryption)
+
+A richer transcription preserves **180 punctuation events** over the 12,956-rune unsolved stream: 145 `⁘` sentence marks, 4 `⁚` commas, and 31 `⁜` chapter/section marks. All 31 chapter-mark events match the 31 large-punctuation annotation records in `resources/liber-primus/lp2-ink-annotations.json`, including duplicated offsets 1860 and 3603 (29 unique positions). The four commas are on pages 5, 11, 20 and 46. See the [derived event inventory](../resources/liber-primus/lp2-punctuation-identity.json) and [bounded analysis](../im-results/lp2-punctuation-identity-stream.md).
+
+The 180-event count also equals the 30×6 interior of the 32×8 table after removing its 76-cell perimeter, the 180 standard primes p21–p200, and the 85+95 terminal solved-page runes. These are structural alignments, not an established cipher relationship. Direct ternary groupings, simple prime/grid arithmetic, and punctuation-delimited Caesar/totient tests recovered no plaintext. The punctuation channel remains a candidate state/routing control; no key or reversible mechanism has been identified.
+
 ## 5. Research decisions with a path to actual decryption
 
 1. **A source-constrained, reversible original-cipher inverse.** Freeze an independently justified key/state derivation from the original ink, page layout, 256-entry table or historical source material. Specify page/word resets and the treatment of all observed repeated outputs. A credible result must recover previously unfitted LP2 runes and **exactly re-encrypt** them. Use existing authentic solved-Cicada regressions and the [contextual conditional inverse](../sims/lag6_repair_contextual_inverse.cjs) as tools, with its architecture explicitly treated as provisional.
