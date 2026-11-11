@@ -1,0 +1,18 @@
+name: LP2 p54 232 plus Ac24 source-tail gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-p54:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce source-count and original ciphertext inverse
+        run: node sims/p54_ac24_grid256_tail_sft.cjs
