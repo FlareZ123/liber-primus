@@ -60,8 +60,7 @@ The specific chain
 
 does not produce a credible LP2 key under the declared reductions, signs, initialization conventions or reset schedules. The random-seed comparison is decisive against treating this exact seed as a useful input to this model.
 
-This does **not** rule out a different PRNG family, a non-additive use of the 13 tokens, a path/permutation operation, a different historical modulus, or an independently selected state transition. It does not justify expanding generic seed searches. The separate RSA-exponent/Fisher–Yates table permutation experiment also produced no language advantage after accounting for its 16 tested variants; its best nominal tail probability was about 0.045, with a Bonferroni upper bound of 0.72.
-
+This does **not** rule out a different PRNG family, a non-additive use of the 13 tokens, a path/permutation operation, a different historical modulus, or an independently selected state transition. It does not justify expanding generic seed searches. 
 ## Reproduction and relationship to prior work
 
 Run from the repository root with Node.js 22:
