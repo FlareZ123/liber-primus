@@ -176,6 +176,23 @@ All four original-input syndromes are nonzero and absent from the full one-error
 
 **Consequence:** the terminal length coincidence cannot by itself authorize applying the **same quartic code directly to original visible p55+p56+p57 runes**, or explaining their apparent nondivisibility by one transcription error. A different plaintext/code register, non-linear encipherment, orientation or source-predicted transformation remains possible, but none is selected by this test. No p55 plaintext or other unknown LP2 text was recovered. Avoid treating the 256-count identity as a cryptographic decoding rule without a step that predicts original input.
 
+## Exact 19-fold quartic terminal erasure recovery (Agent 19, 11 November 2026)
+
+**Classification: an executable original-input decryption candidate with negative ciphertext predictions, not a recovered plaintext.** The known p57 PARABLE has **19 body words**. The historically sourced 2013 BASE29 polynomial and original p39 red-triad polynomial have product \(F(X)=23+21X+11X^2+17X^3+12X^4\), degree four. Therefore \(F(X)^{19}\) has degree **76**, matching the **76 unknown GP29 runes of p55**. The other **180 of 256** terminal positions are the 85 previously solved p56 runes and 95 printed clear p57 runes. This suggests an explicit hypothetical [256,180] linear code over GF29 with 76 recoverable parity positions. No historical source instructs exponentiation by 19; that is the weakest step.
+
+We tested exact erasure completion, using the 180 independently known original symbols to *predict* all 76 unknown p55 glyphs without fitting the latter. **First**, place p55 before p56+p57 as the 76 high-degree coefficients of a 256-coefficient polynomial: its remaining 180 known low-degree coefficients determine the unique \(F^{19}\)-divisible codeword, because its constant term is 25, a unit modulo29. **Second**, map p55 clockwise around the table's **76-cell perimeter starting upper-left** and map the known 180 runes into its **30×6 interior row-major**. The resulting 76×76 GF29 erasure syndrome matrix is full rank, so elimination predicts a unique p55 for this layout as well.
+
+| Frozen p56 input | Predicted p55 / original exact matches: linear | Predicted p55 / original exact matches: geometric |
+| --- | ---: | ---: |
+| 85 independently solved p56 plaintext runes, plus original clear p57 | **2/76** | **3/76** |
+| 85 visible p56 ciphertext runes, plus original clear p57 | **5/76** | **5/76** |
+
+The benchmark for unrelated equiprobable GP29 runes is 76/29 ≈ 2.62 matches. All four computed predictions are **exact mathematical codewords** under \(F^{19}\), but none is the original p55 ciphertext or legible new GP plaintext. This is a bounded rejection of **direct same-register [256,180] F19 coding** in these two natural source geometries, not a rejection of a separate output alphabet or unknown outer cipher.
+
+**Positive plant and complete source reproduction:** [the standalone CommonJS SFT](../sims/lp2_terminal_f19_erasure_recovery_sft.cjs) takes a separate nontrivial source-derived 180-coefficient seed, multiplies it by \(F^{19}\), deletes its 76 prefix or 76 perimeter values, and recovers the **exact 76/76 planted unknown coefficients** under both layouts. It also derives the historical factors from source constants, checks the terminal lengths, reconstructs all four real candidate codewords and asserts every original match count.
+
+**Decision:** the especially clue-constrained 19×4=76 erasure-decoding architecture is now decisively constrained on original ciphertext. To continue toward p55, a primary clue must specify what transforms a codeword into visible GP runes or select another independent algebraic mechanism. Blind changes in ring orientation or extra polynomial powers are unjustified.
+
 ## Consequence for subsequent research
 
 The strongest contribution here is a **geometrically prescribed 76/180 source split that matches the last three pages exactly**, alongside early eliminations that prevent a futile search for a fixed table-byte substitution key. The theme of removing a circumference supplies a plausible human solve-path *hypothesis*, but the instructions were recognized after examining existing materials, so the count match is not independent confirmation of an authentic cipher.
