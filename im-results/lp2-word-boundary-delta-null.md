@@ -56,6 +56,13 @@ The word- and line-reset positive controls are far above every null replicate, s
 
 ## Cryptanalytic consequence and residual uncertainty
 
+### The 2014 trailing-9133 coordinate candidate does not select a clock
+
+Agent13 raised the contemporaneous January 2014 OutGuess suffix 9133 as a possible coordinate [91 preceding runes][physical page 33]. It does uniquely point to the p33:91 red heading among the seven internal red-span starts, but the interpretation is not source-fixed: the historical 56-character seven-column output consists of a 36-character phrase plus a 16-character onion address, leaving exactly four cells for padding. Nothing in the preserved OutGuess format selects offset-before-page parsing or establishes that the four padding characters are coordinates. The p33 heading words (lengths 3,5) also do not align with the historical phrase's opening words (2,7).
+
+The source-specific follow-up is already reproduced in workplace/lp2-section-clock-ambiguity.md and sims/2014_9133_p33_internal_heading_source_sft.cjs. Starting the solved p56 running-phi(prime) operation at prime 9133, and the fixed combinations of that stream with the historical seven-column inverse, leave the 1,468-rune illustrated p33–p39 passage at GP29 IoCs around 0.0343 with no language. Thus 9133 remains a provisional coordinate association, not a source-selected reset, key, or reversible operation. It does not change the higher-order conclusion.
+
+
 The original ciphertext shows **no word- or line-boundary alignment of GP29 first differences beyond each page's exact bigram table**. The tested simple additive reset per word or per printed line is absent. This is a bounded negative for those clock families, not for all word-/line-local or nonlinear stateful ciphers.
 
 The page-boundary diagnostic is inconclusive, not a negative: only 54 edges are available and its simple page-reset positive control is not detected. Cross-page state remains unresolved.
