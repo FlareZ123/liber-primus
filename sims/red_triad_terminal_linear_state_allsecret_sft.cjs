@@ -138,4 +138,75 @@ for(const layout of ['adjacent','halves']){
 assert.deepEqual(result.cases.map(x=>x.disjointIncompatible6),[21,20]);
 assert.equal(result.cases[0].sourceKeyDirectMatches,3);
 assert.equal(result.cases[1].sourceKeyDirectMatches,8);
+
+/**
+ * Every arbitrary stationary (possibly nonlinear) secret map from one GF841
+ * state to a GP29 rune must preserve symbol equality whenever state recurs.
+ * Test all 841 secret initial states. The second gate grants independent
+ * arbitrary lookup tables for red p53 and black p55.
+ * @param {'adjacent'|'halves'} layout
+ */
+function nonlinearGate(layout){
+  const pairs=Array.from({length:127},(_,i)=>layout==='adjacent'?
+    [d2.q[2*i],d2.q[2*i+1]]:[d2.q[i],d2.q[i+127]]);
+  /** @param {[number,number]} seed */
+  function states(seed){
+    let s=seed.slice();
+    const out=[];
+    for(let i=0;i<127;i++){
+      out.push(s[0]+','+s[1]);
+      s=add(mul(u,s),pairs[i]);
+    }
+    return out;
+  }
+  /** @param {string[]} stateKeys @param {number[]} text @param {boolean} twoInk */
+  function conflicts(stateKeys,text,twoInk){
+    const seen=new Map();
+    let n=0;
+    for(let i=0;i<127;i++){
+      const key=(twoInk?(i<51?'red:':'black:'):'')+stateKeys[i];
+      if(seen.has(key)&&seen.get(key)!==text[i])n++;
+      else if(!seen.has(key))seen.set(key,text[i]);
+    }
+    return n;
+  }
+  const survivorsSingle=[],survivorsInk=[];
+  let minConflicts=Infinity,minInkConflicts=Infinity;
+  for(let a=0;a<29;a++)for(let b=0;b<29;b++){
+    const trajectory=states([a,b]);
+    const common=conflicts(trajectory,target,false);
+    const twoInk=conflicts(trajectory,target,true);
+    minConflicts=Math.min(minConflicts,common);
+    minInkConflicts=Math.min(minInkConflicts,twoInk);
+    if(common===0)survivorsSingle.push([a,b]);
+    if(twoInk===0)survivorsInk.push([a,b]);
+  }
+  const acState=states([24,0]),extState=states([23,27]);
+  const ac24=[conflicts(acState,target,false),conflicts(acState,target,true)];
+  const extension=[conflicts(extState,target,false),conflicts(extState,target,true)];
+  // A private nonlinear source-native lookup is permitted by the exact gate.
+  const plantKeys=states([11,7]);
+  const plant=plantKeys.map(k=>{
+    const [a,b]=k.split(',').map(Number);
+    return mod(a*a+7*a*b+13*b*b+5);
+  });
+  const inkPlant=plant.map((v,i)=>mod(v+(i<51?0:11)));
+  assert.equal(conflicts(plantKeys,plant,false),0);
+  assert.equal(conflicts(plantKeys,inkPlant,true),0);
+  return {layout,allSecretInitialStates:841,
+    possibleSingleLookupSeeds:survivorsSingle.length,
+    minimumContradictionsForSingleLookup:minConflicts,
+    possibleSeparateRedBlackLookupSeeds:survivorsInk.length,
+    minimumContradictionsForSeparateLookups:minInkConflicts,
+    separateLookupSurvivors:survivorsInk,
+    ac24SeedContradictions:{single:ac24[0],twoInk:ac24[1]},
+    extensionRootSeedContradictions:{single:extension[0],twoInk:extension[1]},
+    plant:'nonlinear hidden-state single and two-ink observations both pass exactly'};
+}
+result.nonlinearAllSecretGate=['adjacent','halves'].map(nonlinearGate);
+assert.deepEqual(result.nonlinearAllSecretGate.map(x=>x.possibleSingleLookupSeeds),[0,0]);
+assert.deepEqual(result.nonlinearAllSecretGate.map(x=>x.possibleSeparateRedBlackLookupSeeds),[8,3]);
+assert.deepEqual(result.nonlinearAllSecretGate.map(x=>x.minimumContradictionsForSingleLookup),[2,1]);
+assert.deepEqual(result.nonlinearAllSecretGate.map(x=>x.ac24SeedContradictions.twoInk),[5,7]);
+
 console.log(JSON.stringify(result,null,2));
