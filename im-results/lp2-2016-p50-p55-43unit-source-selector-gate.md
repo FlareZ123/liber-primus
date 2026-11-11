@@ -140,7 +140,24 @@ The separate [p32 word-center route](p32-wordcenter-compass-route.md) produces t
 
 No variant recovers plaintext. The best score, −5.322053, uses the wrong **Seeding** role and remains non-linguistic. Direct byte-XOR also produces at most 8/43 valid GP29 symbols, rather than the 43/43 required. This rejects only these two representations of the seven-rune word-center output as an OutGuess password.
 
-**Decision:** retire the eight compass-key and eight word-center-key OutGuess ARC4-derived GP29 variants. This does not falsify the p32 route as a selector, the p55 interior extraction, or other source-selected key representations/operations. Do not expand into arbitrary password encodings or phases. The direct additive and OutGuess results together leave no supported reversible operation between these two 43-rune streams.
+### Reverse key direction: p55 interiors as the OutGuess password (bounded negative)
+
+The 43 p55 interior runes can also be read as the password, with the p32 43-rune compass output as target. This is a distinct key direction: the phrase "shed our own circumferences" selects the p55 interiors, while the p32 route supplies the map-derived stream. The same literal GP-Latin and base29-integer encodings, OutGuess roles, and signs were tested.
+
+| Password encoding | OutGuess role | Operation | IoC | Emerson-GP language score | Direct XOR values in GP29 range |
+|---|---|---|---:|---:|---:|
+| p55 literal GP-Latin | Encryption | \(C-K\) | 0.032115 | −6.572163 | 6/43 |
+| p55 literal GP-Latin | Encryption | \(C+K\) | 0.049834 | −6.886027 | 6/43 |
+| p55 literal GP-Latin | Seeding | \(C-K\) | 0.031008 | −6.070723 | 6/43 |
+| p55 literal GP-Latin | Seeding | \(C+K\) | 0.027685 | −5.949500 | 6/43 |
+| p55 base29 integer | Encryption | \(C-K\) | 0.032115 | −6.504939 | 6/43 |
+| p55 base29 integer | Encryption | \(C+K\) | 0.027685 | −5.859426 | 6/43 |
+| p55 base29 integer | Seeding | \(C-K\) | 0.033223 | −6.264670 | 4/43 |
+| p55 base29 integer | Seeding | \(C+K\) | 0.038760 | −6.196218 | 4/43 |
+
+No variant recovers plaintext. The best score, −5.859426, remains non-linguistic; direct byte-XOR yields only 4–6/43 valid GP29 symbols. This closes the reverse password direction for the same two fixed encodings and roles.
+
+**Decision:** retire the 24 tested OutGuess ARC4-derived GP29 variants across compass-key, word-center-key, and reverse p55-key directions. This does not falsify the p32 route as a selector, the p55 interior extraction, or other source-selected key representations/operations. Do not expand into arbitrary password encodings or phases. The direct additive and OutGuess results together leave no supported reversible operation between these two 43-rune streams.
 
 ## Exact missing selector
 
