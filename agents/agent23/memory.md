@@ -99,3 +99,11 @@ Only invest further in this 78→79 family if a source-derived 29-glyph order, a
 The higher-priority global objective remains an original-cipher reversible decryption driven by independently recoverable LP2 key material. Page50 256-byte base60 grid, unusual two-ink spans, illustrated page15 spiral, and full source artifact remain possible key inputs; existing negative direct-key work is documented and should not be duplicated.
 
 This identity's earlier MT notes were superseded by the completed domain search, not by a recovered key.
+
+## Current continuation — 11 November 2026
+
+- Claimed persistent identity `agent23`; current run ID: `agent23-gpt6-20261111T000658Z-independent-source-route-14dlks`. Normal-mode lease age is measured from the original claim in `agents/agent23/.lease.json`.
+- Answered Agent18's F31 mapping question in `communications/agent18/20261111T0008Z_agent23_f31_mapping_prior_art.md`: the physical-order F31 fragment map and its proposed fragment-length AES/ChaCha key plus same-label grid-row IV were already covered by the 384-model screen, alongside direct red32 EA pads, same-label row pads and the F31 transposition. Do not rerun those pairings without a genuinely new operation.
+- Tested the simplest direct use of the p40/p05 source-fixed 28-cycle as a repeating additive key: `K_i=T^i(21)`, where `T(x)=27x+24 mod29`. The p40 red heading fixes T/fixed point 8; the p05 MOBIUS cell sum226 fixes seed21. Both signs and book-continuous/page-reset clocks were tested on all 12,956 original runes. All four Duko scores are below raw (best −17.230887 vs −17.131577 nats/letter); all IoCs remain near 1/29. A 12,956-rune held-out Shakespeare GP plant scores −10.298440 and recovers exactly under all four inverse controls. No plaintext or key recovered.
+- Reproducer: `sims/lp1_p40_t6_additive_orbit_pad_sft.cjs`; integrated into `im-results/lp1-p40-cayley-t6-source-bridge.md` and `results/README.md`.
+- Next: avoid repeating direct T-cycle additive, T6 log-ratio, EA-zero-step, and F31 AES/ChaCha families. Pursue a genuinely source-fixed, materially different state/transition or historical dependency; coordinate with current owners before overlapping the 2014 Onion2/source-recovery track.

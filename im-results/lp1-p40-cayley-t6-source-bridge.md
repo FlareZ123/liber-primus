@@ -91,4 +91,28 @@ A finite 16-model control set covers word reset versus continuous state, forward
 
 This is distinct from the existing additive-difference T6 gate and from direct T6-power / previous-rune exponent-feedback tests. It is a bounded negative for the multiplicative log-ratio differential interpretation only; it does not rule out keyed or evolving state, other source-selected encodings, or a layered/non-GP intermediate. Full method: [report](lp1-p40-cayley-t6-logratio-inverse.md) and [reproducer](../sims/lp1_t6_orbit_ratio_inverse_sft.cjs).
 
+## Direct additive orbit-pad test (source-fixed negative)
+
+A simple human-readable use of the source-derived 28-cycle is to treat its orbit itself as a repeating GP29 additive key. The source bridge above fixes every part of this candidate without ciphertext fitting: p40 supplies T(x)=27x+24 mod29, fixed point 8, and the p05 MOBIUS cell supplies seed 21. Thus K_i=T^i(21) is the exact period-28 key
+
+`[21,11,2,20,13,27,28,26,1,22,9,6,12,0,24,5,14,25,3,18,17,19,15,23,7,10,4,16]`.
+
+The original 12,956-rune LP2 input was tested under the two natural clocks (one continuous book stream or reset at each physical page) and both additive directions:
+
+| Clock | Candidate plaintext | Duko GP quadgram score (nats/letter) | IoC |
+|---|---|---:|---:|
+| Book-continuous | P=C−K | −17.230887 | 0.03454317 |
+| Book-continuous | P=C+K | −17.275837 | 0.03447157 |
+| Page-reset | P=C−K | −17.272273 | 0.03446688 |
+| Page-reset | P=C+K | −17.340487 | 0.03445367 |
+| Raw ciphertext | — | **−17.131577** | **0.03447840** |
+
+Every candidate is worse than the untouched ciphertext; the best loses 0.09931 nats/letter. All IoCs remain at the uniform-GP level. This is not a language-like output or a partial decryption.
+
+The reproducer checks the p40 red heading, its 435=15×29 prime-weight sum and final index-8 rune, re-derives the p40-centered matrix conjugate and p05 seed21, and asserts the exact 28-symbol orbit. All four inverses re-encrypt the original 12,956 runes exactly. A 12,956-rune held-out Shakespeare GP plant scores −10.298440 nats/letter and is recovered exactly under all four corresponding encrypt/decrypt controls, so the negative is not explained by a broken inverse or an insensitive scorer.
+
+**Decision:** retire only the direct repeating-additive interpretation K_i=T^i(21) under the book-continuous and page-reset clocks. This does not exclude a genuinely different stateful/nonlinear use of the source cycle. Do not add arbitrary phases, key permutations, or extra KDFs without a new manuscript clue.
+
+**Reproducer:** [sims/lp1_p40_t6_additive_orbit_pad_sft.cjs](../sims/lp1_p40_t6_additive_orbit_pad_sft.cjs), Node.js 22, no dependencies.
+
 **Reproduce:** [`sims/lp1_p40_cayley_t6_bridge_sft.cjs`](../sims/lp1_p40_cayley_t6_bridge_sft.cjs), Node.js 22 CommonJS, reads only the committed original-source annotations, GP tables and canonical whole-word parser. It verifies the exact projective identity on all 30 states, enumerates all 812 affine maps on the unchanged original ciphertext, and compares all three divisible red spans. Successful [manual GitHub Actions run 42923281274](https://github.com/FlareZ123/liber-primus/actions/runs/42923281274) verifies the updated dual-divisibility assertion as well as the exact source matrix identity and all original-cipher counts. No ciphertext was modified.
