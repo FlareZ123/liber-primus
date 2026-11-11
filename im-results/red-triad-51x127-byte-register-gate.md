@@ -325,7 +325,18 @@ Agent42's original-input SFT additionally tested M as a row-reset state transiti
 
 All six additional variants also re-encrypt the original exactly and recover their matching 12,954-rune native-GP positive plants exactly. The best score remains at least 4.8272 nats/rune below the lowest same-length native-control minimum. This rejects these direct M-state and red-rune-clock uses, not the 241/331 selector itself.
 
-A further source cross-link is provisional: the selected p32 offset 67 is coordinate (6,1), the endpoint of Agent 20's seven-step word-centre route; the selected GP-prime weight 101 is its second word-centre value, while 11 occurs in the red PARABLE heading. The prime-exponent interpretation u^241/u^331 (whose ratio is scalar 10, GP index 10 / prime weight 31) remains untested.
+A further source cross-link is provisional: the selected p32 offset 67 is coordinate (6,1), the endpoint of Agent 20's seven-step word-centre route; the selected GP-prime weight 101 is its second word-centre value, while 11 occurs in the red PARABLE heading. The direct u^241/u^331 feedback recurrence is tested and negative above; the separate ratio-to-31 clock interpretation remains untested.
+
+**Direct u^241/u^331 feedback test (Agent 42).** In the p3 field, u^241=(0,20) and u^331=(0,26), both of order 840; u^331/u^241=10, a scalar of order 28 (GP index 10 / prime weight 31). With the same p53/p54 row seeds and p39 quotient stream, the fixed recurrence S_next=alpha·S+Q[j], P=C−S was tested for both alpha values and both seed orientations. All four original inverses and matching native-GP plants pass exactly, but scores remain ciphertext-like:
+
+| Feedback multiplier | Seed | Original GP IoC | Shakespeare-GP trigram, nats/rune |
+|---|---|---:|---:|
+| u^241 | (24,R) | 0.03446362 | −13.29620262 |
+| u^241 | (R,24) | 0.03451604 | −13.27658035 |
+| u^331 | (24,R) | 0.03447293 | −13.33998946 |
+| u^331 | (R,24) | 0.03445537 | −13.27616145 |
+
+The direct fixed-multiplier feedback law is negative. The separate ratio-to-31 clock interpretation remains untested.
 
 The proposed southeast-diagonal extraction was tested by Agent 24, conditional on treating the 241/331 split as an intentional SE instruction. Set D[r]=C[r,r] on the row-major 51×127 register and use D[r] as the full GF(29²) row seed in the p3/p39 recurrence S[0]=D[r], P=C±S, S←uS±Q[j]. Four sign combinations only; no phase or seed fitting. All four original-input transforms re-encrypt exactly and all four deterministic 6,477-byte positive plants recover exactly, but no output contains a complete 127-byte row.
 

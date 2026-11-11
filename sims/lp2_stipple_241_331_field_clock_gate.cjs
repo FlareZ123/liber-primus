@@ -142,6 +142,19 @@ function matrixStateTransform(src, R, Q, seedOrder, decode) {
   return out;
 }
 
+function exponentStateTransform(src, R, Q, alpha, seedOrder, decode) {
+  const out = [];
+  for (let r = 0; r < 51; r++) {
+    let S = seedOrder === "Ac,R" ? [24, R[r]] : [R[r], 24];
+    for (let j = 0; j < 127; j++) {
+      const i = 254 * r + 2 * j;
+      const x = [src[i], src[i + 1]];
+      out.push(...(decode ? sub(x, S) : add(x, S)));
+      S = add(mul(alpha, S), Q[j]);
+    }
+  }
+  return out;
+}
 function twoCycleTransform(src, R, Q, zL, zR, rowClock, kind, direction, decode) {
   const out = [];
   for (let r = 0; r < 51; r++) {
@@ -221,6 +234,12 @@ function main() {
   assert.equal(fieldOrder(u), 840);
   assert.equal(fieldOrder(zL), 84);
   assert.equal(fieldOrder(zR), 10);
+  const alpha241 = pow(u, 241), alpha331 = pow(u, 331);
+  const exponentRatio = mul(alpha331, fieldInv(alpha241));
+  assert.deepEqual(alpha241, [0, 20]);
+  assert.deepEqual(alpha331, [0, 26]);
+  assert.deepEqual(exponentRatio, [10, 0]);
+  assert.equal(fieldOrder(exponentRatio), 28);
 
   const p53 = corpus.pages.find(p => p.page === 53).indices;
   const p54 = corpus.pages.find(p => p.page === 54).indices;
@@ -264,6 +283,23 @@ function main() {
     });
   }
 
+  const exponentStateVariants = [];
+  for (const [name, alpha] of [["u^241", alpha241], ["u^331", alpha331]]) {
+    for (const seedOrder of ["Ac,R", "R,Ac"]) {
+      const decoded = exponentStateTransform(payload, R, Q, alpha, seedOrder, true);
+      const encoded = exponentStateTransform(decoded, R, Q, alpha, seedOrder, false);
+      assert.deepEqual(encoded, payload);
+      const plantedCipher = exponentStateTransform(plant, R, Q, alpha, seedOrder, false);
+      const plantedPlain = exponentStateTransform(plantedCipher, R, Q, alpha, seedOrder, true);
+      assert.deepEqual(plantedPlain, plant);
+      exponentStateVariants.push({
+        multiplier: name, seedOrder, ioc: ioc(decoded), trigram: score(decoded, model),
+        first24: decoded.slice(0, 24).map(i => corpus.translit[i]).join(" "),
+        originalReencrypt: true, plantRecovered: plantedPlain.length
+      });
+    }
+  }
+
   const additiveVariants = [];
   for (const rowClock of ["ordinal", "red-rune"]) {
     for (const direction of ["minus", "plus"]) {
@@ -305,7 +341,7 @@ function main() {
     gibran: windowStats(gi, model, payload.length),
     emerson: windowStats(em, model, payload.length)
   };
-  const allVariants = [...matrixStateVariants, ...additiveVariants, ...multiplicativeVariants];
+  const allVariants = [...matrixStateVariants, ...exponentStateVariants, ...additiveVariants, ...multiplicativeVariants];
   const best = Math.max(...allVariants.map(x => x.trigram));
   const lowestNativeMinimum = Math.min(controls.shakespeare.min, controls.gibran.min, controls.emerson.min);
   const raw = { ioc: ioc(payload), trigram: score(payload, model) };
@@ -320,15 +356,15 @@ function main() {
       matrixM: M, matrixOrder: matrixOrder(M), matrixDeterminant: 20,
       parableWordCounts: wordCounts, p57RedHeading: "PARABLE",
       p32SelectedOffsets: [53, 67], p32Coordinates: [[4, 9], [6, 1]],
-      p32PrimeWeights: [101, 11], zL, zR,
+      p32PrimeWeights: [101, 11], zL, zR, alpha241, alpha331, exponentRatio,
       fieldBasis: "u^2=8+3u", zLExponent: 50, zLOrder: 84, zRExponent: 588, zROrder: 10,
       register: "2-rune header + 51 rows x 127 adjacent GF(29^2) pairs",
       p53RedSeedCount: R.length, p54Ac: p54[0], quotientPairs: Q.length
     },
-    raw, controls, matrixStateVariants, additiveVariants, multiplicativeVariants,
+    raw, controls, matrixStateVariants, exponentStateVariants, additiveVariants, multiplicativeVariants,
     bestCandidateTrigram: best,
     natsBelowLowestNativeControlMinimum: lowestNativeMinimum - best,
-    decision: "All ten source-fixed variants re-encrypt the original and recover their matching native-GP plants exactly, but all original outputs remain near-uniform and at least 4.82 nats/rune below the lowest same-length native-control minimum. This rejects only these direct M-state and two-cycle additive/multiplicative uses; it does not reject the 241/331 selector or the untested southeast-diagonal route."
+    decision: "All fourteen source-fixed variants re-encrypt the original and recover their matching native-GP plants exactly, but all original outputs remain near-uniform and at least 4.82 nats/rune below the lowest same-length native-control minimum. This rejects only these direct M-state and two-cycle additive/multiplicative uses; it does not reject the 241/331 selector or the untested southeast-diagonal route."
   }, null, 2));
 }
 if (require.main === module) main();

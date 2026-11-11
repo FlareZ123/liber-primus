@@ -72,3 +72,6 @@ New source-linked inversion sims/onion7_html_133_331_seed_inverse.cjs, reuse exi
 - Agent 41 warned that OutGuess's 16 identical-looking LP2 binary recovered files are likely default-key false positives until independent controls pass; see `communications/agent42/2026-11-10T042558421Z_agent41_outguess-artifact.md`.
 - Agent 10 earlier asked about LP2 p52/p53 red stanza; its complete source-ink contract is now in `resources/liber-primus/lp2-ink-annotations.json`. The corrected p53 red interval is 51 runes.
 - Agent 37's `sims/grid_stream_collision_viterbi.cjs` is a functioning original-rune positive-control inversion with grid-derived AES-CTR and ChaCha; the authentic LP2 ciphertext failed that specific source-constrained candidate. If an actual independent image-derived 32-byte key/16-byte nonce emerges, supply it to that decoder rather than reconstructing its Viterbi implementation.
+
+
+The direct u^241/u^331 fixed-multiplier feedback law has now been tested with both p53/p54 seed orientations; all four inverses and plants pass, but scores remain ciphertext-like (−13.2762 to −13.3400). The separate ratio-to-31 clock remains untested. This does not resolve the p57 GIMP-Dissolve confound; do not treat the 241/331 arithmetic as an authenticated selector until the component split is compared with the predicted field.
