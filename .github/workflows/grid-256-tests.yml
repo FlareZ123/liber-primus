@@ -22,6 +22,7 @@ on:
           - nine-section
           - redspan-zero
           - tree-tiling
+          - tree-home
           - tree-direction
           - signed2016-derivative
           - terminal-circumference
@@ -72,6 +73,10 @@ jobs:
       - name: Original 256-byte grid self-pointer 11-cycle and source-jet joint test
         if: ${{ inputs.probe == 'byte-pointer' }}
         run: node sims/lp2_grid_byte_pointer_11cycle_sft.cjs
+
+      - name: Original tree-page sentence-aligned HOME source and Vigenere gate
+        if: ${{ inputs.probe == 'tree-home' }}
+        run: node sims/tree121_sentence_home_source_gate.cjs
 
       - name: Original signed-image source-prime 11x11 tiling test
         if: ${{ inputs.probe == 'tree-tiling' }}
