@@ -14,3 +14,5 @@ jobs:
         run: node sims/onion7_133331_page_cycle_sft.cjs
       - name: Test prime49 / seven-by-227 source-clock original inverse
         run: node sims/onion7_prime49_227_clock_sft.cjs
+      - name: Check source-selected root-24 29-rune cyclic inverse
+        run: node sims/red_span_root24_circulant29_original_sft.cjs
