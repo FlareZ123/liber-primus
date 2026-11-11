@@ -50,6 +50,39 @@ Thus the original printed p29/table material and the **2013 signed DH worked-exa
 
 **The numerical agreement is exact. Its explanation as a deliberate 2013-to-LP2 pointer is provisional.** There is no surviving instruction telling a solver to use p29, subtract the numerical table from its rune polynomial or lift their shared factor modulo G². P29 was originally selected only *after* scanning all pages for G divisibility. The signed DH values became potential explanations after this algebraic relationship was discovered. The combined discovery process prevents treating a small fixed-model null probability as proof of authorial design.
 
+## A second, independent H-field channel: source quotient product recovers a DH-shaped minimal polynomial
+
+**This is an additional exact original-input result, with a crucial model-selection qualification.** Unlike the G-adic residue2 above, it uses the separate **irreducible quadratic H** extracted from the signed 2013 BASE29 example. In GF29, the polynomial H=24X²+26X+3 is equivalent to the monic irreducible `X²+18X+11`; its discriminant19 is a nonsquare. Consequently `E=GF(29)[X]/(H)` is a genuine **841-element field**, with ordinary field multiplication, trace and norm to GF29.
+
+Remove the independently source-supported factors once, then reduce each original quotient modulo H:
+
+```text
+A = (P29/G) mod H      = 19X+16
+B = (S/(H·G)) mod H    =  6X+ 5
+A·B mod H             = 24X+15
+```
+
+These are direct exact remainders from the unmodified original 277-rune p29 polynomial and the 256 printed numeric-table values. The **field norm and trace**, defined by multiplying each element by its Frobenius conjugate and adding the conjugates respectively, give
+
+| Field element | Trace in GF29 | Norm in GF29 |
+| --- | ---: | ---: |
+| A = 19X+16 | **9** | **2** |
+| B = 6X+5 | **18** | **26** |
+| AB = 24X+15 | **4** | **23** |
+
+The product's coefficients **24,15** equal the independently marked G double-root index24 and its leading coefficient15. For the product `β=AB`, the exact minimal polynomial is
+
+```text
+β² − 4β + 23 = 0  in E.
+Tr(β)=4=2×2,  N(β)=23.
+```
+
+This produces **both the signed DH worked example's shared secret2 (half the trace)** and **its modulus23 (the norm)** by the same standard field operation. Furthermore `N(A)=2` directly reproduces the shared secret; `N(B)=26=−3 mod29`, where 3 is the first source BASE29 digit of 3QO; and `N(β−2)=19` reproduces the example's client public share19. The full signed example also has base5 and server share8; the H-field coefficients `[19,16]` and `[6,5]` admit the retrospective numerical readings `16=2×8` and `6=8−2`. These last arithmetic decompositions do not independently identify a coding rule.
+
+**Independence and scope:** Because H is relatively prime to G, the H-field residue of `P29/G` is not fixed by the prior equation `P29/G−H·S/(HG)≡2 (mod G)`. The fresh H-field identities therefore supply a distinct exact original-data constraint. However, **the choice to multiply A and B was conceived after examining this source family**, the reversal of BASE29 digits into H is a modeling choice, and all numerical interpretations were selected retrospectively. The field algebra establishes that these outputs exist; no historical source yet directs a player to multiply these residues, compute their norm, or interpret the result as a decryption key.
+
+A concrete next step is to identify an original visual or signed-language clue that selects `A`, `B`, and their **field product** in a way that would have been available to a contemporary solver, then make a frozen plaintext prediction. More arithmetic matches to signed values without a selected inverse should be treated as conjectural. The joint H-field and G-adic correspondences raise the relevance of this finite-field branch but still recover **zero unknown LP2 plaintext**.
+
 ## Additional signed-DH fingerprint at the source-selected Ac24 root
 
 The exact polynomial relationship supports a more specific, still **exploratory** fingerprint of the entire signed 2013 worked example. Its parameters are modulus **23**, generator/base **5**, server public share **8**, client public share **19**, and shared secret **2**. The enlarged LP2 p54 **Ac=24** and G's double root independently fix the evaluation point before viewing numerical outputs. Ordinary formal polynomial derivatives, evaluated at X=24 in GP29, give:
@@ -118,6 +151,6 @@ The signed 2013 example establishes values **2** and **23** as public worked-exa
 
 ## Decision and next gate
 
-Preserve this new **signed-2013 H/DH2 + p39 G + p29/table** relationship as a single testable cryptanalytic lead. The derivative fingerprint also suggests a possible signed-DH mathematical clue, with serious post-selection ambiguity. Neither the congruence nor the derivatives specify the remaining inverse that would turn R into readable text. The best next experiment would obtain an independent source instruction or an authentic known-plaintext crib that selects how R is to be interpreted. Another postselected polynomial transform, source-number coincidence or affine sweep would weaken this lead.
+Preserve this new **signed-2013 H/DH2 + p39 G + p29/table** relationship as a single testable cryptanalytic lead. The separate GF841 H-field product and the derivative fingerprint suggest a possible signed-DH mathematical clue, with serious post-selection ambiguity. Neither the congruence nor the derivatives specify the remaining inverse that would turn R into readable text. The best next experiment would obtain an independent source instruction or an authentic known-plaintext crib that selects how R is to be interpreted. Another postselected polynomial transform, source-number coincidence or affine sweep would weaken this lead.
 
 **Reproduce:** `node sims/p29_grid_2013_dh_gadic_bridge_sft.cjs` at repository root, Node.js 22, built-in modules only. The script contains exact source/plant assertions, 55-page uniqueness, radix controls, a literal BASE29 binary readout and the conditional 50,000-shuffle null. The original-input test, native-GP positive, radix counterchecks and literal Base29 binary check all **passed** in [manual GitHub Actions run 43053884217](https://github.com/FlareZ123/liber-primus/actions/runs/43053884217). The expanded signed-DH derivative assertions were added afterward and require the next manual regression to independently confirm their values. No GitHub Actions schedule is added.
