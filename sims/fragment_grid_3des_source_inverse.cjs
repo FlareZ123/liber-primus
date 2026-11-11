@@ -156,7 +156,8 @@ function main() {
     comparisons: {
       originalTrain: plainScore(raw.tr, english),
       originalHeldout: plainScore(raw.ho, english),
-      nativeReferenceTrain: plainScore(sliceSplit([nativeRef.slice(0, original.flat().length)]).tr, english)
+      originalTrainIoc: ioc(raw.tr),
+      originalHeldoutIoc: ioc(raw.ho)
     },
     topTraining: top,
     frozenBestHeldout: {mode: best.mode, score: best.heldout, ioc: best.heldoutIoc},
