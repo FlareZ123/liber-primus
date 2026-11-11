@@ -14,9 +14,17 @@ Applying the same GP-prime-sum / NUMBER factor-index reduction to p57's 19 body 
 
 The ordered marker signatures H, + therefore select LIKE, FIND in the same order. The 19-word sum table is in the linked note above.
 
-Separately, the 2013 NUMBER operation on the PARABLE sum 449 reverses to 944, whose divisors include 59; applying NUMBER to 59 predicts 95 = 5×19. This second query is a derived follow-up, not a preserved historical server response. The p57 page independently has 19 body words. The factor 5 is a candidate cycle length; 19 is the source-visible word-map size and the modulus tested below.
+Separately, the 2013 NUMBER operation on the PARABLE sum 449 reverses to 944, whose divisors include 59. Earlier work then chose 59 for a derived follow-up, obtaining 95 = 5×19, but **59 was not independently selected from the many divisors of 944**.
+
+A new p55 route now supplies that missing selector. The p55 ornaments lead conditionally through 13+31=44 to the 44th prime **193**, the unique base60 table value occurring 44 cells apart. Applying the same historical NUMBER operation to 193 reverses it to **391 = 17×23**. Physical p55 has exactly **17 page-local word segments**, and GP index **23 is D**. Applying the solved p57 wording literally, “find the divinity within,” D occurs strictly inside only page-local segments **5 and 9**; the third D is the first rune of segment16 and is therefore on its circumference. Reading the two interior-D segment numbers in source order gives **59**. NUMBER(59) then reverses to **95 = 5×19**.
+
+This independently resolves the earlier 944-divisor choice inside the p57 hypothesis. The p57 page has **19 body words**, and the graph below has the two candidate **5-cycles**. The chain depends on the provisional plus-as-addition step that selected 193 and on interpreting segment numbers 5,9 as decimal 59, so it remains a human-solve-path hypothesis rather than an authenticated cipher instruction.
 
 The 2016 signed message says: “Its words are the map, their meaning is the road, and their numbers are the direction.” This is compatible with treating the 19 words as map nodes and their GP-prime sums as step sizes, though it does not explicitly specify the modular operation.
+
+### P55 selector also lands on the two cycle basins
+
+The two p55 segment numbers have a direct graph interpretation in addition to spelling 59. Body-word position **5 is TO** and lies on the plus cycle containing FIND/CIRCUMFERENCES. Body-word position **9 is MUST**; one plus step sends MUST→TO and therefore into that same cycle. Under the minus map, both positions eventually enter the other five-cycle containing LIKE/SURFACE/WITHIN/DIVINITY. This does not by itself choose a sign, but it ties the independently selected p55 positions to the exact two semantic cycle basins rather than only to the cardinalities 5 and19.
 
 ## Reproducible map operation
 
