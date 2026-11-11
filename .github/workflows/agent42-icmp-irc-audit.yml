@@ -172,3 +172,18 @@ jobs:
               if any(t in line.lower() for t in terms):
                   print(f"W{n}: {line}")
           PY
+      - name: Read complete Linode/onion3 notes document
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import io, urllib.request, zipfile, xml.etree.ElementTree as ET
+          base = "https://raw.githubusercontent.com/Dukotah/cicada3301/master/corpus/C-community/irc/"
+          data = urllib.request.urlopen(base + "logs_linode_onion3.docx", timeout=30).read()
+          z=zipfile.ZipFile(io.BytesIO(data))
+          root=ET.fromstring(z.read("word/document.xml"))
+          ns={"w":"http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
+          for i,p in enumerate(root.findall(".//w:p",ns),1):
+              s="".join(t.text or "" for t in p.findall(".//w:t",ns))
+              if s.strip(): print(f"{i}: {s}")
+          PY
