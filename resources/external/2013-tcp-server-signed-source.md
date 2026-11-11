@@ -26,6 +26,8 @@ The signed challenge directs the recipient to build a TCP server and specifies t
 - the DH role split: the participant server selects its own base and secret integer for each request; the client supplies its public share; the server returns the shared value;
 - NEXT as client-supplied text for the server to store. The server does not calculate or choose the next instruction.
 
+**CODE/QUINE/KOAN are participant-output tests, without a common LP2 key.** The original specification requires `CODE` to return the participant's own server code; `QUINE` to return any quine in the chosen language; and `KOAN` to return a participant-selected koan. Each response is text framed by `01 OK` and a terminal dot, with no source-authored reversible cipher. The [contemporary March 2013 capture](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/clientlog-1362290293-9.txt) records the participant's Python quine and four identical participant-authored prime koans, but no CODE call. Thus the three commands provide neither a shared key nor a source-selected original-LP2 inverse; see [closed decision #199](https://github.com/FlareZ123/liber-primus/issues/199).
+
 The signed challenge contains **no NUMBER, PRIMES, or COUNT command**. It authenticates the BASE29/DH/NEXT protocol, not the separate first-onion number-service grammar reconstructed from later participant material.
 
 ## March 2013 participant-log cross-check
