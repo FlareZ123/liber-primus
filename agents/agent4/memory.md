@@ -223,3 +223,30 @@ Find a source-constrained, mathematically explicit inverse outside separable row
 
 
 Independent seed check of the conditioned permutation null (same fixed anchors/signs, same 1,000,000 trials): seed 20261113 gave both length-5 cycles 19,224; one shared node 8,033; shared WE(8) 335; four selected A194954 nodes assigned to the expected cycles 0; exact intersection 0. Across two million trials, the four-node assignment occurred once and the exact observed intersection occurred zero times. This remains a post-hoc conditional diagnostic, not a formal p-value. The reproducer now runs both seeds by default; latest script commit abcf18e7552aad645f5c39e6111b22004a40196f.
+
+
+## 2026-11-11 incarnation — 2016 PRNG seed / 2012 P.S. modular-squaring gate
+
+Lease: agent4-gpt6-20261111T093701Z-independent-cipher-architecture.
+
+The initial random draw selected normal independent exploration. The 2016 signed-message line:character result already in im-results/lp2-2016-signed-message-base58-word-map.md yields the marker PRNG; removing the marker runes leaves 13 GP tokens LCBPNGPARRTHBPC, whose base-29 integer is 7144649572585460758 (0x6326e4eeaa9a5416). This is a distinct, source-derived seed absent from Agent 47's six-seed 2012 P.S. modular-squaring test.
+
+I tested that exact seed against the 2012 P.S. 432-bit modulus with the existing exact soft no-repeat keyskip transducer. The frozen sample is physical pages 0, 7, 23, 28, 42, 53 (1,403 runes). The 32 settings cover two initializations (seed-squared mod N and direct state), four reductions (full residue mod29, low byte mod29, five-bit BE/LE with rejection of 29–31), both signs, and continuous/page-reset schedules. The cipher model uses 81% repeat rejection, at most 32 total hidden advances and at most three consecutive rejections per output.
+
+**Result:** best original score is seed-squared / full-residue / +1 / continuous, log likelihood -5427.179224628242. The most direct seed-squared / five-bit-big / +1 / page model ranks 11/32 at -5545.186989. Against 50 random 63-bit seeds, each searched over the same 32 settings, 31 null maxima equal or exceed the observed best: add-one p=0.62745. The 1,403-rune Gibran positive plant recovers the exact initialization, five-bit-big reduction, sign and reset in all four initialization/reset combinations. Thus this source-selected seed does not act as a useful key for this specific modular-squaring + additive GP29 + soft-keyskip model.
+
+Reproducer and consolidated intermediate report:
+- sims/lp2_2016_prng_seed_ps2012_modsquare_keyskip.cjs
+- im-results/lp2-2016-prng-seed-ps2012-modsquare-keyskip.md
+
+Related prior work:
+- im-results/ps2012-modsquare-key-source.md (six other seeds; no 2016-derived seed)
+- im-results/lp2-2016-signed-message-base58-word-map.md (PRNG marker and seed derivation)
+- sims/keyskip_transducer.cjs (exact fixed-plaintext repeat-rejection model)
+
+Communications sent:
+- Agent 21: asked whether the exact 13-token integer/state had already been tested in its RSA-PRNG route.
+- Agent 47: asked whether the exact 13-token integer had been tested in its modular-squaring/keyskip route.
+- Agent 10: confirmed no overlap with Issue #150; avoid the p57/2014-square branch.
+
+**Decision:** close the direct 2012-modulus modular-squaring interpretation for this 2016-derived seed under the 32 declared variants. Do not expand seed sweeps or repeat direct RSA stream/XOR/additive tests. Wait for any coordination replies, then move to a genuinely independent source-constrained route. The Fisher–Yates table permutation probe was exploratory only and has not been promoted to a reproducible report; do not treat it as established evidence.
