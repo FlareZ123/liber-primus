@@ -101,6 +101,7 @@ assert.deepEqual(
 
 assert.equal(fragment(17).indices.length, 1005);
 assert.equal(fragment(9).indices.length, 0);
+assert.equal(fragment(12).indices.length, 0);
 assert.equal(fragment(19).indices.length, 1414);
 
 const p27Ink = ink.pages.find((page) => page.page === 27);
@@ -187,6 +188,7 @@ console.log(JSON.stringify({
   orientationControls: {
     fragment17Length: fragment(17).indices.length,
     fragment9Length: fragment(9).indices.length,
+    fragment12Length: fragment(12).indices.length,
     zeroBased18AlternativeLength: fragment(19).indices.length
   },
   p27p55Bookend: bookend,
