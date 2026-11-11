@@ -33,7 +33,7 @@ const mul = (a, b) => [
 /** @param {number[]} coeff @param {Field} x @returns {Field} */
 function poly(coeff, x) {
   let y = [0, 0];
-  for (let i = coeff.length - 1; i >= 0; i--) {
+  for (let i = 0; i < coeff.length; i++) {
     y = mul(y, x);
     y[0] = mod(y[0] + coeff[i]);
   }
@@ -75,7 +75,7 @@ const source = sourceEvents();
 const Z = [23, 27];
 const seed = [4, 24];
 const coeff = grid.map(mod);
-const derivative = coeff.slice(1).map((v, i) => mod(v * (i + 1)));
+const derivative = coeff.slice(0, -1).map((v, i) => mod(v * (coeff.length - 1 - i)));
 assert.deepEqual(poly(coeff, Z), [0, 0]);
 const states = [seed];
 for (const event of source) {
@@ -184,7 +184,7 @@ console.log(JSON.stringify({
     thirteenDotMarks: 31, uniqueFieldStates: 225 },
   source: { z: Z, seed, final: states.at(-1),
     fieldPolynomial: 'u^2=3u+8',
-    polynomial: 'printed base60 grid, ascending F29 coefficients' },
+    polynomial: 'printed base60 grid, descending F29 coefficients' },
   design: { projections: Object.keys(projections), phases: [0, 1],
     clocks: ['book', 'page'], signs: [-1, 1], candidates: 32 },
   original: { ioc: ioc(ciphertext), best,
