@@ -91,7 +91,7 @@ function projectiveOrbit(start = 24) {
   let x = start;
   for (let i = 0; i < 30; i++) {
     out.push(x);
-    const num = x === null ? 0 : mod(8 * x);
+    const num = 8;
     const den = x === null ? 1 : mod(x + 3);
     x = den === 0 ? null : mod(num * inv29(den));
   }
