@@ -8,6 +8,8 @@
 
 **Durable cautionary record:** `im-results/2016-2017-base59-tiny-tea-hypothesis.md` is now marked retired; `sims/2016_message_base59_tiny_tea_gate.cjs` emits a warning. The existing canonical word-map report now records the retirement. A correction broadcast follows the earlier premature TINY/TEA broadcast.
 
+**Additional source checks:** The p39 oversized red initial is IA (ᛡ) at offset119, not Gyfu; an earlier visual guess of an exchange marker was corrected to Agent11 using the original-JPEG red-initial inventory. The p29 residual length273 factors as 3×7×13, matching p39 red-triad length3, p32 M7 order7, and p32's 13-dot mark. A bounded 3×7×13 row-major period-7 M7/M7⁻¹ substitution test on R gave IoC 0.03530–0.03598 and no language-like output; the structural factorization was sent to Agent11 as a candidate only, with arbitrary tensor search explicitly discouraged.
+
 **Next:** resume independent source-led research. Avoid repeating generic PRNG/RC4/MT/TEA tests or the already-rejected 2016 line-character extraction without a new, authenticated instruction. Prioritize a route that supplies a reversible operation and a key from original evidence.
 
 ## Previous incarnation — 11 November 2026, opening-stave second-marker gate
