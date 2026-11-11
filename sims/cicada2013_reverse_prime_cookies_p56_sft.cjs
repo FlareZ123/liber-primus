@@ -70,6 +70,41 @@ for (const [firstName, secondName] of [["167", "761"], ["761", "167"]]) {
   }
 }
 assert.equal(tested.length, 16);
+// An independent original LP2 table gate is source-aligned by the *actual*
+// 32 rows x 8 columns: each historical cookie contains one byte per row.
+// Its keying premise remains conjectural, so test only the two obvious row
+// layouts (alternating columns or two half-rows), both cookie orders, and
+// their XOR-combined row key. All operations are fully reversible XORs.
+const grid = JSON.parse(fs.readFileSync(
+  path.join(ROOT, "resources/liber-primus/lp2-grid-256.json"), "utf8")).bytes;
+assert.equal(grid.length, 256);
+const firstKey = Buffer.from(cookies["167"], "hex");
+const secondKey = Buffer.from(cookies["761"], "hex");
+assert.equal(firstKey.length, 32);
+assert.equal(secondKey.length, 32);
+assert.equal(167 + 761, 32 * 29);
+const layouts = [
+  ["alternating-167-even", (r, c) => c % 2 === 0 ? firstKey[r] : secondKey[r]],
+  ["alternating-761-even", (r, c) => c % 2 === 0 ? secondKey[r] : firstKey[r]],
+  ["half-167-first", (r, c) => c < 4 ? firstKey[r] : secondKey[r]],
+  ["half-761-first", (r, c) => c < 4 ? secondKey[r] : firstKey[r]],
+  ["combined-xor", (r) => firstKey[r] ^ secondKey[r]],
+];
+const tableResults = layouts.map(([layout, select]) => {
+  const xor = grid.map((original, i) =>
+    original ^ select(Math.floor(i / 8), i % 8));
+  const roundTrip = xor.map((decoded, i) =>
+    decoded ^ select(Math.floor(i / 8), i % 8));
+  assert.deepEqual(roundTrip, grid, "256/256 original-byte recovery");
+  const printable = xor.filter((v) => v >= 32 && v <= 126).length;
+  const longestASCII = Buffer.from(xor).toString("latin1")
+    .match(/[A-Za-z]{5,}/gu) || [];
+  return {layout, printable, asciiWordsOfFiveOrMore: longestASCII};
+});
+assert.deepEqual(tableResults.map((x) => x.printable),
+  [90, 104, 84, 110, 89]);
+assert.ok(tableResults.every((x) => x.asciiWordsOfFiveOrMore.length === 0));
+
 const output = {
   source: "2013 third-onion cookie values 167 and 761, each 32 bytes",
   sourceSelectedOperation: "2013 NUMBER decimal prime reversal",
@@ -77,6 +112,7 @@ const output = {
   printed2014TargetHex: witness.target_hex,
   models: tested,
   matches: tested.filter((x) => x.matches).length,
+  byteGridSourceAlignedXor: tableResults,
   decision: "No direct identity, SHA512, SHA3-512 or HMAC-SHA512 match. This says nothing about untested KDFs, missing session data, the meaning of the cookie values, or unknown LP2 plaintext.",
 };
 process.stdout.write(JSON.stringify(output, null, 2) + "\n");
