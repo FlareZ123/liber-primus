@@ -43,6 +43,41 @@ assert.deepEqual(corpus.pages[27].indices.slice(28, 34), target);
 assert.deepEqual(corpus.pages[55].indices.slice(70, 76), target);
 assert.equal(corpus.pages[55].indices.length, 76);
 
+// Global rune positions supply a direct clock sanity check: the twin copies
+// are 6,395 runes apart, a multiple of 5. The other repeated three-rune words
+// provide independent controls against proclaiming a period-five key.
+let runeCursor = 0;
+const globalWordOffsets = words.map(word => {
+  const start = runeCursor;
+  runeCursor += word.length;
+  return start;
+});
+assert.equal(runeCursor, runeCount);
+assert.equal(globalWordOffsets[1462], 6555);
+assert.equal(globalWordOffsets[1463], 6558);
+assert.equal(globalWordOffsets[2894], 12950);
+assert.equal(globalWordOffsets[2895], 12953);
+
+const repeatedLongWords = new Map();
+for (let i = 0; i < words.length; i++) {
+  if (words[i].length < 3) continue;
+  const v = repeatedLongWords.get(words[i].runes) ?? [];
+  v.push(globalWordOffsets[i]);
+  repeatedLongWords.set(words[i].runes, v);
+}
+const longPairDistances = [];
+for (const [word, starts] of repeatedLongWords) {
+  for (let i = 0; i < starts.length; i++) {
+    for (let j = i + 1; j < starts.length; j++) {
+      longPairDistances.push({word, delta: starts[j] - starts[i]});
+    }
+  }
+}
+assert.equal(longPairDistances.length, 17);
+assert.equal(longPairDistances.filter(x => x.delta % 5 === 0).length, 2);
+assert.deepEqual(longPairDistances.filter(x => x.delta % 5 === 0)
+  .map(x => x.word).sort(), ["ᛒᛖᛁ", "ᛞᛄᚢ"].sort());
+
 // Preserve each printed word length and the exact multisets of words per length.
 // Scramble only their position among same-length word slots. This null retains
 // the language-like token repertoire, all repetitions, and the manuscript's
