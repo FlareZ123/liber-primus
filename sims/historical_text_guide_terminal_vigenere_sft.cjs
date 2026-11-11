@@ -56,7 +56,7 @@ function encodeGP(text) {
 function historicalOnionInverse(runic, key) {
   let j = 0;
   return [...runic].map(glyph => {
-    if (!runeIndex.has(glyph)) return glyph === " " ? "." : glyph;
+    if (!runeIndex.has(glyph)) return glyph;
     return TRANSLIT[(runeIndex.get(glyph) - key[j++ % key.length] + 29) % 29];
   }).join("");
 }
@@ -133,9 +133,14 @@ function main() {
   const onion = "ᚦᛗᛞᛇᚠᛗᚪᚱ5ᚢᚫᛝᚱᛝ3 ᛠᛗᛇᚠᛡ";
   const priorSolvedText = encodeGP("WELCOME PILGRIM TO THE GREAT");
   const onionOut = historicalOnionInverse(onion, priorSolvedText);
-  assert.equal(onionOut, "AUOWYFGL5LCSFJ3.NONIAN");
-  // U/V, C/K, S/Z and IA/IO readings yield the historically known onion4
-  // address avowyfgl5lkzfj3n.onion. This is an earlier SOLVED clue.
+  assert.equal(onionOut, "AUOWYFGL5LCSFJ3 NONIAN");
+  // Original source spacing is preserved; the dot is assigned by the known
+  // 16-character onion-service address format after the first second-group N.
+  // GP's permitted U/V, C/K, S/Z, IA/IO spellings select the working host.
+  const spelling = onionOut.replace(" ", "").replace(/^AU/u, "AV")
+    .replace("LCS", "LKZ").replace(/IAN$/u, "ION");
+  const historicalDomain = spelling.slice(0, 16) + "." + spelling.slice(16);
+  assert.equal(historicalDomain, "AVOWYFGL5LKZFJ3N.ONION");
   const p55 = corpus.pages.find(p => p.page === 55).indices;
   const p56cipher = corpus.pages.find(p => p.page === 56).indices;
   const p57 = corpus.pages.find(p => p.page === 57).indices;
@@ -175,7 +180,7 @@ function main() {
   assert.ok(Math.abs(score(p55) - (-3.4018113590540926)) < 1e-8);
   assert.ok(Math.abs(score(p56) - (-2.4361899127543354)) < 1e-8);
   console.log(JSON.stringify({
-    historicalSourceOnion: onionOut,
+    historicalSourceRuneInverse: onionOut, historicalDomain,
     keyFamilies: Object.keys(keys),
     tested: candidates.length,
     p55CipherScore: score(p55),
