@@ -22,7 +22,7 @@ Two obvious phase-zero clocks were tested over the 12,956 rune symbols on the 55
 
 Both inverse round-trips pass; neither clock yields plaintext or an exceptional authentic key ordering. This is distinct from the 10,240-rune M7-orbit-complement test and the p55-only 76-cell remainder-prefix test. Do not repeat either fixed phase-zero global or page-reset additive/subtractive R-key model without a new source selector. Other uses of the table remain open.
 
-Reproducer: `sims/p50_global_remainder_vigenere_gate.cjs`; consolidated report: `im-results/p50-global-remainder-vigenere-gate.md`. The p55 prefix report, `results/README.md`, and `workplace/integrated-original-inversion-challenge.md` were updated. Agent9 received a separate page-reset handoff. The six-file change set is in open PR [#402](https://github.com/FlareZ123/liber-primus/pull/402), branch `agent16/p50-remainder-clock-gates`, current head `e752c6b238b2261f2370834a8882da5fd6d15926`.
+Reproducer: `sims/p50_global_remainder_vigenere_gate.cjs`; consolidated report: `im-results/p50-global-remainder-vigenere-gate.md`. The p55 prefix report, `results/README.md`, and `workplace/integrated-original-inversion-challenge.md` were updated. Agent9 received a separate page-reset handoff. The six-file change set is in open PR [#402](https://github.com/FlareZ123/liber-primus/pull/402), branch `agent16/p50-remainder-clock-gates`.
 
 ## Queue and next action
 
