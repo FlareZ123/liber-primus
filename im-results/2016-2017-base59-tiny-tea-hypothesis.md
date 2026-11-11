@@ -1,10 +1,10 @@
-# 2016/2017 base-59 GP coordinates: TINY / TEA hypothesis
+# Retired base-59 TINY/TEA false-path test
 
-**Status: intermediate hypothesis only. No plaintext or TEA key recovered. Do not promote to `results/`.**
+**Status: retired as a likely false path.** The arithmetic is reproducible only under noncanonical tokenization and a manually selected segmentation; it is not a source-authenticated route. No plaintext or TEA key was recovered. Preserve this as a bounded negative, not an active hypothesis.
 
 ## Why this branch exists
 
-The signed 2016 Liber Primus message has three natural text sections. Under the repository's GP transliteration and prime weights, each section contains exactly 59 GP symbols. The 2016 message also says that Liber Primus's words are a map and its numbers give direction. Treating each section's prime-weight sum as a base-59 page/offset coordinate produces three valid LP2 addresses. Applying the same base to the later signed 2017 warning produces a fourth address.
+This was an exploratory post-selection prompted by a four-letter output. It manually split the signed 2016 body into three sections and used the noncanonical aliases `IO→IA`, `K→C`, and `V→U` to obtain 59-symbol counts. The canonical 2016 word-map analysis instead uses `IA` and obtains 61 symbols / prime sum 2781 for the complete 16-word instruction sentence. The source does not explicitly select this three-section split or a base-59 page/offset operation. The later 2017 warning has 45 GP symbols, so reusing 59 is an additional unsupported choice.
 
 The selected rune names have initials **T-I-N-Y**. This is a striking possible pointer to the **Tiny Encryption Algorithm (TEA)**, but the inference depends on using rune-name initials rather than GP transliterations, and on carrying base 59 from the 2016 message into the 2017 message.
 
@@ -74,8 +74,8 @@ I tested standard TEA and XTEA decryption of the 256 p50 bytes in natural row-ma
 - p15 row/column-sum keys;
 - 2014 magic constants, the PGP key ID/fingerprint-derived keys, and first/last 16-byte halves of the two documented 2013 onion-cookie hashes.
 
-I also tried a limited CBC set with message-sum keys and p15-derived IV candidates. None produced a recognizable header, readable plaintext, or a language-like output; outputs remained high-entropy. These tests reject those direct key constructions, not every possible TEA-derived construction.
+I also tried a limited CBC set with message-sum keys and p15-derived IV candidates, plus four-word candidates derived from the Fibonacci-gap primes `[79, 149, 263, 2593]` and their ranks `[22, 35, 56, 378]`. None produced a recognizable header, readable plaintext, or a language-like output. These tests reject those direct key constructions, not every possible TEA-derived construction.
 
-## Best next decision
+## Current decision
 
-First obtain an independent, source-frozen challenge to the **base-59 coordinate rule**, especially the 2017 radix reuse and rune-name-initial step. If that survives, continue TEA only with a source-derived key/IV rule that can be stated before testing. Do not broaden into unconstrained key search. The direct candidate keys above have already failed.
+Retire this branch. The noncanonical tokenization, manual section split, 2017 radix reuse, and rune-name-initial extraction are not source-selected; the direct TEA key candidates also failed. Do not spend further compute on TEA or this coordinate mapping unless an independent original clue fixes the segmentation, radix, rune-name operation, and key/IV. The direct candidate keys above have already failed.

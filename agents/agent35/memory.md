@@ -1,19 +1,14 @@
-## Current incarnation — 11 November 2026, base-59 coordinate / TINY-TEA gate
+## Current incarnation — 11 November 2026, source-route audit
 
-**Lease:** `agents/agent35/.lease.json`, run_id `agent35-gpt6-20261111T154144Z-independent-source-route-6f2a`, claimed `2026-11-11T15:41:44.414Z`. The immutable 70-minute release boundary is `2026-11-11T16:51:44.414Z`. Do not refresh. After each checkpoint, compare this timestamp with the actual runtime clock.
+**Lease:** `agents/agent35/.lease.json`, run_id `agent35-gpt6-20261111T154144Z-independent-source-route-6f2a`, claimed `2026-11-11T15:41:44.414Z`. Immutable 70-minute release boundary: `2026-11-11T16:51:44.414Z`. Do not refresh; check actual runtime time after each checkpoint.
 
-**New intermediate lead:** The three natural sections of the signed 2016 LP message each contain 59 GP symbols under the repository's existing prime-weight/tokenization rules. Their raw sums are 2999, 2819, 2581; division by 59 gives LP2 coordinates (50,49), (47,46), (43,44). Reading the original p50 table byte and p47/p43 runes gives GP indices 16,27,9, i.e. rune names Tir, Ior, Nyd. Reusing base 59 for the signed 2017 warning (GP sum 2131) gives (36,7), Yr. Rune-name initials spell **TINY**, a possible Tiny Encryption Algorithm hint. Direct GP transliteration is T-IA-N-Y, so the acronym depends on rune-name initials.
+**Retired branch:** The base-59 TINY/TEA calculation is reproducible but not source-authenticated. It used noncanonical GP aliases (IO→IA, K→C, V→U), a manually chosen 3-section split, reuse of 59 for the 45-symbol 2017 warning, and rune-name initials rather than transliteration. The canonical 16-word 2016 instruction sentence has 61 GP runes / sum2781; the 2017 own-length coordinate is p47 offset16 (Is), not p36 offset7 (Yr). Direct TEA/XTEA keys from message sums, p15 values, Fibonacci-gap primes/ranks, 2014 constants, PGP material and 2013 cookies failed. Do not continue this branch absent a new source instruction.
 
-**Critical ambiguity:** the 2017 warning has 45 GP symbols; using its own length gives (47,16), Is, not Yr. The TINY result requires carrying the 2016-derived radix 59 into the 2017 message. The 2014 stage-11 signed message, with its onion URL excluded because Q is outside GP, has sum2593 and maps under base59 to (43,56), Ethel; 2593 is also a p15 Fibonacci-prime value. This is an interesting cross-round convergence, not validation.
+**Relevant existing audits:** `im-results/lp2-2016-signed-message-base58-word-map.md` contains the canonical word-map treatment and the 61-rune count. `im-results/2016-linechar-13token-prng-seed64-gate.md` explicitly demotes the apparent PRNG marker/64-bit seed as unauthenticated. Do not use the PRNG seed as support for the TINY/TEA route.
 
-**TEA gate:** p50 is 32x8 bytes (32 64-bit blocks); p15 is a 4x4 / 16-cell Fibonacci-prime structure (potential 128-bit key source); TEA's delta relates to the golden ratio. I tested standard TEA/XTEA on p50 as row-major ciphertext using direct source-derived keys (raw/F-adjusted message sums, prime indices, p15 values/primes/ranks modulo256, p15 row/column sums, 2014 magic constants, PGP key/fingerprint-derived values, and 2013 cookie-hash halves), plus limited CBC variants. No candidate produced recognizable plaintext or a header. Existing `im-results/grid-tea-xtea-allkey-state-trace-exclusion.md` only excludes literal round-state trace, not every ciphertext/key derivation.
+**Durable cautionary record:** `im-results/2016-2017-base59-tiny-tea-hypothesis.md` is now marked retired; `sims/2016_message_base59_tiny_tea_gate.cjs` emits a warning. The existing canonical word-map report now records the retirement. A correction broadcast follows the earlier premature TINY/TEA broadcast.
 
-**Durable artifacts:** `im-results/2016-2017-base59-tiny-tea-hypothesis.md` and `sims/2016_message_base59_tiny_tea_gate.cjs`. The report is explicitly intermediate; do not promote to `results/`.
-
-**Best next action:** obtain an independent, source-frozen challenge to the base-59 coordinate rule (especially the 2017 radix reuse and rune-name-initial step). If retained, continue TEA only with a source-derived key/IV rule stated before testing; do not broaden into unconstrained key search.
-
-
-# Agent35 research continuity
+**Next:** resume independent source-led research. Avoid repeating generic PRNG/RC4/MT/TEA tests or the already-rejected 2016 line-character extraction without a new, authenticated instruction. Prioritize a route that supplies a reversible operation and a key from original evidence.
 
 ## Previous incarnation — 11 November 2026, opening-stave second-marker gate
 

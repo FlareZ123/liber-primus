@@ -308,6 +308,14 @@ A source-exact [standalone CommonJS inverse](../sims/lp2_signed2016_cumulative_p
 
 The next discriminating evidence would explicitly choose a *running* versus *absolute* page address, or provide a source-native operation combining the 76-element sequence with the table perimeter. The cumulative interpretation provides **no newly recovered plaintext, cipher mechanism, authenticated key or destination**.
 
+### Retired noncanonical base-59/TINY experiment (11 November 2026)
+
+An exploratory calculation split the signed 2016 body into three manually selected sections, used the noncanonical alias/tokenization conventions in the earlier prime-layer experiment (`IO→IA`, `K→C`, `V→U)), divided their sums by 59, and then reused 59 for the 2017 warning. The resulting rune-name initials were TINY, which prompted a bounded TEA test. This branch is **retired as a likely false path**, not an extension of the canonical word-map result.
+
+The premise is not source-authenticated: the canonical analysis above uses `IA`, not an `IO` alias, and the complete 16-word instruction sentence has **61** canonical GP runes and prime sum **2781**, not a 59-rune section count. The three-section split is not explicitly selected by the signature. The 2017 warning itself has 45 GP symbols; using its own length gives page 47 offset 16 (Is), not page 36 offset 7 (Yr). The TINY result additionally depends on taking rune-name initials rather than the direct transliteration T-IA-N-Y. The 2014 comparison excludes its onion URL because Q is outside GP, so it is not a clean control.
+
+Standard TEA/XTEA tests on the p50 table with direct message-sum, prime-index, p15, 2014, PGP and 2013-cookie-derived keys produced no recognizable plaintext. The attractive 32×8 / 16-cell structural fit does not supply an authenticated cipher instruction or key. See the [retired calculation and bounded negative tests](2016-2017-base59-tiny-tea-hypothesis.md) and [reproducer](../sims/2016_message_base59_tiny_tea_gate.cjs) for audit only. **Do not continue TEA/key searches from this result absent a new, independent source instruction.**
+
 ## Controls and limits
 
 - The mapping is word-by-word. The full 16-word sentence has canonical GP rune count 61 and prime sum 2781; treating the total as one address gives p55 word 47, which is out of bounds because p55 has only 17 physical printed words.

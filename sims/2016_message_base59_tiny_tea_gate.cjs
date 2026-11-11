@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 'use strict';
 
-// Reproduce the 2016/2017 base-59 GP-coordinate hypothesis and a bounded
-// TEA/XTEA ciphertext test. Run from the repository root:
+// RETIRED FALSE-PATH EXPLORATION: this reproduces a noncanonical, manually
+// segmented base-59 calculation and bounded TEA/XTEA negatives. Its aliases
+// (IO->IA, K->C, V->U), section split, 2017 radix reuse and rune-name initials
+// are not authenticated by the source. Do not treat this as a solve path.
+// Run from the repository root:
 //   node sims/2016_message_base59_tiny_tea_gate.cjs
 
 const fs = require('node:fs');
@@ -192,6 +195,8 @@ for (const candidate of candidateKeys) {
 }
 
 console.log(JSON.stringify({
+  status: 'retired: noncanonical/post-selected hypothesis; no plaintext or key',
+  warning: 'The 2016 canonical instruction sentence is 61 GP runes; the 2017 warning own-length coordinate differs from the reused-base-59 coordinate.',
   2016: results2016,
   2017: {
     count: encoded2017.count,
