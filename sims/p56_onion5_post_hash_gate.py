@@ -11,9 +11,11 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import shutil
 import subprocess
 import tempfile
 import urllib.request
+from pathlib import Path
 
 TARGET_HEX = (
     "36367763ab73783c7af284446c59466b"
@@ -114,9 +116,35 @@ def magic_label(data: bytes) -> str:
         return "GZIP"
     if data.startswith(b"-----BEGIN PGP"):
         return "PGP armor"
-    if data.startswith(b"\xff\xfb") or data.startswith(b"\xff\xf3") or data.startswith(b"\xff\xf2"):
+    if data.startswith((b"\xff\xfb", b"\xff\xf3", b"\xff\xf2")):
         return "MPEG audio frame"
     return "unknown"
+
+
+def inspect_file(path: Path) -> dict:
+    info = {"file_command": None, "ffprobe": None}
+    if shutil.which("file"):
+        proc = subprocess.run(["file", "-b", str(path)], capture_output=True, text=True)
+        info["file_command"] = proc.stdout.strip()
+    if shutil.which("ffprobe"):
+        proc = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_format", "-show_streams", "-of", "json", str(path)],
+            capture_output=True, text=True,
+        )
+        if proc.returncode == 0:
+            parsed = json.loads(proc.stdout)
+            info["ffprobe"] = {
+                "format_name": parsed.get("format", {}).get("format_name"),
+                "duration": parsed.get("format", {}).get("duration"),
+                "tags": parsed.get("format", {}).get("tags", {}),
+                "streams": [
+                    {k: stream.get(k) for k in ("codec_name", "codec_type", "sample_rate", "channels", "bit_rate", "tags")}
+                    for stream in parsed.get("streams", [])
+                ],
+            }
+        else:
+            info["ffprobe_error"] = proc.stderr[-1000:]
+    return info
 
 
 def main() -> None:
@@ -129,6 +157,8 @@ def main() -> None:
         "454d4423643ce80e2a9ac94fa54ca49f"
     )
 
+    out_dir = Path("onion5-assets")
+    out_dir.mkdir(exist_ok=True)
     raw_results, asset_results = [], []
     for name, spec in SOURCES.items():
         data = fetch_source(name, spec)
@@ -149,6 +179,8 @@ def main() -> None:
 
         for index, candidate in enumerate(find_hex_assets(data), start=1):
             asset = candidate.pop("bytes")
+            asset_path = out_dir / f"{name}-hex-{index}.bin"
+            asset_path.write_bytes(asset)
             item = {
                 "snapshot": name,
                 "candidate": index,
@@ -157,6 +189,8 @@ def main() -> None:
                 "bytes": len(asset),
                 "sha256": candidate["sha256"],
                 "magic": magic_label(asset),
+                "first32_hex": asset[:32].hex(),
+                "inspection": inspect_file(asset_path),
                 "hashes": {},
             }
             for algorithm in ("sha512", "sha3_512", "blake2b512", "whirlpool"):
@@ -171,6 +205,7 @@ def main() -> None:
         "upstream_commit": UPSTREAM_COMMIT,
         "raw_snapshots": raw_results,
         "source_described_hex_assets": asset_results,
+        "artifact_directory": str(out_dir),
         "any_match": any(x.get("matches") for x in raw_results + asset_results),
         "scope": "exact raw pre/post snapshots and long embedded hex payloads only",
     }, indent=2))
