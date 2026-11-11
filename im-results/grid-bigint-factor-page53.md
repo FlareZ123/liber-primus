@@ -28,21 +28,17 @@ The coefficients of **P(X+15)** and **P(X+23)** were tested as (i) **24** direct
 
 **Hermite remainder and 31×8 decomposition (Agent 37, 11 November 2026; structural hypothesis, not a decryption).** The seven source constraints
 
-- (P(13)=8,;P^{[1]}(13)=0) (the 13-marked critical point and the table's eight columns);
-- (P(15)=27,;P^{[1]}(15)=5) (p39's red triple [27,5,15]);
-- (P(23)=24,;P^{[1]}(23)=19,;P^{[2]}(23)=2) (p54 Ac24, the p57 Parable's 19 body words, and p3's third red rune)
+- `P(13)=8`, `P^[1](13)=0` (the 13-marked critical point and the table's eight columns);
+- `P(15)=27`, `P^[1](15)=5` (p39's red triple [27,5,15]);
+- `P(23)=24`, `P^[1](23)=19`, `P^[2](23)=2` (p54 Ac24, the p57 Parable's 19 body words, and p3's third red rune)
 
 define a unique degree-six Hermite interpolant (H) over GF(29), with ascending coefficients **[6,4,18,25,12,11,20]**. Its derivative has exactly the same two GF(29) roots as the original table polynomial, **13 and 24**; (H'(24)=0) was not one of the interpolation constraints. The interpolation-node factor is
 
-[
-M(X)=(X-13)^2(X-15)^2(X-23)^3
-]
+`M(X)=(X-13)^2(X-15)^2(X-23)^3`
 
 with ascending coefficients **[20,5,12,9,1,13,20,1]**. Exact polynomial division gives
 
-[
-P(X)-H(X)=M(X)Q(X),
-]
+`P(X)-H(X)=M(X)Q(X)`
 
 with zero remainder and **248 coefficients in Q**, exactly **31×8**. Including the original leading zero and the seven coefficients of H, this is a source-constrained (1+7+31\times8=256) decomposition. The dimensions align with the 31 thirteen-dot marks and the grid's eight columns; the seven Hermite constraints also match the Parable's seven-word first sentence. This is a particularly tight structural coincidence, but it does not by itself specify a cipher.
 
