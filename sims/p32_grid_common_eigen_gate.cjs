@@ -92,7 +92,19 @@ for(const clock of ["book","page"])for(const sign of [-1,1]){
     :pages.flatMap(page=>page.map((x,i)=>mod(x+sign*v[i%n])));
   candidates.push({clock,sign,ioc:ioc(out)});
 }
+// Evolve the selected 24-eigenvector under A after each full 11-rune block.
+// Its scalar source orbit has exact length seven: 24^t mod29.
+const orbit=[1,24,25,20,16,7,23];
+assert.equal(orbit.reduce((v,x,i)=>v+(i?0:x),0),1);
+const evolvingKeyScreens=[];
+for(const clock of ["book","page"])for(const sign of [-1,1]){
+  const out=clock==="book"
+    ?all.map((x,i)=>mod(x+sign*v[i%n]*orbit[Math.floor(i/n)%7]))
+    :pages.flatMap(page=>page.map((x,i)=>
+      mod(x+sign*v[i%n]*orbit[Math.floor(i/n)%7])));
+  evolvingKeyScreens.push({clock,sign,ioc:ioc(out)});
+}
 console.log(JSON.stringify({source:"p32 ordinal 11x11 and original grid GF29",
   commonFactor:[5,1],eigenvalues:[24,25],rightEigenvector:v,
-  leftEigenvector:left,originalIoC:ioc(all),directKeyScreens:candidates,
+  leftEigenvector:left,originalIoC:ioc(all),directKeyScreens:candidates,evolvingKeyScreens,
   conclusion:"exact source algebra; no original LP2 plaintext"},null,2));
