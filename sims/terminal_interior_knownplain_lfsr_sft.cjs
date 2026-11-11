@@ -138,8 +138,13 @@ function rowGate(v,f) {
  */
 function positive(f) {
   const output=Array(180).fill(0);
-  for(let i=0;i<32;i++) output[i]=f===f29?
-    mod29(2+3*i+7*i*i):((i*29+31)^((i+23)*13))&255;
+  let seed=f===f29?0x430f3301:0x430f3302;
+  for(let i=0;i<32;i++) {
+    seed^=seed<<13;
+    seed^=seed>>>17;
+    seed^=seed<<5;
+    output[i]=f===f29?(seed>>>0)%29:(seed&255);
+  }
   const triple=f===f29?[15,3,1]:[15,19,33];
   for(let i=32;i<180;i++) {
     output[i]=f.add(f.add(f.mul(triple[0],output[i-1]),
