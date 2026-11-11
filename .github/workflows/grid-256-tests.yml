@@ -52,6 +52,7 @@ on:
           - 28-page-samepad
           - tree-fold7
           - empty-fragment-aes128
+          - grid238-cfb
         default: full
 
 jobs:
@@ -63,6 +64,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Original LP2 source-derived GF29 degree238 CFB residual
+        if: ${{ inputs.probe == 'grid238-cfb' }}
+        run: node sims/grid238_source_cfb_residual_sft.cjs
+
       - name: Original empty-fragment row8/row11 AES-128 source gate
         if: ${{ inputs.probe == 'empty-fragment-aes128' }}
         run: node sims/lp2_empty_fragment_aes128_source_gate.cjs
