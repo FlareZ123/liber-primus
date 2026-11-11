@@ -3,7 +3,7 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const {parseSharedCorpus} = require("./lp2_word_pages.cjs");
+const {parseSharedCorpus, parseLP2Words} = require("./lp2_word_pages.cjs");
 
 const ROOT = path.join(__dirname, "..");
 const corpus = JSON.parse(fs.readFileSync(
