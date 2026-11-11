@@ -59,6 +59,46 @@ function measure(k, output, context = output) {
   return { n, states: groups.size, pairs, collisions, entropy };
 }
 
+/**
+ * Exact Hamming distance of a fixed candidate GP plaintext to the closest
+ * original-cipher-consistent plaintext under arbitrary secret per-state
+ * bijections (evaluated on within-page destination positions only).
+ *
+ * Each state's allowed target histogram is an arbitrary permutation of its
+ * original ciphertext histogram. Maximizing retained positions is the
+ * assignment of candidate symbol-frequency buckets to ciphertext frequency
+ * buckets in descending order, yielding n - sum_j min(a_j,b_j).
+ * @param {number} k
+ * @param {number[]} candidate
+ */
+function minimalCandidateEdits(k, candidate) {
+  const originalRows = new Map();
+  const candidateRows = new Map();
+  for (const [start, len] of pageStarts) {
+    for (let j = k; j < len; j++) {
+      const i = start + j;
+      let context = 0;
+      for (let h = i - k; h < i; h++) {
+        context = context * 29 + ciphertext[h];
+      }
+      if (!originalRows.has(context)) {
+        originalRows.set(context, new Uint16Array(29));
+        candidateRows.set(context, new Uint16Array(29));
+      }
+      originalRows.get(context)[ciphertext[i]]++;
+      candidateRows.get(context)[candidate[i]]++;
+    }
+  }
+  let edits = 0;
+  for (const [state, row] of originalRows) {
+    const a = Array.from(row).sort((u, v) => v - u);
+    const b = Array.from(candidateRows.get(state)).sort((u, v) => v - u);
+    for (let j = 0; j < 29; j++) edits += Math.abs(a[j] - b[j]);
+  }
+  assert.equal(edits % 2, 0);
+  return edits / 2;
+}
+
 const tokens = corpus.translit.map((s, i) => ({ s, i }))
   .sort((a, b) => b.s.length - a.s.length);
 /** @param {string} original */
@@ -99,12 +139,17 @@ for (const k of [2, 3, 4]) {
   controls[k] = {};
   for (const item of native) {
     const samples = item.blocks.map((b) => measure(k, b, ciphertext));
+    const distances = item.blocks.map((b) => minimalCandidateEdits(k, b));
+    distances.sort((a, b) => a - b);
     controls[k][item.name] = {
       windows: samples.length,
       entropyMin: Math.min(...samples.map((s) => s.entropy)),
       entropyMax: Math.max(...samples.map((s) => s.entropy)),
       collisionMin: Math.min(...samples.map((s) => s.collisions)),
-      collisionMax: Math.max(...samples.map((s) => s.collisions))
+      collisionMax: Math.max(...samples.map((s) => s.collisions)),
+      minimumCandidateEdits: distances[0],
+      medianCandidateEdits: distances[Math.floor(distances.length / 2)],
+      maximumCandidateEdits: distances.at(-1)
     };
     if (k <= 3) {
       assert(controls[k][item.name].entropyMax < original[k].entropy);
@@ -195,6 +240,7 @@ for (const k of [2, 3]) {
   const decoded = measure(k, arbitraryDecoded, ciphertext);
   assert(Math.abs(decoded.entropy - original[k].entropy) < 1e-10);
   assert.equal(decoded.collisions, original[k].collisions);
+  assert.equal(minimalCandidateEdits(k, arbitraryDecoded), 0);
   plants[k] = {
     recoveredRunes: plantPlain.length, plantedCipher: hC,
     arbitraryOriginalRoundtrip: true, originalDecodedEntropy: decoded.entropy

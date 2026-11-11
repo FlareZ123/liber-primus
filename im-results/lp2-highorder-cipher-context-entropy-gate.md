@@ -28,6 +28,17 @@ All **32 Shakespeare**, **8 Gibran** and **49 Emerson** windows fall on the same
 
 A deliberately planted native-GP plaintext encrypted by fixed, independent pseudorandom context permutations decrypts exactly at all 12,956 rune positions under both k=2 and k=3. The planted ciphertext and its true plaintext have identical measured context-conditioned entropy and collisions, including with the **ciphertext-generated** history. Independently, arbitrary secret keys decrypt and perfectly re-encrypt the original ciphertext, and the original-conditioned statistics remain unchanged. This also demonstrates why an original ciphertext roundtrip alone is not evidence of the historical cipher.
 
+
+### Exact closest-English lower bound under all unknown context permutations
+
+For each original-ciphertext context, sort the 29 source-ciphertext output counts and the 29 candidate-English output counts in descending order. The smallest possible number of candidate plaintext symbols that must be changed while retaining the **same source positions and state clock**, and allowing an arbitrary secret 29-alphabet bijection in each context, is exactly
+
+`D_k = (1/2) sum_context sum_symbol |sort_desc(hist_original_context)[symbol] - sort_desc(hist_candidate_context)[symbol]|`.
+
+The formula follows by optimally pairing the two sets of class frequencies: an allowed bijection merely permutes each source histogram, and the optimal assignment maximizes the sum of `min(source_count, target_count)`. It is a tight **minimum per-rune Hamming distance** to the stationary-secret-alphabet feasible set for each *fixed* candidate GP stream; it is not a bound on all possible English strings, not a string-edit-distance allowance for inserted or deleted runes, and not a recovered plaintext. The first k symbols of each page are free.
+
+Across all 89 sampled native windows, the exact required candidate-text changes are **1,798–2,022** for k=2 (median 1,920), **271–337** for k=3 (median 304), and **8–18** for k=4 (median 13). The k=2 minimum is **1,798 of 12,846** eligible source positions, while the k=3 minimum is **271 of 12,791**. This provides a concrete measure of incompatibility stronger than a single entropy threshold. A pseudorandom original ciphertext-context inverse has distance **zero** by construction, confirming that the invariant respects an unrestricted secret table. Native controls remain finite.
+
 ## Where the boundary falls
 
 The same predeclared k=4 extension has 12,736 eligible positions and only 122 same-context pairs. Its original collision count is **6**, inside the controls' **2–14** range; original conditional entropy **0.0181183** similarly lies inside the control range **0.0168620–0.0187465**. Thus these data do **not** exclude four-context bijections. They also do not exclude section- or page-specific alphabets, changing time clocks, plaintext-keyed state, multi-rune outputs, non-English text, omitted glyphs, or further layers. No source clue independently selects k=2, k=3, or k=4, so growing context width solely to evade the test would be unconstrained.
