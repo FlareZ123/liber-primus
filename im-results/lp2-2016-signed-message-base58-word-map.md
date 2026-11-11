@@ -1,6 +1,6 @@
-# 2016 signed-message base-58 word map
+# 2016 signed-message word-map hypotheses: base-58 addresses and base-29 line:character PRNG
 
-**Status: provisional source-constrained hypothesis; not a decryption.**
+**Status: the base-58 map and p32 M7 route remain provisional; a separate base-29 line:character reading yields PRNG, an operation clue, not a decryption.**
 
 ## Hypothesis
 
@@ -10,7 +10,7 @@ The 2016 signed message says:
 
 **OpenPGP source boundary:** the preserved signature is v4, canonical-text signature type 1, RSA/SHA-1, with a 4,094-bit MPI. Its only hashed subpacket is creation time (`2016-01-01T00:01:07Z`); its only unhashed subpacket is issuer key ID `181F01E57A35090F`. No notation, issuer fingerprint, policy URL, or other custom subpacket is present. The raw cleartext has a trailing space after `their`, but canonical-text signatures strip trailing spaces/tabs before hashing; that whitespace is **not authenticated** and must not be used as a key or delimiter. The signed prose is authenticated; the trailing-space pattern is not.
 
-The quoted pronoun “Its” refers to **Liber Primus** in the preceding sentence, “Liber Primus is the way.” It does not instruct readers to treat the signed message's own words as book-cipher tokens. The following use of its 16 quoted words is an exploratory addressing hypothesis. For each word:
+The quoted pronoun “Its” refers to **Liber Primus** in the preceding sentence, “Liber Primus is the way.” The signed message does not explicitly declare its own words to be a pointer list; using the 16-word instruction sentence as a numeric coordinate stream is a testable reading motivated by “their numbers are the direction,” not a fact established by the signature. For each word:
 
 1. Transliterate it with the repository's canonical `corpus.translit` table.
 2. Sum the corresponding Gematria Primus prime weights.
@@ -106,6 +106,28 @@ The endpoint word has prime sum **442 = 58×7+36**. Applying the same provisiona
 **Exploratory only:** 413−184=229 is the 50th prime, and `lies` separately maps to p50 cell3 (`3D`) under the same base-58 hypothesis. Interpreting `3D` in base60 gives 193 with φ(193)≡18=E; the f-omitting base59 reading gives 190 with φ(190)≡14=B. The p36 E route is direction-consistent with base60, but neither the subtraction nor this φ→direction comparison is independently selected; do not treat it as a radix proof.
 
 The `lies`→p50 address and FOLD/END correspondences are exact conditional outcomes of the proposed map, but their selection and interpretation do not establish that a contemporary solver was meant to use this map. The 42/43 in-bounds result is not discriminating under the documented phase-shift null. The special treatment of `lies` as a table-cell pointer was adopted after the absent rune word was observed. The signed message's grammatical subject is the book, and no historical clue has been found prescribing a 43-way correspondence. The new p32 13-rune W/infinity route is a candidate navigation constraint, but the next meaningful advance still requires an independently fixed reversible operation or key/state that makes a held-out original-ciphertext prediction. The full-source assertions and a summary are embedded in the original SFT, [`sims/lp2_2016_message_base58_word_map.cjs`](../sims/lp2_2016_message_base58_word_map.cjs).
+
+## Independent base-29 line:character reading: PRNG
+
+A separate reading of the 16-word instruction sentence is more promising than the earlier base-58 page/word addresses. For each word, compute its canonical Gematria Primus prime-weight sum \(S\), write \(S=29q+r\), then read **line \(r+1\), character \(q+1\)** from LP2's physical rune text. Line numbering begins at LP2 page 0; blank paragraph separators are omitted; character positions count rune glyphs, not spaces or punctuation. This is a one-based line:character book-code operation, using the same remainder-as-outer-coordinate / quotient-as-inner-coordinate order as the base-58 experiment. The source does not explicitly specify this operation, so it remains a hypothesis. It is motivated by the signed wording about words, meaning and numbers, the 29-symbol GP alphabet, and earlier Cicada line:character book-code precedent (see [pnotisdev/cicada3301](https://github.com/pnotisdev/cicada3301/blob/main/STATUS.md)).
+
+The 16 output rune tokens are **LCBPPRNGNGPARRTHBPC**. The decisive three consecutive words are:
+
+| Signed word | GP-prime sum | Base-29 \((q,r)\) | 1-based line:character | Extracted rune |
+|---|---:|---:|---:|---|
+| map | 211 | (7, 8) | 9:8 | P |
+| their | 114 | (3, 27) | 28:4 | R |
+| meaning | 319 | (11, 0) | 1:12 | NG |
+
+Thus **“map their meaning” → P, R, NG → PRNG**. NG is one GP rune whose transliteration has two Latin letters. The full 43-word message under the same fixed rule yields **EPMCMAEOEPMEEANGPSLCBPPRNGNGPARRTHBPCIREANNAEPJYBEOOS**; the other output is not plaintext.
+
+This is independently reproduced by both resources/lp2-transcription.txt and the LP2 slice of resources/transcriptions/liber_primus_master.txt. The three selected glyphs agree with the original page images: LP2 p0 line 1 character 12 is NG, p0 line 9 character 8 is P, and p2 line 4 character 4 is R. A frozen null test over all 29 cyclic line phases produces the PRNG marker only at phase 0; no other phase produces PRNG anywhere in the 16-word phrase. This is a discriminating clue, not a statistical proof or a decryption.
+
+Removing the three marker runes leaves 13 tokens, **LCBPNGPARRTHBPC**, whose base-29 integer is **7144649572585460758** (63 bits). The complete 16-token sequence is the 78-bit base-29 integer **174250757000494390102040**. This is distinct from the p32 13-rune window in the preceding M7 section: the common count and the shared 13-dot annotation suggest a possible connection, but no mapping between the 13-token remainder, the p32 window and the red marks has been established.
+
+The immediate next question is what the PRNG marker selects and how it acts on the manuscript: generator, state, direction sequence, path or permutation. The 2012 P.S. RSA modulus and exponent 65537 are candidates, not established inputs. Direct RSA-PRNG byte-stream/XOR tests against the p50/51 256-byte table, using 16-, 13- and 43-token source-derived seeds, produced no readable output; RC4 and Python MT table-XOR tests were also negative. A simple RSA-PRNG additive stream did not produce English on LP2. The table's bitstream has linear complexity 1022–1025 under row/column and MSB/LSB readings, excluding a direct 13-bit LFSR-output interpretation. These failures reject only the tested direct stream/XOR models, not a PRNG-driven route, state or permutation. Avoid repeating broad small-seed PRNG sweeps; [the external PRNG audit](https://github.com/pnotisdev/cicada3301/blob/main/docs/prs/prngx.md) already covers common generators over extensive small-seed ranges.
+
+Reproduce the line:character result and 29-phase null with **node sims/lp2_2016_message_base29_line_char_prng.cjs**.
 
 ## Independent cross-round signed-message control: earlier `hearing` selects `MY`
 
@@ -274,6 +296,6 @@ The next discriminating evidence would explicitly choose a *running* versus *abs
 
 ## Current decision and reopening gate (11 November 2026)
 
-The signed-message base-58 addresses, cumulative alternative, and literal word-shell extraction remain candidate interpretations. Director Issues [#34](https://github.com/FlareZ123/liber-primus/issues/34), [#35](https://github.com/FlareZ123/liber-primus/issues/35), and [#40](https://github.com/FlareZ123/liber-primus/issues/40) closed without a source-selected 43-way operation, unique p50 numeric codec, or a decoder accounting for all 76 p55 runes. [#41](https://github.com/FlareZ123/liber-primus/issues/41) is waiting for a complete frozen handoff. The conditional `lies`→p50 `3D` selection is not an authenticated byte193 key, and the exact 43-element count matches cannot replace the absent exterior-symbol rule. Reopen the route only when new authenticated source evidence fixes the address convention, numeric codec, interior/exterior operation and key/state sufficiently to predict withheld original ciphertext or plaintext.
+The base-58 word addresses and the p32 M7 W/infinity route are source-constrained but provisional navigation hypotheses; neither is plaintext or a reversible cipher by itself. The FOLD/END, p50 3D and exterior-symbol interpretations remain unverified. The earlier fold comparison was negative; do not repeat arbitrary fold/orientation sweeps.
 
-A different possible clue is the signed word `the` mapping to `FOLD`, suggesting a literal fold of p32's 11×11 rune layout. A narrow vertical-plus-horizontal fold was tested independently: its 16 outer-quadrant perimeter groups of four runes match the 16 signed instruction-word GP-prime residues at **0/16** positions under additive superposition (GP-ordinal sum 1/16); 50,000 original-page shuffles show no special mirror-overlap concentration. This direct reading has no support (see [Issue #18 handoff](https://github.com/FlareZ123/liber-primus/issues/18#issuecomment-6785568489)). Further folds require an independently specified overlay rule. Do not sweep arbitrary target shifts, orientations, pad functions or postselected checksum hits.
+A separate base-29 line:character reading of the 2016 instruction sentence yields PRNG specifically from “map their meaning.” It reproduces in two independent LP2 line transcriptions and the original JPEG glyphs, and only the canonical LP2 line phase produces the marker in the 29-phase null. The 13-token remainder is not the same object as the p32 13-rune W window; the shared 13-dot annotation makes a connection plausible but not established. Together these clues justify a bounded next decision: identify a source-selected PRNG/state/path/permutation and test it against withheld original material, especially the p32 navigation hypothesis and p50/51 table. The 2012 P.S. RSA modulus/exponent is a candidate, not a fact; simple RSA/RC4/MT stream-XOR and additive-key interpretations have failed. Do not broaden generic seed sweeps or continue unmotivated base-58 codecs.
