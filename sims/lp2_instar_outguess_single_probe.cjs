@@ -5,6 +5,7 @@
  *   p55 illustration -> moth / instar semantic cross-check.
  *
  * This is not a dictionary sweep. Only uppercase INSTAR is tested against
+ * Frozen source candidate; the path-filtered CI run executes this single probe.
  * original physical p55 image72.jpg. Header/length consistency is not accepted
  * as a payload without an independently recognizable structure.
  */
