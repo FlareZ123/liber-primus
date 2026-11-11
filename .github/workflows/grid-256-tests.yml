@@ -26,6 +26,7 @@ on:
           - tree-direction
           - tree-continuous-degrees
           - tree-corner-ownership
+          - tree-inclusive-cube
           - tree-wordmap
           - signed2016-derivative
           - terminal-circumference
@@ -120,6 +121,10 @@ jobs:
       - name: Original p32 ring projective corner-ownership finite gate
         if: ${{ inputs.probe == 'tree-corner-ownership' }}
         run: node sims/tree121_mobius_corner_conventions_sft.cjs
+
+      - name: LP1 paired squares to original p32 inclusive Möbius cube and exact GP28 inverse
+        if: ${{ inputs.probe == 'tree-inclusive-cube' }}
+        run: node sims/tree121_inclusive_mobius_lp1_cube_inverse_sft.cjs
 
       - name: Red GP prime-sum page-conditioned circular-control audit
         if: ${{ inputs.probe == 'redspan-zero' }}
