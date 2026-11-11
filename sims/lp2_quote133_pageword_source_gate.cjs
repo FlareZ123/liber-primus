@@ -45,6 +45,13 @@ const quoted = notes.quotes.map((q, i) => {
 assert.deepEqual(quoted.map(q => q.weight), [948, 1105, 738, 2684, 3335, 8042, 3388]);
 assert.deepEqual(quoted.map(q => q.scan), [17, 41, 73, 24, 10, 62, 63]);
 assert.deepEqual(quoted.map(q => q.ordinal), [7, 8, 5, 20, 25, 60, 25]);
+const source58 = quoted.filter(q => q.runes === 58);
+assert.equal(source58.length, 1, "exactly one marked quote spans all 58 LP2 images");
+assert.equal(source58[0].i, 3);
+const otherPrimeSum = quoted.filter(q => q.i !== source58[0].i)
+  .reduce((acc, q) => acc + q.weight, 0);
+assert.equal(otherPrimeSum, 133 * (133 - 1));
+
 assert(quoted.every(q => valid(q.weight, 133)));
 
 // A modulus above the smallest sum leaves that sum as a page number >75.
@@ -132,6 +139,26 @@ for (let t = 0; t < trials; t++) {
   }
 }
 
+// A source-visible subset selector is the unique 58-rune quotation:
+// exclude it, then compare the remaining six source prime sums against
+// title * (title-1), without searching alternative omission positions.
+const otherSamples = samples.filter((_, i) => i !== source58[0].i);
+let checksumState = 0x13358;
+function checksumDraw() {
+  checksumState ^= checksumState << 13;
+  checksumState ^= checksumState >>> 17;
+  checksumState ^= checksumState << 5;
+  return checksumState >>> 0;
+}
+let exactChecksum = 0, moduloChecksum = 0;
+const checksumTrials = 1000000;
+for (let t = 0; t < checksumTrials; t++) {
+  let total = 0;
+  for (const pool of otherSamples) total += pool[checksumDraw() % pool.length].sum;
+  if (total === 133 * 132) exactChecksum++;
+  if (total % 133 === 0) moduloChecksum++;
+}
+
 console.log(JSON.stringify({
   source: "Original quoted LP2 ciphertext; 2014 HTML title 133; later combined 75-scan order",
   caution: "The 2014 original LP2 onion index used 0.jpg..57.jpg; these addresses use a later combined-archive numbering. This is a numeric coincidence candidate, not a historical key or decryption.",
@@ -140,6 +167,7 @@ console.log(JSON.stringify({
     sourceRunes: scannedWords[q.scan - 1][q.ordinal].map(i => corpus.runes[i]).join("")
   })),
   validRadices,
+  source58Checksum: {omittedQuoteIndex: source58[0].i, otherPrimeSum, expected: 133 * 132, sixRunes: 347, sixWords: 72, checksumTrials, exactChecksum, moduloChecksum, seed: '0x13358'},
   matchedPools: samples.map((pool, i) => ({
     ...shapes[i], candidateSpans: pool.length,
     valid133: pool.filter(x => hasRadix(x, 133)).length,
