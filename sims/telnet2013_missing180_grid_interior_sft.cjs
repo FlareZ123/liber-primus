@@ -102,7 +102,13 @@ function evaluate(inputs, outputs, modulus) {
   };
 }
 
+const transforms = {
+  raw: missing,
+  reversed_decimal: missing.map((prime) =>
+    Number([...String(prime)].reverse().join('')))
+};
 const rows = [];
+for (const [operation, primes] of Object.entries(transforms)) {
 for (const modulus of [29, 60, 256]) {
   const readings = [];
   for (const flipRows of [false, true]) {
@@ -110,19 +116,22 @@ for (const modulus of [29, 60, 256]) {
       for (const columnMajor of [false, true]) {
         readings.push({
           flipRows, flipCols, columnMajor,
-          ...evaluate(missing, readInterior(flipRows, flipCols, columnMajor), modulus)
+          ...evaluate(primes, readInterior(flipRows, flipCols, columnMajor), modulus)
         });
       }
     }
   }
   assert.equal(readings.length, 8);
   const minimumErrors = Math.min(...readings.map((r) => r.minimumChanges));
-  const expected = {29: 132, 60: 148, 256: 69}[modulus];
+  const expected = {
+    raw: {29: 132, 60: 148, 256: 69},
+    reversed_decimal: {29: 135, 60: 135, 256: 38}
+  }[operation][modulus];
   assert.equal(minimumErrors, expected);
-  const planted = missing.map((prime) => (7 * (prime % modulus) + 11) % modulus);
-  assert.equal(evaluate(missing, planted, modulus).minimumChanges, 0);
+  const planted = primes.map((prime) => (7 * (prime % modulus) + 11) % modulus);
+  assert.equal(evaluate(primes, planted, modulus).minimumChanges, 0);
   rows.push({
-    modulus, sourcePrimes: missing.length,
+    operation, modulus, sourcePrimes: primes.length,
     naturalOrientations: readings.length,
     bestPossibleExactCellsUnderAnyFixedLookup: 180 - minimumErrors,
     minimumChangedCells: minimumErrors,
@@ -130,8 +139,9 @@ for (const modulus of [29, 60, 256]) {
     readings
   });
 }
+}
 console.log(JSON.stringify({
-  hypothesis: '2013 missing p21..p200 prime residues encode LP2 30x6 table interior via one stationary lookup',
+  hypothesis: '2013 missing p21..p200 primes (direct or historical decimal reversal) encode the 30x6 LP2 table interior via one stationary lookup',
   source: 'secondary 2013 telnet transcript + source-printed LP2 32x8 table',
   sourceOmittedPrimeEndpoints: [missing[0], missing[179]],
   note: 'A fixed residue map is mathematically inconsistent in every natural rectangle reading. Position-dependent maps, transpositions outside the eight readings, and unrelated uses of these source numbers remain open.',
