@@ -43,6 +43,17 @@ With \(a=1\), word seed 24 and the original ciphertext, the entire 12,956-rune i
 
 As a positive control, GP-encode the authenticated 2016 signed sentence beginning *Liber Primus is the way*, encrypt it with its source-derived seed24 and each multiplier \(a=1\dots28\), then decrypt it. **Every symbol recovers exactly for all 28 multipliers**, and the predicted doublet count equals the actual encrypted doublet count in every case. This establishes the model's actual reversibility and checks the algebra on native Cicada text, separately from the original-LP2 negative.
 
+## Prime + 1 lookalike: attractive doublet count, wrong plaintext
+
+An independent challenger, f(p)=GPprime(p)+1, was checked because it happens to reproduce the unusually low original doublet *rate* in ordinary English. At multiplier a=1 its rates are Shakespeare 0.0057774813, Emerson 0.0065870011 and Gibran 0.0059306473, close to original LP2's 0.0062624254. This is an instructive **false positive** when judged on equal adjacent runes alone.
+
+The full original 29-bin within-word ciphertext-difference spectrum rejects the same explanation. Across **all 28 nonzero multipliers** using the unchanged GP English controls, the best distributional fits occur at a=1, with Pearson 29-bin chi-square **803.711968** (Shakespeare), **998.377091** (Emerson), **1041.364921** (Gibran); total-variation gaps 0.10888–0.12645. These are finite reference-corpus diagnostics, not discovery-wide p-values.
+
+All 29 starting keys for every original word and all 28 multipliers were independently decoded under f(p)=GPprime(p)+1 and checked against **12,231 distinct** GP-English word types in those sources. The original has **1,132** words at least five runes long and **815** at least six. For **none of the 815** long words did *any* word key or multiplier produce a dictionary entry. At each multiplier at most three of the 1,132 shorter-eligible words match. A positive with genuine solved LP1, independently encrypted under this precise feedback and changing word seeds, recovers a dictionary candidate for **206 of 249** source words at least five runes long, equal to its source-dictionary coverage; all round trips succeed.
+
+The more general [29-entry all-secret word-feedback consensus test](lp2-unknown-plaintext-feedback-dictionary-consensus.md) removes the requirement that f follows any known prime formula. Both tests remain conditional on the source's printed word boundaries and native GP-English plaintext.
+
+
 ### Research decision
 
 The source clues establish the 29-symbol GP alphabet and prime values; **they do not prescribe this plaintext-feedback recurrence**. This experiment retires the specific **fixed-multiplier running-prime feedback** family as an explanation of the original anti-repeat ciphertext under the tested native-GP language assumption. It is not worth rescuing the model with arbitrary per-word multipliers, secret resegmentation or another speculative layer, which would discard its original clue constraints.
