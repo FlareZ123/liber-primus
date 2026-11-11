@@ -10,15 +10,29 @@ Usage: python3 sims/anend_original_jpeg_gate.py [repo_root]
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 import sys
 
 TARGET = ("36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09"
           "a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4")
-ROOT = Path(sys.argv[1]) if len(sys.argv)>1 else Path(__file__).resolve().parents[1]
+ARGS = [arg for arg in sys.argv[1:] if arg != '--whirlpool']
+INCLUDE_WHIRLPOOL = '--whirlpool' in sys.argv[1:]
+ROOT = Path(ARGS[0]) if ARGS else Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "resources" / "liber-primus"
 
 assert len(TARGET)==128 and len(bytes.fromhex(TARGET))==64
 assert hashlib.sha512(b"abc").hexdigest()=="ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f"
+
+def whirlpool_digest(data):
+    """Use OpenSSL 3's legacy provider for the historical Whirlpool digest."""
+    p = subprocess.run(
+        ["openssl", "dgst", "-provider", "legacy", "-whirlpool"],
+        input=data, capture_output=True, check=True)
+    fields = p.stdout.decode("ascii").strip().split()
+    digest = fields[-1].lower()
+    if len(digest) != 128:
+        raise RuntimeError(f"unexpected OpenSSL Whirlpool output: {p.stdout!r}")
+    return digest
 
 algos = {
   "sha512": lambda b: hashlib.sha512(b).hexdigest(),
@@ -26,7 +40,10 @@ algos = {
   "blake2b_512": lambda b: hashlib.blake2b(b,digest_size=64).hexdigest(),
   "shake256_512": lambda b: hashlib.shake_256(b).hexdigest(64),
 }
-assert len(set(f(b"abc") for f in algos.values()))==4
+if INCLUDE_WHIRLPOOL:
+  assert whirlpool_digest(b"abc")=="4e2448a4c6f486bb16b6562c73b4020bf3043e3a731bce721ae1b303d97e6d4c7181eebdb6c57e277d0e34957114cbd6c797fc9d95d8b582d225292076d4eef5"
+  algos["whirlpool"] = whirlpool_digest
+assert len(set(f(b"abc") for f in algos.values()))==len(algos)
 
 # Verified archival Git blob IDs for original Onion7 0.jpg..57.jpg at
 # micheloosterhof/cicada-2014 commit 06f57643821f1cadf597471c2b9c813bd08d2e37.
