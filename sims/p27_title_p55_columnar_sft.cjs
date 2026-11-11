@@ -17,6 +17,7 @@ const fs = require('node:fs');
 
 const corpus = JSON.parse(fs.readFileSync('resources/liber-primus/lp2-corpus.json', 'utf8'));
 const solved = fs.readFileSync('resources/liber-primus/lp1-plaintext-reference.txt', 'utf8');
+const transcription = fs.readFileSync('resources/liber-primus/lp2-transcription.txt', 'utf8');
 
 const p27 = corpus.pages.find((page) => page.page === 27).indices;
 const p55 = corpus.pages.find((page) => page.page === 55).indices;
@@ -184,6 +185,70 @@ const plantRecovered = decryptColumnar(plantCipher, key, {
 });
 assert.deepEqual(plantRecovered, plant);
 
+
+/** @returns {number[][]} */
+function p55PrintedWords() {
+  const runic = /[\\u16A0-\\u16FF]/u;
+  const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+  const start = transcription.indexOf('ᛝ-ᚫᛗᛁᚹ-ᛋᛒ-ᛉᛗ-ᛋᛇᚷᛞᚦᚫ');
+  assert.ok(start >= 0);
+  const end = transcription.indexOf('&', start);
+  assert.ok(end > start);
+  const raw = transcription.slice(start, end);
+  const words = [];
+  let current = [];
+  for (const character of raw) {
+    if (runic.test(character)) {
+      current.push(runeIndex.get(character));
+    } else if (character === '-' || character === '.') {
+      if (current.length > 0) words.push(current);
+      current = [];
+    }
+  }
+  if (current.length > 0) words.push(current);
+  assert.deepEqual(words.map((word) => word.length), [1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]);
+  assert.deepEqual(words.flat(), p55);
+  return words;
+}
+
+const p55Words = p55PrintedWords();
+const shedTitleKey = key.slice(1, -1);
+assert.equal(p55Words.length, 17);
+assert.equal(shedTitleKey.length, 17);
+
+const wordModes = {
+  subtract: (cipher, k) => (cipher - k + 29) % 29,
+  add: (cipher, k) => (cipher + k) % 29,
+  beaufort: (cipher, k) => (k - cipher + 29) % 29
+};
+
+const wordAlignedOutputs = {};
+for (const [name, operation] of Object.entries(wordModes)) {
+  const decodedWords = p55Words.map((word, wordIndex) =>
+    word.map((cipher) => operation(cipher, shedTitleKey[wordIndex]))
+  );
+  const decoded = decodedWords.flat();
+  wordAlignedOutputs[name] = {
+    score: score(decoded),
+    words: decodedWords.map(transliterate),
+    transliteration: transliterate(decoded)
+  };
+}
+
+const wordGate = {
+  source: {
+    p55PrintedWords: p55Words.length,
+    p55WordLengths: p55Words.map((word) => word.length),
+    titleRunesBeforeShedding: key.length,
+    titleInteriorRunesAfterShedding: shedTitleKey.length,
+    shedKeyTransliteration: transliterate(shedTitleKey)
+  },
+  outputs: wordAlignedOutputs,
+  nativeMinimum: nativeScores[0],
+  decision: 'Retire direct one-interior-title-rune-per-p55-word GP29 add/subtract/Beaufort mappings.'
+};
+assert.ok(Object.values(wordAlignedOutputs).every((item) => item.score < nativeScores[0]));
+
 const answer = {
   classification: 'bounded source-constrained negative; no plaintext recovered',
   source: {
@@ -209,6 +274,7 @@ const answer = {
     plaintextScore: score(plant),
     recoveredScore: score(plantRecovered)
   },
+  wordAlignedCircumferenceGate: wordGate,
   decision: 'Retire direct 19-column p27-title keyed transposition on p55 under the frozen fold/reversal family.'
 };
 
