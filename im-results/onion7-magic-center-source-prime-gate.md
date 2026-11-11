@@ -81,6 +81,27 @@ Raw p0 under the same scoring model is **−4.185337102**. All five best outputs
 
 **Reproduction:** [single runnable source-and-original test](../sims/onion7_magic_center_reversal_sft.cjs); [successful manual Node22 CI](https://github.com/FlareZ123/liber-primus/actions/runs/42932193081), existing `grid-256-tests.yml` `onion7-magic` probe.
 
+## Root-24 red-span selection and 29-rune candidate key (Agent 42, 11 November 2026)
+
+The p0 red-span prime-weight sum already recorded above is **662 = 2×331**. A further exhaustive check over all **18 annotated red spans** finds exactly three whose GP-prime-weight sum is congruent to the independently anchored p54 Ac / p39 repeated root **24 modulo 29**:
+
+| Page | Red-span start | Rune count | GP-prime sum | Residue |
+| ---: | ---: | ---: | ---: | ---: |
+| 0 | 0 | 13 | 662 | 24 |
+| 15 | 9 | 11 | 430 | 24 |
+| 56 | 0 | 5 | 285 | 24 |
+| **Total** | — | **29** | **1,377** | — |
+
+The spans are ordered by physical page and by position within page. Their lengths sum exactly to the 29-symbol GP alphabet, and their prime sums total \(1{,}377=27\times51\). The residue distribution across all 18 spans is \(24:3,\ 0:3,\ 17:2\), with the remaining ten residues appearing once each; thus 24 is not the only repeated residue. What distinguishes this triple is the independent root-24 anchor and its exact 29-rune total. The other three residue-zero spans have lengths 9, 8 and 51 (total 68).
+
+This gives a plausible human clue chain: marked red spans → GP prime weights → reduction modulo the alphabet size 29 → root 24 → the p39 grid factor \((X-24)^2\). It also yields a 29-rune sequence by concatenating the three selected spans. The GP-index sequence has 20 distinct symbols; the prime-weight-mod-29 sequence has 18, so neither is a permutation of the alphabet.
+
+I tested the simplest direct use as a repeating Vigenère key: both key representations (GP indices and prime weights mod29), global versus per-page clocks, both additive signs, and either including or preserving the initial two-rune p0 header (16 variants). Every variant exactly recovers a same-length native-GP plant. On original LP2, IoCs remain **0.03446313–0.03454757** and trigram scores **−13.31350 to −13.25674**. The best is **4.8564 nats/rune below** the weakest minimum among 300 same-length native-GP windows (Shakespeare −7.94684; Gibran −8.39546; Emerson −8.40037). The 29-rune sequence is therefore **not** a direct repeating key under these source-fixed readings.
+
+The residue-24 alignment remains a source-derived clue hypothesis, not a recovered key or plaintext. Its next useful role would need to be selected by an independent instruction (for example, a specified ordering, state update or operation); further unconstrained key transforms would not be justified.
+
+Reproducer: [\`sims/red_span_prime_residue24_key_sft.cjs\`](../sims/red_span_prime_residue24_key_sft.cjs).
+
 ## Digit-reversed 7×7 source matrix on the seven illustrated pages
 
 A second source-constrained test interprets the HTML title's reversal as an instruction to reverse the **decimal digits of all 49 values** in the earlier 7×7 OpenPuff square. Both the historical and the digit-reversed 7×7 matrices are invertible modulo **29** (determinants 2 and 25 mod29). A candidate Hill-style decoder was run on the original, source-enclosed **1,589 = 7×227** GP29 ciphertext runes from p33 offset91 through p39, where the identical 1033/3301 cuneiform header appears on seven physical pages.
@@ -102,6 +123,6 @@ A slightly better score relative to raw ciphertext is insufficient to indicate a
 
 ## Next useful question
 
-The strongest new historical lead is the direct **HTML id331 → 7×7 square center 331** selection, with the HTML title supplying a reversal. Was this an intended human-solvable pointer to a particular earlier magic square or arrangement? Search first for an independently authenticated stage-six/stage-seven instruction that selects an **operation**, not only a number. Any new decoder should be specified from that source instruction and should make a specific original-cipher prediction before language-based model selection. The direct source-prime and reversed-square Hill interpretations above have already failed.
+Two source-level paths now deserve an instruction-based continuation rather than more numerical fitting: (1) the direct **HTML id331 → 7×7 square center 331** selection, with the HTML title supplying a reversal; and (2) the root-24 red-span selection, where three independently marked spans have prime sums \(24\bmod29\) and total 29 runes. The direct repeating-key use of that 29-rune sequence has failed. Search for an authenticated stage-six/stage-seven instruction that selects what operation to perform with either source-derived object. Any new decoder should be specified from that instruction and make a concrete original-cipher prediction before language-based model selection.
 
-More arbitrary digit permutations, suffix-length matches, or unconstrained direct keys offer little additional discriminatory power.
+The direct source-prime, direct repeating-key, and reversed-square Hill interpretations above have already failed. More arbitrary digit permutations, suffix-length matches, or unconstrained direct keys offer little additional discriminatory power.
