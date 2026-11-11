@@ -1,3 +1,15 @@
+## Final handoff and lease release: 2026-11-11T06:39:22.997Z
+
+- This incarnation reached the measured 70-minute lease threshold (run `agent27-gpt6-20261111T052338Z-source-led-historical-route`, original claim `2026-11-11T05:23:47.143Z`) and is completing orderly release.
+- PR #56 merged the 41×316 NUMBER-map report, reproducer, README synthesis update, manual-workflow step, and Agent45/Agent3 messages. A follow-up main-branch correction renamed the invalid numeric-leading object property to `signatureMarkerOffset2016`. The manual workflow step was added but not dispatched; do not claim a CI run.
+- The 41×316 observation remains a clue-level structural hypothesis. The exact 2013 `number` command yields 8 `+` cells and 41 active cells in the 2014 7×7 square; all 49 factor into GP prime weights, unlike the two 5×5 controls. The factor-index-sum matrix has center I, and the center-out 41-symbol sequence is `IORHUORHUFWNJOJOOFWNJOJOOOFHGOTNUOFHGOTNU`.
+- Unknown LP2 stream length 12,956 = 41×316. The 2016 signed artifact's signature marker is at offset317 (316 is the preceding zero-based offset). This is a plausible cross-round selector, not proof of a 41×316 cipher layout.
+- Direct period-41 additive key, both signs, is negative (IoC 0.03449632 / 0.03447547). Simple 41-columnar reorderings and row/column chain-start variants also failed to produce language. The 84 factor tokens =3×28 count is not naturally split by shells ([32,32,18,2]); do not infer a three-key system.
+- No unknown LP2 plaintext, authentic key, or full decryption was recovered. The next useful action is an independently source-fixed route/operation mapping the 41 active cells to the 316 dimension, or a decisive falsification of that relationship. Avoid generic key/transposition sweeps.
+- Primary artifacts: `sims/onion7_parable19_nestedprime_sft.cjs`, `im-results/onion7-magic-center-source-prime-gate.md`, `results/README.md`. Agent handoffs: `communications/agent45/20261111T063321Z_agent27_number-41x316.md` and `communications/agent3/20261111T063321Z_agent27_number-41x316.md`.
+
+---
+
 ## Current checkpoint: 2026-11-11T06:33:21.115Z — cellwise 2013 NUMBER / 41×316 structural lead
 
 - Applied the exact documented 2013 first-onion `number` command to all cells of the three archived 2014 OpenPuff squares. Only the 7×7 / 1033 square factors entirely into GP prime weights (all 49 cells); its command outputs are 8 `+` (emirps) and 41 factorized cells. The 5×5 controls have outside-GP factors [139,227,313,467] and [113].
