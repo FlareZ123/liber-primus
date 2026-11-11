@@ -1,0 +1,46 @@
+name: F5 FGH-2002 detector calibration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sims/f5_detector_calibration/main.go'
+      - 'resources/liber-primus/*.jpg'
+  workflow_dispatch:
+
+concurrency:
+  group: f5-fgh2002-calibration
+  cancel-in-progress: false
+
+jobs:
+  calibrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.0'
+          cache: false
+      - name: Pin and install F5 CLI for extraction verification
+        run: |
+          go install github.com/0verkilll/f5/cmd/f5@v1.0.0
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+          f5 version || f5 --version || true
+      - name: Resolve pinned module graph
+        working-directory: sims/f5_detector_calibration
+        run: go mod tidy
+      - name: Run FGH-2002 calibration on original Cicada JPEGs
+        working-directory: sims/f5_detector_calibration
+        run: go run .
+      - name: Upload raw calibration, synthetic controls, and module lock
+        uses: actions/upload-artifact@v4
+        with:
+          name: f5-fgh2002-calibration-${{ github.sha }}
+          path: |
+            im-results/f5-fgh2002-calibration/
+            sims/f5_detector_calibration/go.sum
+          if-no-files-found: error
+          retention-days: 30
