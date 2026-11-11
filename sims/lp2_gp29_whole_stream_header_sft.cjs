@@ -177,6 +177,44 @@ for (const flg of flags) {
 assert.equal(lz4Cases, 64);
 assert.equal(headerCompatible, 0);
 
+// Historical PGP route: a v3 one-pass signature packet with Cicada's
+// source-documented signing key ID. The complete 13-byte one-pass packet
+// can appear at the start of a *multi-packet* signed message, so its size
+// does not assume the entire file is a single PGP packet. Test both legal
+// 1-byte-length packet headers, common signature types and the full set
+// of RFC4880's standard named hash/public-key algorithm identifiers;
+// the known signer key ID is never optimized.
+const cicadaSigningKeyId = [0x18, 0x1f, 0x01, 0xe5,
+  0x7a, 0x35, 0x09, 0x0f];
+const signatureTypes = [0, 1, 2, 3, 0x10, 0x11, 0x12, 0x13,
+  0x18, 0x19, 0x1f, 0x20, 0x28, 0x30, 0x40, 0x50];
+const hashes = [1, 2, 3, 8, 9, 10, 11];
+const publicKeys = [1, 2, 3, 16, 17, 18, 19, 20, 21, 22];
+let pgpOnePassCases = 0;
+for (const header of [0x90, 0xc4]) {
+  for (const signatureType of signatureTypes) {
+    for (const hash of hashes) {
+      for (const publicKey of publicKeys) {
+        for (const nested of [0, 1]) {
+          const prefix = [header, 13, 3, signatureType, hash,
+            publicKey, ...cicadaSigningKeyId, nested];
+          assert.deepEqual(survivingCases(prefix), []);
+          pgpOnePassCases++;
+        }
+      }
+    }
+  }
+}
+assert.equal(pgpOnePassCases, 4480);
+
+// For the typical RSA/SHA256 binary v3 one-pass packet, the ninth-rune
+// equality contradiction arises before any surrounding PGP packets.
+const sourcePgpPrefix = [0xc4, 13, 3, 0, 8, 1,
+  ...cicadaSigningKeyId, 1];
+const sourcePgpForced = forcedDigits(sourcePgpPrefix, 7867, 0);
+assert.deepEqual(firstConflict(sourcePgpForced, source),
+  {first: 1, second: 7});
+
 // Constructive positive: a complete binary message with a standard JPEG
 // header, and a valid uncompressed single-block LZ4 frame. Secret 29-way
 // alphabets must preserve their header fingerprints and fully roundtrip.
@@ -222,6 +260,13 @@ for (let i = jpegHeader.length; i < jpegPositive.length; i++) {
 }
 positiveRoundTrip(jpegPositive, 7867, [...jpegHeader]);
 
+const pgpHeaderPositive = Buffer.alloc(7867);
+Buffer.from(sourcePgpPrefix).copy(pgpHeaderPositive);
+for (let i = sourcePgpPrefix.length; i < pgpHeaderPositive.length; i++) {
+  pgpHeaderPositive[i] = (i * 41 + 7) & 255;
+}
+positiveRoundTrip(pgpHeaderPositive, 7867, sourcePgpPrefix);
+
 const lz4Head = lz4Header(0x60, 0x40);
 const lz4RawSize = 7868 - 15;
 const lz4Size = (lz4RawSize + 0x80000000) >>> 0;
@@ -245,7 +290,11 @@ console.log(JSON.stringify({
   lz4: {ordinaryOneBlockVariants: lz4Cases,
     rawHeaderCompatible: headerCompatible,
     completeOneBlockSurvivors: 0},
+  openPgp: {onePassWithKnownCicadaSigningKey: pgpOnePassCases,
+    survivingSecretPermutations: 0,
+    typicalRsaSha256Contradiction: [1, 7]},
   positive: {jpegHeader: "exact binary roundtrip",
-    validUncompressedLZ4: "exact binary roundtrip"},
+    validUncompressedLZ4: "exact binary roundtrip",
+    openPgpOnePassHeader: "exact binary roundtrip"},
   recoveredUnknownPlaintext: false,
 }, null, 2));
