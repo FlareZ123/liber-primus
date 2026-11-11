@@ -34,6 +34,21 @@ All post-p36 blocks are likewise below IoC **0.045**; the mean is approximately 
 
 Both outputs are nonlinguistic by the same predeclared GP coincidence threshold. For all transformations the original input is reproduced exactly when reencryption is applied. A 238-rune plaintext plant made by repeating the source-solved p57 text is encrypted then recovered **238/238** under every tested inverse. This validates implementation and detection capacity; it does not constitute evidence of an unknown-page decryption.
 
+## Fixed 144-byte payload under original p36 field key (Agent 7, 11 November 2026)
+
+The earlier p36/R238 block-multiplication experiment used native-GP language scores. The authenticated historical BASE29 operation supplies a separate, finite *binary* register hypothesis: encode a fixed arbitrary 144-byte payload as one big-endian integer, expand it into 238 base-29 digits, then multiply by the original 238-rune page-p36 key in \(F=\mathrm{GF}(29^{238})\). Since \(256^{144}<29^{238}<256^{145}\), **all** arbitrary 144-byte plaintext frames are representable, whereas arbitrary 145-byte plaintext frames are not. The original field element is interpreted in the same ascending coefficient convention as the red triads. A valid inverse must map **every complete ciphertext block** into an integer strictly below \(2^{1152}\), before any byte contents can be read. This is a source-conditioned necessary condition independent of English scoring or a guessed compression format.
+
+On exact original 238-rune ciphertext blocks, invert multiplication by the original p36 key in either of its two coefficient directions, with either coefficient direction for the incoming blocks. Test a book-start clock (54 blocks) and a strict post-p36 clock starting at global rune **8,944** (16 blocks). Counts of decoded blocks meeting the required 144-byte capacity:
+
+| p36 key coefficients | Original block coefficients | Book start (of 54) | Immediately after p36 (of 16) |
+| --- | --- | ---: | ---: |
+| Ascending | Ascending | **4** | **0** |
+| Ascending | Descending | **1** | **1** |
+| Descending | Ascending | **2** | **0** |
+| Descending | Descending | **6** | **1** |
+
+The exact inverse and forward field multiplication reproduce **every input 238-rune block**; a source-keyed, independently specified 144-byte ASCII plant recovers all its bytes. No eligible original byte frame begins with any of the eight predeclared gzip/bzip2/XZ/ZIP/PNG/7z/PDF/Zstd headers. The **capacity failures alone** decisively exclude this *particular direct source-key, fixed 144-byte encoding* regardless of language or hidden compression inside a 144-byte frame. They do not exclude 145-byte frames with restricted high bits, variable-length bit packing, a different key or an unobserved cipher layer. The source does not explicitly instruct field multiplication, so this is a narrow inversion gate. [Reproducer](../sims/p36_q238_direct_144byte_transport_sft.cjs).
+
 ## Source-anchored three-element norm correspondence (Agent 7, 11 November 2026)
 
 A new exact field calculation strengthens the **source-selected numerical link** between the same three geometrically constrained rune sequences. This is a possible clue, without an LP2 decryption. Let \(Q_{238}\) be the original p50 table's published irreducible factor and interpret each printed GP29 source vector as an *ascending-coefficient* element of \(F=\mathrm{GF}(29^{238})\). The degree-238 field norm is \(N_{F/\mathbb F_{29}}(S)=S^{(29^{238}-1)/28}\). The pair of **119-rune** prefixes is selected from the two uniquely red marked inscriptions at physical **p3:119** and **p39:119**; p36 is an entire **238-rune** source page. No ciphertext plaintext, guessed seed, or secret alphabet is fitted:
