@@ -2,8 +2,18 @@ name: 2016 image-dimension lag-six source gate
 
 on:
   workflow_dispatch:
+    inputs:
+      probe:
+        description: "Run the original source gates or the p32 word-to-pixel candidate"
+        required: false
+        type: choice
+        options:
+          - original
+          - tree-pixel
+        default: original
 jobs:
   source-gate:
+    if: ${{ inputs.probe == 'original' || inputs.probe == '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -24,6 +34,7 @@ jobs:
           if-no-files-found: warn
 
   t6-register-gate:
+    if: ${{ inputs.probe == 'original' || inputs.probe == '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -35,6 +46,7 @@ jobs:
         run: node sims/t6_source_register_gate.cjs
 
   prime-dimensions-gate:
+    if: ${{ inputs.probe == 'original' || inputs.probe == '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -44,3 +56,17 @@ jobs:
           node-version: '22'
       - name: Test 2016 consecutive-prime starts and all-state squaring periodicity
         run: node sims/cicada2016_dimensions_prime_state_gate.cjs
+
+  tree-wordpixel-gate:
+    if: ${{ inputs.probe == 'tree-pixel' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Pillow for historical JPEG source inspection
+        run: python -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Source-fixed p32 word-pair pixel coordinate test
+        run: python sims/tree121_wordpixel_path_sft.py
