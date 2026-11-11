@@ -60,6 +60,17 @@ function mobius(n) {
 }
 
 const words = parseWords();
+const unsolvedPages = corpus.pages.filter(p=>p.page<=55);
+assert.equal(unsolvedPages.length,56);
+const tripleSquareWindows=[];
+for(let j=0;j<unsolvedPages.length-2;j++) {
+  const total=unsolvedPages.slice(j,j+3).reduce((s,p)=>s+p.runic_count,0);
+  const root=Math.sqrt(total);
+  if(Number.isInteger(root)) tripleSquareWindows.push({start:j,total,root});
+}
+assert.deepEqual(tripleSquareWindows,[{start:0,total:729,root:27}]);
+// This uniqueness only pertains to consecutive physical 3-page square totals;
+// it is descriptive rather than a multiplicity-corrected intention test.
 const first = corpus.pages.slice(0, 3).flatMap(p => p.indices);
 assert.equal(first.length, 729);
 const pattern = [2, 1, 2, 2];
@@ -255,6 +266,7 @@ assert.notDeepEqual(fifthPredictedCenter,fifthPublishedCenter);
 console.log(JSON.stringify({
   unsolvedWords: words.length,
   matchingPatternCount: matches.length,
+  consecutiveThreePageSquareWindows: tripleSquareWindows,
   matchingPositions: only.map(w => [w.start, w.end]),
   sourceCipherWords: cipherWords,
   sourceLengthPattern: pattern,
