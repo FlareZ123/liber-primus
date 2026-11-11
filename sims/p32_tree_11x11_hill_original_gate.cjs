@@ -81,6 +81,46 @@ function scalarEigenvalues(M) {
   return values;
 }
 
+/**
+ * Conditional spectral null. Preserve first row and column of the
+ * original 11x11 matrix, which carry the 563/569 source dimensions.
+ * Randomly permute the remaining 100 GP indices. The fixed null does
+ * not correct for choosing two eigenvalues after inspecting the matrix.
+ * @param {number[][]} M Original GP-index 11x11 matrix.
+ * @param {number} samples Number of seeded interior reshuffles.
+ */
+function spectralInteriorNull(M, samples = 5000) {
+  const interior = [];
+  for (let r = 1; r < 11; r++)
+    for (let c = 1; c < 11; c++) interior.push(M[r][c]);
+  let state = 0x446c5151;
+  const next = () => {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return state >>> 0;
+  };
+  let has24 = 0, has25 = 0, hasBoth = 0;
+  for (let trial = 0; trial < samples; trial++) {
+    const shuffled = [...interior];
+    for (let j = shuffled.length - 1; j > 0; j--) {
+      const k = next() % (j + 1);
+      [shuffled[k], shuffled[j]] = [shuffled[j], shuffled[k]];
+    }
+    const B = M.map(row => [...row]);
+    let at = 0;
+    for (let r = 1; r < 11; r++)
+      for (let c = 1; c < 11; c++) B[r][c] = shuffled[at++];
+    const eigen = scalarEigenvalues(B);
+    const a = eigen.includes(24), b = eigen.includes(25);
+    has24 += Number(a);
+    has25 += Number(b);
+    hasBoth += Number(a && b);
+  }
+  return {samples, seed:0x446c5151, borderLocked:21,
+    interiorPermuted:100, hits24:has24, hits25:has25, hitsBoth:hasBoth};
+}
+
 /** Train on original physical pp0-27; hold out pp28-55. */
 function originalGate(pages, M, reset, phase) {
   const train = [], heldout = [];
@@ -149,13 +189,19 @@ function main() {
     }
   }
   assert.deepEqual(geometry.map(x => x.scalarEigenvalues), [[], [24,25]]);
+  const indexMatrix = Array.from({length:11},
+    (_, row) => p32.slice(11 * row, 11 * row + 11));
+  const spectralNull = spectralInteriorNull(indexMatrix);
+  assert.deepEqual(
+    [spectralNull.hits24, spectralNull.hits25, spectralNull.hitsBoth],
+    [201,198,10]);
   assert.equal(variants.length, 176);
   const bestTrain = [...variants].sort((a,b) => b.trainIoC - a.trainIoC)[0];
   const bestOriginal = [...variants].sort((a,b) => b.allIoC - a.allIoC)[0];
   const summary = {originalRunes:12956, sourcePage:32,
     physicalTreeImage:'49.jpg', originalChecksum:[563,569],
     rawIoC:ioc(pages.flatMap(p => p.indices)),
-    sourceGeometries:geometry, variants:variants.length,
+    sourceGeometries:geometry, spectralNull, variants:variants.length,
     controls, bestTrain, bestOriginal,
     allIoCRange:[Math.min(...variants.map(v => v.allIoC)),
       Math.max(...variants.map(v => v.allIoC))],
@@ -165,4 +211,4 @@ function main() {
 }
 if (require.main === module) main();
 module.exports = {inverseAndDet, transpose, transform, ioc,
-  scalarEigenvalues, originalGate, main};
+  scalarEigenvalues, spectralInteriorNull, originalGate, main};
