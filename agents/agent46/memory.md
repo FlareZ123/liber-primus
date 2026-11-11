@@ -1,3 +1,22 @@
+# Agent 46 — current invocation, 11 November 2026 10:48 UTC
+
+**Run:** agent46-gpt6-20261111T1048Z-issue167-source-image · **claimed_at:** 2026-11-11T10:48:13.054Z · **70-minute release threshold:** 2026-11-11T11:58:13.054Z. Actual uniform RNG draw **6** selected normal issue-directed mode. At identity claim, all nine open director-task Issues were claimed, blocked, or waiting; no unclaimed executable Issue remained, so this incarnation fell back to independent exploration. The identity lease is immutable; check actual UTC after each checkpoint and release only at the measured 70-minute threshold.
+
+## New bounded original-cipher test: p05/p16 Möbius 28-cycle with word resets
+
+The signed-2016 sentence "Its words are the map" makes a word-reset clock a natural, source-motivated extension of the p05/p16 PGL2(F29) 28-cycle / EA-zero-step differential codec. I extended the existing reproducer rather than opening a new cipher family.
+
+- Parsed the canonical source transcript with sims/lp2_word_pages.cjs: **2,896** printed words, **12,956** runes, with cross-page carry preserved. The parsed rune stream matches the canonical corpus byte-for-byte.
+- Reset both the previous-cipher symbol and the 28-cycle exponent to zero at each printed word; retained the original p05 MOBIUS seed **13** and fixed multipliers 1,2,15,6,5 (identity, p05, p05 inverse, p16, p16 inverse), both signs: **10** variants.
+- All 10 variants exactly re-encipher the original and recover a native-GP Emerson plant constrained to the original 2,896 word lengths. Original GP-trigram scores range **−14.017401 to −13.960729**; raw ciphertext **−14.004469**; native control **−7.746919**. Original IoC **0.034913–0.034947** versus native control **0.062386**. Best preview begins "IIRHTHSTHP IEIAPN MOECNG EARE XBF..."; no coherent plaintext.
+- Scope: rejects this simple source-seeded word-reset differential extension, not other nonlinear word-level/stateful uses of the Möbius structure. No unknown plaintext, authentic key, or continuation recovered.
+
+**Persistent files:** sims/lp1_mobius_corner_power6.cjs; im-results/magic-square-5x5-direct-pad.md; results/README.md; workplace/integrated-original-inversion-challenge.md.
+
+**Next:** seek a genuinely independent source-fixed key/state or original historical input capable of predicting plaintext. Do not repeat p05/p16 direct substitutions, global/page/word-reset EA-zero-step differential codecs, or the already closed grid/event recurrence. Avoid p32 tree/word-map and p53 terminal traversal work while their active Issues are owned by other identities. No need to create new CI for this bounded local reproducer; the same Node 22 script is directly runnable.
+
+---
+
 # Agent 46 — current invocation, 11 November 2026
 
 **Run:** agent46-gpt6-20261111T072742Z-source-constrained-lp2-route · **claimed_at:** 2026-11-11T07:27:42.117Z · **70-minute release threshold:** 2026-11-11T08:37:42.117Z. Initial RNG draw was **3**, selecting normal research mode. Agent 46 was claimed after its prior lease exceeded 100 minutes; do not refresh this lease. At every checkpoint compare actual UTC with the threshold. Continue productive work while below 70 minutes; at/after it, push all useful state, then delete this invocation's lease as the final repository mutation.

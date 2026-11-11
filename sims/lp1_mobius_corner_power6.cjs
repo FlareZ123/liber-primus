@@ -7,6 +7,7 @@
 const fs = require('node:fs');
 const assert = require('node:assert/strict');
 const { events } = require('./red_256_event_key_inverse.cjs');
+const { parseLP2Words } = require('./lp2_word_pages.cjs');
 
 const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
 const mod = (x, p = 29) => ((x % p) + p) % p;
@@ -307,6 +308,86 @@ function decodeDifferentialFrom(cipherPages, multiplier, clock) {
   return out;
 }
 
+// The signed-2016 phrase "Its words are the map" motivates a natural
+// word-reset extension of the same source-seeded EA-zero-step differential
+// codec. Preserve cross-page word carry; reset previous ciphertext and the
+// 28-cycle exponent only at canonical printed word boundaries.
+const parsedWords = parseLP2Words(fs.readFileSync('resources/lp2-transcription.txt', 'utf8'));
+assert.equal(parsedWords.words.length, 2896);
+assert.equal(parsedWords.runeCount, 12956);
+const runeToIndex = new Map(corpus.runes.map((r, i) => [r, i]));
+const wordCipher = parsedWords.words.map(w => [...w.runes].map(r => runeToIndex.get(r)));
+assert.deepEqual(wordCipher.flat(), ciphertext);
+function decodeWordDifferential(multiplier, sign, cipherWords = wordCipher) {
+  return cipherWords.map(word => {
+    let previous = 0, step = 0;
+    const decoded = [];
+    for (const c of word) {
+      const delta = mod(sign * (c - previous));
+      if (delta === 0) decoded.push(28);
+      else {
+        const key = mod(seedU * powMod(multiplier, step));
+        const rank = log2[mod(delta * invMod(key))];
+        assert.ok(rank >= 0);
+        decoded.push(cycleSymbols[rank]);
+        step++;
+      }
+      previous = c;
+    }
+    return decoded;
+  });
+}
+function encodeWordDifferential(plainWords, multiplier, sign) {
+  return plainWords.map(word => {
+    let previous = 0, step = 0;
+    const encoded = [];
+    for (const p of word) {
+      if (p === 28) encoded.push(previous);
+      else {
+        const rank = cycleSymbols.indexOf(p);
+        assert.ok(rank >= 0);
+        const key = mod(seedU * powMod(multiplier, step));
+        const delta = mod(key * powMod(2, rank));
+        previous = mod(previous + sign * delta);
+        encoded.push(previous);
+        step++;
+      }
+    }
+    return encoded;
+  });
+}
+const wordLengths = wordCipher.map(w => w.length);
+let wordPlantOffset = 0;
+const wordPlant = wordLengths.map(length => {
+  const word = control.slice(wordPlantOffset, wordPlantOffset + length);
+  wordPlantOffset += length;
+  return word;
+});
+const wordDifferential = [];
+for (const sign of [1, -1]) {
+  for (const multiplier of [1, 2, 15, 6, 5]) {
+    const decoded = decodeWordDifferential(multiplier, sign);
+    assert.deepEqual(encodeWordDifferential(decoded, multiplier, sign).flat(), ciphertext);
+    const plantedCipher = encodeWordDifferential(wordPlant, multiplier, sign);
+    assert.deepEqual(decodeWordDifferential(multiplier, sign, plantedCipher), wordPlant);
+    wordDifferential.push({
+      clock: 'word-reset', multiplier, sign,
+      metrics: metrics(decoded.flat()),
+      preview: decoded.slice(0, 8).map(w => w.map(i => translit[i]).join('')).join(' ')
+    });
+  }
+}
+const wordResetControl = {
+  wordCount: wordCipher.length,
+  runeCount: parsedWords.runeCount,
+  variants: wordDifferential.length,
+  exactPositivePlants: wordDifferential.length,
+  raw: metrics(ciphertext),
+  nativeControl: metrics(control),
+  best: wordDifferential.slice().sort((a, b) => b.metrics.trigram - a.metrics.trigram)[0],
+  worstTrigram: Math.min(...wordDifferential.map(x => x.metrics.trigram))
+};
+
 // The same p05/p16 state was also tested as a 256-event F_29 recurrence
 // against the 256-byte base-60 grid. This is a bounded alignment check,
 // not an assumed cipher.
@@ -395,7 +476,9 @@ console.log(JSON.stringify({
   corpus: { pages: pages.length, runes: ciphertext.length, baseline: metrics(ciphertext) },
   directSubstitutions,
   differential,
+  wordDifferential,
+  wordResetControl,
   eventGrid,
   gridPolynomialOrbit: { orbitSize: 56, rootHits: orbitRootHits },
-  verdict: 'Exact source-derived PGL2 relation; tested direct substitutions and simple EA-zero-step uses do not recover LP2 plaintext.'
+  verdict: 'Exact source-derived PGL2 relation; direct substitutions and simple EA-zero-step differential codecs under global, page, and word-reset clocks do not recover LP2 plaintext.'
 }, null, 2));

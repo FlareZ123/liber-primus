@@ -216,15 +216,9 @@ times the 28-state cycle. The 13 derived from the MOBIUS cell also matches the
 13-dot stencil value used in the 256-event source stream. These are coherent
 solve-path clues, not proof that this is the intended LP2 cipher.
 
-**Bounded applications tested.** The direct projective substitutions M05,
-M05-inverse, M16 and M16-inverse do not produce language. A reversible
-EA-zero-step differential codec was also tested: `delta=C[i]-C[i-1] mod 29`;
-zero maps to EA; otherwise take the base-2 discrete log after dividing by
-`13*m^t`, then map the rank through the source-derived 28-cycle. The fixed
-multipliers `m in {1,2,15,6,5}` cover the identity, p05/p16 maps and their
-inverses; both book-global and page-reset clocks were tested. Synthetic
-round-trip controls pass exactly, but the original output remains
-ciphertext-like and its language score stays near baseline.
+**Bounded applications tested.** The direct projective substitutions M05, M05-inverse, M16 and M16-inverse do not produce language. A reversible EA-zero-step differential codec was also tested: delta=C[i]-C[i-1] mod 29; zero maps to EA; otherwise take the base-2 discrete log after dividing by 13*m^t, then map the rank through the source-derived 28-cycle. The fixed multipliers m in {1,2,15,6,5} cover the identity, p05/p16 maps and their inverses; both book-global and page-reset clocks were tested. Synthetic round-trip controls pass exactly, but the original output remains ciphertext-like and its language score stays near baseline.
+
+**Word-reset extension (11 November 2026).** The signed-2016 phrase "Its words are the map" motivates resetting both the previous-cipher symbol and 28-cycle exponent at each canonical printed word, while retaining cross-page carry within a word. Ten fixed variants (multipliers 1,2,15,6,5 and both signs) all exactly re-encipher the original and recover a word-length-matched native-GP Emerson plant. Original GP-trigram scores range from **−14.017401 to −13.960729**, versus raw ciphertext **−14.004469** and native control **−7.746919**; IoC is **0.034913–0.034947**, versus native **0.062386**. The best preview begins **IIRHTHSTHP IEIAPN MOECNG EARE XBF...** and remains nonlinguistic. This closes only the simple word-reset extension of the 28-cycle differential codec; no plaintext or key is recovered. Reproduce with sims/lp1_mobius_corner_power6.cjs.
 
 The 256 red-rune/13-dot event stream was also passed through the two natural
 seed-13 affine recurrences using multipliers 2 and 6; neither aligns exactly
