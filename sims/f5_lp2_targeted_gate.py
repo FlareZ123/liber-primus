@@ -44,8 +44,13 @@ KEYS = [
      "alternative documented 2014 7x7/OpenPuff candidate; not authenticated as F5 key"),
     ("mobius", "MOBIUS",
      "explicit 2013 0_wisdom table word; weaker keyword candidate"),
+    ("m7_pole_short_fragments_gp_translit",
+     "IACSMPYLSOAAEHLEEOIMLLSCPPDTHAEJOESR",
+     "M7 pole-cycle short fragments #24,#18,#5,#29: exact 30-rune GP transliteration; runtime source check"),
+    ("m7_pole_short_fragments_runic_utf8",
+     "ᛡᚳᛋᛗᛈᚣᛚᛋᚩᚪᚫᚻᛚᛖᛇᛁᛗᛚᛚᛋᚳᛈᛈᛞᚦᚫᛄᛟᛋᚱ",
+     "same 30-rune M7 pole-cycle sequence in original GP glyphs, passed as UTF-8"),
 ]
-
 def run(args: list[str], timeout: int = 180,
         max_output_chars: int | None = 3000) -> dict[str, Any]:
     def clipped(value: Any) -> str:
@@ -218,6 +223,101 @@ def extract_one(task: tuple[Path, str, str]) -> dict[str, Any]:
         out.unlink()
     return row
 
+
+def verify_m7_source_candidate() -> dict[str, Any]:
+    """Reconstruct the two M7 pole-cycle passwords from pinned source data."""
+    corpus = json.loads((ROOT / "resources/liber-primus/lp2-corpus.json").read_text(encoding="utf-8"))
+    grid = json.loads((ROOT / "resources/liber-primus/lp2-grid-256.json").read_text(encoding="utf-8"))
+    ink = json.loads((ROOT / "resources/liber-primus/lp2-ink-annotations.json").read_text(encoding="utf-8"))
+
+    all_indices: list[int] = []
+    page_offsets: dict[int, int] = {}
+    for page in corpus["pages"]:
+        page_offsets[int(page["page"])] = len(all_indices)
+        all_indices.extend(int(x) for x in page["indices"])
+
+    marks: list[int] = []
+    for page in ink["pages"]:
+        page_number = int(page["page"])
+        for event in page.get("large_punctuation", []):
+            if len(event) >= 2 and int(event[1]) == 13:
+                marks.append(page_offsets[page_number] + int(event[0]))
+    marks.sort()
+    bounds = [0, *marks, len(all_indices)]
+    fragments = []
+    empty_ids = []
+    for i, start in enumerate(bounds[:-1]):
+        seq = all_indices[start:bounds[i + 1]]
+        if seq:
+            fragments.append({
+                "id": i + 1,
+                "length": len(seq),
+                "seq": seq,
+                "byte": int(grid["bytes"][i * 8 + 1]),
+            })
+        else:
+            empty_ids.append(i + 1)
+    if len(marks) != 31 or len(bounds) != 33 or len(fragments) != 30 or empty_ids != [9, 12]:
+        raise RuntimeError("M7 source partition changed: expected 31 marks, 32 intervals, 30 nonempty, empties #9/#12")
+    if len({f["byte"] for f in fragments}) != 30:
+        raise RuntimeError("p50 second-column rank map is no longer unique")
+
+    ranked = sorted(fragments, key=lambda f: f["byte"])
+    def mod29(n: int) -> int:
+        return n % 29
+    def inv29(n: int) -> int:
+        return pow(mod29(n), -1, 29)
+    def m7(x: int) -> int:
+        if x == 29:  # projective infinity
+            return mod29(14 * inv29(25))
+        denominator = mod29(25 * x + 28)
+        if denominator == 0:
+            return 29
+        return mod29((14 * x + 25) * inv29(denominator))
+
+    cycle = []
+    state = 7  # the source-derived M7 pole
+    for _ in range(7):
+        fragment = ranked[state]
+        cycle.append({"rank": state, "fragment": fragment["id"], "length": fragment["length"]})
+        state = m7(state)
+    if state != 7 or cycle != [
+        {"rank": 7, "fragment": 6, "length": 690},
+        {"rank": 29, "fragment": 2, "length": 716},
+        {"rank": 11, "fragment": 23, "length": 1460},
+        {"rank": 16, "fragment": 24, "length": 3},
+        {"rank": 10, "fragment": 18, "length": 19},
+        {"rank": 8, "fragment": 5, "length": 3},
+        {"rank": 2, "fragment": 29, "length": 5},
+    ]:
+        raise RuntimeError("M7 pole-cycle source mapping changed")
+
+    short_ids = [row["fragment"] for row in cycle if row["length"] < 20]
+    if short_ids != [24, 18, 5, 29]:
+        raise RuntimeError("M7 short-fragment selection changed")
+    by_id = {f["id"]: f for f in fragments}
+    rune_indices = [r for fragment_id in short_ids for r in by_id[fragment_id]["seq"]]
+    runic = "".join(corpus["runes"][i] for i in rune_indices)
+    transliteration = "".join(corpus["translit"][i] for i in rune_indices)
+    if len(rune_indices) != 30:
+        raise RuntimeError("expected 30 source-selected GP runes")
+    if runic != "ᛡᚳᛋᛗᛈᚣᛚᛋᚩᚪᚫᚻᛚᛖᛇᛁᛗᛚᛚᛋᚳᛈᛈᛞᚦᚫᛄᛟᛋᚱ":
+        raise RuntimeError("source-derived runic password differs from frozen candidate")
+    if transliteration != "IACSMPYLSOAAEHLEEOIMLLSCPPDTHAEJOESR":
+        raise RuntimeError("source-derived GP transliteration differs from frozen candidate")
+    return {
+        "mark_count": len(marks),
+        "interval_count": len(bounds) - 1,
+        "empty_fragment_ids": empty_ids,
+        "m7_pole_cycle": cycle,
+        "short_fragment_ids": short_ids,
+        "short_fragment_lengths": [3, 19, 3, 5],
+        "rune_count": len(rune_indices),
+        "runic_utf8_password": runic,
+        "gp_transliteration_password": transliteration,
+        "transliteration_character_count": len(transliteration),
+    }
+
 def main() -> None:
     if not F5:
         raise SystemExit("f5 executable not found; install github.com/0verkilll/f5/cmd/f5@v1.0.0")
@@ -232,6 +332,7 @@ def main() -> None:
     version = run([F5, "version"], timeout=30)
     go_version = run(["go", "version"], timeout=30)
 
+    m7_source_validation = verify_m7_source_candidate()
     control = positive_control(images)
 
     # Detector pass includes LP1 pages as controls and all 58 LP2 pages.
@@ -280,6 +381,7 @@ def main() -> None:
             {"key_id": key_id, "source_basis": note}
             for key_id, _, note in KEYS
         ],
+        "m7_source_validation": m7_source_validation,
         "positive_control": control,
         "detector": {
             "verdict_counts": dict(verdict_counts),
@@ -300,6 +402,7 @@ def main() -> None:
     )
     print(json.dumps({
         "positive_control_exact": control["round_trip_exact"],
+        "m7_source_validation": m7_source_validation,
         "images_detected": len(summary["detector"]["stego_detected"]),
         "detector_verdict_counts": dict(verdict_counts),
         "extraction_attempts": len(extractions),

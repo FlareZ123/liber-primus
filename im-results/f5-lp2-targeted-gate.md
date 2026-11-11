@@ -1,8 +1,8 @@
-# F5 JPEG DCT gate: five source-derived passwords, no extraction
+# F5 JPEG DCT gate: five original passwords rejected; M7 pole-cycle candidates pending
 
 ## Decision
 
-No LP2 plaintext or key was recovered. The run rejects only five exact candidate passwords under the pinned F5 extractor. The statistical/structural detector does not provide a reliable absence result for the LP2 corpus, so **F5 as a method remains open**. Do not expand this into an unconstrained password dictionary search without a new source clue.
+No LP2 plaintext or key was recovered. The first run rejects five exact candidate passwords under the pinned F5 extractor. A second, source-derived M7 pole-cycle candidate is now being tested in its two natural representations. The statistical/structural detector does not provide a reliable absence result for the LP2 corpus, so **F5 as a method remains open**. Do not expand this into an unconstrained password dictionary search.
 
 ## Hypothesis and bounded inputs
 
@@ -42,11 +42,18 @@ The first run (42995341645) failed before the corpus scan because `image_meta` a
 
 That successful run exposed a second reporting defect: the helper clipped detector stdout to the last 3,000 characters, so `json.loads` failed and the archived JSONL stored `result=null`. The complete terminal JSON objects remained intact in the suffixes and are the basis of the 58-page aggregate above. The current reproducer is corrected to preserve full detector output, and its detector summary now records the raw `detected` flag, reliability, saturation and the actual `estimated_message_bytes` field. This code correction does not retroactively change the archived run.
 
+
+## Follow-up: source-derived M7 pole-cycle password (pending)
+
+The p50 second-column rank map assigns the 30 nonempty thirteen-dot fragments to (P^1(F_{29})). The source-derived p32 projectivity M7, starting at its pole rank 7, traverses ranks `7 → 29 → 11 → 16 → 10 → 8 → 2 → 7`, selecting fragments **#6, #2, #23, #24, #18, #5, #29**. Four fragments are short (3, 19, 3, 5 runes). Concatenating those four in forward-cycle order (#24, #18, #5, #29) yields exactly **30 GP runes**.
+
+The exact source-derived password is tested in two representations: the original Unicode runes `ᛡᚳᛋᛗᛈᚣᛚᛋᚩᚪᚫᚻᛚᛖᛇᛁᛗᛚᛚᛋᚳᛈᛈᛞᚦᚫᛄᛟᛋᚱ` (UTF-8 bytes), and its GP transliteration `IACSMPYLSOAAEHLEEOIMLLSCPPDTHAEJOESR` (36 ASCII characters). An earlier handoff omitted the final `SR`; the runtime source check now reconstructs the 30-rune sequence, verifies all seven pole-cycle fragment IDs/lengths, and rejects any transcription drift. The two new representations add 116 LP2 extraction attempts (58 images × 2) to the five previously tested candidates. Their result is pending; the original five-candidate run remains a separate, already-completed bounded negative.
+
 ## Interpretation and next action
 
 The result is a **bounded password exclusion**: these five source-derived strings do not extract a payload from any of the 58 LP2 JPEGs with F5 v1.0.0. The detector result is inconclusive because its statistical estimate is unreliable for every LP2 image and its extraction positive control is also classified CLEAN. The structural score only tests recognizable f5.jar/PixelKnot layouts.
 
-Do not treat this as a general exclusion of F5, a generic DCT-domain method, or image steganography. If a new source-authenticated F5 password or a carrier-specific clue appears, rerun with a detector-positive control made using `embed-jar` (or another known fingerprinted carrier) as well as the existing extraction control. Otherwise, spend effort on source-selected keys and reversible text operations rather than more password guesses.
+Do not treat this as a general exclusion of F5, a generic DCT-domain method, or image steganography. The current follow-up is limited to the two representations of one source-derived M7 pole-cycle password; no dictionary expansion is warranted. If it produces no payload, retain F5 as a method-level open question but stop password guessing until another independent source clue appears.
 
 ## Reproduction
 
