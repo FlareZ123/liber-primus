@@ -68,6 +68,18 @@ An exact word-preserving quote would produce the same eleven consecutive printed
 
 **Decision:** Retire only a verbatim word-preserving use of this particular 2013 signed sentence as plaintext within the original LP2 botanical section. The message could still be an instruction, a semantic allusion, a key text, or a quotation under changed boundaries. None of those is an independently specified reversible decoder. This is a genuine source-attributed crib exclusion, not a claim that the forest symbolism has no meaning. Exact CommonJS reproduction: [`sims/forest_signed2013_quote_crib_sft.cjs`](../sims/forest_signed2013_quote_crib_sft.cjs).
 
+### Same authenticated sentence as a literal source-key candidate
+
+The absence of an intact eleven-word quote leaves one narrow alternative with a historically recognizable operation: take all **41 GP29 runes** of the *same 6-Jan-2013 signed sentence* as a Vigenère key. The original 16 illustrated images fix one continuous **3,316-rune** p40–55 section; omit only spaces/apostrophes from the GP key, begin at the first p40 rune, cycle every 41, and try the two ordinary mod29 signs without page resets or offset optimization. Prior Cicada LP1 stages used literal keyword Vigenère, making this a bounded operational hypothesis. No authenticated instruction says to transfer the 2013 message as a 2014 LP2 key.
+
+| Frozen original runes | GP29 IoC |
+| --- | ---: |
+| Unchanged p40–55 | 0.0344628266 |
+| Signed-forest-key subtraction | **0.0343929610** |
+| Signed-forest-key addition | **0.0346061966** |
+
+Both original outputs are uniformly ciphertext-like and unreadable; the exact synthetic signed p57 plant and original re-encryption controls pass for both signs. Retire only this literal 41-GP-rune, phase-zero, continuous-section Vigenère key. The fully runnable [CJS test](../sims/forest_signed2013_phrase_vigenere_sft.cjs) asserts all source lengths, native decode/re-encode, both scores and positive controls. Further key transformations, offsets, and multi-layer fitting would require a separate independent source selector.
+
 ## Canonical 735-word 15×49 / 2014 7×7 square gate: negative
 
 The same botanical span contains **735 canonical words**, exactly **15×49**. The archived 2014 OpenPuff payload contains a 7×7 magic square (49 cells) with magic constant **1033**; 1033 is also the decimal reversal of **3301**, the number closing the signed 2013 forest clue. A later participant-reported NUMBER service is said to reverse decimal digits before factorization, which would map 3301 to 1033. The signed 26 January 2013 TCP specification authenticates BASE29 but contains no NUMBER command, so this reversal is not established by the signed protocol. The 3301/1033 relation is therefore an attractive cross-round conjecture, not an authenticated instruction to apply the square to LP2.
