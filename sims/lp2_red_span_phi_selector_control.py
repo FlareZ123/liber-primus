@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Apply the source-motivated Euler-phi selector to every annotated red span.
+"""Source-only specificity controls for annotated LP2 red spans.
 
 Run from a repository checkout:
     python sims/lp2_red_span_phi_selector_control.py
 
-This is a bounded specificity control: GP prime weights are summed within each
-annotated red span, Euler phi is applied once, and the result is reduced mod 29.
-No ciphertext, plaintext, dictionary, or 27x27 block output is consulted.
+For every annotated red span, compute (1) Euler phi of the sum of its GP prime
+weights, reduced mod 29, and (2) the first rune immediately after the span.
+These controls use original annotations and the canonical corpus only; no
+ciphertext decryption, plaintext, dictionary, or 27x27 block output is used.
 """
 from __future__ import annotations
 import json
@@ -38,6 +39,7 @@ def main() -> None:
     ink = json.loads(INK_PATH.read_text(encoding="utf-8"))
     pages = {int(page["page"]): page for page in corpus["pages"]}
     prime_weights = [int(x) for x in corpus["prime"]]
+    translit = corpus["translit"]
 
     rows = []
     for page in ink["pages"]:
@@ -51,21 +53,27 @@ def main() -> None:
                 raise AssertionError(f"p{page_no} span {start}:{length} exceeds source indices")
             total = sum(prime_weights[i] for i in selected)
             value = phi(total)
-            rows.append((page_no, start, length, total, value, value % 29))
+            next_offset = start + length
+            next_rune = translit[indices[next_offset]] if next_offset < len(indices) else None
+            rows.append((page_no, start, length, total, value, value % 29, next_rune))
 
-    print("page,start,length,GP-prime-sum,phi(sum),phi(sum) mod 29")
+    print("page,start,length,GP-prime-sum,phi(sum),phi(sum) mod 29,next-rune")
     for row in rows:
-        print(",".join(map(str, row)))
+        print(",".join("-" if x is None else str(x) for x in row))
 
-    matches = [row for row in rows if row[-1] == 11]
-    expected = [row for row in rows if row[0] == 0 and row[2] == 13]
+    p0_expected = [row for row in rows if row[0] == 0 and row[2] == 13]
+    phi_matches = [row for row in rows if row[5] == 11]
+    th_matches = [row for row in rows if row[6] == "TH"]
     assert len(rows) == 18, f"expected 18 annotated red spans, found {len(rows)}"
-    assert len(matches) == 1 and matches == expected, (matches, expected)
+    assert len(p0_expected) == 1
+    assert len(phi_matches) == 1 and phi_matches == p0_expected, (phi_matches, p0_expected)
+    assert len(th_matches) == 1 and th_matches == p0_expected, (th_matches, p0_expected)
     assert phi(662) == 330 and phi(331) == 330
 
-    print("\nPASS: p0's 13-rune red span is the only annotated red span with phi(sum) mod 29 = 11 (J).")
+    print("\nPASS: p0's 13-rune red span is the only annotated span with phi(sum) mod 29 = 11 (J).")
+    print("PASS: p0 is the only annotated red span immediately followed by TH.")
     print("φ(662)=φ(331)=330; dividing the p0 sum by two is unnecessary.")
-    print("This is a specificity control for a candidate selector, not proof of intended use or a decryption.")
+    print("These are source-selector specificity controls, not proof of intended use or a decryption.")
 
 
 if __name__ == "__main__":
