@@ -123,6 +123,61 @@ const headers = [
 ];
 assert(headers.every(prefix => !decoded.subarray(0, prefix.length).equals(prefix)));
 
+const corpus = readJson("resources/liber-primus/lp2-corpus.json");
+const quadgramText = fs.readFileSync(path.join(root, "resources/control/duko_round27_english_quadgrams.txt"), "utf8");
+const gpAlphabet = corpus.translit;
+const qHistogram = frequencies(higher, 9);
+const p50RMinusQ = lower.map((r, i) => mod29(r - higher[i]));
+const p50RPlusQ = lower.map((r, i) => mod29(r + higher[i]));
+const flanks = corpus.pages.find(p => p.page === 49).indices.concat(corpus.pages.find(p => p.page === 51).indices);
+assert.equal(flanks.length, 158);
+const base60MinusFlanks = flanks.map((c, i) => mod29(c - higher[i]));
+const base60PlusFlanks = flanks.map((c, i) => mod29(c + higher[i]));
+const tokens = source.rows.flat();
+const base59Alphabet = source.alphabet.replace("f", "");
+const base59Bytes = tokens.map(t => base59Alphabet.length * base59Alphabet.indexOf(t[0]) + base59Alphabet.indexOf(t[1]));
+assert.equal(base59Bytes.length, 256);
+assert(base59Bytes.every(b => Number.isInteger(b) && b >= 0 && b <= 255));
+const higher59 = base59Bytes.map(b => Math.floor(b / 29));
+const base59MinusFlanks = flanks.map((c, i) => mod29(c - higher59[i]));
+const base59PlusFlanks = flanks.map((c, i) => mod29(c + higher59[i]));
+const quadgrams = new Map();
+let quadgramTotal = 0;
+for (const line of quadgramText.trim().split(/\r?\n/)) {
+  const [gram, countText] = line.trim().split(/\s+/);
+  if (!gram || !countText) continue;
+  const count = Number(countText);
+  quadgrams.set(gram, count);
+  quadgramTotal += count;
+}
+function gpScore(indices) {
+  const text = indices.map(i => gpAlphabet[i]).join("").replace(/[^A-Z]/g, "");
+  let sum = 0, n = 0;
+  for (let i = 0; i <= text.length - 4; i++) {
+    sum += Math.log10((quadgrams.get(text.slice(i, i + 4)) || 0.01) / quadgramTotal);
+    n++;
+  }
+  return { letters: text.length, quadgrams: n, mean_log10_per_quadgram: sum / n, preview: text.slice(0, 100) };
+}
+const qChannelScores = {
+  rawRemainder: gpScore(lower),
+  rMinusQ: gpScore(p50RMinusQ),
+  rPlusQ: gpScore(p50RPlusQ),
+  p49p51Raw: gpScore(flanks),
+  p49p51Base60MinusQ: gpScore(base60MinusFlanks),
+  p49p51Base60PlusQ: gpScore(base60PlusFlanks),
+  p49p51Base59MinusQ: gpScore(base59MinusFlanks),
+  p49p51Base59PlusQ: gpScore(base59PlusFlanks)
+};
+assert(Math.abs(qChannelScores.rawRemainder.mean_log10_per_quadgram - (-7.375289894025445)) < 1e-9);
+assert(Math.abs(qChannelScores.rMinusQ.mean_log10_per_quadgram - (-7.293308436658749)) < 1e-9);
+assert(Math.abs(qChannelScores.rPlusQ.mean_log10_per_quadgram - (-7.523580299012393)) < 1e-9);
+assert(Math.abs(qChannelScores.p49p51Raw.mean_log10_per_quadgram - (-7.483378035901691)) < 1e-9);
+assert(Math.abs(qChannelScores.p49p51Base60MinusQ.mean_log10_per_quadgram - (-7.500129905129396)) < 1e-9);
+assert(Math.abs(qChannelScores.p49p51Base60PlusQ.mean_log10_per_quadgram - (-7.327248126579009)) < 1e-9);
+assert(Math.abs(qChannelScores.p49p51Base59MinusQ.mean_log10_per_quadgram - (-7.470065067067898)) < 1e-9);
+assert(Math.abs(qChannelScores.p49p51Base59PlusQ.mean_log10_per_quadgram - (-7.396941170668595)) < 1e-9);
+
 console.log(JSON.stringify({
   source: "resources/liber-primus/base60-grid.json; original 32x8 bytes",
   originalByteCount: bytes.length,
@@ -139,5 +194,7 @@ console.log(JSON.stringify({
   recognizedHeader: false,
   sourceDirection: "high digits as big-endian radix-9, minimal big-endian bytes",
   roundTripControl: "synthetic ASCII message recovered exactly",
-  conclusion: "No directly readable payload. Higher-digit transformation/key remains unspecified."
+  conclusion: "No directly readable payload; fixed q/r recombinations and q-key flanking-text tests are also negative.",
+  qChannelHistogram: qHistogram,
+  qChannelScores
 }, null, 2));
