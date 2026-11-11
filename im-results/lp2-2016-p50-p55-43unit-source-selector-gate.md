@@ -104,6 +104,27 @@ The C-K output is HAE EOXEAU GIPD MOFDNGAEREAFDL ENYU IW BAEBBD EMMBX PWBI Y U w
 
 A synthetic positive control encrypts the first 43 solved-p57 body runes by adding this same key and recovers them exactly with C-K. This validates the arithmetic only; it cannot authenticate the historical key. **Decision:** reject this specific direct prime-sum-as-additive-shift reading. It does not rule out every semantic use of the signed words, but no further 43-way phases or transformations are justified without a new source-visible rule. The existing [combined reproducer](../sims/p32_p55_43symbol_additive_bridge.cjs) now emits both the p32-compass and signed-word-prime-sum results.
 
+## Source-native OutGuess ARC4 bridge between the two 43-rune streams (bounded negative)
+
+The 2016 carrier's signed payload authenticates OutGuess as a source technology, and its original ARC4 implementation uses \(MD5(\text{type}\,\|\,\text{password})\) followed by the ARC4 state/key schedule. The 43-rune p32 compass output is a source-derived candidate password; the 43 p55 interiors are the source-derived target. This is a plausible next operation after the direct additive/Beaufort bridge failed, but the use of the p32 stream as the password is still an inference.
+
+The [reproducer](../sims/p32_p55_43symbol_outguess_bridge.cjs) freezes only two password encodings (literal GP-Latin transliteration and the base29 integer), the two documented OutGuess roles (**Encryption** for carrier data and **Seeding** as a wrong-role control), and the two GP29 additive signs after reducing each ARC4 byte modulo 29. It tests eight variants, with no phase, shuffle, offset, or key search. A synthetic p57 plaintext segment encrypts/decrypts exactly under the same derived pad, so the arithmetic control passes.
+
+| Password | OutGuess role | Operation | IoC | Emerson-GP language score |
+|---|---|---|---:|---:|
+| Literal GP-Latin | Encryption | \(C-K\) | 0.034330 | −6.433788 |
+| Literal GP-Latin | Encryption | \(C+K\) | 0.028793 | −6.781229 |
+| Literal GP-Latin | Seeding | \(C-K\) | 0.053156 | −6.362082 |
+| Literal GP-Latin | Seeding | \(C+K\) | 0.035437 | −5.994985 |
+| Base29 integer | Encryption | \(C-K\) | 0.035437 | −6.433803 |
+| Base29 integer | Encryption | \(C+K\) | 0.036545 | −6.926513 |
+| Base29 integer | Seeding | \(C-K\) | 0.029900 | −7.401898 |
+| Base29 integer | Seeding | \(C+K\) | 0.032115 | −6.198025 |
+
+None of the outputs is plaintext. Even the best language score (the wrong **Seeding** role with literal GP-Latin and \(C+K\)) remains strongly non-linguistic. The source-authenticated OutGuess generator therefore does not rescue this particular 43↔43 key/target pairing.
+
+**Decision:** retire these eight direct OutGuess ARC4-derived GP29 variants. This does not falsify the p32 route as a selector, the p55 interior extraction, or other source-selected key representations/operations. Do not expand into arbitrary password encodings or phases. The direct additive and OutGuess results together leave no supported reversible operation between these two 43-rune streams.
+
 ## Exact missing selector
 
 No surviving, contemporaneous instruction reviewed here establishes all of the following:
