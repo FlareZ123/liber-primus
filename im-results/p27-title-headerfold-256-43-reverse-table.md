@@ -60,6 +60,28 @@ This signature is selective inside the GP source vocabulary. Among all **29 GP p
 
 The pointer interpretation therefore independently reaches the left table bracket used below, without converting the 1,432-word / 1,433-rune coincidence into a direction rule.
 
+## The pointer decomposition predicts a missing p55 corner
+
+The P=43 orbit decomposes into a **7-state preperiod** followed by an **11-state cycle**. These sizes are source-active rather than descriptive only:
+
+- **7 + 11 = 18**, the fragment number and header-stripped title length;
+- **7 × 11 − 1 = 76**, the exact original p55 rune count.
+
+The duplicated six-rune `DJU-BEI` sequence makes a locked geometric prediction. Its p27 copy starts at local offset **28 = 4×7** and its p55 copy starts at **70 = 10×7**. In a seven-column row-major layout each copy fills columns 0–5 of a row. P55 ends immediately after its six runes, leaving one unfilled seventh cell. P27 continues for that cell: local offset **34 is AE**, GP index 25, prime 101.
+
+Appending this source-predicted **AE** to p55 produces exactly **77 = 11×7 runes**, and the final seven-rune row becomes identical on both pages:
+
+`DJU-BEI-AE`
+
+This is a falsifiable completion derived from the independently selected pointer dimensions and duplicated ciphertext. It is stronger than padding p55 with an arbitrary rune.
+
+The completed 11×7 rectangle has two further exact source relations:
+
+- its center cell is original p55 offset **38 = D**, the first rune of the established LP1 key `DIUINITY`;
+- its literal perimeter contains **32 cells**, exactly the number of rows in the complete 256-cell numerical table, whose width is **8**, the length of `DIUINITY`.
+
+These relations motivate geometry-first successors, but they do not yet specify a reversible cipher. Direct tests remain negative: the fixed p27/p55 row fold around the completed `DJU-BEI-AE` anchor stays ciphertext-like; natural 11×7 route transpositions do not approach native GP language; and applying the established `DIUINITY` Vigenère key to the 45 cells left after stripping the grid perimeter produces no readable plaintext, including the unique row-major phase that aligns key D to the center D.
+
 ## Mirrored table bracket selects the 43-cell interval
 
 The signed word **lies** has GP-prime sum 224, giving the already frozen base-58 address **physical p50 word index 3**, global table cell **83**, token 3D, byte **193**.
