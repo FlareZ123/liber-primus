@@ -136,6 +136,22 @@ assert.ok(Math.abs(gpDecodings.byte_mod29.add_ioc - 0.03442795694246183) < 1e-12
 assert.ok(Math.abs(gpDecodings.byte_scaled29.subtract_ioc - 0.034527807946912736) < 1e-12);
 assert.ok(Math.abs(gpDecodings.byte_scaled29.add_ioc - 0.03447648787758602) < 1e-12);
 
+// Combine the two source clues without a phase search: the p15 16-cell
+// prime-offset list selects sixteen original dataset13 bytes, repeated from
+// the beginning of the following 1894-rune section.
+const spiral16Decodings = {};
+for (const projection of ["byte_mod29", "byte_scaled29"]) {
+  const key = spiralPad.map((v) => projection === "byte_mod29" ? v % 29 : Math.floor(29 * v / 256));
+  spiral16Decodings[projection] = {
+    subtract_ioc: ioc(section11.map((v, i) => mod29(v - key[i % key.length]))),
+    add_ioc: ioc(section11.map((v, i) => mod29(v + key[i % key.length]))),
+  };
+}
+assert.ok(Math.abs(spiral16Decodings.byte_mod29.subtract_ioc - 0.03460646153142434) < 1e-12);
+assert.ok(Math.abs(spiral16Decodings.byte_mod29.add_ioc - 0.034574107574674884) < 1e-12);
+assert.ok(Math.abs(spiral16Decodings.byte_scaled29.subtract_ioc - 0.03439950777359593) < 1e-12);
+assert.ok(Math.abs(spiral16Decodings.byte_scaled29.add_ioc - 0.034691809038022034) < 1e-12);
+
 const report = {
   established_arithmetic: {
     page: 15,
@@ -174,6 +190,7 @@ const report = {
     xor_gp_prime_letters: letters(historicalXorPrime),
     xor_gp_prime_spaces: historicalXorPrime.filter((v) => v === 32).length,
     gpDecodings,
+    spiral16Decodings,
   },
   decision: "The literal byte-XOR and modulo29 transfers do not recover readable p15 original plaintext. No file suffix, offset rule, cipher or plaintext is authenticated by the modular coincidence.",
 };
