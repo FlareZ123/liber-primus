@@ -17,6 +17,7 @@ on:
           - prior-word-prime
           - corrected-oe-phase
           - corrected-oe-marker
+          - p55-inner43
 permissions:
   contents: read
 jobs:
@@ -54,6 +55,9 @@ jobs:
       - name: All 29 reserved-repeat symbols on corrected Old English
         if: ${{ inputs.scan_mode == 'corrected-oe-marker' }}
         run: node sims/lp2_corrected_oldenglish_reserved_marker_sft.cjs
+      - name: Original LP2 p55 inner43 predecessor transport and event-phase null
+        if: ${{ inputs.scan_mode == 'p55-inner43' }}
+        run: node sims/lp2_p55_inner43_predecessor_transport_sft.cjs
       - name: Reproduce page-local word-length structural tests
         if: ${{ inputs.scan_mode == 'standard' }}
         run: |
