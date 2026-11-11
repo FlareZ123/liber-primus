@@ -12,6 +12,7 @@ on:
           - legacy
           - red13-256
           - lcg13-31
+          - lcg13-31-raw
           - onion7-133
 
 jobs:
@@ -38,3 +39,6 @@ jobs:
       - name: Onion7 title 133 original 256-event checksum and original inverse
         if: github.event.inputs.probe == 'onion7-133'
         run: node sims/lp2_onion7_133_event_checksum_sft.cjs
+      - name: LCG 13/31 original raw 256-state no-grid inverse
+        if: github.event.inputs.probe == 'lcg13-31-raw'
+        run: node sims/lp2_lcg13_31_raw256_state_inverse.cjs
