@@ -53,9 +53,15 @@ The exact C−K outputs are, respectively:
 
 All six variants are unreadable under the original 43-symbol segmentation. The direct source-end keys do **not** recover p55 plaintext. This excludes only these two key constructions and three arithmetic operations, leaving other source-derived transformations open.
 
+## Direct original 43-byte p50 XOR transfer
+
+The same 43 signed-word positions also match the **43 numeric table bytes strictly between the two occurrences of 3D=193** at global table cells 83 and127 (the existing p50 interval source selector). XOR was used in earlier Cicada puzzle stages and supplies a concrete direct bytewise inverse. Freeze the original 43 source ending GP indices, their GP prime weights, and the same two symmetric-folded key variants. XOR each source key byte with its respective 43 p50 bytes, without word offsets or fitted phases.
+
+The four original-input readouts have **20, 15, 20 and 20 ASCII-printable bytes of 43**, respectively, for raw GP indices, raw GP primes, folded GP indices and folded GP primes. For example, the raw-index XOR starts with bytes decimal [170,11,122,86,215,210,220,38]; decoded printability is 20/43, and there is no readable plaintext. Every output round-trips the original 43-byte table interval under the exact same XOR key. These four fixed operations reject a simple signed-word-end / printed-table XOR payload; a separate key derivation would require additional original evidence.
+
 ## Reproduction and next decision
 
-The [single runnable Node 22 SFT](../sims/signed2016_folded_wordends_p55_sft.cjs) reads the actual signed 2016 message, canonical original GP corpus and physical word transcription, 256-entry table and original p55. It checks all 43 indices, the p56 genuine END control, exact favored assignment count, and original-image-derived p55 interior indices. The [completed manual Actions run 43049273696](https://github.com/FlareZ123/liber-primus/actions/runs/43049273696) passed with Node 22.23.4.
+The [single runnable Node 22 SFT](../sims/signed2016_folded_wordends_p55_sft.cjs) reads the actual signed 2016 message, canonical original GP corpus and physical word transcription, 256-entry table and original p55. It checks all 43 indices, the p56 genuine END control, exact favored assignment count, and original-image-derived p55 interior indices. The [first successful manual Actions run 43049273696](https://github.com/FlareZ123/liber-primus/actions/runs/43049273696) verified the rune-fold and p55 operation. The [second run 43049966525](https://github.com/FlareZ123/liber-primus/actions/runs/43049966525) additionally executes the four p50 XOR source-key tests.
 
 The source-derived FOLD/END pairing merits attention as a conditional clue. A productive successor must independently specify what to do with the **other 18 GP symbols** or predict an actual unknown-page plaintext/key before promoting this to a solution. Further free-endpoint, alignment, or refolding searches would risk overfitting.
 
