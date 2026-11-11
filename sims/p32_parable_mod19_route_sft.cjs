@@ -40,6 +40,8 @@ assert.equal(labels.length, 19);
 
 const parableSums = parableBody.map(sumWord);
 const next = parableSums.map((sum) => sum % 19);
+// One-based alternative: residue 0 selects body word 19; residue r>0 selects word r.
+const oneBasedNext = parableSums.map((sum) => { const r = sum % 19; return r === 0 ? 18 : r - 1; });
 
 function findCycles(mapping) {
   const done = new Set();
@@ -132,6 +134,8 @@ const signatureBodyBytes = packet.readUInt16BE(1);
 assert.equal(packet.length, signatureBodyBytes + 3);
 
 const graphCycles = findCycles(next);
+const oneBasedCycles = findCycles(oneBasedNext);
+const oneBasedEast = row3Residues.slice(5).map((r) => labels[r === 0 ? 18 : r - 1]);
 const output = {
   classification: 'exploratory semantic route; not a decoder',
   parable: {
@@ -143,6 +147,10 @@ const output = {
     })),
     cycles: graphCycles.map((cycle) => cycle.map((i) => labels[i])),
     walkFromLike: walk(next, 0).map((i) => labels[i])
+  },
+  oneBasedControl: {
+    eastFromCentre: oneBasedEast,
+    cycles: oneBasedCycles.map((cycle) => cycle.map((i) => labels[i]))
   },
   p32: {
     wordIndex: 7,
@@ -176,6 +184,8 @@ assert.equal(row3Prefix9, titleSum);
 assert.equal(row6Prefix9, titleSum);
 assert.equal(row6Sum, 577);
 assert.deepEqual(row3Residues.slice(5, 9), target);
+assert.deepEqual(oneBasedEast.slice(0, 4), ['EMERGE', 'CIRCUMFERENCES', 'THE', 'DIVINITY']);
+assert.deepEqual(oneBasedCycles.map((cycle) => cycle.map((i) => labels[i])), [['THE']]);
 assert.equal(hits.length, 1);
 assert.deepEqual(hits[0], {
   start: [3, 5], direction: 'E',
