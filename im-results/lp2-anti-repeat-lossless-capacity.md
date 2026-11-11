@@ -1,12 +1,35 @@
 # Lossless coding capacity of LP2's original adjacent-repeat deficit
 
-**Scope and status (11 November 2026).** This report contains (i) an exact, source-original information-accounting theorem for proposed **universal fixed-length runic encoders** that force ciphertext into a rare-repeat subset, (ii) a source-pinned injectivity gate for Wulfic's 2026 anti-doublet generators, and (iii) a full-boundary and key-skip/output-rewrite identifiability gate. None is a proposed historical Cicada cipher or plaintext recovery. The source inputs are the unchanged [canonical LP2 corpus](../resources/liber-primus/lp2-corpus.json), [canonical master transcription](../resources/transcriptions/liber_primus_master.txt), and [original-image punctuation annotations](../resources/liber-primus/lp2-ink-annotations.json). Reproduction: [Node capacity proof](../sims/lp2_anti_repeat_lossless_capacity.cjs) and [extended Wulfic/model-identifiability gate](../sims/wulfic_antidoublet_reversibility_gate.py).
+**Scope and status (11 November 2026).** This report contains (i) an exact, source-original information-accounting theorem for proposed **universal fixed-length runic encoders** that force ciphertext into a rare-repeat subset, (ii) a source-pinned injectivity gate for Wulfic's 2026 anti-doublet generators, (iii) a full-boundary and key-skip/output-rewrite identifiability gate, and (iv) a distribution-level smearing bound for stationary independent additive GP29 keystreams. None is a proposed historical Cicada cipher or plaintext recovery. The source inputs are the unchanged [canonical LP2 corpus](../resources/liber-primus/lp2-corpus.json), [canonical master transcription](../resources/transcriptions/liber_primus_master.txt), and [original-image punctuation annotations](../resources/liber-primus/lp2-ink-annotations.json). Reproduction: [Node capacity proof](../sims/lp2_anti_repeat_lossless_capacity.cjs) and [extended Wulfic/model-identifiability gate](../sims/wulfic_antidoublet_reversibility_gate.py).
 
 ## Why it matters for a full inverse
 
 The actual 55 rune-bearing unknown LP2 physical pages contain **12,956 runes** and **12,901 within-page successor positions**; exactly **86** of those successors repeat the previous rune. Uniform iid GP29 strings would have **12,901/29 = 444.862069** repeats on average. This near-uniform-but-anti-repeating property has encouraged ciphers that *rewrite* unwanted repeated outputs, reject a proposed glyph, map a 29-rune plaintext stream directly to 28 nonzero differential steps, or treat 86 doubles as a special escape symbol.
 
-These can be useful statistical generators without being **decoders**. A deterministic many-to-one rewrite loses information. A full solution must prove where overwritten information lives and how it is recovered from the original artifact. Conversely, the low repeat count **does not** rule out a reversible stream cipher whose particular plaintext/key happen to yield few repeats, nor a reversible source coder operating on a restricted vocabulary or message set.
+These can be useful statistical generators without being **decoders**. A deterministic many-to-one rewrite loses information. A full solution must prove where overwritten information lives and how it is recovered from the original artifact. A fixed plaintext/key pair can still be an exceptional case, but the low repeat count is statistically inconsistent with a common stationary independent additive GP29 keystream under the tested English-like plaintext model (bound below).
+
+## Independent additive-keystream smearing bound
+
+For a position-wise additive GP29 stream
+\[
+C_i=P_i+K_i\pmod{29},
+\]
+define \(\Delta X_i=X_i-X_{i-1}\pmod{29}\). If the plaintext-difference process and the key-difference process are independent, and the key differences share a stationary distribution across the stream, then
+\[
+\Pr(\Delta C=0)=\sum_{d=0}^{28}\Pr(\Delta P=d)\Pr(\Delta K=-d)
+\geq \min_{d\in\mathbb Z_{29}}\Pr(\Delta P=d).
+\]
+The equality follows from \(\Delta C=\Delta P+\Delta K\); the lower bound is the minimum of the plaintext-difference probabilities because the key-difference probabilities form a convex weighting. It holds for any common stationary key-difference law, not only a uniform OTP. A repeating key, independent running key, or the same page-reset pad reused on every page is within this model. It is a distribution-level expectation bound, **not** a deterministic impossibility theorem for every fixed key/plaintext pair.
+
+**Original LP2 count:** 56 physical pages p0–p55 (one runeless), 12,956 runes, 12,901 within-page transitions, and 86 equal adjacent pairs: \(86/12,901=0.666615\%\).
+
+**Pinned English control:** the existing GP29 encoder from sims/lp2_red_heading_self_key_vigenere_sft.cjs (digraphs TH, NG, EO, OE, AE, IA, EA; K/Q→C, V→U, Z→S) maps resources/control/shakespeare_first300k.txt to 216,874 symbols and 216,873 deltas. Its least frequent delta is residue 18, with 3,778/216,873 = **1.7420%**. More conservatively, every one of the **203,973** contiguous control windows containing exactly 12,901 transitions has a least-populated delta bucket of at least **168/12,901 = 1.3022%**. No such window reaches the original LP2 repeat rate of 0.6666%; the worst-window lower envelope is still 1.95× the observed rate. The exhaustive matched-window calculation avoids selecting a favorable English excerpt.
+
+This strongly disfavors ordinary **stationary independent additive** OTP/Vigenère/running-key explanations under an English-like stationary plaintext model, even when the same pad clock resets at each page. It does **not** exclude a non-English or deliberately constructed plaintext with a rarer delta bucket, an exceptional fixed key/text alignment, non-additive transforms, position/page-specific key laws correlated with plaintext structure, or feedback-/plaintext-dependent state. Rejection sampling or collision-triggered skips remain possible only if the lost/rejected information is reversibly carried or reconstructible; the information-capacity theorem above still applies to any claimed universal constrained-output encoder.
+
+An independent Round43 analysis in [Dukotah/cicada3301, commit fbd1950](https://github.com/Dukotah/cicada3301/commit/fbd1950f24e5ad507b7b7d1d1b19e460b4bb5c27) derives the same smearing inequality using a KJV control. The local reproducer at ../sims/lp2_independent_additive_delta_bound_sft.cjs independently recomputes the original LP2 count, the Shakespeare GP29 histogram, and every matched 12,901-transition control window. The earlier 42,408-setting historical onion byte Vigenère/Beaufort screen already includes per-page resets; do not repeat that pad family.
+
+**Research consequence:** stop treating blind independent additive pad searches as a high-priority route. Seek an independently source-selected feedback-dependent, rejection-based, non-additive, or otherwise plaintext/ciphertext-coupled reversible mechanism. This is a constraint on architecture, not a recovered key or plaintext.
 
 ## Exact counting theorem
 
