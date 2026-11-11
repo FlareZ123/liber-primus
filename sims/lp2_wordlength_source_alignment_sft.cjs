@@ -33,8 +33,8 @@ const gpLength = (s) => (s.match(/TH|NG|EO|OE|AE|IA|EA|[A-Z]/gu) || []).length;
  * @param {number[]} target @param {string[]} reference
  * @returns {Array<{span:number,errors:number,word:number,at:number,text:string}>}
  */
-function scan(target, reference) {
-  const lens = reference.map(gpLength);
+function scan(target, reference, literalGp = false) {
+  const lens = reference.map(w => literalGp ? w.length : gpLength(w));
   const seed = 6, limit = 40;
   /** @type {Map<string,number[]>} */
   const map = new Map();
@@ -76,11 +76,15 @@ const references = [
   ["Emerson", "resources/control/emerson_essays_2944.txt"],
   ["Shakespeare", "resources/control/shakespeare_first300k.txt"],
   ["Solved LP1", "resources/liber-primus/lp1-plaintext-reference.txt"],
+  ["Gibran", "resources/control/gibran_prophet_58585.txt"],
+  ["Latin Vulgate GP", "resources/control/latin-vulgate-gp-wholewords.txt"],
 ];
 for (const [name, filename] of references) {
   let s = read(filename);
   if (name === "Solved LP1") s = s.replace(/^#.*$/gmu,"").replace(/^\s*\[.*\]\s*$/gmu,"");
-  const ref = words(s), hits = scan(target,ref);
+  const literalGp = name === "Latin Vulgate GP";
+  const ref = literalGp ? s.split(/\r?\n/u).filter(w => /^[0-9A-S]+$/u.test(w)) : words(s);
+  const hits = scan(target, ref, literalGp);
   console.log(name,ref.length,"source words;",hits.length,"matches of >=11 words (<=2 mismatches)");
   for (const hit of hits.slice(0,3)) console.log("  ",hit);
 }
