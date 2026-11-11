@@ -1,72 +1,50 @@
-# LP2 punctuation identity stream
+# LP2 punctuation identity stream: source-audited inventory, not a decryptor
 
-**Status: corrected derived-transcription inventory, not a decryption or a verified count of printed marks.** At least four of the 180 counted separators are editorial numeric-row terminators with no corresponding original-image glyph.
+## Decision
 
-## Result and original-image correction
+The 180-event derivative transcription is **not** a homogeneous 180-mark original-ink stream. The four p15 numeric-row terminators (event indices 57–60, page-local offset 9 / global rune offset 3,612) remain transcription-only editorial markers, as established by the prior p15 image audit. The remaining 141 `⁘` stops and four `⁚` commas were checked against the original JPEGs.
 
-The richer LP2 transcription preserves **180 separator tokens** across the 12,956-rune unsolved stream:
+| Derivative class | Source morphology | Count | Source disposition |
+|---|---|---:|---|
+| `⁘` | Four-dot diamond | 138 | 137 black, 1 red; all geometrically consistent |
+| `⁘` | Three-dot comma-form | 1 | Physical, but morphology matches the comma class |
+| `⁘` | Single detached square | 1 | Physical dot visible; stop-vs-separator and rune alignment ambiguous |
+| `⁘` | No corresponding mark | 1 | Absent on original p37 line 4 |
+| `⁚` | Three-dot zigzag | 4 | All four physically present |
 
-| Mark | Transcribed role | Count |
-|---|---|---:|
-| ⁘ | Transcribed full stop / numerical-row ending (≥4 editorial) | 145 |
-| ⁚ | Comma mark | 4 |
-| ⁜ | Chapter/section mark | 31 |
-| **Total** | | **180** |
+The 138 four-dot clusters fit the same diamond geometry (normalized shape error 0.000063–0.001257). The five three-dot marks share the same alternating vertical zigzag morphology: four are transcribed as commas, while one (event 127, p38 line 2, offset 28) is transcribed as a stop. Do not silently recode that event; preserve its derivative symbol and flag the source-form mismatch.
 
-The four comma events occur at p5:110 (global 1317), p11:250 (global 2910), p20:134 (global 4967), p46:96 (global 11329).
+Thus **144 of the 145 audited small events have a visible source mark**. The 145 rows resolve to 138 diamonds, five three-dot forms and one ambiguous singleton, with one stop event absent. Together with the separately established 31/31 large `⁜` image-annotation matches, the source contains 175 visible mark instances (31 large + 138 diamonds + 5 three-dot forms + 1 ambiguous singleton). The original 180 transcription events decompose into those 175 visible marks plus five nonphysical events: four p15 editorial row terminators and one absent stop.
 
-**Four transcription-only source artifacts.** The derived [relikd p15–22 text](https://github.com/relikd/LiberPrayground/blob/main/pages/p15-22.txt) puts `⁘` after each row of p15's four-row 4×4 number square:
+## Exceptional placements and controls
 
-```text
-3258 3222 3152 3038⁘
-3278 3299 3298 2838⁘
-3288 3294 3296 2472⁘
-4516 1206  708 1820⁘
-```
+| Event | LP2 page / transcription line | Local rune offset | Physical placement | Finding |
+|---:|---|---:|---|---|
+| 35 | p10 / line 8 | 174 | JPEG 27, line 9, x≈621 | Four-dot stop printed at the next line's left edge |
+| 64 | p16 / line 11 | 245 | JPEG 33, line 12, x≈621 | Four-dot stop printed at the next line's left edge |
+| 72 | p19 / line 2 | 47 | JPEG 36, line 3, x≈621 | Four-dot stop printed at the next line's left edge |
+| 75 | p20 / line 6 | 134 | JPEG 37, line 7, x≈610 | Three-dot comma printed at the next line's left edge |
+| 91 | p27 / line 7 | 144 | JPEG 44, line 7, x≈1781 | One square only; source-to-rune-offset association is ambiguous |
+| 125 | p37 / line 4 | 91 | JPEG 54, line 4 | No stop after the final rune or at the following line's left edge |
+| 127 | p38 / line 2 | 28 | JPEG 55, line 2, x≈891 | Three-dot comma-form, despite derivative `⁘` label |
 
-The **original `resources/liber-primus/32.jpg` (physical p15)** prints these four numeric rows *without* any dot or punctuation after the final numerals 3038, 2838, 2472 and 1820. The actual image has an infinity symbol below the square. The four transcription events are index **57–60**, all at rune offset **3612**, physical **p15:9**, and represent editorial *row boundaries*, not four original stop glyphs. The source-concordant JSON remains 180 entries, but now labels these four events explicitly. Therefore **at most 176 of its 180 entries can represent original printed punctuation**, before further source validation; 176 is not yet a verified physical-image census. The coincidental 180-to-180 equalities below hold for the **edited transcript length only** and cannot independently select a physical 180-event key stream. This correction changes the interpretation of the 180-way claim; the four affected symbols never changed the 12,956 original rune ciphertext or the 31 photographically annotated large marks.
+The red four-dot diamond is event 26 (p7 line 10, offset 200; JPEG 24, bbox [1061,2494,1101,2537]). It is embedded in the red text line and is separate from the flanking 13-dot red stencils. Black-diamond control: event 1 (p0 line 8, offset 154; JPEG 17, bbox [809,2026,849,2069]). Comma control: event 17 (p5 line 5, offset 110; JPEG 22, bbox [1759,1461,1785,1504]). The p38 three-dot stop-form, p27 singleton, p37 absence, all four line-wrap placements, and the red mark were visually adjudicated; the other event rows were checked by the same component pipeline. No event indices were collapsed.
 
-
-## Cross-match to original-image annotations
-
-All **31** `⁜` events match the 31 large-punctuation records in `resources/liber-primus/lp2-ink-annotations.json`, in reading order. There are **29 unique rune offsets** because the source contains duplicated events at offsets **1860** and **3603**. The annotation inventory preserves those duplicate positions as well.
-
-The 31 unsolved-page large marks comprise **28 13-dot marks and 3 10-dot marks**, with **30 red and 1 black** annotation. The event/annotation match is exact, including the duplicated boundary records. This links a punctuation identity that the canonical transcription normalizes to the already catalogued visual marks.
-
-## The 180-way structural alignment
-
-The **unfiltered transcription-token count** also equals three independently motivated quantities (these are no longer supported as the count of original-image punctuation):
-
-1. The interior of the 32×8 numerical table after removing its 76-cell perimeter: `(32−2)×(8−2)=180`.
-2. The standard prime sequence p21 through p200: 180 primes. The claim that these are omitted by the historical remote service remains dependent on the historical report, not a locally recovered server capture.
-3. The combined rune count of the two terminal solved pages: 85 + 95 = 180.
-
-The manuscript's circumference language makes the 76/180 table split worth retaining. Equal cardinalities alone do not establish that these streams are intended to be combined.
-
-## Bounded tests already performed
-
-The following straightforward interpretations did **not** produce plaintext:
-
-- Converting the 180 punctuation classes to trits and grouping them into 60 GP symbols, testing all six class-to-digit permutations and all three group phases. Five-trit byte and six-trit GP-bigram groupings likewise produced no readable output.
-- Comparing punctuation classes with the 180-prime gap modulo four. The best post-selected class/residue mapping scored 110/180; a 100,000-permutation test gave an upper-tail probability of approximately 0.10 (null mean 109.96, SD 3.56). This is not significant.
-- Using punctuation classes to select among prime, totient, and prime-index residues, then adding/subtracting those values modulo 29 from the 180 row-major table-interior bytes. Compared with the known 180 terminal-page plaintext runes, the best configuration matched only 11/180.
-- Applying constant per-punctuation-segment Caesar shifts from prime/totient/index values or table-interior bytes, and resetting a prime-totient stream at punctuation/chapter events. These did not yield an English-like quadgram signal.
-
-These tests reject only the specified direct encodings. They do not rule out punctuation-driven state transitions, routing, or a layered mechanism.
-
-## Interpretation and next decisive question
-
-The strongest defensible conclusion is that the manuscript carries a recoverable 180-event punctuation-identity stream, and its 31 chapter marks are the same physical locations as the large-punctuation annotations. The 180-way numerical alignment is a useful clue, but the correct operation remains unknown.
-
-The next useful investigation is a **single reversible, source-constrained rule** in which the three punctuation classes control a traversal or state update over the 30×6 interior / 180-prime sequence. It must predict original ciphertext and pass an independent known-Cicada control. Do not repeat unconstrained base-3 grouping or arbitrary key hunts.
+The CSV preserves every event index, LP2 page, transcription line, physical line, page-local rune offset, pixel centroid/bounding box, component centers, color, morphology, status and uncertainty: [source audit CSV](lp2-punctuation-source-audit.csv.gz). The source inventory JSON retains its original `events` array and now carries a provenance/summary `source_audit` field: [punctuation identity inventory](../resources/liber-primus/lp2-punctuation-identity.json).
 
 ## Reproduction
 
-Run `node sims/lp2_punctuation_identity_stream.cjs`. The script verifies the event inventory, exact 31-record image-annotation cross-match, and the three 180-element cardinalities.
+From the repository root, install `numpy`, `scipy` and `opencv-python-headless`, then run:
 
-## Source and derived-data status
+```bash
+python3 sims/lp2_punctuation_source_audit.py
+gzip -dc im-results/lp2-punctuation-source-audit.csv.gz | head
+```
 
-- Rich transcription source: [relikd/LiberPrayground pages](https://github.com/relikd/LiberPrayground/tree/main/pages).
-- Derived event coordinates: `resources/liber-primus/lp2-punctuation-identity.json`.
-- Original-image cross-reference: `resources/liber-primus/lp2-ink-annotations.json`.
-- The external transcription is derivative. Original LP2 JPEGs remain the primary artifacts.
+The script reads `resources/lp2-transcription.txt`, `resources/liber-primus/lp2-punctuation-identity.json` and original JPEGs 17–72. It uses grayscale threshold 130; candidate components are 6–14 px square, 35–180 ink pixels, fill ratio at least 0.55 and aspect ratio 0.65–1.5; components within 25 px are grouped. The seven explicit line-centre overrides are documented in the script because short lines and marginal illustrations defeat a uniform projection threshold. Four known line-wrap placements are kept as separate event rows with both transcription and physical line numbers. The p27 singleton and p37 absence are explicit manual exceptions, not silently forced into a diamond count.
+
+The existing `sims/lp2_punctuation_identity_stream.cjs` still reproduces the derivative event inventory and the separate 31 large-mark cross-match; it does not establish the physicality of the small marks.
+
+## Cryptanalytic consequence
+
+The 30×6 table interior, the 180 standard primes p21–p200 and the 85+95 solved-page tail still equal 180 at the **transcription-inventory** level. They do not establish a physical 180-mark stream or select a key clock: four row terminators are editorial, one stop has no source mark, and the small forms are heterogeneous. Direct ternary grouping, prime/grid arithmetic and punctuation-delimited Caesar/totient tests remain non-decryptions. Any future cipher use of these marks must specify independently why the editorial and absent events are included and what operation the distinct morphologies select. No plaintext, key or intended continuation is recovered here.

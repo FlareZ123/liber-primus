@@ -1492,5 +1492,79 @@
     "result": "No full-stop or separator glyph follows the final numeral of any of four printed rows; four derived marks are editorial row terminators",
     "candidate_remaining_event_count_upper_bound": 176,
     "limitations": "Other derived punctuation tokens have not all been independently validated against original JPEGs"
+  },
+  "source_audit": {
+    "schema": "lp2-punctuation-source-audit-v1",
+    "audited_at": "2026-11-11T10:43:25Z",
+    "sources": {
+      "transcription": "resources/lp2-transcription.txt",
+      "original_jpegs": "resources/liber-primus/17.jpg through 72.jpg",
+      "derivative_event_inventory": "resources/liber-primus/lp2-punctuation-identity.json"
+    },
+    "reproducer": "sims/lp2_punctuation_source_audit.py",
+    "event_rows": "im-results/lp2-punctuation-source-audit.csv.gz",
+    "audited_scope": {
+      "stops": 141,
+      "commas": 4,
+      "excluded_editorial_stop_indices": [
+        57,
+        58,
+        59,
+        60
+      ],
+      "large_marker_scope": "31 ⁜ records retain the prior 31/31 source-annotation cross-match"
+    },
+    "morphology": {
+      "stop_four_dot_diamonds": {
+        "count": 138,
+        "black": 137,
+        "red": 1,
+        "normalized_shape_error_min": 0.000063,
+        "normalized_shape_error_max": 0.001257
+      },
+      "stop_three_dot_comma_form": 1,
+      "stop_single_dot_ambiguous": 1,
+      "stop_absent": 1,
+      "comma_three_dot_zigzags": 4
+    },
+    "physical_placements": {
+      "printed_on_following_line_event_indices": [
+        35,
+        64,
+        72,
+        75
+      ],
+      "exceptions": [
+        {
+          "event_index": 91,
+          "page": 27,
+          "line": 7,
+          "local_rune_offset": 144,
+          "status": "single-dot-position-ambiguous"
+        },
+        {
+          "event_index": 125,
+          "page": 37,
+          "line": 4,
+          "local_rune_offset": 91,
+          "status": "no-source-glyph-found"
+        },
+        {
+          "event_index": 127,
+          "page": 38,
+          "line": 2,
+          "local_rune_offset": 28,
+          "status": "three-dot-comma-form-transcribed-as-stop"
+        }
+      ]
+    },
+    "counts": {
+      "audited_small_events": 145,
+      "visible_small_marks": 144,
+      "absent_small_events": 1,
+      "visible_all_marks_including_31_large": 175,
+      "nonphysical_events_in_original_180_inventory": 5
+    },
+    "preservation": "The original events array and its symbols/offsets are unchanged. The CSV retains one row per event index, including ambiguous and absent events; source morphology is supplemental and does not silently recode transcription symbols."
   }
 }
