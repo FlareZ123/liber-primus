@@ -122,7 +122,9 @@ jobs:
 
       - name: Nine-section dual-quadratic source-register original test
         if: ${{ inputs.probe == 'nine-section' }}
-        run: node sims/grid_double_quadratic_nine_section_sft.cjs
+        run: |
+          node sims/grid_double_quadratic_nine_section_sft.cjs
+          node sims/base29_2013_252phase_allsecret_register_sft.cjs
       - name: Source-locked state/class capacity and Base32 padding audit
         if: ${{ inputs.probe == 'state-class' }}
         run: node sims/state_class_nongp_register_audit.cjs
