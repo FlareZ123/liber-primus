@@ -26,6 +26,7 @@ on:
           - tree-home
           - tree-direction
           - tree-continuous-degrees
+          - tree-buds-ray
           - tree-corner-ownership
           - tree-redmark-self-description
           - tree-cuneiform-selector
@@ -55,6 +56,11 @@ on:
           - historical-cookies
           - framed8-repeated-key
         default: full
+
+  push:
+    paths:
+      - '.github/workflows/grid-256-tests.yml'
+      - 'sims/p32_buds_origin_ray_pixel_gate.py'
 
 jobs:
   test:
@@ -132,7 +138,7 @@ jobs:
         run: node sims/ink256_lcg_collision_quote_bridge_sft.cjs
 
       - name: Verify 256-token payload, token cases and SHA-256
-        if: ${{ inputs.probe == 'full' || inputs.probe == '' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && (inputs.probe == 'full' || inputs.probe == '') }}
         run: |
           node sims/test_lp2_grid.cjs
           node sims/lp2_grid_dual_factor_error_corrector_sft.cjs
@@ -198,6 +204,12 @@ jobs:
         run: |
           python3 -m pip install --quiet Pillow
           python3 sims/tree121_directional_field_sft.py
+
+      - name: Original 2016 image BUDS-to-HOME 318-degree tree-ray pixel gate
+        if: ${{ github.event_name == 'push' || inputs.probe == 'tree-buds-ray' }}
+        run: |
+          python3 -m pip install --quiet Pillow numpy
+          python3 sims/p32_buds_origin_ray_pixel_gate.py
 
       - name: Original signed tree continuous GP-prime degree-bearing test
         if: ${{ inputs.probe == 'tree-continuous-degrees' }}
