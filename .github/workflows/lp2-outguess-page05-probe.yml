@@ -1,10 +1,6 @@
 name: LP1 physical page 05 source-derived keyed OutGuess probe (manual/push)
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'sims/outguess_lp2_page05_probe.sh'
-      - '.github/workflows/lp2-outguess-page05-probe.yml'
 permissions:
   contents: read
 jobs:
