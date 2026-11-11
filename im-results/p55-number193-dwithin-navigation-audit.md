@@ -9,10 +9,10 @@ This is a simpler human solve-path hypothesis than deriving D from NUMBER(193), 
 The separate 193 → 391 = 17×23 corroboration remains conditional for three reasons:
 
 1. the printed p50 token `3D` is 193 only under the still-provisional base60 reading; the source-compatible radix59 fork gives 190;
-2. NUMBER's factor 23 must be reinterpreted as a zero-based GP ordinal to obtain D, while the same chain elsewhere treats 17/23 as GP prime values for the factor-index reduction;
+2. a new span-geometry reading avoids changing factor 23 into a GP ordinal: base60 factors 17/23 can mean the D span's 17 strict-interior runes and endpoint23. But the competing base59 factors 2/5/19 can equally mean two D markers, start position5, and inclusive width19. Both maps distinguish D from the X control, but they map different span attributes and no source selects the mapping;
 3. the strengthened 59 derivation is arithmetically circular: construct 95 as 5×19, reverse to 59, then NUMBER(59) returns 5×19.
 
-No complete start, direction, stop, next address, key, or unknown plaintext is fixed.
+The factorization therefore does not resolve the radix fork or independently authenticate the NUMBER-to-span mapping. No complete start, direction, stop, next address, key, or unknown plaintext is fixed.
 
 ## Frozen source facts
 
@@ -83,6 +83,7 @@ NUMBER returns factors **17 and23**. The route needs several incompatible interp
 | as GP prime weights | G (index6) | H (index8) | G/H |
 | as zero-based GP ordinals | B (index17) | D (index23) | B/D |
 | factor-index reduction | index6 + index8 |  | GP14 = X |
+| as p55 D-span geometry | 17 strict-interior runes | endpoint position23 | D[5..23] |
 
 The historical NUMBER service does not state that a returned prime factor should suddenly be read as a zero-based Gematria alphabet ordinal. The numeric route therefore changes representation without a source selector.
 
@@ -96,7 +97,18 @@ The same physical `3D` token under the documented radix59 fork is **190**. Histo
 2, 5, 19
 ```
 
-Thus the two numbers later used to motivate the 19-node / 5-cycle p57 graph already appear under the competing numeric codec. The 5/19 observation cannot authenticate base60 or 193.
+Thus the two numbers later used to motivate the 19-node / 5-cycle p57 graph already appear under the competing numeric codec. There is also an exact D-span reading: the base59 factors `2,5,19` can denote the **two D markers**, their **first position 5**, and the **inclusive 19-rune width**. The competing X[13..31] span has two markers and width19 but starts at13, so factor5 distinguishes D. This is a different exact feature mapping from base60's `17,23` → interior-count17/endpoint23 mapping. Neither mapping is explicitly selected; the 5/19 observation cannot authenticate base60 or base59.
+
+## Matched factor-to-span control
+
+The source-correct D span has features **{marker count 2, start 5, end 23, strict interior 17, inclusive width 19}**. The X control has **{2, 13, 31, 17, 19}**. The two radix readings can each select D over X, but by different exact mappings:
+
+| p50 reading | NUMBER factors | Matching D features | Why X fails |
+|---|---|---|---|
+| base60 `3D=193` | `17,23` | strict-interior count17; endpoint23 | X ends31 |
+| base59 `3D=190` | `2,5,19` | two markers; start5; inclusive width19 | X starts13 |
+
+This is a useful matched-control result, not a radix decision. It shows why the factorization can be made to corroborate the text-selected D span under either codec. The missing selector is not the arithmetic; it is the rule that says which span attributes the returned factors should represent. The reproducible assertions are in `sims/p55_number193_dwithin_control_sft.cjs`.
 
 ## Why 59 is not independently recovered
 
@@ -138,6 +150,6 @@ The direct textual D selection can be retained as a **plausible intended marker*
 - the mapping from TWO P to 86 and from 86 to a p57 word;
 - the p57 node set, direction number, and sign/start/stop rule.
 
-Only the separate numeric corroboration requires radix60 and a consistent representation of NUMBER factors. Without the missing fold and address selectors, extending this chain would multiply post-selected arithmetic instead of moving toward plaintext.
+The NUMBER factorization does not settle radix60 versus radix59: both factor sets can be mapped exactly to different features of the independently text-selected D span, and the source does not select the factor-to-feature mapping. Without the missing fold and address selectors, extending this chain would multiply post-selected arithmetic instead of moving toward plaintext.
 
 **Reproducer:** `sims/p55_number193_dwithin_control_sft.cjs`.
