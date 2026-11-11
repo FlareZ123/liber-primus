@@ -28,8 +28,21 @@ For an entirely independent native-GP text reference, convert the checked-in ful
 
 A constructive triple-share test fills the source p0 first 121-rune half from a fresh actual GP-English paragraph and keeps the original B and K as the two other independent shares. Under true `A + reverse(B) + K`, the exact evaluator returns the held source plaintext **121/121 runes**, including its original-language collision profile. This is an actual decrypt-to-known-text plant, not a historical key or evidence of genuine p0 encoding.
 
+## Literal historic three-way XOR: independent exact capacity obstruction
+
+The actual 2014 Cicada sharing operation used **bitwise XOR of byte strings**, so check the closer literal counterpart before retiring the source geometry. Treat every original GP29 rune index 0..28 as its natural five-bit integer and XOR the corresponding p0-A, p0-B and p32-K values. Four orderings remain (forward/reversed B × forward/reversed K); XOR is commutative, so additive signs do not apply. A direct GP29 output cannot contain three unused five-bit codes **29, 30 or 31**.
+
+| B direction | p32 direction | Invalid GP29 outputs among 121 |
+| --- | --- | ---: |
+| Forward | Forward | **5** |
+| Forward | Reversed | **12** |
+| Reversed | Forward | **9** |
+| Reversed | Reversed | **11** |
+
+Thus **all four** source-motivated literal 5-bit XOR readings fail the *exact rune-alphabet capacity condition*, independently of any language model or guessed key. A different byte serialization, rejection, or extra intermediate alphabet could permit 29..31, but then a new inverse or framing instruction is required. The same executed SFT asserts these four values.
+
 ## Decision
 
-**Retire this literal 121+121+p32 three-stream GP29 additive interpretation of p0, under all natural signs and half-turn orientations, as a direct GP-English decoder.** The authentic p32/p0 length coincidences and rotated crosses remain source facts. The tested direct interpretation is incapable of explaining the native-language word-rate marginal on the original ciphertext, while the exact language plant passes. The test does not exclude a missing non-GP intermediate, true bitwise XOR on a different serialization, a nonlinear share operation, or an independently evidenced route that uses these three objects differently. Another branch needs a source-selected operation that changes the predicted plaintext, rather than more sign/order variants.
+**Retire this literal 121+121+p32 three-stream operation as a direct GP-English decoder: the full signed-additive family is language-incompatible, and the closer bitwise-XOR family fails exact 29-symbol capacity in every natural half-turn orientation.** The authentic p32/p0 length coincidences and rotated crosses remain source facts. The tested direct interpretation is incapable of explaining the native-language word-rate marginal on the original ciphertext, while the exact language plant passes. The test does not exclude a missing non-GP intermediate, true bitwise XOR on a different serialization, a nonlinear share operation, or an independently evidenced route that uses these three objects differently. Another branch needs a source-selected operation that changes the predicted plaintext, rather than more sign/order variants.
 
 **Reproduce:** [`sims/lp2_p0_two121_p32_threeway_source_sft.cjs`](../sims/lp2_p0_two121_p32_threeway_source_sft.cjs) was executed on the exact canonical corpus and source Gibran data, including every assertion and the 121/121 native-GP plant. It writes no files and creates no scheduled workflow.
