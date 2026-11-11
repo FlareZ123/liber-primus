@@ -14,3 +14,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Retrieve and hash-verify original IRC blobs
         run: python3 sims/irc_2016_raw_blob_source_scan.py
+      - name: Validate dated 2014 contraction crib and frozen original runes
+        run: node sims/lp2_2014_progressive_contraction_crib_sft.cjs
