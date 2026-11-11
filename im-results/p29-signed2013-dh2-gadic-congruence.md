@@ -83,6 +83,12 @@ This produces **both the signed DH worked example's shared secret2 (half the tra
 
 A concrete next step is to identify an original visual or signed-language clue that selects `A`, `B`, and their **field product** in a way that would have been available to a contemporary solver, then make a frozen plaintext prediction. More arithmetic matches to signed values without a selected inverse should be treated as conjectural. The joint H-field and G-adic correspondences raise the relevance of this finite-field branch but still recover **zero unknown LP2 plaintext**.
 
+### Executable H-field DH-power inverse gate
+
+The signed 2013 challenge discusses Diffie–Hellman, motivating one bounded repeated-multiplication operation on the new original-derived `β=24X+15`, whose exact multiplicative order in GF(29²) is **70**. The residual R contains **273 runes = 136 GP29 pairs + one unmatched rune**. Interpret each source-order pair as `aX+b` over H's 841-element field, leave the unmatched original rune unchanged at the first or last boundary, and apply `β^{±(j+s)}` to pair `j` for `s=0` or `1`.
+
+These **eight fixed variants** comprise two boundary placements, two signs and two natural initial exponents, without fitted outer permutations, key phases or language scores. The original residual has IoC **0.033801982**. The original outputs' IoCs range **0.032859298 to 0.034690799**, with no coherent native-GP English. The standalone test re-encodes every original source symbol and recovers complete source-native solved-p57 GP positive plants for every model. The specified direct DH-power interpretation does not decipher original LP2. No authentic source selects further phases or encodings.
+
 ## Additional signed-DH fingerprint at the source-selected Ac24 root
 
 The exact polynomial relationship supports a more specific, still **exploratory** fingerprint of the entire signed 2013 worked example. Its parameters are modulus **23**, generator/base **5**, server public share **8**, client public share **19**, and shared secret **2**. The enlarged LP2 p54 **Ac=24** and G's double root independently fix the evaluation point before viewing numerical outputs. Ordinary formal polynomial derivatives, evaluated at X=24 in GP29, give:
