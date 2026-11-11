@@ -11,3 +11,5 @@ jobs:
           node-version: '22'
       - name: Test exact word interiors, exteriors, reconstruction, and controls
         run: node sims/lp2_p57_literal_word_circumference_sft.cjs
+      - name: Test p55 direct exterior-to-interior key inverses
+        run: node sims/p55_exterior_interior_direct_key_sft.cjs
