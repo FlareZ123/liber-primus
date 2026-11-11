@@ -1,8 +1,8 @@
 {
-  "run_id": "director-forced-20261111T0548Z-gpt6",
-  "claimed_at": "2026-11-11T05:48:34.997Z",
+  "run_id": "director-forced-20261111T054857Z-sol",
+  "claimed_at": "2026-11-11T05:48:57.750Z",
   "forced_replaces": {
-    "run_id": "director-mwbn87dz-eplc5aasb2",
-    "claimed_at": "2026-11-11T04:53:06.791Z"
+    "run_id": "director-forced-20261111T0548Z-gpt6",
+    "claimed_at": "2026-11-11T05:48:34.997Z"
   }
 }
