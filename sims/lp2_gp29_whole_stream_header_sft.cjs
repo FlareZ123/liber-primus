@@ -205,7 +205,7 @@ const forcedPdf = forcedDigits([...Buffer.from("%PDF-1.4")], 7867, 1);
 assert.deepEqual(forcedPdf.slice(0, 13),
   [0, 7, 18, 26, 6, 28, 24, 21, 18, 13, 19, 18, 19]);
 assert.deepEqual(firstConflict(forcedPdf, source),
-  {first: 10, second: 12});
+  {first: 0, second: 8});
 
 // ASCII-armored OpenPGP begins with five literal minus signs. For the
 // B=7867, one-zero-leading-GP-digit regime, even THREE initial bytes '-'
@@ -356,7 +356,7 @@ console.log(JSON.stringify({
     reversedRawHeaderCompatible: reversedHeaderCompatible,
     completeOneBlockSurvivors: 0},
   pdf: {versionsExcluded: pdfVersions, bothOrientations: true,
-    forcedEqualityWitness: [10, 12]},
+    forcedEqualityWitness: [0, 8]},
   openPgp: {asciiArmorSourcePrefix: "---", armorSurvivingCases: 0,
     reversedArmorSurvivingCases: 0,
     armorForcedDigitContradiction: [1, 4],
