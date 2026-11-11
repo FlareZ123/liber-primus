@@ -114,7 +114,7 @@ function main() {
   console.log('WRONG-CARRIER',JSON.stringify(wrong));
   console.log('DECISION',JSON.stringify({
     exactHistoricalOffsetZero:true,
-    2016HeaderMatchesKnownContainers:real.resultMagic.length>0,
+    tree2016HeaderMatchesKnownContainers:real.resultMagic.length>0,
     wrongCarrierHeaderMatchesKnownContainers:wrong.resultMagic.length>0,
     note:'An unknown, deliberately headerless binary payload is outside this file-signature gate.'
   }));
