@@ -52,6 +52,19 @@ This identifies a mathematically exact second original text artifact divisible b
 
 The most economical candidate inverse is nonetheless unambiguous: divide the entire original p29 polynomial by the monic **(X−24)² = X²+10X+25**. The remainder is **exactly zero**, and the quotient has **275 GP29 symbols**. Their index of coincidence is **0.03405441**, versus the p29 original **0.03369434**; transliteration is nonlinguistic. The inverse source-native plant passes exact polynomial multiplication and division. Thus the quotient is a genuine reversible arithmetic reduction of the 277 original runes to 275 symbols, while no authentic plaintext or source-selected reason for applying it has been recovered. A further operation would require another independent clue. [Standalone SFT and exhaustive source-root census](../sims/p29_source24_double_root_sft.cjs).
 
+## Direct reuse of the table's four low-degree factors in original text (Agent 37, 11 November 2026)
+
+The [source-frozen CommonJS regression](../sims/lp2_grid_exact_factor_reuse_original_sft.cjs) asks a narrower new question than the complete factorization: do **any other complete original LP2 physical runic pages or source-marked red spans** literally satisfy one of the table's fixed low-degree factors? It uses all **55** unsolved rune-bearing pages (12,956 GP29 indices), each read as high-to-low polynomial coefficients, and the **16** independently marked red spans. For red spans only, both high-to-low and low-to-high orientations are shown because the source p39 red triad originally supplied G as ascending coefficients. No contiguous-window, key, phase, language or polynomial search is performed. The original byte table and independently generated polynomial multiples are positive controls for all four divisors.
+
+| Frozen p50 monic factor | Whole-page high-to-low matches | Red spans low-to-high | Red spans high-to-low |
+| --- | --- | --- | --- |
+| H = X²+18X+11 | none | none | none |
+| G = X²+10X+25 | **p29 only** | **p39:119–122 only** | none |
+| Cubic = X³+14X²+16X+24 | none | none | none |
+| Nonic = X⁹+12X⁸+20X⁷+10X⁶+5X⁵+X⁴+9X³+15X+11 | none | none | none |
+
+The p39 match is an **input tautology**, because that very red triad **defines G** in ascending-power order; p29 is the independently documented complete-page repeated-root match above. A complete-page match to the cubic would be rare under uniform independent residues (rough probability 55/29³), and a ninth-degree match much rarer; neither occurred. The scan closes this literal original-page/red-span factor-copying route. It does **not** exclude non-contiguous registers, a separately marked coefficient ordering, unencrypted interleaving, or different operations that consume these factors as keys. It identifies no new plaintext or historical cipher.
+
 ## Cross-artifact 119×2 affine register inverse
 
 The 238 nonleading coefficients of \(Q_{238}\) form 119 pairs. Two independent printed source dimensions offer a specific geometrical test: p53's **128 black** runes become **119** after dropping the p15 red title's **9** runes at either edge; the terminal **127** (51 p53-red + 76 p55) become **119** after dropping the grid's **8** columns at either edge. Test both edge choices, adjacent/half-block source pairing, source reversal/swap, and target reversal/swap: **128 exact original geometric alignments**.
