@@ -145,6 +145,11 @@ function globalSourceCensus(square,other5,seven) {
   assert.deepEqual(rawHit.map(h=>h.values),[[320,386,130],[138,108,341]]);
   assert.equal(findRoutes(sums,other5).length,0);
   assert.equal(findRoutes(sums,seven).length,0);
+  assert.deepEqual(sums.slice(1960,1965),[149,79,320,386,130]);
+  assert.equal(words[1960].page,36);
+  let adjacent14979=0;
+  for(let i=0;i+1<sums.length;i++) if(sums[i]===149&&sums[i+1]===79) adjacent14979++;
+  assert.equal(adjacent14979,1);
 
   const phiCache=new Map();
   for(const value of sums) phiCache.set(value,phi(value)%29);
@@ -178,6 +183,7 @@ function globalSourceCensus(square,other5,seven) {
   return {
     originalBookWords:words.length,
     originalBookRunes:words.reduce((a,b)=>a+b.length,0),
+    immediatelyPrecedingP36Route:{globalWord:1960,wordSums:[149,79],pairOccurrencesInBook:adjacent14979},
     originalRoutes:rawHit.map(h=>({...h,physicalPage:words[h.word].page>=50?words[h.word].page+1:words[h.word].page})),
     wrongSourceBookHits:{other5:0,seven:0},
     pageWordOrderShuffles:{
@@ -216,6 +222,13 @@ function run() {
     sevenHits+=Number(findRoutes(randomSums,seven).length>0);
   }
   const tail=page.indices.slice(55),cabAll=decipher(page.indices,"CABAL"),cabTail=decipher(tail,"CABAL");
+  const phiLetters=[130,341,91].map(value=>corpus.translit[phi(value)%29]);
+  assert.deepEqual(phiLetters,["M","I","X"]);
+  assert.equal(["M","I","X"].reduce((n,label)=>n+corpus.prime[corpus.translit.indexOf(label)],0),149);
+  assert.equal(corpus.prime[corpus.translit.indexOf("NG")],79);
+  const p36=corpus.pages.find(p=>p.page===36).indices;
+  const mixingGP=["M","I","X","NG"].map(label=>corpus.translit.indexOf(label));
+  const mixingInverse=indices=>indices.map((value,i)=>(value-mixingGP[i%4]+29)%29);
   const native=seq=>seq.map(i=>corpus.translit[i]).join("");
   return {
     interpretation:"conditional p55 direction-to-2013-Wisdom word, no plaintext/key",
@@ -228,6 +241,19 @@ function run() {
       originalRuneInventory:{hits:runeHits,addOneP:(1+runeHits)/(1+samples)},
       wrong5x5:{hits:other5Hits},wrong7x7:{hits:sevenHits}},
     destination:{bottom:"CABAL",topMirror:"SHADOWS"},
+    nestedSourceWordCandidate:{
+      sourceValuesInPhysicalPageOrderThenCenter:[130,341,91],
+      totientMod29GP:phiLetters,
+      word:"MIX",
+      wordGPPrimeSum:149,
+      followingSingleRune:"NG",
+      combinedGPPrimeSumOfMixIng:228,
+      note:"Original p36 two complete printed words immediately before its route have sums 149,79 but 3+3 ciphertext runes, so MIXING is conditional word-sum interpretation.",
+      directHistoricalVigenereChecks:{
+        MIX:{p36IoC:ioc(decipher(p36,"MIX")),p55IoC:ioc(decipher(page.indices,"MIX"))},
+        MIXING:{gpKey:mixingGP,p36IoC:ioc(mixingInverse(p36)),p55IoC:ioc(mixingInverse(page.indices))}
+      }
+    },
     fullOriginalBookCensus:globalSourceCensus(wisdom,other5,seven),
     oneSourceKeyInverse:{key:"CABAL",full76IoC:ioc(cabAll),
       fullPrefix:native(cabAll.slice(0,35)),tail21IoC:ioc(cabTail),tail:native(cabTail)},
