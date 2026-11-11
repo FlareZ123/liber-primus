@@ -2,6 +2,13 @@ name: LP2 DeadTree exact Commons derivative gate
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/dead-tree-commons-derivative-gate.yml"
+      - "sims/dead_tree_commons_derivative_gate.py"
+      - "resources/liber-primus/49.jpg"
+      - "resources/liber-primus/72.jpg"
 
 jobs:
   derivative-gate:
