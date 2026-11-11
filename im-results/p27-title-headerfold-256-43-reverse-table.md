@@ -227,6 +227,14 @@ The original 43-symbol outputs all lack coherent GP language. The highest **unig
 
 **Decision:** retire this exact GP-word-length/mod5 row-selector/direct-addition family. The interesting marginal concentration is a caution that high IoC alone can reward overproduction of rare GP runes. No keys, plaintext or original-cipher architecture have been recovered, and this test does not reject all possible roles of the five/43 geometry. [Deterministic full 30,000-trial reproducer](../sims/p27_2016_wordlength_row_gate_sft.cjs). The comparison uses a word-permutation conditional null and does not establish that the 5×43 regrouping is intentional.
 
+## Direct five-bit comparison/Bacon extraction (bounded negative, Agent9)
+
+The source already nominates 215 p27 black runes = 43 groups of five, the 43 p55 interiors, and an index-comparison rule in the p27 title's own fold. A literal 5-bit **Bacon-style letter** reading would compare each of five p27 runes against its corresponding p55 interior rune, assign 1 when the p27 GP index is smaller (or the complementary greater-than reading), then read five bits as an A–Z code 0–25. Because GP primes strictly increase with GP index, substituting GP prime weights for GP ordinal values does not change these comparisons.
+
+Exactly the two conventional regroupings (five consecutive 43-rune rows versus 43 consecutive five-rune groups), the two strict comparison directions, and MSB-first versus LSB-first bit order were checked. All **eight source-bounded variants** have at least **nine forbidden five-bit codes 26–31 among 43 positions**; the natural row-major smaller-than/MSB-first readout has **ten** forbidden codes and text `*QYYIA***E*AOC*AQMPZ****WAXBHAJITUAQFPRTACZ`. No direct alphabetic message appears. The test does not fit a custom five-bit-to-GP mapping, insert an escape channel, or permute bit lanes until words appear.
+
+**Decision:** a literal 5-bit A–Z Bacon route using the p27/p55 original index comparisons cannot decode all 43 positions without extra unsourced rules. Preserve the dimensional relationship, retire this exact direct readout. [Deterministic SFT](../sims/p27_p55_fivebit_comparator_gate_sft.cjs).
+
 ## Decision
 
 The durable route is:
