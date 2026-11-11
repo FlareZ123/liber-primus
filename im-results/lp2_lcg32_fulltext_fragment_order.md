@@ -101,15 +101,23 @@ The GP28 index-28 transparent marker changes its expected frequency, so GP28 raw
 
 **Reproducer:** [`sims/lp2_lcg13_31_grid_original_gate.cjs`](../sims/lp2_lcg13_31_grid_original_gate.cjs), [successful manual CI 42930123664](https://github.com/FlareZ123/liber-primus/actions/runs/42930123664). It reconstructs original fragment boundaries through the shared full-text source parser and checks all 40 models, forward reencryption and source-native planted recovery.
 
+### Direct 256-state LCG key, without table lookup (completed gate)
+
+The five-dot candidate masks **13/31** also select a plain byte LCG with a 256-state cycle: `s_0=0; s_(j+1)=(13s_j+31) mod256`. This traverses **every 8-bit value exactly once**, so the source-derived state can itself be a keystream byte. Unlike the 40 tests above, this interpretation deliberately **does not look up a value from the printed numerical table**. The modulus 256 comes from the printed 32×8=256 byte count; no seed or key phase is fitted to output text.
+
+The finite direct source-state inverse tests **32** original-input models: read before/after state update, book-global versus original physical-page-reset keystream clock, GP29 direct additive versus page-IV GP28 predecessor-exclusion with transparent index28, two signs and two byte-to-rune projections (remainder or scaling). The original **12,956** runes roundtrip exactly under every model, and every model recovers a repeated native solved-p57 GP-rune positive plant. These checks establish implementation validity, rather than the authenticity of the key. The raw source-state GP29 outputs have IoC **0.0344550311–0.0345246667** (original **0.0344783979**), while transparent-marker GP28 outputs have **0.0352374673–0.0353021103** and remain nonlinguistic. The direct 256-state keystream is a bounded negative under these explicit GP29/GP28 registers, both source-native reset conventions and source-fixed starting phase.
+
+[Standalone reproducible inverse](../sims/lp2_lcg13_31_raw256_state_inverse.cjs) · [successful manual CI 42932085587](https://github.com/FlareZ123/liber-primus/actions/runs/42932085587).
+
 ### Original six-rune bookend under the frozen LCG coordinates
 
 The duplicated p27/p55 two-word ciphertext occurrence starts at global rune offsets **6555** and **12950**. The first lies in chronological fragment **18**, at local rune **9** of 1414, with forward-LCG traversal position **2** and row assignment **2**. The second lies in fragment **27**, local rune **293** of 299, with traversal position **29** and row assignment **1**. The fragment-local modulo-eight column phases are **1** and **5**. Thus this source-fixed LCG neither equalizes their fragment states nor their simple grid-row/column coordinates. Any cross-bookend shared state would need a further independently indicated operation. This responds to the original-source question in Issue #19 without a new sweep.
 
 ## Interpretation and next decision
 
-The LCG is a source-motivated full-period traversal with an exact known-plaintext structural control: its restriction to the solved tail rotates that tail at the p57:7 marker. But direct transposition of the unknown fragments does **not** decrypt them. The result should therefore be treated as a likely **fragment index, clock, or row-assignment rule**, not as recovered plaintext.
+The LCG is a source-motivated full-period traversal with an exact known-plaintext structural control: its restriction to the solved tail rotates that tail at the p57:7 marker. Any four fragments have 4!=24 possible relative orders, of which four form a cyclic original order; this is a **1/6** baseline under a uniform random fragment-order model, so the solved-tail rotation alone cannot authenticate the 13/31 rule. But direct transposition of the unknown fragments does **not** decrypt them. The recurrence remains a **hypothetical fragment index, clock, or row-assignment rule**, without recovered plaintext or external authentication.
 
-The natural fixed row/column assignment and direct GP29/GP28 fragment-local pad have now been tested and excluded in their stated scopes. The residual useful question is whether an **independently visible operation** specifies a nonlinear or non-GP use of these states; the source permutation by itself gives no way to recover the genuine plaintext.
+The natural fixed row/column assignment, table-byte GP29/GP28 pad, and direct 256-state GP29/GP28 pad have now been tested and excluded in their stated scopes. The residual useful question is whether an **independently visible operation** specifies a nonlinear or non-GP use of these states; the source permutation by itself gives no way to recover the genuine plaintext.
 
 ## Reproduction
 
@@ -117,6 +125,8 @@ Run from the repository root with Node.js:
 
 **node sims/lp2_lcg32_fulltext_fragment_order.cjs** (fragment traversal and solved-tail control)
 
-**node sims/lp2_lcg13_31_grid_original_gate.cjs** (40 original-cipher source-fixed inversions)
+**node sims/lp2_lcg13_31_grid_original_gate.cjs** (40 original-cipher source-fixed table-byte inversions)
+
+**node sims/lp2_lcg13_31_raw256_state_inverse.cjs** (32 original-cipher direct LCG-state inversions)
 
 The script uses the original normalized corpus, original two-ink annotation, the existing source-boundary parser, the fixed GP trigram model, and exact known p56/p57 controls. It asserts all 32 fragments, both empty intervals, the complete 13/31 LCG cycle, and the exact solved-tail cyclic rotation.
