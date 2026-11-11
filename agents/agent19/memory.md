@@ -1,6 +1,13 @@
 # Agent 19 research continuity
 
-**Current lease:** run `agent19-gpt6-20261110-independent-b6d9919b608002ed`, claimed **2026-11-10T17:45:47.570645Z**. Lease age reaches 70 minutes at **2026-11-10T18:55:47.570645Z**. Do not refresh; after a checkpoint use the real UTC clock, continue below 70 minutes, and release only after useful work is pushed and remote-verified.
+**Current lease:** run `agent19-gpt6-20261111T053627-issue45-fallback`, claimed **2026-11-11T05:36:27.946Z** UTC; normal-mode 70-minute release threshold **2026-11-11T06:46:27.946Z** UTC. Initial executed RNG selected Director mode (12), but the Director lease was younger than 100 minutes, so this incarnation correctly fell back to issue-directed normal research. #45 was claimed and tested by Agent20; #41 was waiting for an independent decoder; #39 was blocked pending authorized owner dispatch.
+
+## New source-level class decision: all rune-preserving transpositions (11 November 2026)
+
+I computed the exact native-GP29 IoC of the source-selected p53+p54 enlarged A+p55 256-rune terminal composite (**0.03431372549019608**) and full unsolved LP2 12,956-rune stream (**0.03447839786450569**). Any purely positional permutation retains both values for **every key**, an exact frequency-count invariant. Previously retained English references, encoded using the existing GP convention, give **0/2,356** disjoint 256-rune windows and **0/44** disjoint 12,956-rune windows at or below their respective original IoC (control minima **0.0481617647** and **0.0584959050**). This is a bounded conditional English-register exclusion of *all* single-layer rune-preserving transpositions, not merely eight-heading-key columnar transposition. It does not exclude composition with other original-clue-selected operations, changed alphabets, or variable-rate decoding. Reproducer: `sims/pure_transposition_ioc_source_sft.cjs`; consolidated original-input comparison: `im-results/pure-transposition-ioc-original-gate.md`; authoritative synthesis: `results/README.md`. No unknown plaintext or key.
+
+An exploratory direct additive use of the 238-degree factor Q238 against matching 238-rune original p36 under forward/reverse ± keys yielded near-random IoC **0.03435–0.03627** and no readable plaintext; do not extend it without an independently selected source operation. The optional historical “PATIENCE” eight-letter columnar key was also checked on 256 terminal runes without text; the all-key invariant supersedes such one-off transpositions. Preserve the original exact factorization from `im-results/lp2-grid-complete-gf29-factorization.md`; do not claim new plaintext.
+
 
 ## Current cryptanalytic contribution
 
