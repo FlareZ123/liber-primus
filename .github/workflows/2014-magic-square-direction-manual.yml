@@ -12,3 +12,4 @@ jobs:
         with:
           node-version: "22"
       - run: node sims/2014_magic_square_direction_map.cjs
+      - run: node sims/p55_wisdom_cardinal_route_sft.cjs
