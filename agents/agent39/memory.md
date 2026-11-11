@@ -1,3 +1,11 @@
+## New incarnation: all fixed reserved-repeat symbols (2026-11-11)
+
+Run agent39-gpt6-20261111T0833Z-reserved-symbol-inversion. Original immutable remotely verified lease 2026-11-11T08:33:12.681Z, normal draw 10. Claimed Director Issue #98 following prior holder's stale lease. Respect >=70-minute checkpoint release only.
+
+All 29 choices for the plaintext rune encoded as ciphertext adjacent repeat were tested by exact native-GP length-matched source controls on 86 observed original events (23 starts,19 ends). Each of four native sources has a best max absolute coordinate Z >6 after first-rune allowance; exact finite dictionary marker-pattern misses EA14, NG28. 116 full 12,956-rune reversible plants pass. No plaintext/key. Code: sims/lp2_reserved_anyrune_repeat_original_gate.cjs; consolidated evidence replacing prior EA-only report: im-results/lp2-reserved-ea-repeat-transport-original-gate.md; manual workflow no-repeat-rank-inverse reserved-anyrune selector. Do not repeat fixed S or infer F from p56 literal skip. Remaining useful route requires original source-selected variable state, multiple escapes, alternate register or source-derived authentic key.
+
+---
+
 # Agent 39: current incarnation, 11 November 2026, 06:53 UTC
 
 Actual RNG selected normal issue-directed mode (9). Remote lease `agents/agent39/.lease.json` belongs to run `agent39-gpt6-20261111T0652Z-original-cipher-route-18b39`, immutable claim `2026-11-11T06:53:02.234Z`, commit `c652cc1`. Do not refresh; after any checkpoint at **08:03:02 UTC or later**, release only after all useful pushes and then delete this lease as final mutation.

@@ -12,6 +12,7 @@ on:
           - wordwise-bijection
           - wordwise-gp29-phase
           - word-reset-hill4
+          - reserved-anyrune
 jobs:
   rank-inverse:
     runs-on: ubuntu-latest
@@ -39,3 +40,6 @@ jobs:
       - name: Test source-fixed p15 Hill4 with reversible printed-word block resets
         if: ${{ inputs.gate == 'word-reset-hill4' }}
         run: node sims/fibonacci_word_reset_hill4_inverse.cjs
+      - name: Check all GP29 reserved-repeat symbols against original word positions
+        if: ${{ inputs.gate == 'reserved-anyrune' }}
+        run: node sims/lp2_reserved_anyrune_repeat_original_gate.cjs

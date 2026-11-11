@@ -1,37 +1,34 @@
-# Literal-EA repeat transport: a source-shaped reversible channel with an original-word exclusion
+# Fixed reserved-repeat GP29 predecessor transport: all-symbol source gate
 
-**Decision:** A natural key-independent explanation for the 86 rare adjacent ciphertext repeats fails the original printed word-position gate. **No unknown LP2 plaintext or key was recovered.** Executable standalone test: [`sims/lp2_reserved_ea_repeat_placement_sft.cjs`](../sims/lp2_reserved_ea_repeat_placement_sft.cjs).
+**Decision (11 November 2026).** An exactly reversible one-special-rune predecessor-exclusion channel is strongly incompatible with the original LP2 printed-word positions under each of four real native-GP reference registers, after granting every possible one of the 29 GP plaintext symbols as the reserved rune. There is no recovered unknown plaintext, authentic key or complete decipherment.
 
-## The candidate that can actually be decided
+## Mechanism and necessary original prediction
 
-The alphabet contains exactly 29 GP runes. A simple reversible predecessor-relative transport can encode the first 28 plaintext symbols as one of the **28 output runes other than the previous output**, using any secret bijection over those 28 choices, and reserve the final symbol **EA, GP index 28** for the one remaining output equal to the preceding ciphertext rune. With an agreed initial state this is an exact 29-to-29 bijection at each step. It would superficially explain why the unknown stream has close to 1/29 frequency for each ciphertext rune but only **86/12,955** adjacent repeats.
+The canonical original pp0–55 contain 12,956 GP29 ciphertext runes in 2,896 printed words, with exactly 86 adjacent equal output pairs: 23 at word starts, 19 at ends and 44 strictly interior. Line and physical-page wraps do not terminate a printed word. A candidate injective, stateful GP29 transport reserves the previous ciphertext symbol as output for a single fixed plaintext rune S; the other 28 GP plaintext symbols map bijectively to the remaining 28 outputs. The map among the 28 could depend on an arbitrary unknown key and change every position. Given the initial predecessor, all 29 outputs have unambiguous inverses. At every position after the first, equal adjacent ciphertext symbols are *exactly* plaintext S occurrences, regardless of the key. The first original output has no observable predecessor, so both an unmarked and a possible extra initial-S case are allowed.
 
-Crucially, **ciphertext[i] = ciphertext[i−1] ⇒ plaintext[i] = EA**, irrespective of the other 28-symbol key/state schedule. If the visible printed word separators preserve GP plaintext words, EA's position in a word is therefore an all-key falsifiable prediction. There is no freedom to change those 86 positions by tuning the 28-symbol key.
+The earlier EA-only analysis, now superseded by this consolidated report, found that the 86 events have much too many start and end locations for EA to be a plausible marker. This all-rune test evaluates the other 28 possibilities rather than treating EA as special by fiat. No original Cicada instruction selects this predecessor-exclusion transport or S; the architecture is a proposed explanation of the unusually suppressed repeat rate.
 
-## Original-cipher test
+## Four original-input controls
 
-From the canonical `resources/lp2-transcription.txt`, preserving words across page transitions and printed line wraps, the 55 rune-bearing unknown pages have **2,896 words**, **12,956 runes**, and exactly **86** adjacent repeats. Their within-word locations are:
+[Executable CommonJS SFT](../sims/lp2_reserved_anyrune_repeat_original_gate.cjs) encodes solved LP1 prose, Shakespeare, Gibran and Emerson with the stored native-GP longest-match transliteration and normalizations QU→CW, V→U, K→C, Z→S. For **each** reference and **each** S, the test retains the exact 2,896 original printed-word lengths and computes analytical expected counts and SDs for S at all positions, at word starts, and at word ends if original slots were independently filled from source words of equal GP-rune length. The score is the largest absolute coordinate Z; both possible original first-rune cases are compared, and the candidate with the **smallest** maximum deviation among all 29 is reported.
 
-| Source | Repeat/EA events | At word start | At word end | Interior |
-| --- | ---: | ---: | ---: | ---: |
-| Original unknown LP2 adjacent repeats | **86** | **23** | **19** | **44** |
-| Shakespeare native-GP prose | 1,633 | 98 | 25 | 1,510 |
-| Gibran native-GP prose | 606 | 60 | 20 | 526 |
-| Emerson native-GP prose | 2,224 | 237 | 40 | 1,947 |
-| Combined independent native-GP controls | 4,463 | 395 | 85 | 3,983 |
+| Native reference | Best S on original event vector | Rounded maximum coordinate deviation without first-rune concession |
+| --- | --- | ---: |
+| Solved LP1 | B | 8.5 |
+| Shakespeare | P | 8.3 |
+| Gibran | G | 7.7 |
+| Emerson | G | 6.4 |
 
-The exact repository tokenizer follows the already-used GP mapping, including `QU→CW`, `V→U`, `K→C`, `Z→S`, and greedy pair runes; the original manuscript's punctuation and page boundaries follow `sims/lp2_word_pages.cjs`.
+The executable acceptance criterion checks that the best score is **over 6** in each reference *after* the first-rune concession. Scores describe reference-conditional deviations, not universal probabilities for all possible English messages or a discovery-wide p-value.
 
-The pooled controls contain **606,544 runes**, so their EA rate projects **95.3** occurrences in 12,956 runes. The original repeat count of **86** matches that marginal surprisingly well. But the original forces **22.09%** of these supposed EA runes to occur at word ends, compared with **1.90%** in the controls, and **26.74%** at word starts, compared with **8.85%**. This is the discriminating contradiction, missed by rate-only hypotheses.
+The combined marginal native-GP counts for EA and NG would imply approximately 95 and 86 occurrences respectively in a 12,956-rune sample, closest to the original 86 events. But EA rarely occupies the final GP position of a native word, and NG never occupies the initial position in the three large controls. The original's **19 ends and 23 starts** are independent contradictions. Across all other runes, even a superficially plausible start/end mix comes with an incompatible number of total symbol occurrences.
 
-To avoid treating all occurrences as independent, the SFT enumerates *every overlapping window of 86 consecutive EA occurrences* in each authentic source-native control. Over the combined **4,208** such windows, Shakespeare's largest start/end counts are **11/7**, Gibran's **17/6**, and Emerson's **17/7**. **No control window reaches 23 starts or 19 ends.** These overlapping windows are a finite census, not 4,208 independent trials or a universal language theorem.
+A second source-specific exact test compares the binary presence patterns of S in every original printed word with the union of words from those four finite reference texts, using words of the identical GP length and allowing either status at the first unobservable position. The count of original words with no matching native pattern is **14 for EA**, **28 for NG**; N, S and E happen to match every finite pattern but fail the separate frequency/word-edge reference gate. The finite reference inventory is not a complete English lexicon.
 
-## Interpretation and boundary of the conclusion
+## Fully reversible positive controls and scope
 
-This rejects the literal **GP index 28 = repeated output** scheme, with inherited English-GP tokenization and preserved word boundaries, even if all 28 other symbol assignments and the state evolution are secret. The observed 86-event rate alone would have made this scheme appear promising. Original event *locations* independently reject it, without a large key search.
+For each reference register, the SFT samples native words at every original length, encodes a synthetic 12,956-rune plaintext under every S in 0..28 through an explicit invertible 28-way permutation, and exactly recovers the full text. **116/116** independently parameterized full-length tests confirm lossless forward/inverse recovery and the repeat-marker equivalence. This establishes that the key-independent event test faithfully targets a reversible channel. Synthetic plants do not identify any historical cipher or key.
 
-It does **not** exclude a different reserved symbol, an encrypted or variable-length escape register, lossy resampling with recoverable hidden state, an altered word segmentation, or a fundamentally different plaintext language. A new decoder should specify how duplicate events can be inverted without imposing an EA distribution that is incompatible with the printed words.
+**The rejection is conditional on** direct native GP29 English-like plaintext, a single fixed special rune S throughout the unknown manuscript, a continuous observed-ciphertext predecessor across printed words, and original printed-word boundaries as plaintext word boundaries. The test does not exclude special symbols that change with a source-selected clock, multiple escape forms, altered word segmentation, non-GP intermediate text, or a separate word-reset state. The solved p56 literal F skip does not select a universal special symbol for the unsolved pages.
 
-## Reproduction
-
-Run the standalone Node 22 file from the repository root; it reads the original transcript, GP alphabet and the three already-retained local English sources, asserts all event counts, exhaustively computes the 86-event source windows, and prints the exact counts. There is no external network, fitted parameter, stochastic seed, or synthetic cipher success claim.
+**Next evidence needed:** an original, dated Cicada instruction that specifies a recoverable state/clock or a reversible escape transport. Further unrestricted searches of 28-way keys cannot rescue a fixed S against this key-independent original marker invariant.
