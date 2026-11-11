@@ -37,8 +37,28 @@ A second test asks whether the source-image **121-cell white fraction** is an ev
 
 Neither unshifted source-aligned clock is distinguished from cyclic rotations. Selecting the best fitted shift would violate the original-cipher prediction contract. This rejects the two literal brightness-mask selectors only. No source-defined selective T6 event rule has emerged from the image tiling.
 
+## Nested p32 ring and the signed 2016 payload length
+
+A second source-constrained operation follows the Parable's wording about shedding circumferences. In the 11×11 p32 GP-prime square, remove the outer three concentric borders to expose the central 5×5 square (rows/columns 3–7, zero-based). Its 16-cell perimeter, read clockwise from the top-left, is:
+
+`[67,47,19,89,53,89,107,61,37,109,107,79,41,107,17,107]`
+
+The sum is **1,136**, exactly the byte length of the PGP-authenticated signed-message payload `resources/historical/cicada2016-4gq25-outguess.asc`. This is a new exact cross-artifact equality. It does not yet specify how to extract plaintext or key material from the 1,136 bytes. The 16 ring values average 71; together with the page's 13-dot mark, the counts 16+13=29 also match the GP alphabet size. These secondary arithmetic relationships do not yet select a unique operation.
+
+Two simple interpretations were bounded:
+- Treat the clockwise 16 prime values as a period-16 additive GP29 key, using either GP ordinals or prime residues modulo 29, both signs, and either a whole-book or physical-page-reset clock. Across the eight full-book inverses, IoC ranges **0.0344554–0.0345361**, against raw ciphertext **0.0344784**; none shows language recovery.
+- Treat the 16 values as consecutive byte-segment lengths partitioning the 1,136-byte signed payload. The sum consumes the payload exactly, but the resulting clockwise boundaries do not align with the message's natural line/word structure and the simple boundary-byte/checksum probes yield no readable extraction.
+
+Thus the ring sum is presently a **candidate cross-artifact checksum**, not an established key, cipher, or partition instruction. No mapping from the 13-dot mark to a unique subset/order of the 16 cells has been found.
+
+## Direction-field discriminator (pending original-image execution)
+
+The exact p32 dimension tiling now supports one additional, falsifiable interpretation of “their numbers are the direction”: the 100 interior GP-prime values, reduced modulo four, predict four undirected line-orientation classes for the tree artwork. The image measurement uses Sobel edge-normal orientation (90° from branch tangent), excludes bright text with the existing fixed threshold 180, and compares the source-aligned score with 100,000 permutations of the interior labels. The first row and column define tile geometry and are not reused as direction labels.
+
+The reproducible implementation is `sims/tree121_directional_field_sft.py`, exposed as the manual-only `tree-direction` probe in `.github/workflows/grid-256-tests.yml`. **It has not yet been run on the original signed 2016 JPEG in this invocation.** Local resampled proxies from the page-32 blurred tree and page-55 outlined tree did not show strong alignment (upper-tail permutation p≈0.094 and p≈0.426 respectively); these are exploratory checks only, not substitutes for the original 2016 image.
+
 ## Decision and next discriminator
 
-The useful new candidate input is an **exact image tiling using manuscript-derived boundaries**. The tested direct rules do not assign a convincing symbol or T6 event mask. The remaining missing instruction is a deterministic mapping from the 121 rectangles, low-contrast tree artwork, original 11×11 rune matrix and visible word/ink structure to **independently identified event positions or decoding state**. Any next test should precommit an image-only feature and an exact mapping to held-out original positions.
+The strongest new result is the exact **p32 inner-5 ring sum = 2016 payload length = 1,136**. Its intended use remains unknown; direct period-16 additive-key and simple sequential-segmentation readings are negative. The next high-value test is to run the locked direction-field script against the original signed image, then seek a source-visible operation that converts the 16 ring values or 100 interior directions into a lossless key/state schedule and a withheld LP2 prediction. Do not expand into arbitrary ring rotations, image thresholds, or unconstrained key families.
 
-**Reproducer:** [sims/tree_prime_canvas_partition_sft.py](../sims/tree_prime_canvas_partition_sft.py), using original signed JPEG, canonical corpus/transcription, Pillow, deterministic shuffles and 121 cyclic mask rotations. Original-image results above were computed from JPEG bytes using the separately fetched jpeg-js decoder source SHA a237d4037735de5446e63528ffdec1937ceac09d. The Python implementation provides the same operations; decoder rounding may slightly change the permutation tail counts. This test extends Agent 21's [p32 geometry](lp2-tree121-signed2016-source-gate.md) and [signed image coordinate study](2016-image-dimensions-lag6-source-derivation.md).
+**Existing reproducers:** [sims/tree_prime_canvas_partition_sft.py](../sims/tree_prime_canvas_partition_sft.py) for the original 11×11 tile geometry, brightness and phase-zero T6 negatives; [sims/tree121_directional_field_sft.py](../sims/tree121_directional_field_sft.py) for the pending original-image direction test. This extends Agent 21's [p32 geometry](lp2-tree121-signed2016-source-gate.md) and [signed image coordinate study](2016-image-dimensions-lag6-source-derivation.md).
