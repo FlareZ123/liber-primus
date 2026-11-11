@@ -38,6 +38,10 @@ Thus the p57 rectangle's inner area and the p53 red span have the same length, 5
 UNNELNGTOTHESURFACEMUSTSHEDOUROWNCIRMFERENCESFINDTHEDI
 ```
 
+## Whole-page prime-sum checksum (secondary observation)
+
+The GP-prime weights of all 95 p57 runes, including the heading, sum to **3968 = 128×31 = 2⁷×31**. The factor 128 equals the number of hexadecimal characters in the 2016 message's hash; this is a possible cross-stage length/checksum clue, not a demonstrated decoding step. The other factor 31 does **not** map to C under the current source-derived 2013 `NUMBER` model: `numberCommand(31)` reverses to 13, which is prime, and therefore returns `+`. Do not turn this factorization into a rune selector without an independent rule. The p57 sum and factorization are reproducible directly from the corpus prime weights.
+
 ## Why this is a plausible solve-path hypothesis
 
 The p57 instruction says “like the instar tunneling to the surface” and “we must shed our own circumferences” before “find the divinity within and emerge.” A 5×19 rectangle is a compact way to make “circumferences” literal: peel the 44-cell outer border, then the 36-cell border, leaving a 15-cell core. The exact 51-cell interior also gives a specific place to compare the p53 red span.
