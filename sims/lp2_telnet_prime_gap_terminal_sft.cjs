@@ -194,6 +194,40 @@ console.log(JSON.stringify({
   plantedAsciiRecoveredExactly: true
 }));
 
+
+// A second historically documented 2013 operator, NUMBER, reverses decimal
+// digits of prime inputs before factorizing the reversed number. This is a
+// separate *single-rule* gate: decimal reversal of each source prime before
+// source-index-preserving GP29 subtraction or whole-table byte XOR. Freeze
+// forward order, minus for GP, direct native byte XOR, and no new offsets.
+/** @param {number} n */
+const reversePrimeDigits = n => Number(String(n).split("").reverse().join(""));
+for (const [region, ciphertext, historical] of [
+  ["interior", interior, missing],
+  ["perimeter", exterior, visible]
+]) {
+  const reversedPrimeKey = historical.map(p => mod29(reversePrimeDigits(p)));
+  const out = ciphertext.map((v, i) => mod29(v - reversedPrimeKey[i]));
+  const reenc = out.map((v, i) => mod29(v + reversedPrimeKey[i]));
+  assert.deepEqual(reenc, ciphertext);
+  console.log(JSON.stringify({
+    historicallySelectedNumberOperator: "reverse each missing/visible prime in decimal",
+    region, direction: "original prime order, GP29 subtraction",
+    decodedIoC: ioc(out), recoveredTransliteration: runicTranslit(out),
+    exactRoundtrip: true
+  }));
+}
+const reversedPrimeByteKey = primeGridKey.flat().map(p => reversePrimeDigits(p) & 255);
+const reversedPrimeOutput = xorBytes(gridBytes, reversedPrimeByteKey);
+assert.deepEqual(xorBytes(reversedPrimeOutput, reversedPrimeByteKey), gridBytes);
+assert.equal(printableCount(reversedPrimeOutput), 101);
+console.log(JSON.stringify({
+  historicallySelectedNumberOperator: "decimal reversal, original table XOR",
+  decodedPrintable: printableCount(reversedPrimeOutput),
+  decodedHex: Buffer.from(reversedPrimeOutput).toString("hex"),
+  exactRoundtrip: true
+}));
+
 for (const [region, ciphertext, sourceKey] of [
   ["interior-p53-plus-p54-A", interior, missing],
   ["perimeter-p55", exterior, visible]
