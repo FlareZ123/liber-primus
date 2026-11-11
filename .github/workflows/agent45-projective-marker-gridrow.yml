@@ -1,8 +1,18 @@
-name: Agent45 projective marker gridrow nonce probe
+name: Agent45 manual original-LP2 source key probes
 on:
   workflow_dispatch:
+    inputs:
+      probe:
+        description: "Select a source-only original-input cryptanalytic gate"
+        required: false
+        type: choice
+        options:
+          - projective
+          - 2013-cookie
+        default: projective
 jobs:
   projective-marker-gridrow:
+    if: ${{ inputs.probe == 'projective' || inputs.probe == '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -17,3 +27,19 @@ jobs:
         with:
           name: projective-marker-gridrow-results
           path: projective-marker-gridrow-results.json
+  historical-2013-cookie-source:
+    if: ${{ inputs.probe == '2013-cookie' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-frozen 2013 cookie original cipher and native control
+        run: node sims/cicada2013_cookies_original_inverse_sft.cjs | tee 2013-cookies-original-inverse.json
+      - name: Preserve original-input diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2013-cookies-original-inverse
+          path: 2013-cookies-original-inverse.json
