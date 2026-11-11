@@ -1,6 +1,6 @@
 # Director memory: current independent routes to LP2 plaintext
 
-**Review checkpoint: 2026-11-11T13:43:39Z. Last reviewed director-task closure: 2026-11-11T13:43:06Z, #243.** Since the 13:11 checkpoint, reviewed closures are #239, #244, #246, #247, #241, #245, #240, #248 and #249. #235 was already reviewed at its 12:54:32Z closure; its later comment update is not a new closure. Merged PRs #256 and #261 were also reviewed. This is a replaceable frontier, not a chronological log.
+**Review checkpoint: 2026-11-11T13:44:29Z. Last reviewed director-task closure: 2026-11-11T13:43:06Z, #243.** Since the 13:11 checkpoint, reviewed closures are #239, #244, #246, #247, #241, #245, #240, #248, #249 and #254. #235 was already reviewed at its 12:54:32Z closure; its later comment update is not a new closure. Merged PRs #256 and #261 were also reviewed. This is a replaceable frontier, not a chronological log.
 
 ## Established position
 
@@ -19,11 +19,11 @@ The signed 2013 TCP challenge authenticates BASE29/DH/NEXT, including BASE29 330
 7. **Historical keys and plaintext.** #213 (Agent47) tests only the signed 2013 NEXT body as a fixed word-length crib. #246 closed: no contemporaneous creator-supplied password is tied to the 58 LP2 JPEGs; the known OpenPuff passwords belong to the earlier MP3, not these images. #247 closed: no qualifying unknown-page plaintext/key was found in the inspectable 2014–2016 corpus; two large IRC blobs were located but unavailable through the current GitHub file interface, so they are not negative evidence. #239 closed: the 2016 uRkNsGsa.htm bytes and URL are absent; Pastebin/Wayback retrieval failures are not 404/CDX negatives. Reopen only on the actual dated byte object or exact archived transcript.
 8. **Cuneiform square readout — #244 closed.** No historical instruction selects a page/paragraph permutation. The authentic 5×5/7×7 square rows have repeated residues modulo their dimensions and do not directly encode unique 5-/7-position permutations. No successor without an independent instruction.
 9. **2014 `/cgi-bin/squares` source — #248 closed.** The newer archive's file named `stage10/squares` is the same Git blob as the 152-byte `post2/index.html` confirmation page, added in 2024 and copied into a 2026 mirror; it is not a CGI program. The Onion6 Titanpad is narrative evidence, not a raw POST/HTTP trace. No original handler, deployment bundle, request/response pair, or operator record was found. The endpoint's validation and square-to-image mapping remain unknown. No successor without a dated server bundle, attributable handler, paired raw trace, or operator record.
-10. **Rune-name semantics — #249 closed.** The GP29 order is the Anglo-Saxon Futhorc and the 29-stanza Old English Rune Poem is historically accessible, but it is not a fixed single-word codebook. Rune-name headings/glosses are editorially disputed; the 2016 “meaning is the road” line does not select a stanza extraction or reversible operation. Mapping rune glyphs to names merely reproduces GP29 transliteration. No semantic decoder. #255 is narrowed to alternate phonetic-value conventions only; do not repeat the order or semantic-codebook tests.
+10. **Cuneiform-like artwork — #254 closed.** The original p33–39 scans contain only the two-line Babylonian base-60 numeral motif [17,13]=1033 and [55,1]=3301; there is no adjacent phonetic/grammatical sign string or source-selected instruction. The existing synthesis already records this. No successor without a different original artifact bearing new signs.\n11. **Rune-name semantics — #249 closed.** The GP29 order is the Anglo-Saxon Futhorc and the 29-stanza Old English Rune Poem is historically accessible, but it is not a fixed single-word codebook. Rune-name headings/glosses are editorially disputed; the 2016 “meaning is the road” line does not select a stanza extraction or reversible operation. Mapping rune glyphs to names merely reproduces GP29 transliteration. No semantic decoder. #255 is narrowed to alternate phonetic-value conventions only; do not repeat the order or semantic-codebook tests.
 
 ## Current assignments and queue
 
-**17 director-task Issues are open.** Eight tasks are currently unclaimed and executable:
+**16 director-task Issues are open.** Eight tasks are currently unclaimed and executable:
 
 - **#194** opening-stave second-marker test; prior claim is stale and no new issue claim comment was present at last check.
 - **#250** test exact Cicada-linked Blake/Crowley text reuse as a fixed LP2 crib/key.
@@ -34,11 +34,11 @@ The signed 2013 TCP challenge authenticates BASE29/DH/NEXT, including BASE29 330
 - **#258** recover raw 2014 participant request/response captures for `/cgi-bin/squares`.
 - **#260** determine whether original p50 layout selects one of the 253 H/G code frames.
 
-**Claimed new tasks:** #248 (Agent22, now closed), #249 (Agent39, now closed), #253 (Agent5), #254 (Agent49), #259 (Agent43). #240/#245/#248/#249 are closed. #242/#236/#231/#213 remain claimed; #243 is closed after merged PRs #256/#261. #41 remains WAITING for a complete source-selected 76-rune p55 inverse; #39 remains BLOCKED pending owner-authorized manual OpenPuff v4 positive-control dispatch. Keep total open issues ≤30 and do not create successors just to pad counts.
+**Claimed new tasks:** #248 (Agent22, now closed), #249 (Agent39, now closed), #253 (Agent5), #254 (Agent49), #259 (Agent43). #240/#245/#248/#249/#254 are closed. #242/#236/#231/#213 remain claimed; #243 is closed after merged PRs #256/#261. #41 remains WAITING for a complete source-selected 76-rune p55 inverse; #39 remains BLOCKED pending owner-authorized manual OpenPuff v4 positive-control dispatch. Keep total open issues ≤30 and do not create successors just to pad counts.
 
 ## Director decisions and operating constraints
 
-- No successor is justified for #239/#241/#244/#245/#246/#247/#248/#249 without the specific new source input stated in each closure. #240's image identity is established but no source-selected tree operation exists.
+- No successor is justified for #239/#241/#244/#245/#246/#247/#248/#249/#254 without the specific new source input stated in each closure. #240's image identity is established but no source-selected tree operation exists.
 - #231's issue body was corrected to 16 remaining classes; the authoritative README already records 13/29 controls and the corrected p33:91 oversized NG / p33:92 TH attribution.
 - Critic's 12:58 audit: #230's original JPEG margin/DCT route was already settled; do not duplicate it. Critic's 13:17 audit corrected three remaining push-triggered workflows to manual-only; new CI must use `workflow_dispatch` only.
 - Do not promote numerical coincidences, synthetic plants, re-encryption, or selected English as plaintext. Prefer authentic source-selected keys/operations and one frozen prediction on untouched original ciphertext.
