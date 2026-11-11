@@ -97,6 +97,22 @@ function evaluate(coefficients,x,field) {
 }
 
 function run() {
+  // If the first table byte in a row is the Shamir x coordinate, the
+  // remaining seven y bytes must be identical at repeated x values
+  // under EVERY deterministic share polynomial, whatever its degree.
+  const firstByX = new Map();
+  const conflicts=[];
+  for(let r=0;r<32;r++) {
+    const x=BYTES[8*r];
+    const y=BYTES.slice(8*r+1,8*r+8);
+    if(firstByX.has(x)) {
+      const earlier=firstByX.get(x);
+      assert.notDeepEqual(y,earlier.y);
+      conflicts.push({x,first:earlier.row,second:r});
+    } else firstByX.set(x,{row:r,y});
+  }
+  assert.deepEqual(conflicts,[{x:122,first:8,second:13},
+    {x:142,first:10,second:27}]);
   const result=[];
   const maps=[['printed-row',Array.from({length:32},(_,i)=>i+1)],
     ['recorded-debruijn-row-state',DB]];
