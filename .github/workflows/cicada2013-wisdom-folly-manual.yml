@@ -17,3 +17,6 @@ jobs:
           node-version: 22
       - name: Verify the 2013 source bytes and recover planted GP29/GP28 controls
         run: node sims/cicada2013_wisdom_folly_source_gate.cjs
+
+      - name: Source-native four-byte header and 58-by-58 permutation gate
+        run: node sims/cicada2013_wisdom_folly_coordinate_sft.cjs
