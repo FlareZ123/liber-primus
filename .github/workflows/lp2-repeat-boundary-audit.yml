@@ -17,3 +17,5 @@ jobs:
           node-version: "22"
       - name: Exhaustively enumerate unsolved six- and seven-rune repeats
         run: node sims/lp2_repeat_boundary_audit.cjs
+      - name: Check original five-rune block repeat-phase exclusion
+        run: node sims/lp2_repeat_phase5_original_gate.cjs
