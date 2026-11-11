@@ -173,6 +173,74 @@ assert.equal(rowFit.validAffineRows, 30);
 const sepPlant = sixty.flatMap((row, r) => row.map((x, c) => mod(x + 7 * r + 11 * c)));
 const sepFit = assess(sixty, sepPlant);
 assert.equal(sepFit.positive2x2, 145);
+
+// Complementary source-fixed 256-symbol H/G codeword test, distinct from byte lookup.
+// p50 original residue polynomial is divisible by F=H*G in GF29. Test whether the
+// last 256 runes share that exact parity architecture in book order or in the
+// 76-border/180-interior matrix, with printed or solved p56 register.
+const generator = [14, 9, 13, 28, 1];
+/** @param {number[]} coefficients high-to-low GP29 coefficients @returns {number[]} */
+function syndrome(coefficients) {
+  let state = [0, 0, 0, 0];
+  for (const x of coefficients) {
+    const carry = state[3];
+    state = [
+      mod(x - generator[0] * carry),
+      mod(state[0] - generator[1] * carry),
+      mod(state[1] - generator[2] * carry),
+      mod(state[2] - generator[3] * carry)
+    ];
+  }
+  return state;
+}
+assert.deepEqual(syndrome(grid.byte_rows.flat().map((x) => x % 29)), [0, 0, 0, 0]);
+const border = [];
+for (let c = 0; c < 8; c++) border.push(c);
+for (let r = 1; r < 31; r++) border.push(r * 8 + 7);
+for (let c = 7; c >= 0; c--) border.push(31 * 8 + c);
+for (let r = 30; r >= 1; r--) border.push(r * 8);
+const inside = [];
+for (let r = 1; r < 31; r++) for (let c = 1; c < 7; c++) inside.push(r * 8 + c);
+assert.equal(border.length, 76);
+assert.equal(new Set(border).size, 76);
+assert.equal(inside.length, 180);
+/** @param {number[]} innerRunes @returns {number[]} */
+function geometry(innerRunes) {
+  const output = Array(256);
+  border.forEach((at, i) => { output[at] = page(55).indices[i]; });
+  inside.forEach((at, i) => { output[at] = innerRunes[i]; });
+  assert.ok(output.every((v) => Number.isInteger(v)));
+  return output;
+}
+const terminalRegisters = {
+  bookPrinted: page(55).indices.concat(printed),
+  bookSolved: page(55).indices.concat(known),
+  matrixPrinted: geometry(printed),
+  matrixSolved: geometry(known)
+};
+const constantRemainder = syndrome(Array(256).fill(1));
+assert.deepEqual(constantRemainder, [14, 3, 19, 3]);
+const parityResults = {};
+for (const [name, runes] of Object.entries(terminalRegisters)) {
+  assert.equal(runes.length, 256);
+  const residue = syndrome(runes);
+  let allowedAffineKeys = 0;
+  // An unrestricted global affine GP29 recoding is a*C+b, a in GF29^*.
+  // R(a*C+b) = a*R(C)+b*R(ones) by linearity; all 812 keys checked.
+  for (let a = 1; a < 29; a++) for (let b = 0; b < 29; b++) {
+    if (residue.every((x, i) => mod(a * x + b * constantRemainder[i]) === 0)) allowedAffineKeys++;
+  }
+  parityResults[name] = {residue, allowedAffineKeys};
+  assert.equal(allowedAffineKeys, 0);
+}
+assert.deepEqual(parityResults, {
+  bookPrinted: {residue:[2,16,22,3],allowedAffineKeys:0},
+  bookSolved: {residue:[17,12,10,6],allowedAffineKeys:0},
+  matrixPrinted: {residue:[28,15,15,10],allowedAffineKeys:0},
+  matrixSolved: {residue:[4,16,17,15],allowedAffineKeys:0}
+});
+assert.deepEqual(syndrome(grid.byte_rows.flat().map((x) => mod(5 * x))), [0, 0, 0, 0]);
+
 console.log(JSON.stringify({
   source: 'Original p50 32x8 printed table and p55/p56/p57 geometry',
   originalCounts: {p55:76,p56:85,p57:95,outer:76,interior:180},
@@ -181,6 +249,7 @@ console.log(JSON.stringify({
     token:x.token, recoveredPlaintextRune:corpus.translit[known[x.i]]
   })),
   base60Solved: r60, base59Solved:r59, base60Printed:raw60,
+  hGeneratorParity: parityResults,
   positiveControls: {lookup:lookupFit.minInconsistentPositions,
     rowAffine:rowFit.validAffineRows, separable2x2:sepFit.positive2x2},
   decision: 'No stationary byte-token lookup, no any-key per-row/per-column affine map, no separable row+column additive pad under this fixed 30x6 alignment',
