@@ -95,6 +95,87 @@ assert.equal(p3.length, 119);
 assert.equal(p39.length, 119);
 assert.equal(p36.length, 238);
 const equality = (a, b) => a.reduce((t, x, i) => t + (x === b[i]), 0);
+/**
+ * Canonical finite-field norm of a GP coefficient vector via the resultant
+ * Res(Q238, source polynomial). This is independent of the field power test.
+ * @param {number[]} digits Ascending field coefficients, padded implicitly.
+ */
+function fieldNorm(digits) {
+  /** @param {number} v @param {number} exponent */
+  function pow29(v, exponent) {
+    let out = 1;
+    while (exponent) {
+      if (exponent % 2) out = mod(out * v);
+      v = mod(v * v);
+      exponent = Math.floor(exponent / 2);
+    }
+    return out;
+  }
+  let A = q.slice().reverse(), B = digits.slice().reverse(), value = 1;
+  while (true) {
+    while (B.length && B[0] === 0) B.shift();
+    if (B.length === 0) return 0;
+    if (B.length === 1) return mod(value * pow29(B[0], A.length - 1));
+    const a = A.length - 1, b = B.length - 1;
+    assert(a >= b);
+    const inv = pow29(B[0], 27);
+    let rem = A.slice();
+    for (let i = 0; i <= a - b; i++) {
+      const digit = mod(rem[i] * inv);
+      for (let j = 0; j < B.length; j++)
+        rem[i + j] = mod(rem[i + j] - digit * B[j]);
+    }
+    rem = rem.slice(a - b + 1);
+    while (rem.length && rem[0] === 0) rem.shift();
+    if (rem.length === 0) return 0;
+    value = mod(value * pow29(-1, a * b) *
+      pow29(B[0], a - (rem.length - 1)));
+    A = B;
+    B = rem;
+  }
+}
+const fieldNorms = {
+  p36: fieldNorm(p36),
+  p3ThenP39: fieldNorm(p3.concat(p39)),
+  p39ThenP3: fieldNorm(p39.concat(p3))
+};
+assert.deepEqual(fieldNorms, {p36: 2, p3ThenP39: 23, p39ThenP3: 6});
+
+/*
+ * Source-prefix permutation null. Only the two original 119-rune multisets
+ * change order; the signed-DH 23/6 target and all field rules stay fixed.
+ * This finite conditional calibration does not account for prior model search.
+ */
+let rng = 0x7f330123;
+/** @returns {number} */
+function randomWord() {
+  rng ^= rng << 13;
+  rng ^= rng >>> 17;
+  rng ^= rng << 5;
+  return rng >>> 0;
+}
+/** @param {number[]} digits */
+function shuffle(digits) {
+  const result = digits.slice();
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = randomWord() % (i + 1);
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+const normNull = {sampleCount: 1500, matching23: 0,
+  matching6: 0, simultaneous: 0, seed: "0x7f330123"};
+for (let i = 0; i < normNull.sampleCount; i++) {
+  const a = shuffle(p3), b = shuffle(p39);
+  const match23 = fieldNorm(a.concat(b)) === 23;
+  const match6 = fieldNorm(b.concat(a)) === 6;
+  normNull.matching23 += Number(match23);
+  normNull.matching6 += Number(match6);
+  normNull.simultaneous += Number(match23 && match6);
+}
+assert.deepEqual(normNull, {sampleCount: 1500,
+  matching23: 56, matching6: 50, simultaneous: 2, seed: "0x7f330123"});
+
 const DH = [];
 for (const [orientation, transform] of [
   ["ascending", x => x.slice()], ["descending", x => x.slice().reverse()]
@@ -171,6 +252,7 @@ console.log(JSON.stringify({
   source: "LP2 p36 238 runes, p3/p39 119-prefixes, p50 GF29 Q238",
   field: "GF(29^238)", modulusVerified: true,
   DH_exponents: DH,
+  fieldNorms, fieldNormShuffleNull: normNull,
   tracePowerX: traceTests,
   rawOriginalIoC: ioc(runes),
   finding: "No exact DH-share power equality; direct trace(S*X^i) keystream does not recover GP plaintext."
