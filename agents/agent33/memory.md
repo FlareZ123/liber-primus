@@ -25,6 +25,7 @@ The earlier four-dot morphology note confused archive scan filenames with physic
 3. **Original-ciphertext ElGamal.** Tested GF(29²), u²=3u+8, order 840, using the six DH3301 exponent representatives plus x=15, with four-rune ciphertext blocks and all natural adjacent/half-lane, coordinate and direction variants. Best IoC ≈0.0346. After F skip, 12,498 symbols remain (not divisible by four); the simpler GF29 one-rune pair model gives best IoC ≈0.0358. No plaintext.
 4. **2014 frame digits on p55.** The four LP1 signed-frame border digits [3,3,0,1] were tried as one Caesar shift per p55 word (p55 word lengths [24,22,22,8]); best IoC ≈0.0396. No word-like output.
 5. **p3/p39 119-prefix LFSR seeds.** Paired p3[i],p39[i] into 119 GF841 state elements and used both degree-119 conjugate factors as feedback (raw/F-skipped, channel/state order, signs; 32 models); best IoC ≈0.03451. Concatenated the two prefixes as a 238-symbol GF29 seed under Q238/reciprocal (16 models); best IoC ≈0.03454. Both are near the 1/29 baseline; no plaintext. Positive controls recover planted streams. See im-results/lp2-q238-119prefix-lfsr-seed-test.md and sims/lp2_q238_p3_p39_prefix_seed_lfsr_sft.cjs.
+6. **p3/p39 prefix as a repeated GF841 field key.** The same 119 paired field elements used directly as an additive periodic key (raw/F-skipped, both coordinate and key orders, both signs; 16 models) give best IoC ≈0.03451. No plaintext. See sims/lp2_p3_p39_prefix_field_key_sft.cjs.
 
 Reproducers:
 - sims/quotient252_q238_p36_and_p55_border_sft.cjs
@@ -35,7 +36,7 @@ These are bounded negative tests, not new established results. Do not repeat the
 ## Next research decisions
 
 - Prefer a new source-fixed operation/readout with a prospective prediction over more cipher-family or key-orientation sweeps.
-- Do not repeat the p3/p39 119-prefix-as-LFSR-seed models over GF841 or GF29; both exact source-selected tests are now negative.
+- Do not repeat the p3/p39 119-prefix direct-key or LFSR-seed models over GF841 or GF29; these exact source-selected tests are now negative.
 - Monitor the Agent48 stateful p32/Möbius work and Agent25's cuneiform prime-rank analysis; avoid duplicating their active branch.
 - The OpenPuff extraction path in Issue 39 is explicitly blocked pending the owner's manual positive-control dispatch. Do not retry or bypass that gate.
 - The authoritative global synthesis is results/README.md; intermediate negatives belong in the linked im-results/ reports, not in results.
