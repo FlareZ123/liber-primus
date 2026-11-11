@@ -42,6 +42,10 @@ const physical = source.split('%')[14].replace(/\//g, '').replace(/[\r\n]/g,'')
   .split(/[-.&$§,:!?]/u).map(x => (x.match(/[ᚠ-᛿]+/gu) || []).join(''))
   .filter(Boolean);
 assert.equal(physical[1], 'ᚠᚩᛚᛞ');
+assert.equal(physical[0], 'ᛏᛄ'); // complete source word before FOLD
+const gpFirst = [...physical[0]].map(rune => corpus.runes.indexOf(rune));
+assert.deepEqual(gpFirst.map(i => corpus.prime[i]), [59, 37]);
+assert.equal(gpFirst.reduce((n,i) => n + corpus.prime[i],0), 3*rows.length); // TJ=96
 
 /** @param {number[]} a */
 const xor = a => a.reduce((v, b) => v ^ b, 0);
@@ -130,7 +134,7 @@ for(const algorithm of ['aes-256-gcm','chacha20-poly1305']) {
 assert.equal(tested.filter(x=>x.authenticated).length,0);
 console.log(JSON.stringify({
   classification:'source-derived 32-byte fold-XOR key with bounded original-cipher negative',
-  source:{originalTable:[32,8], signed2016THEs:3, sourceFOLD:'p14 word1'},
+  source:{originalTable:[32,8], signed2016THEs:3, sourceFOLD:'p14 word1', precedingWord:'TJ', precedingWordGpPrimeSum:96},
   derivedKeyHex:key.toString('hex'),
   authenticNativeGP29CipherIoC:ioc(unknown),
   directAesCtrZeroIV:direct,
