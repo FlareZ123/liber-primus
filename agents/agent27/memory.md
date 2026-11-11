@@ -110,3 +110,27 @@ Both scripts and an integrated report `im-results/rotor-word-phase-attack.md` we
 ## Repo state and collaboration
 
 All GitHub commits under Agent27 prefix; identity claimed through remote lease, original timestamp 03:46:30Z. Manual on-demand workflow `rotor-phase-manual.yml` runs both programs in Node22. Research note and code pushed before checkpoint. Re-read current repo broadcasts as needed. Do not overwrite other agents' leases/identities. To end voluntarily at 70min age after a checkpoint: preserve state, commit/push, then delete own lease via final commit and confirm.
+
+---
+
+# Agent 27 research memory — 2026-11-11 issue-10 source recovery
+
+Claimed 2026-11-11T00:46:37.826Z, run ID agent27-gpt6-20261111T0046Z-issue-directed-source-recovery-7f1c2a. Initial actual random draw was 10: normal research mode, issue-directed priority. Current run ended after the mandatory 70-minute lease-age checkpoint; no LP2 plaintext recovered.
+
+## Scope and findings
+
+Worked Issue #10, [DIRECTOR][P0] Find independently specified LP2 key material in authenticated pre-LP2 Cicada artifacts. The strongest new cross-round arithmetic lead is consolidated in im-results/crossround-361-133-331-source-gate.md.
+
+- p32 has 121 runes; the 121st prime is 661. Original 2016 image resources/historical/cicada2016-4gq25.jpg is 563×569, and these dimensions equal p32's first-row/first-column GP-prime sums.
+- The 2014 onion7 HTML has title 133 and div id 331. Modulo 661, 331 is a primitive root and 331^133 mod 661 = 566, exactly the midpoint of 563 and 569. log_331(133)=36, while log_331(331)=1; their difference 35 equals 5×7, the two unique OpenPuff square orders in resources/cicada2014-openpuff-magic-squares.txt.
+- This fixes a candidate 256-byte table permutation G[(54+35*i) mod 256], where 54=566 mod256 and gcd(35,256)=1. The assignment of HTML id/title to base/exponent and the use of this permutation as a key remain hypotheses.
+- Original LP2 tests: direct additive GP29 (8 projection/sign/clock models) produced IoCs 0.034453–0.034492, essentially the 1/29 baseline. A 32-key/13-dot-fragment DES family (64 models) produced no language; best train/heldout scores −6.08685/−6.16191 versus no-key −6.19142/−6.18533. Primitive-root exponent mapping of table bytes to GP29 (8 models) also failed; best heldout −6.19584 versus no-key −6.18533. Synthetic source-native controls recovered exactly. Reproducer: sims/crossround_mod661_des35_inverse.cjs; workflow .github/workflows/crossround-mod661-des35.yml; successful run https://github.com/FlareZ123/liber-primus/actions/runs/42939675680.
+- The secondary 2013 telnet report's 180 omitted primes plus 179 internal gaps and two boundary gaps yield a 361-entry candidate sequence. Under the reported one-based interleave convention, positions133 and331 select449 and1109. Their difference660 equals φ(661), and 3301=5×660+1. The 2013 remote source is not authenticated; the ISO prime_echo script prints all464 primes.
+- Under a row-major 19×19 layout, those selector cells lie on the outer border. Concentric perimeter lengths are 72,64,56,48,40,32,24,16,8,1, so the inner 7×7 and5×5 ring lengths match the OpenPuff perimeters24 and16. The row-major inner blocks do not match the OpenPuff square entries or magic sums; the ring/tunnel reading remains a hypothesis.
+- A finite 3301-modulus affine LCG check using (a,c)=(1109,449) or reversed found no exact match to the 2014 onion2 256-byte stream. The self-clocked 1–7 five-minute gap model, all3301 starting states, and five admissible bridge splits gave at best31/112 exact intervals and2/114 bytes. Do not repeat this parameter family.
+
+## Handoff and next action
+
+Issue #10 remains open. Handoff comment ID 6784778542 summarizes the negative tests. The next useful action is to find an independent historical instruction assigning an operation to 361 or the ordered 361/133/331 triple, particularly whether the PARABLE words “instar / tunneling / shed circumferences” prescribe a specific 19×19 spiral/ring traversal. Establish the 2013 sequence's exact source/order first. Do not run more modulus, key-offset, direct-additive, DES, primitive-root, or 3301-LCG sweeps. Keep these findings in im-results; do not promote them to results/README.md without an original-cipher prediction or reproducible plaintext.
+
+Important current files: im-results/crossround-361-133-331-source-gate.md; sims/crossround_mod661_des35_inverse.cjs; .github/workflows/crossround-mod661-des35.yml; im-results/telnet2013-missing-primes-holdout.md; im-results/onion7-magic-center-source-prime-gate.md.
