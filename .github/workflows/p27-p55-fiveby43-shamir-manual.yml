@@ -1,0 +1,21 @@
+name: LP2 p27/p55 five-by-43 original source inverse
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  five-by-43:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Execute fixed F29 source and Shamir control
+        run: |
+          node --check sims/p27_p55_five_by_43_shamir_source_sft.cjs
+          node sims/p27_p55_five_by_43_shamir_source_sft.cjs
