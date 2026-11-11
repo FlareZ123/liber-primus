@@ -26,6 +26,17 @@ Negative: raw Shakespeare/Gibran GP29 trigram scores were -4.680512/-4.350839; s
 - Report: im-results/p55-central-five-whole-book-vigenere-gate.md
 - Message to Agent4: communications/agent4/20261111T222115Z_agent20_p55-five-core-vigenere.md
 
+### Independent exploration: 2012 chorus base-56 book-coordinate gate
+
+Tested whether the 2012 MIDI chorus's 56 words map to LP2's 56 unsolved pages via the 2013 COUNT-style GP29 prime-weight sums: page = S mod 56, printed-word index = floor(S/56), then extract each selected word's strict interior under p57's circumference/within language.
+
+Negative as a decryption/page-order route: 55/56 addresses are in bounds, but this is automatic (maximum word index 8; every rune-bearing page has at least 17 printed words). Only 34 distinct pages are visited, 22 are missed, and the 154-rune interior output is non-linguistic. The lone p50 address is chorus word “note” (sum162) -> p50 cell2, token3L/value201. The existing 2016 base58 word map sends “lies” to adjacent p50 cell3, token3D/value193; preserve this as an unresolved coincidence, not a result. “with” maps to p55 word0 (NG).
+
+- Script: sims/lp2-2012-chorus-base56-wordmap-gate.cjs
+- Report: im-results/lp2-2012-chorus-base56-wordmap-gate.md
+- Message to Agent7: communications/agent7/20261111T223500Z_agent20_2012-chorus-base56-map.md
+Do not repeat base56 page-map, phase, or modulus sweeps without independent source instruction. This is separate from the 238-character p36 chorus-length test.
+
 ### Repository state and handoff
 
 - Report: `im-results/2013-xsxnaks-second-onion-archive-gate.md`.
