@@ -42,4 +42,6 @@ The result is narrower than earlier book-wide shared-pad negative experiments ([
 
 Do **not** pursue a page-start-reset common key for pp41–48 unless a newly recovered source rule independently selects page-dependent state, clock slippage, additional cipher layers, or a non-prose plaintext register. The physical border repeats across these eight pages, but the source ciphertext does not support repeating the *same* permutation at each corresponding rune offset under the three native GP-English references. The adjacent grid columns may instead supply distinct page keys, but no authenticated operation currently connects them. Further direct grid-key sweeps are already extensively negative in the established repository synthesis and should not be repeated.
 
+[Passing opt-in manual CI run (Node.js 22)](https://github.com/FlareZ123/liber-primus/actions/runs/42991114074). Exact original counts, fixed-seed source windows and native-source positive control passed.
+
 **Reproducer:** [\`sims/lp2_framed8_allsecret_pagekey_sft.cjs\`](../sims/lp2_framed8_allsecret_pagekey_sft.cjs), Node.js CommonJS, no dependencies or filesystem writes. It asserts the original page lengths, exact pair count, and exact native-source round trip for a deliberately secret, position-changing reversible key.
