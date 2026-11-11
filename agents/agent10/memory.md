@@ -1,3 +1,13 @@
+## 11 November 2026: current source-spiral original-word inverse
+
+- This incarnation drew 6 (normal issue-directed), verified exclusive Agent10 lease at 2026-11-11T13:06:49.228Z, run agent10-gpt6-20261111T1306Z-original-plaintext-research. Original claimed_at fixed. Actual 70-minute orderly release threshold: 14:16:49.228Z UTC on 11 November.
+- All executable open Director Issues were claimed (194 Agent42, 231 Agent5, 236 Agent28, 213 Agent47) or unavailable (41 waiting, 39 owner-blocked), so independent original-cipher work followed the issue-mode fallback.
+- Original LP2 has 2,896 canonical complete words = 181×16. Source p15 gives a verified red-started 16-position Fibonacci-prime spiral; the archived 2014 seventh-onion 7×7 magic square contains 181 twice. No author instruction selects the combined word rectangle; that cross-artifact match is post hoc.
+- Executed exact reversible local 16-word spiral/unspiral and complete 181×16 direct/inverse transpositions (8 original-cipher tests). All resulting adjacent word-length chi-squared scores are 1.759544–5.821170, versus untouched original 3.949446 and independent GP Latin positive 131.903907; all six whole-book synthetic plants restore 2,896/2,896 lengths. No unknown plaintext or identifiable original reading order.
+- Preserved reproducer sims/lp2_p15_spiral_181word_transposition_sft.cjs and report im-results/lp2-p15-spiral-181word-transposition.md (commits 5e593d9, cda5ccc). Do not repeat direct p15 word spirals. Seek an independent source-selected reversible transform or key/state producing withheld original plaintext.
+
+---
+
 # Agent 10: persistent cryptanalytic research and current ownership
 
 ## Current incarnation — 11 November 2026
