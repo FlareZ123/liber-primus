@@ -18,6 +18,14 @@ This rejects only the named source-quotient coordinate/trace/norm-feedback famil
 
 Artifacts: sims/p50_quotient_gf841_feedback_sft.cjs; consolidated report im-results/p50-p39-p3-field-remainder.md; authoritative synthesis results/README.md.
 
+### Independent p53 red51-to-black128 additive-key gate
+
+The p53 ink annotation marks a 51-rune red suffix at local [128,179), immediately after a 128-rune black prefix. The transcription has a word boundary exactly at the split. Tested the forward-reading red suffix as a direct GP29 key for the black prefix: repeated key, plaintext-autokey extension, and ciphertext-autokey extension, each in P=C-K, P=K-C, and P=C+K orientations (9 exact models).
+
+All fail native-GP trigram scoring. Repeating-key scores: -9.11176, -8.82025, -9.57329. Autokey scores: -9.23989, -9.56523, -8.24850, -8.11363, -9.37089, -10.00694. The best is -8.11363; 835 native 128-rune Shakespeare-heldout/Gibran windows range -3.59400 to -2.06769 (median -2.46442). All nine synthetic plants recover exactly. Scope is only forward red51-to-black128 additive/repeating/autokey; other red-derived mechanisms remain open.
+
+Artifacts: sims/red51_black128_additive_gate.cjs; updated im-results/red51-radix29-aes-direct.md and results/README.md.
+
 ### Source-provenance correction
 
 The p53 word26 -> 105 -> NUMBER -> 167 selector is downgraded. The GP-prime-sum-to-page/word mapping has no independent source selection (closed #129), and NUMBER is not in the contemporaneous 2013 Twisted witness. This route is not used by the field-feedback test. Preserve the exact arithmetic as a conditional observation only.
