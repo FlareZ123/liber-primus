@@ -37,7 +37,7 @@ function indicators(bytes) {
   const hasPrefix=prefix => bytes.subarray(0,prefix.length)
     .equals(Buffer.from(prefix));
   if(hasPrefix("-----BEGIN PGP "))flags.push("pgp");
-  if(hasPrefix("PK\\x03\\x04"))flags.push("zip");
+  if(bytes.subarray(0,4).equals(Buffer.from("504b0304","hex")))flags.push("zip");
   if(bytes.subarray(0,2).equals(Buffer.from("1f8b","hex")))flags.push("gzip");
   if(bytes.subarray(0,4).equals(Buffer.from("89504e47","hex")))flags.push("png");
   const printable=bytes.reduce((n,v)=>n+Number(v===9||v===10||v===13||v>=32&&v<=126),0);
