@@ -32,10 +32,27 @@ This comparison preserves each independently published source's natural word-ord
 
 Construct an independent positive from the first 2,896 Shakespeare GP words. For each word's real source sum residue \(r\), apply a hidden invertible map \(\sigma(r)=7r+11\pmod{29}\), then encode the resulting residue as a two-rune GP ciphertext word with *distinct adjacent runes* and the same sum residue. All 29 target residues have such a two-rune encoding. The output glyph strings and word lengths are unrelated to the source, but the sum-histogram concentration remains **exactly invariant**; the hidden inverse \(r=25(s-11)\pmod{29}\) recovers **2,896/2,896** true source word residues. This checks that a length-changing, nonrepeating, genuinely secret residue-code mapping would be detected by the invariant.
 
+## Moving preceding-word GP-prime-sum feedback: original-source inverse
+
+A finite moving-word candidate follows the documented historical GP-prime-sum convention. For each canonical ciphertext word, use the **preceding ciphertext word's** sum of GP prime weights modulo29 as a constant GP29 Caesar shift. Initialize with the previously published Cicada constant `3301 mod29`. Freeze the word-clock as continuous across the book, or reset at physical page start, and test both Caesar signs: `K[w+1]=sum(GPprime(C[w])) mod29`, `P[w,j]=(C[w,j]+sign*K[w]) mod29`. This is a hypothetical reading of the authenticated 2016 words/numbers/direction instruction; there is no authentic source specifying the constant-shift operation.
+
+| Original GP29 stream | Index of coincidence | GP-English trigram score (nats/rune) |
+| --- | ---: | ---: |
+| Original unknown cipher | 0.034478398 | −4.147504 |
+| Prior-word shift, sign −, continuous | 0.034491052 | −4.150405 |
+| Prior-word shift, sign −, page reset | 0.034482318 | −4.148675 |
+| Prior-word shift, sign +, continuous | 0.034479256 | −4.155553 |
+| Prior-word shift, sign +, page reset | 0.034482938 | −4.154508 |
+| Independent native Shakespeare GP29 | 0.058840759 | −2.459500 |
+
+The trigram control uses the first 100,000 GP-encoded runes of `resources/control/shakespeare_first300k.txt` to fit additive-smoothed conditional trigrams. The independent 12,956-rune reference starts at source offset150,000. All four original inverses exactly re-encode the 12,956 ciphertext runes and remain uniformly ciphertext-like. A planted positive formed by repeating solved p57's 95 GP runes across the original 2,896 word slots is encrypted and recovered exactly in every mode. Alternative starting shifts affect only the first word after each reset, so they cannot rescue the rest of this model. This is a bounded negative for causal *preceding-cipherword GP-prime-sum constant word shifts*, without constraining variable-rate or nonlinear moving-key architectures.
+
+[Self-contained original-input and native-plant test](../sims/lp2_previous_word_prime_sum_feedback_sft.cjs). No authentic unknown plaintext or key recovered.
+
 ## Decisive boundary
 
 The tested **stationary 29-way GP-prime-sum code is incompatible with all four finite natural-language source controls**, even with an arbitrary secret fixed permutation, changed word lengths, and unrelated rune spellings. The usual short function words concentrate native prose word sums sharply, while LP2's printed sums are nearly uniform. A natural-language plaintext with an exceptionally flat word-sum histogram, a distinct language, a changing per-word/per-page sum substitution, numeric state, reordered plaintext words, or deliberately inserted/removed ciphertext words remains possible. No language-independent impossibility is asserted.
 
-The correct next decision is to seek a source-specified **moving** direction/key/word operation. Retrospective individual sum coincidences such as CABAL and UOID/VOID cannot justify asserting that ciphertext prime sums directly reveal plaintext word identities without a corresponding full-register mechanism.
+The next decision is to identify a source-specified **moving** direction/key/word operation beyond the direct preceding-word constant shifts tested above. Retrospective individual sum coincidences such as CABAL and UOID/VOID cannot justify asserting that ciphertext prime sums directly reveal plaintext word identities without a corresponding full-register mechanism.
 
 **Reproducer:** `sims/lp2_word_sum_residue_source_gate.cjs` uses canonical rune-word boundaries, the four pinned natural-language references, exact rolling-window Pearson statistics, literal four-word sum-source hits and the two-rune positive. It requires Node.js 22 and no external dependency.
