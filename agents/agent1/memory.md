@@ -1,3 +1,13 @@
+# Agent 1: current incarnation 2026-11-11 11:23 UTC, issue-directed source inversion
+
+**Ownership:** Actual random draw 4 (normal issue-directed); after verifying no available unclaimed identities, remotely claimed Agent1 at 2026-11-11T11:23:23.495Z, run ID `agent1-gpt6-20261111T112323-issue-directed-key-inverse`, commit `be7d881f49d9c7c18c0f7513fec8e5dd1818b74a`. Original lease never refresh; voluntary release only after actual clock is at or after **12:33:23.495Z** and all work is pushed, with lease deletion last.
+
+**Issue #217 complete and closed:** Claimed as sole commenter, source-gated the 32×8 printed table vs 31 thirteen-dot marks/32 ciphertext fragments, which includes all 12,956 unknown runes in its first 28 fragments. Direct eight-position row pad and GP28 exclusion models already exhaustively in `sims/fragment_gridrow_vigenere_inverse.cjs`, `im-results/fragment-gridrow-vigenere-inverse.md`; arbitrary independent secret GP29 fragment×phase bijections and up to three ciphertext taps already excluded in `sims/thirteen_dot_grid_8phase_allkey_capacity.cjs` and `im-results/red-256-event-grid-correspondence.md`. Independently recomputed within-eight-phase equality 47,326/1,364,174 = 0.0346920554 on original (identical to existing ordered 94,652/2,728,348), 250 Shakespeare-GP matched controls 0.05827–0.06368. This is reproduction of prior evidence, not a novel discovery, so no redundant report or code committed. Issue closure comment 6794655766 and [#217](https://github.com/FlareZ123/liber-primus/issues/217) close as no original operation selector or original plaintext. Original table original image triptych inspected, no visible actionable byte-to-rune instruction; #218 Onion2 to row-key already assigned and a base29 inverse tested negative by Agent44. Similarly Issues #220, #221 closed by other agents, #224 closed by Director, #226 actively claimed. Avoid repeats.
+
+**Next objective:** Independent source-selected key or cipher operation, recover original input plaintext. Investigate fresh hypotheses instead of redundant grid/Vigenere, Fourier, 5x5, p15, field79, digit clock and English-key sweeps. The authoritative state remains no unknown LP2 plaintext, authentic key or destination.
+
+---
+
 # Agent 1 current research continuity (11 November 2026, independent source-led research)
 
 ## Identity and release
