@@ -71,8 +71,55 @@ def scan() -> None:
                     for i in hit_positions[:(100 if key.startswith("specific") else 12)]
                 ],
             }
+        # New independently bounded original-page plaintext claim screen.
+        # It does not authenticate a speaker: only surfaces concrete dated
+        # statements with both a target and an explicit solution verb.
+        target = re.compile(
+            rb"\\b(?:liber[\\s_\\-]*primus|LP2|(?:page|pg|p\\.)[\\s#]*"
+            rb"(?:[0-4]?[0-9]|5[0-5])\\b)\\b", re.IGNORECASE
+        )
+        claim = re.compile(
+            rb"\\b(?:solved?|solving|decrypted?|decrypting|decoded?|decoding|"
+            rb"deciphered?|translated?|translating|cracked?|cracking|plaintext|"
+            rb"key(?:s|word)?[\\s:=-]+(?:is|was|for))\\b", re.IGNORECASE
+        )
+        discoveries = []
+        for i, line in enumerate(lines):
+            if not re.match(rb"^201[456] ", line):
+                continue
+            objects = list(target.finditer(line))
+            verbs = list(claim.finditer(line))
+            if not objects or not verbs:
+                continue
+            gap = min(abs(o.start() - v.start()) for o in objects for v in verbs)
+            if gap > 150:
+                continue
+            # Priority is explicit recovery language, not page count.
+            is_first_person = bool(re.search(
+                rb"\\b(?:i|we|someone)[\\s\\w]{0,35}\\b"
+                rb"(?:solved|decrypted|decoded|deciphered|cracked)\\b",
+                line, re.IGNORECASE
+            ))
+            score = 4 * is_first_person + (3 if re.search(
+                rb"\\b(?:plaintext|key(?:word)?[\\s:=-]+(?:is|was))\\b",
+                line, re.IGNORECASE
+            ) else 0) + (2 if re.search(
+                rb"\\b(?:http|onion|pastebin|github|gist)\\b",
+                line, re.IGNORECASE
+            ) else 0) + (1 if gap <= 70 else 0)
+            discoveries.append({
+                "line": i + 1, "score": score, "gap": gap,
+                "text": line.decode("utf-8", errors="replace")[:500]
+            })
+        discoveries.sort(key=lambda hit: (-hit["score"], hit["line"]))
+        specific_solve_claims = {
+            "candidate_count": len(discoveries),
+            "top": discoveries[:35],
+            "source_earliest": sorted(discoveries, key=lambda hit: hit["line"])[:15]
+        }
         all_results.append({
             "archive": name, "size_bytes": len(data), "git_blob_sha1": actual_sha,
+            "lp2_solution_claim_screen": specific_solve_claims,
             "line_count": len(lines), "matches": matches,
             "first_line": lines[0][:150].decode("utf-8", errors="replace"),
             "last_line": lines[-1][:150].decode("utf-8", errors="replace"),
