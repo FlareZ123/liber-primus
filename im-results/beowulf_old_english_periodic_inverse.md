@@ -38,7 +38,7 @@ Three independently generated, exactly reversible plants were constructed from t
 
 All three plants re-encrypt exactly, rune for rune, under the recovered fitted key and recovered plaintext, and the executable assertions passed.
 
-**Original-input historical CI execution:** [run 42806410289](https://github.com/FlareZ123/liber-primus/actions/runs/42806410289) used the older defective fixture. The corrected program and source are now committed; the new reproducible results above were re-evaluated against the complete corrected source. A new CI run will be linked when executed. [Full deterministic standalone program](../sims/beowulf_gp_periodic_original_inverse.cjs) and [frozen independent source](../resources/control/beowulf_oe_gp_profile_corrected.json) remain in the repository; no external download is needed to rerun the finite inverse.
+**Original-input historical CI execution:** [run 42806410289](https://github.com/FlareZ123/liber-primus/actions/runs/42806410289) used the older defective fixture. The corrected program and source are now committed; the new reproducible results above were re-evaluated against the complete corrected source. The exact corrected-source runner **passed** in [Actions run 43042189308](https://github.com/FlareZ123/liber-primus/actions/runs/43042189308), with all 20 original candidates, three planted source-native recovery controls and regression assertions. [Full deterministic standalone program](../sims/beowulf_gp_periodic_original_inverse.cjs) and [frozen independent source](../resources/control/beowulf_oe_gp_profile_corrected.json) remain in the repository; no external download is needed to rerun the finite inverse.
 
 ## Source-control correction that changes the cryptanalytic inference
 
