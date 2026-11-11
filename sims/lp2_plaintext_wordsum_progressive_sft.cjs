@@ -74,6 +74,8 @@ function nativePlant() {
     .sort((a, b) => b.t.length - a.t.length);
   return "LIBER PRIMUS IS THE WAY ITS WORDS ARE THE MAP SEEK AND YOU WILL BE FOUND"
     .split(" ").map((word) => {
+      word = word.replace(/V/g, "U").replace(/[KQ]/g, "C")
+        .replace(/Z/g, "S");
       const arr = [];
       for (let p = 0; p < word.length;) {
         const token = tokens.find((x) => word.startsWith(x.t, p));
