@@ -23,6 +23,19 @@ const body = p27.indices.slice(19);
 assert.equal(body.length, 215);
 assert.equal(body.length, 5 * 43);
 
+// The original physical p27 page does not print a 5x43 grid. Its title line
+// contains 19 red runes plus one black body rune, followed by ten black lines.
+const p27PrintedLines = transcription.split("%")[27].split(/\r?\n/u)
+  .filter(line => /[ᚠ-᛿]/u.test(line));
+const p27PrintedLineRuneCounts = p27PrintedLines.map(line =>
+  (line.match(/[ᚠ-᛿]/gu) || []).length);
+assert.deepEqual(p27PrintedLineRuneCounts, [20,17,18,22,21,22,25,21,24,22,22]);
+assert.equal(p27PrintedLineRuneCounts.reduce((a,b) => a+b, 0), p27.indices.length);
+const p27BlackLineRuneCounts = [p27PrintedLineRuneCounts[0] - 19,
+  ...p27PrintedLineRuneCounts.slice(1)];
+assert.deepEqual(p27BlackLineRuneCounts, [1,17,18,22,21,22,25,21,24,22,22]);
+assert.equal(p27BlackLineRuneCounts.reduce((a,b) => a+b, 0), 215);
+
 // Recover the 43 strict interiors from the canonical printed p55 words.
 // The one-rune carry fragment has no interior and is therefore excluded.
 const p55Source = transcription.split("%")[54];
@@ -168,7 +181,9 @@ const rowCounts = Array.from({ length: 5 }, (_, row) =>
 const result = {
   source: {
     p27Runes: p27.indices.length, p27RedTitleRunes: 19, p27BlackBodyRunes: body.length,
-    hypotheticalPacking: "five consecutive rows of 43",
+    printedLineRuneCounts: p27PrintedLineRuneCounts,
+    blackBodyRuneCountsByPrintedLine: p27BlackLineRuneCounts,
+    hypotheticalPacking: "five consecutive rows of 43; not source-visible and crosses printed line boundaries",
     p55Runes: p55.indices.length, p55PrintedSegments: printedWords.length,
     p55InteriorRunes: interior.length, p55InteriorWordLengths: wordLengths
   },

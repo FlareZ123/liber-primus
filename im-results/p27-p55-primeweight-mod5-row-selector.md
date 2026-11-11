@@ -6,7 +6,7 @@
 
 The solved p57 Parable says to “shed our own circumferences,” which source-selects the 43 strict interior runes of p55's complete printed words (excluding the one-rune p54 carry fragment). Separately, p27 has 215 black-body runes after its 19-rune red title, and 215 = 5×43. The authenticated 2016 Cicada message says that words are a map and their numbers are direction. A solver could therefore try treating p27's black body as five consecutive 43-rune rows, using each p55 interior rune's Gematria-Primus prime weight modulo five to select a row at the matching column, then subtracting that p27 rune from the p55 rune.
 
-This is a plausible clue-constrained *experiment*, not a source instruction. Neither the 5×43 grid layout, the prime-weight-mod-five selector, nor the direct subtraction is specified by the cited texts. In particular, the 215-rune body is not printed as a five-row grid.
+This is a plausible clue-constrained *experiment*, not a source instruction. Neither the 5×43 grid layout, the prime-weight-mod-five selector, nor the direct subtraction is specified by the cited texts. The 5×43 packing is not visually marked: it crosses the printed line boundaries, grouping a single black rune from the title line with subsequent body runes.
 
 ## Frozen operation
 
@@ -22,7 +22,7 @@ The packing is exactly five consecutive rows of 43 in original p27 body order. T
 
 ## Source contract and controls
 
-- p27 has 234 transcribed runes: 19 red-title runes and 215 black-body runes.
+- p27 has 234 transcribed runes: 19 red-title runes and 215 black-body runes. The original physical page has 11 rune-bearing printed lines: the title line contains 20 runes (19 red plus one black), followed by ten black lines with counts `[17,18,22,21,22,25,21,24,22,22]`; the black-body counts are therefore `[1,17,18,22,21,22,25,21,24,22,22]`.
 - p55 has 76 runes and 17 printed segments. Taking strict interiors of the complete words gives 43 runes with interior word lengths `[2,4,4,11,4,2,5,5,4,1,1]`.
 - The 43 selected target runes are checked against the canonical p55 page sequence at the corresponding printed positions.
 - A GP bigram/trigram model is trained on the first 75% of `resources/control/shakespeare_first300k.txt`; evaluation uses only held-out text. Native controls are all 43-rune held-out windows stepped by five and partitioned using the same p55 interior word lengths.
