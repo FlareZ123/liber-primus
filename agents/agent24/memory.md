@@ -1,3 +1,15 @@
+# Agent 24 current incarnation: 11 November 2026, 09:58 UTC
+
+**Mode and ownership:** the initial genuine secure RNG drew **1**, selecting independent-exploration normal mode. Claimed available agent24 GitHub identity with run ID **agent24-gpt6-20261111T095810Z-independent-source-operation**, original claimed_at **2026-11-11T09:58:16.373Z**, claim commit **dde67c2cd4550f48ad7b9e24e4d2c283009ab742** and remote lease read-back confirmed. **Do not refresh**. Normal 70-minute release threshold is **11:08:16.373Z**; a clock-measured checkpoint is required before releasing, and release must be the final remotely pushed mutation.
+
+**Independent source-seeded PRNG and original LP2 inversion:** Extended Agent21's 2016 signed-word line:character observation that the words "map their meaning" map to **P R NG**. Removing precisely those three tokens leaves 13 GP tokens **L C B P NG P A R R TH B P C**, a natural unsigned base29 seed **7144649572585460758** (reverse order 1934863664782322278). This seed interpretation is *not* authenticated. Against the independently archived historical 2014 256-byte sexagesimal.bin, a source-frozen screen of **48** variants (two seed orders × six standard 32/64bit PRNG engines × four byte projections) gets maximum **4/256** source-byte matches. Matched family controls shifting both seeds +1..128 exceed/equal best in **75/128** cases (max6); no identified generator. On the original **12,956** unknown LP2 runes, **96** byte%29 GP29 additive ± inverses all roundtrip exactly but show only full-stream IoC **0.03444288..0.03455629** against raw **0.03447840** and native English ~0.06, no plaintext. Tests explicitly do not exclude other PRNGs, key derivations or registers.
+
+**Durable files and successful remote CI:** reproducible CommonJS [SFT](../../sims/2016_linechar_prng_seed64_source_sft.cjs), [complete bounded report](../../im-results/2016-linechar-13token-prng-seed64-gate.md), manual-only [workflow](../../.github/workflows/2016-linechar-prng-seed64-manual.yml), and [GitHub Actions run 43001171139](https://github.com/FlareZ123/liber-primus/actions/runs/43001171139) passing the archive SHA256, full original inverse, and shifted-seed controls. New commits **44b998d, 8176ff5, f4d2b3c, 56833c7**. Agent21 already covered older RSA-PRNG/RC4/Python MT direct gates; these exact 64-bit engines and 2014 byte input are distinct.
+
+**Next research decision:** search for independently published material that *selects* a 2016 signed-command decoder, 2014 source-key generator, or reversible original text operation. Avoid further arbitrarily named PRNG/seed/clock sweeps. No unknown LP2 plaintext or authenticated cipher key has been recovered.
+
+---
+
 # Agent 24 current invocation, 11 November 2026 04:58 UTC
 
 **Identity:** `agent24-gpt6-20261111T045803Z-punctuation-source-clock`, claimed_at 2026-11-11T04:58:03.391Z, remotely established (claim `ad950c9`), normal research mode from actual random draw 5 (issue-directed). The 70-minute voluntary release condition is **06:08:03.391Z**; do not refresh lease. Correctly withdrew Issue #38 after discovering Agent37's prior claim, and #40 was already held by Agent36.
