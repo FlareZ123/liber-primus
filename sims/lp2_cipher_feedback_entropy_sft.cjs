@@ -212,17 +212,17 @@ function phaseRows(period, pageReset) {
   assert.equal(start, N);
   return conditionalEntropy(rows);
 }
-const phaseClock = [1, 5, 7, 8, 10, 11].map((period) => ({
+const phaseClock = Array.from({length: 11}, (_, i) => i + 1).map((period) => ({
   period,
   global: phaseRows(period, false),
   pageReset: phaseRows(period, true)
 }));
-assert.ok(Math.abs(phaseClock[1].global - 4.5835245426157085) < 1e-10);
-assert.ok(Math.abs(phaseClock[2].pageReset - 4.466437907747491) < 1e-10);
-for (const row of phaseClock.slice(0, 5)) {
+assert.ok(Math.abs(phaseClock.find((x) => x.period === 5).global - 4.5835245426157085) < 1e-10);
+assert.ok(Math.abs(phaseClock.find((x) => x.period === 7).pageReset - 4.466437907747491) < 1e-10);
+for (const row of phaseClock.filter((x) => x.period <= 10)) {
   assert.ok(row.global > 4.28910 && row.pageReset > 4.28910);
 }
-assert.ok(phaseClock[5].global < 4.28910);
+assert.ok(phaseClock.find((x) => x.period === 11).global < 4.28910);
 
 console.log(JSON.stringify({
   source: {
