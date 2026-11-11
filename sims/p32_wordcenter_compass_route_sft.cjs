@@ -96,6 +96,17 @@ function main() {
   const square = squares[1];
   assert.ok(square.every((row) => row.length === 7));
   assert.equal(square[3][3], 331);
+  const magicConstant = 1033;
+  const rowSums = square.map((row) => row.reduce((sum, value) => sum + value, 0));
+  const columnSums = square[0].map((_, col) =>
+    square.reduce((sum, row) => sum + row[col], 0));
+  const diagonals = [
+    square.reduce((sum, row, index) => sum + row[index], 0),
+    square.reduce((sum, row, index) => sum + row[6 - index], 0)
+  ];
+  assert.deepEqual(rowSums, Array(7).fill(magicConstant));
+  assert.deepEqual(columnSums, Array(7).fill(magicConstant));
+  assert.deepEqual(diagonals, [magicConstant, magicConstant]);
 
   const clockwise = { 1: [-1, 0], 3: [0, 1], 5: [1, 0], 7: [0, -1] };
   const selectedRoute = route(square, { row: 3, col: 3 }, steps, clockwise);
@@ -105,6 +116,8 @@ function main() {
   assert.equal(routeSum, 917);
   assert.equal(nthPrime(32), 131);
   assert.equal(routeSum, 7 * nthPrime(32));
+  assert.equal(magicConstant - routeSum, 116);
+  assert.equal(4 * 29, 116);
 
   const residues = [1, 3, 5, 7];
   const baseDirections = [[-1, 0], [0, 1], [1, 0], [0, -1]];
@@ -127,6 +140,7 @@ function main() {
   }
   assert.deepEqual(orientationResults.map((x) => x.sum),
     [917, 1944, 917, 1944, 845, 1542, 845, 1542]);
+  assert.equal(orientationResults.filter((x) => magicConstant - x.sum === 4 * 29).length, 2);
 
   const pageRoute = route(matrix, { row: 5, col: 5 }, steps, clockwise);
   const pageRouteValues = pageRoute.map((cell) => cell.value);
@@ -159,9 +173,15 @@ function main() {
     p32Central5PerimeterSum: ringSum,
     difference: clausePrimeSum - ringSum,
     selectedSquareCentre: square[3][3],
+    magicConstant,
+    rowSums,
+    columnSums,
+    diagonals,
     selectedRoute,
     routeValues: values,
     routeSum,
+    magicGap: magicConstant - routeSum,
+    fourDirectionsTimesAlphabet: 4 * 29,
     page32Prime: nthPrime(32),
     orientationSums: orientationResults.map((x) => x.sum),
     page32MatrixRoute: pageRoute,

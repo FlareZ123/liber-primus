@@ -36,7 +36,9 @@ Use half the word length, (length−1)/2, as the step distance. Start at the 7×
 
 The seven visited values are **[331, 114, 232, 15, 181, 27, 17]**. Their sum is **917 = 7×131**, and 131 is the 32nd prime, matching physical page p32. The route stays inside the 7×7 square without wrapping.
 
-This checksum is interesting but not a proof of intended design. Testing the eight natural rotations/reflections of the four cardinal assignments gives sums **[917, 1944, 917, 1944, 845, 1542, 845, 1542]**. The two 917 readings are 180° equivalents; the historical square is centrally symmetric, so they produce the same value sequence. Thus the checksum narrows the four distinct value sequences to one, but does not independently establish the compass convention.
+The historical 7×7 square is a true normal magic square: every row, column, and main diagonal sums **1033**. The route therefore leaves **1033−917=116=4×29**, exactly four cardinal directions times the 29-symbol GP alphabet. This is a notably specific cross-check between the route construction and the source square/alphabet.
+
+Testing the eight natural rotations/reflections of the four cardinal assignments gives sums **[917, 1944, 917, 1944, 845, 1542, 845, 1542]**. Only the two 180°-equivalent readings satisfy the **1033−sum=4×29** check; central symmetry makes them produce the same value sequence. The checksum narrows the four distinct value sequences to one, but it does not prove that the creator intended the mod-8 compass convention; the route remains provisional.
 
 ## Related exact arithmetic and limits
 
