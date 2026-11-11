@@ -220,6 +220,22 @@ const newPairQuotients=[27,48].map(page=>{
 assert(newPairQuotients.every(x=>x.quotientIoC<0.04&&
   x.primeTotientReadouts.every(v=>v.ioc<0.04)));
 
+
+// A literal source-selected page-level readout, independent of a free key.
+// 23 is the p3 red-triad middle index; 24 is p39's double root and p54's
+// oversized Ac index. Evaluate each original whole-page polynomial once.
+const sourcePointReadouts=[23,24].map(root=>{
+  const words=entries.filter(e=>e.page!=="grid")
+    .map(e=>c.translit[valueAt(e.values,root)]);
+  const encoded=words.join(" ");
+  const sourceTableResidual=valueAt(entries.at(-1).values,root);
+  return {root,pageCount:words.length,sourceTableResidual,readout:encoded};
+});
+assert.deepEqual(sourcePointReadouts.map(x=>x.sourceTableResidual),[24,0]);
+assert(sourcePointReadouts.every(x=>x.pageCount===55));
+assert(sourcePointReadouts[0].readout.startsWith("T O AE Y L C W L IA I"));
+assert(sourcePointReadouts[1].readout.startsWith("J EA I R P E J I W H"));
+
 const ps=entries.map(p=>p.values);
 const original=rootStats(ps);
 assert.equal(original.rootTotal,75);
@@ -236,7 +252,8 @@ console.log(JSON.stringify({
     two:byDegree[2],atLeastThree:byDegree.slice(3).reduce((a,b)=>a+b,0)},
     uniqueHigherDegreePairs:pairs,...original,
     newPairLiteralInverse:newPairQuotients,
-    solvedP57PositiveControl:"95/95 exact quadratic forward and inverse"},
+    solvedP57PositiveControl:"95/95 exact quadratic forward and inverse",
+    sourcePointReadouts},
   nullExpectation:{degreeAtLeastTwo:1540/(29*29),
     degreeAtLeastThree:1540/(29**3),totalRoots:56,
     pairOverlapApprox:1540/29},
