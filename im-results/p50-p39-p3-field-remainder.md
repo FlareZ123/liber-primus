@@ -65,6 +65,24 @@ None recovered readable plaintext. These are bounded negative tests, not proof t
 
 The p27 section used for the Vigenère check is the 1433-rune run beginning at p27 and ending immediately before the next 10-dot marker on p32. Its leading rune is M/19; removing that header leaves 1432 runes. The 238-rune key derived from the paired p3/p39 prefixes did not decrypt this section.
 
+
+## Source-quotient GF(29²) trace-feedback gate (Agent 29, 11 November 2026; bounded negative)
+
+The exact table quotient supplies the primitive multiplier \(g=19+13u\), while p54's enlarged Ac supplies \(\beta=24\). The p3 polynomial fixes \(u^2=3u+8\), so the canonical field trace is \(\operatorname{Tr}(a+bu)=2a+3b\). This gives a compact, human-recognizable candidate state cipher:
+
+\[
+c_i=p_i+\epsilon\,\operatorname{Tr}(s_i)\pmod{29},\qquad
+s_{i+1}=g^{\pm1}s_i+24f_i\pmod{29},
+\]
+
+where \(f_i\) is either recovered plaintext or ciphertext. The source fixes \(g\), its field, and the visible scalar 24; trace output and this feedback architecture are a motivated test, not an authenticated instruction.
+
+The original 12,956-rune stream was tested under both generator directions, both output signs, continuous-book and physical-page-reset clocks, plaintext and ciphertext feedback, and all 841 initial GF(29²) states: **13,456 exact inversions**. Selection used a Shakespeare-trained GP trigram model (first 240,000 characters; 174,998 training runes), with the final 60,000 characters and independent Gibran text as native-English controls. The train/held-out split is physical p0–27 (**6,761** runes) versus p28–55 (**6,195**).
+
+The best training-selected candidate is \(g\), negative trace sign, page reset, ciphertext feedback, seed \((17,1)\): training **−8.59048** and held-out **−8.86209** nats/rune. The best held-out score anywhere in the complete family is only **−8.59044**. Native-GP control windows score **−2.35403 to −2.93073**, so even the best original candidate is far outside the language range. A separate 12,956-rune Gibran positive plant recovers exactly, and the best original candidate re-encrypts all **12,956/12,956** original runes.
+
+This rejects the tested source-quotient primitive-field trace-feedback family as a direct native-GP decoder. It does **not** reject other output maps, nonlinear state transitions, other source-selected scalars, or non-GP intermediates. No plaintext or authentic key follows. The exact reproducer is [sims/p50_quotient_gf841_feedback_sft.cjs](../sims/p50_quotient_gf841_feedback_sft.cjs).
+
 ## Caution about the historical DH material
 
 An exploratory calculation \(31^{167}\bmod1433=1329\), followed by reductions of 1329 into the p50 table, is not an authenticated DH construction. The archived 2013 DH 3301 exchange uses session-specific server parameters; it does not establish p=1433, base 19, value 31, or exponent 167 as a deterministic protocol. Do not promote numerical projections of 1329 to evidence. Likewise, the observed relation \(\log_z(19+13u)=533=550-17\) is not meaningful without an independent source fixing that 550/17 relationship.
@@ -86,7 +104,7 @@ The simplest direct use—multiplication of fixed adjacent two-rune GP29 pairs b
 
 ## Current assessment
 
-The exact quotient \(P_{50}/F_{39}\bmod F_3=19+13u\) is reproducible and has an exact p55-matrix eigenvalue correspondence. The source clues make the relationship worth preserving, but no operation on unknown ciphertext is selected. Retain it as intermediate evidence; do not promote it to an established result or reopen unconstrained field searches.
+The exact quotient \(P_{50}/F_{39}\bmod F_3=19+13u\) is reproducible and has an exact p55-matrix eigenvalue correspondence. Its direct power, discrete-log, pair, and source-quotient trace-feedback interpretations remain nonlinguistic under the bounded original-input tests documented above. The p53/2013 NUMBER selector remains a hypothesis, and no source instruction selects the tested trace-feedback architecture. Retain the algebraic relation as intermediate evidence; no plaintext, authentic key, or intended operation is established.
 
 Related work:
 - results/README.md — authoritative p3/p39 polynomial and current synthesis
