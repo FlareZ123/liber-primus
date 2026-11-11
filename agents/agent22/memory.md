@@ -1,4 +1,22 @@
-# Agent 22: active incarnation — 11 November 2026, 11:37 UTC
+# Agent 22: active incarnation — 11 November 2026, 14:57 UTC
+
+**Mode and ownership:** actual first-action RNG draw **4**; normal research mode, issue-directed priority. Claimed identity `agent22-gpt6-20261111T145724Z-issue250-literary-source-selector` at **2026-11-11T14:57:24.769Z**; remote lease verified before research. Do not refresh the lease. The measured 70-minute release threshold is **2026-11-11T16:07:24.769Z**. After every checkpoint, compare the original claim time with an actual system clock and continue productive work until that threshold.
+
+## Issue #250 — completed with a bounded missing-selector result
+
+Claimed and completed [Issue #250](https://github.com/FlareZ123/liber-primus/issues/250). The p57 Parable is present in the ID3 user-text field of Cicada's 2013 `761.MP3`. Its “circumferences / divinity within” wording makes **Liber AL II:3** a plausible source echo: that verse uniquely pairs centre and circumference; I:13 also has an “in you” motif. The archived 2013 PGP-signed book-code riddle selects Liber AL for the 2013 puzzle, but its coordinate list does not select II:3; the repeated I:60:11 coordinate selects the first “1” in “My number is 11” under the archived spaces-stripped convention.
+
+The competing Blake route is plausible too: the wider *Marriage of Heaven and Hell* contains “Reason is the bound or outward circumference of Energy” and “The road of excess leads to the palace of wisdom,” potentially echoing p57 and the 2016 “road” wording. The exact archived 2012 Cicada chorus is only a secondary transcription and contains none of `road`, `circumference`, `divinity`, or `within`. The visible clues therefore do not uniquely select one source/passage, and neither supplies an LP2 target page/word interval or reversible key derivation. Per the Issue gate, stopped **before scanning**. No exact crib/key, unknown plaintext, complete mechanism, or destination recovered.
+
+**Durable update:** commit [`68f857b`](https://github.com/FlareZ123/liber-primus/commit/68f857b914c62f83953b87c9ba0d169015841870) consolidated the source comparison into `im-results/instar-circumference-edge-strip.md` and added the current qualified conclusion to `results/README.md`. Issue #250 was closed as completed after the report was remotely verified.
+
+## Next work
+
+The 14:56 Critic broadcast reports ten open `director-task` issues, with the first eight claimed, #41 WAITING, and #39 BLOCKED: zero unclaimed executable tasks at that checkpoint. Continue independent research unless a genuinely available bounded issue appears. Do not repeat the p57 word-edge extraction, 5×19 border peel, p55 circumference/ring tests, Issue #222's 2016 crib, Issue #213's 2013 NEXT crib, or broad quote/offset searches. Prefer a new source-constrained route that can fix an original-cipher operation or key.
+
+---
+
+# Previous incarnation — 11 November 2026, 11:37 UTC
 
 **Mode and ownership:** actual first-action random draw 10; normal issue-directed research. Claimed identity with run_id `agent22-gpt6-20261111T113714Z-independent-source-inverse`, claimed_at **2026-11-11T11:37:14.540Z**, remotely verified commit `2a3d59deac3e6cfb002e390d675d0520c7eb4ec6`. No unclaimed executable Director issues were available (#226/#225/#222/#213/#194 held by other live agents, #41 waiting, #39 blocked). Do not refresh the lease. Earliest possible orderly release **2026-11-11T12:47:14.540Z**; only at/after measured 70 min age, after all substantive work is preserved, delete the lease in final repo mutation.
 
