@@ -1,6 +1,6 @@
 # 2016 signed-message word-map hypotheses: base-58 addresses and base-29 line:character PRNG
 
-**Status: the base-58 map remains provisional. Its full 43-word output, after p57 circumference stripping, yields a 91-symbol 7×13 stream; simple uses against the 273-symbol p29 residual are negative. The selected p32 13-rune window is negative as a direct period-13 additive key. The p32 M7 route and separate base-29 line:character PRNG reading remain provisional, not decryptions.**
+**Status: the base-58 map remains provisional. A source-attested ING reading of MEANING now points to independently decrypted DEEP at p56 word 4, adding a second distinct solved-word anchor alongside END; no unknown LP2 text is decrypted. Its full 43-word output, after p57 circumference stripping, yields a 91-symbol 7×13 stream; simple uses against the 273-symbol p29 residual are negative. The selected p32 13-rune window is negative as a direct period-13 additive key. The p32 M7 route and separate base-29 line:character PRNG reading remain provisional, not decryptions.**
 
 ## Hypothesis
 
@@ -52,7 +52,7 @@ The canonical corpus transliteration gives these prime sums and zero-based page/
 | the | 72 | 14 | 1 | `ᚠᚩᛚᛞ` (FOLD) |
 | map | 211 | 37 | 3 | `ᛏᛠᛈᛉ` (TEAPX) |
 | their | 114 | 56 | 1 | `ᛟᛋᚱ` (OSR) |
-| meaning | 319 | 29 | 5 | `ᚫᚻᚪ` (AEHA) |
+| meaning (NG-only) | 319 | 29 | 5 | `ᚫᚻᚪ` (AEHA) |
 | is | 84 | 26 | 1 | `ᚩᚾᛠᚩ` (ONEO) |
 | the | 72 | 14 | 1 | `ᚠᚩᛚᛞ` (FOLD) |
 | road | 204 | 30 | 3 | `ᛖᚣᛟᚣ` (EYOY) |
@@ -65,7 +65,7 @@ The canonical corpus transliteration gives these prime sums and zero-based page/
 
 All 16 addresses are in bounds. Repeated source words repeat the same destination: “the” maps three times to p14 word 1, and “their” maps twice to p56 word 1.
 
-## Two nontrivial anchors
+## Source-motivated anchors and orthographic branching
 
 ### “the” → FOLD
 
@@ -80,6 +80,16 @@ It is the only occurrence of that complete four-rune word among the 56 unsolved 
 This is independently checkable against the established p56 totient-prime decryption. The word begins at rune offset 2 (the first word, AN, occupies offsets 0–1). The next three prime values are 5, 7, 11; subtracting their totients 4, 6, 10 from ciphertext GP indices [22, 15, 4] modulo 29 gives [18, 9, 23] = **END**.
 
 Thus the repeated source word “their” maps twice to the verified plaintext word END on the solved p56 page. This is a real positive control, not a proposed decryption of an unsolved page.
+
+### “meaning” → DEEP under source-attested ᛝ = ING
+
+**New exact anchor (Agent 29, 11 November 2026).** The canonical map above represents ᛝ only as `NG`. However, solved LP1 writes `ᚦᛝᛋ` for **THINGS** and `ᚠᚩᛚᛚᚩᚹᛝ` for **FOLLOWING**; solved LP2 p57 writes **TUNNELING** in seven runes. These independent original-language controls attest that ᛝ can represent **ING** as one rune. This source-attested option was identified without fitting the signed word-map destination.
+
+Re-encode the signed word **MEANING** as M–EA–N–ING. Its GP prime sum is **71+109+29+79=288**, and the existing base-58 hypothesis yields **288=58×4+56**, i.e. physical LP2 **p56 word index 4**. The original ciphertext word **ᚳᚦᚷᚹ** begins at rune offset **12**. Subtracting totients **[40,42,46,52]** of consecutive primes **[41,43,47,53]** from ciphertext GP indices [5,2,6,7] modulo 29 yields **[23,18,18,13] = DEEP**. This is an independently solved original page-56 plaintext word under a published mechanism, with no new key, page origin, or modulus.
+
+The old NG-only table above maps MEANING to p29 word 5 via sum 319. It is retained as the frozen input for the downstream full 43-word output and other already-performed tests. Under the ING-aware interpretation, **THEIR → END** and **MEANING → DEEP** are two distinct independently verified p56 destinations. The choice between ING and I+NG may be contextual, and the base-58 rule itself has no source-authenticated instruction selecting it. This is stronger conditional evidence for the proposed route, **not** proof of that route or decryption of any p0–p55 content.
+
+**Reproduction:** The existing `sims/lp2_2016_message_base58_word_map.cjs` now asserts the four-rune source encoding, sum 288, p56/word4 address, selected original ciphertext, offset12, and authentic DEEP decryption, while preserving all legacy frozen calculations.
 
 ## Complete signed-message prediction: the word “lies” selects the rune-free table
 
@@ -372,7 +382,7 @@ Standard TEA/XTEA tests on the p50 table with direct message-sum, prime-index, p
 
 ## Controls and limits
 
-- The mapping is word-by-word. The full 16-word sentence has canonical GP rune count 61 and prime sum 2781; treating the total as one address gives p55 word 47, which is out of bounds because p55 has only 17 physical printed words.
+- The mapping is word-by-word. The NG-only 16-word source encoding has 61 GP runes and prime sum 2781; ING-aware MEANING instead makes 60 runes and prime sum 2750. In the unchanged NG-only variant, treating the total as one address gives p55 word 47, which is out of bounds because p55 has only 17 physical printed words.
 - The repository's canonical transliteration uses `IA`, not an `IO` alias. The word “direction” therefore contributes nine runes and prime sum 337. Published 59-rune / 2819 calculations for this sentence require a different, undocumented treatment of the initial capital I and/or IO; this experiment does not rely on that segmentation.
 - Zero-based page numbering is supported by the original 0–57 archive labels. Zero-based word indexing is not explicitly stated in the source, but it is the convention that produces the FOLD and END anchors. A one-based word interpretation selects the preceding words instead.
 - Neighboring moduli do not reproduce both anchors: with 57, “the” selects p15 word 1 and “their” p0 word 2; with 59, they select p13 word 1 and p55 word 1. The original 58-page count is therefore material to this candidate.
