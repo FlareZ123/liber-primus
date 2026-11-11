@@ -1,6 +1,53 @@
 # Agent 24 — current incarnation, 11 November 2026 17:52:50 UTC
 
 **Run:** `agent24-gpt6-20261111T175250Z-independent-source-route-9c42`  
+**Lease:** `2026-11-11T17:52:50.317Z`; remotely verified. Do not refresh. Normal 70-minute release threshold: **2026-11-11T19:02:50.317Z**; after every checkpoint compare the actual UTC clock to this original time.
+
+## Latest substantial result: 2013 NEXT chain-key on p33–39 — bounded negative
+
+A strong-looking source alignment was tested against the chain-cipher hypothesis independently reported by Leo-Y-Zhang:
+
+- Canonical GP transliteration of the authenticated March 2013 NEXT signed body: **1,710** symbols.
+- Exactly **29 F** symbols. Removing F under the known LP1 interruption convention, as a hypothesis for this key source, leaves **1,681 = 1 IV + 1,680 step-key symbols**.
+- First remaining key rune is **D/23**; p33–39 is **1,680** runes and its first ciphertext rune is also **D/23**.
+- p33–39 has **12 internal zero differences**; including the IV/first-rune equality gives 13 zero steps.
+- The 1,680 step-key symbols map to Z28 by subtracting one from their GP indices.
+
+Tested 16 frozen inverses: identity symbol order, both natural DH-shared-key-2 primitive-root orders, and a separate totient-of-GP-prime key map; both signs; zero-step key consumption vs skip. All 16 re-encrypt the original exactly and recover a 1,680-rune native-GP plant exactly. **0/16** reaches native-GP language. Raw p33–39 trigram: **−11.81503883**; best candidate: **−11.74267241**; weakest of 2,105 native-GP Gibran holdouts: **−8.30584825**. The best is ~3.44 nats/rune below even the weakest native holdout.
+
+Decision: preserve the 1+1,680/F-interrupted alignment as an unusually specific but insufficient coincidence; **retire this exact direct NEXT→p33–39 chain-key family**. Do not add arbitrary offsets, phases, alphabet permutations, or key transformations without an independent source selector.
+
+- Original signed payload: `resources/external/2013-do-not-share-this-information-2.asc` (SHA-256 `062886c6063b5c9c3049cf67dd9837df75bdd54d8fa73cb1b5fe25d52d227e87`).
+- Provenance: `resources/external/2013-tcp-server-signed-source.md`.
+- External chain-cipher report indexed at `resources/external/leo-y-zhang-liberprimusanalysis.md`; external source code was not copied.
+- Reproducer: `sims/2013_next_chain_p33_39_sft.cjs`.
+- Report: `im-results/2013-next-chain-p33-39-gate.md`.
+- Broadcast: `communications/broadcast/20261111T1810Z_agent24_next-chain-p33-39-negative.md`.
+
+Important correction: the canonical NEXT GP token count is **1,710**, not 1,681. The latter appears only after removing the 29 F symbols. The earlier direct-Vigenère note's target interval was not preserved and has been withdrawn in `communications/broadcast/20261111T1754Z_agent24_next-running-key-range-correction.md`; do not cite its scores.
+
+## Other current result: p54 red-heading keyed column shifts — bounded negative
+
+p54's 232 runes plus enlarged A/24 equals 256; the p50 table tail after 24 cells is 232 = 29×8, and the eight red heading runes were tested as per-column cyclic row shifts. Eighteen fixed models (two shift directions × three byte→GP29 maps × three additive signs) all fail the native-GP language gate. Best score −11.55819743 versus weakest 232-rune native Gibran holdout −8.65110581. No p54 plaintext/key.
+
+- Reproducer: `sims/p54_ac24_heading_column_shift_sft.cjs`.
+- Report: `im-results/p54-ac24-heading-column-shift-gate.md`.
+
+## Mode and research state
+
+The actual secure RNG draw was **4**, selecting normal research mode with issue-directed priority. At identity claim time all open `director-task` Issues were claimed, waiting, or blocked; remaining candidates #305/#306/#309 were closed. No Issue was claimed; independent exploration was the allowed fallback.
+
+The prior 16:12–16:43Z Agent24 work already covered p29 root-centered residuals, direct p50/2013 NEXT running-key, p50 compass/Mealy walk, fold-prime compass continuation, H-field trace/norm, BASE29 1033 factor, beta subgroup, and TINY/TEA. Avoid repeating these and the p54 direct-tail/heading-columnar tests documented in the prior checkpoint below.
+
+## Next direction
+
+Choose a genuinely independent source-led path that can select a key or reversible operation. The exact 2013 NEXT chain alignment is now tested; do not rescue it with new free parameters. Review the current Director queue and active broadcasts before overlapping another agent. No unknown LP2 plaintext, authentic key, complete inverse, or final destination has been established.
+
+---
+
+## Prior checkpoint (17:52:50 UTC)
+
+**Run:** `agent24-gpt6-20261111T175250Z-independent-source-route-9c42`  
 **Lease:** claimed at `2026-11-11T17:52:50.317Z`, remotely verified in commit `bdf7efbf47a98be02488f0aa8e80087e01651ba6`. Do not refresh. Normal 70-minute orderly-release threshold: **2026-11-11T19:02:50.317Z**; check actual UTC clock after every checkpoint.
 
 **Mode:** actual secure RNG draw **4** selected normal research, issue-directed priority. At claim time the open `director-task` queue contained only claimed, waiting, or blocked items; the remaining candidate tasks #305/#306/#309 had been closed. No Issue was claimed; independent exploration was therefore the permitted fallback.
@@ -197,7 +244,6 @@ Lease claimed_at = 2026-11-10T06:27:35.740Z; never refresh. Continue work until 
 - Next: ask whether a single, source-locked **24-hour traversal** of the 32 fragments or 256-byte table follows from the two interval times, but do not broaden into arbitrary time/offset sweeps. The time reading is promising only as a human-solve-path hypothesis; no key or plaintext has been recovered.
 
 - Additional bounded direct clock-key checks (kept here to avoid repeating low-value variants): (1) Vigenere keys from the time digits `09131447` (period 8) and the time fields `[9,13,14,47] mod 29 = [9,13,14,18]` (period 4), both signs and global/page resets; best quadgram was **−17.20735**, worse than raw **−17.13158**. (2) Reorder the 32×8 base-60 table rows by the two clock-hand affine cycles `(9+13i) mod 32` and `(14+15i) mod 32`, then use the flattened table as a period-256 additive pad under both byte mappings, signs and reset modes; best quadgram **−17.16957**, again worse than raw. These are negative for direct periodic-key interpretations only; no source-prescribed clock traversal has been established.
-
 - Final bounded fragment-order check: split the full 13,136-rune corpus at all 31 13-dot events (preserving the two same-offset empty fragments) to obtain 32 fragments. Applied the two affine orders suggested by the times, `(9+13i) mod32` and `(14+15i) mod32`, plus their inverse steps, then concatenated whole fragments. Full-stream quadgram was **−17.09416**; the four reordered scores were **−17.09310, −17.09374, −17.09236, −17.09498**. The tiny best delta is not language recovery; direct fragment transposition by these clock-hand orders is negative. Do not repeat these four permutations without a new source instruction.
 
 - A secondary prime-index relation emerged from the same two interval lengths: **553 = 7×79**, with 79 the 22nd prime; **887** is the 154th prime, and **154 = 7×22**. Also, LP2 page 22 contains **131 runes**, and 131 is the 32nd prime, matching the 32 13-dot fragments / 32 rows of the table. This is an exact cross-index pattern but its intended use is unknown; keep it as a hypothesis, not a result.
