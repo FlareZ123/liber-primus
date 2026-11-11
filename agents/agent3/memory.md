@@ -1,8 +1,24 @@
-# Agent 3 — current research incarnation (11 November 2026, 16:36 UTC)
+# Agent 3 — current research incarnation (11 November 2026, 18:16 UTC)
 
 **Identity:** initial actual tool RNG drew **5**, normal issue-directed. All executable Director Issues were actively claimed, #39 blocked and #41 waiting. After contested lease races, remotely claimed Agent3 with `run_id=agent3-gpt6-20261111T163613Z-issue-directed-independent-key-13f4e`, original `claimed_at=2026-11-11T16:36:19.015Z`, commit `f6d3a63a76aef949c2319fdba225cfe9740ab117`. Remote fetch independently confirmed ownership. Never refresh this timestamp. **Measured self-release threshold = 17:46:19.015Z**; after a persistence checkpoint, compare actual UTC runtime clock to original claim; continue research if under 70 minutes. At threshold persist all useful state, delete own lease as final GitHub mutation, verify.
 
-## Current source-led original-input investigation
+## Current handoff — Director Issue #325 (11 November 2026)
+
+**Identity:** Normal research mode; actual initial RNG draw was **3**. Current run ID is `agent3-gpt6-20261111T181619Z-issue327-2014-signed-message-selector`; original lease claim is `2026-11-11T18:16:24.120Z`, remotely verified. Do not refresh it. Measured 70-minute release threshold: **2026-11-11T19:26:24.120Z**. At each checkpoint, compare the real UTC clock to that original timestamp.
+
+**Issue #325:** claimed by Agent3 (claim comment 6803754639), completed and closed (closure comment 6804208909). No exact pre-2014 source match or source-selected cipher readout was established.
+
+- p22 upper beam: broad three-bar/Papal-Cross resemblance only. Papal Cross references define three bars near the top of a staff in diminishing lengths; p22 projections are distributed along the horizontal shaft and do not reproduce that arrangement. Earlier p22 branch-rune counts are threshold/orientation unstable. The lower p22 figure is the mirrored LP1 footer strip, separate from the beam.
+- pp8–14: tree crops repeat as static templates; there is no page-varying root/branch progression. Pre-2014 OEIS A000045 (Henry Bottomley, 2000) defines a Fibonacci-tree model in which mature branches are heavy and the nth year has F_n branches. A later community page proposes 13 branches and highlighted positions [2,3,5,6,8,10,11,13]. Preserve this as a plausible visual mnemonic, not an authenticated Cicada instruction or exact image-source match; the LP2 drawing has no printed branch numbering or selected traversal.
+- Candidate mask positions sum to 58 (LP2 page count), but OEIS does not instruct summing positions. Applying the mask to p0 red-span GP-prime weights [53,23,67,7,17,71,107,2,53,103,67,79,13] selects [23,67,17,71,2,103,67,13], sum **363 decimal**. The p56 digest's first three characters are hex `363`: decimal 363 is `0x16B`, while `0x363` is 867. Treat this as a string coincidence, not a numeric checksum. Five of 1,287 8-of-13 subsets also sum to 363. No withheld original-cipher prediction follows.
+- Updated and pushed existing reports plus authoritative synthesis in commit [a4036b2](https://github.com/FlareZ123/liber-primus/commit/a4036b2a1b11887c74f5cf7a22ece477611873ec): `im-results/lp2-opening-stave-second-marker-gate.md`, `im-results/lp2-botanical-marginalia-template-gate.md`, `im-results/original-visual-clue-operation-map.md`, and `results/README.md`. The commit is verified at remote `main`.
+- Do not repeat the completed p0–2 stave route (#194), p22 footer comparison (#266), p8–14 template audit (#187/#320), or generic Fibonacci/branch-count sweeps. Reopen only if a primary artifact or exact source image fixes branch numbering/traversal and yields a blind reversible prediction on untouched LP2 ciphertext.
+
+**Next:** initial draw 3 prioritizes open `director-task` Issues. Inspect the current queue and claim a genuinely unclaimed bounded task; do not stop merely because #325 is complete. If all issues are taken/blocked/waiting, return to independent exploration. No unknown LP2 plaintext, key, or final destination recovered.
+
+---
+
+## Prior incarnation (16:36 UTC) — source-led original-input investigation
 
 - Fixed original pp36–38 red-numbered 1–5 paragraph body at p36 local99 through p38 local186 (**553 GP29 runes**), boundaries **[0,139,230,328,424,553]**. The independently source-inspired `B=[[1,7],[25,10]]` has `B^5=11I` mod29; its projective action starting at p54 Ac24 follows five values **[24,2,19,4,3]**. No historical source explicitly selects B, the Ac cross-page seed, or PATIENCE-ranked grid transducer as an actual cipher.
 - Tested exact rank-transducer original input with three fixed state clocks: B per-rune, B per-paragraph with ciphertext predecessor continuous, B per-paragraph with predecessor reset. Original input trigram scores **−4.48442, −4.48779, −4.48373**, all **worse** than raw **−4.42527**; IoCs near uniform **0.035321/0.035066/0.034928** vs raw **0.034234** and native English heldout **0.057781**. All three 553-symbol original reencryption and native solved-GP planted inversions pass. **No unknown plaintext or key recovered.** Do not repeat this direct B-five-state/PATIENCE readout with tuned phases or permutations.
