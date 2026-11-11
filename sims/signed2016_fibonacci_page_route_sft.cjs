@@ -19,7 +19,7 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const {parseLP2Words} = require("./lp2_word_pages.cjs");
+const {parseLP2Words, physicalLP2Page} = require("./lp2_word_pages.cjs");
 
 const ROOT = path.resolve(__dirname, "..");
 const corpus = JSON.parse(fs.readFileSync(path.join(
@@ -181,15 +181,23 @@ function run() {
   assert.ok(fibonacci.includes(89));
   assert.ok(89 > 57);
 
-  const parsed = parseLP2Words(transcript, 58);
-  const pageWordCounts = pageRoute.map((page) => parsed.byStartPage[page].length);
-  assert.deepEqual(pageWordCounts, [61, 55, 60, 25]);
+  const parsed = parseLP2Words(transcript, 57);
+  const transcriptPageIndex = (physicalPage) => {
+    const index = parsed.byStartPage.findIndex(
+      (_, runeBearingIndex) => physicalLP2Page(runeBearingIndex) === physicalPage);
+    assert.ok(index >= 0);
+    return index;
+  };
+  const routeWordPages = pageRoute.map((page) =>
+    parsed.byStartPage[transcriptPageIndex(page)]);
+  const pageWordCounts = routeWordPages.map((words) => words.length);
+  assert.deepEqual(pageWordCounts, [61, 55, 60, 16]);
 
-  const currentNumberWords = pageRoute.map((page) =>
-    wordInfo(parsed.byStartPage[page][page - 1]));
+  const currentNumberWords = routeWordPages.map((words, index) =>
+    wordInfo(words[pageRoute[index] - 1]));
   const nextNumbers = [21, 34, 55, 89];
-  const nextNumberWords = pageRoute.map((page, index) =>
-    wordInfo(parsed.byStartPage[page][nextNumbers[index] - 1]));
+  const nextNumberWords = routeWordPages.map((words, index) =>
+    wordInfo(words[nextNumbers[index] - 1]));
 
   assert.deepEqual(currentNumberWords.map((word) => word?.translit ?? null),
     ["YMFX", "PHSOE", "DNGEAA", null]);
