@@ -103,7 +103,7 @@ const metrics = Object.fromEntries(Object.entries(controls).map(([name,s]) =>
   [name, {
     ioc: ioc(s),
     topTwelve: topTwelve(s),
-    firstRupeTranslit: s.slice(0, 80).map(x => corpus.translit[x]).join('')
+    firstRuneTranslit: s.slice(0, 80).map(x => corpus.translit[x]).join('')
   }]));
 assert(ioc(controls.sourceInverse) < 0.045);
 assert(ioc(solved) > 0.06);
