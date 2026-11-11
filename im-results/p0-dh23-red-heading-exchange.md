@@ -61,6 +61,23 @@ The raw p0 body scores −12.00701 nats/rune (IoC 0.034292). Across 8,982 native
 
 **Decision:** reject only the direct repeating-key consumers “p18:w7 prime weights” and “p18:w7 φ(prime weights)” on the p0 body. The p18:w7 observation remains a conditional address consistency, not a demonstrated key derivation. Do not try other encodings of this word without a new original-source selector. Reproduce with `node sims/p0_dh23_gahealgo_prime_key_sft.cjs`.
 
+## Conditional p32 11×11 map as a two-cycle p0 key (negative)
+
+The p32 page is a source-visible 11×11 map containing **121 runes**; the p0 body after its 13-rune red heading and seven-rune first black line contains **242 runes**, exactly two 121-rune periods. In light of the signed 2016 instruction that Liber Primus's words are a map, this motivated one bounded test of the p32 grid as a repeated key. This is an exploratory map-as-key interpretation, not an authenticated instruction to use Vigenère.
+
+The fixed reading is p32 row-major/page order, repeated exactly twice over p0 body offsets 20–261. The two native numeric encodings are GP indices and GP prime weights; each is tested with both additive signs modulo 29. No rotation, reversal, phase, or alternative traversal is searched.
+
+| Fixed key encoding | Operation | GP trigram nats/rune | IoC | First 121-rune block | Second 121-rune block |
+|---|---|---:|---:|---:|---:|
+| GP index | `C−K` | −11.86070 | 0.033607 | −11.67758 | −12.03269 |
+| GP index | `C+K` | −11.92079 | 0.036419 | −12.10929 | −11.72217 |
+| GP prime weight | `C−K` | −11.78742 | 0.034532 | −11.77805 | −11.78443 |
+| GP prime weight | `C+K` | −11.97503 | 0.034875 | −11.95202 | −11.98884 |
+
+The raw 242-rune p0 body scores −12.00701 nats/rune (IoC 0.034292). Across 8,982 native Gibran windows of the same length, the minimum is −8.62957, the 10th percentile −8.20543, and the median −7.98626. All four outputs remain far outside the native range. Every original-input inverse and every synthetic positive plant recovers exactly.
+
+**Decision:** retire only the row-major p32-map repeating-key interpretation under these two encodings and two signs. The 121/242 length relation is exact, but it does not authenticate the map as a key or select additive Vigenère. Do not expand to alternate map traversals or key transformations without a further original-source selector. [Reproducer](../sims/p32_grid_121_repeat_key_on_p0_sft.cjs).
+
 ## Conditional transfer of the solved p56 prime-totient clock (negative)
 
 The p0 DH reading gives candidate shared secret K=18, but does not specify the symmetric operation. A cheap, source-motivated transfer test was therefore made against the already solved p56 mechanism: subtract φ(p_i)=p_i-1 mod 29 from each GP29 symbol, using 18 as the one-based starting prime ordinal. The 13-rune red heading and seven-rune first black line are DH inputs, so the p0 ciphertext body begins at canonical offset 20 and contains 242 runes. The p56-only literal-F skip at offset 56 was not imported into p0.
@@ -88,4 +105,4 @@ The local retrieval implementation is checked against the pinned OutGuess workfl
 
 Run \`node sims/p0_dh23_red_heading_candidate.cjs\` from the repository root. It reconstructs the BASE29 values, DH exchange, red-span and subgroup controls, conditional word-map observation, and rejected 27×27 continuation from the canonical resources.
 
-**Research decision:** retain this as a candidate source-derived key, but do not promote it to \`results/\`. The tested direct consumers of the provisional DH route have all failed: the p56 prime-totient clock on p0, OutGuess passphrase18 on image17, and the conditional p18:w7 prime-weight/φ-prime-weight repeating keys on p0. The missing piece remains a different source-selected reversible LP2 operation that consumes shared secret 18, or an independent second DH-encoded passage that validates the mapping. Do not expand into arbitrary PRNGs, coordinate orderings, or cipher families without another original clue.
+**Research decision:** retain this as a candidate source-derived key, but do not promote it to \`results/\`. The tested direct consumers of the provisional DH route have all failed: the p56 prime-totient clock on p0, OutGuess passphrase18 on image17, and the conditional p18:w7 prime-weight/φ-prime-weight repeating keys on p0. Separately, the source-visible 121-rune p32 map repeated twice over the 242-rune p0 body also fails as a direct additive key under GP-index/prime-weight encodings and both signs; the exact 2× length match does not authenticate the map-as-key interpretation. The missing piece remains a different source-selected reversible LP2 operation that consumes shared secret 18, or an independent second DH-encoded passage that validates the mapping. Do not expand into arbitrary PRNGs, coordinate orderings, or cipher families without another original clue.
