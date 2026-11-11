@@ -1,8 +1,7 @@
 'use strict';
 
-// Test the 180-cell interior of the original p50 32x8 table as a one-to-one
-// GP29 additive key for p53's 179 runes plus p54's enlarged initial Ac.
-// The 76-cell perimeter -> p55 half is already tested by
+// Test direct-key and fixed geometric readings of the p50 180/76 split.
+// The 76-cell perimeter -> p55 additive-key half is also tested by
 // sims/p55_table_perimeter_key_sft.cjs.
 
 const assert = require('node:assert/strict');
@@ -133,6 +132,47 @@ assert.equal(heldOut.length, 22517);
 const worstNative = heldOut[0];
 const medianNative = heldOut[Math.floor(heldOut.length / 2)];
 const bestNative = heldOut[heldOut.length - 1];
+const heldOut256 = [];
+for (let i = trainingLength; i + 256 <= native.length; i++) {
+  heldOut256.push(score(native.slice(i, i + 256)));
+}
+heldOut256.sort((a, b) => a - b);
+
+// Fixed geometric transposition: place p55 on the clockwise outer perimeter,
+// p53+p54[0] in the clockwise inner spiral, then read the 32x8 grid row-major.
+const transpositionGrid = Array.from({ length: 32 }, () => Array(8).fill(null));
+for (let i = 0; i < 76; i++) {
+  const [row, column] = perimeterCoordinates[i];
+  transpositionGrid[row][column] = p55[i];
+}
+for (let i = 0; i < 180; i++) {
+  const [row, column] = spiralCoordinates[76 + i];
+  transpositionGrid[row][column] = target[i];
+}
+const transposed = transpositionGrid.flat();
+assert.equal(transposed.length, 256);
+assert.ok(transposed.every(value => Number.isInteger(value)));
+
+// Inverse/positive control for the exact placement and row-major readout.
+const planted256 = native.slice(1000, 1256);
+const plantedGrid = Array.from({ length: 32 }, () => Array(8).fill(null));
+for (let i = 0; i < 76; i++) {
+  const [row, column] = perimeterCoordinates[i];
+  plantedGrid[row][column] = planted256[i];
+}
+for (let i = 0; i < 180; i++) {
+  const [row, column] = spiralCoordinates[76 + i];
+  plantedGrid[row][column] = planted256[76 + i];
+}
+const recovered256 = perimeterCoordinates.map(([row, column]) => plantedGrid[row][column])
+  .concat(spiralCoordinates.slice(76).map(([row, column]) => plantedGrid[row][column]));
+assert.deepEqual(recovered256, planted256);
+const transpositionScore = score(transposed);
+assert.equal(heldOut256.length, 22441);
+assert.ok(transpositionScore < heldOut256[0]);
+assert.ok(Math.abs(transpositionScore - (-12.279356934872412)) < 1e-10);
+assert.ok(Math.abs(heldOut256[0] - (-9.225319532243033)) < 1e-10);
+
 
 const candidates = [];
 for (const { order, values: key } of keys) {
@@ -194,5 +234,15 @@ console.log(JSON.stringify({
     plantedAndOriginalRoundTrips: 'exact'
   },
   candidates,
-  decision: 'Both additive directions fail in both natural interior orders, below every held-out native-GP 180-rune window. Reject this direct interior-byte-mod29 key; the 180/76 structural correspondence is not itself a decipherment.'
+  transposition: {
+    placement: 'p55 on clockwise outer perimeter; p53+p54[0] on clockwise inner spiral; read grid row-major',
+    score: transpositionScore,
+    ioc: ioc(transposed),
+    heldOut256RuneWindows: heldOut256.length,
+    worstNative256RuneWindow: heldOut256[0],
+    nativeWindowsAtOrBelowCandidate: heldOut256.filter(value => value <= transpositionScore).length,
+    preview: transposed.slice(0, 100).map(index => corpus.translit[index]).join(''),
+    exactPlacementRoundTrip: true
+  },
+  decision: 'Both additive directions fail in both natural interior orders, and the fixed 180/76 spiral placement fails against every held-out native-GP 256-rune window. Reject these direct key/transposition readings; the 180/76 structural correspondence is not itself a decipherment.'
 }, null, 2));
