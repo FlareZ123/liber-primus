@@ -65,11 +65,11 @@ A standard 3×3 Gaussian kernel reproduces the Commons Gaussian derivative to wi
 4. The historical derivative files are exactly recoverable by ordinary 3×3 median and Gaussian operations. This establishes an image-processing lineage, not that the puzzle author intended those files as a key.
 5. **No rune plaintext, cryptographic key, cipher operation, or destination is recovered.** Do not promote this to `results/` or expand into arbitrary crops/filter families.
 
-A single defensible follow-up, if the branch is revisited, is a frozen **difference-image test**: compare the p55/p32 inter-page residual under the existing transforms with the exact original-to-Gaussian and original-to-median residuals, and include a non-tree page-area control. The source article explicitly names image combination by difference; this is more motivated than another open-ended filter sweep. If the residuals do not match under the frozen transforms, retire this image-processing branch.
+A frozen **difference-image test** is now implemented in `sims/dead_tree_commons_derivative_gate.py`: it compares the p55/p32 inter-page residual under the existing transforms with the original-to-filter source residuals on their common source crop, and includes reflected/unreflected orientation controls. **This extension has not yet been executed.** The successful run linked below predates the addition; its metrics cover only the fixed alignments and exact derivative reconstruction above. The source article explicitly names image combination by difference, so this is a bounded follow-up rather than another open-ended filter sweep. Run the existing `workflow_dispatch` workflow manually to evaluate it; if the residuals do not match, retire this image-processing branch.
 
 ## Reproduction
 
 - Code: [`sims/dead_tree_commons_derivative_gate.py`](../sims/dead_tree_commons_derivative_gate.py).
-- Workflow: [`.github/workflows/dead-tree-commons-derivative-gate.yml`](../.github/workflows/dead-tree-commons-derivative-gate.yml).
-- Successful run and machine-readable artifact: [GitHub Actions run 42975222094](https://github.com/FlareZ123/liber-primus/actions/runs/42975222094).
+- Workflow: [`.github/workflows/dead-tree-commons-derivative-gate.yml`](../.github/workflows/dead-tree-commons-derivative-gate.yml) (manual `workflow_dispatch` only, per repository policy).
+- Successful run and machine-readable artifact for the **pre-residual** gate: [GitHub Actions run 42975222094](https://github.com/FlareZ123/liber-primus/actions/runs/42975222094).
 - Environment recorded by the run: Python 3.12.16, NumPy 2.5.4, OpenCV 5.0.0.
