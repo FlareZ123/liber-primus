@@ -33,9 +33,9 @@ const keyMaps=[
   {name:"Euler-totient(GP-prime) mod28",values:rawKey.map(v=>(primes[v]-1)%28)}
 ];
 const full=corpus.pages.filter(p=>p.page>=33&&p.page<=39).flatMap(p=>p.indices);
-const cuneiformStart=91,cuneiform=full.slice(cuneiformStart);
+const cuneiformStart=91,cuneiformEnd=1559,cuneiform=full.slice(cuneiformStart,cuneiformEnd);
 assert.equal(full.length,1680);
-assert.equal(cuneiform.length,1589);
+assert.equal(cuneiform.length,1468);
 assert.equal(full[0],23); // p33 D/23 matches p3 seed's middle coordinate
 assert.equal(full[cuneiformStart-1],20); // preceding rune L
 assert.equal(full[cuneiformStart],trans.indexOf("NG")); // cuneiform unit begins NG
@@ -118,7 +118,7 @@ console.log(JSON.stringify({
   target:{
     fullPageSpan:"p33-p39",fullLength:full.length,fullFirstRune:trans[full[0]],
     p33TitledInterludeRunes:91,p33TitledInterludeWords:23,
-    cuneiformUnitStartOffset:91,cuneiformUnitLength:cuneiform.length,
+    cuneiformUnitStartOffset:91,cuneiformUnitEndPage39LocalOffset:119,cuneiformUnitLength:cuneiform.length,trailingRunesAfterCuneiformUnit:full.length-cuneiformEnd,
     cuneiformFirstRune:trans[cuneiform[0]],precedingRune:trans[full[90]]
   },
   hypothesis:{
