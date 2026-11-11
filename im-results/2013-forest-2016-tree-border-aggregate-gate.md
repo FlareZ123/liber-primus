@@ -60,9 +60,23 @@ The raw 3,316-rune block has IoC **0.03446283**, essentially unchanged. The solv
 
 Reject this specific row-major 16×16, one-row-per-page, repeated additive GP29 schedule. The 16×16 reshape and page assignment are not prescribed by the source; do not rescue the result with free phases, row/column permutations, or alternative byte reductions. This does not exclude a different, independently source-selected use of the numerical grid.
 
+## Canonical 735-word 15×49 / 2014 7×7 square gate: negative
+
+The same botanical span contains **735 canonical words**, exactly **15×49**. The archived 2014 OpenPuff payload contains a 7×7 magic square (49 cells) with magic constant **1033**; 1033 is also the decimal reversal of **3301**, the number closing the signed 2013 forest clue. The 2013 NUMBER command's documented digit-reversal behavior makes this an attractive cross-round human lead, but it does not itself instruct a solver to apply the square to LP2.
+
+A frozen direct test groups the 735 continuous words into 15 consecutive 49-word blocks. It uses the square's printed row-major order, plus the natural column-major reading, as a repeated 49-entry key. For each word, every rune is shifted by the corresponding square value modulo 29 (both signs). Separately, each word's GP-prime sum is shifted by the corresponding square value modulo 29 to produce one rune per word (both signs). The same test checks whether the 7×7 blocks of word-prime-sums inherit the square's 1033 row/column sums, and whether any 49-word block has the square's exact prime-sum multiset.
+
+Results:
+- The canonical block is **735 words / 3,316 runes**, with 15 complete 49-word groups. The square has 49 cells, 24 distinct raw values, and only **18 distinct residues modulo 49**, so it is not a 49-position permutation.
+- No row or column of any 7×7 word-prime-sum block sums to 1033. No block's prime-sum multiset equals the square's; the largest multiset intersection is **6/49**.
+- Raw rune IoC is **0.03446283**. Row/column per-word shifts remain at **0.03440752–0.03448957**; the one-rune-per-word prime-sum readouts remain at **0.03460305–0.03488109**. Neither output has a language-like reading.
+- Synthetic add-then-subtract round trips recover every original rune, validating the implementation only.
+
+Preserve **735=15×49** and **reverse(3301)=1033** as an exploratory cross-round relation, not as a key or decipherment. The direct source-motivated square-key/readout tests are negative. No further row/column permutations, value sorting, affine maps, or matrix searches are justified without an independent original instruction selecting them.
+
 ## Decision
 
-The 2013 forest clue motivates a **separate aggregate-block hypothesis**: the botanical span pp40–55, containing 15 rune-bearing pages plus the numeric p50 table. The 3,316 = 3,301 + 15 relation is exact and source-constrained enough to preserve. The 810 = 45×18 relation is weaker because it uses raw line/whitespace fragments rather than canonical words; the canonical 810-word window is elsewhere (segments 30–44, 3,656 runes), and no window combines 3,316 runes with 810 logical words. Two obvious direct readouts—the fragment-level 45×18 token-index selector and the 16×16 p50-table page-key schedule—do not recover text.
+The 2013 forest clue motivates a **separate aggregate-block hypothesis**: the botanical span pp40–55, containing 15 rune-bearing pages plus the numeric p50 table. The exact **3,316 = 3,301 + 15** and **735 = 15×49** relations are worth preserving as observations. The latter aligns with the 49 cells of the archived 2014 7×7 square, whose magic constant 1033 is the reversal of 3301 under the documented 2013 NUMBER behavior; however, the direct 15×49 square-key/readout tests above recover no text and the source supplies no operation. The 810 = 45×18 relation is weaker because it uses raw line/whitespace fragments rather than canonical words; the canonical 810-word window is elsewhere (segments 30–44, 3,656 runes), and no window combines 3,316 runes with 810 logical words. The fragment-level 45×18 token-index selector, 16×16 p50-table page-key schedule, and 15×49 square-key/readout all fail to recover text.
 
 This does **not** overturn the existing negative result for a unique path through the p32 tree illustration. The forest clue does not identify a p32 root, start, order, direction, or endpoint. Do not expand this branch into arbitrary permutations, semantic dictionaries, or unconstrained matrix searches. Continue only if an independent original clue selects a precise mapping or reversible operation.
 
@@ -71,6 +85,7 @@ This does **not** overturn the existing negative result for a unique path throug
 Run:
 
     node sims/forest_45x18_selector_sft.cjs
+    node sims/forest_15x49_2014_square_gate.cjs
 
 Verify the 2013 source signature:
 
