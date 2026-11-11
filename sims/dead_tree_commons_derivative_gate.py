@@ -206,6 +206,44 @@ def score_fixed(
         },
     }
 
+def fixed_arrays(
+    source_gray: np.ndarray,
+    target_page: np.ndarray,
+    config: dict,
+    variant: str,
+    reflected: bool,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Return the already-fixed source template and target patch."""
+    x1, y1, x2, y2 = config["source_crop"]
+    if variant == "original":
+        source_crop = source_gray[y1:y2, x1:x2]
+    else:
+        source_crop = derivative_crop(
+            source_gray, config["source_crop"],
+            valid_filter=variant in ("gaussian_3x3", "median_3x3"),
+        )
+    source_level, source_span = config["source_response"]
+    template = dark_response(source_crop, source_level, source_span)
+    if reflected:
+        template = cv2.flip(template, 1)
+    template = cv2.resize(
+        template, (config["width"], config["height"]),
+        interpolation=cv2.INTER_LINEAR,
+    )
+    template = cv2.GaussianBlur(template, (0, 0), config["sigma"])
+
+    tx1, ty1, tx2, ty2 = config["target_crop"]
+    target_crop = target_page[ty1:ty2, tx1:tx2]
+    target_level, target_span = config["target_response"]
+    target = cv2.GaussianBlur(
+        dark_response(target_crop, target_level, target_span),
+        (0, 0), config["sigma"],
+    )
+    x, y, w, h = config["x"], config["y"], config["width"], config["height"]
+    patch = target[y:y+h, x:x+w]
+    assert patch.shape == template.shape, (variant, patch.shape, template.shape)
+    return template, patch
+
 def pixel_metrics(actual: np.ndarray, predicted: np.ndarray) -> dict:
     assert actual.shape == predicted.shape
     diff = np.abs(actual.astype(np.int16) - predicted.astype(np.int16))
@@ -270,6 +308,63 @@ def run() -> dict:
     assert abs(baseline["upper_60"] - 0.8128721117973328) < 5e-3, baseline
     assert abs(baseline["lower_40"] - 0.45640168561356637) < 5e-3, baseline
 
+    # One source-selected follow-up: compare the fixed p55/p32 page
+    # difference with the original-to-derivative source difference. The
+    # common crop is the exact overlap [100,602,1750,1950]; p55's patch is
+    # cropped to that overlap, then both p55 arrays are resized to p32's
+    # fixed 817x667 grid. No crop/scale/translation is refit.
+    p55_common = {
+        **P55,
+        "source_crop": [100, 602, 1750, 1950],
+        "height": 742,
+        "y": 150,
+    }
+    p55_template, p55_patch = fixed_arrays(
+        decoded["original"], page55, p55_common, "original", True
+    )
+    p55_template_unref, _ = fixed_arrays(
+        decoded["original"], page55, p55_common, "original", False
+    )
+    p55_template = cv2.resize(p55_template, (P32["width"], P32["height"]), interpolation=cv2.INTER_AREA)
+    p55_template_unref = cv2.resize(p55_template_unref, (P32["width"], P32["height"]), interpolation=cv2.INTER_AREA)
+    p55_patch = cv2.resize(p55_patch, (P32["width"], P32["height"]), interpolation=cv2.INTER_AREA)
+
+    p32_original_template, p32_page_patch = fixed_arrays(
+        decoded["original"], page32, P32, "original", True
+    )
+    p32_original_unref, _ = fixed_arrays(
+        decoded["original"], page32, P32, "original", False
+    )
+    p32_source_residuals = {}
+    p32_unreflected_residuals = {}
+    for name in decoded:
+        template, _ = fixed_arrays(decoded[name], page32, P32, name, True)
+        p32_source_residuals[name] = template
+        template_unref, _ = fixed_arrays(decoded[name], page32, P32, name, False)
+        p32_unreflected_residuals[name] = template_unref
+
+    page_signed = p55_patch.astype(np.float32) - p32_page_patch.astype(np.float32)
+    page_absolute = np.abs(page_signed)
+    difference_correlations = {}
+    for name, p32_template in p32_source_residuals.items():
+        source_signed = p55_template.astype(np.float32) - p32_template.astype(np.float32)
+        source_absolute = np.abs(source_signed)
+        source_signed_unref = p55_template_unref.astype(np.float32) - p32_unreflected_residuals[name].astype(np.float32)
+        difference_correlations[name] = {
+            "signed_residual_correlation": pearson(source_signed, page_signed),
+            "absolute_residual_correlation": pearson(source_absolute, page_absolute),
+            "unreflected_signed_control": pearson(source_signed_unref, page_signed),
+            "unreflected_absolute_control": pearson(np.abs(source_signed_unref), page_absolute),
+        }
+    interpage_difference = {
+        "method": "absolute/signed difference between the fixed p55 and p32 page patches, compared with the corresponding fixed source-template difference on their common source crop; no refit",
+        "common_source_crop": [100, 602, 1750, 1950],
+        "common_grid": [P32["width"], P32["height"]],
+        "page_residual_mean_absolute": float(page_absolute.mean()),
+        "source_residual_correlations": difference_correlations,
+        "interpretation_limit": "The page fits are selected/chained and target response/blur settings differ; a correlation is only a bounded follow-up, not proof of intended use.",
+    }
+
     noisy = decode(assets["salt_pepper"], cv2.IMREAD_COLOR)
     gaussian = decode(assets["gaussian_3x3"], cv2.IMREAD_COLOR)
     median = decode(assets["median_3x3"], cv2.IMREAD_COLOR)
@@ -322,6 +417,7 @@ def run() -> dict:
             "results": p32_results,
         },
         "filter_reconstruction": filters,
+        "interpage_difference": interpage_difference,
         "interpretation_limits": [
             "The p55 transform and crops were selected in earlier visual exploration; this is not a blind source-identification test.",
             "The p32 transform composes two earlier selected fits and is secondary, not an independent validation.",
