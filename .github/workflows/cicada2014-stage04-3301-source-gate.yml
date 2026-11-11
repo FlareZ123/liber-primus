@@ -1,0 +1,29 @@
+name: Cicada 2014 Stage04 3301 source gate
+
+on:
+  push:
+    paths:
+      - '.github/workflows/cicada2014-stage04-3301-source-gate.yml'
+      - 'sims/cicada2014_stage04_3301_object_inventory_sft.cjs'
+      - 'resources/external/derived/2014-stage04/**'
+      - 'resources/liber-primus/03.jpg'
+      - 'resources/liber-primus/04.jpg'
+      - 'resources/liber-primus/05.jpg'
+      - 'resources/control/cicada-3301-public-key.asc'
+  workflow_dispatch:
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reproduce exact LP1 image identities and page-05 trailer
+        run: node sims/cicada2014_stage04_3301_object_inventory_sft.cjs
+      - name: Verify the page-03 OutGuess clear-signature
+        shell: bash
+        run: |
+          set -euo pipefail
+          home="$(mktemp -d)"
+          chmod 700 "$home"
+          gpg --homedir "$home" --batch --import resources/control/cicada-3301-public-key.asc
+          gpg --homedir "$home" --batch --verify resources/external/derived/2014-stage04/03-outguess.asc
