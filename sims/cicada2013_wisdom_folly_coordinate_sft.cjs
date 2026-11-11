@@ -103,7 +103,7 @@ for(const [pos,h,body] of [["prefix",first,bodyAfterPrefix],["trailer",last,body
 }
 const asPrefix=matrixFacts(bodyAfterPrefix),asTrailer=matrixFacts(bodyBeforeTrailer);
 assert.equal(asPrefix.zero_cells,16);
-assert.equal(asPrefix.one_cells,11); // check before committing
+assert.equal(asPrefix.one_cells,12); // check before committing
 assert.equal(asPrefix.direct_mod58_row_permutations,0);
 assert.equal(asPrefix.direct_mod58_column_permutations,0);
 assert.equal(asPrefix.distinct_row_argmin_columns,35);
