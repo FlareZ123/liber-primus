@@ -2,9 +2,19 @@ name: 2016-message-prime-layers
 
 on:
   workflow_dispatch:
+    inputs:
+      probe:
+        description: "Original message prime-layer test or cumulative page walk"
+        required: false
+        type: choice
+        options:
+          - original
+          - cumulative
+        default: original
 
 jobs:
   source-prime-layer-probe:
+    if: ${{ inputs.probe == 'original' || inputs.probe == '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -20,3 +30,15 @@ jobs:
         with:
           name: 2016-message-prime-layers
           path: 2016-message-prime-layers.json
+
+  cumulative-page-walk:
+    if: ${{ inputs.probe == 'cumulative' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test signed 2016 source-directed cumulative page walk and original direct-key inverse
+        run: node sims/lp2_signed2016_cumulative_page_walk_sft.cjs
