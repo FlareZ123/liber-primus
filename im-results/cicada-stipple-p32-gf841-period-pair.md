@@ -1,6 +1,6 @@
 # p57 cicada stipple -> p32 prime-index -> GF(29^2) period pair
 
-**Status:** exact conditional arithmetic and field identities; the p57 count-derived selector is GIMP-confounded and not source-authenticated; no decryption.
+**Status:** exact conditional arithmetic and field identities; the p57 count-derived selector is GIMP-confounded and retired from cryptographic use pending the exact predicted rendering mask; no decryption.
 
 ## Original-image measurement
 
@@ -42,9 +42,11 @@ This **independently reproduces the critical existing SECRA GIMP fingerprint on 
 
 SECRA's 15 October 2026 report, [Inside Liber Primus](https://secra.tech/research/liber-primus-strongest-findings/), reports that the p57 dotted-insect positions strongly match the deterministic legacy GIMP Dissolve field: 268,435,456 offset/orientation/polarity configurations, 96.0% whole-image F1, 93.9% held-out F1, and 166 residual cells. Its [evidence index](https://secra.tech/research/liber-primus-strongest-findings/evidence/index.html) reports 100,000 local-pattern-preserving randomizations without a comparable match. The fixed seed 314159265 is a GIMP default, not a π key.
 
-The exact 574 component count and 241/331 split in this report have not been compared against SECRA's reconstructed mask. Therefore the 53/67 prime ordinals, p32 antipodal positions, 101/11 GP-prime weights, 84/10 field periods, 7×82 arithmetic and all downstream GF(29²) selectors are **conditional on an unverified premise**: that the measured dot counts were intentionally selected rather than produced by the rendering field. The field-pair and matrix tests below remain valid negative results for their exact transforms, but they do not validate the input selector.
+SECRA's public evidence fixes the historical GIMP generator alignment and reports a selected 31-parameter reconstruction with **1,997 TP / 130 FP / 36 FN**, **166 mismatched cells**, whole-image F1 **0.960096**, and reserved-cell F1 **0.939096**. The published evidence does not expose the exact **267×293 predicted binary mask**, the per-cell source-opacity master, or a complete 31-parameter source/geometry recipe sufficient to regenerate that mask. It also states that the pristine artwork is unavailable and that opacity is not uniquely invertible from one binary Dissolve image.
 
-The next discriminant is not another key or exponent sweep. Obtain the frozen GIMP-predicted mask/residual and recompute the exact crop x=350..2049, y=1900..3449, 8-connected component count, removal of the two largest components and x=1200 split. If the model predicts 574 and 241/331, retire the selector chain. If a structured residual survives, test only that residual. Existing GIMP source-field work is in [the source-pad gate](gimp-dissolve-source-pad-gate.md); do not repeat its direct-pad or 2D field searches.
+The repository's independent p24→p57 reference transfer [SFT](../sims/lp2_stipple_p24_opacity_transfer_sft.py) is useful as a control because its component counts were excluded from the fit objective. Its whole-image F1 is **0.831962**, yet under the frozen eight-connectivity/two-largest-excluded rule it predicts **2,222 black cells, 636 components and 271/363**, rather than the observed **2,033, 574 and 241/331**. An approximate GIMP-consistent reconstruction therefore does not preserve the proposed selector.
+
+Under Director Issue #47's stop condition, the exact rendering-null count comparison is **blocked on one specific missing source artifact**: the selected reconstruction's 267×293 predicted mask, or equivalently the exact source-opacity array plus complete parameters needed to reproduce it. The observed 241/331 pair is consequently **retired from cryptographic use** unless that artifact becomes available. The downstream 53/67 prime ordinals, p32 positions, GP-prime weights, 84/10 field periods, 7×82 arithmetic and GF(29²) constructions remain conditional arithmetic only. A reported residual size of 166 cells is insufficient to define a spatial residual or selector, so no residual-key search is justified. If the exact mask later appears, apply the already frozen component rule once; otherwise do not expand this branch. Existing GIMP source-field work is in [the source-pad gate](gimp-dissolve-source-pad-gate.md).
 
 ## The selected p32 positions
 
