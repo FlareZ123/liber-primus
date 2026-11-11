@@ -193,6 +193,56 @@ for (const [orientation, transform] of [
       exponent6vs15: test15_6, archived11vs331: test11_331 });
   }
 }
+/**
+ * Canonical involution of GF(29^238) over the fixed subfield GF(29^119).
+ * @param {number[]} base
+ * @param {bigint} exponent
+ */
+function bigPower(base, exponent) {
+  let out = Array(degree).fill(0);
+  out[0] = 1;
+  while (exponent > 0n) {
+    if (exponent & 1n) out = multiply(out, base);
+    exponent >>= 1n;
+    if (exponent) base = multiply(base, base);
+  }
+  return out;
+}
+/** @param {number[]} a @param {number[]} b */
+const fieldAdd = (a, b) => a.map((v, i) => mod(v + b[i]));
+const involution = 29n ** 119n;
+const p36ConjugateFixed = equality(bigPower(p36.slice(), involution), p36);
+assert.equal(p36ConjugateFixed, 5);
+const conjugateChecks = [];
+for (const [pairOrder, sourceDigits] of [
+  ["p3-p39", p3.concat(p39)],
+  ["p39-p3", p39.concat(p3)]
+]) {
+  for (const [orientation, input] of [
+    ["ascending", sourceDigits],
+    ["descending", sourceDigits.slice().reverse()]
+  ]) {
+    const conjugate = bigPower(input.slice(), involution);
+    const trace = fieldAdd(input, conjugate);
+    const norm119 = multiply(input, conjugate);
+    for (const [targetOrder, target] of [
+      ["ascending", p36], ["descending", p36.slice().reverse()]
+    ]) {
+      const match = {
+        pairOrder, orientation, targetOrder,
+        conjugate: equality(conjugate, target),
+        trace: equality(trace, target),
+        norm: equality(norm119, target)
+      };
+      assert(match.conjugate < degree && match.trace < degree &&
+        match.norm < degree);
+      conjugateChecks.push(match);
+    }
+  }
+}
+assert.equal(Math.max(...conjugateChecks.flatMap(x =>
+  [x.conjugate, x.trace, x.norm])), 14);
+
 const X = Array(degree).fill(0);
 X[1] = 1;
 assert.deepEqual(power(power(X, 6), 15), power(power(X, 15), 6));
@@ -253,6 +303,7 @@ console.log(JSON.stringify({
   field: "GF(29^238)", modulusVerified: true,
   DH_exponents: DH,
   fieldNorms, fieldNormShuffleNull: normNull,
+  p36ConjugateFixed, conjugateChecks,
   tracePowerX: traceTests,
   rawOriginalIoC: ioc(runes),
   finding: "No exact DH-share power equality; direct trace(S*X^i) keystream does not recover GP plaintext."
