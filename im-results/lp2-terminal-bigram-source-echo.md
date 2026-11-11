@@ -30,6 +30,10 @@ The strongest exact features are the six-rune 3+3 segmentation and the end-of-bo
 
 An earlier repeat in p27 might be a deliberate waypoint for the p55 ending. Alternatively, any 29-symbol cipher could occasionally produce the same six runes by chance, and a shared surface phrase need not mean shared plaintext if the keystream/state differs. The illustrations and 28-page separation are candidate human-facing cues, **not independently authenticated selectors**. No reuse of a half-book key, page-index offset, or decryption algorithm follows from this pair alone.
 
+## Simple key-clock check
+
+The first copy starts at global rune offset **6,555**, the terminal copy at **12,950**; separation **6,395 = 5 × 1,279**. Thus an independently established period-five *continuous* additive cipher could assign the same key phase to both copies. However, across the other whole-word repetitions of length at least three there are **17** pairwise repeated-word distances, and only the **two words in this very echo** have distance divisible by five. There is no independent repeated-word support for a general period-five clock. Equally, the copies' page-local offsets 28 and 70 happen to agree modulo 7 and 14; the source does not select a page-reset period-7 or period-14 cipher. These are diagnostic arithmetic facts rather than key evidence.
+
 ## Causal next test
 
 Use the source-fixed pair as an **out-of-sample constraint** on an independently proposed, full original-cipher inversion. A credible mechanism should specify whether identical six-rune ciphertext at these two positions is predicted to yield the same plaintext or a different plaintext under its precise independently recovered state/key schedule. If the route proposes a 28-page mirror state or an insect-illustration pointer, it must first identify a separate original clue selecting that transformation; do not infer it solely from this coincidence. Test the frozen model on the rest of the unmodified page contents and require authentic language evidence plus exact forward re-encryption as an implementation invariant.
