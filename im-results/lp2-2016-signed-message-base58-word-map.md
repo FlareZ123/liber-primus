@@ -129,6 +129,27 @@ That equals both:
 
 The p32 top-row sum is 563, matching the other 2016 image dimension. This does not prove the book-map rule, but it independently links the 2016 message's word values to the p32/tree geometry.
 
+## Alternative: cumulative 58-page walk, 76 selected runes
+
+An explicitly different reading of the signed sentence “Its words are the map, their meaning is the road, and their numbers are the direction” treats each source word's GP-prime sum as a **running page displacement**, rather than the direct absolute page address above. Start at physical LP2 p0, advance by the sum **modulo the original 58 pages**, then select the zero-based word at index `floor(sum/58)` on the new page. The original message does not say which of these two possible address semantics applies. The alternatives are competing hypotheses, even though they share source arithmetic.
+
+For the fixed 16 signed words, the source prime sums are `[143,179,175,72,211,114,319,84,72,204,215,114,295,175,72,337]`. Their **16 distinct** cumulative destinations, word indices, and exact selected-rune counts are:
+
+```text
+Word:       Its words are the map their meaning is the road and their numbers are the direction
+Page:        27    32  33  47  26    24      53 21   35    7  48    46      51  52   8        55
+Word index:   2     3   3   1   3     1       5  1    1    3   3     1       5   3   1         5
+Rune count:   4    11   6   8   4     3       1  3    3    3   3     4       2   7   8         6
+```
+
+Specific original-source correspondences follow from the unmodified route: “words” reaches the blurred-tree **p32** linked to the signed 2016 image; “numbers” reaches the original numeric-table continuation **p51**; “direction” ends on **p55**, the last unsolved LP2 page. The first and last visited pages, **p27 and p55**, independently contain the same unusual six-rune span `ᛞᛄᚢᛒᛖᛁ`, at p27 local offset28 and p55's last six positions. The *selected address-words* at those endpoints are different from the repeated span; this is a page-level correspondence.
+
+The 16 selected words total **exactly 76 runes under the canonical full master transcription**, the same size as both original p55 and the **76-byte outer boundary** of the printed 32×8 numerical table. The simplified LP2 transcription differs at certain source word boundaries; use the canonical 75-scan master for this 76-element reading. The size equality supplies a possible next operation, without specifying one.
+
+A source-exact [standalone CommonJS inverse](../sims/lp2_signed2016_cumulative_page_walk_sft.cjs) passed [manual CI 42952172983](https://github.com/FlareZ123/liber-primus/actions/runs/42952172983). It tests the candidate 76-rune stream as a p55 additive key using three natural GP29 projections: rune ordinal, GP-prime residue and prime totient residue, with either key sign, with and without the 76 perimeter bytes in original row-major order. All **12** 76-rune outputs are unreadable, with IoC in **[0.02667, 0.03719]**. Four ordinary page-reset/global additive 76-key inversions across the complete unknown corpus also remain uniformly ciphertext-like (IoC **0.03445–0.03452**, original **0.034478**). These negative direct-key tests cannot reject the page walk or its cardinality match, only the declared simple key-use models.
+
+The next discriminating evidence would explicitly choose a *running* versus *absolute* page address, or provide a source-native operation combining the 76-element sequence with the table perimeter. The cumulative interpretation provides **no newly recovered plaintext, cipher mechanism, authenticated key or destination**.
+
 ## Controls and limits
 
 - The mapping is word-by-word. The full 16-word sentence has canonical GP rune count 61 and prime sum 2781; treating the total as one address gives p55 word 47, which is out of bounds because p55 has only 19 words.
@@ -139,6 +160,6 @@ The p32 top-row sum is 563, matching the other 2016 image dimension. This does n
 
 ## Best next test
 
-The full signed-message extension now selects the **only non-runic LP2 page** at the source word `lies`. The immediate next question is whether the separately printed numerical-table fourth token `3D` / byte193 has an independently signaled, lossless operational role in a route that also uses the existing FOLD/END anchors. This would turn a semantic correspondence into a source-defined key, coordinate or decoder with a withheld original-cipher prediction.
+The absolute signed-message map selects the **only non-runic LP2 page** at the source word `lies`, while the newly tested cumulative alternative uniquely visits 16 pages and yields a 76-rune candidate. Their numerical coincidences are not interchangeable; an independent source cue must distinguish the two. In the stronger direct map, the full extension selects the table's 193 byte at `lies`. The immediate next question is whether the separately printed numerical-table fourth token `3D` / byte193 has an independently signaled, lossless operational role in a route that also uses the existing FOLD/END anchors. This would turn a semantic correspondence into a source-defined key, coordinate or decoder with a withheld original-cipher prediction.
 
 A different possible clue is the signed word `the` mapping to `FOLD`, suggesting a literal fold of p32's 11×11 rune layout. A narrow vertical-plus-horizontal fold was tested independently: its 16 outer-quadrant perimeter groups of four runes match the 16 signed instruction-word GP-prime residues at **0/16** positions under additive superposition (GP-ordinal sum 1/16); 50,000 original-page shuffles show no special mirror-overlap concentration. This direct reading has no support (see [Issue #18 handoff](https://github.com/FlareZ123/liber-primus/issues/18#issuecomment-6785568489)). Further folds require an independently specified overlay rule. Do not sweep arbitrary target shifts, orientations, pad functions or postselected checksum hits.
