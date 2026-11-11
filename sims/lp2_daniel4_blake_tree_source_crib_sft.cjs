@@ -39,7 +39,7 @@ const SOURCE = Object.freeze([
     url: "https://www.biblegateway.com/passage/?search=Daniel+4%3A33&version=KJV",
     targetPhysicalPages: [22, 27],
     expectedWordCount: 45,
-    expectedRuneCount: 177,
+    expectedRuneCount: 176,
     text: "The same hour was the thing fulfilled upon Nebuchadnezzar: and he was driven from men, and did eat grass as oxen, and his body was wet with the dew of heaven, till his hairs were grown like eagles' feathers, and his nails like birds' claws."
   },
   {
@@ -62,9 +62,10 @@ function gpWordLengths(passage) {
       .replace(/K/g, "C").replace(/Z/g, "S");
     let n = 0;
     for (let i = 0; i < plain.length;) {
+      const ing = plain.startsWith("ING", i);
       const digraph = DIGRAPHS.has(plain.slice(i, i + 2));
       n++;
-      i += digraph ? 2 : 1;
+      i += ing ? 3 : (digraph ? 2 : 1);
     }
     return n;
   });
