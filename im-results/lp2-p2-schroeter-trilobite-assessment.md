@@ -36,6 +36,24 @@ The 201 = 3 × 67 coincidence is not unique enough to establish a 3-stream layou
 
 As a deliberately simple test, the 201-rune transcription was split into three consecutive 67-rune blocks. Their index of coincidence values are 0.03483, 0.03211, and 0.03076 (whole-page 0.03562; uniform 29-symbol expectation 1/29 ≈ 0.03448). Pairwise best additive-shift matches are only 6/67, 6/67, and 7/67 (allowing reversal for the last pair). There is no evidence here for three repeated or trivially shifted streams. This does not test a keyed polyalphabetic operation.
 
+## Legendre / three-lobe hypothesis: bounded direct tests fail
+
+The “leggy trilobite” title plus the 29-prime GP alphabet suggested one deliberately small hypothesis: map each GP rune's assigned prime p_i through the Legendre symbol chi_29(p_i) in {-1, 0, +1}, treat the three values as ternary coordinates, arrange p2's 201 values as a 3×67 array, and decode each column as one of 27 symbols. This is an exploratory wordplay hypothesis, not an established clue.
+
+The finite test used the natural base-3 flattening to `A–Z + space` or `A–Z + period`, and all 48 cube symmetries (six coordinate permutations × eight sign flips). It also tested the index-based Legendre alternative, consecutive triplets instead of column triplets, and the specific orientation suggested by the figure (first row forward, second head reversed, tail reversed/inverted). None yielded coherent text.
+
+| Variant | Best mean English quadgram log score | Result |
+|---|---:|---|
+| Prime-value Legendre, 3×67 column triplets, 48 cube symmetries | −16.9329 | No coherent text; best candidate has only 2 dictionary hits in 7 tokens |
+| Rune-index Legendre, same layout/search | −17.2199 | No coherent text |
+| Prime-value Legendre, consecutive triplets | −16.5642 | No coherent text |
+| Index Legendre, consecutive triplets | −17.2009 | No coherent text |
+| Position Legendre key C_i ± chi_29(i + phase), all 29 phases and both signs | −16.4226 | No coherent text; raw p2 is −16.5685 |
+
+For scale, the same quadgram model scored 22,939 stride-10 windows of 67 letters from the repository's first 300k Shakespeare control characters: minimum −13.1132, median −9.9711, maximum −8.2386. All tested Legendre outputs are substantially worse than even the least English-like sampled control windows. The small score improvements within the finite search are not plaintext evidence.
+
+**Decision:** retire the direct Legendre-trit → 27-symbol p2 decode and the simple period-29 additive Legendre key. Do not expand into arbitrary 27-symbol cube orders or additional fitted offsets. A different Legendre-derived state would need an independent source instruction and a new held-out prediction.
+
 ## Existing Trifid constraint
 
 The shared result [`trifid-27cube-allsecret-bound.md`](trifid-27cube-allsecret-bound.md) is already a much stronger gate than a new generic Trifid run: for direct-GP standard 27-cube Trifid with IA/EA transparent, it excludes every continuous period divisible by three from 3 through 12,024 over the full original LP2 core, for every fixed cube ordering, using an exact triple-equality invariant. It is explicitly scoped and does not exclude page-local resets, variable cubes, other alphabets, or additional layers.
