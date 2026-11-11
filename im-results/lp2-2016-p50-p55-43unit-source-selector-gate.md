@@ -185,7 +185,7 @@ None of the five outputs is plaintext; even the best score, −5.675726 from the
 
 **Decision:** reject this exact p55-interior-as-direction encoding at these five source-visible origins. Do not expand into arbitrary origins or direction permutations without a new clue.
 
-## Direct p50 43-byte interval → p55 43-interior GP29 key test (bounded negative)
+## Direct p50 43-byte interval → p55 43-interior byte/GP29 tests (bounded negatives)
 
 The source-selected 43-unit bridge offers a simple direct test before inventing a more elaborate selector: take the 43 raw p50 bytes strictly between the two byte-193 / base60-`3D` markers (row-major offsets 84–126), reduce each byte modulo 29, and use that sequence as a GP29 key for the 43 p55 interior runes. The p55 interior is extracted with its original word boundaries; the leading one-rune fragment is a cross-page word boundary, not a singleton. The 43-byte and 43-rune sequences are therefore aligned in their source order. A reversed-key alignment is included as the only orientation control.
 
@@ -200,7 +200,10 @@ The source-selected 43-unit bridge offers a simple direct test before inventing 
 
 For the 43-symbol sample, IoC is only descriptive; the word-break-preserving outputs are also nonlinguistic. The script includes an arithmetic positive-control round-trip and pins the exact Git blob SHAs of the p50 grid, GP29 corpus, and page transcription. Reproducer: `sims/p50_43byte_to_p55_interior_mod29_gate.cjs`.
 
-This rejects the direct `raw_byte mod 29` additive/Beaufort pairing only. It does not reject a separately source-selected use of p50 bytes as base-60 digits, directions, or another representation; no such mapping is currently selected by evidence.
+
+A direct byte-level alternative was tested on the same fixed alignment: XOR each raw p50 byte with the corresponding p55 GP29 index. Forward XOR yields `be166347c4dedd29fd512423d09c5b2356e828db6e3008c103b02c614389cbf139a721ba38f15c25081fb1`; only 20/43 bytes are printable ASCII and 7/43 are letters. Reversing the p50 byte sequence yields `b01e013041ef31a032ae2af7cb855a7225b506cf0b306dd52ded5f304290d0253758ee33d4c0d9526a17bf`; again only 20/43 bytes are printable and 8/43 are letters. Neither is readable text. The script reproduces both byte-level outputs.
+
+This rejects the direct `raw_byte mod 29` additive/Beaufort pairing and the direct raw-byte XOR pairing only. It does not reject a separately source-selected use of p50 bytes as base-60 digits, directions, or another representation; no such mapping is currently selected by evidence.
 
 ## Exact missing selector
 
@@ -217,6 +220,6 @@ The current 43-word base-58 address map is a later reconstruction from GP prime 
 
 ## Decision
 
-The 43-unit cardinality bridge is a strong selector clue but still lacks an authenticated reversible operation. Direct p50 compass-byte interpretation on p32, signed 2016 word-prime-sum keying on p55, and the newly tested p50 raw-byte-mod29 key against p55's 43 interiors all fail to produce plaintext. The fold/END observation remains conditional and is not a decryption.
+The 43-unit cardinality bridge is a strong selector clue but still lacks an authenticated reversible operation. Direct p50 compass-byte interpretation on p32, signed 2016 word-prime-sum keying on p55, the newly tested p50 raw-byte-mod29 key against p55's 43 interiors, and raw-byte XOR all fail to produce plaintext. The fold/END observation remains conditional and is not a decryption.
 
 Do not expand this branch by trying arbitrary byte maps, shifts, phases, or word permutations. A successor needs an independent source clue selecting the p50 representation and the reversible operation; otherwise the 43-unit alignment alone is not enough to justify more key-search variants.

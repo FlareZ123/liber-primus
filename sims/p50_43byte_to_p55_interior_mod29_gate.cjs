@@ -69,6 +69,22 @@ for (const alignment of ["forward", "reverse"]) {
   }
 }
 
+const xorResults = [];
+for (const alignment of ["forward", "reverse"]) {
+  const alignedBytes = alignment === "forward" ? p50Bytes : [...p50Bytes].reverse();
+  const output = p55Interior.map((rune, i) => alignedBytes[i] ^ rune);
+  const printableCount = output.filter(v => v >= 32 && v <= 126).length;
+  const alphaCount = output.filter(v => (v >= 65 && v <= 90) || (v >= 97 && v <= 122)).length;
+  xorResults.push({
+    alignment,
+    hex: output.map(v => v.toString(16).padStart(2, "0")).join(""),
+    printable_count: printableCount,
+    printable_fraction: printableCount / output.length,
+    ascii_letter_count: alphaCount,
+    ascii_letter_fraction: alphaCount / output.length
+  });
+}
+
 // Arithmetic positive control: a synthetic GP29 stream must round-trip.
 const syntheticPlain = Array.from({length:43}, (_,i) => i % 29);
 const syntheticCipher = syntheticPlain.map((v,i) => mod29(v + key[i]));
@@ -90,6 +106,7 @@ console.log(JSON.stringify({
   p55_interior_values: p55Interior,
   p55_interior_transliteration: tr(p55Interior),
   results,
+  raw_byte_xor_results: xorResults,
   positive_control_roundtrip: true,
-  interpretation: "All six direct byte-mod29 additive/Beaufort alignments are nonlinguistic. This rejects this mapping only; it does not determine another p50 byte/token representation."
+  interpretation: "All six direct byte-mod29 additive/Beaufort alignments are nonlinguistic. Raw-byte XOR in forward and reversed order is also nontextual. These tests reject only the stated mappings; they do not determine another p50 byte/token representation."
 }, null, 2));
