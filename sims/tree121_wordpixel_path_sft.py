@@ -87,3 +87,62 @@ print("  count null <= original:", less, "add-one lower tail:", (less + 1) / (ru
 print("Direct pixel candidates as binary tape:", "".join(map(str, bright)))
 print("CONCLUSION: this pixel-location gate is exploratory; only independently")
 print("specified source meanings for the 22 word pairs could authenticate it.")
+
+# The same 11x11 source-selected mosaic also has the dimensions of a Micro QR
+# M1 symbol. Test ONLY the standard 7x7 top-left finder as a necessary
+# condition for the most elementary direct pixel or GP-index bitplane readout.
+# This is not an arbitrary threshold/rotation/QR decoder search.
+MICRO_QR_FINDER = [
+    "1111111",
+    "1000001",
+    "1011101",
+    "1011101",
+    "1011101",
+    "1000001",
+    "1111111",
+]
+
+def cumulative(values: list[int]) -> list[int]:
+    result = [0]
+    for value in values:
+        result.append(result[-1] + value)
+    return result
+
+x_edges, y_edges = cumulative(x_axis), cumulative(y_axis)
+assert x_edges[-1] == 563 and y_edges[-1] == 569
+centers = [[((x_edges[col] + x_edges[col + 1]) // 2,
+             (y_edges[row] + y_edges[row + 1]) // 2)
+            for col in range(11)] for row in range(11)]
+luminances = [[image.getpixel(point) for point in row] for row in centers]
+center_bits = [[int(value >= 128) for value in row] for row in luminances]
+rune_bits = [[page32[11 * row + col] % 2 for col in range(11)]
+             for row in range(11)]
+
+def finder_errors(bits: list[list[int]], invert: int) -> int:
+    return sum((bits[row][col] ^ invert) != int(MICRO_QR_FINDER[row][col])
+               for row in range(7) for col in range(7))
+
+print("11x11 image-mosaic center-bright bit matrix:")
+for row in center_bits:
+    print("  ", "".join(map(str, row)))
+print("11x11 direct original-rune-ordinal parity matrix:")
+for row in rune_bits:
+    print("  ", "".join(map(str, row)))
+print("Standard M1 7x7 top-left finder mismatches, image centers, both polarities:",
+      [finder_errors(center_bits, invert) for invert in (0, 1)])
+print("Standard M1 7x7 top-left finder mismatches, direct p32 GP-index parity:",
+      [finder_errors(rune_bits, invert) for invert in (0, 1)])
+
+# A deterministic symbolic control checks the 11x11 sampling and finder shape.
+from PIL import ImageDraw
+plant = Image.new("L", (563, 569), color=0)
+draw = ImageDraw.Draw(plant)
+for row in range(11):
+    for col in range(11):
+        bit = int(MICRO_QR_FINDER[row][col]) if row < 7 and col < 7 else ((row + col) % 2)
+        if bit:
+            draw.rectangle((x_edges[col], y_edges[row],
+                            x_edges[col + 1] - 1, y_edges[row + 1] - 1), fill=255)
+plant_bits = [[int(plant.getpixel(point) >= 128) for point in line] for line in centers]
+assert finder_errors(plant_bits, 0) == 0
+print("Positive synthetic 11x11 mosaic: 0/49 Micro QR finder mismatches (PASS)")
