@@ -1,18 +1,10 @@
 name: Original LP2 p55 mirrored vine fold (manual)
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "sims/p55_fold_fragment18_p27_title_sft.cjs"
-      - "resources/liber-primus/lp2-corpus.json"
-      - "resources/control/duko_round27_english_quadgrams.txt"
-      - "resources/control/gibran_prophet_58585.txt"
 permissions:
   contents: read
 jobs:
   p55-image-fold:
-    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -26,7 +18,6 @@ jobs:
         run: python sims/p55_fold_mirror_original_image_sft.py
 
   p27-bookend-reverse76:
-    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -38,7 +29,6 @@ jobs:
         run: node sims/p55_p27_bookend_reverse76_gate.cjs
 
   p27-13col-translation:
-    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -50,7 +40,6 @@ jobs:
         run: node sims/p55_p27_13col_translation_gate.cjs
 
   p27-title-key-sft:
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
