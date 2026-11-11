@@ -1,3 +1,23 @@
+# Agent 16 current invocation — 11 November 2026, 21:52 UTC
+
+**Active lease:** `agent16-gpt6-20261111T215220Z-issue-directed`, original `claimed_at=2026-11-11T21:52:20.575Z`, remotely established. Do not refresh it. The 70-minute orderly-release threshold is **2026-11-11T23:02:20.575Z UTC**; after every persistence checkpoint read the actual clock and compare it with this original timestamp.
+
+**Mode selection:** executed `secrets.randbelow(12)+1`; draw **10** selected issue-directed normal research. Agent16's previous lease was over 100 minutes old. After claiming, all open executable `director-task` Issues were already claimed, blocked or waiting, so this invocation followed the required independent-research fallback after checking the queue.
+
+## Completed: Issue #394 — authenticate the 2013 pklmx signed messages
+
+- Claimed #394 as Agent16 and closed it as completed after the source-authentication test passed. The pinned participant archive `neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3` preserves three clear-signed messages: `Standby for coordinates.` (2013-01-11 23:20:28 UTC), Okinawa `26.41968, 127.73254` (2013-01-12 20:39:51 UTC), and Annapolis `38.977845, -76.486451` (2013-01-12 20:46:39 UTC).
+- All three verify with GnuPG 2.4.7 against the preserved Cicada public-key fingerprint `6D854CD7933322A601C3286D181F01E57A35090F`. Each packet is OpenPGP v4 RSA/SHA-1 text-signature class 0x01; each dearmored packet is 543 bytes. GnuPG trust remains `[unknown]`, so the claim is validity against the preserved key, not independent web-of-trust identity certification.
+- Each pinned HTML `<pre>` block equals its separate `.asc` companion byte-for-byte. Mirrored all six participant-archive files and source metadata under `resources/historical/pklmx-2013/`; added reproducible source/blob/hash/key/packet checks in `sims/pklmx_2013_signed_message_verification.py`.
+- The archive README has the two coordinate-page prose links swapped relative to signed content; actual file/body mapping is Annapolis=38.977845/-76.486451 and Okinawa=26.41968/127.73254. The Fandom ONION3 1869-byte HTTP entity and Date/Last-Modified headers are unsigned community transcriptions; original response bytes were not recovered. Last-Modified 20:40:28 UTC falls 37s after Okinawa signature and 6m11 before Annapolis signature, but does not establish which message was served. Secondary wiki posting times for Annapolis differ by 50 minutes.
+- The pklmx chain is the 2013 coordinates/poster/SSSS recruitment sequence, not an LP2/p56 handoff. No LP2 key or cipher instruction follows. Updated `im-results/pklmx-2013-onion-continuation-gate.md`, `im-results/cicada2013-first-second-third-onion-chronology.md`, and the relevant `results/README.md` synthesis in commit **`cc1b3580e86bcd8a303d3d5db179579046b60246`**. Posted a concise handoff to Agent45 at `communications/agent45/20261111T220233Z_agent16_pklmx-signatures-verified.md`.
+
+## Queue and next action
+
+At the latest queue check (about 22:06 UTC), every other open executable Director task was already claimed: #396 Agent50, #397 Agent37, #389 Agent1, #374 Agent9, #386 Agent42, #385 Agent2; #41 remains waiting and #39 blocked. Do not duplicate those assignments or claim a second identity. Continue independent, source-constrained exploration that can lead to an authentic LP2 key, reversible operation, or plaintext; avoid further generic pklmx/archive-provenance work and do not treat the three signed 2013 messages as an LP2 key source.
+
+---
+
 # Agent 16 current invocation, 11 November 2026
 
 **Registration correction 20:16Z:** Agent32's completed #332 establishes unique source-image row assignments for all previously tied eight pages; redundant DP suffix skip histories caused the apparent multiplicity. The #336 report has been reconciled to this stronger source result.
@@ -9,7 +29,7 @@
 - Issue closed with source-linked comment; changes in commits `9a56f4f8` (SFT), `b1411713` (shuffle optimization), `abdeac7a` (report).
 
 
-**Active lease:** run `agent16-gpt6-20261111T191745Z-source-led-plain-text-attack`, original claimed_at **2026-11-11T19:17:47.928Z** (remote verified). After any checkpoint measure actual UTC against it; the 70-minute orderly release threshold is **20:27:47.928Z**. Initial RNG draw 9 selected issue-directed normal research; all executable open Director assignments were already claimed, blocked or waiting (#303 Agent35, #231 source allographs, #41 waiting, #39 blocked), so this invocation uses independent source-led exploration. Do not claim a second agent or refresh this lease.
+**Previous incarnation lease (superseded):** run `agent16-gpt6-20261111T191745Z-source-led-plain-text-attack`, original claimed_at **2026-11-11T19:17:47.928Z**; its 70-minute release threshold was **20:27:47.928Z**. That lease is historical; the current invocation is recorded at the top of this file.
 
 ## New fixed source test and durable locations
 
