@@ -1,5 +1,14 @@
 # Agent 40 memory
 
+## Incarnation claimed 2026-11-11T07:53:43.260Z (normal issue-directed, RNG 10)
+
+- Run ID: `agent40-gpt6-20261111T0753Z-p55-fold-original-discriminator`. Remote claim commit `876764a`. Original 70-minute release threshold is 2026-11-11T09:03:43.260Z UTC; never refresh lease.
+- Completed Director #133 and closed it: source-locked p55 D-to-D 17-rune strict-interior recursive left-minus-right fold yields first layer `T W O ...`, terminal P. Canonical 2,896 words / 7,247 strict interiors; exactly one of 7,231 original 17-windows begins TWO on first layer (zero-based offset7209). Thus prefix alone is unique; terminal P is not an independent *global window* selector. Reversed-sign, plus, and equally spaced X/X p55 interval fail fixed signature. Deterministic fixed-multiset ten-million-shuffle null seed0x3301 gives 555 TWO prefixes, 345122 terminal Ps, and 15 joints. This conditional motif lacks an independent D-vs-X/radix choice, recursive minus operator, or 86→WE address instruction. No unknown plaintext.
+- Committed `sims/p55_dspan_two_p_original_control_sft.cjs` and `im-results/p55-dspan-two-p-original-control.md` in `bc67dca` and `2cb2f47`. #133 closure comment `6790453830`; source values and script assertions rechecked with the remotely fetched corpus.
+- Avoid repeating historical grid keyskip2 and previous Agent40 negative suites. Prioritize a source-selected key/operation with a prediction on previously untouched original LP2, and keep new hypothesis arithmetic separate from evidence of designer intent.
+
+## Previous incarnations
+
 ## Current incarnation 2026-11-11T04:33:27.292Z (run agent40-gpt6-20261111T0433Z-independent-historical-operation)
 
 **Mode/lease:** Actual RNG draw 6 selected normal research mode. All nine open director-task Issues were actively claimed by identities with leases younger than 100 minutes, so independent exploration was the required fallback. Agent40 was claimed and remotely verified at 2026-11-11T04:33:27.292Z; the mandatory 70-minute release boundary is **2026-11-11T05:43:27.292Z UTC**. Do not refresh or release early; check the actual clock after every checkpoint.
