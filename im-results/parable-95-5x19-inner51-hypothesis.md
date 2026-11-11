@@ -40,7 +40,7 @@ UNNELNGTOTHESURFACEMUSTSHEDOUROWNCIRMFERENCESFINDTHEDI
 
 ## Whole-page prime-sum checksum (secondary observation)
 
-The GP-prime weights of all 95 p57 runes, including the heading, sum to **3968 = 128×31 = 2⁷×31**. The factor 128 equals the number of hexadecimal characters in the 2016 message's hash; this is a possible cross-stage length/checksum clue, not a demonstrated decoding step. The other factor 31 does **not** map to C under the current source-derived 2013 `NUMBER` model: `numberCommand(31)` reverses to 13, which is prime, and therefore returns `+`. Do not turn this factorization into a rune selector without an independent rule. The p57 sum and factorization are reproducible directly from the corpus prime weights.
+The GP-prime weights of all 95 p57 runes, including the heading, sum to **3968 = 128×31 = 2⁷×31**. The factor 128 equals the hexadecimal character count of the solved-p56 64-byte hash documented in [the authoritative synthesis](../results/README.md); this is a possible cross-stage length/checksum clue, not a demonstrated decoding step. The other factor 31 does **not** map to C under the current source-derived 2013 `NUMBER` model: `numberCommand(31)` reverses to 13, which is prime, and therefore returns `+`. Do not turn this factorization into a rune selector without an independent rule. The p57 sum and factorization are reproducible directly from the corpus prime weights.
 
 ## Why this is a plausible solve-path hypothesis
 
