@@ -1,0 +1,7 @@
+# Agent48: corrected dot-stencil geometry and p56 binary control
+
+The 15×17 normalization in sims/red_marker_shapes.py, sims/lp_stencil_cross_release.py and sims/lp2_ink_annotation_audit.py merged physically distinct alternating rows. It produced false 3×5/3×4/5×5 templates. Correct 4-pixel row/column centroid clustering gives LP2 13-dot = 3×9, 10-dot = 3×7, 23-dot = 5×9; LP1 11-dot = 3×5 and 10-dot = 3×7. Counts and placements are unchanged. The p7 black 13-dot exception is also 3×9.
+
+New source control for Issue #282: the solved p56 10-dot mark at offset45 has row counts [1,2,1,2,1,2,1]. Single-dot row=1, double-dot row=0 gives 1010101₂=85, matching the canonical p56 85-rune length and terminal 13-dot offset85. Only p56 among the four 10-dot pages has length85. With that rule frozen, p53 and held-out p56 13-dot marks give 101010101₂=341 and complement170; mod29 the unordered pair {22,25} matches the fixed points of candidate p32 M7. This is a structural selector, not plaintext or proof of M7's cipher role. The row word is palindromic and the complement leaves the unordered pair unchanged.
+
+See im-results/lp1-lp2-red-stencil-cross-release.md and sims/lp2_dot_stencil_binary_m7_selector_sft.py. The existing 200,000-shuffle null was not rerun. Please do not use the former 3×5/3×4 stencil claims.

@@ -14,7 +14,7 @@ import numpy as np
 
 
 def clusters(dots):
-    """Group 15-by-17 pixel dot motifs by Euclidean nearness, not rune shapes."""
+    """Group nearby dot components; resolve row and column levels separately."""
     remaining = set(range(len(dots)))
     while remaining:
         stack = [remaining.pop()]
@@ -27,6 +27,40 @@ def clusters(dots):
             stack.extend(neighbors)
         if len(seen) >= 5:
             yield np.asarray(seen)
+
+
+def axis_centres(values, tolerance=4.0):
+    """Cluster actual dot-centre levels; adjacent alternating rows stay distinct."""
+    grouped = []
+    for value in sorted(float(v) for v in values):
+        if not grouped or value - float(np.mean(grouped[-1])) > tolerance:
+            grouped.append([value])
+        else:
+            grouped[-1].append(value)
+    return [float(np.mean(group)) for group in grouped]
+
+
+def grid_pattern(group, tolerance=4.0):
+    """Return (column,row) cells using independent 4-pixel axis clustering."""
+    xs = axis_centres(group[:, 0], tolerance)
+    ys = axis_centres(group[:, 1], tolerance)
+    cells = []
+    for x, y in group:
+        col = min(range(len(xs)), key=lambda i: abs(xs[i] - x))
+        row = min(range(len(ys)), key=lambda i: abs(ys[i] - y))
+        assert abs(xs[col] - x) <= tolerance and abs(ys[row] - y) <= tolerance
+        cells.append((col, row))
+    assert len(set(cells)) == len(group), (group, cells)
+    return tuple(sorted(cells))
+
+
+def grid_rows(pattern):
+    """Render normalized cells as top-to-bottom occupancy rows."""
+    width = max(x for x, _ in pattern) + 1
+    height = max(y for _, y in pattern) + 1
+    cells = set(pattern)
+    return tuple("".join("#" if (x, y) in cells else "." for x in range(width))
+                 for y in range(height))
 
 
 def scan(images):
@@ -50,10 +84,10 @@ def scan(images):
             maxima = group.max(axis=0)
             if maxima[0] - minima[0] > 90 or maxima[1] - minima[1] > 180:
                 continue
-            pat = tuple(sorted((round((x - minima[0]) / 15), round((y - minima[1]) / 17))
-                               for x, y in group))
+            pat = grid_pattern(group)
             out[pat].append({"archive_jpg": page, "lp2_physical_page": page - 17,
-                             "x": round(float(minima[0])), "y": round(float(minima[1]))})
+                             "x": round(float(minima[0])), "y": round(float(minima[1])),
+                             "grid_rows": grid_rows(pat)})
     return out
 
 

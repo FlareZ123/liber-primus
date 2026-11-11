@@ -12,7 +12,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-from red_marker_shapes import clusters, scan
+from red_marker_shapes import clusters, grid_pattern, scan
 
 ROOT = Path(__file__).resolve().parents[1]
 IMAGES = ROOT / "resources" / "liber-primus"
@@ -39,10 +39,7 @@ def black_large_marks(images):
             low, high = group.min(axis=0), group.max(axis=0)
             if high[0] - low[0] > 100 or high[1] - low[1] > 190:
                 continue
-            pattern = tuple(sorted(
-                (round((x - low[0]) / 15), round((y - low[1]) / 17))
-                for x, y in group
-            ))
+            pattern = grid_pattern(group)
             found.append({
                 "page": archive - 17, "archive_jpg": archive,
                 "x": round(float(low[0])), "y": round(float(low[1])),

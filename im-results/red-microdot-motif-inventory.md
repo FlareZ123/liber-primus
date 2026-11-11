@@ -8,14 +8,16 @@ The original LP2 images are archive JPEGs \`17.jpg\`–\`74.jpg\` (physical page
 
 | Grid template | Red instances | Black instances | Total |
 | --- | ---: | ---: | ---: |
-| 13 dots: \` .#. / ### / ### / ### / ### \` | 30 | **1** | **31** |
-| 10 dots: \` ### / .#. / ### / ### \` | 4 | 0 | 4 |
-| 23 dots: \` .###. / ##### / ##### / ##### / ##### \` | 1 | 0 | 1 |
+| 13 dots: \` .#. / #.# / .#. / #.# / .#. / #.# / .#. / #.# / .#. \` | 30 | **1** | **31** |
+| 10 dots: \` .#. / #.# / .#. / #.# / .#. / #.# / .#. \` | 4 | 0 | 4 |
+| 23 dots: \` .###. / #...# / .###. / #...# / .###. / #...# / .###. / #...# / .###. \` | 1 | 0 | 1 |
 | **Total** | **35** | **1** | **36** |
 
-**New exception:** original archive \`24.jpg\`, physical LP2 **page 7**, contains a black 13-dot shape at image-local top-left approximately **(1692, 2233)**. Its normalized 15×17-pixel component occupancy is identical to the red 13-dot shape. It appears at the end of the black-rune passage preceding a red heading near the bottom of the page. The red-only scanner omitted it because its ink is black, not because any dots were missing. The other two red 13-dot shapes on the same page occur on the following text line.
+**Geometry correction (11 November 2026):** the former 15×17 coordinate rounding merged adjacent alternating rows. Correct 4-pixel row/column clustering gives 13-dot 3×9, 10-dot 3×7 and 23-dot 5×9 templates. Event counts and locations are unchanged; the proposed LP1 11-dot to LP2 13-dot two-corner extension is withdrawn.
 
-The red classifier uses RGB dominance (R>85, R>1.4G, R>1.4B, G<130), near-square connected components of width and height 7–12 pixels and area 55–120, then centroid grouping within 31 pixels. The black scan uses the maximum RGB channel below 105, 6–12-pixel components of area 40–130, and the same geometry with a cutoff of at least ten dots, excluding ordinary four-square black punctuation. Both reconstruct the original 13-dot grid identically. The normalization concerns dot *occupancy*, not pixel-exact equivalence after JPEG compression.
+**New exception:** original archive \`24.jpg\`, physical LP2 **page 7**, contains a black 13-dot shape at image-local top-left approximately **(1692, 2233)**. Its corrected 3×9 row/column occupancy is identical to the red 13-dot shape. It appears at the end of the black-rune passage preceding a red heading near the bottom of the page. The red-only scanner omitted it because its ink is black, not because any dots were missing. The other two red 13-dot shapes on the same page occur on the following text line.
+
+The red classifier uses RGB dominance (R>85, R>1.4G, R>1.4B, G<130), near-square connected components of width and height 7–12 pixels and area 55–120, then proximity grouping within 31 pixels followed by independent row/column centroid clustering at 4 pixels. The black scan uses the maximum RGB channel below 105, 6–12-pixel components of area 40–130, and the same 4-pixel row/column clustering with a cutoff of at least ten dots, excluding ordinary four-square black punctuation. Both reconstruct the original 13-dot grid identically. The grid records dot *occupancy*, not pixel-exact equivalence after JPEG compression.
 
 ## Independent annotated reading and full rune-colour input
 
@@ -55,7 +57,7 @@ The result passed [opt-in Python-image CI 42961016044](https://github.com/FlareZ
 
 ## Cryptanalytic interpretation and limit
 
-The glyph designs act as **fixed punctuation classes**, including the black 13-dot exception. Their fixed occupancy contradicts the idea that each 13-dot glyph carries an independently varying 13-bit bitmap payload. Their *position, class, and colour* may still carry a bounded side channel. The exceptional black mark occurs at a strong visual transition, but no repeatable rule yet maps its colour or any heading to a cipher key.
+The glyph designs act as **fixed punctuation classes**, including the black 13-dot exception. Their fixed row-count occupancy contradicts the idea that each 13-dot glyph carries an independently varying 13-bit bitmap payload. The corrected 13-dot stencil has nine alternating single/double-dot rows; the 10-dot stencil has seven. The solved p56 10-dot control reads 1010101₂=85, matching the 85-rune page and terminal 13-dot offset; applying the frozen single-row=1/double-row=0 rule to p53 and held-out p56 13-dot marks gives 101010101₂=341 and complement 170, whose residues modulo 29 are {22,25}, the fixed points of candidate p32 M7. This is a source-calibrated structural selector, not a cipher inverse or proof of M7's intended role; see the cross-release report and binary-control SFT. Their *position, class, and colour* may still carry a bounded side channel. The exceptional black mark occurs at a strong visual transition, but no repeatable rule yet maps its colour or any heading to a cipher key.
 
 The image finding leaves the general 55 encrypted rune-bearing pages unsolved. It is useful primarily because it prevents dropping a genuine document boundary when translating original images into a cipher segmentation.
 
