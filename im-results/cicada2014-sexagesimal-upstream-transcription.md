@@ -1,6 +1,6 @@
 # The actual upstream source of the 2014 `sexagesimal.bin`: three transcription files, not a creator generator
 
-**Finding, 11 November 2026.** The 256-byte May 2014 `sexagesimal.bin` is a byte-for-byte conversion of three earlier, manually transcribed page-text files. The upstream input is **256 explicitly copied two-character numerals**, not a demonstrated Cicada-specified PRNG or compact generator. The original author-published object is the printed 32×8 table on LP2 pp49–51. Its creator-side construction source and intended cryptographic operation remain unknown. No new LP2 plaintext or authentic key follows.
+**Finding, 11 November 2026.** The 256-byte May 2014 `sexagesimal.bin` is a byte-for-byte **participant base-60 conversion** of three earlier, manually transcribed page-text files. The upstream input is **256 explicitly copied two-character numerals**, not a demonstrated Cicada-specified PRNG or compact generator. The original author-published object is the printed 32×8 table on LP2 pp49–51. Its creator-side construction source and intended cryptographic operation remain unknown. No new LP2 plaintext or authentic key follows.
 
 ## 1. Pinned 2014 participant conversion chain
 
@@ -63,7 +63,22 @@ The 2016 signed message—“Liber Primus is the way. Its words are the map, the
 
 **Do not conflate this printed 32×8 table with the separate 2014 Onion2 256-byte growing string.** They are different artifacts that happen to have the same length. The latter's server-output and timing-source audit is separately recorded in [workplace/onion2-original-server-source-gate.md](../workplace/onion2-original-server-source-gate.md) and Issue #208; it is not evidence for this table's generator.
 
-## 5. Cryptanalytic consequence and decision
+## 5. Source-level radix gate: base 60 versus f-omitting base 59
+
+**Issue #310 decision (11 November 2026): the original numeric radix is underdetermined.** The printed pp49–51 JPEGs (archive scans 66–68) have 256 two-character tokens between rune passages. The entire source-transcribed second-character alphabet contains **59 distinct glyphs**, all members of `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx` except lowercase **`f`**. The source prints no numeric digit legend, example with a known decimal result, or instruction for treating `f` as a skipped digit. The neighboring LP2 cuneiform headers visibly use sexagesimal to express 1033 and 3301; this supports base 60 as a plausible convention but does not specify how this separate Latin two-character table should be read.
+
+Two fixed, reproducible digit conventions cover **all 256** printed tokens as values 0–255:
+
+- Conventional **base 60**: alphabet `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx`, with `f=41` and `x=59`; observed maximum **255**, and four byte values **41,101,161,221** are absent because `f` does not occur in the units column.
+- **Base 59**: alphabet `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdeghijklmnopqrstuvwx`, explicitly excluding `f`; `x=58`; observed maximum **251**, and byte values **252–255** are absent. This skip-`f` alphabet is an *analyst construction*, not an independently evidenced author instruction.
+
+Each convention produces **161 distinct byte values**. Both source-printed `3D` tokens at zero-based whole-table offsets **83** and **127** evaluate to **193** under base 60 and **190** under base 59. In either convention, all 256 values are valid unsigned bytes. The nonappearance of `f` and the absence of four high-end values have exactly the same likelihood under an unconstrained 256-element uniform-byte source model: both alphabets assign probability `(1/256)^256` to the observed ordered token sequence. The event of avoiding four *specified* byte values has probability `(252/256)^256 ≈ 0.01774628` under either model. This is a *conditional non-identification result*, not evidence that the table actually was sampled independently and uniformly.
+
+The May 2014 `sexagesimal.bin` is a **participant-produced** base-60 conversion of the same table; its apparent 256-byte range and exact matches cannot act as independent known-value controls for the creator's radix. The authentic 2016 map/number instruction states no positional radix. The earlier [community comparison of base-59/base-60 alphabets](https://uncovering-cicada.fandom.com/wiki/Liber_Primus_pp49-51_data_interpreted_as_base_59,_60,_62_and_64.) likewise proposes both readings; that is historical solver analysis, not creator authentication. Downstream p55 interval, word-map, or factor coincidences depend on an assumed decoder and are not source-selected numeric anchors.
+
+**Decision:** retain base 60 as a conventional, historically used *working interpretation* and base 59 as a live alternative; qualify every specific `3D=193` / 43-cell p50 transfer as conditional. Neither token geometry, the known 2014 participant binary, nor source-adjacent cuneiform fixes the creator's table radix. A single creator-controlled legend, authenticated decoded cell, or independently source-selected transform with a frozen numeric prediction would change this decision. The full 256-cell test and exact checks are implemented in [`sims/lp2_p50_radix_identifiability_sft.cjs`](../sims/lp2_p50_radix_identifiability_sft.cjs).
+
+## 6. Cryptanalytic consequence and decision
 
 The historical binary is **fully explained as a derivative of an earlier solver-produced transcription**. The independently published original artifact is the 32×8 table printed on LP2 pp49–51. No creator-authenticated pre-release copy of the 256 values, source generator, seed/state, spreadsheet/build file, server-side table code, or table-specific signed instruction was found in the examined public archives.
 
@@ -71,4 +86,4 @@ The exact missing dependency is a creator-controlled artifact that existed befor
 
 No change to `results/README.md` is warranted: this is a source-boundary negative, not an LP2 plaintext, key, or decipherment. Do not expand generic PRNG/seed searches on `sexagesimal.bin`. Reopen only on a dated creator-side source/backup, an independently authenticated pre-release table, or a signed instruction that fixes a reproducible operation and predicts original LP2 data.
 
-The data contract remains in [`resources/cicada2014-sexagesimal-source.json`](../resources/cicada2014-sexagesimal-source.json), the original transcription copy in [`resources/external/cicada2014-stage11-original-transcriptions.json`](../resources/external/cicada2014-stage11-original-transcriptions.json), and the [manuscript glyph audit](lp2-grid-11-original-glyph-adjudication.md).
+The conventional **base-60 numerical interpretation remains conditional**, with a distinct all-byte-valid f-omitting base-59 alternative (section 5). The data contract remains in [`resources/cicada2014-sexagesimal-source.json`](../resources/cicada2014-sexagesimal-source.json), the original transcription copy in [`resources/external/cicada2014-stage11-original-transcriptions.json`](../resources/external/cicada2014-stage11-original-transcriptions.json), and the [manuscript glyph audit](lp2-grid-11-original-glyph-adjudication.md).
