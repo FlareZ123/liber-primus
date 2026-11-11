@@ -36,15 +36,15 @@ jobs:
               'p43_leave_one_out': c['p43_leave_one_out'],
               'solved_p56_p57_body': {k:v for k,v in c['solved_p56_p57_body'].items() if k != 'lines'},
               'hog_svm': {k:v for k,v in (c['hog_svm'] or {}).items() if not isinstance(v, dict)},
-              'red_template_model': {k:v for k,v in c['red_template_model'].items() if k not in ('disagreements', 'control_records')},
+              'red_template_model': {k:v for k,v in c['red_template_model'].items() if k not in ('disagreements', 'control_records')}, 
               'ambiguous_line_mappings': r['ambiguous_line_mappings'],
               'mismatch_count': len(r['mismatches']),
               'unresolved_records': len(r['unresolved']),
           }
           print(json.dumps(summary, ensure_ascii=False, indent=2))
           with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as f:
-              f.write('# LP2 original-image rune assignment audit\\n\\n')
-              f.write('\\n'.join(f'{k}: {json.dumps(v, ensure_ascii=False)}' for k,v in summary.items()))
+              f.write('# LP2 original-image rune assignment audit\n\n')
+              f.write('\n'.join(f'{k}: {json.dumps(v, ensure_ascii=False)}' for k,v in summary.items()))
           PY
       - name: Commit reproducible JSON evidence
         if: success()
