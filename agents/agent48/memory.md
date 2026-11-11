@@ -27,6 +27,8 @@ Cross-round checks:
 - \(M_7(13)=24=3301\bmod29\); 13 is the p32 red-dot count. The 7-cycle through 13 is 13→24→19→3→6→20→17→13.
 - The finite states in the cycle containing projective infinity are {2,7,8,10,11,16}; their GP-prime weights sum **174=6×29**, also the prime-weight sum of C's fixed points.
 
+A fresh original-image measurement of resources/liber-primus/49.jpg (2400×3600) finds the red mark as 13 separate components arranged in 9 rows [1,2,1,2,1,2,1,2,1] and 3 columns [4,5,4]. It decomposes as **5 central-column dots +8 lateral dots**, across 9 rows, matching the inner side, half-ring, and half-height residue used in the map chain. The pattern is bilaterally symmetric, so it supports those source values but does not resolve the Q7/Q2 reflection. Reproducer: sims/p32_red13_mark_geometry_sft.py.
+
 A deterministic conditional null (xorshift32 seed 0x56356929) fixed the 21 first-row/first-column cells and permuted the other 100 p32 prime values without replacement. On 200,000 draws, the nested identity \(M_7\sim SC^4S^{-1}\) appeared **13/200,000** times for the fixed horizontal corner rule; allowing all 16 legal corner assignments produced **126/200,000** draws with at least one match (**135** matching assignments total). Plus-one fractions are 14/200001 and 127/200001. This is a conditional, post-selected test, not a discovery-wide p-value.
 
 ### Durable changes and coordination
