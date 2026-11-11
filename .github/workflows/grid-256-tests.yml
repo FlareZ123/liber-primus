@@ -33,6 +33,7 @@ on:
           - signed2016-derivative
           - terminal-circumference
           - terminal-known-tail
+          - terminal-shed-43
           - quartic-annihilator
           - byte-pointer
           - collision-quote
@@ -110,6 +111,10 @@ jobs:
           node sims/grid_two_channel_serial_order_sft.cjs
           node sims/grid_boolean_mobius_gp28_inverse_sft.cjs
           node sims/grid_missing_f_prime179_sft.cjs
+      - name: Cross-artifact p55/p57 shed-circumferences 43-rune source gate
+        if: ${{ inputs.probe == 'terminal-shed-43' }}
+        run: node sims/lp2_p55_shed_circumference_43_source_gate.cjs
+
       - name: All-secret stationary byte/rune mapping on independently solved terminal pages
         if: ${{ inputs.probe == 'terminal-known-tail' }}
         run: node sims/terminal_grid_known_tail_lookup_gate.cjs
