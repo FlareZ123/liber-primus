@@ -269,5 +269,5 @@ console.log(JSON.stringify({
   planted: {length:12956, stateTables:perms.size, exactRecovery:true,
     pageEntropyPlaintext:conditionalEntropy(histogramByState(planted,"page")),
     pageEntropyEncrypted:conditionalEntropy(histogramByState(encrypted,"page"))},
-  conclusion: "All secret bijections in this exact word-shape/page-or-section family preserve the observed group histograms; original conditional entropy is outside all matched-length native English controls. No plaintext recovered."
+  conclusion: "All secret bijections in this exact word-shape/page-or-section family preserve the observed group histograms; original conditional entropy is outside all matched-length native English and GP Latin controls. No plaintext recovered."
 }, null, 2));
