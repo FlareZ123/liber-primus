@@ -11,7 +11,7 @@ I tested two source-motivated ways to turn the visible rune stream into a non-GP
 1. variable-width base-29 integer conversion of the 13-dot-delimited fragments;
 2. a fully reversible five-bit/Base32 completion of the 32×8 state/class proposal.
 
-Both produce random-like byte streams rather than plaintext. This retires these exact constructions; it does **not** prove that every possible non-GP register is impossible.
+Both produce random-like byte streams rather than plaintext. This retires these exact constructions; it does **not** prove that every possible non-GP register is impossible. A separate source-motivated five-state GP29 substitution gate also fails: every tested book/page/13-dot phase and the five actual red-clause groups have within-state collision rates below all matched native-GP controls. This excludes stationary secret GP29 alphabets, not evolving or non-bijective repeat filters.
 
 ## Original-input facts
 
