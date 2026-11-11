@@ -27,3 +27,14 @@ jobs:
           node-version: '22'
       - name: Test fold-selected p27 anchored reverse 76-rune window on p55
         run: node sims/p55_p27_bookend_reverse76_gate.cjs
+
+  p27-13col-translation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test fixed p27-to-p55 13-column translation key
+        run: node sims/p55_p27_13col_translation_gate.cjs
