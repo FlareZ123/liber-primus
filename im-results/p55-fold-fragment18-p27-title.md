@@ -44,6 +44,23 @@ The natural orientation alternatives do not produce comparable structure:
 
 The zero-based value-18 alternative is likewise diffuse: it selects the 1,414-rune interval from p27 local19 through p32 local120. Thus ordinary printed order plus ordinary one-based fragment numbering is independently discriminated by source structure. The 32-fragment source model has a **second genuine empty interval at one-based fragment 12**, created by distinct p14-terminal and p15-initial 13-dot marks at the same global rune offset; this does not affect the fragment18 selection but must be retained in any 32-row mapping.
 
+## Prime-totient address closure and the 18 by 13 page
+
+The fragment selection has a further source-exact self-check. Physical p27 contains **234 runes = 18 × 13**. Across all 32 thirteen-dot-delimited fragments, fragment 18 is the **only** fragment whose start page contains exactly `13 × fragment_number` runes. Thus the same source quantities that select the fragment also specify an exact 18 by 13 rectangle for its page.
+
+The unique repeated `DJU-BEI` pair sharpens this relation. The selected fragment begins with the enlarged **M**, GP index 19 with GP prime **71**. Immediately after the fragment's 13-dot boundary, the first body rune is **N**, GP index 9 with GP prime **29**. The two copies of `DJU-BEI` begin at:
+
+- p27 local offset **28 = φ(29)**, the totient of N's GP prime;
+- p55 local offset **70 = φ(71)**, the totient of M's GP prime.
+
+Their offset difference is 42, and **42 mod 29 = 13**, returning the printed punctuation count. In the source-selected 13-column rectangle the two totient offsets are also diagonal coordinates: `28 = 2×13+2` and `70 = 5×13+5`. These are exact arithmetic/source relations. Their authorial intent remains a hypothesis.
+
+Two direct decipherment consequences were tested without phase fitting. First, the authentic solved-p56 prime-totient semantics was transferred with the source-fixed prime starts N=9 for p27 and M=19 for p55. The authentic rule treats plaintext F as literal ciphertext F without consuming the prime clock. Under that exact rule, p55 has **zero valid hidden-F paths**. P27 has only **two** valid paths, with IoC **0.03396794** and **0.03389457**, both ciphertext-like. This decisively rejects direct reuse of the solved-p56 cipher under these M/N starts.
+
+Second, the exact 18 by 13 p27 rectangle was subjected to the literal reversible fold transform `(a,b) -> (a+b,a-b)` over F29 across mirrored rows, mirrored columns, or both, with both natural difference orientations. The best IoC among these finite variants is **0.03492168**. Pure fold permutation is already unable to improve the page's low IoC; this stronger reversible pair transform also fails to expose native-GP plaintext.
+
+These failures leave the prime-totient addresses valuable as a **navigation and synchronization clue**, while closing the two most direct cipher transfers. Reproducer: [fold/fragment SFT](../sims/p55_fold_fragment18_p27_title_sft.cjs).
+
 ## Separate p27/p55 corroboration
 
 This selector lands on a page already linked to p55 by a distinct original-cipher fact. The six GP runes
