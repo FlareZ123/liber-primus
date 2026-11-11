@@ -1,0 +1,14 @@
+{
+  "schema": "cicada2012-midi-source-pointer-v1",
+  "artifact": "Decrypted MIDI file from the 2012/009 MIDI puzzle archive",
+  "repository": "neuroretransmit/cicada",
+  "commit": "b13600373d3400d75ec4208198019f3d92a304dd",
+  "path": "2012/009-midi-puzzle/song.mid",
+  "git_blob_sha1": "11924e0e195208c2eea757655035e149fb8a190f",
+  "size_bytes": 10889,
+  "raw_url": "https://raw.githubusercontent.com/neuroretransmit/cicada/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle/song.mid",
+  "readme_url": "https://github.com/neuroretransmit/cicada/blob/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle/README.md",
+  "decoder_url": "https://github.com/neuroretransmit/cicada/blob/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle/decode.py",
+  "authentication": "Secondary participant archive copy. The archive's PGP signature was not independently verified in this run; do not describe this file as a cryptographically authenticated original.",
+  "notes": "The README documents two GPG decryptions from midi.asc to song.mid. The timing-gate parser verifies the exact Git blob SHA-1 before parsing."
+}

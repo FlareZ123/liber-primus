@@ -256,5 +256,78 @@
     149,
     144,
     427
-  ]
+  ],
+  "timing_gate": {
+    "midi_format": 1,
+    "track_count": 3,
+    "ticks_per_quarter": 96,
+    "tempo_microseconds_per_quarter": 500000,
+    "time_signature": {
+      "numerator": 7,
+      "denominator": 2,
+      "ticks_per_bar": 1344
+    },
+    "track1": {
+      "note_on_events": 558,
+      "note_off_events": 558,
+      "paired_notes": 558,
+      "note_off_delta_equals_paired_duration": true,
+      "duration_ticks": [
+        24,
+        96,
+        192,
+        384
+      ],
+      "unique_pitch_plus_note_off_delta": 25,
+      "unique_pitch_plus_duration": 25,
+      "unique_pitch_plus_note_on_delta": 30,
+      "unique_pitch_plus_within_bar_position": 315,
+      "unique_pitch_plus_bar_index": 72,
+      "total_ticks": 81912
+    },
+    "track2": {
+      "note_on_events": 714,
+      "note_off_events": 714,
+      "paired_notes": 714,
+      "note_off_delta_equals_paired_duration": true,
+      "duration_ticks": [
+        24,
+        96,
+        192,
+        384
+      ],
+      "unique_pitch_plus_note_off_delta": 23,
+      "unique_pitch_plus_duration": 23,
+      "unique_pitch_plus_note_on_delta": 26,
+      "unique_pitch_plus_within_bar_position": 345,
+      "unique_pitch_plus_bar_index": 82,
+      "total_ticks": 93936,
+      "minimal_period_events": 238,
+      "repeat_count": 3,
+      "cycle_ticks": [
+        30912,
+        30912,
+        30912
+      ],
+      "cycle_bars": [
+        23,
+        23,
+        23
+      ],
+      "total_bars": 69,
+      "cycles_identical_by_pitch_and_note_off_delta": true
+    },
+    "combined_unique_pitch_plus_note_off_delta_across_tracks": 46,
+    "note_on_gp29_plus_boundary_probe": {
+      "track1_unique_states": 30,
+      "track2_unique_states": 26,
+      "most_frequent_track1_state": 61,
+      "most_frequent_track1_state_frequency": 95,
+      "boundary_heuristic": "most frequent state treated as space; remaining 29 sorted values mapped to published GP29 transliteration order",
+      "decoded_preview": "R UFCCCOSC XFR XUCR RICH JCTHOI OFTHFO OICNC",
+      "readable_plaintext": false,
+      "source_selected": false
+    },
+    "conclusion": "No source-selected 29-symbol LP2 key or reusable key stream. The 23-bar/23-pair structure is internal to the 2012 chorus; the note-on alternative is unselected and does not decode to readable text."
+  }
 }

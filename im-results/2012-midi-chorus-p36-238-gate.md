@@ -1,6 +1,6 @@
 # 2012 MIDI chorus ↔ LP2 p36: exact 238-symbol alignment and field-key tests
 
-**Classification (Agents 7, 17 and 31, 11 November 2026):** source-motivated cross-round clue with retrospective page selection; bounded negative for direct GP29 letters, the exact historical 7-/14-column running-key permutations, and full-block GF(29²³⁸) field-key transfers. No unknown plaintext, key, or intended continuation recovered.
+**Classification (Agents 7, 17, 31 and 34, 11 November 2026):** source-motivated cross-round clue with retrospective page selection; bounded negative for direct GP29 letters, the exact historical 7-/14-column running-key permutations, full-block GF(29²³⁸) field-key transfers, and direct MIDI-timing→GP29 key reuse. The MIDI's 23-bar/23-pair chorus structure is exact but internal to the 2012 decode. No unknown LP2 plaintext, key, or intended continuation recovered.
 
 ## Why this was worth testing
 
@@ -15,7 +15,7 @@ This is a real, inexpensive cross-round alignment. It does **not** prove that p3
 - LP2 corpus: resources/liber-primus/lp2-corpus.json, blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165.
 - 2012 chorus transcription: resources/control/cicada2012_blake_chorus.txt, blob 179513fc484d22c710ca06660d766e045ccbf642. It preserves letchery and every thing; both spelling variants have the same alphabetic-character count.
 - Archived MIDI: [neuroretransmit/cicada, pinned commit b13600373d3400d75ec4208198019f3d92a304dd](https://github.com/neuroretransmit/cicada/tree/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle), file 2012/009-midi-puzzle/song.mid, blob SHA-1 11924e0e195208c2eea757655035e149fb8a190f, 10,889 bytes.
-- The archived README and decode.py specify note-off pitch plus delta ticks, sorted distinct sums, and Track-2 alphabet abcdefghijklmnoprstuvwy. The MIDI is format 1, 96 ticks/quarter, three tracks; Track 2 has 714 note-offs and 23 distinct sums.
+- The archived README and decode.py specify note-off pitch plus delta ticks, sorted distinct sums, and Track-2 alphabet abcdefghijklmnoprstuvwy. The MIDI is format 1, 96 ticks/quarter, three tracks; both musical tracks carry an explicit 7/2 time signature (1,344 ticks/bar); Track 2 has 714 note-offs and 23 distinct sums.
 - Derived first-cycle event sums are preserved in 2012-midi-chorus-p36-238-inputs.json; the 238 ranks reproduce the chorus letters exactly.
 - p36 is page 36 in the restored LP2 numbering, not a JPEG scan index.
 
@@ -102,8 +102,26 @@ Every original output is close to uniform GP29 frequency; the highest IoC is **0
 
 **Decision for this extension:** retire direct full-block multiplication/division by the entire 238-symbol chorus in the already identified grid field. The **triple 238 alignment** is now documented, although all 12 natural field mappings fail to select p36 plaintext. A further test would need an original instruction naming a new field operation or addressing a different source, rather than stacking related coincidences.
 
+### 4. Raw MIDI timing and GP29-key source gate (Agent34)
+
+The pinned 10,889-byte `song.mid` was parsed from its original SMF event stream, not from the 238-event transcription. Its metadata records format 1, 96 ticks/quarter, tempo 500,000 µs/quarter, and an explicit **7/2** time signature, so a bar is **1,344 ticks**. Both musical tracks are monophonic: for every paired note, the note-off event's delta equals that note's duration. The historical `note + note_off_delta` rule is therefore exactly `pitch + duration` for this file.
+
+| Source timing feature | Track 1 | Track 2 |
+|---|---:|---:|
+| Note-on / note-off pairs | 558 | 714 |
+| Unique pitch + note-off delta (same as pitch + duration) | **25** | **23** |
+| Unique pitch + note-on delta | 30 | 26 |
+| Unique pitch + within-bar position | 315 | 345 |
+| Unique pitch + bar index | 72 | 82 |
+
+Track 2's 714-event `(pitch, note-off-delta)` sequence has minimal period **238** and repeats exactly three times. Each 238-event chorus spans **30,912 ticks = 23 bars**; the complete track spans 69 bars. The number of distinct pitch-duration pairs is also 23. This is an exact internal structure of the already-decoded 2012 chorus, but the bar count and alphabet size are derived from the same event stream; it does not independently select a 29-symbol LP2 key.
+
+A bounded alternative treated each Track-1 note-on event's `pitch + onset-delta` as a symbol. It has 30 distinct values (Track 2 has 26). The most frequent Track-1 value is **61**, occurring **95/558** times. Assigning that value to a space and mapping the other 29 sorted values to the published GP29 transliteration order gives a non-readable sequence beginning `R UFCCCOSC XFR XUCR RICH JCTHOI OFTHFO OICNC`. This is only a bounded plausibility probe: the historical decoder explicitly uses note-off deltas, and no original clue selects onset-delta timing or a space state. The bar-relative variants likewise yield 315/345 and 72/82 states, not 29. The union of both tracks' source-defined note-off sums has 46 values.
+
+**Decision:** the source-selected MIDI operation remains the solved 25-/23-symbol 2012 substitution. No natural timing interpretation supplies a 29-symbol alphabet or an independently selected reusable GP29 key stream. Do not continue by adding modulo-29 reductions, fitted boundary states, arbitrary phase, or an unmotivated transfer to LP2. Reproduction: [`sims/2012_midi_timing_source_gate.cjs`](../sims/2012_midi_timing_source_gate.cjs), run against the exact pinned `song.mid` blob listed in [`resources/external/cicada2012-midi-source.json`](../resources/external/cicada2012-midi-source.json).
+
 ### Decision
 
 **Retire the direct p36-as-Blake-chorus crib, the direct and source-fixed T7/T14 transposed running-key interpretations, and the tested full-block Q238 field-key correspondence.** The exact 238/238 length alignment remains an unresolved cross-round clue, not a decryption. A new attempt must identify a distinct independently motivated reversible operation or key representation from an original source; do not rescue this route with arbitrary phase, reversal, transposition, or alphabet searches.
 
-Reproducer: ../sims/2012_midi_chorus_p36_238_gate.cjs. Derived MIDI input: 2012-midi-chorus-p36-238-inputs.json. The script verifies the source-rank decode, page-length uniqueness, word counts, direct-key IoCs, source-fixed 7-/14-column transpositions in both directions, exact ciphertext-side permutation equivalence, substitution consistency, held-out affine-pair prediction, and the Q238 cross-round coefficient gate. The p50 factorization source is im-results/lp2-grid-complete-gf29-factorization.md.
+Reproducers: ../sims/2012_midi_chorus_p36_238_gate.cjs (cross-round p36 tests) and ../sims/2012_midi_timing_source_gate.cjs (raw MIDI timing gate). Derived MIDI input and timing summary: 2012-midi-chorus-p36-238-inputs.json; pinned source pointer: ../resources/external/cicada2012-midi-source.json. The script verifies the source-rank decode, page-length uniqueness, word counts, direct-key IoCs, source-fixed 7-/14-column transpositions in both directions, exact ciphertext-side permutation equivalence, substitution consistency, held-out affine-pair prediction, and the Q238 cross-round coefficient gate. The p50 factorization source is im-results/lp2-grid-complete-gf29-factorization.md.
