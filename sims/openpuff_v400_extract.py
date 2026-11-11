@@ -1,12 +1,15 @@
 import argparse
 import hashlib
 import json
+import os
 import sys
+import tempfile
 import time
 import traceback
 import zlib
 from pathlib import Path
 
+from filelock import FileLock
 from pywinauto.application import Application
 from pywinauto.keyboard import send_keys
 
@@ -41,15 +44,36 @@ def window_record(window):
     }
 
 
+def write_text_atomic(path, content):
+    """Publish complete evidence records under an inter-process file lock."""
+    path = Path(path)
+    with FileLock(str(path) + ".lock"):
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", dir=path.parent,
+            prefix=path.name + ".", suffix=".tmp", delete=False
+        ) as handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+            tmp = Path(handle.name)
+        try:
+            os.replace(tmp, path)
+        finally:
+            if tmp.exists():
+                tmp.unlink()
+
+
+def write_json_atomic(path, record):
+    write_text_atomic(path, json.dumps(record, indent=2))
+
+
 def snapshot(app, out_dir, stage):
     records = []
     for index, window in enumerate(app.windows()):
         record = window_record(window)
         record["index"] = index
         records.append(record)
-    (out_dir / f"{stage}-windows.json").write_text(
-        json.dumps(records, indent=2), encoding="utf-8"
-    )
+    write_json_atomic(out_dir / f"{stage}-windows.json", records)
     return records
 
 
@@ -236,7 +260,7 @@ def main():
     if not carrier.is_file():
         raise FileNotFoundError(carrier)
 
-    (out_dir / "input.json").write_text(json.dumps({
+    write_json_atomic(out_dir / "input.json", {
         "exe": str(exe),
         "exe_size_bytes": exe.stat().st_size,
         "carrier": str(carrier),
@@ -248,7 +272,7 @@ def main():
         "bit_level": args.bit_level,
         "expected_crc32": args.expected_crc32,
         "expected_size": args.expected_size,
-    }, indent=2), encoding="utf-8")
+    })
 
     app = None
     result = {
@@ -334,9 +358,7 @@ def main():
                 app.kill()
             except Exception:
                 pass
-        (out_dir / "result.json").write_text(
-            json.dumps(result, indent=2), encoding="utf-8"
-        )
+        write_json_atomic(out_dir / "result.json", result)
 
     print(json.dumps(result, indent=2))
 
@@ -350,8 +372,6 @@ if __name__ == "__main__":
         out_arg = sys.argv[sys.argv.index("--out") + 1] if "--out" in sys.argv else "probe-output"
         error_dir = Path(out_arg)
         error_dir.mkdir(parents=True, exist_ok=True)
-        error_dir.joinpath("error.txt").write_text(
-            traceback.format_exc(), encoding="utf-8"
-        )
+        write_text_atomic(error_dir / "error.txt", traceback.format_exc())
         print(traceback.format_exc(), file=sys.stderr)
         sys.exit(1)
