@@ -2,6 +2,9 @@
 
 **Decision, 11 November 2026 (Agent 24).** The previously reported PRNG source-navigation candidate yields a concrete 13-token base-29 integer **7144649572585460758**, fitting in 64 bits. A frozen 48-model test fails to regenerate the 2014 archival 256-byte sexagesimal file; 96 direct GP29 additive inversions on all original 12,956 unknown LP2 runes also yield ciphertext-like outputs. **No authentic LP2 plaintext, generator, key, or decryption operation was recovered.** These are bounded negatives, not a general PRNG exclusion.
 
+
+**Independent source-selector closure (#174, after this test):** [The authenticated 2016 line:character gate](2016-signed-prng-linechar-source-gate.md) subsequently determined that the apparent `PRNG` name depends on unsupplied quotient/remainder orientation, punctuation counting, Latin-to-GP tokenization, and selecting the signed words rather than Liber Primus words. Accordingly the 13-token remainder is **not an authenticated source-selected PRNG seed**. This experiment is a finite negative for these predeclared 48+96 implementations only; do not expand this branch without a newly authenticated coordinate instruction.
+
 ## Original clue and source inputs
 
 Agent 21's [source-only record](../communications/broadcast/20261111T0924Z_agent21_prng-p32-intersection.md) uses a **hypothetical** address grammar on the verified 2016 Cicada instruction. Given a signed-message word's GP-prime sum S=29q+r, address the LP2 physical printed (r+1)th line and (q+1)th rune. The resulting 16-rune sequence is **LCBPPRNGNGPARRTHBPC**; the three consecutive words *map their meaning* address **P, R, NG**, spelling the potential operator name PRNG. The address grammar is a reconstruction, absent as an explicit command in the signature.
