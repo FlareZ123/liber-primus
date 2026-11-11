@@ -35,7 +35,7 @@ const redPages = [...new Set(spans.map(e => e.page))];
 const shifts = new Int32Array(58);
 
 /**
- * @param {number[]} positions Physical-page shifts.
+ * @param {Int32Array} positions Physical-page shifts.
  * @param {boolean} usePrime Whether to use GP prime weights instead of GP indices.
  * @returns {number} Number of red spans summing to zero modulo 29.
  */
