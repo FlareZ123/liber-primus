@@ -34,7 +34,7 @@ Under the rank map above:
 
 Indeed, (210=7\cdot29+7) and (228=7\cdot29+25). The two remainders are exactly the M7 eigenvalue-ratio pair, and both quotients equal its order, 7. The selected fragments also anchor the p32/p33 transition: fragment 19 contains p32; fragment 22 is the eight-rune p33 heading.
 
-This is a cross-artifact correspondence between the thirteen-dot segmentation, the p50 numeric table, and the p32 projectivity. It does **not** recover plaintext or specify how to transform ciphertext.
+An additional **post-hoc checksum** is exact for this selected pair: fragment lengths sum to (1414+8=1422); the p50 bytes differ by (228-210=18); the first rune of fragment 22 has Gematria Primus prime value 79; and (18\cdot79=1422). Enumerating all 870 ordered pairs of nonempty fragments, only four have an integer quotient ((L_i+L_j)/(B_j-B_i)) that occurs among the 30 first-rune prime values, and only pair (19\rightarrow22) has that quotient equal to the later fragment's actual first-rune prime. This was noticed after selecting the M7 fixed points; the equation is not independently prescribed by a source clue, so treat it as a possible checksum rather than proof of intended design.\n\nThis is a cross-artifact correspondence between the thirteen-dot segmentation, the p50 numeric table, and the p32 projectivity. It does **not** recover plaintext or specify how to transform ciphertext.
 
 ## Sensitivity and boundaries
 
@@ -67,8 +67,10 @@ for (const p of ink.pages) {
 }
 marks.sort((a, b) => a - b);
 const bounds = [0, ...marks, offset];
+const all = pages.flatMap(p => p.indices);
 const fragments = bounds.slice(0, -1).map((start, i) => ({
-  id: i + 1, start, end: bounds[i + 1], length: bounds[i + 1] - start
+  id: i + 1, start, end: bounds[i + 1], length: bounds[i + 1] - start,
+  firstRunePrime: corpus.prime[all[start]]
 }));
 const empty = fragments.filter(f => f.length === 0).map(f => f.id);
 const ranked = fragments.filter(f => f.length > 0).map(f => ({
@@ -97,6 +99,17 @@ const distinctByColumn = Array.from({ length: 8 }, (_, c) =>
   new Set(Array.from({ length: 32 }, (_, r) => grid.bytes[r * 8 + c])).size
 );
 
+const firstPrimeSet = new Set(ranked.map(f => f.firstRunePrime));
+const arithmeticCandidates = [];
+for (const a of ranked) for (const b of ranked) if (a.id !== b.id) {
+  const d = b.byte - a.byte, n = a.length + b.length;
+  if (d !== 0 && n % d === 0 && firstPrimeSet.has(n / d)) {
+    arithmeticCandidates.push({ a: a.id, b: b.id, quotient: n / d,
+      laterFirstPrime: b.firstRunePrime, exact: n / d === b.firstRunePrime });
+  }
+}
+const arithmeticMatches = arithmeticCandidates.filter(x => x.exact);
+
 let omittedPairs = 0;
 for (let a = 0; a < 32; a++) for (let b = a + 1; b < 32; b++) {
   const values = Array.from({ length: 32 }, (_, r) => grid.bytes[r * 8 + 1])
@@ -123,7 +136,8 @@ if (marks.length !== 31 || fragments.length !== 32 ||
 console.log(JSON.stringify({
   marks: marks.length, fragments: fragments.length, empty,
   distinctByColumn, fixed, selected, omittedPairs,
-  p33to39, fromHeading
+  p33to39, fromHeading, arithmeticCandidateCount: arithmeticCandidates.length,
+  arithmeticMatches
 }, null, 2));
 ```
 
