@@ -48,7 +48,7 @@ The GP-prime weights of all 95 p57 runes, including the heading, sum to **3968 =
 
 The 19 body-word GP-prime sums are `184,72,280,339,66,72,246,86,186,232,21,55,451,151,72,376,115,215,300`. Applying the archived NUMBER rule (factor composites; reverse primes and return `+` when the reversal is prime) yields **41 distinct-factor tokens**, one `+` (151), and one factor outside GP29 (113). The count 41 equals the 2014 7×7 square's 41 active NUMBER cells. This count equality is not a mechanism: the 40 mapped GP tokens do not match the 41-symbol centre-out key (best alignment 6/40), and using them as compass directions on the 7×7 active-cell map from its centre exits, hits a plus cell, or cycles after only 3–7 visited cells.
 
-## B ounded tests and result
+## Bounded tests and result
 
 1. **Direct 51-symbol correspondence:** the row-major p57 3×17 interior and p53 red span have only 1 same-position match out of 51, different rune histograms, and no consistent one-to-one monoalphabetic substitution.
 2. **Affine correspondence family:** Agent 9 tested identity / horizontal flip / vertical flip / 180° orientation and every nonzero (a\in GF(29)) in the complete separable family (C[r,c]=aP[r,c]+R[r]+K[c]\pmod{29}). No exact fit exists. Best is 24/51 (vertical flip, (a=8)); 19 cells are forced by fitting the first row and column, leaving only 5/32 additional matches.
