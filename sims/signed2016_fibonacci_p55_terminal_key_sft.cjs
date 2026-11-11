@@ -52,8 +52,13 @@ const keySegments = [...BLOCKS_FROM_END].reverse().map((pageNumber) => {
   assert.ok(page && page.indices.length >= pageNumber);
   return page.indices.slice(-pageNumber);
 });
-const key = keySegments.flat();
-assert.equal(key.length, 76);
+const keyOrdinal = keySegments.flat();
+assert.equal(keyOrdinal.length, 76);
+const keyPrime = keyOrdinal.map((index) => corpus.prime[index] % MOD);
+const keyProjections = [
+  {name: "gp-index", key: keyOrdinal},
+  {name: "gp-prime-mod29", key: keyPrime}
+];
 
 const gp = new Map(corpus.translit.map((token, index) => [token, index]));
 gp.set("ING", gp.get("NG"));
@@ -100,20 +105,21 @@ function translit(values) {
   return values.map((index) => corpus.translit[index]).join("");
 }
 
-/** @param {number[]} cipher @param {-1|1} sign @returns {number[]} */
-function decrypt(cipher, sign) {
+/** @param {number[]} cipher @param {number[]} key @param {-1|1} sign @returns {number[]} */
+function decrypt(cipher, key, sign) {
   return cipher.map((value, index) => mod(value + sign * key[index]));
 }
 
-/** @param {number[]} plain @param {-1|1} sign @returns {number[]} */
-function encrypt(plain, sign) {
+/** @param {number[]} plain @param {number[]} key @param {-1|1} sign @returns {number[]} */
+function encrypt(plain, key, sign) {
   return plain.map((value, index) => mod(value - sign * key[index]));
 }
 
-const candidates = [-1, 1].map((sign) => {
-  const plain = decrypt(p55.indices, sign);
-  return {sign, score: score(plain), transliteration: translit(plain), plain};
-}).sort((a, b) => b.score - a.score);
+const candidates = keyProjections.flatMap((projection) => [-1, 1].map((sign) => {
+  const plain = decrypt(p55.indices, projection.key, sign);
+  return {projection: projection.name, sign, score: score(plain),
+    transliteration: translit(plain), plain};
+})).sort((a, b) => b.score - a.score);
 
 const controls = [];
 for (let i = 0; i < 1000; i++) {
@@ -124,8 +130,10 @@ controls.sort((a, b) => a - b);
 
 const plantedPlain = english.slice(210000, 210076);
 assert.equal(plantedPlain.length, 76);
-for (const sign of [-1, 1]) {
-  assert.deepEqual(decrypt(encrypt(plantedPlain, sign), sign), plantedPlain);
+for (const projection of keyProjections) for (const sign of [-1, 1]) {
+  assert.deepEqual(
+    decrypt(encrypt(plantedPlain, projection.key, sign), projection.key, sign),
+    plantedPlain);
 }
 
 const result = {
@@ -139,8 +147,9 @@ const result = {
     blockLengthsFromMarkedEnd: BLOCKS_FROM_END,
     sourcePagesFromMarkedEnd: BLOCKS_FROM_END,
     keyForwardPageOrder: [...BLOCKS_FROM_END].reverse(),
-    keyRunes: key.length,
-    keyTransliteration: translit(key)
+    keyRunes: keyOrdinal.length,
+    keyTransliteration: translit(keyOrdinal),
+    projections: keyProjections.map((projection) => projection.name)
   },
   variants: candidates.map(({plain, ...candidate}) => candidate),
   reference: {
@@ -153,11 +162,11 @@ const result = {
   },
   positiveControl: {
     plantedRunes: plantedPlain.length,
-    bothSignsExact: true,
+    allProjectionSignPairsExact: true,
     recoveredScore: score(plantedPlain)
   },
   decision: candidates[0].score >= controls[0]
     ? "Candidate reaches native-GP reference range; inspect before interpreting."
-    : "Both end-anchored additive orientations score below every matched native-GP window; retire this terminal suffix-key reading."
+    : "All end-anchored additive projection/sign variants score below every matched native-GP window; retire this terminal suffix-key reading."
 };
 console.log(JSON.stringify(result, null, 2));
