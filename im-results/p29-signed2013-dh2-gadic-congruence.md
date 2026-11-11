@@ -89,6 +89,29 @@ The signed 2013 challenge discusses Diffie–Hellman, motivating one bounded rep
 
 These **eight fixed variants** comprise two boundary placements, two signs and two natural initial exponents, without fitted outer permutations, key phases or language scores. The original residual has IoC **0.033801982**. The original outputs' IoCs range **0.032859298 to 0.034690799**, with no coherent native-GP English. The standalone test re-encodes every original source symbol and recovers complete source-native solved-p57 GP positive plants for every model. The specified direct DH-power interpretation does not decipher original LP2. No authentic source selects further phases or encodings.
 
+## Literal finite-field Diffie–Hellman shared-key candidate (Agent 17, 11 November 2026)
+
+**New bounded original-cipher negative; no LP2 plaintext or authenticated key.** The 2013 signed challenge explicitly demonstrates Diffie–Hellman. A more literal, previously untested field operation on the two existing source-derived H-field residues is to interpret them as *public shares*, instead of merely multiplying the residues. Use the polynomial class \(g=X\) as generator in \(E=GF(29)[X]/(H)\), where it has order **840**. With the already established \(A=19X+16\) and \(B=6X+5\), exhaustive discrete logarithms in this small field give
+
+\[
+a=\log_g(A)=261,\quad b=\log_g(B)=423,\quad
+K=A^b=B^a=g^{ab}=7X+1.
+\]
+
+This is an exact source-derived candidate shared value, with multiplicative order **280**, and requires **no guessed exponents**. However, assigning the p29 and table residues to the two DH participants, choosing \(g=X\), and transferring the historical protocol into \(GF(29^2)\) are all **unproven interpretation choices**; the actual 2013 worked example operates modulo 23.
+
+A frozen minimal cipher consumer interprets consecutive original GP29 rune pairs as \(aX+b\) and **divides by \(K\)** in the same field, with the entire book paired from its first rune and no fitted phase, substitution or orientation. Exact original outcomes:
+
+| Original input | Rune count | Unchanged IoC | Divided by \(K\) IoC |
+| --- | ---: | ---: | ---: |
+| All unsolved LP2 runes, original global order | 12,956 | **0.0344783979** | **0.0345156108** |
+| Physical p55, local pair order | 76 | **0.0378947368** | **0.0322807018** |
+| Exact \(R=(P-S-2G)/G^2\), consecutive pairs, final unmatched rune unchanged | 273 | **0.0338019823** | **0.0342598578** |
+
+The residual also fails a literal DH *progressive-power* inverse \(R_j/K^{j+1}\): IoC **0.0341251885**. All outputs remain nonlinguistic under the source's native GP29 transliteration. The exact candidate field arithmetic satisfies both DH public-share equations. Independent source-native solved-p57 plaintext plants are recovered **12,956/12,956** full-book and **273/273** residual runes under the inverse and reencryption, including the progressive-power variant. A static field secret and its simplest repeat/power consumers do not explain the original ciphertext; this does not rule out another authentic use of the same value.
+
+**Reproduce:** [single-file CommonJS original-corpus test](../sims/p29_hfield_dh_shared_key_sft.cjs). Do not expand arbitrary DH bases, phases, secret-sharing interpretations or key derivations without an independent original instruction selecting them.
+
 ## Additional signed-DH fingerprint at the source-selected Ac24 root
 
 The exact polynomial relationship supports a more specific, still **exploratory** fingerprint of the entire signed 2013 worked example. Its parameters are modulus **23**, generator/base **5**, server public share **8**, client public share **19**, and shared secret **2**. The enlarged LP2 p54 **Ac=24** and G's double root independently fix the evaluation point before viewing numerical outputs. Ordinary formal polynomial derivatives, evaluated at X=24 in GP29, give:
