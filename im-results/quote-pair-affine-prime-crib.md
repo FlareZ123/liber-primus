@@ -1,6 +1,6 @@
 # LP2 quoted-pair structural clue and million-phase affine prime-key inverse
 
-**Status, 10 November 2026:** a provisional quote-channel relationship, key-independent constraints on a hypothetical shared phrase, and a bounded negative test of a source-motivated cipher family. No unknown LP2 plaintext, historical key, actual mechanism, or final destination has been recovered.
+**Status, 11 November 2026:** existing quote-pair constraints remain conditional and no unknown plaintext has been recovered. A separate p40+p53 70-rune modular pairing produces an alignment-sensitive English-quadgram elevation, but its output is unreadable and the result remains provisional.
 
 ## Original-source relationship
 
@@ -48,6 +48,32 @@ A separate stronger-than-direct test combines the same three source-fixed readin
 
 **Decision:** the authentic historical 70-character transposition has a plausible human-solvable dimension link to this specific original quote, but **a literal old-message replay under any permutation and fixed alphabet bijection is mathematically incompatible with at least 14 of 70 original glyphs**; separately, the tested combined historic transposition/GP-key families do not recover plaintext. They do not exclude a new keyed alphabet, a historical address derived from the quote, a different intermediate register or an as-yet-unseen source instruction. Additional arbitrary transposition or key searches need a further independent clue.
 
+## Additional p40+p53 70-rune modular pairing (Agent25, 11 November 2026)
+
+The seven original quotation spans contain lengths **[18, 19, 12, 58, 68, 160, 70]**. On physical page 40, the two quoted spans of **12** and **58** runes are separated by **84 unquoted runes**. Concatenating only those two source-marked spans in printed order gives a 70-rune sequence **A**. The single physical-page-53 quotation is another 70-rune sequence **B**. This is a source-selected grouping by page and quotation marks, with an equal-length cross-page pairing; it is not a contiguous 70-rune passage on p40.
+
+Using the original GP29 indices and the fixed modular operation:
+
+```
+S[i] = (A[i] + B[i]) mod 29
+```
+
+gives a mean English-quadgram score of **−6.58243668** (mean log10 probability per quadgram), versus **−6.81801118** for A−B and **−7.63775980** for B−A. The sum has GP29 IoC **0.04182195**, compared with **0.03379782** for the complete 405-rune quote stream. Its transliteration is:
+
+```
+IAIABGWDDFRBHTNCOEEANGTHOWALLEADRSJRYTHWRETHGDTNGEUEFDDNINGHREASIDRONGEARUFLDCEOMEAEAFS
+```
+
+It is **not readable English**, either with the 16 original p40 word boundaries or the 14 p53 word boundaries. The historical 2014 70-character command has a key-independent histogram upper bound of **64/70** against this sum under any fixed symbol bijection and arbitrary permutation; the difference directions reach only 65/70. This is not a literal replay of that command.
+
+Two conditional diagnostics quantify the alignment:
+- Among all **35,511** non-overlapping pairs of 70-rune windows inside the 405-rune quote stream, the selected A+B score ranks at the **99.5748th percentile** (152 pairs equal or higher); A−B ranks at 98.3752 (578 equal or higher); B−A at 35.206.
+- With A fixed, **100,000** deterministic Fisher–Yates shuffles of B (xorshift32 seed 3301), comparing the maximum score across A+B, A−B and B−A, produced **519** exceedances; add-one permutation value **0.00520**.
+
+**Interpretation:** this is an alignment-sensitive n-gram elevation worth independent assessment, not evidence that S is plaintext. The test is post hoc: its permutation null conditions on the already-selected A/B grouping and does not correct for selecting that grouping, the quote pair, or the wider family of possible operations. The output supplies no key, plaintext, or destination. Do not expand it into arbitrary offsets, Caesar shifts, affine maps or stacked cipher layers without an independent source instruction.
+
+**Reproduction:** [CommonJS original-input SFT](../sims/quote_pair_70_mod29_alignment.cjs). It reconstructs the p40/p53 word boundaries from the canonical 2,896-word parser, scores with the repository's 79,495-entry English quadgram table, enumerates the within-quote non-overlapping 70-window pairs, and reproduces the deterministic permutation null.
+
 ## Explicit conditional cipher challenge
 
 If the two passages encode the same 21 GP plaintext runes up to **two arbitrary substitutions**, could they use independent offsets into the original prime-totient key present in solved LP2? Test a generous family with an unknown common invertible affine GP multiplier and arbitrary independent per-quote Caesar offsets.
@@ -89,4 +115,6 @@ The planted cipher uses secret-to-search starts **3301** and **7900**, affine mu
 
 ## Limits and next steps
 
-The co-occurring word lengths are an interesting possible repeated-phrase crib; their original plaintext identity is unproven. This experiment excludes the conditional continuous prime-ordinal schedule with an arbitrary common affine output map and two plaintext exceptions. It leaves open changing/nonlinear alphabet transforms, different plaintext quotations, key-skip or feedback state, other source-derived or externally supplied keys, and unrestricted random pads. Future quote-linked decryption attempts need a separately motivated, source-fixed key generator and a new original-symbol prediction.
+The co-occurring word lengths remain only a possible repeated-phrase crib; their original plaintext identity is unproven. The exact fixed-substitution, F79/F29, historical 70-character, and continuous prime-ordinal exclusions above remain conditional on their stated models. The new p40+p53 modular sum is a provisional alignment signal, not a recovered text: its output is unreadable and its permutation value does not account for post-hoc grouping or the wider search family.
+
+A follow-up is justified only if an independently sourced rule explains why the two p40 quotations should be concatenated with the p53 quotation, fixes the arithmetic direction, and predicts a new original-symbol result. Otherwise retain this as an unresolved diagnostic and move to an independent source-led route. Do not expand to arbitrary offsets, phases, affine maps, or stacked cipher layers without new source evidence.
