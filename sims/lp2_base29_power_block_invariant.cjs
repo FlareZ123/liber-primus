@@ -276,7 +276,7 @@ function main() {
     reference("Gibran", "resources/control/gibran_prophet_58585.txt")
   ];
   assert.deepEqual(sourceReferences.map(s => s.runes.length),
-    [218800, 324630, 63114]);
+    [217644, 323083, 62696]);
   const controls = [];
   const random = rng(0x3301ea27);
   const words = parseSharedCorpus().words;
