@@ -87,6 +87,36 @@ function edgeStats(words) {
   return result;
 }
 
+/**
+ * Exact equality invariant even if the multiplier is a different secret unit
+ * for each length, or for every (start page, length) pair. The lowest-order
+ * digit must still undergo one fixed 29-way permutation within each group.
+ * @param {{page:number,digits:number[]}[]} words
+ * @param {boolean} byPage
+ * @returns {{num:number,den:number,rate:number}[]}
+ */
+function stratifiedEdgeStats(words, byPage) {
+  const output = [];
+  for (const first of [true, false]) {
+    const groups = new Map();
+    for (const w of words) {
+      const key = byPage ? w.page + ":" + w.digits.length :
+        String(w.digits.length);
+      if (!groups.has(key)) groups.set(key, Array(29).fill(0));
+      const digit = first ? w.digits[0] : w.digits[w.digits.length - 1];
+      groups.get(key)[digit]++;
+    }
+    let num = 0, den = 0;
+    for (const counts of groups.values()) {
+      const n = counts.reduce((sum, x) => sum + x, 0);
+      num += matchingPairs(counts);
+      den += n * (n - 1);
+    }
+    output.push({num, den, rate: num / den});
+  }
+  return output;
+}
+
 /** @param {number} seed @returns {() => number} */
 function rng32(seed) {
   let state = seed >>> 0;
@@ -150,6 +180,14 @@ assert.deepEqual(obs.map((s) => [s.num, s.den]), [
   [288592, 8383920], [5456, 158938],
   [289624, 8383920], [5266, 158938]
 ]);
+const obsStratified = [
+  ...stratifiedEdgeStats(original, false),
+  ...stratifiedEdgeStats(original, true)
+];
+assert.deepEqual(obsStratified.map((s) => [s.num, s.den]), [
+  [42462, 1233444], [42606, 1233444],
+  [788, 23216], [750, 23216]
+]);
 const samples = 200;
 const summaries = [];
 for (let si = 0; si < sourcePaths.length; si++) {
@@ -166,12 +204,24 @@ for (let si = 0; si < sourcePaths.length; si++) {
   const maximum = Array(4).fill(-Infinity);
   const mean = Array(4).fill(0);
   const leOriginal = Array(4).fill(0);
+  const stratifiedMinimum = Array(4).fill(Infinity);
+  const stratifiedMean = Array(4).fill(0);
+  const stratifiedLeOriginal = Array(4).fill(0);
   for (let t = 0; t < samples; t++) {
     const control = original.map((w) => {
       const pool = pools.get(w.digits.length);
       return {page: w.page, digits: pool[Math.floor(rng() * pool.length)]};
     });
     const stats = edgeStats(control);
+    const strata = [
+      ...stratifiedEdgeStats(control, false),
+      ...stratifiedEdgeStats(control, true)
+    ];
+    for (let k = 0; k < 4; k++) {
+      stratifiedMean[k] += strata[k].rate / samples;
+      stratifiedMinimum[k] = Math.min(stratifiedMinimum[k], strata[k].rate);
+      if (strata[k].rate <= obsStratified[k].rate) stratifiedLeOriginal[k]++;
+    }
     for (let k = 0; k < 4; k++) {
       const x = stats[k].rate;
       mean[k] += x / samples;
@@ -188,6 +238,10 @@ for (let si = 0; si < sourcePaths.length; si++) {
         }));
         assert.deepEqual(edgeStats(cipher)[reverse ? 0 : 2], stats[reverse ? 0 : 2]);
         assert.deepEqual(edgeStats(cipher)[reverse ? 1 : 3], stats[reverse ? 1 : 3]);
+        assert.deepEqual(stratifiedEdgeStats(cipher, false)[reverse ? 0 : 1],
+          strata[reverse ? 0 : 1]);
+        assert.deepEqual(stratifiedEdgeStats(cipher, true)[reverse ? 0 : 1],
+          strata[reverse ? 2 : 3]);
         for (let j = 0; j < control.length; j++) {
           assert.deepEqual(transformWord(cipher[j].digits, 3301n, true, reverse),
             control[j].digits);
@@ -196,9 +250,11 @@ for (let si = 0; si < sourcePaths.length; si++) {
     }
   }
   assert(leOriginal.every((n) => n === 0));
+  assert(stratifiedLeOriginal.every((n) => n === 0));
   summaries.push({name, referenceWords: reference.length,
     nativeMean: mean, nativeMinimum: minimum, nativeMaximum: maximum,
-    leOriginal, samples});
+    leOriginal, stratifiedMean, stratifiedMinimum, stratifiedLeOriginal,
+    samples});
 }
 const raw = indexOfCoincidence(original.map((w) => w.digits));
 const direct = [];
@@ -208,5 +264,6 @@ for (const reverse of [false, true]) for (const divide of [true, false]) {
   direct.push({leastSignificantFirst: reverse, divide3301: divide,
     indexOfCoincidence: indexOfCoincidence(transformed)});
 }
-const outcome = {original: obs, rawRuneIoC: raw, direct, summaries};
+const outcome = {original: obs, originalStratified: obsStratified,
+  rawRuneIoC: raw, direct, summaries};
 process.stdout.write(JSON.stringify(outcome, null, 2) + "\n");
