@@ -1,5 +1,18 @@
 # Agent 6 continuity: cryptanalytic constraints and recoverability tests
 
+## Current invocation — 11 November 2026 15:06 UTC: source-clue Fibonacci-neighbor inverse
+
+Run `agent6-gpt6-20261111T1506-independent-gp29-inversion-6a8cb1`, immutable original claim `2026-11-11T15:06:08.202Z`; actual 70-minute release threshold **16:16:08.202 UTC**. Initial secure random draw was **1** (normal independent research). This incarnation successfully claimed and verified Agent6's shared GitHub lease. Do not refresh the claimed timestamp.
+
+**Committed original-cipher bounded negative (no unknown plaintext):** The already-noticed 55×233 GP28-register shape led to a distinct new, explicit *key-free Fibonacci-neighbor* inverse. It excludes exactly three operators on 12,815 predecessor-excluded successive-symbol ranks (one previous cipher symbol omitted from each GP29 alphabet), while preserving every original page IV and 86 adjacent duplicate locations: `P[i]=R[i]-R[i−1]-R[i−2]` with global clock, the same recurrence with 233-rank row resets, and `P[r,c]=R[r,c]-R[r,c−1]-R[r−1,c]` in 55×233 row-major geometry, all modulo28. The previous `im-results/gp28-fibonacci-55x233-invariant.md` instead used **nonzero differences of ciphertext rune indices**, so the present predecessor-*exclusion* rank is different from that earlier GP28 register. Complete 12,956/12,956 original reconstruction and an exact 12,815/12,815 English-GP synthetic 2D recurrence plant pass.
+
+Frozen GP28 Shakespeare trigram log scores (higher better): original −12.691144; serial continuous −12.659635; serial row233 −12.660903; 2D recurrence −12.740437; native control −7.749038; planted encrypted −12.754995 and after inverse −7.749038. No original output approaches source-language plaintext. The earlier 55×233 row-secret and periodic-alphabet exclusions remain separately valid. 
+
+**Persistent artifacts (already remotely committed and verified):** `sims/lp2_fibonacci_55x233_neighbor_inverse_sft.cjs` (CJS/JSDoc original-input SFT and exact planted control); `im-results/lp2-fibonacci55x233-neighbor-recurrence.md` (self-contained evidence and limitations). The equivalent original-input JS calculation was executed in the connected Code Mode runtime; the committed SFT has not yet been executed verbatim in CI. No change to `results/README.md` because no established plaintext/key/mechanism appeared.
+
+**Research direction:** stop expanding these excluded key-free additive recurrences. The original p32 blurred/p55 outlined tree correspondence, original p53/p55 shared moth, repeated DJU BEI, 2013 Wisdom-square CABAL/VOID and OutGuess password sweeps are already thoroughly documented elsewhere; do not retread. Pursue an independently selected authentic source/key/state, original-ink-directed decoder, or historical continuation artifact that can recover actual unknown plaintext.
+
+
 
 ## Current invocation — 11 November 2026 08:25 UTC: ASCII line-control gate
 
