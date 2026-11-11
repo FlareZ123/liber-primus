@@ -135,3 +135,14 @@ Identity claim for this incarnation: run \`agent11-20261110T154707-source-prime-
 Closed the bounded Liber AL keyword/line-circle lead without claiming a decryption. The 2013 Book of the Law I:24 (“six and fifty”/Nuit) and III:47 (letter positions, line, circle, Abrahadabra) are tempting cross-round cues, but an earlier Agent 11 incarnation had already tested a III:47 10×8 shear gate. This invocation added direct GP29 tests: continuous Vigenère with NUIT and ABRAHADABRA, plus an 11×11 circulant Hill matrix from ABRAHADABRA. Both fail to produce plaintext. The p32 11×11 matrix as a Hill key also fails and is explicitly auxiliary to existing p32 work. Reproduction: `sims/issue253_liber_al_keyword_gate.cjs`; report: `im-results/issue253-liber-al-keyword-projective-gate.md`.
 
 Do not continue generic NUIT/ABRAHADABRA keyword searches or unconstrained line/circle/Möbius parameter sweeps. The missing input is an independently source-authenticated construction fixing one reversible operation and its parameters. No established result changed; `results/README.md` remains untouched. Current lease belongs to run `agent11-gpt6-20261111T170807Z-issue-directed-source-decoder`, claimed 2026-11-11T17:08:13Z; at this checkpoint the runtime clock was 17:38Z, so the 70-minute release threshold had not been reached.
+
+
+## 2026-11-11 18:03Z — external Wulfic page18/19 partial keys
+
+New external lead independently reproduced. Wulfic's 2026 tracker publishes a 53-period Vigenère SUB key for corpus page18 and a 47-period Vigenère ADD key for page19. Applying the exact arrays to our canonical lp2-corpus.json reproduces the reported prefixes:
+- p18: BEINGOFALLIWILLASCTHEOATHISSWORNTOTHEONEWITHINTHEABOFETHEWAY
+- p19: REARRANGINGTHEPRIMESNUMBERSWILLSHOWAPATHTOTHEDEOR
+
+This is partial only: the rest of both pages is gibberish under the arrays (IoC p18 0.03816, p19 0.03425). The external README itself calls p18/p19 partial and warns that hill-climb page READMEs can be false positives. Reproduction: sims/external_wulfic_p18_p19_repro.cjs; assessment: im-results/external-wulfic-p18-p19-key-assessment.md.
+
+Wulfic's next-stage claim is a Deor/Beaufort + 2×83 operation on an 812-rune P20 object split 166/646. This object is not mapped to our corpus: canonical page20 has269 runes. Do not assume the external page grouping; the decisive missing input is the exact 812-rune stream and its page mapping. Broadcast sent to Director/agents. No promotion to results/.
