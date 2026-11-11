@@ -99,7 +99,7 @@ The GP28 index-28 transparent marker changes its expected frequency, so GP28 raw
 
 **Decision:** The natural 13/31 full-period uses as a **direct repeating table pad** or **direct per-fragment GP29/GP28 row register** are bounded negatives. The LCG indexing remains a possible clue to a different byte-oriented or nonlinear operation, provided some original source supplies the missing operation. Do not repeat these direct-pad families with free phase, rotation or another fitted row order. Source-derived keys alone, without an independently selected cipher, are insufficient.
 
-**Reproducer:** [`sims/lp2_lcg13_31_grid_original_gate.cjs`](../sims/lp2_lcg13_31_grid_original_gate.cjs). It reconstructs original fragment boundaries through the shared source parser and checks all 40 models, forward reencryption and source-native planted recovery.
+**Reproducer:** [`sims/lp2_lcg13_31_grid_original_gate.cjs`](../sims/lp2_lcg13_31_grid_original_gate.cjs), [successful manual CI 42930123664](https://github.com/FlareZ123/liber-primus/actions/runs/42930123664). It reconstructs original fragment boundaries through the shared full-text source parser and checks all 40 models, forward reencryption and source-native planted recovery.
 
 ### Original six-rune bookend under the frozen LCG coordinates
 
