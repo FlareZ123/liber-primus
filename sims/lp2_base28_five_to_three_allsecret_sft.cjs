@@ -108,6 +108,67 @@ function measure(stream,offset) {
 }
 
 const extracted=extract(original);
+
+// Grant an adversary a much stronger local escape hypothesis: any packet
+// near any of the 86 repeated-rune markers may be discarded as unknown.
+// Does an untouched source region STILL disallow arbitrary secret keys?
+const livePositions=extracted.masks.flatMap((isRepeat,i)=>isRepeat?[]:[i]);
+assert.equal(livePositions.length,12870);
+const cumulativeMarkers=new Uint16Array(original.length+1);
+for(let i=0;i<original.length;i++)
+  cumulativeMarkers[i+1]=cumulativeMarkers[i]+Number(extracted.masks[i]);
+/**
+ * Ignore any five-rank packet containing an original repeated rune within
+ * pad raw-cipher symbols of any of its five underlying live rune positions.
+ * An arbitrary marker-local payload may replace those discarded packets.
+ * @param {number[]} stream
+ * @param {number} offset
+ * @param {number} pad
+ * @returns {{offset:number,pad:number,unaffectedPackets:number,
+ *   ignoredPackets:number,minimumDistinctFollowers:number,
+ *   unavoidableInvalidPackets:number}}
+ */
+function measureFarFromMarkers(stream,offset,pad) {
+  const followers=Array.from({length:28},()=>new Set());
+  let unaffectedPackets=0,ignoredPackets=0;
+  for(let at=offset;at+5<=stream.length;at+=5) {
+    const first=livePositions[at],last=livePositions[at+4];
+    const left=Math.max(0,first-pad);
+    const right=Math.min(original.length-1,last+pad);
+    if(cumulativeMarkers[right+1]>cumulativeMarkers[left]) {
+      ignoredPackets++;
+      continue;
+    }
+    followers[stream[at]].add(stream[at+1]);
+    unaffectedPackets++;
+  }
+  const minimumDistinctFollowers=Math.min(...followers.map(set=>set.size));
+  assert(minimumDistinctFollowers>=16);
+  return {offset,pad,unaffectedPackets,ignoredPackets,
+    minimumDistinctFollowers,
+    unavoidableInvalidPackets:minimumDistinctFollowers-9};
+}
+const markerLocalRobustness={};
+for(const [name,source] of Object.entries({
+  rank:extracted.rank,deltaMinusOne:extracted.deltaMinusOne,
+  log15:extracted.log15
+})) {
+  markerLocalRobustness[name]=[0,1,5,10,20,40].map(pad=>{
+    const versions=Array.from({length:5},(_,off)=>
+      measureFarFromMarkers(source,off,pad));
+    return {pad,minimumUnaffectedPackets:Math.min(
+      ...versions.map(v=>v.unaffectedPackets)),
+      maximumIgnoredPackets:Math.max(...versions.map(v=>v.ignoredPackets)),
+      leastDistinctFollowers:Math.min(
+        ...versions.map(v=>v.minimumDistinctFollowers)),
+      leastForcedInvalidPackets:Math.min(
+        ...versions.map(v=>v.unavoidableInvalidPackets))};
+  });
+}
+assert.equal(markerLocalRobustness.rank.at(-1).leastDistinctFollowers,16);
+assert.equal(markerLocalRobustness.deltaMinusOne.at(-1).leastDistinctFollowers,20);
+assert.equal(markerLocalRobustness.log15.at(-1).leastDistinctFollowers,20);
+
 const analysis={};
 for(const name of ["rank","deltaMinusOne","log15"]) {
   analysis[name]=Array.from({length:5},(_,offset)=>
@@ -221,6 +282,7 @@ console.log(JSON.stringify({
     second8CompatibleAtFirst27:27*28**4+8*28**3<CAP,
     second9ForbiddenAtFirst27:27*28**4+9*28**3>=CAP},
   sourceRepresentations:analysis,
+  markerLocalRobustness,
   positiveControl:{
     originalEscapeMaskReused:true,plaintext:"Shakespeare UTF-8 source bytes",
     sourceBytes:plainBytes.length,cipherRunes:plantedCipher.length,
