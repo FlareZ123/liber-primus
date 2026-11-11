@@ -1,0 +1,38 @@
+# Source-oriented p32 seventh-column and p15 Fibonacci-89 cross-link
+
+**Classification: original-source numerical observation and bounded negative decryption test.** There is no recovered LP2 unknown plaintext, cipher key or demonstrated author-selected operation. This is an intermediate follow-up to the historically signed 2016 tree image's exact p32 11×11 first-row and first-column GP-prime sums **563/569**, and the established p15 Fibonacci-indexed prime spiral.
+
+## Original-source relationship
+
+The p32 matrix (the original 121 runes in row-major order) has **seventh column**, in natural top-down reading, GP-prime values **43, 67, 5, 89, 19, 47, 3, 109, 3, 19, 59**. They sum to **463**. The **fourth row, seventh column** (1-based) is the rune D, whose GP-prime weight is **89**, at p32 zero-based local rune offset **39**.
+
+Independently p15's proven red-start Fibonacci-prime spiral uses **f=89**, then **prime(f+1)=prime(90)=463**, giving the original eleventh spiral cell **3301−463=2838**. Thus the exact p15 pair 89→463 appears as a *cell weight and its column total* on p32; this is an authentic arithmetic correspondence, with the independently known 2016 image dimensions pinning the p32 matrix orientation. It complements the separate candidate p32 numeral F-O-TH = 89, currently investigated in [Issue #289](https://github.com/FlareZ123/liber-primus/issues/289).
+
+**Missing premise:** The original source does not independently instruct a player to select **row 4 or column 7**, nor to take a column sum as a cipher key. Inferring 4 from p15's square dimension or 7 from the provisional p32 M7 factor is a *hypothesis*, not an established instruction.
+
+## Conditional chance controls
+
+With NumPy PCG64 seed `0x20163301`, hold p32's 11 original top-row cells and 11 original first-column cells fixed, then independently permute the other 100 GP-prime weights **200,000** times:
+
+| Event | Null hits (200,000) | Add-one frequency |
+| --- | ---: | ---: |
+| Preselected 7th column total 463 | 741 | 0.003710 |
+| Preselected (row4,col7) cell 89 *and* column7 total 463 | 23 | 0.000120 |
+| Any of 10 nonfirst columns total 463 | 6,950 | 0.034755 |
+| Any of 10 nonfirst rows or columns total 463 | 13,628 | 0.068145 |
+
+The lower preselected figures are conditional on source-fixing both positions *before* using the ciphertext values. As discovered post hoc, the broader comparison is the honest uncertainty diagnostic. The table shows how badly a retrofitted selector can exaggerate evidence.
+
+## Frozen original decoder attempt
+
+The natural source-oriented column sequence as GP indices is **P-E-TH-D-W-X-U-EA-U-W-T** (period 11). Use it with additive GP29 Vigenère on the adjacent original source-delimited pp33–39 body: from p33 local91, ending before p39 local119, **1,468 runes**. Holding key orientation, phase zero, boundary and period fixed:
+
+| Data | GP29 index of coincidence |
+| --- | ---: |
+| Original ciphertext | 0.03431255096 |
+| Decrypt by subtracting column key | 0.03446764328 |
+| Decrypt by adding column key | 0.03421689522 |
+
+Neither result is linguistic. An independently generated GP29 positive-control plaintext reencrypts and inverses exactly, but this alone cannot select a historical key. **Retire direct period-11 Vigenère transfer.** Follow up only if another primary clue selects the row/column as a map address and supplies an operation that predicts genuine original plaintext.
+
+**Reproduction:** `python sims/p32_p15_f89_col7_sft.py` reads the repository's canonical GP29 physical-page corpus and prints the exact source values, null counts and frozen original-interval cipher test.
