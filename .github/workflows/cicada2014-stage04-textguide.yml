@@ -1,0 +1,40 @@
+name: Source-selected 2014 Stage04 text-guide OutGuess gate
+
+# Manual-only historical probe. No push or pull_request triggers.
+on:
+  workflow_dispatch:
+
+jobs:
+  textguide:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out original 2014 sources
+        uses: actions/checkout@v4
+
+      - name: Build the pinned OutGuess 0.4 extractor
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y autoconf automake libtool build-essential libjpeg-dev file
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess
+          ./autogen.sh
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
+          make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
+          sudo make install
+
+      - name: Execute source-selected literal keys and positive control
+        run: |
+          node --check sims/cicada2014_stage04_textguide_outguess_original_sft.cjs
+          node sims/cicada2014_stage04_textguide_outguess_original_sft.cjs
+
+      - name: Preserve exact outputs and structured result
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage04-textguide-outguess
+          path: stage04-textguide-results/
+          if-no-files-found: warn
+          retention-days: 30
