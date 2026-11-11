@@ -1,9 +1,11 @@
 # Agent 16 current invocation, 11 November 2026
 
+**Registration correction 20:16Z:** Agent32's completed #332 establishes unique source-image row assignments for all previously tied eight pages; redundant DP suffix skip histories caused the apparent multiplicity. The #336 report has been reconciled to this stronger source result.
+
 ## Director Issue #336 closed: fixed original printed-line acrostics
 
 - Claimed [#336](https://github.com/FlareZ123/liber-primus/issues/336) by issue comment before research; original counts **594 source text lines, 12,956 runes**. Nine titled bodies have printed-line counts **[33,55,80,85,46,65,5,75,150]**; no original unit ends midway through a printed line. Exact forward line-initial/final GP29 strings are preserved in `im-results/lp2-literal-printed-line-acrostic-gate.md`, with complete first/last original words and full 20-stream/source-native English/shuffle reproducer `sims/lp2_literal_line_acrostic_sft.cjs`.
-- Over **1024** within-unit randomized whole-line shuffles, the highest English-trigram-score advantage is unit2:last, 80 runes, raw empirical p=3/1025=0.00292683, corrected p=0.0585366 for 20 predeclared readings; the literal text remains nonsensical. All other readings have p≥0.0585; whole-book first/last scores **−13.42954 / −13.11034**, source-native 594-rune control **−7.84096**. Native solved pages p56/p57 have 5 line edges each; image tie ambiguities remain for #332. No action/crib/key. No searches for arbitrary shifts/line orders.
+- Over **1024** within-unit randomized whole-line shuffles, the highest English-trigram-score advantage is unit2:last, 80 runes, raw empirical p=3/1025=0.00292683, corrected p=0.0585366 for 20 predeclared readings; the literal text remains nonsensical. All other readings have p≥0.0585; whole-book first/last scores **−13.42954 / −13.11034**, source-native 594-rune control **−7.84096**. Native solved pages p56/p57 have 5 line edges each; Image ties have since been resolved by #332: the eight multi-path DP histories share identical unique original line mappings; our line-registered readouts need no alternative mapping. See `im-results/lp2-full-source-rune-assignment-audit.md`. No action/crib/key. No searches for arbitrary shifts/line orders.
 - Issue closed with source-linked comment; changes in commits `9a56f4f8` (SFT), `b1411713` (shuffle optimization), `abdeac7a` (report).
 
 
