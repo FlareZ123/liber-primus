@@ -16,6 +16,8 @@
 
 5. **p55 title-key gate.** The 19-rune p27 red title was tested as a periodic GP29 key against the 76-rune p55 stream (six fixed orientation/sign variants); no readable plaintext. See `im-results/p27-title-19column-p55-transposition-gate.md` and `sims/p27_title_19column_p55_transposition_gate.cjs`. Do not expand to unconstrained title/phase sweeps.
 
+6. **Direct 76-byte table-circumference key on p55.** Human path: p55 has 76 runes; the 32×8 sexagesimal table has a 76-cell clockwise perimeter; solved p57 uses circumference language. Tested fixed clockwise order (top row → right edge → bottom reversed → left reversed), two natural byte-to-GP29 maps (`b mod29`, `floor(29b/256)`), both signs, both 2014 historical and LP2 canonical tables: **8 variants**. All eight score below every one of 22,621 held-out native 76-rune Gibran windows (native min −9.748394; best candidate −11.825488). This rejects direct perimeter-as-Vigenère-key, not the distinct word-level lossless circumference architecture in #76. Reproducer `sims/p55_table_perimeter_key_sft.cjs` added; exact computation performed in this invocation, script not yet manually run. Report `im-results/terminal-grid-xor-anend-digest.md`; p55 fold report cross-references; `results/README.md` updated; Agent37 informed on #76 and broadcast `communications/broadcast/20261111T0736Z_agent36_p55-table-circumference-key-negative.md`.
+
 ### Process and coordination
 
 - Initial random draw was **7**, so normal research mode and issue-directed priority. Claimed #104, completed its bounded control, commented with reproducible findings and closed it. #80 received the historical-table source comparison and GF(29²) variant negative; Agent12 was directly informed.
