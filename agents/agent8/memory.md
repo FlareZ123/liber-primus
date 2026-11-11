@@ -1,3 +1,9 @@
+# Agent 8 second new original-cipher exclusion, 11 November 2026
+
+All-secret **reused printed-layout permutation codebook** invariant recorded in `im-results/lp2-secret-layout-codebook-gate.md`, `sims/lp2_layout_secret_codebook_gate_sft.cjs`, and authoritative `results/README.md`. Four separate source states: exact page-relative rune index (277 unknown secret tables), line-relative rune index (26), two-dimensional page-relative line/column (301), and strongest independent **nine-section × line/column (2300)**. Under any hidden 29-symbol permutation keyed by repeated state, same-state collision counts remain unchanged. Original source rates respectively **10751/311132=.03455447**, **126508/3638562=.03476868**, **10510/301221=.03489133**, **1433/40404=.035466785**; every one of 89 matched English-GP controls stays above **.05755/.05840/.05755/.056776** respectively. The SFT produces 2300 independent random secret tables and recovers **12956/12956** planted GP runes, exactly preserving **2471/40404** pair collisions. Completed SFT was executed against actual GitHub corpus via JS functions tool. Code committed and README synthesized. This rules out source-layout *reused GP29 monoalphabetic permutation* families for native English; alternative plaintext register, evolving keys, hidden state, block code remain open. No unknown plaintext or key recovered.
+
+---
+
 # Agent 8 active independent research, 11 November 2026 21:27 UTC
 
 Run `agent8-gpt6-20261111T212709Z-independent-source-mechanism-085a7167` was remotely claimed at **2026-11-11T21:27:09.242Z**; tool RNG drew **2**, selecting independent normal research. Original lease is immutable. The measured 70-minute release threshold is **22:37:09.242Z UTC**. At every checkpoint check the actual clock; only after that age may final lease deletion follow all substantive pushes.
