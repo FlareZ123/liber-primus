@@ -59,6 +59,26 @@ Two exact length identities invite key hypotheses:
 - 12,956 = 32 × 405 − 4 (32 is also the count of cross-page words; 4 is the apostrophe count).
 - 12,956 = 149 × 87 − 7 (87 is the proposed singleton-key length; 7 is the quote-span count).
 
+## Quote GP-prime sums as 133-based page/word addresses (11 November 2026)
+
+The original seventh-onion HTML independently supplies the number **133** in its title. For the seven already annotated whole-word quote spans, compute the sum of Gematria Primus **prime weights**, then interpret the quotient upon division by 133 as a zero-based word ordinal and the remainder as a **one-based scan number** in the combined LP1+LP2 75-image archive.
+
+| Span | Runes | Words | Prime sum | Remainder / scan | Quotient / word |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | 18 | 4 | 948 | 17 | 7 |
+| 2 | 19 | 5 | 1105 | 41 | 8 |
+| 3 | 12 | 2 | 738 | 73 | 5 |
+| 4 | 58 | 14 | 2684 | 24 | 20 |
+| 5 | 68 | 13 | 3335 | 10 | 25 |
+| 6 | 160 | 34 | 8042 | 62 | 60 |
+| 7 | 70 | 14 | 3388 | 63 | 25 |
+
+All seven coordinates point to existing words. Radix **133** is the **only** integer in the complete feasible domain 2–738 for which all seven pairs are valid combined-archive scan/word addresses. The first two remainders **17 and 41** independently occur as inverse multipliers modulo 58 in earlier source-number work. The third maps to solved *AN END* scan 73, zero-based word 5 (**WEB**); the fifth maps to first-release scan 10, word 25 (a rune spelling of **BELIEVE**). Their known content could constrain a future test. Literal repeating GP29 subtraction with those selected words does **not** recover readable quote plaintext.
+
+**Historical and hypothesis-selection caveats:** the publisher's actual 2014 LP2 HTML links were numbered **0.jpg–57.jpg**. The 1–75 combined scan order is a later community archive convention, or one a reader would have to infer by concatenating both releases. The publisher's HTML alone does not specify this. The word index must also be read as zero-based. This is an exact conditional source-number correspondence with no authenticated instruction and no decryption.
+
+A controlled null reselects seven nonquote source spans with the **same printed word and rune counts** as the observed spans, independently and with replacement. There are **[232,204,192,128,51,64,80]** eligible spans in the respective matched pools. The exact product of fixed-133 address-valid proportions is **0.00648797**; with 100,000 seeded xorshift32 selections, **634** sets are valid under preselected 133. When permitting the radix to be fitted *after* seeing the seven sums, **24,149** of 100,000 sets are valid under *some* radix. Just one matched set reproduces the independently noticed first two ordered residues (17,41) and has valid addresses for all seven; this sparse tail is exploratory and does not adjust for alternate operations or other selected marks. Reproducer: [source-locked quote address SFT](../sims/lp2_quote133_pageword_source_gate.cjs). **No unknown LP2 plaintext, key, or cipher has been identified.**
+
 ## Rejected simple key interpretations
 
 The reproduction script tests the obvious additive mod-29 interpretations:
@@ -80,6 +100,6 @@ The script asserts the counts and prints the exact language-model scores and can
 
 ## Assessment and next decision
 
-The strongest new lead is the **apostrophe-as-subword-boundary** interpretation: it is visually source-motivated, reversible, and produces the paired 100 × 29 and 3 × 29 counts while completing the singleton alphabet. The quote spans independently produce near-multiples of 29 and share a count with the doublet events.
+Two plausible, still-unproven source operations remain: the reversible **apostrophe-as-subword-boundary** interpretation produces paired 100 × 29 and 3 × 29 counts; the seven quote GP-prime sums, divided by a source-shown 133, give valid combined-archive page/word addresses. Only the latter depends on the later combined 75-scan convention.
 
-However, there is not yet a cryptographic mechanism, recovered key, or plaintext. Do not promote this to `results/`. The next useful work is to determine whether the 87-symbol singleton sequence and 86-word quote channel participate in a source-constrained operation that predicts held-out plaintext. Avoid unconstrained searches over arbitrary transpositions or affine parameters. The original JPEGs should be consulted to settle whether the four marks are apostrophes, primes, or deliberate subword separators; the derived annotation alone cannot settle that question.
+However, there is not yet a cryptographic mechanism, recovered key, or plaintext. Do not promote this to `results/`. The next useful work is a historically motivated, source-fixed operation that predicts plaintext from the quoted spans or the seven selected source words. Direct GP29 repeating-word keys fail. Avoid postselected moduli, freely chosen transformations and arbitrary transpositions. The original JPEGs should be consulted to settle whether the four marks are apostrophes, primes, or deliberate subword separators; the derived annotation alone cannot settle that question.
