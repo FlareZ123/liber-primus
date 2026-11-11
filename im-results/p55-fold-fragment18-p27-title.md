@@ -138,6 +138,26 @@ Raw p55 scores **−6.79172**, so all six candidate outputs score worse than the
 
 **Reproduce:** the existing fold/fragment SFT (../sims/p55_fold_fragment18_p27_title_sft.cjs) includes the six frozen variants and native-window control.
 
+### 19-rune title-seeded autokey gate
+
+The exact (76 = 4\times19) relation also motivates a distinct, stateful test: use the same fold-selected 19-rune p27 title as the initial seed, then feed back either the prior ciphertext (ciphertext autokey) or recovered plaintext (plaintext autokey). This is not the repeating-key test above.
+
+The finite test covered **16 variants**: p55 forward/reversed, title forward/reversed, both feedback modes, and the two standard GP29 operations (P=C-K) and (P=C+K). The seed, phase, and feedback rule were fixed; there was no phase search.
+
+| Measure | Result |
+|---|---:|
+| Raw p55 mean English quadgram score | −6.791722 |
+| Best of 16 autokey variants | −6.558906 |
+| Worst native 76-rune Gibran window | −5.231302 |
+| Native control windows | 47,959 |
+| Variants reaching the native range | **0/16** |
+
+The best candidate is forward p55, reversed title seed, ciphertext autokey, (P=C-K). Its output begins `HLRMTAEWTHUARIEAEAINUJIAPCBDIPEOFLREEAMGAELXAIAEYGAEFNEOLTHEAIAPYIAOESOEAFEREEIADIFTNGLTRBYATHFA`; it remains nonlinguistic. The best score improves slightly on raw p55 but remains well below even the worst matched native window.
+
+**Decision:** reject the standard title-seeded plaintext- and ciphertext-autokey interpretations under these 16 source-fixed variants. This does not establish that the title is irrelevant; it closes the simplest stateful extension of the title-as-key hypothesis. Do not broaden this into free nonlinear title-key enumeration.
+
+**Reproduce:** `node sims/p55_fold_fragment18_p27_title_sft.cjs`; the SFT now includes the 16 autokey variants and the same 47,959-window native control.
+
 
 ## Anchored p27 reverse-window → p55 direct-key gate
 
@@ -154,6 +174,6 @@ That single window was tested as a same-alphabet p55 key under the two source-na
 
 The new result is a **navigation candidate**, not a decryption. Its weakest upstream premise is still the provisional signed-2016 word-address route that selected FOLD/p55. The five-bit interpretation is much less free once the physical fold has been chosen, because it uses only match/mismatch, the source has exactly 32 thirteen-dot fragments, and the selected address passes two unique structural checks plus the pre-existing p27/p55 ciphertext bookend.
 
-The direct 19-rune periodic title-key test on all 76 p55 runes is now negative under the six frozen forward/reversed standard additive variants; do not repeat that family. The next useful experiment should preserve the reproduced **p27 target and p27/p55 bookend** while seeking an independently authenticated, genuinely different rule for direction and operation/readout. The exact 1432 equality may motivate that search, but it does not by itself authorize reverse-path key searches, p50 table moves, phase choices, or compound arithmetic. Avoid generic title-key enumeration and post hoc arithmetic.
+The direct 19-rune periodic title-key test on all 76 p55 runes is negative under the six frozen forward/reversed standard additive variants, and the 16 source-fixed plaintext/ciphertext-autokey variants are also below the matched native-language range. Do not repeat or freely expand these title-key families. The next useful experiment should preserve the reproduced **p27 target and p27/p55 bookend** while seeking an independently authenticated, genuinely different rule for direction and operation/readout. The exact 1432 equality may motivate that search, but it does not by itself authorize reverse-path key searches, p50 table moves, phase choices, or compound arithmetic. Avoid generic title-key enumeration and post hoc arithmetic.
 
 **Reproducer:** [`p55_fold_fragment18_p27_title_sft.cjs`](../sims/p55_fold_fragment18_p27_title_sft.cjs).
