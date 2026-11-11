@@ -36,7 +36,7 @@ probe() {
   "$BIN" -r "$input" "$output" >"$log" 2>&1
   rc=$?
   set -e
-  echo "===== $name (exit=$rc) ====="
+  echo "===== OutGuess 0.4 default-key $name (exit=$rc) ====="
   cat "$log"
   if [ -s "$output" ]; then
     file "$output" || true
