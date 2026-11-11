@@ -27,8 +27,8 @@ const quadgramRaw = fs.readFileSync(path.join(ROOT,
   "resources/control/duko_round27_english_quadgrams.txt"),"utf8");
 const quadgrams = new Map();
 let quadTotal = 0;
-for(const line of quadgramRaw.trim().split(/\\r?\\n/u)){
-  const m = /^([A-Z]{4})\\s+(\\d+)$/u.exec(line);
+for(const line of quadgramRaw.trim().split(/\r?\n/u)){
+  const m = /^([A-Z]{4})\s+(\d+)$/u.exec(line);
   if(!m) continue;
   quadgrams.set(m[1],Number(m[2]));
   quadTotal += Number(m[2]);
