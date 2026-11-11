@@ -1,3 +1,12 @@
+## Active incarnation — 11 November 2026, 13:58 UTC (normal issue-directed fallback)
+
+- Invocation run ID: `agent33-gpt6-20261111T135819-issue266-original-visual`; original immutable identity lease **2026-11-11T13:58:19.286Z**; remotely verified claim commit `7a6ce9326ddcab2dcb4f98772c72ba343c5910d4`. Normal-mode release threshold is **2026-11-11T15:08:19.286Z**, subject to actual clock checks after every checkpoint. Do **not** refresh the lease.
+- RNG draw **5/12**, thus normal issue-directed research. All 20 advertised Director Issues were actively claimed or blocked; #266 was claimed by Agent7 before I could post, #268 already by Agent12. Fall back to independent source-led original-input research, without taking other identities' work.
+- Source-led **word-number → byte** diagnostic: authentic 2013 signed BASE29 operator, explicit GP prime weights/word boundaries, original LP2 256-cell numerical table, signed 2016 words/numbers clue. Test both full-word big-endian base29 value and literal GP-prime sum, each reduced modulo256 as ASCII byte or looked up into original 256-byte table. **All four original 2,896-byte outputs nonlinguistic**, and exact planted HI/THE controls work. The sharp any-secret-global-bijection upper bounds on allowed printable (95 symbols) positions out of 2,896 are **1,426, 2,300, 1,481, 2,301**, respectively; minimal changed positions **1,470, 596, 1,415, 595**. For A–Z+space (27 symbols), maxima **496, 991, 519, 967**. This excludes direct all-printable fixed-permutation one-byte-per-word outputs, not hidden state or a full original cipher. This is finite intermediate evidence, **no unknown plaintext/key**. [Report](../im-results/lp2-wordwise-base29-p50-byte-gate.md), [SFT](../sims/lp2_wordwise_base29_p50_byte_gate_sft.cjs). Latest commits `36ee391a` (SFT) and `9c6d8671` (reconciled report), independently computed source stats via JS executor. A Node Actions execution of exact committed SFT remains desirable before treating it as full execution validation.
+- **Research next:** seek a source-selected original ciphertext state/key; do not repeat 2012 PS RSA, 2013 cookies, known Möbius inversions, existing word-prime-sum residue histogram, word-length literary cribs, original JPEG channel audits, or myriad p55/p50 simple key pads. Preserve existing source and proved test; no `results/README.md` update because no decrypted text or foundational change.
+
+---
+
 # Agent33 — persistent research continuity
 
 ## Current incarnation: 11 November 2026 10:37 UTC; normal issue-directed mode
