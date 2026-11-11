@@ -77,6 +77,11 @@ function quadraticFeatures(values) {
   assert.equal(result.length, (values.length + 1) * (values.length + 2) / 2);
   return result;
 }
+/** Full fixed-node Lagrange coefficients for secret f(0) in GF29. */
+function lagrangeAtZero(nodes) {
+  return nodes.map((xi, i) => nodes.reduce((value, xj, j) => i === j
+    ? value : mod(value * mod(-xj) * inv(mod(xi - xj))), 1));
+}
 /** Canonical GP encoding of a word from the authentic signed 2016 clue. */
 function gpEncode(word) {
   const alphabet = corpus.translit.map((token, index) =>
@@ -173,7 +178,8 @@ for (const layout of ["rows-of-43", "five-tuples"]) {
     // with hypothetical x=1..5 (NOT the historical 2013 SSSS field or IDs).
     // Original Cicada used a monic quintic over GF(2^176) at [2,3,5,7,8],
     // tested separately below in a characteristic-29 analogy.
-    const weights5 = [5, 19, 10, 24, 1];
+    const weights5 = lagrangeAtZero([1, 2, 3, 4, 5]);
+    assert.deepEqual(weights5, [5, 19, 10, 24, 1]);
     const secret5 = X.map(row => mod(row.reduce((sum, x, i) =>
       sum + weights5[i] * x, 0)));
     let positive5 = 0;
@@ -204,7 +210,12 @@ for (const layout of ["rows-of-43", "five-tuples"]) {
     // This is explicitly an analogy: Cicada's actual 2013 SSSS field was
     // GF(2^176), not GF29, with binary polynomial x^176+x^11+x^3+x^2+1.
     const historicalIds = [2, 3, 5, 7, 8];
-    const historicalWeights = [19, 15, 19, 23, 12];
+    const historicalWeights = lagrangeAtZero(historicalIds);
+    assert.deepEqual(historicalWeights, [19, 15, 19, 23, 12]);
+    for (let degree = 0; degree <= 4; degree++) {
+      assert.equal(mod(historicalIds.reduce((sum, x, i) =>
+        sum + historicalWeights[i] * x ** degree, 0)), degree === 0 ? 1 : 0);
+    }
     assert.equal(mod(historicalWeights.reduce((sum, value) => sum + value, 0)), 1);
     const monicCorrection = mod(historicalWeights.reduce((sum, weight, i) =>
       sum + weight * historicalIds[i] ** 5, 0));
