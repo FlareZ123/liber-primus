@@ -2,11 +2,6 @@ name: p32 signed-2016 tile-intensity key gate
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'sims/p32_signed2016_tile_intensity_sft.py'
-      - '.github/workflows/p32-signed2016-tile-intensity.yml'
 
 permissions:
   contents: read
