@@ -21,6 +21,12 @@ Added `sims/lp2_grid_taylor_jet_stream_sft.cjs`. It verifies the original grid h
 
 The direct-pad IoC range is 0.03444849–0.03454715; the filter range is 0.03445962–0.03450974, against raw original 0.03447840. All eight filters exactly re-encrypt the original and recover matched native plants; direct-pad plants recover exactly. No plaintext. Do not repeat these literal pad/filter families.
 
+## New Hermite decomposition (11 November checkpoint)
+
+The seven source constraints `(13,0)=8,(13,1)=0,(15,0)=27,(15,1)=5,(23,0)=24,(23,1)=19,(23,2)=2` uniquely determine the degree-six Hermite polynomial H over GF(29): ascending coefficients `[6,4,18,25,12,11,20]`. H' has exactly the original P' roots `13,24`, although H'(24)=0 was not imposed. The node factor M=(X-13)^2(X-15)^2(X-23)^3 has ascending coefficients `[20,5,12,9,1,13,20,1]`; exact division gives P-H=M Q with zero remainder and Q length248=31×8. Together with the leading zero and H, this is `1+7+31*8=256`, aligning the 31 thirteen-dot marks, eight grid columns, and seven-word Parable first sentence.
+
+The F31 schedule used H's padded descending row `[0,20,11,12,25,18,4,6]` for leading fragment sentinel31 and Q rows0–30 for marked fragments by the existing marker labels. Twelve period-eight per-fragment variants (add/exclude/exp, signs±, phases0/7) failed against the solved p56/p57 tail. Best raw additive score39/180 is not signal: 33/88 matches in the final fragment are exactly the three zero positions of Q row12 `[4,17,3,20,0,18,0,0]` repeated11 times; remaining matches are6/147. The M 8-tap GP28 filter under global/page/fragment resets and signs± reaches at most9/180. Positive plants roundtrip; no plaintext. Retire these literal Q-row and M-filter uses. The structural decomposition is a promising lead, but the intended use of the 31×8 quotient remains unknown. The current Taylor script does not yet automate the Hermite extension; port this exact calculation if it is pursued again.
+
 ## Current repository synthesis
 
 - Detailed source evidence and bounded negatives: `im-results/grid-bigint-factor-page53.md`.
