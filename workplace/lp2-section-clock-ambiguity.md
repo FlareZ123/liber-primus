@@ -6,7 +6,9 @@
 
 The canonical raw transcription has eight section-ending dollar markers across the 55 rune-bearing unresolved pages. Its sixth marker falls at the end of physical p32, global rune offset **7,960**. Physical p33 (scan 50.jpg) has two separate red headings: 10 runes beginning at local offset **0**, and 8 runes beginning at local offset **91**. The latter follows three large black circles and a red 13-dot mark.
 
-An independently maintained, upstream-related transcription inserts a section separator before the second p33 red heading and not after p32. That is a transcription-convention witness, not independent cryptographic evidence. The canonical transcription remains unchanged to preserve comparability.
+A source-native typographic control sharpens the first boundary: solved p57's red `PARABLE` title is a 7-rune red span at local offset **0**, followed by red 13-dot punctuation at offset **7**. P33's first heading has the same layout signature: 10 red runes at offset **0**, followed by red 13-dot punctuation at offset **10**. P33's second heading is 8 red runes at offset **91**, with red punctuation at offsets **91** and **99**; the repeated 1033/3301 cuneiform artwork begins immediately after it and continues across p34–p39. P32 itself ends with red 13-dot punctuation. The strongest human-facing reading is therefore that **both p33 red headings begin titled units**, making the 91-rune/23-word interlude a standalone unit rather than an unmarked continuation of the prior p32 body.
+
+An independently maintained, upstream-related transcription inserts a section separator before the second p33 red heading and not after p32. That is a transcription-convention witness, not independent cryptographic evidence. The canonical transcription remains unchanged to preserve comparability. The visual analogy strengthens the two-heading segmentation as a reading of the artifact; it still does **not** prove that a cryptographic key clock resets at either heading.
 
 Three lossless source clocks remain possible:
 
@@ -16,7 +18,7 @@ Three lossless source clocks remain possible:
 | p33 second heading only: 8 bodies | 729, 1145, 1738, 1894, 1021, 1524, 1589, 3316 | 158, 255, 385, 435, 224, 349, 355, 735 |
 | Both p33 headings: 9 bodies | 729, 1145, 1738, 1894, 1021, 1433, 91, 1589, 3316 | 158, 255, 385, 435, 224, 326, 23, 355, 735 |
 
-The interlude between global offsets 7,960 and 8,051 is exactly **91 runes / 23 words**. It may be a prologue, separate section, or continuation; the image establishes its position, not a cipher reset.
+The interlude between global offsets 7,960 and 8,051 is exactly **91 runes / 23 words**. The p57 title analogy makes a standalone titled unit the strongest typographic interpretation. Keep the alternative clocks for comparative cryptanalysis: visual sectioning is evidence about intended reading order, not proof of a cryptographic reset.
 
 ## Repeated cuneiform layout
 
@@ -46,7 +48,7 @@ Directly concatenating the 28 unknown fragments in LCG order does not improve GP
 
 ## Consequence and reproduction
 
-Keep the canonical dollar-marker transcription unchanged. Section-reset ciphers must state which p33 boundary they use; the 13/31 LCG is a separate traversal candidate, not evidence for a p33 reset.
+Keep the canonical dollar-marker transcription unchanged. For section-reset ciphers, use the **both-p33-headings / 9-body segmentation as the primary source-native reading**, while retaining p32-only and second-heading-only clocks as controls. Do not infer a cryptographic reset from typography alone. The 13/31 LCG is a separate traversal candidate, not evidence for a p33 reset.
 
 - Three clocks and original-image evidence: [source-clock SFT](../sims/lp2_section_clock_sft.cjs) and [original-JPEG cuneiform SFT](../sims/lp2_cuneiform_header_sft.py).
 - Direct 1033/3301 transfer: [prime-totient SFT](../sims/lp2_cuneiform_prime_totient_sft.cjs).
