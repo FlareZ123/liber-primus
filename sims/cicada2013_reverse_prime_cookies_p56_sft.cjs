@@ -44,6 +44,21 @@ for (const [name, value] of Object.entries(cookies)) {
   assert.ok(Object.hasOwn(cookies, reversed), "source names form reciprocal pair");
 }
 
+// Exact limited arithmetic inventory: among unordered three-digit
+// prime-reversal pairs, only the historical cookies sum to a multiple of 29.
+// This is a *retrospective* structural discriminator, not an intent p-value.
+const emirpPairs = [];
+for (let n = 100; n <= 999; n++) {
+  const reversed = Number([...String(n)].reverse().join(""));
+  if (n < reversed && prime(n) && prime(reversed))
+    emirpPairs.push([n, reversed]);
+}
+assert.equal(emirpPairs.length, 14);
+const base29Sums = emirpPairs
+  .filter(([n, rev]) => (n + rev) % 29 === 0)
+  .map(([n, rev]) => [n, rev, (n + rev) / 29]);
+assert.deepEqual(base29Sums, [[167, 761, 32]]);
+
 const tested = [];
 for (const [firstName, secondName] of [["167", "761"], ["761", "167"]]) {
   for (const representation of ["raw32", "ascii64"]) {
@@ -109,6 +124,8 @@ const output = {
   source: "2013 third-onion cookie values 167 and 761, each 32 bytes",
   sourceSelectedOperation: "2013 NUMBER decimal prime reversal",
   cookieNamesAreReciprocalPrimes: true,
+  threeDigitEmirpPairs: emirpPairs.length,
+  uniqueBase29DivisibleEmirpSum: base29Sums,
   printed2014TargetHex: witness.target_hex,
   models: tested,
   matches: tested.filter((x) => x.matches).length,
