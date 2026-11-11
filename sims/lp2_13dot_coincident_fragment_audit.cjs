@@ -116,19 +116,16 @@ for (const event of unknownEvents) {
   });
   unknownPrevious = event.globalOffset;
 }
-unknownFragments.push({
-  zeroBasedIndex: unknownFragments.length,
-  start: unknownPrevious,
-  end: unknownRuneCount,
-  length: unknownRuneCount - unknownPrevious,
-  terminatingEvent: null
-});
-assert.equal(unknownFragments.length, 29);
+// The p55 event is the terminal boundary of the unknown prefix, not a
+// separator that opens a 29th unknown fragment. Do not append a tail fragment.
+assert.equal(unknownFragments.length, 28);
 const unknownEmpty = unknownFragments.filter(x => x.length === 0);
-assert.deepEqual(unknownEmpty.map(x => x.zeroBasedIndex), [8, 11, 28]);
+assert.deepEqual(unknownEmpty.map(x => x.zeroBasedIndex), [8, 11]);
 assert.equal(unknownFragments.filter(x => x.length > 0).length, 26);
 assert.equal(unknownFragments.reduce((sum, x) => sum + x.length, 0), unknownRuneCount);
-assert.equal(unknownEvents.at(-1).globalOffset, unknownRuneCount); // p55 terminal mark
+assert.equal(unknownEvents.at(-1).globalOffset, unknownRuneCount); // p55 terminal boundary
+const trailingSentinelOutsideUnknownStream = unknownRuneCount - unknownEvents.at(-1).globalOffset;
+assert.equal(trailingSentinelOutsideUnknownStream, 0);
 
 // Original scans supporting the two coincident pairs are retained in resources.
 for (const file of ['24.jpg', '31.jpg', '32.jpg']) {
@@ -150,10 +147,11 @@ console.log(JSON.stringify({
     totalRunes: unknownRuneCount,
     printed13DotEvents: unknownEvents.length,
     uniqueLogicalOffsets: unknownGroups.size,
-    fragmentCountWhenAllPrintedEventsArePreserved: unknownFragments.length,
+    eventBoundedFragmentCount: unknownFragments.length,
     nonemptyFragmentCount: unknownFragments.filter(x => x.length > 0).length,
     zeroLengthFragmentIndices: unknownEmpty.map(x => x.zeroBasedIndex),
-    terminalMark: unknownEvents.at(-1)
+    terminalMark: unknownEvents.at(-1),
+    trailingSentinelOutsideUnknownStream: trailingSentinelOutsideUnknownStream
   },
-  interpretation: 'The 31-event/32-interval count is full-release only. The unsolved prefix has 28 events, 26 distinct offsets, and 29 event-indexed intervals including three empty intervals. Preserve coincident physical marks and the terminal p55 mark.'
+  interpretation: 'The 31-event/32-interval count is full-release only. The unsolved prefix has 28 event-bounded fragments, 26 distinct offsets, and two empty intervals. The terminal p55 mark closes the unknown stream; do not count a trailing sentinel as an additional fragment.'
 }, null, 2));

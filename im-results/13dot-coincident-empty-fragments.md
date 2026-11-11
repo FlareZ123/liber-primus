@@ -27,19 +27,19 @@ Restricting the same original annotation records to physical pp0–55 gives:
 | Original runes | **12,956** |
 | Printed 13-dot events | **28** (27 red, 1 black) |
 | Distinct global rune offsets | **26** |
-| Event-indexed intervals, preserving every printed mark | **29** |
+| Event-bounded intervals, ending at each printed mark | **28** |
 | Nonempty intervals | **26** |
-| Zero-length intervals | **3** |
+| Zero-length intervals | **2** |
 
-The three empty intervals are zero-based indices **8, 11 and 28**:
+The two empty intervals are zero-based indices **8 and 11**:
 
 - **8:** between the black and red p7 marks at global rune offset 1,860;
 - **11:** between the p14-end and p15-start red marks at global rune offset 3,603;
-- **28:** after the terminal red p55 mark at local offset 76, global offset **12,956**, exactly the end of the unknown prefix.
+- The terminal red p55 mark is at local offset 76, global offset **12,956**, exactly the end of the unknown prefix. It is the terminal boundary, not a separator that opens another unknown fragment.
 
-The two coincident pairs account for two empty intervals; the p55 terminal mark accounts for the third. All 26 nonempty intervals together contain exactly the 12,956 unknown runes. The event count is therefore **28**, not 31, for the unknown prefix. The 13 is the number of dots within each stencil, not the number of events.
+The two coincident pairs account for the two empty intervals. All 26 nonempty intervals together contain exactly the 12,956 unknown runes. The unknown prefix therefore has **28 event-bounded fragments**, not 29; mechanically appending a zero-length tail after the p55 boundary would create a sentinel outside the unknown text and must not be counted as a fragment. The 13 is the number of dots within each stencil, not the number of events.
 
-This distinction matters for every proposed fragment/state clock: a full-release 32-fragment mapping includes the solved tail, whereas an unknown-prefix mapping has 29 event-indexed intervals and three empty intervals. Neither count alone specifies how a cipher should handle co-located marks or the terminal event.
+This distinction matters for every proposed fragment/state clock: the full-release 32-fragment mapping contains the first 28 unknown-prefix fragments and four solved-tail fragments. Neither count alone specifies how a cipher should handle the two co-located marks or the terminal boundary.
 
 ## Ornament and table crosslinks
 
