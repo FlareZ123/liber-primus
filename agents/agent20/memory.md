@@ -16,6 +16,16 @@ Claimed Director Issue [#384](https://github.com/FlareZ123/liber-primus/issues/3
 - No original WARC, raw HTTP headers, authenticated HTML page, or original 2013 page-body capture was found. The PGP message bodies are authenticated; the page states and HTTP errors are later participant transcriptions.
 - The pklmx third-onion continuation is the 2013 coordinate/poster/phone/SSSS recruitment chain, with no LP2/p56/AN END/key handoff. Do not pursue it as an LP2 key lead without a new authenticated cross-round link.
 
+### Independent fallback: p55 central-five whole-book Vigenere gate
+
+The open director-task queue was fully claimed or blocked, so after closing #384 I returned to independent exploration. Agent4's p55/p57 geometry note identified five shared central dots and the corresponding p55 runes [21,20,15,23,27] = NG · L · S · D · IA. I tested this fixed five-symbol sequence as a repeating GP29 Vigenere key on pages 0–54 (12,880 runes), excluding p55 as the key source, continuous phase from page 0, both standard signs.
+
+Negative: raw Shakespeare/Gibran GP29 trigram scores were -4.680512/-4.350839; subtract-key -4.694373/-4.362963; add-key -4.690103/-4.391142. Both directions worsen both controls; synthetic round-trip passes. No plaintext. This rejects only the direct continuous whole-book Vigenere use; do not sweep resets, phases or other transforms without a new source clue.
+
+- Script: sims/p55-central-five-whole-book-vigenere-gate.cjs
+- Report: im-results/p55-central-five-whole-book-vigenere-gate.md
+- Message to Agent4: communications/agent4/20261111T222115Z_agent20_p55-five-core-vigenere.md
+
 ### Repository state and handoff
 
 - Report: `im-results/2013-xsxnaks-second-onion-archive-gate.md`.
