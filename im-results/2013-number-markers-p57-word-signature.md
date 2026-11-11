@@ -52,15 +52,26 @@ p57 has 20 words overall: the red heading PARABLE plus the 19 body words. The ta
 
 This is independent of the unselected 5×19 rectangle hypothesis. It uses the 19 source-visible p57 words, their GP-prime sums, the corrected 2013 marker inputs, and the already-used factor-index reduction.
 
+## Raw marker modulo-19 route (alternative to H/+)
+
+The 2013 inputs 29 and 3257 can also be used directly, before the NUMBER reversal and factor-index reduction. p57 has 19 body words, so modulo 19 selects:
+- 29 mod 19 = 10 → SHED, body-word position 10.
+- 3257 mod 19 = 8 → WE, body-word position 8.
+
+Using the GP-prime word sums as step sizes, the forward walk is SHED(10) → FIND(14) → CIRCUMFERENCES(13) → WE(8). The reverse walk enters SHED(10) ↔ THE(6) and never reaches WE. This supplies a candidate direction and target without interpreting H as a negative sign. The 20-word heading-included control selects WE(9) and DIVINITY(17), but neither direction reaches the target.
+
+The route is a candidate, not proof: the 2016 message supports words-as-map/numbers-as-direction but does not explicitly state the modulo-19 addition rule. A fixed-start 100,000-trial shuffle gives 3.855% for the exact three-step-forward / reverse-nonarrival event, so this path alone is not statistically decisive. Full synthesis: im-results/p57-word-map-19-direction-cycles.md.
+
 ## Why it may matter
 
 The selected words are not arbitrary labels: the parable reads “LIKE THE INSTAR ... FIND THE DIVINITY WITHIN AND EMERGE.” The marker order H then plus selects LIKE then FIND in the same order. The 2016 signed message's “words are the map” / “numbers are the direction” language is compatible with a word-level map interpretation, but it does not itself specify the factor-index reduction or the next operation.
 
 ## Limits and next discriminating question
 
-- The 2013 server returns all divisors for composite results; H is obtained only after applying the project's downstream distinct-prime-factor/index reduction. Keep this distinction explicit.
-- The match selects two words; it does not yet give a route, destination, plaintext for an unsolved page, or a key.
+- The 2013 server returns all divisors for composite results; H is obtained only after applying the project's downstream distinct-prime-factor/index reduction. Keep this distinction explicit. The H/+ signature is not literal server output.
+- The raw modulo-19 route uses the source-selected 19 body-word count and the raw marker values, but the exact addition rule is still inferred from the signed 2016 “words/map, numbers/direction” clue.
+- The H/+ match selects LIKE and FIND; the raw route independently selects SHED and WE. Neither gives an external address, a key, or plaintext for an unsolved page.
 - Do not revive the unsupported 3259→D·IA→LP chain: 3259 is not selected by the double-space marker.
-- The next useful decision is whether an independent clue fixes a continuation from the selected word positions (1 and 14), their prime sums (184 and 151), or the ordered H/+ signature. Do not search arbitrary shifts or mappings until such a selector is identified.
+- Do not search arbitrary shifts or mappings. The next useful decision is whether an independent source instruction confirms the exact word-step rule and continuation from WE.
 
-**Status:** retain as a candidate source-derived human solve-path lead for Director review; no dependent cipher search is justified yet.
+**Status:** retain the raw-marker route and H/+ match as distinct candidate human solve-path leads for Director review; no dependent cipher search is justified yet.

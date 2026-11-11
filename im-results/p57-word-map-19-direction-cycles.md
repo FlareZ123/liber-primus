@@ -1,10 +1,10 @@
 # p57 19-body-word modular direction graph: two 5-cycles sharing WE
 
-**Classification:** candidate human solve-path structure; exploratory, not a decryption. The result is independent of the rejected 5×19 rune-rectangle alignment.
+**Classification:** candidate human solve-path structure; exploratory, not a decryption. The raw-marker start/target route below is independent of the H/+ factor-index reduction; the p55 fold → TWO P convergence is conditional.
 
 p57 contains **20 words overall**: the red heading `PARABLE` plus 19 body words. The graph below deliberately treats the heading as a separate selector/seed (its GP-prime sum is 449, used in the conditional NUMBER(449)→944→59→95=5×19 chain) and uses the 19 body words as nodes. This exclusion is a modeling choice, but it is source-motivated by the typographic heading/body distinction and the 19-body-word count; it is not a claim that the page has only 19 words.
 
-## Source-selected anchors
+## Provisional H/+ factor-index anchors (secondary)
 
 The corrected 2013 first-onion transcript/server has its double-space markers after **29** and **3257**. Under NUMBER, 29 reverses to 92, whose distinct prime factors 2 and 23 reduce by the project's established factor-index rule to GP rune **H**; 3257 reverses to prime 7523 and returns **+**. The rule and marker correction are documented in [the word-signature note](2013-number-markers-p57-word-signature.md).
 
@@ -73,6 +73,31 @@ The cycles are both length 5 and share exactly one node: **WE**, position 8. Thu
 
 The two cycles' word meanings are strikingly consonant with the parable's key phrases (“like ... to the surface”, “we ... find the divinity within”, “shed ... circumferences”), but this semantic reading is interpretive, not a recovered plaintext.
 
+## Raw 2013 marker start/target route (new candidate)
+
+The same first-onion source gives raw whitespace-selected integers 29 and 3257. Before applying the historical NUMBER reversal or the later H/+ factor-index reduction, reduce these raw values by the 19 body-word count:
+
+- 29 mod 19 = 10: **SHED**, the start node.
+- 3257 mod 19 = 8: **WE**, the target node.
+
+This uses a different interpretation of the same markers from the H/+ → LIKE/FIND association above. It is independent of the p55 fold and does not rely on H/+.
+
+With the GP-prime word-sum map already defined, the forward walk is a locked three-step prediction:
+
+- SHED(10): 232 mod 19 = 4, so 10 → 14 (**FIND**).
+- FIND(14): 151 mod 19 = 18, so 14 → 13 (**CIRCUMFERENCES**).
+- CIRCUMFERENCES(13): 451 mod 19 = 14, so 13 → 8 (**WE**).
+
+The reverse map instead enters SHED(10) ↔ THE(6), never reaching WE. The raw marker target therefore selects the forward direction without requiring a post-hoc H→negative convention.
+
+Controls:
+- Including the heading PARABLE as a twentieth node and using modulus 20 gives start 9 (WE) and target 17 (DIVINITY); neither direction reaches the target, and both enter the INSTAR fixed point.
+- Zero-based and one-based GP-rune ordinal sums do not reach WE from SHED in either direction.
+- Rune-count steps do not reach WE in the forward direction; the reverse count-map reaches it in four steps. The signed 2016 wording points to numerical word values, and Gematria Primus supplies prime weights, making GP-prime sums the better-motivated measure.
+- A fixed-start shuffle of the other 18 word sums gives the exact forward-three-step / reverse-nonarrival event in 3,855 of 100,000 trials (3.855%). This is modest, so the raw path is a source-motivated check, not proof by itself.
+
+The 2016 signed message's “words are the map” / “numbers are the direction” wording supports the broad construction, but does not explicitly prescribe the addition rule or modulus. Keep this as a candidate intended route, not an established cipher.
+
 ## Alternative numeric controls
 
 ### All-20-word map (heading included): a competing route
@@ -85,7 +110,7 @@ If the red heading PARABLE is included as a 20th node and the total-word count 2
 
 A separate 100,000-permutation null fixes LIKE/FIND positions and sums and shuffles the other 18 word sums. Both anchors reach INSTAR under both signs in 604/100,000 (0.604%); under the − map alone the frequency is 2.867%, and under the + map alone 2.344%. This is an exploratory null, not a formal p-value; word sums are not guaranteed exchangeable.
 
-The 20-node map is at least as interesting as the body-only 19-node cycles. The source-visible total word count supports modulus 20; the heading/body distinction plus conditional 95=5×19 chain supports a separate 19-body map. No independent clue yet selects which map is intended, or whether both are nested layers.
+The 20-node LIKE/FIND map remains a competing structure, but the raw-marker start/target check favors the 19-body map: modulo 19 selects SHED(10) and WE(8), and only the forward prime-sum walk reaches that target. The 20-word raw-marker control fails. This is source-motivated but not conclusive; the heading/body distinction and conditional 95=5×19 chain also support the 19-body interpretation.
 
 ### Alternative numeric controls
 
@@ -107,10 +132,11 @@ The conservative relevant frequency is **0.860%**, because the sign assignment a
 
 ## What remains unselected
 
-- The 2013 markers select LIKE and FIND, but the available sources do not yet specify why LIKE should use the minus map while FIND uses the plus map. The H/+ marker outputs may be relevant, but no source-grounded mapping from H to a negative direction has been established.
-- The 2016 message supports the broad map/road/direction interpretation but does not explicitly prescribe GP-prime word sums modulo 19.
-- The graph reveals a structured word route, not a destination, an unknown-page key, or recovered ciphertext plaintext.
+- The raw 2013 residues supply a candidate start (SHED) and target (WE), and the forward map connects them; however, no source explicitly states the exact rule “add the current word's GP-prime sum modulo the 19 body words.”
+- The H/+ factor-index reduction remains a later analytic layer, not a literal server output. It is not needed for the raw-marker route. The p55 fold's minus arithmetic is likewise conditional on carrying a sign into the fold.
+- The signed 2016 message supports a word-map/numerical-direction reading but does not specify every arithmetic choice.
+- WE is an internal convergence word, not an external address, a key, or recovered LP2 plaintext.
 
 ## Next decision
 
-Seek one independent clue that fixes the sign/orientation or explicitly selects the 19-word modular walk. In particular, test whether the 2016 “path lies empty” / “Seek and you will be found” wording supplies a rule for the plus anchor FIND and whether the H anchor has a source-defined opposite direction. Do not search arbitrary moduli or sign conventions. If no such selector exists, retain this as a promising but unconfirmed word-map structure rather than expanding it into a cipher search.
+Do not extend the graph beyond WE or search alternative moduli/signs. Seek an independent source instruction that confirms the exact word-step rule and says whether WE is a stop, a command, or a pointer to another artifact. If no such instruction appears, retain the raw-marker route and p55/P/P convergence as candidate human solve-path evidence, not as an established cipher.
