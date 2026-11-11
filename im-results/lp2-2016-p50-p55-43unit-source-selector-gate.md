@@ -83,6 +83,16 @@ For scale, the first 43 body runes of solved p57 (after its seven-rune PARABLE h
 **Decision:** reject the direct stationary additive/Beaufort pairing between the conditional p32 compass output and p55's 43 interiors. This does not falsify the p32 route as a selector, nor does it test nonlinear/stateful transforms or a separately source-selected alignment. Do not expand this into arbitrary 43-way permutations or phases.
 
 
+## Signed 2016 word initials → p55 interior (exact keyless obstruction)
+
+The signed message's **43 alphabetic words** also offer a simpler human-facing mapping to the **43 p55 interior runes**: take the *first GP rune* of each signed word, preserving source word order. Every ordinary monoalphabetic cipher, including an arbitrary secret and even a non-injective stationary lookup, must give one fixed plaintext rune to each repeated input ciphertext rune. This produces a source-level contradiction **without selecting a key or scoring language**.
+
+Specifically, at one-based interior positions **1 and 15**, the actual p55 ciphertext rune is **M** at both positions. The corresponding signed words are **Hello** (initial **H**) and **Its** (initial **I**). A stationary map would require **f(M)=H=I**, impossible in GP29. Across the whole 43-position source alignment, the ciphertext has **21** distinct rune symbols; **30 of 31** same-cipher position pairs request different signed initials. Even allowing an arbitrary 29-to-29 function selected after viewing the proposed plaintext, the optimal stationary assignment must misread at least **21 of 43 positions**. The result is independent of additive keys and of p50 radix59/radix60.
+
+The appended exact test in [the existing p32/p55 43-symbol SFT](../sims/p32_p55_43symbol_additive_bridge.cjs) derives the signed initials from the original clear-signed source, recomputes the p55 interior with physical-word boundaries, and asserts the witness, collision counts, and minimum contradictions. The only first-letter spelling normalization needed here is **V→U** for Verify; the explicit H/I collision does not depend on it.
+
+**Decision:** retire only the one-initial-to-one-interior *stationary GP29 substitution* reading. The signed message does not prescribe those initials as p55 plaintext; it could be a navigation instruction or a key for a separate stateful method. This counterexample supplies no general exclusion of nonstationary, polyalphabetic, or multi-symbol ciphers.
+
 ## Direct signed-2016 word-prime-sum key → p55 interior (bounded negative)
 
 The signature-verified 2016 clear-signed message contains **43 alphabetic words**, matching the 43 p55 interior runes. A simple reading of “their numbers are the direction” is to encode each word in GP, sum its rune prime weights, reduce modulo29, and use that 43-value sequence as a one-symbol-per-rune shift key in source order. This is a motivated test, not an authenticated cipher instruction: the message does not explicitly prescribe prime sums, modulo29 reduction, or Vigenère.
