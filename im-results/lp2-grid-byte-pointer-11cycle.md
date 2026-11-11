@@ -39,6 +39,19 @@ Among those eight source-recognizable readings, **only the original forward row-
 
 The page-32 eleven-runic dimension and the grid's original top-left position are natural but **not authenticated instructions** to interpret table bytes as pointers. This is therefore a prospective solve-path hypothesis, not proof that the radix is uniquely determined by the puzzle.
 
+## Signed-3301 selector and the table's only two zero bytes
+
+The independently signed January 2016 tree message explicitly prints the identifier **3301**. The GP alphabet contains **29** symbols, while the original numeric grid has **256=32×8** cells. These yield two natural, distinct integer projections:
+
+1. **GP alphabet residue:** `3301 mod 29 = 24`. Taking row 24, first column (0-based) in the **32×8 original grid** selects flattened cell **24×8=192**, printed **`00`**.
+2. **Byte-address residue:** `3301 mod 256 = 229`. Taking flattened cell **229 = row28, col5** selects the **other printed `00`**.
+
+Those are **the only two zero-valued tokens in the entire 256-cell original table**, and their exact positions are `[192,229]`. With the source-first table-pointer interpretation above, the identifier starts on the short approach **`229→0`**, and the other zero is the **11-cycle's closing cell**, `192→0`. Thus one signed historical number, the 29-character rune alphabet, and the table's original dimensions each have direct roles in a precise self-indexed route. The 2016 instruction describes its words as a map and its numbers as the direction, making a byte-address reading a possible human operation. The relationship does not prove the map was deliberately planted.
+
+The two zero locations have conditional exact probability **`1/C(256,2) = 1/32640`** under an exchangeable multiset permutation of table-byte positions. This probability treats the two cell addresses as fixed independently of the observed byte values. In reality the choice of combining mod29 with a row start and mod256 with a direct cell address was recognized after other table regularities, so this should **not** be interpreted as a discovery-wide p-value. Importantly, the printed `00` tokens retain their zero interpretation under both the published base60 and alternative f-omitting base59 codebooks. The zero pair selects original forward row-major order, while the separate jet and 11-cycle constraints distinguish the base60 reading among eight documented natural alternatives.
+
+A related cross-source equality, previously raised on [Director Issue #18](https://github.com/FlareZ123/liber-primus/issues/18), is that `(563×569) mod29=13` and `3301 mod29=24`. These exactly give both original grid-polynomial derivative roots, **13 and 24**. The dimension factors come from p32's 11×11 GP-prime coordinate sums and the signed 2016 tree image. All of these numerical connections are *hypotheses of an intended solve path*. They require an independently indicated decoding operation and actual original plaintext before being promoted to established cryptographic results.
+
 ## Conditional rare-event experiment
 
 The exact [reproducer](../sims/lp2_grid_byte_pointer_11cycle_sft.cjs), verified by [successful Node.js 22 CI run 42941238297](https://github.com/FlareZ123/liber-primus/actions/runs/42941238297), first asserts all source arrays, first-cell hops, orbit components, and eight codec contrasts. It then shuffles the **existing 256 decoded byte values** uniformly by a deterministic Fisher–Yates process driven by xorshift32 seed `0x24a11b7d`. This preserves the complete byte multiset, including duplicate values and the number of occurrences of zero.
