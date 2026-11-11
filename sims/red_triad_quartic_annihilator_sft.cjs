@@ -191,10 +191,51 @@ function testRegister(original, referenceWords, name, cohort = "all-words", expe
   });
 }
 
+/**
+ * Assert every retained five-rune window is wholly inside one physical page,
+ * and none straddles a visible 13-dot event (if an event resets the key).
+ * @param {{words:Array<{runes:string,startPage:number,endPage:number}>}} parsed
+ * @returns {{safeWindows:number,sourceMarks:number}}
+ */
+function verifySourceSafeWindows(parsed) {
+  const corpus = JSON.parse(fs.readFileSync(path.join(ROOT,
+    "resources/liber-primus/lp2-corpus.json"), "utf8"));
+  const ink = JSON.parse(fs.readFileSync(path.join(ROOT,
+    "resources/liber-primus/lp2-ink-annotations.json"), "utf8"));
+  const boundaries = new Set();
+  let physicalOffset = 0, sourceMarks = 0;
+  for (const physical of corpus.pages.slice(0, 56)) {
+    const marked = ink.pages.find((page) => page.page === physical.page);
+    for (const item of (marked?.large_punctuation || []))
+      if (item[1] === 13) {
+        boundaries.add(physicalOffset + item[0]);
+        sourceMarks++;
+      }
+    physicalOffset += physical.runic_count;
+  }
+  assert.equal(physicalOffset, 12956);
+  assert.equal(sourceMarks, 28);
+  let wordOffset = 0, safeWindows = 0;
+  for (const word of parsed.words) {
+    if (word.startPage === word.endPage)
+      for (let i = 0; i + 4 < word.length; i++) {
+        for (let j = 1; j <= 4; j++)
+          assert.ok(!boundaries.has(wordOffset + i + j),
+            "Key reset within retained source window");
+        safeWindows++;
+      }
+    wordOffset += word.length;
+  }
+  assert.equal(wordOffset, physicalOffset);
+  assert.equal(safeWindows, 3152);
+  return {safeWindows, sourceMarks};
+}
+
 function main() {
   const original = parseSharedCorpus();
   assert.equal(original.words.length, 2896);
   assert.equal(original.runeCount, 12956);
+  const sourceSafe = verifySourceSafeWindows(original);
   const words = original.words.map((word) =>
     [...word.runes].map((symbol) => RUNE_INDEX.get(symbol)));
   assert.ok(words.every((word) => word.every(Number.isInteger)));
@@ -230,7 +271,8 @@ function main() {
       "page-contained", 1108, 3152),
   ];
   console.log("QUARTIC ANNIHILATOR ORIGINAL-INPUT TEST PASSED");
-  console.log(JSON.stringify({allWords: results, pageContained: pageSafe}, null, 2));
+  console.log(JSON.stringify({sourceSafe, allWords: results,
+    pageContained: pageSafe}, null, 2));
 }
 
 if (require.main === module) main();
