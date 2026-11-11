@@ -18,11 +18,11 @@ The repository was created 4 January 2026 and last pushed 12 October 2026. It is
 Useful material:
 
 - A 28-constraint register and reproducible test suite covering the LP2 ciphertext's structural statistics, word/line/page boundaries, key-source candidates, and attempted mechanism families.
-- An independent report of 86 adjacent equalities in 12,955 within-stream transitions (0.66%), with the surviving doublets reported as broadly distributed rather than concentrated at obvious boundaries.
-- A proposed output-side anti-doublet/re-key interpretation: the authors compare 86 survivors with roughly 447 equalities expected under a uniform 29-symbol stream and describe this as about 19% “leakage.” This is a **model interpretation**, not an observed re-key event or identified algorithm. The report itself cannot determine whether the suppression was a programmed reversible rule or imperfect manual editing, and it supplies neither a key nor a plaintext.
+- An independent report of 86 adjacent equalities across **12,947 section-contiguous transitions** in the 12,956-rune unknown stream (0.664%). The nine original sections have lengths [729, 1145, 1729, 9, 1894, 1021, 1524, 1589, 3316]; the follow-up reproducer now emits all 86 exact positions from the canonical master.
+- A proposed output-side anti-doublet/re-key interpretation: 86 survivors versus 446.45 expected under a uniform 29-symbol stream (19.26%). This is a **model interpretation**, not an observed re-key event or identified algorithm. Issue #274 pinned the exact forward generators: encrypt_dodging and the two-key community switch are many-to-one, and the literal look-ahead switch can leave an output unset.
 - The files under `v3_confirmed_cribs.json` are hillclimber anchors, not verified plaintext. The relevant page READMEs continue to mark those pages UNSOLVED.
 
-The current canonical corpus independently gives 12,956 LP2 runes and 86 adjacent equalities. The 19% ratio is not a key-recovery result: it depends on the uniform-random baseline and does not specify a reversible transformation. The Wulfic work is worth retaining as external prior art for the doublet question, but its 28-test suite has not been independently reproduced here and its anti-doublet interpretation must not be promoted to an established cipher.
+The current canonical corpus independently gives 12,956 LP2 runes. Issue #274 pinned Wulfic's implementation at commit bf89d3d13aad2b8f2c95ab195cf1b092f250775c, independently reproduced its 86/12,947 fingerprint and all event positions, and demonstrated fixed-key/fixed-seed collisions in both encrypt_dodging variants and key_switch_ideal. Wulfic's own C14 test excludes its skip-next model (LLR −21.34 against a −10 gate), and its L5 test rejects the declared DIVINITY/CIRCUMFERENCES switch (6/2,900 ideal; 10/2,898 literal). The full 28-test suite has not been independently reproduced. The 19% ratio remains a statistical observation, not an authentic key, plaintext, or reversible mechanism; see [the exact model gate](lp2-anti-repeat-lossless-capacity.md#wulfic-s-19-anti-doublet-candidate-is-not-a-reversible-rule).
 
 ## 2. “Cicada Solution 2026” — unsupported and contradicted by original artifacts
 
@@ -61,14 +61,14 @@ The 2019 Reddit post [“Documented Failure: Hashing Liber Primus”](https://ww
 ## Reusable conclusion
 
 1. No post-2018 public source audited here supplies independently reproducible unknown-page plaintext, a source-authenticated LP2 key, or a complete reversible mechanism.
-2. Add Wulfic's 2026 constraint study to the external prior-art index. Its doublet observations may inform the active source-selected transport question, but its “19% leak” is not a recovered rule.
+2. Retain Wulfic's 2026 constraint study as external prior art, but close the specified anti-doublet decoder: its forward generators are non-injective and the tested skip-next/two-key variants fail their own discriminating tests. The “19% leak” is not a recovered rule.
 3. Do not import the Reddit 2026 “Euler-seed / geographic cipher” story: its core page-structure claims conflict with the original scans, and the named assets are absent.
 4. Do not treat research frameworks, hillclimber cribs, known-page fixtures, or generated “Runeglish” as recovered plaintext.
-5. No update to `results/README.md` is warranted: this audit found no established discovery or new LP2 solution state.
+5. The follow-up updates `results/README.md` only to record this bounded Wulfic-model exclusion; no established discovery or new LP2 solution state was found.
 
 ## Reproduction anchors
 
 - Canonical source: `resources/liber-primus/lp2-corpus.json` (12,956 runes, pages 0–55).
 - Original image checks: `resources/liber-primus/60.jpg`, `73.jpg`, `74.jpg`.
 - The page-60 prime sum is `sum(corpus["prime"][i] for i in corpus["pages"][43]["indices"])`, yielding **14,169**.
-- The 86 adjacent-equality count is over the original canonical rune sequence, with physical-page boundaries respected; do not infer a decryption from this statistic alone.
+- Wulfic's 86/12,947 count is over the nine original unsolved sections (segment IDs 7–15), excluding eight inter-section edges while retaining page joins; the separate within-page count is 86/12,901. The follow-up reproducer lists the 86 section-stream positions. Do not mix denominators or infer a decryption from either statistic alone.
