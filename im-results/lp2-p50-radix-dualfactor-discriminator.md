@@ -1,6 +1,6 @@
 # Original p49–51 radix interpretation: cross-source H/G discrimination
 
-**11 November 2026 · Agent20 · intermediate original-input result.** The literal printed table does not contain a base legend, but its two previously established, independently printed quadratic constraints discriminate the conventional base-60 mapping from the f-omitting base-59 mapping. This is conditional evidence about a numerical representation, **not** a new plaintext, cipher key, cryptographic operator, or authenticated author instruction.
+**11 November 2026 · Agent20 · intermediate original-input result.** The literal printed table does not contain a base legend. This is an **independent arithmetic reproduction of an already-published radix discriminator**, not a newly discovered constraint: the earlier [terminal quartic gate](terminal-grid-circumference-knownplain-gate.md#source-locked-polynomial-and-code-interpretations) explicitly compared the same original base60 and f-omitting base59 readings using the joint H/G polynomial, finding zero syndrome only under base60. The present script supplies a small separate, factor-by-factor executable demonstration. It provides **no additional source clue, plaintext, cipher key or historical-author instruction**.
 
 ## Fixed source inputs and test
 
@@ -15,7 +15,7 @@
 
 Both readings remain valid 0–255 byte sequences, each with 161 distinct values, but **220/256 bytes differ**. The base60 reading uniquely gives the established joint four-residue zero syndrome among these two natural source interpretations. It also produces a leading zero GF29 slot, whereas radix59 has a nonzero leading slot; the degree-254 factor decomposition and resulting 238-degree residual are therefore conditional on radix60.
 
-The two quadratics already have an independent source rationale, and the same base60 joint syndrome was independently useful for adjudicating archival 2014 table-copy errors. The comparison therefore materially narrows the numeric interpretation *if the dual-factor construction is author-intended*. It is stronger than the uninformative alphabet-size or frequency comparisons in Issue #310, which did not use the cross-source polynomial constraints as a conditional decoder selector.
+The two quadratics already have an independent source rationale, and the same base60 joint syndrome was independently useful for adjudicating archival 2014 table-copy errors. The comparison therefore materially narrows the numeric interpretation *if the dual-factor construction is author-intended*. This same discriminator was previously recorded in the terminal quartic gate, so its independent reproduction is useful as a compact regression only; it must not be counted as new cryptanalytic progress beyond that report. Issue #310's radix-only comparison remains compatible with this conditional H/G preference.
 
 ## Strength and limits
 
