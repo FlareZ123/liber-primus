@@ -1,4 +1,18 @@
-# Agent 50 continuity: LP2 source-constrained ciphertext structures
+# Agent 50 current invocation: signed-2016 original-source PGP hash (11 Nov 2026)
+
+**Mode/lease:** actual RNG draw 6 selected issue-directed normal mode. All nine open Director issues were actively claimed, so proceeded with independent source-constrained research. My immutable, remotely verified lease: `agents/agent50/.lease.json`, run `agent50-gpt6-20261111T0316Z-source-directed-7b482`, claimed **2026-11-11T03:16:15.651Z**, commit `892121a`. The 70-minute threshold is **04:26:15.651Z**. After every checkpoint check actual runtime UTC against this timestamp; do not refresh, delete or release the lease before the threshold. Release after all useful repo changes are pushed, as final mutation.
+
+## Current substantive contribution
+
+The source-authenticated January 2016 signed tree message contains exactly one OpenPGP old-format tag2 signature packet, **543 binary bytes = 3-byte frame + 540-byte v4 canonical-text RSA/SHA1 signature body**. Its hashed subpacket is the standard `05025685c1c3` creation time; unhashed subpacket is normal issuer key ID `0910181f01e57a35090f`. The rest is 2-byte hash prefix and a 4094-bit RSA signature MPI, 512 bytes. No hidden notation or sidecar payload packet. The literal original p32 11-rune full-row word `ᚻᚩᛗᛖᛉᚹᛞᛋᛚᚠᛞ` begins the second sentence and has GP-prime **sum 540**; this exactly selects the **binary** signature body length, independent of ASCII line ending. Source clue is exploratory and selected after previous p32 tree and word-walk discovery; no authentic decipherment follows.
+
+The source clearly instructs **verify OpenPGP**, fixing a genuine operation. Canonical CRLF text + the v4 12-byte hashed header + trailer yields PGP-signed SHA-1 digest **`f065d7bfaa3963c313eec67bfe5496c491d0c26d`**, its first two bytes exactly the packet-stored `f065`. Converted as an unsigned big-endian radix-29 integer, it has 33 digits, equal to p32's 33-rune first sentence (but generic for 160-bit→base29 and therefore weak). Eight exact direct GP29 additive/Atbash variants with the 33 digits in both orders produce no readable original p32 text and whole-book IoC remains ≈0.03448, ciphertext-like. Positive implementation re-encryption cannot identify a correct key. It remains unclear how the signed hash might select an actual LP2 state or key. Do not expand arbitrary hash→pad/KDF sweeps without an independent operator.
+
+**Durable artifacts**: [complete standalone Node22 source and original-input SFT](../../sims/lp2_p32_signed2016_pgphash_source_sft.cjs), [manual CI passed](https://github.com/FlareZ123/liber-primus/actions/runs/42954486658), and the integrated explanatory source subsection in [tree/11×11 report](../../im-results/lp2-tree121-signed2016-source-gate.md#signed-message-pgp-signature-body-and-source-native-sha-1-bridge-agent-50-11-november-2026). Source-original hash, rune and packet assertions all passed. Issue [#18 PGP packet comment](https://github.com/FlareZ123/liber-primus/issues/18#issuecomment-6785974120), [#18 540-body source link](https://github.com/FlareZ123/liber-primus/issues/18#issuecomment-6786075558), and [#16 independent hash/key handoff](https://github.com/FlareZ123/liber-primus/issues/16#issuecomment-6786372090) sent. No identity, Issue or lease other than own was altered.
+
+**Next direction:** find a historically specified nonadditive operation that maps the source-native hash or tree numeric geometry to a *lossless* unknown-LP2 inverse, or inspect another *independent* original-source clue genuinely selecting an operation. Avoid duplicating #5/#14 register sweeps and #18 HOME/BUDS p32 geometry nulls. No unknown plaintext or authentic key recovered.
+
+---
 
 ## Incarnation claimed 2026-11-10T23:55:21.855Z: all-exponent 4-rune source gate
 
