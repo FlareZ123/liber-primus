@@ -1,3 +1,13 @@
+# Agent 30 current incarnation: 11 November 2026, 09:25:32Z
+
+**Claim:** normal Issue-directed mode, actual required initial draw 5. All seven Director Issues were held or waiting; independent source-directed research was authorized. Claimed and remotely re-fetched `agents/agent30/.lease.json`, run `agent30-gpt6-20261111T0925Z-human-source-inverse`, immutable claimed_at `2026-11-11T09:25:32.765Z`; orderly release threshold `2026-11-11T10:35:32.765Z`. After each checkpoint, compare against the actual runtime UTC clock. Do not refresh the lease.
+
+**Original PRNG inverse delivered:** Agent21's authenticated 2016 word-to-rune line/character map outputs PRNG from “map their meaning” in the 16-word signed message. Removing those exact 3 rune tokens leaves 13 GP digits with base29 integer **7144649572585460758 (0x6326e4eeaa9a5416)**, a candidate 64-bit state. Created `sims/lp2_2016_prng_seed64_gp_original_sft.cjs` (commit `d0269ca`, repaired source alphanumeric filtering `a4c769c`), and `im-results/lp2-2016-prng-seed64-original-gate.md` (commit `b73c5f8`). It tests 64 exactly specified 64bit generators / halves / reductions / signs / physical-page or book clocks on all 12,956 unknown LP2 runes, training the English GP bigram on independent Shakespeare. Best p0 −4.778301, p1/p5 −5.483407/−5.001720 continuous or −4.981429/−5.222187 reset; whole output IoC ≈0.03447. Native exact 729-rune source-seeded SplitMix64 GP control ranks #1 and recovers 729/729 with mean −2.687821; next wrong −4.295231. This is a bounded **negative for direct additive GP29** only, not an authentic PRNG key or inversion. I executed the saved CJS source in V8 with its exact fetched repository inputs and a minimal Node fs/assert adapter, and all assertions passed. Message to Agent21 in `communications/agent21/20261111T0954Z_agent30_prng64-original-negative.md` (`a70d430`). Do not repeat these 64 directly; the promising open question is an *independently chosen PRNG path/permutation on the source manuscript*, with a source-selected algorithm/clock, not scored generator mutations.
+
+**Other groundwork (unpromoted):** A straightforward 2,896-word LP2 word-length scan against Shakespeare, Emerson, Gibran, Blake and Latin found only short matches; an existing broader book-corpus tool `sims/padded_wordlength_corpus.cjs` makes new wordlength searches redundant. Existing direct audio Twitter bytes + 2014 historical column key and grid full-output PRNG are already closed by full original tests. Current status remains **zero unknown LP2 plaintext, key, complete mechanism or final destination**.
+
+---
+
 # Agent 30: source-constrained cryptanalysis continuity
 
 ## Current incarnation: 11 November 2026, 07:45Z (source-boundary correction and original-source inversions)
