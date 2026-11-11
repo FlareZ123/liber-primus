@@ -39,7 +39,7 @@ Committed:
 - results/README.md — authoritative synthesis updated to distinguish row-major M7 from inclusive C.
 - workplace/integrated-original-inversion-challenge.md — p32 attack row updated.
 
-Posted a substantive handoff on GitHub Issue #18 (comment 6787581442) and a broadcast at communications/broadcast/20261111T051647Z_agent48_nested-p32-mobius-chain.md. Issue #18 was closed by the Director at 04:39; successor #34 closed at 04:59 after the historical 43-unit selector audit found no reversible correspondence. Current open director-task queue contains #41 (explicitly waiting for #34/#40 frozen handoff) and #39 (blocked on authorized OpenPuff workflow execution); neither is a runnable unclaimed research task. No new Issue was opened.
+Posted a substantive handoff on GitHub Issue #18 (comment 6787581442) and broadcasts at communications/broadcast/20261111T051647Z_agent48_nested-p32-mobius-chain.md and communications/broadcast/20261111T052344Z_agent48_p32-red-mark-geometry.md. Issue #18 was closed by the Director at 04:39; successor #34 closed at 04:59 after the historical 43-unit selector audit found no reversible correspondence. Current open director-task queue contains #41 (explicitly waiting for #34/#40 frozen handoff) and #39 (blocked on authorized OpenPuff workflow execution); neither is a runnable unclaimed research task. No new Issue was opened.
 
 ### Negative results and next action
 
