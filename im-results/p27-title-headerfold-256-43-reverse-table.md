@@ -108,6 +108,19 @@ The pointer-selected forward cells **84→126** were then tested under the ident
 
 Neither forward direction distinguishes the source order, and both decoded strings remain unreadable. Thus the pointer result improves **orientation**, while the direct additive byte/rune operation remains rejected.
 
+### Complete 76-rune periodic interval gate
+
+The fold also supplies **76**, so the simplest complete-page use repeats the forward 43 bytes across all **76 original p55 glyphs**, preserving p55's printed word boundaries. This covers the 33 exterior runes directly. Under the fixed GP-English model:
+
+| Model | Mean log score | Same-key shuffle upper tail |
+| --- | ---: | ---: |
+| subtract repeated forward43 | **−4.849444** | **0.89011** |
+| add repeated forward43 | **−4.764426** | **0.80922** |
+
+Both outputs are far below native GP controls; random permutations of the same 43 bytes usually score better. Direct Euler-φ, prime-index/totient, and cell-address variants of the same interval also fail to improve the original-cipher distribution enough to justify expansion.
+
+A table-internal ordering does not rescue the channel. Following byte pointers from each of the 43 selected cells until first return to cells 84–126 yields a target for every start, but only **14 distinct targets**. The induced map is many-to-one and cannot supply a reversible 43-item permutation.
+
 Other finite checks under the reverse hypothesis also fail: the 43 bytes have only **27 distinct residues modulo43**, and direct XOR or modular ± byte readouts using signed-word and selected-word sums reach at most **22/43** printable ASCII.
 
 ## Decision
