@@ -302,6 +302,16 @@ const rawScores = {
 };
 
 const best = scored[0];
+assert.equal(best.clock, "book-start p0");
+assert.equal(best.seedOrder, "reverse");
+assert.equal(best.includeSeedBlock, true);
+assert.equal(best.sign, 1);
+function indexOfCoincidence(sequence) {
+  const counts = Array(Q).fill(0);
+  for (const value of sequence) counts[value] += 1;
+  return counts.reduce((sum, count) => sum + count * (count - 1), 0) /
+    (sequence.length * (sequence.length - 1));
+}
 const plant = samples[0];
 const plantKey = best.key;
 const encryptedPlant = plant.map((value, i) => mod(value - best.sign * plantKey[i]));
@@ -325,7 +335,7 @@ const output = {
     trainPages: v.trainPages,
     heldoutPages: v.heldoutPages,
     fullStream: v.fullStream,
-    ioc: v.plain.reduce((s, x) => s + (x === 28 ? 1 : 0), 0) / v.plain.length,
+    ioc: indexOfCoincidence(v.plain),
     prefix: v.plain.slice(0, 100).map((x) => translit[x]).join(""),
   })),
   selectedOnPages0To27: {
