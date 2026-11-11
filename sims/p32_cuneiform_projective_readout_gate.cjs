@@ -116,6 +116,37 @@ function tensor8(s) {
   return out;
 }
 
+/**
+ * Source-selected affine chart h(x)=1/(x-3). Projective infinity maps to 0.
+ * The pole 3 is excluded by all three source-started coordinate orbits.
+ * @param {number|null} x
+ * @returns {number}
+ */
+function chartAtThree(x) {
+  if (x === null) return 0;
+  assert.notEqual(x, 3, "cuneiform-selected chart pole must be absent from the state orbit");
+  return inv(mod(x - 3));
+}
+
+/**
+ * Eight affine cube vertices from three finite chart coordinates, ordered
+ * canonically by binary mask 000..111.
+ * @param {Array<number|null>} s
+ * @returns {number[]}
+ */
+function affineCube8(s) {
+  const z = s.map(chartAtThree);
+  const out = [];
+  for (let bits = 0; bits < 8; bits++) {
+    let v = 0;
+    if (bits & 4) v += z[0];
+    if (bits & 2) v += z[1];
+    if (bits & 1) v += z[2];
+    out.push(mod(v));
+  }
+  return out;
+}
+
 const patience = [6, 5, 3, 0, 2, 4, 7, 1];
 const tensorKey = states.flatMap(tensor8);
 const patienceKey = states.flatMap((s) => {
@@ -139,6 +170,39 @@ const tensorMin = Math.min(...tensorRuns.map((x) => x.ioc));
 const tensorMax = Math.max(...tensorRuns.map((x) => x.ioc));
 assert.ok(Math.abs(tensorMin - 0.034270682662582604) < 1e-15);
 assert.ok(Math.abs(tensorMax - 0.03475991945318926) < 1e-15);
+
+// 174/58 = 3 is absent from all three source-started coordinate orbits,
+// so it supplies a finite projective chart without an arbitrary infinity patch.
+// Three finite chart coordinates have exactly 2^3 = 8 subset-sum vertices,
+// matching both 464/58 = 8 and the 8 runes per 210-state block.
+const orbitStates = states.flat();
+assert.equal(orbitStates.includes(3), false);
+const affineCubeKey = states.flatMap(affineCube8);
+const affineCubePatienceKey = states.flatMap((state) => {
+  const row = affineCube8(state);
+  return patience.map((i) => row[i]);
+});
+assert.equal(affineCubeKey.length, section.length);
+assert.ok(affineCubeKey.every(Number.isInteger));
+
+const affineCubeRuns = [];
+for (const [name, key] of [["affine-cube", affineCubeKey], ["affine-cube-patience", affineCubePatienceKey]]) {
+  for (const [op, fn, inverse] of [
+    ["C-K", (c, k) => mod(c - k), (p, k) => mod(p + k)],
+    ["C+K", (c, k) => mod(c + k), (p, k) => mod(p - k)],
+    ["K-C", (c, k) => mod(k - c), (p, k) => mod(k - p)],
+  ]) {
+    const plain = section.map((c, i) => fn(c, key[i]));
+    const roundTrip = plain.map((p, i) => inverse(p, key[i]));
+    assert.deepEqual(roundTrip, section);
+    affineCubeRuns.push({name, op, ioc: finiteIoc(plain)});
+  }
+}
+const affineCubeMin = Math.min(...affineCubeRuns.map((x) => x.ioc));
+const affineCubeMax = Math.max(...affineCubeRuns.map((x) => x.ioc));
+assert.ok(Math.abs(finiteIoc(affineCubeKey) - 0.05100754417311892) < 1e-15);
+assert.ok(Math.abs(affineCubeMin - 0.03437703848662753) < 1e-15);
+assert.ok(Math.abs(affineCubeMax - 0.03465143651266343) < 1e-15);
 
 const sectionStart = corpus.pages.filter((p) => p.page < 33).reduce((n, p) => n + p.indices.length, 0);
 const sectionEnd = sectionStart + section.length - 1;
@@ -201,7 +265,15 @@ assert.ok(Math.abs(poleTail - 0.04779658854368277) < 1e-12);
 console.log(JSON.stringify({
   source: {sectionPages:[33,39], runes:section.length, states:210, cycles:8, collisionStates:collisionStates.map((x) => x.i)},
   tensorReadout: {keyIoc:finiteIoc(tensorKey), minIoc:tensorMin, maxIoc:tensorMax, variants:tensorRuns},
+  affineChartCubeReadout: {
+    chartPole: 3,
+    poleAbsentFromAllStateCoordinates: !orbitStates.includes(3),
+    keyIoc: finiteIoc(affineCubeKey),
+    minIoc: affineCubeMin,
+    maxIoc: affineCubeMax,
+    variants: affineCubeRuns
+  },
   composedPGL: {minFiniteIoc:projectiveMin, maxFiniteIoc:projectiveMax, variants:projectiveRuns},
   poleBoundaryGate: {best:bestPoleAlignment, oneSidedHypergeomTail:poleTail, testedNaturalVariants:projectiveRuns.length},
-  verdict:"The two most direct projective-safe readouts do not recover native-GP plaintext; the 210-state structural bridge remains unassigned to a source-authenticated symbol readout.",
+  verdict:"The direct tensor, source-selected affine-chart cube, and composed-PGL readouts do not recover native-GP plaintext; the 210-state structural bridge remains unassigned to a source-authenticated symbol readout.",
 }, null, 2));
