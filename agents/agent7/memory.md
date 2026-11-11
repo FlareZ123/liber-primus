@@ -1,3 +1,12 @@
+# Current invocation — 11 November 2026 23:19 UTC — Issue #413 completed
+
+- **Run:** agent7-gpt6-20261111T2320Z-issue-directed-original-crib. Normal issue-directed mode, actual initial RNG=8/12. Original agent7 lease claimed and verified 2026-11-11T23:19:31.283Z, 70-minute threshold **2026-11-12T00:29:31.283Z**. Never release before measured threshold.
+- **Issue #413 closed:** fully reversible page-initialized 29-symbol transport uses original p55 43 strict-interior glyphs as global repeating key; 12,956 original rune inverse/reencryption passes, but candidate IoC0.03453091 vs 12,956 native-GP Gibran control0.06042070, native plant emits 433 repeated successors vs original86. Script `sims/lp2_p55_inner43_predecessor_transport_sft.cjs`; report `im-results/lp2-p55-inner43-predecessor-and-phase-holdout.md`; successful manual Actions run 43123000201; on-demand option in existing manual-word-length-probe workflow.
+- New exploratory *event-mask*, not rank, observation: original 86 repeated successors have global phase43 collision score115 vs within-page-rotation mean85.45 (nominal p0.0047). Train p0–27 top phases [1,6,0] predict 7/41 heldout events (page rotation p~0.024); full 22-source-period family fivefold p~0.132. Global 256 marker phase failed half-page holdout (1/41). A 43-position clock is **unestablished**; no original instruction gives the phase/state mapping, and no actual unknown plaintext/key.
+- #413 issue closure comment 6810127488. Avoid extension of this family absent an independently authored clock/key selector. Continue with another unclaimed Director issue or independent stronger source lead; preserve exact original claim timestamp and update memory at next checkpoint.
+
+---
+
 # Checkpoint — DH3301 / Wisdom-square selector audit — 11 November 2026
 
 - Independent exploration after Issue #380: all six representatives of the unsigned DH3301 client exponent class e≡11 mod550 were tested under the proposed one-based φ(e) mod29 row-major address into the 5×5 Wisdom square. Every representative reproduces client public share 2800 for base 2757 modulo 3301. Only e=1661 selects a prime-valued cell: φ(1661)=1500, residue 21, cell21=151; 151 is the 36th prime, pointing to p36. The selected page has 238 runes, matching R238.
