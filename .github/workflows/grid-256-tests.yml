@@ -46,6 +46,7 @@ on:
           - signed-trifold
           - tree-inner7
           - tree-2d-prefix
+          - tree-fold7
         default: full
 
 jobs:
@@ -57,6 +58,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Source FOLD 11x11 p32 two-ring overlay and 2014 historical magic-seven inverse
+        if: ${{ inputs.probe == 'tree-fold7' }}
+        run: node sims/p32_tree_two_ring_fold_magic_sft.cjs
+
       - name: Original 11x11 p32 source-axis 2D prefix-sum inverse
         if: ${{ inputs.probe == 'tree-2d-prefix' }}
         run: node sims/p32_source_axis_2d_prefix_inverse_sft.cjs
