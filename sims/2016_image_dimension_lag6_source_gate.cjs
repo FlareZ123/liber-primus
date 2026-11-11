@@ -644,9 +644,226 @@ function sparseMaskAudit() {
   assert.strictEqual(hits, 80, 'T6 hit count changed');
   assert.strictEqual(p53Start, 12469, 'p53 source offset changed');
 
+
+  /* Secondary check: reduce the archived image dimensions modulo the 32
+   * source-defined 13-dot red fragments. This tests a possible empty-path
+   * selector without fitting it to the observed T6 hit positions. */
+  const dimensionInk = readJson('resources/liber-primus/lp2-ink-annotations.json');
+  const pageByNumber = new Map(maskCorpus.pages.map(p => [p.page, p]));
+  const allPageStarts = [];
+  let allPageRuneCount = 0;
+  for (const page of maskCorpus.pages) {
+    allPageStarts[page.page] = allPageRuneCount;
+    allPageRuneCount += page.runic_count;
+  }
+  const markerPositions = [];
+  const redEvents = [];
+  for (const annotation of dimensionInk.pages) {
+    const page = pageByNumber.get(annotation.page);
+    if (!page) continue;
+    for (const span of annotation.red_spans || []) {
+      for (let i = 0; i < span.length; i++) {
+        redEvents.push({page:annotation.page,offset:span.start+i,kind:1,
+          rune:page.indices[span.start+i]});
+      }
+    }
+    for (const mark of annotation.large_punctuation || []) if (mark[1] === 13) {
+      const position = {page:annotation.page,offset:mark[0],
+        global:allPageStarts[annotation.page] + mark[0]};
+      markerPositions.push(position);
+      redEvents.push({page:annotation.page,offset:mark[0],kind:0});
+    }
+  }
+  markerPositions.sort((a,b) => a.page-b.page || a.offset-b.offset);
+  redEvents.sort((a,b) => a.page-b.page || a.offset-b.offset || a.kind-b.kind);
+  const markerOffsets = markerPositions.map(x => x.global);
+  const redFragments = [];
+  let currentRedFragment = [];
+  for (const event of redEvents) {
+    if (event.kind === 0) { redFragments.push(currentRedFragment); currentRedFragment = []; }
+    else currentRedFragment.push(event.rune);
+  }
+  redFragments.push(currentRedFragment);
+  const emptyFragments = redFragments.map((fragment,i) => fragment.length === 0 ? i+1 : null)
+    .filter(id => id !== null);
+  const emptyFragmentSet = new Set(emptyFragments);
+  const dimensionFragmentStart = IMAGE_WIDTH % 32;
+  const dimensionFragmentEnd = IMAGE_HEIGHT % 32;
+  const gapSixEmptyPairs = [];
+  for (const a of emptyFragments) for (const b of emptyFragments)
+    if (b-a === 6) gapSixEmptyPairs.push([a,b]);
+  function fragmentForGlobalPosition(position) {
+    let lo = 0, hi = markerOffsets.length;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (markerOffsets[mid] <= position) lo = mid + 1;
+      else hi = mid;
+    }
+    return lo + 1;
+  }
+  const canonicalCorpus = parseSharedCorpus();
+  let canonicalGlobalStart = 0;
+  const canonicalWords = canonicalCorpus.words.map(word => {
+    const runes = [...word.runes].map(glyph => {
+      const index = maskCorpus.runes.indexOf(glyph);
+      assert.notStrictEqual(index, -1, 'canonical parser produced a rune outside the GP alphabet');
+      return index;
+    });
+    const row = {globalStart:canonicalGlobalStart,runes};
+    canonicalGlobalStart += runes.length;
+    return row;
+  });
+  assert.strictEqual(canonicalWords.length, 2896);
+  assert.strictEqual(canonicalGlobalStart, 12956);
+  function countFragmentT6(wordRows) {
+    const out = {totalEligible:0,t6Hits:0,emptyEligible:0,emptyHits:0,
+      nonemptyEligible:0,nonemptyHits:0,intervalEligible:0,intervalHits:0,
+      emptyPathEligible:0,emptyPathHits:0,endpointsEligible:0,endpointsHits:0,
+      interiorEligible:0,interiorHits:0,byFragment:Array(32).fill(0),
+      eligibleByFragment:Array(32).fill(0)};
+    for (const word of wordRows) for (let j = 6; j < word.runes.length; j++) {
+      const fragment = fragmentForGlobalPosition(word.globalStart + j);
+      const hit = word.runes[j] === mod(24 - 2 * word.runes[j-6]);
+      const isEmpty = emptyFragmentSet.has(fragment);
+      out.totalEligible++; out.eligibleByFragment[fragment-1]++;
+      if (hit) { out.t6Hits++; out.byFragment[fragment-1]++; }
+      if (isEmpty) { out.emptyEligible++; if (hit) out.emptyHits++; }
+      else { out.nonemptyEligible++; if (hit) out.nonemptyHits++; }
+      if (fragment >= dimensionFragmentStart && fragment <= dimensionFragmentEnd) {
+        out.intervalEligible++; if (hit) out.intervalHits++;
+        if (isEmpty) { out.emptyPathEligible++; if (hit) out.emptyPathHits++; }
+      }
+      if (fragment === dimensionFragmentStart || fragment === dimensionFragmentEnd) {
+        out.endpointsEligible++; if (hit) out.endpointsHits++;
+      }
+      if (fragment > dimensionFragmentStart && fragment < dimensionFragmentEnd) {
+        out.interiorEligible++; if (hit) out.interiorHits++;
+      }
+    }
+    return out;
+  }
+  const observedFragmentT6 = countFragmentT6(canonicalWords);
+  assert.strictEqual(markerPositions.length, 31, '13-dot marker count changed');
+  assert.strictEqual(redFragments.length, 32, 'red-fragment count changed');
+  assert.deepStrictEqual(emptyFragments, [2,4,6,8,9,12,15,17,19,21,23,25,28,30,32]);
+  assert.deepStrictEqual(gapSixEmptyPairs, [[2,8],[6,12],[9,15],[15,21],[17,23],[19,25]]);
+  assert.strictEqual(dimensionFragmentStart, 19);
+  assert.strictEqual(dimensionFragmentEnd, 25);
+  assert.strictEqual(redFragments[dimensionFragmentStart-1].length, 0);
+  assert.strictEqual(redFragments[dimensionFragmentEnd-1].length, 0);
+  assert.strictEqual(observedFragmentT6.totalEligible, 1290);
+  assert.strictEqual(observedFragmentT6.t6Hits, 80);
+  assert.strictEqual(observedFragmentT6.emptyEligible, 787);
+  assert.strictEqual(observedFragmentT6.emptyHits, 49);
+  assert.strictEqual(observedFragmentT6.nonemptyEligible, 503);
+  assert.strictEqual(observedFragmentT6.nonemptyHits, 31);
+  assert.strictEqual(observedFragmentT6.intervalEligible, 300);
+  assert.strictEqual(observedFragmentT6.intervalHits, 20);
+  assert.strictEqual(observedFragmentT6.emptyPathEligible, 298);
+  assert.strictEqual(observedFragmentT6.emptyPathHits, 20);
+  assert.strictEqual(observedFragmentT6.endpointsEligible, 144);
+  assert.strictEqual(observedFragmentT6.endpointsHits, 11);
+  assert.strictEqual(observedFragmentT6.interiorEligible, 156);
+  assert.strictEqual(observedFragmentT6.interiorHits, 9);
+  const selectedFullTextChunkLengths = Array.from({length:7}, (_,i) => {
+    const fragment = dimensionFragmentStart + i;
+    const start = fragment === 1 ? 0 : markerOffsets[fragment-2];
+    const end = fragment <= markerOffsets.length ? markerOffsets[fragment-1] : allPageRuneCount;
+    return end - start;
+  });
+  assert.deepStrictEqual(selectedFullTextChunkLengths, [1414,10,81,8,1460,3,118]);
+  const fragmentNullRandom = rng(0x56356933);
+  function adjacentEqualPairCount(runes) {
+    let n = 0;
+    for (let i = 1; i < runes.length; i++) if (runes[i] === runes[i-1]) n++;
+    return n;
+  }
+  let failedFragmentShuffles = 0;
+  function shuffleWordInteriorForFragments(runes) {
+    if (runes.length < 3) return runes.slice();
+    const target = adjacentEqualPairCount(runes);
+    for (let attempt = 0; attempt < 200; attempt++) {
+      const interior = runes.slice(1,-1);
+      for (let i = interior.length - 1; i > 0; i--) {
+        const j = Math.floor(fragmentNullRandom() * (i+1));
+        [interior[i],interior[j]] = [interior[j],interior[i]];
+      }
+      const candidate = [runes[0],...interior,runes[runes.length-1]];
+      if (adjacentEqualPairCount(candidate) === target) return candidate;
+    }
+    failedFragmentShuffles++;
+    return runes.slice();
+  }
+  const fragmentNullSamples = 2000;
+  const fragmentNull = [];
+  for (let sample = 0; sample < fragmentNullSamples; sample++) {
+    fragmentNull.push(countFragmentT6(canonicalWords.map(word => ({
+      globalStart:word.globalStart, runes:shuffleWordInteriorForFragments(word.runes)
+    }))));
+  }
+  assert.strictEqual(failedFragmentShuffles, 0, 'every conditional fragment shuffle must be accepted');
+  function fragmentNullSummary(key) {
+    const sorted = fragmentNull.map(x => x[key]).sort((a,b) => a-b);
+    return {mean:sorted.reduce((a,b) => a+b,0)/fragmentNullSamples,
+      median:sorted[Math.floor(fragmentNullSamples/2)],
+      p95:sorted[Math.floor(0.95*(fragmentNullSamples-1))],
+      max:sorted[fragmentNullSamples-1],
+      atLeastObserved:sorted.filter(x => x >= observedFragmentT6[key]).length};
+  }
+  function fragmentRatioSummary(numerator, denominator) {
+    const observedRatio = observedFragmentT6[numerator] / observedFragmentT6[denominator];
+    const sorted = fragmentNull.map(x => x[numerator] / x[denominator]).sort((a,b) => a-b);
+    return {observed:observedRatio,mean:sorted.reduce((a,b) => a+b,0)/fragmentNullSamples,
+      median:sorted[Math.floor(fragmentNullSamples/2)],
+      p95:sorted[Math.floor(0.95*(fragmentNullSamples-1))],
+      max:sorted[fragmentNullSamples-1],
+      atLeastObserved:sorted.filter(x => x >= observedRatio).length};
+  }
+  const dimensionModulo32EmptyRedFragmentAudit = {
+    method:'Secondary modulo-32 source-coordinate check; conditional on total T6 hits; no mask fitted.',
+    source:{markerCount:markerPositions.length,fragmentCount:redFragments.length,
+      emptyRedFragments:emptyFragments,emptyRedFragmentCount:emptyFragments.length,
+      imageDimensionResidues:{width:dimensionFragmentStart,height:dimensionFragmentEnd},
+      selectedEndpointsBothRedEmpty:true,emptyRedGapSixPairs:gapSixEmptyPairs,
+      emptyRedFragmentsWithinPath:emptyFragments.filter(x => x >= dimensionFragmentStart && x <= dimensionFragmentEnd),
+      nonemptyRedFragmentsWithinPath:Array.from({length:dimensionFragmentEnd-dimensionFragmentStart+1},(_,i)=>dimensionFragmentStart+i)
+        .filter(x => !emptyFragmentSet.has(x)),
+      fullTextChunkLengths19to25:selectedFullTextChunkLengths},
+    observed:{totalEligible:observedFragmentT6.totalEligible,t6Hits:observedFragmentT6.t6Hits,
+      emptyRed:{eligible:observedFragmentT6.emptyEligible,hits:observedFragmentT6.emptyHits,rate:observedFragmentT6.emptyHits/observedFragmentT6.emptyEligible},
+      nonemptyRed:{eligible:observedFragmentT6.nonemptyEligible,hits:observedFragmentT6.nonemptyHits,rate:observedFragmentT6.nonemptyHits/observedFragmentT6.nonemptyEligible},
+      selectedInterval19to25:{eligible:observedFragmentT6.intervalEligible,hits:observedFragmentT6.intervalHits,
+        shareOfT6Hits:observedFragmentT6.intervalHits/observedFragmentT6.t6Hits,
+        eligibleShare:observedFragmentT6.intervalEligible/observedFragmentT6.totalEligible},
+      emptyRedPath19to25:{eligible:observedFragmentT6.emptyPathEligible,hits:observedFragmentT6.emptyPathHits,
+        shareOfT6Hits:observedFragmentT6.emptyPathHits/observedFragmentT6.t6Hits,
+        eligibleShare:observedFragmentT6.emptyPathEligible/observedFragmentT6.totalEligible},
+      endpoints19and25:{eligible:observedFragmentT6.endpointsEligible,hits:observedFragmentT6.endpointsHits,
+        shareOfT6Hits:observedFragmentT6.endpointsHits/observedFragmentT6.t6Hits,
+        eligibleShare:observedFragmentT6.endpointsEligible/observedFragmentT6.totalEligible},
+      interior20to24:{eligible:observedFragmentT6.interiorEligible,hits:observedFragmentT6.interiorHits,
+        shareOfT6Hits:observedFragmentT6.interiorHits/observedFragmentT6.t6Hits,
+        eligibleShare:observedFragmentT6.interiorEligible/observedFragmentT6.totalEligible},
+      hitsByFragment:observedFragmentT6.byFragment.map((h,i)=>({fragment:i+1,hits:h,
+        eligible:observedFragmentT6.eligibleByFragment[i],redEmpty:emptyFragmentSet.has(i+1)})).filter(x=>x.hits>0)},
+    null:{samples:fragmentNullSamples,seed:'0x56356933',failedWordShuffles:failedFragmentShuffles,
+      conditioning:'per word: fixed length, rune multiset, first/last rune and adjacent-equal-pair count',
+      absoluteCounts:{totalT6Hits:fragmentNullSummary('t6Hits'),emptyRedHits:fragmentNullSummary('emptyHits'),
+        selectedIntervalHits:fragmentNullSummary('intervalHits'),selectedEmptyPathHits:fragmentNullSummary('emptyPathHits'),
+        endpointHits:fragmentNullSummary('endpointsHits')},
+      conditionalShares:{selectedInterval:fragmentRatioSummary('intervalHits','t6Hits'),
+        emptyRed:fragmentRatioSummary('emptyHits','t6Hits'),
+        selectedEmptyPath:fragmentRatioSummary('emptyPathHits','t6Hits'),
+        endpoints:fragmentRatioSummary('endpointsHits','t6Hits'),
+        interior:fragmentRatioSummary('interiorHits','t6Hits')}},
+    decision:'Dimensions 563/569 select red-empty fragments 19/25, but event shares are ordinary after conditioning on total T6 hits; retain as a possible path clue, not an event mask.'
+  };
+
+
   return {
     method: 'Predeclared source-mask checks only; no mask fitted to T6 hit positions.',
     sourceCounts: { words: words.length, runes: global, eligiblePositions: eligible, t6Hits: hits },
+    dimensionModulo32EmptyRedFragmentAudit,
     treeDecoratedPages40to55: {
       ...tree,
       rate: tree.hits / tree.eligible

@@ -25,6 +25,8 @@ T_6(x)=24-2x \pmod {29}.
 
 The ciphertext independently confirms the source-derived negative orientation: the map has **80 matches among 1,290** eligible six-back positions, versus **34/1,290** for \(24+2x\). This is a reproducible cross-artifact correspondence that could reconstruct the lag-six clue path if the disputed 2016 source is relevant; creator intent remains unestablished, and it is not a complete decryption.
 
+A secondary modulo-32 check also selects red-empty fragments **19 and 25** from the 31-marker/32-fragment sequence. Conditional event-location testing finds no enrichment, so this remains a possible human-path clue, not a T6 event mask.
+
 ## Source chain and exact arithmetic
 
 ### 1. The 2016 artifact
@@ -179,6 +181,38 @@ Within-word offset modulo six gives:
 | 5 | 1 | 25 | 4.00% |
 
 All eight residue-4 hits occur at exact word offset 10, in words of length 11 or 12, on physical pages 0, 7, 9, 16, 27, 43, 44, and 53. A nominal Fisher exact comparison against the other five residues gives p≈0.021, but a simple six-residue correction gives p≈0.126; treat this as exploratory, not significant. Global rune-position residues modulo six are approximately uniform. In the source-selected second 128-rune half there is only one hit (global offset 12620, physical p53, word offset 10, word length 11): 1/15 eligible positions in that half and 1/32 in the assembled 256-rune block. These results do not support a tree-page mask or a robust section-specific concentration.
+
+### Image dimensions modulo 32 select red-empty fragments, but not a T6 event mask
+
+The 31 original 13-dot markers divide the annotated red-rune stream into **32** fragments. A secondary modulo-32 reading of the archived image dimensions gives **563 mod 32 = 19** and **569 mod 32 = 25**. Both selected red fragments are empty. Their six-step separation fits the signed message's “path lies empty” wording, but it is not unique: **six** pairs of empty red fragments are separated by six positions, including 19→25.
+
+“Empty” here means empty of **red runes**, not necessarily empty of manuscript text. The full-text chunks for fragments 19–25 have lengths **[1414, 10, 81, 8, 1460, 3, 118]**. Within that interval, the empty red fragments are 19, 21, 23 and 25; the nonempty red fragments are 20, 22 and 24.
+
+On the original 1,290 eligible word-local positions, the observed T6 hits are distributed as follows:
+
+| Source-defined region | Eligible positions | T6 hits | Share of all 80 hits |
+|---|---:|---:|---:|
+| All empty red fragments | 787 | 49 | 61.25% |
+| All nonempty red fragments | 503 | 31 | 38.75% |
+| Selected interval, fragments 19–25 | 300 | 20 | 25.00% |
+| Empty-red portion of 19–25 | 298 | 20 | 25.00% |
+| Endpoints 19 and 25 | 144 | 11 | 13.75% |
+| Interior 20–24 | 156 | 9 | 11.25% |
+
+The 20 hits in the selected interval occur in fragments 19 (11) and 23 (9); fragments 20, 21, 22, 24 and 25 have none. But nearly all eligible positions in the interval are already in the two large full-text chunks 19 and 23, so this is not evidence of a special event-placement rule.
+
+**Important null correction:** an unconditional count comparison would misleadingly call 20 interval hits an excess over the shuffled mean 11.288. The total T6 relation itself is elevated (80 observed versus shuffled mean 49.561), so event placement must be tested **conditional on each sample's total T6 hits**. Using 2,000 deterministic within-word shuffles (seed `0x56356933`) preserving each word's length, rune multiset, endpoints and adjacent-doublet count, the observed share is ordinary:
+
+| Conditional event share | Observed | Matched-null mean | Controls ≥ observed |
+|---|---:|---:|---:|
+| Hits in fragments 19–25 / all T6 hits | 25.00% | 22.75% | 688 / 2,000 |
+| Hits in all empty red fragments / all T6 hits | 61.25% | 58.61% | 656 / 2,000 |
+| Hits in empty-red portion 19–25 / all T6 hits | 25.00% | 22.75% | 688 / 2,000 |
+| Hits in endpoints 19 and 25 / all T6 hits | 13.75% | 13.03% | 820 / 2,000 |
+
+**Decision:** retain 563/569 → empty red fragments 19/25 as a secondary cross-artifact path hypothesis, but **do not** use it as the missing T6 event selector. The empty-fragment share is almost exactly its share of eligible positions (787/1,290 = 61.01%); conditional event-location ratios are not enriched. The image dimensions may point a human solver toward the 13-dot fragment structure, but they do not currently determine which six-back positions are special.
+
+Reproduction is included in `sims/2016_image_dimension_lag6_source_gate.cjs` under `sparseMaskAudit().dimensionModulo32EmptyRedFragmentAudit`.
 
 ### Grid-derived key screens
 
