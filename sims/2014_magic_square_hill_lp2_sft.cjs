@@ -175,9 +175,13 @@ assert.deepEqual(transformBlocks(encryptedPlant, Kinv), plant);
 const shakespeareModel = trigramModel(shakespeare);
 const gibranModel = trigramModel(gibran);
 const scores = {
-  raw: {
+  rawFull: {
     shakespeare: trigramScore(original, shakespeareModel),
     gibran: trigramScore(original, gibranModel)
+  },
+  rawPrefix: {
+    shakespeare: trigramScore(usable, shakespeareModel),
+    gibran: trigramScore(usable, gibranModel)
   },
   decoded: {
     shakespeare: trigramScore(decoded, shakespeareModel),
@@ -206,7 +210,8 @@ const output = {
     rationale: "largest prefix divisible by the source-selected 5x5 block size; no padding or phase search"
   },
   output: {
-    rawIoC: ioc(original),
+    rawFullIoC: ioc(original),
+    rawPrefixIoC: ioc(usable),
     decodedIoC: ioc(decoded),
     trigramScores: scores,
     smoothingAlpha: 0.1,
@@ -222,10 +227,11 @@ const output = {
 };
 
 assert(Math.abs(ioc(original) - 0.03447839786450569) < 1e-12);
+assert(Math.abs(ioc(usable) - 0.034478119798900086) < 1e-12);
 assert(Math.abs(ioc(decoded) - 0.03448528227453531) < 1e-12);
-assert(Math.abs(scores.raw.shakespeare - (-4.679396311885891)) < 1e-9);
+assert(Math.abs(scores.rawPrefix.shakespeare - (-4.679549441845798)) < 1e-9);
 assert(Math.abs(scores.decoded.shakespeare - (-4.711838551070626)) < 1e-9);
-assert(Math.abs(scores.raw.gibran - (-4.349374190815645)) < 1e-9);
+assert(Math.abs(scores.rawPrefix.gibran - (-4.349474291509203)) < 1e-9);
 assert(Math.abs(scores.decoded.gibran - (-4.396985285663181)) < 1e-9);
 
 console.log(JSON.stringify(output, null, 2));
