@@ -8,7 +8,9 @@ from urllib.error import HTTPError, URLError
 ORIGINAL="http://1711141131131.xyz/"
 CAPTURE="20170629043935"
 URL=f"https://web.archive.org/web/{CAPTURE}id_/{ORIGINAL}"
-EXPECTED_LEN=4521
+EXPECTED_LEN=7063
+CDX_INDEX_LENGTH_FIELD=4521
+EXPECTED_ARCHIVE_SRC='falconk_archivebot_1711141131131_xyz_20170629/1711141131131.xyz-inf-20170629-043925-ewtko-00000.warc.gz'
 EXPECTED_SHA1="GPMGLFNUMSJSUJVXPZSRAZPQJBVLRDPV"
 MEMENTO="Thu, 29 Jun 2017 04:39:35 GMT"
 P56="36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4"
@@ -48,7 +50,9 @@ def main():
              [b"-----BEGIN PGP SIGNED MESSAGE-----",b"-----BEGIN PGP MESSAGE-----",b"-----BEGIN PGP SIGNATURE-----",b"-----BEGIN PGP PUBLIC KEY BLOCK-----"] if body.find(m)>=0]
     failures=[]
     if status!=200:failures.append(f"HTTP {status}")
-    if len(body)!=EXPECTED_LEN:failures.append(f"length {len(body)} != {EXPECTED_LEN}")
+    if len(body)!=EXPECTED_LEN:failures.append(f"entity length {len(body)} != {EXPECTED_LEN}")
+    archive_src=next((v for k,v in headers.items() if k.lower()=="x-archive-src"),None)
+    if archive_src!=EXPECTED_ARCHIVE_SRC:failures.append(f"X-Archive-Src mismatch: {archive_src!r}")
     if sha1!=EXPECTED_SHA1:failures.append(f"SHA1 {sha1} != {EXPECTED_SHA1}")
     if f"/web/{CAPTURE}id_/" not in final:failures.append("final URL lost exact capture timestamp")
     if memento and memento!=MEMENTO:failures.append(f"Memento-Datetime {memento!r} != {MEMENTO!r}")
@@ -56,8 +60,8 @@ def main():
     meta={"retrieval_mode":"Wayback id_ replay; NOT raw WARC extraction","raw_warc_download_status":a.raw_warc_status,
           "original_url":ORIGINAL,"capture_timestamp_utc":"2017-06-29T04:39:35Z","requested_url":URL,
           "final_url":final,"http_status":status,"response_headers":headers,"memento_datetime":memento,
-          "archive_original_headers":{k:v for k,v in headers.items() if k.lower().startswith("x-archive-orig-")},
-          "entity_length":len(body),"cdx_expected_length":EXPECTED_LEN,"sha1_base32":sha1,
+          "archive_original_headers":{k:v for k,v in headers.items() if k.lower().startswith("x-archive-orig-")},"x_archive_src":archive_src,
+          "entity_length":len(body),"expected_entity_length":EXPECTED_LEN,"cdx_index_length_field":CDX_INDEX_LENGTH_FIELD,"sha1_base32":sha1,
           "cdx_expected_sha1_base32":EXPECTED_SHA1,"sha256":sha256,"p56_target":P56,
           "p56_direct_digests":digests,"p56_direct_digest_matches":matches,
           "whirlpool_abc_known_answer_passed":wp_kat,"pgp_armour_markers":markers,

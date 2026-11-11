@@ -61,3 +61,5 @@ jobs:
           git commit -m "Agent3: Preserve exact 2017 ArchiveBot root HTML record"
           git pull --rebase origin main
           git push origin HEAD:main
+
+# Trigger exact-body length correction for the Wayback replay verifier.
