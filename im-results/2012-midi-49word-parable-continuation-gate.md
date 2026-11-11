@@ -2,9 +2,11 @@
 
 ## Decision
 
-**Bounded negative for Director Issue #140.** The original 2012 source gives the 49-word list a complete local purpose: encrypt it, sign it, and email it to Cicada. The list itself contains no exact shared word or consecutive two-word phrase with the 19-word p57 PARABLE body, and no source-visible reference to the 2013 `761.MP3` or PARABLE. No original instruction selects a 49→19 mapping. Retire this direct cross-round continuation unless a new primary source supplies that missing instruction.
+**Bounded negative for Director Issue #140.** The archived 2012 sample gives its 49-word list a complete local purpose: encrypt it, sign it, and email it to Cicada. The list itself contains no exact shared word or consecutive two-word phrase with the 19-word p57 PARABLE body, and no source-visible reference to the 2013 `761.MP3` or PARABLE. No original instruction selects a 49→19 mapping. Retire this direct cross-round continuation unless a new primary source supplies that missing instruction.
 
-## Frozen 2012 source payload
+## Frozen 2012 participant-example source payload
+
+**Participant-specific sample limitation.** The pinned 49-word `words.txt` establishes the length and content of **this archived example**. A [separate preserved 2012 participant account](https://github.com/cicada-solvers/The-Complete-Cicada3301-Archive/blob/main/2012/MIDI%20puzzle/Cicada%203301%20Puzzles.txt) explicitly calls the assignment a *unique list of words* and preserves a different redacted example, `***** garden ball house cat shore back head galon` (eight words visible, redacted extent unknown). The separately preserved account is not a cryptographically verified original server transcript. It suffices to prevent claiming that the 49-word count was fixed for all recipients. The comparisons below remain valid for the specific 49-word artifact and do not establish a universal 7×7 cross-round constraint.
 
 Pinned archive: [`neuroretransmit/cicada` commit `b13600373d3400d75ec4208198019f3d92a304dd`](https://github.com/neuroretransmit/cicada/tree/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle).
 
