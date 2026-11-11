@@ -116,6 +116,34 @@ assert.deepEqual(matchedEligible,[[9811,12522]]);
 const a=allCipher.slice(aStart,aStart+21),b=allCipher.slice(bStart,bStart+21);
 assert.equal(a.length,21);assert.equal(b.length,21);
 const diff=a.map((v,i)=>(b[i]-v+29)%29);
+
+/**
+ * Any two secret, fixed, invertible 29-rune substitutions of the same
+ * plaintext preserve exactly the same within-sequence equality partition.
+ * @param {number[]} x
+ * @param {number[]} y
+ * @returns {{xEqualOnly:number,yEqualOnly:number,equalBoth:number,unequalBoth:number,conflicts:number}}
+ */
+function substitutionEqualityInvariant(x,y){
+  assert.equal(x.length,y.length);
+  let xEqualOnly=0,yEqualOnly=0,equalBoth=0,unequalBoth=0;
+  for(let i=0;i<x.length;i++)for(let j=i+1;j<x.length;j++){
+    const sameX=x[i]===x[j],sameY=y[i]===y[j];
+    if(sameX&&sameY)equalBoth++;
+    else if(!sameX&&!sameY)unequalBoth++;
+    else if(sameX)xEqualOnly++;
+    else yEqualOnly++;
+  }
+  return {xEqualOnly,yEqualOnly,equalBoth,unequalBoth,
+    conflicts:xEqualOnly+yEqualOnly};
+}
+const substitutionGate=substitutionEqualityInvariant(a,b);
+assert.deepEqual(substitutionGate,{
+  xEqualOnly:8,yEqualOnly:4,equalBoth:0,unequalBoth:198,conflicts:12,
+});
+const bijectionPlant=x=>x.map(v=>(5*v+7)%29);
+assert.equal(substitutionEqualityInvariant(a,bijectionPlant(a)).conflicts,0);
+
 assert.equal(a.reduce((n,v,i)=>n+Number(v===b[i]),0),1);
 
 /**
@@ -198,6 +226,8 @@ console.log(JSON.stringify({
     conditionalMatchedPairs:matchedEligible},
   hypothesizedPlaintextEquality:'Unestablished; quotation punctuation and word lengths alone do not authenticate a shared phrase.',
   originalCipherSameRunePositions:a.reduce((n,v,i)=>n+Number(v===b[i]),0),
+  allSecretFixedBijectionExclusion:{original:substitutionGate,
+    positiveControlConflicts:0},
   keyIndependentPeriodicDifferenceTest:{testedPeriods:'1 through 20',
     originalMismatches:differencePeriods,positivePeriod7:periodMismatches(periodicDiff,7)},
   testedSourceFixedKeyFamilies:tests.length,bestKeyTests:tests.slice(0,6),
