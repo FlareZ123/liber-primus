@@ -109,6 +109,8 @@ Both are invertible over GP29: their determinants are respectively **10** and **
 
 A solver already familiar with the 29-symbol GP alphabet and the signed 2013 BASE29/DH protocol could reasonably ask whether one of the literal 2014 square matrices is a 5×5 Hill key. This is a deliberately narrow test of that simple interpretation; the surviving 2014 instruction documents the squares' submission/verification role, not a Hill-cipher instruction.
 
+**Cross-round identity:** the third 2014 5×5 matrix is exactly the LP1 p5 JPEG magic square, cell-for-cell. Its magic sum 1033 is the decimal reversal of the first 2014 square's 3301; the signed 2013 BASE29 example maps 3301 to 3QO. This supplies a specific historical bridge, but not a cipher instruction. The two 5×5 matrices are not inverses: their determinants 10 and 3 are reciprocal mod29, while both matrix products are non-identity. A bounded 3QO/OQ3 key and p50-table matrix-composition gate is recorded in [the LP1/2014/2013 bridge report](jpeg05-palindromic-magic-square.md).
+
 ### Whole unknown manuscript
 
 The original p0–55 stream contains **12,956 runes** across 56 physical page slots (p50 is runeless). The finite screen uses both 2014 5×5 matrices, their **four distinct** dihedral orientations (the printed arrays are centrally symmetric), the matrix/inverse/transpose/inverse-transpose, continuous-book or physical-page-reset clocks, and all five block phases:

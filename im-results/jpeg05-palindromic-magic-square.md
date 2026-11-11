@@ -20,11 +20,23 @@ The center payload is decoded by taking its 358 ASCII hex characters in *reverse
 151     131     341     138     272
 ```
 
-Every row, every column, and both diagonals sum to **1033**. The JPEG's original visible page displays the same square, partly in rune words whose Gematria Prime sums fill these 25 numerical cells. This internal reversible representation independently records those values and provides a concrete example of byte reversal plus hex encoding embedded in a manuscript artifact. That combination might be an intentional method cue, but no link from it to an LP2 key is currently demonstrated.
+Every row, every column, and both diagonals sum to **1033**. The JPEG's original visible page displays the same square, partly in rune words whose Gematria Prime sums fill these 25 numerical cells. This internal reversible representation independently records those values and provides a concrete example of byte reversal plus hex encoding embedded in a manuscript artifact. A cross-round identity and a source-selected BASE29 lead are now established below; neither has yet produced LP2 plaintext.
 
 **Caution on JPEG end markers:** using the *last* occurrence of `FF D9` in the raw file produces a misleading 600,366-byte supposed JPEG with 72,700 trailing mirrored bytes. That later marker is inside the appended reversed JPEG's bytes. The first actual complete JPEG ends at **336353**, and the **360-byte middle** disappears from view if the last-marker heuristic is used. The previously reported final 72,700 bytes do indeed reverse the first 72,700 bytes, but the longer full binary envelope gives the correct accounting.
 
 **Reproducer:** [`sims/jpeg05_palindromic_magic.cjs`](../sims/jpeg05_palindromic_magic.cjs), a dependency-free CommonJS checker. It asserts the original source SHA-256, JPEG boundary, reversed-image symmetry, center decoding, exact numerical square and all 12 magic sums. The same file was verified locally against the original owner-provided 75-JPEG ZIP. The source image has been verified byte-for-byte against the GitHub copy in `resources/liber-primus/README.md`.
+
+
+
+## Cross-round identity: 2014 OpenPuff and 2013 BASE29
+
+The recovered LP1 p5 matrix is **identical cell-for-cell** to the third 5×5 matrix in `resources/cicada2014-openpuff-magic-squares.txt`. The first 2014 5×5 matrix has magic constant **3301**; the repeated third matrix and LP1 p5 square have magic constant **1033**. Thus the LP1 constant is the decimal reversal of 3301. Both are prime, and 1033 is the 174th prime; 174 = 6×29.
+
+The signed 2013 BASE29 example converts **3301 → 3QO** (see [the 2013 terminal/prime source gate](2013-telnet-missing-primes-terminal-180-76.md)). The resulting human-readable path is specific: notice the 1033 magic sum, reverse it to 3301, then apply the historical BASE29 operation to obtain the three-symbol value 3QO. This connection does not depend on the unsigned reconstructed NUMBER command. It is an exact cross-round structural link, not yet a decryption instruction.
+
+A bounded first use of 3QO and its reversal OQ3 as GP29 Vigenère/additive/Beaufort keys was negative: on the full 12,956-rune unsolved stream, p53+p54-Ac, and the 180-cell p50 table interior, none improved the language score or recovered the known pp56+57 plaintext. The best table match was 9/180. The LP1 5×5 matrix and the two 2014 5×5 matrices, their products and inverses, were also tested against the p50 interior; the best exact match was 11/180 for the direct LP1 matrix, and no product decoded the known text. The matrices are not inverses: their determinants 10 and 3 are inverse residues mod29, but their products are not identity.
+
+Reproducer: [cross-round matrix/BASE29 gate](../sims/agent47_2014_square_base29_bridge.cjs). The earlier direct Hill screens remain in [the consolidated matrix report](clue-matrix-hill.md).
 
 ## Direct 179-byte LP1 to 179-rune LP2 p53 bridge
 
