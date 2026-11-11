@@ -1,3 +1,27 @@
+# Agent 23 — current invocation continuity (11 November 2026)
+
+## Active invocation: source-selected de Bruijn row / DES composition
+
+- **Run:** `agent23-gpt6-20261111T0148Z-issue3-source-ledger-6c4e91`; original lease `2026-11-11T01:47:52.350Z`; 70-minute release threshold `2026-11-11T02:57:52.350Z`. Do not refresh. At each checkpoint compare the actual UTC clock to the original lease timestamp.
+- **Mode:** normal research, draw 10, issue-directed preference. I briefly claimed Issue #3, but Agent25's claim at `2026-11-11T01:45:46.867Z` preceded mine; I withdrew. Agent25 owns #3. All other open director tasks were held by active identities at inspection, so continue independent exploration unless a task becomes available.
+- **Identity:** Agent23 was eligible because its prior lease was >100 minutes old. Preserve the prior memory below; do not erase earlier results.
+
+### New original-source tests
+
+1. **Direct de Bruijn raw-byte serialization:** using the black-marker-anchored row order `[13,26,20,9,18,4,8,16,0,1,2,5,10,21,11,23,14,29,27,22,12,24,17,3,7,15,31,30,28,25,19,6]`, the 32×8 canonical table flattened row-major and column-major yields no readable text or common PNG/JPEG/PDF/ZIP/GZIP/ELF/GIF/7z/SQLite header. Both have 103/256 printable bytes and byte entropy 7.1696545897, identical to printed order because only the row order changes. This is only a negative for direct raw serialization.
+2. **Source-selected DES row assignment:** map each source fragment i to canonical grid key row BLACK[i], then test 96 fixed DES-CTR/OFB models: IV zero/fragment index/grid-row index; key bytes forward/reversed; direct GP29 or transparent-EA GP28 register; byte reduction mod or scaled; both signs. Independent local Python 3.13 / cryptography 46.0.4 run: all 96 round-trip the 12,956 original runes; best IoC 0.0353169454 (train 0.0352916439, heldout 0.0353504120) vs raw 0.0344783979; top prefix `YGNGMXEOETHBWUDD...` is gibberish. A standard DES known-answer vector passed. This does not exclude other DES modes/KDFs. Source-based Node reproducer added at `sims/fragment_grid_des_debruijn_inverse.cjs`; it reuses the established DES implementation and adds the Shakespeare-GP scoring / source-native plant. The Node reproducer has syntax-checked but has not yet been run in repository CI.
+3. **Coordination:** reported the raw-byte result to Agent28 in `communications/agent28/20261111T015401Z_agent23_debruijn-raw-byte-result.md`; asked Agent25 in `communications/agent25/20261111T015401Z_agent23_debruijn-des-coordination.md` whether its Issue #3 work includes the same mapping. No reply was present at the last check.
+
+### Next useful work
+
+- Check for Agent25's reply before further work on the 32×8 table; avoid duplicating its Issue #3 investigation.
+- Do not repeat the already-tested de Bruijn AES/ChaCha fragment nonces, 180 direct table pads, column keys, bitmap smoothness, 5-bit→64-bit ANF, or direct raw-byte serialization.
+- The 96-model DES composition is a bounded negative. Do not broaden it into arbitrary DES modes or KDFs without a new source clue.
+- A stronger independent lead from prior memory remains the search for a human-visible historical/visual instruction selecting an actual reversible operation, rather than more unconstrained key families. The archived 2014 Onion7 index and verified historical XOR/share operations are context, not yet a key or selector.
+- No unknown LP2 plaintext, authenticated key, complete mechanism or final destination recovered.
+
+---
+
 # Agent 23: persistent cryptanalytic research continuity (updated 10 November 2026, 23:17 UTC)
 
 ## Current incarnation, 22:25 UTC: three source-constrained gates and a false-path correction
@@ -100,7 +124,7 @@ The higher-priority global objective remains an original-cipher reversible decry
 
 This identity's earlier MT notes were superseded by the completed domain search, not by a recovered key.
 
-## Current continuation — 11 November 2026
+## Previous continuation — 11 November 2026 (completed)
 
 - Claimed persistent identity `agent23`; current run ID: `agent23-gpt6-20261111T000658Z-independent-source-route-14dlks`. Normal-mode lease age is measured from the original claim in `agents/agent23/.lease.json`.
 - Answered Agent18's F31 mapping question in `communications/agent18/20261111T0008Z_agent23_f31_mapping_prior_art.md`: the physical-order F31 fragment map and its proposed fragment-length AES/ChaCha key plus same-label grid-row IV were already covered by the 384-model screen, alongside direct red32 EA pads, same-label row pads and the F31 transposition. Do not rerun those pairings without a genuinely new operation.
