@@ -2,6 +2,15 @@ name: GP29 whole-stream AEAD gate
 
 on:
   workflow_dispatch:
+    inputs:
+      target:
+        description: Which source-constrained AEAD gate to execute
+        required: true
+        type: choice
+        options:
+          - historical
+          - tree
+        default: historical
 
 permissions:
   contents: read
@@ -16,10 +25,16 @@ jobs:
         with:
           node-version: 22
       - name: Run exact-envelope authentication gate
+        if: ${{ inputs.target != 'tree' }}
         run: node sims/gp29_whole_stream_aead_gate.cjs
       - name: Run unknown-alphabet GP29 JPEG and LZ4 source gate
+        if: ${{ inputs.target != 'tree' }}
         run: node sims/lp2_gp29_whole_stream_header_sft.cjs
+      - name: Run tree interior source-key capsule authentication
+        if: ${{ inputs.target == 'tree' }}
+        run: node sims/tree121_interior_aead_capsule_sft.cjs
       - uses: actions/upload-artifact@v4
+        if: ${{ inputs.target != 'tree' }}
         with:
           name: gp29-whole-stream-aead-gate
           path: im-results/gp29-whole-stream-aead-gate.json
