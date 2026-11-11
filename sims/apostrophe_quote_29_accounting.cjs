@@ -35,7 +35,8 @@ for (const ch of source) {
 flush();
 
 const quotes = ann.quotes;
-const apostrophes = ann.apostrophes_before_rune;
+assert.deepEqual(ann.source_visible_internal_separators_before_rune, []);
+const apostrophes = ann.legacy_apostrophe_hypothesis.before_rune;
 const quoteMask = new Uint8Array(chars.length);
 const quoteWordCounts = [];
 for (const q of quotes) {
@@ -119,6 +120,8 @@ const doubletKey = doublets.map(d => runeIndex.get(d.rune));
 const diffKey = singletonKey.slice(1).map((x, i) => mod29(x - singletonKey[i]));
 
 const report = {
+  classification: "historical synthetic four-gap accounting; source-visible gap premise retired",
+  sourceVisibleInternalSeparators: ann.source_visible_internal_separators_before_rune.length,
   source: {runes: chars.length, words: words.length, crossPageWords: words.filter(w => w.pages.length > 1).length},
   apostrophes: {
     count: apostrophes.length, markedWords: apostropheWords,
@@ -145,7 +148,7 @@ const report = {
   keyTests: {
     ciphertextBaseline: score(C),
     quotedCiphertextBaseline: score(quoteWordIndices.flat()),
-    quote405RepeatingKeyWithApostropheSkips: {
+    quote405RepeatingKeyWithLegacyGapSkips: {
       minus: repeatDecrypt(quoteKey, -1, new Set(apostrophes)),
       plus: repeatDecrypt(quoteKey, 1, new Set(apostrophes))
     },

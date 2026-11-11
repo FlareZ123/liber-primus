@@ -1,9 +1,10 @@
 "use strict";
 
 /**
- * LP2 32x405 original-cipher challenge: seven quote spans give 405 GP runes,
- * 32 original table rows give 32 keyed strips, and four original apostrophes
- * occupy the four missing clock slots in 32*405 = 12960 positions.
+ * Historical LP2 32x405 four-gap challenge. Seven quote spans give 405 GP
+ * runes and 32 table rows give 32 keyed strips. Four derived offsets are
+ * inserted only as legacy synthetic gaps; the correct original images do
+ * not contain separators at those cuts.
  *
  * Tests historical GP29 modular-addition and invertible predecessor-exclusion
  * as two candidate plaintext registers, with either quote+row8 key or RC4
@@ -23,13 +24,14 @@ const cipher = corpus.pages.filter((p) => p.status === "unsolved")
   .flatMap((p) => p.indices);
 assert.equal(cipher.length, 12956);
 assert.equal(grid.length, 256);
-assert.equal(ann.apostrophes_before_rune.length, 4);
+assert.deepEqual(ann.source_visible_internal_separators_before_rune, []);
+assert.equal(ann.legacy_apostrophe_hypothesis.before_rune.length, 4);
 assert.equal(ann.quotes.length, 7);
 const quoted = ann.quotes.flatMap((q) => cipher.slice(q.start, q.end));
 assert.equal(quoted.length, 405);
 assert.deepEqual(ann.quotes.map((q) => q.end - q.start),
   [18, 19, 12, 58, 68, 160, 70]);
-const gapSet = new Set(ann.apostrophes_before_rune);
+const gapSet = new Set(ann.legacy_apostrophe_hypothesis.before_rune);
 const expanded = [];
 for (let at = 0; at < cipher.length; at++) {
   if (gapSet.has(at)) expanded.push(null);
@@ -96,8 +98,8 @@ for (const drop of [0, 256]) for (const map of ["mod", "scale"])
 assert.equal(directKeys.length + streamKeys.length, 12);
 
 /**
- * Exact original cipher inverse. Original four punctuation positions
- * consume clock slots and emit no GP symbol.
+ * Exact inverse for the historical synthetic model. Four legacy gap
+ * positions consume clock slots and emit no GP symbol.
  */
 function inverse(printed, keys, register) {
   let previous = 0;
@@ -177,11 +179,12 @@ assert.ok(bestStream.originalIoc < 0.04);
 assert.ok(measurements[0].originalIoc < 0.04);
 
 console.log(JSON.stringify({
-  classification: "source-locked 32x405 original-original negative; no plaintext",
+  classification: "historical synthetic four-gap 32x405 negative; source premise retired; no plaintext",
+  sourceVisibleInternalSeparatorCount: ann.source_visible_internal_separators_before_rune.length,
   actualOriginalRunes: cipher.length,
   originalQuoteRuneCount: quoted.length,
   tableRows: grid.length / 8,
-  originalApostropheCount: gapSet.size,
+  legacySyntheticGapCount: gapSet.size,
   expandedPositions: expanded.length,
   sourceNativeLatinIoC: ioc(nativeLatin),
   rawOriginalIoC: ioc(cipher),

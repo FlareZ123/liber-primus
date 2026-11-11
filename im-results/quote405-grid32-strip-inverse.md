@@ -1,45 +1,43 @@
-# 32×405 candidate ink-and-grid tableau: source arithmetic and bounded inverse
+# 32×405 four-gap tableau: retired source premise and historical bounded inverse
 
-**Result:** a source-led, reversible cryptanalytic test of a previously uncombined manuscript structure. The four internal marks are ordinary separator-sized square dots, not a distinct apostrophe glyph; their role as clock holes is unverified. All proposed original-register inverses remain ciphertext-like. **No unknown Liber Primus plaintext, key, continuation, or authenticated decipherment was recovered.** The numerical compatibility motivates a hypothesis; it is not proof the original designer intended it.
+**Decision:** the four-hole source premise is retired. A correct original-image audit found no internal separator at the four derived rune offsets used by this model. The reversible inverse experiments remain useful as a finite historical negative, with **no unknown Liber Primus plaintext, key, continuation or authenticated decipherment recovered**.
 
-## The source-visible 32×405 arithmetic; clock hypothesis unverified
+## Source correction
 
-The seven annotated, separately delimited original quotation spans in the unsolved manuscript have rune lengths **[18, 19, 12, 58, 68, 160, 70]**, totaling **405**. The source manuscript also contains a **32-row × 8-column** numerical table, currently decoded as 256 bytes under the canonical base-60 transcription. Across all original rune-bearing unsolved pages there are **12,956** runes, so 32 × 405 = **12,960**, a difference of precisely **four**.
+Seven derived quotation spans contain **405 runes** in total, and the numerical table contains **32 rows**, so 32×405 = 12,960 while the unsolved rune stream contains 12,956 runes. Earlier work supplied the difference of four by treating alleged internal dots on physical pp4, 21, 35 and 41 as clock holes.
 
-The four marks previously called apostrophes are source-visible internal dots at physical pages **4, 21, 35 and 41**, immediately before rune offsets **1,110, 5,138, 8,515 and 10,089** in the 12,956-rune stream. Original-JPEG inspection shows each is a small square dot with the same baseline and 9–10 px connected-component morphology as ordinary word-separator dots on its printed line. The four following ciphertext runes are **W, Y, T, C**. The rich transcription's ASCII apostrophe is a representation of the internal placement; it does not establish English possessive punctuation or a distinct special glyph. The source-image evidence and exact measurements are consolidated in [the apostrophe/subword-boundary accounting](apostrophe_quote_29_accounting.md).
+That visual premise came from a scan-numbering error. LP2 physical page N is archive scan N+17. The earlier component measurements used archive files `04.jpg`, `21.jpg`, `35.jpg` and `41.jpg`; the correct source images for those LP2 pages are `21.jpg`, `38.jpg`, `52.jpg` and `58.jpg`.
 
-### Conditional four-hole clock embedding
+On the correct target lines, a frozen 9–10 px detached-square census finds **6, 4, 7 and 5 components**. Those totals exactly equal the canonical punctuation already printed on the four lines: ordinary single-dot word separators plus four-dot stops where present. There is no additional separator-sized component at global rune cuts **1,110, 5,138, 8,515 or 10,089**. The 2017 KrisoYotam transcription also joins all four disputed words.
 
-If—and only if—each internal dot is assigned one non-rune slot immediately before the following rune, the source stream can be reversibly embedded in 32×405=12,960 slots. The resulting zero-based expanded positions are:
+The selected source-visible contract is therefore **12,956 runes in 2,896 words**. See [the visual-token audit](lp2-visual-token-contract.md) and [source SFT](../sims/lp2_visual_token_contract_sft.py).
 
-| Internal dot | Expanded zero-based slot | Block / local slot (0-based) |
+## Preserved synthetic embedding
+
+For reproducibility, the four retired offsets can still be inserted as artificial nulls before the corresponding runes. Doing so creates 12,960 positions, with expanded zero-based holes:
+
+| Retired offset | Expanded slot | 405-block / local slot |
 | ---: | ---: | ---: |
-| p4 | 1,110 | 2 / 300 |
-| p21 | 5,139 | 12 / 279 |
-| p35 | 8,517 | 21 / 12 |
-| p41 | 10,092 | 24 / 372 |
+| 1,110 | 1,110 | 2 / 300 |
+| 5,138 | 5,139 | 12 / 279 |
+| 8,515 | 8,517 | 21 / 12 |
+| 10,089 | 10,092 | 24 / 372 |
 
-Deleting those four conditional nulls recovers the original 12,956-rune stream exactly. This is an exact bookkeeping embedding, not evidence that the dots are intended clock holes. Their source positions and order are fixed; the interpretation as four clock slots, and the 405-slot ordering, have no independent authenticated selector. In particular, the marks are not at the seven quotation-span boundaries.
+Deleting those four artificial nulls restores the original 12,956-rune stream exactly. This is bookkeeping around a historical hypothesis and supplies no source selector.
 
-The original quotation runes themselves, read in printed book order, form a 405-rune sequence. Each of the 32 original printed numerical rows provides eight bytes of additional row-specific material. Treating the 405-rune sequence as a repeatable source key and the conditional four-hole embedding as a key clock is therefore a finite **candidate** for a simple human-solvable Vigenère-like tableau, possibly with a row-seeded stream generator. It must produce authentic plaintext on the actual cipher before one can infer anything about historical intent.
+## Historical bounded inverse
 
-## Fully reversible original-input experiments
+The existing [CommonJS SFT](../sims/quote405_grid32_strip_inverse_sft.cjs) preserves the old model under an explicit **legacy synthetic gap** label. It tested 24 exact reversible settings over all 12,956 ciphertext runes:
 
-The [standalone CommonJS original-source SFT](../sims/quote405_grid32_strip_inverse_sft.cjs) reads the exact source corpus, original internal-dot/quote annotations, canonical base-60 numerical grid, and independent whole-word GP-Latin reference. Under the conditional four-hole clock mapping, it tests these 24 settings over all **12,956 original runes**:
+- four quote-plus-grid GP29 key constructions, each under direct additive and predecessor-exclusion registers;
+- eight RC4 row-key constructions, each under the same two registers.
 
-- **Four quote-plus-grid keys:** at source clock slot t=405r+c, take ±Q[c] ± B[r,c mod8]. The same 405 printed quotation runes repeat in all 32 blocks; row r selects its actual eight table values. These four keys run through direct additive GP29 and an invertible GP28 predecessor-exclusion register, totaling **8** models.
-- **Eight RC4 grid-row keys:** initialize a fresh RC4 stream from each original eight-byte row, with byte drop 0 or 256, direct remainder modulo29 or scaled byte-to-GP29 mapping, and either arithmetic sign. Repeat across the same **two** candidate GP registers, totaling **16** models. RC4 is a cryptographic candidate, not an independently authenticated method in Liber Primus.
+The original ciphertext IoC is **0.0344783979**. The best quote-plus-row predecessor-exclusion inverse reached **0.0353094623** and the best RC4-row predecessor-exclusion inverse reached **0.0353404552**. Direct GP29 candidates remained **0.0344629–0.0344986**. All source-native controls recovered exactly, and all original candidates round-tripped their ciphertext.
 
-The GP29 inverse is ordinary modular subtraction. The GP28 inverse uses the independently known generator 15 of the 28 nonzero residues in F29: a zero ciphertext difference encodes literal GP symbol EA/index28; a nonzero difference is the discrete-log rank, offset by the source key modulo28. Under the conditional clock model, each of the four internal dots consumes one key-clock position but emits no rune. These are exact forward/inverse rules for the tested model, not guesses about plaintext snippets.
+Those measurements reject the tested synthetic four-hole key families. They do not support the historical existence of four source marks.
 
-Original ciphertext IoC is **0.0344783979**. The best quote-plus-row nonzero-step inverse has **0.0353094623**; the best RC4-row nonzero-step inverse has **0.0353404552**; the direct GP29 quote-plus-row candidates remain **0.0344629–0.0344986**. Every output has nonlinguistic original text. The slight increase in GP28-output IoC is expected from turning the original 86 consecutive equal-rune events into explicit EA symbols; it is not language evidence.
+## Consequences for the research frontier
 
-**Positive source-native control:** A separate 12,956-rune GP-encoded Latin Vulgate source is encrypted from its true symbols under each candidate model using the exact original printed keys, conditional four-hole clock mapping and independent row restarts. The same inverses recover **12,956/12,956 genuine source-native runes in every case**. Every original decoded candidate is also reencrypted back to its original ciphertext byte-for-byte. The latter property alone cannot authenticate a key because the transforms are bijective.
+The 32×405 branch loses its only proposed rule for choosing four clock holes. The numerical difference of four cannot identify positions by itself. Further permutations, alternate stream-cipher drops or tuned phases on these same holes are therefore unmotivated.
 
-## Decision and practical next step
-
-The exact **32 rows × 405 quoted runes = 12,960**, compared with **12,956 runes plus four internal separator dots**, makes the layout an economical candidate question. It does not establish that the dots are special clock holes or that the author intended a 32×405 tableau. The literal Vigenère-style quote/table composition and one historically simple 64-bit-row stream-cipher variant, tested under that conditional embedding, **do not reveal any authentic unknown LP2 prose**. Further permutations of the same four symbols or unmotivated RC4 drop amounts are unlikely to help.
-
-An advancing experiment must explain from an authenticated original clue how quoted spans, the four internal dots, and table rows specify an actual operation capable of recovering original plaintext, preferably with a withheld full block. The 32×405 clock should remain an unverified hypothesis unless an independent source selects the four-hole semantics and 405-slot ordering. Unknown binary intermediates, changed manuscript breaks, unseen historical key material and non-additive layers remain possible. The test does not eliminate those hypotheses.
-
-**Reproducer:** `sims/quote405_grid32_strip_inverse_sft.cjs`, Node.js 22, using `resources/liber-primus/lp2-corpus.json`, `base60-grid.json`, `lp2-quote-punctuation-spans.json` and `resources/control/latin-vulgate-gp-wholewords.txt`. This is intermediate evidence and does not change established findings in `results/README.md`.
+The 405-rune quote channel remains a separate derived observation and may be tested only when an independent clue supplies an operation. Word-index research should use the canonical 2,896-word parser directly; there is no remaining 2,900-token source ambiguity.

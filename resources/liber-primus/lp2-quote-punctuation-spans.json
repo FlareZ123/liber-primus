@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "source": {
-    "description": "Quote and apostrophe offsets independently recorded in Dukotah/cicada3301, liber-primus/analysis/round43/F2-inventory/token-channels.md, from richer relikd/scream314 runic transcription. Derived annotations; source JPEGs remain primary artifacts.",
+    "description": "Quote offsets and four historically alleged apostrophe offsets recorded in Dukotah/cicada3301, liber-primus/analysis/round43/F2-inventory/token-channels.md, from the richer relikd/scream314 runic transcription. The quote spans remain derived annotations. A 2026-11-11 audit of the correct original LP2 scans falsified the four alleged apostrophes as source-visible glyphs.",
     "url": "https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F2-inventory/token-channels.md"
   },
-  "coordinate_rule": "Zero-based global rune offsets over the 12,956 unsolved LP2 runes, [start,end) interval. page_slices refer to original physical LP2 page numbers; numeric-only page 50 has no runes and remains a physical page. Quotation glyphs are absent from resources/lp2-transcription.txt.",
+  "coordinate_rule": "Zero-based global rune offsets over the 12,956 unsolved LP2 runes, [start,end) interval. page_slices refer to original physical LP2 page numbers; numeric-only page 50 has no runes and remains a physical page. Quotation glyphs are absent from resources/lp2-transcription.txt. The four legacy apostrophe offsets are retained only to reproduce historical experiments and are not source-visible separators.",
   "quote_rune_total": 405,
   "quotes": [
     {
@@ -107,5 +107,18 @@
     5138,
     8515,
     10089
-  ]
+  ],
+  "source_visible_internal_separators_before_rune": [],
+  "legacy_apostrophe_hypothesis": {
+    "status": "retired: prior morphology audit used archive files 04/21/35/41 instead of LP2 physical pp4/21/35/41 at scans 21/38/52/58",
+    "before_rune": [
+      1110,
+      5138,
+      8515,
+      10089
+    ],
+    "selected_visual_token_count": 2896,
+    "synthetic_split_token_count": 2900
+  },
+  "apostrophes_before_rune_status": "deprecated compatibility field; identical to legacy_apostrophe_hypothesis.before_rune and must not be treated as source evidence"
 }

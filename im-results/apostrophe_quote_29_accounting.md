@@ -1,8 +1,8 @@
-# Apostrophe splitting and 29-based quote accounting
+# Retired four-gap split and 29-based quote accounting
 
-**Status:** intermediate structural hypothesis; no plaintext recovered. The observations below are reproducible from the current canonical transcription and punctuation annotation, but the annotation remains a derived layer: the original page images are authoritative for glyph identity and placement.
+**Status:** the four-gap source premise is **retired** after a correct original-image audit; no plaintext recovered. The quote-span arithmetic remains reproducible as a separate derived-channel study. The four offsets 1110, 5138, 8515 and 10089 are retained only to reproduce historical synthetic-split experiments.
 
-## Parse and source events
+## Parse and retired four-gap annotation
 
 Using the 55 rune-bearing LP2 page segments, preserving words across line wraps (`/`) and page wraps (`%`), and treating the ordinary punctuation marks as lexical separators gives:
 
@@ -12,20 +12,22 @@ Using the 55 rune-bearing LP2 page segments, preserving words across line wraps 
 - 83 one-rune words, covering 28 of the 29 GP symbols
 - 86 adjacent equal-rune pairs in the flattened rune stream
 
-The annotation records four apostrophes before rune offsets **1110, 5138, 8515, 10089**. Each lies immediately before the final rune of a 3- or 4-rune canonical word:
+A derived Round-43 annotation historically placed four apostrophe-like gaps before rune offsets **1110, 5138, 8515, 10089**. The source-image premise is now falsified. LP2 physical page N maps to archive scan N+17, while the earlier morphology audit inspected archive files with the same numbers as the physical pages. The correct pp4, 21, 35 and 41 images are scans **21, 38, 52 and 58**. Their target lines contain exactly the detached square components already required by canonical punctuation, with counts **6, 4, 7 and 5**. No additional separator-sized component occurs at any disputed cut. The 2017 KrisoYotam transcription likewise has no non-rune character at any of the four cuts.
 
-| Physical page | Canonical word | Proposed split |
+The retired offsets fall inside these canonical words:
+
+| Physical page | Canonical word | Historical synthetic split |
 |---:|---|---|
 | 4 | `ᛗᛉᛁᚹ` | `ᛗᛉᛁ` + `ᚹ` |
 | 21 | `ᚫᚩᚣ` | `ᚫᚩ` + `ᚣ` |
 | 35 | `ᛈᛖᛏ` | `ᛈᛖ` + `ᛏ` |
 | 41 | `ᛉᛚᛄᚳ` | `ᛉᛚᛄ` + `ᚳ` |
 
-This suggests a small, reversible segmentation grammar: an apostrophe is a boundary immediately before the final rune, separating a 2- or 3-rune stem from a singleton suffix. Rejoining each stem and suffix with its original apostrophe exactly restores the canonical token.
+The split remains computationally reversible and useful for reproducing prior experiments. It has no source-selected boundary semantics.
 
-## Exact 29-symbol accounting
+## Retired synthetic 29-symbol accounting
 
-Applying that rule to all four marks produces:
+Artificially splitting the four retired offsets produces:
 
 - **2,900 tokens = 100 × 29**
 - **87 singleton tokens = 3 × 29**
@@ -33,7 +35,7 @@ Applying that rule to all four marks produces:
 
 Before the fourth split, the first three marks give 2,899 tokens and 86 singletons; both are one short of a multiple of 29. The fourth mark supplies the final increment in both counts. Its suffix, `ᚳ`, is also the only GP symbol absent from the original 83 singleton words. The first three suffixes (`ᚹ`, `ᚣ`, `ᛏ`) already occur among the original singleton symbols.
 
-This is a notable alignment, not proof that the marks were intended as spaces. The fourth suffix's symbol occurs as the final rune of 43 of the 1,233 canonical 3- or 4-rune words (3.49%); that is a useful caution against overstating the alphabet-completion observation. The 29-multiple totals follow mechanically once the four observed marks are treated as splits.
+These 29-multiple totals are post hoc properties of four chosen internal offsets. Since the source images do not contain the alleged marks, the counts cannot authenticate a word boundary, key clock or singleton alphabet. The fourth suffix's symbol occurs as the final rune of 43 of the 1,233 canonical 3- or 4-rune words (3.49%), which further limits the alphabet-completion observation.
 
 ## Quote channel
 
@@ -56,7 +58,7 @@ These equalities suggest that quotes may identify a distinct channel, but no one
 
 Two exact length identities invite key hypotheses:
 
-- 12,956 = 32 × 405 − 4 (32 is also the count of cross-page words; 4 is the apostrophe count).
+- 12,956 = 32 × 405 − 4 (32 is also the count of cross-page words; 4 is the retired synthetic-gap count).
 - 12,956 = 149 × 87 − 7 (87 is the proposed singleton-key length; 7 is the quote-span count).
 
 ## Quote GP-prime sums as 133-based page/word addresses (11 November 2026)
@@ -104,7 +106,7 @@ A controlled null reselects seven source spans with the **same printed word and 
 
 The reproduction script tests the obvious additive mod-29 interpretations:
 
-1. Concatenate the 405 quoted runes as a repeating key and skip one key symbol at each apostrophe.
+1. Concatenate the 405 quoted runes as a repeating key and skip one key symbol at each retired synthetic gap.
 2. Use the 87 singleton tokens as a repeating key and skip one key symbol at each quote-span start or end.
 3. Use one singleton or doublet rune as a Caesar shift for each of the 86 quoted words.
 4. Use first differences of the singleton sequence as the 86 per-word shifts.
@@ -121,6 +123,8 @@ The script asserts the counts and prints the exact language-model scores and can
 
 ## Assessment and next decision
 
-Two unproven source operations remain: the reversible **apostrophe-as-subword-boundary** split produces paired 100 × 29 and 3 × 29 counts; the quote GP-prime sums have a source-selected **58-rune exclusion → six-span 133×132 checksum**. A further quote → 133-division page/word mapping additionally depends on later combined 75-scan numbering.
+The four-gap branch is retired as a source-selected mechanism. Its 2,900-token, 87-singleton and 32×405-minus-four identities remain reproducible arithmetic under an artificial split, so the historical negative key tests are preserved. They should not seed new cryptanalytic work unless an independent authenticated clue selects the same four rune offsets.
 
-However, there is not yet a cryptographic mechanism, recovered key, or plaintext. Do not promote this to `results/`. The next useful work is a historically motivated, source-fixed operation that predicts plaintext from the quoted spans or the seven selected source words. Direct GP29 repeating-word keys fail. Avoid postselected moduli, freely chosen transformations and arbitrary transpositions. Original-JPEG inspection now resolves the glyph morphology at all four offsets. The internal marks are small square dots on the same baseline and with the same 9–10 px connected-component dimensions as ordinary word-separator dots on their respective lines: p4 (1492,2287,10×9), p21 (1599,1102,10×10), p35 (1445,1478,10×10), and p41 (1671,2608,9×9). This strongly favours treating them as deliberate subword boundaries rather than literal apostrophes or a distinct prime glyph, while leaving the author's intended cryptographic use unresolved. The suffixes after the four cuts are W, Y, T, C—not four instances of `ᚳ`; an external Round-43 inventory's blanket `’ᚳ` description is inconsistent with both the rich transcription and canonical rune stream.
+The quote-only observations in this report remain separate derived hypotheses. In particular, the seven quote spans still total 405 runes and the quote GP-prime arithmetic is unchanged by the tokenization correction. Those numerical relations have not supplied an authentic cipher operation or unknown plaintext.
+
+The selected source-visible word contract is the existing **2,896 canonical words**. Future word-address proposals can use that contract directly. No 2,900-token sensitivity branch is required. Reproduce the source decision with [`lp2_visual_token_contract_sft.py`](../sims/lp2_visual_token_contract_sft.py), and reproduce the preserved historical four-gap arithmetic with [`apostrophe_quote_29_accounting.cjs`](../sims/apostrophe_quote_29_accounting.cjs).
