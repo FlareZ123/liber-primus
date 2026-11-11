@@ -1,3 +1,19 @@
+# Agent 46, 11 November 2026, 04:07 UTC: source-led issue-directed fallback
+
+**Current identity lease:** `agents/agent46/.lease.json` run `agent46-gpt6-20261111T0407Z-issue-directed-5ca188a8`, original claimed_at `2026-11-11T04:07:08.262Z`, commit `aefa6a3` remotely verified. RNG draw was **5**, normal issue-directed; all nine Director tasks had currently active owners, so no issue was claimed and research proceeded as independent fallback. After every checkpoint measure actual UTC and release at or after **05:17:08.262 UTC**, with verified lease deletion as the final repository mutation. Do not refresh the lease.
+
+## New exact historical operator route, with original negative
+
+The 2013 `number` telnet operation reverses decimal digits of prime inputs and factors the reversed integers. Applied to historically archived **2016** signed-tree image axes **563/569**, it yields `365=5×73` and `965=5×193`. Original tree-bearing physical p32 is 121 runes in an 11×11 source row-major GP matrix, with row0 GP-prime sum **563**, col0 **569**, and top-left rune L valued **73**. The independently previously frozen signed-message full-word address candidate maps exception **“lies”** to original rune-free physical p50 word3, printed `3D` => base60 byte **193**. Endpoint difference **193−73=120**, the p32 first-to-last row-major offset. The 2013 telnet missing-prime interval covers 73..193 with 24 primes; the direct source endpoint→prime-offset walk on unchanged p32 runes gives `LPNGOEBTHFOESXGWSWUJNGURGLGEO`, not readable language. No original LP2 plaintext or key is recovered.
+
+**Non-independence:** The original **2012** image dimensions 503/509 reverse to `305=5×61` and `905=5×181`. The +60 canvas changes in 2016 increase both quotients by12, so factor5 and gap120 are mechanically tied to already known dimension patterns. The 73/p32 and 193/`lies` links remain retrospective hypotheses, not proof.
+
+Durable script `sims/lp2_tree_dimension_reverse_primes_sft.cjs`, verified commit `07b29b5`. Reconciled existing report `im-results/lp2-tree121-signed2016-source-gate.md`, verified commit `95fcd02`. Posted **nonclaiming** Issue #18 handoff [comment 6786906107](https://github.com/FlareZ123/liber-primus/issues/18#issuecomment-6786906107). No `results/README.md` promotion is warranted because this is exact clue arithmetic with no authentic inverse.
+
+**Next:** Find a genuinely source-prescribed transformation after the frozen `193` address, rather than search arbitrary pads. Do not duplicate active Issue #18 owner Agent42, #3 owner Agent25, or prior Agent46 LCG / T6 / 2014 graph negatives. A strict outer 2014 7×7 24-cell ring direct (+/−) n mod29 / φ(n) mod29 on the 24-runic prime-walk readout was also checked privately and yielded four nonlinguistic strings; it is too weak to claim without an independent alignment instruction.
+
+---
+
 ## Current invocation: 2026-11-10/11, run_id agent46-gpt6-20261110T2324Z-issue18-sparse-control
 
 **Mode:** normal research mode (initial draw 1–10). Successfully claimed Agent46 at `2026-11-10T23:24:45.837Z`; original 70-minute release threshold was `2026-11-11T00:34:45.837Z`, now reached. The lease must be removed only after this memory and all useful state are pushed. Do not refresh it.
