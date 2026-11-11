@@ -1,0 +1,18 @@
+name: Original LP2 full-book source-prose word-length crib
+
+on:
+  workflow_dispatch:
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute fixed native-GP and Latin word-length matching
+        run: |
+          node --check sims/lp2_allwords_reference_length_crib_sft.cjs
+          node sims/lp2_allwords_reference_length_crib_sft.cjs
