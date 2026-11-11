@@ -6,10 +6,22 @@ const c=JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const ink=JSON.parse(read('resources/liber-primus/lp2-ink-annotations.json'));
 const trans=read('resources/lp2-transcription.txt');
 const signed=read('resources/historical/cicada2016-4gq25-outguess.asc');
-const p32=(trans.split('%')[32]||'').replace(/\//g,'').match(/[\u16A0-\u16FF]+/gu)||[];
-assert.strictEqual(p32.length,26);
+// An original page line-break '/' is layout only: consume its following newline.
+// The legacy parser stripped '/' but left '\n', spuriously splitting four words.
+const p32Raw=trans.split('%')[32]||'';
+const p32=p32Raw.replace(/\/\s*/gu,'').match(/[\u16A0-\u16FF]+/gu)||[];
+const legacy=p32Raw.replace(/\//g,'').match(/[\u16A0-\u16FF]+/gu)||[];
+assert.strictEqual(p32.length,22);
+assert.strictEqual(legacy.length,26);
+assert.strictEqual(p32.reduce((n,w)=>n+[...w].length,0),121);
+assert.strictEqual(legacy.reduce((n,w)=>n+[...w].length,0),121);
 const prime=new Map(c.runes.map((r,i)=>[r,c.prime[i]]));
-const ords=[13,24,19,3,6,20,17],selected=ords.map(n=>p32[n-1]);
+const ords=[13,24,19,3,6,20,17];
+// The old 7-cycle uses one-based word 24. Correct p32 has only 22 words.
+// Retain its numeric legacy output as a regression artifact, never as a
+// source-selected address or decryption instruction.
+assert.ok(ords.some(n=>n>p32.length));
+const selected=ords.map(n=>legacy[n-1]);
 const lengths=selected.map(w=>[...w].length);
 const sums=selected.map(w=>[...w].reduce((s,r)=>s+prime.get(r),0));
 assert.deepStrictEqual(lengths,[7,2,5,5,5,2,4]);
@@ -63,10 +75,15 @@ const chronological=non.map(x=>x.id);
 assert.deepStrictEqual(rowMajor,chronological);
 assert.deepStrictEqual(columnMajor,chronological);
 const overlapMatrix=cells.map(row=>row.map(cell=>cell.length));
-console.log(JSON.stringify({m7Ordinals:ords,p32Words:selected,p32Lengths:lengths,p32PrimeSums:sums,
+console.log(JSON.stringify({
+ status:'RETIRED: invalid p32 source word indexing caused by layout newlines',
+ correctedP32WordCount:p32.length,legacyP32WordCount:legacy.length,
+ invalidOneBasedP32Ordinals:ords.filter(n=>n>p32.length),
+ correctedP32Words:p32.map(w=>[...w].map(r=>c.translit[c.runes.indexOf(r)]).join('')),
+ m7Ordinals:ords,p32Words:selected,p32Lengths:lengths,p32PrimeSums:sums,
  messageTokenCount:tokens.length,alphaOnlyCount:alpha.length,A,AwordLengths,B,BwordLengths,B44,
  fragmentCount:frags.length,fullRuneCount:full.length,unknownEnd:starts[28],empty,nonemptyCount:non.length,
  emptyLetters:empty.map(i=>B[i]).join(''),B30,AendIds,BendIds,
  overlapMatrix,rowMajorIds:rowMajor,columnMajorIds:columnMajor,
  bothGridReadingsEqualChronological:true,
- interpretation:'The two source-derived word partitions form an interval-overlap matrix; row-major and column-major both reproduce chronological fragment order. They do not define a nontrivial fragment permutation.'},null,2));
+ interpretation:'Legacy line-break split invalidates word 24 and the entire purported p32-selected A/B chain. The two conditional legacy partitions are interval overlaps and yield only chronological fragment order, not a permutation.'},null,2));
