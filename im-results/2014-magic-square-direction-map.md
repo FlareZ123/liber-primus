@@ -195,6 +195,36 @@ No candidate improves on the raw ciphertext score, and every output remains visi
 
 Reproducer: [`sims/2014_wisdom_square_hill29_sft.cjs`](../sims/2014_wisdom_square_hill29_sft.cjs).
 
+### The 13 Wisdom word-cell sums as a 13-dot key: bounded negative
+
+The source-reconstructed 2014 square contains exactly **13 word cells**. Their GP-prime sums, in original row-major order, are:
+
+`[341, 366, 199, 130, 320, 245, 91, 226, 320, 130, 199, 366, 341]`.
+
+This gives a source-constrained 13-symbol candidate because the original unknown LP2 contains 27 red and one black 13-dot marks, defining 28 ordered fragments (including empty fragments 9 and 12). The two simplest numeric encodings were frozen: the word-cell sums modulo 29, and `φ(sum) mod 29` (the totient operation explicitly named in the 2013 source). The resulting keys are:
+
+- Raw residues: `[22, 18, 25, 14, 1, 13, 4, 23, 1, 14, 25, 18, 22]`.
+- Totient residues: `[10, 4, 24, 19, 12, 23, 14, 25, 12, 19, 24, 4, 10]`.
+
+Each key was tested as direct GP29 additive Vigenère, with both signs, under the more motivated 13-dot-fragment reset and a continuous-global-clock control. The same fixed Shakespeare GP29 trigram model gives raw unknown `−4.679452` and native Shakespeare `−2.229825`:
+
+| Key | Clock | Operation | Trigram score (nats/rune) |
+|---|---|---|---:|
+| Raw residues | 13-dot reset | subtract | −4.7126568 |
+| Raw residues | 13-dot reset | add | −4.7117797 |
+| Raw residues | continuous | subtract | −4.7299943 |
+| Raw residues | continuous | add | −4.6877963 |
+| Totient residues | 13-dot reset | subtract | −4.7161225 |
+| Totient residues | 13-dot reset | add | −4.7109488 |
+| Totient residues | continuous | subtract | −4.7027878 |
+| Totient residues | continuous | add | −4.6766335 |
+
+The best continuous variant is only `0.002818` nats/rune above the raw score and remains ciphertext-like; all four fragment-reset variants are worse than raw. Every tested inverse re-encrypts the original stream exactly, which checks implementation but does not identify the key.
+
+**Decision:** reject direct Vigenère use of the 13 word-cell-sum key under both natural residue mappings, both signs, and the continuous/13-dot clocks. The numerical match between 13 source words and 13-dot punctuation is a legitimate human-solve-path clue to test, but it does not recover plaintext or establish a key. Do not add alternate orderings, rotations, or other cipher families without a new selector.
+
+Reproducer: [`sims/2014_wisdom_13cell_key_sft.cjs`](../sims/2014_wisdom_13cell_key_sft.cjs).
+
 ### Pre-2014 live TCP test reuses the 1033 / 3301 pair
 
 A separate historical route supplies **pre-2014 organizer selection of the same numbers**. The archived March 2013 TCP-server testing summary records Cicada issuing `BASE29 1033` and then `DH 3301` three times. A second preserved participant-server transcript records `BASE29 1033` → `16I`, followed by `DH 3301`, a completed exchange, and `NEXT`. The source manifest pins both archive files and their commit in [`resources/external/2013-tcp-live-test-vectors.json`](../resources/external/2013-tcp-live-test-vectors.json).
