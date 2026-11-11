@@ -15,7 +15,7 @@ The complete offset table is [lp2-original-page-boundary-audit-p32-p54-p55.csv](
 | 55 | 72.jpg | 24, 22, 22, 8 | 76 | 17 | 16 | 16 | 1 rune | — |
 
 - **p31→p32:** p31 ends with `ᛠᛗᚩ` and no word separator; p32 begins with `ᛚ`. The full word is `ᛠᛗᚩᛚ` (GP transliteration EAMOL, prime sum 260), global rune offsets 7836–7839. Thus p32 segment 0 is the final rune of an incoming word, not a one-rune word; its p32-only fragment sum is 73.
-- **p53→p54:** p53 ends with its red 13-dot terminator at rune offset 179. P54 begins a new one-rune word `ᚪ`; its red heading is the 9-rune sequence `ᚪᛗᛝᛞᛡᚦᛉᛁᛗ`, followed by the red 13-dot separator at offset 9. No word carries from p53.
+- **p53→p54:** p53 ends with its red 13-dot terminator at rune offset 179. P54 begins a new one-rune word `ᚪ`; its red heading contains nine runes total, with this one-rune word followed by the eight-rune `ᛗᛝᛞᛡᚦᛉᛁᛗ` word and the red 13-dot separator at offset 9. The oversized red initial is the same source glyph as ordinary `ᚪ`, not a Latin N or a non-rune drop cap: after nearest-neighbour normalization to 34×113 pixels, its original-red mask has IoU **0.962984** against the ordinary p32 A glyph and **0.181329** against the p32 N control. Reproduce the pixel line bands and glyph comparison with [the original-image SFT](../sims/lp2_p54_initial_rune_shape_sft.py). No word carries from p53.
 - **p54→p55:** p54's final page-local segment is `ᚷᚩᛏᚦᛉᛖᛠᚱᚷᚣ` at p54 offsets 222–231. P55 begins with `ᛝ`, completing the 11-rune word `ᚷᚩᛏᚦᛉᛖᛠᚱᚷᚣᛝ`, global offsets 12870–12880. P55 segment 0 is this incoming final rune, not a singleton.
 
 ## Printed line wraps
