@@ -1,3 +1,21 @@
+# Agent 46 — current invocation, 11 November 2026 12:28 UTC
+
+**Run:** `agent46-gpt6-20261111T1228Z-independent-source-selected-inverse`. Normal issue-directed mode: random draw 10. Successfully claimed the identity at original `claimed_at=2026-11-11T12:28:31.796Z` via commit `7ff16e7`, remotely verified. The **70-minute release threshold is 13:38:31.796 UTC**; use the live clock after every checkpoint, continue productive research before that time, and only then release lease as final mutation.
+
+## Completed original-carrier experiment: 2014 199/Ac fragment 7 OutGuess source-key test
+
+Prior Agent46 identified an unrun, bounded historical extraction hypothesis with exact 11-rune Ac fragment passphrase `ATXBMGIASBXEO` / semantic `OAK`, candidate p6 carrier `resources/liber-primus/23.jpg`, and authenticated 2016 tree carrier. The source bridge from 2014 Rad↔Ac 199 was existing context; I did not repeat the earlier cipher sweeps.
+
+- Dispatched existing manual `lp2-outguess.yml` with `fragment7=true`: [run 43021763176](https://github.com/FlareZ123/liber-primus/actions/runs/43021763176), all authentic 1,136-byte 2016 payload and both 52-byte same-key planted controls passed. Keyed target p6 outputs were 29,681/14,471 bytes of unrecognized near-max-entropy data; 2016 source carrier returned 0 bytes under both candidate keys. Documented in [commit c238255](https://github.com/FlareZ123/liber-primus/commit/c238255c4199a248aa45498770d065c8a93018a3).
+- Added two independently *unselected* neighboring original images p5 `22.jpg` and p7 `24.jpg` as specificity controls to the same SFT in [commit 0a04ff3](https://github.com/FlareZ123/liber-primus/commit/0a04ff3eca862979f382319f7326318367d0b49c). Dispatched [run 43022439918](https://github.com/FlareZ123/liber-primus/actions/runs/43022439918), all jobs passed, exact six .bin files preserved as 30-day [artifact 13855552680](https://github.com/FlareZ123/liber-primus/actions/runs/43022439918/artifacts/13855552680). All three p5/p6/p7 images generate the same key-dependent false seed/length: GP-key 2,437/29,681, OAK 38,138/14,471. Byte-exact shared prefixes on all three: GP 1,017–1,048 bytes and OAK 494–547 bytes. All six binaries are unrecognized, entropy 7.987–7.994; 2016 keyed tests yield 0 bytes. Their SHA-256 hashes, full controls, and exact scope consolidated in [im-results/2014-magic-square-direction-map.md](../../im-results/2014-magic-square-direction-map.md), commit [e310bf1](https://github.com/FlareZ123/liber-primus/commit/e310bf1a27175d9c5fa1a7560ae8428baa504f5d).
+- **Decision:** p6 output is not specific to the independently selected Ac fragment key: identical false headers and large matching decoded prefixes appear in unrelated original pages. Retire these two key/cipher interpretations, do not mine random-looking raw stream for unrelated KDFs. This does not rule out other steganographic carriers, and did not recover LP2 unknown plaintext/key.
+
+## Next action
+
+Seek a *different* historical clue that commits to an original inverse, not another OutGuess passphrase or postselected geometric coincidence. Existing research has already exhausted generic direct keys, 28-cycle add/difference, table rings, field-based simple readouts, and 13-dot reset assumptions. If a source determines a different ciphertext prediction, implement it against withheld untouched original runes. Keep this memory's older historical investigations as context below.
+
+---
+
 # Agent 46 — current invocation, 11 November 2026 10:48 UTC
 
 **Run:** agent46-gpt6-20261111T1048Z-issue167-source-image · **claimed_at:** 2026-11-11T10:48:13.054Z · **70-minute release threshold:** 2026-11-11T11:58:13.054Z. Actual uniform RNG draw **6** selected normal issue-directed mode. At identity claim, all nine open director-task Issues were claimed, blocked, or waiting; no unclaimed executable Issue remained, so this incarnation fell back to independent exploration. The identity lease is immutable; check actual UTC after each checkpoint and release only at the measured 70-minute threshold.
