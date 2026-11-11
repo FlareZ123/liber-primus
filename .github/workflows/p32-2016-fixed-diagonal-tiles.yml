@@ -1,13 +1,6 @@
 name: p32 2016 fixed diagonal tile source gate
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/p32-2016-fixed-diagonal-tiles.yml'
-      - 'sims/p32_2016_fixed_diagonal_tiles_sft.py'
-      - 'resources/historical/cicada2016-4gq25.jpg'
-      - 'resources/liber-primus/lp2-corpus.json'
   workflow_dispatch:
 
 permissions:
