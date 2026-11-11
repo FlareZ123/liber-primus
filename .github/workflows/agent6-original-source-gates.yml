@@ -18,3 +18,5 @@ jobs:
         run: node sims/lp2_quote_fullshape_source_corpus_sft.cjs
       - name: Missing-f prime-square reversible grid inverse
         run: node sims/lp2_prime_square_grid_clock_sft.cjs
+      - name: Original four-concentric-ring source alignment and all-secret lookup gate
+        run: node sims/lp2_grid_p53_p55_four_ring_source_sft.cjs
