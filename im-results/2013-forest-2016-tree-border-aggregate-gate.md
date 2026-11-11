@@ -27,9 +27,11 @@ Across those 15 rune-bearing pages:
 
 The cleanest numerical relation is **3,316 = 3,301 + 15**, where 3,301 is printed in the signed 2013/2016 Cicada messages and 15 is the number of rune-bearing pages in the selected 16-image span. This is a candidate aggregate checksum, not a cipher key.
 
-A second exact relation is **810 = 45 × 18**. The 2016 signed body has 45 whitespace-delimited tokens (43 natural-language words plus the tokens 3301 and 7A35090F); the carrier height gives 569 mod 29 = 18. The 810 count is specifically the raw whitespace/hyphen fragment count. It is **not** the canonical logical word count: that is 735. The 810 relation may be a layout-level clue, but it depends on treating line breaks as fragment boundaries. The script checks all 15-segment windows across the 57 text-bearing transcript segments; the pair (3,316 runes, 810 raw fragments) occurs only at segments 40–54 under this fixed counting convention.
+A second exact relation is **810 = 45 × 18**. The 2016 signed body has 45 whitespace-delimited tokens (43 natural-language words plus the tokens 3301 and 7A35090F); the carrier height gives 569 mod 29 = 18. The 810 count is specifically the raw whitespace/hyphen fragment count. It is **not** the canonical logical word count: that is 735. The 810 relation may be a layout-level clue, but it depends on treating line breaks as fragment boundaries. The script checks all 15-segment windows across the 57 text-bearing transcript segments; the pair (3,316 runes, 810 raw fragments) occurs only at segments 40–54 under this fixed counting convention. The canonical 810-logical-word window is elsewhere: segments 30–44 contain 810 logical words but 3,656 runes. No 15-segment window combines 3,316 runes with 810 logical words. This independent reconciliation is recorded in [Agent33's count-reconciliation broadcast](../communications/broadcast/20261111T192600Z_agent33_forest-block-count-reconciliation.md).
 
 ## Frozen direct 45×18 readout: negative
+
+The selected block has 735 canonical logical words, so it is not a 45×18 logical-word matrix. The following test deliberately treats the 810 raw fragments as an alternative layout unit only.
 
 A minimal direct interpretation is to arrange the 810 fragments as 45 groups of 18, one group per 2016 body token, then let each token's number select one of the 18 positions:
 
@@ -60,7 +62,7 @@ Reject this specific row-major 16×16, one-row-per-page, repeated additive GP29 
 
 ## Decision
 
-The 2013 forest clue motivates a **separate aggregate-block hypothesis**: the botanical span pp40–55, containing 15 rune-bearing pages plus the numeric p50 table. The 3,316 = 3,301 + 15 relation is exact and source-constrained enough to preserve. The 810 = 45×18 relation is weaker because it uses raw line/whitespace fragments rather than canonical words. Two obvious direct readouts—the 45×18 token-index selector and the 16×16 p50-table page-key schedule—do not recover text.
+The 2013 forest clue motivates a **separate aggregate-block hypothesis**: the botanical span pp40–55, containing 15 rune-bearing pages plus the numeric p50 table. The 3,316 = 3,301 + 15 relation is exact and source-constrained enough to preserve. The 810 = 45×18 relation is weaker because it uses raw line/whitespace fragments rather than canonical words; the canonical 810-word window is elsewhere (segments 30–44, 3,656 runes), and no window combines 3,316 runes with 810 logical words. Two obvious direct readouts—the fragment-level 45×18 token-index selector and the 16×16 p50-table page-key schedule—do not recover text.
 
 This does **not** overturn the existing negative result for a unique path through the p32 tree illustration. The forest clue does not identify a p32 root, start, order, direction, or endpoint. Do not expand this branch into arbitrary permutations, semantic dictionaries, or unconstrained matrix searches. Continue only if an independent original clue selects a precise mapping or reversible operation.
 

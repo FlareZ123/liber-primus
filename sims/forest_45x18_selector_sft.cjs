@@ -112,6 +112,7 @@ assert.equal(pageLocalFragments, 747);
 assert.equal(fragments.length, 810);
 assert.equal(fragments.length, rawMessageTokens.length * heightMod29);
 
+const allParsed = parseLP2Words(transcript, 57);
 const windows = [];
 for (let start = 0; start + 15 <= segments.length; start++) {
   const pageWindow = segments.slice(start, start + 15);
@@ -119,13 +120,24 @@ for (let start = 0; start + 15 <= segments.length; start++) {
     start,
     end: start + 14,
     runes: pageWindow.reduce((n, page) => n + countRunes(page), 0),
-    rawFragments: pageWindow.reduce((n, page) => n + rawFragmentsForPage(page).length, 0)
+    rawFragments: pageWindow.reduce((n, page) => n + rawFragmentsForPage(page).length, 0),
+    logicalWords: allParsed.words.filter((word) =>
+      word.startPage >= start && word.startPage < start + 15
+    ).length
   });
 }
-const matchingWindows = windows.filter((window) =>
-  window.runes === 3316 && window.rawFragments === 810
+const matchingWindows = windows
+  .filter((window) => window.runes === 3316 && window.rawFragments === 810)
+  .map(({start, end, runes, rawFragments}) => ({start, end, runes, rawFragments}));
+assert.deepStrictEqual(matchingWindows, [{start: 40, end: 54, runes: 3316, rawFragments: 810}]);
+const canonical810WordWindows = windows
+  .filter((window) => window.logicalWords === 810)
+  .map(({start, end, runes, logicalWords}) => ({start, end, runes, logicalWords}));
+assert.deepStrictEqual(canonical810WordWindows, [{start: 30, end: 44, runes: 3656, logicalWords: 810}]);
+const joint3316And810LogicalWordWindows = windows.filter((window) =>
+  window.runes === 3316 && window.logicalWords === 810
 );
-assert.deepEqual(matchingWindows, [{start: 40, end: 54, runes: 3316, rawFragments: 810}]);
+assert.deepStrictEqual(joint3316And810LogicalWordWindows, []);
 
 const alphabet = corpus.translit.map((token, index) => ({
   token: token.toLowerCase(),
@@ -314,6 +326,8 @@ console.log(JSON.stringify({
     fragmentEquation: "810 = 45 * 18"
   },
   unique15PageWindows: matchingWindows,
+  canonical810WordWindows,
+  joint3316And810LogicalWordWindows,
   directMod18Selectors: selectorTests,
   pageKeySchedule
 }, null, 2));
