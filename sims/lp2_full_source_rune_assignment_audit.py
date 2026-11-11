@@ -164,7 +164,7 @@ def align_lines(expected_lengths, detected_counts, skip_cost=2.0, max_diff=5):
     if best_j is None or best >= inf:
         return None
     i, j = n, best_j
-    mapping, skipped = [None] * n, []
+    mapping, skipped = [None] * n, list(range(best_j, m))
     while i > 0 or j > 0:
         item = back[i][j]
         if item is None:
@@ -314,7 +314,7 @@ def segment_row_dp(gray, row, target_count, templates, skip_threshold=40.0,
     return list(reversed(groups)), sorted(skipped), float(dp[m][n])
 
 
-def optional_hog(crops, labels, control_crops):
+def optional_hog(crops, labels, control_crops, control_labels):
     try:
         from skimage.feature import hog
         from sklearn.model_selection import LeaveOneOut, cross_val_predict
@@ -409,7 +409,7 @@ def main():
     control_total = len(control_labels)
 
     # Optional second feature family (HOG/SVM), independently trained on p43.
-    hog_result = optional_hog(train_crops, train_labels, control_crops)
+    hog_result = optional_hog(train_crops, train_labels, control_crops, control_labels)
     if hog_result:
         hog_model, hog_feature = hog_result.pop("model"), hog_result.pop("feature")
     else:
@@ -420,6 +420,7 @@ def main():
     unresolved = []
     exact_nodrop_positions = exact_nodrop_correct = exact_nodrop_mismatch = 0
     classified_positions = 0
+    unmapped_observed_components = 0
     for page, lines in unknown.items():
         gray, centers, rows = get_rows(source, page)
         alignment = align_lines([len(x) for x in lines], [len(x) for x in rows])
@@ -432,10 +433,17 @@ def main():
         for li, expected in enumerate(lines):
             row = apply_manual_splits(page, li, rows[mapping[li]])
             if len(row) < len(expected):
+                observed = []
+                for crop, box in row:
+                    pred, dist, second, dist2 = templates.classify(crop)
+                    observed.append({"box": box, "nearest": TRANSLIT[pred], "distance": dist})
+                unmapped_observed_components += len(row)
                 unresolved.append({"page": page, "line": li, "expected": len(expected),
-                                   "detected": len(row), "missing": len(expected) - len(row)})
+                                   "detected": len(row), "missing": len(expected) - len(row),
+                                   "observed_components": observed})
                 page_record["lines"].append({"line": li, "expected": len(expected),
-                                             "detected": len(row), "status": "undercount"})
+                                             "detected": len(row), "status": "undercount",
+                                             "observed_components": observed})
                 continue
             result = segment_row_dp(gray, row, len(expected), templates)
             if result is None:
@@ -460,7 +468,7 @@ def main():
                     mismatch_records.append(item)
                     line_mismatches.append(item)
             no_drops = not skipped_components and all(g["end"] - g["start"] == 1 for g in groups)
-            if len(row) == len(expected) and no_drops:
+            if page != 43 and len(row) == len(expected) and no_drops:
                 exact_nodrop_positions += len(expected)
                 exact_nodrop_mismatch += len(line_mismatches)
                 exact_nodrop_correct += len(expected) - len(line_mismatches)
@@ -472,8 +480,8 @@ def main():
             })
         page_results.append(page_record)
 
-    # Exclude p43's template page from independent held-out position totals.
-    heldout_exact_positions = exact_nodrop_positions - len(train_labels)
+    # Exact-count/no-drop metrics above exclude p43, which supplied the templates.
+    heldout_exact_positions = exact_nodrop_positions
     heldout_exact_mismatches = exact_nodrop_mismatch
     high_confidence = [m for m in mismatch_records
                        if m["page"] == 0 and m["line"] == 0 and m["position"] in (9, 10, 11, 12)]
@@ -493,11 +501,14 @@ def main():
             "expected_positions": total_positions,
             "p43_training_positions": len(train_labels),
             "heldout_positions": total_positions - len(train_labels),
-            "classified_positions_including_p43": classified_positions,
-            "unresolved_positions": sum(x.get("missing", 0) for x in unresolved),
+            "position_aligned_classifications_including_p43": classified_positions,
+            "position_aligned_classifications_heldout": classified_positions - len(train_labels),
+            "unmapped_observed_components": unmapped_observed_components,
+            "unresolved_expected_positions": sum(x.get("missing", 0) for x in unresolved),
             "nearest_neighbor_mismatches": len(mismatch_records),
-            "nearest_neighbor_matches": classified_positions - len(mismatch_records),
-            "exact_count_no_drop_positions_including_p43": exact_nodrop_positions,
+            "nearest_neighbor_matches_including_p43": classified_positions - len(mismatch_records),
+            "nearest_neighbor_matches_heldout": classified_positions - len(train_labels) - len(mismatch_records),
+            "exact_count_no_drop_positions_including_p43": exact_nodrop_positions + len(train_labels),
             "exact_count_no_drop_positions_heldout": heldout_exact_positions,
             "exact_count_no_drop_heldout_mismatches": heldout_exact_mismatches,
             "exact_count_no_drop_heldout_matches": heldout_exact_correct,
