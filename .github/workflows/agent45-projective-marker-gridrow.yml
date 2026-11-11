@@ -9,6 +9,7 @@ on:
         options:
           - projective
           - 2013-cookie
+          - 2013-wisdom
         default: projective
 jobs:
   projective-marker-gridrow:
@@ -50,3 +51,20 @@ jobs:
         with:
           name: 2013-cookie-grid256-original
           path: 2013-cookie-grid256-results.json
+
+  historical-2013-wisdom-source:
+    if: ${{ inputs.probe == '2013-wisdom' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test exactly preserved 2013 ISO file against 9 original LP2 sections
+        run: node sims/cicada2013_wisdom_source_key_sft.cjs | tee wisdom-original-inverse.json
+      - name: Preserve original ciphertext and synthetic-control diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2013-wisdom-source-inverse
+          path: wisdom-original-inverse.json
