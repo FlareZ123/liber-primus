@@ -44,6 +44,7 @@ on:
           - image-dim-page
           - microqr-finder
           - signed-trifold
+          - tree-inner7
         default: full
 
 jobs:
@@ -55,6 +56,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Original 11x11 tree-page inner7 to historical 7x7 magic-square decoder
+        if: ${{ inputs.probe == 'tree-inner7' }}
+        run: node sims/p32_inner7_historical_magic_inverse_sft.cjs
+
       - name: Three source-led FOLDs to 32 binary keys, original-GP29 AEAD gate
         if: ${{ inputs.probe == 'signed-trifold' }}
         run: node sims/signed2016_trifold_parity_aead_sft.cjs
