@@ -1,0 +1,33 @@
+# PARABLE product and 2016 signed-tree dimensions as a deterministic keystream/RSA selector
+
+**11 November 2026, Agent31. Status: two finite source-led inversions tested on the original LP2 corpus, both negative.** No unknown plaintext, secret, authentic cipher, or destination recovered. This report records a genuinely different route from existing GP29 periodic-LCG, polynomial-table, and historical audio-pad tests. It does not elevate numerical coincidence into authorial intent.
+
+## Authentic source arithmetic that fixes the operands
+
+The original 2013 `761.MP3` TXXX field records **`Parable 1,595,277,641`**. The later solved LP2 p57 PARABLE has a red heading with GP-prime sum **449** and three literal text clauses with GP-prime sums **1259**, **1031**, **1229**. All three clause sums are prime, and their product is exactly **1,595,277,641**. Original-source and historical documentation: [audio source inventory](audio761-original-id3-frame-inventory.md), [p57 number/source work](../workplace/parable-prime-8x7-page-map.md).
+
+The preserved 2016 signed image is **563×569 pixels**, and original LP2 p32 contains a **121-rune** 11×11 square whose first row and column GP-prime sums independently reconstruct those dimensions in order. The authentic 2012 image stage once explicitly instructed the solver to multiply image pixel dimensions by **3301**; the analogous **2016** number is **563×569×3301 = 1,057,465,447**. These dimensions and source-operator comparisons are established in [the p32 geometric report](tree-prime-canvas-partition.md) and [the image-dimension bridge script](../sims/2016_prime_area_gf29_derivative_gate.cjs). Applying the **2012** instruction to a **2016** artifact is a hypothesis, not an authenticated 2016 command.
+
+Two candidate roles of the source values were examined with **no fitted 32-bit coefficients or RSA modulus**.
+
+## Hypothesis 1: 32-bit linear congruential full-period generator
+
+Let `a = 1,595,277,641`, `c = 1,057,465,447` and `x[t+1] = (a×x[t]+c) mod 2^32`. The audio product is the multiplier and the image-dimension number is the increment, a natural chronological source assignment. Because **a mod4 =1** and **c is odd**, the generator has the full period **2^32** by the Hull–Dobell criterion for the stated modulus, independently of any seed. This source-derived exact property could matter if Cicada intended a simple 32-bit PRNG. It is a weak intent test: for independently random residues, those two conditions hold with probability 1/8; a good period alone is no evidence of a key.
+
+Without choosing a seed based on the unknown ciphertext, the finite original inverse used four literal source seeds **3301**, **1033**, **761** and **449**, three standard 29-symbol output policies (state modulo29; unbiased top-five-bit rejection; unbiased top-byte rejection), two GP29 additive directions, and a fixed continuous original-rune clock. All **24** outputs reproduce the entire ciphertext exactly when the mask is reapplied; all 24 output indices of coincidence lie **0.03444–0.03455**, close to the unchanged original **0.03447840**. No native GP plaintext appeared. In the best output the adjacent repeated-glyph count jumps to **423**, compared with only **86** in the original; neither number is evidence of correct English by itself. A genuine solved-p57 GP stream plant with the same key recovers **12,956/12,956** symbols and has IoC **0.07248161**. Full-period status and successful synthetic recovery are implementation checks, not evidence that the original used the LCG.
+
+The bounded rejection is direct, unmodified, book-continuous **additive LCG keystream decoding** at these four source values and three natural state-to-symbol mappings. It does not rule out other, separately motivated PRNG operations, nonlinear output filtering, side channels, or unknown input material.
+
+## Hypothesis 2: three-prime RSA modulus from PARABLE
+
+The 2013 `PARABLE` product supplies the candidate **RSA modulus N = 1259×1031×1229 = 1,595,277,641** and known Euler totient **φ(N) = 1,591,168,720**. Its small exact factors make a pedagogical three-prime RSA puzzle arithmetically possible. We checked four independent literal source exponents **3301**, **1033**, **449** and **761**, all coprime to φ(N). For each, an exact modular private exponent was calculated and verified on a nonzero native six-digit positive plant.
+
+A standard seven-GP29-rune RSA block is a left-to-right base29 integer. It must lie below N. But among **1,829 original page-local seven-rune blocks**, **1,640 already exceed N**, excluding this direct fixed seven-digit ciphertext representation. Six GP29 runes always lie below N because `29^6=594,823,321`, but the RSA private outputs overwhelmingly fail to fit into a six-rune native-GP plaintext block. Across both original **book-continuous and page-local six-rune clocks**, and both orientations of the six printed digits, all 16 cases have hundreds of outputs ≥29^6. For the natural forward book order, just **821/2159** blocks fit for e=3301, **793/2159** for e=1033, **840/2159** for e=449 and **805/2159** for e=761. The other outputs cannot be represented in six GP29 runes without lossy truncation or an additional code layer absent from the source.
+
+This exact length/capacity obstruction retires **ordinary length-preserving GP29 RSA ECB** with the source modulus for the tested six- and seven-rune conventions. It does not rule out RSA as an external key exchange, a different documented byte encoding, or additional expansion/packing conventions, none of which are supplied here.
+
+## Reproduction and decision
+
+Single-file original-source reproducer: [`sims/parable2013_tree2016_prng_rsa_sft.cjs`](../sims/parable2013_tree2016_prng_rsa_sft.cjs) with Node.js 22. It derives p57 clause values from the original transcription and p32 image dimensions from original GP-prime weights, checks all 55 rune-bearing unknown pages and exact synthetic inverse controls, uses only the selected seed/readout/exponent conventions above, and writes no files. Verified on [successful manual-only GitHub Actions run 43113194213](https://github.com/FlareZ123/liber-primus/actions/runs/43113194213).
+
+The most economical finite inversions selected by combining those historical numbers fail on the original ciphertext. **Next action requires a distinct, original-source instruction selecting a reversible operator, intermediate register or decoder input**. Running more arbitrary PRNG seeds, extra RSA exponents or fitted output permutations from the same suggestive numbers would return to search without a credible human solve path.
