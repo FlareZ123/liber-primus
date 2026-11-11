@@ -6,6 +6,8 @@
 
 The existing signed-2016 word-address candidate reaches the literal word **FOLD**, then physical LP2 p55. That numerical address rule remains provisional. Independently, p55's two outer botanical ornaments are nearly exact left/right reflections at the printed page midpoint, and an exact-center binary fold comparison leaves two dominant residual components at the two intentionally pale circles in the left five-circle ornament. The image result is already reproduced by [`p55_fold_mirror_original_image_sft.py`](../sims/p55_fold_mirror_original_image_sft.py).
 
+The same five positions provide an independent orientation check before the fragment lookup. In ordinary top-to-bottom, left-to-right order the left ornament is **01101**: its filled positions are **2, 3, 5**, exactly the primes among 1–5, and its hollow circumference-only positions are **1 and 4**. The all-filled right ornament makes the fold mismatch mask the complementary non-prime indicator **10010**. None of the other three top/bottom and within-row left/right readings produces the prime-indicator mask. The hollow labels also give **1,4 → 14**, returning to physical **p14**, the source page on which the signed-word address selected the unique word **FOLD**. This strengthens the ordinary reading orientation without using the fragment selected below. The decimal concatenation 14 remains a provisional interpretation.
+
 Treat the five aligned ornament positions only as **match/mismatch under the fold**, avoiding a black-versus-white value convention. In ordinary printed reading order
 
 `top, middle-left, middle-right, bottom-left, bottom-right`
