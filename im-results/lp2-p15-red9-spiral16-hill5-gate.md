@@ -6,7 +6,7 @@
 
 Physical LP2 **p15** (original `resources/liber-primus/32.jpg`) has:
 
-- The **nine-rune** red heading `F U L M A EA Y OE A`, original GP indices `[0,1,20,19,24,28,26,14,24]`.
+- The **nine-rune** red heading `F U L M A EA Y OE A`, original GP indices `[0,1,20,19,24,28,26,22,24]`.
 - A **4×4, 16-number** array with independently authenticated clockwise Fibonacci-prime ordering from the red **3299**: `3299, 3298, 3296, 3294, 3288, 3278, 3258, 3222, 3152, 3038, 2838, 2472, 1820, 708, 1206, 4516`.
 - **150 body runes** following that red title, exactly **30 five-rune blocks**.
 
