@@ -3,7 +3,7 @@
 > **Command-provenance correction (11 November 2026):** a decrypted, byte-preserving signed copy of the 26-Jan-2013 TCP-server challenge is now recovered and independently GPG-verified against the repository Cicada key fingerprint `6D854CD7933322A601C3286D181F01E57A35090F`. It authenticates the BASE29/DH/NEXT protocol and worked DH23 example; it does not document the separate first-onion NUMBER/PRIMES/count grammar. The March 2013 participant log's NEXT payload is also signature-verified under the same key, but the full DH3301 transcript is not signed as a whole. The NUMBER operation used below remains from later-preserved transcripts/reconstructed server.py; no original first-onion server or raw NUMBER session is preserved. Therefore the 1661→151→p36 composition remains a source-constrained hypothesis, not an authenticated instruction. See [signed-source record](../resources/external/2013-tcp-server-signed-source.md).
 >
 
-**Classification (11 November 2026): exact, newly connected historical-source-to-original-manuscript polynomial identity. No unsolved LP2 plaintext, authentic encryption key or cipher reconstruction.** The equation is reproducible directly from the 2013 archival source example and the 256 original transcribed grid bytes. The interpretation as an intended solve instruction remains open.
+**Classification (11 November 2026): exact historical-source-to-original-manuscript polynomial identity, now fully classified as a [256,252,3] GF(29)-residue code. No source-selected parity-cell set, unique 252-symbol payload, unsolved LP2 plaintext, authentic encryption key or cipher reconstruction.** The equation is reproducible directly from the 2013 archival source example and the 256 original transcribed grid bytes. The repeated-root cyclic closure at length 24,360 is a mathematical consequence of the factors, not a historically specified table length or decoder.
 
 ## Previously unconnected historical input
 
@@ -90,7 +90,60 @@ The remaining ambiguity is mathematically unavoidable under these two factors. T
 
 Three other archived historical Cicada hidden-service 256-byte strings, from onion2, onion3 and onion4, provide fixed-length comparison controls. Their respective GF29 remainders are **H: [1,11], [22,1], [26,17]** and **G: [14,7], [4,15], [3,18]**; **none** passes either polynomial. Thus the dual-factor relation is specific to the original LP2 numeric table among these four historically selected 256-byte streams. This comparison is small and drawn from an archive with uncertain ancestry; it is not a global significance estimate. The reproducer asserts the original control bytes and every remainder.
 
-The result makes the existing pair of polynomial factors useful for reconstructing the source table, and is consistent with the possibility of deliberately included algebraic parity constraints. **Neither original source instructs a solver to perform this cross-year polynomial division**; the factor/ambiguity correspondence was investigated after the printed LP2 table was known. It cannot independently establish creator intent or the cipher architecture. The recovered 256 bytes are already present in the original images; no new unknown-text key, plaintext, or downstream instruction follows.
+The result makes the existing pair of polynomial factors useful for reconstructing the source table, and is consistent with the possibility of deliberately included algebraic parity constraints. The code-theoretic classification below establishes four global residue checks, but does not identify four parity cells or a unique 252-symbol message. **Neither original source instructs a solver to perform this cross-year polynomial division**; the factor/ambiguity correspondence was investigated after the printed LP2 table was known. It cannot independently establish creator intent or the cipher architecture. The recovered 256 bytes are already present in the original images; no new unknown-text key, plaintext, or downstream instruction follows.
+
+
+## Code-theoretic classification of the H/G residue constraints
+
+The two source-linked factors define a genuine four-check **linear code on the 256 byte residues**, but not four uniquely located parity bytes.
+
+In ascending-power notation,
+
+\[
+H(X)=3+26X+24X^2=24(X^2-11X+11),
+\]
+\[
+G(X)=27+5X+15X^2=15(X+5)^2=15(X-24)^2,
+\]
+and
+\[
+F(X)=H(X)G(X)=12X^4+17X^3+11X^2+21X+23.
+\]
+The monic generator is \(X^4+28X^3+13X^2+9X+14\). The quadratic H is irreducible (monic discriminant 19 is a nonsquare); its roots in \(\mathbb F_{29^2}\) have exact multiplicative order 840. G has a double root at 24, whose field multiplicative order is 7.
+
+The quotient ring decomposes as
+\[
+\mathbb F_{29}[X]/(F)\cong\mathbb F_{29^2}\times
+\mathbb F_{29}[\epsilon]/(\epsilon^2).
+\]
+The class of X has order 840 in the first component and 203=7×29 in the repeated-root component, hence exact order **24,360** modulo F. Thus F divides \\(X^{24360}-1\\): it is a generator polynomial for a repeated-root cyclic code of length 24,360. The [256,252,3] residue code above is exactly the shortening of that long cyclic code to the first 256 coordinates (the remaining 24,104 coordinates are fixed zero in this embedding). This is a mathematical cyclic closure of the factor pair, **not** evidence that the manuscript specifies a 24,360-symbol stream or that a solver should append 24,104 zeros.
+
+At length 256, \(X^{256}\bmod F=3+13X+3X^2+19X^3\), which is nonconstant. Therefore F cannot divide \(X^{256}-\lambda\) for any \(\lambda\in\mathbb F_{29}\); the code is not cyclic or constacyclic at the table's length. The repeated factor \((X-24)^2\) gives the same exclusion because 29 does not divide 256 and \(X^{256}-\lambda\) is squarefree.
+
+Define
+\[
+C_{256}=\{(a_0,\ldots,a_{255})\in\mathbb F_{29}^{256}:
+F\mid A(X),\quad A(X)=\sum_{i=0}^{255}a_iX^{255-i}\}.
+\]
+Its 4×256 parity-check matrix has rank four, so its dimension is 252. All 7,168 nonzero single-residue error syndromes are distinct, while
+\[
+1+25X^{20}+22X^{25}
+\]
+is a weight-three codeword. Hence the exact parameters are **[256,252,3] over GF(29)**. This is not an MDS or Reed–Solomon code (its distance is 3, not 5; a standard GF(29) evaluation RS code cannot have length 256). It guarantees correction of one arbitrary **residue** error, not two. It does not correct complete byte values: adding 29 to a byte is invisible, including the documented 47/18 ambiguity at index 165. The earlier seven known I/i and L/l alternatives are resolved by exhaustive testing of their finite, known-position choices, not by a general seven-error-correction capability.
+
+### The four checks do not select four parity cells
+
+With the fixed high-degree-first coefficient order, using the first 252 residues as information and the last four as parity gives the observed suffix **[6,7,15,22]**. But this is only one systematic representation. The parity-check submatrix is invertible for **all 253 consecutive four-position blocks**; the first four, last four, four corners, and other separated sets are also valid parity positions. The four checks are global syndrome equations, not four source-marked cells. Neither the original table nor the signed 2013 protocol selects one of these information/parity partitions.
+
+The polynomial quotient \(Q(X)=P(X)/F(X)\) is the 252-slot multiplier in the nonsystematic generator representation; its first fixed-width slot is zero, leaving 251 canonical coefficients. The first 252 table residues are a different, systematic message representation if the last four cells are chosen as parity. Both are reversible 252-symbol parameterizations of the same code. No historical instruction chooses between them, and neither supplies an authenticated mapping to the 12,956-rune ciphertext.
+
+### Relation to the separate p13/p24 four-jet code
+
+The [original-glyph audit](lp2-grid-11-original-glyph-adjudication.md) describes a **different affine four-jet code**: \(P(24)=P'(24)=P'(13)=0\) and \(P(13)=8\), whose homogeneous difference kernel is \((X-24)^2(X-13)^2\). The H/G code has kernel \(H(X)(X-24)^2\). They share only the p24 double-root condition; their other two checks differ. The same printed table happens to satisfy both, so both can reconstruct the same suffix [6,7,15,22] when the last four cells are selected. That is not equivalence of the codes or two independent source selections of those parity cells.
+
+The source-native wrong-factor controls remain negative: reversed H gives high-to-low remainder [1,6], reversed G [19,22], the p3 red triad [26,18], and the two natural BASE29 1033 coefficient orientations [3,11] and [24,3]. The existing [dual-factor SFT](../sims/lp2_grid_dual_factor_error_corrector_sft.cjs) also tests the 2014 historical transcription and three other archived 256-byte streams; none of those controls satisfies both factors. The new [code-structure SFT](../sims/lp2_grid_hg_code_structure_sft.cjs) reproduces the factorization, field orders, 24,360 closure, [256,252,3] parameters, 253 parity-block choices, and wrong-factor remainders.
+
+**Decision:** H/G define an exact source-specific four-check residue code and a useful retrospective transcription check. They do **not** define a source-selected four-symbol parity envelope or a unique 252-symbol cryptographic payload. The quotient and systematic data block remain intermediate registers, not plaintext or an authenticated key. Close this branch unless a new primary source selects the polynomial operation and message framing; do not continue searching parity placements or relabel the result as Reed–Solomon.
 
 ## Source-linked field representation, with a scope warning
 
