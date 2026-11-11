@@ -79,7 +79,18 @@ All seven coordinates point to existing words. Radix **133** is the **only** int
 
 `948 + 1105 + 738 + 3335 + 8042 + 3388 = 17,556 = 133 × 132 = 133(133−1).`
 
-The six-rune-span complement is therefore divisible by the source-visible title 133, with quotient 132. Equivalently, the sum of all seven quote primes modulo 133 is **24**, exactly the 58-rune quote's own remainder. It is possible that the selected span carries state/control data while the other six form a checksum, but **no such role is confirmed**. The exact original source arithmetic is fixed without choosing an omission from the postcomputed sums.
+The six-span complement is therefore divisible by the source-visible title 133, with quotient 132. Equivalently, the sum of all seven quote primes modulo 133 is **24**, exactly the 58-rune quote's own remainder.
+
+**Ordered three-and-three symmetry:** Because the selected 58-rune passage is quote 4 of 7, it leaves three quotes on each side. Their original GP-prime sums satisfy a still more specific relation using the smallest GP prime **2**:
+
+- **Before** the 58-rune quote: 948 + 1,105 + 738 = **2,791 = 21×133 − 2**.
+- **After** it: 3,335 + 8,042 + 3,388 = **14,765 = 111×133 + 2**.
+
+Thus the two triads' source-ordered sums have complementary ±2 deviations around integer multiples of the independently published title 133. The cancellation produces the six-span 133×132 total. The 58-rune span itself has 2,684 = 20×133+24, where **24** is the GP index of the distinct oversized Ac printed on physical p54 and the grid polynomial's known repeated root; any cryptographic connection is **unproven**. A natural route hypothesis is a source-selected central **58-symbol** page-key or state control, with the surrounding six passages functioning as checks, but no cipher has been identified.
+
+In an independently seeded **2,000,000-set** null preserving each of the six surrounding passages' exact original word and rune counts, **125** sets obey both ordered residues (left −2, right +2 mod133), and only **7** also hit the exact full sum 17,556. These conditional tail rates are **0.0000625** and **0.0000035**, respectively. The latter cannot be interpreted as an unconditional chance of author design: the modulus, marked-span choice, numerical operation and ±2 interpretation were investigated after seeing several original-source relations. An original-plaintext prediction or independently specified inverse is still required.
+
+The arithmetic is potentially useful for discriminating the next original-source cipher hypothesis, but **no such role is confirmed**. The exact original source arithmetic is fixed without choosing an omission from the postcomputed sums.
 
 A **one-million-draw matched original-word/rune-span null** using the six remaining printed length/word-count shapes and seeded xorshift32 initial state 0x13358 yielded **535/1,000,000** draws with exactly 17,556 and **7,544/1,000,000** divisible by 133. The former is a narrow conditional match rate **0.000535**, under this specific preselected source relation. It does **not** account for all other available selections and numerical functions. The same original-input SFT reproduces the counts. Using the 58 original quote runes directly as a **58-period GP29 Vigenère key** for all 12,956 unsolved runes, both signs and whole-book/page clocks, produces no recognizable GP English (IoC 0.03445–0.03453 versus 0.06271 on clear solved p57; scores roughly −7.47 to −7.53 versus −4.42). The complementary one-symbol-per-page Caesar interpretation is likewise language-negative. These finite key tests reject direct use of the 58-rune passage as an ordinary mod29 pad, not its possible role in another explicitly specified architecture.
 
