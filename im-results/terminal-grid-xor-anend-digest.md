@@ -76,7 +76,24 @@ Frozen test: both the 2014 `sexagesimal.bin` variant and LP2 canonical table; by
 
 **All 8 candidates score below every held-out native 76-rune window**; even the best is more than 2.07 nats/rune below the worst native window. The result rejects the direct one-to-one perimeter-as-Vigenere-key interpretation, not every possible word-level or stateful use of circumference.
 
-The in-invocation computation used the same Gibran training/held-out method as the p50 GF(29²) report. Reproducer: `sims/p55_table_perimeter_key_sft.cjs` (added, not yet manually run). It includes exact positive-control encryption/decryption checks. No phase, orientation, key, or cipher-family sweep was performed.
+The in-invocation computation used the same Gibran training/held-out method as the p50 GF(29²) report. Reproducer: `sims/p55_table_perimeter_key_sft.cjs`; it now includes both the full-byte and 9-state quotient-perimeter tests, plus exact positive-control encryption/decryption checks. No phase, orientation, key, or cipher-family sweep was performed.
+
+### 9-state quotient-perimeter Gronsfeld key
+
+The original p49 and p55 images both terminate their runic text with the same red **3×3 dot cluster**. The p50 table's clockwise perimeter has **76 cells**, exactly p55's 76 runes. Together with the historical `BASE29` operation, this makes one additional human experiment plausible: decompose each base60 byte as `B=29q+r` and use the nine-valued quotient `q∈[0,8]` from the 76-cell perimeter as a Gronsfeld shift key for p55. This is distinct from the already-rejected full-byte perimeter mappings above.
+
+The key order is fixed by the original table reading: top row left-to-right, right edge downward, bottom row right-to-left, left edge upward. It starts at p55 local rune 0; no phase, rotation, row/column permutation, or reset is searched. Base59 quotient values are included only as a radix control.
+
+| Quotient key | Direction | Gibran trigram score | Held-out native 76-rune windows at or below candidate |
+|---|---|---:|---:|
+| Base60 `q` | C−K | −12.803527 | 0 / 22,621 |
+| Base60 `q` | C+K | **−12.012381** | 0 / 22,621 |
+| Base59 `q` | C−K | −12.812674 | 0 / 22,621 |
+| Base59 `q` | C+K | −12.090374 | 0 / 22,621 |
+
+Raw p55 is **−12.199601**; the worst native held-out window is **−9.748394**. Thus even the best quotient-key candidate remains **2.263 nats/rune below every native window**. The same key exactly recovers a planted 76-rune native segment under the forward/inverse pair, so the negative is not a broken decoder implementation.
+
+**Decision:** reject the direct 76-cell quotient-perimeter Gronsfeld key. The repeated 3×3 red mark may simply be a text-section terminator; even if it indicates nine states, it does not establish the quotient as an additive key. The 76/76 geometric match is real but does not recover p55 plaintext. The updated reproducer includes the quotient-perimeter test and its plant control; it performs no orientation or phase search.
 
 ## Known-plaintext obstruction for the 180-cell interior
 

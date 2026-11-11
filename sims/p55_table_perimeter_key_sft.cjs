@@ -114,6 +114,47 @@ function main() {
   assert.ok(candidates.every(c => c.score < worstNative));
   assert.ok(candidates.every(c => c.nativeWindowsAtOrBelowCandidate === 0));
 
+  // Source-motivated 9-state quotient channel: the p49/p55 red 3x3 terminator
+  // plausibly selects q=floor(B/29) from the base60 byte decomposition.
+  const base60Grid = JSON.parse(read("resources/liber-primus/base60-grid.json"));
+  const printedTokens = base60Grid.rows.flat();
+  const decodeRadix = alphabet => printedTokens.map(token =>
+    alphabet.length * alphabet.indexOf(token[0]) + alphabet.indexOf(token[1]));
+  const base60Bytes = decodeRadix(base60Grid.alphabet);
+  const base59Alphabet = base60Grid.alphabet.replace("f", "");
+  const base59Bytes = decodeRadix(base59Alphabet);
+  assert.equal(base60Bytes.length, 256);
+  assert.equal(base59Bytes.length, 256);
+  assert(base59Bytes.every(b => Number.isInteger(b) && b >= 0 && b <= 255));
+  const qPerimeter60 = perimeter(base60Bytes).map(b => Math.floor(b / 29));
+  const qPerimeter59 = perimeter(base59Bytes).map(b => Math.floor(b / 29));
+  assert.equal(qPerimeter60.length, 76);
+  assert.equal(qPerimeter59.length, 76);
+  const qPerimeterCandidates = [];
+  for (const [radix, key] of [["base60", qPerimeter60], ["base59", qPerimeter59]]) {
+    for (const sign of [-1, 1]) {
+      const decoded = decrypt(p55, key, sign);
+      const score = model(decoded);
+      qPerimeterCandidates.push({
+        radix, direction: sign < 0 ? "C-K" : "C+K", score, ioc: ioc(decoded),
+        nativeWindowsAtOrBelowCandidate: native76.filter(x => x <= score).length,
+        preview: decoded.map(i => corpus.translit[i]).join("")
+      });
+    }
+  }
+  assert.equal(qPerimeterCandidates.length, 4);
+  assert.ok(qPerimeterCandidates.every(c => c.score < worstNative));
+  assert.ok(qPerimeterCandidates.every(c => c.nativeWindowsAtOrBelowCandidate === 0));
+  const qPlant = native.slice(1000, 1076);
+  const qEncrypted = decrypt(qPlant, qPerimeter60, +1);
+  assert.deepEqual(decrypt(qEncrypted, qPerimeter60, -1), qPlant, "q-perimeter planted positive control");
+  const qHistogram = Array.from({length: 9}, (_, value) => qPerimeter60.filter(x => x === value).length);
+  assert.deepEqual(qHistogram, [5, 7, 10, 10, 10, 8, 10, 8, 8]);
+  assert.ok(Math.abs(qPerimeterCandidates[0].score - (-12.803527165413723)) < 1e-9);
+  assert.ok(Math.abs(qPerimeterCandidates[1].score - (-12.012381414170925)) < 1e-9);
+  assert.ok(Math.abs(qPerimeterCandidates[2].score - (-12.812674282436534)) < 1e-9);
+  assert.ok(Math.abs(qPerimeterCandidates[3].score - (-12.09037386178079)) < 1e-9);
+
   // Positive control: the same reversible operation must recover a planted
   // native 76-rune segment under the exact source-derived ring key.
   const plant = native.slice(1000, 1076);
@@ -155,7 +196,8 @@ function main() {
     rawP55: {score: model(p55), ioc: ioc(p55)},
     candidates,
     positiveControls: positive,
-    decision: "All eight fixed perimeter-key variants score below every held-out native 76-rune Gibran window; direct circumference-as-Vigenere key is rejected."
+    quotientPerimeterGronsfeld: { selector: "p49/p55 red 3x3 terminator suggests q=0..8; BASE29 selects mod29", qHistogram: qHistogram, candidates: qPerimeterCandidates, plantedPositiveControlExact: true },
+    decision: "All eight fixed full-byte perimeter-key variants and all four q-perimeter Gronsfeld variants score below every held-out native 76-rune Gibran window; these direct circumference-key readings are rejected."
   }, null, 2));
 }
 
