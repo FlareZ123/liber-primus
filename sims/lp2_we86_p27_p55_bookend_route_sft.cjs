@@ -233,12 +233,51 @@ assert.equal(source27[32], corpus.translit.indexOf("E"));
 assert.equal(source55[52], corpus.translit.indexOf("X"));
 assert.equal(source55[74], corpus.translit.indexOf("E"));
 
+// Director #410 word-boundary-preserving accident null: the only
+// repeated complete adjacent two-word type, DJU BEI, has shape 3+3.
+// Condition on that *observed* shape, count all eligible source locations,
+// then state the explicit iid GP29 and hard no-repeat baselines. These are
+// narrow shape-conditioned model probabilities, not discovery-adjusted p's.
+const wordPairTypes = new Map();
+let pageLocalPairs = 0;
+let shape33Count = 0;
+for (let page = 0; page <= 55; page++) {
+  for (let w = 0; w + 1 < words[page].length; w++) {
+    const left = words[page][w];
+    const right = words[page][w + 1];
+    pageLocalPairs++;
+    if (left.length !== 3 || right.length !== 3) continue;
+    shape33Count++;
+    const key = left + "|" + right;
+    const origins = wordPairTypes.get(key) || [];
+    origins.push([page, w]);
+    wordPairTypes.set(key, origins);
+  }
+}
+const duplicate33Types = [...wordPairTypes.values()]
+  .filter((origins) => origins.length > 1);
+assert.equal(pageLocalPairs, 2873);
+assert.equal(shape33Count, 182);
+assert.deepEqual(duplicate33Types, [[[27, 5], [55, 15]]]);
+const sameShapePairs = shape33Count * (shape33Count - 1) / 2;
+const iid29ExpectedDuplicatePairs = sameShapePairs / (29 ** 6);
+const hardNoRepeatExpectedPairs = sameShapePairs / (29 * 28 ** 5);
+const terminalTargetExpectedMatches = (shape33Count - 1) / (29 ** 6);
+assert(Math.abs(iid29ExpectedDuplicatePairs - 0.000027690575366664212) < 1e-16);
+assert(hardNoRepeatExpectedPairs < 0.000034);
+
 console.log(JSON.stringify({
   verifiedRoute: [[57, "WE"], [27, 28], [55, 70]],
   duplicateCiphertext: "DJU BEI",
   totient86: 42,
   solvedP57DualCoordinateCandidates: pageAndOffset,
   previous28RUNE_matches: precedingMatches,
+  pageLocal33WordPairNull: {
+    pageLocalPairs, shape33Count, duplicate33Types,
+    iid29ExpectedDuplicatePairs, hardNoRepeatExpectedPairs,
+    terminalTargetExpectedMatches,
+    caveat: 'shape-conditioned idealized null, not discovery-adjusted significance'
+  },
   anySecretStationaryBijectiveTransport: {
     stateContradictions: sourceOutputContradictions.length,
     forcedAnchorConflicts,
