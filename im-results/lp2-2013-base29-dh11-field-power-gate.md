@@ -32,6 +32,19 @@ All **841 possible field elements** satisfy `power(power(z, 11), 611)=z` in the 
 
 The first 32 runes of either inverse clock transliterate to `XEAENMOEMFNPACWYOEATFIAYNIAXCTHOGTSBFW` (GP transliteration, digraph letters represented by `EA`, `NG`, etc.; more than 32 Latin letters). This has no readable original-cipher plaintext. The book-wide inverse remains indistinguishable from a uniform 29-symbol register by the displayed IoC; the authentic native solved-text control is substantially more concentrated. A later substitution or undiscovered state could always be posited, but **the source does not prescribe one**, and that would turn a finite test into unrestricted mechanism fitting.
 
+## Encoded native-GP English benchmark: discriminating original-input gate
+
+The direct 11th-power model is now tested as an **encoder**, not just as a decoder producing uniformly distributed output. Use the repository's standard longest-digraph GP transliteration (K/Q→C, V→U, Z→S), fixed disjoint **source offsets stepping 2,000** over each retained English corpus, and exactly 12,956 runes per window. Encode each continuous native window pairwise with power 11 under the same F29² basis. The stride deliberately creates overlapping windows, so compare as a finite set of controls without an iid significance claim.
+
+| GP-native English reference | Tested overlapping 12,956-rune windows | Encoded IoC range | Encoded adjacent equal-pair count range |
+| --- | ---: | ---: | ---: |
+| Gibran, *The Prophet* | 25 | 0.0368977–0.0378195 | 329–442 |
+| Emerson essays | 154 | 0.0367069–0.0380012 | 339–445 |
+| Shakespeare | 102 | 0.0365684–0.0376202 | 346–524 |
+| **Original unknown LP2** | **1** | **0.0344784** | **86** |
+
+The **original** lies below *every one* of these **281** predeclared length-matched 11th-power English controls on **both** independent displayed diagnostics. The severe anti-repeat effect in actual LP2 therefore does **not** emerge automatically from applying this exact 2013-derived pairwise power map to native-GP English. This is a stronger finite obstruction than checking whether the inverse text looks readable. It rejects **direct native-GP prose under the chosen field coordinate and e11**, subject to the finite controls and input assumptions. Alternative encodings, nonprose inputs and extra layers remain outside the scope. The SFT now reproduces all three corpus ranges and exact original statistics.
+
 ## Decision
 
 Retire **only** direct pairwise 11th-power F29² encryption under the explicit source quadratic, the first preselected exponent representative, and the two declared clocks. The conditional negative does not discredit the authentic signed BASE29 clue, the p50 factor, other historical DH uses, or entirely different original LP2 architectures. Do not broaden into key/phase searches without a new independent source instruction.
