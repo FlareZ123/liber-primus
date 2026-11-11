@@ -26,19 +26,19 @@ The 1033/3301 cuneiform artwork begins at the bottom of p33 after the second red
 
 A source-locked direct transfer of the known p56 prime-totient cipher from the illustrated 1033 (174th prime) and 3301 (464th prime) numerals tested six original starts (7,960; 8,051; 8,174) and both primes through the first p40 rune at 9,640. All six outputs remain near-uniform (IoC 0.034296917–0.034757083); no new plaintext. This excludes only that direct source-locked family.
 
-## New source-fixed 13/31 traversal over all 32 fragments
+## Retrospective 13/31 traversal candidate over all 32 fragments
 
 The five-slot border ornament's documented binary reading gives **13** and **31**. Across all 58 physical pages, the 31 thirteen-dot marks delimit **32 full-text fragments** (13,136 runes total). The first 28 fragments contain the 12,956 unresolved runes; the final four contain the solved p56/p57 tail. The two empty intervals at global boundaries 1,860 and 3,603 are retained.
 
 The full-period recurrence
 
 \[
-x_{n+1}=13x_n+31\pmod{32},\qquad x_0=0
+x_{n+1}=13x_n+31\pmod{32}
 \]
 
-visits all 32 fragment indices exactly once. Its restriction to the four solved-tail fragments is **31, 28, 29, 30** in forward and inverse **position-permutation** orders; a reverse recurrence walk instead yields **30, 29, 28, 31** and fails that solved-tail rotation. Those fragments are p57[7:], p56, p57[:7], so their concatenation is exactly a cyclic rotation of the known 180-rune solved tail beginning at p57 offset 7 (tail offset 92). This is a source-anchored structural match.
+visits all 32 fragment indices exactly once for any seed. The earlier seed-zero presentation used \(x_0=0\), but **zero is not selected by the ornament or an authenticated instruction**. With seed zero, the four solved-tail fragments restrict to **31, 28, 29, 30** in both forward and inverse position-permutation orders. That exact dual order is seed-dependent: enumerating all 32 seeds produces all four cyclic forward tail rotations, and using the independently source-derived FOLD mismatch value **18** as the seed gives forward **28,29,30,31** and inverse-position **30,29,28,31**. Thus the solved tail confirms only that this full cycle can induce cyclic tail orders; it does not select the seed, orientation, or an LCG operation.
 
-A complete finite [orientation SFT](../sims/lp2_lcg32_tail_orientation_sft.cjs) finds that exactly one of 128 full-period affine 32-state clocks, the source 13/31 pair, yields the exact dual-map solved-tail order, while four yield any matching cyclic tail order. Of five rotations of the ornament's `01101` mask, only multipliers 13 and 21 are full-period with increment31; 21 fails the solved-tail cyclic check. These conditional counts do not identify a cipher, authentic key, or unknown plaintext.
+The earlier finite [orientation SFT](../sims/lp2_lcg32_tail_orientation_sft.cjs) fixed seed zero; within that conditional family exactly one of 128 full-period affine clocks, the 13/31 pair, yields the exact dual-map solved-tail order, while four yield any matching cyclic tail order. The all-seed audit shows that this statistic does not establish a source-fixed orientation because the seed itself was never supplied. Of five rotations of the ornament's `01101` mask, only multipliers 13 and 21 are full-period with increment31; 21 fails the solved-tail cyclic check. These conditional counts do not identify a cipher, authentic key, or unknown plaintext.
 
 Directly concatenating the 28 unknown fragments in LCG order does not improve GP trigram score: chronological −6.195857, forward −6.198043, inverse −6.195210; the inverse is ordinary against a 1,000-random-order null (upper-tail p=0.235). The 225 red-only runes also do not become readable under the same permutation. Thus the LCG is **not a direct plaintext transposition**. Its likely remaining role is a fragment index, clock, or row assignment; forward versus inverse orientation is unresolved.
 

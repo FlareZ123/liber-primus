@@ -1,6 +1,6 @@
-# Source-fixed 13/31 LCG: 32-fragment traversal and 32×8 grid inverse, no unknown plaintext
+# 13/31 LCG candidate: seed ambiguity and bounded direct inverses
 
-**Classification:** reproducible source-anchored structural relationship and bounded negatives for direct transposition and source-fixed grid-key inverses. No unknown LP2 plaintext, cipher key, or complete mechanism recovered.
+**Classification:** retrospective source-shaped traversal candidate with an unresolved seed/operation ambiguity, plus bounded negatives for direct transposition and fixed grid-key inverses. No unknown LP2 plaintext, cipher key, or complete mechanism recovered.
 
 ## Human solve-path hypothesis
 
@@ -13,6 +13,16 @@ x_{n+1}=13x_n+31\pmod{32},\qquad x_0=0.
 This is not an unconstrained parameter search. The modulus is fixed by the 32 source fragments, and both recurrence parameters are read from the ornament. It has period 32: the increment is odd and the multiplier is congruent to 1 modulo 4.
 
 The source parser preserves the coincident black/red marks on p7 and the p14-to-p15 boundary. It also preserves the two empty intervals rather than deleting them.
+
+## Seed/orientation correction: the solved-tail match does not source-select x₀
+
+The ornament supplies candidate values **13** and **31** only under a retrospective top-first, clockwise, solid=1 reading. The same border template occurs on every physical page 40–55, so it is not table-specific. No authenticated Cicada instruction has been found that says to form an LCG, choose modulus 32, or start at state zero.
+
+The previously emphasized exact solved-tail restriction **[31,28,29,30]** in both forward and inverse position-permutation orders is specifically a **seed-zero** fact. Enumerating the same 13/31 full-period cycle under all 32 possible seeds gives four forward cyclic tail orders: [31,28,29,30] for 3 seeds, [30,31,28,29] for 7, [29,30,31,28] for 11, and [28,29,30,31] for 11. Only seed 0 gives [31,28,29,30] in both forward and inverse-position restrictions. This uniqueness is conditional on already choosing zero.
+
+A newly available source-derived alternative is the literal p55 FOLD mismatch mask **10010₂ = 18**. If 18 is used as the LCG seed, the forward tail becomes ordinary chronological **[28,29,30,31]** and the inverse-position restriction becomes **[30,29,28,31]**. The source therefore supplies at least one motivated nonzero state that destroys the earlier exact dual-order claim.
+
+**Decision:** retain 13/31 as a speculative traversal hypothesis only. The solved tail does not fix seed or orientation, and no original clue currently selects a downstream state/address operation. Existing direct inverses remain valid bounded negatives, but they should not be described as tests of a source-fixed LCG architecture.
 
 ## Exact source map
 
