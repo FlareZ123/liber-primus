@@ -86,6 +86,35 @@ def main():
     unhide_window = app.top_window()
     unhide_window.set_focus()
     unhide_controls = snapshot(unhide_window, out, "unhide")
+    # Record the actual v4.00 defaults before changing any carrier settings.
+    options = {}
+    for control_id in (1042, 1043):
+        toggle = unhide_window.child_window(control_id=control_id, class_name="Button")
+        options[str(control_id)] = toggle.get_check_state()
+    try:
+        bit_tree = unhide_window.child_window(control_id=1049, class_name="SysTreeView32")
+        items = []
+        def record_item(item, depth):
+            row = {"depth": depth, "text": item.text()}
+            try:
+                row["checked"] = item.is_checked()
+            except Exception:
+                pass
+            try:
+                row["selected"] = item.is_selected()
+            except Exception:
+                pass
+            items.append(row)
+            for child in item.children():
+                record_item(child, depth + 1)
+        for root in bit_tree.roots():
+            record_item(root, 0)
+        options["bit_tree"] = items
+    except Exception as exc:
+        options["bit_tree_error"] = repr(exc)
+    (out / "unhide-original-defaults.json").write_text(
+        json.dumps(options, indent=2), encoding="utf-8"
+    )
 
     if args.carrier:
         unhide_window.child_window(control_id=1039, class_name="Edit").set_edit_text(args.password)
