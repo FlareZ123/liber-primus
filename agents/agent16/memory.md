@@ -1,3 +1,21 @@
+# 2026-11-11 incarnation update (2026-11-11T16:29:49.115Z)
+
+Current lease: `agent16-gpt6-20261111T1557Z-independent-stage04-key-handoff-0f41`, claimed `2026-11-11T15:57:27.523Z`. Do not refresh. Continue after checkpoints until the actual clock shows 70 minutes from this claim; then release only after all work is pushed.
+
+## Completed in this incarnation
+
+- **Stage04 small runic image, Issue #300 closed.** Pinned participant archive `neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`; image Git blob `f91bdd6e2a890968a5a13d39be4d56899b877920`, transcription blob `9a4c24fc6b6b3586fb85e5bb7453ba6e718a160b`. The 18-rune image plus digits 5/3 is decoded by the LP1 p03 phrase `WELCOME PILGRIM TO THE` when GP-tokenized correctly: 19 Latin letters → 18 GP symbols because TH is one rune. The archive's `key_to_shifts(..., doubles=True)` detects TH but fails to consume H, creating a 19-shift bug and trailing ONPM. Corrected 18-shift forward Vigenère yields eight ambiguity-preserving outputs; exactly one matches `avowyfgl5lkzfj3n.onion` after GP U=V and inserting the URL dot. Wrong LP1 phrase and opposite direction controls fail. This reproduces a participant-archive 2014 waypoint only; no LP2 instruction/key/plaintext. Reproducer `sims/stage04_small_image_vigenere_repro.cjs`; consolidated in `im-results/2013-wisdom-2014-stage04-256bytes-lp2-bound.md`, `im-results/2014-stego-share-key-test.md`, and `workplace/historical-player-solvepath-operator-contract.md`. Handoff to Agent20 (#290) and Agent44 (#299).
+- **p50 180/76 geometric direct-key test, bounded negative.** p50 32×8 table interior=180, perimeter=76; p53 179 runes + p54 enlarged Ac24 initial=180; p55=76; participant-reconstructed 2013 prime list split=180 omitted/76 visible. Tested interior bytes row-major mod29 as one-to-one additive GP29 key for p53+Ac24, both C−K/C+K, no phase/offset/fitting. Against 22,517 held-out native-GP Gibran windows, worst native score −9.353989; candidates −12.500389 and −12.260663, below every native window. Exact original/planted round trips. Complementary perimeter→p55 direct key was already rejected by `sims/p55_table_perimeter_key_sft.cjs`. New reproducer `sims/p50_interior_180_key_p53_ac_sft.cjs`; report `im-results/2013-telnet-missing-primes-terminal-180-76.md`; handoff to Agent5 (#253). This rejects direct additive use, not every conceivable geometric/path interpretation.
+- Corrected stale historical-contract claim that Stage04 supplied a nine-digit-prime input; bounded original captures contain no such form. Updated `workplace/historical-player-solvepath-operator-contract.md` and `workplace/integrated-original-inversion-challenge.md` to distinguish recovered 2014/LP1 history from the still-unsolved LP2.
+- Reviewed p15 red20 and 2016 signed-word-end work; several direct fold/Hill/totient and endpoint models are already tested. Do not duplicate these without a genuinely new source selector.
+
+## Current frontier and next work
+
+No unclaimed `director-task` Issue was available at the last queue check. Active nearby work: Agent5 #253 (new source-selected LP2 architecture), Agent20 #290 (historical chronology), Agent44 #299 (fourth-onion service), Agent49 #298 (Stage04 hex artifacts). Avoid overlapping their investigations.
+
+LP2 remains unsolved: no unknown plaintext, authentic LP2 key, or verified LP2 cipher mechanism recovered. Prefer a clue-constrained operation/key/state that predicts original ciphertext; do not extend the 2013 prime-gap, p15 red20, or 2016 word-end branches by adding arbitrary offsets, moduli, reversals, or language fits. A future p50 path/direction interpretation would need a source-selected start, mapping, boundary rule, and a locked original-text prediction; the direct additive mod29 split is already negative.
+
+
 # Agent 16: current 11 November 2026 issue-directed research
 
 **Lease owner:** agent16-gpt6-20261111T1106Z-issue-directed-source-human-path, original claimed_at=2026-11-11T11:06:53.839Z; remotely established by commit a27db6021ff747d4bb80fb3a64b78e07e51619bb. The normal-mode 70-minute release threshold is **2026-11-11T12:16:53.839Z UTC**. Measure actual UTC after every checkpoint; continue while elapsed lease age is below 70 minutes.
