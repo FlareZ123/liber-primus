@@ -177,6 +177,69 @@ for(const family of ['GP29','GP28'])
       prefix:decoded.slice(0,72).map((x)=>corpus.translit[x]).join('')});
   }
 assert.equal(reports.length,4);
+/**
+ * Exact secret-independent capacity for all nine separate GP29 symbol
+ * permutations on differences. Within each section, a permutation only
+ * relabels the 29 observed delta categories, so no 12 target symbols can
+ * receive more than the sum of the section's 12 largest bin counts.
+ * This bound is independent of the quotient coefficient values and grants
+ * all 29! possible secret substitutions separately in every section.
+ *
+ * Compare against EVERY possible 12,956-rune window in three independently
+ * pinned, GP-native literary corpora, with exact 1-rune sliding updates.
+ */
+/** @param {number[]} f @param {number} k @returns {number} */
+const topK = (f, k) => f.slice().sort((a, b) => b - a)
+  .slice(0, k).reduce((s, n) => s + n, 0);
+const sectionCaps = [];
+let atDelta = 0, previousDelta = 0;
+for (const n of lengths) {
+  const hist = new Array(29).fill(0);
+  for (let j = 0; j < n; j++) {
+    const c = original[atDelta++];
+    hist[mod(c - previousDelta)]++;
+    previousDelta = c;
+  }
+  sectionCaps.push({n,top12:topK(hist,12),top16:topK(hist,16)});
+}
+assert.equal(atDelta, original.length);
+assert.deepEqual(sectionCaps.map((x)=>x.top12),
+  [368,564,840,898,489,703,58,774,1544]);
+const allSecretTop12 = sectionCaps.reduce((s, x) => s + x.top12, 0);
+const allSecretTop16 = sectionCaps.reduce((s, x) => s + x.top16, 0);
+assert.equal(allSecretTop12, 6238);
+assert.equal(allSecretTop16, 8065);
+/** @param {number[]} plain @returns {object} */
+function nativeAllWindows(plain) {
+  assert(plain.length >= original.length);
+  const hist = new Array(29).fill(0), window = original.length;
+  for (let i = 0; i < window; i++) hist[plain[i]]++;
+  let minTop12 = Infinity, maxTop12 = 0, minStart = -1;
+  for (let start = 0; start + window <= plain.length; start++) {
+    if (start) {
+      hist[plain[start-1]]--;
+      hist[plain[start+window-1]]++;
+    }
+    const n = topK(hist, 12);
+    if (n < minTop12) { minTop12 = n; minStart = start; }
+    if (n > maxTop12) maxTop12 = n;
+  }
+  return {referenceRunes:plain.length,
+    windows:plain.length-window+1,minTop12,maxTop12,minStart,
+    minimumEditsToReachNative:minTop12-allSecretTop12};
+}
+const nativeControls = {};
+for (const [name, file] of [
+  ['shakespeare','resources/control/shakespeare_first300k.txt'],
+  ['gibran','resources/control/gibran_prophet_58585.txt'],
+  ['emerson','resources/control/emerson_essays_2944.txt']
+]) nativeControls[name] = nativeAllWindows(nativeGP(
+  fs.readFileSync(path.join(root, file), 'utf8')));
+assert.deepEqual(Object.values(nativeControls).map((c)=>c.minTop12),
+  [9651,9897,9986]);
+assert(Object.values(nativeControls).every((c)=>
+  c.minimumEditsToReachNative >= 3413));
+
 console.log(JSON.stringify({
   classification:'Bounded original negative: 9x28 double-quadratic register',
   source:{redTriples:triples,originalCoefficientCount:256,
@@ -184,8 +247,10 @@ console.log(JSON.stringify({
     originalRemainders:[afterAc.remainder,afterZ.remainder],
     quotientCount:quotient.length,quotientHead:quotient.slice(0,12),
     nineSourceBodies:lengths,rowsUnique:rows.map((r)=>new Set(r).size)},
+  allSecretNineBodyDeltaSubstitution:{sectionCaps,top12Capacity:allSecretTop12,
+    top16Capacity:allSecretTop16,referenceControls:nativeControls},
   original:{runes:original.length,ioc:ioc(original),nativeIoc:ioc(plant),
     repeatEvents:original.slice(1).filter((x,i)=>x===original[i]).length,
     cases:reports},
-  interpretation:'Both quadratics and the 9-body/28-key layout are source-linked but are not an established cipher. Neither direct additive nor GP28 repeat-transparent output recovers unknown LP2 plaintext. The 9 row lengths also cannot be nine 28-symbol permutations.'
+  interpretation:'Both quadratics and the 9-body/28-key layout are source-linked but are not an established cipher. Neither direct additive nor GP28 repeat-transparent output recovers unknown LP2 plaintext. The 9 rows also cannot be nine 28-symbol permutations. Independent of quotient key values, nine arbitrary static secret difference-symbol substitutions cannot reproduce any full-length native-GP literary window in the three stated controls.'
 },null,2));
