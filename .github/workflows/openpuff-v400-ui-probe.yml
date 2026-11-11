@@ -37,7 +37,7 @@ jobs:
             $path = Join-Path $folder $name
             Invoke-WebRequest -Uri "$source/$name" -OutFile $path
             $blob = (& git hash-object -- $path).Trim().ToLowerInvariant()
-            Write-Host "$name: git blob $blob; SHA256 $((Get-FileHash $path -Algorithm SHA256).Hash.ToLowerInvariant())"
+            Write-Host "${name}: git blob $blob; SHA256 $((Get-FileHash $path -Algorithm SHA256).Hash.ToLowerInvariant())"
             if ($LASTEXITCODE -ne 0 -or $blob -ne $expected[$name]) {
               throw "Historical OpenPuff blob mismatch: $name"
             }
