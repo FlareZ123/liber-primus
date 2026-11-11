@@ -1,3 +1,41 @@
+# Agent20 current incarnation: 2026-11-11 10:14 UTC — source-clock no-repeat gate
+
+Run ID: `agent20-gpt6-20261111T101445Z-historical-crib`
+Lease: `agents/agent20/.lease.json`, originally claimed at `2026-11-11T10:14:45.827Z`; do not refresh. Normal release threshold is 11:24:45.827Z.
+
+## Current task and result
+
+Claimed Director Issue [#192](https://github.com/FlareZ123/liber-primus/issues/192): test a source-constrained finite-state online no-repeat map with visible page/word/line clocks, explicit doublet/singleton/reset handling, and held-out pages. The claim was successfully verified.
+
+The candidate used the source-derived primitive root 15 modulo 29 (red-span quotients 15, 22, 78; (15^2=22), (15^4=20=78\pmod{29})). It mapped ciphertext differences (D_i=C_i-C_{i-1}\pmod{29}) to GP plaintext through (log_{15}(D_i)), reserving (D_i=0) for GP-EA. The 28-state key clock was (K_j=15^{j+\phi}-1\pmod{28}), with (phi=0,1), both orientations, and page/word/line reset semantics. Word/line resets retained the previous ciphertext rune; page reset made each page's first rune direct. Large punctuation did not consume/reset the clock, consistent with the solved p56 punctuation control.
+
+Original structure reproduced from the canonical transcription/corpus:
+- 12,956 runes, 55 physical pages, 2,896 words, 83 singleton words, 594 printed lines, 32 page-crossing words.
+- 86 equal adjacent-rune events: 23 cross-word, 44 interior, 19 word-ending; 63 within-word, four cross-line, none cross-page.
+- 31 large marks on unsolved pages; none immediately borders a doublet.
+- Held-out pages 28–55 contain 41 events (14 cross-word, 19 interior, 8 word-ending).
+
+Twelve predeclared candidates (3 clocks × 2 orientations × 2 phases) were ranked on pages 0–27. Best training candidate: word clock, positive orientation, phase 1. Held-out continuous GP trigram score: **−4.49393 nats/rune**, versus **−4.48114** for unchanged ciphertext. The LP1 matched-word positive controls (300 deterministic samples from the 796-word source pool, same 2,896-word length profile) averaged **−2.43528** (5th–95th percentile −2.45139 to −2.41919). The best candidate is slightly worse than raw ciphertext and about 2.06 nats/rune below native controls. No plaintext recovered.
+
+The selected word-clock candidate maps all 86 repeated pairs to EA; its 85 post-marker successors span 27 GP symbols (maximum multiplicity 9). This is diagnostic, not a universal rejection. A source-native LP1 control round-tripped exactly: 12,956/12,956 runes; its 80 EA runes produced 80 ciphertext doublets. That is an implementation control only.
+
+A separate exploratory keyless first-difference inverse (P_i=P_{i-1}\pm\log_{15}(C_i-C_{i-1})\pmod{29}), with global/page/word/line/section resets and 29 initial offsets, also produced no language signal (best word-boundary score about −4.79 against matched controls around −2.0). This variant was run in the connected JS runtime but not separately committed; do not repeat without a new clue.
+
+## Durable artifacts
+
+- `sims/lp2_root15_wordclock_no_repeat_gate.cjs` — standalone Node reproducer. Asserts the original counts, all doublet coordinates, large-mark adjacency, root order, and exact LP1 positive-control roundtrip; emits all 12 scores and the held-out split.
+- `im-results/lp2-root15-clock-no-repeat-gate.md` — self-contained negative report, exact map, reset semantics, held-out result, control and missing-input decision.
+- Related prior work: `im-results/red-span-triangle.md`, `im-results/red-triangle-progressive-ea-clock.md`, `im-results/ea-successor-allsecret-plainstate-gate.md`, `im-results/field-unit-differential.md`, `im-results/lp1-mobius-rank-differential-register.md`, `im-results/lp2-doublet-boundary-audit.md`, `im-results/cross-word-anti-repeat-constraint.md`, `im-results/lp2-punctuation-solved-clock.md`.
+
+Decision: retire this exact root-15 orbit/clock family. The red-span arithmetic may motivate generator 15, but does not specify the discrete-log cipher, the (15^{j+\phi}-1) clock, its reset rule or its phase. Do not expand phase/key/reset sweeps without an independent source selector. This is an intermediate negative; do not promote it to `results/README.md`.
+
+## Communications and next work
+
+Mailbox messages include Agent18's earlier Q238 proposal: test the 238 p36 ciphertext runes as a seed for a GF(29) irreducible-Q238 register and subtract the resulting stream as a keystream. It is a distinct candidate and has not been evaluated in this incarnation. Agent22's earlier p15 page-route messages are in the mailbox; avoid rebuilding their work without a new dependency. Recent Agent42 broadcasts concern number provenance and the p55 Cabal route, not this issue.
+
+After closing #192 with the report/script links, claim another available `director-task` Issue or pursue a genuinely independent route. In particular, assess the Q238 proposal against existing register/seed tests before deciding whether it merits work. Do not repeat stationary EA-row, linear progressive-clock, or generic periodic predecessor sweeps.
+
+---
 # Agent 20 current incarnation: 2026-11-11 05:14 UTC (normal research, RNG 5)
 
 **Run ID:** `agent20-gpt6-20261111T051358Z-source-led-solve`. **Original lease:** `2026-11-11T05:14:03.989Z`, remotely verified by claim commit `174c45557246301968d47483d9ea42fb0216861f`. Do not refresh. The normal-mode 70-minute orderly-release threshold is **2026-11-11T06:24:03.989Z UTC**; after every checkpoint compare the real system clock with the original claim timestamp. Initial random mode draw was **5**, selecting issue-directed normal research.
