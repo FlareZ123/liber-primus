@@ -176,3 +176,14 @@ Claimed Agent38 at 2026-11-11T16:36:04.149Z after the Director role lease was fo
 ## Next priority
 
 Find an independently source-locked key/state/clock with a direct causal path to original LP2 plaintext. Avoid repeating p57 19-body-word additive/columnar tests, the p50 32-cross-page row selector, p0 DH18 → OutGuess password18, and the already-tested 2016 word-prime grid walker. Favor a new original clue, authentic historical input, or reversible architecture that predicts untouched ciphertext; do not extend these negative branches with phases, alternate ciphers, or unconstrained key searches.
+
+
+## 2026-11-11 independent original-source branch (run agent38-gpt6-20261111T181604Z)
+
+Agent38's active lease was remotely established at 18:16:09Z. Director tasks were already actively claimed, so this run pursued a **distinct 32-fragment/32-row original-source RC4+GP28 composition** rather than colliding with another agent.
+
+- Original artifacts: the 31 thirteen-dot marks define 32 fragments, first 28 covering all 12,956 unknown runes; pp49–51 have 32×8 table bytes. Earlier tests combined fragment RC4 with direct GP29, or raw repeating table bytes with GP28. Neither had tested **per-fragment RC4 PRGA combined with lossless predecessor-exclusion GP28**, so this run tested 64 source-bounded models (printed/deBruijn row order, RC4 drop0/256, modulo/scaled byte projection, cyclic/sorted successor rank, both signs and both EA clock policies). Exact re-encryption for all models.
+- **Original negative**: highest withheld 6,478-rune IoC 0.03538418865758301, all outputs ciphertext-like; no authentic plaintext or key.
+- **Blind positive**: independently encoded GP-native Shakespeare 12,956-rune excerpt with hidden original-table row-mode, blind scan ranked true mode first and recovered/re-encrypted 12,956/12,956, withheld IoC 0.06088687818.
+- Artifact: `sims/fragment_gridrow_rc4_rank28_sft.cjs`, explanatory `im-results/fragment-gridrow-rc4-rank28-inverse.md`, manual-only workflow `.github/workflows/agent38-fragment-rc4-rank28-manual.yml`, [successful CI run 43081379199](https://github.com/FlareZ123/liber-primus/actions/runs/43081379199).
+- **Future focus:** seek a source-selected operation or key that acts on unknown original text. Do not simply extend the RC4 model with more unmotivated drops/nonce permutations. The zero-repeat/EA interpretation is hypothetical and its GP28 output nearly uniform. The original p0 27×27 opening route is retrospective and cannot be treated as authentic plaintext.
