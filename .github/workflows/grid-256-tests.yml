@@ -32,6 +32,7 @@ on:
           - tree-wordmap
           - signed2016-derivative
           - terminal-circumference
+          - terminal-known-tail
           - quartic-annihilator
           - byte-pointer
           - collision-quote
@@ -109,6 +110,10 @@ jobs:
           node sims/grid_two_channel_serial_order_sft.cjs
           node sims/grid_boolean_mobius_gp28_inverse_sft.cjs
           node sims/grid_missing_f_prime179_sft.cjs
+      - name: All-secret stationary byte/rune mapping on independently solved terminal pages
+        if: ${{ inputs.probe == 'terminal-known-tail' }}
+        run: node sims/terminal_grid_known_tail_lookup_gate.cjs
+
       - name: Original source terminal table border and solved-page known-plaintext gate
         if: ${{ inputs.probe == 'terminal-circumference' }}
         run: node sims/lp2_terminal_grid_border_ring_sft.cjs
