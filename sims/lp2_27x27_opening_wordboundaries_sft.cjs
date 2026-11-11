@@ -20,9 +20,9 @@ function parseWords() {
   let pos = 0;
   let start = 0;
   let token = [];
-  function flush() {
+  function flush(separator = "") {
     if (!token.length) return;
-    words.push({start, end: pos - 1, indices: token});
+    words.push({start, end: pos - 1, indices: token, separator});
     token = [];
   }
   for (const ch of text) {
@@ -31,7 +31,7 @@ function parseWords() {
       token.push(index.get(ch));
       pos++;
     } else if (ch !== "%" && ch !== "/" && !/\s/u.test(ch)) {
-      flush();
+      flush(ch);
     }
   }
   flush();
@@ -50,6 +50,7 @@ for (let i = 0; i <= words.length - pattern.length; i++) {
 }
 assert.equal(matches.length, 1);
 const only = matches[0];
+assert.deepEqual(only.map(w => w.separator), [".", "-", "-", "-"]);
 assert.deepEqual(only.map(w => [w.start, w.end]),
   [[348, 349], [350, 350], [351, 352], [353, 354]]);
 const key = ["AE", "I", "EA"].map(name => corpus.translit.indexOf(name));
@@ -75,6 +76,8 @@ console.log(JSON.stringify({
   matchingPositions: only.map(w => [w.start, w.end]),
   sourceCipherWords: cipherWords,
   sourceLengthPattern: pattern,
+  originalDelimiters: only.map(w => w.separator),
+  punctuationPreservedReading: "AS. I GO THE",
   derivedRuneOutput: plain,
   interpretedSourceAlignedWords: ["AS", "I", "GO", "THE"],
   nextSourceWord: [sourceNext.start, sourceNext.end],
