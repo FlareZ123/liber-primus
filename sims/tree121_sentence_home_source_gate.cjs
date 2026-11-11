@@ -91,6 +91,25 @@ for (let i = 0; i + 4 <= all.length; i++) {
   }
 }
 assert.equal(homeHits, 1);
+const buds = "ᛒᚢᛞᛋ";
+const budsGP = [...buds].map(r => corpus.runes.indexOf(r));
+assert.deepEqual(budsGP, [17, 1, 23, 15]);
+assert.equal(words[15].start, 89);
+assert.equal(words[15].end, 97);
+assert.equal(words[15].runes, "ᛟᛝᚩᛗᛒᚢᛞᛋ");
+assert.equal(words[15].runes.slice(-4), buds);
+assert.equal(93-33, 60);
+assert.deepEqual([Math.floor(33/11), 33%11], [3,0]);
+assert.deepEqual([Math.floor(93/11), 93%11], [8,5]);
+let budsHits = 0;
+for (let i = 0; i + 4 <= all.length; i++) {
+  if (budsGP.every((v,j) => all[i+j] === v)) {
+    assert.equal(i, 7932);
+    budsHits++;
+  }
+}
+assert.equal(budsHits, 1);
+
 
 // Independent frozen English-word source, for base-rate diagnosis only.
 // Restrict to four single-letter GP runes, no unlicensed transliteration changes.
@@ -116,6 +135,49 @@ const actualMatches = starts.map(at => ({
   at, frequency: dictionaryPrefixFrequency(tree.indices, at)
 })).filter(x => x.frequency > 0);
 assert.deepEqual(actualMatches, [{at: 33, frequency: 295}]);
+// Search the entire 11x11 source matrix in all eight directions.
+// A four-letter word must comprise four single-letter GP runes.
+const directions = [[0,1],[0,-1],[1,0],[-1,0],[1,1],[1,-1],[-1,1],[-1,-1]];
+/** @param {number[]} source Original 121-rune 11x11 GP square. */
+function allFourLetterWords(source) {
+  const result = [];
+  for (let row = 0; row < 11; row++) for (let col = 0; col < 11; col++) {
+    for (const [dy,dx] of directions) {
+      let word = "", valid = true;
+      for (let step = 0; step < 4; step++) {
+        const y = row + step*dy, x = col + step*dx;
+        if (y < 0 || y > 10 || x < 0 || x > 10) { valid = false; break; }
+        const token = alphabet[source[11*y+x]];
+        if (token.length !== 1) { valid = false; break; }
+        word += token;
+      }
+      if (valid && frequency.has(word)) result.push({word,row,col,dy,dx});
+    }
+  }
+  return result;
+}
+const originalGridWords = allFourLetterWords(tree.indices);
+assert.deepEqual(originalGridWords, [
+  {word:"HOME",row:3,col:0,dy:0,dx:1},
+  {word:"BUDS",row:8,col:5,dy:0,dx:1}
+]);
+// The historically independent image-prime change was +60.
+// Among source word-start -> source word-end pairs with 60-rune start gap,
+// exactly two geometries survive; only one has both dictionary words.
+const fourStart = new Set(words.filter(w => w.length >= 4).map(w => w.start));
+const fourEnd = new Set(words.filter(w => w.length >= 4).map(w => w.end));
+const wordPairs60 = [...fourStart].filter(at => fourEnd.has(at + 64));
+assert.deepEqual(wordPairs60, [25,33]);
+const wordPairTitles = wordPairs60.map(at =>
+  [dictionaryPrefixFrequency(tree.indices,at),
+    dictionaryPrefixFrequency(tree.indices,at+60)]);
+assert.deepEqual(wordPairTitles, [[0,0],[295,6]]);
+const planted = tree.indices.slice();
+planted.splice(33, 4, ...homeGP);
+planted.splice(93, 4, ...budsGP);
+assert.ok(allFourLetterWords(planted).some(x => x.word === "HOME"));
+assert.ok(allFourLetterWords(planted).some(x => x.word === "BUDS"));
+
 
 // Conditional permutation screen. Keep the entire first row and first
 // column FIXED, so the exact historical 563/569 equality remains true.
@@ -132,6 +194,7 @@ function nextRandom() {
 }
 const trials = 100000;
 let exactHome = 0, highAtSelectedRow = 0, highAnyWordStart = 0;
+let anyWordPair60 = 0, diagonalWords5 = 0, exactHomeBuds = 0;
 for (let attempt = 0; attempt < trials; attempt++) {
   for (let j = interior.length - 1; j > 0; j--) {
     const k = nextRandom() % (j + 1);
@@ -142,8 +205,31 @@ for (let attempt = 0; attempt < trials; attempt++) {
   if (dictionaryPrefixFrequency(shuffled, 33) >= 295) highAtSelectedRow++;
   if (starts.some(at => dictionaryPrefixFrequency(shuffled, at) >= 295))
     highAnyWordStart++;
+  if (wordPairs60.some(at =>
+    dictionaryPrefixFrequency(shuffled,at) > 0 &&
+    dictionaryPrefixFrequency(shuffled,at+60) > 0)) anyWordPair60++;
+  if (homeGP.every((v,j) => shuffled[33+j] === v) &&
+      budsGP.every((v,j) => shuffled[93+j] === v)) exactHomeBuds++;
+  let hasDiagonalPair = false;
+  for (let row = 0; row <= 5 && !hasDiagonalPair; row++) {
+    for (let col = 0; col <= 2; col++) {
+      const i = 11*row+col;
+      const j = 11*(row+5)+(col+5);
+      if (dictionaryPrefixFrequency(shuffled,i) > 0 &&
+          dictionaryPrefixFrequency(shuffled,j) > 0) {
+        hasDiagonalPair = true;
+        break;
+      }
+    }
+  }
+  if (hasDiagonalPair) diagonalWords5++;
 }
 assert.deepEqual([exactHome, highAtSelectedRow, highAnyWordStart], [3,21,176]);
+// These are retrospective diagnostics, not a discovery-wide significance claim.
+assert.ok(anyWordPair60 >= 0 && anyWordPair60 <= trials);
+assert.ok(diagonalWords5 >= 0 && diagonalWords5 <= trials);
+assert.ok(exactHomeBuds >= 0 && exactHomeBuds <= trials);
+
 
 // One fully source-fixed, finite, historically familiar interpretation:
 // HOME as a four-rune repeating Vigenere key (or its GP prime weights).
@@ -198,9 +284,14 @@ console.log(JSON.stringify({
     p32WordCount:words.length, sentences,
     exactRowWord:{start:33,end:44,raw:words[7].runes,
       latin:words[7].runes.split("").map(r=>alphabet[corpus.runes.indexOf(r)]).join(""),
-      key:"HOME",globalOffset:7872}, bookLiteralHOMEHits:homeHits},
+      key:"HOME",globalOffset:7872}, bookLiteralHOMEHits:homeHits,
+    secondTreeWord:{word:"BUDS",localOffset:93,globalOffset:7932,
+      sourceWordEnd:97}, bookLiteralBUDSHits:budsHits,
+    wordSearchFourLetters:originalGridWords,
+    sourceSixtyRuneWordPairs:wordPairs60},
   conditionalInteriorShuffle:{trials,seed:"0x56356913",fixedAxisRunes:21,
     shuffledInteriorRunes:100,exactHome,highAtSelectedRow,highAnyWordStart,
+    anyWordPair60,diagonalWords5,exactHomeBuds,
     note:"retrospective page/word/dictionary selection"},
   nativeModel:{baselineP32:base32,baselineP55:base55,solvedP57:native,
     bestSourceKeyAfterWord:bestAfter,bestSourceKeyP55:best55,
