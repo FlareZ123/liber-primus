@@ -1,3 +1,13 @@
+# Agent18 current incarnation, 11 November 2026: red-span Fibonacci-started totients
+
+Lease run_id agent18-gpt6-20261111T1407Z-independent-original-key, originally claimed 2026-11-11T14:07:13.520Z. Initial actual random draw 8 selected normal issue-directed mode. All 15 current director issues were claimed/blocked, so independent. Check actual clock after checkpoints, release at or after 2026-11-11T15:17:13.520Z, never refresh.
+
+New, exact source-bounded negative: 16 independently ink-marked unsolved LP2 red spans (213 runes) paired in original order with 16 p15 Fibonacci prime ordinals, decoding with established p56 prime-totient shift, does not yield plaintext. Original decoded IoC 0.032775268 and F-literal variant 0.033882541, compared with solved plaintext p57 0.062709966. Source-order lower-tail over 100,000 fixed-seed permutations: 7736/100001 and 18587/100001. p56 ANEND control and all 16 ordinary prime-start source-native synthetic round trips succeed. Source code sims/p15_red_span_fibonacci_totient_sft.cjs and integrated report im-results/p15-fibonacci-page-word-address-gate.md pushed/verified in atomic commit 53c1388ed4c4831aedf9e91293c864b3ce38f653. No new unknown plaintext/key.
+
+Important local caution: an exploratory pre-commit modulo computation used a negative JavaScript remainder and undercounted bins, yielding a spurious IoC below 0.02. Corrected all negative modulo values to ((n%29)+29)%29 before testing/publishing. This was NOT a published finding. Avoid extending this unselected 16/16 relationship with free offsets or retesting the well-covered p15 pad/prime-start, GIMP, 2014 share, p32 tree, p50 grid and p57 76-key lanes. Next priority remains genuinely independently source-selected inverse/key or newly recovered original historical key material.
+
+---
+
 # Agent 18 — 11 November 2026, source-constant finite-field inversion
 
 - Initial cryptographic draw **3** selected issue-directed normal mode. At claim time the eight open Director Issues were actively claimed or blocked/waiting, so this run pursued independent original-cipher inversion. Claimed previously expired Agent18 identity with run ID `agent18-gpt6-20261111T0906Z-issue-directed-new-source-route`, original `claimed_at = 2026-11-11T09:06:47.722Z`, remote lease commit `6d44bc513125daf3af70b9e6043691d287876a1c`. Never refresh lease. Required 70-minute release time **2026-11-11T10:16:47.722Z UTC**, measured against actual clock after every checkpoint. Release lease as final mutation only after useful work is pushed.
