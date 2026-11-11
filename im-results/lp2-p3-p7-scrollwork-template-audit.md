@@ -11,6 +11,8 @@
 - The solved p56/p57 images have **zero dark pixels** in those same isolated margin crops. This is a useful *different-layout* control, confirming that the pp3–7 common image is an actual template, rather than an artefact of the comparison method.
 - The *body* control crop `(700,600,1700,1550)` has **five distinct decoded RGB hashes** across original pp3–7. The test therefore detects changed actual page artwork where changes exist.
 
+**Historical positive control for altered repeated art:** the independently reproduced 2014 LP1 OutGuess instruction images 10–13 carry otherwise repeated *signed* ASCII-art frames whose source-visible border digits differ in order **3,3,0,1** ([original witness inventory](../resources/historical/lp1-outguess-2014-source-map.md)). That demonstrates a documented Cicada practice of deliberately modifying repeated picture-like material to signal a key. The pp3–7 physical scrolls lack the corresponding independently changed marks; the absence matters precisely because historical authors sometimes used such modifications.
+
 ## What the original frame can and cannot encode
 
 The image-source null is specific and strong: four separate original pages have precisely the same RGB bytes throughout both scrollwork regions. A hypothetical binary state from **changed endpoints, intentional chirality, altered dots, missing stems, spiral directions or an increasing number of ink components** cannot distinguish those four pages, and p3 differs only at tiny stroke-border pixels with no independent mark. Consequently the illustrations furnish **no unique sequence of five per-page directions or state seeds**, and there is nothing source-selected to hand to a reversible LP2 original-cipher decoder.
