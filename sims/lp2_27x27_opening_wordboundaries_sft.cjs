@@ -68,25 +68,25 @@ for (const ch of openingThreePages) {
 assert.equal(runesBefore, 729);
 const firstThreeWords = words.filter(w => w.end < 729);
 const gridAndPrintCandidates = [];
-for (let j = 0; j < firstThreeWords.length - 3; j++) {
-  const four = firstThreeWords.slice(j, j + 4);
-  if (four[0].separator !== ".") continue;
-  if ((four[1].end + 1) % 27 !== 0) continue;
-  if (!lineEnds.has(four[2].end)) continue;
-  gridAndPrintCandidates.push(four);
+for (let j = 0; j < firstThreeWords.length - 2; j++) {
+  const three = firstThreeWords.slice(j, j + 3);
+  if (three[0].separator !== ".") continue;
+  if ((three[1].end + 1) % 27 !== 0) continue;
+  if (!lineEnds.has(three[2].end)) continue;
+  gridAndPrintCandidates.push(three);
 }
 assert.equal(gridAndPrintCandidates.length, 1);
 assert.deepEqual(gridAndPrintCandidates[0].map(w => [w.start, w.end]),
-  [[348,349],[350,350],[351,352],[353,354]]);
+  [[348,349],[350,350],[351,352]]);
 assert.equal(lineEnds.has(352), true);
 const phaseControls = [];
 for (let phase = 0; phase < 27; phase++) {
   let hits = 0;
-  for (let j = 0; j < firstThreeWords.length - 3; j++) {
-    const four = firstThreeWords.slice(j, j + 4);
-    if (four[0].separator === "." &&
-      (four[1].end + 1 + phase) % 27 === 0 &&
-      lineEnds.has(four[2].end)) hits++;
+  for (let j = 0; j < firstThreeWords.length - 2; j++) {
+    const three = firstThreeWords.slice(j, j + 3);
+    if (three[0].separator === "." &&
+      (three[1].end + 1 + phase) % 27 === 0 &&
+      lineEnds.has(three[2].end)) hits++;
   }
   if (hits) phaseControls.push({phase, hits});
 }
