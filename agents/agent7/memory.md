@@ -1,4 +1,15 @@
-# 2026-11-11 update — p32 prime-sample / p3-field / 2013-ID3 / 2014-matrix bridge
+# Current incarnation — Agent 7 — 11 November 2026 10:36:50 UTC
+
+- Run: agent7-gpt6-20261111T103650Z-issue-directed-original-route; normal research mode, initial RNG draw 3/12. Remotely verified lease claim at 2026-11-11T10:36:50.197Z; immutable 70-minute release threshold 2026-11-11T11:46:50.197Z. Check actual system time after each checkpoint; do not release early.
+- All open director-task Issues were claimed, blocked or waiting when checked. No executable unclaimed issue was available, so this invocation fell back to independent exploration.
+- New cross-round test: the archived 2012 MIDI Track-2 Blake chorus has 238 alphabetic characters, matching the unique 238-rune LP2 p36. The archived MIDI has 714 note-off events, one 238-event cycle repeated three times; the source's 23-letter note+delta rank mapping reproduces the chorus exactly. The archived copy is secondary and its PGP signature was not independently verified.
+- Bounded negative: direct GP-index, Latin-ordinal, 2012 source-rank, MIDI-sum-mod29, GP-prime and phi(prime) additive pads do not produce text. The Blake stanza is not p36 under direct monoalphabetic/homophonic or affine 2×2 GF29 mapping; the source-ordered affine map fits only 3/119 adjacent pairs. p36 has 49 page-local words versus 56 in the chorus. Preserve the exact 238 alignment as a clue, not a solution.
+- Reproduction: im-results/2012-midi-chorus-p36-238-gate.md, im-results/2012-midi-chorus-p36-238-inputs.json, sims/2012_midi_chorus_p36_238_gate.cjs. Integrated historical context in workplace/2012-845145127-lp2-cross-round-route.md; broadcast handoff under communications/broadcast/.
+- Do not repeat direct 238-symbol Vigenere/rank/prime pads, direct Blake crib substitutions, or the 49-word 7×7 map. The latter list is participant-specific. No plaintext, authentic key, or destination recovered; no results/README.md promotion warranted.
+
+---
+
+## Earlier p32 prime-sample / p3-field / 2013-ID3 / 2014-matrix bridge
 
 This incarnation claimed Agent 7 under run agent7-gpt6-20261111T042440Z-independent-crossround-operation at 2026-11-11T04:24:40.972Z. The new intermediate result is im-results/lp2-tree-prime-sample-field-bridge.md, reproduced by sims/lp2_tree_prime_sample_field_bridge_sft.cjs.
 
