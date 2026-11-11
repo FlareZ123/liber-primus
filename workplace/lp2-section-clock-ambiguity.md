@@ -30,6 +30,10 @@ The 1033/3301 cuneiform artwork begins at the bottom of p33 after the second red
 
 A source-locked direct transfer of the known p56 prime-totient cipher from the illustrated 1033 (174th prime) and 3301 (464th prime) numerals tested six original starts (7,960; 8,051; 8,174) and both primes through the first p40 rune at 9,640. All six outputs remain near-uniform (IoC 0.034296917–0.034757083); no new plaintext. This excludes only that direct source-locked family.
 
+## Cross-chapter red-three-rune page-rank clue (provisional)
+
+The only two red rune spans of length three are p3:119 [13,23,2] and p39:119 [27,5,15], with GP-prime sums **137** and **173**, respectively the **33rd** and **40th** primes. A page-rank address can mean the **33rd and 40th manuscript pages**, physical p32 and p39, yielding p32's full 121 runes and p39's post-triad 121-rune section; or physical **p33 and p40** if rank is interpreted as a zero-based page number, coinciding with this section's illustration-family endpoints. Both use source-visible red triples and source page boundaries, while historical author instructions do not yet choose one indexing convention. This is an independent possible navigation relation, not an authenticated cipher clock or 121-symbol key ([source SFT](../sims/lp2_red3_prime_rank_121_selector_sft.cjs); [interpretive gate](../im-results/lp2-red3-primerank-page-selector.md)). Source-locked direct 121-rune additive and φ(prime)-reset tests remain nonlinguistic; do not promote source-count coincidences to plaintext.
+
 ## Seven-page cuneiform decoder decision (Issue #78)
 
 **Original-image indexing and page variation.** The repository's original-image SFT maps physical page (p) to archive image (p+17): p32 is `49.jpg`, and p33 is `50.jpg`. The original p32 image has no red title or local-91 heading. Original p33 has two red headings at local offsets 0 (10 runes) and 91 (8 runes), red 13-dot punctuation at offsets 10 and 91/99, three black separator dots, and the cuneiform artwork below the second heading. The 91-rune interlude is therefore on p33; the illustrated interval starts at p33 local91. Do not transfer this boundary to p32.

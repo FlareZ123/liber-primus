@@ -1,0 +1,32 @@
+# The two red three-rune inscriptions as GP prime-rank page selectors
+
+**Classification:** exact GP-prime arithmetic and source coordinates; *provisional* page-address hypothesis. The interpretation is unselected between two natural index conventions and yields **no recovered LP2 plaintext, key, reversible operation, or continuation**.
+
+## The independent graphical selection
+
+The original 58 LP2 images have exactly **two red spans of length 3**, both starting at physical page-local rune offset **119**. They are p3 `ᛈᛞᚦ` (GP indices [13,23,2], translit P·D·TH) and p39 `ᛡᚳᛋ` (indices [27,5,15], translit IA·C·S). Source records: `resources/liber-primus/lp2-ink-annotations.json`, `lp2-corpus.json`, original scans `20.jpg` and `56.jpg`. Other red headings have different lengths; the two 3-rune objects are not taken from arbitrary unmarked text.
+
+Under the original Gematria Primus **prime weights**, the first sum is **43+89+5 = 137**, the **33rd prime**; the second sum is **107+13+53 = 173**, the **40th prime**. This is unlike the previously documented difference `173−137=36`; each sum individually produces a legitimate prime ordinal with no modular reduction, secret shift or key fitting. The rule “sum prime weights, take prime rank, use the rank as a page address” is a **hypothesis**. The printed artwork does not explicitly say to use that grammar.
+
+## Two source-compatible page-address conventions
+
+| Input | One-based ordinal applied to LP2 page order | Zero-based physical page number |
+| --- | --- | --- |
+| p3 red3 → 33rd prime | **33rd page = physical p32**, with exactly **121 runes** | physical **p33**, first page of seven-page cuneiform illustrated run |
+| p39 red3 → 40th prime | **40th page = physical p39**, whose second unit from its own red3 offset 119 contains exactly **121 runes** | physical **p40**, first page *after* pp33–39 cuneiform family |
+
+The p39 second-unit boundary is independently visible: immediately before p39's red three-rune span, the scan shows the second instance of the horizontal three-black-dot delimiter first seen before p33's red title at local91 ([source-pixel matching](lp2-three-dot-delimiter-source-gate.md)). P39's second block has **121 runes / 29 printed words** and six nonuniform printed lines **[19,18,18,26,23,17]**. Original p32 is **121 total runes**, the independent source basis for previous 11×11/2016 tree-map investigation. The one-based interpretation therefore matches a pair of exact-length **121-rune original blocks**, without adding or dropping page text. Neither page prints a literal 11×11 rune matrix; reflow requires a separate instruction.
+
+The zero-based interpretation instead selects a contiguous **seven-page graphical chapter**: the cuneiform 1033/3301 template begins on physical p33 and its artwork stops before p40's new design family. The two interpretations each explain an independently visible feature. The existence of both is a substantive **indexing ambiguity**, not evidence that both were intended. Earlier Cicada book codes often use human one-based coordinates, but no original source presently instructs these particular red triples to be treated as page addresses.
+
+## Tests and what remains
+
+The one-based interpretation provides a concrete reason to compare p32 and the original p39:119..end 121-rune stream. That finite original-cipher gate has already been run: direct p32-keyed **8 D4 square orientations × 2 GP29 additive signs** produces highest output IoC **0.0385674931**, far below authentic native GP-English (around0.06). Under all D4 positions and 29 uniform shifts, the best direct agreement is **13/121** (180° and shift3); **1,327/20,000** fixed-seed exact-rune-multiset shuffles achieve that many after the same search (empirical p0.06635). The visually tempting shift3 was selected from ciphertext, so it is not an independently fixed three-dot operation. [Original p32↔p39 gate](../sims/p32_p39_11square_transfer_sft.cjs), also documented in [the three-dot report](lp2-three-dot-delimiter-source-gate.md).
+
+A separately source-fixed transfer of the solved p56 φ(prime) GP29 stream to the p39 post-divider text, keyed by the printed p39 cuneiform primes **1033** or **3301**, remains near-uniform (IoC0.0359504/0.0356749). [Reproducer](../sims/p39_three_dot_prime_reset_sft.cjs). This does not exclude a non-additive, secret-state, word-index, variable-width or historically external operation. The p39 word-first/last GP rune identities and word prime-sums mod29 cover only **22/20/20** distinct GP symbols across its 29 words, so none directly spells an ordinary 29-symbol substitution alphabet.
+
+**Decision:** retain the paired red-triple prime-ordinal page selection as a **high-leverage original-clue hypothesis** with clearly competing zero-/one-based readings. It has an unusually economical potential human route to identified source blocks but **no recovered original plaintext or independently mandated cipher operator**. The next worthwhile test must use an actual historical one-based page/address convention or a separate image instruction to fix which interpretation applies, then freeze **one reversible operator** before reading unknown ciphertext. Random prime-rank and unrelated source-pad scans are not successors.
+
+## Reproduction
+
+Run `node sims/lp2_red3_prime_rank_121_selector_sft.cjs` from repository root, with the original rune corpus, ink annotations and transcript in `resources/`. It asserts the uniqueness and exact offsets of the two red3 spans, their GP indices/weights, genuine prime ordinals, both index interpretations, the paired121-rune sources and the 29-word second p39 unit. The SFT reports **source facts and an interpretive fork** rather than a decryption.
