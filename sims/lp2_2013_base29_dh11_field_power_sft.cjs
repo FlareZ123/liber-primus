@@ -71,6 +71,51 @@ for(const [clock,indices] of Object.entries(clocks)){
 assert.ok(Math.abs(outputs.book.inverse11.ioc-0.0345436485499894)<1e-14);
 assert.ok(Math.abs(outputs.pageReset.inverse11.ioc-0.03447468014831304)<1e-14);
 assert.deepEqual([outputs.book.inverse11.doubled,outputs.pageReset.inverse11.doubled],[269,270]);
+
+// Fixed-frequency native GP-English controls: encrypt *existing* English text
+// with the source-locked exponent11 and ask whether the original 12,956-rune
+// ciphertext looks like any encoded window. Stride2000 overlaps by design.
+const benchmarkFiles=[
+ "resources/control/gibran_prophet_58585.txt",
+ "resources/control/emerson_essays_2944.txt",
+ "resources/control/shakespeare_first300k.txt"
+];
+const translit=new Map(C.translit.map((x,i)=>[x,i]));
+const digraphs=["TH","NG","EO","OE","AE","IA","EA"];
+/** @param {string} input @returns {number[]} */
+function nativeGP(input){
+ const s=input.toUpperCase().replaceAll("K","C").replaceAll("V","U")
+  .replaceAll("Q","C").replaceAll("Z","S").replace(/[^A-Z]/g,"");
+ const out=[];
+ for(let i=0;i<s.length;){
+  const d=digraphs.find(v=>s.startsWith(v,i));
+  if(d){out.push(translit.get(d));i+=2;}
+  else{if(translit.has(s[i]))out.push(translit.get(s[i]));i++;}
+ }
+ return out;
+}
+const encodedNativeBenchmarks=[];
+for(const filename of benchmarkFiles){
+ const input=fs.readFileSync(path.join(__dirname,"..",filename),"utf8");
+ const gp=nativeGP(input),samples=[];
+ for(let start=0;start+original.length<=gp.length;start+=2000){
+  const encrypted=transform(gp.slice(start,start+original.length),11);
+  samples.push({ioc:ioc(encrypted),doubled:doubled(encrypted)});
+ }
+ const row={
+  source:filename,runes:gp.length,windows:samples.length,
+  minIoC:Math.min(...samples.map(x=>x.ioc)),
+  maxIoC:Math.max(...samples.map(x=>x.ioc)),
+  minRepeated:Math.min(...samples.map(x=>x.doubled)),
+  maxRepeated:Math.max(...samples.map(x=>x.doubled))
+ };
+ assert.ok(row.minIoC>outputs.original.ioc);
+ assert.ok(row.minRepeated>outputs.original.doubled);
+ encodedNativeBenchmarks.push(row);
+}
+assert.deepEqual(encodedNativeBenchmarks.map(x=>x.windows),[25,154,102]);
+assert.deepEqual(encodedNativeBenchmarks.map(x=>x.minRepeated),[329,339,346]);
+
 console.log(JSON.stringify({field:"F29[x]/(x^2+18*x+11)",signed2013DigitConvention:"3QO",
  inferred2013DHExponentClass:"11 mod 550",chosenUnitExponent:11,
- exponentInverseMod840:611,originalRunes:original.length,outputs},null,2));
+ exponentInverseMod840:611,originalRunes:original.length,outputs,encodedNativeBenchmarks},null,2));
