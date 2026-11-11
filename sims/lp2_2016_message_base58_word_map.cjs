@@ -335,6 +335,50 @@ assert.deepEqual(locate("you").map(x=>[x.sum,x.page,x.wordIndex]),[[113,55,1]]);
 
 
 
+const midi49Words = read("resources/historical/cicada2012-midi-49-words.txt")
+  .match(/[A-Za-z]+/g) || [];
+assert.equal(midi49Words.length, 49);
+const midi49Map = midi49Words.map(mapMessageWord);
+assert(midi49Map.every(row => row.page === 50
+  ? row.wordIndex < page50Table.tokens.length
+  : row.runeWord !== null));
+const midi49RuneHits = midi49Map.filter(row => row.runeWord !== null);
+const midi49P50 = midi49Map.filter(row => row.page === 50);
+assert.equal(midi49RuneHits.length, 44);
+assert.deepEqual(midi49P50.map(({word, sum, wordIndex}) =>
+  [word.toLowerCase(), sum, wordIndex]), [
+  ["hammer", 340, 5], ["hook", 50, 0], ["knot", 108, 1],
+  ["boat", 224, 3], ["umbrella", 456, 7]
+]);
+const midi49Cells = midi49P50.map(row => ({
+  word: row.word, sum: row.sum, cell: row.wordIndex,
+  token: page50Table.tokens[row.wordIndex],
+  byte: page50Table.bytes[row.wordIndex],
+  gp29: page50Table.bytes[row.wordIndex] % 29
+}));
+assert.deepEqual(midi49Cells.map(row => row.token), ["0S", "2M", "0w", "3D", "15"]);
+assert.deepEqual(midi49Cells.map(row => row.byte), [28, 142, 58, 193, 65]);
+assert.deepEqual(midi49Cells.map(row => row.gp29), [28, 26, 0, 19, 7]);
+assert.equal(midi49P50.find(row => row.word.toLowerCase() === "boat").sum,
+  exceptions[0].sum);
+const midi49InteriorStream = midi49Map.flatMap(row => {
+  if (row.runeWord !== null) {
+    return [...row.runeWord].slice(1, -1).map(rune => {
+      const index = corpus.runes.indexOf(rune);
+      assert.notEqual(index, -1);
+      return index;
+    });
+  }
+  assert.equal(row.page, 50);
+  return [page50Table.bytes[row.wordIndex] % 29];
+});
+assert.equal(midi49InteriorStream.length, 116);
+const midi49InteriorText = midi49InteriorStream
+  .map(index => corpus.translit[index]).join("");
+assert.equal(midi49InteriorText,
+  "ORNOEYOEEOLDHBANGHNOEYEAJNAYTPWSXFSEANGXPMICSNIIAPEAIAICSNGMDAEUEAUWOERUWSLITHJNFRIHNNGUEOSNGMDAEUEAUANGYOEANGTHENUIAEIUAEWNGATHBIWIACNGOOUXSXITHAES");
+
+
 console.log(JSON.stringify({
   status: "provisional source-constrained book-map hypothesis; not a decryption",
   modulus: 58,
@@ -357,6 +401,13 @@ console.log(JSON.stringify({
   p56Word1Cipher: p56Word,
   p56Word1Plain: "END",
   rows,
+  midi49WordMap: {
+    sourceWords: midi49Words.length,
+    runeWordAddresses: midi49RuneHits.length,
+    p50Addresses: midi49Cells,
+    interiorStreamLength: midi49InteriorStream.length,
+    interiorStream: midi49InteriorText
+  },
   fullMessage: {words: signedAllWords.length, runeWordAddresses: fullMap.length - exceptions.length,
     exception: {word: "lies", sum: 224, page: 50, index: 3,
       tableToken: page50Table.tokens[3], tableByte: page50Table.bytes[3]},

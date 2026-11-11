@@ -378,6 +378,29 @@ Standard TEA/XTEA tests on the p50 table with direct message-sum, prime-index, p
 - Neighboring moduli do not reproduce both anchors: with 57, “the” selects p15 word 1 and “their” p0 word 2; with 59, they select p13 word 1 and p55 word 1. The original 58-page count is therefore material to this candidate.
 - Most selected words remain opaque ciphertext. Do not call the 16-word output plaintext, and do not promote this to `results/` yet.
 
+## Cross-round 2012 MIDI 49-word map (conditional; no decryption)
+
+Applying the same provisional 2016 GP-prime-sum/base-58 word-address rule to the repository's 49-word 2012 MIDI transcription (`resources/historical/cicada2012-midi-49-words.txt`) gives 49 addresses: 44 resolve to printed rune-words and five land on p50, all in its first row. In source-word order:
+
+| MIDI word | GP-prime sum | p50-local cell | Printed token | Working base-60 value |
+|---|---:|---:|---|---:|
+| hammer | 340 | 5 | `0S` | 28 |
+| hook | 50 | 0 | `2M` | 142 |
+| knot | 108 | 1 | `0w` | 58 |
+| boat | 224 | 3 | `3D` | 193 |
+| umbrella | 456 | 7 | `15` | 65 |
+
+The signed-2016 word `lies` also has GP-prime sum **224**, so it selects the same p50-local cell 3 and token `3D` as the 2012 word `boat`. This is a cross-round collision under the proposed address rule, not independent proof that the rule is intended. The cell positions do not depend on the p50 radix interpretation; the byte values above assume the working base-60 codec (the base-59 alternative changes the values).
+
+The five table values in source order reduce modulo 29 to **[28, 26, 0, 19, 7]**. If the 44 rune-word targets contribute their interior runes (first/last removed) and each p50 target contributes its table byte modulo 29 at its original source-word position, the resulting stream is **116 symbols = 4×29**:
+
+```text
+ORNOEYOEEOLDHBANGHNOEYEAJNAYTPWSXFSEANGXPMICSNIIAPEAIAICSNGMDAEUEAUWOERUWSLITHJNFRIHNNGUEOSNGMDAEUEAUANGYOEANGTHENUIAEIUAEWNGATHBIWIACNGOOUXSXITHAES
+```
+
+This stream is not readable plaintext; its 4×29 length is only a structural observation, not evidence of a four-row cipher. No source selects it as a key or ciphertext. The complete 49-word address table and stream are asserted by the existing [2016 word-map reproducer](../sims/lp2_2016_message_base58_word_map.cjs), extended to include the 2012 transcription. The base-58 rule and base-60 byte values remain provisional; no LP2 plaintext or cipher key follows.
+
+
 ## Current decision and reopening gate (11 November 2026)
 
 The base-58 word addresses and p32 M7 W/infinity route remain provisional. The full-map PARABLE-stripped 91-symbol plane is a new structural consequence, but its direct 3×91 key/field uses against the p29 residual are negative; 3×7×13 is not a decoder. FOLD/END and p50 3D are conditional anchors, not authenticated plaintext. No source-fixed tensor orientation/state exists; do not repeat arbitrary fold, orientation, or axis sweeps.
