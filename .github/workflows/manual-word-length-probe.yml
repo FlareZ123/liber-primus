@@ -13,6 +13,7 @@ on:
           - block-inverse
           - source-inversion
           - word-number-byte
+          - base29-unit
           - prior-word-prime
           - corrected-oe-phase
           - corrected-oe-marker
@@ -41,6 +42,9 @@ jobs:
       - name: Frozen original source-word numbers as bytes and p50 addresses
         if: ${{ inputs.scan_mode == 'word-number-byte' }}
         run: node sims/lp2_wordwise_base29_p50_byte_gate_sft.cjs
+      - name: Wordwise BASE29 unit multiplication original-input invariant
+        if: ${{ inputs.scan_mode == 'base29-unit' }}
+        run: node sims/lp2_word_base29_unit_invariant_sft.cjs
       - name: Causal previous-ciphertext-word prime-sum GP29 inverse
         if: ${{ inputs.scan_mode == 'prior-word-prime' }}
         run: node sims/lp2_previous_cipher_wordprime_sft.cjs
