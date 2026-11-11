@@ -104,6 +104,51 @@ for (const projection of ["mod29", "scaled29"]) {
   }
 }
 
+// Exact byte-to-5-bit GP29 transfer at the same source-fixed file offset.
+// Reuse the two established 5-bit bit orders and two invalid-value policies
+// of sims/iso56013_5bit_gp29_key_gate.cjs; no unknown phase or offset scan.
+/** @param {Buffer} bytes @param {"msb"|"lsb"} order @returns {number[]} */
+function unpackFiveBits(bytes, order) {
+  const out = [];
+  let acc = 0, bits = 0;
+  for (const byte of bytes) {
+    if (order === "msb") {
+      acc = (acc << 8) | byte;
+      bits += 8;
+      while (bits >= 5) {
+        bits -= 5;
+        out.push((acc >> bits) & 31);
+        acc &= (1 << bits) - 1;
+      }
+    } else {
+      acc |= byte << bits;
+      bits += 8;
+      while (bits >= 5) {
+        out.push(acc & 31);
+        acc >>>= 5;
+        bits -= 5;
+      }
+    }
+  }
+  return out;
+}
+const packedFiveBitDecodings = {};
+const sourceBytes = pad.subarray(at, at + 1400);
+for (const order of ["msb", "lsb"]) {
+  const chunks = unpackFiveBits(sourceBytes, order);
+  for (const policy of ["mod29", "reject"]) {
+    const key = policy === "mod29"
+      ? chunks.map((v) => v % 29)
+      : chunks.filter((v) => v < 29);
+    assert.ok(key.length >= section11.length, {order, policy, length: key.length});
+    packedFiveBitDecodings[order + "_" + policy] = {
+      keySymbols: key.length,
+      minus: gpReport(section11.map((v, i) => mod29(v - key[i]))),
+      plus: gpReport(section11.map((v, i) => mod29(v + key[i]))),
+    };
+  }
+}
+
 const report = {
   source: {
     physicalPage: 15,
@@ -124,6 +169,7 @@ const report = {
     xorIndex: asciiReport(xorIndex),
     xorGPPrime: asciiReport(xorPrime),
     gpDecodings,
+    packedFiveBitDecodings,
     conditionalFibonacciTitleCrib: cribHits,
   },
   decision: "These exact models are only proposed interpretations of title arithmetic. None is a verified Cicada decipherment unless the output independently recovers authentic original plaintext.",
