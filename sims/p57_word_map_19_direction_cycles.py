@@ -90,6 +90,47 @@ def permutation_null(trials=100_000, seed=20261112):
     }
 
 
+
+def all20_word_map(trials=100_000, seed=20261115):
+    words20 = ["PARABLE"] + WORDS
+    sums20 = [449] + SUMS
+    like, find, instar = 1, 14, 3
+    def walk(values, start, sign):
+        seen, path, x = {}, [], start
+        while x not in seen:
+            seen[x] = len(path); path.append(x)
+            x = (x + sign * (values[x] % 20)) % 20
+        return path, path[seen[x]:]
+    observed = {}
+    for sign, label in [(-1, "minus"), (1, "plus")]:
+        pl, cl = walk(sums20, like, sign)
+        pf, cf = walk(sums20, find, sign)
+        observed[label] = {"LIKE_path":[words20[i] for i in pl],
+                           "FIND_path":[words20[i] for i in pf],
+                           "LIKE_cycle":[words20[i] for i in cl],
+                           "FIND_cycle":[words20[i] for i in cf],
+                           "both_reach_INSTAR":cl == [instar] and cf == [instar]}
+    rng = Random(seed)
+    movable = [i for i in range(20) if i not in (like, find)]
+    pool = [sums20[i] for i in movable]
+    counts = {"minus":0,"plus":0,"both_signs":0}
+    for _ in range(trials):
+        shuffled = pool[:]; rng.shuffle(shuffled)
+        values = sums20[:]
+        for i, value in zip(movable, shuffled): values[i] = value
+        _, clm = walk(values, like, -1); _, cfm = walk(values, find, -1)
+        _, clp = walk(values, like, 1);  _, cfp = walk(values, find, 1)
+        m = clm == [instar] and cfm == [instar]
+        p = clp == [instar] and cfp == [instar]
+        counts["minus"] += m; counts["plus"] += p; counts["both_signs"] += m and p
+    return {"words":words20,"sums":sums20,"modulus":20,"observed":observed,
+            "permutation_null":{"trials":trials,"seed":seed,
+            "anchors_fixed":{"LIKE_position":2,"FIND_position":15},
+            "both_reach_INSTAR_minus":counts["minus"],
+            "both_reach_INSTAR_plus":counts["plus"],
+            "both_reach_INSTAR_both_signs":counts["both_signs"],
+            "null":"shuffle the 18 non-anchor word sums among the other 18 positions; keep LIKE/FIND sums and positions fixed"}}
+
 def main():
     minus_like = cycle(SUMS, LIKE, -1)
     plus_find = cycle(SUMS, FIND, 1)
@@ -111,6 +152,7 @@ def main():
             "intersection_words": [WORDS[i] for i in sorted(set(minus_like) & set(plus_find))],
         },
         "permutation_null": permutation_null(),
+        "all20_word_map": all20_word_map(),
         "caveat": "The 2016 clue supports words-as-map/numbers-as-direction broadly, but does not explicitly select sum mod 19 or the sign assignment. Treat the cycles and null as exploratory.",
     }
     print(json.dumps(result, indent=2))
