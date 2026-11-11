@@ -115,6 +115,20 @@ function main(){
   assert.equal(redIndices.reduce((s,i)=>s+c.prime[i],0),662);
   assert.equal(662,2*div);
 
+  // The p57 red ink explicitly marks the word PARABLE; its GP-prime sum
+  // independently selects the 449 heading/modulus used above.
+  const red57=ink.pages.find(x=>x.page===57).red_spans.find(x=>
+    x.start===0&&x.length===7);
+  assert.ok(red57);
+  const red57Indices=c.pages.find(x=>x.page===57).indices
+    .slice(red57.start,red57.start+red57.length);
+  const red57Primes=red57Indices.map(i=>c.prime[i]);
+  const red57PrimeSum=red57Primes.reduce((a,b)=>a+b,0);
+  assert.equal(red57Indices.map(i=>c.translit[i]).join(""),"PARABLE");
+  assert.deepEqual(red57Primes,[43,97,11,97,61,73,67]);
+  assert.equal(red57PrimeSum,449);
+  assert.equal(red57PrimeSum,sums[0]);
+
   assert.equal(c.translit[c.prime.indexOf(19)],"W");
   console.log(JSON.stringify({
     sources:["2014 seventh-onion delivery HTML", "three OpenPuff magic squares",
@@ -132,7 +146,11 @@ function main(){
       ringCounts,firstHistoricalMagicSum:3301,
       ringTwoOrdinal:ringCounts[1]*29},
     additionalOriginalCiphertextNumerology:{p0RedHeadingRunes:red0.length,
-      gpPrimeSum:662,ratioToHtmlDiv:2},
+      gpPrimeSum:662,ratioToHtmlDiv:2,
+      p57RedHeadingRunes:red57Indices.length,
+      p57RedWord:red57Indices.map(i=>c.translit[i]).join(""),
+      p57RedPrimeWeights:red57Primes,p57RedPrimeSum:red57PrimeSum,
+      p57RedSumEqualsParableHeadingModulus:red57PrimeSum===sums[0]},
     independentPredictionsAfterSelection:"Conditional algebraic fit; " +
       "no authored operation, unknown plaintext, or cryptographic key established."
   },null,2));
