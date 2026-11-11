@@ -46,7 +46,7 @@ function divLo(a,f){
  return {q,rem:r.slice(0,f.length-1)};
 }
 const bytes=grid.pages.flatMap(p=>p.bytes);
-const hDiv=divHi(bytes.map(mod),[1,18,11]);
+const hDiv=divHi(bytes.map(x=>mod(x)),[1,18,11]);
 const gDiv=divHi(hDiv.q,[1,10,25]);
 assert(hDiv.rem.every(x=>x===0)&&gDiv.rem.every(x=>x===0));
 const quotient252=gDiv.q;
@@ -73,7 +73,7 @@ assert.deepEqual(sectionKey(sectionKey(planted,29,false,false,1),29,false,false,
 
 const factors=[[5,1],[5,1],[11,18,1],[24,16,14,1],[11,15,0,9,1,5,10,20,12,1]];
 const divisor=factors.reduce(mulLo,[1]);
-const qd=divLo(bytes.slice().reverse().map(mod).slice(0,255),divisor);
+const qd=divLo(bytes.slice().reverse().map(x=>mod(x)).slice(0,255),divisor);
 assert(qd.rem.every(x=>x===0));
 const Q=qd.q.map(x=>mod(28*x));
 assert.equal(Q.length,239);assert.equal(Q[238],1);
