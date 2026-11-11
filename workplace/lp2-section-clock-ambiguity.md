@@ -34,7 +34,9 @@ The full-period recurrence
 x_{n+1}=13x_n+31\pmod{32},\qquad x_0=0
 \]
 
-visits all 32 fragment indices exactly once. Its restriction to the four solved-tail fragments is **31, 28, 29, 30** in both forward and inverse orders. Those fragments are p57[7:], p56, p57[:7], so their concatenation is exactly a cyclic rotation of the known 180-rune solved tail beginning at p57 offset 7 (tail offset 92). This is a source-anchored structural match.
+visits all 32 fragment indices exactly once. Its restriction to the four solved-tail fragments is **31, 28, 29, 30** in forward and inverse **position-permutation** orders; a reverse recurrence walk instead yields **30, 29, 28, 31** and fails that solved-tail rotation. Those fragments are p57[7:], p56, p57[:7], so their concatenation is exactly a cyclic rotation of the known 180-rune solved tail beginning at p57 offset 7 (tail offset 92). This is a source-anchored structural match.
+
+A complete finite [orientation SFT](../sims/lp2_lcg32_tail_orientation_sft.cjs) finds that exactly one of 128 full-period affine 32-state clocks, the source 13/31 pair, yields the exact dual-map solved-tail order, while four yield any matching cyclic tail order. Of five rotations of the ornament's `01101` mask, only multipliers 13 and 21 are full-period with increment31; 21 fails the solved-tail cyclic check. These conditional counts do not identify a cipher, authentic key, or unknown plaintext.
 
 Directly concatenating the 28 unknown fragments in LCG order does not improve GP trigram score: chronological −6.195857, forward −6.198043, inverse −6.195210; the inverse is ordinary against a 1,000-random-order null (upper-tail p=0.235). The 225 red-only runes also do not become readable under the same permutation. Thus the LCG is **not a direct plaintext transposition**. Its likely remaining role is a fragment index, clock, or row assignment; forward versus inverse orientation is unresolved.
 

@@ -28,7 +28,7 @@ The LCG order is:
 
 0, 31, 18, 9, 20, 3, 6, 13, 8, 7, 26, 17, 28, 11, 14, 21, 16, 15, 2, 25, 4, 19, 22, 29, 24, 23, 10, 1, 12, 27, 30, 5.
 
-The inverse order is:
+The inverse **position-permutation** order (forward position for each original fragment ID) is:
 
 0, 27, 18, 5, 20, 31, 6, 9, 8, 3, 26, 13, 28, 7, 14, 17, 16, 11, 2, 21, 4, 15, 22, 25, 24, 19, 10, 29, 12, 23, 30, 1.
 
@@ -59,7 +59,13 @@ which is a **cyclic rotation by 92 runes** of the 180-rune string p56 followed b
 
 The p56 plaintext fixture is the repository's authentic solved-page regression. The p57 plaintext is taken from the exact rune sequence in [Wulfic's page-74 rune transcription](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/pages/page_74/runes.txt); its GP transliteration preserves the source spelling **TUNNELNG**, rather than silently normalizing it to the README's English rendering “TUNNELING”. Both solved pages are held out from the 12,956-rune unknown-text language test.
 
-This exact tail relation is the strongest result. It supports a cyclic fragment-indexing interpretation, but does not select forward versus inverse orientation: both orders give the same tail restriction.
+This exact tail relation supports a cyclic fragment-indexing interpretation, but cannot distinguish forward order from inverse **position-permutation** order: both give the same tail restriction. Traversing the inverse **recurrence** backward is a different operation, selecting **[30,29,28,31]**, which does not rotate the known solved tail.
+
+### Complete finite-family orientation gate (Agent 10, 11 November 2026)
+
+The [standalone 32-state test](../sims/lp2_lcg32_tail_orientation_sft.cjs) distinguishes inverse **position-permutation** (`order.indexOf(id)`) from walking the inverse **recurrence** (`x ← 13⁻¹(x−31) mod32`). The former reproduces the solved-tail cyclic order **[31,28,29,30]**; the latter yields **[30,29,28,31]**, incompatible with that solved-tail rotation.
+
+Exhausting all **128 full-period 32-state affine clocks** with seed0 (`a≡1 mod4`, odd `b`) finds **18/128** with any cyclic tail order in forward traversal, **22/128** in inverse-position order, **4/128** with the *same cyclic tail order* in both, and only **1/128** with the exact dual order **[31,28,29,30]**: the independently source-suggested `a=13,b=31`. Five rotations of the border pattern `01101` give **[11,13,21,22,26]**; only 13 and 21 satisfy full-period constraints with `b=31`, and the 21/31 candidate fails the cyclic tail check. These are **finite-family counts, not historical-intent probabilities**, given the larger retrospectively searched clue family. This improves the candidate's conditional orientation specification but supplies neither an original cipher inverse nor recovered plaintext.
 
 ## Direct transposition test on the unknown text
 
