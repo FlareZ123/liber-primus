@@ -51,7 +51,7 @@ const p55Sums = pages[55].map(sum);
 assert.deepEqual(p55Sums,[79,222,114,118,306,283,30,596,365,138,108,341,291,88,284,129,159]);
 
 const ref56 = known.split("### 56")[1].split("### 57")[0]
-  .split(/\r?\n\r?\n/u)[0].match(/[A-Z]+/gu);
+  .split(/\r?\n\r?\n/u).slice(0,2).join(" ").match(/[A-Z]+/gu);
 const ref57 = known.split("### 57")[1].match(/[A-Z]+/gu);
 assert.equal(ref56[1],"END");
 assert.equal(ref56[4],"DEEP");
