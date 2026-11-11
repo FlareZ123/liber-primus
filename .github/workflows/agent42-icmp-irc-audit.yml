@@ -1,0 +1,50 @@
+name: Agent42 2013 ICMP IRC source audit
+
+on:
+  push:
+    branches:
+      - agent42-icmp-irc-audit-20261111
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fetch and scan pinned 2013 IRC log
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, re, urllib.request
+          url = "https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%2333012013.freenode.log"
+          data = urllib.request.urlopen(url, timeout=60).read()
+          print("bytes:", len(data))
+          print("sha256:", hashlib.sha256(data).hexdigest())
+          text = data.decode("utf-8", errors="replace")
+          lines = text.splitlines()
+          print("lines:", len(lines))
+          print("first:", lines[0][:300] if lines else "")
+          print("last:", lines[-1][:300] if lines else "")
+          patterns = {
+              "host": r"li498-122|li528-4",
+              "onion": r"pklmx2eeh6fjt7zf",
+              "icmp": r"icmp|echo request|echo reply",
+              "hint": r"knock on the sky|sky and listen",
+              "ping-chat": r"\\bping(?:ing|ed)?\\b",
+              "second-onion": r"second onion|onion 2|tor 2"
+          }
+          for name, pattern in patterns.items():
+              hits = []
+              rx = re.compile(pattern, re.I)
+              for n, line in enumerate(lines, 1):
+                  if rx.search(line):
+                      if name == "ping-chat" and re.search(r"ping timeout|\\bping[!?:]?$", line, re.I):
+                          continue
+                      hits.append((n, line[:700]))
+              print(f"\n[{name}] count={len(hits)}")
+              for n, line in hits[:80]:
+                  print(f"{n}: {line}")
+          PY
