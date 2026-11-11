@@ -461,7 +461,14 @@ def main():
                                     "correct": sum(a == b for a, b in zip(line, predicted)),
                                     "red_correct": line_red_correct, "red_total": line_red_total,
                                     "black_correct": line_black_correct, "black_total": line_black_total,
-                                    "skipped_components": skipped_components})
+                                    "skipped_components": skipped_components,
+                                    "skipped_component_records": [
+                                        {"index": i, "box": row[i][1],
+                                         "width": row[i][1][2] - row[i][1][0],
+                                         "height": row[i][1][3] - row[i][1][1],
+                                         "area": int(row[i][0].sum())}
+                                        for i in skipped_components if i < len(row)
+                                    ]})
             control_crops.extend(g["crop"] for g in groups)
             control_labels.extend(line)
     control_correct = sum(r["correct"] for r in control_results)
@@ -579,6 +586,8 @@ def main():
                         "red_span_start": red_span["start"],
                         "red_span_offset": page_local_offset - red_span["start"],
                         "red_span_length": red_span["length"],
+                        "line_skipped_components": skipped_components,
+                        "red_alignment_status": "manual-review-required" if skipped_components else "no-skips",
                         "box": group["box"]
                     })
                 if want != got:
@@ -614,7 +623,15 @@ def main():
                 exact_nodrop_correct += len(expected) - len(line_mismatches)
             page_record["lines"].append({
                 "line": li, "expected": len(expected), "detected": len(row),
-                "skipped_components": skipped_components, "segmentation_cost": seg_cost,
+                "skipped_components": skipped_components,
+                "skipped_component_records": [
+                    {"index": i, "box": row[i][1],
+                     "width": row[i][1][2] - row[i][1][0],
+                     "height": row[i][1][3] - row[i][1][1],
+                     "area": int(row[i][0].sum())}
+                    for i in skipped_components if i < len(row)
+                ],
+                "segmentation_cost": seg_cost,
                 "mismatches": line_mismatches,
                 "status": "audited" if not line_mismatches else "candidate_disagreement",
             })
