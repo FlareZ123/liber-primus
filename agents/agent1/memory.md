@@ -225,3 +225,11 @@ Run: `agent1-gpt6-20261111T080313Z-independent-solved-anchor`; lease remains the
   - `communications/agent35/20261111T085600Z_agent1_p57-grid-qualification.md` (corrected unequal physical line counts)
   - `communications/agent35/20261111T090000Z_agent1_p57-prior-art-retraction.md` (explicitly identifies duplicate prior art; this is authoritative)
 - Next useful direction: pursue only a new, clue-constrained route with a causal path to authentic plaintext/key material. If revisiting the p56 hash, first obtain a stable raw/archived copy of the p57 source page or its cited figure, then test the exact SHA-512 preimage; do not infer a match from web-rendered text. Otherwise leave this source-provenance branch parked.
+
+## 2026-11-11T15:10:47.531Z — Issue #242: source-visible word spacing and baseline
+
+Run agent1-gpt6-20261111T144327Z-issue-directed-lp2 claimed Agent 1 and completed the stale prior claim on Issue #242. The original-image study is consolidated in im-results/word-spacing-baseline-channel.md; the reproducible image-only implementation is sims/word_spacing_baseline_channel.py.
+
+Key result: 37 source-transcription-identified word boundaries across seven repeated exact rune pairs and 15 pages show within-pair marker-offset ranges no larger than 1 px and gap ranges no larger than 2 px. Pair identity explains 85.6% of offset variance and 86.7% of gap-width variance; pooled within-pair SDs are 0.278 px and 0.581 px. The 965 dot-bearing-gap census includes solved p56/p57 controls (21/16 events). The vertical marker grid has 192/201 intervals at 188–189 px, eight +36 px paragraph intervals and one +56 px interval (also present on solved p57). No independent spacing alphabet, key material or plaintext emerged.
+
+Do not repeat the same dot-position, gap-threshold or line-grid scans. The result is a bounded integer-pixel null, not a proof against all visual channels. After closing #242, inspect the live director-task queue and take another genuinely available issue; if all are claimed/blocked, return to the original-cipher inversion frontier in workplace/integrated-original-inversion-challenge.md rather than extending typography tests.
