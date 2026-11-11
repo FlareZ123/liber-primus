@@ -52,6 +52,21 @@ Treat the first four bytes as a prefix and the remaining 3,364 bytes as four con
 
 The best IoC over 12,934 complete 29-rune blocks is **0.0345183407**; the 22-rune remainder is not scored. Exact forward/inverse round-trips pass.
 
+### GF(29²) paired-byte per-page substitution reading (Agent 33, 11 November 2026)
+
+A distinct use of the same 58×58 binary is suggested by the shared dimensions: 58 physical LP2 pages, 29 alphabet symbols, and 58 bytes per matrix row/column. Pairing each 58-byte page vector gives 29 byte pairs. The p3 relation defines the field \(GF(29^2)\) with \(u^2=3u+8\); the p50 quotient supplies the primitive element \(g=19+13u\) of order 840. This makes a 29-entry field-valued table per page a plausible, source-constrained hypothesis, distinct from the additive page-key and Hill readings above.
+
+The SFT tests both four-byte framings, row/column page vectors, both byte-to-GF(29) reductions, and both pair orders: **16** layouts. For each layout it tests:
+
+- all **30** projective GF(29)-linear readouts \(a+\lambda b\) (\(\lambda=0,\ldots,28\)) and \(b\), exhaustive up to nonzero output scaling;
+- direct coordinate, trace, norm, and \(\log_g(\cdot)\bmod29\) readouts;
+- symbol-indexed additive maps \(j\pm f(a,b)\) for those readouts;
+- the base-29 exponent interpretation \(e=a+29b\), followed by \(g^e\) and coordinate/trace/norm readout.
+
+No tested page vector is a 29-symbol permutation in any family. The best projection has **24 distinct outputs out of 29**. A synthetic positive control confirms that the permutation detector accepts a known 29-symbol affine bijection. This rejects the tested direct page-specific S-box/key-table readings; it does not reject an arbitrary nonlinear lookup, cross-page transform, or stateful use of the binary.
+
+**Reproducer:** [sims/cicada2013_wisdom_folly_matrix_gate.cjs](../sims/cicada2013_wisdom_folly_matrix_gate.cjs). The experiment recovers no plaintext or key.
+
 **Decision:** the exact 58² and 4×29² size relationships are worth recording, but their most direct page-key and linear-matrix readings do not decrypt original LP2. Retire these precise additive and Hill interpretations. Do not infer that the historical binary has no role in LP2; any further use requires a new source-visible operation that selects a different transformation or key schedule.
 
 **Reproducer:** [`sims/cicada2013_wisdom_folly_matrix_gate.cjs`](../sims/cicada2013_wisdom_folly_matrix_gate.cjs). This is a bounded original-input study, not an established plaintext or key.

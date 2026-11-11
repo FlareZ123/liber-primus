@@ -3,7 +3,7 @@
  * Source-constrained matrix readings of the 2013 Cicada OS wisdom/folly
  * binary against original LP2. Tests only exact 58^2 and 4*29^2
  * factorizations, natural row/column orders, byte reductions, and
- * reversible additive/Hill operations. No key or plaintext is claimed.
+ * reversible additive/Hill operations, plus GF(29^2) paired-byte per-page substitution readings. No key or plaintext is claimed.
  * Run: node sims/cicada2013_wisdom_folly_matrix_gate.cjs
  */
 const assert = require('node:assert/strict');
@@ -137,6 +137,135 @@ for (const reduction of ['mod29', 'scaled29']) for (const layout of ['row', 'col
 assert.equal(four29Results.length, 16);
 four29Results.sort((a, b) => b.ioc - a.ioc);
 assert.ok(four29Results[0].ioc < 0.038);
+
+function gf29SqMul(x, y) {
+  const [a, b] = x, [c, d] = y;
+  return [mod(a * c + 8 * b * d, 29), mod(a * d + b * c + 3 * b * d, 29)];
+}
+function gf29SqPow(x, exponent) {
+  let result = [1, 0], base = x, n = exponent;
+  while (n > 0) {
+    if (n & 1) result = gf29SqMul(result, base);
+    base = gf29SqMul(base, base);
+    n = Math.floor(n / 2);
+  }
+  return result;
+}
+const gfPrimitive = [19, 13]; // p50 quotient representative 19 + 13u, u^2 = 3u + 8
+const gfLogs = new Map();
+let gfPower = [1, 0];
+for (let exponent = 0; exponent < 840; exponent++) {
+  const key = gfPower.join(',');
+  assert.ok(!gfLogs.has(key));
+  gfLogs.set(key, exponent);
+  gfPower = gf29SqMul(gfPower, gfPrimitive);
+}
+assert.deepEqual(gfPower, [1, 0]);
+assert.equal(gfLogs.size, 840);
+const fieldProjections = {
+  a: ([a]) => a,
+  b: ([a, b]) => b,
+  trace: ([a, b]) => mod(2 * a + 3 * b, 29),
+  norm: ([a, b]) => mod(a * a + 3 * a * b + 21 * b * b, 29),
+  logGMod29: pair => {
+    const exponent = gfLogs.get(pair.join(','));
+    return exponent === undefined ? null : exponent % 29;
+  }
+};
+function scorePageMaps(vectors, maps) {
+  return maps.map(({name, fn}) => {
+    const scores = vectors.map(vector => {
+      const values = vector.map((pair, j) => fn(pair, j));
+      const valid = values.filter(value => value !== null && value !== undefined);
+      return {unique: new Set(valid).size, complete: values.every(value => value !== null && value !== undefined)};
+    });
+    return {
+      name,
+      pagesPermutation: scores.filter(score => score.complete && score.unique === 29).length,
+      maxUnique: Math.max(...scores.map(score => score.unique))
+    };
+  });
+}
+const fieldPairResults = [];
+for (const offset of [0, 4]) for (const layout of ['row', 'col'])
+  for (const reduction of ['mod29', 'scaled29']) for (const reversePair of [false, true]) {
+    const M = matrixFromBytes(source, offset, 58, reduction, layout);
+    const vectors = M.map(row => Array.from({length: 29}, (_, j) => {
+      const a = row[2 * j], b = row[2 * j + 1];
+      return reversePair ? [b, a] : [a, b];
+    }));
+    const linearMaps = Array.from({length: 29}, (_, lambda) => ({
+      name: 'a+' + lambda + 'b',
+      fn: ([a, b]) => mod(a + lambda * b, 29)
+    })).concat([{name: 'b', fn: ([a, b]) => b}]);
+    const directMaps = Object.entries(fieldProjections).map(([name, fn]) => ({name, fn}));
+    const indexedMaps = Object.entries(fieldProjections).flatMap(([name, fn]) =>
+      [-1, 1].map(sign => ({
+        name: name + (sign > 0 ? '_j_plus' : '_j_minus'),
+        fn: (pair, j) => {
+          const key = fn(pair);
+          return key === null ? null : mod(j + sign * key, 29);
+        }
+      })));
+    const exponentVectors = vectors.map(vector =>
+      vector.map(([a, b]) => gf29SqPow(gfPrimitive, a + 29 * b)));
+    const exponentMaps = ['a', 'b', 'trace', 'norm'].map(name => ({
+      name,
+      fn: fieldProjections[name]
+    }));
+    fieldPairResults.push({
+      offset,
+      frame: offset === 4 ? 'four-byte-prefix' : 'four-byte-trailer',
+      layout,
+      reduction,
+      pairOrder: reversePair ? 'ba' : 'ab',
+      linear: scorePageMaps(vectors, linearMaps),
+      direct: scorePageMaps(vectors, directMaps),
+      indexedAdditive: scorePageMaps(vectors, indexedMaps),
+      base29Exponent: scorePageMaps(exponentVectors, exponentMaps)
+    });
+  }
+assert.equal(fieldPairResults.length, 16);
+function summarizeFieldFamily(name) {
+  const maps = fieldPairResults.flatMap(result => result[name]);
+  return {
+    maps: maps.length,
+    mapsWithAnyPagePermutation: maps.filter(result => result.pagesPermutation > 0).length,
+    pagePermutationHits: maps.reduce((sum, result) => sum + result.pagesPermutation, 0),
+    maxDistinctPerPage: Math.max(...maps.map(result => result.maxUnique))
+  };
+}
+const fieldPairSbox = {
+  field: {polynomial: 'u^2 = 3u + 8', primitive: '19 + 13u', primitiveOrder: gfLogs.size},
+  configurations: fieldPairResults.map(result => ({
+    frame: result.frame,
+    layout: result.layout,
+    reduction: result.reduction,
+    pairOrder: result.pairOrder,
+    linearMaxUnique: Math.max(...result.linear.map(x => x.maxUnique)),
+    directMaxUnique: Math.max(...result.direct.map(x => x.maxUnique)),
+    indexedAdditiveMaxUnique: Math.max(...result.indexedAdditive.map(x => x.maxUnique)),
+    base29ExponentMaxUnique: Math.max(...result.base29Exponent.map(x => x.maxUnique))
+  })),
+  linearProjections: summarizeFieldFamily('linear'),
+  directFieldProjections: summarizeFieldFamily('direct'),
+  symbolIndexedAdditive: summarizeFieldFamily('indexedAdditive'),
+  base29ExponentProjections: summarizeFieldFamily('base29Exponent'),
+  positiveControl: (() => {
+    const pairs = Array.from({length: 29}, (_, j) => [j, 7]);
+    const direct = scorePageMaps([pairs], [{name: 'control', fn: ([a, b]) => mod(a + 7 * b, 29)}])[0];
+    const indexed = scorePageMaps([pairs], [{name: 'control', fn: (pair, j) => mod(j + 7, 29)}])[0];
+    assert.equal(direct.pagesPermutation, 1);
+    assert.equal(indexed.pagesPermutation, 1);
+    return {directProjectionDetected: direct.pagesPermutation === 1, indexedAdditiveDetected: indexed.pagesPermutation === 1};
+  })()
+};
+for (const family of ['linearProjections', 'directFieldProjections', 'symbolIndexedAdditive', 'base29ExponentProjections']) {
+  assert.equal(fieldPairSbox[family].mapsWithAnyPagePermutation, 0);
+  assert.equal(fieldPairSbox[family].pagePermutationHits, 0);
+  assert.equal(fieldPairSbox[family].maxDistinctPerPage, 24);
+}
+
 console.log(JSON.stringify({
   source: {length: source.length, sha1GitBlob: '62b1b949a1e4e4a346e75b1c34101000d3c53220',
     sha256: crypto.createHash('sha256').update(source).digest('hex'),
@@ -146,6 +275,8 @@ console.log(JSON.stringify({
     bestLocalPageAtLeast140: pageKeyLocal[0], all: pageKeyResults},
   hill58: {invertibleVariants: hill58Valid.length, best: hill58Valid[0], all: hill58Results},
   four29HillRounds: {variants: four29Results.length, best: four29Results[0], all: four29Results},
-  decision: 'The tested direct page-key and linear Hill readings remain ciphertext-like. ' +
-    'No LP2 plaintext or authentic key is recovered. Other source-selected roles for the binary remain open.'
+  fieldPairSbox,
+  decision: 'The tested direct page-key, linear Hill, and GF(29^2) per-page substitution readings do not decrypt original LP2. ' +
+    'The paired-byte table fails to produce a 29-symbol bijection under the bounded projections tested. ' +
+    'No LP2 plaintext or authentic key is recovered. Other source-selected inter-page or stateful roles for the binary remain open.'
 }, null, 2));
