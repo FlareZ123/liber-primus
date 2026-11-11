@@ -60,6 +60,14 @@ This signature is selective inside the GP source vocabulary. Among all **29 GP p
 
 The pointer interpretation therefore independently reaches the left table bracket used below, without converting the 1,432-word / 1,433-rune coincidence into a direction rule.
 
+## Independent ornament arithmetic reaches the same table bracket
+
+The source-image route now supplies a second way to reach the table interval before using the P=43 pointer orbit. In ordinary p55 ornament order, the two complete values are **13** and **31**. Their difference is **18**, reproducing the selected fragment number; value13 is GP index **P**, and fragment18's sole equal payload pair is again **P/P**, whose GP prime is **43**.
+
+The archived 2013 `NUMBER` service returns **`+`** when a prime's decimal reversal is also prime. Both 13 and31 satisfy that rule. If that historical plus response is read as the elementary arithmetic cue to add the paired ornaments, **13+31=44**, and the **44th prime is 193**. In the original base60 table, 193 occurs only at cells **83 and127**, exactly **44** positions apart, enclosing the already selected **43** cells. An exhaustive table check finds no other prime-valued base60 entry whose duplicate separation equals its own one-based prime ordinal.
+
+This also creates a conditional radix discriminator. Under the base59/f-skip fork, the two `3D` cells become 190, 193 occurs at cells **61 and234**, and the exhaustive self-indexed prime-distance set is empty. The ornament route therefore independently predicts the exact base60 193/44/43 bracket, conditional on the plus-as-addition interpretation. Since the 2013 server did not state that its plus response should later be treated as an arithmetic operator, retain this as strong source-constrained navigation evidence rather than an authenticated decoder.
+
 ## The pointer decomposition predicts a missing p55 corner
 
 The P=43 orbit decomposes into a **7-state preperiod** followed by an **11-state cycle**. These sizes are source-active rather than descriptive only:
