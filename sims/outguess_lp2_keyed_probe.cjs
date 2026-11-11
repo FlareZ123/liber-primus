@@ -104,7 +104,11 @@ function main(){
             key,page,status:proc.status,signal:proc.signal||null,
             seed:header?Number(header[1]):null,
             headerLength:header?Number(header[2]):null,
-            bytes:n,headerConsistent,sha256:SHA(bytes),rawFile:rawName
+            bytes:n,headerConsistent,sha256:SHA(bytes),rawFile:rawName,
+            first32Hex:bytes.subarray(0,32).toString("hex"),
+            last32Hex:bytes.subarray(Math.max(0,n-32)).toString("hex"),
+            printableFraction:Number((bytes.reduce((sum,b)=>sum+Number(b===9||b===10||b===13||(b>=32&&b<=126)),0)/n).toFixed(6)),
+            shannonBitsPerByte:(()=>{const counts=new Uint32Array(256);for(const b of bytes)counts[b]++;let h=0;for(const count of counts){if(count){const p=count/n;h-=p*Math.log2(p);}}return Number(h.toFixed(6));})()
           });
         }
         if(headerConsistent){
@@ -140,6 +144,9 @@ function main(){
     const staging=target+".incomplete";
     fs.writeFileSync(staging,JSON.stringify(report,null,2)+"\n");
     fs.renameSync(staging,target);
+    if(process.env.LP2_OUTGUESS_PASSWORD)
+      for(const candidate of report.rawCandidates)
+        console.log("OUTGUESS_KEYED_RAW "+JSON.stringify(candidate));
     console.log("OUTGUESS_KEYED_COMPLETE "+JSON.stringify({
       attempts:report.attempts,matchedHeaders:report.headerMatches,
       recognisable:report.plausible.length,rawCandidates:report.rawCandidates.length,
