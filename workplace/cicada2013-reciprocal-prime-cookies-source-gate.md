@@ -29,7 +29,7 @@ Test five declared, fully reversible bytewise **XOR** registrations on all **256
 
 The raw original table contains **103/256 printable ASCII bytes**. The five source-aligned original-table outputs contain **[90, 104, 84, 110, 89]** printable ASCII bytes in the declared order. **None** contains even a run of five consecutive ASCII alphabetic bytes. Each model exactly reverses to the complete **256/256** printed original bytes when the identical XOR is applied twice. Thus none of these precise, inexpensive cookie-to-table interpretations exposes a directly encoded ASCII table plaintext. This does not reject deeper encryption, non-ASCII encodings, different key uses, or the putative historical meaning of the cookies.
 
-The same [standalone SFT](../sims/cicada2013_reverse_prime_cookies_p56_sft.cjs) reproduces all five layouts and their exact round trips against the committed original table. No unknown GP-rune plaintext or independently authenticated key results.
+The same [standalone SFT](../sims/cicada2013_reverse_prime_cookies_p56_sft.cjs) reproduces all 16 digest comparisons plus the five table layouts and their exact original-byte round trips. All ran successfully in [manual original-input GitHub Actions run 42982537587](https://github.com/FlareZ123/liber-primus/actions/runs/42982537587). No unknown GP-rune plaintext or independently authenticated key results.
 
 ## Research decision
 
