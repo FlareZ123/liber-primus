@@ -164,6 +164,43 @@ These six keys are **not recovered cipher keys**. Four of their state paths have
 
 **Decision and limit:** The original ciphertext excludes the whole five-secret-parameter affine observation family and every single shared stationary nonlinear field-to-GP29 output map under the stated source-forced trajectory. The independently source-selected Ac24 two-ink nonlinear lookup also fails, and the fixed additive-key inverse stays ciphertext-like. It does **not** exclude an unknown plaintext combined with the register, nonlinear state updates, separate ink-dependent output maps with unconstrained seeds, changing output tables over time, or a different interpretation of the 127 terminal runes. The 127-rune grouping and the choice of a field recurrence are candidate mechanisms, not authenticated historical instructions. [Executable single-file test](../sims/red_triad_terminal_linear_state_allsecret_sft.cjs) · [successful manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42927189771).
 
+## Reversible 127-rune GF841 trace projection with all possible field offsets (Agent 10)
+
+**Distinct original-input cipher hypothesis, 11 November 2026.** The 254 coefficients left by exact polynomial division of the 256 source bytes by the marked `(X−24)²` form **127** field elements `Q_i` in GF29², using adjacent pairs or the two 127-coefficient halves. The source-visible p3 primitive element `u` (order840) and independently derived source root `z=23+27u` provide two frozen possible multiplying clocks `G_i = u^i` or `z^i`. The red-terminal original passage is **p53's last 51 red runes plus p55's 76 runes**. The grouping is a candidate mechanism, not an authenticated reading instruction.
+
+One natural field→GP29 cipher is a trace projection of a plaintext rune embedded in the base field. Test the **fully reversible** output rule
+
+```text
+C[i] = Tr(G[i] · (Q[i] + W + (P[i], 0))) mod 29,
+G[i] := G[i] · u when Tr(G[i]) = 0
+```
+
+where `W` is **any of all 841 possible secret GF29² offsets**, and `Tr(a+bu)=2a+3b mod29`. The fallback rotates only at the source-forced zero-trace phases **[15,45,75,105]**, avoiding loss of a plaintext GP symbol. It is independently defined from the field basis, with no output-dependent rephasing or fitted plaintext. For each original ciphertext rune the inverse is unique because `Tr(G[i]) ≠ 0` after fallback. These clocks/pairings yield four bounded source configurations.
+
+An Emerson-native GP29 trigram model was frozen independently of LP2 (324,630 training runes); **496** nonoverlapping Gibran-native GP control windows of exactly 127 runes score between **−8.57408** and approximately **−7.37236** nats/rune. Each configuration tested all **841** secret offsets against the **same unchanged original 127-runic ciphertext**:
+
+| Field clock | Quotient pairing | Best original trigram nats/rune | Original best `W` | Models matching even the lowest native reference |
+| --- | --- | ---: | --- | ---: |
+| `u^i` | Adjacent | **−12.66663** | [18,19] | **0/841** |
+| `u^i` | Halves | **−12.56459** | [0,20] | **0/841** |
+| `z^i` | Adjacent | **−12.55668** | [24,28] | **0/841** |
+| `z^i` | Halves | **−12.72389** | [11,16] | **0/841** |
+
+The historical Rad/Ac seed **[4,24]** also fails in every configuration, with scores from **−14.31906** to **−13.34015**. Under each of the four rules, a real 127-rune Gibran-native GP test message was encrypted with the same source quotient and [4,24] and decrypted **127/127 exactly**, while a wrong seed gives different plaintext. Thus the original's failure is a source-language result and a fully reversible original cipher check, not a codepath that cannot invert.
+
+**Stronger necessary-condition obstruction for the non-fallback trace law.** If the exceptional four positions retain `G_i` without the fallback, their base-field coefficient `Tr(G_i)` is zero, so any secret initial offset `W=(w_0,w_1)` would have to satisfy four equations that individually fix the *same* `w_1`. The original forces incompatible values:
+
+| Generator | Adjacent 4 forced `w_1` | Halves 4 forced `w_1` |
+| --- | --- | --- |
+| `u` | 9,22,25,12 | 12,22,12,8 |
+| `z` | 17,4,0,12 | 20,4,16,8 |
+
+So **none of the 841 unknown seeds** can directly generate this original 127-symbol target with `P_i` embedded in the base field and the unmodified trace clock, even allowing arbitrary plaintext there. The repaired reversible-clock variant removes that obstruction but remains utterly unlike native-GP language under all 3,364 scored models.
+
+**Decision:** this exact trace-projection family is negative for original recognizable GP prose. It cannot exclude a terminal channel that encodes binary key material, another GP embedding/projection, a changing field offset, or a source-specified non-language register. It does not establish that the 127 positions are plaintext or that the creator intended a trace cipher.
+
+[Standalone reversible CommonJS source-original test](../sims/lp2_red_terminal_127_trace_projection_sft.cjs) · [successful manual Node22 CI 42930840224](https://github.com/FlareZ123/liber-primus/actions/runs/42930840224).
+
 ## Interpretation and open mechanism
 
 The byte gate and separate all-secret terminal-register test are finite exclusions under different source interpretations. The static-offset byte gate excludes canonical one-byte-per-two-runes encoding under the two tested row multiplier rules. The independent evolving-state gate excludes the same canonical transport and every row-rotated consecutive 256-exponent codebook under each of two quotient-multiplier feedback laws, **even allowing all 841 unknown states per row**. It **cannot** exclude reduction modulo 256, arbitrary alternative 256-codepoint subsets, homophonic/noncanonical byte encodings, hidden within-row state, variable-rate coding, different grid orientations, or another selection of start/boundary. The public-state test is likewise a negative for one recurrence, not for GF841 altogether.
