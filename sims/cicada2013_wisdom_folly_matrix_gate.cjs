@@ -207,11 +207,23 @@ for (const offset of [0, 4]) for (const layout of ['row', 'col'])
           return key === null ? null : mod(j + sign * key, 29);
         }
       })));
+
+    const multiplicativeMaps = Object.entries(fieldProjections).map(([name, fn]) => ({
+      name,
+      fn: (pair, j) => {
+        const key = fn(pair);
+        return key === null ? null : mod(j * key, 29);
+      }
+    }));
     const exponentVectors = vectors.map(vector =>
       vector.map(([a, b]) => gf29SqPow(gfPrimitive, a + 29 * b)));
     const exponentMaps = ['a', 'b', 'trace', 'norm'].map(name => ({
       name,
       fn: fieldProjections[name]
+    }));
+    const exponentMultiplicativeMaps = exponentMaps.map(({name, fn}) => ({
+      name,
+      fn: (pair, j) => mod(j * fn(pair), 29)
     }));
     fieldPairResults.push({
       offset,
@@ -222,7 +234,9 @@ for (const offset of [0, 4]) for (const layout of ['row', 'col'])
       linear: scorePageMaps(vectors, linearMaps),
       direct: scorePageMaps(vectors, directMaps),
       indexedAdditive: scorePageMaps(vectors, indexedMaps),
-      base29Exponent: scorePageMaps(exponentVectors, exponentMaps)
+      indexedMultiplicative: scorePageMaps(vectors, multiplicativeMaps),
+      base29Exponent: scorePageMaps(exponentVectors, exponentMaps),
+      base29ExponentMultiplicative: scorePageMaps(exponentVectors, exponentMultiplicativeMaps)
     });
   }
 assert.equal(fieldPairResults.length, 16);
@@ -245,22 +259,28 @@ const fieldPairSbox = {
     linearMaxUnique: Math.max(...result.linear.map(x => x.maxUnique)),
     directMaxUnique: Math.max(...result.direct.map(x => x.maxUnique)),
     indexedAdditiveMaxUnique: Math.max(...result.indexedAdditive.map(x => x.maxUnique)),
-    base29ExponentMaxUnique: Math.max(...result.base29Exponent.map(x => x.maxUnique))
+    indexedMultiplicativeMaxUnique: Math.max(...result.indexedMultiplicative.map(x => x.maxUnique)),
+    base29ExponentMaxUnique: Math.max(...result.base29Exponent.map(x => x.maxUnique)),
+    base29ExponentMultiplicativeMaxUnique: Math.max(...result.base29ExponentMultiplicative.map(x => x.maxUnique))
   })),
   linearProjections: summarizeFieldFamily('linear'),
   directFieldProjections: summarizeFieldFamily('direct'),
   symbolIndexedAdditive: summarizeFieldFamily('indexedAdditive'),
+  symbolIndexedMultiplicative: summarizeFieldFamily('indexedMultiplicative'),
   base29ExponentProjections: summarizeFieldFamily('base29Exponent'),
+  base29ExponentMultiplicative: summarizeFieldFamily('base29ExponentMultiplicative'),
   positiveControl: (() => {
     const pairs = Array.from({length: 29}, (_, j) => [j, 7]);
     const direct = scorePageMaps([pairs], [{name: 'control', fn: ([a, b]) => mod(a + 7 * b, 29)}])[0];
     const indexed = scorePageMaps([pairs], [{name: 'control', fn: (pair, j) => mod(j + 7, 29)}])[0];
+    const multiplicative = scorePageMaps([pairs], [{name: 'control', fn: (pair, j) => mod(j, 29)}])[0];
     assert.equal(direct.pagesPermutation, 1);
     assert.equal(indexed.pagesPermutation, 1);
-    return {directProjectionDetected: direct.pagesPermutation === 1, indexedAdditiveDetected: indexed.pagesPermutation === 1};
+    assert.equal(multiplicative.pagesPermutation, 1);
+    return {directProjectionDetected: direct.pagesPermutation === 1, indexedAdditiveDetected: indexed.pagesPermutation === 1, indexedMultiplicativeDetected: multiplicative.pagesPermutation === 1};
   })()
 };
-for (const family of ['linearProjections', 'directFieldProjections', 'symbolIndexedAdditive', 'base29ExponentProjections']) {
+for (const family of ['linearProjections', 'directFieldProjections', 'symbolIndexedAdditive', 'symbolIndexedMultiplicative', 'base29ExponentProjections', 'base29ExponentMultiplicative']) {
   assert.equal(fieldPairSbox[family].mapsWithAnyPagePermutation, 0);
   assert.equal(fieldPairSbox[family].pagePermutationHits, 0);
   assert.equal(fieldPairSbox[family].maxDistinctPerPage, 24);

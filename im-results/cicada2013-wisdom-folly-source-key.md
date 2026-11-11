@@ -60,14 +60,14 @@ The SFT tests both four-byte framings, row/column page vectors, both byte-to-GF(
 
 - all **30** projective GF(29)-linear readouts \(a+\lambda b\) (\(\lambda=0,\ldots,28\)) and \(b\), exhaustive up to nonzero output scaling;
 - direct coordinate, trace, norm, and \(\log_g(\cdot)\bmod29\) readouts;
-- symbol-indexed additive maps \(j\pm f(a,b)\) for those readouts;
-- the base-29 exponent interpretation \(e=a+29b\), followed by \(g^e\) and coordinate/trace/norm readout.
+- symbol-indexed additive maps \(j\pm f(a,b)\) and multiplicative maps \(j\cdot f(a,b)\) for those readouts;
+- the base-29 exponent interpretation \(e=a+29b\), followed by \(g^e\) and coordinate/trace/norm readout, including the corresponding symbol-indexed multiplicative maps.
 
-No tested page vector is a 29-symbol permutation in any family. The best projection has **24 distinct outputs out of 29**. A synthetic positive control confirms that the permutation detector accepts a known 29-symbol affine bijection. This rejects the tested direct page-specific S-box/key-table readings; it does not reject an arbitrary nonlinear lookup, cross-page transform, or stateful use of the binary.
+No tested page vector is a 29-symbol permutation in any family. The best projection has **24 distinct outputs out of 29**. A synthetic positive control confirms that the permutation detector accepts a known 29-symbol affine bijection. This rejects the tested direct, additive, and multiplicative page-specific S-box/key-table readings; it does not reject an arbitrary nonlinear lookup, cross-page transform, or stateful use of the binary.
 
 **Reproducer:** [sims/cicada2013_wisdom_folly_matrix_gate.cjs](../sims/cicada2013_wisdom_folly_matrix_gate.cjs). The experiment recovers no plaintext or key.
 
-**Decision:** the exact 58² and 4×29² size relationships are worth recording, but their most direct page-key and linear-matrix readings do not decrypt original LP2. Retire these precise additive and Hill interpretations. Do not infer that the historical binary has no role in LP2; any further use requires a new source-visible operation that selects a different transformation or key schedule.
+**Decision:** the exact 58² and 4×29² size relationships are worth recording, but their direct page-key, linear-matrix, and bounded GF(29²) per-page substitution readings do not decrypt original LP2. Retire these precise additive, Hill, and direct page-S-box interpretations. Do not infer that the historical binary has no role in LP2; any further use requires a new source-visible operation that selects a different inter-page transformation or stateful key schedule.
 
 **Reproducer:** [`sims/cicada2013_wisdom_folly_matrix_gate.cjs`](../sims/cicada2013_wisdom_folly_matrix_gate.cjs). This is a bounded original-input study, not an established plaintext or key.
 
