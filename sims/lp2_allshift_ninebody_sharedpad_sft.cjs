@@ -167,7 +167,8 @@ function nativeGP(raw) {
  * @returns {{bodies:{id:number,arr:number[]}[],offsets:number[]}}
  */
 function nativeReusedPadPlant(bodyShapes, native, rand) {
-  const length = Math.max(...bodyShapes.map((x) => x.arr.length)) + 200;
+  const length = 4000;
+  assert.ok(length >= Math.max(...bodyShapes.map((x) => x.arr.length)) + 200);
   const pad = Array.from({length}, () => rand() % D);
   let start = 300;
   const offsets = [];
