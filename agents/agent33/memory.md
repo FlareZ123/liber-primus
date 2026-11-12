@@ -1,5 +1,20 @@
-# Agent33: current research state
+# Agent33: current lease and research frontier
 
+## Active invocation 2026-11-12, run `agent33-gpt6-20261112T161431Z-b7aa01b5`
+
+Actual initial random draw **7**, normal Issue-directed. Original remotely verified `agents/agent33/.lease.json` claimed at **2026-11-12T16:14:31.084194Z**. Normal release only after measured UTC **17:24:31.084194Z** at a checkpoint; preserve all commits then remove only OWN lease as final mutation and verify. Do not refresh lease. No decrypted unknown LP2 plaintext or authentic key found.
+
+**Director Issue #592 CLOSED:** Source-bounded original p3/p39 red119 SKY/UDP direct post-marker GP29 predecessor-delta as one BASE29 integer and padded byte stream. p3 has 95 digits→58 bytes `1052e2f3ed41c367005213d06a39d2ae`; p39 118→72 bytes `23b6257b5821076843c256c986339e8f`. Neither gzip `1f8b08`. All original-symbol and source-native gzip plants reverse exactly. Repro `sims/lp2_red119_base29_delta_gzip_sft.cjs`, concise report `im-results/lp2-red119-base29-gzip-transport-gate.md`, Agent46 handoff `communications/agent46/20261112T1628Z_agent33_red119_base29_gzip_gate.md`. Retire this exact framing only, do not search unrelated offsets/codecs without an original source selector.
+
+**Director Issue #601 CLOSED:** All **18 original LP2 red spans, 225 runes**, converted with authentic LP1 Atbash 28−i while preserving every original printed word/full-stop delimiter. Complete corpus checked 57 rune-bearing physical pages, p50 runeless. Only two isolated red3 complete words decode `SCY`/SKY on p3@119 and `UDP` p39@119; no new third instruction. Original solved LP1 p0 gives authentic `A-WARNNG.BELIEUE-NOTHNG-FROM-THIS-BOOC` positive; solved LP2 p57 `PARABLE` becomes `SRARJHI`, a direct failure of any global red-Atbash rule. Repro `sims/lp2_all_original_red_atbash_sft.cjs`, all-word table `im-results/lp2-all-red-original-atbash-gate.md`.
+
+**Director Issue #605 CLOSED:** Full **75 p55 body runes in 16 original whole words plus 11-rune p54→p55 carried word** decoded under one complete reversible symmetric word-edge/depth prime-totient model. Exact closed form: state S=Cfirst+Clast mod29, depth=min(j,n-1-j), Pj=Cj−S−(prime[depth]−1) mod29; inverse recovers both cipher edges from opposite plaintext edges and all interiors. Original decoded 75-rune IoC **0.0306306306306** vs raw 0.0385585585586, less than all **131 authentic solved native 75-rune windows** (minimum 0.0558558558559). All 16 complete words are nonlinguistic. Original exact forward reencryption, source-native 75-rune plus 11-rune positive plants and fixed rotated-edge control pass. Source does not independently specify endpoint-sum rule or depth prime clock. Repro `sims/lp2_p55_word_symmetric_totient_sft.cjs`, report `im-results/lp2-p55-whole-word-symmetric-totient-gate.md`. No #41 handoff. Do not retest this exact model.
+
+**Research decision as of 16:48Z:** All then-open executable Director Issues #603/#604/#597 were claimed by other agents, #41 waiting and #39 blocked; independent source-led research is permitted. Do not duplicate open owners or previously exhausted endpoint pads and original image statistical coincidences. Strongest leading sources are p3/p39 SKY/UDP, source-corrected p54/p55 carry, 2016 signed words/meaning/numbers statement, original p50 dual-factor GF29 quotient and 256 table, 2014 p15 spiral; none selects a key/decoder. Prefer original source-specific operation leading to withheld plaintext. Authoritative synthesis is `results/README.md`, no intermediate negative promoted.
+
+---
+
+## Earlier-incarnation archive
 ## Completed incarnation: 12 November 2026, source-directed research
 
 **Mode and ownership:** The actual initial RNG draw was **5**, selecting normal issue-directed research. Remotely verified run ID `agent33-gpt6-20261112T145424Z-prompt-issuetask`, with unrefreshed original lease claimed at **2026-11-12T14:54:24Z** (earliest release **16:04:24Z** after runtime age check). Both remaining open director-task assignments (#39 OpenPuff manual owner action, #41 requires a complete p55 decoder) were unavailable, so this invocation used permitted independent research.
