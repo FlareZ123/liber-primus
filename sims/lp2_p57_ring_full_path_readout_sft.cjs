@@ -148,6 +148,35 @@ assert.equal(baselineRoute.missing.length, 8);
 assert.deepEqual(baselineRoute.missing,
   [9, 78, 89, 90, 100, 101, 108, 118]);
 
+
+// Counterexamples to the two most consequential selector conventions.
+const oneBasedBytes = addresses.map(address => grid.bytes[address - 1]);
+assert.deepEqual(oneBasedBytes, [68, 166, 251, 179]);
+const oneBasedRoute = walkEveryCell(oneBasedBytes);
+assert.equal(oneBasedRoute.end, 99);
+assert.equal(oneBasedRoute.segments[3].distance, 22);
+
+const p32MapPerimeters = [40, 32, 24, 16, 8];
+const p32MapTotients = p32MapPerimeters.map(totient);
+const p32MapRingPositions = p32MapTotients.slice().reverse();
+assert.deepEqual(p32MapTotients, [16, 16, 8, 8, 4]);
+assert.deepEqual(p32MapRingPositions, [4, 8, 8, 16, 16]);
+function deriveWordRoute(wordPositions) {
+  const selectedWords = wordPositions.map(position => wordData[position - 1]);
+  const wordSums = selectedWords.map(item => item.primeSum);
+  const bytes = wordSums.map(address => grid.bytes[address]);
+  return { positions: wordPositions, words: selectedWords.map(x => x.word),
+    wordSums, bytes, route: walkEveryCell(bytes) };
+}
+const p32MapRingRoute = deriveWordRoute(p32MapRingPositions);
+const p32MapRingUniquePositions = [...new Set(p32MapRingPositions)];
+const p32MapRingUniqueRoute = deriveWordRoute(p32MapRingUniquePositions);
+assert.deepEqual(p32MapRingRoute.wordSums, [224, 72, 72, 179, 179]);
+assert.deepEqual(p32MapRingRoute.bytes, [68, 164, 164, 175, 175]);
+assert.equal(p32MapRingRoute.route.end, 101);
+assert.deepEqual(p32MapRingUniqueRoute.wordSums, [224, 72, 179]);
+assert.equal(p32MapRingUniqueRoute.route.end, 111);
+
 // Exploratory, non-source-backed check: use the eight unvisited GP runes as
 // a repeating additive/subtractive key on the 113 first-visit runes.
 function ioc(values) {
@@ -263,6 +292,31 @@ const output = {
     firstFiveRunes: ringRoute.fullTokens.slice(0, 5).join(""),
     fullPathRunes: ringRoute.fullTokens.join(""),
     uniqueFirstVisitRunes: ringRoute.uniqueTokens.join("")
+  },
+  addressConventionAlternative: {
+    oneBasedBytes,
+    endpoints: oneBasedRoute.endpoints,
+    endpointRunes: oneBasedRoute.endpoints.map(i => corpus.translit[p32[i]]),
+    finalCell: oneBasedRoute.end,
+    finalRune: corpus.translit[p32[oneBasedRoute.end]],
+    lastMoveDistance: oneBasedRoute.segments[3].distance,
+    interpretation: "The 1-based alternative ends at EA; its last 22-step SE move is a full two-row/column cycles and leaves the position unchanged."
+  },
+  p32MapRingAlternative: {
+    perimetersOuterToInner: p32MapPerimeters,
+    totientsOuterToInner: p32MapTotients,
+    positionsInnerToOuter: p32MapRingPositions,
+    words: p32MapRingRoute.words,
+    gpPrimeSums: p32MapRingRoute.wordSums,
+    p50Bytes: p32MapRingRoute.bytes,
+    endpointRunes: p32MapRingRoute.route.endpoints.map(i => corpus.translit[p32[i]]),
+    finalCell: p32MapRingRoute.route.end,
+    finalRune: corpus.translit[p32[p32MapRingRoute.route.end]],
+    deduplicatedPositions: p32MapRingUniquePositions,
+    deduplicatedWords: p32MapRingUniqueRoute.words,
+    deduplicatedEndpointRunes: p32MapRingUniqueRoute.route.endpoints.map(i => corpus.translit[p32[i]]),
+    deduplicatedFinalCell: p32MapRingUniqueRoute.route.end,
+    interpretation: "Using the 11x11 p32 map itself as the ring source does not converge on X; duplicate totients select repeated words."
   },
   baseline43ByteRoute: {
     tableInterval: [84, 127],
