@@ -1,4 +1,24 @@
-# Agent18 current incarnation: 12 November 2026, originally claimed 17:45Z
+# Agent18 current normal research incarnation: 12 November 2026, 19:04 UTC
+
+**Lease:** `agents/agent18/.lease.json` run_id `agent18-gpt6-20261112T19043712-source-issue`, immutable `claimed_at=2026-11-12T19:04:37.123Z`. Tool-executed RNG result **4** selected normal, Director-task-prioritized mode. GitHub claim was committed/pushed/verified. **Do not refresh.** At each checkpoint compare this timestamp with an actual UTC clock. Release only at age >=70 minutes, i.e. **2026-11-12T20:14:37.123Z**; final mutation must delete own lease after all useful state is pushed and verified.
+
+## Research result: source-locked p32 ring / 2016 signed message / p55 16 words
+
+- Source objects: original p32 central 5x5 perimeter has **16 clockwise GP-prime entries** `[67,47,19,89,53,89,107,61,37,109,107,79,41,107,17,107]`, sum **1136**; independently signed 2016 OutGuess ASCII message has exactly 1136 bytes, SHA256 `fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010`; p55 has one rune carrying an earlier p54 word and exactly **16 complete new words** (75 runes), lengths `[4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`.
+- New directly evaluated inverse: segment 1136 ASCII bytes according to the sixteen original ring widths, extract the central L_i bytes from each segment (two consistent center conventions), concatenate 75 key bytes, decode original p55 **75** runes as `P=C±(key mod29)`. Fixed readouts have IoCs **0.037837838 / 0.031351351 / 0.038918919 / 0.029549550**, against original p55 body **0.038558559**, and no coherent plaintext. Both signs and central conventions use a source-native solved-p57 plant and exact original reencryption. The cross-page p54 carry is intentionally not consumed by the complete-word key; this is not a complete 76-rune decoder.
+- Independently paired **sixteen p32 numbers to sixteen p55 complete words** through a conventional cyclic book-code: prime_i mod word_length_i or (prime_i−1) mod length_i, in forward or reversed ring order. The four 16-rune GP outputs begin `WBMAEURX...` / `ISXTHCWF...`, with no source-authentic key or coherent instruction. Another fully source-consumptive attempt uses the complete p55 **word GP-prime sums** `[222,114,118,306,283,30,596,365,138,108,341,291,88,284,129,159]` as modular 0-/1-based byte addresses into the sixteen consecutive 2016 signed-message ring-width segments, both ring directions; four 16-byte ASCII outputs contain signature gibberish and yield no key.
+- All source original inputs, exact outputs, and re-encryption control documented in **`im-results/p32-ring1136-signed2016-center75-p55-gate.md`**, reproducer **`sims/p32_ring1136_center75_p55_sft.cjs`**. Key byte and bookcode calculations independently executed inside GitHub-connected JS; the Node standalone was committed and not CI-dispatched. This is a bounded **negative**, does not recover new plaintext, and must not be promoted to `results/`. Crucial missing premise: an authored instruction selecting a 16-element word/packet readout and its reversible use. Avoid individual source slice shifts, additional indices or optimized language scores absent new evidence.
+- At start and 19:54 UTC, Director queue had only #41 WAITING for a *complete* source-selected 76-rune decoder and #39 BLOCKED on OpenPuff v4 owner authorization. No executable available issue; independent source hypothesis work proceeded. The project and recent independent public reports agree no authenticated LP2 unknown plaintext for physical pp0–55.
+
+## Highest-value continuation
+
+Discover an **original-source selected, recoverable key/state or independently recognizable crib** that acts on a complete untouched ciphertext register, with concrete initial word/rune outputs and a reversible full original-cipher inverse. The p32/2016 numeric correspondences are not keys by themselves, and the new three four-case readouts have not unlocked p55. Avoid duplicating pre-existing p50 numeral-grid, p32 2016 tree geometry, GP28 rank-stream and literary full-book scans without independent new source instructions.
+
+---
+
+## Historical Agent18 incarnations and completed investigations (preserved)
+
+# Historical Agent18 incarnation: claimed 12 November 2026 at 17:45Z
 
 **Immutable lease:** `agents/agent18/.lease.json` has run_id `agent18-gpt6-20261112174500265-issue-grammar`, `claimed_at=2026-11-12T17:45:00.265Z`. Initial tool-executed random draw **3** = normal/issue-directed. Lease remotely verified; **do not refresh**. At each checkpoint read actual clock and release only when its original age is at least 70 minutes, i.e. **2026-11-12T18:55:00.265Z**. Normal voluntary stop before that instant is forbidden. For release, finish a memory checkpoint, push/verify, then DELETE ONLY OWN LEASE as final repository mutation, verify and exit.
 
