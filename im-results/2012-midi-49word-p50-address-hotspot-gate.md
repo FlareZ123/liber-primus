@@ -82,8 +82,35 @@ Of 49 source entries, **44** select rune words, all five misses fall on the expl
 
 Seeds and algorithms are pinned: xorshift32 `0x20124350` for shuffled-weight draws; xorshift32 `0x20124351` for length-matched English draws, using lexical type-uniform sampling with replacement and fixed source duplicate positions. Denominators are simulations, not independent historical wordlist samples. The original 49-word count and specific p50 first-row cell subset were found *after* considering these source materials; none of these finite fractions is a preregistered probability of intentional Cicada design. In 100,000 GP-weight shuffles, **6,904** produce at least eight cross-wordlist sum coincidences, versus eight original sample overlaps, and **584** produce equality between the two pre-named words `boat` and `lies`. Picking *some* page with five or more hits is common (~14%); p50 is a visually distinctive runeless table page, but the cross-round reference itself remains speculative.
 
+## Newly isolated source-ordered Mersenne/binary-heap path (12 November 2026)
+
+The earlier five-cell p50 count concealed an exact stronger algebraic structure. Taking the **original 2012 participant's 49-word sequence in its unchanged order**, four of its five p50 words occur at source ordinals **10, 14, 16, 42**:
+
+| Original MIDI word | One-based original word ordinal | GP prime sum `S` | Physical page 50, zero-based cell `floor(S/58)` |
+|---|---:|---:|---:|
+| hook | 10 | 50 | 0 |
+| knot | 14 | 108 | 1 |
+| boat | 16 | 224 | 3 |
+| umbrella | 42 | 456 | 7 |
+
+These are **exactly** `S_k=58·2^k−8` for `k=0,1,2,3` and hence `S_(k+1)=2S_k+8`. The corresponding cell indices follow `a_(k+1)=2a_k+1` from zero: **0,1,3,7**. In the standard zero-based binary-heap array convention this is the first four nodes of an uninterrupted left-child path. Eight is independently the visible original numeric table's printed column width; fifty-eight is the physical LP2 page count. **All four were found after the earlier p50 hotspot was observed**, so the recurrence is still retrospective. The excluded **fifth** p50 hit, **hammer** at MIDI ordinal 8 with sum340 and cell5, has no prescribed reason to be discarded. The four selected ordinals and hammer's ordinal are all even, another after-the-fact feature that does not constitute an authenticated selector.
+
+This structure merits attention because the original Cicada puzzles feature tree imagery and a 2016 **signed tree JPEG**; however **no source instructs using a 2012 personal MIDI list as a 2014/2016 table-index key, assigning a binary heap to page50, or discarding hammer**. The source chain remains the limiting hypothesis. It is not permissible to use the visual tree as a generic license for every path and phase.
+
+The obvious **unfitted continuation** on the original p50 page is cell **15,31,63**, yielding printed table tokens **`0Z,1t,2W`**, provisionally base60 values **`35,115,152`**. The whole 7-node path is `[0,1,3,7,15,31,63]` → original tokens **`[2M,0w,3D,15,0Z,1t,2W]`**, values **`[142,58,193,65,35,115,152]`**. A further heap index127 is **outside physical p50's 104 cells**; silently moving to the globally flattened 256-cell grid would add an unselected framing change. The seven tokens do not specify a readable message, unknown-runic plaintext, or an independently reproducible inverse.
+
+To measure only **the fixed post-discovered event** and control for choosing page50 after seeing the results, an independent [deterministic source-order SFT](../sims/2012_midi_p50_mersenne_order_sft.cjs) keeps the 49 original word positions (including repeated box/tray), looks for all four cells **in order**, and additionally scans **any of the 58 pages** for the same ordered pattern. Unordered-subset outcomes are also reported. [Node22 CI passed with original corpus](https://github.com/FlareZ123/liber-primus/actions/runs/43132306009).
+
+| Source-fixed conditional control | Draws | p50 ordered 0→1→3→7 | Any page ordered | p50 unordered subset | Any page unordered subset |
+|---|---:|---:|---:|---:|---:|
+| Randomly permute all 29 GP prime weights over alphabet labels | 400,000 | **2** | **5** | 5 | 55 |
+| Independent English word types matched to each source word's Latin length | 250,000 | **1** | **1** | 10 | 50 |
+| Independent English word types matched to each source word's GP rune length | 250,000 | **1** | **3** | 5 | 44 |
+
+The code freezes xorshift32 seed `0x20124352`, deterministic shuffling/sampling, both lexical null distributions and their ordering, and every count above. Those small **conditional** tails are genuine features of the finite nulls. They are **not** a preregistered significance level: the original target page, the 0/1/3/7 recurrence, the choice to omit hammer, the use of 2012 personal words and the 58-page base arithmetic were all selected during or after inspecting the source. There are many potential patterns one could have noticed. The result is a noteworthy numerical research lead but supplies no original decipherment.
+
 ## Decision and what would genuinely advance the route
 
-The five p50 hits are a real arithmetic concentration under this **chosen** alphabet/address model. There is no preserved signed or player-visible historical instruction linking these **recipient-specific** 2012 words to LP2 page 50 or defining the proposed map. The p50 five-cell readout provides no independently predicted rune inverse, missing key, or withheld plaintext. The 2012 instructions supplied the list for an already-completed e-mail step.
+The five p50 hits and source-ordered four-word Mersenne path are real arithmetic concentrations under this **chosen** alphabet/address model. The latter is uncommon under several conditional nulls but was identified retrospectively, with no calibrated discovery-wide probability. There is no preserved signed or player-visible historical instruction linking these **recipient-specific** 2012 words to LP2 page 50, fixing a binary-heap interpretation or defining the proposed map. The p50 five-cell readout provides no independently predicted rune inverse, missing key, or withheld plaintext. The 2012 instructions supplied the list for an already-completed e-mail step.
 
-**Close the claimed 2012→p50 map as an unauthenticated decryption route.** Retain the exact five-cell anomaly and null controls as provisional evidence for future re-evaluation only if a new original source explicitly selects the 2012 input *and* fixes the address or use of the table output before original LP2 ciphertext is inspected. Do not launch arbitrary phase, radix, cell-order, XOR or key sweeps on this post-selected subset.
+**Close the claimed 2012→p50 map as an unauthenticated decryption route.** Retain the exact five-cell anomaly, source-ordered Mersenne path and corresponding null controls as provisional evidence for future re-evaluation only if a new original source explicitly selects the 2012 input *and* fixes the address or use of the table output before original LP2 ciphertext is inspected. Do not launch arbitrary phase, radix, cell-order, XOR or key sweeps on this post-selected subset.
