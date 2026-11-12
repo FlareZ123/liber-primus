@@ -57,13 +57,14 @@ function encodeNativeGp(source) {
  * @param {number} length
  * @param {number} skip
  */
-function windowEqualPairs(source, length, skip = 0) {
+function windowEqualPairs(source, length, skip = 0, phasePeriod = 0) {
   let total = 0;
   let offset = 0;
   for (const pageLength of pageLengths) {
     const counts = new Map();
     for (let i = skip; i + length <= pageLength; i++) {
-      const symbolWindow = source.slice(offset + i, offset + i + length).join(',');
+      const symbolWindow = (phasePeriod ? i % phasePeriod + ':' : '') +
+        source.slice(offset + i, offset + i + length).join(',');
       counts.set(symbolWindow, (counts.get(symbolWindow) || 0) + 1);
     }
     for (const count of counts.values()) total += count * (count - 1) / 2;
@@ -78,6 +79,7 @@ function windowEqualPairs(source, length, skip = 0) {
 assert.equal(windowEqualPairs(original, 3, 1), 55);
 assert.equal(windowEqualPairs(original, 4, 1), 1);
 assert.equal(windowEqualPairs(original, 5, 1), 0);
+assert.equal(windowEqualPairs(original, 4, 1, 8), 0);
 const originalFour = windowEqualPairs(original, 4, 1);
 
 const controls = [
@@ -87,7 +89,8 @@ const controls = [
     runes: 218800,
     windows: 32,
     min11: 13,
-    min12: 6
+    min12: 6,
+    minPhase7: 6
   },
   {
     label: 'Gibran',
@@ -95,7 +98,8 @@ const controls = [
     runes: 63114,
     windows: 8,
     min11: 64,
-    min12: 48
+    min12: 48,
+    minPhase7: 12
   },
   {
     label: 'Emerson',
@@ -103,7 +107,8 @@ const controls = [
     runes: 324630,
     windows: 49,
     min11: 2,
-    min12: 0
+    min12: 0,
+    minPhase7: 2
   }
 ];
 
@@ -114,22 +119,27 @@ for (const control of controls) {
   assert.equal(gp.length, control.runes);
   const eleven = [];
   const twelve = [];
+  const phaseSeven = [];
   for (let start = 0; start + N <= gp.length; start += Math.floor(N / 2)) {
     const window = gp.slice(start, start + N);
     if (sourcePlant === null) sourcePlant = window;
     eleven.push(windowEqualPairs(window, 11));
     twelve.push(windowEqualPairs(window, 12));
+    phaseSeven.push(windowEqualPairs(window, 7, 0, 8));
   }
   assert.equal(eleven.length, control.windows);
   assert.equal(twelve.length, control.windows);
   assert.equal(Math.min(...eleven), control.min11);
   assert.equal(Math.min(...twelve), control.min12);
+  assert.equal(Math.min(...phaseSeven), control.minPhase7);
+  assert(phaseSeven.every((count) => count > 0));
   assert(eleven.every((count) => count > originalFour));
   summaries.push({
     author: control.label,
     windows: control.windows,
     minimumPlain11CollisionPairs: Math.min(...eleven),
     minimumPlain12CollisionPairs: Math.min(...twelve),
+    minimumPhase8Plain7CollisionPairs: Math.min(...phaseSeven),
     originalCipher4CollisionPairs: originalFour
   });
 }
@@ -192,6 +202,65 @@ assert.equal(offset, N);
 assert.deepEqual(decrypted, sourcePlant);
 assert(windowEqualPairs(encrypted, 4, 1) >= windowEqualPairs(sourcePlant, 11));
 
+// Additional source-visible clock: the original 32x8 printed table fixes
+// the candidate period 8. Give each physical page and each of its eight
+// phases independent secret rows, and let the previous three plaintext runes
+// control the row. Repeated same-phase plaintext 7-grams still force equal
+// same-phase ciphertext 4-grams for every unknown secret.
+let phaseSeed = 0x33017213;
+const phaseRows = new Map();
+function phaseRandom() {
+  phaseSeed = (Math.imul(phaseSeed, 1664525) + 1013904223) >>> 0;
+  return phaseSeed;
+}
+function phasePermutation() {
+  const p = Array.from({ length: 29 }, (_, i) => i);
+  for (let i = 28; i > 0; i--) {
+    const j = phaseRandom() % (i + 1);
+    [p[i], p[j]] = [p[j], p[i]];
+  }
+  return p;
+}
+function getPhaseRow(page, i, state) {
+  const key = page + ':' + (i % 8) + ':' + state.join(',');
+  let row = phaseRows.get(key);
+  if (!row) {
+    row = phasePermutation();
+    phaseRows.set(key, row);
+  }
+  return row;
+}
+const phaseEncrypted = [];
+const phaseRecovered = [];
+offset = 0;
+for (let page = 0; page < pageLengths.length; page++) {
+  const len = pageLengths[page];
+  const plain = sourcePlant.slice(offset, offset + len);
+  const cipher = [];
+  const recovered = [];
+  for (let i = 0; i < len; i++) {
+    if (i < 3) {
+      cipher.push(plain[i]);
+      recovered.push(plain[i]);
+      continue;
+    }
+    const cipherRow = getPhaseRow(page, i, plain.slice(i - 3, i));
+    cipher.push(cipherRow[plain[i]]);
+    const inverseRow = getPhaseRow(page, i, recovered.slice(i - 3, i));
+    recovered.push(inverseRow.indexOf(cipher[i]));
+  }
+  assert.deepEqual(recovered, plain);
+  phaseEncrypted.push(...cipher);
+  phaseRecovered.push(...recovered);
+  offset += len;
+}
+assert.deepEqual(phaseRecovered, sourcePlant);
+assert.equal(phaseRows.size, 12532);
+assert.equal(windowEqualPairs(sourcePlant, 7, 0, 8), 39);
+assert.equal(windowEqualPairs(phaseEncrypted, 4, 1, 8), 41);
+assert(windowEqualPairs(phaseEncrypted, 4, 1, 8) >=
+  windowEqualPairs(sourcePlant, 7, 0, 8));
+
 process.stdout.write(JSON.stringify({
   property: 'Any page-static deterministic plaintext-history transducer with history q <= 7 preserves 11-gram-to-4-gram collision implications',
   original: { pages: 55, runes: N, cipher3Pairs: 55, cipher4Pairs: originalFour, cipher5Pairs: 0 },
@@ -201,6 +270,14 @@ process.stdout.write(JSON.stringify({
     exactRoundTrip: N + '/' + N,
     ciphertextFourPairs: windowEqualPairs(encrypted, 4, 1),
     sourceElevenPairs: windowEqualPairs(sourcePlant, 11)
+  },
+  originalEightPhase: {
+    sourceVisiblePeriod: 8,
+    ciphertextFourPairsWithinPhase: windowEqualPairs(original, 4, 1, 8),
+    sevenGramControlMinima: summaries.map((x) => x.minimumPhase8Plain7CollisionPairs),
+    secretThreeHistoryPlantRows: phaseRows.size,
+    nativePlainSevenPairs: windowEqualPairs(sourcePlant, 7, 0, 8),
+    encryptedCipherFourPairs: windowEqualPairs(phaseEncrypted, 4, 1, 8)
   },
   verdict: 'No direct native-GP plaintext from the 89 source windows for any stationary per-page plaintext-history cipher of memory <=7; no unknown LP2 plaintext recovered'
 }, null, 2) + '\n');
