@@ -32,16 +32,16 @@ These ratios are very close to the uniform 29-class expectation 1/29=0.034482759
 
 ## Source-native calibration and exact secret-key plants
 
-The independent language controls are pinned locally under resources/control/: Gibran's *The Prophet*, Shakespeare, Emerson's essays, a **corrected source-native Old English Beowulf** model, and the **word-preserving Latin Vulgate New Testament**. English reference words are case-folded and greedily tokenized using GP29 transliterations (TH/NG/EO/OE/AE/IA/EA and the project's V→U, K/Q→C, Z→S and ING→NG conventions). The Old English and Latin references instead use their existing authoritative **GP29 word-native encodings**; we do not re-normalize already encoded words. The Old English reference provides 10,885 original GP words, including six GP singleton words; the Latin reference provides 39,835 words. No unknown ciphertext was consulted to select source words.
+The independent language controls are pinned locally under resources/control/: Gibran's *The Prophet*, Shakespeare, Emerson's essays, a **corrected source-native Old English Beowulf** model, and the **word-preserving Latin Vulgate New Testament**. English reference words are case-folded and greedily tokenized using GP29 transliterations (TH/NG/EO/OE/AE/IA/EA and the project's V→U, K/Q→C, Z→S and ING→NG conventions). The Old English and Latin references instead use their existing authoritative **GP29 word-native encodings**; we do not re-normalize already encoded words. Importantly, corrected Beowulf encodes rune indices using its explicit **ABCDEFGHIJKLMNOPQRSTUVWXYZabc** alphabet, while the Latin file uses **0123456789ABCDEFGHIJKLMNOPQRS**. These distinct alphabets must be decoded separately, as enforced by the SFT. The Old English reference provides 10,885 original GP words, including six GP singleton words; the Latin reference provides 39,835 words. No unknown ciphertext was consulted to select source words.
 
 For each source, **1,000 seeded samples** independently draw genuine GP-native source words of the exact 2,709 original source word lengths at their exact global ordinals. The selection is fixed by actual original word lengths and the source-native pools of each length, not by original rune letters. Every sample is scored at each of the four frozen clock periods. Xorshift32 seeds are **0x33015600 through 0x33015604**, respectively, for Gibran, Shakespeare, Emerson, corrected Old English and Latin.
 
 | Period | Gibran min / mean | Shakespeare min / mean | Emerson min / mean | Old English min / mean | Latin min / mean | Controls ≤ original |
 | ---: | --- | --- | --- | --- | --- | ---: |
-| 16 | 0.058089 / 0.061409 | 0.053901 / 0.057098 | 0.060497 / 0.064188 | 0.060971 / 0.067664 | 0.085853 / 0.091848 | 0/5,000 |
-| 32 | 0.057551 / 0.061409 | 0.052868 / 0.057147 | 0.060021 / 0.064157 | 0.061520 / 0.067653 | 0.086208 / 0.091977 | 0/5,000 |
-| 43 | 0.057408 / 0.061672 | 0.053745 / 0.057168 | 0.060108 / 0.064514 | 0.060631 / 0.067686 | 0.085916 / 0.092092 | 0/5,000 |
-| **256** | **0.055025 / 0.061881** | **0.048987 / 0.057359** | **0.056248 / 0.064488** | **0.059305 / 0.067914** | **0.082384 / 0.092274** | **0/5,000** |
+| 16 | 0.058089 / 0.061409 | 0.053901 / 0.057098 | 0.060497 / 0.064188 | 0.070228 / 0.075907 | 0.085853 / 0.091848 | 0/5,000 |
+| 32 | 0.057551 / 0.061409 | 0.052868 / 0.057147 | 0.060021 / 0.064157 | 0.070799 / 0.075933 | 0.086208 / 0.091977 | 0/5,000 |
+| 43 | 0.057408 / 0.061672 | 0.053745 / 0.057168 | 0.060108 / 0.064514 | 0.070265 / 0.076035 | 0.085916 / 0.092092 | 0/5,000 |
+| **256** | **0.055025 / 0.061881** | **0.048987 / 0.057359** | **0.056248 / 0.064488** | **0.068170 / 0.076257** | **0.082384 / 0.092274** | **0/5,000** |
 
 The lower-tail plus-one finite-simulation estimate for each *source and period* is at most 1/1,001 ≈ 0.000999, under the explicitly defined independently sampled source-language model. This is an exploratory, language-conditioned null, **not** a universal decryption-significance claim; the candidate period family and source languages are not a hidden-proof preregistration.
 
