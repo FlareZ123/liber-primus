@@ -66,6 +66,39 @@ function rowRank(rows){
   }
   return {rank,witnessPrefix};
 }
+/**
+ * Exact 201×174 rank over F29. Any GF(29^m) equation breaks into m F29
+ * coordinate constraints, so the same codebook impossibility extends
+ * to every field with characteristic 29.
+ * @param {number[][]} streams
+ * @returns {number}
+ */
+function rank29(streams){
+  const inv=Array(29).fill(0);
+  for(let a=1;a<29;a++)for(let b=1;b<29;b++)
+    if(a*b%29===1)inv[a]=b;
+  const pivots=Array(WIDTH).fill(null);
+  let rank=0;
+  for(let j=0;j<201;j++){
+    const row=new Int16Array(WIDTH);
+    for(let k=0;k<6;k++)row[k*29+streams[k][j]]=1;
+    for(let col=0;col<WIDTH;col++){
+      if(!row[col])continue;
+      if(pivots[col]){
+        const factor=row[col],pivot=pivots[col];
+        for(let q=col;q<WIDTH;q++)
+          row[q]=(row[q]-factor*pivot[q]+29*29)%29;
+      }else{
+        const factor=inv[row[col]];
+        for(let q=col;q<WIDTH;q++)row[q]=row[q]*factor%29;
+        pivots[col]=row;
+        rank++;
+        break;
+      }
+    }
+  }
+  return rank;
+}
 // Every choice of six lane constants with zero XOR is a codebook solution,
 // giving a canonical 5-dimensional binary subspace. If rank >= 168, kernel
 // dimension <=6, leaving <=1 bit of nonconstant variation across glyphs
@@ -81,7 +114,7 @@ function constantBasis(k){
 const constant=Array.from({length:5},(_,i)=>constantBasis(i));
 const results={};
 for(const [label,parts] of Object.entries(layouts)){
-  const histogram={},prefixes=[];
+  const histogram={},hist29={},prefixes=[];
   for(let orient=0;orient<64;orient++){
     const strands=[p2,...parts].map((s,k)=>
       orient&(1<<k)?[...s].reverse():s);
@@ -95,12 +128,16 @@ for(const [label,parts] of Object.entries(layouts)){
     }
     const {rank,witnessPrefix}=rowRank(rows);
     histogram[rank]=(histogram[rank]||0)+1;
+    const rankPrime29=rank29(strands);
+    hist29[rankPrime29]=(hist29[rankPrime29]||0)+1;
+    assert.equal(rankPrime29,rank,"original GP29 field and binary ranks must agree");
     prefixes.push(witnessPrefix);
     assert(rank>=168 && rank<=169,
       "the original secret-lane kernel is unexpectedly larger");
   }
   results[label]={
-    orientations:64,rankHistogram:histogram,
+    orientations:64,rankHistogramGF2:histogram,
+    rankHistogramGF29:hist29,
     nullityHistogram:Object.fromEntries(Object.entries(histogram)
       .map(([rank,count])=>[174-Number(rank),count])),
     earliestDecisivePrefix:Math.min(...prefixes),
@@ -110,8 +147,8 @@ for(const [label,parts] of Object.entries(layouts)){
     injective29GlyphCodebooksPossible:false
   };
 }
-assert.equal(results.contiguous.rankHistogram[169],64);
-assert.equal(results.interleaved.rankHistogram[168],64);
+assert.equal(results.contiguous.rankHistogramGF2[169],64);
+assert.equal(results.interleaved.rankHistogramGF2[168],64);
 assert.equal(results.contiguous.maxDifferentRuneValuesInAnyLane,1);
 assert.equal(results.interleaved.maxDifferentRuneValuesInAnyLane,2);
 assert.equal(results.contiguous.earliestDecisivePrefix,169);
@@ -156,6 +193,33 @@ const planted=rowRank(plantRows);
 assert(planted.rank<=164,
   "five nonconstant identity bits plus five constant directions must survive");
 assert(maps.every(m=>new Set(m).size===29));
+// Independently plant a six-lane F29 additive checksum using six distinct,
+// uniformly shuffled complete GP29 field codebooks (arbitrary bijections).
+const maps29=[];
+for(let lane=0;lane<6;lane++){
+  const symbols=Array.from({length:29},(_,k)=>k);
+  for(let i=28;i>0;i--){
+    const j=rng()%(i+1);
+    [symbols[i],symbols[j]]=[symbols[j],symbols[i]];
+  }
+  maps29.push(symbols);
+}
+const inverseLast=new Array(29);
+maps29[5].forEach((y,x)=>inverseLast[y]=x);
+const plant29=Array.from({length:6},()=>[]);
+for(let j=0;j<201;j++){
+  const first5=Array.from({length:5},()=>rng()%29);
+  const target=(29-first5.reduce((sum,x,k)=>sum+maps29[k][x],0)%29)%29;
+  const all=[...first5,inverseLast[target]];
+  for(let k=0;k<6;k++)plant29[k].push(all[k]);
+}
+assert(plant29.every(x=>x.length===201));
+for(let j=0;j<201;j++){
+  assert.equal(plant29.reduce((v,s,k)=>v+maps29[k][s[j]],0)%29,0);
+}
+const planted29Rank=rank29(plant29);
+assert(planted29Rank<=168,"true six-map F29 parity must give one nonconstant kernel direction");
+assert(maps29.every(m=>new Set(m).size===29));
 console.log(JSON.stringify({
   source:"Original p2=201; pp23–26 red16 plus five 201-rune body strands",
   construction:"Six positionwise XOR shares, SIX independent stationary secret rune-to-GF2^m maps",
@@ -163,11 +227,13 @@ console.log(JSON.stringify({
   original:results,
   unusedGlyphColumns:coverage,
   exactInterleavedKernelInterpretation:"only five constant lane codes plus one unobserved glyph (lane2 rune8)",
-  positive:{
+  positiveGF29:{sixIndependentlyPermutedInjectiveMaps:true,
+    all201Mod29EquationsHold:true,rank:planted29Rank,nullity:174-planted29Rank},
+  positiveGF2:{
     all201ColumnXorEquationsHold:true,
     sixDistinctInjectiveLaneAlphabets:true,
     rank:planted.rank,
     nullity:174-planted.rank
   },
-  conclusion:"No individually injective stationary binary rune alphabets, even secret and lane-specific, support a six-way parity of the original six 201-rune strands"
+  conclusion:"No individually injective stationary rune codebooks over fields of characteristic 2 OR 29 can support a fixed six-way linear parity of these six original streams"
 },null,2));
