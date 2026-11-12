@@ -33,6 +33,37 @@ Apply this to every one of **12,956 canonical unsolved runes** over 55 rune-bear
 
 The original values cluster near the independent-uniform 29- or 28-symbol equality rate. They are far lower than prose-like GP29 native-source collision rates.
 
+## Source-derived bit-packing periods and original reset clocks
+
+The literal BBS least-significant-bit cycle has period612. Packing consecutive cyclic output bits into ordinary **2-bit**, **4-bit**, **5-bit** or **8-bit** units gives respectively **306**, **153**, **612** and **153** output units per full cycle, with independently computed *minimal* periods of exactly those lengths. Therefore 153 and 306 are also source-fixed periods if this speculative BBS output enters a byte or nibble readout.
+
+A separate original-input extension checks the **nine independently visible red-heading chapters** and every physical rune-bearing page as *reset clocks*, using the same arbitrary unknown phase permutation across reset regions. The exact source visual chapter ranges are pp0–2, 3–7, 8–14, 15–22, 23–26, 27–32, 33–39, 40–53 and 54–55. For every period (153, 306, 612), reset (physical page, visual chapter), and direct GP29 or GP28 rank model (marker consumes / does not consume phase), it scores original same-phase equality over all available pair observations. This gives **18 source-derived original models** without guessing a source plaintext, initial shift or secret alphabet.
+
+| Period | Reset / domain | Original rate | Lowest among 45 native reference windows |
+|---|---|---:|---:|
+| 153 | physical-page, direct29 | 0.03438602 | 0.05850160 |
+| 153 | physical-page, GP28 rank, all-rune clock | 0.03596556 | 0.05930951 |
+| 153 | physical-page, GP28 rank, skip-marker clock | 0.03557224 | 0.05953453 |
+| 153 | original-chapter, direct29 | 0.03427180 | 0.05837023 |
+| 153 | original-chapter, GP28 rank, all-rune clock | 0.03547992 | 0.05926175 |
+| 153 | original-chapter, GP28 rank, skip-marker clock | 0.03587439 | 0.05900788 |
+| 306 | physical-page, direct29 | 0.03455447 | 0.05812645 |
+| 306 | physical-page, GP28 rank, all-rune clock | 0.03596395 | 0.05886230 |
+| 306 | physical-page, GP28 rank, skip-marker clock | 0.03557149 | 0.05896286 |
+| 306 | original-chapter, direct29 | 0.03423110 | 0.05848494 |
+| 306 | original-chapter, GP28 rank, all-rune clock | 0.03524617 | 0.05937603 |
+| 306 | original-chapter, GP28 rank, skip-marker clock | 0.03611616 | 0.05905922 |
+| 612 | physical-page, direct29 | 0.03455447 | 0.05812645 |
+| 612 | physical-page, GP28 rank, all-rune clock | 0.03596395 | 0.05886230 |
+| 612 | physical-page, GP28 rank, skip-marker clock | 0.03557149 | 0.05896286 |
+| 612 | original-chapter, direct29 | 0.03444562 | 0.05841368 |
+| 612 | original-chapter, GP28 rank, all-rune clock | 0.03478335 | 0.05941312 |
+| 612 | original-chapter, GP28 rank, skip-marker clock | 0.03625050 | 0.05871113 |
+
+There is **no overlap** between original rates and the 45 source-native reference windows under any of these 18 additional models. Each reference window is additionally encrypted and *exactly inverted* under a fresh set of random, otherwise unrestricted, **shared per-phase secret permutations**, preserving the same within-phase collision counts; the extension performs **810 positive plaintext encryptions/decryptions**, including the original page/chapter reset structure. This extends the key-independent negative to page-restarted and chapter-restarted stationary phase tables. It does **not** exclude secret phase tables that differ independently *between* pages, an unknown hidden state, or original plaintext encoded outside GP-native English.
+
+**Additional SFT:** [source BBS periods and original page/chapter reset invariant](../sims/parable_bbs_reset_phase_allsecret_sft.cjs).
+
 ## Genuine plaintext and secret-key controls
 
 The reproducer parses checked-in Shakespeare, Gibran and Emerson sources using the shared GP encoder and takes **45 disjoint manuscript-length 12,956-rune windows** (16, four and 25 respectively). It retains the original page lengths for page-IV handling. For each source window, it encrypts all symbols using 612 independently shuffled secret phase permutations, and then inverts every symbol exactly:
@@ -46,6 +77,6 @@ This is a reference-conditioned exclusion of direct GP-native prose. A compresse
 
 ## Research decision
 
-The source factorization uniquely suggests the standard BBS parameter roles by the first two clauses' Blum-prime status, but this candidate **does not directly decrypt the book** under any direct repeating GP29 or predecessor-rank GP28 bijective phase table. Avoid additional phase search or secret-alphabet fitting for these same 612-period families. New work should seek an original instruction tying the p57 numbers to a distinct reversible operation, or an independently testable nonperiodic language representation.
+The ordered source factorization suggests the standard BBS parameter roles by the first two clauses' Blum-prime status, but those roles are speculative. This candidate **does not directly decrypt the book** under any direct repeating GP29 or predecessor-rank GP28 bijective phase table. Avoid additional phase search or secret-alphabet fitting for these same 612-period families. New work should seek an original instruction tying the p57 numbers to a distinct reversible operation, or an independently testable nonperiodic language representation.
 
 **Standalone CommonJS SFT:** [original 612-phase all-secret and source-native controls](../sims/parable_bbs612_original_phase_gate_sft.cjs). Related, distinct prior work: [source-number and historical audio ID3](audio761-original-id3-frame-inventory.md), [BBS squaring as a proposed *grid-byte generator*](parable-grid-fullstate-squaring-exclusion.md), and [Parable F79/F3301 field cycles](parable-primitive-multiplicative-pad.md).
