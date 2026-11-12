@@ -28,6 +28,37 @@ If the table and terminal text share an operation, the two independently solved 
 
 **Strongest objection:** p56 is a separately solved prime-totient cipher with a literal-F exception, while p57 is clear GP text, and both have their own headings. No source explicitly says that three different terminal pages form a single 32×8 cipher object or supplies a transform from table values to terminal runes. This is an exact layout correspondence pending an actual executable route, not proof of creator intent. Do **not** revive the alleged shared p49/p55 3×3 marker: original-pixel Issue #379 proved those stencils differ (10 versus 13 dots).
 
+## Nonlinear inside-out DH5 peel: one source-frozen original 180-rune falsifier (Agent43, 12 November 2026)
+
+The ring correspondence above admits a distinct, small-description *whole-256 reversible* candidate with actual cross-ring nonlinear feedback, rather than a stationary lookup, low-rank mask, linear stencil, short LFSR or Josephus permutation. The solved p57 last 52 GP runes print the literal imperative **“SHED OUR OWN CIRCUMFERENCES ... EMERGE”** and exactly fill the innermost 26×2 ring. Cicada's source-authenticated 2013 Diffie–Hellman worked example uses **base 5**. A plausible, though **not author-prescribed**, attempt is therefore to use inner plaintext as an exponent in a DH-style power operation, peeling the outer circumference from inside.
+
+This is one *frozen* proposed operation with no key fitting. Place the existing 256 terminal **cipher** runes in the original source page order p55,p56,p57 into the printed 32×8 table's **four clockwise rings**, each starting at its top-left available cell. Ring sizes are **76/68/60/52**, and start offsets in the terminal rune stream are **0/76/144/204**. Let \(B_{r,j}\in[0,255]\) be the *original printed grid byte* at ring \(r\)'s clockwise position \(j\), \(C_{r,j}\) its assigned terminal rune, and \(P_{r,j}\) its decoded rune. Anchor the innermost shell to the visible, independently solved p57 suffix \(P_{3,j}=C_{3,j}\). For \(r=2,1,0\), perform inside-out, with no hidden parameter, initial state or fitted phase:
+
+\[
+P_{r,j}=
+C_{r,j}
+-
+(B_{r,j}\bmod29)\cdot5^{P_{r+1,j\bmod L_{r+1}}}
+\bmod29.
+\]
+
+Here \(L_{r+1}\) is the next inner ring's printed length, and all exponentiation is exact modular arithmetic in GF29. The previously fixed source clockwise traversal determines every byte address and every terminal offset. The multiplication and modular exponentiation are ordinary hand-executable operations with precedents in the signed 2013 DH challenge; **the act of coupling the corresponding ring offsets, using the numeric cell as multiplier, and leaving the innermost ring unchanged remain hypotheses**. The inverse encoder is the same formula with addition instead of subtraction and can reproduce any full 256-rune plaintext without side information.
+
+The exact original-input gate uses the independently verified **85/85** p56 prime-totient solution, skipping **only** the single literal ciphertext F at page-local 56, plus all **95** already-clear p57 runes. The 76 p55 plaintext runes remain unknown and play no part in selecting the operator.
+
+| Independently known ring target | Known rune positions | Exact plaintext matches | First failure |
+| --- | ---: | ---: | ---: |
+| Ring 1: p56 first 68 runes | 68 | **0** | terminal-global index **76** |
+| Ring 2: p56 last 17 + p57 first 43 | 60 | **3** | terminal-global index **145** |
+| Ring 3: p57 *SHED ... EMERGE* suffix | 52 | **52** | none, **by construction** |
+| **Total** | **180** | **55/180** | **76** |
+
+Only **3/128** *nontrivially predicted* solved symbols match; the 52 innermost exact symbols were anchored to already-known clear text and constitute **zero validation evidence** for the transform. An unmodified source-native **256-rune Shakespeare GP29 passage**, encrypted with the exact published mapping and decrypted inside-out, recovers **256/256** rune values and re-encrypts identically. The same full forward replay holds for the original ciphertext, as it must for a reversible cipher under any assumed rule; neither round trip authenticates a key. The original output fails its very first independently enciphered target and **cannot decode the 76 unknown p55 runes** under this fixed candidate.
+
+**Decision:** retire *this one* 2013-DH-base5 nonlinear inside-out ring coupling immediately. It differs from prior linear/stationary probes in exactly its dependence on **nonlinearly transformed recovered inner plaintext** and is fully invertible on 256 positions; no extra parameter, ring phase, exponent, byte map or traversal was fit after the 180-rune check. There is no documented creator instruction selecting this specific nonlinear coupling, so the failure does **not** falsify the geometrically suggestive outer76/inner180 coincidence or other source-authenticated nonlinear operations. Those need their own independently specified rule, ideally one that accommodates p56's known cipher and p57's clear presentation without artificial exceptions. No authentic LP2 plaintext, grid key or hash preimage is recovered.
+
+[Single-file CommonJS exact source and native plant](../sims/lp2_terminal256_dh5_nested_peel_sft.cjs).
+
 ## Original-cipher complete-inverse gates
 
 The independent source register is `resources/liber-primus/lp2-grid-256.json`; its 256 printed base60 numeral tokens are provisionally interpreted as bytes, then reduced mod29. The target text is canonical p55, the **independently asserted 85-rune exact p56 prime-totient decryption with only F at offset 56 skipped**, and raw clear p57. All rune counts, the exact 52-rune innermost imperative suffix, and all four ring lengths are asserted against source data before transformation.
