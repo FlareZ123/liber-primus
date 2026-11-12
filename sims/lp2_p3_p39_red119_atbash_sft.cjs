@@ -71,6 +71,15 @@ const evidence = triads.map(span => {
 assert.deepEqual(evidence.map(item => item.ciphertextIndices), [[13, 23, 2], [27, 5, 15]]);
 assert.deepEqual(evidence.map(item => item.atbashGpSpelling), ['SCY', 'UDP']);
 
+// Held-out solved-page control: the original p57 red PARABLE is literal plaintext.
+// A global rule "Atbash every red span" would corrupt it into nonplaintext.
+const solvedParable = redSpans.find(span => span.page === 57 && span.start === 0);
+assert.ok(solvedParable);
+const parable = transliteration(indices(solvedParable.runes));
+const parableAtbash = transliteration(atbash(indices(solvedParable.runes)));
+assert.equal(parable, 'PARABLE');
+assert.equal(parableAtbash, 'SRARJHI');
+
 console.log(JSON.stringify({
   observedIsolatedRedSpans: redSpans.length,
   isolatedRedThreeRuneSpans: triads.length,
@@ -79,6 +88,7 @@ console.log(JSON.stringify({
   operation: 'Solved-LP1 GP29 Atbash P[i] = 28 - C[i]',
   fragments: evidence,
   orthographicNote: 'GP transliteration C represents the English C/K phoneme: SCY can spell SKY',
+  solvedControl: { originalRedPage57: parable, indiscriminateAtbash: parableAtbash, conclusion: 'Atbash is not a global red-ink decoding rule' },
   historicalHypothesis: 'The signed 2013 sky/ICMP clue and 2013 TCP stage make SKY and UDP a protocol-related candidate. No live host/port, new decoder, or authenticated LP2 intended reading follows.',
   status: 'Source-exact local Atbash observation, provisional interpretation',
 }, null, 2));
