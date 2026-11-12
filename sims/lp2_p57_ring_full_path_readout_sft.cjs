@@ -174,6 +174,27 @@ for (let a = 0; a < wordData.length; a++)
             wordData[c].primeSum + wordData[d].primeSum === 728)
           fourSubsetCount728++;
 
+
+// Competing radix interpretation of the exact same 256 source tokens.
+// Both radices fit the observed tokens; compare only the source-marker route.
+const sourceTokens = grid.pages.flatMap(page => page.tokens);
+const alphabet60 = grid.alphabet;
+const alphabet59 = alphabet60.replace("f", "");
+const decodeToken = (token, alphabet) =>
+  alphabet.length * alphabet.indexOf(token[0]) + alphabet.indexOf(token[1]);
+const selectedTokens = addresses.map(index => sourceTokens[index]);
+const base59Bytes = addresses.map(index =>
+  decodeToken(sourceTokens[index], alphabet59));
+assert.deepEqual(selectedTokens, ["3E", "2t", "1O", "1Q"]);
+assert.deepEqual(ringBytes, [194, 175, 84, 86]);
+assert.deepEqual(base59Bytes, [191, 172, 83, 85]);
+const base59Route = walkEveryCell(base59Bytes);
+assert.equal(ringRoute.fullTokens.slice(0, 5).join(""), "HOMEX");
+assert.equal(ringRoute.end, 37);
+assert.equal(base59Route.end, 120);
+assert.deepEqual([33, 34, 35, 36, 37].map(cell => base59Route.full.includes(cell)),
+  [true, true, false, false, false]);
+
 // Counterexamples to the two most consequential selector conventions.
 const oneBasedBytes = addresses.map(address => grid.bytes[address - 1]);
 assert.deepEqual(oneBasedBytes, [68, 166, 251, 179]);
@@ -317,6 +338,29 @@ const output = {
     firstFiveRunes: ringRoute.fullTokens.slice(0, 5).join(""),
     fullPathRunes: ringRoute.fullTokens.join(""),
     uniqueFirstVisitRunes: ringRoute.uniqueTokens.join("")
+  },
+  radixDiscriminator: {
+    sourceGrid: grid.pages.map(page => ({
+      page: page.page, image: page.image, rows: page.rows,
+      columns: page.cols, tokens: page.tokens.length
+    })),
+    selectedAddresses: addresses,
+    selectedTokens,
+    base60: {
+      bytes: ringBytes,
+      moves: ringRoute.segments.map(x => ({ direction: x.directionName, distance: x.distance })),
+      firstFiveRunes: ringRoute.fullTokens.slice(0, 5).join(""),
+      endpointRunes: ringRoute.endpoints.map(i => corpus.translit[p32[i]]),
+      finalCell: ringRoute.end
+    },
+    base59: {
+      bytes: base59Bytes,
+      moves: base59Route.segments.map(x => ({ direction: x.directionName, distance: x.distance })),
+      firstSevenRunes: base59Route.fullTokens.slice(0, 7).join(""),
+      endpointRunes: base59Route.endpoints.map(i => corpus.translit[p32[i]]),
+      finalCell: base59Route.end
+    },
+    interpretation: "Both radices fit the token alphabet. Base60 alone traverses the complete source-visible HOMEX marker from H and ends at X; this is a discriminating manuscript-output match, not an authenticated radix instruction."
   },
   openingChapterCrossCheck: {
     pageRuneCounts: openingPages.map(x => x.length),
