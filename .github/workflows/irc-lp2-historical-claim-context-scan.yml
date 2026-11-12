@@ -1,0 +1,29 @@
+name: LP2 historical IRC claim-context scan
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "sims/irc_lp2_historical_claim_context_scan.py"
+      - ".github/workflows/irc-lp2-historical-claim-context-scan.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Fetch, verify, and scan pinned historical IRC blobs
+        run: python3 sims/irc_lp2_historical_claim_context_scan.py > /tmp/lp2-historical-irc-context.json
+      - name: Upload bounded source contexts
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-historical-irc-context
+          path: /tmp/lp2-historical-irc-context.json
+          retention-days: 14
