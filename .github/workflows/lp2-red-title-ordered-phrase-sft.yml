@@ -16,3 +16,7 @@ jobs:
         run: |
           node --check sims/lp2_red_title_ordered_phrase_source_sft.cjs
           node sims/lp2_red_title_ordered_phrase_source_sft.cjs
+      - name: Test 119-rune red-fragment shared-pad hypothesis
+        run: |
+          node --check sims/lp2_red119_reused_additive_pad_sft.cjs
+          node sims/lp2_red119_reused_additive_pad_sft.cjs
