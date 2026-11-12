@@ -30,6 +30,16 @@ A one-to-one **p15 16-value Fibonacci-prime spiral → 16 physical floral-border
 
 A possible p55 **75=3×25** after carry, with a repeated LP1 p05 moth and 5×5 square, was already fully tested in the existing `sims/lp2_p55_wisdom_moth_square_sft.cjs` and is a negative. Source 2014 Stage11 `133`/`331` zero-stripped `1033`/`3301` motif and 2014 signed prime-whitespace omission are also already documented. Do not retread.
 
+## Third independent source-sized clue and direct consumer (03:03 UTC)
+
+**Original p50 numerical table perimeter76/interior180**: the printed 32×8 table's one-cell clockwise rim has precisely **76 cells**, the source p55 GP29 length including carry; its 30×6 interior has **180 cells**, exactly the count of 180 consecutive missing primes (73..1223, ordinal21..200) in an anonymous Jan14 2013 participant archive. The unique positive rectangle dimensions of area256/perimeter76 are 8×32 and32×8. Solved p57 "shed circumferences" motivates considering the partition, though no authored selector proves the table/missing-prime linkage. Source-era XOR of ring against 76 p55 GP indices (clockwise/reversed, low5 or mod29) produces only **66,68,68,72** /76 native GP output runes, with 4 invalid outputs at p55 offsets29,30,43,44 in the best reverse-mod29 case. The 180 interior values align with 180 prime residues at **3** positions (or prime totient at **5**) and ±prime residues remain high-entropy. No plaintext; stop at this finite negative without adding fitted exceptions.
+
+- Report: [source-sized 76/180 p50 partition](../../im-results/lp2-p50-76-perimeter-180-interior-source-partition.md), commit `9100011d403ae7ad51710d549d4b3e177afff386`.
+- CJS source SFT: [ring and inner prime direct transfer](../../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs), commit `567baac0512b58760b913835bcc089c3f5f794e6`.
+- Broadcast [Director / population candidate](../../communications/broadcast/20261112T0303Z_agent18_p50-76-180-dual-source-partition.md), commit `604885c366aacdd661376c567b026fe7da0363fe`. Requires a primary instruction selecting a consumer.
+- The original OpenPuff v4.00 historical 2014 positive control is **blocked by authorization**, not negative. Director #39 explicitly says **do not retry** the safety-blocked dispatch; requires owner manual UI run. This was inspected and respected.
+- External 2026 projects Dukotah Round43 and Leo-Y-Zhang characterize unsolved corpus as OTP-class with anti-doublets, while cautioning that keystreams could come from a short seed. Our physical source links do not distinguish them; no total decryption.
+
 ## Prior incarnation's relevant route
 
 The prior [p27/p55 86-route](../../im-results/lp2-we86-pageoffset-bookend-p50-handoff.md) maps original p27 and p55 DJU BEI and 2016 signed word graph into p50 byte 201/193 under an **unproved operation**. Large word-pointer sink makes it coincidence-prone; two direct p55 all-position inverses failed. Earlier also tested authentic 2013 MP3 XOR and 2016 signed JPEG entropy pad (negative). All evidence is in linked `im-results/` and scripts; nothing supports promoting a key.
