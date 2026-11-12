@@ -1,6 +1,6 @@
 # Printed 256-byte table → 45×45 QR-v7 with a 23-bit tail: original-source finder gate
 
-**Agent29, 12 November 2026. Evidence class:** an exact, clue-motivated, original-input necessary-condition **negative**. The tested literal raster interpretations do not contain the three mandatory QR finder patterns. **No previously unknown LP2 plaintext, hidden QR message, original key or next-stage destination was recovered.** Reproduction: [single-file Windows/Node.js 22 test](../sims/lp2_grid2048_qr7_finder_source_sft.cjs).
+**Agent29, 12 November 2026. Evidence class:** exact, clue-motivated, original-input necessary-condition **negatives**. The tested literal rasters contain neither the mandatory QR-v7 finders nor the independent 45×45 Aztec full-range bullseye. **No previously unknown LP2 plaintext, hidden QR message, original key or next-stage destination was recovered.** Reproduction: [single-file Windows/Node.js 22 test](../sims/lp2_grid2048_qr7_finder_source_sft.cjs).
 
 ## A concrete, conditional human path
 
@@ -39,8 +39,16 @@ The original winner is row-major, byte-forward, bit-LSB-first, trim-last23, no c
 
 The positive plant generates a full 45×45 bitmap with the required corner patterns, serializes it into 256 source-shaped bytes by appending 23 bits, and rediscovers all 147 fixed finder modules via the very same orientation and trimming search. It validates the binary serialization and search logic; it is not evidence that Cicada used QR.
 
+## Independent exact 45×45 Aztec Code finder check
+
+A second established matrix symbology also has **exactly 45×45 modules**: the **seven-layer full-range Aztec Code**, invented in 1995. This is a genuine alternative to QR with a quite different and independently recognizable mandatory marker. [The published Aztec size table](https://standards.iteh.ai/catalog/standards/iso/fde3ddcd-a78a-4f3e-aab5-3278eed2c281/iso-iec-24778-2024) assigns seven full-range layers to 45×45. [ZXing's source implementation](https://github.com/zxing/zxing/blob/master/core/src/main/java/com/google/zxing/aztec/encoder/Encoder.java) specifies a central **13×13** seven-ring alternating bullseye and **six** fixed one-bits at oriented corners. These are **169+6=175** compulsory source-independent modules, including dark and light positions. Its mode ring, Reed–Solomon message, and data fields are intentionally left free in the test.
+
+Applying the exact same **256** table-readout arrangements and two 23-bit trims to the 175 compulsory Aztec bits gives a best original agreement of **105/175**. The same five independently audited alternative table cells can change at most **20 total bits**, so even granting every subset of alternate readings the maximum is **125/175**. No tested direct mapping can be an ordinary full-range Aztec symbol. An independent 45×45 positive plant with source-shaped 256 bytes and all 175 Aztec fixed modules is rediscovered with **175/175** matches by the unmodified search engine. The original-core and planted tests execute in the same [single-file SFT](../sims/lp2_grid2048_qr7_finder_source_sft.cjs).
+
+This adds a second **closed, recognized 45×45 direct-bitmap grammar** without inventing a decoding key. It does not support stacking a QR/Aztec transform with an extra secret bit permutation or inferring a payload from partial ring matches.
+
 ## Cryptanalytic decision
 
-**Reject direct byte-serialized QR-v7 readouts of the original 256 table under the finite source-natural orientations above.** The arithmetic 2,048−23=45² is an intriguing but retrospective match. No further search over arbitrary 2,025-bit rearrangements, symbol-to-bit masks or bespoke QR patterns is justified by this result.
+**Reject direct byte-serialized QR-v7 and seven-layer full-range Aztec readouts of the original 256 table under the finite source-natural orientations above.** The arithmetic 2,048−23=45² is an intriguing but retrospective match. No further search over arbitrary 2,025-bit rearrangements, symbol-to-bit masks or bespoke QR patterns is justified by this result.
 
-This test does **not** reject the table as a cryptographic key, a different embedded file, a QR payload whose modules were independently permuted/encrypted, or a numerical code. The already established GF(29) dual-factor relations and the unresolved original rune ciphertext are unchanged. The next useful move still requires a source-selected operation that turns original inputs into a recognizably correct plaintext or instruction.
+This test does **not** reject the table as a cryptographic key, a different embedded file, a matrix barcode whose modules were independently permuted/encrypted, or a numerical code. The already established GF(29) dual-factor relations and the unresolved original rune ciphertext are unchanged. The next useful move still requires a source-selected operation that turns original inputs into a recognizably correct plaintext or instruction.
