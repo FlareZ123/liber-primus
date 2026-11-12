@@ -302,9 +302,83 @@ for (const entry of payloads.slice(0, 2)) {
   });
 }
 
+
+/**
+ * Historically used OpenPGP CFB framing per RFC 4880, sections 5.7,
+ * 5.13 and 13.9. The 16-byte prefix repeats its last two bytes as a
+ * 16-bit immediate key check. SEIPD v1 keeps CFB feedback continuous and
+ * appends the SHA-1 modification-detection code. Legacy SED resyncs
+ * after the 18-byte prefix; either way the first 18 decrypted bytes
+ * and their key-check requirement are identical.
+ *
+ * This exact test is source-motivated by Cicada's historical OpenPGP
+ * artifacts; the table has no authenticated OpenPGP SED packet header.
+ *
+ * @param {Buffer} cipher
+ * @returns {{prefixHex:string,keyCheck:boolean,mdcMarker:boolean,mdcValid:boolean,legacyPrefixRecovered:boolean}}
+ */
+function inspectOpenPGP(cipher) {
+  const decrypt = createDecipheriv("aes-256-cfb", key, Buffer.alloc(16));
+  const clear = Buffer.concat([decrypt.update(cipher), decrypt.final()]);
+  const keyCheck = clear[14] === clear[16] && clear[15] === clear[17];
+  const messageSize = clear.length;
+  const mdcMarker = clear[messageSize - 22] === 0xd3 &&
+    clear[messageSize - 21] === 0x14;
+  const expectMDC = createHash("sha1").update(
+    clear.subarray(0, messageSize - 20)).digest();
+  const mdcValid = mdcMarker &&
+    clear.subarray(messageSize - 20).equals(expectMDC);
+
+  const legacyPrefix = cipher.subarray(0, 18);
+  const decipher0 = createDecipheriv("aes-256-cfb", key, Buffer.alloc(16));
+  const legacyFirst18 = Buffer.concat([
+    decipher0.update(legacyPrefix), decipher0.final()
+  ]);
+  assert.deepEqual(legacyFirst18, clear.subarray(0, 18));
+  return {
+    prefixHex: clear.subarray(0, 18).toString("hex"),
+    keyCheck, mdcMarker, mdcValid, legacyPrefixRecovered: true
+  };
+}
+
+// Independent OpenPGP SEIPD-v1 source-shaped synthetic positive, with
+// faithful initial 18-byte check and full final 22-byte SHA-1 MDC.
+const pgpPrefix = Buffer.from(
+  "00112233445566778899aabbccddccdd0011", "hex");
+assert.equal(pgpPrefix.length, 18);
+// Force prefix[16..17] to equal prefix[14..15] exactly.
+pgpPrefix[16] = pgpPrefix[14];
+pgpPrefix[17] = pgpPrefix[15];
+const pgpPayload = Buffer.from(
+  "LIBER PRIMUS SOURCE-NATIVE OPENPGP CFB AUTHENTICATED CONTROL.");
+const pgpMDCMarker = Buffer.from([0xd3, 0x14]);
+const pgpMDCBody = Buffer.concat([
+  pgpPrefix, pgpPayload, pgpMDCMarker
+]);
+const pgpMDCDigest = createHash("sha1").update(pgpMDCBody).digest();
+const pgpClear = Buffer.concat([pgpMDCBody, pgpMDCDigest]);
+const pgpEncrypter = createCipheriv("aes-256-cfb", key, Buffer.alloc(16));
+const pgpCipher = Buffer.concat([
+  pgpEncrypter.update(pgpClear), pgpEncrypter.final()
+]);
+const pgpControl = inspectOpenPGP(pgpCipher);
+assert.equal(pgpControl.keyCheck, true);
+assert.equal(pgpControl.mdcMarker, true);
+assert.equal(pgpControl.mdcValid, true);
+const pgpChecks = payloads.slice(0, 2).map(entry => ({
+  source: entry.name,
+  ciphertextBytes: entry.bytes.length,
+  ...inspectOpenPGP(entry.bytes)
+}));
+for (const item of pgpChecks) {
+  assert.equal(item.keyCheck, false);
+  assert.equal(item.mdcMarker, false);
+  assert.equal(item.mdcValid, false);
+}
+
 console.log(JSON.stringify({
   source: "Original 55 unknown physical pages; 32 cross-page words; pp49-51 printed 32x8 table",
   runes: parsed.runes, words: parsed.words, carries: parsed.carries.length,
   carryColumns: selectedColumns.join(""), keyHex: key.toString("hex"),
-  results, authenticatedContainers, conclusion: "No ASCII text or recognizable opening signature among the tested exact AES256 key/payload formats; no unknown LP2 plaintext recovered."
+  results, authenticatedContainers, pgpChecks, pgpControl, conclusion: "No ASCII text or recognizable opening signature among the tested exact AES256 key/payload formats; no unknown LP2 plaintext recovered."
 }, null, 2));
