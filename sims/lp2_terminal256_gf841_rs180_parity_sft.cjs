@@ -161,6 +161,6 @@ console.log(JSON.stringify({
     directOriginalMatches:exact,projections:projectionResults,
     fixedTraceSubtraction:{ioc:inverseIoc,rawIoc:originalIoc,
       transliteration:inverse.map(i => corpus.translit[i]).join("")}},
-  control:{plantedRecovered,of:76},
+  control:{plantedRecovered:plantRecovered,of:76},
   conclusion:"The fixed GF841 [256,180] ring-order evaluation-code model cannot reproduce GP29 p55 ciphertext directly or through the four natural field projections. The evidence does not identify a historical decoder, and arbitrary ECC/hidden projections remain open."
 },null,2));
