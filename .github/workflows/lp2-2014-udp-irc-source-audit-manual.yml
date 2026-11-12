@@ -17,3 +17,5 @@ jobs:
           node-version: '22'
       - name: Download exact pinned public 2014 IRC archive and inspect UDP/port lines
         run: node sims/lp2_2014_udp_irc_source_audit_sft.cjs
+      - name: Audit additional timestamped community channels for UDP commands
+        run: node sims/lp2_2014_udp_laterchannels_archive_sft.cjs
