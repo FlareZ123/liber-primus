@@ -1,6 +1,6 @@
 # Original p55's 75 complete-word runes under the LP1 Wisdom-square inverse
 
-**Decision:** The source-led Hill, totient, and six BASE29-triple inverses from the LP1 p05 SOME WISDOM square to original LP2 p55 are now bounded negatives: the 5×5 Hill inverse and a 25-period Euler-totient additive key. Both are exactly reversible on all 75 complete-word runes, but neither yields native GP plaintext. The inherited p54 rune remains outside both models; no authentic unknown plaintext or historical key is recovered.
+**Decision:** Three source-led mechanism families from the LP1 p05 SOME WISDOM square have now been tested on the original 75-rune LP2 p55 body: a 5×5 Hill inverse, a 25-period Euler-totient additive key, and six arithmetic inverses pairing 25 three-rune BASE29 numbers with the 25 square entries. Every frozen operation is reversible, but all outputs remain nonlinguistic. The inherited p54 rune stays outside every model; **no authentic unknown plaintext or historical key has been recovered**.
 
 ## Human-visible premise and uncertainty
 
