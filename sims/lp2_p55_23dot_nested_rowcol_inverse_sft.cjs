@@ -235,6 +235,9 @@ function main() {
   const p56Key=fib.map(n=>mod(primes[n]-1));
   assert.deepEqual(p56Key,
     [1,2,4,6,12,22,13,20,3,1,27,16,1,11,11,15,20,24,2,14,10,20,13]);
+  const p56DirectPlain=source.map((value,i)=>mod(value-p56Key[i]));
+  assert.deepEqual(p56DirectPlain,
+    [5,21,20,11,17,21,26,28,27,4,15,21,20,12,16,24,15,19,10,17,21,19,6]);
   const p56LayerPlain=anchoredText.map((value,i)=>mod(value-p56Key[i]));
   assert.deepEqual(p56LayerPlain,
     [1,6,1,20,23,12,6,4,27,19,20,15,10,18,19,26,6,6,23,27,0,16,28]);
@@ -279,6 +282,8 @@ function main() {
       plain23Direct:gp(decoded),
       plain23DirectIoC:ioc(decoded),
       plain23WithCenterAnchor:gp(anchoredText),
+      p56TotientDirectNested23Plain:gp(p56DirectPlain),
+      p56TotientDirectNested23PlainIndices:p56DirectPlain,
       p56TotientContinuationPlain23:gp(p56LayerPlain),
       p56TotientContinuationPlainIndices:p56LayerPlain,
       nativeTextRecovered:false
@@ -288,7 +293,7 @@ function main() {
       solvedP57NativePlantRecovered23Of23:true,
       p56TotientAfterAnchoredMatrixSyntheticRecovered23Of23:true
     },
-    decision:"Anchored row-column inverse is reversible but unauthenticated; fixed p56 Fibonacci-prime-totient continuation is also nonlinguistic"
+    decision:"Anchored row-column inverse is reversible but unauthenticated; direct and post-inverse p56 Fibonacci-prime-totient transfers are both nonlinguistic"
   },null,2));
 }
 if(require.main===module)main();
