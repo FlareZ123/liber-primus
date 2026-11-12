@@ -78,7 +78,8 @@ function sortedRank(strands){
 
 const original={};
 for(const [name,groups] of Object.entries(layouts)){
-  const ranks=[],witnessPrefixes=[],firstWitness=null;
+  const ranks=[],witnessPrefixes=[];
+  let firstWitness=null;
   for(let mask=0;mask<64;mask++){
     const streams=[p2,...groups].map((a,k)=>
       mask&(1<<k)?[...a].reverse():a);
