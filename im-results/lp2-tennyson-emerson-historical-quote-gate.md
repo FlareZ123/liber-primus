@@ -35,6 +35,20 @@ The [runnable standalone source-locked SFT](../sims/lp2_tennyson_quote_source_sf
 
 No candidate even approaches the prospectively specified **twelve consecutive words and 40 true original GP runes**. Consequently no original punctuation-profile test, substitution-key fit, re-encipherment or adjacent-page prediction is authorized. This is an exact-source decision and is **not** a general exclusion of Tennyson themes, all textual editions, paraphrases, hidden-word boundaries or other ciphers.
 
+## Complete exact original-cipher family test: all seven quotation spans
+
+An extended test applies the exact original-cipher rune-pattern invariant to **every complete quotation**, not only the 12+ word spans. For each source and GP convention, it enumerates every **unmodified contiguous source passage with precisely the original printed word-length sequence**, then tests whether a single *arbitrary secret* one-to-one substitution over all 29 GP runes could map that source plaintext onto the **complete original ciphertext quote**. This permits 29! unknown secret alphabets, with no recovered/fitted key, because a valid substitution must preserve the equality pattern of all rune positions. For all seven original quotes, exact source lengths and secret alphabet feasibility jointly yield:
+
+| Frozen source | Exact source full-quote word-length candidates for q0…q6, ING | Same without ING | Exact full-quote secret alphabet survivors |
+| --- | --- | --- | --- |
+| 1832 *Lady of Shalott* | `[0,0,5,0,0,0,0]` | `[0,0,5,0,0,0,0]` | **0** |
+| 1842 *Lady of Shalott* | `[0,0,3,0,0,0,0]` | `[0,0,3,0,0,0,0]` | **0** |
+| Emerson *Essays First Series* #2944 | `[22,5,570,0,0,0,0]` | `[22,6,578,0,0,0,0]` | **0** |
+
+Thus even shorter q0 (4 source words/18 original runes) and q1 (5 source words/19 original runes) lack a fixed substitution witness: 22+5 or 22+6 Emerson length-compatible passages collapse to **zero** under the complete original repeated-rune pattern and necessary injectivity constraints. The only source-compatible two-word matches, q2, likewise collapse to zero. Every other original quotation already fails the prior exact full-length test.
+
+The extended [CommonJS original-input SFT](../sims/lp2_tennyson_quote_source_sft.cjs) enumerates all seven windows across all three source versions and both GP spellings with fixed per-window counts; an arbitrary-secret 14-word source passage is planted as a positive control. **This closes exact verbatim source reuse of any of the seven original quoted passages under every stationary monoalphabetic GP29 bijection** for these specific historically selected editions, without guessing the secret alphabet. It cannot exclude a position-dependent stream cipher, reordering, changed word partition, paraphrase or different literary source.
+
 ## A stronger original-cipher invariant on the two-word p40 quotation
 
 The original p40 **quotation 2** is exactly 12 runes in two source-printed words of lengths **3 and 9** (canonical rune offsets 9,715–9,727). Its ciphertext GP indexes, without any edits, are:
