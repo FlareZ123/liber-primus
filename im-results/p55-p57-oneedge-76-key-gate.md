@@ -29,6 +29,8 @@ The actual 52-rune result transliterates as:
 
 It has GP29 IoC **0.040723982**, a Shakespeare-native conditional-trigram score of **−4.66107123** nats/rune versus the raw original p55 suffix **−4.32452320**. All **4,185** original-source 52-rune Shakespeare control windows (52-rune stride) score from **−2.92662377** to higher native values; **0/4,185** perform as poorly as this candidate. A complete authentic-GP-native 52-rune planted message decrypts and re-encrypts exactly, as does the original ciphertext, but no original plaintext emerges. The split after p55's first line also interrupts an original complete word (the 7th p55 word crosses the line), so there is no independent lexical instruction selecting this key transfer.
 
+A stricter key-independent *literal-copy* alternative fails even with **any secret monoalphabetic GP29 bijection** and **any arbitrary shuffle of all 52 positions**. The actual p55 final52 has **21 distinct GP29 symbols**, while the p57 SHED52 source has only **18**; a bijection plus shuffle cannot create three new labels. Even the sorted 29-class frequency histograms require **at least eight rune changes**. This mathematical obstruction applies to a 1:1 symbol substitution/transposition of the p57 literal text, separately from the additive-key test. Both exact counts are checked in the same CJS source test.
+
 **Decision:** reject this *specific* fixed SHED-suffix-as-pad interpretation. The visually striking 52+52 alignment and p57 exhortation remain unproven as an actual cipher instruction; do not search other start phases, word resets, signs or substring cribs without a new original clue. [Standalone source-exact CJS SFT](../sims/p55_p57_sh_ed_52linekey_sft.cjs).
 
 ## Fixed source-selected framing
