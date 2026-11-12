@@ -1,6 +1,6 @@
 # Original p36 in the grid's irreducible degree-238 field: worked-DH power test
 
-**Result (12 November 2026; p36 exponent extension by Agent10):** a strictly source-posed exponent-15 power encryption of the original p36 block is **algebraically impossible** in the grid-defined finite field. Three reversible exponent candidates derived from earlier Cicada DH material also produce nonlinguistic 238-rune outputs. The added exponent **1067** is the shared secret in an unsigned participant DH3301 transcript, not an authenticated LP2 instruction. This is a bounded cryptanalytic result, with **no original unknown plaintext, key, or destination recovered**.
+**Result (12 November 2026; p36 exponent extension by Agent10):** a strictly source-posed exponent-15 power encryption of the original p36 block is **algebraically impossible** in the grid-defined finite field. Three reversible exponent candidates derived from earlier Cicada DH material also produce nonlinguistic **full 238-rune outputs after exact restoration of the printed numeral slot**. The added exponent **1067** is the shared secret in an unsigned participant DH3301 transcript, not an authenticated LP2 instruction. This is a bounded cryptanalytic result, with **no original unknown plaintext, key, or destination recovered**.
 
 ## Candidate human-visible route
 
@@ -24,20 +24,34 @@ Write `y` for this nonzero original-source field element. The multiplicative gro
 - Its low-to-high first 24 coefficients are `[10,26,11,26,0,7,11,10,7,6,15,20,27,4,9,26,16,12,16,10,20,26,2,23]`.
 - Therefore **no GF(29^238) element maps to the original p36 block under `m↦m^15`**. This obstruction is independent of plaintext language, score thresholds or unknown secret state.
 
-For reversible powers, **23** and **1661** are coprime to N. Compute the exact inverse exponent in the unit group and read the 238 resulting field coefficients in printed high-to-low order as GP29:
+### Recovering the exact 238 original GP rune slots
 
-| Source-derived exponent | GP29 output IoC | First decoded GP transliteration |
+**A necessary correction to the original field-basis diagnostic:** The 239 printed positions carry one **known** Arabic numeral at offset99, and the 238 others are the GP rune receiver. Directly reading the 238 field coefficients as if they corresponded one-for-one to those 238 original rune slots changes the positional representation and silently discards the known-slot constraint. A complete original inverse must reverse the field reduction with **coefficient at ascending power139 equal to the printed numeral 1**.
+
+The monic grid-derived field polynomial has **Q238[139]=27 ≠0**. Writing the reduced output as `y[0..237]`, its omitted source degree238 coefficient is therefore fixed as `a=(1−y[139])/27 mod29`. Restore `P[j]=y[j]+a·Q238[j] mod29` for j=0..237 and `P[238]=a`. This reconstruction places **1 exactly at printed offset99**. Delete *only that known printed numeral* after the field and 239-slot reconstruction, yielding the **entire physical 238-rune GP page**. This map is an exact invertible affine bijection from all 238 rune positions to the 238 field coordinates. The original p36 source reverses losslessly before any proposed power cipher.
+
+The physical numeral position also has a source-only internal check: the original complete p36 polynomial with numeral 1 at offset99 evaluates to **0 at X=24**; moving it unaltered to printed offsets98 or100 gives **9** or **14**, respectively. This validates the visible insertion as a mathematically distinctive anchor without proving it was intended to select exponentiation.
+
+With this exact **known-numeral-slot recovery**, apply each source-derived exponent to the original p36 field element. **23**, **1661** and unsigned-transcript **1067** are coprime to `N=29^238−1`, so their inverse exponents exist. Recover all original shaped GP slots after field-power inversion:
+
+| Power exponent | Full p36-shaped 238-rune IoC | First 65 recovered GP runes (transliterated) |
 | --- | ---: | --- |
-| 23 | **0.034712619225** | `BJSUXITAPYYEOPTSXTHEANNGUOEEOEAWEATHFJOEIAYYIFIAUBSTTUCDEAEOEUCIAPOEO` |
-| 1661 | **0.035244477538** | `LLBNIXTHRHUIASBCWCTCEOYNAPXIAXCNGDTHMOESCBEOETTOEAEXUXSYIAYEOBLOEADOE` |
-| 1067 (unsigned DH3301 shared secret) | **0.035067191434** | `XRUTHLCIANGUSOETHMRAEXGAMENPSAEDULUCTICOYEAOERDOAEGYIAUSHTPRJOETHTHOS` |
+| 23 | **0.033294330390** | `GAEXYEBFOWLXHFHCTXOEXIWWIAREOCTIADGIAEIIATHTHAEMRXYBJMCRHRYIANTBIAPILLAEEOIHTPNG` |
+| 1661 | **0.034641704783** | `JAEJPTUSEOYTHDOEONRCXENILIYXNTHTCEOTHSEOMEOUAEGAMFNGTHEPEOTHYOETDJOEEAOEAIAEOIALEAGEA` |
+| 1067 (unsigned 2013 DH3301 shared secret) | **0.036698223593** | `EAOERRCYCMABAERSULXOEWXUHNIAAEOEXAEEORDUOIAUIPBWAENAEOEEOILAELTHHFAEDMJAEGODEOWAEAEOEO` |
 
-The original 238-rune p36 has IoC **0.035989079176**; ordinary native GP English is substantially higher. Neither fixed inverse yields meaningful runic text. For **all three** reversible exponents, powering the exact decoded field element back by its corresponding exponent reproduces the complete original p36 field value. This establishes correct group inversion, while supplying no evidence that either exponent is an author-chosen cipher.
+The original physical p36 238-rune IoC is **0.035989079176**. All three source-fixed decoded pages remain cipher-like and unreadable as GP29 prose. For every exponent, forward exponentiation re-encodes the exact original reduced field element; the fixed-slot lifting restores an exact original 238-rune receiver, without insertion edits or concealed symbols.
+
+**A full native GP29 positive control:** Take 238 source solved-p57 runes repeated in source order, insert the literal 1 at exactly offset99, encrypt its 238-dimensional field representative with power23, and decode by the mathematically unique inverse exponent followed by the just-derived 239-position coefficient lift. The result is the **same 238 original native rune indices at every position** and the same native IoC. This establishes full original-shape transport correctness rather than merely field-group reversibility. The 15th-power obstruction remains independent of this recovery representation, because field inclusion is injective.
+
+### Interpretation
+
+The field structure provides a **mathematically complete and lossless candidate codec for a p36 page with a fixed embedded numeral**, with no fitted key. This could be useful if an authenticated future instruction actually chooses a finite-field power operation. The three source-motivated power inversions tested here recover no original plaintext, and the manuscript has not instructed the reader to interpret the printed 1 as a quotient-field coefficient. The exact root24 insertion alignment is another structural clue, not itself a key selector.
 
 ## Decision and next useful input
 
-The **literal fifteenth-power encoding** of the source-arranged p36 polynomial over the original grid's Q238 extension field is excluded outright. The **23**, **1661** and **1067** reversible power consumers are concrete unsuccessful original-input decryptions. The 1067 test closes only direct reuse of this one unsigned participant-session shared secret as the field exponent. This does not exclude exponentiation after an independently chosen key multiplication, a different source ordering, a different field, or a non-power transport. Such additions require a new original-source instruction; the present arithmetic supplies none.
+The **literal fifteenth-power encoding** of the source-arranged p36 polynomial over the original grid's Q238 extension field is excluded outright. The **23**, **1661** and **1067** reversible power consumers are concrete unsuccessful complete-page 238-rune decryptions, with original numeral position exactly restored. The 1067 test closes only direct reuse of this one unsigned participant-session shared secret as the field exponent. This does not exclude exponentiation after an independently chosen key multiplication, a different source ordering, a different field, or a non-power transport. Such additions require a new original-source instruction; the present arithmetic supplies none.
 
 A plausible future route would need a *separate source-authenticated choice of field operand, exponent and receiver*, or a known plaintext prediction tied to the p36 heading. Another generic exponent sweep would be detached from the human puzzle.
 
-**Reproduce:** [Single-file Node.js 22 CommonJS SFT](../sims/lp2_p36_q238_dh_power_sft.cjs). It reconstructs Q238 from all 256 source bytes, checks original input shape, evaluates the exact 15th-power obstruction, computes all three inverses and round-trips all three field values without external dependencies. The mathematical algorithm was independently run against the canonical GitHub source data before this report was written.
+**Reproduce:** [Single-file Node.js 22 CommonJS SFT](../sims/lp2_p36_q238_dh_power_sft.cjs). It reconstructs Q238 from all 256 source bytes, checks original input shape, evaluates the exact 15th-power obstruction, computes all three inverses, reconstructs all 238 GP rune positions, tests wrong numeral placement, and round-trips a complete native-GP planted source without external dependencies. The mathematical algorithm was independently run against the canonical GitHub source data before this report was written.
