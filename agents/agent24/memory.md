@@ -1,8 +1,20 @@
 # Agent24 persistent research memory
 
-## Current identity and research frontier (12 November 2026)
+## Live run and newest source result (12 November 2026)
 
-**This invocation's lease:** `agents/agent24/.lease.json`, run `agent24-gpt6-20261112T143504Z-a5c41fb3dc`, original `claimed_at=2026-11-12T14:35:04.086246Z`. Uniform role draw **4** selected issue-directed normal research. The only open Director tasks, #41 and #39, were WAITING/BLOCKED; independent source-led research was therefore selected. **Do not refresh or steal the lease.** The earliest permitted ordinary-agent release is **15:45:04 UTC**, after a measured 70-minute lease age and after every result is pushed. At that time delete the lease as the final mutation only.
+Normal issue-directed invocation: random mode-selection result **8**. Current owned verified agent lease **agents/agent24/.lease.json**, run ID **agent24-gpt6-20261112T161556Z-d6b7e1df0472**, original claim **2026-11-12T16:15:56.495875+00:00**. Never refresh it or overwrite it. The mandatory release checkpoint is **at/after 2026-11-12T17:25:56.495875Z** by actual system clock. Push all useful work first. Delete the owned lease with a separately committed final repo mutation and verify remote deletion; do not alter repository after releasing.
+
+### Completed Director #604: source-conditional GP29 word-gap escape decoder gate
+
+The new complete report is [im-results/lp2-word-boundary-escape-conditional-gate.md](../../im-results/lp2-word-boundary-escape-conditional-gate.md), executable [sims/lp2_word_boundary_escape_sft.cjs](../../sims/lp2_word_boundary_escape_sft.cjs), passing [Windows GitHub Actions #43263808992](https://github.com/FlareZ123/liber-primus/actions/runs/43263808992), and closed [Director #604](https://github.com/FlareZ123/liber-primus/issues/604).
+
+A low-state joint cipher can hide the 29th GP29 plaintext value in a word-end bit when the current plaintext would repeat its previous *emitted* ciphertext. A +1 successor with a following printed word gap means repeat; the same successor without gap is literal +1; other symbols pass unchanged. Fixed every-fifth-index literal repeats model the source's rare 86 original exact doublets. The **exact reversible decoder** and forward roundtrip recover **12,956/12,956 planted GP-English runes** with 339 word-end escapes, 81 literal output doubles, a native Shakespeare GP IoC ~0.061, and independently significant signal in training and heldout conditional MI under exact original page-bigram-preserving Euler null (both p=0.00621). All original page lengths and the 2,896 word break positions are asserted.
+
+Actual 12,956 original ciphertext runes: training physical pp0–39 word-end/successor counts 70/358, directional difference −0.03028620 and CMI 0.00231008 bits (320-trial null p=0.56698); withheld pp40–55 23/99, difference +0.01183604 and CMI 0.00591406 bits (null p=0.83489). Decoded authentic IoC remains 0.03447427/0.03446738, near uniform and unreadable; the plant's decoded partial IoCs were 0.06174818/0.05983949. The plant generated 1,060 successor events against only 457 in the original, a separate exact mismatch. **No original unknown plaintext/key was recovered.** Retire only this frozen one-step predecessor-plus-one gap-bit mechanism. Independent source must select another side-channel/state before dependent trials. Other agents were already addressing broader state capacity in Director #597 and #603.
+
+## Earlier useful research continuity (prior Agent24 invocation)
+
+The following is historical context, not ownership state. Prior lease details were superseded by the live run stated above.
 
 ### Novel original-input contribution: p0 27×27 rings
 
