@@ -70,3 +70,48 @@ console.log(JSON.stringify({
   ],
   cryptanalyticStatus:'reading order and candidate section boundaries only, no authenticated key reset'
 }, null, 2));
+
+
+// Source-visible nine-chapter permutation-feedback necessary condition.
+// Every unknown secret 29-symbol bijection keyed by (chapter, previous C)
+// preserves the conditional empirical output histogram under that same state.
+// Since each chapter boundary is a physical page break, all 12,901 original
+// within-page transitions remain eligible. Matched GP-English marginal control
+// maximum 4.28909395 comes from lp2_cipher_feedback_entropy_sft.cjs.
+const buckets = new Map();
+let transitionCount = 0;
+let globalStart = 0;
+for (const page of corpus.pages.filter(page => page.page <= 55)) {
+  for (let i = 1; i < page.indices.length; i++) {
+    const chapter = visibleCuts.findIndex(end => globalStart + i < end);
+    const previous = page.indices[i - 1];
+    const current = page.indices[i];
+    const stateKey = chapter * 29 + previous;
+    const histogram = buckets.get(stateKey) || new Int32Array(29);
+    histogram[current]++;
+    buckets.set(stateKey, histogram);
+    transitionCount++;
+  }
+  globalStart += page.indices.length;
+}
+let entropyNumerator = 0;
+for (const histogram of buckets.values()) {
+  const n = histogram.reduce((a, b) => a + b, 0);
+  for (const count of histogram) {
+    if (count) entropyNumerator += count * Math.log2(n / count);
+  }
+}
+const visualFeedbackEntropy = entropyNumerator / transitionCount;
+assert.equal(transitionCount, 12901);
+assert.ok(Math.abs(visualFeedbackEntropy - 4.391429141381489) < 1e-11);
+const nativeGpEnglishMax = 4.28909395;
+assert.ok(visualFeedbackEntropy > nativeGpEnglishMax);
+console.log(JSON.stringify({
+  family: 'arbitrary secret GP29 plaintext permutations keyed by previous C and the original nine red chapter groups',
+  eligibleTransitions: transitionCount,
+  secretPermutationStates: 9 * 29,
+  originalSourceConditionalEntropy: visualFeedbackEntropy,
+  highestMatchedNativeGpEnglishMarginalEntropy: nativeGpEnglishMax,
+  necessaryAdditionalStateEntropyOverEnglishRegister: visualFeedbackEntropy - nativeGpEnglishMax,
+  classification: 'finite English-register exclusion of this source-selected visible-chapter feedback family; no plaintext/key'
+}, null, 2));
