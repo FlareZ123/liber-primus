@@ -44,6 +44,8 @@ For all **four long quotations (13,14,34,14 words)**, **all 3 × 2 source/orthog
 
 For the three **short** quotations, a complete 2-, 4- or 5-word shape matches repeatedly, sometimes in unrelated passages. Giles has one exact 5-word length-window, but its mere numerical shape does not identify the printed runes as that phrase; competing books and editions supply further alternatives. Do not promote a length-only short match to plaintext or derive a candidate key from its letters.
 
+**Original-input regression:** The historical 2012 book-code source crib reproducer passed on [Windows / Node.js 22 run 43278788293](https://github.com/FlareZ123/liber-primus/actions/runs/43278788293) with the unmodified 13-/34-word spans, immutable five source witnesses and their fixed controls.
+
 ## Additional source-authentic 2012 book-code texts: p42–43 originals (Director #628)
 
 The 2012 Cicada puzzle itself directed solvers to texts of **Lady Charlotte Guest's *Mabinogion*, specifically “The Lady of the Fountain”**, **William Blake's *The Marriage of Heaven and Hell*** and **William Gibson's *Agrippa (A Book of the Dead)***. These are genuinely independent, author-associated candidate books, beyond the three literature choices above and the pretested KJV/Emerson/Shakespeare/Gibran/Crowley families. This historical choice supports inspecting them before any LP2 language scoring, although it does **not** assert that Cicada selected them as p42 plaintext or keys. The exact early-puzzle book-code connection is preserved in the 2012 participant archives and [the pinned research-source registry](https://github.com/pnotisdev/cicada3301/blob/main/docs/SOURCES.md).
