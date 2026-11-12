@@ -1,6 +1,6 @@
-# Original LP2 p2 and pp23–26: all-secret six-stream binary parity impossibility
+# Original LP2 p2 and pp23–26: all-secret six-stream binary and GF29 parity impossibility
 
-**Established original-input conditional exclusion, 12 November 2026.** The original six 201-rune streams cannot obey a six-way positionwise XOR parity law with a **stationary injective binary rune encoding**, even when each of the six strands has its **own entirely arbitrary secret alphabet**, the field GF(2^m) is unconstrained, and each strand can be independently reversed. The stronger lane-specific result subsumes the simpler common-alphabet result. Both have actual original-source and genuine encrypted synthetic controls. **Neither result authenticates a historical LP2 operation, recovers unknown plaintext or identifies a final destination.**
+**Established original-input conditional exclusion, 12 November 2026.** The original six 201-rune streams cannot obey a six-way positionwise linear parity law with a **stationary injective rune encoding** over either characteristic **2** or **29**, even when each strand has its **own entirely arbitrary secret alphabet**, the extension-field degree is unconstrained, and each strand can be independently reversed. The stronger lane-specific result subsumes the simpler common-alphabet result. Both have actual original-source and genuine encrypted synthetic controls. **Neither result authenticates a historical LP2 operation, recovers unknown plaintext or identifies a final destination.**
 
 ## Actual original visible source and proposed solve path
 
@@ -51,9 +51,19 @@ For interleaved lanes, the sixth nullspace dimension is completely explained by 
 
 This is a **field-size-independent impossibility** for both source-selected layouts and every independent reversal. It is considerably stronger than checking particular GP29, GF32, byte values, or 29-symbol label permutations.
 
+### Independent GF29 arithmetic test: the native GP characteristic
+
+The historical binary construction is only one possible field. Since 29 distinct GP rune identities might motivate direct arithmetic over the prime field **F29** (or over any extension field GF(29^m)), the same exact 201×174 lane-by-glyph incidence matrices were also eliminated over **F29** for all **128 original layouts and reversals**. The original rank histograms are unchanged: **169 of 174** for all 64 contiguous alignments, and **168 of 174** for all 64 interleaved alignments. In characteristic 29, the six-lane parity relation uses *addition mod29*, and its five trivial constant-codebook dimensions satisfy \(a_0+\cdots+a_5=0\).
+
+The same missing-symbol explanation applies: the interleaved second p23 strand never prints rune index 8 (ᚻ), leaving exactly one unconstrained coordinate. Every other observed source glyph has a forced lane-constant encoding. Because any extension-field GF(29^m) is an m-dimensional vector space over F29, every coordinate of any hypothetical extension-field symbol map must solve **the same F29 linear system**. Consequently no independently injective stationary rune codebook exists for a six-way additive parity over *any* GF(29^m).
+
+A separate genuine F29 positive plant uses **six independently shuffled full 29-element rune permutations**, produces 201 source-length parity columns by adding the first five encoded values and selecting the sixth inverse codebook symbol to make the total **zero modulo29**, and asserts exact 201/201 equations. Its 201×174 matrix has rank at most **168** with at least one genuine nonconstant solution. The F29 original rank and positive are implemented in [the same all-secret multi-alphabet SFT](../sims/lp2_p2_p23_sixstrand_multialphabet_allsecret_sft.cjs).
+
+This extends the negative to the two natural historical field characteristics **2 and 29**. It is **not** a theorem over every possible prime characteristic, and no original clue authenticates a six-stream columnwise code.
+
 ### Algebraic extension: every fixed nonzero **weighted** binary-field parity also fails
 
-This original-input impossibility covers more than equal-weight XOR. Suppose for every original source column we had **any** stationary six-lane affine-linear relation in GF(2^m),
+The original-input impossibility covers more than equal-weight parity. In characteristic two suppose for every source column we had **any** stationary six-lane affine-linear relation in GF(2^m),
 
 \[
 a_0g_0(s_0[j])\oplus\cdots\oplus a_5g_5(s_5[j])=b,
@@ -61,7 +71,7 @@ a_0g_0(s_0[j])\oplus\cdots\oplus a_5g_5(s_5[j])=b,
 
 with arbitrary field degree, **six nonzero constant coefficients** \(a_k\), any constant \(b\), and six unrelated secret injective rune encodings \(g_k\). Define \(h_0(r)=a_0g_0(r)\oplus b\) and \(h_k(r)=a_kg_k(r)\) for lanes 1–5. Multiplication by nonzero constants and addition of a constant preserve each codebook's injectivity. Thus the weighted equation is exactly the six-way XOR parity \(h_0(s_0[j])\oplus\cdots\oplus h_5(s_5[j])=0\), which the rank-168/169 original obstruction **proves impossible for all 201 positions**.
 
-Therefore **all fixed-coefficient GF(2^m) symbolwise linear parity codes, affine checksums, and symbolwise Shamir consistency equations** are excluded for either original five-strand partition and all 64 independent reversals, even with six *different* arbitrary secret alphabets. There is no additional weight or byte-alphabet search to perform.
+The same absorption works over GF(29^m) using field addition and subtraction, which preserve injectivity. Therefore **all fixed-coefficient GF(2^m) and GF(29^m) symbolwise linear parity codes, affine checksums, and symbolwise Shamir consistency equations** are excluded for either original five-strand partition and all 64 independent reversals, even with six *different* arbitrary secret alphabets. There is no additional weight or byte-alphabet search to perform.
 
 The qualifier **symbolwise** is essential. Packing an entire 201-rune string into one 122-/123-byte field element mixes rune positions through base conversion, so such a *whole-strand* historical SSSS share need not obey the columnwise equation; those two fixed serializers were tested in the [distinct whole-register gate](lp2-p2-p23-201-sixshare-ssss-original-gate.md). Changing per-position alphabets, using zero coefficients that omit a strand, or performing nonlinear/stateful mixing is also outside this proof. No original clue yet selects a sixth-share encoding.
 
@@ -81,4 +91,4 @@ A genuine 2013 Cicada source used binary-field secret sharing, but a *monic degr
 - [Original **shared-alphabet** 29-variable GF2 SFT](../sims/lp2_p2_p23_sixstrand_xor_allsecret_sft.cjs), with 128 additional exact matrices and common-GF32 positive.
 - Both attached to [the existing on-demand SSSS original-data workflow](../.github/workflows/lp2-p23-ssss-enumerative.yml). No expensive automatic per-commit jobs.
 
-**Decision:** retire any attempt to interpret p2 as a simple positionwise binary XOR parity check for the five p23 body strands under a stationary rune alphabet, **even with completely different secret alphabets in every strand and arbitrary GF(2^m)**. Key searches over those alphabet permutations cannot rescue the architecture. A different source-authenticated clue would need to prescribe weighted shares, changing per-position alphabets, shifts other than source orientation, or nontrivial enciphering/state that invalidates the tested exact parity equation. The unsolved manuscript remains unsolved; the contribution is a rigorous, broad structural exclusion based on original glyphs.
+**Decision:** retire any attempt to interpret p2 as a simple positionwise GF(2^m) XOR or GF(29^m) additive parity check for the five p23 body strands under a stationary rune alphabet, **even with completely different secret alphabets in every strand and arbitrary GF(2^m)**. Key searches over those alphabet permutations cannot rescue the architecture. A different source-authenticated clue would need to prescribe weighted shares, changing per-position alphabets, shifts other than source orientation, or nontrivial enciphering/state that invalidates the tested exact parity equation. The unsolved manuscript remains unsolved; the contribution is a rigorous, broad structural exclusion based on original glyphs.
