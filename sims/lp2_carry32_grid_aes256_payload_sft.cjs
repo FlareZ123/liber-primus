@@ -376,9 +376,54 @@ for (const item of pgpChecks) {
   assert.equal(item.mdcValid, false);
 }
 
+
+/**
+ * Historical 2012-era Cicada stages also used XOR secret-sharing. Here the
+ * source's single selected byte from each of 32 printed rows is a row-wise
+ * one-byte XOR pad, applied exactly once to each of the remaining seven
+ * cells in that same row. This consumes all 256 source cells and creates
+ * seven independent 32-byte messages under one common 32-byte column key.
+ *
+ * Unlike the AES hypotheses above, no IV, block mode, or KDF is needed.
+ */
+const xorRows = grid.byte_rows.map((row, r) =>
+  row.filter((_, col) => col !== selectedColumns[r])
+    .map(byte => byte ^ key[r])
+);
+const xorPayloads = [
+  {name: "row-ordered-seven-xor",bytes: Buffer.from(xorRows.flat())},
+  {name: "column-ordered-seven-xor",bytes: Buffer.from(
+    Array.from({length:7},(_,col)=>xorRows.map(row=>row[col])).flat())}
+];
+const expectedXorPrefix64 = {
+  "row-ordered-seven-xor":
+    "aa86c6db8c1fd6a565270efd4e2d2e9d587631de6c74dfb48f5b949c5455e21177a222191d55af228e05618cb3a7ca37cc3ab25681aeb8f763e6d9de50b075f6",
+  "column-ordered-seven-xor":
+    "aaa52e745419613a63f64f0f48747f7c62ffaf1fbb64681c737b96bd44801def86659ddf551d8cb2e61dfb159631b9bb18748ed98b704d93e85f3fe8342eba32"
+};
+const xorResults = xorPayloads.map(entry => {
+  assert.equal(entry.bytes.length, 224);
+  assert.equal(entry.bytes.subarray(0,64).toString("hex"),
+    expectedXorPrefix64[entry.name]);
+  const shape = inspect(entry.bytes);
+  assert.equal(shape.printable, 85);
+  assert.equal(shape.longestPrintableRun, 4);
+  return {source:entry.name, sha256:sha256(entry.bytes), ...shape};
+});
+
+// Independent exact-size native ASCII control proves column selection and
+// selected-cell consumption in every row, followed by rowwise XOR inverse.
+const xorPlant = Buffer.alloc(224, 32);
+Buffer.from("CICADA THIRTY TWO ROW ORIGINAL XOR CONTROL.").copy(xorPlant);
+const xorCipherRows = Array.from({length:32},(_,row)=>
+  Array.from({length:7},(_,col)=>xorPlant[7*row+col]^key[row]));
+const xorRecovered = Buffer.from(xorCipherRows.flatMap((row,r)=>
+  row.map(byte=>byte^key[r])));
+assert.deepEqual(xorRecovered, xorPlant);
+
 console.log(JSON.stringify({
   source: "Original 55 unknown physical pages; 32 cross-page words; pp49-51 printed 32x8 table",
   runes: parsed.runes, words: parsed.words, carries: parsed.carries.length,
   carryColumns: selectedColumns.join(""), keyHex: key.toString("hex"),
-  results, authenticatedContainers, pgpChecks, pgpControl, conclusion: "No ASCII text or recognizable opening signature among the tested exact AES256 key/payload formats; no unknown LP2 plaintext recovered."
+  results, authenticatedContainers, pgpChecks, pgpControl, xorResults, conclusion: "No ASCII text or recognizable opening signature among the tested exact AES256 key/payload formats; no unknown LP2 plaintext recovered."
 }, null, 2));
