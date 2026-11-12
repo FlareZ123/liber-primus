@@ -146,6 +146,18 @@ for(let i=0;i<16;i++){
     asciiSpans:(b.toString("latin1").match(/[ -~]{24,}/g)||[])
       .slice(0,5).map(x=>x.slice(0,170))});
 }
+// ISO metadata fields commonly ignored by file extractors can carry bytes.
+// Inspect PVD application-use and reserved tail independently from files.
+const pvdApplication=pvd.subarray(883,1395);
+const pvdReserved=pvd.subarray(1395,2048);
+const volumeMetadata={
+  applicationUseNonzero:nonzeroCount(pvdApplication),
+  reservedTailNonzero:nonzeroCount(pvdReserved),
+  applicationAscii:(pvdApplication.toString("latin1").match(/[ -~]{24,}/g)||[]).slice(0,3),
+  reservedAscii:(pvdReserved.toString("latin1").match(/[ -~]{24,}/g)||[]).slice(0,3),
+  bootCatalogTails:bootCatalog.map(lba=>({lba,
+    beyondInitialEntriesNonzero:nonzeroCount(sector(lba).subarray(64))}))
+};
 const slack=[];
 for(const e of entries){
   if(e.dir||e.length%SECTOR===0)continue;
@@ -193,6 +205,7 @@ stream.on("end",()=>{
   assert.equal(sha256,EXPECTED_SHA256,"Unexpected ISO bytes");
   const summary={
     source:{size,sha256,declaredSectors,nSectors},
+    reservedVolumeMetadata:volumeMetadata,
     reservedSystemArea:{sectors:16,nonzeroSectors:systemArea.length,
       totalNonzeroBytes:systemArea.reduce((s,x)=>s+x.nonzeroBytes,0),
       records:systemArea},
