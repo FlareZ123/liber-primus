@@ -49,6 +49,23 @@ These GP strings contain **16 original rune symbols** each (several transliterat
 
 The same [reproducer](../sims/p32_ring1136_center75_p55_sft.cjs) now asserts all four exact source readouts alongside the central-byte full-text inverse. This book-code test is distinct from the four 75-rune additive decryptions and does not assert a reversible entire-page decoder.
 
+## GP-word-prime address into segmented authenticated packet
+
+One last distinct, source-directed consumption of these same objects uses the **numeric value of a complete original p55 word** as the 2016 message's stated “direction.” Compute each of the 16 complete p55 word sums in the original GP-prime alphabet:
+
+`[222,114,118,306,283,30,596,365,138,108,341,291,88,284,129,159]`.
+
+Partition the authenticated 1,136-byte ASCII into the 16 unmodified consecutive p32-ring-width segments. For word `i`, select precisely one **ASCII** byte in its segment at address `sum_i mod width_i` (zero-based) or `(sum_i−1) mod width_i` (one-based). Original clockwise and reverse ring orders are the only ring directions tested. These source-locked choices yield:
+
+| Ring order | Address base | Complete 16-byte ASCII readout |
+|---|---|---|
+| Clockwise | 0 | ` eit 7criwznvUIY` |
+| Clockwise | 1 | `De  e PHmH5mzOF\\n` (last character is LF) |
+| Reverse | 0 | `IswG-WYO7Li1fF6q` |
+| Reverse | 1 | `Gi \\n-J4XL5jEpTRu` (fourth character is LF) |
+
+These are direct ASCII bytes from the original signed message. The source includes plaintext header plus an armored RSA signature, so a randomly selected ASCII subsequence is expected to contain readable punctuation and letters even for a wrong key. None selects a well-formed address, recognizable instruction or source-authenticated GP29 decryption key. The modulo-address convention remains inferred, and no handwritten text points from the p55 word prime sum to the signature packet. The same SFT now asserts all sixteen-byte original outputs and stops at this four-case gate. Expanding arbitrary indices after this failure is not licensed.
+
 ## Decision
 
 **Retire this fixed sixteen-ring-size / sixteen-p55-word-size middle-extraction and direct GP29 additive consumer.** The source equality 1,136 remains real and its potential as a packet locator remains open; the tested central substrings supply no usable p55 key. The whole 56-page unsolved manuscript remains unrecovered. Avoid individualized center offsets, source-file slicing corrections, fitted GP residues, or new algorithm layers without an independent original instruction. This is a different finite hypothesis from the existing *unsegmented* p32 ring-periodic pad and packet-columnar experiments and does not change the established broad research synthesis.
