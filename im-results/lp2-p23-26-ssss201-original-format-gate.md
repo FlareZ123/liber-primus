@@ -23,6 +23,8 @@ The unmodified original physical pp23–26 contain 213,270,273,265 rune indices.
 
 No assignment of documented SSSS identifiers 1..10 can make out-of-range y-values legal field elements. No interpolation, hexadecimal leading-zero padding, or XTEA diffusion can repair a share whose value already exceeds the field. Reducing modulo the field or dropping a digit would be an invented, non-injective transformation. The point is a **format obstruction**, independent of language scoring or fitted candidate plaintext.
 
+**CI:** [passing original-source SFT, run 43164068830](https://github.com/FlareZ123/liber-primus/actions/runs/43164068830), executed on the unmodified repository corpus on 12 November 2026.
+
 ## Reproduction and controls
 
 Run \`node sims/lp2_p23_26_ssss201_field_gate_sft.cjs\` on the repository corpus. It verifies the red16 and exact original page counts; tests all four readings; implements the historical full-field polynomial and five-point interpolation; recovers the known 2013 176-bit pre-diffusion encoded secret \`65b9c4065cc47a4a48e01d17de166a94252dfbb44e69\` from archived decimal-ID shares 02,03,05,07,08; and generates five deterministically seeded 976-bit field shares, losslessly round-tripping each through 201 base-29 digits and recovering the planted encoded coefficient zero.
