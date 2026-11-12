@@ -48,4 +48,6 @@ This yields a plausible human path: recognize SKY/UDP, factor the p56 target for
 
 **Next decisive evidence:** an archived 2014 packet/server record, an independently recovered 59.txt/59.bin, or an authenticated historical attribution of the IP/port. Do not perform live probing.
 
+The pinned source assertions, including the complete p55 ASCII bytes, 84-byte specimen, all seven page-length alternatives and factorization, passed on [original Windows CI run 43271811469](https://github.com/FlareZ123/liber-primus/actions/runs/43271811469). No UDP packet was transmitted.
+
 Reproduce with `node sims/p56_factorization_udp_endpoint_sft.cjs`; it opens no sockets and sends no traffic.
