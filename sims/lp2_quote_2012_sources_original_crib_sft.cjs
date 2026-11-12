@@ -39,7 +39,7 @@ function sourceWords(raw) {
       if (!word) start = runeOffset;
       runeOffset++;
       word += ch;
-    } else if (ch === "%" || ch === "/" || /\\s/u.test(ch)) {
+    } else if (ch === "%" || ch === "/" || /\s/u.test(ch)) {
       // Physical line/page wraps do not end words in the original source.
     } else {
       flush();
