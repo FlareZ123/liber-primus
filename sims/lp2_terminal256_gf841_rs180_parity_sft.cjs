@@ -120,6 +120,21 @@ const projectionResults = Object.fromEntries(Object.entries(projections).map(
       ioc: counts.reduce((s,n) => s + n * (n - 1),0) / (76 * 75)}];
   }));
 
+// One frozen direct inverse: subtract the field trace as a GP29 pad,
+// following the existing solved p56 subtraction convention.
+const tracePad = outer.map(projections.trace);
+const inverse = p55.map((value, j) => mod(value - tracePad[j]));
+const ioc = values => {
+  const bins = Array(29).fill(0);
+  for (const value of values) bins[value]++;
+  return bins.reduce((sum,n) => sum + n * (n-1),0) /
+    (values.length * (values.length - 1));
+};
+const originalIoc = ioc(p55);
+const inverseIoc = ioc(inverse);
+assert.equal(originalIoc, 0.037894736842105266);
+assert.equal(inverseIoc, 0.037894736842105266);
+
 // Exact positive plant: a full [256,180] GF841 evaluation codeword.
 const coeff = Array.from({length:180},(_,j) =>
   [mod(11*j+7),mod(17*j+5)]);
@@ -143,7 +158,9 @@ assert.deepEqual(Object.fromEntries(Object.entries(projectionResults)
 console.log(JSON.stringify({
   field:"GF29[u]/(u^2-3u-8)", sourceGenerator:g,ringGeometry,
   original:{unknown:76,known:180,directSubfieldPredictions:inGP29,
-    directOriginalMatches:exact,projections:projectionResults},
+    directOriginalMatches:exact,projections:projectionResults,
+    fixedTraceSubtraction:{ioc:inverseIoc,rawIoc:originalIoc,
+      transliteration:inverse.map(i => corpus.translit[i]).join("")}},
   control:{plantedRecovered,of:76},
   conclusion:"The fixed GF841 [256,180] ring-order evaluation-code model cannot reproduce GP29 p55 ciphertext directly or through the four natural field projections. The evidence does not identify a historical decoder, and arbitrary ECC/hidden projections remain open."
 },null,2));
