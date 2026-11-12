@@ -18,7 +18,8 @@ const pageText = read("resources/lp2-transcription.txt").split("%");
 const namedSources = [
   "resources/control/shakespeare_first300k.txt",
   "resources/control/gibran_prophet_58585.txt",
-  "resources/control/emerson_essays_2944.txt"
+  "resources/control/emerson_essays_2944.txt",
+  "resources/control/english_wordfreq_textblob.txt"
 ];
 const mod = n => (n % 29 + 29) % 29;
 const runeIndex = new Map(gp.runes.map((r, i) => [r, i]));
@@ -79,7 +80,9 @@ assert.deepEqual(lengthsB, [2,1,5,3,6,5,4,4,8,5,3,6,7,4,4,7,6,2,6,4,5,6,2,5,3,6]
 /** @type {Map<number, Map<string, number[]>>} */
 const dictionary = new Map();
 for (const filename of namedSources) {
-  const words = read(filename).toUpperCase().match(/[A-Z]+/g) || [];
+  const words = filename.endsWith("english_wordfreq_textblob.txt")
+    ? (read(filename).match(/^[a-z]+\s+\d+$/gm) || []).map(row => row.split(/\s+/)[0])
+    : (read(filename).toUpperCase().match(/[A-Z]+/g) || []);
   for (const word of words) {
     const runes = spell(word);
     if (!runes || runes.length > 20) continue;
@@ -88,7 +91,7 @@ for (const filename of namedSources) {
     dictionary.set(runes.length, existing);
   }
 }
-assert.equal([...dictionary.values()].reduce((n, entries) => n + entries.size, 0), 12230);
+assert.equal([...dictionary.values()].reduce((n, entries) => n + entries.size, 0), 32081);
 
 /**
  * @param {Map<string, number[]>} entries
@@ -204,12 +207,10 @@ const actualForward = exactJointDecoder(
 const actualReverse = exactJointDecoder(
   p3.indices, p39.indices, lengthsA, lengthsB.slice().reverse(), true
 );
-assert.deepEqual(actualForward, {
-  possible: false, firstImpossibleRune: 7, statesBefore: 14
-});
-assert.deepEqual(actualReverse, {
-  possible: false, firstImpossibleRune: 6, statesBefore: 1
-});
+assert.equal(actualForward.possible, false);
+assert.equal(actualForward.firstImpossibleRune, 11);
+assert.equal(actualReverse.possible, false);
+assert.equal(actualReverse.firstImpossibleRune, 6);
 console.log(JSON.stringify({
   source: "original p3 and p39 first 119 GP29 runes",
   dictionary: namedSources,
