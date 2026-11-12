@@ -16,6 +16,12 @@ The image visibly specifies **29** vertically ordered rows, each with a rune gly
 
 The full **29 Unicode rune glyphs**, source names, and prime weights are frozen independently of the working corpus in [the CommonJS source regression](../sims/2013_primary_gp29_source_sft.cjs). Comparing every row to `resources/liber-primus/lp2-corpus.json` yields an exact match after selecting the corpus's primary aliases C, S, NG and IA. **C/K, S/Z, NG/ING and IA/IO** are genuine source aliases. The common extended transcription U/V is a working orthographic convenience; the cited image itself labels that row **U**. The image does not specify how to handle spaces, punctuation, alternate Roman spelling, GP29 word boundaries, page metadata, or a binary/radix serialization.
 
+### Solved-page orthography establishes the actual register (#507)
+
+The 29 entries are **grapheme labels that can represent multiple Latin letters**, not a promise of one rune per English sound. A frozen greedy conversion from the documented 2013 aliases C/K, S/Z, NG/ING, IA/IO, the remaining printed letter groups, and the source-native working U/V equivalence exactly reconstructs **all 95 original runes** of known plaintext on physical LP2 **p57** (the original `74.jpg`) from the edited English reference's **101 alphabetic letters**. The direct source-positive control is exhaustive over that solved page. For example, the original has `ᛚᛁᚳᛖ` for **LIKE**, retaining the *silent final E*, and `ᛏᚢᚾᚾᛖᛚᛝ` for **TUNNELING**, compressing its written ING to one rune. Solved LP1 likewise prints `ᚳᚾᚩᚹ` for **KNOW** (written K retained as C/K), and `ᚦᛝᛋ` for **THINGS** (TH+ING+S). This is source-native evidence for **orthographic spelling-based GP29 in the solved prose**, rather than an IPA-like strict phoneme-per-rune transcription.
+
+The exact source and control are reproduced by [the original solved-page orthography SFT](../sims/lp2_orthographic_gp29_solved_page_sft.cjs). The 2013 table itself labels U, whereas the solved-page spelling uses its known U/V working alias; this distinction remains explicit. No 2013/2014 primary source instructs a switch to a separate phonemic plaintext register for the unknown pp0–55. These controls cannot rule out such a switch hidden behind an unknown cipher, and they do not recover any secret runes. This source boundary resolves the narrow alternative-language premise in [Director #507](https://github.com/FlareZ123/liber-primus/issues/507).
+
 ### Independent original-source checks
 
 The historical **`761.mp3`** filename and title **“The Instar Emergence”** give a source-native checksum entirely outside LP2: in the printed table `THE = 5+67 = 72`, `INSTAR = 31+29+53+59+97+11 = 280`, `EMERGENCE = 67+71+67+11+17+67+29+13+67 = 409`. Thus **72+280+409 = 761** without a tuned offset or unknown ciphertext.
@@ -30,7 +36,7 @@ The original 2013 OS `prime_echo` binary/script is also separate: it displays or
 
 ## Research decision
 
-**Fixed:** GP's 29 visible rune classes, ordered indices **0–28**, first-29-prime values and source-labelled ambiguities. The working corpus's prime sums use an original-stage source map with independently reproducible `761` and LP2 p57 checks. Researchers need not treat the 29 prime assignments as a wholly unsourced community convenience.
+**Fixed:** GP's 29 visible rune classes, ordered indices **0–28**, first-29-prime values, source-labelled ambiguities, and exact **orthographic/grapheme-group** encoding across all 95 runes of solved LP2 p57. The working corpus's prime sums use an original-stage source map with independently reproducible `761` and LP2 p57 checks. Researchers need not treat the 29 prime assignments as a wholly unsourced community convenience.
 
 **Unfixed:** Literal symbols for spaces and punctuation in an encoded stream, the semantics of optional aliases as plaintext, a GP29-to-binary codec, original-LP2 unknown-page segmentation/key/clock, and any transfer of the 2013 `BASE29` protocol to LP2. Arbitrary BASE29/GP29 conflations are not source-selected, and the verified `761` relationship does not supply a keystream.
 
