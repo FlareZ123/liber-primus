@@ -1,6 +1,6 @@
 # Original p55's 75 complete-word runes under the LP1 Wisdom-square inverse
 
-**Decision:** The specific [Director #581](https://github.com/FlareZ123/liber-primus/issues/581) model yields a reversible nonlinguistic 75-rune output on the **original** p55 and leaves its inherited first rune undecoded. The exact source matrix and original input are frozen; no authentic unknown plaintext or historical key is recovered. No broader 5×5 matrix or offset search is warranted from this failure.
+**Decision:** Two fixed, source-led transfers from the LP1 p05 SOME WISDOM square to original LP2 p55 are now bounded negatives: the 5×5 Hill inverse and a 25-period Euler-totient additive key. Both are exactly reversible on all 75 complete-word runes, but neither yields native GP plaintext. The inherited p54 rune remains outside both models; no authentic unknown plaintext or historical key is recovered.
 
 ## Human-visible premise and uncertainty
 
@@ -55,6 +55,29 @@ Gibran-trained GP29 trigram scores (mean log score per rune):
 | One real 75-rune solved-Cicada native positive plant | −2.327503356 |
 
 The proposed output is below **every** compared native solved passage; its 16 words lack coherent GP-language content. All 75 original ciphertext runes reconstruct exactly after forward multiplication by the frozen matrix, and the unchanged first rune reproduces all **76** source runes. A separate 75-rune positive plant from editor-normalized solved LP1 text survives encryption and the same inverse with **75/75 exact recovery**. This demonstrates algorithmic invertibility, not that the source p55 used this operation.
+
+## Source-named totient as a 25-cell repeating key: bounded negative
+
+The p55 moth is reused from LP1 p05 **SOME WISDOM**, whose source text explicitly says “THE PRIMES ARE SACRED / THE TOTIENT FUNCTION IS SACRED / ALL THINGS SHOULD BE ENCRYPTED.” Its 5×5 square supplies 25 printed numeric cells, while p55 has exactly **75 complete-word runes** after its inherited p54 NG: three 25-rune cycles. This gives a distinct, human-motivated candidate beyond the Hill inverse above.
+
+Freeze the p05 square in printed row-major order:
+
+`[272,138,341,131,151, 366,199,130,320,18, 226,245,91,245,226, 18,320,130,199,366, 151,131,341,138,272]`.
+
+For each cell (s_i), calculate Euler's `φ(s_i)`, reduce modulo 29, and repeat the resulting 25-symbol key three times over p55's 75-rune body. Use the subtractive direction from solved p56's totient inverse. Two clocks are source-motivated and frozen: (a) every ciphertext rune consumes a key symbol; (b) the solved p56 literal-F interrupter is preserved, so an original F passes through and does not consume a key symbol. No rotation, phase, offset, alternate modulus, key permutation or word-boundary tuning is used.
+
+The exact key is:
+
+`[12,15,10,14,5,4,24,19,12,6,25,23,14,23,25,6,12,19,24,4,5,14,10,15,12]`.
+
+| Clock | Key symbols consumed | Decoded complete words (original boundaries) | Gibran trigram score |
+|---|---:|---|---:|
+| Every rune consumes | 75 | `PRFOE / IP / MF / OGIFBTH / RNGEOIAIY / THM / WPBTHANTFNPTHHG / DNGNRBD / CEBU / WR / EOIADEAAEU / PJBEOMEOM / HH / JORWSM / MGT / WOIA` | **−6.023560953** |
+| Literal F passes without consuming | 72 | `PRFOE / IP / MF / OGIFBTH / FTHECSG / OEA / OEFEAIAWSAEAOBAEOE / WNIAREAF / DEOGOE / OED / APAEAEEADO / OCIAYIADAE / MT / NCAEAENH / JNGG / PPAE` | **−6.420552877** |
+
+The raw 75-rune ciphertext scores **−6.178724220**. Both candidate outputs score below the minimum **−3.811507205** among 151 frozen, source-native 75-rune control windows (median **−2.406472148**). Both inverses forward-encode all 75 original runes exactly, and both recover an independently selected 75-rune native-GP positive plant exactly; these are implementation checks, not evidence for the historical cipher. The reproducer is [`p55_wisdom_totient25_sft.cjs`](../sims/p55_wisdom_totient25_sft.cjs).
+
+**Decision:** retire this exact p05-cell-`φ` / 25-period p55 transfer under both source-motivated F clocks. The p55/p05 image reuse and 75=3×25 alignment remain observations, but neither selects another key schedule. The moth also occurs on p53, and no source says to apply `φ` to each square cell or repeat the key. Do not expand this family without a new independent selector or a withheld original-cipher prediction.
 
 ### Full-page and body frequency-preserving invariant
 

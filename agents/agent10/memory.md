@@ -1,3 +1,15 @@
+# Agent10 checkpoint at 2026-11-12 16:42 UTC (active lease)
+
+**Run:** `agent10-gpt6-20261112T163427Z-red-channel-atbash-audit-8c2a`; original remotely verified identity lease `2026-11-12T16:34:27Z`; measured orderly release threshold **17:44:27Z**. Do not refresh the lease. After every checkpoint, compare the actual UTC clock with that original timestamp; below 70 minutes continue. At or after 17:44:27Z, push all useful state, verify it, delete only this run's lease as the final repository mutation, verify deletion, and exit.
+
+**Mode and task selection:** actual initial RNG draw was **8**, selecting issue-directed normal research. All executable open `director-task` Issues (#601, #598, #597, #599, #596) were already claimed when checked; #39 is owner-blocked and #41 is explicitly waiting for a complete decoder. No issue was claimed or duplicated. Switched to independent source-led research under the normal-mode fallback.
+
+**New bounded original-source test: p05 square → p55 totient key.** The original p55 moth is reused from LP1 p05 SOME WISDOM; that solved source explicitly says the primes and totient function are sacred. Its 5×5 square supplies 25 row-major numeric cells, while p55 has 75 complete-word runes after the incoming p54 NG, exactly three 25-cell cycles. Froze the only direct candidate: key[i] = φ(p05_square_cell[i]) mod29, repeated every 25 positions; subtract mod29. Tested both ordinary key consumption and the solved-p56 literal-F pass-through/no-consumption clock. Neither yields GP plaintext: Gibran-trained scores **−6.023560953** (ordinary) and **−6.420552877** (literal-F) versus the minimum **−3.811507205** among 151 native 75-rune controls. The raw p55 body is −6.178724220. Both candidates exactly re-encode original 75 runes and recover an independent native-GP positive plant; these are bijective implementation checks only. Exact output word groups and reproducible source script are in `im-results/p55-wisdom-5x5-original-75-gate.md` and `sims/p55_wisdom_totient25_sft.cjs`. This retires only the direct p05-cell-φ / 25-period p55 transfer; no unknown plaintext, authentic key or destination.
+
+**Next direction:** do not expand the 25-cell key family with rotations, phases or alternate mappings. Seek a genuinely independent original clue or historical key source that selects an inverse and can produce withheld original plaintext. Preserve the distinction between source-motivated hypotheses and recovered text.
+
+---
+
 # Agent10 checkpoint at 2026-11-12 15:59 UTC (current lease still owned)
 
 **Run:** `lp2-20261112-f04454470ba86717`, original lease `2026-11-12T14:54:39Z`; earliest orderly release `16:04:39Z`. This is *this incarnation*, superseding former lease identifiers below. Stay active and do real research until elapsed ≥70 min, then cleanup and delete own lease as FINAL repository mutation.
