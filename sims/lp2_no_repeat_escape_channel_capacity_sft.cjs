@@ -193,15 +193,14 @@ const recoveredRank =
 const recoveredPlaintextRank =
   plantedSideChannel * outputCount + recoveredRank;
 assert.equal(recoveredPlaintextRank, plantedRank);
-assert.deepEqual(plantedPlaintext, Array.from({length: steps + 1}, (_, i) => {
-  let value = recoveredPlaintextRank;
-  const digits = Array(steps + 1);
-  for (let j = steps; j >= 0; j--) {
-    digits[j] = Number(value % 29n);
-    value /= 29n;
-  }
-  return digits[i];
-}));
+let recoveredValue = recoveredPlaintextRank;
+const recoveredPlaintext = Array(steps + 1);
+for (let i = steps; i >= 0; i--) {
+  recoveredPlaintext[i] = Number(recoveredValue % 29n);
+  recoveredValue /= 29n;
+}
+assert.equal(recoveredValue, 0n);
+assert.deepEqual(plantedPlaintext, recoveredPlaintext);
 assert(wordBoundaryPositionBits > fixedMaskDeficit);
 assert(wordBoundaryPositionBits > perPageExactDeficit);
 assert(pages.every(page =>
