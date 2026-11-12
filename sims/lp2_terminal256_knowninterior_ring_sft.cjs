@@ -50,6 +50,14 @@ for(let d=0;d<4;d++){
   rings.push(r);
 }
 assert.deepEqual(rings.map(r=>r.length),[76,68,60,52]);
+// The 52-symbol deepest geometric ring begins at the exact printed word
+// "SHED" in the already-clear p57; its original suffix is the imperative.
+const deep52=plain180.slice(68+60);
+assert.equal(deep52.length,rings[3].length);
+assert.deepEqual(deep52,ink57.slice(43));
+const deep52Translit=deep52.map(index=>db.translit[index]).join('');
+assert.equal(deep52Translit,
+  'SHEDOUROWNCIRCUMFERENCESFINDTHEDIUINITYWITHINANDEMERGE');
 const corners=[[0,0],[0,7],[31,7],[31,0]];
 /** @param {number} corner @param {number} direction @returns {number[]} */
 function pathFor(corner,direction){
@@ -195,7 +203,8 @@ console.log(JSON.stringify({
   exactSourceLayout:{
     gridShape:[32,8],gridCells:256,perimeter:76,interior:180,
     terminalPageRunes:[ink55.length,ink56.length,ink57.length],
-    ringLengths:rings.map(r=>r.length)
+    ringLengths:rings.map(r=>r.length),
+    deepestRing:{startIn256:204,page57RuneOffset:43,runicLength:deep52.length,plainTransliteration:deep52Translit}
   },
   nativeControls:{p56PlainTokens:plain56.length,p57PlainTokens:ink57.length},
   rowMajorLiteralRegister:{directMatches:directRowMajor,
