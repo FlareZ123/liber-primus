@@ -1,6 +1,6 @@
 # p15 Fibonacci-prime spiral: direct-key negatives and a 318° p32 navigation candidate
 
-**Classification:** exact original-source navigation experiment with finite negative results. The p15 Fibonacci-prime construction is real and reproducible, but the direct page/word mapping, the source-fixed floral-page prime-totient test, and the infinity-arrow Fibonacci additive reading yield no an independently useful plaintext route or key. **No unknown LP2 plaintext or authentic cipher key is recovered.**
+**Classification:** exact original-source navigation experiment with finite negative results. The p15 Fibonacci-prime construction is real and reproducible, but the direct page/word mapping, the source-fixed floral-page prime-totient test, and the infinity-arrow Fibonacci additive reading yield no independently useful plaintext route or key. **No unknown LP2 plaintext or authentic cipher key is recovered.**
 
 ## Source-fixed input
 
