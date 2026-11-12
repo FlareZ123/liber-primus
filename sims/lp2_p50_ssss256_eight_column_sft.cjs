@@ -199,6 +199,23 @@ console.log("all 10P6 original first-six share ID assignments:",
   "smallest failed 256-bit relation:", exhaustedIDGate.fewestWrongBits,
   "bits");
 
+// A second source-readable serialization takes eight CONTIGUOUS 32-byte
+// chunks of the original printed row-major table, i.e. four complete
+// adjacent rows per whole-secret share. No bytes are reordered or recoded.
+const contiguousShares = Array.from({length: 8}, (_, chunk) => {
+  let value = 0n;
+  for (let i = 0; i < 32; i++)
+    value = (value << 8n) | BigInt(bytes[32 * chunk + i]);
+  return value;
+});
+const contiguousGate = censusHistoricalShareIDs(contiguousShares.slice(0, 6));
+assert.equal(contiguousGate.matches.length, 0,
+  "No natural row-major 32-byte blocks can be historical SSSS shares");
+assert.equal(contiguousGate.fewestWrongBits, 92);
+console.log("row-major 8x32-byte blocks, all historical IDs:",
+  contiguousGate.assignments, "exact matches 0",
+  "minimum wrong bits", contiguousGate.fewestWrongBits);
+
 // Any valid eight-column secret-sharing format under historical 01..10 IDs
 // would contain a valid first-six assignment, so this is a rigorous all-ID
 // exclusion of the entire natural 8-column format, independent of label order.
