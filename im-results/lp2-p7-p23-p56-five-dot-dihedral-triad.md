@@ -1,0 +1,69 @@
+# A three-page dihedral family of five-dot figures in original LP2
+
+**Agent 43, 12 November 2026. Classification:** new exact **original-image relationship** linking unsolved physical pages **p7** and **p23** to solved **p56**, plus a new bounded original-cipher negative. This identifies no additional plaintext, authentic key, cipher instruction or destination. The earlier **p7↔p23 vertical reflection** was already established in [the original two-page study](lp2-p7-p23-five-dot-mirror-page15-gate.md); only the p56 extension and full three-page comparison are new.
+
+## Why inspect the third figure?
+
+A 2014 viewer could notice five isolated black ink circles below p7's final red sentence and another five above p23's red heading. The repository independently proved these were almost exactly mirrored about a horizontal axis. The independently **solved p56** also has five large black circles below the encrypted deep-web hash passage, already measured in [the constellation gate](lp2-p56-five-black-dots-constellation-gate.md). Unlike an externally guessed constellation, all three drawings are contemporaneous source artifacts. They offer a key-independent question: are they exact copies under the four elementary horizontal/vertical reflection orientations? A positive answer creates a cross-page relation with one genuine known-cipher control and permits a restricted original-text orientation test.
+
+The simple competing explanation is **decorative reuse of the same five-dot graphic at different placements**. The geometry alone does not prescribe any transformation of rune symbols or copy p56's cipher.
+
+## Original image source, locked extraction and measurement
+
+The unresized 2400×3600 original archive JPEGs are:
+
+| Physical page | Archive JPEG | SHA-256 | Five-dot ROI \`(x0,x1,y0,y1)\` |
+|---|---|---|---|
+| p7 | \`24.jpg\` | \`91a726a7dd59c6caa4d736b9ce72ceba0a2fa827d6b69a2d4057562b9303636c\` | \`(700,1700,2750,3300)\` |
+| p23 | \`40.jpg\` | \`d31a23cb3a2e50b505e1c468ffbb0106f5353f469bb5958b87ab929fc88decee\` | \`(700,1700,350,950)\` |
+| p56 | \`73.jpg\` | \`a4c1c9ae1246c3197fc1d7bd0155cbc97f60d4bba84a104d45f180feab1814dc\` | \`(700,1750,2350,2850)\` |
+
+Threshold original grayscale values at 160, take 8-connected components of ink in each fixed ROI, keep components having area 2,000–6,000 pixels and bounding width and height 45–100 pixels, then sort their five centroids by increasing x. All three images yield **exactly five** components. This is a native-pixel geometric test, without OCR, changed JPEG content, inferred star names, arbitrary assignments, free scale, rotation or shear.
+
+For each ordered pair of pages, test precisely the four sign reflections \`(sx,sy)∈{(+,+),(+,-),(-,+),(-,-)}\`. Since points are x-sorted, reverse the five-point ordering whenever \`sx=-1\`, fit only the shared 2D translation (mean displacement), and report root-mean-square residual over five corresponding point centers. A 180° rotation is the combined two-axis reflection.
+
+| Source pair | Best signed transformation | Fitted 2D translation (pixels) | RMS centroid residual | Best of other 3 signs |
+|---|---|---|---:|---:|
+| **p7→p23** | \`(+1,-1)\`: reflect vertically | \`(-0.0438,+3674.0737)\` | **0.073396 px** | 150.390866 px |
+| **p7→p56** | \`(-1,+1)\`: reflect horizontally | \`(+2400.6932,-419.3174)\` | **0.207292 px** | 150.343932 px |
+| **p23→p56** | \`(-1,-1)\`: rotate 180° | \`(+2400.6493,+3254.7563)\` | **0.204643 px** | 150.352876 px |
+
+The three transformations compose consistently (p7→p23 followed by p23→p56 gives p7→p56, modulo native-image centroid measurement noise). The third figure is therefore a **geometrically precise new cross-page extension** of the earlier p7/p23 mirror.
+
+**Independent ink-mask check of the new pair.** Reflect the native p7 binary ink ROI \`[2800:3240,720:1660]\` horizontally; apply the centroid-derived integer translation \`(dx=2,dy=-419)\` to the corresponding original p56 ROI. The 440×940 pixel masks have foreground intersection-over-union **0.959188057** and exactly **760 differing binary pixels**, substantially strengthening the point-only comparison. The masks are genuine source raster data, so small differences from antialiasing/JPEG quantization do not imply different drawn symbols.
+
+One-file Python reproducer: [\`sims/lp2_p7_p23_p56_dot_triad_sft.py\`](../sims/lp2_p7_p23_p56_dot_triad_sft.py), requiring NumPy and OpenCV and the three immutable original scans. The script hashes and validates all images, extracts all fifteen centers and asserts the pairwise directions, low RMS, wrong-direction gaps and native-mask overlap; local execution passed.
+
+## Source-oriented solved-p56 cipher transfer: original negative
+
+A newly constrained operation can be attempted without free phase or fitting. p56 is a **genuine solved 85-rune cipher** using the prime-totient subtraction \`P_i=(C_i-(prime_i-1)) mod29\`, prime start2, with its one original literal \`F\` at offset56 not consuming a prime key. Decode the authentic p56 and assert its full recovered transliteration:
+
+\`ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHEDUTYOFEUERYPILGRIMTOSEECOUTTHISPAGE\`
+
+This control recovers **85/85** rune indices and exactly re-encrypts them. It has coincidence index **0.0700280112**, in contrast to the ciphertext's **0.0324929972**.
+
+The figure fixes two *text-traversal* candidates before looking at their decrypted rune text:
+
+- p7→p56 is a **horizontal reflection**. Reverse source rune order within **each printed line**, retaining the original line order; apply the same p56 prime-totient subtraction from its initial key position, consuming one prime per rune (the p56 literal-F exception is not independently specified for p7).
+- p23→p56 is a **180° rotation**. Reverse the printed line order and the rune order within each line, then apply the same prime-totient operation. Printed punctuation and line breaks are not silently converted to runes.
+
+The source transcription's printed-line parser is checked rune-for-rune against the unchanged canonical corpus before either transformation. The p7 input is **208** runes and p23 is **213**. Each direct arithmetic inverse reencrypts the exact original oriented ciphertext. Their decoded IoCs are:
+
+| Original source | Source-selected orientation | Plaintext-candidate IoC |
+|---|---|---:|
+| p7 | horizontal-line reverse | **0.033445** |
+| p23 | both line and line-order reverse | **0.036717** |
+
+Both are indistinguishable from random-looking GP29 in this diagnostic and produce no readable sustained passage. The already known p56 cipher control is clearly detectable by the same function.
+
+An even narrower 85-rune transfer uses the **exact first-85 p56 additive shifts**, obtained from its authentic known \`C_i,P_i\` pair including the literal-F event, as an identical fixed pad beginning with the first source-oriented rune of p7/p23. This avoids selecting a distinct prime-clock policy for target pages. The p7/H first85 IoC is **0.03557423**; p23/HV first85 is **0.03613445**. Both decode to nonlinguistic GP rune strings, and forward remasking returns all 85 original source rune indices. These two operations are **finite negatives**, and the pad-copy test is particularly limited by its short 85-rune length.
+
+CommonJS reproducer (with exact known p56 plaintext and forward controls): [\`sims/lp2_dot_triad_p56_prime_transfer_sft.cjs\`](../sims/lp2_dot_triad_p56_prime_transfer_sft.cjs). No unknown LP2 plaintext, source-selected key, cipher architecture or final destination results.
+
+## Decision for the next solve path
+
+**Established:** these three five-dot source drawings are linked by precise, mutually consistent axial reflections. Earlier work recognized the first mirror; solved p56 supplies a genuinely new third anchor. A contemporary viewer could discover the complete motif by comparing original pages, and this is a reusable visual cross-reference.
+
+**Unsupported:** that their reflection dictates any rune-reading order, key exchange, or reuse of p56's prime-totient schedule. The two most literal source-oriented p56 transfers failed to expose plaintext. The near-identical motif geometry is entirely compatible with a reused illustration.
+
+Do not reuse the p7/p23-centred 16-page Fibonacci, p56 prime-start search or the many unconstrained additive/key-skip tests. The useful reopening gate is an **independently source-visible instruction identifying why the p56 version of the figure is a control rather than decoration**, together with a reversible operation and a prediction on a previously unseen original page or text interval. A new clue about the drawing's identity, or a source-specified reflection operating on a different carrier, would justify one bounded inverse. Until then retain the triad as intermediate original-artifact evidence.
