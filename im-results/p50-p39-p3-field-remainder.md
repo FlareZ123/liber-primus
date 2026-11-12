@@ -128,6 +128,27 @@ This is a bounded negative, not a rejection of the algebraic factor relation. Th
 
 Reproducer: [`sims/p50_dualfactor_quotient_direct_gate.cjs`](../sims/p50_dualfactor_quotient_direct_gate.cjs).
 
+## Literal base60 versus f-skipping base59 factor discriminator (Agent 3, 12 November 2026)
+
+The original physical pp49–51 table prints 256 two-character numeral tokens, not authenticated binary bytes. The conventional digit alphabet `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx` has 60 characters; the unused lowercase `f` also allows a specific competing 59-character alphabet with that character removed. This is the **one** historically discussed base59 alternative, with a fixed alphabet and no free offset, symbol substitution or fitting. Its precise consequences can be decided by arithmetic.
+
+Read the original 32×8 tokens in printed row-major order, with each token `XY` equal to `base·index(X)+index(Y)`. Interpret those 256 integers as the **descending coefficients** of a degree-255 polynomial over GF(29). Use the two already documented, independently sourced factors in their printed order:
+
+- `H(X)=3+26X+24X²` from the authenticated 2013 signed TCP example `3301 → 3QO`, treated *conditionally* as a quadratic.
+- `G(X)=27+5X+15X²` from the original p39 red numbers, likewise treated as a polynomial.
+- Their product is `F(X)=23+21X+11X²+17X³+12X⁴` over GF(29), or monic `14+9X+13X²+28X³+X⁴`.
+
+| Frozen interpretation | P mod H | P mod G | P mod F |
+| --- | --- | --- | --- |
+| Conventional 60-character digit alphabet | `[0,0]` | `[0,0]` | **`[0,0,0,0]`** |
+| Exactly the same tokens with lowercase `f` removed (base59) | `[20,17]` | `[22,12]` | `[8,19,1,7]` |
+
+The interpretations change **220/256** cell values. Reversing the **complete** coefficient list instead of using source-order descending coefficients fails both radices: product remainders are `[25,8,18,24]` in base60 and `[14,9,27,24]` in base59. A fully prespecified degree-four divisor would divide a uniform random GF29 polynomial with probability `29⁻⁴`, roughly 1.41×10⁻⁶, but these factors and the polynomial model were noticed retrospectively; that figure is **not** a valid significance test for author intent.
+
+**Decision:** exact divisibility jointly supports the *conventional base60, row-major, descending-coefficient* working parse over the specific base59 alternative, independently of any language score. This materially narrows which numerical interpretation to prioritize in future source-selected polynomial investigations. It does not establish that Cicada intended the quadratic reading, exclude all potential nonstandard radices, or produce a rune/plaintext inverse. Earlier quotient and feedback negatives above remain conditional on this base60 reading.
+
+[Source-exact CommonJS SFT](../sims/p50_radix59_vs60_factor_gate_sft.cjs).
+
 ## Current assessment
 
 The exact quotient `P50/F39 mod F3 = 19+13u` is reproducible and has an exact p55-matrix eigenvalue correspondence. Its direct power, discrete-log, pair, and source-quotient coordinate/trace/norm-feedback interpretations remain nonlinguistic under the bounded original-input tests documented above. The separate dual-factor polynomial quotient `P50/(H·G)` gives 252 GF29 symbols. Its direct GP plaintext, both direct BASE29 serializations as p56 preimages (0/10 across five 512-bit families each), and period-252 additive-key readouts are all negative. The pre-2014 MIRACL and Sendmail sources strengthen base60 as the conventional alphabet, but do not authenticate Cicada's use of it on p50. The p53/2013 NUMBER selector remains a hypothesis; no source instruction selects a parity frame, transfer or tested trace-feedback architecture. Retain the algebraic relations as intermediate evidence; no plaintext, authentic key or intended operation is established.
