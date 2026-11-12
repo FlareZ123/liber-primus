@@ -277,6 +277,40 @@ for (const leastFirst of [false, true]) {
     decoded_sha256: sha256(decrypted.digits)
   });
 }
+
+// Fourth, most direct source-selected target: the whole original visual
+// chapter p33..39 actually displaying 1033 and 3301. It contains exactly
+// 1680 original GP runes, or 420 complete base29 4-rune blocks. The
+// numerical rubric, rather than reused moth art, selects this chapter.
+const originalPrimeChapter = corpus.pages.filter(p=>
+  p.page >= 33 && p.page <= 39).flatMap(p=>p.indices);
+assert.equal(originalPrimeChapter.length, 1680);
+const primeChapterCases = [];
+for (const leastFirst of [false,true]) {
+  const decoded = transform(originalPrimeChapter, PRIVATE, leastFirst);
+  assert.deepEqual(transform(decoded.digits,EXP,leastFirst).digits,
+    originalPrimeChapter,"original prime-rubric chapter RSA replay");
+  const sourcePlant = Array.from({length:1680},(_,i) =>
+    solvedP57[i % solvedP57.length]);
+  const encrypted = transform(sourcePlant, EXP, leastFirst);
+  assert.deepEqual(transform(encrypted.digits, PRIVATE, leastFirst).digits,
+    sourcePlant,"1680-rune true-GP plant");
+  const score = indexOfCoincidence(decoded.digits);
+  const expected = leastFirst ? 0.034291953827391586 : 0.03496199551887461;
+  assert(Math.abs(score - expected) < 1e-13);
+  primeChapterCases.push({
+    reading: leastFirst ? "least-significant digit first" : "printed GP order",
+    sourcePages: "physical p33-39",
+    originalSymbols: originalPrimeChapter.length,
+    originalBlocks: originalPrimeChapter.length / 4,
+    decodedIoc: score,
+    decodedGpPrefix: text(decoded.digits).slice(0,100),
+    maxCycleIterations: Math.max(...decoded.iterations),
+    completeOriginalReencoding: true,
+    solvedGpPlantExact: true,
+    decodedSha256: sha256(decoded.digits)
+  });
+}
 console.log(JSON.stringify({
   premise: "LP2 p33 source primes 1033, 3301; LP1 p5 moth/totient allusion; p55 76 page-local runes",
   cipher: "source-pair RSA modulo 3409933, historical e=65537, 19 four-rune GP29 blocks, bijective cycle-walk",
@@ -287,5 +321,6 @@ console.log(JSON.stringify({
   cases,
   source_grid256_two_byte_RSA_cases: byteCases,
   grid_q252_four_rune_RSA_cases: quotientCases,
+  original_p33_39_prime_rubric_chapter_cases: primeChapterCases,
   conclusion: "Negative: both source-shaped reversible readings remain ciphertext-like. The original sources do not specify RSA, cycle-walking or a page-local carry treatment."
 }, null, 2));
