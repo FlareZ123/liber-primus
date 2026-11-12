@@ -177,6 +177,70 @@ for (let i=trainLength; i+1729<native.length; i+=1200)
   nativeHoldout.push(score(native.slice(i,i+1729)));
 assert.equal(nativeHoldout.length,45);
 const nativeMin = Math.min(...nativeHoldout);
+/**
+ * Source-gated 2D readout: onion7 title 133 and physical chapter 13x133.
+ * All operations are exact permutations, with an optional boustrophedon row.
+ * @param {number[]} seq
+ * @param {[number,number]} dims
+ * @param {boolean} transpose
+ * @param {boolean} reverseRows
+ * @param {boolean} reverseCols
+ * @param {boolean} snake
+ * @returns {number[]}
+ */
+function readRectangle(seq, dims, transpose, reverseRows, reverseCols, snake) {
+  const [rows,cols] = dims;
+  const outRows = transpose ? cols : rows, outCols = transpose ? rows : cols;
+  const out = [];
+  for (let i=0; i<outRows; i++) for (let j=0; j<outCols; j++) {
+    const rr = reverseRows ? outRows-1-i : i;
+    let cc = reverseCols ? outCols-1-j : j;
+    if (snake && (i%2)) cc=outCols-1-cc;
+    out.push(seq[transpose ? cc*cols+rr : rr*cols+cc]);
+  }
+  return out;
+}
+
+/**
+ * Author HTML title 133 and id 331 also motivate a source-number circular
+ * permutation. The fixed step 331 is coprime with 13*133=1729.
+ * @param {number[]} seq
+ * @param {number} start
+ * @param {number} step
+ * @returns {number[]}
+ */
+function readModWalk(seq,start,step) {
+  return Array.from({length:seq.length},(_,i) =>
+    seq[((start+step*i)%seq.length+seq.length)%seq.length]);
+}
+
+assert.equal(1729, 13*133);
+const rectangle = [];
+for (const dims of [[13,133],[133,13]]) {
+  for (const transpose of [false,true])
+    for (const reverseRows of [false,true])
+      for (const reverseCols of [false,true])
+        for (const snake of [false,true])
+          rectangle.push({dimensions:dims.join("x"),transpose,
+            reverseRows,reverseCols,snake,
+            score:score(readRectangle(third,
+              /** @type {[number,number]} */ (dims),
+              transpose,reverseRows,reverseCols,snake))});
+}
+rectangle.sort((a,b)=>b.score-a.score);
+assert.equal(rectangle.length,32);
+const modular = [];
+for (const step of [331,-331]) for (const start of [0,13,133,331]) {
+  const mapped = Array.from({length:third.length},
+    (_,i)=>((start+step*i)%third.length+third.length)%third.length);
+  assert.equal(new Set(mapped).size,1729,"331-step map must be reversible");
+  modular.push({step,start,score:score(readModWalk(third,start,step))});
+}
+modular.sort((a,b)=>b.score-a.score);
+assert.equal(modular.length,8);
+assert(rectangle[0].score < -5.6);
+assert(modular[0].score < -5.6);
+
 const report = cases.map(([name,input,dims]) => ({
   name,n:input.length,dims,...scan(input, /** @type {[number,number,number]} */ (dims),score)
 }));
@@ -192,5 +256,8 @@ console.log(JSON.stringify({
   positivePlant: {size:plant.length,order:pOrder.join(""),mask:pMask,
     originalScore:score(plant),encryptedScore:score(encoded),exactRoundTrip:true},
   originalCases:report,
-  conclusion:"Eight source-anchored cube/cuboid cases, 48 axis symmetries each, all original-negative. No unknown LP2 plaintext or key recovered."
+  onion7Title133: {title:133,divId:331,chapterLength:1729,
+    rectangularBest:rectangle[0],modularBest:modular[0],
+    candidateCounts:[rectangle.length,modular.length]},
+  conclusion:"Eight cube/cuboid interpretations x48, 32 rectangle and eight 331-step walks, all original-negative. No unknown LP2 plaintext or key recovered."
 },null,2));
