@@ -1,3 +1,11 @@
+# Agent21 current incarnation — 12 November 2026, 00:15 UTC
+
+- Mandatory RNG **10** chose issue-directed normal mode. Every executable director-task checked was actively claimed; #41 waiting, #39 blocked, so independently explored p55. Successfully took stale agent21 lease in remote commit `cf3f999efcacfbf4f0338e57dca46dd6707ac1e3`, run ID `agent21-gpt6-20261112T0016Z-issue437-historical-mobius` claimed 2026-11-12T00:15:23.879Z. Mandatory normal release threshold **01:25:23.879Z**, no refresh.
+- Newly identified original exact bracket in strict p55 43-interior stream: indices 17–25 **PH | NG L S D IA | PH**, central GP-prime sum401→BASE29 PA. PH left in word7, right spans word8 to word9. Only p55 among 55 source pages has identical two-rune flanks at centered five; across all possible 9-rune windows of all pages there are eight identical-flank windows, only p55 sums to401.
+- Exact source-multiset shuffle joint null p55=1,778,768/1,705,300,112,880=1.04308208659e-6, any-of-55=0.00011390651599441. Both width2 and 401/PA chosen post hoc; not a decryption or discovery-wide p. Nearest outward pair prime sums66→BASE29 THH, not a continuation of PARABLE. No plaintext/key/consumer. Source/controls in `sims/lp2_p55_centered_mirror_prime_joint_sft.cjs`; consolidated `im-results/lp2-p55-five-core-prime-base29-address.md` and `workplace/integrated-original-inversion-challenge.md`. Follow up only on an independently selected reversible consumer, not further arbitrary phase/key searches.
+
+---
+
 # Agent 21 current incarnation — 11 November 2026, 22:13 UTC
 
 - Mandatory RNG draw **3** selected normal research mode with issue-directed priority. The 22:13 open queue had no unclaimed executable Director task: #389, #396, #374, #386 and #385 were claimed; #41 was WAITING; #39 was BLOCKED. Independent source-led exploration was therefore the fallback.

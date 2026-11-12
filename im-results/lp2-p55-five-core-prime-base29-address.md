@@ -35,6 +35,14 @@ Exact cross-page correspondences:
 
 A weaker possible reading of [13,24] against the 43 alphabetic words of the signed 2016 message gives “the” and “road” at one-based positions 13 and 24 if the opening “Hello.” is counted and numeric-only tokens / PGP metadata are excluded. Excluding the greeting shifts those positions to “way” and “and”; this tokenizer-sensitive echo is not evidence for a cipher.
 
+## Source-local two-rune bracket around the central five
+
+The original strict word-interior stream on p55 contains **PH | NG L S D IA | PH** at interior positions 17–25 (zero-based). The central five remain the previously established 401 → BASE29 PA candidate. The two flanking PH pairs are exact ciphertext, requiring no substitution. The left pair lies in complete p55 word 7; the right P and H span words 8 and 9 after edges are shed. Therefore the bracket becomes adjacent only upon the source-motivated stripping and concatenation. Across all 55 page-local strict-interior streams, exactly **eight** nine-rune windows have identical two-rune flanks (on pp4, 5, 6, 11, 13, 16, 45, 55), only p55 has the central sum 401, and only p55 has the symmetry at its exact centered five.
+
+**Fixed-condition exact null.** If we independently shuffle each page's original interior rune multiset and require *both* centered-five GP-prime sum 401 and identical preceding/following two-rune pairs, the p55 favorable-count fraction is **1,778,768 / 1,705,300,112,880 = 0.00000104308208659**. Over all 55 source pages, independent per-page shuffles give the familywise probability **0.00011390651599441 (0.01139065%)**. The older PA-only any-page chance is 0.10089568. The computation removes four flank symbols from the five-element prime-sum subset generating function and exactly enumerates every possible repeated ordered flank; the synthetic positive [PH, five-core, PH] gives 1/378. See the [independent joint SFT](../sims/lp2_p55_centered_mirror_prime_joint_sft.cjs).
+
+**Scope:** the two-rune bracket, target 401 and PA correspondence were selected during exploratory inspection. Consequently these probabilities are conditional diagnostics rather than valid discovery-wide evidence for author intent. No original instruction specifies two-rune flanks, an inverse or use of the 401 value as a decryption key. A direct outward GP-prime/BASE29 pair reading gives 66→THH for the first two enclosing pairs, failing to continue p57's title PARABLE. The new bracket is a bounded candidate *locator* of the already-known core, not new plaintext.
+
 ## Controls and limits
 
 The five-rune block crosses the boundary between p55 complete words 7 and 8. The documented prime-sum convention is source-backed for word-based operations, but applying it to this five-rune cross-word block is an **extension**, not an authenticated Cicada instruction. The signed 2013 TCP challenge authenticates BASE29 as a protocol operation; it does not prescribe this prime-sum → BASE29 composition.
@@ -65,11 +73,12 @@ The historical 2013 threshold-5-of-10 SSSS mechanism is now independently recons
 
 ## Decision
 
-Retain this as a candidate **selector/checksum or human-solve-path clue**, not plaintext and not a key. Its strongest feature is the exact p55 five-core → 401 → BASE29 PA correspondence with p57's title and adjacent-page source features. Its weakest premise is extending word-based prime-sum to a centered five-rune block that crosses a word boundary.
+Retain this as a candidate **selector/checksum or human-solve-path clue**, not plaintext and not a key. Its strongest exploratory feature is the exact 401→BASE29 PA title echo accompanied by the newly discovered PH ... PH framing of the same centered five. Both the word-spanning sum and postselected two-rune bracket lack an original instruction selecting a real cipher.
 
-The next useful decision is whether an independent source clue fixes a reversible consumer for [13,24]/PA. Retire the direct 19/20-word p57 address variants above; do not treat PA or PARABLE as an established key, do not reopen the literal 43-word-length pad, and do not run unconstrained offsets, phases, or cipher-family sweeps.
+The next useful decision is whether an independent source clue authenticates PH-framing and supplies a reversible consumer for [13,24]/PA. Retire the direct 19/20-word p57 address variants above; do not treat PA or PARABLE as an established key, do not reopen the literal 43-word-length pad, and do not run unconstrained offsets, phases, or cipher-family sweeps.
 
 Reproduction:
 - Arithmetic and permutation SFT: ../sims/p55_five_core_prime_base29_sft.cjs
+- Exact centered-flank joint SFT: ../sims/lp2_p55_centered_mirror_prime_joint_sft.cjs
 - Original-image dot geometry SFT: ../sims/lp2_p55_p57_red_dot_core_sft.py
 - Inputs: ../sims/lp2_word_pages.cjs, ../resources/lp2-transcription.txt, ../resources/liber-primus/lp2-corpus.json, ../resources/liber-primus/lp2-ink-annotations.json, original scans ../resources/liber-primus/72.jpg and ../resources/liber-primus/74.jpg, and ../resources/historical/cicada2016-4gq25-outguess.asc.
