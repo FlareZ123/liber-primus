@@ -1,7 +1,8 @@
 "use strict";
 /**
- * Original-input SFT: the explicitly named arithmetic Möbius / totient
- * operators from solved LP1, tested as literal Dirichlet inverses over GF(29).
+ * Original-input SFT: a conjectural number-theoretic reading of the Möbius-
+ * like marks on LP2 and the explicit totient statement in solved LP1.
+ * Test literal Dirichlet inverses over GF(29); no source selects a cipher.
  *
  * This is a source-motivated candidate with NO recovered LP2 plaintext.
  * Run: node sims/lp2_arithmetic_mobius_totient_inverse_sft.cjs
@@ -153,7 +154,7 @@ for (const [name, source] of [["table", table], ["unknown", unknown]]) {
 }
 console.log(JSON.stringify({
   scope: "Original p50 256 bytes and complete unknown LP2 12956 runes",
-  model: "1-based Dirichlet inverse over GF29, two LP1-named kernels",
+  model: "1-based Dirichlet inverses over GF29; conjectural Möbius, literal Euler totient",
   nativeGpPlant: "85/85, both kernels",
   observations,
   verdict: "No readable plaintext; bounded literal-inverse rejection"
