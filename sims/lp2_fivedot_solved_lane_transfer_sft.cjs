@@ -214,6 +214,93 @@ for (const target of targets) {
   const byTarget = results.filter(x => x.target === target.name);
   assert.ok(Math.max(...byTarget.map(x => x.outputIoc)) < 0.04);
 }
+/**
+ * Key-independent two-time-pad consequence of an even broader five-dot
+ * hypothesis: pp3-7 and p23-26 post-heading share a common GP29 additive pad
+ * reset from their visually matched section boundaries. The source supports
+ * only four untuned full-chapter directions. If true, C_A-C_B=P_A-P_B.
+ *
+ * Calibrate the exact difference-symbol IoC against independent real English
+ * GP passages of the same 1005-rune length. This is a bounded native-English
+ * necessary condition for a *pure* common additive pad with no downstream
+ * rune substitutions, hidden key skips, or differential feedback.
+ */
+/** @param {string} text @returns {number[]} */
+function englishGp(text) {
+  const lookup = new Map(corpus.translit.map((x, i) => [x, i]));
+  const out = [];
+  for (let word of text.match(/[A-Za-z]+/g) || []) {
+    word = word.toUpperCase().replace(/QU/g, "CW").replace(/V/g, "U")
+      .replace(/K/g, "C").replace(/Z/g, "S");
+    for (let j = 0; j < word.length;) {
+      const pair = word.slice(j, j + 2);
+      if (lookup.has(pair)) { out.push(lookup.get(pair)); j += 2; }
+      else { assert.ok(lookup.has(word[j])); out.push(lookup.get(word[j])); j++; }
+    }
+  }
+  return out;
+}
+/** @param {number[]} left @param {number[]} right @returns {number[]} */
+function modDifferences(left, right) {
+  return Array.from({ length: 1005 }, (_, i) => (left[i] - right[i] + 29) % 29);
+}
+const sourceA = corpus.pages.slice(3, 8).flatMap(page => page.indices);
+const sourceB = corpus.pages.slice(23, 27).flatMap(page => page.indices).slice(16);
+assert.equal(sourceA.length, 1145);
+assert.equal(sourceB.length, 1005);
+const originalRelative = [];
+for (const reverseA of [false, true]) {
+  for (const reverseB of [false, true]) {
+    const a = reverseA ? sourceA.slice().reverse() : sourceA;
+    const b = reverseB ? sourceB.slice().reverse() : sourceB;
+    const d = modDifferences(a, b);
+    originalRelative.push({ reverseA, reverseB, differenceIoc: ioc(d),
+      alignedExactCipherRunePairs: d.filter(x => x === 0).length });
+  }
+}
+const gpShakespeare = englishGp(fs.readFileSync(
+  path.join(root, "resources/control/shakespeare_first300k.txt"), "utf8"));
+const gpGibran = englishGp(fs.readFileSync(
+  path.join(root, "resources/control/gibran_prophet_58585.txt"), "utf8"));
+assert.equal(gpShakespeare.length, 218800);
+assert.equal(gpGibran.length, 63114);
+let seed = 1337;
+/** @returns {number} */
+function nextRandom() {
+  seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+  return seed / 4294967296;
+}
+const nativeRelativeScores = [];
+for (let trial = 0; trial < 200; trial++) {
+  const startA = Math.floor(nextRandom() * (gpShakespeare.length - 1005));
+  const startB = Math.floor(nextRandom() * (gpGibran.length - 1005));
+  const nativeA = gpShakespeare.slice(startA, startA + 1005);
+  const nativeB = gpGibran.slice(startB, startB + 1005);
+  const expectedDifference = modDifferences(nativeA, nativeB);
+  const pad = Array.from({ length: 1005 }, () => Math.floor(nextRandom() * 29));
+  const encryptedA = nativeA.map((x, i) => (x + pad[i]) % 29);
+  const encryptedB = nativeB.map((x, i) => (x + pad[i]) % 29);
+  assert.deepEqual(modDifferences(encryptedA, encryptedB), expectedDifference);
+  nativeRelativeScores.push(ioc(expectedDifference));
+}
+const maxOriginalRelative = Math.max(...originalRelative.map(x => x.differenceIoc));
+const nativeRelativeMinimum = Math.min(...nativeRelativeScores);
+const nativeRelativeMean =
+  nativeRelativeScores.reduce((sum, x) => sum + x, 0) / nativeRelativeScores.length;
+assert.ok(maxOriginalRelative < nativeRelativeMinimum);
+const sharedPadComparison = {
+  model: "Exactly reused 1005-position mod29 additive pad on both original stencil-joined chapters",
+  originalOrientations: originalRelative,
+  originalHighestIoc: maxOriginalRelative,
+  nativeIndependentGP1005RuneSourceWindows: nativeRelativeScores.length,
+  nativeDifferenceIocMinimum: nativeRelativeMinimum,
+  nativeDifferenceIocMean: nativeRelativeMean,
+  nativeControlsAtOrBelowStrongestOriginal: nativeRelativeScores.filter(
+    x => x <= maxOriginalRelative).length,
+  exactReusedPadPlants: 200,
+  interpretation: "No native GP-English shared-pad difference signal in four source-fixed directions; pure common-additive-key model only."
+};
+
 console.log(JSON.stringify({
   hypothesis: "Five black dots select five lanes; p56 solved text/shifts may key the other two stencil-linked sections",
   originalEvidence: {
@@ -222,6 +309,7 @@ console.log(JSON.stringify({
     p56PrimeClockEvents: phase
   },
   sourceImageP56DotOrdersAgainstSolvedControl: p56DotControls,
+  sharedPadComparison,
   candidates: results.length,
   positiveControl: "Every keyed synthetic solved-p57-native-GP plant recovers exactly.",
   decision: "No deciphered unknown text or source-authenticated lane-key instruction.",
