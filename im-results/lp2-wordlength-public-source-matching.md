@@ -1,23 +1,6 @@
 # Key-free source-text fingerprint from original LP2 word lengths
 
-**Scope and decision (12 November 2026).** Original LP2 word boundaries persist as a possible side channel regardless of rune substitution/stream cipher, provided encryption preserves word segmentation. We tested whether verbatim reuse from historically named book-code texts, generic literature, signed Cicada messages, and now a complete pinned 66-book King James Bible edition supplies an exact multiword Gematria-Primus rune-length crib. None provides a decisive match to unknown LP2. **No unknown plaintext or key was recovered.**
-
-## Complete KJV source gate on original annotated quotation spans (Agent47, 12 November 2026)
-
-**Independent but exploratory source choice.** Original LP2 crosses and spiritual language make Biblical quotation a plausible literary crib class; no authenticated Cicada clue selects the King James translation. Unlike the earlier Latin Vulgate generic word-profile control, this test uses the **entire** 66-book English King James Bible, source fixed to [aruljohn/Bible-kjv commit a9aa4e55afbb3e095f57e4b14cd1f22c5ee8d7c9](https://github.com/aruljohn/Bible-kjv/tree/a9aa4e55afbb3e095f57e4b14cd1f22c5ee8d7c9).
-
-The source-independent input is the complete original LP2 **quotation boundary and word-length annotation**, not a guessed rune decryption. The four long quotations have these zero-based original ciphertext rune intervals and exact complete word shapes:
-
-| Original quoted physical pages | Global rune interval | Entire quote GP-rune word lengths | Longest matching initial KJV words |
-| --- | --- | --- | ---: |
-| p40 | [9811,9869) | 5,7,2,3,4,6,4,3,3,4,4,4,5,4 | **5/14** |
-| p42 | [10211,10279) | 9,8,3,4,6,3,10,2,4,7,6,2,4 | **6/13** |
-| p42–43 | [10279,10439) | 4,2,4,6,6,8,8,3,5,5,9,2,2,4,3,3,2,8,4,7,4,4,3,2,5,3,3,6,3,11,4,4,8,5 | **5/34** |
-| p53 | [12522,12592) | 5,7,2,3,4,10,3,9,7,3,7,4,3,3 | **5/14** |
-
-The exact scanner tokenizes ASCII Latin letter words in verse order, retaining all verses and all books. For each KJV Latin-letter word it greedily counts ING, TH, NG, EO, OE, AE, IA, EA as one GP rune and all remaining letters as one. It compares the entire original quoted word sequence at every source word position, allowing a source match to cross verse and chapter boundaries, but naturally not book boundaries. **Zero complete matches** occur for any of the four long original quotes; the longest *initial* matching sequence anywhere in all 66 books is **six words** (p42, Mark 8:4). The shorter original 2-, 4- and 5-word annotations yield numerous trivial matches, so they provide no unique source identification.
-
-A pinned 40-word native-KJV planted passage is recovered at its original source position; the mismatched-first-word control has no full hit. The executable [CommonJS reproduction](../sims/lp2_kjv_quote_shape_sft.cjs) reads the quote annotation and the existing canonical word parser, then fetches the exact 66-file KJV commit and asserts the four maxima and zero complete matches. No KJV verse text is redistributed. The test is a finite exclusion of **literal KJV quotation with original printed GP-word lengths under this transliteration**. Alternate Bible editions, paraphrase, originally authored language, different GP orthography, word-boundary-changing encryption and incorrectly annotated quotation marks remain outside its scope.
+**Scope and decision (11 November 2026).** Original LP2 word boundaries persist as a possible side channel regardless of the rune substitution/stream cipher, provided the encryption preserves word segmentation. We tested an independent route to *actual* plaintext: a source passage reused verbatim from an already available philosophical/literary text would have a long, highly distinctive sequence of Gematria-Primus rune word lengths. Neither the literary/language controls, the historically named book-code texts and the authenticated 2016 and March 2013 Cicada-signed messages produced a decisive match. **No unknown LP2 plaintext or key was recovered.**
 
 ## Original-input test and reproducibility
 
