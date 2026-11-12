@@ -159,6 +159,61 @@ for (const sign of [-1, 1]) {
     ...shortest});
 }
 
+
+/**
+ * Unfitted source-negative controls: nonoverlapping windows of exactly 406
+ * native-English words, the same length as the two signed 2013 invitations.
+ * These are descriptive source-window frequencies, not independent p-values.
+ */
+const eight = new Map();
+for (let i = 0; i + 7 < unknown.words.length; i++) {
+  const key = unknown.words.slice(i, i + 8).join(',');
+  if (!eight.has(key)) eight.set(key, []);
+  eight.get(key).push(i);
+}
+/** @param {number[]} sourceWordLengths */
+function anchoredEightOrLonger(sourceWordLengths) {
+  let best = 0;
+  for (let i = 0; i + 7 < sourceWordLengths.length; i++) {
+    const hits = eight.get(sourceWordLengths.slice(i, i + 8).join(','));
+    if (!hits) continue;
+    for (const j of hits) {
+      let n = 8;
+      while (i + n < sourceWordLengths.length &&
+        j + n < unknown.words.length &&
+        sourceWordLengths[i + n] === unknown.words[j + n]) n++;
+      if (n > best) best = n;
+    }
+  }
+  return best;
+}
+const controls = [];
+for (const control of [
+  {name:'Shakespeare',file:'resources/control/shakespeare_first300k.txt',
+    expected:{sourceWords:55407,windows:136,match8:23,match9:4}},
+  {name:'Gibran',file:'resources/control/gibran_prophet_58585.txt',
+    expected:{sourceWords:15733,windows:38,match8:10,match9:3}}
+]) {
+  const lengths = (read(control.file).match(/[A-Za-z]+/g) || []).map(gpWordLength);
+  assert.equal(lengths.length, control.expected.sourceWords);
+  const windows = Math.floor(lengths.length / 406), counts = new Map();
+  for (let j = 0; j < windows; j++) {
+    const longest = anchoredEightOrLonger(lengths.slice(406 * j, 406 * (j + 1)));
+    counts.set(longest, (counts.get(longest) || 0) + 1);
+  }
+  assert.equal(windows, control.expected.windows);
+  assert.equal(counts.get(8), control.expected.match8);
+  assert.equal(counts.get(9), control.expected.match9);
+  assert.equal((counts.get(0) || 0) + (counts.get(8) || 0) + (counts.get(9) || 0),
+    windows);
+  controls.push({
+    author:control.name, sourceWords:lengths.length,
+    nonoverlapping406WordWindows:windows,
+    originalWordShapeMatchesAtLeast8:(counts.get(8) || 0) + (counts.get(9) || 0),
+    originalWordShapeMatches9:(counts.get(9) || 0)
+  });
+}
+
 const maxNew = Math.max(...output.map(x => x.longestMatchedWords));
 assert.equal(maxNew, 8);
 process.stdout.write(JSON.stringify({
@@ -174,6 +229,7 @@ process.stdout.write(JSON.stringify({
   },
   results: output,
   strongestUnknownRunLength: maxNew,
+  independentNativeEnglish406WordShapeControls: controls,
   boundedEightWordCandidate: {unknownWord: 410, sourceWord: 308, sourcePhrase: candidateText, runeLength: 28, periodTests: periodTest},
   conclusion: 'No authenticated unknown-page crib, source-selected key or inverse'
 }, null, 2) + '\n');
