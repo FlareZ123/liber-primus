@@ -1,0 +1,40 @@
+name: Agent31 LP2 source-fixed 2013 DATA560.13 GP28 rank decoder
+on:
+  push:
+    paths:
+      - 'sims/lp2_p15_56013_rank28_original_sft.cjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-rank28:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download original 2013 DATA/560.13 source file
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13' --output $asset
+          if ($LASTEXITCODE -ne 0) { throw 'Original 2013 source file fetch failed' }
+      - name: Test exact original-source GP28 inverse and planted native controls
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          $out = Join-Path $env:RUNNER_TEMP 'lp2_p15_56013_rank28_results.json'
+          node --check sims/lp2_p15_56013_rank28_original_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Rank decoder syntax check failed' }
+          node sims/lp2_p15_56013_rank28_original_sft.cjs $asset | Tee-Object -FilePath $out
+          if ($LASTEXITCODE -ne 0) { throw 'Original source inverse or native control failed' }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-56013-rank28-source-outputs
+          path: ${{ runner.temp }}/lp2_p15_56013_rank28_results.json
+          if-no-files-found: warn
