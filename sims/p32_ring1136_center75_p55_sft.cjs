@@ -119,10 +119,52 @@ assert.deepEqual(wordIndexOutputs.map((x) => x.gpText), [
   'ISXTHFWIMBEOXTHTHCJB',
 ]);
 
+
+/**
+ * A complete-word GP-prime sum is a source-visible numeric address. Use that
+ * address modulo the length of its assigned signed-message segment to select
+ * exactly one historical ASCII byte per original p55 complete word.
+ * @param {'forward'|'reverse'} order Original clockwise ring or its inverse.
+ * @param {0|1} base Address is source-base0 or source-base1.
+ * @returns {string} Exactly sixteen selected signed-message characters.
+ */
+function wordPrimePacketAddress(order, base) {
+  const widths = order === 'forward' ? ring : [...ring].reverse();
+  let wordAt = 0;
+  let packetAt = 0;
+  const chars = [];
+  for (let i = 0; i < lengths.length; i += 1) {
+    const len = lengths[i];
+    const sum = original.slice(wordAt, wordAt + len)
+      .reduce((n, rune) => n + corpus.prime[rune], 0);
+    const position = (sum - base) % widths[i];
+    chars.push(String.fromCharCode(signed[packetAt + position]));
+    wordAt += len;
+    packetAt += widths[i];
+  }
+  assert.equal(wordAt, original.length);
+  assert.equal(packetAt, signed.length);
+  return chars.join('');
+}
+
+const primePacketOutputs = [];
+for (const order of ['forward', 'reverse']) {
+  for (const base of [0, 1]) {
+    primePacketOutputs.push({order, base, selectedAscii: wordPrimePacketAddress(order, base)});
+  }
+}
+assert.deepEqual(primePacketOutputs.map((x) => x.selectedAscii), [
+  ' eit 7criwznvUIY',
+  'De  e PHmH5mzOF\n',
+  'IswG-WYO7Li1fF6q',
+  'Gi \n-J4XL5jEpTRu',
+]);
+
 console.log(JSON.stringify({
   test: 'p32-ring1136-signed2016-wordcenter75-p55',
   originalGpIoc: ioc(original),
   outputs,
   wordIndexOutputs,
+  primePacketOutputs,
   conclusion: 'None of the four fixed original-cipher inverses yields identifiable plaintext.',
 }, null, 2));
