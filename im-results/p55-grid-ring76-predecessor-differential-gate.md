@@ -29,9 +29,23 @@ The best original candidate is below **all 719** reference windows. Its leading 
 
 A genuine source-native 76-rune planted text encrypted with the source ring using the stated original-cipher recurrence decodes and re-encrypts without error. Thus this result is a bounded failure of the specified original input, rather than a nonworking inverse implementation.
 
+## Distinct GP28 predecessor-excluding follow-up
+
+The original ciphertext's 86 adjacent equal glyph pairs suggest a conditional 28-rank model: a repeated ciphertext rune represents special plaintext GP index 28 (EA); a nonrepeat is its rank among the 28 rune choices other than the preceding ciphertext glyph. This is motivated by the source's 29-symbol alphabet and is **not an authenticated cipher rule**.
+
+Under the fixed clockwise outer table ring, or its reversal, an additive key applies in the rank domain modulo 28. The three declared source-byte conversions are `byte mod28`, `floor(byte×28/256)`, and `GP-prime[byte mod29] mod28`; two rank conventions (cyclic/sorted), two signs, and starting ciphertext glyph zero or the actual p54 last rune give **48 original-input variants**. All 48 original variants exactly re-encrypt the complete 76-rune page and each decrypts an independent planted 76-rune GP-native source to its exact original.
+
+The best is p54 predecessor, clockwise ring, cyclic rank, positive arithmetic sign and `byte mod28`, yielding **−5.076138400305506** GP-native trigram score against the same 719 holdout Shakespeare windows (minimum **−3.145569093901447**). The leading 26 GP aliases are:
+
+`TH-I-NG-N-I-L-S-EO-L-IA-E-IA-H-O-B-IA-A-G-F-Y-IA-NG-OE-S-OE-NG`.
+
+The initial `TH-I-NG` happens to spell THING, but the full 76-symbol output remains nonlinguistic. It is a short postselected sequence, **not recovered LP2 plaintext**. The sole source ciphertext repeat in this modeled 76-rune span yields one EA marker. No better candidate among the 48 passes the heldout English baseline.
+
+This additionally rejects only the declared original 76-cell GP28 rank-feedback key family, retaining open all non-source-selected hidden rank orders, alternate keys, symbols, and dynamically evolving ciphers. [Standalone full GP28 source SFT](../sims/p55_grid_ring76_gp28_predecessor_sft.cjs).
+
 ## Scope and next decision
 
-Reject **only** the direct byte-mod29 perimeter as a 76-step additive key for a preceding-ciphertext feedback decoder on p55, with the fixed starts, two directions, two signs and the stated clocks. Reversing all page glyph order, changing the table base, fitting a new phase, using private alphabet substitutions, or adding key-skip logic is **outside the scope** and is not justified by this evidence. This test does not contradict source-visible perimeter76/interior180 counts; those counts alone do not select an authentic key.
+Reject **only** the two declared perimeter families, including the original direct byte-mod29 perimeter as a 76-step additive key for a preceding-ciphertext feedback decoder on p55, with the fixed starts, two directions, two signs and the stated clocks. Reversing all page glyph order, changing the table base, fitting a new phase, using private alphabet substitutions, or adding key-skip logic is **outside the scope** and is not justified by this evidence. This test does not contradict source-visible perimeter76/interior180 counts; those counts alone do not select an authentic key.
 
 Unless an independently dated Cicada source supplies an actual ring orientation, GP29 mapping and feedback operation, prefer a genuinely different original-source selector over neighboring variants of this failed model.
 
