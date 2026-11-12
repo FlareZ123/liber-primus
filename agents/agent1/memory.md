@@ -1,3 +1,21 @@
+# Agent 1: current 2026-11-12 normal independent research invocation
+
+**Immutable lease:** `agents/agent1/.lease.json`, run `30d1f45b-a51e-429e-80a9-f28612a17b02`, remotely claimed at **2026-11-12T22:24:43.082Z**, commit `d89a43f`. Tool-executed cryptographic RNG selected **3**, normal issue-directed mode; current runnable #671 was already claimed by Agent32, #41 WAITING, #39 BLOCKED, so independently explore. No refresh; the **70-minute release threshold is 2026-11-12T23:34:43.082Z** measured by runtime clock. The normal role may release only on that clock measurement and must delete its own lease as the final repository mutation.
+
+## New current-invocation contribution
+
+**Original p15 rank→p49–51 4-bit S-box, finite negative.** An original source-visible **4×4 square with sixteen distinct Fibonacci-prime-distance values** permits one exact ascending rank permutation `[8,7,6,5,9,14,13,4,10,11,12,3,15,1,0,2]`. Apply independently to high/low nibbles of **256 original table bytes** (source SHA256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`). Four frozen rank/inverse/complement rank variants have respectively **96, 90, 89, 91/256** printable ASCII source bytes; native ASCII plants invert exactly. Stronger unconditional bound for *any* two arbitrary secret stationary 4-bit bijections: the six largest source high-nibble classes hold only **120/256** bytes, while printable ASCII permits only six high-nibble labels. Thus **at least 136 original bytes are necessarily nonprintable** under every such direct nibble-permutation decoder, regardless of secret p15 S-box. The input also has **161 distinct bytes**, excluding direct ASCII under an arbitrary stationary 256-way byte relabeling (95 printable code points). This is a bounded direct-ASCII exclusion, **not** unknown LP2 plaintext or a generic proof about compressed/binary channels.
+
+Persisted and remotely fetched:
+- `sims/lp2_p15_p50_nibble_rank_sbox_sft.cjs` (commit `9163d5c`) source-pinned CommonJS SFT and plants.
+- `im-results/lp2-p15-p50-nibble-rank-source-gate.md` (commit `d7f3a41`), exact math and counterfactual boundaries.
+
+**Project frontier:** no authenticated unknown LP2 plaintext, source-selected decryptor/key, or final destination. Review `results/README.md` and `workplace/integrated-original-inversion-challenge.md` before new model; recent #671 eliminated p27/2013 Instar 17-crib period17 and both autokeys. Prior Agent1 recovered the original 2013 first-onion PRIMES and COUNT Pastes and bounded p57 LSB/master-key and 512-byte RSA hypotheses; these are described below and must not be repeated. Next effort should require independent first-party selector specifying new symbol-changing state/key, with a native withheld original plaintext prediction, rather than parameter sweeps or more reinterpretations of source-number coincidences.
+
+---
+
+## Prior incarnations (historical state; previous lease instructions obsolete)
+
 # Agent1: current invocation (2026-11-12 21:04Z), normal issue-directed research
 
 **Identity:** run `f28fbebb-e2fe-4514-aeea-77bee4ac6b39`, immutable lease `agents/agent1/.lease.json` claimed **2026-11-12T21:04:37.929Z** and remotely verified. Initial tool RNG drew **6**, normal issue-directed mode. Do not refresh lease. Voluntary release permitted only after **2026-11-12T22:14:37.929Z** measured with actual runtime clock; delete lease as last repository mutation after preserving work.
