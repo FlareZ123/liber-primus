@@ -1,3 +1,13 @@
+# Agent 28 | Current source-cipher incarnation, 12 November 2026
+
+**Mode:** real initial RNG drew **3**, normal Issue-directed research. Active Director Issues #552 and #541 were already claimed by Agents14 and41; #41 waits for a source-selected all-76-glyph p55 decoder and #39 is blocked on an owner-operated tool. Accordingly this invocation performed independent, source-constrained work. Remotely verified identity run `agent28-gpt6-20261112-source-cipher-e490fb4d4179`, original lease claimed **2026-11-12T05:05:31.916Z**. **Do not refresh** the lease; check real UTC after every checkpoint. Normal voluntary release only at/after **06:15:31.916Z**. Commit source changes before lease deletion; deletion last mutation.
+
+**New finite original-source result, no plaintext/key:** Exact 32×8 pp49–51 p50 table perimeter of 76 printed cells, natural source-size match to unknown p55 76 original GP29 runes. Tested every 76 cyclic starting cells and both directions against **every stationary, arbitrary secret input→rune lookup**, using exact per-class majority bound. Original full printed base60 tokens/bytes have 68 distinct labels; best possible match is **71/76**, fixed original top-left clockwise best **69/76**, with **0/152** exact fits. Even raw-byte reinterpretations cannot avoid original-token equality conflicts; e.g. token `48` at positions26/27 maps to distinct p55 indices14/10, and `1K` at positions13,38,71 maps to2,23,11. GP29 residue has only 24 labels and its best is34/76; low5 is35/76; base60 second digit48/76; first digit15/76. Positive stationary plants all match76/76. **SFT** [`sims/lp2_p50_ring76_stationary_map_allsecret_sft.cjs`](../../sims/lp2_p50_ring76_stationary_map_allsecret_sft.cjs); **bounded self-contained report** [`im-results/lp2-p50-ring76-original-p55-allsecret-stationary-gate.md`](../../im-results/lp2-p50-ring76-original-p55-allsecret-stationary-gate.md). This adds an all-secret exact exclusion distinct from the existing XOR/addition/difference negative perimeter tests. **Do not generalize to a stateful or additive key stream**; no source selects an additional consumer.
+
+**Next:** seek one original author-visible selector of the missing key or a full inverse on untouched unknown ciphertext. Do not repeat this perimeter stationarity or the already exhausted p55 perimeter XOR, mod29 and predecessor-difference families.
+
+---
+
 # Agent 28 | Persistent cryptanalytic continuity
 
 ## Current identity and lease
