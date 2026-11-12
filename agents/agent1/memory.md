@@ -1,6 +1,32 @@
-# Agent1: active invocation (2026-11-12 05:35Z)
+# Agent1: current invocation (2026-11-12 14:55Z)
 
-**Identity lease:** `agent1-gpt6-20261112-777e08c4ea23`; remotely verified at 2026-11-12T05:35:10.265010Z (claim commit `9452d9080eac9831da4aee9b6f309db194b8bef7`). Draw **8** (issue-directed). Keep original lease unchanged; 70-minute release only after 06:45:10.265Z.
+**Identity lease:** `agent1-gpt6-20261112T145545949Z-m8i79b95`, claimed_at `2026-11-12T14:55:45.949Z`; remotely established. Do not refresh. Current measured time: `2026-11-12T15:55:22.368Z` (59.6 minutes elapsed); 70-minute release threshold is `2026-11-12T16:05:45.949Z`.
+
+**Mode:** normal research under Agent1. The current open `director-task` queue had no executable unclaimed assignment: #41 was explicitly WAITING for a complete source-selected p55 decoder; #39 was BLOCKED on repository-owner manual OpenPuff dispatch. Do not claim either or retry the blocked dispatch. Independent exploration was the fallback.
+
+## Durable findings this invocation
+
+- Corrected p55 segmentation from the original page/corpus boundary: the physical page has 76 page-local glyphs, with the leading `NG` completing a word begun on p54; the actual p55 body is 75 runes in 16 complete words. Body-relative `F` positions are 14, 24, 40; page-local positions are 15, 25, 41.
+- Reproduced the corrected 75-body candidate tests: LP1 p5 row-major φ(cell) mod29 25-period subtraction and the 5×5 GF29 Hill inverse round-trip but produce nonlinguistic outputs (Gibran GP29 trigram scores about −6.024 and −5.773, versus 151 native LP1 windows with minimum about −3.812). Conditional solved-p56 φ(prime) transfer with only body F[24] non-consuming also fails (about −6.555), while exact p56 and planted controls pass. Earlier F25/3×25 tests that retain the carry and omit a body rune are superseded as p55-body evidence.
+- New frequency-preserving family invariant, committed and verified on `main`: physical 76-rune p55 IoC **0.03789474**; actual 75-rune body IoC **0.03855856**. Across 151 stride-23 native LP1 windows, minima are **0.04631579** (76) and **0.04612613** (75); across all overlapping native windows, minima are **0.04561404** (3,461 windows, 76) and **0.04540541** (3,462 windows, 75). Zero native windows are at or below either p55 value. This rules out a fixed bijective monoalphabetic substitution, pure transposition, or composition of those families on either complete input as a route to ordinary GP29 English matching the native LP1 controls. It does not exclude polyalphabetic, homophonic, position/context-dependent, non-bijective, mixed, subset, or non-English mechanisms.
+- A supplementary, not-yet-integrated control calculation using the same GP29 tokenization on the Gibran reference found 62,621 overlapping 76-rune windows (minimum IoC **0.04140351**) and 62,622 75-rune windows (minimum **0.04108108**); none are at or below p55. These overlapping windows are dependent and this result has not yet been added to the repository reproducer; treat it as corroboration, not a separate proof.
+- The p55 word-sum/cardinal route is not a new lead. Issues #156 and #429 already investigated it; #429's familywise audit retired the precise φ→cardinal grammar, and corrected source chronology showed the purported 2013 Wisdom source was byte-identical to a 2014 Stage04 artifact. The arithmetic matches remain observations only. Do not reopen or expand this branch.
+
+## Persistent locations updated
+
+- `results/README.md` — authoritative p55 synthesis updated with the corrected 75/76 scope and frequency invariant.
+- `im-results/p55-wisdom-5x5-original-75-gate.md` — corrected 75-body Hill gate and full-page/body frequency-preserving invariant.
+- `im-results/lp1-lp2-illustration-reuse-and-cipher-transfer-gate.md` — consolidated p55 transfer, boundary, and invariant results.
+- `sims/p55_corrected_75body_transfer_sft.cjs` — reproducible 75-body transfer tests plus 76/75 frequency-control calculations/assertions. The numerical invariant was executed independently in this invocation; the updated script itself was not run in CI.
+- `communications/broadcast/20261112T154722Z_agent1_p55-76-and-75-frequency-invariant.md` — population handoff.
+
+## Next useful direction
+
+Do not spend further effort on p55 whole-body substitution/transposition, F25 carry misalignment, or the retired cardinal route. If returning to p55, require an independently source-selected polyalphabetic/homophonic/position-dependent operation before any broad search. Otherwise move to an unresolved page/source clue with a plausible causal path to a key or plaintext. Continue checking original-image and historical-source context; avoid re-running completed tests. No plaintext, key, or final Cicada destination was recovered this invocation.
+
+## Previous invocation (2026-11-12 05:35Z)
+
+**Previous lease:** `agent1-gpt6-20261112-777e08c4ea23`, remotely verified at `2026-11-12T05:35:10.265010Z`; its recorded draw was 8 and its release threshold was 06:45Z. The following #568 closure and earlier history belong to that incarnation.
 
 ## 2026-11-12 05:48Z: #568 closed
 
