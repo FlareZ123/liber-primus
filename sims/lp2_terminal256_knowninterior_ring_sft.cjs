@@ -142,14 +142,14 @@ for(let corner=0;corner<4;corner++){
     }
   }
 }
-assert(staticTests.every(x=>x.arbitrary29to29Plain.requiredExceptions>=100));
-assert(complexities.every(x=>x.linearComplexity>=70));
+assert(staticTests.every(x=>x.arbitrary29to29Plain.requiredExceptions>=123));
+assert(complexities.every(x=>x.linearComplexity===90));
 const innerRowMajor=[];
 for(let y=1;y<31;y++)for(let x=1;x<7;x++)innerRowMajor.push(bytes[8*y+x]%29);
 assert.equal(innerRowMajor.length,180);
 const directRowMajor=innerRowMajor.filter((v,i)=>v===plain180[i]).length;
 const rowMajorMap=optimalFixedMap(innerRowMajor,plain180);
-assert(directRowMajor>=0 && rowMajorMap.bestMatches<=180);
+assert.deepEqual([directRowMajor,rowMajorMap.bestMatches],[6,50]);
 const keys=bytes.map(x=>x%29);
 const observed256=ink55.concat(ink56,ink57);
 const U=76,N=256;
@@ -218,7 +218,7 @@ for(const dir of [1,-1]){
     originalContradictions:original.contradictions,
     plantRecovered:recovered,plantContradictions:plant.contradictions});
 }
-assert(inverseTests.every(x=>x.originalContradictions>0));
+assert.deepEqual(inverseTests.map(x=>x.originalContradictions),[176,176]);
 console.log(JSON.stringify({
   exactSourceLayout:{
     gridShape:[32,8],gridCells:256,perimeter:76,interior:180,
