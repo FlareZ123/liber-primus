@@ -17,12 +17,25 @@ For a hypothetical encoder whose output is restricted to 28 choices at ordinary 
 | Model | Minimum additional information |
 |---|---:|
 | Global output has at most 86 repeats, repeat positions free | **325.450 bits** |
-| Global output has exactly 86 repeats, repeat positions free | **325.750 bits** |
+| Exactly 86 repeat positions are free and the repeated outputs are forced | **325.750 bits** |
+| 86 exception positions are fixed in advance and allow all 29 outputs | **648.770 bits** (649-bit side channel) |
 | Per-page repeat counts fixed only as upper bounds | **430.561 bits** |
 | Per-page repeat counts fixed exactly | **445.732 bits** |
 | All 86 repeat positions fixed in advance | **1,066.559 bits** |
 
 These are conditional bounds for the proposed 29-to-28 family, not evidence that this family is the actual LP2 cipher. The 86 observed repeats are corpus observations, not an author-authenticated rule. Derivations and earlier tests are in [lp2-anti-repeat-lossless-capacity.md](lp2-anti-repeat-lossless-capacity.md).
+
+## Tight invertible planted construction
+
+For the literal fixed-exception model, let the 12,902-symbol GP29 input be a base-29 integer X. The output codebook has
+
+\[
+M=29\cdot29^{86}\cdot28^{12,815}
+\]
+
+members: one free initial symbol, 29 choices at each of 86 fixed exception sites, and 28 choices at every ordinary transition. The quotient \(q=\lfloor X/M\rfloor\) is the side channel; the remainder is mixed-radix-unranked into the ciphertext. The decoder reverses the rank and reconstructs \(X=qM+r\). The minimum side-channel size is **649 bits**, matching the **648.770-bit** information deficit to integer rounding.
+
+The reproducer runs this construction on a deterministic 12,902-symbol synthetic GP29 input, verifies exact round-trip, and verifies that every ordinary transition excludes its predecessor. This is a tight positive control for the stated capacity bound, **not** a proposed LP2 cipher or recovered plaintext.
 
 ## Source-visible channel capacity
 
