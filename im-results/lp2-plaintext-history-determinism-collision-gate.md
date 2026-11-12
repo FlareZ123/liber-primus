@@ -1,4 +1,4 @@
-# LP2 plaintext-history transducers: seven-symbol all-secret collision obstruction
+# LP2 plaintext-history transducers: seven-symbol theorem and eight-symbol boundary
 
 **Evidence class (12 November 2026, Agent3): exact, key-independent inequality on original ciphertext, combined with finite matched native-GP English controls.** This closes a broad *plaintext-dependent* local cipher family that earlier predecessor-**ciphertext** entropy and feedback studies do not cover. **No unknown LP2 plaintext, historical key, intended operation or destination has been recovered.**
 
@@ -41,6 +41,45 @@ The standalone SFT converts three already-pinned independent English corpora to 
 
 **All 89/89** source-native windows violate the necessary `E_11(plaintext)<=1` inequality. In the most favorable control, the contradiction is still at least **2 versus 1**. Hence none of these 89 independently chosen native-English plaintext spans can produce the original ciphertext under **any** page-static `q<=7` deterministic plaintext-history transducer, however many secret mapping entries it has. A `q=8` family does **not** meet this exclusion for all controls: some 12-rune Emerson windows have zero within-page collisions, so this result supplies a conditional **seven-previous-rune memory boundary** rather than a universal minimum key length.
 
+
+## Eight-symbol boundary: collision test and exact deterministic consistency
+
+For q=8, an identical **12-rune** plaintext window forces an identical **four-rune** ciphertext window at offsets +8 through +11. The same generous original-cipher upper bound therefore gives the necessary condition E_12(plaintext) ≤ E_4(ciphertext) = **1**. This is the first history width beyond the q≤7 theorem, tested on the same 89 fixed native-GP windows and unchanged 55 physical-page boundaries.
+
+| Native-GP source | Windows | Minimum E_12 | Windows satisfying E_12 ≤ 1 |
+| --- | ---: | ---: | ---: |
+| Shakespeare | 32 | **6** | **0** |
+| Gibran | 8 | **48** | **0** |
+| Emerson | 49 | **0** | **2** |
+| **Total** | **89** | — | **2** |
+
+Thus 87/89 windows still fail the four-output collision condition. The only two survivors are Emerson source offsets **25,912** (E_12=0) and **161,950** (E_12=1). This is the precise point at which the collision-count theorem alone stops deciding every sampled source window; it is not evidence for a q=8 cipher.
+
+### Exact q=8 input-consistency gate
+
+For each physical page and each preceding-eight-rune plaintext context h, the current plaintext rune x is part of the deterministic function input. Every occurrence of the same (h,x) must therefore produce the same original ciphertext rune y. A single repeated input with two different outputs contradicts **every deterministic F_p**, including non-bijective functions; no key search or language score is involved. A reversible row additionally requires distinct x values to map to distinct y values.
+
+Both collision-count survivors fail this exact check:
+
+| Emerson source offset | E_12 | Eligible positions | Distinct page-specific 8-rune histories | Repeated histories | Conflicting identical (history, current-rune) inputs | Additional bijection conflicts |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 25,912 | 0 | 12,516 | **12,484** | 32 | **14** | 0 |
+| 161,950 | 1 | 12,516 | **12,484** | 32 | **13** | 1 |
+
+Each repeated history occurs exactly twice. In 14 and 13 cases respectively, the same current plaintext rune would have to encrypt to two different ciphertext runes. The second candidate also has one different-input/same-output collision, independently incompatible with a bijective row. Across **all 89/89** controls, the exact deterministic check finds at least one contradiction (minimum conflict counts by source: Shakespeare 42, Gibran 99, Emerson 13; overall maximum 665). Consequently **no matched native-English control is an exact q=8 deterministic page-static transducer plaintext**, even though two evade the coarser E_12≤1 test.
+
+### q=8 source-state and literal-table capacity
+
+The two collision-count survivors each visit **12,484 distinct page-specific history contexts** in 12,516 eligible positions. That is a source-control measurement, not a claim about the unknown original plaintext. The possible history domain is 29^8 = **500,246,412,961 states per page**; 55 independently keyed page functions expose 27,513,552,712,855 possible page/state rows. A full independent 29-symbol permutation carries log₂(29!) = **102.8021767 bits**. A dense full-permutation table over all page/state rows would be about **353.6 TB**.
+
+For just the observed 12,484 contexts of one collision-count survivor, a literal sparse table of complete permutations would require about **1,283,382 bits (160,423 bytes)**. Even storing only one independent 29-way output assignment per distinct (history,current-rune) input requires about **60,734–60,739 bits (7,592 bytes)** for the two candidate windows. By comparison, the conditional 256-byte interpretation of the printed pp49–51 table contains 2,048 bits: enough for at most **19 complete permutation rows** or **421 single-output assignments**. This comparison does not authenticate that table as a key or exclude other historical sources.
+
+A compact source-specified generator could expand a much smaller seed into many rows; the source would still need to select the generator, seed and initialization. The q=8 runtime history itself is only eight GP symbols (about 38.86 bits). The first eight symbols per page can be transparent, as in the positive control below; if opaque, the 55 page starts require 440 initial runes (about 2,138 bits / 267 bytes) from a separate source-derived rule.
+
+### Reversible q=8 positive control
+
+A short source-native plant uses the first two original page lengths (**262 and 266 runes**, 528 total), with independent secret random permutations for each encountered (page, previous-eight-rune history). The first eight symbols on each page are transparent initialization. The plant creates **489** secret rows and recovers **528/528** symbols exactly. This validates the q=8 encoder/decoder construction; it does not make the two inconsistent original-source candidates valid or identify an LP2 key.
+
 The use of GP-native English is a stated model assumption. Source-text paraphrase, alternate language/register, inserted nulls, transposition before this map, word-dependent extra state, freely varying within-page secret keys, hidden nonce evolution or changing original word boundaries would be distinct models outside this theorem.
 
 ## Eight-column period with independent page-and-phase keys
@@ -73,8 +112,8 @@ The plant creates **12,381 separate secret row permutations** and recovers **all
 
 ## Decision and reproducibility
 
-This rejects **direct, one-GP-to-one-GP, native-English ciphertext** generated by any **physical-page-static** deterministic local plaintext-history operation with at most **seven preceding plaintext runes**, under all 89 matched control windows. Even the special first-order model `C_i=F_p(P_(i-1),P_i)` is covered, along with arbitrary nonlinear secret tables and seven-symbol history. It does not disprove a plaintext language outside the finite sampled sources or establish which cipher Cicada used.
+The overlapping-window theorem rejects **direct, one-GP-to-one-GP, native-English ciphertext** generated by any **physical-page-static** deterministic plaintext-history operation with at most **seven preceding plaintext runes**, across all 89 matched controls. At q=8, the four-output collision inequality alone admits two Emerson windows, but the exact repeated-input consistency condition rejects both; all 89 fixed native-GP controls therefore fail the tested q=8 deterministic family as well. This remains a finite matched-source result, not a theorem about every possible English text, a source-selected cipher, or recovered plaintext.
 
-A useful future decoder needs author-selected **changing state inside each page**, a genuinely nonlocal mapping, a separate transport/register, or a historically supplied key/operation with an independently held-out original-cipher prediction. Do not repeat generic per-page stationary symbol-table sweeps that cannot escape this all-secret theorem.
+The q=8 boundary does not justify increasing history width without a source clue. A literal table for the observed contexts is already much larger than the conditional printed 256-byte grid, while a compact algorithmic generator remains possible but presently has no source-selected seed or recurrence. Future work should seek an authenticated generator/key source, a changed plaintext register, or a nonlocal operation with an independently held-out original-cipher prediction. Do not launch arbitrary higher-history table searches.
 
-[Single runnable CommonJS SFT](../sims/lp2_plain_history_transducer_collision_sft.cjs) reads the unmodified canonical original LP2 corpus and all three fixed source controls, asserts the exact 55-page layout, original four-gram location and all finite-control minima, and tests full seven-history and independent eight-phase, three-history arbitrary-secret reversible plants.
+[Single runnable CommonJS SFT](../sims/lp2_plain_history_transducer_collision_sft.cjs) reads the unmodified canonical original LP2 corpus and all three fixed source controls, asserts the 55-page layout and original collision location, checks q≤7 and q=8 constraints on all 89 windows, and tests seven-history, q=8 short reversible, and independent eight-phase/three-history secret plants.

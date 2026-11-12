@@ -6,7 +6,7 @@
  *
  * Run: node sims/lp2_plain_history_transducer_collision_sft.cjs
  *
- * Model: C_i = F_page(P_(i-q),...,P_i), q=1..7, with any secret,
+ * Model: C_i = F_page(P_(i-q),...,P_i), q=1..8, with any secret,
  * possibly nonlinear output map, even a separate table on each page.
  * At least q preceding plaintext symbols must be available within the page.
  *
@@ -261,8 +261,200 @@ assert.equal(windowEqualPairs(phaseEncrypted, 4, 1, 8), 41);
 assert(windowEqualPairs(phaseEncrypted, 4, 1, 8) >=
   windowEqualPairs(sourcePlant, 7, 0, 8));
 
+
+// q=8 is the first width where the four-output collision inequality does
+// not reject every matched control. Check the complete deterministic input
+// constraint directly: for each (page, previous-eight-rune history, current
+// plaintext rune), the original ciphertext output must be unique.
+function exactPlainHistoryConsistency(plain, cipher, q) {
+  let offset = 0;
+  let distinctContexts = 0;
+  let distinctInputTuples = 0;
+  let repeatedContexts = 0;
+  let repeatedPairs = 0;
+  let maxMultiplicity = 0;
+  const deterministicConflictInputs = new Set();
+  const bijectionConflictOutputs = new Set();
+  for (let page = 0; page < pageLengths.length; page++) {
+    const pageLength = pageLengths[page];
+    const rows = new Map();
+    for (let i = q; i < pageLength; i++) {
+      const history = plain.slice(offset + i - q, offset + i).join(',');
+      const input = plain[offset + i];
+      const output = cipher[offset + i];
+      let row = rows.get(history);
+      if (!row) {
+        row = { count: 0, inputToOutput: new Map(), outputToInput: new Map() };
+        rows.set(history, row);
+      }
+      const inputKey = page + ':' + history + ':' + input;
+      const outputKey = page + ':' + history + ':' + output;
+      if (row.inputToOutput.has(input) && row.inputToOutput.get(input) !== output) {
+        deterministicConflictInputs.add(inputKey);
+      } else if (!row.inputToOutput.has(input)) {
+        row.inputToOutput.set(input, output);
+      }
+      if (row.outputToInput.has(output) && row.outputToInput.get(output) !== input) {
+        bijectionConflictOutputs.add(outputKey);
+      } else if (!row.outputToInput.has(output)) {
+        row.outputToInput.set(output, input);
+      }
+      row.count++;
+    }
+    distinctContexts += rows.size;
+    for (const row of rows.values()) {
+      distinctInputTuples += row.inputToOutput.size;
+      if (row.count > 1) {
+        repeatedContexts++;
+        repeatedPairs += row.count * (row.count - 1) / 2;
+        maxMultiplicity = Math.max(maxMultiplicity, row.count);
+      }
+    }
+    offset += pageLength;
+  }
+  assert.equal(offset, N);
+  return {
+    eligiblePositions: N - q * pageLengths.length,
+    distinctContexts,
+    distinctInputTuples,
+    repeatedContexts,
+    repeatedPairs,
+    maxMultiplicity,
+    deterministicConflicts: deterministicConflictInputs.size,
+    bijectionConflicts: bijectionConflictOutputs.size
+  };
+}
+
+const q8ControlWindows = [];
+for (const control of controls) {
+  const gp = encodeNativeGp(read(control.path));
+  for (let start = 0; start + N <= gp.length; start += Math.floor(N / 2)) {
+    const window = gp.slice(start, start + N);
+    const consistency = exactPlainHistoryConsistency(window, original, 8);
+    q8ControlWindows.push({
+      author: control.label,
+      start,
+      e12: windowEqualPairs(window, 12),
+      ...consistency
+    });
+  }
+}
+assert.equal(q8ControlWindows.length, 89);
+assert(q8ControlWindows.every((x) => x.deterministicConflicts > 0));
+const q8CollisionSurvivors = q8ControlWindows
+  .filter((x) => x.e12 <= originalFour)
+  .sort((a, b) => a.e12 - b.e12);
+assert.equal(q8CollisionSurvivors.length, 2);
+assert.deepEqual(q8CollisionSurvivors.map((x) => x.e12), [0, 1]);
+assert(q8CollisionSurvivors.every((x) => x.author === 'Emerson'));
+assert.deepEqual(q8CollisionSurvivors.map((x) => x.distinctContexts), [12484, 12484]);
+assert.deepEqual(q8CollisionSurvivors.map((x) => x.repeatedContexts), [32, 32]);
+assert.deepEqual(q8CollisionSurvivors.map((x) => x.maxMultiplicity), [2, 2]);
+assert.deepEqual(q8CollisionSurvivors.map((x) => x.distinctInputTuples), [12502, 12503]);
+assert.deepEqual(q8CollisionSurvivors.map((x) => x.deterministicConflicts), [14, 13]);
+assert.deepEqual(q8CollisionSurvivors.map((x) => x.bijectionConflicts), [0, 1]);
+
+const q8ByAuthor = controls.map((control) => {
+  const windows = q8ControlWindows.filter((x) => x.author === control.label);
+  return {
+    author: control.label,
+    windows: windows.length,
+    collisionSurvivors: windows.filter((x) => x.e12 <= originalFour).length,
+    minimumE12Pairs: Math.min(...windows.map((x) => x.e12)),
+    minimumDeterministicConflicts: Math.min(...windows.map((x) => x.deterministicConflicts)),
+    maximumDeterministicConflicts: Math.max(...windows.map((x) => x.deterministicConflicts))
+  };
+});
+assert.deepEqual(q8ByAuthor.map((x) => x.minimumDeterministicConflicts), [42, 99, 13]);
+
+// A short reversible q=8 source-native plant on the first two original
+// physical page lengths. Every page/history row is an independent secret
+// permutation; the first eight symbols per page are transparent startup.
+const q8PlantLengths = pageLengths.slice(0, 2);
+const q8PlantRunes = q8PlantLengths.reduce((a, b) => a + b, 0);
+const q8PlantSource = sourcePlant.slice(0, q8PlantRunes);
+let q8Seed = 0x3301d00d;
+function q8RandomUint32() {
+  q8Seed = (Math.imul(q8Seed, 1664525) + 1013904223) >>> 0;
+  return q8Seed;
+}
+function q8RandomPermutation() {
+  const p = Array.from({ length: 29 }, (_, i) => i);
+  for (let i = 28; i > 0; i--) {
+    const j = q8RandomUint32() % (i + 1);
+    [p[i], p[j]] = [p[j], p[i]];
+  }
+  return p;
+}
+const q8Rows = new Map();
+const q8Encrypted = [];
+const q8Recovered = [];
+offset = 0;
+for (let page = 0; page < q8PlantLengths.length; page++) {
+  const pageLength = q8PlantLengths[page];
+  const plain = q8PlantSource.slice(offset, offset + pageLength);
+  const cipher = [];
+  const recovered = [];
+  for (let i = 0; i < pageLength; i++) {
+    if (i < 8) {
+      cipher.push(plain[i]);
+      recovered.push(plain[i]);
+      continue;
+    }
+    const cipherKey = page + ':' + plain.slice(i - 8, i).join(',');
+    if (!q8Rows.has(cipherKey)) q8Rows.set(cipherKey, q8RandomPermutation());
+    const cipherRow = q8Rows.get(cipherKey);
+    const encryptedRune = cipherRow[plain[i]];
+    cipher.push(encryptedRune);
+    const decodeKey = page + ':' + recovered.slice(i - 8, i).join(',');
+    const decodeRow = q8Rows.get(decodeKey);
+    recovered.push(decodeRow.indexOf(encryptedRune));
+  }
+  assert.deepEqual(recovered, plain);
+  q8Encrypted.push(...cipher);
+  q8Recovered.push(...recovered);
+  offset += pageLength;
+}
+assert.equal(offset, q8PlantRunes);
+assert.deepEqual(q8Recovered, q8PlantSource);
+assert.equal(q8Rows.size, 489);
+
+const log2Factorial29 = Array.from({ length: 29 }, (_, i) => Math.log2(i + 1))
+  .reduce((a, b) => a + b, 0);
+const log2Symbol29 = Math.log2(29);
+const q8HistoryRows = q8CollisionSurvivors[0].distinctContexts;
+const q8InputAssignments = q8CollisionSurvivors.map((x) => x.distinctInputTuples);
+const q8DenseStatesPerPage = 29 ** 8;
+const q8DenseRowsAllPages = q8DenseStatesPerPage * pageLengths.length;
+const q8Capacity = {
+  historyStatesPerPage: q8DenseStatesPerPage,
+  pageSpecificHistoryRows: q8DenseRowsAllPages,
+  runtimeHistoryBits: 8 * log2Symbol29,
+  bitsPerFullPermutationRow: log2Factorial29,
+  sparseObservedHistoryRows: q8HistoryRows,
+  sparseFullPermutationTableBits: q8HistoryRows * log2Factorial29,
+  sparseFullPermutationTableBytes: q8HistoryRows * log2Factorial29 / 8,
+  observedInputAssignments: q8InputAssignments,
+  independentSingleOutputAssignmentBitsRange: [
+    Math.min(...q8InputAssignments) * log2Symbol29,
+    Math.max(...q8InputAssignments) * log2Symbol29
+  ],
+  independentSingleOutputAssignmentBytesRange: [
+    Math.min(...q8InputAssignments) * log2Symbol29 / 8,
+    Math.max(...q8InputAssignments) * log2Symbol29 / 8
+  ],
+  denseFullPermutationTableBytesAllPages: q8DenseRowsAllPages * log2Factorial29 / 8,
+  conditional256ByteGridBits: 2048,
+  fullPermutationRowsIn256Bytes: Math.floor(2048 / log2Factorial29),
+  singleOutputAssignmentsIn256Bytes: Math.floor(2048 / log2Symbol29),
+  opaqueInitialSymbolsAcross55Pages: 8 * pageLengths.length,
+  opaqueInitialStateBits: 8 * pageLengths.length * log2Symbol29
+};
+assert.equal(q8Capacity.fullPermutationRowsIn256Bytes, 19);
+assert.equal(q8Capacity.singleOutputAssignmentsIn256Bytes, 421);
+
 process.stdout.write(JSON.stringify({
-  property: 'Any page-static deterministic plaintext-history transducer with history q <= 7 preserves 11-gram-to-4-gram collision implications',
+  property: 'q<=7 plaintext-history collision theorem plus exact q=8 deterministic input-consistency test on original LP2 page clocks',
   original: { pages: 55, runes: N, cipher3Pairs: 55, cipher4Pairs: originalFour, cipher5Pairs: 0 },
   sourceNativeControls: summaries,
   independentSevenHistoryPlant: {
@@ -279,5 +471,31 @@ process.stdout.write(JSON.stringify({
     nativePlainSevenPairs: windowEqualPairs(sourcePlant, 7, 0, 8),
     encryptedCipherFourPairs: windowEqualPairs(phaseEncrypted, 4, 1, 8)
   },
-  verdict: 'No direct native-GP plaintext from the 89 source windows for any stationary per-page plaintext-history cipher of memory <=7; no unknown LP2 plaintext recovered'
+  eightHistoryBoundary: {
+    originalCipherFourPairs: originalFour,
+    sourceControls: q8ByAuthor,
+    collisionSurvivors: q8CollisionSurvivors.map((x) => ({
+      author: x.author,
+      sourceRuneOffset: x.start,
+      e12: x.e12,
+      eligiblePositions: x.eligiblePositions,
+      distinctContexts: x.distinctContexts,
+      repeatedContexts: x.repeatedContexts,
+      distinctInputTuples: x.distinctInputTuples,
+      deterministicConflicts: x.deterministicConflicts,
+      bijectionConflicts: x.bijectionConflicts
+    })),
+    deterministicControlPasses: q8ControlWindows.filter((x) => x.deterministicConflicts === 0).length,
+    capacity: q8Capacity,
+    reversibleShortPlant: {
+      physicalPages: 2,
+      pageLengths: q8PlantLengths,
+      runes: q8PlantRunes,
+      secretRows: q8Rows.size,
+      exactRoundTrip: q8Recovered.length + '/' + q8PlantRunes,
+      transparentInitialSymbolsPerPage: 8,
+      seed: '0x3301d00d'
+    }
+  },
+  verdict: 'q<=7 collision theorem excludes all 89 matched controls; q=8 collision count alone admits two Emerson windows, but exact deterministic input consistency rejects both; no unknown LP2 plaintext recovered'
 }, null, 2) + '\n');
