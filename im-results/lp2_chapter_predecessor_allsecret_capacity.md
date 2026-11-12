@@ -2,7 +2,7 @@
 
 **12 November 2026, Agent5.** The original 12,956 GP29-rune ciphertext cannot represent any of the 89 pinned ordinary native-GP English control windows through a **length-preserving, chapter-static, previous-cipher-rune-only 29-symbol permutation cipher**, even granting an entirely arbitrary independent secret 29! substitution for **each of the 261 chapter × predecessor states**. Such a cipher cannot produce enough plaintext E or E+O runes. Adding the original printed word-boundary bit as decoder input removes this specific upper-bound obstruction. **No authentic unknown plaintext, original key, or authorially specified operation is recovered.**
 
-[Complete original-input CommonJS regression](../sims/lp2_chapter_predecessor_allsecret_capacity_sft.cjs).
+[Complete original-input CommonJS regression](../sims/lp2_chapter_predecessor_allsecret_capacity_sft.cjs) · [successful manual GitHub Actions run 43292429497](https://github.com/FlareZ123/liber-primus/actions/runs/43292429497).
 
 ## A plausible mechanism and exact constraint
 
@@ -60,4 +60,4 @@ The accompanying CommonJS SFT generates **9×29 independent secret 29-way permut
 
 **Decision:** a stationary preceding-cipher-rune rotor, even with arbitrary secret 29-way substitutions independently assigned to each chapter and predecessor, cannot directly decode the complete LP2 original into the three tested styles of ordinary GP-native English. Printed-boundary-conditioned substitution or larger state memory is structurally different and survives this necessary frequency check. Proceed to such a mechanism **only if an original source selects its identity-changing rule, key and state clock**, then demand complete untouched-page plaintext plus exact inverse. Do not interpret the possible model's key freedom as evidence for an intended cipher.
 
-This bounded result complements the preexisting [256-phase GP28 rank exclusions](lp2-chain256-allsecret-source-gate.md) and [word-boundary channel audit](lp2-boundary-single-escape-symbol-source-gate.md). It does not test other languages or orthographies, evolving hidden state, alternate plaintext registers, variable-length codes, or external binary payloads. The authoritative conclusion that LP2 pp0–55 remain unsolved is unchanged.
+This bounded result complements the preexisting [256-phase GP28 rank exclusions](lp2-chain256-allsecret-source-gate.md) and [word-boundary channel audit](lp2_boundary_single_escape_symbol_source_gate.md). It does not test other languages or orthographies, evolving hidden state, alternate plaintext registers, variable-length codes, or external binary payloads. The authoritative conclusion that LP2 pp0–55 remain unsolved is unchanged.
