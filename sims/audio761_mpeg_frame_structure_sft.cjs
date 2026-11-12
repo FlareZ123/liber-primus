@@ -158,5 +158,13 @@ const marker=Buffer.from("FROZEN_APPEND_TEST","ascii");
 const plantedTail=audit(Buffer.concat([source,marker]),"synthetic appended payload control");
 assert.equal(plantedTail.trailing.bytes,marker.length);
 assert.equal(plantedTail.trailing.first32Hex,marker.toString("hex"));
-console.log(JSON.stringify({source:a,control:b,syntheticTailDetectionBytes:plantedTail.trailing.bytes,scope:
+assert.equal(a.sideInfo.private3Nonzero,0,"Original MPEG private bits must all be zero");
+assert.equal(b.sideInfo.private3Nonzero,0,"Matched LAME control private bits must all be zero");
+const plantedPrivate=Buffer.from(source);
+plantedPrivate[a.id3Bytes+5]|=16; // second side-info byte after four-byte MPEG header
+const plantedPrivateAudit=audit(plantedPrivate,"synthetic nonzero side-private marker");
+assert.equal(plantedPrivateAudit.sideInfo.private3Nonzero,1,
+  "One changed MPEG side-private field must be detected");
+assert.equal(plantedPrivateAudit.sideInfo.private3Distribution["1"],1);
+console.log(JSON.stringify({source:a,control:b,syntheticTailDetectionBytes:plantedTail.trailing.bytes,syntheticPrivateSideInfoEvents:plantedPrivateAudit.sideInfo.private3Nonzero,scope:
   "MPEG1 Layer3 frame structure, wrapper fields, append bytes; no spectral-stego claim"},null,2));
