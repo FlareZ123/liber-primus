@@ -49,6 +49,60 @@ function header(buf,pos) {
   };
 }
 
+/**
+ * MPEG-1 Layer-III MSB-first side-info bit accessor.
+ * @param {Buffer} bytes
+ * @param {number} start
+ * @param {number} width
+ */
+function bitsAt(bytes,start,width) {
+  let v=0;
+  for(let b=start;b<start+width;b++) {
+    v=(v<<1)|((bytes[b>>>3]>>>(7-(b&7)))&1);
+  }
+  return v;
+}
+
+/**
+ * Reconcile each frame's Huffman+scale-factor bit budget with next frame's
+ * reservoir-backtracked bit start; skips the LAME encoder Info first frame.
+ * @param {Array<{startBit:number,usedBits:number}>} data
+ * @param {Buffer} main
+ */
+function ancillaryCensus(data,main) {
+  const rawBits=[];
+  let gapCount=0,zeroGapCount=0,overlaps=0,overlapMax=0,maxGap=0;
+  let firstInfoGapBits=0,negativeStartCount=0;
+  for(let i=0;i<data.length;i++) {
+    const entry=data[i];
+    if(entry.startBit<0){negativeStartCount++;continue;}
+    const finish=entry.startBit+entry.usedBits;
+    const next=(i+1<data.length)?data[i+1].startBit:main.length*8;
+    const n=next-finish;
+    if(n<0){overlaps++;overlapMax=Math.max(overlapMax,-n);continue;}
+    if(i===0){firstInfoGapBits=n;continue;}
+    if(n===0){zeroGapCount++;continue;}
+    gapCount++;maxGap=Math.max(maxGap,n);
+    for(let bit=finish;bit<next;bit++)rawBits.push(bitsAt(main,bit,1));
+  }
+  const packed=Buffer.alloc(Math.ceil(rawBits.length/8));
+  let ones=0;
+  for(let i=0;i<rawBits.length;i++){
+    if(rawBits[i]){ones++;packed[i>>>3]|=128>>>(i&7);}
+  }
+  return {
+    dataUnitFrames:data.length,
+    firstInfoMetadataGapBits:firstInfoGapBits,
+    positiveAncillaryGaps:gapCount,zeroAncillaryGaps:zeroGapCount,
+    overlappingDataUnits:overlaps,maxOverlapBits:overlapMax,
+    negativeStartCount,maxGapBits:maxGap,
+    candidateAncillaryBits:rawBits.length,candidateOneBits:ones,
+    candidateZeroBits:rawBits.length-ones,
+    candidatePackedSha256:digest(packed),
+    candidatePackedFirst64Hex:packed.subarray(0,64).toString("hex")
+  };
+}
+
 /** @param {Map<string,number>} map @param {string|number} v */
 function tally(map,v) { const k=String(v);map.set(k,(map.get(k)||0)+1); }
 /** @param {Map<string,number>} map @returns {object} */
@@ -67,6 +121,8 @@ function audit(bytes,label) {
   let offset=start,frames=0,mainDataBeginMax=0,nonzeroReservoir=0;
   let first=null,last=null;
   const sidePrivateCounts=new Map(),sidePrivateValues=[];
+  const mainDataChunks=[],dataUnits=[];
+  let mainBytes=0;
   while(offset+4<=bytes.length){
     const f=header(bytes,offset);
     if(!f)break;
@@ -77,11 +133,21 @@ function audit(bytes,label) {
     const private3=(bytes[sideStart+1]>>>4)&7;
     tally(sidePrivateCounts,private3);
     sidePrivateValues.push(private3);
+    assert.notEqual(f.channelMode,3,"This side-info census requires MPEG1 stereo");
+    const side=bytes.subarray(sideStart,sideStart+32);
+    let usedBits=0;
+    for(let grch=0;grch<4;grch++)usedBits+=bitsAt(side,20+59*grch,12);
+    const mainData=bytes.subarray(sideStart+32,offset+f.size);
+    dataUnits.push({startBit:8*(mainBytes-back),usedBits});
+    mainDataChunks.push(mainData);
+    mainBytes+=mainData.length;
     for(const [k,v] of Object.entries(counts))tally(v,f[k]);
     if(!first)first=f;
     last=f; frames++;offset+=f.size;
   }
   assert.ok(frames>1,label+" must contain valid sequential frames");
+  const mainConcatenated=Buffer.concat(mainDataChunks,mainBytes);
+  const ancillary=ancillaryCensus(dataUnits,mainConcatenated);
   const firstFrame=bytes.subarray(first.offset,first.offset+first.size);
   const sideLength=first.channelMode===3?17:32;
   const infoOffset=4+(first.crcProtected?2:0)+sideLength;
@@ -127,6 +193,7 @@ function audit(bytes,label) {
         return data.subarray(0,48).toString("hex");
       })()
     },
+    ancillaryMpegBitBudget:ancillary,
     firstFrameMetadata:{
       xingOrInfo:info,
       hasLAMEEncoderMarker:firstEncoderIndex>=0,
