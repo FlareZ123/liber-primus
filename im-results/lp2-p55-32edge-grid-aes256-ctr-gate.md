@@ -23,8 +23,21 @@ Neither output is printable ASCII or a valid **43-digit GP29 integer**. The latt
 
 A diagnostic plant uses the **first 43 genuinely solved p57 runes** as a 27-byte GP29 integer, encrypts with each tested key/IV, and decrypts back to the exact same 43 symbols. Both planted bytewise round trips succeed, while their encrypted bytes also cannot fit in 43 GP digits. This distinction matters: AES-CTR is reversible on bytes, yet **the proposed fixed-width GP29 serialization is not closed under AES-CTR**. An authenticated byte-to-rune framing rule, cycle-walking or rejection policy would constitute an additional operation not supplied by the source. The direct outputs above also rule out straightforward printable ASCII plaintext under these two byte interpretations; they cannot exclude a separately structured or encrypted 27-byte message.
 
+## GP29-domain-preserving AES keystream consumer
+
+The fixed-width AES-CTR byte obstruction above applies to **directly decrypting one 27-byte base29 integer**. Another fully reversible and much simpler original-cipher reading avoids the overflow: use the *same two row-selected AES-256 keys* and the *same source-word-length IV* to generate **43 AES-CTR keystream bytes**, reduce each byte modulo 29, and subtract or add the resulting runic key at each of the **43 original interior rune indices**. This uses the existing in-period additive GP29 cipher arithmetic as a candidate consumer. The manuscript still does not select AES or a byte-to-29 reduction, so this remains a finite hypothesis. Both signs are frozen before examining the outputs.
+
+| Original source selector | C−(AES byte mod29) | C+(AES byte mod29) |
+|---|---|---|
+| GP rune index modulo8 | GP IoC **0.02990033**, begins `SULBTHLHPJFOGEJ...` | **0.03875969**, begins `DMRASPBGDIADINNG...` |
+| GP prime value modulo8 | **0.04318937**, begins `OAEITEAMHJOEEEGO...` | **0.02879291**, begins `GAXAEEXBHEONGND...` |
+
+All four complete 43-rune streams are available in the SFT output. They contain no recognizable native-GP instruction or recovered word sequence. For comparison, the unchanged 43 p55 interior runes have IoC **0.03433001**, and the **43 genuinely solved p57 runes** used as an independent source-native plant have IoC **0.05647841**. The same exactly generated AES key and IV encrypt that solved-p57 plant modulo29, and the inverse recovers **43/43** symbols for both selectors without fitted key material. Thus the algorithm demonstrably would reveal native GP plaintext if that fixed additive keystream had been used.
+
+This **bounded original-input failure** closes the direct 43-symbol additive AES-CTR keystream consumer, while leaving all forms of separately authenticated GP29 key generation or message framing outside scope.
+
 ## Cryptanalytic decision
 
-Retire the **two frozen p55-endpoint-to-grid-row AES-256-CTR models with the exact 16-length IV and 43-digit big-endian GP29 payload**. The 32×8 / 32-endpoint / 16-length geometry remains real, as does the p55 inner/outer segmentation, but their association with CTR and these selectors is conjectural. This finite result adds no unknown p55 plaintext or reusable LP2 key. Reconsider only if an original instruction chooses a precise table consumer and provides a genuinely length-preserving GP29 byte representation. Avoid generic cipher-mode, key-offset or column sweeps.
+Retire the **two frozen p55-endpoint-to-grid-row AES-256-CTR byte models and their four direct modulo29 additive keystream interpretations**, all with the exact 16-length IV and unaltered 43-rune interior payload. The 32×8 / 32-endpoint / 16-length geometry remains real, as does the p55 inner/outer segmentation, but their association with CTR and these selectors is conjectural. This finite result adds no unknown p55 plaintext or reusable LP2 key. Reconsider only if an original instruction chooses a precise table consumer and provides a genuinely length-preserving GP29 byte representation. Avoid generic cipher-mode, key-offset or column sweeps.
 
 **Reproduce:** [original-input CommonJS SFT](../sims/lp2_p55_32edge_grid_aes256_ctr_sft.cjs) reads only tracked original-derived corpus/table assets, asserts every source segment, key and original plaintext-byte inversion, validates original-source p57 bytewise AES plants and proves the first-byte GP29-domain contradiction for both keys. All byte values were independently cross-calculated with the `cryptography` AES-CTR implementation before committing.

@@ -75,6 +75,13 @@ function aesCtr(key, iv, data) {
   return Buffer.concat([operation.update(data), operation.final()]);
 }
 
+/** @param {number[]} values @returns {number} */
+function ioc(values) {
+  const counts = Array(29).fill(0);
+  for (const value of values) counts[value]++;
+  return counts.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (values.length * (values.length - 1));
+}
 const originalCipher = bytes27(numberOf(interior));
 const iv = Buffer.from(wordLengths);
 assert.equal(originalCipher.toString("hex"),
@@ -118,6 +125,33 @@ for (const [name, selects] of Object.entries(columns)) {
   assert(integerOf(inverse) >= CAPACITY);
   assert(inverse.some((v) => v < 32 || v > 126));
 
+  // A different, genuinely GP29-to-GP29 consumer uses 43 AES-CTR
+  // keystream bytes reduced mod 29 as a source-keyed additive pad.
+  const stream43 = aesCtr(key, iv, Buffer.alloc(43));
+  const runeKey = Array.from(stream43, (byte) => byte % 29);
+  const minus = interior.map((rune, index) =>
+    (rune - runeKey[index] + 29) % 29);
+  const plus = interior.map((rune, index) =>
+    (rune + runeKey[index]) % 29);
+  const known = solved.slice(0, 43);
+  const encodedKnown = known.map((rune, index) =>
+    (rune + runeKey[index]) % 29);
+  assert.deepEqual(encodedKnown.map((rune, index) =>
+    (rune - runeKey[index] + 29) % 29), known);
+  const expectedFirst12 = {
+    runeIndex: {
+      minus: [15,1,20,17,2,20,8,13,11,0,3,6],
+      plus: [23,19,4,24,15,13,17,6,23,10,24,23]
+    },
+    GPPrime: {
+      minus: [3,25,10,16,28,19,8,11,22,18,18,6],
+      plus: [6,24,14,25,18,14,17,8,12,21,9,23]
+    }
+  };
+  assert.deepEqual(minus.slice(0, 12), expectedFirst12[name].minus);
+  assert.deepEqual(plus.slice(0, 12), expectedFirst12[name].plus);
+  assert(ioc(minus) < ioc(known));
+  assert(ioc(plus) < ioc(known));
   const plantedCipher = aesCtr(key, iv, plant);
   assert(aesCtr(key, iv, plantedCipher).equals(plant));
   assert(integerOf(plantedCipher) >= CAPACITY);
@@ -130,6 +164,16 @@ for (const [name, selects] of Object.entries(columns)) {
     all27BytesPrintableASCII: inverse.every((v) => v >= 32 && v <= 126),
     sourceNative43GPPlantRecoversAll43: aesCtr(key, iv, plantedCipher).equals(plant),
     sourceNative43GPPlantCipherFits43Digits: integerOf(plantedCipher) < CAPACITY,
+    directGP29AdditiveByteMod29: {
+      minusIndices: minus,
+      plusIndices: plus,
+      minusTransliteration: minus.map((rune) => corpus.translit[rune]).join(""),
+      plusTransliteration: plus.map((rune) => corpus.translit[rune]).join(""),
+      minusIoC: ioc(minus),
+      plusIoC: ioc(plus),
+      nativeSolvedP57PlantIoC: ioc(known),
+      solvedP57PlantReproduced43: true
+    },
     impossibleGP29ToGP29ForEvery43DigitInput:
       ![0,1].includes(mask[0]) && ![0,1].includes(mask[0] ^ 1)
   };
@@ -146,5 +190,5 @@ console.log(JSON.stringify({
   originalCipherBytes: originalCipher.length,
   originalByteEncodingBound: CAPACITY.toString(),
   readingFamilies: reports,
-  decision: "Both fixed index/prime row-selective AES-256-CTR inverses are nonlinguistic and exceed the GP29 43-digit range. Stronger: neither can map ANY 43-digit GP29 plaintext to a valid 43-digit GP29 ciphertext with this bytewise AES-CTR IV/key, because of their leading keystream bytes. No original plaintext or authentic cipher found."
+  decision: "Both fixed index/prime row-selective AES-256-CTR inverses are nonlinguistic and exceed the GP29 43-digit range. Stronger: neither can map ANY 43-digit GP29 plaintext to a valid 43-digit GP29 ciphertext with this bytewise AES-CTR IV/key, because of their leading keystream bytes. The domain-preserving AES-CTR-byte-mod29 inverse is also nonlinguistic under both source-native key readings and both additive signs, despite exact positive recovery of 43 original solved p57 runes. No original plaintext or authentic cipher found."
 }, null, 2));
