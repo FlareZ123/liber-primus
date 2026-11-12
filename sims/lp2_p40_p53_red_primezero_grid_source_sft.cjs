@@ -107,5 +107,39 @@ assert.deepEqual(original,{
  p40PrimeMod32:'79ea9245f54cc721',
  p33Zero:'f0ca48c1616ba7ce'
 });
+// Source-visible chapter 3008=32*94 and 32x8 table: finite additive trial.
+const full=corpus.pages.slice(40,54).flatMap(p=>p.indices);
+assert.equal(full.length,3008);
+function ioc(seq) {
+ const f=Array(29).fill(0);
+ for(const x of seq)f[x]++;
+ return f.reduce((sum,count)=>sum+count*(count-1),0)/(seq.length*(seq.length-1));
+}
+const originalIoC=ioc(full);
+assert.ok(Math.abs(originalIoC-0.0345426274862201)<1e-12);
+const readings=[];
+for(const orientation of ['rows','interleave'])for(const sign of [-1,1]) {
+ const transformed=full.map((value,i)=>{
+  const row=orientation==='rows'?Math.floor(i/94):i%32;
+  const col=orientation==='rows'?(i%94)%8:Math.floor(i/32)%8;
+  const k=grid.byte_rows[row][col]%29;
+  return mod29(value+sign*k);
+ });
+ // Every raw original symbol is recovered by the inverse; seeded native-GP
+ // positive plant is checked using a second exact source-independent sample.
+ const reciphered=transformed.map((value,i)=>{
+  const row=orientation==='rows'?Math.floor(i/94):i%32;
+  const col=orientation==='rows'?(i%94)%8:Math.floor(i/32)%8;
+  return mod29(value-sign*(grid.byte_rows[row][col]%29));
+ });
+ assert.deepEqual(reciphered,full);
+ readings.push({orientation,sign,ioc:ioc(transformed),
+  prefix:transformed.slice(0,20).map(x=>corpus.translit[x]).join('')});
+}
+assert.ok(Math.abs(readings[0].ioc-0.034416370667025166)<1e-12);
+assert.ok(Math.abs(readings[1].ioc-0.034543954177840355)<1e-12);
+assert.ok(Math.abs(readings[2].ioc-0.03453665737392892)<1e-12);
+assert.ok(Math.abs(readings[3].ioc-0.03443494434970883)<1e-12);
+
 console.log('PASS original red source, all 8-window GP29 checks, exact chapter-conditioned null and printed 32x8 table readouts');
-console.log(JSON.stringify({redZero:spans.filter(s=>s.prime===0).map(s=>[s.page,s.length,s.ordinalSum,s.primeSum]),matches,pThreeOrMore,pDual8,pPrime51,pJoint:pDual8*pPrime51,gridReadouts:original},null,2));
+console.log(JSON.stringify({redZero:spans.filter(s=>s.prime===0).map(s=>[s.page,s.length,s.ordinalSum,s.primeSum]),matches,pThreeOrMore,pDual8,pPrime51,pJoint:pDual8*pPrime51,gridReadouts:original,originalIoC,readings},null,2));
