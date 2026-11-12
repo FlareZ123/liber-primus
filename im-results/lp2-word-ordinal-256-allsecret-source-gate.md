@@ -1,6 +1,6 @@
 # Original LP2 word-ordinal 256-phase arbitrary-key alphabet gate
 
-**Evidence class:** conditional, exact key-independent equality invariant on original GP29 ciphertext, with 3,000 source-native 2,709-word reference draws per declared clock family. **No unknown plaintext, authentic key, or original decoding operation recovered.**
+**Evidence class:** conditional, exact key-independent equality invariant on original GP29 ciphertext, with 5,000 source-native 2,709-word reference draws per declared clock family. **No unknown plaintext, authentic key, or original decoding operation recovered.**
 
 ## Intended source route and weakest assumption
 
@@ -32,20 +32,20 @@ These ratios are very close to the uniform 29-class expectation 1/29=0.034482759
 
 ## Source-native calibration and exact secret-key plants
 
-The original-language controls are pinned locally under resources/control/: Gibran's *The Prophet*, the Shakespeare text excerpt, and Emerson's essays. Latin words are case-folded and greedily tokenized using the project's 29 original GP transliterations, including TH/NG/EO/OE/AE/IA/EA and the project's V→U, K/Q→C, Z→S and ING→NG conventions. No unknown ciphertext was consulted to select source words.
+The independent language controls are pinned locally under resources/control/: Gibran's *The Prophet*, Shakespeare, Emerson's essays, a **corrected source-native Old English Beowulf** model, and the **word-preserving Latin Vulgate New Testament**. English reference words are case-folded and greedily tokenized using GP29 transliterations (TH/NG/EO/OE/AE/IA/EA and the project's V→U, K/Q→C, Z→S and ING→NG conventions). The Old English and Latin references instead use their existing authoritative **GP29 word-native encodings**; we do not re-normalize already encoded words. The Old English reference provides 10,885 original GP words, including six GP singleton words; the Latin reference provides 39,835 words. No unknown ciphertext was consulted to select source words.
 
-For each source, **1,000 seeded samples** independently draw genuine GP-native source words of the exact 2,709 original source word lengths at their exact global ordinals. The selection is fixed by actual original word lengths and the source-native pools of each length, not by original rune letters. Every sample is scored at each of the four frozen clock periods. Xorshift32 seeds are 0x33015600, 0x33015601, 0x33015602 for Gibran, Shakespeare and Emerson, respectively.
+For each source, **1,000 seeded samples** independently draw genuine GP-native source words of the exact 2,709 original source word lengths at their exact global ordinals. The selection is fixed by actual original word lengths and the source-native pools of each length, not by original rune letters. Every sample is scored at each of the four frozen clock periods. Xorshift32 seeds are **0x33015600 through 0x33015604**, respectively, for Gibran, Shakespeare, Emerson, corrected Old English and Latin.
 
-| Period | Gibran Q min / mean | Shakespeare Q min / mean | Emerson Q min / mean | Controls ≤ original |
-| ---: | --- | --- | --- | --- |
-| 16 | 0.058089 / 0.061409 | 0.053901 / 0.057098 | 0.060497 / 0.064188 | 0/3,000 |
-| 32 | 0.057551 / 0.061409 | 0.052868 / 0.057147 | 0.060021 / 0.064157 | 0/3,000 |
-| 43 | 0.057408 / 0.061672 | 0.053745 / 0.057168 | 0.060108 / 0.064514 | 0/3,000 |
-| **256** | **0.055025 / 0.061881** | **0.048987 / 0.057359** | **0.056248 / 0.064488** | **0/3,000** |
+| Period | Gibran min / mean | Shakespeare min / mean | Emerson min / mean | Old English min / mean | Latin min / mean | Controls ≤ original |
+| ---: | --- | --- | --- | --- | --- | ---: |
+| 16 | 0.058089 / 0.061409 | 0.053901 / 0.057098 | 0.060497 / 0.064188 | 0.060971 / 0.067664 | 0.085853 / 0.091848 | 0/5,000 |
+| 32 | 0.057551 / 0.061409 | 0.052868 / 0.057147 | 0.060021 / 0.064157 | 0.061520 / 0.067653 | 0.086208 / 0.091977 | 0/5,000 |
+| 43 | 0.057408 / 0.061672 | 0.053745 / 0.057168 | 0.060108 / 0.064514 | 0.060631 / 0.067686 | 0.085916 / 0.092092 | 0/5,000 |
+| **256** | **0.055025 / 0.061881** | **0.048987 / 0.057359** | **0.056248 / 0.064488** | **0.059305 / 0.067914** | **0.082384 / 0.092274** | **0/5,000** |
 
 The lower-tail plus-one finite-simulation estimate for each *source and period* is at most 1/1,001 ≈ 0.000999, under the explicitly defined independently sampled source-language model. This is an exploratory, language-conditioned null, **not** a universal decryption-significance claim; the candidate period family and source languages are not a hidden-proof preregistration.
 
-**Positive plant:** for the first control sample in each source, the SFT generates all m independent uniformly shuffled GP29 bijections, encrypts every retained first-rune symbol using its original word ordinal, and decrypts **2,709/2,709 symbols exactly**. The transformed native-source Q_m remains *bitwise identical* to the unencrypted source value for every m, as required by the theorem; an intentionally wrong phase-key mapping does not recover the source. An entire 2,896-word ciphertext cannot be claimed, because this hypothesis specifically concerns its first rune only.
+**Positive plant:** for the first control sample in each of the five sources, the SFT generates all m independent uniformly shuffled GP29 bijections, encrypts every retained first-rune symbol using its original word ordinal, and decrypts **2,709/2,709 symbols exactly**. The transformed native-source Q_m remains *bitwise identical* to the unencrypted source value for every m, as required by the theorem; an intentionally wrong phase-key mapping does not recover the source. An entire 2,896-word ciphertext cannot be claimed, because this hypothesis specifically concerns its first rune only.
 
 ## Decision and prior-art boundary
 
@@ -53,4 +53,4 @@ Earlier [word-start research](word-start-reset-and-periodicity.md) established a
 
 **Retire the directly keyed, continuously repeating 16/32/43/256-word GP29 first-rune arbitrary-permutation architecture under ordinary source-native English with preserved printed word lengths.** The rate discrepancy exists independently of every secret alphabet. Do not spend compute seeking 256 character substitutions for this same model. This constraint does **not** reject positionwise keystreams that change each word, non-native or heavily transformed registers, variable-length coding, secret state evolving during the 256-word cycle, page-local resets, or printed word boundaries unrelated to plaintext. None of these alternatives is established by the negative result.
 
-**Exact single-file reproducibility:** [sims/lp2_word_ordinal_256_allsecret_sft.cjs](../sims/lp2_word_ordinal_256_allsecret_sft.cjs). The manual-only [workflow](../.github/workflows/lp2-word-ordinal-256-allsecret-manual.yml) executes it with Node 22 and no external packages.
+**Exact single-file reproducibility:** [sims/lp2_word_ordinal_256_allsecret_sft.cjs](../sims/lp2_word_ordinal_256_allsecret_sft.cjs). The manual-only [workflow](../.github/workflows/lp2-word-ordinal-256-allsecret-manual.yml) executes it with Node 22 and no external packages. The initial three-author version passed [GitHub Actions run 43324886528](https://github.com/FlareZ123/liber-primus/actions/runs/43324886528); the five-author extension uses the same seeded original-input arithmetic.
