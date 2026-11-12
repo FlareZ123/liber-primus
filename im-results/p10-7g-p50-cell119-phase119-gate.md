@@ -45,7 +45,7 @@ A second, explicitly provisional reading treats the isolated p10 token pair “7
 
 exactly the p33–p39 rune count.
 
-This is a structural hypothesis, not a decipherment. The table has no printed A–H column labels or global row numbers. A p50-page-local row-7 / column-G reading instead selects \`1C\` (72), whose totient is 24; the 48 factor depends on treating the three printed pages as one continuous grid and using its global row origin.
+This is a structural hypothesis, not a decipherment. The table has no printed A–H column labels or global row numbers. The \(\varphi=48\) factor is also not rare within this table: 13 of 256 cells have totient 48, and the token \`2a\` itself occurs three times (global coordinates row 2/column 3, row 7/column 7, and row 24/column 2). Thus the 48 factor is not an independent selector; only the assumed global 7G coordinate picks this particular occurrence, and that coordinate convention is not printed. A p50-page-local row-7 / column-G reading instead selects \`1C\` (72), whose totient is 24; the 48 factor depends on treating the three printed pages as one continuous grid and using its global row origin.
 
 Two simple consumers of the 48×35 shape were tested against the original 1,680-rune chapter, transferring the authentic p56 prime-minus-one schedule as an explicit hypothesis:
 

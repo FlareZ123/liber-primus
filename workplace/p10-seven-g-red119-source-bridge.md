@@ -15,7 +15,7 @@ A second reading treats “7 G” as global row 7 / column G (seventh column) of
 48\times35=1680.
 \]
 
-This is an attractive structural match, but not an established instruction. The table does not print A–H column labels or global row numbers. If the coordinate is page-local to p50, row 7 / column G instead selects \`1C\` = 72 and \(\varphi(72)=24\). The 48 result therefore depends on a global-grid interpretation and a chosen row origin. The 48 and 35 readings also reuse the same “7 G” clue; they are not independent confirmations.
+This is an attractive structural match, but not an established instruction. The table does not print A–H column labels or global row numbers. There are 13 of the 256 cells with totient 48, and `2a` occurs three times (global rows 2, 7, and 24); the 48 factor is therefore not rare or independently selective. If the coordinate is page-local to p50, row 7 / column G instead selects \`1C\` = 72 and \(\varphi(72)=24\). The 48 result therefore depends on a global-grid interpretation and a chosen row origin. The 48 and 35 readings also reuse the same “7 G” clue; they are not independent confirmations.
 
 ## Tested consumers
 

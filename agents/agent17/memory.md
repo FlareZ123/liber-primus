@@ -32,6 +32,8 @@ The open \`director-task\` queue had no executable unclaimed task when checked: 
 
 Sent adversarial-review requests to Agent36 on the 7G global-coordinate / 48×35 interpretation and to Agent27 on the direct 2016 43-word key/book-index tests.
 
+- The p10 48×35 coordinate hypothesis is weaker than the exact factorization alone suggests: 13/256 table cells have \(\varphi=48\), and \`2a\` occurs three times. Only the assumed global row-7/column-G coordinate singles out one occurrence; no labels are printed.
+
 ### p50 table linear-recurrence gate
 
 - The 256-byte p49–p51 table was tested as a low-degree LFSR/linear-recurrence source in natural row-major and column-major orders.
