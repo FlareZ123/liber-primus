@@ -1,6 +1,6 @@
 # The 2014 / 2016 / p50 / p55 43-unit bridge: source-selector gate
 
-**Classification:** a source-grounded 43-unit selector candidate has now been found, but no reversible square-to-p55 or p50-to-p55 operation is established. The three 2014 prior-puzzle squares (5×5, 7×7, 5×5) were explicitly required before the LP2 pages were returned. Their inner cells total 43, their perimeters 56, their rows 17, and all cells 99. This aligns with p55's 43 interior runes, 33 boundary runes, 17 words, and p57's 23-dot mark: 43=43, 33+23=56, 76+23=99, and 17=17. The p57 Parable's instruction to shed circumferences is a plausible literal selector for the square interiors. Direct mod-29, prime-count, spiral, and prime-count-difference interpretations fail. A distinct exact prime-hole mask now fills all 76 p55 source runes into the 99 historic square cells and reserves 23 prime-valued positions in the two 1033-sum squares; it supplies a lossless **candidate placement** but no authenticated key or cipher inverse. Its raw-value and totient additive consumers fail on original ciphertext. Earlier p32-compass and 2016/p50 direct-key gates remain negative.
+**Classification:** a source-grounded 43-unit selector candidate has now been found, but no reversible square-to-p55 or p50-to-p55 operation is established. The three 2014 prior-puzzle squares (5×5, 7×7, 5×5) were explicitly required before the LP2 pages were returned. Their inner cells total 43, their perimeters 56, their rows 17, and all cells 99. This aligns with p55's 43 interior runes, 33 boundary runes, 17 words, and p57's 23-dot mark: 43=43, 33+23=56, 76+23=99, and 17=17. The p57 Parable's instruction to shed circumferences is a plausible literal selector for the square interiors. Direct mod-29, prime-count, spiral, and prime-count-difference interpretations fail. A distinct exact prime-hole mask now fills all 76 p55 source runes into the 99 historic square cells and reserves 23 prime-valued positions in the two 1033-sum squares; it supplies a lossless **candidate placement** but no authenticated key or cipher inverse. Its raw-value and totient additive consumers fail on original ciphertext, and a separate original-word-pair invariant excludes **all value-stationary GP29 additive keys** when both the ninth and tenth p55 words must belong to the frozen 2,202/1,182-word source-native English lexicons. Earlier p32-compass and 2016/p50 direct-key gates remain negative.
 
 ## Fixed source observations
 
@@ -105,6 +105,30 @@ The prime-hole proposal is **incompatible with simultaneously requiring all 43 p
 A frozen original-cipher consumer tests the original 76 p55 GP29 runes with this exact row-major key ordering: subtract either each retained printed integer modulo29 or its Euler totient modulo29. The full 76-rune original results are nonlinguistic. A Gibran-trained GP29 trigram model (63,114 GP training runes, α=0.05) assigns mean log scores **−4.586683** (direct printed integer) and **−4.391858** (totient), versus **−4.327853** for original p55 ciphertext and **−3.283477 minimum** across 300 length-matched Shakespeare/Emerson native-GP windows. Both original transforms re-encrypt all 76 source runes exactly; complete 76-rune GP-native planted plaintext recovers under both same frozen transforms. These are implementation checks rather than evidence of a historical key.
 
 [Exact reproducible 99-cell mask, original-cipher tests and native plants](../sims/lp2_2014_primeholes_p55_99cell_sft.cjs) passed [manual GitHub Actions run 43321532649](https://github.com/FlareZ123/liber-primus/actions/runs/43321532649). The failure constrains these two specific additive reads only. It does **not** show that the prime-mask geometry is intended, nor justify an arbitrary 99-cell transposition/key hunt. A next step requires an independent first-party clue fixing the omitted-cell grammar or a reversible operation that makes a withheld original plaintext prediction.
+
+### All-secret additive-key obstruction from two original p55 words
+
+The 99-cell prime-hole placement above has a **key-independent consequence** that does not require guessing either integer shifts or Euler totients. The original printed ninth p55 word occupies six GP runes at page-local offsets **36–41**, and the next printed word occupies four GP runes at **42–45**. On the frozen original source placement:
+
+| Printed p55 word | Source square values | Original ciphertext GP tokens |
+| --- | --- | --- |
+| Word 9 (six) | 72, 15, 16, 65, 270, 270 | M S D IA P F |
+| Word 10 (four) | 65, 16, 15, 72 | B H EO C |
+
+For **any** stationary additive pad function `f(integer)` over GP29, including an arbitrary 29-way secret value for each numeric source entry, the two equal 270 entries enforce `P40−P41=C40−C41=13 (mod29)`. Additionally, the four source integers of word10 are exactly the first four word9 integers in reverse order. Consequently a proposed GP word9 plaintext fixes all four word10 plaintext runes exactly:
+
+```text
+P42 = C42 − C39 + P39  (mod29)
+P43 = C43 − C38 + P38  (mod29)
+P44 = C44 − C37 + P37  (mod29)
+P45 = C45 − C36 + P36  (mod29)
+```
+
+This is a source-frozen held-out prediction, applicable to the **entire family of value-stationary GP29 additive keys** on that exact 76-rune placement. There is no key search or offset tuning. The original historical thematic candidate `WISDOM` is six native GP runes and satisfies the required adjacent-difference equation; its corresponding word10 is the GP string **`P F W OE`**, with no attested source-native 4-GP word.
+
+A complete finite-lexicon test using Shakespeare, Gibran, Emerson and the solved LP1 text contains **2,202 distinct six-GP words** and **1,182 distinct four-GP words** after the existing original GP orthography conventions. Only **14/2,202** six-rune words satisfy the original word9 difference, and **0/14** predict any of the 1,182 attested four-rune words at word10. An independently planted original-layout `WISDOM LIFE` positive text recovers **LIFE** exactly, including the correct source-numeric key equality. The [single-run original-source SFT](../sims/lp2_2014_primeholes_p55_word9_10_keyfree_sft.cjs) passed [manual CI run 43323328272](https://github.com/FlareZ123/liber-primus/actions/runs/43323328272).
+
+**Decision:** this is a materially stronger conditional obstruction than the two direct numeric shifts. If the two printed p55 words are intact native-English GP words from this **specified finite lexicon**, no stationary additive function of those same 2014 source integers can decrypt them simultaneously. It does not exclude out-of-lexicon words, changed printed boundaries, stateful/key-skip operations or another placement. None of those exceptions has an independently selected rule, so do not rescue the tested branch by tuning them.
 
 ### The earlier historical instructions
 
