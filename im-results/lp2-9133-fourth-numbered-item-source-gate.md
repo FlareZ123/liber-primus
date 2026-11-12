@@ -31,6 +31,19 @@ The only new transfer tested here sets its initial prime to the literal `9133` (
 
 The unmodified original 96-rune IoC is **0.038377193**. All four outputs are nonlinguistic under original GP transliteration. The first of the four begins `AIFMDAEOTEOGRTMNGAECUIAGXIACAAETO...`; the F-skip version begins identically then diverges after the F position. All four decode/encode exactly on the original under their specified mask, and the authentic solved p56 control reproduces its entire known 85-rune plaintext. A planted 96-rune source-native p57 control also roundtrips under the explicitly specified F mask, while a wrong first-prime choice fails. In particular, successful algebraic roundtrips **do not identify the true LP2 encryption**.
 
+### Exact fourth-image reversal analogue
+
+The archived **fourth Stage06 JPEG** was among the two historical carrier files whose bytes required reversal before interpreting their image. This provides one additional **fixed** operation for a source-led test on the *fourth* numbered passage: reverse all 96 original GP rune positions **once**, before the same initial-prime9133 φ-key transformation. This inversion is a weaker transfer because historical Stage06 reversed **JPEG bytes**, whereas applying reversal to LP2 rune positions changes the domain; the original LP2 page does not instruct such a transfer. The four fixed reverse-order results, however, are directly testable without fitted keys:
+
+| Reversed full-item then prime-totient transfer | GP29 IoC |
+| --- | ---: |
+| `reverse(C)−φ(prime)`, no F skip | 0.036622807 |
+| `reverse(C)+φ(prime)`, no F skip | 0.037500000 |
+| `reverse(C)−φ(prime)`, preserve reversed original F | 0.032456140 |
+| `reverse(C)+φ(prime)`, preserve reversed original F | 0.036403509 |
+
+These too are nonlinguistic on the original 96 GP runes. An exact reverse-and-reencrypt regression is included in the same original-input SFT. The eight combined results form a closed bounded source-operator decision; they do not justify other reordering/permutation searches.
+
 ## Decision and follow-up gate
 
 The direct solved-p56-style key transfer **does not recover readable original item4 plaintext** under any of these four source-supported variants. This rejects only the most literal prime-totient implementation with initial prime9133 and phase0 on item4; it says nothing about other source-specified operations that might eventually be found. The 9133↔item4 boundary equality is worth retaining as a low-priority cross-stage lead, but its authorial significance is **unknown**, and it must not be upgraded to an established pointer or used to justify newly tuned prime phases, cipher variants, padding choices or translation guesses.
