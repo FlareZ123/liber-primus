@@ -244,7 +244,7 @@ function main(){
   assert.equal(outcomes.forward.plaintextFirst32Hex,
     "839dc666c476dd982cb521b25fe3c94494031769673e9f90cfe3f69100aa8297");
   assert.equal(outcomes.reverse.plaintextFirst32Hex,
-    "f34c85f94532b8b77de2ccbbd37d920f6329a149224ca4cf38e9c145ace2dcc");
+    "f34c85f94532b8b77de2ccbbd37d920f6329a149224ca4cf38e9c145ace2dcc5");
   const output={bodyRunes:1005,strandLength:201,
     compression:"enumerative GP29 predecessor differences with <=7 repeats",
     totalRankBitLength:TOTAL.toString(2).length,
