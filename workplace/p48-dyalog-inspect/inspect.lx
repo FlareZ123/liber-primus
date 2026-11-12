@@ -1,1 +1,0 @@
-⎕CY '/data/48.dws' ⋄ ⎕←'NAMES' ⋄ ⎕←⎕NL ¯2 ¯3 ¯4 ¯9 ⋄ ⎕←'FUNCTIONS' ⋄ ⎕←⎕CR¨⎕NL ¯3 ⋄ ⎕←'OPERATORS' ⋄ ⎕←⎕CR¨⎕NL ¯4 ⋄ ⎕←'VARIABLES' ⋄ ⎕←⍕¨⍎¨⎕NL ¯2 ⋄ ('⎕LX')⎕CY '/data/48.dws' ⋄ ⎕←'LATENT_EXPRESSION' ⋄ ⎕←⎕LX ⋄ ⎕←'INSPECTION_END'
