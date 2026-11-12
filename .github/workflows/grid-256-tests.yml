@@ -85,9 +85,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Original p50 original-page-local stationary-ring gate
+      - name: Original p50 original-page-local stationary-ring and known-tail gate
         if: ${{ inputs.probe == 'p50-ring76-stationary' }}
-        run: node sims/lp2_p50_ring76_stationary_map_allsecret_sft.cjs
+        run: |
+          node sims/lp2_p50_ring76_stationary_map_allsecret_sft.cjs
+          node sims/lp2_p50_dualregion_stationary_allsecret_sft.cjs
 
       - name: Original p32 source-locked signed 2016 image tile-pixel key
         if: ${{ inputs.probe == 'tree-p32-image-direct-key' }}
