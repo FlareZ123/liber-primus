@@ -31,10 +31,40 @@ const prefix = [0];
 for (const glyph of ciphertext) prefix.push(prefix.at(-1) + corpus.prime[glyph]);
 const sum = (start, end) => prefix[end] - prefix[start];
 
-const scannedWords = master.split("%").map(page =>
-  [...page.matchAll(/[ᚠ-᛿]+/gu)].map(m => [...m[0]].map(ch => indices.get(ch)))
-);
-assert(scannedWords.length >= 74);
+// Preserve printed word boundaries. Slash markers and whitespace are layout,
+// not word boundaries; punctuation/hyphen markers close a word. A word crossing
+// a page break remains assigned to the page where it starts, matching
+// parseLP2Words' byStartPage convention. The leading metadata segment is slot 0,
+// so combined archive scan N is stored at scannedWords[N - 1].
+const scannedWords = Array.from({length: master.split("%").length}, () => []);
+let scanPage = 0;
+let currentWord = "";
+let currentWordPage = 0;
+function finishScannedWord() {
+  if (!currentWord) return;
+  scannedWords[currentWordPage].push([...currentWord].map(ch => indices.get(ch)));
+  currentWord = "";
+}
+for (const ch of master) {
+  if (indices.has(ch)) {
+    if (!currentWord) currentWordPage = scanPage;
+    currentWord += ch;
+  } else if (ch === "%") {
+    scanPage++;
+  } else if (ch === "/" || /\s/u.test(ch)) {
+    // Printed line breaks do not terminate words.
+  } else {
+    finishScannedWord();
+  }
+}
+finishScannedWord();
+assert.equal(scannedWords.length, 75);
+assert.equal(scannedWords[9].length, 40, "combined scan 10 is LP1 p10");
+assert.equal(scannedWords[9][25].map(i => corpus.translit[i]).join(""), "TWO",
+  "correct line-wrap parsing makes LP1 p10 word 26 TWO, not BELIEVE");
+assert.equal(scannedWords[72].length, 25, "combined scan 73 is solved LP2 p56");
+assert.equal(scannedWords[72][5].map(i => corpus.runes[i]).join(""), "ᚹᛚᚫ",
+  "raw LP2 p56 word 6 is the ciphertext word solved as WEB");
 const address = (weight, radix) => ({
   scan: weight % radix,
   ordinal: Math.floor(weight / radix)
@@ -212,9 +242,11 @@ for (let k = 0; k < triadTrials; k++) {
 console.log(JSON.stringify({
   source: "Original quoted LP2 ciphertext; 2014 HTML title 133; later combined 75-scan order",
   crossIdentity: {sourceTitle, originalImageCount: originalImageIds.length, totalQuoteWeight, encryptedPages: numberOfEncryptedPages, solvedParableBodyWords: parableBodyWords, acIndex, equality: "56 * 19^2 + 24 = 20240", note: "algebraically related to the 133-based quote checksum; not independent evidence"},
-  caution: "The 2014 original LP2 onion index used 0.jpg..57.jpg; these addresses use a later combined-archive numbering. This is a numeric coincidence candidate, not a historical key or decryption.",
+  pageWordParsing: "Line breaks and slash markers are layout; word delimiters close words; a cross-page word is assigned to its starting page.",
+  caution: "The 2014 original LP2 onion index used 0.jpg..57.jpg; these addresses require the later combined order of 17 LP1 pages followed by 58 LP2 pages. This is a source-constrained hypothesis, not a historical key or an unknown-page decryption.",
   addresses: quoted.map(q => ({
     ...q,
+    sourcePage: q.scan < 17 ? "LP1 p" + q.scan : "LP2 p" + (q.scan - 17),
     sourceRunes: scannedWords[q.scan - 1][q.ordinal].map(i => corpus.runes[i]).join("")
   })),
   validRadices,
