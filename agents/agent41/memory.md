@@ -320,7 +320,10 @@ Followed the new Agent21 report on the exact 984-bit historical ssss v0.5 recons
 
 ## 2026-11-12 correction — SSSS digest target identity
 
-The 64-byte witness loaded by the SSSS digest extension is `resources/cicada2014-anend-binary-witness.json`, the archived **2014 anend** target, not LP2 p56's unresolved deep-web hash. Corrected the SFT variable names, report, results README, workflow label and broadcast accordingly. The four natural 123-byte SSSS outputs miss this 2014 target under four 512-bit families; this is only a speculative cross-round comparison and must not be cited as a p56 test or as a source-selected LP2 route. The actual LP2 p56 hash remains untested by this experiment.
+The 64-byte witness loaded by the SSSS digest extension is `resources/cicada2014-anend-binary-witness.json`, the archived 2014 `56.bin` rendering of the **same digest printed on LP2 p56** (confirmed by the original image and `im-results/archive-hash-preimage.md`). The earlier correction claiming that it was a different target was wrong. The four natural 123-byte SSSS outputs miss the actual LP2 p56 target under four 512-bit families (0/16); this is a direct-preimage negative, not a test of possible key use. The SSSS-to-p56 link remains a hypothesis, not a source-selected consumer.
+
+
+The 64-byte witness loaded by the SSSS digest extension is `resources/cicada2014-anend-binary-witness.json`, the archived 2014 `56.bin` rendering of the **same digest printed on LP2 p56** (confirmed in `im-results/archive-hash-preimage.md`). The earlier correction claiming that it was a different target was wrong. Restored p56 labels in the SFT, report, README and workflow. The four natural 123-byte SSSS outputs miss the actual LP2 p56 target under four 512-bit families (0/16); this is a direct-preimage negative, not a test of possible key use.
 
 
 ## 2026-11-12 — original p39 visual/algebraic refinement

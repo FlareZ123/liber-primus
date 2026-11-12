@@ -19,10 +19,10 @@ const pages = corpus.pages;
 const p2 = pages.find(p => p.page === 2).indices;
 const targetWitness = JSON.parse(fs.readFileSync(path.join(
   __dirname, "..", "resources", "cicada2014-anend-binary-witness.json"), "utf8"));
-const anendTargetHex = targetWitness.target_hex;
-const anendTargetBytes = Buffer.from(anendTargetHex, "hex");
-assert.equal(anendTargetBytes.length, 64);
-assert.equal(crypto.createHash("sha256").update(anendTargetBytes).digest("hex"),
+const p56TargetHex = targetWitness.target_hex; // 2014 archived 56.bin witness is the same 64-byte digest printed on LP2 p56.
+const p56TargetBytes = Buffer.from(p56TargetHex, "hex");
+assert.equal(p56TargetBytes.length, 64);
+assert.equal(crypto.createHash("sha256").update(p56TargetBytes).digest("hex"),
   targetWitness.source_sha256);
 const fivePages = pages.filter(p => p.page >= 23 && p.page <= 26);
 assert.deepEqual(fivePages.map(p => p.indices.length), [213,270,273,265]);
@@ -186,7 +186,7 @@ for(let i=1;i<16;i++) {
 }
 const stats=views.map(v=>({
   layout:v.label,trials:0,legal201:0,maxAgreement:0,exactTargetMatches:0,
-  naturalReadableBytes:null,naturalDecodedPrefix:null,naturalSecretHex:null,naturalByteEntropy:null,naturalSecretHashes:null,anendHashMatches:null
+  naturalReadableBytes:null,naturalDecodedPrefix:null,naturalSecretHex:null,naturalByteEntropy:null,naturalSecretHashes:null,p56HashMatches:null
 }));
 for(const ids of sets) {
   const weights=ids.map((xi,i)=>ids.reduce((q,xj,j)=>
@@ -238,8 +238,8 @@ for(const ids of sets) {
           "BLAKE2b-512":crypto.createHash("blake2b512").update(bytes).digest("hex"),
           "SHAKE256-64":crypto.createHash("shake256",{outputLength:64}).update(bytes).digest("hex")
         };
-        stat.anendHashMatches=Object.entries(stat.naturalSecretHashes)
-          .filter(([,digest])=>digest===anendTargetHex).map(([name])=>name);
+        stat.p56HashMatches=Object.entries(stat.naturalSecretHashes)
+          .filter(([,digest])=>digest===p56TargetHex).map(([name])=>name);
       }
     }
   }
@@ -250,7 +250,7 @@ assert.deepEqual(stats.map(s=>s.maxAgreement),[14,17,14,17]);
 assert.deepEqual(stats.map(s=>s.naturalReadableBytes),[44,54,48,47]);
 assert.ok(stats.every(s=>s.exactTargetMatches===0));
 assert.ok(stats.every(s=>s.naturalSecretHex.length===246));
-assert.ok(stats.every(s=>s.anendHashMatches.length===0));
+assert.ok(stats.every(s=>s.p56HashMatches.length===0));
 console.log(JSON.stringify({
   status:"PASS",date:"2026-11-12",unknownPage2Runes:201,
   unknownFiveDotChapterRunes:1005,degreeBits:984,
@@ -261,6 +261,6 @@ console.log(JSON.stringify({
   totalOriginalReconstructionTests:120960,
   targetReadings:["page2-original","page2-reversed",
     "XTEA(page2-original)","XTEA(page2-reversed)"],
-  anendTarget:{bytes:64,hex:anendTargetHex,digestFamilies:["SHA-512","SHA3-512","BLAKE2b-512","SHAKE256-64"]},
+  p56Target:{bytes:64,hex:p56TargetHex,digestFamilies:["SHA-512","SHA3-512","BLAKE2b-512","SHAKE256-64"]},
   stats,decision:"No direct page2-as-SSSS-secret match. The natural IDs01..05 123-byte outputs also miss the 2014 anend target under four common 512-bit digest families (0/16); their possible key/consumer role remains untyped and source-unselected."
 },null,2));
