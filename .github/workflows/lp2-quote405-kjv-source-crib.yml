@@ -19,3 +19,5 @@ jobs:
           sha256sum KJV.txt
       - name: Test four quote length fingerprints and 34-word positive control
         run: node sims/lp2_quote405_kjv_source_crib_sft.cjs KJV.txt
+      - name: Recover any complete-KJV crib across all 2,896 unknown LP2 words
+        run: node sims/lp2_whole_kjv_wordlength_crib_sft.cjs KJV.txt
