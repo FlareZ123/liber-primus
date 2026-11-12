@@ -149,6 +149,15 @@ for (const { page, anchor } of [{ page: 27, anchor: 28 }, { page: 55, anchor: 70
   });
 }
 assert.notEqual(outcomes[0].decryptedAnchor, outcomes[1].decryptedAnchor);
+// Source-native plaintext positive plant: solved p57 is printed unencrypted.
+const plant = corpus.pages[57].indices;
+assert.equal(plant.length, 95);
+const plantedCipher = plant.map((value, i) => (value + key[i]) % 29);
+const recovered = plantedCipher.map((value, i) => (value - key[i] + 29) % 29);
+assert.deepEqual(recovered, plant);
+const wrongPhase = plantedCipher.map((value, i) => (value - key[i + 1] + 29) % 29);
+const wrongPhaseAgreement = wrongPhase.filter((value, i) => value === plant[i]).length;
+assert.ok(wrongPhaseAgreement < plant.length);
 console.log(JSON.stringify({
   originalWords: words.length,
   threeRuneWords: threeRuneWords.length,
