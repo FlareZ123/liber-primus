@@ -25,7 +25,7 @@ assert.equal(sections.reduce((a, b) => a + b, 0), source.length);
 const sectionEnds = [];
 let sum = 0;
 for (const n of sections) sectionEnds.push(sum += n);
-const classes = ["page", "line", "grid", "sectionGrid"];
+const classes = ["page", "line", "grid", "sectionGrid", "visualChapter"];
 const groups = Object.fromEntries(classes.map((c) => [c, new Map()]));
 /** @type {string[]} */
 const stateAt = [];
@@ -51,6 +51,16 @@ for (const page of linesByPage) {
 }
 assert.equal(offset, 12956);
 assert.equal(section, 8);
+// Original 2014 page order and red-heading/red13 cuts establish a
+// physically different nine-chapter candidate from the derived text sections.
+const physicalChapters = [729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308];
+assert.equal(physicalChapters.reduce((a, b) => a + b, 0), source.length);
+let at = 0;
+for (const length of physicalChapters) {
+  for (let j = 0; j < length; j++) attach("visualChapter", String(j), at + j);
+  at += length;
+}
+assert.equal(at, source.length);
 const c2 = (n) => n * (n - 1) / 2;
 /** @param {number[]} sequence @param {Map<string,number[]>} states */
 function samePairs(sequence, states) {
@@ -67,9 +77,11 @@ const results = Object.fromEntries(classes.map((mode) => [
   mode, {tables: groups[mode].size, ...samePairs(source, groups[mode])}
 ]));
 assert.deepEqual(classes.map((x) => [results[x].same, results[x].total]), [
-  [10751, 311132], [126508, 3638562], [10510, 301221], [1433, 40404]
+  [10751, 311132], [126508, 3638562], [10510, 301221],
+  [1433, 40404], [1161, 35551]
 ]);
 assert.equal(results.sectionGrid.tables, 2300);
+assert.equal(results.visualChapter.tables, 3008);
 
 const vocab = gp.translit.map((s, i) => ({s, i})).sort((a, b) => b.s.length - a.s.length);
 /** @param {string} text */
@@ -146,10 +158,22 @@ assert.equal(
   samePairs(encrypted, groups.sectionGrid).same,
   samePairs(native, groups.sectionGrid).same
 );
+// A separately keyed chapter-reset *additive* pad, even when wholly secret,
+// preserves same-offset equal pairs across all original visual chapters.
+const chapterPad = Array.from({length: 3008}, (_, i) => (5 + 7 * i + 11 * i * i) % 29);
+const chapterPlant = native.map((p, i) => {
+  const state = Number([...groups.visualChapter].find(([, positions]) =>
+    positions.includes(i))[0]);
+  return (p + chapterPad[state]) % 29;
+});
+assert.equal(samePairs(chapterPlant, groups.visualChapter).same,
+  samePairs(native, groups.visualChapter).same);
 console.log(JSON.stringify({
   runes: source.length, pages: linesByPage.length,
   lines: linesByPage.flat().length, sections: sections.length,
+  physicalChapters,
   original: results, controls: sampled,
   planted: {secretTables: secret.size, recovered: decoded.length,
-    invariantPairs: samePairs(encrypted, groups.sectionGrid)}
+    invariantPairs: samePairs(encrypted, groups.sectionGrid)},
+  chapterPadPlant: {invariantPairs: samePairs(chapterPlant, groups.visualChapter)}
 }, null, 2));
