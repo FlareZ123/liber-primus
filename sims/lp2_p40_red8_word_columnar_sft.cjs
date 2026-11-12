@@ -174,7 +174,7 @@ const controls = {
 };
 assert.deepEqual(Object.fromEntries(Object.entries(controls)
   .map(([name, vals]) => [name, vals.length])),
-{LP1: 904, Gibran: 15733, Emerson: 77932});
+{LP1: 942, Gibran: 15733, Emerson: 77932});
 
 let seed = 0x7e570000;
 /** @param {number} n */
