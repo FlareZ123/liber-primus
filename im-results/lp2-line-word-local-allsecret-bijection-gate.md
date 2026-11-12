@@ -1,6 +1,6 @@
 # Independent line and word secret-alphabet gate on original LP2
 
-**Decision (11 November 2026):** Original LP2 cannot come from GP29-encoded ordinary English under **one arbitrary secret 29-symbol alphabet per printed line** or **one arbitrary secret alphabet per canonical word**, even granting 594 or 2,896 unrelated hidden keys, respectively. Arbitrary within-unit transposition also leaves the tested invariant unchanged. The result is conditional on source word/line units reflecting plaintext and the sampled language register; it yields no unknown plaintext or original key.
+**Decision (11–12 November 2026):** Original LP2 cannot come from GP29-encoded ordinary English under **one arbitrary secret 29-symbol alphabet per printed line** or **one arbitrary secret alphabet per canonical word**, even granting 594 or 2,896 unrelated hidden keys, respectively. Arbitrary within-unit transposition also leaves the tested invariant unchanged. The result is conditional on source word/line units reflecting plaintext and the sampled language register; it yields no unknown plaintext or original key.
 
 ## Original source and all-key theorem
 
@@ -41,6 +41,22 @@ A stronger word-specific comparator samples **exactly the original word lengths*
 | **Original LP2** | input | **811** | | |
 
 The authentic-author comparison pools **715 GP-transliterated words** from selected original prose in the LP1 solved reference together with the p57 PARABLE runes directly from the solved LP2 image transcription. Bracketed editorial continuation lines are excluded. This pool covers every source word length 1–14. Repeated sampling of the finite pool is a check against the author's known prose style, rather than 1,200 independent historical witnesses. Every one of 1,200 control samples produces substantially more within-word equalities than the original ciphertext.
+
+## Adjacency-conditioned robustness on the independent-word family (12 November 2026)
+
+**Incremental decision, Agent30:** The all-pairs/one-secret-alphabet-per-word theorem above already excludes the natural per-word bijection family. A separate original-source control now asks whether its apparent language mismatch is merely the already-known scarcity of identical *adjacent* runes, rather than a more general shortage of repeated word letters. This is a diagnostic of the **same excluded family**, not a new independent cipher exclusion or a decipherment.
+
+Of the 2,896 original words, exactly **2,834** contain **no adjacent equal GP29 runes**. On just these words, the original has **731 pairs of equal runes at nonadjacent positions** out of **19,415 eligible nonadjacent pairs**. For each of the checked-in Gibran, Emerson and Shakespeare controls, retain **only GP29-encoded words that likewise have zero adjacent equal runes**, then independently select 1,000 control word sets per author with the **identical filtered original word-length pattern**. Each source contains all required lengths.
+
+| Native-GP control, conditioned on zero adjacent equal runes | Minimum nonadjacent equal pairs | Mean | Replicates ≤ original 731 |
+| --- | ---: | ---: | ---: |
+| Gibran | **873** | 962.864 | **0/1,000** |
+| Emerson | **918** | 1,003.374 | **0/1,000** |
+| Shakespeare | **906** | 989.522 | **0/1,000** |
+
+This comparison removes the trivial adjacent-doublet difference **before** testing within-word nonadjacent equality. Even so, none of the 3,000 matched native-language controls is as collision-sparse as original LP2. It is an empirical finite-register robustness check, not a claim that every possible English text has higher counts. The control conditioning assumes no within-word transposition in the hypothesis being screened, since a transposition changes which equal pairs are adjacent; the earlier unconditional all-pair invariant applies even if word order is transposed.
+
+The [separate CJS SFT](../sims/lp2_perword_bijection_collision_sft.cjs) uses pinned control seed `0x42c12577`, checks the exact 2,834-word/731-pair source measurement, and includes an independent **2,896-secret-alphabet plus within-word-transposition positive plant** recovering 12,956/12,956 native-GP symbols. **No plaintext, historical key, or new reversible decoder follows.** Further word-bijection tests are low priority without a new source-selected operation.
 
 ## Complete word-reset linear-progressive additive family
 
