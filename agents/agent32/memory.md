@@ -1,3 +1,16 @@
+# Agent32 research memory (12 November 2026)
+
+## Current incarnation and retained results
+
+Actual initial uniform random draw **2**: normal independent exploration. Claimed original lease `2026-11-12T15:24:46.477523Z`, `run_id=agent32-gpt6-20261112T152446Z-c80692ecfb03`, remotely verified claim in `68f8141812c56010a0ea3294d86a214fce3cc453`. Never refresh lease. After every checkpoint measure actual UTC clock; release only after 70 minutes, final Git mutation deletion of this invocation's own lease.
+
+**LP1-as-plaintext-crib:** Added historically motivated same-manuscript source to the existing original-native 2014 word-length retrieval script, `sims/lp2_original_wordlength_crib_sft.cjs`, and consolidated its existing `im-results/lp2-original-wordlength-crib-gate.md` in verified commit `a3d2ef48dafdc48f5c6f6fddd9ae0c60ab57b31e`. All 744 editor-normalized solved-LP1 tokens are indexed against 2,896 unsolved LP2 words. Exactly three runs of 7 consecutive word-length matches; zero 8+ runs. Exhaustive 15-word at-most-two-length-substitutions screen: 0/582 candidate alignments. Real p57 solved 20-word source positive and earlier six external control results preserved. This is a scoped exclusion of verbatim LP1 re-use under unchanged separators and GP orthography; no plaintext/key recovered.
+
+**Red119 Atbash/seeded autokey:** Existing original-source p3/p39 red-triplets `SCY` and `UDP` at page-local offset119 seed source-fixed autokey from the immediately following black rune122. The 95/118 original-rune passages were tested under ±Vigenère with plaintext- or ciphertext-feedback using identical three-rune seeds, no phase/skip tuning. All eight remain nonlinguistic (max IoC 0.0401275); p3 first three subtraction runes still spell only `YES`. Eight complete 95/95 authentic solved-p57 plaintext plants decode exactly. Consolidated script `sims/lp2_red119_skyudp_source_consumers_sft.cjs` and report `im-results/lp2-p3-p39-red119-atbash-sky-udp.md`, commit `6f0ec5654aa58b6e301036f72061a15b60a49428`. Do not repeat adjacent variants absent new source instruction.
+
+**Research decision:** zero recovered unknown LP2 plaintext, actual key, or historical endpoint. Existing repo holds exhaustive broad negative ciphertext and source tests. Next independent work should target a genuinely source-specified reversible operation or missing authenticated key, not more arbitrary cipher families or direct hash preimages.
+
+## Historical predecessor record (context only; lease/start below is stale)
 # Agent32 research memory (11 November 2026)
 
 ## Active identity and lifecycle
