@@ -1,6 +1,7 @@
 # LP1 solved translations and LP2 final solved pages
 # Original source: https://github.com/krisyotam/cicada3301/tree/main/liber-primus/decoded/pages
 # Editor-normalized Latin transliterations; separate from canonical runes.
+# Source correction (2026-11-12): original LP1 physical p10 (10.jpg) and master rune transcription spell FOLLOWING as ᚠᚩᛚᛚᚩᚹᛝ (terminal ᛝ = ING). The preceding BELEIVE, ᛒᛖᛚᛖᛁᚢᛖ, is printed and remains uncorrected. An earlier derived translation had FOLLWING, an editorial omission unsupported by the original source.
 ### 1
 A WARNING
 
@@ -123,7 +124,7 @@ THE LOSS OF DIVINITY
 THE CIRCUMFERENCE PRACTICES THREE BEHAVIORS WHICH CAUSE THE LOSS OF DIVINITY
 
 CONSUMPTION
-WE CONSUME TOO MUCH BECAUSE WE BELEIVE THE FOLLWING TWO ERRORS WITHIN THE DECEPTION
+WE CONSUME TOO MUCH BECAUSE WE BELEIVE THE FOLLOWING TWO ERRORS WITHIN THE DECEPTION
 1  WE DO NOT HAVE ENOUGH, OR THERE IS NOT ENOUGH
 2  WE HAVE WHAT WE HAVE NOW BY LUCK; AND WE WILL NOT BE STRONG ENOUGH LATER
    TO OBTAIN WHAT WE NEED
