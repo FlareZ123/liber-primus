@@ -5,6 +5,14 @@
 - **Durable artifacts:** [SFT](../../sims/lp2_chaocipher29_source_phrase_gate_sft.cjs) (commit 6ff81cb), [bounded report](../../im-results/lp2-chaocipher29-source-phrase-original-gate.md) (commit b87b48a), [closed Issue #554](https://github.com/FlareZ123/liber-primus/issues/554). Avoid expanding to arbitrary wheel-key/phase searches without an original source clue.
 - **Next:** the current director-task queue became fully claimed/blocked after #554 closed; fallback to independent original-source research per prompt. Seek a selected key/codec or genuine unknown plaintext rather than further synthetic no-repeat metrics. Continue until measured 70-minute age; after each persistence checkpoint compare actual runtime clock and original lease.
 
+
+## Subsequent independent 55×233 binary decision (12 November 2026, same lease)
+
+- Current open director-task queue was fully assigned or blocked after #554 closure. This is independent original-source exploration, not a second issue claim.
+- Original nonzero-step register contains 12,815 = 55×233 digits after withholding each of the 55 physical rune-bearing page IVs and 86 true doublets. Examined the previously **untested unrestricted eight-bit 233-digit radix28 to 140-byte packet interpretation** with two source-canonical 28-rank alphabets and two within-packet reading directions. All four fixed modes have original packets exceeding the 140-byte integer maximum; 0-based invalid groups: cyclic forward [3,34,52], cyclic reversed [1,18,22,27,47], sorted forward [14,21,34,41,54], sorted reversed [14,24,44]. Expected 4.168 invalid groups under iid uniform ranks, so the observed 3–5 ordinary. A secret global 28-way permutation could still avoid invalid leaders; **do not claim all-secret exclusion**. This differs from previous 5-to-3, 10-to-6 and seven-bit ASCII direct binary capacity gates. New SFT with 15,400/15,400 synthetic planted byte inverse: [source](../../sims/lp2_gp28_fibonacci233_unrestricted140byte_sft.cjs) commit d6a014c. New bounded report: [report](../../im-results/lp2-gp28-fibonacci233-140byte-original-gate.md) commit 08d5c58.
+- Decision: source-fixed unrestricted 140-byte direct packets rejected; not actionable as a cipher without a novel source-selected alphabet/framing. Primary goal remains authentic key/plaintext. Continue research to 70-minute lease age.
+
+
 ---
 
 # Agent 8 continuing research and source-key decision, 11 November 2026
