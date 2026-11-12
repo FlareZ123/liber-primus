@@ -27,14 +27,14 @@ DATE_RE = re.compile(rb"^(201[456]) ([A-Za-z]{3}) (\d{1,2}) (\d{2}:\d{2})")
 NICK_RE = re.compile(rb"<([^>]+)>")
 UNKNOWN_PAGE = re.compile(
     rb"\b(?:LP2|liber[\s_-]*primus|"
-    rb"pp?\s*0\s*[-\u2013]\s*55|"
+    rb"pp?\s*0\s*(?:-|\xe2\x80\x93)\s*55|"
     rb"(?:pages?|pg|p\.?)\s*[#:]?\s*(?:0\s*[-\u2013]\s*55|[0-4]?\d|5[0-5]))\b",
     re.IGNORECASE,
 )
 OPERATION = re.compile(
     rb"\b(?:key|keys|keyword|cipher|crypt(?:o)?|decrypt(?:ed|ing)?|"
     rb"decod(?:ed|ing)|decipher(?:ed|ing)?|plaintext|crib|shift|"
-    rb"vigen[eè]re|beaufort|atbash|totient|prime|gematria|rune|runes|"
+    rb"vigenere|beaufort|atbash|totient|prime|gematria|rune|runes|"
     rb"stream|offset|skip|transposition|playfair|substitution|"
     rb"algorithm|operation|method|password|passphrase|inverse|"
     rb"known[\s-]+text|word[\s-]+guess)\b",
