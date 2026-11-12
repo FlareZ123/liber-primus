@@ -103,6 +103,62 @@ const parable = authenticOriginalTXXX.match(/[A-Za-z]+/g).map(gpWordLength);
 assert.equal(parable.length, 19);
 assert.deepEqual(parable, p57.words.slice(1),
   '2013 real audio ID3 words must fully match 2014 real solved p57 words');
+
+/** A single historical passage that has an 8-word exact original length fit. */
+const candidateText = 'few of our past projects and if you';
+const candidateWords = candidateText.toUpperCase().match(/[A-Z]+/g);
+const wordIndices = [];
+const originalRuneToIndex = new Map(corpus.runes.map((r, i) => [r, i]));
+let currentWord = [];
+for (const ch of originalLP2.slice(0, 55).join('')) {
+  if (originalRuneToIndex.has(ch)) currentWord.push(originalRuneToIndex.get(ch));
+  else if ('- .&$§'.includes(ch) && currentWord.length) {
+    wordIndices.push(currentWord);
+    currentWord = [];
+  }
+}
+if (currentWord.length) wordIndices.push(currentWord);
+assert.equal(wordIndices.length, 2896);
+const translit = corpus.translit.map((letters, i) => ({letters, i}))
+  .sort((a, b) => b.letters.length - a.letters.length);
+/** @param {string} word */
+function gpIndices(word) {
+  const text = word.replace(/QU/g, 'CW').replace(/V/g, 'U')
+    .replace(/K/g, 'C').replace(/Z/g, 'S');
+  const result = [];
+  for (let i = 0; i < text.length;) {
+    const hit = translit.find(r => text.startsWith(r.letters, i));
+    assert(hit, 'Unknown GP transliteration: ' + text);
+    result.push(hit.i);
+    i += hit.letters.length;
+  }
+  return result;
+}
+const trialPlain = candidateWords.flatMap(gpIndices);
+const trialCipher = wordIndices.slice(410, 418).flat();
+assert.equal(trialPlain.length, 28);
+assert.equal(trialCipher.length, 28);
+assert.deepEqual(candidateWords.map(w => gpIndices(w).length),
+  wordIndices.slice(410, 418).map(w => w.length));
+const periodTest = [];
+for (const sign of [-1, 1]) {
+  const key = trialCipher.map((cipher, i) =>
+    (cipher + sign * trialPlain[i] + 29) % 29);
+  let shortest = null;
+  for (let p = 1; p <= 20; p++) {
+    let conflicts = 0;
+    for (let i = p; i < key.length; i++) {
+      if (key[i] !== key[i % p]) conflicts++;
+    }
+    if (!shortest || conflicts < shortest.conflicts)
+      shortest = {period: p, conflicts};
+  }
+  assert(shortest.conflicts > 0,
+    'Rejected crib unexpectedly contains a perfect short periodic GP key');
+  periodTest.push({cipherRelation: sign === -1 ? 'C = P + K' : 'C = -P + K',
+    ...shortest});
+}
+
 const maxNew = Math.max(...output.map(x => x.longestMatchedWords));
 assert.equal(maxNew, 8);
 process.stdout.write(JSON.stringify({
@@ -118,5 +174,6 @@ process.stdout.write(JSON.stringify({
   },
   results: output,
   strongestUnknownRunLength: maxNew,
+  boundedEightWordCandidate: {unknownWord: 410, sourceWord: 308, sourcePhrase: candidateText, runeLength: 28, periodTests: periodTest},
   conclusion: 'No authenticated unknown-page crib, source-selected key or inverse'
 }, null, 2) + '\n');
