@@ -21,6 +21,17 @@ The [earlier participant-archive transcription](https://github.com/scream314/cic
 
 **Do not elevate whitespace counts to a new prime key** merely because the PGP prose signed in 2015 verifies. A historically recoverable untouched original artifact containing the actual whitespace would establish only a visual source witness, not cryptographic authentication of those counts.
 
+## One direct original-input inversion attempt from the 2015 whitespace candidate
+
+Although the historical trailing-space counts are **not signed evidence**, they can be tested as a frozen, five-phase GP29 additive key without searching. Fix the transcribed key to `K=[5,3,2,5,7]`, the GP29 rune order to `resources/liber-primus/lp2-corpus.json`, and the literal p23–p26 black text after the first **16 red runes** as 1,005 positions. Apply both `P_i=(C_i+K[i mod 5]) mod29` and `P_i=(C_i-K[i mod 5]) mod29`, resetting phase at the start of this body. Also apply each sign to the separate complete original 76-rune p55 ciphertext. No ciphertext-dependent phase or keyword is fitted.
+
+| Frozen source target | Raw GP29 index of coincidence | Plus five-key | Minus five-key |
+| --- | ---: | ---: | ---: |
+| p23–p26 1005 black runes | 0.03430457 | **0.03445125** | **0.03485362** |
+| p55 76 original runes | 0.03789474 | **0.02982456** | **0.03438596** |
+
+Both p23 outputs remain ciphertext-like at full length and display no coherent new GP orthography; p55 likewise does not become readable. The known p56 ciphertext as a negative-target control also remains cipher-like, with ±key IoCs **0.03557423 / 0.03809524**, versus its printed-cipher baseline **0.03249300**. The operation does have a unique inverse with the same key and phase, so round-tripping cannot distinguish a correct source-selected decoder from a false key. These specific original GP29 tests reject the *straight repeating-additive reading* of the unsigned whitespace numbers as a productive path. The numbers are not an authenticated source key and no further custom nonlinear transforms are warranted without another clue.
+
 ## Next research decision
 
 No qualifying post-LP2 signed instruction or authentic unknown plaintext/key recovered. Stop this signed-message-search lane **unless an independently byte-preserved, new 2014–2017 signed payload actually emerges with a page/key/operation selector**. If one does, verify it against the pinned Cicada public key and fix its exact LP2 consumer before running a targeted inverse. All previous established LP2 cipher unknowns remain unresolved.
