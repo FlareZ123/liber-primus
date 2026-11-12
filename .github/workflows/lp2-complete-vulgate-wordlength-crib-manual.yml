@@ -20,3 +20,5 @@ jobs:
           test -s vulg.json
       - name: Match all preserved rune word lengths, check two 34-word source plants
         run: node sims/lp2_complete_latin_vulgate_crib_sft.cjs clem.json vulg.json
+      - name: Full-Latin recovery allowing one decorative rune per source word
+        run: node sims/lp2_scripture_one_null_crib_sft.cjs latin clem.json vulg.json
