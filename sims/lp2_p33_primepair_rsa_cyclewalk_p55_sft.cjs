@@ -227,6 +227,56 @@ for (const littleFirst of [false, true]) {
       .update(Buffer.from(decrypted.bytes)).digest("hex")
   });
 }
+
+// Third source-shaped consumer: divide the original 256 table bytes (mod 29)
+// by the two independently selected ascending-coefficient quadratics:
+// 2013 signed BASE29 3301 -> 3QO and original p39 red triple [27,5,15].
+// A 252-rune quotient has exactly 63 complete four-rune RSA blocks.
+function mod29(x) { return (x % 29 + 29) % 29; }
+const signed3301 = [3, 26, 24];
+const p39red = [27, 5, 15];
+const factorAscending = Array(5).fill(0);
+for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) {
+  factorAscending[i+j] = mod29(
+    factorAscending[i+j] + signed3301[i] * p39red[j]);
+}
+assert.deepEqual(factorAscending, [23, 21, 11, 17, 12]);
+const residues = gridBytes.map(byte => byte % 29);
+const coefficients = residues.slice();
+const quotient = [];
+for (let i = 0; i < 252; i++) {
+  const v = mod29(coefficients[i] * 17); // inverse of leading factor 12
+  quotient.push(v);
+  for (let j = 0; j < 5; j++) {
+    coefficients[i+j] = mod29(coefficients[i+j] - v * factorAscending[4-j]);
+  }
+}
+assert.deepEqual(coefficients.slice(-4), [0,0,0,0]);
+assert.equal(quotient.length, 252);
+assert(Math.abs(indexOfCoincidence(quotient) - 0.036330867008157845) < 1e-13);
+const quotientCases = [];
+for (const leastFirst of [false, true]) {
+  const decrypted = transform(quotient, PRIVATE, leastFirst);
+  const reencrypted = transform(decrypted.digits, EXP, leastFirst);
+  assert.deepEqual(reencrypted.digits, quotient, "original Q252 exact inverse");
+  const plant = Array.from({length: 252}, (_, i) => solvedP57[i % 95]);
+  const encryptedPlant = transform(plant, EXP, leastFirst);
+  assert.deepEqual(transform(encryptedPlant.digits, PRIVATE, leastFirst).digits,
+    plant, "252-symbol solved-source language plant");
+  const actualIoc = indexOfCoincidence(decrypted.digits);
+  assert(Math.abs(actualIoc -
+    (leastFirst ? 0.033706444065009805 : 0.0336748245114779)) < 1e-13);
+  quotientCases.push({
+    rune_order: leastFirst ? "least-significant GP first" : "printed coefficient order",
+    quotient_runes: quotient.length,
+    decoded_ioc: actualIoc,
+    decoded_prefix: text(decrypted.digits).slice(0, 100),
+    original_roundtrip: true,
+    native_rune_plant_recovered: true,
+    max_cycle_steps: Math.max(...decrypted.iterations),
+    decoded_sha256: sha256(decrypted.digits)
+  });
+}
 console.log(JSON.stringify({
   premise: "LP2 p33 source primes 1033, 3301; LP1 p5 moth/totient allusion; p55 76 page-local runes",
   cipher: "source-pair RSA modulo 3409933, historical e=65537, 19 four-rune GP29 blocks, bijective cycle-walk",
@@ -236,5 +286,6 @@ console.log(JSON.stringify({
   solved_p57_native_76_ioc: indexOfCoincidence(solvedP57.slice(0, 76)),
   cases,
   source_grid256_two_byte_RSA_cases: byteCases,
+  grid_q252_four_rune_RSA_cases: quotientCases,
   conclusion: "Negative: both source-shaped reversible readings remain ciphertext-like. The original sources do not specify RSA, cycle-walking or a page-local carry treatment."
 }, null, 2));
