@@ -38,7 +38,8 @@ const mod = (n) => ((n % 29) + 29) % 29;
 
 /** @param {string} word @returns {number[]} */
 function gp(word) {
-  const normalized = word.toUpperCase().replace(/K/g, "C");
+  const normalized = word.toUpperCase().replace(/K/g, "C")
+    .replace(/V/g, "U").replace(/Q/g, "C").replace(/Z/g, "S");
   const out = [];
   for (let i = 0; i < normalized.length;) {
     const selected = tokens.find((t) => normalized.startsWith(t.symbol, i));
@@ -118,8 +119,117 @@ assert.equal(book.length, 12956);
 assert.equal(matchOffsets.length, 51);
 assert.equal(matchOffsets[0], 0);
 assert.equal(matchOffsets[1], 178);
+
+// Second independent source comparison: three distinct red-title word-shapes
+// are each found exactly once as a contiguous phrase in the signed 2016 note.
+// This is an exploratory POST-selection pattern, so compare with pinned
+// ordinary prose controls. No claimed plaintext or title is inferred here.
+const messageWords = source2016.split("Hello.")[1]
+  .split("-----BEGIN PGP SIGNATURE-----")[0]
+  .match(/[A-Za-z]+/g) || [];
+assert.equal(messageWords.length, 44);
+const shape = (words) => words.map((word) => gp(word).length);
+const shapePatterns = [[8, 5], [4, 2, 5], [3, 5]];
+
+/** @param {string[]} words @param {number[]} pattern @returns {string[]} */
+function phraseMatches(words, pattern) {
+  const lengths = shape(words);
+  const out = [];
+  for (let i = 0; i + pattern.length <= words.length; i++) {
+    if (pattern.every((n, j) => lengths[i + j] === n)) {
+      out.push(words.slice(i, i + pattern.length)
+        .join(" ").toLowerCase());
+    }
+  }
+  return out;
+}
+const signedShapeMatches = shapePatterns.map((pattern) =>
+  phraseMatches(messageWords, pattern));
+assert.deepEqual(signedShapeMatches,
+  [["epiphany seeks"], ["will be found"], ["its words"]]);
+
+const candidateTitles = [
+  {page: 0, start: 0, words: ["EPIPHANY", "SEEKS"]},
+  {page: 15, start: 9, words: ["WILL", "BE", "FOUND"]},
+  {page: 33, start: 91, words: ["ITS", "WORDS"]},
+  {page: 40, start: 0, words: ["ITS", "WORDS"]}
+];
+const pagePrefix = corpus.pages.map((page, i) =>
+  corpus.pages.slice(0, i).reduce((sum, p) => sum + p.indices.length, 0));
+const anchorKeys = [];
+for (const item of candidateTitles) {
+  const decoded = item.words.flatMap(gp);
+  const ctext = corpus.pages[item.page].indices.slice(item.start,
+    item.start + decoded.length);
+  assert.equal(ctext.length, decoded.length);
+  decoded.forEach((value, i) => anchorKeys.push({
+    page: item.page,
+    global: pagePrefix[item.page] + item.start + i,
+    key: mod(ctext[i] - value)
+  }));
+}
+assert.equal(anchorKeys.length, 40);
+
+/** @param {number} period */
+function bestGlobalPeriodAgreement(period) {
+  const bins = new Map();
+  for (const item of anchorKeys) {
+    const rem = item.global % period;
+    if (!bins.has(rem)) bins.set(rem, new Map());
+    const counts = bins.get(rem);
+    counts.set(item.key, (counts.get(item.key) || 0) + 1);
+  }
+  const matches = [...bins.values()].reduce((sum, m) =>
+    sum + Math.max(...m.values()), 0);
+  return {period, matches, occupied: bins.size};
+}
+const phaseTests = [8, 13, 14, 16, 27, 29]
+  .map(bestGlobalPeriodAgreement);
+assert.deepEqual(phaseTests.map((t) => t.matches),
+  [11, 15, 14, 17, 20, 28]);
+assert.deepEqual(phaseTests.map((t) => t.occupied),
+  [8, 13, 14, 16, 19, 27]);
+
+/** @param {string[]} words */
+function countFullShapeMatches(words) {
+  const length = 44;
+  const ls = shape(words);
+  const windows = Math.max(0, ls.length - length + 1);
+  const mask = shapePatterns.map((p) =>
+    Uint8Array.from(ls, (_, i) =>
+      Number(p.every((value, k) => ls[i + k] === value))));
+  let matching = 0;
+  for (let i = 0; i < windows; i++) {
+    let complete = true;
+    for (let k = 0; k < mask.length; k++) {
+      let found = false;
+      for (let j = i; j < i + length - shapePatterns[k].length + 1; j++) {
+        if (mask[k][j]) { found = true; break; }
+      }
+      if (!found) { complete = false; break; }
+    }
+    if (complete) matching++;
+  }
+  return {words: ls.length, windows, matching};
+}
+const controls = [
+  ["Gibran", "resources/control/gibran_prophet_58585.txt", 190],
+  ["Emerson", "resources/control/emerson_essays_2944.txt", 276],
+  ["Shakespeare", "resources/control/shakespeare_first300k.txt", 624]
+].map(([name, file, expected]) => {
+  const words = (read(file).match(/[A-Za-z]+/g) || []).slice(0, 35000);
+  const result = countFullShapeMatches(words);
+  assert.equal(result.matching, expected);
+  return {name, ...result};
+});
+assert.equal(countFullShapeMatches(messageWords).matching, 1);
+
 console.log(JSON.stringify({
   sourcePhrase: "EPIPHANY SEEKS",
+  signedShapeMatches,
+  sourceTitleCandidateCount: candidateTitles.length,
+  crossTitleGlobalPeriodChecks: phaseTests,
+  baseline44WordShapeWindowCounts: controls,
   firstHeadingGpLengths: [8, 5],
   originalHeading: latin(ciphertext),
   hypothesizedPlainHeading: latin(plaintext),
