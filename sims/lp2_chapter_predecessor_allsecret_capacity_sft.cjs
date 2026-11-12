@@ -243,6 +243,29 @@ function screenEveryWindow(all){
   return result;
 }
 
+/**
+ * Exhaust every possible 262-rune native excerpt as the original physical
+ * page0 plaintext. Page-local secret tables are completely unconstrained:
+ * later page keys, resets, chapters and plaintext elsewhere cannot help.
+ * @param {number[]} nativeGp
+ * @returns {{windows:number,compatible:number,firstFailuresMin:number,firstFailuresMax:number}}
+ */
+function firstPageEveryWindow(nativeGp){
+  const sourceRows=original.slice(0,pages[0].indices.length-1);
+  assert.equal(sourceRows.length,261);
+  const out={windows:nativeGp.length-261,compatible:0,
+    firstFailuresMin:Infinity,firstFailuresMax:-1};
+  for(let start=0;start+262<=nativeGp.length;start++){
+    const candidate=exactBijection(nativeGp,start,sourceRows);
+    if(candidate.compatible)out.compatible++;
+    else{
+      out.firstFailuresMin=Math.min(out.firstFailuresMin,candidate.firstConflict);
+      out.firstFailuresMax=Math.max(out.firstFailuresMax,candidate.firstConflict);
+    }
+  }
+  return out;
+}
+
 let samplePlaintext = null;
 const controls = [];
 for (const control of controlSources) {
@@ -271,7 +294,7 @@ for (const control of controlSources) {
     minimumChapter40_53E:Math.min(...windows.map((v)=>v.localE)),
     minimumChapter40_53EplusO:Math.min(...windows.map((v)=>v.localEO)),
     allExceedBoundaryChapter7:windows.every((v)=>v.localEO>chapterBoundary[7].maxTwo),
-    exhaustive:screenEveryWindow(all)});
+    exhaustive:screenEveryWindow(all),firstPage:firstPageEveryWindow(all)});
 }
 assert.deepEqual(controls.map((c) => [c.minimumE, c.minimumEplusO]),
   [[1430, 2471], [1437, 2608], [1491, 2464]]);
@@ -283,6 +306,9 @@ assert.deepEqual(controls.map((c)=>[c.exhaustive.windows,
   c.exhaustive.chapter7EOpass,c.exhaustive.passesNineChapterEandEO]),
   [[205845,2202,52],[50159,0,0],[311675,0,0]]);
 assert(controls.every((c)=>c.exhaustive.passesExactBijection===0));
+assert.deepEqual(controls.map((c)=>[c.firstPage.windows,c.firstPage.compatible,
+  c.firstPage.firstFailuresMax]),
+  [[218539,0,69],[62853,0,63],[324369,0,69]]);
 assert.equal(controls.reduce((sum, c) => sum + c.windows, 0), 89);
 
 // Independently corrected full Old English Beowulf GP control.
@@ -303,6 +329,9 @@ const beowulfExhaustive=screenEveryWindow(beowulfSource);
 assert.deepEqual([beowulfExhaustive.windows,beowulfExhaustive.chapter7EOpass,
   beowulfExhaustive.passesNineChapterEandEO],[35057,33170,0]);
 assert.equal(beowulfExhaustive.passesExactBijection,0);
+const beowulfFirstPage=firstPageEveryWindow(beowulfSource);
+assert.deepEqual([beowulfFirstPage.windows,beowulfFirstPage.compatible,
+  beowulfFirstPage.firstFailuresMax],[47751,0,69]);
 
 // Full secret-key positive plant: all 9*29 inverse tables are independent
 // secret permutations. Recover complete native GP English, including all 55
@@ -378,6 +407,7 @@ for(const pg of pages){
 assert.equal(plantOffset,N);assert.equal(step,original.length);
 assert.deepEqual(boundaryPlain,samplePlaintext);
 assert(exactBijection(samplePlaintext,0,boundaryRows).compatible);
+assert(exactBijection(samplePlaintext,0,boundaryRows.slice(0,261)).compatible);
 
 const plantedRecords = [];
 let k = 0;
@@ -404,9 +434,10 @@ console.log('PASS: original 12,956 GP29 runes, 12,901 page-internal transitions,
 console.log('all-secret 9-chapter previous-cipher-state capacity, 89 native-GP');
 console.log('controls, original word-boundary contrast, and complete 12,956-rune plant.');
 console.log(JSON.stringify({observed,chapterBoundary,controls,
-  beowulf:{beowulfLocalE,beowulfLocalEO,exhaustive:beowulfExhaustive},
+  beowulf:{beowulfLocalE,beowulfLocalEO,exhaustive:beowulfExhaustive,
+    firstPage:beowulfFirstPage},
   positivePlant: {
   recoveredSymbols: recovered.length,boundaryRecoveredSymbols:boundaryPlain.length,
   plantedE, plantedEO,
   plantedCapE, plantedCapEO, exactRoundtrip: true
-}, decision: 'All 52 frequency-compatible Shakespeare windows contradict an arbitrary secret per-state GP29 bijection. The other 602684 full-length native source windows fail chapter capacity. None of the four finite corpora can directly decode this LP2 cipher model; an exact full-length 522-secret-table native plant passes.'}, null, 2));
+}, decision: 'All 653512 exact-length 262-rune native excerpts across four independent corpora fail page0 predecessor+printed-boundary bijection consistency, with a first contradiction by original rune69. Even arbitrary independent secret alphabet tables on later pages cannot repair page0. The positive full-length 522-row source GP plant passes. No unknown plaintext recovered.'}, null, 2));
