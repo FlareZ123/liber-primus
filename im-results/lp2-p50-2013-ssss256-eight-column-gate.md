@@ -72,9 +72,17 @@ Run the **same monic-quintic six-share necessary equation** and exhaustive all-h
 
 Together these constitute **302,400 exactly evaluated, all-secret, all-historical-ID six-point equations** across the two unfitted original byte layouts. The test still makes no claim about a nontrivial reordering of bytes *within* each share, a secret byte codec, or a cipher other than the historical 2013 Shamir implementation.
 
+## Separate textbook Shamir convention, included as a secondary control
+
+Some implementations of ordinary five-of-eight Shamir sharing use a degree-**four** polynomial (leading coefficient at degree five **zero**), unlike the **source-authentic 2013 monic degree-five** protocol above. For the exact same six-point field interpolation formula and both original table serializations, change **only the required leading coefficient from 1 to 0**. No share ID or secret is refitted.
+
+The all-historical-ID census gives **zero degree-four-consistent assignments of 151,200** for the eight vertical columns (closest still **94 wrong bits** to the required zero), and **zero of 151,200** for the eight consecutive 32-byte row-major chunks (closest **91 wrong bits**). The SFT includes an independently generated correct degree-four, eight-share positive control with scrambled original IDs `[9,3,10,1,5,7,2,6]`, correctly located by the same full enumeration.
+
+This excludes the corresponding **textbook degree-four threshold-five variant** under the same original-byte/field/ID assumptions, alongside the already excluded genuine historical monic-quintic case. Neither result constitutes an arbitrary cipher-family exclusion, because a source-specified different field, encoding or transformation would change the inputs.
+
 ## Original-input reproduction and positive controls
 
-The [single-file Node22 CommonJS SFT](../sims/lp2_p50_ssss256_eight_column_sft.cjs) asserts the original 256-byte SHA256, reconstructs the exact historical field modulus from the published source terms, implements GF(2^256) multiplication/inversion and the monic-quintic interpolation, checks the three unedited natural-ID withheld columns, and enumerates all **151,200** historical-ID assignments for **each of two source-native eight-share layouts** using precomputed field weights. It verifies the immutable minimum of **93 wrong bits**.
+The [single-file Node22 CommonJS SFT](../sims/lp2_p50_ssss256_eight_column_sft.cjs) asserts the original 256-byte SHA256, reconstructs the exact historical field modulus from the published source terms, implements GF(2^256) multiplication/inversion and the monic-quintic interpolation, checks the three unedited natural-ID withheld columns, and enumerates all **151,200** historical-ID assignments for **each of two source-native eight-share layouts** using precomputed field weights. It checks **both** exact leading-coefficient targets: one for the historically authentic monic quintic, and zero for the textbook degree-four alternative. It verifies the immutable minimum of **93 wrong bits**.
 
 For an independent positive control, it constructs a source-native **32-byte ASCII secret** plus four deterministic field coefficients, computes all eight shares under the genuine **monic degree-five** algorithm, and recovers their constant exactly. A second positive control **scrambles source share IDs** to `[9,3,10,1,5,7,2,6]`; the same entire 151,200-assignment census finds that independently constructed correct first-six identifier mapping. This verifies the all-ID enumeration does detect a real unlabelled share arrangement.
 
