@@ -1,0 +1,22 @@
+name: Agent29 full-LP2 Latin Vulgate source crib
+on:
+  workflow_dispatch:
+
+jobs:
+  whole-vulgate-plaintext-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch complete historical Latin editions from pinned Git revision
+        shell: bash
+        run: |
+          curl --fail --location --silent --show-error --output clem.json https://raw.githubusercontent.com/midvash/bible-data/9586bd8228a747962df1ee8692730422fb7eb2ec/versions/la/clem/clem.json
+          curl --fail --location --silent --show-error --output vulg.json https://raw.githubusercontent.com/midvash/bible-data/9586bd8228a747962df1ee8692730422fb7eb2ec/versions/la/vulg/vulg.json
+          test -s clem.json
+          test -s vulg.json
+      - name: Match all preserved rune word lengths, check two 34-word source plants
+        run: node sims/lp2_complete_latin_vulgate_crib_sft.cjs clem.json vulg.json
