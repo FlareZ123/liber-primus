@@ -243,7 +243,11 @@ for (const [cipherOrder, fn] of [['clockwise', spiralCW], ['counterclockwise', s
 }
 
 const chainTests = [];
-for (const [order, fn] of [['clockwise', spiralCW], ['counterclockwise', spiralCCW]]) {
+for (const [order, fn] of [
+  ['row-major', (matrix) => matrix.flat()],
+  ['clockwise', spiralCW],
+  ['counterclockwise', spiralCCW],
+]) {
   const numbers = innerMatrices.flatMap(fn);
   const pi = numbers.map((value) => primeCount[value]);
   const keyDifferences = pi.slice(1).map((value, index) =>
