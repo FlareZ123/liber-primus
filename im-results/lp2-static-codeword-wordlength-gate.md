@@ -27,7 +27,7 @@ L_{\mathrm{plaintext}}\ \ge\ 12,956+11,539
 =\mathbf{24,495\ alphabetic\ letters}.
 \]
 
-Since the 2,896 printed words remain fixed, their **minimum average decoded word length is 8.458218 letters**. This is a **1.8907×** lower-bound expansion from original runes. The source currently has 4.473757 runes per printed word. These word lengths are far above the roughly four-to-five-letter prose of the already solved LP1 material, although English itself has no universal maximum average word length. This is an exact *conditional* lower bound, not an unconditional language impossibility proof.
+Since the 2,896 printed words remain fixed, their **minimum average decoded word length is 8.458218 letters**. This is a **1.8906×** lower-bound expansion from original runes. The source currently has 4.473757 runes per printed word. These word lengths are far above the roughly four-to-five-letter prose of the already solved LP1 material, although English itself has no universal maximum average word length. This is an exact *conditional* lower bound, not an unconditional language impossibility proof.
 
 Treating archaic \`O\` as an additional permissible one-letter word gives **24,024 letters** and average **8.295580 letters/word**. The conclusion survives this more generous convention.
 
