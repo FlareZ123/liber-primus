@@ -34,20 +34,20 @@ The three transformations compose consistently (p7→p23 followed by p23→p56 g
 
 One-file Python reproducer: [\`sims/lp2_p7_p23_p56_dot_triad_sft.py\`](../sims/lp2_p7_p23_p56_dot_triad_sft.py), requiring NumPy and OpenCV and the three immutable original scans. The script hashes and validates all images, extracts all fifteen centers and asserts the pairwise directions, low RMS, wrong-direction gaps and native-mask overlap; local execution passed.
 
-## Exhaustive original 58-page stencil census
+## Exhaustive original 75-image five-dot stencil census
 
-The exact five-dot geometry supplies a further source-level prediction: **if another complete same-size copy of this specific stencil exists elsewhere in the original 58 pages, it must be detectable under one of the four axial reflection signs and a single translation**. To resolve this without fitting ciphertext, [the all-58-page census SFT](../sims/lp2_all58_fivedot_stencil_census_sft.py) reads **all 58 original 2400×3600 JPEGs**, scans the same central image region `x=600..1899, y=200..3349`, and extracts candidate dot-like connected contours at grayscale threshold160 with width/height45–100 and contour area1,900–6,000px. The five p7 center positions are frozen from the independent triad SFT, and no candidate target shape, font class or cipher score is used to tune this template. Enumerate the four independent sign flips and translations anchoring one source point to one candidate contour center. Count template points within an exact **3.0-pixel centroid tolerance**, and accept a complete motif only if all five fit.
+The exact source geometry supplies a discriminating *cross-volume* prediction. Three source images p7/p23/p56 realize three different axial reflection signs of the same five-circle stencil. If the missing fourth sign corresponds to a solved LP1 page, a human player could potentially derive an additional independently solved-text control. The previous full LP2 census found no fourth copy among 58 physical LP2 pages; this extension tests **all 17 earlier LP1 source scans** as well, without changing a threshold or search parameter.
 
-**Executed original-image census, original 58 physical pages:**
+[The updated original-image SFT](../sims/lp2_all58_fivedot_stencil_census_sft.py) reads **all 75 original 2400×3600 JPEGs, numbered 00.jpg–74.jpg**. Each page is searched in the same source image region `x=600..1899, y=200..3349` by 8-connected ink contours at grayscale threshold 160. An isolated candidate dot must have width/height **45–100 pixels** and contour area **1,900–6,000 square pixels**. The p7 five-point template is held fixed. Exhaust exactly four sign flips and image translations anchored at a source point and candidate center. Count matches at **≤3.0 px**, with no fitted scale, arbitrary rotation, affine/shear distortion or cipher-language score. The local original ZIP reproducer checked the newly added **17 LP1 pages**, and the prior same-method LP2 scan already checked all **58 LP2 pages**; the updated SFT asserts their combined histogram and three originals' signed orientations.
 
-| Number of template points found on a page | Page count | Pages |
-|---:|---:|---|
-| **5/5** | **3** | **p7, p23, p56** |
-| 1/5 | 11 | incidental single contours |
-| 0/5 | 44 | remaining pages |
-| **2/5, 3/5 or 4/5** | **0** | none |
+| Template points matched | LP1 archive 00–16 (17) | LP2 archive 17–74 (58) | All original 75 | Matching full-copy pages |
+| ---: | ---: | ---: | ---: | --- |
+| 5/5 | **0** | **3** | **3** | **24.jpg (p7), 40.jpg (p23), 73.jpg (p56)** |
+| 1/5 | 5 | 11 | **16** | Incidental single contours |
+| 0/5 | 12 | 44 | **56** | All remaining originals |
+| 2/5, 3/5, 4/5 | 0 | 0 | **0** | None |
 
-The match signs relative to p7 are identity on p7, vertical mirror on p23, horizontal mirror on p56. All three matched pages have exactly five independent candidate contours in the scanned region, while some pages containing dense numerical typography contribute dozens of false dot-like components and still show at most a one-point match. The source full-release census **finds no fourth same-scale stencil**, strengthening the triad's completeness under the declared template model. It does not exclude a differently scaled, rotated, obscured or intentionally modified drawing. The locally executed census passes all assertions and is independent of LP2 rune/English scoring.
+The exact transformation signs relative to LP2 p7 are identity for p7, vertical reflection for p23 and horizontal reflection for p56. The fourth sign, the **180° rotation relative to p7**, has **no complete same-sized stencil** among either release's 75 preserved scans. A fixed figure may simply have been reused for section framing; the absence of the remaining reflection neither identifies a missing page nor implies an external hidden service. The census excludes complete copies at this original scale under the frozen shape/centroid model, and it does not exclude a differently scaled, modified or partially obscured illustration.
 
 ## Source-oriented solved-p56 cipher transfer: original negative
 
