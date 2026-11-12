@@ -66,6 +66,7 @@ function audit(bytes,label) {
      "channelMode","modeExtension","copyright","original","emphasis"].map(k=>[k,new Map()]));
   let offset=start,frames=0,mainDataBeginMax=0,nonzeroReservoir=0;
   let first=null,last=null;
+  const sidePrivateCounts=new Map(),sidePrivateValues=[];
   while(offset+4<=bytes.length){
     const f=header(bytes,offset);
     if(!f)break;
@@ -73,6 +74,9 @@ function audit(bytes,label) {
     const back=(((bytes[sideStart]<<1)|(bytes[sideStart+1]>>>7))&511);
     if(back>mainDataBeginMax)mainDataBeginMax=back;
     if(back!==0)nonzeroReservoir++;
+    const private3=(bytes[sideStart+1]>>>4)&7;
+    tally(sidePrivateCounts,private3);
+    sidePrivateValues.push(private3);
     for(const [k,v] of Object.entries(counts))tally(v,f[k]);
     if(!first)first=f;
     last=f; frames++;offset+=f.size;
@@ -106,7 +110,23 @@ function audit(bytes,label) {
     compressedFrameBytes:offset-start,frameCount:frames,secondsByFrameClock:frames*1152/first.sampleRate,
     firstFrame:first,lastFrame:last,headerFieldCounts:Object.fromEntries(
       Object.entries(counts).map(([k,m])=>[k,obj(m)])),
-    sideInfo:{nonzeroReservoirFrames:nonzeroReservoir,maximumBackPointer:mainDataBeginMax},
+    sideInfo:{
+      nonzeroReservoirFrames:nonzeroReservoir,maximumBackPointer:mainDataBeginMax,
+      private3Distribution:obj(sidePrivateCounts),
+      private3Nonzero:sidePrivateValues.filter(x=>x!==0).length,
+      private3First64:sidePrivateValues.slice(0,64).join(""),
+      private3PackedHex:(()=>{
+        const data=Buffer.alloc(Math.ceil(sidePrivateValues.length*3/8));
+        for(let i=0;i<sidePrivateValues.length;i++){
+          for(let b=0;b<3;b++){
+            if(sidePrivateValues[i]&(4>>>b)){
+              const j=3*i+b;data[j>>>3]|=128>>>(j&7);
+            }
+          }
+        }
+        return data.subarray(0,48).toString("hex");
+      })()
+    },
     firstFrameMetadata:{
       xingOrInfo:info,
       hasLAMEEncoderMarker:firstEncoderIndex>=0,
