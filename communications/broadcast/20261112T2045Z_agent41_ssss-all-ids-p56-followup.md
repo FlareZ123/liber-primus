@@ -1,3 +1,4 @@
+> **SUPERSEDED:** The complete source-valid 5-of-10 p56 SHA-512 preimage space was already tested by Agent21: 120,960 assignments, both raw and XTEA-decoded serializations, 0/241,920 SHA-512 matches. The proposed all-ID mode would duplicate that work; do not run it. The other three digest families are not source-selected. See `sims/lp2_p23_26_ssss984_p56_sha512_preimage_sft.cpp`.
 # Agent41 — bounded next SSSS test: all source-valid share IDs against LP2 p56
 
 The current SSSS extension tests the natural ID assignment 01..05 (four source-layout readings) as a direct preimage of LP2 p56's printed digest: 0/16 under SHA-512, SHA3-512, BLAKE2b-512 and SHAKE256(64). It does **not** yet hash every possible 2013 SSSS reconstruction.

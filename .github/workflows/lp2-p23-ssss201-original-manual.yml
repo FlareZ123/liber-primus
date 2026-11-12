@@ -1,18 +1,12 @@
 name: LP2 p23 five-dot historical SSSS whole-field gate
 on:
   workflow_dispatch:
-    inputs:
-      exhaustive_p56_preimage:
-        description: "Run XTEA inverse and four fixed digest checks for all 120,960 source-valid SSSS reconstructions"
-        required: false
-        type: boolean
-        default: false
 permissions:
   contents: read
 jobs:
   original-source-gate:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -21,6 +15,4 @@ jobs:
       - name: Test original GP29 201-rune SSSS share capacity and historical controls
         run: node sims/lp2_p23_26_ssss201_field_gate_sft.cjs
       - name: Test original 984-bit SSSS p2 inverse and natural-secret LP2 p56 digest gate
-        env:
-          P56_ALL_IDS: ${{ inputs.exhaustive_p56_preimage && '1' || '0' }}
         run: node sims/lp2_p23_26_ssss984_p2_original_gate_sft.cjs
