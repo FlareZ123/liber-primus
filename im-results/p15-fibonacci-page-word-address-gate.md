@@ -1,6 +1,6 @@
 # p15 Fibonacci-prime spiral: direct-key negatives and a 318° p32 navigation candidate
 
-**Classification:** exact original-source navigation experiment with finite negative results. The p15 Fibonacci-prime construction is real and reproducible, but neither direct page/word pairing nor the source-motivated infinity-arrow Fibonacci additive reading yields an independently useful plaintext route or key. **No unknown LP2 plaintext or authentic cipher key is recovered.**
+**Classification:** exact original-source navigation experiment with finite negative results. The p15 Fibonacci-prime construction is real and reproducible, but the direct page/word mapping, the source-fixed floral-page prime-totient test, and the infinity-arrow Fibonacci additive reading yield no an independently useful plaintext route or key. **No unknown LP2 plaintext or authentic cipher key is recovered.**
 
 ## Source-fixed input
 
@@ -95,6 +95,16 @@ The original starting ordinals are **1,2,3,4,6,9,14,22,35,56,90,145,234,378,611,
 **Original result:** all 16 direct title/verse readouts are incoherent. The original 213 red ciphertext runes have IoC **0.033838250**; the direct totient-decoded concatenation has **0.032775268**, and the literal-F variant **0.033882541**, versus independently readable solved p57 **0.062709966**. The alignment of sixteen clue items remains a hypothesis, so 100,000 source-preserving permutations reassign the same sixteen fixed prime starts among the same sixteen fixed source spans. With seed 0x3301, the actual order has lower-tail ranks **7736/100001** (ordinary) and **18587/100001** (literal-F). Matched permuted mean IoCs are **0.034380666** and **0.035214375**. Hence the observed page-order pairing supplies no plaintext, authentic key, or independently distinctive readout. There is no warrant to fit arbitrary shifts, permutations, or extra cipher layers after this gate.
 
 **Single runnable reproducer:** [p15 red-span Fibonacci-prime totient test](../sims/p15_red_span_fibonacci_totient_sft.cjs). It validates all sixteen original marked span positions against the canonical ciphertext, all printed p15 prime identities, the two solved heading controls and the 100,000-shuffle comparison.
+
+## Sixteen floral-frame pages: page-specific Fibonacci-prime totient inverse
+
+**Source-selected target set, with a bounded negative result (Agent33, 12 November 2026).** The sixteen original physical pages **p40–55** share a fixed floral frame, matching the sixteen printed values of p15's independently solved 4×4 Fibonacci-prime spiral. This supplies a more visible 16-to-16 association than the dispersed sixteen red-ink spans. The eleventh physical page in this sequence is **p50**, the numerical-only segment of the 256-cell table; it contributes **zero GP runes**. Keep this page in the original sequence instead of silently compressing the mapping to fifteen entries.
+
+Test one exact, already-authenticated cipher operation: for physical page **40+i**, start the source-solved p56 **phi(prime)** subtraction at zero-based prime index **F[i]**, where the sixteen distinct Fibonacci indices are [0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987]. Advance one prime per rune **within that physical page**, reset for the next page, and leave p50's original empty rune list untouched. Do not choose per-page shifts or secret keys from the unknown text. This is a concrete hypothesis about a possible *consumer* of the authentic spiral; no original sentence explicitly instructs using the p56 transform on this chapter.
+
+The exact source gives **3,316 GP runes** over these 16 physical pages. Original stream IoC is **0.03446282661**; the page-indexed prime-totient inverse produces **0.03454069760**, near the GP29 uniform baseline **1/29** and no coherent prose (first decoded symbols: **EAWSLAEJNMTHXPMYEAJNEXPTGMNGULGNSYIAATHP...**). The original mapping order has **2,332 of 10,000** seeded reassignments with equal or higher decoded IoC, an add-one upper-tail **0.233277**. Exact forward reencryption restores **all 3,316 original rune indices**, and the same prime-totient operation independently decodes the original p56 heading to **AN END**. These controls distinguish the model's negative original plaintext from an implementation error.
+
+**Decision:** the 16-page shared artwork supplies a plausible recipient for the 16-value spiral, but **the simplest page-restarted p56 prime-totient decoding fails** and its fixed source order is statistically ordinary. This does not exclude an independently established different reversible consumer or a page50-specific key transfer. Do not fit ad hoc page rotations, extra key phases, or source-free F skips to rescue it. [Original-input CJS reproducer](../sims/p15_fibonacci_16floral_page_phi_sft.cjs).
 
 ## Original p15 infinity-arrow continuation test
 
