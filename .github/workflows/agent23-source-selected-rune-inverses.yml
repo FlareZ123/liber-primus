@@ -1,0 +1,18 @@
+name: Agent23 original-source rune inverses
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-selected original moth-prose key
+        run: node sims/lp2_lp1p5_moth_textguide_original_sft.cjs
+      - name: Original prime-rubric RSA and source-derived quotient inverses
+        run: node sims/lp2_p33_primepair_rsa_cyclewalk_p55_sft.cjs
