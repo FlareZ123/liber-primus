@@ -208,6 +208,41 @@ function main() {
   assert.deepEqual(alternatePairs.map(p => p.forcedEdits), [2, 1, 5, 2]);
   assert.deepEqual(alternatePairs.map(p => p.noDeterministicMap), [true, false, true, true]);
 
+  // A last natural 119+119 interpretation permits TWO entirely separate
+  // secret GP29 alphabets, one for each lane. Each lane may be permuted freely.
+  // A source can split into consecutive 119-halves or alternating positions;
+  // target may independently choose either representation. The lanes can swap.
+  // Under that very generous model the per-lane label-multiplicity spectra
+  // must still match separately.
+  /** @param {Vector} values @param {'halves'|'alternating'} mode */
+  const splitLanes = (values, mode) => mode === 'halves'
+    ? [values.slice(0, 119), values.slice(119)]
+    : [values.filter((_, i) => (i & 1) === 0),
+      values.filter((_, i) => (i & 1) === 1)];
+  const laneCases = [];
+  for (const [endpoint, sourceValues] of [
+    ['nonleading', q238], ['leading-no-constant', alternate238]
+  ]) {
+    for (const sourceSplit of ['halves', 'alternating']) {
+      for (const targetSplit of ['halves', 'alternating']) {
+        const source = splitLanes(sourceValues, sourceSplit);
+        const target = splitLanes(p36, targetSplit);
+        const noSwap = minimumSymbolChanges(source[0], target[0], MOD)
+          + minimumSymbolChanges(source[1], target[1], MOD);
+        const swap = minimumSymbolChanges(source[0], target[1], MOD)
+          + minimumSymbolChanges(source[1], target[0], MOD);
+        laneCases.push({
+          endpoint, sourceSplit, targetSplit,
+          minForcedEdits: Math.min(noSwap, swap),
+          unswapped: noSwap, swapped: swap
+        });
+      }
+    }
+  }
+  assert.deepEqual(laneCases.map(z => z.minForcedEdits),
+    [11, 9, 15, 8, 10, 10, 15, 8]);
+  assert(laneCases.every(z => z.minForcedEdits > 0));
+
   // Full 841-symbol permutation + arbitrary pair-position permutation plant.
   const originalPairs = packPairs(q238, 'adjacent');
   const pairedPlant = Array.from({ length: 119 }, (_, i) =>
@@ -229,6 +264,7 @@ function main() {
     alternate238Endpoint: 'retain monic coefficient, discard constant coefficient',
     alternate238MinSymbolEdits: alternateEdits,
     alternate238Pairs: alternatePairs,
+    twoSecret119LaneModels: laneCases,
     originalPolynomialDivisionRemainder: remainder,
     positiveControls: '29-symbol and 841-symbol blind secret-permutation plants pass'
   }, null, 2));
