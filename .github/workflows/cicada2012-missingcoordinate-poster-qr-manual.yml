@@ -16,3 +16,5 @@ jobs:
         run: python -m pip install --disable-pip-version-check "zxing-cpp==3.0.0" "Pillow==11.3.0"
       - name: Decode five original-image archive-bound photo controls
         run: python sims/cicada2012_missingcoordinate_poster_qr_sft.py
+        env:
+          SHOW_SEOUL_ORIGINAL: '1'
