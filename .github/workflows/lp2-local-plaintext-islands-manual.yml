@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Full LP2 original source, controls and held-out register
         run: node sims/lp2_local_plaintext_islands_sft.cjs
+      - name: Page-local four-phase all-secret language invariant
+        run: node sims/lp2_fourphase_local_bigram_sft.cjs
