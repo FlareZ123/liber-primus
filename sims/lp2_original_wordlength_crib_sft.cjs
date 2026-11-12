@@ -134,18 +134,21 @@ function main() {
   const paths = [
     'resources/control/gibran_prophet_58585.txt',
     'resources/control/emerson_essays_2944.txt',
-    'resources/control/shakespeare_first300k.txt'
+    'resources/control/shakespeare_first300k.txt',
+    'resources/external/2013-liber-al-bookcode-I.txt',
+    'resources/external/2013-liber-al-bookcode-II.txt',
+    'resources/external/2013-liber-al-bookcode-III.txt'
   ];
   const controls = paths.map(relative => {
     const words = latinWords(read(relative));
     return {source: relative, sourceWords: words.length, ...search(unknown, words)};
   });
-  assert.deepEqual(controls.map(x => x.sourceWords), [15733, 77932, 55407]);
-  assert.deepEqual(controls.map(x => x.longest), [9, 9, 9]);
-  assert.deepEqual(controls.map(x => x.windows), [104, 277, 270]);
+  assert.deepEqual(controls.map(x => x.sourceWords), [15733, 77932, 55407, 1897, 1968, 2002]);
+  assert.deepEqual(controls.map(x => x.longest), [9, 9, 9, 7, 8, 8]);
+  assert.deepEqual(controls.map(x => x.windows), [104, 277, 270, 9, 19, 12]);
   assert.equal(controls.reduce((s,x) => s + x.atLeast10, 0), 0);
   console.log(JSON.stringify({
-    claim: 'No exact original consecutive GP-word-length crib of ten words in three pinned literary controls',
+    claim: 'No exact ten-word source-native GP length crib in three literary texts or three authentic 2013 book-code chapters',
     scope: 'Only contiguous verbatim excerpts under exact original word boundaries and original GP spelling rule',
     unknown: {pages: 55, runes: 12956, words: 2896},
     solvedP57Positive: {words: 20, runes: 95, longest: positive.longest},
