@@ -9,6 +9,7 @@ on:
         type: choice
         options:
           - full
+          - red32-rowkey-rs257
           - state-class
           - plaintext-autokey
           - jpeg05-p53
@@ -373,3 +374,9 @@ jobs:
       - name: Historical 256-byte object pairs original Cicada RSA4096 signature gate
         if: ${{ inputs.probe == 'historical-rsa-4096' }}
         run: node sims/lp2_256byte_historical_rsa4096_signature_sft.cjs
+
+      - name: Red-interval original row-selector AES and GF257 terminal erasure inverse
+        if: ${{ inputs.probe == 'red32-rowkey-rs257' }}
+        run: |
+          node sims/lp2_red32_gridrow_aes256_selfkey_sft.cjs
+          node sims/lp2_terminal_76border_rs256_180interior_sft.cjs
