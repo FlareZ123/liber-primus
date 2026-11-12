@@ -12,6 +12,7 @@ on:
           - 2013-wisdom
           - anyoffset-reuse
           - carrier2016
+          - fibonacci-ea
         default: projective
 jobs:
   projective-marker-gridrow:
@@ -99,3 +100,20 @@ jobs:
           node-version: '22'
       - name: Audit exact 2016 carrier packet and JPEG
         run: node sims/cicada2016_carrier_byte_inventory_sft.cjs
+
+  source-fibonacci-ea:
+    if: ${{ inputs.probe == 'fibonacci-ea' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original LP2 Fibonacci EA inverse and native plant
+        run: node sims/lp2_fibonacci_ea_zero_step_sft.cjs | tee fibonacci-ea-result.json
+      - name: Preserve original input diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: fibonacci-ea-source-gate
+          path: fibonacci-ea-result.json
