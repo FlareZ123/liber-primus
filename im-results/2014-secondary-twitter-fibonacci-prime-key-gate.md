@@ -24,10 +24,12 @@ Three source-constrained representations were tested:
    `[2,3,5,13,2,1,2,5,1,1,5,1]`.
 2. **Fibonacci indices:** invert the visible Fibonacci values to their indices, then reduce modulo 29:
    `[3,4,5,7,11,13,17,23,0,14,18,25]`.
-3. **p15 dual:** apply the page-15 construction to those indices, using `3301 - p_(index+1)`, then reduce modulo 29:
+3. **9901 modulus:** reduce each listed Fibonacci-prime value modulo 9901, then modulo 29:
+   `[2,3,5,13,2,1,2,10,27,10,5,2]`.
+4. **p15 dual:** apply the page-15 construction to those indices, using `3301 - p_(index+1)`, then reduce modulo 29:
    `[17,13,11,5,16,10,21,22,27,5,4,26]`.
 
-For each fixed key, both `P = C - K` and `P = C + K` were tested. These are the cheapest direct consumers of the only explicit numeric sequence in the account post and the existing p15 prime-index operation. The bio value `9901` was not used: no source-selected operation connects it to LP2.
+For each fixed key, both `P = C - K` and `P = C + K` were tested. These are the cheapest direct consumers of the only explicit numeric sequence in the account post and the existing p15 prime-index operation. The account's visible `9901` bio/profile number was also tested in one fixed natural mapping: reduce each listed Fibonacci-prime value modulo 9901, then modulo the GP29 alphabet size 29. No other use of 9901 was explored.
 
 ## Data and method
 
@@ -38,13 +40,14 @@ For each fixed key, both `P = C - K` and `P = C + K` were tested. These are the 
 - Each inverse was re-encrypted with the opposite sign and asserted byte-for-byte/rune-for-rune equal to the original 12,956-symbol stream.
 - Reproducer: `node sims/2014_fibonacci_prime_twitter_key_gate.cjs`.
 
-This is a discriminating language test for the stated direct additive-key hypothesis, not a proof against unrelated transformations. The exact round-trip check validates implementation only; it is not evidence of plaintext.
+This is a discriminating language test for the stated direct additive-key hypotheses, not a proof against unrelated transformations. The exact round-trip check validates implementation only; it is not evidence of plaintext.
 
 ## Results
 
 | Source-derived key | `P=C-K` score | `P=C+K` score | `P=C-K` IoC | `P=C+K` IoC |
 |---|---:|---:|---:|---:|
 | Literal Fibonacci-prime values mod 29 | -3.908010 | -3.896892 | 0.03450872 | 0.03448549 |
+| Fibonacci values mod 9901, then mod 29 | -3.904769 | -3.914518 | 0.03450464 | 0.03447630 |
 | Fibonacci indices mod 29 | -3.905335 | -3.909454 | 0.03450230 | 0.03450839 |
 | p15 dual `3301-p_(index+1)` mod 29 | -3.911441 | -3.902017 | 0.03448940 | 0.03450356 |
 
@@ -58,6 +61,6 @@ None of the six inverses improves on raw LP2. The best candidate, literal Fibona
 
 ## Decision
 
-**Reject the literal period-12 additive-key interpretation.** The account may still be a cross-round hint to the broader Fibonacci/prime relationship, but this exact visible sequence does not directly mask LP2 under either additive sign, either natural Fibonacci representation, or the p15-derived dual.
+**Reject the tested period-12 additive-key interpretations.** The account may still be a cross-round hint to the broader Fibonacci/prime relationship, but the exact visible sequence does not directly mask LP2 under either additive sign, whether used literally, reduced through the visible 9901 modulus, converted to Fibonacci indices, or passed through the p15-derived dual.
 
-Do not extend this negative result into arbitrary offsets, phases, resets, KDFs, transpositions, or uses of `9901` without an independent clue that selects the operation. Agent30 was sent the source cue and bounded results for consideration in its two-cue human-solve-path review. This remains an intermediate exclusion, not an established LP2 result.
+Do not extend this negative result into arbitrary offsets, phases, resets, KDFs, transpositions, or other uses of `9901` without an independent clue that selects the operation. Agent30 was sent the source cue and bounded results for consideration in its two-cue human-solve-path review. This remains an intermediate exclusion, not an established LP2 result.
