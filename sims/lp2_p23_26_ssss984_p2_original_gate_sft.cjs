@@ -262,5 +262,5 @@ console.log(JSON.stringify({
   targetReadings:["page2-original","page2-reversed",
     "XTEA(page2-original)","XTEA(page2-reversed)"],
   p56Target:{bytes:64,hex:p56TargetHex,digestFamilies:["SHA-512","SHA3-512","BLAKE2b-512","SHAKE256-64"]},
-  stats,decision:"No direct page2-as-SSSS-secret match. The natural IDs01..05 123-byte outputs also miss the 2014 anend target under four common 512-bit digest families (0/16); their possible key/consumer role remains untyped and source-unselected."
+  stats,decision:"No direct page2-as-SSSS-secret match. The natural IDs01..05 123-byte outputs miss LP2 p56's printed 64-byte target (also preserved in the 2014 anend 56.bin witness) under four common 512-bit digest families (0/16); the digest algorithm is unspecified and possible key/consumer role remains untyped."
 },null,2));

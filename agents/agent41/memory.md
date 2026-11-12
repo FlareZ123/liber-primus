@@ -313,18 +313,12 @@ LP2 supplies no 7/14-column diagram or row/column order. The signed p32 11x11 gr
 Important correction: sims/2014_7column_textguide_original_sft.cjs combines the exact Stage05 permutation with a forward-GP29 additive Vigenere toy, not Stage04's original reversed-rune lookup/corrected key conversion. Its composite negative is not source-exact. Updated its header and conclusion to label it exploratory; the standalone source-exact control is sims/stage04_small_image_vigenere_repro.cjs. The operator contract now states this distinction.
 
 
-## 2026-11-12 — natural 2013 SSSS secret vs archived 2014 anend target
+## 2026-11-12 — natural 2013 SSSS secret vs LP2 p56 target
 
-Followed the new Agent21 report on the exact 984-bit historical ssss v0.5 reconstruction from the five p23–26 strands. The natural ID assignment 01..05 in each of the four preselected source layouts yields four 123-byte XTEA-decoded secrets (44/54/48/47 printable bytes; entropy 6.40991/6.51361/6.50134/6.49520 bits/byte). Tested each exact byte string directly against the printed archived 2014 anend target under SHA-512, SHA3-512, BLAKE2b-512 and SHAKE256(64): 0/16. The digest algorithm is not specified; this retires only these direct preimage candidates, not possible key use. No source selects a consumer, so do not try arbitrary ciphers. Extended sims/lp2_p23_26_ssss984_p2_original_gate_sft.cjs to preserve the 123-byte outputs and digest results; updated the existing report, results README and manual workflow. The exact p2-as-SSSS-secret negative remains unchanged.
+Followed Agent21's exact 984-bit historical ssss v0.5 reconstruction from the five p23–26 strands. The natural ID assignment 01..05 in each of the four preselected source layouts yields four 123-byte XTEA-decoded secrets (44/54/48/47 printable bytes; entropy 6.40991/6.51361/6.50134/6.49520 bits/byte). Tested each exact byte string directly against LP2 p56's printed 64-byte target under SHA-512, SHA3-512, BLAKE2b-512 and SHAKE256(64): 0/16.
 
-
-## 2026-11-12 correction — SSSS digest target identity
-
-The 64-byte witness loaded by the SSSS digest extension is `resources/cicada2014-anend-binary-witness.json`, the archived 2014 `56.bin` rendering of the **same digest printed on LP2 p56** (confirmed by the original image and `im-results/archive-hash-preimage.md`). The earlier correction claiming that it was a different target was wrong. The four natural 123-byte SSSS outputs miss the actual LP2 p56 target under four 512-bit families (0/16); this is a direct-preimage negative, not a test of possible key use. The SSSS-to-p56 link remains a hypothesis, not a source-selected consumer.
-
-
-The 64-byte witness loaded by the SSSS digest extension is `resources/cicada2014-anend-binary-witness.json`, the archived 2014 `56.bin` rendering of the **same digest printed on LP2 p56** (confirmed in `im-results/archive-hash-preimage.md`). The earlier correction claiming that it was a different target was wrong. Restored p56 labels in the SFT, report, README and workflow. The four natural 123-byte SSSS outputs miss the actual LP2 p56 target under four 512-bit families (0/16); this is a direct-preimage negative, not a test of possible key use.
-
+The witness file `resources/cicada2014-anend-binary-witness.json` is the archived 2014 `56.bin` rendering of the **same digest printed on LP2 p56**, as confirmed by the original image and `im-results/archive-hash-preimage.md`. The earlier correction claiming a different target was wrong. The digest algorithm is unspecified; this retires only these four direct-preimage candidates, not possible key use. The SSSS-to-p56 link remains a hypothesis, not a source-selected consumer. Do not try arbitrary ciphers. The exact p2-as-SSSS-secret negative remains unchanged. The SFT, report, results README and manual workflow preserve the test.
+ 
 
 ## 2026-11-12 — original p39 visual/algebraic refinement
 
