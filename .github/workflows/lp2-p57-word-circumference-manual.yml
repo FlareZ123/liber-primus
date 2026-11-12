@@ -15,3 +15,9 @@ jobs:
         run: node sims/p55_exterior_interior_direct_key_sft.cjs
       - name: Test signed-2016 SHA1 p55 exterior crib transfer
         run: node sims/p55_2016_sha1_exterior_crib_inner_sft.cjs
+      - name: Check source-locked p55 16-prime-word AES inverse of table256
+        run: node sims/p55_wisdom_wordprime_aes_grid_sft.cjs
+      - name: Check p55 center-401 solved-p56 totient inverse
+        run: node sims/p55_prime401_p56_totient_direct_sft.cjs
+      - name: Check 23-dot nested row-column invertibility and p57 native plant
+        run: node sims/lp2_p55_23dot_nested_rowcol_inverse_sft.cjs
