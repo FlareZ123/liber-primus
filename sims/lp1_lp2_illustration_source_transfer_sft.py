@@ -116,8 +116,16 @@ def main():
     assert moth53_moth55_match["registered_gray_correlation"]>0.999
     corpus=json.loads((args.root/"resources"/"liber-primus"/"lp2-corpus.json").read_text(encoding="utf-8"))
     p={page["page"]:page["indices"] for page in corpus["pages"]}
-    p2,p22,p55,p57=[p[i] for i in (2,22,55,57)]
-    assert (len(p2),len(p22),len(p55),len(p57))==(201,131,76,95)
+    p2,p22,p53,p55,p57=[p[i] for i in (2,22,53,55,57)]
+    assert (len(p2),len(p22),len(p53),len(p55),len(p57))==(201,131,179,76,95)
+    shared_runic_streak=0
+    for i in range(len(p53)):
+        for j in range(len(p55)):
+            length=0
+            while i+length<len(p53) and j+length<len(p55) and p53[i+length]==p55[j+length]:
+                length+=1
+            shared_runic_streak=max(shared_runic_streak,length)
+    assert shared_runic_streak==3
     # The first koan on original LP1 p6-9 decodes as P=2-C; original
     # LP1 pp14-15 decode P=C-FIRFUMFERENFE[step] with two supplied F skips.
     # The source does not authorize choosing individual skip locations on p22.
@@ -132,6 +140,7 @@ def main():
         "LP1_p5_moth_to_LP2_p53_70jpg":moth53_match,
         "LP2_p53_70jpg_moth_to_LP2_p55_72jpg":moth53_moth55_match,
       },
+      "p53_p55_longest_common_contiguous_ciphertext_runes":shared_runic_streak,
       "solved_LP1_body_replication_positive_control":True,
       "source_fixed_cipher_transfer":{
         "LP2_p2":{ "n":len(p2), "raw_ioc":round(ioc(p2),8),
