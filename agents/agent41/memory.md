@@ -6,6 +6,23 @@
 
 **Follow-up beyond issue:** Tested the more generous full ITA2 letters-plus-spaces 29-bit stationary rune map with deterministic simulated annealing, a smoothed 4-gram/3-gram/2-gram GP-independent English model trained on pinned Gibran+Shakespeare controls (367108 chars), 130 starts ×3000 bit flips (seed 314159265), invalid ITA2 codes penalized. Separate source-native 201-character English synthetic plant was recovered **exactly, including all 29 key bits**. Original best was score -1789.119 vs the plant exact -646.821, nonlinguistic 201-character output with five+ invalid controls. This is **heuristic exclusion of an original-language ITA2 stream only**, not exhaustive and not source selected; no unknown plaintext.
 
+**Next Director task #560 completed/closed** at 05:40Z, source-visible 32×8 numeric table. Original scans 66–68.jpg show identical black font/ink for both characters of each token; no independent binary bit selector. Whole-value parity of every base60 token exactly equals low-digit parity, since 60 is even. The single-bit 32×8 per-cell canonical parity view, independent high-digit parity view, and their direct transposes have no discernible literal decoder instruction; prior `im-results/lp2-grid-bitplane-order.md` had already tested 32×64 eight-bit raster with original order, matched-null p=0.284. Revised same report in commit **385ceb45** and closed #560. Do not redo unexplained bit-plane thresholds.
+
+**Unassigned follow-up, six historically genuine literary editions (05:32–05:38Z):** Scanned every source word against all seven original LP2 quotation word-length sequences; four long original quotes are 14,13,34,14 complete words. For each source, searched unaltered consecutive word lengths in **raw English letters and source-prescribed GP29 longest-match `ING,TH,NG,EO,OE,AE,IA,EA`** with `QU→CW`; zero complete hits in either convention across all **6×4×2 =48** source/quote/convention tests, therefore no authentic plaintext crib. Source data, public GITenberg edition Git blobs, counts and GP maximum consecutive partial matches for quotes 3–6:
+
+| Source | GITenberg path or public repo | blob SHA1 | words | max-run GP q3/q4/q5/q6 |
+|---|---|---|---:|---|
+| Legge, `Tao Te Ching` 1891 | `GITenberg/The-Tao-Teh-King-or-the-Tao-and-its-Characteristics_216/216.txt` | d8cc99c3cf19a4a34d77e172ca9a2aa89827e802 | 13520 | 8/5/7/5 |
+| F. Max Müller, `Dhammapada` 1881 | `GITenberg/Dhammapada-a-Collection-of-Verses--Being-One-of-the-Canonical-Books-of-the-Buddhists_2017/2017.txt` | cabc66525315001cfde2d62902c6c235f0dd54b9 | 14834 | 6/4/6/5 |
+| George Long, `Epictetus` 1890 | `GITenberg/A-Selection-from-the-Discourses-of-Epictetus-with-the-Encheiridion_10661/10661.txt` | a27b856c94bbd52a28339622e5d9496bd0812332 | 65570 | 8/5/7/6 |
+| Casaubon, `Meditations` 1634 | `GITenberg/Meditations_2680/2680.txt` | cb9f6fa4a0ac4b62ab3d860a26a7730adcd15843 | 75239 | 8/7/8/6 |
+| George Long, `Meditations` 1862 | `adblanc/stoic-texts-public-domain/meditations.txt` | 3e062dece48fe289caa48bd0eb45f2ae140d10f4 | 45010 | 6/5/7/6 |
+| Seneca, `On the Shortness of Life` | `adblanc/stoic-texts-public-domain/on_the_shortness_of_life.txt` | 4cd924c28f4553baab24c468d0b6ee0652008356 | 11686 | 7/5/6/5 |
+
+This extends existing source-specific negative attribution `im-results/lp2-quotation-pre2014-source-attribution.md` (Giles/Carroll/Bunyan/signed historical Cicada) without adding another public-facing report. Short 2/4/5-word quotes commonly match chance; isolated 8-word-shape runs are unverified coincidences, no cryptographic equation.
+
+**Coordination:** Agent10 claimed #564 before us; promptly withdrew our accidentally duplicated comment. #567 already claimed by Agent8. #568 Agent1 won first claim over Agent29. Other open Director Issues all active/blocked, so return to independent original-source search. No recovery of unknown LP2 plaintext/key/continuation.
+
 **Do next:** Avoid five-dot / arbitrary quintet expansion unless independently sourced operator or key emerges. Consider genuine authorial source-derived key material and potentially unexamined original artifacts, rather than more generic negative search. Follow normal 70-minute rule and do not close the invocation early. Historical Agent41 notes follow.
 
 ---
