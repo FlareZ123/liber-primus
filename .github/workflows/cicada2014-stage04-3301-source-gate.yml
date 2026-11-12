@@ -8,8 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Reproduce exact LP1 image identities and page-05 trailer
+      - name: Reproduce Stage04 image inventory and page-03/04 objects
         run: node sims/cicada2014_stage04_3301_object_inventory_sft.cjs
+      - name: Reproduce complete page-05 server-status binary and OOB matrix
+        run: python3 sims/stage04_original_server_status_square_sft.py
       - name: Verify the page-03 OutGuess clear-signature
         shell: bash
         run: |

@@ -4,7 +4,7 @@
 
 ## Pinned source and extraction contract
 
-The participant archive `neuroretransmit/cicada` is pinned at commit [`ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/005-third-onion). Its `README.md` and `decode.sh` describe the Stage04 third-onion update, the `onion3` and status-page hex streams, byte reversal, JPEG boundary extraction, OutGuess extraction, and the fixed page-05 trailer extraction. These are participant-preserved artifacts, not a newly authenticated creator statement.
+The participant archive `neuroretransmit/cicada` is pinned at commit [`ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/005-third-onion). Its `README.md` and `decode.sh` describe the Stage04 third-onion update, the `onion3` and status-page hex streams, byte reversal, JPEG boundary extraction, OutGuess extraction, and the fixed page-05 OOB extraction. These are participant-preserved artifacts, not a newly authenticated creator statement.
 
 The archive records `onion3.bin` and `infotomb-server-status.bin` as the same 2,116,096-byte object (Git blob `dedbe57644cf549e705fe1b6770b358b493f7758`). The extraction script takes page 03 from the forward stream and page 04 from the reversed status stream. The separate `server-status.bin` is 673,066 bytes.
 
@@ -19,15 +19,45 @@ The archive records `onion3.bin` and `infotomb-server-status.bin` as the same 2,
 | `03.jpg.asc` OutGuess output | 31,809 | `2a355d1bf14d37041384f09d8700e2ee274a13e6` | PGP clear-signed text; says “Let the text guide you” and contains a hex-embedded JPEG |
 | Embedded small JPEG | 15,188 | `f91bdd6e2a890968a5a13d39be4d56899b877920` | Exact extraction of the `ffd8`…`ffd9` span in `03.jpg.asc` |
 | `04.jpg.bin` OutGuess output | 7,524 | `d738b052bf0548e2f431e231af7ef1514becb4ad` | Opaque binary; no common file signature in the tested set; retained for future clue-led work |
-| `square.txt` | 178 | `f081bf3bd3cb45b55359fa0e8961b1f033aa10c7` | Exact result of the fixed page-05 trailer extraction |
+| `square.txt` | 178 | `f081bf3bd3cb45b55359fa0e8961b1f033aa10c7` | Same square text without final LF; full 360-byte OOB extraction is `matrix` (179 bytes including LF, blob `faba9f1780d667a0ecd7d9499b41a1f8fbc5dbbd`) |
 
 The three page-image identities are decisive: Stage04's 03/04 images are the original LP1 pages 03/04, and the complete `server-status.bin` is the repository's full LP1 page-05 artifact. This is not merely similar rune content; the Git blob identities match.
 
-## Reproduced page-05 square
+## Complete 2014 page-05 server-status binary parse
 
-The first JPEG EOI ends at byte 336,353. The source decoder then selects 357 bytes at offset `0x521e4` (336,356), reverses that window, and passes it to plain-hex decode. The window contains 357 hexadecimal characters, so the final unmatched nibble is discarded by `xxd -p -r`; the output is exactly 178 bytes. This run reproduces the stored `square.txt` byte-for-byte from `resources/liber-primus/05.jpg`.
+The pinned original Stage04 `server-status` response is 1,370,852 bytes (Git blob `071fb34c82ba56c5dfbba376200be43822e31ee0`); its archived hex transcription is 1,368,567 bytes (blob `9d7fda55c29baec7abefa38e224784e015bd7837`) and decodes to the complete 673,066-byte object (blob `2829e13812015601ff1014cb4427587b4a8aa3a6`). The object has an exact, exhaustive three-segment layout:
 
-The recovered 5×5 square has every row, column and both main diagonals summing to 1033. It is the already-established 2013 `0_wisdom` / LP1 page-05 square. The `<!--3301-->` marker is not the square sum and does not create a new numerical key.
+| Segment | Half-open byte range | Length | Interpretation |
+|---|---:|---:|---|
+| Prefix | `[0,336353)` | 336,353 | Valid 2400×3600 RGB JPEG; ends with `FFD9` |
+| OOB field | `[336353,336713)` | 360 | `\n\na` followed by 357 ASCII hexadecimal characters |
+| Suffix | `[336713,673066)` | 336,353 | Exact byte reversal of the complete JPEG prefix |
+
+The suffix comparison is byte-for-byte exact: `image[336713:] == image[:336353][::-1]`. Thus the final 336,353 bytes are the reversed copy of the first JPEG, not a second forward JPEG, a header, or an independent hidden payload. The complete object is exhausted by the three segments above.
+
+The OOB field explains the two preserved matrix lengths without treating the final nibble as extra cipher material:
+
+- The pinned 2014 Stage04 README extracts all 360 bytes (`dd ... skip=336353 count=360`), reverses them, and applies `xxd -p -r`. This yields the pinned 179-byte `matrix` (Git blob `faba9f1780d667a0ecd7d9499b41a1f8fbc5dbbd`), including a final line-feed.
+- The separate 2014 walkthrough's 357-byte window at offset `0x521e4` (336356) reverses and decodes to the 178-byte `square.txt` (Git blob `f081bf3bd3cb45b55359fa0e8961b1f033aa10c7`), without the final line-feed. The leading `a` nibble in the full OOB field pairs with the terminal `0` nibble of the reversed 357-character window to form `0x0a`; the two linefeeds are ignored as whitespace by `xxd`. The two outputs therefore differ only by the final LF.
+- The pinned `server-status.data` copy is 359 bytes (blob `0caa28ad1f9b32528019a3c27a16f38258ffb51e`): it is the `a` plus 357 hex characters with a final LF, i.e. the same effective hex stream with the two leading linefeeds removed.
+
+The resulting 5×5 square is:
+
+```
+272 138 341 131 151
+366 199 130 320 18
+226 245 91 245 226
+18 320 130 199 366
+151 131 341 138 272
+```
+
+Every row, column and both main diagonals sum to 1033. The pinned 2014 Stage04 README explicitly documents the reverse/hex extraction; the participant walkthrough also describes comparing the forward and reversed images to expose the OOB bytes. This is a reproducible participant-documented extraction of the 2014 square, not a new LP2 cipher.
+
+## Surrounding Stage04 page and instruction boundary
+
+The original server-status response is an Apache 2.2.22 mod_status page with ordinary server fields (server build, current/restart times, parent generation, uptime, access/traffic counters, CPU/request rates, and active/idle workers). Those are status measurements, not a source-specified key or cipher-state field. The separate Stage04 landing page `resources/external/2014-stage04-index.html` contains `<!--1033-->` and a distinct 512-character hexadecimal string; the contemporaneous walkthrough records that string as matching the prior onion's growing value. It is not part of the 673,066-byte server-status object and supplies no independently specified LP2 operation or consumer.
+
+**Decision for Issue #458:** the complete binary contains only the original page-05 JPEG, the known OOB 1033 matrix, and the exact reversed JPEG copy. The surrounding status fields are ordinary Apache metadata; the adjacent 512-hex landing-page value is a separate already-preserved object, not a newly identified key or instruction. No additional LP2 key, cipher, address, or plaintext follows. The exact 25/25 GP-prime-sum reconstruction remains a within-artifact 2014 relationship; no independent 2013 date is established. The `<!--3301-->` marker is not the square sum and does not create a new numerical key.
 
 ## OutGuess payloads and what remains unknown
 
@@ -35,7 +65,7 @@ The recovered 5×5 square has every row, column and both main diagonals summing 
 - The page-04 OutGuess output is a 7,524-byte, high-entropy binary (Shannon entropy about 7.978 bits/byte) with no known JPEG, PNG, GIF, ZIP, GZIP, PDF, ELF, BZIP2 or XZ signature. Both the archived [`neuroretransmit/cicada` page-04 object](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/005-third-onion/04.jpg.bin) and the independently preserved [`krisyotam/cicada3301` stage04 `index.1.rev.outguess`](https://github.com/krisyotam/cicada3301/blob/76d3ee8c762f60025822c8c05edbf31351636469/puzzles/2014/assets/stage04/index.1.rev.outguess) have exactly the **same Git blob SHA-1** `d738b052bf0548e2f431e231af7ef1514becb4ad`. Their extraction instructions separately document default `outguess -r` on the byte-identical original page-04 JPEG; neither proposes a cipher or file format for the output. This is an exact cross-archive identity, not independent proof that the bytes represent intentional steganography.
 - **Literal 2014 source-key test (11 November 2026):** Rebuilt pinned OutGuess 0.4, recovered all **7,524/7,524** default bytes unchanged (raw SHA-1 `18b50380fcd1ac5133fbc418b5d17f869da93aa0`), and independently embedded/recovered a known-key message on original cover `17.jpg`. On original `04.jpg`, the signed clue's exact literal `Let the text guide you.` as OutGuess key produced **40,746** bytes (seed 48688, raw SHA-1 `914b18b6913b1a299d7d6821e9fb31069c547e81`), and the historically successful LP1 word key `WELCOME PILGRIM TO THE GREAT` produced **793** bytes (seed 13255, raw SHA-1 `9f3cc242d3d201df2d0d6368627c9d909b7677cb`). Neither output has a recognized binary signature or a contiguous printable run of 24 characters. A seed/length header is insufficient to establish a genuine payload. The fixed [CommonJS SFT](../sims/cicada2014_stage04_textguide_outguess_original_sft.cjs) and [successful manual CI run 43067842911](https://github.com/FlareZ123/liber-primus/actions/runs/43067842911) preserve raw outputs, summaries and positive control.
 - **Issue #309 outcome:** Original extraction grammar and two archival object copies are recovered. No contemporaneous instructions specify a decoder, content type, passphrase, framing, or LP2 transfer for the page-04 bytes. OutGuess can emit plausible false headers on unencoded JPEGs, so the still-unidentified bytes might be a spurious extraction. Preserve the original bytes at `resources/external/derived/2014-stage04/04-outguess.bin` pending a genuinely independent source clue; do not launch free key/codec searches.
-- The page-05 trailer is the 1033 square, already tied to the earlier wisdom puzzle. No LP2 reference, source-derived LP2 key, or exact LP2 byte/rune sequence is present in the recovered object inventory.
+- The page-05 OOB field decodes to the 1033 square, already tied to the original 2014 LP1 page-05 Wisdom table. No LP2 reference, source-derived LP2 key, or exact LP2 byte/rune sequence is present in the recovered object inventory.
 
 ## Default-key control census (11 November 2026)
 
@@ -162,7 +192,7 @@ The separate Stage04 `<!--1033-->` 256-byte object is not the LP2 p50 table unde
 ## Reproduction
 
 - Derived outputs are preserved under `resources/external/derived/2014-stage04/`, explicitly marked as participant-archive extractions rather than original manuscript pages.
-- Run `node sims/cicada2014_stage04_3301_object_inventory_sft.cjs` to verify Git blob identities, the embedded small JPEG, the page-05 trailer extraction, the 1033 square sums, and the opaque page-04 payload metadata.
+- Run `python sims/stage04_original_server_status_square_sft.py` to verify the original status response, separate 512-hex landing page, complete JPEG/OOB/reversed-JPEG layout, and both matrix outputs. Run `node sims/cicada2014_stage04_3301_object_inventory_sft.cjs` to verify the page-03/04 OutGuess objects, embedded small JPEG, 1033 square and opaque page-04 payload metadata.
 - Workflow: `.github/workflows/cicada2014-stage04-3301-source-gate.yml` also verifies the page-03 PGP clear-signature with `resources/control/cicada-3301-public-key.asc`.
 
 **Conclusion for Issues #298 and #309:** the historical Stage04 hex material maps to LP1 pages 03–05 and the known 2014 onion continuation. The mirrored 7,524-byte OutGuess extraction has no source-authenticated interpretation or supported LP2-transfer operation. The two historical literal-key tests yield no recognizable message. Retain the raw bytes as unclassified without speculative decoding.
