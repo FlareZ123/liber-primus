@@ -1,0 +1,54 @@
+name: LP2 p15 quotient-plus-prime AES-128 key gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/lp2-p15-baseprime-aes128.yml'
+      - 'sims/lp2_p15_56013_baseprime_aes128_sft.cjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lp2-p15-baseprime-aes128-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  source-key-gate:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Download the original 2013 DATA/560.13 member
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13' --output $asset
+          if ($LASTEXITCODE -ne 0) { throw 'Original DATA/560.13 download failed' }
+          if ((Get-Item $asset).Length -ne 118818811) { throw 'Unexpected DATA/560.13 length' }
+
+      - name: Execute the fixed quotient-plus-prime key consumer
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          $out = Join-Path $env:RUNNER_TEMP 'p15-baseprime-aes128-results.json'
+          node --check sims/lp2_p15_56013_baseprime_aes128_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'SFT syntax check failed' }
+          node sims/lp2_p15_56013_baseprime_aes128_sft.cjs $asset $out
+          if ($LASTEXITCODE -ne 0) { throw 'Source-fixed key-consumer gate failed' }
+
+      - name: Preserve exact original-source results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-p15-baseprime-aes128-results
+          path: ${{ runner.temp }}\p15-baseprime-aes128-results.json
+          if-no-files-found: warn
