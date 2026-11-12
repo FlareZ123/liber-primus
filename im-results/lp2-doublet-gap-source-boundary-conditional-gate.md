@@ -28,7 +28,7 @@ Their source segment lengths and original event counts are:
 | 40–53 | 3,008 | 18 | 6.01 |
 | 54–55 | 308 | 3 | 9.80 |
 
-Source original 13-dot punctuation (black and red) supplies **26 distinct intervals** across these pages; the two red/black marks at the same p7 local rune offset are one geometric boundary. Intersecting this source division with the original physical page boundaries gives 72 nonempty eligible strata. The experiment imposes three mutually exclusive null partitions:
+Source original 13-dot punctuation (black and red) supplies **26 distinct intervals** across these pages; the two red/black marks at the same p7 local rune offset are one geometric boundary. Intersecting this source division with the original physical page boundaries gives 72 nonempty eligible strata. The first experiment imposes three alternative null partitions:
 
 1. Preserve the observed count in each of nine original chapters.
 2. Preserve the observed count in every one of the 55 rune-bearing physical pages.
@@ -43,6 +43,22 @@ For each stratum, use a uniform sample of the fixed number of original-eligible 
 | Page × 13-dot | 72 | +0.2194 | 0.0592 | 42 / 20,000 | **0.00215** |
 
 The actual same-page-only adjacent-gap pairs (all three doublet events on one physical page) have descriptive Pearson correlation **−0.049** across 21 pairs; the other 63 pairs, spanning one or more original page boundaries, have **+0.283**. These are small, retrospectively partitioned subsets, not separately calibrated significance claims.
+
+## Original printed word/line delimiter controls
+
+A concrete alternative to regional cipher-state drift is that the encoder treats **word starts, line wraps, or visually adjacent glyphs** differently. The published normalized GP29 corpus strips these separators, so this test also reads the independent full 55-rune-bearing-page transcription `resources/lp2-transcription.txt`, confirming **every original rune index** page by page. As already established in the repo's separate original doublet-boundary audit, the 86 original repeated-rune sites classify as **60** same-word/same-line, **22** between two printed words on one line, **3** same-word/cross-line, and **1** cross-word/cross-line. Their respective eligible source positions across all pages are **9,640, 2,722, 388, 151**.
+
+For a stronger exact conditional null, preserve the number of doublet sites inside *each* of four separator classes, or within their physical-page intersections, or within intersections with both physical pages **and** large original 13-dot spans. Resample only from eligible positions of precisely the same class, hence never exchange a word-internal position for a word-boundary position. The original log-gap Pearson remains +0.380019689.
+
+| Preserved observable event counts | Strata | Null mean / SD | ≥ actual among 20,000 | Add-one upper-tail |
+| --- | ---: | ---: | ---: | ---: |
+| Four original word/line classes | 4 | −0.0114 / 0.1052 | 7 | **0.000400** |
+| Physical page × word/line class | 218 | +0.2317 / 0.0609 | 115 | **0.00580** |
+| Physical page × 13-dot fragment × word/line class | 262 | +0.2216 / 0.0592 | 58 | **0.00295** |
+
+Each source event classification was established prior to simulation, and the same one-sided +0.380 target was frozen from external Round44. Deterministic 20,000-draw xorshift32 seeds are `0x3301b003`, `0x3301b001`, and `0x3301b002`, respectively. The existing [single-file SFT](../sims/lp2_doublet_gap_source_boundary_conditional_sft.cjs) now includes all three original word/line–aware nulls, their exact counts, and assertive seed regressions.
+
+**New decision:** Source-visible word starts, line wraps, per-page event totals and 13-dot marks together do **not** account for the observed event-gap order under the declared within-class uniform-placement model. Candidate mechanisms must explain a further dependence in the **ordering** of the observed rare repeats. This strengthens the finite constraint on an independent-and-uniform “rare slip” generator. An evolving cipher state is one plausible alternative; a nonuniform word-length-conditioned generator, different source language, or per-word nonrandom event schedule remains possible and untested. No specific original LP2 key or plaintext is recovered.
 
 ## Reproduction and implication
 
