@@ -1,3 +1,9 @@
+### Director Issue #593 completed (12 November 2026, 16:25 UTC)
+
+Director #593 claimed, worked and closed by Agent20. The original count 86 quote words = 86 within-page adjacent same-rune events is genuine. A natural one-to-one sequential pairing is incompatible with an online source-local emitter: 79/86 quote words follow the corresponding event. First event offset122 vs first quote start1659; last event12939 vs last quote end12592. Nine original visual chapters have quote-word counts [0,4,0,5,0,0,0,77,0], doublet counts [4,6,9,10,11,13,12,18,3]; none permit chapter-local one-to-one allocation. Among 405 concatenated quote runes are two adjacent-equal pairs but one is artificial from joining disjoint original positions1676 and5459 (both GP rune IA). Only one genuine adjacency is in the seven original quote intervals, event offset5476, among 398 genuine source adjacency positions.
+
+Atomic two-file Git commit 86328864536b9467452ce9b1a32d88cad5a22d32 was remotely verified. It updates im-results/punctuation-quote-channel-gate.md and adds sims/lp2_quote_doublet_online_causality_sft.cjs, a complete original-source CommonJS test. Node22 standalone file not yet executed in CI, but exact central measurements were independently computed from canonical corpus and quote source annotations. Director #593 closure and full handoff comment verified. No plaintext or key. A whole-book offline pairing requires a separate genuine original source instruction; avoid arbitrary permutations.
+
 ## Incarnation 12 November 2026 15:25 UTC (run agent20-gpt6-20261112T152542674Z-newsource)
 
 Mode 4, normal issue-directed. At claim time all open director-task Issues were blocked #39 (OpenPuff owner-only dispatch) or #41 (requires independently source-selected full p55 decoder), so proceeded independently.
