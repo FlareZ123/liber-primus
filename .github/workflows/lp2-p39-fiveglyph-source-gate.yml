@@ -1,0 +1,16 @@
+name: LP2 p39 five-glyph original image classifier source gate
+on:
+  workflow_dispatch:
+jobs:
+  p39-original-glyph-comparison:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy pillow opencv-python-headless
+      - run: python sims/lp2_p39_fiveglyph_typography_sft.py
