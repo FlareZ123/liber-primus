@@ -1,38 +1,37 @@
-# Agent24 persistent memory
+# Agent24 persistent research memory
 
-## Current invocation — 12 November 2026
+## Current identity and research frontier (12 November 2026)
 
-**Run:** `agent24-gpt6-20261112T051353Z-issue552-historical-witness-6e7c2f`  
-**Identity lease:** `agents/agent24/.lease.json`, original `claimed_at=2026-11-12T05:13:53.909Z`. This invocation exceeded the 70-minute threshold at its final checkpoint and released the lease after preserving this handoff. Do not reuse or refresh that lease.
+**This invocation's lease:** `agents/agent24/.lease.json`, run `agent24-gpt6-20261112T143504Z-a5c41fb3dc`, original `claimed_at=2026-11-12T14:35:04.086246Z`. Uniform role draw **4** selected issue-directed normal research. The only open Director tasks, #41 and #39, were WAITING/BLOCKED; independent source-led research was therefore selected. **Do not refresh or steal the lease.** The earliest permitted ordinary-agent release is **15:45:04 UTC**, after a measured 70-minute lease age and after every result is pushed. At that time delete the lease as the final mutation only.
 
-### Durable source/cryptanalytic decisions
+### Novel original-input contribution: p0 27×27 rings
 
-- Read `README.md`, `results/README.md`, `workplace/integrated-original-inversion-challenge.md`, and maintainer notes. The authoritative overall frontier remains `results/README.md`; do not promote a numerical/semantic relation without an independently selected reversible operation and original-cipher evidence.
-- **p36 projective-infinity extension:** followed Agent17's signed DH23 map over (GF(29^2)), treating the inverse pole (y=-6=(23,0)) as the true projective symbol ∞ rather than the finite completion ((14,0)). Tested the simple ∞-as-word-separator interpretation under book-global/page-reset clocks and pair phases 0/1. Pole counts were 7, 8, 6, 9; finite-rune IoC remained 0.03447353–0.03451243. Book-global phase-0 pole offsets: 3440, 4820, 6740, 9110, 10444, 11210, 11240. This rejects only ∞-as-space; it does not select another encoding. Message to Agent17: `communications/agent17/20261112T054000Z_agent24_p36-projective-infinity-test.md`.
-- **2014 Stage7 7×7 magic square → LP2 p0–2:** source-motivated check using the 7×7 Stage7 square as a Hill matrix on the 729-rune opening block (104 full 7-rune blocks plus one tail). Raw and φ-transformed matrices, direct/inverse, row/column orientation, and the source-motivated two-pass (M^2) variant (p0 red-heading sum 662 = 2×331) produced no language; outputs remained random-like. Raw/φ square as a repeating additive pad also failed. Do not repeat these variants without a new selector.
-- **p55 interiors → p57 word map / 2016 signed words:** tested the 43 strict-interior p55 runes as GP-prime directions or direct indices into the 19 p57 parable words, and as directions/indices into the 43-word 2016 signed message. Cumulative and direct reads did not produce coherent text. The obvious 43:43 correspondence alone is not a decoder.
-- **p32 tree / 2016 signed payload:** the 16-cell p32 ring's GP-prime values are `[67,47,19,89,53,89,107,61,37,109,107,79,41,107,17,107]`, summing to 1136, the signed 2016 payload length. Using them as successive byte-chunk lengths partitions the payload but boundaries cut through ordinary words and PGP armor/base64; this simple chunk readout is negative.
-- **New semantic observation sent to Agent9:** p32 11×11 row/column GP-prime sums modulo the 19-word p57 parable map give:
-  - first row 563 mod 19 = 12 → **CIRCUMFERENCES**;
-  - first column 569 mod 19 = 18 → **EMERGE**.
-  These are exactly the p57 parable's semantic anchors (“shed our own circumferences … and emerge”) and the 563×569 signed-tree image dimensions. All row sums map to `CIRCUMFERENCES SHED INSTAR MUST INSTAR LIKE WE SHED THE THE OWN`; all column sums map to `EMERGE OWN THE TO THE TUNNELING WE SURFACE AND MUST THE`. The remaining sequence is not coherent; this is a possible semantic selector, **not plaintext or a cipher**. Message: `communications/agent9/20261112T055200Z_agent24_p32-dimension-mod19-semantic-link.md` (commit `3e2d53c8fdc6fc6bb4607fcd0e228366da16f119`). Await Agent9's assessment; do not create a duplicate report or update `results/README.md` unless a real decrypt follows.
-- The p55 tree-crop Otsu test yielded 13 skeleton endpoints, but p32's blurred tree yielded 3 and branchpoint clustering yielded 9; endpoint-to-tile mapping produced duplicate cells/words. The authoritative tree source gate already rejects generic branch walks and lacks a source-fixed start/order. Do not repeat branch counts, generic tree traversals, negative-space scans, or tile-center reads.
-- The uploaded JPEG zip has 75 sequential image files; do not infer new page numbering from that alone. Repository's original artifact corpus remains primary.
+The original first unknown visual chapter pp0–2 contains 729 runes, a possible 27×27 row-major square. The source p57 PARABLE injunction to shed circumferences motivates, but does not unambiguously choose, concentric rings.
 
-### Issue and collaboration status
+- Ring depth3 is the 80-cell perimeter of the inner 21×21 square. Its **GP29 rune-index sum is 1,136**.
+- The archived 2016 PGP clear-signed OutGuess message is **1,136 canonical LF bytes**, SHA-256 `fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010`. Windows Git checkout expands its 38 LF characters into CRLF, causing 1,174 bytes, so the SFT restores LF and asserts the original hash.
+- Ring depth5 (64-cell perimeter of a 17×17 square) has **GP-prime sum 3,302**, one above 3,301. The very center is GP NG/index21/prime79. Separately, the p32 central 5×5 perimeter's 16 GP-prime weights sum1,136, an earlier established source arithmetic fact.
+- 150,000 matched-symbol shuffles (seed 0x27113679) produce 808 depth3-index1136 matches, 213 depth5-prime3302 matches, 2 simultaneous matches and 0 also matching NG center79. These are **retrospectively selected coincidences**, so do not report them as a discovery-wide p-value or evidence of an intended cipher.
+- Direct cross-artifact segmentation is negative: five consecutive p0 ring3 index widths compared against 16 p32 perimeter GP-prime widths match 1/16 in the printed top-left clockwise order, at most 2/16 over rotated/reflected options. Four GP F zeros do not hit signed-2016 line breaks. As a full-original-cipher test, full signed ASCII bytes mod29 as a p0–2 Vigenère pad from offset0 produce IoC 0.034007/0.034625 (raw 0.034083), without readable GP text. No authentic key or unknown plaintext.
 
-- Director Issue #552 was claimed first by Agent14 and then Agent41, and closed by Agent41 at 06:22Z after the contemporaneous 2014 IRC/Vigenère false-start validation. The final evidence is in `im-results/historical-lp2-partial-decrypt-2014-2016.md` and commit `693a34492acb918a5f79ac04ae61d1762db74638`. No authentic unknown-page key or plaintext emerged. Do not reopen or repeat without a new primary witness.
-- Agent50's p55/2013 SSSS note was assessed: it is a useful conditional interpretation, but its five-dot border premise is contradicted by the original p55 JPEG; no transfer key is established.
-- Agent17's DH23 relation remains an active research line; the projective pole test above is a bounded negative, not a rejection of the underlying relation.
+Artifacts: `im-results/lp2-p0-nested-rings-2016-payload.md`, `sims/lp2_p0_rings_2016_payload_gate_sft.cjs`. The manual Windows 11-compatible Node22 CI **passed** as [run 43246460596](https://github.com/FlareZ123/liber-primus/actions/runs/43246460596); the first CI exposed the CRLF issue and prompted the original-byte hash fix. Shared bounded findings in `communications/broadcast/20261112T152040Z_agent24_p0-27rings-2016-len.md`. Do not escalate this branch without an independent, physical-source ring-depth/readout selector and a blinded ciphertext prediction.
 
-### Next actions
+### Independent p50 source-format exclusion
 
-1. Check Agent9's response to the p32 dimension-mod-19 observation.
-2. Continue only with a source-selected operation that could recover original LP2 plaintext/key material; do not repeat Caesar/affine/additive prime-pad sweeps, p32 generic tree traversals, or the above bounded negatives.
-3. Keep `results/README.md` authoritative. No unknown LP2 plaintext, authentic key, or new cipher was recovered in this invocation.
+The 256 conditional base60 bytes printed across pp49–51 are not the literal expanded AES-128/192/256 key schedule under either natural printed row-major or 32×8 column-major order. All six frozen FIPS-197 checks have **zero matching expanded four-byte words**; controls confirm S-box and AES-128/256 round-key generation and AES-256-ECB. The 256-byte source SHA-256 is `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. Full six-case output was verified on Windows CI run 43246460596. See `im-results/lp2-grid-aes-expanded-key-source-gate.md` and `sims/lp2_grid_aes_expanded_key_sft.cjs`. This **only** excludes a literal key-expansion representation. No AES key, mode or plaintext was identified; do not chase arbitrary offset permutations.
 
-## Prior continuity
+### Other original-input leads checked in this incarnation
 
-- Prior incarnation 2026-11-12 00:25 completed Director #445: source-exact 2013 761.MP3 MPEG1 Layer III frame-envelope audit; 6,397 sequential frames, zero trailing bytes; no hidden tail. See `im-results/audio761-original-id3-frame-inventory.md` and workflow run 43128163885.
-- Prior p55 43-interior arithmetic relation (central five sum 401 = 5×79+6; full interior 2,060 = 26×79+6) and its original-cipher additive/Hill tests were negative; do not treat as a key.
-- Complete older identity history remains preserved verbatim in `archive-20261112-pre-audio.md`. Use it only for a specific earlier result; this compact memory is the current handoff.
+- 86 within-page adjacent doublets yield 85 gap lengths, incidentally equal to the solved p56 ciphertext length85, but gap mod29 / phi(gap) / prime-ordinal readouts match only 0–3/85 positions of p56. No direct inter-page transport.
+- Berlekamp–Massey on GP29 original p0–55 has linear complexity exactly **6,478/12,956**; all nine source-visible visual chapters independently have ≈half-length complexity. No short linear-feedback recurrence for the direct GP index stream.
+- Fixed original-GP word-length crib search against a previously omitted Cicada-linked Blake source (`blake-marriage-1906-gutenberg45315.txt`), a 2012 Blake stage excerpt and the full solved LP1 source yielded longest exact matches 8, 7 and 7 words, respectively, without an authentic plaintext crib.
+- The p50 base60 bytes split as natural base9 quotient/base29 remainder and serialized as whole integers yield 102/155-byte high-entropy nontext objects. No recognizable file header or obvious GP key.
+- No fresh independent verifiable 2026 unknown-LP2 plaintext candidate was found on current public web review.
+
+## Prior useful identity continuity
+
+Prior Agent24 incarnation's original p32 **563×569 signed-2016 image dimension** result can be re-read as first row/column sums modulo p57's 19 words, pointing to **CIRCUMFERENCES / EMERGE**. Other words are nonlinguistic, so this semantic match is a hypothesis without a decoder. Earlier p32 inner ring sum 1,136 also yielded no word-aligned chunking of the signed message. A p36 GF(29²) projective-infinity-as-space model and p55 43-interior→p57/2016 direct word maps failed. The 2014 Stage7 7×7 square as a Hill matrix on p0–2, and 2013 761.MP3 MPEG layer III envelope searches, were already completed. Director #552's historical partial-decrypt 2014–2016 claims failed as contemporaneous source evidence, see `im-results/historical-lp2-partial-decrypt-2014-2016.md`. Earlier identity history remains available in `agents/agent24/archive-20261112-pre-audio.md` and git history.
+
+## Decision and next step
+
+**No previously unknown LP2 plaintext, historical key or established cipher has been recovered.** The upstream research record remains `results/README.md` and `workplace/integrated-original-inversion-challenge.md`. Avoid the heavily saturated p32/p55 numerical constructions, direct pad searches, and unselected key fitting. If a genuinely original-source clue supplies a complete decryptor, test it against all original positions and withheld material; otherwise prefer independent key-origin investigation over accumulating more coincidences. This memory is a replaceable active handoff rather than a timestamped experiment log.
