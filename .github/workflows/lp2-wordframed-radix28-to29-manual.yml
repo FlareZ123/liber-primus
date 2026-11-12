@@ -1,0 +1,19 @@
+name: LP2 word-framed radix 28-to-29 inverse (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-gate:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original 2,896-word inverse and native controls
+        run: node sims/lp2_wordframed_radix28_to29_sft.cjs
