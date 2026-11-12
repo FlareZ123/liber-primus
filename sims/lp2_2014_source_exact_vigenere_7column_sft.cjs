@@ -86,15 +86,15 @@ function historicalForward(src, shifts) {
  */
 function originalOnion(shifts) {
   let clock = 0;
-  return [..."ᚦᛗᛞᛇᚠᛗᚪᚱ5ᚢᚫᛝᚱᛝ3 ᛠᛗᛇᚠᛡ"].map(symbol => {
+  return [..."ᚦᛗᛞᛇᚠᛗᚪᚱ5ᚢᚫᛝᚱᛝ3ᛠᛗᛇᚠᛡ"].map(symbol => {
     const i = corpus.runes.indexOf(symbol);
     if (i < 0) return symbol;
     const output = (28 - i - shifts[clock++ % shifts.length] + 58) % 29;
     return valuesForward[28-output][0];
   }).join("");
 }
-assert.equal(originalOnion(buggyKey), "AUOWYFGL5LCSFJ3 NONPM");
-assert.equal(originalOnion(fixedKey), "AUOWYFGL5LCSFJ3 NONION");
+assert.equal(originalOnion(buggyKey), "AUOWYFGL5LCSFJ3NONPM");
+assert.equal(originalOnion(fixedKey), "AUOWYFGL5LCSFJ3NONION");
 // The original source permits C/K, S/Z and the Onion-service V spelling;
 // the corrected fixed-key readout yields AVOWYFGL5LKZFJ3N.ONION.
 
