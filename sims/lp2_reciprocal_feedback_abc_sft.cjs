@@ -177,6 +177,24 @@ function lexicalEvidence(runes, wordLengths, dictionary) {
     longest:longest.sort((x,y) => y.length-x.length).slice(0,12)};
 }
 
+/**
+ * Preserve all decoded GP text in the original complete-word segmentation.
+ * Original page-wrap linebreaks are deliberately kept inside words.
+ * @param {number[]} runes
+ * @param {number[]} wordLengths
+ * @returns {string}
+ */
+function renderWords(runes, wordLengths) {
+  let pos = 0;
+  const parts = [];
+  for (const len of wordLengths) {
+    parts.push(runes.slice(pos,pos+len).map(i => gp.translit[i]).join(''));
+    pos += len;
+  }
+  assert.equal(pos, runes.length);
+  return parts.join(' ');
+}
+
 /** @returns {void} */
 function main() {
   const clean = read('resources/liber-primus/lp1-plaintext-reference.txt')
@@ -216,7 +234,9 @@ function main() {
       first30Training:p0.slice(0,30).map(x=>gp.translit[x]).join(' '),
       first30Independent:p54.slice(0,30).map(x=>gp.translit[x]).join(' '),
       trainingWords:lexicalEvidence(p0,trainWords,referenceWords),
-      independentWords:lexicalEvidence(p54,testWords,referenceWords)};
+      independentWords:lexicalEvidence(p54,testWords,referenceWords),
+      completeTrainingGP:renderWords(p0,trainWords),
+      completeIndependentGP:renderWords(p54,testWords)};
   });
 
   // Independently held-out native-English GP plant, absent from training text.
@@ -231,6 +251,7 @@ function main() {
   assert.deepEqual(decrypt(ciphertext,plantedKey),planted);
   assert.deepEqual(decrypt(encrypt(plantedTest,plantedKey),plantedKey),plantedTest);
   const wrongKey={a:8,b:11,c:19};
+  assert.ok(score(decrypt(ciphertext,wrongKey)) < score(planted)-1);
   const summary = {
     source:'original LP2 physical pp0–2 and independent pp54–55',
     exactKeys:29**3,
@@ -240,9 +261,11 @@ function main() {
     wordSpans:{training:trainWords.length,independent:testWords.length},
     top,
     independentlyEvaluated:reported,
+    noCompleteCicadaWordsOnTest:reported.every(x=>x.independentWords.recognizedAtLeast3===0),
     planted:{a:7,b:11,c:19,trainScore:score(planted),
       wrongKeyTrainScore:score(decrypt(ciphertext,wrongKey)),
       independentScore:score(plantedTest),
+      heldoutModelNativeScore:score(shakespeare.slice(729,1037)),
       trueKeyTrainingRank:1,plaintextRecovered:1037},
     interpretation:'No unknown original chapter plaintext under the 24389 frozen small reciprocal-feedback models.'
   };
