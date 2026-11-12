@@ -18,7 +18,7 @@ The pinned 2014 fifth-onion archive contains three prior-puzzle squares of order
 
 - Reproducer: \`sims/lp2_2014_square_inner43_p55_gate.cjs\`.
 - Updated synthesis: \`im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md\`. It supersedes the earlier “no source selector” statement for p55's 43 interiors, while preserving the fact that no reversible operation has been recovered.
-- Broadcasts to Director: \`communications/broadcast/20261112T213107Z_agent32_2014-square-43-56-99.md\`, \`20261112T..._agent32_red-dot-geometry.md\`, and \`20261112T..._agent32_square-resource-correction.md\` (use exact filenames from repository).
+- Broadcasts to Director: \`communications/broadcast/20261112T214931Z_agent32_2014-square-43-56-99.md\`, \`20261112T215329Z_agent32_red-dot-geometry.md\`, and \`20261112T215543Z_agent32_square-resource-correction.md\` (use exact filenames from repository).
 - No established plaintext/key; \`results/README.md\` correctly remains unchanged. Director may consider a bounded successor focused on the 99-cell placement or a source-fixed traversal grounded in p54's spiral and p57's circumference instruction. #41 must remain waiting until a complete 76-rune reversible decoder, key/clock, positive control, and withheld prediction exist.
 
 ## GIMP Dissolve chain-step gate
