@@ -1,6 +1,12 @@
 name: Original 2014 Stage08 bzip2 member audit
 on:
   workflow_dispatch:
+    inputs:
+      probe_daughter_outguess:
+        description: Reuse original 2014 parent OutGuess command on both JPEG daughters with positive control
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   verify-original:
@@ -15,3 +21,27 @@ jobs:
         run: python sims/cicada2014_stage08_bzip2_member_sft.py
       - name: Audit source-authentic JPEG and MP3 daughter files
         run: python sims/cicada2014_stage08_daughter_source_sft.py
+      - name: Build pinned historic OutGuess tool
+        if: ${{ inputs.probe_daughter_outguess }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y autoconf automake libtool build-essential libjpeg-dev file
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess
+          ./autogen.sh
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
+          make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
+          sudo make install
+      - name: Positive-control and test unkeyed daughter OutGuess
+        if: ${{ inputs.probe_daughter_outguess }}
+        run: python sims/cicada2014_stage08_daughter_outguess_sft.py
+      - name: Preserve source-fixed daughter extraction outputs
+        if: ${{ always() && inputs.probe_daughter_outguess }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: cicada2014-stage08-daughter-outguess
+          path: outguess-stage08-daughters/*outguess
+          if-no-files-found: warn
+          retention-days: 14
