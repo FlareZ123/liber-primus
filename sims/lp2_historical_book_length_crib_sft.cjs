@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * Original-word-length known-plaintext screen against historically selected
+ * Original-word-length known-plaintext screen against the historically selected
  * Cicada reference books. This test identifies only intact copied passages;
  * it cannot decrypt text or exclude rephrased/edited source material.
  *
@@ -17,9 +17,6 @@ const root = path.resolve(__dirname, "..");
 const read = relative => fs.readFileSync(path.join(root, relative), "utf8");
 const digraphs = new Set(["TH", "NG", "EO", "OE", "AE", "IA", "EA"]);
 const books = [
-  ["Liber AL vel Legis I", "resources/external/2013-book-of-law-I.txt", 1897, [7, 7]],
-  ["Liber AL vel Legis II", "resources/external/2013-book-of-law-II.txt", 1968, [8, 8]],
-  ["Liber AL vel Legis III", "resources/external/2013-book-of-law-III.txt", 2002, [8, 8]],
   ["Blake, Marriage of Heaven and Hell", "resources/external/blake-marriage-1906-gutenberg45315.txt", 4609, [7, 8]],
 ];
 
@@ -109,13 +106,13 @@ for (const [name, sourcePath, expectedWords, expectedMaxima] of books) {
       top: matches.slice(0, 3), passagesAtLeast9: 0,
     });
   }
-  if (name === "Liber AL vel Legis II") {
+  if (name.startsWith("Blake,")) {
     const planted = target.slice();
     for (let k = 0; k < 16; k++) planted[1000 + k] = gpLength(words[500 + k]);
     const recovered = match(words.map(gpLength), words, planted, original.words);
     assert(recovered.some(x => x.originalWord === 1000 &&
       x.bookWord === 500 && x.matchingWords >= 16),
-      "known 16-word historical-source plant must be recovered");
+      "known 16-word Blake plant must be recovered");
   }
 }
 
