@@ -1,0 +1,88 @@
+# P55 nested word interiors and the p57 23-dot row-column inverse
+
+**12 November 2026, Agent44. Classification: one new, original-clue-constrained reversible candidate with a negative direct-plaintext result. No genuine unknown LP2 plaintext, authentic encryption key or Cicada-selected cipher was recovered.** This builds on the previously executed [book-wide recursive word-center extraction](lp2-recursive-word-core-literal-gate.md), without repeating its general plaintext search. The additional experiment links a unique terminal-page numerical word geometry to an independently printed, uniquely sized red-dot stencil.
+
+## Motivated source-to-source handoff
+
+The **solved p57 PARABLE** instructs a reader to "shed our own circumferences" and "find the divinity within." The authentic source artwork on p57 ends in the **only 23-dot red punctuation stencil in LP2**, geometrically an exact **9-row × 5-column** sparse grid:
+
+```text
+.###.
+#...#
+.###.
+#...#
+.###.
+#...#
+.###.
+#...#
+.###.
+```
+
+The stencil's original source-image coordinates and uniqueness are independently fixed by [`sims/lp2_p55_p57_red_dot_core_sft.py`](../sims/lp2_p55_p57_red_dot_core_sft.py) and the original `74.jpg`. Its three alternating internal columns reproduce p55's and the p57 title's **13-dot** punctuation mark. It supplies **23 occupied source-visible cells, nine physical rows and five physical columns** without cipher selection.
+
+The final *unknown* physical p55 image is `72.jpg`. Its first rune finishes a word begun on p54; the subsequent **16 complete words** have original GP lengths `[4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`. For each complete word independently, remove the first and last surviving rune and repeat without resetting a word after a line break:
+
+| Pairs removed from each complete word | Surviving runes | Active words |
+| ---: | ---: | ---: |
+| 0 | 75 | 16 |
+| 1 | 43 | 11 |
+| **2** | **23** | **7** |
+| **3** | **9** | **3** |
+| **4** | **5** | **1** |
+| 5 | 3 | 1 |
+| 6 | 1 | 1 |
+
+The second-, third- and fourth-level survivor counts are exactly **23, 9 and 5**, all dimensions of the independently printed stencil. These are **nested**, not three separate lists of independently encrypted symbols. The deeper 9- and 5-rune survivors are strict subsets of the same 23 source glyphs. The deepest symbol is **U**, GP index1, embedded at position8 of the 23-rune stream. Its printed p55 rune index is29.
+
+Precisely:
+
+```text
+23 symbols: G D A B F X I M U C P H NG D IA I G X EO TH TH I M
+ 9 symbols: X I M U C P H G TH
+ 5 symbols: I M U C P
+ 1 symbol: U
+```
+
+This specific **23/9/5 alignment** and its possible mathematical use were absent from the older book-wide recursive direct-reading test. Physical p51 also has local 23/9 after the second/third peel, but its subsequent fourth peel has **zero** survivors, so it is not the same four-level arrangement; it is not an independent significance calibration. The 23/9/5 match was found exploratorily after knowing the source counts; no probability of deliberate construction is inferred.
+
+## A fully specified GP29 row-column inverse
+
+A human could map the **23 GP29 survivors** to the **23 occupied stencil cells** from top to bottom, left to right. Read the nine further-peeled symbols as row masks and the five further-peeled symbols as column masks, in their original order. Using the already-authentic **additive GP29** vocabulary from solved p56, test a plain, unfitted, subtractive transfer:
+
+```text
+For i=0..22, with source-stencil cell (row[i],column[i]):
+P[i] = (C[i] - C[rowSource[row[i]]] - C[colSource[column[i]]]) mod 29
+```
+
+The source index selectors **within the 23-symbol stream** are:
+
+- Nine row-key positions `[5,6,7,8,9,10,11,16,19]`.
+- Five column-key positions `[6,7,8,9,10]`.
+
+The row and column keys are thus **self-derived from the ciphertext**. This produces a **fixed linear transformation** `P=M×C` over the 29-element prime field; there are no unknown offsets, fitted key tables, random seeds or per-symbol secret permutations. The original p55 plaintext candidate is
+
+```text
+TH H C Y G C M A M L E TH J F U EO Y U AE EO I W EO
+```
+
+Original candidate IoC is **0.03162055336**, and no natural-language passage or source-supported directive appears. This direct inverse therefore fails as a transparent GP-prose decoder. An unrelated binary-to-text layer would be speculative unless a source independently selects it.
+
+## Exact algebraic result: one necessary inner-state rune
+
+The **unmodified** 23×23 linear matrix has exact rank **22**, meaning the plain 23-rune row+column subtraction loses one GP29 degree of freedom. It cannot by itself be a lossless 23-symbol block cipher. However, its kernel is **nonzero in the source-centermost coordinate8**. The deepest, original **single surviving U** therefore supplies exactly enough additional information to restore injectivity.
+
+One concrete *length-preserving* correction uses the already visible interior instruction literally: retain `P[i]` at the 22 positions other than `i=8`, and output the original center rune `C[8]=U` unchanged at that position. This replaces the matrix's 8th output row by the unit vector that selects its 8th input coordinate. The resulting **23×23 matrix has full rank 23 and nonzero determinant over F29**; its unique inverse recovers all 23 source runes exactly. The source output under that convention is
+
+```text
+TH H C Y G C M A U L E TH J F U EO Y U AE EO I W EO
+```
+
+A direct positive uses **the first 23 genuine known GP symbols from solved p57** as *hidden plaintext*, applies the unique 23×23 matrix inverse to generate artificial ciphertext, and recovers **23/23** genuine text symbols under the same forward calculation, without tuning a key. The source-ciphertext original input likewise inverts to **23/23** exact glyphs, now with a genuine lossless operator. These are valid correctness controls, **not evidence that Cicada used this operator**. The design has no recovered unknown plaintext.
+
+The reversible correction is a *new hypothesis*: the p57 instruction does not explicitly say to use center rune U as a published clear-state symbol, or prescribe GP29 row/column sums, stencil-cell reading order, signs, or a 23-rune encryption block. Retrospectively finding that the matrix has rank22 and one inner rune resolves its kernel is an intriguing correspondence, not an independently authenticated source rule. The other 22 converted symbols still appear random. **Do not present the mathematical reversibility itself as cryptanalysis success.**
+
+## Reproduction and decision
+
+[The stand-alone CommonJS source test](../sims/lp2_p55_23dot_nested_rowcol_inverse_sft.cjs) reads the original 29-symbol corpus and the original ink-annotation counts, reconstructs all 7 nested peel levels, fixes the 23 occupied dot coordinates, records the 23/9/5 source index mapping, proves both exact matrix ranks by F29 Gauss–Jordan elimination, decrypts and inverts the actual source symbols, and encrypts/decrypts an independently selected solved-p57 GP23 positive. The manual-only [source-word circumference CI run 43145121072](https://github.com/FlareZ123/liber-primus/actions/runs/43145121072) passed every new source-derived AES, prime401 and nested-matrix regression, including the native positive.
+
+**Research decision:** preserve this as the smallest complete source-to-source, **mathematically reversible** terminal 23-dot GP29 model so far. The explicit original prediction is negative for clear GP English. The next meaningful advancement would be a *new primary-artifact clue* that fixes the 23-cell traversal and row/column operation or independently authenticates a 23-rune target, allowing a genuinely discriminating holdout. Avoid broad permutation/shift/key scans on this postselected structure.
