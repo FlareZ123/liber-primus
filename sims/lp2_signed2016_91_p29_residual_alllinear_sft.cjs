@@ -66,7 +66,7 @@ function encode(word) {
   const result=[];
   for(let i=0;i<source.length;) {
     const match=tokens.find(t=>source.startsWith(t.letter,i));
-    assert(match,\`Unencodable signed word \${word}:\${source.slice(i)}\`);
+    assert(match, "Unencodable signed word " + word + ":" + source.slice(i));
     result.push(match.index); i+=match.letter.length;
   }
   return result;
