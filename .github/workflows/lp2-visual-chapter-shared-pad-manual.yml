@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Run original visual chapter pad cancellation with word-matched native English
         run: node sims/lp2_visual_chapter_shared_pad_eq_sft.cjs
+      - name: Test six tree pages with every relative additive offset and four directions
+        run: node sims/lp2_tree6_sharedpad_alloffset_sft.cjs
