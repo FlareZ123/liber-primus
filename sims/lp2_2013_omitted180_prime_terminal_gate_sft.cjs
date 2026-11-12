@@ -110,6 +110,42 @@ const countConflicts = (list) => {
 assert.equal(countConflicts(records.slice(0, 85)), 1);
 assert.equal(countConflicts(records.slice(85)), 2);
 
+// A stronger impossibility survives even if the decoder reads ALL eight bits
+// of the source grid byte; reducing only the historical prime to its GP29
+// residue still collapses distinct original inputs to incompatible plaintext.
+const lookupConflicts = (keyOf) => {
+  const table = new Map();
+  const failures = [];
+  for (const r of records) {
+    const key = keyOf(r);
+    const old = table.get(key);
+    if (old && old.plain !== r.plain) failures.push({ key, first: old, second: r });
+    else if (!old) table.set(key, r);
+  }
+  return { distinct: table.size, failures };
+};
+const fullByte = lookupConflicts((r) => `${r.byte}:${r.prime % 29}`);
+assert.equal(fullByte.distinct, 179);
+assert.equal(fullByte.failures.length, 1);
+assert.deepEqual([fullByte.failures[0].first.i, fullByte.failures[0].second.i], [21, 86]);
+assert.deepEqual([fullByte.failures[0].first.byte, fullByte.failures[0].second.byte], [54, 54]);
+assert.deepEqual([fullByte.failures[0].first.prime, fullByte.failures[0].second.prime], [181, 587]);
+assert.deepEqual([fullByte.failures[0].first.plain, fullByte.failures[0].second.plain], [4, 24]);
+
+// The high quotient of an odd prime by the odd modulus29 has parity
+// determined by the prime's residue: prime=q*29+r and q+r is odd.
+// Thus appending prime quotient parity cannot distinguish any collision.
+const primeQuotientParity = lookupConflicts(
+  (r) => `${r.byte % 29}:${r.prime % 29}:${Math.floor(r.prime / 29) % 2}`,
+);
+assert.equal(primeQuotientParity.failures.length, 14);
+assert.equal(primeQuotientParity.distinct, 166);
+const byteQuotientParity = lookupConflicts(
+  (r) => `${r.byte % 29}:${r.prime % 29}:${Math.floor(r.byte / 29) % 2}`,
+);
+assert.equal(byteQuotientParity.failures.length, 9);
+assert.equal(byteQuotientParity.distinct, 171);
+
 // Fully invertible planted GF29 affine relationship on the original grid and prime inputs.
 for (const r of records) {
   const planted = mod29(7 * r.byte + 11 * (r.prime - 1) + 2);
@@ -126,6 +162,8 @@ console.log(JSON.stringify({
   fixedKnownPlaintextGate: { primeTotientMatches: plainMatches, originalPublishedMatches: publishedMatches, total: 180 },
   arbitraryStationaryPairCodebook: { uniquePairs: states.size, conflicts: contradictions.length, withinP56: 1, withinP57: 2 },
   firstContradiction: contradictions[0],
+  strongerFullByteSecretLookup: { distinct: fullByte.distinct, contradictions: fullByte.failures.length, witness: fullByte.failures[0] },
+  quotientParityLift: { primeQuotientContradictions: primeQuotientParity.failures.length, byteQuotientContradictions: byteQuotientParity.failures.length },
   p55First76MissingPrimeInverse: { ioc: ioc(first76Inverse), opening: first76Inverse.slice(0, 30).map((i) => corpus.translit[i]).join("") },
   positive: "180/180 planted GF29 affine byte residues recovered exactly",
 }, null, 2));
