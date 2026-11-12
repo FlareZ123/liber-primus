@@ -1,4 +1,6 @@
-// Direct all-offset 2013 CicadaOS 560.13 byte-pad GP29 original-inverse test.
+// All-offset 64-rune-prefix screen of the 2013 CicadaOS 560.13 GP29 byte pad.
+// Full 308-rune scores are computed only for the 2,000 prefix finalists;
+// the 50,000-offset positive plant does not calibrate full-file sensitivity.
 // Compile with a C++17 compiler. The caller validates the original 118,818,811-byte
 // historical file SHA-256 independently before invoking this program.
 #include <algorithm>
@@ -168,10 +170,12 @@ int main(int argc, char **argv) {
 
         const size_t n = pad.size() - source.size() + 1;
         const auto original = scan(source, pad, data.model, n);
-        std::cout << "Original 308-rune p54-p55 exhaustive-offset direct byte-mod29 "
+        std::cout << "Original p54-p55 direct byte-mod29 pad: exhaustive 64-rune-prefix screening of "
                   << "additive two-sign sweep of " << n
                   << " offsets; " << (2ULL * n)
-                  << " candidate source-key alignments evaluated; no source bytes altered.\n";
+                  << " prefix-scored candidate alignments. Only the top "
+                  << BEST << " receive the full 308-rune score. The plant tests "
+                  << PLANT_CONTROL_WINDOW << " offsets, not the entire file.\n";
         report(original, source, pad, data.model, "Original complete 560.13");
         return 0;
     } catch (const std::exception &e) {
