@@ -37,6 +37,9 @@ The p56 instruction asks for a page that hashes to the printed target. Before tr
 | Raw 0-based GP rune-index bytes (76 symbols) | 76 | no match | no match | no match | no match | no match | no match |
 | Raw 0-based GP rune-index body (drop inherited first NG; 75 symbols) | 75 | no match | no match | no match | no match | no match | no match |
 | Full 76 digits as one base-29 integer, minimal big-endian bytes | 47 | no match | no match | no match | no match | no match | no match |
+| 75-digit body as one base-29 integer, minimal big-endian bytes | 46 | no match | no match | no match | no match | no match | no match |
+| Illustrative UDP segment (header 0000011900540000 + full 76-byte ASCII body) | 84 | no match | no match | no match | no match | no match | no match |
+| Illustrative UDP segment (same header + 76 raw rune-index bytes) | 84 | no match | no match | no match | no match | no match | no match |
 
 The BASE29 ASCII encoding is selected by the signed 2013 example; raw 0-based rune indices are a natural binary serialization, while treating the entire digit sequence as one integer is a natural but not explicitly prescribed alternative. Each UDP segment is only the frozen source-port-zero specimen above, not a complete IP packet. The Node reproducer computes SHA-512, SHA3-512, BLAKE2b-512 and SHAKE256-512, and attempts Whirlpool with OpenSSL's legacy provider. The companion Streebog script uses libgcrypt and validates RFC 6986 M1/M2 controls; candidate inputs are hashed in their ordinary byte order and both normal and byte-reversed digest displays are compared with the printed target.
 
