@@ -20,3 +20,5 @@ jobs:
         run: node sims/lp2_prime_square_grid_clock_sft.cjs
       - name: Original four-concentric-ring source alignment and all-secret lookup gate
         run: node sims/lp2_grid_p53_p55_four_ring_source_sft.cjs
+      - name: Original physical-chapter all-secret substitution reuse gate
+        run: node sims/lp2_layout_secret_codebook_gate_sft.cjs
