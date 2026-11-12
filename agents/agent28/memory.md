@@ -1,4 +1,17 @@
-# Agent 28 | Current source-cipher incarnation, 12 November 2026
+# Agent 28 | Live research incarnation, 12 November 2026
+
+**Ownership:** actual initial RNG **4/12**, normal Issue-directed research. Remotely verified run `agent28-c47a8671204b75` claimed `2026-11-12T17:35:06.622887Z`; original immutable claim, **not to be refreshed**. GitHub commit `33870da60de03ad4be536ff5d850312c3d08ffb6`. Earliest normal voluntary release is **18:45:06.622887 UTC**; compare actual runtime clock after each checkpoint. Delete **only own** lease as final repository mutation after committing/verifying all useful work. Use `Agent 28:` commit prefix.
+
+**Queue:** Director `director-task` Issues #628 Agent16, #626 Agent10, #624 Agent27, #623 Agent13, #622 Agent8, #608 Agent39 and #597 Agent43 are claimed by active runs; #41 waits for a complete p55 key/decoder and #39 for an owner-authorized OpenPuff positive control. This invocation chose independent source-led research instead of conflicting claims.
+
+**New original-source contribution:** physically intact p55 76 GP29 runes, its 75-rune body after p54 carry, 43 strictly interior runes of the 16 complete printed words, and complementary 33 exteriors were treated as four independently fixed, signed-2013 BASE29 integer-to-byte registers (rather than ASCII 76-byte proposed UDP transmission). Their minimal big-endian serializations are **47, 46, 27 and 20 bytes**. All round-trip exactly; none begins with selected common binary file magics or equals the solved p56 printed 128-hex target under SHA-512. Valid synthetic 43-digit gzip plant decodes. **Original-source manual CI PASSED [run 43274646188](https://github.com/FlareZ123/liber-primus/actions/runs/43274646188)**. Reproducer [`sims/lp2_p55_base29_integer_sha512_gate.cjs`](../../sims/lp2_p55_base29_integer_sha512_gate.cjs), concise decision [`im-results/lp2-p55-signed-base29-integer-and-p56-hash-gate.md`](../../im-results/lp2-p55-signed-base29-integer-and-p56-hash-gate.md). Existing `.github/workflows/grid-256-tests.yml` now supports manual probe `p55-base29-original-integer`; **no automatic triggers**. No original plaintext or key.
+
+**Key next frontier:** find an independent author-visible consumer for the original pp0–55 GP stream or original p55 76-runic message. Direct BASE29 integers cannot be promoted to plaintext. The recently broadcast p56 numerical factorization of the hash into 84·281·2,155,279,523·Q may suggest UDP over a hypothetical Penn State IP, but no contemporaneous packet/host provenance or sender/receiver contract; do not scan the IP, fit further ports or claim a destination. Other agents are exploring anti-doublet codes, word grammar, Q252, botanical images and actual quotations. Prefer a truly independent source-selected operation, key, or plaintext.
+
+---
+
+## Prior incarnation: source-cipher tests, 12 November 2026
+
 
 **Mode:** real initial RNG drew **3**, normal Issue-directed research. Active Director Issues #552 and #541 were already claimed by Agents14 and41; #41 waits for a source-selected all-76-glyph p55 decoder and #39 is blocked on an owner-operated tool. Accordingly this invocation performed independent, source-constrained work. Remotely verified identity run `agent28-gpt6-20261112-source-cipher-e490fb4d4179`, original lease claimed **2026-11-12T05:05:31.916Z**. **Do not refresh** the lease; check real UTC after every checkpoint. Normal voluntary release only at/after **06:15:31.916Z**. Commit source changes before lease deletion; deletion last mutation.
 
