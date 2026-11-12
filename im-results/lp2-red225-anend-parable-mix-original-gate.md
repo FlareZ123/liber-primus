@@ -28,6 +28,18 @@ The original GP trigram score is **−6.4428454**. The best of eight is **−6.1
 
 This **rejects only the literal frozen-key additive mix** as normal GP29 prose on complete p54–55. Another operation on AN END and PARABLE, or another target, remains open if separately selected by an original clue.
 
+## Source-anchored 3×5×7 two-register MIX gate
+
+There is a second, less arbitrary way to exploit the literal proposed footer as an instruction: its hypothesized **three parts have GP lengths 3, 5 and 7**, and exactly
+
+    225 = 2×(3×5×7) + (3+5+7) = 105 + 105 + 15.
+
+The *same* initial 210 original red runes therefore form two complete **3×5×7** consecutive tensors, with the terminal 15-rune hypothetical message left clear. This provides a **frozen reversible candidate operation without a secret key**: use the first 105 source runes as register A and the next 105 as register B, combine each corresponding GP29 position as A−B, B−A, A+B or −A−B modulo29. The 3/5/7 word lengths also fix one natural axis order. The only additional orientation allowance is each independent reversal of its three axes **on B** (8 possibilities), giving **32 fully enumerated original-input candidates**. The all-zero reversal is ordinary unpermuted half-versus-half subtraction.
+
+**No candidate yields native GP29 prose.** The best original trigram score of all 32 is **−5.7056957422** (axis reversal mask5, A−B), whereas the worst of **54,307** independently held-out 105-rune GP-native Shakespeare windows is **−2.9492991131** under the same scorer. To bound even a completely unknown **global 29! rune identity permutation of the final output**, optimize each candidate's one-gram likelihood by exactly pairing sorted symbol frequencies with sorted corpus probabilities. The best 32-case original upper bound is **−3.2836892228**, below the worst of all **54,307** equally optimized native windows (**−3.1185692361**). Thus even a hidden global substitution cannot make these literal two-register mixes match the native reference's one-gram distribution; this conclusion is invariant to any subsequent pure positional transposition. **32/32** independent native-plaintext plants recover their original 105-rune plaintext exactly under the declared forward/inverse operation.
+
+This construction makes the tentative footer's 3/5/7 lengths causally relevant to a clear, cheap decipherment. The source has **no printed 3×5×7 tensor** and does not affirm that the last three p54 title runes should be reversed and isolated. The finite negative retires the exact source-order paired-mix family and its eight axis reflections as directly readable GP29 prose. It does not exclude other mixing algebras, altered text registers, evolving keys or hidden external material; no plaintext was recovered.
+
 ## Research decision
 
 The symbol inventory is the decisive obstruction to reading the 210 red-rune payload as transposed ordinary GP-native text, regardless of how rows or columns are mixed. If this row is intentionally instructive, a successful decoder must change rune identities, use a different plaintext register, or read the red material as key/cipher metadata rather than direct English. Avoid more keyless transposition sweeps. The p54 `XIM` reversal and 15×15 view need an independent page-level reading instruction before a broader search is justified.
