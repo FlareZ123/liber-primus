@@ -263,6 +263,12 @@ assert.ok(Math.abs(native105TriMin - (-2.949299113091671)) < 1e-10);
 assert.ok(Math.abs(native105OneMin - (-3.118569236146767)) < 1e-10);
 assert.ok(bestMatrixTri < native105TriMin);
 assert.ok(bestMatrixOne < native105OneMin);
+const redAOneUpper = optimalOneGram105(redA);
+const redBOneUpper = optimalOneGram105(redB);
+assert.ok(Math.abs(redAOneUpper - (-3.5502472721730935)) < 1e-10);
+assert.ok(Math.abs(redBOneUpper - (-3.4277728760290422)) < 1e-10);
+assert.ok(redAOneUpper < native105OneMin);
+assert.ok(redBOneUpper < native105OneMin);
 
 console.log(JSON.stringify({
   red_runes: 225, red_suffix: name(red.slice(-15)),
@@ -273,6 +279,7 @@ console.log(JSON.stringify({
   p54_p55_runes: target.length,
   p54_p55_raw_trigram: score(target),
   heldout_308_min_trigram: minNative,
+  original_half_105_best_secret_unigram: {A: redAOneUpper, B: redBOneUpper, heldout105_min: native105OneMin},
   tensor_3x5x7: { variants: matrixResults.length,
     best_original_trigram: bestMatrixTri,
     worst_native_105_trigram: native105TriMin,
