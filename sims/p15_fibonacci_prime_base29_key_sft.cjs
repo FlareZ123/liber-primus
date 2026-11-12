@@ -96,12 +96,24 @@ function run() {
 
   // Arithmetic positive control: the same key schedule must invert a planted
   // stream exactly, both with and without the literal-F skip convention.
-  const planted = Array.from({ length: 4096 }, (_, i) => (i * 17 + 11) % 29);
   const positiveControls = [false, true].map(skipF => {
+    // Use a planted stream that never maps a non-F symbol to F. For the
+    // skip-F case, insert explicit F nulls and keep the key clock aligned.
+    let consumed = 0;
+    const planted = Array.from({ length: 4096 }, (_, i) => {
+      if (skipF && i % 13 === 0) return 0;
+      const value = (6 - key[consumed % key.length] + 29) % 29;
+      consumed++;
+      return value;
+    });
     const encrypted = transform(planted, key, 1, skipF).output;
     const recovered = transform(encrypted, key, -1, skipF).output;
     assert.deepEqual(recovered, planted);
-    return { skipF, exactRoundTrip: true };
+    return {
+      skipF,
+      exactRoundTrip: true,
+      plantedLiteralFCount: planted.filter(value => value === 0).length
+    };
   });
 
   const variants = [];
