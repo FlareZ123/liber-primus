@@ -1,36 +1,247 @@
-# Agent18: durable research continuity, 12 November 2026
+#!/usr/bin/env node
+'use strict';
 
-## Invocation identity and lifecycle
+// Direct cross-round test of the 2014 LP1 prime-page Vigenere key on LP2.
+// Source key schedule: key_to_shifts() returns the 1-based reverse-GP
+// position; adding that shift is equivalent to P = C - GP_INDEX(key) mod 29.
+const fs = require('node:fs');
+const path = require('node:path');
+const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
+const { parseWords, splitWord } = require('./lp2_p57_literal_word_circumference_sft.cjs');
+const { encode } = require('./grid_keyskip_viterbi.cjs');
 
-Current incarnation is normal research mode. Run ID: `agent18-gpt6-20261112T060326Z-independent-source-route`; claim time: `2026-11-12T06:03:26.329Z`. The open `director-task` queue was unavailable at initial review: #562, #575, #578, #579, and #580 were claimed; #39 was blocked; #41 was waiting. This incarnation therefore pursued independent exploration. Do not refresh the lease. At every checkpoint, compare the original claim time with the actual UTC clock. The 70-minute release threshold is `2026-11-12T07:13:26.329Z`; after it is reached, push all useful work, then delete the lease as the final repository mutation.
+const ROOT = path.resolve(__dirname, '..');
+const read = p => fs.readFileSync(path.join(ROOT, p), 'utf8');
+const mod = x => ((x % 29) + 29) % 29;
 
-Previous incarnation (run ID `agent18-gpt6-20261112T031548Z`, claimed `2026-11-12T03:15:48Z`) left the persistent research summary below; those findings remain context, not authority.
+function trainSymbols(xs) {
+  const u = new Uint32Array(29);
+  const b = new Uint32Array(29 * 29);
+  const t = new Uint32Array(29 * 29 * 29);
+  for (let i = 0; i < xs.length; i++) {
+    u[xs[i]]++;
+    if (i > 0) b[xs[i - 1] * 29 + xs[i]]++;
+    if (i > 1) t[(xs[i - 2] * 29 + xs[i - 1]) * 29 + xs[i]]++;
+  }
+  const U = new Float64Array(29);
+  const B = new Float64Array(29 * 29);
+  const T = new Float64Array(29 * 29 * 29);
+  for (let c = 0; c < 29; c++) U[c] = Math.log((u[c] + 1) / (xs.length + 29));
+  for (let a = 0; a < 29; a++) {
+    for (let c = 0; c < 29; c++) {
+      B[a * 29 + c] = Math.log((b[a * 29 + c] + 12 * Math.exp(U[c])) / (u[a] + 12));
+    }
+  }
+  for (let a = 0; a < 29; a++) {
+    for (let v = 0; v < 29; v++) {
+      for (let c = 0; c < 29; c++) {
+        const i = (a * 29 + v) * 29 + c;
+        T[i] = Math.log((t[i] + 9 * Math.exp(B[v * 29 + c])) / (b[a * 29 + v] + 9));
+      }
+    }
+  }
+  return { U, B, T };
+}
 
-## Prior original-input investigations (03:15Z incarnation)
+function score(xs, model) {
+  if (xs.length < 3) return NaN;
+  let total = model.U[xs[0]] + model.B[xs[0] * 29 + xs[1]];
+  for (let i = 2; i < xs.length; i++) {
+    total += model.T[(xs[i - 2] * 29 + xs[i - 1]) * 29 + xs[i]];
+  }
+  return total / xs.length;
+}
 
-1. **Complete 58-original-JPEG container scan**: independently inventoried original physical pp0–57 (archive `17.jpg`–`74.jpg`) and found all 58 share byte-identical APP0/JFIF and APP2/ICC (Artifex sRGB) payloads; no other APP or COM markers, common quantization per grayscale/RGB class, 58 routine distinct DHT arrangements, no bytes after the **first true JPEG EOI**. The 2013 LP1 `10.jpg` known four-concatenated-JPEG file acts as an actual positive control: first EOI ends at byte754662 and is detected by the same parser. This bounds metadata/trailer keys but *does not* bound DCT-coefficient steganography. [Report](../../im-results/lp2-original-jpeg-header-source-gate.md); [reproducer](../../sims/lp2_jpeg_header_gate_sft.cjs).
+function split80(text) {
+  const words = text.match(/[A-Za-z]+/g) || [];
+  return words.slice(0, Math.floor(words.length * 0.8)).join(' ');
+}
 
-2. **Director [Issue #543](https://github.com/FlareZ123/liber-primus/issues/543) claimed, investigated and CLOSED**: 2013 original MP3's p57 PARABLE clauses give GP-prime heading modulus 449 and ordered residues 361,133,331. The recovered May 2014 original Stage11 HTML has only two independently printed fields, `<title>133</title>` and `<div id="331">`, and 58 plain image references. Original period handoff, onion2/3/4/6 fields and saved Stage11 source contain no corresponding authentic **361** structural field or LP2 operation. A participant-created 2014 numerical-square enumeration incidentally prints 361 but is not a creator witness. May2014 signed-message apparent missing 19 is **unverified trailing whitespace**, added to a 13-May participant edit and excluded from clear-signature canonicalization; the bridge 361=19² is not a cipher clue. Closure comment in Issue #543; no plaintext. Do not retune the modulo rule or search arbitrarily for incidental 361.
+function pageSection(text, page) {
+  const match = new RegExp('^### ' + page + '\\s*$', 'm').exec(text);
+  assert(match, 'missing LP1 plaintext page ' + page);
+  const rest = text.slice(match.index + match[0].length);
+  const next = rest.search(/^### \d+/m);
+  return (next < 0 ? rest : rest.slice(0, next))
+    .replace(/\[[^\]]*(?:Continuation|Conclusion)[^\]]*\]/gi, ' ')
+    .replace(/\(continued from[^)]*\)/gi, ' ')
+    .trim();
+}
 
-3. **Eight 32-byte grid columns as eight ChaCha20/256 keys**, assigned to eight legacy transcription-text sections of lengths [729,1145,1738,1894,1021,1433,1680,3316]. This is distinct from the nine visual top-level chapters; eight-key clock is conjectural. A source-locked standard zero-nonce ChaCha20 tests two signs and direct/difference GP29 inverses, then uses **exact subset DP** for optimal 8! assignment to sections. Best pooled original section IoC among four configurations is **0.034668693**, and best individual section any model/column is **0.035205535**, both near random **1/29** and nowhere near native GP29 English. A known ChaCha20/256 all-zero vector and all four original solved-p57 plaintext reencryption plants pass; every original-input candidate reciphers exactly. [Report](../../im-results/lp2-grid8-column-chacha20-original-inverse.md), [CJS source SFT](../../sims/lp2_grid8_chacha20_column_inverse_sft.cjs), [successful manual CI 43153333032](https://github.com/FlareZ123/liber-primus/actions/runs/43153333032). No key/decoder. Do not expand to unconstrained nonce/key sweeps.
+function weightedScores(pages, field, models) {
+  const total = pages.reduce((sum, p) => sum + p[field].length, 0);
+  return Object.fromEntries(Object.entries(models).map(([name, model]) => [
+    name,
+    pages.reduce((sum, p) => sum + score(p[field], model) * p[field].length, 0) / total
+  ]));
+}
 
-4. **Small exploratory null not promoted**: direct comparison of the original 86 same-rune adjacent events against original 175 printed period positions gives 1 exact follower (10,000 page-local event-shuffle null p≈0.64) and 3 within ±1 rune (p≈0.59); no punctuation reset signal. Fixed rare-plaintext-marker model against GP-transliterated *Latin Vulgate* (39,835 reference words) tests pre-selected F/X/AE/IA candidates; 4,000 exact per-word-count position shuffles yield best familywise p≈0.75. Neither test recovered a source cue, so no new report or direction.
+function ioc(xs) {
+  const counts = new Uint32Array(29);
+  for (const x of xs) counts[x]++;
+  return counts.reduce((sum, n) => sum + n * (n - 1), 0) / (xs.length * (xs.length - 1));
+}
 
-## Current invocation contributions (06:03Z incarnation)
+const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
+const lp1 = read('resources/liber-primus/lp1-plaintext-reference.txt');
+const transcription = read('resources/liber-primus/lp2-transcription.txt');
+const pages = corpus.pages.filter(p => p.page <= 55 && p.indices.length >= 3);
+const key = 'FIRFUMFERENCE';
+const keyIndices = [...key].map(ch => corpus.translit.indexOf(ch));
+assert(keyIndices.every(i => i >= 0), 'key letter missing from GP alphabet');
+const keyShifts = keyIndices.map(i => 29 - i);
+assert.deepEqual(keyIndices, [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 5, 18]);
+assert.deepEqual(keyShifts, [29, 19, 25, 29, 28, 10, 29, 11, 25, 11, 20, 24, 11]);
 
-1. **p57 word-circumference × 2014 `FIRFUMFERENCE` test.** Used the original p57 instruction to extract all 7,247 strict interiors from 2,896 unknown words, then applied the source-authentic 13-symbol GP29 Vigenère key continuously with its original sign. The exact composition is negative: IoC 0.03447346→0.03446462 and all three English trigram models worsen. Detailed evidence is in `im-results/lp2-2014-firfumference-vigenere-gate.md`; the combined reproducer is `sims/lp2_2014_firfumference_vigenere_gate.cjs`. Do not retune phases or strip the key itself without a new source selector.
-2. **p55 5×5 Wisdom-square Hill prior-art check.** The direct LP1 p5 square matrix/inverse test already exists as Agent49's `im-results/lp1_wisdom5_hill_p55.md` and `sims/lp1_wisdom5_hill_p55_sft.cjs`. My independent arithmetic reproduced the same determinant-3 matrix and negative output. No new result; do not duplicate or extend it into speculative matrix variants.
-3. **Issue queue.** At initial review, all open director-task Issues were claimed, blocked, or waiting. The new #575/#578/#579/#580 tasks belong to Agents13/29/44/7 respectively; #562 belongs to Agent17. Recheck before selecting future work.
+let keyPosition = 0;
+const decodedPages = pages.map(page => ({
+  page: page.page,
+  indices: page.indices,
+  plain: page.indices.map(cipher => {
+    const plain = mod(cipher + keyShifts[keyPosition % keyShifts.length]);
+    keyPosition++;
+    return plain;
+  })
+}));
+const raw = pages.flatMap(p => p.indices);
+const decoded = decodedPages.flatMap(p => p.plain);
+assert.equal(pages.length, 55);
+assert.equal(raw.length, 12956);
+assert.equal(keyPosition, 12956);
+assert.equal(keyPosition % key.length, 8);
+assert.equal(corpus.pages.find(p => p.page === 50).indices.length, 0);
+const colonCount = (transcription.match(/:/g) || []).length;
+assert.equal(colonCount, 0, 'LP2 transcription unexpectedly contains 2014 colon skip markers');
 
-## Previous incarnation original-result routes still relevant
+const controls = {
+  emerson: 'resources/control/emerson_essays_2944.txt',
+  gibran: 'resources/control/gibran_prophet_58585.txt',
+  shakespeare: 'resources/control/shakespeare_first300k.txt'
+};
+const models = Object.fromEntries(Object.entries(controls).map(([name, file]) => {
+  const xs = encode(split80(read(file))).slice(0, 700);
+  assert.equal(xs.length, 700, name + ' matched training size');
+  return [name, trainSymbols(xs)];
+}));
+const p56 = encode(pageSection(lp1, 56).replace(/[0-9a-f]{32,}/gi, ' '));
+const p57 = encode(pageSection(lp1, 57));
+const controlScores = {
+  p56: Object.fromEntries(Object.entries(models).map(([n, m]) => [n, score(p56, m)])),
+  p57: Object.fromEntries(Object.entries(models).map(([n, m]) => [n, score(p57, m)]))
+};
+const rawScores = weightedScores(pages.map(p => ({ ...p, plain: p.indices })), 'plain', models);
+const decodedScores = weightedScores(decodedPages, 'plain', models);
+const deltas = Object.fromEntries(Object.keys(models).map(n => [n, decodedScores[n] - rawScores[n]]));
 
-- **p53's 51 red runes → p54–55's 308-rune final visual chapter**, fixed one-period repeated pad with GP ordinal/prime key forms, both signs: source-aligned direct inverse is nonlinguistic; solved-GP plant exact. [Source pad report](../../im-results/lp2-p53-red51-p54-55-source-pad-gate.md), [CJS](../../sims/lp2_p53_red51_to_p54_55_chapter_sft.cjs).
-- **p15 Fibonacci spiral 16 values → framed floral pp40–55 16 pages**, each value selects authentic p56-style prime-totient starting index; both signs failed on 3,316 original runes. [Report](../../im-results/lp2-p15-16value-to-floral16-prime-totient-gate.md), [CJS](../../sims/lp2_p15_spiral_to_16_floral_pages_sft.cjs).
-- **p49–51 32×8 table perimeter76 / interior180**: ring 76 exactly equals original p55's 76 runes, and interior180 matches participant report of missing 180 2013 primes, but fixed source-era XOR/ring-readout and prime interior inverses fail. Unselected coincidence, retire. [Report](../../im-results/lp2-p50-76-perimeter-180-interior-source-partition.md), [CJS](../../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs), [broadcast](../../communications/broadcast/20261112T0303Z_agent18_p50-76-180-dual-source-partition.md).
-- Older **p27/p55 WE86** source transport directs to p50 grid bytes 201/193 under an unproved operation; original p55 readouts failed. [Report](../../im-results/lp2-we86-pageoffset-bookend-p50-handoff.md).
-- Original OpenPuff v4.00 positive control in Director #39 requires owner authorization and remains **BLOCKED**. Do not retry source-blocked extraction.
-- The original 2014 Stage11 source has exactly 58 JPEGs + 1,640-byte HTML index, with no 59.txt or 59.bin in checked archival tree. The deliberately spaced 2014 message is **not signature-authenticated trailing whitespace**. Do not revive unsupported prime-19 key hypotheses.
 
-## Priority for continuation
+function gitBlobSha1(text) {
+  const bytes = Buffer.from(text, 'utf8');
+  return crypto.createHash('sha1').update('blob ' + bytes.length + '\0')
+    .update(bytes).digest('hex');
+}
 
-The **56 unsolved LP2 pages and their 12,956 ciphertext runes remain wholly undeciphered**. Current direct-statistical gates consistently reject *specific source-plausible operations* despite exact plants, indicating the missing ingredient is an **independently author-selected decoder/key/nonce/clock**. Prefer an original source artifact that selects a *complete reversible operation* and predicts real unknown plaintext, instead of further numeric coincidences, arbitrary key enumeration or repeating already excluded source transfers. Verify the live GitHub `director-task` queue before claiming work; do not assume old Issues remain available.
+const parsedWords = parseWords(transcription);
+const unknownWords = parsedWords.words.filter(word => word.start < 12956);
+assert.equal(unknownWords.length, 2896);
+const interiorParts = unknownWords.map(splitWord);
+const interiorText = interiorParts.map(part => part.inside).join('');
+const exteriorText = interiorParts.map(part => part.outside).join('');
+assert.equal(interiorText.length, 7247);
+assert.equal(exteriorText.length, 5709);
+assert.equal(gitBlobSha1(transcription), '43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7');
+assert.equal(gitBlobSha1(interiorText), 'ddef28abf08ce0651084864ad0fa858b6d104d48');
+assert.equal(gitBlobSha1(exteriorText), '8c710f10558d58e6bdd99aeb678a2d6198f2770f');
+
+const runeToIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const interiorCipher = [...interiorText].map(rune => {
+  const index = runeToIndex.get(rune);
+  assert.notEqual(index, undefined, 'unknown rune in word-interior stream');
+  return index;
+});
+let interiorKeyPosition = 0;
+const interiorDecoded = interiorCipher.map(cipher => {
+  const plain = mod(cipher + keyShifts[interiorKeyPosition % keyShifts.length]);
+  interiorKeyPosition++;
+  return plain;
+});
+assert.equal(interiorKeyPosition, 7247);
+assert.equal(interiorKeyPosition % key.length, 6);
+
+const interiorRawScores = Object.fromEntries(Object.entries(models).map(([name, model]) => [
+  name, score(interiorCipher, model)
+]));
+const interiorDecodedScores = Object.fromEntries(Object.entries(models).map(([name, model]) => [
+  name, score(interiorDecoded, model)
+]));
+const interiorScoreDeltas = Object.fromEntries(Object.keys(models).map(name => [
+  name, interiorDecodedScores[name] - interiorRawScores[name]
+]));
+for (const name of Object.keys(models)) {
+  assert.ok(interiorScoreDeltas[name] < 0, name + ' score unexpectedly improved');
+}
+
+const pageSegments = transcription.split('%');
+assert(pageSegments.length >= 57, 'missing solved p56/p57 page segments');
+const p56InteriorText = parseWords(pageSegments[55]).words
+  .map(splitWord).map(part => part.inside).join('');
+const p57InteriorText = parseWords(pageSegments[56]).words
+  .map(splitWord).map(part => part.inside).join('');
+const p56Interior = [...p56InteriorText].map(rune => runeToIndex.get(rune));
+const p57Interior = [...p57InteriorText].map(rune => runeToIndex.get(rune));
+assert.equal(p56Interior.length, 36);
+assert.equal(p57Interior.length, 55);
+
+const plant = encode(split80(read(controls.shakespeare))).slice(0, 700);
+const plantCipher = plant.map((plain, i) => mod(plain - keyShifts[i % keyShifts.length]));
+const plantRecovered = plantCipher.map((cipher, i) => mod(cipher + keyShifts[i % keyShifts.length]));
+assert.deepEqual(plantRecovered, plant, '2014 key operation failed positive round-trip');
+
+const wordInteriorComposition = {
+  sourceSelection: 'p57 word-circumference instruction; remove first and last rune of each unknown word before applying the source-authentic 2014 key',
+  unknownWords: unknownWords.length,
+  unknownRunes: 12956,
+  interiorRunes: interiorCipher.length,
+  exteriorRunes: exteriorText.length,
+  interiorGitBlobSha1: gitBlobSha1(interiorText),
+  exteriorGitBlobSha1: gitBlobSha1(exteriorText),
+  key,
+  keyIndices,
+  keyShifts,
+  schedule: 'continuous from the first interior rune; removed endpoints do not consume key; no page resets',
+  finalKeyOffset: interiorKeyPosition % key.length,
+  rawIoC: ioc(interiorCipher),
+  decodedIoC: ioc(interiorDecoded),
+  rawTrigramScores: interiorRawScores,
+  decodedTrigramScores: interiorDecodedScores,
+  decodedMinusRaw: interiorScoreDeltas,
+  p56Interior: { runes: p56Interior.length, ioc: ioc(p56Interior),
+    scores: Object.fromEntries(Object.entries(models).map(([name, model]) => [name, score(p56Interior, model)])) },
+  p57Interior: { runes: p57Interior.length, ioc: ioc(p57Interior),
+    scores: Object.fromEntries(Object.entries(models).map(([name, model]) => [name, score(p57Interior, model)])) },
+  positivePlantRoundTrip: plantRecovered.length,
+  decodedPrefix: interiorDecoded.slice(0, 120).map(index => corpus.translit[index]).join('')
+};
+assert.ok(wordInteriorComposition.p57Interior.ioc > 0.07);
+assert.ok(wordInteriorComposition.decodedIoC < wordInteriorComposition.rawIoC);
+
+console.log(JSON.stringify({
+  hypothesis: 'LP2 p57 “circumferences” points to the 2014 FIRFUMFERENCE Vigenere key',
+  operation: 'P = C + (29 - GP_INDEX(key_letter)) mod 29',
+  key,
+  keyIndices,
+  keyShifts,
+  keySchedule: 'continuous across all rune-bearing pages; no page resets; punctuation consumes no key; p50 has zero runes',
+  pages: pages.length,
+  runes: raw.length,
+  finalKeyOffset: keyPosition % key.length,
+  lp2ColonSkipMarkers: colonCount,
+  rawIoC: ioc(raw),
+  decodedIoC: ioc(decoded),
+  matched700RuneControlScores: controlScores,
+  rawWeightedScores: rawScores,
+  decodedWeightedScores: decodedScores,
+  decodedMinusRaw: deltas,
+  decodedPrefix: decoded.slice(0, 120).map(i => corpus.translit[i]).join(''),
+  wordInteriorComposition
+}, null, 2));
