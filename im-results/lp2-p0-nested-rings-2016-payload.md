@@ -24,6 +24,8 @@ One direct way to turn the shared 1,136 sums into a transformation would partiti
 
 That prediction **fails**: only **1 of 16** widths agrees in the source's top-left-clockwise orientation. Even allowing all 80 source starting positions, both directions, all 16 p32 rotations and both p32 reflections, the best pairing agrees at only **2 of 16** widths. No direct shared segmentation, instruction or authentic plaintext emerges. Retire this direct five-to-one partition, without interpreting more rotations as evidence.
 
+A separate source-frozen original-cipher attempt treats all **1,136 literal ASCII bytes** of that same signed payload, from byte offset zero, as a GP29 additive pad by taking each byte modulo29. This uses the 2016 source length rather than a guessed substring or key phase. On the complete original **729-rune p0–2 chapter**, the raw GP index of coincidence is **0.03408252**; subtracting the byte pad gives **0.03400715**, and adding it gives **0.03462518**. All remain near uniform and their decoded prefixes are nonlinguistic. Thus this specific natural Vigenère transfer fails to turn the ring-size match into plaintext. A hidden keyed derivation, other codec, or an independently selected traversal remains untested.
+
 ## Conditional source-multiset control
 
 A seeded 150,000-trial Fisher–Yates simulation retains the exact 729 original GP symbols and their frequencies, redistributing them over the 27×27 square. It recalculates all rings and checks the observed value combinations; seed `0x27113679`.
