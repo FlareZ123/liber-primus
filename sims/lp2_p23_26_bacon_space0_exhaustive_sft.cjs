@@ -222,6 +222,115 @@ function plant(plaintext) {
   return {mask, groups};
 }
 
+
+/**
+ * Ordinary-language necessary condition even when all 26 nonspace output
+ * symbols are relabeled by an arbitrary unknown global substitution:
+ * - no leading, doubled, or trailing word spaces;
+ * - at most two distinct one-letter word symbols (A/I in ordinary English);
+ * - every decoded word has a repetition pattern attained by at least one
+ * attested source word. These source-word patterns do not depend on any
+ * choice of the hidden letter permutation.
+ *
+ * @param {number[]|string} source
+ * @returns {string}
+ */
+function wordPattern(source) {
+  const codes = [...source];
+  const labels = new Map();
+  let next = 0;
+  return codes.map((x) => {
+    if (!labels.has(x)) labels.set(x, next++);
+    return labels.get(x);
+  }).join(",");
+}
+
+const wordList = new Set([
+  ...read("resources/control/english_wordfreq_textblob.txt")
+    .split(/\r?\n/).filter((x) => /^[a-z]+\s+\d+$/.test(x))
+    .map((x) => x.split(" ")[0].toUpperCase()),
+  ...(read("resources/liber-primus/lp1-plaintext-reference.txt")
+    .toUpperCase().match(/[A-Z]+/g) || []),
+  ...documents.flatMap(([, s]) => s.match(/[A-Z]+/g) || [])
+]);
+const wordPatterns = new Set([...wordList].map(wordPattern));
+assert.equal(wordList.size, 32232);
+assert.equal(wordPatterns.size, 6680);
+
+/**
+ * @param {number[]} codes
+ * @returns {null | {words:number, singleTypes:number, allWordPatterns:boolean}}
+ */
+function evaluateWords(codes) {
+  if (codes[0] === 0 || codes.at(-1) === 0) return null;
+  const words = [];
+  let current = [];
+  for (const c of codes) {
+    if (c === 0) {
+      if (!current.length) return null;
+      words.push(current);
+      current = [];
+    } else current.push(c);
+  }
+  words.push(current);
+  const singleTypes = new Set(words.filter((w) => w.length === 1)
+    .map((w) => w[0])).size;
+  return {
+    words: words.length,
+    singleTypes,
+    allWordPatterns: words.every((w) => wordPatterns.has(wordPattern(w)))
+  };
+}
+
+/**
+ * Enumerate all source-admissible stationary rune-bit keys AGAIN, now
+ * checking only source-word-pattern conditions. No output letter labels
+ * are assigned or fitted. Both output reading directions are checked.
+ * @param {number[][]} groups
+ * @returns {{validKeys:number, spacedReadings:number, atMostTwoSingletonReadings:number, allPatternReadings:number, fullyCompatibleReadings:number}}
+ */
+function allSecretOutputPatterns(groups) {
+  const {incident} = forbiddenConstraints(groups);
+  const order = Array.from({length:29}, (_, i) => i).sort((a,b) =>
+    incident[b].length - incident[a].length || a - b);
+  const out = {
+    validKeys:0, spacedReadings:0, atMostTwoSingletonReadings:0,
+    allPatternReadings:0, fullyCompatibleReadings:0
+  };
+
+  /** @param {number} depth @param {number} one @param {number} zero */
+  function dfs(depth, one, zero) {
+    if (depth === 29) {
+      out.validKeys++;
+      const coded = decode(one, groups);
+      for (const direction of [coded, [...coded].reverse()]) {
+        const shape = evaluateWords(direction);
+        if (!shape) continue;
+        out.spacedReadings++;
+        if (shape.singleTypes <= 2) out.atMostTwoSingletonReadings++;
+        if (shape.allWordPatterns) out.allPatternReadings++;
+        if (shape.allWordPatterns && shape.singleTypes <= 2) {
+          out.fullyCompatibleReadings++;
+        }
+      }
+      return;
+    }
+    const bit = 1 << order[depth];
+    for (const [o,z] of [[one,zero|bit],[one|bit,zero]]) {
+      let rejected = false;
+      for (const [p,n] of incident[order[depth]]) {
+        if ((o & p) === p && (z & n) === n) {
+          rejected = true;
+          break;
+        }
+      }
+      if (!rejected) dfs(depth + 1,o,z);
+    }
+  }
+  dfs(0,0,0);
+  return out;
+}
+
 const model = quadgrams(documents);
 const heldout = documents.map(([name, s]) =>
   ({source: name, score: score(toCodes(s.slice(5000, 5201)), model)}));
@@ -240,6 +349,38 @@ assert.ok(planted.best.score >= heldout[0].score - 1e-8);
 assert.ok(heldout.every((h) =>
   h.score > Math.max(printed.best.score, mirrored.best.score) + 1000));
 
+
+const spacePermutationGate = {
+  printed: allSecretOutputPatterns(original),
+  mirrored: allSecretOutputPatterns(original.map((g) => [...g].reverse()))
+};
+assert.deepEqual(spacePermutationGate.printed, {
+  validKeys:290417, spacedReadings:232, atMostTwoSingletonReadings:106,
+  allPatternReadings:0, fullyCompatibleReadings:0
+});
+assert.deepEqual(spacePermutationGate.mirrored, {
+  validKeys:246239, spacedReadings:214, atMostTwoSingletonReadings:80,
+  allPatternReadings:1, fullyCompatibleReadings:0
+});
+
+// Positive control: a complete 201-character source-language phrase with
+// word delimiters at BOTH ends, then an unknown global nonspace-letter
+// permutation and a seeded stationary 29-rune binary ciphertext carrier.
+const native = documents[0][1].slice(5011,5212);
+assert.equal(native.length,201);
+assert.equal(documents[0][1][5010], " ");
+assert.equal(documents[0][1][5212], " ");
+const secretAlphabet = Array.from({length:27},(_,i) =>
+  i === 0 ? 0 : (((i - 1) * 7 + 5) % 26) + 1);
+assert.equal(new Set(secretAlphabet).size,27);
+const permuted = toCodes(native).map((i)=> secretAlphabet[i]);
+const shapePlant = plant(permuted);
+const decodedPlant = decode(shapePlant.mask, shapePlant.groups);
+assert.deepEqual(decodedPlant,permuted);
+assert.deepEqual(evaluateWords(decodedPlant),{
+  words:42, singleTypes:1, allWordPatterns:true
+});
+
 console.log(JSON.stringify({
   result: "No GP-native English plaintext/key recovered under fixed 5-bit SPACE0 code",
   source: "Original LP2 pp23-26 red-16 heading, body201x5",
@@ -248,6 +389,8 @@ console.log(JSON.stringify({
   printed,
   mirrored,
   plantedSource201Exact: true,
+  outputPermutationWordPatternGate: spacePermutationGate,
+  hiddenPermutationWordPatternPlant: native,
   plantKey: actualPlant.mask,
   plantKeyspace: planted.keys,
   plantedBestScore: planted.best.score
