@@ -177,3 +177,178 @@ const result = {
   modes: observed
 };
 console.log(JSON.stringify(result, null, 2));
+
+
+// Stronger all-secret necessary-condition test. The 56 signed source words
+// select the page-local key periods, but arbitrary independent secret
+// alphabet permutations are granted to EACH page and key-phase position.
+// Equality within such a group survives every bijective substitution key.
+// The same test applies to both 28-way predecessor-exclusion ranks.
+//
+// Only key phase is constrained; the actual signed chorus key letters
+// are NOT supplied to the all-secret statistical invariant.
+/**
+ * @typedef {'raw'|'sorted'|'cyclic'} Observation
+ * @param {number[][]} pages
+ * @param {Observation} observation
+ * @returns {{hits:number,pairs:number,rate:number,groups:number}}
+ */
+function samePhaseEquality(pages, observation) {
+  let hits = 0, pairs = 0, groups = 0;
+  pages.forEach((page, pageIndex) => {
+    if (!page.length) return;
+    const period = keys[pageIndex].length;
+    const bins = Array.from({length: period}, () =>
+      Array(observation === 'raw' ? 29 : 28).fill(0));
+    let previous = -1;
+    page.forEach((current, position) => {
+      let symbol = current;
+      if (observation !== 'raw') {
+        if (!position || current === previous) {
+          previous = current;
+          return;
+        }
+        symbol = toRank(current, previous, observation);
+      }
+      bins[position % period][symbol]++;
+      previous = current;
+    });
+    for (const hist of bins) {
+      const size = hist.reduce((sum, count) => sum + count, 0);
+      if (size < 2) continue;
+      hits += hist.reduce((sum, count) => sum + count * (count - 1), 0);
+      pairs += size * (size - 1);
+      groups++;
+    }
+  });
+  return {hits, pairs, rate: hits / pairs, groups};
+}
+
+/** @param {string} source @returns {number[][]} */
+function nativePageSource(source) {
+  const values = [];
+  for (const word of source.match(/[A-Za-z]+/g) || []) {
+    values.push(...gp(word));
+    if (values.length >= n) break;
+  }
+  assert.ok(values.length >= n);
+  let next = 0;
+  return pageLengths.map(length => {
+    const page = values.slice(next, next + length);
+    next += length;
+    return page;
+  });
+}
+
+/**
+ * True page/key-phase dependent unknown 29-symbol alphabets; every
+ * map x -> 7*x+b is a bijection over GF(29), even if each phase
+ * has a distinct secret b.
+ * @param {number[][]} native
+ * @returns {number[][]}
+ */
+function secretRawPlant(native) {
+  return native.map((page, index) => page.map((value, pos) => {
+    const phase = pos % keys[index].length;
+    return mod(7 * value + 11 * index + 5 * phase, 29);
+  }));
+}
+
+/**
+ * Genuine arbitrary-secret 28-way rank cipher, one affine
+ * permutation for each page and key-phase, with the original
+ * page-doublet sites treated as explicit source-controlled erasures.
+ * This is a valid positive control for the nonrepeat lane, and
+ * does not assert that LP2's exception sites are recoverable.
+ * @param {number[][]} native
+ * @param {'sorted'|'cyclic'} order
+ * @returns {number[][]}
+ */
+function secretRankPlant(native, order) {
+  return native.map((page, pageIndex) => {
+    let previous = mod(7 * pageIndex + 3, 29);
+    return page.map((value, pos) => {
+      if (!pos) return previous;
+      if (cipher[pageIndex][pos] === cipher[pageIndex][pos - 1])
+        return previous;
+      const phase = pos % keys[pageIndex].length;
+      const rank = mod(5 * (value % 28) + 11 * pageIndex + 3 * phase, 28);
+      const current = fromRank(rank, previous, order);
+      previous = current;
+      return current;
+    });
+  });
+}
+
+/**
+ * @param {number[][]} source
+ * @returns {number[][]}
+ */
+function sourceRank28(source) {
+  return source.map((page, pageIndex) => page.map((value, pos) => {
+    // Marked exception sites and page firsts are excluded by
+    // samePhaseEquality on rank ciphertext; their symbols are immaterial.
+    return value % 28;
+  }));
+}
+
+const allSecretSources = [
+  {name: 'Shakespeare', source: read('resources/control/shakespeare_first300k.txt')},
+  {name: 'Gibran', source: read('resources/control/gibran_prophet_58585.txt')},
+  {name: 'Emerson', source: read('resources/control/emerson_essays_2944.txt')}
+];
+const originalAllSecret = {
+  raw: samePhaseEquality(cipher, 'raw'),
+  sorted: samePhaseEquality(cipher, 'sorted'),
+  cyclic: samePhaseEquality(cipher, 'cyclic')
+};
+assert.deepEqual(originalAllSecret.raw,
+  {hits:33568,pairs:976600,rate:33568/976600,groups:218});
+assert.deepEqual(originalAllSecret.sorted,
+  {hits:33944,pairs:955226,rate:33944/955226,groups:218});
+assert.deepEqual(originalAllSecret.cyclic,
+  {hits:34518,pairs:955226,rate:34518/955226,groups:218});
+
+const nativeControls = [];
+for (const {name, source} of allSecretSources) {
+  const native = nativePageSource(source);
+  const directNative = samePhaseEquality(native, 'raw');
+  const obscured = samePhaseEquality(secretRawPlant(native), 'raw');
+  assert.deepEqual(obscured, directNative,
+    'secret 29-way page-phase permutation invariant: ' + name);
+  const ranks = {};
+  for (const order of ['sorted', 'cyclic']) {
+    const secret = secretRankPlant(native, order);
+    const rankResult = samePhaseEquality(secret, order);
+    // Reconstruct exact native 28-symbol values at eligible slots.
+    const control = native.map((page, pageIndex) => page.map((v, pos) => {
+      if (!pos || cipher[pageIndex][pos] === cipher[pageIndex][pos - 1])
+        return -1;
+      return v % 28;
+    }));
+    let directHits=0,directPairs=0;
+    control.forEach((page,pageIndex) => {
+      const buckets=Array.from({length:keys[pageIndex].length},
+        ()=>Array(28).fill(0));
+      page.forEach((value,pos)=>{
+        if(value>=0)buckets[pos%keys[pageIndex].length][value]++;
+      });
+      buckets.forEach(hist=>{
+        const count=hist.reduce((a,b)=>a+b,0);
+        directHits+=hist.reduce((a,b)=>a+b*(b-1),0);
+        directPairs+=count*(count-1);
+      });
+    });
+    assert.equal(rankResult.hits,directHits,'secret 28-way ' + name + order);
+    assert.equal(rankResult.pairs,directPairs,'phase pairs '+name+order);
+    assert.ok(rankResult.rate>0.05,'native-source secret rank result');
+    ranks[order]=rankResult;
+  }
+  assert.ok(directNative.rate>0.05,'native-source secret GP29 result');
+  nativeControls.push({name,raw:directNative,sorted:ranks.sorted,
+    cyclic:ranks.cyclic});
+}
+assert.ok(Object.values(originalAllSecret).every(x=>x.rate<0.037));
+console.log('ALL_SECRET_56_WORD_PERIODS',
+  JSON.stringify({pageKeyPeriods:keys.map(k=>k.length),
+    original:originalAllSecret, nativeControls},null,2));
