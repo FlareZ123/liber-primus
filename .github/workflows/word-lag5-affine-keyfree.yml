@@ -13,6 +13,7 @@ on:
           - lossless-echo
           - native-ea-flanks
           - rsa-4096-terminal
+          - p57-lsb-claim
 permissions:
   contents: read
 jobs:
@@ -41,3 +42,13 @@ jobs:
       - name: Test original numerical-table plus terminal-runes RSA-4096 signature encoding
         if: ${{ inputs.experiment == 'rsa-4096-terminal' }}
         run: node sims/lp2_grid_terminal_rsa4096_signature_sft.cjs
+      - uses: actions/setup-python@v7
+        if: ${{ inputs.experiment == 'p57-lsb-claim' }}
+        with:
+          python-version: '3.12'
+      - name: Install pinned image-analysis dependencies
+        if: ${{ inputs.experiment == 'p57-lsb-claim' }}
+        run: python -m pip install numpy==2.2.6 pillow==11.3.0
+      - name: Original Page57 LSB claim and real-page controls
+        if: ${{ inputs.experiment == 'p57-lsb-claim' }}
+        run: python sims/lp2_p57_lsb_external_claim_control_sft.py
