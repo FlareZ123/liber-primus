@@ -3,7 +3,8 @@
  * Exact original-input ITA2 (Baudot) letters-only gate, LP2 pp23–26.
  * node sims/lp2_p23_26_ita2_allmask_sft.cjs
  * International Telegraph Alphabet No. 2: ITU-T S.1.
- * No unrestricted ITA2/FIGS/SPACE exclusion is claimed.
+ * Ordinary letters, spaces and FIGS-only variants are tested exactly;
+ * a proper stateful ITA2 stream with LF/CR/LTRS remains open.
  */
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path');
@@ -21,10 +22,10 @@ const quintets=Array.from({length:201},(_,i)=>body.slice(i*5,i*5+5));
 const controls=[0,2,4,8,27,31]; // NUL LF SP CR FIGS LTRS
 const reverse5=v=>parseInt(v.toString(2).padStart(5,'0').split('').reverse().join(''),2);
 assert.deepEqual(controls.map(reverse5).sort((a,b)=>a-b),controls);
-/** @param {number[][]} groups */
-function makeClauses(groups){
+/** @param {number[][]} groups @param {number[]} [excluded] */
+function makeClauses(groups,excluded=controls){
  const seen=new Set(),clauses=[];let impossiblePatterns=0;
- for(const g of groups)for(const v of controls){
+ for(const g of groups)for(const v of excluded){
   let ones=0,zeros=0,impossible=false;
   for(let j=0;j<5;j++){
    const bit=1<<g[j];
@@ -76,6 +77,24 @@ assert.equal(original.clauses.length,1121);
 assert.equal(original.impossiblePatterns,85);
 const result=exactSAT(original.clauses);
 assert.deepEqual(result,{satisfiable:false,nodes:303,branches:151,conflicts:152});
+// Permit literal ITA2 SPACE (code 4): all possible rune-bit maps still
+// force at least one NUL/LF/CR/FIGS/LTRS control among the 201 groups.
+const printableAllowed=[0,2,8,27,31];
+assert.deepEqual(printableAllowed.map(reverse5).sort((a,b)=>a-b),printableAllowed);
+const printableClauses=makeClauses(quintets,printableAllowed);
+assert.equal(printableClauses.clauses.length,944);
+const printableResult=exactSAT(printableClauses.clauses);
+assert.deepEqual(printableResult,
+ {satisfiable:false,nodes:335,branches:167,conflicts:168});
+// More generously even allow FIGS in addition to letters and spaces.
+// A stationary bit assignment still requires one of NUL, LF, CR, LTRS.
+const figuresAllowed=[0,2,8,31];
+assert.deepEqual(figuresAllowed.map(reverse5).sort((a,b)=>a-b),figuresAllowed);
+const figuresClauses=makeClauses(quintets,figuresAllowed);
+assert.equal(figuresClauses.clauses.length,767);
+const figuresResult=exactSAT(figuresClauses.clauses);
+assert.deepEqual(figuresResult,
+ {satisfiable:false,nodes:519,branches:259,conflicts:260});
 // A native 201-letter planted control must decode losslessly under a
 // separately chosen permanent 29-rune bit mapping and remain SAT-feasible.
 const table=new Map(Object.entries({
@@ -95,6 +114,22 @@ const plant=Array.from(message,(letter,i)=>
 const inverse=new Map([...table].map(([letter,code])=>[code,letter]));
 assert.equal(plant.map(g=>inverse.get(g.reduce((x,r)=>2*x+bits[r],0))).join(''),message);
 assert.equal(exactSAT(makeClauses(plant).clauses).satisfiable,true);
+// A second independently constructed planted ITA2 plaintext includes
+// ordinary spaces. It must pass the exact printable-code SAT gate.
+const wordsMessage=('THE PRIMES ARE SACRED AND THE WORDS ARE THE MAP '+
+ 'THE NUMBERS ARE THE DIRECTION ').repeat(4).slice(0,201);
+const lettersAndSpace=new Map([...table,[' ',4]]);
+const spacePlant=Array.from(wordsMessage,(letter,i)=>
+ Array.from({length:5},(_,j)=>{
+  const bit=(lettersAndSpace.get(letter)>>(4-j))&1;
+  const candidates=bits.flatMap((b,r)=>b===bit?[r]:[]);
+  return candidates[(i*11+j*13)%candidates.length];
+ }));
+const invertSpace=new Map([...lettersAndSpace].map(([letter,code])=>[code,letter]));
+assert.equal(spacePlant.map(g=>invertSpace.get(
+ g.reduce((v,r)=>2*v+bits[r],0))).join(''),wordsMessage);
+assert.equal(exactSAT(makeClauses(spacePlant,printableAllowed).clauses)
+ .satisfiable,true);
 // Original printed word and page boundaries are retained separately.
 const t=read('resources/liber-primus/lp2-transcription.txt').split('%').slice(23,27).join('%');
 let seen=0,inword=0;const words=[],boundaries=[];
@@ -115,6 +150,9 @@ console.log(JSON.stringify({
  printedBodyWords:220,printedBoundaryMod5:residues,
  ITA2Nonletters:controls,CNFClauses:original.clauses.length,
  repeatedRuneImpossiblePatterns:original.impossiblePatterns,
- exactOriginalTest:result,positiveControl:{letters:201,exactRecovery:true},
- conclusion:'Every stationary 29-rune bit mask yields at least one nonletter ITA2 code. No plaintext, key or full 5-to-1 original-cipher inverse recovered.'
+ exactOriginalTest:result,
+ printableWithSpaces:{excluded:printableAllowed,clauses:printableClauses.clauses.length,...printableResult},
+ printableIncludingFigures:{excluded:figuresAllowed,clauses:figuresClauses.clauses.length,...figuresResult},
+ positiveControl:{letters:201,spacedLetters:201,exactRecovery:true},
+ conclusion:'Every stationary 29-rune bit mask forces an ITA2 control even when SPACE and FIGS are allowed. Stateful ITA2 remains open; no original unknown plaintext or key.'
 },null,2));
