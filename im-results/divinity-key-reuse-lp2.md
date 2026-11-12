@@ -1,6 +1,6 @@
-# Reusing the authentic LP1 DIVINITY key on unsolved LP2
+# p55 circumference and historical DIVINITY key tests on unsolved LP2
 
-The full-book authentic LP1 key transfer and a further **source-selected p55 strict-word-interior DIVINITY test** both fail to recover unknown GP29 plaintext. A separate later selective literal-F bigram Viterbi study of both authentic LP1 keys also finds no LP2 language; see [the skip-mask study](lp2-historical-vigenere-skip-viterbi.md).
+The full-book authentic LP1 key transfer, the p55 strict-word-interior DIVINITY test, and a source-motivated p55 own-circumference key test all fail to recover unknown GP29 plaintext. A separate later selective literal-F bigram Viterbi study of both authentic LP1 keys also finds no LP2 language; see [the skip-mask study](lp2-historical-vigenere-skip-viterbi.md).
 
 **Classification: bounded negative for direct key reuse.** The authentic Vigenère key recovered from LP1 pages 03–04 does not produce English-like plaintext when transferred directly to LP2 pages 0–55.
 
@@ -71,14 +71,32 @@ The [new independent 43-rune SFT](../sims/p55_divinity_within_43_sft.cjs) assert
 
 **Decision:** the p57 phrase provides a compelling human-facing proposal for both *target* and *historical key*. The direct authentic GP29 Vigenère consumer does not recover plaintext under either originally motivated F convention and both natural continuous/word-reset source clocks. This is a bounded failure of the proposed direct 43-rune operation, not a verdict on p57's instructions, p55's possible underlying language or another uniquely sourced reversible mechanism.
 
+## Source-motivated p55 own-circumference key (negative)
+
+The same p57 instruction also admits one complete, source-shaped self-key hypothesis: treat the **33 exterior runes** as a repeating GP29 Vigenère key for the **43 strict interiors**. The 33-symbol key is not guessed: it is the one-rune incoming p54 carry followed by the first and last rune of each of the 16 complete p55 words, in printed physical order. The 43-symbol ciphertext is the concatenation of those words' strict interiors. Thus all 76 p55 runes are assigned exactly once (33 key + 43 ciphertext), with no omitted exterior or unaccounted carry.
+
+The historical LP1 Vigenère subtraction is fixed at phase zero: P[i]=(C[i]−K[i mod33]) mod29. The key is repeated once for the final ten interior symbols. No word resets, key phase, reordering, F skips or fitted transforms are introduced. The opposite sign is retained only as a direction control.
+
+- Source p55 word-fragment lengths: **[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]** (first fragment is the incoming carry).
+- Exterior key: **33** GP runes; transliteration **AE W S B X M S AE F U W R B EO M F B C EO E EA S E S TH OE C X D U B I**.
+- Interior ciphertext: **43** GP runes; the 16 per-word interior lengths are **[2,0,0,4,4,0,11,4,2,0,5,5,0,4,1,1]**.
+- The subtraction output, restored to original interior word boundaries, is **X / — / — / CLGB / HNNGC / — / IAOEIOEWJCAEONTH / THNIA / GM / — / PAEEOPE / CGAO / — / JAEFM / S / E**. It is not readable prose.
+
+Using the same pinned English quadgram model, the raw 43-rune interior scores **−7.19444237**, exterior-key subtraction scores **−7.95806793**, and opposite-sign control scores **−7.91936146**. A frozen 43-rune solved-p57 English control scores **−4.36842484**. A synthetic p57 plant encrypted with the extracted 33-rune key is recovered exactly, confirming the implementation. Both fixed directions are worse than raw and yield no plaintext.
+
+The [own-circumference SFT](../sims/p55_own_circumference_vigenere_sft.cjs) asserts the original p55 word fragments, exact 33/43 partition, physical key order, forward round-trip, p57 positive plant, and all four scores.
+
+**Decision:** reject this one physical-order, phase-zero, repeating-Vigenère use of p55's own 33 exterior runes as the key for its 43 interiors. It does not test other exterior operations, key schedules or ciphers, but no arbitrary edge permutation, key phase, word reset or F-mask should be added to rescue this model.
+
 ## Conclusion
 
-Direct reuse of the authentic LP1 DIVINITY Vigenère key across all LP2, **including the specifically motivated 43-rune strict p55 interiors**, is not supported. This does not exclude reuse of the keyword in a different role, a different cipher layer, or a source-dependent key schedule; those would require a separately sourced operation.
+Direct reuse of the authentic LP1 DIVINITY Vigenère key and the p55 own-circumference repeating-key construction are both unsupported by plaintext evidence. These bounded negatives do not exclude a different source-dependent cipher layer or exterior operation; such a route requires an independently selected reversible mechanism.
 
 ## Reproduction
 
 Run from the repository root:
 
     node sims/lp2_divinity_key_reuse.cjs
+node sims/p55_own_circumference_vigenere_sft.cjs
 
 The script reads pinned resources, verifies that the key matches the established LP1 recovery script, emits source hashes and all 32 scores, and reports the best decoded samples. No CI workflow was created or modified.
