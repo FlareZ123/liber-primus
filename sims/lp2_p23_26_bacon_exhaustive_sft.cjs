@@ -246,10 +246,10 @@ function gpToText(gpDigits, alphabet) {
   }
   return text.replace(/[^A-Z]/g, "");
 }
-const latinDigits = readText("resources/control/latin-vulgate-gp-wholewords.txt")
+const latinDigits = read("resources/control/latin-vulgate-gp-wholewords.txt")
   .split(/\r?\n/).map((line) => line.trim())
   .filter((line) => line !== "" && !line.startsWith("#")).join("");
-const oldEnglish = JSON.parse(readText("resources/control/beowulf_oe_gp_profile_corrected.json"));
+const oldEnglish = JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
 const extraText = [
   ["Latin Vulgate NT", gpToText(latinDigits, "0123456789ABCDEFGHIJKLMNOPQRS")],
   ["Old English Beowulf", gpToText(oldEnglish.sourceGpBase29, oldEnglish.positiveControlAlphabet)]
