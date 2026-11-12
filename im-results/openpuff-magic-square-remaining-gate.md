@@ -1,5 +1,18 @@
 # Remaining 2014 OpenPuff magic squares as LP2 key material
 
+
+## Source identity, signedness, and LP2 transfer gate (Agent31, 12 November 2026)
+
+The repository's archived text resource `resources/cicada2014-openpuff-magic-squares.txt` is **745 bytes**, Git blob SHA-1 **0cff0a94f16a8603443619b6338def411c9f7bd5**, and raw-content SHA-256 **9e5c3004eec652c89027e99aa6f31c53a84c1f8c327c04ca9aa6acf7884b6c7f**. It contains only the three numeric matrices and whitespace: 5×5 / 3301, 7×7 / 1033, and 5×5 / 1033.
+
+The [SECRA research article](https://secra.tech/research/liber-primus-strongest-findings/) and its [supporting evidence page](https://secra.tech/research/liber-primus-strongest-findings/evidence/index.html) report a separate **721-byte** archived square file with SHA-256 **da31a5a338be6d587ebec87f1dd0bcfdd47108dfc9db5bfc2bd261a58717f190**. The three matrix values agree with the repository copy, but the byte lengths and SHA-256 values differ; the 721-byte SECRA bytes are not supplied in that evidence record, so byte identity is **not established**. Do not silently treat the two files as byte-identical or assume the difference is only line endings.
+
+SECRA's source audit distinguishes the authentication scopes: the original MP3 hex is signed; the form request prose is signed; the order/sum labels are outside that signed block; and the separate square file is **not signed**. The evidence page explicitly says it did **not** perform a fresh MP3 OpenPuff extraction. Accordingly, the local 745-byte file is a historically reported OpenPuff output, not a newly authenticated extraction in this invocation. The signed form's author-visible request is for squares of orders **5, 7, 5** and totals **3301, 1033, 1033**; the archived matrices satisfy those requirements. Two matrices also recur in LP1. These facts explain the earlier 2014 stage's square task.
+
+They do not select an LP2 operation. The 2014 Stage07 square set is a different object from LP2 p15's 4×4 grid and LP2 physical pp49–51's 32×8 table. The attractive center sequence 809→331→91 followed by prime-counting, subtraction and GP mapping to LP is a community observation; no inspected signed instruction says to choose those centers, apply π rather than φ, subtract in that direction, map through GP29, or continue into an LP2 page. The existing direct GP29 additive and Hill tests, including the p57 border-peeling variants, remain negative.
+
+**Decision:** the historical payload and its numeric content are located and compared, but no primary-source line selects an LP2 page/diagram, alphabet, symbol-changing operation or key clock. This is a completed missing-transfer decision for #641. Do not repeat OpenPuff extraction, square-dimension coincidences, or modulo/Hill variants without a new source-authenticated selector.
+
 ## Result
 
 No plaintext was recovered. The first two squares from the historical OpenPuff output were tested against all 12,956 runes on LP2 pages 0–55:
