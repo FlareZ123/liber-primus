@@ -23,6 +23,7 @@ on:
           - stage04-square-original
           - stage04-99x76-p55
           - red119-twotime
+          - p40-word-red35
           - signed2016-wordmap
 permissions:
   contents: read
@@ -76,6 +77,11 @@ jobs:
       - name: Frozen Stage04 99x76 p55 row pad original-cipher gate
         if: ${{ inputs.scan_mode == 'stage04-99x76-p55' }}
         run: node sims/lp2_stage04_99x76_p55_rowpad_sft.cjs
+      - name: Test p40 red8 and split red3-red5 whole-word inverse gates
+        if: ${{ inputs.scan_mode == 'p40-word-red35' }}
+        run: |
+          node sims/lp2_p40_red8_word_columnar_sft.cjs
+          node sims/lp2_p40_red35_twopass_word_columnar_sft.cjs
       - name: Original p3-p39 red119 shared-pad all-secret word grammar
         if: ${{ inputs.scan_mode == 'red119-twotime' }}
         run: node sims/lp2_p3_p39_119_shared_pad_wordgrammar_sft.cjs
