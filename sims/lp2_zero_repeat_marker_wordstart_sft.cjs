@@ -74,6 +74,81 @@ function repeats(data) {
 const original = repeats(cipher);
 assert.deepEqual(original, {total:86, start:23, start2:3});
 
+/**
+ * Source-geometry null: place 86 events uniformly among all 12,901
+ * same-page predecessor-eligible sites. Hypergeometric survival is exact.
+ * The creator could instead have used a non-uniform state machine.
+ * @param {number} N @param {number} K @param {number} n @param {number} atLeast
+ * @returns {number}
+ */
+function hypergeomTail(N, K, n, atLeast) {
+  let mass = 1;
+  for (let j = 0; j < n; j++) mass *= (N - K - j) / (N - j);
+  let tail = 0;
+  for (let k = 0; k <= n; k++) {
+    if (k >= atLeast) tail += mass;
+    if (k < n) {
+      mass *= ((K - k) * (n - k)) /
+        ((k + 1) * (N - K - n + k + 1));
+    }
+  }
+  return tail;
+}
+const eligibleSites = cipher.length - pageStarts.size;
+const eligibleWordStarts = wordOffset.reduce((n, pos, i) =>
+  n + (pos === 0 && !pageStarts.has(i) ? 1 : 0), 0);
+assert.deepEqual([eligibleSites,eligibleWordStarts], [12901,2873]);
+const uniformWordStarts = {
+  eligibleSites, eligibleWordStarts, repeatCount:original.total,
+  expected:original.total * eligibleWordStarts / eligibleSites,
+  upperTail:hypergeomTail(eligibleSites,eligibleWordStarts,
+    original.total,original.start)
+};
+assert(Math.abs(uniformWordStarts.upperTail - 0.19031622703657808) < 1e-10);
+
+const pagesForNull = source.map(page => {
+  const indices = page.indices;
+  let count = 0;
+  for (let i = 1; i < indices.length; i++) {
+    if (indices[i] === indices[i - 1]) count++;
+  }
+  return {eligible:indices.length - 1, count};
+});
+const pageOfEligibleSite = [];
+for (let p = 0; p < pagesForNull.length; p++) {
+  for (let i = 0; i < pagesForNull[p].eligible; i++) {
+    pageOfEligibleSite.push(p);
+  }
+}
+assert.equal(pageOfEligibleSite.length, eligibleSites);
+const rate = original.total / eligibleSites;
+const expectedPages = pagesForNull.map(page => page.eligible * rate);
+/** @param {number[]} counts @returns {number} */
+function pageChi(counts) {
+  return counts.reduce((stat, count, i) =>
+    stat + (count - expectedPages[i]) ** 2 / expectedPages[i],0);
+}
+const observedPageChi = pageChi(pagesForNull.map(p => p.count));
+const pageRng = seededRandom(0x330131);
+const pageTrials = 20000;
+let pageAtLeast = 0;
+for (let trial = 0; trial < pageTrials; trial++) {
+  const draws = new Set();
+  while (draws.size < original.total) {
+    draws.add(Math.floor(pageRng() * eligibleSites));
+  }
+  const counts = new Array(pagesForNull.length).fill(0);
+  for (const index of draws) counts[pageOfEligibleSite[index]]++;
+  if (pageChi(counts) >= observedPageChi) pageAtLeast++;
+}
+const uniformPageEvents = {
+  statistic:observedPageChi, seed:0x330131,
+  samples:pageTrials, upperTail:(pageAtLeast + 1)/(pageTrials + 1)
+};
+assert(uniformPageEvents.upperTail > 0.2 &&
+  uniformPageEvents.upperTail < 0.4);
+
+
 /** @param {string} text @returns {Map<number,number[][]>} */
 function poolsFrom(text) {
   const pools = new Map();
@@ -334,7 +409,8 @@ for (const [name, filename, seed] of references) {
     anyOf29MarkersExactly86_23_3:anyMarkerExact
   });
 }
-const report = {original, solvedNative, markerCount:29,
+const report = {original, uniformWordStarts, uniformPageEvents,
+  solvedNative, markerCount:29,
   toleranceTotal:10, replicatesPerSource:REPLICATES, sources:sourceResults};
 assert(sourceResults.every(x =>
   x.EA.near86AndStartAtLeast23 === 0 &&
