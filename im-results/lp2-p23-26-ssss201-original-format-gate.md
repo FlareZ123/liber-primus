@@ -1,8 +1,6 @@
-# LP2 pp23–26 five-dot chapter: historical SSSS field and completed original-p2 inverse
+# LP2 p23–26 five-dot chapter: historical SSSS whole-field inversions against physical p2
 
-**Decision (12 November 2026, Agent21):** The five post-heading 201-rune source strands fit the genuine historical ssss v0.5 **984-bit** field. A complete original-cipher inverse now examines **120,960 exact 984-bit monic quintic reconstructions** across the four source-native layouts/readings and all distinct assignments of five historical IDs 01–10. The separately original **201-rune physical p2** is tested as the shared secret, with either reading direction and with or without the historical XTEA diffusion step. **Zero reconstruct p2**. The original-order outputs are also unreadable. This closes this specific p2-as-SSSS-secret model without recovering any other unknown plaintext, key or destination.
-
-The previous capacity restriction was conditional: **two of five** original 201-digit values in each reading exceed a deliberately smaller **976-bit** field, while **all five** fit the historically supported **984-bit** field. The genuine participant 2013 sample itself used **176-bit** shares and cannot directly carry these 201-rune LP2 streams.
+**Decision (12 November 2026, Agent21):** The original five post-heading 201-rune source strands fit historically supported **984-bit SSSS fields**. Two distinct full-cipher tests now close both natural roles for the separate 201-rune physical **p2**: **120,960** exact five-share reconstructions yield no original-p2 shared secret before or after the genuine historical XTEA diffusion; **1,209,600** exact six-point monic-quintic consistency tests find **no valid p2-as-sixth-share**. A complete reverse-XTEA readout of all 120,960 reconstructed secrets yields no coherent text or Tor/HTTP/PGP artifact. The 2013 period-original onion output and full-size planted controls succeed. These are source-bounded exclusions, with **no authentic unknown LP2 plaintext, key or continuation recovered**.
 
 ## Why the exact historical protocol matters
 
@@ -51,8 +49,41 @@ The literal natural assignment IDs 01..05 in original strand order produces four
 
 **New SFT:** [complete original 984-bit inversion](../sims/lp2_p23_26_ssss984_p2_original_gate_sft.cjs) on Node.js 22, with original rune corpus assertions and no external packages or network calls. [Original GitHub Actions run, PASS](https://github.com/FlareZ123/liber-primus/actions/runs/43286894266). The prior [976-bit source capacity and original 2013 polynomial SFT](../sims/lp2_p23_26_ssss201_field_gate_sft.cjs) remains a narrowly scoped companion.
 
+## Complete 120,960-output historical XTEA plaintext test
+
+The full pre-XTEA five-share search above is now paired with the period-original **ssss 0.5 inverse XTEA diffusion on every recovered 123-byte constant**, under all four already-frozen source order/direction readings and all 30,240 historical share-ID assignments per reading. The independently known 176-bit 2013 encoded field constant again decodes byte-for-byte to \`p7amjopgric7dfdi.onion\` using the identical per-field algorithm. For each of the resulting **120,960** original LP2 outputs, count ASCII-printable bytes, longest contiguous printable run, zero bytes and recognizable original artifact markers.
+
+| Complete original search | Observation |
+| --- | ---: |
+| Full historical XTEA readouts | **120,960** |
+| Maximum printable ASCII bytes in 123-byte outputs | **72** |
+| Maximum ASCII-alphanumeric bytes in any output | **56** |
+| Maximum contiguous printable run | **16** |
+| Maximum zero bytes in any output | **6** |
+| Literal complete \`.onion\`, \`http\` or \`BEGIN PGP\` occurrences | **0** |
+
+The most ASCII-printable readout is still binary-looking, with 72 printable bytes separated by nontext bytes. No output supplies recognizable plaintext or an endpoint. These exhaustive finite observations do not rule out a later source-selected cipher layer, structured binary output or key material. They reject the immediate *SSSS → ordinary readable plaintext/address* hypothesis under the original four source encodings and period share IDs.
+
+**Reproduction:** [portable C++20 and Boost C++ original-source SFT](../sims/lp2_p23_26_ssss984_full_xtea_ascii_sft.cpp), with exactly 1005 original source GP29 digits frozen and the historical 176-bit onion positive control. The complete program asserts all five maxima and 120,960 readouts. [Successful GitHub Actions run 43289947748](https://github.com/FlareZ123/liber-primus/actions/runs/43289947748).
+
+## Independent p2-as-sixth-share monic-quintic identity
+
+The physical 201-rune p2 may be **an additional sixth point** in the period-original five-of-ten secret-sharing polynomial, rather than its secret. This interpretation is independent of p2-as-constant and requires neither text recognition nor XTEA. It uses the same original p23 heading/5×201 partition, the same exact GF(2^984) and decimal historical IDs 01..10, and exactly the two original p2 reading directions. The monic degree-five form is historically documented.
+
+For six distinct share IDs \`x0...x5\`, define \`D = PRODUCT_{i<j}(xi XOR xj)\` and \`W_i = PRODUCT_{j<k, j≠i, k≠i}(xj XOR xk)\`, with products in the same field. The six original 201-digit values, if evaluations of one **monic degree-five polynomial**, must satisfy this *key-independent* necessary and sufficient leading-coefficient identity:
+
+\`(W_0*y_0) XOR ... XOR (W_5*y_5) = D\`.
+
+It is exact because the leading Lagrange coefficient is \`SUM_i y_i/PRODUCT_{j≠i}(xi XOR xj)\` in GF(2^984). Multiplication by the nonzero Vandermonde product \`D\` yields the displayed identity. Each weight is computed entirely from six small historical ID numbers and is independent of the 984-bit ciphertext values; the arithmetic does not construct/favor a secret or score English prose.
+
+Enumerate **all 10P6 = 151,200 assignments** of six distinct decimal identifiers from 1..10 for each of the four p23 strand readings and **both p2 directions**. This gives exactly **1,209,600** original-input six-point predictions. **Zero** satisfy the monic quintic identity. The minimum Hamming weight of any original 984-bit field residual against the required identity is **420 bit positions**, far from zero, although this distance is not a corrected statistical significance measure.
+
+A source-shaped positive plant constructs \`y(x)=x^5+c0\` with its sixth point forced to exactly the original 201-rune p2 unsigned base29 integer. Its full six-point identity is **exactly satisfied**. This validates the original p2 shape and the six-share forward and inverse algebra without choosing any plaintext words.
+
+**Reproduction:** [full original GF(2^984) six-point Common C++20 SFT](../sims/lp2_p2_p23_26_ssss984_sixth_share_sft.cpp), using exact frozen source input, all 210 ID sets, all 720 ordered assignments, four layouts and two p2 directions. The preceding five-point gate is algebraically different: the six-point gate excludes any **unknown** lower five coefficients, since they vanish from the sixth finite divided difference.
+
 ## Decision and next real source condition
 
-The direct **p2-as-SSSS-secret** hypothesis fails across all period-available share IDs and these four natural 201-rune source readings, even after the genuine XTEA layer. The four natural IDs01..05 outputs also fail as direct preimages of the archived 2014 anend target under the four tested 512-bit digest families. This is not a test of LP2 p56's deep-web hash. The manuscript gives no independent choice of other identifiers, serialization, consumer page or typed secret. Their possible key use remains untyped; do not search arbitrary cipher consumers without a source-selected receiver. Five strands may still serve an entirely different operation; these results cannot eliminate that possibility.
+Both natural physically equal-length roles for original **p2** are now directly excluded under the four source-native source readings, the real 984-bit ssss monic quintic and all period-available IDs 01..10. The complete reverse-XTEA readout yields no ordinary plaintext, onion/HTTP endpoint or PGP message. Four fixed natural IDs01..05 also fail as direct preimages of the archived 2014 anend target under the four 512-bit hash families documented earlier in this report; that archived 2014 target is a separate object from p56's deep-web hash. None of these tests proves the five-dot chapter does not contain a cipher, nor can they exclude a different source-selected share receiver, framing or second cryptographic layer.
 
-Do not commission another arbitrary identifier sweep. A useful renewed five-share route would first require a **source-visible receiver or source-selected output type**, ideally a known plaintext prediction. The [separate observed-2013-share-format analysis](lp2-p23-26-ssss-original-format-gate.md) correctly explains why the original 176-bit shares cannot directly be these full LP2 strands.
+The source-visible 201-rune length equality is now exhaustively resolved for both historically available SSSS roles; repeating additional unselected ID/key searches would merely multiply plausible nulls. Future work requires an independent original-artifact instruction that selects a **different exact recipient, payload type or key use**. Focus on distinct operations or original external key material.
