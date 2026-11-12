@@ -38,6 +38,12 @@
 - Extended [`sims/p50_hg_quotient_p56_totient_sft.cjs`](../../sims/p50_hg_quotient_p56_totient_sft.cjs) commit `9b3727a`, rewrote [decision report](../../im-results/p50_hg_quotient_p56_totient.md) commit `beec43b` to include 252-slot GP29 quotient reinterpreted as one unsigned BASE29 integer, serialized to big-endian bytes.
 - Both authentic printed/polynomial coefficient orders give **153 bytes** each, direct first24 hex `0a212d90ff3f0e105fb818c17b99aad69e164ed48df665b5` / `96127a261e676d369e7b69e6869ac90fb75b2bd21eedac4f`, no recognized gzip/ZIP/PNG/JPEG/PDF/bzip2/XZ/Zstd/7z/SQLite/zlib header, printable45/153 and52/153; no authenticated binary payload or key. A compressed/headerless/encrypted payload remains open in principle. Exact source program assertions passed against source original table/corpus.
 
+### E. Historically source-linked LP1 Wisdom 5×5 Hill decoder for p55
+
+- The nearly identical original moth on LP1 p5 (printed over **2014 original 5×5 1033 Wisdom square**) and on LP2 p55, plus p55's exactly **76 runes** with fixed literal **F25**, select a coherent and cheap *candidate*: skip F25 and interpret remaining **75=15×5** runes as standard column-vector five-symbol Hill blocks over GF29 under the authentic 2014 Wisdom matrix.
+- [Standalone original-input CommonJS Hill5 SFT](../../sims/lp1_wisdom5_hill_p55_sft.cjs), commit `ec758fe`; [complete decision report](../../im-results/lp1_wisdom5_hill_p55.md), commit `aa454e4`. The original matrix mod29 has determinant **3** (invertible) and exact inverse rows `[23,22,15,2,17];[24,25,4,2,24];[20,28,12,28,20];[24,2,4,25,24];[17,2,15,22,23]`. Frozen decoder gives `WUEARFRNGWNSOEOOEIALFYAEEAROEOEALWSUBYPMAEEAJNGAPREAAEDNGOEOEJOEASAITHDUBWNGTHORPTLSTHNJILJEJAAENY` on original p55, IoC **0.0385586**, no plaintext. Exact ciphertext roundtrip **75/75**, p57 GP-native plant **75/75**, all original source SFT assertions passed.
+- Retire this exact standard Hill5 source-key model. LP1 p5 moth duplicates also on LP2 p53, so thematic key selection is not unique. Row-vector variants or other cipher families need independent clue direction.
+
 ## Prior Agent49 work to retain
 
 - [Exact all-secret previous-cipher GP29 context bounds](../../im-results/lp2-highorder-cipher-context-entropy-gate.md): k=2,3,4 per-context secret rows fail every one of 89 native English windows, exact assignment costs minimum **4,738 / 278 / 8** respectively. Repro: `sims/lp2_highorder_cipher_context_entropy_sft.cjs`. This is conditional on native-GP text.
