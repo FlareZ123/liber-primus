@@ -36,6 +36,8 @@ const nSectors=size/SECTOR;
 const owner=new Uint8Array(nSectors);
 const entries=[];
 const directoryVisited=new Set();
+const directoryPadding=[];
+const pathTablePadding=[];
 const sectorsIn=(n)=>Math.ceil(n/SECTOR);
 
 /** @param {number} sector @returns {Buffer} */
@@ -103,7 +105,12 @@ function walk(lba,bytes,prefix){
   let p=0;
   while(p<data.length){
     const recordLength=data[p];
-    if(!recordLength){p=(Math.floor(p/SECTOR)+1)*SECTOR;continue;}
+    if(!recordLength){
+      const end=Math.min(data.length,(Math.floor(p/SECTOR)+1)*SECTOR);
+      const nonzero=nonzeroCount(data.subarray(p,end));
+      if(nonzero)directoryPadding.push({lba:lba+Math.floor(p/SECTOR),nonzero});
+      p=end;continue;
+    }
     assert.ok(recordLength>=34&&p+recordLength<=data.length);
     const nameLength=data[p+32];
     assert.ok(33+nameLength<=recordLength);
@@ -150,12 +157,23 @@ for(let i=0;i<16;i++){
 // Inspect PVD application-use and reserved tail independently from files.
 const pvdApplication=pvd.subarray(883,1395);
 const pvdReserved=pvd.subarray(1395,2048);
+const pathLbas=[...new Set([
+  pvd.readUInt32LE(140),pvd.readUInt32LE(144),
+  pvd.readUInt32BE(148),pvd.readUInt32BE(152)
+].filter(x=>x>0))];
+if(tableSize%SECTOR)for(const lba of pathLbas){
+  const last=lba+Math.floor(tableSize/SECTOR);
+  const tail=sector(last).subarray(tableSize%SECTOR);
+  pathTablePadding.push({lba:last,nonzero:nonzeroCount(tail)});
+}
 const volumeMetadata={
   applicationUseNonzero:nonzeroCount(pvdApplication),
   applicationUseNonpadding:pvdApplication.reduce((n,x)=>n+(x!==0&&x!==32),0),
   reservedTailNonzero:nonzeroCount(pvdReserved),
   applicationAscii:(pvdApplication.toString("latin1").match(/[ -~]{24,}/g)||[]).slice(0,3),
   reservedAscii:(pvdReserved.toString("latin1").match(/[ -~]{24,}/g)||[]).slice(0,3),
+  directoryPaddingRecords:directoryPadding,
+  pathTablePadding,
   bootCatalogTails:bootCatalog.map(lba=>({lba,
     beyondInitialEntriesNonzero:nonzeroCount(sector(lba).subarray(64))}))
 };
