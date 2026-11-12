@@ -1,7 +1,7 @@
 "use strict";
 /**
  * Source-frozen all-F literal clock p22 under LP1 p16 5x5/3301 square.
- * Two original mirrored-art correspondences intersect uniquely at LP1 p16.
+ * Expanded artwork parents intersect at LP1 pp15/16; p16 is a conditional key source.
  * The page22 six literal Fs leave exactly five 25-cell key cycles.
  * Tests row-major raw or arithmetic-totient cells in both additive senses.
  * No fitted keys, key phase, clock, F masks or page subset; no writes.

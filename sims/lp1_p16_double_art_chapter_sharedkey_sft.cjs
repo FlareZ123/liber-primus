@@ -1,6 +1,6 @@
 "use strict";
 /**
- * SFT: two original illustration links intersect at LP1 p16, then test the
+ * SFT: conditional LP1 p16 source candidate from two illustration links, then test the
  * key-independent equality requirement for a common position-wise GP29
  * substitution/additive pad across their original source-visible LP2 chapters.
  *
@@ -29,10 +29,10 @@ const b = fromPages(15, 22);
 assert.equal(a.length, 729);
 assert.equal(b.length, 1903);
 
-const artA = [9, 13, 16];
+const artA = [1, 9, 13, 15, 16];
 const artB = [14, 15, 16];
 const intersection = artA.filter((page) => artB.includes(page));
-assert.deepEqual(intersection, [16]);
+assert.deepEqual(intersection, [15,16]);
 const length = a.length;
 
 /**
@@ -139,7 +139,7 @@ console.log(JSON.stringify({
   source: {
     lp2Chapters: ["p0–2 (729 GP29 runes)", "p15–22 (1903 GP29 runes)"],
     visualReferencesLP1: [artA, artB],
-    uniqueCommonLP1Page: intersection[0],
+    commonLP1PageCandidates: intersection,
     p16Object: "5x5 / 3301 magic square",
     testedMechanism: "common position-wise bijection for no-offset, or common additive pad with independent unknown chapter Caesar offsets"
   },
