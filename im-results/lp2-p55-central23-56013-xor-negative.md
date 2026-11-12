@@ -1,70 +1,37 @@
-# p55 central-23 / DATA/560.13 XOR gate — negative
+# P55's two source-selected 23-rune extractions × historical DATA/560.13: direct XOR fails
 
-<badge>Closed: exact candidate rejected</badge>
+**Status (12 November 2026, Agent44):** four bounded, source-derived 23-byte direct XOR transfers are negative. This consolidates the earlier central-slice test and the newly distinct **twice-peeled complete-word** test. Neither yields plaintext, a historically valid v2 onion destination, a key, or an LP2 decipherment. The original-source mechanism remains conditional.
 
-## Question
+## The independently available human operations
 
-Does p57's parable prescribe stripping word boundaries from p55, retaining the central 23 symbols, and using the historical 2013 DATA/560.13 bytewise-XOR mechanism at the p15 source-derived file offset?
+The authentic solved LP2 p57 PARABLE orders a reader to shed word circumferences and find the divinity within. The original unknown physical p55 page has **16 complete words**, 75 runes plus an incoming p54 word-ending rune, and original p57 has one unique **23-dot terminal mark**. Two geometrically natural source-to-23 selections must be kept separate:
 
-This was a frozen, original-input test. It did not scan offsets, slice lengths, phases, or additional encodings.
+| 23-rune selector | Exact rule on p55 complete words | Original GP index sequence |
+| --- | --- | --- |
+| **Previously tested central23** | Remove one rune from each end of each complete word, yielding 43 symbols; take the central 23, deleting ten symbols from both ends | `[28,0,14,10,19,1,5,13,8,21,20,15,23,27,13,8,12,18,10,6,14,6,15]` |
+| **New nested23** | Remove **two rune pairs from each complete word**, without fitting any global slice offset; the original word lengths give exactly **23** survivors | `[6,23,24,17,0,14,10,19,1,5,13,8,21,23,27,10,6,14,12,2,2,10,19]` |
 
-## Source-selected construction
+The nested case belongs to the original p55 recursive `75→43→23→9→5→3→1` source pattern, giving a stronger operational reason to choose its 23 than an unmarked central slice of the 43. The unique red dot stencil only selects **the number 23**; the source does not explicitly direct which extraction to use. Neither is an authenticated ciphertext decoding.
 
-- The canonical LP2 word parser identifies **16 complete words** on physical p55. Removing the first and last rune of each gives **43 strict interior runes**.
-- The p57 original ink annotation records one red 23-dot terminal glyph, at p57 offset 95. Treating its count as a 23-symbol selector, “Find the divinity within” selects the central 23 of the 43 interiors (ten removed from each end).
-- The resulting GP29 indices are:
+The nine original p15 red-title runes have GP BASE29 integer **29,553,734,724**. Its exact Euclidean division `29,553,734,724 = 3301×8,952,964 + 560` nominates the historical `DATA/560.13` source and **byte offset 8,952,964**. The authentic 2013 puzzle used bytewise XOR to decode a **23-byte** old Tor v2 address. That public historical operation supplies one finite test of both new GP encodings.
 
-  `[28,0,14,10,19,1,5,13,8,21,20,15,23,27,13,8,12,18,10,6,14,6,15]`
+## Authenticated historical control and four exact original outputs
 
-  Transliteration: `EA F X I M U C P H NG L S D IA P H EO E I G X G S`.
+The full source file is **118,818,811 bytes**, SHA-256 `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`. The file was downloaded and verified on the actual CI runner, and its **original known** offset-12821 positive precisely recovers `gbyh7znm6c7ezsmr.onion\n`.
 
-- p15's original nine-rune red heading has BASE29 value **29,553,734,724**, giving:
+The 23-byte pad at the p15-fixed offset is `7e663f6bef914d184e56ca13dfa01d661e6947893ef1d4`. Both input selections are encoded either as their GP29 **alphabet indices** 0..28 or as each rune's original **GP prime weight** 2..109. Exactly four 23-byte buffers result, with **no fit to the output**:
 
-  `29,553,734,724 = 3,301 × 8,952,964 + 560`.
+| Original p55 23-rune selector and byte encoding | XOR result hex | Printable ASCII | Exact historical `[a-z2-7]{16}.onion\n`? |
+| --- | --- | ---: | --- |
+| Central23, GP indices | `62663161fc9048154643de1cc8bb106e127b4d8f30f7db` | 11/23 | No |
+| Central23, GP prime weights | `13641074a89240335919832686cb3671372a589811e0e1` | 11/23 | No |
+| **Nested23, GP indices** | `7871277aef9f470b4f53c71bcab7066c18674b8b3cfbc7` | **11/23** | **No** |
+| **Nested23, GP prime weights** | `6f3f5e56edbe525f4d5be10490f976790f466e8c3bee93` | **13/23** | **No** |
 
-  This selects the historical `DATA/560.13` resource and candidate byte offset **8,952,964**.
-- The operation was selected from the 2013 Cicada precedent: bytewise XOR of a 23-byte input with DATA/560.13. The known offset-12821 positive control is retained.
+The new index-buffer ASCII begins `xq'z..G.OS...`; the new prime-weight-buffer ASCII begins `o?^V..R_M[...`. Neither begins with normal file magic or a printable onion address. The original 2013 known plaintext positive proves the implementation's XOR behavior independently. The original exact input mappings and source hashes are asserted before either new transform executes.
 
-## Reproduction and integrity
+The [updated original-input CommonJS SFT](../sims/lp2_p55_circumference_23byte_56013_sft.cjs) now prints all four readings with the exact source-constrained address predicate. It runs in the existing **manual-only** [historical source workflow](../.github/workflows/lp2-p15-56013-quotient-offset.yml); full-input [CI run 43145647103](https://github.com/FlareZ123/liber-primus/actions/runs/43145647103) passed. The original central23 was established earlier in [run 43108404847](https://github.com/FlareZ123/liber-primus/actions/runs/43108404847).
 
-The test ran in the existing manual-only workflow:
+## Cryptanalytic decision
 
-- Workflow: `lp2-p15-56013-quotient-offset.yml`
-- Run: [43108404847](https://github.com/FlareZ123/liber-primus/actions/runs/43108404847)
-- Job: `130817678803`
-- Completed: 2026-11-11 22:05:06 UTC
-- Full DATA/560.13 length: **118,818,811 bytes**
-- SHA-256: `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`
-
-The historical offset-12821 control passed exactly, recovering:
-
-`gbyh7znm6c7ezsmr.onion\n`
-
-The source assertions also passed: p55 word/interior counts, the central-23 sequence, the p57 red-23 annotation, and the p15 quotient/remainder.
-
-## Original-input result
-
-The 23 bytes at the p15-selected offset were:
-
-`7e663f6bef914d184e56ca13dfa01d661e6947893ef1d4`
-
-| Rune encoding | XOR output (hex) | Printable bytes | ASCII rendering | v2 onion |
-|---|---|---:|---|---|
-| GP rune indices | `62663161fc9048154643de1cc8bb106e127b4d8f30f7db` | 11/23 (0.4783) | `bf1a..H.FC.....n.{M.0..` | No |
-| GP prime weights | `13641074a89240335919832686cb3671372a589811e0e1` | 11/23 (0.4783) | `.d.t..@3Y..&..6q7*X....` | No |
-
-Neither encoding yields intelligible direct ASCII or a 16-character base32 v2 onion address plus newline.
-
-## Decision
-
-**Reject this exact mechanism:** p55 central-23 extraction XORed with DATA/560.13 at offset 8,952,964 under GP-index or GP-prime-weight byte encoding.
-
-The positive control establishes that the dataset and historical XOR implementation are functioning; the negative result is therefore not a failed download or broken XOR primitive. The unique 23-dot count is an observed visual fact, but it does not authenticate the proposed numeric extraction or cipher operation.
-
-This result does not exclude every possible LP2 cipher, key, or use of the 2013 artifact. It does close the specified source-selected test. Do not rescue it with alternative offsets, slice lengths, phases, reversals, or extra transformations. No p55 plaintext, authentic key, onion destination, or p56 hash preimage was recovered.
-
-## Reproducer
-
-- Script: [`sims/lp2_p55_circumference_23byte_56013_sft.cjs`](../sims/lp2_p55_circumference_23byte_56013_sft.cjs)
-- Manual workflow: [`.github/workflows/lp2-p15-56013-quotient-offset.yml`](../.github/workflows/lp2-p15-56013-quotient-offset.yml)
-- Source data: `resources/liber-primus/lp2-corpus.json`, `lp2-transcription.txt`, and `lp2-ink-annotations.json`
+**Retire these four source-frozen 2013 byte-XOR interpretations** of the original p55 ciphertext. Do not retry changed DATA offsets, fitted byte encodings, arbitrary reversals or extra stages absent a new original-source instruction. The new nested23 source selector remains valuable **independently of this XOR negative**, particularly its nine- and five-rune deeper layers and the original 23-dot lattice [analyzed separately](lp2-p55-nested-23dot-rowcol-inverse.md). No unknown LP2 plaintext, original cryptographic key, final destination or solved hash preimage resulted.
