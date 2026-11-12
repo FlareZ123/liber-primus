@@ -1,0 +1,18 @@
+name: Agent45 2014 squares to p55 original 43-core SFTs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: All-permutation invariant and original-word-shape controls
+        run: node sims/lp2_p55_inner43_square_permutation_invariant_sft.cjs
+      - name: Original 2014 inner-square GF29 Hill inverses and native plants
+        run: node sims/lp2_p55_2014_three_inner_squares_hill_sft.cjs
