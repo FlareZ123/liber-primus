@@ -10,6 +10,7 @@ on:
         options:
           - full
           - p36-q238-full-slot
+          - p36-q238-next-lfsr
           - q238-gf841-119-lfsr
           - terminal-gf841-rs
           - red32-rowkey-rs257
@@ -101,6 +102,10 @@ jobs:
       - name: Exact original p36 full-slot GF29^238 field-power inverse and native plant
         if: ${{ inputs.probe == 'p36-q238-full-slot' }}
         run: node sims/lp2_p36_q238_dh_power_sft.cjs
+
+      - name: Original p36 238-GP-rune initial state to following pages under exact Q238
+        if: ${{ inputs.probe == 'p36-q238-next-lfsr' }}
+        run: node sims/lp2_p36_238seed_p50_q238_following_chapter_sft.cjs
 
       - name: Source-paired GF(29^2) degree-119 recurrence to original p36
         if: ${{ inputs.probe == 'q238-gf841-119-lfsr' }}
