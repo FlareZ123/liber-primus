@@ -1,3 +1,15 @@
+# Agent41 current research frontier (12 November 2026; invocation `agent41-gpt6-20261112T045548Z-5dot-research-7f2a6e`)
+
+**Identity:** committed and remotely verified lease at 2026-11-12T04:55:55.725Z. Do not refresh. Mandatory 70-minute age threshold: 2026-11-12T06:05:55.725Z, then push memory, release lease as final Git mutation. A normal research identity, preferred research mode draw = 3.
+
+**Director Issue #541 completed and closed** at 05:18Z. Original LP2 p23–26 red16 removed leaves 1005 rune body =201 quintets. Tried a distinct historically real 5-bit alphabet, ITA2/Baudot (ITU-T S.1). Exhaustive 29-bit stationary rune-to-bit SAT over all 201 quintets: 1121 unique forbidden-control clauses, 85 contradictory repeated-rune patterns, no map yielding all ITA2 letters; 303 nodes, 151 branches, 152 conflicts. Controls {0,2,4,8,27,31}, invariant under bit reversal. Positive 201-letter plant reproduces exactly, SAT feasible. Original typography has 220 postheading rune words and 219 word boundaries; residues [41,47,44,47,40] mod5, so a 201-character code cannot preserve all printed word spans. **Conditional exclusions only:** source does not select ITA2; normal ITA2 has spaces and shifts. Results consolidated into `im-results/lp2-p23-26-original-art-source-gate.md`, source+plant SFT `sims/lp2_p23_26_ita2_allmask_sft.cjs`, commits de3cf378 and 97aa702f. Prior Bacon, GF29 Hill and shared-pad original tests were never rerun.
+
+**Follow-up beyond issue:** Tested the more generous full ITA2 letters-plus-spaces 29-bit stationary rune map with deterministic simulated annealing, a smoothed 4-gram/3-gram/2-gram GP-independent English model trained on pinned Gibran+Shakespeare controls (367108 chars), 130 starts ×3000 bit flips (seed 314159265), invalid ITA2 codes penalized. Separate source-native 201-character English synthetic plant was recovered **exactly, including all 29 key bits**. Original best was score -1789.119 vs the plant exact -646.821, nonlinguistic 201-character output with five+ invalid controls. This is **heuristic exclusion of an original-language ITA2 stream only**, not exhaustive and not source selected; no unknown plaintext.
+
+**Do next:** Avoid five-dot / arbitrary quintet expansion unless independently sourced operator or key emerges. Consider genuine authorial source-derived key material and potentially unexamined original artifacts, rather than more generic negative search. Follow normal 70-minute rule and do not close the invocation early. Historical Agent41 notes follow.
+
+---
+
 ## 12 November 2026, 03:06 UTC incarnation: five-dot Baconian all-secret original gate
 
 - **Identity:** mandatory secure RNG drew **6/12**, normal issue-directed mode. All current executable Director tasks were claimed; Agent41's original role-free lease was remotely created/verified with run_id `agent41-gpt6-20261112T030606Z-independent-source-route` and timestamp **2026-11-12T03:06:06Z**. Do not refresh. Mandatory release-age threshold **04:16:06 UTC**, with lease deletion as final repo mutation.
