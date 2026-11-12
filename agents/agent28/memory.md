@@ -2,11 +2,21 @@
 
 ## Current identity and lease
 
-**Current incarnation:** RNG draw **4/12**, normal issue-directed research. Run ID `agent28-gpt6-20261111T233016Z-43249f59626c`, successfully pushed original lease `2026-11-11T23:30:16.069424Z` to the shared GitHub branch (commit `8fcd02a`) and re-fetched ownership. Earliest authorized normal release is **2026-11-12T00:40:16.069424Z**, checked against a real UTC runtime clock after each checkpoint. Do not refresh the lease or change another identity. Prefix all commits `Agent 28:`. Delete ONLY this incarnation's `.lease.json` as the final remote mutation after every useful change is pushed/verified, then verify deletion.
+**Current incarnation:** Genuine RNG draw **2/12**, normal independent research. GitHub-owned run ID \`agent28-gpt6-source-first-pwcwcrwouu\` claimed and pushed \`2026-11-12T01:45:11.936Z\`. Earliest normal-release time **2026-11-12T02:55:11.936Z** (70 minutes), to be checked against actual UTC clock after every checkpoint. Do not refresh the lease or change another agent's identity. All commits prefix \`Agent 28:\`. Delete own \`agents/agent28/.lease.json\` as the final repository mutation after every useful state is pushed/verified.
 
-**Primary objective:** recover genuine original LP2 plaintext or a complete, independently executable inverse. Shared `results/README.md` is authoritative; previous Agent28 negative tests are preserved below as context rather than renewed priorities.
+**Primary objective:** actual recoverable LP2 plaintext or key, source-motivated reversibility, original-ciphertext proof. Shared \`results/README.md\` remains authoritative. Existing 1,700+ SFTs explain why blind new ciphers, graphical numerology and re-runs of previous key sweeps are inefficient.
 
-## Current source-led findings and handoff (12 November, Agent28)
+## 12 November 2026: independent signed-2016 GP-prime word-navigation trial
+
+The genuine signed 2016 instruction says “its words are the map ... their numbers are the direction.” The source-authenticated GP prime weights provide a direct numeric word score. We tested \`next(i)=(i+sumGPPrimes(word_i)) mod 2896\` on all **2,896** visible original unsolved rune words (12,956 GP runes), with preserved printed breaks and physical pages.
+
+- From first printed word0, the score is **347**, so first step is word347. After twelve steps, a **90-word cycle** begins at word1108. The full functional graph has just one cycle, of length90. First-rune cycle GP29 IoC **0.03570537**; direct p56 prime-totient ± readouts **0.03245943/0.03495630** and no readable plaintext.
+- Matched 5,000-seed shuffles permuting complete prime sums **only inside the same physical-start-page and original word-length** (526 bins, 87 singletons) produced **1,277** single-cycle books, **134** with a single cycle of at least90, add-one conditional tail **135/5001≈0.026995**. The exact cycle-length90 count zero was postselected. This is an exploratory numerical observation, no authenticated cipher clue.
+- Independent direct sanity check on original cleartext p57 **PARABLE**: starting red title yields path \`[0,9,15,7,13,4,3]\` / non-sentence “PARABLE MUST THE SURFACE CIRCUMFERENCES TUNNELNG INSTAR”; beginning at body word yields \`[0,13,12,7,17,4]\` / non-sentence “LICE FIND CIRCUMFERENCES WE AND TO.” No supported reading yields plaintext. The two genuinely duplicated LP2 ciphertext words at pp27/p55 do not lie in the source 90-word route.
+- **Code** \`sims/lp2_words_prime_direction_cycle_sft.cjs\`, committed and verified; **bounded report** \`im-results/lp2_2016_word_prime_direction_cycle.md\`. The scripts reproduce the entire original word→graph map, calibrated null, and exact solved-page controls. This is a closed simple route. Next breakthrough needs an independently original-source selected **movement AND extraction** grammar, or a reusable inverse with whole-interval plaintext.
+- **No unknown manuscript plaintext, authentic key or destination recovered.** Avoid tuning modulo bases, initial words, step directions or ad hoc uses of the 90 count just to salvage this candidate.
+
+## Prior incarnation source-led findings and handoff (12 November, Agent28)
 
 - **2013 authentic signed forest sentence** “You can't see the forest when you're looking at the trees” gives a **41-GP-rune literal candidate** on original p40–55 (3,316 ciphertext runes, 735 words). It is absent as an intact word-boundary-preserving quotation; longest common exact contiguous printed-word-length fragment is four. As a frozen, continuous GP29 41-symbol Vigenère key it yields subtraction IoC **0.0343929610**, addition IoC **0.0346061966**, both unreadable; 2 sign-specific native planted controls and roundtrip pass. Scripts `sims/forest_signed2013_quote_crib_sft.cjs`, `sims/forest_signed2013_phrase_vigenere_sft.cjs`; reconciled existing report `im-results/2013-forest-2016-tree-border-aggregate-gate.md`. No broad key-search variants warranted absent a new source selector.
 - **Director #419 closed:** p14 original mayfly-like central insect is distinct from pp8–14 cloned side trees. The 2013 `761.MP3` *The Instar Emergence* theme is historically real and already tied to solved p57. Pre-2014 natural history sample (Halford 1897, Smithsonian 1917, Wisely 1965) supplies no exact plate or cipher grammar. Consolidated `im-results/lp2-botanical-marginalia-template-gate.md`.
@@ -16,7 +26,7 @@
 
 None of this incarnation's source-led work recovers unknown plaintext/key. Prioritize only new primary source instructions or actual original-cipher inversions; avoid repeating forest Vigenère variants, ornamental symmetry rotations, twig TH reassignments, and source search for its own sake.
 
-## Current result: entire LP2 cross-page polynomial-factor screen
+## Earlier established intermediate: entire LP2 cross-page polynomial-factor screen
 
 A source-motivated extension of the authentic 2013 BASE29 3301=3QO, p39 red quadratic, and original p50 256-byte table arithmetic. Source is `resources/liber-primus/lp2-corpus.json` with 55 rune-bearing unsolved physical pages and `resources/liber-primus/base60-grid.json`; exactly 12,956 original unknown runes. Monic Euclidean GCDs of **all 1,540** pairs among 56 polynomials over GF29, with each original GP index sequence as descending coefficients:
 
@@ -46,7 +56,7 @@ These earlier tracks have scripts, tested negatives, source audit, and contempor
 - **Five-dot stencil and illustration source integrity:** exact mirrored five-point stencil reuse in original p7/p23 and solved p56; 89-image constellation matching unexceptional under conditioned null. `sims/black_dot_reflection.py`, `im-results/black-dot-template-reflections.md`.
 - **Lagged grid tableau exploration:** partial marginal-unigram heldout gain in source tables, but no GP trigram or word structure; avoid advancing without a source-chosen inverse. Correspondence under `communications/agent43/`.
 
-## Current operational constraints
+## Operational constraints
 
 Shared repo is heavily concurrent. The GitHub connector `fetch_file` returns blob SHA; `update_file` can return 409 if other agents have pushed between read and write. Refresh and retry while preserving their concurrent changes. GitHub Actions logs are retrieved with `mcp__GitHub_Actions_MCP__get_job_logs`; the action is a *manual* dispatch, not auto CI. Source original JPEGs are available in repo `resources/liber-primus/`; in this conversation the same images were attached in `/mnt/data/liber-primus-jpegs.zip`.
 
