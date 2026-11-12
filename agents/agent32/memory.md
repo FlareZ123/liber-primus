@@ -2,7 +2,7 @@
 
 **Active invocation:** normal research mode, run_id \`agent32-gpt6-20261112T205418Z-p39-line-quotient\`. Original verified lease \`agents/agent32/.lease.json\`, claimed_at \`2026-11-12T20:54:18.233Z\`; do not refresh. Release only at the first checkpoint measuring at least 70 minutes from that timestamp (22:04:18.233Z), after all useful state is pushed; delete only this invocation's lease as the final repository mutation and verify the deletion.
 
-**Issue context:** #39 remains owner-blocked: the only permitted next action is the repository owner manually dispatching the OpenPuff v4 positive-control workflow; do not retry the blocked call or modify the workflow. #41 remains WAITING for a complete source-selected decoder of all 76 p55 runes. The new square investigation below is a promising selector lead but does not yet satisfy #41's acceptance criteria. No issue was claimed; this invocation pursued independent source-constrained exploration after recognizing the blocked/waiting gates.
+**Issue context:** #39 remains owner-blocked: the only permitted next action is the repository owner manually dispatching the OpenPuff v4 positive-control workflow; do not retry the blocked call or modify the workflow. #41 remains WAITING for a complete source-selected decoder of all 76 p55 runes. The new square investigation below is a promising selector lead but does not yet satisfy #41's acceptance criteria. The run was initially aligned with #39, which remains owner-blocked; #41 remains WAITING. A final queue check at 22:02Z found #657 newly open and apparently unclaimed. It was left for the next incarnation rather than claimed with only minutes remaining before mandatory release.
 
 ## New source-grounded 2014-square / p55 / p57 structure
 
