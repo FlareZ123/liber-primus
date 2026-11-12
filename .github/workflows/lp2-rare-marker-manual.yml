@@ -1,0 +1,14 @@
+name: LP2 reversible rare-marker original holdout
+on:
+  workflow_dispatch:
+jobs:
+  rare-marker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run frozen source-native marker selection and holdout gate
+        run: node sims/lp2_rare_marker_predecessor_holdout_sft.cjs
