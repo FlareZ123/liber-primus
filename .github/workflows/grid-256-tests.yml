@@ -57,6 +57,7 @@ on:
           - signed2013-field-dh-p29
           - source-base29-literal
           - q252-gf841-eval
+          - nonic-red9-p55
           - image-dim-page
           - microqr-finder
           - signed-trifold
@@ -200,6 +201,10 @@ jobs:
       - name: Fixed Q252 GF841 polynomial evaluation against all original LP2 runes
         if: ${{ inputs.probe == 'q252-gf841-eval' }}
         run: node sims/p50_q252_gf841_polynomial_eval_sft.cjs
+
+      - name: P54 red-nine and grid nonic full p55 key and feedback inverse
+        if: ${{ inputs.probe == 'nonic-red9-p55' }}
+        run: node sims/lp2_nonic_red9_p55_source_gate_sft.cjs
 
       - name: Source-locked 2013 DH / solved-prime-84 F29-square logarithm inverse
         if: ${{ inputs.probe == 'source-dh-log' }}
