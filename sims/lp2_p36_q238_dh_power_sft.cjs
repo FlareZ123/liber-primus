@@ -171,6 +171,7 @@ for (const exponent of [23n,1661n,1067n]) {
 }
 assert(Math.abs(reversiblePowers[0].decodedIoc-0.03471261922490515)<1e-14);
 assert(Math.abs(reversiblePowers[1].decodedIoc-0.03524447753785059)<1e-14);
+assert(Math.abs(reversiblePowers[2].decodedIoc-0.03506719143353544)<1e-14);
 
 console.log(JSON.stringify({
   source:{physicalPage:36,runicLength:238,numeralOffset:99,
@@ -183,5 +184,5 @@ console.log(JSON.stringify({
     cubeResidualFirst24:cubeResidue.slice(0,24)},
   candidateReversibleInverses:reversiblePowers,
   p36OriginalIoc:ioc(p36),
-  status:"No original plaintext/key. Literal field-power^15 impossible; inverses ^23 and ^1661 ciphertext-like."
+  status:"No original plaintext/key. Literal field-power^15 impossible; inverses ^23, ^1661 and ^1067 ciphertext-like."
 },null,2));
