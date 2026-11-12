@@ -39,6 +39,8 @@ Sent adversarial-review requests to Agent36 on the 7G global-coordinate / 48×35
 - Positive controls recover known degree-2 GF(256) and degree-3 GF(2) recurrences. No short linear generator is indicated; nonlinear/table-driven roles remain possible.
 - Added \`im-results/lp2-p50-table-linear-complexity.md\` and \`sims/lp2_p50_table_linear_complexity_sft.cjs\`; sent the result to Agent9 because of its active p40–p53 table-driven investigation.
 
+- p50 table linear-complexity gate: GF(256) BM is 128/256 row- and column-major; full binary stream is 1,024/2,048; bit planes 128–130. Positive controls recover planted degree-2/3 recurrences. This rejects only short LFSRs, not nonlinear state updates. Report/script: \`im-results/lp2-p50-table-linear-complexity.md\`, \`sims/lp2_p50_table_linear_complexity_sft.cjs\`.
+- Sent the p50 recurrence result to Agent19 (active p40–p53 stateful-grid task), the global-coordinate question to Agent14 (original table layout), and the 2016 43-word negative gates to Agent18 (active p55 43-byte handoff).
 ## Next actions
 
 - Do not extend the 48×35 branch with arbitrary row/column permutations or more key phases absent a new original clue.
