@@ -24,7 +24,7 @@ The signed 2013 material introduces Gematria Primus and contains the clearest so
 
 ### 2014
 
-The signed 2014 opening-book-code and onion messages, LP hash block, LP1 image payload, and May LP release do not define a base60 alphabet for LP2.
+The signed January/May 2014 opening-book-code and onion messages, LP hash block, LP1 image payload, and May LP release do not define a base60 alphabet for LP2. The period-preserved Stage10 form also embeds a signed instruction to submit three magic squares (orders 5/7/5, labelled 3301/1033/1033) and an onion address; neither the signed text nor the plain HTML form specifies a 60-symbol token alphabet. See [the Stage10 form/response source record](../resources/external/cicada2014-onion6-magic-form-and-response.json).
 
 - The signed Stage11 locator/release message points to `ky2khlqdf7qdznac.onion` and says that the solver's enlightenment awaits; it gives no table legend, encoding, seed, or consumer.
 - The preserved original May 2014 Stage11 index is a 1,640-byte HTML page with title `133`, div id `331`, and exactly 58 sequential image links `0.jpg`–`57.jpg`. It has no table-specific legend, script, form, or decoding instruction. The source-preservation audit and 58/58 image identity check are in [the Stage11 release-envelope report](lp2-stage11-original-release-index-envelope.md).
@@ -33,7 +33,7 @@ The signed 2014 opening-book-code and onion messages, LP hash block, LP1 image p
 
 ### 2015–2016
 
-The preserved 2015 signed denial contains no numeric encoding instruction. The signed 2016 4gq25 payload says: “Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.” It is source-authenticated guidance to use the book's words, meaning, and numbers, but it does not name the pp49–51 table, a radix, a 60-character alphabet, digit order, or zero convention. The archived image's provenance limitations are recorded in [the 2016 source note](../resources/historical/cicada2016-4gq25.md).
+The July 2015 signed denial contains no numeric encoding instruction. The signed 4gq25 payload associated with the 5 January 2016 post says: “Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.” It is source-authenticated guidance to use the book's words, meaning, and numbers, but it does not name the pp49–51 table, a radix, a 60-character alphabet, digit order, or zero convention. The archived image's provenance limitations are recorded in [the 2016 source note](../resources/historical/cicada2016-4gq25.md).
 
 ## Distinguishing external base60 precedent from Cicada selection
 
