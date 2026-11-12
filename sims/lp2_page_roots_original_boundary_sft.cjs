@@ -112,6 +112,52 @@ assert(Math.abs(originalIoC - 0.03447839786450569) < 1e-12);
 assert(Math.abs(strippedIoC - 0.03447605254262609) < 1e-12);
 assert(Math.abs(ioc(post27Stripped) - 0.03455396880752661) < 1e-12);
 
+// Causal 43-unit bridge: a finite, source-visible GP29 field-root key.
+// Restrict to the visibly p27-started late corpus, insert the source p50
+// numeric grid in its original physical slot, and read each NONZERO field
+// root once in the canonical GP ordinal order. The red19 p27 header, p55
+// shed-circumference 43 interior symbols and signed 2016 message all
+// independently nominate those units, yet none specifies an opcode.
+const grid = JSON.parse(fs.readFileSync(path.join(__dirname,
+  "..", "resources", "liber-primus", "lp2-grid-256.json"), "utf8"));
+const orderedRoots = [];
+for (let physical = 27; physical <= 55; physical++) {
+  const coefficients = physical === 50 ? grid.bytes.map(v => v % alphabet)
+    : pages.find(page => page.page === physical).indices;
+  orderedRoots.push(...roots(coefficients).filter(value => value !== 0));
+}
+assert.equal(orderedRoots.length, 43);
+const raw = fs.readFileSync(path.join(__dirname,
+  "..", "resources", "lp2-transcription.txt"), "utf8");
+const physicalP55Transcript = raw.split("%").slice(0, 55)[54];
+const p55Words = physicalP55Transcript.replace(/\/\s*/g, "")
+  .match(/[\u16A0-\u16FF]+/gu) || [];
+assert.deepEqual(p55Words.map(word => [...word].length), [
+  1, 4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3
+]);
+const runeMap = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const inner55 = p55Words.flatMap(word => [...word].slice(1, -1))
+  .map(rune => runeMap.get(rune));
+assert.equal(inner55.length, 43);
+const mod = value => (value % 29 + 29) % 29;
+const candidates = {
+  subtract: inner55.map((c, i) => mod(c - orderedRoots[i])),
+  add: inner55.map((c, i) => mod(c + orderedRoots[i])),
+  beaufort: inner55.map((c, i) => mod(orderedRoots[i] - c))
+};
+const originalP55InteriorIoC = ioc(inner55);
+const outputIoCs = Object.fromEntries(Object.entries(candidates)
+  .map(([name, data]) => [name, ioc(data)]));
+assert(Math.abs(outputIoCs.subtract - 0.03211517165005537) < 1e-12);
+assert(Math.abs(outputIoCs.add - 0.036544850498338874) < 1e-12);
+assert(Math.abs(outputIoCs.beaufort - 0.03211517165005537) < 1e-12);
+// Source-native positive control: each reversible arithmetic direction
+// re-enciphers all 43 exact ciphertext symbols in this heldout register.
+assert.deepEqual(candidates.subtract.map((p, i) =>
+  mod(p + orderedRoots[i])), inner55);
+assert.deepEqual(candidates.beaufort.map((p, i) =>
+  mod(orderedRoots[i] - p)), inner55);
+
 const chapterStarts = [3, 8, 15, 23, 27, 33, 40, 54];
 const chapterIndexes = chapterStarts.map(physical => {
   const i = pages.findIndex(page => page.page === physical);
@@ -205,6 +251,16 @@ console.log(JSON.stringify({
   pageCount: K,
   ciphertextRunes: N,
   plantedPageRootAt1: "PASS",
+  original43SourceRootKey: {
+    source: "Physical p27-55 page polynomials plus p50 printed grid",
+    nonzeroRootsInSourceOrder: orderedRoots,
+    rootCount: orderedRoots.length,
+    p55InteriorIoC: originalP55InteriorIoC,
+    decodedIoCs: outputIoCs,
+    transliteratedOutput: Object.fromEntries(Object.entries(candidates)
+      .map(([name, data]) => [name, data.map(i => corpus.translit[i]).join("")])),
+    verdict: "All direct fixed reversible GP29 arithmetic readings remain nonlinguistic."
+  },
   directAllLinearFactorQuotient: {
     factorsRemoved: 78,
     quotientRunes: strippedText.length,
