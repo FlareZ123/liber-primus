@@ -53,3 +53,15 @@ An invented modulus 121 maps every integer onto a grid cell, but would be fitted
 **Director decision:** close the BASE29 word-address task as *unsupported by an independent coordinate grammar*. Retain the exact original-word number conversion as a reusable diagnostic. Reopen only upon a newly authenticated address convention or manuscript instruction that fixes the source, index/radix direction, map, and stopping rule. A derived p32/Fibonacci-89 coincidence by itself does not warrant a lookup-variant search.
 
 **Reproducer:** `node sims/lp2_base29_word_address_gate.cjs` from repository root. It reads canonical resources, performs no writes and requires only Node built-ins.
+
+## Original 32 cross-page words and 32×8 numeric table: exact source-word window gate (12 November 2026)
+
+Original physical LP2 pp0–55 contain **32 complete words that span a physical page break**, exactly matching the **32 printed rows** of the original pp49–51 grid. This is an attractive shape analogy, especially alongside the 2016 signed “words are the map, … numbers are the direction” clue, but a row-to-word rule is absent. The original corpus parser already joins words across page and line boundaries; physical p50 is a number-only table with no rune sequence and supplies no carry.
+
+A single source-chronological row allocation gives the **complete original cross-page word lengths** in order:
+
+\`[6,5,5,3,7,3,6,11,4,6,3,10,7,10,6,5,7,4,3,5,5,6,11,4,5,9,11,8,9,4,10,11]\`.
+
+The exact histogram is 3:4, 4:4, 5:6, 6:5, 7:3, 8:1, 9:2, 10:3, 11:4. **22 of 32 words have fewer than eight original rune glyphs**; the shortest has three. Thus 22 table rows cannot be filled by an actual eight-rune window of their individually paired word. The complete words around p49→p51 do not span the runeless p50 table, and the final carry is p54→p55. A synthetic padded eight-rune word for each row passes the length constraint, confirming the test detects precisely the missing original source, but the original does not. Inventing wrap, padding, neighbor borrowing, word-index expansion or column permutations would add a source-unspecified selector.
+
+**Decision:** retire the equal 32↔32 count as a structural coincidence without a 32×8 source-attested key or ciphertext inverse. The narrow literal eight-rune-per-carried-word mechanism is impossible on the original 22 short words. A separately authenticated operation transforming arbitrary 3–11-rune words into eight digits might reopen a different bounded hypothesis; a raw count match cannot justify the rescue. No original LP2 plaintext/key recovered. [Source-only SFT](../sims/lp2_crosspage_32row_eightrune_source_gate.cjs); [Director #629](https://github.com/FlareZ123/liber-primus/issues/629).
