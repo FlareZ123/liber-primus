@@ -2,7 +2,7 @@
 
 ## Decision
 
-No LP2 plaintext or key was recovered. The five earlier source-derived candidates and two representations of one source-derived M7 pole-cycle candidate were tested against all 58 original LP2 JPEGs: **0/406 nonempty payloads**. This rejects these seven exact password strings, not F5 as a method. The detector remains unsuitable for ruling F5 out on this corpus.
+No LP2 plaintext or key was recovered. The five earlier source-derived candidates and two representations of one source-derived M7 pole-cycle candidate were tested against all 58 original LP2 JPEGs: **0/406 nonempty payloads**. This rejects those seven exact password strings. Two detector routes have also failed to establish a usable LP2 sensitivity bound: the f5.jar/PixelKnot structural detector misclassified its extraction positive control as CLEAN, and the pinned FGH-2002 statistical detector was inconclusive on all LP2 pages and all matched positive controls while clean cover controls also saturated. **F5 is not disproved; no practical, calibrated F5 extraction route or source-selected key/permutation is presently available.**
 
 ## Hypothesis and bounded inputs
 
@@ -52,15 +52,36 @@ The aggregate 15/406 k-range passes (3.69%) is close to the 8/256 = 3.125% rate 
 
 ### Detector interpretation
 
-The follow-up artifact covers all 58 LP2 images:
+#### f5.jar / PixelKnot structural detector
+
+The earlier all-58-image extraction/detection artifact reported:
 
 - Final detector verdict: CLEAN on 58/58; raw detected flag false on 58/58.
 - Statistical reliability: unreliable on 58/58, confidence 0.4 throughout; β was saturated on 53/58 and images were marked double-compressed on 56/58.
 - Structural fingerprint: all 58 were marked carrier-viable, with scores 0.1 or 0.25. These signatures target f5.jar/PixelKnot layouts, not every possible F5 encoder.
-- The extraction positive control itself was classified CLEAN (β=1.0, unreliable, structural score 0.25). It validates extraction but does not validate detector sensitivity.
-- Two LP1 controls (11.jpg and 12.jpg) had raw detected=true flags, but their final verdicts were still CLEAN: the detector attributed the β signal to recompression because the f5.jar/PixelKnot structural fingerprint was absent. LP1 05.jpg was not decodable by this tool (missing EOI marker); this does not affect the LP2 results.
+- The 4,123-byte extraction positive control itself was classified CLEAN (β=1.0, unreliable, structural score 0.25). It validates extraction but **does not validate detector sensitivity**.
+- Two LP1 controls had raw detected=true flags but final verdict CLEAN because the structural fingerprint was absent.
 
-Do not interpret CLEAN as a reliable absence result. The statistical estimator is explicitly unreliable on every LP2 image, and the positive control demonstrates a detector false negative for this carrier.
+Do not interpret CLEAN as a reliable absence result. The positive control is a demonstrated false negative for this detector on the tested carrier.
+
+#### Fridrich–Goljan–Hogea 2002 statistical detector (Issue #389)
+
+A separate, pinned FGH-2002 run processed the complete 75-image original corpus and 32 synthetic F5-positive controls. Reproduction: [GitHub Actions run 43122227362](https://github.com/FlareZ123/liber-primus/actions/runs/43122227362), artifact 13902653852. The implementation is `github.com/0verkilll/f5 v1.0.0` at commit `fbd2bb177d73d4ec89548172023e5451a084bf25`, with Go 1.26.0 and `github.com/0verkilll/jpeg v1.0.1`. The exact code and workflow are `sims/f5_detector_calibration/main.go` and `.github/workflows/f5-fgh2002-calibration.yml`.
+
+Pinned settings: crop 4 px; 3×3 cover blur epsilon 0.01; low-frequency luminance modes (1,2), (2,1), (2,2); β threshold 0.125; quality-factor calibration candidates [60,70,75,80,85,90,95]. Synthetic controls use matrix k=1, predeclared target β values [0.05,0.10,0.15,0.25], and a fixed control-only password. All 32 embedded payloads were extracted byte-for-byte.
+
+Results:
+
+- **LP2 originals:** 58/58 were Q92 and marked unreliable because the executable detector reliability range ends at Q88. All 58 verdicts were inconclusive, not clean negatives. The per-mode β mean ranged 0.7405–1.0000 (median 1.0000); this is diagnostic only, not evidence of embedding.
+- **Q85 matched positives:** 16/16 were inconclusive despite being in the detector's nominal optimal quality range. Actual modification rates ranged 0.0598–0.3012. Their per-mode mean β ranged 0.7173–1.0000 (median 1.0000).
+- **Q95 matched positives:** 16/16 were inconclusive and the quality range was itself marked unreliable.
+- **Q85 clean-cover controls:** the four unembedded covers were also inconclusive. Their per-mode mean β values were 1.0000 (page 17), 0.6378 (page 39), 1.0000 (page 57), and 1.0000 (page 74). Page 39's individual mode estimates were 0.7000, 0.6672, and 0.5461. Thus the clean controls already exceed the implementation's approximate β=0.60 full-capacity ceiling; the positive controls do not separate from them.
+
+The original paper specifies an **average of three independently estimated mode β values**, whereas this library's headline estimator pools the three mode histograms before applying the least-squares fit. Recomputing the paper-prescribed per-mode mean from the stored diagnostics does not rescue the test: the clean covers and positive controls still overlap at high β, and every LP2 page remains above 0.7405. The aggregation difference is a reproducibility caveat, not a plausible explanation that restores sensitivity.
+
+The original paper explicitly warns that crop-and-recompress cover estimation can fail on images with regular structure at a scale comparable to the 8×8 DCT blocks, and recommends avoiding modes that exhibit crop resonance (Fridrich, Goljan & Hogea, [“Steganalysis of JPEG Images: Breaking the F5 Algorithm,” §§3.2, 4](https://ws.binghamton.edu/fridrich/Research/f5.pdf)). The observed clean-cover failures are consistent with that documented limitation, but this run does **not** establish spatial resonance as the cause. It establishes the narrower and decisive point: this implementation is not calibrated on the LP2 manuscript images and supplies no valid sensitivity or false-positive bound.
+
+**Decision:** no reproducible F5-specific signature survives matched controls, and no original-page clue uniquely selects an F5 key/permutation. Do not attempt keyed extraction or treat these inconclusive results as proof that F5 is absent. Retire this FGH implementation as a practical LP2 detector; leave the broader F5 family unresolved unless an independent source clue or a detector that passes matched controls becomes available.
 
 ## Reproducibility and correction
 
@@ -68,11 +89,19 @@ The original five-candidate run is [42995634330](https://github.com/FlareZ123/li
 
 The earlier version of this report incorrectly stated that all 290 original attempts failed at the k-parameter check. The raw artifact actually contains six downstream file-size failures (one each for the first two candidates, two each for the two 2014 candidates, and none for MOBIUS). This has been corrected above; those six cases also yielded no payload.
 
+The separate FGH-2002 calibration is [run 43122227362](https://github.com/FlareZ123/liber-primus/actions/runs/43122227362), artifact 13902653852. Its complete detector/control summary is recorded above; the original JPEGs, synthetic stego carriers, payloads and extraction checks are in the run artifact. The Markdown artifact emitted a `%!v(MISSING)` placeholder for the quality-factor list because the report formatter omitted its argument; the pinned source array is `[60,70,75,80,85,90,95]`, and the formatter has been corrected in the reproducer for future runs.
+
 An earlier harness run (42995341645) failed before the corpus scan because image_meta tried to parse the nonnumeric positive-control filename as an integer. The corrected reproducer is sims/f5_lp2_targeted_gate.py. The successful follow-up artifact contains summary.json, detection.jsonl and extractions.jsonl.
 
 ## Interpretation and next action
 
-This is a **bounded exclusion of seven exact password strings**, not an exclusion of F5, keyed/permuted DCT methods, or image steganography generally. The M7-derived candidate is not supported as an F5 password. Do not expand this into further password guessing without a new independent source clue. Return effort to a route that can select a reversible operation on the original ciphertext.
+This work establishes **no LP2 plaintext, key, or F5-specific signal**. The 0/406 extraction result excludes only the seven exact password strings. The two detector routes are not a calibrated absence test: the structural detector misses its known positive control, while FGH-2002 fails to separate matched F5-positive controls from clean LP2 covers and marks every original LP2 page inconclusive. The FGH paper itself documents crop-estimation failure on regular structures; no source clue currently selects a different detector mode, key, or permutation.
+
+Accordingly:
+- Do not run additional password, seed, permutation, or generic keyed searches.
+- Retire the tested FGH implementation as a practical LP2 route; **do not claim that F5 as a family has been excluded**.
+- Reopen F5 only if an independent original-source clue selects a detector/feature, or a new historically grounded detector first passes both matched clean and positive controls on manuscript-like JPEGs.
+- Return research effort to a route that selects a reversible operation and key/state on the original ciphertext.
 
 ## Reproduction
 

@@ -310,7 +310,7 @@ func writeSummaryMarkdown(path string, run Run) error {
 	fmt.Fprintf(&b, "- Run UTC: `%s`\n", run.RunUTC)
 	fmt.Fprintf(&b, "- Go: `%s`; F5 library: `%s` at `%s`\n", run.GoVersion, f5Tag, f5Commit)
 	fmt.Fprintf(&b, "- Detector: Fridrich–Goljan–Hogea (2002) statistical F5 attack; structural fingerprint subsystem excluded\n")
-	fmt.Fprintf(&b, "- Parameters: quality factors `%v`; beta threshold `0.125`; crop `4 px`; cover-blur epsilon `0.01`; default DCT modes `(1,2),(2,1),(2,2)`\n")
+	fmt.Fprintf(&b, "- Parameters: quality factors `%v`; beta threshold `0.125`; crop `4 px`; cover-blur epsilon `0.01`; default DCT modes `(1,2),(2,1),(2,2)`\n", qualityFactors)
 	fmt.Fprintf(&b, "- Synthetic controls: F5 matrix `k=1`; target beta `%v`; fixed control-only password (not an LP2 candidate); actual beta measured from changed AC coefficients\n\n", targetBetas)
 
 	lp1 := make([]ImageResult, 0)
