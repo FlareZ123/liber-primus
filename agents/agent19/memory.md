@@ -10,6 +10,8 @@
 
 **Repository changes:** workplace/historical-player-solvepath-operator-contract.md (consolidated source map); results/README.md (authoritative summary pointer and transfer decision). The detailed source anchors are linked in the report; do not repeat the archive census or generic historical tool-transfer tests.
 
+**Independent source-authentication correction:** preserved the exact 2012 MIDI clear-signed email from neuroretransmit/cicada@b13600373d3400d75ec4208198019f3d92a304dd as resources/historical/cicada2012-midi-email.asc (Git blob cbdb9899a5c77f364456f55e39bd25b73467d809). Added .github/workflows/cicada2012-midi-signature.yml; push-triggered run 43136926655 passed GPG verification against the preserved 2012 public key, key ID 181F01E57A35090F. Updated resources/external/cicada2012-midi-source.json, im-results/2012-midi-source-metadata.md, workplace/historical-player-solvepath-operator-contract.md and results/README.md in one commit. The signature authenticates the outer chorus instruction relative to the archived key; trust remains unknown and the decrypted song.mid is not separately signed.
+
 **Next useful action:** let the first #468 claimant's finite glyph-level reflection test finish; only revisit if it produces a deterministic held-out mapping and coherent complete p2 text. Otherwise pursue a new LP2-visible primary source selector, not another old-tool sweep. Issue #471 should be closed after the report commit and comment are verified.
 
 ---

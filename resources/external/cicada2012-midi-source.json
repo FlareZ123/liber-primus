@@ -9,6 +9,18 @@
   "raw_url": "https://raw.githubusercontent.com/neuroretransmit/cicada/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle/song.mid",
   "readme_url": "https://github.com/neuroretransmit/cicada/blob/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle/README.md",
   "decoder_url": "https://github.com/neuroretransmit/cicada/blob/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle/decode.py",
-  "authentication": "Secondary participant archive copy. The archive's PGP signature was not independently verified in this run; do not describe this file as a cryptographically authenticated original.",
-  "notes": "The README documents two GPG decryptions from midi.asc to song.mid. The timing-gate parser verifies the exact Git blob SHA-1 before parsing."
+  "authentication": "The outer clear-signed email is cryptographically verified against the preserved Cicada 2012 public key (key ID 181F01E57A35090F). This authenticates the signed instruction and embedded encrypted-message block relative to that key, not the real-world identity of its controller. The decrypted song.mid is a participant-archive artifact and is not separately signed.",
+  "notes": "The README documents two GPG decryptions from midi.asc to song.mid. The timing-gate parser verifies the exact Git blob SHA-1 before parsing. The 49-word submission list is recipient-specific.",
+  "email_artifact": {
+    "repository": "neuroretransmit/cicada",
+    "commit": "b13600373d3400d75ec4208198019f3d92a304dd",
+    "path": "2012/009-midi-puzzle/midi.asc",
+    "git_blob_sha1": "cbdb9899a5c77f364456f55e39bd25b73467d809",
+    "local_path": "resources/historical/cicada2012-midi-email.asc",
+    "key_id": "181F01E57A35090F",
+    "signature_status": "verified",
+    "verification_workflow": "https://github.com/FlareZ123/liber-primus/actions/workflows/cicada2012-midi-signature.yml",
+    "verification_run": "https://github.com/FlareZ123/liber-primus/actions/runs/43136926655",
+    "trust": "unknown"
+  }
 }
