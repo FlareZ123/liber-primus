@@ -301,6 +301,101 @@ const sharedPadComparison = {
   interpretation: "No native GP-English shared-pad difference signal in four source-fixed directions; pure common-additive-key model only."
 };
 
+/**
+ * Stronger five-lane shared-pad invariant. Give each of five lanes its own
+ * unknown constant Caesar difference; each lane's difference IoC stays
+ * unchanged under arbitrary such constants. Both original five-lane layouts
+ * and all four original complete-section reversals are frozen in advance.
+ * The full family max is recalculated for every native-GP control pair.
+ *
+ * @param {number[]} a Original first-section stream
+ * @param {number[]} b Original second-section stream
+ * @param {boolean} reverseA
+ * @param {boolean} reverseB
+ * @param {"rows"|"interleave"} order
+ * @returns {number}
+ */
+function fiveLaneDifferenceIoc(a, b, reverseA, reverseB, order) {
+  const left = reverseA ? a.slice().reverse() : a;
+  const right = reverseB ? b.slice().reverse() : b;
+  const d = modDifferences(left, right);
+  const lanes = unpack(d, 201, order);
+  return lanes.reduce((sum, lane) => sum + ioc(lane), 0) / 5;
+}
+const fiveLaneSettings = [];
+for (const reverseA of [false, true]) for (const reverseB of [false, true]) {
+  for (const order of ["rows", "interleave"]) {
+    fiveLaneSettings.push({ reverseA, reverseB, order,
+      originalIoc: fiveLaneDifferenceIoc(sourceA, sourceB, reverseA, reverseB, order) });
+  }
+}
+let laneSeed = 1337;
+/** @returns {number} */
+function laneRand() {
+  laneSeed = (Math.imul(laneSeed, 1664525) + 1013904223) >>> 0;
+  return laneSeed / 4294967296;
+}
+const nativeFiveLaneMaxima = [];
+const nativeLaneScoresBySetting = fiveLaneSettings.map(() => []);
+for (let trial = 0; trial < 500; trial++) {
+  const startA = Math.floor(laneRand() * (gpShakespeare.length - 1005));
+  const startB = Math.floor(laneRand() * (gpGibran.length - 1005));
+  const a = gpShakespeare.slice(startA, startA + 1005);
+  const b = gpGibran.slice(startB, startB + 1005);
+  const scores = fiveLaneSettings.map((setting, i) => {
+    const score = fiveLaneDifferenceIoc(a, b,
+      setting.reverseA, setting.reverseB, setting.order);
+    nativeLaneScoresBySetting[i].push(score);
+    return score;
+  });
+  nativeFiveLaneMaxima.push(Math.max(...scores));
+}
+const bestOriginalLaneIoc = Math.max(...fiveLaneSettings.map(x => x.originalIoc));
+const sourceLaneMaxControlsAtOrBelow = nativeFiveLaneMaxima.filter(
+  x => x <= bestOriginalLaneIoc).length;
+assert.equal(sourceLaneMaxControlsAtOrBelow, 2);
+
+/**
+ * A genuine common five-lane GP29-pad plant with unrelated secret offsets
+ * on the same positions can be decoded using the invariant without
+ * identifying the key values. Use both original five-lane layouts.
+ */
+for (const order of ["rows", "interleave"]) {
+  const nativeA = gpShakespeare.slice(0, 1005);
+  const nativeB = gpGibran.slice(0, 1005);
+  const aLanes = unpack(nativeA, 201, order);
+  const bLanes = unpack(nativeB, 201, order);
+  const aEncoded = [];
+  const bEncoded = [];
+  const key = Array.from({ length: 201 }, (_, j) => (7 * j + 13) % 29);
+  for (let lane = 0; lane < 5; lane++) {
+    aEncoded.push(aLanes[lane].map((x, j) => (x + key[j] + 3 * lane) % 29));
+    bEncoded.push(bLanes[lane].map((x, j) => (x + key[j] + 7 * lane) % 29));
+  }
+  const encryptedA = pack(aEncoded, 201, order);
+  const encryptedB = pack(bEncoded, 201, order);
+  assert.ok(Math.abs(
+    fiveLaneDifferenceIoc(encryptedA, encryptedB, false, false, order) -
+    fiveLaneDifferenceIoc(nativeA, nativeB, false, false, order)
+  ) < 1e-12);
+}
+const fiveLaneSharedPadInvariant = {
+  premise: "Five independently unknown lane Caesar offsets on an otherwise repeated five-lane source-length common pad",
+  originalSettings: fiveLaneSettings.map((x, i) => ({
+    ...x, matchedNativeGPControlsAtOrBelow: nativeLaneScoresBySetting[i].filter(
+      y => y <= x.originalIoc).length
+  })),
+  observedMaximum: bestOriginalLaneIoc,
+  controlSourcePairWindows: nativeFiveLaneMaxima.length,
+  controlMaxMinimum: Math.min(...nativeFiveLaneMaxima),
+  controlMaxMean: nativeFiveLaneMaxima.reduce(
+    (sum, x) => sum + x, 0) / nativeFiveLaneMaxima.length,
+  sourceControlMaximaAtOrBelowObserved: sourceLaneMaxControlsAtOrBelow,
+  matchedFiniteLowerTail: (sourceLaneMaxControlsAtOrBelow + 1) /
+    (nativeFiveLaneMaxima.length + 1),
+  positiveEncryptedLanePlants: 2
+};
+
 console.log(JSON.stringify({
   hypothesis: "Five black dots select five lanes; p56 solved text/shifts may key the other two stencil-linked sections",
   originalEvidence: {
@@ -310,6 +405,7 @@ console.log(JSON.stringify({
   },
   sourceImageP56DotOrdersAgainstSolvedControl: p56DotControls,
   sharedPadComparison,
+  fiveLaneSharedPadInvariant,
   candidates: results.length,
   positiveControl: "Every keyed synthetic solved-p57-native-GP plant recovers exactly.",
   decision: "No deciphered unknown text or source-authenticated lane-key instruction.",
