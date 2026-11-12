@@ -64,10 +64,11 @@ for(const frame of ['book','page'])for(const phase of [0,1]){
     const sep=new Set();
     if(frame==='page'){
       let i=0;
-      for(const ch of source[page.page]){
+      for(const ch of source[page.page < 50 ? page.page : page.page - 1]){
         if(/[\u16A0-\u16FF]/u.test(ch))i++;
         if(ch==='-')sep.add(i);
       }
+      assert.equal(i,page.indices.length,'the numeric-only p50 has no % transcript section');
     }
     for(let i=phase;i+1<page.indices.length;i+=2){
       const a=page.indices[i],b=page.indices[i+1];
@@ -83,6 +84,7 @@ for(const frame of ['book','page'])for(const phase of [0,1]){
 }
 assert.deepEqual(records.map(r=>[r.forward,r.inverse]),
   [[7,7],[3,8],[6,6],[4,9]]);
+assert.deepEqual(records.filter(r=>r.frame==='page').map(r=>[r.forwardInsideWords,r.inverseInsideWords]), [[1,4],[3,9]]);
 assert.ok(records.filter(r=>r.frame==='page').every(r=>r.forwardInsideWords>0&&r.inverseInsideWords>0));
 console.log(JSON.stringify({
   inputs:'GPG-signed 2013 DH23 worked exchange; LP2 original p3 root and p36 norm; full LP2 runes',
