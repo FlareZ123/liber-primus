@@ -38,6 +38,12 @@ Both ordinary monoalphabetic directions on the source-selected endpoint p46 rema
 
 The direct per-word prime-gap and prime-ordinal shifts tested during exploration also fail; the source already had a negative direct φ(prime) per-word test. These do not justify more modular variants.
 
+## Cross-round base-58 check (provisional)
+
+Applying the 2016 signed-message base-58 rule to the same 29 selected fourth words gives two notable addresses: p38 `SRUTH` (GP-prime sum72) → p14 word1 **FOLD**; p40 `EOEAOE` (sum224) → p50 cell3 **3D**. This is a cross-round consistency check, not independent proof: the same target sums also occur in other first-line columns (sum72 at p39 column0; sum224 at p34 column6). Column3 is the only column with both, but the individual anchors are not unique to it. The p56 anchors (sums114 and288) do not occur in these ten first-line columns. The 2014 Stage5 “Do four unreasonable things each day” wording is a possible fourth-word selector, but generic and not explicit.
+
+This suggests a provisional **FOLD / 3D** instruction for the full pp49–51 table. The separate [210-mirror candidate](p50-210-fold-symmetry-candidate.md) records a structural observation, not a fold decryption.
+
 ## Decision and limits
 
 The most literal key/readout choices suggested by the 2013 coordinate path and the historical 2014 seven-column operation do not decrypt the selected stream or its p46 endpoint. This does **not** prove that the row/column address hypothesis is false; it remains unverified because the 2013 source does not say that its output rows are LP2 page numbers or that its columns are word positions. It does mean that no source-backed direct plaintext result currently justifies further key-consumer sweeps.
