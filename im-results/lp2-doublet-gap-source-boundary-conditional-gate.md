@@ -1,6 +1,6 @@
-# Residual LP2 doublet-gap correlation after conditioning on original boundaries
+# LP2 doublet-gap correlation: source-boundary and word-identity conditioning
 
-**12 November 2026, Agent 10. Classification: source-exact exploratory process anomaly; no ciphertext inverse, plaintext, key or historical generator identified.** This investigation advances the independently detected [Round 44 B3/T7 original event-site anomaly](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round44/W2-B3-doublet-sites/RESULTS.md) by asking whether the manuscript's original visible segmentation alone accounts for its reported gap correlation. It does not repeat the external text-channel score sweep or assume T7 identifies a cipher.
+**12 November 2026. Original boundary analysis by Agent10; word-identity decomposition by Agent22. Classification: source-exact conditional analysis of event-bearing-word selection; no ciphertext inverse, plaintext, key or historical generator identified.** This investigation advances the independently detected [Round 44 B3/T7 original event-site anomaly](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round44/W2-B3-doublet-sites/RESULTS.md) by asking whether the manuscript's original visible segmentation alone accounts for its reported gap correlation. It does not repeat the external text-channel score sweep or assume T7 identifies a cipher.
 
 ## Causal question
 
@@ -58,7 +58,7 @@ For a stronger exact conditional null, preserve the number of doublet sites insi
 
 Each source event classification was established prior to simulation, and the same one-sided +0.380 target was frozen from external Round44. Deterministic 20,000-draw xorshift32 seeds are `0x3301b003`, `0x3301b001`, and `0x3301b002`, respectively. The existing [single-file SFT](../sims/lp2_doublet_gap_source_boundary_conditional_sft.cjs) now includes all three original word/line–aware nulls, their exact counts, and assertive seed regressions.
 
-**New decision:** Source-visible word starts, line wraps, per-page event totals and 13-dot marks together do **not** account for the observed event-gap order under the declared within-class uniform-placement model. Candidate mechanisms must explain a further dependence in the **ordering** of the observed rare repeats. This strengthens the finite constraint on an independent-and-uniform “rare slip” generator. An evolving cipher state is one plausible alternative; a nonuniform word-length-conditioned generator, different source language, or per-word nonrandom event schedule remains possible and untested. No specific original LP2 key or plaintext is recovered.
+**Intermediate decision before word-identity conditioning:** The chapter/page/13-dot/word-line partitions alone leave positive gap correlation, and the exact word-length null below remains unusual at p=0.00770. Neither result identifies a generator or proves state carry. The next discrimination is whether the gap statistic survives conditioning on the identities of the original printed words that contain the events.
 
 ### Word-length confounding and stronger original-input conditioning
 
@@ -88,10 +88,33 @@ The exact original-cipher inverse/forward reconstruction passes at **all 12,956 
 
 **Decision for #589:** retire *this* deterministic source-printed-word-aware sentinel/predecessor-exclusion emitter as a route to English plaintext; the missing site-level prediction cannot be rescued by tuning a second marker to pp40–55. Other variable-length, keyed evolving-state or alternate-language coders remain open and would each need a separately specified invertible mechanism and original-source selector. This test says nothing affirmative about the external paper's proposed stochastic soft rejection filter, which has an unresolved lossless inverse/side-information question.
 
+### Event-bearing-word identity decomposition (Agent22, 12 November 2026)
+
+The canonical word stream is taken from `resources/transcriptions/liber_primus_master.txt` using the repository's existing `words()` parser in `sims/cross_word_repeat_invariant.cjs` and sections 7–15. Its flattened rune sequence matches `resources/liber-primus/lp2-corpus.json` pages 0–55 exactly: **12,956 runes in 2,896 printed words**. This avoids the one-word discrepancy in the earlier exploratory page-split parser.
+
+The **86** same-page adjacent-repeat events occupy **85** words: 84 words contain one event and one word (word ID 1476, length 12) contains two. The lag-one correlation of the 85 successive event-bearing word-index gaps is **+0.38545**, almost the same as the rune-position gap correlation **+0.38002**.
+
+A conditional Monte Carlo test fixes the exact event-bearing word IDs and their event counts on each physical page, then samples the same number of event positions uniformly without replacement from eligible in-page predecessor positions within each word/page group. This preserves which words carry events and their per-word/per-page counts; it tests only whether the precise rune offsets within those words add unusual gap correlation. With 20,000 xorshift32 draws (seed `0x3301c7a5`):
+
+| Statistic | Result |
+|---|---:|
+| Observed rune-gap lag-one correlation | +0.38001969 |
+| Conditional-null mean | +0.37855294 |
+| Conditional-null standard deviation | 0.00227200 |
+| Draws at least as large as observed | 5,182 / 20,000 |
+| Add-one upper-tail probability | 0.259137 |
+| Event-bearing word-index gap correlation | +0.38545050 |
+
+The observed within-word position categories are 23 word-initial, 19 word-final, and 44 interior events; their conditional-null means are 18.55, 18.78, and 48.67 respectively. No large offset effect is apparent.
+
+**Interpretation:** once the event-bearing words are fixed, the observed gap correlation is ordinary. The correlation is therefore mostly inherited from the spacing of the selected words, not from an additional within-word placement state. This does **not** explain the selection of those words, and the p=0.00770 result under the broader page/fragment/role/length null remains a separate finding. The T7 gap statistic should no longer be used as independent evidence for a stateful cross-page generator. A meaningful successor must explain or predict the event-bearing-word selection itself using an independently justified source mechanism.
+
+Reproduction: [`sims/lp2_doublet_gap_word_identity_conditional_sft.cjs`](../sims/lp2_doublet_gap_word_identity_conditional_sft.cjs).
+
 ## Reproduction and implication
 
 [Self-contained CommonJS original-source SFT](../sims/lp2_doublet_gap_source_boundary_conditional_sft.cjs) reads the canonical `resources/liber-primus/lp2-corpus.json` and `lp2-ink-annotations.json`, asserts the 12,956/86 census, observed correlation, chapter counts and 13-dot boundary inventory, and runs the three exact count-conditioned surrogates. Seeds: chapter `0x48b3c201`, page `0x48b3c202`, page-fragment `0x3301c1b2`. A planted smoothly changing gap series gives autocorrelation above 0.9 with the same routine. All three source-conditioned numerical findings were independently executed against those two live repository resources. The SFT prints the complete reproducible null summaries.
 
-**Decision:** Preserving all source-visible chapter counts or even all physical-page × 13-dot site counts leaves an unexpectedly strong positive gap correlation. This makes an *unstructured uniform placement within each obvious authored unit* an inadequate account of the observed event ordering. It is worth prioritizing **ordering-sensitive cipher/generator models that must reproduce the original multi-page event process**, rather than assuming uniform independent error/escape placement. The comparison does not exclude per-page reset ciphers with intra-page state, page-dependent deterministic placement, variable-rate processes or other nonuniform site models.
+**Updated decision (Agent22 word-identity decomposition, 12 November 2026):** The exact word-length null (1,508 strata, upper-tail p=0.00770) remains a valid rejection of uniform event-site placement across page × 13-dot fragment × delimiter role × exact word length. But conditioning on the exact event-bearing words and their per-word/per-page event counts, then randomizing only positions within those words, gives a null mean of +0.37855 (SD 0.00227); 5,182/20,000 outcomes are at least the observed +0.38002 (add-one p=0.25914). The 85 event-bearing word indices themselves have gap lag-one correlation +0.38545. Thus the gap statistic is largely inherited from the spacing of the selected words; it does not independently support an intra-word stateful emitter or PRNG. The unresolved process question is **why those words are selected**. Successor work should target word-level event selection under an independently source-justified model, rather than continue fitting gap-only state models. This conditional test does not explain the selection mechanism, refute the broader p=0.00770 result, or recover plaintext/key.
 
-**Evidence scope:** The external T7 anomaly was known before selecting these three source-boundary conditionings, so their tails are exploratory/conditional and are **not** discovery-wide p-values. The counts are conditioned on the observed ciphertext, and the positive control checks metric sensitivity rather than statistical power against every smooth-drift alternative. Even a genuine site-process anomaly would not establish how ciphertext glyphs map to plaintext. Recovering original plaintext or a source-selected reversible transformation remains essential.
+**Evidence scope:** The per-word null is deliberately conditioned on the identities of the event-bearing words; it cannot test why those words were selected. It only shows that their precise rune offsets within the selected words do not make the lag-one gap statistic exceptional. The p=0.00770 page × fragment × delimiter × word-length result addresses a different, less-conditioned null and remains valid. None of these statistics establishes how ciphertext glyphs map to plaintext. Recovering original plaintext or a source-selected reversible transformation remains essential.
