@@ -1,6 +1,6 @@
 # 2014 LP2 JPEG password source gate
 
-**Decision: bounded public-source negative.** No surviving source examined supplies a creator-provided password or derivation explicitly tied to the 58 Stage11 JPEGs. The two published OpenPuff password spellings belong to the earlier `Interconnectedness` MP3 extraction, not the Stage11 image set. No LP2 carrier extraction was attempted.
+**Decision: bounded source negative.** No surviving original source supplies an LP2-targeted steganography instruction, tool/version, carrier selection, password derivation or extraction parameters for the 58 Stage11 JPEGs. The documented OpenPuff passwords belong to the earlier `Interconnectedness` MP3; the documented OutGuess JPEG operations belong to distinct LP1 carriers and Stage5 continuation assets. Later finite tests of the only plausible Stage5 tail candidate `9133` and seven source-derived F5 password representations produced no recognizable LP2 payload. The commonality that both historical OutGuess and LP2 involve JPEGs is not a source selector.
 
 ## Acceptance rule
 
@@ -22,6 +22,18 @@ The two historical walkthroughs disagree on the spelling, but agree on the carri
 - The pinned [iBotPeaches extraction note](https://github.com/iBotPeaches/cicada_3301/blob/a0a616d85717af59f8b806875b43d51e06e1e874/other/Interconnected_OpenPuff.md) reports `33011103` for the same `interconnected.mp3`, 50% MP3 selection and a 745-byte output with reported CRC32 `6A8C41E3`.
 
 The discrepancy remains an MP3 positive-control issue. Neither source ties either spelling to the 58 Stage11 JPEGs. The existing [OpenPuff JPEG capacity report](openpuff-jpeg-capacity-gate.md) correctly leaves native extraction unexecuted pending the authorized positive control in [Issue #39](https://github.com/FlareZ123/liber-primus/issues/39); this task does not authorize bypassing that manual-dispatch requirement.
+
+## The historical JPEG OutGuess path is carrier-specific
+
+The byte-preserved 2014 Stage04 and Stage05 instructions do establish a real, simple OutGuess solve path, but only for their named LP1 images:
+
+- **Stage04:** the archived `decode.sh` runs OutGuess 0.4 with the default (empty) key using `outguess -r 03.jpg 03.jpg.asc` and `outguess -r 04.jpg 04.jpg.asc`. Those are the original LP1 pages 03 and 04, not Stage11 pages. Page 03 yields a PGP clear-signed “Let the text guide you” message and an embedded JPEG; page 04 yields an opaque 7,524-byte object. The complete Stage04 server-status binary is LP1 page 05. See [the Stage04 source gate](cicada2014-stage04-256-p50-direct-identity-gate.md).
+- **Stage05:** the archived GZIP container recovers four JPEGs byte-identical to LP1 pages 06–09. The archived command is `outguess -r q4utgdi2n4m4uim5.onion.jpg q4utgdi2n4m4uim5.onion.asc.bz2` (again, no passphrase). Default-key OutGuess 0.4 on the third recovered image (LP1 08.jpg) yields the authentic 140-byte clue; the source-selected row-wise seven-column permutation `1736254` decodes its 56 grouped characters to `q4utgdi2n4m4uim5.onion`. The trailing `9133` occupies the four padding cells needed to complete eight rows of seven; no original instruction assigns it a password or LP2 role. See the [complete Stage05 recovery and OutGuess audit](2014-stage5-avowy-archive-audit.md).
+- The single `9133` password hypothesis was nevertheless tested with pinned OutGuess 0.4 on the fourth Stage05 image and all 58 original LP2 JPEGs. All 58 LP2 files produced the same apparent `seed 50256, len 23133` header and high-entropy output, but **zero** recognized payloads; a payload-free control produced a plausible header too. This is a false-header family, not a partial extraction. Do not repeat it.
+- **OpenPuff** is a separate documented path: v4.00 only, on the `Interconnectedness` MP3, with B/C disabled and 50% MP3 bit selection. The archived walkthrough gives password `33011033`; another preserved extraction note gives `33011103`. Both identify a 745-byte `magicsquares.txt` output from that MP3, not an LP2 JPEG.
+- **F5** is not selected by these 2014 source instructions. The later bounded seven-password scan across all 58 LP2 JPEGs returned 0/406 nonempty payloads, while its detector was unreliable on every LP2 image and on its own positive control. This is a limited password result, not an exclusion of JPEG steganography generally; see the [F5 gate](f5-lp2-targeted-gate.md).
+
+The Stage11 index lists sequential `0.jpg`–`57.jpg` files but supplies no OutGuess/OpenPuff/F5 instruction, password, decoder, target-page selection or expected payload. The signed Stage11 callback requests magic squares, a Tor URL and a GnuPG public key; the authenticated 2016 continuation speaks of words, meaning and numbers, not steganography. Thus no LP2 feature independently selects a complete historical command.
 
 ## Bounded archive search
 
