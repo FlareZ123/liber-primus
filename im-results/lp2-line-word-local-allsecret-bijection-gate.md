@@ -42,10 +42,25 @@ A stronger word-specific comparator samples **exactly the original word lengths*
 
 The authentic-author comparison pools **715 GP-transliterated words** from selected original prose in the LP1 solved reference together with the p57 PARABLE runes directly from the solved LP2 image transcription. Bracketed editorial continuation lines are excluded. This pool covers every source word length 1–14. Repeated sampling of the finite pool is a check against the author's known prose style, rather than 1,200 independent historical witnesses. Every one of 1,200 control samples produces substantially more within-word equalities than the original ciphertext.
 
+## Complete word-reset linear-progressive additive family
+
+The verified solved p56 uses a symbol-changing prime/totient shift. As a clue-adjacent extension, consider the **entire** 29-slope family of word-reset arithmetic shifts with one arbitrarily unknown additive offset for each individual word:
+
+\[
+C_{w,j}=P_{w,j}+b_w+s j\pmod{29},
+\quad b_w\in\mathbb F_{29},\quad s\in\mathbb F_{29}.
+\]
+
+Here j starts at zero at the beginning of each canonical word, s is one bookwide slope, and all **2,896 independent word seeds** b_w are unconstrained secret values. For any frozen s, undoing the progression leaves only a different unknown Caesar shift for each word. Accordingly the within-word equality-pair count of the deprogressed text is **exactly** the plaintext count under every possible assignment of the 2,896 secret seeds; arbitrary within-word permutations do not change it.
+
+All **29/29** slope values were tested on the original 12,956 symbols. Slope zero gives the original 811 pairs; the global maximum is just **1,123 pairs at slope23**, with the runner-up slope9 at **1,111 pairs**. Every slope is below **1,215**, the minimum of the 1,200 exact-length-matched solved-Cicada-register samples already fixed above. This is a necessary-condition exclusion of the entire word-reset global-linear-progression family under that register, with no recovery of a real key.
+
+A 2,896-independent-secret-word-seed GP29 arithmetic-progressive planted cipher at s=23 round-trips **12,956/12,956**, and its symbol-pair count is exactly restored after removing s. The extended [Node 22 CI run 43126922385](https://github.com/FlareZ123/liber-primus/actions/runs/43126922385) passes. This is evidence against one simple genuinely intra-word-varying mechanism, not a general exclusion of nonlinear within-word states, independent word-specific slopes, or p56's changing prime/totient operation.
+
 ## Inversion controls and reproducibility
 
 A different random secret 29-rune alphabet is independently assigned to every unit. Each planted GP-native ciphertext is reversed using the true per-unit inverse alphabet, recovering **12,956/12,956** positions. The within-unit equality invariant is preserved exactly: the 594-independent-line-key plant has 7,780 matching pairs and the 2,896-independent-word-key plant has 1,409. The reproducible PRNG uses initial state 0x3301a033.
 
-The full regression, including original source assertions and the authentic solved-text control, passed in [manual Node 22 CI run 43123255572](https://github.com/FlareZ123/liber-primus/actions/runs/43123255572). Existing manual-only workflow was extended; no per-commit CI hook was added.
+The full regression, including original source assertions, the authentic solved-text control, all 29 arithmetic-progressive slopes and a reversible 2,896-secret-seed plant, passed in [manual Node 22 CI run 43126922385](https://github.com/FlareZ123/liber-primus/actions/runs/43126922385). Existing manual-only workflow was extended; no per-commit CI hook was added.
 
-**Consequence for decrypting LP2:** Reject the class of all line-static and word-static monoalphabetic GP29 ciphers under the tested English registers, including independent Caesar shifts for every word or line and their within-unit transpositions. Prioritize operations whose alphabet changes inside printed words, or a source-indicated alternate register, segmentation, or multi-symbol transform. These are still open research routes. This experiment recovered no authentic key, unknown page plaintext, or continuation destination.
+**Consequence for decrypting LP2:** Reject the class of all line-static and word-static monoalphabetic GP29 ciphers under the tested English registers, including independent Caesar shifts for every word or line and their within-unit transpositions. The all-secret global-linear-progression word-reset family also fails. Prioritize a source-indicated genuinely nonlinear within-word operation, alternate register, segmentation, or multi-symbol transform. These are still open research routes. This experiment recovered no authentic key, unknown page plaintext, or continuation destination.
