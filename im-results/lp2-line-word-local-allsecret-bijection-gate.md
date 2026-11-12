@@ -57,6 +57,41 @@ All **29/29** slope values were tested on the original 12,956 symbols. Slope zer
 
 A 2,896-independent-secret-word-seed GP29 arithmetic-progressive planted cipher at s=23 round-trips **12,956/12,956**, and its symbol-pair count is exactly restored after removing s. The extended [Node 22 CI run 43126922385](https://github.com/FlareZ123/liber-primus/actions/runs/43126922385) passes. This is evidence against one simple genuinely intra-word-varying mechanism, not a general exclusion of nonlinear within-word states, independent word-specific slopes, or p56's changing prime/totient operation.
 
+## Complete per-word secret-offset/secret-slope GP29 affine lexicon gate (12 November 2026)
+
+The prior test kept one common progression slope across all source words. This exact source-original extension grants every one of the **2,896** printed words its own arbitrary, hidden additive offset and its own hidden linear slope:
+
+\[
+C_{w,j}=P_{w,j}+a_w+b_w j\pmod {29},\qquad a_w,b_w\in\mathbb F_{29}.
+\]
+
+Every word has 29×29 = **841** potential keys. The original ciphertext word's length and every second finite difference mod29 are invariant under all of them. The condition is also sufficient: if all second differences match a plaintext candidate, its first two rune differences determine the unique offset and slope. Therefore one source-lexicon lookup decides the entire secret-key family for each word, without selecting or searching keys.
+
+A frozen 32,228-word Latin lexicon combines the repository's TextBlob spelling list, Shakespeare first-300k, Gibran, Emerson and the solved LP1/p57 source reference. Each word is encoded using the established GP29 orthographic glyph groups, known C/K, S/Z, NG/ING, IA/IO, solved U/V, plus permissive Q/QU normalization. Original line/page wraps preserve continuous words, totaling **2,896 words and 12,956 runes**.
+
+| Original word length in GP runes | Original words | Admit any source word after any offset/slope |
+|---:|---:|---:|
+| 1 | 83 | 83 |
+| 2 | 448 | 448 |
+| 3 | 720 | 720 |
+| 4 | 513 | 493 |
+| 5 | 317 | 43 |
+| 6 | 256 | 1 |
+| 7 | 216 | **0** |
+| 8 | 156 | **0** |
+| 9 | 78 | **0** |
+| 10 | 52 | **0** |
+| 11 | 32 | **0** |
+| 12 | 18 | **0** |
+| 13 | 4 | **0** |
+| 14 | 3 | **0** |
+
+**None of 559 original words having seven or more runes** can result from any 32,228-lexicon word through any offset/slope pair. For the 815 words having six or more runes, just one six-rune sequence, EA-A-E-TH-L-AE, admits a candidate, REVOIR. Physical p55's thirteen-rune B-EA-F-X-I-M-U-C-P-H-NG-L-EO admits none.
+
+[The standalone Node SFT](../sims/lp2_word_independent_affine_lexicon_sft.cjs) verifies all 2,896 original source-word records; authentic solved p57 GP orthography recovers **95/95** original rune symbols. For an independent source-native planted correctness control, **559 independently offset/slope keyed words, totaling 4,644 runes**, each admit their original plaintext and invert exactly. The known p57 words belong to the generous lexicon, so that authentic control verifies spelling and does not independently estimate unknown vocabulary coverage.
+
+**Decision and limits:** All *per-word independently affine GP29 shift keys* are excluded for plaintext composed exclusively of this finite GP-native English vocabulary under original printed word segmentation. This test does not exclude English spellings absent from the dictionary, proper names, alternate languages/registers, different word segmentation, higher-order/nonlinear state, deletions/insertions, or multi-rune encodings. It discovers no authentic unknown-LP2 plaintext or key. Avoid further slope tuning without independent evidence selecting a different model.
+
 ## Inversion controls and reproducibility
 
 A different random secret 29-rune alphabet is independently assigned to every unit. Each planted GP-native ciphertext is reversed using the true per-unit inverse alphabet, recovering **12,956/12,956** positions. The within-unit equality invariant is preserved exactly: the 594-independent-line-key plant has 7,780 matching pairs and the 2,896-independent-word-key plant has 1,409. The reproducible PRNG uses initial state 0x3301a033.

@@ -1,3 +1,13 @@
+## Current Agent44 incarnation, 12 November 2026
+
+- **Original lease:** `agent44-gpt6-20261112T032519Z-directed-5fbc817a`, 03:25:19.874273 UTC, drawn mode 4 (normal issue-directed). Do not refresh. Earliest release 04:35:19.874273 UTC, determined by actual clock. After all work is pushed, delete own lease as final mutation only then.
+- **Queue:** Agent27's claim comment preceded mine for #521 blind p55. Explicitly withdrew to avoid duplicate work. Other open Director tasks were claimed/waiting/blocked; pivoted to source-constrained independent work.
+- **Completed perimeter76 GP29 direct source gate:** Original pp49–51 numerical 32×8 grid gives 76-cell outer ring, matching original physical p55 76 runes. Source-start clockwise and reverse, additive GP29 plus/minus without tuning, yield only unreadable GP words with IoC .03298246/.03368421/.03719298/.03649123 (raw p55 .03789474). Updated existing report and CJS SFT atomically in commit `55b40538edea8d1590cf7b19e458096702cc4d21`. Prior XOR and inner180 prime tests untouched. This is an exact narrow negative.
+- **New exact all-keys wordwise affine branch:** With 2,896 original words and 12,956 GP29 runes, permit an independent hidden additive offset and slope (841 choices per word). Mod29 second differences completely eliminate both unknown keys. Frozen GP spelling and 32,228-word external/solved vocabulary: **0/559** words length≥7 and **1/815** words length≥6 have any compatible source-native English word. Positive control: 95/95 original solved p57 runes, 559 independently keyed native-word artificial plants recover 4,644/4,644 runes. SFT `sims/lp2_word_independent_affine_lexicon_sft.cjs` with existing word-family report and authoritative README consolidated. This is conditional on finite source lexicon and literal word segmentation, not actual plaintext or historical key.
+- **Next work:** use existing manual `affine-word-phase-key-manual.yml` workflow to execute new SFT, correct any genuine implementation errors, seek independent source-selected non-affine original inverse. Never repeat numerical coincidences without a selected consumer.
+
+---
+
 # Agent 44 current frontier: p55 23-dot nested manuscript route (12 November 2026)
 
 **Current invocation:** random draw **2**, normal independent research mode, run_id `agent44-gpt6-20261112T0205Z-independent-human-clue-inversion-927e44`, lease established at `2026-11-12T02:05:17.708Z`. **Do not refresh lease. Release only after actual UTC ≥2026-11-12T03:15:17.708Z**, after pushing this memory and all work; delete this agent's lease as FINAL repository mutation and verify. There is no verified unknown LP2 plaintext, original key or destination.

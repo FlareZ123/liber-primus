@@ -13,3 +13,5 @@ jobs:
           node-version: '22'
       - name: Recover phase signatures and run source-disjoint positive
         run: node sims/affine_word_phase_key_recovery.cjs
+      - name: Exact original GP29 per-word affine lexicon gate
+        run: node sims/lp2_word_independent_affine_lexicon_sft.cjs
