@@ -108,6 +108,34 @@ assert.ok(historical.every(square => invariants(square).isMagic));
 console.log('PASS: three 2014 historical magic-square positive controls (5/7/5; constants 3301/1033/1033).');
 console.log('PASS: 256 original tokens across 10+13+9 printed 8-column rows; two canonical transcripts agree.');
 
+/**
+ * Any two-character positional reading with this fixed ordered alphabet
+ * has cell value radix * index(high digit) + index(low digit).
+ * The first three 16-cell row sums already force incompatible radices.
+ * @param {string} alphabet
+ */
+function firstThreeRowCoefficients(alphabet) {
+  return Array.from({length: 3}, (_, row) => {
+    const cells = tokens.slice(16 * row, 16 * row + 16);
+    return [
+      cells.reduce((sum, t) => sum + alphabet.indexOf(t[0]), 0),
+      cells.reduce((sum, t) => sum + alphabet.indexOf(t[1]), 0),
+    ];
+  });
+}
+const base60Coeffs = firstThreeRowCoefficients(original.alphabet);
+const base59Coeffs = firstThreeRowCoefficients(original.alphabet.replace('f', ''));
+assert.deepEqual(base60Coeffs, [[40, 395], [22, 431], [19, 474]]);
+assert.deepEqual(base59Coeffs, [[40, 391], [22, 427], [19, 469]]);
+const tieR12 = 36 / 18;
+const tieR13Base60 = 79 / 21;
+const tieR13Base59 = 78 / 21;
+assert.notEqual(tieR12, tieR13Base60);
+assert.notEqual(tieR12, tieR13Base59);
+console.log('PASS: no radix solves first-three-row equal sums for either fixed digit alphabet: ' +
+  'r=' + tieR12 + ' from rows 1/2, vs r=' + tieR13Base60 +
+  ' (base60 digit order) or r=' + tieR13Base59 + ' (base59 digit order) from rows 1/3.');
+
 const base60 = invariants(reshape(tokens, original.alphabet));
 assert.deepEqual(
   reshape(tokens, original.alphabet).flat(),
