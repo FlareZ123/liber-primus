@@ -18,6 +18,9 @@
 
 ---
 
+
+**Final material result of this incarnation (12 November 2026):** A previously omitted exact all-alphabet census improves the source-fixed 79-step observation without resurrecting the literal biological decoder. Biological alphabet `A/U/G/C` yields a unique seven-base run `UAAUAGC` on source-fixed global 79-phase35; the other 78 phases' longest A/U/G/C run is five. Across every one of **C(29,4)=23,751** four-GP-symbol alphabets, exactly **three** yield any contiguous seven-symbol run in phase35, while **273** qualify somewhere in all 79 phases. The test exhaustively uses only the original 12,956 rune indices and source 79; no unknown plaintext. It supports preserving the candidate side-channel clue, but the original source red headings and page boundaries still split the apparent UAA/UAG stops, and no AUG/key/decoded instruction exists. Reproducer `sims/lp2_79_rna_alphabet_fourset_sft.cjs`, existing report `im-results/prime79-radix29-packet-gate.md`, authoritative `results/README.md`, **atomic pushed and remotely verified** commit `a5b3d48b3f3322c0bdc2efa7c061e59137cf2687`; closed #577 receives postclosure note. The fixed-class exact counts are descriptive label-randomization frequencies, not source-independent probability of author intent. Original first commit `ae7987c92f65c3dfc1749a5f4f1f3766fe852981` remains the negative biological frame result.
+
 ## Prior incarnations (historical continuity)
 
 # Previous Agent 10 incarnation (12 November 2026; normal issue-directed draw 3)
