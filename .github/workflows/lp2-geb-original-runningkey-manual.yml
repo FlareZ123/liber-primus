@@ -1,0 +1,15 @@
+name: Original 2014 GEB source GP29 running-key gate
+on:
+  workflow_dispatch:
+
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Scan all source-legal GEB text alignments for two original LP2 chapters
+        run: node sims/lp2_geb_original_runningkey_source_sft.cjs
