@@ -1,6 +1,6 @@
-# The 2016 / p50 / p55 43-unit bridge: source-selector gate
+# The 2014 / 2016 / p50 / p55 43-unit bridge: source-selector gate
 
-**Classification:** bounded source audit, negative. No source-authenticated, reversible 43-unit operation has been established. The direct p32-compass additive/Beaufort bridge and a direct source-order key made from the signature-verified 2016 message's 43 GP-prime word sums both fail on p55's 43 interiors. A new full-book test also rejects the natural continuous period-43 prime-sum key after p0's 13-rune red heading, and simple period-7 keys from p0's first black line. The exact 43×301 = 7×43² count relation is a source observation, not proof of an intended tensor or cipher. These results do not exclude other keyed, nonlinear, or stateful operations.
+**Classification:** a source-grounded 43-unit selector candidate has now been found, but no reversible square-to-p55 or p50-to-p55 operation is established. The three 2014 prior-puzzle squares (5×5, 7×7, 5×5) were explicitly required before the LP2 pages were returned. Their inner cells total 43, their perimeters 56, their rows 17, and all cells 99. This aligns with p55's 43 interior runes, 33 boundary runes, 17 words, and p57's 23-dot mark: 43=43, 33+23=56, 76+23=99, and 17=17. The p57 Parable's instruction to shed circumferences is a plausible literal selector for the square interiors. Direct mod-29, prime-count, spiral, and prime-count-difference interpretations tested here fail; the 99-unit placement and reversible operation remain unknown. Earlier p32-compass and 2016/p50 direct-key gates remain negative.
 
 ## Fixed source observations
 
@@ -41,6 +41,45 @@ That is 76 page-local runes. The leading one-rune segment is the final boundary 
 The solved p57 Parable says, “We must shed our own circumferences. Find the divinity within and emerge.” Under the lossless cross-page-aware stripping above, this yields a concrete internal marker geometry. GP index23 is D, and the 43 interiors contain D exactly at one-based positions **5 and23**. There are **17 runes strictly between**, their position difference is **18**, and the inclusive D…D span has **19 runes**. Historical `NUMBER(193)` independently yields **391=17×23**, so both factors are realized without choosing a new key. The D…D span folds to **100000000₂=256** and its center is I, whose GP prime is31.
 
 This supports the interior-extraction convention substantially more strongly than cardinality alone. It does not fix the p50-byte mapping or whether boundary symbols should later be reinserted. A separate direct pairing of the 43 signed-message words with these interiors, using word GP-prime sums as shifts, is tested below and fails.
+
+### The 2014 5/7/5 squares: a new source-grounded 43/56/99 selector
+
+The pinned historical archive contains the three squares in 2014/007-fifth-onion/magicsquares.txt. The next-stage 2014 sixth-onion instructions explicitly tell solvers to submit the three squares from previous puzzles; after successful submission, three additional Liber Primus pages were returned. The 2014 seventh-onion archive contains the LP2 material. Thus these are not numbers selected retrospectively from an unrelated source: the solver was required to possess these exact prior-puzzle artifacts before receiving LP2.
+
+The square orders are 5×5, 7×7, and 5×5:
+
+- Total cells: 25+49+25 = **99**.
+- Total rows: 5+7+5 = **17**.
+- Removing each outer ring leaves 3×3, 5×5, and 3×3: 9+25+9 = **43** inner cells.
+- The three perimeters contain 16+24+16 = **56** cells.
+
+This gives a much stronger structural match to the LP2 pages:
+
+- p55 has **76** runes, split into **43 interior** and **33 boundary** runes under the cross-page-aware word stripping above.
+- p55 has **17** printed word segments, matching the squares' 17 rows.
+- p57 has a terminal red punctuation mark annotated as **23 dots**.
+- Therefore 43 square-inner cells = 43 p55 interior runes; 33 p55 boundary runes + 23 p57 dots = 56 square-perimeter cells; and 76 p55 runes + 23 p57 dots = 99 total square cells.
+- The solved p57 Parable says, “We must shed our own circumferences. Find the divinity within and emerge.” This now has a plausible literal target in the three square perimeters and their 43 inner cells.
+
+A positive historical control survives the stripping: the inner-square centers remain **809, 331, 91**. Their prime counts are **140, 67, 24**, whose successive differences are **73, 43**, the previously established LP signature. The p55 red 13-dot mark is also preserved in the ink annotations, but it is not used in the 43/56/99 arithmetic.
+
+This changes the earlier assessment: the 43-unit selection is no longer supported only by a cardinality match between p50 and p55. The 2014 squares provide a plausible source-derived selector for the p55 interior. It is still a hypothesis about intended cross-stage use, not a recovered cipher.
+
+### Frozen direct tests of the square interiors
+
+The 43 inner square values were extracted in the original file order (row-major within each square, squares in source order) and compared with p55's 43 interior runes. The following direct operations were tested in both additive directions:
+
+1. Raw square value modulo 29 as a 43-symbol additive key.
+2. Prime-count value π(n) modulo 29 as a key.
+3. Prime-count difference relative to each inner square's center, modulo 29.
+4. Clockwise and counterclockwise spiral order of the 3×3 / 5×5 / 3×3 interiors, paired with p55's interior sequence.
+5. Placing p55's 43 interior runes into 3×3 / 5×5 / 3×3 matrices and reading those matrices in either spiral direction, paired with row-major or same-spiral square keys.
+6. A 42-step chain model using adjacent differences of π(n) from the square interiors against adjacent differences of p55's 43 interior runes; row-major and both spiral orders, both signs, and all 29 initial offsets were tested.
+7. A cumulative direction walk using the square values modulo 43 over the 43 p55 interior positions; row-major and spiral orders, both directions, and read-before/read-after variants were tested. These walks visit only 28 or 29 distinct positions, so they do not define a 43-position permutation.
+
+None of these direct mappings yields recognizable plaintext. They are negative gates, not evidence that the 2014 squares are irrelevant. The 99-token placement—76 p55 runes plus the 23 p57 dots into 99 square cells—has **not** been tested, because the source does not yet specify where the dots go or how to order the cells. Do not invent that placement or expand into arbitrary transforms.
+
+Reproduction: run sims/lp2_2014_square_inner43_p55_gate.cjs from the repository root. The derived square transcription and pinned provenance are preserved in resources/derived/historical-2014/.
 
 ### The earlier historical instructions
 
@@ -246,20 +285,18 @@ This rejects the direct `raw_byte mod 29` additive/Beaufort pairing and the dire
 
 ## Exact missing selector
 
-No surviving, contemporaneous instruction reviewed here establishes all of the following:
+The 2014 squares now provide a plausible source-grounded selector for the p55 43 interior units, but the complete reversible mapping remains unresolved:
 
-1. Which signed-message word corresponds to which p50 byte. The fixed natural-order word-prime-sum shift to p55's 43 interiors is negative and does not establish a three-way p50/message/p55 mapping.
-2. Whether the three 43-element sequences are paired in natural order, reversed, permuted, or grouped another way.
-3. Whether a p50 value is a raw byte, a base-60 token, an 8-way direction/distance value, or something else when applied to a GP rune.
-4. The direction and traversal order for the p55 interior sequence.
-5. The reversible transform, key material, key/state initialization, and any skip or carry rule.
-6. Whether the 33 boundary p55 runes are discarded, preserved as plaintext, or used as key/state material, including correct state carry for the incoming cross-page word.
-7. Whether p0's 13-rune red heading is a preamble and the next seven-rune black line is a key/header, or whether the 43 signed words define a continuous 43-position clock. The source-ordered, number-sorted, and first-line additive readings tested here all fail; the prime sums modulo 43 do not form a permutation.
+1. The 5/7/5 square source and p57 Parable plausibly select the 43 inner square cells and 43 p55 interior runes. They do not yet establish whether those sequences pair row-major, spiral, center-out, or by another traversal.
+2. The 99-unit relation (76 p55 runes + 23 p57 dots = 99 square cells) and the perimeter relation (33 p55 boundary runes + 23 dots = 56 square-perimeter cells) are count-level matches. No source instruction currently places the 23 dots into specific perimeter cells.
+3. The square values' role is unknown: raw shifts, prime-count values, differences, directions, transposition ranks, or a multi-stage operation. The direct mod-29, prime-count, and tested spiral/chain interpretations are negative.
+4. Which signed-message word corresponds to which p50 byte remains unknown. The fixed natural-order word-prime-sum shift to p55's 43 interiors is negative and does not establish a three-way p50/message/p55 mapping.
+5. Whether the p50, 2014-square, signed-message, and p55 43-element sequences are paired in natural order, reversed, permuted, or grouped another way remains unresolved.
+6. The reversible transform, key material, key/state initialization, and any skip or carry rule are not established.
+7. The 33 boundary p55 runes may be discarded, preserved as plaintex## Decision
 
-The current 43-word base-58 address map is a later reconstruction from GP prime sums and the 58-page count, not a protocol stated in the signed message. Its exceptional “lies” → p50 3D result is not enough to determine the missing 43-way correspondence.
+The 2014 5/7/5 squares materially strengthen the 43-unit bridge: they were required prior-puzzle inputs before LP2 release, and their 43 inner cells / 56 perimeter cells / 17 rows align with p55's 43 interior / 33 boundary / 17 words plus p57's 23-dot mark. The p57 Parable supplies a plausible human instruction to remove the square circumferences. This supersedes the earlier claim that no source-grounded selector for p55's 43 interior units was known.
 
-## Decision
+No decryption has resulted. Direct square-value mod-29 shifts, prime-count shifts, center-relative prime-count shifts, spiral additive pairings, prime-count-difference chain variants, and simple modulo-43 direction walks all fail. The p50 compass-byte interpretation on p32, signed 2016 word-prime-sum keying on p55, raw p50-byte-mod-29 and XOR pairings, continuous period-43 prime-sum key, and simple p0 period-7 keys remain negative. The exact 43×301 = 7×43² relation remains a count observation, not a decoder. The fold/END observation remains conditional and is not a decryption.
 
-The 43-unit cardinality bridge is a strong selector clue but still lacks an authenticated reversible operation. Direct p50 compass-byte interpretation on p32, signed 2016 word-prime-sum keying on p55, the p50 raw-byte-mod29 key and raw-byte XOR against p55's 43 interiors, the continuous 43-period prime-sum key over the 12,943-rune post-heading stream, and the simple p0 first-line period-7 keys all fail to produce plaintext. The exact 43×301 = 7×43² shape is a count relation, not a decoder. The fold/END observation remains conditional and is not a decryption.
-
-Do not expand this branch by trying arbitrary byte maps, shifts, phases, or word permutations. A successor needs an independent source clue selecting the p50 representation and the reversible operation; otherwise the 43-unit alignment alone is not enough to justify more key-search variants.
+The next valuable decision is a source-constrained test of the 99-cell structure or a traversal rule grounded in p54's spiral and p57's circumference instruction. In particular, determine whether the 76 p55 runes and 23 p57 dots have a historically plausible placement into the three 5/7/5 squares, and whether the 43 interior correspondence then specifies a reversible operation. Do not search arbitrary byte maps, shifts, phases, offsets, or permutations. The new square alignment justifies reopening this branch for a bounded investigation; it does not justify unconstrained key search.
