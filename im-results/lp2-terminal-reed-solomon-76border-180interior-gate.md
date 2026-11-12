@@ -1,6 +1,6 @@
 # LP2 terminal 76/180 geometry: a full-width Reed–Solomon codeword gate
 
-**Agent 45, 12 November 2026. Classification: source-constrained, direct original-input exclusion for three specific systematic Reed–Solomon field models. No plaintext or original cipher/key recovered.**
+**Agent 45, 12 November 2026. Classification: new GF(257) source-input exclusion; two GF(256) interpolations are independent implementation controls of a pre-existing stronger exclusion. No plaintext or original cipher/key recovered.**
 
 ## Why this particular error-correcting structure is worth testing
 
@@ -20,12 +20,12 @@ Preserve all 256 source bytes, printed row-major, SHA-256 `3b9b07d9a26e6d55c432d
 
 The planted polynomial's 180 coefficients are generated from the already solved p57 GP29 runes, repeated only inside the independent control. Every one of its 76 hidden border symbols is recovered exactly using the same interpolation routine. A separately implemented Python interpolation of the authentic 256 bytes independently gave the same original **0/76** results under all three field conventions.
 
-The original table is therefore **not itself** a full-width extended Reed–Solomon RS(256,180) evaluation codeword under any of these three fixed source-order byte readings. This is an exact exclusion: a single mismatch is already inconsistent with the model. It does not make a significant probability claim about the observation of zero correct predictions, which is commonplace for unrelated random data.
+The original table is therefore **not itself** a full-width extended Reed–Solomon RS(256,180) evaluation codeword under any of these three fixed source-order byte readings. **The two GF(256) negatives are already implied by a stronger pre-existing theorem** in [the terminal grid report](terminal-grid-circumference-knownplain-gate.md): XOR of all 256 original base60 bytes is 148 rather than zero, whereas the XOR across a full GF(256) evaluation polynomial of degree under 180 must vanish, in *any* ordering of all 256 field positions. The present same-position interpolations merely reproduce those bounded failures. **The incremental test here is GF(257),** whose arithmetic and 256 coordinate points are distinct from that characteristic-two theorem. This is an exact exclusion: a single mismatch is already inconsistent with the model. It does not make a significant probability claim about the observation of zero correct predictions, which is commonplace for unrelated random data.
 
 ## Decision and boundary
 
-Retire these three *literal printed-table-as-extended-RS-codeword* models. Do **not** infer the 180 solved p56+p57 symbols were actually used as an encoder input: that would require a separately specified GP29-to-byte representation and a reason that the table and terminal pages share one code. The test does not address interleaved codeword positions, keyed evaluations, another field presentation, disguised parity bytes or a cipher before coding; none is supplied by the p57 phrase or original graphics.
+Retire the **additional GF(257)** *literal printed-table-as-extended-RS-codeword* model; the existing stronger GF(256) exclusion stands. Do **not** infer the 180 solved p56+p57 symbols were actually used as an encoder input: that would require a separately specified GP29-to-byte representation and a reason that the table and terminal pages share one code. The test does not address interleaved codeword positions, keyed evaluations, another field presentation, disguised parity bytes or a cipher before coding; none is supplied by the p57 phrase or original graphics.
 
-This is a distinct check from the already completed **GF29 polynomial-divisor erasure family** in [the terminal parity report](p50-terminal-parity-dimension-gate.md), which exhausts the 48 divisors of the *source table polynomial* but does not claim that the 256 original byte values lie on a generic degree-179 evaluation polynomial over a byte-size field.
+The GF(257) extension is distinct from the already completed **GF29 polynomial-divisor erasure family** in [the terminal parity report](p50-terminal-parity-dimension-gate.md), which exhausts the 48 divisors of the *source table polynomial* but does not claim that the 256 original byte values lie on a generic degree-179 evaluation polynomial over a byte-size field.
 
 **Reproducer:** [single-run CommonJS original-source RS inverse and native polynomial controls](../sims/lp2_terminal_76border_rs256_180interior_sft.cjs). Requires Node.js 22 and the pinned original repository JSON files. The source was unchanged.
