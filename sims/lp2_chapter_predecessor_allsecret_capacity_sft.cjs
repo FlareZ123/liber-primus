@@ -112,6 +112,29 @@ assert.deepEqual([
   observed.pageOne.states
 ], [261, 521, 1590]);
 
+// Original runic chapter lengths and separate exact frequency budgets.
+// Grant every physical page's initial rune completely unconstrained.
+const chapterLengths=Array(chapters.length).fill(0);
+const chapterStarts=Array(chapters.length).fill(0);
+for(const p of pages){
+  const chapter=chapters.findIndex(([a,b])=>p.page>=a&&p.page<=b);
+  assert(chapter>=0); chapterLengths[chapter]+=p.indices.length;
+  chapterStarts[chapter]++;
+}
+assert.deepEqual(chapterLengths,[729,1145,1729,1903,1021,1433,1680,3008,308]);
+const chapterOffsets=chapterLengths.map((_,i)=>chapterLengths.slice(0,i).reduce((a,b)=>a+b,0));
+assert.equal(chapterOffsets[7],9640);
+const chapterBoundary=chapters.map((_,chapter)=>{
+  const subset=original.filter((row)=>row.chapter===chapter);
+  return {chapter,offset:chapterOffsets[chapter],runes:chapterLengths[chapter],
+    pageStarts:chapterStarts[chapter],
+    maxOne:capacity(subset,['q','boundary'],1).capacityTransitions+chapterStarts[chapter],
+    maxTwo:capacity(subset,['q','boundary'],2).capacityTransitions+chapterStarts[chapter]};
+});
+assert.deepEqual(chapterBoundary.map((c)=>[c.maxOne,c.maxTwo]),
+  [[119,215],[167,292],[205,364],[226,401],[141,247],
+    [183,322],[209,365],[300,537],[85,142]]);
+
 const tokens = db.translit.map((token, index) => ({token, index}))
   .sort((a, b) => b.token.length - a.token.length);
 /**
@@ -146,19 +169,61 @@ const controlSources = [
   {name: 'Emerson', filename: 'resources/control/emerson_essays_2944.txt',
     length: 324630, windows: 49}
 ];
+/**
+ * Exhaust all original-length consecutive native-GP source windows.
+ * Every chapter must meet its own secret-table E and E+O bound;
+ * loop reuses rolling counters, avoiding quadratic cost.
+ * @param {number[]} all
+ * @returns {{windows:number,chapter7EOpass:number,passesNineChapterEandEO:number,firstCompatibleOffsets:number[]}}
+ */
+function screenEveryWindow(all){
+  const e=chapterLengths.map(()=>0),eo=chapterLengths.map(()=>0);
+  for(let ch=0;ch<chapterLengths.length;ch++){
+    for(let i=chapterOffsets[ch];i<chapterOffsets[ch]+chapterLengths[ch];i++){
+      if(all[i]===E)e[ch]++;
+      if(all[i]===E||all[i]===O)eo[ch]++;
+    }
+  }
+  const result={windows:all.length-N+1,chapter7EOpass:0,
+    passesNineChapterEandEO:0,firstCompatibleOffsets:[]};
+  for(let start=0;start+N<=all.length;start++){
+    let valid=true;
+    for(let ch=0;ch<chapterLengths.length;ch++){
+      if(e[ch]>chapterBoundary[ch].maxOne||eo[ch]>chapterBoundary[ch].maxTwo)valid=false;
+    }
+    if(eo[7]<=chapterBoundary[7].maxTwo)result.chapter7EOpass++;
+    if(valid){
+      result.passesNineChapterEandEO++;
+      if(result.firstCompatibleOffsets.length<5)result.firstCompatibleOffsets.push(start);
+    }
+    if(start+N<all.length){
+      for(let ch=0;ch<chapterLengths.length;ch++){
+        const a=all[start+chapterOffsets[ch]];
+        const b=all[start+chapterOffsets[ch]+chapterLengths[ch]];
+        if(a===E)e[ch]--;if(a===E||a===O)eo[ch]--;
+        if(b===E)e[ch]++;if(b===E||b===O)eo[ch]++;
+      }
+    }
+  }
+  return result;
+}
+
 let samplePlaintext = null;
 const controls = [];
 for (const control of controlSources) {
   const all = encodeNativeGp(read(control.filename));
   assert.equal(all.length, control.length);
-  /** @type {Array<{e:number,eo:number}>} */
+  /** @type {Array<{e:number,eo:number,localE:number,localEO:number}>} */
   const windows = [];
   for (let start = 0; start + N <= all.length; start += Math.floor(N / 2)) {
     const native = all.slice(start, start + N);
     if (samplePlaintext === null) samplePlaintext = native;
     const e = native.filter((i) => i === E).length;
     const eo = native.filter((i) => i === E || i === O).length;
-    windows.push({e, eo});
+    const local=native.slice(chapterOffsets[7],chapterOffsets[7]+chapterLengths[7]);
+    const localE=local.filter((i)=>i===E).length;
+    const localEO=local.filter((i)=>i===E||i===O).length;
+    windows.push({e,eo,localE,localEO});
   }
   assert.equal(windows.length, control.windows);
   controls.push({author: control.name, windows: windows.length,
@@ -167,12 +232,40 @@ for (const control of controlSources) {
     allExceedChapterOne: windows.every((v) =>
       v.e > observed.chapterOne.capacityIncludingPageStarts),
     allExceedChapterTwo: windows.every((v) =>
-      v.eo > observed.chapterTwo.capacityIncludingPageStarts)});
+      v.eo > observed.chapterTwo.capacityIncludingPageStarts),
+    minimumChapter40_53E:Math.min(...windows.map((v)=>v.localE)),
+    minimumChapter40_53EplusO:Math.min(...windows.map((v)=>v.localEO)),
+    allExceedBoundaryChapter7:windows.every((v)=>v.localEO>chapterBoundary[7].maxTwo),
+    exhaustive:screenEveryWindow(all)});
 }
 assert.deepEqual(controls.map((c) => [c.minimumE, c.minimumEplusO]),
   [[1430, 2471], [1437, 2608], [1491, 2464]]);
-assert(controls.every((c) => c.allExceedChapterOne && c.allExceedChapterTwo));
+assert(controls.every((c)=>c.allExceedChapterOne && c.allExceedChapterTwo &&
+  c.allExceedBoundaryChapter7));
+assert.deepEqual(controls.map((c)=>[c.minimumChapter40_53E,c.minimumChapter40_53EplusO]),
+  [[298,539],[320,577],[325,549]]);
+assert.deepEqual(controls.map((c)=>[c.exhaustive.windows,
+  c.exhaustive.chapter7EOpass,c.exhaustive.passesNineChapterEandEO]),
+  [[205845,2202,52],[50159,0,0],[311675,0,0]]);
 assert.equal(controls.reduce((sum, c) => sum + c.windows, 0), 89);
+
+// Independently corrected full Old English Beowulf GP control.
+const beowulf=JSON.parse(read('resources/control/beowulf_oe_gp_profile_corrected.json'));
+const alphabet=beowulf.positiveControlAlphabet;
+const beowulfSource=Array.from(beowulf.sourceGpBase29,(symbol)=>alphabet.indexOf(symbol));
+assert.equal(beowulfSource.length,48012);
+assert(beowulfSource.every((i)=>i>=0&&i<29));
+const beowulfPlant=Array.from(beowulf.positiveControlGpBase29,
+  (symbol)=>alphabet.indexOf(symbol));
+assert.equal(beowulfPlant.length,N);
+const beowulfLocal=beowulfPlant.slice(chapterOffsets[7],
+  chapterOffsets[7]+chapterLengths[7]);
+const beowulfLocalE=beowulfLocal.filter((i)=>i===E).length;
+const beowulfLocalEO=beowulfLocal.filter((i)=>i===E||i===O).length;
+assert.deepEqual([beowulfLocalE,beowulfLocalEO],[354,541]);
+const beowulfExhaustive=screenEveryWindow(beowulfSource);
+assert.deepEqual([beowulfExhaustive.windows,beowulfExhaustive.chapter7EOpass,
+  beowulfExhaustive.passesNineChapterEandEO],[35057,33170,0]);
 
 // Full secret-key positive plant: all 9*29 inverse tables are independent
 // secret permutations. Recover complete native GP English, including all 55
@@ -247,7 +340,9 @@ assert(plantedCapE >= plantedE && plantedCapEO >= plantedEO);
 console.log('PASS: original 12,956 GP29 runes, 12,901 page-internal transitions,');
 console.log('all-secret 9-chapter previous-cipher-state capacity, 89 native-GP');
 console.log('controls, original word-boundary contrast, and complete 12,956-rune plant.');
-console.log(JSON.stringify({observed, controls, positivePlant: {
+console.log(JSON.stringify({observed,chapterBoundary,controls,
+  beowulf:{beowulfLocalE,beowulfLocalEO,exhaustive:beowulfExhaustive},
+  positivePlant: {
   recoveredSymbols: recovered.length, plantedE, plantedEO,
   plantedCapE, plantedCapEO, exactRoundtrip: true
-}, decision: 'Chapter-static previous-cipher-only GP29 bijections fail native-English E and E+O capacity. Original word-boundary state removes this specific frequency obstruction without recovering plaintext or selecting a secret key.'}, null, 2));
+}, decision: 'Even chapter+previous-cipher+printed-word-boundary arbitrary GP29 permutations fail all 89 aligned English controls on pp40-53. Exhaustive original-length corpora leave only 52 Shakespeare positions among all pinned full-length source windows, so this is a bounded corpus-family obstruction. No plaintext or key is recovered.'}, null, 2));

@@ -1,63 +1,70 @@
-# LP2 chapter-static previous-cipher decoder: all-secret capacity and printed-boundary fork
+# LP2 predecessor-state substitution: source-chapter all-secret capacity
 
-**12 November 2026, Agent5.** The original 12,956 GP29-rune ciphertext cannot represent any of the 89 pinned ordinary native-GP English control windows through a **length-preserving, chapter-static, previous-cipher-rune-only 29-symbol permutation cipher**, even granting an entirely arbitrary independent secret 29! substitution for **each of the 261 chapter × predecessor states**. Such a cipher cannot produce enough plaintext E or E+O runes. Adding the original printed word-boundary bit as decoder input removes this specific upper-bound obstruction. **No authentic unknown plaintext, original key, or authorially specified operation is recovered.**
+**Agent 5, 12 November 2026. Original-input, all-secret GP29 exclusion.** Original unsolved physical pp0–55 contain 12,956 canonical GP29 rune identities across 55 rune-bearing pages. Even granting every one of the **261** observed (nine visible chapter, previous ciphertext rune) states a separate, completely arbitrary secret 29-way symbol permutation, their combined outputs cannot match the E and E+O frequencies of any of 89 pinned native-GP English windows. **The stronger result is chapter-local:** giving the cipher the original printed **word-start bit** as an *additional input* no longer rescues those 89 aligned windows. One original chapter, physical pp40–53, has an exact maximum of **300** copies of any single plaintext rune and **537** copies of any two different runes across its 3,008 output positions, even with a separate 29! secret permutation per previous-rune/word-boundary state and 13 wholly free page starts. Every aligned Shakespeare/Gibran/Emerson English control has **at least 539 E+O** in that same chapter. No original unknown plaintext, key or cipher mechanism is recovered.
 
-[Complete original-input CommonJS regression](../sims/lp2_chapter_predecessor_allsecret_capacity_sft.cjs) · [successful manual GitHub Actions run 43292429497](https://github.com/FlareZ123/liber-primus/actions/runs/43292429497).
+[Reproducer](../sims/lp2_chapter_predecessor_allsecret_capacity_sft.cjs) · [Initial successful GitHub Actions regression](https://github.com/FlareZ123/liber-primus/actions/runs/43292429497).
 
-## A plausible mechanism and exact constraint
+## Source evidence and proof
 
-Near-uniform original rune frequencies and very few equal-adjacent ciphertext pairs suggest considering a changing substitution keyed to the preceding ciphertext rune. The manuscript visibly divides into nine chapters, so grant the proposed decoder **one entirely unconstrained secret alphabet at each combination of chapter and previous ciphertext rune**:
+The nine original visible chapter intervals are pp0–2, 3–7, 8–14, 15–22, 23–26, 27–32, 33–39, 40–53, and 54–55; original physical p50 contains only numerical-table cells. The canonical rune sequence and independent exact transcription agree at every position. Between the 55 page starts are **12,901** adjacent within-page transitions. **2,873** of those carry a printed word separator before the next glyph, independent of page/line wraps.
 
+The proposed family is a *hypothetical* length-preserving, plaintext-native GP29 decoder
 \[
-P_i=D_{h_i,C_{i-1}}(C_i), \qquad
-D_{h,q}:\{0,\ldots,28\}\to\{0,\ldots,28\}
-\text{ any bijection}.
+P_i=D_{h_i,C_{i-1},b_i}(C_i),
+\]
+where \(h_i\) is the observed chapter, \(C_{i-1}\) the preceding printed ciphertext rune, \(b_i\) the **printed** word-start bit (optional), and every \(D\) any independently chosen unknown permutation of all 29 GP rune identities. We grant the decoder the printed bit directly, without requiring it to predict or encode punctuation. When \(b\) is absent, this is the simpler chapter+previous-rune family. No 256-cell grid key, affine form, statistical fit, or fixed substitution alphabet is assumed.
+
+For each visible state \(s\), form the original next-rune counts \(n_{s,c}\). Under **every possible secret permutation**, the greatest possible output count of any chosen one plaintext rune is the sum of each state's largest cell count; for any two chosen distinct runes, sum the two largest counts per state. This is an **exact all-secret upper bound**, because a permutation maps each observed ciphertext identity to precisely one output identity. Add **one free plaintext rune per physical page**, ignoring actual cipher carries. For chapter \(h\), with \(N_h\) source runes and \(q_h\) pages, the respective maxima are
+\[
+U_{h,1} = q_h+\sum_{s\in h}n_{s,(1)},\qquad
+U_{h,2} = q_h+\sum_{s\in h}(n_{s,(1)}+n_{s,(2)}).
 \]
 
-The original chapter intervals are pages 0–2, 3–7, 8–14, 15–22, 23–26, 27–32, 33–39, 40–53 and 54–55; p50 is the runeless number table. **The cipher architecture itself is hypothetical.** It does not presume the 256-byte table or a particular secret alphabet ordering.
+All counts below *already grant the observed printed word-boundary bit* and completely secret alphabets.
 
-For each fixed observable state \(s=(h,C_{i-1})\), count original next-ciphertext identities \(n_{s,c}\). Under any unknown inverse permutation, the maximum total copies of one chosen plaintext rune are
+| Original chapter | GP rune positions | Freely allowed first runes | Max copies of any one GP rune | Max copies of any two GP runes |
+| --- | ---: | ---: | ---: | ---: |
+| pp0–2 | 729 | 3 | 119 | 215 |
+| pp3–7 | 1,145 | 5 | 167 | 292 |
+| pp8–14 | 1,729 | 7 | 205 | 364 |
+| pp15–22 | 1,903 | 8 | 226 | 401 |
+| pp23–26 | 1,021 | 4 | 141 | 247 |
+| pp27–32 | 1,433 | 6 | 183 | 322 |
+| pp33–39 | 1,680 | 7 | 209 | 365 |
+| **pp40–53** | **3,008** | **13** | **300** | **537** |
+| pp54–55 | 308 | 2 | 85 | 142 |
 
-\[
-U_1=\sum_s \max_c n_{s,c}.
-\]
+**Without word-boundary input**, the original entire-book class has 261 populated states and totals **1,310** single-letter and **2,344** two-letter capacities, even after adding all 55 page starts; all 89 native-English controls exceed them (minima E=1,430, E+O=2,464). With word-start input, the **global** capacities rise to **1,635/2,885** across 521 populated states. That aggregate count alone is inconclusive. The separate pp40–53 limit above is the discriminating test, independently of how surplus capacity in the other chapters is distributed.
 
-The maximum total copies of any two chosen plaintext runes are
+## Original-page prediction against independent native language
 
-\[
-U_2=\sum_s (n_{s,(1)}+n_{s,(2)}),
-\]
+Native controls are normalized to the project's fixed GP alphabet (QU→CW; V→U; K/Q→C; Z→S; longest 29-GP digraph token), then selected in *complete 12,956-rune windows* aligned to every original physical chapter boundary. The original pp40–53 chapter corresponds to GP global offsets **9,640–12,647**, a 3,008-rune interval.
 
-where the subscripts (1) and (2) denote the two highest counts at a given state. These maximize over **every possible secret 29! permutation at every source-visible state**, without searching keys. Add **55 unconstrained positions** for the first rune of every physical page, an optimistic allowance even for a chapter-continuous cipher.
+| Independent native-GP source | 12,956-rune aligned windows (stride 6,478) | Minimum E in pp40–53 aligned interval | Minimum E+O there | Windows exceeding 537 E+O |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare, first 300,000 characters | 32 | 298 | **539** | **32/32** |
+| Gibran, *The Prophet* | 8 | 320 | **577** | **8/8** |
+| Emerson, *Essays, First Series* | 49 | 325 | **549** | **49/49** |
 
-Source inputs are the exact **55 original rune-bearing physical pages**, **12,956** GP29 rune identities, **12,901** within-page transitions, **2,873** printed between-word delimiters before in-page runes, and the nine visual chapter intervals. Every rune position is asserted against the independent original-source corpus. The parser preserves the existing 32 cross-page words and never treats line wraps as word breaks.
+The independently corrected native **Old English Beowulf** fixture is a relevant register check. Its source-selected disjoint 12,956-rune positive plaintext plant has **354 E** and **541 E+O** in this same 3,008-position interval, and also violates the original chapter's 300/537 capacities.
 
-## Original versus native control
+### Exhaustive same-size source windows: important limitation
 
-| Secret decoder state | Populated states | Max copies of any one plaintext rune, including 55 page starts | Max copies of any two plaintext runes, including 55 page starts |
+An **every-offset**, exact-length rolling check across all original native-language source windows prevents turning the 89 aligned-control exclusion into an unwarranted universal theorem. It imposes **all nine chapter bounds simultaneously** for E *and* E+O. Substrings pass this finite necessary gate at the following rates:
+
+| Source | Every possible full-length 12,956-rune window | Windows passing the pp40–53 E+O bound alone | Windows passing both capacity bounds in every chapter |
 | --- | ---: | ---: | ---: |
-| Previous cipher rune, global | 29 | **769** | **1,414** |
-| Previous rune + printed word-start bit, global | 58 | **854** | **1,562** |
-| Original chapter + previous rune | **261** | **1,310** | **2,344** |
-| Original chapter + previous rune + printed word-start bit | **521** | **1,635** | **2,885** |
-| Physical page + previous rune | 1,590 | **2,790** | **4,787** |
+| Shakespeare | 205,845 | 2,202 | **52** |
+| Gibran | 50,159 | 0 | **0** |
+| Emerson | 311,675 | 0 | **0** |
+| Corrected Old English *Beowulf* | 35,057 | 33,170 | **0** |
 
-Reference texts use established GP normalization: QU to CW, V to U, K/Q to C, Z to S, followed by longest matching of the 29 canonical rune transliterations. Each native window contains **12,956 runes**, with windows stepped by half the manuscript length. This matches the independently pinned project-wide native controls.
+The 52 passing Shakespeare windows occur in a very narrow local stretch, with first allowed offsets **100,611–100,615**. They are overlapping candidate source windows, **not** genuine decryptions or source-selected cribs. The Old English corpus has a substantially different E/O distribution, so a chapter7 E+O bound alone does little to constrain that language. It nevertheless has no complete matched manuscript-length source window passing *both* the one-rune and two-rune bounds for every chapter.
 
-| GP-native English source | Windows | Minimum plaintext E copies | Minimum E+O copies |
-| --- | ---: | ---: | ---: |
-| Shakespeare (first 300,000 characters) | 32 | **1,430** | **2,471** |
-| Gibran, *The Prophet* | 8 | **1,437** | **2,608** |
-| Emerson, *Essays, First Series* | 49 | **1,491** | **2,464** |
+Thus the finite evidence sharply disfavors the specified chapter-static, previous-cipher and printed-boundary substitution architecture for the tested native English styles, while retaining **52** specific Shakespeare candidates under these frequency necessary conditions. It does not exclude every possible English passage or an arbitrary external plaintext. Frequency compatibility cannot recover keys or demonstrate a candidate plaintext.
 
-**Every one of 89 native-GP English controls exceeds both chapter-static predecessor-only capacity ceilings.** Even the weakest comparison exceeds the **1,310** one-symbol ceiling by at least **120** E runes and the **2,344** two-symbol ceiling by at least **120** E+O runes. These are deterministic all-secret obstructions within the stated cipher family.
+## Cipher plant and next decision
 
-**Adding the actual word-start bit changes this necessary condition.** Separate secret tables for printed word starts and interiors within each original chapter and predecessor state increase capacities to **1,635** and **2,885**. Both exceed the native-control minima. This permits sufficient character frequency only. It neither demonstrates a viable complete English decoder nor proves the printed separators were inherited from plaintext. Independent per-page secret tables similarly escape the simple capacity bound at the cost of substantially greater key freedom.
+The SFT instantiates **nine×29 independent secret 29-way substitution rows**, encrypts a complete 12,956-rune Shakespeare GP plaintext plant under the simpler chapter+previous-cipher family, then recovers every rune through the inverse tables. The exact analytical capacity of this encrypted plant contains the planted source's E and E+O counts. The original manuscript does not satisfy the same criterion on the 89 selected native controls. The source-verified script also asserts all chapter counts, source texts, the corrected Old English control and the every-offset comparison results.
 
-## Fully recoverable positive plant and next decipherment decision
-
-The accompanying CommonJS SFT generates **9×29 independent secret 29-way permutations**, encrypts a full **12,956-rune native Shakespeare control** with cipher-state reset at the exact original 55 physical page starts, and recovers **12,956/12,956** plaintext symbols through its inverse tables. The plant's all-secret capacity necessarily covers its true E and E+O counts; the original ciphertext does not. The script asserts every original-source runic position, printed-word delimiter total, state cardinality, capacity, source-native window count and control minimum.
-
-**Decision:** a stationary preceding-cipher-rune rotor, even with arbitrary secret 29-way substitutions independently assigned to each chapter and predecessor, cannot directly decode the complete LP2 original into the three tested styles of ordinary GP-native English. Printed-boundary-conditioned substitution or larger state memory is structurally different and survives this necessary frequency check. Proceed to such a mechanism **only if an original source selects its identity-changing rule, key and state clock**, then demand complete untouched-page plaintext plus exact inverse. Do not interpret the possible model's key freedom as evidence for an intended cipher.
-
-This bounded result complements the preexisting [256-phase GP28 rank exclusions](lp2-chain256-allsecret-source-gate.md) and [word-boundary channel audit](lp2_boundary_single_escape_symbol_source_gate.md). It does not test other languages or orthographies, evolving hidden state, alternate plaintext registers, variable-length codes, or external binary payloads. The authoritative conclusion that LP2 pp0–55 remain unsolved is unchanged.
+**Decision:** do not invest in discovering secret alphabet tables for a chapter-static previous-cipher-only GP rotor or its simple printed-word-bit extension without an independent, stronger original clue. More than a global word boundary is needed for a general decoder. A changing phase within chapters, genuine page reset, extra historical state, variable-length encoding or a different plaintext alphabet could escape these particular frequency constraints; the manuscript supplies no tested authenticated selector for those alternatives. Direct plaintext/key recovery remains the decisive objective. Existing [256-phase GP28 gate](lp2-chain256-allsecret-source-gate.md) and [word-boundary channel limits](lp2_boundary_single_escape_symbol_source_gate.md) concern other models and remain distinct.
