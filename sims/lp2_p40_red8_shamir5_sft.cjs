@@ -110,7 +110,20 @@ for (const [idType, ids] of [
     let heldout = 0;
     const highZeros = [0, 0, 0];
     const secret = [];
+    const oneErrorGates = ids.map((_, omission) => {
+      const keep = ids.map((_, i) => i).filter(i => i !== omission);
+      return { keep, b: basis(keep.slice(0, 5).map(i => ids[i])) };
+    });
+    /** @param {number[]} row */
+    function compatibleWithOneError(row) {
+      return oneErrorGates.some(({ keep, b }) => {
+        const co = interpolate(keep.slice(0, 5).map(i => row[i]), b);
+        return keep.every(i => evaluate(co, ids[i]) === row[i]);
+      });
+    }
+    let oneErrorRows = 0;
     for (let r = 0; r < 375; r++) {
+      if (compatibleWithOneError(rows[r])) oneErrorRows++;
       const co5 = interpolate(rows[r].slice(0, 5), b5);
       secret.push(co5[0]);
       for (let k = 5; k < 8; k++) if (full[r][k] === 0) highZeros[k - 5]++;
@@ -118,7 +131,8 @@ for (const [idType, ids] of [
       for (let col = 5; col < 8; col++)
         if (evaluate(co5, ids[col]) === rows[r][col]) heldout++;
     }
-    const [wantExact, wantHeldout, wantZeros, wantIoC] = expected[trial++];
+    const [wantExact, wantHeldout, wantZeros, wantIoC] = expected[trial];
+    assert.equal(oneErrorRows, [4, 3, 3, 1, 6, 2][trial++]);
     assert.equal(exactDegree4Rows, wantExact);
     assert.equal(heldout, wantHeldout);
     assert.deepEqual(highZeros, wantZeros);
@@ -134,6 +148,12 @@ for (const [idType, ids] of [
     });
     const encoded = pack(plant, mode);
     const decoded = unpack(encoded, mode);
+    const damaged = decoded.map((row, i) => {
+      const copy = row.slice();
+      copy[i % 8] = mod(copy[i % 8] + 1);
+      return copy;
+    });
+    assert(damaged.every(row => compatibleWithOneError(row)));
     let plantHeldout = 0;
     const recovered = decoded.map((row) => {
       const co = interpolate(row.slice(0, 5), b5);
@@ -147,7 +167,7 @@ for (const [idType, ids] of [
     assert.deepEqual(recovered, native);
     assert.equal(plantHeldout, 1125);
     console.log(JSON.stringify({idType, mode, ids, exactDegree4Rows, heldout,
-      heldoutTotal: 1125, highZeros, secretIoC: ioc(secret),
+      heldoutTotal: 1125, oneErrorRows, highZeros, secretIoC: ioc(secret),
       first28GP: secret.slice(0, 28).map((x) => corpus.translit[x]).join(''),
       plantRecovered: '375/375', plantHeldout: '1125/1125', fullForwardRoundtrip: true}));
   }
