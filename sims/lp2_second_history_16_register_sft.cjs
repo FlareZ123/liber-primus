@@ -316,6 +316,40 @@ const yfBestOverlap = Math.max(...yfCandidateMasks.map(c =>
   [...yfSingleState].filter(output => c.mask & (1 << output)).length));
 assert.equal(yfBestOverlap, 10); // Strictly below the observed support 11.
 
+// A realistic ambiguity is the GP spelling of the 16 Younger Futhark
+// letters (especially K->C). Even if ANY ONE of the sixteen source GP
+// glyphs were replaced by ANY of the thirteen other GP rune identities,
+// the six original counterexample states cannot all be affine images.
+// Exhaust 16*13=208 one-glyph reinterpretations without fitting a key.
+const remainingGP = Array.from({ length: 29 }, (_, i) => i)
+  .filter(i => !historicallyMotivatedYFCodebook.includes(i));
+assert.equal(remainingGP.length, 13);
+const affineCandidatesForCodebook = codebook => {
+  const masks = [];
+  for (let a = 1; a < 29; a++) {
+    for (let b = 0; b < 29; b++) {
+      masks.push(bitmask(new Set(codebook.map(x => (a * x + b) % 29))));
+    }
+  }
+  return masks;
+};
+const hardYFStates = yfFailedStates.map(k => bitmask(page.get(k)));
+let allSingleGlyphRespellings = 0, oneGlyphPossible = 0;
+for (let slot = 0; slot < historicallyMotivatedYFCodebook.length; slot++) {
+  for (const replacement of remainingGP) {
+    allSingleGlyphRespellings++;
+    const alt = historicallyMotivatedYFCodebook.slice();
+    alt[slot] = replacement;
+    const variants = affineCandidatesForCodebook(alt);
+    const feasible = hardYFStates.every(
+      observed => variants.some(mask => (observed & mask) === observed));
+    if (feasible) oneGlyphPossible++;
+  }
+}
+assert.equal(allSingleGlyphRespellings, 208);
+assert.equal(oneGlyphPossible, 0);
+
+
 console.log(JSON.stringify({
   originalRuneCount: 12956,
   visibleChapterStarts: starts,
@@ -332,6 +366,8 @@ console.log(JSON.stringify({
     exampleOriginalState: '7:0,24',
     originalSupport: yfSingleState.size,
     maximalAffineCoverage: yfBestOverlap,
+    allSingleGlyphRespellings,
+    oneGlyphRespellingsCompatibleWithOriginalSixStates: oneGlyphPossible,
     interpretation: 'The p0 3|3 Younger Futhark register under the conditional GP K-to-C representation fails as a literal shared-source codebook under any two-history page/chapter-dependent affine GP29 output; no other mapping is excluded.',
   },
     fixedCodebookAffine16OriginalFit: {
