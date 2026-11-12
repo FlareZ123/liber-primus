@@ -6,6 +6,9 @@
 - Consolidated existing `im-results/grid-tea-xtea-allkey-state-trace-exclusion.md` with this new result, published self-contained `sims/lp2_p50_xtea_round_schedule_sft.cjs`, and remotely verified commit `18bfb91e90172911b2b9bd4723be2bdfeedf5669`. Do not run further TEA/XTEA speculative variants absent a fresh primary clue.
 - Now pursuing an independent path to authentic source-selected key/operation, avoiding numerical coincidences and redundant cipher sweeps. At next checkpoint compare measured current clock to original lease, continue when <70 minutes; only orderly release when ≥70.
 
+
+- Follow-up original-grid cryptographic interpretation: 64 consecutive 32-bit SHA-256 *expanded message schedule* words from the 32×8 source. All 16 natural serializations fail **48/48** deterministic expansion equations; genuine 64-word schedule plant passes 48/48 and one-bit negative control fails one equation. Integrated with previous SHA-chain findings in `im-results/lp2-p50-sha256-sha512-block-chain.md`; standalone `sims/lp2_p50_sha256_schedule_sft.cjs`. No plaintext; do not elaborate hash variants without fresh primary clue.
+
 ---
 
 ### Additional native-GP29 symbolwise share elimination, 20:18–20:21Z
