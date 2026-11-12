@@ -98,5 +98,22 @@ def main():
                 print("  ",reverse,sign,f"IoC={ioc(out):.8f}",
                       " ".join(DATA["translit"][x] for x in out[:25]))
                 assert ioc(out)<.04
+    # The same stamped page p56 also supplies a fully authenticated 85-rune
+    # known plaintext, a distinct frozen candidate for a repeated GP29 pad.
+    # Start-aligned and end-aligned clocks follow the stamped page endings.
+    print("p56 solved-plaintext key transfer: exact 85-rune key")
+    for start,end in ((3,7),(8,22),(23,26)):
+        cipher=[x for p in DATA["pages"][start:end+1] for x in p["indices"]]
+        for from_end in (False,True):
+            for sign in (-1,1):
+                positions=[((len(cipher)-1-i) if from_end else i)%len(plain)
+                           for i in range(len(cipher))]
+                out=[(c+sign*plain[positions[i]])%29 for i,c in enumerate(cipher)]
+                assert all((out[i]-sign*plain[positions[i]])%29==c
+                           for i,c in enumerate(cipher))
+                print(f"pp{start}-{end}: end-aligned={from_end} sign={sign:+d} "
+                      f"IoC={ioc(out):.8f}",
+                      " ".join(DATA["translit"][x] for x in out[:25]))
+                assert ioc(out)<.04
 
 if __name__=="__main__":main()
