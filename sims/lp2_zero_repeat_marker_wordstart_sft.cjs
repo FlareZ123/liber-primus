@@ -1,0 +1,224 @@
+"use strict";
+/**
+ * LP2 original within-page adjacent repeats as a fixed plaintext escape rune.
+ *
+ * Testable prerequisite for the GP28 predecessor-exclusion proposal:
+ * C[i] === C[i-1] iff plaintext[i] === one fixed reserved GP rune.
+ *
+ * Keep every original word length, word boundary, and physical-page start.
+ * Draw GP-native words independently from pinned English sources, preserving
+ * the complete LP2 print layout. For ALL 29 possible reserved runes, count
+ * non-page-leading occurrences and how many begin printed words.
+ * No ciphertext key or language scoring is fitted.
+ *
+ * Run from the repo root: node sims/lp2_zero_repeat_marker_wordstart_sft.cjs
+ */
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const {parseLP2Words} = require("./lp2_word_pages.cjs");
+const {encodeEnglish, seededRandom} =
+  require("./outer_permutation_assignment.cjs");
+
+const ROOT = path.resolve(__dirname, "..");
+/** @param {string} p @returns {string} */
+const read = p => fs.readFileSync(path.join(ROOT, p), "utf8");
+const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const source = corpus.pages.filter(p => p.page < 56 && p.indices.length);
+const cipher = source.flatMap(p => p.indices);
+const printed = parseLP2Words(
+  read("resources/liber-primus/lp2-transcription.txt"));
+assert.equal(cipher.length, 12956);
+assert.equal(printed.runeCount, cipher.length);
+assert.equal(printed.words.length, 2896);
+
+const glyphIndex = new Map(corpus.runes.map((r, i) => [r, i]));
+const lengths = printed.words.map(w => w.length);
+const fromWords = printed.words.flatMap(w =>
+  Array.from(w.runes, r => glyphIndex.get(r)));
+assert.deepEqual(fromWords, cipher);
+
+const pageStarts = new Set();
+let offset = 0;
+for (const page of source) {
+  pageStarts.add(offset);
+  offset += page.indices.length;
+}
+assert.equal(offset, cipher.length);
+
+const wordOffset = new Int16Array(cipher.length);
+const wordLength = new Int16Array(cipher.length);
+offset = 0;
+for (const len of lengths) {
+  for (let j = 0; j < len; j++) {
+    wordOffset[offset] = j;
+    wordLength[offset] = len;
+    offset++;
+  }
+}
+assert.equal(offset, cipher.length);
+
+/** @param {number[]} data @returns {{total:number,start:number,start2:number}} */
+function repeats(data) {
+  let total = 0, start = 0, start2 = 0;
+  for (let i = 1; i < data.length; i++) {
+    if (pageStarts.has(i) || data[i] !== data[i - 1]) continue;
+    total++;
+    if (wordOffset[i] === 0) {
+      start++;
+      if (wordLength[i] === 2) start2++;
+    }
+  }
+  return {total, start, start2};
+}
+const original = repeats(cipher);
+assert.deepEqual(original, {total:86, start:23, start2:3});
+
+/** @param {string} text @returns {Map<number,number[][]>} */
+function poolsFrom(text) {
+  const pools = new Map();
+  for (const token of text.toUpperCase().split(/[^A-Z]+/)) {
+    if (!token) continue;
+    const symbols = encodeEnglish(token);
+    if (!symbols.length) continue;
+    if (!pools.has(symbols.length)) pools.set(symbols.length, []);
+    pools.get(symbols.length).push(symbols);
+  }
+  assert(lengths.every(len => pools.has(len)));
+  return pools;
+}
+
+/**
+ * @param {Map<number,number[][]>} pools
+ * @param {() => number} rng
+ * @returns {number[]}
+ */
+function sampleNative(pools, rng) {
+  return lengths.flatMap(len => {
+    const candidates = pools.get(len);
+    return candidates[Math.floor(rng() * candidates.length)];
+  });
+}
+
+/**
+ * Exclude first rune of every physical page, as the original repeat
+ * computation cannot test predecessor identity there.
+ * @param {number[]} data
+ * @returns {{counts:Int16Array,starts:Int16Array,starts2:Int16Array}}
+ */
+function symbolLocations(data) {
+  const counts = new Int16Array(29);
+  const starts = new Int16Array(29);
+  const starts2 = new Int16Array(29);
+  for (let i = 0; i < data.length; i++) {
+    if (pageStarts.has(i)) continue;
+    const symbol = data[i];
+    counts[symbol]++;
+    if (wordOffset[i] === 0) {
+      starts[symbol]++;
+      if (wordLength[i] === 2) starts2[symbol]++;
+    }
+  }
+  return {counts, starts, starts2};
+}
+
+/**
+ * Complete reversible 29-to-28 predecessor-exclusion plant for a reserved
+ * GP symbol. A repeated output means precisely this same plaintext symbol.
+ * @param {number[]} plaintext @param {number} marker
+ * @returns {number[]}
+ */
+function forward(plaintext, marker) {
+  const out = [];
+  for (let i = 0; i < plaintext.length; i++) {
+    if (pageStarts.has(i)) {
+      out.push(plaintext[i]);
+    } else if (plaintext[i] === marker) {
+      out.push(out[i - 1]);
+    } else {
+      const rank = plaintext[i] < marker ? plaintext[i] : plaintext[i] - 1;
+      out.push((out[i - 1] + rank + 1) % 29);
+    }
+  }
+  return out;
+}
+
+/** @param {number[]} ciphertext @param {number} marker @returns {number[]} */
+function inverse(ciphertext, marker) {
+  return ciphertext.map((v, i) => {
+    if (pageStarts.has(i)) return v;
+    const delta = (v - ciphertext[i - 1] + 29) % 29;
+    if (delta === 0) return marker;
+    const rank = delta - 1;
+    return rank < marker ? rank : rank + 1;
+  });
+}
+
+const references = [
+  ["Shakespeare","shakespeare_first300k.txt",0x330121],
+  ["Gibran","gibran_prophet_58585.txt",0x330122],
+  ["Emerson","emerson_essays_2944.txt",0x330123]
+];
+const REPLICATES = 1500;
+const sourceResults = [];
+for (const [name, filename, seed] of references) {
+  const pools = poolsFrom(read("resources/control/" + filename));
+  const rng = seededRandom(seed);
+  let eaTotalMin = Infinity, eaTotalMax = 0;
+  let eaStartMin = Infinity, eaStartMax = 0;
+  let eaStart2Min = Infinity, eaStart2Max = 0;
+  let eaTotalSum = 0, eaStartSum = 0, eaStart2Sum = 0;
+  let anyMarkerJoint = 0, eaJoint = 0, eaStartAtLeast23 = 0;
+  let first;
+  for (let trial = 0; trial < REPLICATES; trial++) {
+    const plain = sampleNative(pools, rng);
+    if (trial === 0) first = plain;
+    assert.equal(plain.length, cipher.length);
+    const loc = symbolLocations(plain);
+    const total = loc.counts[28], start = loc.starts[28];
+    const start2 = loc.starts2[28];
+    eaTotalMin = Math.min(eaTotalMin, total);
+    eaTotalMax = Math.max(eaTotalMax, total);
+    eaStartMin = Math.min(eaStartMin, start);
+    eaStartMax = Math.max(eaStartMax, start);
+    eaStart2Min = Math.min(eaStart2Min, start2);
+    eaStart2Max = Math.max(eaStart2Max, start2);
+    eaTotalSum += total;
+    eaStartSum += start;
+    eaStart2Sum += start2;
+    if (start >= original.start) eaStartAtLeast23++;
+    if (Math.abs(total - original.total) <= 10 &&
+      start >= original.start) eaJoint++;
+    for (let symbol = 0; symbol < 29; symbol++) {
+      if (Math.abs(loc.counts[symbol] - original.total) <= 10 &&
+        loc.starts[symbol] >= original.start) anyMarkerJoint++;
+    }
+  }
+  // Positive plant: all original print and page positions preserved.
+  for (const marker of [0, 11, 28]) {
+    const encoded = forward(first, marker);
+    assert.deepEqual(inverse(encoded, marker), first);
+    const loc = symbolLocations(first);
+    const events = repeats(encoded);
+    assert.equal(events.total, loc.counts[marker]);
+    assert.equal(events.start, loc.starts[marker]);
+    assert.equal(events.start2, loc.starts2[marker]);
+  }
+  sourceResults.push({
+    name, seed, replicates:REPLICATES,
+    EA: {
+      total:[eaTotalMin, eaTotalSum / REPLICATES, eaTotalMax],
+      wordStarts:[eaStartMin, eaStartSum / REPLICATES, eaStartMax],
+      twoRuneWordStarts:[eaStart2Min,eaStart2Sum / REPLICATES,eaStart2Max],
+      startAtLeast23:eaStartAtLeast23,
+      near86AndStartAtLeast23:eaJoint
+    },
+    anyOf29MarkersNear86AndStartAtLeast23:anyMarkerJoint
+  });
+}
+const report = {original, markerCount:29,
+  toleranceTotal:10, replicatesPerSource:REPLICATES, sources:sourceResults};
+assert(sourceResults.every(x =>
+  x.EA.near86AndStartAtLeast23 === 0 &&
+  x.anyOf29MarkersNear86AndStartAtLeast23 === 0));
+console.log(JSON.stringify(report, null, 2));
