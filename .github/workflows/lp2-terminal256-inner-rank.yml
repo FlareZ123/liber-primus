@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Test 512 inner-ring orders and all GF29 scalars
         run: node sims/lp2_terminal256_inner_rowcol_rank_sft.cjs
+      - name: Test every 3x3 and 5x5 stencil against solved inner rings
+        run: node sims/lp2_terminal256_local_stencil_sft.cjs
