@@ -21,6 +21,8 @@ Y(x)=x^5+c_4x^4+c_3x^3+c_2x^2+c_1x+c_0
 
 The original 2013 `ssss` diffuses c0 with XTEA after reconstructing the field constant; that later byte process does not change the polynomial consistency requirement. [Original protocol and code reconstruction](lp2-p23-26-ssss201-original-format-gate.md#why-the-exact-historical-protocol-matters).
 
+An additional source-visible eight-way ordering candidate exists in the adjacent original chapter: the **eight red title runes on p40**, when sorted by GP29 index, select column permutation `[0,4,7,1,2,5,6,3]` ([earlier original red8/table test](lp2-p40-red8-grid32-columnar-inverse.md)). That makes an unknown or title-selected column assignment a live puzzle-design question. The full six-ID enumeration below **includes this ordering and every other eight-column permutation** under the historical 01..10 share IDs, so a separately tuned red-title permutation cannot rescue the source-native SSSS model.
+
 The **hypothesis**, not a claimed author-selected instruction, is that the eight table columns are eight complete field-element shares. The exact test fixes each column as the **32 source bytes from top to bottom in big-endian order**, exactly the historical printed-hex field serialization. It does not alter a byte, transpose a row, or remap the base-60 digits.
 
 ## Natural assignment, first withheld prediction
