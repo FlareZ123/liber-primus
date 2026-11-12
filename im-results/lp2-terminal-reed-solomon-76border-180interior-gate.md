@@ -29,3 +29,7 @@ Retire the **additional GF(257)** *literal printed-table-as-extended-RS-codeword
 The GF(257) extension is distinct from the already completed **GF29 polynomial-divisor erasure family** in [the terminal parity report](p50-terminal-parity-dimension-gate.md), which exhausts the 48 divisors of the *source table polynomial* but does not claim that the 256 original byte values lie on a generic degree-179 evaluation polynomial over a byte-size field.
 
 **Reproducer:** [single-run CommonJS original-source RS inverse and native polynomial controls](../sims/lp2_terminal_76border_rs256_180interior_sft.cjs). Requires Node.js 22 and the pinned original repository JSON files. The source was unchanged.
+
+## Executed regression
+
+Both original-source SFTs executed successfully under Node.js 22 in [manual GitHub Actions run 43160568313](https://github.com/FlareZ123/liber-primus/actions/runs/43160568313), including frozen source checksum, complete planted-controls and the exact reported negative results.
