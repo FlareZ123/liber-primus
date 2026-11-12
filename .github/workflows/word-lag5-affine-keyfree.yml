@@ -14,6 +14,7 @@ on:
           - native-ea-flanks
           - rsa-4096-terminal
           - p57-lsb-claim
+          - afnd-paste-source
 permissions:
   contents: read
 jobs:
@@ -52,3 +53,6 @@ jobs:
       - name: Original Page57 LSB claim and real-page controls
         if: ${{ inputs.experiment == 'p57-lsb-claim' }}
         run: python sims/lp2_p57_lsb_external_claim_control_sft.py
+      - name: One-shot first-onion AfndPJa0 archive-source acquisition
+        if: ${{ inputs.experiment == 'afnd-paste-source' }}
+        run: node sims/afnd_paste_archive_gate.cjs
