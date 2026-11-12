@@ -72,6 +72,71 @@ assert.equal(adjacentEquals(seq), 4);
 assert.equal(adjacentEquals(routed), 26);
 assert.equal(ioc(seq), 0.034082515563997044);
 
+/**
+ * Lossless dot-versus-neighbor subtraction keeps 13 differences plus
+ * 14 explicit neighbor symbols per 27-cell tile. The 351 differences
+ * could carry native plaintext if this hypothesized numeric consumer
+ * were intended, while the retained 378 symbols recover the source.
+ *
+ * @param {number[]} input
+ * @param {13|14} shift 13 pairs each dot with left blank; 14 with right
+ * @returns {{differences: number[], mask: number[]}}
+ */
+function dotDifferences(input, shift) {
+  const differences = [];
+  const mask = [];
+  for (let k = 0; k < input.length; k += 27) {
+    const tile = input.slice(k, k + 27);
+    const offsets = Array.from({ length: 14 }, (_, i) => (13 + i));
+    const mate = Array.from({ length: 13 }, (_, i) => i + shift);
+    const extras = offsets.filter((i) => !mate.includes(i));
+    assert.equal(extras.length, 1);
+    mate.forEach((i, j) => {
+      differences.push((tile[j] - tile[i] + 29) % 29);
+      mask.push(tile[i]);
+    });
+    mask.push(tile[extras[0]]);
+  }
+  return { differences, mask };
+}
+
+/**
+ * @param {{differences: number[], mask: number[]}} stream
+ * @param {13|14} shift
+ * @returns {number[]}
+ */
+function recoverDotDifferences(stream, shift) {
+  const out = [];
+  for (let k = 0; k < stream.differences.length / 13; k++) {
+    const tile = Array(27);
+    const d = stream.differences.slice(13 * k, 13 * (k + 1));
+    const mask = stream.mask.slice(14 * k, 14 * (k + 1));
+    for (let j = 0; j < 13; j++) {
+      tile[j + shift] = mask[j];
+      tile[j] = (d[j] + mask[j]) % 29;
+    }
+    tile[shift === 13 ? 26 : 13] = mask[13];
+    out.push(...tile);
+  }
+  return out;
+}
+
+const differenceResults = [];
+for (const shift of [13, 14]) {
+  const stream = dotDifferences(seq, shift);
+  assert.equal(stream.differences.length, 351);
+  assert.equal(stream.mask.length, 378);
+  assert.deepEqual(recoverDotDifferences(stream, shift), seq);
+  const planted = dotDifferences(plant, shift);
+  assert.deepEqual(recoverDotDifferences(planted, shift), plant);
+  differenceResults.push({
+    sourceNeighbors: shift === 13 ? 'left blank' : 'right blank',
+    firstTwenty: stream.differences.slice(0, 20).map((i) => corpus.translit[i]).join(' '),
+    ioc: ioc(stream.differences),
+    all729RecoveredFrom351DifferencesAnd378MaskRunes: true
+  });
+}
+
 const spell = (arr) => arr.map((index) => corpus.translit[index]).join(' ');
 console.log(JSON.stringify({
   source: 'LP2 physical pp0-2, original archive 17-19.jpg',
@@ -84,6 +149,7 @@ console.log(JSON.stringify({
   interleavedAdjacentEquals: adjacentEquals(routed),
   originalIoc: ioc(seq),
   interleavedIoc: ioc(routed),
+  differenceResults,
   exactForwardBackwardAll729: true,
   exactNativeSolvedP57PlantAll729: true,
   conclusion: 'This keyless stencil transposition yields no legible original opening and no independent second cipher operation.'
