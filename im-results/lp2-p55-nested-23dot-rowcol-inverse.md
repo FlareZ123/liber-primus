@@ -56,6 +56,20 @@ The common factor **23** is the number of occupied cells of p57's printed red st
 
 A seeded **120,000-trial** conditional null independently permutes the rune values inside *each original complete p55 word*, retaining all word lengths, full word symbol multisets, and the exact `75→43→23→9→5→3→1` size profile. Only **212/120,000 (0.1767%)** word-preserving controls have **both** inner sums divisible by 23; **1/120,000 (0.000833%)** has the precise paired values **253 and 161**. Seed `0x55323`, Xorshift32; the full executable asserts both counts. The experiment says the observed alignment is sensitive to original rune positions, yet the targets 23, 11 and 7 and their way of association were discovered post hoc. Therefore these are **conditional descriptive frequencies**, not a fair discovery-wide p-value or proof of encryption. The arithmetic deserves future independently selected tests rather than a broad key hunt.
 
+## Stencil-projection split: thirteen dots sum to 512
+
+The original p55 terminal **13-dot** mark is exactly the three-column projection (columns 0, 2, 4) of the p57 **23-dot** mask. Place the p55 twice-peeled **23 source runes** into the 23 occupied cells in their printed top-to-bottom/left-to-right order. Keep the 13 cells present in the original 13-dot stencil and put the 10 omitted cells in a second stream. This source-selected **13+10 partition** has:
+
+| Printed-stencil substream | Positions within the 23-rune list (zero-based) | Exact GP-prime sum |
+| --- | --- | ---: |
+| **13 retained dots** (columns 0, 2, 4) | `1,3,4,6,8,9,11,13,14,16,18,19,21` | **512 = 2⁹** |
+| **10 complementary dots** (columns 1, 3) | `0,2,5,7,10,12,15,17,20,22` | **508 = 512 − 4** |
+| All 23 source symbols | 0–22 | **1020 = 4×255** |
+
+The thirteen-rune text is `D B F I U C H D IA G EO TH I`; the ten-rune complement is `G A X M P NG I X TH M`. Their combined prime sum of 1020 is a source fact independent of which mask is used. **512 also equals the bit length of the solved p56 AN END hash**, though that alone supplies no 512-bit preimage and does not prove an intended cross-page relation. The 10 complementary dots comprise two distinct five-dot columns, a visual reason to compare the separately observed two terminal groups of five circles on p57. That is an exploratory architectural parallel, not a recovered secret share.
+
+Under the **same fixed 120,000 word-internal rune permutations** already described, only **267** controls reproduce a 13-dot projected sum of 512; **567** reproduce a ten-dot complement sum of 508; **1** reproduces **both exact source sums** (and **0** also reproduces both earlier 253/161 inner-layer sums). These are **retrospectively noticed numerical targets**, so the very low conditional joint frequency cannot be interpreted as an unbiased probability that Cicada designed this operation. It establishes a sharply constrained source-based hypothesis and a natural 13+10 segmentation for future decoding if a separate key-use rule is found.
+
 ## A fully specified GP29 row-column inverse
 
 A human could map the **23 GP29 survivors** to the **23 occupied stencil cells** from top to bottom, left to right. Read the nine further-peeled symbols as row masks and the five further-peeled symbols as column masks, in their original order. Using the already-authentic **additive GP29** vocabulary from solved p56, test a plain, unfitted, subtractive transfer:
