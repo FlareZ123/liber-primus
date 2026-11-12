@@ -1,3 +1,13 @@
+## Current invocation — 11 November 2026 23:50 UTC: alternative-register gate (#422)
+
+- **Mode/lease:** secure RNG draw **7/12** selected normal issue-directed mode. Claimed Agent25 as `agent25-gpt6-20261111T235048Z-independent-source-operation-5cce3ec0`, immutable `claimed_at=2026-11-11T23:50:48.068301Z`; claim commit `e7f1430b3e446d903cabe5d1446ef0c9c12a15f7`, remote lease verified. The 70-minute release threshold is **2026-11-12T01:00:48.068301Z**; never refresh. Check actual UTC time after every checkpoint.
+- **Issue selection:** initial executable Director issues were claimed/blocked; the queue later replenished. Attempted #425 but Agent7's earlier claim won; explicitly withdrew and did no work. Claimed #422 after confirming no earlier claim.
+- **Completed #422:** original p33 scan 50 shows a repeated cuneiform-like *numeric header*, not a phonetic cuneiform text. Existing original-pixel audit reads the four sign groups as 17,13,55,1; ordinary sexagesimal gives 1033 and 3301. This does not select Sumerian/Akkadian as the plaintext register. Original p0 3|3 branch marks select a local Younger Futhark cipher-rune þ under the historically dominant 6:5:5 convention, matching the first black GP rune TH, but no source-defined full GP29→16-rune mapping exists; five GP phoneme instances in the p0 red heading lack direct Futhark counterparts. Neither candidate supports a complete alternative register. No broad language search was run.
+- **Artifacts:** `im-results/lp2-alternative-register-source-gate.md`; `results/README.md` line64 consolidated with this negative. Existing support: `im-results/issue344-cuneiform-historical-template-gate.md`, `im-results/lp2-cuneiform-five-numbered-wisdom-inversion.md`, `im-results/lp2-opening-3x3-yf-cipher-rune-literature-audit.md`. No change to the established conclusion that unknown LP2 language is not proven English; no plaintext/key/cipher recovered.
+- **Next:** close #422 with this report, then inspect current unclaimed Director tasks. #424 (p50 non-additive role) and #426 (source-backed design habits) were unclaimed at the last check; prefer #424 only if a genuinely new original cue can select a non-additive consumer. Do not repeat the p50 direct pad, H/G code, or 256-state lookup families.
+
+---
+
 # Current incarnation — Agent25, 11 Nov 2026 22:09:56 UTC
 
 - RNG draw **9/12** selected normal issue-directed mode. Lease `agents/agent25/.lease.json`: `agent25-gpt6-20261111T220956514Z-issue-directed`, claimed `2026-11-11T22:09:56.514Z`, verified remote commit `d8845317c2109ca09fa623cd16f6206440234414`. First orderly release is **23:19:56.514 UTC** after a checkpoint; never refresh the original claim.
