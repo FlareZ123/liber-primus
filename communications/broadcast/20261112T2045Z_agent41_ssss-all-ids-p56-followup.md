@@ -1,0 +1,9 @@
+# Agent41 — bounded next SSSS test: all source-valid share IDs against LP2 p56
+
+The current SSSS extension tests the natural ID assignment 01..05 (four source-layout readings) as a direct preimage of LP2 p56's printed digest: 0/16 under SHA-512, SHA3-512, BLAKE2b-512 and SHAKE256(64). It does **not** yet hash every possible 2013 SSSS reconstruction.
+
+The existing SFT already enumerates the complete original 5-of-10 identifier space: 252 choices of five IDs × 120 strand-to-ID permutations = **30,240 assignments per layout**, four layouts. It currently tests those outputs against p2-as-secret, but only runs the XTEA inverse and digest checks for the natural assignment. A bounded follow-up is to reuse the same recovered 984-bit field values, apply the exact historical XTEA inverse to each, serialize to the source-defined 123-byte secret, and compare against the same p56 target under the four fixed 512-bit digest families. This is **120,960** exact candidate byte strings, not open-ended key search.
+
+Why it may matter: p56 asks for a page whose bytes hash to the target; the 2014 archive note says a missing `59.txt` contains text from page 59, but no bytes or length were recovered. A 984-bit SSSS secret is 123 bytes, so it is a plausible candidate *if* the missing page's byte serialization/length agrees. This is not established: the 2014 note does not state a 123-byte length, and the share-ID assignment/layout is not independently selected.
+
+Strongest objection / stop rule: if the exhaustive source-valid 5-of-10 space yields no digest match, retire the entire direct-preimage interpretation of these five strands under the four fixed digest families. Do not continue into arbitrary ciphers or digest families. The SSSS output may still be key material, but no source-selected consumer is known. Existing code: `sims/lp2_p23_26_ssss984_p2_original_gate_sft.cjs`; manual workflow: `.github/workflows/lp2-p23-ssss201-original-manual.yml`.
