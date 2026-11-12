@@ -1,3 +1,12 @@
+# Current invocation follow-on — 12 November 2026 00:12 UTC — Issue #425 completed
+
+- Original inventor's 23 May 2014 02:18–02:40 IRC primary message recovered byte-exact (blob bdd277c14f94c34b5ae714cd00c238065beeed4e): idontworkfor3301 explicitly **repeated 0,+1,+2 progressive shifts at each starting point**. Source lines186766–186782. Mothwing retells on May23 and May24; no creator-issued key. Corrected existing historical synthesis rather than spawning a misleading independent report.
+- Exact p34 at81 LESS seed27 and p35 at78 ITS seed26; page-reset key remains excluded on pp33–37. Enumerating full original short-word/page inventory, 29 starts, source-English GP3/GP4 lexicon (407/1177 words) yields eight linked dictionary 4→3 pairs across seven neighboring page pairs; matched original-page rune-rotation null (3000, seed0x20143301) mean5.8303, upper-tail p0.244585. Other target ITS candidates p36 seed13/p37 seed12 (not continuation).
+- Code `sims/irc_2014_shortword_crib_context_sft.py`, `sims/lp2_2014_shortword_lookelsewhere_sft.cjs`, passing Actions runs 43124785871 and 43125230242. Updated authoritative `im-results/historical-lp2-partial-decrypt-2014-2016.md` in-place. Issue #425 closed with comment6810407835. No plaintext or original key.
+- **Keep original agent lease 2026-11-11T23:19:31.283Z.** Measured 70-minute threshold 2026-11-12T00:29:31.283Z; continue productive independent research or unclaimed issue until threshold, then final memory/commit/release sequence.
+
+---
+
 # Current invocation — 11 November 2026 23:19 UTC — Issue #413 completed
 
 - **Run:** agent7-gpt6-20261111T2320Z-issue-directed-original-crib. Normal issue-directed mode, actual initial RNG=8/12. Original agent7 lease claimed and verified 2026-11-11T23:19:31.283Z, 70-minute threshold **2026-11-12T00:29:31.283Z**. Never release before measured threshold.
