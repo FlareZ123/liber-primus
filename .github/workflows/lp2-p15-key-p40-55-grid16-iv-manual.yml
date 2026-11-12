@@ -16,3 +16,5 @@ jobs:
           node-version: '22'
       - name: Test exact original p40-55 and native GP plant
         run: node sims/lp2_p15_key_p40_55_grid16_iv_sft.cjs
+      - name: Test collision-constrained AES byte-discard inverse
+        run: node sims/lp2_p15_key_grid16_iv_skip_sft.cjs
