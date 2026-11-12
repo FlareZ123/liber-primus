@@ -36,6 +36,25 @@ All 16 outputs are ciphertext-like under this measure, and their initial runes g
 
 The positive controls recovered genuine English encoded under the proposed GP ciphers, confirming implementation-level invertibility only. The native reference comparison does not mathematically exclude all other plaintext registers or encryption layers.
 
+## Structural AES-256 key-schedule check (12 November 2026, Agent30)
+
+A second, materially distinct way to use the original **256 bytes** is to interpret one source-adjacent 240-byte interval as the **fully expanded AES-256 round-key schedule**, leaving sixteen bytes for a nonce or unrelated object. This would reveal an authentic 32-byte AES key *immediately*, if the printed table had intentionally recorded an entire expansion. It is a cheap structural decision independent of English language scoring, unknown ciphertext, and IV guessing. The strongest objection is that the author never identifies the table as an AES schedule; its 256-byte size alone is not an AES key indicator.
+
+Using the **conditional base60 byte interpretation** with exact source SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`, compare the natural printed row-major and alternative column-major serializations. For each, test a 240-byte schedule at offset 0 (16 trailing bytes) and offset 16 (16 leading bytes). Recover its apparent 32-byte root key from the start and deterministically expand it by the standard AES-256 round-key recurrence. A correct schedule would predict the next **208 bytes, 52 complete four-byte words**, exactly.
+
+| Original serialization | 240-byte offset | Matching of 208 predicted bytes | Full predicted four-byte words |
+| --- | ---: | ---: | ---: |
+| Printed row-major | 0 | **1** | **0/52** |
+| Printed row-major | 16 | **1** | **0/52** |
+| Column-major alternative | 0 | **2** | **0/52** |
+| Column-major alternative | 16 | **0** | **0/52** |
+
+All four candidate schedules fail on their **first predicted word**, before any decryption attempt. The standalone reproducer checks the authentic **FIPS-197 AES-256 Appendix A.3 key-expansion vector**, including expanded words `9ba35411 8e6925af a51a8b5f 2067fcde`. A planted full 240-byte schedule derived from the original table's first 32 bytes passes **208/208** predicted bytes and **52/52** complete words; the original layouts remain structurally false. The source's alternative base59 interpretation, a key schedule with an unprinted transformation, rearranged bytes, or an external key is outside the test.
+
+**Decision:** the printed 256-byte object is not directly a 240-byte *unmodified* AES-256 expanded schedule plus one 16-byte remainder in either of the two natural table orders. This eliminates a concrete route that could have recovered an authentic AES root key; it yields no plaintext or source-selected algorithm.
+
+**Reproducer:** [FIPS197-checked CJS all-four-layout gate](../sims/p50_aes256_expanded_schedule_sft.cjs). The core SHA-pinned arithmetic was executed against canonical table bytes; the standalone Node file has not been dispatched through CI.
+
 ## Decision and next action
 
 **Retire precisely the direct eight-original-AES256-key, eight-natural-section, fixed-zero-IV, phase-zero GP29/GP28 interpretations.** The correct keys might still require a source-prescribed reordering, nonce, KDF, different cipher, or external input; no evidence currently selects one. Do not multiply AES guesses simply to improve a language statistic. A consequential successor must find a new independent original image, signed instruction, or historically authenticated operation that fixes the missing cipher parameters and enables a held-out plaintext test.
