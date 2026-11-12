@@ -28,7 +28,7 @@ The selected GP indices are **[21,20,15,23,27] = [NG,L,S,D,IA]**. Their GP-prime
 The integer identity **401 = 13×29 + 24** gives GP rune indices **[13,24]**, which spell **PA** at the beginning of solved p57 PARABLE. This conditional GP-index readout is **distinct from the signed 2013 TCP BASE29 command**: its authenticated example `BASE29 3301 → 3QO` fixes printable digit **24 = O**, so the signed positional numeral command cannot print `PA` for 401. Under the conventional complete printable alphabet `0123456789ABCDEFGHIJKLMNOPQRS`, `BASE29(401) = DO`. The original 2013 Gematria JPG separately fixes GP index24 as A. No original instruction composes p55's five-rune prime sum with the GP-index text rendering.
 
 Exact cross-page correspondences:
-- p57's red title begins with the same two GP runes, PA (PARABLE).
+- p57's red title begins with GP runes PA (PARABLE), matching the optional GP rendering of digits [13,24]; it does not match the signed protocol's literal output DO.
 - p54's red span begins with GP index 24.
 - p55 has a 13-dot terminal mark; p57 also has a 13-dot mark immediately after its title. The 13-dot class is common, so this is supporting rather than unique evidence.
 - 401 is the **79th prime**. The p55 and p56 word-interior streams contain 43 and 36 runes; 43 + 36 = 79.
@@ -43,7 +43,7 @@ The original strict word-interior stream on p55 contains **PH | NG L S D IA | PH
 
 **Fixed-condition exact null.** If we independently shuffle each page's original interior rune multiset and require *both* centered-five GP-prime sum 401 and identical preceding/following two-rune pairs, the p55 favorable-count fraction is **1,778,768 / 1,705,300,112,880 = 0.00000104308208659**. Over all 55 source pages, independent per-page shuffles give the familywise probability **0.00011390651599441 (0.01139065%)**. The older PA-only any-page chance is 0.10089568. The computation removes four flank symbols from the five-element prime-sum subset generating function and exactly enumerates every possible repeated ordered flank; the synthetic positive [PH, five-core, PH] gives 1/378. See the [independent joint SFT](../sims/lp2_p55_centered_mirror_prime_joint_sft.cjs).
 
-**Scope:** the two-rune bracket, target 401 and PA correspondence were selected during exploratory inspection. Consequently these probabilities are conditional diagnostics rather than valid discovery-wide evidence for author intent. No original instruction specifies two-rune flanks, an inverse or use of the 401 value as a decryption key. A direct outward GP-prime/GP-index pair reading gives 66→THH for the first two enclosing pairs, failing to continue p57's title PARABLE. The new bracket is a bounded candidate *locator* of the already-known core, not new plaintext.
+**Scope:** the two-rune bracket, target 401 and optional GP PA correspondence were selected during exploratory inspection. Consequently these probabilities are conditional diagnostics rather than valid discovery-wide evidence for author intent. No original instruction specifies two-rune flanks, an inverse or use of the 401 value as a decryption key. A direct outward GP-prime/GP-index pair reading gives 66→THH for the first two enclosing pairs, failing to continue p57's title PARABLE. The new bracket is a bounded candidate *locator* of the already-known core, not new plaintext.
 
 ## Direct two-rune PH key test
 
@@ -83,7 +83,7 @@ The historical 2013 threshold-5-of-10 SSSS mechanism is now independently recons
 
 Retain this as a candidate **selector/checksum or human-solve-path clue**, not plaintext and not a key. Its strongest exploratory feature is the exact 401→GP-index PA title echo accompanied by the newly discovered PH ... PH framing of the same centered five. Both the word-spanning sum and postselected two-rune bracket lack an original instruction selecting a real cipher.
 
-The next useful decision is whether an independent source clue authenticates PH-framing and supplies a reversible consumer for [13,24]/PA. Retire the direct 19/20-word p57 address variants above; do not treat PA or PARABLE as an established key, do not reopen the literal 43-word-length pad, and do not run unconstrained offsets, phases, or cipher-family sweeps.
+The next useful decision is whether an independent source clue authenticates PH-framing and supplies a reversible consumer for [13,24]/DO or a source-selected GP rendering PA. Retire the direct 19/20-word p57 address variants above; do not treat PA or PARABLE as an established key, do not reopen the literal 43-word-length pad, and do not run unconstrained offsets, phases, or cipher-family sweeps.
 
 Reproduction:
 - Arithmetic and permutation SFT: ../sims/p55_five_core_prime_base29_sft.cjs
