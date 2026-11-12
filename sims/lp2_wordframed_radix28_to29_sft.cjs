@@ -153,8 +153,38 @@ for (const mode of ['sorted', 'cyclic']) {
     const valid = original.decodedWords.filter(x => x !== null);
     const lexHits = valid.filter(x => lexicon.has(x.join(',')));
     const longHits = lexHits.filter(x => x.length >= 4);
+    const longWords = valid.filter(x => x.length >= 4);
+    const longTypes = new Set(longWords.map(x => x.join(',')));
+    const repeatedLongOccurrences = longWords.length - longTypes.size;
+    assert.equal(repeatedLongOccurrences, 0);
+    // Any fixed 29! relabelling preserves complete-word equality, so a
+    // matching-length native reference rules out *all* such hidden alphabets.
+    const sourceByLength = Array.from({ length: 20 }, () => []);
+    for (const native of shakespeare.match(/[a-z]+/gi)) {
+      const gp = gpEncode(native);
+      if (gp && gp.length < 20) sourceByLength[gp.length].push(gp.join(','));
+    }
+    const referenceDuplicates = [];
+    for (let offset = 0; offset < 20; offset++) {
+      const counters = Array(20).fill(0), seenWords = new Set();
+      let duplicates = 0;
+      for (const w of valid) {
+        if (w.length < 4) continue;
+        const pool = sourceByLength[w.length];
+        const signature = pool[(offset * 131 + counters[w.length]++) % pool.length];
+        if (seenWords.has(signature)) duplicates++;
+        seenWords.add(signature);
+      }
+      referenceDuplicates.push(duplicates);
+    }
+    const nativeLongDuplicatesRange = [
+      Math.min(...referenceDuplicates), Math.max(...referenceDuplicates),
+    ];
     const observation = {
       mode, firstIsSeed, recoveredPlantWords: plant.decodedWords.length,
+      longWordTokens: longWords.length,
+      longWordDuplicates: repeatedLongOccurrences,
+      matchedShakespeareDuplicateRange: nativeLongDuplicatesRange,
       originalWords: words.length, rejectedWords: original.rejected,
       candidateWords: valid.length, outputRunes: N, ioc,
       dictionaryWords: lexHits.length,
@@ -168,13 +198,17 @@ for (const mode of ['sorted', 'cyclic']) {
       observation.rejectedWords, observation.outputRunes,
       observation.dictionaryWords, observation.dictionaryWordsFourRunesOrMore,
     ], checks);
+    const expectedRepeats = firstIsSeed
+      ? (mode === 'sorted' ? [423, 492] : [435, 502])
+      : (mode === 'sorted' ? [694, 765] : [692, 762]);
+    assert.deepEqual(nativeLongDuplicatesRange, expectedRepeats);
     findings.push(observation);
   }
 }
 console.log(JSON.stringify({
   question: 'Can one original LP2 word carry a direct no-repeat radix28 representation of one native-GP29 plaintext word?',
   source: 'All 2,896 original ciphertext words, 12,956 unknown runes, 29,059 exact GP-encoded lexicon entries',
-  negative: 'All four literal wordwise inverse outputs have cipher-level IoC, and zero to three GP words of length>=4 occur in the lexicon. Original doublets invalidate 62 or 85 complete words without a separately specified escape.',
+  negative: 'All four inverse outputs are cipher-like; no decoded GP word of >=4 symbols repeats, while same-length native controls repeat hundreds of such words. This key-independent collision invariant excludes every fixed later permutation of the 29 output symbols under the stated transport.',
   plantedWordsPerModel: 300,
   findings,
 }, null, 2));
