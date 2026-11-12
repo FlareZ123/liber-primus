@@ -228,6 +228,13 @@ function nativeEnglish() {
   return out.slice(0, TOTAL);
 }
 
+/** @param {bigint} value @returns {number} */
+function log2BigInt(value) {
+  const bits = value.toString(2);
+  const top = bits.slice(0, 52);
+  return bits.length - top.length + Math.log2(parseInt(top, 2));
+}
+
 function main() {
   const original = pages.map(p => p.indices);
   const originalRank = rankPath(original);
@@ -257,7 +264,7 @@ function main() {
     GF29_lift_channel: {cells: bytes.length, eightChoice: counts[8],
       nineChoice: counts[9], capacityBits: Math.log2(8) * counts[8] +
       Math.log2(9) * counts[9], originalLiftBits: LIFT_BASE.toString(2).length},
-    enumerativeModel: {cap: K, requiredBitsApprox: Math.log2(29/28) * (N-K),
+    enumerativeModel: {cap: K, requiredBitsApprox: log2BigInt(FULL) - log2BigInt(CODE_BASE),
       codebookBitLength: CODE_BASE.toString(2).length,
       messageSideBitLength: ((FULL - 1n - originalRank.rank) / CODE_BASE + 1n).toString(2).length},
     original: {decodedIoC: ioc(inverse.plain), first120Transliterated: candidates,
