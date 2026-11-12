@@ -83,7 +83,7 @@ function quadgrams(documents) {
   const count = new Uint32Array(26 ** 4);
   let total = 0;
   for (const document of documents) {
-    const letters = toIndices(document.slice(0, -201));
+    const letters = toIndices(document.slice(0, 5000) + document.slice(5201));
     for (let i = 0; i + 3 < letters.length; i++) {
       const key = ((letters[i] * 26 + letters[i + 1]) * 26 +
         letters[i + 2]) * 26 + letters[i + 3];
@@ -214,14 +214,14 @@ assert.equal(inverted.distinctForbiddenEdges, 385);
 assert.equal(inverted.maxOneBits, 10);
 const heldout = plain.map(({name, letters}) => ({
   source: name,
-  last201Score: score(toIndices(letters.slice(-201)), model)
+  midBookHoldoutScore: score(toIndices(letters.slice(5000, 5201)), model)
 }));
 
 // Synthetic plant uses an original-length, grammatically ordinary source
 // passage withheld from model fitting; an independent decoder is exact.
-const synthetic = positivePlant(plain[0].letters.slice(-201));
+const synthetic = positivePlant(plain[0].letters.slice(5000, 5201));
 const planted = exhaustive(synthetic.groups, model);
-const plantedDecodedScore = score(toIndices(plain[0].letters.slice(-201)), model);
+const plantedDecodedScore = score(toIndices(plain[0].letters.slice(5000, 5201)), model);
 assert.ok(planted.admissibleKeys > 0);
 assert.ok(planted.bestScore >= plantedDecodedScore - 1e-8);
 assert.ok(plantedDecodedScore > Math.max(printed.bestScore, inverted.bestScore));
@@ -236,6 +236,6 @@ console.log(JSON.stringify({
     originalPlaintextScore: plantedDecodedScore,
     validPlantedKeys: planted.admissibleKeys,
     exactScannedBest: planted.bestScore,
-    sourceExcerpt: plain[0].letters.slice(-201)
+    sourceExcerpt: plain[0].letters.slice(5000, 5201)
   }
 }, null, 2));
