@@ -1,4 +1,4 @@
-# The 32×8 LP2 table is not a literal TEA/XTEA round-state trace
+# The 32×8 LP2 table is neither a literal TEA/XTEA state trace nor a standard XTEA expanded-key table
 
 **Evidence classification:** original-source, exact and key-independent bounded exclusion with source-true synthetic cipher controls, 10 November 2026. **No unknown LP2 plaintext, key, encryption architecture or destination was recovered.**
 
@@ -66,10 +66,20 @@ The reproducer itself generates 32 consecutive **real synthetic round states** f
 
 All 16 original-table orientations fail the same checks. There is no fit to the ciphertext or extra liberty in the positive controls. See the [passing GitHub Actions execution](https://github.com/FlareZ123/liber-primus/actions/runs/42906569746).
 
+## Separate literal XTEA expanded subkey test (Agent 8, 12 November 2026)
+
+The same physical 32×8 table might print **32 pairs of expanded XTEA subkeys** rather than 32 successive block states. This is a different 256-byte role for a historically documented Cicada cipher, although no original LP2 instruction selects it. Exact original-byte and source-native positive-control script: [XTEA expanded-key SFT](../sims/lp2_p50_xtea_round_schedule_sft.cjs).
+
+For any four secret 32-bit key words K and any initial sum S0, XTEA round r uses subkeys A[r] = S[r] + K[S[r] & 3] and B[r] = S[r+1] + K[(S[r+1] >>> 11) & 3], with S[r] = S0 + r*0x9E3779B9 modulo 2^32. Thus A[r] - r*DELTA must repeat after four rounds and the 32 values B[r] - (r+1)*DELTA may contain **at most four distinct words** for *every* possible key and S0.
+
+For all **16** natural original readings (row or column serialization into 32 eight-byte blocks, block order, 32-bit endianness, pair swapping), **28/28** required four-step equalities fail and all **32** detrended B words are unique instead of at most four. Exact source SHA-256 of 256 decoded bytes: 3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290. A genuine generated XTEA schedule passes with zero failures and four distinct B terms; changing a planted bit causes failure. This conclusively excludes a literal standard XTEA 32-round expanded schedule in the specified original orientations, without guessing any key.
+
+The finding supplies no original LP2 plaintext or authentic key. Hidden byte encodings, nonstandard schedules and using the bytes as *cipher output* lie outside this specific exclusion. Do not use this result to justify further arbitrary TEA-family masks.
+
 ## Conclusion and precise scope
 
 The original printed 256-byte table **cannot be 32 consecutive literal round states of standard TEA or XTEA**, under any 128-bit key, initial sum, natural row/column readout, direction, word endian or half-order, even allowing the five historical alternate-token sites to change without constraint.
 
-This is a **new finite all-key exclusion**, not evidence for an authentic different cipher. A TEA-derived *key schedule*, ciphertext rather than intermediate states, hidden byte transforms, altered round order, skipped rounds, or a structurally different Feistel cipher remain open. Further ciphertext inversions should be motivated by additional source-specific clues rather than seeking TEA/XTEA keys for the excluded trace.
+This is a **new finite all-key exclusion**, not evidence for an authentic different cipher. A *literal standard XTEA expanded key schedule* is now independently excluded as well. Ciphertext rather than intermediate states, custom key expansions, hidden byte transforms, altered round order, skipped rounds, or structurally different Feistel ciphers remain open. Further ciphertext inversions should be motivated by additional source-specific clues rather than seeking TEA/XTEA keys for the excluded trace.
 
 **Executable source:** [`sims/grid_tea_xtea_allkey_trace_gate.cjs`](../sims/grid_tea_xtea_allkey_trace_gate.cjs), Node22, `node:assert/strict`, source JSON and 31 local state differences, manual-only [workflow](../.github/workflows/agent5-tea-trace-manual.yml). [Successful original-input and true-cipher controls](https://github.com/FlareZ123/liber-primus/actions/runs/42906569746). The script reports every orientation and all contradictory-bit counts as JSON.
