@@ -199,15 +199,53 @@ assert.deepEqual(solvedNative.map(x =>
   [157,31,2,0], [755,181,6,0], [89,18,0,0], [95,20,0,0]
 ]);
 
+/**
+ * Corrected 2014-puzzle-independent Old English source profile.
+ * Its 10,885 source words contain no fourteen-rune word. The original LP2
+ * has three 14-rune words; fill exactly these three slots from deterministic
+ * length-14 contiguous genuine Beowulf GP-rune spans (step37). Thus this
+ * fourth register is a sensitivity test, not a pure word-sampling control.
+ * @param {string} source
+ * @returns {Map<number,number[][]>}
+ */
+function beowulfPools(source) {
+  const profile = JSON.parse(source);
+  const alphabet = profile.positiveControlAlphabet;
+  const sequence = Array.from(profile.sourceGpBase29,
+    glyph => alphabet.indexOf(glyph));
+  assert.equal(sequence.length, 48012);
+  assert(sequence.every(value => value >= 0 && value < 29));
+  const pools = new Map();
+  let cursor = 0;
+  for (const len of profile.allSourceGpWordLengths) {
+    if (!pools.has(len)) pools.set(len, []);
+    pools.get(len).push(sequence.slice(cursor, cursor + len));
+    cursor += len;
+  }
+  assert.equal(cursor, sequence.length);
+  const missing = [...new Set(lengths)].filter(len => !pools.has(len));
+  assert.deepEqual(missing, [14]);
+  assert.equal(lengths.filter(len => len === 14).length, 3);
+  const spans = [];
+  for (let i = 0; i + 14 <= sequence.length; i += 37) {
+    spans.push(sequence.slice(i, i + 14));
+  }
+  pools.set(14, spans);
+  return pools;
+}
+
 const references = [
   ["Shakespeare","shakespeare_first300k.txt",0x330121],
   ["Gibran","gibran_prophet_58585.txt",0x330122],
-  ["Emerson","emerson_essays_2944.txt",0x330123]
+  ["Emerson","emerson_essays_2944.txt",0x330123],
+  ["Beowulf (Old English)","beowulf_oe_gp_profile_corrected.json",0x330124]
 ];
 const REPLICATES = 1500;
 const sourceResults = [];
 for (const [name, filename, seed] of references) {
-  const pools = poolsFrom(read("resources/control/" + filename));
+  const file = read("resources/control/" + filename);
+  const pools = name === "Beowulf (Old English)" ?
+    beowulfPools(file) : poolsFrom(file);
   const rng = seededRandom(seed);
   let eaTotalMin = Infinity, eaTotalMax = 0;
   let eaStartMin = Infinity, eaStartMax = 0;
