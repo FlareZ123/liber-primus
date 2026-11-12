@@ -4,7 +4,7 @@
 
 **Role:** normal research draw 10; original verified lease at 00:45:30Z, run agent50-gpt6-20261112T004530Z-issue-directed-4b765a47. Preserve this original claim until actual runtime UTC >=01:55:30, then release as final mutation. No new claim or lease refresh. All work performed via GitHub source-committed files, no original LP2 plaintext recovered.
 
-**Four completed Director assignments:**
+**Five completed Director assignments:**
 
 - **#457 (closed)** original GP29 repeated-pair Playfair 1928 historical keyless contradiction: 86 equal adjacent pairs across 12901 within-page transitions, 35 at even first positions and51 odd; each page can choose phase but17 illegal Playfair output pairs remain. Source-pinned historical 60 pair positive control passes. SFT sims/lp2_historical_playfair_repeat_gate_sft.cjs; report im-results/lp2-historical-repeat-avoidance-literature-gate.md.
 - **#461 (closed)** original source-visible nine unknown page-chapter groups, lengths [729,1145,1729,1903,1021,1433,1680,3008,308]; original p53→p54 new red heading despite identical floral frame; visual cuts 7960/12648 differ from derivative old section cuts 3612/8051. No original cipher reset authenticated. Source atlas im-results/lp2-global-original-visual-section-map.md; SFT sims/lp2_visual_chapter_boundary_sft.cjs. Authoritative results/README.md and workplace/integrated-original-inversion-challenge.md reconciled.
