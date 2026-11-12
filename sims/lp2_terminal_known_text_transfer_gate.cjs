@@ -103,11 +103,6 @@ function dictionaryHitRate(words, dictionary) {
   return words.filter((word) => dictionary.has(word.join(','))).length / words.length;
 }
 
-function decodeWordReset(words, shifts, sign) {
-  return words.map((word) => word.map((cipher) =>
-    (cipher + sign * shifts[word.indexOf(cipher)] + 29) % 29));
-}
-
 // Index-aware version: repeated symbol values must not be confused with positions.
 function decodeWordResetByIndex(words, shifts, sign) {
   return words.map((word) => word.map((cipher, index) =>
@@ -209,7 +204,6 @@ function main() {
   const plantRecoveredWords = splitFlat(plantRecoveredFlat, plantLengths);
   assert.deepEqual(plantRecoveredWords, plantWords);
 
-  const dictionary = new Set(trainingWords.map((word) => word.join(',')));
   const rawScore = scoreWords(words, languageModel);
   const result = {
     hypothesis: 'Two direct transfers from authenticated solved LP2 material to the 12,956 unknown runes; fixed source choices only.',
