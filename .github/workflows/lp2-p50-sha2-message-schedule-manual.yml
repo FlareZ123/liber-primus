@@ -1,0 +1,16 @@
+name: LP2 original-grid SHA-2 message-schedule gate (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Source-byte and positive-control SHA-2 expansion SFT
+        run: node sims/lp2_p50_sha2_message_schedule_sft.cjs
