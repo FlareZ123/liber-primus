@@ -1,0 +1,19 @@
+name: LP2 p15 whole-stream AES-128-GCM gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Authenticate original LP2 with p15-derived 128-bit keys
+        run: node sims/lp2_p15_fullstream_aes128_gcm_sft.cjs
