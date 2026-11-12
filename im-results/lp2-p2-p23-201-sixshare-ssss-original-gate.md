@@ -49,7 +49,7 @@ This **rejects a shared six-point SSSS polynomial for these six original strings
 
 ### Complete natural-order five-share control
 
-For each of the **252** sorted five-ID selections from 1–10 and both common strand directions, the test also reconstructs an arbitrary five-share secret and performs the real historical inverse XTEA diffusion: **504** original binary outputs. The maximum directly printable bytes in any 122-byte output are **63**, and the maximum consecutive printable run is **11**. The maximum-printable candidate uses reverse strands and IDs **[3,4,5,6,7]**, with first 16 bytes **3da041540f3af44d2ef19b783efb1353**. Prior published reference outputs for IDs [2,3,5,7,8] are reproduced exactly, forward **839dc666c476dd982cb521b25fe3c944** and reverse **f34c85f94532b8b77de2ccbbd37d920**. Binary-looking output alone cannot exclude a separately encrypted secret.
+For each of the **252** sorted five-ID selections from 1–10 and both common strand directions, the test also reconstructs an arbitrary five-share secret and performs the real historical inverse XTEA diffusion: **504** original binary outputs. The maximum directly printable bytes in any 122-byte output are **63**, and the maximum consecutive printable run is **11**. The maximum-printable candidate uses reverse strands and IDs **[3,4,5,6,7]**, with first 16 bytes **3da041540f3af44d2ef19b783efb1353**. Prior published reference outputs for IDs [2,3,5,7,8] are reproduced exactly, forward **839dc666c476dd982cb521b25fe3c944** and reverse **f34c85f94532b8b77de2ccbbd37d920f**. Binary-looking output alone cannot exclude a separately encrypted secret.
 
 ## Reproduction and decision
 
