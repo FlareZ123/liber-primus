@@ -1,6 +1,6 @@
 # Original LP2 pp23–26: three-of-five quadratic-share obstruction
 
-**Decision (12 November 2026, Agent 8):** The five 201-rune strands after the original p23 red heading cannot be evaluations of a single three-of-five (degree-at-most-two) Shamir polynomial under **any four historical IDs chosen from 01–10**, for either natural printed layout and either complete-strand reading direction. This is a key-independent contradiction on the unchanged original ciphertext, even before proposing an output page or decoding a secret. A genuine 201-rune native-GP secret planted in five quadratic shares is reconstructed exactly. **No unknown LP2 plaintext, cipher key or destination is recovered.**
+**Decision (12 November 2026, Agent 8):** The five 201-rune strands after the original p23 red heading cannot be evaluations of a single three-of-five (degree-at-most-two) Shamir polynomial under **any four historical IDs chosen from 01–10**, for either natural printed layout and either complete-strand reading direction. The same exact obstruction now holds for both historical binary GF(2^984) whole-share elements and independently symbolwise GF(29) rune-share candidates. This is a key-independent contradiction on the unchanged original ciphertext, even before proposing an output page or decoding a secret. A genuine 201-rune native-GP secret planted in five quadratic shares is reconstructed exactly. **No unknown LP2 plaintext, cipher key or destination is recovered.**
 
 ## Human-observable reason to test this specific alternative
 
@@ -43,6 +43,20 @@ In characteristic two, the \(+\) is field XOR. Clearing the nonzero denominators
 | **Total** | **100,800** | **0** |
 
 The assertion does **not** depend on p2 being the secret; no unknown data is post-selected as a receiver. It is stronger than merely failing to read a particular plaintext.
+
+## Independent native-GP29 field reconstruction
+
+The 2013 ssss protocol encodes each share as one 984-bit binary-field element. A distinct, equally source-visible possibility is that the **five 201-rune LP2 strands are five native GP29 share lanes**, and that each of the 201 column positions independently evaluates a degree-two Shamir polynomial in GF(29). This avoids interpreting 201 runes as one binary integer. The clue is still hypothetical: there is no author-attributable instruction that the p23 and p33 motifs name threshold 3/5.
+
+For four share labels xi in 01..10, any four alleged rune-shares at the same position t must satisfy the cubic Lagrange coefficient equation
+
+    sum_i y[i,t] / product_(j != i) (xi - xj) = 0  (mod 29).
+
+This is a necessary and sufficient four-point condition for an unknown quadratic, independent of its secret constant and other coefficients. With the same four original-source strand readings (interleaved or contiguous 201-rune lanes, each forward or fully reversed), exhaust all five four-lane subsets, all 210 historical four-ID combinations and all 24 ID-to-lane assignments. **100,800 exact four-share assignments**, each requiring all **201 independently observed GP29 columns** to pass. Stop each candidate after its first failure; no candidate survives more than **two consecutive columns**, and **zero survive all 201**. Counts of candidates passing just the first column in the four readings are 912, 784, 870 and 912, within the expected trivial accidental level.
+
+A constructive control uses the **actual printed 201-rune p2 plaintext** as 201 independent GF29 secret symbols. It plants five shares of a degree-two polynomial with fixed independently determined coefficient sequences, recovers every original p2 rune from three shares by exact field interpolation, passes every 4-of-5 parity equation for every rune position, and fails when a single planted share symbol is perturbed by one. The **native-GP field alternative is therefore also excluded** on the original p23–26 whole-strand layouts with historical labels, without knowing the target secret.
+
+[Original-input native GF29 SFT](../sims/lp2_p23_3of5_gp29_symbolwise_shamir_sft.cjs) executes all these assertions in Node.js 22 and reads only the canonical source corpus. It was executed successfully against the exact remotely fetched original data on 12 November 2026. The binary-field historical protocol and this native-field candidate are **separate cryptographic hypotheses**; failure of both does not rule out an independently supplied external share file, different share indexing, or a non-Shamir message structure.
 
 ## Positive inverse and boundaries
 
