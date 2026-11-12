@@ -60,6 +60,43 @@ function maxSurjectionIoC(values, k) {
   return pairs / (values.length * (values.length - 1));
 }
 
+/** @param {number[]} values @returns {number} */
+function entropy(values) {
+  const n = values.length;
+  const counts = new Map();
+  for (const value of values) counts.set(value, (counts.get(value) || 0) + 1);
+  let result = 0;
+  for (const count of counts.values()) {
+    const p = count / n;
+    result -= p * Math.log2(p);
+  }
+  return result;
+}
+
+/**
+ * Exact minimum empirical entropy over all k-class surjections.
+ * Merging the 29-k+1 largest ciphertext classes in one output bucket and
+ * leaving k-1 smallest classes singleton majorizes every other partition
+ * vector, hence minimizes Shannon entropy (a Schur-concave function).
+ * @param {number[]} values
+ * @param {number} k
+ */
+function minSurjectionEntropy(values, k) {
+  assert.ok(Number.isInteger(k) && k >= 1 && k <= GP_SIZE);
+  const counts = symbolCounts(values).sort((a, b) => b - a);
+  const nMerged = GP_SIZE - k + 1;
+  const outputCounts = [
+    counts.slice(0, nMerged).reduce((sum, count) => sum + count, 0),
+    ...counts.slice(nMerged)
+  ];
+  const n = values.length;
+  return -outputCounts.reduce((sum, count) => {
+    if (count === 0) return sum;
+    const p = count / n;
+    return sum + p * Math.log2(p);
+  }, 0);
+}
+
 /** Maximum for a fixed multiset of homophone class sizes. */
 function maxShapeIoC(values, classSizes) {
   const sorted = symbolCounts(values).sort((a, b) => b - a);
@@ -89,8 +126,10 @@ function maximizingSurjection(values, k) {
   const decoded = values.map(symbol => map[symbol]);
   assert.equal(new Set(map).size, k);
   assert.equal(ioc(decoded), maxSurjectionIoC(values, k));
+  assert.ok(Math.abs(entropy(decoded)-minSurjectionEntropy(values,k))<1e-10);
   return {
     decodedIoC: ioc(decoded),
+    decodedEntropy: entropy(decoded),
     classSizes: [mergedCount, ...Array(k - 1).fill(1)]
   };
 }
@@ -152,6 +191,12 @@ function run() {
   }));
 
   const maxByK = {};
+  const minEntropyByK = {};
+  for (let k = 29; k >= 20; k--) {
+    minEntropyByK[k] = Number(minSurjectionEntropy(unknown, k).toFixed(9));
+  }
+  assert.ok(controls.every(control => entropy(control.values) < minSurjectionEntropy(unknown,24)));
+  assert.ok(entropy(controls[0].values)>minSurjectionEntropy(unknown,23));
   for (let k = 29; k >= 20; k--) {
     maxByK[k] = Number(maxSurjectionIoC(unknown, k).toFixed(9));
   }
@@ -208,6 +253,12 @@ function run() {
       corpusBlobSha: "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
     },
     exactMaximumByPlaintextAlphabetSize: maxByK,
+    exactMinimumEntropyByPlaintextAlphabetSize: minEntropyByK,
+    rawAlphabeticControlEntropies: controls.map(control=>({
+      name:control.name, letters:control.values.length,
+      distinctLetters:new Set(control.values).size,
+      entropyBits:Number(entropy(control.values).toFixed(9))
+    })),
     rawAlphabeticControls: globalControls,
     aliasClassShapeBounds: {
       k26: shapeBounds(shapes26),
@@ -230,7 +281,8 @@ function run() {
       minimumRawEnglishControlIoC: Math.min(...controls.map(control => ioc(control.values))),
       k25: "excluded for a fixed global 29->25 map against both raw English controls, even under the one-five-way-class maximum",
       k26: "excluded for a fixed global 29->26 map; per-body 29->26 also fails in each of the eight bodies >=700 runes",
-      remaining: "k<=24, per-body k<=25, evolving mappings, variable-length outputs, and non-English registers are not solved or excluded"
+      k24Entropy: "excluded for a fixed global 29->24 map against both English controls by exact entropy minimization (k24 minimum 4.29096141 bits; controls 4.17286 and 4.13859)",
+      remaining: "k<=23 (k23 still permits Shakespeare-like entropy), independently keyed nonstationary mappings, variable-length outputs and non-English registers remain unresolved"
     },
     sourceHashes: {
       shakespeare: "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
@@ -241,6 +293,6 @@ function run() {
 
 if (require.main === module) console.log(JSON.stringify(run(), null, 2));
 module.exports = {
-  ioc, symbolCounts, maxSurjectionIoC, maxShapeIoC,
+  ioc, entropy, minSurjectionEntropy, symbolCounts, maxSurjectionIoC, maxShapeIoC,
   maximizingSurjection, splitBodies, run
 };
