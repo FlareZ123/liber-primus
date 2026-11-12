@@ -20,12 +20,28 @@ The quote-delimited plaintext word-length signatures, measured in runes, are:
 3. 12 runes, 2 words: `[3,9]`
 4. 58 runes, 14 words: `[5,7,2,3,4,6,4,3,3,4,4,4,5,4]`
 5. 68 runes, 13 words: `[9,8,3,4,6,3,10,2,4,7,6,2,4]`
-6. 160 runes, 33 words: `[4,2,4,6,6,8,8,8,5,9,2,2,4,3,3,2,8,4,7,4,4,3,2,5,3,3,6,3,11,4,4,8,5]`
+6. 160 runes, **34 words**: `[4,2,4,6,6,8,8,3,5,5,9,2,2,4,3,3,2,8,4,7,4,4,3,2,5,3,3,6,3,11,4,4,8,5]`
 7. 70 runes, 14 words: `[5,7,2,3,4,10,3,9,7,3,7,4,3,3]`
 
 The long signatures were searched against roughly seventy distinct literary, religious, philosophical, occult and Cicada-adjacent texts already curated in the public `Dukotah/cicada3301` key corpus. English words were converted to approximate GP rune lengths by greedily collapsing `TH, NG, EO, OE, AE, IA, EA` and normalizing V→U / K→C. No exact long-span quotation match appeared. The 33-word span's best squared length-distance remained about 98, far from an identity match. Short spans naturally produced many accidental exact length matches and are non-discriminating.
 
 This does not prove that no quotation source exists. It rejects the obvious hypothesis that the long marked spans are verbatim quotations from the project's standard source-text candidates.
+
+**Original-word count correction (12 November 2026):** The 160-rune sixth span contains a source-visible full-stop separator at global offset **10,320** (physical p42 local offset 176), separating a three-rune word from the next five-rune word. A legacy length-signature parser silently joined them into one eight-rune item. The full seven-quote signature therefore has **[4, 5, 2, 14, 13, 34, 14] = 86 printed words**, rather than 85. The 2014 transcription and derivative punctuation inventory independently agree on that separator. This distinction matters to any word-index book cipher; it does not prove that the count 86 is intentional.
+
+## Exact 86 repeated-ciphertext events to 86 quote words: finite book-code test
+
+The original physical pages 0–55 contain **86 within-page adjacent equal-rune pairs**. Pairing these events in original reading order with the **86** genuine words inside the seven quoted spans is a new, source-visible, key-free extraction proposal. It uses Cicada's 2016 "words ... map / numbers ... direction" wording as a possible player clue, while recognizing that the event/word cardinality match was noticed after observing the corpus. It is *hypothetical*, not an authenticated instruction.
+
+For each event and corresponding quoted word, select its rune by three fixed original alphabet numbers: the repeated ciphertext rune's **GP29 numeric index** modulo word length, its **GP-prime weight** modulo length, or its GP-prime weight with conventional **one-based indexing**. Keep natural event order, word order, and rune direction; make no arbitrary dictionary or key fit. The 86-rune readouts remain near uniform:
+
+| Extractor | Output IoC |
+| --- | ---: |
+| GP index mod printed word length | **0.031464** |
+| GP-prime mod length | **0.034473** |
+| (GP-prime − 1) mod length | **0.027633** |
+
+The authentic solved p57's first 86 runes have IoC **0.059644**. None of the three extraction strings is independently readable GP English, nor does any supply a sourced key. The planted 86-symbol solved-p57 control is recovered **86/86** by each exact index rule. This retires the three direct source-order local-coordinate interpretations while leaving a different, independently instructed word-code mapping open. [Complete reproducible original-input SFT](../sims/lp2_quote_doublet_word_boundary_sft.cjs).
 
 ## Standalone selected-stream test
 
@@ -66,10 +82,11 @@ The untouched ciphertext baseline scored **−7.44015** per quadgram. Every tran
 
 ## Consequence
 
-The rich punctuation is real information that the canonical solver stream loses, but three direct uses are now bounded negative:
+The rich punctuation is real information that the canonical solver stream loses. Four direct interpretations are now bounded negative:
 
 1. punctuation as a standalone ternary message;
 2. quote-delimited runes as an independently readable ciphertext channel;
 3. visible punctuation/quote marks as reset points for the already solved Vigenere or prime-totient mechanisms.
+4. repeated-ciphertext rune values as direct indexes into the 86 source-visible quoted words.
 
 The quote marks most plausibly encode discourse structure such as direct speech or emphasis. Their word boundaries remain useful as future cribs if an independently motivated key family appears. Do not reopen a generic punctuation-reset sweep without a new cipher generator or a source-derived rule for how the mark changes state.
