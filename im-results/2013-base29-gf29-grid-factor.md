@@ -318,6 +318,20 @@ The exact table factors and the p3 field invite several specific continuations. 
 ### Nine 28-symbol section keys
 
 The 252-slot quotient is exactly \(9\times28\). The source-visible body clock gives nine rune spans of lengths **[729, 1145, 1738, 1894, 1021, 1433, 91, 1589, 3316]**: seven internal dollar markers plus the second p33 heading at local rune offset 91. This motivates one 28-symbol quotient row per body, with literal F passed through without consuming key. All 16 fixed variants were tested: modulo-29 versus the 28-symbol non-F alphabet, forward/reverse row order, forward/reverse key order, and addition/subtraction. The best full-text IoC is only **0.0361** (raw ciphertext **0.0344784**); no plaintext appears. This rejects the direct per-body Vigenère reading, not other uses of the quotient.
+#### Q252 rows on chain-step differences (original visual chapters)
+
+This is distinct from the preceding direct per-body Vigenère test: it applies the same nine quotient rows to the conditional chain-step stream, using the **original-image visual chapters** pp0–2, 3–7, 8–14, 15–22, 23–26, 27–32, 33–39, 40–53 and 54–55 (rune lengths **[729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308]**), not the derivative nine-text spans above. The chain-state difference remains book-continuous across all chapters; only the candidate key row changes at each visual chapter. Each 28-symbol Q252 row is reduced modulo 28 and repeated over nonzero differences. The 86 zero differences are emitted as literal EA and do not consume key. Both signs and both natural first-symbol conventions (literal initial symbol, or first difference from zero) were frozen; no row/key reversal, phase, offset or alphabet fitting was used.
+
+| Initial symbol | Sign | full-text trigram nats/rune | IoC | best 238-rune window | wrong-seed score |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| literal | − | −14.06648 | 0.03527024 | −13.09036 | −14.06636 |
+| literal | + | −14.07952 | 0.03526802 | −13.18743 | −14.07952 |
+| step from zero | − | −14.07305 | 0.03527084 | −13.36289 | −14.07337 |
+| step from zero | + | −14.06420 | 0.03525416 | −13.18743 | −14.06429 |
+
+The 119,213 native-GP 238-rune control windows range from **−8.56711 to −7.43799** (median −7.90037). Even the best candidate 238-rune window (−13.09036) is far below the worst native window. The one-coefficient wrong-seed controls are indistinguishable from the proposed rows. A held-out 12,956-rune native-GP positive plant recovers exactly under all four variants. The output remains nonlinguistic in every chapter.
+
+**Decision:** retire only this fixed Q252-row → continuous chain-step key schedule. It does not recover plaintext and does not support a second-page prediction. This does not establish or disprove the broader chain-cipher hypothesis, and it does not exclude other uses of Q252. The chain-step/EA premise itself remains conditional; see [the doublet exception-channel analysis](doublet-exception-channel.md). Reproducer: **sims/p50_q252_chain_step_key_sft.cjs**.
 
 ### Q238 and the 238-rune p36 page
 
