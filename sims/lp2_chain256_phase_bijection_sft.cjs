@@ -247,6 +247,7 @@ assert(Math.abs(Math.max(...primePhiOutputs.map(x=>x.IOC))-
   0.03530871164571023)<1e-10);
 const phiPlant=encodePrimePhi(windows[0].values,chapters,true,-1);
 assert.deepEqual(decodePrimePhi(phiPlant,chapters,true,-1),windows[0].values);
+assert.deepEqual(encodePrimePhi(decodePrimePhi(phiPlant,chapters,true,-1),chapters,true,-1),phiPlant);
 
 console.log(JSON.stringify({
   hypothesis:"Fixed 256-phase secret GP28 bijections on nonzero chain differences",
