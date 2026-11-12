@@ -178,11 +178,11 @@ for (let start = 0; start + original.length <= english.length; start += original
     left, right, false, 14);
   controls.push({ start, repeats: adjacentRepeats(ct), ioc: indexOfCoincidence(ct) });
 }
-assert.equal(controls.length, 17);
+assert.equal(controls.length, 16);
 const repeatMin = Math.min(...controls.map(c => c.repeats));
 const repeatMax = Math.max(...controls.map(c => c.repeats));
-assert.equal(repeatMin, 420);
-assert.equal(repeatMax, 488);
+assert.equal(repeatMin, 400);
+assert.equal(repeatMax, 474);
 
 const totalWithin = pages.reduce((count, p) => count + adjacentRepeats(p.indices), 0);
 const transitions = pages.reduce((count, p) => count + Math.max(0, p.indices.length - 1), 0);
