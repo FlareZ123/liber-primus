@@ -39,7 +39,8 @@ for (let gap = 1; gap <= 54; gap++) {
 const gap44Positions = bytes.map((v, i) => v === 193 ? i : -1).filter(i => i >= 0);
 assert.deepEqual(gap44Positions, [83, 127]);
 assert.equal(gap44Positions[1] - gap44Positions[0], 44);
-assert.equal((multiplicity.get(3) || 0), 0); // first doubled-space gap is 2
+assert.equal((multiplicity.get(3) || 0), 0); // gap 2
+assert.equal((multiplicity.get(181) || 0), 0); // gap 42 alternative
 
 // Exact conditional placement probability for the two 193 entries.
 const fixedGap44Probability = 2 * (256 - 44) / (256 * 255);
@@ -54,7 +55,7 @@ function nextUint32() {
   return seed >>> 0;
 }
 const simulations = 100000;
-let anyMatch = 0, gap44Match = 0;
+let anyMatch = 0, gap44Match = 0, sourceLimitedAnyMatch = 0;
 const matchHistogram = new Uint32Array(5);
 for (let rep = 0; rep < simulations; rep++) {
   const shuffled = bytes.slice();
@@ -80,6 +81,10 @@ for (let rep = 0; rep < simulations; rep++) {
   if ((positions.get(193) || []).some(i => i + 44 < 256 && shuffled[i + 44] === 193)) {
     gap44Match++;
   }
+  if ([2, 44, 42].some(gap => {
+    const p = primes[gap - 1];
+    return (positions.get(p) || []).some(i => i + gap < 256 && shuffled[i + gap] === p);
+  })) sourceLimitedAnyMatch++;
   matchHistogram[Math.min(matches, 4)]++;
 }
 const expectedMatches = primes.reduce((sum, p, index) => {
@@ -104,6 +109,8 @@ console.log(JSON.stringify({
     simulations,
     familywiseAnyMatchP: (anyMatch + 1) / (simulations + 1),
     fixedGap44P: (gap44Match + 1) / (simulations + 1),
+    sourceLimitedFourPairP: (sourceLimitedAnyMatch + 1) / (simulations + 1),
+    sourceLimitedGapSet: [2, 44, 42],
     matchCountHistogram: Array.from(matchHistogram)
   }
 }, null, 2));
