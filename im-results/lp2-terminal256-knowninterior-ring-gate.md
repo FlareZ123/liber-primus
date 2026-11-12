@@ -4,7 +4,7 @@
 
 ## Why this is a plausible human-facing next route
 
-The original pp49–51 numerical table is **32 rows by 8 columns, 256 cells**. Its outermost ring contains exactly **76** cells, and its three inner rings contain **68, 60, and 52** cells, totaling **180**. The actual terminal runic pages are **p55 76 runes**, **p56 85 runes**, and **p57 95 runes**. Thus:
+The original pp49–51 numerical table is **32 rows by 8 columns, 256 cells**. Its outermost ring contains exactly **76** cells, and its three inner rings contain **68, 60, and 52** cells, totaling **180**. The terminal physical pages carry **p55 76 printed runes** (one completing a word begun on p54, plus 75 p55-body runes), **p56 85 runes**, and **p57 95 runes**. Thus:
 
 ```text
 p55 (unknown)       76  =  32×8 perimeter
@@ -46,6 +46,32 @@ The target **must** be the true solved p56 plaintext; using p56's *ciphertext* h
 | 3 | 52 | Known p57 **SHED** imperative | **8/52** |
 
 The **known inner 180 symbols therefore require at least 29 genuine changes** even if each ring independently receives a completely arbitrary secret alphabet relabeling and arbitrarily secret positional permutation. No exact decoder in this whole fixed-ring monoalphabetic-substitution-plus-transposition family can reproduce the 180 proven runes. The outer ring's four mismatches are reported strictly against *ciphertext*, and do **not** exclude a differently encrypted p55 plaintext. Each known shell passes a source-native positive formed by bijectively relabeling and reversing its real GP known text (zero mismatch), so the bound is not an implementation artifact. [Standalone source-native CJS gate](../sims/lp2_terminal256_ring_allsecret_hist_sft.cjs). This closes a broader per-ring permutation/key escape from the fixed-order codebook negatives; evolving keys, nonlinear interactions between rings, other registers and an independently prescribed additional layer are unaffected.
+
+## Corrected 255-body GF256 register gate, original 180-rune holdout (12 November 2026)
+
+**Physical boundary correction:** the first of the 76 p55-local runes is an ordinary printed `NG` belonging to the final word carried across from p54. The p55 body is **75** runes; together with solved p56 (85) and clear p57 (95), that is **255 body runes**. Including the carried `NG` gives 256 terminal glyphs. The carry's real word-continuation role is established; there is **no independent original mark assigning it the byte value 0**, a unique padding role, or a GF(256) primitive state.
+
+This correspondence prompts a stricter, key-independent test than the earlier modulo-29 codebooks:
+
+- **Literal full GF(256) group-cycle claim fails before decryption.** The unchanged printed 256-cell base60 table contains **161 distinct byte values**, hence **95 repetitions beyond distinctness**, including **two zero entries at offsets 192 and 229** and **no byte 1**. Any single 255-step traversal of the nonzero field elements, supplemented by one sentinel, requires **256 distinct field values** if printed through an invertible byte representation. Even removing a freely chosen one-byte sentinel leaves at most 161 distinct values versus the 255 required. Orientation, row/column permutation, invertible 8-bit alphabet relabeling, and choice of irreducible field polynomial preserve the multiplicity contradiction. Hidden-state generators with a many-to-one output remain possible but need an independent source-selected output rule.
+- **Arbitrary 256-byte direct codebook also fails the known interior.** For any stationary unknown function `f(byte)=GP29 rune`, the exact best number of matches to 180 independently known p56/p57 runes equals the sum of the modal target count for each repeated input byte. Across the eight source-printable rectangular-shell orientations, the least number of mismatches is **46** (full range **46–51**); the physical row-major interior needs **47**. This excludes *every* secret static byte-to-GP29 map on these placements, without reducing the 256 byte symbols modulo29 first.
+- **Reversible additive GP29 keyed-by-byte also fails.** For `C_i=P_i+f(B_i) mod29`, the known p56 cipher-to-plaintext differences come from its authenticated prime-totient decoder and the clear p57 requires a zero mask at all 95 positions. Every proposed stationary secret byte-to-mask function must reproduce the 180 known residual values exactly. Original repeated byte classes demand contradictory masks: **30–36** unavoidable known-position exceptions across the eight shell orientations, and **37** row-major. This is an all-key necessary-condition rejection of the particular *shared stationary byte-derived additive mask*, even though that candidate operation is fully invertible on GP29.
+
+| Source shell start (corner) | Direction | Arbitrary byte→rune exceptions | Arbitrary byte→additive-mask exceptions |
+| --- | ---: | ---: | ---: |
+| top-left | backward | 48 | 34 |
+| top-left | forward | 50 | 32 |
+| top-right | backward | 47 | 31 |
+| top-right | forward | 48 | 34 |
+| bottom-right | backward | 49 | 32 |
+| bottom-right | forward | 51 | 34 |
+| bottom-left | backward | **46** | **30** |
+| bottom-left | forward | 50 | 36 |
+| row-major interior | direct | 47 | 37 |
+
+**Source-native positive controls:** a `0x03` primitive-element sequence under the AES `0x11b` field polynomial enumerates all 255 nonzero bytes and a unique zero sentinel, passing the exact all-state criterion. A separate 256-position genuine reversible GP29 additive plant uses a secret fixed byte→mask map; it exactly decrypts and re-encrypts all positions, with **0/180** codebook contradictions on the planted known interior. The original failure reflects source data, not a defective test.
+
+This confines the 255-body insight to a **possible page-format coincidence or an unresolved state/output mechanism**. It rejects a literal 255-element GF256 enumeration and two fully secret **stationary** table-to-known-rune operators. It does not reject a keyed evolving state, varying masking, enciphering p56 and p57 under different layers, an unspecified byte serialization, or an external file/decoder. No original key or p55 plaintext has been recovered. Reproducer [original full-byte GF256/known-interior SFT](../sims/lp2_terminal255_gf256_original_gate_sft.cjs), [successful existing manual terminal workflow](https://github.com/FlareZ123/liber-primus/actions/runs/43257725970).
 
 ## New research decision
 
