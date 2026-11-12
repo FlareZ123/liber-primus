@@ -1,6 +1,6 @@
 # The 2014 / 2016 / p50 / p55 43-unit bridge: source-selector gate
 
-**Classification:** a source-grounded 43-unit selector candidate has now been found, but no reversible square-to-p55 or p50-to-p55 operation is established. The three 2014 prior-puzzle squares (5×5, 7×7, 5×5) were explicitly required before the LP2 pages were returned. Their inner cells total 43, their perimeters 56, their rows 17, and all cells 99. This aligns with p55's 43 interior runes, 33 boundary runes, 17 words, and p57's 23-dot mark: 43=43, 33+23=56, 76+23=99, and 17=17. The p57 Parable's instruction to shed circumferences is a plausible literal selector for the square interiors. Direct mod-29, prime-count, spiral, and prime-count-difference interpretations tested here fail; the 99-unit placement and reversible operation remain unknown. Earlier p32-compass and 2016/p50 direct-key gates remain negative.
+**Classification:** a source-grounded 43-unit selector candidate has now been found, but no reversible square-to-p55 or p50-to-p55 operation is established. The three 2014 prior-puzzle squares (5×5, 7×7, 5×5) were explicitly required before the LP2 pages were returned. Their inner cells total 43, their perimeters 56, their rows 17, and all cells 99. This aligns with p55's 43 interior runes, 33 boundary runes, 17 words, and p57's 23-dot mark: 43=43, 33+23=56, 76+23=99, and 17=17. The p57 Parable's instruction to shed circumferences is a plausible literal selector for the square interiors. Direct mod-29, prime-count, spiral, and prime-count-difference interpretations fail. A distinct exact prime-hole mask now fills all 76 p55 source runes into the 99 historic square cells and reserves 23 prime-valued positions in the two 1033-sum squares; it supplies a lossless **candidate placement** but no authenticated key or cipher inverse. Its raw-value and totient additive consumers fail on original ciphertext. Earlier p32-compass and 2016/p50 direct-key gates remain negative.
 
 ## Fixed source observations
 
@@ -83,9 +83,26 @@ The 43 inner square values were extracted in the original file order (row-major 
 6. A 42-step chain model using adjacent differences of π(n) from the square interiors against adjacent differences of p55's 43 interior runes; row-major and both spiral orders, both signs, and all 29 initial offsets were tested.
 7. A cumulative direction walk using the square values modulo 43 over the 43 p55 interior positions; row-major and spiral orders, both directions, and read-before/read-after variants were tested. These walks visit only 28 or 29 distinct positions, so they do not define a 43-position permutation.
 
-None of these direct mappings yields recognizable plaintext. They are negative gates, not evidence that the 2014 squares are irrelevant. The 99-token placement—76 p55 runes plus the 23 p57 dots into 99 square cells—has **not** been tested, because the source does not yet specify where the dots go or how to order the cells. Do not invent that placement or expand into arbitrary transforms.
+None of these direct 43-core mappings yields recognizable plaintext. They are negative gates, with no implications for other square uses. One finite **99-cell prime-hole** placement and two direct additive consumers have now been tested below. The source still supplies no unique dot-to-cell rule, so the candidate mapping is an unsupported cipher choice rather than an authenticated p55 decoder.
 
 Reproduction: run sims/lp2_2014_square_inner43_p55_gate.cjs from the repository root. The derived square transcription and pinned provenance are preserved in resources/cicada2014-openpuff-magic-squares.txt (with provenance in resources/derived/historical-2014/).
+
+### Source-frozen 3301/1033 square prime holes: one complete 99-cell candidate (12 November 2026)
+
+The historical three square row sums are exactly **3301, 1033, 1033**. Their original numerical entries contain **1, 17, 6 primes** respectively. The one prime in the 3301-sum square is its exact center **809**. A new specific rule retains **all 25 cells of the 3301 square**, including the center, and reserves every prime-valued cell only in the **two 1033 squares** as a blank. In original three-square and within-square row-major order, it produces:
+
+| Historic source | Kept cells for actual p55 runes | Prime holes |
+| --- | ---: | ---: |
+| 5×5, magic sum 3301 | 25 | 0 (center809 retained) |
+| 7×7, magic sum 1033 | 32 | 17 |
+| 5×5, magic sum 1033 | 19 | 6 |
+| **Total** | **76** | **23** |
+
+This is the first *fully specified*, **lossless** 76-rune→99-cell placement drawn from the 2014 square entries: fill the remaining cells consecutively with exactly the original p55 76 runes, and associate the 23 omitted locations with the **count** of p57 terminal dots. It requires no invented rune values for the dots, and 99 positions are preserved exactly. This rule is attractive because the authors already used 3301, 1033 and prime numbers in prior puzzles, while p57's terminal stencil has exactly 23 dots. Its causal weakness is substantial: **no authenticated instruction selects primes of the two 1033 squares as hole locations while retaining prime center809 in the 3301 square**. The dots' nine source-visible rows (alternating 3 and 2 dots) are not a known one-to-one geometric layout of the two square masks. A count equality does not establish the route.
+
+A frozen original-cipher consumer tests the original 76 p55 GP29 runes with this exact row-major key ordering: subtract either each retained printed integer modulo29 or its Euler totient modulo29. The full 76-rune original results are nonlinguistic. A Gibran-trained GP29 trigram model (63,114 GP training runes, α=0.05) assigns mean log scores **−4.586683** (direct printed integer) and **−4.391858** (totient), versus **−4.327853** for original p55 ciphertext and **−3.283477 minimum** across 300 length-matched Shakespeare/Emerson native-GP windows. Both original transforms re-encrypt all 76 source runes exactly; complete 76-rune GP-native planted plaintext recovers under both same frozen transforms. These are implementation checks rather than evidence of a historical key.
+
+[Exact reproducible 99-cell mask, original-cipher tests and native plants](../sims/lp2_2014_primeholes_p55_99cell_sft.cjs) passed [manual GitHub Actions run 43321532649](https://github.com/FlareZ123/liber-primus/actions/runs/43321532649). The failure constrains these two specific additive reads only. It does **not** show that the prime-mask geometry is intended, nor justify an arbitrary 99-cell transposition/key hunt. A next step requires an independent first-party clue fixing the omitted-cell grammar or a reversible operation that makes a withheld original plaintext prediction.
 
 ### The earlier historical instructions
 
