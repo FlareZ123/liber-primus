@@ -150,6 +150,33 @@ for (const atbash of [false, true]) {
   }
 }
 
+// Reversible source-native control for the four actual continuous autokey
+// constructions. The heading ciphertext acts as their frozen initial
+// 13-symbol encrypted prefix. Control content beyond that prefix is from
+// Gibran's original 201-rune-era English source in approximate GP orthography.
+const nativePlant = plaintext.concat(
+  (read("resources/control/gibran_prophet_58585.txt").match(/[A-Za-z]+/g) || [])
+    .flatMap(gp).slice(0, 716));
+assert.equal(nativePlant.length, 729);
+for (const atbash of [false, true]) {
+  for (const feedback of ["ciphertext", "plaintext"]) {
+    const encrypted = ciphertext.slice();
+    for (let i = 13; i < nativePlant.length; i++) {
+      const previous = feedback === "ciphertext"
+        ? encrypted[i - 13] : nativePlant[i - 13];
+      const value = mod(nativePlant[i] + previous);
+      encrypted.push(atbash ? mod(28 - value) : value);
+    }
+    const decoded = nativePlant.slice(0, 13);
+    for (let i = 13; i < encrypted.length; i++) {
+      const previous = feedback === "ciphertext"
+        ? encrypted[i - 13] : decoded[i - 13];
+      decoded.push(mod((atbash ? 28 - encrypted[i] : encrypted[i]) - previous));
+    }
+    assert.deepEqual(decoded, nativePlant);
+  }
+}
+
 // Second independent source comparison: three distinct red-title word-shapes
 // are each found exactly once as a contiguous phrase in the signed 2016 note.
 // This is an exploratory POST-selection pattern, so compare with pinned
