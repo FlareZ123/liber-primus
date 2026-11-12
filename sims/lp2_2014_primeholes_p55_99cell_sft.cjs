@@ -62,10 +62,11 @@ assert.deepEqual([filled.filter(c=>c.square===0).length,
   filled.filter(c=>c.square===1).length,
   filled.filter(c=>c.square===2).length],[25,32,19]);
 // Exact lossless transport without assigning rune symbols to the printed dots.
-const mapped=cells.map(cell=>cell.hole?null:original.shift());
-assert.equal(original.length,0);
+const remaining=[...original];
+const mapped=cells.map(cell=>cell.hole?null:remaining.shift());
+assert.equal(remaining.length,0);
 const reconstructed=mapped.filter(x=>x!==null);
-const ciphertext=db.pages.find(p=>p.page===55).indices;
+const ciphertext=original;
 assert.deepEqual(reconstructed,ciphertext);
 /** @param {number[]} stream @param {(n:number)=>number} f @returns {number[]} */
 function decode(stream,f){
