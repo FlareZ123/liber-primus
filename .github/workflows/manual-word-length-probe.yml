@@ -19,6 +19,7 @@ on:
           - corrected-oe-marker
           - p55-inner43
           - irc-shortcrib
+          - shortcrib-null
 permissions:
   contents: read
 jobs:
@@ -62,6 +63,9 @@ jobs:
       - name: Byte-verified 2014 IRC LESS and ITS context
         if: ${{ inputs.scan_mode == 'irc-shortcrib' }}
         run: python3 sims/irc_2014_shortword_crib_context_sft.py
+      - name: Familywise 2014 native-English short-word linked-seed null
+        if: ${{ inputs.scan_mode == 'shortcrib-null' }}
+        run: node sims/lp2_2014_shortword_lookelsewhere_sft.cjs
       - name: Reproduce page-local word-length structural tests
         if: ${{ inputs.scan_mode == 'standard' }}
         run: |
