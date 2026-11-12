@@ -184,7 +184,94 @@ for (const source of sources) {
     }
   }
 }
+/**
+ * Quote 2 is only two original complete words (3 + 9 GP runes). To test
+ * the strongest possible source-family candidate before rejecting it,
+ * enumerate every 3/9 contiguous pair in the complete Emerson volume
+ * and in both exact poem witnesses, then grant an arbitrary *unknown*
+ * monoalphabetic GP29 bijection. Ciphertext GP indices 28 and 20 recur
+ * at 0,8 and 2,5 respectively, so both corresponding GP plaintext
+ * positions must also be equal. No key guessing or scoring is used.
+ */
+const q2=original.filter(w=>w.start>=quotes[2].start && w.end<=quotes[2].end);
+const q2Cipher=q2.flatMap(w=>[...w.glyphs].map(g=>corpus.runes.indexOf(g)));
+assert.deepEqual(q2Cipher,[28,13,20,23,3,20,10,14,28,21,18,4]);
+
+/** @param {string} raw @param {boolean} foldIng */
+function nativeWord(raw,foldIng) {
+  let w=raw.replace(/QU/gu,"CW").replace(/V/gu,"U")
+    .replace(/[KQ]/gu,"C").replace(/Z/gu,"S");
+  if(foldIng)w=w.replace(/ING/gu,"NG");
+  const indices=[];
+  for(let i=0;i<w.length;) {
+    const token=tokens.find(t=>w.startsWith(t,i));
+    assert(token);
+    indices.push(corpus.translit.indexOf(token));
+    i+=token.length;
+  }
+  return indices;
+}
+
+/** @param {number[]} plaintext */
+function fitsUnknownBijection(plaintext) {
+  const forward=new Map(),backward=new Map();
+  for(let i=0;i<12;i++) {
+    const c=q2Cipher[i],p=plaintext[i];
+    if((forward.has(c)&&forward.get(c)!==p)
+      ||(backward.has(p)&&backward.get(p)!==c))return false;
+    forward.set(c,p);backward.set(p,c);
+  }
+  return true;
+}
+// An arbitrary planted permutation with the real original repeated-rune
+// pattern is recoverable, while one altered repeated position is rejected.
+const plant=q2Cipher.map(x=>(x*11+7)%29);
+assert(fitsUnknownBijection(plant));
+const bad=plant.slice();bad[8]=(bad[8]+1)%29;
+assert(!fitsUnknownBijection(bad));
+
+const sourceFamily=[
+  {id:"Emerson Essays First Series #2944",
+    file:"resources/control/emerson_essays_2944.txt",
+    expectedWords:77932,nativePairs:[570,578],repeatA:[21,21],repeatB:[21,22]},
+  ...sources.map(source=>({
+    id:"Tennyson "+source.id,file:source.file,
+    expectedWords:source.expectedWords,
+    nativePairs:source.id==="1832" ? [5,5] : [3,3],
+    repeatA:[0,0],repeatB:[0,0]
+  }))
+];
+const quote2AllSecretGate=[];
+for(const source of sourceFamily) {
+  const raw=read(source.file);
+  const words=(source.id.startsWith("Tennyson")
+    ?poemWords(raw):(raw.toUpperCase().match(/[A-Z]+/gu)||[]));
+  assert.equal(words.length,source.expectedWords);
+  for(const [index,foldIng] of [true,false].entries()) {
+    const native=words.map(w=>nativeWord(w,foldIng));
+    let lengthPairs=0,repeatA=0,repeatB=0,repeatBoth=0,bijections=0;
+    for(let j=0;j+1<native.length;j++) {
+      if(native[j].length!==3||native[j+1].length!==9)continue;
+      lengthPairs++;
+      const test=[...native[j],...native[j+1]];
+      const a=test[0]===test[8],b=test[2]===test[5];
+      if(a)repeatA++;
+      if(b)repeatB++;
+      if(a&&b)repeatBoth++;
+      if(fitsUnknownBijection(test))bijections++;
+    }
+    assert.equal(lengthPairs,source.nativePairs[index]);
+    assert.equal(repeatA,source.repeatA[index]);
+    assert.equal(repeatB,source.repeatB[index]);
+    assert.equal(repeatBoth,0);
+    assert.equal(bijections,0);
+    quote2AllSecretGate.push({source:source.id,foldIng,
+      sourceWords:words.length,lengthPairs,repeatA,repeatB,repeatBoth,bijections});
+  }
+}
+
 console.log(JSON.stringify({
+  quote2AllSecretGate,
   editions:sourcesAudited,originalWords:original.length,
   originalRuneCount:12956,positivePlant:"source-native 34-word recovered",
   matches:rows,
